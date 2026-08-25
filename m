@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C345C61DB9
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 17:58:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C1C5C61DBD
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 18:02:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 356B910E16D;
-	Tue, 25 Aug 2026 17:58:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37B5410E0DB;
+	Tue, 25 Aug 2026 18:02:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="X1m1aRf/";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="azTuVWzd";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86B3610E16D
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 17:58:57 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3749010E0DB
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 18:02:20 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 218B740B5A;
- Tue, 25 Aug 2026 17:58:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF7071F000E9;
- Tue, 25 Aug 2026 17:58:56 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 814BC60053;
+ Tue, 25 Aug 2026 18:02:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EB5A1F000E9;
+ Tue, 25 Aug 2026 18:02:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787680737;
- bh=bERbGdAeNaJNq206kwFua3FQinW5QYiuUFi1vvLi6pw=;
+ s=k20260515; t=1787680939;
+ bh=0K15S1trHVxam5HcdTPRK9YbygopRvxHW9dFCNSwChM=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=X1m1aRf/xlP4JvFxFVGKF63lgdlx54NsDq40Q6Fa+KRgX950tiQHrTdMHAX+0lZhS
- nmosrgclyAz3mCUEzLV+m1PTMjFjMnQf9d4T/0HcX/t9Vq6gVeSdUqUnpmr+FIBB8V
- Lkjeb1+JDTCl1z9haN4hDsb7cE5vbmcJo4W0Uszf5yL3BbAlsPdthin15bQf5JXs/l
- Mp8TbUGdwYqI6gXz9qKhO1w78qlJWA5TWAfLPAnlVq75MpSO/MTgL54yovBsyXgdhm
- M3CIdEUOHjCJSgPmg46KJCAeWqDVU5JijVWn1mPdWUYdEi6DEqj2jEDJRNYkFMH5HM
- YJXnR/fQqU8EA==
+ b=azTuVWzdHGZA0RdupytrJqbYk9GsnfW9a1yw3RbU3tZa7xUgqGuFm3//lcPv4fYG2
+ o2iSHr3fx9xGeJNJI7JvBmwsTyISvkSXQQWyMzFF82zRHZtoFVbBL92NF0a4kBBaAs
+ /lJFUkb1EDafdm8Fe714sbwg7wudGDPAHJGz/NQQECwzmX0VapSkwFUHEKOZ7mnZwh
+ saEpfcC8Iaox2/2G/KpbUnTh3VTaVkNHAYirU4MN0I0FHM6uhxVMH99f/oySm9p7lE
+ /FO4sve9LYTexbiwTC60/YdieKwC9hGlP6ghBZ/WZ+9Ae16LyfjyIJNN9oZYgmroU7
+ CNrhbdtZze7Ag==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 08/11] drm/xe/ras: Report device memory errors using
- SIGID
+Subject: Re: [PATCH v2 04/11] drm/xe/cper: APIs to prepare and log CPER record
 To: "Badal Nilawar" <badal.nilawar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260825175916.1103841-21-badal.nilawar@intel.com>
+In-Reply-To: <20260825175916.1103841-17-badal.nilawar@intel.com>
 References: <20260825175916.1103841-13-badal.nilawar@intel.com>
- <20260825175916.1103841-21-badal.nilawar@intel.com>
+ <20260825175916.1103841-17-badal.nilawar@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 25 Aug 2026 17:58:56 +0000
-Message-Id: <20260825175856.CF7071F000E9@smtp.kernel.org>
+Date: Tue, 25 Aug 2026 18:02:18 +0000
+Message-Id: <20260825180219.0EB5A1F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,80 +56,100 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] The `xe_log_err` family of macros passes `ERR_PTR(err)` to the l=
-ogging framework, which crashes when used with hardware component tags due =
-to an unchecked cast.
+- [High] Unconditional dereference of potentially NULL `THIS_MODULE->srcver=
+sion` causes kernel panic.
+- [Medium] Assigning `ktime_get_real_seconds()` to `rhdr->timestamp` violat=
+es the UEFI CPER standard, which requires a BCD timestamp.
 --
 
-commit 3a41849b5bfff0854c8490dfdd5d178d31641b09
+commit 1a8a9f568395a2ce2ede1bcececcf688f5a25b63
 Author: Badal Nilawar <badal.nilawar@intel.com>
 
-drm/xe/ras: Report device memory errors using SIGID
+drm/xe/cper: APIs to prepare and log CPER record
 
-This commit updates the device memory error handler to use the
-xe_log_comp_info() helper instead of xe_info(). This allows reporting
-these errors with the DEVICE_MEMORY hardware component tag.
+Add APIs to initialize Intel-specific CPER metadata, build a non-standard
+CPER record, and emit it via the xe_error_cper tracepoint.
 
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index b4cdb5ec64915..172653be1b829 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -409,14 +409,17 @@ static u8 handle_device_memory_errors(struct xe_dev=
-ice *xe, struct xe_ras_error_
->  	 */
->  	switch (info->category) {
->  	case XE_RAS_MEMORY_POISON:
-> -		xe_info(xe, "[RAS]: Poison error detected\n");
-> +		xe_log_comp_info(xe, DEVICE_MEMORY, &arr->counter, sizeof(arr->counter=
-),
-> +				 "Poison error detected\n");
+> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+> new file mode 100644
+> index 0000000000000..371537052de35
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_cper.c
+[ ... ]
+> +void xe_cper_init_intel_err_hdr(struct xe_device *xe, const u8 location[=
+12],
+> +				u64 first_timestamp, u32 sig_id,
+> +				u32 error_count, struct xe_cper_sec_intel_err_hdr *ihdr)
+> +{
+[ ... ]
+> +	strscpy(ihdr->pci_bdf, pci_name(to_pci_dev(xe->drm.dev)), sizeof(ihdr->=
+pci_bdf));
+> +	ihdr->valid_bits.pci_bdf =3D 1;
+> +
+> +#ifdef MODULE
+> +	strscpy(ihdr->drv_version, THIS_MODULE->srcversion, sizeof(ihdr->drv_ve=
+rsion));
+
+[Severity: High]
+Can this cause a kernel panic if the module's source version is not populat=
+ed?
+
+When the kernel is compiled without CONFIG_MODULE_SRCVERSION_ALL and the
+module lacks an explicit MODULE_VERSION macro, the build system does not
+generate the srcversion modinfo attribute. In this case,
+THIS_MODULE->srcversion is left as NULL during module load.
+
+Since strscpy() does not handle NULL source pointers gracefully, this
+unconditional dereference of THIS_MODULE->srcversion in
+xe_cper_init_intel_err_hdr() could lead to a kernel panic when hardware
+error reporting is triggered.
+
+> +	ihdr->valid_bits.drv_version =3D 1;
+> +#else
+> +	ihdr->valid_bits.drv_version =3D 0;
+> +#endif
+> +
+> +	fill_fw_id(xe, ihdr);
+> +}
+[ ... ]
+> +void xe_cper_record_emit(struct xe_device *xe, u8 severity,
+> +			 guid_t *notification_type,
+> +			 struct xe_cper_sec_intel_err_hdr *ihdr,
+> +			 const void *einfo, u32 einfo_len)
+> +{
+[ ... ]
+> +	/* Assemble the CPER record header (UEFI Appendix N.2.1) */
+> +	memcpy(rhdr->signature, CPER_SIG_RECORD, CPER_SIG_SIZE);
+> +	rhdr->revision          =3D CPER_RECORD_REV;
+> +	rhdr->signature_end     =3D CPER_SIG_END;
+> +	rhdr->section_count     =3D 1;
+> +	rhdr->error_severity    =3D severity;
+> +	rhdr->validation_bits   =3D CPER_VALID_TIMESTAMP;
+> +	rhdr->record_length     =3D total_len;
+> +	rhdr->timestamp         =3D ktime_get_real_seconds();
 
 [Severity: Medium]
-Does introducing the DEVICE_MEMORY hardware tag expose a latent API trap in
-the logging framework?
+Does this assign a raw binary Unix timestamp to a field that requires a BCD
+format?
 
-While this specific call passes a valid pointer (&arr->counter), the logging
-macro family is documented to allow passing ERR_PTR(err) as the data
-parameter.
+ktime_get_real_seconds() returns a 64-bit binary integer representing
+seconds since the Unix epoch. However, the UEFI standard (UEFI 2.8+
+Appendix N.2.1) mandates that the timestamp field in a struct
+cper_record_header is a 64-bit BCD-encoded date and time value (Century,
+Year, Month, Day, Hours, Minutes, Seconds).
 
-If a developer later calls xe_log_err(any, DEVICE_MEMORY, err, ...), it
-passes ERR_PTR(err) as the data parameter. This gets processed in
-log_emit_cper():
+Assigning a raw binary Unix timestamp to rhdr->timestamp in
+xe_cper_record_emit() could cause standard CPER parsers to read invalid
+BCD characters or absurd dates.
 
-drivers/gpu/drm/xe/xe_log.c:log_emit_cper() {
-    ...
-    if (is_hw_sigid(sigid))
-        xe_emit_hardware_error_cper(pdev, cper_sev, sigid,
-                                    (struct xe_ras_error_class *)data);
-    ...
-}
-
-This blindly casts the data parameter to struct xe_ras_error_class *.
-Then xe_emit_hardware_error_cper() checks if it is non-NULL but fails to ch=
-eck
-for an error pointer:
-
-drivers/gpu/drm/xe/xe_ras.c:xe_emit_hardware_error_cper() {
-    ...
-    if (counter && !ras_counter_is_valid(xe, counter))
-    ...
-}
-
-This leads to an invalid pointer dereference when ras_counter_is_valid()
-accesses the severity field:
-
-drivers/gpu/drm/xe/xe_ras.c:ras_counter_is_valid() {
-    ...
-    u8 severity =3D counter->common.severity;
-    ...
-}
-
-Should an IS_ERR() check be added in log_emit_cper() or
-xe_emit_hardware_error_cper() before dereferencing the pointer to prevent a
-potential kernel crash?
+> +	if (platform_id) {
+> +		rhdr->platform_id      =3D *platform_id;
+> +		rhdr->validation_bits |=3D CPER_VALID_PLATFORM_ID;
+> +	}
+[ ... ]
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260825175916.1103=
-841-13-badal.nilawar@intel.com?part=3D8
+841-13-badal.nilawar@intel.com?part=3D4
