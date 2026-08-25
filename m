@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41DDFC61DBC
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 17:42:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C8C0C61DBD
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 17:42:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F303810EB2D;
-	Tue, 25 Aug 2026 17:42:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3AD110EB31;
+	Tue, 25 Aug 2026 17:42:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QY6aD+Rz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IJ3WuThI";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9938E10EB2C
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 17:42:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C89E210EB31
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 17:42:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787679770; x=1819215770;
+ t=1787679774; x=1819215774;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=veKdcVouXxzvgLpqWWGSC4BM9rMjrYIg8py4rFjk2q4=;
- b=QY6aD+RzcU+pQsOhGO6gmrFLRNgGljIrvc5/b685HJJFtQVJ8ewjIDY8
- khD5X0B40KkeRkfqBy0+jn9OL3cTVl221uJ3OUkupopfg9AG5SBHpqVuY
- NqjllDZXm0HLKcRTggpFrH6437in3BonkpvbxBLIwxI3AHBBs5b+JJk5B
- Vqk1q3J5LnPAiTxeAI6hsSer8Vw/cb+v5M31ticWIr+wp+iJu5ihljKdw
- va00zF0UlEWRr/VGi9yznNWDsaGkwjfDSHUwjuxVT5+15guOO4dJ6cUtk
- gJUJuTB7DDN2HYFlXrWP1jINDi5NSq4R75bD9EJi+wj9y1P79bKNV3gZ4 Q==;
-X-CSE-ConnectionGUID: Lr1z4v/PQPKJ8Hx3bscfpA==
-X-CSE-MsgGUID: r4CxgMxpRleP9PpVoUXU1Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11886"; a="88210815"
-X-IronPort-AV: E=Sophos;i="6.25,243,1779174000"; d="scan'208";a="88210815"
+ bh=Dp21pcBuRKev5dVkLAkhtRf0y61bvvMmofENAeh4gCM=;
+ b=IJ3WuThIEFerOK227yX6TFTALtjRxSFf6bHWwWTDf08ALZ2njflCKThe
+ OxY6qYhO8UGijyLPrsiPkCrGvM7JcVdh6KnT+y1EEw6aqxsr5s/RaV8la
+ 94szXH23TNawKV188xt6Lm2p3GbDmnPLqoIkOOB50QWcxGaKi90uus1p8
+ 8bNOh30+5rd8PvreHS4c72NRoiGvImW5XQsG8I1uWGiYoNFJpkVi4CAfB
+ V45MU5eP/skCJbFN7ujEP+npVVHJTDOPYJOKEl8RPFDVrS0SqfSQzsH1C
+ HHClpSBriTsMa3McmAmnT5HV3SNImHEjo2p6dmvuU5EZBAnnYt4QQGUWZ g==;
+X-CSE-ConnectionGUID: rQaIOCpzTsmn2HfLktr/FQ==
+X-CSE-MsgGUID: aQPYDdY8SJehAX8wtE/90w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11886"; a="88210818"
+X-IronPort-AV: E=Sophos;i="6.25,243,1779174000"; d="scan'208";a="88210818"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2026 10:42:50 -0700
-X-CSE-ConnectionGUID: RxGo34rbSzGmpQbF0Z+9cw==
-X-CSE-MsgGUID: hJsvIHHnTKqDGQznzFE5dA==
+ 25 Aug 2026 10:42:53 -0700
+X-CSE-ConnectionGUID: DRxyetzKR+6aQN36SsEWsw==
+X-CSE-MsgGUID: DOJScHzxSh6WAfruPkDrNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,243,1779174000"; d="scan'208";a="272585110"
+X-IronPort-AV: E=Sophos;i="6.25,243,1779174000"; d="scan'208";a="272585116"
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2026 10:42:47 -0700
+ 25 Aug 2026 10:42:51 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
@@ -48,10 +48,10 @@ Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  riana.tauro@intel.com, mallesh.koujalagi@intel.com,
  aravind.iddamsetty@intel.com, michal.wajdeczko@intel.com,
  himal.prasad.ghimiray@intel.com, arvind.yadav@intel.com
-Subject: [PATCH v2 06/11] drm/xe/cper: Log CPER records for aggregate counter
- retrival
-Date: Tue, 25 Aug 2026 23:29:23 +0530
-Message-ID: <20260825175916.1103841-19-badal.nilawar@intel.com>
+Subject: [PATCH v2 07/11] drm/xe/cper: Allow hardware error CPER reporting
+ from xe_log
+Date: Tue, 25 Aug 2026 23:29:24 +0530
+Message-ID: <20260825175916.1103841-20-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260825175916.1103841-13-badal.nilawar@intel.com>
 References: <20260825175916.1103841-13-badal.nilawar@intel.com>
@@ -71,130 +71,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Log CPER records for aggregate counter retrieval from userspace.
+Add xe_emit_hardware_error_cper() as a public wrapper around the
+internal hardware CPER emission helper, enabling xe_log.c to emit
+hardware error CPER records.
 
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ras.c | 92 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 92 insertions(+)
+ drivers/gpu/drm/xe/xe_log.c | 17 +++++++++++------
+ drivers/gpu/drm/xe/xe_ras.c | 23 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras.h |  4 ++++
+ 3 files changed, 38 insertions(+), 6 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_log.c b/drivers/gpu/drm/xe/xe_log.c
+index 5549ef6966fd..c78fc195c55b 100644
+--- a/drivers/gpu/drm/xe/xe_log.c
++++ b/drivers/gpu/drm/xe/xe_log.c
+@@ -10,15 +10,25 @@
+ 
+ #include "xe_device.h"
+ #include "xe_log.h"
++#include "xe_ras.h"
+ #include "xe_printk.h"
+ 
++static bool is_hw_sigid(enum xe_sigid sigid)
++{
++	return (int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START;
++}
++
+ static void log_emit_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
+ 			  u32 component, u32 location, const void *data, size_t len,
+ 			  struct va_format *vaf)
+ {
+ 	KUNIT_STATIC_STUB_REDIRECT(log_emit_cper, pdev, cper_sev, sigid,
+ 				   component, location, data, len, vaf);
+-	/* TODO */
++	/* TODO software CPER */
++
++	if (is_hw_sigid(sigid))
++		xe_emit_hardware_error_cper(pdev, cper_sev, sigid,
++					    (struct xe_ras_error_class *)data);
+ }
+ 
+ static const char *log_unknown_component_prefix(u32 component)
+@@ -100,11 +110,6 @@ static const char *log_location_prefix(struct pci_dev *pdev, u32 location, char
+ 	return buf;
+ }
+ 
+-static bool is_hw_sigid(enum xe_sigid sigid)
+-{
+-	return (int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START;
+-}
+-
+ static bool is_sev_error(int cper_sev)
+ {
+ 	return cper_sev != CPER_SEV_INFORMATIONAL;
 diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 27c78800b5d2..ff9d917b8e29 100644
+index ff9d917b8e29..b4cdb5ec6491 100644
 --- a/drivers/gpu/drm/xe/xe_ras.c
 +++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -204,6 +204,34 @@ static inline const char *comp_to_str(u8 component)
- 	return xe_ras_components[component];
+@@ -837,6 +837,29 @@ static void emit_hw_error_cper(struct xe_device *xe,
+ 	}
  }
  
-+static u32 ras_comp_to_hw_sigid(u8 component)
++/**
++ * xe_emit_hardware_error_cper() - Emit a hardware error CPER record
++ * @pdev: PCI device associated with the Xe device
++ * @cper_sev: CPER severity
++ * @sigid: Error signature identifier
++ * @error_class: Hardware error classification details
++ *
++ * Emit a CPER record for a hardware error
++ */
++void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
++				 struct xe_ras_error_class *counter)
 +{
-+	switch (component) {
-+	case XE_RAS_COMP_DEVICE_MEMORY:
-+		return XE_SIGID_DEVICE_MEMORY;
-+	case XE_RAS_COMP_CORE_COMPUTE:
-+		return XE_SIGID_CORE_COMPUTE;
-+	case XE_RAS_COMP_PCIE:
-+		return XE_SIGID_PCIE;
-+	case XE_RAS_COMP_FABRIC:
-+		return XE_SIGID_FABRIC;
-+	case XE_RAS_COMP_SOC_INTERNAL:
-+		return XE_SIGID_SOC_INTERNAL;
-+	default:
-+		return U32_MAX;
-+	}
-+}
++	struct xe_device *xe = pdev_to_xe_device(pdev);
 +
-+static u8 ras_sev_to_cper_sev(u8 ras_sev)
-+{
-+	switch (ras_sev) {
-+	case XE_RAS_SEV_CORRECTABLE:   return CPER_SEV_CORRECTED;     /* 2 */
-+	case XE_RAS_SEV_UNCORRECTABLE: return CPER_SEV_RECOVERABLE;   /* 0 */
-+	case XE_RAS_SEV_INFORMATIONAL: return CPER_SEV_INFORMATIONAL; /* 3 */
-+	default:                       return CPER_SEV_RECOVERABLE;
-+	}
-+}
++	if (!xe)
++		return;
 +
- static bool ras_counter_is_valid(struct xe_device *xe, struct xe_ras_error_class *counter)
- {
- 	u8 severity = counter->common.severity;
-@@ -749,6 +777,66 @@ prepare_cper_error_info(struct xe_device *xe,
- 	return einfo_arr;
- }
- 
-+static void emit_hw_error_cper(struct xe_device *xe,
-+			       struct xe_ras_error_class *error_class,
-+			       struct xe_ras_get_counter_response *resp,
-+			       u32 sig_id, u8 severity)
-+{
-+	struct xe_ras_get_counter_response local_resp = {};
-+	struct xe_ras_get_counter_response *counter_response = resp;
-+	struct xe_cper_sec_intel_err_hdr ihdr = {};
-+	struct xe_cper_einfo_entry *einfo_arr = NULL;
-+	u32 einfo_count = 0;
-+	u32 i;
++	if (counter && !ras_counter_is_valid(xe, counter))
++		return;
 +
-+	if (!counter_response) {
-+		counter_response = &local_resp;
-+		if (get_counter(xe, error_class, counter_response)) {
-+			xe_err(xe, "[RAS]: CPER: failed to get counter, skipping record\n");
-+			return;
-+		}
-+	}
-+
-+	if (counter_response->has_info_queue) {
-+		einfo_arr = prepare_cper_error_info(xe, counter_response,
-+						    error_class, &einfo_count);
-+		if (!einfo_arr)
-+			xe_err(xe, "[RAS]: CPER: failed to build einfo from info queue\n");
-+	}
-+
-+	if (einfo_count > 0) {
-+		for (i = 0; i < einfo_count; i++) {
-+			struct xe_cper_sec_intel_err_hdr entry_ihdr = {};
-+
-+			xe_cper_init_intel_err_hdr(xe,
-+						   (const u8 *)&einfo_arr[i].hdr.error_class,
-+						   einfo_arr[i].timestamp,
-+						   sig_id,
-+						   einfo_arr[i].hdr.counter,
-+						   &entry_ihdr);
-+
-+			xe_cper_record_emit(xe, severity, &INTEL_CPER_NOTIFY_GPU_ERROR,
-+					    &entry_ihdr, einfo_arr[i].einfo,
-+					    einfo_arr[i].einfo_size);
-+		}
-+	} else {
-+		xe_cper_init_intel_err_hdr(xe,
-+					   (const u8 *)error_class,
-+					   counter_response->timestamp,
-+					   sig_id,
-+					   counter_response->value,
-+					   &ihdr);
-+		xe_cper_record_emit(xe, severity, &INTEL_CPER_NOTIFY_GPU_ERROR,
-+				    &ihdr, NULL, 0);
-+	}
-+
-+	if (einfo_arr) {
-+		for (i = 0; i < einfo_count; i++)
-+			kfree(einfo_arr[i].einfo);
-+		kfree(einfo_arr);
-+	}
++	emit_hw_error_cper(xe, counter, NULL, sigid, cper_sev);
 +}
 +
  /**
   * xe_ras_process_errors() - Process and contain hardware errors
   * @xe: xe device instance
-@@ -886,6 +974,10 @@ int xe_ras_get_counter(struct xe_device *xe, u8 severity, u8 component, u32 *val
- 		return ret;
+diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+index 618364734043..e5c4b2e2e1fd 100644
+--- a/drivers/gpu/drm/xe/xe_ras.h
++++ b/drivers/gpu/drm/xe/xe_ras.h
+@@ -7,6 +7,8 @@
+ #define _XE_RAS_H_
  
- 	*value = response.value;
-+
-+	emit_hw_error_cper(xe, &counter, &response,
-+			   ras_comp_to_hw_sigid(counter.common.component),
-+			   ras_sev_to_cper_sev(counter.common.severity));
- 	return 0;
- }
+ #include <linux/types.h>
++#include "abi/xe_sigid_abi.h"
++#include "xe_device.h"
+ #include "xe_ras_types.h"
  
+ struct xe_device;
+@@ -18,5 +20,7 @@ int xe_ras_get_counter(struct xe_device *xe, u8 severity, u8 component, u32 *val
+ int xe_ras_clear_counter(struct xe_device *xe, u8 severity, u8 component);
+ void xe_ras_init(struct xe_device *xe);
+ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe);
++void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
++				 struct xe_ras_error_class *error_class);
+ 
+ #endif
 -- 
 2.54.0
 
