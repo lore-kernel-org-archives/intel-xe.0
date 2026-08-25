@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87444C5DF94
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 05:43:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E89FDC5DF9C
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 05:43:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F61310E125;
-	Tue, 25 Aug 2026 05:43:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A05AE10E131;
+	Tue, 25 Aug 2026 05:43:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MA7k8QUR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cm9F4lMR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1A3310E125
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 05:43:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B826410E131
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 05:43:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787636630; x=1819172630;
+ t=1787636635; x=1819172635;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=f/16kBJ47bSVdkU7GRfgVdz91xbpoWU30jxgMcY/usA=;
- b=MA7k8QUR5CHBeGeVMjKUJtl2XZ+IKj44xUK4M+Yrz4mYD5CbnrWmDjdF
- 4O8h4zQ7JU5/C0sjAaCHNkujm3E1kiq5B///F+0kkCQO5IrICs9y0uqkR
- VP46NHwdqAMX19LBJrtjxmECd0HiOG5ZkJg1g8EZxGBKDiBj0yH2n0s4K
- 2wl7txt5eL+Os3NDk7rnSD7GKVCScgjhJTEqnV7WZUdz0jHAI9Z6pAN2v
- RLojhd6y4EFSMvZ4262Q2019IXa59Y+1Okrqo6ZjS9qSj7sj2FTgBWJiJ
- 6WuwXPC0zBo8oG3jk/V5HiqG3yD1weP/RFT3D76K6xBLDOExozHIiw1UW w==;
-X-CSE-ConnectionGUID: YW1XyjbERwOA4t6zgTjD0g==
-X-CSE-MsgGUID: SgM/Xa3LS26T80IXJ3GoGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="88112047"
-X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="88112047"
+ bh=NckCnP6OWUrT+a8Ar5FSx/z1JUqU1muMHZoGOJ3whYU=;
+ b=Cm9F4lMRD5qqIrK193gVfvpTni5yNUcnxVqqgWSskVXiJXAMwv6tVkAm
+ seSaqeqLAZg+iY2kkaqCZKIAVSS+JR+Sk4jOwovwgfLUd4fNIatBd2dJH
+ STIXbxcfkYA6jaNwUqPA+sHwy0zzswYFuKWpodELvh3fMtWTf/+bmgz8J
+ Jb+eiIG/ivlVXPhhRVcA0uOJLhVmID2uTsU8BLzPsjgHUSy9QBtGgl2vo
+ ldwXJqFNc1hICo8+X24BuP0MkVTUVwUKimN0Px+M39+a3tWUkI5d76tTe
+ jg9DvaKOQp8s7NmCxcHFvOcw+gCHwcln2E7p6iO3aOv19nctqZRyIJy6M g==;
+X-CSE-ConnectionGUID: 5c4qYCIUSHKmNeD2RmYUYA==
+X-CSE-MsgGUID: M1/j0hbVRmivPxAXORi3pg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="88112050"
+X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="88112050"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2026 22:43:50 -0700
-X-CSE-ConnectionGUID: qFNzBAs7R8GtfBuV4GtguQ==
-X-CSE-MsgGUID: vCV7bPe+SQOcWsPhZwoCSA==
+ 24 Aug 2026 22:43:55 -0700
+X-CSE-ConnectionGUID: uVLU52bNQX+noE1BJyA8yw==
+X-CSE-MsgGUID: /bmHWHGpQPGdSX2Zhu/uNw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="272418216"
+X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="272418233"
 Received: from unknown (HELO jraag-Z790M-ITX-WiFi.iind.intel.com)
  ([10.190.239.23])
- by fmviesa005.fm.intel.com with ESMTP; 24 Aug 2026 22:43:45 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 24 Aug 2026 22:43:50 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: dave@stgolabs.net, jic23@kernel.org, dave.jiang@intel.com,
  alison.schofield@intel.com, vishal.l.verma@intel.com, djbw@kernel.org,
@@ -50,13 +50,14 @@ Cc: linux-cxl@vger.kernel.org, linux-pci@vger.kernel.org,
  linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
  lukas@wunner.de, riana.tauro@intel.com, michal.wajdeczko@intel.com,
  matthew.d.roper@intel.com, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v2 1/2] PCI/AER: Export pcie_aer_is_native() to AER namespace
-Date: Tue, 25 Aug 2026 11:12:50 +0530
-Message-ID: <20260825054312.1319951-2-raag.jadav@intel.com>
+Subject: [PATCH v2 2/2] drm/xe/ras: Enable SGUnit PCIe error reporting
+Date: Tue, 25 Aug 2026 11:12:51 +0530
+Message-ID: <20260825054312.1319951-3-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260825054312.1319951-1-raag.jadav@intel.com>
 References: <20260825054312.1319951-1-raag.jadav@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,44 +73,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-pcie_aer_is_native() was originally exported to CXL namespace in commit
-49f776724e64 ("PCI/AER: Export pcie_aer_is_native()"). This is a bit
-misleading as the symbol or its underlying implementation does not reflect
-any distinguishable CXL functionality.
+SGUnit as a PCI endpoint is not AER capable and requires explicit
+programming of error reporting bits in DevCtl register of it's config
+space for upstream error propagation. Hack it.
 
-Change this and export pcie_aer_is_native() to AER namespace, which is
-cleaner and more suitable for its implementation.
+While at it, add native AER sanity check for upstream port before
+programming SGUnit register.
 
-Suggested-by: Lukas Wunner <lukas@wunner.de>
+This is as per pci_enable_pcie_error_reporting() logic implemented
+in PCIe AER driver.
+
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Lukas Wunner <lukas@wunner.de>
 ---
- drivers/cxl/port.c     | 1 +
- drivers/pci/pcie/aer.c | 2 +-
- 2 files changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_ras.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/drivers/cxl/port.c b/drivers/cxl/port.c
-index 99cf77b6b699..00f675163b3d 100644
---- a/drivers/cxl/port.c
-+++ b/drivers/cxl/port.c
-@@ -340,5 +340,6 @@ module_exit(cxl_port_exit);
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index de4cb9ef7355..c4b5c0b5eb0d 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -3,6 +3,8 @@
+  * Copyright © 2026 Intel Corporation
+  */
  
- MODULE_DESCRIPTION("CXL: Port enumeration and services");
- MODULE_LICENSE("GPL v2");
-+MODULE_IMPORT_NS("AER");
- MODULE_IMPORT_NS("CXL");
- MODULE_ALIAS_CXL(CXL_DEVICE_PORT);
-diff --git a/drivers/pci/pcie/aer.c b/drivers/pci/pcie/aer.c
-index c4fd9c0b2a54..8660b18bac8b 100644
---- a/drivers/pci/pcie/aer.c
-+++ b/drivers/pci/pcie/aer.c
-@@ -248,7 +248,7 @@ int pcie_aer_is_native(struct pci_dev *dev)
- 
- 	return pcie_ports_native || host->native_aer;
++#include <linux/aer.h>
++
+ #include "xe_debugfs.h"
+ #include "xe_device.h"
+ #include "xe_drm_ras.h"
+@@ -234,6 +236,9 @@ static struct pci_dev *find_usp_dev(struct pci_dev *pdev)
+ 	return pci_upstream_bridge(vsp);
  }
--EXPORT_SYMBOL_NS_GPL(pcie_aer_is_native, "CXL");
-+EXPORT_SYMBOL_NS_GPL(pcie_aer_is_native, "AER");
  
- static int pci_enable_pcie_error_reporting(struct pci_dev *dev)
++#define PCI_EXP_AER_FLAGS	(PCI_EXP_DEVCTL_CERE | PCI_EXP_DEVCTL_NFERE | \
++				 PCI_EXP_DEVCTL_FERE | PCI_EXP_DEVCTL_URRE)
++
+ static void ras_usp_aer_init(struct xe_device *xe)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+@@ -251,6 +256,14 @@ static void ras_usp_aer_init(struct xe_device *xe)
+ 		return;
+ 	}
+ 
++	if (!pcie_aer_is_native(usp)) {
++		dev_warn(&usp->dev, "No native AER support\n");
++		return;
++	}
++
++	pcie_capability_set_word(pdev, PCI_EXP_DEVCTL, PCI_EXP_AER_FLAGS);
++	pci_save_state(pdev);
++
+ 	/*
+ 	 * Clear any stale Uncorrectable Internal Error Status event in Uncorrectable Error
+ 	 * Status Register.
+@@ -279,6 +292,7 @@ static void ras_usp_aer_init(struct xe_device *xe)
+ 	pci_save_state(usp);
+ 	dev_dbg(&usp->dev, "Uncorrectable Internal Errors downgraded and unmasked\n");
+ }
++MODULE_IMPORT_NS("AER");
+ 
+ static void ras_send_error_event(struct xe_device *xe, u8 severity, u8 component)
  {
 -- 
 2.43.0
