@@ -4,66 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 977B8C5B572
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 03:48:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EC26C5B572
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 03:59:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 403E410E112;
-	Tue, 25 Aug 2026 03:48:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A77610E112;
+	Tue, 25 Aug 2026 03:59:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UD6SEQ2n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dfZXMuMN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD45210E112
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 03:48:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 853CA10E112
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 03:59:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787629688; x=1819165688;
+ t=1787630386; x=1819166386;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Ynybgv7A+W1fp7KTrZunT26NYoDJCixA6pNkrbvhQ9Q=;
- b=UD6SEQ2nNYChEzBcAo0cMYY0kJcCXpNlMXJO3ajYEA9lkZe+XAXOZKc4
- W9ShRkQgeIpmD7h0eWKG6d2Q4HNAdDiTWh+VvElPpWbXdJFBXPH2ocGUs
- JGz963g1ZRpLEdfiZHgcv9P1Zx4Lt1EyGLPoDLBc1eitl8FKznbkSEsNj
- EobaW4Kzo00w0T1gkAroajv6ZQpESrvNwudF13BQj8hHZKuwAlxoMe2Eq
- FVkwPBwkW4syp6zKm2Ep3JqmY5qjDDUgoUUedHDRa4O6bbqHPt8Ljp26v
- gzKrhmPUM+Rdbl51/a6TVDlVz86VsIMulCRgnUyy+C9SE/hFnJrGKBhAV A==;
-X-CSE-ConnectionGUID: dSWuVrQkQe+ChGQwlkEkTg==
-X-CSE-MsgGUID: jE2kOQABTleAQTcCP8ztOA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="88146670"
-X-IronPort-AV: E=Sophos;i="6.25,241,1779174000"; d="scan'208";a="88146670"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2026 20:48:07 -0700
-X-CSE-ConnectionGUID: kQc/aVQyR0ep32AfgPUDfg==
-X-CSE-MsgGUID: QcoA7d+TTNWlxJsbrXM2wg==
+ in-reply-to:mime-version;
+ bh=WbxEprDro3kBLC3dlLDOScaI3UYd4DkOFy+/RxEidQQ=;
+ b=dfZXMuMNvYDUP4kCv6ePITPrH51loyHUUVFSUDmVciBUH6ycY1Rx5bdp
+ vTTsMPF6Bs13YWH89C6iycCZ/bAmNZycnY2uw6eSMfNFRvXMcW7DQZZrE
+ vn+PH8CPGj8cykgSk1v5EzhM1Q1AS5b0sNgIKX34LrZXtT2V34az4X8DU
+ uLdf3FseM6DuDKaIRz66BRcykf77fL1bHPzlQY/2VDInZVPoZaNTCw07v
+ RuGG2ZO9MCdW9Hs3u4JwMyEEAVmn5ESaqLEx95JXFjN6I1lky6DUz1Egd
+ 2mLhuF41PB1J47VGmg9x0dcjJId9WEoOzbxSzIrAZsacvcPcupA6/8yAE g==;
+X-CSE-ConnectionGUID: PdlK10rjQUuoH9evhHwWqQ==
+X-CSE-MsgGUID: waFv0LMtQni42XlPlufKgA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="113626713"
+X-IronPort-AV: E=Sophos;i="6.25,241,1779174000"; d="scan'208";a="113626713"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2026 20:59:46 -0700
+X-CSE-ConnectionGUID: s+HLXMDrTuOPE6A+nkdFRw==
+X-CSE-MsgGUID: PY7Gad0ZTc2w9U2n/ALTtw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,241,1779174000"; d="scan'208";a="292024231"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa001.fm.intel.com with ESMTP; 24 Aug 2026 20:48:05 -0700
-Received: by black.igk.intel.com (Postfix, from userid 1001)
- id CB82F99; Tue, 25 Aug 2026 05:48:03 +0200 (CEST)
-Date: Tue, 25 Aug 2026 05:48:03 +0200
-From: Mika Westerberg <mika.westerberg@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Raag Jadav <raag.jadav@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Andi Shyti <andi.shyti@kernel.org>,
- Ramesh Babu B <ramesh.babu.b@intel.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
- stable@vger.kernel.org
+X-IronPort-AV: E=Sophos;i="6.25,241,1779174000"; d="scan'208";a="270979152"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2026 20:59:46 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Mon, 24 Aug 2026 20:59:45 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45 via Frontend Transport; Mon, 24 Aug 2026 20:59:45 -0700
+Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.49) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Mon, 24 Aug 2026 20:59:45 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=w5g/GN2lSfpSNuQAogWmClKNU6THD3yUCXesy74dl4aYvzzs0wgOlDkqJtKDe/ObuLFPMFoCePnrWwSiarHe6SjjwxbkGZwjSjHVBcHE2KBkyRn57sM+4nBEywb14KQ5sxWGAXfn0ZjHaWj+4n9cmJ4uM/1eO4rQuk3AoS59F/XwNo6HI0hgURKBZAnVnByUnNhN8xK1nG6fd7fa5xnXKDo8csp2x2Du+lBfqoMSa1Jodi36gTlSS7YuwILeNfsPc4LKZYnBdV5y4NyY2t2U6KOJC/qW0sd9pY2CmAxySw46Tpfs1/fQF79cc33HjMGfKQGonc3tYnQyfTwXgj9RgA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EFesFC4IVVduh5b6hSg5+ZufPtt7N0oyvqjmcVWLsIg=;
+ b=Rf6JJx+fLUEbz00o2HPrBIDYOAtVMgWytZnF2au2kq9OiMPrB4WsmAD5AL8hy2BcU4ZDNC45N7Okm9VkJzm9sMdywFPW1BlWZEzQR5jNmeq+qQwVPNGfwyrEQv4R4ln1AsVoaXGIEwcLiiv7VKPQdgDC0xpTpmT85Lh3nhVLQox7j2FFP5VR0xnlddf1qogtSWMR7OwAF5v3bjSK2WvmmYM2SuZSE39KpfsEa1hWatjCjHaj1HWXV0/9IYNFffI6yA0WNES8/EjC1zK7gdIQV5JhLCPz6ByNDK+zwlZEnNrvAvuk8RubjNoUUYAKknwPlgXWSGd9B/NBeXyC1joAQg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA0PR11MB7752.namprd11.prod.outlook.com (2603:10b6:208:442::20)
+ by CY2PR11MB946807.namprd11.prod.outlook.com (2603:10b6:930:10f::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.6; Tue, 25 Aug
+ 2026 03:59:41 +0000
+Received: from IA0PR11MB7752.namprd11.prod.outlook.com
+ ([fe80::848a:3e54:c19b:11ce]) by IA0PR11MB7752.namprd11.prod.outlook.com
+ ([fe80::848a:3e54:c19b:11ce%7]) with mapi id 15.21.0339.012; Tue, 25 Aug 2026
+ 03:59:41 +0000
+Date: Mon, 24 Aug 2026 23:59:36 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Mika Westerberg <mika.westerberg@linux.intel.com>
+CC: Heikki Krogerus <heikki.krogerus@linux.intel.com>, Matthew Brost
+ <matthew.brost@intel.com>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Raag Jadav <raag.jadav@intel.com>, "Andy
+ Shevchenko" <andriy.shevchenko@linux.intel.com>, Andi Shyti
+ <andi.shyti@kernel.org>, Ramesh Babu B <ramesh.babu.b@intel.com>, "Michael J.
+ Ruhl" <michael.j.ruhl@intel.com>, <linux-kernel@vger.kernel.org>,
+ <intel-xe@lists.freedesktop.org>, <stable@vger.kernel.org>
 Subject: Re: [PATCH v7 1/3] i2c: designware: Global register definitions
-Message-ID: <20260825034803.GJ893316@black.igk.intel.com>
+Message-ID: <ao0TKF859v36PAn2@intel.com>
 References: <20260811121008.1493015-1-heikki.krogerus@linux.intel.com>
  <20260811121008.1493015-2-heikki.krogerus@linux.intel.com>
  <aoyb0WYzCd-DEIWC@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+ <20260825034803.GJ893316@black.igk.intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <aoyb0WYzCd-DEIWC@intel.com>
+In-Reply-To: <20260825034803.GJ893316@black.igk.intel.com>
+X-ClientProxiedBy: BY3PR04CA0010.namprd04.prod.outlook.com
+ (2603:10b6:a03:217::15) To IA0PR11MB7752.namprd11.prod.outlook.com
+ (2603:10b6:208:442::20)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7752:EE_|CY2PR11MB946807:EE_
+X-MS-Office365-Filtering-Correlation-Id: b258b8d5-0948-42f2-432c-08df025d4a41
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|23010399003|10067099003|56012099006|11063799006|4143699003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: HFchzOTTem5Gry8YvA3+fvrx8RcZv2JQknGkr1saemGOa64mO0G6bVCG6IuOMepg0K3Hlv3v0OgDHUmi+0W1fmljdzZrJUNqWVvmvQ5is6zSnWudgDI1JIQuFXx8mD05vbgy8jSfohcUzEe4WXOUf/WDtVekRFLFSqxqmk1okn1MIKL4nUwritgKvcyQQJX2VCrAg4W3BUcPDbe+SHTguRaOPNDBLrc9HoNbB3a37o7l9shpBQoA7kVE4JUcmhFIvqfkBb6YtIjEWaHdObAvesjxBbCoV7Q1XsUQQrO4HJvOJt0oAkbCBA6CqzEglVD6lzBmBIJvqptrwyAOC3xr40B9egS/Aa9fDwozGfL5YV4fYAphCMhEaQZrKZVME40w84tyf0X/JORuFXpylzvw+/RMB0VDPXhj8pLPX9dTXV5BC0BCFEQhQWfM2EP+FT9X46b7Q8+o+oOHHZo+9439azo/P8MCg+RjLoHdAZQwER7QQomWIzqZ+dONZ69/XB1c+lBgjN4F4X1mStKbzSKWaSkOH2rUc+FxRZTjq07UHfLc6py4EWYgpOJC3TK2CK9qpkXMYOrG66mSlq/PuOrN5/opVB3jksYhTZr41Q8LaR5ljx9Im/A6+i3qpGGsbMS37obtWqAawM4/I8ScoyNBFTMH3pfqy1Vxczzq0q0sNmA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7752.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(10067099003)(56012099006)(11063799006)(4143699003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ybDzelOrZL3JK+y9PmxDTkrCSi/H6RQJv7rFprbBdH7xBM6CVMX9FvCJTqIP?=
+ =?us-ascii?Q?7WL342zvrCTqYVdzPZnRjg6PehifugnYPF96RFJRT5VnnG6YbyT1l/uzrKbZ?=
+ =?us-ascii?Q?w9ncZT+YcUQqDHIWxGTTbDv/2TgUbVIGC6ThhWtAwuhA7P3s0ezDADjbiKo3?=
+ =?us-ascii?Q?xr93YLViVRb+XNK47UFqcHwpSGCt7fX5R89arI4Vpu+mWH/w/eNhVMckkSyW?=
+ =?us-ascii?Q?zyF+0NP0lFA7mxM1FCLzg5sv6sbO8UhRl1c0Gt+m7S6xnFL3euB5jSPDXxS0?=
+ =?us-ascii?Q?NnlQ7RxeoEOTXDLNLeKHiTwLHjeQXPGJwene1ut5lnosHmKIHuxWYyRGQ3fW?=
+ =?us-ascii?Q?HMJV5rLOcXUKExAtDMXGs13GhzZQirZLqjdw6otC+yfG5M+VpjZg1vRzN+3d?=
+ =?us-ascii?Q?PeU9O49IRufjl2ZWmLG4I4kvuZt7RHaJBOVdq5SxRe519gL7LfliosI66aIj?=
+ =?us-ascii?Q?DiN9sttQAT7P5je93W/xgKDRObUFuo0znZK6RGCQiWUgRikp+wwul4aVTso0?=
+ =?us-ascii?Q?gzBVbWHfVxfolI/oh+oayTWIlVkxTqd7ddGQRXg/p/zYwA7ejB0ynQsUJvqL?=
+ =?us-ascii?Q?2RJUZBKGgQWJL5Fa+gXmYUq2FFCgpwRRmxe0Wf/H9mLSMXlFhLiywJxRDAnK?=
+ =?us-ascii?Q?iqAh3NRQOzWBO4bVPSx0NO08XtUR9xtyq5NZJh4Q/PhvKfqZAuGTS8U0d7vJ?=
+ =?us-ascii?Q?8KEaWFfGElxAPbiki1w2DtMok8CZmaY2ZoBVCZO3tzFitJuaQnqoIlLQP2qd?=
+ =?us-ascii?Q?GNDAK6DmpZLlTLKyhMi8DohU5wjKwqJEsjcq90PcDdqRQYEm1kqaRe7enIxv?=
+ =?us-ascii?Q?HBkQhaSfQTXR8hEUc8y/6tEsroAYVWkXvcUpia4qwcn58OyNd+tJpAiAxyqB?=
+ =?us-ascii?Q?XuzOKrIA/zOiu2Fn8P2iziQkPxAPKq7it38jyqPlcsmmbE6odtrcdngdWbzx?=
+ =?us-ascii?Q?kkHYw0z6xs/6uiEGV1RXREPQUIpCNJgPYySk51Y0Ou1iTDh1qEtcKz2ZWHW5?=
+ =?us-ascii?Q?NS1AYpiLzXCTg2XebWhpNmmGoNzmR1snTv5jEDoIslDrLftgWbRX5x5GN9QD?=
+ =?us-ascii?Q?JZ3UiDtuwkqar5iOEsiczVqetjqnr9ioQ+lKztMYY7rAtOnQTVgNSkXeaJNe?=
+ =?us-ascii?Q?Mg2eVyuod9Pb9BiU4VtU/LoEzFBzoBrqTTe2KM9njca9SpUxE6Pd9a7FYB1V?=
+ =?us-ascii?Q?WvAUxYEtQeQFpFVK18N+UqSOTXZPQ+EkHnEIy3axxf6u8Uyd7q/gkcxiqib4?=
+ =?us-ascii?Q?dvHUNaePQ5fELOFpw2qH+4qXaeZk+xAFh3zkJxztCza7icQkSdxPuhhYuj3Y?=
+ =?us-ascii?Q?eto6NX/FJX7sCbY1DnktFac+HTbdd3D/7G+S0xaaywvhvEg8TGxPHmG2R4Cb?=
+ =?us-ascii?Q?Ui8AhvoJYiiJhJ3oNJulUDUswtzoerJgQCHXZXKAK5gO/FUNdjYqN4OTOEf+?=
+ =?us-ascii?Q?1+JcDqg8I1i8/VTpBKOMg7t2EIjN1UY8rO8ur3zqUpk4IwXbN1RWSyjNG817?=
+ =?us-ascii?Q?wGbSklqe/lCQGDJ9Tfpnbfw2ko/kt58qPf/GpvRaWuOqmlZxJtetPCkwI1c7?=
+ =?us-ascii?Q?62sxaTlyIfJ2VobdGob/GoEv8Fmy3WxigjjKEUIfgxgkRp4AJBJ2Kr2wUbF/?=
+ =?us-ascii?Q?204jFZgZPe/wxz6P2ItWGlYRQFp051FPs8QSffI71Qlre1h6Zpo0l/s88BDM?=
+ =?us-ascii?Q?RrqYouXblTiKMzW+osvlBAu/3F1WTudoBk1rtC4ATJQJFLLnX0q+M1YLivYF?=
+ =?us-ascii?Q?HZzh2dBHgQ=3D=3D?=
+X-Exchange-RoutingPolicyChecked: ED3KF88DaCf+sD94TX6cuogHUY44/EKDUy75jvcpgPYvTOlDMlmyB1tZJJYpAp5sElwd5GKs8abx1iTsBvebrbi0JakekuXd/xvjAX6Pxo8ez3ZoOQjUY8UdP/KWtJnXb7BvBI0vvGlYanf4FY/3QmNPy7Awa6xDe2cIftw8EsLTBe83t1A8v3aZRyToSSFOftquJvLMjS358EBrh/PS4hkOjnPCfPSzBRwQwuBaVyFPHHm3vGsWtRBwz33riwWCicgf70wsay3j0rnJ1snkUP7eGixh7DaXaLj6l8a5nPn1LBXPanhcpjiFjkeTzbDEsqP7r4J9Yt/IC2oLSjFxjg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: b258b8d5-0948-42f2-432c-08df025d4a41
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7752.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2026 03:59:41.2502 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: d2zhXn7rGHie5o4+FeIzFg8E7DHg5dXY6JFjVqWH+VK+nGiKtfG+J2jqmfDOekpJ9KrS+62jHlaKGfVbLEhfoQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY2PR11MB946807
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,20 +165,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 24, 2026 at 03:30:25PM -0400, Rodrigo Vivi wrote:
-> On Tue, Aug 11, 2026 at 02:10:06PM +0200, Heikki Krogerus wrote:
-> > Moving the register definitions to a global header file
-> > include/linux/designware_i2c.h. That removes the need to
-> > duplicate them in the adaptation layers for this driver
-> > outside of drivers/i2c/busses/. There is at least one of
-> > those in drivers/gpu/drm/xe/xe_i2c.c.
+On Tue, Aug 25, 2026 at 05:48:03AM +0200, Mika Westerberg wrote:
+> On Mon, Aug 24, 2026 at 03:30:25PM -0400, Rodrigo Vivi wrote:
+> > On Tue, Aug 11, 2026 at 02:10:06PM +0200, Heikki Krogerus wrote:
+> > > Moving the register definitions to a global header file
+> > > include/linux/designware_i2c.h. That removes the need to
+> > > duplicate them in the adaptation layers for this driver
+> > > outside of drivers/i2c/busses/. There is at least one of
+> > > those in drivers/gpu/drm/xe/xe_i2c.c.
+> > > 
+> > > Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > > Suggested-by: Raag Jadav <raag.jadav@intel.com>
+> > > Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+> > > Reviewed-by: Mika Westerberg <mika.westerberg@linux.intel.com>
+> > > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 > > 
-> > Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > Suggested-by: Raag Jadav <raag.jadav@intel.com>
-> > Reviewed-by: Raag Jadav <raag.jadav@intel.com>
-> > Reviewed-by: Mika Westerberg <mika.westerberg@linux.intel.com>
-> > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > Andi, Mika, are you okay to get this merged through drm-xe-next?
 > 
-> Andi, Mika, are you okay to get this merged through drm-xe-next?
+> Sure.
 
-Sure.
+Thank you. pushed to drm-xe-next
