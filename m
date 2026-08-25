@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 451E0C61DBC
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 06:19:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E7CFC5DF9C
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 06:19:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3CE410E8D9;
-	Tue, 25 Aug 2026 06:19:26 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C33CA10E8EC;
- Tue, 25 Aug 2026 06:19:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2138295820637654646=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F70510E8ED;
+	Tue, 25 Aug 2026 06:19:32 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kNWOIWXA";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEDE910E8D3;
+ Tue, 25 Aug 2026 06:19:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787638767; x=1819174767;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=H9EZ1NjHlPgTle9NL9A563C6GMKFyu06SnIKLHFApM0=;
+ b=kNWOIWXAn44T7V4cAQ8pJ1hWQWulO2arm6xXAf7qmikOL2ZC4BBQPuuk
+ S1OxYWwFW4Q4+Dtuah1mxgDEWElWv+s9eG/ERrv9dlejIVS03JpsypBwK
+ T2GwmCvMdEjn0ELEgC8nHdIz6vQFp450udjGhgwYwW/FuiVatFaLzUbAp
+ T/C0Q+quS8tza059pPuBuxnDag3vwt9U66SFfkDxLk5RTcFshggVyloi2
+ FKs+dnyZuHR779T7Mfu+c2Ydd/BVQxxRzoLKyPNz7g5iGFa0yH8CSalub
+ 7V/10IBsI61KtGZlT3XfSLLuV7zMub8dvqID749XIhRJMfjLAI8Zx+OoX g==;
+X-CSE-ConnectionGUID: CCFfIpLiT5qUfBk5DxaHNQ==
+X-CSE-MsgGUID: WbzTAMJzRTGXKL6rBmtSJA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11885"; a="88112670"
+X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="88112670"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2026 23:19:26 -0700
+X-CSE-ConnectionGUID: twFwC+BJThe7hNBZo65+Fg==
+X-CSE-MsgGUID: ExObCh9wRpmWwKDLjy4cZw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,242,1779174000"; d="scan'208";a="263912960"
+Received: from unknown (HELO SRR4-3-Linux-101-amanna.iind.intel.com)
+ ([10.190.238.88])
+ by fmviesa007.fm.intel.com with ESMTP; 24 Aug 2026 23:19:25 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, jani.nikula@intel.com, suraj.kandpal@intel.com,
+ Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v5 08/15] drm/i915/alpm: Half LFPS cycle calculation
+Date: Tue, 25 Aug 2026 11:15:29 +0530
+Message-Id: <20260825054536.3455704-9-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
+In-Reply-To: <20260825054536.3455704-1-animesh.manna@intel.com>
+References: <20260825054536.3455704-1-animesh.manna@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_PF-mem_VRAM_regio?=
- =?utf-8?q?ns_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 25 Aug 2026 06:19:25 -0000
-Message-ID: <178763876576.80981.6823225216236988062@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260824080908.701133-1-piotr.piorkowski@intel.com>
-In-Reply-To: <20260824080908.701133-1-piotr.piorkowski@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +66,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2138295820637654646==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add support for half LFPS cycle calculation for DP2.1 ALPM as dependent
+parameters got changed.
 
-== Series Details ==
+v1: Initial version.
+v2: Avoid returning early. [Jani]
+v3: Use intel_crtc_has_type(). [Suraj]
 
-Series: Introduce PF-mem VRAM regions (rev3)
-URL   : https://patchwork.freedesktop.org/series/172136/
-State : success
+Cc: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_alpm.c | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index 078e04bb69d2..98aa418a6ff7 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -80,12 +80,18 @@ static int get_silence_period_symbols(const struct intel_crtc_state *crtc_state)
+ static void get_lfps_cycle_min_max_time(const struct intel_crtc_state *crtc_state,
+ 					int *min, int *max)
+ {
+-	if (crtc_state->port_clock < 540000) {
+-		*min = 65 * LFPS_CYCLE_COUNT;
+-		*max = 75 * LFPS_CYCLE_COUNT;
+-	} else {
+-		*min = 140;
+-		*max = 800;
++	struct intel_display *display = to_intel_display(crtc_state);
++
++	*min = 320;
++	*max = 1600;
++	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
++		if (crtc_state->port_clock < 540000 && DISPLAY_VER(display) < 35) {
++			*min = 65 * LFPS_CYCLE_COUNT;
++			*max = 75 * LFPS_CYCLE_COUNT;
++		} else {
++			*min = 140;
++			*max = 800;
++		}
+ 	}
+ }
+ 
+-- 
+2.29.0
 
-CI Bug Log - changes from xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad_BAT -> xe-pw-172136v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-172136v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-nvls-1:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#8762])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172136v3/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#8762]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762
-
-
-Build changes
--------------
-
-  * IGT: IGT_9071 -> IGT_9072
-  * Linux: xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad -> xe-pw-172136v3
-
-  IGT_9071: 9071
-  IGT_9072: 9072
-  xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad: 15e2ba2fb6d25c03d89519aec46f8d5be3e118ad
-  xe-pw-172136v3: 172136v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172136v3/index.html
-
---===============2138295820637654646==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce PF-mem VRAM regions (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172136/">https://patchwork.freedesktop.org/series/172136/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172136v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172136v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad_BAT -&gt; xe-pw-172136v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-172136v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172136v3/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762">Intel XE#8762</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9071 -&gt; IGT_9072</li>
-<li>Linux: xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad -&gt; xe-pw-172136v3</li>
-</ul>
-<p>IGT_9071: 9071<br />
-  IGT_9072: 9072<br />
-  xe-5642-15e2ba2fb6d25c03d89519aec46f8d5be3e118ad: 15e2ba2fb6d25c03d89519aec46f8d5be3e118ad<br />
-  xe-pw-172136v3: 172136v3</p>
-
-</body>
-</html>
-
---===============2138295820637654646==--
