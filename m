@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23652C61DBE
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 11:22:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1626C61DBD
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 11:24:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4D8810E033;
-	Tue, 25 Aug 2026 11:22:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49C2710E033;
+	Tue, 25 Aug 2026 11:24:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TYYea52c";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Jq2KPvzP";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1246410E033
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 11:22:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C460910E033
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 11:24:23 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 1BC5C6011F;
- Tue, 25 Aug 2026 11:22:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B11A81F000E9;
- Tue, 25 Aug 2026 11:22:45 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id E663C6011F;
+ Tue, 25 Aug 2026 11:24:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CFA51F000E9;
+ Tue, 25 Aug 2026 11:24:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787656965;
- bh=PUXEEvQ5HpWR5wy5Bj3BUkpc9W1hKvFOdOe2CNtEcfM=;
+ s=k20260515; t=1787657062;
+ bh=Qf1i68cQnaarKvwIdT5pkvbKk9iadRbNzLeO1M73Vp8=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=TYYea52cZlFGnKJiBLZvyB4J0GADjy0l2M9cFo/ud+b6gCWpRYKe0RK6k51JXBgDp
- GpfaY0vwVDKbzVOW1lMiGfHePbahbApSMytgRul9mMLbiui6ybjXiYw59oSuaBWN1k
- IajKt09A7agk+1451znmX2e2m3mwyD5WUQIkyf0HwKhabOn0GgEJ6xdwViCQwfCTki
- Vp4xVu8eOEh+KARMcpNbqLfNixXziAtjXstePU0Hmz5znldAbSRUO3luFP3vG27YDu
- UZ1BRE1TCwj/a4anbEe65CXNNouvPQTmT0SqsI7oUvsReUWsIU3KmlbNd2ks5RvJfC
- SMKZhqHwVdL8g==
+ b=Jq2KPvzPUXC79nK0uMK0BI4EfZypBIPyIrMP6HDeUcYvLDBj/Ur3HkpFZtOEM0A9G
+ 4nBUi3Xh0o1UwN90DtYq9+sR0BxnlrIPQ3gGXufjKnFtGSHnnLJ/Dz0tmTIq4kGw23
+ IuIklpPEZiezh2XMOEw+4uUNJC50ucsBh4hbg34YBS8XjPMcF0y6haLMtR0LpxLvEI
+ 1vV/3BvcDiB+sGm+etmO0KHIfWSkwMEFMHaatnOm8gUUKEBz6+zU/9N/qtAUaRyKUC
+ aWWLP8WC/Zjt31jphquC+43dOmTBU0Eaj5kp7uLC6JIOsD+q6UArnestcKYZbEWseN
+ J5E8vnCL+nklQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 5/7] drm/xe/sysctrl: Improve firmware response error
- logging
+Subject: Re: [PATCH v5 2/7] drm/xe/sysctrl: Return error codes from
+ sysctrl_wait_bit_set()
 To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260825110542.1359776-14-mallesh.koujalagi@intel.com>
+In-Reply-To: <20260825110542.1359776-11-mallesh.koujalagi@intel.com>
 References: <20260825110542.1359776-9-mallesh.koujalagi@intel.com>
- <20260825110542.1359776-14-mallesh.koujalagi@intel.com>
+ <20260825110542.1359776-11-mallesh.koujalagi@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 25 Aug 2026 11:22:45 +0000
-Message-Id: <20260825112245.B11A81F000E9@smtp.kernel.org>
+Date: Tue, 25 Aug 2026 11:24:22 +0000
+Message-Id: <20260825112422.7CFA51F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,125 +57,92 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
 
 New issues:
-- [Low] Build failure due to missing `xe_log.h` and undeclared `xe_log_err`=
- function.
+- [Low] The patch introduces usage of an undefined macro `xe_log_err`, a mi=
+ssing header `xe_log.h`, and an undeclared identifier `SYSCTRL`, resulting =
+in immediate compilation failure.
 
 Pre-existing issues:
-- [High] Endianness bug in MMIO data transfer causes hardware state machine=
- corruption on big-endian hosts.
-- [High] Mailbox response reader truncates oversized responses without drai=
-ning the mailbox, leading to hardware state machine corruption.
+- [High] Failure to drain the firmware mailbox on truncated reads hangs the=
+ hardware sysctrl mailbox, leading to state machine desynchronization and a=
+ permanent Denial of Service (DoS) for the sysctrl subsystem.
 --
 
---- Patch [5]: [PATCH v5 5/7] drm/xe/sysctrl: Improve firmware response err=
-or logging ---
-commit aca0eba486b26ff6a9ae8a95c07e0dfce167281d
+--- Patch [2]: [PATCH v5 2/7] drm/xe/sysctrl: Return error codes from sysct=
+rl_wait_bit_set() ---
+commit a0d9dbca39d7d03a2a03ce09604444ffe68818bd
 Author: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 
-drm/xe/sysctrl: Improve firmware response error logging
+drm/xe/sysctrl: Return error codes from sysctrl_wait_bit_set()
 
-Use xe_log_err() helper and include additional details when a
-response header mismatch occurs.
+This patch modifies sysctrl_wait_bit_set() to return an error code instead
+of a bool, and updates the caller in sysctrl_process_frame() to propagate
+the error using xe_log_err().
 
 > diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe=
 /xe_sysctrl_mailbox.c
-> index f8b518dcafa24..5032d766b3142 100644
+> index f97dec375efe8..b5412ca42bb81 100644
 > --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
 > +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+
 [ ... ]
-> @@ -237,13 +237,17 @@ static int sysctrl_receive_frames(struct xe_sysctrl=
- *sc,
->  	if (!XE_SYSCTRL_HDR_IS_RESPONSE(hdr) ||
->  	    XE_SYSCTRL_HDR_GROUP_ID(hdr) !=3D XE_SYSCTRL_HDR_GROUP_ID(req) ||
->  	    XE_SYSCTRL_HDR_COMMAND(hdr) !=3D XE_SYSCTRL_HDR_COMMAND(req)) {
-> -		xe_err(xe, "sysctrl: Response header mismatch\n");
-> +		xe_log_err(xe, SYSCTRL, -EPROTO,
-> +			   "Response header mismatch: got group=3D%#x cmd=3D%#x is_resp=3D%u,=
- expected group=3D%#x cmd=3D%#x\n",
-> +			   XE_SYSCTRL_HDR_GROUP_ID(hdr), XE_SYSCTRL_HDR_COMMAND(hdr),
-> +			   XE_SYSCTRL_HDR_IS_RESPONSE(hdr),
-> +			   XE_SYSCTRL_HDR_GROUP_ID(req), XE_SYSCTRL_HDR_COMMAND(req));
+
+> @@ -193,9 +189,10 @@ static int sysctrl_process_frame(struct xe_sysctrl *=
+sc, void *out,
+>  	struct xe_device *xe =3D sc_to_xe(sc);
+>  	int ret;
+> =20
+> -	if (!sysctrl_wait_bit_set(sc, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, timeout_ms)=
+) {
+> -		xe_err(xe, "sysctrl: Response frame timeout\n");
+> -		return -ETIMEDOUT;
+> +	ret =3D sysctrl_wait_bit_set(sc, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, timeout_=
+ms);
+> +	if (ret) {
+> +		xe_log_err(xe, SYSCTRL, ret, "Response frame timeout\n");
 
 [Severity: Low]
-Does this code fail to compile? It looks like xe_log.h is missing from the
-source tree, meaning xe_log_err and SYSCTRL might be undeclared identifiers.
+Is xe_log_err defined here? It appears this patch introduces usage of an
+undefined macro xe_log_err and an undeclared identifier SYSCTRL, resulting
+in an immediate compilation failure. Could there be a missing prerequisite
+patch in this series that adds the xe_log infrastructure?
 
->  		return -EPROTO;
+> +		return ret;
 >  	}
 > =20
->  	if (XE_SYSCTRL_HDR_RESULT(hdr) !=3D 0) {
-> -		xe_err(xe, "sysctrl: Firmware error: 0x%02lx\n",
-> -		       XE_SYSCTRL_HDR_RESULT(hdr));
-> +		xe_log_err(xe, SYSCTRL, -EIO, "Firmware error: %#04x\n",
-> +			   XE_SYSCTRL_HDR_RESULT(hdr));
->  		return -EIO;
->  	}
+>  	ctrl_reg =3D xe_mmio_read32(sc->mmio, SYSCTRL_MB_CTRL);
 
 [Severity: High]
-This is a pre-existing issue, but does this loop truncate oversized respons=
-es
-without draining the mailbox?
+This isn't a bug introduced by this patch, but looking at the caller of
+sysctrl_process_frame():
 
-drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:sysctrl_receive_frames() {
-	...
-	while (!done && remain) {
-		frame_size =3D min_t(size_t, remain, XE_SYSCTRL_MB_FRAME_SIZE);
-
-		ret =3D sysctrl_process_frame(sc, out, frame_size, timeout_ms,
-					    &done);
-		if (ret)
-			return ret;
-
-		remain -=3D frame_size;
-		out +=3D frame_size;
-	}
-	...
+sysctrl_receive_frames() {
+    ...
+    while (!done && remain) {
+        frame_size =3D min_t(size_t, remain, XE_SYSCTRL_MB_FRAME_SIZE);
+        ret =3D sysctrl_process_frame(sc, out, frame_size, timeout_ms,
+                                    &done);
+        if (ret)
+            return ret;
+        remain -=3D frame_size;
+        out +=3D frame_size;
+    }
+    ...
 }
 
-If the firmware sends more frames than expected by data_out_len, remain
-becomes 0 before done is set to true. The loop exits silently and returns
-success, leaving the unread frames in the mailbox.=20
+If the firmware sends a response payload larger than the data provided by
+the caller, remain will reach 0 before done is true.
 
-Will subsequent mailbox commands write to the control register while it is
-still busy, potentially corrupting the hardware state machine?
+Doesn't this cause the while loop to exit early without draining the
+remaining frames from the hardware mailbox?
 
-[Severity: High]
-This is a pre-existing issue, but is there an endianness mismatch in the MM=
-IO
-data transfers here?
-
-drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:sysctrl_write_frame() {
-	...
-	memcpy(val, frame, len);
-
-	for (i =3D 0; i < dw; i++)
-		xe_mmio_write32(sc->mmio, regs[i], val[i]);
-	...
-}
-
-And similarly:
-
-drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:sysctrl_read_frame() {
-	...
-	for (i =3D 0; i < dw; i++)
-		val[i] =3D xe_mmio_read32(sc->mmio, regs[i]);
-
-	memcpy(frame, val, len);
-	...
-}
-
-When little-endian bytes are copied into native CPU-endian u32 arrays, won't
-this result in an incorrect byte order on big-endian hosts?=20
-
-The bytes could be placed in the wrong order inside the CPU-endian u32
-values, and when the MMIO accessors byte-swap these values again, the
-resulting byte stream on the wire might be reversed compared to the
-intended payload.
+If the SYSCTRL_MB_CTRL_RUN_BUSY_OUT bit isn't cleared, won't this leave the
+hardware state machine stuck and cause a permanent DoS of the system
+controller interface for subsequent commands?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260825110542.1359=
-776-9-mallesh.koujalagi@intel.com?part=3D5
+776-9-mallesh.koujalagi@intel.com?part=3D2
