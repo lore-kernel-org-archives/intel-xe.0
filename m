@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1AD1C5DF94
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 06:46:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B67B2C61CE3
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 06:49:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63DB810E133;
-	Tue, 25 Aug 2026 06:46:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72A8010E8F3;
+	Tue, 25 Aug 2026 06:49:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="oDhXqpkG";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="A30mZoyP";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDF1B10E133
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 06:46:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B95610E8F3
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 06:49:25 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id F025C6013A;
- Tue, 25 Aug 2026 06:46:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 872091F000E9;
- Tue, 25 Aug 2026 06:46:23 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id C36F36011F;
+ Tue, 25 Aug 2026 06:49:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FF671F000E9;
+ Tue, 25 Aug 2026 06:49:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787640383;
- bh=PY1zIZGOsOSJntPs1tFj5i8MhwmNoW7VUVVDbtiXJNs=;
+ s=k20260515; t=1787640564;
+ bh=21ffJIeD8bb5TkfIMXFY/VLPIWr8rxtxygam0OuyMgs=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=oDhXqpkGpDUKGUmS1pTBsn1akYqyqMrADJEYM9El82K6sk3+vG/BLK1RPb6YJ1FvY
- uQlTAJ+W5NTE2nbvgsJrs17qKeDu1PRu2GRKTOgiY00LlWF1bJFctTuRfKQEx4dWk+
- 4PLeuiACOKysDtp4fRcbvmzXvqQobgQr5g2oyLeSMe4wNLvWQa76XKrRTsAMnrDIx+
- HlLVIp8rY1EgDTegkz6XzHUnpVJ2kCsTXcEqFDVv643qZ+v+SvOCFdQQ+HFB3isVCm
- dDR2JMX7DK3E2lk34gX6msehI29NS4ADHNRj0L0+up6LYvHUChp48FrKFvgZ4XuTDK
- UxJtzKIl8JlCQ==
+ b=A30mZoyP2nbYcw0fzT/jsyCJx2tnxmYdLHAzTnOY3U/yTzdFqi2R6QLqipGS5MhDl
+ OI5iccSp8Pdr+HrFqYv3QKAydV+R6/DTStKtlKdrDNuUixvxrfyLubT5uZ8Sy1fIH0
+ Tk0x2AXdpzb4Ez2pMurwpod8mrvwZZ3R1PXRtF7ECHoVeWgBR0CGsdAVnwOLGovTDh
+ VY51SgE40ecyyDAfsB+X2ZvJMxybXZhxieiKPCdA1FmSqbAcLudsBkU3eMCCFj1sVy
+ ZBSRMBmj2sgaaDSen7c0BtajQiOMXZ/s9cRUzW0aVr2Ze6S9zKq4QOoUOgK9XsENzi
+ b1pNI6La0SsGw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/5] drm/xe/xe_drm_ras: Rename ras to drm_ras in xe_device
+Subject: Re: [RFC PATCH 2/5] drm/xe/xe_ras: Handle page offline requests for
+ device memory ecc errors
 To: "Riana Tauro" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260825063615.3697317-8-riana.tauro@intel.com>
+In-Reply-To: <20260825063615.3697317-9-riana.tauro@intel.com>
 References: <20260825063615.3697317-7-riana.tauro@intel.com>
- <20260825063615.3697317-8-riana.tauro@intel.com>
+ <20260825063615.3697317-9-riana.tauro@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 25 Aug 2026 06:46:22 +0000
-Message-Id: <20260825064623.872091F000E9@smtp.kernel.org>
+Date: Tue, 25 Aug 2026 06:49:23 +0000
+Message-Id: <20260825064924.4FF671F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,62 +59,103 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] Missing bounds check on severity and component indices in xe_drm_r=
-as_event()
+- [Critical] The dummy implementation of `handle_page_offline` unconditiona=
+lly returns success for Double-Bit ECC errors, preventing the required devi=
+ce reset and leaving corrupted memory accessible.
 --
 
---- Patch [1]: [PATCH 1/5] drm/xe/xe_drm_ras: Rename ras to drm_ras in xe_d=
-evice ---
-commit 32a6f8d58b55e63675c6423a6648130b2ff82f4c
+--- Patch [2]: [RFC PATCH 2/5] drm/xe/xe_ras: Handle page offline requests =
+for device memory ecc errors ---
+commit e03bc1fc60d0c3e2b16dd451f580bbb4b02ed43e
 Author: Riana Tauro <riana.tauro@intel.com>
 
-drm/xe/xe_drm_ras: Rename ras to drm_ras in xe_device
+drm/xe/xe_ras: Handle page offline requests for device memory ecc errors
 
-Rename ras to drm_ras in xe_device to distinguish drm-ras functionality
-from device related RAS functionality. No functional changes.
+This commit adds basic support for sending page offline/decline requests to
+the system controller and integrates it into device memory ECC error
+handling.
 
-> diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_=
-ras.c
-> index 78184b6ea7d48..9f37ae732770a 100644
-> --- a/drivers/gpu/drm/xe/xe_drm_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_drm_ras.c
+Link: https://lore.kernel.org/intel-xe/20260818104055.3833974-14-tejas.upad=
+hyay@intel.com/
+
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index d25d25f775310..a6fa755ffebf7 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
 
 [ ... ]
 
-> @@ -196,7 +196,7 @@ static int register_nodes(struct xe_device *xe)
->   */
->  void xe_drm_ras_event(struct xe_device *xe, u32 component, u32 severity,=
- u32 value)
+> @@ -200,6 +201,115 @@ static inline const char *comp_to_str(u8 component)
+> +static int handle_page_offline(struct xe_device *xe, u64 page_address, b=
+ool send_cmd)
+> +{
+> +	enum xe_ras_page_action action;
+> +	int ret =3D 0;
+> +
+> +	if (!IS_ALIGNED(page_address, XE_PAGE_SIZE)) {
+> +		xe_log_err(xe, SYSCTRL, -EINVAL, "Unaligned physical page address: 0x%=
+llx\n",
+> +			   page_address);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/*
+> +	 * TODO: Call function to handle address fault
+> +	 * ret =3D xe_ttm_vram_handle_addr_fault(xe, page_address);
+> +	 */
+> +
+> +	/*
+> +	 * Handle return code from address fault handling function:
+> +	 *  0: Page soft offlined, decline to firmware
+> +	 * -EIO: Address belongs to a critical BO/stolen area that cannot be of=
+flined
+> +	 * -EOPNOTSUPP: Address is valid and can be offlined but user policy is=
+ not to offline
+> +	 * -EXIST: Address is soft offlined but yet to be offlined by firmware =
+for second occurrence
+> +	 */
+> +
+> +	switch (ret) {
+> +	case 0:
+> +		action =3D XE_RAS_PAGE_ACTION_DECLINE;
+
+[Severity: Critical]
+Since the fault handler is commented out and ret is initialized to 0, will
+this unconditionally trigger the 0 case and decline to offline the page?
+
+[ ... ]
+
+> @@ -367,11 +477,12 @@ static u8 handle_soc_internal_errors(struct xe_devi=
+ce *xe, struct xe_ras_error_a
+>  static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ra=
+s_error_array *arr)
 >  {
-> -	struct xe_drm_ras *ras =3D &xe->ras;
-> +	struct xe_drm_ras *ras =3D &xe->drm_ras;
->  	struct xe_drm_ras_counter *info =3D ras->info[severity];
+>  	struct xe_ras_memory_error *info =3D (void *)arr->details;
+> +	int ret;
+> =20
+>  	/*
+>  	 * For memory errors, the recovery action depends on the error category
 
-[Severity: High]
-This is a pre-existing issue, but is it possible for severity or component
-to be out of bounds here?
+[ ... ]
 
-If firmware or hardware sends a telemetry event with an unrecognized
-severity or component, fallback paths might return DRM_XE_RAS_ERR_SEV_MAX
-or DRM_XE_RAS_ERR_COMP_MAX.
+>  	case XE_RAS_MEMORY_DB_ECC:
+> -		xe_info(xe, "[RAS]: Double-bit ECC error detected at sw address 0x%llx=
+\n",
+> -			info->sw_address);
+> -		/* TODO: Add page offlining for Double-bit ECC error */
+> -		fallthrough;
+> +		ret =3D handle_page_offline(xe, info->sw_address, true);
+> +		if (ret)
+> +			return XE_RAS_RECOVERY_ACTION_RESET;
+> +		break;
 
-Since ras->info is sized up to DRM_XE_RAS_ERR_SEV_MAX, using it as an index
-reads past the end of the array. Because info is the final member of
-struct xe_drm_ras inside struct xe_device, ras->info[DRM_XE_RAS_ERR_SEV_MAX]
-could fetch the adjacent xe->i2c pointer.=20
+[Severity: Critical]
+If handle_page_offline() always returns 0 due to the TODO stub above, does
+this inadvertently bypass the fallback reset for Double-Bit ECC errors?
 
-The code would then treat this as an array of struct xe_drm_ras_counter,=20
-which could lead to an invalid pointer dereference when evaluating=20
-info[component].name later in the function.
-
-Should there be bounds checks for severity and component before indexing
-the arrays in xe_drm_ras_event()?
-
->  	struct drm_ras_node *node;
->  	int ret;
+If the device is not reset and the page is not offlined, it appears the GPU
+could continue executing with uncorrectable memory corruption.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260825063615.3697=
-317-7-riana.tauro@intel.com?part=3D1
+317-7-riana.tauro@intel.com?part=3D2
