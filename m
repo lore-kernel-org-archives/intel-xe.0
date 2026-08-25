@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC103C61DB9
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 17:54:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E6D8C61DB9
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 17:55:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84F8410E16D;
-	Tue, 25 Aug 2026 17:54:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F9FA10E16D;
+	Tue, 25 Aug 2026 17:55:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jSOYkDZP";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="brfLMaq3";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6950310E205
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 17:54:19 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C00C510E16D
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 17:55:20 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 8C64A60053;
- Tue, 25 Aug 2026 17:54:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 237511F000E9;
- Tue, 25 Aug 2026 17:54:18 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 832FD407AB;
+ Tue, 25 Aug 2026 17:55:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 393DA1F000E9;
+ Tue, 25 Aug 2026 17:55:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787680458;
- bh=BLVraUBneDK15Z7yVO5t8qOn/yGx6/GjC/qxDfWGB1o=;
+ s=k20260515; t=1787680520;
+ bh=/wHYJKeADA26Sqjgrn3HoHpae3TzaRGli7KJFr6AwDs=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=jSOYkDZPUrkooOv0mFxZRBIIx7g5Da8vWXCraN9IrKWRUGXS/0B1rawhjpndFnO7+
- KRC7Jou9FyFmjMmbmbPMyDEz0BSlf20daivWklTnGCjFjsGLtSQqOmy5NJAqZzmKsS
- 1axbdCBxJrek0fVzXM76TL+WJTxnfbw3gZ5LI50MWapJqpBbkBIPCXPgHR7D6cVGYS
- rLy4S/A10/B97d813YaBZFgjm5b3R4OnNuNqj0TLfT86ELWg97Z/2wp4qCoBHSCxqY
- KiyeX+lN1WiIksHhCQ252s4zW1p3T7IDWnXX1+ghNyqENDs2eIPDotYK3cjYrvVDn5
- CNlvYZiwUTenQ==
+ b=brfLMaq3VbfvqSjrJkMUBybx4H6JLTkQiL2vHk7KSBpi6rvxj1PPU/hhr4r3L4dEx
+ ghqoxd3DjbVZl9SRDKs/DOMUS+CtpDX12WDQeZUMufjY2OF4LbyOrx3rEuF9yyXX93
+ skJ6fqkE4P7QdXUuklqPd+6mFeU+g7t17nsXJw8jtEi6KuYoSnMv+a5Td6uKsmbb1T
+ vsvH9lH26p/atcWxyPeVCU0hiQZiWw6StnbinpZY4GUCvbTWhhPy36oUz6yrXWrDIl
+ 6JrBprvCTIC0iT+JUcM/IAjHnXRu02TY9r8z7U+zdKcdCLZtot/pMZS5MS2Colnff3
+ e3EX/QZehPbfw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 05/11] drm/xe/cper: Prepare Intel CPER error info
- from info queue
+Subject: Re: [PATCH v2 06/11] drm/xe/cper: Log CPER records for aggregate
+ counter retrival
 To: "Badal Nilawar" <badal.nilawar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260825175916.1103841-18-badal.nilawar@intel.com>
+In-Reply-To: <20260825175916.1103841-19-badal.nilawar@intel.com>
 References: <20260825175916.1103841-13-badal.nilawar@intel.com>
- <20260825175916.1103841-18-badal.nilawar@intel.com>
+ <20260825175916.1103841-19-badal.nilawar@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 25 Aug 2026 17:54:17 +0000
-Message-Id: <20260825175418.237511F000E9@smtp.kernel.org>
+Date: Tue, 25 Aug 2026 17:55:19 +0000
+Message-Id: <20260825175520.393DA1F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,229 +57,170 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 6 potential issue(=
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
 s) to consider:
-- [Critical] Integer overflow in the info queue chunk bounds check allows a=
- heap buffer overflow.
-- [High] Missing bounds check on `chunk_size` against maximum chunk array l=
-ength leads to a kernel stack out-of-bounds read and information leak.
-- [High] Unbounded processing of info queue chunks can cause an infinite lo=
-op and Denial of Service.
-- [Medium] Firmware-provided `total_size` is trusted over actual fetched by=
-tes, leading to uninitialized memory being parsed as valid error logs.
-- [Medium] Capping `num_logs` to `XE_RAS_NUM_COUNTERS` incorrectly truncate=
-s log streams and desynchronizes aggregate parsing.
-- [Medium] The aggregate error counter parsing loop creates a sparse array =
-when `num_logs =3D=3D 0`, leading to the emission of corrupted empty CPER r=
-ecords.
+
+New issues:
+- [Medium] Unconditional CPER record emission on counter retrieval causes l=
+og spam and zero-error records.
+- [Medium] Spurious CPER records with empty metadata are emitted for info q=
+ueue headers with zero logs.
+
+Pre-existing issues:
+- [Critical] An integer overflow in the bounds check `chunk_offset + chunk_=
+size` allows firmware to perform an out-of-bounds write relative to the `ra=
+w_buf` heap allocation.
+- [High] Missing bounds check on `chunk_size` against `XE_RAS_INFO_QUEUE_MA=
+X_CHUNK_SIZE` allows a stack buffer over-read, leaking sensitive kernel sta=
+ck data.
+- [High] The do-while loop fetching info queue chunks can be forced into an=
+ infinite loop by malicious firmware, causing a kernel lockup.
 --
 
-commit 426ce853adfa4b210c0c07504ac804ae25dd5a2b
+commit 07283a153280cbc84316c197325268cbc06ecfe6
 Author: Badal Nilawar <badal.nilawar@intel.com>
 
-drm/xe/cper: Prepare Intel CPER error info from info queue
-
-This commit adds a function to assemble raw info queue data embedded in a
-GET_COUNTER response and subsequent chunks into an Intel CPER error info
-structure. The data is retrieved in chunks from the firmware and parsed
-into detail or aggregate error records.
+drm/xe/cper: Log CPER records for aggregate counter retrival
+   =20
+Log CPER records for aggregate counter retrieval from userspace.
 
 > diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index e913235e9cceb..27c78800b5d27 100644
+> index 27c78800b5d27..ff9d917b8e29c 100644
 > --- a/drivers/gpu/drm/xe/xe_ras.c
 > +++ b/drivers/gpu/drm/xe/xe_ras.c
 [ ... ]
-> +static struct xe_cper_einfo_entry *
-> +prepare_cper_error_info(struct xe_device *xe,
-> +			const struct xe_ras_get_counter_response *counter_resp,
-> +			const struct xe_ras_error_class *error_class,
-> +			u32 *count_out)
+> @@ -749,6 +777,66 @@ prepare_cper_error_info(struct xe_device *xe,
+>  	return einfo_arr;
+>  }
+> =20
+> +static void emit_hw_error_cper(struct xe_device *xe,
+> +			       struct xe_ras_error_class *error_class,
+> +			       struct xe_ras_get_counter_response *resp,
+> +			       u32 sig_id, u8 severity)
 > +{
 [ ... ]
-> +	raw_buf =3D kzalloc(XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE, GFP_KERNEL);
-> +	if (!raw_buf)
-> +		return NULL;
+> +	if (einfo_count > 0) {
+> +		for (i =3D 0; i < einfo_count; i++) {
+> +			struct xe_cper_sec_intel_err_hdr entry_ihdr =3D {};
 > +
-> +	/* Copy first chunk already embedded in the counter response */
-> +	if (first_qhdr->chunk_size &&
-> +	    first_qhdr->chunk_offset + first_qhdr->chunk_size <=3D
-> +	    XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE) {
-
-[Severity: Critical]
-Is `chunk_offset + chunk_size` vulnerable to a 32-bit integer overflow here?
-If the firmware provides large values, such as `chunk_offset =3D 0xFFFFFF00`
-and `chunk_size =3D 0x200`, the sum would wrap around to 0x100, which is le=
-ss
-than `XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE` (5120). This would bypass the check
-and allow the subsequent `memcpy` to write out-of-bounds on the heap.
-
-> +		memcpy(raw_buf + first_qhdr->chunk_offset,
-> +		       counter_resp->info_queue.queue_data,
-> +		       first_qhdr->chunk_size);
-
-[Severity: High]
-Is `first_qhdr->chunk_size` validated against the actual capacity of the
-source `queue_data` buffer? The check above only ensures it fits within
-`XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE` (5120), but `queue_data` has a maximum
-size of `XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE`. Since `counter_resp` is allocat=
-ed
-on the caller's stack, could a malicious or broken firmware return a
-`chunk_size` greater than the array size and cause this `memcpy` to read pa=
-st
-the buffer, leaking adjacent kernel stack memory?
-
-> +		iq_offset =3D first_qhdr->chunk_size;
-> +	}
-> +
-> +	/* Fetch any remaining chunks */
-> +	if (first_qhdr->flags & XE_RAS_INFO_QUEUE_FLAG_MORE_DATA) {
-> +		iq_req.source_command			=3D XE_SYSCTRL_CMD_GET_COUNTER;
-> +		iq_req.source_context			=3D counter_resp->counter;
-> +		iq_req.queue_request.requested_size	=3D XE_RAS_INFO_QUEUE_MAX_CHUNK_SI=
-ZE;
-> +		iq_req.queue_request.session_id		=3D counter_resp->counter;
-> +
-> +		do {
-> +			struct xe_ras_info_queue_header *qhdr;
-> +			u32 end;
-> +
-> +			iq_req.queue_request.requested_offset =3D iq_offset;
-> +
-> +			if (get_info_queue_data(xe, &iq_req, &iq_response))
-> +				break;
-> +
-> +			qhdr =3D &iq_response.queue_response.queue_header;
-> +			end  =3D qhdr->chunk_offset + qhdr->chunk_size;
-> +
-> +			if (end > XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE) {
-
-[Severity: Critical]
-Does the `qhdr->chunk_offset + qhdr->chunk_size` calculation here have the
-same 32-bit integer overflow risk as the first chunk check, potentially
-allowing out-of-bounds writes into `raw_buf`?
-
-> +				xe_warn(xe, "[RAS]: CPER: info queue chunk out of bounds (offset=3D%=
-u size=3D%u)\n",
-> +					qhdr->chunk_offset, qhdr->chunk_size);
-> +				break;
-> +			}
-> +
-> +			memcpy(raw_buf + qhdr->chunk_offset,
-> +			       iq_response.queue_response.queue_data,
-> +			       qhdr->chunk_size);
-
-[Severity: High]
-Similar to the first chunk copy, is there a missing bounds check here to
-ensure `qhdr->chunk_size` does not exceed the size of the stack-allocated
-`iq_response.queue_response.queue_data` array, which could lead to another
-stack out-of-bounds read?
-
-> +
-> +			if (!qhdr->chunk_size)
-> +				break;
-> +
-> +			iq_offset +=3D qhdr->chunk_size;
-> +		} while (iq_response.queue_response.queue_header.flags &
-> +			 XE_RAS_INFO_QUEUE_FLAG_MORE_DATA);
-
-[Severity: High]
-Does this `do-while` loop have a bounded maximum number of iterations or a
-timeout? If a broken or malicious firmware repeatedly returns a valid small
-chunk with the `XE_RAS_INFO_QUEUE_FLAG_MORE_DATA` flag set, could this
-loop run indefinitely and cause a kernel soft lockup?
-
-> +	}
-> +
-> +	raw_total =3D first_qhdr->total_size
-> +		  ? min(first_qhdr->total_size, XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE)
-> +		  : iq_offset;
+> +			xe_cper_init_intel_err_hdr(xe,
+> +						   (const u8 *)&einfo_arr[i].hdr.error_class,
 
 [Severity: Medium]
-If `get_info_queue_data()` fails or the fetch loop terminates early, `raw_b=
-uf`
-is only partially populated. By unconditionally using `first_qhdr->total_si=
-ze`
-here (when non-zero) instead of `iq_offset`, won't the code later parse
-trailing uninitialized (zero-filled) sections of `raw_buf` as valid dynamic
-headers and error logs?
+When prepare_cper_error_info() processes an info queue header with 0 logs, =
+it
+skips initializing einfo_arr[i] but still includes it in the *count_out tot=
+al.
+Does this loop unconditionally access and emit CPER records for potentially
+uninitialized (zeroed) elements of the einfo_arr array?
 
 [ ... ]
 > +	} else {
-> +		/* Aggregate case: one einfo per dynamic-counter header */
-> +		const struct xe_ras_info_queue_dynamic_counter_hdr *hdrs =3D
-> +			(const struct xe_ras_info_queue_dynamic_counter_hdr *)raw_buf;
-> +		const struct xe_ras_error_log *all_logs =3D
-> +			(const struct xe_ras_error_log *)(raw_buf + headers_size);
-> +		u32 avail_logs =3D (raw_total - headers_size) / sizeof(struct xe_ras_e=
-rror_log);
-> +		u32 log_offset =3D 0;
-> +
-> +		einfo_arr =3D kzalloc_objs(*einfo_arr, num_headers, GFP_KERNEL);
-> +		if (!einfo_arr) {
-> +			kfree(raw_buf);
-> +			return NULL;
-> +		}
-> +
-> +		for (i =3D 0; i < num_headers; i++) {
-> +			u32 num_logs =3D min_t(u32, hdrs[i].counter, XE_RAS_NUM_COUNTERS);
-
-[Severity: Medium]
-Does capping `num_logs` to `XE_RAS_NUM_COUNTERS` (16) cause desynchronizati=
-on
-when parsing the raw log stream? If the hardware actually embedded more than
-16 logs for a specific header, limiting `num_logs` to 16 means `log_offset`
-will only advance by 16. Won't the remaining logs then be incorrectly parsed
-as belonging to the next aggregate header in the stream?
-
-> +			struct xe_cper_sec_intel_error_info *einfo;
-> +			struct xe_intel_priv_event_entry *entry;
-> +			u32 einfo_size;
-> +			u32 j;
-> +
-> +			if (log_offset + num_logs > avail_logs) {
-> +				xe_warn(xe, "[RAS]: CPER: header[%u] claims %u logs but only %u rema=
-in\n",
-> +					i, num_logs, avail_logs - log_offset);
-> +				break;
-> +			}
-> +
-> +			if (!num_logs) {
-> +				log_offset +=3D num_logs;
-> +				continue;
-> +			}
-
-[Severity: Medium]
-If `num_logs` is 0, this branch continues without initializing the header d=
-ata
-for `einfo_arr[i]`. Does this leave an uninitialized gap in the `einfo_arr`
-array that gets exposed to the caller, leading to the emission of malformed
-empty CPER records?
-
-> +
-> +			einfo_size =3D sizeof(*einfo) + num_logs * entry_size;
-> +			einfo =3D kzalloc(einfo_size, GFP_KERNEL);
-[ ... ]
-> +			einfo_arr[i].hdr        =3D hdrs[i];
-> +			einfo_arr[i].einfo      =3D einfo;
-> +			einfo_arr[i].einfo_size =3D einfo_size;
-> +			log_offset +=3D num_logs;
-> +		}
-> +
-> +		*count_out =3D i;
-
-[Severity: Medium]
-If the loop encounters headers where `num_logs =3D=3D 0`, `*count_out` is s=
-till
-set to the total number of headers processed (including the skipped ones).
-Could this cause the caller to consume the sparse, zero-filled array entries
-that were skipped earlier?
-
+> +		xe_cper_init_intel_err_hdr(xe,
+> +					   (const u8 *)error_class,
+> +					   counter_response->timestamp,
+> +					   sig_id,
+> +					   counter_response->value,
+> +					   &ihdr);
+> +		xe_cper_record_emit(xe, severity, &INTEL_CPER_NOTIFY_GPU_ERROR,
+> +				    &ihdr, NULL, 0);
 > +	}
+
+[Severity: Medium]
+If counter_response->value is 0 and there is no info queue, will this fallb=
+ack
+path explicitly emit a CPER record reporting 0 errors?
+
+[ ... ]
+> @@ -886,6 +974,10 @@ int xe_ras_get_counter(struct xe_device *xe, u8 seve=
+rity, u8 component, u32 *val
+>  		return ret;
+> =20
+>  	*value =3D response.value;
 > +
-> +	kfree(raw_buf);
-> +	return einfo_arr;
-> +}
+> +	emit_hw_error_cper(xe, &counter, &response,
+> +			   ras_comp_to_hw_sigid(counter.common.component),
+> +			   ras_sev_to_cper_sev(counter.common.severity));
+>  	return 0;
+>  }
+
+[Severity: Medium]
+Does this unconditional call trigger a CPER emission on every userspace rea=
+d,
+regardless of the counter's value or whether it has changed? This might lead
+to log spam and incorrect zero-error telemetry when the counter is 0.
+
+While reviewing this patch, I also noticed some pre-existing issues in the
+nearby prepare_cper_error_info() function:
+
+> 	if (first_qhdr->chunk_size &&
+> 	    first_qhdr->chunk_offset + first_qhdr->chunk_size <=3D
+> 	    XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE) {
+
+[Severity: Critical]
+This is a pre-existing issue, but is this boundary validation vulnerable to=
+ an
+integer overflow? If the firmware provides a large chunk_offset (e.g.
+0xFFFFFFF0) and a small chunk_size (e.g. 0x20), the sum could wrap around a=
+nd
+bypass the check, potentially allowing an out-of-bounds write relative to t=
+he
+raw_buf heap allocation.
+
+> 		memcpy(raw_buf + first_qhdr->chunk_offset,
+> 		       counter_resp->info_queue.queue_data,
+> 		       first_qhdr->chunk_size);
+
+[Severity: High]
+This is a pre-existing issue, but does this memcpy lack a bounds check on
+chunk_size against the stack-allocated queue_data array bounds
+(XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE)? If firmware provides a large chunk_size
+that passes the total boundary check, could this read past the end of the a=
+rray
+and leak sensitive kernel stack memory into the heap buffer?
+
+[ ... ]
+> 		do {
+> 			struct xe_ras_info_queue_header *qhdr;
+> 			u32 end;
+[ ... ]
+> 			qhdr =3D &iq_response.queue_response.queue_header;
+> 			end  =3D qhdr->chunk_offset + qhdr->chunk_size;
+>=20
+> 			if (end > XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE) {
+
+[Severity: Critical]
+This is a pre-existing issue, but similar to the first chunk, is this
+subsequent boundary validation also vulnerable to an integer overflow if
+chunk_offset and chunk_size wrap around?
+
+> 			memcpy(raw_buf + qhdr->chunk_offset,
+> 			       iq_response.queue_response.queue_data,
+> 			       qhdr->chunk_size);
+
+[Severity: High]
+This is a pre-existing issue, but does this location also lack a bounds che=
+ck
+on chunk_size against the size of the iq_response stack variable, potential=
+ly
+allowing a stack buffer over-read?
+
+[ ... ]
+> 			if (!qhdr->chunk_size)
+> 				break;
+>=20
+> 			iq_offset +=3D qhdr->chunk_size;
+> 		} while (iq_response.queue_response.queue_header.flags &
+> 			 XE_RAS_INFO_QUEUE_FLAG_MORE_DATA);
+
+[Severity: High]
+This is a pre-existing issue, but can this do-while loop be forced into an
+infinite loop by malicious or unresponsive firmware? If the firmware repeat=
+edly
+returns a valid chunk_offset and chunk_size with the MORE_DATA flag set such
+that the calculated end boundary never exceeds the limit, could this cause a
+kernel soft lockup?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260825175916.1103=
-841-13-badal.nilawar@intel.com?part=3D5
+841-13-badal.nilawar@intel.com?part=3D6
