@@ -4,58 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D0BCC61DBC
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 17:43:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFF40C61DBD
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 17:51:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38D9410EB33;
-	Tue, 25 Aug 2026 17:43:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 787F189CCE;
+	Tue, 25 Aug 2026 17:51:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EGpiy5Dg";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="F74Rbz4F";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2B4C10EB33
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 17:43:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787679786; x=1819215786;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=cojgo3Jg+QTsydC6XkUIR99jygx8Vbs8ltD4da/nw7Q=;
- b=EGpiy5DgE66C+08+qd8kI/GPT+SbF6MdVpNnL+wA42au+xaq+L81g71Y
- JAuTtHyE5RRBJXIjN1GzaEOL84IhCqgK/cJRIFVOrXPZW+FYJohMwvYGw
- KqyRMc1p8nlv3BT6XO7MbRDS3oE5zmd4NcMX9sdxhgix6JO0sWtkpsml2
- LPdnkZ/UvnRHJr0SjE0TlGTkFm1NWZJ27FerxZmQkDEVwvtLdJW8aAj7J
- snASvmgC63SnjYgccQv/5N/oYTHQToe/zVNGFSAalTEJ3a5GV0fLY6q8y
- zmJy4mf3hBsbJa6z7Maxd7YQsa3oWkAB07S0X6K5MzrD18baudbDeSajy w==;
-X-CSE-ConnectionGUID: RXomG4aJT8SypTX36PIxTw==
-X-CSE-MsgGUID: 4a5mxLe+S/KvUeEPYNA3Ig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11886"; a="88210839"
-X-IronPort-AV: E=Sophos;i="6.25,243,1779174000"; d="scan'208";a="88210839"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2026 10:43:06 -0700
-X-CSE-ConnectionGUID: cCDgMdQAQlSAIkebcxdGEQ==
-X-CSE-MsgGUID: IAgdW1+OR4y9Lnel98L8Ig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,243,1779174000"; d="scan'208";a="272585139"
-Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2026 10:43:03 -0700
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- daniele.ceraolospurio@intel.com, raag.jadav@intel.com,
- riana.tauro@intel.com, mallesh.koujalagi@intel.com,
- aravind.iddamsetty@intel.com, michal.wajdeczko@intel.com,
- himal.prasad.ghimiray@intel.com, arvind.yadav@intel.com
-Subject: [PATCH v2 11/11] drm/xe/ras: Report correctable errors using SIGID
-Date: Tue, 25 Aug 2026 23:29:28 +0530
-Message-ID: <20260825175916.1103841-24-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260825175916.1103841-13-badal.nilawar@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2683C89CCE
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 17:51:08 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id D05A740B86;
+ Tue, 25 Aug 2026 17:51:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93D371F000E9;
+ Tue, 25 Aug 2026 17:51:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1787680267;
+ bh=0eYwYnsFgwc6s+dGiBShVGAaitR3Xd8gJO54wNhQ73U=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=F74Rbz4F5EcSWpytjwKxxHp96PtP2PBxsm77iNUMEbOB5nTRUJK3Nq1uC4AR3Kg7e
+ eWE0epFEOUOlvQemAKWgxL6pB7ro2VVK781H/0EhvGMrpXPdWDirqJonHh9AkJGG+e
+ JjR316puzwNLurfYaYYHzLZOjynyB0pjtDDskULkkR4nfW/DJN+xWasByaBFywmMze
+ pW9HZM1mUrB077DjvaKb045NJbAGFlL827IsXXXEBJm5awoPCUgDi/0QKKk7xooVVV
+ 0Ovhzx/2onXXx/xpjF631WfUBAw/WwpyTHhaN9F9bgfsVF61Y9IvJgzvfDeSELI3sy
+ sfY554ye18i/Q==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 03/11] drm/xe/cper: Add CPER structures and trace event
+To: "Badal Nilawar" <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260825175916.1103841-16-badal.nilawar@intel.com>
 References: <20260825175916.1103841-13-badal.nilawar@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+ <20260825175916.1103841-16-badal.nilawar@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 25 Aug 2026 17:51:07 +0000
+Message-Id: <20260825175107.93D371F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,35 +52,123 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use xe_log_* helper to report correctable errors.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] CPER structures use native integer types and C bitfields for a s=
+tandardized external binary format, causing ABI corruption on non-little-en=
+dian architectures.
+- [Medium] Tracepoint uses `%pU` to print `guid_t` fields, incorrectly form=
+atting them as big-endian.
+--
 
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-Cc: Raag Jadav <raag.jadav@intel.com>
----
- drivers/gpu/drm/xe/xe_ras.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+commit ad510a6c4b7008ac7d33a168936259e5f8400da7
+Author: Badal Nilawar <badal.nilawar@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 4cd1d5eb75f4..0becfadbb4cd 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -458,8 +458,11 @@ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
- 		if (!ras_counter_is_valid(xe, &errors[id]))
- 			continue;
- 
--		xe_warn(xe, "[RAS]: %s %s detected\n",
--			comp_to_str(component), sev_to_str(severity));
-+		xe_log_from(xe, ras_sev_to_cper_sev(severity),
-+			    ras_comp_to_hw_sigid(component),
-+			    component,
-+			    &errors[id], sizeof(errors[id]),
-+			    "error detected\n");
- 
- 		/* Send event once per component */
- 		if (sent & BIT(component))
--- 
-2.54.0
+drm/xe/cper: Add CPER structures and trace event
 
+Define packed data structures and Intel-specific GUID macros needed
+to build Intel GPU CPER (Common Platform Error Record) non-standard
+records.
+
+> diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_c=
+per_types.h
+> new file mode 100644
+> index 0000000000000..82167ea4eb161
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_cper_types.h
+[ ... ]
+> +struct xe_cper_sec_intel_err_hdr {
+> +	/** @error_class: Error classification (type, component, location, caus=
+e) */
+> +	union {
+> +		struct {
+> +			/** @error_class.error_type: RAS error severity */
+> +			u8  error_type;
+> +			/** @error_class.error_component: IP block that raised the error */
+> +			u8  error_component;
+> +			/** @error_class.tile: Tile number */
+> +			u8  tile;
+> +			/** @error_class.instance: Instance within the tile */
+> +			u32 instance;
+> +			/** @error_class.cause: Error cause code */
+> +			u32 cause;
+> +			/** @error_class.reserved: Reserved, must be zero */
+> +			u8  reserved;
+> +		} error_class;
+> +		/** @class: Raw byte view of the error class */
+> +		u8 class[12];
+> +	};
+> +	/** @first_timestamp: Timestamp of the first occurrence of this error c=
+lass */
+> +	u64 first_timestamp;
+
+[Severity: Medium]
+Can this native u64 type break the CPER binary layout on big-endian=20
+architectures?
+
+The CPER standard dictates a strict binary layout and requires multi-byte f=
+ields
+to be little-endian. Using architecture-dependent native integer types like=
+ u64
+causes the struct's binary representation to vary based on host endianness,
+which can produce corrupted CPER records on big-endian architectures.
+
+Should this use explicitly sized and endian-specific types like __le64?
+
+> +	/** @sig_id: Aggregated error class SIG ID; set to U32_MAX if unknown */
+> +	u32 sig_id;
+> +	/** @error_count: Number of times this error has been observed */
+> +	u32 error_count;
+> +	/** @valid_bits: Bitmask indicating which header fields are populated */
+> +	union {
+> +		struct {
+> +			/** @valid_bits.location: @error_class field is valid */
+> +			u16 location		: 1;
+
+[Severity: Medium]
+Will this compiler-dependent bitfield cause ABI corruption?
+
+Since bitfield layout is compiler- and architecture-dependent, it breaks the
+exact bit-level binary layout required for the CPER standard.=20
+
+Should this be handled with standard bitwise operations instead?
+
+[ ... ]
+> diff --git a/drivers/gpu/drm/xe/xe_trace_cper.h b/drivers/gpu/drm/xe/xe_t=
+race_cper.h
+> new file mode 100644
+> index 0000000000000..6d2dbf5048884
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_trace_cper.h
+[ ... ]
+> +	TP_printk("dev=3D%s severity=3D%d platform_id=3D%pU fru_id=3D%pU "
+
+[Severity: Medium]
+Does this tracepoint format guid_t fields incorrectly?
+
+The printk format specifier %pU defaults to %pUb, which formats UUIDs in
+big-endian byte order (RFC 4122). However, guid_t represents little-endian
+UUIDs.
+
+Using %pU instead of %pUl causes the first three components of the GUID to =
+be
+incorrectly byte-swapped in the trace output, presenting a corrupted GUID to
+userspace consumers.
+
+> +		"intel_err_hdr_raw=3D%s cper_len=3D%u cper_raw=3D%s",
+> +		__get_str(dev), __entry->sev,
+> +		__entry->platform_id, __entry->fru_id,
+> +		__print_hex(__entry->ihdr_raw,
+> +		    sizeof(struct xe_cper_sec_intel_err_hdr)),
+> +		__entry->cper_len,
+> +		__print_hex(__get_dynamic_array(cper),
+> +		    __entry->cper_len))
+> +);
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260825175916.1103=
+841-13-badal.nilawar@intel.com?part=3D3
