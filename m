@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1D9DC61DBD
-	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 23:16:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86CFEC61DBD
+	for <intel-xe@archiver.kernel.org>; Tue, 25 Aug 2026 23:16:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44BF010EB61;
-	Tue, 25 Aug 2026 23:16:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4892310EB76;
+	Tue, 25 Aug 2026 23:16:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ke+IOQ3n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hzKoIiON";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2615F10EB61
- for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 23:16:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA16A10EB76
+ for <intel-xe@lists.freedesktop.org>; Tue, 25 Aug 2026 23:16:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787699774; x=1819235774;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=H1NtfXMjrzgoacfIN3Aa3A95vWYVD/WtfEg8gTEMBB4=;
- b=ke+IOQ3nKOHdYVhxu+cqXnCw2HTcHuCgXm45dApvP7CQPjNCVgKZvflH
- eGtS4kN4PhroM+Q+t34VvaCjK16gERrvUgsvslu6EIJf8r1LsLPxEvtCO
- b56w74jClBHoMMcjZ0o0TajlUTreoCo1sApAPJ8KVT2eRKIQPvrL6GCbF
- kbfHCxeMVfmRj3rm7FQ4V6FI1gA8fnt3DLVFuZm5V819cdqC306hJnkro
- CqNISd4zIdzNw10VoZgIzkZQsAqqHPFRwjIOijILNayYPFjkQ2wynNzAm
- V9b8wJuHrO8h7k1xHzMA2UTco0k67xe9G7Or8W0tPDORnX8ocrF7ooaB2 g==;
-X-CSE-ConnectionGUID: AvhiezFmQka4etZP7FseHA==
-X-CSE-MsgGUID: KtMpGGe6RMqBKsTR84ooCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11886"; a="91857230"
-X-IronPort-AV: E=Sophos;i="6.25,243,1779174000"; d="scan'208";a="91857230"
+ t=1787699778; x=1819235778;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Jk4YAX4ydaGZkSjuIZ5r/D9gjDj/tJSmkFXLqxk9oO0=;
+ b=hzKoIiONLbju0nO2vNwWYg0aUAmK5Ju0+v2lTRUCLe0JEsULmBjNR9K0
+ RFV/1/0wPgS9blZr/FWfucXkO/lmCK7SfSUivfXgslpbu1rT2TpsbPCMG
+ vAkH00YreZG4nHOmvL2u3y9uANum66CVgLcjt8mJL0dbfovrdfY9i2CZR
+ hyqyfLB3RrvxHYlWH2sq9pdglKtJMcPM+paWqMKufb3pw6O1Kv22dX/4f
+ /DfOukbKDdaGBisXQY8sl3dD5SPR71ef4MwZ/klZlAkuEy8UZNWMmHIGl
+ OYWoS7evWJIiD/TIXmzzV9053VNfafGkA+/n2O4pQVB4xe+k6zHHhC3z0 g==;
+X-CSE-ConnectionGUID: SwFtPBN8QFq8XftLIzwtiw==
+X-CSE-MsgGUID: YsuSmLCDTTm0MkkJRTx8Ig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11886"; a="91857233"
+X-IronPort-AV: E=Sophos;i="6.25,243,1779174000"; d="scan'208";a="91857233"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2026 16:16:13 -0700
-X-CSE-ConnectionGUID: uRoBKjiiSumfxLeDFdWR/Q==
-X-CSE-MsgGUID: Qkt7m0yqRGaXzSb4d7In4A==
+ 25 Aug 2026 16:16:17 -0700
+X-CSE-ConnectionGUID: hQVaIW1wT1C/XLYbaU2BRA==
+X-CSE-MsgGUID: TSwM/eU6QYCsGt7zk0TVFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,243,1779174000"; d="scan'208";a="270906865"
+X-IronPort-AV: E=Sophos;i="6.25,243,1779174000"; d="scan'208";a="270906885"
 Received: from dceraolo-desk1.fm.intel.com (HELO dceraolo-desk1)
  ([10.121.64.189])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2026 16:16:14 -0700
+ 25 Aug 2026 16:16:18 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>,
- Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH 0/6] Prepare for WCL GSC FW
-Date: Tue, 25 Aug 2026 23:15:58 +0000
-Message-ID: <20260825231604.651906-1-daniele.ceraolospurio@intel.com>
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH 1/6] drm/xe: Define WCL as a PTL subplatform
+Date: Tue, 25 Aug 2026 23:15:59 +0000
+Message-ID: <20260825231604.651906-2-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260825231604.651906-1-daniele.ceraolospurio@intel.com>
+References: <20260825231604.651906-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,39 +68,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GSC FW team has decided to fork the PTL FW and have a dedicated
-build for WCL. The PTL FW will keep working on WCL, but the newer WCL
-FW image is recommended; the WCL FW will not work on PTL.
-While the WCL FW is not ready for release yet, its addition will not be
-trivial, so we can start preparing for it. In particular, we need to be
-able to distinguish WCL from PTL and be able to fall back to the PTL FW
-on WCL if the WCL FW is not found.
+WCL will support a different GSC binary than PTL, so we need to be able
+to distinguish the two platforms.
 
-The 5th patch on this series adds the WCL FW definition to show how
-that's going to look, but that shouldn't be merged until the firmware is
-available in the public repo.
-The last patch adds a mock GuC 99.99.0 FW definition for LNL, to test
-the fallback mechanism to GuC v70. This should also not be merged.
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pci.c            | 6 ++++++
+ drivers/gpu/drm/xe/xe_platform_types.h | 1 +
+ 2 files changed, 7 insertions(+)
 
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-
-Daniele Ceraolo Spurio (6):
-  drm/xe: Define WCL as a PTL subplatform
-  drm/xe/uc: Add FW file fallback support
-  drm/xe/uc: mark HuC and GSC as only available on the media GT
-  drm/xe/uc: Support fetching different FW files per-subplatform
-  DO NOT MERGE: drm/xe/gsc: define GSC for WCL
-  DO NOT MERGE: drm/xe/guc: add a mock newer GuC file for LNL
-
- drivers/gpu/drm/xe/xe_gsc.c            |   7 --
- drivers/gpu/drm/xe/xe_huc.c            |  11 ---
- drivers/gpu/drm/xe/xe_pci.c            |   6 ++
- drivers/gpu/drm/xe/xe_platform_types.h |   1 +
- drivers/gpu/drm/xe/xe_uc_fw.c          | 101 +++++++++++++++++++------
- drivers/gpu/drm/xe/xe_uc_fw_types.h    |   9 +++
- 6 files changed, 95 insertions(+), 40 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 2eeccff2de02..d11b0ca20ba3 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -437,6 +437,8 @@ static const struct xe_device_desc bmg_desc = {
+ 	.vm_max_level = 4,
+ };
+ 
++static const u16 wcl_ids[] = { INTEL_WCL_IDS(NOP), 0 };
++
+ static const struct xe_device_desc ptl_desc = {
+ 	PLATFORM(PANTHERLAKE),
+ 	.dma_mask_size = 46,
+@@ -449,6 +451,10 @@ static const struct xe_device_desc ptl_desc = {
+ 	MULTI_LRC_MASK,
+ 	.needs_scratch = true,
+ 	.needs_shared_vf_gt_wq = true,
++	.subplatforms = (const struct xe_subplatform_desc[]) {
++		{ XE_SUBPLATFORM_WILDCATLAKE, "WCL", wcl_ids },
++		{ }
++	},
+ 	.va_bits = 48,
+ 	.vm_max_level = 4,
+ };
+diff --git a/drivers/gpu/drm/xe/xe_platform_types.h b/drivers/gpu/drm/xe/xe_platform_types.h
+index 3447848b74e3..9399198278a0 100644
+--- a/drivers/gpu/drm/xe/xe_platform_types.h
++++ b/drivers/gpu/drm/xe/xe_platform_types.h
+@@ -38,6 +38,7 @@ enum xe_subplatform {
+ 	XE_SUBPLATFORM_DG2_G11,
+ 	XE_SUBPLATFORM_DG2_G12,
+ 	XE_SUBPLATFORM_BATTLEMAGE_G21,
++	XE_SUBPLATFORM_WILDCATLAKE,
+ };
+ 
+ #endif
 -- 
 2.53.0
 
