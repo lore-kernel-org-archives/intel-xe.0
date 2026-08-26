@@ -4,146 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08B59C5DF97
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 20:10:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05A7EC61DBE
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 20:10:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7F5A10EAC1;
-	Wed, 26 Aug 2026 20:10:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAB6610E62A;
+	Wed, 26 Aug 2026 20:10:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Md76VqxB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BzldaGMi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21F7B10EAC1
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 20:10:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9DBE10E62A
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 20:10:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787775042; x=1819311042;
+ t=1787775054; x=1819311054;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=GgHJpBB0ypE0DYw2v2rHy2cJKQJnXJdlpXOU1AVU3HY=;
- b=Md76VqxBsPZuRPm0oxc9mm1JoxAy1ZFl1nhOeNMsQllC3d2QYWc8TbjU
- a+JKEqPE254G7roAxLXFpd8gDtI9q9maA0khEYAF7zCTgxXwwq4t2t5+S
- mNaSuN7Gu3dragRgjf6rHLIhE0hKXbJQBM2Jfmj7l9x5y4naTkyFUWETx
- ZuMDdY3X+mmWWJ1tkS5Xjgk4jaamAIz9/PcPxnpFXMsXbiILN+7klE72k
- jysW+sz7d8pzNO67YxJPq+tAbXLRLd4AAJXENOTgIJTy5xXO2ck4Ex0M4
- kDuNiFsFMOHOOBP5oWsAcmLBWtWxA+RT0D+ZQgQgeCMicHr7pozouB0CF A==;
-X-CSE-ConnectionGUID: Dur9BBs4SAS8SU3GWxldRw==
-X-CSE-MsgGUID: MswYIoRjRp2HD5okgZGWXg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="88124003"
-X-IronPort-AV: E=Sophos;i="6.25,245,1779174000"; d="scan'208";a="88124003"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 13:10:41 -0700
-X-CSE-ConnectionGUID: fyMTukF0Q2uECt4XzEi4Cw==
-X-CSE-MsgGUID: 3TtWuFtRRHe4nNTkSGc+xA==
+ bh=AYvISsGxVzSA4WqAMPblgx0BZBT2b6BS4m7p64s3z10=;
+ b=BzldaGMiF2i4bQXbB/FTCuPFv7wRWc7kWogwfH/t8KAs+HR5XIIC2IvT
+ i4vnkSWsxAMEYeDncBcNdyBiDbvGtv5XAxZJMMibrpzb6tTcZ2OrPjUc2
+ 49vXEbjP/QXwyGyARwYQcgcqoC81lIWcpl1ZoBFbtSNcOf5qhm3VzNPOi
+ fpxvsbJac3MtlXtX8SXvLwJ8AfSHZYD3tfW9QQacwgbBvLnJi+1cfP0cm
+ 4VmAazIDOCVvEN1oQR6IRBc/vgkR3oKuA1+IMa+BuDfIqBf/8nEScM3XM
+ ugil2HWmYt+63bvl4TbrMEP4qsbgB+2jajXjVVZZB0z2yFSA2RCvcDbOP A==;
+X-CSE-ConnectionGUID: TQR5ISIiSHqxIRxerF+RqA==
+X-CSE-MsgGUID: /Jl8YEZKTfulW+0LpbMSeg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="88391086"
+X-IronPort-AV: E=Sophos;i="6.25,245,1779174000"; d="scan'208";a="88391086"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2026 13:10:54 -0700
+X-CSE-ConnectionGUID: 0GUrO/U1RG2QZZwovSuF2Q==
+X-CSE-MsgGUID: yey2TXtQRsuEDwA4psQVqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,245,1779174000"; d="scan'208";a="297560113"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 13:10:41 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,245,1779174000"; d="scan'208";a="272912435"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2026 13:10:53 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 26 Aug 2026 13:10:39 -0700
+ 15.2.2562.46; Wed, 26 Aug 2026 13:10:53 -0700
 Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Wed, 26 Aug 2026 13:10:39 -0700
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.56) by
+ 15.2.2562.46 via Frontend Transport; Wed, 26 Aug 2026 13:10:53 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.67) by
  edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 26 Aug 2026 13:10:38 -0700
+ 15.2.2562.45; Wed, 26 Aug 2026 13:10:53 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mDg8ywqrJIhW7Hhb1qEapI0QYSscCAm/z9KmzObyLR8n9kNZ3mhdmSPMTuekt8n94ff+6vQjmHL286kFVREP9hZK6zawNghVUQrBeDFulzcBvHK+1dyURCVs/fB+/CSB9nTtvNof9SZWQU+7gkD82SktFc3+B82yp9rkNosoFTlokN0+BDVxo5YKlkh651+P1fxqg/z2PifsaaAHGy0zFLZybmIQOlikqVdW7RO72kbjDav6VHqJupxyKREi5Kn0OjxrlHpooOX+yQT77oSvFVXuubXewa+MLB5FAUHXhPl0MeK+butIfUg64DKHtcEn2LawxxzvkJmVsudYOyzy0Q==
+ b=SyVG8/tI7ybx9JHEs/FBZ/OTED3JETK7dhwMIZH4swidPCr6dlUgJrRnudjKerIMVfg5pxY4jMyOosi84k4QH4vbtVcFOJBhkv7wBS71O2igiSAJUnj+dJrzDmobvByKDMMziK9G6Ker3uDERwcLXkelaOgwz5jBzJmwB/oZ4tDlNV3EXot3Wp3bMYvDWOA2ncP6jiu6BD+R2XS/JAvpHA2Bn8QCcGRDsL5GZy0fhQWoCDUEbD6HAz9qm5E4R6j2fp5aacMGyvZrI92jinBvZtBtXyIeBQfQ9SvNDt1VxscAYEn0ivUzYx2fKf8Vxhirb/bBoA0oDL4HizrKGlIB9A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JHKl8XEslxT6NwCBO9xFigSUEJRhKpJKTr6izKvAX3c=;
- b=GjQfsjHMtc+TvlmUKvaSG++Q/XAlC4DxV51fFt8iqzsXcjkF/OVDwQJGA5F2In2gnNjQlj4FN+D9MgzkUfh83x67xcM0/E/DRhgiqJJiGplTzeSlcuhVmx+AwwH/3N4g5mZ2NWyTC+8Guszo0QYvpDFX+d32kDOMVDuUS7MtUmDjIq2JsfAH21w7H8N4zcik5qM+9thXeW8GnmHxb04FbCpNtAYKF2anD1BEw6heiaY4FZmnsPWAkYP4cvBheawPCqkNnj3/JhDayuLMErz9ln4htvyfVY1c4z0qhYKPklZU0rn6SFLP7GQ1BCG59Cr8mBC2kwQgZ5V+kQuFCOPzjw==
+ bh=hTeUyiaXFtxXlEXwblRNU05A8F4yUVuk+EIhrk//8N0=;
+ b=zB6Ir8Ve4Kzk49HV3xsKC6oGhEHrWnUUCnKsNr5hZLlkzcOM9h3W7U+/pe+yHz1gyes1BvQcaWnuVa3NDoAdDd4KwpEM/UqC2jDSVY/DXyYUsmcc4A0Pn+scsTlGHff4xRgKthy8e+vBPXkYrusHh6ZQQDP3xBka/VsZhBUdRQnJeXwYSPKW1xj80ok5CIXUyoF6ozmqlxeLUW8g2bmOO8Xumiyt6Oymo9kboQsfHjndLu+vJhCgXmkVwGhNZ44XqW7eh6855EjppPtQ6BJaUYVJ4hugs10U5Kb8JYqGetyzcg3EYmjNwNNiL4XMWqi0njbMGet6YQrhDTBVVuYffQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by PH0PR11MB7542.namprd11.prod.outlook.com (2603:10b6:510:28b::17) with
+Received: from IA0PR11MB7752.namprd11.prod.outlook.com (2603:10b6:208:442::20)
+ by DS0PR11MB7802.namprd11.prod.outlook.com (2603:10b6:8:de::22) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.8; Wed, 26 Aug
- 2026 20:10:36 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%4]) with mapi id 15.21.0360.006; Wed, 26 Aug 2026
- 20:10:36 +0000
-Date: Wed, 26 Aug 2026 13:10:34 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: <tilak.tirumalesh.tangudu@intel.com>
-CC: <niranjana.vishwanathapura@intel.com>, <matthew.brost@intel.com>,
- <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 1/3] drm/xe/ggtt: fault on unmapped GGTT for multi-queue
- platforms
-Message-ID: <20260826201034.GL681121@mdroper-desk1.amr.corp.intel.com>
-References: <20260826112533.3289978-1-tilak.tirumalesh.tangudu@intel.com>
- <20260826112533.3289978-2-tilak.tirumalesh.tangudu@intel.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.7; Wed, 26 Aug
+ 2026 20:10:50 +0000
+Received: from IA0PR11MB7752.namprd11.prod.outlook.com
+ ([fe80::848a:3e54:c19b:11ce]) by IA0PR11MB7752.namprd11.prod.outlook.com
+ ([fe80::848a:3e54:c19b:11ce%7]) with mapi id 15.21.0360.006; Wed, 26 Aug 2026
+ 20:10:48 +0000
+Date: Wed, 26 Aug 2026 16:10:43 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+CC: Karthik Poosa <karthik.poosa@intel.com>, <intel-xe@lists.freedesktop.org>, 
+ <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
+ <riana.tauro@intel.com>, <sk.anirban@intel.com>,
+ <mallesh.koujalagi@intel.com>, <soham.purkait@intel.com>
+Subject: Re: [PATCH 2/3] drm/xe/hwmon: Use VRAM temperature sensor count from
+ thermal config on CRI
+Message-ID: <ao9IQ3KnnwsIeZQ-@intel.com>
+References: <20260824184137.2164727-1-karthik.poosa@intel.com>
+ <20260824184137.2164727-3-karthik.poosa@intel.com>
+ <ao8uP1ykIgCjkUvF@black.igk.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260826112533.3289978-2-tilak.tirumalesh.tangudu@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0210.namprd13.prod.outlook.com
- (2603:10b6:a03:2c3::35) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+In-Reply-To: <ao8uP1ykIgCjkUvF@black.igk.intel.com>
+X-ClientProxiedBy: SJ0PR05CA0143.namprd05.prod.outlook.com
+ (2603:10b6:a03:33d::28) To IA0PR11MB7752.namprd11.prod.outlook.com
+ (2603:10b6:208:442::20)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|PH0PR11MB7542:EE_
-X-MS-Office365-Filtering-Correlation-Id: 134c26a7-749e-4001-bdfa-08df03ae1788
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7752:EE_|DS0PR11MB7802:EE_
+X-MS-Office365-Filtering-Correlation-Id: 735704c2-3b6b-47e5-eeb5-08df03ae1e82
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|376014|366016|3023799007|10067099003|56012099006|11063799006|4143699003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: bsgDbsHRynMXCzjrKpd41GfgP8/e+YBu+gOgm9zfPDr5jKWG0IH50xczM157QGcypTbGCSUFEZrr2D6wh6pbXjgbLag2Y3YwGuBxQZGxzLDnYTuN12Biroo5feLq3841uSpwL4ZUzze2IXcXPSPnJnrJ63WvuCvMb/JCov04bSxr9f3xZmX2TpSx3Tw+FTvzKjBgK+kv2zTNGLfdkJvnvV8NN9nPOuk12T1FzuPQyx3wbU2AjRkIhH4yWjPZSW0xpy2SxjvdjJJjghfNUA8Gv7Vs0+TK04+vlcCqywJtaGIqim20IRXTF+OTxUPMHeuJKQORrekq9W/qM4aMq3K4D04w7WcC7HLsAcdcn23yDeQ3Vz/AjQVmW2Ge7BtieGPt7OjEFxsIYDQNcF1UX4ywWnR9MdlhRSQH7u4B/vXm6pv21TuP8igWo+1X8KqSn/Wf4P97xoqKzZDrliNE7hAH03cEyz6uREnZF1fGvoVioVW11ricreoTvZeUIZBB8BAG0nxzJEVW4irD3Y/ML01C3GJ5U3ouxXyrqFmXlVbfj5PnR2si6iO/5SZQPqbhWoT7pXKByztnoux9gFOtmkrmPKbwkuypDgi4CCBvquhIOTRHRKsavkRYl8ImAD6YpU5WxNRmy1L9Bww56HFIsZJsARve3pb+xci2W67VlRNRuZE=
+ ARA:13230040|23010399003|376014|366016|1800799024|10067099003|22082099003|18002099003|4143699003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: jSr7hlxKsqJeWg8f9RUNsoqg9Jg3vZVg7svBHh2C3j/E9P1eMnNBHipBadbLO55W2J/TW0qunRk6EFF5rl3D/fCbyLK+hrZ2zXChcbH55wwoh1jbN4EgbC7zhWvEQl6+SPZFpjS8lLXQj8XLtQ1L0Q+QkNDhs+uFbTEPfiiJMtCIfvV/Xdu9+ntLvJOP+JY2MBQ2TKdCO814grvZFSFMyw76WGiPza0LwmnsJcUX2SKpTvbsVgy51eLeTgUk0K8WCBFh1OwtQJ3kshEYxMQx7W39idtPdCCHUXqo37aYEHo1384Xg/qM49rzY0WWX0nFnGoLCk9Aj80A9qPrrHN4Dk2U54O9ztK0KZuRGmQvvrpBbblMRJfx+6m08aM0sYsZUmDh9dZTBC7gQylVNpwgrXexlUAq7nu2pOejjOJj8z5bgbAz13CYs1Ol7KKrH6sC08nMPcgD+ILyEPfBXAnK1RuzM7IKUw+3fayv2WQSuDClLpJLtOhAv74dVO33TWvyARw8Vj4XN/8/yZa8/cxaVhUjKC9hpxrrd+6/WT3prcFFpFG/RXCHBoAfDvVHlECm2b9E7sBQeM6GkW7AYQGk05wqfvvxhqF/ifGrz6DzLrznzqq6084Qc2ca0VWgNsVoN11jZ6artUm0tUp7ds7K5aSsSAXpxNP/VtZy5LoRnRw=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(3023799007)(10067099003)(56012099006)(11063799006)(4143699003)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7752.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(10067099003)(22082099003)(18002099003)(4143699003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YWsRSoMslsbsihiGyTjnShR91IVKzjCW0IROWWnOE6Cn0dLskqD0grmncudU?=
- =?us-ascii?Q?FCPmmwNuGxIluJaa0pmSvxfmNWCtNMwbrYrFItos1RfwEehB1PTyO3EkwftQ?=
- =?us-ascii?Q?oNV6U2sAk7TjRHuaEjRe/Nijk8QIssgII/fumQYYP3fTSNUtUwOa2SN9yGTK?=
- =?us-ascii?Q?fnXWGXfDHbyzIHwUjLLyuKJ+biN82z6vDkaHYqNeQO95SB2Zq2vx/M3nV3ZA?=
- =?us-ascii?Q?APIBHyUUqKrbrMGEJtI2UQHuePJYDJziuKcO3dicY/Rcsdzb3hjMapHtPxVD?=
- =?us-ascii?Q?e4mY0D0VboGqD6J2+jYECEXgip1GsgIFoEXN0e1+oY/RGkx4aDNs6mlSkGkb?=
- =?us-ascii?Q?4JbJwYQtMNrUigXa9Xuu3c2PSmjbkXXiH005jqkWIiD99wF38myOEdMjAIBF?=
- =?us-ascii?Q?ErGWNDTvZ7Z/I1rqHI8mqPr45NFfda4kgRmmmj8zA+SXy0ro0OcioGKmsLFN?=
- =?us-ascii?Q?8b2PbsgK7vJwgNiOhret/GsF007I8m23BiZeR5onf0cB73UUdqApwBbQED/+?=
- =?us-ascii?Q?Yq1icpHpQBLxf72mmolxUUnZZrkgv4kH7LNWKz6hsKn00KfXIqFEyzXeZ2Cv?=
- =?us-ascii?Q?n4mtF1IFRrU8HuFpWME7jS7KW1FcMlt0q48vXvUwKNPKqnwW2VujFWTc95H7?=
- =?us-ascii?Q?HX7KSOadabYH6FwXI7qtrbIpowMLd1fijb4oMBT5cnDnZSEVPUU6CGnJxcow?=
- =?us-ascii?Q?AbMBwGRlnzgUM1G+g9Zf4vvMoUXYd0RPhOJVgZQBhcSnd5I4QU+7wEQ7CpWp?=
- =?us-ascii?Q?aJmhGAqFHlPasbib4MKZ8bsaXAzVYq9K9khwPSJVZdfl6MxkyT3iKWtTVWZI?=
- =?us-ascii?Q?gVyimSRKp1tFCik4wXTN0e39kp/vH1dNqeZRAiLK7tlbvjqzkW5tH2AlF+FT?=
- =?us-ascii?Q?WPr6GuH6Zq99KFRkkiylmnUPKGJ10NOoLm7WLHsawDkj/52g8O8H/Zlh+8Lx?=
- =?us-ascii?Q?2pnIcJZTipxZa84GY9YcbJhdTLONBvhKg38rTxXeD4BvEr9FwFhWvAacAqJg?=
- =?us-ascii?Q?Tu5OA+GeVSaEf3K9rou5ZxXaR8Ms3Pxn1gD++f2Li/ykDwX9mVpqNkidstFD?=
- =?us-ascii?Q?/Zr+bIOzQnaXn5zEh7x5iy45tne0ZwsXvmN55Xrk7k7Dpb0KoGTLXZtDwujd?=
- =?us-ascii?Q?eafU0C+JvqJEXG36dYZenDCGcSL7vJ9wj5pf4lVHnSBuusO6kduMWjPYe7rh?=
- =?us-ascii?Q?kauANdkXJX6LtbTcRWbGCOTlDhKB72PXJ61D2g/5Ec7mtj6mc3joINZfT0lo?=
- =?us-ascii?Q?7yRIAXh+vVhMLBOqUCeWBG+d2BXw8jZPvPBAqTskjyf6Rg86YUrYjFTln65U?=
- =?us-ascii?Q?4LZD+bRZHUaxXs8pnSIio8ijAsP3b81ve5qawck48oJt0r3JRfFR/gdvZ3ve?=
- =?us-ascii?Q?fL6C8rXlFk3yomV/Zzc0zbH2K0C3C1NImbVPSpOwi2ALCPqsup6SbUkdBXMX?=
- =?us-ascii?Q?Kpa7b/6dx1q2JZHaNITfcm15jtKDEoH+mL7Bxkmq+XVjlcgJKut8+wtIPF1D?=
- =?us-ascii?Q?mBhrO26Gl4tA4dwpvmgJWyDbPsm7sDThyF2PSEYZkzgFkglu9/d8p1qV7x1o?=
- =?us-ascii?Q?HhiZazBm/u7VhjGNEBQADXvkr3ws2IVBmExNHSQZrchOrktH0YYrqbs7zE85?=
- =?us-ascii?Q?capYNUs6g3X1ch97DTunlx2FWKfmQVIK34JKvDVLyW8YPochDHt/dNbAXp/4?=
- =?us-ascii?Q?X7zUyorMzJTyvYk3Je8hLVVnQraXxruWZK/MVfXzqQjikutsgTvXuQAEGyOw?=
- =?us-ascii?Q?em2WgQ4bS9j99VOU5lUK9LE3NTg5/H8=3D?=
-X-Exchange-RoutingPolicyChecked: 5iaA/TAKsAo5yc+CmeqvvKnSWGcbQjJe5PJimr0A33nD/BvyeKlG+BUNFIjNh4DhVk3qKsdinvCar+EKvjOw/QWiXRNBSV/EUukE7v09dgow6W0M2KEv212BKEFAPCXskelV8yK5mF9GtH/UEEsyZaESrP/DSwuMoD6BCHvqSAmj1xpJ15q3NhwgbVUlXD9Xacity2yZjht/Twzi5o5sNu/miyqH0PMlLBT4TrM0d4vfeolzE6DaMgdIMe7h7U7PpOkrnRc56ArXkh3pZXNmb8oiRD5i5nrOxDn6uCUpV9w5yVJZGIl4CttsIzEv9/nUZ3e4MPnG0AaebVgUYL13AA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 134c26a7-749e-4001-bdfa-08df03ae1788
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gQUgLx39ns8pjIFGEH/24hb9kpdGHj9pgCiygCcWywnX5qPdSBgFAmVkZJF+?=
+ =?us-ascii?Q?HzzZD9OozgWq5hlmwZVKlFNMAmHFKCIYouvua5vnDbjH3AVsJ+iYT6JIH+eF?=
+ =?us-ascii?Q?2MkhMT4DsGxLhbkKwZ3rGstADoN3BaeRKDzrfohkvRHkMmonCWAd7cxxXuNB?=
+ =?us-ascii?Q?UL0LlgZQLaWDq7jG+dQeGnNEiJi9zBv27mjPZBqdWQfbz8nVHbDFfttQdK6Z?=
+ =?us-ascii?Q?IXiKaRbPwlVY9Q4AfxLIcG5dlwfyFJKzcohO4zUTiITHvXU5pEMr3JQEAvbK?=
+ =?us-ascii?Q?Tsb7+JuksdFobmWxv4LZi8rwoLTP6haWGS0AXCOb2GJM/RiODYQ0e7L+TSTU?=
+ =?us-ascii?Q?nNC53anMm3NNIH9Ne7W4j6b3ZGvhmGFN/hkXyXKBo3tyNHgYBIxu14VN/KqG?=
+ =?us-ascii?Q?LEK7uyvUYOhODyn5dLAX/QiZ4gLDQ+u0KfAE9MRZ7zhDzKENqjnpCSMVVf2g?=
+ =?us-ascii?Q?TnUWHCTFrgoiNpC8+K9lw7Yb7vytt4lJncsVpOn0VU0irSH1NDV1vqti+w9W?=
+ =?us-ascii?Q?8m8FyrXbQzJDw0TeLI8n0PZHsgNS0GsPeNk0fmgtqjd0rAevGjetz/RIG9C6?=
+ =?us-ascii?Q?x02L89UWjSnNNlWJ85/IK1wZbxdCPI57Elyc3JCnEPXpDXWjmNMlEZlWL05v?=
+ =?us-ascii?Q?6VMpaD+UyaqwGXqSmRWYHOG9Qx85f9+gyZET8rX+OcMS+y8s1DxSkCrboOSJ?=
+ =?us-ascii?Q?VXlVUXbRdwf+uAE1Cgo5+INYdZ/pVEqi/WPxjlq2xf6MsSG2yD7hoyfouyOJ?=
+ =?us-ascii?Q?abI8LkBkPlbT/DGfBm4B5Y0GAscRTDiC7ECRj+AMcHMnQ4aJUfoO8Su86X53?=
+ =?us-ascii?Q?q+6O0Kn7fnpKdmNUakb1EGx/oGFZBbxmIhw37N4GGBL+hoeIaWcIEhiICjEr?=
+ =?us-ascii?Q?Hg4SgsYT+EwGuHqZwOJJqtL3hulV6vjNSilrEVgNV9nBknAznwhKz0QCv9qM?=
+ =?us-ascii?Q?AjzhtJ03+LIdv0dfdVIp1xs5dd+RjlNlzlcmzLJ6J0fdNo53iXSlDsEAJOK4?=
+ =?us-ascii?Q?BwUFw70qMhC22aK7aFosv3Id00gINyuWjWf7FdfkKEadq2zWMvfoojmiD5cW?=
+ =?us-ascii?Q?T2PySNQhV1jglRuQyZOGZ2hhc/ouwhFBCppNB6YTMRV6NexamPtAv2+IZyUl?=
+ =?us-ascii?Q?0Oo7ppAIddulSrWnWa2LX1471uZiQLTMrVLAzJpuH7jb4bzIPBf8IyC34bPS?=
+ =?us-ascii?Q?uzMbIFqorQuh22uu3GZa6X86nAfbKVZvpm7wso5aCUzWwuyqouSKt65q/DD6?=
+ =?us-ascii?Q?THxNZnlVpaUP9AKgtDCiYHwkheJAg5epDRbR8nU7BdlDYtZCqFRM1U6jGuqN?=
+ =?us-ascii?Q?wGJ9gKMIZNPCUdipO42x8l4of3kQtOJQ95nYcivUqEt1/91Kvd+85WopFVXq?=
+ =?us-ascii?Q?xirhACFkRYPVvKxeB/JyfJmJ4GgsU2oTfMzmTeM4IgS4+t11fS3yFGeXYciW?=
+ =?us-ascii?Q?lXHi5v/DIkMrc4TSTXSw6a6TsRqV9m1nzYNzNEV7a9kogIlsyGsYH8Uoprut?=
+ =?us-ascii?Q?2aTlnL+z0zQX8BDtPpDZjPFMzLaXGGhKlyF/QEGeQgJ91LOjO/YMbsWbf3kl?=
+ =?us-ascii?Q?qiRy4m16a/jH2AQ/rAqCJtzBmMCvtSEpCrOfSSod1fcNsAPEKlQNnCdiirJP?=
+ =?us-ascii?Q?u7n3S+PSg0uJjrRsqMdaYuhWcvWUix8Kham1VS5o0L1w0UaqOJ/P5G/pKiSv?=
+ =?us-ascii?Q?mVEln4nNYBgkMLSwkxpho4NPPeH/gBFWTcxhN+RnwEoYBhArcUXOqaX5DkGE?=
+ =?us-ascii?Q?4aqdmIkDoA=3D=3D?=
+X-Exchange-RoutingPolicyChecked: d2KNvUr7UeJpBfBHTn99CuvS4oFRZ2wJFOSBD0fv4ym4b8Ova6RelfDoOOpjYlf7Z99utTgDdFstam3Xb3qTTUFR5OQFuEp/j6LCYGeg/bKoXNaSv81L4zPia0yXSuPL1Opw3SCDSA0uFvl9Nk33qyYxdDvIh4nRkjLD9tFFHBT5DCzyF5ZJxGOiK2POp9Ym1f08SiVmVUh/Uk8SxwM7H6nR8GZYWEDQlopLkhlgAzqRN16pxD6YeE5Z+CAMsQfw4SGyL5FFTW/Rd3Px5xcLlv0bw4x2OHLD4Wdc9Tqg3zQocpbjyoUH2dLTT0f2JmryYv6SLIGeBjTI9sNdm4vDew==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 735704c2-3b6b-47e5-eeb5-08df03ae1e82
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7752.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2026 20:10:36.5753 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2026 20:10:48.4671 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XuDEVPkwbNXPB9TbsSz4WIlC4lc5BYB9aN5Ef3z+lZbSHoiT+kIgEIsc0ZXY45dqypRITD0EWB24LAki+Y+Zd0ue9mCujMOTsoFkSY/85P4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7542
+X-MS-Exchange-CrossTenant-UserPrincipalName: U8Yq1qOh4kxbtrbhk3mZggwpW5B3smXw0MBUrc/xRmkw+LUbjvacUqPBIFO+4JgmbWG1voSrFbB5vOquwJNV5w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7802
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -159,134 +162,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 26, 2026 at 04:55:31PM +0530, tilak.tirumalesh.tangudu@intel.com wrote:
-> From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+On Wed, Aug 26, 2026 at 08:19:43PM +0200, Raag Jadav wrote:
+> On Tue, Aug 25, 2026 at 12:11:32AM +0530, Karthik Poosa wrote:
+> > Read the number of VRAM temperature sensor channels from the second byte
+> > of READ_THERMAL_CONFIG on CRI platforms. Use the reported count to avoid
+> > exposing hwmon attributes for unavailable VRAM temperature sensors, while
+> > retaining the maximum supported channel count on non-CRI platforms.
+> > 
+> > Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_hwmon.c     | 35 ++++++++++++++++++++++++++-----
+> >  drivers/gpu/drm/xe/xe_pcode_api.h |  1 +
+> >  2 files changed, 31 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> > index 2c4eba4b8f8f..6e7cb250e628 100644
+> > --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> > +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> > @@ -39,7 +39,8 @@ enum xe_hwmon_reg_operation {
+> >  	REG_READ64,
+> >  };
+> >  
+> > -#define MAX_VRAM_CHANNELS      (16)
+> > +/* Maximum number of VRAM channels supported by Xe */
+> > +#define MAX_VRAM_CHANNELS      (80)
 > 
-> On multi-queue platforms an engine can retain a stale GGTT TLB entry
-> for a range that has since been unmapped and recycled. When unmapped
-> GGTT entries resolve to the scratch page, such a stale access lands on
-> scratch silently instead of faulting, masking the error.
+> Why?
 
-Drive-by question; I haven't reviewed the changes in depth.  How does
-multi-queue relate to GGTT here?  Multi-queue submission is something
-userspace can do, but those userspace submissions can't access the GGTT,
-only the PPGTT.  GGTT accesses would only come from privileged
-instructions that the KMD inserts into the ring and I don't think those
-are ever multi-queue.  Am I overlooking something?  It seems like GGTT
-and multi-queue should be orthogonal.
+it is used below.
 
+But it should simply be something like this:
 
-Matt
+#define MAX_VRAM_CHANNELS	16
+#define CRI_MAX_VRAM_CHANNELS	80
+
+and both gets used below
 
 > 
-> On multi-queue platforms, skip allocating the GGTT scratch page so
-> cleared and unmapped ranges hold PTE=0. The whole GGTT then
-> consistently faults on unmapped access for the entire boot; other
-> platforms keep the scratch page and are unaffected.
+> >  enum xe_hwmon_channel {
+> >  	CHANNEL_CARD,
+> > @@ -48,6 +49,7 @@ enum xe_hwmon_channel {
+> >  	CHANNEL_MCTRL,
+> >  	CHANNEL_PCIE,
+> >  	CHANNEL_VRAM_N,
+> > +	/* Compile-time upper bound; actual channel count is hwmon->temp.vram_count */
+> >  	CHANNEL_VRAM_N_MAX = CHANNEL_VRAM_N + MAX_VRAM_CHANNELS - 1,
+> >  	CHANNEL_MAX,
+> >  };
+> > @@ -144,10 +146,12 @@ struct xe_hwmon_thermal_info {
+> >  	};
+> >  	/** @count: no of temperature sensors available for the platform */
 > 
-> v2:
-> - Add xe_gt_has_multi_queue() helper and address nits (Niranjana)
-> v3:
-> - Drop scratch entirely instead of toggling per-unmap (Matt Brost)
+> So now this can be "total number of temperature sensors"?
 > 
-> Assisted-by: Claude:claude-opus-4-8
-> Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_ggtt.c | 39 ++++++++++++++++++++++--------------
->  drivers/gpu/drm/xe/xe_gt.h   | 13 ++++++++++++
->  2 files changed, 37 insertions(+), 15 deletions(-)
+> >  	u8 count;
+> > +	/** @vram_count: number of VRAM temperature sensors available for the platform */
+> > +	u8 vram_count;
+> >  	/** @value: signed value from each sensor */
+> >  	s8 value[U8_MAX];
+> > -	/** @vram_label: vram label names */
+> > -	char vram_label[MAX_VRAM_CHANNELS][MAX_LABEL_SIZE];
+> > +	/** @vram_label: vram label names, dynamically allocated based on vram_count */
+> > +	char (*vram_label)[MAX_LABEL_SIZE];
+> >  };
+> >  
+> >  /**
+> > @@ -271,7 +275,7 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
+> >  				return BMG_PACKAGE_TEMPERATURE;
+> >  			else if (channel == CHANNEL_VRAM)
+> >  				return BMG_VRAM_TEMPERATURE;
+> > -			else if (in_range(channel, CHANNEL_VRAM_N, MAX_VRAM_CHANNELS))
+> > +			else if (in_range(channel, CHANNEL_VRAM_N, hwmon->temp.vram_count))
+> >  				return BMG_VRAM_TEMPERATURE_N(channel - CHANNEL_VRAM_N);
+> >  		} else if (xe->info.platform == XE_DG2) {
+> >  			if (channel == CHANNEL_PKG)
+> > @@ -810,6 +814,17 @@ static int xe_hwmon_pcode_read_thermal_info(struct xe_hwmon *hwmon)
+> >  	drm_dbg(&hwmon->xe->drm, "thermal config count 0x%x\n", config);
+> >  	hwmon->temp.count = REG_FIELD_GET(TEMP_MASK, config);
+> >  
+> > +	if (hwmon->xe->info.platform >= XE_CRESCENTISLAND) {
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index 8ec23862477f..bd65100283e3 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -20,6 +20,7 @@
->  #include "regs/xe_regs.h"
->  #include "xe_assert.h"
->  #include "xe_bo.h"
-> +#include "xe_gt.h"
->  #include "xe_gt_printk.h"
->  #include "xe_gt_types.h"
->  #include "xe_map.h"
-> @@ -533,27 +534,35 @@ void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate)
->  int xe_ggtt_init(struct xe_ggtt *ggtt)
->  {
->  	struct xe_device *xe = tile_to_xe(ggtt->tile);
-> -	unsigned int flags;
->  	int err;
->  
->  	/*
-> -	 * So we don't need to worry about 64K GGTT layout when dealing with
-> -	 * scratch entries, rather keep the scratch page in system memory on
-> -	 * platforms where 64K pages are needed for VRAM.
-> +	 * Multi-queue platforms leave unmapped GGTT faulting (no scratch) so a
-> +	 * stale engine TLB entry can't silently resolve to the scratch page.
->  	 */
-> -	flags = 0;
-> -	if (ggtt->flags & XE_GGTT_FLAGS_64K)
-> -		flags |= XE_BO_FLAG_SYSTEM;
-> -	else
-> -		flags |= XE_BO_FLAG_VRAM_IF_DGFX(ggtt->tile);
-> +	if (!xe_gt_has_multi_queue(ggtt->tile->primary_gt)) {
-> +		unsigned int flags = 0;
-> +
-> +		/*
-> +		 * So we don't need to worry about 64K GGTT layout when dealing
-> +		 * with scratch entries, rather keep the scratch page in system
-> +		 * memory on platforms where 64K pages are needed for VRAM.
-> +		 */
-> +		if (ggtt->flags & XE_GGTT_FLAGS_64K)
-> +			flags |= XE_BO_FLAG_SYSTEM;
-> +		else
-> +			flags |= XE_BO_FLAG_VRAM_IF_DGFX(ggtt->tile);
->  
-> -	ggtt->scratch = xe_managed_bo_create_pin_map(xe, ggtt->tile, XE_PAGE_SIZE, flags);
-> -	if (IS_ERR(ggtt->scratch)) {
-> -		err = PTR_ERR(ggtt->scratch);
-> -		goto err;
-> -	}
-> +		ggtt->scratch = xe_managed_bo_create_pin_map(xe, ggtt->tile,
-> +							     XE_PAGE_SIZE, flags);
-> +		if (IS_ERR(ggtt->scratch)) {
-> +			err = PTR_ERR(ggtt->scratch);
-> +			goto err;
-> +		}
->  
-> -	xe_map_memset(xe, &ggtt->scratch->vmap, 0, 0, xe_bo_size(ggtt->scratch));
-> +		xe_map_memset(xe, &ggtt->scratch->vmap, 0, 0,
-> +			      xe_bo_size(ggtt->scratch));
-> +	}
->  
->  	xe_ggtt_initial_clear(ggtt);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-> index 65a4655b0994..92d934d50244 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.h
-> +++ b/drivers/gpu/drm/xe/xe_gt.h
-> @@ -160,4 +160,17 @@ static inline bool xe_gt_supports_multi_queue(const struct xe_gt *gt,
->  	return gt->info.multi_queue_engine_class_mask & BIT(class);
->  }
->  
-> +/**
-> + * xe_gt_has_multi_queue() - Check if gt supports multi-queue on
-> + * any engine class.
-> + *
-> + * @gt: the GT object (may be NULL)
-> + *
-> + * Return: true if any engine class on @gt supports multi queue, else false
-> + */
-> +static inline bool xe_gt_has_multi_queue(const struct xe_gt *gt)
-> +{
-> +	return gt && gt->info.multi_queue_engine_class_mask;
-> +}
-> +
->  #endif
-> -- 
-> 2.46.0
+> Same as last patch. Don't solve problems that don't exist.
 > 
+> > +		hwmon->temp.vram_count = REG_FIELD_GET(VRAM_COUNT_MASK, config);
+> > +		if (hwmon->temp.vram_count > MAX_VRAM_CHANNELS && hwmon->temp.vram_count) {
+> 
+> Isn't the first condition sufficient? What am I missing?
+> 
+> > +			drm_warn(&hwmon->xe->drm, "VRAM channel count %d exceeds max %d, clamping\n",
+> 
+> Can this be invalid? i.e. 0xff? And should we clamp it in that case?
+> 
+> > +				 hwmon->temp.vram_count, MAX_VRAM_CHANNELS);
+> > +			hwmon->temp.vram_count = MAX_VRAM_CHANNELS;
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+hwmon->temp.vram_count = CRI_MAX_VRAM_CHANNELS;
+
+> 
+> So perhaps CRI_MAX_VRAM_CHANNELS?
+> 
+> > +		}
+> > +	} else {
+> > +		hwmon->temp.vram_count = 16; /* For older platforms, max is 16 VRAM channels */
+> 
+> BMG_MAX_VRAM_CHANNELS?
+
+hwmon->temp.vram_count = MAX_VRAM_CHANNELS;
+
+do not necessarily need to add a prefix to the old one...
+just a prefix for the new one...
+But if someone's OCD is asking for symmetry then
+
+XE_MAX_VRAM_CHANNELS
+or
+BMG_MAX_VRAM_CHANNELS
+
+are both accepted options...
+
+> 
+> > +	}
+> > +
+> >  	return ret;
+> >  }
+> >  
+> > @@ -988,6 +1003,9 @@ static inline bool is_vram_ch_available(struct xe_hwmon *hwmon, int channel)
+> >  	u32 reg_val;
+> >  	u8 temp;
+> >  
+> > +	if (vram_id >= hwmon->temp.vram_count)
+> > +		return false;
+> > +
+> >  	vram_reg = xe_hwmon_get_reg(hwmon, REG_TEMP, channel);
+> >  	if (!xe_reg_is_valid(vram_reg))
+> >  		return false;
+> > @@ -1516,7 +1534,7 @@ static int xe_hwmon_read_label(struct device *dev,
+> >  			*str = "mctrl";
+> >  		else if (channel == CHANNEL_PCIE)
+> >  			*str = "pcie";
+> > -		else if (in_range(channel, CHANNEL_VRAM_N, MAX_VRAM_CHANNELS))
+> > +		else if (in_range(channel, CHANNEL_VRAM_N, hwmon->temp.vram_count))
+> >  			*str = hwmon->temp.vram_label[channel - CHANNEL_VRAM_N];
+> >  		return 0;
+> >  	case hwmon_power:
+> > @@ -1645,6 +1663,13 @@ int xe_hwmon_register(struct xe_device *xe)
+> >  
+> >  	xe_hwmon_get_preregistration_info(hwmon);
+> >  
+> > +	hwmon->temp.vram_label = devm_kcalloc(dev, hwmon->temp.vram_count,
+> 
+> What if vram_count is 0?
+
+then we probably already skipped on the vram_id >= check above no?!
+But better to check indeed...
+
+> 
+> Raag
+> 
+> > +					      MAX_LABEL_SIZE, GFP_KERNEL);
+> > +	if (!hwmon->temp.vram_label) {
+> > +		xe->hwmon = NULL;
+> > +		return -ENOMEM;
+> > +	}
+> > +
+> >  	drm_dbg(&xe->drm, "Register xe hwmon interface\n");
+> >  
+> >  	/*  hwmon_dev points to device hwmon<i> */
+> > diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
+> > index 94575c476e3d..e1079eff72c6 100644
+> > --- a/drivers/gpu/drm/xe/xe_pcode_api.h
+> > +++ b/drivers/gpu/drm/xe/xe_pcode_api.h
+> > @@ -57,6 +57,7 @@
+> >  #define   PCODE_THERMAL_INFO			0x25
+> >  #define     READ_THERMAL_LIMITS			0x0
+> >  #define     READ_THERMAL_CONFIG			0x1
+> > +#define       VRAM_COUNT_MASK			REG_GENMASK(15, 8)
+> >  #define     READ_THERMAL_DATA			0x2
+> >  #define       PCIE_SENSOR_GROUP_ID		0x2
+> >  #define       PCIE_SENSOR_MASK			REG_GENMASK(31, 16)
+> > -- 
+> > 2.25.1
+> > 
