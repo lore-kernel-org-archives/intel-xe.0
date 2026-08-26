@@ -4,27 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5B0BC61DBE
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 19:45:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49770C61DBE
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 19:46:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32EFA10EDBC;
-	Wed, 26 Aug 2026 19:45:05 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C8F010EDBC;
- Wed, 26 Aug 2026 19:45:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3870572050134750804=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1E4C10E301;
+	Wed, 26 Aug 2026 19:46:05 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HVdHpAHZ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7067610E301
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 19:46:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787773564; x=1819309564;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=OVBOyuagXLUOmGRglHqtHIFfSQ/OmGrBrOjKqQy1N70=;
+ b=HVdHpAHZY1jxgYKxoZlpjuX/nAbteVhuneRVcLIiuDiWGsnlAOaXqtQN
+ p1S8ZBq2WBsMRtiLiRW59pxPosfB1SObJjHEOsn2ig9c93qNAeE/hiqR4
+ N/wU5Zm+MiMs6Rzhex9kvKUUBFP1u1gxp2rAobfYqD1pdaMDfZaiThijB
+ t7f1+55eaJRIytNtW86fdLh1ewkpFAHLJ453txndpNBzeEm9wjASBP65T
+ GHTF7Rs467+jb/zFUVZU8SkV2TD7ZhzLzC4D4cG5n+js273MdBU2EMzC/
+ 4Cq55oP210XzLkeYox7RY/ggGj9tSX4Gzcm1TMlNy2kDSehYDCTkl3jDL g==;
+X-CSE-ConnectionGUID: ii96mWsqQVK+NCrLECVLLQ==
+X-CSE-MsgGUID: NgIkYeY8RPi1Ed8zUFgbbA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="98932478"
+X-IronPort-AV: E=Sophos;i="6.25,245,1779174000"; d="scan'208";a="98932478"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2026 12:45:50 -0700
+X-CSE-ConnectionGUID: XstIDsQtT2SZItwXJhLXNQ==
+X-CSE-MsgGUID: 85RbP9E0TEWbEd45LC6FKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,245,1779174000"; d="scan'208";a="268242851"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2026 12:45:50 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Wed, 26 Aug 2026 12:45:49 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Wed, 26 Aug 2026 12:45:49 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.38) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.45; Wed, 26 Aug 2026 12:45:48 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OVMlSRpVM7pVV7/AbdnXuPoo3Z3+AO5ISSctci1uoQqOqEXWg/tzYOKCcgeRE0N/Smk9GCyvYE+dAjpGoJwCJ64pDuXqZZsGIZVZOPJPywxhOOY5wv2STJhWWHCoxK3rw7ZkP6108VmDRS6b2KEYppFsEstdyMoCgN3A5nMwoenvgzgwINU3RkDChkueRRpstR9U3XD+y/yzf8i6IBvDhVn64mBntZMsTyttdTypoES2jQEhNdLYEPLR+NGOlhmfGtDorHjQi5uw+aMFHmYWgiTDfPdp/nXcfmxz09fGUzqbxVCsccsNJo11qAe5eo3q8+P+jSv9BjNPUMVUrxj/yA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JmueoOfjAjlDdiOeYZb6mGIEpg3QiW4MuUEnQhY+60M=;
+ b=dTUFmW0Po3qav6S7ruIJt3weO7H3yuNlA9AnxVB3DKK9UCHSFFxj0rfcNQh3TcOIl0PrPcIIn30/mICRQZV4ikjMq09T8XT7vU6N6/qCA0M224HnjSDzwoIw9SaL2KuN4LQ+/aSlIQQvxtQBkVAaYe9uEk/I+e+Iao0vb4Gpb2HAhli+6Y6So72f0Ni7PWCwKfnUxDsensj5V8ikvvMHj4LCfRdPg19G67y+0DX+hUIiLyfvcr22jJ4TrW0aIArKl2hcUdKcs4i4y/ZDLqJY1WWHYmpYiYefokmqn+6R+YFIo6NGAmiQWZbtcOdV/ZWUyu8+1szzMpFCoDFl5Vy0wg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL3PR11MB6410.namprd11.prod.outlook.com (2603:10b6:208:3b9::15)
+ by SA3PR11MB7486.namprd11.prod.outlook.com (2603:10b6:806:314::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.8; Wed, 26 Aug
+ 2026 19:45:45 +0000
+Received: from BL3PR11MB6410.namprd11.prod.outlook.com
+ ([fe80::b01a:aa33:165:efc]) by BL3PR11MB6410.namprd11.prod.outlook.com
+ ([fe80::b01a:aa33:165:efc%2]) with mapi id 15.21.0360.005; Wed, 26 Aug 2026
+ 19:45:44 +0000
+Date: Wed, 26 Aug 2026 12:45:41 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: <tilak.tirumalesh.tangudu@intel.com>
+CC: <matthew.brost@intel.com>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 3/3] drm/xe/ggtt: invalidate engine GGTT TLBs for
+ multi-queue GTs
+Message-ID: <ao9CZbjcBZAhRZVK@nvishwa1-desk>
+References: <20260826112533.3289978-1-tilak.tirumalesh.tangudu@intel.com>
+ <20260826112533.3289978-4-tilak.tirumalesh.tangudu@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20260826112533.3289978-4-tilak.tirumalesh.tangudu@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0001.namprd03.prod.outlook.com
+ (2603:10b6:a03:33a::6) To BL3PR11MB6410.namprd11.prod.outlook.com
+ (2603:10b6:208:3b9::15)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_drm/i915/cdclk=3A_Fix_dg2?=
- =?utf-8?q?=5Fpower=5Fwell=5Fcount=28=29_return_type?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Aug 2026 19:45:04 -0000
-Message-ID: <178777350410.88019.2615365188447453918@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260826143100.19401-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20260826143100.19401-1-ville.syrjala@linux.intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6410:EE_|SA3PR11MB7486:EE_
+X-MS-Office365-Filtering-Correlation-Id: 27c16be5-faa9-4842-0207-08df03aa9dda
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|23010399003|376014|1800799024|10067099003|56012099006|4143699003|11063799006|6133799003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: DWnqhroLZ5en9eUPedewRWIedVUGeaUJDoVfr7selLKDQfg+HTvxCdto1oSSbV+1JlDkQZ8OB+/XdItUTm640M7sVKkGPKP/vtHSjd3v7BrBeJT7UIfjt2xSOhu7Wws9oR9N1AXMSnoOkqA2L2Iy2AvuSF4EkRB6mhJ14DvUDAdvVUAlOp+i6wvldonfH7QrAAkDcOSj3U8NYVTfCt4pYy7VI547vv5586LS6iJVZWYE9u2noNUcVUjznztp3xyiwKJSdGvzpi5RAsDvTZeS68rfxbwIdGprj91BzEHWVDJrTtu9wi1Xnp5kpj6hFuGPcAeMrM6Bbt2aQlDc2qc4JaDNNK2mO7ruCaN8axHln2137XNLfYoNDteM8Sq4Ms6EexuDO5Hz1Cjadf/Ji0K8QjSZyNZeoDcSsVv038DnUp/vvzsXFNCYNW2M5TQroWd2gLYxcge0KZAN1DRjPpvTPnHRON6/ZClcKuyNL2fayOtTGccHN/EXaeiG3Ah/n6JdXbrfUewFeVJ7Itvcx4+3xEXhLt8RcuCz8akq6q9W0UCf6/BmY6q4muJQU/z3vQPPGccE+5toNo5yDgJIS7YstAB+t72K5e3/L91Lg3KXjwmPZ/P+oGTlsXBnd06kD+wQRS3+9KziP8/0GlFv3/xXu2cjI1DmkkEZyXadiDCZFVw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6410.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(10067099003)(56012099006)(4143699003)(11063799006)(6133799003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?k6FY7GVSMYbxX7x9ceycSqrwBeY1jJ+JGN2CXJZrP5XjsM00yJuKUFHHbc13?=
+ =?us-ascii?Q?9DapmUsaQc+HRvKopag+pX7M1v6EMPRa78NpayvaCz5jXwnRPC6aBKryGl/7?=
+ =?us-ascii?Q?A1sRrMQWeOfqV05QJOFVwP5NFyAlpA/F+FWlv6aZBegG5lmhzoS/256qcyZA?=
+ =?us-ascii?Q?tCpXOQ6vV4kNggGP8pxRr60fG8j9vjuYl82VaAr7oT+gukYUdbq3TZHTy2vC?=
+ =?us-ascii?Q?8w8kE1+p8lz8CsDW2YErn4mX5qHop/A9Hq/pzWX9ozyrvpZhkbZqKb8ifgw4?=
+ =?us-ascii?Q?s5pxRLCSHy/6rdPj4W6Mc0HS9aOyXuD3JSe9Pv93uZemo7ePvYHy9dyJUWOv?=
+ =?us-ascii?Q?eOki4/t1SL1KiClM5YJQ0CJigXgJjHmP3b1LP9NhP309EAQaPNg4NE2esSAc?=
+ =?us-ascii?Q?MQ9XEVfLLi6Rd3pINh680AwAAEP7I7jijUf3x9d8TCpei6brWvYTTWXZuRga?=
+ =?us-ascii?Q?JIF7wiw+iUmkBXoLRAxNsd8kot08PVg41RQ52UM7ERvrnNuDUhkpIl35S3Oz?=
+ =?us-ascii?Q?W/jmgBmW8X/mphRaxDeItLQ5EbuCGrMoguFSOy0BikL3OXXxiqAH7fkVdbxS?=
+ =?us-ascii?Q?8wowAVUbDLgZFN7CXCJpXMCB//Ip7F2PHqTRo/uZi7zxpZdLwNpGYX/SYicK?=
+ =?us-ascii?Q?e60g1ZOkH5nyvmoUDFSeixvO9dhu45UWCqOK9hk3NkUB+oR8nYMfaGUfRAOu?=
+ =?us-ascii?Q?fClw3ek20ETvqtvUFc/IMysM1k0XdhLRcv8+jdswIaVtEmB3utICeQ6AqGKy?=
+ =?us-ascii?Q?1qQlqz3ehL0DuS8hgi0qbUNV8m7EB0Xgt29ViUmpnzmQYzaww+0ITbD16OUo?=
+ =?us-ascii?Q?r2ooQQcwQe65DaUOpv2P3Ji1CddfVobYouvm/5nNAAUpusJBqFyHx4cNWKRk?=
+ =?us-ascii?Q?m18JPz1JRMSrRiWHXYlIQVA5pLEiXCnv2DQLURdDplzVbbv5ijfUBw8MymgK?=
+ =?us-ascii?Q?vjV6MDFVvef/wVcE2z7sGEUH4BsK96oj+Jb8k8tWQ50lL070ZtoRKvdjB+5L?=
+ =?us-ascii?Q?FQ5jVJdcRA1EMkmPV8x389A8NinPubh+UpYhH9EFOwpzHVuCL7U8rmKTLNf9?=
+ =?us-ascii?Q?z6aTpQXFhikZxlqNUnK46uq3Z1PDwTd0sGXhT+JZh0jg2b7MU6vFqnKQaJtA?=
+ =?us-ascii?Q?anJV/IpOfo5kvPRJJE0rpHprGX4PzQZp1h4pWhDI1WcP2YayRvwWu2g1Ny3X?=
+ =?us-ascii?Q?7gSckO8E0teiRmx3hxeDXXAzwTohl/kQRDBbeICaIrNYh56jw0sJudGTsufj?=
+ =?us-ascii?Q?uhHb+QRvPYvyONK7qtg+q0dSUgyDejCnEOT0tV5MIp1YdkJip56clUO7iIn/?=
+ =?us-ascii?Q?VwViJmVkFnTSWopHlJV1WLFPU/UzVJNJxLrAe/RvPrwgg3iESv0MD7Xc0hFG?=
+ =?us-ascii?Q?js73oZQlAwNefbAFHllexlN3LVU7RNF9kLTIJGRC4G2VSk2cicbbGgLhqAY7?=
+ =?us-ascii?Q?MrvGCPZwiE1yljfEDJzAYG/LN2JcOoXLSc7U7HEhLtsHuNfwPPn+KRKwrGew?=
+ =?us-ascii?Q?BEWEmGg6hQagEkSkVQDyidJix4XnI0l7TsM6V1lI7mizFPy5EGKs/J4zq9a6?=
+ =?us-ascii?Q?e6aIyWmzyaCaNHg6gM8/9sUk5UBZZIktT/5bnzYRN80cEeMIgTUnPa8vJBpU?=
+ =?us-ascii?Q?4ttWndETHHjRz/XDijmSv6Z+Ytzq8QTn3HQIz2J0C/XVTUkIdQGq3P25dOJU?=
+ =?us-ascii?Q?vfy49codSIK8fzvIwRO5wCoCvTfqU78JUtjw85jer5B/1Exl0keLvCK9hAda?=
+ =?us-ascii?Q?p88cYYV5bI5uyklQgKXEJDwiVxSMjoNQ+w6zSPmZ8UNP2XcXvdq2?=
+X-Exchange-RoutingPolicyChecked: S+kXwfxPQzl/oWv9W4v0nukmNARvpwkeTMfTgImNC4G1Jnjj7hPETF5psMNuEkqDMfyOG1JwwsbI+VMhqV1Nk+V+2gz/TCtfGXfm7APWNo5K3uBceL37lv2mvjf7pqIfRBKZBbmbzx7aAtuzBXZCc1SXwHzHSzvQCnFFLrbjc0vN7awSoAPEuCrg6+lEcjlZ1UhwOaz5vB4mD8iddrmerkTftugJxsy+/twjFG3XSkKIINqpGO7ut6Kw0Q7sKJCScWy523ReTo18T/5aFUm+7cwkYlSJhBBHB0Dn/z1Zh0nuDkpVQ6oZeLNfofuXhJB734gW0PUcLs8UNyK7a3KWXA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27c16be5-faa9-4842-0207-08df03aa9dda
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6410.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2026 19:45:43.8944 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7SAEdwHszCM/rhtQQgZ+NhBWUikDJZFTR3FwguSj3hIHtyz+xSFETBQch8YDckRwb2jPL6s5icoSNPqUwW2riTgU9U5A57a1TcnCGWckB4BlQordLiKawM5tpUjojnmG
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7486
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,1903 +155,101 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3870572050134750804==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/i915/cdclk: Fix dg2_power_well_count() return type
-URL   : https://patchwork.freedesktop.org/series/172798/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6_FULL -> xe-pw-172798v1_FULL
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (2 -> 2)
-------------------------------
-
-  No changes in participating hosts
-
-New tests
----------
-
-  New tests have been introduced between xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6_FULL and xe-pw-172798v1_FULL:
-
-### New IGT tests (120) ###
-
-  * igt@kms_flip@absolute-wf_vblank-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.12] s
-
-  * igt@kms_flip@absolute-wf_vblank-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.12] s
-
-  * igt@kms_flip@absolute-wf_vblank-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.12] s
-
-  * igt@kms_flip@absolute-wf_vblank@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.13] s
-
-  * igt@kms_flip@absolute-wf_vblank@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.14] s
-
-  * igt@kms_flip@absolute-wf_vblank@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.12] s
-
-  * igt@kms_flip@basic-flip-vs-dpms@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.75] s
-
-  * igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.75] s
-
-  * igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.74] s
-
-  * igt@kms_flip@basic-flip-vs-modeset@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.76] s
-
-  * igt@kms_flip@basic-flip-vs-modeset@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.78] s
-
-  * igt@kms_flip@basic-flip-vs-modeset@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.78] s
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.07] s
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.10] s
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.07] s
-
-  * igt@kms_flip@basic-plain-flip@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.82] s
-
-  * igt@kms_flip@basic-plain-flip@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.82] s
-
-  * igt@kms_flip@basic-plain-flip@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.81] s
-
-  * igt@kms_flip@blocking-absolute-wf_vblank@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.14] s
-
-  * igt@kms_flip@blocking-absolute-wf_vblank@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.12] s
-
-  * igt@kms_flip@blocking-absolute-wf_vblank@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.15] s
-
-  * igt@kms_flip@blocking-wf_vblank@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.41] s
-
-  * igt@kms_flip@blocking-wf_vblank@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.41] s
-
-  * igt@kms_flip@blocking-wf_vblank@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.38] s
-
-  * igt@kms_flip@bo-too-big-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.24] s
-
-  * igt@kms_flip@bo-too-big-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.22] s
-
-  * igt@kms_flip@bo-too-big-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.20] s
-
-  * igt@kms_flip@bo-too-big@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.29] s
-
-  * igt@kms_flip@bo-too-big@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.26] s
-
-  * igt@kms_flip@bo-too-big@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.28] s
-
-  * igt@kms_flip@busy-flip@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.76] s
-
-  * igt@kms_flip@busy-flip@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.78] s
-
-  * igt@kms_flip@busy-flip@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.80] s
-
-  * igt@kms_flip@dpms-off-confusion-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.04] s
-
-  * igt@kms_flip@dpms-off-confusion-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.03] s
-
-  * igt@kms_flip@dpms-off-confusion-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.02] s
-
-  * igt@kms_flip@dpms-off-confusion@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.04] s
-
-  * igt@kms_flip@dpms-off-confusion@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.07] s
-
-  * igt@kms_flip@dpms-off-confusion@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.04] s
-
-  * igt@kms_flip@dpms-vs-vblank-race-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.77] s
-
-  * igt@kms_flip@dpms-vs-vblank-race-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.78] s
-
-  * igt@kms_flip@dpms-vs-vblank-race-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.76] s
-
-  * igt@kms_flip@dpms-vs-vblank-race@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.75] s
-
-  * igt@kms_flip@dpms-vs-vblank-race@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.76] s
-
-  * igt@kms_flip@dpms-vs-vblank-race@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.76] s
-
-  * igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.37] s
-
-  * igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.38] s
-
-  * igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.38] s
-
-  * igt@kms_flip@flip-vs-absolute-wf_vblank@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.41] s
-
-  * igt@kms_flip@flip-vs-absolute-wf_vblank@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.42] s
-
-  * igt@kms_flip@flip-vs-absolute-wf_vblank@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.43] s
-
-  * igt@kms_flip@flip-vs-blocking-wf-vblank@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.41] s
-
-  * igt@kms_flip@flip-vs-blocking-wf-vblank@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.40] s
-
-  * igt@kms_flip@flip-vs-blocking-wf-vblank@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.39] s
-
-  * igt@kms_flip@flip-vs-dpms-off-vs-modeset-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.65] s
-
-  * igt@kms_flip@flip-vs-dpms-off-vs-modeset-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.79] s
-
-  * igt@kms_flip@flip-vs-dpms-off-vs-modeset-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.78] s
-
-  * igt@kms_flip@flip-vs-dpms-off-vs-modeset@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.80] s
-
-  * igt@kms_flip@flip-vs-dpms-off-vs-modeset@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.79] s
-
-  * igt@kms_flip@flip-vs-dpms-off-vs-modeset@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.68] s
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.01] s
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.04] s
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.02] s
-
-  * igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.06] s
-
-  * igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.04] s
-
-  * igt@kms_flip@flip-vs-expired-vblank@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.05] s
-
-  * igt@kms_flip@flip-vs-modeset-vs-hang@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.84] s
-
-  * igt@kms_flip@flip-vs-panning-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.05] s
-
-  * igt@kms_flip@flip-vs-panning-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.04] s
-
-  * igt@kms_flip@flip-vs-panning-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.06] s
-
-  * igt@kms_flip@flip-vs-panning-vs-hang@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.75] s
-
-  * igt@kms_flip@flip-vs-rmfb-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.00] s
-
-  * igt@kms_flip@flip-vs-rmfb-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.01] s
-
-  * igt@kms_flip@flip-vs-rmfb-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.01] s
-
-  * igt@kms_flip@flip-vs-rmfb@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.04] s
-
-  * igt@kms_flip@flip-vs-rmfb@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.02] s
-
-  * igt@kms_flip@flip-vs-rmfb@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.05] s
-
-  * igt@kms_flip@flip-vs-suspend-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [2.65] s
-
-  * igt@kms_flip@flip-vs-wf_vblank-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.04] s
-
-  * igt@kms_flip@flip-vs-wf_vblank-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.05] s
-
-  * igt@kms_flip@flip-vs-wf_vblank-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.08] s
-
-  * igt@kms_flip@modeset-vs-vblank-race-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.84] s
-
-  * igt@kms_flip@modeset-vs-vblank-race-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.85] s
-
-  * igt@kms_flip@modeset-vs-vblank-race-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.86] s
-
-  * igt@kms_flip@modeset-vs-vblank-race@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.85] s
-
-  * igt@kms_flip@modeset-vs-vblank-race@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.90] s
-
-  * igt@kms_flip@modeset-vs-vblank-race@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [1.83] s
-
-  * igt@kms_flip@nonexisting-fb-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.21] s
-
-  * igt@kms_flip@nonexisting-fb-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.21] s
-
-  * igt@kms_flip@nonexisting-fb-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.21] s
-
-  * igt@kms_flip@nonexisting-fb@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.29] s
-
-  * igt@kms_flip@nonexisting-fb@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.29] s
-
-  * igt@kms_flip@nonexisting-fb@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.30] s
-
-  * igt@kms_flip@plain-flip-fb-recreate-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.30] s
-
-  * igt@kms_flip@plain-flip-fb-recreate-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.29] s
-
-  * igt@kms_flip@plain-flip-fb-recreate-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.29] s
-
-  * igt@kms_flip@plain-flip-fb-recreate@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.33] s
-
-  * igt@kms_flip@plain-flip-fb-recreate@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.36] s
-
-  * igt@kms_flip@plain-flip-fb-recreate@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.36] s
-
-  * igt@kms_flip@plain-flip-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.81] s
-
-  * igt@kms_flip@plain-flip-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.79] s
-
-  * igt@kms_flip@plain-flip-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.79] s
-
-  * igt@kms_flip@plain-flip-ts-check-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.29] s
-
-  * igt@kms_flip@plain-flip-ts-check-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.29] s
-
-  * igt@kms_flip@plain-flip-ts-check-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.31] s
-
-  * igt@kms_flip@plain-flip-ts-check@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.35] s
-
-  * igt@kms_flip@plain-flip-ts-check@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.32] s
-
-  * igt@kms_flip@plain-flip-ts-check@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.33] s
-
-  * igt@kms_flip@single-buffer-flip-vs-dpms-off-vs-modeset-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.79] s
-
-  * igt@kms_flip@single-buffer-flip-vs-dpms-off-vs-modeset-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.77] s
-
-  * igt@kms_flip@single-buffer-flip-vs-dpms-off-vs-modeset-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.67] s
-
-  * igt@kms_flip@single-buffer-flip-vs-dpms-off-vs-modeset@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.75] s
-
-  * igt@kms_flip@single-buffer-flip-vs-dpms-off-vs-modeset@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.73] s
-
-  * igt@kms_flip@single-buffer-flip-vs-dpms-off-vs-modeset@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [0.76] s
-
-  * igt@kms_flip@wf_vblank-ts-check-interruptible@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.39] s
-
-  * igt@kms_flip@wf_vblank-ts-check-interruptible@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.39] s
-
-  * igt@kms_flip@wf_vblank-ts-check-interruptible@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.38] s
-
-  * igt@kms_flip@wf_vblank-ts-check@a-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.41] s
-
-  * igt@kms_flip@wf_vblank-ts-check@b-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.41] s
-
-  * igt@kms_flip@wf_vblank-ts-check@c-hdmi-a3:
-    - Statuses : 1 pass(s)
-    - Exec time: [4.39] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-172798v1_FULL that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_big_fb@x-tiled-32bpp-rotate-90:
-    - shard-bmg:          NOTRUN -> [SKIP][1] ([Intel XE#2327]) +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_big_fb@x-tiled-32bpp-rotate-90.html
-
-  * igt@kms_big_fb@yf-tiled-64bpp-rotate-180:
-    - shard-bmg:          NOTRUN -> [SKIP][2] ([Intel XE#1124])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_big_fb@yf-tiled-64bpp-rotate-180.html
-
-  * igt@kms_bw@linear-tiling-1-displays-target-3840x2160p:
-    - shard-bmg:          NOTRUN -> [SKIP][3] ([Intel XE#367]) +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_bw@linear-tiling-1-displays-target-3840x2160p.html
-
-  * igt@kms_ccs@ccs-on-another-bo-y-tiled-gen12-rc-ccs-cc:
-    - shard-bmg:          NOTRUN -> [SKIP][4] ([Intel XE#2887]) +2 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_ccs@ccs-on-another-bo-y-tiled-gen12-rc-ccs-cc.html
-
-  * igt@kms_cdclk@plane-scaling:
-    - shard-bmg:          NOTRUN -> [SKIP][5] ([Intel XE#2724] / [Intel XE#7449])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_cdclk@plane-scaling.html
-
-  * igt@kms_chamelium_edid@hdmi-edid-change-during-suspend:
-    - shard-bmg:          NOTRUN -> [SKIP][6] ([Intel XE#2252]) +2 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_chamelium_edid@hdmi-edid-change-during-suspend.html
-
-  * igt@kms_cursor_crc@cursor-offscreen-256x85:
-    - shard-bmg:          NOTRUN -> [SKIP][7] ([Intel XE#2320])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_cursor_crc@cursor-offscreen-256x85.html
-
-  * igt@kms_dsc@dsc-with-bpc-formats-bigjoiner:
-    - shard-bmg:          NOTRUN -> [SKIP][8] ([Intel XE#8265])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_dsc@dsc-with-bpc-formats-bigjoiner.html
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1:
-    - shard-lnl:          [PASS][9] -> [FAIL][10] ([Intel XE#301]) +1 other test fail
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-lnl-3/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@d-dp2:
-    - shard-bmg:          [PASS][11] -> [FAIL][12] ([Intel XE#3321])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-bmg-9/igt@kms_flip@flip-vs-expired-vblank-interruptible@d-dp2.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_flip@flip-vs-expired-vblank-interruptible@d-dp2.html
-
-  * igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-64bpp-yftile-downscaling:
-    - shard-bmg:          NOTRUN -> [SKIP][13] ([Intel XE#7178] / [Intel XE#7351])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-64bpp-yftile-downscaling.html
-
-  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-draw-blt:
-    - shard-bmg:          NOTRUN -> [SKIP][14] ([Intel XE#4141]) +2 other tests skip
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-draw-blt.html
-
-  * igt@kms_frontbuffer_tracking@fbcdrrs-argb161616f-draw-render:
-    - shard-bmg:          NOTRUN -> [SKIP][15] ([Intel XE#7061] / [Intel XE#7356])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcdrrs-argb161616f-draw-render.html
-
-  * igt@kms_frontbuffer_tracking@fbcdrrs-modesetfrombusy:
-    - shard-bmg:          NOTRUN -> [SKIP][16] ([Intel XE#2311]) +12 other tests skip
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_frontbuffer_tracking@fbcdrrs-modesetfrombusy.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-indfb-scaledprimary:
-    - shard-bmg:          NOTRUN -> [SKIP][17] ([Intel XE#2313]) +14 other tests skip
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcpsr-indfb-scaledprimary.html
-
-  * igt@kms_frontbuffer_tracking@psrhdr-argb161616f-draw-render:
-    - shard-bmg:          NOTRUN -> [SKIP][18] ([Intel XE#7061]) +1 other test skip
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_frontbuffer_tracking@psrhdr-argb161616f-draw-render.html
-
-  * igt@kms_plane@pixel-format-yf-tiled-modifier-source-clamping:
-    - shard-bmg:          NOTRUN -> [SKIP][19] ([Intel XE#7283])
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_plane@pixel-format-yf-tiled-modifier-source-clamping.html
-
-  * igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area:
-    - shard-bmg:          NOTRUN -> [SKIP][20] ([Intel XE#1489]) +1 other test skip
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area.html
-
-  * igt@kms_psr@fbc-pr-cursor-plane-onoff:
-    - shard-bmg:          NOTRUN -> [SKIP][21] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_psr@fbc-pr-cursor-plane-onoff.html
-
-  * igt@kms_rotation_crc@primary-yf-tiled-reflect-x-0:
-    - shard-bmg:          NOTRUN -> [SKIP][22] ([Intel XE#2330] / [Intel XE#5813])
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_rotation_crc@primary-yf-tiled-reflect-x-0.html
-
-  * igt@kms_sharpness_filter@filter-tap:
-    - shard-bmg:          NOTRUN -> [SKIP][23] ([Intel XE#6503])
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_sharpness_filter@filter-tap.html
-
-  * igt@kms_tiled_display@basic-test-pattern:
-    - shard-bmg:          NOTRUN -> [SKIP][24] ([Intel XE#2426] / [Intel XE#5848])
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_tiled_display@basic-test-pattern.html
-
-  * igt@kms_tv_load_detect@load-detect:
-    - shard-bmg:          NOTRUN -> [SKIP][25] ([Intel XE#2450] / [Intel XE#5857])
-   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_tv_load_detect@load-detect.html
-
-  * igt@runner@aborted:
-    - shard-lnl:          NOTRUN -> [FAIL][26] ([Intel XE#8990])
-   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-lnl-3/igt@runner@aborted.html
-
-  * igt@xe_evict@evict-beng-mixed-many-threads-small:
-    - shard-bmg:          [PASS][27] -> [INCOMPLETE][28] ([Intel XE#6321] / [Intel XE#8355])
-   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-bmg-3/igt@xe_evict@evict-beng-mixed-many-threads-small.html
-   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-7/igt@xe_evict@evict-beng-mixed-many-threads-small.html
-
-  * igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race:
-    - shard-bmg:          NOTRUN -> [SKIP][29] ([Intel XE#2322] / [Intel XE#7372])
-   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race.html
-
-  * igt@xe_exec_fault_mode@atomic-many:
-    - shard-bmg:          NOTRUN -> [FAIL][30] ([Intel XE#8578])
-   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@xe_exec_fault_mode@atomic-many.html
-
-  * igt@xe_exec_fault_mode@twice-multi-queue-userptr-invalidate-race-imm:
-    - shard-bmg:          NOTRUN -> [SKIP][31] ([Intel XE#8374]) +1 other test skip
-   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@xe_exec_fault_mode@twice-multi-queue-userptr-invalidate-race-imm.html
-
-  * igt@xe_exec_multi_queue@max-queues-close-fd:
-    - shard-bmg:          NOTRUN -> [SKIP][32] ([Intel XE#8364]) +6 other tests skip
-   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@xe_exec_multi_queue@max-queues-close-fd.html
-
-  * igt@xe_exec_reset@gt-stress-reset-mixed-engine-usage:
-    - shard-bmg:          NOTRUN -> [INCOMPLETE][33] ([Intel XE#9041])
-   [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@xe_exec_reset@gt-stress-reset-mixed-engine-usage.html
-
-  * igt@xe_exec_reset@multi-queue-cat-error:
-    - shard-bmg:          NOTRUN -> [SKIP][34] ([Intel XE#8369])
-   [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@xe_exec_reset@multi-queue-cat-error.html
-
-  * igt@xe_exec_threads@threads-multi-queue-cm-rebind:
-    - shard-bmg:          NOTRUN -> [SKIP][35] ([Intel XE#8378])
-   [35]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@xe_exec_threads@threads-multi-queue-cm-rebind.html
-
-  * igt@xe_module_load@reload:
-    - shard-bmg:          [PASS][36] -> [ABORT][37] ([Intel XE#8007])
-   [36]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-bmg-6/igt@xe_module_load@reload.html
-   [37]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-10/igt@xe_module_load@reload.html
-
-  * igt@xe_pxp@pxp-stale-bo-bind-post-rpm:
-    - shard-bmg:          NOTRUN -> [SKIP][38] ([Intel XE#4733] / [Intel XE#7417])
-   [38]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@xe_pxp@pxp-stale-bo-bind-post-rpm.html
-
-  * igt@xe_wedged@basic-wedged:
-    - shard-bmg:          NOTRUN -> [DMESG-WARN][39] ([Intel XE#8963])
-   [39]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@xe_wedged@basic-wedged.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible@a-hdmi-a3 (NEW):
-    - shard-bmg:          [FAIL][40] ([Intel XE#3321]) -> [PASS][41]
-   [40]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-bmg-9/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-hdmi-a3.html
-   [41]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-hdmi-a3.html
-
-  * igt@kms_flip@flip-vs-expired-vblank@c-edp1:
-    - shard-lnl:          [FAIL][42] ([Intel XE#301] / [Intel XE#3149]) -> [PASS][43] +1 other test pass
-   [42]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
-   [43]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-lnl-7/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html
-
-  * igt@kms_pm_dc@dc6-dpms:
-    - shard-lnl:          [FAIL][44] ([Intel XE#8399]) -> [PASS][45]
-   [44]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-lnl-2/igt@kms_pm_dc@dc6-dpms.html
-   [45]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-lnl-1/igt@kms_pm_dc@dc6-dpms.html
-
-  
-#### Warnings ####
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible:
-    - shard-lnl:          [FAIL][46] ([Intel XE#301] / [Intel XE#3149]) -> [FAIL][47] ([Intel XE#301]) +1 other test fail
-   [46]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
-   [47]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-lnl-3/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
-
-  
-  [Intel XE#1124]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124
-  [Intel XE#1489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1489
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2252]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2252
-  [Intel XE#2311]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311
-  [Intel XE#2313]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2313
-  [Intel XE#2320]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2320
-  [Intel XE#2322]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2322
-  [Intel XE#2327]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2327
-  [Intel XE#2330]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2330
-  [Intel XE#2426]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2426
-  [Intel XE#2450]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2450
-  [Intel XE#2724]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2724
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#2887]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2887
-  [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
-  [Intel XE#3149]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149
-  [Intel XE#3321]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3321
-  [Intel XE#367]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/367
-  [Intel XE#4141]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141
-  [Intel XE#4733]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4733
-  [Intel XE#5813]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5813
-  [Intel XE#5848]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5848
-  [Intel XE#5857]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5857
-  [Intel XE#6321]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6321
-  [Intel XE#6503]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6503
-  [Intel XE#7061]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7061
-  [Intel XE#7178]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7178
-  [Intel XE#7283]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7283
-  [Intel XE#7351]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7351
-  [Intel XE#7356]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7356
-  [Intel XE#7372]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7372
-  [Intel XE#7417]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7417
-  [Intel XE#7449]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7449
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-  [Intel XE#8265]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265
-  [Intel XE#8355]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8355
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
-  [Intel XE#8369]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8369
-  [Intel XE#8374]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8374
-  [Intel XE#8378]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8378
-  [Intel XE#8399]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8399
-  [Intel XE#8578]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8578
-  [Intel XE#8963]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8963
-  [Intel XE#8990]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8990
-  [Intel XE#9041]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9041
-
-
-Build changes
--------------
-
-  * Linux: xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6 -> xe-pw-172798v1
-
-  IGT_9076: 8f42b0189d73d9912ad58c99cfaa4ff46c20fcc3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6: 4a47d4b5bf957bd7e34d8d3ab7096c42161892c6
-  xe-pw-172798v1: 172798v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/index.html
-
---===============3870572050134750804==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/cdclk: Fix dg2_power_well_count() return type</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172798/">https://patchwork.freedesktop.org/series/172798/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6_FULL -&gt; xe-pw-172798v1_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (2 -&gt; 2)</h2>
-<p>No changes in participating hosts</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6_FULL and xe-pw-172798v1_FULL:</p>
-<h3>New IGT tests (120)</h3>
-<ul>
-<li>
-<p>igt@kms_flip@absolute-wf_vblank-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.12] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@absolute-wf_vblank-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.12] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@absolute-wf_vblank-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.12] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@absolute-wf_vblank@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.13] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@absolute-wf_vblank@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.14] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@absolute-wf_vblank@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.12] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.75] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.75] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.74] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.76] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.78] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.78] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.07] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.10] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.07] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.82] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.82] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.81] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@blocking-absolute-wf_vblank@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.14] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@blocking-absolute-wf_vblank@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.12] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@blocking-absolute-wf_vblank@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.15] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@blocking-wf_vblank@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.41] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@blocking-wf_vblank@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.41] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@blocking-wf_vblank@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.38] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@bo-too-big-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.24] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@bo-too-big-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.22] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@bo-too-big-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.20] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@bo-too-big@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.29] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@bo-too-big@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.26] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@bo-too-big@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.28] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@busy-flip@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.76] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@busy-flip@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.78] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@busy-flip@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.80] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@dpms-off-confusion-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.04] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@dpms-off-confusion-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.03] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@dpms-off-confusion-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.02] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@dpms-off-confusion@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.04] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@dpms-off-confusion@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.07] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@dpms-off-confusion@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.04] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@dpms-vs-vblank-race-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.77] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@dpms-vs-vblank-race-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.78] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@dpms-vs-vblank-race-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.76] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@dpms-vs-vblank-race@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.75] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@dpms-vs-vblank-race@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.76] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@dpms-vs-vblank-race@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.76] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.37] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.38] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-absolute-wf_vblank-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.38] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-absolute-wf_vblank@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.41] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-absolute-wf_vblank@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.42] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-absolute-wf_vblank@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.43] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-blocking-wf-vblank@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.41] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-blocking-wf-vblank@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.40] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-blocking-wf-vblank@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.39] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-dpms-off-vs-modeset-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.65] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-dpms-off-vs-modeset-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.79] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-dpms-off-vs-modeset-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.78] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-dpms-off-vs-modeset@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.80] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-dpms-off-vs-modeset@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.79] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-dpms-off-vs-modeset@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.68] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.01] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.04] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.02] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.06] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.04] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.05] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-modeset-vs-hang@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.84] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-panning-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.05] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-panning-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.04] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-panning-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.06] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-panning-vs-hang@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.75] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-rmfb-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.00] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-rmfb-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.01] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-rmfb-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.01] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-rmfb@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.04] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-rmfb@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.02] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-rmfb@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.05] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-suspend-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [2.65] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-wf_vblank-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.04] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-wf_vblank-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.05] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-wf_vblank-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.08] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@modeset-vs-vblank-race-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.84] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@modeset-vs-vblank-race-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.85] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@modeset-vs-vblank-race-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.86] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@modeset-vs-vblank-race@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.85] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@modeset-vs-vblank-race@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.90] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@modeset-vs-vblank-race@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [1.83] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@nonexisting-fb-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.21] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@nonexisting-fb-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.21] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@nonexisting-fb-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.21] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@nonexisting-fb@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.29] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@nonexisting-fb@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.29] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@nonexisting-fb@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.30] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-fb-recreate-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.30] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-fb-recreate-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.29] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-fb-recreate-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.29] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-fb-recreate@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.33] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-fb-recreate@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.36] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-fb-recreate@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.36] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.81] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.79] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.79] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-ts-check-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.29] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-ts-check-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.29] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-ts-check-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.31] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-ts-check@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.35] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-ts-check@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.32] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@plain-flip-ts-check@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.33] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@single-buffer-flip-vs-dpms-off-vs-modeset-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.79] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@single-buffer-flip-vs-dpms-off-vs-modeset-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.77] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@single-buffer-flip-vs-dpms-off-vs-modeset-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.67] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@single-buffer-flip-vs-dpms-off-vs-modeset@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.75] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@single-buffer-flip-vs-dpms-off-vs-modeset@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.73] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@single-buffer-flip-vs-dpms-off-vs-modeset@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [0.76] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@wf_vblank-ts-check-interruptible@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.39] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@wf_vblank-ts-check-interruptible@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.39] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@wf_vblank-ts-check-interruptible@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.38] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@wf_vblank-ts-check@a-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.41] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@wf_vblank-ts-check@b-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.41] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@wf_vblank-ts-check@c-hdmi-a3:</p>
-<ul>
-<li>Statuses : 1 pass(s)</li>
-<li>Exec time: [4.39] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-172798v1_FULL that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_big_fb@x-tiled-32bpp-rotate-90:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_big_fb@x-tiled-32bpp-rotate-90.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2327">Intel XE#2327</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@yf-tiled-64bpp-rotate-180:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_big_fb@yf-tiled-64bpp-rotate-180.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124">Intel XE#1124</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_bw@linear-tiling-1-displays-target-3840x2160p:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_bw@linear-tiling-1-displays-target-3840x2160p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/367">Intel XE#367</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@ccs-on-another-bo-y-tiled-gen12-rc-ccs-cc:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_ccs@ccs-on-another-bo-y-tiled-gen12-rc-ccs-cc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2887">Intel XE#2887</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cdclk@plane-scaling:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_cdclk@plane-scaling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2724">Intel XE#2724</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7449">Intel XE#7449</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_edid@hdmi-edid-change-during-suspend:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_chamelium_edid@hdmi-edid-change-during-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2252">Intel XE#2252</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-offscreen-256x85:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_cursor_crc@cursor-offscreen-256x85.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2320">Intel XE#2320</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-with-bpc-formats-bigjoiner:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_dsc@dsc-with-bpc-formats-bigjoiner.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265">Intel XE#8265</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-lnl-3/igt@kms_flip@flip-vs-expired-vblank-interruptible@b-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@d-dp2:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-bmg-9/igt@kms_flip@flip-vs-expired-vblank-interruptible@d-dp2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_flip@flip-vs-expired-vblank-interruptible@d-dp2.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3321">Intel XE#3321</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-64bpp-yftile-downscaling:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-64bpp-yftile-downscaling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7178">Intel XE#7178</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7351">Intel XE#7351</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-draw-blt:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-cur-indfb-draw-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141">Intel XE#4141</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcdrrs-argb161616f-draw-render:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcdrrs-argb161616f-draw-render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7061">Intel XE#7061</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7356">Intel XE#7356</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcdrrs-modesetfrombusy:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_frontbuffer_tracking@fbcdrrs-modesetfrombusy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311">Intel XE#2311</a>) +12 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-indfb-scaledprimary:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_frontbuffer_tracking@fbcpsr-indfb-scaledprimary.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2313">Intel XE#2313</a>) +14 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psrhdr-argb161616f-draw-render:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_frontbuffer_tracking@psrhdr-argb161616f-draw-render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7061">Intel XE#7061</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane@pixel-format-yf-tiled-modifier-source-clamping:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_plane@pixel-format-yf-tiled-modifier-source-clamping.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7283">Intel XE#7283</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1489">Intel XE#1489</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@fbc-pr-cursor-plane-onoff:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_psr@fbc-pr-cursor-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_rotation_crc@primary-yf-tiled-reflect-x-0:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_rotation_crc@primary-yf-tiled-reflect-x-0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2330">Intel XE#2330</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5813">Intel XE#5813</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_sharpness_filter@filter-tap:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_sharpness_filter@filter-tap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6503">Intel XE#6503</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_tiled_display@basic-test-pattern:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_tiled_display@basic-test-pattern.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2426">Intel XE#2426</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5848">Intel XE#5848</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_tv_load_detect@load-detect:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@kms_tv_load_detect@load-detect.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2450">Intel XE#2450</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5857">Intel XE#5857</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@runner@aborted:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-lnl-3/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8990">Intel XE#8990</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-mixed-many-threads-small:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-bmg-3/igt@xe_evict@evict-beng-mixed-many-threads-small.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-7/igt@xe_evict@evict-beng-mixed-many-threads-small.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6321">Intel XE#6321</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8355">Intel XE#8355</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@xe_exec_basic@multigpu-many-execqueues-many-vm-userptr-invalidate-race.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2322">Intel XE#2322</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7372">Intel XE#7372</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@atomic-many:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@xe_exec_fault_mode@atomic-many.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8578">Intel XE#8578</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-multi-queue-userptr-invalidate-race-imm:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@xe_exec_fault_mode@twice-multi-queue-userptr-invalidate-race-imm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8374">Intel XE#8374</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@max-queues-close-fd:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@xe_exec_multi_queue@max-queues-close-fd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_reset@gt-stress-reset-mixed-engine-usage:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@xe_exec_reset@gt-stress-reset-mixed-engine-usage.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9041">Intel XE#9041</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_reset@multi-queue-cat-error:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-6/igt@xe_exec_reset@multi-queue-cat-error.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8369">Intel XE#8369</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-multi-queue-cm-rebind:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@xe_exec_threads@threads-multi-queue-cm-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8378">Intel XE#8378</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@reload:</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-bmg-6/igt@xe_module_load@reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-10/igt@xe_module_load@reload.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pxp@pxp-stale-bo-bind-post-rpm:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@xe_pxp@pxp-stale-bo-bind-post-rpm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4733">Intel XE#4733</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7417">Intel XE#7417</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_wedged@basic-wedged:</p>
-<ul>
-<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@xe_wedged@basic-wedged.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8963">Intel XE#8963</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible@a-hdmi-a3 (NEW):</p>
-<ul>
-<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-bmg-9/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-hdmi-a3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3321">Intel XE#3321</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-bmg-1/igt@kms_flip@flip-vs-expired-vblank-interruptible@a-hdmi-a3.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@c-edp1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149">Intel XE#3149</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-lnl-7/igt@kms_flip@flip-vs-expired-vblank@c-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_dc@dc6-dpms:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-lnl-2/igt@kms_pm_dc@dc6-dpms.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8399">Intel XE#8399</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-lnl-1/igt@kms_pm_dc@dc6-dpms.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_flip@flip-vs-expired-vblank-interruptible:<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank-interruptible.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149">Intel XE#3149</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172798v1/shard-lnl-3/igt@kms_flip@flip-vs-expired-vblank-interruptible.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6 -&gt; xe-pw-172798v1</li>
-</ul>
-<p>IGT_9076: 8f42b0189d73d9912ad58c99cfaa4ff46c20fcc3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6: 4a47d4b5bf957bd7e34d8d3ab7096c42161892c6<br />
-  xe-pw-172798v1: 172798v1</p>
-
-</body>
-</html>
-
---===============3870572050134750804==--
+On Wed, Aug 26, 2026 at 04:55:33PM +0530, tilak.tirumalesh.tangudu@intel.com wrote:
+>From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+>
+>Engines cache GGTT translations in their own TLBs, which the
+>xe_tlb_inval_ggtt() does not touch.
+>After a GGTT unmap the engines can still hit the stale translation and
+>read the old page.
+>
+>Issue an INVAL_FULL (intra vf) invalidation on GGTT unmap, gated on the
+>GT having any multi-queue engine class.
+>
+>v2:
+>- Use xe_gt_has_multi_queue() helper and address nits (Niranjana)
+>v3:
+>- Invalidate both the primary and media GTs, similar to
+>  xe_ggtt_invalidate() (Matt Brost)
+>
+>Assisted-by: Claude:claude-opus-4-8
+>Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+>---
+> drivers/gpu/drm/xe/xe_ggtt.c | 29 ++++++++++++++++++++++++++++-
+> 1 file changed, 28 insertions(+), 1 deletion(-)
+>
+>diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+>index bd65100283e3..cc43089de34d 100644
+>--- a/drivers/gpu/drm/xe/xe_ggtt.c
+>+++ b/drivers/gpu/drm/xe/xe_ggtt.c
+>@@ -451,6 +451,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+> ALLOW_ERROR_INJECTION(xe_ggtt_init_early, ERRNO); /* See xe_pci_probe() */
+>
+> static void xe_ggtt_invalidate(struct xe_ggtt *ggtt);
+>+static void xe_ggtt_invalidate_engine(struct xe_ggtt *ggtt);
+>
+> static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
+> {
+>@@ -482,8 +483,11 @@ static void ggtt_node_remove(struct xe_ggtt_node *node)
+> 		xe_ggtt_clear(ggtt, xe_ggtt_node_addr(node), xe_ggtt_node_size(node));
+> 	drm_mm_remove_node(&node->base);
+> 	node->base.size = 0;
+>-	if (bound && node->invalidate_on_remove)
+>+	if (bound && node->invalidate_on_remove) {
+> 		xe_ggtt_invalidate(ggtt);
+>+		/* Drain engine TLBs so a recycled range can't hit a stale entry. */
+>+		xe_ggtt_invalidate_engine(ggtt);
+>+	}
+> 	mutex_unlock(&ggtt->lock);
+>
+> 	ggtt_node_fini(node);
+>@@ -600,6 +604,29 @@ static void xe_ggtt_invalidate(struct xe_ggtt *ggtt)
+> 	ggtt_invalidate_gt_tlb(ggtt->tile->media_gt);
+> }
+>
+>+static void ggtt_invalidate_gt_engine_tlb(struct xe_gt *gt)
+>+{
+>+	int err;
+>+
+>+	if (!xe_gt_has_multi_queue(gt))
+>+		return;
+
+Acutally, this would require an explanation here as to why we are
+doing it only for multi queue here. Or, we should pass a bitmask of GT types
+that require an invalidation while invoking xe_ggtt_invalidate_engine().
+As these are all static functions here, I think a comment here that should
+be good enough.
+
+Also, may be check for '!gt' also to keep is similar to ggtt_invalidate_gt_tlb.
+
+Otherwise, LGTM
+Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+
+Niranjana
+
+>+
+>+	err = xe_tlb_inval_ggtt_full(&gt->tlb_inval);
+>+	xe_gt_WARN(gt, err, "Failed to invalidate engine GGTT TLBs (%pe)",
+>+		   ERR_PTR(err));
+>+}
+>+
+>+/*
+>+ * Drain engine-side GGTT TLBs on teardown so a recycled range's next
+>+ * occupant can't hit a predecessor's cached translation.
+>+ */
+>+static void xe_ggtt_invalidate_engine(struct xe_ggtt *ggtt)
+>+{
+>+	/* Each GT in a tile has its own engine TLBs to drain */
+>+	ggtt_invalidate_gt_engine_tlb(ggtt->tile->primary_gt);
+>+	ggtt_invalidate_gt_engine_tlb(ggtt->tile->media_gt);
+>+}
+>+
+> /**
+>  * xe_ggtt_shift_nodes() - Shift GGTT nodes to adjust for a change in usable address range.
+>  * @ggtt: the &xe_ggtt struct instance
+>-- 
+>2.46.0
+>
