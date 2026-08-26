@@ -4,57 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 195EAC61DBD
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 08:01:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64B03C5DF97
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 09:01:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A959310EC56;
-	Wed, 26 Aug 2026 08:00:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DB8610EC5C;
+	Wed, 26 Aug 2026 09:01:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ed07KGle";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eVQGgnfK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6364210EC4B
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 08:00:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2506B10EC5C
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 09:01:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787731259; x=1819267259;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=4IOfAvfWGgUdWTLD2gn4RfpOVYV/8Eia1Se+q7Lw5eM=;
- b=Ed07KGlecDhCbzUU1a6DqanVBkGPCDwvy3/xRJNI9Wc8MYc/J9TQ8EUA
- bVeMAKhXufdigwHHyKUeTgeYti93H5vpymC3uX2n+hhOfaymkaMCwiG87
- /BZPIRYJ8xrIykxMKxzjXgA1WlC2Hny2XARwZMwm70wo9672UWzlLDX9E
- fPuHUBFf8nKoMEv/3daRzi4XnzEWhSS6c/J7Cwa06EDuaLOC9KQNUQGTf
- Qt/zP2ea6r/yzOUrQW+UGKkbyLteMOdZWNwnqtEKML35y2jhU+HNLtSNn
- b/FwiPYFipbC08AbvI6bkiON7AEOigW1DgaDQiqe6VVTvBM1RNPXYSIrt g==;
-X-CSE-ConnectionGUID: s/a9V3yTQmO4HazYv4zpiw==
-X-CSE-MsgGUID: jroTUG4CRTOe736RFVjMJA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11886"; a="99366955"
-X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="99366955"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 01:00:37 -0700
-X-CSE-ConnectionGUID: ISR86LBFRKSeQRVrik1BdA==
-X-CSE-MsgGUID: YPwrMadlQU2dP0RutRrYSA==
+ t=1787734895; x=1819270895;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=bXB18vpWdrImfAmEnUMgrCiF49rCDdkVacbp7DUBmEs=;
+ b=eVQGgnfKqkpO0fiaH2XjkZ6gOAIgOgxyPKRPyFzZzrflM3qPCvvERPf5
+ 4F0OuyDUrYPifpfxMgZWwzvzb8pBgtAE0kcNMkLAW+XCbJoyMgP9LaV67
+ ueQdkUUL3ikdx67sQBSBMuZDCSo+jVBym69iMCwtgUofZmcl6fvFPv680
+ IEph3H9PoKUjnEDwn3JBVYZFjSc8itgCsM43h3k8zAGhbHL6UvEsApeCT
+ JnET6sQP9UAbXnKI4tnVH8TEG7qaMUybdgnoqrS6d4u2s1tA+ocRU2N4H
+ ELnPFVB9eqy9Jihc570AQGUblE7yI72I4KVq1Is0f2Cb9WxPpL168DdC1 g==;
+X-CSE-ConnectionGUID: Oi9/197zRVCQ1mx/nhX4tw==
+X-CSE-MsgGUID: zAOfq0XwQ5m6QyhiNS3NlA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11886"; a="92030403"
+X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="92030403"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2026 02:01:35 -0700
+X-CSE-ConnectionGUID: zRVeJHTjT7qkFZ+bRR4yvw==
+X-CSE-MsgGUID: L8eUjfIETimm8EpNthLkrg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="264915403"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO [10.245.245.166])
- ([10.245.245.166])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 01:00:36 -0700
-Message-ID: <ebc4797204a5aec94f122094e2fbe2fb1d0536c1.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe/bo: Take a runtime PM ref when shrinking a bo
- needing invalidation
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Shuicheng Lin <shuicheng.lin@intel.com>, intel-xe@lists.freedesktop.org
-Date: Wed, 26 Aug 2026 10:00:33 +0200
-In-Reply-To: <20260825224819.2182540-1-shuicheng.lin@intel.com>
-References: <20260825224819.2182540-1-shuicheng.lin@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="267544415"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2026 02:01:32 -0700
+Date: Wed, 26 Aug 2026 11:01:28 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Laguna, Lukasz" <lukasz.laguna@intel.com>
+Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
+ riana.tauro@intel.com, michal.wajdeczko@intel.com,
+ matthew.d.roper@intel.com, michal.winiarski@intel.com,
+ matthew.auld@intel.com, dev@lankhorst.se, jani.nikula@intel.com,
+ lukas@wunner.de, daniele.ceraolospurio@intel.com, badal.nilawar@intel.com
+Subject: Re: [PATCH v10 09/10] drm/xe/pci: Introduce PCIe Function Level Reset
+Message-ID: <ao6raGv1PAtsmW4b@black.igk.intel.com>
+References: <20260821112436.545405-1-raag.jadav@intel.com>
+ <20260821112436.545405-10-raag.jadav@intel.com>
+ <a1c9ead7-b3f3-4bfd-9840-df36f3e85d99@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a1c9ead7-b3f3-4bfd-9840-df36f3e85d99@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,263 +73,202 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2026-08-25 at 22:48 +0000, Shuicheng Lin wrote:
-> xe_bo_shrink() only took a runtime PM reference for the System CCS
-> backup case, and only after the purgeable branch had already
-> returned.
-> That branch calls xe_bo_move_notify(), which reaches
-> xe_bo_trigger_rebind() -> xe_vm_invalidate_vma() and submits a TLB
-> invalidation over GuC CT.=C2=A0 The non-purgeable branch reaches the same
-> code through ttm_bo_shrink(.allow_move =3D true) -> xe_bo_move().
->=20
-> When the device is runtime suspended the CT is disabled and the send
-> returns -ENODEV, tripping the XE_WARN_ON() in xe_bo_trigger_rebind():
->=20
-> =C2=A0 WARNING: drivers/gpu/drm/xe/xe_bo.c:770 at
-> xe_bo_move_notify+0x1fc/0x450 [xe], CPU#2: xe_madvise/21389
-> =C2=A0=C2=A0 xe_bo_shrink+0x20f/0x2b0 [xe]
-> =C2=A0=C2=A0 __xe_shrinker_walk+0x174/0x410 [xe]
-> =C2=A0=C2=A0 xe_shrinker_walk+0x56/0xf0 [xe]
-> =C2=A0=C2=A0 xe_shrinker_scan+0x10c/0x1e0 [xe]
-> =C2=A0=C2=A0 do_shrink_slab+0x176/0x7e0
-> =C2=A0=C2=A0 shrink_slab+0x137/0x990
-> =C2=A0=C2=A0 drop_slab+0x7f/0x130
-> =C2=A0=C2=A0 drop_caches_sysctl_handler+0x9c/0xf0
->=20
-> The invalidation is always issued for a fault-mode vm; since commit
-> 4e7ebff69aed ("drm/xe/xe3p_lpg: flush shrinker bo cachelines
-> manually")
-> it is also issued for a non-fault-mode vm on hardware with an
-> optimized
-> L2 flush, which is how this surfaced.
->=20
-> Add bo_needs_invalidate(), mirroring that condition, and use it in
-> xe_bo_shrink() to compute needs_rpm ahead of both branches.=C2=A0 The
-> reference is then held across xe_bo_move_notify() in either path, and
-> is
-> not taken for a bo whose mappings would not have been invalidated.
->=20
-> Shrinking can run in reclaim contexts where the device may not be
-> resumed, so a bo is skipped when the reference cannot be acquired.=C2=A0
-> Have
-> that skip queue the shrinker PM worker: xe_shrinker_runtime_pm_get()
-> is
-> gated on the needs of its own backup pass rather than on this one,
-> and
-> on DGFX it returns before queueing anything, so without this a scan
-> where every candidate is skipped makes no progress, reports nothing
-> scanned and returns SHRINK_STOP with nothing arranging a wake.
->=20
-> Also gate the System CCS term on !xe_tt->purgeable, since
-> xe_bo_shrink_purge() frees the pages without a GPU copy.
->=20
-> Reproduced with igt@xe_madvise@dontneed-before-exec while the GPU is
-> runtime suspended.
->=20
-> Fixes: 00c8efc3180f ("drm/xe: Add a shrinker for xe bos")
-> Assisted-by: Claude:claude-opus-5
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+On Tue, Aug 25, 2026 at 12:06:32PM +0200, Laguna, Lukasz wrote:
+> On 8/21/2026 13:23, Raag Jadav wrote:
+> > With bare minimum pieces in place, we can finally introduce PCIe Function
+> > Level Reset (FLR) support which re-initializes hardware state without the
+> > need for reloading the driver from userspace. All VRAM contents are lost
+> > along with hardware state and driver takes care of recreating the required
+> > kernel bos as part of re-initialization, but user still needs to recreate
+> > user bos and reload context after PCIe FLR.
+> > 
+> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > Tested-by: Lukasz Laguna <lukasz.laguna@intel.com>
+> > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > ---
+> >   v2: Spell out Function Level Reset (Jani)
+> >   v5: Prevent PM ref leak for wedged device (Matthew Brost)
+> >   v6: Add PCIe FLR documentation (Daniele)
+> >   v7: Refine PCIe FLR documentation (Daniele)
+> >       Introduce xe_pci_reset_skip() helper (Lukasz)
+> >   v9: Add 'Xe' prefix to document title (Rodrigo)
+> > v10: Update documentation to include PCI Error Handling (Lukasz)
+> >       Maintain wedged reference on FLR failure (Lukasz)
+> > ---
+> >   drivers/gpu/drm/xe/xe_device_types.h |   3 +
+> >   drivers/gpu/drm/xe/xe_pci_error.c    | 128 +++++++++++++++++++++++++++
+> >   2 files changed, 131 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> > index 7be3f15bf7a0..8cbb5b747710 100644
+> > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > @@ -518,6 +518,9 @@ struct xe_device {
+> >   	/** @pxp: Encapsulate Protected Xe Path support */
+> >   	struct xe_pxp *pxp;
+> > +	/** @flr_prepared: Prepared for function-reset */
+> > +	bool flr_prepared;
+> > +
+> >   	/** @needs_flr_on_fini: requests function-reset on fini */
+> >   	bool needs_flr_on_fini;
+> > diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
+> > index 48466d726eae..81c4e55fae8f 100644
+> > --- a/drivers/gpu/drm/xe/xe_pci_error.c
+> > +++ b/drivers/gpu/drm/xe/xe_pci_error.c
+> > @@ -12,8 +12,55 @@
+> >   #include "xe_pm.h"
+> >   #include "xe_printk.h"
+> >   #include "xe_ras.h"
+> > +#include "xe_sriov_pf_helpers.h"
+> >   #include "xe_survivability_mode.h"
+> > +/**
+> > + * DOC: Xe PCI Error Handling
+> > + *
+> > + * Xe driver registers PCI callbacks which are called by PCI core in case of
+> > + * bus errors or resets.
+> > + *
+> > + * Currently both Function Level Reset (FLR) and bus error handling callbacks are
+> > + * supported. Both wipe the VRAM and resets the state of all the hardware units.
+> > + * Therefore, the contents of all exec queues and BOs in VRAM are lost, and the
+> > + * hardware needs a full re-initialization. The way Xe driver handles it, is
+> > + * pretty much similar to system suspend/resume flow with a few notable exceptions.
+> > + *
+> > + * Prepare phase:
+> > + *
+> > + * - Temporarily wedge the device to prevent userspace access
+> > + * - Kill exec queues which signals all fences and frees in-flight jobs
+> > + * - Stop the scheduler and all submissions to GuC
+> > + * - The fact that FLR is needed is because hardware could be in corrupted state
+> > + *   and access unreliable, so skip memory eviction due to untrustworthy VRAM
+> > + *   contents
+> > + * - Remove all memory mappings since VRAM contents will be lost
+> > + *
+> > + * Re-initialization phase:
+> > + *
+> > + * - Recreate kernel BOs due to skipped memory eviction in prepare phase
+> > + * - Restore kernel queues which were killed in prepare phase
+> > + * - Reload all uC firmwares
+> > + * - Bring up all hardware units
+> > + * - Unwedge the device to allow userspace access
+> > + *
+> > + * Since VRAM contents are lost, the user is expected to recreate user memory
+> > + * and reload context.
+> > + *
+> > + * TODO: Reuse FLR callbacks for bus error handling.
+> > + *
+> > + * Current implementation is only limited to re-initializing GT. This needs to
+> > + * be extended for a lot of components listed below.
+> > + *
+> > + * - Proper re-initialization of GSC and PXP for integrated platforms
+> > + * - SR-IOV cases which need PF and VF synchronization
+> > + * - Re-initialization of all child devices registered by Xe
+> > + * - Prepare existing xe_device_wedged() users for temporary wedging
+> > + * - MM corner cases
+> > + * - Display
+> > + */
+> > +
+> >   static void prepare_device_for_reset(struct pci_dev *pdev)
+> >   {
+> >   	struct xe_device *xe = pdev_to_xe_device(pdev);
+> > @@ -142,9 +189,90 @@ static void xe_pci_error_resume(struct pci_dev *pdev)
+> >   	xe_device_wedged_put(xe);
+> >   }
+> > +static inline bool xe_pci_reset_skip(struct xe_device *xe)
+> > +{
+> > +	return !IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe_sriov_pf_num_vfs(xe) || xe->info.probe_display;
+> > +}
+> > +
+> > +static void xe_pci_reset_prepare(struct pci_dev *pdev)
+> > +{
+> > +	struct xe_device *xe = pdev_to_xe_device(pdev);
+> > +	int err;
+> > +
+> > +	err = xe_pci_reset_skip(xe);
+> > +	if (err) {
+> > +		xe_err(xe, "PCIe FLR not supported\n");
+> > +		goto wedge;
+> 
+> Looks like we always take the reference, so can't we do it at the top of
+> this function and only return here?
 
-Nice catch.
+Because we check for pre-existing ref below, in that case something else
+is already wrong and it's pointless to move forward. We take a local ref
+anyway because PCI core doesn't distinguish failure cases and calls
+->reset_done() regardless, so we have to compensate for it by maintaining
+the ref across calls (which we later drop in ->reset_done()).
 
-I wonder, however, can we skip the TLB flush if runtime PM is not
-available at TLB flush time (runtime_pm_get_if_active()?) Assuming that
-if runtime PM is not available, no contexts can be active and they will
-flush TLB implicitly when becoming active?
+Raag
 
-IIRC It's not totally clear whether this would work for
-"has_ctx_tlb_inval" hardware, and if so we might need to add something
-similar to this for that hardware.
-
-Thanks,
-Thomas
-
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 62=
- +++++++++++++++++++++++++++---
-> --
-> =C2=A0drivers/gpu/drm/xe/xe_shrinker.c | 18 +++++++++-
-> =C2=A0drivers/gpu/drm/xe/xe_shrinker.h |=C2=A0 2 ++
-> =C2=A03 files changed, 72 insertions(+), 10 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 2eb5d6aac523..274ff97d8542 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -734,6 +734,32 @@ static int xe_ttm_io_mem_reserve(struct
-> ttm_device *bdev,
-> =C2=A0	}
-> =C2=A0}
-> =C2=A0
-> +/*
-> + * Whether xe_bo_move_notify() will invalidate the GPU mappings of
-> @bo, and
-> + * therefore needs the device resumed to reach the GuC.
-> + *
-> + * This mirrors the condition under which xe_bo_trigger_rebind()
-> below calls
-> + * xe_vm_invalidate_vma(): always for a fault-mode vm, and for any
-> bound vm on
-> + * hardware where the L2 flush is optimized. Keep the two in sync.
-> + *
-> + * Context: Caller must hold the BO's dma-resv lock.
-> + */
-> +static bool bo_needs_invalidate(struct xe_bo *bo)
-> +{
-> +	struct drm_gpuvm_bo *vm_bo;
-> +
-> +	if (xe_device_is_l2_flush_optimized(xe_bo_device(bo)))
-> +		return xe_bo_is_vm_bound(bo);
-> +
-> +	xe_bo_assert_held(bo);
-> +
-> +	drm_gem_for_each_gpuvm_bo(vm_bo, &bo->ttm.base)
-> +		if (xe_vm_in_fault_mode(gpuvm_to_vm(vm_bo->vm)))
-> +			return true;
-> +
-> +	return false;
-> +}
-> +
-> =C2=A0static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo
-> *bo,
-> =C2=A0				const struct ttm_operation_ctx *ctx)
-> =C2=A0{
-> @@ -1361,6 +1387,28 @@ long xe_bo_shrink(struct ttm_operation_ctx
-> *ctx, struct ttm_buffer_object *bo,
-> =C2=A0	if (!xe_bo_is_xe_bo(bo) || !xe_bo_get_unless_zero(xe_bo))
-> =C2=A0		return xe_bo_shrink_purge(ctx, bo, scanned);
-> =C2=A0
-> +	/*
-> +	 * Moving this bo out of a non-system placement makes
-> +	 * xe_bo_move_notify() invalidate its GPU mappings over GuC
-> CT, and
-> +	 * System CCS needs a gpu copy when moving PL_TT ->
-> PL_SYSTEM. Both
-> +	 * need the device resumed.
-> +	 */
-> +	needs_rpm =3D bo->resource->mem_type !=3D XE_PL_SYSTEM &&
-> +		(bo_needs_invalidate(xe_bo) ||
-> +		 (!xe_tt->purgeable && !IS_DGFX(xe) &&
-> +		=C2=A0 xe_bo_needs_ccs_pages(xe_bo)));
-> +	if (needs_rpm && !xe_pm_runtime_get_if_active(xe)) {
-> +		/*
-> +		 * Resuming is not allowed from all reclaim
-> contexts, so leave
-> +		 * this bo alone and ask for the device to be woken
-> up outside
-> +		 * of reclaim. xe_shrinker_runtime_pm_get() is gated
-> on the
-> +		 * needs of its own backup pass rather than on ours,
-> and on
-> +		 * DGFX it returns before queueing anything, so ask
-> here.
-> +		 */
-> +		xe_shrinker_queue_pm(xe->mem.shrinker);
-> +		goto out_unref;
-> +	}
-> +
-> =C2=A0	if (xe_tt->purgeable) {
-> =C2=A0		if (bo->resource->mem_type !=3D XE_PL_SYSTEM)
-> =C2=A0			lret =3D xe_bo_move_notify(xe_bo, ctx);
-> @@ -1369,28 +1417,24 @@ long xe_bo_shrink(struct ttm_operation_ctx
-> *ctx, struct ttm_buffer_object *bo,
-> =C2=A0		if (lret > 0 && xe_bo_madv_is_dontneed(xe_bo))
-> =C2=A0			xe_bo_set_purgeable_state(xe_bo,
-> =C2=A0						=C2=A0
-> XE_MADV_PURGEABLE_PURGED);
-> -		goto out_unref;
-> +		goto out_put_rpm;
-> =C2=A0	}
-> =C2=A0
-> -	/* System CCS needs gpu copy when moving PL_TT -> PL_SYSTEM
-> */
-> -	needs_rpm =3D (!IS_DGFX(xe) && bo->resource->mem_type !=3D
-> XE_PL_SYSTEM &&
-> -		=C2=A0=C2=A0=C2=A0=C2=A0 xe_bo_needs_ccs_pages(xe_bo));
-> -	if (needs_rpm && !xe_pm_runtime_get_if_active(xe))
-> -		goto out_unref;
-> -
-> =C2=A0	*scanned +=3D tt->num_pages;
-> =C2=A0	lret =3D ttm_bo_shrink(ctx, bo, (struct ttm_bo_shrink_flags)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 {.purge =3D false,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .writeback =3D flags.writeback,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .allow_move =3D true});
-> -	if (needs_rpm)
-> -		xe_pm_runtime_put(xe);
-> =C2=A0
-> =C2=A0	if (lret > 0) {
-> =C2=A0		xe_ttm_tt_account_subtract(xe, tt);
-> =C2=A0		update_global_total_pages(bo->bdev, -(long)tt-
-> >num_pages);
-> =C2=A0	}
-> =C2=A0
-> +out_put_rpm:
-> +	if (needs_rpm)
-> +		xe_pm_runtime_put(xe);
-> +
-> =C2=A0out_unref:
-> =C2=A0	xe_bo_put(xe_bo);
-> =C2=A0
-> diff --git a/drivers/gpu/drm/xe/xe_shrinker.c
-> b/drivers/gpu/drm/xe/xe_shrinker.c
-> index 83374cd57660..fb6ec77972a5 100644
-> --- a/drivers/gpu/drm/xe/xe_shrinker.c
-> +++ b/drivers/gpu/drm/xe/xe_shrinker.c
-> @@ -54,6 +54,22 @@ xe_shrinker_mod_pages(struct xe_shrinker
-> *shrinker, long shrinkable, long purgea
-> =C2=A0	write_unlock(&shrinker->lock);
-> =C2=A0}
-> =C2=A0
-> +/**
-> + * xe_shrinker_queue_pm() - Ask for the device to be woken up for
-> shrinking
-> + * @shrinker: Pointer to the struct xe_shrinker.
-> + *
-> + * Queue a worker that takes and drops a runtime PM reference.
-> Shrinking can
-> + * be called from reclaim context, where resuming the device is not
-> always
-> + * allowed, so a caller that needs the device resumed but could not
-> acquire a
-> + * reference uses this to have it woken up outside of reclaim. The
-> current
-> + * scan makes no progress on the affected buffer objects, but a
-> subsequent one
-> + * can.
-> + */
-> +void xe_shrinker_queue_pm(struct xe_shrinker *shrinker)
-> +{
-> +	queue_work(shrinker->xe->unordered_wq, &shrinker-
-> >pm_worker);
-> +}
-> +
-> =C2=A0static s64 __xe_shrinker_walk(struct xe_device *xe,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct xe_bo_shrink_flags f=
-lags,
-> @@ -185,7 +201,7 @@ static bool xe_shrinker_runtime_pm_get(struct
-> xe_shrinker *shrinker, bool force,
-> =C2=A0			xe_pm_runtime_get(xe);
-> =C2=A0			return true;
-> =C2=A0		}
-> -		queue_work(xe->unordered_wq, &shrinker->pm_worker);
-> +		xe_shrinker_queue_pm(shrinker);
-> =C2=A0		return false;
-> =C2=A0	}
-> =C2=A0
-> diff --git a/drivers/gpu/drm/xe/xe_shrinker.h
-> b/drivers/gpu/drm/xe/xe_shrinker.h
-> index 5132ae5192e1..86d2a322cadd 100644
-> --- a/drivers/gpu/drm/xe/xe_shrinker.h
-> +++ b/drivers/gpu/drm/xe/xe_shrinker.h
-> @@ -11,6 +11,8 @@ struct xe_device;
-> =C2=A0
-> =C2=A0void xe_shrinker_mod_pages(struct xe_shrinker *shrinker, long
-> shrinkable, long purgeable);
-> =C2=A0
-> +void xe_shrinker_queue_pm(struct xe_shrinker *shrinker);
-> +
-> =C2=A0int xe_shrinker_create(struct xe_device *xe);
-> =C2=A0
-> =C2=A0#endif
+> > +	}
+> > +
+> > +	err = xe_device_wedged(xe);
+> > +	if (err)
+> > +		xe_err(xe, "PCIe FLR failed, device in unexpected state\n");
+> > +
+> > +wedge:
+> > +	/* Wedge the device to prevent userspace access but don't send the event yet */
+> > +	xe_device_wedged_get(xe);
+> > +	if (err)
+> > +		return;
+> > +
+> > +	/*
+> > +	 * The hardware could be in corrupted state and access unreliable, but we try to
+> > +	 * update data structures and cleanup any pending work to avoid side effects during
+> > +	 * PCIe FLR. This will be similar to system suspend flow but without eviction.
+> > +	 */
+> > +	err = xe_device_suspend(xe, true);
+> > +	if (err) {
+> > +		xe_err(xe, "Failed to prepare for PCIe FLR\n");
+> > +		return;
+> > +	}
+> > +
+> > +	xe->flr_prepared = true;
+> > +	xe_info(xe, "Prepared for PCIe FLR\n");
+> > +}
+> > +
+> > +static void xe_pci_reset_done(struct pci_dev *pdev)
+> > +{
+> > +	struct xe_device *xe = pdev_to_xe_device(pdev);
+> > +	int err;
+> > +
+> > +	err = xe_pci_reset_skip(xe);
+> > +	if (err)
+> > +		goto out;
+> > +
+> > +	if (!xe->flr_prepared)
+> > +		goto out;
+> > +
+> > +	/* Unprepare early in case we fail */
+> > +	xe->flr_prepared = false;
+> > +
+> > +	/*
+> > +	 * We already have the data structures intact, so try to re-initialize the device.
+> > +	 * This will be similar to system resume flow, except we'll also need to recreate
+> > +	 * kernel bos and restore kernel queues.
+> > +	 */
+> > +	err = xe_device_resume(xe, true);
+> > +	if (err) {
+> > +		xe_err(xe, "Re-initialization failed\n");
+> > +		goto out;
+> > +	}
+> > +
+> > +	/* Unwedge to allow userspace access */
+> > +	xe_device_wedged_put(xe);
+> > +	xe_info(xe, "Re-initialization success\n");
+> > +
+> > +	return;
+> > +out:
+> > +	/* Most likely the device is unusable and there's nothing we can do about it */
+> > +	xe_device_declare_wedged(xe);
+> > +	/* Drop local reference */
+> > +	xe_device_wedged_put(xe);
+> > +}
+> > +
+> >   const struct pci_error_handlers xe_pci_error_handlers = {
+> >   	.error_detected	= xe_pci_error_detected,
+> >   	.mmio_enabled	= xe_pci_error_mmio_enabled,
+> >   	.slot_reset	= xe_pci_error_slot_reset,
+> >   	.resume		= xe_pci_error_resume,
+> > +	.reset_prepare	= xe_pci_reset_prepare,
+> > +	.reset_done	= xe_pci_reset_done,
+> >   };
