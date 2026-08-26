@@ -4,158 +4,133 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B0ABC61DBD
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 11:51:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90C9DC5DF97
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 11:58:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3954C10E1EE;
-	Wed, 26 Aug 2026 11:51:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E63910E47F;
+	Wed, 26 Aug 2026 11:58:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LPGscMVt";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="N0EHOdLi";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="gOpleUyF";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="yt7xCblz";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="AAL2lKdr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3F7610E1EE
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 11:51:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787745071; x=1819281071;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=RwVzB1T5zDb+Mc++s8N1GioRs2aNAluDWaYjti3L1e0=;
- b=LPGscMVtXla8xQqK3i4B7yOBG3A26nuI0gFuBrYERtNbIBiy3POmC/9O
- rCN4sUdvaIrp1jmnPsPRsgprH8EuD9iox4Vb2q/kdoX0k7Ug/WjrjCxv7
- SBDTWgdUpU8VUlJGc4ju5J/B4JNz5oOkOYMqv3zhacLOJXdqEVceZfuWB
- CN7JD1p8hYjqBy9npp0HGHtQ8A7FRXUxoMOnGlSohHydTbMdfm8POBBfp
- MfINfTK/KOfUIcaJNmH0Xl3gqHDEwuDJWuo1yM8zII53gIwLo0gzqR4kE
- pM5gfaDBjIYNQgVBT1Rs6bkVk35SP5qSPGs7YNG28lJNVC9rhnDYvlTk6 Q==;
-X-CSE-ConnectionGUID: VPIPukXkSJKm49dXpfge+w==
-X-CSE-MsgGUID: s9znroaXRU+p7Un73Djyvg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11886"; a="98558491"
-X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="98558491"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 04:51:11 -0700
-X-CSE-ConnectionGUID: V0ZB6ainToqjIjnYHLlBlQ==
-X-CSE-MsgGUID: WuwUaby7TKGBBvRg5OGH6w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="261422657"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 04:51:10 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 26 Aug 2026 04:51:09 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Wed, 26 Aug 2026 04:51:09 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.69) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Wed, 26 Aug 2026 04:51:09 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Lr9IRQsEp8FeJcLy56NywuA6f/XvrgkShDE0AxOzoCxU88+TaTvrVRYiM5EG1ICLqMUsDKO/ibkv6R31SzMXCK2bv2R2y1D42cHU6ybAfU3P6P7ZwdNMmY71MT0anRho5VwmPbqR50SBn4MUFkcozzGunWw96FnyodAxt4yEPwuakHE0Zg4PGfyrlYtl9nWAsHlPk9nyzNyulmPwZi3xbpPuUoGJBkvf33OIJS2U4boBx2elF9ObLCEvDAbOf1UtRfu9YvGMwn6EvQDYq6Eazt55coLHKARIdNi9+ufxr5VALQclsMdn6AU4G4VssZlUh/7YxCqHRCKwOWvw9ijVGg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ABUq03Pf4YWR2wM8+NxE/eYvgEyUfqJpNmtJB9TrS/U=;
- b=akMJqyZQYP8YRA8JCZDUaGrn1Bi9oZPMmWRTnhkAUr2zTi7p43dSnuHVfsgqOeH6/o99nUKrHRr0HAQ/YBOKfP/sD9Z1r0E9Se8jVgvVsOhcWsWx4PjL5m8OJGkqvc8JkYFAeOISDnaYRarY924ksd9pjtz+h/y87FJ/mnTRQ1bins0q7BK0ryIwErdR5tYvOVz7+1ts8bHMvNqVGqZ6Vp9JeRsrh4TrYdN3mPQhVWeSdjf+tG2A83fNDRWql2ap0IaqyX/DpcjGSxmshy93brzlm1AE+nrFwRd5uMYQs0NndAUf8njFRihjaLczF1eCAigTt7AoW9Ieo8aYJxM0RA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from LV0PR11MB9792.namprd11.prod.outlook.com (2603:10b6:408:385::5)
- by CY8PR11MB6843.namprd11.prod.outlook.com (2603:10b6:930:60::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.11; Wed, 26 Aug
- 2026 11:51:04 +0000
-Received: from LV0PR11MB9792.namprd11.prod.outlook.com
- ([fe80::1b1f:d9a8:ce76:e9d8]) by LV0PR11MB9792.namprd11.prod.outlook.com
- ([fe80::1b1f:d9a8:ce76:e9d8%5]) with mapi id 15.21.0360.008; Wed, 26 Aug 2026
- 11:51:04 +0000
-Message-ID: <16092cf0-2d78-49a8-a7a2-a333ed9c7e73@intel.com>
-Date: Wed, 26 Aug 2026 17:20:57 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/xe/hwmon: Detect unavailable temperature sensors
-To: Karthik Poosa <karthik.poosa@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <rodrigo.vivi@intel.com>, <anshuman.gupta@intel.com>,
- <raag.jadav@intel.com>, <riana.tauro@intel.com>, <sk.anirban@intel.com>,
- <mallesh.koujalagi@intel.com>, <soham.purkait@intel.com>
-References: <20260824184137.2164727-1-karthik.poosa@intel.com>
- <20260824184137.2164727-2-karthik.poosa@intel.com>
-Content-Language: en-US
-From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <20260824184137.2164727-2-karthik.poosa@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0316.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:21a::13) To LV0PR11MB9792.namprd11.prod.outlook.com
- (2603:10b6:408:385::5)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9472910E32B;
+ Wed, 26 Aug 2026 11:57:58 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id D82998713F;
+ Wed, 26 Aug 2026 11:57:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1787745473; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=5O0RPXAHTDpM4rhxaVkOk5x9IzoUZQIeJ+6XMym/P3Q=;
+ b=N0EHOdLiLsQf7oNkD3MraUJh2eQ2G9MuvqeD2gZPFCxawKgeOpgIbsIRqBGWF4th9Qmw9P
+ eesmnvnRY+R0y49/CzxieKHz8pyqOkzjhgBXET/JUSfLmGvQwgBedfIjYd7mTM1gdNGGdS
+ /KgGeNimwRlPjJZ9rbBPI2EFB3JvW6k=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1787745473;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=5O0RPXAHTDpM4rhxaVkOk5x9IzoUZQIeJ+6XMym/P3Q=;
+ b=gOpleUyF7vHVloBZC+nKuPaCQww3l/uyz1nG9hGKIe+eZt/Ybz4vZhfROmkqn4YU22Zc9d
+ oAFJ6FSolRvNlSAA==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1787745468; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=5O0RPXAHTDpM4rhxaVkOk5x9IzoUZQIeJ+6XMym/P3Q=;
+ b=yt7xCblzLvo9PG8DGW8T+Ft+C4Cpn0s7uaFUufcko4blInxS3odwCzY0Gh/TN/Um4Je+jT
+ aIHj0yHhuyg2308ECwBMg3pJR7blxs8DmYsUEmWDUUfQ5jRBSvpdJ1qCsR1WIzCNysyBtw
+ jepZdrkZbmMGjZmu41GzG4ekKc7En1o=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1787745468;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=5O0RPXAHTDpM4rhxaVkOk5x9IzoUZQIeJ+6XMym/P3Q=;
+ b=AAL2lKdrpXuSacDQY6b9q8i5AVvJFZVSE7Wm7NB81dVidWfpMndJN2u7+QuCoNBr4qDq/2
+ umv0qPzck7EJzlBw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 49E9613354;
+ Wed, 26 Aug 2026 11:57:48 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 8IDXELzUjmpjDAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Wed, 26 Aug 2026 11:57:48 +0000
+Message-ID: <23ffe7db-5657-444a-9963-a5715d40658d@suse.de>
+Date: Wed, 26 Aug 2026 13:57:47 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV0PR11MB9792:EE_|CY8PR11MB6843:EE_
-X-MS-Office365-Filtering-Correlation-Id: d8a29ddc-b968-4990-0b8b-08df03684ec3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|23010399003|1800799024|366016|6133799003|56012099006|10067099003|4143699003|11063799006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: miwpNfxgufPxgMwUS14E5/6F0yePVF1WYXJQsgFbMsHQKCbySdZnEfZ5FH4f4c7gmh3rF5g8VnbQ0VMo8dgtAUbQ5V2H2GF5lQF+Cv3QAWc1W5Z9BllcycQ+V2KXzZ67oqkp5LG30B/dwuUZs246gFYOaX7vaj7C/JN61t6QBC8h0HCMo2D8qRhLWi9exh/npFRFq5+7e6AgrSWF1l8/Ppcb2bnYJoBECFKM65ZH2pRPEnJoksjPFfEP2aOaKZ3S2QZLC+N7VVZc1NySXkO6mIdrPO+5oqWNnKjHh8eEswyuqkVKxBotlD07DgRe/ZPG8FENSDHmjCS/ZS+AC7RvcD2KraxVSIFxH3G2vDcHjbsLDMvz4SM4c31GW5sBaTXoocCE2b3XFFt4uqmlQqJCSUiTKiqMpa+xEQU5koDAAN7zi0XlgFBnaIhVw43mM5IYIv9eFOodFSXTCFxLcGABqFY7miBQ+pb8CZObVmFKYSWlWG/y6fGl7wIYdCfcJouJIka4a/N+x5C25lcmVU1eDdz5nPPLGppkQ/4eECaJ335CodS4lfLKMTLvdDUQTnrrX7sfaI9G3HxM0v59ThTd4d+hp8NzEl42CDunlPz4T3OI7drcne9bhWz03Q80cinTJXn2JBA4QywD/YmrJbvO8tEGOiz1/TGfwcAMa/jZuXI=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV0PR11MB9792.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(6133799003)(56012099006)(10067099003)(4143699003)(11063799006)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Zkg4WjVGeC9jUVQwY2ZGQVEzUnY5NGozMzB2UVg2UHcvamFJWmhHVXpwbk1G?=
- =?utf-8?B?aUhRelg3MkI0UDJLSFRXMzJDaTZGcHFkTzA0NDNUc0RLRkllSWMzdUxkVVY5?=
- =?utf-8?B?QUhnT3NTeXphMEx5ODhCeW9DeFJhYm8zTzdkdStseEhIWUx1NVpEbTVMWjN4?=
- =?utf-8?B?TFdWNS9MZFhlb1JNaE1EemhKNjlNQXBuQW5HZVJyRGMvemVuUXEwVGhMM3lz?=
- =?utf-8?B?ZmFLVzdTdW9QVUpDVy9vRHZJR2tDb0dmSCtNNlVaNTZCWFBJU1M5NUxRYXBR?=
- =?utf-8?B?VFp3eHBLTVJxZFV5N3d5TGhNT0k1RXU0Tlo4eTl0aXo0TzJaTWU4a3RGdmxV?=
- =?utf-8?B?K3h4T1ZLRVAxZDU2bW8wcUQ2Tk5mMGl5Ky84UkNQaEMvREVzcmQ4aC91akZN?=
- =?utf-8?B?U1ZnOG1PdWhMMUJNWDYzbVJsQlhGaGgrWE5sMzUwSHgxeTlVWjJFN1dxaCt6?=
- =?utf-8?B?RHB5dXUrVUtrc25OVnNML013b0NzME8zWk1DZUdvQUdBQlpQUTNYcHc1U1lL?=
- =?utf-8?B?RExKbjl6MFpkdXIzNGJpVUZRdWo5MWpMUGFpdHoza3lJYkQxdHF4ZzRNQThw?=
- =?utf-8?B?R2QvYVJZSmpjcHpzczgzZVRBZTRpVjFKWUllbTAxd2VCazFNeDdWRlVaRGh2?=
- =?utf-8?B?UysyOWdaYk5XTUFHU2RyZU95eExCNjNmRGpabFZZeUJMTnhqeG5zSVNGZnZt?=
- =?utf-8?B?bDFNcXFORWN1b1ovOTZrak1QS05kMXJPM2xqZ0Y5RldzOTFxQnE1bzRzeWlu?=
- =?utf-8?B?VksrZ2g0cTRYS2hwNGd1VStwUkZGRVJUQk9YWW9MKzdLZ3FhRVluWU9zcWo4?=
- =?utf-8?B?cXNTeks5Tmh3TGJjQ3k3ZURaRXlVcFRoam9yWmk2cS9kMkw0NzZjaG05OHNL?=
- =?utf-8?B?cTB1QzBrWmpmb2RObmxTc1MxcUxpQkExcUdsdEpqdzdFQXFOaTVUc3dIckNw?=
- =?utf-8?B?VHlhNzNIQWxrN3JHcCtsckp3VkVHamc5eWF5V3p5VzF6VkJzWm41TXhhMFpY?=
- =?utf-8?B?QW9kVUprT2x3WVVBRk1FYWc0NjB2Q01nQnprS2pRYkxHL2d2L21Zcjh3bEJl?=
- =?utf-8?B?RDNMcU9yTnBRa2dScHpqb3JBbyt6eXFWTkE5aUcxNkdSZk1iOW9ZTjNnS1d0?=
- =?utf-8?B?TGZzVlB1d0JHOGpOeGFHeStJc3hzQk4zMzJLSWw5SHowUkVkdkVtV1Y3SXZY?=
- =?utf-8?B?UjFvL3JxTGIxamhUNVliRERGTEhsNVVVV2dxeWVLZTRyaldRcXlmMzZoa1cz?=
- =?utf-8?B?THcvV1daMUUvUjlPaHBMNlNzcm55Sis4WmlCVmVkOGo4bmwwYklTSjVTZ3pr?=
- =?utf-8?B?cDNpQmU0ekdZU1RMSnpZTjc0MHpGZGhtNWdic1hCK2RIKzFzVzNpbVk4YVJ3?=
- =?utf-8?B?Y0lHYzNGWnZ2WmN1N2x6Ymc5Zkppb1I4dTZ2TDBDTWxDRkZJc3ZKbmlaM002?=
- =?utf-8?B?U1BVSWovM0RmMDM0T0IvajJQSDZPcVNkelAwTTB0WjhobUhNL0ZxY0p1MWJI?=
- =?utf-8?B?bS9saDFJYTUraUZXL1laRURuNXNqNCtCMnN0eXYrRGJjdExkY1N0SXl5N2hH?=
- =?utf-8?B?N0FySmxqUjVta2QvZzNCWDMwTlc0M0t6QXUwSHpGNWhjK3N3YmU0SDFWV3BL?=
- =?utf-8?B?V0R4NVc5MEtlMTRIMXA2NWMxWmZEMW1tSVlXdGUyMjgwS0FwT3pTUHNTMEN2?=
- =?utf-8?B?dkxOd0EwSzY3RG8yL0RHSDhiNlhDOTl1TWpCdG1pVFBsd0tCSUhGM2pQcGJo?=
- =?utf-8?B?R2grRjZhdFh2cFEwVjdpT1paOEN0SjNNbWNTN2RnVVVFK3NadW5ZUWxCQXV0?=
- =?utf-8?B?RzRjLytvbHJNOUMwQVhLaFAxZkhsNUN3RVFEWjM1RTVrUTN0YnlRc2x1R1BB?=
- =?utf-8?B?T1JjWUJ0Q3ZpQTd6VTc3OGpUQmNDM3J5Slk1dXRSTm9DTERtZDlmVGZuMzRk?=
- =?utf-8?B?NVU2eDRnQkRFT3diOXJZZHhuQkNOdnBDNlJCRGdEaFV5QTNxdHNDbGFEb1lC?=
- =?utf-8?B?RE1yUnhDTU84RFhCUGVMSzlPOXhIMWhucm9lS0dZVUtnZGY0bzY5NHo2YW9O?=
- =?utf-8?B?ZXllV01tQ2c1eGRwTkQ4OVBHbkNKUlNOOVYwK05oV2J4QzM5MjVRSGNseTdK?=
- =?utf-8?B?Q085VWEySU1nVXI1andLWU14dlpyT0lpbGtGVk5RVkZUYU1ycUVWcUIzMG5Y?=
- =?utf-8?B?Wk1GV3FYbjZRcWFwT0YzaUlyTjZDVkVLakN3TG1mMlIzU3FrVXp5YzZCclhw?=
- =?utf-8?B?bnE2VmZnWnFjS3ZNb0o0cnNIYXNiYXBQWTRQZW1VdFo2amd3K1BGRkVndUdK?=
- =?utf-8?B?WVljdElIalJER2tkeEdOM0lTZmJueEFzU1Q4UDJkVlZXMjJZV2NRZz09?=
-X-Exchange-RoutingPolicyChecked: mHl2LSYZJtEfLxL4acFSQoZiI2YiI0OxnBquJXhe+4ShFETriCtVCvGkLGUJr8Z/jCEBkiczopnR3JYeHDjCNsvg1YFMfxptVUDVYUWII6LguCgwqnfCHc4e22d/9vZunCx/vwyzip0FxWWEdialDiVMo/0/XRdp6uoo4H+e/uAgoKQ9+KjL+bnOAdsbVrjwCSPilZUjaAIAsJKDgEsTHX9wPewmpuHK11M8vEl1nBsZ4JBgjNCeJ6YvNzH2uzlqVrEmmffAc1y0lWcv8fxVcFRN+Lc6NU5YlTfHbad+zTQxnfnOT9ZJL5DNNxdno/axJEbI2JdOsDB0BtsK/niAQg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: d8a29ddc-b968-4990-0b8b-08df03684ec3
-X-MS-Exchange-CrossTenant-AuthSource: LV0PR11MB9792.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Aug 2026 11:51:04.3856 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: g2NJWjGYwZz7HVW3U+o06C1x+TjKAOj/yVTnr2zSVpUTRrbZg8w42wJkctOb2MhNVT7GJz6E2kdJrL3Qeyaktw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6843
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] drm/vblank: Remove num_crtcs argument from
+ drm_vblank_init()
+To: Lyude Paul <lyude@redhat.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, freedreno@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, asahi@lists.linux.dev,
+ linux-stm32@st-md-mailman.stormreply.com, linux-samsung-soc@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, linux-aspeed@lists.ozlabs.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-mips@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, spice-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, imx@lists.linux.dev
+References: <20260814203542.1405135-1-lyude@redhat.com>
+ <20260814203542.1405135-4-lyude@redhat.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20260814203542.1405135-4-lyude@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-4.29 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.19)[-0.971]; MIME_GOOD(-0.10)[text/plain];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[24];
+ MID_RHS_MATCH_FROM(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
+ FROM_EQ_ENVFROM(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,imap1.dmz-prg2.suse.org:helo]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,176 +145,933 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi
 
-On 25-08-2026 00:11, Karthik Poosa wrote:
-> Add is_temp_valid() to validate sensor presence.
-> A temperature reading of 0xFF on CRI platforms indicates that the
-> corresponding sensor is not present and should be treated as unavailable.
+Am 14.08.26 um 22:35 schrieb Lyude Paul:
+> As it turns out: the entire reason we ever asked for the number of CRTCs as
+> a parameter for drm_vblank_init() is because that function was previously
+> in charge of setting up the legacy drm_device.num_crtcs variable, which
+> itself was also used to keep track of whether or not drm_vblank_init() was
+> called. And, that number was kept in addition to a properly maintained
+> drm_device->mode_config.num_crtc.
 >
-> Use this check from xe_hwmon_temp_is_visible() callback so that attributes
-> for unavailable sensors are not exposed during hwmon device registration.
+> Now that we've removed that legacy variable entirely, let's stop requiring
+> the num_crtc argument for drm_vblank_init() entirely. The main motivation
+> for this is the fact that at the moment, we've had to workaround this
+> oddity in the Rust kernel bindings for a few reasons:
 >
-> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> * We can't know the number of CRTCs until they've all been created, which
+>    meant that we had to keep track of that.
+> * Additionally, we also had to keep track of which CRTCs did and did not
+>    have vblank support. This is especially silly, because I am not aware of
+>    any physical hardware that only supports vblank interrupts on certain
+>    heads - and I can't think of any reasonable explanation for any hardware
+>    manufacturer making a design choice like that.
+> * This also implies that drivers could, with the current C API, register
+>    that they have a different number of CRTCs then they have actually
+>    created. This appears to be an edge case that could easily lead to UB
+>    since it's not obvious and as such has likely never really been tested.
+>    And we can't have that in Rust!
+>
+> While the last point could technically still be an issue if a driver
+> doesn't fill out the vblank handling callbacks for all CRTCs, this is a
+> good start at cleaning this strange behavior up.
+>
+> So, just get rid of this parameter entirely and start using the DRM's
+> internal count of CRTCs. We apply this change across the tree using this
+> coccinelle patch:
+
+I had been working on better support for software-timer vblank events. 
+And for user space, we wanted to distinguish between real HW support and 
+the software-based implementation.
+
+Therefore, could we keep the parameter, but re-designate it to be a 
+flags argument? All drivers with software vblank timers would flag them 
+as such.
+
+Best regards
+Thomas
+
+
+>
+>    virtual patch
+>
+>    @depends on patch@
+>    expression dev;
+>    @@
+>
+>    - drm_vblank_init(dev, ...)
+>    + drm_vblank_init(dev)
+>
+> And then fixup some of the funky whitespace errors that introduces by hand.
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Assisted-by: Coccinelle
 > ---
->   drivers/gpu/drm/xe/xe_hwmon.c | 79 +++++++++++++++++++++++++++++------
->   1 file changed, 66 insertions(+), 13 deletions(-)
+>   drivers/gpu/drm/adp/adp_drv.c                       | 2 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c            | 2 +-
+>   drivers/gpu/drm/amd/amdgpu/dce_v10_0.c              | 2 +-
+>   drivers/gpu/drm/amd/amdgpu/dce_v6_0.c               | 2 +-
+>   drivers/gpu/drm/amd/amdgpu/dce_v8_0.c               | 2 +-
+>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c   | 2 +-
+>   drivers/gpu/drm/arm/display/komeda/komeda_kms.c     | 2 +-
+>   drivers/gpu/drm/arm/hdlcd_drv.c                     | 2 +-
+>   drivers/gpu/drm/arm/malidp_drv.c                    | 2 +-
+>   drivers/gpu/drm/armada/armada_drv.c                 | 2 +-
+>   drivers/gpu/drm/aspeed/aspeed_gfx_drv.c             | 2 +-
+>   drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c        | 2 +-
+>   drivers/gpu/drm/drm_vblank.c                        | 6 +++---
+>   drivers/gpu/drm/exynos/exynos_drm_drv.c             | 2 +-
+>   drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c           | 2 +-
+>   drivers/gpu/drm/gma500/psb_drv.c                    | 2 +-
+>   drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c     | 2 +-
+>   drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c     | 2 +-
+>   drivers/gpu/drm/hyperv/hyperv_drm_modeset.c         | 2 +-
+>   drivers/gpu/drm/i915/display/intel_display_driver.c | 3 +--
+>   drivers/gpu/drm/imx/dc/dc-kms.c                     | 2 +-
+>   drivers/gpu/drm/imx/dcss/dcss-kms.c                 | 2 +-
+>   drivers/gpu/drm/imx/ipuv3/imx-drm-core.c            | 2 +-
+>   drivers/gpu/drm/imx/lcdc/imx-lcdc.c                 | 2 +-
+>   drivers/gpu/drm/ingenic/ingenic-drm-drv.c           | 2 +-
+>   drivers/gpu/drm/kmb/kmb_drv.c                       | 2 +-
+>   drivers/gpu/drm/logicvc/logicvc_mode.c              | 2 +-
+>   drivers/gpu/drm/loongson/lsdc_drv.c                 | 2 +-
+>   drivers/gpu/drm/mcde/mcde_drv.c                     | 2 +-
+>   drivers/gpu/drm/mediatek/mtk_drm_drv.c              | 2 +-
+>   drivers/gpu/drm/meson/meson_drv.c                   | 2 +-
+>   drivers/gpu/drm/msm/msm_kms.c                       | 2 +-
+>   drivers/gpu/drm/mxsfb/lcdif_drv.c                   | 2 +-
+>   drivers/gpu/drm/mxsfb/mxsfb_drv.c                   | 2 +-
+>   drivers/gpu/drm/nouveau/nouveau_display.c           | 2 +-
+>   drivers/gpu/drm/omapdrm/omap_drv.c                  | 2 +-
+>   drivers/gpu/drm/pl111/pl111_drv.c                   | 2 +-
+>   drivers/gpu/drm/qxl/qxl_display.c                   | 2 +-
+>   drivers/gpu/drm/radeon/radeon_irq_kms.c             | 2 +-
+>   drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c       | 2 +-
+>   drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c        | 2 +-
+>   drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c    | 2 +-
+>   drivers/gpu/drm/rockchip/rockchip_drm_drv.c         | 2 +-
+>   drivers/gpu/drm/sprd/sprd_drm.c                     | 2 +-
+>   drivers/gpu/drm/sti/sti_compositor.c                | 2 +-
+>   drivers/gpu/drm/stm/ltdc.c                          | 2 +-
+>   drivers/gpu/drm/sun4i/sun4i_drv.c                   | 2 +-
+>   drivers/gpu/drm/tegra/drm.c                         | 2 +-
+>   drivers/gpu/drm/tidss/tidss_kms.c                   | 2 +-
+>   drivers/gpu/drm/tilcdc/tilcdc_drv.c                 | 2 +-
+>   drivers/gpu/drm/tiny/bochs.c                        | 2 +-
+>   drivers/gpu/drm/tiny/cirrus-qemu.c                  | 2 +-
+>   drivers/gpu/drm/tve200/tve200_drv.c                 | 2 +-
+>   drivers/gpu/drm/vc4/vc4_kms.c                       | 2 +-
+>   drivers/gpu/drm/verisilicon/vs_drm.c                | 2 +-
+>   drivers/gpu/drm/virtio/virtgpu_display.c            | 2 +-
+>   drivers/gpu/drm/vkms/vkms_drv.c                     | 3 +--
+>   drivers/gpu/drm/vmwgfx/vmwgfx_vkms.c                | 2 +-
+>   drivers/gpu/drm/xlnx/zynqmp_kms.c                   | 2 +-
+>   include/drm/drm_vblank.h                            | 2 +-
+>   60 files changed, 62 insertions(+), 64 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index 5284cab6703d..2c4eba4b8f8f 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -813,12 +813,21 @@ static int xe_hwmon_pcode_read_thermal_info(struct xe_hwmon *hwmon)
->   	return ret;
->   }
+> diff --git a/drivers/gpu/drm/adp/adp_drv.c b/drivers/gpu/drm/adp/adp_drv.c
+> index ce9dd6222634d..cc1ed68806cf1 100644
+> --- a/drivers/gpu/drm/adp/adp_drv.c
+> +++ b/drivers/gpu/drm/adp/adp_drv.c
+> @@ -444,7 +444,7 @@ static int adp_setup_mode_config(struct adp_drv_private *adp)
+>   	if (IS_ERR(adp->connector))
+>   		return PTR_ERR(adp->connector);
 >   
-> +static inline bool is_temp_valid(const struct xe_hwmon *hwmon, u8 value)
-> +{
-> +	/* Value of 0xFF indicates unavailable sensor for platforms from CRI. */
-> +	if (hwmon->xe->info.platform >= XE_CRESCENTISLAND)
-> +		return value != U8_MAX;
-> +	else
-> +		return value != 0;
-
-How about returning true here?
-
-> +}
-> +
->   static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
->   {
->   	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
->   	u32 *dword = (u32 *)hwmon->temp.value;
-> +	int ret, i, count = 0;
->   	s32 average = 0;
-> -	int ret, i;
->   
->   	for (i = 0; i < DIV_ROUND_UP(TEMP_LIMIT_MAX, sizeof(u32)); i++) {
->   		ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_DATA, i),
-> @@ -828,11 +837,25 @@ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
->   		drm_dbg(&hwmon->xe->drm, "thermal data for group %d val 0x%x\n", i, dword[i]);
+> -	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret < 0) {
+>   		drm_err(drm, "failed to initialize vblank");
+>   		return ret;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
+> index 170adaf7e76ab..79aaa9d8fcdaf 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c
+> @@ -413,7 +413,7 @@ static int amdgpu_vkms_sw_init(struct amdgpu_ip_block *ip_block)
+>   			return r;
 >   	}
 >   
-> -	for (i = TEMP_INDEX_MCTRL; i < hwmon->temp.count - 1; i++)
-> -		average += hwmon->temp.value[i];
-> +	for (i = TEMP_INDEX_MCTRL; i < hwmon->temp.count - 1; i++) {
-> +		if (is_temp_valid(hwmon, hwmon->temp.value[i])) {
-> +			average += hwmon->temp.value[i];
-> +			count++;
-> +		} else {
-> +			drm_dbg(&hwmon->xe->drm, "mc temp sensor %d not available, val 0x%x\n",
-> +				i, hwmon->temp.value[i]);
-Is this required?
-> +		}
-> +	}
-> +
-> +	if (!count) {
-> +		drm_warn(&hwmon->xe->drm, "no memory temp sensors available!\n");
-> +		return -ENXIO;
-Why warning? If sensors are not available then its fine. This will any 
-way avoid exposing attribute.
-> +	}
-> +
-> +	average /= count;
-> +	if (val)
-> +		*val = average * MILLIDEGREE_PER_DEGREE;
+> -	r = drm_vblank_init(adev_to_drm(adev), adev->mode_info.num_crtc);
+> +	r = drm_vblank_init(adev_to_drm(adev));
+>   	if (r)
+>   		return r;
 >   
-> -	average /= (hwmon->temp.count - TEMP_INDEX_MCTRL - 1);
-> -	*val = average * MILLIDEGREE_PER_DEGREE;
+> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
+> index f2977fe6d8242..649d331973280 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/dce_v10_0.c
+> @@ -2809,7 +2809,7 @@ static int dce_v10_0_sw_init(struct amdgpu_ip_block *ip_block)
+>   	/* XXX: can this be enabled for DC? */
+>   	adev_to_drm(adev)->vblank_disable_immediate = true;
+>   
+> -	r = drm_vblank_init(adev_to_drm(adev), adev->mode_info.num_crtc);
+> +	r = drm_vblank_init(adev_to_drm(adev));
+>   	if (r)
+>   		return r;
+>   
+> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+> index c68de0fe1d7d3..d82272ca3b33d 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/dce_v6_0.c
+> @@ -2759,7 +2759,7 @@ static int dce_v6_0_sw_init(struct amdgpu_ip_block *ip_block)
+>   	/* XXX: can this be enabled for DC? */
+>   	adev_to_drm(adev)->vblank_disable_immediate = true;
+>   
+> -	r = drm_vblank_init(adev_to_drm(adev), adev->mode_info.num_crtc);
+> +	r = drm_vblank_init(adev_to_drm(adev));
+>   	if (r)
+>   		return r;
+>   
+> diff --git a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
+> index c3906270f25ef..76d6db1959643 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/dce_v8_0.c
+> @@ -2728,7 +2728,7 @@ static int dce_v8_0_sw_init(struct amdgpu_ip_block *ip_block)
+>   	/* XXX: can this be enabled for DC? */
+>   	adev_to_drm(adev)->vblank_disable_immediate = true;
+>   
+> -	r = drm_vblank_init(adev_to_drm(adev), adev->mode_info.num_crtc);
+> +	r = drm_vblank_init(adev_to_drm(adev));
+>   	if (r)
+>   		return r;
+>   
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> index 38cffe1279896..07b83584c7a9d 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+> @@ -893,7 +893,7 @@ static int amdgpu_dm_init(struct amdgpu_device *adev)
+>   	adev_to_drm(adev)->mode_config.cursor_width = adev->dm.dc->caps.max_cursor_size;
+>   	adev_to_drm(adev)->mode_config.cursor_height = adev->dm.dc->caps.max_cursor_size;
+>   
+> -	if (drm_vblank_init(adev_to_drm(adev), adev->dm.display_indexes_num)) {
+> +	if (drm_vblank_init(adev_to_drm(adev))) {
+>   		drm_err(adev_to_drm(adev),
+>   		"failed to initialize vblank for display support.\n");
+>   		goto error;
+> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+> index faa8b041373a7..02e7037c9b46e 100644
+> --- a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
+> @@ -297,7 +297,7 @@ struct komeda_kms_dev *komeda_kms_attach(struct komeda_dev *mdev)
+>   	if (err)
+>   		goto cleanup_mode_config;
+>   
+> -	err = drm_vblank_init(drm, kms->n_crtcs);
+> +	err = drm_vblank_init(drm);
+>   	if (err)
+>   		goto cleanup_mode_config;
+>   
+> diff --git a/drivers/gpu/drm/arm/hdlcd_drv.c b/drivers/gpu/drm/arm/hdlcd_drv.c
+> index 81d45f2dd6a70..f353406d0f7fd 100644
+> --- a/drivers/gpu/drm/arm/hdlcd_drv.c
+> +++ b/drivers/gpu/drm/arm/hdlcd_drv.c
+> @@ -275,7 +275,7 @@ static int hdlcd_drm_bind(struct device *dev)
+>   
+>   	pm_runtime_enable(dev);
+>   
+> -	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret < 0) {
+>   		DRM_ERROR("failed to initialise vblank\n");
+>   		goto err_vblank;
+> diff --git a/drivers/gpu/drm/arm/malidp_drv.c b/drivers/gpu/drm/arm/malidp_drv.c
+> index 23fa942ae4bbe..96df6790444fe 100644
+> --- a/drivers/gpu/drm/arm/malidp_drv.c
+> +++ b/drivers/gpu/drm/arm/malidp_drv.c
+> @@ -849,7 +849,7 @@ static int malidp_bind(struct device *dev)
+>   	if (ret < 0)
+>   		goto irq_init_fail;
+>   
+> -	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret < 0) {
+>   		DRM_ERROR("failed to initialise vblank\n");
+>   		goto vblank_fail;
+> diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada/armada_drv.c
+> index cae25ad66c749..3638b13d0cee9 100644
+> --- a/drivers/gpu/drm/armada/armada_drv.c
+> +++ b/drivers/gpu/drm/armada/armada_drv.c
+> @@ -122,7 +122,7 @@ static int armada_drm_bind(struct device *dev)
+>   	if (ret)
+>   		goto err_kms;
+>   
+> -	ret = drm_vblank_init(&priv->drm, priv->drm.mode_config.num_crtc);
+> +	ret = drm_vblank_init(&priv->drm);
+>   	if (ret)
+>   		goto err_comp;
+>   
+> diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+> index d4577663a1f0e..ba78695d1015c 100644
+> --- a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+> +++ b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+> @@ -205,7 +205,7 @@ static int aspeed_gfx_load(struct drm_device *drm)
+>   	if (ret < 0)
+>   		return ret;
+>   
+> -	ret = drm_vblank_init(drm, 1);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret < 0) {
+>   		dev_err(drm->dev, "Failed to initialise vblank\n");
+>   		return ret;
+> diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+> index 2f41bce574dc5..1a5f273527bb4 100644
+> --- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+> +++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
+> @@ -867,7 +867,7 @@ static int atmel_hlcdc_dc_load(struct drm_device *dev)
+>   
+>   	pm_runtime_enable(dev->dev);
+>   
+> -	ret = drm_vblank_init(dev, 1);
+> +	ret = drm_vblank_init(dev);
+>   	if (ret < 0) {
+>   		drm_err(dev, "failed to initialize vblank\n");
+>   		goto err_periph_clk_disable;
+> diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+> index c6f61a39b5d16..17283e8920378 100644
+> --- a/drivers/gpu/drm/drm_vblank.c
+> +++ b/drivers/gpu/drm/drm_vblank.c
+> @@ -536,18 +536,18 @@ static void drm_vblank_init_release(struct drm_device *dev, void *ptr)
+>   /**
+>    * drm_vblank_init - initialize vblank support
+>    * @dev: DRM device
+> - * @num_crtcs: number of CRTCs supported by @dev
+>    *
+> - * This function initializes vblank support for @num_crtcs display pipelines.
+> + * This function initializes vblank support for display pipelines.
+>    * Cleanup is handled automatically through a cleanup function added with
+>    * drmm_add_action_or_reset().
+>    *
+>    * Returns:
+>    * Zero on success or a negative error code on failure.
+>    */
+> -int drm_vblank_init(struct drm_device *dev, unsigned int num_crtcs)
+> +int drm_vblank_init(struct drm_device *dev)
+>   {
+>   	int ret;
+> +	unsigned int num_crtcs = dev->mode_config.num_crtc;
+>   	unsigned int i;
+>   
+>   	spin_lock_init(&dev->vbl_lock);
+> diff --git a/drivers/gpu/drm/exynos/exynos_drm_drv.c b/drivers/gpu/drm/exynos/exynos_drm_drv.c
+> index 9ee30086879f9..42c6053cdc9ec 100644
+> --- a/drivers/gpu/drm/exynos/exynos_drm_drv.c
+> +++ b/drivers/gpu/drm/exynos/exynos_drm_drv.c
+> @@ -273,7 +273,7 @@ static int exynos_drm_bind(struct device *dev)
+>   	if (ret)
+>   		goto err_mode_config_cleanup;
+>   
+> -	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret)
+>   		goto err_unbind_all;
+>   
+> diff --git a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c
+> index 3bbfc1b56a655..39768565b437e 100644
+> --- a/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c
+> +++ b/drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c
+> @@ -122,7 +122,7 @@ static int fsl_dcu_load(struct drm_device *dev, unsigned long flags)
+>   			return dev_err_probe(dev->dev, ret, "failed to enable pixclk\n");
+>   	}
+>   
+> -	ret = drm_vblank_init(dev, dev->mode_config.num_crtc);
+> +	ret = drm_vblank_init(dev);
+>   	if (ret < 0) {
+>   		dev_err(dev->dev, "failed to initialize vblank\n");
+>   		goto done_vblank;
+> diff --git a/drivers/gpu/drm/gma500/psb_drv.c b/drivers/gpu/drm/gma500/psb_drv.c
+> index d17cb5b4a4bf2..bef32d29046df 100644
+> --- a/drivers/gpu/drm/gma500/psb_drv.c
+> +++ b/drivers/gpu/drm/gma500/psb_drv.c
+> @@ -364,7 +364,7 @@ static int psb_driver_load(struct drm_device *dev, unsigned long flags)
+>   	acpi_video_register();
+>   
+>   	/* Setup vertical blanking handling */
+> -	ret = drm_vblank_init(dev, dev_priv->num_pipe);
+> +	ret = drm_vblank_init(dev);
+>   	if (ret)
+>   		goto out_err;
+>   
+> diff --git a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c
+> index 4d85c89f3f882..8f622732830e6 100644
+> --- a/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c
+> +++ b/drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c
+> @@ -398,7 +398,7 @@ static int hibmc_load(struct drm_device *dev)
+>   	if (ret)
+>   		goto err;
+>   
+> -	ret = drm_vblank_init(dev, dev->mode_config.num_crtc);
+> +	ret = drm_vblank_init(dev);
+>   	if (ret) {
+>   		drm_err(dev, "failed to initialize vblank: %d\n", ret);
+>   		goto err;
+> diff --git a/drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c b/drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c
+> index 8a11c2df5b886..617d8884ef649 100644
+> --- a/drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c
+> +++ b/drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c
+> @@ -181,7 +181,7 @@ static int kirin_drm_kms_init(struct drm_device *dev,
+>   	}
+>   
+>   	/* vblank init */
+> -	ret = drm_vblank_init(dev, dev->mode_config.num_crtc);
+> +	ret = drm_vblank_init(dev);
+>   	if (ret) {
+>   		DRM_ERROR("failed to initialize vblank.\n");
+>   		goto err_unbind_all;
+> diff --git a/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c b/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c
+> index 1855749c1e41f..99833f5ce3610 100644
+> --- a/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c
+> +++ b/drivers/gpu/drm/hyperv/hyperv_drm_modeset.c
+> @@ -330,7 +330,7 @@ int hv_drm_mode_config_init(struct hv_drm_device *hv)
+>   		return ret;
+>   	}
+>   
+> -	ret = drm_vblank_init(dev, 1);
+> +	ret = drm_vblank_init(dev);
+>   	if (ret)
+>   		return ret;
+>   
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> index bb5301b90231a..501a4bc9dfd50 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -217,8 +217,7 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
+>   	intel_bw_init_hw(display);
+>   
+>   	if (HAS_DISPLAY(display)) {
+> -		ret = drm_vblank_init(display->drm,
+> -				      INTEL_NUM_PIPES(display));
+> +		ret = drm_vblank_init(display->drm);
+>   		if (ret)
+>   			goto cleanup_opregion;
+>   	}
+> diff --git a/drivers/gpu/drm/imx/dc/dc-kms.c b/drivers/gpu/drm/imx/dc/dc-kms.c
+> index 0f8cfaf4c4d15..fbff307c87240 100644
+> --- a/drivers/gpu/drm/imx/dc/dc-kms.c
+> +++ b/drivers/gpu/drm/imx/dc/dc-kms.c
+> @@ -118,7 +118,7 @@ int dc_kms_init(struct dc_drm_device *dc_drm)
+>   			return ret;
+>   	}
+>   
+> -	ret = drm_vblank_init(drm, DC_DISPLAYS);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret) {
+>   		dev_err(drm->dev, "failed to init vblank support: %d\n", ret);
+>   		return ret;
+> diff --git a/drivers/gpu/drm/imx/dcss/dcss-kms.c b/drivers/gpu/drm/imx/dcss/dcss-kms.c
+> index 7c5a6e2bc89ac..d3b9d69254273 100644
+> --- a/drivers/gpu/drm/imx/dcss/dcss-kms.c
+> +++ b/drivers/gpu/drm/imx/dcss/dcss-kms.c
+> @@ -129,7 +129,7 @@ struct dcss_kms_dev *dcss_kms_attach(struct dcss_dev *dcss)
+>   
+>   	dcss_kms_mode_config_init(kms);
+>   
+> -	ret = drm_vblank_init(drm, 1);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret)
+>   		goto cleanup_mode_config;
+>   
+> diff --git a/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c b/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c
+> index 51a0ec0432484..53ea896d53353 100644
+> --- a/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c
+> +++ b/drivers/gpu/drm/imx/ipuv3/imx-drm-core.c
+> @@ -233,7 +233,7 @@ static int imx_drm_bind(struct device *dev)
+>   	if (ret)
+>   		goto err_kms;
+>   
+> -	ret = drm_vblank_init(drm, MAX_CRTC);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret)
+>   		goto err_kms;
+>   
+> diff --git a/drivers/gpu/drm/imx/lcdc/imx-lcdc.c b/drivers/gpu/drm/imx/lcdc/imx-lcdc.c
+> index c67fe80b8115e..cc2a2c386730a 100644
+> --- a/drivers/gpu/drm/imx/lcdc/imx-lcdc.c
+> +++ b/drivers/gpu/drm/imx/lcdc/imx-lcdc.c
+> @@ -435,7 +435,7 @@ static int imx_lcdc_probe(struct platform_device *pdev)
+>   	if (ret < 0)
+>   		return dev_err_probe(drm->dev, ret, "Cannot setup simple display pipe\n");
+>   
+> -	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret < 0)
+>   		return dev_err_probe(drm->dev, ret, "Failed to initialize vblank\n");
+>   
+> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+> index 738a80b2550ff..4e17f5707e708 100644
+> --- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+> +++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+> @@ -1348,7 +1348,7 @@ static int ingenic_drm_bind(struct device *dev, bool has_components)
+>   		goto err_drvdata;
+>   	}
+>   
+> -	ret = drm_vblank_init(drm, 1);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret) {
+>   		dev_err(dev, "Failed calling drm_vblank_init()\n");
+>   		goto err_drvdata;
+> diff --git a/drivers/gpu/drm/kmb/kmb_drv.c b/drivers/gpu/drm/kmb/kmb_drv.c
+> index 7c2eb1152fc2f..6026702fa31f9 100644
+> --- a/drivers/gpu/drm/kmb/kmb_drv.c
+> +++ b/drivers/gpu/drm/kmb/kmb_drv.c
+> @@ -191,7 +191,7 @@ static int kmb_setup_mode_config(struct drm_device *drm)
+>   	ret = kmb_dsi_encoder_init(drm, kmb->kmb_dsi);
+>   	/* Set the CRTC's port so that the encoder component can find it */
+>   	kmb->crtc.port = of_graph_get_port_by_id(drm->dev->of_node, 0);
+> -	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret < 0) {
+>   		drm_err(drm, "failed to initialize vblank\n");
+>   		pm_runtime_disable(drm->dev);
+> diff --git a/drivers/gpu/drm/logicvc/logicvc_mode.c b/drivers/gpu/drm/logicvc/logicvc_mode.c
+> index 3cf04b70bd271..9b67f12f32757 100644
+> --- a/drivers/gpu/drm/logicvc/logicvc_mode.c
+> +++ b/drivers/gpu/drm/logicvc/logicvc_mode.c
+> @@ -36,7 +36,7 @@ int logicvc_mode_init(struct logicvc_drm *logicvc)
+>   	uint32_t preferred_depth;
+>   	int ret;
+>   
+> -	ret = drm_vblank_init(drm_dev, mode_config->num_crtc);
+> +	ret = drm_vblank_init(drm_dev);
+>   	if (ret) {
+>   		drm_err(drm_dev, "Failed to initialize vblank\n");
+>   		return ret;
+> diff --git a/drivers/gpu/drm/loongson/lsdc_drv.c b/drivers/gpu/drm/loongson/lsdc_drv.c
+> index 3fd828d23271c..19a7e98e6cd04 100644
+> --- a/drivers/gpu/drm/loongson/lsdc_drv.c
+> +++ b/drivers/gpu/drm/loongson/lsdc_drv.c
+> @@ -296,7 +296,7 @@ static int lsdc_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>   	drmm_kms_helper_poll_init(ddev);
+>   
+>   	if (loongson_vblank) {
+> -		ret = drm_vblank_init(ddev, descp->num_of_crtc);
+> +		ret = drm_vblank_init(ddev);
+>   		if (ret)
+>   			return ret;
+>   
+> diff --git a/drivers/gpu/drm/mcde/mcde_drv.c b/drivers/gpu/drm/mcde/mcde_drv.c
+> index 53275b575f0cb..f94750d93fd55 100644
+> --- a/drivers/gpu/drm/mcde/mcde_drv.c
+> +++ b/drivers/gpu/drm/mcde/mcde_drv.c
+> @@ -174,7 +174,7 @@ static int mcde_modeset_init(struct drm_device *drm)
+>   	mode_config->min_height = 1;
+>   	mode_config->max_height = 1080;
+>   
+> -	ret = drm_vblank_init(drm, 1);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret) {
+>   		dev_err(drm->dev, "failed to init vblank\n");
+>   		return ret;
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> index c86a3f54f35bc..40b3877350fd9 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> @@ -574,7 +574,7 @@ static int mtk_drm_kms_init(struct drm_device *drm)
+>   	 */
+>   	dma_set_max_seg_size(dma_dev, UINT_MAX);
+>   
+> -	ret = drm_vblank_init(drm, MAX_CRTC);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret < 0)
+>   		goto err_component_unbind;
+>   
+> diff --git a/drivers/gpu/drm/meson/meson_drv.c b/drivers/gpu/drm/meson/meson_drv.c
+> index 49ff9f1f16d32..d87a91135ecb3 100644
+> --- a/drivers/gpu/drm/meson/meson_drv.c
+> +++ b/drivers/gpu/drm/meson/meson_drv.c
+> @@ -262,7 +262,7 @@ static int meson_drv_bind_master(struct device *dev, bool has_components)
+>   
+>   	priv->vsync_irq = platform_get_irq(pdev, 0);
+>   
+> -	ret = drm_vblank_init(drm, 1);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret)
+>   		goto free_canvas_vd1_2;
+>   
+> diff --git a/drivers/gpu/drm/msm/msm_kms.c b/drivers/gpu/drm/msm/msm_kms.c
+> index e5d0ea6294484..23f0f2a25ea68 100644
+> --- a/drivers/gpu/drm/msm/msm_kms.c
+> +++ b/drivers/gpu/drm/msm/msm_kms.c
+> @@ -317,7 +317,7 @@ int msm_drm_kms_init(struct device *dev, const struct drm_driver *drv)
+>   		sched_set_fifo(ev_thread->worker->task);
+>   	}
+>   
+> -	ret = drm_vblank_init(ddev, ddev->mode_config.num_crtc);
+> +	ret = drm_vblank_init(ddev);
+>   	if (ret < 0) {
+>   		DRM_DEV_ERROR(dev, "failed to initialize vblank\n");
+>   		goto err_msm_uninit;
+> diff --git a/drivers/gpu/drm/mxsfb/lcdif_drv.c b/drivers/gpu/drm/mxsfb/lcdif_drv.c
+> index e2173c4d6fc28..7fa1591a74bdd 100644
+> --- a/drivers/gpu/drm/mxsfb/lcdif_drv.c
+> +++ b/drivers/gpu/drm/mxsfb/lcdif_drv.c
+> @@ -175,7 +175,7 @@ static int lcdif_load(struct drm_device *drm)
+>   		return ret;
+>   	}
+>   
+> -	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret < 0) {
+>   		dev_err(drm->dev, "Failed to initialise vblank\n");
+>   		return ret;
+> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> index 8b4a500347fbd..87d38a84ed169 100644
+> --- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> +++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> @@ -257,7 +257,7 @@ static int mxsfb_load(struct drm_device *drm,
+>   		goto err_vblank;
+>   	}
+>   
+> -	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret < 0) {
+>   		dev_err(drm->dev, "Failed to initialise vblank\n");
+>   		goto err_vblank;
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
+> index d71dcfc6ee66b..9305876bdad33 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_display.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
+> @@ -713,7 +713,7 @@ nouveau_display_create(struct drm_device *dev)
+>   	drm_mode_config_reset(dev);
+>   
+>   	if (dev->mode_config.num_crtc) {
+> -		ret = drm_vblank_init(dev, dev->mode_config.num_crtc);
+> +		ret = drm_vblank_init(dev);
+>   		if (ret)
+>   			goto vblank_err;
+>   
+> diff --git a/drivers/gpu/drm/omapdrm/omap_drv.c b/drivers/gpu/drm/omapdrm/omap_drv.c
+> index 92d6a1f9c0a1a..aad57533780cd 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_drv.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_drv.c
+> @@ -731,7 +731,7 @@ static int omapdrm_init(struct omap_drm_private *priv, struct device *dev)
+>   	}
+>   
+>   	/* Initialize vblank handling, start with all CRTCs disabled. */
+> -	ret = drm_vblank_init(ddev, priv->num_pipes);
+> +	ret = drm_vblank_init(ddev);
+>   	if (ret) {
+>   		dev_err(priv->dev, "could not init vblank\n");
+>   		goto err_cleanup_modeset;
+> diff --git a/drivers/gpu/drm/pl111/pl111_drv.c b/drivers/gpu/drm/pl111/pl111_drv.c
+> index 8ec659b3c08eb..e20a63ad1a0e1 100644
+> --- a/drivers/gpu/drm/pl111/pl111_drv.c
+> +++ b/drivers/gpu/drm/pl111/pl111_drv.c
+> @@ -175,7 +175,7 @@ static int pl111_modeset_init(struct drm_device *dev)
+>   		return ret;
+>   
+>   	if (!priv->variant->broken_vblank) {
+> -		ret = drm_vblank_init(dev, 1);
+> +		ret = drm_vblank_init(dev);
+>   		if (ret != 0) {
+>   			drm_err(dev, "Failed to init vblank\n");
+>   			goto out_bridge;
+> diff --git a/drivers/gpu/drm/qxl/qxl_display.c b/drivers/gpu/drm/qxl/qxl_display.c
+> index 7f4178800afd7..0ed93be0439f1 100644
+> --- a/drivers/gpu/drm/qxl/qxl_display.c
+> +++ b/drivers/gpu/drm/qxl/qxl_display.c
+> @@ -1304,7 +1304,7 @@ int qxl_modeset_init(struct qxl_device *qdev)
+>   
+>   	qxl_display_read_client_monitors_config(qdev);
+>   
+> -	ret = drm_vblank_init(&qdev->ddev, qxl_num_crtc);
+> +	ret = drm_vblank_init(&qdev->ddev);
+>   	if (ret)
+>   		return ret;
+>   
+> diff --git a/drivers/gpu/drm/radeon/radeon_irq_kms.c b/drivers/gpu/drm/radeon/radeon_irq_kms.c
+> index 839d619e5602b..e6880d3f665ee 100644
+> --- a/drivers/gpu/drm/radeon/radeon_irq_kms.c
+> +++ b/drivers/gpu/drm/radeon/radeon_irq_kms.c
+> @@ -314,7 +314,7 @@ int radeon_irq_kms_init(struct radeon_device *rdev)
+>   	/* Disable vblank irqs aggressively for power-saving */
+>   	rdev_to_drm(rdev)->vblank_disable_immediate = true;
+>   
+> -	r = drm_vblank_init(rdev_to_drm(rdev), rdev->num_crtc);
+> +	r = drm_vblank_init(rdev_to_drm(rdev));
+>   	if (r) {
+>   		return r;
+>   	}
+> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c
+> index 9228a7ad0dfa4..c9e29da53d056 100644
+> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c
+> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c
+> @@ -888,7 +888,7 @@ int rcar_du_modeset_init(struct rcar_du_device *rcdu)
+>   	 * Initialize vertical blanking interrupts handling. Start with vblank
+>   	 * disabled for all CRTCs.
+>   	 */
+> -	ret = drm_vblank_init(dev, rcdu->num_crtcs);
+> +	ret = drm_vblank_init(dev);
+>   	if (ret < 0)
+>   		return ret;
+>   
+> diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c
+> index 87f171145a230..497f3891c586a 100644
+> --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c
+> +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c
+> @@ -430,7 +430,7 @@ int rzg2l_du_modeset_init(struct rzg2l_du_device *rcdu)
+>   	 * Initialize vertical blanking interrupts handling. Start with vblank
+>   	 * disabled for all CRTCs.
+>   	 */
+> -	ret = drm_vblank_init(dev, rcdu->num_crtcs);
+> +	ret = drm_vblank_init(dev);
+>   	if (ret < 0)
+>   		return ret;
+>   
+> diff --git a/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c b/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c
+> index 2f31822b22458..713a1abb364b9 100644
+> --- a/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c
+> +++ b/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c
+> @@ -228,7 +228,7 @@ static int shmob_drm_probe(struct platform_device *pdev)
+>   	if (ret)
+>   		return ret;
+>   
+> -	ret = drm_vblank_init(ddev, 1);
+> +	ret = drm_vblank_init(ddev);
+>   	if (ret < 0) {
+>   		dev_err(&pdev->dev, "failed to initialize vblank\n");
+>   		return ret;
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+> index 3099408e9d050..6e14c3832abff 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
+> @@ -186,7 +186,7 @@ static int rockchip_drm_bind(struct device *dev)
+>   	if (ret)
+>   		goto err_unbind_all;
+>   
+> -	ret = drm_vblank_init(drm_dev, drm_dev->mode_config.num_crtc);
+> +	ret = drm_vblank_init(drm_dev);
+>   	if (ret)
+>   		goto err_iommu_cleanup;
+>   
+> diff --git a/drivers/gpu/drm/sprd/sprd_drm.c b/drivers/gpu/drm/sprd/sprd_drm.c
+> index c2fd5380a834f..a49247a6cc25d 100644
+> --- a/drivers/gpu/drm/sprd/sprd_drm.c
+> +++ b/drivers/gpu/drm/sprd/sprd_drm.c
+> @@ -89,7 +89,7 @@ static int sprd_drm_bind(struct device *dev)
+>   	}
+>   
+>   	/* vblank init */
+> -	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret) {
+>   		drm_err(drm, "failed to initialize vblank.\n");
+>   		goto err_unbind_all;
+> diff --git a/drivers/gpu/drm/sti/sti_compositor.c b/drivers/gpu/drm/sti/sti_compositor.c
+> index 8c529b0cca8b4..5478826aeb420 100644
+> --- a/drivers/gpu/drm/sti/sti_compositor.c
+> +++ b/drivers/gpu/drm/sti/sti_compositor.c
+> @@ -145,7 +145,7 @@ static int sti_compositor_bind(struct device *dev,
+>   		}
+>   	}
+>   
+> -	drm_vblank_init(drm_dev, crtc_id);
+> +	drm_vblank_init(drm_dev);
+>   
 >   	return 0;
 >   }
+> diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
+> index 8818dcf98da79..1e8ac7bbbea5c 100644
+> --- a/drivers/gpu/drm/stm/ltdc.c
+> +++ b/drivers/gpu/drm/stm/ltdc.c
+> @@ -2076,7 +2076,7 @@ int ltdc_load(struct drm_device *ddev)
+>   		goto err;
+>   	}
 >   
-> @@ -852,7 +875,13 @@ static int get_pcie_temp(struct xe_hwmon *hwmon, long *val)
->   		data = REG_FIELD_GET(PCIE_SENSOR_MASK, data);
+> -	ret = drm_vblank_init(ddev, NB_CRTC);
+> +	ret = drm_vblank_init(ddev);
+>   	if (ret) {
+>   		drm_err(ddev, "Failed calling drm_vblank_init()\n");
+>   		goto err;
+> diff --git a/drivers/gpu/drm/sun4i/sun4i_drv.c b/drivers/gpu/drm/sun4i/sun4i_drv.c
+> index e9baca360160b..b74ab1bcb41ee 100644
+> --- a/drivers/gpu/drm/sun4i/sun4i_drv.c
+> +++ b/drivers/gpu/drm/sun4i/sun4i_drv.c
+> @@ -95,7 +95,7 @@ static int sun4i_drv_bind(struct device *dev)
+>   	}
 >   
->   	data = REG_FIELD_GET(TEMP_MASK, data);
-> -	*val = (s8)data * MILLIDEGREE_PER_DEGREE;
-> +	if (!is_temp_valid(hwmon, data)) {
-> +		drm_warn(&hwmon->xe->drm, "pcie temp sensor not available, val 0x%x\n", data);
-> +		return -ENXIO;
-Ditto.
-> +	}
-> +
-> +	if (val)
-> +		*val = (s8)data * MILLIDEGREE_PER_DEGREE;
+>   	/* drm_vblank_init calls kcalloc, which can fail */
+> -	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret)
+>   		goto unbind_all;
 >   
->   	return 0;
->   }
-> @@ -956,11 +985,21 @@ static inline bool is_vram_ch_available(struct xe_hwmon *hwmon, int channel)
->   	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
->   	int vram_id = channel - CHANNEL_VRAM_N;
->   	struct xe_reg vram_reg;
-> +	u32 reg_val;
-> +	u8 temp;
+> diff --git a/drivers/gpu/drm/tegra/drm.c b/drivers/gpu/drm/tegra/drm.c
+> index 324480c87fb1f..d5fe8f35107e9 100644
+> --- a/drivers/gpu/drm/tegra/drm.c
+> +++ b/drivers/gpu/drm/tegra/drm.c
+> @@ -1241,7 +1241,7 @@ static int host1x_drm_probe(struct host1x_device *dev)
+>   	/* syncpoints are used for full 32-bit hardware VBLANK counters */
+>   	drm->max_vblank_count = 0xffffffff;
 >   
->   	vram_reg = xe_hwmon_get_reg(hwmon, REG_TEMP, channel);
-> -	if (!xe_reg_is_valid(vram_reg) || !xe_mmio_read32(mmio, vram_reg))
-> +	if (!xe_reg_is_valid(vram_reg))
->   		return false;
+> -	err = drm_vblank_init(drm, drm->mode_config.num_crtc);
+> +	err = drm_vblank_init(drm);
+>   	if (err < 0)
+>   		goto hub;
 >   
-> +	reg_val = xe_mmio_read32(mmio, vram_reg);
-> +	temp = REG_FIELD_GET(TEMP_MASK, reg_val);
+> diff --git a/drivers/gpu/drm/tidss/tidss_kms.c b/drivers/gpu/drm/tidss/tidss_kms.c
+> index 70c14c3be10d5..8b45ac6a5e704 100644
+> --- a/drivers/gpu/drm/tidss/tidss_kms.c
+> +++ b/drivers/gpu/drm/tidss/tidss_kms.c
+> @@ -289,7 +289,7 @@ int tidss_modeset_init(struct tidss_device *tidss)
+>   	if (ret)
+>   		return ret;
+>   
+> -	ret = drm_vblank_init(ddev, tidss->num_crtcs);
+> +	ret = drm_vblank_init(ddev);
+>   	if (ret)
+>   		return ret;
+>   
+> diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.c b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> index 1d6c9a423a410..37508fcd261c0 100644
+> --- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> +++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> @@ -405,7 +405,7 @@ static int tilcdc_pdev_probe(struct platform_device *pdev)
+>   		goto unregister_cpufreq_notif;
+>   	}
+>   
+> -	ret = drm_vblank_init(ddev, 1);
+> +	ret = drm_vblank_init(ddev);
+>   	if (ret < 0) {
+>   		drm_err(ddev, "failed to initialize vblank\n");
+>   		goto unregister_cpufreq_notif;
+> diff --git a/drivers/gpu/drm/tiny/bochs.c b/drivers/gpu/drm/tiny/bochs.c
+> index e2d957e51505c..36196682ace2f 100644
+> --- a/drivers/gpu/drm/tiny/bochs.c
+> +++ b/drivers/gpu/drm/tiny/bochs.c
+> @@ -677,7 +677,7 @@ static int bochs_kms_init(struct bochs_device *bochs)
+>   	drm_connector_attach_edid_property(connector);
+>   	drm_connector_attach_encoder(connector, encoder);
+>   
+> -	ret = drm_vblank_init(dev, 1);
+> +	ret = drm_vblank_init(dev);
+>   	if (ret)
+>   		return ret;
+>   
+> diff --git a/drivers/gpu/drm/tiny/cirrus-qemu.c b/drivers/gpu/drm/tiny/cirrus-qemu.c
+> index 075221b431d37..d6730763acade 100644
+> --- a/drivers/gpu/drm/tiny/cirrus-qemu.c
+> +++ b/drivers/gpu/drm/tiny/cirrus-qemu.c
+> @@ -501,7 +501,7 @@ static int cirrus_pipe_init(struct cirrus_device *cirrus)
+>   	if (ret)
+>   		return ret;
+>   
+> -	ret = drm_vblank_init(dev, 1);
+> +	ret = drm_vblank_init(dev);
+>   	if (ret)
+>   		return ret;
+>   
+> diff --git a/drivers/gpu/drm/tve200/tve200_drv.c b/drivers/gpu/drm/tve200/tve200_drv.c
+> index 8d0e7c7c82e84..f41748436ac5a 100644
+> --- a/drivers/gpu/drm/tve200/tve200_drv.c
+> +++ b/drivers/gpu/drm/tve200/tve200_drv.c
+> @@ -120,7 +120,7 @@ static int tve200_modeset_init(struct drm_device *dev)
+>   	dev_info(dev->dev, "attached to panel %s\n",
+>   		 dev_name(panel->dev));
+>   
+> -	ret = drm_vblank_init(dev, 1);
+> +	ret = drm_vblank_init(dev);
+>   	if (ret) {
+>   		dev_err(dev->dev, "failed to init vblank\n");
+>   		goto out_bridge;
+> diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
+> index 8f08567d28fc6..2c1c479494b12 100644
+> --- a/drivers/gpu/drm/vc4/vc4_kms.c
+> +++ b/drivers/gpu/drm/vc4/vc4_kms.c
+> @@ -1151,7 +1151,7 @@ int vc4_kms_load(struct drm_device *dev)
+>   	/* Set support for vblank irq fast disable, before drm_vblank_init() */
+>   	dev->vblank_disable_immediate = true;
+>   
+> -	ret = drm_vblank_init(dev, dev->mode_config.num_crtc);
+> +	ret = drm_vblank_init(dev);
+>   	if (ret < 0) {
+>   		dev_err(dev->dev, "failed to initialize vblank\n");
+>   		return ret;
+> diff --git a/drivers/gpu/drm/verisilicon/vs_drm.c b/drivers/gpu/drm/verisilicon/vs_drm.c
+> index fd259d53f49f1..3e4944eb745c4 100644
+> --- a/drivers/gpu/drm/verisilicon/vs_drm.c
+> +++ b/drivers/gpu/drm/verisilicon/vs_drm.c
+> @@ -121,7 +121,7 @@ int vs_drm_initialize(struct vs_dc *dc, struct platform_device *pdev)
+>   		vdrm->crtcs[i] = crtc;
+>   	}
+>   
+> -	ret = drm_vblank_init(drm, dc->identity.display_count);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret)
+>   		return ret;
+>   
+> diff --git a/drivers/gpu/drm/virtio/virtgpu_display.c b/drivers/gpu/drm/virtio/virtgpu_display.c
+> index 44ffffec550fd..971c5a7424b37 100644
+> --- a/drivers/gpu/drm/virtio/virtgpu_display.c
+> +++ b/drivers/gpu/drm/virtio/virtgpu_display.c
+> @@ -381,7 +381,7 @@ int virtio_gpu_modeset_init(struct virtio_gpu_device *vgdev)
+>   	for (i = 0 ; i < vgdev->num_scanouts; ++i)
+>   		vgdev_output_init(vgdev, i);
+>   
+> -	ret = drm_vblank_init(vgdev->ddev, vgdev->num_scanouts);
+> +	ret = drm_vblank_init(vgdev->ddev);
+>   	if (ret)
+>   		return ret;
+>   
+> diff --git a/drivers/gpu/drm/vkms/vkms_drv.c b/drivers/gpu/drm/vkms/vkms_drv.c
+> index 5a640b531d88f..5a830cee7fe9b 100644
+> --- a/drivers/gpu/drm/vkms/vkms_drv.c
+> +++ b/drivers/gpu/drm/vkms/vkms_drv.c
+> @@ -192,8 +192,7 @@ int vkms_create(struct vkms_config *config)
+>   		goto out_devres;
+>   	}
+>   
+> -	ret = drm_vblank_init(&vkms_device->drm,
+> -			      vkms_config_get_num_crtcs(config));
+> +	ret = drm_vblank_init(&vkms_device->drm);
+>   	if (ret) {
+>   		DRM_ERROR("Failed to vblank\n");
+>   		goto out_devres;
+> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_vkms.c b/drivers/gpu/drm/vmwgfx/vmwgfx_vkms.c
+> index 7b8163b5e5014..22601060727fb 100644
+> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_vkms.c
+> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_vkms.c
+> @@ -212,7 +212,7 @@ vmw_vkms_init(struct vmw_private *vmw)
+>   
+>   	ret = kstrtobool(buffer, &vmw->vkms_enabled);
+>   	if (!ret && vmw->vkms_enabled) {
+> -		ret = drm_vblank_init(&vmw->drm, VMWGFX_NUM_DISPLAY_UNITS);
+> +		ret = drm_vblank_init(&vmw->drm);
+>   		vmw->vkms_enabled = (ret == 0);
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/xlnx/zynqmp_kms.c b/drivers/gpu/drm/xlnx/zynqmp_kms.c
+> index d5f9224505655..c5209df46afe5 100644
+> --- a/drivers/gpu/drm/xlnx/zynqmp_kms.c
+> +++ b/drivers/gpu/drm/xlnx/zynqmp_kms.c
+> @@ -504,7 +504,7 @@ int zynqmp_dpsub_drm_init(struct zynqmp_dpsub *dpsub)
+>   	drm->mode_config.max_width = ZYNQMP_DISP_MAX_WIDTH;
+>   	drm->mode_config.max_height = ZYNQMP_DISP_MAX_HEIGHT;
+>   
+> -	ret = drm_vblank_init(drm, 1);
+> +	ret = drm_vblank_init(drm);
+>   	if (ret)
+>   		return ret;
+>   
+> diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
+> index 2fcef9c0f5b1b..d78f40d3a85be 100644
+> --- a/include/drm/drm_vblank.h
+> +++ b/include/drm/drm_vblank.h
+> @@ -285,7 +285,7 @@ struct drm_vblank_crtc {
+>   };
+>   
+>   struct drm_vblank_crtc *drm_crtc_vblank_crtc(struct drm_crtc *crtc);
+> -int drm_vblank_init(struct drm_device *dev, unsigned int num_crtcs);
+> +int drm_vblank_init(struct drm_device *dev);
+>   bool drm_dev_has_vblank(const struct drm_device *dev);
+>   u64 drm_crtc_vblank_count(struct drm_crtc *crtc);
+>   u64 drm_crtc_vblank_count_and_time(struct drm_crtc *crtc,
 
-There is sashiko-bot warning on this. Need to fix.
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, (HRB 36809, AG Nürnberg)
 
-Thanks,
-Badal
 
-> +	if (!is_temp_valid(hwmon, temp)) {
-> +		drm_dbg(&hwmon->xe->drm, "vram channel %d unavailable, val 0x%x\n", vram_id,
-> +			reg_val);
-> +		return false;
-> +	}
-> +
->   	/* Create label only for available vram channel */
->   	sprintf(hwmon->temp.vram_label[vram_id], "vram_ch_%d", vram_id);
->   	return true;
-> @@ -977,8 +1016,9 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->   		case CHANNEL_VRAM:
->   			return hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN] ? 0444 : 0;
->   		case CHANNEL_MCTRL:
-> +			return !get_mc_temp(hwmon, NULL) && hwmon->temp.count ? 0444 : 0;
->   		case CHANNEL_PCIE:
-> -			return hwmon->temp.count ? 0444 : 0;
-> +			return !get_pcie_temp(hwmon, NULL) && hwmon->temp.count ? 0444 : 0;
->   		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
->   			return (is_vram_ch_available(hwmon, channel) &&
->   				hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN]) ? 0444 : 0;
-> @@ -992,8 +1032,9 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->   		case CHANNEL_VRAM:
->   			return hwmon->temp.limit[TEMP_LIMIT_MEM_CRIT] ? 0444 : 0;
->   		case CHANNEL_MCTRL:
-> +			return !get_mc_temp(hwmon, NULL) && hwmon->temp.count ? 0444 : 0;
->   		case CHANNEL_PCIE:
-> -			return hwmon->temp.count ? 0444 : 0;
-> +			return !get_pcie_temp(hwmon, NULL) && hwmon->temp.count ? 0444 : 0;
->   		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
->   			return (is_vram_ch_available(hwmon, channel) &&
->   				hwmon->temp.limit[TEMP_LIMIT_MEM_CRIT]) ? 0444 : 0;
-> @@ -1011,12 +1052,24 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->   	case hwmon_temp_label:
->   		switch (channel) {
->   		case CHANNEL_PKG:
-> -		case CHANNEL_VRAM:
-> -			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_TEMP,
-> -								channel)) ? 0444 : 0;
-> +		case CHANNEL_VRAM: {
-> +			struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
-> +			struct xe_reg reg = xe_hwmon_get_reg(hwmon, REG_TEMP, channel);
-> +			u32 reg_val;
-> +			u8 temp;
-> +
-> +			if (!xe_reg_is_valid(reg))
-> +				return 0;
-> +
-> +			reg_val = xe_mmio_read32(mmio, reg);
-> +			temp = REG_FIELD_GET(TEMP_MASK, reg_val);
-> +
-> +			return is_temp_valid(hwmon, temp) ? 0444 : 0;
-> +		}
->   		case CHANNEL_MCTRL:
-> +			return !get_mc_temp(hwmon, NULL) && hwmon->temp.count ? 0444 : 0;
->   		case CHANNEL_PCIE:
-> -			return hwmon->temp.count ? 0444 : 0;
-> +			return !get_pcie_temp(hwmon, NULL) && hwmon->temp.count ? 0444 : 0;
->   		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
->   			return is_vram_ch_available(hwmon, channel) ? 0444 : 0;
->   		default:
