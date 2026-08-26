@@ -4,45 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17ADFC61DBE
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 22:44:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 401D6C5DF97
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 22:51:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6C0C10EE08;
-	Wed, 26 Aug 2026 22:44:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC73110E283;
+	Wed, 26 Aug 2026 22:51:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XgTlOT4s";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="c44QW5eX";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6C5410EE08
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 22:44:22 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFEF510E283
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 22:51:00 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id E550060A63;
- Wed, 26 Aug 2026 22:44:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01A0A1F000E9;
- Wed, 26 Aug 2026 22:44:20 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 751B843C8C;
+ Wed, 26 Aug 2026 22:51:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B321C1F000E9;
+ Wed, 26 Aug 2026 22:50:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787784261;
- bh=TMlQ/iA7iE/63ti/KGLpJZ2uzV1Qkyooz1UqGtEGa6E=;
+ s=k20260515; t=1787784660;
+ bh=8zl0/qSfEzzyY8W1c3clWdaGpvuhiLzdYLeGXQBaOig=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=XgTlOT4smp1cG+20Xx3wbTLlAI41ToW7jljvVBbpEY5RLQ859bMgIwgJ+vNA3oF6U
- bwWZK+jRvB1/F9DIErmDYjAq18Ee0/uwyRTLCd3RZNwLdvs63utMPKDOzYB55U1Gew
- oNRy0Mb05dSgBG7aSfrWFBc+tyLd0nMQpIxqW2STf6Qk7uyRJb4jBX6+0rEXvgG5UM
- JI/4AlZOTCuhOGtzY/IO9io5bZNOkD48NuYwKJnpgdTAgqqB0jGg5k8KmvwQnPVdAI
- 61plrWAFZnTI5XSYBAP6qQbsuZeORLIa1+64Fpb8U6MG82CnPIAuMf5VQnXctCZZ9f
- cbgAcmg/kzJ+g==
-Date: Thu, 27 Aug 2026 00:44:19 +0200
+ b=c44QW5eXyNfQ5RMx/lMZEazCw3oZqC3hjpnEOT+dVaIXSGFTmOjnby4bFzz64iCCP
+ 2qAKA/oXQ5l3+xbOy6UdtBjBc0Yxmrow2aYwI7uRAGvRxr+mWkKAnYopS2rTcdDP1y
+ oHixVkL8DHliIv7VlTU9/zDyKz5ii3zslslrdLfR0dUtAVuhY907EizzWoELdccy8U
+ biT0m6S0jOI+/vjgX1P5cnU/LBMu/67vZxPcLXtCm8a08WNlWSoCCplNfPevb2+0fK
+ n+fjauQEsc2ijwb1C4sYTdJfc7F/PNZPq8m+ABiPstEYQRpI+rgBBTEHVj5z4/O4pc
+ dYTruLgWnctNg==
+Date: Thu, 27 Aug 2026 00:50:57 +0200
 From: Andi Shyti <andi.shyti@kernel.org>
 To: Tejas Upadhyay <tejas.upadhyay@intel.com>
 Cc: intel-xe@lists.freedesktop.org, himal.prasad.ghimiray@intel.com, 
  rodrigo.vivi@intel.com, michal.wajdeczko@intel.com
-Subject: Re: [PATCH V18 04/14] drm/xe/bo: Make xe_bo_is_user() public
-Message-ID: <ao9sLYOanyzGLIyh@zenone.zhora.eu>
+Subject: Re: [PATCH V18 06/14] drm/xe/vram: Extract buddy alloc and free
+ helpers
+Message-ID: <ao9ttVvOHS8yvhdu@zenone.zhora.eu>
 References: <20260826135136.204044-16-tejas.upadhyay@intel.com>
- <20260826135136.204044-20-tejas.upadhyay@intel.com>
+ <20260826135136.204044-22-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260826135136.204044-20-tejas.upadhyay@intel.com>
+In-Reply-To: <20260826135136.204044-22-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,10 +60,14 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Hi Tejas,
 
-On Wed, Aug 26, 2026 at 07:21:39PM +0530, Tejas Upadhyay wrote:
-> Export xe_bo_is_user() so it can be used by the VRAM page offline
-> code to distinguish user-created BOs from kernel BOs when deciding
-> whether a faulty page can be safely purged or requires a full reset.
+On Wed, Aug 26, 2026 at 07:21:41PM +0530, Tejas Upadhyay wrote:
+> Factor out xe_ttm_vram_buddy_alloc() and xe_ttm_vram_buddy_free()
+> from xe_ttm_vram_mgr_new() and xe_ttm_vram_mgr_del(). These helpers
+> consolidate block allocation with visible-size tracking and
+> block->private tagging, making them reusable by the upcoming VRAM
+> page offline reservation path.
+> 
+> No functional change.
 > 
 > Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
