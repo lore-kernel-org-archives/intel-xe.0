@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90C0AC61DBE
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 22:54:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0794DC5DF97
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 22:54:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D5D210EE19;
-	Wed, 26 Aug 2026 22:54:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F5D110EE2C;
+	Wed, 26 Aug 2026 22:54:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dWxdkPkk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JawbRqkr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28B7810E364;
- Wed, 26 Aug 2026 22:54:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0049D10EE20;
+ Wed, 26 Aug 2026 22:54:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787784842; x=1819320842;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2+GQwlKukb1Bg+wAlbpjGQ4ItDR4rpahcji4s9k6xQo=;
- b=dWxdkPkkgtorsYRg1bFmClfsdJ4Irg0QA+ugEa0FWbVUzRht6APMXX72
- qJ/ZcP9P+vddXz5drla/AF7TGOkvG2GkBVbllIfXCERKZMktJcVpBAFOS
- 1AQpQ/QyMFXTjPvebnRIK9xXM/+p8BRM8xrdyAk1IwyHVU0cfYdwppBKh
- EMYzuO8qxL0yyKE2cTcEgskudUVntl9liKqMyVxkVI+fpoznrQUP1foaz
- 6rVRS2KJElNFelQscyDPWA3iOUgOp90DWh2RlyxfYEZlS1iXiNLeIx2EZ
- 8+YVl+v0Jn7L5RCosirF+eV0/+B77EY70273MM4pbNOm/yLG04UEy44L7 A==;
-X-CSE-ConnectionGUID: FfhGfeUgTGiayDEs4wckAg==
-X-CSE-MsgGUID: BTx0TFMSQq2XJUUEvdfkAw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="87223479"
-X-IronPort-AV: E=Sophos;i="6.25,245,1779174000"; d="scan'208";a="87223479"
+ t=1787784850; x=1819320850;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=jalXI3WtrzBu+66HnKYV+P1XjzcS493Q8a/iTn4VO7o=;
+ b=JawbRqkrr01baDnRt2a/T/D1dCKIu1PEYEN8tadoRq1hswpfol++kC16
+ hp/ZEhthAQHdgzQzwlDLAZMUqOUcEezMbyAKTZT27vdn2kyesQJbDurH6
+ 0wZvLQWCVcz0vrpIXnfIzRrb7SqGSxT2TrrL7OP7sYcqL67J+7YQZHeZZ
+ 2Z9TXBvc0OGBiq9SzG2p2hP+6LgqklacgJQyHMRRgaMd+Dl9npIgTC9cv
+ 9GSWHuk3cYdWejYtf/+p4pxEaVjTgy8/O4fn7d1ar+flfWQK35L36fBjV
+ SavMOqgjKqAV4GKX0k45VJCxBb7m17OzcrkrbXzFcZ9DyK0WTJb8srw2Y g==;
+X-CSE-ConnectionGUID: 9HdkVKrGR2GRn022RQzx1A==
+X-CSE-MsgGUID: NRXvDEGbRI2QsJkOdd8qoA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="87223505"
+X-IronPort-AV: E=Sophos;i="6.25,245,1779174000"; d="scan'208";a="87223505"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 15:53:56 -0700
-X-CSE-ConnectionGUID: aRcNc5rrSYSCIAEUQVVFGQ==
-X-CSE-MsgGUID: MMn9lTNPRBinU12x6HMexQ==
+ 26 Aug 2026 15:54:10 -0700
+X-CSE-ConnectionGUID: 9YDObM4dSTaYE5+yw3fJBA==
+X-CSE-MsgGUID: Q88v94nnQpKGP6q7A4gkag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,245,1779174000"; d="scan'208";a="272946041"
+X-IronPort-AV: E=Sophos;i="6.25,245,1779174000"; d="scan'208";a="272946075"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO
  vgovind2-mobl4.intel.com) ([10.245.250.68])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 15:53:53 -0700
+ 26 Aug 2026 15:54:07 -0700
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, imre.deak@intel.com, pranay.samala@intel.com
-Subject: [PATCH 0/4] PM_PME support on display hotplug
-Date: Thu, 27 Aug 2026 01:53:33 +0300
-Message-ID: <20260826225338.804902-1-vinod.govindapillai@intel.com>
+Subject: [PATCH 4/4] drm/i915/display: Avoid HPD polling if the device is PME
+ capable
+Date: Thu, 27 Aug 2026 01:53:37 +0300
+Message-ID: <20260826225338.804902-5-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260826225338.804902-1-vinod.govindapillai@intel.com>
+References: <20260826225338.804902-1-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo
@@ -68,33 +71,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce PME support for PME capable devices and avoid
-HPD polling on runtime suspend. For PME capable devices
-HPD will trigger PME which will wakeup the system. And
-rest of the runtime resume call is same as before.
+Do not start HPD polling for devices capable of PME wakeup.
 
-Vinod Govindapillai (4):
-  drm/i915/hpd: plumb keep_hpd through irq reset
-  drm/xe/pm: plumb PME capability to runtime suspend handler
-  drm/xe/pm: allow the device to signal PME from D3hot
-  drm/i915/display: Avoid HPD polling if the device is PME capable
+Assisted-by: GitHub_Copilot:claude-opus-5
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_driver.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
- .../drm/i915/display/intel_display_driver.c   |  6 ++-
- .../drm/i915/display/intel_display_driver.h   |  3 +-
- .../gpu/drm/i915/display/intel_display_irq.c  | 46 +++++++++++++------
- .../gpu/drm/i915/display/intel_display_irq.h  |  2 +-
- drivers/gpu/drm/i915/i915_driver.c            |  2 +-
- drivers/gpu/drm/i915/i915_irq.c               | 16 +++----
- drivers/gpu/drm/xe/display/xe_display.c       |  8 ++--
- drivers/gpu/drm/xe/display/xe_display.h       |  8 ++--
- drivers/gpu/drm/xe/xe_device.c                |  2 +-
- drivers/gpu/drm/xe/xe_irq.c                   | 18 +++++---
- drivers/gpu/drm/xe/xe_irq.h                   |  2 +-
- drivers/gpu/drm/xe/xe_pci.c                   | 22 ++++++++-
- drivers/gpu/drm/xe/xe_pm.c                    | 34 ++++++++++++--
- drivers/gpu/drm/xe/xe_pm.h                    |  3 +-
- 14 files changed, 120 insertions(+), 52 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index ba494827c9cb..b29209f06e92 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -932,7 +932,8 @@ void intel_display_driver_pm_runtime_suspend_late(struct intel_display *display,
+ 		intel_opregion_notify_adapter(display, PCI_D1);
+ 	}
+ 
+-	if (!display->platform.valleyview && !display->platform.cherryview)
++	if (!display->platform.valleyview && !display->platform.cherryview &&
++	    !pme_capable)
+ 		intel_hpd_poll_enable(display);
+ }
+ 
 -- 
 2.43.0
 
