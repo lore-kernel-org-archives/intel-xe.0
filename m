@@ -4,46 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66AADC5DF97
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 22:31:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 016D1C5DF97
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 22:34:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10C7410E37D;
-	Wed, 26 Aug 2026 22:31:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F45610EDF6;
+	Wed, 26 Aug 2026 22:34:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VQ+uTFUN";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VVj+k1XL";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0759910E37D
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 22:31:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 891C510EDF6
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 22:34:44 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 230DA60A63;
- Wed, 26 Aug 2026 22:31:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F6A01F000E9;
- Wed, 26 Aug 2026 22:31:28 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id CD76D60A63;
+ Wed, 26 Aug 2026 22:34:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1E5A1F000E9;
+ Wed, 26 Aug 2026 22:34:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787783489;
- bh=6m7GU2EnmV+MtVwBchVkxJufjXpLT1tlbXs0COLM2c0=;
+ s=k20260515; t=1787783683;
+ bh=l4luLTH3sfKhj0Fx//DMSgYv8kBjCIQGQRhORKIMqgI=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=VQ+uTFUN1nJvvxwClJxE1hHiIbx+vNbZx4WDbIlJUP20o6gYykxUYklOXcsRLjWrF
- dInTEsPailcegqx+DDBAbO0NYaI3tseFsgNdupKv64WFJV2kzD/Hq0I5aRLAVnfD2y
- O+x3Yrp86K7S2di5587QY9oGRBIteqocdrpYc+zhbO24AAhhXKHojgYzxOID40BgqS
- QVbdwQGxJPOcpOvDRQpBUWJwxL+y6jDc0gx3WJ+SkXICcVBpJHjj0AvJs2hcLbggGh
- FDXlExOVEmvD0GAAm1puj9LaG6r3s0B9BR/+VFVxgqntaEuLYkMpZkvpzG6YgeX3qh
- opTVi75XRpjsw==
-Date: Thu, 27 Aug 2026 00:31:27 +0200
+ b=VVj+k1XLC33mcQmh/pFwqil11HHiDBQAEhoPKx2eEHNY3y0zn7A7pboCvKXsJENkm
+ YITbSVr4+OCgOk+KbbDAmcl+jNN2vpIuLj4RsLQ4PsxpunXmTKx7NvowpX5lVcieUG
+ jH6HedN6xcRm41G3Wa/upyPNlm9QUlQpmaBCgXov4bDiGY2qVbn5Nsk10/DIjLdl/h
+ 1BqeJg55R8iR+oBhoDNOLpHsqEa9oGYuR1EgnkA4DXHZMG4SyqEXoOcXzfIoi3S6Qb
+ aWvVqLlJA1/fJcXVzOsOuwS9taJt2tIn/haDPO9ztD1IuSZA1R5GltdXu7p4wwo7sf
+ 6Ew1esKrK3Kvw==
+Date: Thu, 27 Aug 2026 00:34:40 +0200
 From: Andi Shyti <andi.shyti@kernel.org>
 To: Tejas Upadhyay <tejas.upadhyay@intel.com>
 Cc: intel-xe@lists.freedesktop.org, himal.prasad.ghimiray@intel.com, 
- rodrigo.vivi@intel.com, michal.wajdeczko@intel.com, 
- Matthew Brost <matthew.brost@intel.com>
-Subject: Re: [PATCH V18 01/14] drm/xe: Link VRAM object with gpu buddy
-Message-ID: <ao9pJsL6bJL0NjMC@zenone.zhora.eu>
+ rodrigo.vivi@intel.com, michal.wajdeczko@intel.com
+Subject: Re: [PATCH V18 02/14] drm/xe: Link LRC BO and its execution Queue
+Message-ID: <ao9pcLSFT6FP8h-N@zenone.zhora.eu>
 References: <20260826135136.204044-16-tejas.upadhyay@intel.com>
- <20260826135136.204044-17-tejas.upadhyay@intel.com>
+ <20260826135136.204044-18-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260826135136.204044-17-tejas.upadhyay@intel.com>
+In-Reply-To: <20260826135136.204044-18-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,16 +59,22 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Hi Tejas,
 
-On Wed, Aug 26, 2026 at 07:21:36PM +0530, Tejas Upadhyay wrote:
-> Setup to link TTM buffer object inside gpu buddy. This functionality
-> is critical for supporting the memory page offline feature on CRI,
-> where identified faulty pages must be traced back to their
-> originating buffer for safe removal.
+On Wed, Aug 26, 2026 at 07:21:37PM +0530, Tejas Upadhyay wrote:
+> To establish a link between an LRC BO (Logical Ring Context
+> Buffer Object) and its corresponding execution Queue in the
+> drm/xe driver, you need to store a back-pointer to the queue
+> within the BO's private data structure. This allows the
+> driver to identify and take corrective action on the specific
+> queue if the LRC BO encounters an error (e.g., memory
+> corruption or eviction issues).
 > 
-> V2(MattB): Clear block->private in xe_ttm_vram_mgr_del as well
+> V3(Sashiko):
+> - Placeholder of 8 byte for non-lrc bo is acceptable
+> - Assign bo-q is safe just use READ_ONCE/WRITE_ONCE
+> V2(MattB):
+> - Handle multiqueue
 > 
 > Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
 Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
