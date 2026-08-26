@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19BEDC5DF97
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 14:31:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3A46C61DBD
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 14:37:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5DBF10E2B4;
-	Wed, 26 Aug 2026 14:31:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m41V3EBZ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 758D310E29F;
- Wed, 26 Aug 2026 14:31:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787754664; x=1819290664;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=lDKpRJX27XcdIQWtopYUdjsezsQ/7wfrESd5hxGGZTY=;
- b=m41V3EBZHh8R49fxFRVFVCkUEF4xMRQNZAqjUwG8304PJ6GurB5+FOxC
- THN4XiIX33uFtOli2Rcz9jxKCyJkbhB2R6mSkrL/qL4MPDdgp5Kg006g8
- FARWmc6wOjUAS4nFhLpzm0UNWn524ftdNgWVhGg/Egk26lx6BWOfSlrEw
- eVsyhdpLtmMkyOfBu7SW1lvCtDEreaZtW18eP8I+IshayHmm5OI3gJ2vZ
- SKp5ZxRZ9xsb8h4OjkOiNBOzaHkDvg2f5KW3HtI+w0GkbSMaJ0jqC5TrX
- nC9OGSkdFhHeYylGsxr27xUF9ZTPTGsPy60kfgid1VwCojCZGI8WA/wAt w==;
-X-CSE-ConnectionGUID: +kgjfOKxTuuFcc4aXP6ADw==
-X-CSE-MsgGUID: MG0afRZCQaOwiqhhijXyIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11886"; a="98830569"
-X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="98830569"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 07:31:04 -0700
-X-CSE-ConnectionGUID: uZmnSwptQaSwoKUBrH74+A==
-X-CSE-MsgGUID: P5czHyVIQKWGdYgeQO1Xrw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="271787180"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.39])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 07:31:03 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/i915/cdclk: Fix dg2_power_well_count() return type
-Date: Wed, 26 Aug 2026 17:31:00 +0300
-Message-ID: <20260826143100.19401-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.54.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74BAC10E2C6;
+	Wed, 26 Aug 2026 14:37:53 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B67EA10E2C6;
+ Wed, 26 Aug 2026 14:37:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_memory_page_offlining?=
+ =?utf-8?q?_support_=28rev21=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 26 Aug 2026 14:37:51 -0000
+Message-ID: <178775507174.85743.18434083921448311140@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260826135136.204044-16-tejas.upadhyay@intel.com>
+In-Reply-To: <20260826135136.204044-16-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,35 +36,93 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-dg2_power_well_count() is supposed to return an integer,
-not a boolean. Make it so.
+Series: Add memory page offlining support (rev21)
+URL   : https://patchwork.freedesktop.org/series/161473/
+State : warning
 
-Fixes: 9112ce99c1d7 ("drm/i915/cdclk: Extract dg2_power_well_count()")
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 75ada941d113..279006f7b881 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2719,8 +2719,8 @@ static void intel_set_cdclk(struct intel_display *display,
- 	}
- }
- 
--static bool dg2_power_well_count(struct intel_display *display,
--				 const struct intel_cdclk_state *cdclk_state)
-+static int dg2_power_well_count(struct intel_display *display,
-+				const struct intel_cdclk_state *cdclk_state)
- {
- 	return display->platform.dg2 ? hweight8(cdclk_state->active_pipes) : 0;
- }
--- 
-2.54.0
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d39a1795d95fb2ac44d9990e28f73a9d2675d15e
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Date:   Wed Aug 26 19:21:49 2026 +0530
+
+    drm/xe: Add fault-inject based VRAM page offline injection
+    
+    Add a fault-inject based debugfs interface for testing VRAM page
+    offlining. This replaces the previous standalone debugfs approach
+    with the standard kernel fault-inject infrastructure.
+    
+    Two debugfs entries are created under the xe debugfs root for
+    CRI platforms:
+    - inject_mempage_offline/: Standard fault-inject knobs (probability,
+      times, interval, etc.) created by fault_create_debugfs_attr().
+      Without CONFIG_FAULT_INJECTION_DEBUG_FS, the stub returns
+      ERR_PTR(-ENODEV) and no knobs are created, making the trigger
+      effectively a no-op.
+    - inject_mempage_offline_trigger: Write a PFN value to inject a
+      specific page, or write "0" to auto-pick the last unallocated
+      VRAM page
+    
+    The trigger accepts:
+    - "0"      : auto-pick last unallocated page
+    - "0xPFN"  : inject fault at a specific PFN address
+    
+    Usage:
+      echo 100 > inject_mempage_offline/probability
+      echo 1 > inject_mempage_offline/times
+      echo 0 > inject_mempage_offline_trigger
+    
+      probability: likelihood of should_fail() returning true (0-100)
+      times: number of times injection is allowed (-1 for unlimited)
+    
+    v5(Sashiko):
+    - exclude SRIOV and remove dpa_base addition, already absolute dpa
+    v4(Himal):
+    - Use xe_fault_mempage_offline() instead of IS_ENABLED() +
+      direct should_fail(). CONFIG_FAULT_INJECTION_DEBUG_FS is now
+      an implicit requirement for the trigger to function.
+    v3(Himal):
+    - Use FAULT_ACTION
+    v2(sashiko):
+    - use cond_resched()
+    - validate input first and fix addr < 0 case
+    - validate vr, move block, found var as local to scope_guard
+    
+    Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch 4a47d4b5bf957bd7e34d8d3ab7096c42161892c6 drm-intel
+a3fbfca74c00 drm/xe: Link VRAM object with gpu buddy
+de302ba0f44c drm/xe: Link LRC BO and its execution Queue
+aaeec1674025 drm/xe: Extend BO purge to handle vram pages as well
+a45957fb1d8b drm/xe/bo: Make xe_bo_is_user() public
+4c21381f3095 drm/xe: Guard teardown paths against purged BOs
+b6265a805ca8 drm/xe/vram: Extract buddy alloc and free helpers
+90aeab6891c1 drm/xe/vram: Add page offline data structures and lifecycle
+088e92e2342d drm/xe/vram: Add VRAM page offline fault handler
+caf644fea7cb drm/xe/configfs: Add bad_page_reservation attribute
+f96f12f37dbe drm/xe/ras: Cache bad_page_reservation policy at init
+a32253310cfb drm/xe/vram: Check bad_page_reservation policy in fault handler
+1215ea99cb79 drm/xe: Expose bad VRAM pages via debugfs
+-:19: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#19: 
+0x0000000000080000 : 0x0000000000001000 : R   ← tile 1 addr (includes tile offset)
+
+total: 0 errors, 1 warnings, 0 checks, 113 lines checked
+f863dd60b2ae drm/xe/uapi: Expose ban reason in EXEC_QUEUE_GET_PROPERTY_BAN
+d39a1795d95f drm/xe: Add fault-inject based VRAM page offline injection
+
 
