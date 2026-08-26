@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 090C7C61DBD
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 14:08:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42F30C61DBD
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 14:11:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2AE710E2AE;
-	Wed, 26 Aug 2026 14:08:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F300A10E136;
+	Wed, 26 Aug 2026 14:11:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="l58fNuI3";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="b0ZS5fOg";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 034DD10E2C3
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 14:08:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3C2410E136
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 14:11:02 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id DFDFE40988;
- Wed, 26 Aug 2026 14:08:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF041F000E9;
- Wed, 26 Aug 2026 14:08:30 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 57778438C6;
+ Wed, 26 Aug 2026 14:11:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E6C41F000E9;
+ Wed, 26 Aug 2026 14:11:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787753310;
- bh=rFqeWEAbNmhcWxkKzmn4pRrcc4RqBggBrwn2CNNDtT0=;
+ s=k20260515; t=1787753462;
+ bh=bu/r/xzEA6ciZdHx+/h2+oAcGgx3nnPcrawAVii2iYM=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=l58fNuI3cz9NRu++t49Ls/Kb3QLkPgoMbe0Fx/pPQiZtkzXNg19JvLmfHxcH3hwTq
- JI89bTbvq37ldKHO0SYzOqlxD6Fg5axEwqsCXyxYCOsgozpxzj4UkQ8I6iJg3RvWkO
- SJx3EVblk1j5lmCuarMAvev7FjiQM9C+ZCJ9Cy53S/g83rVBw7MhueiCb+zSd2vUMh
- HXrjSYe7L7GNiyJPud183gtD1ayh+OBSZUF2QqhQUo4xVuyehCNazVWw0iuWGKU6n8
- 7P4+x/Y+jjWmkkoVtgnGtfVjUwNM5bKo1UjwuwBamx8/h44Km6XxjA62NoqujWD+HE
- tgIqgmDQeVHmw==
+ b=b0ZS5fOgiHfGtIKj2g/DFj/aFitPmH2pQPONKdcC5juBgrPHwYPVSYMVJ9UxFns3N
+ fvVKwgghQZp5xTSOHX/udtXRIy0z+lhxFwQbMXHM08qEFwl+hNoaTLQmDk+NqIOrIT
+ V1ORBSvhXLQ32IIo/58HgvKTjJ2zoPKa3AVlToxnbPgmOZJYZTh9xoTMCOIZcuV/Ms
+ 13gZgRVNa6CXTX/T5YNxo6UBqyOVl+1T9G5KwXSESD7oJtD7Nlh2hHiSs7WllclTsn
+ mz2iLKdWBOQjM5th0QZiKudQVkTEi7QkGit1ThrF2+wM0N/NMFLhHJNszLituBVjFF
+ nZ1Wv+ZmqUxdg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH V18 11/14] drm/xe/vram: Check bad_page_reservation
- policy in fault handler
+Subject: Re: [PATCH V18 10/14] drm/xe/ras: Cache bad_page_reservation policy
+ at init
 To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260826135136.204044-27-tejas.upadhyay@intel.com>
+In-Reply-To: <20260826135136.204044-26-tejas.upadhyay@intel.com>
 References: <20260826135136.204044-16-tejas.upadhyay@intel.com>
- <20260826135136.204044-27-tejas.upadhyay@intel.com>
+ <20260826135136.204044-26-tejas.upadhyay@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 26 Aug 2026 14:08:30 +0000
-Message-Id: <20260826140830.9FF041F000E9@smtp.kernel.org>
+Date: Wed, 26 Aug 2026 14:11:01 +0000
+Message-Id: <20260826141102.0E6C41F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,55 +57,77 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] Page reservation is unconditionally disabled on non-Crescent Islan=
-d platforms (like PVC), silently ignoring configfs settings.
+
+New issues:
+- [Medium] The commit message claims caching happens in xe_drm_ras_init(), =
+but it is actually implemented in xe_ras_init().
+
+Pre-existing issues:
+- [High] Ignored return value from `xe_drm_ras_init()` leads to potential N=
+ULL pointer dereference on error paths.
 --
 
-commit e2ecbfdccfac5cd8843020d324241d927ec0f055
+commit 5b627dce853b33e2e2e98dd02e3de8fcd0a8ae35
 Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
-drm/xe/vram: Check bad_page_reservation policy in fault handler
+drm/xe/ras: Cache bad_page_reservation policy at init
 
-This commit adds a check for the cached bad_page_reservation policy in the
-VRAM address fault handler. If the policy is disabled, it logs the corrupted
-address and returns -EOPNOTSUPP instead of offlining the page.
+This commit caches the configfs bad_page_reservation attribute during driver
+initialization to prevent repeated configfs lookups on every fault.
 
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe=
-_ttm_vram_mgr.c
-> index b2b6c1bd2c555..24d1347542651 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> @@ -864,6 +864,12 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *=
-xe, u64 addr)
->  	vram_mgr =3D &vr->ttm;
->  	mm =3D &vram_mgr->mm;
+> drm/xe/ras: Cache bad_page_reservation policy at init
+>=20
+> The configfs bad_page_reservation attribute can only be set before
+> device bind, so its value is immutable at runtime. Cache it in
+> struct xe_drm_ras during xe_drm_ras_init() to avoid repeated configfs
+> lookups on every fault.
+
+[Severity: Medium]
+The commit message states that caching happens "during xe_drm_ras_init()", =
+but
+the patch actually implements the configfs lookup and caching in xe_ras_ini=
+t()
+instead. Should the commit message be updated to reflect the correct functi=
+on?
+
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index d25d25f775310..c7e86ae0e8adb 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
+[ ... ]
+> @@ -804,6 +805,10 @@ void xe_ras_init(struct xe_device *xe)
+>  {
+>  	int ret;
 > =20
-> +	if (!xe->ras.bad_page_reservation) {
-        ^^^^
+> +	if (xe->info.platform =3D=3D XE_CRESCENTISLAND)
+> +		xe->ras.bad_page_reservation =3D
+> +			xe_configfs_get_bad_page_reservation(to_pci_dev(xe->drm.dev));
+> +
+>  	xe_drm_ras_init(xe);
 
 [Severity: High]
-Does this unintentionally disable page reservation on non-Crescent Island
-platforms that support RAS?
+This isn't a bug introduced by this patch, but the return value of
+xe_drm_ras_init() is completely ignored here.=20
 
-Because xe_ras_init() only populates xe->ras.bad_page_reservation on
-XE_CRESCENTISLAND, the cached value remains false (0) on other platforms li=
-ke
-PVC. As a result, this check will unconditionally evaluate to true on those
-platforms, skipping page reservation and silently ignoring the configfs set=
-ting.
+If xe_drm_ras_init() fails (e.g., if drmm_kcalloc() returns NULL),
+xe->ras.node remains NULL. Because the error is ignored, device initializat=
+ion
+continues and DRM RAS is considered enabled (has_drm_ras remains true).
 
-> +		drm_err(&xe->drm, "0x%llx is reported as corrupted address by HW\n",
-> +			addr);
-> +		return -EOPNOTSUPP;
-> +	}
-> +
->  	/* Reserve page at address */
->  	return xe_ttm_vram_reserve_page_at_addr(xe, addr - vr->dpa_base, vram_m=
-gr, mm);
->  }
+Later, if a hardware error triggers xe_drm_ras_event(), the code calculates:
+
+    node =3D &ras->node[severity];
+
+If severity > 0, this results in a non-NULL but invalid pointer (computed a=
+s a
+small offset from NULL). drm_ras_nl_error_event() receives this pointer, its
+!node check passes, and it dereferences node->id, causing a kernel panic.
+
+Should we check the return value of xe_drm_ras_init() and handle the failur=
+e?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260826135136.2040=
-44-16-tejas.upadhyay@intel.com?part=3D11
+44-16-tejas.upadhyay@intel.com?part=3D10
