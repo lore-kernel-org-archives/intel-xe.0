@@ -4,44 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26F9FC5DF97
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 14:20:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6979BC61DBD
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 14:27:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D153A10E2A0;
-	Wed, 26 Aug 2026 14:20:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 219FC10E29F;
+	Wed, 26 Aug 2026 14:27:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZK8uQY/f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eUG0e9hS";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D1FC10E27F
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 14:20:02 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id A09E8600C4;
- Wed, 26 Aug 2026 14:20:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03D951F000E9;
- Wed, 26 Aug 2026 14:20:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787754001;
- bh=dYtNz+C0MTeVrJazfKg2QlS1vpqoIhYPGNYYYe1rqgo=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=ZK8uQY/fsy/NjJHhFU0+mq9YIGdSdockP6PhDLELA7sPcOM+JyCFahWCY/y22V0ik
- NAlcGPKGGOn4nw211KLIfnKrIwqdXOolrl0g+eRbX2F1A0WwBotq3xLSdRT7D6X8zJ
- D/bCqwUW9WyY2FIe0asqRsOaSQpGSZwwMO5VYe3aPLhDjiUO/R2O1ilg5oh5xgbbCA
- AdidpBkxm2cPi/n97Ct8ln25302q7mL0z4gM3cYv1P0eknYu2cZzioVGSqREhvmgot
- 2rYodOlmNVZfsfZRp752Tf1gG6eeLqQ/kzNZPEW4VWTyfNiYugvs6Ry/qzLR/qFfSS
- P9Kx/1CNWy6mw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH V18 13/14] drm/xe/uapi: Expose ban reason in
- EXEC_QUEUE_GET_PROPERTY_BAN
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260826135136.204044-29-tejas.upadhyay@intel.com>
-References: <20260826135136.204044-16-tejas.upadhyay@intel.com>
- <20260826135136.204044-29-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 26 Aug 2026 14:20:00 +0000
-Message-Id: <20260826142001.03D951F000E9@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABF0410E29F
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 14:27:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787754448; x=1819290448;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=dOUkJ4ZiLIqB6x05K2fRutwvvIOuWMUInjsroCNsaWQ=;
+ b=eUG0e9hSMd+CcuOgb0NbAGF94/AU2liwHJh6QGv7gaXWdTwdaA8zqJoj
+ q11MhRvUDQd+tKXRGSRWR24MlEBXkEgx9t3ii2xiswwKqcbUCHrIXCezC
+ wXkahp8xtmyXY4Dl1LsDqyq2UoBtX5xQ+pSr4e40XLey9Ze2ckS7bFLr+
+ hAwp6sN3U40hpp0kuX3lcCEtMtoTHEfqVx9gYvmkKvOB3GojOu20R8PTn
+ HDQ8AmhwInKaVmBvbV8vARy2/Q767bUv3gT+bpehLcxZg7FRXMypAPkd9
+ y7HRcQVCjRsDFMKSz4/jRzvg3DZSAWRiXhfb2dJn4musoISdkesI6Spc2 Q==;
+X-CSE-ConnectionGUID: kn5xy5b9STCgfV5m5cGcFA==
+X-CSE-MsgGUID: HZo4yKWgSr6DSc1FCIKcbA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11886"; a="91918445"
+X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="91918445"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2026 07:27:20 -0700
+X-CSE-ConnectionGUID: g0qIaV2ETVW5hXE7XI5KZQ==
+X-CSE-MsgGUID: hWVC4TqySTaGRViMAhLZMw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="264321992"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2026 07:27:17 -0700
+Date: Wed, 26 Aug 2026 16:27:15 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Karthik Poosa <karthik.poosa@intel.com>
+Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ riana.tauro@intel.com, sk.anirban@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com
+Subject: Re: [PATCH 1/3] drm/xe/hwmon: Detect unavailable temperature sensors
+Message-ID: <ao73w-lIBkSnYtot@black.igk.intel.com>
+References: <20260824184137.2164727-1-karthik.poosa@intel.com>
+ <20260824184137.2164727-2-karthik.poosa@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260824184137.2164727-2-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,145 +67,211 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [Critical] Concurrent iteration and mutation of `vm->exec_queues.list` us=
-ing only `down_read` causes list and kernel stack corruption.
-- [Medium] The PAGE_OFFLINE ban reason is hidden for non-LR queues until TD=
-R fires, defeating the logic to prevent GPU_HANG masking.
-- [Medium] Missing read memory barrier before checking `ban_reason` allows =
-speculative out-of-order execution, causing the UAPI to report a stale stat=
-us.
---
+On Tue, Aug 25, 2026 at 12:11:31AM +0530, Karthik Poosa wrote:
+> Add is_temp_valid() to validate sensor presence.
 
-commit f03e51ea5f032e49889009d1894c9441c7fe6525
-Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Please utilize the full 75 character space where possible.
 
-drm/xe/uapi: Expose ban reason in EXEC_QUEUE_GET_PROPERTY_BAN
+> A temperature reading of 0xFF on CRI platforms indicates that the
+> corresponding sensor is not present and should be treated as unavailable.
+> 
+> Use this check from xe_hwmon_temp_is_visible() callback so that attributes
+> for unavailable sensors are not exposed during hwmon device registration.
+> 
+> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_hwmon.c | 79 +++++++++++++++++++++++++++++------
+>  1 file changed, 66 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index 5284cab6703d..2c4eba4b8f8f 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -813,12 +813,21 @@ static int xe_hwmon_pcode_read_thermal_info(struct xe_hwmon *hwmon)
+>  	return ret;
+>  }
+>  
+> +static inline bool is_temp_valid(const struct xe_hwmon *hwmon, u8 value)
+> +{
+> +	/* Value of 0xFF indicates unavailable sensor for platforms from CRI. */
+> +	if (hwmon->xe->info.platform >= XE_CRESCENTISLAND)
 
-Extend DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN to return a bitmask indicating
-the reason for the ban, rather than a simple boolean. This allows
-userspace to distinguish between different ban causes.
+Let's not solve a problem that doesn't exist. This kind of checks create
+problem in internal repos where the expected platform isn't quite often
+the last one. If this is needed for multiple platforms, just add a feature
+flag.
 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
-uc_submit.c
-> index 99d8c807ff056..0a6e2b81b5a53 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -1599,6 +1600,12 @@ guc_exec_queue_timedout_job(struct drm_sched_job *=
-drm_job)
->  	else
->  		wedged =3D xe_device_wedged(xe);
-> =20
-> +	/*
-> +	 * Only tag as GPU hang if this is the original timeout, not a
-> +	 * consequence of a prior kill (e.g., page-offline).
-> +	 */
-> +	if (!exec_queue_killed(q))
-> +		atomic_or(DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG, &q->ban_reason);
+> +		return value != U8_MAX;
+> +	else
 
-[Severity: Medium]
-Will this properly mask the GPU_HANG bit for non-LR (legacy) queues?
+Redundant else.
 
-When xe_ttm_vram_purge_page() sets PAGE_OFFLINE on non-LR queues, it calls
-xe_vm_kill(). However, xe_vm_kill() only explicitly iterates and kills LR
-queues (those in &vm->preempt.exec_queues).=20
-
-Since non-LR queues are not explicitly marked as killed, wouldn't this check
-evaluate to true and still incorrectly append the GPU_HANG reason when the
-doomed non-LR queue eventually times out?
-
->  	set_exec_queue_banned(q);
-> =20
->  	/* Kick job / queue off hardware */
-[ ... ]
-> @@ -2580,13 +2590,29 @@ static void guc_exec_queue_multi_queue_drop_suspe=
-nd(struct xe_exec_queue *q)
-[ ... ]
-> -static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
-> +static u64 guc_exec_queue_reset_status(struct xe_exec_queue *q)
+> +		return value != 0;
+> +}
+> +
+>  static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
 >  {
-[ ... ]
-> -	return exec_queue_reset(q) || exec_queue_killed_or_banned_or_wedged(q);
-> +	if (exec_queue_reset(q) || exec_queue_killed_or_banned_or_wedged(q)) {
-> +		u64 reason =3D atomic_read_acquire(&q->ban_reason);
-> +
-> +		/* If no specific reason was recorded, default to GPU hang */
-> +		if (!reason)
-> +			reason =3D DRM_XE_EXEC_QUEUE_BAN_REASON_GPU_HANG;
-> +		return reason;
-> +	}
-
-[Severity: Medium]
-Does this sequence allow for a stale or speculative status read?
-
-Because the condition (exec_queue_killed_or_banned_or_wedged) is evaluated
-using a relaxed atomic read, there is only a control dependency before
-atomic_read_acquire() on q->ban_reason.
-
-On weakly-ordered architectures, the CPU can speculatively load q->ban_reas=
-on
-before the state check. If the speculative read happens right as
-xe_ttm_vram_purge_page() is updating the status, couldn't reason evaluate t=
-o 0
-and spuriously default to GPU_HANG instead of PAGE_OFFLINE? Would an smp_rm=
-b()
-be required here to properly order the reads?
-
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe=
-_ttm_vram_mgr.c
-> index af9e1fa868d7f..8f583f1631bf4 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> @@ -596,7 +598,22 @@ static int xe_ttm_vram_purge_page(struct xe_device *=
-xe, struct xe_bo *bo)
->  	xe_bo_unlock(bo);
->  	/*  Ban VM if BO is PPGTT */
->  	if (vm && (flags & XE_BO_FLAG_PAGETABLE)) {
-> +		struct xe_exec_queue *eq;
-> +		int id;
-> +
->  		down_write(&vm->lock);
-> +		if (xe->info.has_ctx_tlb_inval) {
-> +			down_read(&vm->exec_queues.lock);
-> +			for (id =3D 0; id < ARRAY_SIZE(vm->exec_queues.list); id++)
-> +				list_for_each_entry(eq, &vm->exec_queues.list[id],
-> +						    vm_exec_queue_link)
-> +					atomic_or(q_flag, &eq->ban_reason);
-> +			up_read(&vm->exec_queues.lock);
-
-[Severity: Critical]
-Is it safe to iterate vm->exec_queues.list while holding only the lock in
-read mode?
-
-Currently, the MMU notifier paths like xe_svm_invalidate() submit TLB
-invalidations by calling send_tlb_inval_ctx_ppgtt(). That function also tak=
-es
-down_read(&vm->exec_queues.lock) but then it mutates the list, moving items
-using list_move_tail(&q->vm_exec_queue_link, &tlb_inval_list) onto a local
-stack variable.
-
-If the shrinker triggers this purge_page path concurrently with the MMU
-notifier, both will execute concurrently because they both hold the lock us=
-ing
-down_read().
-
-Could the list_for_each_entry() iterator here follow pointers into the stack
-frame of send_tlb_inval_ctx_ppgtt(), resulting in list/kernel stack
-corruption and arbitrary memory writes when atomic_or() is called?
-
+>  	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
+>  	u32 *dword = (u32 *)hwmon->temp.value;
+> +	int ret, i, count = 0;
+>  	s32 average = 0;
+> -	int ret, i;
+>  
+>  	for (i = 0; i < DIV_ROUND_UP(TEMP_LIMIT_MAX, sizeof(u32)); i++) {
+>  		ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_DATA, i),
+> @@ -828,11 +837,25 @@ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
+>  		drm_dbg(&hwmon->xe->drm, "thermal data for group %d val 0x%x\n", i, dword[i]);
+>  	}
+>  
+> -	for (i = TEMP_INDEX_MCTRL; i < hwmon->temp.count - 1; i++)
+> -		average += hwmon->temp.value[i];
+> +	for (i = TEMP_INDEX_MCTRL; i < hwmon->temp.count - 1; i++) {
+> +		if (is_temp_valid(hwmon, hwmon->temp.value[i])) {
+> +			average += hwmon->temp.value[i];
+> +			count++;
 > +		} else {
-> +			list_for_each_entry(eq, &vm->preempt.exec_queues, lr.link)
-> +				atomic_or(q_flag, &eq->ban_reason);
+> +			drm_dbg(&hwmon->xe->drm, "mc temp sensor %d not available, val 0x%x\n",
+> +				i, hwmon->temp.value[i]);
 > +		}
-> +		smp_wmb(); /* Force all queue bits to be visible before killing the VM=
- */
->  		xe_vm_kill(vm, true);
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260826135136.2040=
-44-16-tejas.upadhyay@intel.com?part=3D13
+Rather,
+
+	if (!is_temp_valid())
+		continue;
+		
+	average += ...
+	
+Tidy? ;)
+
+> +	}
+> +
+> +	if (!count) {
+> +		drm_warn(&hwmon->xe->drm, "no memory temp sensors available!\n");
+
+This is a bit misleading as it is exposed as a single channel to the user.
+I'd rephrase this to something like "Memory temperature not available".
+
+> +		return -ENXIO;
+> +	}
+> +
+> +	average /= count;
+
+Blank line please!
+
+> +	if (val)
+> +		*val = average * MILLIDEGREE_PER_DEGREE;
+>  
+> -	average /= (hwmon->temp.count - TEMP_INDEX_MCTRL - 1);
+> -	*val = average * MILLIDEGREE_PER_DEGREE;
+>  	return 0;
+>  }
+>  
+> @@ -852,7 +875,13 @@ static int get_pcie_temp(struct xe_hwmon *hwmon, long *val)
+>  		data = REG_FIELD_GET(PCIE_SENSOR_MASK, data);
+>  
+>  	data = REG_FIELD_GET(TEMP_MASK, data);
+> -	*val = (s8)data * MILLIDEGREE_PER_DEGREE;
+> +	if (!is_temp_valid(hwmon, data)) {
+> +		drm_warn(&hwmon->xe->drm, "pcie temp sensor not available, val 0x%x\n", data);
+
+Same as above, "PCIe temperature not available".
+I'm also unsure why do we need to log the value?
+
+> +		return -ENXIO;
+> +	}
+> +
+> +	if (val)
+> +		*val = (s8)data * MILLIDEGREE_PER_DEGREE;
+>  
+>  	return 0;
+>  }
+> @@ -956,11 +985,21 @@ static inline bool is_vram_ch_available(struct xe_hwmon *hwmon, int channel)
+>  	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+>  	int vram_id = channel - CHANNEL_VRAM_N;
+>  	struct xe_reg vram_reg;
+> +	u32 reg_val;
+> +	u8 temp;
+>  
+>  	vram_reg = xe_hwmon_get_reg(hwmon, REG_TEMP, channel);
+> -	if (!xe_reg_is_valid(vram_reg) || !xe_mmio_read32(mmio, vram_reg))
+> +	if (!xe_reg_is_valid(vram_reg))
+>  		return false;
+>  
+> +	reg_val = xe_mmio_read32(mmio, vram_reg);
+> +	temp = REG_FIELD_GET(TEMP_MASK, reg_val);
+> +	if (!is_temp_valid(hwmon, temp)) {
+
+Hm, see below[1].
+
+> +		drm_dbg(&hwmon->xe->drm, "vram channel %d unavailable, val 0x%x\n", vram_id,
+> +			reg_val);
+> +		return false;
+> +	}
+> +
+>  	/* Create label only for available vram channel */
+>  	sprintf(hwmon->temp.vram_label[vram_id], "vram_ch_%d", vram_id);
+>  	return true;
+> @@ -977,8 +1016,9 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>  		case CHANNEL_VRAM:
+>  			return hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN] ? 0444 : 0;
+>  		case CHANNEL_MCTRL:
+> +			return !get_mc_temp(hwmon, NULL) && hwmon->temp.count ? 0444 : 0;
+>  		case CHANNEL_PCIE:
+> -			return hwmon->temp.count ? 0444 : 0;
+> +			return !get_pcie_temp(hwmon, NULL) && hwmon->temp.count ? 0444 : 0;
+>  		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+>  			return (is_vram_ch_available(hwmon, channel) &&
+>  				hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN]) ? 0444 : 0;
+> @@ -992,8 +1032,9 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>  		case CHANNEL_VRAM:
+>  			return hwmon->temp.limit[TEMP_LIMIT_MEM_CRIT] ? 0444 : 0;
+>  		case CHANNEL_MCTRL:
+> +			return !get_mc_temp(hwmon, NULL) && hwmon->temp.count ? 0444 : 0;
+>  		case CHANNEL_PCIE:
+> -			return hwmon->temp.count ? 0444 : 0;
+> +			return !get_pcie_temp(hwmon, NULL) && hwmon->temp.count ? 0444 : 0;
+>  		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+>  			return (is_vram_ch_available(hwmon, channel) &&
+>  				hwmon->temp.limit[TEMP_LIMIT_MEM_CRIT]) ? 0444 : 0;
+> @@ -1011,12 +1052,24 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>  	case hwmon_temp_label:
+>  		switch (channel) {
+>  		case CHANNEL_PKG:
+> -		case CHANNEL_VRAM:
+> -			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_TEMP,
+> -								channel)) ? 0444 : 0;
+> +		case CHANNEL_VRAM: {
+> +			struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+> +			struct xe_reg reg = xe_hwmon_get_reg(hwmon, REG_TEMP, channel);
+> +			u32 reg_val;
+> +			u8 temp;
+> +
+> +			if (!xe_reg_is_valid(reg))
+> +				return 0;
+> +
+> +			reg_val = xe_mmio_read32(mmio, reg);
+> +			temp = REG_FIELD_GET(TEMP_MASK, reg_val);
+> +
+> +			return is_temp_valid(hwmon, temp) ? 0444 : 0;
+
+[1] This looks like something similar to what's happening in
+is_vram_ch_available() and can be consolidated into something like
+is_vram_temp_valid().
+
+Raag
+
+> +		}
+>  		case CHANNEL_MCTRL:
+> +			return !get_mc_temp(hwmon, NULL) && hwmon->temp.count ? 0444 : 0;
+>  		case CHANNEL_PCIE:
+> -			return hwmon->temp.count ? 0444 : 0;
+> +			return !get_pcie_temp(hwmon, NULL) && hwmon->temp.count ? 0444 : 0;
+>  		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+>  			return is_vram_ch_available(hwmon, channel) ? 0444 : 0;
+>  		default:
+> -- 
+> 2.25.1
+> 
