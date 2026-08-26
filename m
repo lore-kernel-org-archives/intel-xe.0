@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76E11C61DBD
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 15:21:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E058C5DF97
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 15:23:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14C5D89452;
-	Wed, 26 Aug 2026 15:21:30 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3CBD89452;
- Wed, 26 Aug 2026 15:21:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9154593408974062220=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id D154489452;
+	Wed, 26 Aug 2026 15:23:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AfQxwmOq";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25D9789452
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 15:23:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787757809; x=1819293809;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6hYzF2Ab/Aud0rZT7coWa4ewv1ym/UTdQsmKZo0Zoo8=;
+ b=AfQxwmOqnSum/NL6+P9DAE8vK5j1mZaghn7VKYQBWGsqmXr+30c6bFgn
+ WfUjHgGijNf4+Fm8IS9chcLZsEzMJG9ztRbOs4RUtfB/1BFzep78IxNyy
+ 5t3lkUXXBp6iRjWbonOmAPXo8LDRQ9LWNFn4r1aXJyUvoXaREhSDab9Uz
+ 1wUVm71loLIozi4WeTLEqNxj8LaH69UQo5G3iwTZs8YZD5WFd3OFCm47N
+ mVPeCu6wIVaB5NqyOvEIs+LvXIWU7tm6uHb+bz1MVqVugxxAuewTqDzYp
+ PrJ5Ivx41eTA0Ikc7iJkCseu7NJ0E3ObmpkPdZhrkvZw4AWuNiCOtbIw/ Q==;
+X-CSE-ConnectionGUID: f9edfsdJSdqmmtN85DvZ3w==
+X-CSE-MsgGUID: 4i0JEDuqSQm9gRIPVAWYUQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="88297392"
+X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="88297392"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2026 08:23:28 -0700
+X-CSE-ConnectionGUID: wMGZh2qZSAKtpp4y3TQ+1w==
+X-CSE-MsgGUID: voHs2DrNR/exulGcOufQ1Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="271105068"
+Received: from unknown (HELO rgsanthosh-System-Product-Name.iind.intel.com)
+ ([10.190.238.65])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2026 08:23:27 -0700
+From: Naladala Ramanaidu <ramanaidu.naladala@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com,
+ Naladala Ramanaidu <ramanaidu.naladala@intel.com>
+Subject: [PATCH v1 0/2] drm/i915/hdmi: Add debugfs knob to force EDID reads
+ over GPIO
+Date: Wed, 26 Aug 2026 20:53:33 +0530
+Message-ID: <20260826152335.2822798-1-ramanaidu.naladala@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_memory_page_offlining_s?=
- =?utf-8?q?upport_=28rev21=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Aug 2026 15:21:28 -0000
-Message-ID: <178775768885.85743.13552208281517121600@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260826135136.204044-16-tejas.upadhyay@intel.com>
-In-Reply-To: <20260826135136.204044-16-tejas.upadhyay@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +64,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9154593408974062220==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add a per-connector debugfs file that forces EDID reads to use GPIO
+bit-banging.
 
-== Series Details ==
+Naladala Ramanaidu (2):
+  drm/i915/hdmi: Add debugfs support to force EDID reads over GPIO
+  drm/i915/hdmi: Read EDID over GPIO when the debugfs flag is set
 
-Series: Add memory page offlining support (rev21)
-URL   : https://patchwork.freedesktop.org/series/161473/
-State : success
+ .../drm/i915/display/intel_display_debugfs.c  |  1 +
+ .../drm/i915/display/intel_display_types.h    |  3 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 63 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_hdmi.h     |  2 +
+ 4 files changed, 68 insertions(+), 1 deletion(-)
 
-== Summary ==
+-- 
+2.43.0
 
-CI Bug Log - changes from xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6_BAT -> xe-pw-161473v21_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6 -> xe-pw-161473v21
-
-  IGT_9076: 8f42b0189d73d9912ad58c99cfaa4ff46c20fcc3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6: 4a47d4b5bf957bd7e34d8d3ab7096c42161892c6
-  xe-pw-161473v21: 161473v21
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v21/index.html
-
---===============9154593408974062220==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add memory page offlining support (rev21)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161473/">https://patchwork.freedesktop.org/series/161473/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v21/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161473v21/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6_BAT -&gt; xe-pw-161473v21_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6 -&gt; xe-pw-161473v21</li>
-</ul>
-<p>IGT_9076: 8f42b0189d73d9912ad58c99cfaa4ff46c20fcc3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6: 4a47d4b5bf957bd7e34d8d3ab7096c42161892c6<br />
-  xe-pw-161473v21: 161473v21</p>
-
-</body>
-</html>
-
---===============9154593408974062220==--
