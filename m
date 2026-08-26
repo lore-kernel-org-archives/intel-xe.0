@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6756FC61DBD
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 13:40:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EB9AC61DBD
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 13:40:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2544F10ED11;
-	Wed, 26 Aug 2026 13:40:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2637810ED19;
+	Wed, 26 Aug 2026 13:40:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TGTTRLqM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E5fZlSIQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6068310ED1A;
- Wed, 26 Aug 2026 13:40:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DA3F10ED18;
+ Wed, 26 Aug 2026 13:40:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787751641; x=1819287641;
+ t=1787751645; x=1819287645;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dL/KCAujNfKx4kRwlpxg+qwn0eKH5ctrIM/GhxrccE8=;
- b=TGTTRLqM0s0u/LOiH6Gfy+RnOTlD0Yl8YXHuH6QkBQhDvO5vJAN182fT
- 0cdWjoCk5ROSYUKk7oNCrQzLSVWn1/vL2omX8l42TUsWk7fEsmqG2KUd6
- zrp9xHE4wGeQyoNEYyJg/Gyt1lPDsBBCwrgV/5RYMI09FhiVLTmQLzxfo
- Ymx1jGJNBLLCNV+T73QpQg8wYxg1m0DLnwuIFm4ogg4HP9T1xQ+byS3Xn
- QhYjOc/v7mvBtGrFGIyxoy4UtEudS7adkvpfYGgtC6FY/ENTYzZ5hZdap
- pWVbpYLFr/9CgKTLhi4vtHyzDAoQo2RsmzTVoVMhyAw98C9NXs9qscQ0n Q==;
-X-CSE-ConnectionGUID: id+4ihu6TMC7bovht22CXw==
-X-CSE-MsgGUID: euI+pgLTT6i6dB1Z1PDJiA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11886"; a="88152244"
-X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="88152244"
+ bh=uW2Nyuzr3bxOGhTVRdkd0xrO69ZDW/2QVYvTdnWl5Q8=;
+ b=E5fZlSIQqUP0KLWFb2hbAeJzSTTKcV0KV2uxxSTm5T9cbDpkFHtccuIk
+ NDp1E0EnorGpFqHzkTMo6NPEQiloDRDNgCnwW0s1DhGODvw0hTrep2kR4
+ e5cGe2/z11iCkAn9Lec9SjCNahAqcpV09+HeM8HNO6s+IeIAQ2eurshkT
+ xhc5mXdJmCwEW5xRwNe6jdbH8krWD+A7E5e0Te6tWTYT7dxjJzAkXg9Q9
+ MayLoiTej1Y8DlRd4zVq32yetEFeDPj9VIqmmVSYoahTAUpGDoxtSuwPg
+ rpesh3sjaRv9kYfvx9Q58Aiz0ROpmuDpkkRbXNsPHeCNbNRTY4IIxUThL Q==;
+X-CSE-ConnectionGUID: Cdt0PnS5QWq3aFPa1vAmWQ==
+X-CSE-MsgGUID: twfjo280TT2GEpXB1W2z7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11886"; a="88152256"
+X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="88152256"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 06:40:41 -0700
-X-CSE-ConnectionGUID: ++O/uwT7StiJ4auBZWnMMw==
-X-CSE-MsgGUID: ReRS/XmdRGSjENcSXIvmAg==
+ 26 Aug 2026 06:40:45 -0700
+X-CSE-ConnectionGUID: RSnON1SySaCcIiIg/u8MVw==
+X-CSE-MsgGUID: HFOTWL2RQM+CDmMaLLvRVw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="264980472"
+X-IronPort-AV: E=Sophos;i="6.25,244,1779174000"; d="scan'208";a="264980483"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.39])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 06:40:39 -0700
+ 26 Aug 2026 06:40:43 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 01/14] drm/i915/cdclk: Don't bail if pcode post nofify fails
-Date: Wed, 26 Aug 2026 16:40:20 +0300
-Message-ID: <20260826134033.13976-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 02/14] drm/i915/cdclk: Pass CDCLK in MHz to pcode on DG2
+Date: Wed, 26 Aug 2026 16:40:21 +0300
+Message-ID: <20260826134033.13976-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260826134033.13976-1-ville.syrjala@linux.intel.com>
 References: <20260826134033.13976-1-ville.syrjala@linux.intel.com>
@@ -73,33 +73,90 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We already changed the actual cdclk frequency by the time we do
-the pcode post notify. So skipping the subsequent readout is plain
-wrong.
+We are currently trying to pass the CDCLK in kHz to the pcode
+on DG2, while the pcode expects a value in MHz units. Adjust
+the units appropriately.
+
+v2: Call it 'cdclk_mhz' (Jani)
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 25 +++++++++++++++-------
+ 1 file changed, 17 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 75ada941d113..c3206c9de239 100644
+index c3206c9de239..308bcdd01699 100644
 --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2328,12 +2328,10 @@ static void bxt_set_cdclk(struct intel_display *display,
- 						       HSW_PCODE_DE_WRITE_FREQ_REQ,
- 						       cdclk_config->voltage_level, 2);
- 	}
--	if (ret) {
-+	if (ret)
- 		drm_err(display->drm,
- 			"PCode CDCLK freq set failed, (err %d, freq %d)\n",
- 			ret, cdclk);
--		return;
--	}
+@@ -2730,8 +2730,9 @@ static void intel_cdclk_pcode_pre_notify(struct intel_atomic_state *state)
+ 		intel_atomic_get_old_cdclk_state(state);
+ 	const struct intel_cdclk_state *new_cdclk_state =
+ 		intel_atomic_get_new_cdclk_state(state);
+-	unsigned int cdclk = 0; u8 voltage_level, num_active_pipes = 0;
++	u8 voltage_level, num_active_pipes = 0;
+ 	bool change_cdclk, update_pipe_count;
++	unsigned int cdclk_mhz = 0;
  
- 	intel_update_cdclk(display);
+ 	if (!intel_cdclk_changed(&old_cdclk_state->actual,
+ 				 &new_cdclk_state->actual) &&
+@@ -2752,8 +2753,12 @@ static void intel_cdclk_pcode_pre_notify(struct intel_atomic_state *state)
+ 	 * if CDCLK is decreasing or not changing, set bits 25:16 to current CDCLK,
+ 	 * which basically means we choose the maximum of old and new CDCLK, if we know both
+ 	 */
+-	if (change_cdclk)
+-		cdclk = max(new_cdclk_state->actual.cdclk, old_cdclk_state->actual.cdclk);
++	if (change_cdclk) {
++		unsigned int cdclk = max(new_cdclk_state->actual.cdclk,
++					 old_cdclk_state->actual.cdclk);
++
++		cdclk_mhz = DIV_ROUND_UP(cdclk, 1000);
++	}
+ 
+ 	/*
+ 	 * According to "Sequence For Pipe Count Change",
+@@ -2764,7 +2769,7 @@ static void intel_cdclk_pcode_pre_notify(struct intel_atomic_state *state)
+ 	if (update_pipe_count)
+ 		num_active_pipes = dg2_power_well_count(display, new_cdclk_state);
+ 
+-	intel_pcode_notify(display, voltage_level, num_active_pipes, cdclk,
++	intel_pcode_notify(display, voltage_level, num_active_pipes, cdclk_mhz,
+ 			   change_cdclk, update_pipe_count);
+ }
+ 
+@@ -2775,8 +2780,9 @@ static void intel_cdclk_pcode_post_notify(struct intel_atomic_state *state)
+ 		intel_atomic_get_new_cdclk_state(state);
+ 	const struct intel_cdclk_state *old_cdclk_state =
+ 		intel_atomic_get_old_cdclk_state(state);
+-	unsigned int cdclk = 0; u8 voltage_level, num_active_pipes = 0;
++	u8 voltage_level, num_active_pipes = 0;
+ 	bool update_cdclk, update_pipe_count;
++	unsigned int cdclk_mhz = 0;
+ 
+ 	/* According to "Sequence After Frequency Change", set voltage to used level */
+ 	voltage_level = new_cdclk_state->actual.voltage_level;
+@@ -2789,8 +2795,11 @@ static void intel_cdclk_pcode_post_notify(struct intel_atomic_state *state)
+ 	 * According to "Sequence After Frequency Change",
+ 	 * set bits 25:16 to current CDCLK
+ 	 */
+-	if (update_cdclk)
+-		cdclk = new_cdclk_state->actual.cdclk;
++	if (update_cdclk) {
++		unsigned int cdclk = new_cdclk_state->actual.cdclk;
++
++		cdclk_mhz = DIV_ROUND_UP(cdclk, 1000);
++	}
+ 
+ 	/*
+ 	 * According to "Sequence For Pipe Count Change",
+@@ -2801,7 +2810,7 @@ static void intel_cdclk_pcode_post_notify(struct intel_atomic_state *state)
+ 	if (update_pipe_count)
+ 		num_active_pipes = dg2_power_well_count(display, new_cdclk_state);
+ 
+-	intel_pcode_notify(display, voltage_level, num_active_pipes, cdclk,
++	intel_pcode_notify(display, voltage_level, num_active_pipes, cdclk_mhz,
+ 			   update_cdclk, update_pipe_count);
+ }
  
 -- 
 2.54.0
