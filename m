@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D32B4C5DF97
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 17:22:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59C3FC61DBD
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 17:57:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D74E10E17C;
-	Wed, 26 Aug 2026 17:22:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A10410E8DA;
+	Wed, 26 Aug 2026 17:57:00 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8867010E17C;
- Wed, 26 Aug 2026 17:22:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8714810E8DA;
+ Wed, 26 Aug 2026 17:56:59 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============3283067399333287974=="
+ boundary="===============8864278393001288895=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/vram=3A_Add_early_VR?=
- =?utf-8?q?AM_health_check_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Prepare_for_WCL_GSC_FW_=28r?=
+ =?utf-8?q?ev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 26 Aug 2026 17:22:46 -0000
-Message-ID: <178776496655.87306.9522719747706264139@61270ab9df2a>
+Date: Wed, 26 Aug 2026 17:56:59 -0000
+Message-ID: <178776701954.87306.11429184183745416473@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260826152431.406715-2-matthew.auld@intel.com>
-In-Reply-To: <20260826152431.406715-2-matthew.auld@intel.com>
+References: <20260826171149.708378-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20260826171149.708378-1-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,33 +40,28 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3283067399333287974==
+--===============8864278393001288895==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe/vram: Add early VRAM health check (rev2)
-URL   : https://patchwork.freedesktop.org/series/172786/
-State : failure
+Series: Prepare for WCL GSC FW (rev2)
+URL   : https://patchwork.freedesktop.org/series/172761/
+State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6_BAT -> xe-pw-172786v2_BAT
+CI Bug Log - changes from xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6_BAT -> xe-pw-172761v2_BAT
 ====================================================
 
 Summary
 -------
 
-  **FAILURE**
+  **SUCCESS**
 
-  Serious unknown changes coming with xe-pw-172786v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-172786v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  No regressions found.
 
   
 
@@ -75,40 +70,27 @@ Participating hosts (13 -> 13)
 
   No changes in participating hosts
 
-Possible new issues
--------------------
 
-  Here are the unknown changes that may have been introduced in xe-pw-172786v2_BAT:
+Changes
+-------
 
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172786v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-    - bat-bmg-1:          [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172786v2/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-
-  
+  No changes found
 
 
 Build changes
 -------------
 
-  * Linux: xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6 -> xe-pw-172786v2
+  * Linux: xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6 -> xe-pw-172761v2
 
   IGT_9076: 8f42b0189d73d9912ad58c99cfaa4ff46c20fcc3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
   xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6: 4a47d4b5bf957bd7e34d8d3ab7096c42161892c6
-  xe-pw-172786v2: 172786v2
+  xe-pw-172761v2: 172761v2
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172786v2/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172761v2/index.html
 
---===============3283067399333287974==
+--===============8864278393001288895==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -128,45 +110,32 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe/vram: Add early VRAM health check (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172786/">https://patchwork.freedesktop.org/series/172786/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>Series:</b></td><td>Prepare for WCL GSC FW (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172761/">https://patchwork.freedesktop.org/series/172761/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172786v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172786v2/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172761v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172761v2/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6_BAT -&gt; xe-pw-172786v2_BAT</h1>
+    <h1>CI Bug Log - changes from xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6_BAT -&gt; xe-pw-172761v2_BAT</h1>
 <h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-172786v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-172786v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
 <h2>Participating hosts (13 -&gt; 13)</h2>
 <p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-172786v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172786v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172786v2/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
+<h2>Changes</h2>
+<p>No changes found</p>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6 -&gt; xe-pw-172786v2</li>
+<li>Linux: xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6 -&gt; xe-pw-172761v2</li>
 </ul>
 <p>IGT_9076: 8f42b0189d73d9912ad58c99cfaa4ff46c20fcc3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
   xe-5647-4a47d4b5bf957bd7e34d8d3ab7096c42161892c6: 4a47d4b5bf957bd7e34d8d3ab7096c42161892c6<br />
-  xe-pw-172786v2: 172786v2</p>
+  xe-pw-172761v2: 172761v2</p>
 
 </body>
 </html>
 
---===============3283067399333287974==--
+--===============8864278393001288895==--
