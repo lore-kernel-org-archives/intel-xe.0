@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EF1EC61DBD
-	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 14:07:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 090C7C61DBD
+	for <intel-xe@archiver.kernel.org>; Wed, 26 Aug 2026 14:08:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEBCB10E27F;
-	Wed, 26 Aug 2026 14:07:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2AE710E2AE;
+	Wed, 26 Aug 2026 14:08:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UJ2yPEBn";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="l58fNuI3";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A63A10E27F
- for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 14:07:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 034DD10E2C3
+ for <intel-xe@lists.freedesktop.org>; Wed, 26 Aug 2026 14:08:31 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 1D87640C17;
- Wed, 26 Aug 2026 14:07:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8BF61F000E9;
- Wed, 26 Aug 2026 14:07:29 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id DFDFE40988;
+ Wed, 26 Aug 2026 14:08:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF041F000E9;
+ Wed, 26 Aug 2026 14:08:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787753250;
- bh=uzHFmd/Ou1SkJsp1rJ2BLlH3ZkJ6Zektq2fgSWmvlDo=;
+ s=k20260515; t=1787753310;
+ bh=rFqeWEAbNmhcWxkKzmn4pRrcc4RqBggBrwn2CNNDtT0=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=UJ2yPEBnWC4W7i9loImnEV15O+Tpjx6An7/tWDW0u8Q6eB5HiQ/+fmX/dECPvZXqV
- yjzmzoapLbF9d4Q3qCC3LsPmr+6GuW5pSaFurSwg+n3nNOSRKhHSfMJtxoCWuSCJK2
- qsxyzjBSNKpWxbhFeVSPqL0mqCY4HIidY1fH27fTQtf5dRUCw6+siYqwWgEVEQlFTq
- y02MAtlnubYMwWMx3pD2DEnQySNwrzkxEpebsA8B/3fD9mv0/4bTUTSPI+hKzVPu8B
- RQhybvDx6rSr7cbyJmnxiiCGCka3xVaVQvOMmlBg6HVhcScWEwfzjtBfQMcUK+A4TQ
- /5fqDLgzlQDag==
+ b=l58fNuI3cz9NRu++t49Ls/Kb3QLkPgoMbe0Fx/pPQiZtkzXNg19JvLmfHxcH3hwTq
+ JI89bTbvq37ldKHO0SYzOqlxD6Fg5axEwqsCXyxYCOsgozpxzj4UkQ8I6iJg3RvWkO
+ SJx3EVblk1j5lmCuarMAvev7FjiQM9C+ZCJ9Cy53S/g83rVBw7MhueiCb+zSd2vUMh
+ HXrjSYe7L7GNiyJPud183gtD1ayh+OBSZUF2QqhQUo4xVuyehCNazVWw0iuWGKU6n8
+ 7P4+x/Y+jjWmkkoVtgnGtfVjUwNM5bKo1UjwuwBamx8/h44Km6XxjA62NoqujWD+HE
+ tgIqgmDQeVHmw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH V18 03/14] drm/xe: Extend BO purge to handle vram pages
- as well
+Subject: Re: [PATCH V18 11/14] drm/xe/vram: Check bad_page_reservation
+ policy in fault handler
 To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260826135136.204044-19-tejas.upadhyay@intel.com>
+In-Reply-To: <20260826135136.204044-27-tejas.upadhyay@intel.com>
 References: <20260826135136.204044-16-tejas.upadhyay@intel.com>
- <20260826135136.204044-19-tejas.upadhyay@intel.com>
+ <20260826135136.204044-27-tejas.upadhyay@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 26 Aug 2026 14:07:29 +0000
-Message-Id: <20260826140729.C8BF61F000E9@smtp.kernel.org>
+Date: Wed, 26 Aug 2026 14:08:30 +0000
+Message-Id: <20260826140830.9FF041F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,92 +59,53 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [Critical] Calling `xe_bo_is_vram()` on a purged BO causes a NULL pointer=
- dereference because `bo->ttm.resource` is NULL.
+- [High] Page reservation is unconditionally disabled on non-Crescent Islan=
+d platforms (like PVC), silently ignoring configfs settings.
 --
 
-commit 8ea3d385f1cb1d34b69c171b968bd8b676aaa611
+commit e2ecbfdccfac5cd8843020d324241d927ec0f055
 Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
-drm/xe: Extend BO purge to handle vram pages as well
+drm/xe/vram: Check bad_page_reservation policy in fault handler
 
-Recent driver update introduce support for purgeable buffer
-objects (BOs), extending the API to include VRAM pages to
-better manage memory pressure and enable memory offlining.
+This commit adds a check for the cached bad_page_reservation policy in the
+VRAM address fault handler. If the policy is disabled, it logs the corrupted
+address and returns -EOPNOTSUPP instead of offlining the page.
 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index dde309821237b..52f81e972adad 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -921,7 +921,7 @@ void xe_bo_set_purgeable_state(struct xe_bo *bo,
->   *
->   * Return: 0 on success, negative error code on failure
->   */
-> -static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_=
-operation_ctx *ctx)
-> +int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operati=
-on_ctx *ctx)
->  {
->  	struct xe_bo *bo =3D ttm_to_xe_bo(ttm_bo);
->  	struct ttm_placement place =3D {};
-> @@ -929,9 +929,6 @@ static int xe_ttm_bo_purge(struct ttm_buffer_object *=
-ttm_bo, struct ttm_operatio
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe=
+_ttm_vram_mgr.c
+> index b2b6c1bd2c555..24d1347542651 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> @@ -864,6 +864,12 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *=
+xe, u64 addr)
+>  	vram_mgr =3D &vr->ttm;
+>  	mm =3D &vram_mgr->mm;
 > =20
->  	xe_bo_assert_held(bo);
-> =20
-> -	if (!ttm_bo->ttm)
-> -		return 0;
-> -
+> +	if (!xe->ras.bad_page_reservation) {
+        ^^^^
 
-[Severity: Critical]
-This is a pre-existing issue, but I have a question about how xe_bo_is_vram=
-()
-handles purged BOs.
+[Severity: High]
+Does this unintentionally disable page reservation on non-Crescent Island
+platforms that support RAS?
 
-When a BO is purged, its TTM resource is freed and set to NULL. However,
-xe_bo_is_vram() unconditionally passes bo->ttm.resource to resource_is_vram=
-(),
-which then dereferences it:
+Because xe_ras_init() only populates xe->ras.bad_page_reservation on
+XE_CRESCENTISLAND, the cached value remains false (0) on other platforms li=
+ke
+PVC. As a result, this check will unconditionally evaluate to true on those
+platforms, skipping page reservation and silently ignoring the configfs set=
+ting.
 
-drivers/gpu/drm/xe/xe_bo.c:xe_bo_is_vram() {
-	return resource_is_vram(bo->ttm.resource) ||
-		resource_is_stolen_vram(xe_bo_device(bo), bo->ttm.resource);
-}
-
-drivers/gpu/drm/xe/xe_bo.c:resource_is_vram() {
-	return mem_type_is_vram(res->mem_type);
-}
-
-This can lead to a NULL pointer dereference. For instance, in madvise_atomi=
-c(),
-an unprivileged user can trigger this on a purged BO:
-
-drivers/gpu/drm/xe/xe_vm_madvise.c:madvise_atomic() {
-    ...
-		/* Invalidate cpu page table, so bo can migrate to smem in next access */
-		if (xe_bo_is_vram(bo) &&
-		    (bo->attr.atomic_access =3D=3D DRM_XE_ATOMIC_CPU ||
-		     bo->attr.atomic_access =3D=3D DRM_XE_ATOMIC_GLOBAL))
-			ttm_bo_unmap_virtual(&bo->ttm);
-    ...
-}
-
-It is also called unguarded in xe_pt_target_leaf_level_from_bo(), which cou=
-ld
-crash during VM rebind if debug page size mode is enabled:
-
-drivers/gpu/drm/xe/xe_pt.c:xe_pt_target_leaf_level_from_bo() {
-    ...
-	if (!bo || !xe_bo_is_vram(bo) || !(bo->flags & XE_BO_FLAG_USER))
-		return 0;
-    ...
-}
-
-Does xe_bo_is_vram() need a check for !bo->ttm.resource before accessing
-res->mem_type to prevent a kernel oops or panic?
+> +		drm_err(&xe->drm, "0x%llx is reported as corrupted address by HW\n",
+> +			addr);
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+>  	/* Reserve page at address */
+>  	return xe_ttm_vram_reserve_page_at_addr(xe, addr - vr->dpa_base, vram_m=
+gr, mm);
+>  }
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260826135136.2040=
-44-16-tejas.upadhyay@intel.com?part=3D3
+44-16-tejas.upadhyay@intel.com?part=3D11
