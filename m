@@ -4,82 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02ED6C61DE2
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 12:49:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13F2CC61DC6
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 12:50:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B876110F034;
-	Thu, 27 Aug 2026 12:49:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C05E610F00B;
+	Thu, 27 Aug 2026 12:50:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="A4femNbh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aTL1KV+l";
 	dkim-atps=neutral
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EFC310F024
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 12:49:25 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-49554ebb87dso19626565e9.3
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 05:49:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1787834964; x=1788439764; darn=lists.freedesktop.org;
- h=content-transfer-encoding:reply-to:content-type:mime-version
- :references:in-reply-to:message-id:date:subject:to:from:from:to:cc
- :subject:date:message-id:reply-to:content-type;
- bh=f8es3QxEoZJPjHBPnjj/yQAPL6vDi03o7vqK4xCLI6U=;
- b=A4femNbhOpfnUgcw07F0cS7c1bBIq2Dlkuxma8PWnlcxmIQtiUI0ZfPvBkQIT1+3sy
- tCJJveIxHM07NC1WvTmUXtR1m+ef5pQ7j698zBlfbIYZ/dn38U4Jjy9S43KQDlMqOrV0
- ixv/D/IqbCKwUCT9aBeUzDfxEYbWsjPFRdfZO38YWUx5MaduCXXroOqFuszBjkHPOeLv
- 74ZStlEyKQ7Vevb3N2PUUl1X2LrlVAyt/Q3vj4go4nLflK0EkZZdAqvrpmNcU5hKeCjk
- go9D+4Tf6IW9b0K+Pk8q6mt4AEw97r5f7SU6Ui5HCkF3+iXqI8OlHMPqrY+iRDlSAZQT
- u16A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1787834964; x=1788439764;
- h=content-transfer-encoding:reply-to:content-type:mime-version
- :references:in-reply-to:message-id:date:subject:to:from:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=f8es3QxEoZJPjHBPnjj/yQAPL6vDi03o7vqK4xCLI6U=;
- b=anES29mIwSil5M/gUpqH44A57kR+DTVGCIN06X7zL+bwumVb49x14WDdgnAUmOQwMq
- PqcXn6/XYQl5XA9dNdKbDdxnV6zOAL7KZKSMra/j9+adIbJLDSSntfy3diesFSrldPLt
- VrZZDUWN9E9QKEXd5v6BtkjuYXmzhSKoPqQt42oUxTK8Tup5hgMA+r/M9gYUajStX3dG
- Gtb2axQM85BlYbK14mHPkyv/hXCPF8f23ng7Y+QgQlpO1WL5e4GbNqgmpqJ5oMmOAb5F
- MgHWFRKSaIbMQKpTRA7cfkyhxpknQS8b53XM2g5Zj9iuh2hzeAEkeYd7SCjlbyLP2o/7
- mPjA==
-X-Forwarded-Encrypted: i=1;
- AHgh+RpFagNz4/uUwP4HJHfkLmOiTM7iG0SqWPYczenugTdFriujnsBfuU0aWY8PxKHdaj5Aph96gz+A8g==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++lE7+kX2XuR8IRbGkjEyJBNtaUTpvGZTBlUJXfcZgE63IEvPmPe
- SpdEDuGKZU+qXkS0mbglj6f4vthcrpOWFp8CEOyKUzuactnRXRVzLhrJ
-X-Gm-Gg: AR+sD12ee2jxA+Lnv6p0RIpt2wv0jJuBK7VeIs953HDOvMyk0W2MkDQST6yRBBHDLaF
- bEpQADqKnS+gzLbMVs/JvjuICYKcUbByqpUfUjAcouJQm3wItBt35l4gVXz0xh0N20fFma0il6C
- AfMitV81Uqxm1dJinrJFdtxJ+Bh2rHgMYfXwwOQxArXGWtElBfO6UT2Qh5i69PafeD+Y+udGi62
- bjNC+4ivbX5G6YOYtbsGvJlhOz5igTn1xbQp9gfVEy/dd9IEI14saWGfkYsEqd2JZYEaCU3ajzE
- sfMBR9/9mO/ty3+QBap6pzfmgA21+4mdzDWBvCBZbAwsjiPkugXPBvEBKnSNV8oQiszYEtv8wMn
- uu+cqSBQ8sGJVyDtdW97e7aAu/Q7NlAabHqWNMPtD5CgmCX40h3plsFRLhEpWTmCKcWV2Kd2Xkj
- VTFcedX3uIy3nqmyE4jxWzqgpBa5j/eJEkzc8HK4P9K+RKrAvXKiNkT3+Xod0l33u7ueL+8RJ89
- w==
-X-Received: by 2002:a05:600c:1d1d:b0:499:737c:8a8b with SMTP id
- 5b1f17b1804b1-499dc81eb1emr176161465e9.12.1787834963628; 
- Thu, 27 Aug 2026 05:49:23 -0700 (PDT)
-Received: from able.fritz.box ([2a00:e180:1524:4300:a4b8:720e:f64f:4778])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-49b465226d8sm52089985e9.0.2026.08.27.05.49.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 27 Aug 2026 05:49:23 -0700 (PDT)
-From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
-X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: thomas.hellstrom@linux.intel.com, dakr@kernel.org, ecourtney@nvidia.com,
- matthew.brost@intel.com, nat@pixelcluster.dev,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH 10/10] dma-buf: Inline dma_resv_init and remove allocated flag
-Date: Thu, 27 Aug 2026 14:38:58 +0200
-Message-ID: <20260827124910.2245-11-christian.koenig@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260827124910.2245-1-christian.koenig@amd.com>
-References: <20260827124910.2245-1-christian.koenig@amd.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D14AC10F00B
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 12:50:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787835027; x=1819371027;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=4bjguaQtdiGj1L1KfbkYqyCKOVlrQx5WFmBRhmcXUHo=;
+ b=aTL1KV+lfGmnYPKFxgOePviHBXCqdCen1nlfFSttO+PG4NEKQcZfSpFf
+ BXJGQQECoTV5Fja3JGNUgywKnNaAkPxJFkn//Spwg/+afk9O6XlCj5Fx0
+ AUtm8qBCYh5AI+LyR3RB/Jtp0nSEc5+636U+Nhnb2GfuVx6mtLcXjxffd
+ 26WU/ad3rYKscqCLvQjiW4Va4U23ggnOnFNjsca+FnR/lFBFvUy/9Mgub
+ ejKXSbCuBqZ1Y5jWkRe93NMTmemMywegmjZwK9fMfV0ocgDkvplBjBFdI
+ PZf47Ep3UVAbhiXKRM6CS8Pqa79dbexH9Ut1bxSGdgvuUeMxKdfhSqXLf A==;
+X-CSE-ConnectionGUID: G8OU0IO3SpiQXvPqB8MJLg==
+X-CSE-MsgGUID: wWH39YbWSGaq480+m1Jh0Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="105708632"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="105708632"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 05:50:27 -0700
+X-CSE-ConnectionGUID: mOmvMwLBSq20Y5DBCgag0Q==
+X-CSE-MsgGUID: zhdMh9XLROCh+wE3KI4ZmA==
+X-ExtLoop1: 1
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 05:50:26 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Thu, 27 Aug 2026 05:50:25 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Thu, 27 Aug 2026 05:50:25 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.65)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Thu, 27 Aug 2026 05:50:25 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mLb1lvDPMeLNUXm1S9VokiWwAaZxwXn86AV82VqxSZuWtv0oxDWrIQDNvhA8m+6zFHobUrQihfZHwSEPpoECdcIeWl7MSlk36oXyKySvJOYk3H1hLqMQTBRvEMYVgOsL0ZPGwdoB+u46VPbE9P8B+NxkX1Fi0oNRyOiNd6zKy/OiQwZIPGGzG4TbGebKcCqZipGoZyjMcODiD3m7WOCcHrFKmUE9v88PB7DTlICTyboooIOh2NovEHBkhc3+7W+Yz87tnsWry+A/wEOkZPpNEgH5+/oV0pVIRIGIhLup7SDwSwItWTZttsVPdkQJooRwhNZ55xtnI8A+rPTNM8zAdw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=runlvA89Nj5MskP/0Jli57qNBpAqCakTEdZ2iNjh+Tk=;
+ b=KL7F3SNnzdo4mWumK76zc3ENvVS2Nz7Cy01NIkcoAeD3v1QkzhpWQqoBtEVrg80Jh9GNBo9p/Yj3+xwIMH84dh83effRp9VQx/Cui0W5kEVLDfFYhSlrdP3NQATJX4PXuoJw3n8Z7Gc4oIdklXq9uY39oLuYXu3V1G2emhdLWMbocHicufOjxsDNfWRhFb5YCMJV6FXxZzdcrnweXFS8CyGhKJjWSMcTTU9dAI3glAHh3RtlUPgJqO1peXZNppNe3rFTthhfStQYo9DV5Ltsr8U49fpcfyK/An02enhiaH4d+wgbFvBRqM8BKPNIcXckhznPoTqx6dW2FXFvEGiObA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6207.namprd11.prod.outlook.com (2603:10b6:208:3c5::21)
+ by DS3PR11MB9865.namprd11.prod.outlook.com (2603:10b6:8:366::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.10; Thu, 27 Aug
+ 2026 12:50:23 +0000
+Received: from MN0PR11MB6207.namprd11.prod.outlook.com
+ ([fe80::52eb:929f:a8b2:139d]) by MN0PR11MB6207.namprd11.prod.outlook.com
+ ([fe80::52eb:929f:a8b2:139d%4]) with mapi id 15.21.0360.008; Thu, 27 Aug 2026
+ 12:50:22 +0000
+Message-ID: <1b5b9d19-75bf-4c7c-86da-d7f8434f4695@intel.com>
+Date: Thu, 27 Aug 2026 18:20:11 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 5/7] drm/xe/sysctrl: Improve firmware response error
+ logging
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
+ <matthew.brost@intel.com>
+CC: <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
+ <vinay.belgaumkar@intel.com>, <riana.tauro@intel.com>,
+ <karthik.poosa@intel.com>, <sk.anirban@intel.com>, <raag.jadav@intel.com>,
+ <aravind.iddamsetty@linux.intel.com>, <umesh.nerlige.ramappa@intel.com>,
+ <dnyaneshwar.bhadane@intel.com>, <anoop.c.vijay@intel.com>
+References: <20260825110542.1359776-9-mallesh.koujalagi@intel.com>
+ <20260825110542.1359776-14-mallesh.koujalagi@intel.com>
+ <d24a07b8-3977-40d8-a7ca-35eeed9c6f9b@intel.com>
+Content-Language: en-US
+From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
+In-Reply-To: <d24a07b8-3977-40d8-a7ca-35eeed9c6f9b@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0214.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1ab::10) To MN0PR11MB6207.namprd11.prod.outlook.com
+ (2603:10b6:208:3c5::21)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6207:EE_|DS3PR11MB9865:EE_
+X-MS-Office365-Filtering-Correlation-Id: 380602ad-e1f7-4e31-1ecc-08df0439c1e2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|23010399003|366016|56012099006|10067099003|11063799006|4143699003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: 9hvpHYldf0WmIiTzsDQPlykmdcb2GJNNCgxS6TZ1QAr4x+whN6OxanW2VHmPIMsI50hZd8Z+2EexsN38Oej4fYDOEXVJ+dB8SzCtQMCLfSa3BWC7bXjralwm3GJyYYmkGQZwXNo4ueQQrPVpm/1KRj7QH06rwTGqIxlnQsQcfha428AipNHxMPAzZGd2fNSqmbCFm9rpKs5T1T//lXXnRXyZPcNClEs/i59DwFCvswPitwdbUdL4aNhq3dSyz7HEfwISY90f+ypbVtvkacMdCYrghQx2N4IisLiBCZjNg7wlBwvmPR92oF/1+QVRgi1BqqoSP5BJjpChcbPasZZnpHAh77RldvuKbetGGpcrhW+lF4UvExr4pRLIlOMbunxNVSR6qwZl4J633F9MwgT3ZRJyAof3UpxGm2sQ+iFokzCyt8kwiolKw/1ra2ygziVwEcZzGkISR82zeGBkI65Qq5pGSy6eZqFgUIf8qWzuEdCUsVvDbeQ1CNOyZ9VJCoPjv4E47zFloXIJ4ZmfgjTYGuLlkBGpC+sKtOWrL3zR4BUEMv2gTfznBZ8peP/M5fThE3YNi/k6XGuDht0iQaeqRD0PLV9buXa3+BfX91CNjgy/SqgAgL1zoM1gpy8Fi/O9ORMxfMn5nC2p8M/bik8fqhaD5ajvN1udnNqxgtWOLz8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(56012099006)(10067099003)(11063799006)(4143699003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K0JIWVlHTUZpbnJ0aXZqRFdHeUZPZ3Fya3Fwb3IydGh6MEVUNXU2aE1pZ1Z2?=
+ =?utf-8?B?ZWdzUmJOaEkzeWFlbUZyTFVEUUJkOEpyb0RMWWtET3FIRWVCMFNBWEtoWHpj?=
+ =?utf-8?B?VzAzZEtuUFcrV3NKQlVDZXJlV01qVzlIb09KbXI5bFgxdDZydCs5Nzh6RnNw?=
+ =?utf-8?B?dUl0RCtqeWdkNHFxaEdRdjNUbGJleVY1QStKOW1PM2QyWXI2VUdETkk0TmN1?=
+ =?utf-8?B?cDRRVElJY21mYWRXSlFLOE5BTmppV3cwdDU4aFFKWDNkTTNPNjVRUGcyVy9p?=
+ =?utf-8?B?MDBPYkVOQm0xYjBWSHBmWUdIclUvbEdmOFNmaDZFMTRJaEZzOExjUDc5NFIz?=
+ =?utf-8?B?V2dtV0hZaFhSalRlNFpqeTlCQnFzbmNpcFdaZzhZVlI2cGJKU2FIY3NqcjRv?=
+ =?utf-8?B?c0F5MGV2MW5GL2RReG4vTm1TbUFpenRyNUlGRWdoWm9oRmgwSFhnS1RKN3N6?=
+ =?utf-8?B?NFpXOU8xdUhuQ3hLUExpTXFWOTVKUDh1dlVSVUhNdEJrYWYvWW43K24rNmsr?=
+ =?utf-8?B?b2FYNzg5YmNrUW9PeTdyUnZtZkIvZDM3R2tya0FHKzZld3I4THhFTE1lZzB1?=
+ =?utf-8?B?L0daVHFPVDNOL2pzVWVxcGJUN1JmSGRBZjdDRHl4QVVXMzc5ZFB1Wno5MWlz?=
+ =?utf-8?B?MUdsZS9ycUxiTHZXc21QSVpIWUQrclN5ZVI2SnJNdSt2UzloZW5BaHZUTnhs?=
+ =?utf-8?B?TVYxZS9PSURrKzZOSFBNWU8xRHBjTGl6cjZCeFBJQ3dEaXFUMG5seUNZZ0d0?=
+ =?utf-8?B?azIzaUNwNlBNV3VNMGg3cThLeXpKWlMxK1B1VDhoaTJ1a0hxWlJkS2hjc3BR?=
+ =?utf-8?B?QVFnUmFnSjZSWitMbW5PdVNkejFHc3pHRzI5cjVEMy9uSkFtZzJLTVpNWXAr?=
+ =?utf-8?B?QXRJM0hhTzFNZ0k3SWpKaGtBOENZOEhhdDdYUktGRWFvcVZLNWFjWUp4UlIv?=
+ =?utf-8?B?d3ZYMC9SUm4rZ1RJNlJ6SXVFYVNjbDJCQVhmMkFXR01lVitSQXZ2eGl1dE82?=
+ =?utf-8?B?NTBDbGdsM2plRXY5K0RMY1RJMXpLVDRMY3RndGVJYnBmZjZYUHRiYVpmSzhm?=
+ =?utf-8?B?SEt2WXdRZlN3U25OUnNDVkdobFh3WFNUTHRaSEQ1SmwwM2MwTit4ay9aOUpU?=
+ =?utf-8?B?c3ZGMEc0OUN5TW1wZFVXbGt3UGRJMGdXOUtNSUtCbjJ6bHp4T1Z6TlJJTHhH?=
+ =?utf-8?B?RkFzeDhSTnFyaWYzR2x2RGM3VEVNV0MzamtMOG03Q3dObkF6U1JYcjZDdExL?=
+ =?utf-8?B?S2dTR3pnNHdiZmVVK1BNcktLS2gvNTY0dTBKdTl1a3hBeldWZkVxaCszdTBk?=
+ =?utf-8?B?czdWay81bU9PSDAzZVBGS1NHVTUwYnc4MDV0UVVxUlVDKzBSU1NUbzJzekQw?=
+ =?utf-8?B?UVNVMm1vSmVkUEc0K01kVGVLbGJsZXBtU0t4Z0lhcWMyZ3VDRS9icGh0RDdG?=
+ =?utf-8?B?cE9jM3pWZGRYUmlnQlorNTR0bVF3T244SDN6L0oweTdoK2xpMzJWYXF0M1VO?=
+ =?utf-8?B?SEltUXN6elFvUFNjaE0yUlZmN0U0dFhkOFlxNU5TcUMzL2U1V2pSZU85aVFP?=
+ =?utf-8?B?QmVLSzhkY0hDTmtYaG9Zenpqdll1YWw4VmkyeHFYVjU1T0Q2YS90SW5GMVVq?=
+ =?utf-8?B?SGQyWmtqeHBmOFF0cUpwQ1Zad3pkREFMTTNuZ3lCZTBRM1hPc1FVN3VWZXU1?=
+ =?utf-8?B?MjNNWitsVXlZZThqU0NrdTIvOUROZmt6NjZ6cDdocWM2NFV3VmVYbFVJVzJV?=
+ =?utf-8?B?a1N1TlFRY0l2R2dHVE8xa2JjclhQQThQdmtKSUsyZXBJS1pQUSsxV0VtTU5P?=
+ =?utf-8?B?MUZQMTQvbDV5aitEL0dZR2ovVFlUaExrczZENlA0WEIvVS9yMStma2MvQkcr?=
+ =?utf-8?B?UXdXLzNOWTJvMkc1TFk0TG55UCt3WDlaODFjTUJpcEVmT0FzUzVJd3htNDdo?=
+ =?utf-8?B?dlowb0NxRzFXYThjUUFZZ2xxOGREWXpsam80ZXVCek5Gd3pOU3haRDUzOFQy?=
+ =?utf-8?B?RmNUU1hJWGUwcmNOc042RE55NjBHUlZzQ01GSTkvODRQWGkvVEtueDhNWncr?=
+ =?utf-8?B?UmFrWWw2eFhTdEZFTkM2dUI2aWJGZFNjY0VxUkRUTm12cnhiYWcycWQ5SFpl?=
+ =?utf-8?B?VVd4ZWlaWnZINTV3U0pQZEhpNFMrT0lZUVZuSWVSa1U2cTBnQkJXM2ZUNW45?=
+ =?utf-8?B?cGsyS1lpdSt4T2lrRi94Y1hKeUVrRk9uRmZGT25WdS94d2RJME93NXQ1Z083?=
+ =?utf-8?B?blpOS3JnR1I5dUk5UTVXcnU1UENCVjNiMDF0cDNteHc3a1o0Nk1yc3FSMjJV?=
+ =?utf-8?B?ZVdEdDlUV29COEVSTDlZVGZkZFVRa3BNcDE0ZGVZUU53U1lqUmVTWlFCcDgy?=
+ =?utf-8?Q?XmYcLZdOMJlgDwRI=3D?=
+X-Exchange-RoutingPolicyChecked: sIuvCGF7Ts3yDxXWKuXWfS9c8qkUxhGg/73o0RehM+mRV+xo2+gqUk22agOzOIrr3Ya6xsExBlkuFbSyQmkcuoCxnbYE3IPTyH0cd/sl5e376x+m3XxLvMcjMuU45v7lePA16cziemswd9z3RAxbR30HePNkcCkq7sDeH0Yq9U/sQ4NsxdN9MZGuChAnx1t0e1Ec3cHQN/C9yLPMbVan0gj2SZObZHGgAv5z+iL0xae+I55Mr8a+Tak+xRjaptoFIxWMVrIcHGQYTmFgpubecBjA1VVp8Qsw+w4njdAWxIdSSfziNvF4a+1HFBvF/hDWmji9SuYyIyuRV5jAC4TXfQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 380602ad-e1f7-4e31-1ecc-08df0439c1e2
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6207.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2026 12:50:22.6581 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: eVmppP/5G4q/rLJ3X/m74fbZGhpNtio3zLqBp6wxVznx1Iba+HhfKzVCAKwNNZhqf3tBkSUsA/ysOqWrgzwXryMfhq8DMEZqyFvIO2kwyGA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS3PR11MB9865
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,158 +173,85 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that all users have migrated to dma_resv_alloc(), inline the
-initialization code directly into dma_resv_alloc() and remove the
-dma_resv_init() function entirely.
 
-Additionally, remove the 'allocated' flag from struct dma_resv since
-all dma_resv objects are now dynamically allocated. This simplifies
-the reference counting logic - dma_resv_release() now always frees
-the object unconditionally.
+On 27-08-2026 04:27 pm, Michal Wajdeczko wrote:
+>
+> On 8/25/2026 1:05 PM, Mallesh Koujalagi wrote:
+>> Use xe_log_err() helper and include additional details when a
+>> response header mismatch occurs.
+>>
+>> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+>> ---
+>> v5:
+>> - Use %#x after REG_FIELD_GET change. (Michal)
+>> ---
+>>   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 18 +++++++++++-------
+>>   1 file changed, 11 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+>> index f8b518dcafa2..5032d766b314 100644
+>> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+>> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+>> @@ -24,16 +24,16 @@ struct xe_sysctrl_mailbox_msg_hdr {
+>>   } __packed;
+>>   
+>>   #define XE_SYSCTRL_HDR_GROUP_ID(hdr) \
+>> -	FIELD_GET(SYSCTRL_HDR_GROUP_ID_MASK, le32_to_cpu((hdr)->data))
+>> +	REG_FIELD_GET(SYSCTRL_HDR_GROUP_ID_MASK, le32_to_cpu((hdr)->data))
+>>   
+>>   #define XE_SYSCTRL_HDR_COMMAND(hdr) \
+>> -	FIELD_GET(SYSCTRL_HDR_COMMAND_MASK, le32_to_cpu((hdr)->data))
+>> +	REG_FIELD_GET(SYSCTRL_HDR_COMMAND_MASK, le32_to_cpu((hdr)->data))
+>>   
+>>   #define XE_SYSCTRL_HDR_IS_RESPONSE(hdr) \
+>> -	FIELD_GET(SYSCTRL_HDR_IS_RESPONSE, le32_to_cpu((hdr)->data))
+>> +	REG_FIELD_GET(SYSCTRL_HDR_IS_RESPONSE, le32_to_cpu((hdr)->data))
+>>   
+>>   #define XE_SYSCTRL_HDR_RESULT(hdr) \
+>> -	FIELD_GET(SYSCTRL_HDR_RESULT_MASK, le32_to_cpu((hdr)->data))
+>> +	REG_FIELD_GET(SYSCTRL_HDR_RESULT_MASK, le32_to_cpu((hdr)->data))
+> this should be mentioned in this commit message
+>
+> nit: or maybe above changes should be done in its own patch?
+Sure! will make different patch for that.
+>
+>>   
+>>   static int sysctrl_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
+>>   				  unsigned int timeout_ms)
+>> @@ -237,13 +237,17 @@ static int sysctrl_receive_frames(struct xe_sysctrl *sc,
+>>   	if (!XE_SYSCTRL_HDR_IS_RESPONSE(hdr) ||
+>>   	    XE_SYSCTRL_HDR_GROUP_ID(hdr) != XE_SYSCTRL_HDR_GROUP_ID(req) ||
+>>   	    XE_SYSCTRL_HDR_COMMAND(hdr) != XE_SYSCTRL_HDR_COMMAND(req)) {
+>> -		xe_err(xe, "sysctrl: Response header mismatch\n");
+>> +		xe_log_err(xe, SYSCTRL, -EPROTO,
+>> +			   "Response header mismatch: got group=%#x cmd=%#x is_resp=%u, expected group=%#x cmd=%#x\n",
+>> +			   XE_SYSCTRL_HDR_GROUP_ID(hdr), XE_SYSCTRL_HDR_COMMAND(hdr),
+>> +			   XE_SYSCTRL_HDR_IS_RESPONSE(hdr),
+>> +			   XE_SYSCTRL_HDR_GROUP_ID(req), XE_SYSCTRL_HDR_COMMAND(req));
+> nit: as admin may not know what is "group" "cmd" "resp"
+> maybe we can just log raw hdr value?
+>
+> 	"Response header mismatch: %#x\n", hdr
 
-The last remaining use of dma_resv_init() in dma_resv_lockdep() has
-been converted to use dma_resv_alloc() instead.
+"Response header mismatch: got=%#x expected=%#x\n", 
+le32_to_cpu(hdr->data), le32_to_cpu(req->data)); please let me know, is 
+this fine?
 
-Signed-off-by: Christian König <christian.koenig@amd.com>
-Assisted-by: Claude:Sonnet 4
----
- drivers/dma-buf/dma-resv.c | 41 ++++++++++++++++----------------------
- include/linux/dma-resv.h   | 10 ----------
- 2 files changed, 17 insertions(+), 34 deletions(-)
+Thanks,
 
-diff --git a/drivers/dma-buf/dma-resv.c b/drivers/dma-buf/dma-resv.c
-index 48798cec6ce7..a3586e79c2eb 100644
---- a/drivers/dma-buf/dma-resv.c
-+++ b/drivers/dma-buf/dma-resv.c
-@@ -132,26 +132,13 @@ static void dma_resv_list_free(struct dma_resv_list *list)
- 	kfree_rcu(list, rcu);
- }
- 
--/**
-- * dma_resv_init - initialize a reservation object
-- * @obj: the reservation object
-- */
--void dma_resv_init(struct dma_resv *obj)
--{
--	kref_init(&obj->refcount);
--	obj->allocated = false;
--	ww_mutex_init(&obj->lock, &reservation_ww_class);
--
--	RCU_INIT_POINTER(obj->fences, NULL);
--}
--EXPORT_SYMBOL(dma_resv_init);
--
- /*
-  * dma_resv_release - release function for kref
-  * @kref: the kref inside the dma_resv object
-  *
-  * This is called when the last reference to a dma_resv object is released.
-- * Cleans up the object and frees it if it was allocated by dma_resv_alloc().
-+ * All dma_resv objects are now dynamically allocated, so this always frees
-+ * the object after cleanup.
-  */
- static void dma_resv_release(struct kref *kref)
- {
-@@ -159,8 +146,7 @@ static void dma_resv_release(struct kref *kref)
- 
- 	dma_resv_list_free(rcu_dereference_protected(obj->fences, true));
- 	ww_mutex_destroy(&obj->lock);
--	if (obj->allocated)
--		kfree(obj);
-+	kfree(obj);
- }
- 
- /**
-@@ -181,8 +167,9 @@ struct dma_resv *dma_resv_alloc(void)
- 	if (!obj)
- 		return NULL;
- 
--	dma_resv_init(obj);
--	obj->allocated = true;
-+	kref_init(&obj->refcount);
-+	ww_mutex_init(&obj->lock, &reservation_ww_class);
-+	RCU_INIT_POINTER(obj->fences, NULL);
- 
- 	return obj;
- }
-@@ -838,23 +825,28 @@ static int __init dma_resv_lockdep(void)
- {
- 	struct mm_struct *mm = mm_alloc();
- 	struct ww_acquire_ctx ctx;
--	struct dma_resv obj;
-+	struct dma_resv *obj;
- 	struct address_space mapping;
- 	int ret;
- 
- 	if (!mm)
- 		return -ENOMEM;
- 
--	dma_resv_init(&obj);
-+	obj = dma_resv_alloc();
-+	if (!obj) {
-+		mmput(mm);
-+		return -ENOMEM;
-+	}
-+
- 	address_space_init_once(&mapping);
- 
- 	mmap_read_lock(mm);
- 	ww_acquire_init(&ctx, &reservation_ww_class);
--	ret = dma_resv_lock(&obj, &ctx);
-+	ret = dma_resv_lock(obj, &ctx);
- 	if (ret) {
- 		/* Only EDEADLK from the error injection is possible here */
- 		WARN_ON(ret != -EDEADLK);
--		dma_resv_lock_slow(&obj, &ctx);
-+		dma_resv_lock_slow(obj, &ctx);
- 	}
- 	fs_reclaim_acquire(GFP_KERNEL);
- 	/* for unmap_mapping_range on trylocked buffer objects in shrinkers */
-@@ -868,10 +860,11 @@ static int __init dma_resv_lockdep(void)
- 	__dma_fence_might_wait();
- #endif
- 	fs_reclaim_release(GFP_KERNEL);
--	ww_mutex_unlock(&obj.lock);
-+	ww_mutex_unlock(&obj->lock);
- 	ww_acquire_fini(&ctx);
- 	mmap_read_unlock(mm);
- 
-+	dma_resv_put(obj);
- 	mmput(mm);
- 
- 	return 0;
-diff --git a/include/linux/dma-resv.h b/include/linux/dma-resv.h
-index 4d12519df34e..cf689d3d4ba6 100644
---- a/include/linux/dma-resv.h
-+++ b/include/linux/dma-resv.h
-@@ -162,15 +162,6 @@ struct dma_resv {
- 	 */
- 	struct kref refcount;
- 
--	/**
--	 * @allocated:
--	 *
--	 * True if this object was allocated by dma_resv_alloc(), false if
--	 * embedded in another structure. Used to determine whether to free
--	 * the object memory in the release function.
--	 */
--	bool allocated;
--
- 	/**
- 	 * @lock:
- 	 *
-@@ -482,7 +473,6 @@ static inline void dma_resv_unlock(struct dma_resv *obj)
- 	ww_mutex_unlock(&obj->lock);
- }
- 
--void dma_resv_init(struct dma_resv *obj);
- struct dma_resv *dma_resv_alloc(void);
- struct dma_resv *dma_resv_get(struct dma_resv *obj);
- void dma_resv_put(struct dma_resv *obj);
--- 
-2.43.0
+-/Mallesh
 
+>>   		return -EPROTO;
+>>   	}
+>>   
+>>   	if (XE_SYSCTRL_HDR_RESULT(hdr) != 0) {
+>> -		xe_err(xe, "sysctrl: Firmware error: 0x%02lx\n",
+>> -		       XE_SYSCTRL_HDR_RESULT(hdr));
+>> +		xe_log_err(xe, SYSCTRL, -EIO, "Firmware error: %#04x\n",
+>> +			   XE_SYSCTRL_HDR_RESULT(hdr));
+>>   		return -EIO;
+>>   	}
+>>   
