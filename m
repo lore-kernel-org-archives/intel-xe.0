@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64D26C5DF9D
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 08:07:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BA96C5DF9D
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 08:21:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00D3A10E3D4;
-	Thu, 27 Aug 2026 08:07:27 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E090810E3D2;
- Thu, 27 Aug 2026 08:07:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8019514771063848929=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BDF910E5B8;
+	Thu, 27 Aug 2026 08:21:38 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CvZFKd59";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6F1310E0CD
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 08:21:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787818898; x=1819354898;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bRsceO5zODKfF/xun6gJTZTbRBx5OqLf3bkqWnY7cns=;
+ b=CvZFKd59M2DtcAEk90B+83QYQS3FwpFsw7stctK/TNI0FeSipKztK+kb
+ uvuQPRcUVabb9igI2ejdePcvKqgAYibKiEUXozKzksIXiKwCMwXdzSrD6
+ T3xuD+MQQhHqIelaZ2BkY6cNU9Q2yxwWajtCiB/VlhFN/b0hQMZZJXhBG
+ lG9L8u628kgvyWNJUYKGlv/xSKR3uFjEGCrK/9Jsz4jlxOwAIZqzC+/8f
+ v6VZKfWj+RlZfEBp07IlfPTTwdifPqZyIttTnzK8EetLYwqIDNAhxTjaQ
+ uWMJjPZ61GGykXd8cWABpONFTNbImC7NtUE9SFzEb46T25vPr/a5vtpTr w==;
+X-CSE-ConnectionGUID: EsIx/MzyRIi5A2uILorlAQ==
+X-CSE-MsgGUID: M1naklNkRemTINdJsj3faQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="99475708"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="99475708"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 01:21:37 -0700
+X-CSE-ConnectionGUID: +IONw667Qq+kow4qTiUrPQ==
+X-CSE-MsgGUID: zryfrP2sStuw30AccLbacQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="264559590"
+Received: from tilak-z690i-a-ultra-plus.iind.intel.com ([10.190.239.38])
+ by fmviesa007.fm.intel.com with ESMTP; 27 Aug 2026 01:21:35 -0700
+From: tilak.tirumalesh.tangudu@intel.com
+To: tilak.tirumalesh.tangudu@intel.com, niranjana.vishwanathapura@intel.com,
+ matthew.brost@intel.com, intel-xe@lists.freedesktop.org
+Subject: [PATCH 0/3] drm/xe/ggtt: fix stale GGTT mappings on unmap
+Date: Thu, 27 Aug 2026 13:50:08 +0530
+Message-ID: <20260827082011.3370672-1-tilak.tirumalesh.tangudu@intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_debugfs_knob_?=
- =?utf-8?q?to_control_GPGPU_preemption_granularity?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Varun Gupta" <varun.gupta@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 27 Aug 2026 08:07:24 -0000
-Message-ID: <178781804491.90152.14344067794853749442@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260827072106.1138741-2-varun.gupta@intel.com>
-In-Reply-To: <20260827072106.1138741-2-varun.gupta@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +60,90 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8019514771063848929==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 
-== Series Details ==
+This series addresses two related GGTT teardown issues on multi-queue
+platforms:
 
-Series: drm/xe: Add debugfs knob to control GPGPU preemption granularity
-URL   : https://patchwork.freedesktop.org/series/172840/
-State : success
+First issue: unmapped GGTT ranges resolve to the scratch page. Because
+scratch is a valid PTE, a re-walk of a freed range never faults, so any
+stale TLB translation left behind is masked - the freed range silently
+reads scratch instead of surfacing the problem. On multi-queue platforms
+Patch 1 does not allocate the scratch page at all, so the whole GGTT -
+initial clear and unmap alike - holds PTE=0 and faults consistently for
+the entire boot. Other platforms keep scratch and are unchanged.
 
-== Summary ==
+Second issue: engines cache GGTT translations in their own TLBs. A
+full context restore on engine switch normally flushes them, but on
+multi-queue GuC does a lite-restore on secondary queue append and
+skips the full context restore, so those engine TLB invalidations are
+missed. The existing GGTT invalidation (xe_tlb_inval_ggtt()) does not
+reach the engine-side TLBs either, so after an unmap an engine can
+keep hitting the stale translation and read the old page. Patches 2
+and 3 add and use a full (INVAL_FULL, intra-VF) invalidation to drain
+the engine TLBs on unmap.
 
-CI Bug Log - changes from xe-5651-acd8191c76e28f9b260f6701573fd1d2c76dd0f6_BAT -> xe-pw-172840v1_BAT
-====================================================
+Patch 1: drm/xe/ggtt: fault on unmapped GGTT for multi-queue platforms
+    Skip allocating the GGTT scratch page on multi-queue platforms so
+    cleared and unmapped ranges hold PTE=0. A missed engine TLB
+    invalidation (see above) then faults instead of silently landing
+    on scratch.
 
-Summary
--------
+Patch 2: drm/xe/tlb_inval: add xe_tlb_inval_ggtt_full() GGTT
+         invalidation helper
+    xe_tlb_inval_ggtt_full() + GuC backend flush engine TLBs across all
+    engines within the requesting VF.
 
-  **SUCCESS**
+Patch 3: drm/xe/ggtt: invalidate engine GGTT TLBs for multi-queue GTs
+    Issue the invalidation on the unmap path, gated on the GT having any
+    multi-queue engine class, for both the primary and media GTs.
+    Draining the engine TLB on teardown guarantees a recycled range's
+    next occupant cannot hit the predecessor's cached translation.
 
-  No regressions found.
+v2:
+    - Add xe_gt_has_multi_queue() helper and gate on it (Niranjana).
+    - Add xe_tlb_inval_issue_op_wait() and refactor the GGTT
+      invalidation entry points onto it (Niranjana).
+    - Other nits.
 
-  
+v3:
+    - Patch 1: drop the scratch page entirely on multi-queue platforms
+      instead of toggling scratch vs faulting at unmap, so the behaviour
+      is consistent for the whole boot (Matt Brost).
+    - Patch 2: avoid the CT-state TOCTOU (Matt Brost).
+    - Patch 3: invalidate both the primary and media GTs, similar to
+      xe_ggtt_invalidate() (Matt Brost).
 
-Participating hosts (13 -> 13)
-------------------------------
+v4:
+    - Patch 2: propagate real send errors instead of masking them as
+      -ECANCELED (Sashiko).
 
-  No changes in participating hosts
+v5:
+    - Patch 1: document the rationale - GuC lite-restore on secondary
+      queue append skips the full context restore, so engine TLB
+      invalidations are missed (Matt Roper, Matt Brost).
+    - Patch 2: handle -ENOTRECOVERABLE (wedged) alongside -ENODEV, and
+      drop the redundant -ECANCELED check (Matt Brost, Niranjana).
+    - Patch 3: guard NULL gt for parity with ggtt_invalidate_gt_tlb()
+      and explain the multi-queue-only engine flush (Niranjana).
 
+Tangudu Tilak Tirumalesh (3):
+  drm/xe/ggtt: fault on unmapped GGTT for multi-queue platforms
+  drm/xe/tlb_inval: add xe_tlb_inval_ggtt_full() GGTT invalidation
+    helper
+  drm/xe/ggtt: invalidate engine GGTT TLBs for multi-queue GTs
 
-Changes
--------
+ drivers/gpu/drm/xe/xe_ggtt.c            | 74 +++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_gt.h              | 13 +++++
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c   | 29 ++++++++++
+ drivers/gpu/drm/xe/xe_tlb_inval.c       | 42 ++++++++++++--
+ drivers/gpu/drm/xe/xe_tlb_inval.h       |  1 +
+ drivers/gpu/drm/xe/xe_tlb_inval_types.h | 10 ++++
+ 6 files changed, 147 insertions(+), 22 deletions(-)
 
-  No changes found
+-- 
+2.46.0
 
-
-Build changes
--------------
-
-  * Linux: xe-5651-acd8191c76e28f9b260f6701573fd1d2c76dd0f6 -> xe-pw-172840v1
-
-  IGT_9076: 8f42b0189d73d9912ad58c99cfaa4ff46c20fcc3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5651-acd8191c76e28f9b260f6701573fd1d2c76dd0f6: acd8191c76e28f9b260f6701573fd1d2c76dd0f6
-  xe-pw-172840v1: 172840v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172840v1/index.html
-
---===============8019514771063848929==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add debugfs knob to control GPGPU preemption granularity</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172840/">https://patchwork.freedesktop.org/series/172840/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172840v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172840v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5651-acd8191c76e28f9b260f6701573fd1d2c76dd0f6_BAT -&gt; xe-pw-172840v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5651-acd8191c76e28f9b260f6701573fd1d2c76dd0f6 -&gt; xe-pw-172840v1</li>
-</ul>
-<p>IGT_9076: 8f42b0189d73d9912ad58c99cfaa4ff46c20fcc3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5651-acd8191c76e28f9b260f6701573fd1d2c76dd0f6: acd8191c76e28f9b260f6701573fd1d2c76dd0f6<br />
-  xe-pw-172840v1: 172840v1</p>
-
-</body>
-</html>
-
---===============8019514771063848929==--
