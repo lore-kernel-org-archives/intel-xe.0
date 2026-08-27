@@ -4,161 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 748CAC61DC4
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 21:33:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1B37C61DB9
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 21:39:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2347C10F1DA;
-	Thu, 27 Aug 2026 21:33:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E58910F1DA;
+	Thu, 27 Aug 2026 21:39:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PcK7PaPJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jjm6PRzZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD20210F1DA
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 21:33:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B69E510F1DA
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 21:39:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787866408; x=1819402408;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=LTo2aWZha2SgK8q649dvE8nKBtEMNkPIoGcc+AqGiTg=;
- b=PcK7PaPJBVF2DJ7aVpxATdgjRkly7wO8vLvr5AQULTUcPK5WoT5OnDz1
- PQgfuhGW0YT+OjeIuK6fAAAa1PybohwpJXAHSv9Y6aX5fWQd8EHIfRTVv
- zL+Qx5exKcJEbymmFCTFxZMweI0yThz6CwykeI4Rv18WEDXbDc8LWAP9E
- lmSlekkScEHZ59SrndplpG76QQmzGmXlq9//Nqn7G6SPP1YKM9Z4u76ER
- M3/3A4Ixwme6nEtNtTPvIKlDUhYPvF2YYMAWVREyYAKjczdIpsH7N2IWq
- OiVnZXvc0dlId6PZ4FdQCj1h55QxrRInFwVMCOrlpGMzjKLDtvRGUa/Lk A==;
-X-CSE-ConnectionGUID: /+fec2oSQMS3K02ddx3jUA==
-X-CSE-MsgGUID: 48KBB1uZRG2J3qsCPoAmBg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11888"; a="99537549"
-X-IronPort-AV: E=Sophos;i="6.25,247,1779174000"; d="scan'208";a="99537549"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 14:33:27 -0700
-X-CSE-ConnectionGUID: FPG/4xCRSt+z0Mfi3GA6Rg==
-X-CSE-MsgGUID: XxFHcDQLRg2DRxKlpbrwjA==
+ t=1787866779; x=1819402779;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=YeXkvHQr5OawPxurRHSVvLEejow8dIeamPDmxFzlDcA=;
+ b=jjm6PRzZ9ZMuDeRjiIfxNuXV80+kq158R1YvJwv9kJRr56HZ6B0lojRm
+ 4jZSEZsvfEWXSpkN72P1iL5z6U5tCrbfKbDUKAEwU230VO2uZFcnmMoMn
+ KSyG7DmaSrEyY1u4sJUZpzz/+mp6KNExL0xW+j0ZRdzRv+LFVMPQz3eMT
+ a0TCLLZg5yMk947qU6btme9O1lic439Y9xmClfqYye4oVfgvR4DvWUtxr
+ H4DdWbBsNMsNH/ngWEmQYDV/FrnuEaQUYXmj2Bup8N3W6LKKFO+LpWI0q
+ kzWoZbvHo9dX37WZw77LDQXIA9eATJEWVk6Ky4G0j61QQXwN8G2S7eIrp g==;
+X-CSE-ConnectionGUID: BLjbGOmjT++9wkhvwGBxYQ==
+X-CSE-MsgGUID: bnfuZ4+DTc6rPS9vOlbJDg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11888"; a="87320605"
+X-IronPort-AV: E=Sophos;i="6.25,247,1779174000"; d="scan'208";a="87320605"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 14:39:39 -0700
+X-CSE-ConnectionGUID: c3tPEvLCTi6+as9h2OLlGQ==
+X-CSE-MsgGUID: UUR0cQ24QO6VNhfs9rM2qw==
 X-ExtLoop1: 1
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 14:33:27 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,247,1779174000"; d="scan'208";a="264215486"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 14:39:39 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 27 Aug 2026 14:33:26 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.46; Thu, 27 Aug 2026 14:39:38 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Thu, 27 Aug 2026 14:33:26 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.60) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Thu, 27 Aug 2026 14:39:38 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.23) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 27 Aug 2026 14:33:26 -0700
+ 15.2.2562.46; Thu, 27 Aug 2026 14:39:38 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=P8dvtVXrkfhddejIuurSdhGLvG99w0/gGW/5aVHX+s9mqcXLnUauaS7Ily/YR7pGyH5tptXwEjuMTPu4/S5uFMRRAYprTctCwC/P3PMvED4vOHhFexj8hxW99NSuHV0iXbmPPqNnDtdSr14UtG/2lUqhPfLkP9mk+YFtpLeoF3DKI42X4+ovOM/ToGpuWCth5fAg/fNSO3RsY3BFCy+Yy+SPJiDzvG31wfhczFhbTDHx3Psd261mXxdZAUXTX9HCYVNKLejHcQrjpMhxQf/V8t5Zlb3e56IZfN7etUl1OHDlMyrj2H7XVhWPofblqQRmNXbhilEqfIVI6HrWCy8sow==
+ b=wszxcailWriFzi94Miv7fNa5VLeS92UkLEcHTP82eXf9R6yWZVi37T7TIbYqtqwGE1Kh+IGlRvsq2xhn9fnvYPCUYts7ArI1eoO6CkqFaHggaudk+m3MEV16kjtxwz8+Ja55F9PjPLBJDSG2G2kW1NducLSXLcayYHu509dqDq18Ea4XoLkhDY3aIfcdYDC6Mw/AyegGKlsAL5JQl77RlDFBeS1AWOqgyuV/9aWcFFLKLt/0FjvOAZ3hRCxMLf9dIRjnwU27aP4pLP4YMlY46VWgCTOQ7dZtkVKh4vdQCG4SDsob8gSeUK2HKsmewk1ETNP00nLF5HUm11nVDGlYeA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VJSQZYCBhZ/MjPygUm86g6HvDb+gX+76CeznmIDBxjs=;
- b=nbVAdQXbvHeg9To1zkLgd1PONm6O7SUdAmbCLEboDEdKniDpdPbyOFci36EgViUduBKhKguNz5Mf6oR3vFZFgqgHlBPinkO0V0x+ErFaxQ4T5PJfAHpn7wqdYcrG9OqPYy6KsjsK1sF4SyVl1u3JEW/84w+64gZCLqurPshDUErTUsAP7Arc/TFYl3lQfRUUejRz9m82JMK2ttgORW4COcYnJRP+4/DWEPC2yyZjh7u8ebsCq5n8sZhIyhg8tXUAdatQVh4HetoB/VUpw1dJ8eMzz8e8iEFokbqAb0qWSruS/KBu6ohvVrryNaeY5n7baIW32Azc0lT9P9ENyRrLBw==
+ bh=r0gNpG+BIWkInuQUhAGDr09FOG2cHyyy2U67YKFXKDQ=;
+ b=UkhLIP+D4go9yyQGHWPbMLJaBN5L1Aj94o55SoWRGZrLm4kzEzUfim7lqWpxtkWbiSFFHzXhHXKW9uS5OM65WTvZNu5c7VHrxqLBjb923tx+nyc5PnObWp35kQPXx0nKqX3/NLj2uQnKnpOWK1nV/pRULC7HLy/t7d18cOC9ETaNagtPGXIjrRjZHS+0umJ1f8W+/iuB+pY1E2dUa2DEVIJGH5N0qjwIjjBWPCa9gQ8m8oIQIQQVxefiBy7G0Ci70/P0o6/BTgoqN2RIJG4HDy/WPZPS3N9sUS/E0ffWq0nD8XW1NKAG9ziZXnDqHWoUlS0W1p/yP83tJ+T98dDFlA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB4979.namprd11.prod.outlook.com (2603:10b6:303:99::16)
- by PH0PR11MB7494.namprd11.prod.outlook.com (2603:10b6:510:283::18)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by IA4PR11MB9252.namprd11.prod.outlook.com (2603:10b6:208:561::14) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.10; Thu, 27 Aug
- 2026 21:33:22 +0000
-Received: from CO1PR11MB4979.namprd11.prod.outlook.com
- ([fe80::ed0a:e4ab:fde6:edcc]) by CO1PR11MB4979.namprd11.prod.outlook.com
- ([fe80::ed0a:e4ab:fde6:edcc%2]) with mapi id 15.21.0360.008; Thu, 27 Aug 2026
- 21:33:22 +0000
-Message-ID: <b3f36afd-c702-4359-bac6-3e5eec11aa66@intel.com>
-Date: Thu, 27 Aug 2026 14:33:21 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] drm/xe/guc: Report errors that cause a CT shutdown
- using SIGID
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: Aravind Iddamsetty <aravind.iddamsetty@intel.com>, Mallesh Koujalagi
- <mallesh.koujalagi@intel.com>, Alan Previn Teres Alexis
- <alan.previn.teres.alexis@intel.com>, Julia Filipchuk
- <julia.filipchuk@intel.com>
-References: <20260827002801.837731-1-daniele.ceraolospurio@intel.com>
- <20260827002801.837731-3-daniele.ceraolospurio@intel.com>
- <c88d3c1e-4b46-41b4-be7d-829b12e2e18d@intel.com>
-Content-Language: en-US
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <c88d3c1e-4b46-41b4-be7d-829b12e2e18d@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR03CA0369.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::14) To CO1PR11MB4979.namprd11.prod.outlook.com
- (2603:10b6:303:99::16)
+ 2026 21:39:36 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e%4]) with mapi id 15.21.0360.006; Thu, 27 Aug 2026
+ 21:39:36 +0000
+Date: Thu, 27 Aug 2026 14:39:34 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Varun Gupta <varun.gupta@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <gustavo.sousa@intel.com>
+Subject: Re: [PATCH v9] drm/xe: Add debugfs knob to control GPGPU preemption
+ granularity
+Message-ID: <20260827213934.GD422236@mdroper-desk1.amr.corp.intel.com>
+References: <20260827072106.1138741-2-varun.gupta@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20260827072106.1138741-2-varun.gupta@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0100.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c5::15) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB4979:EE_|PH0PR11MB7494:EE_
-X-MS-Office365-Filtering-Correlation-Id: e08d459f-7222-42df-0ea6-08df0482d1ad
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|IA4PR11MB9252:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0e9141b1-a8a0-4aa2-3984-08df0483b0ed
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|1800799024|376014|6133799003|10067099003|56012099006|11063799006|4143699003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: w4Ke6o+e6C9Jfa34qgeYKlcbJ4fLxDNVu1CljM2YjyUtmcHJ8Wk6QjShwda3DZxMsy4x2PTGZgzxIFAX0fXDg8HwaaOE91R8clM7yMU19dyirO9fpQlkK8NWnO8fkZhQbEQbRe4w/Tw/KTWH1h5pNqg3vK/6RgTNyhbNYjmCP7ofOiPldRQrpvYQCkcoZN6cwqKtIWqVP7VjBh3n1dWsDsY3oUpMTw32THM2UT44g9GqkpzYi4tS6tT1c+s2pz4yY5ODdEJ/oJNQvBjMyN1UYbQEnwnnOd0i5EqrHIaQjclS121Ri7ylfG1ukYEUKrNrDIyuzKdDPRP9YwzQGa1GgkdECFDm2ibOJ32cHSrwg2u6yXa16zj02exqrCfpk2RtbAo0GDbEh3EmeY2NpQSyJgDX9Uuq0dhaj0galjkTLDbrK3LUN2DfXZespwmyFH10LsxjvGs08J2/QX13G1Fl9p2L5c3GTbcCqtZAG+g9+cTIeWc4d4Vf4NkAh7L7WTn74P4Sw/UF3tkDrvxBbMZ4JUtGpxEKijYh3oJVYJ4zp16ZzQ0vaFizxvVFfpE0g1SPk09hnXcC3AYbWjoNA8UC2t+9PIj5mlwsRc5iscHs293Rz2oQ++FiRkSTgdVi1nDjjVEM1l2dzGZbB49RNO0kWkn8nd2ZW61Lu/erUi3Z6Ao=
+ ARA:13230040|366016|376014|23010399003|1800799024|6133799003|10067099003|56012099006|11063799006|22082099003|18092099006|18002099003|3023799007;
+X-Microsoft-Antispam-Message-Info: zM8lxRi+ZWd/YsIBkDbA4AOfJEepVGCmomp315Mhm9Dh+ACcTSMIOnYTncRvtfMumGG6voqDM8JDSZ1gnqwZrwxInlv6fCD2SGTIWFmyXOiEeIzpowNXlQeeZ8FhF16JowU+86qr0pyVD+kqbrMYW+NgOp0jTo61AH/vbAt/8ebBPXP/f/7H6yo2N0eQXQzBsho4RxbW//tt76ODY7bczlmCv2xtbYjXvtKh72z1wNskAnyO/PFN3IujHvn8wAMH+QHoaB2MrtXr86Aziq5GZU9HzcgJ6RY6ySn99TDiye2YP3XjygDSXWVWiAFxx+6AfHzCDswrQd7IkOL8qgek5QOxFUT/DUNJFhewQC0Mgudk+IxBR9i/eY2NxQTY/WIimTrEt+kcp0YfCIV8ARvYI+W4PfHB25IJje1NDpcv5os8dydzp8TJ9puYzVmlVSZ/q3SjzoS9BuuyU7n1LjvVE3OiMhQoEALa6jELerYwsK8DRxwOdszyhrq54TyjDbzun3C/EhzuNGKUAqNQ04wMuKZPbjD6os/lGXApFpChRD7EW7r++WUZerF4PYZoInDxoNm75ISWtateyUP25Hh/9pd7Jmb9pW2DF9ejy1wmCMiG7yf/Rpj+4aLoHE3Gv7Ap7D11DGqO1vbIJ3At7v7rAZ2CG7jCzCPotRovCbMRACQ=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB4979.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(6133799003)(10067099003)(56012099006)(11063799006)(4143699003)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(23010399003)(1800799024)(6133799003)(10067099003)(56012099006)(11063799006)(22082099003)(18092099006)(18002099003)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d0t5dUhXSzhrREZrbWhnZmRIRldSOG1VQUE4NnpDajE4RG1ORldyd3dXc3JM?=
- =?utf-8?B?dXRDRHpVYWFyZ3YvVWgrck5YM3Q5V1VTRnFhSFJzbk5qUGt2cVRITldERkpN?=
- =?utf-8?B?RFB5Tm91U2xnRWJ5MjE0cTAxdDlVOUk3Nk1xN2FTeDZrUkJ5MGdVM29wL3VK?=
- =?utf-8?B?YnE4UThZSTRsMVNFL3NsVnJYYmpPTXRYaHdvOEZCZS9iQlBWRkZMTjVmSytq?=
- =?utf-8?B?NGFBeUllcDV0ZkVDMFozNHRyTkErbEgvUEpDTkprQjNjYzlIa2ZzZnVnaUlD?=
- =?utf-8?B?T016K1BCN1FSWnArSkNMZFQzVnBXR1oxL3FjV3dyZHU2cVFMYzA1d05TSUxt?=
- =?utf-8?B?VEx6cmwybkk4clJOSmxuQWMxL3RPL1YxbkhQSXU2azhGdkJCUHBveHc3ZFFD?=
- =?utf-8?B?RFA0NUV1N1o5UjdQVDlJVGdaTnJjV2FDa2lyQ1pUK3p4MnJWOGYrang1L1NS?=
- =?utf-8?B?M1d5eDBZUUxyeGE5elZHbzJUZVZVLzBNdGo2L2VaVHlGMDRyWEVWaEQwOUdm?=
- =?utf-8?B?L2NZMEJKMU5IL2pGQ3JsSTYxL2NWR2RnS3BBL1pGUTk3dDZOdkQrMDRxVjRq?=
- =?utf-8?B?cUpSQjRzQXBKM21rZEVBRFlaMnZ1S1lDVUVSajlWYy9JWEtMRHh3eVlScS9L?=
- =?utf-8?B?SUs4UkdKMGFVclRoSkhhQmNsa3hyOU5kTWlHM21FcGl1aWk1NlJMblU1Q2lI?=
- =?utf-8?B?eVVkY2w5eEE0SUdkaWdRN0hnY3RvNW0xRHlzVlZ0VHg5VDBoRzhJTUt1Y0J3?=
- =?utf-8?B?UGdCWkQ4QU1ZSDBpMGlJMUFxRU1mWU9FcVIxK1ZMZ2hiQjV2QzJRTXgvb084?=
- =?utf-8?B?c0o5WWhMSUN0My85TkxXdTlMeTFLamxzOHZtRjRHZ0JOMENLKy90UnBLQ3Ft?=
- =?utf-8?B?Z1RhcTNDNGlxSlMwalYrbHhvQUs1ZURPWmpNaGhHcDFuUUlwZzNocTdLWTVq?=
- =?utf-8?B?cFlYQVZxSXpnY3EzQzBPTHJ0U2QwWlFnOHFYOU1HbGk1d0xBNjlacTd6UWdu?=
- =?utf-8?B?RllNK2JwZmsrT3VaWnBtUStqb2pOQXl2NUtJV3ZOaEQvblpkYk9MM2hmUEJ4?=
- =?utf-8?B?OVV1YmRnc0Q0VVRvTk1hT09oWmZuM3l5SGV0ampvN2JGZ2N4ZTNnYXU5MkYw?=
- =?utf-8?B?aGpKMnJzYVNXRVVrSW12REo5bEJYZitzRXVVQ1ljcFEwUzNTcnp0bDVXZHlY?=
- =?utf-8?B?aUFkR3Y3TThkcjY1enhrRDUreWh0cHR5MURiZmJHVkptYVpZaTh5NFo4UzZN?=
- =?utf-8?B?STIvT3IxZGJHTUdkOU5GZVBaUXpONGxhSklnbVpQOFVFRjBEaVhxNHpoOFRP?=
- =?utf-8?B?S1F4b3VibWNEZW5VNS8zZ1lKdW5SZXBEbXd3aWQ5TG1DdGkxeTVQUk84UEJy?=
- =?utf-8?B?L1J3ek8yTDVmaFRyOVZJaEVZSVp6UkppMEZhVlVkWWx6VWtlS3BoOFAxbTlp?=
- =?utf-8?B?ZE1JQmN5VFRMYjkvUjVZc3FJc0Mwb21BR1VNampxeDZ5YTZMeCtvQTVhSWtZ?=
- =?utf-8?B?S2l5MkhIZVpZWk9EWk8wWmQzNzdtcjNqM3czQTcwVWRtN1doWjNkc0NhV1N6?=
- =?utf-8?B?dnhqdExOQXVkcjBzZzNZOFhCdDRiM0xQemh5ODZXSEdnVmQwaW9mWTFidllR?=
- =?utf-8?B?NndPaXVhU0VldFEyaURncGROR1h2YTZZTVBFOTdLSUxwSWlZY1VVanZBK3lF?=
- =?utf-8?B?ckRlL0hESVdLd3B2Y1A5OXBwc0FSOGxuNjdmUWNLN29UTnhiazRaSmw2Nmc1?=
- =?utf-8?B?STVFaWtzQlZzdkhTTEkvMkVDc2dUNE5jK09zR282ZHRUSlI4NklmVml2Q2Q5?=
- =?utf-8?B?cjJhK3hmNlZkOU1LSXc2d05jS2lpWnVuQ0FISjlQODA2d09zRXZHRnUxekJM?=
- =?utf-8?B?TXpuVDdDTW54RkJHYmFTbmlLYk5URFNpSFZEaUdJcFlGaWpMdndhVUxud2o1?=
- =?utf-8?B?K05WV2xacVJqMHd5MGlDa0MyNjdIeXErWDgyTDQxZnBCSzViTTJtcWt6djJq?=
- =?utf-8?B?QUExbHRrUDFZcElXdWJRSDFvbGxOZm1rcm10WHdnSFJ6YWIxTG1lMldsZDZX?=
- =?utf-8?B?UFhRLzh6eE91dkh6bWRSLzNES0FEQ05jRExESHFQN0k2bUdHL1g5aVRUTWtT?=
- =?utf-8?B?RFFMZ0gvaDMxaFFwc2FRT2VUNSt0MGk3anh6cG9tN01vYVFPSXhUNEVXQjJ0?=
- =?utf-8?B?WmFqb0F0MEhXbHI4RnFiMGp5MVhQMWgrbHRPMGdkZXFndGN3NjV3cC9MWWhX?=
- =?utf-8?B?V09vV3ZrRUZvZ1U4QlBCRGdlckdpTUcycXFaMUk3SGZ1d1hqSVRMdzhoRWtJ?=
- =?utf-8?B?QlJONFRRZTNla015UGNnZ1hOQ3E2YXVrd2JHVGRjdUZvNktGMGF3bzcrOG9H?=
- =?utf-8?Q?GPJlqyupExMAqbqE=3D?=
-X-Exchange-RoutingPolicyChecked: GYBVIhvDqbCOh8ghSLzkXL9jRCORbLPvMeuWVZkbpcGBAzSITbao0tt5U78B/BObisElZr4nuxzpCyeAWlJ4omGK10Z1drrHDrrhOONp1TzfmxNO+ORJGewqTgVkh6GV8fFWLTv31XWY7REDDj3XfOamoBZTsQY3iBUfNpHFP+TdNzVKd8EZPcnjz6hevMRCZgY6i1ITSfDV52sUksXtrCMQeGicCYHL4XAAlNg1nMB6xzVvRyiilgajTSEQAlDBPEh5NhAFhxPLcECQo1F20IpBq8/4S6A7dTP6KhLJ7YxKo5SxD6LUzSlB4pnE1cKmmf8nqO5htFDlp2m81N++CQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: e08d459f-7222-42df-0ea6-08df0482d1ad
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4979.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+69kGkZZaW/Z7bO3iT4JI/1bGY+Bll8gLMmvcUQrUJzTR6KJxSHak+oOfZL9?=
+ =?us-ascii?Q?NV4qyheAsO640mLdTDPbk5VQMq8Ogz4du3HNiglUOB4y3St1n7HTjT+Famgb?=
+ =?us-ascii?Q?gePuUj50xsZB00qWRqJBECrMj48ok3SHE5qucgyz0uwdCBpcnpan30chfxHX?=
+ =?us-ascii?Q?Gata93Emkz6pFpsWAx8ElcehzN1/xzYx+Fmedll9A58wzH959NEO/uSvZRrm?=
+ =?us-ascii?Q?mbD2WlsMjm6v7nexHJ6ldMia37WRigaS5RZMLrQ5ddJsHjjNoV+NhjuNDxL4?=
+ =?us-ascii?Q?d5L8mpM9smM/0KiQkO9Ol3c1TWKUv93Dl3KYn9skmTczb7PYbPnEDMetI7cY?=
+ =?us-ascii?Q?JI3k9DpgWO7QuXIAyCS9+YgzNhRKiMKmea8zZsSkN4qnM+78fVZFRdUkhOGo?=
+ =?us-ascii?Q?8DHXTPEhakiGDk+uRssZwZ+/dvTW0UdV2EqdJ964r/WW6nTHUA7Nd9DdDSpf?=
+ =?us-ascii?Q?yDbSNYK21JQuAgXZVrBbKuRQ73LcSuap501rDKq03Ipv0y3Zz/Vi21lUb3M6?=
+ =?us-ascii?Q?+bH5wyHsDKEGOoBMlOAmXFtCz0apKe2F5rA9iEK6tEkFcK7WTAV3kzRJ/QQF?=
+ =?us-ascii?Q?yCd73O0vRT3SelOJEv/uG4XozfRWeOS0b22XohNZyOW8IXQyE1S8Ca8GrsBv?=
+ =?us-ascii?Q?CpPYkFHXsrEMQKMoQTLqzKyQIDFa1p0Tj6Fct1Go263yYLwbF/C1M1gp70bV?=
+ =?us-ascii?Q?1WYuN+MMsS04sXJotizNMeOms2E5fEXgzMNHaO0c5MrGyZYrJSFwIRbneOjP?=
+ =?us-ascii?Q?zldgDjU/EYEysBzD0yY4k2HpyvkMaADx7Y9wiehHJF4AP/INUj2pusneZx90?=
+ =?us-ascii?Q?gQyAUq4In5DUo6vzVVE8wQEuGcBO83JO129XaTurYVc4B89EfjEGHm5uSoGa?=
+ =?us-ascii?Q?Y0zTedMnKr4fvUhWjmVt1pt8MEEAY3GuaV/uK/A4ncOYNlHeUu2qCsmCSMKW?=
+ =?us-ascii?Q?M7G7zJua0VjUmADZlkk/W9r4bOszbNvx7X48nYXDSbWEcWp71umrCjyr06be?=
+ =?us-ascii?Q?4brvrC0xaEmC8tycO0OD7gPjNr1EtUoBfA+QfNnIPDDP2CUDBaEBCqlVznf/?=
+ =?us-ascii?Q?6i4BiUYK4C5alRuJRLs1EAr5qQ6now9iE2wxjQnXLrVAg33KjGgBTCJln/Gy?=
+ =?us-ascii?Q?hzFsTnS8W/GjTGs4fgIUIfnpd1H0KVUv+bBYYoHtkCD9wsYnqFOxbGs7xE2A?=
+ =?us-ascii?Q?eSE4cDaTVfQ7uHBWkgPxCPGCl8AyGRLXt+8C5gLj6j6PvxgzVTF+CBMe3rIf?=
+ =?us-ascii?Q?nz8qJdgl8yD8uttN5wmJz+EFNpr0z4dw1IkNqGOTbPcZewQd957h23Ixjh5s?=
+ =?us-ascii?Q?8B31JmqGuh7Pd2cySK2vK1DLb81Q2FiZvvx+2oXAcZOprC9J3zzxWlK+5C1E?=
+ =?us-ascii?Q?od+FnK3LTdga7EGfUePL48bHnkav5EU8JFG650hnHJTeiD6p33tjZwUjxxyu?=
+ =?us-ascii?Q?JlAcczjPSNvJNkx829hI4nhm5c7B1F321Eh2uJvwOUqr6ljKhj4hR6VWZvCg?=
+ =?us-ascii?Q?F7vb+sm5xa4uCB3e3ZhKcQrB4Hq736G4JkHd7jiFrI8jBGWR0tnUKF4lhGay?=
+ =?us-ascii?Q?St2Kzzh8Uf14l2jtFYsd+KlYy73jLo8An48lxdsZaSjum2lxNVloT8jyku+Z?=
+ =?us-ascii?Q?ShVheBcTb91AkztEjvkwlnonbcdhnOyxm8mCM5xrU6/JzINnm0k/KZflzIv/?=
+ =?us-ascii?Q?hLXxGL56cAZ1V81Aj35Y1Fl5S7PR7yUp07+f/npeUKlO/1AnXCTUujK4IO0z?=
+ =?us-ascii?Q?NAesXWpQilAjajhw6agx3vKAFQupE3g=3D?=
+X-Exchange-RoutingPolicyChecked: OWKZ9DMTI5wXbu0dOs+gin75dOaqa3+uuIPjIEnqYNt2gjqkMK11AkEknhPNCnqN9k+L9cKrYrojg8aMOkqgbBlOQiqF+nOMey4UhjGqrzc1Xs7YdPRYU0Rw5kNV/01cJvRrV5gVVhmlYQeY8Ddz/yvBfl6+o9cmuxTDgjLJ6pNgd1zXB7zW0khStEbfslaMWw/gT/zcuHTW8cYgYTta9Pt+HOW7i0Y1+P/IYtk6jo0lR0yyVeKhk7VIyZnSOmsF9l+otYRkERDiP1CqVDU2flbdqr3qLkyJYYddwqHwEdaTqptDPdbDdBPb991U8itSj8Ue1Ly6EMgNe4eK7m8QmQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0e9141b1-a8a0-4aa2-3984-08df0483b0ed
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2026 21:33:22.1079 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2026 21:39:36.7315 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PfLyurziJEtb2zTR2s3cY1EeQsUO1CDqKbjJKheu4iq2Er8UTJmcD0gxsiPeRTP3kZcigDssRX4Pgr2IhQ07Znb7Q5Mlj2JIyQO2LVyNiec=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7494
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4OwBMsiXkX3mO3pDDTQDKEaaFeAGGdlGJtlFxATgxbRaLskQrHApVzkFrUbOfi4UFGsyejRluYv/3EcIrUrzEaSGCMIFg+USZLjD+kSQiFE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB9252
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -174,337 +157,349 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Thu, Aug 27, 2026 at 12:51:07PM +0530, Varun Gupta wrote:
+> Introduce a per-GT debugfs knob, 'gpgpu_preemption_level', to allow
+> overriding the GPGPU preemption level on a per-context basis for newly
+> created LRCs.
+> Add an RTP rule to enable per-context control via FF_SLICE_CS_CHICKEN1,
+> allowing the preemption level to be programmed directly into the LRC
+> image at CTX_CS_CHICKEN1 during context initialization.
+> 
+> v9:
+>   - Move the per-context/GT-scoped behavior description from the enum
+>     kerneldoc to the gpgpu_preemption_level member kerneldoc, and drop
+>     the kzalloc zero-initialization note. (Gustavo)
+> 
+> v8:
+>   - Encapsulate LRC preemption programming into
+>     xe_lrc_set_gpgpu_preemption_level() (Gustavo)
+>   - Add xe_gt_WARN and early return for unexpected preemption level values
+>     to prevent invalid CS_CHICKEN1 programming. (Gustavo)
+>   - Change -EPERM to -EINVAL for MTP fused off check (Gustavo)
+>   - Combine FF_SLICE_CS_CHICKEN1 RTP rule using OR macro (Gustavo)
+> 
+> v7:
+>   - Restrict XEHP_FUSE4 read to Xe2+ primary GTs to prevent invalid
+>     Media GT accesses and SR-IOV warnings. (Sashiko)
+> 
+> v6:
+>   - Add missing xe_gt_printk.h include to fix compilation failure.
+> 
+> v5:
+>   - Use correct offset for CTX_CS_CHICKEN1. (Matt)
+>   - Restrict to the RCS engine. (Matt)
+>   - Drop LRC layout table modifications; dummy layouts do not need late
+>     context registers. (Matt)
+>   - Stash WMTP fuse state at boot to remove pm/forcewake from debugfs.
+>     (Matt)
+>   - Rename debugfs knob to 'gpgpu_preemption_level'. (Matt)
+>   - Use simple_write_to_buffer() and remove unnecessary READ_ONCE/
+>     WRITE_ONCE macros. (Matt)
+>   - Do not restrict debugfs visibility for SR-IOV VFs. (Matt)
+> 
+> v4
+>   - Fix incorrect NOP padding in the RCS context layout. (Sashiko)
+> 
+> v3:
+>   - Wrapped XEHP_FUSE4 forcewake read with xe_pm_runtime_get/put to
+>     prevent PCIe aborts/timeouts when the GPU is in D3hot/D3cold. (sashiko)
+>   - Fixed NOP macro truncation by splitting padding offsets larger than
+>     0x7f into multiple NOPs, ensuring correct context layout. (sashiko)
+>   - Converted CTX_CS_CHICKEN1 initialization to a read-modify-write
+>     sequence to avoid overwriting golden context mask bits. (sashiko)
+>   - Removed the FF_SLICE_CS_CHICKEN1 workaround for CCS engines, as
+>     compute engines lack this 3D fixed-function register, which was
+>     causing GuC "illegal register" panics on initialization.
+> 
+> v2:
+>   - Dropped the WA BB/MI_LRI path; per Bspec, CS_CHICKEN1 is context
+>     save/restore state at DW 0x00E2, so we map CTX_CS_CHICKEN1 and program
+>     it directly in LRC init via xe_lrc_write_ctx_reg(). (Matt)
+>   - Split Xe2 CCS context offsets into a dedicated xe2_ccs_offsets array
+>     to map CS_CHICKEN1 without polluting other XCS engines.
+>   - Converted the debugfs interface from a binary boolean to a
+>     multi-option string knob ("default", "mid-thread", "thread-group",
+>     "command"). (Gustavo)
+>   - Restricted file creation to the Physical Function
+>     (!IS_SRIOV_VF). (Gustavo)
+>   - Added kernel tainting (TAINT_USER) when deviating from
+>     defaults. (Gustavo)
+>   - Added power-safe hardware fuse check (FUSE4 register 0x9114[20],
+>     CFEG_WMTP_DISABLE) before allowing MTP selection. (Matt)
+> 
+> Signed-off-by: Varun Gupta <varun.gupta@intel.com>
+> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
+and applied to drm-xe-next.  Thanks for the patch!
 
 
-On 8/27/2026 7:34 AM, Michal Wajdeczko wrote:
->
-> On 8/27/2026 2:28 AM, Daniele Ceraolo Spurio wrote:
->> Convert any errors that can cause the CT to be declared as dead to
->> use the xe_log_err() helper. Errors that are escalated to the callers
->> are left for the caller to report with SIGID if needed.
->>
->> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
->> Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
->> Cc: Alan Previn Teres Alexis <alan.previn.teres.alexis@intel.com>
->> Cc: Julia Filipchuk <julia.filipchuk@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_guc_ct.c | 91 +++++++++++++++++++---------------
->>   1 file changed, 51 insertions(+), 40 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
->> index 5c4733da385c..4efaf2d24c3e 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
->> @@ -30,6 +30,7 @@
->>   #include "xe_guc_relay.h"
->>   #include "xe_guc_submit.h"
->>   #include "xe_guc_tlb_inval.h"
->> +#include "xe_log.h"
->>   #include "xe_map.h"
->>   #include "xe_page_reclaim.h"
->>   #include "xe_pm.h"
->> @@ -679,7 +680,7 @@ static int __xe_guc_ct_start(struct xe_guc_ct *ct, bool needs_register)
->>   	return 0;
->>   
->>   err_out:
->> -	xe_gt_err(gt, "Failed to enable GuC CT (%pe)\n", ERR_PTR(err));
->> +	xe_log_err(gt, GUC, err, "Failed to enable CT\n");
->>   	CT_DEAD(ct, NULL, SETUP);
->>   
->>   	return err;
->> @@ -803,8 +804,9 @@ static bool h2g_has_room(struct xe_guc_ct *ct, u32 cmd_len)
->>   
->>   			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
->>   
->> -			xe_gt_err(ct_to_gt(ct), "CT: invalid head offset %u >= %u)\n",
->> -				  h2g->info.head, h2g->info.size);
->> +			xe_log_err(ct_to_gt(ct), GUC, -EPROTO,
->> +				   "CT: invalid head offset %u >= %u)\n",
->> +				   h2g->info.head, h2g->info.size);
-> nit: we usually use -EPROTO to report mismatch in the messages
-> while here we have corrupted descriptor, so maybe we can use
-> something else, like:
->
-> #define	ENFILE		23	/* File table overflow */
-> #define	ESPIPE		29	/* Illegal seek */
-> #define	EPIPE		32	/* Broken pipe */
-> #define	EILSEQ		84	/* Illegal byte sequence */
-> #define	EUCLEAN		117	/* Structure needs cleaning */
->
->>   			CT_DEAD(ct, h2g, H2G_HAS_ROOM);
->>   			return false;
->>   		}
->> @@ -873,12 +875,13 @@ static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
->>   	bad |= !ct->g2h_outstanding;
->>   
->>   	if (bad) {
->> -		xe_gt_err(ct_to_gt(ct), "Invalid G2H release: %d + %d vs %d - %d -> %d vs %d, outstanding = %d!\n",
->> -			  ct->ctbs.g2h.info.space, g2h_len,
->> -			  ct->ctbs.g2h.info.size, ct->ctbs.g2h.info.resv_space,
->> -			  ct->ctbs.g2h.info.space + g2h_len,
->> -			  ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space,
->> -			  ct->g2h_outstanding);
->> +		xe_log_err(ct_to_gt(ct), GUC, -EPROTO,
-> hmm, here the "bad" flag is more an indication of our (xe) miscalculation,
-> not something that FW did wrong, so -EPROTO seems wrong, maybe
->
-> #define	ETOOMANYREFS	109	/* Too many references: cannot splice */
->> +			   "Invalid G2H release: %d + %d vs %d - %d -> %d vs %d, outstanding = %d!\n",
->> +			   ct->ctbs.g2h.info.space, g2h_len,
->> +			   ct->ctbs.g2h.info.size, ct->ctbs.g2h.info.resv_space,
->> +			   ct->ctbs.g2h.info.space + g2h_len,
->> +			   ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space,
->> +			   ct->g2h_outstanding);
->>   		CT_DEAD(ct, &ct->ctbs.g2h, G2H_RELEASE);
->>   		return;
->>   	}
->> @@ -961,21 +964,24 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
->>   
->>   		desc_status = desc_read(xe, h2g, status);
->>   		if (desc_status) {
->> -			xe_gt_err(gt, "CT write: non-zero status: %u\n", desc_status);
->> +			xe_log_err(gt, GUC, -EPROTO,
->> +				   "CT write: non-zero status: %u\n", desc_status);
->>   			goto corrupted;
->>   		}
->>   
->>   		if (tail > h2g->info.size) {
->>   			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
->> -			xe_gt_err(gt, "CT write: tail out of range: %u vs %u\n",
->> -				  tail, h2g->info.size);
->> +			xe_log_err(gt, GUC, -EPROTO,
->> +				   "CT write: tail out of range: %u vs %u\n",
->> +				   tail, h2g->info.size);
->>   			goto corrupted;
->>   		}
->>   
->>   		if (desc_head >= h2g->info.size) {
->>   			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
->> -			xe_gt_err(gt, "CT write: invalid head offset %u >= %u)\n",
->> -				  desc_head, h2g->info.size);
->> +			xe_log_err(gt, GUC, -EPROTO,
-> as this indicates that FW found an error in CTB, maybe:
->
-> #define	EPIPE		32	/* Broken pipe */
->
->> +				   "CT write: invalid head offset %u >= %u)\n",
->> +				   desc_head, h2g->info.size);
->>   			goto corrupted;
->>   		}
->>   	}
->> @@ -1220,7 +1226,7 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
->>   	return ret;
->>   
->>   broken:
->> -	xe_gt_err(gt, "No forward process on H2G, reset required\n");
->> +	xe_log_err(gt, GUC, -EDEADLK, "No forward process on H2G, reset required\n");
->>   	CT_DEAD(ct, &ct->ctbs.h2g, DEADLOCK);
->>   
->>   	return -EDEADLK;
->> @@ -1558,11 +1564,11 @@ static int guc_crash_process_msg(struct xe_guc_ct *ct, u32 action)
->>   	struct xe_gt *gt = ct_to_gt(ct);
->>   
->>   	if (action == XE_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED)
->> -		xe_gt_err(gt, "GuC Crash dump notification\n");
->> +		xe_log_err(gt, GUC, -EPROTO, "GuC Crash dump notification\n");
->>   	else if (action == XE_GUC_ACTION_NOTIFY_EXCEPTION)
->> -		xe_gt_err(gt, "GuC Exception notification\n");
->> +		xe_log_err(gt, GUC, -EPROTO, "GuC Exception notification\n");
->>   	else
->> -		xe_gt_err(gt, "Unknown GuC crash notification: 0x%04X\n", action);
->> +		xe_log_err(gt, GUC, -EPROTO, "Unknown GuC crash notification: 0x%04X\n", action);
-> maybe crashes should be identified as one of:
->
-> #define	ENETDOWN	100	/* Network is down */
-> #define	ENETUNREACH	101	/* Network is unreachable */
-> #define	EHOSTDOWN	112	/* Host is down */
->
->>   
->>   	CT_DEAD(ct, NULL, CRASH);
->>   
->> @@ -1592,13 +1598,15 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
->>   	 */
->>   	if (fence & CT_SEQNO_UNTRACKED) {
->>   		if (type == GUC_HXG_TYPE_RESPONSE_FAILURE)
->> -			xe_gt_err(gt, "FAST_REQ H2G fence 0x%x failed! e=0x%x, h=%u\n",
->> -				  fence,
->> -				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, hxg[0]),
->> -				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, hxg[0]));
->> +			xe_log_err(gt, GUC, -EPROTO,
-> FAILURE response is a valid message, maybe:
->
-> #define	EBADE		52	/* Invalid exchange */
->
->> +				   "FAST_REQ H2G fence 0x%x failed! e=0x%x, h=%u\n",
->> +				   fence,
->> +				   FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, hxg[0]),
->> +				   FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, hxg[0]));
->>   		else
->> -			xe_gt_err(gt, "unexpected response %u for FAST_REQ H2G fence 0x%x!\n",
->> -				  type, fence);
->> +			xe_log_err(gt, GUC, -EPROTO,
->> +				   "unexpected response %u for FAST_REQ H2G fence 0x%x!\n",
->> +				    type, fence);
->>   
->>   		fast_req_report(ct, fence);
->>   
->> @@ -1674,8 +1682,9 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
->>   
->>   	origin = FIELD_GET(GUC_HXG_MSG_0_ORIGIN, hxg[0]);
->>   	if (unlikely(origin != GUC_HXG_ORIGIN_GUC)) {
->> -		xe_gt_err(gt, "G2H channel broken on read, origin=%u, reset required\n",
->> -			  origin);
->> +		xe_log_err(gt, GUC, -EPROTO,
->> +			   "G2H channel broken on read, origin=%u, reset required\n",
-> #define	EBADMSG		74	/* Not a data message */
+Matt
 
-For this one I can switch to EBADMSG  for the log, but the return value 
-needs to stick to EPROTO because the value is returned all the way back 
-to receive_g2h, which checks specifically for EPROTO or EOPNOTSUPP. 
-Changing this flow to handle different error codes is out of scope of 
-this series IMO.
+> ---
+>  drivers/gpu/drm/xe/regs/xe_lrc_layout.h |  2 +
+>  drivers/gpu/drm/xe/xe_gt.c              |  6 +++
+>  drivers/gpu/drm/xe/xe_gt_debugfs.c      | 66 +++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_gt_types.h        | 29 +++++++++++
+>  drivers/gpu/drm/xe/xe_lrc.c             | 33 +++++++++++++
+>  drivers/gpu/drm/xe/xe_wa.c              |  4 +-
+>  6 files changed, 139 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+> index 4ab86fc369fd..6f7abc0181b5 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+> @@ -37,6 +37,8 @@
+>  #define CTX_QUEUE_TIMESTAMP		(0xd0 + 1)
+>  #define CTX_QUEUE_TIMESTAMP_UDW		(0xd2 + 1)
+>  
+> +#define CTX_CS_CHICKEN1			(0x12e + 1)
+> +
+>  #define INDIRECT_CTX_RING_HEAD		(0x02 + 1)
+>  #define INDIRECT_CTX_RING_TAIL		(0x04 + 1)
+>  #define INDIRECT_CTX_RING_START		(0x06 + 1)
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 6805e0d3bf21..478e047031f4 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -610,6 +610,12 @@ static int gt_init_with_gt_forcewake(struct xe_gt *gt)
+>  	 */
+>  	gt->info.gmdid = xe_mmio_read32(&gt->mmio, GMD_ID);
+>  
+> +	if (GRAPHICS_VER(gt_to_xe(gt)) >= 20 && xe_gt_is_main_type(gt))
+> +		gt->info.has_wmtp_disabled = !!(xe_mmio_read32(&gt->mmio, XEHP_FUSE4) &
+> +			CFEG_WMTP_DISABLE);
+> +	else
+> +		gt->info.has_wmtp_disabled = 0;
+> +
+>  	/*
+>  	 * Wa_14026539277 can't be implemented as a regular GT workaround (i.e.
+>  	 * as an entry in gt_was[]) for two reasons: it is actually a device
+> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> index ea78b57b1c31..361a70234d1f 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+> @@ -6,6 +6,8 @@
+>  #include "xe_gt_debugfs.h"
+>  
+>  #include <linux/debugfs.h>
+> +#include <linux/panic.h>
+> +#include <linux/string.h>
+>  
+>  #include <drm/drm_debugfs.h>
+>  #include <drm/drm_managed.h>
+> @@ -17,6 +19,7 @@
+>  #include "xe_gt.h"
+>  #include "xe_gt_mcr.h"
+>  #include "xe_gt_idle.h"
+> +#include "xe_gt_printk.h"
+>  #include "xe_gt_sriov_pf_debugfs.h"
+>  #include "xe_gt_sriov_vf_debugfs.h"
+>  #include "xe_gt_stats.h"
+> @@ -413,6 +416,65 @@ static ssize_t gt_ia_bias_write(struct file *file,
+>  }
+>  DEFINE_SHOW_STORE_ATTRIBUTE(gt_ia_bias);
+>  
+> +static const char * const gpgpu_preemption_level_names[] = {
+> +	[XE_GPGPU_PREEMPT_DEFAULT]      = "default",
+> +	[XE_GPGPU_PREEMPT_MID_THREAD]   = "mid-thread",
+> +	[XE_GPGPU_PREEMPT_THREAD_GROUP] = "thread-group",
+> +	[XE_GPGPU_PREEMPT_COMMAND]      = "command",
+> +};
+> +
+> +static int gpgpu_preemption_level_show(struct seq_file *m, void *unused)
+> +{
+> +	struct xe_gt *gt = m->private;
+> +
+> +	seq_printf(m, "%s\n", gpgpu_preemption_level_names[gt->gpgpu_preemption_level]);
+> +
+> +	return 0;
+> +}
+> +
+> +static ssize_t gpgpu_preemption_level_write(struct file *file,
+> +					    const char __user *ubuf,
+> +					    size_t len, loff_t *offp)
+> +{
+> +	struct seq_file *m = file->private_data;
+> +	struct xe_gt *gt = m->private;
+> +	enum xe_gpgpu_preempt_level new_level;
+> +	char buf[16];
+> +	ssize_t copied;
+> +	int idx;
+> +
+> +	if (*offp)
+> +		return -EINVAL;
+> +
+> +	copied = simple_write_to_buffer(buf, sizeof(buf) - 1, offp, ubuf, len);
+> +	if (copied < 0)
+> +		return copied;
+> +
+> +	buf[copied] = '\0';
+> +	idx = sysfs_match_string(gpgpu_preemption_level_names, strim(buf));
+> +	if (idx < 0)
+> +		return idx;
+> +
+> +	new_level = (enum xe_gpgpu_preempt_level)idx;
+> +
+> +	if (new_level == XE_GPGPU_PREEMPT_MID_THREAD && gt->info.has_wmtp_disabled) {
+> +		xe_gt_warn(gt, "MTP fused off in hardware, cannot select mid-thread\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (new_level != XE_GPGPU_PREEMPT_DEFAULT) {
+> +		add_taint(TAINT_USER, LOCKDEP_STILL_OK);
+> +		xe_gt_notice(gt,
+> +			     "GPGPU preemption overridden to '%s' (applies to new LRCs only)\n",
+> +			     gpgpu_preemption_level_names[new_level]);
+> +	}
+> +
+> +	gt->gpgpu_preemption_level = new_level;
+> +
+> +	return copied;
+> +}
+> +DEFINE_SHOW_STORE_ATTRIBUTE(gpgpu_preemption_level);
+> +
+>  void xe_gt_debugfs_register(struct xe_gt *gt)
+>  {
+>  	struct xe_device *xe = gt_to_xe(gt);
+> @@ -446,6 +508,10 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
+>  	debugfs_create_file("force_reset", 0600, root, gt, &force_reset_fops);
+>  	debugfs_create_file("force_reset_sync", 0600, root, gt, &force_reset_sync_fops);
+>  
+> +	if (GRAPHICS_VER(xe) >= 20 && (gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK))
+> +		debugfs_create_file("gpgpu_preemption_level", 0600, root,
+> +				    gt, &gpgpu_preemption_level_fops);
+> +
+>  	drm_debugfs_create_files(vf_safe_debugfs_list,
+>  				 ARRAY_SIZE(vf_safe_debugfs_list),
+>  				 root, minor);
+> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+> index a8bbfbdf3849..628911346455 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> @@ -35,6 +35,24 @@ enum xe_gt_eu_type {
+>  	XE_GT_EU_TYPE_SIMD16,
+>  };
+>  
+> +/**
+> + * enum xe_gpgpu_preempt_level - Per-context GPGPU preemption override mode
+> + *
+> + * Selects the preemption granularity programmed into CS_CHICKEN1[2:1] for
+> + * newly created Xe2+ RCS LRCs.
+> + *
+> + * @XE_GPGPU_PREEMPT_DEFAULT: Keep platform default preemption granularity.
+> + * @XE_GPGPU_PREEMPT_MID_THREAD: Force mid-thread preemption level.
+> + * @XE_GPGPU_PREEMPT_THREAD_GROUP: Force thread-group preemption level.
+> + * @XE_GPGPU_PREEMPT_COMMAND: Force command-level preemption.
+> + */
+> +enum xe_gpgpu_preempt_level {
+> +	XE_GPGPU_PREEMPT_DEFAULT = 0,
+> +	XE_GPGPU_PREEMPT_MID_THREAD,
+> +	XE_GPGPU_PREEMPT_THREAD_GROUP,
+> +	XE_GPGPU_PREEMPT_COMMAND,
+> +};
+> +
+>  #define XE_MAX_DSS_FUSE_REGS		4
+>  #define XE_MAX_DSS_FUSE_BITS		(32 * XE_MAX_DSS_FUSE_REGS)
+>  #define XE_MAX_EU_FUSE_REGS		1
+> @@ -156,6 +174,8 @@ struct xe_gt {
+>  		 * feature.
+>  		 */
+>  		u8 has_xe2_blt_instructions:1;
+> +		/** @info.has_wmtp_disabled: hardware fuse indicates WMTP is disabled */
+> +		u8 has_wmtp_disabled:1;
+>  		/**
+>  		 * @info.num_geometry_xecore_fuse_regs: Number of 32b-bit fuse
+>  		 * registers the geometry XeCore mask spans.
+> @@ -224,6 +244,15 @@ struct xe_gt {
+>  	 */
+>  	u32 ccs_mode;
+>  
+> +	/**
+> +	 * @gpgpu_preemption_level: GPGPU preemption granularity override.
+> +	 *
+> +	 * Effective only when FF_SLICE_CS_CHICKEN1[FFSC_PERCTX_PREEMPT_CTRL] is
+> +	 * enabled via RTP. Affects only LRCs created after the value is
+> +	 * changed; existing contexts keep their previously programmed value.
+> +	 */
+> +	enum xe_gpgpu_preempt_level gpgpu_preemption_level;
+> +
+>  	/** @usm: unified shared memory state */
+>  	struct {
+>  		/**
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index 35b4e8289b5f..25fe9dbc9141 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -1486,6 +1486,36 @@ void xe_lrc_set_multi_queue_priority(struct xe_lrc *lrc, enum xe_multi_queue_pri
+>  	lrc->desc |= FIELD_PREP(LRC_PRIORITY, xe_multi_queue_prio_to_lrc(lrc, priority));
+>  }
+>  
+> +static void xe_lrc_set_gpgpu_preemption_level(struct xe_lrc *lrc, struct xe_gt *gt)
+> +{
+> +	enum xe_gpgpu_preempt_level level = gt->gpgpu_preemption_level;
+> +	u32 level_bits;
+> +	u32 val;
+> +
+> +	if (level == XE_GPGPU_PREEMPT_DEFAULT)
+> +		return;
+> +
+> +	switch (level) {
+> +	case XE_GPGPU_PREEMPT_MID_THREAD:
+> +		level_bits = PREEMPT_GPGPU_MID_THREAD_LEVEL;
+> +		break;
+> +	case XE_GPGPU_PREEMPT_THREAD_GROUP:
+> +		level_bits = PREEMPT_GPGPU_THREAD_GROUP_LEVEL;
+> +		break;
+> +	case XE_GPGPU_PREEMPT_COMMAND:
+> +		level_bits = PREEMPT_GPGPU_COMMAND_LEVEL;
+> +		break;
+> +	default:
+> +		xe_gt_WARN(gt, true, "Invalid GPGPU preemption level: %d\n", level);
+> +		return;
+> +	}
+> +
+> +	val = xe_lrc_read_ctx_reg(lrc, CTX_CS_CHICKEN1);
+> +	val &= ~PREEMPT_GPGPU_LEVEL_MASK;
+> +	val |= REG_MASKED_FIELD(PREEMPT_GPGPU_LEVEL_MASK, level_bits);
+> +	xe_lrc_write_ctx_reg(lrc, CTX_CS_CHICKEN1, val);
+> +}
+> +
+>  static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
+>  			   void *replay_state, u16 msix_vec, u32 init_flags)
+>  {
+> @@ -1589,6 +1619,9 @@ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct
+>  	if (xe->info.has_asid && vm)
+>  		xe_lrc_write_ctx_reg(lrc, CTX_ASID, vm->usm.asid);
+>  
+> +	if (GRAPHICS_VER(xe) >= 20 && hwe->class == XE_ENGINE_CLASS_RENDER)
+> +		xe_lrc_set_gpgpu_preemption_level(lrc, gt);
+> +
+>  	lrc->desc = LRC_VALID;
+>  	lrc->desc |= FIELD_PREP(LRC_ADDRESSING_MODE, LRC_LEGACY_64B_CONTEXT);
+>  	/* TODO: Priority */
+> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+> index 139434946f8f..c94fe7753f9a 100644
+> --- a/drivers/gpu/drm/xe/xe_wa.c
+> +++ b/drivers/gpu/drm/xe/xe_wa.c
+> @@ -343,7 +343,9 @@ static const struct xe_rtp_table_sr engine_was = XE_RTP_TABLE_SR(
+>  	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, ENABLE_SMALLPL))
+>  	},
+>  	{ XE_RTP_NAME("FtrPerCtxtPreemptionGranularityControl"),
+> -	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250), ENGINE_CLASS(RENDER)),
+> +	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250), ENGINE_CLASS(RENDER), OR,
+> +		       GRAPHICS_VERSION_RANGE(2000, XE_RTP_END_VERSION_UNDEFINED),
+> +		       ENGINE_CLASS(RENDER)),
+>  	  XE_RTP_ACTIONS(SET(FF_SLICE_CS_CHICKEN1(RENDER_RING_BASE),
+>  			     FFSC_PERCTX_PREEMPT_CTRL))
+>  	},
+> -- 
+> 2.43.0
+> 
 
->
->> +			   origin);
->>   		CT_DEAD(ct, &ct->ctbs.g2h, PARSE_G2H_ORIGIN);
->>   
->>   		return -EPROTO;
->> @@ -1693,8 +1702,9 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
->>   		ret = parse_g2h_response(ct, msg, len);
->>   		break;
->>   	default:
->> -		xe_gt_err(gt, "G2H channel broken on read, type=%u, reset required\n",
->> -			  type);
->> +		xe_log_err(gt, GUC, -EOPNOTSUPP,
->> +			   "G2H channel broken on read, type=%u, reset required\n",
-> maybe this should say: "Unexpected message type %u" ?
-> and since we rather do not expect new message types in CTBv1 then
-> maybe this one should be actually -EPROTO ?
-
-I think it's better to stick with EOPNOTSUPP, but I can reword the message.
-
->
->> +			   type);
->>   		CT_DEAD(ct, &ct->ctbs.g2h, PARSE_G2H_TYPE);
->>   
->>   		ret = -EOPNOTSUPP;
->> @@ -1792,8 +1802,8 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
->>   	}
->>   
->>   	if (ret) {
->> -		xe_gt_err(gt, "G2H action %#04x failed (%pe) len %u msg %*ph\n",
->> -			  action, ERR_PTR(ret), hxg_len, (int)sizeof(u32) * hxg_len, hxg);
->> +		xe_log_err(gt, GUC, ret, "G2H action %#04x failed (%pe) len %u msg %*ph\n",
->> +			   action, ERR_PTR(ret), hxg_len, (int)sizeof(u32) * hxg_len, hxg);
-> drop %pe as it will be already printed
->
->>   		CT_DEAD(ct, NULL, PROCESS_FAILED);
->>   	}
->>   
->> @@ -1840,7 +1850,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
->>   		}
->>   
->>   		if (desc_status) {
->> -			xe_gt_err(gt, "CT read: non-zero status: %u\n", desc_status);
->> +			xe_log_err(gt, GUC, -EIO, "CT read: non-zero status: %u\n", desc_status);
-> #define	EPIPE		32	/* Broken pipe */
->
->>   			goto corrupted;
->>   		}
->>   	}
->> @@ -1871,15 +1881,15 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
->>   
->>   		if (g2h->info.head > g2h->info.size) {
->>   			desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
->> -			xe_gt_err(gt, "CT read: head out of range: %u vs %u\n",
->> -				  g2h->info.head, g2h->info.size);
->> +			xe_log_err(gt, GUC, -EIO, "CT read: head out of range: %u vs %u\n",
->> +				   g2h->info.head, g2h->info.size);
-> as before, one of:
->
-> #define	ENFILE		23	/* File table overflow */
-> #define	ESPIPE		29	/* Illegal seek */
-> #define	EPIPE		32	/* Broken pipe */
-> #define	EILSEQ		84	/* Illegal byte sequence */
-> #define	EUCLEAN		117	/* Structure needs cleaning */
->
-> maybe except EPIPE which we want to use to indicate that CTB error
-> was already set earlier (likely by the GuC FW)
-
-IMO grouping all cases where the CTB header is in a bad state (whether 
-because the GuC signaled an error or because it wrote and invalid value) 
-under EPIPE is cleaner. Having too many different error codes will just 
-get confusing.
-
->
->>   			goto corrupted;
->>   		}
->>   
->>   		if (desc_tail >= g2h->info.size) {
->>   			desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
->> -			xe_gt_err(gt, "CT read: invalid tail offset %u >= %u)\n",
->> -				  desc_tail, g2h->info.size);
->> +			xe_log_err(gt, GUC, -EIO, "CT read: invalid tail offset %u >= %u)\n",
->> +				   desc_tail, g2h->info.size);
-> ditto
->
->>   			goto corrupted;
->>   		}
->>   	}
->> @@ -1898,8 +1908,9 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
->>   			   sizeof(u32));
->>   	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
->>   	if (len > avail) {
->> -		xe_gt_err(gt, "G2H channel broken on read, avail=%d, len=%d, reset required\n",
->> -			  avail, len);
->> +		xe_log_err(gt, GUC, -EIO,
->> +			   "G2H channel broken on read, avail=%d, len=%d, reset required\n",
->> +			   avail, len);
-> #define	ENODATA		61	/* No data available */
->
->>   		goto corrupted;
->>   	}
->>   
->> @@ -1981,8 +1992,8 @@ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
->>   	}
->>   
->>   	if (ret) {
->> -		xe_gt_err(gt, "G2H action 0x%04x failed (%pe)\n",
->> -			  action, ERR_PTR(ret));
->> +		xe_log_err(gt, GUC, ret, "G2H action 0x%04x failed (%pe)\n",
->> +			   action, ERR_PTR(ret));
-> nit: you may use %#x
-> drop %pe
->
->>   		CT_DEAD(ct, NULL, FAST_G2H);
->>   	}
->>   }
->> @@ -2080,7 +2091,7 @@ static void receive_g2h(struct xe_guc_ct *ct)
->>   		mutex_unlock(&ct->lock);
->>   
->>   		if (unlikely(ret == -EPROTO || ret == -EOPNOTSUPP)) {
->> -			xe_gt_err(ct_to_gt(ct), "CT dequeue failed: %d\n", ret);
->> +			xe_log_err(ct_to_gt(ct), GUC, ret, "CT dequeue failed: %d\n", ret);
-> drop %d as we will already print ret using %pe
->
-> also, maybe worth to mention "..., forcing GT reset" ?
->
->>   			CT_DEAD(ct, NULL, G2H_RECV);
-> hmm, I'm pretty sure this is redundant as we already call CT_DEAD
-> on every case where we report an error, can you double check?
-
-There is at least one failure case in process_g2h_msg where we don't 
-call CT_DEAD. If we want to rework this so that CT_DEAD is not called 
-from here I believe it should be done separately.
-
-Apart from the suggestions I have commented on, I am implementing all 
-the other ones.
-
-Daniele
-
->
->>   			kick_reset(ct);
->>   		}
-
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
