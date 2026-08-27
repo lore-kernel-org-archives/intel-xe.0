@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21FB3C61DC6
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 12:35:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 425B7C61DC2
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 12:35:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC2C010EFD6;
-	Thu, 27 Aug 2026 12:35:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF8E510E32D;
+	Thu, 27 Aug 2026 12:35:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f4tdxksh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HVXgRLKD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 651E810EFE0;
- Thu, 27 Aug 2026 12:35:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73E9310EFE0;
+ Thu, 27 Aug 2026 12:35:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787834113; x=1819370113;
+ t=1787834117; x=1819370117;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=i7LFohJiZx0MWeushdLCnj8rOR1zoaqPfHXn4qNgQAU=;
- b=f4tdxkshkeZiefYfPRPK1BtgHP08tPQi4WiWLpQ8cqzcVdHUQwkwEpl0
- Je/I2oie8K+LNHMRbsUJP8VXliHXiVa/3mK/vAgg0xXGdkxtDmPZcOk3L
- G620U9Z2F0Jgen1vbt3Z0O4Kpcn/AVU2cpVJQ1OuCkIpYPxR5CsanKAUp
- JcOUUXMZzA2EoC20wE97x0S46OXJSKJWrL/xV5ARP5giCfbKy1yjW3vY3
- h5BUoHIwyUrXn0juhG3o7gIdfQoplS4bnMd6MbRjWG3/Ggi2RUS/x0piy
- BbkbOpM2vXIGUL8oBKlHtiyQaZgGmYTpI3hQem9EHEd7wf8CRuVTSWELS Q==;
-X-CSE-ConnectionGUID: Bb+jxpy1TfumcHQBOzFmkQ==
-X-CSE-MsgGUID: Fg3KrHlPScuRU/ahnF9yEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="92191769"
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="92191769"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 05:35:13 -0700
-X-CSE-ConnectionGUID: S/16/DPRTZydp9K5QShA7Q==
-X-CSE-MsgGUID: 7cShUJCcRhKRbYmSHewkpg==
+ bh=AFYVoCbl4v8FcZ5EzL3KdFlj96azPY3aT198Hn0j7u8=;
+ b=HVXgRLKDBmbft1ehJexPm9PbZ9l/z0MPEvetgvSkFYK+4hTZLfwr9OUo
+ 0rgewpJgPKKFDkZGVhn69mV05rUvi1w+uGF6TEEiQ5yFGUbwx4XDSk46M
+ DieaOBczQ0KJbHksF8/aAcVqA/1AtB3qkPWo4cE09cQlWOPpda2Q5rjMU
+ wkHBYtB7r4+vJEhJ+tjcrHp4DOZhSQLN/mbZX5UiLSwPGaV9j0zE6gzLm
+ jj4LgxRM2YiHScY1M1uK7bWuLYebzG53jBGebvlwkECGerC+CzG3PwNLK
+ MDPBWvJlcNb4WwXRJXcWv17dfxiYWHg51lgY3mlaQFzX9GraBbrJwLF7H A==;
+X-CSE-ConnectionGUID: rku+JynIT42jY9yX1REDkA==
+X-CSE-MsgGUID: oOrTgIljRVO8PgS1ZYCYhg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="98929276"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="98929276"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 05:35:17 -0700
+X-CSE-ConnectionGUID: hAOrb4GkRMOb/P9Y4Bwcyw==
+X-CSE-MsgGUID: rWYZWN63Q+OXWslHKuvddg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="269809914"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="261734655"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.219])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 05:35:11 -0700
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 05:35:15 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: maarten.lankhorst@linux.intel.com, ville.syrjala@linux.intel.com,
  jani.nikula@intel.com, Maarten Lankhorst <maarten.lankhorst@intel.com>
-Subject: [PATCH v2 2/7] drm/i915/reset: make intel_display_reset_supported()
- static
-Date: Thu, 27 Aug 2026 15:34:52 +0300
-Message-ID: <b8a20403c76d23b54dfc7a2b3dcc338296dc955f.1787833879.git.jani.nikula@intel.com>
+Subject: [PATCH v2 3/7] drm/i915/display: use struct intel_atomic_state *state
+ variable naming
+Date: Thu, 27 Aug 2026 15:34:53 +0300
+Message-ID: <e77c97fac147ba65add6e564591452f5165608c8.1787833879.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1787833879.git.jani.nikula@intel.com>
 References: <cover.1787833879.git.jani.nikula@intel.com>
@@ -73,63 +73,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_display_reset_supported() is included in
-intel_display_reset_needed_after_gpu_reset(), so there's really no need
-to call both in intel_gt_reset_global(). Simplify, and make
-intel_display_reset_supported() static.
-
-Note: For now, keep using intel_gt_gpu_reset_clobbers_display() in most
-places, although it's just a thin wrapper around
-intel_display_reset_needed_after_gpu_reset().
+The struct intel_atomic_state * pointer variables and parameters are
+named "state" everywhere. Follow suit in
+intel_atomic_commit_fence_wait().
 
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Cc: Maarten Lankhorst <maarten.lankhorst@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_reset.c | 2 +-
- drivers/gpu/drm/i915/display/intel_display_reset.h | 1 -
- drivers/gpu/drm/i915/gt/intel_reset.c              | 3 +--
- 3 files changed, 2 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
-index 6ec1af1c8431..323ca0e5e74f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_reset.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
-@@ -18,7 +18,7 @@
- #include "intel_hotplug.h"
- #include "intel_pps.h"
- 
--bool intel_display_reset_supported(struct intel_display *display)
-+static bool intel_display_reset_supported(struct intel_display *display)
- {
- 	return display && HAS_DISPLAY(display);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 553c60d452dd..12916e313821 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7272,14 +7272,14 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+ 	drm_WARN_ON(display->drm, update_pipes);
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.h b/drivers/gpu/drm/i915/display/intel_display_reset.h
-index 68312403904e..192ff8065a79 100644
---- a/drivers/gpu/drm/i915/display/intel_display_reset.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_reset.h
-@@ -10,7 +10,6 @@
  
- struct intel_display;
+-static void intel_atomic_commit_fence_wait(struct intel_atomic_state *intel_state)
++static void intel_atomic_commit_fence_wait(struct intel_atomic_state *state)
+ {
+ 	struct drm_plane *plane;
+ 	struct drm_plane_state *new_plane_state;
+ 	long ret;
+ 	int i;
  
--bool intel_display_reset_supported(struct intel_display *display);
- bool intel_display_reset_needed_after_gpu_reset(struct intel_display *display);
- bool intel_display_reset_test(struct intel_display *display);
- void intel_display_reset_prepare(struct intel_display *display);
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 439635bf94dd..1122354239f9 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -1424,8 +1424,7 @@ static void intel_gt_reset_global(struct intel_gt *gt,
- 		bool reset_display;
- 
- 		need_display_reset =
--			intel_display_reset_supported(display) &&
--			intel_gt_gpu_reset_clobbers_display(gt) &&
-+			intel_display_reset_needed_after_gpu_reset(display) &&
- 			intel_has_gpu_reset(gt);
- 
- 		reset_display =
+-	for_each_new_plane_in_state(&intel_state->base, plane, new_plane_state, i) {
++	for_each_new_plane_in_state(&state->base, plane, new_plane_state, i) {
+ 		if (new_plane_state->fence) {
+ 			ret = dma_fence_wait_timeout(new_plane_state->fence, false,
+ 						     i915_fence_timeout());
 -- 
 2.47.3
 
