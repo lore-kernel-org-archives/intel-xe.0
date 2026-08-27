@@ -4,160 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24554C61DC4
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 15:04:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C95F3C61DC4
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 15:05:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C764E10E088;
-	Thu, 27 Aug 2026 15:04:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74AD310E1E6;
+	Thu, 27 Aug 2026 15:05:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UFzK4+za";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nHe4CmaV";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E4F510E088
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 15:04:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787843073; x=1819379073;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Vqxv0hVyl/YH5cedgWEu2/q+GKPNTtp5H4fIz7xjk7g=;
- b=UFzK4+zaYDI7EkgVe8ojdbPIXJEfVRUguIgqx9i/RlHryF0+/5kowz/e
- dJJd5pWhfES7YKIRCPWmy8HgnK/nu3m/iDINHHZJFNN20NtOInfGAJLXg
- kOxx6R/syjSeFJX6gttPubkeZO7/Jidthhr1zJTX3vucSVZ7Ge/q4Irux
- BhwGmXsATK25G7v9K8DpiL5QyQP/gOm/4C8mU7FyGskG2ztWSFj17fdDn
- xEZVBSiC7CpZbxPHMRe3o/Q3A8OC+Y68ifT7OIaqlCNxSA3QDZiVk9gaz
- PeF7va1QIHx2vulhU0cSceNVpuErlhFp0WQw16k8AT2oV6OpTn5ppKVCX A==;
-X-CSE-ConnectionGUID: P0SM+39sSGeHqm6YnFrcBQ==
-X-CSE-MsgGUID: 0JupAFw/RBuzFK7fSEpgVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11888"; a="88265122"
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="88265122"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 08:04:32 -0700
-X-CSE-ConnectionGUID: ctzf0DVVSRC5Vc96r+ySFg==
-X-CSE-MsgGUID: RR7XFn0QS3erc9nxBZLn5Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="269845983"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 08:04:31 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 27 Aug 2026 08:04:31 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Thu, 27 Aug 2026 08:04:31 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.26) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 27 Aug 2026 08:04:31 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NXAHnnWXDkShpevAKgMkcJ7HpmfkefKKlWxSr0lULRCS5iY/EybZcrz0M4MetDxmeQeT8cE86u6+AcWKojtndBObPUGd68EqeBe8YeNVaHMP2SMwlaxE1r6CQvKEzx9qHCNvHbIEUs28tWkbHJt4b+FzZkEKTjJPBdL7JnugJyseZSDbjiOjNZiwAEEB3Aq51vgKz4yknsbgSWDyMs7P1Tz2aAq2auxDc4B9KHcnEwSjnIBfN+pluOOgs38dRBf9ZSuLhF+pYLtncuH9i1+YU4/nJn0DcRA22JqIqneP3+/LISCilkttoc2e1tuWtZUFQXjmXoVKqU/4PKJtObpWmQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2NGM+1W5y8wNKoXksaEpc7jTzISpnim3rQJHBB2tiMg=;
- b=xO29260+E7eUouy2tXI0O3AypN3YB2xRoEjcb4PN8K7yQyuyDJBfA9VejfZpHRzcA9JTsD7hjGCDFxdzmuzU+59X0VdtJ45utHvJRGrMlw0coinzHujDCkjtZxavL9hKbbVvbuxg/gHQEmUxg2nkBv5n04O8vvpeu7T1XCaWe9ytIJB2X2zfvU7YDS6iQ+3+pZXrIrsE6tXk4jzAOnUoDmiAqJvHIflraVofMo9KCd54Bmy2ALxKUP0SDFEgy+jR6O+mCMp02fZW425vlWtSBiytk30kGebp7t9f8XPRPz7n5gqO6wwFA4xxtI2l8wtjkzQeqDb+twivUzO2Xb4HaA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by PH0PR11MB5015.namprd11.prod.outlook.com (2603:10b6:510:39::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.7; Thu, 27 Aug
- 2026 15:04:29 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0360.008; Thu, 27 Aug 2026
- 15:04:29 +0000
-Message-ID: <e579d9c6-2c46-4910-a0e8-9e95860ce650@intel.com>
-Date: Thu, 27 Aug 2026 17:04:24 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V18 11/14] drm/xe/vram: Check bad_page_reservation policy
- in fault handler
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>,
- <intel-xe@lists.freedesktop.org>, "Koujalagi, Mallesh"
- <mallesh.koujalagi@intel.com>
-CC: <himal.prasad.ghimiray@intel.com>, <rodrigo.vivi@intel.com>
-References: <20260826135136.204044-16-tejas.upadhyay@intel.com>
- <20260826135136.204044-27-tejas.upadhyay@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20260826135136.204044-27-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR06CA0216.eurprd06.prod.outlook.com
- (2603:10a6:802:2c::37) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1418210E088;
+ Thu, 27 Aug 2026 15:05:20 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 00A3F600D2;
+ Thu, 27 Aug 2026 15:05:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1F111F000E9;
+ Thu, 27 Aug 2026 15:05:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1787843118;
+ bh=JAv5ec+HrqSWxCZoJniPdwA/qfsGl/k5VHJgM9oKE54=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To;
+ b=nHe4CmaV/Xijn/whr/wnQl+9tmZuynl9FfE8Htdg2lDY2Y3o/cdcFStfX28WbvJ4Z
+ 57C3TBTOGbAOi62eBEA6at7A80fuK6bvZOhRwlo2njW6dATkRYBG8nGKsBIKBP/YRr
+ RJDBVuqyvX4EGIzRG6SHs6hymH2yCAicgnxk3jrB14jj7C47XYBpo/T+KWcXwabssT
+ dIhg6zan3PjIjzo0nHUwDttPke/Uz4LDSVCnBx3MK/yDwzqwhdu28NKfQw9w9mRCvX
+ 7z97r5q4FiJED+F2d2TOztuqndzUoYlmnJaWZw/Ec7uYXMyNNK7BXTu4Q/0iYIJ2zc
+ pFc4EFDJlwDyw==
+Message-ID: <4312740f-2aa2-41f1-8442-d4a80682753d@kernel.org>
+Date: Thu, 27 Aug 2026 17:05:09 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|PH0PR11MB5015:EE_
-X-MS-Office365-Filtering-Correlation-Id: 87c1de79-a4b9-4e68-79a0-08df044c7e44
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|23010399003|366016|22082099003|56012099006|10067099003|11063799006|4143699003|18002099003;
-X-Microsoft-Antispam-Message-Info: slwrAJRbJHH79X1Cg4i2ekZuQKrCQeC2ErnF+T8OvrZm3bXnlyM8N3zVqBr4MEl7jF8ODKIVRSnTZf1Ijc09T5hb+xBuBcLMSRmVDVnBN8h4tXmW5aYAhrJR8bpLHd4houMNrxGgbZcbYStEd7X9YXgKvXvPAsa2asb5D/Fq1kKUQGsVWYDjZbdZMHjCcNtTQpk5MLVxbPrFz0KSDqHtlxJgoErA+lBpb5yF0l4x2BUKEltin1i3Y0MZD+oCIlTR4uSlo0I3XaGa2bDwqUal360lv3Ylo7NHaCQMkKQEE6LGafF1LEHParqegGJ2051J+rpoQkC4B/Vly/FqT3O38znRd4svhcjWNDtCL3ZooUCGKfRFAUDVjYXbSRL5ywjcxWyNOEU96XLQNBIYVqoSaBmROXB9jaeACROQJd56O7H/IBD/ZRIwW/lwdMf+B9ic3ztBYRyAzWfLz6ngEnR3PEYGu5C91wLLAKeXwczdEIXXS1jN+iDREcm1ryNHWhCZC6gdbXl1XYJmNpMbIGuvnzYYeAsshOecUPhB27UwZUoUuSImLUfmQhKgLR2+jNslXO7/p3262sJghU3WxSXKtByQFHAJjvQOvyDOvRoZR01zTBgmlu7Xrd0QhBKm55qaVUf1GgkViw1FplAqyrsnnURrKVzGFt5hmQholKlMHjM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(22082099003)(56012099006)(10067099003)(11063799006)(4143699003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OEhrNk1rS1dWbVBzSTdFMG9qaXhZSWtTd3VUSHZndnd0bXRFK1U3azdWY2hE?=
- =?utf-8?B?Q1BKVTI0Umt4VXI1eHNDTVhCeEdGU1dVT21yRm93c0cvMWhRc0VxbW1CSFdx?=
- =?utf-8?B?Y2tMdGs3eFlxUnhpRmMvcW50WTgvUXFiYzdPL01PQzBZdHZGRC9PdnJ6L1VH?=
- =?utf-8?B?d3lqWFhZTEZJSnBaeTdhOFk5TUZtZmtBdzF6ZGl4RVE2QnduTHhKYmNZYzBr?=
- =?utf-8?B?SXBQci9PMmZZaVdzSUV6MjFvM0JhVk5pZ3E4a2lBVkZON2xLQUhrZnlQbXlK?=
- =?utf-8?B?ZWpRb3VsYWVDVGtrbjVMSDA4R29pYnZvVWtCam5NU2pzT2dHakFVaFY3NTlZ?=
- =?utf-8?B?bGRoWmxKT3NXSjhNS3pQNElzeWVtMFBpUWp1TTFWSE1ZSitEVS9jNTBxUHhB?=
- =?utf-8?B?OG9waHQyMmN5YWx6OVE5enA1VnNFaTF6bFJsRW5kanJkVjE5dUp5cUhYUnQ4?=
- =?utf-8?B?NzkyTE9DUlMrcU1FVTNpbEhsN1dBSE5Qdlh4clZmNysxYjM5MG9aU3pYR25R?=
- =?utf-8?B?RURhc0VmNkJVSmppaC94Y3FjOFN4cHBxcXNYdURDdTRXN3FDVUxreTlrUG5B?=
- =?utf-8?B?OUt1TlZlMlEzWmo5WHdpUStGZ0xJai9BdjVDRlNxdFl1MWV2QVRDWDJPMVh4?=
- =?utf-8?B?K1kxejZVcWUzVzB0aDBBd1p6cHRUMG5zL3NidjBWQzVPZ1ZkbVFEUDhCVVZG?=
- =?utf-8?B?Q0xacnF5M1BuZEtOYzBTYWVIWTh0SEJyMFV0SzVQK2lNNXhHOHJOUnBWeGwz?=
- =?utf-8?B?YS85ZFRSK3Y4TFNqSUdzV25ReFptNWRXeEY2Vld5OUNXQml5ZytiSk9ML3V5?=
- =?utf-8?B?aVRqRDNzVGs2YUtGcVpLZUFpWUNZTnlMMWtoTTNSb0JJMCtobHFPT01oV2l4?=
- =?utf-8?B?UjBhd0lGYmlQN09iMjN5eXdDbGoyejR1ZTU3eGNyaVBhU0F1ZFY5dUhNOTdu?=
- =?utf-8?B?NktZWjRsSjEwVGJrd0NMRmE1ZFdmVnRIT0xac2tZamF1bVUwRW5YczQrWXRP?=
- =?utf-8?B?czlCT3NqeFZPQmFDNUJ6WDJlN3ZSWUQ2UGw2THliTEtnREVmL2dRWEVzamQr?=
- =?utf-8?B?QStYOVoyU05WbnZsaTBuam8zeUp3b0RUc25SSTBYS0taeUFzQ09OV0NiSUsz?=
- =?utf-8?B?QllPVmpzZkEwV05rQlNxRVNqV1ZzSmJsWkEzVzFXMG1rK0ZFREZQVUx1b2VI?=
- =?utf-8?B?R0ljZWlOZFBDSmtSYUxoUkIzTjBlNy9zc2Q0R1ZEMk5OSnZMaUhKMzJaL1hI?=
- =?utf-8?B?VGh4ZTlGM1UvUlNTK1U1LzNoc0p1RjFQMWNrUHhiOUQ2eFVKTlVodDRwOHpp?=
- =?utf-8?B?TG95cGZzTUpGdllRVlV3NE1wT3B6bk1VVjFZQ2MwVEsyeUx3WjdjM1lGeXRQ?=
- =?utf-8?B?OTc2RzUzL3hwUU5QYUkxMGVvczNvcG5ZUkVvNnVGdDN0R0ZEKzVpbi9GOE5N?=
- =?utf-8?B?WVZOd3RWeTVlZG53Riswc2NLaldkSWVYeXhDZjNnYWhBcFIvR3JJUVNuSTJB?=
- =?utf-8?B?SEdyVm1UWjgzenJtVWpETDZTWFllWXdwc0JVbGxBdWRtdC9sNFJpajhNOHFq?=
- =?utf-8?B?VU5iZlM4ZmRDSnlNUlFiZHpmWU84Wk16cHZwaHhEdUtjek4rNWpKaFVMMDUx?=
- =?utf-8?B?U3d0TzN4VzNWTlVlWk1jbjlKMWhQMzJ2YTlueHFzdTc4cm9LSjA0dVY4amI0?=
- =?utf-8?B?NG9CWExTMlBnOXVjNVRjMkhqaHZwVURlMmJzelZFOWxINDdNQkFEbGtLQjZs?=
- =?utf-8?B?R1VuWlFVbnlOWGVoQ3ZlQmh0dGJBV2lTU3I0aHFTODlaNi9MWmEvWHpTOVdR?=
- =?utf-8?B?MTkycFRlZzg0VGl1Vnk5b2N4NUhvT0dpMUdGMUY3cS9lTDRGVHo4WEl1UnhQ?=
- =?utf-8?B?dVdXeGdlOVNhWDNQNXowM1dvdjhEMkNKMnhQQjBHcTE2RXA1RGpOa0ZaSE1U?=
- =?utf-8?B?dXlqUGpBYzFEdjNCZFN6cHIyV2FlQUJBeFErOG8xd3BUWitwMWFrZWlSU21C?=
- =?utf-8?B?VjN3OGYxRmlzdlJaMFNmMGhpeU9HaHlTYjN1Wm1DMnVIcjFFdlU5YzFqVDkz?=
- =?utf-8?B?d2piYWNZQTRpaHA0UHpnSzUvUVlnZFl4d05nUXJudnNzSS9kcm0xZlVOeE5v?=
- =?utf-8?B?bm8yaE5FeXhrVnkrK3MzUjZpOGRmOGNwcHZVbjFoY0w3UitPZVlpV0RJRXlr?=
- =?utf-8?B?czhFcDAzVFBUL09IbDNhOEh0UVViWTg3bzlnYlJlbmNFWVZ1SjJNM2RaRkpl?=
- =?utf-8?B?VnB0VTlHUmJWeUhHMzRIYzN1QzVHSklTL2VEVWE2NitFRWMyNS9PUUlyWkhj?=
- =?utf-8?B?b21QMHo3eDZzUTFyVTVhbzJNWUlUS2NxYUhldEorRGdEM3BNQkxWRkU0c0xH?=
- =?utf-8?Q?o8cPaCh0lP0t5mfM=3D?=
-X-Exchange-RoutingPolicyChecked: Ienrd7WwTp+xqORFsV/Dj51SLgp6971Q0j4WEJRt7gvdPEeJK27PL568HD8I15OSJv0DD9XunBkkeU3eMq0tKvx7pHWVJk6ZAYa4c0z+gHHtokcBYYS42rwkQ5JQM93xfDW5HKTLNmAkMwStk9UdpU1Dh785ePVQlZp1PW4/0XVGdHOwi8+wrMxDPXHO8Npopx8cab2HvH+zFUb2W591p24/bz5lE7R3SE17utbxgLOIzzorRbmtRI00cksKnJzoSVwbXVOcEd56ZNEs3SXkVQvZW8eg8jpUKIopA690UjV4CvZ/FX1PO9+VeXax/rs5cCpi0G9Ykj4XhTt+a7vhAw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 87c1de79-a4b9-4e68-79a0-08df044c7e44
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2026 15:04:29.4231 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RVHGrFCA+wfbVMAlkxZCkiz5QkUurDdp1OkXOa9lek/AAw2gixRaEl77bhfQhYDu/ecS2IT6PQ5MuecfXqwUfph/auVNG9KbNN0sxoDciDw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5015
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/6] mm/migrate_device: Do not write past the end of
+ the src_pfns array
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ linux-kernel@vger.kernel.org
+Cc: Sashiko <sashiko-bot@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ Zi Yan <ziy@nvidia.com>, Baolin Wang <baolin.wang@linux.alibaba.com>,
+ "Liam R . Howlett" <liam@infradead.org>, Nico Pache <nico.pache@linux.dev>,
+ Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
+ Barry Song <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>,
+ Usama Arif <usama.arif@linux.dev>, Joshua Hahn <joshua.hahnjy@gmail.com>,
+ Rakie Kim <rakie.kim@sk.com>, Byungchul Park <byungchul@sk.com>,
+ Gregory Price <gourry@gourry.net>, Ying Huang
+ <ying.huang@linux.alibaba.com>, Alistair Popple <apopple@nvidia.com>,
+ Balbir Singh <balbirs@nvidia.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Francois Dugast <francois.dugast@intel.com>, stable@vger.kernel.org
+References: <20260805231041.3791771-1-matthew.brost@intel.com>
+ <20260805231041.3791771-3-matthew.brost@intel.com>
+From: "David Hildenbrand (Arm)" <david@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=david@kernel.org; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <20260805231041.3791771-3-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,49 +120,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 8/26/2026 3:51 PM, Tejas Upadhyay wrote:
-> Before reserving a page at a faulting address, check the cached
-> bad_page_reservation policy from xe->ras. If the policy is disabled
-> (logging only), log the corrupted address and return -EOPNOTSUPP so
-> that RAS can report to firmware to drop the address from the SRAM
-> queue without attempting to offline the page.
+On 8/6/26 01:10, Matthew Brost wrote:
+> migrate_device_range() and migrate_device_pfns() zero the tail entries
+> of a large folio without checking them against @npages:
 > 
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> 	for (j = 1; j < nr; j++)
+> 		src_pfns[i+j] = 0;
+> 
+> @nr comes from the folio, not from the array, so a folio that extends
+> past the end of the range being migrated writes beyond src_pfns[].
+> Callers size that array for @npages entries, so this corrupts whatever
+> follows it.
+> 
+> Bound the loop by @npages. The subsequent "i += j - 1" still terminates
+> the outer loop correctly: on a bounded exit j is @npages - i, leaving i
+> at @npages after the increment.
+> 
+> Reported-by: Sashiko <sashiko-bot@kernel.org>
+> Fixes: a30b48bf1b24 ("mm/migrate_device: implement THP migration of zone device pages")
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Cc: David Hildenbrand <david@kernel.org>
+> Cc: Lorenzo Stoakes <ljs@kernel.org>
+> Cc: Zi Yan <ziy@nvidia.com>
+> Cc: Baolin Wang <baolin.wang@linux.alibaba.com>
+> Cc: Liam R. Howlett <liam@infradead.org>
+> Cc: Nico Pache <nico.pache@linux.dev>
+> Cc: Ryan Roberts <ryan.roberts@arm.com>
+> Cc: Dev Jain <dev.jain@arm.com>
+> Cc: Barry Song <baohua@kernel.org>
+> Cc: Lance Yang <lance.yang@linux.dev>
+> Cc: Usama Arif <usama.arif@linux.dev>
+> Cc: Joshua Hahn <joshua.hahnjy@gmail.com>
+> Cc: Rakie Kim <rakie.kim@sk.com>
+> Cc: Byungchul Park <byungchul@sk.com>
+> Cc: Gregory Price <gourry@gourry.net>
+> Cc: Ying Huang <ying.huang@linux.alibaba.com>
+> Cc: Alistair Popple <apopple@nvidia.com>
+> Cc: Balbir Singh <balbirs@nvidia.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Francois Dugast <francois.dugast@intel.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-mm@kvack.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: stable@vger.kernel.org
+> Assisted-by: GitHub_Copilot:claude-opus-5
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  mm/migrate_device.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> index b2b6c1bd2c55..24d134754265 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> @@ -864,6 +864,12 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr)
->  	vram_mgr = &vr->ttm;
->  	mm = &vram_mgr->mm;
->  
-> +	if (!xe->ras.bad_page_reservation) {
-> +		drm_err(&xe->drm, "0x%llx is reported as corrupted address by HW\n",
-> +			addr);
+> diff --git a/mm/migrate_device.c b/mm/migrate_device.c
+> index 162d29b2807a..ae9027421b80 100644
+> --- a/mm/migrate_device.c
+> +++ b/mm/migrate_device.c
+> @@ -1415,7 +1415,7 @@ int migrate_device_range(unsigned long *src_pfns, unsigned long start,
+>  		nr = folio_nr_pages(folio);
+>  		if (nr > 1) {
+>  			src_pfns[i] |= MIGRATE_PFN_COMPOUND;
+> -			for (j = 1; j < nr; j++)
+> +			for (j = 1; j < nr && (i + j) < npages; j++)
+>  				src_pfns[i+j] = 0;
+>  			i += j - 1;
+>  			pfn += j - 1;
+> @@ -1449,7 +1449,7 @@ int migrate_device_pfns(unsigned long *src_pfns, unsigned long npages)
+>  		nr = folio_nr_pages(folio);
+>  		if (nr > 1) {
+>  			src_pfns[i] |= MIGRATE_PFN_COMPOUND;
+> -			for (j = 1; j < nr; j++)
+> +			for (j = 1; j < nr && (i + j) < npages; j++)
+>  				src_pfns[i+j] = 0;
+>  			i += j - 1;
+>  		}
 
-we do have easier to use
+What's the status of this? I assume this is fixed by
 
-	xe_err(xe, ...)
+	https://lore.kernel.org/20260817120758.669807-3-sh_def@163.com
 
-and also recently added SIGID logs:
+instead?
 
-	xe_log_err(xe, ...)
+What is the right direction?
 
-which maybe we should consider here?
-or is it done by the other layer?
+-- 
+Cheers,
 
-@Mallesh ?
-
-> +		return -EOPNOTSUPP;
-> +	}
-> +
->  	/* Reserve page at address */
->  	return xe_ttm_vram_reserve_page_at_addr(xe, addr - vr->dpa_base, vram_mgr, mm);
->  }
-
+David
