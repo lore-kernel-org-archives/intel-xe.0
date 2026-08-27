@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0723FC61DC2
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 10:58:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CF83C61DB9
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 10:58:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC4F810EDB2;
-	Thu, 27 Aug 2026 10:58:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C02A410EFA5;
+	Thu, 27 Aug 2026 10:58:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HJL7lqj+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G55Avplq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AD2510EDB2
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 10:58:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1272210EDB2
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 10:58:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1787828293; x=1819364293;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=doyPXK+RuAG1DKX51zjxemk1RjUVV1KsYjk10HVEpGQ=;
- b=HJL7lqj+gmZEFfPOPfZ42Cbw6AkJ9M0nIKLmEs9memmF2HjsoMbMhOIf
- sBcNwkbJXdwaRI3DI3ArZKyEM/TSiyY5yTN2KwEQU6klik86brJoQUP7Y
- q7KqEo5svWFSvKO0HtzLyo2MbLBSg18A2s+xEIJDbleoEdRzneTMS709X
- YgNHz7t0kggyels40Py4NDwmoyC/4Job9wICDVf1wTDvGR9XwYsmJzf77
- gLcT0CrwsneE9Fpow01hfSCe15EVoFFVLlI87HR2Yor0MzvJ63k+4P3WX
- 2H+8YjIrmB9R0AsLGQyUhKLSxtJDrj7u5/J5KLCkMIWkuS5ACq0igBhjy A==;
-X-CSE-ConnectionGUID: 95YaTB2HQf25YsXxDhAfAg==
-X-CSE-MsgGUID: 2OVfTK34TceHE8Yrj5UyJg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="98659971"
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="98659971"
+ bh=3zYwBtiEJvJ/18wfADBglECnt4M6ixkfmXEaypNeMeA=;
+ b=G55Avplqtb5FHUlEp9iT7QI5UrG2jV+sZ8dUusRgMWHkl3zzjrwwToTX
+ GRqQ0UG2oemJhqRfebZA+RtassZELlCASl31lYo4vQ4OB3scbV6N15BOv
+ B1K5Xx9N+yEzo5sd/ifv5sSGsAXCOKO5YOSJIM9aTQibAJ6DSVIEO2wsk
+ vQxYQy9rlGjekzI3uB2OvcbljzHFoc5+0qiAloPeahZHotahSnB0PsYbS
+ Dm01wYImZEk1665jDkcBO4/4g/M1y9jZtELZ9K0AWOxItHtXOSjd0i042
+ sMLcrbHLnkCwuCOss+vAs44FODzq1x7SUAVvC3DrR2bvs8y0nKXoOdoTP Q==;
+X-CSE-ConnectionGUID: PZjRJLUQSNCqYyPAErQEIA==
+X-CSE-MsgGUID: gY673rtaSeSRdGzzAl1Myg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="98659973"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="98659973"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 03:58:12 -0700
-X-CSE-ConnectionGUID: mys7bznYTY6Y/0nLRnQn0g==
-X-CSE-MsgGUID: QpPd+upHTDKVbvIv8VLKkg==
+ 27 Aug 2026 03:58:13 -0700
+X-CSE-ConnectionGUID: llRfJqY2R3GS4VHdMM7Zzg==
+X-CSE-MsgGUID: 7e5AfXyHTgapjNZlLYct+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="273099200"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="273099201"
 Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
  by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 03:58:11 -0700
+ 27 Aug 2026 03:58:12 -0700
 Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 27 Aug 2026 03:58:11 -0700
+ 15.2.2562.46; Thu, 27 Aug 2026 03:58:12 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Thu, 27 Aug 2026 03:58:11 -0700
+ 15.2.2562.46 via Frontend Transport; Thu, 27 Aug 2026 03:58:12 -0700
 Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.57) by
  edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 27 Aug 2026 03:58:10 -0700
+ 15.2.2562.46; Thu, 27 Aug 2026 03:58:11 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Q7tubUj3uIgQ2VKw9341nvkb5LiZ7GkbSP0BUXVqvEdI+CmE/wUp1ozJgJ/E+Zhbnzc/OSVBYUJaLiDuVuzoROEzyNwd/R6Aivw/7vk3f89WoXuWkQgTPvSTApwQoMoWT4bL6upIoXUZOMsFuWOrruk8exWOPg5UnUEtDvOTid284W/0bJkDMKVU2T0ft9r7lSwFNIggih91XtlYoJpdRgfipw98sSUjhOu1pNoO/Ze0lWQ8XaeMSX2bMkRY65HIiS/VH7bf70R/iXEBI3uzJh1PvlTgSAcy9tnyWzQWxvdEiBozCu78xYwbwfUDKXcbpp9QZ2g0Z5V1GHWxyd0pyw==
+ b=cw4Lk0w+G2ODvGixVi1NbNHm1TqmEurAuRSDcFdQ65SIESSf1NfAjj9sb0Mp9ou/NKaE1rnq4a2ZVAlHTyoW42ueVXFPnclrT1kP3LgR/YrYoS2E8C3GtwhpyCZuSx0UqICAFcdtNybfvFFMlOll9LLXzPasaXl9wrLwqp68n4sJ8fn2fYuhe9fDl88Tgfpqz0zCzsTAVv/mV5xUmNerHt9uKKekDC+lbTG72/PD/BwNg3pijkeXHmUZ2tEK0KYB0CB3pxwQHrKaRnGZjupJPM8DiBZQyPtTssTk/ud9WLLLbd81ytr/TZ236ZqbY2U0kxRvmEpJWKVRj3XogswZlQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7lUjTv9KwirXmAqQLuX79cNarwGF3AnN4A4RkuqoNss=;
- b=Yd1DdcqP9hqSvoPNp/9o5dVRLAY6Bg0mBpPhuSgajOBrbHf/I/fIdiDPPnpj10yEjMDusMlwtaTl2PaX+IjYW+g1TfZh3zKeS3+Bb6ErrTjtwFzDPqrUWnUKHa1ukCg4nWyd4tdASTA7CrpD9TtPVcd2iLigueBXZIumZ8AMwA3G4xEWNFtskSN5b3x6NZe3Q6NELcRS0cGrShf7K+YSLjqNHTtVOSOAK6pUirWTo5gRIFAzL54+6G5zzcbKv9aVhxlOnvJDHm5gQ0WadEpIg7ranIVT1KrIsp0Vl7+ZNrod/eEIdLYgfx1JRxQ5uEZwLstPaI5x04bWLWEZJQGCWQ==
+ bh=p4DqbaxzspbUqnMTH5ftqs2bpy1Mh1VWAB48vjXkaUc=;
+ b=VB261pOe0QKjmHjsH7p/KA8o6tE9fh3opXsJpDRL4a/oC8QGYvDZREiiO02ClmFsGU0E8UsJxinhS1IOYUm2EidrotQQuZbHC1hRO39uMakxd3gcY03gVTsEUs5VwMoyEoACw+FKzymk/hNl0iVU5cw3txWdHBcVGO+3KAfLO0e4FtcETPk/ddQvyOiDe2XZzL3Kl1YJAZbKfpnnxTp7JZSaMmEMBK28SgH2U8Io6Hz4s2qUNUUv9F4ymD+JD7edQszjWcgFgm/DiPCtsC6qWfCNlq6kjfBrIkkQ1VUUz6diSGLDsXAPz4mYntSsn23UM73JAiW9Jy1o5f+2NDi1Zw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,90 +69,89 @@ Received: from PH8PR11MB8039.namprd11.prod.outlook.com (2603:10b6:510:25f::18)
  by MW3PR11MB4715.namprd11.prod.outlook.com (2603:10b6:303:57::20)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.11; Thu, 27 Aug
- 2026 10:58:03 +0000
+ 2026 10:58:08 +0000
 Received: from PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92]) by PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92%2]) with mapi id 15.21.0360.006; Thu, 27 Aug 2026
- 10:58:03 +0000
+ 10:58:08 +0000
 From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>, "Michal
  Wajdeczko" <michal.wajdeczko@intel.com>
-Subject: [PATCH v4 1/4] drm/xe/guc: Split GuC ID manager into usable and
- shareable pools
-Date: Thu, 27 Aug 2026 12:57:47 +0200
-Message-ID: <20260827105750.1248792-2-piotr.piorkowski@intel.com>
+Subject: [PATCH v4 2/4] drm/xe/kunit: Extend GuC ID manager split-pool coverage
+Date: Thu, 27 Aug 2026 12:57:48 +0200
+Message-ID: <20260827105750.1248792-3-piotr.piorkowski@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260827105750.1248792-1-piotr.piorkowski@intel.com>
 References: <20260827105750.1248792-1-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: DU2PR04CA0005.eurprd04.prod.outlook.com
- (2603:10a6:10:3b::10) To PH8PR11MB8039.namprd11.prod.outlook.com
+X-ClientProxiedBy: DU2PR04CA0216.eurprd04.prod.outlook.com
+ (2603:10a6:10:2b1::11) To PH8PR11MB8039.namprd11.prod.outlook.com
  (2603:10b6:510:25f::18)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|MW3PR11MB4715:EE_
-X-MS-Office365-Filtering-Correlation-Id: ed098047-0154-49f5-6d1b-08df042a1135
+X-MS-Office365-Filtering-Correlation-Id: 4d087860-71c2-4f3b-58e8-08df042a13b5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|23010399003|366016|11063799006|56012099006|10067099003|5023799004|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: yMYYXar97HMCaxgmg/GPWfhD3L8AOre3fZRbcyGV7qgaJtN9ZxqBRQLnK9JY8VvZ+50/8tSdC7WoxERyDKeAKmazoul4ZQ8ks8zLsrU50hllzHAg90r/iNfd0swa8DVyuSbGWSMkqTMgma2/8tLpfbI4HEIQ7quR4jq6jm4ZBCweDf/XPV3CqFGb9Pz2/kTcu37DDN0aSctLGv48Ne4ByoXswyN48/kxky8N5DM+ocwuwpbLqjV5JnoNqr2PTpvq8C/etvVNYVPB9lpkXqWFr6bDaGao1CS7mXqXoRyeicBm64un4ztbGCmEzSKdX9XoE54xSdOV1MivXGfGolk6m8b7Jxh1AbcSIawF2OhMt4NIPlVCCiBAKVCKaF1FIvRNT9BevcA1zZbqMmjv5JcaM+SSWQD2T7jx0d3L5FZQjP7bQIoCa34aFGgiNNYcQMDyTVGbJz9wPqrsan1lJYdBDdg+fi9s9ny3dKx0x948v7Bu6ez2YKSBzSZ3bczAaUUgbQFNNTGBKavtqzSrb+ObXgEF9E+e0ynVy9zaIBqn9uWJKwjdkm/+cE+88emAcF6angorN+cxYrT6s0DkZudiIHkvVY1uuDvJQWbzs3D3wDglMRwg0NecxTmg9HUMbH2Ybjt7s8shNBM2+8yBXKQED16wff4hFDeXe119T80F0bw=
+ ARA:13230040|376014|1800799024|23010399003|366016|11063799006|56012099006|10067099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: N6jMoC++VBmrtEhXRLuhp7qx5PXDNDaAtRS58oHK4LkY18BMuitbeisH0wzTqFjJzlfHPPs4ppL+qqMyAlaxvPzx7wp069HOE3h0RIWRRwOWi1z8X2mgAKnZiJkU07UXennCVu2N+7z5Wvgi++m7re6qFvGM2YlELeWG0hcW0X88RvSSRedAj2jxc3Xy3ore68lbX/V3RXyVsMTwo5NB/FeeR++0G/bVHwyJ2TgfwHXACi8qV80By6JmkLDKUb0el5boKjowRgvqnhzHMJNMg2FxF1jTjxbc0sIdyfLU7npGRDdKT6rUfeb/LQiHYjQuoIkp1USuQWMnXBACM0KwqfLW9OtMDHluulnPyTCZ6YIkeStjBbWU0hzCp3scKnHbxu6y+7WuBihMUE/KrkXrby2s2GKNiayZSa11V5uF1E5zdyKQCvrnUWAJYGOiV8WrWNVuQ5Uun2pZyfsbkoCfSoYgj41bxUEUZDv3eWHyLNVbTh+QAsQo6PJhw3NoNApMy9dKeYAIxKpszaUzCMwely+KWLhiRllIPE0s1lrPY6+9u4VPxxSs8D7caEcLneu7BBk15WVXcYpjKA41dssgmCPUxRuL2+rwIF9aGw4Gow0U+xSlclrj70R+c6Q/z3nlIl+yFhE4S97pRHcIXNso9UM4QFXyuKIALv7ZbJ+4xGo=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8039.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(11063799006)(56012099006)(10067099003)(5023799004)(18002099003)(22082099003);
+ SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(11063799006)(56012099006)(10067099003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N1pPNEljVDJuWGYxcjBMWVdFdlUrdnN1djI4bWlzaTF5T29Rc1NpQVBwbXZh?=
- =?utf-8?B?d256V0NncnVZWmMrVndFeElmYmh2cElaZFNram5LSXlJL0dHTW05b1pLZGpL?=
- =?utf-8?B?K3laRTlrSkN4UW9XYUhmSHZ0MXJ0d3VLVEMyY1krcVBZUzVTbDVxRWR4Q0M2?=
- =?utf-8?B?MzU0RThBQlJUclZLRW5BUVc3T0lENG5nTThHTFkzSFhNZnhvWXBhQXBjS2V4?=
- =?utf-8?B?VUJqVVkwODF4QXJsd2o3akYxdk0zbXNXTFcxRmpJY2NNemwrZ3RmLzk5amRw?=
- =?utf-8?B?WEdEeXpsTWZMZzh2anFxaWdoTDBSZ2tOY29ndy9DT0M5NlU4Qm5BbFVqWk9t?=
- =?utf-8?B?Y2FYVXROeTduTFAxUjlGaTcwdlV6Q2svWFRTR1hibllMOGpBTWlQSm5uVXFx?=
- =?utf-8?B?R3BTZ0lldjJEQnRyekdLeU5zcHhqb1BRT1ovRWhkUnY3NWl6RVZxMVorOXoz?=
- =?utf-8?B?djhpcFdBOTNkRnhhT09JNXo4ZldtVUdSZ3FuMndJallOcUx3MSswSi9wbGlT?=
- =?utf-8?B?aS8yK09qSTRhMGRFdllPbWdMK1J6MkF0V2JCYzdQY1QvaDA5aDVKcnJacnhl?=
- =?utf-8?B?YUtLd1JNeTdlbTM2TUNvRmFidXNMSUxQSXE2WTJzTWxoNzk3ZjBleUNXU0ZJ?=
- =?utf-8?B?bHVpa0NmemY3ZzZxOFQ3dGRtYktTM3RTSDBZUlJMbWtQNi9LV1VXMjVGcW1i?=
- =?utf-8?B?VnM4cnViSy9MVElXMHVPZ3R0R0w4NTdCSUVZbUNzSVlIc3ZpeUdxRTRrZDc5?=
- =?utf-8?B?d1pSQ01ORFdaWlhQMUE2K00ySDIrVmpYZDljYVk1UzJ0K1FtS2VydW5MZFpK?=
- =?utf-8?B?VUNBbEpBemU4cDRCZXppUGptaHZlcnp1Q3JhcXdIV0JSZ2VUcjRqaTg5TEI5?=
- =?utf-8?B?cWN6NkZaTkw1aldyNFVUTEpGL25ObXMvZFhJdzQ3bmpWQzRxZm1lamk5anJX?=
- =?utf-8?B?TXpGMGhPVlRDZ0JaaXd2MnA4MmVHUW1QN3U0NVM1VGV3UmhxK3VHTE1KZU92?=
- =?utf-8?B?WHdaZ2ZDTUJRMERzQnhWZGZnYXBOM2NMYm1oWlFidzZWOG8zejkvNmxKdVNC?=
- =?utf-8?B?dGxJd3NUTkxiQkgrSUNXbWtDNm4waVdvK005UVlTV0FUeHgwZzFyN2gwZVZB?=
- =?utf-8?B?bk1aRmF2aVdwSUM4SVozS0c4T29tYUEyNEE1RnZITjJTVkpvTkl6bThwYUpx?=
- =?utf-8?B?azEyakRFd1FtWms4eWZkeUJ0aVovTDNiamxkMzRqNFNkL2JXTnlQRmFjS3N1?=
- =?utf-8?B?U2s5Tmp5VjBZNkVOT2s4ZzZqZWs3bWtySWFIeVo0QnVJc216dVBYdWNOQTVT?=
- =?utf-8?B?czNLQmJ2bWU2TlZSNE8raWRhekw0eGEzSlQ3cHFDWmd1RmdJR1hYMmhNY2hS?=
- =?utf-8?B?YWxIZmJiRzNaUlcwdjdWWDNhZDNtNkZ4djZiUytjcnRmdm1hZmxuV0Q4blhI?=
- =?utf-8?B?dVdaQWpkdER5Mmhva2pDcHBPenNFbFJEWFAzYTRybXh6M2hVTlFZM1c3cjdL?=
- =?utf-8?B?dDB4MDlaTm1TejludDl5ME9KcnhoUTRWdUliandkbjVwYVpUZWcrY3o4WXpz?=
- =?utf-8?B?K2dWbmV4YlhIVjE1Ti9nTENNZ0UrNWYxRGdxajhQZW4ybXM1Z09FTGRuMTNk?=
- =?utf-8?B?WkhidVN4dHFnbjY4YmpRZXpVNXZOV2xSV2Z4aGg3dzFsRnBNVHFwZ3Bqb1du?=
- =?utf-8?B?VEdiZndWNURkZlVoYVMwWVpZc1hDcyt6emFmMllRN1ZIeTRGbXk3dnhCRkhU?=
- =?utf-8?B?ZkxUc3kxVm84a2pIclEvbHRid09WYVFCaENYUE94VmdZbUNXdjZRN0ZPQ1E4?=
- =?utf-8?B?b0w4Q0VhNVBhazZnRUxoYW9VcVhzYU5BTFlERWQ4ekJPYkVaTWI5V1pHcUVz?=
- =?utf-8?B?Vm9zc2NyQ203ajNRWjZENzYrTlV2NHM4cS9scDQwNFJacUJ6MGE2a1RpOFFO?=
- =?utf-8?B?cFNFbzYwTUFOYndrREk0LzAvNGVvTC9vcTZaalVTazNGNnhlRHVVSjI4bzFH?=
- =?utf-8?B?WS9CNDd3WEE2L1E3Z3NPUnZCdmhmWlV1UXR0cStPVDg5ZXhTY2J1cUxEc1JW?=
- =?utf-8?B?UU9hQ3BIL1ZURDMzYUZXVnhLUlRuSjNwd0d5ekRNcXpSSkYyZWErWDFKUlhL?=
- =?utf-8?B?SGY0OXp5Y0c3alZybXlwbWtSUUxrZ01XV08wRVFjc2ozUk85SmhmbEJONndp?=
- =?utf-8?B?TjNwYXNBQ054ait5L2w0MnRURlVJZ0QvcGY4SmwyNmVBYzdVVDU2SWtzS0lz?=
- =?utf-8?B?a0FaTUNwTVA0aGxPTjdVcXVqV0t1UWs4NzR4YVpNZjBtVUMxMG52eEJCc1FJ?=
- =?utf-8?B?RFlCYkxkOU5NK1luUFdoK1dhaDFiSlhKZlQwdGpZZGdnL3E2WDhMU2dpUm5T?=
- =?utf-8?Q?ykN1WgLDvLsQRMrE=3D?=
-X-Exchange-RoutingPolicyChecked: eUt7YqfVNC1lcNIuxtjwDv6tywFGOc5zP07+3ea30A4/2jxy7WuxF1t/an6M7vn96+01gT/jb9AcR+j6SJgZ9RZYHJLwKNWzSjLinW4+5XCgCL7m0OHtYgQypX+PkBvsLh4SEinKETP37tbXWMZhyi5lKSPV5sxUOKoIRydkXFbks/ppAVk7lcAuobB6YP8K8+VGUV902UsTf0tshlbcE0w/IRqlD38FlulqLuUfnUCyb2MG06fOOs4RCIqmd35dybYi8cLlTs6+/61M8kCdz2QXlQjYo1cxYOHzfJx/uRg6ilyCYXUTPFTcmqfrHOGGw8v5vNJX/pTmWRSY5d8H+w==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed098047-0154-49f5-6d1b-08df042a1135
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RkNHeTdqZTNVdXBZSDlPSVNoRHVCZHczWHk3YzNHV1Z5M0p3N0pPOUJqSFFC?=
+ =?utf-8?B?czkvMUdhNWpWSlAvQ0krSnlqcGJhbHI3Q3JTSHJ6ZzcvSEZKK3ZRQ3l6U0Fw?=
+ =?utf-8?B?djl1WnBwSkl6eTluaFQrUVVUcE1HUWVENEpkTnlVMklFdlVjenlLWENLdHdL?=
+ =?utf-8?B?SWI3MG41bjdtTVNobERlZ2tHeXIzT2YzbHBrUEZIUGY1MzVDUW94S29BQlFR?=
+ =?utf-8?B?SHptVlhjN1h4VW5rYzlIbnVTZmFhUk9oVHZLS1czMzZ4MzlxWVovY1YyOXdt?=
+ =?utf-8?B?S01jU29VUXpPeCs0UmptTFhwUnIxOVRoSFdOVlV6M1I1QzI2RmJqNWtSNHlO?=
+ =?utf-8?B?SU1hVzlsRkxSNmtFREYvSmlxWk1BSFpQdHlUTm1kV3VlTVZDTVMxLzZ2N1ov?=
+ =?utf-8?B?TEdWVWJpa3pjbmFRT3kwdjNpOUFmMmMzUXp2akZSa2FJbDdjK3hDMVVCTjgx?=
+ =?utf-8?B?MWtZN1NocWp6R3lvN2hxVzlMZDArQ1lmMmc3enlFR1hpU2g4UW4zM2pRd2VX?=
+ =?utf-8?B?ZytyUFRHbzFjVHJMcy84UEtKemVKWmJoQkhNa2E1eVp5TnhpSDFtVXhFZTFR?=
+ =?utf-8?B?UGhscUpldEt6Wk1Zd1JGVlZkSCtJMVd4T3pOQzcxNk4xM2p3WXgvdUwvRVBl?=
+ =?utf-8?B?dGhkb2pCSnVKamp5bDJsNFdseC94bFBHdDJOK0lYUnlLUC9hRTYwTWZuMllB?=
+ =?utf-8?B?UEJodlRHRDY0SWZxY0ZFS1E4MVJyQjl2YU9uVUl2RlZQR0NEcnRCbmw3b0Nu?=
+ =?utf-8?B?NHdPbEFSMXNrN1pIUUNsQ0R5RmU1bmFobkYwYVl1TkF5bjAwVGovOFRScTdl?=
+ =?utf-8?B?NWhHWXNQVU9FZkszL3JteTFlZ2padkhGdjgrbFJLTC9lM0JPaGNFbC9kMXlv?=
+ =?utf-8?B?cHR3OTFCNHhFMGdXNEJLOFlrdDZhaWlIay9XbldRV2JBd3VCb083b3NJRzVq?=
+ =?utf-8?B?dUlTNkh0YjgzdFVtVnFDWnRURnVLK1ZSVlFFaXFZc0MyaHhwMUM3M3RocWQ1?=
+ =?utf-8?B?dFB4cExqYWREUSs0WE5WMld0Q3BySnJLclgzYndmN3FJR1gyNlZnRDROaWF3?=
+ =?utf-8?B?N21ZcHRLU0RFMzBoLzlXREsrcUFZaWhZc0dHNVJmOGpCSndjSTNBSG9Qc0hQ?=
+ =?utf-8?B?OGNvR1R6QXpjZ3AwblVOY2JGNmx2cXpzeXhrVGNlZVViTFh0YTVtc3VxK3hn?=
+ =?utf-8?B?S3FWb1RFZUZwQ2FxOE1xNzVQMTlIQTFrSW9rUVhqQjlldEJmNlo0aWtyN1VZ?=
+ =?utf-8?B?bWFBTDVlWFJGZWFuaTFRNTVvVGMybDdxeHdOcWNSUURUOUVNV0ZIVUR2b3pu?=
+ =?utf-8?B?QkhubUtLdncrMzFUTE04blB3UFVEQnZqUzNHRkVhYWVzM2k4Z0VXSGo1YVVE?=
+ =?utf-8?B?c3hiVnhFZFMydEI3NFFpblA1N1d1U25NNTdhTWZNaEkrRENUalo3VkVmN3c2?=
+ =?utf-8?B?TEpWdlY5STlZQ0lDVURCRnJTZ01jdm5pTThWWGJjSFp1cXFOaVp1eFhQakI3?=
+ =?utf-8?B?RFlkZVVScmdLOEg0MzZoWW01NnFsZWVFcUVVNXBVMHF2dVFoMDFUUlljOXpQ?=
+ =?utf-8?B?VmdHNTRBVkFVbUI1TzJzb3pSWE9JZDY5aXhkTlBZWXIvM3h2dFVnd0JJKzdw?=
+ =?utf-8?B?V213ZkxxZHhSZkRsdG1vMVFjMk5yY29EWkttZDZtVVNjWlZYcytZYTF5aFN5?=
+ =?utf-8?B?bkFUbVFHSDdrV0ZTL2pxM3I0Q3JjQ2wzZHRzUVZsVXF6Um82N2NhQUJGSnAz?=
+ =?utf-8?B?emdJcWhSQ1E3WFFHdktCYXlZd2VsOFpwdzdBUjNvVzNFaUZ5UmdaR0pnSk9v?=
+ =?utf-8?B?NDlRNXd5VzBpRTVtSWszdXhpeE5DaktOZ2Fsa2pzbzFjdmdWNWJpQ2dTaS83?=
+ =?utf-8?B?VGpZS2lpQTcvTGR0UTBMckszL3pQSDAvU01YWTQyODBka1hZUDhpSEs2N2s1?=
+ =?utf-8?B?WDkwdmpqSW1ON3hvVVlYNTBnTjQ4OENEcFg0YXdNTzBLMEtpaDVJa1JLaVdn?=
+ =?utf-8?B?UUtYUmdRY1dTaHNPa2ZuWVhHMk9oUFFHOStzZ1JFYmhDY1pHNWRyN1pLeWZx?=
+ =?utf-8?B?N21yUldsOStXUFc3aGNkNmdNSm5VaWxkRDJ1RzE0ejh6a2sxTVhzS0tmMWlQ?=
+ =?utf-8?B?ZjlzL0w0SjVQVjVCNTZSdzg1OHpHZ1JtbllZQXhQWm12anhXbTc1SWdybVNt?=
+ =?utf-8?B?STVJTWUvN1g4SVJKbW9yTms1U0JsQzkya1dicWU3Nm9FUlhWVm9GOEljbHBH?=
+ =?utf-8?B?LzlnZkpRUlFOMFFIbDVrY3lLT3RrcUpBYnhXdjM5R3BLRFJxcW5uSUt6MlAw?=
+ =?utf-8?B?K0tTUXhKRWJaNWU5djZnQVBUa2RVVTVqWHEwKy8xcWIxM2xQVndHSG9QelNp?=
+ =?utf-8?Q?1iX5HYY3/JfjVpZY=3D?=
+X-Exchange-RoutingPolicyChecked: ubdHqLqMn0UI/8TuXxFQ1EIYC9teNJSrHCUnIo20wMgRmp9kIBnuRAIk5bHblMWJLH6/J/X4Nc5oUaGYwmI1OX/CelFqqMPBDCBt9TaTlKiKCh2GONgQ8sDvqqIowRrOvpbO7V9bAlPML5qpnmW/JZqti5vZx3rXn8V2LiZ59MuUUCTRGzEtyiIXHCKGxhpyJT+zmu3NIXT1RdBM30Ofjo9qCpho0oc3LsslRSbm39jcYKIjf2OMpSp04eONa8DHG2NLrVCx3YWP2fgkv00Sudrh4O3hlu8vd+B0N3XD1vVfHPZ3+kR4kCpFpUF0+CUrOUTjzqZCeCsGMj/6M63P1A==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d087860-71c2-4f3b-58e8-08df042a13b5
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8039.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2026 10:58:03.6619 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2026 10:58:07.8848 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qps0t+Tyf7QZTjwENs+NeqjdY+f457FS1X+mW0ZFHFvFiyTr4ng0jbcJuvaHbI6mO3qA/loYtyhKTdWMyoNvqg9RcYeW9XxKcewrdoernj4=
+X-MS-Exchange-CrossTenant-UserPrincipalName: Z1v4ak5hA5FtIqAke3daFC5dNbKF6lMy+foXSRvwLQwLLXGgiesnX+FSbBy9BeQZusHSxn8/gAyE+xd2zDgu0g6MnuKbn7crPdAYAlBlBXs=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4715
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -171,808 +170,705 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-Modify the GuC identifier manager so that it distinguishes between
-usable GuC IDs allocated for GuC submissions, and shareable those that
-can be shared with VFs. Both pools are represented as a single bitmap
-and may overlap.
-Let's Replace the single-pool accounting model with separate usable and
-shareable pools, add helpers for pool accounting and limits, and update
-debug reporting.
+Expand the GuC ID manager KUnit coverage to exercise the new
+usable/shareable pool model.
 
-For now, let's keep the current allocation behaviour by mapping both pools
-onto the same GuC ID space. This prepares the ID manager for separate
-management of submission IDs and VF allocations in following changes.
-
-v2: Do not change how VF IDs are allocated in the legacy path (Sashiko)
-
-v3: Fix shareable spare quota accounting to include
-    PF-exclusive usable IDs.
+v2: Use KUNIT_EXPECT instead of KUNIT_ASSERT inside the locked section
+    so the mutex is not leaked on failure (Sashiko).
+v3: Guard failed ID reservations before releasing test allocations.
+v4: Avoid releasing unreserved ID ranges after failed test reservations.
 
 Assisted-by: Claude:claude-5-sonnet
 Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c |  57 +--
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |   2 +-
- drivers/gpu/drm/xe/xe_guc_id_mgr.c            | 445 ++++++++++++++----
- drivers/gpu/drm/xe/xe_guc_id_mgr.h            |  20 +-
- drivers/gpu/drm/xe/xe_guc_types.h             |   8 +-
- 5 files changed, 410 insertions(+), 122 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c | 609 +++++++++++++++++-
+ 1 file changed, 594 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c b/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
-index ee30a1939eb0..78d3de46b757 100644
+index 78d3de46b757..5fe71eac2e38 100644
 --- a/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
 +++ b/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
-@@ -24,8 +24,8 @@ static void bad_init(struct kunit *test)
+@@ -7,13 +7,27 @@
+ 
+ #include "xe_device.h"
+ #include "xe_kunit_helpers.h"
++#include "xe_pci_test.h"
+ 
+ static int guc_id_mgr_test_init(struct kunit *test)
  {
++	struct xe_pci_fake_data *fake;
+ 	struct xe_guc_id_mgr *idm;
+ 
++	/* Keep one logical suite: use PF fixture when IOV is enabled. */
++	fake = kunit_kzalloc(test, sizeof(*fake), GFP_KERNEL);
++	if (!fake)
++		return -ENOMEM;
++
++	*fake = (struct xe_pci_fake_data) {
++		.sriov_mode = XE_SRIOV_MODE_PF,
++		.platform = XE_TIGERLAKE, /* some random platform */
++		.subplatform = XE_SUBPLATFORM_NONE,
++	};
++	test->priv = fake;
++
+ 	xe_kunit_helper_xe_device_test_init(test);
+-	idm = &xe_device_get_gt(test->priv, 0)->uc.guc.submission_state.idm;
++	idm = &xe_root_mmio_gt(test->priv)->uc.guc.submission_state.idm;
+ 
+ 	mutex_init(idm_mutex(idm));
+ 	test->priv = idm;
+@@ -33,10 +47,10 @@ static void no_init(struct kunit *test)
  	struct xe_guc_id_mgr *idm = test->priv;
- 
--	KUNIT_EXPECT_EQ(test, -EINVAL, xe_guc_id_mgr_init(idm, 0));
--	KUNIT_EXPECT_EQ(test, -ERANGE, xe_guc_id_mgr_init(idm, GUC_ID_MAX + 1));
-+	KUNIT_EXPECT_EQ(test, -EINVAL, idm_init(idm, 0, 0));
-+	KUNIT_EXPECT_EQ(test, -ERANGE, idm_init(idm, GUC_ID_MAX + 1, 0));
- }
- 
- static void no_init(struct kunit *test)
-@@ -43,12 +43,12 @@ static void init_fini(struct kunit *test)
- {
- 	struct xe_guc_id_mgr *idm = test->priv;
- 
--	KUNIT_ASSERT_EQ(test, 0, xe_guc_id_mgr_init(idm, -1));
-+	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, GUC_ID_MAX, 0));
- 	KUNIT_EXPECT_NOT_NULL(test, idm->bitmap);
--	KUNIT_EXPECT_EQ(test, idm->total, GUC_ID_MAX);
-+	KUNIT_EXPECT_EQ(test, idm_total(idm), GUC_ID_MAX);
- 	__fini_idm(NULL, idm);
- 	KUNIT_EXPECT_NULL(test, idm->bitmap);
--	KUNIT_EXPECT_EQ(test, idm->total, 0);
-+	KUNIT_EXPECT_EQ(test, idm_total(idm), 0);
- }
- 
- static void check_used(struct kunit *test)
-@@ -56,19 +56,19 @@ static void check_used(struct kunit *test)
- 	struct xe_guc_id_mgr *idm = test->priv;
- 	unsigned int n;
- 
--	KUNIT_ASSERT_EQ(test, 0, xe_guc_id_mgr_init(idm, 2));
-+	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 2, 0));
  
  	mutex_lock(idm_mutex(idm));
+-	KUNIT_EXPECT_EQ(test, -ENODATA, xe_guc_id_mgr_reserve_locked(idm, 0));
++	KUNIT_EXPECT_EQ(test, -ENODATA, xe_guc_id_mgr_reserve_usable_locked(idm, 0));
+ 	mutex_unlock(idm_mutex(idm));
  
--	for (n = 0; n < idm->total; n++) {
-+	for (n = 0; n < idm_total(idm); n++) {
+-	KUNIT_EXPECT_EQ(test, -ENODATA, xe_guc_id_mgr_reserve(idm, 1, 1));
++	KUNIT_EXPECT_EQ(test, -ENODATA, xe_guc_id_mgr_reserve_shareable(idm, 1, 1));
+ }
+ 
+ static void init_fini(struct kunit *test)
+@@ -51,6 +65,23 @@ static void init_fini(struct kunit *test)
+ 	KUNIT_EXPECT_EQ(test, idm_total(idm), 0);
+ }
+ 
++static bool require_iov_config_or_skip(struct kunit *test)
++{
++	if (!IS_ENABLED(CONFIG_PCI_IOV)) {
++		kunit_skip(test, "requires CONFIG_PCI_IOV");
++		return false;
++	}
++
++	return true;
++}
++
++static unsigned int test_idm_used_total(struct xe_guc_id_mgr *idm)
++{
++	lockdep_assert_held(idm_mutex(idm));
++
++	return bitmap_weight(idm->bitmap, idm_total(idm));
++}
++
+ static void check_used(struct kunit *test)
+ {
+ 	struct xe_guc_id_mgr *idm = test->priv;
+@@ -62,13 +93,13 @@ static void check_used(struct kunit *test)
+ 
+ 	for (n = 0; n < idm_total(idm); n++) {
  		kunit_info(test, "n=%u", n);
--		KUNIT_EXPECT_EQ(test, idm->used, n);
--		KUNIT_EXPECT_GE(test, idm_reserve_chunk_locked(idm, 1, 0), 0);
--		KUNIT_EXPECT_EQ(test, idm->used, n + 1);
-+		KUNIT_EXPECT_EQ(test, bitmap_weight(idm->bitmap, idm_total(idm)), n);
-+		KUNIT_EXPECT_GE(test, xe_guc_id_mgr_reserve_usable_locked(idm, 1), 0);
-+		KUNIT_EXPECT_EQ(test, bitmap_weight(idm->bitmap, idm_total(idm)), n + 1);
+-		KUNIT_EXPECT_EQ(test, bitmap_weight(idm->bitmap, idm_total(idm)), n);
++		KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), n);
+ 		KUNIT_EXPECT_GE(test, xe_guc_id_mgr_reserve_usable_locked(idm, 1), 0);
+-		KUNIT_EXPECT_EQ(test, bitmap_weight(idm->bitmap, idm_total(idm)), n + 1);
++		KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), n + 1);
  	}
--	KUNIT_EXPECT_EQ(test, idm->used, idm->total);
--	idm_release_chunk_locked(idm, 0, idm->used);
--	KUNIT_EXPECT_EQ(test, idm->used, 0);
-+	KUNIT_EXPECT_EQ(test, bitmap_weight(idm->bitmap, idm_total(idm)), idm_total(idm));
-+	idm_release_chunk_locked(idm, 0, idm_total(idm));
-+	KUNIT_EXPECT_EQ(test, bitmap_weight(idm->bitmap, idm_total(idm)), 0);
+-	KUNIT_EXPECT_EQ(test, bitmap_weight(idm->bitmap, idm_total(idm)), idm_total(idm));
+-	idm_release_chunk_locked(idm, 0, idm_total(idm));
+-	KUNIT_EXPECT_EQ(test, bitmap_weight(idm->bitmap, idm_total(idm)), 0);
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), idm_total(idm));
++	idm_release_chunk_locked(idm, 0, test_idm_used_total(idm));
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), 0);
  
  	mutex_unlock(idm_mutex(idm));
  }
-@@ -76,25 +76,12 @@ static void check_used(struct kunit *test)
+@@ -76,32 +107,566 @@ static void check_used(struct kunit *test)
  static void check_quota(struct kunit *test)
  {
  	struct xe_guc_id_mgr *idm = test->priv;
--	unsigned int n;
--
--	KUNIT_ASSERT_EQ(test, 0, xe_guc_id_mgr_init(idm, 2));
++	unsigned int usable = GUC_ID_MAX - 10;
++	unsigned int shareable = 20;
++	unsigned int spare = 11;
++	unsigned int tail = 10;
++	int usable_id, tail_id;
  
--	mutex_lock(idm_mutex(idm));
-+	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 2, 0));
+-	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 2, 0));
++	if (!require_iov_config_or_skip(test))
++		return;
++
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, usable, shareable));
++
++	mutex_lock(idm_mutex(idm));
  
--	for (n = 0; n < idm->total - 1; n++) {
--		kunit_info(test, "n=%u", n);
--		KUNIT_EXPECT_EQ(test, idm_reserve_chunk_locked(idm, 1, idm->total), -EDQUOT);
--		KUNIT_EXPECT_EQ(test, idm_reserve_chunk_locked(idm, 1, idm->total - n), -EDQUOT);
--		KUNIT_EXPECT_EQ(test, idm_reserve_chunk_locked(idm, idm->total - n, 1), -EDQUOT);
--		KUNIT_EXPECT_GE(test, idm_reserve_chunk_locked(idm, 1, 1), 0);
--	}
--	KUNIT_EXPECT_LE(test, 0, idm_reserve_chunk_locked(idm, 1, 0));
--	KUNIT_EXPECT_EQ(test, idm->used, idm->total);
--	idm_release_chunk_locked(idm, 0, idm->total);
--	KUNIT_EXPECT_EQ(test, idm->used, 0);
--
--	mutex_unlock(idm_mutex(idm));
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_usable(idm, 2), 0);
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_usable(idm, 1), -ENOSPC);
-+	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_usable(idm, 0, 2), 0);
+-	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_usable(idm, 2), 0);
+-	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_usable(idm, 1), -ENOSPC);
+-	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_usable(idm, 0, 2), 0);
++	/* spare is larger than the overlap, but the PF-exclusive range is free. */
++	usable_id = xe_guc_id_mgr_reserve_usable_locked(idm, usable - spare);
++	KUNIT_EXPECT_GE(test, usable_id, 0);
++	if (usable_id < 0) {
++		mutex_unlock(idm_mutex(idm));
++		return;
++	}
++
++	tail_id = xe_guc_id_mgr_reserve_shareable_locked(idm, tail, spare);
++	KUNIT_EXPECT_EQ(test, tail_id, usable);
++	if (tail_id < 0) {
++		idm_release_chunk_locked(idm, usable_id, usable - spare);
++		mutex_unlock(idm_mutex(idm));
++		return;
++	}
++
++	KUNIT_EXPECT_EQ(test,
++			xe_guc_id_mgr_reserve_shareable_locked(idm, 1, spare), -EDQUOT);
++
++	idm_release_chunk_locked(idm, usable_id, usable - spare);
++	idm_release_chunk_locked(idm, tail_id, tail);
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), 0);
++
++	mutex_unlock(idm_mutex(idm));
  }
  
  static void check_all(struct kunit *test)
-@@ -102,14 +89,14 @@ static void check_all(struct kunit *test)
+ {
  	struct xe_guc_id_mgr *idm = test->priv;
  	unsigned int n;
++	int id;
  
--	KUNIT_ASSERT_EQ(test, 0, xe_guc_id_mgr_init(idm, -1));
-+	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, GUC_ID_MAX, 0));
+ 	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, GUC_ID_MAX, 0));
  
  	mutex_lock(idm_mutex(idm));
  
--	for (n = 0; n < idm->total; n++)
--		KUNIT_EXPECT_LE(test, 0, idm_reserve_chunk_locked(idm, 1, 0));
--	KUNIT_EXPECT_EQ(test, idm->used, idm->total);
--	for (n = 0; n < idm->total; n++)
-+	for (n = 0; n < idm_total(idm); n++)
-+		KUNIT_EXPECT_LE(test, 0, xe_guc_id_mgr_reserve_usable_locked(idm, 1));
-+	KUNIT_EXPECT_EQ(test, bitmap_weight(idm->bitmap, idm_total(idm)), idm_total(idm));
-+	for (n = 0; n < idm_total(idm); n++)
+-	for (n = 0; n < idm_total(idm); n++)
+-		KUNIT_EXPECT_LE(test, 0, xe_guc_id_mgr_reserve_usable_locked(idm, 1));
+-	KUNIT_EXPECT_EQ(test, bitmap_weight(idm->bitmap, idm_total(idm)), idm_total(idm));
++	for (n = 0; n < idm_total(idm); n++) {
++		id = xe_guc_id_mgr_reserve_usable_locked(idm, 1);
++		KUNIT_EXPECT_GE(test, id, 0);
++		if (id < 0)
++			break;
++	}
++	if (n < idm_total(idm)) {
++		if (n)
++			idm_release_chunk_locked(idm, 0, n);
++		mutex_unlock(idm_mutex(idm));
++		return;
++	}
++
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), idm_total(idm));
+ 	for (n = 0; n < idm_total(idm); n++)
  		idm_release_chunk_locked(idm, n, 1);
  
  	mutex_unlock(idm_mutex(idm));
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index be0a413ee17c..9445e5f32fe8 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -1182,7 +1182,7 @@ static u32 pf_estimate_fair_ctxs(struct xe_gt *gt, unsigned int num_vfs)
- {
- 	struct xe_guc_id_mgr *idm = &gt->uc.guc.submission_state.idm;
- 	u32 spare = pf_get_spare_ctxs(gt);
--	u32 fair = (idm->total - spare) / num_vfs;
-+	u32 fair = (xe_guc_id_mgr_max_usable(idm) - spare) / num_vfs;
- 	int ret;
- 
- 	for (; fair; --fair) {
-diff --git a/drivers/gpu/drm/xe/xe_guc_id_mgr.c b/drivers/gpu/drm/xe/xe_guc_id_mgr.c
-index e845425d670b..2c181d280552 100644
---- a/drivers/gpu/drm/xe/xe_guc_id_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_guc_id_mgr.c
-@@ -34,6 +34,34 @@ static struct xe_device *idm_to_xe(struct xe_guc_id_mgr *idm)
- 
- static void idm_print_locked(struct xe_guc_id_mgr *idm, struct drm_printer *p, int indent);
- 
-+static unsigned int idm_total(struct xe_guc_id_mgr *idm)
-+{
-+	if (idm->usable > GUC_ID_MAX - idm->shareable)
-+		return GUC_ID_MAX;
-+
-+	return idm->usable + idm->shareable;
-+}
-+
-+static unsigned int idm_shareable_start(struct xe_guc_id_mgr *idm)
-+{
-+	return idm_total(idm) - idm->shareable;
-+}
-+
-+static unsigned int idm_used_usable(struct xe_guc_id_mgr *idm)
-+{
-+	lockdep_assert_held(idm_mutex(idm));
-+
-+	return bitmap_weight(idm->bitmap, idm->usable);
-+}
-+
-+static unsigned int idm_used_shareable(struct xe_guc_id_mgr *idm)
-+{
-+	lockdep_assert_held(idm_mutex(idm));
-+
-+	return bitmap_weight(idm->bitmap, idm_total(idm)) -
-+	       bitmap_weight(idm->bitmap, idm_shareable_start(idm));
-+}
-+
- static void __fini_idm(struct drm_device *drm, void *arg)
- {
- 	struct xe_guc_id_mgr *idm = arg;
-@@ -41,25 +69,60 @@ static void __fini_idm(struct drm_device *drm, void *arg)
- 	mutex_lock(idm_mutex(idm));
- 
- 	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
--		unsigned int weight = bitmap_weight(idm->bitmap, idm->total);
-+		unsigned int weight = bitmap_weight(idm->bitmap, idm_total(idm));
- 
- 		if (weight) {
- 			struct drm_printer p = xe_gt_info_printer(idm_to_gt(idm));
- 
- 			xe_gt_err(idm_to_gt(idm), "GUC ID manager unclean (%u/%u)\n",
--				  weight, idm->total);
-+				  weight, idm_total(idm));
- 			idm_print_locked(idm, &p, 1);
- 		}
- 	}
- 
- 	bitmap_free(idm->bitmap);
- 	idm->bitmap = NULL;
--	idm->total = 0;
--	idm->used = 0;
-+	idm->usable = 0;
-+	idm->shareable = 0;
- 
- 	mutex_unlock(idm_mutex(idm));
  }
  
-+static int idm_init(struct xe_guc_id_mgr *idm, unsigned int usable, unsigned int shareable)
++static void check_limits(struct kunit *test)
 +{
-+	bool overlap = usable > GUC_ID_MAX - shareable;
++	struct xe_guc_id_mgr *idm = test->priv;
++
++	if (!require_iov_config_or_skip(test))
++		return;
++
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 10, 20));
++
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_max_usable(idm), 10);
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_max_shareable(idm), 20);
++	KUNIT_EXPECT_EQ(test, idm_total(idm), 30);
++}
++
++static void check_overlap(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
++
++	if (!require_iov_config_or_skip(test))
++		return;
++
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, GUC_ID_MAX, GUC_ID_MAX));
++
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_max_usable(idm), GUC_ID_MAX);
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_max_shareable(idm), GUC_ID_MAX);
++	KUNIT_EXPECT_EQ(test, idm_total(idm), GUC_ID_MAX);
++}
++
++static void check_overlap_alloc(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
 +	unsigned int total;
-+	int ret;
++	int usable_id, shareable_id;
 +
-+	if (!usable)
-+		return -EINVAL;
-+	if (usable > GUC_ID_MAX)
-+		return -ERANGE;
-+	if (shareable > GUC_ID_MAX)
-+		return -ERANGE;
++	if (!require_iov_config_or_skip(test))
++		return;
 +
-+	idm_assert(idm, !idm->bitmap);
-+	idm_assert(idm, usable <= GUC_ID_MAX);
-+	idm_assert(idm, shareable <= GUC_ID_MAX);
-+	idm_assert(idm, !shareable || IS_SRIOV_PF(idm_to_xe(idm)));
-+	total = overlap ? GUC_ID_MAX : usable + shareable;
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, GUC_ID_MAX, GUC_ID_MAX));
 +
-+	idm->bitmap = bitmap_zalloc(total, GFP_KERNEL);
-+	if (!idm->bitmap)
-+		return -ENOMEM;
++	mutex_lock(idm_mutex(idm));
++	total = idm_total(idm);
 +
-+	idm->usable = usable;
-+	idm->shareable = shareable;
++	usable_id = xe_guc_id_mgr_reserve_usable_locked(idm, 2);
++	KUNIT_EXPECT_EQ(test, usable_id, 0);
 +
-+	ret = drmm_add_action_or_reset(&idm_to_xe(idm)->drm, __fini_idm, idm);
-+	if (ret)
-+		return ret;
++	shareable_id = xe_guc_id_mgr_reserve_shareable_locked(idm, 3, 0);
++	KUNIT_EXPECT_EQ(test, shareable_id, total - 3);
 +
-+	xe_gt_dbg(idm_to_gt(idm), "using %u GuC ID%s, %u GuC ID%s shareable with VFs\n",
-+		  idm->usable, str_plural(idm->usable), idm->shareable, str_plural(idm->shareable));
-+	return 0;
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), 5);
++	KUNIT_EXPECT_EQ(test, idm_used_usable(idm), 5);
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 5);
++
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_usable_locked(idm, usable_id, 2), 0);
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_shareable_locked(idm, shareable_id, 3), 0);
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), 0);
++
++	mutex_unlock(idm_mutex(idm));
 +}
 +
- /**
-  * xe_guc_id_mgr_init() - Initialize GuC context ID Manager.
-  * @idm: the &xe_guc_id_mgr to initialize
-@@ -68,19 +131,10 @@ static void __fini_idm(struct drm_device *drm, void *arg)
-  * The bare-metal or PF driver can pass ~0 as &limit to indicate that all
-  * context IDs supported by the GuC firmware are available for use.
-  *
-- * Only VF drivers will have to provide explicit number of context IDs
-- * that they can use.
-- *
-  * Return: 0 on success or a negative error code on failure.
-  */
- int xe_guc_id_mgr_init(struct xe_guc_id_mgr *idm, unsigned int limit)
- {
--	int ret;
--
--	idm_assert(idm, !idm->bitmap);
--	idm_assert(idm, !idm->total);
--	idm_assert(idm, !idm->used);
--
- 	if (limit == ~0)
- 		limit = GUC_ID_MAX;
- 	else if (limit > GUC_ID_MAX)
-@@ -88,70 +142,149 @@ int xe_guc_id_mgr_init(struct xe_guc_id_mgr *idm, unsigned int limit)
- 	else if (!limit)
- 		return -EINVAL;
- 
--	idm->bitmap = bitmap_zalloc(limit, GFP_KERNEL);
--	if (!idm->bitmap)
--		return -ENOMEM;
--	idm->total = limit;
-+	return idm_init(idm, limit, 0);
-+}
- 
--	ret = drmm_add_action_or_reset(&idm_to_xe(idm)->drm, __fini_idm, idm);
--	if (ret)
--		return ret;
-+/**
-+ * xe_guc_id_mgr_max_usable() - Get maximum number of usable GuC context IDs.
-+ * @idm: the &xe_guc_id_mgr to query
-+ *
-+ * Return: maximum number of GuC context IDs that can be used by @idm for GuC submission.
-+ */
-+unsigned int xe_guc_id_mgr_max_usable(struct xe_guc_id_mgr *idm)
++static void check_overlap_release(struct kunit *test)
 +{
-+	return idm->usable;
-+}
- 
--	xe_gt_dbg(idm_to_gt(idm), "using %u GuC ID%s\n",
--		  idm->total, str_plural(idm->total));
--	return 0;
-+/**
-+ * xe_guc_id_mgr_max_shareable() - Get maximum number of shareable GuC context IDs.
-+ * @idm: the &xe_guc_id_mgr to query
-+ *
-+ * Return: maximum number of GuC context IDs that can be shared with VFs.
-+ */
-+unsigned int xe_guc_id_mgr_max_shareable(struct xe_guc_id_mgr *idm)
-+{
-+	return idm->shareable;
- }
- 
--static unsigned int find_last_zero_area(unsigned long *bitmap,
--					unsigned int total,
--					unsigned int count)
-+static int idm_reserve_chunk_usable_locked(struct xe_guc_id_mgr *idm, unsigned int count)
-+{
++	struct xe_guc_id_mgr *idm = test->priv;
++	unsigned int total;
 +	int id;
 +
-+	idm_assert(idm, count);
-+	lockdep_assert_held(idm_mutex(idm));
++	if (!require_iov_config_or_skip(test))
++		return;
 +
-+	if (!idm->usable)
-+		return -ENODATA;
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, GUC_ID_MAX, GUC_ID_MAX));
 +
-+	id = bitmap_find_next_zero_area(idm->bitmap, idm->usable, 0, count, 0);
-+	if (id >= idm->usable)
-+		return -ENOSPC;
++	mutex_lock(idm_mutex(idm));
++	total = idm_total(idm);
 +
-+	bitmap_set(idm->bitmap, id, count);
++	id = xe_guc_id_mgr_reserve_usable_locked(idm, 4);
++	KUNIT_EXPECT_EQ(test, id, 0);
 +
-+	return id;
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_shareable_locked(idm, id, 4), 0);
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), 0);
++
++	id = xe_guc_id_mgr_reserve_shareable_locked(idm, 4, 0);
++	KUNIT_EXPECT_EQ(test, id, total - 4);
++
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_usable_locked(idm, id, 4), 0);
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), 0);
++
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_usable_locked(idm, 0, 0), -EINVAL);
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_shareable_locked(idm, 0, 0), -EINVAL);
++
++	mutex_unlock(idm_mutex(idm));
 +}
 +
-+static unsigned int idm_find_last_zero_area_in_range(unsigned long *bitmap,
-+						     unsigned int range_start,
-+						     unsigned int range_end,
-+						     unsigned int count)
- {
--	unsigned int found = total;
--	unsigned int rs, re, range;
-+	unsigned int found = range_end;
-+	unsigned int rs, re;
++static void check_overlap_partial_init(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
++	unsigned int pools_size = (GUC_ID_MAX / 3) * 2;
++	unsigned int shareable_start;
++	unsigned int rest;
++	int usable_id, shareable_id;
 +
-+	for_each_clear_bitrange(rs, re, bitmap, range_end) {
-+		unsigned int start = max(rs, range_start);
-+		unsigned int end = min(re, range_end);
-+		unsigned int range;
- 
--	for_each_clear_bitrange(rs, re, bitmap, total) {
--		range = re - rs;
-+		if (start >= end)
-+			continue;
++	if (!require_iov_config_or_skip(test))
++		return;
 +
-+		range = end - start;
- 		if (range < count)
- 			continue;
--		found = rs + (range - count);
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, pools_size, pools_size));
 +
-+		found = start + (range - count);
- 	}
++	mutex_lock(idm_mutex(idm));
 +
- 	return found;
- }
- 
--static int idm_reserve_chunk_locked(struct xe_guc_id_mgr *idm,
--				    unsigned int count, unsigned int retain)
-+static int idm_reserve_chunk_shareable_locked(struct xe_guc_id_mgr *idm, unsigned int count,
-+					      unsigned int spare)
- {
-+	unsigned int shareable_start = idm_shareable_start(idm);
-+	unsigned int total = idm_total(idm);
- 	int id;
- 
- 	idm_assert(idm, count);
- 	lockdep_assert_held(idm_mutex(idm));
- 
--	if (!idm->total)
-+	if (!idm->shareable)
- 		return -ENODATA;
- 
--	if (retain) {
-+	if (shareable_start < idm->usable) {
- 		/*
--		 * For IDs reservations (used on PF for VFs) we want to make
--		 * sure there will be at least 'retain' available for the PF
-+		 * Spare is meaningful only for IDs that are shared between usable and
-+		 * shareable pools. For non-overlapping pools, shareable reservations do
-+		 * not reduce PF usable capacity, so there is nothing to retain.
- 		 */
--		if (idm->used + count + retain > idm->total)
-+		id = idm_find_last_zero_area_in_range(idm->bitmap, shareable_start, total, count);
-+		if (id >= total)
-+			return -ENOSPC;
++	shareable_start = idm_shareable_start(idm);
++	rest = idm_total(idm) - pools_size;
 +
-+		if (spare) {
-+			unsigned int used_usable = bitmap_weight(idm->bitmap, idm->usable);
-+			unsigned int overlap_start = max_t(int, id, shareable_start);
-+			unsigned int overlap_end = min(id + count, idm->usable);
-+			unsigned int need_overlap = overlap_end > overlap_start ?
-+						    overlap_end - overlap_start : 0;
++	KUNIT_EXPECT_EQ(test, idm_total(idm), GUC_ID_MAX);
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_max_usable(idm), pools_size);
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_max_shareable(idm), pools_size);
++	KUNIT_EXPECT_EQ(test, shareable_start, GUC_ID_MAX - pools_size);
 +
-+			if (used_usable + need_overlap + spare > idm->usable)
-+				return -EDQUOT;
-+		}
-+	} else {
-+		id = bitmap_find_next_zero_area(idm->bitmap, total, shareable_start, count, 0);
-+		if (id + count > total)
-+			return -ENOSPC;
-+		if (id < shareable_start)
-+			return -ENOSPC;
++	usable_id = xe_guc_id_mgr_reserve_usable_locked(idm, pools_size);
++	KUNIT_EXPECT_EQ(test, usable_id, 0);
++	if (usable_id < 0) {
++		mutex_unlock(idm_mutex(idm));
++		return;
 +	}
 +
-+	bitmap_set(idm->bitmap, id, count);
++	shareable_id = xe_guc_id_mgr_reserve_shareable_locked(idm, rest, 0);
++	KUNIT_EXPECT_EQ(test, shareable_id, pools_size);
++	if (shareable_id < 0) {
++		idm_release_chunk_locked(idm, usable_id, pools_size);
++		mutex_unlock(idm_mutex(idm));
++		return;
++	}
 +
-+	return id;
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), GUC_ID_MAX);
++	KUNIT_EXPECT_EQ(test, idm_used_usable(idm), pools_size);
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), pools_size);
++
++	KUNIT_EXPECT_EQ(test,
++			xe_guc_id_mgr_release_usable_locked(idm, usable_id, pools_size), 0);
++	KUNIT_EXPECT_EQ(test,
++			xe_guc_id_mgr_release_shareable_locked(idm, shareable_id, rest), 0);
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), 0);
++
++	mutex_unlock(idm_mutex(idm));
 +}
 +
-+static int idm_reserve_chunk_locked(struct xe_guc_id_mgr *idm, unsigned int count,
-+				    unsigned int retain)
++static void check_overlap_partial_shared_range_blocking(struct kunit *test)
 +{
-+	unsigned int total = idm_total(idm);
++	struct xe_guc_id_mgr *idm = test->priv;
++	unsigned int pools_size = (GUC_ID_MAX / 3) * 2;
++	int usable_id, shareable_range_id, shareable_overlap_id;
++	unsigned int shareable_start;
++	unsigned int nonoverlap_size;
++	unsigned int overlap_size;
++	unsigned int total;
++
++	if (!require_iov_config_or_skip(test))
++		return;
++
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, pools_size, pools_size));
++
++	mutex_lock(idm_mutex(idm));
++
++	total = idm_total(idm);
++	shareable_start = idm_shareable_start(idm);
++	nonoverlap_size = total - pools_size;
++	overlap_size = pools_size - shareable_start;
++
++	KUNIT_EXPECT_GT(test, nonoverlap_size, 0);
++	KUNIT_EXPECT_GT(test, overlap_size, 0);
++
++	shareable_range_id = xe_guc_id_mgr_reserve_shareable_locked(idm, nonoverlap_size, 0);
++	KUNIT_EXPECT_EQ(test, shareable_range_id, pools_size);
++
++	usable_id = xe_guc_id_mgr_reserve_usable_locked(idm, pools_size);
++	KUNIT_EXPECT_EQ(test, usable_id, 0);
++
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_shareable_locked(idm, 1, 0), -ENOSPC);
++
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_usable_locked(idm, usable_id, pools_size), 0);
++
++	shareable_overlap_id = xe_guc_id_mgr_reserve_shareable_locked(idm, overlap_size, 0);
++	KUNIT_EXPECT_EQ(test, shareable_overlap_id, shareable_start);
++
++	usable_id = xe_guc_id_mgr_reserve_usable_locked(idm, shareable_start);
++	KUNIT_EXPECT_EQ(test, usable_id, 0);
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_usable_locked(idm, 1), -ENOSPC);
++
++	KUNIT_EXPECT_EQ(test,
++			xe_guc_id_mgr_release_usable_locked(idm, usable_id, shareable_start),
++			0);
++	KUNIT_EXPECT_EQ(test,
++			xe_guc_id_mgr_release_shareable_locked(idm, shareable_overlap_id,
++							       overlap_size),
++			0);
++	KUNIT_EXPECT_EQ(test,
++			xe_guc_id_mgr_release_shareable_locked(idm, shareable_range_id,
++							       nonoverlap_size),
++			0);
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), 0);
++
++	mutex_unlock(idm_mutex(idm));
++}
++
++static void check_used_usable(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
 +	int id;
 +
-+	idm_assert(idm, count);
-+	lockdep_assert_held(idm_mutex(idm));
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 8, 0));
 +
-+	if (!total)
-+		return -ENODATA;
++	mutex_lock(idm_mutex(idm));
 +
-+	if (retain) {
-+		unsigned int used = bitmap_weight(idm->bitmap, total);
++	KUNIT_EXPECT_EQ(test, idm_used_usable(idm), 0);
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 0);
 +
-+		if (used + count + retain > total)
- 			return -EDQUOT;
--		/*
--		 * ... and we want to reserve highest IDs close to the end.
--		 */
--		id = find_last_zero_area(idm->bitmap, idm->total, count);
-+
-+		id = idm_find_last_zero_area_in_range(idm->bitmap, 0, total, count);
- 	} else {
--		/*
--		 * For regular IDs reservations (used by submission code)
--		 * we start searching from the lower range of IDs.
--		 */
--		id = bitmap_find_next_zero_area(idm->bitmap, idm->total, 0, count, 0);
-+		id = bitmap_find_next_zero_area(idm->bitmap, total, 0, count, 0);
- 	}
--	if (id >= idm->total)
-+
-+	if (id >= total)
- 		return -ENOSPC;
- 
- 	bitmap_set(idm->bitmap, id, count);
--	idm->used += count;
- 
- 	return id;
- }
-@@ -160,9 +293,8 @@ static void idm_release_chunk_locked(struct xe_guc_id_mgr *idm,
- 				     unsigned int start, unsigned int count)
- {
- 	idm_assert(idm, count);
--	idm_assert(idm, count <= idm->used);
--	idm_assert(idm, start < idm->total);
--	idm_assert(idm, start + count - 1 < idm->total);
-+	idm_assert(idm, start < idm_total(idm));
-+	idm_assert(idm, start + count - 1 < idm_total(idm));
- 	lockdep_assert_held(idm_mutex(idm));
- 
- 	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
-@@ -172,22 +304,61 @@ static void idm_release_chunk_locked(struct xe_guc_id_mgr *idm,
- 			idm_assert(idm, test_bit(start + n, idm->bitmap));
- 	}
- 	bitmap_clear(idm->bitmap, start, count);
--	idm->used -= count;
-+}
-+
-+static int idm_release_chunk_in_range_locked(struct xe_guc_id_mgr *idm,
-+					     unsigned int start,
-+					     unsigned int count,
-+					     unsigned int range_start,
-+					     unsigned int range_end)
-+{
-+	lockdep_assert_held(idm_mutex(idm));
-+
-+	if (!count)
-+		return -EINVAL;
-+
-+	if (start < range_start || start >= range_end)
-+		return -ERANGE;
-+
-+	if (count > range_end - start)
-+		return -ERANGE;
-+
-+	idm_release_chunk_locked(idm, start, count);
-+
-+	return 0;
- }
- 
- /**
-- * xe_guc_id_mgr_reserve_locked() - Reserve one or more GuC context IDs.
-+ * xe_guc_id_mgr_reserve_usable_locked() - Reserve one or more usable GuC context IDs.
-  * @idm: the &xe_guc_id_mgr
-- * @count: number of IDs to allocate (can't be 0)
-+ * @count: number of usable GuC context IDs to reserve (can't be 0)
-  *
-- * This function is dedicated for the use by the GuC submission code,
-- * where submission lock is already taken.
-+ * This function is dedicated for use by the GuC submission code when the
-+ * submission lock is already held.
-  *
-  * Return: ID of allocated GuC context or a negative error code on failure.
-  */
--int xe_guc_id_mgr_reserve_locked(struct xe_guc_id_mgr *idm, unsigned int count)
-+int xe_guc_id_mgr_reserve_usable_locked(struct xe_guc_id_mgr *idm, unsigned int count)
- {
--	return idm_reserve_chunk_locked(idm, count, 0);
-+	return idm_reserve_chunk_usable_locked(idm, count);
-+}
-+
-+/**
-+ * xe_guc_id_mgr_reserve_shareable_locked() - Reserve one or more shareable GuC context IDs.
-+ * @idm: the &xe_guc_id_mgr
-+ * @count: number of shareable GuC context IDs to reserve (can't be 0)
-+ * @spare: number of usable IDs to keep available for the PF
-+ *
-+ * This function is dedicated for use by the PF driver, which expects the
-+ * reserved range of IDs to be contiguous. The function expects that the
-+ * caller has already taken the lock.
-+ *
-+ * Return: ID of allocated GuC context or a negative error code on failure.
-+ */
-+int xe_guc_id_mgr_reserve_shareable_locked(struct xe_guc_id_mgr *idm, unsigned int count,
-+					   unsigned int spare)
-+{
-+	return idm_reserve_chunk_shareable_locked(idm, count, spare);
- }
- 
- /**
-@@ -206,60 +377,175 @@ void xe_guc_id_mgr_release_locked(struct xe_guc_id_mgr *idm, unsigned int id,
- }
- 
- /**
-- * xe_guc_id_mgr_reserve() - Reserve a range of GuC context IDs.
-+ * xe_guc_id_mgr_release_usable_locked() - Release one or more usable GuC context IDs.
-  * @idm: the &xe_guc_id_mgr
-- * @count: number of GuC context IDs to reserve (can't be 0)
-- * @retain: number of GuC context IDs to keep available (can't be 0)
-+ * @id: the first usable GuC context ID to release
-+ * @count: number of usable GuC context IDs to release
-+ *
-+ * This function is dedicated for use by the GuC submission code when the
-+ * submission lock is already held.
-  *
-- * This function is dedicated for the use by the PF driver which expects that
-- * reserved range of IDs will be contiguous and that there will be at least
-- * &retain IDs still available for the PF after this reservation.
-+ * Return: 0 on success, or a negative error code on failure.
-+ */
-+int xe_guc_id_mgr_release_usable_locked(struct xe_guc_id_mgr *idm, unsigned int id,
-+					unsigned int count)
-+{
-+	return idm_release_chunk_in_range_locked(idm, id, count, 0, idm->usable);
-+}
-+
-+/**
-+ * xe_guc_id_mgr_release_shareable_locked() - Release one or more shareable GuC context IDs.
-+ * @idm: the &xe_guc_id_mgr
-+ * @id: the first shareable GuC context ID to release
-+ * @count: number of shareable GuC context IDs to release
-+ *
-+ * Return: 0 on success, or a negative error code on failure.
-+ */
-+int xe_guc_id_mgr_release_shareable_locked(struct xe_guc_id_mgr *idm, unsigned int id,
-+					   unsigned int count)
-+{
-+	return idm_release_chunk_in_range_locked(idm, id, count,
-+						 idm_shareable_start(idm), idm_total(idm));
-+}
-+
-+/**
-+ * xe_guc_id_mgr_reserve_usable() - Reserve one or more usable GuC context IDs.
-+ * @idm: the &xe_guc_id_mgr
-+ * @count: number of usable GuC context IDs to reserve (can't be 0)
-+ *
-+ * Return: ID of allocated GuC context or a negative error code on failure.
-+ */
-+int xe_guc_id_mgr_reserve_usable(struct xe_guc_id_mgr *idm, unsigned int count)
-+{
-+	guard(mutex)(idm_mutex(idm));
-+
-+	idm_assert(idm, count);
-+
-+	return idm_reserve_chunk_usable_locked(idm, count);
-+}
-+
-+/**
-+ * xe_guc_id_mgr_reserve_shareable() - Reserve one or more shareable GuC context IDs for VFs.
-+ * @idm: the &xe_guc_id_mgr
-+ * @count: number of shareable GuC context IDs to reserve (can't be 0)
-+ * @spare: number of usable IDs to keep available for the PF
-+ *
-+ * This function is dedicated for use by the PF driver, which expects the
-+ * reserved range of IDs to be contiguous.
-  *
-  * Return: starting ID of the allocated GuC context ID range or
-  *         a negative error code on failure.
-  */
--int xe_guc_id_mgr_reserve(struct xe_guc_id_mgr *idm,
--			  unsigned int count, unsigned int retain)
-+int xe_guc_id_mgr_reserve_shareable(struct xe_guc_id_mgr *idm, unsigned int count,
-+				    unsigned int spare)
-+{
-+	guard(mutex)(idm_mutex(idm));
-+
-+	idm_assert(idm, count);
-+
-+	return idm_reserve_chunk_shareable_locked(idm, count, spare);
-+}
-+
-+int xe_guc_id_mgr_reserve_locked(struct xe_guc_id_mgr *idm, unsigned int count)
-+{
-+	return idm_reserve_chunk_locked(idm, count, 0);
-+}
-+
-+int xe_guc_id_mgr_reserve(struct xe_guc_id_mgr *idm, unsigned int count,
-+			  unsigned int retain)
- {
- 	int ret;
- 
- 	idm_assert(idm, count);
- 	idm_assert(idm, retain);
- 
--	mutex_lock(idm_mutex(idm));
-+	guard(mutex)(idm_mutex(idm));
- 	ret = idm_reserve_chunk_locked(idm, count, retain);
--	mutex_unlock(idm_mutex(idm));
- 
- 	return ret;
- }
- 
- /**
-- * xe_guc_id_mgr_release() - Release a range of GuC context IDs.
-+ * xe_guc_id_mgr_release() - Release one or more GuC context IDs.
-  * @idm: the &xe_guc_id_mgr
-- * @start: the starting ID of GuC context range to release
-+ * @start: the first GuC context ID to release
-  * @count: number of GuC context IDs to release
-  */
- void xe_guc_id_mgr_release(struct xe_guc_id_mgr *idm,
- 			   unsigned int start, unsigned int count)
- {
--	mutex_lock(idm_mutex(idm));
-+	guard(mutex)(idm_mutex(idm));
-+
- 	idm_release_chunk_locked(idm, start, count);
--	mutex_unlock(idm_mutex(idm));
- }
- 
--static void idm_print_locked(struct xe_guc_id_mgr *idm, struct drm_printer *p, int indent)
-+/**
-+ * xe_guc_id_mgr_release_usable() - Release one or more usable GuC context IDs.
-+ * @idm: the &xe_guc_id_mgr
-+ * @id: the first usable GuC context ID to release
-+ * @count: number of usable GuC context IDs to release
-+ *
-+ * Return: 0 on success, or a negative error code on failure.
-+ */
-+int xe_guc_id_mgr_release_usable(struct xe_guc_id_mgr *idm, unsigned int id, unsigned int count)
-+{
-+	guard(mutex)(idm_mutex(idm));
-+
-+	return xe_guc_id_mgr_release_usable_locked(idm, id, count);
-+}
-+
-+/**
-+ * xe_guc_id_mgr_release_shareable() - Release one or more shareable GuC context IDs.
-+ * @idm: the &xe_guc_id_mgr
-+ * @id: the first shareable GuC context ID to release
-+ * @count: number of shareable GuC context IDs to release
-+ *
-+ * Return: 0 on success, or a negative error code on failure.
-+ */
-+int xe_guc_id_mgr_release_shareable(struct xe_guc_id_mgr *idm, unsigned int id,
-+				    unsigned int count)
-+{
-+	guard(mutex)(idm_mutex(idm));
-+
-+	return xe_guc_id_mgr_release_shareable_locked(idm, id, count);
-+}
-+
-+static void idm_print_range_locked(struct xe_guc_id_mgr *idm,
-+				   struct drm_printer *p,
-+				   int indent,
-+				   const char *name,
-+				   unsigned int range_start,
-+				   unsigned int range_end,
-+				   unsigned int used)
- {
- 	unsigned int rs, re;
- 
- 	lockdep_assert_held(idm_mutex(idm));
- 
--	drm_printf_indent(p, indent, "total %u\n", idm->total);
-+	drm_printf_indent(p, indent, "%s used %u\n", name, used);
-+	for_each_set_bitrange(rs, re, idm->bitmap, range_end) {
-+		rs = max(rs, range_start);
-+		re = min(re, range_end);
-+
-+		if (rs < re)
-+			drm_printf_indent(p, indent, "%s range %u..%u (%u)\n",
-+					  name, rs, re - 1, re - rs);
++	id = xe_guc_id_mgr_reserve_usable_locked(idm, 2);
++	KUNIT_EXPECT_GE(test, id, 0);
++	if (id < 0) {
++		mutex_unlock(idm_mutex(idm));
++		return;
 +	}
++
++	KUNIT_EXPECT_EQ(test, idm_used_usable(idm), 2);
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 0);
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), 2);
++
++	idm_release_chunk_locked(idm, id, 2);
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), 0);
++
++	mutex_unlock(idm_mutex(idm));
 +}
 +
-+static void idm_print_locked(struct xe_guc_id_mgr *idm, struct drm_printer *p, int indent)
++static void check_used_shareable(struct kunit *test)
 +{
-+	lockdep_assert_held(idm_mutex(idm));
++	struct xe_guc_id_mgr *idm = test->priv;
++	unsigned int shareable_start;
++	int id;
 +
-+	drm_printf_indent(p, indent, "total %u\n", idm_total(idm));
- 	if (!idm->bitmap)
- 		return;
- 
--	drm_printf_indent(p, indent, "used %u\n", idm->used);
--	for_each_set_bitrange(rs, re, idm->bitmap, idm->total)
--		drm_printf_indent(p, indent, "range %u..%u (%u)\n", rs, re - 1, re - rs);
-+	idm_print_range_locked(idm, p, indent, "usable", 0, idm->usable,
-+			       idm_used_usable(idm));
-+	idm_print_range_locked(idm, p, indent, "shareable",
-+			       idm_shareable_start(idm), idm_total(idm),
-+			       idm_used_shareable(idm));
- }
- 
- /**
-@@ -270,9 +556,8 @@ static void idm_print_locked(struct xe_guc_id_mgr *idm, struct drm_printer *p, i
-  */
- void xe_guc_id_mgr_print(struct xe_guc_id_mgr *idm, struct drm_printer *p, int indent)
- {
--	mutex_lock(idm_mutex(idm));
-+	guard(mutex)(idm_mutex(idm));
- 	idm_print_locked(idm, p, indent);
--	mutex_unlock(idm_mutex(idm));
- }
- 
- #if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
-diff --git a/drivers/gpu/drm/xe/xe_guc_id_mgr.h b/drivers/gpu/drm/xe/xe_guc_id_mgr.h
-index 368f8c80e4c7..209f99831f1b 100644
---- a/drivers/gpu/drm/xe/xe_guc_id_mgr.h
-+++ b/drivers/gpu/drm/xe/xe_guc_id_mgr.h
-@@ -9,13 +9,29 @@
- struct drm_printer;
- struct xe_guc_id_mgr;
- 
--int xe_guc_id_mgr_init(struct xe_guc_id_mgr *idm, unsigned int count);
-+int xe_guc_id_mgr_init(struct xe_guc_id_mgr *idm, unsigned int limit);
- 
-+unsigned int xe_guc_id_mgr_max_usable(struct xe_guc_id_mgr *idm);
-+unsigned int xe_guc_id_mgr_max_shareable(struct xe_guc_id_mgr *idm);
++	if (!require_iov_config_or_skip(test))
++		return;
 +
-+int xe_guc_id_mgr_reserve_usable_locked(struct xe_guc_id_mgr *idm, unsigned int count);
-+int xe_guc_id_mgr_reserve_usable(struct xe_guc_id_mgr *idm, unsigned int count);
-+int xe_guc_id_mgr_reserve_shareable_locked(struct xe_guc_id_mgr *idm, unsigned int count,
-+					   unsigned int spare);
-+int xe_guc_id_mgr_reserve_shareable(struct xe_guc_id_mgr *idm, unsigned int count,
-+				    unsigned int spare);
- int xe_guc_id_mgr_reserve_locked(struct xe_guc_id_mgr *idm, unsigned int count);
-+int xe_guc_id_mgr_reserve(struct xe_guc_id_mgr *idm, unsigned int count, unsigned int retain);
- void xe_guc_id_mgr_release_locked(struct xe_guc_id_mgr *idm, unsigned int id, unsigned int count);
-+int xe_guc_id_mgr_release_usable_locked(struct xe_guc_id_mgr *idm, unsigned int id,
-+					unsigned int count);
-+int xe_guc_id_mgr_release_shareable_locked(struct xe_guc_id_mgr *idm, unsigned int id,
-+					   unsigned int count);
- 
--int xe_guc_id_mgr_reserve(struct xe_guc_id_mgr *idm, unsigned int count, unsigned int retain);
- void xe_guc_id_mgr_release(struct xe_guc_id_mgr *idm, unsigned int start, unsigned int count);
-+int xe_guc_id_mgr_release_usable(struct xe_guc_id_mgr *idm, unsigned int id, unsigned int count);
-+int xe_guc_id_mgr_release_shareable(struct xe_guc_id_mgr *idm, unsigned int id,
-+				    unsigned int count);
- 
- void xe_guc_id_mgr_print(struct xe_guc_id_mgr *idm, struct drm_printer *p, int indent);
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-index 3dbcb1331690..6da43691e54c 100644
---- a/drivers/gpu/drm/xe/xe_guc_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_types.h
-@@ -42,10 +42,10 @@ struct xe_guc_db_mgr {
- struct xe_guc_id_mgr {
- 	/** @bitmap: bitmap to track allocated IDs */
- 	unsigned long *bitmap;
--	/** @total: total number of IDs being managed */
--	unsigned int total;
--	/** @used: number of IDs currently in use */
--	unsigned int used;
-+	/** @usable: number of IDs being managed for GuC submission */
-+	unsigned int usable;
-+	/** @shareable: number of IDs that can be shared with VFs */
-+	unsigned int shareable;
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 8, 8));
++
++	mutex_lock(idm_mutex(idm));
++	shareable_start = idm_shareable_start(idm);
++
++	KUNIT_EXPECT_EQ(test, idm_used_usable(idm), 0);
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 0);
++
++	id = xe_guc_id_mgr_reserve_shareable_locked(idm, 3, 0);
++	KUNIT_EXPECT_EQ(test, id, shareable_start);
++	if (id < 0) {
++		mutex_unlock(idm_mutex(idm));
++		return;
++	}
++
++	KUNIT_EXPECT_EQ(test, idm_used_usable(idm), 0);
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 3);
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), 3);
++
++	idm_release_chunk_locked(idm, id, 3);
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), 0);
++
++	mutex_unlock(idm_mutex(idm));
++}
++
++static void check_used_mixed(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
++	unsigned int shareable_start;
++	int usable_id, shareable_id;
++
++	if (!require_iov_config_or_skip(test))
++		return;
++
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 8, 8));
++
++	mutex_lock(idm_mutex(idm));
++	shareable_start = idm_shareable_start(idm);
++
++	usable_id = xe_guc_id_mgr_reserve_usable_locked(idm, 2);
++	KUNIT_EXPECT_EQ(test, usable_id, 0);
++
++	shareable_id = xe_guc_id_mgr_reserve_shareable_locked(idm, 3, 0);
++	KUNIT_EXPECT_EQ(test, shareable_id, shareable_start);
++
++	KUNIT_EXPECT_EQ(test, idm_used_usable(idm), 2);
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 3);
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), 5);
++
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_usable_locked(idm, usable_id, 2), 0);
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_shareable_locked(idm, shareable_id, 3), 0);
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), 0);
++
++	mutex_unlock(idm_mutex(idm));
++}
++
++static void check_release_usable_range(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
++	int id;
++
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 8, 0));
++
++	mutex_lock(idm_mutex(idm));
++
++	id = xe_guc_id_mgr_reserve_usable_locked(idm, 4);
++	KUNIT_EXPECT_EQ(test, id, 0);
++
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_usable_locked(idm, 4, 7), -ERANGE);
++	KUNIT_EXPECT_EQ(test, idm_used_usable(idm), 4);
++
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_usable_locked(idm, 0, 0), -EINVAL);
++	KUNIT_EXPECT_EQ(test, idm_used_usable(idm), 4);
++
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_usable_locked(idm, id, 4), 0);
++	KUNIT_EXPECT_EQ(test, idm_used_usable(idm), 0);
++
++	mutex_unlock(idm_mutex(idm));
++}
++
++static void check_release_shareable_range(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
++	unsigned int shareable_start;
++	int id;
++
++	if (!require_iov_config_or_skip(test))
++		return;
++
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 8, 8));
++
++	mutex_lock(idm_mutex(idm));
++
++	shareable_start = idm_shareable_start(idm);
++	id = xe_guc_id_mgr_reserve_shareable_locked(idm, 4, 0);
++	KUNIT_EXPECT_EQ(test, id, shareable_start);
++
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_shareable_locked(idm, 4, 7), -ERANGE);
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 4);
++
++	KUNIT_EXPECT_EQ(test,
++			xe_guc_id_mgr_release_shareable_locked(idm, shareable_start, 0),
++			-EINVAL);
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 4);
++
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_shareable_locked(idm, id, 4), 0);
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 0);
++
++	mutex_unlock(idm_mutex(idm));
++}
++
++static void check_split_boundaries(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
++	unsigned int shareable_start;
++	int usable_id, shareable_id;
++
++	if (!require_iov_config_or_skip(test))
++		return;
++
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 4, 4));
++
++	mutex_lock(idm_mutex(idm));
++
++	shareable_start = idm_shareable_start(idm);
++
++	usable_id = xe_guc_id_mgr_reserve_usable_locked(idm, 4);
++	KUNIT_EXPECT_EQ(test, usable_id, 0);
++	if (usable_id < 0) {
++		mutex_unlock(idm_mutex(idm));
++		return;
++	}
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_usable_locked(idm, 1), -ENOSPC);
++
++	shareable_id = xe_guc_id_mgr_reserve_shareable_locked(idm, 4, 0);
++	KUNIT_EXPECT_EQ(test, shareable_id, shareable_start);
++	if (shareable_id < 0) {
++		idm_release_chunk_locked(idm, usable_id, 4);
++		mutex_unlock(idm_mutex(idm));
++		return;
++	}
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_shareable_locked(idm, 1, 0), -ENOSPC);
++
++	KUNIT_EXPECT_EQ(test, idm_used_usable(idm), 4);
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 4);
++
++	idm_release_chunk_locked(idm, usable_id, 4);
++	idm_release_chunk_locked(idm, shareable_id, 4);
++	KUNIT_EXPECT_EQ(test, test_idm_used_total(idm), 0);
++
++	mutex_unlock(idm_mutex(idm));
++}
++
++static void check_shareable_spare(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
++	unsigned int pools_size = (GUC_ID_MAX / 3) * 2;
++	unsigned int shareable_start;
++	unsigned int overlap_size;
++	unsigned int shared_tail;
++	int id_tail, id_overlap, id_extra;
++
++	if (!require_iov_config_or_skip(test))
++		return;
++
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, pools_size, pools_size));
++
++	mutex_lock(idm_mutex(idm));
++	shareable_start = idm_shareable_start(idm);
++	overlap_size = idm->usable - shareable_start;
++	shared_tail = idm_total(idm) - idm->usable;
++
++	KUNIT_EXPECT_GT(test, overlap_size, 0);
++	KUNIT_EXPECT_GT(test, shared_tail, 0);
++
++	id_tail = xe_guc_id_mgr_reserve_shareable_locked(idm, shared_tail, 1);
++	KUNIT_EXPECT_EQ(test, id_tail, idm->usable);
++	if (id_tail < 0) {
++		mutex_unlock(idm_mutex(idm));
++		return;
++	}
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), shared_tail);
++
++	id_overlap = xe_guc_id_mgr_reserve_shareable_locked(idm, overlap_size - 1, 1);
++	KUNIT_EXPECT_EQ(test, id_overlap, shareable_start + 1);
++	if (id_overlap < 0) {
++		idm_release_chunk_locked(idm, id_tail, shared_tail);
++		mutex_unlock(idm_mutex(idm));
++		return;
++	}
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), idm->shareable - 1);
++
++	id_extra = xe_guc_id_mgr_reserve_shareable_locked(idm, 1, 1);
++	KUNIT_EXPECT_EQ(test, id_extra, shareable_start);
++	if (id_extra < 0) {
++		idm_release_chunk_locked(idm, id_tail, shared_tail);
++		idm_release_chunk_locked(idm, id_overlap, overlap_size - 1);
++		mutex_unlock(idm_mutex(idm));
++		return;
++	}
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), idm->shareable);
++
++	idm_release_chunk_locked(idm, id_tail, shared_tail);
++	idm_release_chunk_locked(idm, id_overlap, overlap_size - 1);
++	idm_release_chunk_locked(idm, id_extra, 1);
++	KUNIT_EXPECT_EQ(test, idm_used_shareable(idm), 0);
++
++	mutex_unlock(idm_mutex(idm));
++}
++
++static void check_shareable_spare_fragmented_tail(struct kunit *test)
++{
++	struct xe_guc_id_mgr *idm = test->priv;
++	unsigned int usable = GUC_ID_MAX - 50;
++	unsigned int shareable = 90;
++	unsigned int shareable_start;
++	unsigned int overlap_size;
++	unsigned int count = 39;
++	unsigned int spare = 10;
++	unsigned int i;
++
++	if (!require_iov_config_or_skip(test))
++		return;
++
++	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, usable, shareable));
++
++	mutex_lock(idm_mutex(idm));
++	shareable_start = idm_shareable_start(idm);
++	overlap_size = idm->usable - shareable_start;
++	KUNIT_EXPECT_EQ(test, overlap_size, 40);
++
++	bitmap_fill(idm->bitmap, idm_total(idm));
++	bitmap_set(idm->bitmap, 0, 1);
++	bitmap_clear(idm->bitmap, shareable_start + 1, overlap_size - 1);
++	for (i = idm->usable; i < idm_total(idm); i++) {
++		if ((i - idm->usable) % 5)
++			bitmap_clear(idm->bitmap, i, 1);
++	}
++
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_shareable_locked(idm, count, spare),
++			-EDQUOT);
++
++	bitmap_fill(idm->bitmap, idm_total(idm));
++	bitmap_clear(idm->bitmap, shareable_start, 30);
++	bitmap_clear(idm->bitmap, idm_total(idm) - 20, 20);
++	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_shareable_locked(idm, 30, 1),
++			-EDQUOT);
++
++	bitmap_zero(idm->bitmap, idm_total(idm));
++
++	mutex_unlock(idm_mutex(idm));
++}
++
+ static struct kunit_case guc_id_mgr_test_cases[] = {
+ 	KUNIT_CASE(bad_init),
+ 	KUNIT_CASE(no_init),
+@@ -109,6 +674,20 @@ static struct kunit_case guc_id_mgr_test_cases[] = {
+ 	KUNIT_CASE(check_used),
+ 	KUNIT_CASE(check_quota),
+ 	KUNIT_CASE_SLOW(check_all),
++	KUNIT_CASE(check_limits),
++	KUNIT_CASE(check_overlap),
++	KUNIT_CASE(check_overlap_alloc),
++	KUNIT_CASE(check_overlap_release),
++	KUNIT_CASE(check_overlap_partial_init),
++	KUNIT_CASE(check_overlap_partial_shared_range_blocking),
++	KUNIT_CASE(check_used_usable),
++	KUNIT_CASE(check_used_shareable),
++	KUNIT_CASE(check_used_mixed),
++	KUNIT_CASE(check_release_usable_range),
++	KUNIT_CASE(check_release_shareable_range),
++	KUNIT_CASE(check_split_boundaries),
++	KUNIT_CASE(check_shareable_spare),
++	KUNIT_CASE(check_shareable_spare_fragmented_tail),
+ 	{}
  };
  
- /**
 -- 
 2.34.1
 
