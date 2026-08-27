@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E446DC61DC2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7E18C61DC7
 	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 08:21:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A6CD10EEEF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F5FF10E61C;
 	Thu, 27 Aug 2026 08:21:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RnNPBGfa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KbZS/ns2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36E6210E61C
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 08:21:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0E1F10E61C
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 08:21:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787818899; x=1819354899;
+ t=1787818901; x=1819354901;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=I25WwXRpTNaH2Twb/dbcI6aeAm6oWq3qmeZ/xoyMks4=;
- b=RnNPBGfaDtaVeRKwMqVhsbP+frDE0ssJmOZTcKkOUo6OrGas2giWHPTd
- 20AARfHbr8JBnva0DMGOj0YVyPjZXD82KodTkrJCyM2otlDEO6isCG5NF
- pR/Y3E2O4ku7M5ZYOFOyPUCKlPg1tUYimsX5yLb38laWNQN3oghWf43Du
- vGBNkTk0dYx+u26IvjbZqOBZqSv+5RTQCwpWWjFQLHs2zWJO+0uXsPtOF
- f9gpnQvUElV2ob6p6jEAXp7dLKreWnj3nll0pdiDs3mubR6Jk64H/VCR8
- mq6ByGO1Nkh0TinWZlFBW2n91/PYtljsDCY6Jab4NdpoWz9ZBIzLB68oc g==;
-X-CSE-ConnectionGUID: qxgwpf+lTnOGmsfVG91n6g==
-X-CSE-MsgGUID: 27pJn9e7T+adNqmT7b+mRA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="99475710"
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="99475710"
+ bh=gCkfs1kQGZeY3oC1fsI4j+DvPJ5vHR4MNKx6befuzj0=;
+ b=KbZS/ns28kSpnBk04MbNNuynFs2qANaJLmlQNBdov+O7gid2t8yEYN6m
+ 4AtL64f3HXweGm7DhJWIY9P4Pd8Jg24mWbviSxnK6YUrz+D9YrwkiW9jy
+ wbnIaXHE1kAs5lh0q7gV2tcf43QRByAk0Cjb4xkVw4tTWze6+I5LUPLYy
+ 7D7dasLoQFR90X2eQGeAYANsJ7DzLk36fylvHfOGA8oWdr0lNHMwrrX11
+ iaAI7wDrsr72LJB5J0Mw3somMQAOojFBLpXTkB7wq04IdKHcarpOQ2yk6
+ 7OhcodPYxUe74Wd6Ub+sGIiVHYclk8mklWuc2ajqF1+nSYK8/mQX54Fza w==;
+X-CSE-ConnectionGUID: xb4iQeapQvu3uw50Nvg+dQ==
+X-CSE-MsgGUID: BM0QGSTdQ36oATKv5WdFMw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="99475712"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="99475712"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 01:21:39 -0700
-X-CSE-ConnectionGUID: HwRDXWmoTkGeOya2cOqWHA==
-X-CSE-MsgGUID: zQCVoJSdQGOG+eSM1nNXBw==
+ 27 Aug 2026 01:21:41 -0700
+X-CSE-ConnectionGUID: yMLZ75XoQRG5D3CpMTQoDw==
+X-CSE-MsgGUID: gTlVyM07QQKBOHhpSrwSTQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="264559595"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="264559610"
 Received: from tilak-z690i-a-ultra-plus.iind.intel.com ([10.190.239.38])
- by fmviesa007.fm.intel.com with ESMTP; 27 Aug 2026 01:21:37 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 27 Aug 2026 01:21:39 -0700
 From: tilak.tirumalesh.tangudu@intel.com
 To: tilak.tirumalesh.tangudu@intel.com, niranjana.vishwanathapura@intel.com,
  matthew.brost@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/3] drm/xe/ggtt: fault on unmapped GGTT for multi-queue
- platforms
-Date: Thu, 27 Aug 2026 13:50:09 +0530
-Message-ID: <20260827082011.3370672-2-tilak.tirumalesh.tangudu@intel.com>
+Subject: [PATCH 2/3] drm/xe/tlb_inval: add xe_tlb_inval_ggtt_full() GGTT
+ invalidation helper
+Date: Thu, 27 Aug 2026 13:50:10 +0530
+Message-ID: <20260827082011.3370672-3-tilak.tirumalesh.tangudu@intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20260827082011.3370672-1-tilak.tirumalesh.tangudu@intel.com>
 References: <20260827082011.3370672-1-tilak.tirumalesh.tangudu@intel.com>
@@ -68,121 +68,184 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 
-Engines cache GGTT translations in their TLBs.
-A full context restore on engine switch flushes these, so a stale
-translation for an unmapped and recycled range does not survive.
-
-During a secondary queue append, GuC does a lite-restore and skips the
-full context restore, so engine TLB invalidations are missed. This was
-observed while running multi-queue tests on another OS.
-
-If unmapped GGTT points to scratch, such a stale access silently reads
-scratch instead of faulting, masking the error. On multi-queue
-platforms skip allocating the scratch page so unmapped GGTT holds
-PTE=0 and faults consistently for the whole boot; other platforms keep
-scratch and are unaffected.
+Add xe_tlb_inval_ggtt_full() and its GuC backend
+send_tlb_inval_ggtt_full() for full engine TLB invalidation
+within the requesting VF across all engines.
 
 v2:
-- Add xe_gt_has_multi_queue() helper and address nits (Niranjana)
+- Refactor with new helper xe_tlb_inval_issue_op_wait() and address
+  nits (Niranjana)
 v3:
-- Drop scratch entirely instead of toggling per-unmap (Matt Brost)
+- Avoid TOCTOU issue around CT state (Matt Brost)
+v4:
+- Propagate real send errors instead of masking as -ECANCELED (Sashiko)
 v5:
-- Document the rationale (Matt Roper / Matt Brost)
+- Handle -ENOTRECOVERABLE (wedged), drop redundant -ECANCELED
+  (Matt Brost, Niranjana)
 
 Assisted-by: Claude:claude-opus-4-8
-Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 40 ++++++++++++++++++++++--------------
- drivers/gpu/drm/xe/xe_gt.h   | 13 ++++++++++++
- 2 files changed, 38 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c   | 29 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_tlb_inval.c       | 42 +++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_tlb_inval.h       |  1 +
+ drivers/gpu/drm/xe/xe_tlb_inval_types.h | 10 ++++++
+ 4 files changed, 76 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 8ec23862477f..9b58f47986f6 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -20,6 +20,7 @@
- #include "regs/xe_regs.h"
- #include "xe_assert.h"
- #include "xe_bo.h"
-+#include "xe_gt.h"
- #include "xe_gt_printk.h"
- #include "xe_gt_types.h"
- #include "xe_map.h"
-@@ -533,27 +534,36 @@ void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate)
- int xe_ggtt_init(struct xe_ggtt *ggtt)
- {
- 	struct xe_device *xe = tile_to_xe(ggtt->tile);
--	unsigned int flags;
- 	int err;
+diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+index 046d0655122f..111fef781b2a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+@@ -98,6 +98,33 @@ static int send_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval, u32 seqno)
+ 	return -ECANCELED;
+ }
  
- 	/*
--	 * So we don't need to worry about 64K GGTT layout when dealing with
--	 * scratch entries, rather keep the scratch page in system memory on
--	 * platforms where 64K pages are needed for VRAM.
-+	 * Multi-queue misses engine GGTT TLB invalidations (GuC lite-restore
-+	 * skips the full context restore), so skip scratch: a stale translation
-+	 * to a freed range then faults instead of silently reading scratch.
- 	 */
--	flags = 0;
--	if (ggtt->flags & XE_GGTT_FLAGS_64K)
--		flags |= XE_BO_FLAG_SYSTEM;
--	else
--		flags |= XE_BO_FLAG_VRAM_IF_DGFX(ggtt->tile);
-+	if (!xe_gt_has_multi_queue(ggtt->tile->primary_gt)) {
-+		unsigned int flags = 0;
++/*
++ * Emit INVAL_FULL (intra vf) to invalidate engine TLBs across all engines
++ * within the VF.
++ */
++static int send_tlb_inval_ggtt_full(struct xe_tlb_inval *tlb_inval, u32 seqno)
++{
++	struct xe_guc *guc = tlb_inval->private;
++	u32 action[] = {
++		XE_GUC_ACTION_TLB_INVALIDATION,
++		seqno,
++		MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL),
++	};
++	int ret;
 +
-+		/*
-+		 * So we don't need to worry about 64K GGTT layout when dealing
-+		 * with scratch entries, rather keep the scratch page in system
-+		 * memory on platforms where 64K pages are needed for VRAM.
-+		 */
-+		if (ggtt->flags & XE_GGTT_FLAGS_64K)
-+			flags |= XE_BO_FLAG_SYSTEM;
-+		else
-+			flags |= XE_BO_FLAG_VRAM_IF_DGFX(ggtt->tile);
++	ret = send_tlb_inval(guc, action, ARRAY_SIZE(action));
++
++	/*
++	 * send_tlb_inval() may return -ENODEV (CT disabled at cold boot) or
++	 * -ENOTRECOVERABLE (device wedged); nothing runs on the engines in
++	 * either case, so treat as cancelled.
++	 */
++	if (ret == -ENODEV || ret == -ENOTRECOVERABLE)
++		return -ECANCELED;
++
++	return ret;
++}
++
+ static int send_page_reclaim(struct xe_guc *guc, u32 seqno,
+ 			     u64 gpu_addr)
+ {
+@@ -346,6 +373,7 @@ static long tlb_inval_timeout_delay(struct xe_tlb_inval *tlb_inval)
+ static const struct xe_tlb_inval_ops guc_tlb_inval_asid_ops = {
+ 	.all = send_tlb_inval_all,
+ 	.ggtt = send_tlb_inval_ggtt,
++	.ggtt_full = send_tlb_inval_ggtt_full,
+ 	.ppgtt = send_tlb_inval_asid_ppgtt,
+ 	.initialized = tlb_inval_initialized,
+ 	.flush = tlb_inval_flush,
+@@ -354,6 +382,7 @@ static const struct xe_tlb_inval_ops guc_tlb_inval_asid_ops = {
  
--	ggtt->scratch = xe_managed_bo_create_pin_map(xe, ggtt->tile, XE_PAGE_SIZE, flags);
--	if (IS_ERR(ggtt->scratch)) {
--		err = PTR_ERR(ggtt->scratch);
--		goto err;
--	}
-+		ggtt->scratch = xe_managed_bo_create_pin_map(xe, ggtt->tile,
-+							     XE_PAGE_SIZE, flags);
-+		if (IS_ERR(ggtt->scratch)) {
-+			err = PTR_ERR(ggtt->scratch);
-+			goto err;
-+		}
+ static const struct xe_tlb_inval_ops guc_tlb_inval_ctx_ops = {
+ 	.ggtt = send_tlb_inval_ggtt,
++	.ggtt_full = send_tlb_inval_ggtt_full,
+ 	.all = send_tlb_inval_all,
+ 	.ppgtt = send_tlb_inval_ctx_ppgtt,
+ 	.initialized = tlb_inval_initialized,
+diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
+index bbd21d393062..7c3bf32d9258 100644
+--- a/drivers/gpu/drm/xe/xe_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
+@@ -301,26 +301,56 @@ int xe_tlb_inval_all(struct xe_tlb_inval *tlb_inval,
+ }
  
--	xe_map_memset(xe, &ggtt->scratch->vmap, 0, 0, xe_bo_size(ggtt->scratch));
-+		xe_map_memset(xe, &ggtt->scratch->vmap, 0, 0,
-+			      xe_bo_size(ggtt->scratch));
-+	}
+ /**
+- * xe_tlb_inval_ggtt() - Issue a TLB invalidation for the GGTT
++ * xe_tlb_inval_issue_op_wait() - Issue a TLB invalidation and wait
+  * @tlb_inval: TLB invalidation client
+- *
+- * Issue a TLB invalidation for the GGTT. Completion of TLB is asynchronous and
+- * caller can use the invalidation fence to wait for completion.
++ * @op: backend invalidation hook to issue
+  *
+  * Return: 0 on success, negative error code on error
+  */
+-int xe_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval)
++static int xe_tlb_inval_issue_op_wait(struct xe_tlb_inval *tlb_inval,
++				      int (*op)(struct xe_tlb_inval *tlb_inval, u32 seqno))
+ {
+ 	struct xe_tlb_inval_fence fence, *fence_ptr = &fence;
+ 	int ret;
  
- 	xe_ggtt_initial_clear(ggtt);
+ 	xe_tlb_inval_fence_init(tlb_inval, fence_ptr, true);
+-	ret = xe_tlb_inval_issue(tlb_inval, fence_ptr, tlb_inval->ops->ggtt);
++	ret = xe_tlb_inval_issue(tlb_inval, fence_ptr, op);
+ 	xe_tlb_inval_fence_wait(fence_ptr);
  
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 65a4655b0994..92d934d50244 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -160,4 +160,17 @@ static inline bool xe_gt_supports_multi_queue(const struct xe_gt *gt,
- 	return gt->info.multi_queue_engine_class_mask & BIT(class);
+ 	return ret;
  }
  
 +/**
-+ * xe_gt_has_multi_queue() - Check if gt supports multi-queue on
-+ * any engine class.
++ * xe_tlb_inval_ggtt() - Issue a TLB invalidation for the GGTT
++ * @tlb_inval: TLB invalidation client
 + *
-+ * @gt: the GT object (may be NULL)
++ * Issue a TLB invalidation for the GGTT. Completion of TLB is asynchronous and
++ * caller can use the invalidation fence to wait for completion.
 + *
-+ * Return: true if any engine class on @gt supports multi queue, else false
++ * Return: 0 on success, negative error code on error
 + */
-+static inline bool xe_gt_has_multi_queue(const struct xe_gt *gt)
++int xe_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval)
 +{
-+	return gt && gt->info.multi_queue_engine_class_mask;
++	return xe_tlb_inval_issue_op_wait(tlb_inval, tlb_inval->ops->ggtt);
 +}
 +
- #endif
++/**
++ * xe_tlb_inval_ggtt_full() - Full engine TLB invalidation within a VF
++ * @tlb_inval: TLB invalidation client
++ *
++ * Issue INVAL_FULL (intra vf) to flush engine TLBs across all engines
++ * within the requesting VF.
++ *
++ * Return: 0 on success, negative error code on error
++ */
++int xe_tlb_inval_ggtt_full(struct xe_tlb_inval *tlb_inval)
++{
++	if (!tlb_inval->ops->ggtt_full)
++		return -EOPNOTSUPP;
++
++	return xe_tlb_inval_issue_op_wait(tlb_inval, tlb_inval->ops->ggtt_full);
++}
++
+ /**
+  * xe_tlb_inval_range() - Issue a TLB invalidation for an address range
+  * @tlb_inval: TLB invalidation client
+diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.h b/drivers/gpu/drm/xe/xe_tlb_inval.h
+index a76b7823a5f2..665072b4b81d 100644
+--- a/drivers/gpu/drm/xe/xe_tlb_inval.h
++++ b/drivers/gpu/drm/xe/xe_tlb_inval.h
+@@ -20,6 +20,7 @@ void xe_tlb_inval_reset(struct xe_tlb_inval *tlb_inval);
+ int xe_tlb_inval_all(struct xe_tlb_inval *tlb_inval,
+ 		     struct xe_tlb_inval_fence *fence);
+ int xe_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval);
++int xe_tlb_inval_ggtt_full(struct xe_tlb_inval *tlb_inval);
+ void xe_tlb_inval_vm(struct xe_tlb_inval *tlb_inval, struct xe_vm *vm);
+ int xe_tlb_inval_range(struct xe_tlb_inval *tlb_inval,
+ 		       struct xe_tlb_inval_fence *fence,
+diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_types.h b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
+index 3d1797d186fd..d77be1aedc91 100644
+--- a/drivers/gpu/drm/xe/xe_tlb_inval_types.h
++++ b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
+@@ -36,6 +36,16 @@ struct xe_tlb_inval_ops {
+ 	 */
+ 	int (*ggtt)(struct xe_tlb_inval *tlb_inval, u32 seqno);
+ 
++	/**
++	 * @ggtt_full: Full engine TLB invalidation within a VF
++	 * @tlb_inval: TLB invalidation client
++	 * @seqno: Seqno of TLB invalidation
++	 *
++	 * Return 0 on success, -ECANCELED if backend is mid-reset, error on
++	 * failure
++	 */
++	int (*ggtt_full)(struct xe_tlb_inval *tlb_inval, u32 seqno);
++
+ 	/**
+ 	 * @ppgtt: Invalidate per-process translation TLBs
+ 	 * @tlb_inval: TLB invalidation client
 -- 
 2.46.0
 
