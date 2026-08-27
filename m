@@ -4,54 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5505C61DB9
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 07:21:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F357C61DC2
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 07:24:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7230B10E3B9;
-	Thu, 27 Aug 2026 07:21:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C26810E3B9;
+	Thu, 27 Aug 2026 07:24:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fn3kbQL5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ijnH+YwO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26D6210E3B9
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 07:21:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7050610E3B9;
+ Thu, 27 Aug 2026 07:24:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787815276; x=1819351276;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=0UqdaW4UF2ANThsvfgzevnQeVranlGMWhr27zS3mNyQ=;
- b=fn3kbQL5EMqMVEZxDU390V5RSCSi17KEB13S5HxfzFuWe+8YlMMnuS5a
- rjCLgdndNrdI/yT1NnP7qkIekIAAMmOsUStmCZt28IsSICKBT6vuz0FnR
- XjZa5SiX6XPiuq06b9RX0ouTo5Gw/sLlpOs8HElxUO9T4AzGOAEuZ5Lrf
- bbpBiIVoaNoobQI2lGqxpn1S6pFyjQggfPpR+v4pVjYK83y0PMaeoK40J
- jC/uCH6DUA53Y6E9LHqw7/H7PNI9bv37Osoj6f87lT9BDylDArEwcsAjN
- 0kxl7BSO98iZJtZOW2ItiD78cP8H8y2zc7eOh0JItKsVwkFIfhtHfEVaM Q==;
-X-CSE-ConnectionGUID: bQ9wqChhTreUz8M5IApqQw==
-X-CSE-MsgGUID: ZyyPTP7uROGQWCrhqOyVRQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="99471107"
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="99471107"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 00:21:15 -0700
-X-CSE-ConnectionGUID: 7RbrknJqSKKXx0MhQ9+0Xw==
-X-CSE-MsgGUID: ZBxTXr4jQSaZqKXMRFQoIg==
+ t=1787815454; x=1819351454;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=QOGGi8qwuFlaj4GjFjftjV5+CvQyPS5MEltIZewHmC8=;
+ b=ijnH+YwO/FhLubFsrbY4NfD1J4ycXDAXCvL/MC6kMe/pi2F1tYV5f05v
+ Le1m35cgnDWzWSf+r/Y6kMXECKYARqn/m9CoGA/NOFAZ5TI/LxICciY8y
+ Zx1y89k3GUyUhdeICxz7VNQjSysuUgoZHIvWPtPJU/WydwoRdsSNaMsNx
+ ZRIO9Y6KsXNrfqec6iA5g5CVnPG7WHiNFY7bPyuM6zuJHxrmFHCFNm0sN
+ BfjttsBvfIj/spYKaGg+eBf5rKYB/VdhnVgw38LN/k/XFVRbgRR9r2Fvn
+ LoEL2S0lTsaQh2eMtuYlulVQe/hVlg5Z1dY8kKW1hmLkKs/FVDQcQsdBg Q==;
+X-CSE-ConnectionGUID: DuXGC4Y8ROe4Br+yqIk4Vg==
+X-CSE-MsgGUID: Bm+TnLY1TCWqE1uAxUfZ7g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="113842686"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="113842686"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 00:24:13 -0700
+X-CSE-ConnectionGUID: U0/94iFMSkqW3PCtq7MoMw==
+X-CSE-MsgGUID: pEGFXkanSzq88TLdXxmvRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="266012071"
-Received: from varungup-desk.iind.intel.com ([10.190.238.71])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 00:21:14 -0700
-From: Varun Gupta <varun.gupta@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: gustavo.sousa@intel.com,
-	matthew.d.roper@intel.com
-Subject: [PATCH v9] drm/xe: Add debugfs knob to control GPGPU preemption
- granularity
-Date: Thu, 27 Aug 2026 12:51:07 +0530
-Message-ID: <20260827072106.1138741-2-varun.gupta@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="265205500"
+Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.153])
+ by fmviesa008-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Aug 2026 00:24:11 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v3 1/5] drm/i915/display: consolidate Gen9 clock gating
+ initialization
+In-Reply-To: <20260817092911.342072-2-luciano.coelho@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260817092911.342072-1-luciano.coelho@intel.com>
+ <20260817092911.342072-2-luciano.coelho@intel.com>
+Date: Thu, 27 Aug 2026 10:24:09 +0300
+Message-ID: <c4ffe94d9f37bfadbdf7efaade1d5a063617b63f@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,334 +69,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce a per-GT debugfs knob, 'gpgpu_preemption_level', to allow
-overriding the GPGPU preemption level on a per-context basis for newly
-created LRCs.
-Add an RTP rule to enable per-context control via FF_SLICE_CS_CHICKEN1,
-allowing the preemption level to be programmed directly into the LRC
-image at CTX_CS_CHICKEN1 during context initialization.
+On Mon, 17 Aug 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
+> Instead of exporting many of the display clock gating functions,
+> consolidate them into a single function that checks the platform and
+> calls the appropriate platform-specific function.
+>
+> Start consolidating the Gen 9 functions first into a new
+> intel_display_init_clock_gating() function.
+>
+> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 
-v9:
-  - Move the per-context/GT-scoped behavior description from the enum
-    kerneldoc to the gpgpu_preemption_level member kerneldoc, and drop
-    the kzalloc zero-initialization note. (Gustavo)
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-v8:
-  - Encapsulate LRC preemption programming into
-    xe_lrc_set_gpgpu_preemption_level() (Gustavo)
-  - Add xe_gt_WARN and early return for unexpected preemption level values
-    to prevent invalid CS_CHICKEN1 programming. (Gustavo)
-  - Change -EPERM to -EINVAL for MTP fused off check (Gustavo)
-  - Combine FF_SLICE_CS_CHICKEN1 RTP rule using OR macro (Gustavo)
+> ---
+>  .../i915/display/intel_display_clock_gating.c | 24 +++++++++++++++----
+>  .../i915/display/intel_display_clock_gating.h |  6 +----
+>  drivers/gpu/drm/i915/intel_clock_gating.c     | 10 ++++----
+>  3 files changed, 25 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> index d036c7e5863d..d5ecdaeab421 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> @@ -27,7 +27,7 @@ static void intel_display_gen9_init_clock_gating(struct intel_display *display)
+>  	intel_de_rmw(display, DISP_ARB_CTL, 0, DISP_FBC_MEMORY_WAKE);
+>  }
+>  
+> -void intel_display_skl_init_clock_gating(struct intel_display *display)
+> +static void intel_display_skl_init_clock_gating(struct intel_display *display)
+>  {
+>  	/*
+>  	 * WaCompressedResourceDisplayNewHashMode:skl,kbl
+> @@ -47,7 +47,7 @@ void intel_display_skl_init_clock_gating(struct intel_display *display)
+>  	intel_de_rmw(display, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
+>  }
+>  
+> -void intel_display_kbl_init_clock_gating(struct intel_display *display)
+> +static void intel_display_kbl_init_clock_gating(struct intel_display *display)
+>  {
+>  	/*
+>  	 * WaCompressedResourceDisplayNewHashMode:skl,kbl
+> @@ -67,7 +67,7 @@ void intel_display_kbl_init_clock_gating(struct intel_display *display)
+>  	intel_de_rmw(display, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
+>  }
+>  
+> -void intel_display_cfl_init_clock_gating(struct intel_display *display)
+> +static void intel_display_cfl_init_clock_gating(struct intel_display *display)
+>  {
+>  	/*
+>  	 * WaCompressedResourceDisplayNewHashMode:skl,kbl (and cfl, cml)
+> @@ -93,7 +93,7 @@ void intel_display_cfl_init_clock_gating(struct intel_display *display)
+>  	intel_de_rmw(display, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
+>  }
+>  
+> -void intel_display_bxt_init_clock_gating(struct intel_display *display)
+> +static void intel_display_bxt_init_clock_gating(struct intel_display *display)
+>  {
+>  	intel_display_gen9_init_clock_gating(display);
+>  
+> @@ -120,7 +120,7 @@ void intel_display_bxt_init_clock_gating(struct intel_display *display)
+>  	intel_de_rmw(display, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
+>  }
+>  
+> -void intel_display_glk_init_clock_gating(struct intel_display *display)
+> +static void intel_display_glk_init_clock_gating(struct intel_display *display)
+>  {
+>  	intel_display_gen9_init_clock_gating(display);
+>  
+> @@ -268,3 +268,17 @@ void intel_display_i965gm_init_clock_gating(struct intel_display *display)
+>  {
+>  	intel_de_write(display, DSPCLK_GATE_D, 0);
+>  }
+> +
+> +void intel_display_init_clock_gating(struct intel_display *display)
+> +{
+> +	if (display->platform.skylake)
+> +		intel_display_skl_init_clock_gating(display);
+> +	else if (display->platform.kabylake)
+> +		intel_display_kbl_init_clock_gating(display);
+> +	else if (display->platform.coffeelake || display->platform.cometlake)
+> +		intel_display_cfl_init_clock_gating(display);
+> +	else if (display->platform.broxton)
+> +		intel_display_bxt_init_clock_gating(display);
+> +	else if (display->platform.geminilake)
+> +		intel_display_glk_init_clock_gating(display);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> index b6dd34ca92dd..4e50e388656a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> @@ -8,11 +8,7 @@
+>  
+>  struct intel_display;
+>  
+> -void intel_display_skl_init_clock_gating(struct intel_display *display);
+> -void intel_display_kbl_init_clock_gating(struct intel_display *display);
+> -void intel_display_cfl_init_clock_gating(struct intel_display *display);
+> -void intel_display_bxt_init_clock_gating(struct intel_display *display);
+> -void intel_display_glk_init_clock_gating(struct intel_display *display);
+> +void intel_display_init_clock_gating(struct intel_display *display);
+>  void intel_display_bdw_clock_gating_disable_fbcq(struct intel_display *display);
+>  void intel_display_bdw_clock_gating_vblank_in_srd(struct intel_display *display);
+>  void intel_display_bdw_clock_gating_kvm_notif(struct intel_display *display);
+> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
+> index 86bdeb20f427..84f838c660fd 100644
+> --- a/drivers/gpu/drm/i915/intel_clock_gating.c
+> +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
+> @@ -57,12 +57,12 @@ static void bxt_init_clock_gating(struct drm_i915_private *i915)
+>  	 */
+>  	intel_uncore_rmw(&i915->uncore, GEN8_UCGCTL6, 0, GEN8_HDCUNIT_CLOCK_GATE_DISABLE_HDCREQ);
+>  
+> -	intel_display_bxt_init_clock_gating(i915->display);
+> +	intel_display_init_clock_gating(i915->display);
+>  }
+>  
+>  static void glk_init_clock_gating(struct drm_i915_private *i915)
+>  {
+> -	intel_display_glk_init_clock_gating(i915->display);
+> +	intel_display_init_clock_gating(i915->display);
+>  }
+>  
+>  static void ilk_init_clock_gating(struct drm_i915_private *i915)
+> @@ -170,7 +170,7 @@ static void cfl_init_clock_gating(struct drm_i915_private *i915)
+>  	/* WAC6entrylatency:cfl */
+>  	intel_uncore_rmw(&i915->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
+>  
+> -	intel_display_cfl_init_clock_gating(i915->display);
+> +	intel_display_init_clock_gating(i915->display);
+>  }
+>  
+>  static void kbl_init_clock_gating(struct drm_i915_private *i915)
+> @@ -188,7 +188,7 @@ static void kbl_init_clock_gating(struct drm_i915_private *i915)
+>  		intel_uncore_rmw(&i915->uncore, GEN6_UCGCTL1,
+>  				 0, GEN6_GAMUNIT_CLOCK_GATE_DISABLE);
+>  
+> -	intel_display_kbl_init_clock_gating(i915->display);
+> +	intel_display_init_clock_gating(i915->display);
+>  }
+>  
+>  static void skl_init_clock_gating(struct drm_i915_private *i915)
+> @@ -200,7 +200,7 @@ static void skl_init_clock_gating(struct drm_i915_private *i915)
+>  	/* WAC6entrylatency:skl */
+>  	intel_uncore_rmw(&i915->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
+>  
+> -	intel_display_skl_init_clock_gating(i915->display);
+> +	intel_display_init_clock_gating(i915->display);
+>  }
+>  
+>  static void bdw_init_clock_gating(struct drm_i915_private *i915)
 
-v7:
-  - Restrict XEHP_FUSE4 read to Xe2+ primary GTs to prevent invalid
-    Media GT accesses and SR-IOV warnings. (Sashiko)
-
-v6:
-  - Add missing xe_gt_printk.h include to fix compilation failure.
-
-v5:
-  - Use correct offset for CTX_CS_CHICKEN1. (Matt)
-  - Restrict to the RCS engine. (Matt)
-  - Drop LRC layout table modifications; dummy layouts do not need late
-    context registers. (Matt)
-  - Stash WMTP fuse state at boot to remove pm/forcewake from debugfs.
-    (Matt)
-  - Rename debugfs knob to 'gpgpu_preemption_level'. (Matt)
-  - Use simple_write_to_buffer() and remove unnecessary READ_ONCE/
-    WRITE_ONCE macros. (Matt)
-  - Do not restrict debugfs visibility for SR-IOV VFs. (Matt)
-
-v4
-  - Fix incorrect NOP padding in the RCS context layout. (Sashiko)
-
-v3:
-  - Wrapped XEHP_FUSE4 forcewake read with xe_pm_runtime_get/put to
-    prevent PCIe aborts/timeouts when the GPU is in D3hot/D3cold. (sashiko)
-  - Fixed NOP macro truncation by splitting padding offsets larger than
-    0x7f into multiple NOPs, ensuring correct context layout. (sashiko)
-  - Converted CTX_CS_CHICKEN1 initialization to a read-modify-write
-    sequence to avoid overwriting golden context mask bits. (sashiko)
-  - Removed the FF_SLICE_CS_CHICKEN1 workaround for CCS engines, as
-    compute engines lack this 3D fixed-function register, which was
-    causing GuC "illegal register" panics on initialization.
-
-v2:
-  - Dropped the WA BB/MI_LRI path; per Bspec, CS_CHICKEN1 is context
-    save/restore state at DW 0x00E2, so we map CTX_CS_CHICKEN1 and program
-    it directly in LRC init via xe_lrc_write_ctx_reg(). (Matt)
-  - Split Xe2 CCS context offsets into a dedicated xe2_ccs_offsets array
-    to map CS_CHICKEN1 without polluting other XCS engines.
-  - Converted the debugfs interface from a binary boolean to a
-    multi-option string knob ("default", "mid-thread", "thread-group",
-    "command"). (Gustavo)
-  - Restricted file creation to the Physical Function
-    (!IS_SRIOV_VF). (Gustavo)
-  - Added kernel tainting (TAINT_USER) when deviating from
-    defaults. (Gustavo)
-  - Added power-safe hardware fuse check (FUSE4 register 0x9114[20],
-    CFEG_WMTP_DISABLE) before allowing MTP selection. (Matt)
-
-Signed-off-by: Varun Gupta <varun.gupta@intel.com>
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h |  2 +
- drivers/gpu/drm/xe/xe_gt.c              |  6 +++
- drivers/gpu/drm/xe/xe_gt_debugfs.c      | 66 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_types.h        | 29 +++++++++++
- drivers/gpu/drm/xe/xe_lrc.c             | 33 +++++++++++++
- drivers/gpu/drm/xe/xe_wa.c              |  4 +-
- 6 files changed, 139 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-index 4ab86fc369fd..6f7abc0181b5 100644
---- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-+++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-@@ -37,6 +37,8 @@
- #define CTX_QUEUE_TIMESTAMP		(0xd0 + 1)
- #define CTX_QUEUE_TIMESTAMP_UDW		(0xd2 + 1)
- 
-+#define CTX_CS_CHICKEN1			(0x12e + 1)
-+
- #define INDIRECT_CTX_RING_HEAD		(0x02 + 1)
- #define INDIRECT_CTX_RING_TAIL		(0x04 + 1)
- #define INDIRECT_CTX_RING_START		(0x06 + 1)
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 6805e0d3bf21..478e047031f4 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -610,6 +610,12 @@ static int gt_init_with_gt_forcewake(struct xe_gt *gt)
- 	 */
- 	gt->info.gmdid = xe_mmio_read32(&gt->mmio, GMD_ID);
- 
-+	if (GRAPHICS_VER(gt_to_xe(gt)) >= 20 && xe_gt_is_main_type(gt))
-+		gt->info.has_wmtp_disabled = !!(xe_mmio_read32(&gt->mmio, XEHP_FUSE4) &
-+			CFEG_WMTP_DISABLE);
-+	else
-+		gt->info.has_wmtp_disabled = 0;
-+
- 	/*
- 	 * Wa_14026539277 can't be implemented as a regular GT workaround (i.e.
- 	 * as an entry in gt_was[]) for two reasons: it is actually a device
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index ea78b57b1c31..361a70234d1f 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -6,6 +6,8 @@
- #include "xe_gt_debugfs.h"
- 
- #include <linux/debugfs.h>
-+#include <linux/panic.h>
-+#include <linux/string.h>
- 
- #include <drm/drm_debugfs.h>
- #include <drm/drm_managed.h>
-@@ -17,6 +19,7 @@
- #include "xe_gt.h"
- #include "xe_gt_mcr.h"
- #include "xe_gt_idle.h"
-+#include "xe_gt_printk.h"
- #include "xe_gt_sriov_pf_debugfs.h"
- #include "xe_gt_sriov_vf_debugfs.h"
- #include "xe_gt_stats.h"
-@@ -413,6 +416,65 @@ static ssize_t gt_ia_bias_write(struct file *file,
- }
- DEFINE_SHOW_STORE_ATTRIBUTE(gt_ia_bias);
- 
-+static const char * const gpgpu_preemption_level_names[] = {
-+	[XE_GPGPU_PREEMPT_DEFAULT]      = "default",
-+	[XE_GPGPU_PREEMPT_MID_THREAD]   = "mid-thread",
-+	[XE_GPGPU_PREEMPT_THREAD_GROUP] = "thread-group",
-+	[XE_GPGPU_PREEMPT_COMMAND]      = "command",
-+};
-+
-+static int gpgpu_preemption_level_show(struct seq_file *m, void *unused)
-+{
-+	struct xe_gt *gt = m->private;
-+
-+	seq_printf(m, "%s\n", gpgpu_preemption_level_names[gt->gpgpu_preemption_level]);
-+
-+	return 0;
-+}
-+
-+static ssize_t gpgpu_preemption_level_write(struct file *file,
-+					    const char __user *ubuf,
-+					    size_t len, loff_t *offp)
-+{
-+	struct seq_file *m = file->private_data;
-+	struct xe_gt *gt = m->private;
-+	enum xe_gpgpu_preempt_level new_level;
-+	char buf[16];
-+	ssize_t copied;
-+	int idx;
-+
-+	if (*offp)
-+		return -EINVAL;
-+
-+	copied = simple_write_to_buffer(buf, sizeof(buf) - 1, offp, ubuf, len);
-+	if (copied < 0)
-+		return copied;
-+
-+	buf[copied] = '\0';
-+	idx = sysfs_match_string(gpgpu_preemption_level_names, strim(buf));
-+	if (idx < 0)
-+		return idx;
-+
-+	new_level = (enum xe_gpgpu_preempt_level)idx;
-+
-+	if (new_level == XE_GPGPU_PREEMPT_MID_THREAD && gt->info.has_wmtp_disabled) {
-+		xe_gt_warn(gt, "MTP fused off in hardware, cannot select mid-thread\n");
-+		return -EINVAL;
-+	}
-+
-+	if (new_level != XE_GPGPU_PREEMPT_DEFAULT) {
-+		add_taint(TAINT_USER, LOCKDEP_STILL_OK);
-+		xe_gt_notice(gt,
-+			     "GPGPU preemption overridden to '%s' (applies to new LRCs only)\n",
-+			     gpgpu_preemption_level_names[new_level]);
-+	}
-+
-+	gt->gpgpu_preemption_level = new_level;
-+
-+	return copied;
-+}
-+DEFINE_SHOW_STORE_ATTRIBUTE(gpgpu_preemption_level);
-+
- void xe_gt_debugfs_register(struct xe_gt *gt)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
-@@ -446,6 +508,10 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
- 	debugfs_create_file("force_reset", 0600, root, gt, &force_reset_fops);
- 	debugfs_create_file("force_reset_sync", 0600, root, gt, &force_reset_sync_fops);
- 
-+	if (GRAPHICS_VER(xe) >= 20 && (gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK))
-+		debugfs_create_file("gpgpu_preemption_level", 0600, root,
-+				    gt, &gpgpu_preemption_level_fops);
-+
- 	drm_debugfs_create_files(vf_safe_debugfs_list,
- 				 ARRAY_SIZE(vf_safe_debugfs_list),
- 				 root, minor);
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index a8bbfbdf3849..628911346455 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -35,6 +35,24 @@ enum xe_gt_eu_type {
- 	XE_GT_EU_TYPE_SIMD16,
- };
- 
-+/**
-+ * enum xe_gpgpu_preempt_level - Per-context GPGPU preemption override mode
-+ *
-+ * Selects the preemption granularity programmed into CS_CHICKEN1[2:1] for
-+ * newly created Xe2+ RCS LRCs.
-+ *
-+ * @XE_GPGPU_PREEMPT_DEFAULT: Keep platform default preemption granularity.
-+ * @XE_GPGPU_PREEMPT_MID_THREAD: Force mid-thread preemption level.
-+ * @XE_GPGPU_PREEMPT_THREAD_GROUP: Force thread-group preemption level.
-+ * @XE_GPGPU_PREEMPT_COMMAND: Force command-level preemption.
-+ */
-+enum xe_gpgpu_preempt_level {
-+	XE_GPGPU_PREEMPT_DEFAULT = 0,
-+	XE_GPGPU_PREEMPT_MID_THREAD,
-+	XE_GPGPU_PREEMPT_THREAD_GROUP,
-+	XE_GPGPU_PREEMPT_COMMAND,
-+};
-+
- #define XE_MAX_DSS_FUSE_REGS		4
- #define XE_MAX_DSS_FUSE_BITS		(32 * XE_MAX_DSS_FUSE_REGS)
- #define XE_MAX_EU_FUSE_REGS		1
-@@ -156,6 +174,8 @@ struct xe_gt {
- 		 * feature.
- 		 */
- 		u8 has_xe2_blt_instructions:1;
-+		/** @info.has_wmtp_disabled: hardware fuse indicates WMTP is disabled */
-+		u8 has_wmtp_disabled:1;
- 		/**
- 		 * @info.num_geometry_xecore_fuse_regs: Number of 32b-bit fuse
- 		 * registers the geometry XeCore mask spans.
-@@ -224,6 +244,15 @@ struct xe_gt {
- 	 */
- 	u32 ccs_mode;
- 
-+	/**
-+	 * @gpgpu_preemption_level: GPGPU preemption granularity override.
-+	 *
-+	 * Effective only when FF_SLICE_CS_CHICKEN1[FFSC_PERCTX_PREEMPT_CTRL] is
-+	 * enabled via RTP. Affects only LRCs created after the value is
-+	 * changed; existing contexts keep their previously programmed value.
-+	 */
-+	enum xe_gpgpu_preempt_level gpgpu_preemption_level;
-+
- 	/** @usm: unified shared memory state */
- 	struct {
- 		/**
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 35b4e8289b5f..25fe9dbc9141 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1486,6 +1486,36 @@ void xe_lrc_set_multi_queue_priority(struct xe_lrc *lrc, enum xe_multi_queue_pri
- 	lrc->desc |= FIELD_PREP(LRC_PRIORITY, xe_multi_queue_prio_to_lrc(lrc, priority));
- }
- 
-+static void xe_lrc_set_gpgpu_preemption_level(struct xe_lrc *lrc, struct xe_gt *gt)
-+{
-+	enum xe_gpgpu_preempt_level level = gt->gpgpu_preemption_level;
-+	u32 level_bits;
-+	u32 val;
-+
-+	if (level == XE_GPGPU_PREEMPT_DEFAULT)
-+		return;
-+
-+	switch (level) {
-+	case XE_GPGPU_PREEMPT_MID_THREAD:
-+		level_bits = PREEMPT_GPGPU_MID_THREAD_LEVEL;
-+		break;
-+	case XE_GPGPU_PREEMPT_THREAD_GROUP:
-+		level_bits = PREEMPT_GPGPU_THREAD_GROUP_LEVEL;
-+		break;
-+	case XE_GPGPU_PREEMPT_COMMAND:
-+		level_bits = PREEMPT_GPGPU_COMMAND_LEVEL;
-+		break;
-+	default:
-+		xe_gt_WARN(gt, true, "Invalid GPGPU preemption level: %d\n", level);
-+		return;
-+	}
-+
-+	val = xe_lrc_read_ctx_reg(lrc, CTX_CS_CHICKEN1);
-+	val &= ~PREEMPT_GPGPU_LEVEL_MASK;
-+	val |= REG_MASKED_FIELD(PREEMPT_GPGPU_LEVEL_MASK, level_bits);
-+	xe_lrc_write_ctx_reg(lrc, CTX_CS_CHICKEN1, val);
-+}
-+
- static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
- 			   void *replay_state, u16 msix_vec, u32 init_flags)
- {
-@@ -1589,6 +1619,9 @@ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct
- 	if (xe->info.has_asid && vm)
- 		xe_lrc_write_ctx_reg(lrc, CTX_ASID, vm->usm.asid);
- 
-+	if (GRAPHICS_VER(xe) >= 20 && hwe->class == XE_ENGINE_CLASS_RENDER)
-+		xe_lrc_set_gpgpu_preemption_level(lrc, gt);
-+
- 	lrc->desc = LRC_VALID;
- 	lrc->desc |= FIELD_PREP(LRC_ADDRESSING_MODE, LRC_LEGACY_64B_CONTEXT);
- 	/* TODO: Priority */
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 139434946f8f..c94fe7753f9a 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -343,7 +343,9 @@ static const struct xe_rtp_table_sr engine_was = XE_RTP_TABLE_SR(
- 	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, ENABLE_SMALLPL))
- 	},
- 	{ XE_RTP_NAME("FtrPerCtxtPreemptionGranularityControl"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250), ENGINE_CLASS(RENDER), OR,
-+		       GRAPHICS_VERSION_RANGE(2000, XE_RTP_END_VERSION_UNDEFINED),
-+		       ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(FF_SLICE_CS_CHICKEN1(RENDER_RING_BASE),
- 			     FFSC_PERCTX_PREEMPT_CTRL))
- 	},
 -- 
-2.43.0
-
+Jani Nikula, Intel
