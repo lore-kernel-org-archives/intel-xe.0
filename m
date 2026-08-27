@@ -4,54 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22665C61DC7
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 12:35:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ED64C61DC6
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 12:35:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B221010E32D;
-	Thu, 27 Aug 2026 12:35:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 228B610EFD8;
+	Thu, 27 Aug 2026 12:35:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hKUb20j5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lMep8OJP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30CAB10E32D;
- Thu, 27 Aug 2026 12:35:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CE2410EFD8;
+ Thu, 27 Aug 2026 12:35:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787834104; x=1819370104;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ln47hvTQDzWC67DnrB7Rh0/wZSvz6oCPARO/U94AQnE=;
- b=hKUb20j5jvNFZuiLxIDMffjnnR0RjWpEbpCQe1vwXtqjpdzcOI3DGsIv
- bMOGrqkVpyPLhjyPQIbSZOuzEQ1VDt/uqSwF4hyeXOfKLoCY4c6TiLJ7g
- b8EaHgZ7eRMzXryexV8iQ7sowu0m5KPqX1SAxlwiTw/upl0PcWwDWYCxt
- Cw2R1cLPpP4aHXXbVRZmoDSAVOxuH8wXiUnNjmLddWXnrXej6BfBOmN5q
- Wow6dVH50Q6EoUH0p5KQHaYuF8aiDD+P0hXv0d7W6F2xnMab48jER7bxh
- b57c9VsPSKr9Pv4lxXX4ynhEF9a7mrkZUm5hEkl3gP2cgDvTXdvB7vikp Q==;
-X-CSE-ConnectionGUID: oP9MvexpRFqBhMGUOZM9mw==
-X-CSE-MsgGUID: 0MlChszLS1CuGPT1NNZODQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="98929251"
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="98929251"
+ t=1787834108; x=1819370108;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=J3FaoOzd6C98TuT1NZ5vJVDN9Bf9Cde6xaUJFttcB78=;
+ b=lMep8OJPTBn6OlB9xIKaA1i410sTRCJxTnaBVoCd47w6yGeHxPGfwgbR
+ S1znbtp6xdX6g7x6+FKCoQzPtvFyDIb636rSPwStMzsnBBUR2G1ANHyO5
+ w7zEGGhiO/zNPH7X+O1fJFQ4sTB2p9nSBTWSC54BQ512d08SWNQ4SUoA+
+ 03bYda/iiEXv0/skq1JsQFK5vo8x2JkMPLgzaYyaEm43Aeoma51XZ4zPQ
+ kKG5J9+yWdz/5S/LTMDPpzb3z/AOSVVlW8x/G8r8L7ftqzol8f1qmcGib
+ V4htagSvFjdkUpWKNYK0wzq+57vryvUXjNXj8rI+sHGxWxaKoexnKV1av Q==;
+X-CSE-ConnectionGUID: 1SB3fjGsRdKwIowYuMVe2w==
+X-CSE-MsgGUID: MduDnwl2Qaye2AxA/6lOXg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="98929261"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="98929261"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 05:35:04 -0700
-X-CSE-ConnectionGUID: dsID7Dg7RqSX9t2xMz3ofw==
-X-CSE-MsgGUID: uFVP5oMGSPilhnf1+Jubqg==
+ 27 Aug 2026 05:35:08 -0700
+X-CSE-ConnectionGUID: r+YMJCdqTKuAsEcGhyYRzw==
+X-CSE-MsgGUID: CE4Pn5dYSGyJuE/hCmXl+g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="261734543"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="261734574"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.219])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 05:35:02 -0700
+ 27 Aug 2026 05:35:06 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: maarten.lankhorst@linux.intel.com, ville.syrjala@linux.intel.com,
- jani.nikula@intel.com
-Subject: [PATCH v2 0/7] drm/{i915,
- xe}/display: another stab at i915_fence_timeout() removal
-Date: Thu, 27 Aug 2026 15:34:50 +0300
-Message-ID: <cover.1787833879.git.jani.nikula@intel.com>
+ jani.nikula@intel.com, Maarten Lankhorst <maarten.lankhorst@intel.com>
+Subject: [PATCH v2 1/7] drm/i915/reset: move gpu_reset_clobbers_display
+ platform property to display
+Date: Thu, 27 Aug 2026 15:34:51 +0300
+Message-ID: <9179d6a76992007287876a2736080fc2ac4d3c70.1787833879.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1787833879.git.jani.nikula@intel.com>
+References: <cover.1787833879.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -71,41 +73,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Here we go again, v2 of [1].
+Whether the "GPU reset clobbers display" platform property belongs to
+i915 core or display is neither here nor there. Move it to display for
+the benefit of follow-up changes.
 
-Add patches 1&2 and replace the last patch with two new ones.
+Instead of having a device info flag for it, just express this in terms
+of the platforms: up to and including display version 4, except G45 and
+GM45. This is historical platform information, and it's not going to
+change. The added function actually better answers the question, "On
+which platforms a display reset is required after a GPU reset?"
 
-Basically use fixed 10 second timeout on fence waits *only* when GPU
-reset clobbers display or we're running forced display reset tests,
-otherwise don't timeout, and unify both i915 and xe drivers on this.
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_reset.c | 8 ++++++++
+ drivers/gpu/drm/i915/display/intel_display_reset.h | 1 +
+ drivers/gpu/drm/i915/gt/intel_reset.c              | 4 ++--
+ drivers/gpu/drm/i915/i915_pci.c                    | 6 ------
+ drivers/gpu/drm/i915/intel_device_info.h           | 1 -
+ 5 files changed, 11 insertions(+), 9 deletions(-)
 
-BR,
-Jani.
-
-
-[1] https://lore.kernel.org/r/cover.1787148235.git.jani.nikula@intel.com
-
-
-Jani Nikula (7):
-  drm/i915/reset: move gpu_reset_clobbers_display platform property to
-    display
-  drm/i915/reset: make intel_display_reset_supported() static
-  drm/i915/display: use struct intel_atomic_state *state variable naming
-  drm/i915/display: reduce indent in intel_atomic_commit_fence_wait()
-  drm/i915/display: debug log about fence wait timeouts and other errors
-  drm/i915: only timeout on fence waits for display reset
-  drm/i915/display: use fixed 10 second timeout for fence wait
-
- drivers/gpu/drm/i915/display/intel_display.c  | 34 +++++++++++++------
- .../drm/i915/display/intel_display_reset.c    | 10 +++++-
- .../drm/i915/display/intel_display_reset.h    |  2 +-
- drivers/gpu/drm/i915/gt/intel_reset.c         |  7 ++--
- drivers/gpu/drm/i915/i915_pci.c               |  6 ----
- drivers/gpu/drm/i915/intel_device_info.h      |  1 -
- .../drm/xe/compat-i915-headers/i915_config.h  | 16 ---------
- 7 files changed, 36 insertions(+), 40 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
+index 504ec7043cd9..6ec1af1c8431 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_reset.c
++++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
+@@ -23,6 +23,14 @@ bool intel_display_reset_supported(struct intel_display *display)
+ 	return display && HAS_DISPLAY(display);
+ }
+ 
++bool intel_display_reset_needed_after_gpu_reset(struct intel_display *display)
++{
++	/* aka gpu_reset_clobbers_display */
++	return intel_display_reset_supported(display) &&
++		DISPLAY_VER(display) <= 4 &&
++		!display->platform.g45 && !display->platform.gm45;
++}
++
+ bool intel_display_reset_test(struct intel_display *display)
+ {
+ 	return display && HAS_DISPLAY(display) &&
+diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.h b/drivers/gpu/drm/i915/display/intel_display_reset.h
+index b88c330a3441..68312403904e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_reset.h
++++ b/drivers/gpu/drm/i915/display/intel_display_reset.h
+@@ -11,6 +11,7 @@
+ struct intel_display;
+ 
+ bool intel_display_reset_supported(struct intel_display *display);
++bool intel_display_reset_needed_after_gpu_reset(struct intel_display *display);
+ bool intel_display_reset_test(struct intel_display *display);
+ void intel_display_reset_prepare(struct intel_display *display);
+ void intel_display_reset_finish(struct intel_display *display, bool test_only);
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index 6053f3e8aa27..439635bf94dd 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -1180,9 +1180,9 @@ static int resume(struct intel_gt *gt)
+ 
+ bool intel_gt_gpu_reset_clobbers_display(struct intel_gt *gt)
+ {
+-	struct drm_i915_private *i915 = gt->i915;
++	struct intel_display *display = gt->i915->display;
+ 
+-	return INTEL_INFO(i915)->gpu_reset_clobbers_display;
++	return intel_display_reset_needed_after_gpu_reset(display);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 82415af47d54..64e8db0f7aed 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -80,7 +80,6 @@ __diag_ignore_all("-Woverride-init", "Allow field initialization overrides for d
+ #define I830_FEATURES \
+ 	GEN(2), \
+ 	.is_mobile = 1, \
+-	.gpu_reset_clobbers_display = true, \
+ 	.has_3d_pipeline = 1, \
+ 	.hws_needs_physical = 1, \
+ 	.unfenced_needs_alignment = 1, \
+@@ -96,7 +95,6 @@ __diag_ignore_all("-Woverride-init", "Allow field initialization overrides for d
+ #define I845_FEATURES \
+ 	GEN(2), \
+ 	.has_3d_pipeline = 1, \
+-	.gpu_reset_clobbers_display = true, \
+ 	.hws_needs_physical = 1, \
+ 	.unfenced_needs_alignment = 1, \
+ 	.platform_engine_mask = BIT(RCS0), \
+@@ -130,7 +128,6 @@ static const struct intel_device_info i865g_info = {
+ 
+ #define GEN3_FEATURES \
+ 	GEN(3), \
+-	.gpu_reset_clobbers_display = true, \
+ 	.platform_engine_mask = BIT(RCS0), \
+ 	.has_3d_pipeline = 1, \
+ 	.has_snoop = true, \
+@@ -193,7 +190,6 @@ static const struct intel_device_info pnv_m_info = {
+ 
+ #define GEN4_FEATURES \
+ 	GEN(4), \
+-	.gpu_reset_clobbers_display = true, \
+ 	.platform_engine_mask = BIT(RCS0), \
+ 	.has_3d_pipeline = 1, \
+ 	.has_snoop = true, \
+@@ -223,7 +219,6 @@ static const struct intel_device_info g45_info = {
+ 	GEN4_FEATURES,
+ 	PLATFORM(INTEL_G45),
+ 	.platform_engine_mask = BIT(RCS0) | BIT(VCS0),
+-	.gpu_reset_clobbers_display = false,
+ };
+ 
+ static const struct intel_device_info gm45_info = {
+@@ -231,7 +226,6 @@ static const struct intel_device_info gm45_info = {
+ 	PLATFORM(INTEL_GM45),
+ 	.is_mobile = 1,
+ 	.platform_engine_mask = BIT(RCS0) | BIT(VCS0),
+-	.gpu_reset_clobbers_display = false,
+ };
+ 
+ #define GEN5_FEATURES \
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index 9387385cb418..7296e7dcf828 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -148,7 +148,6 @@ enum intel_ppgtt_type {
+ 	/* Keep has_* in alphabetical order */ \
+ 	func(has_64bit_reloc); \
+ 	func(has_64k_pages); \
+-	func(gpu_reset_clobbers_display); \
+ 	func(has_reset_engine); \
+ 	func(has_3d_pipeline); \
+ 	func(has_flat_ccs); \
 -- 
 2.47.3
 
