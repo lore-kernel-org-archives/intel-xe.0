@@ -4,104 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7510AC61DB9
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 07:15:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5505C61DB9
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 07:21:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 255D010EEA4;
-	Thu, 27 Aug 2026 07:15:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7230B10E3B9;
+	Thu, 27 Aug 2026 07:21:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="DAALKIgn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fn3kbQL5";
 	dkim-atps=neutral
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012002.outbound.protection.outlook.com [52.101.53.2])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E552C10EEA4;
- Thu, 27 Aug 2026 07:15:32 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VDyaOobOURpAfp+tjbqttd5b5GMkE7ulhTX9F8m39PxJcOl6FAOrgu9z+OSwTLTaPm6CQXT4uYmL9bJd8eugRgnTGhMmE8gMB/vfX5c10GvnPmcjpjA61mZu7MYCSFY/ihIyWI6OE0CeCnp6UnqgabsdUbyo6idSIqeaBE3LwDj6qpf9XP+jvybImpMowZxaA71/LD84drNEvEGJckNQ1KP2bL8QdTT55jvan71RD+tWWURDSBGUnWVTAygd8pjiHpzTyBaW/f4vxWAE4EKwYHXyWHeeSesl9RXDvQvooV8AH8RUtcnWH5mPYNRU1V2Bnbee/rnIVCGXqH4c4sRVqQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=s7siTEW2CKiZshvU8V5uDSNGrVsPJi1BQF/HyVxzdbM=;
- b=WDbCPsUHm4rjlSfPkmt5J9VCo8RgKm/eivVkSulUKFEDo1RT5/zMPaYpc0My83fhfU/+clSwAhTzNiJ+G5o4k4vREUntk1QijOO9Ncsssuon/e3x9MAoHTswPGKdlJdv5E2xk+D6za+wIdXe48QJROb5NCis1T8oJloK75p9H3OcWnD0xxlkgCJsco5d0LI3ullPN9/k2QWKsdNNswkOKw1FL8cGoiwTiXgoReFul665zg/eZXO0VqhiFfF4ZLL0IgUIBljfzTQutvvRa3upWxz3b+CCBghRjEttdSigkXOzw0YAFqF5qEXBufRn4LYUlREB9f/pYvkbt70yJK5ZTw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=ffwll.ch smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s7siTEW2CKiZshvU8V5uDSNGrVsPJi1BQF/HyVxzdbM=;
- b=DAALKIgnihB1vt7bseI/nE8BViXGCwA6e4bijYJ2lzSFE+XO0OVOhg0y9d3DVOr3hXMtBk7jpFzn2gnGKh7AekRQ3ab0U49WkDO8Yig1ouVGC7qzHotowPbC/OYqMa4WxcD2dGcRHxbgdF18MwCxKvti1zkYCjKIHT3Ps9xBZhk=
-Received: from BL1PR13CA0011.namprd13.prod.outlook.com (2603:10b6:208:256::16)
- by DS0PR12MB8341.namprd12.prod.outlook.com (2603:10b6:8:f8::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.10; Thu, 27 Aug
- 2026 07:15:25 +0000
-Received: from BL02EPF0001A0FD.namprd03.prod.outlook.com
- (2603:10b6:208:256:cafe::35) by BL1PR13CA0011.outlook.office365.com
- (2603:10b6:208:256::16) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.360.7 via Frontend Transport; Thu, 27
- Aug 2026 07:15:25 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- BL02EPF0001A0FD.mail.protection.outlook.com (10.167.242.104) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.360.3 via Frontend Transport; Thu, 27 Aug 2026 07:15:25 +0000
-Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.45; Thu, 27 Aug
- 2026 02:15:21 -0500
-From: Honglei Huang <honghuan@amd.com>
-To: <sima@ffwll.ch>, <matthew.brost@intel.com>, <rodrigo.vivi@intel.com>,
- <thomas.hellstrom@linux.intel.com>, <dakr@kernel.org>,
- <intel-xe@lists.freedesktop.org>
-CC: <aliceryhl@google.com>, <Alexander.Deucher@amd.com>,
- <Felix.Kuehling@amd.com>, <Christian.Koenig@amd.com>, <Ray.Huang@amd.com>,
- <Lingshan.Zhu@amd.com>, <Junhua.Shen@amd.com>, <Yiru.Ma@amd.com>,
- <amd-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <honghuan@amd.com>
-Subject: [RFC PATCH v1 5/5] drm/gpusvm: make the DMA mapping step in
- get_pages() optional
-Date: Thu, 27 Aug 2026 15:14:49 +0800
-Message-ID: <20260827071449.520398-6-honghuan@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260827071449.520398-1-honghuan@amd.com>
-References: <20260827071449.520398-1-honghuan@amd.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26D6210E3B9
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 07:21:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1787815276; x=1819351276;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0UqdaW4UF2ANThsvfgzevnQeVranlGMWhr27zS3mNyQ=;
+ b=fn3kbQL5EMqMVEZxDU390V5RSCSi17KEB13S5HxfzFuWe+8YlMMnuS5a
+ rjCLgdndNrdI/yT1NnP7qkIekIAAMmOsUStmCZt28IsSICKBT6vuz0FnR
+ XjZa5SiX6XPiuq06b9RX0ouTo5Gw/sLlpOs8HElxUO9T4AzGOAEuZ5Lrf
+ bbpBiIVoaNoobQI2lGqxpn1S6pFyjQggfPpR+v4pVjYK83y0PMaeoK40J
+ jC/uCH6DUA53Y6E9LHqw7/H7PNI9bv37Osoj6f87lT9BDylDArEwcsAjN
+ 0kxl7BSO98iZJtZOW2ItiD78cP8H8y2zc7eOh0JItKsVwkFIfhtHfEVaM Q==;
+X-CSE-ConnectionGUID: bQ9wqChhTreUz8M5IApqQw==
+X-CSE-MsgGUID: ZyyPTP7uROGQWCrhqOyVRQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="99471107"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="99471107"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 00:21:15 -0700
+X-CSE-ConnectionGUID: 7RbrknJqSKKXx0MhQ9+0Xw==
+X-CSE-MsgGUID: ZBxTXr4jQSaZqKXMRFQoIg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="266012071"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 00:21:14 -0700
+From: Varun Gupta <varun.gupta@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: gustavo.sousa@intel.com,
+	matthew.d.roper@intel.com
+Subject: [PATCH v9] drm/xe: Add debugfs knob to control GPGPU preemption
+ granularity
+Date: Thu, 27 Aug 2026 12:51:07 +0530
+Message-ID: <20260827072106.1138741-2-varun.gupta@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A0FD:EE_|DS0PR12MB8341:EE_
-X-MS-Office365-Filtering-Correlation-Id: 31d6acc4-5a68-4a78-b43d-08df040af770
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|36860700016|23010399003|376014|1800799024|10067099003|18002099003|22082099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: dHlGJZIL9DRUzhaE/lO27YspqdWPzngwppzBXTPe/o52woDJ2uSZjUiAwN8S8o7Q9ZInVCn882/LdABMIWvLT7ilI4PUfbufwT+onLqY89jPSaW9jun0bbnrvzKd3kv/E40ktPwnszkg9+GLDCP3+dHwtNvuJtifuQ1LJ/Dz99No266IgDBNwcNrO7cgnubB+S/Jr5F+/gKTTpZxAq8wL6inFTCKyEWJWsb8wrEKyugAaaW0TYFDFOw6DCB1wTX7Sc72FHKSWco+Ej+2qs1YHylvti8YrhafAqm1gcMJ2mQ2ottnEKVMFdyexjRDqgZUK7oMGUE408tUaM34rkUtJccjT5LHPUYlm8vdTt3gjyNm0g9B9ek9U9DoEjVekyL8fxoRhyL9NmuiXa82pDD+kkNHeljL3MKamoSNX/iRGMLPoYPYywcWcURjfCf1pybBj4SmSN8adYj7dD6uqkF/WFdXMdB1d9R1MgWtwWUlZIm7kpBfe+n6p2vziPUhUM00MBgKm5O2tzOQFctxF+0uKB0RTKDkF0fg/5fiyhDgSDTZDbdeAvsXGTm0jxK9mTv4sOL49dPUIb/yvhB//YYZaQn59JPA34eFG2odJBOJ8CGaPLUa90ZUQdL8mOjU3Wjrt7EOLqNGgEbgQewAHgUE9aMp+OtB5SIohyQqArRo7RZCE3VwBnPsYnLzpaTYrPobppUIWwQTqfUEct8e05fpaA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(36860700016)(23010399003)(376014)(1800799024)(10067099003)(18002099003)(22082099003)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: gSBSkUBExh3wdVIoJU47D99YZewvaOk+NNMF4UTFMCXjUmKtAlPZIsirOexweDg8vgFz9nBUGdVLUyvnmmdjwN5lxveqHOouiFUl9B1PzQHgUDcLufZ2bzliXLskRoYQBTZbuQOiaGeDPDSjx9IwLAQ8Hu7qpmjBUzi0k+EHnWxMLqTpHVoO+PSvJkXLMX/kDydJn9Fu9eAbnqsRHdIZJ9SAMhG5QGHgA1KStMBwT+X3bGTf93EPRsVrZNrFjRYMWFHzh/eMiw01jbReCbdwyvQE9BtU1sWe14q+OMuGv9jDWn8EHLQAXOXBFx87TTNypU4cln+7p96/lhjXokSasYfLSjPiskiHhFPndl4mqa2BfUz8aqldsZ6OuKOgW+Dof+S82I5y/ESHetF6i0jPQbZq5dTq8/rL1iDWvLPxHegQJRzxAxXSVWhsBaAheToN
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2026 07:15:25.6990 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31d6acc4-5a68-4a78-b43d-08df040af770
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A0FD.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8341
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,152 +66,334 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some drivers (e.g. AMDXDNA) only need the CPU pages faulted in and tracked
-by the notifier, no need DMA mapping.
+Introduce a per-GT debugfs knob, 'gpgpu_preemption_level', to allow
+overriding the GPGPU preemption level on a per-context basis for newly
+created LRCs.
+Add an RTP rule to enable per-context control via FF_SLICE_CS_CHICKEN1,
+allowing the preemption level to be programmed directly into the LRC
+image at CTX_CS_CHICKEN1 during context initialization.
 
-Add a drm_gpusvm_ctx::no_dma_map flag. When set, get_pages() does the
-shared HMM fault and records notifier_seq, but skips svm_pages->drm
-validation, the dma_addr allocation and drm_gpusvm_dma_map_pages().
-With no mapping state to check, the fault is redone on every call. The
-default (no_dma_map == 0) is unchanged.
+v9:
+  - Move the per-context/GT-scoped behavior description from the enum
+    kerneldoc to the gpgpu_preemption_level member kerneldoc, and drop
+    the kzalloc zero-initialization note. (Gustavo)
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Honglei Huang <honghuan@amd.com>
+v8:
+  - Encapsulate LRC preemption programming into
+    xe_lrc_set_gpgpu_preemption_level() (Gustavo)
+  - Add xe_gt_WARN and early return for unexpected preemption level values
+    to prevent invalid CS_CHICKEN1 programming. (Gustavo)
+  - Change -EPERM to -EINVAL for MTP fused off check (Gustavo)
+  - Combine FF_SLICE_CS_CHICKEN1 RTP rule using OR macro (Gustavo)
+
+v7:
+  - Restrict XEHP_FUSE4 read to Xe2+ primary GTs to prevent invalid
+    Media GT accesses and SR-IOV warnings. (Sashiko)
+
+v6:
+  - Add missing xe_gt_printk.h include to fix compilation failure.
+
+v5:
+  - Use correct offset for CTX_CS_CHICKEN1. (Matt)
+  - Restrict to the RCS engine. (Matt)
+  - Drop LRC layout table modifications; dummy layouts do not need late
+    context registers. (Matt)
+  - Stash WMTP fuse state at boot to remove pm/forcewake from debugfs.
+    (Matt)
+  - Rename debugfs knob to 'gpgpu_preemption_level'. (Matt)
+  - Use simple_write_to_buffer() and remove unnecessary READ_ONCE/
+    WRITE_ONCE macros. (Matt)
+  - Do not restrict debugfs visibility for SR-IOV VFs. (Matt)
+
+v4
+  - Fix incorrect NOP padding in the RCS context layout. (Sashiko)
+
+v3:
+  - Wrapped XEHP_FUSE4 forcewake read with xe_pm_runtime_get/put to
+    prevent PCIe aborts/timeouts when the GPU is in D3hot/D3cold. (sashiko)
+  - Fixed NOP macro truncation by splitting padding offsets larger than
+    0x7f into multiple NOPs, ensuring correct context layout. (sashiko)
+  - Converted CTX_CS_CHICKEN1 initialization to a read-modify-write
+    sequence to avoid overwriting golden context mask bits. (sashiko)
+  - Removed the FF_SLICE_CS_CHICKEN1 workaround for CCS engines, as
+    compute engines lack this 3D fixed-function register, which was
+    causing GuC "illegal register" panics on initialization.
+
+v2:
+  - Dropped the WA BB/MI_LRI path; per Bspec, CS_CHICKEN1 is context
+    save/restore state at DW 0x00E2, so we map CTX_CS_CHICKEN1 and program
+    it directly in LRC init via xe_lrc_write_ctx_reg(). (Matt)
+  - Split Xe2 CCS context offsets into a dedicated xe2_ccs_offsets array
+    to map CS_CHICKEN1 without polluting other XCS engines.
+  - Converted the debugfs interface from a binary boolean to a
+    multi-option string knob ("default", "mid-thread", "thread-group",
+    "command"). (Gustavo)
+  - Restricted file creation to the Physical Function
+    (!IS_SRIOV_VF). (Gustavo)
+  - Added kernel tainting (TAINT_USER) when deviating from
+    defaults. (Gustavo)
+  - Added power-safe hardware fuse check (FUSE4 register 0x9114[20],
+    CFEG_WMTP_DISABLE) before allowing MTP selection. (Matt)
+
+Signed-off-by: Varun Gupta <varun.gupta@intel.com>
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/drm_gpusvm.c | 64 ++++++++++++++++++++++++++----------
- include/drm/drm_gpusvm.h     |  5 +++
- 2 files changed, 51 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h |  2 +
+ drivers/gpu/drm/xe/xe_gt.c              |  6 +++
+ drivers/gpu/drm/xe/xe_gt_debugfs.c      | 66 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_types.h        | 29 +++++++++++
+ drivers/gpu/drm/xe/xe_lrc.c             | 33 +++++++++++++
+ drivers/gpu/drm/xe/xe_wa.c              |  4 +-
+ 6 files changed, 139 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index 42e606b94681..c89ff4a9d081 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -1703,11 +1703,11 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 	int err = 0;
- 	enum dma_data_direction dma_dir = ctx->read_only ? DMA_TO_DEVICE :
- 							   DMA_BIDIRECTIONAL;
-+	const bool map_dma = !ctx->no_dma_map;
- 	unsigned int p;
--	bool all_valid;
+diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+index 4ab86fc369fd..6f7abc0181b5 100644
+--- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
++++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+@@ -37,6 +37,8 @@
+ #define CTX_QUEUE_TIMESTAMP		(0xd0 + 1)
+ #define CTX_QUEUE_TIMESTAMP_UDW		(0xd2 + 1)
  
- 	for (p = 0; p < num_pages; ++p)
--		if (!svm_pages[p].drm)
-+		if (map_dma && !svm_pages[p].drm)
- 			return -EINVAL;
- 
- retry:
-@@ -1716,12 +1716,24 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 
- 	hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
- 
--	all_valid = true;
--	for (p = 0; p < num_pages; ++p)
--		if (!drm_gpusvm_pages_valid_unlocked(gpusvm, &svm_pages[p]))
--			all_valid = false;
--	if (all_valid)
--		goto set_seqno;
-+	/*
-+	 * The HMM fault is shared by all the drm_gpusvm_pages instances (they
-+	 * all mirror the same CPU range); only the DMA mapping below is
-+	 * per-instance. In no_dma_map mode there is no DMA mapping state to
-+	 * validate, so the fault is always redone. Otherwise skip the fault
-+	 * entirely if every instance is already valid.
-+	 * drm_gpusvm_pages_valid_unlocked() also drops the stale dma_addr array
-+	 * of any instance that is no longer valid.
-+	 */
-+	if (map_dma) {
-+		bool all_valid = true;
++#define CTX_CS_CHICKEN1			(0x12e + 1)
 +
-+		for (p = 0; p < num_pages; ++p)
-+			if (!drm_gpusvm_pages_valid_unlocked(gpusvm, &svm_pages[p]))
-+				all_valid = false;
-+		if (all_valid)
-+			goto set_seqno;
-+	}
+ #define INDIRECT_CTX_RING_HEAD		(0x02 + 1)
+ #define INDIRECT_CTX_RING_TAIL		(0x04 + 1)
+ #define INDIRECT_CTX_RING_START		(0x06 + 1)
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 6805e0d3bf21..478e047031f4 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -610,6 +610,12 @@ static int gt_init_with_gt_forcewake(struct xe_gt *gt)
+ 	 */
+ 	gt->info.gmdid = xe_mmio_read32(&gt->mmio, GMD_ID);
  
- 	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
- 	if (!pfns)
-@@ -1731,17 +1743,24 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 	if (err)
- 		goto err_free;
- 
--	for (p = 0; p < num_pages; ++p) {
--		if (svm_pages[p].dma_addr)
--			continue;
--		svm_pages[p].dma_addr =
--			kvmalloc_objs(*svm_pages[p].dma_addr, npages);
--		if (!svm_pages[p].dma_addr) {
--			err = -ENOMEM;
--			goto err_free;
-+	/*
-+	 * Allocate the dma_addr array of each instance outside the notifier
-+	 * lock. A still-valid instance keeps its existing dma_addr array and
-+	 * is not reallocated. Skipped entirely in no_dma_map mode.
-+	 */
-+	if (map_dma) {
-+		for (p = 0; p < num_pages; ++p) {
-+			if (svm_pages[p].dma_addr)
-+				continue;
-+			svm_pages[p].dma_addr =
-+				kvmalloc_objs(*svm_pages[p].dma_addr, npages);
-+			if (!svm_pages[p].dma_addr) {
-+				err = -ENOMEM;
-+				goto err_free;
-+			}
-+			svm_pages[p].state = (struct dma_iova_state){};
-+			svm_pages[p].state_offset = 0;
- 		}
--		svm_pages[p].state = (struct dma_iova_state){};
--		svm_pages[p].state_offset = 0;
- 	}
- 
++	if (GRAPHICS_VER(gt_to_xe(gt)) >= 20 && xe_gt_is_main_type(gt))
++		gt->info.has_wmtp_disabled = !!(xe_mmio_read32(&gt->mmio, XEHP_FUSE4) &
++			CFEG_WMTP_DISABLE);
++	else
++		gt->info.has_wmtp_disabled = 0;
++
  	/*
-@@ -1765,6 +1784,14 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 		goto retry;
- 	}
+ 	 * Wa_14026539277 can't be implemented as a regular GT workaround (i.e.
+ 	 * as an entry in gt_was[]) for two reasons: it is actually a device
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index ea78b57b1c31..361a70234d1f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -6,6 +6,8 @@
+ #include "xe_gt_debugfs.h"
  
-+	/*
-+	 * no_dma_map: the caller only needs the HMM fault, not a device DMA
-+	 * mapping. The fault has been validated under the notifier lock
-+	 * above; skip the per-instance DMA mapping entirely.
-+	 */
-+	if (!map_dma)
-+		goto done_mapping;
+ #include <linux/debugfs.h>
++#include <linux/panic.h>
++#include <linux/string.h>
+ 
+ #include <drm/drm_debugfs.h>
+ #include <drm/drm_managed.h>
+@@ -17,6 +19,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_mcr.h"
+ #include "xe_gt_idle.h"
++#include "xe_gt_printk.h"
+ #include "xe_gt_sriov_pf_debugfs.h"
+ #include "xe_gt_sriov_vf_debugfs.h"
+ #include "xe_gt_stats.h"
+@@ -413,6 +416,65 @@ static ssize_t gt_ia_bias_write(struct file *file,
+ }
+ DEFINE_SHOW_STORE_ATTRIBUTE(gt_ia_bias);
+ 
++static const char * const gpgpu_preemption_level_names[] = {
++	[XE_GPGPU_PREEMPT_DEFAULT]      = "default",
++	[XE_GPGPU_PREEMPT_MID_THREAD]   = "mid-thread",
++	[XE_GPGPU_PREEMPT_THREAD_GROUP] = "thread-group",
++	[XE_GPGPU_PREEMPT_COMMAND]      = "command",
++};
 +
- 	for (p = 0; p < num_pages; ++p) {
- 		if (drm_gpusvm_pages_valid(gpusvm, &svm_pages[p]))
- 			continue;
-@@ -1784,6 +1811,7 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 		}
- 	}
++static int gpgpu_preemption_level_show(struct seq_file *m, void *unused)
++{
++	struct xe_gt *gt = m->private;
++
++	seq_printf(m, "%s\n", gpgpu_preemption_level_names[gt->gpgpu_preemption_level]);
++
++	return 0;
++}
++
++static ssize_t gpgpu_preemption_level_write(struct file *file,
++					    const char __user *ubuf,
++					    size_t len, loff_t *offp)
++{
++	struct seq_file *m = file->private_data;
++	struct xe_gt *gt = m->private;
++	enum xe_gpgpu_preempt_level new_level;
++	char buf[16];
++	ssize_t copied;
++	int idx;
++
++	if (*offp)
++		return -EINVAL;
++
++	copied = simple_write_to_buffer(buf, sizeof(buf) - 1, offp, ubuf, len);
++	if (copied < 0)
++		return copied;
++
++	buf[copied] = '\0';
++	idx = sysfs_match_string(gpgpu_preemption_level_names, strim(buf));
++	if (idx < 0)
++		return idx;
++
++	new_level = (enum xe_gpgpu_preempt_level)idx;
++
++	if (new_level == XE_GPGPU_PREEMPT_MID_THREAD && gt->info.has_wmtp_disabled) {
++		xe_gt_warn(gt, "MTP fused off in hardware, cannot select mid-thread\n");
++		return -EINVAL;
++	}
++
++	if (new_level != XE_GPGPU_PREEMPT_DEFAULT) {
++		add_taint(TAINT_USER, LOCKDEP_STILL_OK);
++		xe_gt_notice(gt,
++			     "GPGPU preemption overridden to '%s' (applies to new LRCs only)\n",
++			     gpgpu_preemption_level_names[new_level]);
++	}
++
++	gt->gpgpu_preemption_level = new_level;
++
++	return copied;
++}
++DEFINE_SHOW_STORE_ATTRIBUTE(gpgpu_preemption_level);
++
+ void xe_gt_debugfs_register(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+@@ -446,6 +508,10 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
+ 	debugfs_create_file("force_reset", 0600, root, gt, &force_reset_fops);
+ 	debugfs_create_file("force_reset_sync", 0600, root, gt, &force_reset_sync_fops);
  
-+done_mapping:
- 	drm_gpusvm_notifier_unlock(gpusvm);
- 	kvfree(pfns);
- set_seqno:
-diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-index d2b6f3d2b842..84db209cf148 100644
---- a/include/drm/drm_gpusvm.h
-+++ b/include/drm/drm_gpusvm.h
-@@ -254,6 +254,10 @@ struct drm_gpusvm {
-  * @allow_mixed: Allow mixed mappings in get pages. Mixing between system and
-  *               single dpagemap is supported, mixing between multiple dpagemap
-  *               is unsupported.
-+ * @no_dma_map: Only fault the CPU pages for the range; skip the device DMA
-+ *              mapping step. Used by drivers (e.g. AMDXDNA userptr) that
-+ *              consume the faulted pages without needing a DMA mapping. In
-+ *              this mode @drm on the drm_gpusvm_pages is not required.
-  *
-  * Context that is DRM GPUSVM is operating in (i.e. user arguments).
-  */
-@@ -266,6 +270,7 @@ struct drm_gpusvm_ctx {
- 	unsigned int devmem_possible :1;
- 	unsigned int devmem_only :1;
- 	unsigned int allow_mixed :1;
-+	unsigned int no_dma_map :1;
++	if (GRAPHICS_VER(xe) >= 20 && (gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK))
++		debugfs_create_file("gpgpu_preemption_level", 0600, root,
++				    gt, &gpgpu_preemption_level_fops);
++
+ 	drm_debugfs_create_files(vf_safe_debugfs_list,
+ 				 ARRAY_SIZE(vf_safe_debugfs_list),
+ 				 root, minor);
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index a8bbfbdf3849..628911346455 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -35,6 +35,24 @@ enum xe_gt_eu_type {
+ 	XE_GT_EU_TYPE_SIMD16,
  };
  
- int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
++/**
++ * enum xe_gpgpu_preempt_level - Per-context GPGPU preemption override mode
++ *
++ * Selects the preemption granularity programmed into CS_CHICKEN1[2:1] for
++ * newly created Xe2+ RCS LRCs.
++ *
++ * @XE_GPGPU_PREEMPT_DEFAULT: Keep platform default preemption granularity.
++ * @XE_GPGPU_PREEMPT_MID_THREAD: Force mid-thread preemption level.
++ * @XE_GPGPU_PREEMPT_THREAD_GROUP: Force thread-group preemption level.
++ * @XE_GPGPU_PREEMPT_COMMAND: Force command-level preemption.
++ */
++enum xe_gpgpu_preempt_level {
++	XE_GPGPU_PREEMPT_DEFAULT = 0,
++	XE_GPGPU_PREEMPT_MID_THREAD,
++	XE_GPGPU_PREEMPT_THREAD_GROUP,
++	XE_GPGPU_PREEMPT_COMMAND,
++};
++
+ #define XE_MAX_DSS_FUSE_REGS		4
+ #define XE_MAX_DSS_FUSE_BITS		(32 * XE_MAX_DSS_FUSE_REGS)
+ #define XE_MAX_EU_FUSE_REGS		1
+@@ -156,6 +174,8 @@ struct xe_gt {
+ 		 * feature.
+ 		 */
+ 		u8 has_xe2_blt_instructions:1;
++		/** @info.has_wmtp_disabled: hardware fuse indicates WMTP is disabled */
++		u8 has_wmtp_disabled:1;
+ 		/**
+ 		 * @info.num_geometry_xecore_fuse_regs: Number of 32b-bit fuse
+ 		 * registers the geometry XeCore mask spans.
+@@ -224,6 +244,15 @@ struct xe_gt {
+ 	 */
+ 	u32 ccs_mode;
+ 
++	/**
++	 * @gpgpu_preemption_level: GPGPU preemption granularity override.
++	 *
++	 * Effective only when FF_SLICE_CS_CHICKEN1[FFSC_PERCTX_PREEMPT_CTRL] is
++	 * enabled via RTP. Affects only LRCs created after the value is
++	 * changed; existing contexts keep their previously programmed value.
++	 */
++	enum xe_gpgpu_preempt_level gpgpu_preemption_level;
++
+ 	/** @usm: unified shared memory state */
+ 	struct {
+ 		/**
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 35b4e8289b5f..25fe9dbc9141 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1486,6 +1486,36 @@ void xe_lrc_set_multi_queue_priority(struct xe_lrc *lrc, enum xe_multi_queue_pri
+ 	lrc->desc |= FIELD_PREP(LRC_PRIORITY, xe_multi_queue_prio_to_lrc(lrc, priority));
+ }
+ 
++static void xe_lrc_set_gpgpu_preemption_level(struct xe_lrc *lrc, struct xe_gt *gt)
++{
++	enum xe_gpgpu_preempt_level level = gt->gpgpu_preemption_level;
++	u32 level_bits;
++	u32 val;
++
++	if (level == XE_GPGPU_PREEMPT_DEFAULT)
++		return;
++
++	switch (level) {
++	case XE_GPGPU_PREEMPT_MID_THREAD:
++		level_bits = PREEMPT_GPGPU_MID_THREAD_LEVEL;
++		break;
++	case XE_GPGPU_PREEMPT_THREAD_GROUP:
++		level_bits = PREEMPT_GPGPU_THREAD_GROUP_LEVEL;
++		break;
++	case XE_GPGPU_PREEMPT_COMMAND:
++		level_bits = PREEMPT_GPGPU_COMMAND_LEVEL;
++		break;
++	default:
++		xe_gt_WARN(gt, true, "Invalid GPGPU preemption level: %d\n", level);
++		return;
++	}
++
++	val = xe_lrc_read_ctx_reg(lrc, CTX_CS_CHICKEN1);
++	val &= ~PREEMPT_GPGPU_LEVEL_MASK;
++	val |= REG_MASKED_FIELD(PREEMPT_GPGPU_LEVEL_MASK, level_bits);
++	xe_lrc_write_ctx_reg(lrc, CTX_CS_CHICKEN1, val);
++}
++
+ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
+ 			   void *replay_state, u16 msix_vec, u32 init_flags)
+ {
+@@ -1589,6 +1619,9 @@ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct
+ 	if (xe->info.has_asid && vm)
+ 		xe_lrc_write_ctx_reg(lrc, CTX_ASID, vm->usm.asid);
+ 
++	if (GRAPHICS_VER(xe) >= 20 && hwe->class == XE_ENGINE_CLASS_RENDER)
++		xe_lrc_set_gpgpu_preemption_level(lrc, gt);
++
+ 	lrc->desc = LRC_VALID;
+ 	lrc->desc |= FIELD_PREP(LRC_ADDRESSING_MODE, LRC_LEGACY_64B_CONTEXT);
+ 	/* TODO: Priority */
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 139434946f8f..c94fe7753f9a 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -343,7 +343,9 @@ static const struct xe_rtp_table_sr engine_was = XE_RTP_TABLE_SR(
+ 	  XE_RTP_ACTIONS(SET(SAMPLER_MODE, ENABLE_SMALLPL))
+ 	},
+ 	{ XE_RTP_NAME("FtrPerCtxtPreemptionGranularityControl"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250), ENGINE_CLASS(RENDER)),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1250), ENGINE_CLASS(RENDER), OR,
++		       GRAPHICS_VERSION_RANGE(2000, XE_RTP_END_VERSION_UNDEFINED),
++		       ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(FF_SLICE_CS_CHICKEN1(RENDER_RING_BASE),
+ 			     FFSC_PERCTX_PREEMPT_CTRL))
+ 	},
 -- 
-2.34.1
+2.43.0
 
