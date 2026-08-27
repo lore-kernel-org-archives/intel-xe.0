@@ -4,161 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 654EFC61DC2
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 21:28:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 748CAC61DC4
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 21:33:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1ED7210F1DA;
-	Thu, 27 Aug 2026 21:28:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2347C10F1DA;
+	Thu, 27 Aug 2026 21:33:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OeIAVN7K";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PcK7PaPJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B09110F1DA
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 21:27:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD20210F1DA
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 21:33:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787866078; x=1819402078;
+ t=1787866408; x=1819402408;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=RtSqQEokP0qVm5lkUf84dsRSEKHSaDKy+eJbLnLNE4A=;
- b=OeIAVN7KQ4Nt/wELKc5anZZeKo5SKwpd3zd+F6F1EhpRgoprUTXtDe4t
- UJZx4tdcqmrmhEfX9K8mNyOdlMPn1n7lZyo+hLvxTi9Y9qxeQovjWB15C
- 69s7H3uggqMZpz3z2mnW2wN1SVkigy3GSYxBQ0Y7kAAydR5M7pIxz9xNc
- YARbujDCH8zvo5gUxLF1FTGOF4lfeVcnbJRnNv2HCPcp1L9Nwj1apRH21
- UPD37mYC7CX/YwumvpztLOKgoRRTMWCw+22Gxe36WtnUIj8A+LpVFdNoG
- vPFxO2+hRn3Lk6AQwldoK11HwE5aPRXXl8u5QgIIba6aVx0+J3A5pMHxS g==;
-X-CSE-ConnectionGUID: Z1h6lc9lQFuex1Miu5C9PQ==
-X-CSE-MsgGUID: iZo9qwEITHae5jbq6fp7Hw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11888"; a="92190905"
-X-IronPort-AV: E=Sophos;i="6.25,247,1779174000"; d="scan'208";a="92190905"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 14:27:57 -0700
-X-CSE-ConnectionGUID: qBv6TZ5YRfGAruySESbJMw==
-X-CSE-MsgGUID: OJDjO2gTTIOqD66AXvR9tg==
+ bh=LTo2aWZha2SgK8q649dvE8nKBtEMNkPIoGcc+AqGiTg=;
+ b=PcK7PaPJBVF2DJ7aVpxATdgjRkly7wO8vLvr5AQULTUcPK5WoT5OnDz1
+ PQgfuhGW0YT+OjeIuK6fAAAa1PybohwpJXAHSv9Y6aX5fWQd8EHIfRTVv
+ zL+Qx5exKcJEbymmFCTFxZMweI0yThz6CwykeI4Rv18WEDXbDc8LWAP9E
+ lmSlekkScEHZ59SrndplpG76QQmzGmXlq9//Nqn7G6SPP1YKM9Z4u76ER
+ M3/3A4Ixwme6nEtNtTPvIKlDUhYPvF2YYMAWVREyYAKjczdIpsH7N2IWq
+ OiVnZXvc0dlId6PZ4FdQCj1h55QxrRInFwVMCOrlpGMzjKLDtvRGUa/Lk A==;
+X-CSE-ConnectionGUID: /+fec2oSQMS3K02ddx3jUA==
+X-CSE-MsgGUID: 48KBB1uZRG2J3qsCPoAmBg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11888"; a="99537549"
+X-IronPort-AV: E=Sophos;i="6.25,247,1779174000"; d="scan'208";a="99537549"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 14:33:27 -0700
+X-CSE-ConnectionGUID: FPG/4xCRSt+z0Mfi3GA6Rg==
+X-CSE-MsgGUID: XxFHcDQLRg2DRxKlpbrwjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,247,1779174000"; d="scan'208";a="306191000"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 14:27:58 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 14:33:27 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 27 Aug 2026 14:27:56 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.46; Thu, 27 Aug 2026 14:33:26 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Thu, 27 Aug 2026 14:27:56 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.55) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Thu, 27 Aug 2026 14:33:26 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.60) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 27 Aug 2026 14:27:56 -0700
+ 15.2.2562.46; Thu, 27 Aug 2026 14:33:26 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cx1+ryqBN8S6t8PkptIays4QXJ1NXrtxQ4BL6eNhMKltODknVs7vSFM78kZLnPGRyIJZ6jXGIZ5c2zZ/0bSfbkiIeXShY4ay1wOd+h2OzoBmRf1rfjHFaBsOxr8/wbnZff5Or1o8/u9M3hLfjCznJAtchaTdGvitJcU5HRG3pYEijvqY3QXfs8UmoHWggXd7KBjjj0k1mJQBM5s1l6IU5VsGDsQR8SBsbSj3X5sWwlFkmrTod40hAC/Pok8hXp/poeQsQW0WS5MpQGV9oKC1k3lLp+EFJPJo1xSglHTS8FCAvGEQ/oaZtXaKpCAu4U82meW6QtdSjWoFp3YkTlvHGQ==
+ b=P8dvtVXrkfhddejIuurSdhGLvG99w0/gGW/5aVHX+s9mqcXLnUauaS7Ily/YR7pGyH5tptXwEjuMTPu4/S5uFMRRAYprTctCwC/P3PMvED4vOHhFexj8hxW99NSuHV0iXbmPPqNnDtdSr14UtG/2lUqhPfLkP9mk+YFtpLeoF3DKI42X4+ovOM/ToGpuWCth5fAg/fNSO3RsY3BFCy+Yy+SPJiDzvG31wfhczFhbTDHx3Psd261mXxdZAUXTX9HCYVNKLejHcQrjpMhxQf/V8t5Zlb3e56IZfN7etUl1OHDlMyrj2H7XVhWPofblqQRmNXbhilEqfIVI6HrWCy8sow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jDoizeJh468m4QTKkt6rv4wFI7wzPv8h2nbDSoHzVMM=;
- b=Gm+DK1f0SkUdFZ1UlY+lu/xagqrt1MjRyZUJrH8P5O8Edx7T55yRsuJpHardpkpjl0KPGBT0MgJZX+UMKNPyXR3HMfavIi7BwfjOZDhuFuyxWpcl0FV32mH7oYm/1BnUEVorqvC36DtRocM8Rc7N/R5ShO2c3pQY9wG4J+6DcwyCvmxeghZNJGjgjogbXQZlf86II1KXt40KyowN+EXF9lOZoC1wdtyGR+6ytwxWmXJsxVBrpcv1c6CZmGGfjKn4g7wECqZK3vo8CCrOoMu8zZ6uuXisGG0scj8tRzk9lo53opoo2A7wLuEA06EVM3zi+EXPZEummKq+lMP916+ojw==
+ bh=VJSQZYCBhZ/MjPygUm86g6HvDb+gX+76CeznmIDBxjs=;
+ b=nbVAdQXbvHeg9To1zkLgd1PONm6O7SUdAmbCLEboDEdKniDpdPbyOFci36EgViUduBKhKguNz5Mf6oR3vFZFgqgHlBPinkO0V0x+ErFaxQ4T5PJfAHpn7wqdYcrG9OqPYy6KsjsK1sF4SyVl1u3JEW/84w+64gZCLqurPshDUErTUsAP7Arc/TFYl3lQfRUUejRz9m82JMK2ttgORW4COcYnJRP+4/DWEPC2yyZjh7u8ebsCq5n8sZhIyhg8tXUAdatQVh4HetoB/VUpw1dJ8eMzz8e8iEFokbqAb0qWSruS/KBu6ohvVrryNaeY5n7baIW32Azc0lT9P9ENyRrLBw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by LV2PR11MB184224.namprd11.prod.outlook.com (2603:10b6:408:411::20)
+Received: from CO1PR11MB4979.namprd11.prod.outlook.com (2603:10b6:303:99::16)
+ by PH0PR11MB7494.namprd11.prod.outlook.com (2603:10b6:510:283::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.7; Thu, 27 Aug
- 2026 21:27:55 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0360.008; Thu, 27 Aug 2026
- 21:27:55 +0000
-Message-ID: <6b5fc72c-d0ec-4c23-a5f3-e2408711ee37@intel.com>
-Date: Thu, 27 Aug 2026 23:27:49 +0200
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.10; Thu, 27 Aug
+ 2026 21:33:22 +0000
+Received: from CO1PR11MB4979.namprd11.prod.outlook.com
+ ([fe80::ed0a:e4ab:fde6:edcc]) by CO1PR11MB4979.namprd11.prod.outlook.com
+ ([fe80::ed0a:e4ab:fde6:edcc%2]) with mapi id 15.21.0360.008; Thu, 27 Aug 2026
+ 21:33:22 +0000
+Message-ID: <b3f36afd-c702-4359-bac6-3e5eec11aa66@intel.com>
+Date: Thu, 27 Aug 2026 14:33:21 -0700
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/11] drm/xe/cper: Allow hardware error CPER reporting
- from xe_log
-To: Badal Nilawar <badal.nilawar@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
- <daniele.ceraolospurio@intel.com>, <raag.jadav@intel.com>,
- <riana.tauro@intel.com>, <mallesh.koujalagi@intel.com>,
- <aravind.iddamsetty@intel.com>, <himal.prasad.ghimiray@intel.com>,
- <arvind.yadav@intel.com>
-References: <20260825175916.1103841-13-badal.nilawar@intel.com>
- <20260825175916.1103841-20-badal.nilawar@intel.com>
+Subject: Re: [PATCH 3/3] drm/xe/guc: Report errors that cause a CT shutdown
+ using SIGID
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: Aravind Iddamsetty <aravind.iddamsetty@intel.com>, Mallesh Koujalagi
+ <mallesh.koujalagi@intel.com>, Alan Previn Teres Alexis
+ <alan.previn.teres.alexis@intel.com>, Julia Filipchuk
+ <julia.filipchuk@intel.com>
+References: <20260827002801.837731-1-daniele.ceraolospurio@intel.com>
+ <20260827002801.837731-3-daniele.ceraolospurio@intel.com>
+ <c88d3c1e-4b46-41b4-be7d-829b12e2e18d@intel.com>
 Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20260825175916.1103841-20-badal.nilawar@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VIVP296CA0113.AUTP296.PROD.OUTLOOK.COM
- (2603:10a6:800:358::6) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+In-Reply-To: <c88d3c1e-4b46-41b4-be7d-829b12e2e18d@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR03CA0369.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a1::14) To CO1PR11MB4979.namprd11.prod.outlook.com
+ (2603:10b6:303:99::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|LV2PR11MB184224:EE_
-X-MS-Office365-Filtering-Correlation-Id: d2cdc5bf-aa22-45ce-7048-08df04820ec0
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4979:EE_|PH0PR11MB7494:EE_
+X-MS-Office365-Filtering-Correlation-Id: e08d459f-7222-42df-0ea6-08df0482d1ad
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|376014|1800799024|18002099003|10067099003|6133799003|11063799006|22082099003|4143699003|56012099006;
-X-Microsoft-Antispam-Message-Info: 6W1t8q2tjjmzo1NrWWt6IbiGFeYbOEsKZ/NMcw+IHV8OeSu02aKA77XC+Xj1gZ+V4Skon3ZZ8xOTjeAZNWupMXlUIlSBdmY+ic1nCgs3+Vd21eZlbKQ4EgukImjbhTIM/vtSHLpHiAM6D5LIVz0Ugz9ddlmEMSXZaSxw37ztr1eMSuw5ad3o3U4eGrKun8noFrcPt/6xp1dY/vNxPgM0SF1pw0rIDo5YDZLdkhLctmKCI7ccM7fMotVQQVFHXNsPAc+FvV08Kk0b/LtQ5Zr6Po+XYsBPlU0vKc0SsawyuMo9z28/L9478wLH28bFv/H2v88K07hSm95E4EShKYoRk88gA9PlMxp3STacL93cq8ss0Cuef9SpgsIKJXFa5cSQh5hTwOabaW7DkubtcqlOmpSf0REaJxQuh2pj0IiX1LxAEHBXqrYkpmcOyfDo9uFub1n3EbnZ1dikRhtfCoxyRtMR7GEfnfQ6+4pKHo5QZRPJtA3K3nR9rjB6v5gDCPR95xNf1/i0ucO4GE2t+w/SuMf6ufio7JHVl4ZCB03EJvJxHkhTa6CWLi3X9gYWuSUgCvthBQLkqq9xvAKEzuh4EXx0e3mRe5hVQIy3BUJeki15AtJtWD1cKkTTP2Mh76c2LOeZKrFdDIdD1dGMKzE/zZbkZ2irwYw0USFog1ejxRc=
+ ARA:13230040|23010399003|366016|1800799024|376014|6133799003|10067099003|56012099006|11063799006|4143699003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: w4Ke6o+e6C9Jfa34qgeYKlcbJ4fLxDNVu1CljM2YjyUtmcHJ8Wk6QjShwda3DZxMsy4x2PTGZgzxIFAX0fXDg8HwaaOE91R8clM7yMU19dyirO9fpQlkK8NWnO8fkZhQbEQbRe4w/Tw/KTWH1h5pNqg3vK/6RgTNyhbNYjmCP7ofOiPldRQrpvYQCkcoZN6cwqKtIWqVP7VjBh3n1dWsDsY3oUpMTw32THM2UT44g9GqkpzYi4tS6tT1c+s2pz4yY5ODdEJ/oJNQvBjMyN1UYbQEnwnnOd0i5EqrHIaQjclS121Ri7ylfG1ukYEUKrNrDIyuzKdDPRP9YwzQGa1GgkdECFDm2ibOJ32cHSrwg2u6yXa16zj02exqrCfpk2RtbAo0GDbEh3EmeY2NpQSyJgDX9Uuq0dhaj0galjkTLDbrK3LUN2DfXZespwmyFH10LsxjvGs08J2/QX13G1Fl9p2L5c3GTbcCqtZAG+g9+cTIeWc4d4Vf4NkAh7L7WTn74P4Sw/UF3tkDrvxBbMZ4JUtGpxEKijYh3oJVYJ4zp16ZzQ0vaFizxvVFfpE0g1SPk09hnXcC3AYbWjoNA8UC2t+9PIj5mlwsRc5iscHs293Rz2oQ++FiRkSTgdVi1nDjjVEM1l2dzGZbB49RNO0kWkn8nd2ZW61Lu/erUi3Z6Ao=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(18002099003)(10067099003)(6133799003)(11063799006)(22082099003)(4143699003)(56012099006);
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB4979.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(6133799003)(10067099003)(56012099006)(11063799006)(4143699003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dFBWdHB1SXRXZzZ4VTZYVHVaV0FBZEQrTVNZaHVFdnVIY3FpKzBIa0szUHM2?=
- =?utf-8?B?KzhyZFlBanlpalVlUDZzeWc5eS9DNUJNUTlkVEZUbTFEL0RiTjBFMklqUG9r?=
- =?utf-8?B?YWxHTVgzMW92cUpjZW5RWDlhSzF6TVZCN2tsbVFFYUwrNVlSM0tjS1pkRnZu?=
- =?utf-8?B?SFMvc1cvMDNRMDJwWlczWitJdkM1RjEvUlkrZThwUy9reCtxYVRXQzN3Y3N6?=
- =?utf-8?B?cklMQlFUMXJPZ2E0T2dBSSs2VFlLMm90TUx3K0lUVis4enN4UC9nZ0ZqTDJw?=
- =?utf-8?B?bFRWRU5nSjQveEhzWDdGbVVuVkxSOEN0VitFNUwrR0lrZW9rWlhYKytLWHZa?=
- =?utf-8?B?ZXcvdTU3Y2lUT0JQczRlb3EzRmNBNVlWSXViTlBqNDZ6MnhvWTFoamgwdU5t?=
- =?utf-8?B?dTJZZ1BoZTFMYVhONU95cGhPcnJpK3FwNzRQZG9MQlFoL29BSFByZDFpY01t?=
- =?utf-8?B?c2U5bnlEbXEyVlNVdGo5dmdja3VPL2xhc1JIdzN1NkU5akVJTVVocnFpVTVm?=
- =?utf-8?B?Y3g3N0RwNVFrbDF4R1YzUzdHWUROdFJEdXNDclFwTWpRVGhjNUNubjR4VWtG?=
- =?utf-8?B?dDVSbEdzR1NXMDNUZjZjRmwyRjFUVHFYVDBhSm1IQm1XUFVzQnR5WGpyN0h2?=
- =?utf-8?B?SEcrcGx0amdBM0g4UjFZUWQ0cWprNzFTYytCaDUrN2tEMVZ4cmcwUHpjMlFx?=
- =?utf-8?B?RGdhdi9YZ3ZvYlNkMUYyaFRGNU9CeGdrSStOSDVHVmwxdi9ZWkR6K1hLNFB1?=
- =?utf-8?B?RDhYZXZGK2VGcXNQMFZxZ1YrY3pBbTNQNlV4Y1IzS0V2THdmeFNsdTFNU0ZH?=
- =?utf-8?B?YWswMU91OGdoTGpmR1JoWUZDQWFvVnFWSU1HZElna09aV3E3ZEFRSFhoSStS?=
- =?utf-8?B?eWxJaHpoUzFxc29EdGVjN3dQd05YSmd1emJvaGJXSm1aVkxQQytmNUZYUW1L?=
- =?utf-8?B?eE92dkx6ci91VUlwcWlsNFVucjFGbFdlV1QvVUJHWG1KMmwrTjN3S2R2RTI3?=
- =?utf-8?B?enVlMThKWk50Z1BqOW03WU5DNGMxYlN4eUJrdWtDaHF1bGdPRFFSSjhBaW9n?=
- =?utf-8?B?T085bzdIN1FXaFFsNUZ4ZXlveUhpZENLUDA2bk1rZ1IrQk9oV3g2S2hkK2J4?=
- =?utf-8?B?d0F1Q0prQWFvbTJUZ0lwU3BtNzduNHJPb0ZsTHJVQmVGSW1VRHdyczRlWHVv?=
- =?utf-8?B?Yy9UTHRIWGdxalpXcjgvYklXMS9mNFJZS1VqelZ2VzlXZ0JuWkZrWWhVeStv?=
- =?utf-8?B?SHhqSXRPWmVkSDA3Z2pDSTNYMUlNWXVCTnhleTE2QUJxa1hESE5PelpURUtP?=
- =?utf-8?B?WTdJS3lMdEtBWmFDSFdRS2twQjdNeW5qcXJaZWhEM2E3MEFseHg0M0dlclJD?=
- =?utf-8?B?bWF2cDZqKy9xQXpZTHhLR0x3REt1b3dFQ1JrSHluL1JNeXZUUmR6VVEyUVRL?=
- =?utf-8?B?RDNBbDdTWmYvTjJEb2RoNTh6MWlCOHNZUmVHVU9XdlZSS1NaQ09KSGp0ZVlD?=
- =?utf-8?B?b2tIZjdHM2cvZUkvWmRYL29hZmR5THRwWjFJbU1XS0lmaVRYWnZoWHRTUlpj?=
- =?utf-8?B?a0hTbGpFZ1kxcFl2TWF5UkxXaG51R1ZBU0dEQWNPaUZGQ0FOeVAza2lpNHh4?=
- =?utf-8?B?dGpUVEV2dlJCREhSWXErazFkTityVS9JQTZLRHdyNFB3OUdRdFk1MlA1UmxO?=
- =?utf-8?B?MXFyR2diMFQ0WEcxMjRkalUxcm5GOE1PcDQvaWxPamN3TzdQSktUei9tU0lG?=
- =?utf-8?B?eUVaVkVTaCtjSVpZUWc1a01YMHZQUEo0SHRzalVYNFo5QjVOcmlidU8zQlJ2?=
- =?utf-8?B?ZnBDVTQ5a2lXWjlWVHZaVnBDYWVKaStiU2NFbGloSFJERFJqbGowNVFsMHcr?=
- =?utf-8?B?TWFiS2tpbmdRWXlzNms4MCtPTU54SUdaa082MkRrYXM4T2hGUTREUVh5RkNh?=
- =?utf-8?B?ZENkS0tHMi9yOG5NODZBa2tZTjBXMDc0UzVKd0JhVGF3b05kQVY2dFFBT2hj?=
- =?utf-8?B?VU1BOUh5N2w1WVZSNGlEeWt2QVdoN1FOVzVEQld6bk4ybEo0RlA5OFo2WjV4?=
- =?utf-8?B?ZXREUUpzZGRRQlN0QzMvK0lVOUlGUHdUa0FjR1hHcEFLeGxvcnBYY1dpbEMx?=
- =?utf-8?B?NFJFdTRMc1ZRdXI4VXBzWTN4WWswdnFTdEh6cEFiZUQ4cVFOUG5BYmlPVVUr?=
- =?utf-8?B?YXVBaFQ5QkpiS01NY202V0JRZEc0NlhCbGEvSFVtNmkrWFNNczlpRkgvQVMy?=
- =?utf-8?B?aFhEanNVY0hqb1V3QTUvSWlGbWZTcSt5TEdja2FqcDU5V2Jwb002dmdIdis1?=
- =?utf-8?B?eDBrQ1Z2S1ZBcUJ5UEorY0YyZ1VZbkdxVHVGTTNpSEV0L3NVbkJaSWt1cndx?=
- =?utf-8?Q?U3c+jeTD22DqsTNQ=3D?=
-X-Exchange-RoutingPolicyChecked: K5F2Uu+Mt3+6B93tQBW5ytlF+XC2ZzAvZbeaYsdklNYZjKEJiAUfmZoCy8IKEx5JqaQGERTZbW3nDVu+95er3Rb2o69v/VXyBvc5OeEnB5KK03e+fJ8wE7KUpD/0Uhef3eBTIM2w87WeHT19orKE++MjeL00wP2+ClrUk9Da2OLPlFp4iUosmSBjYQ8eGmqC4+bslFfbYfpUOTPkYrak020oLel6IHirELlfBjgEYVa3FrQCvsQUvdu8QNa2i8vIXCAiz/sONqbu6C9UZGjRSdqJ2Pb8P2ZjXJa+jQG+AhdtAXckpXGcHhpwLAq64aizd37J6Cy0aZSkMK+zVs9LyA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2cdc5bf-aa22-45ce-7048-08df04820ec0
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d0t5dUhXSzhrREZrbWhnZmRIRldSOG1VQUE4NnpDajE4RG1ORldyd3dXc3JM?=
+ =?utf-8?B?dXRDRHpVYWFyZ3YvVWgrck5YM3Q5V1VTRnFhSFJzbk5qUGt2cVRITldERkpN?=
+ =?utf-8?B?RFB5Tm91U2xnRWJ5MjE0cTAxdDlVOUk3Nk1xN2FTeDZrUkJ5MGdVM29wL3VK?=
+ =?utf-8?B?YnE4UThZSTRsMVNFL3NsVnJYYmpPTXRYaHdvOEZCZS9iQlBWRkZMTjVmSytq?=
+ =?utf-8?B?NGFBeUllcDV0ZkVDMFozNHRyTkErbEgvUEpDTkprQjNjYzlIa2ZzZnVnaUlD?=
+ =?utf-8?B?T016K1BCN1FSWnArSkNMZFQzVnBXR1oxL3FjV3dyZHU2cVFMYzA1d05TSUxt?=
+ =?utf-8?B?VEx6cmwybkk4clJOSmxuQWMxL3RPL1YxbkhQSXU2azhGdkJCUHBveHc3ZFFD?=
+ =?utf-8?B?RFA0NUV1N1o5UjdQVDlJVGdaTnJjV2FDa2lyQ1pUK3p4MnJWOGYrang1L1NS?=
+ =?utf-8?B?M1d5eDBZUUxyeGE5elZHbzJUZVZVLzBNdGo2L2VaVHlGMDRyWEVWaEQwOUdm?=
+ =?utf-8?B?L2NZMEJKMU5IL2pGQ3JsSTYxL2NWR2RnS3BBL1pGUTk3dDZOdkQrMDRxVjRq?=
+ =?utf-8?B?cUpSQjRzQXBKM21rZEVBRFlaMnZ1S1lDVUVSajlWYy9JWEtMRHh3eVlScS9L?=
+ =?utf-8?B?SUs4UkdKMGFVclRoSkhhQmNsa3hyOU5kTWlHM21FcGl1aWk1NlJMblU1Q2lI?=
+ =?utf-8?B?eVVkY2w5eEE0SUdkaWdRN0hnY3RvNW0xRHlzVlZ0VHg5VDBoRzhJTUt1Y0J3?=
+ =?utf-8?B?UGdCWkQ4QU1ZSDBpMGlJMUFxRU1mWU9FcVIxK1ZMZ2hiQjV2QzJRTXgvb084?=
+ =?utf-8?B?c0o5WWhMSUN0My85TkxXdTlMeTFLamxzOHZtRjRHZ0JOMENLKy90UnBLQ3Ft?=
+ =?utf-8?B?Z1RhcTNDNGlxSlMwalYrbHhvQUs1ZURPWmpNaGhHcDFuUUlwZzNocTdLWTVq?=
+ =?utf-8?B?cFlYQVZxSXpnY3EzQzBPTHJ0U2QwWlFnOHFYOU1HbGk1d0xBNjlacTd6UWdu?=
+ =?utf-8?B?RllNK2JwZmsrT3VaWnBtUStqb2pOQXl2NUtJV3ZOaEQvblpkYk9MM2hmUEJ4?=
+ =?utf-8?B?OVV1YmRnc0Q0VVRvTk1hT09oWmZuM3l5SGV0ampvN2JGZ2N4ZTNnYXU5MkYw?=
+ =?utf-8?B?aGpKMnJzYVNXRVVrSW12REo5bEJYZitzRXVVQ1ljcFEwUzNTcnp0bDVXZHlY?=
+ =?utf-8?B?aUFkR3Y3TThkcjY1enhrRDUreWh0cHR5MURiZmJHVkptYVpZaTh5NFo4UzZN?=
+ =?utf-8?B?STIvT3IxZGJHTUdkOU5GZVBaUXpONGxhSklnbVpQOFVFRjBEaVhxNHpoOFRP?=
+ =?utf-8?B?S1F4b3VibWNEZW5VNS8zZ1lKdW5SZXBEbXd3aWQ5TG1DdGkxeTVQUk84UEJy?=
+ =?utf-8?B?L1J3ek8yTDVmaFRyOVZJaEVZSVp6UkppMEZhVlVkWWx6VWtlS3BoOFAxbTlp?=
+ =?utf-8?B?ZE1JQmN5VFRMYjkvUjVZc3FJc0Mwb21BR1VNampxeDZ5YTZMeCtvQTVhSWtZ?=
+ =?utf-8?B?S2l5MkhIZVpZWk9EWk8wWmQzNzdtcjNqM3czQTcwVWRtN1doWjNkc0NhV1N6?=
+ =?utf-8?B?dnhqdExOQXVkcjBzZzNZOFhCdDRiM0xQemh5ODZXSEdnVmQwaW9mWTFidllR?=
+ =?utf-8?B?NndPaXVhU0VldFEyaURncGROR1h2YTZZTVBFOTdLSUxwSWlZY1VVanZBK3lF?=
+ =?utf-8?B?ckRlL0hESVdLd3B2Y1A5OXBwc0FSOGxuNjdmUWNLN29UTnhiazRaSmw2Nmc1?=
+ =?utf-8?B?STVFaWtzQlZzdkhTTEkvMkVDc2dUNE5jK09zR282ZHRUSlI4NklmVml2Q2Q5?=
+ =?utf-8?B?cjJhK3hmNlZkOU1LSXc2d05jS2lpWnVuQ0FISjlQODA2d09zRXZHRnUxekJM?=
+ =?utf-8?B?TXpuVDdDTW54RkJHYmFTbmlLYk5URFNpSFZEaUdJcFlGaWpMdndhVUxud2o1?=
+ =?utf-8?B?K05WV2xacVJqMHd5MGlDa0MyNjdIeXErWDgyTDQxZnBCSzViTTJtcWt6djJq?=
+ =?utf-8?B?QUExbHRrUDFZcElXdWJRSDFvbGxOZm1rcm10WHdnSFJ6YWIxTG1lMldsZDZX?=
+ =?utf-8?B?UFhRLzh6eE91dkh6bWRSLzNES0FEQ05jRExESHFQN0k2bUdHL1g5aVRUTWtT?=
+ =?utf-8?B?RFFMZ0gvaDMxaFFwc2FRT2VUNSt0MGk3anh6cG9tN01vYVFPSXhUNEVXQjJ0?=
+ =?utf-8?B?WmFqb0F0MEhXbHI4RnFiMGp5MVhQMWgrbHRPMGdkZXFndGN3NjV3cC9MWWhX?=
+ =?utf-8?B?V09vV3ZrRUZvZ1U4QlBCRGdlckdpTUcycXFaMUk3SGZ1d1hqSVRMdzhoRWtJ?=
+ =?utf-8?B?QlJONFRRZTNla015UGNnZ1hOQ3E2YXVrd2JHVGRjdUZvNktGMGF3bzcrOG9H?=
+ =?utf-8?Q?GPJlqyupExMAqbqE=3D?=
+X-Exchange-RoutingPolicyChecked: GYBVIhvDqbCOh8ghSLzkXL9jRCORbLPvMeuWVZkbpcGBAzSITbao0tt5U78B/BObisElZr4nuxzpCyeAWlJ4omGK10Z1drrHDrrhOONp1TzfmxNO+ORJGewqTgVkh6GV8fFWLTv31XWY7REDDj3XfOamoBZTsQY3iBUfNpHFP+TdNzVKd8EZPcnjz6hevMRCZgY6i1ITSfDV52sUksXtrCMQeGicCYHL4XAAlNg1nMB6xzVvRyiilgajTSEQAlDBPEh5NhAFhxPLcECQo1F20IpBq8/4S6A7dTP6KhLJ7YxKo5SxD6LUzSlB4pnE1cKmmf8nqO5htFDlp2m81N++CQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: e08d459f-7222-42df-0ea6-08df0482d1ad
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4979.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2026 21:27:55.2130 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2026 21:33:22.1079 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ObuAHInnax6nPEM9X7pez7ak54MK5HKJVRFrJPmO5z0L6hemDeFZQPujXEQpib+A0JaDu8CRDl3DHjThLwTmAmE3ryAnJaYCYwu8ilufAW4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB184224
+X-MS-Exchange-CrossTenant-UserPrincipalName: PfLyurziJEtb2zTR2s3cY1EeQsUO1CDqKbjJKheu4iq2Er8UTJmcD0gxsiPeRTP3kZcigDssRX4Pgr2IhQ07Znb7Q5Mlj2JIyQO2LVyNiec=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7494
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -176,133 +176,335 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 8/25/2026 7:59 PM, Badal Nilawar wrote:
-> Add xe_emit_hardware_error_cper() as a public wrapper around the
-> internal hardware CPER emission helper, enabling xe_log.c to emit
-> hardware error CPER records.
-> 
-> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_log.c | 17 +++++++++++------
->  drivers/gpu/drm/xe/xe_ras.c | 23 +++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_ras.h |  4 ++++
->  3 files changed, 38 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_log.c b/drivers/gpu/drm/xe/xe_log.c
-> index 5549ef6966fd..c78fc195c55b 100644
-> --- a/drivers/gpu/drm/xe/xe_log.c
-> +++ b/drivers/gpu/drm/xe/xe_log.c
-> @@ -10,15 +10,25 @@
->  
->  #include "xe_device.h"
->  #include "xe_log.h"
-> +#include "xe_ras.h"
->  #include "xe_printk.h"
->  
-> +static bool is_hw_sigid(enum xe_sigid sigid)
-> +{
-> +	return (int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START;
-> +}
-> +
->  static void log_emit_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
->  			  u32 component, u32 location, const void *data, size_t len,
->  			  struct va_format *vaf)
->  {
->  	KUNIT_STATIC_STUB_REDIRECT(log_emit_cper, pdev, cper_sev, sigid,
->  				   component, location, data, len, vaf);
-> -	/* TODO */
-> +	/* TODO software CPER */
-> +
-> +	if (is_hw_sigid(sigid))
-> +		xe_emit_hardware_error_cper(pdev, cper_sev, sigid,
-> +					    (struct xe_ras_error_class *)data);
+On 8/27/2026 7:34 AM, Michal Wajdeczko wrote:
+>
+> On 8/27/2026 2:28 AM, Daniele Ceraolo Spurio wrote:
+>> Convert any errors that can cause the CT to be declared as dead to
+>> use the xe_log_err() helper. Errors that are escalated to the callers
+>> are left for the caller to report with SIGID if needed.
+>>
+>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+>> Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+>> Cc: Alan Previn Teres Alexis <alan.previn.teres.alexis@intel.com>
+>> Cc: Julia Filipchuk <julia.filipchuk@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_guc_ct.c | 91 +++++++++++++++++++---------------
+>>   1 file changed, 51 insertions(+), 40 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+>> index 5c4733da385c..4efaf2d24c3e 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+>> @@ -30,6 +30,7 @@
+>>   #include "xe_guc_relay.h"
+>>   #include "xe_guc_submit.h"
+>>   #include "xe_guc_tlb_inval.h"
+>> +#include "xe_log.h"
+>>   #include "xe_map.h"
+>>   #include "xe_page_reclaim.h"
+>>   #include "xe_pm.h"
+>> @@ -679,7 +680,7 @@ static int __xe_guc_ct_start(struct xe_guc_ct *ct, bool needs_register)
+>>   	return 0;
+>>   
+>>   err_out:
+>> -	xe_gt_err(gt, "Failed to enable GuC CT (%pe)\n", ERR_PTR(err));
+>> +	xe_log_err(gt, GUC, err, "Failed to enable CT\n");
+>>   	CT_DEAD(ct, NULL, SETUP);
+>>   
+>>   	return err;
+>> @@ -803,8 +804,9 @@ static bool h2g_has_room(struct xe_guc_ct *ct, u32 cmd_len)
+>>   
+>>   			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+>>   
+>> -			xe_gt_err(ct_to_gt(ct), "CT: invalid head offset %u >= %u)\n",
+>> -				  h2g->info.head, h2g->info.size);
+>> +			xe_log_err(ct_to_gt(ct), GUC, -EPROTO,
+>> +				   "CT: invalid head offset %u >= %u)\n",
+>> +				   h2g->info.head, h2g->info.size);
+> nit: we usually use -EPROTO to report mismatch in the messages
+> while here we have corrupted descriptor, so maybe we can use
+> something else, like:
+>
+> #define	ENFILE		23	/* File table overflow */
+> #define	ESPIPE		29	/* Illegal seek */
+> #define	EPIPE		32	/* Broken pipe */
+> #define	EILSEQ		84	/* Illegal byte sequence */
+> #define	EUCLEAN		117	/* Structure needs cleaning */
+>
+>>   			CT_DEAD(ct, h2g, H2G_HAS_ROOM);
+>>   			return false;
+>>   		}
+>> @@ -873,12 +875,13 @@ static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
+>>   	bad |= !ct->g2h_outstanding;
+>>   
+>>   	if (bad) {
+>> -		xe_gt_err(ct_to_gt(ct), "Invalid G2H release: %d + %d vs %d - %d -> %d vs %d, outstanding = %d!\n",
+>> -			  ct->ctbs.g2h.info.space, g2h_len,
+>> -			  ct->ctbs.g2h.info.size, ct->ctbs.g2h.info.resv_space,
+>> -			  ct->ctbs.g2h.info.space + g2h_len,
+>> -			  ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space,
+>> -			  ct->g2h_outstanding);
+>> +		xe_log_err(ct_to_gt(ct), GUC, -EPROTO,
+> hmm, here the "bad" flag is more an indication of our (xe) miscalculation,
+> not something that FW did wrong, so -EPROTO seems wrong, maybe
+>
+> #define	ETOOMANYREFS	109	/* Too many references: cannot splice */
+>> +			   "Invalid G2H release: %d + %d vs %d - %d -> %d vs %d, outstanding = %d!\n",
+>> +			   ct->ctbs.g2h.info.space, g2h_len,
+>> +			   ct->ctbs.g2h.info.size, ct->ctbs.g2h.info.resv_space,
+>> +			   ct->ctbs.g2h.info.space + g2h_len,
+>> +			   ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space,
+>> +			   ct->g2h_outstanding);
+>>   		CT_DEAD(ct, &ct->ctbs.g2h, G2H_RELEASE);
+>>   		return;
+>>   	}
+>> @@ -961,21 +964,24 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>>   
+>>   		desc_status = desc_read(xe, h2g, status);
+>>   		if (desc_status) {
+>> -			xe_gt_err(gt, "CT write: non-zero status: %u\n", desc_status);
+>> +			xe_log_err(gt, GUC, -EPROTO,
+>> +				   "CT write: non-zero status: %u\n", desc_status);
+>>   			goto corrupted;
+>>   		}
+>>   
+>>   		if (tail > h2g->info.size) {
+>>   			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+>> -			xe_gt_err(gt, "CT write: tail out of range: %u vs %u\n",
+>> -				  tail, h2g->info.size);
+>> +			xe_log_err(gt, GUC, -EPROTO,
+>> +				   "CT write: tail out of range: %u vs %u\n",
+>> +				   tail, h2g->info.size);
+>>   			goto corrupted;
+>>   		}
+>>   
+>>   		if (desc_head >= h2g->info.size) {
+>>   			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+>> -			xe_gt_err(gt, "CT write: invalid head offset %u >= %u)\n",
+>> -				  desc_head, h2g->info.size);
+>> +			xe_log_err(gt, GUC, -EPROTO,
+> as this indicates that FW found an error in CTB, maybe:
+>
+> #define	EPIPE		32	/* Broken pipe */
+>
+>> +				   "CT write: invalid head offset %u >= %u)\n",
+>> +				   desc_head, h2g->info.size);
+>>   			goto corrupted;
+>>   		}
+>>   	}
+>> @@ -1220,7 +1226,7 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>>   	return ret;
+>>   
+>>   broken:
+>> -	xe_gt_err(gt, "No forward process on H2G, reset required\n");
+>> +	xe_log_err(gt, GUC, -EDEADLK, "No forward process on H2G, reset required\n");
+>>   	CT_DEAD(ct, &ct->ctbs.h2g, DEADLOCK);
+>>   
+>>   	return -EDEADLK;
+>> @@ -1558,11 +1564,11 @@ static int guc_crash_process_msg(struct xe_guc_ct *ct, u32 action)
+>>   	struct xe_gt *gt = ct_to_gt(ct);
+>>   
+>>   	if (action == XE_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED)
+>> -		xe_gt_err(gt, "GuC Crash dump notification\n");
+>> +		xe_log_err(gt, GUC, -EPROTO, "GuC Crash dump notification\n");
+>>   	else if (action == XE_GUC_ACTION_NOTIFY_EXCEPTION)
+>> -		xe_gt_err(gt, "GuC Exception notification\n");
+>> +		xe_log_err(gt, GUC, -EPROTO, "GuC Exception notification\n");
+>>   	else
+>> -		xe_gt_err(gt, "Unknown GuC crash notification: 0x%04X\n", action);
+>> +		xe_log_err(gt, GUC, -EPROTO, "Unknown GuC crash notification: 0x%04X\n", action);
+> maybe crashes should be identified as one of:
+>
+> #define	ENETDOWN	100	/* Network is down */
+> #define	ENETUNREACH	101	/* Network is unreachable */
+> #define	EHOSTDOWN	112	/* Host is down */
+>
+>>   
+>>   	CT_DEAD(ct, NULL, CRASH);
+>>   
+>> @@ -1592,13 +1598,15 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>>   	 */
+>>   	if (fence & CT_SEQNO_UNTRACKED) {
+>>   		if (type == GUC_HXG_TYPE_RESPONSE_FAILURE)
+>> -			xe_gt_err(gt, "FAST_REQ H2G fence 0x%x failed! e=0x%x, h=%u\n",
+>> -				  fence,
+>> -				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, hxg[0]),
+>> -				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, hxg[0]));
+>> +			xe_log_err(gt, GUC, -EPROTO,
+> FAILURE response is a valid message, maybe:
+>
+> #define	EBADE		52	/* Invalid exchange */
+>
+>> +				   "FAST_REQ H2G fence 0x%x failed! e=0x%x, h=%u\n",
+>> +				   fence,
+>> +				   FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, hxg[0]),
+>> +				   FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, hxg[0]));
+>>   		else
+>> -			xe_gt_err(gt, "unexpected response %u for FAST_REQ H2G fence 0x%x!\n",
+>> -				  type, fence);
+>> +			xe_log_err(gt, GUC, -EPROTO,
+>> +				   "unexpected response %u for FAST_REQ H2G fence 0x%x!\n",
+>> +				    type, fence);
+>>   
+>>   		fast_req_report(ct, fence);
+>>   
+>> @@ -1674,8 +1682,9 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>>   
+>>   	origin = FIELD_GET(GUC_HXG_MSG_0_ORIGIN, hxg[0]);
+>>   	if (unlikely(origin != GUC_HXG_ORIGIN_GUC)) {
+>> -		xe_gt_err(gt, "G2H channel broken on read, origin=%u, reset required\n",
+>> -			  origin);
+>> +		xe_log_err(gt, GUC, -EPROTO,
+>> +			   "G2H channel broken on read, origin=%u, reset required\n",
+> #define	EBADMSG		74	/* Not a data message */
 
-make sure to check data len before doing a cast
-also, maybe do all that in xe_emit_hardware_error_cper()
-in case we would want to pass other blobs to xe_log
+For this one I can switch to EBADMSG  for the log, but the return value 
+needs to stick to EPROTO because the value is returned all the way back 
+to receive_g2h, which checks specifically for EPROTO or EOPNOTSUPP. 
+Changing this flow to handle different error codes is out of scope of 
+this series IMO.
 
->  }
->  
->  static const char *log_unknown_component_prefix(u32 component)
-> @@ -100,11 +110,6 @@ static const char *log_location_prefix(struct pci_dev *pdev, u32 location, char
->  	return buf;
->  }
->  
-> -static bool is_hw_sigid(enum xe_sigid sigid)
-> -{
-> -	return (int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START;
-> -}
-> -
->  static bool is_sev_error(int cper_sev)
->  {
->  	return cper_sev != CPER_SEV_INFORMATIONAL;
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index ff9d917b8e29..b4cdb5ec6491 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -837,6 +837,29 @@ static void emit_hw_error_cper(struct xe_device *xe,
->  	}
->  }
->  
-> +/**
-> + * xe_emit_hardware_error_cper() - Emit a hardware error CPER record
+>
+>> +			   origin);
+>>   		CT_DEAD(ct, &ct->ctbs.g2h, PARSE_G2H_ORIGIN);
+>>   
+>>   		return -EPROTO;
+>> @@ -1693,8 +1702,9 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>>   		ret = parse_g2h_response(ct, msg, len);
+>>   		break;
+>>   	default:
+>> -		xe_gt_err(gt, "G2H channel broken on read, type=%u, reset required\n",
+>> -			  type);
+>> +		xe_log_err(gt, GUC, -EOPNOTSUPP,
+>> +			   "G2H channel broken on read, type=%u, reset required\n",
+> maybe this should say: "Unexpected message type %u" ?
+> and since we rather do not expect new message types in CTBv1 then
+> maybe this one should be actually -EPROTO ?
 
-shouldn't this be named as:
+I think it's better to stick with EOPNOTSUPP, but I can reword the message.
 
-	xe_ras_emit_hardware_cper
+>
+>> +			   type);
+>>   		CT_DEAD(ct, &ct->ctbs.g2h, PARSE_G2H_TYPE);
+>>   
+>>   		ret = -EOPNOTSUPP;
+>> @@ -1792,8 +1802,8 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>>   	}
+>>   
+>>   	if (ret) {
+>> -		xe_gt_err(gt, "G2H action %#04x failed (%pe) len %u msg %*ph\n",
+>> -			  action, ERR_PTR(ret), hxg_len, (int)sizeof(u32) * hxg_len, hxg);
+>> +		xe_log_err(gt, GUC, ret, "G2H action %#04x failed (%pe) len %u msg %*ph\n",
+>> +			   action, ERR_PTR(ret), hxg_len, (int)sizeof(u32) * hxg_len, hxg);
+> drop %pe as it will be already printed
+>
+>>   		CT_DEAD(ct, NULL, PROCESS_FAILED);
+>>   	}
+>>   
+>> @@ -1840,7 +1850,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+>>   		}
+>>   
+>>   		if (desc_status) {
+>> -			xe_gt_err(gt, "CT read: non-zero status: %u\n", desc_status);
+>> +			xe_log_err(gt, GUC, -EIO, "CT read: non-zero status: %u\n", desc_status);
+> #define	EPIPE		32	/* Broken pipe */
+>
+>>   			goto corrupted;
+>>   		}
+>>   	}
+>> @@ -1871,15 +1881,15 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+>>   
+>>   		if (g2h->info.head > g2h->info.size) {
+>>   			desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+>> -			xe_gt_err(gt, "CT read: head out of range: %u vs %u\n",
+>> -				  g2h->info.head, g2h->info.size);
+>> +			xe_log_err(gt, GUC, -EIO, "CT read: head out of range: %u vs %u\n",
+>> +				   g2h->info.head, g2h->info.size);
+> as before, one of:
+>
+> #define	ENFILE		23	/* File table overflow */
+> #define	ESPIPE		29	/* Illegal seek */
+> #define	EPIPE		32	/* Broken pipe */
+> #define	EILSEQ		84	/* Illegal byte sequence */
+> #define	EUCLEAN		117	/* Structure needs cleaning */
+>
+> maybe except EPIPE which we want to use to indicate that CTB error
+> was already set earlier (likely by the GuC FW)
 
-as we should use xe_ras prefix for functions in this file
-and error is redundant as we already have cper in the name
-> + * @pdev: PCI device associated with the Xe device
-> + * @cper_sev: CPER severity
-> + * @sigid: Error signature identifier
-> + * @error_class: Hardware error classification details
-> + *
-> + * Emit a CPER record for a hardware error
-> + */
-> +void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
-> +				 struct xe_ras_error_class *counter)
-> +{
-> +	struct xe_device *xe = pdev_to_xe_device(pdev);
+IMO grouping all cases where the CTB header is in a bad state (whether 
+because the GuC signaled an error or because it wrote and invalid value) 
+under EPIPE is cleaner. Having too many different error codes will just 
+get confusing.
 
-I guess we can pass xe to xe_emit_hardware_error_cper()
-pdev was only needed in xe_log to cover early probe errors
+>
+>>   			goto corrupted;
+>>   		}
+>>   
+>>   		if (desc_tail >= g2h->info.size) {
+>>   			desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+>> -			xe_gt_err(gt, "CT read: invalid tail offset %u >= %u)\n",
+>> -				  desc_tail, g2h->info.size);
+>> +			xe_log_err(gt, GUC, -EIO, "CT read: invalid tail offset %u >= %u)\n",
+>> +				   desc_tail, g2h->info.size);
+> ditto
+>
+>>   			goto corrupted;
+>>   		}
+>>   	}
+>> @@ -1898,8 +1908,9 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+>>   			   sizeof(u32));
+>>   	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
+>>   	if (len > avail) {
+>> -		xe_gt_err(gt, "G2H channel broken on read, avail=%d, len=%d, reset required\n",
+>> -			  avail, len);
+>> +		xe_log_err(gt, GUC, -EIO,
+>> +			   "G2H channel broken on read, avail=%d, len=%d, reset required\n",
+>> +			   avail, len);
+> #define	ENODATA		61	/* No data available */
+>
+>>   		goto corrupted;
+>>   	}
+>>   
+>> @@ -1981,8 +1992,8 @@ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>>   	}
+>>   
+>>   	if (ret) {
+>> -		xe_gt_err(gt, "G2H action 0x%04x failed (%pe)\n",
+>> -			  action, ERR_PTR(ret));
+>> +		xe_log_err(gt, GUC, ret, "G2H action 0x%04x failed (%pe)\n",
+>> +			   action, ERR_PTR(ret));
+> nit: you may use %#x
+> drop %pe
+>
+>>   		CT_DEAD(ct, NULL, FAST_G2H);
+>>   	}
+>>   }
+>> @@ -2080,7 +2091,7 @@ static void receive_g2h(struct xe_guc_ct *ct)
+>>   		mutex_unlock(&ct->lock);
+>>   
+>>   		if (unlikely(ret == -EPROTO || ret == -EOPNOTSUPP)) {
+>> -			xe_gt_err(ct_to_gt(ct), "CT dequeue failed: %d\n", ret);
+>> +			xe_log_err(ct_to_gt(ct), GUC, ret, "CT dequeue failed: %d\n", ret);
+> drop %d as we will already print ret using %pe
+>
+> also, maybe worth to mention "..., forcing GT reset" ?
+>
+>>   			CT_DEAD(ct, NULL, G2H_RECV);
+> hmm, I'm pretty sure this is redundant as we already call CT_DEAD
+> on every case where we report an error, can you double check?
 
-> +
-> +	if (!xe)
-> +		return;
-> +
-> +	if (counter && !ras_counter_is_valid(xe, counter))
-> +		return;
-> +
-> +	emit_hw_error_cper(xe, counter, NULL, sigid, cper_sev);
-> +}
-> +
->  /**
->   * xe_ras_process_errors() - Process and contain hardware errors
->   * @xe: xe device instance
-> diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-> index 618364734043..e5c4b2e2e1fd 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.h
-> +++ b/drivers/gpu/drm/xe/xe_ras.h
-> @@ -7,6 +7,8 @@
->  #define _XE_RAS_H_
->  
->  #include <linux/types.h>
-> +#include "abi/xe_sigid_abi.h"
-> +#include "xe_device.h"
+There is at least one failure case in process_g2h_msg where we don't 
+call CT_DEAD. If we want to rework this so that CT_DEAD is not called 
+from here I believe it should be done separately.
 
-do we need this?
+Apart from the suggestions I have commented on, I am implementing all 
+the other ones.
 
->  #include "xe_ras_types.h"
->  
->  struct xe_device;
-> @@ -18,5 +20,7 @@ int xe_ras_get_counter(struct xe_device *xe, u8 severity, u8 component, u32 *val
->  int xe_ras_clear_counter(struct xe_device *xe, u8 severity, u8 component);
->  void xe_ras_init(struct xe_device *xe);
->  enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe);
-> +void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
-> +				 struct xe_ras_error_class *error_class);
->  
->  #endif
+Daniele
+
+>
+>>   			kick_reset(ct);
+>>   		}
 
