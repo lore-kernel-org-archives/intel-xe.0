@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B879FC61DC2
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 10:18:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 109B9C61DCB
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 10:18:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4885210EFAC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B360E10EFAB;
 	Thu, 27 Aug 2026 10:18:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Irs4rUGo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ldNzna5n";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23AB710EFA5;
- Thu, 27 Aug 2026 10:18:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07AC710E3DC;
+ Thu, 27 Aug 2026 10:18:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787825926; x=1819361926;
+ t=1787825924; x=1819361924;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=waTq+7PvsYOAOqUo2gYmMjh4ebFD60goZ2y5gdnL5G4=;
- b=Irs4rUGoGwQ/HFd3uwg+XyGiA/V+qd9h2lfD62JFJHEqU4Pa3JleZWOY
- i9wLr6sdH86+tVgvPPypWs8mvWDMYjZw4tMhELTXWeIknqYZh01XJnQmw
- kjWWNjP9gd+jqtv+qHZVr3N3Nk/N3SroDyP+w0vcj6EKetWVdKZ/6sQcl
- IiPAeBBICEwvUckUaK26itPfiI6kv5Vgmrgm07ngN0nAiouPWxFhm9OSg
- o5VfC91lHNbWDuyMZl9Yu3MaOfYu2oVeHWAUphcnTOg7w3G1RKP3l+r4G
- vVFcoUsf7xYxKpoUBfAyvcaXtjsmIjI27jICVj4e9VjfXlaqOjhVFjzwt A==;
-X-CSE-ConnectionGUID: X+85ZwYNTZGOtjvP3GIYpQ==
-X-CSE-MsgGUID: veLPI6g6RCqy83rRA8ZJ5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="88445872"
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="88445872"
+ bh=6gd8PgoogoXX2qDPRJqbTKyoAQQEQIVZcu2fjMW1L0g=;
+ b=ldNzna5nFrelxzJLJ5foprpmK28Z+B5uJlkV/R32YYePLFLPsUzjIxBX
+ l3cPFYh7BUP9K822KPCMG2GIUvNFxKfvQO7k5w/1er6MPznXDO+gpVTW4
+ uLkd6W4yrylAwOSD3+ySax+jRZsPBiui4Hke+n5b2ypCTa9//xTEpBAmk
+ kBTK3Ivs8EmcN96uA4xFc6OXXJ4K9+GOSldFY0qoVTwOHud5QGET688ps
+ dfry5jzF7cXBQxAhDmpRzExIi2yZlmIkQ0qN+TNa0gNOYrwtXuuoPCxj4
+ tTFfu9Bb8VCnYymb+YYe69xdPQRFykxTskf9C05uf2ii/Ir6G8xNg/nos g==;
+X-CSE-ConnectionGUID: k4F9gc1VSMKJhvt+kgyaYw==
+X-CSE-MsgGUID: cpDjCoyLRC6mO2jKc9vgtg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="88445869"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="88445869"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 03:18:45 -0700
-X-CSE-ConnectionGUID: S32WU25JR8Ktbu1I96dIlA==
-X-CSE-MsgGUID: dRGOnEbNTi6zphgDLvVmNg==
+ 27 Aug 2026 03:18:43 -0700
+X-CSE-ConnectionGUID: 6X58Zfe8RK+d9dKHSC1bFQ==
+X-CSE-MsgGUID: vyVXpayOQWm7r5doGwzk0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="306057640"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="306057636"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 03:18:44 -0700
+ 27 Aug 2026 03:18:42 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
  thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com
-Subject: [PATCH 08/13] drm/xe/irq: Serialize IRQ suspend and resume
-Date: Thu, 27 Aug 2026 15:47:56 +0530
-Message-ID: <20260827101801.1247654-9-arvind.yadav@intel.com>
+Subject: [PATCH 07/13] drm/xe: Invalidate existing VRAM mappings on wedge
+Date: Thu, 27 Aug 2026 15:47:55 +0530
+Message-ID: <20260827101801.1247654-8-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260827101801.1247654-1-arvind.yadav@intel.com>
 References: <20260827101801.1247654-1-arvind.yadav@intel.com>
@@ -69,12 +69,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Wedge isolation suspends interrupts from a worker. This can race with
-PM resume and allow resume to enable interrupts after isolation has
-disabled them.
+CPU mappings created before a device wedge may keep valid PTEs and
+continue accessing VRAM. Redirecting new faults to a dummy page does not
+protect these existing mappings.
 
-Add a managed mutex around IRQ suspend and resume. Check the wedged state
-while holding the mutex so either ordering leaves interrupts disabled.
+Use SRCU to synchronize CPU faults with wedge handling. The wedge worker
+waits for in-flight faults and then invalidates all tracked VRAM
+mappings. Faults starting after the wedge use the BO's dummy page.
+
+SRCU allows the fault path to sleep during TTM fault handling. Notify
+userspace only after the existing mappings have been invalidated.
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
@@ -83,100 +87,156 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Assisted-by: Claude:claude-opus-4-8
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  4 ++++
- drivers/gpu/drm/xe/xe_irq.c          | 26 +++++++++++++++++++++++---
- 2 files changed, 27 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c           | 30 +++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_bo.h           |  1 +
+ drivers/gpu/drm/xe/xe_device.c       |  3 +++
+ drivers/gpu/drm/xe/xe_device_types.h |  7 +++++++
+ drivers/gpu/drm/xe/xe_pm.c           | 17 ++++++++++++++++
+ 5 files changed, 57 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 1f6ea9f5afe6..1eabece56f6c 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2140,9 +2140,14 @@ static vm_fault_t xe_bo_cpu_fault(struct vm_fault *vmf)
+ 	vm_fault_t ret;
+ 	int err = 0;
+ 	int idx;
++	int srcu_idx;
+ 
+-	if (xe_device_io_blocked(xe) || !drm_dev_enter(&xe->drm, &idx))
++	srcu_idx = srcu_read_lock(&xe->mem_access.vram_userfault.srcu);
++	if (xe_device_io_blocked(xe) || !drm_dev_enter(&xe->drm, &idx)) {
++		srcu_read_unlock(&xe->mem_access.vram_userfault.srcu,
++				 srcu_idx);
+ 		return xe_bo_vm_dummy_page(vmf, bo);
++	}
+ 
+ 	ret = xe_bo_cpu_fault_fastpath(vmf, xe, bo, needs_rpm);
+ 	if (ret != VM_FAULT_RETRY)
+@@ -2229,6 +2234,7 @@ static vm_fault_t xe_bo_cpu_fault(struct vm_fault *vmf)
+ 		xe_bo_put(bo);
+ out:
+ 	drm_dev_exit(idx);
++	srcu_read_unlock(&xe->mem_access.vram_userfault.srcu, srcu_idx);
+ 
+ 	return ret;
+ }
+@@ -4136,6 +4142,28 @@ void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
+ 	list_del_init(&bo->vram_userfault_link);
+ }
+ 
++/**
++ * xe_bo_wedged_invalidate_mmaps - Invalidate CPU mappings backed by VRAM
++ * @xe: xe device instance
++ *
++ * Wait for faults which may have observed the device before it was wedged,
++ * then remove all tracked VRAM mappings. Faults which start after the wedge
++ * map the per-BO dummy page and do not join the tracking list.
++ */
++void xe_bo_wedged_invalidate_mmaps(struct xe_device *xe)
++{
++	struct xe_bo *bo, *next;
++
++	synchronize_srcu(&xe->mem_access.vram_userfault.srcu);
++
++	mutex_lock(&xe->mem_access.vram_userfault.lock);
++	list_for_each_entry_safe(bo, next,
++				 &xe->mem_access.vram_userfault.list,
++				 vram_userfault_link)
++		xe_bo_runtime_pm_release_mmap_offset(bo);
++	mutex_unlock(&xe->mem_access.vram_userfault.lock);
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ #include "tests/xe_bo.c"
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index e8081af5bfc1..071870ec8289 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -450,6 +450,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+ 			     struct drm_file *file);
+ void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo);
++void xe_bo_wedged_invalidate_mmaps(struct xe_device *xe);
+ 
+ int xe_bo_dumb_create(struct drm_file *file_priv,
+ 		      struct drm_device *dev,
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index ffbaf85eaab1..98ef5123c841 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -964,6 +964,9 @@ static void xe_device_wedged_work(struct work_struct *work)
+ 			container_of(work, struct xe_device, wedged.work);
+ 	unsigned long method;
+ 
++	/* Drain faults and invalidate existing VRAM mappings. */
++	xe_bo_wedged_invalidate_mmaps(xe);
++
+ 	/* Report at most one recovery method per worker invocation. */
+ 	method = READ_ONCE(xe->wedged.method);
+ 	if (method != READ_ONCE(xe->wedged.reported_method)) {
 diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 43a86564adf0..dda4d9919ca6 100644
+index 382a2b470647..43a86564adf0 100644
 --- a/drivers/gpu/drm/xe/xe_device_types.h
 +++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -6,6 +6,7 @@
- #ifndef _XE_DEVICE_TYPES_H_
+@@ -7,6 +7,7 @@
  #define _XE_DEVICE_TYPES_H_
  
-+#include <linux/mutex.h>
  #include <linux/pci.h>
- #include <linux/srcu.h>
++#include <linux/srcu.h>
  
-@@ -266,6 +267,9 @@ struct xe_device {
- 		/** @irq.lock: lock for processing irq's on this device */
- 		spinlock_t lock;
- 
-+		/** @irq.pm_lock: Serializes IRQ suspend and resume */
-+		struct mutex pm_lock;
+ #include <drm/drm_device.h>
+ #include <drm/drm_file.h>
+@@ -391,6 +392,12 @@ struct xe_device {
+ 		 * related stuff
+ 		 */
+ 		struct {
++			/**
++			 * @mem_access.vram_userfault.srcu: Serializes CPU faults
++			 * against wedge-time mapping invalidation
++			 */
++			struct srcu_struct srcu;
 +
- 		/** @irq.enabled: interrupts enabled on this device */
- 		atomic_t enabled;
+ 			/**
+ 			 * @mem_access.vram_userfault.lock: Protects access to
+ 			 * @mem_access.vram_userfault.list Using mutex instead of spinlock
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index f517bf453b54..720e083cd279 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -350,6 +350,13 @@ static void xe_pm_runtime_init(struct xe_device *xe)
+ 	pm_runtime_put(dev);
+ }
  
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index d314993b14a1..9cdcb16f3ca8 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -797,8 +797,14 @@ static void irq_uninstall(void *arg)
- 
- int xe_irq_init(struct xe_device *xe)
- {
-+	int err;
++static void xe_vram_userfault_srcu_fini(struct drm_device *drm, void *arg)
++{
++	struct srcu_struct *srcu = arg;
 +
- 	spin_lock_init(&xe->irq.lock);
++	cleanup_srcu_struct(srcu);
++}
++
+ /**
+  * xe_pm_init_early() - Initialize Xe Power Management
+  * @xe: the &xe_device instance
+@@ -372,6 +379,16 @@ int xe_pm_init_early(struct xe_device *xe)
+ 	if (err)
+ 		return err;
  
-+	err = drmm_mutex_init(&xe->drm, &xe->irq.pm_lock);
++	err = init_srcu_struct(&xe->mem_access.vram_userfault.srcu);
 +	if (err)
 +		return err;
 +
- 	return xe_irq_msix_init(xe);
- }
- 
-@@ -843,6 +849,8 @@ static void xe_irq_msi_synchronize_irq(struct xe_device *xe)
- 
- void xe_irq_suspend(struct xe_device *xe)
- {
-+	mutex_lock(&xe->irq.pm_lock);
++	err = drmm_add_action_or_reset(&xe->drm,
++				       xe_vram_userfault_srcu_fini,
++				       &xe->mem_access.vram_userfault.srcu);
++	if (err)
++		return err;
 +
- 	atomic_set(&xe->irq.enabled, 0); /* no new irqs */
- 
- 	/* flush irqs */
-@@ -851,6 +859,8 @@ void xe_irq_suspend(struct xe_device *xe)
- 	else
- 		xe_irq_msi_synchronize_irq(xe);
- 	xe_irq_reset(xe); /* turn irqs off */
-+
-+	mutex_unlock(&xe->irq.pm_lock);
- }
- 
- void xe_irq_resume(struct xe_device *xe)
-@@ -858,10 +868,17 @@ void xe_irq_resume(struct xe_device *xe)
- 	struct xe_gt *gt;
- 	int id;
- 
-+	mutex_lock(&xe->irq.pm_lock);
-+
-+	if (xe_device_wedged(xe))
-+		goto out_unlock;
-+
- 	/*
--	 * lock not needed:
--	 * 1. no irq will arrive before the postinstall
--	 * 2. display is not yet resumed
-+	 * pm_lock serializes resume against wedge isolation.
-+	 *
-+	 * irq.lock is not needed because:
-+	 * 1. no IRQ arrives before postinstall;
-+	 * 2. display has not been resumed yet.
- 	 */
- 	atomic_set(&xe->irq.enabled, 1);
- 	xe_irq_reset(xe);
-@@ -869,6 +886,9 @@ void xe_irq_resume(struct xe_device *xe)
- 
- 	for_each_gt(gt, xe, id)
- 		xe_irq_enable_hwe(gt);
-+
-+out_unlock:
-+	mutex_unlock(&xe->irq.pm_lock);
- }
- 
- /* MSI-X related definitions and functions below. */
+ 	err = drmm_mutex_init(&xe->drm, &xe->d3cold.lock);
+ 	if (err)
+ 		return err;
 -- 
 2.43.0
 
