@@ -4,49 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BA96C5DF9D
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 08:21:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E446DC61DC2
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 08:21:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BDF910E5B8;
-	Thu, 27 Aug 2026 08:21:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A6CD10EEEF;
+	Thu, 27 Aug 2026 08:21:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CvZFKd59";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RnNPBGfa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6F1310E0CD
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 08:21:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36E6210E61C
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 08:21:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787818898; x=1819354898;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bRsceO5zODKfF/xun6gJTZTbRBx5OqLf3bkqWnY7cns=;
- b=CvZFKd59M2DtcAEk90B+83QYQS3FwpFsw7stctK/TNI0FeSipKztK+kb
- uvuQPRcUVabb9igI2ejdePcvKqgAYibKiEUXozKzksIXiKwCMwXdzSrD6
- T3xuD+MQQhHqIelaZ2BkY6cNU9Q2yxwWajtCiB/VlhFN/b0hQMZZJXhBG
- lG9L8u628kgvyWNJUYKGlv/xSKR3uFjEGCrK/9Jsz4jlxOwAIZqzC+/8f
- v6VZKfWj+RlZfEBp07IlfPTTwdifPqZyIttTnzK8EetLYwqIDNAhxTjaQ
- uWMJjPZ61GGykXd8cWABpONFTNbImC7NtUE9SFzEb46T25vPr/a5vtpTr w==;
-X-CSE-ConnectionGUID: EsIx/MzyRIi5A2uILorlAQ==
-X-CSE-MsgGUID: M1naklNkRemTINdJsj3faQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="99475708"
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="99475708"
+ t=1787818899; x=1819354899;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=I25WwXRpTNaH2Twb/dbcI6aeAm6oWq3qmeZ/xoyMks4=;
+ b=RnNPBGfaDtaVeRKwMqVhsbP+frDE0ssJmOZTcKkOUo6OrGas2giWHPTd
+ 20AARfHbr8JBnva0DMGOj0YVyPjZXD82KodTkrJCyM2otlDEO6isCG5NF
+ pR/Y3E2O4ku7M5ZYOFOyPUCKlPg1tUYimsX5yLb38laWNQN3oghWf43Du
+ vGBNkTk0dYx+u26IvjbZqOBZqSv+5RTQCwpWWjFQLHs2zWJO+0uXsPtOF
+ f9gpnQvUElV2ob6p6jEAXp7dLKreWnj3nll0pdiDs3mubR6Jk64H/VCR8
+ mq6ByGO1Nkh0TinWZlFBW2n91/PYtljsDCY6Jab4NdpoWz9ZBIzLB68oc g==;
+X-CSE-ConnectionGUID: qxgwpf+lTnOGmsfVG91n6g==
+X-CSE-MsgGUID: 27pJn9e7T+adNqmT7b+mRA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="99475710"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="99475710"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 01:21:37 -0700
-X-CSE-ConnectionGUID: +IONw667Qq+kow4qTiUrPQ==
-X-CSE-MsgGUID: zryfrP2sStuw30AccLbacQ==
+ 27 Aug 2026 01:21:39 -0700
+X-CSE-ConnectionGUID: HwRDXWmoTkGeOya2cOqWHA==
+X-CSE-MsgGUID: zQCVoJSdQGOG+eSM1nNXBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="264559590"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="264559595"
 Received: from tilak-z690i-a-ultra-plus.iind.intel.com ([10.190.239.38])
- by fmviesa007.fm.intel.com with ESMTP; 27 Aug 2026 01:21:35 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 27 Aug 2026 01:21:37 -0700
 From: tilak.tirumalesh.tangudu@intel.com
 To: tilak.tirumalesh.tangudu@intel.com, niranjana.vishwanathapura@intel.com,
  matthew.brost@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/3] drm/xe/ggtt: fix stale GGTT mappings on unmap
-Date: Thu, 27 Aug 2026 13:50:08 +0530
-Message-ID: <20260827082011.3370672-1-tilak.tirumalesh.tangudu@intel.com>
+Subject: [PATCH 1/3] drm/xe/ggtt: fault on unmapped GGTT for multi-queue
+ platforms
+Date: Thu, 27 Aug 2026 13:50:09 +0530
+Message-ID: <20260827082011.3370672-2-tilak.tirumalesh.tangudu@intel.com>
 X-Mailer: git-send-email 2.46.0
+In-Reply-To: <20260827082011.3370672-1-tilak.tirumalesh.tangudu@intel.com>
+References: <20260827082011.3370672-1-tilak.tirumalesh.tangudu@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,85 +68,121 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 
-This series addresses two related GGTT teardown issues on multi-queue
-platforms:
+Engines cache GGTT translations in their TLBs.
+A full context restore on engine switch flushes these, so a stale
+translation for an unmapped and recycled range does not survive.
 
-First issue: unmapped GGTT ranges resolve to the scratch page. Because
-scratch is a valid PTE, a re-walk of a freed range never faults, so any
-stale TLB translation left behind is masked - the freed range silently
-reads scratch instead of surfacing the problem. On multi-queue platforms
-Patch 1 does not allocate the scratch page at all, so the whole GGTT -
-initial clear and unmap alike - holds PTE=0 and faults consistently for
-the entire boot. Other platforms keep scratch and are unchanged.
+During a secondary queue append, GuC does a lite-restore and skips the
+full context restore, so engine TLB invalidations are missed. This was
+observed while running multi-queue tests on another OS.
 
-Second issue: engines cache GGTT translations in their own TLBs. A
-full context restore on engine switch normally flushes them, but on
-multi-queue GuC does a lite-restore on secondary queue append and
-skips the full context restore, so those engine TLB invalidations are
-missed. The existing GGTT invalidation (xe_tlb_inval_ggtt()) does not
-reach the engine-side TLBs either, so after an unmap an engine can
-keep hitting the stale translation and read the old page. Patches 2
-and 3 add and use a full (INVAL_FULL, intra-VF) invalidation to drain
-the engine TLBs on unmap.
-
-Patch 1: drm/xe/ggtt: fault on unmapped GGTT for multi-queue platforms
-    Skip allocating the GGTT scratch page on multi-queue platforms so
-    cleared and unmapped ranges hold PTE=0. A missed engine TLB
-    invalidation (see above) then faults instead of silently landing
-    on scratch.
-
-Patch 2: drm/xe/tlb_inval: add xe_tlb_inval_ggtt_full() GGTT
-         invalidation helper
-    xe_tlb_inval_ggtt_full() + GuC backend flush engine TLBs across all
-    engines within the requesting VF.
-
-Patch 3: drm/xe/ggtt: invalidate engine GGTT TLBs for multi-queue GTs
-    Issue the invalidation on the unmap path, gated on the GT having any
-    multi-queue engine class, for both the primary and media GTs.
-    Draining the engine TLB on teardown guarantees a recycled range's
-    next occupant cannot hit the predecessor's cached translation.
+If unmapped GGTT points to scratch, such a stale access silently reads
+scratch instead of faulting, masking the error. On multi-queue
+platforms skip allocating the scratch page so unmapped GGTT holds
+PTE=0 and faults consistently for the whole boot; other platforms keep
+scratch and are unaffected.
 
 v2:
-    - Add xe_gt_has_multi_queue() helper and gate on it (Niranjana).
-    - Add xe_tlb_inval_issue_op_wait() and refactor the GGTT
-      invalidation entry points onto it (Niranjana).
-    - Other nits.
-
+- Add xe_gt_has_multi_queue() helper and address nits (Niranjana)
 v3:
-    - Patch 1: drop the scratch page entirely on multi-queue platforms
-      instead of toggling scratch vs faulting at unmap, so the behaviour
-      is consistent for the whole boot (Matt Brost).
-    - Patch 2: avoid the CT-state TOCTOU (Matt Brost).
-    - Patch 3: invalidate both the primary and media GTs, similar to
-      xe_ggtt_invalidate() (Matt Brost).
-
-v4:
-    - Patch 2: propagate real send errors instead of masking them as
-      -ECANCELED (Sashiko).
-
+- Drop scratch entirely instead of toggling per-unmap (Matt Brost)
 v5:
-    - Patch 1: document the rationale - GuC lite-restore on secondary
-      queue append skips the full context restore, so engine TLB
-      invalidations are missed (Matt Roper, Matt Brost).
-    - Patch 2: handle -ENOTRECOVERABLE (wedged) alongside -ENODEV, and
-      drop the redundant -ECANCELED check (Matt Brost, Niranjana).
-    - Patch 3: guard NULL gt for parity with ggtt_invalidate_gt_tlb()
-      and explain the multi-queue-only engine flush (Niranjana).
+- Document the rationale (Matt Roper / Matt Brost)
 
-Tangudu Tilak Tirumalesh (3):
-  drm/xe/ggtt: fault on unmapped GGTT for multi-queue platforms
-  drm/xe/tlb_inval: add xe_tlb_inval_ggtt_full() GGTT invalidation
-    helper
-  drm/xe/ggtt: invalidate engine GGTT TLBs for multi-queue GTs
+Assisted-by: Claude:claude-opus-4-8
+Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ggtt.c | 40 ++++++++++++++++++++++--------------
+ drivers/gpu/drm/xe/xe_gt.h   | 13 ++++++++++++
+ 2 files changed, 38 insertions(+), 15 deletions(-)
 
- drivers/gpu/drm/xe/xe_ggtt.c            | 74 +++++++++++++++++++------
- drivers/gpu/drm/xe/xe_gt.h              | 13 +++++
- drivers/gpu/drm/xe/xe_guc_tlb_inval.c   | 29 ++++++++++
- drivers/gpu/drm/xe/xe_tlb_inval.c       | 42 ++++++++++++--
- drivers/gpu/drm/xe/xe_tlb_inval.h       |  1 +
- drivers/gpu/drm/xe/xe_tlb_inval_types.h | 10 ++++
- 6 files changed, 147 insertions(+), 22 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 8ec23862477f..9b58f47986f6 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -20,6 +20,7 @@
+ #include "regs/xe_regs.h"
+ #include "xe_assert.h"
+ #include "xe_bo.h"
++#include "xe_gt.h"
+ #include "xe_gt_printk.h"
+ #include "xe_gt_types.h"
+ #include "xe_map.h"
+@@ -533,27 +534,36 @@ void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate)
+ int xe_ggtt_init(struct xe_ggtt *ggtt)
+ {
+ 	struct xe_device *xe = tile_to_xe(ggtt->tile);
+-	unsigned int flags;
+ 	int err;
+ 
+ 	/*
+-	 * So we don't need to worry about 64K GGTT layout when dealing with
+-	 * scratch entries, rather keep the scratch page in system memory on
+-	 * platforms where 64K pages are needed for VRAM.
++	 * Multi-queue misses engine GGTT TLB invalidations (GuC lite-restore
++	 * skips the full context restore), so skip scratch: a stale translation
++	 * to a freed range then faults instead of silently reading scratch.
+ 	 */
+-	flags = 0;
+-	if (ggtt->flags & XE_GGTT_FLAGS_64K)
+-		flags |= XE_BO_FLAG_SYSTEM;
+-	else
+-		flags |= XE_BO_FLAG_VRAM_IF_DGFX(ggtt->tile);
++	if (!xe_gt_has_multi_queue(ggtt->tile->primary_gt)) {
++		unsigned int flags = 0;
++
++		/*
++		 * So we don't need to worry about 64K GGTT layout when dealing
++		 * with scratch entries, rather keep the scratch page in system
++		 * memory on platforms where 64K pages are needed for VRAM.
++		 */
++		if (ggtt->flags & XE_GGTT_FLAGS_64K)
++			flags |= XE_BO_FLAG_SYSTEM;
++		else
++			flags |= XE_BO_FLAG_VRAM_IF_DGFX(ggtt->tile);
+ 
+-	ggtt->scratch = xe_managed_bo_create_pin_map(xe, ggtt->tile, XE_PAGE_SIZE, flags);
+-	if (IS_ERR(ggtt->scratch)) {
+-		err = PTR_ERR(ggtt->scratch);
+-		goto err;
+-	}
++		ggtt->scratch = xe_managed_bo_create_pin_map(xe, ggtt->tile,
++							     XE_PAGE_SIZE, flags);
++		if (IS_ERR(ggtt->scratch)) {
++			err = PTR_ERR(ggtt->scratch);
++			goto err;
++		}
+ 
+-	xe_map_memset(xe, &ggtt->scratch->vmap, 0, 0, xe_bo_size(ggtt->scratch));
++		xe_map_memset(xe, &ggtt->scratch->vmap, 0, 0,
++			      xe_bo_size(ggtt->scratch));
++	}
+ 
+ 	xe_ggtt_initial_clear(ggtt);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index 65a4655b0994..92d934d50244 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -160,4 +160,17 @@ static inline bool xe_gt_supports_multi_queue(const struct xe_gt *gt,
+ 	return gt->info.multi_queue_engine_class_mask & BIT(class);
+ }
+ 
++/**
++ * xe_gt_has_multi_queue() - Check if gt supports multi-queue on
++ * any engine class.
++ *
++ * @gt: the GT object (may be NULL)
++ *
++ * Return: true if any engine class on @gt supports multi queue, else false
++ */
++static inline bool xe_gt_has_multi_queue(const struct xe_gt *gt)
++{
++	return gt && gt->info.multi_queue_engine_class_mask;
++}
++
+ #endif
 -- 
 2.46.0
 
