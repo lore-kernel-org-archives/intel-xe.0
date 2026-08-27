@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C2A2C61DC4
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 13:43:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62029C61DC4
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 14:31:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 067A010F06D;
-	Thu, 27 Aug 2026 13:43:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="oWh6vp51";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B19610F066;
- Thu, 27 Aug 2026 13:43:31 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 0AA62601EE;
- Thu, 27 Aug 2026 13:43:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 766561F000E9;
- Thu, 27 Aug 2026 13:43:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787838210;
- bh=Tih5XzUwZEk1Mg+zRvMCSzhGeySMm1Q2dOD8ruF2zWg=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=oWh6vp51hn2hK2Zc52vMpmH3WaygNs0S+vMoysLIwKfwYUZ5R4MRz4sWR2b3ZDBsw
- 5VvHzMGlMnA0Eyw3mbVqFBbLs14WNsEXfEbdqJTAUZ5h9iHDnYBX+LFG99d/B0ybHk
- 3yXfpEEQskB5Yw6trd+uIMHX0db5yIxtG0hnZODb9jWJa2pfovKxDP8xcsttkkV65N
- CX92r3bPo5TfTKhEpuUy8HhoYAk++Ndxl1Nyvl9GRoAQtoyUypgUWnze/7itPlGFkd
- bRdRWsKO75Clli36tnhotYWpVcuKQZxV2xDB1BC0xk2KseL9BwUZjjLQzDmAMETK6H
- A7nbNBm6SDfvg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 1/2] drm: Add common drm_user_fence helper
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EF8B10F0A7;
+	Thu, 27 Aug 2026 14:31:11 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8C5110F0A6;
+ Thu, 27 Aug 2026 14:31:09 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7468495128606956788=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv2?=
+ =?utf-8?q?=2C1/2=5D_drm=3A_Add_common_drm=5Fuser=5Ffence_helper?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Srinivasan Shanmugam" <srinivasan.shanmugam@amd.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- media-ci@linuxtv.org
-In-Reply-To: <20260827133226.4076593-2-srinivasan.shanmugam@amd.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 27 Aug 2026 14:31:09 -0000
+Message-ID: <178784106975.92086.8714279841291128035@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260827133226.4076593-1-srinivasan.shanmugam@amd.com>
- <20260827133226.4076593-2-srinivasan.shanmugam@amd.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 27 Aug 2026 13:43:30 +0000
-Message-Id: <20260827134330.766561F000E9@smtp.kernel.org>
+In-Reply-To: <20260827133226.4076593-1-srinivasan.shanmugam@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,97 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] drm_user_fence_cancel() causes a Use-After-Free if the fence has s=
-ignaled, because it requires the caller to pass a fence pointer without req=
-uiring the caller to hold a separate reference.
-- [High] Contradictory documentation in drm_user_fence_cancel() instructs t=
-he caller to put references that the function already puts internally, lead=
-ing to double-free bugs.
---
+--===============7468495128606956788==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit dfafc94b5c524854a64ed37e415adef39795ad80
-Author: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+== Series Details ==
 
-drm: Add common drm_user_fence helper
+Series: series starting with [v2,1/2] drm: Add common drm_user_fence helper
+URL   : https://patchwork.freedesktop.org/series/172880/
+State : success
 
-This commit introduces a common DRM user fence helper providing a pattern
-to access userspace memory from a kthread context when a GPU fence signals.
-It implements a kref-managed, dma-fence-callback-to-workqueue pattern that
-borrows the process MM.
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/drm_user_fence.c b/drivers/gpu/drm/drm_user_=
-fence.c
-> new file mode 100644
-> index 0000000000000..a3b14245163ae
-> --- /dev/null
-> +++ b/drivers/gpu/drm/drm_user_fence.c
+CI Bug Log - changes from xe-5653-c2f7f4803ab7055fa94f87bea53b90257d042c60_BAT -> xe-pw-172880v1_BAT
+====================================================
 
-[ ... ]
+Summary
+-------
 
-> +/**
-> + * drm_user_fence_cancel - Cancel a pending user fence callback
-> + * @ufence: user fence
-> + * @fence: the same dma-fence passed to drm_user_fence_add_callback()
-> + *
-> + * Attempts to remove the pending callback before driver context teardow=
-n.
-> + * Must be called before the driver tears down its workqueue or ops.
-> + *
-> + * If the callback has already fired this is a no-op and returns false.
-> + * If removal succeeds the caller must call drm_user_fence_put() to
-> + * release the reference taken by drm_user_fence_add_callback(), and
-> + * must also call dma_fence_put() to release the fence reference that
-> + * was transferred at add_callback time.
+  **SUCCESS**
 
-[Severity: High]
-The kernel-doc instructions here state that the caller must call
-drm_user_fence_put() and dma_fence_put() upon success.
+  No regressions found.
 
-However, looking at the implementation of drm_user_fence_cancel() below,
-it internally executes dma_fence_put() and drm_user_fence_put() before
-returning true.
+  
 
-If a driver strictly follows this documentation, will it lead to double-free
-bugs when they try to drop the references again?
+Participating hosts (13 -> 13)
+------------------------------
 
-> + *
-> + * Return: true if callback was removed, false if it had already fired.
-> + */
-> +bool drm_user_fence_cancel(struct drm_user_fence *ufence,
-> +			   struct dma_fence *fence)
-> +{
-> +	if (dma_fence_remove_callback(fence, &ufence->cb)) {
+  No changes in participating hosts
 
-[Severity: High]
-Can this result in a use-after-free if the fence has already signaled?
 
-According to the drm_user_fence_add_callback() design, the caller transfers
-its fence reference to the callback. If the fence signals asynchronously, t=
-he
-callback fires and internally drops that reference via dma_fence_put(). If
-that was the last reference, the fence object is freed.
+Changes
+-------
 
-When the driver later initiates teardown and calls drm_user_fence_cancel(),
-it passes this potentially dangling fence pointer to
-dma_fence_remove_callback(), which dereferences it to acquire a spinlock.
+  No changes found
 
-Is there a way for the caller to safely cancel the callback without taking
-and holding an additional reference to the fence?
 
-> +		dma_fence_put(fence);
-> +		drm_user_fence_put(ufence);
-> +		return true;
-> +	}
-> +	return false;
-> +}
-> +EXPORT_SYMBOL_GPL(drm_user_fence_cancel);
+Build changes
+-------------
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260827133226.4076=
-593-1-srinivasan.shanmugam@amd.com?part=3D1
+  * Linux: xe-5653-c2f7f4803ab7055fa94f87bea53b90257d042c60 -> xe-pw-172880v1
+
+  IGT_9076: 8f42b0189d73d9912ad58c99cfaa4ff46c20fcc3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5653-c2f7f4803ab7055fa94f87bea53b90257d042c60: c2f7f4803ab7055fa94f87bea53b90257d042c60
+  xe-pw-172880v1: 172880v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172880v1/index.html
+
+--===============7468495128606956788==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm: Add common drm_user_fence helper</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172880/">https://patchwork.freedesktop.org/series/172880/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172880v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172880v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5653-c2f7f4803ab7055fa94f87bea53b90257d042c60_BAT -&gt; xe-pw-172880v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5653-c2f7f4803ab7055fa94f87bea53b90257d042c60 -&gt; xe-pw-172880v1</li>
+</ul>
+<p>IGT_9076: 8f42b0189d73d9912ad58c99cfaa4ff46c20fcc3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5653-c2f7f4803ab7055fa94f87bea53b90257d042c60: c2f7f4803ab7055fa94f87bea53b90257d042c60<br />
+  xe-pw-172880v1: 172880v1</p>
+
+</body>
+</html>
+
+--===============7468495128606956788==--
