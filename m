@@ -4,158 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 843CCC5DF9D
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 06:20:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6338BC61DB9
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 06:20:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D5A510E394;
-	Thu, 27 Aug 2026 06:20:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D89210E981;
+	Thu, 27 Aug 2026 06:20:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TCNeVVgD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dfMZO/kq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10F6D10E394
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 06:20:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1129F10E3AE
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 06:20:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787811607; x=1819347607;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=EG1Wzcdcd/bYD87ZcdjGr7NPY0DwwRF0m4W09gQOvVk=;
- b=TCNeVVgDF4VZBCnCyEgu9xkXsZXd+K+bDyMOEbzx1SRjH5w6ynng7Ka0
- dkpdaO9qpEPOUuMo0RSJ8ii8zD2mBTbiaO0xTwuDQwc+QWKH7mjbWrzwm
- fMHEoduQiF9wKZdIs5aQKmHJreAfMn8o3bHtLYxy0RjzWZBUDwj+Kyneg
- Vwk+peha5913eFeyU4El19Kq9+eoKbhdzXNxcokf86eyq2uyKXG4RqAOy
- 456Uv3845Xf26eAw7l1uoliHHLQ0IqQeqNfee0tR8TP3zGutWTohObRPT
- yiV1XEnXd3PpmdaGWhf9MuRMijQH+/SRM7xMtz9Qas52CcaVYza4nXCZq w==;
-X-CSE-ConnectionGUID: wUWFPWFeSn23gjkP9VEOxQ==
-X-CSE-MsgGUID: IAWNV+qkSrGL16kdA6jTkw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="88510991"
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="88510991"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 23:20:06 -0700
-X-CSE-ConnectionGUID: 4nV5reuvSqGH+/FYnvPlRA==
-X-CSE-MsgGUID: OCNqNbbETweCGX1jwTmEkg==
+ t=1787811617; x=1819347617;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=tutAlAbOYUFTgqUo2wYxaZWcMhmFf1GxQkSMvppxsSc=;
+ b=dfMZO/kqgI7Vc9avP/DzjC+uLWcee9+l4hghRVkQaMfsuoi+lehgCyrt
+ FPRRS16CBVzaZgiLliDCBnMlx6zlfiWnPN/Vw3k7V9xuSYjGBQ/cDSXMZ
+ ujsmhgNZ+roeRzdTdiOJnWFi6Q0P+Grpi3uIoJQ07ey5ulA0iKH03jmox
+ 0v2dgXktjNrO4ujE2k+oty6ofwmvKHp+W9D7tYr1EIyfwCxDHBgrbgqoa
+ 3+K3jZEK2KmMwjE2TGvRpn0MRXmoaEN4URQy9OwmI/vUji3+w04RQ6VjL
+ 8vcte3e9CNNP/kWYuKLsG0T3k1T2TMgUSETO4Hiypwa8fjVe5PBbuRYiw g==;
+X-CSE-ConnectionGUID: xHuXeZEcQOulCXBaIIkZhw==
+X-CSE-MsgGUID: M9b82gCRTiiFihwlS6JmIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="88182689"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="88182689"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2026 23:20:16 -0700
+X-CSE-ConnectionGUID: T+mxIMhvSoWrpMAnraGiSQ==
+X-CSE-MsgGUID: nHOVNDMQRmO3KP6L4loiQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="297657217"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 23:20:07 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 26 Aug 2026 23:20:06 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Wed, 26 Aug 2026 23:20:06 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.7) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 26 Aug 2026 23:20:05 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=A+o3cYCIJwf9y9/klD6+Q8jgJGNJJcsMTT+TLbFCovw3PZYnR8woyXEogku6cKkwaFKPayr7/GA96q6jMaKJk9MrftD/642J//nmJeb/ENPRcR2h4lK5bFE9QINvoLt4W3I+JpXtn6r04fBpf3XX8n+YJcgKztHnAV+irtt0Lei4U7kEN4PAosVccKyL1DCBoer9tslxaInsRhzDbv7Y5bp2O+Why7aLJ3Ani9wzG7PWDsy2fo7DGkCFlulH9PP2hV054IFQyaWS9s/7yUXKpTZ8QQyGOw5eY8rDqOxFiggiD25Pq829uz8iVqm6xNSRtzS/Plkx7TvtOsGvmwzOYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VuJbsxaYjWqy0nZ/iOx23BAf9xlThW/4U3nwAHBKH40=;
- b=DiNL1DZGYOZljPpJvSwyqLZcTvRm3IFu5Rs+Et7nBU/eAgcUMcrQpOmtXAgJ3V3q5FShJ8KwfGZS68GOVPq/vdmRQS7DO3tHiXAkNzVYHV9GX8FvtElco0Orbhz3Zp3PVDGFcuI+FI5T2TPEOVV5XCRT7l4iTgwhB4c4y1tzkgqB8vIHT7sqt3p05qTkt6enFua/gBXTY9Kda6EmwcE3pa20++jVJXqjNuJRQZqI2LqQmxqwgYjJx3TbpVYFpvXX85Kaww1XsPB0r9Gx7ebEPI34YvGkXtc4E2GXeCIBKldRNyXEdn8AZbH+q+QjD4bKhjhIWut75zURUaQRk1CCew==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::2a) by DM4PR11MB6141.namprd11.prod.outlook.com
- (2603:10b6:8:b3::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.10; Thu, 27 Aug
- 2026 06:20:02 +0000
-Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
- ([fe80::5a5c:9c7a:cd1d:d687]) by DS4PPF691668CDD.namprd11.prod.outlook.com
- ([fe80::5a5c:9c7a:cd1d:d687%6]) with mapi id 15.21.0360.006; Thu, 27 Aug 2026
- 06:20:02 +0000
-Message-ID: <e62e2d10-7b8c-40fe-8881-bdf72267ef10@intel.com>
-Date: Thu, 27 Aug 2026 11:49:55 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V18 07/14] drm/xe/vram: Add page offline data structures
- and lifecycle
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <rodrigo.vivi@intel.com>, <michal.wajdeczko@intel.com>
-References: <20260826135136.204044-16-tejas.upadhyay@intel.com>
- <20260826135136.204044-23-tejas.upadhyay@intel.com>
-Content-Language: en-US
-From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20260826135136.204044-23-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0200.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1aa::17) To DS4PPF691668CDD.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::2a)
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="261655175"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2026 23:20:13 -0700
+Date: Thu, 27 Aug 2026 08:20:10 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, riana.tauro@intel.com,
+ michal.wajdeczko@intel.com, lukasz.laguna@intel.com,
+ matthew.d.roper@intel.com, matthew.brost@intel.com
+Subject: Re: [PATCH v1] drm/xe: Introduce xe_wedge
+Message-ID: <ao_XGgJYsAyOE7bk@black.igk.intel.com>
+References: <20260825114450.1371821-1-raag.jadav@intel.com>
+ <ao9WVAcHmROhGq8E@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|DM4PR11MB6141:EE_
-X-MS-Office365-Filtering-Correlation-Id: 53daedec-8a29-40fe-4392-08df04033a4d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|1800799024|376014|10067099003|22082099003|18002099003|4143699003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: L9y6+ILun3CKvLcOJuIYgeVL2ORZW1ibsv1TJDEjQ8Xr9gP4Ij4BsQdnjwfCHloL0auylWuAKdsK/QMp3Oi6UjAMKsnbiGT5eM3xM4+gbwg61YwwXMRldEatP9/LHNSL2/2WZUYB8yMx6BS9YuFiXyZ7lSG7MuWydJ/lc9ijvhrqtiSiLJU87/Cl5Kv6bfhUzqsmSioMaaFqzJwqFL80dnG9de/F3VL6puoabuV6sPp4vhaP7FOS18XFj9l08GOSB9/wub3bhEXaDw7w0I02HpRL+cX+Dyw0X9n35hABxjl3J8P0dhFwaSFpuGrYs+uWHLVZJTGTObao/3k4R9yIv/teBZU5/08ZvQfGT35gfzyZm3tZ0TiIEaTuM9QeLjh8BjAKB5brFcyrAOVmklH8XI/KvZxb9Ij0nS78hhvAkR7tC8xj4rjV3yBEIjI3tdAzvpObu2Fi9IHKanRF8Rdgiedn3MC1tmhCLKnN/trB7jFdZo3K+rlMngMctWv0xW+VqnPohwSoiZlMVFyrtKH+LyTLwiNpZm+H41aW5OFK89P3ueukWOBkj9ycagfoCoIRDif1C36/hOD9cKYJr0Zd+7joqS6+UN5HBfF8K+CkcpXs00m+CJa8J8QCo1HyYdW+otsibZAcaGisi81Sg205krhSmz99v+uLgjnwmv6iynY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS4PPF691668CDD.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(10067099003)(22082099003)(18002099003)(4143699003)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WFpwRU1LSFdqOEErSExMUkM5ZVo5M0F1NUNZZTJzL2tvK1lzUEhLcVJ5Nyt1?=
- =?utf-8?B?K0ozVFVPTTl5MWxJSFJuMTRxZ2dWUmpleUpJZC9mOFNpRUlycEVrSnArcngv?=
- =?utf-8?B?ZFBNdUtvaU41VXZCcmsvVVcwbXQ1d05YdDlYc3RlUjg1SG9nbFpHU3BIdWND?=
- =?utf-8?B?TW1XUGVKcXlRK2hVRkpqRU0ySTBjbE1rejkwN1dLNy9zWDVhVGZudlN4dnRB?=
- =?utf-8?B?bmlHb2ZXTkFmcU81Rm1sRmRpZFhwZkZBTytNcFFWY3RJUVBHNVpXV2pIUCto?=
- =?utf-8?B?N2RiekVUNlhLOXpZZDYyYjlPWGpWUlpIU3J3ZGZaaDZqSHprbkJWb1R4L2FJ?=
- =?utf-8?B?dy81Vk1sN1NuMHdWREowQmdRaWhqTk01NDdBOW52aXdVU3Z2UHREc014bXhQ?=
- =?utf-8?B?dDQ2MnlVbElXd1JieGs1R25uRzlMcGZWV3A5alQ5OUZOa2FMaktPTnAwam1C?=
- =?utf-8?B?ZTJsUGxxdmU1dkFUTzRZQ3UzUlFKWnByM1hoY2lNUHMzbDZZd2dWeCt3R0Ez?=
- =?utf-8?B?dXozL0JubXEvVDU5cWZSVzVxamJKVVZYS2xmTk0rMUhicHFLaTJoVEpSRTNi?=
- =?utf-8?B?UXd2VDdkazZaQS9oODlIVW8wRTlwc1pjTnVMdXdHNmJkckk0TkZGdDVKMmVw?=
- =?utf-8?B?WllUYXRjcldzcGplVnR2OW1JZ2duaGthTG10Y3JlWGxqUkMxWW5YMUUyNHZv?=
- =?utf-8?B?OGVwK041YnByTE5JblZSR2F2YkE3ZWRTUzFPYWxHQUFBQ1JIS0E4eC9OalNG?=
- =?utf-8?B?M3dLZVE5Z1EyKzFITjRveW1KNDE4d0NBOHFTVDFlcWNEUis5aUNRSmVyUUJj?=
- =?utf-8?B?Y3BPRklZQmdCU2JrT0Q2WDBIc2kvOUpWRzBndjYzNlREUVF4c2p4ZmZLTS9o?=
- =?utf-8?B?aExacWt0MUtSUzRaTExOTFZtSW1jSXpnOTZDM0dIa1JkR2w5cC9va05yWFl6?=
- =?utf-8?B?eEg1bGlNR1Nab3N1ZFVHQW1LRjBySXhSaFJ2VkhlYWFPRjZ4SEZsa2taT1dz?=
- =?utf-8?B?YVFvMlVBREJveHd1SFpUUHRGZ3lCZGdNUEtzbDlHaEFTVjJkdW15a2k2RWxD?=
- =?utf-8?B?cWQ5UFlzRCt1azc2TmRKUkJ1bC9SUm9nbWtaajlQMkNveTllYlFxdDN4OW1F?=
- =?utf-8?B?bTRCVk5UNTF3SnVsZ3cyVFJoWkhmanhGZUcrTHladUdOWlFaQWQ2WCtXQ0dX?=
- =?utf-8?B?bXUwaXJlMzkxVUs1U2hCeHhxanVBVWtzT2dYTS83QmM0VW9zNjMwTC9YS09t?=
- =?utf-8?B?ZzhPcWJGRVliYVlralQxNi96dG9GTHlrcnkyd1Y2eGxyMkMydEtlbjNSclJt?=
- =?utf-8?B?ZEUvbGVUVldzUVRnRGEwbEV3THJTbmx5ck5mNUVlMzRVVWNjcE9NaEc2ZHpk?=
- =?utf-8?B?UVRvaVBBbE1hNVB0clBJaFZIWXFPV1pCdUFPMno1UFlnM0RJZDZLV3Baek1Q?=
- =?utf-8?B?NUZ6T1cvOTRPUy9wTmFhMlhJOG9hVFUwVGZpMHVuckFUZzFyTGlxRzVJenVN?=
- =?utf-8?B?NWZKYW1YbDNiMFN5NWlibiszSFhTMnJOYVpaTGJGQnRnUkc2Tyt2M2EyWE1X?=
- =?utf-8?B?WnZlakVwcjh0Tkl3M00wMnpwV3VGSUlqbnNMbjZ4b3VaRTZDR3FNQ3E1Tk03?=
- =?utf-8?B?L1hJbGZ1alNyZzhhOTdKaWpHeWhYZU9DVGM0WUNxdnprL3J1aGxFbFcrZXVB?=
- =?utf-8?B?U1JEaDJvd3ZuRW9XRXhxdEZ3YTBTMUNwQitvSEhlYk5pYThKMjRDMEdjQ21Y?=
- =?utf-8?B?Y2xKeW5Ra1ArS3FOZC9MK0MyNkdUQ3ppSVRkVWlweXFxSHUzTlNpb09QN09l?=
- =?utf-8?B?YUlPSm1HdkxqdlRLcU1SUmVsTE41K3h0OTRYcmkvL0ZOT2VJV1JIbTBlSlZh?=
- =?utf-8?B?d1J2azlSSWRNNzNhdGxYUnljTm11dHozUkNpYU1vMFJPTlhrZ2R2cnFDTFl1?=
- =?utf-8?B?eHRoVVJ3SWNDVmNXUkhMZDVTQXM3M29ma09TRVZ1MG4va1NXaFIyeEljOExS?=
- =?utf-8?B?UUxyaWZ5a2QzK0U5NG1TU0hDeW1NZjg4Wm9KZzRNNkU4ZVBtSFptTFd3Y09I?=
- =?utf-8?B?RFIyZ2pCOGwvMHRJR084TEdvWG5TQWRjMTVUT05jQXVaNGlRcWhkLzM1cXdF?=
- =?utf-8?B?UnUyY3N1SmUrbnc3MUIyTW9SOGhNVDBRMXZGdmF2UHJxOW9LN2FSbGFrazZR?=
- =?utf-8?B?dEdrbjBYWnZTNzFoWllhTWZ2emY4alZ4NlU1d0JvTVpwaU0vbnNHMWRqV1NH?=
- =?utf-8?B?R2luYnRNMWcycWY2OEZlWlJHWWdUeWlQS0s5VWw2dUdYRWtmSHY2b0Y4RGNO?=
- =?utf-8?B?Lzh0b00wdnBwdmZnS1ZtM2tVQUl3UlNQdjlpclpJblluUXZsWTdCRk9CVVVk?=
- =?utf-8?Q?7iPz5olW3SRgVpLg=3D?=
-X-Exchange-RoutingPolicyChecked: lGAP93ReArrmCDX/usV15GhoAPEM34Es39WQ4SkWiDz49Bk0RYksoWCU34DYNsMoKOJh0u7RBRc+Xk7LVmdhjz9N4M1WtpXrBhkznwwvynrnoQxtr1WaaYFWr6mABCtMz8OXo8SiVN7uvP2bF5SoXzLoJWvxGs5rldF2CXGPpI9DE5bqOFITj+4paRQEjuS8AfBYzf0rph9gRsS2UAEFKIobYdhBPqHOHmo7dWZGzzu6Qg99Q9wF1fHdT0EA5kdYz1ZLk6cJk8m37ryRtmDOLP1BPQQ2tA22bY+3TzjYZZcnzNn67J5lepmKeTga5bmzVKQdzB7XzT+yMO7OOC1UGQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 53daedec-8a29-40fe-4392-08df04033a4d
-X-MS-Exchange-CrossTenant-AuthSource: DS4PPF691668CDD.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2026 06:20:02.1267 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1vi1JwyUCukkXP8683K8tOSKzonZdTAK8G4mRYK/g5s++56uV4YxxORb+kDOnijBb+sr57zjIy1JWiUBeN/EI38gih4+09z11kf8Q9HL8iI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6141
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ao9WVAcHmROhGq8E@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,135 +70,636 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 26-08-2026 19:21, Tejas Upadhyay wrote:
-> Add xe_ttm_vram_offline_resource to track individual offlined VRAM
-> pages, and extend xe_ttm_vram_mgr with offlined_pages/queued_pages
-> lists and their counters.
+On Wed, Aug 26, 2026 at 05:10:44PM -0400, Rodrigo Vivi wrote:
+> On Tue, Aug 25, 2026 at 05:12:43PM +0530, Raag Jadav wrote:
+> > Consolidates all wedging implementation into a dedicated xe_wedge
+> > component. While at it, add a worker to schedule the wedge handling to
+> > be done async making xe_device_declare_wedged() safe for atomic callers.
+> > 
+> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > ---
+> > PS: The original intent was a bug fix, but that's just a matter of opinion.
 > 
-> Initialize the lists in __xe_ttm_vram_mgr_init() and add
-> xe_ttm_vram_free_bad_pages() to release all tracked pages during
-> xe_ttm_vram_mgr_fini() teardown.
+> I had thought about this spin-off a very long time ago too...
 > 
-> v3(Sashiko):
-> - Reorder xe_ttm_vram_buddy_free and list_del_rcu
-> - Introduce reservation status
-> v2(Himal):
-> - Address possible leak in xe_ttm_vram_mgr_fini()
-> - Remove unused dev and add comment for used_visible_size 0
-> 
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> But please, split into 2 patches, one with the consolidation and one with
+> the worker. This one is painful to review as is right now.
 
-LGTM
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+This was meant more as an RFC and needs a bit of discussion, sorry I
+didn't update the subject prefix.
 
-> ---
->   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 25 ++++++++++++++
->   drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h | 38 ++++++++++++++++++++++
->   2 files changed, 63 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> index 16ecea497780..1253989a8d06 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> @@ -338,12 +338,35 @@ static void xe_ttm_vram_mgr_set_unused(struct drm_device *dev, void *arg)
->   	ttm_resource_manager_set_used(man, false);
->   }
->   
-> +static void xe_ttm_vram_free_bad_pages(struct xe_ttm_vram_mgr *mgr)
-> +{
-> +	struct xe_ttm_vram_offline_resource *pos, *n;
-> +
-> +	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
-> +		list_del_rcu(&pos->offlined_link);
-> +		xe_ttm_vram_buddy_free(mgr, &pos->blocks, pos->used_visible_size);
-> +		--mgr->n_offlined_pages;
-> +		kfree_rcu(pos, rcu);
-> +	}
-> +	list_for_each_entry_safe(pos, n, &mgr->queued_pages, queued_link) {
-> +		list_del_rcu(&pos->queued_link);
-> +		/* queued entries have no buddy reservation yet */
-> +		xe_ttm_vram_buddy_free(mgr, &pos->blocks, 0);
-> +		--mgr->n_queued_pages;
-> +		kfree_rcu(pos, rcu);
-> +	}
-> +}
-> +
->   static void xe_ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
->   {
->   	struct xe_device *xe = to_xe_device(dev);
->   	struct xe_ttm_vram_mgr *mgr = arg;
->   	struct ttm_resource_manager *man = &mgr->manager;
->   
-> +	mutex_lock(&mgr->lock);
-> +	xe_ttm_vram_free_bad_pages(mgr);
-> +	mutex_unlock(&mgr->lock);
-> +
->   	if (ttm_resource_manager_evict_all(&xe->ttm, man))
->   		return;
->   
-> @@ -370,6 +393,8 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
->   	err = drmm_mutex_init(&xe->drm, &mgr->lock);
->   	if (err)
->   		return err;
-> +	INIT_LIST_HEAD(&mgr->offlined_pages);
-> +	INIT_LIST_HEAD(&mgr->queued_pages);
->   	mgr->default_page_size = default_page_size;
->   	mgr->visible_size = io_size;
->   	mgr->visible_avail = io_size;
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-> index 9106da056b49..dc97b0ad0e51 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-> @@ -19,6 +19,14 @@ struct xe_ttm_vram_mgr {
->   	struct ttm_resource_manager manager;
->   	/** @mm: DRM buddy allocator which manages the VRAM */
->   	struct gpu_buddy mm;
-> +	/** @offlined_pages: List of offlined pages */
-> +	struct list_head offlined_pages;
-> +	/** @n_offlined_pages: Number of offlined pages */
-> +	u16 n_offlined_pages;
-> +	/** @queued_pages: List of queued pages */
-> +	struct list_head queued_pages;
-> +	/** @n_queued_pages: Number of queued pages */
-> +	u16 n_queued_pages;
->   	/** @visible_size: Proped size of the CPU visible portion */
->   	u64 visible_size;
->   	/** @visible_avail: CPU visible portion still unallocated */
-> @@ -45,4 +53,34 @@ struct xe_ttm_vram_mgr_resource {
->   	unsigned long flags;
->   };
->   
-> +/**
-> + * enum xe_page_reserve_status - Buddy reservation status
-> + * @XE_PAGE_RESERVE_PENDING: reservation in progress
-> + * @XE_PAGE_RESERVE_FAIL: reservation failed
-> + */
-> +enum xe_page_reserve_status {
-> +	XE_PAGE_RESERVE_PENDING = 0,
-> +	XE_PAGE_RESERVE_FAIL,
-> +};
-> +
-> +/**
-> + * struct xe_ttm_vram_offline_resource - Tracks a single offlined VRAM page
-> + */
-> +struct xe_ttm_vram_offline_resource {
-> +	/** @offlined_link: Link into mgr->offlined_pages */
-> +	struct list_head offlined_link;
-> +	/** @queued_link: Link into mgr->queued_pages */
-> +	struct list_head queued_link;
-> +	/** @blocks: Buddy blocks reserved for this page */
-> +	struct list_head blocks;
-> +	/** @used_visible_size: CPU-visible bytes consumed */
-> +	u64 used_visible_size;
-> +	/** @addr: Faulty DPA reported by HW */
-> +	u64 addr;
-> +	/** @status: buddy reservation status */
-> +	enum xe_page_reserve_status status;
-> +	/** @rcu: RCU head for deferred freeing */
-> +	struct rcu_head rcu;
-> +};
-> +
->   #endif
+xe_pm_runtime_get_noresume() has checks against 'current' task and I'm
+wondering if it's reliable in atomic context?
 
+> Also, please use 'xe_wedge_' as the new prefix for any non static functions.
+
+Sure.
+
+Raag
+
+> >  Documentation/gpu/xe/xe_device.rst   |   2 +-
+> >  drivers/gpu/drm/xe/Makefile          |   1 +
+> >  drivers/gpu/drm/xe/xe_device.c       | 172 +--------------------
+> >  drivers/gpu/drm/xe/xe_device.h       |  11 +-
+> >  drivers/gpu/drm/xe/xe_device_types.h |  19 +--
+> >  drivers/gpu/drm/xe/xe_wedge.c        | 214 +++++++++++++++++++++++++++
+> >  drivers/gpu/drm/xe/xe_wedge.h        |  24 +++
+> >  drivers/gpu/drm/xe/xe_wedge_types.h  |  25 ++++
+> >  8 files changed, 271 insertions(+), 197 deletions(-)
+> >  create mode 100644 drivers/gpu/drm/xe/xe_wedge.c
+> >  create mode 100644 drivers/gpu/drm/xe/xe_wedge.h
+> >  create mode 100644 drivers/gpu/drm/xe/xe_wedge_types.h
+> > 
+> > diff --git a/Documentation/gpu/xe/xe_device.rst b/Documentation/gpu/xe/xe_device.rst
+> > index d3a022362ade..8baed81580c9 100644
+> > --- a/Documentation/gpu/xe/xe_device.rst
+> > +++ b/Documentation/gpu/xe/xe_device.rst
+> > @@ -6,7 +6,7 @@
+> >  Xe Device Wedging
+> >  ==================
+> >  
+> > -.. kernel-doc:: drivers/gpu/drm/xe/xe_device.c
+> > +.. kernel-doc:: drivers/gpu/drm/xe/xe_wedge.c
+> >     :doc: Xe Device Wedging
+> >  
+> >  ====================
+> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> > index adc2de37e768..c739a50b6896 100644
+> > --- a/drivers/gpu/drm/xe/Makefile
+> > +++ b/drivers/gpu/drm/xe/Makefile
+> > @@ -152,6 +152,7 @@ xe-y += xe_bb.o \
+> >  	xe_vsec.o \
+> >  	xe_wa.o \
+> >  	xe_wait_user_fence.o \
+> > +	xe_wedge.o \
+> >  	xe_wopcm.o
+> >  
+> >  xe-$(CONFIG_I2C)	+= xe_i2c.o \
+> > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> > index 74d566693dfd..d3a7034fac01 100644
+> > --- a/drivers/gpu/drm/xe/xe_device.c
+> > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > @@ -829,10 +829,7 @@ int xe_device_probe_early(struct xe_device *xe)
+> >  	 */
+> >  	assert_lmem_ready(xe);
+> >  
+> > -	xe->wedged.mode = xe_device_validate_wedged_mode(xe, xe_modparam.wedged_mode) ?
+> > -			  XE_DEFAULT_WEDGED_MODE : xe_modparam.wedged_mode;
+> > -	drm_dbg(&xe->drm, "wedged_mode: setting mode (%u) %s\n",
+> > -		xe->wedged.mode, xe_wedged_mode_to_string(xe->wedged.mode));
+> > +	xe_device_wedged_init_early(xe);
+> >  
+> >  	err = xe_device_vram_alloc(xe);
+> >  	if (err)
+> > @@ -924,14 +921,6 @@ static void detect_preproduction_hw(struct xe_device *xe)
+> >  	}
+> >  }
+> >  
+> > -static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
+> > -{
+> > -	struct xe_device *xe = arg;
+> > -
+> > -	if (atomic_read(&xe->wedged.flag))
+> > -		xe_pm_runtime_put(xe);
+> > -}
+> > -
+> >  #ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
+> >  static int xe_debug_page_size_alloc_ctrl_init(struct xe_device *xe)
+> >  {
+> > @@ -1148,7 +1137,7 @@ int xe_device_probe(struct xe_device *xe)
+> >  
+> >  	detect_preproduction_hw(xe);
+> >  
+> > -	err = drmm_add_action_or_reset(&xe->drm, xe_device_wedged_fini, xe);
+> > +	err = xe_device_wedged_init(xe);
+> >  	if (err)
+> >  		goto err_unregister_display;
+> >  
+> > @@ -1394,163 +1383,6 @@ u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address)
+> >  	return address & GENMASK_ULL(xe->info.va_bits - 1, 0);
+> >  }
+> >  
+> > -/**
+> > - * DOC: Xe Device Wedging
+> > - *
+> > - * Xe driver uses drm device wedged uevent as documented in Documentation/gpu/drm-uapi.rst.
+> > - * When device is in wedged state, every IOCTL will be blocked and GT cannot
+> > - * be used. The conditions under which the driver declares the device wedged
+> > - * depend on the wedged mode configuration (see &enum xe_wedged_mode). The
+> > - * default recovery method for a wedged state is rebind/bus-reset.
+> > - *
+> > - * Another recovery method is vendor-specific. Below are the cases that send
+> > - * ``WEDGED=vendor-specific`` recovery method in drm device wedged uevent.
+> > - *
+> > - * Case: Firmware Flash
+> > - * --------------------
+> > - *
+> > - * Identification Hint
+> > - * +++++++++++++++++++
+> > - *
+> > - * ``WEDGED=vendor-specific`` drm device wedged uevent with
+> > - * :ref:`Runtime Survivability mode <xe-survivability-mode>` is used to notify
+> > - * admin/userspace consumer about the need for a firmware flash.
+> > - *
+> > - * Recovery Procedure
+> > - * ++++++++++++++++++
+> > - *
+> > - * Once ``WEDGED=vendor-specific`` drm device wedged uevent is received, follow
+> > - * the below steps
+> > - *
+> > - * - Check Runtime Survivability mode sysfs.
+> > - *   If enabled, firmware flash is required to recover the device.
+> > - *
+> > - *   /sys/bus/pci/devices/<device>/survivability_mode
+> > - *
+> > - * - Admin/userspace consumer can use firmware flashing tools like fwupd to flash
+> > - *   firmware and restore device to normal operation.
+> > - */
+> > -
+> > -/**
+> > - * xe_device_set_wedged_method - Set wedged recovery method
+> > - * @xe: xe device instance
+> > - * @method: recovery method to set
+> > - *
+> > - * Set wedged recovery method to be sent in drm wedged uevent.
+> > - */
+> > -void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method)
+> > -{
+> > -	xe->wedged.method = method;
+> > -}
+> > -
+> > -#define WEDGED_URL	"https://docs.kernel.org/gpu/drm-uapi.html#device-wedging"
+> > -#define XE_BUG_URL	"https://gitlab.freedesktop.org/drm/xe/kernel/issues/new"
+> > -
+> > -/**
+> > - * xe_device_declare_wedged - Declare device wedged
+> > - * @xe: xe device instance
+> > - *
+> > - * This is a final state that can only be cleared with the recovery method
+> > - * specified in the drm wedged uevent. The method can be set using
+> > - * xe_device_set_wedged_method before declaring the device as wedged. If no method
+> > - * is set, reprobe (unbind/re-bind) will be sent by default.
+> > - *
+> > - * In this state every IOCTL will be blocked so the GT cannot be used.
+> > - * In general it will be called upon any critical error such as gt reset
+> > - * failure or guc loading failure. Userspace will be notified of this state
+> > - * through device wedged uevent.
+> > - * If xe.wedged module parameter is set to 2, this function will be called
+> > - * on every single execution timeout (a.k.a. GPU hang) right after devcoredump
+> > - * snapshot capture. In this mode, GT reset won't be attempted so the state of
+> > - * the issue is preserved for further debugging.
+> > - */
+> > -void xe_device_declare_wedged(struct xe_device *xe)
+> > -{
+> > -	struct xe_gt *gt;
+> > -	u8 id;
+> > -
+> > -	if (xe->wedged.mode == XE_WEDGED_MODE_NEVER) {
+> > -		drm_dbg(&xe->drm, "Wedged mode is forcibly disabled\n");
+> > -		return;
+> > -	}
+> > -
+> > -	if (!atomic_xchg(&xe->wedged.flag, 1)) {
+> > -		xe->needs_flr_on_fini = true;
+> > -		xe_pm_runtime_get_noresume(xe);
+> > -
+> > -		xe_log_err_fatal(xe, WEDGED, -EIO, "Device declared wedged!\n");
+> > -		xe_err_once(xe, "IOCTLs and executions are now blocked!\n"
+> > -			    "For recovery procedure, refer to %s\n"
+> > -			    "Please file a _new_ bug report at %s\n",
+> > -			    WEDGED_URL, XE_BUG_URL);
+> > -	}
+> > -
+> > -	for_each_gt(gt, xe, id)
+> > -		xe_gt_declare_wedged(gt);
+> > -
+> > -	if (xe_device_wedged(xe)) {
+> > -		/*
+> > -		 * XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is intended for debugging
+> > -		 * hangs, so wedge the device with 'none' recovery method and have
+> > -		 * it available to the user for debugging.
+> > -		 */
+> > -		if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
+> > -			xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_NONE);
+> > -		/* If no wedge recovery method is set, use default */
+> > -		else if (!xe->wedged.method)
+> > -			xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_REBIND |
+> > -						    DRM_WEDGE_RECOVERY_BUS_RESET);
+> > -
+> > -		/* Notify userspace of wedged device */
+> > -		drm_dev_wedged_event(&xe->drm, xe->wedged.method, NULL);
+> > -	}
+> > -}
+> > -
+> > -/**
+> > - * xe_device_validate_wedged_mode - Check if given mode is supported
+> > - * @xe: the &xe_device
+> > - * @mode: requested mode to validate
+> > - *
+> > - * Check whether the provided wedged mode is supported.
+> > - *
+> > - * Return: 0 if mode is supported, error code otherwise.
+> > - */
+> > -int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode)
+> > -{
+> > -	if (mode > XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
+> > -		drm_dbg(&xe->drm, "wedged_mode: invalid value (%u)\n", mode);
+> > -		return -EINVAL;
+> > -	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET && (IS_SRIOV_VF(xe) ||
+> > -		   (IS_SRIOV_PF(xe) && !IS_ENABLED(CONFIG_DRM_XE_DEBUG)))) {
+> > -		drm_dbg(&xe->drm, "wedged_mode: (%u) %s mode is not supported for %s\n",
+> > -			mode, xe_wedged_mode_to_string(mode),
+> > -			xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
+> > -		return -EPERM;
+> > -	}
+> > -
+> > -	return 0;
+> > -}
+> > -
+> > -/**
+> > - * xe_wedged_mode_to_string - Convert enum value to string.
+> > - * @mode: the &xe_wedged_mode to convert
+> > - *
+> > - * Returns: wedged mode as a user friendly string.
+> > - */
+> > -const char *xe_wedged_mode_to_string(enum xe_wedged_mode mode)
+> > -{
+> > -	switch (mode) {
+> > -	case XE_WEDGED_MODE_NEVER:
+> > -		return "never";
+> > -	case XE_WEDGED_MODE_UPON_CRITICAL_ERROR:
+> > -		return "upon-critical-error";
+> > -	case XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET:
+> > -		return "upon-any-hang-no-reset";
+> > -	default:
+> > -		return "<invalid>";
+> > -	}
+> > -}
+> > -
+> >  /**
+> >   * xe_device_asid_to_vm() - Find VM from ASID
+> >   * @xe: the &xe_device
+> > diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+> > index 6c4cfaebc44a..c984972bd0f8 100644
+> > --- a/drivers/gpu/drm/xe/xe_device.h
+> > +++ b/drivers/gpu/drm/xe/xe_device.h
+> > @@ -11,6 +11,7 @@
+> >  #include "xe_device_types.h"
+> >  #include "xe_gt_types.h"
+> >  #include "xe_sriov.h"
+> > +#include "xe_wedge.h"
+> >  
+> >  struct xe_vm;
+> >  
+> > @@ -207,11 +208,6 @@ bool xe_device_is_l2_flush_optimized(struct xe_device *xe);
+> >  void xe_device_td_flush(struct xe_device *xe);
+> >  void xe_device_l2_flush(struct xe_device *xe);
+> >  
+> > -static inline bool xe_device_wedged(struct xe_device *xe)
+> > -{
+> > -	return atomic_read(&xe->wedged.flag);
+> > -}
+> > -
+> >  #ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
+> >  static inline bool xe_debug_page_size_supported(struct xe_device *xe)
+> >  {
+> > @@ -260,11 +256,6 @@ static inline bool xe_debug_page_size_mode_is_mixed(struct xe_device *xe)
+> >  }
+> >  #endif
+> >  
+> > -void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method);
+> > -void xe_device_declare_wedged(struct xe_device *xe);
+> > -int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode);
+> > -const char *xe_wedged_mode_to_string(enum xe_wedged_mode mode);
+> > -
+> >  struct xe_file *xe_file_get(struct xe_file *xef);
+> >  void xe_file_put(struct xe_file *xef);
+> >  
+> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> > index 180d450a6deb..f307d7e5e6b6 100644
+> > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > @@ -30,6 +30,7 @@
+> >  #include "xe_sysctrl_types.h"
+> >  #include "xe_tile_types.h"
+> >  #include "xe_validation.h"
+> > +#include "xe_wedge_types.h"
+> >  
+> >  #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+> >  #define TEST_VM_OPS_ERROR
+> > @@ -45,22 +46,6 @@ struct xe_pxp;
+> >  struct xe_ttm_stolen_mgr;
+> >  struct xe_vram_region;
+> >  
+> > -/**
+> > - * enum xe_wedged_mode - possible wedged modes
+> > - * @XE_WEDGED_MODE_NEVER: Device will never be declared wedged.
+> > - * @XE_WEDGED_MODE_UPON_CRITICAL_ERROR: Device will be declared wedged only
+> > - *	when critical error occurs like GT reset failure or firmware failure.
+> > - *	This is the default mode.
+> > - * @XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET: Device will be declared wedged on
+> > - *	any hang. In this mode, engine resets are disabled to avoid automatic
+> > - *	recovery attempts. This mode is primarily intended for debugging hangs.
+> > - */
+> > -enum xe_wedged_mode {
+> > -	XE_WEDGED_MODE_NEVER = 0,
+> > -	XE_WEDGED_MODE_UPON_CRITICAL_ERROR = 1,
+> > -	XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET = 2,
+> > -};
+> > -
+> >  #ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
+> >  /**
+> >   * enum xe_page_size_alloc_ctrl_mode - User BO page-size allocation control modes
+> > @@ -534,6 +519,8 @@ struct xe_device {
+> >  		unsigned long method;
+> >  		/** @wedged.inconsistent_reset: Inconsistent reset policy state between GTs */
+> >  		bool inconsistent_reset;
+> > +		/** @wedged.work: Worker for wedge handling to be done async */
+> > +		struct work_struct work;
+> >  	} wedged;
+> >  
+> >  	/** @devres_group: devres group */
+> > diff --git a/drivers/gpu/drm/xe/xe_wedge.c b/drivers/gpu/drm/xe/xe_wedge.c
+> > new file mode 100644
+> > index 000000000000..52d4661a2dee
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_wedge.c
+> > @@ -0,0 +1,214 @@
+> > +// SPDX-License-Identifier: MIT
+> > +/*
+> > + * Copyright © 2026 Intel Corporation
+> > + */
+> > +
+> > +#include <drm/drm_drv.h>
+> > +#include <drm/drm_managed.h>
+> > +
+> > +#include "xe_defaults.h"
+> > +#include "xe_device_types.h"
+> > +#include "xe_gt.h"
+> > +#include "xe_log.h"
+> > +#include "xe_module.h"
+> > +#include "xe_pm.h"
+> > +#include "xe_printk.h"
+> > +#include "xe_wedge.h"
+> > +
+> > +/**
+> > + * DOC: Xe Device Wedging
+> > + *
+> > + * Xe driver uses drm device wedged uevent as documented in Documentation/gpu/drm-uapi.rst.
+> > + * When device is in wedged state, every IOCTL will be blocked and GT cannot
+> > + * be used. The conditions under which the driver declares the device wedged
+> > + * depend on the wedged mode configuration (see &enum xe_wedged_mode). The
+> > + * default recovery method for a wedged state is rebind/bus-reset.
+> > + *
+> > + * Another recovery method is vendor-specific. Below are the cases that send
+> > + * ``WEDGED=vendor-specific`` recovery method in drm device wedged uevent.
+> > + *
+> > + * Case: Firmware Flash
+> > + * --------------------
+> > + *
+> > + * Identification Hint
+> > + * +++++++++++++++++++
+> > + *
+> > + * ``WEDGED=vendor-specific`` drm device wedged uevent with
+> > + * :ref:`Runtime Survivability mode <xe-survivability-mode>` is used to notify
+> > + * admin/userspace consumer about the need for a firmware flash.
+> > + *
+> > + * Recovery Procedure
+> > + * ++++++++++++++++++
+> > + *
+> > + * Once ``WEDGED=vendor-specific`` drm device wedged uevent is received, follow
+> > + * the below steps
+> > + *
+> > + * - Check Runtime Survivability mode sysfs.
+> > + *   If enabled, firmware flash is required to recover the device.
+> > + *
+> > + *   /sys/bus/pci/devices/<device>/survivability_mode
+> > + *
+> > + * - Admin/userspace consumer can use firmware flashing tools like fwupd to flash
+> > + *   firmware and restore device to normal operation.
+> > + */
+> > +
+> > +/**
+> > + * xe_device_set_wedged_method() - Set wedged recovery method
+> > + * @xe: xe device instance
+> > + * @method: recovery method to set
+> > + *
+> > + * Set wedged recovery method to be sent in drm wedged uevent.
+> > + */
+> > +void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method)
+> > +{
+> > +	xe->wedged.method = method;
+> > +}
+> > +
+> > +/**
+> > + * xe_device_wedged() - Check for wedged device
+> > + * @xe: xe device instance
+> > + *
+> > + * Returns: %true if device is wedged, %false otherwise.
+> > + */
+> > +bool xe_device_wedged(struct xe_device *xe)
+> > +{
+> > +	return atomic_read(&xe->wedged.flag);
+> > +}
+> > +
+> > +#define WEDGED_URL	"https://docs.kernel.org/gpu/drm-uapi.html#device-wedging"
+> > +#define XE_BUG_URL	"https://gitlab.freedesktop.org/drm/xe/kernel/issues/new"
+> > +
+> > +static void wedged_work(struct work_struct *work)
+> > +{
+> > +	struct xe_device *xe = container_of(work, struct xe_device, wedged.work);
+> > +	struct xe_gt *gt;
+> > +	u8 id;
+> > +
+> > +	for_each_gt(gt, xe, id)
+> > +		xe_gt_declare_wedged(gt);
+> > +
+> > +	/*
+> > +	 * XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is intended for debugging
+> > +	 * hangs, so wedge the device with 'none' recovery method and have
+> > +	 * it available to the user for debugging.
+> > +	 */
+> > +	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
+> > +		xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_NONE);
+> > +	/* If no wedge recovery method is set, use default */
+> > +	else if (!xe->wedged.method)
+> > +		xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_REBIND |
+> > +					    DRM_WEDGE_RECOVERY_BUS_RESET);
+> > +
+> > +	/* Notify userspace of wedged device */
+> > +	drm_dev_wedged_event(&xe->drm, xe->wedged.method, NULL);
+> > +}
+> > +
+> > +/**
+> > + * xe_device_declare_wedged - Declare device wedged
+> > + * @xe: xe device instance
+> > + *
+> > + * This is a final state that can only be cleared with the recovery method
+> > + * specified in the drm wedged uevent. The method can be set using
+> > + * xe_device_set_wedged_method before declaring the device as wedged. If no method
+> > + * is set, reprobe (unbind/re-bind) will be sent by default.
+> > + *
+> > + * In this state every IOCTL will be blocked so the GT cannot be used.
+> > + * In general it will be called upon any critical error such as gt reset
+> > + * failure or guc loading failure. Userspace will be notified of this state
+> > + * through device wedged uevent.
+> > + * If xe.wedged module parameter is set to 2, this function will be called
+> > + * on every single execution timeout (a.k.a. GPU hang) right after devcoredump
+> > + * snapshot capture. In this mode, GT reset won't be attempted so the state of
+> > + * the issue is preserved for further debugging.
+> > + */
+> > +void xe_device_declare_wedged(struct xe_device *xe)
+> > +{
+> > +	if (xe->wedged.mode == XE_WEDGED_MODE_NEVER) {
+> > +		drm_dbg(&xe->drm, "Wedged mode is forcibly disabled\n");
+> > +		return;
+> > +	}
+> > +
+> > +	if (!atomic_xchg(&xe->wedged.flag, 1)) {
+> > +		xe->needs_flr_on_fini = true;
+> > +		xe_pm_runtime_get_noresume(xe);
+> > +
+> > +		xe_log_err_fatal(xe, WEDGED, -EIO, "Device declared wedged!\n");
+> > +		xe_err_once(xe, "IOCTLs and executions are now blocked!\n"
+> > +			    "For recovery procedure, refer to %s\n"
+> > +			    "Please file a _new_ bug report at %s\n",
+> > +			    WEDGED_URL, XE_BUG_URL);
+> > +
+> > +		schedule_work(&xe->wedged.work);
+> > +	}
+> > +}
+> > +
+> > +/**
+> > + * xe_device_validate_wedged_mode - Check if given mode is supported
+> > + * @xe: the &xe_device
+> > + * @mode: requested mode to validate
+> > + *
+> > + * Check whether the provided wedged mode is supported.
+> > + *
+> > + * Return: 0 if mode is supported, error code otherwise.
+> > + */
+> > +int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode)
+> > +{
+> > +	if (mode > XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
+> > +		drm_dbg(&xe->drm, "wedged_mode: invalid value (%u)\n", mode);
+> > +		return -EINVAL;
+> > +	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET && (IS_SRIOV_VF(xe) ||
+> > +		   (IS_SRIOV_PF(xe) && !IS_ENABLED(CONFIG_DRM_XE_DEBUG)))) {
+> > +		drm_dbg(&xe->drm, "wedged_mode: (%u) %s mode is not supported for %s\n",
+> > +			mode, xe_wedged_mode_to_string(mode),
+> > +			xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
+> > +		return -EPERM;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +/**
+> > + * xe_wedged_mode_to_string - Convert enum value to string.
+> > + * @mode: the &xe_wedged_mode to convert
+> > + *
+> > + * Returns: wedged mode as a user friendly string.
+> > + */
+> > +const char *xe_wedged_mode_to_string(enum xe_wedged_mode mode)
+> > +{
+> > +	switch (mode) {
+> > +	case XE_WEDGED_MODE_NEVER:
+> > +		return "never";
+> > +	case XE_WEDGED_MODE_UPON_CRITICAL_ERROR:
+> > +		return "upon-critical-error";
+> > +	case XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET:
+> > +		return "upon-any-hang-no-reset";
+> > +	default:
+> > +		return "<invalid>";
+> > +	}
+> > +}
+> > +
+> > +void xe_device_wedged_init_early(struct xe_device *xe)
+> > +{
+> > +	xe->wedged.mode = xe_device_validate_wedged_mode(xe, xe_modparam.wedged_mode) ?
+> > +			  XE_DEFAULT_WEDGED_MODE : xe_modparam.wedged_mode;
+> > +	drm_dbg(&xe->drm, "wedged_mode: setting mode (%u) %s\n",
+> > +		xe->wedged.mode, xe_wedged_mode_to_string(xe->wedged.mode));
+> > +}
+> > +
+> > +static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
+> > +{
+> > +	struct xe_device *xe = arg;
+> > +
+> > +	disable_work_sync(&xe->wedged.work);
+> > +
+> > +	if (atomic_read(&xe->wedged.flag))
+> > +		xe_pm_runtime_put(xe);
+> > +}
+> > +
+> > +int xe_device_wedged_init(struct xe_device *xe)
+> > +{
+> > +	INIT_WORK(&xe->wedged.work, wedged_work);
+> > +
+> > +	return drmm_add_action_or_reset(&xe->drm, xe_device_wedged_fini, xe);
+> > +}
+> > +
+> > diff --git a/drivers/gpu/drm/xe/xe_wedge.h b/drivers/gpu/drm/xe/xe_wedge.h
+> > new file mode 100644
+> > index 000000000000..fedb30c99398
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_wedge.h
+> > @@ -0,0 +1,24 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright © 2026 Intel Corporation
+> > + */
+> > +
+> > +#ifndef _XE_WEDGE_H_
+> > +#define _XE_WEDGE_H_
+> > +
+> > +#include <linux/atomic.h>
+> > +#include <linux/types.h>
+> > +
+> > +#include "xe_wedge_types.h"
+> > +
+> > +struct xe_device;
+> > +
+> > +void xe_device_wedged_init_early(struct xe_device *xe);
+> > +int xe_device_wedged_init(struct xe_device *xe);
+> > +void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method);
+> > +void xe_device_declare_wedged(struct xe_device *xe);
+> > +bool xe_device_wedged(struct xe_device *xe);
+> > +int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode);
+> > +const char *xe_wedged_mode_to_string(enum xe_wedged_mode mode);
+> > +
+> > +#endif
+> > diff --git a/drivers/gpu/drm/xe/xe_wedge_types.h b/drivers/gpu/drm/xe/xe_wedge_types.h
+> > new file mode 100644
+> > index 000000000000..ffe7f9c64166
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_wedge_types.h
+> > @@ -0,0 +1,25 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright © 2026 Intel Corporation
+> > + */
+> > +
+> > +#ifndef _XE_WEDGE_TYPES_H_
+> > +#define _XE_WEDGE_TYPES_H_
+> > +
+> > +/**
+> > + * enum xe_wedged_mode - possible wedged modes
+> > + * @XE_WEDGED_MODE_NEVER: Device will never be declared wedged.
+> > + * @XE_WEDGED_MODE_UPON_CRITICAL_ERROR: Device will be declared wedged only
+> > + *	when critical error occurs like GT reset failure or firmware failure.
+> > + *	This is the default mode.
+> > + * @XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET: Device will be declared wedged on
+> > + *	any hang. In this mode, engine resets are disabled to avoid automatic
+> > + *	recovery attempts. This mode is primarily intended for debugging hangs.
+> > + */
+> > +enum xe_wedged_mode {
+> > +	XE_WEDGED_MODE_NEVER = 0,
+> > +	XE_WEDGED_MODE_UPON_CRITICAL_ERROR = 1,
+> > +	XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET = 2,
+> > +};
+> > +
+> > +#endif
+> > -- 
+> > 2.43.0
+> > 
