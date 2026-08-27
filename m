@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC02CC5DF97
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 00:28:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3E1CC61DBE
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 00:28:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F53B10E364;
-	Thu, 27 Aug 2026 00:28:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 587FC10E37D;
+	Thu, 27 Aug 2026 00:28:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iMO5QC0S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D+C1Ne1u";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA48610E364
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 00:28:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A47610E37D
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 00:28:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787790491; x=1819326491;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bgUcWZViGoZ4Mb14wqr+Q8clUWqWe8abjKdPP9EQF3U=;
- b=iMO5QC0SEwUo7aIguUXiyFopbiibH44LA6ByfDaWLYWLomiFmDr7y1xV
- 4qqWEAZErI4xXSBDQWj4GkaBaMPnkxzQfk/wrfV7vO3TJTIpQJ2kVcR57
- SHvQDImg4TNPnPsPzyAyIQVtuc+aSGbUtjDmoelB4/eOA+Usr1hzjFmdJ
- BdEoWnvAsahB/PcapFKz84x+Ez5Lo61QrUou7CMXC4Wzw/ztzbkCHmzDy
- diGmzY6nezAmo69LPVWHp/LeyY+E4MRFG6ipCx3Tz3YZC1bvEHqluW/uT
- +RF1JOIyN/IkeEJcRlK3ckJp3y2JEIROwuxi05lX+03jC791tbGJsYIQz g==;
-X-CSE-ConnectionGUID: IOap/jz/SdiMUMfJ3fR46A==
-X-CSE-MsgGUID: AjX2C4fXQTOUclWoZSeOkA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="98620375"
-X-IronPort-AV: E=Sophos;i="6.25,245,1779174000"; d="scan'208";a="98620375"
+ t=1787790494; x=1819326494;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=7fq18hzcc6lUGQYmkGNA3Qfeq74KlaInjhBTlGG5+Nw=;
+ b=D+C1Ne1uxj/GEg7aLsyZaH5PmLi5y6OmxcTVhUbH+/MC7ILYHneS/J8V
+ K+zsBNymVjjflEe2HrqGdFZ7/2sUeYRiQ8KfV5lHDN5ZuXjr/tIfE0Az0
+ 4rQH3/U3obvwR30y+QoRvWn6SMPNC1Dp9ki8wGns9jkhXAzhnYnP2BQtR
+ E+KIa9330MvyUyuJf/aWFO49IJvnqpg0SoQpbCNLuX21cKjLzsHiGuDfZ
+ qOqINHCQu3Qn3mF47ASSWglIWtJpmoW392rSx5Z2eoPiiMEwY/w/N+vnf
+ WJ2JDu5Ay+UJMFvhTCKSIqCJwhoMEk2TIVksDMx2znytzFkkGMSPrwOor w==;
+X-CSE-ConnectionGUID: Bs1rLy/PSyS8aYDAOnKKZQ==
+X-CSE-MsgGUID: P5AQQQS5Qp2t0QFVlrq1nA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="98620376"
+X-IronPort-AV: E=Sophos;i="6.25,245,1779174000"; d="scan'208";a="98620376"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 17:28:10 -0700
-X-CSE-ConnectionGUID: Lfv+xVSpRAWlLLMl5wNM6w==
-X-CSE-MsgGUID: AvhxjjqwSMebQJn9s3jHYA==
+ 26 Aug 2026 17:28:14 -0700
+X-CSE-ConnectionGUID: DJEXw7ZkRLC21x8X0m/gww==
+X-CSE-MsgGUID: N39HRvffRB+h0QDvcTDNJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,245,1779174000"; d="scan'208";a="265126118"
+X-IronPort-AV: E=Sophos;i="6.25,245,1779174000"; d="scan'208";a="265126126"
 Received: from dceraolo-desk1.fm.intel.com (HELO dceraolo-desk1)
  ([10.121.64.189])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 17:28:10 -0700
+ 26 Aug 2026 17:28:14 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
@@ -50,10 +50,12 @@ Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
  Alan Previn Teres Alexis <alan.previn.teres.alexis@intel.com>,
  Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH 1/3] drm/xe/uc: Report DMA failure using SIGID
-Date: Thu, 27 Aug 2026 00:27:59 +0000
-Message-ID: <20260827002801.837731-1-daniele.ceraolospurio@intel.com>
+Subject: [PATCH 2/3] drm/xe/guc: Report major GuC failures using SIGID
+Date: Thu, 27 Aug 2026 00:28:00 +0000
+Message-ID: <20260827002801.837731-2-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260827002801.837731-1-daniele.ceraolospurio@intel.com>
+References: <20260827002801.837731-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -70,7 +72,11 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Convert the uC DMA failure error to use the xe_log_err() helper.
+Convert errors during critical GuC flows (init, load, reset, suspend)
+to use the xe_log_err() helper.
+For the GuC load failure scenario, the possible failure modes have been
+bucketed into 3 different possible error codes to distinguish a bad
+binary from a driver error or unexpected HW behavior.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
@@ -79,44 +85,100 @@ Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 Cc: Alan Previn Teres Alexis <alan.previn.teres.alexis@intel.com>
 Cc: Julia Filipchuk <julia.filipchuk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_uc_fw.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c | 26 +++++++++++++++-----------
+ 1 file changed, 15 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index e29878b255ba..02ed4f0eaf40 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -18,6 +18,7 @@
- #include "xe_gt_sriov_vf.h"
- #include "xe_gt_types.h"
- #include "xe_guc.h"
-+#include "xe_log.h"
- #include "xe_map.h"
- #include "xe_mmio.h"
- #include "xe_module.h"
-@@ -914,6 +915,7 @@ static int uc_fw_xfer(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
- int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
- {
- 	struct xe_device *xe = uc_fw_to_xe(uc_fw);
-+	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
- 	int err;
- 
- 	/* make sure the status was cleared the last time we reset the uc */
-@@ -931,9 +933,11 @@ int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index c7f8bbd4cb92..484cb47fbc81 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -777,7 +777,7 @@ int xe_guc_init_noalloc(struct xe_guc *guc)
  	return 0;
  
- fail:
--	drm_err(&xe->drm, "Failed to load %s firmware %s (%d)\n",
--		xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
--		err);
-+	if (uc_fw->type == XE_UC_FW_TYPE_GUC)
-+		xe_log_err(gt, GUC, err, "Failed to load firmware %s\n", uc_fw->path);
-+	else if (uc_fw->type == XE_UC_FW_TYPE_HUC)
-+		xe_log_err(gt, HUC, err, "Failed to load firmware %s\n", uc_fw->path);
-+
- 	xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_LOAD_FAIL);
- 	return err;
+ out:
+-	xe_gt_err(gt, "GuC init failed with %pe\n", ERR_PTR(ret));
++	xe_log_err(gt, GUC, ret, "GuC init failed\n");
+ 	return ret;
  }
+ 
+@@ -845,7 +845,7 @@ int xe_guc_init(struct xe_guc *guc)
+ 	return 0;
+ 
+ out:
+-	xe_gt_err(gt, "GuC init failed with %pe\n", ERR_PTR(ret));
++	xe_log_err(gt, GUC, ret, "GuC init failed\n");
+ 	return ret;
+ }
+ 
+@@ -998,14 +998,15 @@ int xe_guc_reset(struct xe_guc *guc)
+ 
+ 	ret = xe_mmio_wait32(mmio, GDRST, GRDOM_GUC, 0, 5000, &gdrst, false);
+ 	if (ret) {
+-		xe_gt_err(gt, "GuC reset timed out, GDRST=%#x\n", gdrst);
++		xe_log_err(gt, GUC, -EIO, "GuC reset timed out, GDRST=%#x\n", gdrst);
+ 		goto err_out;
+ 	}
+ 
+ 	guc_status = xe_mmio_read32(mmio, GUC_STATUS);
+ 	if (!(guc_status & GS_MIA_IN_RESET)) {
+-		xe_gt_err(gt, "GuC status: %#x, MIA core expected to be in reset\n",
+-			  guc_status);
++		xe_log_err(gt, GUC, -EIO,
++			   "GuC status: %#x, MIA core expected to be in reset\n",
++			   guc_status);
+ 		ret = -EIO;
+ 		goto err_out;
+ 	}
+@@ -1163,14 +1164,16 @@ static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
+ 	case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
+ 	case XE_GUC_LOAD_STATUS_HWCONFIG_ERROR:
+ 	case XE_GUC_LOAD_STATUS_BOOTROM_VERSION_MISMATCH:
++		return -ENOEXEC;
+ 	case XE_GUC_LOAD_STATUS_DPC_ERROR:
+ 	case XE_GUC_LOAD_STATUS_EXCEPTION:
++		return -EIO;
+ 	case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
+ 	case XE_GUC_LOAD_STATUS_MPU_DATA_INVALID:
+ 	case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
+ 	case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
+ 	case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
+-		return -1;
++		return -EINVAL;
+ 	}
+ 
+ 	switch (bootrom) {
+@@ -1184,7 +1187,7 @@ static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
+ 	case XE_BOOTROM_STATUS_MPUMAP_INCORRECT:
+ 	case XE_BOOTROM_STATUS_EXCEPTION:
+ 	case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
+-		return -1;
++		return -ENOEXEC;
+ 	}
+ 
+ 	if (++*tries >= 100) {
+@@ -1222,9 +1225,10 @@ static int guc_wait_ucode(struct xe_guc *guc)
+ 	cur_freq = xe_guc_pc_get_cur_freq_fw(guc_pc);
+ 
+ 	if (ret || load_result <= 0) {
+-		xe_gt_err(gt, "load failed: status = 0x%08X, time = %lldms, freq = %dMHz (req %dMHz)\n",
+-			  status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
+-			  xe_guc_pc_get_cur_freq_fw(guc_pc));
++		xe_log_err(gt, GUC, ret ?: load_result,
++			   "load failed: status = 0x%08X, time = %lldms, freq = %dMHz (req %dMHz)\n",
++			   status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
++			   xe_guc_pc_get_cur_freq_fw(guc_pc));
+ 		print_load_status_err(gt, status);
+ 
+ 		return -EPROTO;
+@@ -1461,7 +1465,7 @@ int xe_guc_suspend(struct xe_guc *guc)
+ 
+ 	ret = xe_guc_softreset(guc);
+ 	if (ret) {
+-		xe_gt_err(gt, "GuC suspend failed: %pe\n", ERR_PTR(ret));
++		xe_log_err(gt, GUC, ret, "GuC suspend failed\n");
+ 		return ret;
+ 	}
+ 
 -- 
 2.53.0
 
