@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A448C61DC6
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 12:35:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20847C61DC7
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 12:35:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6D7810EFE8;
-	Thu, 27 Aug 2026 12:35:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBD8510EFEC;
+	Thu, 27 Aug 2026 12:35:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E2ZqX1cl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D0tFJRD4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6F0B10EFD8;
- Thu, 27 Aug 2026 12:35:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A159410EFEC;
+ Thu, 27 Aug 2026 12:35:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787834121; x=1819370121;
+ t=1787834126; x=1819370126;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LocfgT1YQlgoT7Wow6zlpeY6eBjJ4OBKtqizHhTo3Fw=;
- b=E2ZqX1clhLSKl5sHT6K5gEihe78kfhGssJ/4IXI8NBNBIxoKOfkGNQpT
- cNVRsxkPsoGuAyLhcM5JVf/u1pl3DcRn67XrU/753yzV+JDL3fwQvKRN1
- jRxKd0dpF0oPK1cUQ3jfTn0HqFKOREnvHhkNNEWOK67XCbn6gtGIuufBr
- 9oaPd+wBCWn3f6nVpaReeQ2ZlbkyuQNU/L92IFlKdjMmAdUlRBdrMk2Ih
- Bh6GbpaS31KXE7+JO9Tv8NidM2CwxORm2ZbXR4msusJgKGy0ARtwwn4a1
- mItgiKNUj9K1spxZHXzdH4rqqMXlFFnkjjz/2gRtZWTWdpWKHyAcGF9m+ A==;
-X-CSE-ConnectionGUID: S5YxsblbTHOJHU9U6phnOQ==
-X-CSE-MsgGUID: tFZVPhvMQIuGYHtPwyj8XQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="98929282"
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="98929282"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 05:35:21 -0700
-X-CSE-ConnectionGUID: bcUxPgVORx6duokt/791pw==
-X-CSE-MsgGUID: 1BkWACNGTvyV8vKvAnIkfA==
+ bh=tTmBNKYpDAc21nAtB7Y0eD7Wexewn8Sd09pZcAaSlPI=;
+ b=D0tFJRD4nt6e1PWszxl0C/+it5bDvq4oeH8MA35x3/3uuHSYoERr7jMx
+ /1IPYh451wFoKeDN8g1+mVjNmE13x7/oamHob5SxuB1DEPb7TE5x8bdh7
+ a5gY4NmZsZOd9JpqjpJrXA+KCicQIbk/y2UIPq8HrKpFgbhouYtXL3EDY
+ XW8lMBRD3l9fID1Uu7MtVi6vXmQGCDiSTuTyckwqlFsW41O/dr0N2Uj65
+ P3xEgrNJ9G94yPT2oxyO7cPkCndlNcAgOlPnsm+yEZEU0Z4wpGN4lnAeu
+ /SsysK1zFZo9Kv3zdA7qnKoRHrtwk1aM0MvRtfv2CkVJtvI6cyIMDo+rG w==;
+X-CSE-ConnectionGUID: EB7GaqK/QTmIW2CC4BntdQ==
+X-CSE-MsgGUID: mVAr2OA8RaOfpYA7/Mynkg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="105853463"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="105853463"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 05:35:26 -0700
+X-CSE-ConnectionGUID: yBTUHfoBSL6UoS9L6fKS3g==
+X-CSE-MsgGUID: KFiCXJhPR8mfKh+f8kBDUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="261734684"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="291370697"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.219])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 05:35:19 -0700
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 05:35:24 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: maarten.lankhorst@linux.intel.com, ville.syrjala@linux.intel.com,
  jani.nikula@intel.com, Maarten Lankhorst <maarten.lankhorst@intel.com>
-Subject: [PATCH v2 4/7] drm/i915/display: reduce indent in
- intel_atomic_commit_fence_wait()
-Date: Thu, 27 Aug 2026 15:34:54 +0300
-Message-ID: <6eabe8b3e319aa6490ff68c395d69a97b60a5cb5.1787833879.git.jani.nikula@intel.com>
+Subject: [PATCH v2 5/7] drm/i915/display: debug log about fence wait timeouts
+ and other errors
+Date: Thu, 27 Aug 2026 15:34:55 +0300
+Message-ID: <eb862a07865dfbac20cb18c268ace1a003ca53f5.1787833879.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1787833879.git.jani.nikula@intel.com>
 References: <cover.1787833879.git.jani.nikula@intel.com>
@@ -73,48 +73,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Continue early in the loop for no fence in order to reduce indent.
+Currently there's no indication if fence wait timed out. Debug log about
+timeouts and other errors.
 
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Cc: Maarten Lankhorst <maarten.lankhorst@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
 ---
-
-Tip: 'git show -w' for easy review
----
- drivers/gpu/drm/i915/display/intel_display.c | 17 +++++++++--------
- 1 file changed, 9 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 12916e313821..eed906a30749 100644
+index eed906a30749..aa5d41dac8a9 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7280,15 +7280,16 @@ static void intel_atomic_commit_fence_wait(struct intel_atomic_state *state)
- 	int i;
+@@ -7274,6 +7274,7 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
  
- 	for_each_new_plane_in_state(&state->base, plane, new_plane_state, i) {
--		if (new_plane_state->fence) {
--			ret = dma_fence_wait_timeout(new_plane_state->fence, false,
--						     i915_fence_timeout());
--			if (ret <= 0)
--				break;
-+		if (!new_plane_state->fence)
-+			continue;
+ static void intel_atomic_commit_fence_wait(struct intel_atomic_state *state)
+ {
++	struct intel_display *display = to_intel_display(state);
+ 	struct drm_plane *plane;
+ 	struct drm_plane_state *new_plane_state;
+ 	long ret;
+@@ -7285,8 +7286,13 @@ static void intel_atomic_commit_fence_wait(struct intel_atomic_state *state)
  
--			dma_fence_put(new_plane_state->fence);
--			new_plane_state->fence = NULL;
--		}
-+		ret = dma_fence_wait_timeout(new_plane_state->fence, false,
-+					     i915_fence_timeout());
-+		if (ret <= 0)
-+			break;
-+
-+		dma_fence_put(new_plane_state->fence);
-+		new_plane_state->fence = NULL;
- 	}
- }
+ 		ret = dma_fence_wait_timeout(new_plane_state->fence, false,
+ 					     i915_fence_timeout());
+-		if (ret <= 0)
++		if (!ret)
++			ret = -ETIMEDOUT;
++		if (ret < 0) {
++			drm_dbg_kms(display->drm, "[PLANE:%d:%s] fence wait failed (%pe)\n",
++				    plane->base.id, plane->name, ERR_PTR(ret));
+ 			break;
++		}
  
+ 		dma_fence_put(new_plane_state->fence);
+ 		new_plane_state->fence = NULL;
 -- 
 2.47.3
 
