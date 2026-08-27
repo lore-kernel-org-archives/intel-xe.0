@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D89F8C61DCD
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 10:18:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4E3BC61DB9
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 10:18:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6134B10EF91;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22C3C10EF8E;
 	Thu, 27 Aug 2026 10:18:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="apqI9r9r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SZcxqFuQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B58D710E64B;
- Thu, 27 Aug 2026 10:18:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C28C610EF88;
+ Thu, 27 Aug 2026 10:18:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787825915; x=1819361915;
+ t=1787825917; x=1819361917;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=v+ubg/WH+Jrm6SS46xZYZl0sYLgCstwo6pwtqD0Wwu0=;
- b=apqI9r9rB6cby/5mQCvITDdPoM+K3ZUvglDpvD+Pf7a5njTs67NxzV6q
- Rv7ZYoUQ7cOFmfnrx5RyzCnD5UzYPDHDV3/OaHSgyAGEGvuZZW86lvhW0
- c+Hf9JO0nxGEnUrJSad5hWxWIx1mNhXBYdPv/cppQx7eauv3QFzKPPb+b
- s2tSVpf6LoaqlR9kx5RbkzUZtKeZU5y048ZzYYUbFJpC+TxFl2pNZrwPt
- 56uOM/YN6mH5lj2uqede4lkNNCxrgsyHRIIUENmL7WqoDv3I/ncwS0d3+
- SXPsb0MLu6p//JK3oCedfaL+Vc0jGryZ5EuZ8G+ws0uQTzq3biTQWRRaJ w==;
-X-CSE-ConnectionGUID: gh3RS9P8SmaSz34Zaj6bJA==
-X-CSE-MsgGUID: syaq+buORbeyWKeYsofzVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="88445861"
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="88445861"
+ bh=FMN8z66o/LNQ8cgOHAyFoBi9E6pP2e+CTjzZRjF0Mzw=;
+ b=SZcxqFuQgnp85NKMCJK2swLt5foqx/gw4vNBbRIsgfvGy8xCkc/ypmnI
+ P4yQGmEO5d092+ivyXJ+VGqYAM5muN4wRXcZpRo1PwdgvYOApD3y8lOFk
+ /yuj/NgFc6l5e5JTIMbqA/yyvibzQvlF6cz0pevoLdgzZKvXmw9+DWRm+
+ f5ICCPhjrNyL0JsHMKos46Rreml7GPJz4zsHyHn4cIKqVKfUorb4dOk9q
+ KjWJxsJVC8BsSQcYxqG0zhQ7FgRkGTlZsvqQH1QzCw2PKYrRrkwpTJ3Zg
+ 2KaHyulqCvB1H+nQrqarfV1OTZb1YJdWai3sIClKW6JATSFzvzuQWNLxW g==;
+X-CSE-ConnectionGUID: QDFcYOSXQvy061zknZYEug==
+X-CSE-MsgGUID: ukNANlxATgWtMtmrtXaoMg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="88445864"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="88445864"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 03:18:35 -0700
-X-CSE-ConnectionGUID: md38KBS/ReWvzw/x2I8TEQ==
-X-CSE-MsgGUID: uXf5umhaTE+N0cJlGYENkw==
+ 27 Aug 2026 03:18:37 -0700
+X-CSE-ConnectionGUID: qBjO/Bl5S+uqsGVFVIBgAA==
+X-CSE-MsgGUID: tKpOQX/4RjWIHMsYTwIiLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="306057617"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="306057623"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 03:18:34 -0700
+ 27 Aug 2026 03:18:36 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
  thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com
-Subject: [PATCH 03/13] drm/xe: Drop queued page faults when device I/O is
- blocked
-Date: Thu, 27 Aug 2026 15:47:51 +0530
-Message-ID: <20260827101801.1247654-4-arvind.yadav@intel.com>
+Subject: [PATCH 04/13] drm/xe: Stop VM work when device I/O is blocked
+Date: Thu, 27 Aug 2026 15:47:52 +0530
+Message-ID: <20260827101801.1247654-5-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260827101801.1247654-1-arvind.yadav@intel.com>
 References: <20260827101801.1247654-1-arvind.yadav@intel.com>
@@ -70,14 +69,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Page-fault work may still be queued when PCI error recovery starts or
-the device becomes permanently wedged. Servicing these faults can migrate
-memory or update page tables after device I/O has been blocked.
+SVM fault handling and VM rebind work may still run when PCI error
+recovery starts or the device becomes permanently wedged. This work can
+validate BOs, update page tables or submit migration work after device
+I/O has been blocked.
 
-Check the device state before and after fault servicing to cover a reset
-racing with the worker. Drop the active fault and its chained faults
-without sending a hardware response, and invalidate the cached fault
-state.
+Stop SVM fault handling, pagemap population, device-memory copies and
+preempt rebind work when device I/O is blocked.
+
+SVM invalidation still performs its software cleanup. Do not warn when
+TLB invalidation returns -ECANCELED because hardware access is blocked.
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
@@ -86,74 +87,119 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Assisted-by: Claude:claude-opus-4-8
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pagefault.c | 40 +++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+ drivers/gpu/drm/xe/xe_svm.c | 21 ++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_vm.c  | 16 ++++++++++++++++
+ 2 files changed, 36 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index 2e415995f067..f486165f2323 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -592,6 +592,38 @@ static void xe_pagefault_save_to_vm(struct xe_device *xe, struct xe_pagefault *p
- 	xe_vm_put(vm);
- }
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 627a741293d5..9e78131bfa39 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -11,6 +11,7 @@
+ #include <drm/drm_pagemap_util.h>
  
-+static bool
-+xe_pagefault_drop_if_blocked(struct xe_pagefault_queue *pf_queue,
-+			     struct xe_pagefault_work *pf_work,
-+			     struct xe_pagefault *pf,
-+			     u64 *cache_start)
-+{
-+	struct xe_pagefault *next;
+ #include "xe_bo.h"
++#include "xe_device.h"
+ #include "xe_exec_queue_types.h"
+ #include "xe_gt_stats.h"
+ #include "xe_migrate.h"
+@@ -288,8 +289,11 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+ 
+ 	err = xe_tlb_inval_range_tilemask_submit(xe, vm->usm.asid, adj_start, adj_end,
+ 						 tile_mask, &batch);
+-	if (!WARN_ON_ONCE(err))
++	if (!err)
+ 		xe_tlb_inval_batch_wait(&batch);
++	else if (!(err == -ECANCELED &&
++		   xe_device_io_blocked(xe)))
++		WARN_ON_ONCE(err);
+ 
+ range_notifier_event_end:
+ 	r = first;
+@@ -631,6 +635,11 @@ static int xe_svm_copy(struct page **pages,
+ 		}
+ 		XE_WARN_ON(spage && xe_page_to_vr(spage) != vr);
+ 
++		if (vr && xe_device_io_blocked(xe)) {
++			err = -ECANCELED;
++			goto err_out;
++		}
 +
-+	if (!xe_device_io_blocked(pf_work->xe))
-+		return false;
-+
-+	/*
-+	 * cache_start is private to this worker invocation. pf_work->cache is
-+	 * shared with fault producers and must be invalidated under the queue
-+	 * lock.
-+	 */
-+	xe_pagefault_cache_start_invalidate(*cache_start);
-+
-+	guard(spinlock_irq)(&pf_queue->lock);
-+
-+	xe_pagefault_cache_invalidate(pf_queue, pf_work);
-+
-+	while (pf) {
-+		next = pf->consumer.next;
-+		pf->consumer.next = NULL;
-+		pf->consumer.alloc_state = XE_PAGEFAULT_ALLOC_STATE_FREE;
-+		pf = next;
+ 		/*
+ 		 * CPU page and device page valid, capture physical address on
+ 		 * first device page, check if physical contiguous on subsequent
+@@ -1125,6 +1134,11 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+ 	if (!drm_dev_enter(&xe->drm, &idx))
+ 		return -ENODEV;
+ 
++	if (xe_device_io_blocked(xe)) {
++		err = -ECANCELED;
++		goto out_drm;
 +	}
 +
-+	return true;
-+}
-+
- static void xe_pagefault_queue_work(struct work_struct *w)
- {
- 	struct xe_pagefault_work *pf_work =
-@@ -615,6 +647,10 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- 		int err = 0;
- 		bool invalidated = false;
+ 	xe_pm_runtime_get(xe);
  
-+		if (xe_pagefault_drop_if_blocked(pf_queue, pf_work, pf,
-+						 &cache_start))
-+			continue;
+ 	xe_validation_guard(&vctx, &xe->val, &exec, (struct xe_val_flags) {}, err) {
+@@ -1165,6 +1179,8 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+ 		xe_bo_put(bo);
+ 	}
+ 	xe_pm_runtime_put(xe);
 +
- 		/* Last fault same address, ack immediately */
- 		if (xe_pagefault_match(pf, cache_start, cache_end, cache_asid)) {
- 			xe_gt_stats_incr(gt, XE_GT_STATS_ID_LAST_PAGEFAULT_COUNT, 1);
-@@ -623,6 +659,10 @@ static void xe_pagefault_queue_work(struct work_struct *w)
++out_drm:
+ 	drm_dev_exit(idx);
  
- 		err = xe_pagefault_service(pf);
+ 	return err;
+@@ -1301,6 +1317,9 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 		drm_gpusvm_range_put(&range->base);
+ 	}
  
-+		if (xe_pagefault_drop_if_blocked(pf_queue, pf_work, pf,
-+						 &cache_start))
-+			continue;
++	if (xe_device_io_blocked(vm->xe))
++		return -ECANCELED;
 +
- 		if (err) {
- 			if (!(pf->consumer.access_type & XE_PAGEFAULT_ACCESS_PREFETCH)) {
- 				xe_pagefault_save_to_vm(gt_to_xe(gt), pf);
+ 	/* Always process UNMAPs first so view SVM ranges is current */
+ 	err = xe_svm_garbage_collector(vm);
+ 	if (err)
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 19b3d0be7928..0cee5306fb9c 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -497,6 +497,11 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	}
+ 
+ retry:
++	if (xe_device_io_blocked(vm->xe)) {
++		err = 0;
++		goto out_unlock_outer;
++	}
++
+ 	if (!try_wait_for_completion(&vm->xe->pm_block) && vm_suspend_rebind_worker(vm)) {
+ 		up_write(&vm->lock);
+ 		/* We don't actually block but don't make progress. */
+@@ -518,6 +523,12 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	drm_exec_until_all_locked(&exec) {
+ 		bool done = false;
+ 
++		if (xe_device_io_blocked(vm->xe)) {
++			xe_validation_ctx_fini(&ctx);
++			err = 0;
++			goto out_unlock_outer;
++		}
++
+ 		err = xe_preempt_work_begin(&exec, vm, &done);
+ 		drm_exec_retry_on_contention(&exec);
+ 		xe_validation_retry_on_oom(&ctx, &err);
+@@ -531,6 +542,11 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	if (err)
+ 		goto out_unlock;
+ 
++	if (xe_device_io_blocked(vm->xe)) {
++		err = 0;
++		goto out_unlock;
++	}
++
+ 	xe_vm_set_validation_exec(vm, &exec);
+ 	err = xe_vm_rebind(vm, true);
+ 	xe_vm_set_validation_exec(vm, NULL);
 -- 
 2.43.0
 
