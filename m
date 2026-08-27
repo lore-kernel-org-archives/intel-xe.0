@@ -4,28 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6559C61DC4
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 13:42:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1794AC61DC2
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 13:43:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E84410F066;
-	Thu, 27 Aug 2026 13:42:06 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C9A910F066;
- Thu, 27 Aug 2026 13:42:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8503626185777627719=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2C_xe=7D/displa?=
- =?utf-8?q?y=3A_another_stab_at_i915=5Ffence=5Ftimeout=28=29_removal_=28rev2?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 27 Aug 2026 13:42:05 -0000
-Message-ID: <178783812550.92086.8163462531526992757@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <cover.1787833879.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1787833879.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD49F10F066;
+	Thu, 27 Aug 2026 13:43:32 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ERKIOr0R";
+	dkim-atps=neutral
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 331DB10F066;
+ Thu, 27 Aug 2026 13:43:31 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 41C89600DB;
+ Thu, 27 Aug 2026 13:43:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B61731F000E9;
+ Thu, 27 Aug 2026 13:43:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1787838210;
+ bh=o8JCC3uoUYqNPd3AeWsdAvB3bKK1uStU/lcVrNXMMIg=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=ERKIOr0RBnS8iw2YkccuAUDcz4bMBw7vFmEq81EPFw3/DHwU1ByVmrD5/EDEAUruU
+ wnUtCXQ5KFBrc5pJtBiYtQ5yVmxNUoBqeSZENFLeL74pxrvyd1+WEgwt05ebS7pURo
+ c7mdyY8T+EjsL/JTCL+hWFVjBubApVCXRjacoFglJ5RW5nWE202YwSrLQy4kCkpZgl
+ 5sURKvSYkk5zNQgWjwtp8tOLe76k4vTTz/eE09vbUl2Xi22gEJUyGiAs1d0sdHM0NR
+ ekInMz2/FMoAITGa58VThRMq1WTWC24wNvMD9coPfCcaRxcEDi6LWsfW+TqNTf2tT4
+ oOLa5EEPRcn9g==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 2/2] drm/xe: Convert xe_user_fence to drm_user_fence
+To: "Srinivasan Shanmugam" <srinivasan.shanmugam@amd.com>
+Cc: media-ci@linuxtv.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20260827133226.4076593-3-srinivasan.shanmugam@amd.com>
+References: <20260827133226.4076593-1-srinivasan.shanmugam@amd.com>
+ <20260827133226.4076593-3-srinivasan.shanmugam@amd.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 27 Aug 2026 13:43:29 +0000
+Message-Id: <20260827134329.B61731F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,106 +53,115 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8503626185777627719==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-== Series Details ==
+New issues:
+- [High] Missing memory barrier between setting ufence->signalled and copy_=
+to_user() allows spurious -EBUSY errors on weakly ordered architectures.
 
-Series: drm/{i915, xe}/display: another stab at i915_fence_timeout() removal (rev2)
-URL   : https://patchwork.freedesktop.org/series/172457/
-State : success
+Pre-existing issues:
+- [High] Userspace can trigger a kernel warning (WARN_ON) by unmapping the =
+user fence memory before it signals, creating a local Denial of Service vec=
+tor.
+--
 
-== Summary ==
+commit 59eae6961ce055613e8672c56bafdaedc5de05d7
+Author: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
 
-CI Bug Log - changes from xe-5652-098021382451783ea6448fa7f0e2a4cbc395c3d2_BAT -> xe-pw-172457v2_BAT
-====================================================
+drm/xe: Convert xe_user_fence to drm_user_fence
 
-Summary
--------
+This commit replaces the open-coded user fence implementation in xe_sync.c
+with the new common drm_user_fence helper. It embeds the base structure
+and delegates the worker logic to standard ops.
 
-  **SUCCESS**
+> diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+> index 37866768d64c2..7549123f84869 100644
+> --- a/drivers/gpu/drm/xe/xe_sync.c
+> +++ b/drivers/gpu/drm/xe/xe_sync.c
 
-  No regressions found.
+[ ... ]
 
-  
+> @@ -19,36 +18,51 @@
+>  struct xe_user_fence {
+> -	struct xe_device *xe;
+> -	struct kref refcount;
+> -	struct dma_fence_cb cb;
+> -	struct work_struct worker;
+> -	struct mm_struct *mm;
+> -	u64 __user *addr;
+> -	u64 value;
+> -	int signalled;
+> +	struct drm_user_fence base;
+> +	struct xe_device     *xe;
+> +	u64 __user           *addr;
+> +	u64                   value;
+> +	int                   signalled;
+>  };
+> =20
+> -static void user_fence_destroy(struct kref *kref)
+> +static void xe_ufence_worker(struct drm_user_fence *base, bool mm_ok)
+>  {
+> -	struct xe_user_fence *ufence =3D container_of(kref, struct xe_user_fenc=
+e,
+> -						 refcount);
+> +	struct xe_user_fence *ufence =3D container_of(base, struct xe_user_fenc=
+e, base);
+> =20
+> -	mmdrop(ufence->mm);
+> -	kfree(ufence);
+> -}
+> +	/*
+> +	 * Mark signalled before waking waiters so UMD can safely reuse
+> +	 * the same ufence without hitting -EBUSY.
+> +	 */
+> +	WRITE_ONCE(ufence->signalled, 1);
+> =20
+> +	if (mm_ok) {
 
-Participating hosts (13 -> 13)
-------------------------------
+[Severity: High]
+Does this code need a memory barrier here?=20
 
-  No changes in participating hosts
+The xe_ufence_worker() updates the kernel state (ufence->signalled) and then
+writes to user memory sequentially without a memory barrier. If the CPU
+reorders these stores (which is possible on weakly ordered architectures
+like ARM64), userspace can observe the user memory change via polling,
+immediately issue an unmap ioctl, and the kernel's check_ufence() may
+read the stale ufence->signalled =3D=3D 0 state.
 
+This sequence could cause userspace to receive an unexpected -EBUSY error
+when unmapping the VM area, causing the UMD to fail or abort. This was
+introduced because the removed kthread_use_mm() call previously acted as
+an implicit full memory barrier. Should an smp_wmb() be added here?
 
-Changes
--------
+> +		if (copy_to_user(ufence->addr, &ufence->value, sizeof(ufence->value)))
+> +			XE_WARN_ON("Copy to user failed");
 
-  No changes found
+[Severity: High]
+This is a pre-existing issue, but can userspace trigger a kernel warning
+here by unmapping the user fence memory before it signals?
 
+If a user application creates a user fence pointing to valid mapped memory,
+and then calls munmap() or mprotect() on the address to revoke write access
+before the GPU signals the fence, the asynchronous copy_to_user() in
+xe_ufence_worker() will naturally fail. This hits the unconditional
+XE_WARN_ON(), which allows unprivileged userspace to spam the kernel log
+and cause a kernel panic if panic_on_warn is enabled.
 
-Build changes
--------------
+Could this XE_WARN_ON() be replaced with drm_dbg(), or removed entirely?
 
-  * Linux: xe-5652-098021382451783ea6448fa7f0e2a4cbc395c3d2 -> xe-pw-172457v2
+> +	} else {
+> +		drm_dbg(&ufence->xe->drm,
+> +			"mmget_not_zero() failed, ufence wasn't signaled\n");
+> +	}
+> +
+> +	wake_up_all(&ufence->xe->ufence_wq);
+>  }
 
-  IGT_9076: 8f42b0189d73d9912ad58c99cfaa4ff46c20fcc3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5652-098021382451783ea6448fa7f0e2a4cbc395c3d2: 098021382451783ea6448fa7f0e2a4cbc395c3d2
-  xe-pw-172457v2: 172457v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172457v2/index.html
-
---===============8503626185777627719==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/{i915, xe}/display: another stab at i915_fence_timeout() removal (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172457/">https://patchwork.freedesktop.org/series/172457/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172457v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172457v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5652-098021382451783ea6448fa7f0e2a4cbc395c3d2_BAT -&gt; xe-pw-172457v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5652-098021382451783ea6448fa7f0e2a4cbc395c3d2 -&gt; xe-pw-172457v2</li>
-</ul>
-<p>IGT_9076: 8f42b0189d73d9912ad58c99cfaa4ff46c20fcc3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5652-098021382451783ea6448fa7f0e2a4cbc395c3d2: 098021382451783ea6448fa7f0e2a4cbc395c3d2<br />
-  xe-pw-172457v2: 172457v2</p>
-
-</body>
-</html>
-
---===============8503626185777627719==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260827133226.4076=
+593-1-srinivasan.shanmugam@amd.com?part=3D2
