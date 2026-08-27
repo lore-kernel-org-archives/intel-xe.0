@@ -4,149 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F433C5DF9D
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 05:48:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 284C8C61DB9
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 06:09:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0824910E2A3;
-	Thu, 27 Aug 2026 05:48:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA66C10EE84;
+	Thu, 27 Aug 2026 06:09:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iLl15yNh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LGERYHKA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A4D010E2A3
- for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 05:48:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 553CD10EE79
+ for <intel-xe@lists.freedesktop.org>; Thu, 27 Aug 2026 06:09:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787809720; x=1819345720;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=ZPFQloi2jP0wBuzqlvcoqFsfFuPsQh501709Frkrbro=;
- b=iLl15yNhiT3JDhllxGlwDdngAVerEKY9fQf2YXimPCHmZD26SBxqapCw
- v07rP9sHHDGb2kuyemQDYb8bQSh8OeA+zbWLnzaibjFh1dJEq1EMR416T
- M8a3P/kwPNi5t4Ua7zN6z682mjiYYGOrwej7aWeqcSM4UgT3B25iVXA9N
- EiypjVu1X5TN6f5IUnXEgaJGupvVWwuohn6L/VVImLg/e9LBIYdChTFvo
- +xvfGQnZiyG8rTLgdw2GCg/PNVEGnTA5vgs6i34gfzDxrI4zH+b7xyb++
- OSjvoO10PbFyB/MpAb745qrBnzlkW89uFS+96PnzS5YQ0SKuKwM2jduqq A==;
-X-CSE-ConnectionGUID: jov1fcOERFSDMug2Lmrm6Q==
-X-CSE-MsgGUID: hBy14pOHQAGyyPKZ+2l6IQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="98636420"
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="98636420"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ t=1787810950; x=1819346950;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=wgww1ejTp088bIxW0BoTwov0kebrvO03rm70ojoSf8E=;
+ b=LGERYHKAE1Zfe8X2hy5v4QWIGgwqID4zRNasKy5KsqZ/lUXlAVHYlK/P
+ oHbzVni5uXb82stCiIRMd8COcDhf0pGoDxUvUbbgwSUpHlENU0ARm1g4a
+ 0/WaagY2/U7p2KKhB6wsjYKcH4J0IAdvn/Utu4SL9tFucbPUpLdSzHaqG
+ IbEMSxfO22D5Kz8EwbFb5bFy/c5XKJGiHcJIMjc9YZLac6j1+cbqEOSvg
+ tMNUVlMTarwdVtaVZ0TKci6i/APMKNy349Xl4sbZly7r6IP+nvCs0ieIq
+ f5h8CPiYor2NgKXNjt/n2kmGVHsO14CzykeRc3EOcmCEQTz4SSguq4UOe A==;
+X-CSE-ConnectionGUID: Xw0M2siIRzG+9DPliDqtfw==
+X-CSE-MsgGUID: 3Yp8gZolSHyJDtqpnNS6rQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="98638140"
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="98638140"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 22:48:39 -0700
-X-CSE-ConnectionGUID: 4Gc6R7IYTBOK/RZZXnhOfA==
-X-CSE-MsgGUID: ItWK/OZ+ReyY7IQ5mPpQWg==
+ 26 Aug 2026 23:09:10 -0700
+X-CSE-ConnectionGUID: UPihwhTwQcW9ikF/mSxvnQ==
+X-CSE-MsgGUID: 4Nl33PyFQ/21GVONzRhQSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="265990466"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Aug 2026 22:48:39 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="271992347"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Aug 2026 23:09:09 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 26 Aug 2026 22:48:38 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.46; Wed, 26 Aug 2026 23:09:08 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Wed, 26 Aug 2026 22:48:38 -0700
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.21) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Wed, 26 Aug 2026 23:09:08 -0700
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.67) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 26 Aug 2026 22:48:38 -0700
+ 15.2.2562.46; Wed, 26 Aug 2026 23:09:08 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jMlxd27BAMnYx6Xv5R3dADvzYSfn1UrzeRnl2ebyVnswsK+uZodQulBLnD9IVVOQnNGDHCEt25krTkwFVU7zYNKzbw0/n6A8TlmIVxkiSmk9uEaGdpSqa03mHrLBM22lYK4rf3UwcPEXmssZcxopIGsMCMhtyTSAW/L3Fwg0bLorbs56GuN3TNKzDLYfWKhOCloIVKrbXE2E7MQOIJRj/WuYY7CcRftsC+JJ/B2/HaaLrkXRMzomjiUqjQjGORPoztP2dn93dyn5EIgEaTNmncfR80VKd77q9qNeSCSkbB+tOtXMLJ6e7pdk9O7Mqp53JMPUGNToJ0CE/n/9YvluUw==
+ b=t6N9DiBuBnrKOUkaz3WWa1oHxuisiVMwzswYxrIqOMUhpHqV2rGJ3NQ79AsylbeKXuBn5/W1urQjJ7uo74tRFRhagRIqi7LGtFgqaHyZncJ6rhA4TCJc/msGYuQOlb/UTvWlyJ/IJwcgQCNwVg2MkWRtkJNiIDSpBgwwhrC3RxklbU9lPR0HL4vjY5ch/xX5+UMJSkUOr5pUrlMnNR+7Sp4KJcuajBRMLH6+U2nyh16lg7YHVKh4ZvGgt8BjQwY4xpGdsUywnKPhyCYZCRA+W45KrkoDlKJEsXpvUkMEVTL1NUq7CUkh976CdT8N9ZMwZIPJIp3myf2IJqXDaObW/g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0BveWZNHf4v5fgMTSaE1//wVDZImp874HLN5VRWNoVg=;
- b=SIYFND2aPB7XvPue5wGpT7a9rNkex5sc+ihL1ll+tF17ySWxyFJu66eSp+TKnko7iu0uP0itLGk1iQr0UZs5XAQTiakWWHLs4jy2SrvTG6lF8kDx884Gv7J0lTy0E30PYJ5V1RDiYRXT/j15qnuDaKKfJ0B6vyrzjwm5RvlT8ZBeTrKO7IaoR2vDGXtBp/tH9YN5oZ8b3CJdtrCKTU+4AWBaDl3eVM2vcXxqQ+js1R1USyGsKS+yj6z0hHFnyQ41YMnUxFLDDQDqkyb6rbuNClLu9BW1iZSjKYRM77I1mcKKFX8A/NbfLN4YIkGr+HroI9fCKEMGuLlWYshX0Fa9Vw==
+ bh=JKZEvO+PZF7omqLrAhjpZwIQPA9L+7Kk7OSfet4LgVU=;
+ b=oRrFjUf9u1NJ48mDeOK+71PpDipZ10KiTuhKAYxSKDB4ThLwxWhzdOq9XklqOzfj2ORMOA/ZwGfiMzIZuzpZhKZGJhhEgLtmnEpv+p0wGzwdKjbAUDT6d2c8Fs1RuZ/DF3Q7PXdPwIKMiilFG5W52kbGl/5jKPVtDJG/c51sigJUQ8ZYjU5dUFQ0d7QpeH8Dttm8P+fqzwjLYy2paKaPmmMKg3utEs+Cc2h1/ZuLBwrJo2vDjElbYMdPrW+MeHEDeHNzh/qs9ksNtpFpbaon87EPLE0ZL6+rPCQN2fKAzxnneqaSh3ZH0b0TzyXRqJTUzI2Yo5VNaShXDkqPrRk4XA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DS0PR11MB9478.namprd11.prod.outlook.com (2603:10b6:8:28f::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.9; Thu, 27 Aug
- 2026 05:48:36 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0360.008; Thu, 27 Aug 2026
- 05:48:36 +0000
-Date: Wed, 26 Aug 2026 22:48:34 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: "Lin, Shuicheng" <shuicheng.lin@intel.com>
-CC: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/xe/bo: Take a runtime PM ref when shrinking a bo
- needing invalidation
-Message-ID: <ao/Psuvcjjxkt8iH@gsse-cloud1.jf.intel.com>
-References: <20260825224819.2182540-1-shuicheng.lin@intel.com>
- <ebc4797204a5aec94f122094e2fbe2fb1d0536c1.camel@linux.intel.com>
- <DM4PR11MB545658D01D36A23A72096175EAAE2@DM4PR11MB5456.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM4PR11MB545658D01D36A23A72096175EAAE2@DM4PR11MB5456.namprd11.prod.outlook.com>
-X-ClientProxiedBy: SJ0PR03CA0077.namprd03.prod.outlook.com
- (2603:10b6:a03:331::22) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2a) by DS6PR11MB9920.namprd11.prod.outlook.com
+ (2603:10b6:8:464::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.10; Thu, 27 Aug
+ 2026 06:09:05 +0000
+Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
+ ([fe80::5a5c:9c7a:cd1d:d687]) by DS4PPF691668CDD.namprd11.prod.outlook.com
+ ([fe80::5a5c:9c7a:cd1d:d687%6]) with mapi id 15.21.0360.006; Thu, 27 Aug 2026
+ 06:09:05 +0000
+Message-ID: <18bdabbf-855e-43ed-ba99-94adeea35a26@intel.com>
+Date: Thu, 27 Aug 2026 11:38:58 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V18 05/14] drm/xe: Guard teardown paths against purged BOs
+To: Tejas Upadhyay <tejas.upadhyay@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: <rodrigo.vivi@intel.com>, <michal.wajdeczko@intel.com>
+References: <20260826135136.204044-16-tejas.upadhyay@intel.com>
+ <20260826135136.204044-21-tejas.upadhyay@intel.com>
+Content-Language: en-US
+From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20260826135136.204044-21-tejas.upadhyay@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0060.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d3::9) To DS4PPF691668CDD.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2a)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS0PR11MB9478:EE_
-X-MS-Office365-Filtering-Correlation-Id: dcdfdefb-baa7-4c3b-1075-08df03fed654
+X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|DS6PR11MB9920:EE_
+X-MS-Office365-Filtering-Correlation-Id: 95f719ae-7987-44e5-4f84-08df0401b2e7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|366016|376014|56012099006|10067099003|6133799003|18002099003|22082099003|5023799004|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info: XXeHHtzwt4Czw9emqZajCUeEX098u4dHQfWZ6totZtWwkM6uKWsaFUM1VW2aGy2CJYMUVTLMNaqVpxYPKx1cWETxALVrVZnPXGDAzH9f10eIqwFIBD+Raxn2Vo5MYp1VxeUCk/n+k4bkAOq5EK8/m/3RlgvaN/Fs4oglvfGdM27O9kddQdyi+cTgewOrXXZTW0DJVvyjq1nptzCY2M15Yimp9EtX7Z3r+spOrCdddYp+CxxniOvMJDS9EoCjM6b2eLw6arp9Do5We2+wZZhRwKNXyoyaqQCZr8AWt7Mb9892LPDa24KD+3oLeLooQHzLJT87D9v4aP/Tty5biYflHlwLBXl3FiN5a7WX5NMD9zWNETnopSdndWaTQCutnFMahgAn4ACFqtdxPOddm+07vJfvMiHJTBV9xNKMiQePpsHEVoH5yjE0zfk9UJTI8O8w1ItTUJNH21b6Ctj7tPs//WFajo2hWjWeDUojVSk/+M2UnOcXAKBl0t2rCsbDhARPnua7DEJigipaE1TK/AMZMZKRRNqiyAn5AIch1cnIYRdYGG0EItYW/0vdsTNpVB6+Dakqn3RiGxZMfSEPaHNLkRBFGNXHhIkgloRN6P42jTB8nJE7DLoJh0K5zL/3h+tKjwweF+scjZzew3b2ZMB1fmqmDSVzuVxtMMDf7p0sYao=
+ ARA:13230040|23010399003|366016|376014|1800799024|10067099003|22082099003|18002099003|4143699003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: 19BTtpE5A8UiGtKn4jzj5rGY65gw+H/vKlXnsmsf/e/05Bn1OlZyfmWqWsYnvWBjkl8oJ5/HV5emIM8aESVf21TkrOYXUcMeOq7aewNVLcJDMYe5m/MHKDWYIXiDl1WSp7ByCa33O1bYHh6daBdP11yfKIn31NIzowkwXBGYxfrEtU9lx562/qyE0kLuDJCC2Y4aZNpZ9wVBuzvLzHWLsaTQdKzBlk6cpfW+KquE1yaWhUBlUsrHEvae7WMOkGUi0stZQ/F3LdanlV/KyBlzbFPKdfANvC8mVvyfT02pPPLNkvzISNW4X1GQlXsYRNndkai/fm6X/d2cxIUpU3Fge51g1wDbMTzs4FWVyU/ujVLvzylTWxfyd8WHbu5iJitP4Nr9LLZLl4Ki90sgDg7BhAx1WyNsQRvHW9l3+FqvNoOnv9aXHhxV4NsmHIq37Yrhpgk0Sm6Sy2wPYBf4QUVpKkAydtSJibUkhlruUpEnaRyzQwaacZemqtZduvSQ1Kk75x+4KmeJNM0reFOFLl+eMS3X2fuV+fzRIJ+LiRa12O53pECLxXZhcT90gbErEUGnsA0w9o/KTmSvd2ifmGlnQM8WXZJO39BD4+/uLKlSbO0chlgR2GArI450T9djRY0ksZhLW1iUTmW6vlAtg9fW1KL+GY9QDoqsLbGF0Ugo2Ow=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(56012099006)(10067099003)(6133799003)(18002099003)(22082099003)(5023799004)(11063799006)(4143699003);
+ IPV:NLI; SFV:NSPM; H:DS4PPF691668CDD.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(10067099003)(22082099003)(18002099003)(4143699003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?oAV0GJt60QCeUmKBCs0PjFbUEbU5ei7Bw1OIvblWAtn8cfeQlYHH3tzYiW?=
- =?iso-8859-1?Q?+zqu5W6NmPnXuFc1LpiaYUBu8Pr3wfRAIcqj+Z8NfrK6cbFzgskgBPLuh2?=
- =?iso-8859-1?Q?Cdcef98ppc8ZRg04whwnIDzqVefMAsccFLuXkovxTImkZ1D9wPCdqv1fL9?=
- =?iso-8859-1?Q?VctEEpgEn2ZD2p6iZ/w0k1eVFSqTrK1R2olwVIjbeRq8szaY2FiwEUi198?=
- =?iso-8859-1?Q?1YqM1z25IaFbPqQCqwefWJVO3h9sUkmUL+Xnt/n1vljeB6//Llg08EZCvK?=
- =?iso-8859-1?Q?a8NW6PhfZeZ7+mEfXHyr6dgDMpoIv3MAIOzOqoDdZtI5ChV3h8FoLj7hBF?=
- =?iso-8859-1?Q?8BiyRk5vpSlwnUGuiVqVend4v+hwjV0riYWRZT23r3qvsqG0FAbqdNt/Ge?=
- =?iso-8859-1?Q?1Xntjn9iRN5wS6BcnNoHhx0nhLjkr+d0SkSRyBX9jQlnvf8rKy0tFNQefT?=
- =?iso-8859-1?Q?pmJFN1d76XxqwZ39yB83IpNCXAAvlEeXwbvsWMz7ADPTbLA2phTsHX4i4+?=
- =?iso-8859-1?Q?S7ff9k0zgL908Z/qGr+C5/4JH6rWrrZedH6OA6Sgv5urG34ldLj93x3gMf?=
- =?iso-8859-1?Q?daDkkvauhihyyV+nNXoxUw6TLyXcglYwwQ24Xj+Vjfl6gzxUYljOiSzg3y?=
- =?iso-8859-1?Q?BV1bAwYMMtcaIZVvs1YIU0GbdyvtuNFDhAU5n8dbnMcCytZTbRX9g42BSo?=
- =?iso-8859-1?Q?BZNIB1dHHWvLiIQoDDRkG9OKIkiIePuR2d2faMIElSHf1AsBAl9fA3aQnS?=
- =?iso-8859-1?Q?GjjJgylDPlR63lZEsVcMWj3p7PIOf8mptF/wKWvfxwyVFc2qHnWhXav5tF?=
- =?iso-8859-1?Q?6dBeQChV1aLwFYqNHyvhn9krgF0SJdF22DP0U3pXe/jHeYb5TDOEhfg3/s?=
- =?iso-8859-1?Q?v0LxtQJmC0T1tY9b856iHZJqAWOOfw/Aa1sO1zLkbqxi3i0Vusk/NZ3+cf?=
- =?iso-8859-1?Q?SeltstksmSSaDzIIujjGxnGZPSyP5lOgQp00YCEY7Dv34Ad1OpRCxQtYBT?=
- =?iso-8859-1?Q?F3ospRpg3srV2yQah1Zm7AQV+b5oteld0+TTav80Z13rGxMC6sYAT4rkSn?=
- =?iso-8859-1?Q?kqrzdz/8sx+1mtMEGcdLSj3TEDxLtfv5V00fn5CRS0Bq9hM1hFvHAZjsxd?=
- =?iso-8859-1?Q?Wq2EQb2SyPR99lV9uDS9ydUPncVi+Vyh70HDuSaDDIe3hd29SG4/rGJVsg?=
- =?iso-8859-1?Q?3idgF3uy4snRtNpug99AmxOPTQq+2nv81mxvGRG/SDeu071tgvnBY3QDGZ?=
- =?iso-8859-1?Q?VbgfQQ5rgdYMfmYIlfjSukmDi2OlpZzzLXPKL1v9mp19ZZ5YCRTaxDMy4j?=
- =?iso-8859-1?Q?I16YR0l5WOIg8zWJutveuPfp+HMOtKDMOlJIhe4HnWzf8JBtf6E60bl+L3?=
- =?iso-8859-1?Q?mZPyUM9SQL1Qptefo2SBdO++3QUlh3cjRhyXinLZOqRfJKiVTVi5OolksE?=
- =?iso-8859-1?Q?VzVCdv9v7+tk0avDy8ezqsd9gnECvaHOtBu3azTcL9Gj8X7OFih/jekt9e?=
- =?iso-8859-1?Q?GNpsY6tnxIs5J6uncSNVhsbYsX0xiatz1OCNT7ymSsAp5/j8tUvKH150FE?=
- =?iso-8859-1?Q?V52718jPdl9Vjb1KR4vSpMLm9xNENvAnK91WyjlTGyIqYKyMzPeNBpWYaQ?=
- =?iso-8859-1?Q?9oNPC/KUaRRazFrQYjCK6g3jB5KVe6K3FW2DgkPE8HLIY/vgAc5B+9koDZ?=
- =?iso-8859-1?Q?A3UP9ZmkEyNaPKnpL/BkvQ9XedYwj9/m3PKVlSi5Pwy3HC91pqKR+9zIpf?=
- =?iso-8859-1?Q?ebuD/vJ11SNfTJ0/wEMdHoXm6mxFHuJkjwaH2K7lUih+oAaAUIENcKIjZa?=
- =?iso-8859-1?Q?Sg/JKuD9Z+F0/HaSqQ3hGe05bpVlyeA=3D?=
-X-Exchange-RoutingPolicyChecked: fopcd4Rysu7j9kXsxnYzTYaWFncbVIyD92MCc1AmGtUhYPQv2Zcqev083isELKck3lnP/1lsMHTW+LrZhGd/XD8HL4Aq7H8ioXnDCBjs6z4yxagUsTxnQeCx74E+flEJ1iP1NxFex0U0SCT2Lzx8s9rjO4XIiarq012Hu0Q1J5Kf3IDiwPNSgydGXh676kkUV97ukw40+qtXkk8x8O888gt7IuZ4DUHwL3Cl4b9dmV7vqaSYFrpo1BlwhqRPNcaUYoXlXmKxf6NKEpbhe50Rn9BOoRE5H2apoYn5YSVVukktPClx6Qljde4eHIWsdh/7AIQb6NNJNl+pbcdgRWchBw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: dcdfdefb-baa7-4c3b-1075-08df03fed654
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WXJVenU0aFFsYjVBNTl4d3RJYTZiTm5YSURTdkt6QkwvQ3V3M2ZFVTNOb2pO?=
+ =?utf-8?B?bDRTVVZ2bkJZVzY1QTJ3SzM0RElROU1nK3JPamJCdU1LcUUxb0E5TzZHYmlW?=
+ =?utf-8?B?ME8xNXJsaWxnK3ZiSXdJVE1nNG5nWE40cjBZN0wySG5IcVMwdE9IbG84NjBO?=
+ =?utf-8?B?aEx3dGgwTzBoKzVEZ0hCMGVwK00zOHZuQTFGWG1XelBaeGx3R2dPMWRsWG14?=
+ =?utf-8?B?Tk4xVmttVHNIOVNuU0Q5NWhJVEpqZmNKQkJPUTkwc2l3b0gwRlN2OEU2VGkw?=
+ =?utf-8?B?UkF4MUs4SnIwdExpRVdMRUROVHZ3eVFhQ1BFOGFYUVNSZUk1SnhSSnY3UVN3?=
+ =?utf-8?B?RlRaRWZWK0ZFc3JYa1NJSnUza2I0aUVyTmV0TG5jcXlBMjVYbTkydkR6K250?=
+ =?utf-8?B?WmR4aUNnS3FCcnJwbGR5TFowZm8xemc4SVJxMjFBQ1YvS093SFdOYkNkMEcv?=
+ =?utf-8?B?RCtZK1p0Vzg4L2dyVVVsVlFMaXFWV1llVjVYaG0wcVBscDRvOTVhYjB4dG42?=
+ =?utf-8?B?MFFqZ1BCcDNNK2xwSmN5MVQzcWRWSTVtWHFlblJWazZlRjJ2SmZldWtJYnYw?=
+ =?utf-8?B?Q3pWaUZwcGxBbFdLbkdneGh6R2d4QW16WmRrVWtnSldRV1Z5M3RaRnlVMWdD?=
+ =?utf-8?B?M3dwUkRlVUNlQVBRS3pCK09UU2ZNMHFHYktGSHgrNDZyY2IvWHRqV0RDVkY3?=
+ =?utf-8?B?ZG9aLzRpc1FtYU5TaU9FTnRUUjdWMzcreHNoVkFZZzVqQ1JxMDV5ZkJyM1l1?=
+ =?utf-8?B?QnVtN1VsZzhNTE16dE5tNS9TbW9GOENBd3E5a3hsb1ZLNFBDQ2JTZ2prT2RH?=
+ =?utf-8?B?d2lMWmUzK0VrRjgvNW1iWmZuZ2c2SDRJcUtnYTQyemJIeG1ZbEI2b081TGNF?=
+ =?utf-8?B?TGNqU3BEUUpnUldLWWdTdHB6VzlneXZWRnE5UU1WSzEvdVpoalJ6OHptK2kv?=
+ =?utf-8?B?VTJMSnpFbGFUYllRVkIxUjAva3BFSWh5eU02T0tScmdvK3A5Q3RKV2FUOW1w?=
+ =?utf-8?B?VjZzbC9sQkVBb1F2L2gvNEpzcHNzOGQra2oxNHhEeTBXWk1Ma2s0ei9yT0Jo?=
+ =?utf-8?B?UENsY2FCczRnMHlCRG05NHNWT1VLVVJqRWtJL0dxbWt3eGc4eTZ4U1ZFOVZ3?=
+ =?utf-8?B?SjEzZklSTkxYcTBXQ013VTZycXBwL2pGZUIzUzlUMjZSQkRqaHhSNHFyQ0RO?=
+ =?utf-8?B?OC9TZzZWRUVZTnEwdVpDUUJSM1dSYTFBS3NTU2h5T0hFZm9YL1lMMVNXYzgv?=
+ =?utf-8?B?MWYvMGRjd01TeWExMWJua1VZS3A3YUk5NHV1cTlGRnNDcVRkMWZ3VXRHWEJu?=
+ =?utf-8?B?dVlFSiszRlJncFNzdjNlaE5uYXBwN3NJbzNBWXR5MlZBZERCdVdGZUoycWFB?=
+ =?utf-8?B?OUo4TGJEc3czZVhKQjFzZmZJK3lCQVJQdFhhS1YzbFVtNjNYZlBtbE5qYzcx?=
+ =?utf-8?B?SnVWS3JZeHl2aEltam5pdkNKQVp0T1FHalF4ODVKaDVMMmlpMTgvZG5vc3J0?=
+ =?utf-8?B?K3YvdGZxUzV4N1FYYlUvT2VraitOWS8rN3Juam1PVnZXT09CbFhyeVpKSlpY?=
+ =?utf-8?B?WEhXMHVJTjlVVXMwRzNjak94QmN1dm91UEVxSjJLMStoaWhtd0tvSExoTGhY?=
+ =?utf-8?B?aFZWQmFySmRQUWpudHVvZlBUVXdibXYrbVBLRG95djFDZDYxaUVkUTlhMnVs?=
+ =?utf-8?B?Wi9CR0tBMzhJK3JUS2JZdmYzdmsySkdoV3dueDdVR0d1dWJJYmQ2YzgwY0d3?=
+ =?utf-8?B?TnFsSVBoQzJwUDJZK2ZVL1lOaTBRb3plNGZta0pzRWt2YWwraE1UNy9WTkdC?=
+ =?utf-8?B?RjQwcUdUckNaU21kK0NaQzdseFM3Y3NLbEVjZE5ZM0tLMGZDNUJiMmRLYUND?=
+ =?utf-8?B?M0g1Zm5sUHkrZ2FDNVNVUEpsaTU5eHJqSlBHSVcvOXFETWU2WUUxU2pFMkph?=
+ =?utf-8?B?VjMyejZQU25sZ0ludnFWMWhCcDNnZ1lmVjUzSTR1NGFMaGF2aW9EY09UUDRz?=
+ =?utf-8?B?NktCY3BaLzBtMHphQ29SWHo5VG9Cay9sRlZhY2pYNjNadVUyd3JVeXZVYXFm?=
+ =?utf-8?B?bnFmLy81QStKeGcwd1FaS0ovV1pOalN4d0wxU3NKUUJhZkNSU2VXQ0h6bHAx?=
+ =?utf-8?B?TVF1aHBRcFpPTWJPb3cwK0V2Z0Y3RnFDQ2IxRitwWmxzS01NMm4wRCtVNUwv?=
+ =?utf-8?B?SG5sWGdOUHZSSEZta0VGa3VhUURLYWYvZ1UzVDhiZyt6Ni9PazY2a3Z1WTdx?=
+ =?utf-8?B?elluc1FYR3hWUksyd2Z4Z2xqMklveDVYTThJYm9ZaTNmZ0pqekRXNlptOUZo?=
+ =?utf-8?B?L2orOGFpSTJaREt0VE0rLytHOStzV2NPcWxMejR3Q3pzdG1YVURBelBha3c5?=
+ =?utf-8?Q?MvO7jwlOG3JUHlko=3D?=
+X-Exchange-RoutingPolicyChecked: 0xvxEKR9Tei4Z/83tjccVVpijXiAuD2DlELmup2iSslJ0kVrVaG1XdIGPLsoeaJ6Jd7kasXkUs7kgaCJJxFzxlSP5+Z1NXcgSKQ7YoTDHEBNBV9fW1sfhqJlL/SNoyRiFq0ppB/dud7u4p90JUVFcR6wxvG1yv3UAPvk2GdfGL5rPkvpGcdOjW41bC4LMkpCQDAc4mAUhhvTtdS+vqB6M8MrTwy4MeJTvM8xB15WvQXJofkSLhw7qT3AhEOfqtJa3o258NXVWqcilqtpu2BEt1jsUaUy/b/Z1f/M12GVpqihvZIEDasp5YLdnoOTijsBXlsx/hEVG/hzNt+sixiUgg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 95f719ae-7987-44e5-4f84-08df0401b2e7
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPF691668CDD.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2026 05:48:36.6222 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2026 06:09:05.6904 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: N415NDP6gNyCo2JwFUWa3WX172FUy+52eK1Qt/Fdc9xGrW2rUoRLcVAyFSwio6QUWV3kiHAhmRXe+OqGCRNQCw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB9478
+X-MS-Exchange-CrossTenant-UserPrincipalName: iJzVGnLGckYvqWm3xGQhTgJC2KMn1abRZQQaWyuWJF+71PGiGBCe42fDcMijhRYrlp2abgM1dlVTS6S/xSXdU1eR1LWHf+plcyzz6M0tISc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS6PR11MB9920
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -162,312 +169,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 26, 2026 at 10:10:38PM +0000, Lin, Shuicheng wrote:
-> On Wed, Aug 26, 2026 1:01 AM Thomas Hellström wrote:
-> > On Tue, 2026-08-25 at 22:48 +0000, Shuicheng Lin wrote:
-> > > xe_bo_shrink() only took a runtime PM reference for the System CCS
-> > > backup case, and only after the purgeable branch had already returned.
-> > > That branch calls xe_bo_move_notify(), which reaches
-> > > xe_bo_trigger_rebind() -> xe_vm_invalidate_vma() and submits a TLB
-> > > invalidation over GuC CT.  The non-purgeable branch reaches the same
-> > > code through ttm_bo_shrink(.allow_move = true) -> xe_bo_move().
-> > >
-> > > When the device is runtime suspended the CT is disabled and the send
-> > > returns -ENODEV, tripping the XE_WARN_ON() in xe_bo_trigger_rebind():
-> > >
-> > >   WARNING: drivers/gpu/drm/xe/xe_bo.c:770 at
-> > > xe_bo_move_notify+0x1fc/0x450 [xe], CPU#2: xe_madvise/21389
-> > >    xe_bo_shrink+0x20f/0x2b0 [xe]
-> > >    __xe_shrinker_walk+0x174/0x410 [xe]
-> > >    xe_shrinker_walk+0x56/0xf0 [xe]
-> > >    xe_shrinker_scan+0x10c/0x1e0 [xe]
-> > >    do_shrink_slab+0x176/0x7e0
-> > >    shrink_slab+0x137/0x990
-> > >    drop_slab+0x7f/0x130
-> > >    drop_caches_sysctl_handler+0x9c/0xf0
-> > >
-> > > The invalidation is always issued for a fault-mode vm; since commit
-> > > 4e7ebff69aed ("drm/xe/xe3p_lpg: flush shrinker bo cachelines
-> > > manually")
-> > > it is also issued for a non-fault-mode vm on hardware with an
-> > > optimized
-> > > L2 flush, which is how this surfaced.
-> > >
-> > > Add bo_needs_invalidate(), mirroring that condition, and use it in
-> > > xe_bo_shrink() to compute needs_rpm ahead of both branches.  The
-> > > reference is then held across xe_bo_move_notify() in either path, and
-> > > is not taken for a bo whose mappings would not have been invalidated.
-> > >
-> > > Shrinking can run in reclaim contexts where the device may not be
-> > > resumed, so a bo is skipped when the reference cannot be acquired.
-> > > Have
-> > > that skip queue the shrinker PM worker: xe_shrinker_runtime_pm_get()
-> > > is gated on the needs of its own backup pass rather than on this one,
-> > > and on DGFX it returns before queueing anything, so without this a
-> > > scan where every candidate is skipped makes no progress, reports
-> > > nothing scanned and returns SHRINK_STOP with nothing arranging a wake.
-> > >
-> > > Also gate the System CCS term on !xe_tt->purgeable, since
-> > > xe_bo_shrink_purge() frees the pages without a GPU copy.
-> > >
-> > > Reproduced with igt@xe_madvise@dontneed-before-exec while the GPU is
-> > > runtime suspended.
-> > >
-> > > Fixes: 00c8efc3180f ("drm/xe: Add a shrinker for xe bos")
-> > > Assisted-by: Claude:claude-opus-5
-> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-> > 
-> > Nice catch.
-> > 
-> > I wonder, however, can we skip the TLB flush if runtime PM is not available at
-> > TLB flush time (runtime_pm_get_if_active()?) Assuming that if runtime PM is
-> > not available, no contexts can be active and they will flush TLB implicitly when
-> > becoming active?
-> 
-> Do you mean call runtime_pm_get_if_active() in xe_tlb_inval_range_tilemask_submit(), 
-> or lower down in xe_tlb_inval_fence_init()?
-> I'd prefer that too, as it would simplify the code. Two things stop me doing it here.
-> 
-> First, the PTE zap also needs the device, and it runs before the flush.
-> xe_pt_zap_ptes_entry() does xe_map_memset(), which asserts via
-> xe_device_assert_mem_access():
-> 
 
-I agree with this - the zap is not optional for fault mode, it probably
-isn't for 'xe_device_is_l2_flush_optimized'.
 
->   Assertion `!xe_pm_runtime_suspended(xe)` failed!
->    xe_pt_zap_ptes_entry+0xb8/0x120 [xe]
->    xe_vm_invalidate_vma_submit+0xb1/0x770 [xe]
->    xe_bo_move_notify+0x1b3/0x450 [xe]
->    xe_bo_shrink+0x20f/0x2b0 [xe]
+On 26-08-2026 19:21, Tejas Upadhyay wrote:
+> VRAM page offlining can purge BOs that are still referenced by page
+> tables, exec queues, and DMA-buf exports. Add xe_bo_is_purged()
+> guards in the teardown paths to prevent unpinning or mapping an
+> already-purged BO:
 > 
-> The zap isn't optional - the pages are being freed, so the PTEs have to
-> be cleared either way - and xe_pt_create() uses
-> XE_BO_FLAG_VRAM_IF_DGFX(), so on discrete it is a BAR write that needs
-> D0. Skipping the flush alone leaves that behind.
+> - xe_bo_unpin_map_no_vm(): skip unpin if purged
+> - xe_dma_buf_map(): return -ENOENT early if purged
+> - xe_exec_queue_update_run_ticks(): skip LRC timestamp read if purged
+> - xe_pt_destroy(): skip unpin if purged
 > 
-> Second, I can't find the implicit flush in the code.
-> xe_pm_runtime_resume() only calls xe_gt_resume() (do_gt_restart()) when
-> d3cold.allowed; otherwise xe_gt_runtime_resume() just takes forcewake and
-> does xe_uc_runtime_resume() - no reset, no invalidation. That doesn't
-> mean the TLBs survive, it may well be a property of the power state, but
-> I can't confirm the assumption by reading the driver. Do you know if that
-> is guaranteed? Thanks.
+> v3(Sashiko):
+> - Remove dma_resv is already held
+> v2(Himal):
+> - take dma_resv lock before calling xe_bo_is_purged()
 > 
-> > 
-> > IIRC It's not totally clear whether this would work for "has_ctx_tlb_inval"
-> > hardware, and if so we might need to add something similar to this for that
-> > hardware.
+> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_bo.h         | 3 ++-
+>   drivers/gpu/drm/xe/xe_dma_buf.c    | 3 +++
+>   drivers/gpu/drm/xe/xe_exec_queue.c | 8 ++++++--
+>   drivers/gpu/drm/xe/xe_pt.c         | 3 ++-
+>   4 files changed, 13 insertions(+), 4 deletions(-)
 > 
-> My understanding is that it falls out for free if the check sits above xe_tlb_inval_issue().
-> Is it right? Thanks.
-> 
-> Shuicheng
-> 
-> > 
-> > Thanks,
-> > Thomas
-> > 
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_bo.c       | 62 +++++++++++++++++++++++++++---
-> > > --
-> > >  drivers/gpu/drm/xe/xe_shrinker.c | 18 +++++++++-
-> > >  drivers/gpu/drm/xe/xe_shrinker.h |  2 ++
-> > >  3 files changed, 72 insertions(+), 10 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> > > index 2eb5d6aac523..274ff97d8542 100644
-> > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > @@ -734,6 +734,32 @@ static int xe_ttm_io_mem_reserve(struct
-> > > ttm_device *bdev,
-> > >  	}
-> > >  }
-> > >
-> > > +/*
-> > > + * Whether xe_bo_move_notify() will invalidate the GPU mappings of
-> > > @bo, and
-> > > + * therefore needs the device resumed to reach the GuC.
-> > > + *
-> > > + * This mirrors the condition under which xe_bo_trigger_rebind()
-> > > below calls
-> > > + * xe_vm_invalidate_vma(): always for a fault-mode vm, and for any
-> > > bound vm on
-> > > + * hardware where the L2 flush is optimized. Keep the two in sync.
-> > > + *
-> > > + * Context: Caller must hold the BO's dma-resv lock.
-> > > + */
-> > > +static bool bo_needs_invalidate(struct xe_bo *bo) {
-> > > +	struct drm_gpuvm_bo *vm_bo;
-> > > +
-> > > +	if (xe_device_is_l2_flush_optimized(xe_bo_device(bo)))
-> > > +		return xe_bo_is_vm_bound(bo);
-> > > +
-> > > +	xe_bo_assert_held(bo);
-> > > +
-> > > +	drm_gem_for_each_gpuvm_bo(vm_bo, &bo->ttm.base)
-> > > +		if (xe_vm_in_fault_mode(gpuvm_to_vm(vm_bo->vm)))
-> > > +			return true;
-> > > +
-> > > +	return false;
-> > > +}
-> > > +
-> > >  static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo
-> > > *bo,
-> > >  				const struct ttm_operation_ctx *ctx)
-> > >  {
-> > > @@ -1361,6 +1387,28 @@ long xe_bo_shrink(struct ttm_operation_ctx
-> > > *ctx, struct ttm_buffer_object *bo,
-> > >  	if (!xe_bo_is_xe_bo(bo) || !xe_bo_get_unless_zero(xe_bo))
-> > >  		return xe_bo_shrink_purge(ctx, bo, scanned);
-> > >
-> > > +	/*
-> > > +	 * Moving this bo out of a non-system placement makes
-> > > +	 * xe_bo_move_notify() invalidate its GPU mappings over GuC
-> > > CT, and
-> > > +	 * System CCS needs a gpu copy when moving PL_TT ->
-> > > PL_SYSTEM. Both
-> > > +	 * need the device resumed.
-> > > +	 */
-> > > +	needs_rpm = bo->resource->mem_type != XE_PL_SYSTEM &&
-> > > +		(bo_needs_invalidate(xe_bo) ||
-> > > +		 (!xe_tt->purgeable && !IS_DGFX(xe) &&
-> > > +		  xe_bo_needs_ccs_pages(xe_bo)));
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index eede678ad303..dfcd0e57073b 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -364,7 +364,8 @@ static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
+>   {
+>   	if (likely(bo)) {
+>   		xe_bo_lock(bo, false);
+> -		xe_bo_unpin(bo);
+> +		if (!xe_bo_is_purged(bo))
+> +			xe_bo_unpin(bo);
+>   		xe_bo_unlock(bo);
+>   
+>   		xe_bo_put(bo);
+> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+> index bf0728838ead..5d9f1cd24b7f 100644
+> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+> @@ -104,6 +104,9 @@ static struct sg_table *xe_dma_buf_map(struct dma_buf_attachment *attach,
+>   	struct sg_table *sgt;
+>   	int r = 0;
+>   
+> +	if (xe_bo_is_purged(bo))
+> +		return ERR_PTR(-ENOENT);
+> +
+>   	if (!attach->peer2peer && !xe_bo_can_migrate(bo, XE_PL_TT))
+>   		return ERR_PTR(-EOPNOTSUPP);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+> index 91ed6c0fac84..91e4f3cb5617 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> @@ -1572,8 +1572,12 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q)
+>   	 * errors.
+>   	 */
+>   	lrc = q->lrc[0];
+> -	new_ts = xe_lrc_update_timestamp(lrc, &old_ts);
+> -	q->xef->run_ticks[q->class] += (new_ts - old_ts) * q->width;
+> +	xe_bo_lock(lrc->bo, false);
+> +	if (!xe_bo_is_purged(lrc->bo)) {
+> +		new_ts = xe_lrc_update_timestamp(lrc, &old_ts);
+> +		q->xef->run_ticks[q->class] += (new_ts - old_ts) * q->width;
+> +	}
+> +	xe_bo_unlock(lrc->bo);
+>   
+>   	drm_dev_exit(idx);
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index 5d990c1c3740..dbf1aa26a21b 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -212,7 +212,8 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
+>   		return;
+>   
+>   	XE_WARN_ON(!list_empty(&pt->bo->ttm.base.gpuva.list));
+> -	xe_bo_unpin(pt->bo);
+> +	if (!xe_bo_is_purged(pt->bo))
+> +		xe_bo_unpin(pt->bo);
 
-This is a complex enough conditional that my current feeling is to just
-unconditionally set:
+IMO, moving purge check within xe_bo_unpin seems better, with comment 
+what might cause purge.
 
-needs_rpm = true;
+>   	xe_bo_put_deferred(pt->bo, deferred);
+>   
+>   	if (pt->level > 0 && pt->num_live) {
 
-In practice, on iGPUs where the display is in use, we always hold a
-runtime PM reference. It would be very unusual for the display to be
-suspended while the shrinker is running, at least as far as I can tell.
-Let's drop this hard-to-understand, likely overengineered conditional.
-
-Thoughts?
-
-Matt
-
-> > > +	if (needs_rpm && !xe_pm_runtime_get_if_active(xe)) {
-> > > +		/*
-> > > +		 * Resuming is not allowed from all reclaim
-> > > contexts, so leave
-> > > +		 * this bo alone and ask for the device to be woken
-> > > up outside
-> > > +		 * of reclaim. xe_shrinker_runtime_pm_get() is gated
-> > > on the
-> > > +		 * needs of its own backup pass rather than on ours,
-> > > and on
-> > > +		 * DGFX it returns before queueing anything, so ask
-> > > here.
-> > > +		 */
-> > > +		xe_shrinker_queue_pm(xe->mem.shrinker);
-> > > +		goto out_unref;
-> > > +	}
-> > > +
-> > >  	if (xe_tt->purgeable) {
-> > >  		if (bo->resource->mem_type != XE_PL_SYSTEM)
-> > >  			lret = xe_bo_move_notify(xe_bo, ctx); @@ -1369,28
-> > +1417,24 @@ long
-> > > xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object
-> > > *bo,
-> > >  		if (lret > 0 && xe_bo_madv_is_dontneed(xe_bo))
-> > >  			xe_bo_set_purgeable_state(xe_bo,
-> > >
-> > > XE_MADV_PURGEABLE_PURGED);
-> > > -		goto out_unref;
-> > > +		goto out_put_rpm;
-> > >  	}
-> > >
-> > > -	/* System CCS needs gpu copy when moving PL_TT -> PL_SYSTEM
-> > > */
-> > > -	needs_rpm = (!IS_DGFX(xe) && bo->resource->mem_type !=
-> > > XE_PL_SYSTEM &&
-> > > -		     xe_bo_needs_ccs_pages(xe_bo));
-> > > -	if (needs_rpm && !xe_pm_runtime_get_if_active(xe))
-> > > -		goto out_unref;
-> > > -
-> > >  	*scanned += tt->num_pages;
-> > >  	lret = ttm_bo_shrink(ctx, bo, (struct ttm_bo_shrink_flags)
-> > >  			     {.purge = false,
-> > >  			      .writeback = flags.writeback,
-> > >  			      .allow_move = true});
-> > > -	if (needs_rpm)
-> > > -		xe_pm_runtime_put(xe);
-> > >
-> > >  	if (lret > 0) {
-> > >  		xe_ttm_tt_account_subtract(xe, tt);
-> > >  		update_global_total_pages(bo->bdev, -(long)tt-
-> > > >num_pages);
-> > >  	}
-> > >
-> > > +out_put_rpm:
-> > > +	if (needs_rpm)
-> > > +		xe_pm_runtime_put(xe);
-> > > +
-> > >  out_unref:
-> > >  	xe_bo_put(xe_bo);
-> > >
-> > > diff --git a/drivers/gpu/drm/xe/xe_shrinker.c
-> > > b/drivers/gpu/drm/xe/xe_shrinker.c
-> > > index 83374cd57660..fb6ec77972a5 100644
-> > > --- a/drivers/gpu/drm/xe/xe_shrinker.c
-> > > +++ b/drivers/gpu/drm/xe/xe_shrinker.c
-> > > @@ -54,6 +54,22 @@ xe_shrinker_mod_pages(struct xe_shrinker *shrinker,
-> > > long shrinkable, long purgea
-> > >  	write_unlock(&shrinker->lock);
-> > >  }
-> > >
-> > > +/**
-> > > + * xe_shrinker_queue_pm() - Ask for the device to be woken up for
-> > > shrinking
-> > > + * @shrinker: Pointer to the struct xe_shrinker.
-> > > + *
-> > > + * Queue a worker that takes and drops a runtime PM reference.
-> > > Shrinking can
-> > > + * be called from reclaim context, where resuming the device is not
-> > > always
-> > > + * allowed, so a caller that needs the device resumed but could not
-> > > acquire a
-> > > + * reference uses this to have it woken up outside of reclaim. The
-> > > current
-> > > + * scan makes no progress on the affected buffer objects, but a
-> > > subsequent one
-> > > + * can.
-> > > + */
-> > > +void xe_shrinker_queue_pm(struct xe_shrinker *shrinker) {
-> > > +	queue_work(shrinker->xe->unordered_wq, &shrinker-
-> > > >pm_worker);
-> > > +}
-> > > +
-> > >  static s64 __xe_shrinker_walk(struct xe_device *xe,
-> > >  			      struct ttm_operation_ctx *ctx,
-> > >  			      const struct xe_bo_shrink_flags flags, @@ -185,7
-> > +201,7 @@
-> > > static bool xe_shrinker_runtime_pm_get(struct xe_shrinker *shrinker,
-> > > bool force,
-> > >  			xe_pm_runtime_get(xe);
-> > >  			return true;
-> > >  		}
-> > > -		queue_work(xe->unordered_wq, &shrinker->pm_worker);
-> > > +		xe_shrinker_queue_pm(shrinker);
-> > >  		return false;
-> > >  	}
-> > >
-> > > diff --git a/drivers/gpu/drm/xe/xe_shrinker.h
-> > > b/drivers/gpu/drm/xe/xe_shrinker.h
-> > > index 5132ae5192e1..86d2a322cadd 100644
-> > > --- a/drivers/gpu/drm/xe/xe_shrinker.h
-> > > +++ b/drivers/gpu/drm/xe/xe_shrinker.h
-> > > @@ -11,6 +11,8 @@ struct xe_device;
-> > >
-> > >  void xe_shrinker_mod_pages(struct xe_shrinker *shrinker, long
-> > > shrinkable, long purgeable);
-> > >
-> > > +void xe_shrinker_queue_pm(struct xe_shrinker *shrinker);
-> > > +
-> > >  int xe_shrinker_create(struct xe_device *xe);
-> > >
-> > >  #endif
