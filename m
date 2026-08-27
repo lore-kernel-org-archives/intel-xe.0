@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BAF2C61DC2
-	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 10:18:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC59EC61DB9
+	for <intel-xe@archiver.kernel.org>; Thu, 27 Aug 2026 10:24:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 388A810EF94;
-	Thu, 27 Aug 2026 10:18:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KvdMgCPW";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF96D10EF92;
- Thu, 27 Aug 2026 10:18:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787825936; x=1819361936;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5IVKJG61ZRpGvcrack0euFQ9WvdsWjeyMftRGQMMVIk=;
- b=KvdMgCPWHwf+MNVbEndfxSDJdE3H/QfTm6QoGyNBsxCihoB97K/9WfXg
- VCLLL/cakKfZl6Sspl45WJFOgA8YxR6ZV+2Mcbi0/HTgHH0t4tyvqE/QC
- WNGL223+8f3I/aY6q0KWznHJvpAbTsG9nKrvczKqIiU3QpmeNAHRwsg77
- 2bIDRUOJ8+1dwK6E4i+K6aebMQS4aMxnQ0IsQspqogKTmfryUG9doMNxM
- k4VVROpDYLONRXs5oxpXaDO/yG0KWsnPoGpGqRovwkAKRn7+FyKSFustF
- UUN1BDObRGVKQavDIkEQ2ap4m05A+4xiy62VCcZuHRruPI3bMs7IowOAz A==;
-X-CSE-ConnectionGUID: D3hZQ/ZVRAOhWwC6ui75qw==
-X-CSE-MsgGUID: puTPmNnDQneIn5N3nE95TA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11887"; a="88445885"
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="88445885"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 03:18:56 -0700
-X-CSE-ConnectionGUID: dxcX0MIZTHezdTYIzWRLOg==
-X-CSE-MsgGUID: 7yOugB1cSuiEGbdeNvJ6Pg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,246,1779174000"; d="scan'208";a="306057670"
-Received: from varungup-desk.iind.intel.com ([10.190.238.71])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 03:18:55 -0700
-From: Arvind Yadav <arvind.yadav@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com
-Subject: [PATCH 13/13] drm/xe: Block BO VM access when device I/O is
- unavailable
-Date: Thu, 27 Aug 2026 15:48:01 +0530
-Message-ID: <20260827101801.1247654-14-arvind.yadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260827101801.1247654-1-arvind.yadav@intel.com>
-References: <20260827101801.1247654-1-arvind.yadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3732310EF92;
+	Thu, 27 Aug 2026 10:24:27 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F84A10E3E0;
+ Thu, 27 Aug 2026 10:24:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Isolate_wedged_?=
+ =?utf-8?q?devices_from_hardware_access?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arvind Yadav" <arvind.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 27 Aug 2026 10:24:26 -0000
+Message-ID: <178782626638.90736.17661005862747233901@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260827101801.1247654-1-arvind.yadav@intel.com>
+In-Reply-To: <20260827101801.1247654-1-arvind.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,62 +36,69 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_bo_vm_access() may acquire a runtime PM reference and access a BO
-during PCI error recovery, after a permanent wedge or during device
-unplug.
+== Series Details ==
 
-Return -EIO when device I/O is blocked. Use drm_dev_enter() to protect
-against concurrent unplug and keep that protection until the runtime PM
-reference has been released.
+Series: drm/xe: Isolate wedged devices from hardware access
+URL   : https://patchwork.freedesktop.org/series/172860/
+State : warning
 
-Use the same SRCU domain as CPU faults so wedge isolation waits for a BO
-access that started before the wedge.
+== Summary ==
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Assisted-by: Claude:claude-opus-4-8
-Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c | 20 ++++++++++++++++++--
- 1 file changed, 18 insertions(+), 2 deletions(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5a0183e63c0b14db04163704afb9f0e570bf1f85
+Author: Arvind Yadav <arvind.yadav@intel.com>
+Date:   Thu Aug 27 15:48:01 2026 +0530
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 1eabece56f6c..717d318c7072 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -2245,9 +2245,25 @@ static int xe_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
- 	struct ttm_buffer_object *ttm_bo = vma->vm_private_data;
- 	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
- 	struct xe_device *xe = xe_bo_device(bo);
-+	int idx, srcu_idx, ret = -EIO;
+    drm/xe: Block BO VM access when device I/O is unavailable
+    
+    xe_bo_vm_access() may acquire a runtime PM reference and access a BO
+    during PCI error recovery, after a permanent wedge or during device
+    unplug.
+    
+    Return -EIO when device I/O is blocked. Use drm_dev_enter() to protect
+    against concurrent unplug and keep that protection until the runtime PM
+    reference has been released.
+    
+    Use the same SRCU domain as CPU faults so wedge isolation waits for a BO
+    access that started before the wedge.
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Assisted-by: Claude:claude-opus-4-8
+    Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
++ /mt/dim checkpatch 098021382451783ea6448fa7f0e2a4cbc395c3d2 drm-intel
+3b34b8b642f5 drm/xe/irq: Always free requested IRQs on uninstall
+3d0f4dbc0bdf drm/xe: Separate AER reset state from device wedging
+-:258: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#258: FILE: drivers/gpu/drm/xe/xe_pci_error.c:22:
  
--	guard(xe_pm_runtime)(xe);
--	return ttm_bo_vm_access(vma, addr, buf, len, write);
-+	srcu_idx = srcu_read_lock(&xe->mem_access.vram_userfault.srcu);
 +
-+	if (xe_device_io_blocked(xe) || !drm_dev_enter(&xe->drm, &idx))
-+		goto out_srcu;
-+
-+	/*
-+	 * Keep the drm_dev_enter() protection until the runtime PM
-+	 * reference has been released.
-+	 */
-+	scoped_guard(xe_pm_runtime, xe)
-+		ret = ttm_bo_vm_access(vma, addr, buf, len, write);
-+
-+	drm_dev_exit(idx);
-+
-+out_srcu:
-+	srcu_read_unlock(&xe->mem_access.vram_userfault.srcu, srcu_idx);
-+	return ret;
- }
- 
- /**
--- 
-2.43.0
+
+total: 0 errors, 0 warnings, 1 checks, 222 lines checked
+cfe1aa2c75bf drm/xe: Drop queued page faults when device I/O is blocked
+4fdcb68eeca7 drm/xe: Stop VM work when device I/O is blocked
+00c84ece2622 drm/xe: Send wedged notification from a worker
+56a5540151d3 drm/xe: Reuse one dummy page per BO after wedge
+4fd081486713 drm/xe: Invalidate existing VRAM mappings on wedge
+d965c4b40905 drm/xe/irq: Serialize IRQ suspend and resume
+99b8f4e39b1e drm/xe: Isolate a wedged device before notifying userspace
+94d76c78f0b6 drm/xe/ttm: Reject VRAM allocations on wedged devices
+df1cbd60098f drm/xe/guc: Skip timeout recovery on a wedged device
+5ca0fd411f87 drm/xe: Skip PM notifier preparation for wedged devices
+5a0183e63c0b drm/xe: Block BO VM access when device I/O is unavailable
+
 
