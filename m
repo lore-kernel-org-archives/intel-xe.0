@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4846EC61DBD
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 06:12:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02944C61DBD
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 06:14:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E859A10F255;
-	Fri, 28 Aug 2026 06:12:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E4EC10F251;
+	Fri, 28 Aug 2026 06:14:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ObpMLKAm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l21GF8yZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0522210F254
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Aug 2026 06:12:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E4D710F251
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Aug 2026 06:14:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787897546; x=1819433546;
+ t=1787897653; x=1819433653;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=cDBJzMs1vW4pkv4ZUMVeQxs/DMMURDOje4KlCJ/XuWY=;
- b=ObpMLKAmoPtWevfMKgdMLfsHWwAeDulQiu8TsjxJ4QyF70g7MreDL2XE
- D0V/8vqoOE4nN8/EHJQppsG72/3QFkJTcotUk3pf4O1FdpnrxgHYZ4fi5
- aj4OPSY85fZueP6hYtfF49als/p608BpcTLX+G9TfsOKuJxoA0ZyIChoa
- ZZDt8UQ4RWbrB8nEIqSCoyWZmRn/lqoZLv+wncXi97v9TgYkue+Vz95Cf
- bqV3y7apBM1j+mchV/vEqpGFBeSk2ALlau/n/DR+UKf3LHMVGBT1mSMYL
- uT55VToQ/piHmLZxT24zXXqsARBEcmXzitGyRvFBZ0UFbHDCOJLt0w7Po Q==;
-X-CSE-ConnectionGUID: j8UaPEQiTHGcevfsGqlcjA==
-X-CSE-MsgGUID: MwFbDXxVRzqaT48kY5l9Ow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11888"; a="87535228"
-X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="87535228"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 23:12:25 -0700
-X-CSE-ConnectionGUID: SMYEySoFQ5G4yFDzQQEk/A==
-X-CSE-MsgGUID: 3rtkXHGcR0SxlBuzDxopmQ==
+ bh=1JvQRWJTq8qMs0fqO1v61c6UYtMnBwiGQ02CBFGkywM=;
+ b=l21GF8yZTyJ0DVNUSvxSoXAaHCWllAWzynh6qCUCejFtQ+ZxC1jakDCw
+ FgDMI2ec7v54kNKWDWrXKTWiGP2Is8Vctt5+XlvUIWSvFLp7R38g2eC5R
+ JGuElvms48+lY3UGC8AmtgSkCz2tdj3/bN4gN0hLc4sI2riVEOiVWN0m4
+ YHZQ4+LutnPvBFzimDA/2XPiZ6RfTrBNgXUDNRwRKfIY8NDUYMmWq0zC1
+ ODIqTmvkqH8c4D/1pSk24PJINX6FXFGCJGKVvvj3IW9DHsvFWWz/HzsXt
+ X4aCGP3oHlwZhzoHJXzATNlEj0hYH+ipVioH3h/+CDsSbXfiPSkhQ8eML g==;
+X-CSE-ConnectionGUID: onXeIFvJTk+h68QO4ivg+A==
+X-CSE-MsgGUID: 5e8gZE8UQre5vxu1E5VQCA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11888"; a="88608245"
+X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="88608245"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 23:14:12 -0700
+X-CSE-ConnectionGUID: RRgh97i0RW2N3Bzo1AiRwA==
+X-CSE-MsgGUID: p+ExNDD3R/SHTaHAdGZRCQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="272290571"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2026 23:12:25 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="267483948"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Aug 2026 23:14:13 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 27 Aug 2026 23:12:24 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.46; Thu, 27 Aug 2026 23:14:11 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Thu, 27 Aug 2026 23:12:24 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.62) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Thu, 27 Aug 2026 23:14:11 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.52) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 27 Aug 2026 23:12:24 -0700
+ 15.2.2562.46; Thu, 27 Aug 2026 23:14:11 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CBAH7BTfDC9ja5Ndem7WAY1wDD8H/jLGCN8iwwEkSZzs0PjrG/6jniYffVVKzw3UIV2d0ICBs1lQE0Bd7HKssSX2l1vK/Z96Rwrou24UGwdTdze305BZ6lm0sQA4cEan9Q61A/IGIAy3MLDYoxvkbvrt0Q3vsSkORtYJd7kentXoHiIQxoZp4wfs6xiPLGBsI+qzRZXkZ6bpWzJkNFs1QWNFiskaIwe26aLrLTn/Xc+5ma4vNiR2tULuve6A4eJ/Tste8ZmjzdgMAybhIj0W5qhVm3k0pdCWOCHhD8j7lej+aLRMOZHf2alJojOFZfe/6OYeErBSanZAhJty0xfB1g==
+ b=sDB93bd/8z/g/lMAK2XcGJeESOM03yUypjxZv5Dpmo7qZh3dtYRFeXFeHYbvmpP6dwsqB2SbN6xALZVCt+GYFFgeL2iLSsxj+9QUqFkXdOUON0n2py1i41xqYJXZOq9q/xU2gVLXnc34K8H4Y3fSNk8VbmV0CSWAx/mJzF3+Ini1z7lpnG5nJ3VNfuki9xDiL0ujJlmpfktRWWdLd0lRuiEsvZaBV4d2KogC1Knbr0uYou0242x/FMJQcquQgUYswH5UgT+I1tlHgDAoblxxl+pPIS9C13CdQLxoXFs5tbt34fRFBDxCbyfhA4zZ4B49zn3mzB4mNs+pGu6bQpZoeg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2oT3tBzJxyRGkX8MTgXiiRuj2KlAVgmWak04OM+3/fs=;
- b=BhL+HH87ktDpF5Jv+0TDcRIxOP1hCwYHlA5AXl8mZ8OX6klOyF77Pa8TgG+mzU8mxn3cxzcb6l2TjrrqaJw14xDlOiY35l09Jra8bcyto4XYxC3mV6WnwjZ/JkMIor9LfL578gQyJNZCUnX8wZnWtRuANNfF+PjN7uOLTwnEt6oH8KdExPKC6Fuu7Q4ADzb75g2cKQ5v10sRXlHfhaf0CS64Po3IaT0zNI9jYL0gyeSeFbLJIjhNtuw+oJU5Nv5GBeRRnij+hiFYzHiXCEP3010jcSw1wUcPhpBguQhG06cdtDIkBk1hM/kUHBMbpDbHXJc+bx5eiGAV0ekCUVjvRQ==
+ bh=C/6ry1ZCXpiloDdus/9D+2hP9tGI147Rvb9S9yxccuQ=;
+ b=MVXZ5Ofmj8hMrS9wCv0s++QFKPo9J1+LDvNXFI19DkYaiEP5oybUeZzKdksBK/GQl2LlqKlqkJF47X43j3SLoviM1DqHJB9LrFGCc2gZs7GBMblwYoUk2LPk30Ou7p//TmWFa5CIB2LX8IltsbDpd/s3DMI7hgAJRR7ztbF2xi0fiku9YqkGnGB0V5W/7mh1YLkfVMBCJXGTVH9B8lYeLZ5lTopkGX7GlEMazUCJvddoldxFHs+FK9+7+Psox7NFDNixVCksR9jpVvW7ynbVN7Anso2iFM55fIqmc8smBX8UexSfYrAq2zZx56DIMZkI6NoFN6wjK33B6vYtLziWoQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,99 +69,97 @@ Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
  DS4PR11MB088116.namprd11.prod.outlook.com (2603:10b6:8:507::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.10; Fri, 28 Aug
- 2026 06:12:23 +0000
+ 2026 06:14:10 +0000
 Received: from DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::8cb2:cffc:b684:9a99%4]) with mapi id 15.21.0360.008; Fri, 28 Aug 2026
- 06:12:23 +0000
-Message-ID: <2f41b3f0-076b-4876-93b6-216fa88e7c83@intel.com>
-Date: Fri, 28 Aug 2026 11:42:12 +0530
+ 06:14:10 +0000
+Message-ID: <4096669b-0880-4c19-b6dd-7572d9a25ee4@intel.com>
+Date: Fri, 28 Aug 2026 11:44:01 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 09/10] drm/xe/pci: Introduce PCIe Function Level Reset
-To: Raag Jadav <raag.jadav@intel.com>
-CC: "Laguna, Lukasz" <lukasz.laguna@intel.com>,
- <intel-xe@lists.freedesktop.org>, <matthew.brost@intel.com>,
- <rodrigo.vivi@intel.com>, <thomas.hellstrom@linux.intel.com>,
- <michal.wajdeczko@intel.com>, <matthew.d.roper@intel.com>,
- <michal.winiarski@intel.com>, <matthew.auld@intel.com>, <dev@lankhorst.se>,
- <jani.nikula@intel.com>, <lukas@wunner.de>,
- <daniele.ceraolospurio@intel.com>, <badal.nilawar@intel.com>
-References: <20260821112436.545405-1-raag.jadav@intel.com>
- <20260821112436.545405-10-raag.jadav@intel.com>
- <a1c9ead7-b3f3-4bfd-9840-df36f3e85d99@intel.com>
- <ao6raGv1PAtsmW4b@black.igk.intel.com>
- <a2bb115f-80aa-480a-b8d4-c6f38c590e85@intel.com>
- <ao7QRcbFlJxVxHHP@black.igk.intel.com>
+Subject: Re: [PATCH 1/2] drm/xe/xe_ras: Add Fabric error handling
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Aravind Iddamsetty
+ <aravind.iddamsetty@linux.intel.com>
+CC: "Nilawar, Badal" <badal.nilawar@intel.com>, Aravind Iddamsetty
+ <aravind.iddamsetty@intel.com>, <intel-xe@lists.freedesktop.org>,
+ <anshuman.gupta@intel.com>, <raag.jadav@intel.com>,
+ <ravi.kishore.koppuravuri@intel.com>, <mallesh.koujalagi@intel.com>,
+ <soham.purkait@intel.com>
+References: <20260825141109.3797483-4-riana.tauro@intel.com>
+ <20260825141109.3797483-5-riana.tauro@intel.com>
+ <a063221b-7a11-45a7-bac9-12d19f6a2a76@intel.com> <ao9T2POk0wXbGf4L@intel.com>
+ <6f8e5f5e-7bd8-4fef-b714-ef077f50812a@linux.intel.com>
+ <apAtcSNzTKnNGU9q@intel.com>
 Content-Language: en-US
 From: "Tauro, Riana" <riana.tauro@intel.com>
-In-Reply-To: <ao7QRcbFlJxVxHHP@black.igk.intel.com>
+In-Reply-To: <apAtcSNzTKnNGU9q@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0297.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:21e::12) To DS0PR11MB7958.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0296.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:21e::7) To DS0PR11MB7958.namprd11.prod.outlook.com
  (2603:10b6:8:f9::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|DS4PR11MB088116:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1be613a3-eb2a-4177-4639-08df04cb52a9
+X-MS-Office365-Filtering-Correlation-Id: 87ae213e-b53c-4e1d-2526-08df04cb92d1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|376014|1800799024|10067099003|6133799003|3023799007|22082099003|18002099003|4143699003|11063799006|5023799004|56012099006;
-X-Microsoft-Antispam-Message-Info: 9DjdFAJgIjF/rxFF81bS0a/BhRkAsPcnEnIMakTC2m1sTVfMY6uYyxzz0M4edtANF151M02VxqwkW3zXmWdIrxoQ9byKU/xmqGTX+UVvCHRs/7LYf4LZyH9Z9qm7mxR2OXiXd1tBPLjDNtCTkQyR6k1c+9zUaIBxeOCTT7yiZAgKe429Bha7LQE9MyilTr5z4xj/4NxmQfBvXCxZlSHLOf9/qIwcGTjfHBG+8ac+OcM85d1ZeNgWepoUcG67iw5LrbR3yv1PJn1Q8ouYrSctgu5K/umksPwTGaGEvOzO5y4f8IbW1LWOIi4niBygiE63XoKZ1NyITRsdetlx2FpnwXvsbAXj9aagKhdfJNDzQAQhD3uQId1FFxf40LJn6Q1IwsBPEAt2ejtvvkAh9je7X7gki6uJDg0hv8SB1nEMvfab3Xa08nRrzm8gNvZyNRgzs5C9eWQ85FHfiX3JiilEceFUcSo4lpDkSX6mSMH0XkcF1JfRQk71XT4D1jDsNaKGidmSfTnUjZNX4zr1vmrWvua3WwES59JNTPIDvG4+sTfPEcypI4N7lKdjUFcWZ9qSwkbJuZ8RkMtqLwWLxF08cp77rBTkNQCvqUyvvp6ZJq/FMjCkMBlUvQlZgVbItBiNNP0Hae1BT4o1z+xXv96cVYNIWOtLrEb8qG1UmWgKfh0=
+ ARA:13230040|23010399003|366016|376014|1800799024|10067099003|22082099003|18002099003|4143699003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: XbqJbOmm5xb0P7OQC15gRa/nw6eu2n3mivSFjOczJxE1fUHSgndS4NiBIU56+kySCapCbpYbI+VFSk69zOvhHqzSX62nJlMPozfETycHa+DKgtQ0SgaLNO4TAnwq9MGxbHmaVTdHdn2GGgG7pJ/M2+wnJpoJzxZX3JViPnR8DiyKgqdNRRYalKQrnxfA3Bx7CCam8qF69gsKUmrT28pEmoJQCSXw6XJ+GwoxzNva1vQulA5uMHZ4rlZrLaZ17rHbgRNRrcX0lq1lkfaXreAI2sasATqxHAwe1Dgi8czka/DWVifnwk2p0rDHHgcjI7enLR56obbI4YGTZlyClVNZDCTkxGwjv3JpM28TR16EZYuMGdWXFG5JpGeyivxMHwRpxugdjVu4Vcxn9mUCuZyInuw6m/TdSPIsVAydMsNYLMiyx3jPIZlTPqcCaDjawWcEinRUydYOT9EQe6WXe6+MMH2WJfAxTOugt/hQeryhbDzxqQjtng69FrBNXOX1FtjukZv9/4bi4wiHDY9h/r0YxLOgPc6CbSTOtHCMS+CdJhLFtC8d3utlE9SLcwk/NAfo7Bqih/lKlTtenLZYVFGXXtrXu3gH8du2tFW2liwroDjrA4r6Z4UMJGqBpLppHukcKJSrsk8Q2+ghTagwU8GUnuAO1DGJLcQK4XQYiZapUnE=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(10067099003)(6133799003)(3023799007)(22082099003)(18002099003)(4143699003)(11063799006)(5023799004)(56012099006);
+ SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(10067099003)(22082099003)(18002099003)(4143699003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WkRQanBEaDBVUVYvVk1MRWNpQmczMTN6SG9seVVkdTZhUHROY0ljNDdZZDg1?=
- =?utf-8?B?NVRHTFdoOWZSSXMyekhMVGtQOEFpOVIrQ2VwazVnMFY5UVZ5U1lqZHlUQXJu?=
- =?utf-8?B?TnZQclFGUytNREVxZzBobTZYR0o4WHJaZGtzNUFBMWlBcjYyOWJDak1oa0tV?=
- =?utf-8?B?YUJBQXhQNWlvVzMybld5UHA0bFdxd1hSRE9oNUhmODNPcS9PTmhmdW9IVkRO?=
- =?utf-8?B?MldrMlRWTnl1Z1BaYXUwbFU3RHdwNDFrN0lrbFFNQlFJRkFvbHVFRkdCR0R5?=
- =?utf-8?B?SU5kY29odzFqVjZ6Ukx5MGtQcFQwTnhvaHJ6S2JFelZobWtZMHdxU0NzZGV5?=
- =?utf-8?B?eFZONHFOdERzVnRCeFRRckRzL3JiMzhkWnprQ0RzeERTWFQyYjJ1cCt5cTdT?=
- =?utf-8?B?NkFJcEsyK2taUlR1aXNtVUo3TjhwWWgrdGVEbmpwcU9NdlA5RnpVNi81aUl6?=
- =?utf-8?B?Tyt6eXlMV2xuN2J0Qjg5cFdOZk55bVkvdmV2OVhJYUVCTTU4M0FlNGJKb2Y4?=
- =?utf-8?B?SUhLWlNmMW95Qk52dmgraTVqM0xIYnU2Mkw5d0lNcXMyV0V1VW1FSGNNenVa?=
- =?utf-8?B?Y0xzd0Z2OGYxNTNzKzZjWnFZdjRvMHM2a3lUTUwxY1ZYTGp0OTdMeUVXRWlE?=
- =?utf-8?B?ZG53Yk1YQk95M043ak9VODh0R3AzZkFIMWJoVnFTQnptRzVPcE9aV3ZucGdo?=
- =?utf-8?B?MHZ5MnZkWW9DcHUrUlRGeUVCWUVpRUpQUzdESkI5OVNiNnR3QW0vOWtaUmpF?=
- =?utf-8?B?WEpOaGlqL0RDbml2Wk51Z3B5YkpzQUM1a1I4SGg0QTRYeXhIbXF0WmViSThv?=
- =?utf-8?B?UVQyOGpQcjJobE9nTHVyT0hIWndHcmxGZUU3SVRnMG5ocUkxY1I0Rm1WOXI2?=
- =?utf-8?B?R2RTTE9kQXhxYXZqR0NiWGcyUTYwRlNrTlZJQiswOTBpVHlwb0JPS2xhSWky?=
- =?utf-8?B?TVRrelVPQnFKZ29rNjd5TzNTRm4vQXNRMkppYU9lajM2aldxVmVwcGtWTTVV?=
- =?utf-8?B?RFM0SGRuT2wwcTJQU0JFU0dkNEQzQTlaYk9TSW9XZnJnUnkycW9sVWNINE5r?=
- =?utf-8?B?VjJYRWxMaHl1REY1WEtZN0dzN3pZZFJBYnFxeTVKL2d0Z1BCNlZDSGNsNWVI?=
- =?utf-8?B?QU1sbVU3OWdMSVhmbzJjNmgvRjI2eFRvQjhjNkhoNkt5ZzU2MlBidEpsOHhl?=
- =?utf-8?B?MmN6WEFEeUd4ODlLckRQRHZIYytUQzVCZ01nUTJvcld0VWk4Z3MrUnlQdm1J?=
- =?utf-8?B?U3B6dndRSjRLL05zZHNRM1czREZBdTlEaS84K0ZSWEVTdWNFZVEzQ3JCRHhF?=
- =?utf-8?B?SlNoSGRIdjhpeEVaNll5UzJxQXZGQXBnR21oUEpTaWxLNGV4L2VESENDUWY2?=
- =?utf-8?B?TDB4RURDQXpnUjJpMUdJV285VTYrMmg5azVCWEdwc1E4Rm13K1ltZmVLK0Zn?=
- =?utf-8?B?cWhXblJXUmtvcjFoWjdqV0ExWDJiZXN1RGhCQnVUTTcxdlpnQ0dzejVSQUJ3?=
- =?utf-8?B?OEhZdWFoRjNtZlI0by8wSUJ4ajdpVnhLT1BmajFNRDBxZ2o3RFl1eHdycWox?=
- =?utf-8?B?ZTV4NXI1TTVjSjEvWE1OZUdWcFkzbGtKalByTXQ2STdkMG1PQi9xalAvOTYx?=
- =?utf-8?B?Qm1BMzlYSDY0MmFWdXRBYmVJRDVFZWpPUjNvaG5HK21iYTZsRnVTUEZsK0lP?=
- =?utf-8?B?RW1SY1ZOVUsrMm5jOXp0S2N6ZWZTRlU0NmorQWhNVXBCYjlCZFRKdmorU09k?=
- =?utf-8?B?a0FoWVBXZ0dkK1ZaMGdRY3ZmT2RodTY5OEJNQUpjeXpWTDExLytWOEJpTFhU?=
- =?utf-8?B?eVd4MzVoWSs3Q0czM2NmVWMyRldnNklaaUoxaUlySndqd095dmF6bU0xVFdR?=
- =?utf-8?B?dEwzQ3ZWVnNTTGdDZ3dRcng3MWFuTHp2N01vd09JL0xKM1IzeVlKOEc3bGxY?=
- =?utf-8?B?V2FaRmtRTGJXN0Y2UnNKQUQyaEVnVkxUK3ZrVlZWMGhlalJ6ODgzTDJXVTR2?=
- =?utf-8?B?RWFFamxFOUp5a3BLRC84L055WnlJYURhMXFFakFHSk5ONHowVDZyaVFJZTdm?=
- =?utf-8?B?UlhsVDdab0FsV3lva3AxV0lOVktHSVd6cEJSbjhvVThxdkJLVjVMZVV1U1V4?=
- =?utf-8?B?bUVxeUh3TVJDQlcxbjVtdkRuU3hSZmdNZHpPWThoQnZUbVBmYVF5bm9iRkxD?=
- =?utf-8?B?Wk5QcFpSdGU3S2VZYTF3cFZGQ3ZtUUpuRDlXOVluSDdmcWxKVm9WZ2I0WU5Z?=
- =?utf-8?B?ZkZsZy9zeHZGR2dIa2VyUzgxbk1aeXBzcUlPazFCaDNQVHpKREhvMWhmMTdl?=
- =?utf-8?B?bXJOV3FDTFBZeCt0bGJGb3RSWE9hd0YvMFBuNGw2Zm0vV1NaZjE3UT09?=
-X-Exchange-RoutingPolicyChecked: SfWqxQA3WY2jnrQ6gxSsIk5abrRlGaZ7CPqqedUyU2McJ5/i21YCh/vbwyZWhj74pLJVvqcyyByMtbxyR8QqXn2qHEYygH00/org57oznjC3lcbwv/AiNbmUP/RhqhyhQ5k4gPAWdSLRETvsjM9R5vf52OrHzYgBnm/MOVvBdErKRv3nVM1Xu6tXPa9cmPwA0+5Pvu428Czqx4cyxUhcsAV1ks8RthD+ZLfcoiFrh1uqdFsdW2v/GnUxp0rXX//UsJ3YklYFBjLDAfWtwteBb3FhM+QNwbU6M5xzvtWf+F9EYGpFSzSdjOGxG3b/KtMdEPJZjHHLpSkz5ZhuQqzD5Q==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1be613a3-eb2a-4177-4639-08df04cb52a9
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UDJUWVQyUGJ0T1BBN1UwU3prMFB5UDErQ09OU1h2TE12N2ZUaXU0bVk5ODBN?=
+ =?utf-8?B?QlRWemxkQTdqeW5mYklvMjQyUUYveWJTRCsvMnN5emdwQlFMZjBFWXdyWFYr?=
+ =?utf-8?B?YzRheXR4N3YzN0hyY0luYmNob3JzcS9sWTVXam96d2ZIY3ZsaklraUZnMERI?=
+ =?utf-8?B?bEczWXAyK04rS1ZMTzA0UHZrU2hKYXFma0p6c1A0T3RYbVNKNEE3U1hsVjR2?=
+ =?utf-8?B?NFg3bnN5YmhXL0hFTk9LUjVWZU1oMzdyemJvaGR3dVhvc2J6QUMwQkFOMHVn?=
+ =?utf-8?B?OVNXQ1dTMThZTDU2NnM3MktGVEt0dWdTa3o3ekxzYXVlWCszNUhrL2ZWVXhJ?=
+ =?utf-8?B?ZUljbHFQemtBREUrQkRoM0RTZi82OG5LTDBHWlcvekVVWlB3ZHhLWW1MV3pM?=
+ =?utf-8?B?SWpKcHo4a0tSd1ZYbTVhR3VueFN0WGJGZk5nZmxrOW93U2E0RnFLWFQzcUhj?=
+ =?utf-8?B?QjBkYzVHU3p0N1pXRGdwa1BFN1hXZDhYRDYwZVdQZWU2TzZrVG5XS0NLa3lr?=
+ =?utf-8?B?bnJuRDgzMU9ickdrbmNVTVN1S3Bzd1dIWXpZNDA4TGZVTHdlaWFLZ21TaHVH?=
+ =?utf-8?B?ekNVR0dVdTZYZW5ZZitVakNueE9mZ0h6OENkd2NzZVZCcVVNVWNlQnd3R0Rz?=
+ =?utf-8?B?Q2JxTTRZNUowcC9yeUJNeXdhNVg0Rk5LM1F1Q0tzQzErQWpWZTNjNWlySjI2?=
+ =?utf-8?B?a2hJWnNwMm52cDBBZ1JwQmtMeVJac0ZNdlA1ZXZBL3JSUGxmbVNmTHUwdmdQ?=
+ =?utf-8?B?RXZIblRBUFlRUnpQVWI1cmNvQzJDWE9Vc29KRFdobGVUOU9peVV1UHN3RmxJ?=
+ =?utf-8?B?eVdHenMvbmNCcGE1cHJTUUcwN2YzejhoZ0tWM3l0SGxxdGFrdzVSZGpMZ2Zz?=
+ =?utf-8?B?N0NrelIyRmI4aW44MGdreEpFY055YlN1MUltSWdBSFYvcm1Ybi8yVThIZytZ?=
+ =?utf-8?B?bytheUdxczNydjdsSDZrUDZQajZsSGUrNUdUM2JiMG1ldW5nYWF2Yk1nejVH?=
+ =?utf-8?B?WjQ0bVRrV3BZc1I2MnVOUnpZdHlCSFFxMytETG4zRHo0dlRaT0QvN1RPRHhq?=
+ =?utf-8?B?VWpIbkM2UkdsSDlOL20rRjRBem9yOXAzKzYwRXEvOUhtMGl1d0VVMUROZnIr?=
+ =?utf-8?B?U01OdVFwaHJ6TUpWVUNFVVZxWkpQNVRzdTlhMnlWTmdJNEw3eG9FWlFpdFRP?=
+ =?utf-8?B?Yi9hWjdDc3I5RmFkNlV0VzFrd2xKU0pXRCtCaVJBazk5alNmZW9CQ3IySldQ?=
+ =?utf-8?B?TXBsU2V1Szh4cFR1dEo2MFRpOG9QNDRnSmNXeTBjSEFUOE1KU0M5ZU5XVUlM?=
+ =?utf-8?B?NWRtYm1FaTgyaEsrQ3RuS3JEL1BhSVNHMVJxYTNzam01ZEplWmdya3FWMUlX?=
+ =?utf-8?B?N2x3Rm5Fb2dvelR5UXJDVG0wUjdhL2E3Tk16L2JWQ01CWGJlWllrUUh3SEU1?=
+ =?utf-8?B?aDA4OWxJbWpLWVJKQWphUnBNcGQ5a1BBQVltL3FjREJpdkhWd0ZXUXlGUHl3?=
+ =?utf-8?B?aHRGWEZmSkZ6RkM4ZkdFeUl5SVp5dTBwdlVwdHFrTUxPYXNJMUhRM2tpMjEv?=
+ =?utf-8?B?dlZFZzN5SEFGelpYN2RZdnFwK0Q1ZW1xUGROMVVBUDJiRU5mdzFXT01KVmxJ?=
+ =?utf-8?B?ekErVlJFa0x4enN6WHY4dnZJQXgyaURxTFZVMlFjRUx1bll6Q056TUgybkYw?=
+ =?utf-8?B?b2o4a0RkKzNud3JkeUpOMGlmN2J1Q2tkc0RwRW4wbU4waUtpcHo2MG9jQ2Z2?=
+ =?utf-8?B?c1Fpci9ZcWZabGVIaXF5K29LaDBBS3RTQVIzOXNNeThlME56NVZXNGUzc2ty?=
+ =?utf-8?B?YXVwOGtVWktaUnd2WlRwSmtRa2RCVlAyVkdZYnpZM3BNdllTdWhBbXNGM29K?=
+ =?utf-8?B?bWpJWXdzR0JvYmQzK0Z6bVpFY2UxRW5UMjFLZVJ4NEVDU2VVcWRRNWtsT0pa?=
+ =?utf-8?B?a3pnRW1MQm1ndGcxckFkR2pEVDhUa1dTYVN6WnRZRTEzYkVDR2tmRHVBeDVV?=
+ =?utf-8?B?V1BxSVBjdWppTFc1enJVU0NQZk9UQmtHcVN2RHFvdGloVGRIODRwci9xWWRx?=
+ =?utf-8?B?cVVBVWFrWWNTVmR4ekRDVnY2OTB5MlU1V0hQQ01EWGlNd1RjTzZaTjFQUGdy?=
+ =?utf-8?B?TnduVjNpSjFqR09Gb1pYcjVNL2hXVTVid3RvKzIxSjM2Wi9ONGVwRXpZb3lQ?=
+ =?utf-8?B?QkNaMjZidUx3YTJ6L1N0bjhjbTBPaGdYV3Z2blVyUkZ4M0VxaVBXU3h3MDlU?=
+ =?utf-8?B?ZVFhay9DT0JQS2V5c1dKVEl5RU1yTnhiSFVldDVTdmQ4ZkdTbW1ORjd2SExz?=
+ =?utf-8?B?dlN5ZVZpcjU0a1c4dkdaRnZrQStyajdBTTBQdWptS0pFWGdvcEQvZz09?=
+X-Exchange-RoutingPolicyChecked: 2OrfUl1SFqQU2Dbm6zbQt2r6mcjGmpLK3EkBS3kXvAGtcGBIgKItiZiJbATvSHEQZooFIODMnNRWaI3gkBC468uoffBWr55j3k5PdAQdTuXLFJy6ezybtxVoLZHMh9RQb/klrHoEEjxtWK/1oNf792T5BgPFyH7i6BqEY8pEbN70xkh1w4W+uh62dHcrFgOCrkaamKV5BMBVBbcOHkXDtlkdYyG+xidtsDxpY26YUr9cxQCBxQ08cuAuPQnZKHNO27A+yTGxEEqdzfxccq1wSZop6W8p9LEdaNLdaw7m1Rx0g00oxZmu6t50hykCmSa1BARGGnmMn0gKT07F7ndeQQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 87ae213e-b53c-4e1d-2526-08df04cb92d1
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2026 06:12:22.8099 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2026 06:14:09.9467 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ggwfLShAOxfBgm/96KLzo0Rq6NMVn6qYj2pNXApLxe/1WWvu48nCwXt882vYd5c/69AxMZIK9//4RYmlKfgiKA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: jfgAk7/FdljWaJOcJIITcTOJwrWOXi0cK6sb8YYY2GimfUhZgwJrwOxiMkVTLwDudWzODBQxPNhX3bXHQWNUyA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR11MB088116
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -179,225 +177,116 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 26-08-2026 17:08, Raag Jadav wrote:
-> On Wed, Aug 26, 2026 at 03:22:19PM +0530, Tauro, Riana wrote:
->> On 26-08-2026 14:31, Raag Jadav wrote:
->>> On Tue, Aug 25, 2026 at 12:06:32PM +0200, Laguna, Lukasz wrote:
->>>> On 8/21/2026 13:23, Raag Jadav wrote:
->>>>> With bare minimum pieces in place, we can finally introduce PCIe Function
->>>>> Level Reset (FLR) support which re-initializes hardware state without the
->>>>> need for reloading the driver from userspace. All VRAM contents are lost
->>>>> along with hardware state and driver takes care of recreating the required
->>>>> kernel bos as part of re-initialization, but user still needs to recreate
->>>>> user bos and reload context after PCIe FLR.
+On 27-08-2026 17:58, Rodrigo Vivi wrote:
+> On Thu, Aug 27, 2026 at 04:25:48PM +0530, Aravind Iddamsetty wrote:
+>> On 27-08-2026 02:30, Rodrigo Vivi wrote:
+>>> On Tue, Aug 25, 2026 at 08:20:36PM +0530, Nilawar, Badal wrote:
+>>>> On 25-08-2026 19:41, Riana Tauro wrote:
+>>>>> SAF MHB errors are collected and classifed under Fabric error component
+>>>>> by System controller. For SAF_MHB errors, if the cause is data
+>>>>> payload parity error then log and return.
 >>>>>
->>>>> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
->>>>> Tested-by: Lukasz Laguna <lukasz.laguna@intel.com>
->>>>> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>>> ---
->>>>>     v2: Spell out Function Level Reset (Jani)
->>>>>     v5: Prevent PM ref leak for wedged device (Matthew Brost)
->>>>>     v6: Add PCIe FLR documentation (Daniele)
->>>>>     v7: Refine PCIe FLR documentation (Daniele)
->>>>>         Introduce xe_pci_reset_skip() helper (Lukasz)
->>>>>     v9: Add 'Xe' prefix to document title (Rodrigo)
->>>>> v10: Update documentation to include PCI Error Handling (Lukasz)
->>>>>         Maintain wedged reference on FLR failure (Lukasz)
->>>>> ---
->>>>>     drivers/gpu/drm/xe/xe_device_types.h |   3 +
->>>>>     drivers/gpu/drm/xe/xe_pci_error.c    | 128 +++++++++++++++++++++++++++
->>>>>     2 files changed, 131 insertions(+)
+>>>>> For all other errors and causes, request a Secondary Bus Reset (SBR)
 >>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->>>>> index 7be3f15bf7a0..8cbb5b747710 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_device_types.h
->>>>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->>>>> @@ -518,6 +518,9 @@ struct xe_device {
->>>>>     	/** @pxp: Encapsulate Protected Xe Path support */
->>>>>     	struct xe_pxp *pxp;
->>>>> +	/** @flr_prepared: Prepared for function-reset */
->>>>> +	bool flr_prepared;
->>>>> +
->>>>>     	/** @needs_flr_on_fini: requests function-reset on fini */
->>>>>     	bool needs_flr_on_fini;
->>>>> diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
->>>>> index 48466d726eae..81c4e55fae8f 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_pci_error.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_pci_error.c
->>>>> @@ -12,8 +12,55 @@
->>>>>     #include "xe_pm.h"
->>>>>     #include "xe_printk.h"
->>>>>     #include "xe_ras.h"
->>>>> +#include "xe_sriov_pf_helpers.h"
->>>>>     #include "xe_survivability_mode.h"
->>>>> +/**
->>>>> + * DOC: Xe PCI Error Handling
->>>>> + *
->>>>> + * Xe driver registers PCI callbacks which are called by PCI core in case of
->>>>> + * bus errors or resets.
->>>>> + *
->>>>> + * Currently both Function Level Reset (FLR) and bus error handling callbacks are
->>>>> + * supported. Both wipe the VRAM and resets the state of all the hardware units.
->>>>> + * Therefore, the contents of all exec queues and BOs in VRAM are lost, and the
->>>>> + * hardware needs a full re-initialization. The way Xe driver handles it, is
->>>>> + * pretty much similar to system suspend/resume flow with a few notable exceptions.
->>>>> + *
->>>>> + * Prepare phase:
->>>>> + *
->>>>> + * - Temporarily wedge the device to prevent userspace access
->>>>> + * - Kill exec queues which signals all fences and frees in-flight jobs
->>>>> + * - Stop the scheduler and all submissions to GuC
->>>>> + * - The fact that FLR is needed is because hardware could be in corrupted state
->>>>> + *   and access unreliable, so skip memory eviction due to untrustworthy VRAM
->>>>> + *   contents
->>>>> + * - Remove all memory mappings since VRAM contents will be lost
->>>>> + *
->>>>> + * Re-initialization phase:
->>>>> + *
->>>>> + * - Recreate kernel BOs due to skipped memory eviction in prepare phase
->>>>> + * - Restore kernel queues which were killed in prepare phase
->>>>> + * - Reload all uC firmwares
->>>>> + * - Bring up all hardware units
->>>>> + * - Unwedge the device to allow userspace access
->>>>> + *
->>>>> + * Since VRAM contents are lost, the user is expected to recreate user memory
->>>>> + * and reload context.
->>>>> + *
->>>>> + * TODO: Reuse FLR callbacks for bus error handling.
->>>>> + *
->>>>> + * Current implementation is only limited to re-initializing GT. This needs to
->>>>> + * be extended for a lot of components listed below.
->>>>> + *
->>>>> + * - Proper re-initialization of GSC and PXP for integrated platforms
->>>>> + * - SR-IOV cases which need PF and VF synchronization
->>>>> + * - Re-initialization of all child devices registered by Xe
->>>>> + * - Prepare existing xe_device_wedged() users for temporary wedging
->>>>> + * - MM corner cases
->>>>> + * - Display
->>>>> + */
->>>>> +
->>>>>     static void prepare_device_for_reset(struct pci_dev *pdev)
->>>>>     {
->>>>>     	struct xe_device *xe = pdev_to_xe_device(pdev);
->>>>> @@ -142,9 +189,90 @@ static void xe_pci_error_resume(struct pci_dev *pdev)
->>>>>     	xe_device_wedged_put(xe);
->>>>>     }
->>>>> +static inline bool xe_pci_reset_skip(struct xe_device *xe)
+>>>>> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+>>>>> ---
+>>>>>    drivers/gpu/drm/xe/xe_ras.c       | 20 ++++++++++++++++++++
+>>>>>    drivers/gpu/drm/xe/xe_ras_types.h |  4 ++++
+>>>>>    2 files changed, 24 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+>>>>> index d25d25f77531..586dc28a638a 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_ras.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_ras.c
+>>>>> @@ -394,6 +394,23 @@ static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_
+>>>>>    	return XE_RAS_RECOVERY_ACTION_RECOVERED;
+>>>>>    }
+>>>>> +static u8 handle_fabric_errors(struct xe_device *xe, struct xe_ras_error_array *arr)
 >>>>> +{
->> Add a TODO
-> Sure.
->
->>>>> +	return !IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe_sriov_pf_num_vfs(xe) || xe->info.probe_display;
->>>>> +}
+>>>>> +	struct xe_ras_error_product *product = &arr->counter.product;
+>>>>> +	struct xe_ras_ieh_error *info = (void *)arr->details;
 >>>>> +
->>>>> +static void xe_pci_reset_prepare(struct pci_dev *pdev)
->>>>> +{
->>>>> +	struct xe_device *xe = pdev_to_xe_device(pdev);
->>>>> +	int err;
+>>>>> +	if ((info->global_error_status & XE_RAS_FAB_IEH_SAF_MHB) &&
+>>>>> +	    product->cause.cause == XE_RAS_FAB_CAUSE_PAYLOAD) {
+>>>>> +		xe_log_comp_recoverable(xe, FABRIC, &arr->counter, sizeof(arr->counter),
+>>>>> +					"SAF MHB error detected\n");
+>>>>> +		return XE_RAS_RECOVERY_ACTION_RECOVERED;
+>>>>> +	}
 >>>>> +
->>>>> +	err = xe_pci_reset_skip(xe);
->>>>> +	if (err) {
->>>>> +		xe_err(xe, "PCIe FLR not supported\n");
->> Nit: Can the log be just PCIe reset
->  From PCI standpoint there are different types of resets, so better to be
-> explicit.
+>>>>> +	xe_log_comp_fatal(xe, FABRIC, &arr->counter, sizeof(arr->counter),
+>>>>> +			  "Other errors detected\n");
+>>>> I think this also should go under recoverable.
+>>> The point is that at this moment in time we don't know if the reset will
+>>> indeed be able to recover the device.
+>> I do not think it is right to say that, for any error we sure for know
+>> what is the recovery needed. The respective error handler shall perform
+>> that needed recovery action and anything that is recoverable by a driver
+>> action is to be categorized under RECOVERABLE CPER severity.
+>>
+>> The case where driver can't recover the device by itself falls into
+>> FATAL case. Eg: probe failure or wedged cases.
+> Fair enough. Riana, could you please adjust both patches?
 
-I see bus-reset also using the reset_prepare/done callbacks.
-I was thinking use the same name as function calls
-It's a nit so upto you.
+Sure will resend a new revision with the changes.
 
->
->>>>> +		goto wedge;
->>>> Looks like we always take the reference, so can't we do it at the top of
->>>> this function and only return here?
->>> Because we check for pre-existing ref below, in that case something else
->>> is already wrong and it's pointless to move forward. We take a local ref
->>> anyway because PCI core doesn't distinguish failure cases and calls
->>> ->reset_done() regardless, so we have to compensate for it by maintaining
->>> the ref across calls (which we later drop in ->reset_done()).
->>   If it is not supported why not just return in both function calls? Why
->> proceed?
-> You mean allow userspace access while FLR is in progress?
+> And while at it, please add a note about this in the documentation.
 
-If we do not quiesce the device and trigger a flr would it not cause 
-other crashes anyway?
+Sure. Will add a note in sigid docs
 
 Thanks
 Riana
 
 >
-> Raag
+> Thanks,
+> Rodrigo.
 >
->>>>> +	}
->>>>> +
->>>>> +	err = xe_device_wedged(xe);
->>>>> +	if (err)
->>>>> +		xe_err(xe, "PCIe FLR failed, device in unexpected state\n");
->>>>> +
->>>>> +wedge:
->>>>> +	/* Wedge the device to prevent userspace access but don't send the event yet */
->>>>> +	xe_device_wedged_get(xe);
->>>>> +	if (err)
->>>>> +		return;
->>>>> +
->>>>> +	/*
->>>>> +	 * The hardware could be in corrupted state and access unreliable, but we try to
->>>>> +	 * update data structures and cleanup any pending work to avoid side effects during
->>>>> +	 * PCIe FLR. This will be similar to system suspend flow but without eviction.
->>>>> +	 */
->>>>> +	err = xe_device_suspend(xe, true);
->>>>> +	if (err) {
->>>>> +		xe_err(xe, "Failed to prepare for PCIe FLR\n");
->>>>> +		return;
->>>>> +	}
->>>>> +
->>>>> +	xe->flr_prepared = true;
->>>>> +	xe_info(xe, "Prepared for PCIe FLR\n");
+>> Thanks,
+>> Aravind.
+>>> It is a moment where we are handling a global uncorrectable (fatal) error
+>>> and we will return the reset action in a hope that the PCI subsystem will
+>>> be able to perform an SBR to save the day and we start everything clean
+>>> after that.
+>>>
+>>> So, I believe this approach is correct here.
+>>>
+>>> Aravind, thoughts?
+>>>
+>>>> Thanks,
+>>>> Badal
+>>>>
+>>>>> +	return XE_RAS_RECOVERY_ACTION_RESET;
 >>>>> +}
 >>>>> +
->>>>> +static void xe_pci_reset_done(struct pci_dev *pdev)
->>>>> +{
->>>>> +	struct xe_device *xe = pdev_to_xe_device(pdev);
->>>>> +	int err;
->>>>> +
->>>>> +	err = xe_pci_reset_skip(xe);
->>>>> +	if (err)
->>>>> +		goto out;
->>>>> +
->>>>> +	if (!xe->flr_prepared)
->>>>> +		goto out;
->>>>> +
->>>>> +	/* Unprepare early in case we fail */
->>>>> +	xe->flr_prepared = false;
->>>>> +
->>>>> +	/*
->>>>> +	 * We already have the data structures intact, so try to re-initialize the device.
->>>>> +	 * This will be similar to system resume flow, except we'll also need to recreate
->>>>> +	 * kernel bos and restore kernel queues.
->>>>> +	 */
->>>>> +	err = xe_device_resume(xe, true);
->>>>> +	if (err) {
->>>>> +		xe_err(xe, "Re-initialization failed\n");
->>>>> +		goto out;
->>>>> +	}
->>>>> +
->>>>> +	/* Unwedge to allow userspace access */
->>>>> +	xe_device_wedged_put(xe);
->>>>> +	xe_info(xe, "Re-initialization success\n");
->>>>> +
->>>>> +	return;
->>>>> +out:
->>>>> +	/* Most likely the device is unusable and there's nothing we can do about it */
->>>>> +	xe_device_declare_wedged(xe);
->>>>> +	/* Drop local reference */
->>>>> +	xe_device_wedged_put(xe);
->>>>> +}
->>>>> +
->>>>>     const struct pci_error_handlers xe_pci_error_handlers = {
->>>>>     	.error_detected	= xe_pci_error_detected,
->>>>>     	.mmio_enabled	= xe_pci_error_mmio_enabled,
->>>>>     	.slot_reset	= xe_pci_error_slot_reset,
->>>>>     	.resume		= xe_pci_error_resume,
->>>>> +	.reset_prepare	= xe_pci_reset_prepare,
->>>>> +	.reset_done	= xe_pci_reset_done,
->>>>>     };
+>>>>>    void xe_ras_counter_threshold_crossed(struct xe_device *xe,
+>>>>>    				      struct xe_sysctrl_event_response *response)
+>>>>>    {
+>>>>> @@ -555,6 +572,9 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
+>>>>>    			case XE_RAS_COMP_DEVICE_MEMORY:
+>>>>>    				action = handle_device_memory_errors(xe, arr);
+>>>>>    				break;
+>>>>> +			case XE_RAS_COMP_FABRIC:
+>>>>> +				action = handle_fabric_errors(xe, arr);
+>>>>> +				break;
+>>>>>    			default:
+>>>>>    				/* For any other component, reset */
+>>>>>    				action = XE_RAS_RECOVERY_ACTION_RESET;
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+>>>>> index 99b2466e2062..73517fd0d415 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_ras_types.h
+>>>>> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
+>>>>> @@ -12,6 +12,10 @@
+>>>>>    #define XE_RAS_NUM_ERROR_ARR			3
+>>>>>    /* Error bits in IEH global error status register */
+>>>>>    #define XE_RAS_SOC_IEH_PUNIT			BIT(1)
+>>>>> +/* Bits 16-31 represent individual SAF MHB unit */
+>>>>> +#define XE_RAS_FAB_IEH_SAF_MHB			GENMASK(31, 16)
+>>> Riana, please share where I can check to help reviewing these bits.
+>>>
+>>> Thanks,
+>>> Rodrigo.
+>>>
+>>>>> +/* Fabric Data payload parity errors */
+>>>>> +#define XE_RAS_FAB_CAUSE_PAYLOAD		BIT(2)
+>>>>>    /* Device memory error categories */
+>>>>>    #define XE_RAS_MEMORY_DB_ECC			BIT(1)
+>>>>>    #define XE_RAS_MEMORY_POISON			BIT(2)
