@@ -4,161 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65187C61DCB
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 15:46:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04E57C61DBD
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 15:50:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC3D110E3EB;
-	Fri, 28 Aug 2026 15:46:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D40E10F3FE;
+	Fri, 28 Aug 2026 15:50:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kdyu8Quq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bwm97O+0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 543D110E3EB;
- Fri, 28 Aug 2026 15:46:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EA0C10F3FE;
+ Fri, 28 Aug 2026 15:50:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787931994; x=1819467994;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=iBYscvnpB9Y9v+ruXhVipNUkei//ovnavU/WcYYy9dk=;
- b=kdyu8QuqrA+l30ZuCRoxMKwzY/nk5okRopRLTJYLBjDGPZrX2QtpCZ0p
- rbFlbGSD2WvSfyVnluFWldwklbR31FTOebq+PqTM1qGe2BCUcqh6cDBYb
- HcNJmlfMPVwG4dtbc7pQVq/2EST70zu1acfYmSi0HUMQq7CVrYFTvr1bt
- tn2hOZOpnZSqbSZEWtJ9J5gHGGRG+1jcFoRz+tkboxv8q6cTyNEBeWuIV
- Nz0G9AJ7ZINSdwIJtaUe4xxdbw3ijSIA8oD0SBS1w/7JbxZ4+Pi1pOEjp
- xMB7MTzrlBBwdifdjxMCQamRFsoQRe84zu+YRifehkAzw+gnqCT4VDKMU g==;
-X-CSE-ConnectionGUID: HIDgLnGHRcyLBVwDnuvYdA==
-X-CSE-MsgGUID: /JloEWPLQBOBf6j/gJ9/1Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11889"; a="92126852"
-X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="92126852"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2026 08:46:33 -0700
-X-CSE-ConnectionGUID: N+l7DUVaQ0GHi2Du6PLklQ==
-X-CSE-MsgGUID: 5bTZNexCQkakcB6FiicpgA==
+ t=1787932236; x=1819468236;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=fwdNXkW1MQTBdf9vWEFs6tNEhvTzjjgTddYdRR7gdXY=;
+ b=Bwm97O+08wOHq5kLbPo84VyGp7bihG/RWP8bIJVFvahQvtyxfzOAlopd
+ hJAB/0SUjL/IpEWMdc+kE/1563XVEON6xy6ddlS9DPEO+9s/AbdKjxvzF
+ yaeLtQ+bvJVAcBlPJtcbr+qkcF+P4BxTVKjUMEgY627Bbq3IAC3Z0nrWD
+ WVM/HWM/jmyZCb7XpQe/36nXte5J3zcpNDJHNSKP4bcHA93qtHQOuTMp6
+ NvSUFTCZLD77RHdhz8YDUBHqKSGmLkU5jc2Z0VgdyH/6NihMMimeXj50T
+ ZfKcway2wpqO7rS8VLeOsg769uoOQ1JXYzos91OhBVkcEMh7pNx3slSU/ A==;
+X-CSE-ConnectionGUID: rm70xVsuSHWVZ6clrvtP7Q==
+X-CSE-MsgGUID: InAI0apIQsyGtCvOQbyQRg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11889"; a="90953960"
+X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="90953960"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2026 08:50:36 -0700
+X-CSE-ConnectionGUID: qf1Y8f8uTsuHoAMEHHUxtQ==
+X-CSE-MsgGUID: ZwS8UP4aS7KiTBHjs5x/qA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="266885506"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2026 08:46:30 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="264438704"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2026 08:50:36 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 28 Aug 2026 08:46:30 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.46; Fri, 28 Aug 2026 08:50:35 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Fri, 28 Aug 2026 08:46:30 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.65) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Fri, 28 Aug 2026 08:50:35 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.5) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 28 Aug 2026 08:46:30 -0700
+ 15.2.2562.46; Fri, 28 Aug 2026 08:50:34 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sFFD+9s8pmG7sm5gOLbSGRH7hcugxFgxfddziZ3V1mfJ3CRfvGJAMezLik+nlN4N6/7d+XPbAlVbpEewBytfsl84PlPZxu3TLV3zRAJVUcbYRw7K86wBQ1PDmmOINvF0F+u/M6CunJNGka+kG2+NPwjZWadCBoslXn11a0E1GYrefgq0LB2Iv5G1D9rdGUKTQCZZREOkZgyZdL5QyIBrDk/jwKWw55opyCaVr0iEfu8rxf8ZAnJ2a1LClQLIm2t6HWuKGVjq1pwB2pKbReuFhxagVp9AAopJvKaiNXySf4c/1vC5AmgDF9rXOF4IhgivtexRgve0hvwy/tfsaHN7wg==
+ b=EtpBLVZzhwEvR1rnCrJKXp1Zp1NKehX0pk7bXnDSngU5AiKVtRSFizbsaMlwXDaoD4Mzlr4aSyweKrU+tWj9PYm8Rp0AGfzd2Axpvq6I+cBuvPmF49yPLAvrWmGyGA4NVd4lMrcKTVAyzQ8cuWhiIR+S19LJx4RBGXfZYGRr8X/vArTrSMyaDHj0J0Fz0j48rfIKxiwzYg+hQdtsy0lw4z82o2Dy9h2mS/dnsZ09OXWABMfqBUPXXg6vnN58nnwXSjqeJi0GmfMndWORmtIFUGHgejZhQhBqirVT75TDJTp22Wf5/XjMGhVxCxeRdQKec/lwkuFYjXAkCk29+AjXbQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a84QafY7HReARHxeRega+lK6AOixn9yR6zTW/mumzm0=;
- b=OtfKzG9DV2GhZRWld2/dwYqeXvqst45QgU2xc4uAdpfhPzkvbyasvPPZgJAfXxgSUXmfgcYSVtmTpSVOCIvedR1r14hqRTWTAD5anaZEzhu2IowJEQhQIYgyVIJfay2Uk1aGdA7KHl6LgSRlf+Ck5hEoM091ZuKvVq2YOyeiCjRljm/lCSoZBW3wTZq0sKBiM9u0/0VvI3/ZLUCof9B1vJvWurUY+PMGgQS5PbU/wXJ8yXf8aOjaoD8YC/PGluoJ7YaMFVteV0yX1rVxIrGTS3YLbJdzBO+R/eYS9YCQ/ExdaTTK3ZCuVNB3UWqMKf2ysAlxPVQ/8QzTAaUn7i+jqg==
+ bh=lhqpvcScFQSD8x2Y+KQoLOGmc3KbJuH/8bTa9EaSkJw=;
+ b=FEew0hCf1CYNBNN+P80DSCnX203uDz/2w5l0b6UfA0Xb3rEXawtT65E0qxHpVEYv1Rs28WtxaryVXmgketaCpl++/+RpGc8ZaJDBRkXEiEKc8Hr2OOCYKehL6rJz4B84RPDmbm0312v/ejviehIOz6Ojf3tkci2StJK2SPQ7RmenVhGPf3GX+aNeqP1ob767LowyxpfAQy40U1Pjyj+JBUXP75n+i4xe9aFXZ5/6hIuAeMSUMw+VkyvH+q/MnG7k4rCltkUdQS727Rlovv/DQOXXRsWm3Wq+9PSKe6SL+g0nWq15fiCiE2Aob0PHJmFeP8KL6SiJfsoz/67kxXGmCQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SA3PR11MB7554.namprd11.prod.outlook.com (2603:10b6:806:315::9)
- by IA0PR11MB7330.namprd11.prod.outlook.com (2603:10b6:208:436::17)
+Received: from IA0PR11MB7187.namprd11.prod.outlook.com (2603:10b6:208:441::12)
+ by SJ2PR11MB8450.namprd11.prod.outlook.com (2603:10b6:a03:578::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.10; Fri, 28 Aug
- 2026 15:46:24 +0000
-Received: from SA3PR11MB7554.namprd11.prod.outlook.com
- ([fe80::3ec0:2280:db82:d67b]) by SA3PR11MB7554.namprd11.prod.outlook.com
- ([fe80::3ec0:2280:db82:d67b%5]) with mapi id 15.21.0360.008; Fri, 28 Aug 2026
- 15:46:23 +0000
-Message-ID: <3664f401-62d9-41b6-8be4-b5754fe26c5a@intel.com>
-Date: Fri, 28 Aug 2026 21:16:16 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v4 2/2] drm/i915/audio: Prune ELD SADs based on HDMI audio
- bandwidth
-To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>
-CC: Kai Vehmanen <kai.vehmanen@linux.intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, "Vinod
- Govindapillai" <vinod.govindapillai@intel.com>, Mitul Golani
- <mitulkumar.ajitkumar.golani@intel.com>, Jani Nikula <jani.nikula@intel.com>
-References: <20260813120016.3444891-1-chaitanya.kumar.borah@intel.com>
- <20260813120016.3444891-3-chaitanya.kumar.borah@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260813120016.3444891-3-chaitanya.kumar.borah@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0227.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1b4::8) To SA3PR11MB7554.namprd11.prod.outlook.com
- (2603:10b6:806:315::9)
+ 2026 15:50:30 +0000
+Received: from IA0PR11MB7187.namprd11.prod.outlook.com
+ ([fe80::be96:3f58:953d:6565]) by IA0PR11MB7187.namprd11.prod.outlook.com
+ ([fe80::be96:3f58:953d:6565%4]) with mapi id 15.21.0360.008; Fri, 28 Aug 2026
+ 15:50:30 +0000
+Date: Fri, 28 Aug 2026 11:50:25 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: <yaolu@kylinos.cn>
+CC: <matthew.brost@intel.com>, <thomas.hellstrom@linux.intel.com>,
+ <umesh.nerlige.ramappa@intel.com>, <jose.souza@intel.com>,
+ <ashutosh.dixit@intel.com>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] drm/xe/oa: Remove sysfs entry on idr_alloc failure in
+ xe_oa_add_config_ioctl()
+Message-ID: <apGuQY7vZRIUZghZ@intel.com>
+References: <20260828060812.163548-1-yaolu@kylinos.cn>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20260828060812.163548-1-yaolu@kylinos.cn>
+X-ClientProxiedBy: BY3PR04CA0014.namprd04.prod.outlook.com
+ (2603:10b6:a03:217::19) To IA0PR11MB7187.namprd11.prod.outlook.com
+ (2603:10b6:208:441::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA3PR11MB7554:EE_|IA0PR11MB7330:EE_
-X-MS-Office365-Filtering-Correlation-Id: 34ad460e-f2f5-4186-eca6-08df051b837c
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|SJ2PR11MB8450:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4001daec-029f-453f-a963-08df051c1691
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|23010399003|376014|1800799024|56012099006|11063799006|4143699003|10067099003|3023799007|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: vI8gb8lY463RDRb+iau1eYET6dgj6GBQx28WDr2YQuLlf/aVhZbmmEFHo3sW6FCQr6ptCSfz7gkWIgN835SEwETbSHeS93qQHIIxV11Lskks2DxbJKbX9vdH0LhJg1c1bd6VNDFtl5at71Yy/rPTv6/3TqQaMMOk2YBqdiOH25ZsGfhpVdua6rOxXouvFAGhrOWxrzW3fyrcLcbE/3RC6PPNlSg6iBChyNmkY3WxhdOsQ8deVWcJsn7ndB0gEfwLjak1qg+Vz59se0UbnWFTulUdO8rY5jiqZDqN49I2e7tclYboxWRARmfJAzO3am95Qi/IShowQKVyCHwRkE2JIJPInwlQK31UeSAgWxcMpsLxDuo/kDtTMKxugOVg8EE2yuxuZFsKkt6ZMMv9qQK4g0dknfw5c2ri+gdeDjZ05dzWerRXPTc3wuIdEeZuVOhcsAXWtr+L5KQWksCiWu9DF5pvsUBYTI9vdK6lyxIb2F5PeKwhdHQy40d0D4AVSqWozLvXtnov3GBsmBXKMXon5saA3QeaKiX488/Po4XSimV/kqnV3lB/VJeRYnbELQ+gubeg2fRYEVW4RJsL64NfTNp304zjLRS4n5zeVsE2Oi/dLmXvT7hac1m67R29XGTn8s5bPEvMXyWO3eas9NRT4Pb5f1mZDeKOTV/gSy+Lvf0=
+ ARA:13230040|366016|23010399003|1800799024|376014|10067099003|6133799003|22082099003|18002099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: 8jyLcHukgJcWp2s0ItXASvh687mnVP7LPTs6qFTOW735kMICA9ueiFx4ohGQJe81pNSYhVnWZKVuzJ+2hkOqbQvNw1STtChW+s2xd31YiJEUFC2P3mxMgkcHPpPJpidqFefolwhnu48Ecn6lI9v6aYrBE8OiC6c/XJHfVM4k5Z++0WA06bt6LlZFIS+epUkEwNv5QQicvCj3Z2eoo3VW54GwUDK1XVjz0JYljCDl3veApoyXsYajFBSfAQdyVrzet9INF1EWYCuQPfUcEpyrqfeGQ2WRs6koCe8XHpIMqBfDE7DXvm4DXCApCGTsueqDZROEJWzGmVLeZ+KqkMTYndbAPQXNRl4RuEEUNSYueaikmardEedhNCnRchgkGPzKkWtN4FWE5RxLkaqcPnQyWHJ8NaBCPzo/E8XLZZsO1OArHDDE8mEAkGdkh4HIXEFkKpKFr83MxZsAWYIoE77Wc3P9XpP3CQjL7/UV7rBeBi9aClUfNI+PJDdtBygekHroaxUPrYNWNSJcj+PQ3c9N6ycJo3hL9S7QcKKplU5ejHO8rFKMaue5Wb94BtVLTM+xZJJT2IbGbFLxF/bpmfJZ/RNiNtga5R6JuF3xbU/TWqHXhkl5Efct4hEwjPSErSIH6Ae9bWTlyie9k/6z3s6sclOT/bx2LD/SSbHqfr1aMvc=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA3PR11MB7554.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(56012099006)(11063799006)(4143699003)(10067099003)(3023799007)(18002099003)(22082099003);
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7187.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(10067099003)(6133799003)(22082099003)(18002099003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a1piZldDM0l5RXFHZi9WRWVXWGY0L1Q1T0E5ejg3azJJOG9rYW0vdHl5ZVRu?=
- =?utf-8?B?VmgyL00zVVEzSS9GWkQ0cEE5MGhyZnFkeEM1SWdsaFFsbVUxOU1paWt3OFdW?=
- =?utf-8?B?MXpQUTBQQUxtVnRBcFdZWjZPNEtGaVhobVdjclEvc2h5VFc2RlJNUHdkUW5s?=
- =?utf-8?B?NXBibW4vYWphbGVSaWVvS3I2Y3pTbGNiUnZySmVZMk5sbzc3LzlOdUE3SWha?=
- =?utf-8?B?RldxM3pZcSthZHBMVW5wd2U5bWQ4cE9JTW53eCtiTTJWUVFOSEVKY243R1Qv?=
- =?utf-8?B?ZFBIK3kyWUMzb0EyUDNLck52ZlNubERuc3BQeHRlOFlWTmlTaktPWVdsREt6?=
- =?utf-8?B?T2VGU1dITG9XOWM0aHd6Ky9rYWhhbXlrdVFydWJhVE1qelh1RDcweG1DUHhw?=
- =?utf-8?B?MmJQSjNuNUNTQlR3ZGJmSXE4Qk9lNC9FUGRJbmlac3JONW01NnJTUERaUFBB?=
- =?utf-8?B?WWxDQkdxQ3NjSEhQZ3ZzRm9UbE9rdHBSUHJDYjJJcU1RZWFUYlFMVkllVFp4?=
- =?utf-8?B?bXhua3JvNGxISC8xcFdIamRSU3BGOUQ5SHpqcjk3R2hrdHhtK1p3c0RrdmZs?=
- =?utf-8?B?VW00SXZoNHdaL0Y4bjRGWjMxOGgydkJCQU1yRFdCcnUxc0xBWnpNRmF5MUly?=
- =?utf-8?B?ckt4N1pEVmdYSHViVXllWHlqU1I1SFJyVzlwaGhabGFsMUpvaEx5eXNIY3hY?=
- =?utf-8?B?SEJtbUpJMlRLSTRlUlozYm95ZGpkS3FGa29RdVNzNEhCL2hCY3hhSDl3SVdT?=
- =?utf-8?B?RlhyRTk3QkFZS1JIdlpQQ1Z4MkYzSm04d0V1dWxXTlljMDI5cG54OE51NXkx?=
- =?utf-8?B?RkJST0RrNDRqUkVRK3pZeXNIOFBkN1VQTzNNWmtmTVZ4K3RCaTlKN202eEdE?=
- =?utf-8?B?SmJxNytXeTJsQ0dmNzhSU0xMakp4NktGOGw5YndJeS9yN0VnNGNKT3NqTzAz?=
- =?utf-8?B?dmlOcUQ2RGFrVUEzWGMrOW03QnpoVGxPNTI5VDhVS0s3MWFqRVdleGZXU1A2?=
- =?utf-8?B?bWx4aTFTbzEzd2k1N0NXNVZSSzJsT1VmT1k2QzNHaFlWREVVT1hPTkIxKzBp?=
- =?utf-8?B?LzQ2SHRWTjM2WW9IMWRPNVNwRkN2ZUw5SWxGZXVyTFI3SngvZVVScElBOUlE?=
- =?utf-8?B?OUp3UllmOTlHUnRlYjVxaWRicmtGb2RHMWplQTJTcklYMEc5a0xML3ZXdEZP?=
- =?utf-8?B?VHpRbzg5cVBlVVR2VTdTQitjcHd6djlaQlV2d2Z6WmRaRzJtUFBJa1liSHYv?=
- =?utf-8?B?UnJ4blh5bGd4bjU0bnVEbTF4NWZnZDl5MjFGU3RJY2xOZ2h1cXU4bWNaakF3?=
- =?utf-8?B?U1pjZ1NEclFqSkVUMUR0Yzd3NmNJVDlBeXA5aENCdHBIU0N4Y2lpdENwOGgr?=
- =?utf-8?B?a0xyczhvV3hod3FaU1MwZm93Tk5OczAwcTEwZG1xSXVUU1Vqc0hnRitsWGNZ?=
- =?utf-8?B?TG43RXFXYlh2akk2RCtmL1NxRGxOWjRVUEMzS3Y1YVA5SGR4Mm5TYUJLWk9G?=
- =?utf-8?B?TFVBd1dZbnY5TjBBRElFa1pKT3k4UTI5SXM2UkZITnFzbGg1WlhUS3ZJUXJ4?=
- =?utf-8?B?NFRqakloY1c2MmhYRkQwL3BnMmVTaFJFYVNVdjBzZXltc01oU2wxUEMwYUR6?=
- =?utf-8?B?UXNOTTB6VnIxQW83SmY4RFowSTdlcVVFMlg0L3pzcmZtbllVVmFSL2xaY2l6?=
- =?utf-8?B?M3F3Q2pnUjF4NWkwTnh3QXRsdVBCdUVjbVFVTkhLMnJ1T3ZoVmIxMEY2K0Ny?=
- =?utf-8?B?Z0Z1K01QRCtqdWNnM2NXUG1JTUZ3OENEZFlpMHpKc1luOTUyd0l5cERCYnNz?=
- =?utf-8?B?RGVNbUpXSVNvMFowL1d2N2tMSjFoOUdXWGpMWVRsSzZzbVlsNnNnNVJBUUtK?=
- =?utf-8?B?MVRMdnlQVWVuQnpuSjRRL3N5ZzdqNG1FR2daTXpMdVVGTFZNN0s4TlRicGEz?=
- =?utf-8?B?b0tvVm9RNXJWUUs1ajFqbkNhOUdHQ0puSDdoRlhaWk9mY3VsVnRkaGx4Ty9z?=
- =?utf-8?B?MXNuTTNJT2ZxUGV5MlNwYUlTeFl3SElZVkFNanNEVGVjQ3pWeVBLYzV1bWRj?=
- =?utf-8?B?OVlWZHFkS2dHM1o2K0dVYTlHN2Izc0VyclRPUGdFLzFNUjBJWjZuS3k1TXpz?=
- =?utf-8?B?elhWZmlRRTRaZkU2Y1hKYXdwMDRTVUNWeEV5dHNYV1JCQXJtSVN6MWN0Mzhx?=
- =?utf-8?B?K2FaZS9VV2IxQnBVbU1wSGZiMTdRSWlRbTJQeTFUK1p4ZEJleEI3bWJQZU1H?=
- =?utf-8?B?RUZGZlFIbHFVR2FqR0dodjRGOTQ2QXVuRDVUY3lnWG5IZ2FVb2xNdk1uNE42?=
- =?utf-8?B?QWtnRHV3TW5CbUVCUzNuSWlFU2kwOTVQVWhPU2N6QWFLVllpZytJY1BOWWZG?=
- =?utf-8?Q?+IBV3RbXqrRpF5bM=3D?=
-X-Exchange-RoutingPolicyChecked: U4nsaiKFZFQpMYSkawEwyH4HsTDsOAFM0zrNM9cPXv+ikILLi0HTaazPmqt8qKHVAWuxLkEFFz/b+wppmBzUk0Nz0YSmQDLJ/WM0hEptWZ4eaWK7XvvwDM015+goGj5C6wpVC5HEIInbX+ecNV8VkJ9k2vsfLK7YY7ySIZU41JW2TgW6g54ZfLJTahfMsj2RMt5aXdEubZPtwej3kFhfo4dKHIlW9vqwKmYQq1C43mH2y1OVjDC/RzZIAoT/G5ppQYjGLSaR0IV7Lvag9CFWlPn3D1MziGTiVE/NjYoEPiqSEdczHEQWcA/PkrwQV9cM+aS9H/8+VZzhvFyyJhTVNg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34ad460e-f2f5-4186-eca6-08df051b837c
-X-MS-Exchange-CrossTenant-AuthSource: SA3PR11MB7554.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+XEUhGWj+sSGYz6HGVbvEtA9HUA4BVN1eIlqmX7N8mp8MBhUioamqoT2rQpM?=
+ =?us-ascii?Q?HwP8uUXs1Hwcyd5K18vAMfSTvydqsoEEqRCifiv/SvibvnMyNqEm6LPBiK0x?=
+ =?us-ascii?Q?3YSfwPEzNzBN3y7hSiI4/efcMHhmTHJQnXAANcAwFme7GuqJq0ZGV7mSB2XF?=
+ =?us-ascii?Q?9Ra/+A5ViV/QjJfWTMBZLQNgiVkHT/CGCzu+5lVthvh7GDtdbknUHB0X/tXJ?=
+ =?us-ascii?Q?a19E/zG16q8jNIj0E/ZfyemKGhLAX/v3335s6cZpdmqWpEXZcrDXwOKrNygL?=
+ =?us-ascii?Q?Wqc9HH/QTLdhkpqLO4xrF9WaA+wPzT1KbI9evVaoSuWByAw34MVqctknfQ9M?=
+ =?us-ascii?Q?/uB6Jt2vEvEzvYMbJXbXEbZTiCPYbN4p2AArO7DkH9G5Iy4Oo6409v2/xaW/?=
+ =?us-ascii?Q?MZbs6Y6Zj28LLXp3+btqGJWqL7qLkm1EldRlTtfNFSMbn23ZD1escpyMrXdx?=
+ =?us-ascii?Q?/0es7Tg4u4ZT+I6Zfr5vGCWhbXSOjAhniT3SgSTJO6WBdmWWpZXYxaMulZaN?=
+ =?us-ascii?Q?wylx47fL+gXj+NbRFduBFR1klzU65fKraHGMhIP4KaIuuv2WHlwZDYuwmcaJ?=
+ =?us-ascii?Q?Y0a8iPtizuIREzvPgHFxTwFa2SRgC0nxGz12PzjhThlJj6mK6pNpu4bC3BMI?=
+ =?us-ascii?Q?UvMpBKFHkIX6DWoBtvr0H6B8Uy9h1KVSLaQvrjuk4sc99ryp5yKtapnHUFZD?=
+ =?us-ascii?Q?mnF8tH9bSxHYv6hIzWjKxKLTCH2M0BHElLF4aYqpU1B/ffgv7RoLyXyT33ke?=
+ =?us-ascii?Q?tm8jZgD8Y7Uf/UH8pfGTywx0ebsmD7nvUFSXdyOwZZoFb4MRekg5AHaymfYw?=
+ =?us-ascii?Q?WikOx8DS5Xz6RT/8k5zW7IgUvUrtyg0qhjmZMqvsEJ6aa8RGu7d+VK00c1q9?=
+ =?us-ascii?Q?btDl7EGlTowjb9Jq3cE1i0q/E5OY6gMNsj0IuVpTMNj1SsFZn772xHywgS1J?=
+ =?us-ascii?Q?Gb22MMDpw0Kwhb8X31TYJeB0me3ME8zWjW8OYb7qTK2mXy1xqdFCHXMYBpkn?=
+ =?us-ascii?Q?5499Tx3JKcWMMxGDKtDC8xyf9jtuXt6XFTJvvkEMIUTzrr44yM4fI+mhAbs0?=
+ =?us-ascii?Q?nd4WFYcvgN5yzp16bb0HcBA1VqjV5oeo7gOKsgyTZw6+NPj5+cSNJWKG1Y4a?=
+ =?us-ascii?Q?i/d8RYjb6vuTbLpbrAA2U8Gcrpc3uztYFpSfR3oKRmJlrRpEryTTjigZ8qhl?=
+ =?us-ascii?Q?Y/igJtGG9Dt9nlpthl0/1d4Zsno8c7lhdd8dahAb21w82w45AqXyesVOQoaA?=
+ =?us-ascii?Q?msJ7PNSOQ5Nu5SUqRBpZPVZVXnMC7q6OyuOaYH9QX0fQAkV/QnL+C0BlclsT?=
+ =?us-ascii?Q?JdlKG6sKL0vsifeNdmNka8Y/XPBEdYyTkT8NXLJQ1+h2T9dbnAL8Un2qrtdd?=
+ =?us-ascii?Q?LsN2Bi5wqb8xlziWbBIU1uPiybJsxn9bWaXZizn0xz2/65cjmrz5K6KI/0Et?=
+ =?us-ascii?Q?pmvdMyG/3NfPVcSoL+/nOHHnbZgci23CKsxPnGleSHYnbq6YV1/uqOsguYQb?=
+ =?us-ascii?Q?bq9jw2f3uB/HTHXvkpMG0o693F3MXvgApikxcW1tD6R/QOXIReop0+cdwZbu?=
+ =?us-ascii?Q?iMS96swVWtjPNrWzFCpOUZrctwUFav50YOWLrVv9ZZZ/64/+9i14wHjZfp95?=
+ =?us-ascii?Q?7sGureCIbXNY/4Pkj/NmU8iR/tjEDkEPYWz+ktCs7xHuEJtdQjfczlyatHqB?=
+ =?us-ascii?Q?Rgh9yempO1QEFJkMMZq3Yz2WcZ8b8WHtBPn2ZKUP6CEbf8v91fk4ORutZsNN?=
+ =?us-ascii?Q?2dFeDR0ijQ=3D=3D?=
+X-Exchange-RoutingPolicyChecked: KWsaNgly0j7FrPV9lY/Fs6TsdBiBTlk88sOLc7Amba5EdKLabtrzxo7y+vL+hu60daXs0wsdB9nkicLsK67skOtJuxcZPVTjkX8d/3I+axZAFt5Zl9Fr8YTvaFmNwVv+SgoQm33lXlJeQAEC9q3QAHrh0GOBXmwO4rfcIzIs7+cwaX1DEHUenamf72RsRkH0zGRNZAdnMI24iBesc0vwesK8x5gJ0iDP4Ub4gVHrctE+7tzKIZy6yX/81+MdB9/qZEX9d2Co8OJSYI4sXu005Qty5tElZwtmp2Ok/kDot/UN6ekF+I9/h3OIt8I6Jio/14RxuvcGqt9qYjs+K+K/Kg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4001daec-029f-453f-a963-08df051c1691
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7187.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2026 15:46:23.9342 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2026 15:50:30.7693 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eWC4NlAc0Wnt8M7mSdd4zE7/YQqAqrfcY7NJhGuojfeEABxp7ntgx4XiyNUi2327FYqp0eUjUDrBADODjxT9RVnxodeAIFo/+94Cqq+AqsI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7330
+X-MS-Exchange-CrossTenant-UserPrincipalName: AF+Al4dFElZ+MbrO9YYgUyy+beAGOa1psnWGDJGmgM1tuXD0eV3Ij2pA+ejlwLsqEcZU7OtAfoai698vjasIhg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8450
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -174,251 +160,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 8/13/2026 5:30 PM, Chaitanya Kumar Borah wrote:
-> Add bandwidth check to determine whether a given audio sample rate and
-> channel count can be carried within the hblank period for HDMI TMDS mode.
->
-> Use this check to prune unsupported sample rates from each SAD in the
-> ELD during intel_audio_compute_config(). SADs with no remaining
-> supported rates are removed entirely.
->
-> Sample rates are pruned rather than channel counts, since compressed
-> formats (e.g. AC-3) are associated with specific channel counts.
->
-> v2:
->   - Use DIV64_U64_ROUND_UP() instead of DIV_ROUND_UP_ULL() to avoid
->     do_div() truncating the 64-bit divisor to 32-bit, which caused
->     audio_packets_line to be wildly inflated and all SADs to be pruned.
->   - Guard intel_audio_hdmi_eld_compute_config() against HDMI FRL modes.
->     (Remove it when BW calculations for FRL are added.)
->
-> v3:
->   - Rebase
->
-> v4:
->   - Rework SAD removal into a single-pass, two-pointer compaction
->     instead of memmove-ing the tail on every removal. (Jani)
->
-> BSpec: 68944
-> Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Assisted-by: GitHub-Copilot:claude-opus-4.6
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+On Fri, Aug 28, 2026 at 02:08:12PM +0800, yaolu@kylinos.cn wrote:
+> From: Lu Yao <yaolu@kylinos.cn>
+> 
+> If idr_alloc() fails after create_dynamic_oa_sysfs_entry() has
+> succeeded, the error path frees the OA config without removing the
+> metrics sysfs group.
+> 
+> Remove the sysfs group before releasing the config, and fix up the
+> misleading error message copied from the sysfs creation failure path.
+> 
+> Fixes: cdf02fe1a94a ("drm/xe/oa/uapi: Add/remove OA config perf ops")
+> Signed-off-by: Lu Yao <yaolu@kylinos.cn>
 > ---
->   drivers/gpu/drm/i915/display/intel_audio.c | 156 +++++++++++++++++++++
->   1 file changed, 156 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-> index eae76e961105..9eb6867fa3f3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> @@ -39,6 +39,7 @@
->   #include "intel_display_types.h"
->   #include "intel_display_wa.h"
->   #include "intel_dp.h"
-> +#include "intel_hdmi.h"
->   #include "intel_lpe_audio.h"
->   
->   /**
-> @@ -697,6 +698,158 @@ static void ibx_audio_codec_enable(struct intel_encoder *encoder,
->   	mutex_unlock(&display->audio.mutex);
->   }
->   
-> +static bool hdmi_audio_rate_supported(const struct intel_crtc_state *crtc_state,
-> +				      int available_tmds,
-> +				      int audio_rate, int channels)
-> +{
-> +	const struct drm_display_mode *mode = &crtc_state->hw.adjusted_mode;
-> +	int pixel_clk_max_hz;
-> +	int audio_pkt_factor;
-> +	u64 audio_pkt_rate_x4_x1000;
-> +	int audio_packets_line;
-> +	int hblank_overhead;
-> +	int required_tmds;
-This can be names as hblank_audio_min the HDMI spec, and bspec both 
-mention this to denote required tribytes
-> +
-> +	/*
-> +	 * Part 2: Calculate TMDS clock cycles required for Audio Bandwidth
-> +	 *
-> +	 * Step 1: pixelclk_max = nominal_pixel_rate * (1 + 0.5%)
-> +	 * crtc_clock (kHz) * 1000 * 1.005 = crtc_clock * 1005 (Hz)
-> +	 */
-> +	pixel_clk_max_hz = mode->crtc_clock * 1005;
-> +
-> +	/*
-> +	 * Steps 3-4: Audio Packet Rate.
-> +	 *   R_AP = (audio_rate * AP + 2 * acrrate_max) * (1 + 1000 / 1e6)
-> +	 *        = (audio_rate * AP + 2*1500) * 1.001
-> +	 *
-> +	 * AP = 0.25 (2ch) or 1.0 (3-8ch); acrrate_max = 1500 Hz (max ACR
-> +	 * packet transmission rate per HDMI spec)
-> +	 *
-> +	 * Scale by 4*1000 to stay integer:
-> +	 *  x4: eliminates AP=0.25 -> audio_pkt_factor=1(2ch) or 4(3-8ch),
-> +	 *      scaled acrrate_max: 2 * 1500 * 4 = 12000
-> +	 *  x1000: eliminates 1.001 -> *1000*1.001 = *1001
-> +	 *
-> +	 * R_AP * 4 * 1000 = (audio_rate * audio_pkt_factor + 12000) * 1001
-> +	 */
-> +	audio_pkt_factor = (channels <= 2) ? 1 : 4;
-> +	audio_pkt_rate_x4_x1000 = (u64)(audio_rate * audio_pkt_factor + 12000) * 1001;
-> +
-> +	/*
-> +	 * Steps 2+5-6: Audio packets per line.
-> +	 *   AudioPackets_Line = CEIL[R_AP * htotal / f_pixelclk_max]
-> +	 *
-> +	 * With audio_pkt_rate_x4_x1000 = R_AP * 4 * 1000:
-> +	 *   = CEIL[audio_pkt_rate_x4_x1000 * htotal / (4 * 1000 * pixel_clk_max_hz)]
-> +	 */
-> +	audio_packets_line = DIV64_U64_ROUND_UP(audio_pkt_rate_x4_x1000 * mode->htotal,
-> +						(u64)4 * 1000 * pixel_clk_max_hz);
-> +
-> +	/*
-> +	 * Steps 7-9: Hblank overhead.
-> +	 * Standard:  2*dip_guardband + 2*control_period + video_guardband
-> +	 *          = 2*2 + 2*12 + 2 = 30
-> +	 * HDCP 1.x:  rekey_period + dip_guardband + control_period + video_guardband
-> +	 *          = 58 + 2 + 12 + 2 = 74
-> +	 *
-> +	 * Always use HDCP 1.x worst case (74) since HDCP can be toggled
-> +	 * via fastset without compute_config.
-> +	 */
-> +	hblank_overhead = 74;
-> +
-> +	/*
-> +	 * Step 10: Required TMDS cycles for Audio.
-> +	 *  32 TMDS clock cycles per audio packet.
-> +	 *   Hblank_audio_min = 32 * AudioPackets_Line + Hblank_overhead
-> +	 */
-> +	required_tmds = 32 * audio_packets_line + hblank_overhead;
-> +
-> +	/*
-> +	 * Part 3: audio supported if Hblank_audio_min <= TB_blank and
-> +	 * audio packets per line <= Maximum allowed packets per line (18)
-This can be a macro HDMI_TMDS_AUDIO_PACKETS_LINE_MAX
+>  drivers/gpu/drm/xe/xe_oa.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> index 9c5384b95c63..73e51db13f56 100644
+> --- a/drivers/gpu/drm/xe/xe_oa.c
+> +++ b/drivers/gpu/drm/xe/xe_oa.c
+> @@ -2435,8 +2435,9 @@ int xe_oa_add_config_ioctl(struct drm_device *dev, u64 data, struct drm_file *fi
+>  
+>  	oa_config->id = idr_alloc(&oa->metrics_idr, oa_config, 1, 0, GFP_KERNEL);
+>  	if (oa_config->id < 0) {
+> -		drm_dbg(&oa->xe->drm, "Failed to create sysfs entry for OA config\n");
+> +		drm_dbg(&oa->xe->drm, "Failed to allocate id for OA config\n");
+>  		err = oa_config->id;
+> +		sysfs_remove_group(oa->metrics_kobj, &oa_config->sysfs_metric);
 
-> +	 */
-> +
-> +
+good catch, but instead of adding this removal here, could you please
+create a new goto so the error handling keeps consistent?
 
-The extra blank line can be removed.
+something like:
 
+-		drm_dbg(&oa->xe->drm, "Failed to create sysfs entry for OA config\n");
++		drm_dbg(&oa->xe->drm, "Failed to allocate id for OA config\n");
+  		err = oa_config->id;
+-		goto sysfs_err;
++		goto id_alloc_err;
 
-> 	return required_tmds <= available_tmds && audio_packets_line <= 18;
-> +}
-> +
-> +static void intel_audio_hdmi_eld_compute_config(struct intel_crtc_state *crtc_state)
-> +{
-> +	static const int sad_freqs[] = {
-> +		32000, 44100, 48000, 88200, 96000, 176400, 192000
-> +	};
-> +	const struct drm_display_mode *mode = &crtc_state->hw.adjusted_mode;
-> +	int hblank = mode->htotal - mode->hdisplay;
-> +	int bpc = crtc_state->pipe_bpp / 3;
-> +	int ycbcr_420_divider = (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) ? 2 : 1;
-> +	int available_tmds;
-> +	u8 *eld = crtc_state->eld;
-> +	int mnl = drm_eld_mnl(eld);
-> +	int sad_count = drm_eld_sad_count(eld);
-> +	int src, dst = 0;
-> +
-> +	/* Only applies to HDMI TMDS, not FRL */
-> +	if (intel_hdmi_is_frl(crtc_state->port_clock))
-> +		return;
+...
 
-This can be dropped as of now we do not have FRL support. As we get FRL 
-support, we shall use appropriate check here.
++id_alloc_err:
++		sysfs_remove_group(oa->metrics_kobj, &oa_config->sysfs_metric);
+sysfs_err:
 
-
-> +	/*
-> +	 * Part 1: Calculate available TMDS clock cycles (TB_blank).
-> +	 *
-> +	 * TB_blank = CEILING[hblank * K_CD / K_420]
-> +	 *
-> +	 * K_CD = 1 for YCbCr4:2:2, bpc / 8 otherwise.
-> +	 * K_420 = 2 for YCbCr4:2:0, 1 otherwise.
-> +	 * Rearranged: CEILING[hblank * bpc / (8 * K_420)]
-> +	 *
-> +	 * TODO: As and when support for YCbCr4:2:2 is added, set bpc = 8
-> +	 * to achieve K_CD = 1
-> +	 */
-> +	available_tmds = DIV_ROUND_UP(hblank * bpc, 8 * ycbcr_420_divider);
-> +
-> +	/*
-> +	 * Walk all SADs once, keeping the ones with at least one supported
-> +	 * rate and compacting them down to a contiguous [0, dst) range.
-> +	 */
-> +	for (src = 0; src < sad_count; src++) {
-> +		int src_offset = DRM_ELD_CEA_SAD(mnl, src);
-> +		int channels = (eld[src_offset] & 0x7) + 1;
-> +		u8 freq_mask = eld[src_offset + 1];
-
-Hmm can we use : drm_eld_sad_get() this takes struct cea_sad *cta_sad as 
-input parameter and fills it.
-
-we can then use cta_sad.channels and cta_sad.freq for max channels and 
-freq_mask.
-
-Overall the direction of the change looks good to me.
-
-
-Regards,
-
-Ankit
-
-> +		u8 new_freq_mask = 0;
-> +		int bit;
-> +
-> +		for (bit = 0; bit < 7; bit++) {
-> +			if (!(freq_mask & BIT(bit)))
-> +				continue;
-> +			if (hdmi_audio_rate_supported(crtc_state, available_tmds,
-> +						      sad_freqs[bit], channels))
-> +				new_freq_mask |= BIT(bit);
-> +		}
-> +
-> +		if (!new_freq_mask)
-> +			continue;
-> +
-> +		eld[src_offset + 1] = new_freq_mask;
-> +
-> +		if (dst != src)
-> +			memmove(&eld[DRM_ELD_CEA_SAD(mnl, dst)],
-> +				&eld[src_offset], 3);
-> +		dst++;
-> +	}
-> +
-> +	/* Clear the now-unused tail */
-> +	if (dst != sad_count)
-> +		memset(&eld[DRM_ELD_CEA_SAD(mnl, dst)], 0, (sad_count - dst) * 3);
-> +
-> +	sad_count = dst;
-> +
-> +	/* Update SAD count in ELD header */
-> +	eld[DRM_ELD_SAD_COUNT_CONN_TYPE] &= ~DRM_ELD_SAD_COUNT_MASK;
-> +	eld[DRM_ELD_SAD_COUNT_CONN_TYPE] |= sad_count << DRM_ELD_SAD_COUNT_SHIFT;
-> +
-> +	/* Recalculate baseline ELD length (in dwords) */
-> +	eld[DRM_ELD_BASELINE_ELD_LEN] =
-> +		DIV_ROUND_UP(drm_eld_calc_baseline_block_size(eld), 4);
-> +}
-> +
->   static
->   bool intel_audio_needs_cpu_transcoder_id(const struct intel_crtc_state *crtc_state)
->   {
-> @@ -725,6 +878,9 @@ bool intel_audio_compute_config(struct intel_encoder *encoder,
->   	BUILD_BUG_ON(sizeof(crtc_state->eld) != sizeof(connector->eld));
->   	memcpy(crtc_state->eld, connector->eld, sizeof(crtc_state->eld));
->   
-> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-> +		intel_audio_hdmi_eld_compute_config(crtc_state);
-> +
->   	crtc_state->eld[6] = drm_av_sync_delay(connector, adjusted_mode) / 2;
->   	mutex_unlock(&connector->eld_mutex);
->   
+>  		goto sysfs_err;
+>  	}
+>  
+> -- 
+> 2.25.1
+> 
