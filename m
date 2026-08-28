@@ -4,43 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C298EC61DB9
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 21:52:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03436C61DB9
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 22:19:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EBA910E656;
-	Fri, 28 Aug 2026 21:52:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="P3tmm2SW";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E2E810E656;
- Fri, 28 Aug 2026 21:52:27 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 7D1B760217;
- Fri, 28 Aug 2026 21:52:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F15951F00A3F;
- Fri, 28 Aug 2026 21:52:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787953946;
- bh=xTpwAFM1FIXKRTJKcKM7iTb47OdFg3JFWNtGIHnBj0o=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=P3tmm2SWYDgPvtvhPRQJQ63cLOtpHXiMjtdVvjyrZoC0KJU4Q9o2LdxnE4VQVEElz
- VhtkxpMNCorCdtitiCJYWRgh67PpnSKJpoqrZZhf4jZTgYiAAPxmLl3lLcxuPe3V88
- wVVzRQsb5aSsYSe+tXD1xYRUTibEBzlbhKhdrqhA76jOQUHkT8cAiQbmwaIRXSrMFa
- oioMjku0GOxHlufwoc+aIuPTbO7ComAjfLKJYykuejWqfbsCeOzGDjR0tAaYUL9Nhr
- yVjsO3nt6ZWfghBWw4UnXKdnbDu0XzKPVjzTb5gknKnIhdMdZcBr5B6Juv9poc/ODg
- C4ET+hobWMxKw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2] perf: Fix null pointer access in
- is_include_guest_event()
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96C4A10F49C;
+	Fri, 28 Aug 2026 22:19:11 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54DDF10E531;
+ Fri, 28 Aug 2026 22:19:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8110247779435184051=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_perf=3A_Fix_null_pointer_ac?=
+ =?utf-8?q?cess_in_is=5Finclude=5Fguest=5Fevent=28=29_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20260828212803.3963976-1-vinay.belgaumkar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 28 Aug 2026 22:19:11 -0000
+Message-ID: <178795555133.97852.9667155808273174734@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260828212803.3963976-1-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 28 Aug 2026 21:52:25 +0000
-Message-Id: <20260828215225.F15951F00A3F@smtp.kernel.org>
+In-Reply-To: <20260828212803.3963976-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,78 +36,241 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+--===============8110247779435184051==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-New issues:
-- [Medium] The patch silently alters the behavior of perf_event_read_local(=
-) by explicitly returning -EINVAL for revoked or dead events.
+== Series Details ==
 
-Pre-existing issues:
-- [High] TOCTOU race in `perf_event_read_local()` allows NULL pointer deref=
-erence or Use-After-Free of `event->pmu` despite the newly added state chec=
-k.
---
+Series: perf: Fix null pointer access in is_include_guest_event() (rev2)
+URL   : https://patchwork.freedesktop.org/series/172917/
+State : success
 
-commit 3c330c9904a35189d22ecaa756a6d8b5458cfb9c
-Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+== Summary ==
 
-perf: Fix null pointer access in is_include_guest_event()
+CI Bug Log - changes from xe-5660-046bcac5ed22b09812cec3b0aef678195f1eae71_BAT -> xe-pw-172917v2_BAT
+====================================================
 
-A kernel panic is observed when an application has a perf connection open
-and the driver managing the pmu event unbinds. The issue occurs when
-perf_pmu_unregister() is called while there is an active perf session. The
-null pointer error is seen when the event is freed through __free_event()
-and mediated_pmu_unaccount_event is called. There is a missing null check
-inside is_include_guest_event(). Also call mediated_pmu_unaccount_event()
-inside __pmu_detach_event() similar to __free_event().
+Summary
+-------
 
-> diff --git a/kernel/events/core.c b/kernel/events/core.c
-> index a6c8e38a31104..9809fc10c4f51 100644
-> --- a/kernel/events/core.c
-> +++ b/kernel/events/core.c
-> @@ -4917,6 +4917,11 @@ int perf_event_read_local(struct perf_event *event=
-, u64 *value,
->  		goto out;
->  	}
-> =20
-> +	if (event->state <=3D PERF_EVENT_STATE_REVOKED) {
-> +		ret =3D -EINVAL;
-> +		goto out;
-> +	}
-> +
+  **SUCCESS**
 
-[Severity: Medium]
-Does this explicitly change the return value for revoked or dead events to
--EINVAL? The commit message describes fixing a null pointer access in
-is_include_guest_event(), but does not mention altering the behavior of
-perf_event_read_local() for revoked events. Could this be documented in the
-commit message?
+  No regressions found.
 
-[Severity: High]
-This is a pre-existing issue, but does this lockless state check leave a
-time-of-check to time-of-use race window that can still lead to a null
-pointer dereference of event->pmu?
+  
 
-If CPU A calls perf_event_read_local(), disables interrupts, and locklessly
-checks event->state, it can pass if the event state is
-PERF_EVENT_STATE_INACTIVE.
+Participating hosts (12 -> 13)
+------------------------------
 
-Concurrently, if CPU B calls perf_pmu_unregister() which leads to
-__pmu_detach_event(), it will not send an IPI to synchronize with CPU A
-since the event is inactive. CPU B then sets event->state to
-PERF_EVENT_STATE_REVOKED and clears event->pmu to NULL.
+  Additional (1): bat-bmg-2 
 
-When CPU A continues and calls __perf_event_read_cpu(event, event->cpu),
-if the event has PERF_EV_CAP_READ_SCOPE, it will dereference
-event->pmu->scope, which was just set to NULL by CPU B, causing a panic.
+Known issues
+------------
 
-Can this sequence be synchronized safely?
+  Here are the changes found in xe-pw-172917v2_BAT that come from known issues:
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260828212803.3963=
-976-1-vinay.belgaumkar@intel.com?part=3D1
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@write:
+    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@fbdev@write.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][2] ([Intel XE#2233])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][3] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - bat-bmg-2:          NOTRUN -> [SKIP][4] ([Intel XE#2482]) +3 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-bmg-2:          NOTRUN -> [SKIP][5] ([Intel XE#2434] / [Intel XE#2548] / [Intel XE#6314])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-bmg-2:          NOTRUN -> [SKIP][6] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  * igt@xe_exec_multi_queue@priority:
+    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#8364]) +13 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@xe_exec_multi_queue@priority.html
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-2:          NOTRUN -> [SKIP][8] ([Intel XE#2229])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-bmg-2:          NOTRUN -> [SKIP][9] ([Intel XE#1420] / [Intel XE#7590])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-bmg-2:          NOTRUN -> [SKIP][10] ([Intel XE#2245] / [Intel XE#7590])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#2236] / [Intel XE#7590])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
+  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
+  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
+  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
+  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
+  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
+  [Intel XE#6314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314
+  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
+  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
+
+
+Build changes
+-------------
+
+  * Linux: xe-5660-046bcac5ed22b09812cec3b0aef678195f1eae71 -> xe-pw-172917v2
+
+  IGT_9078: 9078
+  xe-5660-046bcac5ed22b09812cec3b0aef678195f1eae71: 046bcac5ed22b09812cec3b0aef678195f1eae71
+  xe-pw-172917v2: 172917v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/index.html
+
+--===============8110247779435184051==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>perf: Fix null pointer access in is_include_guest_event() (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172917/">https://patchwork.freedesktop.org/series/172917/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5660-046bcac5ed22b09812cec3b0aef678195f1eae71_BAT -&gt; xe-pw-172917v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 13)</h2>
+<p>Additional (1): bat-bmg-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-172917v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314">Intel XE#6314</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@priority:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@xe_exec_multi_queue@priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v2/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5660-046bcac5ed22b09812cec3b0aef678195f1eae71 -&gt; xe-pw-172917v2</li>
+</ul>
+<p>IGT_9078: 9078<br />
+  xe-5660-046bcac5ed22b09812cec3b0aef678195f1eae71: 046bcac5ed22b09812cec3b0aef678195f1eae71<br />
+  xe-pw-172917v2: 172917v2</p>
+
+</body>
+</html>
+
+--===============8110247779435184051==--
