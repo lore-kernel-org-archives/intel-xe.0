@@ -4,64 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 447D4C61DCB
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 14:07:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28AE9C61DBD
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 14:18:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC74410F3DE;
-	Fri, 28 Aug 2026 14:07:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C21EB10F3E0;
+	Fri, 28 Aug 2026 14:18:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nObI+Isw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UODF5VFz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E77D910F3DB
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Aug 2026 14:07:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A29E610F3E0
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Aug 2026 14:18:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787926056; x=1819462056;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=oWvdTypKpV6MRNSAPTDtyoOHEyuJUR0ToCicu8XIDVQ=;
- b=nObI+IswF4QbEMwXZSl7zCrrjFYBKuXgNm8/UKwszW9BMxnwimiGVdwO
- ZwFVhddZEl1OrLkoO2MhUycVdAhR76wJCMsWunZUsMeUeSm/uoQzTUw6X
- k1JgsQjlFD5T/1gnDVWFWMGmFX7acI3tjJ8iu1NjDkV26ETf58jPrkwQK
- iYxPg+A3iqkjCMZTL79yhpV3yWM+IHyWCKHTYisA1ZlaLcx4RI2+uj5r0
- bgxFOmuR1d7bxkX4g4rZs9883lYkA5LdrM05hL9zuJxye2K5z5TlLRTec
- MSxQO1Yy9JkbjMY2wGnU2jc7FL5Um6tM1Oz2GTfQFJS6inARjKFCBfRqy g==;
-X-CSE-ConnectionGUID: b67CtkuDT8CEE/cK4WNkPQ==
-X-CSE-MsgGUID: 0RPph4BORZKLb88jMb7/YQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11889"; a="88358945"
-X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="88358945"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2026 07:07:36 -0700
-X-CSE-ConnectionGUID: XF+pEiqeQxWZSWKBW5uzGA==
-X-CSE-MsgGUID: pPyheSjQSiOXf/RLP5NL5w==
+ t=1787926711; x=1819462711;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Tq/OulpoKcJm+j5f1mt8E/mNm2XdyQ3y/Dz4r8zwFUk=;
+ b=UODF5VFzzTYLN4GAJdB4nQUJyOUzPhS7gzGbJV0DXsyyGpBYGiSTW3Uv
+ mMCmPN7H5Wk7dcv+Pt/mPFhmQdRC49erh0u9F0hHHJh105cAbqSzvw2Hs
+ 13r2lt0fACUfn3BGfG3FibmkPsFxXqgbv9h5zB0jPJDP6BEUx+86mL0QJ
+ kwI6kGxYIQ9ULYTTfPIoVLlddF5UHIKnkqJYKSPgrPyNF03L2Uhzsoxbo
+ j17RcHtxUdrXAvhsZvL5L0d8xaXYlvDk7TS7vuZHoSGxh0pv8tgSZcO2o
+ CEFZwsY9Vs4Ita9Sewai+iSBwcNofAUSAxxf287YtTbP0MdkRfGJ3cY+F A==;
+X-CSE-ConnectionGUID: +GCimr4oQ+uGGARUw+K4Qw==
+X-CSE-MsgGUID: sstM0NzeQXyu4e1DMM56sw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11889"; a="88312405"
+X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="88312405"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2026 07:18:30 -0700
+X-CSE-ConnectionGUID: 9wNSjtRMT1eOaBS7aoI2DA==
+X-CSE-MsgGUID: dVIMfuYWTqCUArsgAsw0HA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="298067546"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO [10.245.245.166])
- ([10.245.245.166])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2026 07:07:34 -0700
-Message-ID: <846109470543562cb52d3ccf8693ad56cddab212.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe/bo: Take a runtime PM ref when shrinking a bo
- needing invalidation
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, "Lin, Shuicheng"
- <shuicheng.lin@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Date: Fri, 28 Aug 2026 16:07:31 +0200
-In-Reply-To: <apBpWBAyiAPMAkMm@gsse-cloud1.jf.intel.com>
-References: <20260825224819.2182540-1-shuicheng.lin@intel.com>
- <ebc4797204a5aec94f122094e2fbe2fb1d0536c1.camel@linux.intel.com>
- <DM4PR11MB545658D01D36A23A72096175EAAE2@DM4PR11MB5456.namprd11.prod.outlook.com>
- <ao/Psuvcjjxkt8iH@gsse-cloud1.jf.intel.com>
- <DM4PR11MB54565CC96CAE42FB1C25434EEAAD2@DM4PR11MB5456.namprd11.prod.outlook.com>
- <apBpWBAyiAPMAkMm@gsse-cloud1.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
+X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="270118744"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2026 07:18:30 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Fri, 28 Aug 2026 07:18:29 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Fri, 28 Aug 2026 07:18:29 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.56) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Fri, 28 Aug 2026 07:18:29 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lDwV9UPBRv4D0Fhuuw3hLqsBXTogyvbS306oFLx8Yv3fKoZ5v+NkyKvUxahZb0Rm2WcPitaMbnn71ynSXHoAEWuC7xOeINlROXJhiusAjIzCQArXNbDXsXFZgX2uUgvk1YTdFPMNYyGdxumd7KsFbTmNWpr2rJxdZD0gDLQefuT2+rfrt9EDRJoZ/IgEcBD1IFsYXkRpA0UKYcA2E2Jwmw3180o71IJgJ9eoyE+ozCECiSlt61klQ8D5BNZP3DvJOdMw/jxmV87w/9EYoQsxouobLF1L4HXgbOuCbSJBpYIA4b51aXnJ5qy+RWEVcVbzzD+UMefb6ZXZXxsGu/uc4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pOTWSdo03WkXfWuyj6XvZAkqyVqN6f0eh6G4hjvgNH4=;
+ b=JgrVqWq0wLxeEKCiWgcSr7gwpNLJpkGrp1XV4R0WFXJX/Tmk/KHVJ2mHN3L8kixIowCSVI7uppwS/dCDRhB3MynK5NTIFiXdJCEeqR2ycYWxhlLdVNYliw/qsC168T9Qitbcv7guzhVmxOUBLvR7Gj4XpDYlLAeboGonFw0rKlNTqA8/cTArnAk1GvXlHseixLasVEnh+lrhlhM+IuWc2U/F8ECuGLjeRxhymfGOhXMGhv2QkAlQBQfTIW+8O8Zi6Qsm2uGEt6SjCtkwsitlL/WsRafGJwmUlph1WcJ9oz65lzLR8TT4HR7BnFbr5a4UHfROQDrJNe8w4Hz3BmwA9Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by CYXPR11MB8663.namprd11.prod.outlook.com (2603:10b6:930:da::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.11; Fri, 28 Aug
+ 2026 14:18:27 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811%6]) with mapi id 15.21.0360.008; Fri, 28 Aug 2026
+ 14:18:27 +0000
+Message-ID: <432ba474-a670-4f98-bfe6-3ee151329a45@intel.com>
+Date: Fri, 28 Aug 2026 16:18:23 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/4] drm/xe/gt: Report GT reset and power failures
+ using SIGID
+To: Arvind Yadav <arvind.yadav@intel.com>, <intel-xe@lists.freedesktop.org>,
+ <rodrigo.vivi@intel.com>
+CC: <badal.nilawar@intel.com>, <himal.prasad.ghimiray@intel.com>,
+ <dnyaneshwar.bhadane@intel.com>, <mallesh.koujalagi@intel.com>,
+ <matthew.brost@intel.com>
+References: <20260828095803.2130312-1-arvind.yadav@intel.com>
+ <20260828095803.2130312-5-arvind.yadav@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20260828095803.2130312-5-arvind.yadav@intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR4P281CA0347.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:f4::15) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|CYXPR11MB8663:EE_
+X-MS-Office365-Filtering-Correlation-Id: d5e543ea-0629-49da-169c-08df050f3a1f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|376014|366016|1800799024|10067099003|4143699003|56012099006|11063799006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: sLsMFAKfeRtcPxIN6L0OpGNuA1dlA993ZDckmC8tFDJDKz+2gVI9PTwkKBVLc8NZmHar57y2bvascGoa/QnrlrvgKWY5e2wjGpiCj4nhmxsKK12U1vxO87ypeyCspIPHQTwUe61lJHFIna4DJDze8y4kTRNKNDpSMt+3snbopeElvIO2R94d3cL0w6lGn/0kpP85n6BIw0YjRah2A/XR/H0ib1pOwiKEm38ZmgPxRaMzzEf+Fprz70BwOCGgUn668NPgDqWJoFdYf5HibZTLW2s5uy94cHa5XhAMdck3QBPwqvKf3t4jG+FRaDZtMzXehDyDkpniP9ZUIh9puMFIeEzsz34uY+g6HpSd0PlauXbGxUjt6oFUwiEIKX3Dc9Ev7UiQ8cNYV5mdbPpNZ1OVkVES1qafmsAoRjg8CjpeRY4qeECuIP9pQAPR42EPl7AbRsgjZiu3+BWgcb975HYde6jPj0xx8yKRdrKhBzHrimykBZ7wOTgu6b6TK13zCfcH+nVMI4hWOI9YnAXFSr1OJA2M/s9XQ+8ndnms/i2T0mh64bSjrR+nOfV1tFQYNmx1OIvmfMoLkDI0Qhb18OZlym1IYSG5f0CHY3EKPyadUNy0HFSzZPwLB5QABC1ExZEWA7lIgoY2DMvZZX4qLP8/JPsoe7WCfQJJZhNV8g8Brqo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(10067099003)(4143699003)(56012099006)(11063799006)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R1dZZU9SeXNXdUlOemE2aHc0b1FUYUNkd2l6RnNGT2p0djJDVnBkWktGa0ZE?=
+ =?utf-8?B?Q3R4dDNVcUNXTE9pWkZIaWR1OVVFKy9mVjRtS1JPOVEyUWE3U2g3QmRjQzRz?=
+ =?utf-8?B?N3VKVlUvK2ozQjZtRWs3d2hsMjh1dW9sNkFoK1d3NmF5Tzdjd2pCR1FYWG1U?=
+ =?utf-8?B?SFpBWmxTREZ0eC9jeXNHdi9LVkMxTFh2WkZ5MkNtQS9pQmE1TGtxMmJ4Qy9P?=
+ =?utf-8?B?T3o4TWFzS25maDlqYWdTVHpyUzBETHpoTzN0U2FPRjBoK0YvMVdBT2xXLy9U?=
+ =?utf-8?B?OGJYa1pNcnQ5K2pTd2FHczFPcHE4amtiNHVYTGRKdXBoVWx6MmlNUDN5VXh6?=
+ =?utf-8?B?aVpRdDFQbUVNMGl0ZkVWam1Hd2NtQlNLdGJhK29mTzZ2MkI1ejZTUTAwbzRy?=
+ =?utf-8?B?ZVZVOExwTWJWdkFXVnpENVVPeUYxQkJKQXY0eHZRb1JxblYyNFpOaC80YmZV?=
+ =?utf-8?B?TWNhSEpMUmRPZllVZUVuMUhsNEN3MW1NVitjYTV4VXpML3RSRWIvVnhadWZq?=
+ =?utf-8?B?aGNlaS94RFhBTjlUODBxdHo0NzVwSXBFaW9ZYUNmVXpRSCtWdGd0Q2J3aXpm?=
+ =?utf-8?B?VGpiR2FXSGpWMlFSQVlPc29DUlhtSzhibllrRUtseVEzcllwN2d6WGRzdE9F?=
+ =?utf-8?B?c2tITUZEQ3hlQW8xN1FEblo0Y1ZWV1pEQWFDL0cyanp4Y0c4citvQWttR2JX?=
+ =?utf-8?B?UHpPRWJzMndUQzhXUW1oK1BiaFRkN2NjUmlMS0dXdkdEaUJ6QkJXaWl5OFlP?=
+ =?utf-8?B?eTlPM3UzcXpkRlRudytwRDlzS3hkT0FaamJacE9iclhUakpvcW0rZVNGbTdY?=
+ =?utf-8?B?WThFM21tdU1GbHVRYjllbWthWnlQN044NFNvZHh5SDN0QUpsZ2dQQTBUMENl?=
+ =?utf-8?B?UDhXNTBoUEcxYStSQkgxTDFSazllaEpubHkwT3gvVFZlV2pqNnhRSVBkMzFB?=
+ =?utf-8?B?QlNYQkt4eFA1YTQ4VHVQc29TRWxCcyt5QXliWitrclZURkxOUE1EdFhTMXdX?=
+ =?utf-8?B?VU91ck4rUnBHMHZmMVlsUnFXM2YrazNMenI3cXZFZFpCNlVYVWtYdDhlTFBo?=
+ =?utf-8?B?NW9udFBJQXRKWmxVSlp2SmtuaXJRM1BYbnRkU3F6TUVhbnVlR3MxdndnaTkx?=
+ =?utf-8?B?cGwyNWJUTWhqdHcyc1VlVU1NeGxIRmhGSWZjQzBqQ0oxYmNMM1RBY2VMQWIv?=
+ =?utf-8?B?MUFBazVmNDZHaTk4Q2o4ZmV2QVFWREMyeXpOTksxa29YVlJUYmFrTEtVNmE0?=
+ =?utf-8?B?T01IdEVKWnVBWXZvTmdOV1dYdkRseFRGQVhzaWVvQzIrNjYwV056aStFdUV0?=
+ =?utf-8?B?c1NTN2M2Y2k5TEhtK2cySzBBWnVVSVJvQkI0dW5zUU5nUlV3QkZPVlk3QXNp?=
+ =?utf-8?B?UjlLTk1VN0dUUXRPT0JlUmZGa3g0L3RDQmdBS082UjN5aDlYb2cvb0E3TlQw?=
+ =?utf-8?B?cTQ4ampaQ2lMU2FoT2ZvUUZCdnpTVUJrVngxY3lxaC9ReWl2aER3TXA2UDhU?=
+ =?utf-8?B?RHpmbkZBMUFGOVd1TWpHV2tPdEhhU2FPNlozYVdqYlVtbitlVnhqalhqVWtj?=
+ =?utf-8?B?R0FuOHdpL05EYytPWk9HRTR0Vk1QZmJkUGRNRGZ4VGwxeGs5QUNvQjR2cmFO?=
+ =?utf-8?B?dGpmU2FPTk5WVnozVDh0ZjN4TEZzQXBGeTdQazR4bTdoanRvT2RPNytMb2pm?=
+ =?utf-8?B?eGhSY3pQT3JzK1phZmxLdE9hbGFicHdQb2FZN3BXZk1FRndkZW8xdk41YmU3?=
+ =?utf-8?B?czhicG53TWRQb24va2dCRzhMM3QzNm1KaGtJTW1UWFF3b3drSUs3cEMwSmRO?=
+ =?utf-8?B?anVRZ0JKOG1adVJLdzViYjlXRkZZVUpWMGYzdkdwZEovR29ybVNYNVlVTGov?=
+ =?utf-8?B?T2V6YkluU3pvV2dJSXgwa3lZY3V5ZmtGcGVraVgvbmRXVDAwMERseHZmVTRj?=
+ =?utf-8?B?TUR4QkFaUW14WGNFNWN2dVh6citzTkJHdloxaFBselV2d2ducWVqUVBuNmJE?=
+ =?utf-8?B?eUd3a0VRcW9MSWhuRG5vZlZTTXZhQ2pGWlc3KzRxcFNNZ0pUL0hEUlBPSWhB?=
+ =?utf-8?B?Z2tnQVBGclpvSTQ5cFNNMDAzZTMwRzJxSVlDN2tWSHFWa2xFT01jTWlKNCtI?=
+ =?utf-8?B?ZTAzL0tuYmRCQlJ3ekJ3U2RQZ2Irc3JCaDIyRmNCWUFabEFVY0NLcUg4SWxF?=
+ =?utf-8?B?YWxnRld2M09TU3B0enhZSHJVcmRZV3U2SmszdUtxdWhZZytuZ1Erak1QVkxn?=
+ =?utf-8?B?WXIrdlhNUjE0ejMvRklXMEVmMndnTDNFNEhXSXQ1QVJob2oyRTFYSVlVQTZk?=
+ =?utf-8?B?dXViM0tLdnArQjhCdml5b3liVlZPcE9LY3ZxTnlKZUJpeUkvYlFwNmVQN0RB?=
+ =?utf-8?Q?kHJkCsP01iusbZB8=3D?=
+X-Exchange-RoutingPolicyChecked: kXXMW9PpGe8uQTEMzwp11KvCMf8d600XJq5h9Y9z5ZJIB32B0hU5r+KGRncYAzd7rhvKwiOeRmWKhi57J6UEeifyx5UBo2wl16nCI7GQbutEv3mXlbBdLqPbFmsjfN1rh7ZATm5fBPfaCjF8pIBfdm1O8+zaqnjjl8Bw2lFSW9woVYWaZS5+MOrly9/Jjj6MCFjcc5+vAWmbkC4jmi6oE7ReyrBQX2wRHQK3c0jLR8DJ5Kwn0YMln4Q46rjIXcEs9fq7DRoynqKTJxuXCMNT07pGmcQmpBSNIHdwe9SvigBm2z7cEoeehegvCUVFMZQ6ZpA5HfozsQDOl6PockO9WA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: d5e543ea-0629-49da-169c-08df050f3a1f
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2026 14:18:26.9932 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iMk7SvNUT9WKSRwDPXiM99P5K4p0J6gqWhEgkIFHAZbBosy8V/lFrDtBaumyXCVIeu9VxnbwQeBuRUsySHJqfHMp2TZ7tns4m6kHawJpUoE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR11MB8663
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,462 +173,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi!
 
 
-On Thu, 2026-08-27 at 09:44 -0700, Matthew Brost wrote:
-> On Thu, Aug 27, 2026 at 10:20:10AM -0600, Lin, Shuicheng wrote:
-> > On Wed, Aug 26, 2026 10:49 PM Matthew Brost wrote:
-> > > On Wed, Aug 26, 2026 at 10:10:38PM +0000, Lin, Shuicheng wrote:
-> > > > On Wed, Aug 26, 2026 1:01 AM Thomas Hellstr=C3=B6m wrote:
-> > > > > On Tue, 2026-08-25 at 22:48 +0000, Shuicheng Lin wrote:
-> > > > > > xe_bo_shrink() only took a runtime PM reference for the
-> > > > > > System CCS
-> > > > > > backup case, and only after the purgeable branch had
-> > > > > > already returned.
-> > > > > > That branch calls xe_bo_move_notify(), which reaches
-> > > > > > xe_bo_trigger_rebind() -> xe_vm_invalidate_vma() and
-> > > > > > submits a TLB
-> > > > > > invalidation over GuC CT.=C2=A0 The non-purgeable branch reache=
-s
-> > > > > > the
-> > > > > > same code through ttm_bo_shrink(.allow_move =3D true) ->
-> > > > > > xe_bo_move().
-> > > > > >=20
-> > > > > > When the device is runtime suspended the CT is disabled and
-> > > > > > the
-> > > > > > send returns -ENODEV, tripping the XE_WARN_ON() in
-> > > xe_bo_trigger_rebind():
-> > > > > >=20
-> > > > > > =C2=A0 WARNING: drivers/gpu/drm/xe/xe_bo.c:770 at
-> > > > > > xe_bo_move_notify+0x1fc/0x450 [xe], CPU#2: xe_madvise/21389
-> > > > > > =C2=A0=C2=A0 xe_bo_shrink+0x20f/0x2b0 [xe]
-> > > > > > =C2=A0=C2=A0 __xe_shrinker_walk+0x174/0x410 [xe]
-> > > > > > =C2=A0=C2=A0 xe_shrinker_walk+0x56/0xf0 [xe]
-> > > > > > =C2=A0=C2=A0 xe_shrinker_scan+0x10c/0x1e0 [xe]
-> > > > > > =C2=A0=C2=A0 do_shrink_slab+0x176/0x7e0
-> > > > > > =C2=A0=C2=A0 shrink_slab+0x137/0x990
-> > > > > > =C2=A0=C2=A0 drop_slab+0x7f/0x130
-> > > > > > =C2=A0=C2=A0 drop_caches_sysctl_handler+0x9c/0xf0
-> > > > > >=20
-> > > > > > The invalidation is always issued for a fault-mode vm;
-> > > > > > since
-> > > > > > commit 4e7ebff69aed ("drm/xe/xe3p_lpg: flush shrinker bo
-> > > > > > cachelines
-> > > > > > manually")
-> > > > > > it is also issued for a non-fault-mode vm on hardware with
-> > > > > > an
-> > > > > > optimized
-> > > > > > L2 flush, which is how this surfaced.
-> > > > > >=20
-> > > > > > Add bo_needs_invalidate(), mirroring that condition, and
-> > > > > > use it in
-> > > > > > xe_bo_shrink() to compute needs_rpm ahead of both
-> > > > > > branches.=C2=A0 The
-> > > > > > reference is then held across xe_bo_move_notify() in either
-> > > > > > path,
-> > > > > > and is not taken for a bo whose mappings would not have
-> > > > > > been invalidated.
-> > > > > >=20
-> > > > > > Shrinking can run in reclaim contexts where the device may
-> > > > > > not be
-> > > > > > resumed, so a bo is skipped when the reference cannot be
-> > > > > > acquired.
-> > > > > > Have
-> > > > > > that skip queue the shrinker PM worker:
-> > > > > > xe_shrinker_runtime_pm_get() is gated on the needs of its
-> > > > > > own
-> > > > > > backup pass rather than on this one, and on DGFX it returns
-> > > > > > before
-> > > > > > queueing anything, so without this a scan where every
-> > > > > > candidate is
-> > > > > > skipped makes no progress, reports nothing scanned and
-> > > > > > returns
-> > > SHRINK_STOP with nothing arranging a wake.
-> > > > > >=20
-> > > > > > Also gate the System CCS term on !xe_tt->purgeable, since
-> > > > > > xe_bo_shrink_purge() frees the pages without a GPU copy.
-> > > > > >=20
-> > > > > > Reproduced with igt@xe_madvise@dontneed-before-exec while
-> > > > > > the GPU
-> > > > > > is runtime suspended.
-> > > > > >=20
-> > > > > > Fixes: 00c8efc3180f ("drm/xe: Add a shrinker for xe bos")
-> > > > > > Assisted-by: Claude:claude-opus-5
-> > > > > > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > > > > > Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-> > > > >=20
-> > > > > Nice catch.
-> > > > >=20
-> > > > > I wonder, however, can we skip the TLB flush if runtime PM is
-> > > > > not
-> > > > > available at TLB flush time (runtime_pm_get_if_active()?)
-> > > > > Assuming
-> > > > > that if runtime PM is not available, no contexts can be
-> > > > > active and
-> > > > > they will flush TLB implicitly when becoming active?
-> > > >=20
-> > > > Do you mean call runtime_pm_get_if_active() in
-> > > > xe_tlb_inval_range_tilemask_submit(),
-> > > > or lower down in xe_tlb_inval_fence_init()?
-> > > > I'd prefer that too, as it would simplify the code. Two things
-> > > > stop me doing it
-> > > here.
-> > > >=20
-> > > > First, the PTE zap also needs the device, and it runs before
-> > > > the flush.
-> > > > xe_pt_zap_ptes_entry() does xe_map_memset(), which asserts via
-> > > > xe_device_assert_mem_access():
-> > > >=20
-> > >=20
-> > > I agree with this - the zap is not optional for fault mode, it
-> > > probably isn't for
-> > > 'xe_device_is_l2_flush_optimized'.
-> > >=20
-> > > > =C2=A0 Assertion `!xe_pm_runtime_suspended(xe)` failed!
-> > > > =C2=A0=C2=A0 xe_pt_zap_ptes_entry+0xb8/0x120 [xe]
-> > > > =C2=A0=C2=A0 xe_vm_invalidate_vma_submit+0xb1/0x770 [xe]
-> > > > =C2=A0=C2=A0 xe_bo_move_notify+0x1b3/0x450 [xe]
-> > > > =C2=A0=C2=A0 xe_bo_shrink+0x20f/0x2b0 [xe]
-> > > >=20
-> > > > The zap isn't optional - the pages are being freed, so the PTEs
-> > > > have
-> > > > to be cleared either way - and xe_pt_create() uses
-> > > > XE_BO_FLAG_VRAM_IF_DGFX(), so on discrete it is a BAR write
-> > > > that needs
-> > > > D0. Skipping the flush alone leaves that behind.
-> > > >=20
-> > > > Second, I can't find the implicit flush in the code.
-> > > > xe_pm_runtime_resume() only calls xe_gt_resume()
-> > > > (do_gt_restart())
-> > > > when d3cold.allowed; otherwise xe_gt_runtime_resume() just
-> > > > takes
-> > > > forcewake and does xe_uc_runtime_resume() - no reset, no
-> > > > invalidation.
-> > > > That doesn't mean the TLBs survive, it may well be a property
-> > > > of the
-> > > > power state, but I can't confirm the assumption by reading the
-> > > > driver.
-> > > > Do you know if that is guaranteed? Thanks.
-> > > >=20
-> > > > >=20
-> > > > > IIRC It's not totally clear whether this would work for
-> > > > > "has_ctx_tlb_inval"
-> > > > > hardware, and if so we might need to add something similar to
-> > > > > this
-> > > > > for that hardware.
-> > > >=20
-> > > > My understanding is that it falls out for free if the check
-> > > > sits above
-> > > xe_tlb_inval_issue().
-> > > > Is it right? Thanks.
-> > > >=20
-> > > > Shuicheng
-> > > >=20
-> > > > >=20
-> > > > > Thanks,
-> > > > > Thomas
-> > > > >=20
-> > > > > > ---
-> > > > > > =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 62
-> > > > > > +++++++++++++++++++++++++++---
-> > > > > > --
-> > > > > > =C2=A0drivers/gpu/drm/xe/xe_shrinker.c | 18 +++++++++-
-> > > > > > =C2=A0drivers/gpu/drm/xe/xe_shrinker.h |=C2=A0 2 ++
-> > > > > > =C2=A03 files changed, 72 insertions(+), 10 deletions(-)
-> > > > > >=20
-> > > > > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > b/drivers/gpu/drm/xe/xe_bo.c index
-> > > > > > 2eb5d6aac523..274ff97d8542
-> > > > > > 100644
-> > > > > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > @@ -734,6 +734,32 @@ static int
-> > > > > > xe_ttm_io_mem_reserve(struct
-> > > > > > ttm_device *bdev,
-> > > > > > =C2=A0	}
-> > > > > > =C2=A0}
-> > > > > >=20
-> > > > > > +/*
-> > > > > > + * Whether xe_bo_move_notify() will invalidate the GPU
-> > > > > > mappings
-> > > > > > +of
-> > > > > > @bo, and
-> > > > > > + * therefore needs the device resumed to reach the GuC.
-> > > > > > + *
-> > > > > > + * This mirrors the condition under which
-> > > > > > xe_bo_trigger_rebind()
-> > > > > > below calls
-> > > > > > + * xe_vm_invalidate_vma(): always for a fault-mode vm, and
-> > > > > > for
-> > > > > > + any
-> > > > > > bound vm on
-> > > > > > + * hardware where the L2 flush is optimized. Keep the two
-> > > > > > in sync.
-> > > > > > + *
-> > > > > > + * Context: Caller must hold the BO's dma-resv lock.
-> > > > > > + */
-> > > > > > +static bool bo_needs_invalidate(struct xe_bo *bo) {
-> > > > > > +	struct drm_gpuvm_bo *vm_bo;
-> > > > > > +
-> > > > > > +	if
-> > > > > > (xe_device_is_l2_flush_optimized(xe_bo_device(bo)))
-> > > > > > +		return xe_bo_is_vm_bound(bo);
-> > > > > > +
-> > > > > > +	xe_bo_assert_held(bo);
-> > > > > > +
-> > > > > > +	drm_gem_for_each_gpuvm_bo(vm_bo, &bo->ttm.base)
-> > > > > > +		if (xe_vm_in_fault_mode(gpuvm_to_vm(vm_bo-
-> > > > > > >vm)))
-> > > > > > +			return true;
-> > > > > > +
-> > > > > > +	return false;
-> > > > > > +}
-> > > > > > +
-> > > > > > =C2=A0static int xe_bo_trigger_rebind(struct xe_device *xe,
-> > > > > > struct
-> > > > > > xe_bo *bo,
-> > > > > > =C2=A0				const struct
-> > > > > > ttm_operation_ctx *ctx)
-> > > > > > =C2=A0{
-> > > > > > @@ -1361,6 +1387,28 @@ long xe_bo_shrink(struct
-> > > > > > ttm_operation_ctx
-> > > > > > *ctx, struct ttm_buffer_object *bo,
-> > > > > > =C2=A0	if (!xe_bo_is_xe_bo(bo) ||
-> > > > > > !xe_bo_get_unless_zero(xe_bo))
-> > > > > > =C2=A0		return xe_bo_shrink_purge(ctx, bo,
-> > > > > > scanned);
-> > > > > >=20
-> > > > > > +	/*
-> > > > > > +	 * Moving this bo out of a non-system placement
-> > > > > > makes
-> > > > > > +	 * xe_bo_move_notify() invalidate its GPU mappings
-> > > > > > over GuC
-> > > > > > CT, and
-> > > > > > +	 * System CCS needs a gpu copy when moving PL_TT -
-> > > > > > >
-> > > > > > PL_SYSTEM. Both
-> > > > > > +	 * need the device resumed.
-> > > > > > +	 */
-> > > > > > +	needs_rpm =3D bo->resource->mem_type !=3D XE_PL_SYSTEM
-> > > > > > &&
-> > > > > > +		(bo_needs_invalidate(xe_bo) ||
-> > > > > > +		 (!xe_tt->purgeable && !IS_DGFX(xe) &&
-> > > > > > +		=C2=A0 xe_bo_needs_ccs_pages(xe_bo)));
-> > >=20
-> > > This is a complex enough conditional that my current feeling is
-> > > to just
-> > > unconditionally set:
-> > >=20
-> > > needs_rpm =3D true;
-> >=20
-> > How about keep the XE_PL_SYSTEM check?
-> >=20
->=20
-> I think checking system is reasonable, and better than my suggestion,
-> as
-> this implies we don't have GPU pages (no invalidation) and no need
-> for a
-> CCS copy, and is keep check which is easy to understand.
->=20
-> > 	/* Both the invalidation and the System CCS copy need the
-> > device. */
-> > 	needs_rpm =3D bo->resource->mem_type !=3D XE_PL_SYSTEM;
-> >=20
-> > @Thomas Hellstr=C3=B6m you wrote the original code, what do you think?
-> >=20
->=20
-> Yes, let's see what Thomas says.
+On 8/28/2026 11:58 AM, Arvind Yadav wrote:
+> Route the GT reset failure log through the structured SIGID logging
+> helper.
+> 
+> Failure to clear GRDOM_FULL means the GT reset did not complete as
+> expected. Use the GT component, which maps to XE_SIGID_GT_TDR, and
+> pass the reset errno value to the helper.
+> 
+> Keep the lower-level GRDOM_FULL failure report because it records
+> the exact reset register wait that failed before the higher-level
+> reset failure is reported.
+> 
+> Also route GT suspend, resume and runtime power-flow failures through
+> the same helper.
 
-I think keeping the system check makes sense, and for now a quick fix.
+can't we do that PM flows in a separate patch?
+> 
+> These paths were already reported as GT errors. This change only adds
+> structured SIGID reporting and keeps the errno in the helper data.
+> 
+> Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+> Cc: Badal Nilawar <badal.nilawar@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Suggested-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_gt.c | 13 ++++++-------
+>  1 file changed, 6 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 6805e0d3bf21..58df31ecb825 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -824,8 +824,7 @@ static int do_gt_reset(struct xe_gt *gt)
+>  	xe_mmio_write32(&gt->mmio, GDRST, GRDOM_FULL);
+>  	err = xe_mmio_wait32(&gt->mmio, GDRST, GRDOM_FULL, 0, 5000, NULL, false);
+>  	if (err)
+> -		xe_gt_err(gt, "failed to clear GRDOM_FULL (%pe)\n",
+> -			  ERR_PTR(err));
+> +		xe_log_err(gt, GT, err, "failed to clear GRDOM_FULL\n");
 
-However I think avoiding waking the device for small reclaims makes
-sense, so we should also look at the shrink batch series trying to make
-that merged.
+while around, can we improve the error message here?
+we are not clearing that bit, the CP does (Bspec:52549)
 
-If we wanted to optimize this, and add back the complexity, I think
-calling xe_vm_invalidate_vma() would only make sense if runtime_pm is
-available:
+	"full graphics reset not completed in %u ms"
 
-1) We need to do it on faulting VMs -> Runtime PM always available.
-2) We need to do it to trap L1 cache flushes and on l2_flush_optimized
-to flush out l2 before reclaiming -> Can we assume that the device
-always does this before going to sleep? Need to confirm that with
-Ankur.
+>  
+>  	xe_gsc_wa_14015076503(gt, false);
+>  
+> @@ -1013,13 +1012,13 @@ int xe_gt_suspend(struct xe_gt *gt)
 
-Thanks,
-Thomas
+hmm, for the PM flows below, is the SIGID GT_TDR correct one?
 
+shouldn't we use PCI component (or maybe new sub-component POWER)
+that uses XE_SIGID_IO_BUS ?
 
->=20
-> Mattb
->=20
-> > >=20
-> > > In practice, on iGPUs where the display is in use, we always hold
-> > > a runtime PM
-> > > reference. It would be very unusual for the display to be
-> > > suspended while the
-> > > shrinker is running, at least as far as I can tell.
-> > > Let's drop this hard-to-understand, likely overengineered
-> > > conditional.
-> >=20
-> > I could only reproduce the issue with display disabled. And the CI
-> > machine that hits it has no monitor connected.
-> >=20
-> > Shuicheng
-> >=20
-> > >=20
-> > > Thoughts?
-> > >=20
-> > > Matt
-> > >=20
-> > > > > > +	if (needs_rpm && !xe_pm_runtime_get_if_active(xe))
-> > > > > > {
-> > > > > > +		/*
-> > > > > > +		 * Resuming is not allowed from all
-> > > > > > reclaim
-> > > > > > contexts, so leave
-> > > > > > +		 * this bo alone and ask for the device to
-> > > > > > be woken
-> > > > > > up outside
-> > > > > > +		 * of reclaim.
-> > > > > > xe_shrinker_runtime_pm_get() is gated
-> > > > > > on the
-> > > > > > +		 * needs of its own backup pass rather
-> > > > > > than on ours,
-> > > > > > and on
-> > > > > > +		 * DGFX it returns before queueing
-> > > > > > anything, so ask
-> > > > > > here.
-> > > > > > +		 */
-> > > > > > +		xe_shrinker_queue_pm(xe->mem.shrinker);
-> > > > > > +		goto out_unref;
-> > > > > > +	}
-> > > > > > +
-> > > > > > =C2=A0	if (xe_tt->purgeable) {
-> > > > > > =C2=A0		if (bo->resource->mem_type !=3D
-> > > > > > XE_PL_SYSTEM)
-> > > > > > =C2=A0			lret =3D xe_bo_move_notify(xe_bo,
-> > > > > > ctx); @@ -1369,28
-> > > > > +1417,24 @@ long
-> > > > > > xe_bo_shrink(struct ttm_operation_ctx *ctx, struct
-> > > > > > ttm_buffer_object *bo,
-> > > > > > =C2=A0		if (lret > 0 &&
-> > > > > > xe_bo_madv_is_dontneed(xe_bo))
-> > > > > > =C2=A0			xe_bo_set_purgeable_state(xe_bo,
-> > > > > >=20
-> > > > > > XE_MADV_PURGEABLE_PURGED);
-> > > > > > -		goto out_unref;
-> > > > > > +		goto out_put_rpm;
-> > > > > > =C2=A0	}
-> > > > > >=20
-> > > > > > -	/* System CCS needs gpu copy when moving PL_TT ->
-> > > > > > PL_SYSTEM
-> > > > > > */
-> > > > > > -	needs_rpm =3D (!IS_DGFX(xe) && bo->resource-
-> > > > > > >mem_type !=3D
-> > > > > > XE_PL_SYSTEM &&
-> > > > > > -		=C2=A0=C2=A0=C2=A0=C2=A0 xe_bo_needs_ccs_pages(xe_bo));
-> > > > > > -	if (needs_rpm && !xe_pm_runtime_get_if_active(xe))
-> > > > > > -		goto out_unref;
-> > > > > > -
-> > > > > > =C2=A0	*scanned +=3D tt->num_pages;
-> > > > > > =C2=A0	lret =3D ttm_bo_shrink(ctx, bo, (struct
-> > > > > > ttm_bo_shrink_flags)
-> > > > > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 {.purge =3D false,
-> > > > > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .writeback =3D
-> > > > > > flags.writeback,
-> > > > > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .allow_move =3D true});
-> > > > > > -	if (needs_rpm)
-> > > > > > -		xe_pm_runtime_put(xe);
-> > > > > >=20
-> > > > > > =C2=A0	if (lret > 0) {
-> > > > > > =C2=A0		xe_ttm_tt_account_subtract(xe, tt);
-> > > > > > =C2=A0		update_global_total_pages(bo->bdev, -
-> > > > > > (long)tt-
-> > > > > > > num_pages);
-> > > > > > =C2=A0	}
-> > > > > >=20
-> > > > > > +out_put_rpm:
-> > > > > > +	if (needs_rpm)
-> > > > > > +		xe_pm_runtime_put(xe);
-> > > > > > +
-> > > > > > =C2=A0out_unref:
-> > > > > > =C2=A0	xe_bo_put(xe_bo);
-> > > > > >=20
-> > > > > > diff --git a/drivers/gpu/drm/xe/xe_shrinker.c
-> > > > > > b/drivers/gpu/drm/xe/xe_shrinker.c
-> > > > > > index 83374cd57660..fb6ec77972a5 100644
-> > > > > > --- a/drivers/gpu/drm/xe/xe_shrinker.c
-> > > > > > +++ b/drivers/gpu/drm/xe/xe_shrinker.c
-> > > > > > @@ -54,6 +54,22 @@ xe_shrinker_mod_pages(struct xe_shrinker
-> > > > > > *shrinker, long shrinkable, long purgea
-> > > > > > =C2=A0	write_unlock(&shrinker->lock);
-> > > > > > =C2=A0}
-> > > > > >=20
-> > > > > > +/**
-> > > > > > + * xe_shrinker_queue_pm() - Ask for the device to be woken
-> > > > > > up for
-> > > > > > shrinking
-> > > > > > + * @shrinker: Pointer to the struct xe_shrinker.
-> > > > > > + *
-> > > > > > + * Queue a worker that takes and drops a runtime PM
-> > > > > > reference.
-> > > > > > Shrinking can
-> > > > > > + * be called from reclaim context, where resuming the
-> > > > > > device is
-> > > > > > + not
-> > > > > > always
-> > > > > > + * allowed, so a caller that needs the device resumed but
-> > > > > > could
-> > > > > > + not
-> > > > > > acquire a
-> > > > > > + * reference uses this to have it woken up outside of
-> > > > > > reclaim.
-> > > > > > + The
-> > > > > > current
-> > > > > > + * scan makes no progress on the affected buffer objects,
-> > > > > > but a
-> > > > > > subsequent one
-> > > > > > + * can.
-> > > > > > + */
-> > > > > > +void xe_shrinker_queue_pm(struct xe_shrinker *shrinker) {
-> > > > > > +	queue_work(shrinker->xe->unordered_wq, &shrinker-
-> > > > > > > pm_worker);
-> > > > > > +}
-> > > > > > +
-> > > > > > =C2=A0static s64 __xe_shrinker_walk(struct xe_device *xe,
-> > > > > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_operation_ct=
-x
-> > > > > > *ctx,
-> > > > > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct
-> > > > > > xe_bo_shrink_flags flags, @@ -185,7
-> > > > > +201,7 @@
-> > > > > > static bool xe_shrinker_runtime_pm_get(struct xe_shrinker
-> > > > > > *shrinker, bool force,
-> > > > > > =C2=A0			xe_pm_runtime_get(xe);
-> > > > > > =C2=A0			return true;
-> > > > > > =C2=A0		}
-> > > > > > -		queue_work(xe->unordered_wq, &shrinker-
-> > > > > > >pm_worker);
-> > > > > > +		xe_shrinker_queue_pm(shrinker);
-> > > > > > =C2=A0		return false;
-> > > > > > =C2=A0	}
-> > > > > >=20
-> > > > > > diff --git a/drivers/gpu/drm/xe/xe_shrinker.h
-> > > > > > b/drivers/gpu/drm/xe/xe_shrinker.h
-> > > > > > index 5132ae5192e1..86d2a322cadd 100644
-> > > > > > --- a/drivers/gpu/drm/xe/xe_shrinker.h
-> > > > > > +++ b/drivers/gpu/drm/xe/xe_shrinker.h
-> > > > > > @@ -11,6 +11,8 @@ struct xe_device;
-> > > > > >=20
-> > > > > > =C2=A0void xe_shrinker_mod_pages(struct xe_shrinker *shrinker,
-> > > > > > long
-> > > > > > shrinkable, long purgeable);
-> > > > > >=20
-> > > > > > +void xe_shrinker_queue_pm(struct xe_shrinker *shrinker);
-> > > > > > +
-> > > > > > =C2=A0int xe_shrinker_create(struct xe_device *xe);
-> > > > > >=20
-> > > > > > =C2=A0#endif
+>  
+>  	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+>  	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL)) {
+> -		xe_gt_err(gt, "suspend failed (%pe)\n", ERR_PTR(-ETIMEDOUT));
+> +		xe_log_err(gt, GT, -ETIMEDOUT, "suspend failed\n");
+
+btw, maybe it's a time to improve our error message:
+
+	"can't suspend due to forcewake error"
+
+>  		return -ETIMEDOUT;
+>  	}
+>  
+>  	err = xe_uc_suspend(&gt->uc);
+>  	if (err) {
+> -		xe_gt_err(gt, "suspend failed (%pe)\n", ERR_PTR(err));
+> +		xe_log_err(gt, GT, err, "suspend failed\n");
+
+	"can't suspend due to uc error"
+
+>  		return err;
+>  	}
+>  
+> @@ -1065,7 +1064,7 @@ int xe_gt_resume(struct xe_gt *gt)
+>  	xe_gt_dbg(gt, "resuming\n");
+>  	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+>  	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL)) {
+> -		xe_gt_err(gt, "resume failed (%pe)\n", ERR_PTR(-ETIMEDOUT));
+> +		xe_log_err(gt, GT, -ETIMEDOUT, "resume failed\n");
+
+	"can't resume due to forcewake error"
+
+>  		return -ETIMEDOUT;
+>  	}
+>  
+> @@ -1092,7 +1091,7 @@ int xe_gt_runtime_suspend(struct xe_gt *gt)
+>  
+>  	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+>  	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL)) {
+> -		xe_gt_err(gt, "runtime suspend failed (%pe)\n", ERR_PTR(-ETIMEDOUT));
+> +		xe_log_err(gt, GT, -ETIMEDOUT, "runtime suspend failed\n");
+
+	"can't runtime suspend due to forcewake error"
+
+>  		return -ETIMEDOUT;
+>  	}
+>  
+> @@ -1116,7 +1115,7 @@ int xe_gt_runtime_resume(struct xe_gt *gt)
+>  
+>  	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+>  	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL)) {
+> -		xe_gt_err(gt, "runtime resume failed (%pe)\n", ERR_PTR(-ETIMEDOUT));
+> +		xe_log_err(gt, GT, -ETIMEDOUT, "runtime resume failed\n");
+
+	"can't runtime resume due to forcewake error"
+
+>  		return -ETIMEDOUT;
+>  	}
+>  
+
