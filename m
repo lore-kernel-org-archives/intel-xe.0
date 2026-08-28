@@ -4,42 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 517CEC61DB9
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 01:00:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D610C61DC4
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 01:33:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19E8710E430;
-	Fri, 28 Aug 2026 01:00:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="gMuL82yI";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F0DF10E3D9;
- Fri, 28 Aug 2026 01:00:41 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 2FD06437C4;
- Fri, 28 Aug 2026 01:00:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2E831F000E9;
- Fri, 28 Aug 2026 01:00:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787878841;
- bh=Shj7ETqCrriSeJgA5ziki2FtNKeahlxTwaxGFvM7XJI=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=gMuL82yIY0xASjVvMYvjeaO8uOuc6Z8Ji+/LwxrLpt2b7nAocUHUmN00V2oOp1w8a
- 51OoU1pSaCv4z2gCO51CSa5JXZZjU/p37MRhKZv3cOiln9hYd5swpUTkyKUMrzdEG7
- J5wPVSMIb+PWkb8x5Zfet6y/Xh317aa3PiezLRaHvOfGsQy1xPksCh/gFal4NEkXgD
- R0mYRFXREexc4M/m38JziqiCwGxw+mGbuKciz3ptBgwIG8Hh/Csic3WlCgxMXxH2Mf
- WjQrmLXfVZdFqB/pppwsxIXBVvECuHEva8JP9AdPMgKLKyyMne/+yyCMvugBeUDeHs
- pkCGDwPqj/I3w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] perf: Fix null pointer access in is_include_guest_event()
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADA1010F20B;
+	Fri, 28 Aug 2026 01:33:49 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 295CA10E458;
+ Fri, 28 Aug 2026 01:33:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3798400372249451458=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_perf=3A_Fix_null_pointer_ac?=
+ =?utf-8?q?cess_in_is=5Finclude=5Fguest=5Fevent=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20260828004208.3906054-1-vinay.belgaumkar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 28 Aug 2026 01:33:49 -0000
+Message-ID: <178788082916.94016.10751461954315517089@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260828004208.3906054-1-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 28 Aug 2026 01:00:40 +0000
-Message-Id: <20260828010040.D2E831F000E9@smtp.kernel.org>
+In-Reply-To: <20260828004208.3906054-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,76 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+--===============3798400372249451458==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Pre-existing issues:
-- [High] A NULL pointer dereference occurs in `__perf_event_read_cpu` when =
-reading a revoked event via BPF, leading to a kernel panic.
---
+== Series Details ==
 
-commit c13911e3a6c666fcef554ee81ad9104c9e6e198c
-Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Series: perf: Fix null pointer access in is_include_guest_event()
+URL   : https://patchwork.freedesktop.org/series/172917/
+State : success
 
-perf: Fix null pointer access in is_include_guest_event()
+== Summary ==
 
-This commit fixes a kernel panic during PMU event unbinding by adding a
-null check for event->pmu in is_include_guest_event() and ensuring
-mediated_pmu_unaccount_event() is called in __pmu_detach_event().
+CI Bug Log - changes from xe-5657-2df12aa5c06edd5c32129d79e7806d70e5251bbe_BAT -> xe-pw-172917v1_BAT
+====================================================
 
-> diff --git a/kernel/events/core.c b/kernel/events/core.c
-> index a6c8e38a31104..e6bc08c7ba3e7 100644
-> --- a/kernel/events/core.c
-> +++ b/kernel/events/core.c
-[ ... ]
-> @@ -13002,6 +13005,8 @@ static void __pmu_detach_event(struct pmu *pmu, s=
-truct perf_event *event,
->  	exclusive_event_destroy(event);
->  	module_put(pmu->module);
-> =20
-> +	mediated_pmu_unaccount_event(event);
-> +
->  	event->pmu =3D NULL; /* force fault instead of UAF */
+Summary
+-------
 
-[Severity: High]
-This is a pre-existing issue, but does setting event->pmu to NULL here
-expose a missing check in the BPF read path?
+  **SUCCESS**
 
-If a userspace process places a PMU event (which supports scopes) into a BPF
-PERF_EVENT_ARRAY map, the event remains alive in memory due to the BPF map
-holding a reference. When the PMU device is unbound, this function sets
-event->pmu =3D NULL and marks the event as PERF_EVENT_STATE_REVOKED.
+  No regressions found.
 
-If a BPF program subsequently calls bpf_perf_event_read() on this event,
-it invokes perf_event_read_local(). Since perf_event_read_local() does
-not appear to check if the event has been revoked (unlike perf_read() or
-perf_poll()), it unconditionally proceeds to __perf_event_read_cpu():
+  
 
-kernel/events/core.c:perf_event_read_local() {
-	...
-	event_cpu =3D __perf_event_read_cpu(event, event->cpu);
-	...
-}
+Participating hosts (13 -> 13)
+------------------------------
 
-Because event->group_caps retains the PERF_EV_CAP_READ_SCOPE flag,
-__perf_event_read_cpu() attempts to evaluate event->pmu->scope:
+  No changes in participating hosts
 
-kernel/events/core.c:__perf_event_read_cpu() {
-	...
-	const struct cpumask *cpumask =3D perf_scope_cpu_topology_cpumask(event->p=
-mu->scope, event_cpu);
-	...
-}
 
-Can this trigger a kernel panic due to a NULL pointer dereference when
-event->pmu is unconditionally dereferenced?
+Changes
+-------
 
->  }
+  No changes found
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260828004208.3906=
-054-1-vinay.belgaumkar@intel.com?part=3D1
+
+Build changes
+-------------
+
+  * Linux: xe-5657-2df12aa5c06edd5c32129d79e7806d70e5251bbe -> xe-pw-172917v1
+
+  IGT_9078: 9078
+  xe-5657-2df12aa5c06edd5c32129d79e7806d70e5251bbe: 2df12aa5c06edd5c32129d79e7806d70e5251bbe
+  xe-pw-172917v1: 172917v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v1/index.html
+
+--===============3798400372249451458==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>perf: Fix null pointer access in is_include_guest_event()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172917/">https://patchwork.freedesktop.org/series/172917/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5657-2df12aa5c06edd5c32129d79e7806d70e5251bbe_BAT -&gt; xe-pw-172917v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5657-2df12aa5c06edd5c32129d79e7806d70e5251bbe -&gt; xe-pw-172917v1</li>
+</ul>
+<p>IGT_9078: 9078<br />
+  xe-5657-2df12aa5c06edd5c32129d79e7806d70e5251bbe: 2df12aa5c06edd5c32129d79e7806d70e5251bbe<br />
+  xe-pw-172917v1: 172917v1</p>
+
+</body>
+</html>
+
+--===============3798400372249451458==--
