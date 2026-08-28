@@ -4,164 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 681D3C61DBD
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 16:51:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14B8BC61DBD
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 16:53:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DB9210E362;
-	Fri, 28 Aug 2026 16:51:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD6DD10E048;
+	Fri, 28 Aug 2026 16:53:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bPPp3Rbf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="boJBGfmb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8402A10E048
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Aug 2026 16:51:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CA3E10E048
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Aug 2026 16:53:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787935878; x=1819471878;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=i28dAa5P7QHF4DZG3vsMi9Y0nUKy4te1GsgFrm5F/GY=;
- b=bPPp3RbfQtIbtSCO0+ZDMZp4Fz6kiXArrCxcKHG60p90T6UFu15NNcqT
- P2OjuuHzruLx9960XUxgMh2zdsQvrDdPLvXVzdZEDELFZTJq2pczk6nm8
- RG9lgnhYoBVzV+YuGm4WKTgXsQwVtxfFJJhiylIcVVGuLNp6RMrTr16q2
- rzoLRk9fjXlp+6w+wZ/XZPYPIKiYaccQUT3w7wrVCvZzQCVGbPNNYnlUK
- /+tuHwKGIYhTu9M+hX3IPkmDxcpHwu4WH5cLOdHuozSAAwtAQgb7WQCg+
- 9DqhGJ+AqyK8h1SwOlYbFXYW1xtWLOO1WqGPP5nskkh3IpvIedSCxnhHr g==;
-X-CSE-ConnectionGUID: 3N+8A3U1SpiV+6vVNg78Ig==
-X-CSE-MsgGUID: TMmbidW2Q62aau4pTIvJNw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11889"; a="88304351"
-X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="88304351"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2026 09:51:17 -0700
-X-CSE-ConnectionGUID: /UtxM0pgTBuxPpVvd9DRHw==
-X-CSE-MsgGUID: KzAKMR3BTYaaQn1ZbKmGGQ==
+ t=1787936025; x=1819472025;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=Ia0jheLb3lCaBfpbhJFgJVyp6iVVRAGWHzT/8KetY9c=;
+ b=boJBGfmbORnN6yqIcGB2yfsL76HhrTGsenn3WhGxPWYF+dwJV62ogz0D
+ pVx1aUh/Ojs4sIgX4Ue1ilCF7f4W73oQHcy9pWWPB1O/xWpPJe4z5sJFV
+ cK1lkinweFdCK9U7kgeJ6qMTi7/2xxx0moGPE7YjdWopBLeWE6a216OVl
+ 29eKFkUG3pjBElOOAvh6pIhuHasthNB8Ak0JDv3iEaZz1Fi2moWPSoBjW
+ MCsmiBzS1xGz4BXY2gzYA++gZxlBeCoTr1iijOBwPEfvITxq05kekShi0
+ X6EqgsPjz8pWoEq9xBC9qymGbMYar8rukdUm4UZwNnhxCQfrMg26eiwOK A==;
+X-CSE-ConnectionGUID: njF7IhpURECpUcuxkjeX+w==
+X-CSE-MsgGUID: mVTcjpgtSW2DRYi28X9siw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11889"; a="88324130"
+X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="88324130"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2026 09:53:44 -0700
+X-CSE-ConnectionGUID: g5rKWF1nRrScqXvoJytPXw==
+X-CSE-MsgGUID: PYNET+9yS0yTZ2JBJw/5Ug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="264970615"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2026 09:51:17 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="306424501"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2026 09:53:44 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 28 Aug 2026 09:51:16 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.46; Fri, 28 Aug 2026 09:53:43 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Fri, 28 Aug 2026 09:51:16 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.10) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Fri, 28 Aug 2026 09:53:43 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.7) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 28 Aug 2026 09:51:16 -0700
+ 15.2.2562.46; Fri, 28 Aug 2026 09:53:43 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=b5gkdp6b3sRgIuOzVjkDgt/3yGb+FmxkwnLhGMd5dPT9Fh7/hM92sgjzfyHN1D4HoJDJ9cly8BG2l04JeR+OT+2z2/wS2q9GEVcwI5ilZV667kc2ika0GgrylTz8AZxtQzRFyt0RakRNp3xSYMdIqToJOCzT9FFexNJiNHwLcVjHDXT80Cqs9sPCXAVn9t/jQ5TzrzP7Y3r5QGbxIMW5mepdtWRA7QXReOIoPPgE4gUPkGD2VdikVENwjsvI8FgWuaOkX2tKUPjeu1qlZ3JcAzC1iUCbv3WiRCmmjfOS48QsBe6dIxvLLEoUgGbmPuwhV0ZriIxXIaqMyf/5z3YHmw==
+ b=SKcXbjEsCfkIwwbIYtfFAxyY+MXyaPT+pmgNWbuNRjHSsKi3/Th8kjarJ9jDN1SGLwsYt57neFuIBOQt5pfcQNrlmfiX4MXK/IhqICmLYIi1wQRUzGQLhuTRvQqkVd5nIS8UtnlCKo7iynkeckWUoZnf+M2xZm7LywfWA7on9R7re88PqGWMnWSgbFmYvhbmUKNJ9BOd+LFUHPAIi5uCotqWn4f0KnJGzGBUMz7Le20SUdSx0I6C5pw6ew1W8Y1TrJx1uxf8kwB3JOeIfyYUHwAsH0FZvPWCM0xFdJ8YFBDYP8vU0+mqVnc6BCvDtVsCybqepM5Vdo8hunjc+xpJIg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=i28dAa5P7QHF4DZG3vsMi9Y0nUKy4te1GsgFrm5F/GY=;
- b=Z9NEvJuRPDYbThr1iPTKb1nNiIxaTPTSgWWi+y/q3fCqgTsgil8o9h4J42ubuqFm5a+pF32wSQ1+lHrfePYscKQh/33kgi12/390KYVCEEh47uuGC2OfqwkRgaQi3pdHZaNFOY4KURrq4WNpDMAV7coveUPuC+fG6NCcp/mC1/bNpMbVpfRtEPTXqEu3Exqj5iXFwhJe1iCoNS28arZqRd76lYbbUJA2cH67oTZAnVY5WIYicEb9/pqsmQTBah9FVYh6gIVpxet2g+0LfX8ZsUjGgtxZv99RrFoZ+01cLxJYfTBWUaskOw6dcV3MuA6dtg6xQlTLAjxT4u7l9uJ8mA==
+ bh=BGYfzNNchVbNGXK1gYUaGPHCdPLARhII5ESlOtz8vmg=;
+ b=WmDP2xAXp7hVi5eHJTBxPKZ5h3071Klopn8jqgFEf3aIrjTav7YGQxPHfv6kwpXWfq+d3Mn147hZpYsp9ov+1GO/ZpMb9gv7/0PdofVYWMjpg4eLwLeW1fWs54oBVd082EVIfiJ5icZJ/k17/SnKhC5JCrdpjvR0i63DF70x38u+DjEpy7vFx3PPGD6pw0iunGYTWg5tH88JccV+F5kQO3wfG1fyT7GeOFOV8Btb+WJvg6334ywPD7FeIMBibvYmFo/7H++BT6alNf/+m6FU1NbH9GDx1gRWA6jwM0Spm7NFYhpxVXOAF7XSLRJI65dSM/sIAi2+VlWVnCozstowXw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB5456.namprd11.prod.outlook.com (2603:10b6:5:39c::14)
- by PH0PR11MB5030.namprd11.prod.outlook.com (2603:10b6:510:41::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.11; Fri, 28 Aug
- 2026 16:51:14 +0000
-Received: from DM4PR11MB5456.namprd11.prod.outlook.com
- ([fe80::62e5:4a7c:f965:9082]) by DM4PR11MB5456.namprd11.prod.outlook.com
- ([fe80::62e5:4a7c:f965:9082%3]) with mapi id 15.21.0360.008; Fri, 28 Aug 2026
- 16:51:14 +0000
-From: "Lin, Shuicheng" <shuicheng.lin@intel.com>
-To: =?utf-8?B?VGhvbWFzIEhlbGxzdHLDtm0=?= <thomas.hellstrom@linux.intel.com>,
- "Brost, Matthew" <matthew.brost@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/xe/bo: Take a runtime PM ref when shrinking a bo
- needing invalidation
-Thread-Topic: [PATCH] drm/xe/bo: Take a runtime PM ref when shrinking a bo
- needing invalidation
-Thread-Index: AQHdNOPefkyiRt2ObUCS3pDbgsfgxLav+CiAgACgLACAAM1JAIAAqB2ggAAPDQCAAWaSgIAAJ3XA
-Date: Fri, 28 Aug 2026 16:51:14 +0000
-Message-ID: <DM4PR11MB5456994A6F9683F3E369F3C8EAAC2@DM4PR11MB5456.namprd11.prod.outlook.com>
-References: <20260825224819.2182540-1-shuicheng.lin@intel.com>
- <ebc4797204a5aec94f122094e2fbe2fb1d0536c1.camel@linux.intel.com>
- <DM4PR11MB545658D01D36A23A72096175EAAE2@DM4PR11MB5456.namprd11.prod.outlook.com>
- <ao/Psuvcjjxkt8iH@gsse-cloud1.jf.intel.com>
- <DM4PR11MB54565CC96CAE42FB1C25434EEAAD2@DM4PR11MB5456.namprd11.prod.outlook.com>
- <apBpWBAyiAPMAkMm@gsse-cloud1.jf.intel.com>
- <846109470543562cb52d3ccf8693ad56cddab212.camel@linux.intel.com>
-In-Reply-To: <846109470543562cb52d3ccf8693ad56cddab212.camel@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB5456:EE_|PH0PR11MB5030:EE_
-x-ms-office365-filtering-correlation-id: 5783f1fa-7898-4828-302f-08df0524924d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|23010399003|376014|38070700021|6133799003|10067099003|4143699003|5023799004|11063799006|18002099003|22082099003|56012099006;
-x-microsoft-antispam-message-info: hLMcjpu2c/ke0rTlxp2sBzHL4iMVsY4w7+tsYTfqzFZ632mdiTxe+dx9w2Wbfa3maYp9Dz1XXAm7gWEWVmFcfmdlsg2SNUb+gRqzBMdKCGoblOHd4yS2ls/wYgk+gdgFJFJYc/T+xr/a0g/POhCPTrFcs4MmSxN8g8wKNlokvhxApRqaakAytjIG2GvE0p3jGrr8b02saPDqkiZ7NiBwWnj4c47v/R/tiwpRz92vwEo1QAaU0bIgH9+vR/hWvjAUTRf5EJj1tUhL42kjOiH5FJL2kTFdq903AILtfZFnavJlUYAVoFA0WOwRflW0k7JV6A33DEef7OkSE/elK3NaMbtSgdBtT76OtPjYeUV8JXH50NHcfcBxdqGhLpkxNmEov3xFRrX3vOHrJfMzuecX2Hz8GldLs7zkAqj9h9KmwtKdyHXVEuuhkus40AvZCdASayvQRsYXaKtz6xtR6TvW3XGS7HSO2w2OR7MpUdcVEEHKq2F4Uk1M/NLPfzWCqImbdCGGHpvPv2RcHl5u8ciK7fgsoOPOv7qybhGvIHYPP9qcksM4bNpDqxF4DUMIzqkYmJfBhsc1TX4GMY6KTlUEIZ/fiTJWVgkfacSb4MTOhEF9kALjczV7sW8Q8cdq3pgwKDgW/WV7TMeO5rX5gbGroMTUS4JqzaE5UXU8AtMeWgN9PzWk1zdHn6QV+FRlIuR8PJtHBy/F73fq1nsY1B2qc8tUN0XdNM57MPjUnv8+O8o=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5456.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(38070700021)(6133799003)(10067099003)(4143699003)(5023799004)(11063799006)(18002099003)(22082099003)(56012099006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZG5UTzlDMVFKek9OeGlBNkJMbTNoN3Z1NkJNVkIwNXlIajVCbzVDTWtLbkJD?=
- =?utf-8?B?SzQyTTIwWmh6Q2w3TGM1Z0FLZWNvbnArS3dVRGFnWUFDWTVKM1I1SVk0Q1lC?=
- =?utf-8?B?dFhQN29OSDhmVktoYTAyZGJVZmlxVmpRRkhERnB5UDBYTGlWYmJmK3Nqc3l5?=
- =?utf-8?B?V3VkbXZSaGJIWWwxK01DUUpQRkNFOEVIV0NMT2Z5ektpM1h5cWZqZUtTZkxB?=
- =?utf-8?B?dUVQRld4NXQyQ0UxMXNBSUZnQi9xYUI1WFJONnR3Q0V1TDJZR0FsSERVeEh0?=
- =?utf-8?B?OCtRYytHaXFwZitCejZXM1p2d083WkpLMnYvcm5nOW1Ja09FYThKQzBtMWRC?=
- =?utf-8?B?b2ZPMG9VMk1mS0tuVmkvcHlUSmIwVHowdmkyRDRIL2VVYXBlRHozc0hPbm8v?=
- =?utf-8?B?YkRHVEF0WXVjWWFNbWo5cUxYclhDUWhCZXJvbHBKMDhwRjNzTVR3Vy9oSFNo?=
- =?utf-8?B?Z0ppRFNady9xVlErTGZIVjAwZHZKMjlNNS9nWGxzT0IwT2QybDV2cThBVC9U?=
- =?utf-8?B?N0Q5UnJOaUdtUEIxdHcrMnJwdVdWTzFtZ2FWSzZBWkZ2Ty9GOGZrSDNDZEQ0?=
- =?utf-8?B?VDlJOW5iV3BXcEpMaXNsUjhVczErczIxWUQwSVRBaEZ3aTltOGphVVlvMEw4?=
- =?utf-8?B?Rll3RHc4ZkF4OXdvblRFNktZdXk2K01id3AwVXlDMmwzKzB1L3o1V1BMTFA4?=
- =?utf-8?B?cXg0Tzk5bGRlZC9tclB5WDZGTkJMQnI1NlBFZjZlT1MxRURmWENER2N3a1No?=
- =?utf-8?B?UXBDZzNNYVB0UmpLOEZsbVNiMW9UTmFtUGIzcWFVWFEwTk9RVkRIWjZtb3hr?=
- =?utf-8?B?MXVDUDNjMlpHL1RzRzFhQk96VGxFQ0l3T2tGamhaeGZ5ZlJIbDZKS1NUVjI4?=
- =?utf-8?B?cnAvMnp5aHZKd1cyLzhqQlFOZTZMVlRBcTdiRlR4OG1BWmxCMlV1UlNIWlhG?=
- =?utf-8?B?TGt2S0hKcmlyUjhLZ3JtNS9hRW5iUjVYN040YzlQSkMzUXROa0pBcDI1a0pj?=
- =?utf-8?B?YkZUcnJjdDc5TW85Qjg5WnpQMEZYZjZ0NWJXaVFYM2I5cUJKdHJKa051d3RX?=
- =?utf-8?B?TTMwbGcwejExZmpNak9TT3k1Um1VRVVDdFJid2h5WC9UVk4xVHlMelBwbFJ4?=
- =?utf-8?B?MXYxZ09lbTkvUlVwL2VzR0hmQ0o1Z0h2VG5GTkRpUWlWbWs3Sk1iMWtINUFI?=
- =?utf-8?B?Rm52aHdrd0dwZTZGbnU5aHk4NmNsODljakNYQ05WOEtUbG9xc09DYmtGeCtJ?=
- =?utf-8?B?SG9ZT01KbG8xY1BPUDEzalJibjJGRGpVMTV2d2MwOXlWaGE2VlZWVkhWSTAy?=
- =?utf-8?B?WGs2UWlwY1pHblBvemNpUGIxdWhSYWwzNG9ER2xUeHRXYW1wY2FoVUNVSjg2?=
- =?utf-8?B?WXVzc2g1bVRsRDlsdjAveFRZUy9OM0s5RDNoMFVrdVArZ2xpa3IvRERCSFJF?=
- =?utf-8?B?eE9VUlgybk1ldVlRaTkrZmltdHIvdWI5Nis5TXg3eUtnWlB4OHdsRCtZUCsw?=
- =?utf-8?B?WGlyZXdoVSsrNWgrNjZyeXg2SW14eGl5am93UnZLVURuTGszMHhlS01nNEhs?=
- =?utf-8?B?UmJuYlJyRGxTSW1JYnpxdFpwZlpsTURyMHQraVlUTXhKak9vbTRpWHpwazdB?=
- =?utf-8?B?RSs4MWtoMlNkWVJzb0VYUFo5bG5kTDUwaWFaM2VQYWltdjM1ZFBDOEtaWGFX?=
- =?utf-8?B?d1BqK0Q5c3p2QklvQUk0Y0hoOFJmZ0RoQnRMYzRCU1hjQkNjdzVrNnNaa2Fq?=
- =?utf-8?B?dUZzOGZVYkFPeFNERE53STVOcGhCaGtlWElHb05NS21CRFViZVJ2SjdadS9h?=
- =?utf-8?B?N0lFVlBGdGlJejJ4YzNpeThVM3l2eUNGemw0cVFmaiszVzNUVjJWWHVzYitB?=
- =?utf-8?B?REYyTmd6Y0h0alVtSWZhNkt2MUpObW9FRmUrajRKWnNPS1JJMWxuYjBnRXpT?=
- =?utf-8?B?K1VPVCtsYmJsM0k3UG5DR20vcVRUd0lOc0RUQjZ5bUI4SDhJSlRuZWZJeVMv?=
- =?utf-8?B?T29TUzMzMjZCWFR4TWhCQnJKSUpyTEcxQ29zc1RUZnp5cG12ODN2emE2Ymkv?=
- =?utf-8?B?d0R6R05KU1hoUjNFN2h1aVpodzllNVArZmtJVzFWRHVKbytxaWhYWnJSQ3Yv?=
- =?utf-8?B?RjBvVUJ4ZThGUkRBSkhtbWVodEdhSnZ5ZHF0L0NxUWl5UHVSUnlQaHlCUFJV?=
- =?utf-8?B?ZXY0Y3FjbjVWdUZvNHY5SjFaOTU4YVlZRGxXWXZSMkZaT3hYQ1ppZnFQSExS?=
- =?utf-8?B?TjBETjRkcHZoZnJlNzZBVEg0a3lNM2FTMVJYdTFSVU1Mdzc4Tm8xTmozKzZR?=
- =?utf-8?B?VEpQR3QzblRGU3ZYZlVid09CYjA0TTdLK1pFVVozUXJQdkRzVlVYdz09?=
+Received: from IA0PR11MB7187.namprd11.prod.outlook.com (2603:10b6:208:441::12)
+ by PH7PR11MB8526.namprd11.prod.outlook.com (2603:10b6:510:30a::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.10; Fri, 28 Aug
+ 2026 16:53:40 +0000
+Received: from IA0PR11MB7187.namprd11.prod.outlook.com
+ ([fe80::be96:3f58:953d:6565]) by IA0PR11MB7187.namprd11.prod.outlook.com
+ ([fe80::be96:3f58:953d:6565%4]) with mapi id 15.21.0360.008; Fri, 28 Aug 2026
+ 16:53:38 +0000
+Date: Fri, 28 Aug 2026 12:53:33 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: "Summers, Stuart" <stuart.summers@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Lin,
+ Shuicheng" <shuicheng.lin@intel.com>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>, "Brost, Matthew" <matthew.brost@intel.com>,
+ "Tauro, Riana" <riana.tauro@intel.com>, "Wajdeczko, Michal"
+ <michal.wajdeczko@intel.com>, "Nerlige Ramappa, Umesh"
+ <umesh.nerlige.ramappa@intel.com>, "Ceraolo Spurio, Daniele"
+ <daniele.ceraolospurio@intel.com>
+Subject: Re: [PATCH 05/10] drm/xe: Move debug configfs entries to
+ xe_configfs_debug.c
+Message-ID: <apG9DQCbMUcMNHX9@intel.com>
+References: <20260820210639.107524-12-stuart.summers@intel.com>
+ <20260820210639.107524-17-stuart.summers@intel.com>
+ <20260821221838.GH681121@mdroper-desk1.amr.corp.intel.com>
+ <2c3c62987d33808c4a37376cc53472ccdfbe0b2e.camel@intel.com>
+ <ao9YqO-G7cwCbCFL@intel.com>
+ <2e4a2074d202c3f833cff188adc7bdc0377fa429.camel@intel.com>
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2e4a2074d202c3f833cff188adc7bdc0377fa429.camel@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0198.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c3::23) To IA0PR11MB7187.namprd11.prod.outlook.com
+ (2603:10b6:208:441::12)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: woD+BCfbTAocOgJfssNKc7zqAcriOyfAm0fDuLy+ebitwfYM0ekSKMB1urJLobcUQ3HgG6ri2wdxUTbo3ud0XX3aXVo/dsSc3nBAhYxZZOtanDoVce/akEQhIhOiVDfMJyPdlSpaMBx1Nv8MShVOmiH0Q58jGhnSxXC2QpDMgKNd2hH/SGXhdJoVcK1micrFV5AKqPNyBk6aoAsiCAcs/97DrAftuQhPmY2TnMvhEBqw7WiNbTkVWTgoGT9itNu49qNewhtooIYK5c8B9ixTAaOlJagaqtjXunCXFTjaxkU8lb98v/FXt6xN7CxHrVmqAney1vnG15xeuDPny8u9Ug==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|PH7PR11MB8526:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6d0a1d3a-abe0-4a88-ee5b-08df0524e82a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|23010399003|10067099003|11063799006|5023799004|56012099006|4143699003|6133799003|3023799007|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: L70DUHFl/5gdIulv5cXTaOeyRYrC/wfqfKy4jm24/nZRkvtbsRt4lTrUU//M1Cqma0KsqofJm8I1O2LLrHlW68ua0F8JxhzHajy3nuFsuBeIhCe6tOnlKrGxEWKI721Cpj4hjha6C3arY9wpgkGL5hQxAWpEi2+PZoVtleI9y/Ae8KD+uNqw5IkeFHaqk81/2h1PLcnsqJXfJd2tCrGdeKrozYTWqdV9XUI46L6thbf8CNWPIPqvG+4ejyMsI2MVxH694CvN8H1OlNw0sq8ACcu5imek4sZo8TtHqz/slfkBbjPIST1XQQzzF35aWKgg6/p9g2DZhMCly/34LIOIxPUgi3OixfAWLKqKWyxuuANBpWRxUjk0rJJOy5wafnNXcdyz852AysbV3GS3Wdkq0q3g0MfXoD9nThhS9GWXMNSjbAAY81g3WPW2zEv9TP/RDDDeVyTb4EJ0C+iExhxv5fOptVLSw3aU9dZFw4NHiafe9GHPumnnbsfcRNt7IdI/XoHULJOl8mwcjkHQ9GCPb9T76rrlebHNMwamHkk5x0MOOJAOYEPcq+EVles3qsyI+gHUgmeSmO72ANw15n1iicWQ6e+wGuHnovIJxOa/TWbwrC1e7yMKw8EzK2MoDizh6/fLBgnml+0tQeJbDNko6vNxjnME4DJQ7XLvsMXNXyo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7187.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(23010399003)(10067099003)(11063799006)(5023799004)(56012099006)(4143699003)(6133799003)(3023799007)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T2NrY2pRMU05MVdKcUtuL3ZJVzN3RmZraVVDM2pvdk5qUXZMcjZMNTUxNWxT?=
+ =?utf-8?B?aEc4aGFXQjNJZTBlK2pQSm03V0NDVnQzTDFyRzMyTWlFL1VkaWo5Tm5wclRk?=
+ =?utf-8?B?a0ZHL2s0SVYveGl6aE5TRi85L0hldk1USm1OY1d2Und6OE5sVnlQVHQyWWRJ?=
+ =?utf-8?B?czhHN0R1V0hEOVQ4eUpVSUhhOWJNbXRkWE9vOW01RVdKcWx5VDc3eGhhZEs5?=
+ =?utf-8?B?cG1meVJ2UUl3bFhlcW43RmNUYXJXeHhDdlR0WCtBTmI4MmhGODBRUEZ5SHUr?=
+ =?utf-8?B?UGlXclh4U0Z1NjFMZ3BnNi92UmRoMmdIK2lxOG13QzU3WERpdHR2RCtmSFQy?=
+ =?utf-8?B?YkFwMjhuQ1VHZVpYbmx5RDB5cXovT1ZtS1dKNHdoMWwzSUlJNjRiUnVOZzhC?=
+ =?utf-8?B?S0NQYUdlZEZBMllIRWxwZGVSbXI2ckZTVVhoN1owWGUzSU5lREhWV2drbmNv?=
+ =?utf-8?B?UjRqVjhVWWs4TU40V1VKNnE4RXZ5MStOZElXM1FJYW4rZWNBV3JVVHQvckFh?=
+ =?utf-8?B?VmR6dTlwcFRFNGlGMzRadk03V2d6S2V1a2dVaGUzUDRXWW1mZTVodjJCRHA0?=
+ =?utf-8?B?cTUwcVppWmMwRWVkZEFxRHpNTlVtNSsydEkxdnRTTVp3V3BiN1JEcFd1SXN5?=
+ =?utf-8?B?blMwMzhhSEJoc2RIWTRoWmgwTjdDS1M2U3BMTkdMVVVZSHZwVzY1VmNyZGo1?=
+ =?utf-8?B?MWQvUjZxRkZoZWhmSFBkNCtEZnVGTDg5YktUVUVVUTVLRGRoMWt2REZmNjFw?=
+ =?utf-8?B?YmMrQ2YvZjFCdDg5cXZzTnlESlp3SC9xWUlIcHloV2FmcU5sQzVTT1ZCNlZa?=
+ =?utf-8?B?ZGd3dm5MK0JHZ3pZQm8vbDdPU2pUaElVVmJYZzdYRGhubjU4aGdaTmdvTzl6?=
+ =?utf-8?B?TVEreEFlanZUeHB3YVlhcW5CU1hOZXZzbFJzTitvSTNGVG9VTDRxbytTNk9l?=
+ =?utf-8?B?WjFtdXpIYU9pbTA2dnMxOHlVVnBKRkVTWnB2UU9TRXIzZnNQWloxcHNUNEZW?=
+ =?utf-8?B?WEIra3RVNXhHQTR6anJBRUhrdU8vdHlrL0E5OFluUDRxTTV5bGVJUGNPQUFn?=
+ =?utf-8?B?T2RvK0hXL3prci93amQzNXZ3VG5DNkRXYSthUVJJYnBMYXhsZEQxSm5yNnNz?=
+ =?utf-8?B?N3BIUldjK2xsczZNQlhiQ3NaRGxOUXR1RVdKM0lNR2FRaWJ2cGdiOVpGYS9L?=
+ =?utf-8?B?VEJ6UDMwMkY0WVY3TkUrbkhHQW5lM1BMT3VseFV1TXBqc0RmRzFJcm45eWVv?=
+ =?utf-8?B?Q0JleTBVbU9lak1YdGdob1hMV3JPM2laZjFSdFNmaWR2bkhxK1cyUzdFTnBh?=
+ =?utf-8?B?VzcxVERFMEV4bHZtbzlVT1pwaXY4RlV6SzcyS2FTWTJBTmxTazJ1Rnk3TVYx?=
+ =?utf-8?B?T3pqdzJMd3NhTDZqTDZiUmF3eGNSRlk0NDJBWlVLajF6UHVMcnZueUFuTHk4?=
+ =?utf-8?B?ZUY4NG9iaS9aMDlqNnFqYXhkWVRFVkdNajl0OFpvRGp3NEdESXBMM3dsazVV?=
+ =?utf-8?B?WnRSeHZySkJ3dWtZQ1g2KzNlS0k3KzFWa0w4TVV5ZWFJdjA3dStPRE1WbjV4?=
+ =?utf-8?B?d2hxMWZMSzg4OCs1aEdtWkRsYTR3eFNNTmlJWk9SUUJsdlVxcmtqYUFZck9h?=
+ =?utf-8?B?SjdaRmFmR1l6dVlTUWw1VnhzRUNnTEVuMUwwaGUzVTlReDJyK0lyZGxjQkcr?=
+ =?utf-8?B?NEZFcEJub0lhbHVTckwzSlErU0lCSFBBMDN5RGtRZ3FRVitsSmVRNmtCaDA2?=
+ =?utf-8?B?NDlsbHRCdFZOTFArUktxN0hDRng4OXVQNHc1MFEyc3oxV2orOElFQ1JHaW1V?=
+ =?utf-8?B?ZTNmZGhvVHdxZmJUWG1YcHI5UXZTc1ZqVkVqL1g0SlB5ZGthUzNodUNSUEY5?=
+ =?utf-8?B?eHBMdGhncjlUMFlaWGZUOWNhcEdwd2lyK05ZMXZ6KzFIVUorRzl0cFRiT253?=
+ =?utf-8?B?SDdoUmFPZzd3cDdTNG41dE9LM0J0Qk1pL0RjR0hZbUJyUTltcmZOZkxFeUFG?=
+ =?utf-8?B?aDdyM1NVR3lGdkpEQ3dCWHBzNkRvR0ZKRktIZkhodjEvM2YxVHZYalhUaTdh?=
+ =?utf-8?B?RGFtMUVHQTA3b2RkQlVXYlk5Z3VwOURHUDh0dkQ4KzdGbFRtUTFBM280SkJj?=
+ =?utf-8?B?SW41ZkdsZGNSRlFkRUp4b29yZlYrTG9SL3JkVWl0N1ZWaHRqMXh3UG1WZkc0?=
+ =?utf-8?B?RXMvSVQ4bCtsZ3ZYMng0NHR5bmlJQ3NKMmVWeGxNdjhyOTltNTJUS2lPUEUr?=
+ =?utf-8?B?SlVsOElWWUpKUFdqNjhsRk9HTHdCdHY0NFk4d1Q5aXFHMnBwd1hodENHU0Vu?=
+ =?utf-8?B?anlzZkIyVlI1T0x4aW5LTmlwMUxzMFFXRUtRWC8wcHBHQ2Y3L3JTUT09?=
+X-Exchange-RoutingPolicyChecked: M0bX5ffjWbqtJOMLK3CpRCH7X8ltC1T/7IKvDFFh9yY9Rp926jl0b9GkrwAG+/kSXUPi7cHdxAt2iWXg1YG+2LkxbSwhDG92Y5TF3CR44pkM1Nzft24mNJblHeYYesSkADKQFFWDO/Ic/2COznLIbgXTWS9X7Age9PZJORw6a9+xY1US9LOERvHMieC7qbCuuwZ2hlwSj34qnfZDKBX3M63QANFHpPCh01MRAa0e4nomYvnl06GZJLQW/8IoEFww6h5LD6NH5EFI1RlwppcPBI4qHh3E1j6OiBpS94UlX0KLfAbVlDF69kp4mLSZeVJeU+1bb41+mr9NDHvj/D8YsA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6d0a1d3a-abe0-4a88-ee5b-08df0524e82a
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7187.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5456.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5783f1fa-7898-4828-302f-08df0524924d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2026 16:51:14.0928 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jAcQAvplMuoz47P3qab3yhWGNMVykTQ5mO0hoiOz/bAqFuvhdWd4bz7JIp6XKX2jTscxcP4zudxJuNWK+eXDPg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5030
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2026 16:53:38.6716 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8XITaXlD0yTbLHOToH8avvPyokPiePJHhsIUoXIx5k8Vjccg7/HAoK+t1Mk0I5dDRPoWdXm4Qh0Qx8EmS4lhrA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8526
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -177,317 +178,3232 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gRnJpLCBBdWcgMjgsIDIwMjYgNzowOCBBTSBUaG9tYXMgSGVsbHN0csO2bSB3cm90ZToNCj4g
-SGkhDQo+IA0KPiANCj4gT24gVGh1LCAyMDI2LTA4LTI3IGF0IDA5OjQ0IC0wNzAwLCBNYXR0aGV3
-IEJyb3N0IHdyb3RlOg0KPiA+IE9uIFRodSwgQXVnIDI3LCAyMDI2IGF0IDEwOjIwOjEwQU0gLTA2
-MDAsIExpbiwgU2h1aWNoZW5nIHdyb3RlOg0KPiA+ID4gT24gV2VkLCBBdWcgMjYsIDIwMjYgMTA6
-NDkgUE0gTWF0dGhldyBCcm9zdCB3cm90ZToNCj4gPiA+ID4gT24gV2VkLCBBdWcgMjYsIDIwMjYg
-YXQgMTA6MTA6MzhQTSArMDAwMCwgTGluLCBTaHVpY2hlbmcgd3JvdGU6DQo+ID4gPiA+ID4gT24g
-V2VkLCBBdWcgMjYsIDIwMjYgMTowMSBBTSBUaG9tYXMgSGVsbHN0csO2bSB3cm90ZToNCj4gPiA+
-ID4gPiA+IE9uIFR1ZSwgMjAyNi0wOC0yNSBhdCAyMjo0OCArMDAwMCwgU2h1aWNoZW5nIExpbiB3
-cm90ZToNCj4gPiA+ID4gPiA+ID4geGVfYm9fc2hyaW5rKCkgb25seSB0b29rIGEgcnVudGltZSBQ
-TSByZWZlcmVuY2UgZm9yIHRoZQ0KPiA+ID4gPiA+ID4gPiBTeXN0ZW0gQ0NTIGJhY2t1cCBjYXNl
-LCBhbmQgb25seSBhZnRlciB0aGUgcHVyZ2VhYmxlIGJyYW5jaA0KPiA+ID4gPiA+ID4gPiBoYWQg
-YWxyZWFkeSByZXR1cm5lZC4NCj4gPiA+ID4gPiA+ID4gVGhhdCBicmFuY2ggY2FsbHMgeGVfYm9f
-bW92ZV9ub3RpZnkoKSwgd2hpY2ggcmVhY2hlcw0KPiA+ID4gPiA+ID4gPiB4ZV9ib190cmlnZ2Vy
-X3JlYmluZCgpIC0+IHhlX3ZtX2ludmFsaWRhdGVfdm1hKCkgYW5kIHN1Ym1pdHMNCj4gPiA+ID4g
-PiA+ID4gYSBUTEIgaW52YWxpZGF0aW9uIG92ZXIgR3VDIENULsKgIFRoZSBub24tcHVyZ2VhYmxl
-IGJyYW5jaA0KPiA+ID4gPiA+ID4gPiByZWFjaGVzIHRoZSBzYW1lIGNvZGUgdGhyb3VnaCB0dG1f
-Ym9fc2hyaW5rKC5hbGxvd19tb3ZlID0NCj4gPiA+ID4gPiA+ID4gdHJ1ZSkgLT4geGVfYm9fbW92
-ZSgpLg0KPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiBXaGVuIHRoZSBkZXZpY2UgaXMgcnVu
-dGltZSBzdXNwZW5kZWQgdGhlIENUIGlzIGRpc2FibGVkIGFuZA0KPiA+ID4gPiA+ID4gPiB0aGUg
-c2VuZCByZXR1cm5zIC1FTk9ERVYsIHRyaXBwaW5nIHRoZSBYRV9XQVJOX09OKCkgaW4NCj4gPiA+
-ID4geGVfYm9fdHJpZ2dlcl9yZWJpbmQoKToNCj4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4g
-wqAgV0FSTklORzogZHJpdmVycy9ncHUvZHJtL3hlL3hlX2JvLmM6NzcwIGF0DQo+ID4gPiA+ID4g
-PiA+IHhlX2JvX21vdmVfbm90aWZ5KzB4MWZjLzB4NDUwIFt4ZV0sIENQVSMyOiB4ZV9tYWR2aXNl
-LzIxMzg5DQo+ID4gPiA+ID4gPiA+IMKgwqAgeGVfYm9fc2hyaW5rKzB4MjBmLzB4MmIwIFt4ZV0N
-Cj4gPiA+ID4gPiA+ID4gwqDCoCBfX3hlX3Nocmlua2VyX3dhbGsrMHgxNzQvMHg0MTAgW3hlXQ0K
-PiA+ID4gPiA+ID4gPiDCoMKgIHhlX3Nocmlua2VyX3dhbGsrMHg1Ni8weGYwIFt4ZV0NCj4gPiA+
-ID4gPiA+ID4gwqDCoCB4ZV9zaHJpbmtlcl9zY2FuKzB4MTBjLzB4MWUwIFt4ZV0NCj4gPiA+ID4g
-PiA+ID4gwqDCoCBkb19zaHJpbmtfc2xhYisweDE3Ni8weDdlMA0KPiA+ID4gPiA+ID4gPiDCoMKg
-IHNocmlua19zbGFiKzB4MTM3LzB4OTkwDQo+ID4gPiA+ID4gPiA+IMKgwqAgZHJvcF9zbGFiKzB4
-N2YvMHgxMzANCj4gPiA+ID4gPiA+ID4gwqDCoCBkcm9wX2NhY2hlc19zeXNjdGxfaGFuZGxlcisw
-eDljLzB4ZjANCj4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gVGhlIGludmFsaWRhdGlvbiBp
-cyBhbHdheXMgaXNzdWVkIGZvciBhIGZhdWx0LW1vZGUgdm07IHNpbmNlDQo+ID4gPiA+ID4gPiA+
-IGNvbW1pdCA0ZTdlYmZmNjlhZWQgKCJkcm0veGUveGUzcF9scGc6IGZsdXNoIHNocmlua2VyIGJv
-DQo+ID4gPiA+ID4gPiA+IGNhY2hlbGluZXMNCj4gPiA+ID4gPiA+ID4gbWFudWFsbHkiKQ0KPiA+
-ID4gPiA+ID4gPiBpdCBpcyBhbHNvIGlzc3VlZCBmb3IgYSBub24tZmF1bHQtbW9kZSB2bSBvbiBo
-YXJkd2FyZSB3aXRoDQo+ID4gPiA+ID4gPiA+IGFuIG9wdGltaXplZA0KPiA+ID4gPiA+ID4gPiBM
-MiBmbHVzaCwgd2hpY2ggaXMgaG93IHRoaXMgc3VyZmFjZWQuDQo+ID4gPiA+ID4gPiA+DQo+ID4g
-PiA+ID4gPiA+IEFkZCBib19uZWVkc19pbnZhbGlkYXRlKCksIG1pcnJvcmluZyB0aGF0IGNvbmRp
-dGlvbiwgYW5kIHVzZQ0KPiA+ID4gPiA+ID4gPiBpdCBpbg0KPiA+ID4gPiA+ID4gPiB4ZV9ib19z
-aHJpbmsoKSB0byBjb21wdXRlIG5lZWRzX3JwbSBhaGVhZCBvZiBib3RoIGJyYW5jaGVzLg0KPiA+
-ID4gPiA+ID4gPiBUaGUgcmVmZXJlbmNlIGlzIHRoZW4gaGVsZCBhY3Jvc3MgeGVfYm9fbW92ZV9u
-b3RpZnkoKSBpbg0KPiA+ID4gPiA+ID4gPiBlaXRoZXIgcGF0aCwgYW5kIGlzIG5vdCB0YWtlbiBm
-b3IgYSBibyB3aG9zZSBtYXBwaW5ncyB3b3VsZA0KPiA+ID4gPiA+ID4gPiBub3QgaGF2ZSBiZWVu
-IGludmFsaWRhdGVkLg0KPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiBTaHJpbmtpbmcgY2Fu
-IHJ1biBpbiByZWNsYWltIGNvbnRleHRzIHdoZXJlIHRoZSBkZXZpY2UgbWF5DQo+ID4gPiA+ID4g
-PiA+IG5vdCBiZSByZXN1bWVkLCBzbyBhIGJvIGlzIHNraXBwZWQgd2hlbiB0aGUgcmVmZXJlbmNl
-IGNhbm5vdA0KPiA+ID4gPiA+ID4gPiBiZSBhY3F1aXJlZC4NCj4gPiA+ID4gPiA+ID4gSGF2ZQ0K
-PiA+ID4gPiA+ID4gPiB0aGF0IHNraXAgcXVldWUgdGhlIHNocmlua2VyIFBNIHdvcmtlcjoNCj4g
-PiA+ID4gPiA+ID4geGVfc2hyaW5rZXJfcnVudGltZV9wbV9nZXQoKSBpcyBnYXRlZCBvbiB0aGUg
-bmVlZHMgb2YgaXRzDQo+ID4gPiA+ID4gPiA+IG93biBiYWNrdXAgcGFzcyByYXRoZXIgdGhhbiBv
-biB0aGlzIG9uZSwgYW5kIG9uIERHRlggaXQNCj4gPiA+ID4gPiA+ID4gcmV0dXJucyBiZWZvcmUg
-cXVldWVpbmcgYW55dGhpbmcsIHNvIHdpdGhvdXQgdGhpcyBhIHNjYW4NCj4gPiA+ID4gPiA+ID4g
-d2hlcmUgZXZlcnkgY2FuZGlkYXRlIGlzIHNraXBwZWQgbWFrZXMgbm8gcHJvZ3Jlc3MsIHJlcG9y
-dHMNCj4gPiA+ID4gPiA+ID4gbm90aGluZyBzY2FubmVkIGFuZCByZXR1cm5zDQo+ID4gPiA+IFNI
-UklOS19TVE9QIHdpdGggbm90aGluZyBhcnJhbmdpbmcgYSB3YWtlLg0KPiA+ID4gPiA+ID4gPg0K
-PiA+ID4gPiA+ID4gPiBBbHNvIGdhdGUgdGhlIFN5c3RlbSBDQ1MgdGVybSBvbiAheGVfdHQtPnB1
-cmdlYWJsZSwgc2luY2UNCj4gPiA+ID4gPiA+ID4geGVfYm9fc2hyaW5rX3B1cmdlKCkgZnJlZXMg
-dGhlIHBhZ2VzIHdpdGhvdXQgYSBHUFUgY29weS4NCj4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+
-ID4gUmVwcm9kdWNlZCB3aXRoIGlndEB4ZV9tYWR2aXNlQGRvbnRuZWVkLWJlZm9yZS1leGVjIHdo
-aWxlDQo+ID4gPiA+ID4gPiA+IHRoZSBHUFUgaXMgcnVudGltZSBzdXNwZW5kZWQuDQo+ID4gPiA+
-ID4gPiA+DQo+ID4gPiA+ID4gPiA+IEZpeGVzOiAwMGM4ZWZjMzE4MGYgKCJkcm0veGU6IEFkZCBh
-IHNocmlua2VyIGZvciB4ZSBib3MiKQ0KPiA+ID4gPiA+ID4gPiBBc3Npc3RlZC1ieTogQ2xhdWRl
-OmNsYXVkZS1vcHVzLTUNCj4gPiA+ID4gPiA+ID4gQ2M6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9t
-YXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4NCj4gPiA+ID4gPiA+ID4gU2lnbmVkLW9mZi1i
-eTogU2h1aWNoZW5nIExpbiA8c2h1aWNoZW5nLmxpbkBpbnRlbC5jb20+DQo+ID4gPiA+ID4gPg0K
-PiA+ID4gPiA+ID4gTmljZSBjYXRjaC4NCj4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiBJIHdvbmRl
-ciwgaG93ZXZlciwgY2FuIHdlIHNraXAgdGhlIFRMQiBmbHVzaCBpZiBydW50aW1lIFBNIGlzDQo+
-ID4gPiA+ID4gPiBub3QgYXZhaWxhYmxlIGF0IFRMQiBmbHVzaCB0aW1lIChydW50aW1lX3BtX2dl
-dF9pZl9hY3RpdmUoKT8pDQo+ID4gPiA+ID4gPiBBc3N1bWluZyB0aGF0IGlmIHJ1bnRpbWUgUE0g
-aXMgbm90IGF2YWlsYWJsZSwgbm8gY29udGV4dHMgY2FuDQo+ID4gPiA+ID4gPiBiZSBhY3RpdmUg
-YW5kIHRoZXkgd2lsbCBmbHVzaCBUTEIgaW1wbGljaXRseSB3aGVuIGJlY29taW5nDQo+ID4gPiA+
-ID4gPiBhY3RpdmU/DQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBEbyB5b3UgbWVhbiBjYWxsIHJ1bnRp
-bWVfcG1fZ2V0X2lmX2FjdGl2ZSgpIGluDQo+ID4gPiA+ID4geGVfdGxiX2ludmFsX3JhbmdlX3Rp
-bGVtYXNrX3N1Ym1pdCgpLA0KPiA+ID4gPiA+IG9yIGxvd2VyIGRvd24gaW4geGVfdGxiX2ludmFs
-X2ZlbmNlX2luaXQoKT8NCj4gPiA+ID4gPiBJJ2QgcHJlZmVyIHRoYXQgdG9vLCBhcyBpdCB3b3Vs
-ZCBzaW1wbGlmeSB0aGUgY29kZS4gVHdvIHRoaW5ncw0KPiA+ID4gPiA+IHN0b3AgbWUgZG9pbmcg
-aXQNCj4gPiA+ID4gaGVyZS4NCj4gPiA+ID4gPg0KPiA+ID4gPiA+IEZpcnN0LCB0aGUgUFRFIHph
-cCBhbHNvIG5lZWRzIHRoZSBkZXZpY2UsIGFuZCBpdCBydW5zIGJlZm9yZSB0aGUNCj4gPiA+ID4g
-PiBmbHVzaC4NCj4gPiA+ID4gPiB4ZV9wdF96YXBfcHRlc19lbnRyeSgpIGRvZXMgeGVfbWFwX21l
-bXNldCgpLCB3aGljaCBhc3NlcnRzIHZpYQ0KPiA+ID4gPiA+IHhlX2RldmljZV9hc3NlcnRfbWVt
-X2FjY2VzcygpOg0KPiA+ID4gPiA+DQo+ID4gPiA+DQo+ID4gPiA+IEkgYWdyZWUgd2l0aCB0aGlz
-IC0gdGhlIHphcCBpcyBub3Qgb3B0aW9uYWwgZm9yIGZhdWx0IG1vZGUsIGl0DQo+ID4gPiA+IHBy
-b2JhYmx5IGlzbid0IGZvciAneGVfZGV2aWNlX2lzX2wyX2ZsdXNoX29wdGltaXplZCcuDQo+ID4g
-PiA+DQo+ID4gPiA+ID4gwqAgQXNzZXJ0aW9uIGAheGVfcG1fcnVudGltZV9zdXNwZW5kZWQoeGUp
-YCBmYWlsZWQhDQo+ID4gPiA+ID4gwqDCoCB4ZV9wdF96YXBfcHRlc19lbnRyeSsweGI4LzB4MTIw
-IFt4ZV0NCj4gPiA+ID4gPiDCoMKgIHhlX3ZtX2ludmFsaWRhdGVfdm1hX3N1Ym1pdCsweGIxLzB4
-NzcwIFt4ZV0NCj4gPiA+ID4gPiDCoMKgIHhlX2JvX21vdmVfbm90aWZ5KzB4MWIzLzB4NDUwIFt4
-ZV0NCj4gPiA+ID4gPiDCoMKgIHhlX2JvX3NocmluaysweDIwZi8weDJiMCBbeGVdDQo+ID4gPiA+
-ID4NCj4gPiA+ID4gPiBUaGUgemFwIGlzbid0IG9wdGlvbmFsIC0gdGhlIHBhZ2VzIGFyZSBiZWlu
-ZyBmcmVlZCwgc28gdGhlIFBURXMNCj4gPiA+ID4gPiBoYXZlIHRvIGJlIGNsZWFyZWQgZWl0aGVy
-IHdheSAtIGFuZCB4ZV9wdF9jcmVhdGUoKSB1c2VzDQo+ID4gPiA+ID4gWEVfQk9fRkxBR19WUkFN
-X0lGX0RHRlgoKSwgc28gb24gZGlzY3JldGUgaXQgaXMgYSBCQVIgd3JpdGUgdGhhdA0KPiA+ID4g
-PiA+IG5lZWRzIEQwLiBTa2lwcGluZyB0aGUgZmx1c2ggYWxvbmUgbGVhdmVzIHRoYXQgYmVoaW5k
-Lg0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gU2Vjb25kLCBJIGNhbid0IGZpbmQgdGhlIGltcGxpY2l0
-IGZsdXNoIGluIHRoZSBjb2RlLg0KPiA+ID4gPiA+IHhlX3BtX3J1bnRpbWVfcmVzdW1lKCkgb25s
-eSBjYWxscyB4ZV9ndF9yZXN1bWUoKQ0KPiA+ID4gPiA+IChkb19ndF9yZXN0YXJ0KCkpDQo+ID4g
-PiA+ID4gd2hlbiBkM2NvbGQuYWxsb3dlZDsgb3RoZXJ3aXNlIHhlX2d0X3J1bnRpbWVfcmVzdW1l
-KCkganVzdCB0YWtlcw0KPiA+ID4gPiA+IGZvcmNld2FrZSBhbmQgZG9lcyB4ZV91Y19ydW50aW1l
-X3Jlc3VtZSgpIC0gbm8gcmVzZXQsIG5vDQo+ID4gPiA+ID4gaW52YWxpZGF0aW9uLg0KPiA+ID4g
-PiA+IFRoYXQgZG9lc24ndCBtZWFuIHRoZSBUTEJzIHN1cnZpdmUsIGl0IG1heSB3ZWxsIGJlIGEg
-cHJvcGVydHkgb2YNCj4gPiA+ID4gPiB0aGUgcG93ZXIgc3RhdGUsIGJ1dCBJIGNhbid0IGNvbmZp
-cm0gdGhlIGFzc3VtcHRpb24gYnkgcmVhZGluZw0KPiA+ID4gPiA+IHRoZSBkcml2ZXIuDQo+ID4g
-PiA+ID4gRG8geW91IGtub3cgaWYgdGhhdCBpcyBndWFyYW50ZWVkPyBUaGFua3MuDQo+ID4gPiA+
-ID4NCj4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiBJSVJDIEl0J3Mgbm90IHRvdGFsbHkgY2xlYXIg
-d2hldGhlciB0aGlzIHdvdWxkIHdvcmsgZm9yDQo+ID4gPiA+ID4gPiAiaGFzX2N0eF90bGJfaW52
-YWwiDQo+ID4gPiA+ID4gPiBoYXJkd2FyZSwgYW5kIGlmIHNvIHdlIG1pZ2h0IG5lZWQgdG8gYWRk
-IHNvbWV0aGluZyBzaW1pbGFyIHRvDQo+ID4gPiA+ID4gPiB0aGlzIGZvciB0aGF0IGhhcmR3YXJl
-Lg0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gTXkgdW5kZXJzdGFuZGluZyBpcyB0aGF0IGl0IGZhbGxz
-IG91dCBmb3IgZnJlZSBpZiB0aGUgY2hlY2sgc2l0cw0KPiA+ID4gPiA+IGFib3ZlDQo+ID4gPiA+
-IHhlX3RsYl9pbnZhbF9pc3N1ZSgpLg0KPiA+ID4gPiA+IElzIGl0IHJpZ2h0PyBUaGFua3MuDQo+
-ID4gPiA+ID4NCj4gPiA+ID4gPiBTaHVpY2hlbmcNCj4gPiA+ID4gPg0KPiA+ID4gPiA+ID4NCj4g
-PiA+ID4gPiA+IFRoYW5rcywNCj4gPiA+ID4gPiA+IFRob21hcw0KPiA+ID4gPiA+ID4NCj4gPiA+
-ID4gPiA+ID4gLS0tDQo+ID4gPiA+ID4gPiA+IMKgZHJpdmVycy9ncHUvZHJtL3hlL3hlX2JvLmPC
-oMKgwqDCoMKgwqAgfCA2Mg0KPiA+ID4gPiA+ID4gPiArKysrKysrKysrKysrKysrKysrKysrKysr
-KystLS0NCj4gPiA+ID4gPiA+ID4gLS0NCj4gPiA+ID4gPiA+ID4gwqBkcml2ZXJzL2dwdS9kcm0v
-eGUveGVfc2hyaW5rZXIuYyB8IDE4ICsrKysrKysrKy0NCj4gPiA+ID4gPiA+ID4gwqBkcml2ZXJz
-L2dwdS9kcm0veGUveGVfc2hyaW5rZXIuaCB8wqAgMiArKw0KPiA+ID4gPiA+ID4gPiDCoDMgZmls
-ZXMgY2hhbmdlZCwgNzIgaW5zZXJ0aW9ucygrKSwgMTAgZGVsZXRpb25zKC0pDQo+ID4gPiA+ID4g
-PiA+DQo+ID4gPiA+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfYm8u
-Yw0KPiA+ID4gPiA+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9iby5jIGluZGV4DQo+ID4g
-PiA+ID4gPiA+IDJlYjVkNmFhYzUyMy4uMjc0ZmY5N2Q4NTQyDQo+ID4gPiA+ID4gPiA+IDEwMDY0
-NA0KPiA+ID4gPiA+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfYm8uYw0KPiA+ID4g
-PiA+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfYm8uYw0KPiA+ID4gPiA+ID4gPiBA
-QCAtNzM0LDYgKzczNCwzMiBAQCBzdGF0aWMgaW50IHhlX3R0bV9pb19tZW1fcmVzZXJ2ZShzdHJ1
-Y3QNCj4gPiA+ID4gPiA+ID4gdHRtX2RldmljZSAqYmRldiwNCj4gPiA+ID4gPiA+ID4gwqAJfQ0K
-PiA+ID4gPiA+ID4gPiDCoH0NCj4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gKy8qDQo+ID4g
-PiA+ID4gPiA+ICsgKiBXaGV0aGVyIHhlX2JvX21vdmVfbm90aWZ5KCkgd2lsbCBpbnZhbGlkYXRl
-IHRoZSBHUFUNCj4gPiA+ID4gPiA+ID4gbWFwcGluZ3MNCj4gPiA+ID4gPiA+ID4gK29mDQo+ID4g
-PiA+ID4gPiA+IEBibywgYW5kDQo+ID4gPiA+ID4gPiA+ICsgKiB0aGVyZWZvcmUgbmVlZHMgdGhl
-IGRldmljZSByZXN1bWVkIHRvIHJlYWNoIHRoZSBHdUMuDQo+ID4gPiA+ID4gPiA+ICsgKg0KPiA+
-ID4gPiA+ID4gPiArICogVGhpcyBtaXJyb3JzIHRoZSBjb25kaXRpb24gdW5kZXIgd2hpY2gNCj4g
-PiA+ID4gPiA+ID4geGVfYm9fdHJpZ2dlcl9yZWJpbmQoKQ0KPiA+ID4gPiA+ID4gPiBiZWxvdyBj
-YWxscw0KPiA+ID4gPiA+ID4gPiArICogeGVfdm1faW52YWxpZGF0ZV92bWEoKTogYWx3YXlzIGZv
-ciBhIGZhdWx0LW1vZGUgdm0sIGFuZA0KPiA+ID4gPiA+ID4gPiBmb3INCj4gPiA+ID4gPiA+ID4g
-KyBhbnkNCj4gPiA+ID4gPiA+ID4gYm91bmQgdm0gb24NCj4gPiA+ID4gPiA+ID4gKyAqIGhhcmR3
-YXJlIHdoZXJlIHRoZSBMMiBmbHVzaCBpcyBvcHRpbWl6ZWQuIEtlZXAgdGhlIHR3bw0KPiA+ID4g
-PiA+ID4gPiBpbiBzeW5jLg0KPiA+ID4gPiA+ID4gPiArICoNCj4gPiA+ID4gPiA+ID4gKyAqIENv
-bnRleHQ6IENhbGxlciBtdXN0IGhvbGQgdGhlIEJPJ3MgZG1hLXJlc3YgbG9jay4NCj4gPiA+ID4g
-PiA+ID4gKyAqLw0KPiA+ID4gPiA+ID4gPiArc3RhdGljIGJvb2wgYm9fbmVlZHNfaW52YWxpZGF0
-ZShzdHJ1Y3QgeGVfYm8gKmJvKSB7DQo+ID4gPiA+ID4gPiA+ICsJc3RydWN0IGRybV9ncHV2bV9i
-byAqdm1fYm87DQo+ID4gPiA+ID4gPiA+ICsNCj4gPiA+ID4gPiA+ID4gKwlpZg0KPiA+ID4gPiA+
-ID4gPiAoeGVfZGV2aWNlX2lzX2wyX2ZsdXNoX29wdGltaXplZCh4ZV9ib19kZXZpY2UoYm8pKSkN
-Cj4gPiA+ID4gPiA+ID4gKwkJcmV0dXJuIHhlX2JvX2lzX3ZtX2JvdW5kKGJvKTsNCj4gPiA+ID4g
-PiA+ID4gKw0KPiA+ID4gPiA+ID4gPiArCXhlX2JvX2Fzc2VydF9oZWxkKGJvKTsNCj4gPiA+ID4g
-PiA+ID4gKw0KPiA+ID4gPiA+ID4gPiArCWRybV9nZW1fZm9yX2VhY2hfZ3B1dm1fYm8odm1fYm8s
-ICZiby0+dHRtLmJhc2UpDQo+ID4gPiA+ID4gPiA+ICsJCWlmICh4ZV92bV9pbl9mYXVsdF9tb2Rl
-KGdwdXZtX3RvX3ZtKHZtX2JvLQ0KPiA+ID4gPiA+ID4gPiA+dm0pKSkNCj4gPiA+ID4gPiA+ID4g
-KwkJCXJldHVybiB0cnVlOw0KPiA+ID4gPiA+ID4gPiArDQo+ID4gPiA+ID4gPiA+ICsJcmV0dXJu
-IGZhbHNlOw0KPiA+ID4gPiA+ID4gPiArfQ0KPiA+ID4gPiA+ID4gPiArDQo+ID4gPiA+ID4gPiA+
-IMKgc3RhdGljIGludCB4ZV9ib190cmlnZ2VyX3JlYmluZChzdHJ1Y3QgeGVfZGV2aWNlICp4ZSwN
-Cj4gPiA+ID4gPiA+ID4gc3RydWN0IHhlX2JvICpibywNCj4gPiA+ID4gPiA+ID4gwqAJCQkJY29u
-c3Qgc3RydWN0DQo+ID4gPiA+ID4gPiA+IHR0bV9vcGVyYXRpb25fY3R4ICpjdHgpDQo+ID4gPiA+
-ID4gPiA+IMKgew0KPiA+ID4gPiA+ID4gPiBAQCAtMTM2MSw2ICsxMzg3LDI4IEBAIGxvbmcgeGVf
-Ym9fc2hyaW5rKHN0cnVjdA0KPiA+ID4gPiA+ID4gPiB0dG1fb3BlcmF0aW9uX2N0eCAqY3R4LCBz
-dHJ1Y3QgdHRtX2J1ZmZlcl9vYmplY3QgKmJvLA0KPiA+ID4gPiA+ID4gPiDCoAlpZiAoIXhlX2Jv
-X2lzX3hlX2JvKGJvKSB8fA0KPiA+ID4gPiA+ID4gPiAheGVfYm9fZ2V0X3VubGVzc196ZXJvKHhl
-X2JvKSkNCj4gPiA+ID4gPiA+ID4gwqAJCXJldHVybiB4ZV9ib19zaHJpbmtfcHVyZ2UoY3R4LCBi
-bywgc2Nhbm5lZCk7DQo+ID4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiA+ICsJLyoNCj4gPiA+ID4g
-PiA+ID4gKwkgKiBNb3ZpbmcgdGhpcyBibyBvdXQgb2YgYSBub24tc3lzdGVtIHBsYWNlbWVudA0K
-PiA+ID4gPiA+ID4gPiBtYWtlcw0KPiA+ID4gPiA+ID4gPiArCSAqIHhlX2JvX21vdmVfbm90aWZ5
-KCkgaW52YWxpZGF0ZSBpdHMgR1BVIG1hcHBpbmdzDQo+ID4gPiA+ID4gPiA+IG92ZXIgR3VDDQo+
-ID4gPiA+ID4gPiA+IENULCBhbmQNCj4gPiA+ID4gPiA+ID4gKwkgKiBTeXN0ZW0gQ0NTIG5lZWRz
-IGEgZ3B1IGNvcHkgd2hlbiBtb3ZpbmcgUExfVFQgLQ0KPiA+ID4gPiA+ID4gPiA+DQo+ID4gPiA+
-ID4gPiA+IFBMX1NZU1RFTS4gQm90aA0KPiA+ID4gPiA+ID4gPiArCSAqIG5lZWQgdGhlIGRldmlj
-ZSByZXN1bWVkLg0KPiA+ID4gPiA+ID4gPiArCSAqLw0KPiA+ID4gPiA+ID4gPiArCW5lZWRzX3Jw
-bSA9IGJvLT5yZXNvdXJjZS0+bWVtX3R5cGUgIT0gWEVfUExfU1lTVEVNDQo+ID4gPiA+ID4gPiA+
-ICYmDQo+ID4gPiA+ID4gPiA+ICsJCShib19uZWVkc19pbnZhbGlkYXRlKHhlX2JvKSB8fA0KPiA+
-ID4gPiA+ID4gPiArCQkgKCF4ZV90dC0+cHVyZ2VhYmxlICYmICFJU19ER0ZYKHhlKSAmJg0KPiA+
-ID4gPiA+ID4gPiArCQnCoCB4ZV9ib19uZWVkc19jY3NfcGFnZXMoeGVfYm8pKSk7DQo+ID4gPiA+
-DQo+ID4gPiA+IFRoaXMgaXMgYSBjb21wbGV4IGVub3VnaCBjb25kaXRpb25hbCB0aGF0IG15IGN1
-cnJlbnQgZmVlbGluZyBpcyB0bw0KPiA+ID4gPiBqdXN0IHVuY29uZGl0aW9uYWxseSBzZXQ6DQo+
-ID4gPiA+DQo+ID4gPiA+IG5lZWRzX3JwbSA9IHRydWU7DQo+ID4gPg0KPiA+ID4gSG93IGFib3V0
-IGtlZXAgdGhlIFhFX1BMX1NZU1RFTSBjaGVjaz8NCj4gPiA+DQo+ID4NCj4gPiBJIHRoaW5rIGNo
-ZWNraW5nIHN5c3RlbSBpcyByZWFzb25hYmxlLCBhbmQgYmV0dGVyIHRoYW4gbXkgc3VnZ2VzdGlv
-biwNCj4gPiBhcyB0aGlzIGltcGxpZXMgd2UgZG9uJ3QgaGF2ZSBHUFUgcGFnZXMgKG5vIGludmFs
-aWRhdGlvbikgYW5kIG5vIG5lZWQNCj4gPiBmb3IgYSBDQ1MgY29weSwgYW5kIGlzIGtlZXAgY2hl
-Y2sgd2hpY2ggaXMgZWFzeSB0byB1bmRlcnN0YW5kLg0KPiA+DQo+ID4gPiAJLyogQm90aCB0aGUg
-aW52YWxpZGF0aW9uIGFuZCB0aGUgU3lzdGVtIENDUyBjb3B5IG5lZWQgdGhlIGRldmljZS4NCj4g
-PiA+ICovDQo+ID4gPiAJbmVlZHNfcnBtID0gYm8tPnJlc291cmNlLT5tZW1fdHlwZSAhPSBYRV9Q
-TF9TWVNURU07DQo+ID4gPg0KPiA+ID4gQFRob21hcyBIZWxsc3Ryw7ZtIHlvdSB3cm90ZSB0aGUg
-b3JpZ2luYWwgY29kZSwgd2hhdCBkbyB5b3UgdGhpbms/DQo+ID4gPg0KPiA+DQo+ID4gWWVzLCBs
-ZXQncyBzZWUgd2hhdCBUaG9tYXMgc2F5cy4NCj4gDQo+IEkgdGhpbmsga2VlcGluZyB0aGUgc3lz
-dGVtIGNoZWNrIG1ha2VzIHNlbnNlLCBhbmQgZm9yIG5vdyBhIHF1aWNrIGZpeC4NCg0KVGhhbmtz
-LCB3aWxsIHVwZGF0ZSBwYXRjaCB3aXRoIGl0Lg0KDQo+IA0KPiBIb3dldmVyIEkgdGhpbmsgYXZv
-aWRpbmcgd2FraW5nIHRoZSBkZXZpY2UgZm9yIHNtYWxsIHJlY2xhaW1zIG1ha2VzIHNlbnNlLCBz
-bw0KPiB3ZSBzaG91bGQgYWxzbyBsb29rIGF0IHRoZSBzaHJpbmsgYmF0Y2ggc2VyaWVzIHRyeWlu
-ZyB0byBtYWtlIHRoYXQgbWVyZ2VkLg0KDQpUaGF0IHBvaW50cyBhdCB0aGUgeGVfc2hyaW5rZXJf
-cXVldWVfcG0oKSBodW5rIGluIHRoaXMgcGF0Y2gsIHdoaWNoDQpxdWV1ZXMgYSB3YWtlIHdoZW5l
-dmVyIHRoZSByZWZlcmVuY2UgY2FuJ3QgYmUgdGFrZW4uIEl0IHdhcyBhZGRlZCBmb3IgdGhlDQoi
-cmVjbGFpbSBjYW4gc3RhbGwgd2hpbGUgc3VzcGVuZGVkIiBjb25jZXJuLiBXaXRoIHRoZSBtZW1f
-dHlwZSBjaGVjaw0KUExfU1lTVEVNIGJvcyBhcmUgbm8gbG9uZ2VyIHNraXBwZWQsIHNvIHRoZSBz
-dGFsbCByaXNrIGlzIG11Y2ggc21hbGxlciAtDQpzaG91bGQgSSBkcm9wIHRoZSB3YWtlIGZyb20g
-dGhlIHJlc3BpbiBhbmQgbGVhdmUgaXQgdG8gdGhlIHNocmluayBiYXRjaA0Kc2VyaWVzLCBvciBr
-ZWVwIGl0IGZvciBub3c/DQoNCj4gDQo+IElmIHdlIHdhbnRlZCB0byBvcHRpbWl6ZSB0aGlzLCBh
-bmQgYWRkIGJhY2sgdGhlIGNvbXBsZXhpdHksIEkgdGhpbmsgY2FsbGluZw0KPiB4ZV92bV9pbnZh
-bGlkYXRlX3ZtYSgpIHdvdWxkIG9ubHkgbWFrZSBzZW5zZSBpZiBydW50aW1lX3BtIGlzDQo+IGF2
-YWlsYWJsZToNCj4gDQo+IDEpIFdlIG5lZWQgdG8gZG8gaXQgb24gZmF1bHRpbmcgVk1zIC0+IFJ1
-bnRpbWUgUE0gYWx3YXlzIGF2YWlsYWJsZS4NCg0KQWdyZWVkLCBhbmQgaXQncyBlbmZvcmNlZDog
-eGVfdm1fY3JlYXRlX2lvY3RsKCkgcmVqZWN0cyBGQVVMVF9NT0RFDQp3aXRob3V0IExSX01PREUs
-IGFuZCBMUl9NT0RFIHRha2VzIHhlX3BtX3J1bnRpbWVfZ2V0X25vcmVzdW1lKCkgZm9yIHRoZQ0K
-Vk0ncyBsaWZldGltZS4NCg0KU2h1aWNoZW5nDQoNCj4gMikgV2UgbmVlZCB0byBkbyBpdCB0byB0
-cmFwIEwxIGNhY2hlIGZsdXNoZXMgYW5kIG9uIGwyX2ZsdXNoX29wdGltaXplZCB0bw0KPiBmbHVz
-aCBvdXQgbDIgYmVmb3JlIHJlY2xhaW1pbmcgLT4gQ2FuIHdlIGFzc3VtZSB0aGF0IHRoZSBkZXZp
-Y2UgYWx3YXlzIGRvZXMNCj4gdGhpcyBiZWZvcmUgZ29pbmcgdG8gc2xlZXA/IE5lZWQgdG8gY29u
-ZmlybSB0aGF0IHdpdGggQW5rdXIuDQo+IA0KPiBUaGFua3MsDQo+IFRob21hcw0KPiANCj4gDQo+
-ID4NCj4gPiBNYXR0Yg0KPiA+DQo+ID4gPiA+DQo+ID4gPiA+IEluIHByYWN0aWNlLCBvbiBpR1BV
-cyB3aGVyZSB0aGUgZGlzcGxheSBpcyBpbiB1c2UsIHdlIGFsd2F5cyBob2xkDQo+ID4gPiA+IGEg
-cnVudGltZSBQTSByZWZlcmVuY2UuIEl0IHdvdWxkIGJlIHZlcnkgdW51c3VhbCBmb3IgdGhlIGRp
-c3BsYXkNCj4gPiA+ID4gdG8gYmUgc3VzcGVuZGVkIHdoaWxlIHRoZSBzaHJpbmtlciBpcyBydW5u
-aW5nLCBhdCBsZWFzdCBhcyBmYXIgYXMNCj4gPiA+ID4gSSBjYW4gdGVsbC4NCj4gPiA+ID4gTGV0
-J3MgZHJvcCB0aGlzIGhhcmQtdG8tdW5kZXJzdGFuZCwgbGlrZWx5IG92ZXJlbmdpbmVlcmVkDQo+
-ID4gPiA+IGNvbmRpdGlvbmFsLg0KPiA+ID4NCj4gPiA+IEkgY291bGQgb25seSByZXByb2R1Y2Ug
-dGhlIGlzc3VlIHdpdGggZGlzcGxheSBkaXNhYmxlZC4gQW5kIHRoZSBDSQ0KPiA+ID4gbWFjaGlu
-ZSB0aGF0IGhpdHMgaXQgaGFzIG5vIG1vbml0b3IgY29ubmVjdGVkLg0KPiA+ID4NCj4gPiA+IFNo
-dWljaGVuZw0KPiA+ID4NCj4gPiA+ID4NCj4gPiA+ID4gVGhvdWdodHM/DQo+ID4gPiA+DQo+ID4g
-PiA+IE1hdHQNCj4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gKwlpZiAobmVlZHNfcnBtICYmICF4ZV9w
-bV9ydW50aW1lX2dldF9pZl9hY3RpdmUoeGUpKQ0KPiA+ID4gPiA+ID4gPiB7DQo+ID4gPiA+ID4g
-PiA+ICsJCS8qDQo+ID4gPiA+ID4gPiA+ICsJCSAqIFJlc3VtaW5nIGlzIG5vdCBhbGxvd2VkIGZy
-b20gYWxsDQo+ID4gPiA+ID4gPiA+IHJlY2xhaW0NCj4gPiA+ID4gPiA+ID4gY29udGV4dHMsIHNv
-IGxlYXZlDQo+ID4gPiA+ID4gPiA+ICsJCSAqIHRoaXMgYm8gYWxvbmUgYW5kIGFzayBmb3IgdGhl
-IGRldmljZSB0bw0KPiA+ID4gPiA+ID4gPiBiZSB3b2tlbg0KPiA+ID4gPiA+ID4gPiB1cCBvdXRz
-aWRlDQo+ID4gPiA+ID4gPiA+ICsJCSAqIG9mIHJlY2xhaW0uDQo+ID4gPiA+ID4gPiA+IHhlX3No
-cmlua2VyX3J1bnRpbWVfcG1fZ2V0KCkgaXMgZ2F0ZWQgb24gdGhlDQo+ID4gPiA+ID4gPiA+ICsJ
-CSAqIG5lZWRzIG9mIGl0cyBvd24gYmFja3VwIHBhc3MgcmF0aGVyDQo+ID4gPiA+ID4gPiA+IHRo
-YW4gb24gb3VycywNCj4gPiA+ID4gPiA+ID4gYW5kIG9uDQo+ID4gPiA+ID4gPiA+ICsJCSAqIERH
-RlggaXQgcmV0dXJucyBiZWZvcmUgcXVldWVpbmcNCj4gPiA+ID4gPiA+ID4gYW55dGhpbmcsIHNv
-IGFzaw0KPiA+ID4gPiA+ID4gPiBoZXJlLg0KPiA+ID4gPiA+ID4gPiArCQkgKi8NCj4gPiA+ID4g
-PiA+ID4gKwkJeGVfc2hyaW5rZXJfcXVldWVfcG0oeGUtPm1lbS5zaHJpbmtlcik7DQo+ID4gPiA+
-ID4gPiA+ICsJCWdvdG8gb3V0X3VucmVmOw0KPiA+ID4gPiA+ID4gPiArCX0NCj4gPiA+ID4gPiA+
-ID4gKw0KPiA+ID4gPiA+ID4gPiDCoAlpZiAoeGVfdHQtPnB1cmdlYWJsZSkgew0KPiA+ID4gPiA+
-ID4gPiDCoAkJaWYgKGJvLT5yZXNvdXJjZS0+bWVtX3R5cGUgIT0NCj4gPiA+ID4gPiA+ID4gWEVf
-UExfU1lTVEVNKQ0KPiA+ID4gPiA+ID4gPiDCoAkJCWxyZXQgPSB4ZV9ib19tb3ZlX25vdGlmeSh4
-ZV9ibywgY3R4KTsgQEAgLQ0KPiAxMzY5LDI4DQo+ID4gPiA+ID4gPiArMTQxNywyNCBAQCBsb25n
-DQo+ID4gPiA+ID4gPiA+IHhlX2JvX3NocmluayhzdHJ1Y3QgdHRtX29wZXJhdGlvbl9jdHggKmN0
-eCwgc3RydWN0DQo+ID4gPiA+ID4gPiA+IHR0bV9idWZmZXJfb2JqZWN0ICpibywNCj4gPiA+ID4g
-PiA+ID4gwqAJCWlmIChscmV0ID4gMCAmJg0KPiA+ID4gPiA+ID4gPiB4ZV9ib19tYWR2X2lzX2Rv
-bnRuZWVkKHhlX2JvKSkNCj4gPiA+ID4gPiA+ID4gwqAJCQl4ZV9ib19zZXRfcHVyZ2VhYmxlX3N0
-YXRlKHhlX2JvLA0KPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiBYRV9NQURWX1BVUkdFQUJM
-RV9QVVJHRUQpOw0KPiA+ID4gPiA+ID4gPiAtCQlnb3RvIG91dF91bnJlZjsNCj4gPiA+ID4gPiA+
-ID4gKwkJZ290byBvdXRfcHV0X3JwbTsNCj4gPiA+ID4gPiA+ID4gwqAJfQ0KPiA+ID4gPiA+ID4g
-Pg0KPiA+ID4gPiA+ID4gPiAtCS8qIFN5c3RlbSBDQ1MgbmVlZHMgZ3B1IGNvcHkgd2hlbiBtb3Zp
-bmcgUExfVFQgLT4NCj4gPiA+ID4gPiA+ID4gUExfU1lTVEVNDQo+ID4gPiA+ID4gPiA+ICovDQo+
-ID4gPiA+ID4gPiA+IC0JbmVlZHNfcnBtID0gKCFJU19ER0ZYKHhlKSAmJiBiby0+cmVzb3VyY2Ut
-DQo+ID4gPiA+ID4gPiA+ID5tZW1fdHlwZSAhPQ0KPiA+ID4gPiA+ID4gPiBYRV9QTF9TWVNURU0g
-JiYNCj4gPiA+ID4gPiA+ID4gLQkJwqDCoMKgwqAgeGVfYm9fbmVlZHNfY2NzX3BhZ2VzKHhlX2Jv
-KSk7DQo+ID4gPiA+ID4gPiA+IC0JaWYgKG5lZWRzX3JwbSAmJiAheGVfcG1fcnVudGltZV9nZXRf
-aWZfYWN0aXZlKHhlKSkNCj4gPiA+ID4gPiA+ID4gLQkJZ290byBvdXRfdW5yZWY7DQo+ID4gPiA+
-ID4gPiA+IC0NCj4gPiA+ID4gPiA+ID4gwqAJKnNjYW5uZWQgKz0gdHQtPm51bV9wYWdlczsNCj4g
-PiA+ID4gPiA+ID4gwqAJbHJldCA9IHR0bV9ib19zaHJpbmsoY3R4LCBibywgKHN0cnVjdA0KPiA+
-ID4gPiA+ID4gPiB0dG1fYm9fc2hyaW5rX2ZsYWdzKQ0KPiA+ID4gPiA+ID4gPiDCoAkJCcKgwqDC
-oMKgIHsucHVyZ2UgPSBmYWxzZSwNCj4gPiA+ID4gPiA+ID4gwqAJCQnCoMKgwqDCoMKgIC53cml0
-ZWJhY2sgPQ0KPiA+ID4gPiA+ID4gPiBmbGFncy53cml0ZWJhY2ssDQo+ID4gPiA+ID4gPiA+IMKg
-CQkJwqDCoMKgwqDCoCAuYWxsb3dfbW92ZSA9IHRydWV9KTsNCj4gPiA+ID4gPiA+ID4gLQlpZiAo
-bmVlZHNfcnBtKQ0KPiA+ID4gPiA+ID4gPiAtCQl4ZV9wbV9ydW50aW1lX3B1dCh4ZSk7DQo+ID4g
-PiA+ID4gPiA+DQo+ID4gPiA+ID4gPiA+IMKgCWlmIChscmV0ID4gMCkgew0KPiA+ID4gPiA+ID4g
-PiDCoAkJeGVfdHRtX3R0X2FjY291bnRfc3VidHJhY3QoeGUsIHR0KTsNCj4gPiA+ID4gPiA+ID4g
-wqAJCXVwZGF0ZV9nbG9iYWxfdG90YWxfcGFnZXMoYm8tPmJkZXYsIC0NCj4gPiA+ID4gPiA+ID4g
-KGxvbmcpdHQtDQo+ID4gPiA+ID4gPiA+ID4gbnVtX3BhZ2VzKTsNCj4gPiA+ID4gPiA+ID4gwqAJ
-fQ0KPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiArb3V0X3B1dF9ycG06DQo+ID4gPiA+ID4g
-PiA+ICsJaWYgKG5lZWRzX3JwbSkNCj4gPiA+ID4gPiA+ID4gKwkJeGVfcG1fcnVudGltZV9wdXQo
-eGUpOw0KPiA+ID4gPiA+ID4gPiArDQo+ID4gPiA+ID4gPiA+IMKgb3V0X3VucmVmOg0KPiA+ID4g
-PiA+ID4gPiDCoAl4ZV9ib19wdXQoeGVfYm8pOw0KPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4g
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3Nocmlua2VyLmMNCj4gPiA+ID4g
-PiA+ID4gYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfc2hyaW5rZXIuYw0KPiA+ID4gPiA+ID4gPiBp
-bmRleCA4MzM3NGNkNTc2NjAuLmZiNmVjNzc5NzJhNSAxMDA2NDQNCj4gPiA+ID4gPiA+ID4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3Nocmlua2VyLmMNCj4gPiA+ID4gPiA+ID4gKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL3hlL3hlX3Nocmlua2VyLmMNCj4gPiA+ID4gPiA+ID4gQEAgLTU0LDYg
-KzU0LDIyIEBAIHhlX3Nocmlua2VyX21vZF9wYWdlcyhzdHJ1Y3QgeGVfc2hyaW5rZXINCj4gPiA+
-ID4gPiA+ID4gKnNocmlua2VyLCBsb25nIHNocmlua2FibGUsIGxvbmcgcHVyZ2VhDQo+ID4gPiA+
-ID4gPiA+IMKgCXdyaXRlX3VubG9jaygmc2hyaW5rZXItPmxvY2spOw0KPiA+ID4gPiA+ID4gPiDC
-oH0NCj4gPiA+ID4gPiA+ID4NCj4gPiA+ID4gPiA+ID4gKy8qKg0KPiA+ID4gPiA+ID4gPiArICog
-eGVfc2hyaW5rZXJfcXVldWVfcG0oKSAtIEFzayBmb3IgdGhlIGRldmljZSB0byBiZSB3b2tlbg0K
-PiA+ID4gPiA+ID4gPiB1cCBmb3INCj4gPiA+ID4gPiA+ID4gc2hyaW5raW5nDQo+ID4gPiA+ID4g
-PiA+ICsgKiBAc2hyaW5rZXI6IFBvaW50ZXIgdG8gdGhlIHN0cnVjdCB4ZV9zaHJpbmtlci4NCj4g
-PiA+ID4gPiA+ID4gKyAqDQo+ID4gPiA+ID4gPiA+ICsgKiBRdWV1ZSBhIHdvcmtlciB0aGF0IHRh
-a2VzIGFuZCBkcm9wcyBhIHJ1bnRpbWUgUE0NCj4gPiA+ID4gPiA+ID4gcmVmZXJlbmNlLg0KPiA+
-ID4gPiA+ID4gPiBTaHJpbmtpbmcgY2FuDQo+ID4gPiA+ID4gPiA+ICsgKiBiZSBjYWxsZWQgZnJv
-bSByZWNsYWltIGNvbnRleHQsIHdoZXJlIHJlc3VtaW5nIHRoZQ0KPiA+ID4gPiA+ID4gPiBkZXZp
-Y2UgaXMNCj4gPiA+ID4gPiA+ID4gKyBub3QNCj4gPiA+ID4gPiA+ID4gYWx3YXlzDQo+ID4gPiA+
-ID4gPiA+ICsgKiBhbGxvd2VkLCBzbyBhIGNhbGxlciB0aGF0IG5lZWRzIHRoZSBkZXZpY2UgcmVz
-dW1lZCBidXQNCj4gPiA+ID4gPiA+ID4gY291bGQNCj4gPiA+ID4gPiA+ID4gKyBub3QNCj4gPiA+
-ID4gPiA+ID4gYWNxdWlyZSBhDQo+ID4gPiA+ID4gPiA+ICsgKiByZWZlcmVuY2UgdXNlcyB0aGlz
-IHRvIGhhdmUgaXQgd29rZW4gdXAgb3V0c2lkZSBvZg0KPiA+ID4gPiA+ID4gPiByZWNsYWltLg0K
-PiA+ID4gPiA+ID4gPiArIFRoZQ0KPiA+ID4gPiA+ID4gPiBjdXJyZW50DQo+ID4gPiA+ID4gPiA+
-ICsgKiBzY2FuIG1ha2VzIG5vIHByb2dyZXNzIG9uIHRoZSBhZmZlY3RlZCBidWZmZXIgb2JqZWN0
-cywNCj4gPiA+ID4gPiA+ID4gYnV0IGENCj4gPiA+ID4gPiA+ID4gc3Vic2VxdWVudCBvbmUNCj4g
-PiA+ID4gPiA+ID4gKyAqIGNhbi4NCj4gPiA+ID4gPiA+ID4gKyAqLw0KPiA+ID4gPiA+ID4gPiAr
-dm9pZCB4ZV9zaHJpbmtlcl9xdWV1ZV9wbShzdHJ1Y3QgeGVfc2hyaW5rZXIgKnNocmlua2VyKSB7
-DQo+ID4gPiA+ID4gPiA+ICsJcXVldWVfd29yayhzaHJpbmtlci0+eGUtPnVub3JkZXJlZF93cSwg
-JnNocmlua2VyLQ0KPiA+ID4gPiA+ID4gPiA+IHBtX3dvcmtlcik7DQo+ID4gPiA+ID4gPiA+ICt9
-DQo+ID4gPiA+ID4gPiA+ICsNCj4gPiA+ID4gPiA+ID4gwqBzdGF0aWMgczY0IF9feGVfc2hyaW5r
-ZXJfd2FsayhzdHJ1Y3QgeGVfZGV2aWNlICp4ZSwNCj4gPiA+ID4gPiA+ID4gwqAJCQnCoMKgwqDC
-oMKgIHN0cnVjdCB0dG1fb3BlcmF0aW9uX2N0eCAqY3R4LA0KPiA+ID4gPiA+ID4gPiDCoAkJCcKg
-wqDCoMKgwqAgY29uc3Qgc3RydWN0DQo+ID4gPiA+ID4gPiA+IHhlX2JvX3Nocmlua19mbGFncyBm
-bGFncywgQEAgLTE4NSw3DQo+ID4gPiA+ID4gPiArMjAxLDcgQEANCj4gPiA+ID4gPiA+ID4gc3Rh
-dGljIGJvb2wgeGVfc2hyaW5rZXJfcnVudGltZV9wbV9nZXQoc3RydWN0IHhlX3Nocmlua2VyDQo+
-ID4gPiA+ID4gPiA+ICpzaHJpbmtlciwgYm9vbCBmb3JjZSwNCj4gPiA+ID4gPiA+ID4gwqAJCQl4
-ZV9wbV9ydW50aW1lX2dldCh4ZSk7DQo+ID4gPiA+ID4gPiA+IMKgCQkJcmV0dXJuIHRydWU7DQo+
-ID4gPiA+ID4gPiA+IMKgCQl9DQo+ID4gPiA+ID4gPiA+IC0JCXF1ZXVlX3dvcmsoeGUtPnVub3Jk
-ZXJlZF93cSwgJnNocmlua2VyLQ0KPiA+ID4gPiA+ID4gPiA+cG1fd29ya2VyKTsNCj4gPiA+ID4g
-PiA+ID4gKwkJeGVfc2hyaW5rZXJfcXVldWVfcG0oc2hyaW5rZXIpOw0KPiA+ID4gPiA+ID4gPiDC
-oAkJcmV0dXJuIGZhbHNlOw0KPiA+ID4gPiA+ID4gPiDCoAl9DQo+ID4gPiA+ID4gPiA+DQo+ID4g
-PiA+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfc2hyaW5rZXIuaA0K
-PiA+ID4gPiA+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9zaHJpbmtlci5oDQo+ID4gPiA+
-ID4gPiA+IGluZGV4IDUxMzJhZTUxOTJlMS4uODZkMmEzMjJjYWRkIDEwMDY0NA0KPiA+ID4gPiA+
-ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfc2hyaW5rZXIuaA0KPiA+ID4gPiA+ID4g
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfc2hyaW5rZXIuaA0KPiA+ID4gPiA+ID4gPiBA
-QCAtMTEsNiArMTEsOCBAQCBzdHJ1Y3QgeGVfZGV2aWNlOw0KPiA+ID4gPiA+ID4gPg0KPiA+ID4g
-PiA+ID4gPiDCoHZvaWQgeGVfc2hyaW5rZXJfbW9kX3BhZ2VzKHN0cnVjdCB4ZV9zaHJpbmtlciAq
-c2hyaW5rZXIsDQo+ID4gPiA+ID4gPiA+IGxvbmcgc2hyaW5rYWJsZSwgbG9uZyBwdXJnZWFibGUp
-Ow0KPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiArdm9pZCB4ZV9zaHJpbmtlcl9xdWV1ZV9w
-bShzdHJ1Y3QgeGVfc2hyaW5rZXIgKnNocmlua2VyKTsNCj4gPiA+ID4gPiA+ID4gKw0KPiA+ID4g
-PiA+ID4gPiDCoGludCB4ZV9zaHJpbmtlcl9jcmVhdGUoc3RydWN0IHhlX2RldmljZSAqeGUpOw0K
-PiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gPiDCoCNlbmRpZg0K
+On Fri, Aug 28, 2026 at 04:34:48PM +0000, Summers, Stuart wrote:
+> On Wed, 2026-08-26 at 17:20 -0400, Rodrigo Vivi wrote:
+> > On Mon, Aug 24, 2026 at 08:28:59PM +0000, Summers, Stuart wrote:
+> > > On Fri, 2026-08-21 at 15:18 -0700, Matt Roper wrote:
+> > > > On Thu, Aug 20, 2026 at 09:06:44PM +0000, Stuart Summers wrote:
+> > > > > Move the debug specific configfs attributes into the new
+> > > > > xe_configfs_debug.c file under a new debug configfs
+> > > > > subdirectory.
+> > > > > Ensure these are wrapped in CONFIG_DRM_XE_DEBUG to allow finer
+> > > > > grained
+> > > > > debug changes outside of more ABI specific configfs entries.
+> > > > > 
+> > > > > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+> > > > > Assisted-by: Copilot:claude-sonnet-4.6,claude-sonnet-5,claude-
+> > > > > opus-
+> > > > > 5
+> > > > > ---
+> > > > >  drivers/gpu/drm/xe/xe_configfs.c           | 991 ++-----------
+> > > > > ----
+> > > > > ----
+> > > > >  drivers/gpu/drm/xe/xe_configfs.h           |  88 +-
+> > > > >  drivers/gpu/drm/xe/xe_configfs_debug.c     | 956
+> > > > > ++++++++++++++++++++
+> > > > >  drivers/gpu/drm/xe/xe_configfs_debug.h     |  39 +-
+> > > > >  drivers/gpu/drm/xe/xe_configfs_types.h     |  18 +-
+> > > > >  drivers/gpu/drm/xe/xe_guc.c                |   1 +
+> > > > >  drivers/gpu/drm/xe/xe_guc_ads.c            |   1 +
+> > > > >  drivers/gpu/drm/xe/xe_hw_engine.c          |   1 +
+> > > > >  drivers/gpu/drm/xe/xe_lrc.c                |   1 +
+> > > > >  drivers/gpu/drm/xe/xe_pci.c                |   1 +
+> > > > >  drivers/gpu/drm/xe/xe_psmi.c               |   1 +
+> > > > >  drivers/gpu/drm/xe/xe_rtp.c                |   1 +
+> > > > >  drivers/gpu/drm/xe/xe_survivability_mode.c |   1 +
+> > > > >  13 files changed, 1134 insertions(+), 966 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_configfs.c
+> > > > > b/drivers/gpu/drm/xe/xe_configfs.c
+> > > > > index 33aea1150c86..111aacce8a84 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_configfs.c
+> > > > > +++ b/drivers/gpu/drm/xe/xe_configfs.c
+> > > > > @@ -6,17 +6,14 @@
+> > > > >  #include <linux/bitops.h>
+> > > > >  #include <linux/configfs.h>
+> > > > >  #include <linux/cleanup.h>
+> > > > > -#include <linux/find.h>
+> > > > >  #include <linux/init.h>
+> > > > >  #include <linux/module.h>
+> > > > >  #include <linux/pci.h>
+> > > > >  #include <linux/string.h>
+> > > > >  
+> > > > > -#include "instructions/xe_mi_commands.h"
+> > > > >  #include "xe_configfs.h"
+> > > > >  #include "xe_configfs_debug.h"
+> > > > >  #include "xe_defaults.h"
+> > > > > -#include "xe_gt_types.h"
+> > > > >  #include "xe_module.h"
+> > > > >  
+> > > > >  /**
+> > > > > @@ -50,16 +47,9 @@
+> > > > >   *
+> > > > >   *     /sys/kernel/config/xe/
+> > > > >   *     ├── 0000:00:02.0
+> > > > > - *     │   └── ...
+> > > > > - *     ├── 0000:00:02.1
+> > > > > - *     │   └── ...
+> > > > > - *     :
+> > > > > - *     └── 0000:03:00.0
+> > > > > - *         ├── engines_allowed
+> > > > > - *         ├── gt_types_allowed
+> > > > > - *         ├── enable_multi_queue
+> > > > > - *         ├── enable_psmi
+> > > > > - *         └── survivability_mode
+> > > > > + *     │   └── ...
+> > > > > + *     └── 0000:00:02.1
+> > > > > + *         └── ...
+> > > > >   *
+> > > > >   * After configuring the attributes as per next section, the
+> > > > > device can be
+> > > > >   * probed with::
+> > > > > @@ -71,157 +61,6 @@
+> > > > >   * Configure Attributes
+> > > > >   * ====================
+> > > > >   *
+> > > > > -
+> > > > > - * Context restore BB
+> > > > > - * ------------------
+> > > > > - *
+> > > > > - * Allow to execute a batch buffer during any context
+> > > > > switches.
+> > > > > When the
+> > > > > - * GPU is restoring the context, it executes additional
+> > > > > commands.
+> > > > > It's useful
+> > > > > - * for testing additional workarounds and validating certain
+> > > > > HW
+> > > > > behaviors: it's
+> > > > > - * not intended for normal execution and will taint the kernel
+> > > > > with TAINT_TEST
+> > > > > - * when used.
+> > > > > - *
+> > > > > - * The syntax allows to pass straight instructions to be
+> > > > > executed
+> > > > > by the engine
+> > > > > - * in a batch buffer or set specific registers.
+> > > > > - *
+> > > > > - * #. Generic instruction::
+> > > > > - *
+> > > > > - *     <engine-class> cmd <instr> [[dword0] [dword1] [...]]
+> > > > > - *
+> > > > > - * #. Simple register setting::
+> > > > > - *
+> > > > > - *     <engine-class> reg <address> <value>
+> > > > > - *
+> > > > > - * Commands are saved per engine class: all instances of that
+> > > > > class will execute
+> > > > > - * those commands during context switch. The instruction,
+> > > > > dword
+> > > > > arguments,
+> > > > > - * addresses and values are in hex format like in the examples
+> > > > > below.
+> > > > > - *
+> > > > > - * #. Execute a LRI command to write 0xDEADBEEF to register
+> > > > > 0x4f10
+> > > > > after the
+> > > > > - *    normal context restore::
+> > > > > - *
+> > > > > - *     # echo 'rcs cmd 11000001 4F100 DEADBEEF' \
+> > > > > - *             >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/ctx_restore_post_bb
+> > > > > - *
+> > > > > - * #. Execute a LRI command to write 0xDEADBEEF to register
+> > > > > 0x4f10
+> > > > > at the
+> > > > > - *    beginning of the context restore::
+> > > > > - *
+> > > > > - *     # echo 'rcs cmd 11000001 4F100 DEADBEEF' \
+> > > > > - *             >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/ctx_restore_mid_bb
+> > > > > -
+> > > > > - * #. Load certain values in a couple of registers (it can be
+> > > > > used
+> > > > > as a simpler
+> > > > > - *    alternative to the `cmd`) action::
+> > > > > - *
+> > > > > - *     # cat >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/ctx_restore_post_bb <<EOF
+> > > > > - *     rcs reg 4F100 DEADBEEF
+> > > > > - *     rcs reg 4F104 FFFFFFFF
+> > > > > - *     EOF
+> > > > > - *
+> > > > > - *    .. note::
+> > > > > - *
+> > > > > - *       When using multiple lines, make sure to use a command
+> > > > > that is
+> > > > > - *       implemented with a single write syscall, like
+> > > > > HEREDOC.
+> > > > > - *
+> > > > > - * Currently this is implemented only for post and mid context
+> > > > > restore and
+> > > > > - * these attributes can only be set before binding to the
+> > > > > device.
+> > > > > - *
+> > > > > - * Allowed engines:
+> > > > > - * ----------------
+> > > > > - *
+> > > > > - * Allow only a set of engine(s) to be available, disabling
+> > > > > the
+> > > > > other engines
+> > > > > - * even if they are available in hardware. This is applied
+> > > > > after
+> > > > > HW fuses are
+> > > > > - * considered on each tile. Examples:
+> > > > > - *
+> > > > > - * Allow only one render and one copy engines, nothing else::
+> > > > > - *
+> > > > > - *     # echo 'rcs0,bcs0' >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/engines_allowed
+> > > > > - *
+> > > > > - * Allow only compute engines and first copy engine::
+> > > > > - *
+> > > > > - *     # echo 'ccs*,bcs0' >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/engines_allowed
+> > > > > - *
+> > > > > - * Note that the engine names are the per-GT hardware names.
+> > > > > On
+> > > > > multi-tile
+> > > > > - * platforms, writing ``rcs0,bcs0`` to this file would allow
+> > > > > the
+> > > > > first render
+> > > > > - * and copy engines on each tile.
+> > > > > - *
+> > > > > - * The requested configuration may not be supported by the
+> > > > > platform and driver
+> > > > > - * may fail to probe. For example: if at least one copy engine
+> > > > > is
+> > > > > expected to be
+> > > > > - * available for migrations, but it's disabled. This is
+> > > > > intended
+> > > > > for debugging
+> > > > > - * purposes only.
+> > > > > - *
+> > > > > - * This attribute can only be set before binding to the
+> > > > > device.
+> > > > > - *
+> > > > > - * Allowed GT types:
+> > > > > - * -----------------
+> > > > > - *
+> > > > > - * Allow only specific types of GTs to be detected and
+> > > > > initialized
+> > > > > by the
+> > > > > - * driver.  Any combination of GT types can be
+> > > > > enabled/disabled,
+> > > > > although
+> > > > > - * some settings will cause the device to fail to probe.
+> > > > > - *
+> > > > > - * Writes support both comma- and newline-separated input
+> > > > > format.
+> > > > > Reads
+> > > > > - * will always return one GT type per line. "primary" and
+> > > > > "media"
+> > > > > are the
+> > > > > - * GT type names supported by this interface.
+> > > > > - *
+> > > > > - * This attribute can only be set before binding to the
+> > > > > device.
+> > > > > - *
+> > > > > - * Examples:
+> > > > > - *
+> > > > > - * Allow both primary and media GTs to be initialized and
+> > > > > used. 
+> > > > > This matches
+> > > > > - * the driver's default behavior::
+> > > > > - *
+> > > > > - *     # echo 'primary,media' >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
+> > > > > - *
+> > > > > - * Allow only the primary GT of each tile to be initialized
+> > > > > and
+> > > > > used,
+> > > > > - * effectively disabling the media GT if it exists on the
+> > > > > platform::
+> > > > > - *
+> > > > > - *     # echo 'primary' >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
+> > > > > - *
+> > > > > - * Allow only the media GT of each tile to be initialized and
+> > > > > used,
+> > > > > - * effectively disabling the primary GT.  **This configuration
+> > > > > will cause
+> > > > > - * device probe failure on all current platforms, but may be
+> > > > > allowed on
+> > > > > - * igpu platforms in the future**::
+> > > > > - *
+> > > > > - *     # echo 'media' >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
+> > > > > - *
+> > > > > - * Disable all GTs.  Only other GPU IP (such as display) is
+> > > > > potentially usable.
+> > > > > - * **This configuration will cause device probe failure on all
+> > > > > current
+> > > > > - * platforms, but may be allowed on igpu platforms in the
+> > > > > future**::
+> > > > > - *
+> > > > > - *     # echo '' >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/gt_types_allowed
+> > > > > - *
+> > > > > - * Enable multi-queue
+> > > > > - * ------------------
+> > > > > - *
+> > > > > - * Multi-queue support on the device is enabled by default
+> > > > > where
+> > > > > the
+> > > > > - * hardware supports it. Writing 0 force-disables multi-queue
+> > > > > support:
+> > > > > - * multi-queue exec-queue group creation via ioctl is refused,
+> > > > > and
+> > > > > the
+> > > > > - * GuC feature is disabled::
+> > > > > - *
+> > > > > - *     # echo 0 >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/enable_multi_queue
+> > > > > - *
+> > > > > - * This attribute can only be set before binding to the
+> > > > > device.
+> > > > > - *
+> > > > > - * PSMI
+> > > > > - * ----
+> > > > > - *
+> > > > > - * Enable extra debugging capabilities to trace engine
+> > > > > execution.
+> > > > > Only useful
+> > > > > - * during early platform enabling and requires additional
+> > > > > hardware
+> > > > > connected.
+> > > > > - * Once it's enabled, additionals WAs are added and runtime
+> > > > > configuration is
+> > > > > - * done via debugfs. Example to enable it::
+> > > > > - *
+> > > > > - *     # echo 1 >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/enable_psmi
+> > > > > - *
+> > > > > - * This attribute can only be set before binding to the
+> > > > > device.
+> > > > > - *
+> > > > > - * Survivability mode:
+> > > > > - * -------------------
+> > > > > - *
+> > > > > - * Enable survivability mode on supported cards. This setting
+> > > > > only
+> > > > > takes
+> > > > > - * effect when probing the device. Example to enable it::
+> > > > 
+> > > > I didn't review the code movement in this patch in depth, but the
+> > > > one
+> > > > thing that I'm uncertain about is whether survivability mode
+> > > > should
+> > > > have
+> > > > been swept up in this move.  My understanding is that unlike the
+> > > > other
+> > > > options which are meant for developers hacking on the driver,
+> > > > configurable survivability mode is a true production feature
+> > > > intended
+> > > > for end users to get the minimal driver support necessary to deal
+> > > > with a
+> > > > bad firmware flash, failing hardware, etc.  I know there are
+> > > > cases
+> > > > where
+> > > > the driver can auto-detect the need to enter survivability mode
+> > > > without
+> > > > the configfs interface (i.e., various RAS error reports and
+> > > > such),
+> > > > but I
+> > > > thought manual entry through configfs was still something users
+> > > > may
+> > > > need
+> > > > in some cases?  If so that would mean we should keep this
+> > > > available
+> > > > even
+> > > > when the debug options aren't compiled in.
+> > > > 
+> > > > +Cc Riana in case my understanding is off.
+> > > 
+> > > Yeah would appreciate feedback there Riana. My understanding of
+> > > survivability mode is we want this to allow us to continue
+> > > operation
+> > > for a while to debug issues when the hardware is severely
+> > > misbehaving.
+> > > This isn't a normal customer use case.
+> > 
+> > I'm not Riana, but I can answer to this! :)
+> > 
+> > Survivability is needed in final production builds.
+> > 
+> > We had cases in the field where any kind of probe (succeeded, failed,
+> > not-attempted) would put the device in a state where FW could not be
+> > flashed.
+> > 
+> > So this fallback option where user selects survivability and get a
+> > minimal
+> > probe where FW can be flashed is needed.
+> 
+> So I get the reasoning there. Why can't we do this as part of a debug
+> build though? If we get to a point where the IFWI is in such a bad
+> state that it can brick the card, this really is a debug scenario
+> anyway IMO. Or is this more about orchestration and auto-update
+> capability that we want for a normal data center user?
+
+Then you will need to ask customer to build and/or install a debug-built
+new driver only to be able to perform a firmware update and then reinstall
+the kernel to the production one before returning the regular operation?
+
+It is not a debug operation. It is a final production operation that allows
+customer to get out of the bricked device situation.
+
+> 
+> > 
+> > Also, another possible usage of this is around upcoming in-field test
+> > and in field repair cases.
+> > 
+> > So, survivability is one... But also I'm thinking about others as
+> > well in here.
+> > PSMI for instance, are we sure that PSMI folks don't plug PSMI in
+> > production
+> > builds at all when debugging some images that they cannot control?
+> 
+> Again, IMO it is perfectly reasonable to expect someone using PSMI to
+> be also using a debug kernel. We will almost certainly want to have the
+> extra debug capability on the kernel side as well as the hardware side
+> in these types of debugs.
+
+I'm afraid we have a big disagrement on the definition of the 'debug'
+flags perhaps?!
+
+It is perfectly fine to require debug builds when you are debugging the
+software. It is definitely not okay to require debug builds to debug
+the hardware in production.
+
+I mean, perhaps you are right about the PSMI cases being okay with
+debug images. I'm not so familiar with that flow. But I just don't
+want us to put in a situation that we start demanding debug builds
+for any case that we need to debug or save production builds.
+
+RAS for instance, it is entirely production builds, not a debug build
+feature. Otherwise RAS is meagningless.
+
+Thanks,
+Rodrigo.
+
+> 
+> Thanks,
+> Stuart
+> 
+> > 
+> > > 
+> > > My thought longer term here is we'd turn this into a bit map that
+> > > allowed various hardware or software isolation configurations.
+> > > We'll
+> > > also have the per-feature configfs entries, but the survivability
+> > > mode
+> > > could be used to easily isolate based on a higher level isolation
+> > > scheme that doesn't require the person debugging to fully
+> > > understand
+> > > all the different underlying features being disabled if that makes
+> > > sense.
+> > > 
+> > > The flip side of this could be that we really want to require users
+> > > to
+> > > be more surgical about how they enable/disable different features.
+> > > In
+> > > that case, I'd argue we really should drop survivability mode
+> > > completely and turn it into an "enable_punit" and various other
+> > > related
+> > > configurations.
+> > > 
+> > > Thanks,
+> > > Stuart
+> > > 
+> > > > 
+> > > > 
+> > > > Matt
+> > > > 
+> > > > > - *
+> > > > > - *     # echo 1 >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/survivability_mode
+> > > > > - *
+> > > > > - * This attribute can only be set before binding to the
+> > > > > device.
+> > > > > - *
+> > > > >   * Max SR-IOV Virtual Functions
+> > > > >   * ----------------------------
+> > > > >   *
+> > > > > @@ -256,12 +95,16 @@
+> > > > >   *     # rmdir /sys/kernel/config/xe/0000:03:00.0/
+> > > > >   */
+> > > > >  
+> > > > > -static const struct xe_config_device device_defaults = {
+> > > > > -       .engines_allowed = U64_MAX,
+> > > > > -       .gt_types_allowed = U64_MAX,
+> > > > > -       .enable_multi_queue = true,
+> > > > > -       .enable_psmi = false,
+> > > > > -       .survivability_mode = false,
+> > > > > +const struct xe_config_device xe_configfs_device_defaults = {
+> > > > > +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+> > > > > +       .debug = {
+> > > > > +               .engines_allowed = U64_MAX,
+> > > > > +               .gt_types_allowed = U64_MAX,
+> > > > > +               .enable_multi_queue = true,
+> > > > > +               .enable_psmi = false,
+> > > > > +               .survivability_mode = false,
+> > > > > +       },
+> > > > > +#endif
+> > > > >         .sriov = {
+> > > > >                 .max_vfs = XE_DEFAULT_MAX_VFS,
+> > > > >                 .admin_only_pf = XE_DEFAULT_ADMIN_ONLY_PF,
+> > > > > @@ -270,50 +113,22 @@ static const struct xe_config_device
+> > > > > device_defaults = {
+> > > > >  
+> > > > >  static void set_device_defaults(struct xe_config_device
+> > > > > *config)
+> > > > >  {
+> > > > > -       *config = device_defaults;
+> > > > > +       *config = xe_configfs_device_defaults;
+> > > > >  #ifdef CONFIG_PCI_IOV
+> > > > >         config->sriov.max_vfs = xe_modparam.max_vfs;
+> > > > >  #endif
+> > > > >  }
+> > > > >  
+> > > > > -struct engine_info {
+> > > > > -       const char *cls;
+> > > > > -       u64 mask;
+> > > > > -       enum xe_engine_class engine_class;
+> > > > > -};
+> > > > > -
+> > > > > -/* Some helpful macros to aid on the sizing of buffer
+> > > > > allocation
+> > > > > when parsing */
+> > > > > -#define MAX_ENGINE_CLASS_CHARS 5
+> > > > > -#define MAX_ENGINE_INSTANCE_CHARS 2
+> > > > > -
+> > > > > -static const struct engine_info engine_info[] = {
+> > > > > -       { .cls = "rcs", .mask = XE_HW_ENGINE_RCS_MASK,
+> > > > > .engine_class = XE_ENGINE_CLASS_RENDER },
+> > > > > -       { .cls = "bcs", .mask = XE_HW_ENGINE_BCS_MASK,
+> > > > > .engine_class = XE_ENGINE_CLASS_COPY },
+> > > > > -       { .cls = "vcs", .mask = XE_HW_ENGINE_VCS_MASK,
+> > > > > .engine_class = XE_ENGINE_CLASS_VIDEO_DECODE },
+> > > > > -       { .cls = "vecs", .mask = XE_HW_ENGINE_VECS_MASK,
+> > > > > .engine_class = XE_ENGINE_CLASS_VIDEO_ENHANCE },
+> > > > > -       { .cls = "ccs", .mask = XE_HW_ENGINE_CCS_MASK,
+> > > > > .engine_class = XE_ENGINE_CLASS_COMPUTE },
+> > > > > -       { .cls = "gsccs", .mask = XE_HW_ENGINE_GSCCS_MASK,
+> > > > > .engine_class = XE_ENGINE_CLASS_OTHER },
+> > > > > -};
+> > > > > -
+> > > > > -static const struct {
+> > > > > -       const char *name;
+> > > > > -       enum xe_gt_type type;
+> > > > > -} gt_types[] = {
+> > > > > -       { .name = "primary", .type = XE_GT_TYPE_MAIN },
+> > > > > -       { .name = "media", .type = XE_GT_TYPE_MEDIA },
+> > > > > -};
+> > > > > -
+> > > > > -static struct xe_config_group_device
+> > > > > *to_xe_config_group_device(struct config_item *item)
+> > > > > -{
+> > > > > -       return container_of(to_config_group(item), struct
+> > > > > xe_config_group_device, group);
+> > > > > -}
+> > > > > -
+> > > > > -static struct xe_config_device *to_xe_config_device(struct
+> > > > > config_item *item)
+> > > > > -{
+> > > > > -       return &to_xe_config_group_device(item)->config;
+> > > > > -}
+> > > > > -
+> > > > > -static bool is_bound(struct xe_config_group_device *dev)
+> > > > > +/**
+> > > > > + * xe_configfs_is_bound - check whether the matching pci
+> > > > > device is
+> > > > > bound
+> > > > > + * @dev: configfs group device
+> > > > > + *
+> > > > > + * Caller must hold @dev->lock.
+> > > > > + *
+> > > > > + * Return: true if the matching pci_dev is already bound to a
+> > > > > driver,
+> > > > > + *     false otherwise.
+> > > > > + */
+> > > > > +bool xe_configfs_is_bound(struct xe_config_group_device *dev)
+> > > > >  {
+> > > > >         unsigned int domain, bus, slot, function;
+> > > > >         struct pci_dev *pdev;
+> > > > > @@ -338,698 +153,13 @@ static bool is_bound(struct
+> > > > > xe_config_group_device *dev)
+> > > > >         return ret;
+> > > > >  }
+> > > > >  
+> > > > > -static struct xe_config_group_device
+> > > > > *find_xe_config_group_device(struct pci_dev *pdev);
+> > > > > -
+> > > > > -/**
+> > > > > - * xe_configfs_get_ctx_restore_mid_bb - get configfs
+> > > > > ctx_restore_mid_bb setting
+> > > > > - * @pdev: pci device
+> > > > > - * @class: hw engine class
+> > > > > - * @cs: pointer to the bb to use - only valid during probe
+> > > > > - *
+> > > > > - * Return: Number of dwords used in the mid_ctx_restore
+> > > > > setting in
+> > > > > configfs
+> > > > > - */
+> > > > > -u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+> > > > > -                                      enum xe_engine_class
+> > > > > class,
+> > > > > -                                      const u32 **cs)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > find_xe_config_group_device(pdev);
+> > > > > -       u32 len;
+> > > > > -
+> > > > > -       if (!dev)
+> > > > > -               return 0;
+> > > > > -
+> > > > > -       scoped_guard(mutex, &dev->lock) {
+> > > > > -               if (cs)
+> > > > > -                       *cs = dev-
+> > > > > > config.ctx_restore_mid_bb[class].cs;
+> > > > > -
+> > > > > -               len = dev-
+> > > > > >config.ctx_restore_mid_bb[class].len;
+> > > > > -       }
+> > > > > -       config_group_put(&dev->group);
+> > > > > -
+> > > > > -       return len;
+> > > > > -}
+> > > > > -
+> > > > > -/**
+> > > > > - * xe_configfs_get_ctx_restore_post_bb - get configfs
+> > > > > ctx_restore_post_bb setting
+> > > > > - * @pdev: pci device
+> > > > > - * @class: hw engine class
+> > > > > - * @cs: pointer to the bb to use - only valid during probe
+> > > > > - *
+> > > > > - * Return: Number of dwords used in the post_ctx_restore
+> > > > > setting
+> > > > > in configfs
+> > > > > - */
+> > > > > -u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+> > > > > -                                       enum xe_engine_class
+> > > > > class,
+> > > > > -                                       const u32 **cs)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > find_xe_config_group_device(pdev);
+> > > > > -       u32 len;
+> > > > > -
+> > > > > -       if (!dev)
+> > > > > -               return 0;
+> > > > > -
+> > > > > -       scoped_guard(mutex, &dev->lock) {
+> > > > > -               *cs = dev-
+> > > > > >config.ctx_restore_post_bb[class].cs;
+> > > > > -               len = dev-
+> > > > > >config.ctx_restore_post_bb[class].len;
+> > > > > -       }
+> > > > > -       config_group_put(&dev->group);
+> > > > > -
+> > > > > -       return len;
+> > > > > -}
+> > > > > -
+> > > > > -static bool wa_bb_read_advance(bool dereference, char **p,
+> > > > > -                              const char *append, size_t len,
+> > > > > -                              size_t *max_size)
+> > > > > -{
+> > > > > -       if (dereference) {
+> > > > > -               if (len >= *max_size)
+> > > > > -                       return false;
+> > > > > -               *max_size -= len;
+> > > > > -               if (append)
+> > > > > -                       memcpy(*p, append, len);
+> > > > > -       }
+> > > > > -
+> > > > > -       *p += len;
+> > > > > -
+> > > > > -       return true;
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t wa_bb_show(struct xe_config_group_device *dev,
+> > > > > -                         struct wa_bb wa_bb[static
+> > > > > XE_ENGINE_CLASS_MAX],
+> > > > > -                         char *data, size_t sz)
+> > > > > -{
+> > > > > -       char *p = data;
+> > > > > -
+> > > > > -       guard(mutex)(&dev->lock);
+> > > > > -
+> > > > > -       for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
+> > > > > -               enum xe_engine_class ec =
+> > > > > engine_info[i].engine_class;
+> > > > > -               size_t len;
+> > > > > -
+> > > > > -               if (!wa_bb[ec].len)
+> > > > > -                       continue;
+> > > > > -
+> > > > > -               len = snprintf(p, sz, "%s:",
+> > > > > engine_info[i].cls);
+> > > > > -               if (!wa_bb_read_advance(data, &p, NULL, len,
+> > > > > &sz))
+> > > > > -                       return -ENOBUFS;
+> > > > > -
+> > > > > -               for (size_t j = 0; j < wa_bb[ec].len; j++) {
+> > > > > -                       len = snprintf(p, sz, " %08x",
+> > > > > wa_bb[ec].cs[j]);
+> > > > > -                       if (!wa_bb_read_advance(data, &p, NULL,
+> > > > > len, &sz))
+> > > > > -                               return -ENOBUFS;
+> > > > > -               }
+> > > > > -
+> > > > > -               if (!wa_bb_read_advance(data, &p, "\n", 1,
+> > > > > &sz))
+> > > > > -                       return -ENOBUFS;
+> > > > > -       }
+> > > > > -
+> > > > > -       if (!wa_bb_read_advance(data, &p, "", 1, &sz))
+> > > > > -               return -ENOBUFS;
+> > > > > -
+> > > > > -       /* Reserve one more to match check for '\0' */
+> > > > > -       if (!data)
+> > > > > -               p++;
+> > > > > -
+> > > > > -       return p - data;
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t ctx_restore_mid_bb_show(struct config_item
+> > > > > *item,
+> > > > > char *page)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item);
+> > > > > -
+> > > > > -       return wa_bb_show(dev, dev->config.ctx_restore_mid_bb,
+> > > > > page, SZ_4K);
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t ctx_restore_post_bb_show(struct config_item
+> > > > > *item,
+> > > > > char *page)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item);
+> > > > > -
+> > > > > -       return wa_bb_show(dev, dev->config.ctx_restore_post_bb,
+> > > > > page, SZ_4K);
+> > > > > -}
+> > > > > -
+> > > > > -static void wa_bb_append(struct wa_bb *wa_bb, u32 val)
+> > > > > -{
+> > > > > -       if (wa_bb->cs)
+> > > > > -               wa_bb->cs[wa_bb->len] = val;
+> > > > > -
+> > > > > -       wa_bb->len++;
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t parse_hex(const char *line, u32 *pval)
+> > > > > -{
+> > > > > -       char numstr[12];
+> > > > > -       const char *p;
+> > > > > -       ssize_t numlen;
+> > > > > -
+> > > > > -       p = line + strspn(line, " \t");
+> > > > > -       if (!*p || *p == '\n')
+> > > > > -               return 0;
+> > > > > -
+> > > > > -       numlen = strcspn(p, " \t\n");
+> > > > > -       if (!numlen || numlen >= sizeof(numstr) - 1)
+> > > > > -               return -EINVAL;
+> > > > > -
+> > > > > -       memcpy(numstr, p, numlen);
+> > > > > -       numstr[numlen] = '\0';
+> > > > > -       p += numlen;
+> > > > > -
+> > > > > -       if (kstrtou32(numstr, 16, pval))
+> > > > > -               return -EINVAL;
+> > > > > -
+> > > > > -       return p - line;
+> > > > > -}
+> > > > > -
+> > > > > -static int parse_engine(const char *s, const char *end_chars,
+> > > > > u64
+> > > > > *mask,
+> > > > > -                       const struct engine_info **pinfo);
+> > > > > -
+> > > > > -/*
+> > > > > - * Parse lines with the format
+> > > > > - *
+> > > > > - *     <engine-class> cmd <u32> <u32...>
+> > > > > - *     <engine-class> reg <u32_addr> <u32_val>
+> > > > > - *
+> > > > > - * and optionally save them in @wa_bb[i].cs is non-NULL.
+> > > > > - *
+> > > > > - * Return the number of dwords parsed.
+> > > > > - */
+> > > > > -static ssize_t parse_wa_bb_lines(const char *lines,
+> > > > > -                                struct wa_bb wa_bb[static
+> > > > > XE_ENGINE_CLASS_MAX])
+> > > > > -{
+> > > > > -       ssize_t dwords = 0, ret;
+> > > > > -       const char *p;
+> > > > > -
+> > > > > -       for (p = lines; *p; p++) {
+> > > > > -               const struct engine_info *info = NULL;
+> > > > > -               u32 val, val2;
+> > > > > -
+> > > > > -               /* Also allow empty lines */
+> > > > > -               p += strspn(p, " \t\n");
+> > > > > -               if (!*p)
+> > > > > -                       break;
+> > > > > -
+> > > > > -               ret = parse_engine(p, " \t\n", NULL, &info);
+> > > > > -               if (ret < 0)
+> > > > > -                       return ret;
+> > > > > -
+> > > > > -               p += ret;
+> > > > > -               p += strspn(p, " \t");
+> > > > > -
+> > > > > -               if (str_has_prefix(p, "cmd")) {
+> > > > > -                       for (p += strlen("cmd"); *p;) {
+> > > > > -                               ret = parse_hex(p, &val);
+> > > > > -                               if (ret < 0)
+> > > > > -                                       return -EINVAL;
+> > > > > -                               if (!ret)
+> > > > > -                                       break;
+> > > > > -
+> > > > > -                               p += ret;
+> > > > > -                               dwords++;
+> > > > > -                               wa_bb_append(&wa_bb[info-
+> > > > > > engine_class], val);
+> > > > > -                       }
+> > > > > -               } else if (str_has_prefix(p, "reg")) {
+> > > > > -                       p += strlen("reg");
+> > > > > -                       ret = parse_hex(p, &val);
+> > > > > -                       if (ret <= 0)
+> > > > > -                               return -EINVAL;
+> > > > > -
+> > > > > -                       p += ret;
+> > > > > -                       ret = parse_hex(p, &val2);
+> > > > > -                       if (ret <= 0)
+> > > > > -                               return -EINVAL;
+> > > > > -
+> > > > > -                       p += ret;
+> > > > > -                       dwords += 3;
+> > > > > -                       wa_bb_append(&wa_bb[info-
+> > > > > >engine_class],
+> > > > > -                                    MI_LOAD_REGISTER_IMM |
+> > > > > MI_LRI_NUM_REGS(1));
+> > > > > -                       wa_bb_append(&wa_bb[info-
+> > > > > >engine_class],
+> > > > > val);
+> > > > > -                       wa_bb_append(&wa_bb[info-
+> > > > > >engine_class],
+> > > > > val2);
+> > > > > -               } else {
+> > > > > -                       return -EINVAL;
+> > > > > -               }
+> > > > > -       }
+> > > > > -
+> > > > > -       return dwords;
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t wa_bb_store(struct wa_bb wa_bb[static
+> > > > > XE_ENGINE_CLASS_MAX],
+> > > > > -                          struct xe_config_group_device *dev,
+> > > > > -                          const char *page, size_t len)
+> > > > > -{
+> > > > > -       /* tmp_wa_bb must match wa_bb's size */
+> > > > > -       struct wa_bb tmp_wa_bb[XE_ENGINE_CLASS_MAX] = { };
+> > > > > -       ssize_t count, class;
+> > > > > -       u32 *tmp;
+> > > > > -
+> > > > > -       /* 1. Count dwords - wa_bb[i].cs is NULL for all
+> > > > > classes */
+> > > > > -       count = parse_wa_bb_lines(page, tmp_wa_bb);
+> > > > > -       if (count < 0)
+> > > > > -               return count;
+> > > > > -
+> > > > > -       guard(mutex)(&dev->lock);
+> > > > > -
+> > > > > -       if (is_bound(dev))
+> > > > > -               return -EBUSY;
+> > > > > -
+> > > > > -       /*
+> > > > > -        * 2. Allocate a u32 array and set the pointers to the
+> > > > > right positions
+> > > > > -        * according to the length of each class' wa_bb
+> > > > > -        */
+> > > > > -       tmp = krealloc(wa_bb[0].cs, count * sizeof(u32),
+> > > > > GFP_KERNEL);
+> > > > > -       if (!tmp)
+> > > > > -               return -ENOMEM;
+> > > > > -
+> > > > > -       if (!count) {
+> > > > > -               memset(wa_bb, 0, sizeof(tmp_wa_bb));
+> > > > > -               return len;
+> > > > > -       }
+> > > > > -
+> > > > > -       for (class = 0, count = 0; class < XE_ENGINE_CLASS_MAX;
+> > > > > ++class) {
+> > > > > -               tmp_wa_bb[class].cs = tmp + count;
+> > > > > -               count += tmp_wa_bb[class].len;
+> > > > > -               tmp_wa_bb[class].len = 0;
+> > > > > -       }
+> > > > > -
+> > > > > -       /* 3. Parse wa_bb lines again, this time saving the
+> > > > > values
+> > > > > */
+> > > > > -       count = parse_wa_bb_lines(page, tmp_wa_bb);
+> > > > > -       if (count < 0)
+> > > > > -               return count;
+> > > > > -
+> > > > > -       memcpy(wa_bb, tmp_wa_bb, sizeof(tmp_wa_bb));
+> > > > > -
+> > > > > -       return len;
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t ctx_restore_mid_bb_store(struct config_item
+> > > > > *item,
+> > > > > -                                       const char *data,
+> > > > > size_t
+> > > > > sz)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item);
+> > > > > -
+> > > > > -       return wa_bb_store(dev->config.ctx_restore_mid_bb, dev,
+> > > > > data, sz);
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t ctx_restore_post_bb_store(struct config_item
+> > > > > *item,
+> > > > > -                                        const char *data,
+> > > > > size_t
+> > > > > sz)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item);
+> > > > > -
+> > > > > -       return wa_bb_store(dev->config.ctx_restore_post_bb,
+> > > > > dev,
+> > > > > data, sz);
+> > > > > -}
+> > > > > -
+> > > > > -/**
+> > > > > - * xe_configfs_get_engines_allowed - get engine allowed mask
+> > > > > from
+> > > > > configfs
+> > > > > - * @pdev: pci device
+> > > > > - *
+> > > > > - * Return: engine mask with allowed engines set in configfs
+> > > > > - */
+> > > > > -u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > find_xe_config_group_device(pdev);
+> > > > > -       u64 engines_allowed;
+> > > > > -
+> > > > > -       if (!dev)
+> > > > > -               return device_defaults.engines_allowed;
+> > > > > -
+> > > > > -       scoped_guard(mutex, &dev->lock)
+> > > > > -               engines_allowed = dev->config.engines_allowed;
+> > > > > -       config_group_put(&dev->group);
+> > > > > -
+> > > > > -       return engines_allowed;
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t engines_allowed_show(struct config_item *item,
+> > > > > char
+> > > > > *page)
+> > > > > -{
+> > > > > -       struct xe_config_device *dev =
+> > > > > to_xe_config_device(item);
+> > > > > -       char *p = page;
+> > > > > -
+> > > > > -       for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
+> > > > > -               u64 mask = engine_info[i].mask;
+> > > > > -
+> > > > > -               if ((dev->engines_allowed & mask) == mask) {
+> > > > > -                       p += sprintf(p, "%s*\n",
+> > > > > engine_info[i].cls);
+> > > > > -               } else if (mask & dev->engines_allowed) {
+> > > > > -                       u16 bit0 = __ffs64(mask), bit;
+> > > > > -
+> > > > > -                       mask &= dev->engines_allowed;
+> > > > > -
+> > > > > -                       for_each_set_bit(bit, (const unsigned
+> > > > > long
+> > > > > *)&mask, 64)
+> > > > > -                               p += sprintf(p, "%s%u\n",
+> > > > > engine_info[i].cls,
+> > > > > -                                            bit - bit0);
+> > > > > -               }
+> > > > > -       }
+> > > > > -
+> > > > > -       return p - page;
+> > > > > -}
+> > > > > -
+> > > > > -/*
+> > > > > - * Lookup engine_info. If @mask is not NULL, reduce the mask
+> > > > > according to the
+> > > > > - * instance in @pattern.
+> > > > > - *
+> > > > > - * Examples of inputs:
+> > > > > - * - lookup_engine_info("rcs0", &mask): return "rcs" entry
+> > > > > from
+> > > > > @engine_info and
+> > > > > - *   mask == BIT_ULL(XE_HW_ENGINE_RCS0)
+> > > > > - * - lookup_engine_info("rcs*", &mask): return "rcs" entry
+> > > > > from
+> > > > > @engine_info and
+> > > > > - *   mask == XE_HW_ENGINE_RCS_MASK
+> > > > > - * - lookup_engine_info("rcs", NULL): return "rcs" entry from
+> > > > > @engine_info
+> > > > > - */
+> > > > > -static const struct engine_info *lookup_engine_info(const char
+> > > > > *pattern, u64 *mask)
+> > > > > -{
+> > > > > -       for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
+> > > > > -               u8 instance;
+> > > > > -               u16 bit;
+> > > > > -
+> > > > > -               if (!str_has_prefix(pattern,
+> > > > > engine_info[i].cls))
+> > > > > -                       continue;
+> > > > > -
+> > > > > -               pattern += strlen(engine_info[i].cls);
+> > > > > -               if (!mask)
+> > > > > -                       return *pattern ? NULL :
+> > > > > &engine_info[i];
+> > > > > -
+> > > > > -               if (!strcmp(pattern, "*")) {
+> > > > > -                       *mask = engine_info[i].mask;
+> > > > > -                       return &engine_info[i];
+> > > > > -               }
+> > > > > -
+> > > > > -               if (kstrtou8(pattern, 10, &instance))
+> > > > > -                       return NULL;
+> > > > > -
+> > > > > -               bit = __ffs64(engine_info[i].mask) + instance;
+> > > > > -               if (bit >= fls64(engine_info[i].mask))
+> > > > > -                       return NULL;
+> > > > > -
+> > > > > -               *mask = BIT_ULL(bit);
+> > > > > -               return &engine_info[i];
+> > > > > -       }
+> > > > > -
+> > > > > -       return NULL;
+> > > > > -}
+> > > > > -
+> > > > > -static int parse_engine(const char *s, const char *end_chars,
+> > > > > u64
+> > > > > *mask,
+> > > > > -                       const struct engine_info **pinfo)
+> > > > > -{
+> > > > > -       char buf[MAX_ENGINE_CLASS_CHARS +
+> > > > > MAX_ENGINE_INSTANCE_CHARS
+> > > > > + 1];
+> > > > > -       const struct engine_info *info;
+> > > > > -       size_t len;
+> > > > > -
+> > > > > -       len = strcspn(s, end_chars);
+> > > > > -       if (len >= sizeof(buf))
+> > > > > -               return -EINVAL;
+> > > > > -
+> > > > > -       memcpy(buf, s, len);
+> > > > > -       buf[len] = '\0';
+> > > > > -
+> > > > > -       info = lookup_engine_info(buf, mask);
+> > > > > -       if (!info)
+> > > > > -               return -ENOENT;
+> > > > > -
+> > > > > -       if (pinfo)
+> > > > > -               *pinfo = info;
+> > > > > -
+> > > > > -       return len;
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t engines_allowed_store(struct config_item *item,
+> > > > > const char *page,
+> > > > > -                                    size_t len)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item);
+> > > > > -       ssize_t patternlen, p;
+> > > > > -       u64 mask, val = 0;
+> > > > > -
+> > > > > -       for (p = 0; p < len; p += patternlen + 1) {
+> > > > > -               patternlen = parse_engine(page + p, ",\n",
+> > > > > &mask,
+> > > > > NULL);
+> > > > > -               if (patternlen < 0)
+> > > > > -                       return -EINVAL;
+> > > > > -
+> > > > > -               val |= mask;
+> > > > > -       }
+> > > > > -
+> > > > > -       guard(mutex)(&dev->lock);
+> > > > > -       if (is_bound(dev))
+> > > > > -               return -EBUSY;
+> > > > > -
+> > > > > -       dev->config.engines_allowed = val;
+> > > > > -
+> > > > > -       return len;
+> > > > > -}
+> > > > > -
+> > > > > -static u64 get_gt_types_allowed(struct pci_dev *pdev)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > find_xe_config_group_device(pdev);
+> > > > > -       u64 mask;
+> > > > > -
+> > > > > -       if (!dev)
+> > > > > -               return device_defaults.gt_types_allowed;
+> > > > > -
+> > > > > -       scoped_guard(mutex, &dev->lock)
+> > > > > -               mask = dev->config.gt_types_allowed;
+> > > > > -       config_group_put(&dev->group);
+> > > > > -
+> > > > > -       return mask;
+> > > > > -}
+> > > > > -
+> > > > > -/**
+> > > > > - * xe_configfs_primary_gt_allowed - determine whether primary
+> > > > > GTs
+> > > > > are supported
+> > > > > - * @pdev: pci device
+> > > > > - *
+> > > > > - * Return: True if primary GTs are enabled, false if they have
+> > > > > been disabled via
+> > > > > - *     configfs.
+> > > > > - */
+> > > > > -bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev)
+> > > > > -{
+> > > > > -       return get_gt_types_allowed(pdev) &
+> > > > > BIT_ULL(XE_GT_TYPE_MAIN);
+> > > > > -}
+> > > > > -
+> > > > > -/**
+> > > > > - * xe_configfs_media_gt_allowed - determine whether media GTs
+> > > > > are
+> > > > > supported
+> > > > > - * @pdev: pci device
+> > > > > - *
+> > > > > - * Return: True if the media GTs are enabled, false if they
+> > > > > have
+> > > > > been disabled
+> > > > > - *     via configfs.
+> > > > > - */
+> > > > > -bool xe_configfs_media_gt_allowed(struct pci_dev *pdev)
+> > > > > -{
+> > > > > -       return get_gt_types_allowed(pdev) &
+> > > > > BIT_ULL(XE_GT_TYPE_MEDIA);
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t gt_types_allowed_show(struct config_item *item,
+> > > > > char *page)
+> > > > > -{
+> > > > > -       struct xe_config_device *dev =
+> > > > > to_xe_config_device(item);
+> > > > > -       char *p = page;
+> > > > > -
+> > > > > -       for (size_t i = 0; i < ARRAY_SIZE(gt_types); i++)
+> > > > > -               if (dev->gt_types_allowed &
+> > > > > BIT_ULL(gt_types[i].type))
+> > > > > -                       p += sprintf(p, "%s\n",
+> > > > > gt_types[i].name);
+> > > > > -
+> > > > > -       return p - page;
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t gt_types_allowed_store(struct config_item
+> > > > > *item,
+> > > > > const char *page,
+> > > > > -                                     size_t len)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item);
+> > > > > -       char *buf __free(kfree) = kstrdup(page, GFP_KERNEL);
+> > > > > -       char *p = buf;
+> > > > > -       u64 typemask = 0;
+> > > > > -
+> > > > > -       if (!buf)
+> > > > > -               return -ENOMEM;
+> > > > > -
+> > > > > -       while (p) {
+> > > > > -               char *typename = strsep(&p, ",\n");
+> > > > > -               bool matched = false;
+> > > > > -
+> > > > > -               if (typename[0] == '\0')
+> > > > > -                       continue;
+> > > > > -
+> > > > > -               for (size_t i = 0; i < ARRAY_SIZE(gt_types);
+> > > > > i++) {
+> > > > > -                       if (strcmp(typename, gt_types[i].name)
+> > > > > ==
+> > > > > 0) {
+> > > > > -                               typemask |=
+> > > > > BIT(gt_types[i].type);
+> > > > > -                               matched = true;
+> > > > > -                               break;
+> > > > > -                       }
+> > > > > -               }
+> > > > > -
+> > > > > -               if (!matched)
+> > > > > -                       return -EINVAL;
+> > > > > -       }
+> > > > > -
+> > > > > -       guard(mutex)(&dev->lock);
+> > > > > -       if (is_bound(dev))
+> > > > > -               return -EBUSY;
+> > > > > -
+> > > > > -       dev->config.gt_types_allowed = typemask;
+> > > > > -
+> > > > > -       return len;
+> > > > > -}
+> > > > > -
+> > > > > -/**
+> > > > > - * xe_configfs_get_enable_multi_queue - get configfs
+> > > > > enable_multi_queue setting
+> > > > > - * @pdev: pci device
+> > > > > - *
+> > > > > - * Return: true if multi-queue is enabled for this device (the
+> > > > > default),
+> > > > > - * false if it has been force-disabled via configfs.
+> > > > > - */
+> > > > > -bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > find_xe_config_group_device(pdev);
+> > > > > -       bool ret;
+> > > > > -
+> > > > > -       if (!dev)
+> > > > > -               return true;
+> > > > > -
+> > > > > -       scoped_guard(mutex, &dev->lock)
+> > > > > -               ret = dev->config.enable_multi_queue;
+> > > > > -       config_group_put(&dev->group);
+> > > > > -
+> > > > > -       return ret;
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t enable_multi_queue_show(struct config_item
+> > > > > *item,
+> > > > > char *page)
+> > > > > -{
+> > > > > -       struct xe_config_device *dev =
+> > > > > to_xe_config_device(item);
+> > > > > -
+> > > > > -       return sprintf(page, "%d\n", dev->enable_multi_queue);
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t enable_multi_queue_store(struct config_item
+> > > > > *item,
+> > > > > const char *page,
+> > > > > -                                       size_t len)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item);
+> > > > > -       bool val;
+> > > > > -       int ret;
+> > > > > -
+> > > > > -       ret = kstrtobool(page, &val);
+> > > > > -       if (ret)
+> > > > > -               return ret;
+> > > > > -
+> > > > > -       guard(mutex)(&dev->lock);
+> > > > > -       if (is_bound(dev))
+> > > > > -               return -EBUSY;
+> > > > > -
+> > > > > -       dev->config.enable_multi_queue = val;
+> > > > > -
+> > > > > -       return len;
+> > > > > -}
+> > > > > -
+> > > > > -/**
+> > > > > - * xe_configfs_get_psmi_enabled - get configfs enable_psmi
+> > > > > setting
+> > > > > - * @pdev: pci device
+> > > > > - *
+> > > > > - * Return: enable_psmi setting in configfs
+> > > > > - */
+> > > > > -bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > find_xe_config_group_device(pdev);
+> > > > > -       bool ret;
+> > > > > -
+> > > > > -       if (!dev)
+> > > > > -               return false;
+> > > > > -
+> > > > > -       scoped_guard(mutex, &dev->lock)
+> > > > > -               ret = dev->config.enable_psmi;
+> > > > > -       config_group_put(&dev->group);
+> > > > > -
+> > > > > -       return ret;
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t enable_psmi_show(struct config_item *item, char
+> > > > > *page)
+> > > > > -{
+> > > > > -       struct xe_config_device *dev =
+> > > > > to_xe_config_device(item);
+> > > > > -
+> > > > > -       return sprintf(page, "%d\n", dev->enable_psmi);
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t enable_psmi_store(struct config_item *item,
+> > > > > const
+> > > > > char *page, size_t len)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item);
+> > > > > -       bool val;
+> > > > > -       int ret;
+> > > > > -
+> > > > > -       ret = kstrtobool(page, &val);
+> > > > > -       if (ret)
+> > > > > -               return ret;
+> > > > > -
+> > > > > -       guard(mutex)(&dev->lock);
+> > > > > -       if (is_bound(dev))
+> > > > > -               return -EBUSY;
+> > > > > -
+> > > > > -       dev->config.enable_psmi = val;
+> > > > > -
+> > > > > -       return len;
+> > > > > -}
+> > > > > -
+> > > > > -/**
+> > > > > - * xe_configfs_get_survivability_mode - get configfs
+> > > > > survivability
+> > > > > mode attribute
+> > > > > - * @pdev: pci device
+> > > > > - *
+> > > > > - * Return: survivability_mode attribute in configfs
+> > > > > - */
+> > > > > -bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > find_xe_config_group_device(pdev);
+> > > > > -       bool mode;
+> > > > > -
+> > > > > -       if (!dev)
+> > > > > -               return device_defaults.survivability_mode;
+> > > > > -
+> > > > > -       scoped_guard(mutex, &dev->lock)
+> > > > > -               mode = dev->config.survivability_mode;
+> > > > > -       config_group_put(&dev->group);
+> > > > > -
+> > > > > -       return mode;
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t survivability_mode_show(struct config_item
+> > > > > *item,
+> > > > > char *page)
+> > > > > -{
+> > > > > -       struct xe_config_device *dev =
+> > > > > to_xe_config_device(item);
+> > > > > -
+> > > > > -       return sprintf(page, "%d\n", dev->survivability_mode);
+> > > > > -}
+> > > > > -
+> > > > > -static ssize_t survivability_mode_store(struct config_item
+> > > > > *item,
+> > > > > const char *page, size_t len)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item);
+> > > > > -       bool survivability_mode;
+> > > > > -       int ret;
+> > > > > -
+> > > > > -       ret = kstrtobool(page, &survivability_mode);
+> > > > > -       if (ret)
+> > > > > -               return ret;
+> > > > > -
+> > > > > -       guard(mutex)(&dev->lock);
+> > > > > -       if (is_bound(dev))
+> > > > > -               return -EBUSY;
+> > > > > -
+> > > > > -       dev->config.survivability_mode = survivability_mode;
+> > > > > -
+> > > > > -       return len;
+> > > > > -}
+> > > > > -
+> > > > > -CONFIGFS_ATTR(, ctx_restore_mid_bb);
+> > > > > -CONFIGFS_ATTR(, ctx_restore_post_bb);
+> > > > > -CONFIGFS_ATTR(, engines_allowed);
+> > > > > -CONFIGFS_ATTR(, gt_types_allowed);
+> > > > > -CONFIGFS_ATTR(, enable_multi_queue);
+> > > > > -CONFIGFS_ATTR(, enable_psmi);
+> > > > > -CONFIGFS_ATTR(, survivability_mode);
+> > > > > -
+> > > > > -static struct configfs_attribute *xe_config_device_attrs[] = {
+> > > > > -       &attr_ctx_restore_mid_bb,
+> > > > > -       &attr_ctx_restore_post_bb,
+> > > > > -       &attr_engines_allowed,
+> > > > > -       &attr_gt_types_allowed,
+> > > > > -       &attr_enable_multi_queue,
+> > > > > -       &attr_enable_psmi,
+> > > > > -       &attr_survivability_mode,
+> > > > > -       NULL,
+> > > > > -};
+> > > > > -
+> > > > >  static void xe_config_device_release(struct config_item *item)
+> > > > >  {
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item);
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_to_group_device(item);
+> > > > >  
+> > > > >         mutex_destroy(&dev->lock);
+> > > > >  
+> > > > > -       kfree(dev->config.ctx_restore_mid_bb[0].cs);
+> > > > > -       kfree(dev->config.ctx_restore_post_bb[0].cs);
+> > > > > +       xe_configfs_debug_release_config(&dev->config);
+> > > > >         kfree(dev);
+> > > > >  }
+> > > > >  
+> > > > > @@ -1037,33 +167,14 @@ static struct configfs_item_operations
+> > > > > xe_config_device_ops = {
+> > > > >         .release        = xe_config_device_release,
+> > > > >  };
+> > > > >  
+> > > > > -static bool xe_config_device_is_visible(struct config_item
+> > > > > *item,
+> > > > > -                                       struct
+> > > > > configfs_attribute
+> > > > > *attr, int n)
+> > > > > -{
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item);
+> > > > > -
+> > > > > -       if (attr == &attr_survivability_mode) {
+> > > > > -               if (!dev->desc->is_dgfx || dev->desc->platform
+> > > > > <
+> > > > > XE_BATTLEMAGE)
+> > > > > -                       return false;
+> > > > > -       }
+> > > > > -
+> > > > > -       return true;
+> > > > > -}
+> > > > > -
+> > > > > -static struct configfs_group_operations
+> > > > > xe_config_device_group_ops
+> > > > > = {
+> > > > > -       .is_visible     = xe_config_device_is_visible,
+> > > > > -};
+> > > > > -
+> > > > >  static const struct config_item_type xe_config_device_type = {
+> > > > >         .ct_item_ops    = &xe_config_device_ops,
+> > > > > -       .ct_group_ops   = &xe_config_device_group_ops,
+> > > > > -       .ct_attrs       = xe_config_device_attrs,
+> > > > >         .ct_owner       = THIS_MODULE,
+> > > > >  };
+> > > > >  
+> > > > >  static ssize_t sriov_max_vfs_show(struct config_item *item,
+> > > > > char
+> > > > > *page)
+> > > > >  {
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item->ci_parent);
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_subgroup_to_group_device(item);
+> > > > >  
+> > > > >         guard(mutex)(&dev->lock);
+> > > > >  
+> > > > > @@ -1075,13 +186,13 @@ static ssize_t sriov_max_vfs_show(struct
+> > > > > config_item *item, char *page)
+> > > > >  
+> > > > >  static ssize_t sriov_max_vfs_store(struct config_item *item,
+> > > > > const
+> > > > > char *page, size_t len)
+> > > > >  {
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item->ci_parent);
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_subgroup_to_group_device(item);
+> > > > >         unsigned int max_vfs;
+> > > > >         int ret;
+> > > > >  
+> > > > >         guard(mutex)(&dev->lock);
+> > > > >  
+> > > > > -       if (is_bound(dev))
+> > > > > +       if (xe_configfs_is_bound(dev))
+> > > > >                 return -EBUSY;
+> > > > >  
+> > > > >         ret = kstrtouint(page, 0, &max_vfs);
+> > > > > @@ -1097,7 +208,7 @@ static ssize_t sriov_max_vfs_store(struct
+> > > > > config_item *item, const char *page, s
+> > > > >  
+> > > > >  static ssize_t sriov_admin_only_pf_show(struct config_item
+> > > > > *item,
+> > > > > char *page)
+> > > > >  {
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item->ci_parent);
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_subgroup_to_group_device(item);
+> > > > >  
+> > > > >         guard(mutex)(&dev->lock);
+> > > > >  
+> > > > > @@ -1106,13 +217,13 @@ static ssize_t
+> > > > > sriov_admin_only_pf_show(struct config_item *item, char *page)
+> > > > >  
+> > > > >  static ssize_t sriov_admin_only_pf_store(struct config_item
+> > > > > *item,
+> > > > > const char *page, size_t len)
+> > > > >  {
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item->ci_parent);
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_subgroup_to_group_device(item);
+> > > > >         bool admin_only_pf;
+> > > > >         int ret;
+> > > > >  
+> > > > >         guard(mutex)(&dev->lock);
+> > > > >  
+> > > > > -       if (is_bound(dev))
+> > > > > +       if (xe_configfs_is_bound(dev))
+> > > > >                 return -EBUSY;
+> > > > >  
+> > > > >         ret = kstrtobool(page, &admin_only_pf);
+> > > > > @@ -1135,7 +246,7 @@ static struct configfs_attribute
+> > > > > *xe_config_sriov_attrs[] = {
+> > > > >  static bool xe_config_sriov_is_visible(struct config_item
+> > > > > *item,
+> > > > >                                        struct
+> > > > > configfs_attribute
+> > > > > *attr, int n)
+> > > > >  {
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > to_xe_config_group_device(item->ci_parent);
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_subgroup_to_group_device(item);
+> > > > >  
+> > > > >         if (attr == &sriov_attr_max_vfs && dev->mode !=
+> > > > > XE_SRIOV_MODE_PF)
+> > > > >                 return false;
+> > > > > @@ -1271,7 +382,17 @@ static struct configfs_subsystem
+> > > > > xe_configfs
+> > > > > = {
+> > > > >         },
+> > > > >  };
+> > > > >  
+> > > > > -static struct xe_config_group_device
+> > > > > *find_xe_config_group_device(struct pci_dev *pdev)
+> > > > > +/**
+> > > > > + * xe_configfs_find_group_device() - Find a configfs group by
+> > > > > PCI
+> > > > > device.
+> > > > > + * @pdev: the &pci_dev to look up
+> > > > > + *
+> > > > > + * Searches the configfs subsystem for a group whose name
+> > > > > matches
+> > > > > @pdev.
+> > > > > + * If found, the returned group has an elevated reference
+> > > > > count;
+> > > > > the caller
+> > > > > + * must call config_group_put() when done.
+> > > > > + *
+> > > > > + * Return: pointer to the matching &xe_config_group_device, or
+> > > > > NULL.
+> > > > > + */
+> > > > > +struct xe_config_group_device
+> > > > > *xe_configfs_find_group_device(struct pci_dev *pdev)
+> > > > >  {
+> > > > >         struct config_item *item;
+> > > > >  
+> > > > > @@ -1282,23 +403,25 @@ static struct xe_config_group_device
+> > > > > *find_xe_config_group_device(struct pci_dev
+> > > > >         if (!item)
+> > > > >                 return NULL;
+> > > > >  
+> > > > > -       return to_xe_config_group_device(item);
+> > > > > +       return xe_configfs_to_group_device(item);
+> > > > >  }
+> > > > >  
+> > > > >  static void dump_custom_dev_config(struct pci_dev *pdev,
+> > > > >                                    struct
+> > > > > xe_config_group_device
+> > > > > *dev)
+> > > > >  {
+> > > > >  #define PRI_CUSTOM_ATTR(fmt_, attr_) do { \
+> > > > > -               if (dev->config.attr_ != device_defaults.attr_)
+> > > > > \
+> > > > > +               if (dev->config.attr_ !=
+> > > > > xe_configfs_device_defaults.attr_) \
+> > > > >                         pci_info(pdev, "configfs: "
+> > > > > __stringify(attr_) " = " fmt_ "\n", \
+> > > > >                                  dev->config.attr_); \
+> > > > >         } while (0)
+> > > > >  
+> > > > > -       PRI_CUSTOM_ATTR("%llx", engines_allowed);
+> > > > > -       PRI_CUSTOM_ATTR("%llx", gt_types_allowed);
+> > > > > -       PRI_CUSTOM_ATTR("%d", enable_multi_queue);
+> > > > > -       PRI_CUSTOM_ATTR("%d", enable_psmi);
+> > > > > -       PRI_CUSTOM_ATTR("%d", survivability_mode);
+> > > > > +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+> > > > > +       PRI_CUSTOM_ATTR("%llx", debug.engines_allowed);
+> > > > > +       PRI_CUSTOM_ATTR("%llx", debug.gt_types_allowed);
+> > > > > +       PRI_CUSTOM_ATTR("%d", debug.enable_multi_queue);
+> > > > > +       PRI_CUSTOM_ATTR("%d", debug.enable_psmi);
+> > > > > +       PRI_CUSTOM_ATTR("%d", debug.survivability_mode);
+> > > > > +#endif
+> > > > >         PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
+> > > > >  
+> > > > >  #undef PRI_CUSTOM_ATTR
+> > > > > @@ -1313,13 +436,13 @@ static void
+> > > > > dump_custom_dev_config(struct
+> > > > > pci_dev *pdev,
+> > > > >   */
+> > > > >  void xe_configfs_check_device(struct pci_dev *pdev)
+> > > > >  {
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > find_xe_config_group_device(pdev);
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_find_group_device(pdev);
+> > > > >  
+> > > > >         if (!dev)
+> > > > >                 return;
+> > > > >  
+> > > > >         /* memcmp here is safe as both are zero-initialized */
+> > > > > -       if (memcmp(&dev->config, &device_defaults, sizeof(dev-
+> > > > > > config))) {
+> > > > > +       if (memcmp(&dev->config, &xe_configfs_device_defaults,
+> > > > > sizeof(dev->config))) {
+> > > > >                 pci_info(pdev, "Found custom settings in
+> > > > > configfs\n");
+> > > > >                 dump_custom_dev_config(pdev, dev);
+> > > > >         }
+> > > > > @@ -1341,7 +464,7 @@ void xe_configfs_check_device(struct
+> > > > > pci_dev
+> > > > > *pdev)
+> > > > >   */
+> > > > >  bool xe_configfs_admin_only_pf(struct pci_dev *pdev)
+> > > > >  {
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > find_xe_config_group_device(pdev);
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_find_group_device(pdev);
+> > > > >         bool admin_only_pf;
+> > > > >  
+> > > > >         if (!dev)
+> > > > > @@ -1366,7 +489,7 @@ bool xe_configfs_admin_only_pf(struct
+> > > > > pci_dev
+> > > > > *pdev)
+> > > > >   */
+> > > > >  unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev)
+> > > > >  {
+> > > > > -       struct xe_config_group_device *dev =
+> > > > > find_xe_config_group_device(pdev);
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_find_group_device(pdev);
+> > > > >         unsigned int max_vfs;
+> > > > >  
+> > > > >         if (!dev)
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_configfs.h
+> > > > > b/drivers/gpu/drm/xe/xe_configfs.h
+> > > > > index 7db2f46291fa..a2dc0a7cc7b5 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_configfs.h
+> > > > > +++ b/drivers/gpu/drm/xe/xe_configfs.h
+> > > > > @@ -12,24 +12,76 @@
+> > > > >  #include "xe_defaults.h"
+> > > > >  #include "xe_module.h"
+> > > > >  
+> > > > > +struct config_item;
+> > > > >  struct pci_dev;
+> > > > > +struct xe_config_group_device;
+> > > > > +
+> > > > > +extern const struct xe_config_device
+> > > > > xe_configfs_device_defaults;
+> > > > >  
+> > > > >  #if IS_ENABLED(CONFIG_CONFIGFS_FS)
+> > > > > +/**
+> > > > > + * xe_configfs_to_group_device() - Cast a config_item to
+> > > > > &xe_config_group_device.
+> > > > > + * @item: the &config_item embedded in the device group
+> > > > > + *
+> > > > > + * The @item must be the top-level device group's cg_item, not
+> > > > > a
+> > > > > subgroup item.
+> > > > > + * Use xe_configfs_subgroup_to_group_device() for subgroup
+> > > > > show/store callbacks.
+> > > > > + *
+> > > > > + * Return: pointer to the enclosing &xe_config_group_device.
+> > > > > + */
+> > > > > +static inline struct xe_config_group_device *
+> > > > > +xe_configfs_to_group_device(struct config_item *item)
+> > > > > +{
+> > > > > +       return container_of(to_config_group(item), struct
+> > > > > xe_config_group_device, group);
+> > > > > +}
+> > > > > +
+> > > > > +/**
+> > > > > + * xe_configfs_to_device() - Cast a config_item to
+> > > > > &xe_config_device.
+> > > > > + * @item: the &config_item embedded in the device group
+> > > > > + *
+> > > > > + * Convenience wrapper around xe_configfs_to_group_device().
+> > > > > + *
+> > > > > + * Return: pointer to the &xe_config_device nested in the
+> > > > > group.
+> > > > > + */
+> > > > > +static inline struct xe_config_device
+> > > > > *xe_configfs_to_device(struct config_item *item)
+> > > > > +{
+> > > > > +       return &xe_configfs_to_group_device(item)->config;
+> > > > > +}
+> > > > > +
+> > > > > +/**
+> > > > > + * xe_configfs_subgroup_to_group_device() - Cast a subgroup
+> > > > > item
+> > > > > to &xe_config_group_device.
+> > > > > + * @item: the &config_item of a subgroup (e.g. sriov or debug)
+> > > > > + *
+> > > > > + * In configfs, show/store callbacks for a subgroup's
+> > > > > attributes
+> > > > > receive the
+> > > > > + * subgroup's cg_item, whose parent is the device group's
+> > > > > cg_item.
+> > > > > + * This helper walks up one level to return the enclosing
+> > > > > device
+> > > > > group.
+> > > > > + *
+> > > > > + * Return: pointer to the enclosing &xe_config_group_device.
+> > > > > + */
+> > > > > +static inline struct xe_config_group_device *
+> > > > > +xe_configfs_subgroup_to_group_device(struct config_item *item)
+> > > > > +{
+> > > > > +       return xe_configfs_to_group_device(item->ci_parent);
+> > > > > +}
+> > > > > +
+> > > > > +/**
+> > > > > + * xe_configfs_subgroup_to_device() - Cast a subgroup item to
+> > > > > &xe_config_device.
+> > > > > + * @item: the &config_item of a subgroup (e.g. sriov or debug)
+> > > > > + *
+> > > > > + * Convenience wrapper for a subgroup item to get the
+> > > > > &xe_config_device.
+> > > > > + *
+> > > > > + * Return: pointer to the &xe_config_device nested in the
+> > > > > parent
+> > > > > device group.
+> > > > > + */
+> > > > > +static inline struct xe_config_device *
+> > > > > +xe_configfs_subgroup_to_device(struct config_item *item)
+> > > > > +{
+> > > > > +       return xe_configfs_to_device(item->ci_parent);
+> > > > > +}
+> > > > > +
+> > > > > +bool xe_configfs_is_bound(struct xe_config_group_device *dev);
+> > > > > +struct xe_config_group_device
+> > > > > *xe_configfs_find_group_device(struct pci_dev *pdev);
+> > > > >  int xe_configfs_init(void);
+> > > > >  void xe_configfs_exit(void);
+> > > > >  void xe_configfs_check_device(struct pci_dev *pdev);
+> > > > > -u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+> > > > > -                                      enum xe_engine_class
+> > > > > class,
+> > > > > -                                      const u32 **cs);
+> > > > > -u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+> > > > > -                                       enum xe_engine_class
+> > > > > class,
+> > > > > -                                       const u32 **cs);
+> > > > > -u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
+> > > > > -bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev);
+> > > > > -bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
+> > > > > -bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
+> > > > > -bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
+> > > > > -bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
+> > > > >  #ifdef CONFIG_PCI_IOV
+> > > > >  unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev);
+> > > > >  bool xe_configfs_admin_only_pf(struct pci_dev *pdev);
+> > > > > @@ -38,18 +90,6 @@ bool xe_configfs_admin_only_pf(struct
+> > > > > pci_dev
+> > > > > *pdev);
+> > > > >  static inline int xe_configfs_init(void) { return 0; }
+> > > > >  static inline void xe_configfs_exit(void) { }
+> > > > >  static inline void xe_configfs_check_device(struct pci_dev
+> > > > > *pdev)
+> > > > > { }
+> > > > > -static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct
+> > > > > pci_dev *pdev,
+> > > > > -                                                    enum
+> > > > > xe_engine_class class,
+> > > > > -                                                    const u32
+> > > > > **cs) { return 0; }
+> > > > > -static inline u32 xe_configfs_get_ctx_restore_post_bb(struct
+> > > > > pci_dev *pdev,
+> > > > > -                                                     enum
+> > > > > xe_engine_class class,
+> > > > > -                                                     const u32
+> > > > > **cs) { return 0; }
+> > > > > -static inline u64 xe_configfs_get_engines_allowed(struct
+> > > > > pci_dev
+> > > > > *pdev) { return U64_MAX; }
+> > > > > -static inline bool xe_configfs_primary_gt_allowed(struct
+> > > > > pci_dev
+> > > > > *pdev) { return true; }
+> > > > > -static inline bool xe_configfs_media_gt_allowed(struct pci_dev
+> > > > > *pdev) { return true; }
+> > > > > -static inline bool xe_configfs_get_enable_multi_queue(struct
+> > > > > pci_dev *pdev) { return true; }
+> > > > > -static inline bool xe_configfs_get_psmi_enabled(struct pci_dev
+> > > > > *pdev) { return false; }
+> > > > > -static inline bool xe_configfs_get_survivability_mode(struct
+> > > > > pci_dev *pdev) { return false; }
+> > > > >  #ifdef CONFIG_PCI_IOV
+> > > > >  static inline unsigned int xe_configfs_get_max_vfs(struct
+> > > > > pci_dev
+> > > > > *pdev)
+> > > > >  {
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.c
+> > > > > b/drivers/gpu/drm/xe/xe_configfs_debug.c
+> > > > > index 45617282cec5..b2667573efbe 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_configfs_debug.c
+> > > > > +++ b/drivers/gpu/drm/xe/xe_configfs_debug.c
+> > > > > @@ -3,12 +3,968 @@
+> > > > >   * Copyright © 2026 Intel Corporation
+> > > > >   */
+> > > > >  
+> > > > > +#include <linux/bitops.h>
+> > > > >  #include <linux/configfs.h>
+> > > > >  #include <linux/module.h>
+> > > > > +#include <linux/cleanup.h>
+> > > > > +#include <linux/find.h>
+> > > > > +#include <linux/pci.h>
+> > > > > +#include <linux/string.h>
+> > > > >  
+> > > > > +#include "abi/guc_log_abi.h"
+> > > > > +#include "instructions/xe_mi_commands.h"
+> > > > > +#include "xe_configfs.h"
+> > > > >  #include "xe_configfs_debug.h"
+> > > > >  #include "xe_configfs_types.h"
+> > > > > +#include "xe_gt_types.h"
+> > > > > +#include "xe_hw_engine_types.h"
+> > > > > +#include "xe_pci_types.h"
+> > > > > +
+> > > > > +/**
+> > > > > + * DOC: Xe Configfs Debug Attributes
+> > > > > + *
+> > > > > + * Overview
+> > > > > + * ========
+> > > > > + *
+> > > > > + * The following configfs attributes are only available when
+> > > > > the
+> > > > > kernel is
+> > > > > + * built with ``CONFIG_DRM_XE_DEBUG=y``. They appear under the
+> > > > > ``debug/``
+> > > > > + * subdirectory of each xe configfs device. They are intended
+> > > > > for
+> > > > > hardware
+> > > > > + * and driver debugging and are not stable ABI. Using them is
+> > > > > "at
+> > > > > your own
+> > > > > + * risk".
+> > > > > + *
+> > > > > + * See the top-level ``Xe Configfs`` documentation in
+> > > > > ``xe_configfs.c``
+> > > > > + * for how to create, probe and remove configfs devices. Once
+> > > > > a
+> > > > > device
+> > > > > + * directory exists, the driver populates it with a ``debug/``
+> > > > > subdirectory
+> > > > > + * containing the entries described below::
+> > > > > + *
+> > > > > + *     /sys/kernel/config/xe/
+> > > > > + *     └── 0000:03:00.0
+> > > > > + *         └── debug/
+> > > > > + *             ├── ctx_restore_mid_bb
+> > > > > + *             ├── ctx_restore_post_bb
+> > > > > + *             ├── engines_allowed
+> > > > > + *             ├── gt_types_allowed
+> > > > > + *             ├── enable_multi_queue
+> > > > > + *             ├── enable_psmi
+> > > > > + *             └── survivability_mode
+> > > > > + *
+> > > > > + * Configure Attributes
+> > > > > + * ====================
+> > > > > + *
+> > > > > + * Context restore BB
+> > > > > + * ------------------
+> > > > > + *
+> > > > > + * Allow to execute a batch buffer during any context
+> > > > > switches.
+> > > > > When the
+> > > > > + * GPU is restoring the context, it executes additional
+> > > > > commands.
+> > > > > It's useful
+> > > > > + * for testing additional workarounds and validating certain
+> > > > > HW
+> > > > > behaviors: it's
+> > > > > + * not intended for normal execution and will taint the kernel
+> > > > > with TAINT_TEST
+> > > > > + * when used.
+> > > > > + *
+> > > > > + * The syntax allows to pass straight instructions to be
+> > > > > executed
+> > > > > by the engine
+> > > > > + * in a batch buffer or set specific registers.
+> > > > > + *
+> > > > > + * #. Generic instruction::
+> > > > > + *
+> > > > > + *     <engine-class> cmd <instr> [[dword0] [dword1] [...]]
+> > > > > + *
+> > > > > + * #. Simple register setting::
+> > > > > + *
+> > > > > + *     <engine-class> reg <address> <value>
+> > > > > + *
+> > > > > + * Commands are saved per engine class: all instances of that
+> > > > > class will execute
+> > > > > + * those commands during context switch. The instruction,
+> > > > > dword
+> > > > > arguments,
+> > > > > + * addresses and values are in hex format like in the examples
+> > > > > below.
+> > > > > + *
+> > > > > + * #. Execute a LRI command to write 0xDEADBEEF to register
+> > > > > 0x4f10
+> > > > > after the
+> > > > > + *    normal context restore::
+> > > > > + *
+> > > > > + *     # echo 'rcs cmd 11000001 4F100 DEADBEEF' \
+> > > > > + *             >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/debug/ctx_restore_post_bb
+> > > > > + *
+> > > > > + * #. Execute a LRI command to write 0xDEADBEEF to register
+> > > > > 0x4f10
+> > > > > at the
+> > > > > + *    beginning of the context restore::
+> > > > > + *
+> > > > > + *     # echo 'rcs cmd 11000001 4F100 DEADBEEF' \
+> > > > > + *             >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/debug/ctx_restore_mid_bb
+> > > > > + *
+> > > > > + * #. Load certain values in a couple of registers (it can be
+> > > > > used
+> > > > > as a simpler
+> > > > > + *    alternative to the `cmd`) action::
+> > > > > + *
+> > > > > + *     # cat >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/debug/ctx_restore_post_bb
+> > > > > <<EOF
+> > > > > + *     rcs reg 4F100 DEADBEEF
+> > > > > + *     rcs reg 4F104 FFFFFFFF
+> > > > > + *     EOF
+> > > > > + *
+> > > > > + *    .. note::
+> > > > > + *
+> > > > > + *       When using multiple lines, make sure to use a command
+> > > > > that is
+> > > > > + *       implemented with a single write syscall, like
+> > > > > HEREDOC.
+> > > > > + *
+> > > > > + * Currently this is implemented only for post and mid context
+> > > > > restore and
+> > > > > + * these attributes can only be set before binding to the
+> > > > > device.
+> > > > > + *
+> > > > > + * Allowed engines:
+> > > > > + * ----------------
+> > > > > + *
+> > > > > + * Allow only a set of engine(s) to be available, disabling
+> > > > > the
+> > > > > other engines
+> > > > > + * even if they are available in hardware. This is applied
+> > > > > after
+> > > > > HW fuses are
+> > > > > + * considered on each tile. Examples:
+> > > > > + *
+> > > > > + * Allow only one render and one copy engines, nothing else::
+> > > > > + *
+> > > > > + *     # echo 'rcs0,bcs0' >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/debug/engines_allowed
+> > > > > + *
+> > > > > + * Allow only compute engines and first copy engine::
+> > > > > + *
+> > > > > + *     # echo 'ccs*,bcs0' >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/debug/engines_allowed
+> > > > > + *
+> > > > > + * Note that the engine names are the per-GT hardware names.
+> > > > > On
+> > > > > multi-tile
+> > > > > + * platforms, writing ``rcs0,bcs0`` to this file would allow
+> > > > > the
+> > > > > first render
+> > > > > + * and copy engines on each tile.
+> > > > > + *
+> > > > > + * The requested configuration may not be supported by the
+> > > > > platform and driver
+> > > > > + * may fail to probe. For example: if at least one copy engine
+> > > > > is
+> > > > > expected to be
+> > > > > + * available for migrations, but it's disabled. This is
+> > > > > intended
+> > > > > for debugging
+> > > > > + * purposes only.
+> > > > > + *
+> > > > > + * This attribute can only be set before binding to the
+> > > > > device.
+> > > > > + *
+> > > > > + * Allowed GT types:
+> > > > > + * -----------------
+> > > > > + *
+> > > > > + * Allow only specific types of GTs to be detected and
+> > > > > initialized
+> > > > > by the
+> > > > > + * driver.  Any combination of GT types can be
+> > > > > enabled/disabled,
+> > > > > although
+> > > > > + * some settings will cause the device to fail to probe.
+> > > > > + *
+> > > > > + * Writes support both comma- and newline-separated input
+> > > > > format.
+> > > > > Reads
+> > > > > + * will always return one GT type per line. "primary" and
+> > > > > "media"
+> > > > > are the
+> > > > > + * GT type names supported by this interface.
+> > > > > + *
+> > > > > + * This attribute can only be set before binding to the
+> > > > > device.
+> > > > > + *
+> > > > > + * Examples:
+> > > > > + *
+> > > > > + * Allow both primary and media GTs to be initialized and
+> > > > > used. 
+> > > > > This matches
+> > > > > + * the driver's default behavior::
+> > > > > + *
+> > > > > + *     # echo 'primary,media' >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/debug/gt_types_allowed
+> > > > > + *
+> > > > > + * Allow only the primary GT of each tile to be initialized
+> > > > > and
+> > > > > used,
+> > > > > + * effectively disabling the media GT if it exists on the
+> > > > > platform::
+> > > > > + *
+> > > > > + *     # echo 'primary' >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/debug/gt_types_allowed
+> > > > > + *
+> > > > > + * Allow only the media GT of each tile to be initialized and
+> > > > > used,
+> > > > > + * effectively disabling the primary GT.  **This configuration
+> > > > > will cause
+> > > > > + * device probe failure on all current platforms, but may be
+> > > > > allowed on
+> > > > > + * igpu platforms in the future**::
+> > > > > + *
+> > > > > + *     # echo 'media' >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/debug/gt_types_allowed
+> > > > > + *
+> > > > > + * Disable all GTs.  Only other GPU IP (such as display) is
+> > > > > potentially usable.
+> > > > > + * **This configuration will cause device probe failure on all
+> > > > > current
+> > > > > + * platforms, but may be allowed on igpu platforms in the
+> > > > > future**::
+> > > > > + *
+> > > > > + *     # echo '' >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/debug/gt_types_allowed
+> > > > > + *
+> > > > > + * Enable multi-queue
+> > > > > + * ------------------
+> > > > > + *
+> > > > > + * Multi-queue support on the device is enabled by default
+> > > > > where
+> > > > > the
+> > > > > + * hardware supports it. Writing 0 force-disables multi-queue
+> > > > > support:
+> > > > > + * multi-queue exec-queue group creation via ioctl is refused,
+> > > > > and
+> > > > > the
+> > > > > + * GuC feature is disabled::
+> > > > > + *
+> > > > > + *     # echo 0 >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/debug/enable_multi_queue
+> > > > > + *
+> > > > > + * This attribute can only be set before binding to the
+> > > > > device.
+> > > > > + *
+> > > > > + * PSMI
+> > > > > + * ----
+> > > > > + *
+> > > > > + * Enable extra debugging capabilities to trace engine
+> > > > > execution.
+> > > > > Only useful
+> > > > > + * during early platform enabling and requires additional
+> > > > > hardware
+> > > > > connected.
+> > > > > + * Once it's enabled, additionals WAs are added and runtime
+> > > > > configuration is
+> > > > > + * done via debugfs. Example to enable it::
+> > > > > + *
+> > > > > + *     # echo 1 >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/debug/enable_psmi
+> > > > > + *
+> > > > > + * This attribute can only be set before binding to the
+> > > > > device.
+> > > > > + *
+> > > > > + * Survivability mode:
+> > > > > + * -------------------
+> > > > > + *
+> > > > > + * Enable survivability mode on supported cards. This setting
+> > > > > only
+> > > > > takes
+> > > > > + * effect when probing the device. Example to enable it::
+> > > > > + *
+> > > > > + *     # echo 1 >
+> > > > > /sys/kernel/config/xe/0000:03:00.0/debug/survivability_mode
+> > > > > + *
+> > > > > + * This attribute can only be set before binding to the
+> > > > > device.
+> > > > > + *
+> > > > > + */
+> > > > > +
+> > > > > +struct engine_info {
+> > > > > +       const char *cls;
+> > > > > +       u64 mask;
+> > > > > +       enum xe_engine_class engine_class;
+> > > > > +};
+> > > > > +
+> > > > > +/* Some helpful macros to aid on the sizing of buffer
+> > > > > allocation
+> > > > > when parsing */
+> > > > > +#define MAX_ENGINE_CLASS_CHARS 5
+> > > > > +#define MAX_ENGINE_INSTANCE_CHARS 2
+> > > > > +
+> > > > > +static const struct engine_info engine_info[] = {
+> > > > > +       { .cls = "rcs", .mask = XE_HW_ENGINE_RCS_MASK,
+> > > > > .engine_class = XE_ENGINE_CLASS_RENDER },
+> > > > > +       { .cls = "bcs", .mask = XE_HW_ENGINE_BCS_MASK,
+> > > > > .engine_class = XE_ENGINE_CLASS_COPY },
+> > > > > +       { .cls = "vcs", .mask = XE_HW_ENGINE_VCS_MASK,
+> > > > > .engine_class = XE_ENGINE_CLASS_VIDEO_DECODE },
+> > > > > +       { .cls = "vecs", .mask = XE_HW_ENGINE_VECS_MASK,
+> > > > > .engine_class = XE_ENGINE_CLASS_VIDEO_ENHANCE },
+> > > > > +       { .cls = "ccs", .mask = XE_HW_ENGINE_CCS_MASK,
+> > > > > .engine_class = XE_ENGINE_CLASS_COMPUTE },
+> > > > > +       { .cls = "gsccs", .mask = XE_HW_ENGINE_GSCCS_MASK,
+> > > > > .engine_class = XE_ENGINE_CLASS_OTHER },
+> > > > > +};
+> > > > > +
+> > > > > +static const struct {
+> > > > > +       const char *name;
+> > > > > +       enum xe_gt_type type;
+> > > > > +} gt_types[] = {
+> > > > > +       { .name = "primary", .type = XE_GT_TYPE_MAIN },
+> > > > > +       { .name = "media", .type = XE_GT_TYPE_MEDIA },
+> > > > > +};
+> > > > > +
+> > > > > +static struct xe_config_group_device *find_device(struct
+> > > > > pci_dev
+> > > > > *pdev)
+> > > > > +{
+> > > > > +       return xe_configfs_find_group_device(pdev);
+> > > > > +}
+> > > > > +
+> > > > > +/**
+> > > > > + * xe_configfs_get_ctx_restore_mid_bb - get configfs
+> > > > > ctx_restore_mid_bb setting
+> > > > > + * @pdev: pci device
+> > > > > + * @class: hw engine class
+> > > > > + * @cs: pointer to the bb to use - only valid during probe
+> > > > > + *
+> > > > > + * Return: Number of dwords used in the mid_ctx_restore
+> > > > > setting in
+> > > > > configfs
+> > > > > + */
+> > > > > +u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+> > > > > +                                      enum xe_engine_class
+> > > > > class,
+> > > > > +                                      const u32 **cs)
+> > > > > +{
+> > > > > +       struct xe_config_group_device *dev = find_device(pdev);
+> > > > > +       u32 len;
+> > > > > +
+> > > > > +       if (!dev)
+> > > > > +               return 0;
+> > > > > +
+> > > > > +       scoped_guard(mutex, &dev->lock) {
+> > > > > +               if (cs)
+> > > > > +                       *cs = dev-
+> > > > > > config.debug.ctx_restore_mid_bb[class].cs;
+> > > > > +
+> > > > > +               len = dev-
+> > > > > > config.debug.ctx_restore_mid_bb[class].len;
+> > > > > +       }
+> > > > > +       config_group_put(&dev->group);
+> > > > > +
+> > > > > +       return len;
+> > > > > +}
+> > > > > +
+> > > > > +/**
+> > > > > + * xe_configfs_get_ctx_restore_post_bb - get configfs
+> > > > > ctx_restore_post_bb setting
+> > > > > + * @pdev: pci device
+> > > > > + * @class: hw engine class
+> > > > > + * @cs: pointer to the bb to use - only valid during probe
+> > > > > + *
+> > > > > + * Return: Number of dwords used in the post_ctx_restore
+> > > > > setting
+> > > > > in configfs
+> > > > > + */
+> > > > > +u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+> > > > > +                                       enum xe_engine_class
+> > > > > class,
+> > > > > +                                       const u32 **cs)
+> > > > > +{
+> > > > > +       struct xe_config_group_device *dev = find_device(pdev);
+> > > > > +       u32 len;
+> > > > > +
+> > > > > +       if (!dev)
+> > > > > +               return 0;
+> > > > > +
+> > > > > +       scoped_guard(mutex, &dev->lock) {
+> > > > > +               *cs = dev-
+> > > > > > config.debug.ctx_restore_post_bb[class].cs;
+> > > > > +               len = dev-
+> > > > > > config.debug.ctx_restore_post_bb[class].len;
+> > > > > +       }
+> > > > > +       config_group_put(&dev->group);
+> > > > > +
+> > > > > +       return len;
+> > > > > +}
+> > > > > +
+> > > > > +static bool wa_bb_read_advance(bool dereference, char **p,
+> > > > > +                              const char *append, size_t len,
+> > > > > +                              size_t *max_size)
+> > > > > +{
+> > > > > +       if (dereference) {
+> > > > > +               if (len >= *max_size)
+> > > > > +                       return false;
+> > > > > +               *max_size -= len;
+> > > > > +               if (append)
+> > > > > +                       memcpy(*p, append, len);
+> > > > > +       }
+> > > > > +
+> > > > > +       *p += len;
+> > > > > +
+> > > > > +       return true;
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t wa_bb_show(struct xe_config_group_device *dev,
+> > > > > +                         struct wa_bb wa_bb[static
+> > > > > XE_ENGINE_CLASS_MAX],
+> > > > > +                         char *data, size_t sz)
+> > > > > +{
+> > > > > +       char *p = data;
+> > > > > +
+> > > > > +       guard(mutex)(&dev->lock);
+> > > > > +
+> > > > > +       for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
+> > > > > +               enum xe_engine_class ec =
+> > > > > engine_info[i].engine_class;
+> > > > > +               size_t len;
+> > > > > +
+> > > > > +               if (!wa_bb[ec].len)
+> > > > > +                       continue;
+> > > > > +
+> > > > > +               len = snprintf(p, sz, "%s:",
+> > > > > engine_info[i].cls);
+> > > > > +               if (!wa_bb_read_advance(data, &p, NULL, len,
+> > > > > &sz))
+> > > > > +                       return -ENOBUFS;
+> > > > > +
+> > > > > +               for (size_t j = 0; j < wa_bb[ec].len; j++) {
+> > > > > +                       len = snprintf(p, sz, " %08x",
+> > > > > wa_bb[ec].cs[j]);
+> > > > > +                       if (!wa_bb_read_advance(data, &p, NULL,
+> > > > > len, &sz))
+> > > > > +                               return -ENOBUFS;
+> > > > > +               }
+> > > > > +
+> > > > > +               if (!wa_bb_read_advance(data, &p, "\n", 1,
+> > > > > &sz))
+> > > > > +                       return -ENOBUFS;
+> > > > > +       }
+> > > > > +
+> > > > > +       if (!wa_bb_read_advance(data, &p, "", 1, &sz))
+> > > > > +               return -ENOBUFS;
+> > > > > +
+> > > > > +       /* Reserve one more to match check for '\0' */
+> > > > > +       if (!data)
+> > > > > +               p++;
+> > > > > +
+> > > > > +       return p - data;
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t ctx_restore_mid_bb_show(struct config_item
+> > > > > *item,
+> > > > > char *page)
+> > > > > +{
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_subgroup_to_group_device(item);
+> > > > > +
+> > > > > +       return wa_bb_show(dev, dev-
+> > > > > > config.debug.ctx_restore_mid_bb, page, SZ_4K);
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t ctx_restore_post_bb_show(struct config_item
+> > > > > *item,
+> > > > > char *page)
+> > > > > +{
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_subgroup_to_group_device(item);
+> > > > > +
+> > > > > +       return wa_bb_show(dev, dev-
+> > > > > > config.debug.ctx_restore_post_bb, page, SZ_4K);
+> > > > > +}
+> > > > > +
+> > > > > +static void wa_bb_append(struct wa_bb *wa_bb, u32 val)
+> > > > > +{
+> > > > > +       if (wa_bb->cs)
+> > > > > +               wa_bb->cs[wa_bb->len] = val;
+> > > > > +
+> > > > > +       wa_bb->len++;
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t parse_hex(const char *line, u32 *pval)
+> > > > > +{
+> > > > > +       char numstr[12];
+> > > > > +       const char *p;
+> > > > > +       ssize_t numlen;
+> > > > > +
+> > > > > +       p = line + strspn(line, " \t");
+> > > > > +       if (!*p || *p == '\n')
+> > > > > +               return 0;
+> > > > > +
+> > > > > +       numlen = strcspn(p, " \t\n");
+> > > > > +       if (!numlen || numlen >= sizeof(numstr) - 1)
+> > > > > +               return -EINVAL;
+> > > > > +
+> > > > > +       memcpy(numstr, p, numlen);
+> > > > > +       numstr[numlen] = '\0';
+> > > > > +       p += numlen;
+> > > > > +
+> > > > > +       if (kstrtou32(numstr, 16, pval))
+> > > > > +               return -EINVAL;
+> > > > > +
+> > > > > +       return p - line;
+> > > > > +}
+> > > > > +
+> > > > > +static int parse_engine(const char *s, const char *end_chars,
+> > > > > u64
+> > > > > *mask,
+> > > > > +                       const struct engine_info **pinfo);
+> > > > > +
+> > > > > +/*
+> > > > > + * Parse lines with the format
+> > > > > + *
+> > > > > + *     <engine-class> cmd <u32> <u32...>
+> > > > > + *     <engine-class> reg <u32_addr> <u32_val>
+> > > > > + *
+> > > > > + * and optionally save them in @wa_bb[i].cs is non-NULL.
+> > > > > + *
+> > > > > + * Return the number of dwords parsed.
+> > > > > + */
+> > > > > +static ssize_t parse_wa_bb_lines(const char *lines,
+> > > > > +                                struct wa_bb wa_bb[static
+> > > > > XE_ENGINE_CLASS_MAX])
+> > > > > +{
+> > > > > +       ssize_t dwords = 0, ret;
+> > > > > +       const char *p;
+> > > > > +
+> > > > > +       for (p = lines; *p; p++) {
+> > > > > +               const struct engine_info *info = NULL;
+> > > > > +               u32 val, val2;
+> > > > > +
+> > > > > +               /* Also allow empty lines */
+> > > > > +               p += strspn(p, " \t\n");
+> > > > > +               if (!*p)
+> > > > > +                       break;
+> > > > > +
+> > > > > +               ret = parse_engine(p, " \t\n", NULL, &info);
+> > > > > +               if (ret < 0)
+> > > > > +                       return ret;
+> > > > > +
+> > > > > +               p += ret;
+> > > > > +               p += strspn(p, " \t");
+> > > > > +
+> > > > > +               if (str_has_prefix(p, "cmd")) {
+> > > > > +                       for (p += strlen("cmd"); *p;) {
+> > > > > +                               ret = parse_hex(p, &val);
+> > > > > +                               if (ret < 0)
+> > > > > +                                       return -EINVAL;
+> > > > > +                               if (!ret)
+> > > > > +                                       break;
+> > > > > +
+> > > > > +                               p += ret;
+> > > > > +                               dwords++;
+> > > > > +                               wa_bb_append(&wa_bb[info-
+> > > > > > engine_class], val);
+> > > > > +                       }
+> > > > > +               } else if (str_has_prefix(p, "reg")) {
+> > > > > +                       p += strlen("reg");
+> > > > > +                       ret = parse_hex(p, &val);
+> > > > > +                       if (ret <= 0)
+> > > > > +                               return -EINVAL;
+> > > > > +
+> > > > > +                       p += ret;
+> > > > > +                       ret = parse_hex(p, &val2);
+> > > > > +                       if (ret <= 0)
+> > > > > +                               return -EINVAL;
+> > > > > +
+> > > > > +                       p += ret;
+> > > > > +                       dwords += 3;
+> > > > > +                       wa_bb_append(&wa_bb[info-
+> > > > > >engine_class],
+> > > > > +                                    MI_LOAD_REGISTER_IMM |
+> > > > > MI_LRI_NUM_REGS(1));
+> > > > > +                       wa_bb_append(&wa_bb[info-
+> > > > > >engine_class],
+> > > > > val);
+> > > > > +                       wa_bb_append(&wa_bb[info-
+> > > > > >engine_class],
+> > > > > val2);
+> > > > > +               } else {
+> > > > > +                       return -EINVAL;
+> > > > > +               }
+> > > > > +       }
+> > > > > +
+> > > > > +       return dwords;
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t wa_bb_store(struct wa_bb wa_bb[static
+> > > > > XE_ENGINE_CLASS_MAX],
+> > > > > +                          struct xe_config_group_device *dev,
+> > > > > +                          const char *page, size_t len)
+> > > > > +{
+> > > > > +       /* tmp_wa_bb must match wa_bb's size */
+> > > > > +       struct wa_bb tmp_wa_bb[XE_ENGINE_CLASS_MAX] = { };
+> > > > > +       ssize_t count, class;
+> > > > > +       u32 *tmp;
+> > > > > +
+> > > > > +       /* 1. Count dwords - wa_bb[i].cs is NULL for all
+> > > > > classes */
+> > > > > +       count = parse_wa_bb_lines(page, tmp_wa_bb);
+> > > > > +       if (count < 0)
+> > > > > +               return count;
+> > > > > +
+> > > > > +       guard(mutex)(&dev->lock);
+> > > > > +
+> > > > > +       if (xe_configfs_is_bound(dev))
+> > > > > +               return -EBUSY;
+> > > > > +
+> > > > > +       /*
+> > > > > +        * 2. Allocate a u32 array and set the pointers to the
+> > > > > right positions
+> > > > > +        * according to the length of each class' wa_bb
+> > > > > +        */
+> > > > > +       tmp = krealloc(wa_bb[0].cs, count * sizeof(u32),
+> > > > > GFP_KERNEL);
+> > > > > +       if (!tmp)
+> > > > > +               return -ENOMEM;
+> > > > > +
+> > > > > +       if (!count) {
+> > > > > +               memset(wa_bb, 0, sizeof(tmp_wa_bb));
+> > > > > +               return len;
+> > > > > +       }
+> > > > > +
+> > > > > +       for (class = 0, count = 0; class < XE_ENGINE_CLASS_MAX;
+> > > > > ++class) {
+> > > > > +               tmp_wa_bb[class].cs = tmp + count;
+> > > > > +               count += tmp_wa_bb[class].len;
+> > > > > +               tmp_wa_bb[class].len = 0;
+> > > > > +       }
+> > > > > +
+> > > > > +       /* 3. Parse wa_bb lines again, this time saving the
+> > > > > values
+> > > > > */
+> > > > > +       count = parse_wa_bb_lines(page, tmp_wa_bb);
+> > > > > +       if (count < 0) {
+> > > > > +               kfree(tmp);
+> > > > > +               memset(wa_bb, 0, sizeof(tmp_wa_bb));
+> > > > > +               return count;
+> > > > > +       }
+> > > > > +
+> > > > > +       memcpy(wa_bb, tmp_wa_bb, sizeof(tmp_wa_bb));
+> > > > > +
+> > > > > +       return len;
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t ctx_restore_mid_bb_store(struct config_item
+> > > > > *item,
+> > > > > +                                       const char *data,
+> > > > > size_t
+> > > > > sz)
+> > > > > +{
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_subgroup_to_group_device(item);
+> > > > > +
+> > > > > +       return wa_bb_store(dev-
+> > > > > >config.debug.ctx_restore_mid_bb,
+> > > > > dev, data, sz);
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t ctx_restore_post_bb_store(struct config_item
+> > > > > *item,
+> > > > > +                                        const char *data,
+> > > > > size_t
+> > > > > sz)
+> > > > > +{
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_subgroup_to_group_device(item);
+> > > > > +
+> > > > > +       return wa_bb_store(dev-
+> > > > > >config.debug.ctx_restore_post_bb,
+> > > > > dev, data, sz);
+> > > > > +}
+> > > > > +
+> > > > > +/**
+> > > > > + * xe_configfs_get_engines_allowed - get engine allowed mask
+> > > > > from
+> > > > > configfs
+> > > > > + * @pdev: pci device
+> > > > > + *
+> > > > > + * Return: engine mask with allowed engines set in configfs
+> > > > > + */
+> > > > > +u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev)
+> > > > > +{
+> > > > > +       struct xe_config_group_device *dev = find_device(pdev);
+> > > > > +       u64 engines_allowed;
+> > > > > +
+> > > > > +       if (!dev)
+> > > > > +               return
+> > > > > xe_configfs_device_defaults.debug.engines_allowed;
+> > > > > +
+> > > > > +       scoped_guard(mutex, &dev->lock)
+> > > > > +               engines_allowed = dev-
+> > > > > > config.debug.engines_allowed;
+> > > > > +       config_group_put(&dev->group);
+> > > > > +
+> > > > > +       return engines_allowed;
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t engines_allowed_show(struct config_item *item,
+> > > > > char
+> > > > > *page)
+> > > > > +{
+> > > > > +       struct xe_config_device *dev =
+> > > > > xe_configfs_subgroup_to_device(item);
+> > > > > +       char *p = page;
+> > > > > +
+> > > > > +       for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
+> > > > > +               u64 mask = engine_info[i].mask;
+> > > > > +
+> > > > > +               if ((dev->debug.engines_allowed & mask) ==
+> > > > > mask) {
+> > > > > +                       p += sprintf(p, "%s*\n",
+> > > > > engine_info[i].cls);
+> > > > > +               } else if (mask & dev->debug.engines_allowed) {
+> > > > > +                       u16 bit0 = __ffs64(mask), bit;
+> > > > > +
+> > > > > +                       mask &= dev->debug.engines_allowed;
+> > > > > +
+> > > > > +                       for_each_set_bit(bit, (const unsigned
+> > > > > long
+> > > > > *)&mask, 64)
+> > > > > +                               p += sprintf(p, "%s%u\n",
+> > > > > engine_info[i].cls,
+> > > > > +                                            bit - bit0);
+> > > > > +               }
+> > > > > +       }
+> > > > > +
+> > > > > +       return p - page;
+> > > > > +}
+> > > > > +
+> > > > > +/*
+> > > > > + * Lookup engine_info. If @mask is not NULL, reduce the mask
+> > > > > according to the
+> > > > > + * instance in @pattern.
+> > > > > + *
+> > > > > + * Examples of inputs:
+> > > > > + * - lookup_engine_info("rcs0", &mask): return "rcs" entry
+> > > > > from
+> > > > > @engine_info and
+> > > > > + *   mask == BIT_ULL(XE_HW_ENGINE_RCS0)
+> > > > > + * - lookup_engine_info("rcs*", &mask): return "rcs" entry
+> > > > > from
+> > > > > @engine_info and
+> > > > > + *   mask == XE_HW_ENGINE_RCS_MASK
+> > > > > + * - lookup_engine_info("rcs", NULL): return "rcs" entry from
+> > > > > @engine_info
+> > > > > + */
+> > > > > +static const struct engine_info *lookup_engine_info(const char
+> > > > > *pattern, u64 *mask)
+> > > > > +{
+> > > > > +       for (size_t i = 0; i < ARRAY_SIZE(engine_info); i++) {
+> > > > > +               u8 instance;
+> > > > > +               u16 bit;
+> > > > > +
+> > > > > +               if (!str_has_prefix(pattern,
+> > > > > engine_info[i].cls))
+> > > > > +                       continue;
+> > > > > +
+> > > > > +               pattern += strlen(engine_info[i].cls);
+> > > > > +               if (!mask)
+> > > > > +                       return *pattern ? NULL :
+> > > > > &engine_info[i];
+> > > > > +
+> > > > > +               if (!strcmp(pattern, "*")) {
+> > > > > +                       *mask = engine_info[i].mask;
+> > > > > +                       return &engine_info[i];
+> > > > > +               }
+> > > > > +
+> > > > > +               if (kstrtou8(pattern, 10, &instance))
+> > > > > +                       return NULL;
+> > > > > +
+> > > > > +               bit = __ffs64(engine_info[i].mask) + instance;
+> > > > > +               if (bit >= fls64(engine_info[i].mask))
+> > > > > +                       return NULL;
+> > > > > +
+> > > > > +               *mask = BIT_ULL(bit);
+> > > > > +               return &engine_info[i];
+> > > > > +       }
+> > > > > +
+> > > > > +       return NULL;
+> > > > > +}
+> > > > > +
+> > > > > +static int parse_engine(const char *s, const char *end_chars,
+> > > > > u64
+> > > > > *mask,
+> > > > > +                       const struct engine_info **pinfo)
+> > > > > +{
+> > > > > +       char buf[MAX_ENGINE_CLASS_CHARS +
+> > > > > MAX_ENGINE_INSTANCE_CHARS
+> > > > > + 1];
+> > > > > +       const struct engine_info *info;
+> > > > > +       size_t len;
+> > > > > +
+> > > > > +       len = strcspn(s, end_chars);
+> > > > > +       if (len >= sizeof(buf))
+> > > > > +               return -EINVAL;
+> > > > > +
+> > > > > +       memcpy(buf, s, len);
+> > > > > +       buf[len] = '\0';
+> > > > > +
+> > > > > +       info = lookup_engine_info(buf, mask);
+> > > > > +       if (!info)
+> > > > > +               return -ENOENT;
+> > > > > +
+> > > > > +       if (pinfo)
+> > > > > +               *pinfo = info;
+> > > > > +
+> > > > > +       return len;
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t engines_allowed_store(struct config_item *item,
+> > > > > const char *page,
+> > > > > +                                    size_t len)
+> > > > > +{
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_subgroup_to_group_device(item);
+> > > > > +       ssize_t patternlen, p;
+> > > > > +       u64 mask, val = 0;
+> > > > > +
+> > > > > +       for (p = 0; p < len; p += patternlen + 1) {
+> > > > > +               patternlen = parse_engine(page + p, ",\n",
+> > > > > &mask,
+> > > > > NULL);
+> > > > > +               if (patternlen < 0)
+> > > > > +                       return -EINVAL;
+> > > > > +
+> > > > > +               val |= mask;
+> > > > > +       }
+> > > > > +
+> > > > > +       guard(mutex)(&dev->lock);
+> > > > > +       if (xe_configfs_is_bound(dev))
+> > > > > +               return -EBUSY;
+> > > > > +
+> > > > > +       dev->config.debug.engines_allowed = val;
+> > > > > +
+> > > > > +       return len;
+> > > > > +}
+> > > > > +
+> > > > > +static u64 get_gt_types_allowed(struct pci_dev *pdev)
+> > > > > +{
+> > > > > +       struct xe_config_group_device *dev = find_device(pdev);
+> > > > > +       u64 mask;
+> > > > > +
+> > > > > +       if (!dev)
+> > > > > +               return
+> > > > > xe_configfs_device_defaults.debug.gt_types_allowed;
+> > > > > +
+> > > > > +       scoped_guard(mutex, &dev->lock)
+> > > > > +               mask = dev->config.debug.gt_types_allowed;
+> > > > > +       config_group_put(&dev->group);
+> > > > > +
+> > > > > +       return mask;
+> > > > > +}
+> > > > > +
+> > > > > +/**
+> > > > > + * xe_configfs_primary_gt_allowed - determine whether primary
+> > > > > GTs
+> > > > > are supported
+> > > > > + * @pdev: pci device
+> > > > > + *
+> > > > > + * Return: True if primary GTs are enabled, false if they have
+> > > > > been disabled via
+> > > > > + *     configfs.
+> > > > > + */
+> > > > > +bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev)
+> > > > > +{
+> > > > > +       return get_gt_types_allowed(pdev) &
+> > > > > BIT_ULL(XE_GT_TYPE_MAIN);
+> > > > > +}
+> > > > > +
+> > > > > +/**
+> > > > > + * xe_configfs_media_gt_allowed - determine whether media GTs
+> > > > > are
+> > > > > supported
+> > > > > + * @pdev: pci device
+> > > > > + *
+> > > > > + * Return: True if the media GTs are enabled, false if they
+> > > > > have
+> > > > > been disabled
+> > > > > + *     via configfs.
+> > > > > + */
+> > > > > +bool xe_configfs_media_gt_allowed(struct pci_dev *pdev)
+> > > > > +{
+> > > > > +       return get_gt_types_allowed(pdev) &
+> > > > > BIT_ULL(XE_GT_TYPE_MEDIA);
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t gt_types_allowed_show(struct config_item *item,
+> > > > > char *page)
+> > > > > +{
+> > > > > +       struct xe_config_device *dev =
+> > > > > xe_configfs_subgroup_to_device(item);
+> > > > > +       char *p = page;
+> > > > > +
+> > > > > +       for (size_t i = 0; i < ARRAY_SIZE(gt_types); i++)
+> > > > > +               if (dev->debug.gt_types_allowed &
+> > > > > BIT_ULL(gt_types[i].type))
+> > > > > +                       p += sprintf(p, "%s\n",
+> > > > > gt_types[i].name);
+> > > > > +
+> > > > > +       return p - page;
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t gt_types_allowed_store(struct config_item
+> > > > > *item,
+> > > > > const char *page,
+> > > > > +                                     size_t len)
+> > > > > +{
+> > > > > +       char *buf __free(kfree) = kstrdup(page, GFP_KERNEL);
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_subgroup_to_group_device(item);
+> > > > > +       u64 typemask = 0;
+> > > > > +       char *p = buf;
+> > > > > +
+> > > > > +       if (!buf)
+> > > > > +               return -ENOMEM;
+> > > > > +
+> > > > > +       while (p) {
+> > > > > +               char *typename = strsep(&p, ",\n");
+> > > > > +               bool matched = false;
+> > > > > +
+> > > > > +               if (typename[0] == '\0')
+> > > > > +                       continue;
+> > > > > +
+> > > > > +               for (size_t i = 0; i < ARRAY_SIZE(gt_types);
+> > > > > i++) {
+> > > > > +                       if (strcmp(typename, gt_types[i].name)
+> > > > > ==
+> > > > > 0) {
+> > > > > +                               typemask |=
+> > > > > BIT(gt_types[i].type);
+> > > > > +                               matched = true;
+> > > > > +                               break;
+> > > > > +                       }
+> > > > > +               }
+> > > > > +
+> > > > > +               if (!matched)
+> > > > > +                       return -EINVAL;
+> > > > > +       }
+> > > > > +
+> > > > > +       guard(mutex)(&dev->lock);
+> > > > > +       if (xe_configfs_is_bound(dev))
+> > > > > +               return -EBUSY;
+> > > > > +
+> > > > > +       dev->config.debug.gt_types_allowed = typemask;
+> > > > > +
+> > > > > +       return len;
+> > > > > +}
+> > > > > +
+> > > > > +/**
+> > > > > + * xe_configfs_get_enable_multi_queue - get configfs
+> > > > > enable_multi_queue setting
+> > > > > + * @pdev: pci device
+> > > > > + *
+> > > > > + * Return: true if multi-queue is enabled for this device (the
+> > > > > default),
+> > > > > + * false if it has been force-disabled via configfs.
+> > > > > + */
+> > > > > +bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev)
+> > > > > +{
+> > > > > +       struct xe_config_group_device *dev = find_device(pdev);
+> > > > > +       bool ret;
+> > > > > +
+> > > > > +       if (!dev)
+> > > > > +               return
+> > > > > xe_configfs_device_defaults.debug.enable_multi_queue;
+> > > > > +
+> > > > > +       scoped_guard(mutex, &dev->lock)
+> > > > > +               ret = dev->config.debug.enable_multi_queue;
+> > > > > +       config_group_put(&dev->group);
+> > > > > +
+> > > > > +       return ret;
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t enable_multi_queue_show(struct config_item
+> > > > > *item,
+> > > > > char *page)
+> > > > > +{
+> > > > > +       struct xe_config_device *dev =
+> > > > > xe_configfs_subgroup_to_device(item);
+> > > > > +
+> > > > > +       return sprintf(page, "%d\n", dev-
+> > > > > > debug.enable_multi_queue);
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t enable_multi_queue_store(struct config_item
+> > > > > *item,
+> > > > > const char *page, size_t len)
+> > > > > +{
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_subgroup_to_group_device(item);
+> > > > > +       bool val;
+> > > > > +       int ret;
+> > > > > +
+> > > > > +       ret = kstrtobool(page, &val);
+> > > > > +       if (ret)
+> > > > > +               return ret;
+> > > > > +
+> > > > > +       guard(mutex)(&dev->lock);
+> > > > > +       if (xe_configfs_is_bound(dev))
+> > > > > +               return -EBUSY;
+> > > > > +
+> > > > > +       dev->config.debug.enable_multi_queue = val;
+> > > > > +
+> > > > > +       return len;
+> > > > > +}
+> > > > > +
+> > > > > +/**
+> > > > > + * xe_configfs_get_psmi_enabled - get configfs enable_psmi
+> > > > > setting
+> > > > > + * @pdev: pci device
+> > > > > + *
+> > > > > + * Return: enable_psmi setting in configfs
+> > > > > + */
+> > > > > +bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
+> > > > > +{
+> > > > > +       struct xe_config_group_device *dev = find_device(pdev);
+> > > > > +       bool ret;
+> > > > > +
+> > > > > +       if (!dev)
+> > > > > +               return false;
+> > > > > +
+> > > > > +       scoped_guard(mutex, &dev->lock)
+> > > > > +               ret = dev->config.debug.enable_psmi;
+> > > > > +       config_group_put(&dev->group);
+> > > > > +
+> > > > > +       return ret;
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t enable_psmi_show(struct config_item *item, char
+> > > > > *page)
+> > > > > +{
+> > > > > +       struct xe_config_device *dev =
+> > > > > xe_configfs_subgroup_to_device(item);
+> > > > > +
+> > > > > +       return sprintf(page, "%d\n", dev->debug.enable_psmi);
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t enable_psmi_store(struct config_item *item,
+> > > > > const
+> > > > > char *page, size_t len)
+> > > > > +{
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_subgroup_to_group_device(item);
+> > > > > +       bool val;
+> > > > > +       int ret;
+> > > > > +
+> > > > > +       ret = kstrtobool(page, &val);
+> > > > > +       if (ret)
+> > > > > +               return ret;
+> > > > > +
+> > > > > +       guard(mutex)(&dev->lock);
+> > > > > +       if (xe_configfs_is_bound(dev))
+> > > > > +               return -EBUSY;
+> > > > > +
+> > > > > +       dev->config.debug.enable_psmi = val;
+> > > > > +
+> > > > > +       return len;
+> > > > > +}
+> > > > > +
+> > > > > +/**
+> > > > > + * xe_configfs_get_survivability_mode - get configfs
+> > > > > survivability
+> > > > > mode attribute
+> > > > > + * @pdev: pci device
+> > > > > + *
+> > > > > + * Return: survivability_mode attribute in configfs
+> > > > > + */
+> > > > > +bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
+> > > > > +{
+> > > > > +       struct xe_config_group_device *dev = find_device(pdev);
+> > > > > +       bool mode;
+> > > > > +
+> > > > > +       if (!dev)
+> > > > > +               return
+> > > > > xe_configfs_device_defaults.debug.survivability_mode;
+> > > > > +
+> > > > > +       scoped_guard(mutex, &dev->lock)
+> > > > > +               mode = dev->config.debug.survivability_mode;
+> > > > > +       config_group_put(&dev->group);
+> > > > > +
+> > > > > +       return mode;
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t survivability_mode_show(struct config_item
+> > > > > *item,
+> > > > > char *page)
+> > > > > +{
+> > > > > +       struct xe_config_device *dev =
+> > > > > xe_configfs_subgroup_to_device(item);
+> > > > > +
+> > > > > +       return sprintf(page, "%d\n", dev-
+> > > > > > debug.survivability_mode);
+> > > > > +}
+> > > > > +
+> > > > > +static ssize_t survivability_mode_store(struct config_item
+> > > > > *item,
+> > > > > const char *page, size_t len)
+> > > > > +{
+> > > > > +       struct xe_config_group_device *dev =
+> > > > > xe_configfs_subgroup_to_group_device(item);
+> > > > > +       bool survivability_mode;
+> > > > > +       int ret;
+> > > > > +
+> > > > > +       ret = kstrtobool(page, &survivability_mode);
+> > > > > +       if (ret)
+> > > > > +               return ret;
+> > > > > +
+> > > > > +       guard(mutex)(&dev->lock);
+> > > > > +       if (xe_configfs_is_bound(dev))
+> > > > > +               return -EBUSY;
+> > > > > +
+> > > > > +       dev->config.debug.survivability_mode =
+> > > > > survivability_mode;
+> > > > > +
+> > > > > +       return len;
+> > > > > +}
+> > > > > +
+> > > > > +CONFIGFS_ATTR(, ctx_restore_mid_bb);
+> > > > > +CONFIGFS_ATTR(, ctx_restore_post_bb);
+> > > > > +CONFIGFS_ATTR(, engines_allowed);
+> > > > > +CONFIGFS_ATTR(, gt_types_allowed);
+> > > > > +CONFIGFS_ATTR(, enable_multi_queue);
+> > > > > +CONFIGFS_ATTR(, enable_psmi);
+> > > > > +CONFIGFS_ATTR(, survivability_mode);
+> > > > > +
+> > > > > +static struct configfs_attribute *xe_configfs_debug_attrs[] =
+> > > > > {
+> > > > > +       &attr_ctx_restore_mid_bb,
+> > > > > +       &attr_ctx_restore_post_bb,
+> > > > > +       &attr_engines_allowed,
+> > > > > +       &attr_gt_types_allowed,
+> > > > > +       &attr_enable_multi_queue,
+> > > > > +       &attr_enable_psmi,
+> > > > > +       &attr_survivability_mode,
+> > > > > +       NULL,
+> > > > > +};
+> > > > > +
+> > > > > +/*
+> > > > > + * Per-parameter visibility predicates.
+> > > > > + *
+> > > > > + * XE_PARAM_VISIBLE_ALWAYS - attribute is always shown.
+> > > > > + * XE_PARAM_VISIBLE_SURVIVABILITY - only shown on dGFX
+> > > > > platforms
+> > > > > > = Battlemage.
+> > > > > + *
+> > > > > + * These macros are only evaluated here, where the platform
+> > > > > descriptor is
+> > > > > + * reachable. xe_configfs_debug_params.h treats them as opaque
+> > > > > tokens.
+> > > > > + */
+> > > > > +#define XE_PARAM_VISIBLE_ALWAYS(_item) \
+> > > > > +       (true)
+> > > > > +#define XE_PARAM_VISIBLE_SURVIVABILITY(_item) \
+> > > > > +       (xe_configfs_subgroup_to_group_device(_item)->desc-
+> > > > > >is_dgfx
+> > > > > && \
+> > > > > +        xe_configfs_subgroup_to_group_device(_item)->desc-
+> > > > > > platform >= XE_BATTLEMAGE)
+> > > > > +
+> > > > > +static bool xe_configfs_debug_is_visible(struct config_item
+> > > > > *item,
+> > > > > +                                        struct
+> > > > > configfs_attribute
+> > > > > *attr, int n)
+> > > > > +{
+> > > > > +       if (attr == &attr_survivability_mode) {
+> > > > > +               struct xe_config_group_device *dev =
+> > > > > +                       xe_configfs_to_group_device(item-
+> > > > > > ci_parent);
+> > > > > +
+> > > > > +               return dev->desc->is_dgfx && dev->desc-
+> > > > > >platform >=
+> > > > > XE_BATTLEMAGE;
+> > > > > +       }
+> > > > > +
+> > > > > +       return true;
+> > > > > +}
+> > > > > +
+> > > > > +static struct configfs_group_operations
+> > > > > xe_configfs_debug_group_ops = {
+> > > > > +       .is_visible     = xe_configfs_debug_is_visible,
+> > > > > +};
+> > > > >  
+> > > > >  const struct config_item_type xe_configfs_debug_type = {
+> > > > > +       .ct_attrs       = xe_configfs_debug_attrs,
+> > > > > +       .ct_group_ops   = &xe_configfs_debug_group_ops,
+> > > > >         .ct_owner       = THIS_MODULE,
+> > > > >  };
+> > > > > +
+> > > > > +/**
+> > > > > + * xe_configfs_debug_release_config - release debug-specific
+> > > > > config resources
+> > > > > + * @config: xe config device structure
+> > > > > + *
+> > > > > + * Frees any memory allocated for debug configfs parameters.
+> > > > > + */
+> > > > > +void xe_configfs_debug_release_config(struct xe_config_device
+> > > > > *config)
+> > > > > +{
+> > > > > +       kfree(config->debug.ctx_restore_mid_bb[0].cs);
+> > > > > +       kfree(config->debug.ctx_restore_post_bb[0].cs);
+> > > > > +}
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.h
+> > > > > b/drivers/gpu/drm/xe/xe_configfs_debug.h
+> > > > > index 5f938450aed2..4a027ea2082d 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_configfs_debug.h
+> > > > > +++ b/drivers/gpu/drm/xe/xe_configfs_debug.h
+> > > > > @@ -5,9 +5,46 @@
+> > > > >  #ifndef _XE_CONFIGFS_DEBUG_H_
+> > > > >  #define _XE_CONFIGFS_DEBUG_H_
+> > > > >  
+> > > > > +#include <linux/types.h>
+> > > > > +
+> > > > > +#include "xe_hw_engine_types.h"
+> > > > > +
+> > > > > +struct pci_dev;
+> > > > > +struct xe_config_device;
+> > > > > +
+> > > > >  #if IS_ENABLED(CONFIG_DRM_XE_DEBUG) &&
+> > > > > IS_ENABLED(CONFIG_CONFIGFS_FS)
+> > > > > -struct config_item_type;
+> > > > >  extern const struct config_item_type xe_configfs_debug_type;
+> > > > > +void xe_configfs_debug_release_config(struct xe_config_device
+> > > > > *config);
+> > > > > +u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+> > > > > +                                      enum xe_engine_class
+> > > > > class,
+> > > > > +                                      const u32 **cs);
+> > > > > +u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+> > > > > +                                       enum xe_engine_class
+> > > > > class,
+> > > > > +                                       const u32 **cs);
+> > > > > +u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
+> > > > > +bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev);
+> > > > > +bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
+> > > > > +bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
+> > > > > +bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
+> > > > > +bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
+> > > > > +#else
+> > > > > +/*
+> > > > > + * Dummy values here are not used since these function
+> > > > > accesses
+> > > > > are always
+> > > > > + * wrapped in CONFIG_DRM_XE_DEBUG.
+> > > > > + */
+> > > > > +static inline void xe_configfs_debug_release_config(struct
+> > > > > xe_config_device *config) { }
+> > > > > +static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct
+> > > > > pci_dev *pdev,
+> > > > > +                                                    enum
+> > > > > xe_engine_class class,
+> > > > > +                                                    const u32
+> > > > > **cs) { return 0; }
+> > > > > +static inline u32 xe_configfs_get_ctx_restore_post_bb(struct
+> > > > > pci_dev *pdev,
+> > > > > +                                                     enum
+> > > > > xe_engine_class class,
+> > > > > +                                                     const u32
+> > > > > **cs) { return 0; }
+> > > > > +static inline u64 xe_configfs_get_engines_allowed(struct
+> > > > > pci_dev
+> > > > > *pdev) { return U64_MAX; }
+> > > > > +static inline bool xe_configfs_primary_gt_allowed(struct
+> > > > > pci_dev
+> > > > > *pdev) { return true; }
+> > > > > +static inline bool xe_configfs_media_gt_allowed(struct pci_dev
+> > > > > *pdev) { return true; }
+> > > > > +static inline bool xe_configfs_get_enable_multi_queue(struct
+> > > > > pci_dev *pdev) { return true; }
+> > > > > +static inline bool xe_configfs_get_psmi_enabled(struct pci_dev
+> > > > > *pdev) { return false; }
+> > > > > +static inline bool xe_configfs_get_survivability_mode(struct
+> > > > > pci_dev *pdev) { return false; }
+> > > > >  #endif
+> > > > >  
+> > > > >  #endif /* _XE_CONFIGFS_DEBUG_H_ */
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_configfs_types.h
+> > > > > b/drivers/gpu/drm/xe/xe_configfs_types.h
+> > > > > index e22b9424f719..6e8ba6f85fad 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_configfs_types.h
+> > > > > +++ b/drivers/gpu/drm/xe/xe_configfs_types.h
+> > > > > @@ -32,13 +32,17 @@ struct xe_config_group_device {
+> > > > >          * type, entries are sorted alphabetically.
+> > > > >          */
+> > > > >         struct xe_config_device {
+> > > > > -               struct wa_bb
+> > > > > ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
+> > > > > -               struct wa_bb
+> > > > > ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
+> > > > > -               u64 engines_allowed;
+> > > > > -               u64 gt_types_allowed;
+> > > > > -               bool enable_multi_queue;
+> > > > > -               bool enable_psmi;
+> > > > > -               bool survivability_mode;
+> > > > > +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+> > > > > +               struct {
+> > > > > +                       struct wa_bb
+> > > > > ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
+> > > > > +                       struct wa_bb
+> > > > > ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
+> > > > > +                       u64 engines_allowed;
+> > > > > +                       u64 gt_types_allowed;
+> > > > > +                       bool enable_multi_queue;
+> > > > > +                       bool enable_psmi;
+> > > > > +                       bool survivability_mode;
+> > > > > +               } debug;
+> > > > > +#endif
+> > > > >                 struct {
+> > > > >                         unsigned int max_vfs;
+> > > > >                         bool admin_only_pf;
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_guc.c
+> > > > > b/drivers/gpu/drm/xe/xe_guc.c
+> > > > > index c7f8bbd4cb92..bf7ca8f9d773 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_guc.c
+> > > > > +++ b/drivers/gpu/drm/xe/xe_guc.c
+> > > > > @@ -19,6 +19,7 @@
+> > > > >  #include "regs/xe_irq_regs.h"
+> > > > >  #include "xe_bo.h"
+> > > > >  #include "xe_configfs.h"
+> > > > > +#include "xe_configfs_debug.h"
+> > > > >  #include "xe_device.h"
+> > > > >  #include "xe_force_wake.h"
+> > > > >  #include "xe_gt.h"
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c
+> > > > > b/drivers/gpu/drm/xe/xe_guc_ads.c
+> > > > > index ff8eee3831aa..9a6895377c17 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_guc_ads.c
+> > > > > +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+> > > > > @@ -17,6 +17,7 @@
+> > > > >  #include "regs/xe_guc_regs.h"
+> > > > >  #include "xe_bo.h"
+> > > > >  #include "xe_configfs.h"
+> > > > > +#include "xe_configfs_debug.h"
+> > > > >  #include "xe_gt.h"
+> > > > >  #include "xe_gt_ccs_mode.h"
+> > > > >  #include "xe_gt_mcr.h"
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c
+> > > > > b/drivers/gpu/drm/xe/xe_hw_engine.c
+> > > > > index 010499766fce..f4740de7f57b 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+> > > > > +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> > > > > @@ -18,6 +18,7 @@
+> > > > >  #include "xe_assert.h"
+> > > > >  #include "xe_bo.h"
+> > > > >  #include "xe_configfs.h"
+> > > > > +#include "xe_configfs_debug.h"
+> > > > >  #include "xe_device.h"
+> > > > >  #include "xe_execlist.h"
+> > > > >  #include "xe_force_wake.h"
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_lrc.c
+> > > > > b/drivers/gpu/drm/xe/xe_lrc.c
+> > > > > index 35b4e8289b5f..449cdd1e2513 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_lrc.c
+> > > > > +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> > > > > @@ -19,6 +19,7 @@
+> > > > >  #include "xe_bb.h"
+> > > > >  #include "xe_bo.h"
+> > > > >  #include "xe_configfs.h"
+> > > > > +#include "xe_configfs_debug.h"
+> > > > >  #include "xe_device.h"
+> > > > >  #include "xe_drm_client.h"
+> > > > >  #include "xe_exec_queue.h"
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_pci.c
+> > > > > b/drivers/gpu/drm/xe/xe_pci.c
+> > > > > index ab4da1d9a9f1..fd3eae45dacf 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_pci.c
+> > > > > +++ b/drivers/gpu/drm/xe/xe_pci.c
+> > > > > @@ -19,6 +19,7 @@
+> > > > >  #include "regs/xe_gt_regs.h"
+> > > > >  #include "regs/xe_regs.h"
+> > > > >  #include "xe_configfs.h"
+> > > > > +#include "xe_configfs_debug.h"
+> > > > >  #include "xe_device.h"
+> > > > >  #include "xe_drv.h"
+> > > > >  #include "xe_gt.h"
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_psmi.c
+> > > > > b/drivers/gpu/drm/xe/xe_psmi.c
+> > > > > index 899b01f72ba3..59af3d145418 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_psmi.c
+> > > > > +++ b/drivers/gpu/drm/xe/xe_psmi.c
+> > > > > @@ -8,6 +8,7 @@
+> > > > >  #include "xe_bo.h"
+> > > > >  #include "xe_device_types.h"
+> > > > >  #include "xe_configfs.h"
+> > > > > +#include "xe_configfs_debug.h"
+> > > > >  #include "xe_psmi.h"
+> > > > >  
+> > > > >  /*
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_rtp.c
+> > > > > b/drivers/gpu/drm/xe/xe_rtp.c
+> > > > > index 6a8d6ea68f25..62068189320f 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_rtp.c
+> > > > > +++ b/drivers/gpu/drm/xe/xe_rtp.c
+> > > > > @@ -10,6 +10,7 @@
+> > > > >  #include <uapi/drm/xe_drm.h>
+> > > > >  
+> > > > >  #include "xe_configfs.h"
+> > > > > +#include "xe_configfs_debug.h"
+> > > > >  #include "xe_device.h"
+> > > > >  #include "xe_gt.h"
+> > > > >  #include "xe_gt_topology.h"
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c
+> > > > > b/drivers/gpu/drm/xe/xe_survivability_mode.c
+> > > > > index 45d44ebe288b..1238fd018d61 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
+> > > > > +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+> > > > > @@ -11,6 +11,7 @@
+> > > > >  #include <linux/sysfs.h>
+> > > > >  
+> > > > >  #include "xe_configfs.h"
+> > > > > +#include "xe_configfs_debug.h"
+> > > > >  #include "xe_device.h"
+> > > > >  #include "xe_heci_gsc.h"
+> > > > >  #include "xe_i2c.h"
+> > > > > -- 
+> > > > > 2.43.0
+> > > > > 
+> > > > 
+> > > 
+> 
