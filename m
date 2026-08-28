@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99ECCC61DCB
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 11:41:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B71ADC61DB9
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 11:44:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BB0D10F367;
-	Fri, 28 Aug 2026 11:41:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E61B10F367;
+	Fri, 28 Aug 2026 11:44:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lBJdtqVC";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YfUdhwdN";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 116C810F367
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Aug 2026 11:41:57 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E223210F367
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Aug 2026 11:44:36 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 65FBA601F5;
- Fri, 28 Aug 2026 11:41:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFCE91F000E9;
- Fri, 28 Aug 2026 11:41:54 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 5FEBF40AED;
+ Fri, 28 Aug 2026 11:44:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 221BA1F000E9;
+ Fri, 28 Aug 2026 11:44:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1787917315;
- bh=w50zZTJY6Lro/L32PlVpw6hNFrwFen33ZgUIFQMmQ5M=;
+ s=k20260515; t=1787917476;
+ bh=kNPed7HUNMYScIGk7C/O6f7WMP2qeoAm8eOyNzzOJ1A=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=lBJdtqVCj3AA7X0CIRQhsvIl155W4RiHQ/DaIjME+9cb2yaBZrbVhhO9a8/0uervd
- TLCSjZp2eEj7LN++Y3iqJ/Wcio0661nxfnIjB26w8KdV0I8sKNuJOpP6xrijUAYmUk
- zxgBby8QxQwc7gHVUvCUYeXvpBJy1dBWgw0zz8NAGjWjA1xoIiaUtqAHcDSEtug9G0
- Mxf/aG9SElRiLGeJM0Mlh4NPiuVOR1sA7JKemG+9Sxx0tU312HiIwYEImvOnUNSghn
- +Yzr3wCOw6pR9qYaxGIRHSSC2nPWfSL0lDiVYkLNI8jVsWLvhowXpgHZpiljZftnEJ
- 91MmWTHMadyWg==
+ b=YfUdhwdNV5y5d+zCoFyjWE3XJAB1+snwXTsxdeFplXV6LX+fC0D+Kx8gyzpyI3bIP
+ 9oSG6WLHSbkhYnhJraY7Rpksj3U4VMj+UG3xZdcE15TAAHUeMFbN+bygxkbS8O+49F
+ hzNUsiNVQJlefl1v3TU6wSKKmF95XQCdupxqD66CWXAaVrn05DBL8cdwHAqUW4eCSZ
+ T3gL2aMXTE+TZjfKA8AYKiS/6MSdUULbYqQxBZPEJQPQwvFreKYvhZ1qZs/f+eIH8r
+ QNpbWuMK9yo/ZSDoBurzgCc5CgPmLHR0awxtttG4z75VIDanzXGXpbxgx9GUpPiPg+
+ lV2oMBOUx9UhA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/2] drm/xe/xe_pci_error: Wait for pcode init post SBR
+Subject: Re: [PATCH 2/2] drm/xe/xe_guc: Skip GuC reset post SBR
 To: "Riana Tauro" <riana.tauro@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260828113104.319843-5-riana.tauro@intel.com>
+In-Reply-To: <20260828113104.319843-6-riana.tauro@intel.com>
 References: <20260828113104.319843-4-riana.tauro@intel.com>
- <20260828113104.319843-5-riana.tauro@intel.com>
+ <20260828113104.319843-6-riana.tauro@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 28 Aug 2026 11:41:54 +0000
-Message-Id: <20260828114154.EFCE91F000E9@smtp.kernel.org>
+Date: Fri, 28 Aug 2026 11:44:35 +0000
+Message-Id: <20260828114436.221BA1F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,64 +58,50 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Data Race / Missing Mutual Exclusion in PCODE mailbox access durin=
-g PCI error recovery
+- [High] Returning 0 from xe_guc_reset() when the device is in PCI reset fa=
+lsely signals success, causing a racing GT reset worker to attempt massive =
+MMIO access on a disconnected device.
 --
 
-commit 6f04a64effec675eee1b5da08bc2d84a4196d4ed
+commit cd9fc028eb46b88c6e7e520f4ef7e342f490d472
 Author: Riana Tauro <riana.tauro@intel.com>
 
-drm/xe/xe_pci_error: Wait for pcode init post SBR
+drm/xe/xe_guc: Skip GuC reset post SBR
 
-This commit adds a wait for Pcode initialization before accessing the
-device post Secondary Bus Reset (SBR) in xe_pci_error_slot_reset().
+Secondary Bus Reset causes VRAM and hardware state loss. This patch skips
+GuC reset during teardown when the device is in PCI reset to avoid accessing
+the device in an unknown state.
 
-> diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pc=
-i_error.c
-> index 79ce0c671549a..3e9c77f8483d6 100644
-> --- a/drivers/gpu/drm/xe/xe_pci_error.c
-> +++ b/drivers/gpu/drm/xe/xe_pci_error.c
-> @@ -109,6 +110,10 @@ static pci_ers_result_t xe_pci_error_slot_reset(stru=
-ct pci_dev *pdev)
->  		return PCI_ERS_RESULT_DISCONNECT;
->  	}
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index c7f8bbd4cb927..2c7f411b89a79 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -986,6 +986,11 @@ int xe_guc_reset(struct xe_guc *guc)
+>  	u32 guc_status, gdrst;
+>  	int ret;
 > =20
-> +	err =3D xe_pcode_probe_early(xe);
-> +	if (err)
-> +		return PCI_ERS_RESULT_DISCONNECT;
+> +	if (xe_device_is_in_reset(gt_to_xe(gt))) {
+> +		xe_gt_dbg(gt, "Skipping GuC reset, device is in reset\n");
+> +		return 0;
+> +	}
 > +
 
 [Severity: High]
-Does this code introduce a data race in PCODE mailbox access during PCI err=
-or
-recovery?
+Could returning 0 here falsely signal a successful reset to callers?
 
-xe_pcode_probe_early() calls xe_pcode_ready() without locking:
+When a GT reset worker (like do_gt_restart) races with a PCI error handler,
+the worker might pass its initial reset checks before the PCI handler sets
+the in_reset flag. If the worker then reaches xe_guc_reset() and receives 0
+(success) because the device is in reset, it appears to proceed with MMIO
+initialization (via xe_uc_load_hw()).
 
-drivers/gpu/drm/xe/xe_pcode.c:xe_pcode_probe_early() {
-	return xe_pcode_ready(xe, false);
-}
-
-The false argument explicitly disables tile->pcode.lock acquisition. Howeve=
-r,
-at this point in xe_pci_error_slot_reset(), the userspace interfaces like
-hwmon sysfs are still registered and accessible.
-
-If a userspace process reads hwmon sysfs limits (e.g., power1_max_interval)
-while PCI error recovery is executing, the sysfs read will legitimately
-acquire tile->pcode.lock and access PCODE. Meanwhile, this function will
-bypass the lock and execute concurrent MMIO accesses to the same PCODE
-registers.
-
-Can this lead to hardware state machine corruption and the execution of
-malformed commands by the PCODE microcontroller? Hwmon read handlers do not
-check the wedged.flag, and sysfs interfaces are not removed until later
-when pdev->driver->remove(pdev) is called.
-
->  	/*
->  	 * Secondary Bus Reset causes all VRAM state to be lost along with
->  	 * hardware state. As an initial step, re-probe the device to
+Since the device is disconnected or undergoing a Secondary Bus Reset,
+would this lead to unintentional and extensive MMIO accesses, potentially
+causing PCIe bus hangs, AER cascades, and multi-second thread hangs in
+guc_wait_ucode()? Would returning an error code (like -ENODEV) safely abort
+the racing GT reset worker while still being handled gracefully by teardown
+paths like guc_fini_hw()?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260828113104.3198=
-43-4-riana.tauro@intel.com?part=3D1
+43-4-riana.tauro@intel.com?part=3D2
