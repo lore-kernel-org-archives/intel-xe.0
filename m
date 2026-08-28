@@ -4,148 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0913C61DBD
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 15:30:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65187C61DCB
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 15:46:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93DBB10E14B;
-	Fri, 28 Aug 2026 15:30:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC3D110E3EB;
+	Fri, 28 Aug 2026 15:46:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZtysKQSt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kdyu8Quq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBC4F10E14B
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Aug 2026 15:30:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 543D110E3EB;
+ Fri, 28 Aug 2026 15:46:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787931038; x=1819467038;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=eJK52+YoLYkLV8oPa7Q4zhqZ2v0rNoWOMCTnRquIUBc=;
- b=ZtysKQStdxdEPmiClPlX9HYexynHTaTWSB4flJYl3b17hyLoDkzA+Ijz
- Uwp9zVoq1FeSrLsfGsVhgfYMPaTqeJJhB/BP4A6iUUxX3h3vqTMV0rexP
- xAnLXY+D+mY8m20DiPbiPs90kB5S7Q8FUmRYoLoTzQ2oDseLuA3KnwFOW
- +qMmBqESkH+cUJtSWKmZyUozZ0VPnPKdeRLSNlSap3APU5aFl4jt/Qn25
- HqNzBMblEDipIplYORpAGDDiirCFolYsYRmrV30ZeZd7rpFubfitUN5zv
- 82IApx5O6wTfGxyRHkdeRLDZx0oYXSLk4D10bpX4A7y3BGsUZlw8uuIyZ A==;
-X-CSE-ConnectionGUID: PA4W5XvZQri45TRXLn7fCQ==
-X-CSE-MsgGUID: v03PN4WPR7SVgoEpQphYFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11889"; a="90952337"
-X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="90952337"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2026 08:30:38 -0700
-X-CSE-ConnectionGUID: xVayRnM8ROio9ts55W+IRA==
-X-CSE-MsgGUID: KgZhlo3ETqiDmRhhIamUfw==
+ t=1787931994; x=1819467994;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=iBYscvnpB9Y9v+ruXhVipNUkei//ovnavU/WcYYy9dk=;
+ b=kdyu8QuqrA+l30ZuCRoxMKwzY/nk5okRopRLTJYLBjDGPZrX2QtpCZ0p
+ rbFlbGSD2WvSfyVnluFWldwklbR31FTOebq+PqTM1qGe2BCUcqh6cDBYb
+ HcNJmlfMPVwG4dtbc7pQVq/2EST70zu1acfYmSi0HUMQq7CVrYFTvr1bt
+ tn2hOZOpnZSqbSZEWtJ9J5gHGGRG+1jcFoRz+tkboxv8q6cTyNEBeWuIV
+ Nz0G9AJ7ZINSdwIJtaUe4xxdbw3ijSIA8oD0SBS1w/7JbxZ4+Pi1pOEjp
+ xMB7MTzrlBBwdifdjxMCQamRFsoQRe84zu+YRifehkAzw+gnqCT4VDKMU g==;
+X-CSE-ConnectionGUID: HIDgLnGHRcyLBVwDnuvYdA==
+X-CSE-MsgGUID: /JloEWPLQBOBf6j/gJ9/1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11889"; a="92126852"
+X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="92126852"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2026 08:46:33 -0700
+X-CSE-ConnectionGUID: N+l7DUVaQ0GHi2Du6PLklQ==
+X-CSE-MsgGUID: 5bTZNexCQkakcB6FiicpgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="264435391"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2026 08:30:38 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="266885506"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2026 08:46:30 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 28 Aug 2026 08:30:38 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.46; Fri, 28 Aug 2026 08:46:30 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Fri, 28 Aug 2026 08:30:38 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.12) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Fri, 28 Aug 2026 08:46:30 -0700
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.65) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 28 Aug 2026 08:30:37 -0700
+ 15.2.2562.46; Fri, 28 Aug 2026 08:46:30 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=s3ROLWXmt6bcF4CnVJ9jp0lcvKq3ULcWZxeONzaf+hJXSYOPrdKBOiZSHIg/Dwoe0wR/fBj87tTTFnoPi04FJPiSDFE/JpmEM3RaqOvSO7PwWHfqRg10QTDDG9zSgy2E7cvovYhMuFIROMXnfKe/jxI964j8dKHhIwA8VTk5yj7sl3Pp3LjfYGGGbEm0z+PCqwTVdMTEC2kAS+VM/2cRmmGYtGZAjbjLdtMYdkXakNqSN0YN8bIzLBy72DBeRiy6Vyu+kJ1dYTR4bDdIh2VEEVB5W0oxX0f2MKuk/iHsCbBBGGalZRaW0+iYUeszeLDn5sVyq6GJQcPOcQvFZwFKIQ==
+ b=sFFD+9s8pmG7sm5gOLbSGRH7hcugxFgxfddziZ3V1mfJ3CRfvGJAMezLik+nlN4N6/7d+XPbAlVbpEewBytfsl84PlPZxu3TLV3zRAJVUcbYRw7K86wBQ1PDmmOINvF0F+u/M6CunJNGka+kG2+NPwjZWadCBoslXn11a0E1GYrefgq0LB2Iv5G1D9rdGUKTQCZZREOkZgyZdL5QyIBrDk/jwKWw55opyCaVr0iEfu8rxf8ZAnJ2a1LClQLIm2t6HWuKGVjq1pwB2pKbReuFhxagVp9AAopJvKaiNXySf4c/1vC5AmgDF9rXOF4IhgivtexRgve0hvwy/tfsaHN7wg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7/JijudlHtgHvJGZZbB/FZ64fnjVj20Y4Tx+bAPgqd8=;
- b=AhvN/jPnt6srDrfFf79lkRleYCbK3N26Dgk00JYlHMAqPs1DxI00WKsMbrp9Iw45YOed9bFO2/v1aHb6wTcXebpKS6As2Gu4QrOvphCgTRZWI9K/3aJD/j9T0bCcVPWiWv1913cVjrYyn8pv+qbnL7rcpOTymxGMfdSOV/eFH5XvwQIBanW+ld4nvpHdcLj4The8qvDJ0DJBNxwcJHaK2mH7dP9fvTHf0Z4PO58EDuV3Wr1pST/lrqegBCa/V3uoGw5T57AnPAG2OSUA9EOBU+MQLa7QWguVmooVfVzQBqqmWQWSVWRyYt1WHhm7MgFuMSJiziDf5dls2E62A3IoKA==
+ bh=a84QafY7HReARHxeRega+lK6AOixn9yR6zTW/mumzm0=;
+ b=OtfKzG9DV2GhZRWld2/dwYqeXvqst45QgU2xc4uAdpfhPzkvbyasvPPZgJAfXxgSUXmfgcYSVtmTpSVOCIvedR1r14hqRTWTAD5anaZEzhu2IowJEQhQIYgyVIJfay2Uk1aGdA7KHl6LgSRlf+Ck5hEoM091ZuKvVq2YOyeiCjRljm/lCSoZBW3wTZq0sKBiM9u0/0VvI3/ZLUCof9B1vJvWurUY+PMGgQS5PbU/wXJ8yXf8aOjaoD8YC/PGluoJ7YaMFVteV0yX1rVxIrGTS3YLbJdzBO+R/eYS9YCQ/ExdaTTK3ZCuVNB3UWqMKf2ysAlxPVQ/8QzTAaUn7i+jqg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA0PR11MB7187.namprd11.prod.outlook.com (2603:10b6:208:441::12)
- by PH7PR11MB7988.namprd11.prod.outlook.com (2603:10b6:510:243::19)
+Received: from SA3PR11MB7554.namprd11.prod.outlook.com (2603:10b6:806:315::9)
+ by IA0PR11MB7330.namprd11.prod.outlook.com (2603:10b6:208:436::17)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.10; Fri, 28 Aug
- 2026 15:30:35 +0000
-Received: from IA0PR11MB7187.namprd11.prod.outlook.com
- ([fe80::be96:3f58:953d:6565]) by IA0PR11MB7187.namprd11.prod.outlook.com
- ([fe80::be96:3f58:953d:6565%4]) with mapi id 15.21.0360.008; Fri, 28 Aug 2026
- 15:30:35 +0000
-Date: Fri, 28 Aug 2026 11:30:26 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <riana.tauro@intel.com>,
- <michal.wajdeczko@intel.com>, <lukasz.laguna@intel.com>,
- <matthew.d.roper@intel.com>, <matthew.brost@intel.com>
-Subject: Re: [PATCH v1] drm/xe: Introduce xe_wedge
-Message-ID: <apGpkrl2DAaA2Es6@intel.com>
-References: <20260825114450.1371821-1-raag.jadav@intel.com>
- <ao9WVAcHmROhGq8E@intel.com> <ao_XGgJYsAyOE7bk@black.igk.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
+ 2026 15:46:24 +0000
+Received: from SA3PR11MB7554.namprd11.prod.outlook.com
+ ([fe80::3ec0:2280:db82:d67b]) by SA3PR11MB7554.namprd11.prod.outlook.com
+ ([fe80::3ec0:2280:db82:d67b%5]) with mapi id 15.21.0360.008; Fri, 28 Aug 2026
+ 15:46:23 +0000
+Message-ID: <3664f401-62d9-41b6-8be4-b5754fe26c5a@intel.com>
+Date: Fri, 28 Aug 2026 21:16:16 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [v4 2/2] drm/i915/audio: Prune ELD SADs based on HDMI audio
+ bandwidth
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>
+CC: Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, "Vinod
+ Govindapillai" <vinod.govindapillai@intel.com>, Mitul Golani
+ <mitulkumar.ajitkumar.golani@intel.com>, Jani Nikula <jani.nikula@intel.com>
+References: <20260813120016.3444891-1-chaitanya.kumar.borah@intel.com>
+ <20260813120016.3444891-3-chaitanya.kumar.borah@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260813120016.3444891-3-chaitanya.kumar.borah@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ao_XGgJYsAyOE7bk@black.igk.intel.com>
-X-ClientProxiedBy: SJ0PR05CA0140.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::25) To IA0PR11MB7187.namprd11.prod.outlook.com
- (2603:10b6:208:441::12)
+X-ClientProxiedBy: MA5P287CA0227.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b4::8) To SA3PR11MB7554.namprd11.prod.outlook.com
+ (2603:10b6:806:315::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|PH7PR11MB7988:EE_
-X-MS-Office365-Filtering-Correlation-Id: 59b4190e-bd84-4cee-28cd-08df05194de9
+X-MS-TrafficTypeDiagnostic: SA3PR11MB7554:EE_|IA0PR11MB7330:EE_
+X-MS-Office365-Filtering-Correlation-Id: 34ad460e-f2f5-4186-eca6-08df051b837c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|366016|376014|13003099007|6133799003|10067099003|11063799006|4143699003|56012099006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: TK2BPCPRM6fs2vGMK2JtYAi+xK7Hm5s8pA3XYmbchGognPJdGQzBVl1TaUApI4/R87PrEUwmq+8N8oqBIluU/EWQ2W+9Mxx3ezPSwN51ytHvw8TUPFYUC4dEyIUQCrh4uNwsl0t4m5JXn3nhdNL7BE0gBriHNc1TMn23JsZGMaSZiJO7aZzoXsPrZ+RcJlrkCA80cT15Fd8crUV/NYt5qUd3TibWqK61Nh5RZ1zh/S6Rl/LpCBscMQt7CgRiPDATLZr1Z8EIxnX7EAqagMyyY6hgCzWi5ZKhsdtpBd66maT2t/QhWm/VA8KMdjsSzAWn9ytBlT5Aiu1UcRf5XFXnVRVhONl2YEB/tjqkoNMOSTO7r1Q/Z3bvxpI2yU77CVi7Amm4buLzNw2cLxLIi8hin0DFIfpGjqZXWeRTIJDr8i6FxroDbLdC9eWI8Mm/A9cX+nYULlsj3fJpxdTe8nTvkm/16T5WiI9p2irPcIwP9cpR5mpqcblqTHfKwv4a2qDmNO3sUIF4AWjPdQkgfaxD4XsJ+5yXoRccre6Xf+IkNM9knkWvc81ve/qo8WJv4vKAY3ew4soQr6e+Y+07kZxvdgQyheIesdvxkY8RoOHFZqLVbhOFcCYkrTRor9M/fhjX
+ ARA:13230040|366016|23010399003|376014|1800799024|56012099006|11063799006|4143699003|10067099003|3023799007|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: vI8gb8lY463RDRb+iau1eYET6dgj6GBQx28WDr2YQuLlf/aVhZbmmEFHo3sW6FCQr6ptCSfz7gkWIgN835SEwETbSHeS93qQHIIxV11Lskks2DxbJKbX9vdH0LhJg1c1bd6VNDFtl5at71Yy/rPTv6/3TqQaMMOk2YBqdiOH25ZsGfhpVdua6rOxXouvFAGhrOWxrzW3fyrcLcbE/3RC6PPNlSg6iBChyNmkY3WxhdOsQ8deVWcJsn7ndB0gEfwLjak1qg+Vz59se0UbnWFTulUdO8rY5jiqZDqN49I2e7tclYboxWRARmfJAzO3am95Qi/IShowQKVyCHwRkE2JIJPInwlQK31UeSAgWxcMpsLxDuo/kDtTMKxugOVg8EE2yuxuZFsKkt6ZMMv9qQK4g0dknfw5c2ri+gdeDjZ05dzWerRXPTc3wuIdEeZuVOhcsAXWtr+L5KQWksCiWu9DF5pvsUBYTI9vdK6lyxIb2F5PeKwhdHQy40d0D4AVSqWozLvXtnov3GBsmBXKMXon5saA3QeaKiX488/Po4XSimV/kqnV3lB/VJeRYnbELQ+gubeg2fRYEVW4RJsL64NfTNp304zjLRS4n5zeVsE2Oi/dLmXvT7hac1m67R29XGTn8s5bPEvMXyWO3eas9NRT4Pb5f1mZDeKOTV/gSy+Lvf0=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7187.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(366016)(376014)(13003099007)(6133799003)(10067099003)(11063799006)(4143699003)(56012099006)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:SA3PR11MB7554.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(56012099006)(11063799006)(4143699003)(10067099003)(3023799007)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?RUFCTSW0h+BxmIE1gc4mNy0nVJVmHaqOYMVk4ktlyNWwAAXa/Tcxe0mXDz?=
- =?iso-8859-1?Q?qtmktVPBL1qPjNCwUc8Afz5v1/sai5/IImEUOZ1Xtg09jUXqjmeHf2iEKu?=
- =?iso-8859-1?Q?5RnOulbMi7qoUUQgaTyeFaFtqV5pcnfPZ05WgeVNtxQ1deilka5ECXmu+E?=
- =?iso-8859-1?Q?uuEaTpnyb/LCkMLF5BN9gSccS0tr2SvA9pX/iy9IoGW2nTewG3eg84rV7z?=
- =?iso-8859-1?Q?8Ug8olXKAbuoGedTZ8epBZIGguXRbfCe8RLMOaGXdT/JMYmET2jAnaqQFj?=
- =?iso-8859-1?Q?T/UFAyfL0W3F8TWuy0XFwLp3SiRdn50pe8wRRLUzxhxHTermuObjOAExOI?=
- =?iso-8859-1?Q?b65QeqOzkoV52PmvPi0BmZl5r7+razIu+xR+ILPOdJ8VEdXBSR4R395nBB?=
- =?iso-8859-1?Q?A4TWKAJpj1ZPaJIlq0W2DmLF/zCtZSYtBmzyo1Qzsysql/OEBLcTPSEVFz?=
- =?iso-8859-1?Q?wtSz39ABYN9XzXsl3NDPb4jfYPUlDagKw1rt6df9YXLX0MbjMSlOrL62CV?=
- =?iso-8859-1?Q?1dEJEdpO4kkFKaJ4rRfjUhOS5LqIpx7+o60AuQAyql71rMsmJfRn0woQNx?=
- =?iso-8859-1?Q?SpUkX6OhzOjKoFUx/x/6hfoEoLITrTCTMk5WTPserSTWBUDNH1zOZXy8FA?=
- =?iso-8859-1?Q?nlH4QpJ61ICt4VDtFza/kCBPA7crufSQTOpPidPjjJtmSCVuHu9Fe5cvG8?=
- =?iso-8859-1?Q?AEE/A96c2PCABGWMEx53VjgpeTCzalLzfo84Gx3wuta5lgIXHIV7HtYqZU?=
- =?iso-8859-1?Q?FA39XH748ZHZ4B3VD2t7b2I/o7+l97pRLMKXJJRqgySdHjj6lB4tHKTD2Q?=
- =?iso-8859-1?Q?zMEuKpSaEnTIHxv4dWcJYEwah3BrjbcucavYI//1/ha3lw7MmlPn/NTNdy?=
- =?iso-8859-1?Q?zfdTPW0Rz8r+nTyzqF0lrx1oOqSi4S3+JVvpRtBEYVtwQyvKK+N6ccH0+f?=
- =?iso-8859-1?Q?h4Xbpa5NKrojctKWwOCyv2HDBDJIjDzEgIMoZ73bOfp7il9uBFw8p94NVg?=
- =?iso-8859-1?Q?Ke14Sn/uZrWWLqo4/J200zXgRKqwQEMir4cjDyarEq+zqJBCUZEIFpcfqq?=
- =?iso-8859-1?Q?S7iopo8+am1M61Jr0P3pWCr0G9GrvpfsKBfug7810BhnUYWKzWufJ7buDn?=
- =?iso-8859-1?Q?lPId45tSdEeKemk2KiSao22bjDvyQhoe0fr3U3juZtN2apOgrK7OwvUsrk?=
- =?iso-8859-1?Q?53Xt7dV0SCyOrPYQBBdEi/O0XDT//igUSyBCspaFKw+4TALVA6jKXIx0Gy?=
- =?iso-8859-1?Q?pJsF7DhsSEthXrrfm61P8VS1HY0SNzQ6+xvrHR6dtTwUgQFz0gILIPAzqq?=
- =?iso-8859-1?Q?O8OVXDbCFpo5vp7BjyhrC7ZWjQnU9GLDjNSkPBnq4m37wEyWn76X1PKmPJ?=
- =?iso-8859-1?Q?bX/IjhRKcQ2qKpYariYNAITnpfN4fJd956yRpmVXpmpA71NV5I0OERXrV8?=
- =?iso-8859-1?Q?Xdslj/CsVeAZreb7nnnRZwPsDimCfEmtAlhwv6skPsvCapiVcCtf2wv0Nd?=
- =?iso-8859-1?Q?COsmymrSzy7tsyTRzBV5kt0a5gG4pHAQLWSB2f25v2/7vxUqjK/CZ1p+A0?=
- =?iso-8859-1?Q?HjcuEdbAR2vGjUAWz2ShiAHb5bLHXRp7R7fIQCsa8IRXYTirjfFA/IaTlS?=
- =?iso-8859-1?Q?kafSCARXJnltT8wJNcJwALJVKiigLnZZASV2avedArLan5li8o4SfM9DRu?=
- =?iso-8859-1?Q?8wafMuUD1nNdJ4YB4O9CAFqlcaZZPrkUBnQp8PzadzYfxTuzUyVDVlCEAl?=
- =?iso-8859-1?Q?+834SnftXqtUPOI3spLRv2ZDVG3B2SEnEBnwz48ORPdU2O/mBhJCivkgBO?=
- =?iso-8859-1?Q?VcnOQZGa5Q=3D=3D?=
-X-Exchange-RoutingPolicyChecked: g+mtuIWpdKudP9n/sTAaE+1wv03miAmiQ0zGXYz/0+8FwEyXXHPArCqpIHZ1DYV+T18YRd034PW9JkkeFPBMqI/ZMJvZVhtla9Ty6DCfImTX++T1kbr8S/aY3DnhMknNVXIV2sUsMd0DOdMX5TVovAUyq7vc2HdnVB22VDlh/bsBkjPfhvFHVT/KokytD7sAZoNQqV+bbaD4wQz+lKtmdyh28jR2nPfpeCrxEqg3RUlozl+2eUsuNfCEiYAtL2ec7gfXC2DJEbBAFSyHRJRv93QA/XFTDb+ffof/G4zYw0SGig4RMJH4FBbBrPc88MW8PaPrOtcFHDZHxhAxBucifQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59b4190e-bd84-4cee-28cd-08df05194de9
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7187.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a1piZldDM0l5RXFHZi9WRWVXWGY0L1Q1T0E5ejg3azJJOG9rYW0vdHl5ZVRu?=
+ =?utf-8?B?VmgyL00zVVEzSS9GWkQ0cEE5MGhyZnFkeEM1SWdsaFFsbVUxOU1paWt3OFdW?=
+ =?utf-8?B?MXpQUTBQQUxtVnRBcFdZWjZPNEtGaVhobVdjclEvc2h5VFc2RlJNUHdkUW5s?=
+ =?utf-8?B?NXBibW4vYWphbGVSaWVvS3I2Y3pTbGNiUnZySmVZMk5sbzc3LzlOdUE3SWha?=
+ =?utf-8?B?RldxM3pZcSthZHBMVW5wd2U5bWQ4cE9JTW53eCtiTTJWUVFOSEVKY243R1Qv?=
+ =?utf-8?B?ZFBIK3kyWUMzb0EyUDNLck52ZlNubERuc3BQeHRlOFlWTmlTaktPWVdsREt6?=
+ =?utf-8?B?T2VGU1dITG9XOWM0aHd6Ky9rYWhhbXlrdVFydWJhVE1qelh1RDcweG1DUHhw?=
+ =?utf-8?B?MmJQSjNuNUNTQlR3ZGJmSXE4Qk9lNC9FUGRJbmlac3JONW01NnJTUERaUFBB?=
+ =?utf-8?B?WWxDQkdxQ3NjSEhQZ3ZzRm9UbE9rdHBSUHJDYjJJcU1RZWFUYlFMVkllVFp4?=
+ =?utf-8?B?bXhua3JvNGxISC8xcFdIamRSU3BGOUQ5SHpqcjk3R2hrdHhtK1p3c0RrdmZs?=
+ =?utf-8?B?VW00SXZoNHdaL0Y4bjRGWjMxOGgydkJCQU1yRFdCcnUxc0xBWnpNRmF5MUly?=
+ =?utf-8?B?ckt4N1pEVmdYSHViVXllWHlqU1I1SFJyVzlwaGhabGFsMUpvaEx5eXNIY3hY?=
+ =?utf-8?B?SEJtbUpJMlRLSTRlUlozYm95ZGpkS3FGa29RdVNzNEhCL2hCY3hhSDl3SVdT?=
+ =?utf-8?B?RlhyRTk3QkFZS1JIdlpQQ1Z4MkYzSm04d0V1dWxXTlljMDI5cG54OE51NXkx?=
+ =?utf-8?B?RkJST0RrNDRqUkVRK3pZeXNIOFBkN1VQTzNNWmtmTVZ4K3RCaTlKN202eEdE?=
+ =?utf-8?B?SmJxNytXeTJsQ0dmNzhSU0xMakp4NktGOGw5YndJeS9yN0VnNGNKT3NqTzAz?=
+ =?utf-8?B?dmlOcUQ2RGFrVUEzWGMrOW03QnpoVGxPNTI5VDhVS0s3MWFqRVdleGZXU1A2?=
+ =?utf-8?B?bWx4aTFTbzEzd2k1N0NXNVZSSzJsT1VmT1k2QzNHaFlWREVVT1hPTkIxKzBp?=
+ =?utf-8?B?LzQ2SHRWTjM2WW9IMWRPNVNwRkN2ZUw5SWxGZXVyTFI3SngvZVVScElBOUlE?=
+ =?utf-8?B?OUp3UllmOTlHUnRlYjVxaWRicmtGb2RHMWplQTJTcklYMEc5a0xML3ZXdEZP?=
+ =?utf-8?B?VHpRbzg5cVBlVVR2VTdTQitjcHd6djlaQlV2d2Z6WmRaRzJtUFBJa1liSHYv?=
+ =?utf-8?B?UnJ4blh5bGd4bjU0bnVEbTF4NWZnZDl5MjFGU3RJY2xOZ2h1cXU4bWNaakF3?=
+ =?utf-8?B?U1pjZ1NEclFqSkVUMUR0Yzd3NmNJVDlBeXA5aENCdHBIU0N4Y2lpdENwOGgr?=
+ =?utf-8?B?a0xyczhvV3hod3FaU1MwZm93Tk5OczAwcTEwZG1xSXVUU1Vqc0hnRitsWGNZ?=
+ =?utf-8?B?TG43RXFXYlh2akk2RCtmL1NxRGxOWjRVUEMzS3Y1YVA5SGR4Mm5TYUJLWk9G?=
+ =?utf-8?B?TFVBd1dZbnY5TjBBRElFa1pKT3k4UTI5SXM2UkZITnFzbGg1WlhUS3ZJUXJ4?=
+ =?utf-8?B?NFRqakloY1c2MmhYRkQwL3BnMmVTaFJFYVNVdjBzZXltc01oU2wxUEMwYUR6?=
+ =?utf-8?B?UXNOTTB6VnIxQW83SmY4RFowSTdlcVVFMlg0L3pzcmZtbllVVmFSL2xaY2l6?=
+ =?utf-8?B?M3F3Q2pnUjF4NWkwTnh3QXRsdVBCdUVjbVFVTkhLMnJ1T3ZoVmIxMEY2K0Ny?=
+ =?utf-8?B?Z0Z1K01QRCtqdWNnM2NXUG1JTUZ3OENEZFlpMHpKc1luOTUyd0l5cERCYnNz?=
+ =?utf-8?B?RGVNbUpXSVNvMFowL1d2N2tMSjFoOUdXWGpMWVRsSzZzbVlsNnNnNVJBUUtK?=
+ =?utf-8?B?MVRMdnlQVWVuQnpuSjRRL3N5ZzdqNG1FR2daTXpMdVVGTFZNN0s4TlRicGEz?=
+ =?utf-8?B?b0tvVm9RNXJWUUs1ajFqbkNhOUdHQ0puSDdoRlhaWk9mY3VsVnRkaGx4Ty9z?=
+ =?utf-8?B?MXNuTTNJT2ZxUGV5MlNwYUlTeFl3SElZVkFNanNEVGVjQ3pWeVBLYzV1bWRj?=
+ =?utf-8?B?OVlWZHFkS2dHM1o2K0dVYTlHN2Izc0VyclRPUGdFLzFNUjBJWjZuS3k1TXpz?=
+ =?utf-8?B?elhWZmlRRTRaZkU2Y1hKYXdwMDRTVUNWeEV5dHNYV1JCQXJtSVN6MWN0Mzhx?=
+ =?utf-8?B?K2FaZS9VV2IxQnBVbU1wSGZiMTdRSWlRbTJQeTFUK1p4ZEJleEI3bWJQZU1H?=
+ =?utf-8?B?RUZGZlFIbHFVR2FqR0dodjRGOTQ2QXVuRDVUY3lnWG5IZ2FVb2xNdk1uNE42?=
+ =?utf-8?B?QWtnRHV3TW5CbUVCUzNuSWlFU2kwOTVQVWhPU2N6QWFLVllpZytJY1BOWWZG?=
+ =?utf-8?Q?+IBV3RbXqrRpF5bM=3D?=
+X-Exchange-RoutingPolicyChecked: U4nsaiKFZFQpMYSkawEwyH4HsTDsOAFM0zrNM9cPXv+ikILLi0HTaazPmqt8qKHVAWuxLkEFFz/b+wppmBzUk0Nz0YSmQDLJ/WM0hEptWZ4eaWK7XvvwDM015+goGj5C6wpVC5HEIInbX+ecNV8VkJ9k2vsfLK7YY7ySIZU41JW2TgW6g54ZfLJTahfMsj2RMt5aXdEubZPtwej3kFhfo4dKHIlW9vqwKmYQq1C43mH2y1OVjDC/RzZIAoT/G5ppQYjGLSaR0IV7Lvag9CFWlPn3D1MziGTiVE/NjYoEPiqSEdczHEQWcA/PkrwQV9cM+aS9H/8+VZzhvFyyJhTVNg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 34ad460e-f2f5-4186-eca6-08df051b837c
+X-MS-Exchange-CrossTenant-AuthSource: SA3PR11MB7554.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2026 15:30:35.2373 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2026 15:46:23.9342 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: twDseTIMBsd7JQRXTdrWOlvxNV5vrwPeH9mpvQ2UIL5lcq46VgPbXP+5e0kBh5sh0xSVOkQm5XU+/pye/aoxCQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7988
+X-MS-Exchange-CrossTenant-UserPrincipalName: eWC4NlAc0Wnt8M7mSdd4zE7/YQqAqrfcY7NJhGuojfeEABxp7ntgx4XiyNUi2327FYqp0eUjUDrBADODjxT9RVnxodeAIFo/+94Cqq+AqsI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7330
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -161,643 +174,251 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 27, 2026 at 08:20:10AM +0200, Raag Jadav wrote:
-> On Wed, Aug 26, 2026 at 05:10:44PM -0400, Rodrigo Vivi wrote:
-> > On Tue, Aug 25, 2026 at 05:12:43PM +0530, Raag Jadav wrote:
-> > > Consolidates all wedging implementation into a dedicated xe_wedge
-> > > component. While at it, add a worker to schedule the wedge handling to
-> > > be done async making xe_device_declare_wedged() safe for atomic callers.
-> > > 
-> > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > > ---
-> > > PS: The original intent was a bug fix, but that's just a matter of opinion.
-> > 
-> > I had thought about this spin-off a very long time ago too...
-> > 
-> > But please, split into 2 patches, one with the consolidation and one with
-> > the worker. This one is painful to review as is right now.
-> 
-> This was meant more as an RFC and needs a bit of discussion, sorry I
-> didn't update the subject prefix.
 
-ack on overall movement...
+On 8/13/2026 5:30 PM, Chaitanya Kumar Borah wrote:
+> Add bandwidth check to determine whether a given audio sample rate and
+> channel count can be carried within the hblank period for HDMI TMDS mode.
+>
+> Use this check to prune unsupported sample rates from each SAD in the
+> ELD during intel_audio_compute_config(). SADs with no remaining
+> supported rates are removed entirely.
+>
+> Sample rates are pruned rather than channel counts, since compressed
+> formats (e.g. AC-3) are associated with specific channel counts.
+>
+> v2:
+>   - Use DIV64_U64_ROUND_UP() instead of DIV_ROUND_UP_ULL() to avoid
+>     do_div() truncating the 64-bit divisor to 32-bit, which caused
+>     audio_packets_line to be wildly inflated and all SADs to be pruned.
+>   - Guard intel_audio_hdmi_eld_compute_config() against HDMI FRL modes.
+>     (Remove it when BW calculations for FRL are added.)
+>
+> v3:
+>   - Rebase
+>
+> v4:
+>   - Rework SAD removal into a single-pass, two-pointer compaction
+>     instead of memmove-ing the tail on every removal. (Jani)
+>
+> BSpec: 68944
+> Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Cc: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+> Cc: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Assisted-by: GitHub-Copilot:claude-opus-4.6
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_audio.c | 156 +++++++++++++++++++++
+>   1 file changed, 156 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+> index eae76e961105..9eb6867fa3f3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_audio.c
+> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
+> @@ -39,6 +39,7 @@
+>   #include "intel_display_types.h"
+>   #include "intel_display_wa.h"
+>   #include "intel_dp.h"
+> +#include "intel_hdmi.h"
+>   #include "intel_lpe_audio.h"
+>   
+>   /**
+> @@ -697,6 +698,158 @@ static void ibx_audio_codec_enable(struct intel_encoder *encoder,
+>   	mutex_unlock(&display->audio.mutex);
+>   }
+>   
+> +static bool hdmi_audio_rate_supported(const struct intel_crtc_state *crtc_state,
+> +				      int available_tmds,
+> +				      int audio_rate, int channels)
+> +{
+> +	const struct drm_display_mode *mode = &crtc_state->hw.adjusted_mode;
+> +	int pixel_clk_max_hz;
+> +	int audio_pkt_factor;
+> +	u64 audio_pkt_rate_x4_x1000;
+> +	int audio_packets_line;
+> +	int hblank_overhead;
+> +	int required_tmds;
+This can be names as hblank_audio_min the HDMI spec, and bspec both 
+mention this to denote required tribytes
+> +
+> +	/*
+> +	 * Part 2: Calculate TMDS clock cycles required for Audio Bandwidth
+> +	 *
+> +	 * Step 1: pixelclk_max = nominal_pixel_rate * (1 + 0.5%)
+> +	 * crtc_clock (kHz) * 1000 * 1.005 = crtc_clock * 1005 (Hz)
+> +	 */
+> +	pixel_clk_max_hz = mode->crtc_clock * 1005;
+> +
+> +	/*
+> +	 * Steps 3-4: Audio Packet Rate.
+> +	 *   R_AP = (audio_rate * AP + 2 * acrrate_max) * (1 + 1000 / 1e6)
+> +	 *        = (audio_rate * AP + 2*1500) * 1.001
+> +	 *
+> +	 * AP = 0.25 (2ch) or 1.0 (3-8ch); acrrate_max = 1500 Hz (max ACR
+> +	 * packet transmission rate per HDMI spec)
+> +	 *
+> +	 * Scale by 4*1000 to stay integer:
+> +	 *  x4: eliminates AP=0.25 -> audio_pkt_factor=1(2ch) or 4(3-8ch),
+> +	 *      scaled acrrate_max: 2 * 1500 * 4 = 12000
+> +	 *  x1000: eliminates 1.001 -> *1000*1.001 = *1001
+> +	 *
+> +	 * R_AP * 4 * 1000 = (audio_rate * audio_pkt_factor + 12000) * 1001
+> +	 */
+> +	audio_pkt_factor = (channels <= 2) ? 1 : 4;
+> +	audio_pkt_rate_x4_x1000 = (u64)(audio_rate * audio_pkt_factor + 12000) * 1001;
+> +
+> +	/*
+> +	 * Steps 2+5-6: Audio packets per line.
+> +	 *   AudioPackets_Line = CEIL[R_AP * htotal / f_pixelclk_max]
+> +	 *
+> +	 * With audio_pkt_rate_x4_x1000 = R_AP * 4 * 1000:
+> +	 *   = CEIL[audio_pkt_rate_x4_x1000 * htotal / (4 * 1000 * pixel_clk_max_hz)]
+> +	 */
+> +	audio_packets_line = DIV64_U64_ROUND_UP(audio_pkt_rate_x4_x1000 * mode->htotal,
+> +						(u64)4 * 1000 * pixel_clk_max_hz);
+> +
+> +	/*
+> +	 * Steps 7-9: Hblank overhead.
+> +	 * Standard:  2*dip_guardband + 2*control_period + video_guardband
+> +	 *          = 2*2 + 2*12 + 2 = 30
+> +	 * HDCP 1.x:  rekey_period + dip_guardband + control_period + video_guardband
+> +	 *          = 58 + 2 + 12 + 2 = 74
+> +	 *
+> +	 * Always use HDCP 1.x worst case (74) since HDCP can be toggled
+> +	 * via fastset without compute_config.
+> +	 */
+> +	hblank_overhead = 74;
+> +
+> +	/*
+> +	 * Step 10: Required TMDS cycles for Audio.
+> +	 *  32 TMDS clock cycles per audio packet.
+> +	 *   Hblank_audio_min = 32 * AudioPackets_Line + Hblank_overhead
+> +	 */
+> +	required_tmds = 32 * audio_packets_line + hblank_overhead;
+> +
+> +	/*
+> +	 * Part 3: audio supported if Hblank_audio_min <= TB_blank and
+> +	 * audio packets per line <= Maximum allowed packets per line (18)
+This can be a macro HDMI_TMDS_AUDIO_PACKETS_LINE_MAX
 
-> 
-> xe_pm_runtime_get_noresume() has checks against 'current' task and I'm
-> wondering if it's reliable in atomic context?
+> +	 */
+> +
+> +
 
-it should be... it is only not reliable in thread/work-queue contexts...
+The extra blank line can be removed.
 
-> 
-> > Also, please use 'xe_wedge_' as the new prefix for any non static functions.
-> 
-> Sure.
-> 
-> Raag
-> 
-> > >  Documentation/gpu/xe/xe_device.rst   |   2 +-
-> > >  drivers/gpu/drm/xe/Makefile          |   1 +
-> > >  drivers/gpu/drm/xe/xe_device.c       | 172 +--------------------
-> > >  drivers/gpu/drm/xe/xe_device.h       |  11 +-
-> > >  drivers/gpu/drm/xe/xe_device_types.h |  19 +--
-> > >  drivers/gpu/drm/xe/xe_wedge.c        | 214 +++++++++++++++++++++++++++
-> > >  drivers/gpu/drm/xe/xe_wedge.h        |  24 +++
-> > >  drivers/gpu/drm/xe/xe_wedge_types.h  |  25 ++++
-> > >  8 files changed, 271 insertions(+), 197 deletions(-)
-> > >  create mode 100644 drivers/gpu/drm/xe/xe_wedge.c
-> > >  create mode 100644 drivers/gpu/drm/xe/xe_wedge.h
-> > >  create mode 100644 drivers/gpu/drm/xe/xe_wedge_types.h
-> > > 
-> > > diff --git a/Documentation/gpu/xe/xe_device.rst b/Documentation/gpu/xe/xe_device.rst
-> > > index d3a022362ade..8baed81580c9 100644
-> > > --- a/Documentation/gpu/xe/xe_device.rst
-> > > +++ b/Documentation/gpu/xe/xe_device.rst
-> > > @@ -6,7 +6,7 @@
-> > >  Xe Device Wedging
-> > >  ==================
-> > >  
-> > > -.. kernel-doc:: drivers/gpu/drm/xe/xe_device.c
-> > > +.. kernel-doc:: drivers/gpu/drm/xe/xe_wedge.c
-> > >     :doc: Xe Device Wedging
-> > >  
-> > >  ====================
-> > > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> > > index adc2de37e768..c739a50b6896 100644
-> > > --- a/drivers/gpu/drm/xe/Makefile
-> > > +++ b/drivers/gpu/drm/xe/Makefile
-> > > @@ -152,6 +152,7 @@ xe-y += xe_bb.o \
-> > >  	xe_vsec.o \
-> > >  	xe_wa.o \
-> > >  	xe_wait_user_fence.o \
-> > > +	xe_wedge.o \
-> > >  	xe_wopcm.o
-> > >  
-> > >  xe-$(CONFIG_I2C)	+= xe_i2c.o \
-> > > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> > > index 74d566693dfd..d3a7034fac01 100644
-> > > --- a/drivers/gpu/drm/xe/xe_device.c
-> > > +++ b/drivers/gpu/drm/xe/xe_device.c
-> > > @@ -829,10 +829,7 @@ int xe_device_probe_early(struct xe_device *xe)
-> > >  	 */
-> > >  	assert_lmem_ready(xe);
-> > >  
-> > > -	xe->wedged.mode = xe_device_validate_wedged_mode(xe, xe_modparam.wedged_mode) ?
-> > > -			  XE_DEFAULT_WEDGED_MODE : xe_modparam.wedged_mode;
-> > > -	drm_dbg(&xe->drm, "wedged_mode: setting mode (%u) %s\n",
-> > > -		xe->wedged.mode, xe_wedged_mode_to_string(xe->wedged.mode));
-> > > +	xe_device_wedged_init_early(xe);
-> > >  
-> > >  	err = xe_device_vram_alloc(xe);
-> > >  	if (err)
-> > > @@ -924,14 +921,6 @@ static void detect_preproduction_hw(struct xe_device *xe)
-> > >  	}
-> > >  }
-> > >  
-> > > -static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
-> > > -{
-> > > -	struct xe_device *xe = arg;
-> > > -
-> > > -	if (atomic_read(&xe->wedged.flag))
-> > > -		xe_pm_runtime_put(xe);
-> > > -}
-> > > -
-> > >  #ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
-> > >  static int xe_debug_page_size_alloc_ctrl_init(struct xe_device *xe)
-> > >  {
-> > > @@ -1148,7 +1137,7 @@ int xe_device_probe(struct xe_device *xe)
-> > >  
-> > >  	detect_preproduction_hw(xe);
-> > >  
-> > > -	err = drmm_add_action_or_reset(&xe->drm, xe_device_wedged_fini, xe);
-> > > +	err = xe_device_wedged_init(xe);
-> > >  	if (err)
-> > >  		goto err_unregister_display;
-> > >  
-> > > @@ -1394,163 +1383,6 @@ u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address)
-> > >  	return address & GENMASK_ULL(xe->info.va_bits - 1, 0);
-> > >  }
-> > >  
-> > > -/**
-> > > - * DOC: Xe Device Wedging
-> > > - *
-> > > - * Xe driver uses drm device wedged uevent as documented in Documentation/gpu/drm-uapi.rst.
-> > > - * When device is in wedged state, every IOCTL will be blocked and GT cannot
-> > > - * be used. The conditions under which the driver declares the device wedged
-> > > - * depend on the wedged mode configuration (see &enum xe_wedged_mode). The
-> > > - * default recovery method for a wedged state is rebind/bus-reset.
-> > > - *
-> > > - * Another recovery method is vendor-specific. Below are the cases that send
-> > > - * ``WEDGED=vendor-specific`` recovery method in drm device wedged uevent.
-> > > - *
-> > > - * Case: Firmware Flash
-> > > - * --------------------
-> > > - *
-> > > - * Identification Hint
-> > > - * +++++++++++++++++++
-> > > - *
-> > > - * ``WEDGED=vendor-specific`` drm device wedged uevent with
-> > > - * :ref:`Runtime Survivability mode <xe-survivability-mode>` is used to notify
-> > > - * admin/userspace consumer about the need for a firmware flash.
-> > > - *
-> > > - * Recovery Procedure
-> > > - * ++++++++++++++++++
-> > > - *
-> > > - * Once ``WEDGED=vendor-specific`` drm device wedged uevent is received, follow
-> > > - * the below steps
-> > > - *
-> > > - * - Check Runtime Survivability mode sysfs.
-> > > - *   If enabled, firmware flash is required to recover the device.
-> > > - *
-> > > - *   /sys/bus/pci/devices/<device>/survivability_mode
-> > > - *
-> > > - * - Admin/userspace consumer can use firmware flashing tools like fwupd to flash
-> > > - *   firmware and restore device to normal operation.
-> > > - */
-> > > -
-> > > -/**
-> > > - * xe_device_set_wedged_method - Set wedged recovery method
-> > > - * @xe: xe device instance
-> > > - * @method: recovery method to set
-> > > - *
-> > > - * Set wedged recovery method to be sent in drm wedged uevent.
-> > > - */
-> > > -void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method)
-> > > -{
-> > > -	xe->wedged.method = method;
-> > > -}
-> > > -
-> > > -#define WEDGED_URL	"https://docs.kernel.org/gpu/drm-uapi.html#device-wedging"
-> > > -#define XE_BUG_URL	"https://gitlab.freedesktop.org/drm/xe/kernel/issues/new"
-> > > -
-> > > -/**
-> > > - * xe_device_declare_wedged - Declare device wedged
-> > > - * @xe: xe device instance
-> > > - *
-> > > - * This is a final state that can only be cleared with the recovery method
-> > > - * specified in the drm wedged uevent. The method can be set using
-> > > - * xe_device_set_wedged_method before declaring the device as wedged. If no method
-> > > - * is set, reprobe (unbind/re-bind) will be sent by default.
-> > > - *
-> > > - * In this state every IOCTL will be blocked so the GT cannot be used.
-> > > - * In general it will be called upon any critical error such as gt reset
-> > > - * failure or guc loading failure. Userspace will be notified of this state
-> > > - * through device wedged uevent.
-> > > - * If xe.wedged module parameter is set to 2, this function will be called
-> > > - * on every single execution timeout (a.k.a. GPU hang) right after devcoredump
-> > > - * snapshot capture. In this mode, GT reset won't be attempted so the state of
-> > > - * the issue is preserved for further debugging.
-> > > - */
-> > > -void xe_device_declare_wedged(struct xe_device *xe)
-> > > -{
-> > > -	struct xe_gt *gt;
-> > > -	u8 id;
-> > > -
-> > > -	if (xe->wedged.mode == XE_WEDGED_MODE_NEVER) {
-> > > -		drm_dbg(&xe->drm, "Wedged mode is forcibly disabled\n");
-> > > -		return;
-> > > -	}
-> > > -
-> > > -	if (!atomic_xchg(&xe->wedged.flag, 1)) {
-> > > -		xe->needs_flr_on_fini = true;
-> > > -		xe_pm_runtime_get_noresume(xe);
-> > > -
-> > > -		xe_log_err_fatal(xe, WEDGED, -EIO, "Device declared wedged!\n");
-> > > -		xe_err_once(xe, "IOCTLs and executions are now blocked!\n"
-> > > -			    "For recovery procedure, refer to %s\n"
-> > > -			    "Please file a _new_ bug report at %s\n",
-> > > -			    WEDGED_URL, XE_BUG_URL);
-> > > -	}
-> > > -
-> > > -	for_each_gt(gt, xe, id)
-> > > -		xe_gt_declare_wedged(gt);
-> > > -
-> > > -	if (xe_device_wedged(xe)) {
-> > > -		/*
-> > > -		 * XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is intended for debugging
-> > > -		 * hangs, so wedge the device with 'none' recovery method and have
-> > > -		 * it available to the user for debugging.
-> > > -		 */
-> > > -		if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
-> > > -			xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_NONE);
-> > > -		/* If no wedge recovery method is set, use default */
-> > > -		else if (!xe->wedged.method)
-> > > -			xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_REBIND |
-> > > -						    DRM_WEDGE_RECOVERY_BUS_RESET);
-> > > -
-> > > -		/* Notify userspace of wedged device */
-> > > -		drm_dev_wedged_event(&xe->drm, xe->wedged.method, NULL);
-> > > -	}
-> > > -}
-> > > -
-> > > -/**
-> > > - * xe_device_validate_wedged_mode - Check if given mode is supported
-> > > - * @xe: the &xe_device
-> > > - * @mode: requested mode to validate
-> > > - *
-> > > - * Check whether the provided wedged mode is supported.
-> > > - *
-> > > - * Return: 0 if mode is supported, error code otherwise.
-> > > - */
-> > > -int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode)
-> > > -{
-> > > -	if (mode > XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
-> > > -		drm_dbg(&xe->drm, "wedged_mode: invalid value (%u)\n", mode);
-> > > -		return -EINVAL;
-> > > -	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET && (IS_SRIOV_VF(xe) ||
-> > > -		   (IS_SRIOV_PF(xe) && !IS_ENABLED(CONFIG_DRM_XE_DEBUG)))) {
-> > > -		drm_dbg(&xe->drm, "wedged_mode: (%u) %s mode is not supported for %s\n",
-> > > -			mode, xe_wedged_mode_to_string(mode),
-> > > -			xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
-> > > -		return -EPERM;
-> > > -	}
-> > > -
-> > > -	return 0;
-> > > -}
-> > > -
-> > > -/**
-> > > - * xe_wedged_mode_to_string - Convert enum value to string.
-> > > - * @mode: the &xe_wedged_mode to convert
-> > > - *
-> > > - * Returns: wedged mode as a user friendly string.
-> > > - */
-> > > -const char *xe_wedged_mode_to_string(enum xe_wedged_mode mode)
-> > > -{
-> > > -	switch (mode) {
-> > > -	case XE_WEDGED_MODE_NEVER:
-> > > -		return "never";
-> > > -	case XE_WEDGED_MODE_UPON_CRITICAL_ERROR:
-> > > -		return "upon-critical-error";
-> > > -	case XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET:
-> > > -		return "upon-any-hang-no-reset";
-> > > -	default:
-> > > -		return "<invalid>";
-> > > -	}
-> > > -}
-> > > -
-> > >  /**
-> > >   * xe_device_asid_to_vm() - Find VM from ASID
-> > >   * @xe: the &xe_device
-> > > diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-> > > index 6c4cfaebc44a..c984972bd0f8 100644
-> > > --- a/drivers/gpu/drm/xe/xe_device.h
-> > > +++ b/drivers/gpu/drm/xe/xe_device.h
-> > > @@ -11,6 +11,7 @@
-> > >  #include "xe_device_types.h"
-> > >  #include "xe_gt_types.h"
-> > >  #include "xe_sriov.h"
-> > > +#include "xe_wedge.h"
-> > >  
-> > >  struct xe_vm;
-> > >  
-> > > @@ -207,11 +208,6 @@ bool xe_device_is_l2_flush_optimized(struct xe_device *xe);
-> > >  void xe_device_td_flush(struct xe_device *xe);
-> > >  void xe_device_l2_flush(struct xe_device *xe);
-> > >  
-> > > -static inline bool xe_device_wedged(struct xe_device *xe)
-> > > -{
-> > > -	return atomic_read(&xe->wedged.flag);
-> > > -}
-> > > -
-> > >  #ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
-> > >  static inline bool xe_debug_page_size_supported(struct xe_device *xe)
-> > >  {
-> > > @@ -260,11 +256,6 @@ static inline bool xe_debug_page_size_mode_is_mixed(struct xe_device *xe)
-> > >  }
-> > >  #endif
-> > >  
-> > > -void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method);
-> > > -void xe_device_declare_wedged(struct xe_device *xe);
-> > > -int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode);
-> > > -const char *xe_wedged_mode_to_string(enum xe_wedged_mode mode);
-> > > -
-> > >  struct xe_file *xe_file_get(struct xe_file *xef);
-> > >  void xe_file_put(struct xe_file *xef);
-> > >  
-> > > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> > > index 180d450a6deb..f307d7e5e6b6 100644
-> > > --- a/drivers/gpu/drm/xe/xe_device_types.h
-> > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> > > @@ -30,6 +30,7 @@
-> > >  #include "xe_sysctrl_types.h"
-> > >  #include "xe_tile_types.h"
-> > >  #include "xe_validation.h"
-> > > +#include "xe_wedge_types.h"
-> > >  
-> > >  #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-> > >  #define TEST_VM_OPS_ERROR
-> > > @@ -45,22 +46,6 @@ struct xe_pxp;
-> > >  struct xe_ttm_stolen_mgr;
-> > >  struct xe_vram_region;
-> > >  
-> > > -/**
-> > > - * enum xe_wedged_mode - possible wedged modes
-> > > - * @XE_WEDGED_MODE_NEVER: Device will never be declared wedged.
-> > > - * @XE_WEDGED_MODE_UPON_CRITICAL_ERROR: Device will be declared wedged only
-> > > - *	when critical error occurs like GT reset failure or firmware failure.
-> > > - *	This is the default mode.
-> > > - * @XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET: Device will be declared wedged on
-> > > - *	any hang. In this mode, engine resets are disabled to avoid automatic
-> > > - *	recovery attempts. This mode is primarily intended for debugging hangs.
-> > > - */
-> > > -enum xe_wedged_mode {
-> > > -	XE_WEDGED_MODE_NEVER = 0,
-> > > -	XE_WEDGED_MODE_UPON_CRITICAL_ERROR = 1,
-> > > -	XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET = 2,
-> > > -};
-> > > -
-> > >  #ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
-> > >  /**
-> > >   * enum xe_page_size_alloc_ctrl_mode - User BO page-size allocation control modes
-> > > @@ -534,6 +519,8 @@ struct xe_device {
-> > >  		unsigned long method;
-> > >  		/** @wedged.inconsistent_reset: Inconsistent reset policy state between GTs */
-> > >  		bool inconsistent_reset;
-> > > +		/** @wedged.work: Worker for wedge handling to be done async */
-> > > +		struct work_struct work;
-> > >  	} wedged;
-> > >  
-> > >  	/** @devres_group: devres group */
-> > > diff --git a/drivers/gpu/drm/xe/xe_wedge.c b/drivers/gpu/drm/xe/xe_wedge.c
-> > > new file mode 100644
-> > > index 000000000000..52d4661a2dee
-> > > --- /dev/null
-> > > +++ b/drivers/gpu/drm/xe/xe_wedge.c
-> > > @@ -0,0 +1,214 @@
-> > > +// SPDX-License-Identifier: MIT
-> > > +/*
-> > > + * Copyright © 2026 Intel Corporation
-> > > + */
-> > > +
-> > > +#include <drm/drm_drv.h>
-> > > +#include <drm/drm_managed.h>
-> > > +
-> > > +#include "xe_defaults.h"
-> > > +#include "xe_device_types.h"
-> > > +#include "xe_gt.h"
-> > > +#include "xe_log.h"
-> > > +#include "xe_module.h"
-> > > +#include "xe_pm.h"
-> > > +#include "xe_printk.h"
-> > > +#include "xe_wedge.h"
-> > > +
-> > > +/**
-> > > + * DOC: Xe Device Wedging
-> > > + *
-> > > + * Xe driver uses drm device wedged uevent as documented in Documentation/gpu/drm-uapi.rst.
-> > > + * When device is in wedged state, every IOCTL will be blocked and GT cannot
-> > > + * be used. The conditions under which the driver declares the device wedged
-> > > + * depend on the wedged mode configuration (see &enum xe_wedged_mode). The
-> > > + * default recovery method for a wedged state is rebind/bus-reset.
-> > > + *
-> > > + * Another recovery method is vendor-specific. Below are the cases that send
-> > > + * ``WEDGED=vendor-specific`` recovery method in drm device wedged uevent.
-> > > + *
-> > > + * Case: Firmware Flash
-> > > + * --------------------
-> > > + *
-> > > + * Identification Hint
-> > > + * +++++++++++++++++++
-> > > + *
-> > > + * ``WEDGED=vendor-specific`` drm device wedged uevent with
-> > > + * :ref:`Runtime Survivability mode <xe-survivability-mode>` is used to notify
-> > > + * admin/userspace consumer about the need for a firmware flash.
-> > > + *
-> > > + * Recovery Procedure
-> > > + * ++++++++++++++++++
-> > > + *
-> > > + * Once ``WEDGED=vendor-specific`` drm device wedged uevent is received, follow
-> > > + * the below steps
-> > > + *
-> > > + * - Check Runtime Survivability mode sysfs.
-> > > + *   If enabled, firmware flash is required to recover the device.
-> > > + *
-> > > + *   /sys/bus/pci/devices/<device>/survivability_mode
-> > > + *
-> > > + * - Admin/userspace consumer can use firmware flashing tools like fwupd to flash
-> > > + *   firmware and restore device to normal operation.
-> > > + */
-> > > +
-> > > +/**
-> > > + * xe_device_set_wedged_method() - Set wedged recovery method
-> > > + * @xe: xe device instance
-> > > + * @method: recovery method to set
-> > > + *
-> > > + * Set wedged recovery method to be sent in drm wedged uevent.
-> > > + */
-> > > +void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method)
-> > > +{
-> > > +	xe->wedged.method = method;
-> > > +}
-> > > +
-> > > +/**
-> > > + * xe_device_wedged() - Check for wedged device
-> > > + * @xe: xe device instance
-> > > + *
-> > > + * Returns: %true if device is wedged, %false otherwise.
-> > > + */
-> > > +bool xe_device_wedged(struct xe_device *xe)
-> > > +{
-> > > +	return atomic_read(&xe->wedged.flag);
-> > > +}
-> > > +
-> > > +#define WEDGED_URL	"https://docs.kernel.org/gpu/drm-uapi.html#device-wedging"
-> > > +#define XE_BUG_URL	"https://gitlab.freedesktop.org/drm/xe/kernel/issues/new"
-> > > +
-> > > +static void wedged_work(struct work_struct *work)
-> > > +{
-> > > +	struct xe_device *xe = container_of(work, struct xe_device, wedged.work);
-> > > +	struct xe_gt *gt;
-> > > +	u8 id;
-> > > +
-> > > +	for_each_gt(gt, xe, id)
-> > > +		xe_gt_declare_wedged(gt);
-> > > +
-> > > +	/*
-> > > +	 * XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is intended for debugging
-> > > +	 * hangs, so wedge the device with 'none' recovery method and have
-> > > +	 * it available to the user for debugging.
-> > > +	 */
-> > > +	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
-> > > +		xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_NONE);
-> > > +	/* If no wedge recovery method is set, use default */
-> > > +	else if (!xe->wedged.method)
-> > > +		xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_REBIND |
-> > > +					    DRM_WEDGE_RECOVERY_BUS_RESET);
-> > > +
-> > > +	/* Notify userspace of wedged device */
-> > > +	drm_dev_wedged_event(&xe->drm, xe->wedged.method, NULL);
-> > > +}
-> > > +
-> > > +/**
-> > > + * xe_device_declare_wedged - Declare device wedged
-> > > + * @xe: xe device instance
-> > > + *
-> > > + * This is a final state that can only be cleared with the recovery method
-> > > + * specified in the drm wedged uevent. The method can be set using
-> > > + * xe_device_set_wedged_method before declaring the device as wedged. If no method
-> > > + * is set, reprobe (unbind/re-bind) will be sent by default.
-> > > + *
-> > > + * In this state every IOCTL will be blocked so the GT cannot be used.
-> > > + * In general it will be called upon any critical error such as gt reset
-> > > + * failure or guc loading failure. Userspace will be notified of this state
-> > > + * through device wedged uevent.
-> > > + * If xe.wedged module parameter is set to 2, this function will be called
-> > > + * on every single execution timeout (a.k.a. GPU hang) right after devcoredump
-> > > + * snapshot capture. In this mode, GT reset won't be attempted so the state of
-> > > + * the issue is preserved for further debugging.
-> > > + */
-> > > +void xe_device_declare_wedged(struct xe_device *xe)
-> > > +{
-> > > +	if (xe->wedged.mode == XE_WEDGED_MODE_NEVER) {
-> > > +		drm_dbg(&xe->drm, "Wedged mode is forcibly disabled\n");
-> > > +		return;
-> > > +	}
-> > > +
-> > > +	if (!atomic_xchg(&xe->wedged.flag, 1)) {
-> > > +		xe->needs_flr_on_fini = true;
-> > > +		xe_pm_runtime_get_noresume(xe);
-> > > +
-> > > +		xe_log_err_fatal(xe, WEDGED, -EIO, "Device declared wedged!\n");
-> > > +		xe_err_once(xe, "IOCTLs and executions are now blocked!\n"
-> > > +			    "For recovery procedure, refer to %s\n"
-> > > +			    "Please file a _new_ bug report at %s\n",
-> > > +			    WEDGED_URL, XE_BUG_URL);
-> > > +
-> > > +		schedule_work(&xe->wedged.work);
-> > > +	}
-> > > +}
-> > > +
-> > > +/**
-> > > + * xe_device_validate_wedged_mode - Check if given mode is supported
-> > > + * @xe: the &xe_device
-> > > + * @mode: requested mode to validate
-> > > + *
-> > > + * Check whether the provided wedged mode is supported.
-> > > + *
-> > > + * Return: 0 if mode is supported, error code otherwise.
-> > > + */
-> > > +int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode)
-> > > +{
-> > > +	if (mode > XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
-> > > +		drm_dbg(&xe->drm, "wedged_mode: invalid value (%u)\n", mode);
-> > > +		return -EINVAL;
-> > > +	} else if (mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET && (IS_SRIOV_VF(xe) ||
-> > > +		   (IS_SRIOV_PF(xe) && !IS_ENABLED(CONFIG_DRM_XE_DEBUG)))) {
-> > > +		drm_dbg(&xe->drm, "wedged_mode: (%u) %s mode is not supported for %s\n",
-> > > +			mode, xe_wedged_mode_to_string(mode),
-> > > +			xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
-> > > +		return -EPERM;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +/**
-> > > + * xe_wedged_mode_to_string - Convert enum value to string.
-> > > + * @mode: the &xe_wedged_mode to convert
-> > > + *
-> > > + * Returns: wedged mode as a user friendly string.
-> > > + */
-> > > +const char *xe_wedged_mode_to_string(enum xe_wedged_mode mode)
-> > > +{
-> > > +	switch (mode) {
-> > > +	case XE_WEDGED_MODE_NEVER:
-> > > +		return "never";
-> > > +	case XE_WEDGED_MODE_UPON_CRITICAL_ERROR:
-> > > +		return "upon-critical-error";
-> > > +	case XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET:
-> > > +		return "upon-any-hang-no-reset";
-> > > +	default:
-> > > +		return "<invalid>";
-> > > +	}
-> > > +}
-> > > +
-> > > +void xe_device_wedged_init_early(struct xe_device *xe)
-> > > +{
-> > > +	xe->wedged.mode = xe_device_validate_wedged_mode(xe, xe_modparam.wedged_mode) ?
-> > > +			  XE_DEFAULT_WEDGED_MODE : xe_modparam.wedged_mode;
-> > > +	drm_dbg(&xe->drm, "wedged_mode: setting mode (%u) %s\n",
-> > > +		xe->wedged.mode, xe_wedged_mode_to_string(xe->wedged.mode));
-> > > +}
-> > > +
-> > > +static void xe_device_wedged_fini(struct drm_device *drm, void *arg)
-> > > +{
-> > > +	struct xe_device *xe = arg;
-> > > +
-> > > +	disable_work_sync(&xe->wedged.work);
-> > > +
-> > > +	if (atomic_read(&xe->wedged.flag))
-> > > +		xe_pm_runtime_put(xe);
-> > > +}
-> > > +
-> > > +int xe_device_wedged_init(struct xe_device *xe)
-> > > +{
-> > > +	INIT_WORK(&xe->wedged.work, wedged_work);
-> > > +
-> > > +	return drmm_add_action_or_reset(&xe->drm, xe_device_wedged_fini, xe);
-> > > +}
-> > > +
-> > > diff --git a/drivers/gpu/drm/xe/xe_wedge.h b/drivers/gpu/drm/xe/xe_wedge.h
-> > > new file mode 100644
-> > > index 000000000000..fedb30c99398
-> > > --- /dev/null
-> > > +++ b/drivers/gpu/drm/xe/xe_wedge.h
-> > > @@ -0,0 +1,24 @@
-> > > +/* SPDX-License-Identifier: MIT */
-> > > +/*
-> > > + * Copyright © 2026 Intel Corporation
-> > > + */
-> > > +
-> > > +#ifndef _XE_WEDGE_H_
-> > > +#define _XE_WEDGE_H_
-> > > +
-> > > +#include <linux/atomic.h>
-> > > +#include <linux/types.h>
-> > > +
-> > > +#include "xe_wedge_types.h"
-> > > +
-> > > +struct xe_device;
-> > > +
-> > > +void xe_device_wedged_init_early(struct xe_device *xe);
-> > > +int xe_device_wedged_init(struct xe_device *xe);
-> > > +void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method);
-> > > +void xe_device_declare_wedged(struct xe_device *xe);
-> > > +bool xe_device_wedged(struct xe_device *xe);
-> > > +int xe_device_validate_wedged_mode(struct xe_device *xe, unsigned int mode);
-> > > +const char *xe_wedged_mode_to_string(enum xe_wedged_mode mode);
-> > > +
-> > > +#endif
-> > > diff --git a/drivers/gpu/drm/xe/xe_wedge_types.h b/drivers/gpu/drm/xe/xe_wedge_types.h
-> > > new file mode 100644
-> > > index 000000000000..ffe7f9c64166
-> > > --- /dev/null
-> > > +++ b/drivers/gpu/drm/xe/xe_wedge_types.h
-> > > @@ -0,0 +1,25 @@
-> > > +/* SPDX-License-Identifier: MIT */
-> > > +/*
-> > > + * Copyright © 2026 Intel Corporation
-> > > + */
-> > > +
-> > > +#ifndef _XE_WEDGE_TYPES_H_
-> > > +#define _XE_WEDGE_TYPES_H_
-> > > +
-> > > +/**
-> > > + * enum xe_wedged_mode - possible wedged modes
-> > > + * @XE_WEDGED_MODE_NEVER: Device will never be declared wedged.
-> > > + * @XE_WEDGED_MODE_UPON_CRITICAL_ERROR: Device will be declared wedged only
-> > > + *	when critical error occurs like GT reset failure or firmware failure.
-> > > + *	This is the default mode.
-> > > + * @XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET: Device will be declared wedged on
-> > > + *	any hang. In this mode, engine resets are disabled to avoid automatic
-> > > + *	recovery attempts. This mode is primarily intended for debugging hangs.
-> > > + */
-> > > +enum xe_wedged_mode {
-> > > +	XE_WEDGED_MODE_NEVER = 0,
-> > > +	XE_WEDGED_MODE_UPON_CRITICAL_ERROR = 1,
-> > > +	XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET = 2,
-> > > +};
-> > > +
-> > > +#endif
-> > > -- 
-> > > 2.43.0
-> > > 
+
+> 	return required_tmds <= available_tmds && audio_packets_line <= 18;
+> +}
+> +
+> +static void intel_audio_hdmi_eld_compute_config(struct intel_crtc_state *crtc_state)
+> +{
+> +	static const int sad_freqs[] = {
+> +		32000, 44100, 48000, 88200, 96000, 176400, 192000
+> +	};
+> +	const struct drm_display_mode *mode = &crtc_state->hw.adjusted_mode;
+> +	int hblank = mode->htotal - mode->hdisplay;
+> +	int bpc = crtc_state->pipe_bpp / 3;
+> +	int ycbcr_420_divider = (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) ? 2 : 1;
+> +	int available_tmds;
+> +	u8 *eld = crtc_state->eld;
+> +	int mnl = drm_eld_mnl(eld);
+> +	int sad_count = drm_eld_sad_count(eld);
+> +	int src, dst = 0;
+> +
+> +	/* Only applies to HDMI TMDS, not FRL */
+> +	if (intel_hdmi_is_frl(crtc_state->port_clock))
+> +		return;
+
+This can be dropped as of now we do not have FRL support. As we get FRL 
+support, we shall use appropriate check here.
+
+
+> +	/*
+> +	 * Part 1: Calculate available TMDS clock cycles (TB_blank).
+> +	 *
+> +	 * TB_blank = CEILING[hblank * K_CD / K_420]
+> +	 *
+> +	 * K_CD = 1 for YCbCr4:2:2, bpc / 8 otherwise.
+> +	 * K_420 = 2 for YCbCr4:2:0, 1 otherwise.
+> +	 * Rearranged: CEILING[hblank * bpc / (8 * K_420)]
+> +	 *
+> +	 * TODO: As and when support for YCbCr4:2:2 is added, set bpc = 8
+> +	 * to achieve K_CD = 1
+> +	 */
+> +	available_tmds = DIV_ROUND_UP(hblank * bpc, 8 * ycbcr_420_divider);
+> +
+> +	/*
+> +	 * Walk all SADs once, keeping the ones with at least one supported
+> +	 * rate and compacting them down to a contiguous [0, dst) range.
+> +	 */
+> +	for (src = 0; src < sad_count; src++) {
+> +		int src_offset = DRM_ELD_CEA_SAD(mnl, src);
+> +		int channels = (eld[src_offset] & 0x7) + 1;
+> +		u8 freq_mask = eld[src_offset + 1];
+
+Hmm can we use : drm_eld_sad_get() this takes struct cea_sad *cta_sad as 
+input parameter and fills it.
+
+we can then use cta_sad.channels and cta_sad.freq for max channels and 
+freq_mask.
+
+Overall the direction of the change looks good to me.
+
+
+Regards,
+
+Ankit
+
+> +		u8 new_freq_mask = 0;
+> +		int bit;
+> +
+> +		for (bit = 0; bit < 7; bit++) {
+> +			if (!(freq_mask & BIT(bit)))
+> +				continue;
+> +			if (hdmi_audio_rate_supported(crtc_state, available_tmds,
+> +						      sad_freqs[bit], channels))
+> +				new_freq_mask |= BIT(bit);
+> +		}
+> +
+> +		if (!new_freq_mask)
+> +			continue;
+> +
+> +		eld[src_offset + 1] = new_freq_mask;
+> +
+> +		if (dst != src)
+> +			memmove(&eld[DRM_ELD_CEA_SAD(mnl, dst)],
+> +				&eld[src_offset], 3);
+> +		dst++;
+> +	}
+> +
+> +	/* Clear the now-unused tail */
+> +	if (dst != sad_count)
+> +		memset(&eld[DRM_ELD_CEA_SAD(mnl, dst)], 0, (sad_count - dst) * 3);
+> +
+> +	sad_count = dst;
+> +
+> +	/* Update SAD count in ELD header */
+> +	eld[DRM_ELD_SAD_COUNT_CONN_TYPE] &= ~DRM_ELD_SAD_COUNT_MASK;
+> +	eld[DRM_ELD_SAD_COUNT_CONN_TYPE] |= sad_count << DRM_ELD_SAD_COUNT_SHIFT;
+> +
+> +	/* Recalculate baseline ELD length (in dwords) */
+> +	eld[DRM_ELD_BASELINE_ELD_LEN] =
+> +		DIV_ROUND_UP(drm_eld_calc_baseline_block_size(eld), 4);
+> +}
+> +
+>   static
+>   bool intel_audio_needs_cpu_transcoder_id(const struct intel_crtc_state *crtc_state)
+>   {
+> @@ -725,6 +878,9 @@ bool intel_audio_compute_config(struct intel_encoder *encoder,
+>   	BUILD_BUG_ON(sizeof(crtc_state->eld) != sizeof(connector->eld));
+>   	memcpy(crtc_state->eld, connector->eld, sizeof(crtc_state->eld));
+>   
+> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> +		intel_audio_hdmi_eld_compute_config(crtc_state);
+> +
+>   	crtc_state->eld[6] = drm_av_sync_delay(connector, adjusted_mode) / 2;
+>   	mutex_unlock(&connector->eld_mutex);
+>   
