@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66395C61DBD
-	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 06:44:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C408C61DB9
+	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 06:45:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 112B410F26D;
-	Fri, 28 Aug 2026 06:44:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5862D10F26D;
+	Fri, 28 Aug 2026 06:45:09 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5794B10F26C;
- Fri, 28 Aug 2026 06:44:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F25010F26C;
+ Fri, 28 Aug 2026 06:45:08 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5Bv?=
- =?utf-8?q?4=2C1/2=5D_drm=3A_Add_common_drm=5Fuser=5Ffence_helper?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_series_starting_with_=5Bv4=2C1?=
+ =?utf-8?q?/2=5D_drm=3A_Add_common_drm=5Fuser=5Ffence_helper?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Srinivasan Shanmugam" <srinivasan.shanmugam@amd.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 28 Aug 2026 06:44:33 -0000
-Message-ID: <178789947335.94692.12401361386044472479@61270ab9df2a>
+Date: Fri, 28 Aug 2026 06:45:08 -0000
+Message-ID: <178789950825.94368.4174709698396670491@61270ab9df2a>
 X-Patchwork-Hint: ignore
 References: <20260828063103.4106629-1-srinivasan.shanmugam@amd.com>
 In-Reply-To: <20260828063103.4106629-1-srinivasan.shanmugam@amd.com>
@@ -44,58 +44,40 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [v4,1/2] drm: Add common drm_user_fence helper
 URL   : https://patchwork.freedesktop.org/series/172930/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit bbcef55986e9cb57721565b6a593909f78efcbf0
-Author: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-Date:   Fri Aug 28 12:01:03 2026 +0530
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+[06:44:34] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[06:44:38] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
+ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_sync.h:9,
+                 from ../drivers/gpu/drm/xe/xe_exec.c:21:
+../drivers/gpu/drm/xe/xe_sync_types.h:6: error: unterminated #ifndef
+    6 | #ifndef _XE_SYNC_TYPES_H_
+      | 
+make[7]: *** [../scripts/Makefile.build:289: drivers/gpu/drm/xe/xe_exec.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:549: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:549: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:549: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:549: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [/kernel/Makefile:2187: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-    drm/xe: Convert xe_user_fence to drm_user_fence
-    
-    Replace the open-coded user fence implementation in xe_sync.c with the
-    new common drm_user_fence helper.
-    
-    struct xe_user_fence now embeds struct drm_user_fence as its base.
-    XE-specific fields (xe_device pointer for the ufence_wq wake-up,
-    userspace VA, expected value, signalled flag) remain in the wrapper.
-    
-    The local user_fence_destroy/get/put/worker/kick_ufence/user_fence_cb
-    functions are removed. Their logic moves to xe_ufence_ops.worker and
-    xe_ufence_ops.destroy, which are called by drm_user_fence_work().
-    
-    Cc: Matthew Brost <matthew.brost@intel.com>
-    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-    Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-    Cc: David Airlie <airlied@gmail.com>
-    Cc: Simona Vetter <simona@ffwll.ch>
-    Cc: Sumit Semwal <sumit.semwal@linaro.org>
-    Cc: Christian König <christian.koenig@amd.com>
-    Cc: Alex Deucher <alexander.deucher@amd.com>
-    Cc: intel-xe@lists.freedesktop.org
-    Cc: dri-devel@lists.freedesktop.org
-    Cc: linux-media@vger.kernel.org
-    Cc: linaro-mm-sig@lists.linaro.org
-    Cc: linux-kernel@vger.kernel.org
-    Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-+ /mt/dim checkpatch 5901f93eb5a007e8b7c21ca2b5bfae5958467832 drm-intel
-d4f8930a6cb3 drm: Add common drm_user_fence helper
--:61: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#61: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 305 lines checked
-bbcef55986e9 drm/xe: Convert xe_user_fence to drm_user_fence
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
