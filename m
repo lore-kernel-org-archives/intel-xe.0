@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3402EC61DCB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4C21C61DBD
 	for <intel-xe@archiver.kernel.org>; Fri, 28 Aug 2026 15:14:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDC7310F3EB;
-	Fri, 28 Aug 2026 15:14:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46C9E10E640;
+	Fri, 28 Aug 2026 15:14:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nu1fvVck";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MU/4/Z+6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D49F10E286
- for <intel-xe@lists.freedesktop.org>; Fri, 28 Aug 2026 15:14:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EBEE10E640
+ for <intel-xe@lists.freedesktop.org>; Fri, 28 Aug 2026 15:14:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787930065; x=1819466065;
+ t=1787930067; x=1819466067;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OUPAwsA48bLIZt5skAnJ/eKXw59kQSObT4MKfhWdnpg=;
- b=nu1fvVckndibhMYc01ENzMJsh8mq+Oe85dhaESrMH9WYtyYAfmC1A6lz
- 3Q96LaN8MM/BsE7UK6UcckyikmZWT6BfBJXjvkqditURHTv+mKBuXm7Q/
- F89D3IOCrdJmo6uZ/2duSofDhvNwfeVZKwT1d/isoNzqmdfX/wXjbvgHm
- 8i9oblGrj5xvIPHVC8JFgfP3CxxbbmJN/YaDMrzWASUThnlSQLW1AczXd
- FANsRQscF88Kyfq+F7UBZVhBjQu2e6fbT57DNh5R8JUIIp6udQ68s9Avh
- Qasc1I8PZMd8s18HBfYPf9YtvsAgGqLbY/PJdtl+untfyQO+hMuY1l+jb g==;
-X-CSE-ConnectionGUID: drovzr3QSgWVqWf1adhNig==
-X-CSE-MsgGUID: fI0kvip0TdymE8u0r04LoQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11889"; a="92252190"
-X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="92252190"
+ bh=oKpbJrvsQW4lGovJ8HayRV5uuGGRT9T2o+pu3nuTfMQ=;
+ b=MU/4/Z+64x8rLXfYgkgzpeSQY287kPEO9+HZh6c3lip0wajkahuXAe7W
+ 8U8Lx21tZTMyy8sZRdVqMr+ENIK8toPwqmvwMcf5DjEAutoUfCP/ujAZM
+ TStI8w+yEfn3OH8HyahdP5q+Zh9EyagUOhWS9Bd2WDkJeR3T+Y2IyYhVp
+ IIkrbX/f2NbtYlOE5vj7pUnts1syMrtIoUncwhEVaJsOOqwj2xjaot6xo
+ YoVlJVwGQAW2SK25stkuKIdfFzH/ed5Xls60qm4yTMg45ea6nd6vWgpYT
+ zqfAjW1D3RLNQ71hWHHcC99ff0nq5AO4lJeAZmQOYSB6hIvghDwi3l/V1 A==;
+X-CSE-ConnectionGUID: 9V0Xjcm0QiiRFMskaBKUAA==
+X-CSE-MsgGUID: 6TKssPdtRuGPFKLqntPXMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11889"; a="92252191"
+X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="92252191"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2026 08:14:25 -0700
-X-CSE-ConnectionGUID: 8+dSOtSEQ2Our82mZCYqSA==
-X-CSE-MsgGUID: OyWGf3PmSe+S0bjpzJ6IqQ==
+ 28 Aug 2026 08:14:27 -0700
+X-CSE-ConnectionGUID: BT3KdUU3QO+9dZ4dJNfTFw==
+X-CSE-MsgGUID: UuRelJ6fRkyo8WALEIlM4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="268746401"
+X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; d="scan'208";a="268746409"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.245.86])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2026 08:14:24 -0700
+ 28 Aug 2026 08:14:25 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+Cc: Linus Torvalds <torvalds@linux-foundation.org>, stable@kernel.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 1/5] drm/xe/migrate: support 4K PTEs for identity map
-Date: Fri, 28 Aug 2026 16:14:07 +0100
-Message-ID: <20260828151405.662533-8-matthew.auld@intel.com>
+Subject: [PATCH 2/5] drm/xe: Don't hand out the flat CCS storage as usable VRAM
+Date: Fri, 28 Aug 2026 16:14:08 +0100
+Message-ID: <20260828151405.662533-9-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260828151405.662533-7-matthew.auld@intel.com>
 References: <20260828151405.662533-7-matthew.auld@intel.com>
@@ -70,159 +71,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When VRAM limit (usable_size) is no longer 2M aligned (e.g. because flat
-CCS storage size rounds it down to 4K), we must map the tail of the
-identity mapping using 4K pages.
+From: Linus Torvalds <torvalds@linux-foundation.org>
 
-This removes the 2M alignment assert (which pops) and introduces a 4K
-fallback in the identity map programming loop to handle the last 2M
-chunk of usable VRAM.
+get_flat_ccs_offset() reads the base of the flat CCS storage from the
+hardware, scales it by the number of enabled L3 nodes, and rounds the
+result up to 128K.  Everything below that offset is then handed to the
+VRAM allocator as usable memory.
 
-Might be possible to skip backporting this. The assert that pops should
-be harmless and is only on debug builds plus only a stray write would
-hit CCS, which technically get mapped.
+Rounding a limit that means "usable memory ends here" upwards publishes
+whatever lies between the real base and the rounded one as free memory,
+and that memory belongs to the compression hardware.  The scaled value
+has no reason to be 128K aligned, and on a Battlemage G21 with 16 GiB it
+is not:
 
-Assisted-by: Gemini:gemini-3.1-pro-preview
+	flat CCS base: raw 0x3fafff800, rounded 0x3fb000000
+
+so the last 2 KiB of page 0x3fafff000 is CCS storage, in the allocator's
+pool.  Whatever is allocated there gets that tail overwritten by the
+compression hardware, which needs no page-table entry, no buffer object
+and no GPU submission to do it, and does it before userspace exists.
+
+On this machine a Mesa VM's level-3 page table landed on that page on
+every cold boot.  It lost the entry covering the compositor's
+batch-buffer heap, so the compositor's first submission faulted fetching
+its batch and gdm restarted it forever: a black screen on an otherwise
+working machine.  Restarting gdm cleared it because the next VM's page
+tables were allocated somewhere else.
+
+Round down instead, to the page size the allocator works in.  On this
+machine that excludes exactly one page.
+
+Reading the reserved page afterwards shows what had been writing it:
+
+	[369] 0xcccc000000000000
+	[371] 0xcc77000000000000
+	[373] 0xcccc000000000000
+	[375] 0xcc77000000000000
+
+compression metadata, two bytes per sixteen, sitting where the driver
+used to hand out memory.
+
+The assertion that should have caught this compares the offset against
+GSMBASE - ccs_size for equality.  That value is 128K aligned, so it
+agrees with the rounded-up offset precisely when the base is not
+aligned - the check cannot fail in the case it exists to catch, and is
+compiled out unless CONFIG_DRM_XE_DEBUG is set.  Replace it with one
+that can fail: CCS storage must not run into GSM.
+
+[ And this was a debug session from hell, enormously helped by an AI
+  doing much of the grunt-work.
+
+  I'd like to call it my tireless helper, but the AI several times
+  stated flat out that this was impossible and unsolvable and that we
+  should just write a report about it.
+
+  I suspect those things have been trained by people who may not be
+  quite as stubborn as I am.
+
+  But while the AI was ready to give up several times, it did keep
+  adding debug code and analyzing it faithfully when I pushed. So credit
+  where credit is due and I let the AI write the commit message above.
+
+  This is basically a one-liner fixing a bogus "round_up()" to a
+  "round_down()", but there were 24 patches adding more and more debug
+  information to this, and 18 kernel boot to finally narrow it down to
+  this.   - Linus ]
+
+Fixes: 37173392741c ("drm/xe/vram: fix ccs offset calculation")
+Cc: stable@kernel.org
+Signed-off-by: Linus Torvalds <torvalds@linux-foundation.org>
+(cherry picked from commit 818bebeb63dd6bf5f4e07e145f6cdbace520a34c)
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 57 +++++++++++++++++++++------------
- 1 file changed, 37 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/xe/xe_vram.c | 23 ++++++++++++++++++-----
+ 1 file changed, 18 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 75b83687f1b5..0bf000d7c901 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -87,7 +87,7 @@ struct xe_migrate {
- #define MAX_PREEMPTDISABLE_TRANSFER SZ_8M /* Around 1ms. */
- #define MAX_CCS_LIMITED_TRANSFER SZ_4M /* XE_PAGE_SIZE * (FIELD_MAX(XE2_CCS_SIZE_MASK) + 1) */
- #define NUM_KERNEL_PDE 15
--#define NUM_PT_SLOTS 32
-+#define NUM_PT_SLOTS 48
- #define LEVEL0_PAGE_TABLE_ENCODE_SIZE SZ_2M
- #define MAX_NUM_PTE 512
- #define IDENTITY_OFFSET 256ULL
-@@ -163,22 +163,20 @@ static u64 xe_migrate_vram_ofs(struct xe_device *xe, u64 addr, bool is_comp_pte)
- }
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index 23eb7edbdd57..7b4478fb1697 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -89,12 +89,25 @@ static int get_flat_ccs_offset(struct xe_gt *gt, u64 tile_size, u64 *poffset)
+ 		offset = offset_hi << 32; /* HW view bits 39:32 */
+ 		offset |= offset_lo << 6; /* HW view bits 31:6 */
+ 		offset *= num_enabled; /* convert to SW view */
+-		offset = round_up(offset, SZ_128K); /* SW must round up to nearest 128K */
  
- static void xe_migrate_program_identity(struct xe_device *xe, struct xe_vm *vm, struct xe_bo *bo,
--					u64 map_ofs, u64 vram_offset, u16 pat_index, u64 pt_2m_ofs)
-+					u64 map_ofs, u64 vram_offset, u16 pat_index, u64 pt_2m_ofs,
-+					u64 pt_4k_ofs)
- {
- 	struct xe_vram_region *vram = xe->mem.vram;
- 	resource_size_t dpa_base = xe_vram_region_dpa_base(vram);
- 	u64 pos, ofs, flags;
- 	u64 entry;
--	/* XXX: Unclear if this should be usable_size? */
--	u64 vram_limit = xe_vram_region_actual_physical_size(vram) + dpa_base;
-+	u64 vram_limit = xe_vram_region_usable_size(vram) + dpa_base;
- 	u32 level = 2;
- 
- 	ofs = map_ofs + XE_PAGE_SIZE * level + vram_offset * 8;
- 	flags = vm->pt_ops->pte_encode_addr(xe, 0, pat_index, level,
- 					    true, 0);
- 
--	xe_assert(xe, IS_ALIGNED(xe_vram_region_usable_size(vram), SZ_2M));
--
- 	/*
- 	 * Use 1GB pages when possible, last chunk always use 2M
- 	 * pages as mixing reserved memory (stolen, WOCPM) with a single
-@@ -196,8 +194,24 @@ static void xe_migrate_program_identity(struct xe_device *xe, struct xe_vm *vm,
- 							    true, 0);
- 
- 			for (ofs = pt_2m_ofs; pos < vram_limit;
--			     pos += SZ_2M, ofs += 8)
-+			     pos += SZ_2M, ofs += 8) {
-+				if (pos + SZ_2M > vram_limit) {
-+					entry = vm->pt_ops->pde_encode_bo(bo, pt_4k_ofs);
-+					xe_map_wr(xe, &bo->vmap, ofs, u64, entry);
+-		/* We don't expect any holes */
+-		xe_assert_msg(xe, offset == (xe_mmio_read64_2x32(&gt_to_tile(gt)->mmio, GSMBASE) -
+-					     ccs_size),
+-			      "Hole between CCS and GSM.\n");
++		/*
++		 * Everything below this offset is handed to the VRAM
++		 * allocator, so it has to be the *first* address the
++		 * compression hardware owns, rounded down.  Rounding it up
++		 * publishes CCS storage as free memory.
++		 */
++		offset = round_down(offset, SZ_4K);
 +
-+					flags = vm->pt_ops->pte_encode_addr(xe, 0,
-+									    pat_index,
-+									    level - 2,
-+									    true, 0);
-+
-+					for (ofs = pt_4k_ofs; pos < vram_limit;
-+					     pos += SZ_4K, ofs += 8)
-+						xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
-+					break;
-+				}
-+
- 				xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
-+			}
- 			break;	/* Ensure pos == vram_limit assert correct */
- 		}
- 
-@@ -242,16 +256,17 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 	u16 pat_index = xe_cache_pat_idx(xe, XE_CACHE_WB);
- 	u8 id = tile->id;
- 	u32 num_entries = NUM_PT_SLOTS, num_level = vm->pt_root[id]->level;
--#define VRAM_IDENTITY_MAP_COUNT	2
--	u32 num_setup = num_level + VRAM_IDENTITY_MAP_COUNT;
--#undef VRAM_IDENTITY_MAP_COUNT
-+#define VRAM_IDENTITY_MAP_PT_COUNT	4
-+	u32 num_setup = num_level + VRAM_IDENTITY_MAP_PT_COUNT;
-+#undef VRAM_IDENTITY_MAP_PT_COUNT
- 	u32 map_ofs, level, i;
- 	struct xe_bo *bo = m->pt_bo, *batch = tile->mem.kernel_bb_pool->bo;
--	u64 entry, pt29_ofs;
-+	u64 entry;
- 
--	/* PT30 & PT31 reserved for 2M identity map */
--	pt29_ofs = xe_bo_size(bo) - 3 * XE_PAGE_SIZE;
--	entry = vm->pt_ops->pde_encode_bo(bo, pt29_ofs);
-+	/* PT44..PT47 reserved for 4K and 2M identity map */
-+	u64 l1_pt_ofs = xe_bo_size(bo) - 5 * XE_PAGE_SIZE;
-+
-+	entry = vm->pt_ops->pde_encode_bo(bo, l1_pt_ofs);
- 	xe_pt_write(xe, &vm->pt_root[id]->bo->vmap, 0, entry);
- 
- 	map_ofs = (num_entries - num_setup) * XE_PAGE_SIZE;
-@@ -347,11 +362,12 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 
- 	/* Identity map the entire vram at 256GiB offset */
- 	if (IS_DGFX(xe)) {
--		u64 pt30_ofs = xe_bo_size(bo) - 2 * XE_PAGE_SIZE;
-+		u64 pt46_ofs = xe_bo_size(bo) - 2 * XE_PAGE_SIZE;
- 		resource_size_t actual_phy_size = xe_vram_region_actual_physical_size(xe->mem.vram);
- 
-+		u64 pt44_ofs = xe_bo_size(bo) - 4 * XE_PAGE_SIZE;
- 		xe_migrate_program_identity(xe, vm, bo, map_ofs, IDENTITY_OFFSET,
--					    pat_index, pt30_ofs);
-+					    pat_index, pt46_ofs, pt44_ofs);
- 		xe_assert(xe, actual_phy_size <= (MAX_NUM_PTE - IDENTITY_OFFSET) * SZ_1G);
- 
- 		/*
-@@ -362,12 +378,13 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 			u16 comp_pat_index = xe_cache_pat_idx(xe, XE_CACHE_NONE_COMPRESSION);
- 			u64 vram_offset = IDENTITY_OFFSET +
- 				DIV_ROUND_UP_ULL(actual_phy_size, SZ_1G);
--			u64 pt31_ofs = xe_bo_size(bo) - XE_PAGE_SIZE;
-+			u64 pt47_ofs = xe_bo_size(bo) - XE_PAGE_SIZE;
- 
- 			xe_assert(xe, actual_phy_size <= (MAX_NUM_PTE - IDENTITY_OFFSET -
- 							  IDENTITY_OFFSET / 2) * SZ_1G);
-+			u64 pt45_ofs = xe_bo_size(bo) - 3 * XE_PAGE_SIZE;
- 			xe_migrate_program_identity(xe, vm, bo, map_ofs, vram_offset,
--						    comp_pat_index, pt31_ofs);
-+						    comp_pat_index, pt47_ofs, pt45_ofs);
- 		}
- 	}
- 
-@@ -381,8 +398,8 @@ static void xe_migrate_suballoc_manager_init(struct xe_migrate *m, u32 map_ofs)
- 	 * Example layout created above, with root level = 3:
- 	 * [PT0...PT7]: kernel PT's for copy/clear; 64 or 4KiB PTE's
- 	 * [PT8]: Kernel PT for VM_BIND, 4 KiB PTE's
--	 * [PT9...PT26]: Userspace PT's for VM_BIND, 4 KiB PTE's
--	 * [PT27 = PDE 0] [PT28 = PDE 1] [PT29 = PDE 2] [PT30 & PT31 = 2M vram identity map]
-+	 * [PT9...PT40]: Userspace PT's for VM_BIND, 4 KiB PTE's
-+	 * [PT41 = PDE 0] [PT44...PT47 = 4K and 2M vram identity maps]
- 	 *
- 	 * This makes the lowest part of the VM point to the pagetables.
- 	 * Hence the lowest 2M in the vm should point to itself, with a few writes
++		/*
++		 * CCS storage must not run into GSM.  The old check compared
++		 * the offset against GSMBASE - ccs_size for equality, which
++		 * could not fail: that value is 128K aligned, so it agreed
++		 * with the rounded-up offset even when the base was not 128K
++		 * aligned - exactly the case this fixes.
++		 */
++		xe_assert_msg(xe, offset + ccs_size <=
++			      xe_mmio_read64_2x32(&gt_to_tile(gt)->mmio, GSMBASE),
++			      "CCS overlaps GSM.\n");
+ 	} else {
+ 		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_FLAT_CCS_BASE_ADDR);
+ 		offset = (u64)REG_FIELD_GET(XEHP_FLAT_CCS_PTR, reg) * SZ_64K;
 -- 
 2.55.0
 
