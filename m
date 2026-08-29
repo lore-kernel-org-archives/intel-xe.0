@@ -4,60 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0E83C61DBE
-	for <intel-xe@archiver.kernel.org>; Sat, 29 Aug 2026 08:49:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35869C61DD9
+	for <intel-xe@archiver.kernel.org>; Sat, 29 Aug 2026 14:00:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB5F210E0DC;
-	Sat, 29 Aug 2026 08:49:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8307D10E0A9;
+	Sat, 29 Aug 2026 14:00:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BHH4Pxdu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MREFx4nD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36BDA10E0B9;
- Sat, 29 Aug 2026 08:49:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E944510E0A9
+ for <intel-xe@lists.freedesktop.org>; Sat, 29 Aug 2026 14:00:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1787993373; x=1819529373;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Ve5emK5YIYfKRJXF4xIBHYdAbXRxw0Y0Fjq9iPIMMbo=;
- b=BHH4PxduAZn4z4l1Zo6nC6sgy+0snbivmxok1cduYMQ1S19cD9P1ffBl
- eoNPvCDQhRs4Cc0q5BZZ3NM+VNmvQJ3TLAA/jO2LHMZoJ9nPl6ydpktsT
- 2nUioaqDpUkXHPSrMK4b0WGZCN2IXjX76LMxKl9opcaNveJzGA7WYPg9e
- jRsOmEDeBbvRvF6/XP+WJkXNCVWIlgCWeWSR90ObRT9UE6Qvhx/dW0hQJ
- xaXkdCydCyOeKhut/js2MgNnJvK5PbvatnAmy/SneYSAyUIrQHoPkEn5K
- zfN5q2EjUkxA4hq4OK9Nc/A6D9VslX0Pj3HqPg8RjFZ4gPp6tZZY3Nduy Q==;
-X-CSE-ConnectionGUID: i+qGGe0+RLOXPFJTfRbRCg==
-X-CSE-MsgGUID: xiIaQ7zeSvigbW6NxgP75A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11889"; a="88247233"
-X-IronPort-AV: E=Sophos;i="6.25,250,1779174000"; d="scan'208";a="88247233"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2026 01:49:32 -0700
-X-CSE-ConnectionGUID: OwoIS45WTvi/6XDDzsSfhw==
-X-CSE-MsgGUID: FFcdVKRjR/+GyevCIsIKMw==
+ t=1788012038; x=1819548038;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=xZnSMSWNXfhyMX7VWps+6XmYlFTvby85ycQhwhhAS+w=;
+ b=MREFx4nD5Q0wSOvvl1fvsywZn74nJPC18xU5bBlc2CpGdsr3FxSF6D30
+ noinBRhGYBUUMh67TMx7kgvLdLSt6K34RqVcsPZLOjvd2iSOi35bHGIo1
+ 32WGDpukXyvkZ3WHc17K6CbklqYpsxXfq94dtkz5VSTgCb7oKMAZdters
+ irQX8YI2oMzFeMKKH7H1/9k427eqM+J0AlTjuiKqTtMCaAERjZIvFCCXw
+ +fNJnT910CRYyIxAfvWoTkuqCDYKy4G/7RfnK80eG+GyrlVcXyV1bh3s+
+ +sno3GgPJ1FdSVgMYb1dY+n1+58m/g5In9uR4cbb06VJs/oYJ5YKFOuhd Q==;
+X-CSE-ConnectionGUID: v/Ysr9i9TnGGXfY+eSN36g==
+X-CSE-MsgGUID: p9j8j9X5TbaVYAxagke7dQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11889"; a="88418553"
+X-IronPort-AV: E=Sophos;i="6.25,250,1779174000"; d="scan'208";a="88418553"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2026 07:00:37 -0700
+X-CSE-ConnectionGUID: sHhNx81YRXC4eDrxmGAfuQ==
+X-CSE-MsgGUID: DTiAaG/pTXCxjEi7BImh1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,250,1779174000"; d="scan'208";a="265797758"
-Received: from slindbla-desk.ger.corp.intel.com (HELO [10.245.245.218])
- ([10.245.245.218])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2026 01:49:30 -0700
-Message-ID: <3ad607d2-98b4-4f8d-8cf4-ac4e5fb738b8@intel.com>
-Date: Sat, 29 Aug 2026 10:51:12 +0200
+X-IronPort-AV: E=Sophos;i="6.25,250,1779174000"; d="scan'208";a="268443779"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Aug 2026 07:00:35 -0700
+Date: Sat, 29 Aug 2026 16:00:32 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>
+Cc: "Tauro, Riana" <riana.tauro@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "aravind.iddamsetty@linux.intel.com" <aravind.iddamsetty@linux.intel.com>,
+ "Koppuravuri, Ravi Kishore" <ravi.kishore.koppuravuri@intel.com>,
+ "Roper, Matthew D" <matthew.d.roper@intel.com>
+Subject: Re: [PATCH 1/2] drm/xe/xe_pci_error: Wait for pcode init post SBR
+Message-ID: <apLmAAKh4uQT629K@black.igk.intel.com>
+References: <20260828113104.319843-4-riana.tauro@intel.com>
+ <20260828113104.319843-5-riana.tauro@intel.com>
+ <BN9PR11MB524232BB439BB10F87C48D2395AC2@BN9PR11MB5242.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/7] drm/i915: only timeout on fence waits for display
- reset
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: maarten.lankhorst@linux.intel.com, ville.syrjala@linux.intel.com
-References: <cover.1787833879.git.jani.nikula@intel.com>
- <bae61991e23be3bd8b16b7cab7d623f53c10a984.1787833879.git.jani.nikula@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@intel.com>
-In-Reply-To: <bae61991e23be3bd8b16b7cab7d623f53c10a984.1787833879.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BN9PR11MB524232BB439BB10F87C48D2395AC2@BN9PR11MB5242.namprd11.prod.outlook.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,64 +73,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For whole series:
+On Fri, Aug 28, 2026 at 07:36:21PM +0530, Gupta, Anshuman wrote:
+> From: Tauro, Riana <riana.tauro@intel.com>
 
-Acked-by: Maarten Lankhorst <maarten.lankhorst@intel.com>
+...
 
-On 8/27/26 14:34, Jani Nikula wrote:
-> As written by Maarten: Not waiting on fences until they're signaled is
-> an existing issue in i915, and was added as a workaround for a deadlock
-> when GPU reset has to reset display as well on old platforms. This
-> requires a modeset to disable everything, which may hang since it could
-> wait on a fence that may only be signaled after GPU reset completes.
->
-> Limit the timeout on fence waits a) to platforms where GPU reset
-> clobbers display, and b) when we're running forced display reset tests.
->
-> This change only impacts i915, as xe has MAX_SCHEDULE_TIMEOUT in any
-> case.
->
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Suggested-by: Maarten Lankhorst <maarten.lankhorst@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 12 +++++++++---
->  1 file changed, 9 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index aa5d41dac8a9..76ec9161aaa3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -74,6 +74,7 @@
->  #include "intel_display_driver.h"
->  #include "intel_display_power.h"
->  #include "intel_display_regs.h"
-> +#include "intel_display_reset.h"
->  #include "intel_display_rpm.h"
->  #include "intel_display_types.h"
->  #include "intel_display_utils.h"
-> @@ -7277,15 +7278,20 @@ static void intel_atomic_commit_fence_wait(struct intel_atomic_state *state)
->  	struct intel_display *display = to_intel_display(state);
->  	struct drm_plane *plane;
->  	struct drm_plane_state *new_plane_state;
-> -	long ret;
-> +	long timeout, ret;
->  	int i;
->  
-> +	if (intel_display_reset_needed_after_gpu_reset(display) ||
-> +	    intel_display_reset_test(display))
-> +		timeout = i915_fence_timeout();
-> +	else
-> +		timeout = MAX_SCHEDULE_TIMEOUT;
-> +
->  	for_each_new_plane_in_state(&state->base, plane, new_plane_state, i) {
->  		if (!new_plane_state->fence)
->  			continue;
->  
-> -		ret = dma_fence_wait_timeout(new_plane_state->fence, false,
-> -					     i915_fence_timeout());
-> +		ret = dma_fence_wait_timeout(new_plane_state->fence, false, timeout);
->  		if (!ret)
->  			ret = -ETIMEDOUT;
->  		if (ret < 0) {
+> > @@ -109,6 +110,10 @@ static pci_ers_result_t
+> > xe_pci_error_slot_reset(struct pci_dev *pdev)
+> >  		return PCI_ERS_RESULT_DISCONNECT;
+> >  	}
+> > 
+> > +	err = xe_pcode_probe_early(xe);
+> This can be a 3-minute wait in worst case, after PCIe core pci_bridge_wait_for_secondary_bus() is already waited for 1 second*[1].
+> What will be the impact on already running workload and any worker thread tries to access the mmio or PCIe bar here? 
 
+I think a more important question is, should we even get a callback
+if SGUnit isn't ready yet and what PCI spec says about this?
+
+Raag
+
+> [1]
+> /*
+>  * Devices may extend the 1 sec period through Request Retry Status
+>  * completions (PCIe r6.0 sec 2.3.1).  The spec does not provide an upper
+>  * limit, but 60 sec ought to be enough for any device to become
+>  * responsive.
+>  */
+> #define PCIE_RESET_READY_POLL_MS 60000 /* msec */
