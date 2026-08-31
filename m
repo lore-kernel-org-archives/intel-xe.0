@@ -4,43 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B12A9C61DD3
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 08:03:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B31AC61DD3
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 08:05:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EAD310E6D9;
-	Mon, 31 Aug 2026 08:03:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA69E10E6DD;
+	Mon, 31 Aug 2026 08:05:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fLaVqMau";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T2rMHeuk";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09E7810E6C9
- for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 08:03:48 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 11F5660120;
- Mon, 31 Aug 2026 08:03:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9903D1F000E9;
- Mon, 31 Aug 2026 08:03:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788163426;
- bh=PsmCGY5x99zDaBpKoDwCcTz2lezJDdN/oYUFGb/v1vA=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=fLaVqMauBRE6+gkwSowKMltFig1VCOpYLdoPxtBVjE2DqmllFq3d27EcNLdDzcee5
- IGtIsU3eqBudqz9zazhJwJQZV/4rmKqDHkm/JgaC9Qtm8/IVIJt1M4qiDz1SEISLvK
- Y/d3lqveOasS7nwCNdjrJPF9/emMik2C54GdvuIJiObEVLCnHsv/CNEEmZImRG3gz/
- qS785dAW3aqcRkDM32Njb8N/OaTws0R2foYoYXFeXbFRnE5lsmK7sTX9eTwMt5uO++
- TmBp4/RUdj99bwA5DW98ws9BjXf39Vf37TK51MIH13Bx2QT/4QmoKDoectG24UoBUd
- Ov6Wo3JGvfS0Q==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH V19 06/15] drm/xe: Guard teardown paths against purged BOs
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260831064942.315720-23-tejas.upadhyay@intel.com>
-References: <20260831064942.315720-17-tejas.upadhyay@intel.com>
- <20260831064942.315720-23-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 31 Aug 2026 08:03:46 +0000
-Message-Id: <20260831080346.9903D1F000E9@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C2E110E6DD
+ for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 08:05:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788163523; x=1819699523;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VQPKIVKfVvXg3CSfQKHnR4WNoIqUnbGpk1QLDFEpDno=;
+ b=T2rMHeukioxQD7wapZwAighhX9hcaEYEx84zAHQsmTafaq8/rFLxSae0
+ e2ZBHvHKLq9xkuX6NgcZen6ngyTSOMkSAL1s1N1skMEQf+blqPNJ407QA
+ YNdS/DUxgHb8v22WFS5J7d7HePkdFTftc8RiWI+WkHuGEYnhmw9yHKijm
+ Bqh7Lh/K/1nkrbESdQs9KRSRdgrrmORdYZ+5qyToQoRthl+No/wn3o6pA
+ FrltFPjSxCXZ5RmUOjKt0gLbUmWnd4ThrIRifk+G1pnir15t3ev0tcFut
+ u++2tauvyvG+/ifwBnVPIep2zLOLae8W2O2nqV2afhLC8+aHNK7rIwWSG Q==;
+X-CSE-ConnectionGUID: j4XHJAMPS5WtCbrT9cAjwg==
+X-CSE-MsgGUID: FswFXIoiTh6gUnrFp+AxPw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11891"; a="92251035"
+X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="92251035"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2026 01:05:23 -0700
+X-CSE-ConnectionGUID: mS/i4BS0TMWuWbnZvPfgNA==
+X-CSE-MsgGUID: 4JoiWprjTC+gtujAygq3ow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="268172145"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2026 01:05:20 -0700
+From: Arvind Yadav <arvind.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, badal.nilawar@intel.com,
+ michal.wajdeczko@intel.com, himal.prasad.ghimiray@intel.com,
+ dnyaneshwar.bhadane@intel.com, mallesh.koujalagi@intel.com,
+ matthew.brost@intel.com
+Subject: [PATCH v5 0/4] drm/xe: Report GT TDR and VM rebind faults using SIGID
+Date: Mon, 31 Aug 2026 13:35:03 +0530
+Message-ID: <20260831080507.2364687-1-arvind.yadav@intel.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,62 +64,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] `xe_bo_unpin_external()` lacks the `xe_bo_is_purged()` check, lead=
-ing to pin count underflow for DMA-buf exported BOs.
---
+This series is a small follow-up on top of the structured SIGID error
+logging infrastructure series:
 
-commit b0d5d3f21885703ffe281bfc361768a0213d2668
-Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+https://patchwork.freedesktop.org/series/171022/
 
-drm/xe: Guard teardown paths against purged BOs
+That series adds SIGID-based error reporting and the xe_log_*() helpers.
+This series converts selected GuC submit, SVM page-fault and GT reset error
+paths to that logging path.
 
-This commit adds xe_bo_is_purged() guards in several teardown paths
-to prevent unpinning or mapping a buffer object that was already purged
-by VRAM page offlining.
+The VM rebind conversion from earlier revisions remains dropped.
 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index c255327669da5..b162753cebb70 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -3267,6 +3267,9 @@ void xe_bo_unpin(struct xe_bo *bo)
->  	struct ttm_place *place =3D &bo->placements[0];
->  	struct xe_device *xe =3D xe_bo_device(bo);
-> =20
-> +	if (xe_bo_is_purged(bo))
-> +		return;
-> +
+v5:
+ - Dropped the GuC CGP protocol SIGID conversion, since malformed G2H
+   handler errors are already reported by the CT layer after -EPROTO.
+ - Added a GUCSUBMIT component mapped to XE_SIGID_GT_TDR and used it for
+   the GuC submit reset failure.
+ - Dropped "request" from the GuC submit reset failure message.
+ - Kept the GT patch limited to the reset failure path.
+ - Dropped GT PM-flow SIGID conversions for now, since the correct
+   component/SIGID mapping needs agreement.
+ - Improved the GT reset failure message to describe that full graphics
+   reset did not complete.
 
-[Severity: High]
-Does xe_bo_unpin_external() also need this xe_bo_is_purged() check?
+v4:
+ - Clarified that the GT component maps to XE_SIGID_GT_TDR and -EIO is
+   only the errno value.
+ - Split GuC CGP protocol error conversions into a separate patch.
+ - Added terminal SVM page-fault allocation failures as MEM_FAULT reports.
+ - Converted GT reset and power-flow failures to GT_TDR reports.
+ - Kept the VM rebind conversion dropped.
 
-If a user BO is exported via DMA-buf, the VRAM page offline mechanism
-can queue it for offlining. If the DMA-buf importer pins the BO, the
-pin count increments. When the VRAM offline worker processes the queue,
-it forcefully unpins and purges the BO, leaving the pin count at 0.
+v3:
+ - Split GuC and VM changes into separate patches.
+ - Dropped GuC job-timeout warning conversions to avoid changing warning
+   logs into error-level SIGID reports.
 
-When the importer later unpins the BO, it triggers xe_dma_buf_unpin()
-which calls xe_bo_unpin_external():
+v2:
+ - Rebased on the latest structured SIGID logging series.
+ - Switched from the old xe_ras_log_*() helpers to the new xe_log_*()
+   helpers.
 
-static void xe_dma_buf_unpin(struct dma_buf_attachment *attach)
-{
-	struct drm_gem_object *obj =3D attach->dmabuf->priv;
-	struct xe_bo *bo =3D gem_to_xe_bo(obj);
+Arvind Yadav (4):
+  drm/xe/log: Add GUCSUBMIT component
+  drm/xe/guc: Report reset failure using SIGID
+  drm/xe/svm: Report terminal page-fault failures using SIGID
+  drm/xe/gt: Report GT reset failure using SIGID
 
-	xe_bo_unpin_external(bo);
-}
+ drivers/gpu/drm/xe/abi/xe_log_abi.h |  1 +
+ drivers/gpu/drm/xe/xe_gt.c          |  4 ++--
+ drivers/gpu/drm/xe/xe_guc_submit.c  |  6 ++++--
+ drivers/gpu/drm/xe/xe_svm.c         | 13 +++++++------
+ 4 files changed, 14 insertions(+), 10 deletions(-)
 
-Since xe_bo_unpin_external() lacks the xe_bo_is_purged() guard, it
-will call ttm_bo_unpin() unconditionally. Could this cause a pin count
-underflow on the TTM BO and make the BO permanently un-evictable?
+-- 
+2.43.0
 
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260831064942.3157=
-20-17-tejas.upadhyay@intel.com?part=3D6
