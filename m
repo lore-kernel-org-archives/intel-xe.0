@@ -4,27 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18313C61DD3
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 23:37:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE09EC61DFD
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 23:55:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1E9010E24D;
-	Mon, 31 Aug 2026 23:37:50 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58EA810E24D;
- Mon, 31 Aug 2026 23:37:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0151000656989858223=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/shrinker=3A_Take_a_r?=
- =?utf-8?q?untime_PM_ref_before_shrinking_non-system_memory?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 31 Aug 2026 23:37:49 -0000
-Message-ID: <178821946935.104222.8831027589598429389@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260831225232.118607-1-shuicheng.lin@intel.com>
-In-Reply-To: <20260831225232.118607-1-shuicheng.lin@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 417E310E359;
+	Mon, 31 Aug 2026 23:55:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Jw5zq+mT";
+	dkim-atps=neutral
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F80510E285;
+ Mon, 31 Aug 2026 23:55:40 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 73E24601DE;
+ Mon, 31 Aug 2026 23:55:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3F641F000E9;
+ Mon, 31 Aug 2026 23:55:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788220539;
+ bh=NEQIaboQMPbpmXNkbp/hqCXRStAUMmc/5DpYJeoJy8E=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=Jw5zq+mTcSVhrFCpLZSuqVw5QJjnSyIlsVoh1nRDR9jo6Auxtj3bjuO0Cl2p8SEJY
+ cdLj+3XWClAfLrnDolU9VHKE3Gh4WnW0YCF799+Nn9EE7E2T4Ct0ULmxcc0kiARXx2
+ OmJtOdPfLJJ6gjkmMX//7kLKmVYWdgfTzbzkNhseERhMmoBK0QSK5/Bf/UbTOwoutM
+ dvrsGFSnkmMRwjKh6hiVT2buA1NbCZIIGWmqf2JMI8OLj7lti7QOIh2V0YoDMaloNa
+ ThNe7zBe/LFHL3FtTjmeFQE6Ymo0WRh1TI2qALJqo7BTEMlvokXPkmVN1wJoekAMh6
+ ONLZecnhbXr3w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v7 12/12] drm/i915/display: use drm backlight
+To: "Mario Limonciello" <mario.limonciello@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <20260831210531.2334221-13-mario.limonciello@amd.com>
+References: <20260831210531.2334221-1-mario.limonciello@amd.com>
+ <20260831210531.2334221-13-mario.limonciello@amd.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 31 Aug 2026 23:55:38 +0000
+Message-Id: <20260831235538.E3F641F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +53,115 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0151000656989858223==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-== Series Details ==
+New issues:
+- [Low] Unused include `<drm/drm_backlight.h>` in `intel_dp.c`
 
-Series: drm/xe/shrinker: Take a runtime PM ref before shrinking non-system memory
-URL   : https://patchwork.freedesktop.org/series/173104/
-State : success
+Pre-existing issues:
+- [High] TOCTOU race in sysfs backlight update leading to NULL pointer dere=
+ference during non-blocking display disable
+--
 
-== Summary ==
+commit 6982034de97212a1664f3db93710a699b08ecdab
+Author: Mario Limonciello <mario.limonciello@amd.com>
 
-CI Bug Log - changes from xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f_BAT -> xe-pw-173104v1_BAT
-====================================================
+drm/i915/display: use drm backlight
 
-Summary
--------
+This commit converts the Intel display drivers (i915 and xe) to use the DRM
+backlight infrastructure, allowing brightness control via the connector
+LUMINANCE property. It links the backlight device to the eDP connector on
+registration and unlinks it on unregistration.
 
-  **SUCCESS**
+> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu=
+/drm/i915/display/intel_backlight.c
+> index b128896cb1c2d..b0cd4dc3adc00 100644
+> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
 
-  No regressions found.
+[ ... ]
 
-  
+> @@ -1015,6 +1018,7 @@ void intel_backlight_device_unregister(struct intel=
+_connector *connector)
+>  	struct intel_panel *panel =3D &connector->panel;
+> =20
+>  	if (panel->backlight.device) {
+> +		drm_backlight_link(&connector->base, NULL);
+>  		backlight_device_unregister(panel->backlight.device);
+>  		panel->backlight.device =3D NULL;
+>  	}
 
-Participating hosts (13 -> 13)
-------------------------------
+[Severity: High]
+This is a pre-existing issue, but could this cause a NULL pointer dereferen=
+ce
+during a non-blocking display disable?
 
-  No changes in participating hosts
+If there is a concurrent userspace write to the legacy sysfs brightness file
+during a non-blocking display disable on VLV/CHV hardware, we might hit a r=
+ace.
+During the non-blocking commit, connection_mutex is dropped before the hard=
+ware
+is disabled, allowing intel_backlight_device_update_status() to execute.
 
+It uses the newly swapped connector->base.state (where crtc =3D NULL), but
+panel->backlight.enabled remains true until the asynchronous commit tail
+disables it.
 
-Changes
--------
+This seems to lead to intel_panel_set_backlight() passing the state directly
+to the backend without checking if conn_state->crtc is NULL:
 
-  No changes found
+drivers/gpu/drm/i915/display/intel_backlight.c:intel_panel_set_backlight() {
+    ...
+    if (panel->backlight.enabled)
+        intel_panel_actually_set_backlight(conn_state, hw_level);
+    ...
+}
 
+Which then calls into vlv_set_backlight() where the NULL crtc is dereferenc=
+ed:
 
-Build changes
--------------
+drivers/gpu/drm/i915/display/intel_backlight.c:vlv_set_backlight() {
+    ...
+    enum pipe pipe =3D to_intel_crtc(conn_state->crtc)->pipe;
+    u32 tmp;
 
-  * Linux: xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f -> xe-pw-173104v1
+    tmp =3D intel_de_read(display, VLV_BLC_PWM_CTL(pipe)) & ~BACKLIGHT_DUTY=
+_CYCLE_MASK;
+    intel_de_write(display, VLV_BLC_PWM_CTL(pipe), tmp | level);
+    ...
+}
 
-  IGT_9078: 9078
-  xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f: 43b9a5e9d30783bb6f4d7dacdd1739184666940f
-  xe-pw-173104v1: 173104v1
+Does this require a check for conn_state->crtc being NULL before passing the
+state, similar to how other backlight functions handle it?
 
-== Logs ==
+[ ... ]
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173104v1/index.html
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 113d767e62e9c..2381a80a4e671 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -43,6 +43,7 @@
+>  #include <drm/display/drm_dsc_helper.h>
+>  #include <drm/display/drm_hdmi_helper.h>
+>  #include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_backlight.h>
+>  #include <drm/drm_crtc.h>
+>  #include <drm/drm_edid.h>
+>  #include <drm/drm_fixed.h>
 
---===============0151000656989858223==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+[Severity: Low]
+Is this include used anywhere in this file?
 
+It looks like <drm/drm_backlight.h> is added to intel_dp.c but no symbols f=
+rom
+it are utilized in this file, resulting in a dead include.
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/shrinker: Take a runtime PM ref before shrinking non-system memory</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173104/">https://patchwork.freedesktop.org/series/173104/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173104v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173104v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f_BAT -&gt; xe-pw-173104v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f -&gt; xe-pw-173104v1</li>
-</ul>
-<p>IGT_9078: 9078<br />
-  xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f: 43b9a5e9d30783bb6f4d7dacdd1739184666940f<br />
-  xe-pw-173104v1: 173104v1</p>
-
-</body>
-</html>
-
---===============0151000656989858223==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260831210531.2334=
+221-1-mario.limonciello@amd.com?part=3D12
