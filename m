@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7491BC624CC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07D08C624C8
 	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 06:51:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9C0210E652;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B371B10E62B;
 	Mon, 31 Aug 2026 06:51:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TTWClQKl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g8dwYL18";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A4DF10E255
- for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 06:51:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9614210E61A
+ for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 06:51:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788159066; x=1819695066;
+ t=1788159067; x=1819695067;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lM/D0YjBknBfCVuLfdK02FhY5yDoehAHbI/tPNXr7xM=;
- b=TTWClQKliCGVzOszrNUJD+KDVbw51GW6a+WFlk4R7MYemi4ygOVztEbo
- Iw9nhVmZtXD1IJmj5TK0bbugqo8L6E5j8g0XqV2tBKOmEukgn1PEvTADW
- BlIHp1B1lY9yPaCXeowhWNEZ7NIvE9CxwPyN6Ey8kVXSYDW+/2hpJ3uND
- QXR3bsI8vrfRmptc37IqqNpK9yyAlj6ih8mnI/NPof/G2DVAcdVpDmAev
- jeboLN5NcHmaExoWl2zcDozN2gLrrPVRPnwsMIlE6p2iVJQiYqqQwT8ed
- HlvlL2PYTtYBhn0oxiCFuynlpG+uIqVUvJ2fkjGSRJWmYzG0yuG3OIxBd Q==;
-X-CSE-ConnectionGUID: N06j3ZG3TTqgCwrWoZDjCA==
-X-CSE-MsgGUID: ybvHnwNySdq73F78M9SJug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11891"; a="106081704"
-X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="106081704"
+ bh=vdS1mf28L3Uz3ROeVAo5XDDgs0vBdcjUD1LJ4p4wRA0=;
+ b=g8dwYL18DZu6ujvelUS6oKltr8fWAAyaNZJx38XqD2zb3Mdc0AOkiNsa
+ /G7RTykSvdOSjjYo9iXzIdPAjzTeJ435sZ1EOpL86fdKAVK6w31n8SmvV
+ MFwxG+zz6NYHDFWjn9Uti/tEN+Ti4CFLgVHe25RIycoUa8SYPtCqhtReX
+ f0DwGGxM6MoBjF58wwejGY49DRA4rRK5oA3+poMCyCHcnqcKMmkl+LCUs
+ wKkOsDDpsoPm6jqRMjBE2t06NQKyi/KXzWuZByM4/vuNFo1YHxabaKRh0
+ rR7UFZ01kMXckJCS79pU4xuadtxzzh1yeWqwgf4kbjg/Uuv8ZhfxjC/fH g==;
+X-CSE-ConnectionGUID: T6ATNSiVSF+lSQiLC8bMew==
+X-CSE-MsgGUID: mRYEgelITPqmUDe4AfcWtw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11891"; a="106081711"
+X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="106081711"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2026 23:50:12 -0700
-X-CSE-ConnectionGUID: sNYWTvY3RA65aOcYCEl8bA==
-X-CSE-MsgGUID: IvHUeFcnSWaSq7wQBuNN7g==
+ 30 Aug 2026 23:50:21 -0700
+X-CSE-ConnectionGUID: rP9tRLroSBG8cluGTk1tTA==
+X-CSE-MsgGUID: +8eE7ep0RyiFtJ3JtuvK2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="269302792"
+X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="269302862"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2026 23:50:09 -0700
+ 30 Aug 2026 23:50:19 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, rodrigo.vivi@intel.com,
  Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Arvind Yadav <arvind.yadav@intel.com>
-Subject: [PATCH V19 03/15] drm/xe: Export xe_ttm_bo_purge()
-Date: Mon, 31 Aug 2026 12:19:45 +0530
-Message-ID: <20260831064942.315720-20-tejas.upadhyay@intel.com>
+ Andi Shyti <andi.shyti@linux.intel.com>
+Subject: [PATCH V19 08/15] drm/xe/vram: Add page offline data structures and
+ lifecycle
+Date: Mon, 31 Aug 2026 12:19:50 +0530
+Message-ID: <20260831064942.315720-25-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260831064942.315720-17-tejas.upadhyay@intel.com>
 References: <20260831064942.315720-17-tejas.upadhyay@intel.com>
@@ -70,45 +70,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Remove the static qualifier from xe_ttm_bo_purge() and add its
-prototype to xe_bo.h. This allows the function to be called
-from other parts of the driver outside of xe_bo.c, specifically
-needed for the memory page offline feature.
+Add xe_ttm_vram_offline_resource to track individual offlined VRAM
+pages, and extend xe_ttm_vram_mgr with offlined_pages/queued_pages
+lists and their counters.
 
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Reviewed-by: Arvind Yadav <arvind.yadav@intel.com>
+Initialize the lists in __xe_ttm_vram_mgr_init() and add
+xe_ttm_vram_free_bad_pages() to release all tracked pages during
+xe_ttm_vram_mgr_fini() teardown.
+
+v3(Sashiko):
+- Reorder xe_ttm_vram_buddy_free and list_del_rcu
+- Introduce reservation status
+v2(Himal):
+- Address possible leak in xe_ttm_vram_mgr_fini()
+- Remove unused dev and add comment for used_visible_size 0
+
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 2 +-
- drivers/gpu/drm/xe/xe_bo.h | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 25 ++++++++++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h | 38 ++++++++++++++++++++++
+ 2 files changed, 63 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index dde309821237..8f93e09e51bb 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -921,7 +921,7 @@ void xe_bo_set_purgeable_state(struct xe_bo *bo,
-  *
-  * Return: 0 on success, negative error code on failure
-  */
--static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
-+int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx)
- {
- 	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
- 	struct ttm_placement place = {};
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index e8081af5bfc1..90b15fff36c7 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -600,6 +600,7 @@ struct xe_bo_shrink_flags {
- long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
- 		  const struct xe_bo_shrink_flags flags,
- 		  unsigned long *scanned);
-+int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx);
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 16ecea497780..1253989a8d06 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -338,12 +338,35 @@ static void xe_ttm_vram_mgr_set_unused(struct drm_device *dev, void *arg)
+ 	ttm_resource_manager_set_used(man, false);
+ }
  
- /**
-  * xe_bo_is_mem_type - Whether the bo currently resides in the given
++static void xe_ttm_vram_free_bad_pages(struct xe_ttm_vram_mgr *mgr)
++{
++	struct xe_ttm_vram_offline_resource *pos, *n;
++
++	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
++		list_del_rcu(&pos->offlined_link);
++		xe_ttm_vram_buddy_free(mgr, &pos->blocks, pos->used_visible_size);
++		--mgr->n_offlined_pages;
++		kfree_rcu(pos, rcu);
++	}
++	list_for_each_entry_safe(pos, n, &mgr->queued_pages, queued_link) {
++		list_del_rcu(&pos->queued_link);
++		/* queued entries have no buddy reservation yet */
++		xe_ttm_vram_buddy_free(mgr, &pos->blocks, 0);
++		--mgr->n_queued_pages;
++		kfree_rcu(pos, rcu);
++	}
++}
++
+ static void xe_ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
+ {
+ 	struct xe_device *xe = to_xe_device(dev);
+ 	struct xe_ttm_vram_mgr *mgr = arg;
+ 	struct ttm_resource_manager *man = &mgr->manager;
+ 
++	mutex_lock(&mgr->lock);
++	xe_ttm_vram_free_bad_pages(mgr);
++	mutex_unlock(&mgr->lock);
++
+ 	if (ttm_resource_manager_evict_all(&xe->ttm, man))
+ 		return;
+ 
+@@ -370,6 +393,8 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+ 	err = drmm_mutex_init(&xe->drm, &mgr->lock);
+ 	if (err)
+ 		return err;
++	INIT_LIST_HEAD(&mgr->offlined_pages);
++	INIT_LIST_HEAD(&mgr->queued_pages);
+ 	mgr->default_page_size = default_page_size;
+ 	mgr->visible_size = io_size;
+ 	mgr->visible_avail = io_size;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+index 9106da056b49..dc97b0ad0e51 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+@@ -19,6 +19,14 @@ struct xe_ttm_vram_mgr {
+ 	struct ttm_resource_manager manager;
+ 	/** @mm: DRM buddy allocator which manages the VRAM */
+ 	struct gpu_buddy mm;
++	/** @offlined_pages: List of offlined pages */
++	struct list_head offlined_pages;
++	/** @n_offlined_pages: Number of offlined pages */
++	u16 n_offlined_pages;
++	/** @queued_pages: List of queued pages */
++	struct list_head queued_pages;
++	/** @n_queued_pages: Number of queued pages */
++	u16 n_queued_pages;
+ 	/** @visible_size: Proped size of the CPU visible portion */
+ 	u64 visible_size;
+ 	/** @visible_avail: CPU visible portion still unallocated */
+@@ -45,4 +53,34 @@ struct xe_ttm_vram_mgr_resource {
+ 	unsigned long flags;
+ };
+ 
++/**
++ * enum xe_page_reserve_status - Buddy reservation status
++ * @XE_PAGE_RESERVE_PENDING: reservation in progress
++ * @XE_PAGE_RESERVE_FAIL: reservation failed
++ */
++enum xe_page_reserve_status {
++	XE_PAGE_RESERVE_PENDING = 0,
++	XE_PAGE_RESERVE_FAIL,
++};
++
++/**
++ * struct xe_ttm_vram_offline_resource - Tracks a single offlined VRAM page
++ */
++struct xe_ttm_vram_offline_resource {
++	/** @offlined_link: Link into mgr->offlined_pages */
++	struct list_head offlined_link;
++	/** @queued_link: Link into mgr->queued_pages */
++	struct list_head queued_link;
++	/** @blocks: Buddy blocks reserved for this page */
++	struct list_head blocks;
++	/** @used_visible_size: CPU-visible bytes consumed */
++	u64 used_visible_size;
++	/** @addr: Faulty DPA reported by HW */
++	u64 addr;
++	/** @status: buddy reservation status */
++	enum xe_page_reserve_status status;
++	/** @rcu: RCU head for deferred freeing */
++	struct rcu_head rcu;
++};
++
+ #endif
 -- 
 2.52.0
 
