@@ -4,27 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E6B4C61DD3
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 22:00:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41E89C624C6
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 22:02:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44C7610E1B9;
-	Mon, 31 Aug 2026 22:00:27 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83DCD10E1B9;
- Mon, 31 Aug 2026 22:00:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1335727229185540192=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Enable_?=
- =?utf-8?q?AS_SDP_Skip_Frames_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Uma Shankar" <uma.shankar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 31 Aug 2026 22:00:25 -0000
-Message-ID: <178821362553.104222.18417739368026915710@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260831213421.1804635-1-uma.shankar@intel.com>
-In-Reply-To: <20260831213421.1804635-1-uma.shankar@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D1C410E2B2;
+	Mon, 31 Aug 2026 22:02:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="POGI8c8E";
+	dkim-atps=neutral
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED39110E1C1;
+ Mon, 31 Aug 2026 22:02:05 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 1B791601DE;
+ Mon, 31 Aug 2026 22:02:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 828DC1F000E9;
+ Mon, 31 Aug 2026 22:02:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788213724;
+ bh=evn7OQKD+lUQL0qPNw9K4hFFAkMKzc7AUGrtcUyzXos=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=POGI8c8EVs8YvQotEOwnDnz51jY7IPac2PbP9bwL6WFpMylJdYO+v5rLj6fXQleHm
+ zjAkj8qr1qu+ci7guPbYlPvEOI1XzWBGYkGh2SLrZwWbE+7tAfbKK+rAhSZRmPcMge
+ 1mF6wfE1QuovVYtX9s7gM8Zscqropdgi6lv8gZzfNpoYQ6raeh3yaB+YHpqEKV9Mzf
+ 9HERruAPh9IP6DXsz5hlnasFDdKcFImiTOvjek4ecisBR98NEt19NN4cP6mGKVFoo2
+ euidvt9JR6ADwouPQBfzEHLQPcySmV07RRDA6sCtbBBDAMu4h7N7t+CyMpuwSots1M
+ /THJ0KpefkTzg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v7 01/12] Revert "backlight: Remove notifier"
+To: "Mario Limonciello" <mario.limonciello@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <20260831210531.2334221-2-mario.limonciello@amd.com>
+References: <20260831210531.2334221-1-mario.limonciello@amd.com>
+ <20260831210531.2334221-2-mario.limonciello@amd.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 31 Aug 2026 22:02:03 +0000
+Message-Id: <20260831220204.828DC1F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +53,83 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1335727229185540192==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
 
-== Series Details ==
+Pre-existing issues:
+- [High] `backlight_device_get_by_type()` does not take a reference on the =
+returned device pointer, leading to Use-After-Free vulnerabilities in calle=
+rs.
+--
 
-Series: drm/i915/display: Enable AS SDP Skip Frames (rev5)
-URL   : https://patchwork.freedesktop.org/series/162015/
-State : success
+commit 910d8ccf8b36f6154658d6c354c95ebb55830e1d
+Author: Mario Limonciello <mario.limonciello@amd.com>
 
-== Summary ==
+Revert "backlight: Remove notifier"
 
-CI Bug Log - changes from xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f_BAT -> xe-pw-162015v5_BAT
-====================================================
+This reverts commit 5461f3fd74a89757f95f351eb0bc26aafc2a2e91. The
+backlight notifier support is needed in order to add backlight control
+support into DRM connectors.
 
-Summary
--------
+> diff --git a/include/linux/backlight.h b/include/linux/backlight.h
+> index f29a9ef1052e7..015183d129f96 100644
+> --- a/include/linux/backlight.h
+> +++ b/include/linux/backlight.h
+[ ... ]
+> @@ -388,6 +408,8 @@ void devm_backlight_device_unregister(struct device *=
+dev,
+>  				      struct backlight_device *bd);
+>  void backlight_force_update(struct backlight_device *bd,
+>  			    enum backlight_update_reason reason);
+> +int backlight_register_notifier(struct notifier_block *nb);
+> +int backlight_unregister_notifier(struct notifier_block *nb);
+>  struct backlight_device *backlight_device_get_by_name(const char *name);
+>  struct backlight_device *backlight_device_get_by_type(enum backlight_typ=
+e type);
 
-  **SUCCESS**
+[Severity: High]
+This is a pre-existing issue, but does backlight_device_get_by_type() need =
+to
+increment the reference count of the returned device pointer?
 
-  No regressions found.
+Currently, backlight_device_get_by_type() in
+drivers/video/backlight/backlight.c returns a pointer to the backlight
+device without taking a reference:
 
-  
+drivers/video/backlight/backlight.c:backlight_device_get_by_type() {
+    ...
+    mutex_unlock(&backlight_dev_list_mutex);
+    return found ? bd : NULL;
+}
 
-Participating hosts (13 -> 13)
-------------------------------
+Callers like int3406_thermal_probe() in
+drivers/thermal/intel/int340x_thermal/int3406_thermal.c call this and
+permanently cache the returned pointer:
 
-  No changes in participating hosts
+    bd =3D backlight_device_get_by_type(BACKLIGHT_RAW);
+    if (!bd)
+        return -ENODEV;
+    d->raw_bd =3D bd;
 
+Because the reference count is not incremented (for example, via
+get_device(&bd->dev)), a concurrent unbind of the raw backlight driver
+will unregister and free the backlight device.
 
-Changes
--------
+The thermal driver remains unaware, and subsequent reads or writes to the
+thermal sysfs attributes (such as
+/sys/class/thermal/cooling_deviceX/cur_state) will call
+int3406_thermal_get_cur_state(), which dereferences the freed pointer
+(d->raw_bd->props.brightness).
 
-  No changes found
+Could we add get_device() to backlight_device_get_by_type() and update
+callers to drop the reference when done?
 
+>  int backlight_device_set_brightness(struct backlight_device *bd,
 
-Build changes
--------------
-
-  * Linux: xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f -> xe-pw-162015v5
-
-  IGT_9078: 9078
-  xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f: 43b9a5e9d30783bb6f4d7dacdd1739184666940f
-  xe-pw-162015v5: 162015v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v5/index.html
-
---===============1335727229185540192==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Enable AS SDP Skip Frames (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162015/">https://patchwork.freedesktop.org/series/162015/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f_BAT -&gt; xe-pw-162015v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f -&gt; xe-pw-162015v5</li>
-</ul>
-<p>IGT_9078: 9078<br />
-  xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f: 43b9a5e9d30783bb6f4d7dacdd1739184666940f<br />
-  xe-pw-162015v5: 162015v5</p>
-
-</body>
-</html>
-
---===============1335727229185540192==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260831210531.2334=
+221-1-mario.limonciello@amd.com?part=3D1
