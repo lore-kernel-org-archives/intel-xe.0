@@ -4,43 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8EB2C61DD3
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 08:25:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87BAFC61DD3
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 08:36:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A20510E75A;
-	Mon, 31 Aug 2026 08:25:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2648210E72D;
+	Mon, 31 Aug 2026 08:36:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="E9o4DVNi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g3T3y1lg";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FE5F10E75A
- for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 08:25:18 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 0BBB440316;
- Mon, 31 Aug 2026 08:25:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBBA61F000E9;
- Mon, 31 Aug 2026 08:25:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788164717;
- bh=IUn1wWW+DJirXiijg/5qp3Z9cVZ+xyC70ZZXQmWmYXg=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=E9o4DVNiAY2anYUszB35LFjSF5z0AgkSlPKZqBNlrEh2xrfuHM8Q7RTR6Mf3xRuoZ
- 2mvyrQfONV7aO+zx9mhPaiY893FHH+zvXZu5QJP1/4lmC9hA2YAQchP0pAy/sq9nkz
- u4L6Hs97WVscdPCWusCZbAT479Zf94PzmNwig3nXe35DZzf57Tk0cMbhxrBSfx54XF
- SYcFyj2BJTAwoaLm0mY17Tg2glIBDoEbllU/MPJqk1i3f+/A0LyO9eMY7d1XJtJizW
- k1Yl0wEcP9ad+/8jk4ElwwuRPNXgERUTgP0fqOsbFwLDubDUt9HmAQ9JqN/igkNxws
- JcDY+KI86Bufw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 4/4] drm/xe/gt: Report GT reset failure using SIGID
-To: "Arvind Yadav" <arvind.yadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260831080507.2364687-5-arvind.yadav@intel.com>
-References: <20260831080507.2364687-1-arvind.yadav@intel.com>
- <20260831080507.2364687-5-arvind.yadav@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 31 Aug 2026 08:25:17 +0000
-Message-Id: <20260831082517.CBBA61F000E9@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F67010E72D
+ for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 08:36:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788165376; x=1819701376;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fqyvJYrAyFWSD8oaVKXaj+YxB2l45fQUZlG9s+kLkn0=;
+ b=g3T3y1lgMrN3GBoBXheHV0DCuJVP5rjnQ4HVE9q7k35IlgDO3kdJsLWJ
+ cY66+qHar1WkGtyvl7OLWVfv0QI4GcwmfQrDhZDZULkA8KOIZ+WXq6qxC
+ 58vvpF0Y8hqEsBfE/99WHJeneausWd3IW9VAPAQB1peImGdAcz8V/OSLj
+ 1M6HL/c3m+gGm72LajptXGwW9o9tLRNx0aDNYOHFW3fU8cHiQO1ldAayo
+ ltcPH8gBaJmSmDtxepYc1Gq9v36Uc7wEJ6RKHlf2aolQy35Nh5GpBAes8
+ BY3/L7QDDYBEWmTf3QPsEkQ+B3dRJZzrdEFv/CMNnR8T3Tc7+NI0CyIVi A==;
+X-CSE-ConnectionGUID: ETrzXy1CRwiGaCzMpT2obg==
+X-CSE-MsgGUID: +bM1FVsDSjGwOPUjZ8B6uQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11891"; a="106089685"
+X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="106089685"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2026 01:36:16 -0700
+X-CSE-ConnectionGUID: JSHQVwRwRJ+BQOD018rCvA==
+X-CSE-MsgGUID: PryjwSoFTvetOAOADVT12w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="293546310"
+Received: from unknown (HELO ksatya-dev.iind.intel.com) ([10.190.229.72])
+ by fmviesa001.fm.intel.com with ESMTP; 31 Aug 2026 01:36:14 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v7 00/10] KUnit test for VF provisioning error handling
+Date: Mon, 31 Aug 2026 14:06:02 +0530
+Message-ID: <20260831083605.2115328-12-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.53.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,54 +61,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] Incorrect time unit in GT reset failure log message (reports 5000 m=
-s instead of 5 ms / 5000 us)
---
+This patchset adds infrastructure and tests to verify that a VF
+properly handles malformed or invalid device configuration
+responses from the PF.
 
-commit 4b084e884bdfae225e6341823adbd51d6b4fd3dd
-Author: Arvind Yadav <arvind.yadav@intel.com>
+A VF relies on the PF to provide valid hardware configuration through GuC
+KLV responses during initialization. If the PF is misconfigured or
+malfunctioning, a VF may receive zero, incomplete, or out-of-range
+values for critical resources like GGTT, VRAM, Contexts or Doorbells.
 
-drm/xe/gt: Report GT reset failure using SIGID
+Add KUnit test cases that use the xe_guc_mmio_send_recv() stub to inject
+bad KLV responses and verify that VF can survive without crashing for
+the invalid configuration data received.
 
-This commit routes the GT reset failure log through the structured SIGID
-logging helper using the GT component. It also updates the error message
-to describe that the full graphics reset did not complete within the timeou=
-t.
+While adding this kunit test, found some missing error handling in the VF
+code path for invalid doorbell,  GGTT and VRAM configurations. This
+patchset also adds the missing error handling to the VF code path.
 
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 478e047031f4f..18a6d5a6686ca 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -830,8 +830,8 @@ static int do_gt_reset(struct xe_gt *gt)
->  	xe_mmio_write32(&gt->mmio, GDRST, GRDOM_FULL);
->  	err =3D xe_mmio_wait32(&gt->mmio, GDRST, GRDOM_FULL, 0, 5000, NULL, fal=
-se);
->  	if (err)
-> -		xe_gt_err(gt, "failed to clear GRDOM_FULL (%pe)\n",
-> -			  ERR_PTR(err));
-> +		xe_log_err(gt, GT, err,
-> +			   "full graphics reset not completed in %u ms\n", 5000);
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-[Severity: Low]
-Does this log message in do_gt_reset() report the wrong time unit?=20
+Satyanarayana K V P (10):
+  drm/xe/guc: Allow to replace xe_guc_mmio_send_recv() with KUNIT stub
+  drm/xe/vf: Split submission config query helpers
+  drm/xe/vf: Add bounds checking for queried context and doorbell counts
+  drm/xe: use SZ_4K for default VRAM region page size
+  drm/xe: Introduce helpers for xe_vram size
+  drm/xe/ggtt: Avoid integer overflow when validating VF GGTT range
+  drm/xe/vf: Add bounds checking for queried GGTT base and size
+  drm/xe/vf: Add alignment check for queried VRAM size
+  drm/xe/ggtt: Add KUNIT stub for xe_ggtt_shift_nodes()
+  drm/xe/tests: Add KUnit tests for VF provisioning error handling
 
-The timeout parameter passed to xe_mmio_wait32() right before this is 5000
-microseconds, but the new error message hardcodes "5000 ms" (5 seconds).
-Reporting 5000 ms might significantly mislead anyone diagnosing GT reset
-failures into believing the driver waited 1000x longer than it actually did.
-Should this be updated to say "5 ms" or "5000 us" to accurately reflect the
-wait time?
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |   2 +-
+ drivers/gpu/drm/xe/display/xe_initial_plane.c |   2 +-
+ drivers/gpu/drm/xe/tests/xe_bo.c              |   2 +-
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c         |   2 +-
+ .../gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c   | 391 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_bo.c                    |   6 +-
+ drivers/gpu/drm/xe/xe_device.h                |  10 +
+ drivers/gpu/drm/xe/xe_ggtt.c                  |  18 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |   4 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c           |  98 ++++-
+ drivers/gpu/drm/xe/xe_guc.c                   |   5 +
+ drivers/gpu/drm/xe/xe_query.c                 |   5 +-
+ drivers/gpu/drm/xe/xe_svm.c                   |   2 +-
+ drivers/gpu/drm/xe/xe_vm.c                    |   4 +-
+ 14 files changed, 520 insertions(+), 31 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c
 
-> =20
->  	xe_gsc_wa_14015076503(gt, false);
->
+-- 
+2.53.0
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260831080507.2364=
-687-1-arvind.yadav@intel.com?part=3D4
