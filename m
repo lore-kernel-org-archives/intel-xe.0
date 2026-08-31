@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED785C61DD3
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 08:36:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95B02C624C6
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 08:36:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EBBC10E775;
-	Mon, 31 Aug 2026 08:36:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E2C910E75F;
+	Mon, 31 Aug 2026 08:36:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mL8MrfAH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n0zbQ8aa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB30510E742
- for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 08:36:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 700D110E760
+ for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 08:36:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788165378; x=1819701378;
+ t=1788165380; x=1819701380;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=d+adU9rY83Q7BArHYh+tr7h+Rm9wR/M6+UUJGgahjE0=;
- b=mL8MrfAHJsURbTEbhLc+cWmYkkwBB99HewkjtLIPZCHXX8RJjyBA/NV4
- TMWbahxqV9rK+jzKDkWXSKCr1yD8qMGnknj+g15HS0SCHwhMZRYFLxtcL
- R9WUrggdjz/5CW/MrA5g2Dhx5Gg8B0vrtH6VfPr27NgrXuoAyfDIQIQAP
- 3vVyxE5w9sj1zOWHdfQv/S+KpE6pzX+LhbaLBJPZem2Kc0Ah6mf98sKDx
- w2Q09urpOKaUHNXOP602WMyj3RcGIyqhtSW/MAZAM4VPQiXlSKX1nnt3z
- HqFBNekm4cJyiAFvmq1PBk2FkEUo+wqqbe781Ax+N2ut6HGmp6ouUizyT A==;
-X-CSE-ConnectionGUID: r7h0XCiMTPuKcE7md1v/+w==
-X-CSE-MsgGUID: x1pcLT13RHWzj/Km+K37Sw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11891"; a="106089691"
-X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="106089691"
+ bh=OYq7HrbF1jSEL10aX6e3UgsufmwGlg1Wxj7YY57/PKo=;
+ b=n0zbQ8aaWlC7Xo4RDiBHdEmkWH9s8f4kMKCOgSazhyM/FSbBRZOdqx9k
+ wQR3QQ3AuxacgnI3v8nCmITspYtROJHwu/TMmlPzsP+wfdQQpho3WerVn
+ 6TvjA++5GXFJjMI5mAfPkrecEg+wEhV4JFqfbfUYuC4Ip/4+FU72w7OjF
+ +Zz+8DAnRjpaCkO9eaypxZgJk30/yg3y0EaWO7Al2GHlHQTqFYoizppIO
+ 3rFhXZnRDaifhqjgXiBOCsP+KG2Hig8ZwWoiD2IC1o+Dfs5BSRy5ZD+wE
+ gBaAFGAnFAlZeyxc/bzD7i/OejSFQOoUeMc7vG5ooifwRbs42PTGLFNZ4 g==;
+X-CSE-ConnectionGUID: Ixg8XpO7QVipm8k9guCYkg==
+X-CSE-MsgGUID: CnJrg2h6SA2HviIzfr5uFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11891"; a="106089708"
+X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="106089708"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 01:36:17 -0700
-X-CSE-ConnectionGUID: 3g3/iKrCTyqN8xkXfph9OQ==
-X-CSE-MsgGUID: uIxoXDtLR5GLdMdMCxrLbg==
+ 31 Aug 2026 01:36:20 -0700
+X-CSE-ConnectionGUID: 78Xfkjq5TGeAilmNyjNxWg==
+X-CSE-MsgGUID: ksFbyCdHQTOCidYqj1BJjg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="293546318"
+X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="293546331"
 Received: from unknown (HELO ksatya-dev.iind.intel.com) ([10.190.229.72])
- by fmviesa001.fm.intel.com with ESMTP; 31 Aug 2026 01:36:16 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 31 Aug 2026 01:36:19 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v7 01/10] drm/xe/guc: Allow to replace xe_guc_mmio_send_recv()
- with KUNIT stub
-Date: Mon, 31 Aug 2026 14:06:03 +0530
-Message-ID: <20260831083605.2115328-13-satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v7 03/10] drm/xe/vf: Add bounds checking for queried context
+ and doorbell counts
+Date: Mon, 31 Aug 2026 14:06:05 +0530
+Message-ID: <20260831083605.2115328-15-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260831083605.2115328-12-satyanarayana.k.v.p@intel.com>
 References: <20260831083605.2115328-12-satyanarayana.k.v.p@intel.com>
@@ -67,39 +67,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow to replace xe_guc_mmio_send_recv() with the stub so we can
-exercise more code paths on the fake xe device during kunit tests.
+Add explicit bounds checks for context and doorbells which can detect
+and reject invalid configuration data from a misconfigured or
+malfunctioning PF, preventing protocol violations and protecting VF
+initialization.
 
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index c7f8bbd4cb92..992a69e19332 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -6,6 +6,8 @@
- #include "xe_guc.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 339ea0d3344c..81d68fe5ad7c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -15,6 +15,7 @@
+ #include "abi/guc_klvs_abi.h"
+ #include "abi/guc_relay_actions_abi.h"
+ #include "regs/xe_gt_regs.h"
++#include "regs/xe_guc_regs.h"
  
- #include <linux/iopoll.h>
-+#include <kunit/static_stub.h>
+ #include "xe_assert.h"
+ #include "xe_device.h"
+@@ -581,6 +582,11 @@ static int vf_get_ctxs_cfg(struct xe_gt *gt)
+ 	if (unlikely(err))
+ 		return err;
+ 
++	if (num_ctxs > GUC_ID_MAX) {
++		xe_gt_sriov_err(gt, "Out of bound CTXs %u received\n", num_ctxs);
++		return -EPROTO;
++	}
 +
- #include <drm/drm_managed.h>
+ 	if (config->num_ctxs && config->num_ctxs != num_ctxs) {
+ 		xe_gt_sriov_err(gt, "Unexpected CTXs reassignment: %u != %u\n",
+ 				num_ctxs, config->num_ctxs);
+@@ -607,6 +613,11 @@ static int vf_get_dbs_cfg(struct xe_gt *gt)
+ 	if (unlikely(err))
+ 		return err;
  
- #include <generated/xe_wa_oob.h>
-@@ -1510,6 +1512,9 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 	int ret;
- 	int i;
- 
-+	KUNIT_STATIC_STUB_REDIRECT(xe_guc_mmio_send_recv, guc, request, len,
-+				   response_buf);
++	if (num_dbs > GUC_NUM_DOORBELLS) {
++		xe_gt_sriov_err(gt, "Out of bound DBs %u received\n", num_dbs);
++		return -EPROTO;
++	}
 +
- 	BUILD_BUG_ON(VF_SW_FLAG_COUNT != MED_VF_SW_FLAG_COUNT);
- 
- 	xe_assert(xe, len);
+ 	if (config->num_dbs && config->num_dbs != num_dbs) {
+ 		xe_gt_sriov_err(gt, "Unexpected DBs reassignment: %u != %u\n",
+ 				num_dbs, config->num_dbs);
 -- 
 2.53.0
 
