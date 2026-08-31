@@ -4,57 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F0E9C624A5
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 08:05:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 061AFC624A5
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 08:08:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B810110E6E8;
-	Mon, 31 Aug 2026 08:05:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB24D10E6F0;
+	Mon, 31 Aug 2026 08:08:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bmqtcrBp";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DrbPjyi8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F34010E6EC
- for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 08:05:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788163533; x=1819699533;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=h12gIiEwCvLADHm1O2HWE4Z3N/3NhjLsvGyJwY0F0Gw=;
- b=bmqtcrBpbmVt0xe0aYmrKzP9ZcAoRL7FCtSGQrrlK1G6N3QqQPlkCSBZ
- e1B/o0+SpaiSqdZ0eFwI5jKXnix1heZb4l9GzrhFyI7wiPDr7P5IKwGtD
- mZF4I/UOpc0r1nRhTGElSAafMQUWEA3C2ixulAaNgZ51HvakW7ZKilzc1
- uZr+RDYgtCr77IOebAYkRWig0ujBp153v7sYOwRWcrhuGoSp+rbzFw1M8
- Ax4MHUirGMTvbf/U05WeIPs/NXiXwNyJGJdYJ0K69k7gne/pmu+e9BqWl
- M9m8IU7A2yUsu0ays866W+2Qly3oQ6M1wwKus24eIgLfxA7hqq/Sx4Ubl w==;
-X-CSE-ConnectionGUID: FK/9+7waQIeYmfINaUZlGw==
-X-CSE-MsgGUID: mZ9bfJFbTEikwd1gMY7Ymw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11891"; a="92251041"
-X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="92251041"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 01:05:33 -0700
-X-CSE-ConnectionGUID: Qcb0+GQ5Sg6jMVgIwiPsFw==
-X-CSE-MsgGUID: OMU4ds+7RluocePye9SlbA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="268172177"
-Received: from varungup-desk.iind.intel.com ([10.190.238.71])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 01:05:30 -0700
-From: Arvind Yadav <arvind.yadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com, badal.nilawar@intel.com,
- michal.wajdeczko@intel.com, himal.prasad.ghimiray@intel.com,
- dnyaneshwar.bhadane@intel.com, mallesh.koujalagi@intel.com,
- matthew.brost@intel.com
-Subject: [PATCH v5 4/4] drm/xe/gt: Report GT reset failure using SIGID
-Date: Mon, 31 Aug 2026 13:35:07 +0530
-Message-ID: <20260831080507.2364687-5-arvind.yadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260831080507.2364687-1-arvind.yadav@intel.com>
-References: <20260831080507.2364687-1-arvind.yadav@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 704B510E6EC
+ for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 08:08:49 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id A72AD6013A;
+ Mon, 31 Aug 2026 08:08:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30F171F000E9;
+ Mon, 31 Aug 2026 08:08:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788163728;
+ bh=Rsx/OxzAn/7xKCT1o2FWMoN5ThKEiJc4Szan4qEaPyk=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=DrbPjyi8XupvB8YPoKjR7eiXHv/9OrC38TG8PdobR5ygz7F92bM8AAYwR2tiM4B39
+ FS0Jb1aVUOZsYHFmzPCw2Vg6j2CQDuhrk9wWmvhRB7Tv2CvYS3TEBl/1DY5M768lG1
+ cqYsodKZ7JpIiAs9pQt1K5dlY+R4HEg1aYvmNo9mYEirRlcOt0rcySkAbhjbxU5V8C
+ SOec9X9An/CIAqXE9eR3nl1eiLPUs/3ESl+lICbUBpGXO/QAe6QeyU2IepHO0FpliX
+ xOvNAjZBU5MSPOisxkgLbBxOW/0aSxIQKiUTFfeFt5Wcku2OjjiDy3X72x7oArFT+i
+ nLIo+FIqIDNlA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH V19 07/15] drm/xe/vram: Extract buddy alloc and free
+ helpers
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260831064942.315720-24-tejas.upadhyay@intel.com>
+References: <20260831064942.315720-17-tejas.upadhyay@intel.com>
+ <20260831064942.315720-24-tejas.upadhyay@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 31 Aug 2026 08:08:47 +0000
+Message-Id: <20260831080848.30F171F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,51 +53,71 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Route the GT reset failure log through the structured SIGID logging helper.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] Uninitialized output parameter `used_visible` in `xe_ttm_vram_bu=
+ddy_alloc()`.
+--
 
-Failure to complete the full graphics reset means GT reset did not finish
-as expected. Use the GT component, which maps to XE_SIGID_GT_TDR, and pass
-the reset errno value to the helper.
+commit 9483caeb9aea9c04580bdd071e565c0158f680fa
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
-Also update the message to describe the actual failure. The driver does not
-clear GRDOM_FULL directly; the reset should complete and clear it within
-the timeout.
+drm/xe/vram: Extract buddy alloc and free helpers
 
-Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Cc: Badal Nilawar <badal.nilawar@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Suggested-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
----
-v5:
- - Kept this patch limited to the GT reset failure path. (Michal)
- - Improved the GRDOM_FULL failure message to describe that full graphics
-   reset did not complete. (Michal)
+This commit factors out block allocation and freeing into reusable helpers
+xe_ttm_vram_buddy_alloc() and xe_ttm_vram_buddy_free(). These helpers
+consolidate block allocation with visible-size tracking for upcoming VRAM
+page offline reservation paths.
 
- drivers/gpu/drm/xe/xe_gt.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe=
+_ttm_vram_mgr.c
+> index 51e983ee3bad4..16ecea4977809 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+[ ... ]
+> +static int xe_ttm_vram_buddy_alloc(struct xe_ttm_vram_mgr *mgr, u64 star=
+t,
+> +				   u64 end, u64 size, u64 min_page_size,
+> +				   struct list_head *blocks, unsigned long flags,
+> +				   void *priv, u64 *used_visible)
+> +{
+[ ... ]
+> +	if (end <=3D mgr->visible_size) {
+> +		*used_visible =3D size;
+> +	} else {
+> +		list_for_each_entry(block, blocks, link) {
+> +			u64 blk_start =3D gpu_buddy_block_offset(block);
+> +
+> +			if (blk_start < mgr->visible_size) {
+> +				u64 blk_end =3D blk_start + gpu_buddy_block_size(mm, block);
+> +
+> +				*used_visible +=3D min(blk_end, mgr->visible_size) - blk_start;
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 6805e0d3bf21..f06fc78af11c 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -824,8 +824,8 @@ static int do_gt_reset(struct xe_gt *gt)
- 	xe_mmio_write32(&gt->mmio, GDRST, GRDOM_FULL);
- 	err = xe_mmio_wait32(&gt->mmio, GDRST, GRDOM_FULL, 0, 5000, NULL, false);
- 	if (err)
--		xe_gt_err(gt, "failed to clear GRDOM_FULL (%pe)\n",
--			  ERR_PTR(err));
-+		xe_log_err(gt, GT, err,
-+			   "full graphics reset not completed in %u ms\n", 5000);
- 
- 	xe_gsc_wa_14015076503(gt, false);
- 
--- 
-2.43.0
+[Severity: Medium]
+Does this accumulate into an uninitialized variable?
 
+In this else branch, *used_visible is incremented via +=3D without being
+explicitly zeroed first. If a caller does not explicitly initialize the
+memory pointed to by used_visible before calling xe_ttm_vram_buddy_alloc(),
+this will accumulate garbage values and corrupt the VRAM visible memory
+accounting in mgr->visible_avail.
+
+While current callers seem to pass pointers to zero-allocated memory,
+could *used_visible be explicitly initialized to 0 before the loop to
+prevent a trap for future callers?
+
+> +			}
+> +		}
+> +	}
+> +
+> +	mgr->visible_avail -=3D *used_visible;
+> +	return 0;
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260831064942.3157=
+20-17-tejas.upadhyay@intel.com?part=3D7
