@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4075DC61DE2
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 10:55:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DADAC61DD3
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 10:59:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3B5210E277;
-	Mon, 31 Aug 2026 10:55:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55C0D10E277;
+	Mon, 31 Aug 2026 10:59:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lurCMVKg";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="gprYTTo7";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E09310E277
- for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 10:55:10 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8107D10E277
+ for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 10:59:23 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 8C23B60213;
- Mon, 31 Aug 2026 10:55:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 174791F000E9;
- Mon, 31 Aug 2026 10:55:09 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 0B15641A9A;
+ Mon, 31 Aug 2026 10:59:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFE2F1F000E9;
+ Mon, 31 Aug 2026 10:59:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788173709;
- bh=vOPfM2vo+Zxn2fniFPR1UQ+fqNBq89KOnkOhUwtgC28=;
+ s=k20260515; t=1788173962;
+ bh=CUUBXhXy8AwbPFY6KMEVBqQRXvKut9SRYjpgIScsmcw=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=lurCMVKg3sJaUcHdzJBgjbRzzHoW1pnwhcSQ0RvdyKyOeecdhvC4k/sX3TtWKrLac
- BKfcT5BcKhxJnF5CVY0NNy+ZF1tksCw+vb31Iy5cMp3djVcy7XqvdAqE9f+I20l0cH
- nPGgrWYcEcg3GpMqrnpW12OE2hH0L00V605isY6s2tuJB17QNWLwo81Ygaz+Rg9hKX
- vRf/ahe0uvmZ+NToSGZeyV21BvBC1fE0u6e4B2slkIrt5W2CYGWrfpmgw1YJfhv7nJ
- pJuo6lvacOi50YzxdwsREDKW1Uv7rpfQ09Soqmrh9uGxSUw/HNCgEKtDMzeD+9/V65
- QXZObqgcrtA1g==
+ b=gprYTTo7P1eaPB3/selP8X/9jvCktxngXJW6SY78EdpumuG+nmuVPzsNO6MLM7MZv
+ 2wZMGD+bWIlCp4IIIc+xmvnEFhTgmcr1yZ8Pb85y0AMDNQHS1VspOSAPi/plEENw1c
+ GWcKYyRDPPajC1Nr9k4r8Wbc0bQu6Q5X43SGElEDjZrAdFwnXx2q6OuTTeqB5Q3wBZ
+ 2eQ0zv18l3qRBeyI3l2EEiCjSWS/u1fR54Li7JUim7Ymmmi2GKirafPBT/nOIDmqrT
+ 4gF0kUflmssWQ9HaoubrP1Gm0RBPncJqkCcUUS0GFuNU80KejZOOlK9vp0LLpnMA/4
+ zQKQVfXfKn/Zg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 1/9] drm/xe/sysctrl: Return error codes from
- sysctrl_wait_bit_clear()
+Subject: Re: [PATCH v6 2/9] drm/xe/sysctrl: Return error codes from
+ sysctrl_wait_bit_set()
 To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260831104456.1770605-12-mallesh.koujalagi@intel.com>
+In-Reply-To: <20260831104456.1770605-13-mallesh.koujalagi@intel.com>
 References: <20260831104456.1770605-11-mallesh.koujalagi@intel.com>
- <20260831104456.1770605-12-mallesh.koujalagi@intel.com>
+ <20260831104456.1770605-13-mallesh.koujalagi@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 31 Aug 2026 10:55:08 +0000
-Message-Id: <20260831105509.174791F000E9@smtp.kernel.org>
+Date: Mon, 31 Aug 2026 10:59:22 +0000
+Message-Id: <20260831105922.BFE2F1F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,80 +59,53 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Low] The patch introduces a call to `xe_log_err()` and includes `xe_log.=
-h`, but neither the header nor the macro exist in the source tree, causing =
-an immediate build failure.
+- [Low] Build failure due to missing `xe_log.h` dependency and undefined `x=
+e_log_err` macro/function.
 --
 
-commit 2a9731ca81fbb37bb5eeef908043568e8555c104
+commit 857fe80daf658c4ae70ca1e5f7664ff0bfb076d5
 Author: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 
-drm/xe/sysctrl: Return error codes from sysctrl_wait_bit_clear()
+drm/xe/sysctrl: Return error codes from sysctrl_wait_bit_set()
 
-This commit updates sysctrl_wait_bit_clear() to return an error code instead
-of a boolean. It also modifies the callers to log failures using xe_log_err=
-().
+This patch changes sysctrl_wait_bit_set() to return an error code rather
+than a boolean and updates callers to propagate and log the error code.
 
 > diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe=
 /xe_sysctrl_mailbox.c
-> index 72baf1aa4b3ad..c36cac8c62887 100644
+> index c36cac8c62887..b3d1538c89900 100644
 > --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
 > +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-> @@ -11,6 +11,7 @@
-> =20
->  #include "regs/xe_sysctrl_regs.h"
->  #include "xe_device.h"
-> +#include "xe_log.h"
-
-[Severity: Low]
-Does this header exist in the repository? It appears to be missing, which
-causes a build failure.
-
 [ ... ]
-
-> @@ -146,12 +143,14 @@ static int sysctrl_send_frames(struct xe_sysctrl *s=
-c,
->  	u32 ctrl_reg, total_frames, frame;
->  	size_t bytes_sent, frame_size;
->  	bool phase;
-> +	int ret;
+> @@ -193,9 +189,10 @@ static int sysctrl_process_frame(struct xe_sysctrl *=
+sc, void *out,
+>  	struct xe_device *xe =3D sc_to_xe(sc);
+>  	int ret;
 > =20
->  	total_frames =3D DIV_ROUND_UP(cmd_size, XE_SYSCTRL_MB_FRAME_SIZE);
-> =20
-> -	if (!sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms)) {
-> -		xe_err(xe, "sysctrl: Mailbox busy\n");
-> -		return -EBUSY;
-> +	ret =3D sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms=
-);
+> -	if (!sysctrl_wait_bit_set(sc, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, timeout_ms)=
+) {
+> -		xe_err(xe, "sysctrl: Response frame timeout\n");
+> -		return -ETIMEDOUT;
+> +	ret =3D sysctrl_wait_bit_set(sc, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, timeout_=
+ms);
 > +	if (ret) {
-> +		xe_log_err(xe, SYSCTRL, ret, "Mailbox busy\n");
+> +		xe_log_err(xe, SYSCTRL, ret, "Response frame timeout\n");
 
 [Severity: Low]
-Is xe_log_err() defined anywhere in the tree? This introduces a call to an
-undefined macro, resulting in an implicit declaration error during compilat=
-ion
-in sysctrl_send_frames().
+Will this result in a build failure?=20
 
-[ ... ]
+It appears that the xe_log_err macro and the SYSCTRL domain identifier are
+not defined in this file, nor is there an include for the corresponding log
+header.=20
 
-> @@ -174,9 +173,10 @@ static int sysctrl_send_frames(struct xe_sysctrl *sc,
+Are we missing a header inclusion, or does this patch depend on another
+unmerged change that introduces this logging infrastructure?
+
+> +		return ret;
+>  	}
 > =20
->  		xe_mmio_write32(sc->mmio, SYSCTRL_MB_CTRL, ctrl_reg);
-> =20
-> -		if (!sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms))=
- {
-> -			xe_err(xe, "sysctrl: Frame %u acknowledgment timeout\n", frame);
-> -			return -ETIMEDOUT;
-> +		ret =3D sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_m=
-s);
-> +		if (ret) {
-> +			xe_log_err(xe, SYSCTRL, ret, "Frame %u acknowledgment timeout\n", fra=
-me);
-
-[Severity: Low]
-This is another instance of using the undefined xe_log_err() macro, leading
-to a compilation failure.
+>  	ctrl_reg =3D xe_mmio_read32(sc->mmio, SYSCTRL_MB_CTRL);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260831104456.1770=
-605-11-mallesh.koujalagi@intel.com?part=3D1
+605-11-mallesh.koujalagi@intel.com?part=3D2
