@@ -4,45 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92B71C624C6
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 22:49:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4F2EC61DD3
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 22:52:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75C7710E34E;
-	Mon, 31 Aug 2026 22:49:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9055A10E1A0;
+	Mon, 31 Aug 2026 22:52:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nPcV39Wd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XM1VyH+R";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A9BE10E332;
- Mon, 31 Aug 2026 22:49:35 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id F281F602D3;
- Mon, 31 Aug 2026 22:49:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65E7A1F000E9;
- Mon, 31 Aug 2026 22:49:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788216573;
- bh=VWZNea7qcUcIQpyjNbtHBngrLsSTJsiaD5bV+VNRqM4=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=nPcV39WdkFXBTmqMkCkGnhAZZyJiWY6hKxTf1OLTZ0bPNBsXs+VfShSInXofN7983
- 2DiRPwWgmKsMVh82mnWgV44uFAb3gYysO4bBcpN3umIBNVQ5PAl9RbTJ35sJFz3WOx
- jEZey/wsdOI6h1lwLMnZ1qX/1iXLPVj7kDsc/NDcMAnX/GeXfeXCE7OHrJSkhSm1ct
- nAaX44Ziqvxriy7/F/408XE+Jn2Ncy+nBsKz7nPDLd2Xb13Bu6+Dqpe7G6IssoLQCW
- ucb6AGPOr+EP/8VUrr8WuBd8Aps3pAlPNpYz6kaSJe+R2AJ4rSi+bmiXYINT8oRc+l
- 0ITdPZguQQ98w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 06/12] drm/amd/display: Pass up errors reading actual
- brightness
-To: "Mario Limonciello" <mario.limonciello@amd.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20260831210531.2334221-7-mario.limonciello@amd.com>
-References: <20260831210531.2334221-1-mario.limonciello@amd.com>
- <20260831210531.2334221-7-mario.limonciello@amd.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 31 Aug 2026 22:49:32 +0000
-Message-Id: <20260831224933.65E7A1F000E9@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4450210E1A0
+ for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 22:52:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788216774; x=1819752774;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7hH2M5MLQCJFz8rGx2oCvVHYZfDgCjvi70MzBEv+fOk=;
+ b=XM1VyH+RDBuruxOcS51W5V4aAUYXBa02PqTUqd3pzyte8EXZQ2e8MU02
+ +9kHvRgegQuBwoATjASyzyf96WDC5j6/SkwNSCwzm4vfIZmdWNJIQFGRd
+ I2yqSV3XiQ/Px7dH6CI6wIqJHBXNl7Wen/F/Ul0ItrOkW+phQUU8nLDF/
+ YqtHJ7AoHbeeiHj7U+2S8PThZ1/uCq1ENC2yabvxOVx25P0rbbr/pTxgz
+ EQfKAANie9LABQ1aZ3tSH9wbjbidIBA9OGE7DQTw81r5WC+A4Tm8izwTq
+ tPemrrvEai6YtD2DCXJaAJUmk/sbGK1eSwAU/ppzvAG3KYvsUm9sOuaos A==;
+X-CSE-ConnectionGUID: 724t5Uy2RNyooRbJxHGA8Q==
+X-CSE-MsgGUID: cLU+x90PQfac0sX/N2XV4A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11892"; a="100147755"
+X-IronPort-AV: E=Sophos;i="6.25,254,1779174000"; d="scan'208";a="100147755"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2026 15:52:53 -0700
+X-CSE-ConnectionGUID: Y9qnI/nHQRWGwClFyQ3BSA==
+X-CSE-MsgGUID: J4MFzdl6RZ6yi5x8V+ubIQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,254,1779174000"; d="scan'208";a="272426562"
+Received: from osgcshtiger.sh.intel.com ([10.239.81.49])
+ by orviesa003.jf.intel.com with ESMTP; 31 Aug 2026 15:52:52 -0700
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v3] drm/xe/shrinker: Take a runtime PM ref before shrinking
+ non-system memory
+Date: Mon, 31 Aug 2026 22:52:32 +0000
+Message-Id: <20260831225232.118607-1-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,81 +65,165 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] Incomplete refactoring of PWM error path causes KUnit test failu=
-re.
---
+__xe_shrinker_walk() walks the SYSTEM and TT LRUs without a runtime PM
+reference.  Shrinking a bo outside system memory invalidates its GPU
+mappings, which needs the device resumed, so while it is runtime
+suspended the page table zap trips an assert and the TLB invalidation
+returns -ENODEV:
 
-commit 51bad29849babac3047c98c959ac850e269def79
-Author: Mario Limonciello <mario.limonciello@amd.com>
+  WARNING: drivers/gpu/drm/xe/xe_bo.c:770 at xe_bo_move_notify+0x1fc/0x450 [xe]
+   xe_bo_shrink+0x20f/0x2b0 [xe]
+   __xe_shrinker_walk+0x174/0x410 [xe]
+   xe_shrinker_scan+0x10c/0x1e0 [xe]
+   do_shrink_slab+0x176/0x7e0
+   drop_caches_sysctl_handler+0x9c/0xf0
 
-drm/amd/display: Pass up errors reading actual brightness
+Take a reference before walking a memory type other than XE_PL_SYSTEM
+and stop there if the device is not active, queueing the shrinker PM
+worker so a later scan can pick those bos up.  System memory is still
+reclaimed while the device is suspended.
 
-This patch changes the return type of amdgpu_dm_backlight_get_level() from
-an unsigned integer to a signed integer. It also updates the caller and KUn=
-it
-tests to handle negative error codes like -EINVAL on backlight read failure.
+Gate this on xe_device_is_l2_flush_optimized(), the same condition under
+which xe_bo_trigger_rebind() issues the invalidation for a non-fault-mode
+vm, so reclaim is unaffected elsewhere.  The System CCS copy already has
+its own reference in xe_bo_shrink().
 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c =
-b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
-> index b66ca60e697dc..ed1f85650e280 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
-[ ... ]
-> @@ -376,7 +376,7 @@ u32 amdgpu_dm_backlight_get_level(struct amdgpu_displ=
-ay_manager *dm, int bl_idx)
->  		u32 avg, peak;
-> =20
->  		if (!dc_link_get_backlight_level_nits(link, &avg, &peak))
-> -			return dm->brightness[bl_idx];
-> +			return -EINVAL;
->  		return convert_brightness_to_user(&caps, avg);
->  	}
-> =20
+Only a non-fault-mode vm can reach this, since a fault-mode vm requires
+LR mode and that holds a runtime PM reference for the vm's lifetime.
 
-[Severity: Medium]
-Was the legacy PWM error path missed during this refactoring?
+Reproduced with igt@xe_madvise@dontneed-before-exec while the GPU is
+runtime suspended.
 
-A few lines down in amdgpu_dm_backlight_get_level(), there is another error
-path:
+v2: simplify needs_rpm check. (Matt)
+    retarget Fixes tag since the issue occurs with the non-fault-mode
+    path added by 4e7ebff69aed.
+v3: handle this in xe_shrinker.c instead of xe_bo.c (Thomas)
 
-	ret =3D dc_link_get_backlight_level(link);
-	if (ret =3D=3D DC_ERROR_UNEXPECTED)
-		return dm->brightness[bl_idx];
+Fixes: 4e7ebff69aed ("drm/xe/xe3p_lpg: flush shrinker bo cachelines manually")
+Assisted-by: Claude:claude-opus-5
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+ drivers/gpu/drm/xe/xe_shrinker.c | 36 ++++++++++++++++++++++++--------
+ 1 file changed, 27 insertions(+), 9 deletions(-)
 
-Since this still returns the cached fallback brightness instead of -EINVAL,
-could this cause unexpected behavior for the updated KUnit test?
+diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shrinker.c
+index 83374cd57660..175218b5edd9 100644
+--- a/drivers/gpu/drm/xe/xe_shrinker.c
++++ b/drivers/gpu/drm/xe/xe_shrinker.c
+@@ -54,12 +54,14 @@ xe_shrinker_mod_pages(struct xe_shrinker *shrinker, long shrinkable, long purgea
+ 	write_unlock(&shrinker->lock);
+ }
+ 
+-static s64 __xe_shrinker_walk(struct xe_device *xe,
++static s64 __xe_shrinker_walk(struct xe_shrinker *shrinker,
+ 			      struct ttm_operation_ctx *ctx,
+ 			      const struct xe_bo_shrink_flags flags,
+ 			      unsigned long to_scan, unsigned long *scanned)
+ {
++	struct xe_device *xe = shrinker->xe;
+ 	unsigned int mem_type;
++	bool rpm = false;
+ 	s64 freed = 0, lret;
+ 
+ 	for (mem_type = XE_PL_SYSTEM; mem_type <= XE_PL_TT; ++mem_type) {
+@@ -74,13 +76,25 @@ static s64 __xe_shrinker_walk(struct xe_device *xe,
+ 		if (!man || !man->use_tt)
+ 			continue;
+ 
++		if (mem_type != XE_PL_SYSTEM && !rpm &&
++		    xe_device_is_l2_flush_optimized(xe)) {
++			if (!xe_pm_runtime_get_if_active(xe)) {
++				queue_work(xe->unordered_wq,
++					   &shrinker->pm_worker);
++				break;
++			}
++			rpm = true;
++		}
++
+ 		ttm_bo_lru_for_each_reserved_guarded(&curs, man, &arg, ttm_bo) {
+ 			if (!ttm_bo_shrink_suitable(ttm_bo, ctx))
+ 				continue;
+ 
+ 			lret = xe_bo_shrink(ctx, ttm_bo, flags, scanned);
+-			if (lret < 0)
+-				return lret;
++			if (lret < 0) {
++				freed = lret;
++				goto out;
++			}
+ 
+ 			freed += lret;
+ 			if (*scanned >= to_scan)
+@@ -90,6 +104,10 @@ static s64 __xe_shrinker_walk(struct xe_device *xe,
+ 		xe_assert(xe, !IS_ERR(ttm_bo));
+ 	}
+ 
++out:
++	if (rpm)
++		xe_pm_runtime_put(xe);
++
+ 	return freed;
+ }
+ 
+@@ -99,7 +117,7 @@ static s64 __xe_shrinker_walk(struct xe_device *xe,
+  * add writeback. This avoids stalls and explicit writebacks with light or
+  * moderate memory pressure.
+  */
+-static s64 xe_shrinker_walk(struct xe_device *xe,
++static s64 xe_shrinker_walk(struct xe_shrinker *shrinker,
+ 			    struct ttm_operation_ctx *ctx,
+ 			    const struct xe_bo_shrink_flags flags,
+ 			    unsigned long to_scan, unsigned long *scanned)
+@@ -110,14 +128,14 @@ static s64 xe_shrinker_walk(struct xe_device *xe,
+ 
+ 	swap(no_wait_gpu, ctx->no_wait_gpu);
+ 	save_flags.writeback = false;
+-	lret = __xe_shrinker_walk(xe, ctx, save_flags, to_scan, scanned);
++	lret = __xe_shrinker_walk(shrinker, ctx, save_flags, to_scan, scanned);
+ 	swap(no_wait_gpu, ctx->no_wait_gpu);
+ 	if (lret < 0 || *scanned >= to_scan)
+ 		return lret;
+ 
+ 	freed = lret;
+ 	if (!ctx->no_wait_gpu) {
+-		lret = __xe_shrinker_walk(xe, ctx, save_flags, to_scan, scanned);
++		lret = __xe_shrinker_walk(shrinker, ctx, save_flags, to_scan, scanned);
+ 		if (lret < 0)
+ 			return lret;
+ 		freed += lret;
+@@ -126,7 +144,7 @@ static s64 xe_shrinker_walk(struct xe_device *xe,
+ 	}
+ 
+ 	if (flags.writeback) {
+-		lret = __xe_shrinker_walk(xe, ctx, flags, to_scan, scanned);
++		lret = __xe_shrinker_walk(shrinker, ctx, flags, to_scan, scanned);
+ 		if (lret < 0)
+ 			return lret;
+ 		freed += lret;
+@@ -226,7 +244,7 @@ static unsigned long xe_shrinker_scan(struct shrinker *shrink, struct shrink_con
+ 	runtime_pm = xe_shrinker_runtime_pm_get(shrinker, false, nr_to_scan, can_backup);
+ 
+ 	if (purgeable && nr_scanned < nr_to_scan) {
+-		lret = xe_shrinker_walk(shrinker->xe, &ctx, shrink_flags,
++		lret = xe_shrinker_walk(shrinker, &ctx, shrink_flags,
+ 					nr_to_scan, &nr_scanned);
+ 		if (lret >= 0)
+ 			freed += lret;
+@@ -242,7 +260,7 @@ static unsigned long xe_shrinker_scan(struct shrinker *shrink, struct shrink_con
+ 
+ 	shrink_flags.purge = false;
+ 
+-	lret = xe_shrinker_walk(shrinker->xe, &ctx, shrink_flags,
++	lret = xe_shrinker_walk(shrinker, &ctx, shrink_flags,
+ 				nr_to_scan, &nr_scanned);
+ 	if (lret >= 0)
+ 		freed += lret;
+-- 
+2.43.0
 
-[ ... ]
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backli=
-ght_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backligh=
-t_test.c
-> index 7ca17f803f9d7..e03173d4e5bd8 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_tes=
-t.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_tes=
-t.c
-> @@ -382,7 +382,7 @@ static void dm_test_backlight_get_level_pwm_error(str=
-uct kunit *test)
->  	dm->brightness[0] =3D 4321;
->  	dm->backlight_link[0] =3D link;
-> =20
-> -	KUNIT_EXPECT_EQ(test, amdgpu_dm_backlight_get_level(dm, 0), 4321U);
-> +	KUNIT_EXPECT_EQ(test, amdgpu_dm_backlight_get_level(dm, 0), -EINVAL);
-
-[Severity: Medium]
-Will this test unconditionally fail?
-
-Because the legacy error path in amdgpu_dm_backlight_get_level() wasn't
-updated to return -EINVAL, it seems the function will still return the cach=
-ed
-fallback value (4321) when the mock function returns DC_ERROR_UNEXPECTED.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260831210531.2334=
-221-1-mario.limonciello@amd.com?part=3D6
