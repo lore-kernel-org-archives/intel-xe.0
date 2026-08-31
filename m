@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87BAFC61DD3
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 08:36:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED785C61DD3
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 08:36:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2648210E72D;
-	Mon, 31 Aug 2026 08:36:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EBBC10E775;
+	Mon, 31 Aug 2026 08:36:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g3T3y1lg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mL8MrfAH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F67010E72D
- for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 08:36:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB30510E742
+ for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 08:36:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788165376; x=1819701376;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=fqyvJYrAyFWSD8oaVKXaj+YxB2l45fQUZlG9s+kLkn0=;
- b=g3T3y1lgMrN3GBoBXheHV0DCuJVP5rjnQ4HVE9q7k35IlgDO3kdJsLWJ
- cY66+qHar1WkGtyvl7OLWVfv0QI4GcwmfQrDhZDZULkA8KOIZ+WXq6qxC
- 58vvpF0Y8hqEsBfE/99WHJeneausWd3IW9VAPAQB1peImGdAcz8V/OSLj
- 1M6HL/c3m+gGm72LajptXGwW9o9tLRNx0aDNYOHFW3fU8cHiQO1ldAayo
- ltcPH8gBaJmSmDtxepYc1Gq9v36Uc7wEJ6RKHlf2aolQy35Nh5GpBAes8
- BY3/L7QDDYBEWmTf3QPsEkQ+B3dRJZzrdEFv/CMNnR8T3Tc7+NI0CyIVi A==;
-X-CSE-ConnectionGUID: ETrzXy1CRwiGaCzMpT2obg==
-X-CSE-MsgGUID: +bM1FVsDSjGwOPUjZ8B6uQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11891"; a="106089685"
-X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="106089685"
+ t=1788165378; x=1819701378;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=d+adU9rY83Q7BArHYh+tr7h+Rm9wR/M6+UUJGgahjE0=;
+ b=mL8MrfAHJsURbTEbhLc+cWmYkkwBB99HewkjtLIPZCHXX8RJjyBA/NV4
+ TMWbahxqV9rK+jzKDkWXSKCr1yD8qMGnknj+g15HS0SCHwhMZRYFLxtcL
+ R9WUrggdjz/5CW/MrA5g2Dhx5Gg8B0vrtH6VfPr27NgrXuoAyfDIQIQAP
+ 3vVyxE5w9sj1zOWHdfQv/S+KpE6pzX+LhbaLBJPZem2Kc0Ah6mf98sKDx
+ w2Q09urpOKaUHNXOP602WMyj3RcGIyqhtSW/MAZAM4VPQiXlSKX1nnt3z
+ HqFBNekm4cJyiAFvmq1PBk2FkEUo+wqqbe781Ax+N2ut6HGmp6ouUizyT A==;
+X-CSE-ConnectionGUID: r7h0XCiMTPuKcE7md1v/+w==
+X-CSE-MsgGUID: x1pcLT13RHWzj/Km+K37Sw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11891"; a="106089691"
+X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="106089691"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 01:36:16 -0700
-X-CSE-ConnectionGUID: JSHQVwRwRJ+BQOD018rCvA==
-X-CSE-MsgGUID: PryjwSoFTvetOAOADVT12w==
+ 31 Aug 2026 01:36:17 -0700
+X-CSE-ConnectionGUID: 3g3/iKrCTyqN8xkXfph9OQ==
+X-CSE-MsgGUID: uIxoXDtLR5GLdMdMCxrLbg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="293546310"
+X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="293546318"
 Received: from unknown (HELO ksatya-dev.iind.intel.com) ([10.190.229.72])
- by fmviesa001.fm.intel.com with ESMTP; 31 Aug 2026 01:36:14 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 31 Aug 2026 01:36:16 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v7 00/10] KUnit test for VF provisioning error handling
-Date: Mon, 31 Aug 2026 14:06:02 +0530
-Message-ID: <20260831083605.2115328-12-satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v7 01/10] drm/xe/guc: Allow to replace xe_guc_mmio_send_recv()
+ with KUNIT stub
+Date: Mon, 31 Aug 2026 14:06:03 +0530
+Message-ID: <20260831083605.2115328-13-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260831083605.2115328-12-satyanarayana.k.v.p@intel.com>
+References: <20260831083605.2115328-12-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,55 +67,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patchset adds infrastructure and tests to verify that a VF
-properly handles malformed or invalid device configuration
-responses from the PF.
-
-A VF relies on the PF to provide valid hardware configuration through GuC
-KLV responses during initialization. If the PF is misconfigured or
-malfunctioning, a VF may receive zero, incomplete, or out-of-range
-values for critical resources like GGTT, VRAM, Contexts or Doorbells.
-
-Add KUnit test cases that use the xe_guc_mmio_send_recv() stub to inject
-bad KLV responses and verify that VF can survive without crashing for
-the invalid configuration data received.
-
-While adding this kunit test, found some missing error handling in the VF
-code path for invalid doorbell,  GGTT and VRAM configurations. This
-patchset also adds the missing error handling to the VF code path.
+Allow to replace xe_guc_mmio_send_recv() with the stub so we can
+exercise more code paths on the fake xe device during kunit tests.
 
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Satyanarayana K V P (10):
-  drm/xe/guc: Allow to replace xe_guc_mmio_send_recv() with KUNIT stub
-  drm/xe/vf: Split submission config query helpers
-  drm/xe/vf: Add bounds checking for queried context and doorbell counts
-  drm/xe: use SZ_4K for default VRAM region page size
-  drm/xe: Introduce helpers for xe_vram size
-  drm/xe/ggtt: Avoid integer overflow when validating VF GGTT range
-  drm/xe/vf: Add bounds checking for queried GGTT base and size
-  drm/xe/vf: Add alignment check for queried VRAM size
-  drm/xe/ggtt: Add KUNIT stub for xe_ggtt_shift_nodes()
-  drm/xe/tests: Add KUnit tests for VF provisioning error handling
-
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |   2 +-
- drivers/gpu/drm/xe/display/xe_initial_plane.c |   2 +-
- drivers/gpu/drm/xe/tests/xe_bo.c              |   2 +-
- drivers/gpu/drm/xe/tests/xe_dma_buf.c         |   2 +-
- .../gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c   | 391 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_bo.c                    |   6 +-
- drivers/gpu/drm/xe/xe_device.h                |  10 +
- drivers/gpu/drm/xe/xe_ggtt.c                  |  18 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |   4 +-
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c           |  98 ++++-
- drivers/gpu/drm/xe/xe_guc.c                   |   5 +
- drivers/gpu/drm/xe/xe_query.c                 |   5 +-
- drivers/gpu/drm/xe/xe_svm.c                   |   2 +-
- drivers/gpu/drm/xe/xe_vm.c                    |   4 +-
- 14 files changed, 520 insertions(+), 31 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c
-
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index c7f8bbd4cb92..992a69e19332 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -6,6 +6,8 @@
+ #include "xe_guc.h"
+ 
+ #include <linux/iopoll.h>
++#include <kunit/static_stub.h>
++
+ #include <drm/drm_managed.h>
+ 
+ #include <generated/xe_wa_oob.h>
+@@ -1510,6 +1512,9 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+ 	int ret;
+ 	int i;
+ 
++	KUNIT_STATIC_STUB_REDIRECT(xe_guc_mmio_send_recv, guc, request, len,
++				   response_buf);
++
+ 	BUILD_BUG_ON(VF_SW_FLAG_COUNT != MED_VF_SW_FLAG_COUNT);
+ 
+ 	xe_assert(xe, len);
 -- 
 2.53.0
 
