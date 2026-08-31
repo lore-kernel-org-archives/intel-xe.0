@@ -4,69 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EC12C61DD3
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 12:40:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17947C61DD3
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 12:52:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D66C710E7E6;
-	Mon, 31 Aug 2026 12:40:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B03CC10E79F;
+	Mon, 31 Aug 2026 12:52:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bmGaYkWX";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="M8JOYpm5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D248C10E7EB;
- Mon, 31 Aug 2026 12:40:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788180035; x=1819716035;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=gMHDOQFK8cFHhTqRVnSQ8VkRu9LC8o2oJEBdHC89wgI=;
- b=bmGaYkWXdg+LMQ4P1EIxzTbcu3s0DevkfMRUzl/rbPTbEOg1PwmIlAfr
- Rs7vx8FGMZdiQJdHnIls1iaae+95RINoYjo19wqVbObFVSSStz/+HYf47
- 6oGCAfErk7/2XhQwfSFj2rzIX90H/WeiE9ti/z8fNrs61tp2NpXpBvK3Q
- tLymgw5gScElsvvYn2+q5sLaJrtMjUskQvKJ7Alojphfp6+qnU3IJhzlB
- 9JTMTOH1KmI366E1tggMiTxea2XWDRYTW12cWAwgTaizOqkClyMTj5YaM
- rMTBiqi7r9/imoQcSJmy3tmPy7C8NpaDnfU5XGf/IG50i3fx3nVwGn8Ef g==;
-X-CSE-ConnectionGUID: BUxWfuZ2QtObpxYqGf4ryQ==
-X-CSE-MsgGUID: WfgLHAasSu2lmc7Z8KI/gQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11891"; a="88348522"
-X-IronPort-AV: E=Sophos;i="6.25,254,1779174000"; d="scan'208";a="88348522"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 05:40:35 -0700
-X-CSE-ConnectionGUID: avQH6mskQXOtYXmkTNMJrQ==
-X-CSE-MsgGUID: CUxohwINScmcLgCPUbz8QA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,254,1779174000"; d="scan'208";a="272978170"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.244.41])
- ([10.245.244.41])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 05:40:31 -0700
-Message-ID: <f9088335650f61364384d279d30210d99513f08e.camel@linux.intel.com>
-Subject: Re: [PATCH v5 0/4] drm: Add common drm_work_fence/drm_user_fence
- helpers and convert XE
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: "SHANMUGAM, SRINIVASAN" <SRINIVASAN.SHANMUGAM@amd.com>, Matthew Brost	
- <matthew.brost@intel.com>, "Koenig, Christian" <Christian.Koenig@amd.com>, 
- "Deucher, Alexander" <Alexander.Deucher@amd.com>
-Cc: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, Mika
- Kuoppala <mika.kuoppala@linux.intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  "dri-devel@lists.freedesktop.org"	
- <dri-devel@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"	
- <intel-xe@lists.freedesktop.org>
-Date: Mon, 31 Aug 2026 14:40:29 +0200
-In-Reply-To: <IA0PR12MB82085C11DA7C77450210BE1F90A92@IA0PR12MB8208.namprd12.prod.outlook.com>
-References: <20260827062142.4038272-1-srinivasan.shanmugam@amd.com>
- <20260831054154.107602-1-srinivasan.shanmugam@amd.com>
- <772d17307920288d82c55518322d2b65686fcd25.camel@linux.intel.com>
- <IA0PR12MB8208B09EDCF4E0D77B58299290A92@IA0PR12MB8208.namprd12.prod.outlook.com>
- <8278316a3ed83374568103f509d64d71aab8fa32.camel@linux.intel.com>
- <IA0PR12MB82085C11DA7C77450210BE1F90A92@IA0PR12MB8208.namprd12.prod.outlook.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 084EF10E279;
+ Mon, 31 Aug 2026 12:52:41 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id C90D843D76;
+ Mon, 31 Aug 2026 12:52:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DF4C1F000E9;
+ Mon, 31 Aug 2026 12:52:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788180760;
+ bh=EnAG3PY1YyLtLuqbjX0xy1wQZbgJpKf8yP1hh99Xgz0=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=M8JOYpm5JbyEflnprIuctiAnaOY0U2uHV3M+h87kun18/MUSzlMYNEhZ6a433pkXW
+ tm7LlkATlfHeIvjo9p9cXVnhB6q5ZJy//smFs8xnnD4OV7zI+O63JFHegHSvvKUIIv
+ yCXHOXNuwDzXs4SCqbMo8aUziTNsQweZiftw/2i/TR4r/vvL+w6NlVt9xPaJgOOjNK
+ 2mrxErE3MyhT/xOYkPGLInYlFMdjd1YtBfjR8xCRmu2+E3mqmQoGc8qgT+i1KP2Vkm
+ uSAoY7qD0TynSJ99yCpQaYTHEYfzJiSOmt8UtqXPydPTT9e5wNb4FDiPyE0N4oE1iD
+ iQDN+x6s9S20g==
+From: sashiko-bot@kernel.org
+Subject: Re: [v3 4/4] drm/i915/display: Gate periodic AS SDP skip frames
+ behind a module parameter
+To: "Uma Shankar" <uma.shankar@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+In-Reply-To: <20260831125914.1736501-5-uma.shankar@intel.com>
+References: <20260831125914.1736501-1-uma.shankar@intel.com>
+ <20260831125914.1736501-5-uma.shankar@intel.com>
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
-MIME-Version: 1.0
+Date: Mon, 31 Aug 2026 12:52:39 +0000
+Message-Id: <20260831125240.8DF4C1F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,168 +53,99 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2026-08-31 at 12:36 +0000, SHANMUGAM, SRINIVASAN wrote:
-> AMD General
->=20
-> > -----Original Message-----
-> > From: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > Sent: Monday, August 31, 2026 5:52 PM
-> > To: SHANMUGAM, SRINIVASAN <SRINIVASAN.SHANMUGAM@amd.com>;
-> > Matthew Brost <matthew.brost@intel.com>; Koenig, Christian
-> > <Christian.Koenig@amd.com>; Deucher, Alexander
-> > <Alexander.Deucher@amd.com>
-> > Cc: amd-gfx@lists.freedesktop.org; Mika Kuoppala
-> > <mika.kuoppala@linux.intel.com>; Maarten Lankhorst
-> > <maarten.lankhorst@linux.intel.com>;
-> > dri-devel@lists.freedesktop.org; intel-
-> > xe@lists.freedesktop.org
-> > Subject: Re: [PATCH v5 0/4] drm: Add common
-> > drm_work_fence/drm_user_fence
-> > helpers and convert XE
-> >=20
-> > On Mon, 2026-08-31 at 11:13 +0000, SHANMUGAM, SRINIVASAN wrote:
-> > > AMD General
-> > >=20
-> > > > -----Original Message-----
-> > > > From: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > > > Sent: Monday, August 31, 2026 3:46 PM
-> > > > To: SHANMUGAM, SRINIVASAN <SRINIVASAN.SHANMUGAM@amd.com>;
-> > Matthew
-> > > > Brost <matthew.brost@intel.com>; Koenig, Christian
-> > > > <Christian.Koenig@amd.com>; Deucher, Alexander
-> > > > <Alexander.Deucher@amd.com>
-> > > > Cc: amd-gfx@lists.freedesktop.org; Mika Kuoppala
-> > > > <mika.kuoppala@linux.intel.com>; Maarten Lankhorst
-> > > > <maarten.lankhorst@linux.intel.com>;
-> > > > dri-devel@lists.freedesktop.org; intel-
-> > > > xe@lists.freedesktop.org
-> > > > Subject: Re: [PATCH v5 0/4] drm: Add common
-> > > > drm_work_fence/drm_user_fence helpers and convert XE
-> > > >=20
-> > > > On Mon, 2026-08-31 at 11:11 +0530, Srinivasan Shanmugam wrote:
-> > > > > When a GPU dma-fence signals, drivers often need to perform
-> > > > > work
-> > > > > that cannot run in IRQ context. This pattern is currently
-> > > > > open-coded in multiple drivers.
-> > > > >=20
-> > > > > This series introduces two layered helpers:
-> > > > >=20
-> > > > > Patch 1 introduces drm_work_fence =E2=80=94 a generic embeddable =
-base
-> > > > > structure that handles the dma-fence-callback-to-workqueue
-> > > > > pattern.
-> > > > > Any driver needing deferred fence work can use this directly.
-> > > > >=20
-> > > > > Patch 2 introduces drm_user_fence =E2=80=94 a thin layer on top o=
-f
-> > > > > drm_work_fence that adds kthread_use_mm() support for drivers
-> > > > > that
-> > > > > need to access userspace memory when a fence signals.
-> > > > >=20
-> > > > > Patch 3 converts XE to use drm_user_fence. XE continues to
-> > > > > write a
-> > > > > fence completion value to a userspace VA using the new
-> > > > > helper.
-> > > > >=20
-> > > > > Patch 4 adds optional per-signal compare functionality to
-> > > > > drm_user_fence.
-> > > > > When cmp_addr is set, the worker is called only if the value
-> > > > > at
-> > > > > cmp_addr satisfies the configured comparison. This enables
-> > > > > AMDGPU's EOP eventfd per-signal filtering without open-coding
-> > > > > the
-> > > > > read+compare
-> > > > > pattern.
-> > > > >=20
-> > > > > A follow-on patch (not in this series) will wire AMDGPU's
-> > > > > render-
-> > > > > node EOP eventfd signaling path to drm_work_fence.
-> > > > >=20
-> > > > > v5:
-> > > > > =C2=A0- Split drm_user_fence into drm_work_fence (generic) and
-> > > > > drm_user_fence
-> > > > > =C2=A0=C2=A0 (MM-borrowing subclass) per Matthew Brost's suggesti=
-on.
-> > > > > =C2=A0- Add per-signal compare functionality
-> > > > > (drm_user_fence_set_compare())
-> > > > > =C2=A0=C2=A0 per Christian K=C3=B6nig's suggestion.
-> > > > > =C2=A0- Use mmput_async() instead of mmput() to avoid potential
-> > > > > deadlock in
-> > > > > =C2=A0=C2=A0 MMU notifier release path. (Sashiko review)
-> > > > >=20
-> > > > > Suggested-by: Matthew Brost <matthew.brost@intel.com>
-> > > > > Suggested-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > > > > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> > > > > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > > > Cc: dri-devel@lists.freedesktop.org
-> > > > > Cc: intel-xe@lists.freedesktop.org
-> > > > > Cc: amd-gfx@lists.freedesktop.org
-> > > >=20
-> > > > I think the get_user() and put_user() of 64-bit values in drm
-> > > > (driver
-> > > > common) code is not safe for typical use-cases on 32-bit
-> > > > systems.
-> > > > For xe we
-> > > > officially don't (yet at least) support 32-bit systems so hence
-> > > > the
-> > > > code is a bit sloppy but for drm helpers I'm not sure we can
-> > > > get
-> > > > away with this. At least not without some form of warning or
-> > > > assert.
-> > > >=20
-> > > > I think to make 32-bit systems 64-bit user-fence safe, we would
-> > > > need
-> > > > to user
-> > > > pin_user_pages() combined with cmpxchg64() and a similar
-> > > > cmpxchg
-> > > > operation on the user-space side.
-> > >=20
-> > > Hi Thomas,
-> > >=20
-> > > Thanks for the review.
-> > >=20
-> > > For the 32-bit safety concern on get_user() of u64 values =E2=80=94 s=
-ince
-> > > no
-> > > current GPU driver supports 32-bit user fences (XE explicitly
-> > > excludes
-> > > 32-bit, and AMDGPU targets modern hardware), would adding a
-> > > BUILD_BUG_ON or IS_ENABLED(CONFIG_64BIT) guard in
-> > > drm_user_fence_set_compare() be acceptable for now?
-> > >=20
-> > > If a 32-bit driver ever needs this in the future, we can follow
-> > > up
-> > > with pin_user_pages() + cmpxchg64() for proper atomic access.
-> > >=20
-> > > Does that approach work for you?
-> >=20
-> > Xe supports building on 32-bit but not running. Can we use a
-> > drm_WARN_ON_ONCE(!IS_ENABLED(CONFIG_64BIT)) or similar somewhere?
-> > Perhaps that was your second suggestion?
->=20
-> Hi Thomas,
->=20
-> Yes, that matches our suggestion. We will add:
->=20
-> =C2=A0=C2=A0=C2=A0 WARN_ON_ONCE(!IS_ENABLED(CONFIG_64BIT));
->=20
-> in drm_user_fence_set_compare(). We cannot use drm_WARN_ON_ONCE()
-> since drm_user_fence has no struct drm_device * reference.
->=20
-> Is plain WARN_ON_ONCE acceptable, or should we add a drm_device
-> pointer to drm_user_fence_set_compare() to use drm_WARN_ON_ONCE()?
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] Time-Of-Check to Time-Of-Use (TOCTOU) race condition due to eval=
+uating a writable module parameter (`periodic_assdp_enable`) dynamically du=
+ring both the `atomic_check` and `atomic_commit` phases.
+--
 
-For this purpose, IMO WARN_ON_ONCE() is fine. Not sure if drm has a
-general recommendation to add a device pointer, though.
+commit c6beee35e1043bf1a9c47428a8b14e66a470f378
+Author: Uma Shankar <uma.shankar@intel.com>
 
-Thanks,
-Thomas
+drm/i915/display: Gate periodic AS SDP skip frames behind a module parameter
 
+This commit adds a periodic_assdp_enable module parameter to optionally ena=
+ble
+periodic AS SDP (skip frames) for Panel Replay. The feature is disabled by
+default and gated dynamically inside intel_pr_as_sdp_skip_frames().
 
->=20
-> Thanks,
-> Srini
+> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/=
+i915/display/intel_alpm.c
+> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
+> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+
+[ ... ]
+
+> @@ -392,11 +392,16 @@ static u32 get_pr_alpm_as_sdp_transmission_time(con=
+st struct intel_crtc_state *c
+>   */
+>  static u32 intel_pr_as_sdp_skip_frames(struct intel_dp *intel_dp)
+>  {
+> +	struct intel_display *display =3D to_intel_display(intel_dp);
+>  	const struct drm_display_info *info =3D
+>  		&intel_dp->attached_connector->base.display_info;
+>  	int max_vrefresh =3D info->monitor_range.max_vfreq;
+>  	int min_vrefresh =3D info->monitor_range.min_vfreq;
+> =20
+> +	/* Off by default; gated by the periodic_assdp_enable module parameter.=
+ */
+> +	if (!display->params.periodic_assdp_enable)
+> +		return 0;
+
+[Severity: Medium]
+Since the module parameter is writable at runtime (0600), could reading it
+dynamically here introduce a race condition between the atomic_check and
+atomic_commit phases?
+
+The commit message notes this function serves as a choke point for both the
+DC3co force-disable predicate (evaluated during check phase in=20
+intel_display_power_dc3co_compute()) and PR_ALPM_CTL programming (evaluated
+during commit phase in intel_alpm_configure_pr_as_sdp()).
+
+If a user with root privileges changes the sysfs parameter from 0 to 1 after
+the check phase completes but before hardware programming begins, could
+the driver program the hardware inconsistently? For example, by keeping DC3=
+co
+enabled but also enabling AS SDP skip frames, which are documented as
+incompatible?
+
+Should this parameter be read once during the atomic check phase and cached
+in the crtc_state to guarantee consistency across the DRM atomic pipeline?
+
+> +
+>  	if (min_vrefresh <=3D 0 || max_vrefresh <=3D min_vrefresh)
+>  		return 0;
+> =20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/driver=
+s/gpu/drm/i915/display/intel_display_params.c
+> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
+
+[ ... ]
+
+> @@ -139,6 +139,12 @@ intel_display_param_named_unsafe(enable_dmc_wl, int,=
+ 0400,
+>  	"(-1=3Duse per-chip default, 0=3Ddisabled, 1=3Denabled, 2=3Dmatch any r=
+egister, 3=3Dalways locked) "
+>  	"Default: -1");
+> =20
+> +intel_display_param_named_unsafe(periodic_assdp_enable, bool, 0600,
+> +	"Enable periodic Adaptive-Sync SDP (AS SDP skip frames) for Panel Repla=
+y "
+> +	"to drive the panel down to its minimum refresh rate "
+> +	"(0=3Ddisabled, 1=3Denabled) "
+> +	"Default: 0");
+
+[Severity: Medium]
+Is it intentional to expose this as a writable parameter with 0600=20
+permissions given the potential time-of-check to time-of-use issues=20
+mentioned above?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260831125914.1736=
+501-1-uma.shankar@intel.com?part=3D4
