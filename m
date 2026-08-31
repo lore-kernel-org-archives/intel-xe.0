@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67773C61DFD
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 21:57:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E6B4C61DD3
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 22:00:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E61AC10E121;
-	Mon, 31 Aug 2026 21:57:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RhJC+ylv";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C43A10E121;
- Mon, 31 Aug 2026 21:57:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788213471; x=1819749471;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1yzhN672F5qDXh1gYKhfULSneIovWsGKg3ZHs7CEAbY=;
- b=RhJC+ylv/mMYBwleMdkispIooeM4N8w8506L3YO1BJy3xQ6r0OZpSeQO
- i31d8wxu1eB8AsMimZshCOqkd43HKqsZMDKqHqBrEMTEPdzLRW7VfrvEK
- Ny9RlE1Lw+OdL/pX6SFtOnW7ZankZ+NLT2lc5IwSNSMm7XSWDnv50Q2nU
- +aruoMgFRbaqvbD3q8rDTvlMRqyPm7CLgskpkW/QNCQkCYUgHHqpqSE9R
- Hq4QPetkxYxwYv7rF7u2/A0KXU249ht4wN+ZJy6Sh2GW2KarZwLawisor
- cdqezRYzsigXsS+cm/2V6UKdNeRzz5K1k42/5Tfjyw1HtVfcdVUJKJgN5 g==;
-X-CSE-ConnectionGUID: b4d7ZHOGQbOQg2GjYc0MNQ==
-X-CSE-MsgGUID: 4XF5OCd3RMenOwu2hQbXDg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11892"; a="88507176"
-X-IronPort-AV: E=Sophos;i="6.25,254,1779174000"; d="scan'208";a="88507176"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 14:57:51 -0700
-X-CSE-ConnectionGUID: 4l7hzdwWQzyGZ0W9b1N2RQ==
-X-CSE-MsgGUID: nNQLeoCLTYaTt56YhIpPHg==
-X-ExtLoop1: 1
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.16])
- by fmviesa003.fm.intel.com with ESMTP; 31 Aug 2026 14:57:51 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Alexander Kanevskiy <alexander.kanevskiy@intel.com>,
- Dapeng Mi <dapeng1.mi@linux.intel.com>
-Subject: [PATCH v3] perf: Fix null pointer access in is_include_guest_event()
-Date: Mon, 31 Aug 2026 14:52:14 -0700
-Message-Id: <20260831215214.4169965-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44C7610E1B9;
+	Mon, 31 Aug 2026 22:00:27 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83DCD10E1B9;
+ Mon, 31 Aug 2026 22:00:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1335727229185540192=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Enable_?=
+ =?utf-8?q?AS_SDP_Skip_Frames_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Uma Shankar" <uma.shankar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 31 Aug 2026 22:00:25 -0000
+Message-ID: <178821362553.104222.18417739368026915710@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260831213421.1804635-1-uma.shankar@intel.com>
+In-Reply-To: <20260831213421.1804635-1-uma.shankar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,89 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A kernel panic is observed when an application has a perf connection open
-and the driver managing the pmu event unbinds. The issue occurs when
-perf_pmu_unregister() is called while there is an active perf session. The
-null pointer error is seen when the event is freed through __free_event()
-and mediated_pmu_unaccount_event is called. There is a missing null check
-inside is_include_guest_event(). Also call mediated_pmu_unaccount_event()
-inside __pmu_detach_event() similar to __free_event().
+--===============1335727229185540192==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signature of the failure:
+== Series Details ==
 
- Oops: general protection fault, kernel NULL pointer dereference
- ...
- RIP: 0010:_free_event+0x3e/0x370
- ...
- Call Trace:
- ...
- perf_event_release_kernel+0x260/0x2d0
- perf_release+0x12/0x20
+Series: drm/i915/display: Enable AS SDP Skip Frames (rev5)
+URL   : https://patchwork.freedesktop.org/series/162015/
+State : success
 
-While here, also add a null check inside perf_event_read_local() which can
-cause a similar crash. Sashiko pointed out a possible race between when we
-check for revoked state here and then actually access event-pmu inside
-__perf_event_read_cpu(). So, add another null check there.
+== Summary ==
 
-v2: Add another check to prevent null access (sashiko)
-v3: Use READ_ONCE for checking pmu state (sashiko)
+CI Bug Log - changes from xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f_BAT -> xe-pw-162015v5_BAT
+====================================================
 
-Fixes: eff95e170275 ("perf: Add APIs to create/release mediated guest vPMUs")
-Cc: Alexander Kanevskiy <alexander.kanevskiy@intel.com>
-Cc: Dapeng Mi <dapeng1.mi@linux.intel.com>
-Assisted-by: Claude:Claude-Sonnet-5
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- kernel/events/core.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Summary
+-------
 
-diff --git a/kernel/events/core.c b/kernel/events/core.c
-index 94ca277e0819..6ca464f10ba8 100644
---- a/kernel/events/core.c
-+++ b/kernel/events/core.c
-@@ -4794,6 +4794,9 @@ static int __perf_event_read_cpu(struct perf_event *event, int event_cpu)
- 	if ((unsigned)event_cpu >= nr_cpu_ids)
- 		return event_cpu;
- 
-+	if (!event->pmu)
-+		return -ENODEV;
-+
- 	if (event->group_caps & PERF_EV_CAP_READ_SCOPE) {
- 		const struct cpumask *cpumask = perf_scope_cpu_topology_cpumask(event->pmu->scope, event_cpu);
- 
-@@ -4917,6 +4920,11 @@ int perf_event_read_local(struct perf_event *event, u64 *value,
- 		goto out;
- 	}
- 
-+	if (READ_ONCE(event->state) <= PERF_EVENT_STATE_REVOKED) {
-+		ret = -ENODEV;
-+		goto out;
-+	}
-+
- 	/*
- 	 * Get the event CPU numbers, and adjust them to local if the event is
- 	 * a per-package event that can be read locally
-@@ -6350,6 +6358,9 @@ static DEFINE_MUTEX(perf_mediated_pmu_mutex);
- /* !exclude_guest event of PMU with PERF_PMU_CAP_MEDIATED_VPMU */
- static inline bool is_include_guest_event(struct perf_event *event)
- {
-+	if (!event->pmu)
-+		return false;
-+
- 	if ((event->pmu->capabilities & PERF_PMU_CAP_MEDIATED_VPMU) &&
- 	    !event->attr.exclude_guest)
- 		return true;
-@@ -12977,6 +12988,7 @@ static void __pmu_detach_event(struct pmu *pmu, struct perf_event *event,
- 	exclusive_event_destroy(event);
- 	module_put(pmu->module);
- 
-+	mediated_pmu_unaccount_event(event);
- 	event->pmu = NULL; /* force fault instead of UAF */
- }
- 
--- 
-2.38.1
+  **SUCCESS**
 
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f -> xe-pw-162015v5
+
+  IGT_9078: 9078
+  xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f: 43b9a5e9d30783bb6f4d7dacdd1739184666940f
+  xe-pw-162015v5: 162015v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v5/index.html
+
+--===============1335727229185540192==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Enable AS SDP Skip Frames (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162015/">https://patchwork.freedesktop.org/series/162015/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f_BAT -&gt; xe-pw-162015v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f -&gt; xe-pw-162015v5</li>
+</ul>
+<p>IGT_9078: 9078<br />
+  xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f: 43b9a5e9d30783bb6f4d7dacdd1739184666940f<br />
+  xe-pw-162015v5: 162015v5</p>
+
+</body>
+</html>
+
+--===============1335727229185540192==--
