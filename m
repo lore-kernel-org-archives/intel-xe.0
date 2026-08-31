@@ -4,28 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F124C624A4
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 15:20:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF684C624A4
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 15:20:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEAED10E936;
-	Mon, 31 Aug 2026 15:20:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2D2A10E65A;
+	Mon, 31 Aug 2026 15:20:29 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0DB810E6E2;
- Mon, 31 Aug 2026 15:20:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D92310E2E6;
+ Mon, 31 Aug 2026 15:20:28 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915/cdclk?=
- =?utf-8?q?=3A_Don=27t_trust_boot_readout_for_per-pipe_cdclk/voltage_trackin?=
- =?utf-8?q?g?=
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915/psr=3A?=
+ =?utf-8?q?_enable_PSR_on_Apple_T2_eDP_panels?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Eduardo Diaz" <iamedu@gmail.com>
+To: "Alexander Fischer" <alexander.fischer@kait2en.org>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 31 Aug 2026 15:20:06 -0000
-Message-ID: <178818960691.101634.6977016032174577597@61270ab9df2a>
+Date: Mon, 31 Aug 2026 15:20:28 -0000
+Message-ID: <178818962817.101572.1282883707489434331@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260830161703.11570-1-iamedu@gmail.com>
-In-Reply-To: <20260830161703.11570-1-iamedu@gmail.com>
+References: <20260829161622.11396-1-alexander.fischer@kait2en.org>
+In-Reply-To: <20260829161622.11396-1-alexander.fischer@kait2en.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,15 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/cdclk: Don't trust boot readout for per-pipe cdclk/voltage tracking
-URL   : https://patchwork.freedesktop.org/series/173053/
+Series: drm/i915/psr: enable PSR on Apple T2 eDP panels
+URL   : https://patchwork.freedesktop.org/series/173054/
 State : failure
 
 == Summary ==
 
-Series author address 'iamedu@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
+Series author address 'alexander.fischer@kait2en.org' is not on the allowlist, which prevents CI from being automatically triggered.
 If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
 Exception occurred during validation, bailing out!
-Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1267682/ (on master)
+Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1267683/ (on master)
 
 
