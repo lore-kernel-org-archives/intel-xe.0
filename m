@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEFA6C624A5
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 08:05:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F0E9C624A5
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 08:05:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9357B10E6DD;
-	Mon, 31 Aug 2026 08:05:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B810110E6E8;
+	Mon, 31 Aug 2026 08:05:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uu1afA0P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bmqtcrBp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97E5B10E6EC
- for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 08:05:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F34010E6EC
+ for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 08:05:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788163530; x=1819699530;
+ t=1788163533; x=1819699533;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5KabJfHnQuefGLUpdHgLhXdzYytQ8HAl5zD+EHctX30=;
- b=Uu1afA0P4DyXqFjQdcTrZUukKTstnQVURhZeN4R+mFxHSbrSbWJ/74tA
- +hGgmWfj3dOx+BEqNXbEMhryT6dFNac27lNkvTr2aOuApb0k1m/0OgydN
- BVLt0q2hSTnlyO5MHobvPxm+NJVWDKsbcnbhEW+Rg5FzYkKbNsl7dm9hZ
- kUzFUW4cxw6899y1D6vLROqfYN6qyxuXFV/Ub52r+nUYBkx0GTGyqhWpN
- RN5TlgyMwFj93m9oZ2Ft+cinF7l+vGxRckjnrAYbfmH+o4qETzE7HihRT
- 9N73iueCh62tOjnxDEF6LRnerfbIgtYUyIWEdwlZEp3Uf/l0Xjh+XUhY4 Q==;
-X-CSE-ConnectionGUID: 8EZT/KnMTFSJ7x++eEP+/g==
-X-CSE-MsgGUID: MMMLSIq4Smy6s0v3c3JriA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11891"; a="92251040"
-X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="92251040"
+ bh=h12gIiEwCvLADHm1O2HWE4Z3N/3NhjLsvGyJwY0F0Gw=;
+ b=bmqtcrBpbmVt0xe0aYmrKzP9ZcAoRL7FCtSGQrrlK1G6N3QqQPlkCSBZ
+ e1B/o0+SpaiSqdZ0eFwI5jKXnix1heZb4l9GzrhFyI7wiPDr7P5IKwGtD
+ mZF4I/UOpc0r1nRhTGElSAafMQUWEA3C2ixulAaNgZ51HvakW7ZKilzc1
+ uZr+RDYgtCr77IOebAYkRWig0ujBp153v7sYOwRWcrhuGoSp+rbzFw1M8
+ Ax4MHUirGMTvbf/U05WeIPs/NXiXwNyJGJdYJ0K69k7gne/pmu+e9BqWl
+ M9m8IU7A2yUsu0ays866W+2Qly3oQ6M1wwKus24eIgLfxA7hqq/Sx4Ubl w==;
+X-CSE-ConnectionGUID: FK/9+7waQIeYmfINaUZlGw==
+X-CSE-MsgGUID: mZ9bfJFbTEikwd1gMY7Ymw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11891"; a="92251041"
+X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="92251041"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 01:05:30 -0700
-X-CSE-ConnectionGUID: FIZ0nPJKRV63SIJjhkReww==
-X-CSE-MsgGUID: f8Hqr19xQE2kB3xXWzkbkw==
+ 31 Aug 2026 01:05:33 -0700
+X-CSE-ConnectionGUID: Qcb0+GQ5Sg6jMVgIwiPsFw==
+X-CSE-MsgGUID: OMU4ds+7RluocePye9SlbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="268172167"
+X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="268172177"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 01:05:28 -0700
+ 31 Aug 2026 01:05:30 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, badal.nilawar@intel.com,
  michal.wajdeczko@intel.com, himal.prasad.ghimiray@intel.com,
  dnyaneshwar.bhadane@intel.com, mallesh.koujalagi@intel.com,
  matthew.brost@intel.com
-Subject: [PATCH v5 3/4] drm/xe/svm: Report terminal page-fault failures using
- SIGID
-Date: Mon, 31 Aug 2026 13:35:06 +0530
-Message-ID: <20260831080507.2364687-4-arvind.yadav@intel.com>
+Subject: [PATCH v5 4/4] drm/xe/gt: Report GT reset failure using SIGID
+Date: Mon, 31 Aug 2026 13:35:07 +0530
+Message-ID: <20260831080507.2364687-5-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260831080507.2364687-1-arvind.yadav@intel.com>
 References: <20260831080507.2364687-1-arvind.yadav@intel.com>
@@ -70,17 +69,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Route terminal SVM page-fault failures through the structured SIGID logging
-helper.
+Route the GT reset failure log through the structured SIGID logging helper.
 
-These errors are reported only after the retry count is exceeded, so they
-represent terminal page-fault handling failures rather than transient retry
-conditions.
+Failure to complete the full graphics reset means GT reset did not finish
+as expected. Use the GT component, which maps to XE_SIGID_GT_TDR, and pass
+the reset errno value to the helper.
 
-Use the PAGEFAULT component, which maps to XE_SIGID_MEM_FAULT, and pass the
-real errno value to the helper. Pass the GT object so the report carries
-tile/GT location. The helper renders the errno, so remove the manual
-ERR_PTR() formatting from the message text.
+Also update the message to describe the actual failure. The driver does not
+clear GRDOM_FULL directly; the reset should complete and clear it within
+the timeout.
 
 Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 Cc: Badal Nilawar <badal.nilawar@intel.com>
@@ -91,47 +88,29 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Suggested-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+v5:
+ - Kept this patch limited to the GT reset failure path. (Michal)
+ - Improved the GRDOM_FULL failure message to describe that full graphics
+   reset did not complete. (Michal)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 627a741293d5..349e307ca092 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -13,6 +13,7 @@
- #include "xe_bo.h"
- #include "xe_exec_queue_types.h"
- #include "xe_gt_stats.h"
-+#include "xe_log.h"
- #include "xe_migrate.h"
- #include "xe_module.h"
- #include "xe_pagefault.h"
-@@ -1361,9 +1362,9 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 				else
- 					goto retry;
- 			} else {
--				drm_err(&vm->xe->drm,
--					"VRAM allocation failed, retry count exceeded, asid=%u, errno=%pe\n",
--					vm->usm.asid, ERR_PTR(err));
-+				xe_log_err(gt, PAGEFAULT, err,
-+					   "VRAM allocation failed, retry count exceeded, asid=%u\n",
-+					   vm->usm.asid);
- 				goto err_out;
- 			}
- 		}
-@@ -1384,9 +1385,9 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
- 			range_debug(range, "PAGE FAULT - RETRY PAGES");
- 			goto retry;
- 		} else {
--			drm_err(&vm->xe->drm,
--				"Get pages failed, retry count exceeded, asid=%u, gpusvm=%p, errno=%pe\n",
--				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
-+			xe_log_err(gt, PAGEFAULT, err,
-+				   "Get pages failed, retry count exceeded, asid=%u, gpusvm=%p\n",
-+				   vm->usm.asid, &vm->svm.gpusvm);
- 		}
- 	}
- 	if (err) {
+ drivers/gpu/drm/xe/xe_gt.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 6805e0d3bf21..f06fc78af11c 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -824,8 +824,8 @@ static int do_gt_reset(struct xe_gt *gt)
+ 	xe_mmio_write32(&gt->mmio, GDRST, GRDOM_FULL);
+ 	err = xe_mmio_wait32(&gt->mmio, GDRST, GRDOM_FULL, 0, 5000, NULL, false);
+ 	if (err)
+-		xe_gt_err(gt, "failed to clear GRDOM_FULL (%pe)\n",
+-			  ERR_PTR(err));
++		xe_log_err(gt, GT, err,
++			   "full graphics reset not completed in %u ms\n", 5000);
+ 
+ 	xe_gsc_wa_14015076503(gt, false);
+ 
 -- 
 2.43.0
 
