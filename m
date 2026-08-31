@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ED25C61DE2
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 10:45:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99672C61DE2
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 10:45:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3147710E195;
-	Mon, 31 Aug 2026 10:45:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E23310E7D2;
+	Mon, 31 Aug 2026 10:45:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="imzjf4Yy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AWr2uvPM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F6FE10E195
- for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 10:45:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDC9F10E7D2
+ for <intel-xe@lists.freedesktop.org>; Mon, 31 Aug 2026 10:45:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788173136; x=1819709136;
+ t=1788173140; x=1819709140;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HCijSmk8ihhjxyG4P4b8+GR+QXqJzPWpw5SKH/agi1E=;
- b=imzjf4YynGupsOMYhB7ZughIvkrB4FxQUuKEg4L6R6QuK4t+6sdYXWHJ
- oaj4OIYKjrRsiWlXC4Z3Nu785aZZHjlTdVzIM/M44+svCgfiulrk3niUy
- dMTAOo+90AiCMghFx9i+hOHbf+6l7dh1cc6tJCo9GI9H4XVch/TRHhV9W
- hsGI69HeV+cqjd55tj3cIoUOaFbo0mxndHm+EvgM7J9EPC7pbS3CVtdrq
- 0ChKSB+kHkFl7CP0akieX4X7zwJGVtQ6E5wQw1rv1wBi8M+Qog5dl7cIH
- sXeZbj9Tm9Hzg/aOcHLP33ixbqnAzSHhIjrhzD+UA77UMRSgmXQ4p2dQo w==;
-X-CSE-ConnectionGUID: CK6sfxj1QIKm+LVtDdTy2g==
-X-CSE-MsgGUID: VaXwX4qfTkS+fno8cZs/6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11891"; a="92264641"
-X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="92264641"
+ bh=0Ei6s6sbEAMfTkcVnswuKMgCXa7WkFF44qRsthCZM5M=;
+ b=AWr2uvPM2YDZqMB/YsPIGtDb3ZRKGluOlVvGCLRJ8XDP+Vor+d77EDUo
+ gqRq1JG404eMMShKlJ3WGH247Hbf8Tr4iG/GEmN8ypzIDZtAvB/bd6L/H
+ 4ldUZ3AAtXyEfTLiUy11c+tnJY8/Y5kf8FqsNZtjWfNo26KlAbw5hW6CG
+ b8m60gdPzotrICEcCqKf9E6wFfW8x+52pzg8svDcFInCM5yJVkgZuexBZ
+ 9Dq71jFOVSJByzTPBIsCTC27qPSfpmXnmgifjnv4dTf4gK8aNhWoflAxV
+ bWZ5tlX4DuRbM8iq08br1Kk0dG9p8MKxciuDY+9c+q+Oor0mZsbzFBgSt A==;
+X-CSE-ConnectionGUID: ugxfxS1FSvGeWYz20of3IA==
+X-CSE-MsgGUID: C1zUcvpfTpy0XDr8jCFChw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11891"; a="92264645"
+X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="92264645"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 03:45:36 -0700
-X-CSE-ConnectionGUID: Wz/ngXVhRQmcHLl/cWje2w==
-X-CSE-MsgGUID: U2bNkPIbTFCPSgC/16sKcw==
+ 31 Aug 2026 03:45:40 -0700
+X-CSE-ConnectionGUID: HWwOo2dfReiRMiz8D3ow7A==
+X-CSE-MsgGUID: KzTzB1k/QQyw99MQVS0uww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="270685562"
+X-IronPort-AV: E=Sophos;i="6.25,252,1779174000"; d="scan'208";a="270685573"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa004.fm.intel.com with ESMTP; 31 Aug 2026 03:45:31 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 31 Aug 2026 03:45:36 -0700
 From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  matthew.brost@intel.com
@@ -49,10 +49,9 @@ Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
  aravind.iddamsetty@linux.intel.com, umesh.nerlige.ramappa@intel.com,
  dnyaneshwar.bhadane@intel.com, anoop.c.vijay@intel.com,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v6 6/9] drm/xe/sysctrl: Replace FIELD_GET() with
- REG_FIELD_GET()
-Date: Mon, 31 Aug 2026 16:15:03 +0530
-Message-ID: <20260831104456.1770605-17-mallesh.koujalagi@intel.com>
+Subject: [PATCH v6 7/9] drm/xe/sysctrl: Improve firmware response error logging
+Date: Mon, 31 Aug 2026 16:15:04 +0530
+Message-ID: <20260831104456.1770605-18-mallesh.koujalagi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260831104456.1770605-11-mallesh.koujalagi@intel.com>
 References: <20260831104456.1770605-11-mallesh.koujalagi@intel.com>
@@ -72,62 +71,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use REG_FIELD_GET() when extracting fields from SysCtrl and
-application headers. This better reflects that the masks
-represent register-style bitfields and improves consistency.
+Use xe_log_err() helper and include additional details when a
+response header mismatch occurs.
 
 Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 8 ++++----
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.h | 6 +++---
- 2 files changed, 7 insertions(+), 7 deletions(-)
+v5:
+- Use %#x after REG_FIELD_GET change. (Michal)
+
+v6:
+- Move REG_FIELD_GET to different patch. (Michal)
+- Update response message.
+---
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-index 50bbdab072de..3aa868f60b38 100644
+index 3aa868f60b38..87e656820279 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-@@ -24,16 +24,16 @@ struct xe_sysctrl_mailbox_msg_hdr {
- } __packed;
+@@ -233,13 +233,15 @@ static int sysctrl_receive_frames(struct xe_sysctrl *sc,
+ 	if (!XE_SYSCTRL_HDR_IS_RESPONSE(hdr) ||
+ 	    XE_SYSCTRL_HDR_GROUP_ID(hdr) != XE_SYSCTRL_HDR_GROUP_ID(req) ||
+ 	    XE_SYSCTRL_HDR_COMMAND(hdr) != XE_SYSCTRL_HDR_COMMAND(req)) {
+-		xe_err(xe, "sysctrl: Response header mismatch\n");
++		xe_log_err(xe, SYSCTRL, -EPROTO,
++			   "Response header mismatch: %#x != %#x\n",
++			   le32_to_cpu(hdr->data), le32_to_cpu(req->data));
+ 		return -EPROTO;
+ 	}
  
- #define XE_SYSCTRL_HDR_GROUP_ID(hdr) \
--	FIELD_GET(SYSCTRL_HDR_GROUP_ID_MASK, le32_to_cpu((hdr)->data))
-+	REG_FIELD_GET(SYSCTRL_HDR_GROUP_ID_MASK, le32_to_cpu((hdr)->data))
+ 	if (XE_SYSCTRL_HDR_RESULT(hdr) != 0) {
+-		xe_err(xe, "sysctrl: Firmware error: 0x%02lx\n",
+-		       XE_SYSCTRL_HDR_RESULT(hdr));
++		xe_log_err(xe, SYSCTRL, -EIO, "Firmware error: %#04x\n",
++			   XE_SYSCTRL_HDR_RESULT(hdr));
+ 		return -EIO;
+ 	}
  
- #define XE_SYSCTRL_HDR_COMMAND(hdr) \
--	FIELD_GET(SYSCTRL_HDR_COMMAND_MASK, le32_to_cpu((hdr)->data))
-+	REG_FIELD_GET(SYSCTRL_HDR_COMMAND_MASK, le32_to_cpu((hdr)->data))
- 
- #define XE_SYSCTRL_HDR_IS_RESPONSE(hdr) \
--	FIELD_GET(SYSCTRL_HDR_IS_RESPONSE, le32_to_cpu((hdr)->data))
-+	REG_FIELD_GET(SYSCTRL_HDR_IS_RESPONSE, le32_to_cpu((hdr)->data))
- 
- #define XE_SYSCTRL_HDR_RESULT(hdr) \
--	FIELD_GET(SYSCTRL_HDR_RESULT_MASK, le32_to_cpu((hdr)->data))
-+	REG_FIELD_GET(SYSCTRL_HDR_RESULT_MASK, le32_to_cpu((hdr)->data))
- 
- static int sysctrl_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
- 				  unsigned int timeout_ms)
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
-index f0d5e3d7f5e3..5a3dd14e3a11 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
-@@ -15,13 +15,13 @@ struct xe_sysctrl;
- struct xe_sysctrl_mailbox_command;
- 
- #define XE_SYSCTRL_APP_HDR_GROUP_ID(hdr) \
--	FIELD_GET(APP_HDR_GROUP_ID_MASK, (hdr)->data)
-+	REG_FIELD_GET(APP_HDR_GROUP_ID_MASK, (hdr)->data)
- 
- #define XE_SYSCTRL_APP_HDR_COMMAND(hdr) \
--	FIELD_GET(APP_HDR_COMMAND_MASK, (hdr)->data)
-+	REG_FIELD_GET(APP_HDR_COMMAND_MASK, (hdr)->data)
- 
- #define XE_SYSCTRL_APP_HDR_VERSION(hdr) \
--	FIELD_GET(APP_HDR_VERSION_MASK, (hdr)->data)
-+	REG_FIELD_GET(APP_HDR_VERSION_MASK, (hdr)->data)
- 
- void xe_sysctrl_create_command(struct xe_sysctrl_mailbox_command *command, u8 group_id, u8 cmd_id,
- 			       void *request, size_t request_len, void *response,
 -- 
 2.48.1
 
