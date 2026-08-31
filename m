@@ -4,48 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C182C61DD3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FDF3C624A4
 	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 11:47:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFCB210E7E6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7BBB10E7EB;
 	Mon, 31 Aug 2026 11:47:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kait2en.org header.i=@kait2en.org header.b="G33glvvG";
-	dkim-atps=neutral
-X-Greylist: delayed 355 seconds by postgrey-1.36 at gabe;
- Sat, 29 Aug 2026 16:23:19 UTC
-Received: from sirius.syn-flut.de (sirius.syn-flut.de [94.125.25.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E64810E143;
- Sat, 29 Aug 2026 16:23:19 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id C75BD140C2D; Sat, 29 Aug 2026 18:17:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kait2en.org; s=dkim;
- t=1788020241; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding; bh=/+I+O36jO/lXD9IlDR8z4K8ai67tG6lZ1hAuywqjwQE=;
- b=G33glvvGhfB7fWc15SrGUMc+apCf2pcAnZlrGYEbQrWgfyxtwFqa/501QLUTWVnxftYU4F
- HGf1JGvFP68/7tj/yZs7WIfGmMV405+ddtz50yPFwQ9s1zfhqj8XjR8aKgHWoYS4P7iaHx
- l81Y1HGtvW0gNCh+74ARPS9/n25+s41tn6cZ5hkRJlkkA1r+ketAsyCnrtYF/fHKLi9HqP
- 6bI8eMHvCjMgGWb/Sc8Hboc8CLqibAXqvlIX9RKPVnDnUFY3+sPLIL+O7sGIrUX4AMcpzx
- w1lIC+KveGOsqIw7Er0G8g7j215NzU4BaXMcdfwwbkSqKdrmfdjzZdxSQMVUSA==
-From: Alexander Fischer <alexander.fischer@kait2en.org>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- =?UTF-8?q?Andr=C3=A9=20Eikmeyer?= <andre.eikmeyer@kait2en.org>,
- Yossef Osman <yossef.osman@proton.me>
-Subject: [PATCH] drm/i915/psr: enable PSR on Apple T2 eDP panels
-Date: Sat, 29 Aug 2026 18:16:22 +0200
-Message-ID: <20260829161622.11396-1-alexander.fischer@kait2en.org>
-X-Mailer: git-send-email 2.55.0
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8493F10E59C;
+ Mon, 31 Aug 2026 01:42:28 +0000 (UTC)
+X-UUID: 35bc3194a4dd11f19a56ed5b684f684d-20260831
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.19, REQID:89a851c6-234a-495a-a881-367a6cd507d1, IP:0,
+ U
+ RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+ N:release,TS:-25
+X-CID-META: VersionHash:7db8b62, CLOUDID:432c295c6590c67e35717b2ff5972d64,
+ BulkI
+ D:nil,BulkQuantity:0,SF:81|82|102|123|136|850|865|898,TC:nil,Content:0|15|
+ 50,EDM:-3|-100,IP:nil,URL:99|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL
+ :0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 35bc3194a4dd11f19a56ed5b684f684d-20260831
+X-User: yaolu@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+ (envelope-from <yaolu@kylinos.cn>)
+ (Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+ with ESMTP id 289995905; Mon, 31 Aug 2026 09:42:22 +0800
+From: yaolu@kylinos.cn
+To: rodrigo.vivi@intel.com
+Cc: ashutosh.dixit@intel.com, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, jose.souza@intel.com,
+ linux-kernel@vger.kernel.org, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, umesh.nerlige.ramappa@intel.com,
+ yaolu@kylinos.cn
+Subject: [PATCH v2] drm/xe/oa: Remove sysfs entry on idr_alloc failure in
+ xe_oa_add_config_ioctl()
+Date: Mon, 31 Aug 2026 09:42:18 +0800
+Message-Id: <20260831014218.28515-1-yaolu@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <apGuQY7vZRIUZghZ@intel.com>
+References: <apGuQY7vZRIUZghZ@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 X-Mailman-Approved-At: Mon, 31 Aug 2026 11:47:08 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,189 +64,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Commit 1035f4a65f58 ("drm/i915: Disable PSR in Apple panels")
-disabled PSR on all Apple sinks until i915 gained the required panel
-handling.
+From: Lu Yao <yaolu@kylinos.cn>
 
-An AUX trace on a MacBookPro16,2 running macOS 15.7.7 shows the
-following writes when the panel is powered on:
+If idr_alloc() fails after create_dynamic_oa_sysfs_entry() has
+succeeded, the error path frees the OA config without removing the
+metrics sysfs group.
 
-  DPCD 0x321 = 0x3c
-  DPCD 0x4d2 = 0x01
-  DPCD 0x4d1 = 0x03
-  DPCD 0x170 = 0x01 (DP_PSR_ENABLE without CRC verification)
+Remove the sysfs group before releasing the config, and fix up the
+misleading error message copied from the sysfs creation failure path.
 
-Five seconds later, a write of 0x01 to DPCD 0x4d4 occurs between the
-BanksiaTcon FIFOEnter() and SRDEnter() events. This register is the
-vendor trigger for entering self refresh.
-
-With the three setup writes, CRC verification disabled, and the 0x4d4
-trigger added to i915's existing PSR enable sequence, the tested panels
-enter PSR1.
-
-Implement this handling as an i915 DPCD quirk. Limit it to Apple-OUI
-eDP sinks on systems containing an Apple T2. All other Apple sinks
-retain the existing NO_PSR quirk. Override the VBT PSR flag for matching
-panels because Apple leaves it clear.
-
-The same sink-side protocol may also be present on T1 and Apple silicon
-systems, but leave those systems unchanged until it has been tested
-with their display drivers.
-
-Tested on MacBookPro15,1, MacBookPro15,2, MacBookPro16,1,
-MacBookPro16,2 and MacBookAir9,1, covering four panel device IDs. All
-five enter PSR1 after boot and across suspend/resume, report
-DP_PSR_SINK_ACTIVE_SINK_SYNCED, and show no sink errors.
-
-Tested-by: André Eikmeyer <andre.eikmeyer@kait2en.org>
-Tested-by: Yossef Osman <yossef.osman@proton.me>
-Signed-off-by: Alexander Fischer <alexander.fischer@kait2en.org>
+Fixes: cdf02fe1a94a ("drm/xe/oa/uapi: Add/remove OA config perf ops")
+Signed-off-by: Lu Yao <yaolu@kylinos.cn>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c    | 28 +++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_quirks.c | 30 +++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
- 3 files changed, 57 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_oa.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 5283649..be4c05e 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -228,6 +228,9 @@ static bool psr_global_enabled(struct intel_dp *intel_dp)
+---
+v1->v2: using a new goto suggested by Rodrigo
+  Link: https://lore.kernel.org/all/apGuQY7vZRIUZghZ@intel.com
+
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index 9c5384b95c63..ab09dcff5860 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -2435,9 +2435,9 @@ int xe_oa_add_config_ioctl(struct drm_device *dev, u64 data, struct drm_file *fi
  
- 	switch (intel_dp->psr.debug & I915_PSR_DEBUG_MODE_MASK) {
- 	case I915_PSR_DEBUG_DEFAULT:
-+		if (intel_has_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE))
-+			return true;
-+
- 		return intel_dp_is_edp(intel_dp) ?
- 			connector->panel.vbt.psr.enable : true;
- 	case I915_PSR_DEBUG_DISABLE:
-@@ -663,7 +666,8 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *co
- 	drm_dbg_kms(display->drm, "eDP panel supports PSR version %x\n",
- 		    connector->dp.psr_caps.dpcd[0]);
- 
--	if (drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_NO_PSR)) {
-+	if (drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_NO_PSR) &&
-+	    !intel_has_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE)) {
- 		drm_dbg_kms(display->drm,
- 			    "PSR support not currently available for this panel\n");
- 		return;
-@@ -803,19 +807,36 @@ static void _panel_replay_enable_sink(struct intel_dp *intel_dp,
- 	drm_dp_dpcd_writeb(&intel_dp->aux, PANEL_REPLAY_CONFIG3, panel_replay_config_3);
- }
- 
-+/* Undocumented Apple eDP sink registers */
-+#define APPLE_PSR_SETUP_1	0x321
-+#define APPLE_PSR_SETUP_2	0x4d2
-+#define APPLE_PSR_SETUP_3	0x4d1
-+#define APPLE_PSR_TRIGGER	0x4d4
-+
-+static void psr_apple_prepare_sink(struct intel_dp *intel_dp)
-+{
-+	drm_dp_dpcd_writeb(&intel_dp->aux, APPLE_PSR_SETUP_1, 0x3c);
-+	drm_dp_dpcd_writeb(&intel_dp->aux, APPLE_PSR_SETUP_2, 0x01);
-+	drm_dp_dpcd_writeb(&intel_dp->aux, APPLE_PSR_SETUP_3, 0x03);
-+}
-+
- static void _psr_enable_sink(struct intel_dp *intel_dp,
- 			     const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-+	bool apple_psr = intel_has_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE);
- 	u8 val = 0;
- 
-+	if (apple_psr)
-+		psr_apple_prepare_sink(intel_dp);
-+
- 	if (crtc_state->has_sel_update) {
- 		val |= DP_PSR_ENABLE_PSR2 | DP_PSR_IRQ_HPD_WITH_CRC_ERRORS;
- 	} else {
- 		if (intel_dp->psr.link_standby)
- 			val |= DP_PSR_MAIN_LINK_ACTIVE;
- 
--		if (DISPLAY_VER(display) >= 8)
-+		if (DISPLAY_VER(display) >= 8 && !apple_psr)
- 			val |= DP_PSR_CRC_VERIFICATION;
+ 	oa_config->id = idr_alloc(&oa->metrics_idr, oa_config, 1, 0, GFP_KERNEL);
+ 	if (oa_config->id < 0) {
+-		drm_dbg(&oa->xe->drm, "Failed to create sysfs entry for OA config\n");
++		drm_dbg(&oa->xe->drm, "Failed to allocate id for OA config\n");
+ 		err = oa_config->id;
+-		goto sysfs_err;
++		goto id_alloc_err;
  	}
  
-@@ -831,6 +852,9 @@ static void _psr_enable_sink(struct intel_dp *intel_dp,
+ 	id = oa_config->id;
+@@ -2448,6 +2448,8 @@ int xe_oa_add_config_ioctl(struct drm_device *dev, u64 data, struct drm_file *fi
  
- 	val |= DP_PSR_ENABLE;
- 	drm_dp_dpcd_writeb(&intel_dp->aux, DP_PSR_EN_CFG, val);
-+
-+	if (apple_psr)
-+		drm_dp_dpcd_writeb(&intel_dp->aux, APPLE_PSR_TRIGGER, 0x01);
- }
+ 	return id;
  
- static void intel_psr_enable_sink(struct intel_dp *intel_dp,
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index 33245f4..f289161 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -9,6 +9,7 @@
- 
- #include "intel_display_core.h"
- #include "intel_display_types.h"
-+#include "intel_dp.h"
- #include "intel_quirks.h"
- 
- static void intel_set_quirk(struct intel_display *display, enum intel_quirk_id quirk)
-@@ -100,6 +101,27 @@ static void quirk_disable_psr2(struct intel_display *display)
- 	drm_info(display->drm, "PSR2 support not currently available for this setup, applying disable PSR2 quirk\n");
- }
- 
-+#define PCI_DEVICE_ID_APPLE_T2_BRIDGE	0x1801
-+
-+static void quirk_apple_psr_handshake(struct intel_dp *intel_dp)
-+{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+	struct pci_dev *t2;
-+
-+	if (!intel_dp_is_edp(intel_dp))
-+		return;
-+
-+	t2 = pci_get_device(PCI_VENDOR_ID_APPLE,
-+			    PCI_DEVICE_ID_APPLE_T2_BRIDGE, NULL);
-+	if (!t2)
-+		return;
-+
-+	pci_dev_put(t2);
-+
-+	intel_set_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE);
-+	drm_info(display->drm, "Applying Apple PSR handshake quirk\n");
-+}
-+
- struct intel_quirk {
- 	int device;
- 	int subsystem_vendor;
-@@ -286,6 +308,14 @@ static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
- 		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
- 		.hook = quirk_disable_edp_panel_replay,
- 	},
-+	/* Apple T2 eDP panels */
-+	{
-+		.device = DEVICE_ID_ANY,
-+		.subsystem_vendor = PCI_ANY_ID,
-+		.subsystem_device = PCI_ANY_ID,
-+		.sink_oui = SINK_OUI(0x00, 0x10, 0xfa),
-+		.hook = quirk_apple_psr_handshake,
-+	},
- };
- 
- void intel_init_quirks(struct intel_display *display)
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
-index 970a4fe..7b863d4 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.h
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-@@ -23,6 +23,7 @@ enum intel_quirk_id {
- 	QUIRK_EDP_LIMIT_RATE_HBR2,
- 	QUIRK_DISABLE_EDP_PANEL_REPLAY,
- 	QUIRK_DISABLE_PSR2,
-+	QUIRK_APPLE_PSR_HANDSHAKE,
- };
- 
- void intel_init_quirks(struct intel_display *display);
-
-base-commit: 046bcac5ed22b09812cec3b0aef678195f1eae71
++id_alloc_err:
++	sysfs_remove_group(oa->metrics_kobj, &oa_config->sysfs_metric);
+ sysfs_err:
+ 	mutex_unlock(&oa->metrics_lock);
+ reg_err:
 -- 
-2.55.0
+2.25.1
+
