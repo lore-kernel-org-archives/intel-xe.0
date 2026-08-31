@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D19CCC624C6
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 22:37:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 293F8C61DD3
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 22:42:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62DAB10E342;
-	Mon, 31 Aug 2026 22:37:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="PuYa19At";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E508510E32B;
- Mon, 31 Aug 2026 22:37:12 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id B4C464034F;
- Mon, 31 Aug 2026 22:37:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A67D11F000E9;
- Mon, 31 Aug 2026 22:37:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788215832;
- bh=x4hbSekisOOofZcqpcuNGlFq1xlmf9njDQ3dRiRKnag=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=PuYa19At8qjbk74q7Y4cWBuOzw7w6loxpQzG7soreYdongWvuipUbBbLbaKcy4g9r
- Rc7lEDMHytSghPqbJAilbZ4RyjDiXFTdG7tqTava/Oix6W6D6FPWlPbwyYSDp1N4Pq
- I0J38v5Xrv79oYMpqG+atCspEyDYCQooNHcAuDYK6DyIbRo6b01SZSG8wnFBo5YQgU
- nEwrAyEoZP4YVSZj+yBEWWTgSgKRi9Q5d/JlupOccQSZCcWRSGwqpvXdcWo/x3r6Ov
- ySmhjZGS61x9TGt6fo7rGSxcvVGcUMb9JlyD66eThPNyHgARFvHXt8/p1NWqv5+EWb
- qYF9RPczyYQhg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 05/12] drm: add DRM_CLIENT_CAP_LUMINANCE
-To: "Mario Limonciello" <mario.limonciello@amd.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20260831210531.2334221-6-mario.limonciello@amd.com>
-References: <20260831210531.2334221-1-mario.limonciello@amd.com>
- <20260831210531.2334221-6-mario.limonciello@amd.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 31 Aug 2026 22:37:11 +0000
-Message-Id: <20260831223711.A67D11F000E9@smtp.kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C30C410E342;
+	Mon, 31 Aug 2026 22:42:31 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D77110E342;
+ Mon, 31 Aug 2026 22:42:30 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3015551536385574307=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_perf=3A_Fix_null_pointer_ac?=
+ =?utf-8?q?cess_in_is=5Finclude=5Fguest=5Fevent=28=29_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 31 Aug 2026 22:42:30 -0000
+Message-ID: <178821615011.104493.8009261178601333567@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260831215214.4169965-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20260831215214.4169965-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,106 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Connector hotplugging or unplugging while DRM_CLIENT_CAP_LUMINANCE=
- is active causes state desynchronization and triggers kernel warnings.
-- [High] Concurrent calls to DRM_IOCTL_SET_CLIENT_CAP can leak `luminance_c=
-lients` reference counts, permanently inhibiting legacy sysfs backlight con=
-trol (DoS).
---
+--===============3015551536385574307==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit d72da18676683e0c9579165708469f0cf974aa5b
-Author: Mario Limonciello <mario.limonciello@amd.com>
+== Series Details ==
 
-drm: add DRM_CLIENT_CAP_LUMINANCE
+Series: perf: Fix null pointer access in is_include_guest_event() (rev3)
+URL   : https://patchwork.freedesktop.org/series/172917/
+State : success
 
-This commit adds a DRIVER_CONNECTOR_LUMINANCE feature and a
-DRM_CLIENT_CAP_LUMINANCE client capability. When a client enables this
-capability, the kernel inhibits legacy sysfs backlight control by taking
-over the backlight devices.
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
-> --- a/drivers/gpu/drm/drm_file.c
-> +++ b/drivers/gpu/drm/drm_file.c
+CI Bug Log - changes from xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f_BAT -> xe-pw-172917v3_BAT
+====================================================
 
-[ ... ]
+Summary
+-------
 
-> @@ -252,6 +253,10 @@ void drm_file_free(struct drm_file *file)
->  	if (drm_core_check_feature(dev, DRIVER_MODESET)) {
->  		drm_fb_release(file);
->  		drm_property_destroy_user_blobs(dev, file);
-> +		if (file->supports_luminance_control) {
-> +			drm_backlight_uninhibit_legacy_all(dev);
-> +			file->supports_luminance_control =3D false;
-> +		}
->  	}
+  **SUCCESS**
 
-[Severity: High]
-Will this correctly handle connectors that are hotplugged or unplugged
-after the compositor sets DRM_CLIENT_CAP_LUMINANCE?
+  No regressions found.
 
-drm_backlight_uninhibit_legacy_all() iterates over the list of currently
-present connectors. If a compositor enables DRM_CLIENT_CAP_LUMINANCE and a
-monitor is later hotplugged via DP MST, the new connector will not have
-its legacy sysfs backlight control inhibited.
+  
 
-When the compositor exits and drm_file_free() runs:
+Participating hosts (13 -> 13)
+------------------------------
 
-For newly hotplugged connectors, it will try to uninhibit them even though
-they were never inhibited, triggering WARN_ON(b->luminance_clients =3D=3D 0)
-in drm_backlight_uninhibit_legacy().
+  No changes in participating hosts
 
-Conversely, for connectors unplugged before the compositor exits,
-drm_backlight_connector_cleanup() will fire WARN_ON(b->luminance_clients)
-because the connector is destroyed while its luminance_clients count is
-still 1.
 
-> diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
-> --- a/drivers/gpu/drm/drm_ioctl.c
-> +++ b/drivers/gpu/drm/drm_ioctl.c
+Changes
+-------
 
-[ ... ]
+  No changes found
 
-> @@ -392,6 +394,21 @@ drm_setclientcap(struct drm_device *dev, void *data,=
- struct drm_file *file_priv)
->  		file_priv->plane_color_pipeline =3D req->value;
->  		break;
->  	}
-> +	case DRM_CLIENT_CAP_LUMINANCE:
-> +		if (!drm_core_check_feature(dev, DRIVER_CONNECTOR_LUMINANCE))
-> +			return -EOPNOTSUPP;
-> +		if (!file_priv->atomic)
-> +			return -EINVAL;
-> +		if (req->value > 1)
-> +			return -EINVAL;
-> +		if (req->value =3D=3D file_priv->supports_luminance_control)
-> +			break;
-> +		if (req->value)
-> +			drm_backlight_inhibit_legacy_all(dev);
-> +		else
-> +			drm_backlight_uninhibit_legacy_all(dev);
-> +		file_priv->supports_luminance_control =3D req->value;
-> +		break;
 
-[Severity: High]
-Does this check-then-act sequence lack synchronization?
+Build changes
+-------------
 
-If two threads share a single DRM file descriptor and concurrently invoke
-DRM_IOCTL_SET_CLIENT_CAP with DRM_CLIENT_CAP_LUMINANCE=3D1, both threads
-could evaluate the supports_luminance_control condition as false before
-either updates it.
+  * Linux: xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f -> xe-pw-172917v3
 
-Both threads would then call drm_backlight_inhibit_legacy_all(dev), causing
-a double-increment of the luminance_clients reference count. When the file
-descriptor is closed, drm_file_free() will only call
-drm_backlight_uninhibit_legacy_all() once, permanently leaving the legacy
-sysfs backlight interface inhibited and returning -EBUSY.
+  IGT_9078: 9078
+  xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f: 43b9a5e9d30783bb6f4d7dacdd1739184666940f
+  xe-pw-172917v3: 172917v3
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260831210531.2334=
-221-1-mario.limonciello@amd.com?part=3D5
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v3/index.html
+
+--===============3015551536385574307==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>perf: Fix null pointer access in is_include_guest_event() (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172917/">https://patchwork.freedesktop.org/series/172917/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172917v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f_BAT -&gt; xe-pw-172917v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f -&gt; xe-pw-172917v3</li>
+</ul>
+<p>IGT_9078: 9078<br />
+  xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f: 43b9a5e9d30783bb6f4d7dacdd1739184666940f<br />
+  xe-pw-172917v3: 172917v3</p>
+
+</body>
+</html>
+
+--===============3015551536385574307==--
