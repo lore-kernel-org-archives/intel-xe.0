@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E607C624A4
-	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 16:05:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A18DC624A5
+	for <intel-xe@archiver.kernel.org>; Mon, 31 Aug 2026 16:05:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9CB610E97C;
-	Mon, 31 Aug 2026 16:05:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1DD410E2ED;
+	Mon, 31 Aug 2026 16:05:29 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FC0510E2F7;
- Mon, 31 Aug 2026 16:05:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 749AD10E2EF;
+ Mon, 31 Aug 2026 16:05:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6778202501408735547=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_Enabl?=
- =?utf-8?q?e_AS_SDP_Skip_Frames_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/oa=3A_Remove_sysfs_e?=
+ =?utf-8?q?ntry_on_idr=5Falloc_failure_in_xe=5Foa=5Fadd=5Fconfig=5Fioctl=28?=
+ =?utf-8?q?=29_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shankar, Uma" <uma.shankar@intel.com>
+To: yaolu@kylinos.cn
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 31 Aug 2026 16:05:16 -0000
-Message-ID: <178819231606.101634.14010032241018490491@61270ab9df2a>
+Date: Mon, 31 Aug 2026 16:05:28 -0000
+Message-ID: <178819232847.101572.14076433440279966216@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260831125914.1736501-1-uma.shankar@intel.com>
-In-Reply-To: <20260831125914.1736501-1-uma.shankar@intel.com>
+References: <20260828060812.163548-1-yaolu@kylinos.cn>
+In-Reply-To: <20260828060812.163548-1-yaolu@kylinos.cn>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,68 +41,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============6778202501408735547==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/i915/display: Enable AS SDP Skip Frames (rev4)
-URL   : https://patchwork.freedesktop.org/series/162015/
-State : warning
+Series: drm/xe/oa: Remove sysfs entry on idr_alloc failure in xe_oa_add_config_ioctl() (rev2)
+URL   : https://patchwork.freedesktop.org/series/172965/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-061140b9bc586ae7f40abc1249c97e1cc72d1b9d
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit eb72fabad859cb0a7efe62643fa76464863d2f27
-Author: Uma Shankar <uma.shankar@intel.com>
-Date:   Mon Aug 31 18:29:13 2026 +0530
+CI Bug Log - changes from xe-5663-3901cae80806f8db9ca96389c7727dbfeb60fbaf_BAT -> xe-pw-172965v2_BAT
+====================================================
 
-    drm/i915/display: Gate periodic AS SDP skip frames behind a module parameter
-    
-    Periodic AS SDP (skip frames) drives a Panel Replay panel down toward its
-    minimum refresh rate. It is a new, panel- and platform-sensitive behaviour,
-    so keep it opt-in rather than enabling it unconditionally.
-    
-    Add a display module parameter, periodic_assdp_enable, shared by both the
-    i915 and xe drivers via the intel_display_params infrastructure. It defaults
-    to false (feature disabled); set it to true to enable periodic AS SDP.
-    
-    Gate the feature at its single choke point, intel_pr_as_sdp_skip_frames():
-    returning a zero skip count when the parameter is off makes both the
-    PR_ALPM_CTL programming (intel_alpm_configure_pr_as_sdp()) and the DC3co
-    force-disable predicate (intel_alpm_pr_as_sdp_skip_frames_enabled()) a no-op,
-    so AS SDP continues to be sent on every frame as before.
-    
-    Assisted-by: Claude:claude-opus-4-8
-    Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-+ /mt/dim checkpatch 43b9a5e9d30783bb6f4d7dacdd1739184666940f drm-intel
-2d9a048558cb drm/i915/display: Enable periodic AS SDP skip frames
--:118: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#118: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:457:
-+					pr_alpm_ctl |= PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
+Summary
+-------
 
--:135: WARNING:LONG_LINE: line length of 125 exceeds 100 columns
-#135: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:280:
-+#define  PR_ALPM_CTL_AS_SDP_SKIP_FRAMES(frames)			REG_FIELD_PREP(PR_ALPM_CTL_AS_SDP_SKIP_FRAMES_MASK, (frames))
+  **SUCCESS**
 
-total: 0 errors, 2 warnings, 0 checks, 85 lines checked
-c1fe83898ec6 drm/i915/display: Force disable DC3co when AS SDP skip frames is enabled
-3929be60a25f drm/i915/display: Reprogram AS SDP skip frames on seamless VRR transitions
-eb72fabad859 drm/i915/display: Gate periodic AS SDP skip frames behind a module parameter
--:12: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#12: 
-i915 and xe drivers via the intel_display_params infrastructure. It defaults
+  No regressions found.
 
--:54: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#54: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:143:
-+intel_display_param_named_unsafe(periodic_assdp_enable, bool, 0600,
-+	"Enable periodic Adaptive-Sync SDP (AS SDP skip frames) for Panel Replay "
+  
 
-total: 0 errors, 1 warnings, 1 checks, 35 lines checked
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5663-3901cae80806f8db9ca96389c7727dbfeb60fbaf -> xe-pw-172965v2
+
+  IGT_9078: 9078
+  xe-5663-3901cae80806f8db9ca96389c7727dbfeb60fbaf: 3901cae80806f8db9ca96389c7727dbfeb60fbaf
+  xe-pw-172965v2: 172965v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172965v2/index.html
+
+--===============6778202501408735547==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/oa: Remove sysfs entry on idr_alloc failure in xe_oa_add_config_ioctl() (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172965/">https://patchwork.freedesktop.org/series/172965/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172965v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172965v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5663-3901cae80806f8db9ca96389c7727dbfeb60fbaf_BAT -&gt; xe-pw-172965v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5663-3901cae80806f8db9ca96389c7727dbfeb60fbaf -&gt; xe-pw-172965v2</li>
+</ul>
+<p>IGT_9078: 9078<br />
+  xe-5663-3901cae80806f8db9ca96389c7727dbfeb60fbaf: 3901cae80806f8db9ca96389c7727dbfeb60fbaf<br />
+  xe-pw-172965v2: 172965v2</p>
+
+</body>
+</html>
+
+--===============6778202501408735547==--
