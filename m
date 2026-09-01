@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03C5FC61DD6
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 07:20:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B9D3C61DD6
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 07:30:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5083899E9;
-	Tue,  1 Sep 2026 07:20:56 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DFD010E3A5;
- Tue,  1 Sep 2026 07:20:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4939837761246633080=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3804C10E4EA;
+	Tue,  1 Sep 2026 07:30:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UX9nFX69";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA6EC10E4EA;
+ Tue,  1 Sep 2026 07:30:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788247858; x=1819783858;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6ibmzkw9JGEpYJNMS7cFZIWZ0Y7moPCCyshVYhp5Zaw=;
+ b=UX9nFX6929As6CBMtktQfsTMLuVXHB67DQ3lRIiVurWiPljMOVN56Vgh
+ 2VLAux5v6YLonYuVW2hlI+QqI2W+dHrNVyj3sUZXNPG3Rp81OotjHP+C5
+ E7My+ldpvz3/R1Eo1yf375ayzhlMBP4Q0v+4MO2xv9NN5jq9BeKThLRhE
+ sKa0I8v+h7/2WxLI/s9WCDQQCOO5OmOyjdCNvUPvSABUu74NOSuATfHQy
+ bj9MZzdvU8lmll6Bc62uiCBlZ0LtDmJ4pBCO8bRgtMf6021QOJ5bLloaH
+ C4hjiVrMrwjV77svGu7zxutdn+mLOPBqXzw3BK/mt7sWDLhoMxGU+vhGB A==;
+X-CSE-ConnectionGUID: jLrz9zyCTWubr7hQRuLyCw==
+X-CSE-MsgGUID: wfJLnvhcSdqDgYOoRLyEFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11892"; a="88691946"
+X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="88691946"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2026 00:30:57 -0700
+X-CSE-ConnectionGUID: NtvI6Gl9T0qDwJRShEKFRQ==
+X-CSE-MsgGUID: KGdJwcDgQ+6lRqYgaZZZdw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="272803082"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by orviesa004.jf.intel.com with ESMTP; 01 Sep 2026 00:30:56 -0700
+From: Nemesa Garg <nemesa.garg@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH 0/5]  Enable joiner cursor fast updates
+Date: Tue,  1 Sep 2026 12:58:08 +0530
+Message-Id: <20260901072813.2596383-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Report_GT_TDR_and?=
- =?utf-8?q?_VM_rebind_faults_using_SIGID_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Yadav, Arvind" <arvind.yadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 01 Sep 2026 07:20:55 -0000
-Message-ID: <178824725505.106089.8565512473321150426@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260901063059.2547247-1-arvind.yadav@intel.com>
-In-Reply-To: <20260901063059.2547247-1-arvind.yadav@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +61,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4939837761246633080==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+     This series enables the cursor fast path for joiner mode
+and adds the missing secondary-plane handling to keep updates
+correct and synchronized.
 
-== Series Details ==
+Nemesa Garg (5):
+  drm/i915/cursor: Check joiner cursor commit status
+  drm/i915/cursor: Add helper to update cursor plane
+  drm/i915/cursor: Handle secondary cursor state
+  drm/i915/cursor: Program secondary cursor planes
+  drm/i915/cursor: Allow joiner cursor fast path update
 
-Series: drm/xe: Report GT TDR and VM rebind faults using SIGID (rev6)
-URL   : https://patchwork.freedesktop.org/series/171571/
-State : success
+ drivers/gpu/drm/i915/display/intel_cursor.c | 292 +++++++++++++++-----
+ 1 file changed, 222 insertions(+), 70 deletions(-)
 
-== Summary ==
+-- 
+2.25.1
 
-CI Bug Log - changes from xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f_BAT -> xe-pw-171571v6_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 11)
-------------------------------
-
-  Missing    (2): bat-bmg-2 bat-nvls-1 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f -> xe-pw-171571v6
-
-  IGT_9078: 9078
-  xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f: 43b9a5e9d30783bb6f4d7dacdd1739184666940f
-  xe-pw-171571v6: 171571v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171571v6/index.html
-
---===============4939837761246633080==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Report GT TDR and VM rebind faults using SIGID (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/171571/">https://patchwork.freedesktop.org/series/171571/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171571v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171571v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f_BAT -&gt; xe-pw-171571v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 11)</h2>
-<p>Missing    (2): bat-bmg-2 bat-nvls-1 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f -&gt; xe-pw-171571v6</li>
-</ul>
-<p>IGT_9078: 9078<br />
-  xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f: 43b9a5e9d30783bb6f4d7dacdd1739184666940f<br />
-  xe-pw-171571v6: 171571v6</p>
-
-</body>
-</html>
-
---===============4939837761246633080==--
