@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CBAAC624D0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7434C624D3
 	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 19:27:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE61B10EEC1;
-	Tue,  1 Sep 2026 19:27:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A64F210EEC5;
+	Tue,  1 Sep 2026 19:27:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RHGLDZru";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SLKnWP6A";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10FDE10EEC5
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 19:27:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E790310EEC1
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 19:27:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1788290871; x=1819826871;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=C6bJVzHM5aj7Ptf7m8b019ekQ7TBQrOGZXR82LWTcNc=;
- b=RHGLDZruw1iTOq++kDsw7Ew66hn7bV46LE/PoPvTUoh9G9MEv2DLbNIG
- POQt1U3U/i2M/h7Zn2lAsiuRNs4EYtUuBj+5Lp8wIOcltcQA0XXZd5BRk
- QzAkWHL3JMv2ikJSlEKTWZPMVDQ9KMRhsGEsw0xP167oFlmHP4AOQb0iy
- llNHW0n804Onfiu+vxBry2hafr2MX54rWx7WWtcKxlKuMou5J2T8bDUqH
- aBoBjRu3x7ttQpQxTBvuzaOIbPelcTvlTsCmtOUxGsvvEglRSqWyR4s7R
- IRS7wVxkGtOVWdusZwyC3xg2wif0ofsfwxV8AGyMq8pRbDRR+AUjNN8ES A==;
-X-CSE-ConnectionGUID: 0YLc8aFzRzajWequJ37BTA==
-X-CSE-MsgGUID: q05fhg6zQEure2kwn0WJpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="88762457"
-X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="88762457"
+ bh=52g/ZDsFUNzHoYcw9pcztMVXQJ9uCRcM5TpMwG4krec=;
+ b=SLKnWP6AsZHynjU5R6BXMZr47FcuxHNWaXCWolwEZT3fOfNfJQ2KjgVw
+ jGz8E4azVHKaklmNVUoai75shemQoP6fyQCkTg3IIkakYBE9Lzh/BOTy5
+ ttbj+h4GyGpdwWURbzyk/LJsIn7BzItaRRjicX/KF+OZ6mG0sphxGqkgl
+ Ch3Y3AMu6pGwQKHzjp1oiEa7BjSEEY6hUu1I1jHQl4M+vDcTxkcE1K63B
+ 0jT+kS1Bg38cVf8vm3aL3TuxAWAuAxRt4kCbEeTNyI+61+tJ6kpEtZR2s
+ aybezEL68gnVQSv+d15NJI4Q46rDuiR8wmw/swj3cv/K4eGTTZSrTIQYp g==;
+X-CSE-ConnectionGUID: 4ibsKh9NSMG+ySCaL8adMQ==
+X-CSE-MsgGUID: vgxYYe0LR4Sfi7rrjvZa2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="88762452"
+X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="88762452"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2026 12:27:51 -0700
-X-CSE-ConnectionGUID: dldWWnSOR+CmByyr2MaUug==
-X-CSE-MsgGUID: ouQeMSUWQZKp/SZifcqQFw==
+ 01 Sep 2026 12:27:50 -0700
+X-CSE-ConnectionGUID: xwALTJKpQWuGsnBf8WmpZQ==
+X-CSE-MsgGUID: aUaqGuAiQwSOkjoQ5tROfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="269776713"
+X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="269776706"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2026 12:27:51 -0700
+ 01 Sep 2026 12:27:50 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
@@ -48,10 +48,10 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
-Subject: [PATCH v4 02/18] platform/x86/intel/pmt: refactor rmw with a return
- value
-Date: Tue,  1 Sep 2026 12:27:37 -0700
-Message-ID: <20260901192736.626777-22-michael.j.ruhl@intel.com>
+Subject: [PATCH v4 01/18] platform/x86/intel/pmt: complete pcidev to device
+ update
+Date: Tue,  1 Sep 2026 12:27:36 -0700
+Message-ID: <20260901192736.626777-21-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260901192736.626777-20-michael.j.ruhl@intel.com>
 References: <20260901192736.626777-20-michael.j.ruhl@intel.com>
@@ -71,247 +71,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Upcoming changes will include possible failures from HW
-accesses.
+The update that moved struct pci_dev usage to struct device
+is incomplete. Only telemetry endpoints are covered.
 
-Refactor pmt_crashlog_rwm with a return value.
+Other PMT features (crashlog) are now blocked from using
+the callback mechanism.
 
-Update all necessary usage to use the return code.
+Change struct intel_pmt_entry pci_dev member to device.
 
+Update callback usage to use the intel_pmt_entry rather than
+the telemetry endpoint.
+
+Fixes: 353042d54d82 ("platform/x86/intel/vsec: Switch exported helpers from pci_dev to device")
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/platform/x86/intel/pmt/crashlog.c | 88 ++++++++++++-----------
- 1 file changed, 45 insertions(+), 43 deletions(-)
+ drivers/platform/x86/intel/pmt/class.c     | 5 ++---
+ drivers/platform/x86/intel/pmt/class.h     | 3 +--
+ drivers/platform/x86/intel/pmt/discovery.c | 2 +-
+ 3 files changed, 4 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
-index f936daf99e4d..ebc7880d95bd 100644
---- a/drivers/platform/x86/intel/pmt/crashlog.c
-+++ b/drivers/platform/x86/intel/pmt/crashlog.c
-@@ -125,7 +125,7 @@ struct pmt_crashlog_priv {
-  */
+diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
+index d0ab8e33c62a..402d51df834a 100644
+--- a/drivers/platform/x86/intel/pmt/class.c
++++ b/drivers/platform/x86/intel/pmt/class.c
+@@ -100,7 +100,7 @@ intel_pmt_read(struct file *filp, struct kobject *kobj,
+ 	if (count > entry->size - off)
+ 		count = entry->size - off;
  
- /* Read, modify, write the control register, setting or clearing @bit based on @set */
--static void pmt_crashlog_rmw(struct crashlog_entry *crashlog, u32 bit, bool set)
-+static int pmt_crashlog_rmw(struct crashlog_entry *crashlog, u32 bit, bool set)
- {
- 	const struct crashlog_control *control = &crashlog->info->control;
- 	struct intel_pmt_entry *entry = &crashlog->entry;
-@@ -139,6 +139,8 @@ static void pmt_crashlog_rmw(struct crashlog_entry *crashlog, u32 bit, bool set)
- 		reg &= ~bit;
+-	count = pmt_telem_read_mmio(entry->ep->dev, entry->cb, entry->header.guid, buf,
++	count = pmt_telem_read_mmio(entry->dev, entry->cb, entry->header.guid, buf,
+ 				    entry->base, off, count);
  
- 	writel(reg, entry->disc_table + control->offset);
-+
-+	return 0;
- }
- 
- /* Read the status register and see if the specified @bit is set */
-@@ -181,20 +183,20 @@ static bool pmt_crashlog_supported(struct intel_pmt_entry *entry, u32 *crash_typ
- 	return false;
- }
- 
--static void pmt_crashlog_set_disable(struct crashlog_entry *crashlog,
-+static int pmt_crashlog_set_disable(struct crashlog_entry *crashlog,
- 				     bool disable)
- {
--	pmt_crashlog_rmw(crashlog, crashlog->info->control.disable, disable);
-+	return pmt_crashlog_rmw(crashlog, crashlog->info->control.disable, disable);
- }
- 
--static void pmt_crashlog_set_clear(struct crashlog_entry *crashlog)
-+static int pmt_crashlog_set_clear(struct crashlog_entry *crashlog)
- {
--	pmt_crashlog_rmw(crashlog, crashlog->info->control.clear, true);
-+	return pmt_crashlog_rmw(crashlog, crashlog->info->control.clear, true);
- }
- 
--static void pmt_crashlog_set_execute(struct crashlog_entry *crashlog)
-+static int pmt_crashlog_set_execute(struct crashlog_entry *crashlog)
- {
--	pmt_crashlog_rmw(crashlog, crashlog->info->control.manual, true);
-+	return pmt_crashlog_rmw(crashlog, crashlog->info->control.manual, true);
- }
- 
- static bool pmt_crashlog_cleared(struct crashlog_entry *crashlog)
-@@ -207,9 +209,9 @@ static bool pmt_crashlog_consumed(struct crashlog_entry *crashlog)
- 	return pmt_crashlog_rc(crashlog, crashlog->info->status.consumed);
- }
- 
--static void pmt_crashlog_set_consumed(struct crashlog_entry *crashlog)
-+static int pmt_crashlog_set_consumed(struct crashlog_entry *crashlog)
- {
--	pmt_crashlog_rmw(crashlog, crashlog->info->control.consume, true);
-+	return pmt_crashlog_rmw(crashlog, crashlog->info->control.consume, true);
- }
- 
- static bool pmt_crashlog_error(struct crashlog_entry *crashlog)
-@@ -222,9 +224,9 @@ static bool pmt_crashlog_rearm(struct crashlog_entry *crashlog)
- 	return pmt_crashlog_rc(crashlog, crashlog->info->status.rearmed);
- }
- 
--static void pmt_crashlog_set_rearm(struct crashlog_entry *crashlog)
-+static int pmt_crashlog_set_rearm(struct crashlog_entry *crashlog)
- {
--	pmt_crashlog_rmw(crashlog, crashlog->info->control.rearm, true);
-+	return pmt_crashlog_rmw(crashlog, crashlog->info->control.rearm, true);
- }
- 
- /*
-@@ -245,13 +247,13 @@ clear_store(struct device *dev, struct device_attribute *attr,
- {
- 	struct crashlog_entry *crashlog;
- 	bool clear;
--	int result;
-+	int ret;
- 
- 	crashlog = dev_get_drvdata(dev);
- 
--	result = kstrtobool(buf, &clear);
--	if (result)
--		return result;
-+	ret = kstrtobool(buf, &clear);
-+	if (ret)
-+		return ret;
- 
- 	/* set bit only */
- 	if (!clear)
-@@ -259,9 +261,9 @@ clear_store(struct device *dev, struct device_attribute *attr,
- 
- 	guard(mutex)(&crashlog->control_mutex);
- 
--	pmt_crashlog_set_clear(crashlog);
-+	ret = pmt_crashlog_set_clear(crashlog);
- 
--	return count;
-+	return ret ? ret : count;
- }
- static DEVICE_ATTR_RW(clear);
- 
-@@ -280,13 +282,13 @@ consumed_store(struct device *dev, struct device_attribute *attr, const char *bu
- {
- 	struct crashlog_entry *crashlog;
- 	bool consumed;
--	int result;
-+	int ret;
- 
- 	crashlog = dev_get_drvdata(dev);
- 
--	result = kstrtobool(buf, &consumed);
--	if (result)
--		return result;
-+	ret = kstrtobool(buf, &consumed);
-+	if (ret)
-+		return ret;
- 
- 	/* set bit only */
- 	if (!consumed)
-@@ -300,9 +302,9 @@ consumed_store(struct device *dev, struct device_attribute *attr, const char *bu
- 	if (!pmt_crashlog_complete(crashlog))
- 		return -EEXIST;
- 
--	pmt_crashlog_set_consumed(crashlog);
-+	ret = pmt_crashlog_set_consumed(crashlog);
- 
--	return count;
-+	return ret ? ret : count;
- }
- static DEVICE_ATTR_RW(consumed);
- 
-@@ -321,19 +323,19 @@ enable_store(struct device *dev, struct device_attribute *attr,
- {
- 	struct crashlog_entry *crashlog;
- 	bool enabled;
--	int result;
-+	int ret;
- 
- 	crashlog = dev_get_drvdata(dev);
- 
--	result = kstrtobool(buf, &enabled);
--	if (result)
--		return result;
-+	ret = kstrtobool(buf, &enabled);
-+	if (ret)
-+		return ret;
- 
- 	guard(mutex)(&crashlog->control_mutex);
- 
--	pmt_crashlog_set_disable(crashlog, !enabled);
-+	ret = pmt_crashlog_set_disable(crashlog, !enabled);
- 
--	return count;
-+	return ret ? ret : count;
- }
- static DEVICE_ATTR_RW(enable);
- 
-@@ -362,13 +364,13 @@ rearm_store(struct device *dev, struct device_attribute *attr, const char *buf,
- {
- 	struct crashlog_entry *crashlog;
- 	bool rearm;
--	int result;
-+	int ret;
- 
- 	crashlog = dev_get_drvdata(dev);
- 
--	result = kstrtobool(buf, &rearm);
--	if (result)
--		return result;
-+	ret = kstrtobool(buf, &rearm);
-+	if (ret)
-+		return ret;
- 
- 	/* set only */
- 	if (!rearm)
-@@ -376,9 +378,9 @@ rearm_store(struct device *dev, struct device_attribute *attr, const char *buf,
- 
- 	guard(mutex)(&crashlog->control_mutex);
- 
--	pmt_crashlog_set_rearm(crashlog);
-+	ret = pmt_crashlog_set_rearm(crashlog);
- 
--	return count;
-+	return ret ? ret : count;
- }
- static DEVICE_ATTR_RW(rearm);
- 
-@@ -400,13 +402,13 @@ trigger_store(struct device *dev, struct device_attribute *attr,
- {
- 	struct crashlog_entry *crashlog;
- 	bool trigger;
--	int result;
-+	int ret;
- 
- 	crashlog = dev_get_drvdata(dev);
- 
--	result = kstrtobool(buf, &trigger);
--	if (result)
--		return result;
-+	ret = kstrtobool(buf, &trigger);
-+	if (ret)
-+		return ret;
- 
- 	guard(mutex)(&crashlog->control_mutex);
- 
-@@ -415,17 +417,17 @@ trigger_store(struct device *dev, struct device_attribute *attr,
- 		return -EBUSY;
- 
- 	if (!trigger) {
--		pmt_crashlog_set_clear(crashlog);
--		return count;
-+		ret = pmt_crashlog_set_clear(crashlog);
-+		return ret ? ret : count;
+ 	return count;
+@@ -286,8 +286,6 @@ static int pmt_resolve_access_pci(struct intel_pmt_entry *entry,
+ 		return -EINVAL;
  	}
  
- 	/* we cannot trigger a new crash if one is still pending */
- 	if (pmt_crashlog_complete(crashlog))
- 		return -EEXIST;
- 
--	pmt_crashlog_set_execute(crashlog);
-+	ret = pmt_crashlog_set_execute(crashlog);
- 
--	return count;
-+	return ret ? ret : count;
+-	entry->pcidev = pci_dev;
+-
+ 	return 0;
  }
- static DEVICE_ATTR_RW(trigger);
  
+@@ -365,6 +363,7 @@ static int intel_pmt_populate_entry(struct intel_pmt_entry *entry,
+ 	entry->guid = header->guid;
+ 	entry->size = header->size;
+ 	entry->cb = ivdev->priv_data;
++	entry->dev = ivdev->dev;
+ 
+ 	return 0;
+ }
+diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
+index a0ece4fc3837..258cb460e61c 100644
+--- a/drivers/platform/x86/intel/pmt/class.h
++++ b/drivers/platform/x86/intel/pmt/class.h
+@@ -20,7 +20,6 @@
+ #define GET_ADDRESS(v)		((v) & GENMASK(31, 3))
+ 
+ struct device;
+-struct pci_dev;
+ extern struct class intel_pmt_class;
+ 
+ struct telem_endpoint {
+@@ -42,7 +41,7 @@ struct intel_pmt_header {
+ 
+ struct intel_pmt_entry {
+ 	struct telem_endpoint	*ep;
+-	struct pci_dev		*pcidev;
++	struct device		*dev;
+ 	struct intel_pmt_header	header;
+ 	u32			disc_header[PMT_DISC_DWORDS];
+ 	struct bin_attribute	pmt_bin_attr;
+diff --git a/drivers/platform/x86/intel/pmt/discovery.c b/drivers/platform/x86/intel/pmt/discovery.c
+index c482368bfaae..f4203d240f54 100644
+--- a/drivers/platform/x86/intel/pmt/discovery.c
++++ b/drivers/platform/x86/intel/pmt/discovery.c
+@@ -609,7 +609,7 @@ void intel_pmt_get_features(struct intel_pmt_entry *entry)
+ 
+ 	mutex_lock(&feature_list_lock);
+ 	list_for_each_entry(feature, &pmt_feature_list, list) {
+-		if (feature->priv->parent != entry->ep->dev)
++		if (feature->priv->parent != entry->dev)
+ 			continue;
+ 
+ 		pmt_get_features(entry, feature);
 -- 
 2.43.0
 
