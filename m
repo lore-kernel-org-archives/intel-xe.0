@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6B3BC61DD6
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 20:20:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B1D5C61DD3
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 20:21:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E9E610E308;
-	Tue,  1 Sep 2026 20:20:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C1B310E259;
+	Tue,  1 Sep 2026 20:21:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="AORQW27Q";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="e9bSVb9+";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0106F10E308
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 20:20:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6367410E259
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 20:21:40 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id A3DB143B63;
- Tue,  1 Sep 2026 20:20:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D2E81F000E9;
- Tue,  1 Sep 2026 20:20:53 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 4CCC741AF2;
+ Tue,  1 Sep 2026 20:21:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E5791F000E9;
+ Tue,  1 Sep 2026 20:21:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788294053;
- bh=NfWEtt0hsav6LjmdGR2tn2elZRY67l9NcMXp+DPy1lI=;
+ s=k20260515; t=1788294100;
+ bh=8n2yy4O4ieJikhiSBYfcFO8+UNhQAohqbrLRbpKpSZQ=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=AORQW27Qwwo2LgYJ3liWf3riRia81U2FxfKIP1ulFe/2hzr/437AYEqLcM7b44Qdq
- ESmRRCSjvDCu0W+/+KPIcJQYLib3wLm3RlasKap5iwgU3ywo4hUId7XEADT5n9lHW6
- eDHuB7x1qSvvFypZXgbqyorO7N/rNXjBtZazr1NKt0TzwcGlrgAFR6JAmMHqqGwIsC
- puDscQfdNKOHUleMUZEXuHHhP30sV/H5GSOYFuviWYQw/WFR2oCLysTB8bKSw1Wlok
- AeB2oRTkU/Ph1l733vFZjF8CPlzx4PepvjYKcjy1eJD46ZImU3dAAc1epXvjfddkis
- PWUA85esIDFrQ==
+ b=e9bSVb9+ElZcv6IQuivewikauxFpHAm0cW+Ec1JmFUWDexrBWXgCiEBccMngv5Rik
+ qVUe+UWUJih25pE6kIGsXcczpVjcYcnupgzB4byKJ2NMH0RgIIeNh5t+zuzQu9B19p
+ bipGngwt5de/hiCJvdTe2XyKFytfENMmewNISaRoovlC3hxlNVmq6UhRhv6WIwvOIX
+ Tx1nDjgTTGLAjFTujd2y0CiKJtu3vlcps9SMzvNDlpUqSU+VIGKCzmlVSVA7C+BLH1
+ AOdkSRCQQ60UubmPqNA23/rw8tGBmMQOLaTZcmAB2up/pgaPPp4x3tZAQDV2dVApQx
+ WIEJ+Ul5Lqxbw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 16/18] drm/xe/vsec: Add PMT GUID internal access
+Subject: Re: [PATCH v4 17/18] drm/xe/vsec: Update PMT internal access
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260901192736.626777-36-michael.j.ruhl@intel.com>
+In-Reply-To: <20260901192736.626777-37-michael.j.ruhl@intel.com>
 References: <20260901192736.626777-20-michael.j.ruhl@intel.com>
- <20260901192736.626777-36-michael.j.ruhl@intel.com>
+ <20260901192736.626777-37-michael.j.ruhl@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 01 Sep 2026 20:20:52 +0000
-Message-Id: <20260901202053.5D2E81F000E9@smtp.kernel.org>
+Date: Tue, 01 Sep 2026 20:21:39 +0000
+Message-Id: <20260901202140.0E5791F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,76 +58,51 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] `xe_vsec_get_guid()` returns 0 (success) instead of an error cod=
-e for unsupported platforms.
+- [Low] Typo in warning message: 'availalbe' instead of 'available'.
 --
 
-commit 5ceb34095c8fcb408f81cf6301878d346676cb2c
+commit be57820139ce1361483c472d9f460a1358ea6064
 Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-drm/xe/vsec: Add PMT GUID internal access
+drm/xe/vsec: Update PMT internal access
+   =20
+Current PMT internal access assumes BMG devices. Use the new PMT GUID API
+to read the device specific guid. Minor cleanup for a newly unused paramete=
+r.
 
-This commit adds platform ID usage for the PMT GUID register access. It
-provides a new API to allow accessing the GUID based on the platform for
-internal usage by Xe.
+> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+> index 844d8c6face67..039c23086990b 100644
+> --- a/drivers/gpu/drm/xe/xe_pcode.c
+> +++ b/drivers/gpu/drm/xe/xe_pcode.c
+> @@ -365,11 +365,17 @@ ALLOW_ERROR_INJECTION(xe_pcode_probe_early, ERRNO);=
+ /* See xe_pci_probe */
+>  int xe_get_pcode_version(struct xe_device *xe, struct xe_pcode_version *=
+version)
+>  {
+>  	int ret =3D 0;
+> +	u32 guid;
+> =20
+>  	guard(xe_pm_runtime)(xe);
+> =20
+> -	ret =3D xe_pmt_telem_read(xe->drm.dev,
+> -				xe_mmio_read32(xe_root_tile_mmio(xe), BMG_PUNIT_TELEMETRY_GUID),
+> +	ret =3D xe_vsec_get_guid(xe, &guid);
+> +	if (ret) {
+> +		xe_warn(xe, "PMT device is not availalbe: %d\n", ret);
 
-> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-> --- a/drivers/gpu/drm/xe/xe_vsec.c
-> +++ b/drivers/gpu/drm/xe/xe_vsec.c
-[ ... ]
-> +int xe_vsec_get_guid(struct xe_device *xe, u32 *guid)
-> +{
-[ ... ]
-> +	switch (xe->info.platform) {
-> +	case XE_BATTLEMAGE:
-> +		*guid =3D xe_mmio_read32(mmio, BMG_PUNIT_TELEMETRY_GUID);
-> +		break;
-> +
-> +	case XE_CRESCENTISLAND:
-> +		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-> +		*guid =3D xe_mmio_read32(mmio, CRI_PUNIT_TELEMETRY_GUID);
-> +		break;
-> +
-> +	default:
-> +		*guid =3D 0;
-> +		drm_err(&xe->drm, "Unsupported platform: %u\n", xe->info.platform);
-> +		break;
+[Severity: Low]
+Is there a typo in this warning message in xe_get_pcode_version? It looks
+like availalbe should be spelled available.
+
+> +		return ret;
 > +	}
 > +
-> +	xe->pmt.punit_guid_cache =3D *guid;
-> +
-> +unlock:
-> +	mutex_unlock(&xe->pmt.lock);
-> +	xe_pm_runtime_put(xe);
-> +
-> +	return 0;
-
-[Severity: Medium]
-Should this return a negative error code (such as -ENODEV) when an unsuppor=
-ted
-platform is encountered?
-
-Returning 0 (success) here means callers like read_residency_counter() will
-proceed and call xe_pmt_telem_read() with an invalid GUID (0), which will f=
-ail
-downstream and trigger additional warnings.
-
-Additionally, because *guid is 0, xe->pmt.punit_guid_cache is set to 0. Sin=
-ce
-0 evaluates to false in the cache check earlier in the function:
-
-    if (xe->pmt.punit_guid_cache) {
-        *guid =3D xe->pmt.punit_guid_cache;
-        goto unlock;
-    }
-
-the cache will be bypassed on subsequent calls, causing the kernel to log t=
-he
-"Unsupported platform" error every time this is called (for example, when
-userspace repeatedly reads from debugfs).
-
-> +}
+> +	ret =3D xe_pmt_telem_read(xe->drm.dev, guid,
+>  				(u64 *)version, PUNIT_VERSION_OFFSET, sizeof(*version));
+>  	if (ret !=3D sizeof(*version)) {
+>  		xe_warn(xe, "pcode version read from PMT failed, ret %pe\n", ERR_PTR(r=
+et));
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260901192736.6267=
-77-20-michael.j.ruhl@intel.com?part=3D16
+77-20-michael.j.ruhl@intel.com?part=3D17
