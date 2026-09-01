@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6D8DC61DD6
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 06:31:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E172C61DE4
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 06:31:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A26C910E3A0;
-	Tue,  1 Sep 2026 06:31:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFAA210EAC0;
+	Tue,  1 Sep 2026 06:31:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ckEJdK4P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XZPURYam";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B133610E3A0
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 06:31:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E97710EAC1
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 06:31:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788244277; x=1819780277;
+ t=1788244280; x=1819780280;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=W6y2eckuT0+TlKuTnC2uQ69QdgUYv25y18qqAV5KdHc=;
- b=ckEJdK4PBTFYM+e0Jc0wRHNb4GzzMlG81RZojJ4IZo9CWOl0Wy6mJyKr
- vcjYzUOiFSub3jQeuG20aZa5Va8R6PFT/YWDE/SnnAz/DIafbsGahR9Wl
- 8Tr1qBZrjrJIKKF9hnL2P2Oy0thzQClHQz24ddJl2FEJQ4LVfDkUtJa0n
- Ansx8oGXtuH5p1VyGLhu4v/l9Bw8GgtvDYXDZHpWzIdWQEapI6lus0vUZ
- SqLASKUBB04RFZn0zurDF5RV1SCnTfqkjbnG1wnKwgSg8HIRLEVh8VuFU
- 6ITyMQGxS48Wk5wS5OLuWehsVs6a1UhLgQ9l6ntJeyvBqtEZrRqsTkpqj Q==;
-X-CSE-ConnectionGUID: Sw75a6t+QWyN3ElWrSWhBA==
-X-CSE-MsgGUID: ZIb31KNFQRK709D5SjDZ6Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11892"; a="88588890"
-X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="88588890"
+ bh=5KabJfHnQuefGLUpdHgLhXdzYytQ8HAl5zD+EHctX30=;
+ b=XZPURYamtOyuBTi6uYR8RyBGKMxZiCjM1Uu32FDOF1CuNM0zqHgWiPM9
+ FtEw5/rU99M2N2hQcaaZqoH/paELcSMtnh2e1dxmSzUEmpbYmW6QbdzCu
+ LlXFX9VXGoJWkjwroHHurTOLnr5E1DIv+gHGQEpSTzOhQyiTAJKGO4Nx1
+ bEvSrFkNxf+pFdUZeDMcsTQXgePQHtsXEHcmEhzaFj3P6lhO1XwVSISRZ
+ Q0NTD+yV31v8VS22SEBSjcTi9ksYfglE+j1sITAxFA7eXPfhAvyrypJl+
+ RYeF8wA56+0DUbYN7JZk1tYPUlkhbXfmE4o7JTBpUcxEw+cW/Grn4uxBH Q==;
+X-CSE-ConnectionGUID: CGDis9llSIikpksHj1Uung==
+X-CSE-MsgGUID: CwI9880yQfie4P+1pBaCwg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11892"; a="88588893"
+X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="88588893"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 23:31:17 -0700
-X-CSE-ConnectionGUID: /zBpUoZKRuC+QrnqqGZTEw==
-X-CSE-MsgGUID: fQVB0MbgQbar5XW843y4GQ==
+ 31 Aug 2026 23:31:20 -0700
+X-CSE-ConnectionGUID: XuwMf5xaRKmnDZyYdLp6wQ==
+X-CSE-MsgGUID: PIbwZWlPQMKao9QQyaNW9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="272791278"
+X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="272791284"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 23:31:16 -0700
+ 31 Aug 2026 23:31:18 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, badal.nilawar@intel.com,
  michal.wajdeczko@intel.com, himal.prasad.ghimiray@intel.com,
  dnyaneshwar.bhadane@intel.com, mallesh.koujalagi@intel.com,
  matthew.brost@intel.com
-Subject: [PATCH v6 2/4] drm/xe/guc: Report reset failure using SIGID
-Date: Tue,  1 Sep 2026 12:00:57 +0530
-Message-ID: <20260901063059.2547247-3-arvind.yadav@intel.com>
+Subject: [PATCH v6 3/4] drm/xe/svm: Report terminal page-fault failures using
+ SIGID
+Date: Tue,  1 Sep 2026 12:00:58 +0530
+Message-ID: <20260901063059.2547247-4-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260901063059.2547247-1-arvind.yadav@intel.com>
 References: <20260901063059.2547247-1-arvind.yadav@intel.com>
@@ -69,11 +70,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Route the GuC submit engine reset failure through the structured SIGID
-logging helper.
+Route terminal SVM page-fault failures through the structured SIGID logging
+helper.
 
-Use the GUCSUBMIT component, which maps to XE_SIGID_GT_TDR, and pass -EIO
-as the errno value.
+These errors are reported only after the retry count is exceeded, so they
+represent terminal page-fault handling failures rather than transient retry
+conditions.
+
+Use the PAGEFAULT component, which maps to XE_SIGID_MEM_FAULT, and pass the
+real errno value to the helper. Pass the GT object so the report carries
+tile/GT location. The helper renders the errno, so remove the manual
+ERR_PTR() formatting from the message text.
 
 Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 Cc: Badal Nilawar <badal.nilawar@intel.com>
@@ -81,65 +88,50 @@ Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Suggested-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
-v6:
- - Updated the log message to print class/instance as %u:%u and
-   reason as %#x. (Michal)
+ drivers/gpu/drm/xe/xe_svm.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
-v5:
- - Added GUCSUBMIT component and mapped it to XE_SIGID_GT_TDR.
-   (Michal)
- - Used GUCSUBMIT instead of GT for the GuC submit reset failure.
-   (Michal)
- - Dropped "request" from the reset failure message.
-   (Michal)
-
-v4:
- - Clarified that the GT component maps to XE_SIGID_GT_TDR and -EIO is
-   only the errno value. (Sashiko)
-
-v3:
- - Split the GuC reset-request failure conversion into a separate patch.
-   (Michal)
- - Dropped GuC job-timeout warning conversions to avoid changing warn-level
-   logs into error-level SIGID reports. (Michal)
- - Kept only the existing error path that maps naturally to GT_TDR. (Michal)
-
-v2:
- - Rebased on the latest structured SIGID logging series.
- - Switched from the old xe_ras_log_() helpers to the new xe_log_()
-   helpers.
- - Dropped paths already covered by the base SIGID series.
-
- drivers/gpu/drm/xe/xe_guc_submit.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 99d8c807ff05..1df6527130f3 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -34,6 +34,7 @@
- #include "xe_guc_klv_helpers.h"
- #include "xe_guc_submit_types.h"
- #include "xe_hw_engine.h"
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 627a741293d5..349e307ca092 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -13,6 +13,7 @@
+ #include "xe_bo.h"
+ #include "xe_exec_queue_types.h"
+ #include "xe_gt_stats.h"
 +#include "xe_log.h"
- #include "xe_lrc.h"
- #include "xe_macros.h"
- #include "xe_map.h"
-@@ -3494,8 +3495,9 @@ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 le
- 	reason = msg[2];
- 
- 	/* Unexpected failure of a hardware feature, log an actual error */
--	xe_gt_err(gt, "GuC engine reset request failed on %d:%d because 0x%08X",
--		  guc_class, instance, reason);
-+	xe_log_err(gt, GUCSUBMIT, -EIO,
-+		   "engine reset failed on %u:%u, reason=%#x\n",
-+		   guc_class, instance, reason);
- 
- 	xe_gt_reset_async(gt);
- 
+ #include "xe_migrate.h"
+ #include "xe_module.h"
+ #include "xe_pagefault.h"
+@@ -1361,9 +1362,9 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 				else
+ 					goto retry;
+ 			} else {
+-				drm_err(&vm->xe->drm,
+-					"VRAM allocation failed, retry count exceeded, asid=%u, errno=%pe\n",
+-					vm->usm.asid, ERR_PTR(err));
++				xe_log_err(gt, PAGEFAULT, err,
++					   "VRAM allocation failed, retry count exceeded, asid=%u\n",
++					   vm->usm.asid);
+ 				goto err_out;
+ 			}
+ 		}
+@@ -1384,9 +1385,9 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			range_debug(range, "PAGE FAULT - RETRY PAGES");
+ 			goto retry;
+ 		} else {
+-			drm_err(&vm->xe->drm,
+-				"Get pages failed, retry count exceeded, asid=%u, gpusvm=%p, errno=%pe\n",
+-				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
++			xe_log_err(gt, PAGEFAULT, err,
++				   "Get pages failed, retry count exceeded, asid=%u, gpusvm=%p\n",
++				   vm->usm.asid, &vm->svm.gpusvm);
+ 		}
+ 	}
+ 	if (err) {
 -- 
 2.43.0
 
