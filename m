@@ -4,162 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FAC0C61DD3
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 21:27:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA80DC624D4
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 21:31:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AA7110EF40;
-	Tue,  1 Sep 2026 21:27:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECDD610EF33;
+	Tue,  1 Sep 2026 21:31:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JH3rq+PV";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="hn8Hp4lB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A40D10EF40
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 21:27:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788298032; x=1819834032;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=t+bFO2LWy+YCCsWNQr95zM37jY0+el7sM1wk6ghUR/s=;
- b=JH3rq+PVYXM33YmxAh9cwKjC4bA69MMAqLY5LHsY2fVR6I6rkHIwNPGk
- LHnxF81WMroz+QDqRrzpaZTUc//OtWcaumorasK1b2KSZobkbncZnMZc4
- kwIG9P9DNAvgA1E7eVDUwB4RVQTmGk3ev5vSCudMQ383HVmC/vDWehoG3
- czdvmJxAaAj9v2Q+NZiTU1rb2lXWKmzhH3lG/Rvat63jdoddlhwiWSHR+
- z/yExb7oV6uPdyOM5tFHI/kHnRluOqLk6TAeze7GMkRukAzkICszV9YY+
- NZejWk2HAJNfemkWzeyvuZQgSvrJ+ufp0u7qV5L7Hl0HetCXkbQejtUzY g==;
-X-CSE-ConnectionGUID: CPCUFKXMTy6j8hBx+TKkVg==
-X-CSE-MsgGUID: S6tJdoyIQPaz47deGCkbyw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="87683640"
-X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="87683640"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2026 14:27:12 -0700
-X-CSE-ConnectionGUID: XMfzM2mYRIG5jls6jIil7A==
-X-CSE-MsgGUID: ndvxqelSTIuJWukX7R5K4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="307446869"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2026 14:27:13 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 1 Sep 2026 14:27:12 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Tue, 1 Sep 2026 14:27:12 -0700
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.27) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 1 Sep 2026 14:27:10 -0700
+Received: from BN8PR05CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11011050.outbound.protection.outlook.com [52.101.57.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5755810EF2C;
+ Tue,  1 Sep 2026 21:30:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZmleUA8948KBS41isk9ZzwWD6+frn6FK9bhr8ur8eR1bVatD0qc27xedR0wJAbe96rPYFTShzqJ2ent/bfDGBWtLS4F7R2y8NRFj+TIT2h3YTNpiqpx3r9RZYq6rrUStg6v5HwoBAg4tbI7O+CV4hI7UtC/E69TFYzu8Ecd5U7LaqiZVKkmqCAipSwOLkYWeIUotOpVw5dVfWAU8c58YFQXAVEZBmnevB0bS9Tb/ymlqaOMkgWg2YelcFRjr+mvHAQs03g0UTw8bUdxSc2FwAUEqI6R9qBTlwhUbVoQ9JhnVgIdVtFh0Usl4GDqYjtBrzoYX1g1E8ZlWrkoSD7OnFw==
+ b=M5gso6t9LC4VSn7ZTccacSd6ZSrB867ucdyMv/QQilRB4vk+lQIAmBBKPnhlz+JpC6prlvwGx+WF/q3GLwzeCSy3cNIaI83QvP2NALVpJLhUu6d3W8aZIqhNHh2jU+p1CBsIQ4pd7lg5LFi+2S2BK7QU+4LiilhCz2mgmYr6PN0OUTX3BYh5Pt91MZ7pTEzavDfGm/MSM7er6tgAYjFrh38M3QA5Jltdl1mYAKkdxQvdmV+uLCarBQeY6tl5F2Et/mnAcYkFwwjrZC5xrjWNszFjw1BQVWN7iy2Vqbkd4wQWCkmYfdSyWuqMDTP7SkfItoPP1gtTgM6cnjPAfjQi/Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wo2+9wKD4SJ/cXlZQ+B+yP54PCRVoOYIReo8p3goMo8=;
- b=vMTmRPZVLrtjSUfnPn1hpPFKZ1chqs3pk/23cpz/H5PTHwtYNONp9Ls6Yp6ZuAZFmCLC3hcLuKCb6yRmz1txtZ3whNUJL3ilLl6OYacfm/Ut4rh9KBLwa5by7K/pbSZZw9pIgv2l8fRyMyPuN4wmwrVi77XqK+vRi6KCDp43DqJVeOIpV8hqxLbDedV9av+6n0hhBQhmoK58tmnSSL/DIj/lPwL6M9vV0B5mbose3tDQrKQUshPry63pUjZLj4lVMTFqtJWv6EkdPiN9IZTY5qyxpT0ZVFen1TRb79x5itk5E9EkcmmLzkkaruPcgUSJJM+VVur3SQYslDS9hO8LqA==
+ bh=ZgGLdRhyLQMxAhjokcjoWtXnTElFzEgg8U5j86E/SgU=;
+ b=S/M9ZoEU/BrSXRn/VQxjvkY2QOMkl9oSt5/yACY2OXpP5wGLwLpg63jEAzrp3AUp3HerJTAKy7XpgV6oWoJISp2rsyay+2jfGe/O1wn2mY1YhHhmpwLq8adOOTqeaOCSO/r6K/s+cww2u5q4WUQNJTymR7PQgrYkr7jac0ESH1gL2mLUZPRT2pTA1AnMntyPzlX7jnRRNupMEMoHr72Nio6HtmNBQncMuJmrpEAe3elis3v9RI/bRyoggZZvrPwf6vuNVedhTpMEz0qZiypNYT4dr9kO9YKv2F+fNEEjY48hGakefwcoMThI5cSQ4l5Y9pYrA5/6c6lpM/IbcueFlA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB7757.namprd11.prod.outlook.com (2603:10b6:8:103::22)
- by DM3PPF453C3BEC4.namprd11.prod.outlook.com (2603:10b6:f:fc00::f1b) with
- Microsoft SMTP Server (version=TLS1_2,
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZgGLdRhyLQMxAhjokcjoWtXnTElFzEgg8U5j86E/SgU=;
+ b=hn8Hp4lBt9dSY8M9CmxSHctRixR9p9BExJsURiV+TS3XdW0QLpAtHmi/xb7lTh2drGWBt7RjALnx0PmJ7IBg9nVWky+0fVl9h3UxqWTa5KbZE6OIKsptN9fnPoDGkbhG0ABhW4IYxmUXpHSgtVIFxiFckxqdV89kOOh/TdM5B0c=
+Received: from BN9PR12MB5146.namprd12.prod.outlook.com (2603:10b6:408:137::16)
+ by SA3PR12MB9131.namprd12.prod.outlook.com (2603:10b6:806:395::15)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Tue, 1 Sep
- 2026 21:27:01 +0000
-Received: from DM4PR11MB7757.namprd11.prod.outlook.com
- ([fe80::f3ff:11d0:7a52:db0c]) by DM4PR11MB7757.namprd11.prod.outlook.com
- ([fe80::f3ff:11d0:7a52:db0c%5]) with mapi id 15.21.0360.008; Tue, 1 Sep 2026
- 21:27:01 +0000
-Message-ID: <608531df-0478-456c-8f2d-2c5425fb9c41@intel.com>
-Date: Tue, 1 Sep 2026 14:26:59 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/debugfs: Expose per-engine idle status
-To: "Anirban, Sk" <sk.anirban@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
- <riana.tauro@intel.com>, <karthik.poosa@intel.com>, <raag.jadav@intel.com>,
- <soham.purkait@intel.com>, <mallesh.koujalagi@intel.com>,
- <matthew.brost@intel.com>, <rodrigo.vivi@intel.com>,
- <michal.wajdeczko@intel.com>
-References: <20260723194303.2507234-2-sk.anirban@intel.com>
- <ecfc0273-eab7-4d5a-8937-53da468a5a73@intel.com>
- <d4cff797-ed1c-47c6-a25a-43547641af4d@intel.com>
+ 2026 21:30:54 +0000
+Received: from BN9PR12MB5146.namprd12.prod.outlook.com
+ ([fe80::535a:591e:27f6:c23]) by BN9PR12MB5146.namprd12.prod.outlook.com
+ ([fe80::535a:591e:27f6:c23%3]) with mapi id 15.21.0360.008; Tue, 1 Sep 2026
+ 21:30:50 +0000
+From: "Deucher, Alexander" <Alexander.Deucher@amd.com>
+To: Armin Wolf <W_Armin@gmx.de>, "hansg@kernel.org" <hansg@kernel.org>,
+ "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>
+CC: "platform-driver-x86@vger.kernel.org"
+ <platform-driver-x86@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "linux@weissschuh.net"
+ <linux@weissschuh.net>, "rafael@kernel.org" <rafael@kernel.org>,
+ "lenb@kernel.org" <lenb@kernel.org>, "linux-acpi@vger.kernel.org"
+ <linux-acpi@vger.kernel.org>, "Koenig, Christian" <Christian.Koenig@amd.com>, 
+ "airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch" <simona@ffwll.ch>, 
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "patrik.r.jakobsson@gmail.com" <patrik.r.jakobsson@gmail.com>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "mripard@kernel.org" <mripard@kernel.org>, "tzimmermann@suse.de"
+ <tzimmermann@suse.de>, "jani.nikula@linux.intel.com"
+ <jani.nikula@linux.intel.com>, "joonas.lahtinen@linux.intel.com"
+ <joonas.lahtinen@linux.intel.com>, "rodrigo.vivi@intel.com"
+ <rodrigo.vivi@intel.com>, "tursulin@ursulin.net" <tursulin@ursulin.net>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "matthew.brost@intel.com" <matthew.brost@intel.com>,
+ "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH v3 2/3] ACPI: video: Remove CONFIG_X86 handling from
+ nvidia_wmi_ec_supported()
+Thread-Topic: [PATCH v3 2/3] ACPI: video: Remove CONFIG_X86 handling from
+ nvidia_wmi_ec_supported()
+Thread-Index: AQHdGxicLMRYOjDhTUW2+FI64yGRP7a6e5WA
+Date: Tue, 1 Sep 2026 21:30:50 +0000
+Message-ID: <BN9PR12MB514668975E87D570F50B2D91F7A82@BN9PR12MB5146.namprd12.prod.outlook.com>
+References: <20260724025959.142826-1-W_Armin@gmx.de>
+ <20260724025959.142826-3-W_Armin@gmx.de>
+In-Reply-To: <20260724025959.142826-3-W_Armin@gmx.de>
+Accept-Language: en-US
 Content-Language: en-US
-From: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
-In-Reply-To: <d4cff797-ed1c-47c6-a25a-43547641af4d@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR03CA0339.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::14) To DM4PR11MB7757.namprd11.prod.outlook.com
- (2603:10b6:8:103::22)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB7757:EE_|DM3PPF453C3BEC4:EE_
-X-MS-Office365-Filtering-Correlation-Id: f5b453c5-6573-4306-26bc-08df086fc2cd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|23010399003|376014|10067099003|6133799003|4143699003|56012099006|11063799006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 0N1rJiQ8CeTwRWEAJJpTwBvwdOuY9CegK4V4JHfJ24jqCCrb9xcBz/4mO2vQNBZSbW+qCZRNEAqYTpq1CdKpjOpB2STJnuQnwtDhlHVjhIzOKeoCj67AMU5xIhgA8p404YnZL927X5bb3QzRftrWFkyqoGtZ3ANnpwRBLyWBNReiyAHQJ2XmnrKM+EWX94v53RJYUGyY+bO1OT9JKvNvFZjNK3LTo34BqYcRHTzwXaps+fi5/KWn3ePvM27cZtkKMJVl7vqSU06eC+hxN+9yeQEXeNaPB+SRpwugROxk5QXbQXRu9iMkskSgli+MH1jxkGqgUWlMOfQ7RJ/tYhlRe9JsYda0egX6wYyFtCmjHgaH69TsWr8+QvNxAN13OWgsvQgN8jxdXZKGQyfoncYmme5UIH9FFBkVcmR9Cd0oonZRRzMI2BvYP7CebFjjifL1n4kenfUlG6+tdGSXq9crfvZtnno9ahZTXOsTrCRZg37RLmT16OdvGbcOIZPxTcsQyn7RQE4nWL1kiTwidxC+Ti3XKb64ysdQx8v20HhR3PuTwPf10h7Llvo1l2XIP4xlUfUQ7J8ldGajhGSBJnEIj8zRW//DgnhHQKIc24jX0gl9R4Y9dV2mUy3/oent2k0buu17BvQnjk5t3JubUdFdL1zMZOfKe4u4KfCfIXQtizc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB7757.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(10067099003)(6133799003)(4143699003)(56012099006)(11063799006)(22082099003)(18002099003);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_Enabled=True;
+ MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_SetDate=2026-09-01T21:29:02.0000000Z;
+ MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_Name=AMD Public
+ v26; MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_ContentBits=3;
+ MSIP_Label_2d0b1989-8fc8-4a69-bcac-d46889461ba5_Method=Privileged
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN9PR12MB5146:EE_|SA3PR12MB9131:EE_
+x-ms-office365-filtering-correlation-id: 7eab1ffc-d3a2-4274-a742-08df08704b8c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|7416014|366016|23010399003|10067099003|4143699003|56012099006|11063799006|38070700021|18002099003|22082099003;
+x-microsoft-antispam-message-info: Jv8NAfTTQLbWOVZkZiwfCDjka7PxDF3pGr+9F92/ga3m5a0ddaL68yJ6tXjKBksuDSst33eUB934yH6Unx2ak8ucixXQRlmD7XrNHD8XngVwbKKxol23Y1xmeUnCiewXcU6W4PTnMaJ5tbxZobrDpisamRycZO/cftJFJbGkVqpMfZ/rXYTTpj6vC9HBztgqVFaNHNAFHDigH91d+1AdQXjpe6wsMgcsUXgWJ7zGhksU6bwh6SOJHQPQknntfxeDWodqwJRCfMBWlvR4yIfxY19rGvb6fURwV/Cn66Rl04aHkOyCFJpTMk/UbgDC32XZdFj6q7DUr6q6dDwialJwupb3C0AZolMXJ6XFmqj2O9yJy8EpI38xIu32T4t1Oo6+JtsmB/5+PuuARC8jxUVvWC6pA99x8yJ7d0thbvwd6xK3S+LIOwaeB79hw6NNgVLQm/j5Lx4acQnhzbToNmct1CiHvdiLIzfg0OriN/+E1PEc/vQFiHvxeEtI3y4QYPBLh4UarkSrCzfY4LIFXmNXr0Bf2LQdVDFUQVJovBSiGFsT2AwO4BgzLyU0ffQMFgel5Co9+PXiBXEXfVw0MAl9zAqSuag8uvHCjReHePFWd9upsN58jarhu6CbB+S6fu11lO8y8k7pRSeECUDkzm387iGKjzQwNUnrVWGpLtsh1hNPiGTr7ESIvUrFXCMY2caTrLwLLDf1eqbzCUVVLHY77imaTj/WDrGfT29Jsd97Yek=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5146.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(7416014)(366016)(23010399003)(10067099003)(4143699003)(56012099006)(11063799006)(38070700021)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QUMwNHhmdGhNWTFSdmd4ckYwamROa2QwTUFhSUx5K1VsU3lxbXV4MUJ2ZWhC?=
- =?utf-8?B?QzlVTWM3cUFCUFA5L21NTUNtdDlmSDdSVW5yNE9sQWFrWWthSGNBR2libG1S?=
- =?utf-8?B?WmtXVllBYTUzUVRYQlRTaGlyTUJ3dTlkblVCQ25hSHU5bktpTzdtMzBVWlNu?=
- =?utf-8?B?L005MWp0eGxVcHRSemhyakNPZWcyQW9jQnZPd0I2TVdxQk9sTCtxYjFKa2sw?=
- =?utf-8?B?dy9NbXVEZEpMZkFOZHJ1T1hpaU5FK1FRVUFFcTlieU5hZTREZTNNNHhIWUJK?=
- =?utf-8?B?bDZEVkhlcEN6c0s2cTRGQUhHOXVoOTkyY2hQUUZUa0RVcUkxSnFOM1FCN05V?=
- =?utf-8?B?STY1eFdvcE40cVBLUmtSSEpUbVFOSE1XS3RRN3dpODJnWjJKT0xLRmRXdEps?=
- =?utf-8?B?dXB6dEIvbnFyYzN1U3JHcGVxc1RjZk5Zdk14ejZvYThZWkt1NFVETFJ1Tlpu?=
- =?utf-8?B?c2liclA1M1A5M2Fhb0xLT3diWGx6ZktGN1hnRnBKay9NTmYxSU5LcVpHalFZ?=
- =?utf-8?B?MFNweUk5d0tjMkhEdkEwSHVlYyszTUx4VHBBTGdkSUhaam43Z24vUlg5aGxI?=
- =?utf-8?B?ZHhXOUZZTyt1WUNManllenVrSTJabEEvY05ZeVR6WDV4T0pxY0JhTGdyYUhF?=
- =?utf-8?B?MlNJMXUzSXRnSTJyejdPNld5Z0JMTEFWNk1lcyt3THdSdDBaWWQ1TUdkeVhu?=
- =?utf-8?B?dWpaN0Jxc0xVcnlPaHZMN0FjTjNtcTYzSFdST2JWellBOWl3UUdUeEozQjM0?=
- =?utf-8?B?aDI3OEZoMUg3V01va3cvTDUybzh1VFNvQ2M3WVVXb212dk9saUczOTdnT1d2?=
- =?utf-8?B?TEw0RWY4L09maTFvSHlvemF4TUE3ZW1ZeEVFUjRPaHZ5Y2o3ODg4ZHhwam9H?=
- =?utf-8?B?dDd5RzlLQkg3SlQ3bE5kWE1MNmhIY1VKbGdkNmdyQlY2eXU2WWpvM0IrUDFU?=
- =?utf-8?B?U0JPUlI3aEdKTEdMQmJVS0VNVW5LNlNrZDQ1VEVwRUlDd0s5WldlblI2VHNy?=
- =?utf-8?B?NVZ5ek9ZYWFNTWtaYTFRaTBFUFM5cFFjaThZTXdkczVNQ0J5ajVwTkZvZzJT?=
- =?utf-8?B?dUN6Wnk4WUZNUmlQZHlqTGpVOFBGSWNQL3VZbENEc2lCM0d3OHRMc29NS0Ru?=
- =?utf-8?B?ZTIzZVNDYkNKblZXVEpnT3ZBcFFVWHBFeTRJVkhrVUNPODA5U3JjQWJvZ3Z2?=
- =?utf-8?B?YmdVU2gwajF0cnJIVUNpaWdoYkJ1UWJ0TUZqWHQ1Z1pJOE1RZEJaRHgxM3Fs?=
- =?utf-8?B?ZFZ1TCs4aGplOTdWNE9TZER3cU9saVpKcHQzUEowdUxYc0MvckNobEFBWERS?=
- =?utf-8?B?b3JLdnBmRXpTcXViTStvNFlYN2pvQ2phMjN4ZEcwTkkrL2NyYkRRRlVTbDZk?=
- =?utf-8?B?RWxTL05tb2tzaTFpVmxsZ2tJWUNqSytRcVBaZTFqVHYzU0lUUVdIM0d5eXJK?=
- =?utf-8?B?OW5YNEZRMFdSbktDSVYwb3FHK2d6TFAyM0t6aThSaGhmbGZ1Um5hdG8rdmps?=
- =?utf-8?B?eHZhME9kWTZuWnBSeHFnakRjNTMycXM5RWVrN2pNU1d2cmg4RXUrWmg5QjZB?=
- =?utf-8?B?dWRtbzJqQ3lGcVljRTBsV2dnaWRLK1JiSlVRYkV0cjRkYzNTNjk2UVd1c1RP?=
- =?utf-8?B?aFJtYVZBeUhZQlRlK0FYODhGdHlvZVp2QnhmT3R0K0xodS9TR2laVVpwSUo1?=
- =?utf-8?B?VXJid1FBS3VLT3hwa1cwZWYyR09XakFqYTlzdWdvZmVhU0pqR2xvWnhLWS9N?=
- =?utf-8?B?TitnN05XWTBCUlo3VmU0WUpRcms4VzhGKzFsVG9PbUs2bEpFemJqT2t1cVhM?=
- =?utf-8?B?K3ZWbDBvWmZuQjFjU3R6cGhGQVQyQWZtS1dGV3R2WlRGM1FCUWhiSUdBV3cx?=
- =?utf-8?B?UVd6cDlhUUg0a3kvNW1qYnI2UFY1cGhVTW9nU3IycWlWc2tMR3pvNEZVV2ov?=
- =?utf-8?B?ZVBGME5QYmpDUmFUU0lOK3hFK2lYaHJJcGk4U29ZdzQ2eU52VDgySjBONCtG?=
- =?utf-8?B?VlhSbldnYjg4ZTNpS3RFaHpRanVKNlBPSHZPV3FSNkNVb3RZSVRGMjdpZ3lx?=
- =?utf-8?B?MTd4eDFDdzhIbjlMN2F1ZnpKQUNQUGZvWnE0RFdVRWF4dDB4Mk5OSDNud3pp?=
- =?utf-8?B?Wll0T3hPY0FtOG9XaUdqU1VZK21qTk5pMmJ6WnkwVlFJQ1V3MklaemFONTc1?=
- =?utf-8?B?ejAyKzREKy9vamRnMXV0ak9MMVdwanQzUm1POVdYY2NkSVN0alc5cHhZWTJy?=
- =?utf-8?B?ejhjUVB3b0dDS3NRb1Q1Zkpsb3pOZkZheWt0L0FTVlBpdy94UUxYYTgrU2Jj?=
- =?utf-8?B?bDlFWHhaeENIdnNDcGRlbjR2dXkvU1JKV0YwMm1MVkJqM1NNL2FCZjJYcEg5?=
- =?utf-8?Q?6LlXCQRUhUrwjsuU=3D?=
-X-Exchange-RoutingPolicyChecked: QkQpzb6vDWYB+Ej32+Bv9uEsjd5w0zIy1c2qePKbp5hWZaAl8JK/3LaRvJ+kIe+8kCrqKkOooKpefa4JYk8zKDHDR64+IlQ01JrqrD+jT5PcbG988JEG+RfdKUfAPM7EI6GsWWy0DDnK8Kw1gqhfzlGsetV4I3RHO9Txn4fsatoCK5ObPJ/TfPgaDS1QBPEQOfYv0cZnV9jDxUKaFR6KBLjt6bky8ydoe7i0kj8cZQ2DfNQPeafL/Mr/HCCAUvuH64gm2Wu7db4wSx3Y5g/ReDJUt60e3C2CmtYfd7ZDaoyBoC/nzhnEsj6l8ZLRK9i9gyzoG6F+bwWRqrBlx/ymag==
-X-MS-Exchange-CrossTenant-Network-Message-Id: f5b453c5-6573-4306-26bc-08df086fc2cd
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7757.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?eN8H+ew9AoDBSl4RlYvs/ViDRwH3soSirvLJhjycrxVEMD9QjNNF0WRab+JD?=
+ =?us-ascii?Q?a7FpmtvVy1hfji7SvQsapiP91YBom90ZPadkCES+H0IMXRUlk7BC7wGB7+ES?=
+ =?us-ascii?Q?zzauMA2RucZTweWxijzzHQnAW9eVVA8vcxMhgpN2MU/Ef1TuHSLd1ns8vPEi?=
+ =?us-ascii?Q?NdcOObem9TNm3cg2IWkBih9C4Ai+7ylSob8cte14S7GADa53jDeWz9f+brHj?=
+ =?us-ascii?Q?wgJ+FGETpEAWIY50RcTxcIDKhbf58C279zrcPBVYwew2Qldd3StJ4rzdhu99?=
+ =?us-ascii?Q?yqiBs+/Sfa3LEVz/Lkj6o8Gimc8EJrJbu2ijAZhvwnmn9s0p9VubmvdORRPn?=
+ =?us-ascii?Q?yq/7BK3exs3ZqMilDgHNgE6FexsfNlV0qWiEI1g7MGUkhuJCa8Myvw6LfP1u?=
+ =?us-ascii?Q?KdeiTq5hRDagrFcnKd/hZjhZeQKsZMHtqdxJ4bv4N0gzmOp3wckFun5ciUZ+?=
+ =?us-ascii?Q?xJRQiTfGD8mqEaBhYbJgEpgsEKF0H0V+wPfnBenWKRicaR9dQtTLd7H9/Bv6?=
+ =?us-ascii?Q?6w2pVfQeSuia5eho+PRSZNz8V41Jg7/a2tXO9cptHDi0X9ycQelsdl6YWxgs?=
+ =?us-ascii?Q?2ggUWzTWnsRT2ja+5zimJny6K2UDWpnwTy2UEej1+GLYBP/nG+gvj1/kOHQi?=
+ =?us-ascii?Q?wyNJDKP3Gxy8jYFTiFNPdcJsh50cpzLdLcsm2tzh0ZnKIyzNbt6/P3LErO46?=
+ =?us-ascii?Q?k8T+owiPryisTNhT8ffHNXxOjJu1kdR1djXtOj5oxYDD3PPl/OVRw6lsUs+p?=
+ =?us-ascii?Q?lNU1wpDR5K9+xUMf6ZL4zXMZXp8vj+76br4iGjhjDLZrKoaTzAd3Cqh8C6Y2?=
+ =?us-ascii?Q?YgVz2gp6FReY+7WQ7hLvnf85wT62xnUKWi5yD5Ssasyvt8MFdUzBPXil4K1p?=
+ =?us-ascii?Q?eU2e8rZZBeYKpk7eYs4ionlAylq7C40Y9ycd8m85iFt/KISZxSCQFGtg7CyH?=
+ =?us-ascii?Q?9+Dzz6fD6SK7XUv5TPlXzCPYRVRLXoXwPZvNlp5hKGARMZgVRsXt/YnUlLT4?=
+ =?us-ascii?Q?8QQ3ItAU2H4tLd4ZOYPYcOf86Dpb30PgiGI4rVcBLzqcCzJ5tA8VyGnNbxRZ?=
+ =?us-ascii?Q?HCUC3CpB2VRwBKn3iMEbJNBnHsR9ciL4sagz22D2PCihkWEgbZjqn/hdbOW7?=
+ =?us-ascii?Q?gdbJhSCXGV6oLnd4B+kKoichuuu/H1IZ2l4vLoVKJ4kGHsT3rnDTqxrMz5Iy?=
+ =?us-ascii?Q?6M1gGzWlGa/qQyJY1HVmFfZG91bBcQPwXdZ6tYe3oo1tUbDhlbLR64JaZiSO?=
+ =?us-ascii?Q?+hhC8JmTnMUPFUKnhG1Ov9FqBwpvEuRlFn1F9u6STvPceV1xFWyf09/kpMbX?=
+ =?us-ascii?Q?mioi3/TtINUNTf9g55/MkkMdL/XtlQ68Htn6bYQ7rX+RwZd/vJF21fSwv5R0?=
+ =?us-ascii?Q?mXpvXwEag1ENgw6pTDsJXtkK4bB3ZT358zhZqUxOTy8W/Ob4kwPV4TCtsr1q?=
+ =?us-ascii?Q?Ve1z5JbMuBiZWJMhLhzIDKF0OedapZox3RkLgamtf1M3q9MvLKNrTpdMCf4v?=
+ =?us-ascii?Q?0CAFOYqq5pOehaajvJWnTurSO1w46xLEaUEr+0gRGCMqY1GdIVExTNxM9esF?=
+ =?us-ascii?Q?DrSfTzOJ0NWTjZMnAkNBL+1menij8jIEaL0VT9q4J18mXQWs1rGK01P5pGDs?=
+ =?us-ascii?Q?URKMhI1MHnR1rr7imIssPEp1F2YDM8aZZcNV7K2AtR/vXW1nfOXlWwPfCC83?=
+ =?us-ascii?Q?jVuu39GUaLmtSvmrOWmOlux81aj56a0TBETz6WVGTHHJhpew?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Sep 2026 21:27:01.5119 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3IoYiCLc1I9tYi+7VGN6AoSTQOui7J2HjsCpNpbLzdZvsXQOc3z2WUgLAAIZd/0rX6oAsolhpVOOkB+xVvSGT7azeo94eUoAFIHhwtGmymY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF453C3BEC4
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5146.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7eab1ffc-d3a2-4274-a742-08df08704b8c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Sep 2026 21:30:50.6214 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1m65ySK5MJp7RMslnbKRVPjmOexrSll+gjJbsTgKbRzWQCdYm9ArFQ1SbwK6R/W2AakA/8CsMf1IA+pCCz5AcA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB9131
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,210 +153,185 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Public
 
-On 9/1/2026 8:12 AM, Anirban, Sk wrote:
-> Hi,
+> -----Original Message-----
+> From: Armin Wolf <W_Armin@gmx.de>
+> Sent: Thursday, July 23, 2026 11:00 PM
+> To: hansg@kernel.org; ilpo.jarvinen@linux.intel.com
+> Cc: platform-driver-x86@vger.kernel.org; linux-kernel@vger.kernel.org;
+> linux@weissschuh.net; rafael@kernel.org; lenb@kernel.org; linux-
+> acpi@vger.kernel.org; Deucher, Alexander <Alexander.Deucher@amd.com>;
+> Koenig, Christian <Christian.Koenig@amd.com>; airlied@gmail.com;
+> simona@ffwll.ch; amd-gfx@lists.freedesktop.org; dri-
+> devel@lists.freedesktop.org; patrik.r.jakobsson@gmail.com;
+> maarten.lankhorst@linux.intel.com; mripard@kernel.org;
+> tzimmermann@suse.de; jani.nikula@linux.intel.com;
+> joonas.lahtinen@linux.intel.com; rodrigo.vivi@intel.com;
+> tursulin@ursulin.net; intel-gfx@lists.freedesktop.org;
+> matthew.brost@intel.com; thomas.hellstrom@linux.intel.com; intel-
+> xe@lists.freedesktop.org
+> Subject: [PATCH v3 2/3] ACPI: video: Remove CONFIG_X86 handling from
+> nvidia_wmi_ec_supported()
 >
-> On 29-08-2026 05:00 am, Belgaumkar, Vinay wrote:
->>
->> On 7/23/2026 12:43 PM, Sk Anirban wrote:
->>> Extend the existing "hw_engines" debugfs to iterate over all hardware
->>> engines and dump their idle state: whether the engine pipe is idle or
->>> busy, whether C6 entry is allowed, and (where available) the forcewake
->>> request status.
->>>
->>> v2: Use existing debugfs (Matt Brost)
->>>
->>> Signed-off-by: Sk Anirban <sk.anirban@intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/regs/xe_gt_regs.h | 27 ++++++++++++++
->>>   drivers/gpu/drm/xe/xe_devcoredump.c  |  4 ++-
->>>   drivers/gpu/drm/xe/xe_gt_debugfs.c   | 54 
->>> +++++++++++++++++++++++++++-
->>>   drivers/gpu/drm/xe/xe_guc_capture.c  |  2 --
->>>   4 files changed, 83 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h 
->>> b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->>> index 08251c7a1a4b..accf3012bad2 100644
->>> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->>> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->>> @@ -196,6 +196,33 @@
->>>   #define   MSC_MSAA_REODER_BUF_BYPASS_DISABLE    REG_BIT(14)
->>>   #define   FAST_CLEAR_VALIGN_FIX            REG_BIT(13)
->>>   +#define MSG_IDLE_CS                XE_REG(0x8000)
->>> +#define MSG_IDLE_VCS0                XE_REG(0x8004)
->>> +#define MSG_IDLE_VCS1                XE_REG(0x8008)
->>> +#define MSG_IDLE_VCS2                XE_REG(0x80C0)
->>> +#define MSG_IDLE_VCS3                XE_REG(0x80C4)
->>> +#define MSG_IDLE_VCS4                XE_REG(0x80C8)
->>> +#define MSG_IDLE_VCS5                XE_REG(0x80CC)
->>> +#define MSG_IDLE_VCS6                XE_REG(0x80D0)
->>> +#define MSG_IDLE_VCS7                XE_REG(0x80D4)
->>> +#define MSG_IDLE_VECS0                XE_REG(0x8010)
->>> +#define MSG_IDLE_VECS1                XE_REG(0x80D8)
->>> +#define MSG_IDLE_VECS2                XE_REG(0x80DC)
->>> +#define MSG_IDLE_VECS3                XE_REG(0x80E0)
->>> +#define MSG_IDLE_BCS0                XE_REG(0x800C)
->>> +#define MSG_IDLE_BCS1                XE_REG(0x8680)
->>> +#define MSG_IDLE_BCS2                XE_REG(0x8684)
->>> +#define MSG_IDLE_BCS3                XE_REG(0x8688)
->>> +#define MSG_IDLE_BCS4                XE_REG(0x868C)
->>> +#define MSG_IDLE_BCS5                XE_REG(0x8690)
->>> +#define MSG_IDLE_BCS6                XE_REG(0x8694)
->>> +#define MSG_IDLE_BCS7                XE_REG(0x8698)
->>> +#define MSG_IDLE_BCS8                XE_REG(0x869C)
->>> +#define MSG_IDLE_GSCCS0                XE_REG(0xA62C)
->>> +#define   MSG_IDLE_INDICATION            REG_BIT(0)
->>> +#define   MSG_IDLE_C6_ALLOWED            REG_BIT(1)
->>> +#define   MSG_IDLE_FW_STATUS            REG_GENMASK(13, 9)
->> This field is called FW_REQ in bspec, we should stick to the same, so 
->> MSG_IDLE_FW_REQ.
-> Sure, I will modify this.
->>> +
->>>   #define XE2LPM_CCCHKNREG1            XE_REG(0x82a8)
->>>     #define VF_PREEMPTION                XE_REG(0x83a4, 
->>> XE_REG_OPTION_MASKED)
->>> diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c 
->>> b/drivers/gpu/drm/xe/xe_devcoredump.c
->>> index 5f2b90b18f97..b918f046ae15 100644
->>> --- a/drivers/gpu/drm/xe/xe_devcoredump.c
->>> +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
->>> @@ -127,8 +127,10 @@ static ssize_t __xe_devcoredump_read(char 
->>> *buffer, ssize_t count,
->>>         drm_puts(&p, "\n**** HW Engines ****\n");
->>>       for (i = 0; i < XE_NUM_HW_ENGINES; i++)
->>> -        if (ss->hwe[i])
->>> +        if (ss->hwe[i]) {
->>>               xe_engine_snapshot_print(ss->hwe[i], &p);
->>> +            drm_puts(&p, "\n");
->>> +        }
->>>         drm_puts(&p, "\n**** VM state ****\n");
->>>       xe_vm_snapshot_print(ss->vm, &p);
->>> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c 
->>> b/drivers/gpu/drm/xe/xe_gt_debugfs.c
->>> index c38bcacb27e4..621d1e57e997 100644
->>> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
->>> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
->>> @@ -10,6 +10,7 @@
->>>   #include <drm/drm_debugfs.h>
->>>   #include <drm/drm_managed.h>
->>>   +#include "regs/xe_gt_regs.h"
->>>   #include "xe_device.h"
->>>   #include "xe_force_wake.h"
->>>   #include "xe_gt.h"
->>> @@ -22,6 +23,7 @@
->>>   #include "xe_guc_hwconfig.h"
->>>   #include "xe_hw_engine.h"
->>>   #include "xe_lrc.h"
->>> +#include "xe_mmio.h"
->>>   #include "xe_mocs.h"
->>>   #include "xe_pat.h"
->>>   #include "xe_pm.h"
->>> @@ -111,6 +113,38 @@ int xe_gt_debugfs_show_with_rpm(struct seq_file 
->>> *m, void *data)
->>>     static int hw_engines(struct xe_gt *gt, struct drm_printer *p)
->>>   {
->>> +    static const struct {
->>> +        struct xe_reg reg;
->>> +        bool has_fw;
->>> +    } msg_idle_reg[XE_NUM_HW_ENGINES] = {
->>> +        [XE_HW_ENGINE_RCS0] = { MSG_IDLE_CS, true },
->>> +        [XE_HW_ENGINE_BCS0] = { MSG_IDLE_BCS0, true },
->>> +        [XE_HW_ENGINE_BCS1] = { MSG_IDLE_BCS1, false },
->>> +        [XE_HW_ENGINE_BCS2] = { MSG_IDLE_BCS2, false },
->>> +        [XE_HW_ENGINE_BCS3] = { MSG_IDLE_BCS3, false },
->>> +        [XE_HW_ENGINE_BCS4] = { MSG_IDLE_BCS4, false },
->>> +        [XE_HW_ENGINE_BCS5] = { MSG_IDLE_BCS5, false },
->>> +        [XE_HW_ENGINE_BCS6] = { MSG_IDLE_BCS6, false },
->>> +        [XE_HW_ENGINE_BCS7] = { MSG_IDLE_BCS7, false },
->>> +        [XE_HW_ENGINE_BCS8] = { MSG_IDLE_BCS8, false },
->>> +        [XE_HW_ENGINE_VCS0] = { MSG_IDLE_VCS0, true },
->>> +        [XE_HW_ENGINE_VCS1] = { MSG_IDLE_VCS1, true },
->>> +        [XE_HW_ENGINE_VCS2] = { MSG_IDLE_VCS2, true },
->>> +        [XE_HW_ENGINE_VCS3] = { MSG_IDLE_VCS3, true },
->>> +        [XE_HW_ENGINE_VCS4] = { MSG_IDLE_VCS4, true },
->>> +        [XE_HW_ENGINE_VCS5] = { MSG_IDLE_VCS5, true },
->>> +        [XE_HW_ENGINE_VCS6] = { MSG_IDLE_VCS6, true },
->>> +        [XE_HW_ENGINE_VCS7] = { MSG_IDLE_VCS7, true },
->>> +        [XE_HW_ENGINE_VECS0] = { MSG_IDLE_VECS0, true },
->>> +        [XE_HW_ENGINE_VECS1] = { MSG_IDLE_VECS1, true },
->>> +        [XE_HW_ENGINE_VECS2] = { MSG_IDLE_VECS2, true },
->>> +        [XE_HW_ENGINE_VECS3] = { MSG_IDLE_VECS3, true },
->>> +        [XE_HW_ENGINE_CCS0] = { MSG_IDLE_CS, true },
->>> +        [XE_HW_ENGINE_CCS1] = { MSG_IDLE_CS, true },
->>> +        [XE_HW_ENGINE_CCS2] = { MSG_IDLE_CS, true },
->>> +        [XE_HW_ENGINE_CCS3] = { MSG_IDLE_CS, true },
->>> +        [XE_HW_ENGINE_GSCCS0] = { MSG_IDLE_GSCCS0, false },
->> aren't the media related idle message registers only valid for media 
->> GT and similarly those for render on render GT? Here we seem to be 
->> reading all registers on both GTs? So some values are invalid.
-> for_each_hw_engine() only iterates engines present on that GT. So on 
-> each GT we only read its own engines' idle registers.
-
-ok, missed that part.
-
-Thanks,
-
-Vinay.
-
->>> +    };
->>>       struct xe_hw_engine *hwe;
->>>       enum xe_hw_engine_id id;
->>>   @@ -118,9 +152,27 @@ static int hw_engines(struct xe_gt *gt, 
->>> struct drm_printer *p)
->>>       if (!xe_force_wake_ref_has_domain(fw_ref.domains, 
->>> XE_FORCEWAKE_ALL))
->>>           return -ETIMEDOUT;
->>>   -    for_each_hw_engine(hwe, gt, id)
->>> +    for_each_hw_engine(hwe, gt, id) {
->>> +        struct xe_reg reg = msg_idle_reg[id].reg;
->>> +        u32 val;
->>> +
->>>           xe_hw_engine_print(hwe, p);
->>>   +        val = xe_mmio_read32(&gt->mmio, reg);
->>> +
->>> +        if (msg_idle_reg[id].has_fw)
->>> +            drm_printf(p, "\tpipe %s, C6 %s, fw_req 0x%02x\n",
->>> +                   val & MSG_IDLE_INDICATION ? "idle" : "busy",
->>> +                   val & MSG_IDLE_C6_ALLOWED ? "allowed" : "not 
->>> allowed",
->>> +                   REG_FIELD_GET(MSG_IDLE_FW_STATUS, val));
->>
->> should be FW_REQ here as well.
-> Sure, I will modify this.
+> The WMI-ACPI driver now supports architectures other than x86.
+> Remove the CONFIG_X86 handling from video-detect and the associated
+> drivers to simplify the resulting code.
 >
-> Thanks,
-> Anirban
+> Acked-by: Rafael J. Wysocki (Intel) <rafael@kernel.org>
+> Signed-off-by: Armin Wolf <W_Armin@gmx.de>
+> ---
+>  drivers/acpi/Kconfig               | 2 +-
+>  drivers/acpi/video_detect.c        | 8 --------
+>  drivers/gpu/drm/amd/amdgpu/Kconfig | 4 +---
+>  drivers/gpu/drm/gma500/Kconfig     | 1 -
+>  drivers/gpu/drm/i915/Kconfig       | 1 -
+>  drivers/gpu/drm/radeon/Kconfig     | 4 +---
+>  drivers/gpu/drm/xe/Kconfig         | 5 ++---
+>  drivers/platform/loongarch/Kconfig | 1 +
+>  8 files changed, 6 insertions(+), 20 deletions(-)
 >
->>
->> Thanks,
->>
->> Vinay.
->>
->>> +        else
->>> +            drm_printf(p, "\tpipe %s, C6 %s\n",
->>> +                   val & MSG_IDLE_INDICATION ? "idle" : "busy",
->>> +                   val & MSG_IDLE_C6_ALLOWED ? "allowed" : "not 
->>> allowed");
->>> +
->>> +        drm_puts(p, "\n");
->>> +    }
->>> +
->>>       return 0;
->>>   }
->>>   diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c 
->>> b/drivers/gpu/drm/xe/xe_guc_capture.c
->>> index 82df19b304e1..5a4d085660a2 100644
->>> --- a/drivers/gpu/drm/xe/xe_guc_capture.c
->>> +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
->>> @@ -1868,8 +1868,6 @@ void xe_engine_snapshot_print(struct 
->>> xe_hw_engine_snapshot *snapshot, struct drm
->>>           snapshot_print_by_list_order(snapshot, p, 
->>> GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS,
->>>                            list);
->>>       }
->>> -
->>> -    drm_puts(p, "\n");
->>>   }
->>>     /**
+> diff --git a/drivers/acpi/Kconfig b/drivers/acpi/Kconfig index
+> f165d14cf61a..cc1e58fa664b 100644
+> --- a/drivers/acpi/Kconfig
+> +++ b/drivers/acpi/Kconfig
+> @@ -224,7 +224,7 @@ config ACPI_VIDEO
+>       tristate "Video"
+>       depends on BACKLIGHT_CLASS_DEVICE
+>       depends on INPUT
+> -     depends on ACPI_WMI || !X86
+> +     depends on ACPI_WMI
+>       select THERMAL
+>       help
+>         This driver implements the ACPI Extensions For Display Adapters d=
+iff
+> --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c index
+> 458efa4fe9d4..af9280b244f1 100644
+> --- a/drivers/acpi/video_detect.c
+> +++ b/drivers/acpi/video_detect.c
+> @@ -82,8 +82,6 @@ find_video(acpi_handle handle, u32 lvl, void *context,
+> void **rv)
+>       return AE_OK;
+>  }
+>
+> -/* This depends on ACPI_WMI which is X86 only */ -#ifdef CONFIG_X86
+> static bool nvidia_wmi_ec_supported(void)  {
+>       struct wmi_brightness_args args =3D {
+> @@ -105,12 +103,6 @@ static bool nvidia_wmi_ec_supported(void)
+>        */
+>       return args.ret =3D=3D WMI_BRIGHTNESS_SOURCE_EC;  } -#else -static =
+bool
+> nvidia_wmi_ec_supported(void) -{
+> -     return false;
+> -}
+> -#endif
+>
+>  /* Force to use vendor driver when the ACPI device is known to be
+>   * buggy */
+> diff --git a/drivers/gpu/drm/amd/amdgpu/Kconfig
+> b/drivers/gpu/drm/amd/amdgpu/Kconfig
+> index 12e4a41bf1f0..50305630f533 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/Kconfig
+> +++ b/drivers/gpu/drm/amd/amdgpu/Kconfig
+> @@ -30,9 +30,7 @@ config DRM_AMDGPU
+>       # ACPI_VIDEO's dependencies must also be selected.
+>       select INPUT if ACPI
+>       select ACPI_VIDEO if ACPI
+> -     # On x86 ACPI_VIDEO also needs ACPI_WMI
+> -     select X86_PLATFORM_DEVICES if ACPI && X86
+
+The change below makes sense, but this one looks like it should remain unle=
+ss X86_PLATFORM_DEVICES is handled some other way?
+
+Alex
+
+> -     select ACPI_WMI if ACPI && X86
+> +     select ACPI_WMI if ACPI
+>       help
+>         Choose this option if you have a recent AMD Radeon graphics card.
+>
+> diff --git a/drivers/gpu/drm/gma500/Kconfig
+> b/drivers/gpu/drm/gma500/Kconfig index a2acaa699dd5..dc4c56638819
+> 100644
+> --- a/drivers/gpu/drm/gma500/Kconfig
+> +++ b/drivers/gpu/drm/gma500/Kconfig
+> @@ -11,7 +11,6 @@ config DRM_GMA500
+>       select ACPI_VIDEO if ACPI
+>       select BACKLIGHT_CLASS_DEVICE if ACPI
+>       select INPUT if ACPI
+> -     select X86_PLATFORM_DEVICES if ACPI
+>       select ACPI_WMI if ACPI
+>       help
+>         Say yes for an experimental 2D KMS framebuffer driver for the dif=
+f --
+> git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig index
+> 5e939004b646..71426b9c91f0 100644
+> --- a/drivers/gpu/drm/i915/Kconfig
+> +++ b/drivers/gpu/drm/i915/Kconfig
+> @@ -28,7 +28,6 @@ config DRM_I915
+>       # but for select to work, need to select ACPI_VIDEO's dependencies,
+> ick
+>       select BACKLIGHT_CLASS_DEVICE if ACPI
+>       select INPUT if ACPI
+> -     select X86_PLATFORM_DEVICES if ACPI
+>       select ACPI_WMI if ACPI
+>       select ACPI_VIDEO if ACPI
+>       select SYNC_FILE
+> diff --git a/drivers/gpu/drm/radeon/Kconfig
+> b/drivers/gpu/drm/radeon/Kconfig index c479f0c0dd5c..3cd70aef770e
+> 100644
+> --- a/drivers/gpu/drm/radeon/Kconfig
+> +++ b/drivers/gpu/drm/radeon/Kconfig
+> @@ -25,9 +25,7 @@ config DRM_RADEON
+>       # ACPI_VIDEO's dependencies must also be selected.
+>       select INPUT if ACPI
+>       select ACPI_VIDEO if ACPI
+> -     # On x86 ACPI_VIDEO also needs ACPI_WMI
+> -     select X86_PLATFORM_DEVICES if ACPI && X86
+> -     select ACPI_WMI if ACPI && X86
+> +     select ACPI_WMI if ACPI
+>       help
+>         Choose this option if you have an ATI Radeon graphics card.  Ther=
+e
+>         are both PCI and AGP versions.  You don't need to choose this to =
+diff -
+> -git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig index
+> 4d7dcaff2b91..502c7b3c1f16 100644
+> --- a/drivers/gpu/drm/xe/Kconfig
+> +++ b/drivers/gpu/drm/xe/Kconfig
+> @@ -4,7 +4,6 @@ config DRM_XE
+>       depends on DRM && PCI
+>       depends on KUNIT || !KUNIT
+>       depends on INTEL_VSEC || !INTEL_VSEC
+> -     depends on X86_PLATFORM_DEVICES || !(X86 && ACPI)
+>       depends on PAGE_SIZE_4KB || COMPILE_TEST || BROKEN
+>       select INTERVAL_TREE
+>       # we need shmfs for the swappable backing store, and in particular
+> @@ -29,8 +28,8 @@ config DRM_XE
+>       # but for select to work, need to select ACPI_VIDEO's dependencies,
+> ick
+>       select BACKLIGHT_CLASS_DEVICE if ACPI
+>       select INPUT if ACPI
+> -     select ACPI_VIDEO if X86 && ACPI
+> -     select ACPI_WMI if X86 && ACPI
+> +     select ACPI_VIDEO if ACPI
+> +     select ACPI_WMI if ACPI
+>       select SYNC_FILE
+>       select CRC32
+>       select SND_HDA_I915 if SND_HDA_CORE
+> diff --git a/drivers/platform/loongarch/Kconfig
+> b/drivers/platform/loongarch/Kconfig
+> index 447528797d07..db7833842142 100644
+> --- a/drivers/platform/loongarch/Kconfig
+> +++ b/drivers/platform/loongarch/Kconfig
+> @@ -23,6 +23,7 @@ config LOONGSON_LAPTOP
+>       depends on INPUT
+>       depends on MACH_LOONGSON64
+>       select ACPI_VIDEO
+> +     select ACPI_WMI
+>       select INPUT_SPARSEKMAP
+>       default y
+>       help
+> --
+> 2.39.5
+
