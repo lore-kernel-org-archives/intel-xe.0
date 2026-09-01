@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04917C624D0
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 19:27:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09C3BC624D7
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 19:27:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC8A110EECB;
-	Tue,  1 Sep 2026 19:27:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE1C110EECD;
+	Tue,  1 Sep 2026 19:27:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ak1odDB2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SWMDQAhv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4C1410EEC9
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 19:27:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7525E10EECB
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 19:27:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788290876; x=1819826876;
+ t=1788290877; x=1819826877;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=C9qUbqxtsoplUxq3BM5BwqcgPbGIhj11gz0jI+/Ruko=;
- b=ak1odDB2aQA7ja2VAVWY5B8EsxeswpnexxpChQhInRkF1AZkCgI5zy2+
- GUbN8KPoM+jL8O3993y9q7vyTp+I4ptbhHcVkCi2j7AwDH8hkueG1CTDw
- 8VjLXCipTtKFfggdwa+1jg9x+5bqf4GbfgaiyTwHG/wHqNq692cPdTUSS
- JTkFXEmlf5U9NJLwX/l5/6is+U00LGTkpzT6nb+gTqKwQCnNYUAmJSTgF
- N2chd6KenicxS0tvkKC4NVMj+OMow7yDzICZVTtakcyulnlO13y1P7sNX
- fji5kM77OdQG+jFdRY7u5Czh8j6wqzwkeN6qewQ5gZQ3mkt+TXgpXkziL Q==;
-X-CSE-ConnectionGUID: bOsxK+3ZT8GltXWtrmD4+Q==
-X-CSE-MsgGUID: y7iE8MwvTh6F2wFNkDOvnA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="88762484"
-X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="88762484"
+ bh=W8dixMWm5lgDdO2kS2ztSj/350/4eS/UZxykCfYsUMo=;
+ b=SWMDQAhvNWht3JFrzBSyA/jLRepWSDhcydpihrAy//kjYh63ub+kPRK3
+ kyn6fNPt6xygfuyr8Q3Jr1AcWprDz7rJE6b468v5RKCjnb68QU5flmE30
+ rsZvVSOqDWcnFtwcWGuPERCfNFaYdpqxL0lP4DsLg8D6O/hSpLMU1EafG
+ yc6j5WOVMho/T7rK4D9qD2COoGOZZt/SB038kGfrXVQuazaVDP4bPDCGc
+ 6huetkfveFmqWLhc237YMQfaUiwUxe2VrpmC3zrK4zugMYcmx1rxUya7w
+ MoJFt0hE8fyTsmYRJ73NIAYweN+VrIwqyTanSzJIw0aJ7+sGcwH63Zkob g==;
+X-CSE-ConnectionGUID: 6xHlkVnaQX2athv3d/LX+w==
+X-CSE-MsgGUID: a1VGy45cTlC53Za9nfOW8g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="88762501"
+X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="88762501"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2026 12:27:55 -0700
-X-CSE-ConnectionGUID: b4MvIHZLSG67yg+4m8Z2MQ==
-X-CSE-MsgGUID: g6pEH/OLQZew8wUhiol3xA==
+ 01 Sep 2026 12:27:57 -0700
+X-CSE-ConnectionGUID: wfiyxp0aQO2LqFX1QormsA==
+X-CSE-MsgGUID: hlKKM4oiTLudbjmXEgaM7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="269776736"
+X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="269776748"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2026 12:27:55 -0700
+ 01 Sep 2026 12:27:57 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
@@ -48,10 +48,9 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
-Subject: [PATCH v4 06/18] platform/x86/intel/pmt: Do not remap when using
- callbacks
-Date: Tue,  1 Sep 2026 12:27:41 -0700
-Message-ID: <20260901192736.626777-26-michael.j.ruhl@intel.com>
+Subject: [PATCH v4 08/18] drm/xe/vsec: Correct locking order
+Date: Tue,  1 Sep 2026 12:27:43 -0700
+Message-ID: <20260901192736.626777-28-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260901192736.626777-20-michael.j.ruhl@intel.com>
 References: <20260901192736.626777-20-michael.j.ruhl@intel.com>
@@ -71,56 +70,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A callback indicates that the parent driver is responsible
-for accessing the data area.  Creating a PMT memory remap
-is redundant.
+Xe locking order is power state first, and then local locks.
 
-If a read_telem callback has been provided, do not create a
-remap.
+Reorder locking to correct usage.
+Use excplicit functions because of multiple locks.
 
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/platform/x86/intel/pmt/class.c | 19 +++++++++++--------
- 1 file changed, 11 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_vsec.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
-index af7c951b569a..350129121ff1 100644
---- a/drivers/platform/x86/intel/pmt/class.c
-+++ b/drivers/platform/x86/intel/pmt/class.c
-@@ -373,7 +373,6 @@ static int intel_pmt_dev_register(struct intel_pmt_entry *entry,
- 				  struct device *parent)
- {
- 	struct intel_vsec_device *ivdev = dev_to_ivdev(parent);
--	struct resource res = {0};
- 	struct device *dev;
- 	int ret;
+diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+index 71bc359b2ad1..dd7723ba6c1c 100644
+--- a/drivers/gpu/drm/xe/xe_vsec.c
++++ b/drivers/gpu/drm/xe/xe_vsec.c
+@@ -158,16 +158,19 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
  
-@@ -403,14 +402,18 @@ static int intel_pmt_dev_register(struct intel_pmt_entry *entry,
- 	if (!entry->size)
- 		return 0;
+ 	telem_addr += offset + user_offset;
  
--	res.start = entry->base_addr;
--	res.end = res.start + entry->size - 1;
--	res.flags = IORESOURCE_MEM;
-+	if (!is_cb_read_telem(entry->cb)) {
-+		struct resource res = {0};
+-	guard(mutex)(&xe->pmt.lock);
+-
+ 	/* indicate that we are not at an appropriate power level */
+ 	if (!xe_pm_runtime_get_if_active(xe))
+ 		return -ENODATA;
  
--	entry->base = devm_ioremap_resource(dev, &res);
--	if (IS_ERR(entry->base)) {
--		ret = PTR_ERR(entry->base);
--		goto fail_ioremap;
-+		res.start = entry->base_addr;
-+		res.end = res.start + entry->size - 1;
-+		res.flags = IORESOURCE_MEM;
++	mutex_lock(&xe->pmt.lock);
 +
-+		entry->base = devm_ioremap_resource(dev, &res);
-+		if (IS_ERR(entry->base)) {
-+			ret = PTR_ERR(entry->base);
-+			goto fail_ioremap;
-+		}
- 	}
+ 	/* set SoC re-mapper index register based on GUID memory region */
+ 	xe->soc_remapper.set_telem_region(xe, mem_region);
  
- 	sysfs_bin_attr_init(&entry->pmt_bin_attr);
+ 	memcpy_fromio(data, telem_addr, count);
++
++	mutex_unlock(&xe->pmt.lock);
++
+ 	xe_pm_runtime_put(xe);
+ 
+ 	return count;
 -- 
 2.43.0
 
