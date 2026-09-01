@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19116C61DE4
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 06:31:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0670CC624C6
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 06:31:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE7BE10E30F;
-	Tue,  1 Sep 2026 06:31:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACD5710E39B;
+	Tue,  1 Sep 2026 06:31:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BC/BqVpm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="id73QIyo";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADF7410E30F
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 06:31:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5272D10E30F
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 06:31:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788244273; x=1819780273;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=gPFueyaeT1cJ7PuVE/16q28ZHpqiTmzj4g3D2lUpp08=;
- b=BC/BqVpmredRd4UMr5Smgu8Kx2B4loLFDSqcbsAdvRwn3AQ0TIx5a5cr
- 73+2aNFeRTRaljxwhqnCsMAfX3f9JrMgpijLOktPKQsckTQLhV2aRueC3
- AGpTSaO7K13Qm4bxrYXH8uxBxvcxQgB4Y/AErvAtTPMP/Sf68x2HwLk6j
- NIAPSvTcHbKZ5154PZxNNGsgpb41Eb73+ziL0/GL7x+ehSSxohdB1TurJ
- lDQU/6N87fObz5U4nsTKRRiZC6YJN787CycIU1nZy8hthqGskWytSOWBI
- /XyWFoGvxrZevmD39HDUqI6Bkwv5R/bR9YK0MNsB/P7m/eBYUAnfJLq3W A==;
-X-CSE-ConnectionGUID: j3ZIjThMT7iji/xO1YQcBg==
-X-CSE-MsgGUID: UO+XMcQ/QcSWvHPMOfR8kA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11892"; a="88588869"
-X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="88588869"
+ t=1788244275; x=1819780275;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=uNWvikzhLhGVVV0X3HiLMXXIP+WOyj9BbblFo3gPjtA=;
+ b=id73QIyoI/0Egu98IV5ypVxLq0gOdxTulYJZVN5irYyrPK1syXvBrzeB
+ jKP7L9sZF3IDhCdHi2fVTxwRlKVIy0t4FuOSBs6h8dEaH6eOqkHbikuIO
+ 4zORE0PcZksGk4DsbbFUO17bzt7tA4X7QXQnA3on82/M94yntnfkfr4zC
+ pHK+3korPhQn/7KNVy0JR1nfSketVT74d2bCajDnefL88CVrXi/EPznMW
+ 2otPMCVni+JQWRkki7xMN0lYK0P9Xzoun1uKIR8qKmdBBjXHvlYm/3IP4
+ zTRxThhEbFHbbu/AIxo7I3CFoQVYiba9awKW1tnBkgC4ZGQh2pSvecNQF A==;
+X-CSE-ConnectionGUID: aFTAV4OzT+SjeqDpvxooIQ==
+X-CSE-MsgGUID: CX38EARgSNG3hlgqDaPVmA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11892"; a="88588875"
+X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="88588875"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 23:31:12 -0700
-X-CSE-ConnectionGUID: oDQJPvobQTmAeM4N2/wSmA==
-X-CSE-MsgGUID: DApzIgIUQMqav+kNdR58Ew==
+ 31 Aug 2026 23:31:15 -0700
+X-CSE-ConnectionGUID: OiuqZCy5TD+oAbrNUHWnEQ==
+X-CSE-MsgGUID: scsEhZwnQVGjfT6RAgsqFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="272791266"
+X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="272791271"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 23:31:11 -0700
+ 31 Aug 2026 23:31:13 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, badal.nilawar@intel.com,
  michal.wajdeczko@intel.com, himal.prasad.ghimiray@intel.com,
  dnyaneshwar.bhadane@intel.com, mallesh.koujalagi@intel.com,
  matthew.brost@intel.com
-Subject: [PATCH v6 0/4] drm/xe: Report GT TDR and VM rebind faults using SIGID
-Date: Tue,  1 Sep 2026 12:00:55 +0530
-Message-ID: <20260901063059.2547247-1-arvind.yadav@intel.com>
+Subject: [PATCH v6 1/4] drm/xe/log: Add GUCSUBMIT component
+Date: Tue,  1 Sep 2026 12:00:56 +0530
+Message-ID: <20260901063059.2547247-2-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260901063059.2547247-1-arvind.yadav@intel.com>
+References: <20260901063059.2547247-1-arvind.yadav@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,66 +69,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series is a small follow-up on top of the structured SIGID error
-logging infrastructure series:
+Add a GUCSUBMIT component for structured SIGID logging.
 
-https://patchwork.freedesktop.org/series/171022/
+GuC submit failures can still map to an existing SIGID, but using the
+generic GT component hides the source of the report. Add GUCSUBMIT as
+a DRIVER component and map it to XE_SIGID_GT_TDR.
 
-That series adds SIGID-based error reporting and the xe_log_*() helpers.
-This series converts selected GuC submit, SVM page-fault and GT reset error
-paths to that logging path.
-
-The VM rebind conversion from earlier revisions remains dropped.
-
+Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+---
 v6:
  - Moved GUCSUBMIT from DRIVER_FIRMWARE to DRIVER, since GuC submit
    is a driver submission component and not a firmware component.
    (Michal)
- - Updated the log message to print class/instance as %u:%u and
-   reason as %#x. (Michal)
 
-v5:
- - Dropped the GuC CGP protocol SIGID conversion, since malformed G2H
-   handler errors are already reported by the CT layer after -EPROTO.
- - Added a GUCSUBMIT component mapped to XE_SIGID_GT_TDR and used it for
-   the GuC submit reset failure.
- - Dropped "request" from the GuC submit reset failure message.
- - Kept the GT patch limited to the reset failure path.
- - Dropped GT PM-flow SIGID conversions for now, since the correct
-   component/SIGID mapping needs agreement.
- - Improved the GT reset failure message to describe that full graphics
-   reset did not complete.
+ drivers/gpu/drm/xe/abi/xe_log_abi.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-v4:
- - Clarified that the GT component maps to XE_SIGID_GT_TDR and -EIO is
-   only the errno value.
- - Split GuC CGP protocol error conversions into a separate patch.
- - Added terminal SVM page-fault allocation failures as MEM_FAULT reports.
- - Converted GT reset and power-flow failures to GT_TDR reports.
- - Kept the VM rebind conversion dropped.
-
-v3:
- - Split GuC and VM changes into separate patches.
- - Dropped GuC job-timeout warning conversions to avoid changing warning
-   logs into error-level SIGID reports.
-
-v2:
- - Rebased on the latest structured SIGID logging series.
- - Switched from the old xe_ras_log_*() helpers to the new xe_log_*()
-   helpers.
-
-Arvind Yadav (4):
-  drm/xe/log: Add GUCSUBMIT component
-  drm/xe/guc: Report reset failure using SIGID
-  drm/xe/svm: Report terminal page-fault failures using SIGID
-  drm/xe/gt: Report GT reset failure using SIGID
-
- drivers/gpu/drm/xe/abi/xe_log_abi.h |  1 +
- drivers/gpu/drm/xe/xe_gt.c          |  4 ++--
- drivers/gpu/drm/xe/xe_guc_submit.c  |  6 ++++--
- drivers/gpu/drm/xe/xe_svm.c         | 13 +++++++------
- 4 files changed, 14 insertions(+), 10 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/abi/xe_log_abi.h b/drivers/gpu/drm/xe/abi/xe_log_abi.h
+index d6105520173e..91fe983ad917 100644
+--- a/drivers/gpu/drm/xe/abi/xe_log_abi.h
++++ b/drivers/gpu/drm/xe/abi/xe_log_abi.h
+@@ -144,6 +144,7 @@ enum xe_log_location_bits {
+ 	define(DRIVER, 4, RTP, SW, "Register Table Processing")			\
+ 	define(DRIVER, 5, WA, SW, "Workarounds")				\
+ 	define(DRIVER, 6, PAGEFAULT, MEM_FAULT, "Page Fault")			\
++	define(DRIVER, 7, GUCSUBMIT, GT_TDR, "GuC Submit")			\
+ 	/* */									\
+ 	define(DRIVER_HARDWARE, 1, REGS, IO_BUS, "Registers")			\
+ 	define(DRIVER_HARDWARE, 2, GGTT, IO_BUS, "Global GTT")			\
 -- 
 2.43.0
 
