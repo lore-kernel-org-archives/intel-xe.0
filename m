@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA671C624CE
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 01:54:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8A09C61DFD
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 02:06:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67DD510E217;
-	Tue,  1 Sep 2026 01:54:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P/NVNpfN";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D43A910E01F;
- Tue,  1 Sep 2026 01:54:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788227684; x=1819763684;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=8j3yKBNCNYtJNjNV4QzVd1BUyQ4mtd8C/5g9FVd6us0=;
- b=P/NVNpfN/v3AxYdyi79Wf9eYKo2VXC8Zb6I7ECjybi5ACV4be77V6D/d
- gbQmue3ceCxgvCBpKmyVsHXKroSolOwLAjnbSz/k14EhxKBaJTTu1dJke
- wlUWfx36NqCpIeLgI7R6oyVzd73cB0WD4+qG2L5cxQEqkhhDV4ed0kDg/
- X+q4AuHfWSX9JwigVkOc371+Bl2RlvR8ms8/B70tvU6yuA5KeMq/8NbKf
- MxdeDz/h3bBUaBh0Jj/VA1eWFoDvFHuFjJHTfUPMeIm9so2kF8NfADqX+
- 01dC4YIx/jdwHsOHPMtHVEXehXcqdXZhBeZ8CYfVF8G83XnUT5gwSmMVU Q==;
-X-CSE-ConnectionGUID: C2oywbrYQHyHcuE93iQo4g==
-X-CSE-MsgGUID: OjHbc564Q1mTmIOrkBAPDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11892"; a="88768507"
-X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="88768507"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 18:54:43 -0700
-X-CSE-ConnectionGUID: bXhHWCv4So2yLTu58moeiw==
-X-CSE-MsgGUID: Q9rcCi5rSGuWhAy+fOUhbg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="268416299"
-Received: from dapengmi-mobl1.ccr.corp.intel.com (HELO [10.124.241.239])
- ([10.124.241.239])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2026 18:54:42 -0700
-Message-ID: <bc3efbe7-440f-480e-9bff-8efa65227fff@linux.intel.com>
-Date: Tue, 1 Sep 2026 09:54:39 +0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F6A610E217;
+	Tue,  1 Sep 2026 02:06:36 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E12410E217;
+ Tue,  1 Sep 2026 02:06:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0953128101103128363=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] perf: Fix null pointer access in
- is_include_guest_event()
-To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
- Alexander Kanevskiy <alexander.kanevskiy@intel.com>
-References: <20260831235030.6737-1-vinay.belgaumkar@intel.com>
-Content-Language: en-US
-From: "Mi, Dapeng" <dapeng1.mi@linux.intel.com>
-In-Reply-To: <20260831235030.6737-1-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
+ =?utf-8?q?=5D_drm/xe=3A_Read_scheduler_message_opcode_under_lock?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 01 Sep 2026 02:06:35 -0000
+Message-ID: <178822839531.104222.1564060855738632668@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260901011712.2617466-1-matthew.brost@intel.com>
+In-Reply-To: <20260901011712.2617466-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,105 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============0953128101103128363==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 9/1/2026 7:50 AM, Vinay Belgaumkar wrote:
-> A kernel panic is observed when an application has a perf connection open
-> and the driver managing the pmu event unbinds. The issue occurs when
-> perf_pmu_unregister() is called while there is an active perf session. The
-> null pointer error is seen when the event is freed through __free_event()
-> and mediated_pmu_unaccount_event is called. There is a missing null check
-> inside is_include_guest_event(). Also call mediated_pmu_unaccount_event()
-> inside __pmu_detach_event() similar to __free_event().
->
-> Signature of the failure:
->
->  Oops: general protection fault, kernel NULL pointer dereference
->  ...
->  RIP: 0010:_free_event+0x3e/0x370
->  ...
->  Call Trace:
->  ...
->  perf_event_release_kernel+0x260/0x2d0
->  perf_release+0x12/0x20
->
-> While here, also add a null check inside perf_event_read_local() which can
-> cause a similar crash. Sashiko pointed out a possible race between when we
-> check for revoked state here and then actually access event-pmu inside
-> __perf_event_read_cpu(). So, add another null check there.
->
-> v2: Add another check to prevent null access (sashiko)
-> v3: Use READ_ONCE for checking pmu state (sashiko)
-> v4: READ_ONCE for the pmu check as well (sashiko)
+== Series Details ==
 
-Thanks for finding and reporting this issue.
+Series: series starting with [1/2] drm/xe: Read scheduler message opcode under lock
+URL   : https://patchwork.freedesktop.org/series/173108/
+State : success
 
-Please rewrite the change log and explicitly show the call-chain and tell
-why NULL pointer is accessed.
+== Summary ==
 
-e.g, pmu_detach_event() clears the event->pmu to null and then put_event()
-calls mediated_pmu_unaccount_event() and then trigger the NULL pointer access.
+CI Bug Log - changes from xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f_BAT -> xe-pw-173108v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 12)
+------------------------------
+
+  Missing    (1): bat-bmg-2 
 
 
->
-> Fixes: eff95e170275 ("perf: Add APIs to create/release mediated guest vPMUs")
-> Cc: Alexander Kanevskiy <alexander.kanevskiy@intel.com>
-> Cc: Dapeng Mi <dapeng1.mi@linux.intel.com>
-> Assisted-by: Claude:Claude-Sonnet-5
-> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-> ---
->  kernel/events/core.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->
-> diff --git a/kernel/events/core.c b/kernel/events/core.c
-> index 94ca277e0819..4f8c5191ef2c 100644
-> --- a/kernel/events/core.c
-> +++ b/kernel/events/core.c
-> @@ -4794,6 +4794,9 @@ static int __perf_event_read_cpu(struct perf_event *event, int event_cpu)
->  	if ((unsigned)event_cpu >= nr_cpu_ids)
->  		return event_cpu;
->  
-> +	if (!READ_ONCE(event->pmu))
-> +		return -ENODEV;
-> +
->  	if (event->group_caps & PERF_EV_CAP_READ_SCOPE) {
->  		const struct cpumask *cpumask = perf_scope_cpu_topology_cpumask(event->pmu->scope, event_cpu);
->  
-> @@ -4917,6 +4920,11 @@ int perf_event_read_local(struct perf_event *event, u64 *value,
->  		goto out;
->  	}
->  
-> +	if (READ_ONCE(event->state) <= PERF_EVENT_STATE_REVOKED) {
-> +		ret = -ENODEV;
-> +		goto out;
-> +	}
-> +
+Changes
+-------
 
-The above two changes has nothing to do with the fix of null pointer
-access, better move them into a separate patch.
-Thanks.
+  No changes found
 
 
->  	/*
->  	 * Get the event CPU numbers, and adjust them to local if the event is
->  	 * a per-package event that can be read locally
-> @@ -6350,6 +6358,9 @@ static DEFINE_MUTEX(perf_mediated_pmu_mutex);
->  /* !exclude_guest event of PMU with PERF_PMU_CAP_MEDIATED_VPMU */
->  static inline bool is_include_guest_event(struct perf_event *event)
->  {
-> +	if (!event->pmu)
-> +		return false;
-> +
->  	if ((event->pmu->capabilities & PERF_PMU_CAP_MEDIATED_VPMU) &&
->  	    !event->attr.exclude_guest)
->  		return true;
-> @@ -12977,6 +12988,7 @@ static void __pmu_detach_event(struct pmu *pmu, struct perf_event *event,
->  	exclusive_event_destroy(event);
->  	module_put(pmu->module);
->  
-> +	mediated_pmu_unaccount_event(event);
->  	event->pmu = NULL; /* force fault instead of UAF */
->  }
->  
+Build changes
+-------------
+
+  * Linux: xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f -> xe-pw-173108v1
+
+  IGT_9078: 9078
+  xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f: 43b9a5e9d30783bb6f4d7dacdd1739184666940f
+  xe-pw-173108v1: 173108v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173108v1/index.html
+
+--===============0953128101103128363==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe: Read scheduler message opcode under lock</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173108/">https://patchwork.freedesktop.org/series/173108/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173108v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173108v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f_BAT -&gt; xe-pw-173108v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 12)</h2>
+<p>Missing    (1): bat-bmg-2 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f -&gt; xe-pw-173108v1</li>
+</ul>
+<p>IGT_9078: 9078<br />
+  xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f: 43b9a5e9d30783bb6f4d7dacdd1739184666940f<br />
+  xe-pw-173108v1: 173108v1</p>
+
+</body>
+</html>
+
+--===============0953128101103128363==--
