@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63B12C61DD3
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 17:35:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91ED9C624D3
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 17:37:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12ECF10EE01;
-	Tue,  1 Sep 2026 17:35:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BC2A10EE01;
+	Tue,  1 Sep 2026 17:37:30 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F037710EE01;
- Tue,  1 Sep 2026 17:35:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8305443709200060402=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C26F10EE01;
+ Tue,  1 Sep 2026 17:37:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Separate_GGTT_pools_for_sub?=
- =?utf-8?q?missions_and_VFs_provisioning_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/shrinker=3A_Runtim?=
+ =?utf-8?q?e_PM_and_freed_page_accounting_fixes?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 01 Sep 2026 17:35:54 -0000
-Message-ID: <178828415497.107763.6998571140594896106@61270ab9df2a>
+Date: Tue, 01 Sep 2026 17:37:29 -0000
+Message-ID: <178828424924.107763.14231290566679156956@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260901164435.1395260-1-piotr.piorkowski@intel.com>
-In-Reply-To: <20260901164435.1395260-1-piotr.piorkowski@intel.com>
+References: <20260901173059.455469-1-shuicheng.lin@intel.com>
+In-Reply-To: <20260901173059.455469-1-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,79 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8305443709200060402==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Separate GGTT pools for submissions and VFs provisioning (rev4)
-URL   : https://patchwork.freedesktop.org/series/171735/
-State : success
+Series: drm/xe/shrinker: Runtime PM and freed page accounting fixes
+URL   : https://patchwork.freedesktop.org/series/173169/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5668-b8f17b16c0f8638b9df4f090511e3ae97210eb77_BAT -> xe-pw-171735v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e7b0af3a8ab19a4ce60dccd668d3203b24848f8d
+Author: Shuicheng Lin <shuicheng.lin@intel.com>
+Date:   Tue Sep 1 17:30:59 2026 +0000
 
-Summary
--------
+    drm/xe/shrinker: Take a runtime PM ref before shrinking non-system memory
+    
+    __xe_shrinker_walk() walks the SYSTEM and TT LRUs without a runtime PM
+    reference.  Shrinking a bo outside system memory invalidates its GPU
+    mappings, which needs the device resumed, so while it is runtime
+    suspended the page table zap trips an assert and the TLB invalidation
+    returns -ENODEV:
+    
+      WARNING: drivers/gpu/drm/xe/xe_bo.c:770 at xe_bo_move_notify+0x1fc/0x450 [xe]
+       xe_bo_shrink+0x20f/0x2b0 [xe]
+       __xe_shrinker_walk+0x174/0x410 [xe]
+       xe_shrinker_scan+0x10c/0x1e0 [xe]
+       do_shrink_slab+0x176/0x7e0
+       drop_caches_sysctl_handler+0x9c/0xf0
+    
+    Take a reference before walking a memory type other than XE_PL_SYSTEM
+    and stop there if the device is not active, queueing the shrinker PM
+    worker so a later scan can pick those bos up.  Stop the walk once the
+    scan target is met, so a satisfied scan does not wake the device.
+    System memory is still reclaimed while the device is suspended.
+    
+    Gate this on xe_device_is_l2_flush_optimized(), the same condition under
+    which xe_bo_trigger_rebind() issues the invalidation for a non-fault-mode
+    vm, so reclaim is unaffected elsewhere.  The System CCS copy already has
+    its own reference in xe_bo_shrink().
+    
+    Only a non-fault-mode vm can reach this, since a fault-mode vm requires
+    LR mode and that holds a runtime PM reference for the vm's lifetime.
+    
+    Reproduced with igt@xe_madvise@dontneed-before-exec while the GPU is
+    runtime suspended.
+    
+    v2: simplify needs_rpm check. (Matt)
+        retarget Fixes tag since the issue occurs with the non-fault-mode
+        path added by 4e7ebff69aed.
+    v3: handle this in xe_shrinker.c instead of xe_bo.c (Thomas)
+    v4: stop the walk once the scan target is met. (Sashiko)
+    
+    Fixes: 4e7ebff69aed ("drm/xe/xe3p_lpg: flush shrinker bo cachelines manually")
+    Assisted-by: Claude:claude-opus-5
+    Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
++ /mt/dim checkpatch b8f17b16c0f8638b9df4f090511e3ae97210eb77 drm-intel
+8ae53bc482fb drm/xe/shrinker: Do not discard freed pages on error
+-:21: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: or Link: with a URL to the report
+#21: 
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Fixes: 00c8efc3180f ("drm/xe: Add a shrinker for xe bos")
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5668-b8f17b16c0f8638b9df4f090511e3ae97210eb77 -> xe-pw-171735v4
-
-  IGT_9078: 9078
-  xe-5668-b8f17b16c0f8638b9df4f090511e3ae97210eb77: b8f17b16c0f8638b9df4f090511e3ae97210eb77
-  xe-pw-171735v4: 171735v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171735v4/index.html
-
---===============8305443709200060402==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Separate GGTT pools for submissions and VFs provisioning (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/171735/">https://patchwork.freedesktop.org/series/171735/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171735v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171735v4/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+e7b0af3a8ab1 drm/xe/shrinker: Take a runtime PM ref before shrinking non-system memory
 
 
-    <h1>CI Bug Log - changes from xe-5668-b8f17b16c0f8638b9df4f090511e3ae97210eb77_BAT -&gt; xe-pw-171735v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5668-b8f17b16c0f8638b9df4f090511e3ae97210eb77 -&gt; xe-pw-171735v4</li>
-</ul>
-<p>IGT_9078: 9078<br />
-  xe-5668-b8f17b16c0f8638b9df4f090511e3ae97210eb77: b8f17b16c0f8638b9df4f090511e3ae97210eb77<br />
-  xe-pw-171735v4: 171735v4</p>
-
-</body>
-</html>
-
---===============8305443709200060402==--
