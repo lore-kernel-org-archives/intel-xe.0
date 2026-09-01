@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 173FDC624D4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46029C624D7
 	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 21:12:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A177E10EF32;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9C2C10EF33;
 	Tue,  1 Sep 2026 21:12:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P7ZeyMBR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UOlStckq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1388510EF2F
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 21:12:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B067110EF2C
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 21:12:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788297133; x=1819833133;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1eCPXp5FS9tOt9aOO8Eb1NSZ1UkiSPhltj892fGco88=;
- b=P7ZeyMBRm3eSL0v1voRUX7b/wu6CQ6N7omCmK0jK4yHXQXWbBe9V6tro
- tx9TyxjeSfq/+cmXg5UyPlztVQt1qHPd4YqQJcGHmC9vO/5+r862lQBPt
- Lw2k7YtW4i/v8kKYNev4wXgO255sXS/lDpiPovs+b5oJrtiU2RohaaPxo
- 9G0l/RrmSAuxbd1xEPInFcY1BJr2eDQQOlRLzmaKDoJVj4kvEHmTCXEId
- N3Y/u8D0hNHh+IwN9TF09YB0jCvkM677pEv8Ym9478cXMVqfe78c/KSPT
- Q5tehdtt3S/GmzsIGuJF0t0y6opSuUKNJrv22D0sD7fWtRFEHGaKIhT5L g==;
-X-CSE-ConnectionGUID: Yrkgk7ZTSvmj0rcoXrznjw==
-X-CSE-MsgGUID: EZn7JGnySlCBfGDjwYTTPQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="92562327"
-X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="92562327"
+ t=1788297132; x=1819833132;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rNom7rY25YVuhnuDRjSqTKD7s5kQh5SfjqqRRFixFhM=;
+ b=UOlStckqqGlPG2ccoRBuLqV4FCtuI43l9lMvkaFNi1N6VJKdR5FyJsht
+ gUAV70v+IftsFCqBQWpr3dAJY5RWDkcsl/a68MC5BI7ALKED9MfvvAk4c
+ aoQi5FPlQqqKpgqKeY18umFmOS3XeSEf81BtefGdaWDKe72ELq7PJGvC1
+ y9LjCwiXMEYdBga9Ti7T0mvWYkQ/6CNbAMo6JFmMMhKfPByhXevQK3gtJ
+ gIqlx5pXD2N9Nb1PK4Z5SkYZ8p9skyPrwZR+EGliD+U/oX2HjwZ8ArvRp
+ MFio8tSNMfyJpsA80Wtx1IzrqZhiDq7u9sMoCjdsmXvL1k/klCISCCAwj A==;
+X-CSE-ConnectionGUID: hQ97yNgQSy6matuJcIZD8A==
+X-CSE-MsgGUID: l1gucgWaQJahe56fPyfwzw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="92562326"
+X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="92562326"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Sep 2026 14:12:12 -0700
-X-CSE-ConnectionGUID: fVt8wGVxQRuX3Rp632WcZQ==
-X-CSE-MsgGUID: gVzRY5wMS92UXzuKW1OeGg==
+X-CSE-ConnectionGUID: jPJBM2hVTaCzrVmi1wfsyw==
+X-CSE-MsgGUID: dbAF+ZNIQPCIy+EazkQVAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="272988126"
+X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="272988123"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Sep 2026 14:12:12 -0700
@@ -46,13 +46,10 @@ To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com, michal.wajdeczko@intel.com,
  aravind.iddamsetty@intel.com, mallesh.koujalagi@intel.com,
  alan.previn.teres.alexis@intel.com, julia.filipchuk@intel.com
-Subject: [PATCH v2 1/5] drm/xe/guc: Use different error codes for GuC load
- errors
-Date: Tue,  1 Sep 2026 14:12:06 -0700
-Message-ID: <20260901211204.131972-8-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v2 0/5] Use SIG_ID logs for GuC component
+Date: Tue,  1 Sep 2026 14:12:05 -0700
+Message-ID: <20260901211204.131972-7-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260901211204.131972-7-umesh.nerlige.ramappa@intel.com>
-References: <20260901211204.131972-7-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,104 +66,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-
-Instead of always returning -EPROTO no matter what goes wrong, use
-different error codes based on the error type.
-
-v2: split to its own patch
+Add SIG ID logging support for some parts of the GuC interface code.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- drivers/gpu/drm/xe/xe_guc.c | 22 ++++++++++++----------
- 1 file changed, 12 insertions(+), 10 deletions(-)
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index c7f8bbd4cb92..5285d4cecbc8 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1144,8 +1144,8 @@ static void print_load_status_err(struct xe_gt *gt, u32 status)
-  * Check GUC_STATUS looking for known terminal states (either completion or
-  * failure) of either the microkernel status field or the boot ROM status field.
-  *
-- * Returns 1 for successful completion, -1 for failure and 0 for any
-- * intermediate state.
-+ * Returns 0 for successful completion, -EBUSY for any intermediate state and
-+ * other errno values for failure cases.
-  */
- static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
- {
-@@ -1157,20 +1157,22 @@ static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
- 
- 	switch (ukernel) {
- 	case XE_GUC_LOAD_STATUS_READY:
--		return 1;
-+		return 0;
- 	case XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH:
- 	case XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH:
- 	case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
- 	case XE_GUC_LOAD_STATUS_HWCONFIG_ERROR:
- 	case XE_GUC_LOAD_STATUS_BOOTROM_VERSION_MISMATCH:
-+		return -ENOEXEC;
- 	case XE_GUC_LOAD_STATUS_DPC_ERROR:
- 	case XE_GUC_LOAD_STATUS_EXCEPTION:
-+		return -EIO;
- 	case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
- 	case XE_GUC_LOAD_STATUS_MPU_DATA_INVALID:
- 	case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
- 	case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
- 	case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
--		return -1;
-+		return -EINVAL;
- 	}
- 
- 	switch (bootrom) {
-@@ -1184,7 +1186,7 @@ static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
- 	case XE_BOOTROM_STATUS_MPUMAP_INCORRECT:
- 	case XE_BOOTROM_STATUS_EXCEPTION:
- 	case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
--		return -1;
-+		return -ENOEXEC;
- 	}
- 
- 	if (++*tries >= 100) {
-@@ -1197,7 +1199,7 @@ static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
- 			  *status, ukernel, bootrom);
- 	}
- 
--	return 0;
-+	return -EBUSY;
- }
- 
- static int guc_wait_ucode(struct xe_guc *guc)
-@@ -1213,21 +1215,21 @@ static int guc_wait_ucode(struct xe_guc *guc)
- 	before_freq = xe_guc_pc_get_act_freq(guc_pc);
- 	before = ktime_get();
- 
--	ret = poll_timeout_us(load_result = guc_load_done(gt, &status, &tries), load_result,
--			      10 * USEC_PER_MSEC,
-+	ret = poll_timeout_us(load_result = guc_load_done(gt, &status, &tries),
-+			      load_result != -EBUSY, 10 * USEC_PER_MSEC,
- 			      GUC_LOAD_TIMEOUT_SEC * USEC_PER_SEC, false);
- 
- 	delta_ms = ktime_to_ms(ktime_sub(ktime_get(), before));
- 	act_freq = xe_guc_pc_get_act_freq(guc_pc);
- 	cur_freq = xe_guc_pc_get_cur_freq_fw(guc_pc);
- 
--	if (ret || load_result <= 0) {
-+	if (ret || load_result) {
- 		xe_gt_err(gt, "load failed: status = 0x%08X, time = %lldms, freq = %dMHz (req %dMHz)\n",
- 			  status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
- 			  xe_guc_pc_get_cur_freq_fw(guc_pc));
- 		print_load_status_err(gt, status);
- 
--		return -EPROTO;
-+		return ret ?: load_result;
- 	}
- 
- 	if (delta_ms > GUC_LOAD_TIME_WARN_MSEC) {
+Daniele Ceraolo Spurio (4):
+  drm/xe/guc: Use different error codes for GuC load errors
+  drm/xe/uc: Report DMA failure using SIGID
+  drm/xe/guc: Report major GuC failures using SIGID
+  drm/xe/guc: Report errors that cause a CT shutdown using SIGID
+
+Umesh Nerlige Ramappa (1):
+  drm/xe/guc: Use different error codes for CT errors
+
+ drivers/gpu/drm/xe/xe_guc.c    |  41 +++++-----
+ drivers/gpu/drm/xe/xe_guc_ct.c | 135 ++++++++++++++++++++++-----------
+ drivers/gpu/drm/xe/xe_uc_fw.c  |  13 +++-
+ 3 files changed, 122 insertions(+), 67 deletions(-)
+
 -- 
 2.55.0
 
