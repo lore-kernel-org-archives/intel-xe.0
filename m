@@ -4,43 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E89DC61DD3
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 20:48:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D36AFC61DD3
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 21:12:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 189DC10E65E;
-	Tue,  1 Sep 2026 20:48:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CFE410EF30;
+	Tue,  1 Sep 2026 21:12:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Zoud6/QI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HTtuzvKi";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 943B110E65E;
- Tue,  1 Sep 2026 20:48:31 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 6D01E600D9;
- Tue,  1 Sep 2026 20:48:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5ED11F000E9;
- Tue,  1 Sep 2026 20:48:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788295710;
- bh=FhCklhuhjBYALNQ61jeRR8SR37l2RaEJpAjPuo2Wn+I=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Zoud6/QIfjp+bAKAe1vbDqAwO8duJdtLyjMK3g9U78EfGXtUeh4nk9A8HnAs1SkII
- Hhlk2xnDjxYQLRUPCFjk2UkLiVhou4rEVOYa8WRFJRdGKykoN/A3+tdVMLF4OjnpSr
- y3uNmq49tdXIwWIHAapmf7PovK9g7WBSMVCyPlTGZF5OfsDa7sIZbloZa3QmHh7o1F
- bbyF3I9BSgbNt6YB6h2HzwZhKwKO9kwydGDoFPsAEMZW7DMUB396z2OrSBREzhYByC
- JuK5FqdhkyPGfJptHi07sPBHveT8u2JMuh1Nw05L4MY4fk6XYlXO19q3KQeiaxMXkz
- M8glaRyYQ/PVQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] drm/i915/psr: clear the Panel Replay error status register
-To: "Jake Steinman" <j@metarealtyinc.ca>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20260901203633.92628-1-j@metarealtyinc.ca>
-References: <20260901203633.92628-1-j@metarealtyinc.ca>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 01 Sep 2026 20:48:29 +0000
-Message-Id: <20260901204829.D5ED11F000E9@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54AA410EF2F
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 21:12:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788297133; x=1819833133;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=fe91FZwEvkxtzR77QT1JcIngqgb8mJz3uz5ypNvA9p4=;
+ b=HTtuzvKiKEvHg5OkRlhHFtCiv8L0RDwj/19QOZdz/3QFTwsvABOlkMk7
+ Kby4pi8fwXbopX6gXBBZBu/yxh+iXknyJbY4j1jXYehKdVvqs1lBEBJOr
+ oqS41H9rUL8tdsKkreF7sk1PE6DTz8DONPFpBDLnfEOHf+14eRrlpbk4G
+ CSJVpK8I/0H//vNab4dCyb9trLWeBOeijybjfd+Ekctnh+vf5Y0KT/S3k
+ krmXjNI86pp2Bsiv/5uduu6+fmzp08j1Wsp5WJ0JjxSrWiQ7icY1aD0jn
+ NENlGLR+V4iuT2/sHXtXD+cz8B/ZDs33qLlTE1GbBvIXV+vbsCE2qoYAm g==;
+X-CSE-ConnectionGUID: WPIQ7kdAQKS/jEGPsSF0mw==
+X-CSE-MsgGUID: 27tWrrLZRci7LGgGlP8+WQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="92562330"
+X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="92562330"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2026 14:12:12 -0700
+X-CSE-ConnectionGUID: N1EP8VuDRL2m6fBy/7n3gA==
+X-CSE-MsgGUID: FNLeOXjZSaSPtjeUTjpEbQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="272988132"
+Received: from orsosgc001.jf.intel.com ([10.54.56.63])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2026 14:12:12 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: daniele.ceraolospurio@intel.com, michal.wajdeczko@intel.com,
+ aravind.iddamsetty@intel.com, mallesh.koujalagi@intel.com,
+ alan.previn.teres.alexis@intel.com, julia.filipchuk@intel.com
+Subject: [PATCH v2 3/5] drm/xe/uc: Report DMA failure using SIGID
+Date: Tue,  1 Sep 2026 14:12:08 -0700
+Message-ID: <20260901211204.131972-10-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260901211204.131972-7-umesh.nerlige.ramappa@intel.com>
+References: <20260901211204.131972-7-umesh.nerlige.ramappa@intel.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,89 +65,67 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-New issues:
-- [High] The patch fails to clear the Panel Replay error status because it =
-evaluates a state variable (`psr->panel_replay_enabled`) that has already b=
-een cleared upon error detection.
+Convert the uC DMA failure error to use the xe_log_err() helper.
 
-Pre-existing issues:
-- [High] If `drm_dp_dpcd_readb` reads 0 bytes, the driver falsely assumes s=
-uccess and uses uninitialized stack variables.
---
+v2: add assert and simplify if/else
 
-commit 1da2d4e9ad55e4f8b758998afbe0f6630bae226f
-Author: Jake Steinman <j@metarealtyinc.ca>
-drm/i915/psr: clear the Panel Replay error status register
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Cc: Alan Previn Teres Alexis <alan.previn.teres.alexis@intel.com>
+Cc: Julia Filipchuk <julia.filipchuk@intel.com>
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_uc_fw.c | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
 
-This commit aims to fix an issue where the Panel Replay error status regist=
-er
-is never cleared on the sink. It updates intel_psr_short_pulse() to use
-the same conditional offset for clearing the error as is used for reading i=
-t.
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index e29878b255ba..df47bb8fc676 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -18,6 +18,7 @@
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_gt_types.h"
+ #include "xe_guc.h"
++#include "xe_log.h"
+ #include "xe_map.h"
+ #include "xe_mmio.h"
+ #include "xe_module.h"
+@@ -914,8 +915,12 @@ static int uc_fw_xfer(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
+ int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
+ {
+ 	struct xe_device *xe = uc_fw_to_xe(uc_fw);
++	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
+ 	int err;
+ 
++	xe_gt_assert(gt, uc_fw->type == XE_UC_FW_TYPE_GUC ||
++			 uc_fw->type == XE_UC_FW_TYPE_HUC);
++
+ 	/* make sure the status was cleared the last time we reset the uc */
+ 	xe_assert(xe, !xe_uc_fw_is_loaded(uc_fw));
+ 
+@@ -931,9 +936,11 @@ int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
+ 	return 0;
+ 
+ fail:
+-	drm_err(&xe->drm, "Failed to load %s firmware %s (%d)\n",
+-		xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+-		err);
++	if (uc_fw->type == XE_UC_FW_TYPE_GUC)
++		xe_log_err(gt, GUC, err, "Failed to load firmware %s\n", uc_fw->path);
++	else
++		xe_log_err(gt, HUC, err, "Failed to load firmware %s\n", uc_fw->path);
++
+ 	xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_LOAD_FAIL);
+ 	return err;
+ }
+-- 
+2.55.0
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
-915/display/intel_psr.c
-> index 52836496040ff..1d0372c5f895f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -3891,7 +3891,10 @@ void intel_psr_short_pulse(struct intel_dp *intel_=
-dp)
->  			"PSR_ERROR_STATUS unhandled errors %x\n",
->  			error_status & ~errors);
-
-[Severity: High]
-This is a pre-existing issue, but if drm_dp_dpcd_readb() reads 0 bytes, it
-returns 0.
-
-In psr_get_status_and_error_status(), the check if (ret !=3D 1) return ret;=
- will
-then return 0.
-
-Does this cause intel_psr_short_pulse() to wrongly treat the read as a succ=
-ess
-and proceed to use uninitialized stack variables status and error_status?
-
->  	/* clear status register */
-> -	drm_dp_dpcd_writeb(&intel_dp->aux, DP_PSR_ERROR_STATUS, error_status);
-> +	drm_dp_dpcd_writeb(&intel_dp->aux,
-> +			   psr->panel_replay_enabled ?
-> +			   DP_PANEL_REPLAY_ERROR_STATUS : DP_PSR_ERROR_STATUS,
-> +			   error_status);
-
-[Severity: High]
-Does this code still write to the wrong register during an error condition?
-
-If an error is detected, the earlier check in intel_psr_short_pulse() calls
-intel_psr_disable_locked():
-
-intel_psr_short_pulse()
-  if ((!psr->panel_replay_enabled && status =3D=3D DP_PSR_SINK_INTERNAL_ERR=
-OR) ||
-      (error_status & errors)) {
-      intel_psr_disable_locked(intel_dp);
-      ...
-  }
-
-intel_psr_disable_locked() unconditionally clears the flag:
-  intel_dp->psr.panel_replay_enabled =3D false;
-
-When we later attempt to clear the status register, psr->panel_replay_enabl=
-ed
-will evaluate to false, causing the error status to be incorrectly written =
-to
-DP_PSR_ERROR_STATUS instead of DP_PANEL_REPLAY_ERROR_STATUS.
-
-> =20
->  	if (!psr->panel_replay_enabled) {
->  		psr_alpm_check(intel_dp);
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260901203633.9262=
-8-1-j@metarealtyinc.ca?part=3D1
