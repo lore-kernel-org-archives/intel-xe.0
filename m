@@ -4,61 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7B7FC624C6
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 08:33:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05332C61DD6
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 08:48:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67BB910E3BA;
-	Tue,  1 Sep 2026 08:33:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF03E10EACF;
+	Tue,  1 Sep 2026 08:48:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H4YcP6tl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nKn6NC59";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9290510E3BA
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 08:33:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D5C710EACF
+ for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 08:48:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788251605; x=1819787605;
+ t=1788252499; x=1819788499;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=vDaeRk6s7Z6Vpp4mhZ696s6+xociHuD+I6UqFHTtMNE=;
- b=H4YcP6tl23XPMg41LBuxjrduEzRvaWU0sa+u+wgpDds1ye4SwXXRoDez
- 5bOFWXYOL1vwwFv/voqw/DxTS4cgFHZJL18Bdq/lQmXm+PDTKt1lA9mFN
- l0M0sQZjXyBbEt0Pw5N8OiITSojylv3Sqzk4X2xtT07kFGUfyX9r2NxKl
- pTI1GFYBXKjcU8GXtRNEM5ceLj2zhOpbi+l7izSbpzfU4u3Vtuuf0Lqk9
- 9YJWxJbeMygKbi8sfFqMd4Q4RM0L1i/Iqfu0PGfE1jruWtiHSZCKpp37x
- XCbEsgsJMHRPhK7Yu+JhpIqehMtTJldZAmHtF7DHXgL1akzKSzqEYaOgS Q==;
-X-CSE-ConnectionGUID: +Z6WMdXUToi2HpPRp7vHBQ==
-X-CSE-MsgGUID: eXyJ5ME7SdGF7CLgHUXk8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11892"; a="88683180"
-X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="88683180"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2026 01:33:25 -0700
-X-CSE-ConnectionGUID: b+psR3vASBm/3Ba0MKHjtg==
-X-CSE-MsgGUID: qWQ3lG+lRAeN9R8PtLdkbw==
+ bh=5dLzCR3NGNvpzSTej1a/6Qzt6LhqvDCagjbnNRG36II=;
+ b=nKn6NC59J6oTA1gmeXOEwy2NlbtLjt7frPM0mAz9uzuvLq105CwxjeUL
+ wu6p7d02HYyO/oJ6dgJny/eKQBefOQb1wQbH0BAun7N2LNuqX3Kz0/ih9
+ f1FOVRJcvsiKd5kfl0AW8ofw+AkKZ5fp8H0e+YhPMkXgXGin9yuR7Z1BZ
+ 5sGRAxchMwQ0b76BIwYTDbTPzqLg1GucI7diebfTo2guhGr+qKhSEz4cr
+ pUJxP1AOkHW70ZnuF6e1w4Rdtwk8xEA9vrffYtYZuxP2YryaOlJi1PBHO
+ vtKm4j5lzR7XDuGNAwxympdyypkH/e8Eljx6yEfmXOedVwdcb+O4cR+EI w==;
+X-CSE-ConnectionGUID: LVIhSZLCQ3S526PJQkzEIw==
+X-CSE-MsgGUID: oxrwV+swRgiKiqfWBNVi4Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11892"; a="100184206"
+X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="100184206"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2026 01:48:18 -0700
+X-CSE-ConnectionGUID: cuCZpWPfRo++TSnn9dbIuw==
+X-CSE-MsgGUID: g/fB158OT/2Ij/ffDegcwg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="272542240"
+X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="273218634"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.7])
  ([10.245.245.7])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2026 01:33:23 -0700
-Message-ID: <962d9e46-0c9b-4964-9a82-765bfd7a8122@intel.com>
-Date: Tue, 1 Sep 2026 09:33:21 +0100
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2026 01:48:17 -0700
+Message-ID: <5dd32f3a-901a-4fb0-9517-6298a1f71eac@intel.com>
+Date: Tue, 1 Sep 2026 09:48:14 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] drm/xe/vram: add early VRAM health check
-To: "Summers, Stuart" <stuart.summers@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: "torvalds@linux-foundation.org" <torvalds@linux-foundation.org>,
- "Brost, Matthew" <matthew.brost@intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH 1/5] drm/xe/migrate: support 4K PTEs for identity map
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 References: <20260828151405.662533-7-matthew.auld@intel.com>
- <20260828151405.662533-12-matthew.auld@intel.com>
- <1e9b3dd558f064b431f90bad76437b52d6d853b0.camel@intel.com>
+ <20260828151405.662533-8-matthew.auld@intel.com>
+ <apHljQtQ+Ojgtw2P@gsse-cloud1.jf.intel.com>
 Content-Language: en-GB
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <1e9b3dd558f064b431f90bad76437b52d6d853b0.camel@intel.com>
+In-Reply-To: <apHljQtQ+Ojgtw2P@gsse-cloud1.jf.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -75,550 +73,197 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 28/08/2026 17:37, Summers, Stuart wrote:
-> On Fri, 2026-08-28 at 16:14 +0100, Matthew Auld wrote:
->> During early probe, use the last page as a canary for BAR sizing, CCS
->> sizing, identity map setup etc. If something is wrong the last page
->> is
->> where we will likely find it. Hit it with everything we have. For now
+On 28/08/2026 20:46, Matthew Brost wrote:
+> On Fri, Aug 28, 2026 at 04:14:07PM +0100, Matthew Auld wrote:
+>> When VRAM limit (usable_size) is no longer 2M aligned (e.g. because flat
+>> CCS storage size rounds it down to 4K), we must map the tail of the
+>> identity mapping using 4K pages.
+>>
+>> This removes the 2M alignment assert (which pops) and introduces a 4K
+>> fallback in the identity map programming loop to handle the last 2M
+>> chunk of usable VRAM.
+>>
+>> Might be possible to skip backporting this. The assert that pops should
+>> be harmless and is only on debug builds plus only a stray write would
+>> hit CCS, which technically get mapped.
+>>
 > 
-> Sorry coming in a little late here... but why only the last page and
-> not implementing a full per byte/bit memory test to trigger any
-> potential memory scanning on bit errors? Or is this not the intent
-> here?
-
-Current scope was just to catch obvious sizing errors, which will likely 
-show up in the last page (BAR, CCS, identity map). In particular this 
-was meant as a regression test for the bug Linus hit, where we had 
-incorrect VRAM/CCS sizing.
-
-Also, this is hopefully non-destructive, since it gets triggered in CI 
-on probe. Also means it needs to be fast. We could extend this in the 
-future as needed.
-
+> This LGTM, better than what I had in mind. One question though.
 > 
-> If this is a production scenario, the last page makes sense, but if
-> we're already wrapping this in a debug config...
-> 
-> Thanks,
-> Stuart
-> 
->> this is gated behind a debug config option, so shouldn't trigger on
->> production.
->>
->> Main motivation is around CCS sizing where on some BMG cards the CCS
->> offset is programmed misaligned, for whatever reason, and our
->> handling
->> of that was busted, as found by Linus, leading to some amount of CCS
->> storage getting pulled into the allocator as normal VRAM.
->>
->> Nothing in our CI farm has such a misaligned offset it would seem,
->> however I did get this to pop on my b570, which does also have the
->> misaligned CCS offset:
->>
->>    Tile 0: Running VRAM memtest...
->>    Tile 0: VRAM bounds overlap CCS region! VRAM sizing is incorrect.
->>
->> With the fix from Linus, this goes away:
->>
->>    Tile 0: Running VRAM memtest...
->>    Tile 0: VRAM memtest completed.
->>
 >> Assisted-by: Gemini:gemini-3.1-pro-preview
 >> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 >> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Cc: Linus Torvalds <torvalds@linux-foundation.org>
 >> Cc: Matthew Brost <matthew.brost@intel.com>
 >> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_device.c     |   8 +
->>   drivers/gpu/drm/xe/xe_migrate.c    |  64 ++++++++
->>   drivers/gpu/drm/xe/xe_migrate.h    |   6 +
->>   drivers/gpu/drm/xe/xe_tile_types.h |   4 +
->>   drivers/gpu/drm/xe/xe_vram.c       | 241
->> +++++++++++++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_vram.h       |  10 ++
->>   6 files changed, 333 insertions(+)
+>>   drivers/gpu/drm/xe/xe_migrate.c | 57 +++++++++++++++++++++------------
+>>   1 file changed, 37 insertions(+), 20 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_device.c
->> b/drivers/gpu/drm/xe/xe_device.c
->> index 82e0a555fa69..80008bf5776c 100644
->> --- a/drivers/gpu/drm/xe/xe_device.c
->> +++ b/drivers/gpu/drm/xe/xe_device.c
->> @@ -1051,6 +1051,10 @@ int xe_device_probe(struct xe_device *xe)
->>          if (err)
->>                  return err;
->>   
->> +       err = xe_vram_reserve_memtest_bo(xe);
->> +       if (err)
->> +               return err;
->> +
->>          for_each_tile(tile, xe, id) {
->>                  err = xe_tile_init(tile);
->>                  if (err)
->> @@ -1067,6 +1071,10 @@ int xe_device_probe(struct xe_device *xe)
->>                          return err;
->>          }
->>   
->> +       err = xe_vram_memtest(xe);
->> +       if (err)
->> +               return err;
->> +
->>          err = xe_pagefault_init(xe);
->>          if (err)
->>                  return err;
->> diff --git a/drivers/gpu/drm/xe/xe_migrate.c
->> b/drivers/gpu/drm/xe/xe_migrate.c
->> index 0bf000d7c901..ff45c24d8889 100644
+>> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+>> index 75b83687f1b5..0bf000d7c901 100644
 >> --- a/drivers/gpu/drm/xe/xe_migrate.c
 >> +++ b/drivers/gpu/drm/xe/xe_migrate.c
->> @@ -2650,3 +2650,67 @@ void xe_migrate_job_lock_assert(struct
->> xe_exec_queue *q)
->>   #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
->>   #include "tests/xe_migrate.c"
->>   #endif
->> +
->> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
->> +int xe_migrate_debug_ccs_overlap(struct xe_migrate *m,
->> +                                struct xe_bo *scratch_bo,
->> +                                bool write_to_ccs)
->> +{
->> +       struct xe_device *xe = tile_to_xe(m->tile);
->> +       struct xe_gt *gt = m->tile->primary_gt;
->> +       struct dma_fence *fence;
->> +       struct xe_bb *bb;
->> +       struct xe_sched_job *job;
->> +       u64 first_page_dpa, clear_L0_ofs, scratch_dpa,
->> scratch_L0_ofs;
->> +
->> +       if (!xe_device_has_flat_ccs(xe))
->> +               return -EINVAL;
->> +
->> +       first_page_dpa = xe_vram_region_dpa_base(m->tile->mem.vram);
->> +       clear_L0_ofs = xe_migrate_vram_ofs(xe, first_page_dpa, true);
->> +
->> +       scratch_dpa = xe_bo_addr(scratch_bo, 0, XE_PAGE_SIZE);
->> +       scratch_L0_ofs = xe_migrate_vram_ofs(xe, scratch_dpa, false);
->> +
->> +       bb = xe_bb_new(gt, EMIT_COPY_CCS_DW + 1, xe->info.has_usm);
->> +       if (IS_ERR(bb)) {
->> +               drm_warn(&xe->drm, "Failed to create bb for VRAM
->> overlap check\n");
->> +               return PTR_ERR(bb);
->> +       }
->> +
->> +       /* 4MB payload = 8KB CCS metadata */
->> +       if (write_to_ccs) {
->> +               emit_copy_ccs(gt, bb, clear_L0_ofs, true,
->> +                             scratch_L0_ofs, false, SZ_4M);
->> +       } else {
->> +               emit_copy_ccs(gt, bb, scratch_L0_ofs, false,
->> +                             clear_L0_ofs, true, SZ_4M);
->> +       }
->> +
->> +       bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
->> +
->> +       job = xe_bb_create_migration_job(m->q, bb,
->> +                                        xe_migrate_batch_base(m, xe-
->>> info.has_usm),
->> +                                        0);
->> +       if (!IS_ERR(job)) {
->> +               xe_sched_job_add_migrate_flush(job, MI_FLUSH_DW_CCS);
->> +
->> +               mutex_lock(&m->job_mutex);
->> +               xe_sched_job_arm(job);
->> +
->> +               fence = dma_fence_get(&job->drm.s_fence->finished);
->> +               xe_sched_job_push(job);
->> +               mutex_unlock(&m->job_mutex);
->> +
->> +               dma_fence_wait(fence, false);
->> +               dma_fence_put(fence);
->> +       } else {
->> +               drm_warn(&xe->drm, "Failed to create job for VRAM
->> overlap check\n");
->> +               xe_bb_free(bb, NULL);
->> +               return PTR_ERR(job);
->> +       }
->> +
->> +       xe_bb_free(bb, NULL);
->> +       return 0;
->> +}
->> +#endif
->> diff --git a/drivers/gpu/drm/xe/xe_migrate.h
->> b/drivers/gpu/drm/xe/xe_migrate.h
->> index c3a268b01768..a9acc62f78f0 100644
->> --- a/drivers/gpu/drm/xe/xe_migrate.h
->> +++ b/drivers/gpu/drm/xe/xe_migrate.h
->> @@ -182,4 +182,10 @@ static inline void
->> xe_migrate_job_lock_assert(struct xe_exec_queue *q)
->>   void xe_migrate_job_lock(struct xe_migrate *m, struct xe_exec_queue
->> *q);
->>   void xe_migrate_job_unlock(struct xe_migrate *m, struct
->> xe_exec_queue *q);
->>   
->> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
->> +int xe_migrate_debug_ccs_overlap(struct xe_migrate *m,
->> +                                struct xe_bo *scratch_bo,
->> +                                bool write_to_ccs);
->> +#endif
->> +
->>   #endif
->> diff --git a/drivers/gpu/drm/xe/xe_tile_types.h
->> b/drivers/gpu/drm/xe/xe_tile_types.h
->> index 0048100ccb72..e1368c04846a 100644
->> --- a/drivers/gpu/drm/xe/xe_tile_types.h
->> +++ b/drivers/gpu/drm/xe/xe_tile_types.h
->> @@ -97,6 +97,10 @@ struct xe_tile {
->>                   * Only main GT has page reclaim list allocations.
->>                   */
->>                  struct xe_sa_manager *reclaim_pool;
->> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
->> +               /** @mem.memtest_bo: VRAM overlap check BO */
->> +               struct xe_bo *memtest_bo;
->> +#endif
->>          } mem;
->>   
->>          /** @sriov: tile level virtualization data */
->> diff --git a/drivers/gpu/drm/xe/xe_vram.c
->> b/drivers/gpu/drm/xe/xe_vram.c
->> index 0a2f1ab8416e..4a79580c5315 100644
->> --- a/drivers/gpu/drm/xe/xe_vram.c
->> +++ b/drivers/gpu/drm/xe/xe_vram.c
->> @@ -17,8 +17,11 @@
->>   #include "xe_device.h"
->>   #include "xe_force_wake.h"
->>   #include "xe_gt_mcr.h"
->> +#include "xe_map.h"
->> +#include "xe_migrate.h"
->>   #include "xe_mmio.h"
->>   #include "xe_sriov.h"
->> +#include "xe_tile.h"
->>   #include "xe_tile_sriov_vf.h"
->>   #include "xe_ttm_vram_mgr.h"
->>   #include "xe_vram.h"
->> @@ -403,3 +406,241 @@ resource_size_t
->> xe_vram_region_actual_physical_size(const struct xe_vram_region
->>          return vram ? vram->actual_physical_size : 0;
->>   }
->>   EXPORT_SYMBOL_IF_KUNIT(xe_vram_region_actual_physical_size);
->> +
->> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
->> +static void memtest_bo_cleanup(void *arg)
->> +{
->> +       struct xe_device *xe = arg;
->> +
->> +       xe_vram_free_memtest_bos(xe);
->> +}
->> +
->> +int xe_vram_reserve_memtest_bo(struct xe_device *xe)
->> +{
->> +       struct xe_tile *tile;
->> +       u8 id;
->> +
->> +       if (IS_SRIOV_VF(xe))
->> +               return 0;
->> +
->> +       for_each_tile(tile, xe, id) {
->> +               u64 vram_size;
->> +
->> +               if (!tile->mem.vram)
->> +                       continue;
->> +
->> +               if (tile->mem.vram->io_size < tile->mem.vram-
->>> usable_size) {
->> +                       drm_info(&xe->drm,
->> +                                "Tile %d: Small-BAR system detected,
->> skipping VRAM memtest\n",
->> +                                id);
->> +                       continue;
->> +               }
->> +
->> +               vram_size = tile->mem.vram->usable_size;
->> +
->> +               tile->mem.memtest_bo =
->> xe_bo_create_pin_map_at_novm(xe, tile, SZ_64K,
->> +
->> vram_size - SZ_64K,
->> +
->> ttm_bo_type_kernel,
->> +
->> XE_BO_FLAG_VRAM_IF_DGFX(tile),
->> +
->> 0, false);
->> +               if (IS_ERR(tile->mem.memtest_bo)) {
->> +                       drm_warn(&xe->drm, "Tile %d: Failed to
->> reserve memtest BO\n", id);
->> +                       tile->mem.memtest_bo = NULL;
->> +                       continue;
->> +               }
->> +
->> +               drm_info(&xe->drm, "Tile %d: Reserved memtest BO at
->> offset 0x%llx\n",
->> +                        id, vram_size - SZ_64K);
->> +       }
->> +
->> +       return devm_add_action_or_reset(xe->drm.dev,
->> memtest_bo_cleanup, xe);
->> +}
->> +
->> +void xe_vram_free_memtest_bos(struct xe_device *xe)
->> +{
->> +       struct xe_tile *tile;
->> +       u8 id;
->> +
->> +       for_each_tile(tile, xe, id) {
->> +               if (tile->mem.memtest_bo) {
->> +                       xe_bo_unpin_map_no_vm(tile->mem.memtest_bo);
->> +                       tile->mem.memtest_bo = NULL;
->> +               }
->> +       }
->> +}
->> +
->> +int xe_vram_memtest(struct xe_device *xe)
->> +{
->> +       struct xe_tile *tile;
->> +       u8 id;
->> +       int err = 0;
->> +
->> +       if (IS_SRIOV_VF(xe))
->> +               return 0;
->> +
->> +       for_each_tile(tile, xe, id) {
->> +               struct xe_bo *last_page_bo = tile->mem.memtest_bo;
->> +               struct dma_fence *fence;
->> +               bool overlap = false;
->> +               int i;
->> +               u8 val;
->> +
->> +               if (!last_page_bo || !tile->migrate)
->> +                       continue;
->> +
->> +               drm_info(&xe->drm, "Tile %d: Running VRAM
->> memtest...\n", id);
->> +
->> +               /* CPU write and readback first and last byte of the
->> last page */
->> +               xe_map_wr(xe, &last_page_bo->vmap, 0, u8, 0xA5);
->> +               xe_map_wr(xe, &last_page_bo->vmap, SZ_64K - 1, u8,
->> 0x5A);
->> +
->> +               val = xe_map_rd(xe, &last_page_bo->vmap, 0, u8);
->> +               if (drm_WARN(&xe->drm, val != 0xA5,
->> +                            "Tile %d: CPU memtest failed at offset 0
->> (expected 0xA5, got 0x%02x)\n",
->> +                            id, val)) {
->> +                       err = -EIO;
->> +                       goto unpin;
->> +               }
->> +
->> +               val = xe_map_rd(xe, &last_page_bo->vmap, SZ_64K - 1,
->> u8);
->> +               if (drm_WARN(&xe->drm, val != 0x5A,
->> +                            "Tile %d: CPU memtest failed at offset
->> 65535 (expected 0x5A, got 0x%02x)\n",
->> +                            id, val)) {
->> +                       err = -EIO;
->> +                       goto unpin;
->> +               }
->> +
->> +               /* Non-CCS access via GPU on the last page */
->> +               xe_bo_lock(last_page_bo, false);
->> +               fence = xe_migrate_clear(tile->migrate, last_page_bo,
->> +                                        last_page_bo->ttm.resource,
->> +
->> XE_MIGRATE_CLEAR_FLAG_BO_DATA);
->> +               xe_bo_unlock(last_page_bo);
->> +
->> +               if (!IS_ERR(fence)) {
->> +                       dma_fence_wait(fence, false);
->> +                       dma_fence_put(fence);
->> +               } else {
->> +                       err = PTR_ERR(fence);
->> +                       goto unpin;
->> +               }
->> +
->> +               val = xe_map_rd(xe, &last_page_bo->vmap, 0, u8);
->> +               if (drm_WARN(&xe->drm, val != 0x00,
->> +                            "Tile %d: GPU memtest clear failed at
->> offset 0 (expected 0x00, got 0x%02x)\n",
->> +                            id, val)) {
->> +                       err = -EIO;
->> +                       goto unpin;
->> +               }
->> +
->> +               /*
->> +                * Check for CCS overlap on the root tile.
->> +                *
->> +                * TODO: maybe extend if we ever get multi-tile +
->> CCS. Pay
->> +                * special attention to the l2 flush below. Currently
->> that is
->> +                * hard coded to the root tile.
->> +                */
->> +               if (!id && xe_device_has_flat_ccs(xe) &&
->> +                   GRAPHICS_VERx100(xe) >= 2000) {
->> +                       struct xe_bo *scratch_bo_before;
->> +                       struct xe_bo *scratch_bo_after;
->> +
->> +                       scratch_bo_before =
->> xe_bo_create_pin_map_novm(xe, tile, SZ_64K,
->> +
->> ttm_bo_type_kernel,
->> +
->> XE_BO_FLAG_VRAM_IF_DGFX(tile),
->> +
->> false);
->> +                       if (IS_ERR(scratch_bo_before)) {
->> +                               err = PTR_ERR(scratch_bo_before);
->> +                               goto unpin;
->> +                       }
->> +
->> +                       scratch_bo_after =
->> xe_bo_create_pin_map_novm(xe, tile, SZ_64K,
->> +
->> ttm_bo_type_kernel,
->> +
->> XE_BO_FLAG_VRAM_IF_DGFX(tile),
->> +
->> false);
->> +                       if (IS_ERR(scratch_bo_after)) {
->> +                               xe_bo_unpin_map_no_vm(scratch_bo_befo
->> re);
->> +                               err = PTR_ERR(scratch_bo_after);
->> +                               goto unpin;
->> +                       }
->> +
->> +                       /* Save original CCS metadata for PA 0 + */
->> +                       err = xe_migrate_debug_ccs_overlap(tile-
->>> migrate, scratch_bo_before, false);
->> +                       if (err) {
->> +                               xe_bo_unpin_map_no_vm(scratch_bo_befo
->> re);
->> +                               xe_bo_unpin_map_no_vm(scratch_bo_afte
->> r);
->> +                               goto unpin;
->> +                       }
->> +
->> +                       /*
->> +                        * Fill last page. If there is CCS overlap in
->> the last
->> +                        * page this will snag the raw CCS storage.
->> +                        */
->> +                       xe_map_memset(xe, &last_page_bo->vmap, 0,
->> 0x5A, SZ_64K);
->> +                       xe_device_wmb(xe);
->> +
->> +                       /*
->> +                        * Global invalidation. Some BMG SKUs will
->> cache the BAR
->> +                        * writes in the GPU side VRAM cache. Make
->> sure above
->> +                        * writes are fully flushed out to VRAM, so
->> this is
->> +                        * hopefully more well behaved with the CCS
->> unit, if
->> +                        * there is indeed CCS overlap with normal
->> VRAM. Since
->> +                        * there is a separate CCS cache, the CCS
->> unit might not
->> +                        * respect the GPU VRAM cache for CCS
->> accesses, so opt
->> +                        * for being super careful here.
->> +                        */
->> +                       xe_device_l2_flush(xe, true);
->> +
->> +                       /* Use GPU to clear CCS state for PA 0 */
->> +                       xe_map_memset(xe, &scratch_bo_after->vmap, 0,
->> 0x00, SZ_64K);
->> +                       err = xe_migrate_debug_ccs_overlap(tile-
->>> migrate, scratch_bo_after, true);
->> +                       if (err) {
->> +                               xe_bo_unpin_map_no_vm(scratch_bo_befo
->> re);
->> +                               xe_bo_unpin_map_no_vm(scratch_bo_afte
->> r);
->> +                               goto unpin;
->> +                       }
->> +                       /*
->> +                        * Global invalidation. Ensure CCS caches
->> really are
->> +                        * nuked and the raw CCS data is visible in
->> VRAM, for
->> +                        * the below access.
->> +                        */
->> +                       xe_device_l2_flush(xe, true);
->> +
->> +                       /* Check if last_page_bo was corrupted by the
->> GPU CCS clear */
->> +                       for (i = 0; i < SZ_64K; i += 8) {
->> +                               u64 payload = xe_map_rd(xe,
->> &last_page_bo->vmap, i, u64);
->> +
->> +                               if (payload != 0x5A5A5A5A5A5A5A5AULL)
->> {
->> +                                       overlap = true;
->> +                                       break;
->> +                               }
->> +                       }
->> +
->> +                       /* Restore original CCS metadata for PA 0 +
->> */
->> +                       err = xe_migrate_debug_ccs_overlap(tile-
->>> migrate, scratch_bo_before, true);
->> +                       if (err)
->> +                               drm_warn(&xe->drm, "Failed to restore
->> CCS metadata\n");
->> +
->> +                       xe_bo_unpin_map_no_vm(scratch_bo_before);
->> +                       xe_bo_unpin_map_no_vm(scratch_bo_after);
->> +               }
->> +
->> +               if (drm_WARN(&xe->drm, overlap,
->> +                            "Tile %d: VRAM bounds overlap CCS
->> region! VRAM sizing is incorrect.\n",
->> +                            id)) {
->> +                       err = -EINVAL;
->> +                       goto unpin;
->> +               }
->> +
->> +               drm_info(&xe->drm, "Tile %d: VRAM memtest
->> completed.\n", id);
->> +
->> +unpin:
->> +               if (err)
->> +                       break;
->> +       }
->> +
->> +       xe_vram_free_memtest_bos(xe);
->> +
->> +       return err;
->> +}
->> +#endif
->> diff --git a/drivers/gpu/drm/xe/xe_vram.h
->> b/drivers/gpu/drm/xe/xe_vram.h
->> index dd1c8bf17922..38425d81f777 100644
->> --- a/drivers/gpu/drm/xe/xe_vram.h
->> +++ b/drivers/gpu/drm/xe/xe_vram.h
->> @@ -23,4 +23,14 @@ resource_size_t xe_vram_region_dpa_base(const
->> struct xe_vram_region *vram);
->>   resource_size_t xe_vram_region_usable_size(const struct
->> xe_vram_region *vram);
->>   resource_size_t xe_vram_region_actual_physical_size(const struct
->> xe_vram_region *vram);
->>   
->> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
->> +int xe_vram_reserve_memtest_bo(struct xe_device *xe);
->> +void xe_vram_free_memtest_bos(struct xe_device *xe);
->> +int xe_vram_memtest(struct xe_device *xe);
->> +#else
->> +static inline int xe_vram_reserve_memtest_bo(struct xe_device *xe) {
->> return 0; }
->> +static inline void xe_vram_free_memtest_bos(struct xe_device *xe) {}
->> +static inline int xe_vram_memtest(struct xe_device *xe) { return 0;
->> }
->> +#endif
->> +
->>   #endif
+>> @@ -87,7 +87,7 @@ struct xe_migrate {
+>>   #define MAX_PREEMPTDISABLE_TRANSFER SZ_8M /* Around 1ms. */
+>>   #define MAX_CCS_LIMITED_TRANSFER SZ_4M /* XE_PAGE_SIZE * (FIELD_MAX(XE2_CCS_SIZE_MASK) + 1) */
+>>   #define NUM_KERNEL_PDE 15
+>> -#define NUM_PT_SLOTS 32
+>> +#define NUM_PT_SLOTS 48
 > 
+> Why this change? Can't we just steal more PTs from user-space VM binds?
+> Did testing show that this was actually a problem?
+
+Yeah, my local v1 did exactly that. But I got doubts since it felt a bit 
+scary taking away slots from userspace and wasn't sure if there could be 
+some impact.
+
+Can revert back to that approach if you prefer? It should be somewhere 
+in my reflog.
+
+> 
+> Also, in general, power-of-two values are preferred.
+
+Yeah, I think it was just the assert:
+
+/* Must be a multiple of 64K to support all platforms */
+BUILD_BUG_ON(NUM_PT_SLOTS * XE_PAGE_SIZE % SZ_64K);
+
+So just went with the minimal to satisfy that. Will make this a 
+power-of-two instead if preferred.
+
+> 
+> Eventually, we'll be able to drop the need for these PTs once CPU binds
+> land as well [1].
+> 
+> Not blocker.
+> 
+> Matt
+> 
+> [1] https://patchwork.freedesktop.org/series/149888/
+> 
+>>   #define LEVEL0_PAGE_TABLE_ENCODE_SIZE SZ_2M
+>>   #define MAX_NUM_PTE 512
+>>   #define IDENTITY_OFFSET 256ULL
+>> @@ -163,22 +163,20 @@ static u64 xe_migrate_vram_ofs(struct xe_device *xe, u64 addr, bool is_comp_pte)
+>>   }
+>>   
+>>   static void xe_migrate_program_identity(struct xe_device *xe, struct xe_vm *vm, struct xe_bo *bo,
+>> -					u64 map_ofs, u64 vram_offset, u16 pat_index, u64 pt_2m_ofs)
+>> +					u64 map_ofs, u64 vram_offset, u16 pat_index, u64 pt_2m_ofs,
+>> +					u64 pt_4k_ofs)
+>>   {
+>>   	struct xe_vram_region *vram = xe->mem.vram;
+>>   	resource_size_t dpa_base = xe_vram_region_dpa_base(vram);
+>>   	u64 pos, ofs, flags;
+>>   	u64 entry;
+>> -	/* XXX: Unclear if this should be usable_size? */
+>> -	u64 vram_limit = xe_vram_region_actual_physical_size(vram) + dpa_base;
+>> +	u64 vram_limit = xe_vram_region_usable_size(vram) + dpa_base;
+>>   	u32 level = 2;
+>>   
+>>   	ofs = map_ofs + XE_PAGE_SIZE * level + vram_offset * 8;
+>>   	flags = vm->pt_ops->pte_encode_addr(xe, 0, pat_index, level,
+>>   					    true, 0);
+>>   
+>> -	xe_assert(xe, IS_ALIGNED(xe_vram_region_usable_size(vram), SZ_2M));
+>> -
+>>   	/*
+>>   	 * Use 1GB pages when possible, last chunk always use 2M
+>>   	 * pages as mixing reserved memory (stolen, WOCPM) with a single
+>> @@ -196,8 +194,24 @@ static void xe_migrate_program_identity(struct xe_device *xe, struct xe_vm *vm,
+>>   							    true, 0);
+>>   
+>>   			for (ofs = pt_2m_ofs; pos < vram_limit;
+>> -			     pos += SZ_2M, ofs += 8)
+>> +			     pos += SZ_2M, ofs += 8) {
+>> +				if (pos + SZ_2M > vram_limit) {
+>> +					entry = vm->pt_ops->pde_encode_bo(bo, pt_4k_ofs);
+>> +					xe_map_wr(xe, &bo->vmap, ofs, u64, entry);
+>> +
+>> +					flags = vm->pt_ops->pte_encode_addr(xe, 0,
+>> +									    pat_index,
+>> +									    level - 2,
+>> +									    true, 0);
+>> +
+>> +					for (ofs = pt_4k_ofs; pos < vram_limit;
+>> +					     pos += SZ_4K, ofs += 8)
+>> +						xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
+>> +					break;
+>> +				}
+>> +
+>>   				xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
+>> +			}
+>>   			break;	/* Ensure pos == vram_limit assert correct */
+>>   		}
+>>   
+>> @@ -242,16 +256,17 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+>>   	u16 pat_index = xe_cache_pat_idx(xe, XE_CACHE_WB);
+>>   	u8 id = tile->id;
+>>   	u32 num_entries = NUM_PT_SLOTS, num_level = vm->pt_root[id]->level;
+>> -#define VRAM_IDENTITY_MAP_COUNT	2
+>> -	u32 num_setup = num_level + VRAM_IDENTITY_MAP_COUNT;
+>> -#undef VRAM_IDENTITY_MAP_COUNT
+>> +#define VRAM_IDENTITY_MAP_PT_COUNT	4
+>> +	u32 num_setup = num_level + VRAM_IDENTITY_MAP_PT_COUNT;
+>> +#undef VRAM_IDENTITY_MAP_PT_COUNT
+>>   	u32 map_ofs, level, i;
+>>   	struct xe_bo *bo = m->pt_bo, *batch = tile->mem.kernel_bb_pool->bo;
+>> -	u64 entry, pt29_ofs;
+>> +	u64 entry;
+>>   
+>> -	/* PT30 & PT31 reserved for 2M identity map */
+>> -	pt29_ofs = xe_bo_size(bo) - 3 * XE_PAGE_SIZE;
+>> -	entry = vm->pt_ops->pde_encode_bo(bo, pt29_ofs);
+>> +	/* PT44..PT47 reserved for 4K and 2M identity map */
+>> +	u64 l1_pt_ofs = xe_bo_size(bo) - 5 * XE_PAGE_SIZE;
+>> +
+>> +	entry = vm->pt_ops->pde_encode_bo(bo, l1_pt_ofs);
+>>   	xe_pt_write(xe, &vm->pt_root[id]->bo->vmap, 0, entry);
+>>   
+>>   	map_ofs = (num_entries - num_setup) * XE_PAGE_SIZE;
+>> @@ -347,11 +362,12 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+>>   
+>>   	/* Identity map the entire vram at 256GiB offset */
+>>   	if (IS_DGFX(xe)) {
+>> -		u64 pt30_ofs = xe_bo_size(bo) - 2 * XE_PAGE_SIZE;
+>> +		u64 pt46_ofs = xe_bo_size(bo) - 2 * XE_PAGE_SIZE;
+>>   		resource_size_t actual_phy_size = xe_vram_region_actual_physical_size(xe->mem.vram);
+>>   
+>> +		u64 pt44_ofs = xe_bo_size(bo) - 4 * XE_PAGE_SIZE;
+>>   		xe_migrate_program_identity(xe, vm, bo, map_ofs, IDENTITY_OFFSET,
+>> -					    pat_index, pt30_ofs);
+>> +					    pat_index, pt46_ofs, pt44_ofs);
+>>   		xe_assert(xe, actual_phy_size <= (MAX_NUM_PTE - IDENTITY_OFFSET) * SZ_1G);
+>>   
+>>   		/*
+>> @@ -362,12 +378,13 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+>>   			u16 comp_pat_index = xe_cache_pat_idx(xe, XE_CACHE_NONE_COMPRESSION);
+>>   			u64 vram_offset = IDENTITY_OFFSET +
+>>   				DIV_ROUND_UP_ULL(actual_phy_size, SZ_1G);
+>> -			u64 pt31_ofs = xe_bo_size(bo) - XE_PAGE_SIZE;
+>> +			u64 pt47_ofs = xe_bo_size(bo) - XE_PAGE_SIZE;
+>>   
+>>   			xe_assert(xe, actual_phy_size <= (MAX_NUM_PTE - IDENTITY_OFFSET -
+>>   							  IDENTITY_OFFSET / 2) * SZ_1G);
+>> +			u64 pt45_ofs = xe_bo_size(bo) - 3 * XE_PAGE_SIZE;
+>>   			xe_migrate_program_identity(xe, vm, bo, map_ofs, vram_offset,
+>> -						    comp_pat_index, pt31_ofs);
+>> +						    comp_pat_index, pt47_ofs, pt45_ofs);
+>>   		}
+>>   	}
+>>   
+>> @@ -381,8 +398,8 @@ static void xe_migrate_suballoc_manager_init(struct xe_migrate *m, u32 map_ofs)
+>>   	 * Example layout created above, with root level = 3:
+>>   	 * [PT0...PT7]: kernel PT's for copy/clear; 64 or 4KiB PTE's
+>>   	 * [PT8]: Kernel PT for VM_BIND, 4 KiB PTE's
+>> -	 * [PT9...PT26]: Userspace PT's for VM_BIND, 4 KiB PTE's
+>> -	 * [PT27 = PDE 0] [PT28 = PDE 1] [PT29 = PDE 2] [PT30 & PT31 = 2M vram identity map]
+>> +	 * [PT9...PT40]: Userspace PT's for VM_BIND, 4 KiB PTE's
+>> +	 * [PT41 = PDE 0] [PT44...PT47 = 4K and 2M vram identity maps]
+>>   	 *
+>>   	 * This makes the lowest part of the VM point to the pagetables.
+>>   	 * Hence the lowest 2M in the vm should point to itself, with a few writes
+>> -- 
+>> 2.55.0
+>>
 
