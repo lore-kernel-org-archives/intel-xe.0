@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1139C61DD3
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 11:47:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72C4CC624D2
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 12:26:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EE8E10EC90;
-	Tue,  1 Sep 2026 11:47:00 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C454F10EC90;
- Tue,  1 Sep 2026 11:46:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4587960360279860791=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2408710ECB8;
+	Tue,  1 Sep 2026 12:26:33 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f0Gp3/aY";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E912810E6D5;
+ Tue,  1 Sep 2026 12:26:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788265592; x=1819801592;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=G5Eqw2GtNO/wnpZXnj9eC3OjMxtP1vB7ZxlB8cj2fDc=;
+ b=f0Gp3/aYmN44LOyJVa/kfXMq1gH1D2JMftI9w/UiAFlGabqVGLHpqCRE
+ aVoWFpDw5nmGQW0r5SgVeiPMzQ//ljaXtH4xkquPEL1bijTE26LklYejT
+ nVaJhFswKcLF2y7V/1tGXfP5GxD+Ib5Tdam3Zw10LV9pIXpXSdsJpLB/U
+ uBFDSsHkATl2PPXSqzaUTaWKcMrNBiRt0o2zE+C8jfUMCb2avumPtSgD3
+ mYx76+q38BTPXi26wGCVILMzv7IEXgNxRBw+4eWwiC2fQTF/FsZRS766x
+ o4MfSzLWBCYmuqEWSMpwzvFyyaIpWv8FhQPmzwe3ULdIJMfVBjkoKiJxL A==;
+X-CSE-ConnectionGUID: PiJUPokVTqGiUaUh1Ar1cw==
+X-CSE-MsgGUID: +DbDRq3KSKu3/J+4rhmCFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11892"; a="106064559"
+X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="106064559"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2026 05:26:31 -0700
+X-CSE-ConnectionGUID: 9fw3MeG8Tzu58nJKn4kPFg==
+X-CSE-MsgGUID: LLRebeZRT7KnckTQUWUVcw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,256,1779174000"; d="scan'208";a="265368134"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by fmviesa010.fm.intel.com with ESMTP; 01 Sep 2026 05:26:30 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: uma.shankar@intel.com,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Subject: [v2 0/2] Support YUV buffers in HDR planes
+Date: Tue,  1 Sep 2026 17:32:52 +0530
+Message-ID: <20260901120254.629261-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/audio=3A_Add_HDMI_?=
- =?utf-8?q?TMDS_audio_bandwidth_check_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 01 Sep 2026 11:46:58 -0000
-Message-ID: <178826321879.106842.13931317958593195327@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260901103639.617757-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20260901103639.617757-1-chaitanya.kumar.borah@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +62,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4587960360279860791==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The legacy COLOR ENCODING and COLOR RANGE properties are mutually exclusive
+for HDR planes. Add support for FIXED MATRIX colorops in HDR plane color
+pipeline that can be used for YCbCr to RGB conversion.
 
-== Series Details ==
+The first patch contains the base work done for SDR planes and is being
+reviewed separately.
 
-Series: drm/i915/audio: Add HDMI TMDS audio bandwidth check (rev5)
-URL   : https://patchwork.freedesktop.org/series/169701/
-State : success
+v2:
+ - Increase MAX_COLOROP to 5 (Sashiko)
 
-== Summary ==
+Chaitanya Kumar Borah (2):
+  [DO_NOT_REVIEW] drm/i915/color: Add color pipeline support for SDR
+    planes
+  drm/i915/color: Add YUV buffer support on HDR planes
 
-CI Bug Log - changes from xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f_BAT -> xe-pw-169701v5_BAT
-====================================================
+ drivers/gpu/drm/i915/display/intel_color.c    | 76 +++++++++++++++----
+ .../drm/i915/display/intel_color_pipeline.c   | 34 +++++++--
+ .../drm/i915/display/intel_display_limits.h   |  1 +
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_plane.c    | 53 ++++++++++++-
+ .../drm/i915/display/skl_universal_plane.c    | 45 ++++++-----
+ 6 files changed, 168 insertions(+), 42 deletions(-)
 
-Summary
--------
+-- 
+2.50.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f -> xe-pw-169701v5
-
-  IGT_9078: 9078
-  xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f: 43b9a5e9d30783bb6f4d7dacdd1739184666940f
-  xe-pw-169701v5: 169701v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v5/index.html
-
---===============4587960360279860791==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/audio: Add HDMI TMDS audio bandwidth check (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169701/">https://patchwork.freedesktop.org/series/169701/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169701v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f_BAT -&gt; xe-pw-169701v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f -&gt; xe-pw-169701v5</li>
-</ul>
-<p>IGT_9078: 9078<br />
-  xe-5665-43b9a5e9d30783bb6f4d7dacdd1739184666940f: 43b9a5e9d30783bb6f4d7dacdd1739184666940f<br />
-  xe-pw-169701v5: 169701v5</p>
-
-</body>
-</html>
-
---===============4587960360279860791==--
