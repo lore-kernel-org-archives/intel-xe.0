@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 966A2C624CF
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 07:31:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A4B4C61DD6
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 07:31:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4685510EB84;
-	Tue,  1 Sep 2026 07:31:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5113810EB75;
+	Tue,  1 Sep 2026 07:31:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tn95Bgjj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="irxNig48";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7516110EB75;
- Tue,  1 Sep 2026 07:31:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03C2510EB80;
+ Tue,  1 Sep 2026 07:31:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788247862; x=1819783862;
+ t=1788247864; x=1819783864;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AiufohGEFGv+4F6JvGq89hFLcg8ehNLiD1qulgSMN14=;
- b=Tn95BgjjWtKG9udsYkIcIh+vaM1EfHvDd7FaO7hyvnHSzUqPjVk2F/gP
- HLaz3RL3e7j7vbNBgQbf4FhyQrOiymyacqmuYWRrRI5xuNBTRCMgl/OOn
- pHSpm+o9gNhbwikGM1R6fgJVbwx13tDEo3XYVVVroPDSkHYcOgB/lH6AV
- ajishxz7rrLmTjQ5wkoviYFR7aF6ZztYuolQ8ctdWZ+ZQ6GrhN7HGVIDZ
- eyUwOhCCvKiquVhPqXagf1dg2P6GUbYAa9tL1PUxnLaAjIUqDZRrY7LNn
- HADa2De3REDH+HKX/MJGhb9ZjoFmMyWVNxq7c3Dnmtc9Gf9klJK5foVK1 Q==;
-X-CSE-ConnectionGUID: RDvr0wCXSu6YCwi/yUyrBg==
-X-CSE-MsgGUID: 7zXvx2+WR8SCCZhlmewtug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11892"; a="88692013"
-X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="88692013"
+ bh=QcV0YM0wKXASK3wt1gFpNgXUUmeMKNyFcS7cjw/N2Yc=;
+ b=irxNig48yDIimy0G2S++D9QwrxEx7kO5yzCH+feyi3hN46FKvXFdItR6
+ DJTSSWZuusXytH8qXwpKjMGt0ojEuJ2R6zmovgVA19g1H5fifNQhP97HQ
+ KvgsVrxPocozKOcfp4Ut//BshsBAxUrmmtLa0YjuG/ydQI0rTEx/qlpw4
+ +mHTFfbqY19+GCWygYTrxPnvwBaRTC9SyJcmCcvl1JgkoH58B0ZG+NER3
+ mQgtOBk1RVkrJ5CeN4F1vHGSAFWu3vOIYvD427cquxhMe+Tpx5c3GXRJR
+ 4HPUOyBmh31XBpvEY4jDn1HzKwniD+uYywg0Xc8NUXiUV1PtKy04QV0If A==;
+X-CSE-ConnectionGUID: QNR5KClRQxaCMDiDXN6myw==
+X-CSE-MsgGUID: u38wSpXnRlKyACRAj3/pRQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11892"; a="88692031"
+X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="88692031"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2026 00:31:02 -0700
-X-CSE-ConnectionGUID: 7WfLu3D1S8OPUNElKOg0Qw==
-X-CSE-MsgGUID: uL5PfQ/zTOG2nYg0w5vtxg==
+ 01 Sep 2026 00:31:04 -0700
+X-CSE-ConnectionGUID: Itfdh3KPRKiguN6jTr67FQ==
+X-CSE-MsgGUID: I/7cRwJSSiipUiv6LXT6ng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="272803109"
+X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="272803115"
 Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa004.jf.intel.com with ESMTP; 01 Sep 2026 00:31:01 -0700
+ by orviesa004.jf.intel.com with ESMTP; 01 Sep 2026 00:31:02 -0700
 From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Nemesa Garg <nemesa.garg@intel.com>,
  Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Subject: [PATCH 3/5] drm/i915/cursor: Handle secondary cursor state
-Date: Tue,  1 Sep 2026 12:58:11 +0530
-Message-Id: <20260901072813.2596383-4-nemesa.garg@intel.com>
+Subject: [PATCH 4/5] drm/i915/cursor: Program secondary cursor planes
+Date: Tue,  1 Sep 2026 12:58:12 +0530
+Message-Id: <20260901072813.2596383-5-nemesa.garg@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260901072813.2596383-1-nemesa.garg@intel.com>
 References: <20260901072813.2596383-1-nemesa.garg@intel.com>
@@ -67,301 +67,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In joiner mode the fast path cursor update must handle
-secondary pipes. Iterate over all joined pipes uniformly
-to duplicate plane state, run check_plane(), pin the
-framebuffer and on success swap in the new plane state
-for each secondary cursor.
+Iterate over all joined pipes when arming/disabling the cursor plane so
+secondary pipes are updated together with the primary. The pin, check
+and state duplication for secondary pipes was already prepared in the
+previous commit; this converts the update_arm pass to a loop over the
+joined_pipe_state[] array.
 
-Track every successfully prepared pipe in a joined_pipe_state[] array
-of struct intel_cursor_joiner_state so that later frontbuffer, unpin
-and error-cleanup paths treat primary and secondaries uniformly,
-and ensures the primary's pinned framebuffer is released if a
-secondary fails partway through.
+Because the whole loop runs inside a single primary vblank-evade,
+sample intel_crtc_get_vblank_counter() per pipe around each arm and
+emit a drm_err() if the counter ticks during that pipe's own
+programming.
 
-Convert the primary-only vblank unpin block into a loop over the
-joined_pipe_state[] array so each pipe's old cursor framebuffer is
-scheduled for unpin (or unpinned inline when unchanged) independently.
-All unpin work is armed on the primary crtc's vblank (&crtc->base),
-consistent with the single primary vblank evasion used above.
-
-v2: Use intel_crtc_joined_pipe_mask(). [Ville]
-    Add locking mechanism. [Ville]
-v3: Drop the per-pipe fastpath mutex array. [sashiko]
-v4: Fold parallel arrays into struct intel_cursor_joiner_state
-    joined_pipe_state[]. Unify primary/secondary in a single loop.
-    Use bare check_plane(). [Chaitanya]
-v5: Fix secondary uapi.crtc to each pipe's own crtc.
-    Rename intel_cursor_pipe to intel_cursor_joiner_state and
-    joined[] to joined_pipe_state[]. [Chaitanya]
-v6: Mirror primary uapi into secondary hw state, don't set uapi.crtc.
-    [sashiko]
-v7: Squash the per-pipe cursor unpin scheduling into this patch.[Chaitanya]
-v8: Resolve checkpatch errors.
+v2: Check primary and secondary pipe together. [Ville]
+v3: Use struct intel_cursor_joiner_state. [Ville]
+v4: Add per-pipe vblank straddle detection around the arm loop. [Chaitanya]
+v5: Move straddle check outside the loop to cover all pipes together.
+    Sample vblank counter from primary pipe only.
+    Move drm_err() after local_irq_enable(). [Chaitanya]
 
 Assisted-by: Claude:claude-sonnet-4.6
 Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c | 188 +++++++++++++-------
- 1 file changed, 128 insertions(+), 60 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cursor.c | 36 +++++++++++++++++----
+ 1 file changed, 29 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index b57b446b9788..b4f0f70eaa1a 100644
+index b4f0f70eaa1a..894bd1df5f42 100644
 --- a/drivers/gpu/drm/i915/display/intel_cursor.c
 +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -847,6 +847,7 @@ intel_cursor_joiner_commits_idle(struct intel_display *display,
+@@ -13,6 +13,7 @@
+ #include <drm/drm_vblank.h>
  
- static void
- intel_cursor_fastpath_update_plane_state(struct intel_plane_state *plane_state,
-+					 const struct intel_plane_state *from_plane_state,
- 					 struct drm_framebuffer *fb,
- 					 struct intel_crtc *hw_crtc,
- 					 int crtc_x, int crtc_y,
-@@ -854,20 +855,34 @@ intel_cursor_fastpath_update_plane_state(struct intel_plane_state *plane_state,
- 					 u32 src_x, u32 src_y,
- 					 u32 src_w, u32 src_h)
- {
--	drm_atomic_set_fb_for_plane(&plane_state->uapi, fb);
--
--	plane_state->uapi.src_x = src_x;
--	plane_state->uapi.src_y = src_y;
--	plane_state->uapi.src_w = src_w;
--	plane_state->uapi.src_h = src_h;
--	plane_state->uapi.crtc_x = crtc_x;
--	plane_state->uapi.crtc_y = crtc_y;
--	plane_state->uapi.crtc_w = crtc_w;
--	plane_state->uapi.crtc_h = crtc_h;
--
--	intel_plane_copy_uapi_to_hw_state(NULL, plane_state, plane_state, hw_crtc);
-+	/*
-+	 * Only the primary owns its uapi state; a secondary mirrors it, so
-+	 * its uapi.crtc/fb stay NULL and hw.crtc comes from hw_crtc.
-+	 */
-+	if (plane_state == from_plane_state) {
-+		drm_atomic_set_fb_for_plane(&plane_state->uapi, fb);
-+
-+		plane_state->uapi.src_x = src_x;
-+		plane_state->uapi.src_y = src_y;
-+		plane_state->uapi.src_w = src_w;
-+		plane_state->uapi.src_h = src_h;
-+		plane_state->uapi.crtc_x = crtc_x;
-+		plane_state->uapi.crtc_y = crtc_y;
-+		plane_state->uapi.crtc_w = crtc_w;
-+		plane_state->uapi.crtc_h = crtc_h;
-+	}
-+
-+	intel_plane_copy_uapi_to_hw_state(NULL, plane_state, from_plane_state, hw_crtc);
- }
- 
-+struct intel_cursor_joiner_state {
-+	struct intel_plane *plane;
-+	struct intel_crtc *crtc;
-+	struct intel_crtc_state *crtc_state;
-+	struct intel_plane_state *old_plane_state;
-+	struct intel_plane_state *new_plane_state;
-+};
-+
- static int
- intel_legacy_cursor_update(struct drm_plane *_plane,
- 			   struct drm_crtc *_crtc,
-@@ -883,11 +898,12 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	struct intel_display *display = to_intel_display(plane);
- 	struct intel_plane_state *old_plane_state =
- 		to_intel_plane_state(plane->base.state);
--	struct intel_plane_state *new_plane_state;
- 	struct intel_crtc_state *crtc_state =
- 		to_intel_crtc_state(crtc->base.state);
--	struct intel_crtc_state *new_crtc_state;
- 	struct intel_vblank_evade_ctx evade;
-+	struct intel_cursor_joiner_state joined_pipe_state[I915_MAX_PIPES] = {};
-+	struct intel_crtc *pipe_crtc;
-+	int num_pipes = 0;
+ #include "intel_atomic.h"
++#include "intel_crtc.h"
+ #include "intel_cursor.h"
+ #include "intel_cursor_regs.h"
+ #include "intel_de.h"
+@@ -904,6 +905,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 	struct intel_cursor_joiner_state joined_pipe_state[I915_MAX_PIPES] = {};
+ 	struct intel_crtc *pipe_crtc;
+ 	int num_pipes = 0;
++	u32 start_vbl_count, end_vbl_count;
  	int ret;
  
  	/*
-@@ -933,38 +949,74 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	if (!intel_cursor_joiner_commits_idle(display, crtc_state))
- 		goto slow;
- 
--	new_plane_state = to_intel_plane_state(intel_plane_duplicate_state(&plane->base));
--	if (!new_plane_state)
--		return -ENOMEM;
-+	/*
-+	 * Iterate over all joined pipes (primary and secondary) uniformly.
-+	 * The joined pipe mask includes both the primary pipe and all
-+	 * secondary joiner pipes, allowing us to handle them all the same way.
-+	 */
-+	for_each_intel_crtc_in_pipe_mask(display, pipe_crtc,
-+					 intel_crtc_joined_pipe_mask(crtc_state)) {
-+		struct intel_cursor_joiner_state *j = &joined_pipe_state[num_pipes];
-+
-+		j->plane = intel_crtc_get_plane(pipe_crtc, PLANE_CURSOR);
-+		j->crtc = pipe_crtc;
-+		j->crtc_state = to_intel_crtc_state(pipe_crtc->base.state);
-+		j->old_plane_state = to_intel_plane_state(j->plane->base.state);
-+		j->new_plane_state =
-+			to_intel_plane_state(intel_plane_duplicate_state(&j->plane->base));
-+
-+		if (!j->new_plane_state) {
-+			ret = -ENOMEM;
-+			goto out_free;
-+		}
- 
--	new_crtc_state = to_intel_crtc_state(intel_crtc_duplicate_state(&crtc->base));
--	if (!new_crtc_state) {
--		ret = -ENOMEM;
--		goto out_free;
-+		intel_cursor_fastpath_update_plane_state(j->new_plane_state,
-+							 joined_pipe_state[0].new_plane_state,
-+							 fb, pipe_crtc,
-+							 crtc_x, crtc_y,
-+							 crtc_w, crtc_h,
-+							 src_x, src_y,
-+							 src_w, src_h);
-+
-+		ret = j->plane->check_plane(j->crtc_state, j->new_plane_state);
-+		if (ret) {
-+			intel_plane_destroy_state(&j->plane->base,
-+						  &j->new_plane_state->uapi);
-+			goto out_free;
-+		}
-+
-+		ret = intel_plane_pin_fb(j->new_plane_state, j->old_plane_state);
-+		if (ret) {
-+			intel_plane_destroy_state(&j->plane->base,
-+						  &j->new_plane_state->uapi);
-+			goto out_free;
-+		}
-+
-+		num_pipes++;
- 	}
- 
--	intel_cursor_fastpath_update_plane_state(new_plane_state, fb,
--						 crtc,
--						 crtc_x, crtc_y, crtc_w, crtc_h,
--						 src_x, src_y, src_w, src_h);
-+	intel_frontbuffer_flush(to_intel_frontbuffer(joined_pipe_state[0].new_plane_state->hw.fb),
-+				ORIGIN_CURSOR_UPDATE);
- 
--	ret = intel_plane_atomic_check_with_state(crtc_state, new_crtc_state,
--						  old_plane_state, new_plane_state);
--	if (ret)
--		goto out_free;
-+	for (int i = 0; i < num_pipes; i++) {
-+		struct intel_frontbuffer *old_front =
-+			to_intel_frontbuffer(joined_pipe_state[i].old_plane_state->hw.fb);
-+		struct intel_frontbuffer *new_front =
-+			to_intel_frontbuffer(joined_pipe_state[i].new_plane_state->hw.fb);
- 
--	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
--	if (ret)
--		goto out_free;
-+		intel_frontbuffer_track(old_front, new_front,
-+					joined_pipe_state[i].plane->frontbuffer_bit);
-+	}
- 
--	intel_frontbuffer_flush(to_intel_frontbuffer(new_plane_state->hw.fb),
--				ORIGIN_CURSOR_UPDATE);
--	intel_frontbuffer_track(to_intel_frontbuffer(old_plane_state->hw.fb),
--				to_intel_frontbuffer(new_plane_state->hw.fb),
--				plane->frontbuffer_bit);
-+	for (int i = 0; i < num_pipes; i++) {
-+		joined_pipe_state[i].plane->base.state =
-+			&joined_pipe_state[i].new_plane_state->uapi;
- 
--	/* Swap plane state */
--	plane->base.state = &new_plane_state->uapi;
-+		if (joined_pipe_state[i].new_plane_state->uapi.visible)
-+			joined_pipe_state[i].crtc_state->active_planes |= BIT(PLANE_CURSOR);
-+		else
-+			joined_pipe_state[i].crtc_state->active_planes &= ~BIT(PLANE_CURSOR);
-+	}
- 
- 	/*
- 	 * We cannot swap crtc_state as it may be in use by an atomic commit or
-@@ -976,7 +1028,6 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	 * planes atomically. If the cursor was part of the atomic update then
- 	 * we would have taken the slowpath.
- 	 */
--	crtc_state->active_planes = new_crtc_state->active_planes;
- 
- 	intel_vblank_evade_init(crtc_state, crtc_state, &evade);
- 
-@@ -998,9 +1049,11 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+@@ -1049,17 +1051,37 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
  		local_irq_disable();
  	}
  
--	if (new_plane_state->uapi.visible) {
--		intel_plane_update_noarm(NULL, plane, crtc_state, new_plane_state);
--		intel_plane_update_arm(NULL, plane, crtc_state, new_plane_state);
-+	if (joined_pipe_state[0].new_plane_state->uapi.visible) {
-+		intel_plane_update_noarm(NULL, plane, crtc_state,
-+					 joined_pipe_state[0].new_plane_state);
-+		intel_plane_update_arm(NULL, plane, crtc_state,
-+				       joined_pipe_state[0].new_plane_state);
- 	} else {
- 		intel_plane_disable_arm(NULL, plane, crtc_state);
+-	if (joined_pipe_state[0].new_plane_state->uapi.visible) {
+-		intel_plane_update_noarm(NULL, plane, crtc_state,
+-					 joined_pipe_state[0].new_plane_state);
+-		intel_plane_update_arm(NULL, plane, crtc_state,
+-				       joined_pipe_state[0].new_plane_state);
+-	} else {
+-		intel_plane_disable_arm(NULL, plane, crtc_state);
++	/*
++	 * Joiner pipes are vblank-synchronized, so sampling only the primary
++	 * pipe is sufficient to detect a straddle across all joined pipes.
++	 * The vblank evasion above also operates on the primary pipe only.
++	 */
++	start_vbl_count = intel_crtc_get_vblank_counter(joined_pipe_state[0].crtc);
++
++	for (int i = 0; i < num_pipes; i++) {
++		if (joined_pipe_state[i].new_plane_state->uapi.visible) {
++			intel_plane_update_noarm(NULL, joined_pipe_state[i].plane,
++						 joined_pipe_state[i].crtc_state,
++						 joined_pipe_state[i].new_plane_state);
++			intel_plane_update_arm(NULL, joined_pipe_state[i].plane,
++					       joined_pipe_state[i].crtc_state,
++					       joined_pipe_state[i].new_plane_state);
++		} else {
++			intel_plane_disable_arm(NULL, joined_pipe_state[i].plane,
++						joined_pipe_state[i].crtc_state);
++		}
  	}
-@@ -1009,26 +1062,41 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
  
++	end_vbl_count = intel_crtc_get_vblank_counter(joined_pipe_state[0].crtc);
++
+ 	local_irq_enable();
+ 
++	if (start_vbl_count != end_vbl_count)
++		drm_err(display->drm,
++			"Atomic update failure on pipe %c (start=%u end=%u)\n",
++			pipe_name(joined_pipe_state[0].crtc->pipe),
++			start_vbl_count, end_vbl_count);
++
  	intel_psr_unlock(crtc_state);
  
--	if (old_plane_state->ggtt_vma != new_plane_state->ggtt_vma) {
--		drm_vblank_work_init(&old_plane_state->unpin_work, &crtc->base,
--				     intel_cursor_unpin_work);
--
--		drm_vblank_work_schedule(&old_plane_state->unpin_work,
--					 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
--					 false);
--
--		old_plane_state = NULL;
--	} else {
--		intel_plane_unpin_fb(old_plane_state);
-+	/*
-+	 * Schedule or immediately unpin old framebuffers.
-+	 * Protect against concurrent access.
-+	 */
-+	for (int i = 0; i < num_pipes; i++) {
-+		struct intel_plane_state *old = joined_pipe_state[i].old_plane_state;
-+
-+		if (old->ggtt_vma != joined_pipe_state[i].new_plane_state->ggtt_vma) {
-+			drm_vblank_work_init(&old->unpin_work, &crtc->base,
-+					     intel_cursor_unpin_work);
-+			drm_vblank_work_schedule(&old->unpin_work,
-+						 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
-+						 false);
-+			joined_pipe_state[i].old_plane_state = NULL;
-+		} else {
-+			intel_plane_unpin_fb(old);
-+		}
- 	}
- 
- out_free:
--	if (new_crtc_state)
--		intel_crtc_destroy_state(&crtc->base, &new_crtc_state->uapi);
--	if (ret)
--		intel_plane_destroy_state(&plane->base, &new_plane_state->uapi);
--	else if (old_plane_state)
--		intel_plane_destroy_state(&plane->base, &old_plane_state->uapi);
-+	if (ret) {
-+		for (int i = 0; i < num_pipes; i++) {
-+			intel_plane_unpin_fb(joined_pipe_state[i].new_plane_state);
-+			intel_plane_destroy_state(&joined_pipe_state[i].plane->base,
-+						  &joined_pipe_state[i].new_plane_state->uapi);
-+		}
-+	} else {
-+		for (int i = 0; i < num_pipes; i++) {
-+			if (!joined_pipe_state[i].old_plane_state)
-+				continue;
-+
-+			intel_plane_destroy_state(&joined_pipe_state[i].plane->base,
-+						  &joined_pipe_state[i].old_plane_state->uapi);
-+		}
-+	}
- 	return ret;
- 
- slow:
+ 	/*
 -- 
 2.25.1
 
