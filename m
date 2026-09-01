@@ -4,61 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05332C61DD6
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 08:48:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88AF4C61DD3
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 09:01:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF03E10EACF;
-	Tue,  1 Sep 2026 08:48:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B8CF10EC15;
+	Tue,  1 Sep 2026 09:01:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nKn6NC59";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="3kzV/SMe";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D5C710EACF
- for <intel-xe@lists.freedesktop.org>; Tue,  1 Sep 2026 08:48:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788252499; x=1819788499;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=5dLzCR3NGNvpzSTej1a/6Qzt6LhqvDCagjbnNRG36II=;
- b=nKn6NC59J6oTA1gmeXOEwy2NlbtLjt7frPM0mAz9uzuvLq105CwxjeUL
- wu6p7d02HYyO/oJ6dgJny/eKQBefOQb1wQbH0BAun7N2LNuqX3Kz0/ih9
- f1FOVRJcvsiKd5kfl0AW8ofw+AkKZ5fp8H0e+YhPMkXgXGin9yuR7Z1BZ
- 5sGRAxchMwQ0b76BIwYTDbTPzqLg1GucI7diebfTo2guhGr+qKhSEz4cr
- pUJxP1AOkHW70ZnuF6e1w4Rdtwk8xEA9vrffYtYZuxP2YryaOlJi1PBHO
- vtKm4j5lzR7XDuGNAwxympdyypkH/e8Eljx6yEfmXOedVwdcb+O4cR+EI w==;
-X-CSE-ConnectionGUID: LVIhSZLCQ3S526PJQkzEIw==
-X-CSE-MsgGUID: oxrwV+swRgiKiqfWBNVi4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11892"; a="100184206"
-X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="100184206"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2026 01:48:18 -0700
-X-CSE-ConnectionGUID: cuCZpWPfRo++TSnn9dbIuw==
-X-CSE-MsgGUID: g/fB158OT/2Ij/ffDegcwg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,255,1779174000"; d="scan'208";a="273218634"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.7])
- ([10.245.245.7])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2026 01:48:17 -0700
-Message-ID: <5dd32f3a-901a-4fb0-9517-6298a1f71eac@intel.com>
-Date: Tue, 1 Sep 2026 09:48:14 +0100
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010020.outbound.protection.outlook.com [52.101.46.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AD1C10E39A;
+ Tue,  1 Sep 2026 09:01:24 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=e+Gr2SsFM53yVxB0Lo/g4oebmmAt8H5Hr/4i23wQfn6Yg03TdqYnO2qXFHV8nodx7/OM7Ultf3AOPXNGOoOqODJlvXM56EXa1WVbAeGvTzJsWC+w4Y77j4ova4x85OTghurRO1aIpm+4WRdnrSHe7p8EWFDdxFUg8Ov+l5dDPhB1rnjlveNtVEkokVvUemGmV+Ol4ZKLdMW1teTMb7X5KF/RAxY8A2vwz+3JblkabbLK5vYITmzzPpRPqtewvdy6bo9Q6xUd5zajuqxHiPf2TXwXUTTNBh6VvF9y4nK5eU2RgbUOSIFEa0/sRom67gQeHCf92eOpJv7KnJTCX2JtzA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7bNcMnE8OBmQkiWltrsWZs7ufcWxM4P2eSALjx6zuHk=;
+ b=MbR2Tlj6ovhyNJ6vmhc2Yn3e5h54aGCPV6fipvmTPIHL7onKd74Yc3vzK7pdtokQx6pMsh2k/tIHg6CEDMg349zLxEQJcRjuxpVcXB/kyaQlWtplYD1QKPHL24z2bE/eoIgoaENxwsHZicgGemhmb9/eUS8mWSxITU4e7WpO+2AT/kTwVP9VXak4RDaZEyYuxmohoFwAaQumsTfFLLC3YRy5nuphskab4orPayZf/dZHElq/BR6UjWrKnsmo8BfMPenLEwET2vZOMBCxOBFWwIWVyIli3IiIqnESdGgw0aWX2qiR41Nlasce+rUW1xPxEna4n/KjgN/ED6usPGi4XQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7bNcMnE8OBmQkiWltrsWZs7ufcWxM4P2eSALjx6zuHk=;
+ b=3kzV/SMeumt+SQnZ0Fzrh8FOUCxe11LN4YNDV0o65srXra2RblF6mmfmn7eIC56510GWwZmykVvzGsUWW4sb5VGbjbFUDTG1Iri9idAa3THqAx+g++Op4C1rzBca5eE2XDY3NitcxeL/XsA+vgYbvaSvnbLLupMss9Za7Dq9Jjs=
+Received: from SJ0PR05CA0012.namprd05.prod.outlook.com (2603:10b6:a03:33b::17)
+ by DS0PR12MB8444.namprd12.prod.outlook.com (2603:10b6:8:128::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Tue, 1 Sep
+ 2026 09:01:15 +0000
+Received: from CO1PEPF00012E84.namprd03.prod.outlook.com
+ (2603:10b6:a03:33b:cafe::76) by SJ0PR05CA0012.outlook.office365.com
+ (2603:10b6:a03:33b::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.382.10 via Frontend Transport; Tue, 1
+ Sep 2026 09:01:15 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ CO1PEPF00012E84.mail.protection.outlook.com (10.167.249.59) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.382.8 via Frontend Transport; Tue, 1 Sep 2026 09:01:15 +0000
+Received: from honglei-remote.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.46; Tue, 1 Sep
+ 2026 04:01:11 -0500
+From: Honglei Huang <honghuan@amd.com>
+To: <matthew.brost@intel.com>, <sima@ffwll.ch>, <rodrigo.vivi@intel.com>,
+ <thomas.hellstrom@linux.intel.com>, <himal.prasad.ghimiray@intel.com>,
+ <dakr@kernel.org>, <intel-xe@lists.freedesktop.org>
+CC: <aliceryhl@google.com>, <Alexander.Deucher@amd.com>,
+ <Felix.Kuehling@amd.com>, <Christian.Koenig@amd.com>, <Ray.Huang@amd.com>,
+ <Junhua.Shen@amd.com>, <amd-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <honghuan@amd.com>
+Subject: [PATCH v2 0/4] drm/gpusvm: share one HMM fault across per-device DMA
+ mappings
+Date: Tue, 1 Sep 2026 17:00:56 +0800
+Message-ID: <20260901090100.2024933-1-honghuan@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] drm/xe/migrate: support 4K PTEs for identity map
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20260828151405.662533-7-matthew.auld@intel.com>
- <20260828151405.662533-8-matthew.auld@intel.com>
- <apHljQtQ+Ojgtw2P@gsse-cloud1.jf.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <apHljQtQ+Ojgtw2P@gsse-cloud1.jf.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb07.amd.com (10.181.42.216) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PEPF00012E84:EE_|DS0PR12MB8444:EE_
+X-MS-Office365-Filtering-Correlation-Id: 137ea3c0-2e35-437f-5c83-08df0807942b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|36860700016|23010399003|1800799024|376014|7416014|10067099003|18002099003|56012099006|11063799006|13003099007;
+X-Microsoft-Antispam-Message-Info: JlFk4xYA1OJ8Z+9sZSZvf87lCxt9BkvHu8YqnOJrUvCG4NyZnzOFn6OfFqL/m4pR1yazW9H6L6z8ibI8HDcSZhOx6zLXwgzBSnrHdrxocJYUNkPvBbYAK8BPLT/RIdm9oReTQi6XIrm0NYq12iR2eV2rmgZk/tvmtCXlwoEaX2bfkOyVcS5MDPzFSuFccoufaZzG3p9QbtiTWMRvjvPZuLE6DlKzQieDZpybrbdTcT4SIbjkF+wnwdTsH4cgg+PHi2PJKbBUD+7E02yzaJFdm9UMVFm2TzDuzyGfB+KY5ithktr0NNoh0Omt4dyjymtsbbuIWFI8KQjgeMHyNZzs48vLrPyAlFjEu/FuA4QfFAr4VYNZARMQs1uq1KmOVboqFCYtsFzglHnXiILBKPxn0RzlTjbTA+GKB2a1v4JdSJTXxAk4Gm+15lSJORweC6MXjDTZ8GnO7ilBZGgYaGryHbUMpwtSVl/hee9rfPuRh+IK7lZkJqti5X27u10RgIYa23uk3/X+skde3wyhrPT9EfpjL8B/95VLVx+GSUwQdyml1j9LoPCSE3miUVPyst7yxUPrKqARgJBUIdU1eUY6G0FZA6mlNuqWZNPuwTFCHzl6CpISpPZX4Ix0FEazSBtd+krC6zrq1pNTRPEKlMcptg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(82310400026)(36860700016)(23010399003)(1800799024)(376014)(7416014)(10067099003)(18002099003)(56012099006)(11063799006)(13003099007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: CH35ppZ1hXyART6qNc09uVDD5QO7cwc+AxmRh3AUP6VlXDBRghUTUTXZIP75D1g8Dkd+TApKadHi8RV9qZAyiJt9jsRUEdnm8HTKmnNPAhjnmxSgfVvtkjyaHhUxDcPCNktYHEwllgTiOvRS7KDgU0/RYwWejxySGwW9fBKWRxADZNXZWLbVKZA2KhBuRQ/SdAajowfX+dgZ3MhHAMW0/MFUUGWM/W+5S97FyHtH1F+lz7UU0OcgieHGAmfCc9RujnhBMvghixCiZa3ffnsnSN+SDoPAwNRXWm26LzVkD7spD2+Je9NoRIcwcHT4Eb4XeTNBJan+jWyASqen97d2l+cMcLngtoCAR9rsZBRLElcxf/LgmP5Don678GmT+qNW35NC2Drn08CgHkmQZ80uRcdv6vCOVEVlrAAU5h/tWKjcKyPB3TOV+Q8HZx/GG3hQ
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Sep 2026 09:01:15.2237 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 137ea3c0-2e35-437f-5c83-08df0807942b
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF00012E84.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8444
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,197 +113,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 28/08/2026 20:46, Matthew Brost wrote:
-> On Fri, Aug 28, 2026 at 04:14:07PM +0100, Matthew Auld wrote:
->> When VRAM limit (usable_size) is no longer 2M aligned (e.g. because flat
->> CCS storage size rounds it down to 4K), we must map the tail of the
->> identity mapping using 4K pages.
->>
->> This removes the 2M alignment assert (which pops) and introduces a 4K
->> fallback in the identity map programming loop to handle the last 2M
->> chunk of usable VRAM.
->>
->> Might be possible to skip backporting this. The assert that pops should
->> be harmless and is only on debug builds plus only a stray write would
->> hit CCS, which technically get mapped.
->>
-> 
-> This LGTM, better than what I had in mind. One question though.
-> 
->> Assisted-by: Gemini:gemini-3.1-pro-preview
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_migrate.c | 57 +++++++++++++++++++++------------
->>   1 file changed, 37 insertions(+), 20 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
->> index 75b83687f1b5..0bf000d7c901 100644
->> --- a/drivers/gpu/drm/xe/xe_migrate.c
->> +++ b/drivers/gpu/drm/xe/xe_migrate.c
->> @@ -87,7 +87,7 @@ struct xe_migrate {
->>   #define MAX_PREEMPTDISABLE_TRANSFER SZ_8M /* Around 1ms. */
->>   #define MAX_CCS_LIMITED_TRANSFER SZ_4M /* XE_PAGE_SIZE * (FIELD_MAX(XE2_CCS_SIZE_MASK) + 1) */
->>   #define NUM_KERNEL_PDE 15
->> -#define NUM_PT_SLOTS 32
->> +#define NUM_PT_SLOTS 48
-> 
-> Why this change? Can't we just steal more PTs from user-space VM binds?
-> Did testing show that this was actually a problem?
+This series is a follow up to the earlier drm_gpusvm_pages decoupling
+series [1], and follows the direction Matt suggested [2].
 
-Yeah, my local v1 did exactly that. But I got doubts since it felt a bit 
-scary taking away slots from userspace and wasn't sure if there could be 
-some impact.
+drm_gpusvm_get_pages() does two things at once: the MM level HMM fault
+of the CPU range, and the device DMA mapping of the faulted pages. When
+one CPU range is mirrored on several devices, every device has to call
+get_pages() and redo the HMM fault. Matt suggested [2] passing an array
+of drm_gpusvm_pages plus a count so the fault is taken once and shared,
+while the notifier retry loop stays in common code so drivers never open
+code it.
 
-Can revert back to that approach if you prefer? It should be somewhere 
-in my reflog.
+The series builds up to that in small steps, no functional change until
+the last two patches:
 
-> 
-> Also, in general, power-of-two values are preferred.
+  - patch 1 moves the dma_addr allocation out of the notifier locked
+    section, so the mapping step becomes self contained.
+  - patch 2 pulls the per-device mapping loop into
+    drm_gpusvm_dma_map_pages(). Code motion only.
+  - patch 3 makes get_pages() take an array of drm_gpusvm_pages plus a
+    count: fault once, then DMA map each instance, one per owning
+    drm_device, under a single notifier retry gate. Instances that are
+    already mapped are skipped, so an -EAGAIN retry does not redo them.
+    The common 1:1 case passes count == 1 and is unchanged.
+  - patch 4 adds a no_dma_map context flag so a driver that only needs
+    the CPU pages faulted in can skip the device DMA mapping.
 
-Yeah, I think it was just the assert:
+Patch 4 has no in-tree user yet, AMDXDNA is the intended consumer but
+that conversion is not ready. It is independent of patches 1-3, happy to
+drop it and repost it together with its user.
 
-/* Must be a multiple of 64K to support all platforms */
-BUILD_BUG_ON(NUM_PT_SLOTS * XE_PAGE_SIZE % SZ_64K);
+v2:
+  - Rebased on drm-tip. Matt asked for Stanislav's
+    hmm_range_fault_unlocked_timeout() patch [3] to be carried at the
+    base of this series, it has since landed in drm-tip, so this version
+    is just rebased on top of it.
+  - Dropped v1 patch 1 ("drm/gpusvm: extract drm_gpusvm_hmm_fault()
+    helper"), it is part of [3] now.
+  - patch 3: drm_gpusvm_pages_valid_unlocked() takes the array and the
+    count itself, instead of get_pages() open coding an all_valid loop.
+  - patch 3: fixed the N:1 doc example, it used the wrong union member
+    when the count is 1. Added a driver_pages() accessor.
+  - patch 3: documented that on error the instances mapped before the
+    failing one stay mapped, the caller must unmap and free all of them.
+  - patch 4: reject no_dma_map together with devmem_only, without the
+    DMA mapping step there is no page type check to enforce it.
+  - patch 4: documented that no_dma_map only returns a snapshot, the
+    caller must recheck mmu_interval_read_retry() itself.
 
-So just went with the minimal to satisfy that. Will make this a 
-power-of-two instead if preferred.
+tests:
+AMDGPU:
+  SVM:DRM N:1 multi device support is work in progress on top of this
+  series. The single device (1:1) path was tested with the amdgpu SVM
+  adaptation on top. Based on amdgpu SVM [4].
+  Tested on gfx943 (MI300X) and gfx906 (MI60) with XNACK on/off:
+  - KFD test: SVM all passed except the get attr refactor.
+  - ROCR test: all passed.
+  - HIP catch test: gfx943 (MI300X): 99% passed.
+                    gfx906 (MI60): 99% passed.
 
-> 
-> Eventually, we'll be able to drop the need for these PTs once CPU binds
-> land as well [1].
-> 
-> Not blocker.
-> 
-> Matt
-> 
-> [1] https://patchwork.freedesktop.org/series/149888/
-> 
->>   #define LEVEL0_PAGE_TABLE_ENCODE_SIZE SZ_2M
->>   #define MAX_NUM_PTE 512
->>   #define IDENTITY_OFFSET 256ULL
->> @@ -163,22 +163,20 @@ static u64 xe_migrate_vram_ofs(struct xe_device *xe, u64 addr, bool is_comp_pte)
->>   }
->>   
->>   static void xe_migrate_program_identity(struct xe_device *xe, struct xe_vm *vm, struct xe_bo *bo,
->> -					u64 map_ofs, u64 vram_offset, u16 pat_index, u64 pt_2m_ofs)
->> +					u64 map_ofs, u64 vram_offset, u16 pat_index, u64 pt_2m_ofs,
->> +					u64 pt_4k_ofs)
->>   {
->>   	struct xe_vram_region *vram = xe->mem.vram;
->>   	resource_size_t dpa_base = xe_vram_region_dpa_base(vram);
->>   	u64 pos, ofs, flags;
->>   	u64 entry;
->> -	/* XXX: Unclear if this should be usable_size? */
->> -	u64 vram_limit = xe_vram_region_actual_physical_size(vram) + dpa_base;
->> +	u64 vram_limit = xe_vram_region_usable_size(vram) + dpa_base;
->>   	u32 level = 2;
->>   
->>   	ofs = map_ofs + XE_PAGE_SIZE * level + vram_offset * 8;
->>   	flags = vm->pt_ops->pte_encode_addr(xe, 0, pat_index, level,
->>   					    true, 0);
->>   
->> -	xe_assert(xe, IS_ALIGNED(xe_vram_region_usable_size(vram), SZ_2M));
->> -
->>   	/*
->>   	 * Use 1GB pages when possible, last chunk always use 2M
->>   	 * pages as mixing reserved memory (stolen, WOCPM) with a single
->> @@ -196,8 +194,24 @@ static void xe_migrate_program_identity(struct xe_device *xe, struct xe_vm *vm,
->>   							    true, 0);
->>   
->>   			for (ofs = pt_2m_ofs; pos < vram_limit;
->> -			     pos += SZ_2M, ofs += 8)
->> +			     pos += SZ_2M, ofs += 8) {
->> +				if (pos + SZ_2M > vram_limit) {
->> +					entry = vm->pt_ops->pde_encode_bo(bo, pt_4k_ofs);
->> +					xe_map_wr(xe, &bo->vmap, ofs, u64, entry);
->> +
->> +					flags = vm->pt_ops->pte_encode_addr(xe, 0,
->> +									    pat_index,
->> +									    level - 2,
->> +									    true, 0);
->> +
->> +					for (ofs = pt_4k_ofs; pos < vram_limit;
->> +					     pos += SZ_4K, ofs += 8)
->> +						xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
->> +					break;
->> +				}
->> +
->>   				xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
->> +			}
->>   			break;	/* Ensure pos == vram_limit assert correct */
->>   		}
->>   
->> @@ -242,16 +256,17 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->>   	u16 pat_index = xe_cache_pat_idx(xe, XE_CACHE_WB);
->>   	u8 id = tile->id;
->>   	u32 num_entries = NUM_PT_SLOTS, num_level = vm->pt_root[id]->level;
->> -#define VRAM_IDENTITY_MAP_COUNT	2
->> -	u32 num_setup = num_level + VRAM_IDENTITY_MAP_COUNT;
->> -#undef VRAM_IDENTITY_MAP_COUNT
->> +#define VRAM_IDENTITY_MAP_PT_COUNT	4
->> +	u32 num_setup = num_level + VRAM_IDENTITY_MAP_PT_COUNT;
->> +#undef VRAM_IDENTITY_MAP_PT_COUNT
->>   	u32 map_ofs, level, i;
->>   	struct xe_bo *bo = m->pt_bo, *batch = tile->mem.kernel_bb_pool->bo;
->> -	u64 entry, pt29_ofs;
->> +	u64 entry;
->>   
->> -	/* PT30 & PT31 reserved for 2M identity map */
->> -	pt29_ofs = xe_bo_size(bo) - 3 * XE_PAGE_SIZE;
->> -	entry = vm->pt_ops->pde_encode_bo(bo, pt29_ofs);
->> +	/* PT44..PT47 reserved for 4K and 2M identity map */
->> +	u64 l1_pt_ofs = xe_bo_size(bo) - 5 * XE_PAGE_SIZE;
->> +
->> +	entry = vm->pt_ops->pde_encode_bo(bo, l1_pt_ofs);
->>   	xe_pt_write(xe, &vm->pt_root[id]->bo->vmap, 0, entry);
->>   
->>   	map_ofs = (num_entries - num_setup) * XE_PAGE_SIZE;
->> @@ -347,11 +362,12 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->>   
->>   	/* Identity map the entire vram at 256GiB offset */
->>   	if (IS_DGFX(xe)) {
->> -		u64 pt30_ofs = xe_bo_size(bo) - 2 * XE_PAGE_SIZE;
->> +		u64 pt46_ofs = xe_bo_size(bo) - 2 * XE_PAGE_SIZE;
->>   		resource_size_t actual_phy_size = xe_vram_region_actual_physical_size(xe->mem.vram);
->>   
->> +		u64 pt44_ofs = xe_bo_size(bo) - 4 * XE_PAGE_SIZE;
->>   		xe_migrate_program_identity(xe, vm, bo, map_ofs, IDENTITY_OFFSET,
->> -					    pat_index, pt30_ofs);
->> +					    pat_index, pt46_ofs, pt44_ofs);
->>   		xe_assert(xe, actual_phy_size <= (MAX_NUM_PTE - IDENTITY_OFFSET) * SZ_1G);
->>   
->>   		/*
->> @@ -362,12 +378,13 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->>   			u16 comp_pat_index = xe_cache_pat_idx(xe, XE_CACHE_NONE_COMPRESSION);
->>   			u64 vram_offset = IDENTITY_OFFSET +
->>   				DIV_ROUND_UP_ULL(actual_phy_size, SZ_1G);
->> -			u64 pt31_ofs = xe_bo_size(bo) - XE_PAGE_SIZE;
->> +			u64 pt47_ofs = xe_bo_size(bo) - XE_PAGE_SIZE;
->>   
->>   			xe_assert(xe, actual_phy_size <= (MAX_NUM_PTE - IDENTITY_OFFSET -
->>   							  IDENTITY_OFFSET / 2) * SZ_1G);
->> +			u64 pt45_ofs = xe_bo_size(bo) - 3 * XE_PAGE_SIZE;
->>   			xe_migrate_program_identity(xe, vm, bo, map_ofs, vram_offset,
->> -						    comp_pat_index, pt31_ofs);
->> +						    comp_pat_index, pt47_ofs, pt45_ofs);
->>   		}
->>   	}
->>   
->> @@ -381,8 +398,8 @@ static void xe_migrate_suballoc_manager_init(struct xe_migrate *m, u32 map_ofs)
->>   	 * Example layout created above, with root level = 3:
->>   	 * [PT0...PT7]: kernel PT's for copy/clear; 64 or 4KiB PTE's
->>   	 * [PT8]: Kernel PT for VM_BIND, 4 KiB PTE's
->> -	 * [PT9...PT26]: Userspace PT's for VM_BIND, 4 KiB PTE's
->> -	 * [PT27 = PDE 0] [PT28 = PDE 1] [PT29 = PDE 2] [PT30 & PT31 = 2M vram identity map]
->> +	 * [PT9...PT40]: Userspace PT's for VM_BIND, 4 KiB PTE's
->> +	 * [PT41 = PDE 0] [PT44...PT47 = 4K and 2M vram identity maps]
->>   	 *
->>   	 * This makes the lowest part of the VM point to the pagetables.
->>   	 * Hence the lowest 2M in the vm should point to itself, with a few writes
->> -- 
->> 2.55.0
->>
+links:
+[1] drm_gpusvm_pages decoupling series:
+    https://lore.kernel.org/amd-gfx/20260630102127.392396-1-honghuan@amd.com/
+[2] Matt's suggested direction:
+    https://lore.kernel.org/amd-gfx/aijdg7RWwrEDEMxC@gsse-cloud1.jf.intel.com/
+[3] drm/gpusvm: use hmm_range_fault_unlocked_timeout() for range faults:
+    https://lore.kernel.org/20260723-hmm-v10-v11-8-c55b003a4b61@gmail.com
+[4] amdgpu SVM:
+    https://lore.kernel.org/amd-gfx/20260804094246.1719318-1-ray.huang@amd.com/
+
+Honglei Huang (4):
+  drm/gpusvm: move dma_addr allocation before the notifier lock
+  drm/gpusvm: extract drm_gpusvm_dma_map_pages() helper
+  drm/gpusvm: let drm_gpusvm_get_pages() map an array of pages
+  drm/gpusvm: make the DMA mapping step in get_pages() optional
+
+ drivers/gpu/drm/drm_gpusvm.c    | 336 +++++++++++++++++++++-----------
+ drivers/gpu/drm/xe/xe_svm.c     |   2 +-
+ drivers/gpu/drm/xe/xe_userptr.c |   2 +-
+ include/drm/drm_gpusvm.h        |  10 +
+ 4 files changed, 239 insertions(+), 111 deletions(-)
+
+
+base-commit: c8420bcb1802510e5411ea4c98e2e07bdb43d74e
+-- 
+2.34.1
 
