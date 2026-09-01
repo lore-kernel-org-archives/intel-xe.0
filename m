@@ -4,28 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1AE2C61DD6
-	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 21:13:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E990DC61DD3
+	for <intel-xe@archiver.kernel.org>; Tue,  1 Sep 2026 21:18:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7049710EF2C;
-	Tue,  1 Sep 2026 21:13:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D51A010E0C1;
+	Tue,  1 Sep 2026 21:18:47 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61D8E10EF2C;
- Tue,  1 Sep 2026 21:13:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3589819061386846308=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92A2110E0C1;
+ Tue,  1 Sep 2026 21:18:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_series_starting_with_=5B1/2?=
- =?utf-8?q?=5D_drm/xe/guc=3A_Test_GuC_v70=2E74=2E0_for_BMG=2C_LNL=2C_PTL=2C_?=
- =?utf-8?q?NVL-S/U/H_=28rev4=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Use_SIG=5FID_logs_for_GuC?=
+ =?utf-8?q?_component?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Julia Filipchuk" <julia.filipchuk@intel.com>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 01 Sep 2026 21:13:20 -0000
-Message-ID: <178829720039.109472.10894828663239398681@61270ab9df2a>
+Date: Tue, 01 Sep 2026 21:18:46 -0000
+Message-ID: <178829752659.109472.8581919160106312459@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260814210758.2779837-3-julia.filipchuk@intel.com>
-In-Reply-To: <20260814210758.2779837-3-julia.filipchuk@intel.com>
+References: <20260901211204.131972-7-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20260901211204.131972-7-umesh.nerlige.ramappa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,129 +40,60 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3589819061386846308==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/2] drm/xe/guc: Test GuC v70.74.0 for BMG, LNL, PTL, NVL-S/U/H (rev4)
-URL   : https://patchwork.freedesktop.org/series/172255/
-State : failure
+Series: Use SIG_ID logs for GuC component
+URL   : https://patchwork.freedesktop.org/series/173177/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5670-97649417ea562630ab357dbea25f153a654b61c6_BAT -> xe-pw-172255v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+061140b9bc586ae7f40abc1249c97e1cc72d1b9d
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ff7c890cf8a3ad5dbde9a024ccbe62ae971bd96b
+Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Date:   Tue Sep 1 14:12:10 2026 -0700
 
-Summary
--------
+    drm/xe/guc: Report errors that cause a CT shutdown using SIGID
+    
+    Convert any errors that can cause the CT to be declared as dead to
+    use the xe_log_err() helper. Errors that are escalated to the callers
+    are left for the caller to report with SIGID if needed.
+    While at it, update some of the error messages to make what went wrong
+    clearer.
+    
+    v2: use different error codes for different errors, better messages (Michal)
+    
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+    Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+    Cc: Alan Previn Teres Alexis <alan.previn.teres.alexis@intel.com>
+    Cc: Julia Filipchuk <julia.filipchuk@intel.com>
+    Assisted-by: Claude:claude-opus-5
++ /mt/dim checkpatch c53467440a5196138d2d6610e269a43b6b47bf6b drm-intel
+7cbbe5e7fce6 drm/xe/guc: Use different error codes for GuC load errors
+085579a0b081 drm/xe/guc: Use different error codes for CT errors
+1d59198d338b drm/xe/uc: Report DMA failure using SIGID
+-:39: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#39: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:922:
++	xe_gt_assert(gt, uc_fw->type == XE_UC_FW_TYPE_GUC ||
++			 uc_fw->type == XE_UC_FW_TYPE_HUC);
 
-  **FAILURE**
+total: 0 errors, 0 warnings, 1 checks, 33 lines checked
+71841d1a6559 drm/xe/guc: Report major GuC failures using SIGID
+ff7c890cf8a3 drm/xe/guc: Report errors that cause a CT shutdown using SIGID
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#13: 
+v2: use different error codes for different errors, better messages (Michal)
 
-  Serious unknown changes coming with xe-pw-172255v4_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-172255v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-172255v4_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_waitfence@engine:
-    - bat-ptl-2:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5670-97649417ea562630ab357dbea25f153a654b61c6/bat-ptl-2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172255v4/bat-ptl-2/igt@xe_waitfence@engine.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-5670-97649417ea562630ab357dbea25f153a654b61c6 -> xe-pw-172255v4
-
-  IGT_9079: 9079
-  xe-5670-97649417ea562630ab357dbea25f153a654b61c6: 97649417ea562630ab357dbea25f153a654b61c6
-  xe-pw-172255v4: 172255v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172255v4/index.html
-
---===============3589819061386846308==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 207 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe/guc: Test GuC v70.74.0 for BMG, LNL, PTL, NVL-S/U/H (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172255/">https://patchwork.freedesktop.org/series/172255/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172255v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172255v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5670-97649417ea562630ab357dbea25f153a654b61c6_BAT -&gt; xe-pw-172255v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-172255v4_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-172255v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-172255v4_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5670-97649417ea562630ab357dbea25f153a654b61c6/bat-ptl-2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172255v4/bat-ptl-2/igt@xe_waitfence@engine.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5670-97649417ea562630ab357dbea25f153a654b61c6 -&gt; xe-pw-172255v4</li>
-</ul>
-<p>IGT_9079: 9079<br />
-  xe-5670-97649417ea562630ab357dbea25f153a654b61c6: 97649417ea562630ab357dbea25f153a654b61c6<br />
-  xe-pw-172255v4: 172255v4</p>
-
-</body>
-</html>
-
---===============3589819061386846308==--
