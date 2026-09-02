@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B283AC61DD6
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 14:54:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D445C624D3
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 14:54:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6401C10F260;
-	Wed,  2 Sep 2026 14:54:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A0CA10F265;
+	Wed,  2 Sep 2026 14:54:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DSpI4r8n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UO6OtFUB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FAA810F260
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 14:54:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7528410F265
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 14:54:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788360895; x=1819896895;
+ t=1788360897; x=1819896897;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gNPXa5Qt4oZ/UrZujsJ+CCgliVxLpTLM+UCzzLL1R8g=;
- b=DSpI4r8n8sLY1oTiMyIs0mJbIXRvZGEexgqskYnL8yx8XRRyOm7YkLMK
- L/LNobrhXzKiD/5lkoyQwHvulT5Rz49dzxrCljHUN7BSnl3ZtnM1q99QF
- XB8UldU5HI61xBIzpWh6ltcGZ4mBcoLYYV6c0pDIaDK47U6omtaKg6sQN
- kYCwFdZ69Qn9oCspHUgNI95pEj8gKlULyP4mwBe42PIwUJpt1p+uBBWyM
- o7azhc24V0H1jCqyThdJxkznnj3Og7Kxo/grgXTWayijUDKVohSxDE56Z
- eldd+48Gtf9ggNZUAU7AMTzRLx6t0djTu9zDUC4IKZ5ZjSvZQCGzLiBy+ g==;
-X-CSE-ConnectionGUID: aovoKdYfT2WNWnNA0konEQ==
-X-CSE-MsgGUID: WzYt4Vo+RPW+1FoKE+d7SQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11894"; a="92526004"
-X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="92526004"
+ bh=OXyXSWhif0E+K2vFJGyhVxMGUACuYeOW5H/UcYxBgHk=;
+ b=UO6OtFUBmTQSB3nGOy3ILqsxLWCRJXpbrOyJUqQrDraFEuU3jt5dLwcG
+ YoKZnEiQ+ViIbO8bge2fQDkDlcf4K65WSi2AcSv0rS6dC0gvXvehcYBI7
+ xn3oS6sIyOcLpfkFV80KA6paxw8ubn3EXq+EK7nfHv5lonlJqxHCbbnru
+ VqakxF3QxHXCQdTCG2C+6Tozn6itwsff6+EWy7gustxEd0MKtWVhhj7ey
+ g+DMMJySdkOKXV6QGXzN8I2JDUtpcVSdnGqFFQWJUiGlz39UegR+6JmDt
+ EAwStFFnsI9DQWac5Ze2fObQqaIt1f4FIOmtlVGZmuV0OjSAtK/L0CbZx Q==;
+X-CSE-ConnectionGUID: 954KDozQTXit0lsvlrwMrA==
+X-CSE-MsgGUID: MtjE7tzQTJKX02YYevP4ow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11894"; a="92526006"
+X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="92526006"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 07:54:55 -0700
-X-CSE-ConnectionGUID: Lr7PDO0PQOiUN08dJJAKcg==
-X-CSE-MsgGUID: aoaos0c/TLaxIvLzFS7vgw==
+ 02 Sep 2026 07:54:57 -0700
+X-CSE-ConnectionGUID: nkeqf1UhRm2yg908uz7ANQ==
+X-CSE-MsgGUID: +EezLFp3Qe65fGVaMWpVMw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="263259998"
+X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="263260008"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 07:54:52 -0700
+ 02 Sep 2026 07:54:54 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, rodrigo.vivi@intel.com,
  Matthew Brost <matthew.brost@intel.com>,
  Tejas Upadhyay <tejas.upadhyay@intel.com>,
  Andi Shyti <andi.shyti@linux.intel.com>
-Subject: [PATCH V20 04/15] drm/xe: Handle NULL resource and allow purging of
- VRAM pages
-Date: Wed,  2 Sep 2026 20:23:47 +0530
-Message-ID: <20260902145343.465686-21-tejas.upadhyay@intel.com>
+Subject: [PATCH V20 05/15] drm/xe/bo: Make xe_bo_is_user() public
+Date: Wed,  2 Sep 2026 20:23:48 +0530
+Message-ID: <20260902145343.465686-22-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260902145343.465686-17-tejas.upadhyay@intel.com>
 References: <20260902145343.465686-17-tejas.upadhyay@intel.com>
@@ -71,61 +70,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add NULL checks for the buffer object's resource pointer in
-xe_bo_is_vram() and xe_bo_is_stolen() to prevent potential NULL
-pointer dereferences when checking memory location during page
-offlining.
+Export xe_bo_is_user() so it can be used by the VRAM page offline
+code to distinguish user-created BOs from kernel BOs when deciding
+whether a faulty page can be safely purged or requires a full reset.
 
-Additionally, remove the `!ttm_bo->ttm` check from
-xe_ttm_bo_purge(). This restriction is stripped away to
-explicitly allow the driver to purge VRAM pages during the
-memory page offline sequence.
-
-v2(Sashiko):
-- Split export and this patch also Check NULL res in
-  xe_bo_is_vram() and xe_bo_is_stolen()
-
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 8 +++++++-
+ drivers/gpu/drm/xe/xe_bo.h | 1 +
+ 2 files changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 8f93e09e51bb..d30a8411d2a3 100644
+index d30a8411d2a3..c255327669da 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -104,13 +104,16 @@ static bool resource_is_vram(struct ttm_resource *res)
- 
- bool xe_bo_is_vram(struct xe_bo *bo)
- {
--	return resource_is_vram(bo->ttm.resource) ||
--		resource_is_stolen_vram(xe_bo_device(bo), bo->ttm.resource);
-+	struct ttm_resource *res = bo->ttm.resource;
-+
-+	return  res && (resource_is_vram(res) || resource_is_stolen_vram(xe_bo_device(bo), res));
+@@ -161,7 +161,13 @@ bool xe_bo_is_vm_bound(struct xe_bo *bo)
+ 	return !list_empty(&bo->ttm.base.gpuva.list);
  }
  
- bool xe_bo_is_stolen(struct xe_bo *bo)
+-static bool xe_bo_is_user(struct xe_bo *bo)
++/**
++ * xe_bo_is_user - Check if BO is user-created
++ * @bo: The BO
++ *
++ * Returns: true if @bo was created by userspace
++ */
++bool xe_bo_is_user(struct xe_bo *bo)
  {
--	return bo->ttm.resource->mem_type == XE_PL_STOLEN;
-+	struct ttm_resource *res = bo->ttm.resource;
-+
-+	return res && res->mem_type == XE_PL_STOLEN;
+ 	return bo->flags & XE_BO_FLAG_USER;
  }
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 90b15fff36c7..eede678ad303 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -601,6 +601,7 @@ long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
+ 		  const struct xe_bo_shrink_flags flags,
+ 		  unsigned long *scanned);
+ int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *ctx);
++bool xe_bo_is_user(struct xe_bo *bo);
  
  /**
-@@ -929,9 +932,6 @@ int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operation_ctx *
- 
- 	xe_bo_assert_held(bo);
- 
--	if (!ttm_bo->ttm)
--		return 0;
--
- 	if (!xe_bo_madv_is_dontneed(bo))
- 		return 0;
- 
+  * xe_bo_is_mem_type - Whether the bo currently resides in the given
 -- 
 2.52.0
 
