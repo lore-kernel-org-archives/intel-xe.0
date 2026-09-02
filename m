@@ -4,54 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F4078C624D4
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 15:54:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 267F0C61DD6
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 15:57:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 349AC10F2A3;
-	Wed,  2 Sep 2026 15:54:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D95EE10E00A;
+	Wed,  2 Sep 2026 15:57:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IVYTh2fz";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BNUFhHr0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 321FE10E517;
- Wed,  2 Sep 2026 15:54:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788364456; x=1819900456;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YN4EJ4px2KICrrwv4lTLG4gWDV+gmZkGd3lnkmGYvjc=;
- b=IVYTh2fztiqeC6on1MUkf6udv8MvXGYEYrPA47A2buOIxnvbNozSktdQ
- p4a2jfTNSeBRG2hl16daO2a4r+0bQYvCsk1F29e7l2M6nljO04538bW7c
- m5GyEyMC9Zjo9O0ZhvbwPLWPBM9xDtUGHIcBN7Oa083ErzGYglh4ZPAhz
- Sv5gAR+LO0aMcTeKbG80ydqMyShzk+N/2SPaog1QHJ5YM8ECfuf8ReiKW
- Ll1FxpKPwxFPSJjkmfQ5u5wCjIREpX+F4JjdSSg8RhIudPjwf53F69pc7
- Ksj/hNUEtjU9iAl67reXsOc5e2SvV3NbjhK3IRdsJtvAtVFw/guZhr9dQ w==;
-X-CSE-ConnectionGUID: ybaiMV7DRdu07t62GFGhJA==
-X-CSE-MsgGUID: hUikE9ArSN6GS2w3tRL7Xg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11894"; a="76380003"
-X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="76380003"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 08:54:16 -0700
-X-CSE-ConnectionGUID: DEqyJg5HQ36i4X8PYfyzAw==
-X-CSE-MsgGUID: QUSLTSFjT1uI466vGL0wqA==
-X-ExtLoop1: 1
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.16])
- by fmviesa003.fm.intel.com with ESMTP; 02 Sep 2026 08:54:16 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Dapeng Mi <dapeng1.mi@linux.intel.com>
-Subject: [PATCH v7 2/2] perf: Add checks to prevent null ptr access
-Date: Wed,  2 Sep 2026 08:48:52 -0700
-Message-Id: <20260902154852.742844-3-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20260902154852.742844-1-vinay.belgaumkar@intel.com>
-References: <20260902154852.742844-1-vinay.belgaumkar@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7FC389C28
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 15:57:44 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 51678439E6;
+ Wed,  2 Sep 2026 15:57:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ADA41F000E9;
+ Wed,  2 Sep 2026 15:57:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788364664;
+ bh=T4Vm91WymNhHIUVoNxS08bjNzP7SEqGRfXCUiRUjKnQ=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=BNUFhHr0L2Q69QgzeafN2Y02/m+4H4QG5FKfMAdYehkVrjCHAirUDq0N8yWHPXjHA
+ 05RsYX440BDeVM/7NgDWp/EUIIlC9pSnZOq1QDl9nSCzrlvYUtHO9IomV8kkPAqQEB
+ Cu0unotr6zr3z93k2pBKo8T4kgOGCBF/3vjg31seK/2SKWP7sETh9B0hXR/+YsY9Mu
+ m86tVzf4Wk0oVp2e34HA+rjR/qMwP6y8iFiJZwnzQ7ambSk5nXwaqDEqkLCuBa80f1
+ t/VtATTdQUz3NHpyUrYECD7956et7hc+XpCC8JfnPBcWKzINEjqakogmtMNPHCe9Fu
+ 3BkbmqnvnGb0w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH V20 06/15] drm/xe: Guard teardown paths against purged BOs
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260902145343.465686-23-tejas.upadhyay@intel.com>
+References: <20260902145343.465686-17-tejas.upadhyay@intel.com>
+ <20260902145343.465686-23-tejas.upadhyay@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 02 Sep 2026 15:57:43 +0000
+Message-Id: <20260902155744.0ADA41F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,58 +52,104 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Sashiko recommended some additional checks to prevent null pointer
-access. Check for revoked states inside perf_event_read_local(), as
-the pmu event may have already been freed at this point. Add a null
-check inside __perf_event_read_cpu() as well before accessing the pmu
-ptr.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] xe_bo_unpin_external() is missing the xe_bo_is_purged() guard, whi=
+ch will cause a crash when unpinning purged DMA-buf exports.
+- [High] xe_dma_buf_begin_cpu_access() fails to check if the BO is purged.
+--
 
-Cc: Dapeng Mi <dapeng1.mi@linux.intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- kernel/events/core.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+commit 58df7bf49c93c1c7134f73fd8224de6fa0f907f3
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: drm/xe: Guard teardown paths against purged BOs
 
-diff --git a/kernel/events/core.c b/kernel/events/core.c
-index f19d27ac411d..bb90034a2054 100644
---- a/kernel/events/core.c
-+++ b/kernel/events/core.c
-@@ -4788,14 +4788,19 @@ static inline const struct cpumask *perf_scope_cpu_topology_cpumask(unsigned int
- 
- static int __perf_event_read_cpu(struct perf_event *event, int event_cpu)
- {
-+	struct pmu *pmu = READ_ONCE(event->pmu);
- 	int local_cpu = smp_processor_id();
- 	u16 local_pkg, event_pkg;
- 
- 	if ((unsigned)event_cpu >= nr_cpu_ids)
- 		return event_cpu;
- 
-+	if (!pmu)
-+		return -ENODEV;
-+
- 	if (event->group_caps & PERF_EV_CAP_READ_SCOPE) {
--		const struct cpumask *cpumask = perf_scope_cpu_topology_cpumask(event->pmu->scope, event_cpu);
-+		const struct cpumask *cpumask = perf_scope_cpu_topology_cpumask(pmu->scope,
-+										event_cpu);
- 
- 		if (cpumask && cpumask_test_cpu(local_cpu, cpumask))
- 			return local_cpu;
-@@ -4917,6 +4922,11 @@ int perf_event_read_local(struct perf_event *event, u64 *value,
- 		goto out;
- 	}
- 
-+	if (READ_ONCE(event->state) <= PERF_EVENT_STATE_REVOKED) {
-+		ret = -ENODEV;
-+		goto out;
-+	}
-+
- 	/*
- 	 * Get the event CPU numbers, and adjust them to local if the event is
- 	 * a per-package event that can be read locally
--- 
-2.38.1
+This commit adds xe_bo_is_purged guards to various teardown and mapping
+paths in the xe driver. It prevents unpinning or mapping a buffer object
+that has already been purged by VRAM page offlining.
 
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index c255327669da5..b162753cebb70 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -3267,6 +3267,9 @@ void xe_bo_unpin(struct xe_bo *bo)
+>  	struct ttm_place *place =3D &bo->placements[0];
+>  	struct xe_device *xe =3D xe_bo_device(bo);
+> =20
+> +	if (xe_bo_is_purged(bo))
+> +		return;
+> +
+
+[Severity: High]
+Does xe_bo_unpin_external also need a check for purged BOs?
+
+When a DMA-buf exported BO is purged, closing the DMA-buf file descriptor
+from userspace will call xe_dma_buf_unpin, which calls xe_bo_unpin_external:
+
+drivers/gpu/drm/xe/xe_dma_buf.c:xe_dma_buf_unpin() {
+	...
+	xe_bo_unpin_external(bo);
+}
+
+Because xe_bo_unpin_external lacks the xe_bo_is_purged check, it will
+attempt to unpin an already-unpinned BO. This leads to a pin_count underflow
+and fails the assertion:
+
+drivers/gpu/drm/xe/xe_bo.c:xe_bo_unpin_external() {
+	...
+	xe_assert(xe, !bo->vm);
+	xe_assert(xe, xe_bo_is_pinned(bo));
+	...
+}
+
+>  	xe_assert(xe, !bo->ttm.base.import_attach);
+>  	xe_assert(xe, xe_bo_is_pinned(bo));
+> =20
+> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_=
+buf.c
+> index bf0728838ead5..5d9f1cd24b7f3 100644
+> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+> @@ -104,6 +104,9 @@ static struct sg_table *xe_dma_buf_map(struct dma_buf=
+_attachment *attach,
+>  	struct sg_table *sgt;
+>  	int r =3D 0;
+> =20
+> +	if (xe_bo_is_purged(bo))
+> +		return ERR_PTR(-ENOENT);
+> +
+
+[Severity: High]
+Does xe_dma_buf_begin_cpu_access need a similar guard against purged BOs?
+
+If a DMA-buf exported BO is purged, and userspace invokes the
+DMA_BUF_IOCTL_SYNC ioctl to begin CPU access, xe_dma_buf_begin_cpu_access
+will call xe_bo_migrate:
+
+drivers/gpu/drm/xe/xe_dma_buf.c:xe_dma_buf_begin_cpu_access() {
+	...
+	xe_validation_guard(...) {
+		ret =3D drm_exec_lock_obj(&exec, &bo->ttm.base);
+		...
+		ret =3D xe_bo_migrate(bo, XE_PL_TT, NULL, &exec);
+	...
+}
+
+Without an xe_bo_is_purged check before migrating, xe_bo_migrate will try
+to migrate a destroyed buffer object. This can cause a NULL pointer
+dereference since bo->ttm.resource->mem_type can be NULL for purged BOs,
+or it will silently migrate the empty backing store to XE_PL_TT, providing
+userspace with garbage memory.
+
+>  	if (!attach->peer2peer && !xe_bo_can_migrate(bo, XE_PL_TT))
+>  		return ERR_PTR(-EOPNOTSUPP);
+> =20
+
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260902145343.4656=
+86-17-tejas.upadhyay@intel.com?part=3D6
