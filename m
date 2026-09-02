@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29C55C624D3
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 18:08:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDAAAC624D3
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 18:10:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE8B910F304;
-	Wed,  2 Sep 2026 18:08:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A058010F31A;
+	Wed,  2 Sep 2026 18:10:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cxxRBoeN";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="AlfqWqen";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0039B10F304
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 18:08:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AA4A10F30B
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 18:10:23 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 735BA600D1;
- Wed,  2 Sep 2026 18:08:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BD161F000E9;
- Wed,  2 Sep 2026 18:08:11 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 8488260232;
+ Wed,  2 Sep 2026 18:10:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28C201F00A3A;
+ Wed,  2 Sep 2026 18:10:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788372491;
- bh=Hi/RqFGliRz5S35e+3sWuY1meZzr0MkIOikXGH5+YEE=;
+ s=k20260515; t=1788372622;
+ bh=Dz6n2qT9aOMZk5WbkZJrbH8gXvhDSfTdGuAE8mfquMk=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=cxxRBoeN6BNoVvHwsBvUFdV7nPHhAE9NJS8Yj27lHwloTep+CF57oEInGnXDqlL16
- HG38eO3eyQ2nJiH72vkX5fbLcseSf6CJ9VdQBfX0z0ThVGsr91AKc7dd+g4hCub5Qq
- 9xuBQhucDRelp9od/zo8lE4gTcQYLsqOa11KEeSymSnagDqQ0d55mb5nZlTb6SSe1u
- v2EbLWhV2K4GZ+oegGp3IhOggBaBqD17aUB5SmI9/dyJLPC61gpoW9LM2Z/szfG+lc
- IQdrUmNXPIw2Vu/ZPL/KVHGDpfOY1Y6tDodIrtp1lUNTLz6gJWdPfemAXbTfZiCwWJ
- CfEgwGhcdrriw==
+ b=AlfqWqenUTQMmjH85jD/9qUSb0aHB+WdZM7ysft4FY1F2WD1C2jfqNC+mW4c/Cs0l
+ dVUna8u+BLWIt8euauFxd1tREKqzTFRWdYo3ibWvbbOdzWCVqEdGrxsjNBc+7bL7OQ
+ xQXo1z9jch6BM4Mg5kNJu7++HhhIapw01i7fTSasN9B64cjU7F92HbO5hrYNjIQqg7
+ ZmsGlvq39oo+qP0V+2ce9DTGyvFn3AIT5Y2M4PBTp5uLWVenT22eiq4Z9Fthz5g2GY
+ SEG9OX7UrvJdXGhMPCNHb9/zNdeeFKTZ/4KXQGqzl5NnXr2RyM33vvTYnMWbD3pFG+
+ RWrgT/XskSOLw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 4/5] drm/xe/hwmon: Decode CRI temperature registers
- as IEEE-754
+Subject: Re: [PATCH v2 2/5] drm/xe/hwmon: Use VRAM temperature sensor count
+ from thermal config on CRI
 To: "Karthik Poosa" <karthik.poosa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260902175507.3910573-5-karthik.poosa@intel.com>
+In-Reply-To: <20260902175507.3910573-3-karthik.poosa@intel.com>
 References: <20260902175507.3910573-1-karthik.poosa@intel.com>
- <20260902175507.3910573-5-karthik.poosa@intel.com>
+ <20260902175507.3910573-3-karthik.poosa@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 02 Sep 2026 18:08:10 +0000
-Message-Id: <20260902180811.0BD161F000E9@smtp.kernel.org>
+Date: Wed, 02 Sep 2026 18:10:21 +0000
+Message-Id: <20260902181022.28C201F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,100 +59,87 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] Missing bounds check for negative shift values leads to integer =
-overflow on 32-bit systems.
-- [Medium] Missing REG_TEMP register definitions for XE_CRESCENTISLAND caus=
-es temperature attributes to be hidden and new decoding logic to be dead co=
-de.
+- [Medium] VRAM temperature sensors will not be exposed on Crescent Island =
+(CRI) platforms because `xe_hwmon_get_reg()` lacks `REG_TEMP` support for `=
+XE_CRESCENTISLAND`.
+- [Medium] On Battlemage (BMG) platforms, all VRAM temperature sensors will=
+ be silently hidden if the thermal PCODE mailbox initialization fails.
 --
 
-commit 0e96a51c64ab3a240ac604df829dbc789366c5c7
+commit 426a936975a4587d5003554dc21e461abf340940
 Author: Karthik Poosa <karthik.poosa@intel.com>
-Subject: drm/xe/hwmon: Decode CRI temperature registers as IEEE-754
 
-This commit adds support for decoding Crescent Island (CRI) hardware
-temperature registers, which encode package and VRAM temperatures as
-IEEE-754 floating-point values. It introduces an integer-based decoder
-to properly convert and expose these values through the hwmon subsystem.
+drm/xe/hwmon: Use VRAM temperature sensor count from thermal config on CRI
+   =20
+Read the number of VRAM temperature sensor channels from the second byte
+of READ_THERMAL_CONFIG on CRI platforms. Use the reported count to avoid
+exposing hwmon attributes for unavailable VRAM temperature sensors, while
+retaining the maximum supported channel count on non-CRI platforms.
 
 > diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index 3a675d7b6758b..c2b8d4c79783a 100644
+> index 768f6d68b2916..51a6664eec485 100644
 > --- a/drivers/gpu/drm/xe/xe_hwmon.c
 > +++ b/drivers/gpu/drm/xe/xe_hwmon.c
 [ ... ]
-> +static int xe_hwmon_temperature_decode(u32 reg_val, long *temperature)
-> +{
-> +	u32 exponent =3D (reg_val >> 23) & 0xff;
-> +	u32 mantissa =3D reg_val & 0x7fffff;
-> +	s64 value;
-> +	int shift;
-[ ... ]
-> +	value =3D (s64)(mantissa | BIT(23)) * MILLIDEGREE_PER_DEGREE;
-> +	shift =3D exponent - 150;
-> +	if (shift >=3D 0) {
-> +		if (shift >=3D BITS_PER_LONG || value > (LONG_MAX >> shift))
-> +			return -ERANGE;
-> +		value <<=3D shift;
-> +	} else if (shift > -64) {
-> +		value >>=3D -shift;
+> @@ -271,7 +275,7 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon=
+ *hwmon, enum xe_hwmon_reg
+>  				return BMG_PACKAGE_TEMPERATURE;
+>  			else if (channel =3D=3D CHANNEL_VRAM)
+>  				return BMG_VRAM_TEMPERATURE;
+> -			else if (in_range(channel, CHANNEL_VRAM_N, MAX_VRAM_CHANNELS))
+> +			else if (in_range(channel, CHANNEL_VRAM_N, hwmon->temp.vram_count))
+>  				return BMG_VRAM_TEMPERATURE_N(channel - CHANNEL_VRAM_N);
+>  		} else if (xe->info.platform =3D=3D XE_DG2) {
+>  			if (channel =3D=3D CHANNEL_PKG)
 
 [Severity: Medium]
-Does this negative shift path need bounds checking for 32-bit systems?
+Will VRAM temperature sensors be exposed on XE_CRESCENTISLAND platforms?
 
-Since long is 32 bits on those systems, the computed value before the
-shift might require up to 34 bits. If the exponent is 148 or 149
-(resulting in a shift of -2 or -1), the right-shifted value can still
-take 32 or 33 bits, exceeding LONG_MAX.=20
+When checking sysfs attribute visibility, is_temp_available() queries
+xe_hwmon_get_reg() for REG_TEMP. Since xe_hwmon_get_reg() only has branches
+for XE_BATTLEMAGE and XE_DG2, it returns an invalid register (XE_REG(0)) for
+XE_CRESCENTISLAND platforms.
 
-This would cause the value to silently overflow when assigned to=20
-long *temperature, resulting in a wrapped negative temperature instead of
-returning an error.
+This causes is_temp_available() to unconditionally return false. Does this
+code need a branch for XE_CRESCENTISLAND to return the correct VRAM
+temperature registers?
 
+[ ... ]
+> @@ -786,6 +854,17 @@ static int xe_hwmon_pcode_read_thermal_info(struct x=
+e_hwmon *hwmon)
+>  	drm_dbg(&hwmon->xe->drm, "thermal config count 0x%x\n", config);
+>  	hwmon->temp.count =3D REG_FIELD_GET(TEMP_MASK, config);
+> =20
+> +	if (hwmon->xe->info.platform >=3D XE_CRESCENTISLAND) {
+> +		hwmon->temp.vram_count =3D REG_FIELD_GET(VRAM_COUNT_MASK, config);
+> +		if (hwmon->temp.vram_count > XE_MAX_VRAM_CHANNELS) {
+> +			drm_warn(&hwmon->xe->drm, "VRAM channel count %d exceeds max %d, clam=
+ping\n",
+> +				 hwmon->temp.vram_count, XE_MAX_VRAM_CHANNELS);
+> +			hwmon->temp.vram_count =3D XE_MAX_VRAM_CHANNELS;
+> +		}
 > +	} else {
-> +		value =3D 0;
+> +		hwmon->temp.vram_count =3D BMG_MAX_VRAM_CHANNELS;
 > +	}
 > +
-> +	if (reg_val & BIT(31))
-> +		value =3D -value;
-> +
-> +	*temperature =3D value;
-> +	return 0;
-> +}
-[ ... ]
-> @@ -1135,26 +1187,27 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 at=
-tr, int channel, long *val)
->  	switch (attr) {
->  	case hwmon_temp_input:
->  		switch (channel) {
-[ ... ]
->  		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
->  			reg_val =3D xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, ch=
-annel));
-> +			if (hwmon->xe->info.platform >=3D XE_CRESCENTISLAND) {
-> +				return xe_hwmon_temperature_decode((u32)reg_val, val);
+>  	return ret;
+>  }
 
 [Severity: Medium]
-Will this new decoding logic for XE_CRESCENTISLAND ever be reached?
+Will this silently hide all VRAM temperature sensors on Battlemage (BMG)
+platforms if the thermal PCODE mailbox initialization fails?
 
-When the hwmon subsystem initializes and calls xe_hwmon_temp_is_visible(),
-it checks is_temp_available(), which in turn calls=20
-xe_hwmon_get_reg(..., REG_TEMP, channel).=20
+If xe_hwmon_pcode_read_thermal_info() encounters a failure (such as an error
+reading READ_THERMAL_LIMITS or READ_THERMAL_CONFIG earlier in the function),
+it returns early. This skips the fallback assignment of hwmon->temp.vram_co=
+unt
+at the end of the function.
 
-Currently, xe_hwmon_get_reg() only defines REG_TEMP for BATTLEMAGE and DG2,
-meaning it falls through and returns an invalid XE_REG(0) for Crescent
-Island. Because the register is invalid, is_temp_available() will return
-false, making the sysfs temperature attributes invisible and leaving this
-decoding logic as dead code.=20
-
-Should xe_hwmon_get_reg() be updated to include Crescent Island?
-
-> +			} else if (channel >=3D CHANNEL_VRAM_N) {
-> +				/*
-> +				 * This temperature format is 24 bit [31:8] signed integer and 8 bit
-> +				 * [7:0] fraction for platforms before CRI.
-> +				 */
-[ ... ]
+Because hwmon->temp.vram_count is 0-initialized, the in_range() check will
+subsequently evaluate to false in xe_hwmon_get_reg(), returning an invalid
+register and hiding the sensors. Previously, this path fell back to a
+hardcoded MAX_VRAM_CHANNELS value, preserving visibility.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260902175507.3910=
-573-1-karthik.poosa@intel.com?part=3D4
+573-1-karthik.poosa@intel.com?part=3D2
