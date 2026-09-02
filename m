@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 115FBC624D0
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 10:39:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBC18C624D7
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 10:39:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A07410E489;
-	Wed,  2 Sep 2026 10:39:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88B3E10E4AA;
+	Wed,  2 Sep 2026 10:39:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jODV5WLd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KSeu3N9Y";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABC0910E489
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 10:39:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3EEA110E489
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 10:39:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1788345590; x=1819881590;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sv/0GScURK2Iz23vLgS3XZjAsYh2VNeFvSJJimZSOjc=;
- b=jODV5WLdxEDQfuIpH/A4K8vrdbG+z24bY7NM4sxqms9jUVHgSV6ICPpY
- ZS7um4LEaAgk8DNownsl/bEERF215WJ2/hyssV9bqKU3h3DnjkBgPh+KD
- pN+IMjg00b5d+o2jn2/SK3hi79H/FNXB4ijTbgQzriLhwDBONKniDSRBC
- lSBY8KoMhjXZrYFbJVUF0fqBPen04GGjY/MG/8OZuR1NuCE9AKC2H6X5v
- 6CXfXDJDOrdCap+Hcesv5O2U4Yfy36TG94bk9Gq0ec10vNznsJy762L5K
- /lL1CTpnH75EbLsA22XtbLit1vyBTSGOG8O1/hxdqJGRfbikAP0O51D3u w==;
-X-CSE-ConnectionGUID: IU3Il8aFTnCE3Je13wBT2g==
-X-CSE-MsgGUID: bk/3pSswSwabLSDCncoU0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="88556970"
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="88556970"
+ bh=oU7u2pi2AtpxLmF9rt2oQ2eKLqqiFJnGVKf5IZ71qVc=;
+ b=KSeu3N9YYnvezFkSw5Xo+RuVYDq6TW+2eI1mmjq9pF4ja9pxlse/TIbL
+ FHsUlVqbY8+F1RjrpV5eVGRA7beHBwD1XB5jRX66NKIzcnUwE5yeB5lP7
+ 0yAUlUqiuHL5lR9+9aafqXaE3DdZRxBzEz5SfQ/C/HFfaKNmsZ14isobO
+ NrLUo5O8cuqp8xVFbPhCvQZd+G3zFJQAhX345aagK2HWa9nkwrxF0w8GL
+ EaIwKNPw64cJB2U8tldain+f1MsPug2EgGlX8cza1P+MBCzuit4mJ9GsI
+ MeTu+l38rXpA2bOG0538fzgvPRxHiY7SXYI4zgcNGemwW1Y/btstnzoo3 A==;
+X-CSE-ConnectionGUID: 1BKzk/MbRR60YJHKCZHW+A==
+X-CSE-MsgGUID: PUITy40gTBuhKC5aYUDBxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="88556986"
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="88556986"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 03:39:42 -0700
-X-CSE-ConnectionGUID: cX7S5HYsTmOffz2cCyLTlw==
-X-CSE-MsgGUID: BAMA1325TAiD2bzL5xZ/Zw==
+ 02 Sep 2026 03:39:45 -0700
+X-CSE-ConnectionGUID: oWX4SvCYRAqNKWB4mYkTvw==
+X-CSE-MsgGUID: Nudd2EYoSteXWf1wrW+FaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="265667562"
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="265667578"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.245.174])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 03:39:40 -0700
+ 02 Sep 2026 03:39:43 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2 1/5] drm/xe/migrate: support 4K PTEs for identity map
-Date: Wed,  2 Sep 2026 11:39:33 +0100
-Message-ID: <20260902103931.826063-8-matthew.auld@intel.com>
+Subject: [PATCH v2 3/5] drm/xe/vram: revamp CPU VRAM mapping
+Date: Wed,  2 Sep 2026 11:39:35 +0100
+Message-ID: <20260902103931.826063-10-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260902103931.826063-7-matthew.auld@intel.com>
 References: <20260902103931.826063-7-matthew.auld@intel.com>
@@ -70,160 +70,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When VRAM limit (usable_size) is no longer 2M aligned (e.g. because flat
-CCS storage size rounds it down to 4K), we must map the tail of the
-identity mapping using 4K pages.
+Previously, we called devm_ioremap_wc() for the entire PCI LMEM BAR (which
+can be significantly larger than usable memory, e.g., mapping 16G for a
+10G card), and then simply assigned subsets of this global mapping to each
+tile.
 
-This removes the 2M alignment assert (which pops) and introduces a 4K
-fallback in the identity map programming loop to handle the last 2M
-chunk of usable VRAM.
+By moving the devm_ioremap_wc() call into vram_region_init() and mapping
+on a per-tile basis, we restrict the virtual address space to exactly
+the usable_size of each tile. The other big win is that the core kernel
+will place a guard page at the end of each per-tile mapping to help
+catch OOB CPU writes (e.g. into the flat CCS storage) by triggering an
+immediate page fault instead of silent memory corruption.
 
-Might be possible to skip backporting this. The assert that pops should
-be harmless and is only on debug builds plus only a stray write would
-hit CCS, which technically get mapped.
+As a consequence the global vram->mapping is now NULL. But that was
+unused anyway, with CPU access already correctly routed through the per
+tile mapping.
 
 Assisted-by: Gemini:gemini-3.1-pro-preview
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 57 +++++++++++++++++++++------------
- 1 file changed, 37 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/xe/xe_vram.c | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 75b83687f1b5..0bf000d7c901 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -87,7 +87,7 @@ struct xe_migrate {
- #define MAX_PREEMPTDISABLE_TRANSFER SZ_8M /* Around 1ms. */
- #define MAX_CCS_LIMITED_TRANSFER SZ_4M /* XE_PAGE_SIZE * (FIELD_MAX(XE2_CCS_SIZE_MASK) + 1) */
- #define NUM_KERNEL_PDE 15
--#define NUM_PT_SLOTS 32
-+#define NUM_PT_SLOTS 48
- #define LEVEL0_PAGE_TABLE_ENCODE_SIZE SZ_2M
- #define MAX_NUM_PTE 512
- #define IDENTITY_OFFSET 256ULL
-@@ -163,22 +163,20 @@ static u64 xe_migrate_vram_ofs(struct xe_device *xe, u64 addr, bool is_comp_pte)
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index 56cff1e44530..04d831b101bd 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -55,9 +55,6 @@ static int determine_lmem_bar_size(struct xe_device *xe, struct xe_vram_region *
+ 	/* XXX: Need to change when xe link code is ready */
+ 	lmem_bar->dpa_base = 0;
+ 
+-	/* set up a map to the total memory area. */
+-	lmem_bar->mapping = devm_ioremap_wc(&pdev->dev, lmem_bar->io_start, lmem_bar->io_size);
+-
+ 	return 0;
  }
  
- static void xe_migrate_program_identity(struct xe_device *xe, struct xe_vm *vm, struct xe_bo *bo,
--					u64 map_ofs, u64 vram_offset, u16 pat_index, u64 pt_2m_ofs)
-+					u64 map_ofs, u64 vram_offset, u16 pat_index, u64 pt_2m_ofs,
-+					u64 pt_4k_ofs)
- {
- 	struct xe_vram_region *vram = xe->mem.vram;
- 	resource_size_t dpa_base = xe_vram_region_dpa_base(vram);
- 	u64 pos, ofs, flags;
- 	u64 entry;
--	/* XXX: Unclear if this should be usable_size? */
--	u64 vram_limit = xe_vram_region_actual_physical_size(vram) + dpa_base;
-+	u64 vram_limit = xe_vram_region_usable_size(vram) + dpa_base;
- 	u32 level = 2;
+@@ -196,7 +193,7 @@ static void vram_fini(void *arg)
+ 	struct xe_tile *tile;
+ 	int id;
  
- 	ofs = map_ofs + XE_PAGE_SIZE * level + vram_offset * 8;
- 	flags = vm->pt_ops->pte_encode_addr(xe, 0, pat_index, level,
- 					    true, 0);
+-	xe->mem.vram->mapping = NULL;
++	xe_assert(xe, !xe->mem.vram->mapping);
  
--	xe_assert(xe, IS_ALIGNED(xe_vram_region_usable_size(vram), SZ_2M));
--
- 	/*
- 	 * Use 1GB pages when possible, last chunk always use 2M
- 	 * pages as mixing reserved memory (stolen, WOCPM) with a single
-@@ -196,8 +194,24 @@ static void xe_migrate_program_identity(struct xe_device *xe, struct xe_vm *vm,
- 							    true, 0);
- 
- 			for (ofs = pt_2m_ofs; pos < vram_limit;
--			     pos += SZ_2M, ofs += 8)
-+			     pos += SZ_2M, ofs += 8) {
-+				if (pos + SZ_2M > vram_limit) {
-+					entry = vm->pt_ops->pde_encode_bo(bo, pt_4k_ofs);
-+					xe_map_wr(xe, &bo->vmap, ofs, u64, entry);
-+
-+					flags = vm->pt_ops->pte_encode_addr(xe, 0,
-+									    pat_index,
-+									    level - 2,
-+									    true, 0);
-+
-+					for (ofs = pt_4k_ofs; pos < vram_limit;
-+					     pos += SZ_4K, ofs += 8)
-+						xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
-+					break;
-+				}
-+
- 				xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
-+			}
- 			break;	/* Ensure pos == vram_limit assert correct */
- 		}
- 
-@@ -242,16 +256,17 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 	u16 pat_index = xe_cache_pat_idx(xe, XE_CACHE_WB);
- 	u8 id = tile->id;
- 	u32 num_entries = NUM_PT_SLOTS, num_level = vm->pt_root[id]->level;
--#define VRAM_IDENTITY_MAP_COUNT	2
--	u32 num_setup = num_level + VRAM_IDENTITY_MAP_COUNT;
--#undef VRAM_IDENTITY_MAP_COUNT
-+#define VRAM_IDENTITY_MAP_PT_COUNT	4
-+	u32 num_setup = num_level + VRAM_IDENTITY_MAP_PT_COUNT;
-+#undef VRAM_IDENTITY_MAP_PT_COUNT
- 	u32 map_ofs, level, i;
- 	struct xe_bo *bo = m->pt_bo, *batch = tile->mem.kernel_bb_pool->bo;
--	u64 entry, pt29_ofs;
-+	u64 entry;
- 
--	/* PT30 & PT31 reserved for 2M identity map */
--	pt29_ofs = xe_bo_size(bo) - 3 * XE_PAGE_SIZE;
--	entry = vm->pt_ops->pde_encode_bo(bo, pt29_ofs);
-+	/* PT44..PT47 reserved for 4K and 2M identity map */
-+	u64 l1_pt_ofs = xe_bo_size(bo) - 5 * XE_PAGE_SIZE;
-+
-+	entry = vm->pt_ops->pde_encode_bo(bo, l1_pt_ofs);
- 	xe_pt_write(xe, &vm->pt_root[id]->bo->vmap, 0, entry);
- 
- 	map_ofs = (num_entries - num_setup) * XE_PAGE_SIZE;
-@@ -347,11 +362,12 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 
- 	/* Identity map the entire vram at 256GiB offset */
- 	if (IS_DGFX(xe)) {
--		u64 pt30_ofs = xe_bo_size(bo) - 2 * XE_PAGE_SIZE;
-+		u64 pt46_ofs = xe_bo_size(bo) - 2 * XE_PAGE_SIZE;
- 		resource_size_t actual_phy_size = xe_vram_region_actual_physical_size(xe->mem.vram);
- 
-+		u64 pt44_ofs = xe_bo_size(bo) - 4 * XE_PAGE_SIZE;
- 		xe_migrate_program_identity(xe, vm, bo, map_ofs, IDENTITY_OFFSET,
--					    pat_index, pt30_ofs);
-+					    pat_index, pt46_ofs, pt44_ofs);
- 		xe_assert(xe, actual_phy_size <= (MAX_NUM_PTE - IDENTITY_OFFSET) * SZ_1G);
- 
- 		/*
-@@ -362,12 +378,13 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 			u16 comp_pat_index = xe_cache_pat_idx(xe, XE_CACHE_NONE_COMPRESSION);
- 			u64 vram_offset = IDENTITY_OFFSET +
- 				DIV_ROUND_UP_ULL(actual_phy_size, SZ_1G);
--			u64 pt31_ofs = xe_bo_size(bo) - XE_PAGE_SIZE;
-+			u64 pt47_ofs = xe_bo_size(bo) - XE_PAGE_SIZE;
- 
- 			xe_assert(xe, actual_phy_size <= (MAX_NUM_PTE - IDENTITY_OFFSET -
- 							  IDENTITY_OFFSET / 2) * SZ_1G);
-+			u64 pt45_ofs = xe_bo_size(bo) - 3 * XE_PAGE_SIZE;
- 			xe_migrate_program_identity(xe, vm, bo, map_ofs, vram_offset,
--						    comp_pat_index, pt31_ofs);
-+						    comp_pat_index, pt47_ofs, pt45_ofs);
- 		}
+ 	for_each_tile(tile, xe, id) {
+ 		tile->mem.vram->mapping = NULL;
+@@ -257,8 +254,15 @@ static int vram_region_init(struct xe_device *xe, struct xe_vram_region *vram,
+ 		return -ENODEV;
  	}
  
-@@ -381,8 +398,8 @@ static void xe_migrate_suballoc_manager_init(struct xe_migrate *m, u32 map_ofs)
- 	 * Example layout created above, with root level = 3:
- 	 * [PT0...PT7]: kernel PT's for copy/clear; 64 or 4KiB PTE's
- 	 * [PT8]: Kernel PT for VM_BIND, 4 KiB PTE's
--	 * [PT9...PT26]: Userspace PT's for VM_BIND, 4 KiB PTE's
--	 * [PT27 = PDE 0] [PT28 = PDE 1] [PT29 = PDE 2] [PT30 & PT31 = 2M vram identity map]
-+	 * [PT9...PT40]: Userspace PT's for VM_BIND, 4 KiB PTE's
-+	 * [PT41 = PDE 0] [PT44...PT47 = 4K and 2M vram identity maps]
- 	 *
- 	 * This makes the lowest part of the VM point to the pagetables.
- 	 * Hence the lowest 2M in the vm should point to itself, with a few writes
++	if (vram != xe->mem.vram) {
++		struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++
++		vram->mapping = devm_ioremap_wc(&pdev->dev, vram->io_start, vram->io_size);
++		if (!vram->mapping)
++			return -ENOMEM;
++	}
++
+ 	vram->dpa_base = lmem_bar->dpa_base + offset;
+-	vram->mapping = lmem_bar->mapping + offset;
+ 	vram->usable_size = usable_size;
+ 
+ 	print_vram_region_info(xe, vram);
 -- 
 2.55.0
 
