@@ -4,129 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AF78C61DFD
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 06:23:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F125C61DFD
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 06:31:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D99410F005;
-	Wed,  2 Sep 2026 06:23:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 379AC10E46E;
+	Wed,  2 Sep 2026 06:31:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="GEjs6/Yt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d5AehIhZ";
 	dkim-atps=neutral
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010030.outbound.protection.outlook.com [52.101.56.30])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8025510E6EF;
- Wed,  2 Sep 2026 06:23:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE14A10E46E
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 06:31:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788330701; x=1819866701;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:mime-version;
+ bh=EyxPIxL4PEjvcjCItXNv9k9fN+Vc8l7jTGtiCc6ZdTU=;
+ b=d5AehIhZG08bEotT4tPcLW9ofWvcUFp8qTPXKkULFoP1bR+BUm68kdPk
+ 37wutAx7ufWIAYsCm/v+2LYGJ+RZ6GkeGhG32itkWpc4+PIf7b6H32G8/
+ TZKnzeBT/vx9/CT1FoRtRrRxFWcb6xsSAyZ0vmr3tWqu2v+xGjp3zjCEA
+ tZ9BnWNBaINXG+IrwUhVriWf03kunlFSCR67HH0GktrHKUH6uM8+7kkZR
+ YxRTDc5JlHkg9NRosRvBFiI2cEGh4OezdxgZkqTEd3zWvoEu4Ru49f+Fu
+ imbCvBcflJo+UHTpY/pxvqaXGwQ9HrqWUs8DhXMsAj8KrHpLLtBe17snC w==;
+X-CSE-ConnectionGUID: QbCDuaitRG+75AeTFoyg4Q==
+X-CSE-MsgGUID: CB7sV9aTQLWnu4Kmt9ZPaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="100131520"
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; 
+ d="scan'208,217";a="100131520"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2026 23:31:40 -0700
+X-CSE-ConnectionGUID: aFvxNUP6Rqq8U16/hWAy5Q==
+X-CSE-MsgGUID: dkmO6NGtRcqB6B1eEvg3UA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; 
+ d="scan'208,217";a="269337702"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2026 23:31:39 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Tue, 1 Sep 2026 23:31:39 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Tue, 1 Sep 2026 23:31:39 -0700
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.42) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Tue, 1 Sep 2026 23:31:27 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZQUq4Erc5ed2ZRi1fDX5IV4xeraJLeEcyHCxxnT9E0szweg66xQhWJsK2ecIENoWq82mvGy+RjfJas3IRS47W0pPN1nnqM/FT+K75wPPzG/UJp2lIokFsD6hkF/rKEMuhyE3z2H5y1d2Z/85YAmssbho/01avXPzLFBGUEYjJpafgqFqTvpo06Du1Ia32PLXF67ZhX+iw22xKwYdCKPB8iqSMsviZpXniFHqJUZe3pTAv4jNd7+RORb/5CxB5H+371dTXZEANGWF0XnY0WBRAk5lIjYMBFd4AJu929A65T5mnOEGE9kxqIZyxt4WjDtXzdUG9i+6TOsGVUzRcYKl6Q==
+ b=npWG2+LdPtcA3SBe6Qk1mjkABRBhZ3zgW+WPrgQUghHWoImc19MJANuSsisbitT8/JvEIuwCuQgfA98Li7nipF7s4b5E17Fz6aYuNYo4I19GiNKEcQSTzNic6Uj/ZqDa9mncuKXk/tewPRl8JFZgCiCEMON+7nG+sWuVMUazW4eiTHwHh3rjaVW8/RodjpNE5QmrJbqNRqcNR3yMykeImseFNsDj/lFW0mayAm19eahhn5FYQJhtQ6TDYLIG9ia1TbRuMUXtkjGcQcavIfHQ/vWgn5opfv68qgpSR9qTuS1oL5JgRVtFhNGWKdWVspCjbKnCPd4hKj/TLGuSMLRscQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CzpiTGcmK93TEHQ5e+q0PCiMiXrEbrFkVi1da866/Qk=;
- b=MdrYt9fF8kiEeEJPExBhASQmcEkCSsKnC5DLicxPnN+pR1D7XFIBbIQ6IeC9ZTRxhrZPRT1YISw3sljriCV4/htI1Ku4c0eP14YJGHVjwa0ad4qJFHNFaG1HEaurtQeuPDosTCwhJ4iYdF/zZ4eJzXRSMliFDw4naCpKNtzlP2QWpFe1hx+rTXLpSyn+Xd381ADDipthgEq9bC90LxC0OhXGPQ2Vf1bxH732YcKJ6v4seMirqxbHOw0IHin5Hx9xeuwSjYhR4rwMT2XpajFw7BCIqWheCqkFZgFwQW0d88lw2d5dHy5DvPvYaAWntNWYbgBfQyqAjHTGvchc2W36TQ==
+ bh=izqssHYdOatR+ZGyIatO1AY2QGfe5nrkcuxiXqEMOVQ=;
+ b=w+VUg8OSiNOSRVeyRhxPsxlnKcE3aqW8P5KzymTRgIL1aAt2o6HWeORHztXtHbvKXZsC9LwBQuMEt+Hjjo+AwFHYN+SBQhVo3BVxaUsr5CFn1KWj8xJClt9ld91bID12S7/AwxewK5qQBgPv+VrEvbNbeOHMAv2ah+1p8DdkrM42OEJmowfkU7DrjtNQB+9sTVNDJPM1q+3c4jjUmFfHfv7qZ1Fb0K7/J3pbIGUmN6BWWK+HFKq81uNDLhg1WpSIvn5iyfsBN15LwGo0/DQIJ4Vr6mM/73urk9PkWfwysSumGUWc1CNVMYvU3J+USy8i8yPSykEV/WCxpdZ2hAHGMA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CzpiTGcmK93TEHQ5e+q0PCiMiXrEbrFkVi1da866/Qk=;
- b=GEjs6/YtVJk0SH+NNrWyH7e+LYPi8NSm8MPow3hXOE/AXq+6lOm91IpQD+gacZdGIWBIAsAOnS+JGPLyXQa3+da9i9WNvFZhO/u+VYqMGZs407Dz+86jmEMo2tvLZs4Wgb8SuvqQkcs3sacxy22x3qSOH+hCZnsKUdjxFsVMmnw=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CY8PR12MB7170.namprd12.prod.outlook.com (2603:10b6:930:5a::18)
- by IA0PR12MB7532.namprd12.prod.outlook.com (2603:10b6:208:43e::8)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6207.namprd11.prod.outlook.com (2603:10b6:208:3c5::21)
+ by PH7PR11MB5914.namprd11.prod.outlook.com (2603:10b6:510:138::7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.6; Wed, 2 Sep 2026
- 06:23:08 +0000
-Received: from CY8PR12MB7170.namprd12.prod.outlook.com
- ([fe80::7565:bdd3:383a:de5f]) by CY8PR12MB7170.namprd12.prod.outlook.com
- ([fe80::7565:bdd3:383a:de5f%6]) with mapi id 15.21.0360.008; Wed, 2 Sep 2026
- 06:23:08 +0000
-Message-ID: <7d8d5f9d-afd6-4c07-bb2e-bc25677aa4f8@amd.com>
-Date: Wed, 2 Sep 2026 14:22:59 +0800
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Wed, 2 Sep
+ 2026 06:31:03 +0000
+Received: from MN0PR11MB6207.namprd11.prod.outlook.com
+ ([fe80::52eb:929f:a8b2:139d]) by MN0PR11MB6207.namprd11.prod.outlook.com
+ ([fe80::52eb:929f:a8b2:139d%4]) with mapi id 15.21.0360.008; Wed, 2 Sep 2026
+ 06:31:03 +0000
+Content-Type: multipart/alternative;
+ boundary="------------if3MC01eUyHM9gCt1BCNyua1"
+Message-ID: <17780d34-b06b-4db7-888e-e3734530ae31@intel.com>
+Date: Wed, 2 Sep 2026 12:00:56 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] drm/gpusvm: extract drm_gpusvm_dma_map_pages()
- helper
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: sima@ffwll.ch, rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
- himal.prasad.ghimiray@intel.com, dakr@kernel.org,
- intel-xe@lists.freedesktop.org, aliceryhl@google.com,
- Alexander.Deucher@amd.com, Felix.Kuehling@amd.com, Christian.Koenig@amd.com,
- Ray.Huang@amd.com, Junhua.Shen@amd.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20260901090100.2024933-1-honghuan@amd.com>
- <20260901090100.2024933-3-honghuan@amd.com>
- <apcq3TLb0SQ4Qs84@gsse-cloud1.jf.intel.com>
+Subject: Re: [RFC PATCH 2/5] drm/xe/xe_ras: Handle page offline requests for
+ device memory ecc errors
+To: Riana Tauro <riana.tauro@intel.com>
+CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
+ <aravind.iddamsetty@linux.intel.com>, <badal.nilawar@intel.com>,
+ <raag.jadav@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
+ <soham.purkait@intel.com>, <tejas.upadhyay@intel.com>,
+ <himal.prasad.ghimiray@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+References: <20260825063615.3697317-7-riana.tauro@intel.com>
+ <20260825063615.3697317-9-riana.tauro@intel.com>
 Content-Language: en-US
-From: "Huang, Honglei" <honghuan@amd.com>
-In-Reply-To: <apcq3TLb0SQ4Qs84@gsse-cloud1.jf.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TPYP295CA0008.TWNP295.PROD.OUTLOOK.COM (2603:1096:7d0:9::9)
- To CY8PR12MB7170.namprd12.prod.outlook.com
- (2603:10b6:930:5a::18)
+From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
+In-Reply-To: <20260825063615.3697317-9-riana.tauro@intel.com>
+X-ClientProxiedBy: MA5P287CA0224.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b4::16) To MN0PR11MB6207.namprd11.prod.outlook.com
+ (2603:10b6:208:3c5::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR12MB7170:EE_|IA0PR12MB7532:EE_
-X-MS-Office365-Filtering-Correlation-Id: 85339cbb-bb3a-4d29-b033-08df08baa7ca
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6207:EE_|PH7PR11MB5914:EE_
+X-MS-Office365-Filtering-Correlation-Id: ecf0fb51-e4b2-4bd8-7a5e-08df08bbc2f4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|366016|376014|23010399003|1800799024|56012099006|10067099003|22082099003|18002099003|4143699003|11063799006;
-X-Microsoft-Antispam-Message-Info: PCAjh3gw7/GQRpUgQl+TioKdin1ZHnjGaDQ0icjZqmAamHCtSXRq02c6+SIZP68ll5w8L1lavEf8RD7ENVwwbninzAm3CbaSuoB011+2PQXyxTHhTuzXQ8jva7Oq8tRcxvyew4h8FUUEfsDA6+cWuRp+Gw6osj14UYswZsL55HGLYEbML+Q6jw6u6tvabooHKgvGcM+148E7PC8VV35vXkfKlhuMzY//BWtPFmVbnRcV4CJfsYductZC5qmob2lEiJ8cNh9mkPskNX8ydlJM1cAGGDJBJ0+pH0S839tEMtChZ83WoQY6MtyAF599GYilyioArCPTwcfAjC3bVMZo2lcFTwz640g6VHZ5jvoro7ifJbDD+VPpyics5M5IOLRAVtjq9G85DkbD6HfbxxuE1fBHepBV4LNOCSO6EznEx2ykuVI4O3k6r7YyTVdcaeeIB5XKU/DgtTkpYscj740gRqQjCJ1SBiwYbC52tiJ6DhYcYMOeLILFe0m2ecHlMS1NgIl7jiremC2AzM0QzkSjathSLC+vq9te++LoIB/bdCCK9chPZn6wzZTxSrQgNn19UHlFkPyzA351yh+N134G5adHBLkdwye8hdVAtJ0eE5M=
+ ARA:13230040|1800799024|366016|23010399003|376014|18002099003|22082099003|13003099007|8096899003|56012099006|6133799003|4143699003|10067099003|11063799006;
+X-Microsoft-Antispam-Message-Info: mKLqaOknaUV0v/23gtoHqgPw64qUCu2rQ1CW16+LLzT5P2dAAdlLu0hk/rv/jgkPj7TQFwq6U92THBp+b1agYvXBB9a5L2uCWCz6fTRDKt6L0NBRP/2OoSYz+b2vLFo/uLn2APYEOi7MkQLaKS3xRms5LB6rqNyZt2TM1+vbGve8shcN4cTHBXWbDjkSfAp74fkKvvYzZQiWAcnwAVaLdv1Qp6fe8k6exMTm1vtaerboYCL4aYH6+H/c3ryENTWq95Tos4ED40a36OzZGmD6fxMwg9/C7Ftfkkm3XzP8B/3veMxqDC2A2rLl+8aKrQXGWYqm9fr9bJXHM/zeFtGSH4t16eQRL3qMHc86UxcoMMlV4N4GEF0cesbhL+nzzb0naa5pwdsd/YmX2orEPwqZvZNuU084R6p7Mv3rSpp9GZcHZtSYkPtK4jJVH64bfNFyiY6fdxk7BDClspkcAQ1vsRvbp3R9vkSR17m6qpUYKvTU3yOidCfp0bI91g1Dn9KQ+9ZF82Tn3ouZEVPDMfz318YMa2nqFwi2zOuc+1pV/yc/ZkxvRR6FX96iGputJYouxNg/SYCX8JjyQ06cBMen66LNDrh85mgow8RYRreABNyOGOlDwYYbMwW1Je+CjFr5
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR12MB7170.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(366016)(376014)(23010399003)(1800799024)(56012099006)(10067099003)(22082099003)(18002099003)(4143699003)(11063799006);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(18002099003)(22082099003)(13003099007)(8096899003)(56012099006)(6133799003)(4143699003)(10067099003)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dHQ3dzhmSmVPMFN4R2RKbGhGYXg2RklJUUlpNWJuWVpaOTlDU2cvOHpxSVVv?=
- =?utf-8?B?Z0ZFNTRoNXY4eDZFaXZra2VFVytYMkFVSndJWTZxdmdPUDFPWngrVm1mNGtH?=
- =?utf-8?B?NWVVWm1USGxGRE5xR0U4UVBhbVVpbDRoVHRWRmt3VWJ1NHh3eGlHM3VSTHUy?=
- =?utf-8?B?a1JGSHNJTVlCNjdzd1FubHN0VHkrVUwvc2VDVDgwa0k1L3UvNWd2MkZkWjVV?=
- =?utf-8?B?SnR3SWRtenE1ZmxoT2oyaUpzN2tMTHV0RERXazEweXNHYmJYVTU4Y3NrSnlR?=
- =?utf-8?B?UkVneU9TalZXajZMbm5VL2wyM3BReWNVSTJ4ZVpWWkdTZHVwK2JUVUQ2d3g0?=
- =?utf-8?B?YXFjRllBSStncFM3Wk8zTVJuZjcraTdkdG1mYThmNXU5RUw2L3FFTHV1bHFL?=
- =?utf-8?B?SlFRYi9mNFFjeUp6ZWR6dXV1bTdlMXZvbkIrMGlDWndXcGoyK3hXR2NWRlZW?=
- =?utf-8?B?ZXRBYkI5MkJsa0lCWGtrZitSMnV0c2JnZXRJV29IVGpXaGl4S0k0SndSYXdl?=
- =?utf-8?B?bmNrSVBsOXVucnJ4MEdRVEgvTnJPUHlnLzZUc3ZtdUFJKzhhR1Bid3NtWk44?=
- =?utf-8?B?V1dDK2ZMTkZ6Ui9taVJMVDN5UWxJREtqZzlnSHUrMDRLcjY0SUR6K0NsYUxm?=
- =?utf-8?B?VUZGSHBCenhSU0l4QlZHTlpuVmRMdkUra3lDaE1ka0tONjN6NnVyajlJY24z?=
- =?utf-8?B?UTJNYTVvS0NJQjBUWHF2aEErOG1DVDB1UFNQYXdaaFk1S1NhRDZRT1hVejJv?=
- =?utf-8?B?eHFKVmc2UGlwVUViNmpkVFNkajF2aXlHMFloam8xVmpoSHFjNjgzVU9zeTFy?=
- =?utf-8?B?SFdkNnRYNjdnZDFzMWoycU9LNThGVVg2RUZvR3c0QWVUWkdEUHdzUGJXaHlR?=
- =?utf-8?B?L0wrb2NBejNZNHlwcGdZdDQ0Y0JiNXBtRURCcE4xcHVRZnBoazViRDd1a3FK?=
- =?utf-8?B?UUFNaWFTMHhYUFFzcmtvcUN3bTBLU3dmUWJVZ2x6T1Y0VFI1T3R3VEZSWVFO?=
- =?utf-8?B?MEtyRlRuZFNxWENHOW1mWnNaK1k2WmVnd3NKdDdwanR0MzNjcDRSVU9taHZL?=
- =?utf-8?B?RlBNbnRqeklsQTl6QWJQaXpmS20rMzhBRmZNUm0xN1IxSXJSRUtGZVlncmFj?=
- =?utf-8?B?ekROSE5ZM21Hb0pxcG9DaTFUUlVWOGVwYTA4QTM1S252YVpndXZ4S3lFVWQ4?=
- =?utf-8?B?cU1WWHEvVW1aRkNDZEZOaWEwWEt0a1dyRVJ4M2JXWGRFV2VrQTM0OFRRUGZW?=
- =?utf-8?B?SC9ZZHJVeFhGY2JJWkh1YW93cEpUUE5PSzFmS0tMMWR1NFhMeDVzR3JjOTIw?=
- =?utf-8?B?NjdaTmF2elV5RFhkNHNwbXZHb2NNV01xMVpRMXdzUFU0bllhMGJuUTJuaFZ1?=
- =?utf-8?B?RXRuUGZ5Zk9mY0x5RWZJQzNtOGx6N083M0RVMnQ1NlRLako2SjdPQ3NYZGFX?=
- =?utf-8?B?ZDh2Vnl3aTFVVHBWUmNzeGVFYlBwSVZiaTg3TlcxeXNWTTcydm9iQ09VR1F1?=
- =?utf-8?B?Ny9jNVpSZUU5MmMwWjR3WkQ5Yzdia3Z0OHRoTHdOQ0NxOVNEWWZNMWRKYldO?=
- =?utf-8?B?K0dCMDhKbzhZUy8xRVdwcnozOWVFSGZuQWFudDlGKzdpeldLZ1Q5TC9aekJt?=
- =?utf-8?B?M3BRV1RtNUtTWHdhTnJNS2hiQmQybkVTZ2w4YW1SSlJRaml3MUYrbE0rMGVS?=
- =?utf-8?B?QkdUWWlyQmJwRWdLOEE4WncwTWNxcnc1N0dXYjBZY2hpNWdyZnB5Y09hSWRt?=
- =?utf-8?B?dHN0WTRJM2k3QlFnT0lXNnJMREVuT1RDWGJEc2hBRjUvRGVYK2Y2N3FFN1Jr?=
- =?utf-8?B?T3JNUmtWME9JMm1uazJKdkM2T3BTajNnZmlzVlJncmkrYmpUU3p0TWd0YUU2?=
- =?utf-8?B?b1dnL3hwY1BJYUJTY3BXOGZKTngrUzhaSmFWRDd4aW4vVSt1RnJlS0VjbFJj?=
- =?utf-8?B?bktRQmtBcFMzMU1HVDB1emdnYWRuTUY4L0pGRnVzZnRWRm4rZFE2a2ZYMERZ?=
- =?utf-8?B?ZzV1ZHZGQmtiQlp4RkxnOWxjTG1IZEgvbC9OVElnMDFzbEY5OW1DdWpMcHc2?=
- =?utf-8?B?R3h6dlhWbmMrSkRTWUM0TmVBbXdMZ3BMYWo1c2pVM0JDaUpybmFWdXN6dDlk?=
- =?utf-8?B?V2s4K3FhZkttMm9MeWxQd1c4TmkrNVptR21JVEN3ZFJxRG1LUm1ONmF4d3Nt?=
- =?utf-8?B?MmVvRnpaS3huQ1ZOT2thR0wzY1FHZVAxdTM5VmE1NEdXMEJhaWV2Vnl4V0NZ?=
- =?utf-8?B?VVdFSVZCSHJFUjh1VkZlTlVHMGhmdWw4em54UHUwVythZ1ZxMFovZnA0SFps?=
- =?utf-8?Q?fjWZ2CD08vwo/5HzfC?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85339cbb-bb3a-4d29-b033-08df08baa7ca
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB7170.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UXIxL3R5SVJhaUR5bnpCOU9JVjBqY2dJVmlZLzhWVitsMXVGRmcrdFBDc3ZK?=
+ =?utf-8?B?YmZPSDZSZzhBTlJaSFB0MEVzMFo3amhsNDArU3ZXemdlOUZWNFVaUDl5UGZt?=
+ =?utf-8?B?TWZMTE1JQ3l2SDFkRGQvaEpkVnE2WWRIK3hWTDB5amEyNnNBK2JkcnVJOWpY?=
+ =?utf-8?B?OTVjTnljY0d3YTJUOXQxZ3pjeFZwb1VDUzRzb0dpUURWYmYxSjVRNWMrZDFN?=
+ =?utf-8?B?VHQwc1pOSm5nbUpROTRQQzlENG9zUjd5Q2lvVENvUzdsSll2cENVd2J1R2ZB?=
+ =?utf-8?B?eWQxbEZEM3FmbjRoRlJaRXhnSmRkTUJhWWl5bGY5NFd5QTAwTVl0eWpvZkVX?=
+ =?utf-8?B?aW1nQjY2SllRc1JqdXdRU2FCK3lJcTVEV0kwbFJHUUp4aUZLcjZVbnVyVUVt?=
+ =?utf-8?B?UTI0NE1odVlXRjUwYXVxVVgvSW12Ymt3WGN1WVRmZmlSYmk0QkxxVDRudzJS?=
+ =?utf-8?B?UE9KUHA3Z3U3NU9QZ2NNeWJ6WEdoOVg2c0xOU0hQT094V1ZVUzg4bXZCTS9l?=
+ =?utf-8?B?Z2hPRks3cnRLMnhBWGFJY053bEE2eDUvbHBtV092eVpabm0vazNZaFM2cHls?=
+ =?utf-8?B?M1Y4RFlIR2hoNy9aWTJxc1Q3Sk01aGpNRkxmcVlkY3pDK1NzZU9DeGRDUHBO?=
+ =?utf-8?B?cG9ZamcrS2NNM3lPcE9kWWtrakFlcXl5WW4wMkE5emZtT2J0dnhyK25hMDVF?=
+ =?utf-8?B?YmhvTGw5QWhlbEVmRXNMc3Y4bDFnM1k4WDQxV3poeG5QVHV0NTRlUmt4Ujhl?=
+ =?utf-8?B?ZTFNcFhNNWdJY3JXOWFWNmZ3MGNPQU9tMU5tL3hnVzg4cVZsdnZLMWsybnZO?=
+ =?utf-8?B?QWNzZDJlem9OcWlETlZQeTZTbkFyRURLdml3d1F5ZURlMVczQXdCNThtMDRF?=
+ =?utf-8?B?eEFqZS9ncUszcUJCc1BoQ2J2NHhRNHRCZFUrMXU5SDZodXpaZGVIcGE2Nm5r?=
+ =?utf-8?B?N3hOc3piV29Na1BReHRWNm9PeTFhS05CN09SY0VRbzNqRTFWZkYycVVnWUkz?=
+ =?utf-8?B?T014VnBNa29ZbTFKQ0N1SU9mUTFXMHJsaGNCMmZ6ZHVrWVVKazRvaTFYOVhK?=
+ =?utf-8?B?akIvODVibCtxSjJ0bVpXbVlsTUhMd0E3Yk51SVZRcHF2RzZxbVhLMnhSYk5J?=
+ =?utf-8?B?TVFLeVhja3B1WmhGWlNnVTB6aFRvcnJVWFdJUEFIOE9iMFl6eVZKTVBvWHpK?=
+ =?utf-8?B?RnFQUlVTSDRKQzU2S3NobVZkYTZuQTkva1dQRXROYytRMXBjbVFiZHZFYnBF?=
+ =?utf-8?B?UjAwNVlPalptRWFlc2lZbFNWd0lnNmx4Vzg1QzNWdDl2SnBiRGdUQnU4Z21Q?=
+ =?utf-8?B?NUIxUVNSVVY5NVNqWCsyMkJRZGFZUU9OSm9md242bUd3WGJYZis3KzVVUjF6?=
+ =?utf-8?B?eGhMVGd3bjh1dk5ydUhMZThHb1BoZklxTitjcWdVTi84OUFzQndScEYxUEFN?=
+ =?utf-8?B?MzhaeWVQRnVHWUVueDgvTkhtK09HSjRYNFFnRVVoeE81OGoxSHhnOTNVMFpi?=
+ =?utf-8?B?c3BxLzQ4dVgvemliZUdLTmt5bkxJTnJKUCs0WnowOVN1S3ZXRThsV1FPN09u?=
+ =?utf-8?B?VHNEak5VQ0VjM0VQVHBiZGUzMEVxS1pxMnpYeHQzdklqUmtDZFVndmN3TU5Q?=
+ =?utf-8?B?UGxVM25UMXpSYktpeHQvTUxaYTJTZlN2K0JsY2hiQmFJN0lSK3M3T2tQSllG?=
+ =?utf-8?B?NkR0VFRrYTFGTTJHWWZhY3JSZUZqbWFJWkZmQlhsclgzaGF3SGorMGVhWVFG?=
+ =?utf-8?B?NlZIajBWYkQ3ZHd6NDdab2Z6Ynh1NXBLL3EwMjZ3RURsM3BxY2E1U3hZTmQv?=
+ =?utf-8?B?Vkt5U3MrdDhrMlpLVTVWVUc5TGpEMktyL1pycGsyWjYxbHozaUxwUU9SNTFv?=
+ =?utf-8?B?Z0szM2NoV3Z2UlVCMVF4a1J1OEU1NTl4cUhQOXY1NHBTK1BMcUpkWGV5WXhV?=
+ =?utf-8?B?cThZU0VnZUNTdTdPSWhvN1ZHSEV4bTdJZXY3NVBNdFZtdHlsbzB3cGRxS3hx?=
+ =?utf-8?B?V0dWSE9OWTVCcXMyK3NSOVY5SmtOUGl5UFJGK2NwYnNOYU1TdFh1S0F1eTRs?=
+ =?utf-8?B?Z1AwK0JRK29BR0pQdU5xT1h3bVRsekduWTlYeHRpOGlmTS9JVWtpZG9wcUpQ?=
+ =?utf-8?B?SHhXcU85RjIvRUNuek92akdYbmlrV1NXTHgxT2haYURCWGJ6TW9BbUlDQitY?=
+ =?utf-8?B?K3pJSnZFeFFMNG05YklobkFTWDFjSWZQeEY3L056NTQ2YXZDRTlheW1uOGxX?=
+ =?utf-8?B?ZC94MWRmWThwSHpHUjZWenl5eTc0QS85TFNlSnNqcjlXSi9CbW8xcFpremFH?=
+ =?utf-8?B?UUtoQXMzR2lLNERzSzlmNkUxQ2hPWU50cmRoMVZFZjFRRmRJTVRxOFowRnlw?=
+ =?utf-8?Q?dI3pUwwQ8uprOIDM=3D?=
+X-Exchange-RoutingPolicyChecked: pr2cGchR7BzV3n1fz81rxWYzHjZfLEETSeb7S6b/QORu3ge5mz15mXPU0OCMA8h1ujh1VP6vwpFVhz1xwWnL6Eq5m6uc7OmlQHmPAE/noEoikZRneGHCCfhovXZWsUHs18+/RZFD3q35w1kGhbc4bOCPw/BmRhkofBfF9b7cOlQHszvmwBld2GLCGdwvOXbPPeIRF9a+Jol3uTlQjrgsWOC8DwoevK3kkFsfx+MKISokZWNuxYnRe5A7zLfP49EPLetl/Siz12gxBAXNOAjk6q8c8wZrjIPaZStHpDERUYcUlESkgF83bCYlYbI9VwVu0xd25ge6Zz6Nb5bkoaM4DA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: ecf0fb51-e4b2-4bd8-7a5e-08df08bbc2f4
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6207.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2026 06:23:08.4935 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2026 06:31:03.4669 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OTbnxZeiEC+iffo/RPv9Ev7WwialLqTt+ca88SOpudHgLV5SwnBIpOFx1UFXfgB0VqClS7J9Hqy8eQcTEfyRRw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7532
+X-MS-Exchange-CrossTenant-UserPrincipalName: W+NkN0j0516rnyUa2flu552Hl4zroImfy4MU4ukBAbdvX2UyZNIkApmNX2VxP3AoLVBPWIXqCyFe4Ea4WSYRcKeAPRYcTRTy+SmDSq4VJmg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5914
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,318 +177,589 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--------------if3MC01eUyHM9gCt1BCNyua1
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-On 9/2/2026 3:43 AM, Matthew Brost wrote:
-> On Tue, Sep 01, 2026 at 05:00:58PM +0800, Honglei Huang wrote:
->> Move the per-device DMA mapping loop of drm_gpusvm_get_pages() into a
->> helper drm_gpusvm_dma_map_pages(). The mapping logic is only moved, not
->> changed, so there is no functional change.
->>
->> The helper maps the already-faulted pfns into one drm_gpusvm_pages
->> instance under the notifier lock and unwinds its own partial mapping on
->> error. The HMM fault and the notifier retry loop stay in get_pages()
->> common code rather than being pushed down to drivers, so no driver has
->> to reimplement the subtle fault and retry logic.
->>
->> With the mapping isolated per instance, get_pages() can later fault once
->> and DMA map an array of drm_gpusvm_pages plus a count, one per owning
->> drm_device.
->>
->> Suggested-by: Matthew Brost <matthew.brost@intel.com>
-> 
-> For some reason, Sashiko didn't run on this particular patch [1]. It
-> would be good to have it run through the tooling in case I'm missing
-> something.
-> 
-> That said, I can't spot anything incorrect, and this looks like a solid
-> cleanup.
-> 
-> With that:
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+On 25-08-2026 12:06 pm, Riana Tauro wrote:
+> This will be integrated with the related address-fault handling flow
+> once this patch is merged.
+> https://lore.kernel.org/intel-xe/20260818104055.3833974-14-tejas.upadhyay@intel.com/
+> Sending for initial comments.
+>
+> Add basic support for sending page offline/decline requests to system
+> controller and use it for device memory ECC error handling.
+> Pages that belong to critical BOs cannot be handled by offlining and
+> require a SBR (Secondary Bus Reset).
+> Pages that are configured for log-only handling are not marked as bad by
+> firmware.
+>
+> For all other valid page addresses, the first occurrence of error
+> indicates a poison error and the page is offlined only by software.
+> Firmware avoids permanently marking the page as bad. The second occurrence
+> of an error indicates a Double-bit ECC error and the firmware
+> permanently marks the page as bad.
+>
+> Cc: Tejas Upadhyay<tejas.upadhyay@intel.com>
+> Cc: Himal Prasad Ghimiray<himal.prasad.ghimiray@intel.com>
+> Signed-off-by: Riana Tauro<riana.tauro@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_ras.c                   | 121 +++++++++++++++++-
+>   drivers/gpu/drm/xe/xe_ras_types.h             |  35 +++++
+>   drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   2 +
+>   3 files changed, 153 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index d25d25f77531..c643c7137a42 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
+> @@ -3,6 +3,7 @@
+>    * Copyright © 2026 Intel Corporation
+>    */
+>   
+> +#include "xe_bo.h"
+>   #include "xe_debugfs.h"
+>   #include "xe_device.h"
+>   #include "xe_drm_ras.h"
+> @@ -200,6 +201,115 @@ static inline const char *comp_to_str(u8 component)
+>   	return xe_ras_components[component];
+>   }
+>   
+> +static int send_page_offline_cmd(struct xe_device *xe, u64 page_address,
+> +				 enum xe_ras_page_action action)
+> +{
+> +	struct xe_sysctrl_mailbox_command command = {0};
+> +	struct xe_ras_page_offline_request request = {0};
+> +	struct xe_ras_page_offline_response response = {0};
+> +	size_t rlen;
+> +	int ret;
+> +
+> +	if (!xe->info.has_sysctrl)
+> +		return 0;
+> +
+> +	if (action >= XE_RAS_PAGE_ACTION_MAX) {
+> +		xe_log_err(xe, DEVICE_MEMORY, -EINVAL, "Invalid page offline action %d\n", action);
+> +		return -EINVAL;
+> +	}
+> +
+> +	request.page_address = page_address;
+> +	request.action = action;
+> +
+> +	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_PAGE_OFFLINE,
+> +				  &request, sizeof(request), &response, sizeof(response));
+> +
+> +	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
+> +	if (ret) {
+> +		xe_log_err_fatal(xe, SYSCTRL, ret, "failed to send page offline command\n");
+> +		return ret;
+> +	}
+> +
+> +	if (rlen != sizeof(response)) {
+> +		xe_log_err(xe, SYSCTRL, -EINVAL,
+> +			   "unexpected page offline response length %zu (expected %zu)\n",
+> +			   rlen, sizeof(response));
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = ras_status_to_errno(response.status);
+> +	if (ret) {
+> +		xe_log_err(xe, SYSCTRL, ret, "page offline command failed with status %u\n",
+> +			   response.status);
+> +		return ret;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int handle_page_offline(struct xe_device *xe, u64 page_address, bool send_cmd)
+> +{
+> +	enum xe_ras_page_action action;
+> +	int ret = 0;
+> +
+> +	if (!IS_ALIGNED(page_address, XE_PAGE_SIZE)) {
+> +		xe_log_err(xe, SYSCTRL, -EINVAL, "Unaligned physical page address: 0x%llx\n",
+> +			   page_address);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/*
+> +	 * TODO: Call function to handle address fault
+> +	 * ret = xe_ttm_vram_handle_addr_fault(xe, page_address);
+> +	 */
+> +
+> +	/*
+> +	 * Handle return code from address fault handling function:
+> +	 *  0: Page soft offlined, decline to firmware
+> +	 * -EIO: Address belongs to a critical BO/stolen area that cannot be offlined
+> +	 * -EOPNOTSUPP: Address is valid and can be offlined but user policy is not to offline
+> +	 * -EXIST: Address is soft offlined but yet to be offlined by firmware for second occurrence
+nit: -EEXIST?
+> +	 */
+> +
+> +	switch (ret) {
+> +	case 0:
+> +		action = XE_RAS_PAGE_ACTION_DECLINE;
+> +		xe_log_err(xe, DEVICE_MEMORY, 0,
 
-Will resent this series only to intel-xe@list and dri-devel@list to 
-retigger the Sashiko review.
+I know, it's switch case using ret, please make use of errno as ret from 
+xe_ttm_vram_handle_addr_fault ().
 
-Regards,
-Honglei
+and make it consistency across all below xe_log_err.
 
-> 
-> [1] https://sashiko.dev/#/patchset/20260901090100.2024933-1-honghuan%40amd.com
-> 
->> Signed-off-by: Honglei Huang <honghuan@amd.com>
->> ---
->>   drivers/gpu/drm/drm_gpusvm.c | 225 ++++++++++++++++++++---------------
->>   1 file changed, 129 insertions(+), 96 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
->> index b507de539e6..89c3061d8ef 100644
->> --- a/drivers/gpu/drm/drm_gpusvm.c
->> +++ b/drivers/gpu/drm/drm_gpusvm.c
->> @@ -1442,115 +1442,41 @@ static bool drm_gpusvm_pages_valid_unlocked(struct drm_gpusvm *gpusvm,
->>   }
->>   
->>   /**
->> - * drm_gpusvm_get_pages() - Get pages and populate GPU SVM pages struct
->> + * drm_gpusvm_dma_map_pages() - DMA map one drm_gpusvm_pages instance
->>    * @gpusvm: Pointer to the GPU SVM structure
->> - * @svm_pages: The SVM pages to populate. This will contain the dma-addresses
->> - * @mm: The mm corresponding to the CPU range
->> - * @notifier: The corresponding notifier for the given CPU range
->> - * @pages_start: Start CPU address for the pages
->> - * @pages_end: End CPU address for the pages (exclusive)
->> + * @svm_pages: The SVM pages instance to populate with dma-addresses
->> + * @pfns: The already-faulted pfn array (size @npages)
->> + * @npages: Number of pages in the CPU range
->>    * @ctx: GPU SVM context
->> + * @dma_dir: DMA data direction for the mappings
->>    *
->> - * This function gets and maps pages for CPU range and ensures they are
->> - * mapped for DMA access.
->> + * Map the faulted @pfns into @svm_pages for DMA access through its owning
->> + * drm_device. Must be called under the notifier lock. On failure this unwinds
->> + * the partial mapping of this instance before returning.
->>    *
->>    * Return: 0 on success, negative error code on failure.
->>    */
->> -int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
->> -			 struct drm_gpusvm_pages *svm_pages,
->> -			 struct mm_struct *mm,
->> -			 struct mmu_interval_notifier *notifier,
->> -			 unsigned long pages_start, unsigned long pages_end,
->> -			 const struct drm_gpusvm_ctx *ctx)
->> +static int drm_gpusvm_dma_map_pages(struct drm_gpusvm *gpusvm,
->> +				    struct drm_gpusvm_pages *svm_pages,
->> +				    unsigned long *pfns,
->> +				    unsigned long npages,
->> +				    const struct drm_gpusvm_ctx *ctx,
->> +				    enum dma_data_direction dma_dir)
->>   {
->> -	struct hmm_range hmm_range = {
->> -		.default_flags = HMM_PFN_REQ_FAULT | (ctx->read_only ? 0 :
->> -			HMM_PFN_REQ_WRITE),
->> -		.notifier = notifier,
->> -		.start = pages_start,
->> -		.end = pages_end,
->> -		.dev_private_owner = ctx->device_private_page_owner,
->> -	};
->> -	void *zdd;
->> -	unsigned long timeout =
->> -		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
->> -	unsigned long remaining;
->> +	void *zdd = NULL;
->>   	unsigned long i, j;
->> -	unsigned long npages = npages_in_range(pages_start, pages_end);
->> -	unsigned long num_dma_mapped;
->> +	unsigned long num_dma_mapped = 0;
->>   	unsigned int order = 0;
->> -	unsigned long *pfns;
->>   	int err = 0;
->> -	struct dev_pagemap *pagemap;
->> +	struct dev_pagemap *pagemap = NULL;
->>   	struct drm_pagemap *dpagemap;
->>   	struct drm_gpusvm_pages_flags flags;
->> -	enum dma_data_direction dma_dir = ctx->read_only ? DMA_TO_DEVICE :
->> -							   DMA_BIDIRECTIONAL;
->>   	struct dma_iova_state *state = &svm_pages->state;
->>   
->> -	if (!svm_pages->drm)
->> -		return -EINVAL;
->> -
->> -retry:
->> -	remaining = timeout - jiffies;
->> -
->> -	if (time_after_eq(jiffies, timeout))
->> -		return -EBUSY;
->> -
->> -	hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
->> -	if (drm_gpusvm_pages_valid_unlocked(gpusvm, svm_pages))
->> -		goto set_seqno;
->> -
->> -	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
->> -	if (!pfns)
->> -		return -ENOMEM;
->> -
->> -	if (!mmget_not_zero(mm)) {
->> -		err = -EFAULT;
->> -		goto err_free;
->> -	}
->> -
->> -	hmm_range.hmm_pfns = pfns;
->> -	err = hmm_range_fault_unlocked_timeout(&hmm_range, remaining);
->> -	mmput(mm);
->> -	if (err)
->> -		goto err_free;
->> -
->> -	if (!svm_pages->dma_addr) {
->> -		svm_pages->dma_addr =
->> -			kvzalloc_objs(*svm_pages->dma_addr, npages);
->> -		if (!svm_pages->dma_addr) {
->> -			err = -ENOMEM;
->> -			goto err_free;
->> -		}
->> -	}
->> -
->> -	*state = (struct dma_iova_state){};
->> -	svm_pages->state_offset = 0;
->> -
->> -	/*
->> -	 * Perform all dma mappings under the notifier lock to not
->> -	 * access freed pages. A notifier will either block on
->> -	 * the notifier lock or unmap dma.
->> -	 */
->> -	drm_gpusvm_notifier_lock(gpusvm);
->> +	lockdep_assert_held(&gpusvm->notifier_lock);
->>   
->>   	flags.__flags = svm_pages->flags.__flags;
->> -	if (flags.unmapped) {
->> -		drm_gpusvm_notifier_unlock(gpusvm);
->> -		err = -EFAULT;
->> -		goto err_free;
->> -	}
->> -
->> -	if (mmu_interval_read_retry(notifier, hmm_range.notifier_seq)) {
->> -		drm_gpusvm_notifier_unlock(gpusvm);
->> -		kvfree(pfns);
->> -		goto retry;
->> -	}
->>   
->> -	zdd = NULL;
->> -	pagemap = NULL;
->> -	num_dma_mapped = 0;
->>   	for (i = 0, j = 0; i < npages; ++j) {
->>   		struct page *page = hmm_pfn_to_page(pfns[i]);
->>   
->> @@ -1666,17 +1592,124 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
->>   	/* WRITE_ONCE pairs with READ_ONCE for opportunistic checks */
->>   	WRITE_ONCE(svm_pages->flags.__flags, flags.__flags);
->>   
->> +	return 0;
->> +
->> +err_unmap:
->> +	svm_pages->flags.has_dma_mapping = true;
->> +	__drm_gpusvm_unmap_pages(gpusvm, svm_pages, num_dma_mapped);
->> +	return err;
->> +}
->> +
->> +/**
->> + * drm_gpusvm_get_pages() - Get pages and populate GPU SVM pages struct
->> + * @gpusvm: Pointer to the GPU SVM structure
->> + * @svm_pages: The SVM pages to populate. This will contain the dma-addresses
->> + * @mm: The mm corresponding to the CPU range
->> + * @notifier: The corresponding notifier for the given CPU range
->> + * @pages_start: Start CPU address for the pages
->> + * @pages_end: End CPU address for the pages (exclusive)
->> + * @ctx: GPU SVM context
->> + *
->> + * This function gets and maps pages for CPU range and ensures they are
->> + * mapped for DMA access.
->> + *
->> + * Return: 0 on success, negative error code on failure.
->> + */
->> +int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
->> +			 struct drm_gpusvm_pages *svm_pages,
->> +			 struct mm_struct *mm,
->> +			 struct mmu_interval_notifier *notifier,
->> +			 unsigned long pages_start, unsigned long pages_end,
->> +			 const struct drm_gpusvm_ctx *ctx)
->> +{
->> +	struct hmm_range hmm_range = {
->> +		.default_flags = HMM_PFN_REQ_FAULT | (ctx->read_only ? 0 :
->> +			HMM_PFN_REQ_WRITE),
->> +		.notifier = notifier,
->> +		.start = pages_start,
->> +		.end = pages_end,
->> +		.dev_private_owner = ctx->device_private_page_owner,
->> +	};
->> +	unsigned long timeout =
->> +		jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
->> +	unsigned long remaining;
->> +	unsigned long npages = npages_in_range(pages_start, pages_end);
->> +	unsigned long *pfns;
->> +	int err = 0;
->> +	enum dma_data_direction dma_dir = ctx->read_only ? DMA_TO_DEVICE :
->> +							   DMA_BIDIRECTIONAL;
->> +
->> +	if (!svm_pages->drm)
->> +		return -EINVAL;
->> +
->> +retry:
->> +	remaining = timeout - jiffies;
->> +
->> +	if (time_after_eq(jiffies, timeout))
->> +		return -EBUSY;
->> +
->> +	hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
->> +	if (drm_gpusvm_pages_valid_unlocked(gpusvm, svm_pages))
->> +		goto set_seqno;
->> +
->> +	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
->> +	if (!pfns)
->> +		return -ENOMEM;
->> +
->> +	if (!mmget_not_zero(mm)) {
->> +		err = -EFAULT;
->> +		goto err_free;
->> +	}
->> +
->> +	hmm_range.hmm_pfns = pfns;
->> +	err = hmm_range_fault_unlocked_timeout(&hmm_range, remaining);
->> +	mmput(mm);
->> +	if (err)
->> +		goto err_free;
->> +
->> +	if (!svm_pages->dma_addr) {
->> +		svm_pages->dma_addr =
->> +			kvzalloc_objs(*svm_pages->dma_addr, npages);
->> +		if (!svm_pages->dma_addr) {
->> +			err = -ENOMEM;
->> +			goto err_free;
->> +		}
->> +	}
->> +
->> +	svm_pages->state = (struct dma_iova_state){};
->> +	svm_pages->state_offset = 0;
->> +
->> +	/*
->> +	 * Perform all dma mappings under the notifier lock to not
->> +	 * access freed pages. A notifier will either block on
->> +	 * the notifier lock or unmap dma.
->> +	 */
->> +	drm_gpusvm_notifier_lock(gpusvm);
->> +
->> +	if (svm_pages->flags.unmapped) {
->> +		drm_gpusvm_notifier_unlock(gpusvm);
->> +		err = -EFAULT;
->> +		goto err_free;
->> +	}
->> +
->> +	if (mmu_interval_read_retry(notifier, hmm_range.notifier_seq)) {
->> +		drm_gpusvm_notifier_unlock(gpusvm);
->> +		kvfree(pfns);
->> +		goto retry;
->> +	}
->> +
->> +	err = drm_gpusvm_dma_map_pages(gpusvm, svm_pages, pfns, npages, ctx,
->> +				       dma_dir);
->>   	drm_gpusvm_notifier_unlock(gpusvm);
->> +	if (err)
->> +		goto err_free;
->> +
->>   	kvfree(pfns);
->>   set_seqno:
->>   	svm_pages->notifier_seq = hmm_range.notifier_seq;
->>   
->>   	return 0;
->>   
->> -err_unmap:
->> -	svm_pages->flags.has_dma_mapping = true;
->> -	__drm_gpusvm_unmap_pages(gpusvm, svm_pages, num_dma_mapped);
->> -	drm_gpusvm_notifier_unlock(gpusvm);
->>   err_free:
->>   	kvfree(pfns);
->>   	if (err == -EAGAIN)
->> -- 
->> 2.34.1
->>
+> +			   "Poison detected at physical address 0x%llx, page software offlined\n",
+> +			   page_address);
+> +		break;
+> +	/* User policy set to decline page offlining */
+> +	case -EOPNOTSUPP:
+> +		action = XE_RAS_PAGE_ACTION_DECLINE;
+> +		break;
+> +	case -EIO:
+> +		xe_log_err(xe, DEVICE_MEMORY, -EIO,
+> +			   "Physical page address belongs to critical BO: 0x%llx\n", page_address);
+> +		return ret;
+> +	case -EEXIST:
+> +		action = XE_RAS_PAGE_ACTION_OFFLINE;
+> +		xe_log_err(xe, DEVICE_MEMORY, -EEXIST,
+> +			   "Double-bit ECC error detected at physical address 0x%llx, page already software offlined\n",
+> +			   page_address);
+> +		break;
+> +	default:
+> +		xe_log_err_fatal(xe, DEVICE_MEMORY, ret, "Failed to handle address fault 0x%llx\n",
+> +				 page_address);
+> +		return 0;
+hmm, In default case, we need to use return ret; right?
+> +	}
+> +
+> +	if (send_cmd) {
+> +		ret = send_page_offline_cmd(xe, page_address, action);
+> +		if (ret)
+> +			xe_log_err_fatal(xe, SYSCTRL, ret,
+> +					 "Failed to offline page for physical address 0x%llx\n",
+> +					 page_address);
+> +		return ret;
+'return ret' should be inside {}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   static bool ras_counter_is_valid(struct xe_device *xe, struct xe_ras_error_class *counter)
+>   {
+>   	u8 severity = counter->common.severity;
+> @@ -367,11 +477,12 @@ static u8 handle_soc_internal_errors(struct xe_device *xe, struct xe_ras_error_a
+>   static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_array *arr)
+>   {
+>   	struct xe_ras_memory_error *info = (void *)arr->details;
+> +	int ret;
+>   
+>   	/*
+>   	 * For memory errors, the recovery action depends on the error category
+>   	 *
+> -	 * TODO: Double-bit ECC errors: Page offlining
+> +	 * Double-bit ECC errors: Page offlining
+>   	 * Poison and data parity errors: Log only
+>   	 * For any other memory errors, request a reset as recovery mechanism
+>   	 */
+> @@ -383,10 +494,10 @@ static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_
+>   		xe_info(xe, "[RAS]: Data parity error detected\n");
+>   		break;
+>   	case XE_RAS_MEMORY_DB_ECC:
+> -		xe_info(xe, "[RAS]: Double-bit ECC error detected at sw address 0x%llx\n",
+> -			info->sw_address);
+> -		/* TODO: Add page offlining for Double-bit ECC error */
+> -		fallthrough;
+> +		ret = handle_page_offline(xe, info->sw_address, true);
 
+In case of soft page offline, we need not required reset right? however 
+when send_page_offline_cmd
+
+return err that case, reset is required. is that correct behavior?
+
+Thanks,
+
+-/Mallesh
+
+> +		if (ret)
+> +			return XE_RAS_RECOVERY_ACTION_RESET;
+> +		break;
+>   	default:
+>   		return XE_RAS_RECOVERY_ACTION_RESET;
+>   	}
+> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+> index 99b2466e2062..2fac968879b6 100644
+> --- a/drivers/gpu/drm/xe/xe_ras_types.h
+> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
+> @@ -17,6 +17,19 @@
+>   #define XE_RAS_MEMORY_POISON			BIT(2)
+>   #define XE_RAS_MEMORY_DATA_PARITY		BIT(5)
+>   
+> +/**
+> + * enum xe_ras_page_action - Page offline actions for page offline request
+> + *
+> + * @XE_RAS_PAGE_ACTION_OFFLINE: Instruct firmware to offline the page
+> + * @XE_RAS_PAGE_ACTION_DECLINE: Instruct firmware to remove the page from queue
+> + * @XE_RAS_PAGE_ACTION_MAX: Max value
+> + */
+> +enum xe_ras_page_action {
+> +	XE_RAS_PAGE_ACTION_OFFLINE,
+> +	XE_RAS_PAGE_ACTION_DECLINE,
+> +	XE_RAS_PAGE_ACTION_MAX
+> +};
+> +
+>   /**
+>    * enum xe_ras_recovery_action - RAS recovery actions
+>    *
+> @@ -245,6 +258,28 @@ struct xe_ras_memory_error {
+>   	u32 reserved2[10];
+>   } __packed;
+>   
+> +/**
+> + * struct xe_ras_page_offline_request - Request for page offline command
+> + */
+> +struct xe_ras_page_offline_request {
+> +	/** @page_address: Page address (4KB aligned) */
+> +	u64 page_address;
+> +	/** @action: Action to be performed, see &enum xe_ras_page_action */
+> +	u32 action;
+> +	/** @reserved: Reserved for future use */
+> +	u32 reserved;
+> +} __packed;
+> +
+> +/**
+> + * struct xe_ras_page_offline_response - Response from page offline command
+> + */
+> +struct xe_ras_page_offline_response {
+> +	/** @status: Status of the page offline request */
+> +	u32 status;
+> +	/** @reserved: Reserved for future use */
+> +	u32 reserved;
+> +} __packed;
+> +
+>   /**
+>    * struct xe_ras_get_health_request - Request structure for obtaining gpu health
+>    */
+> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> index d0341538ad05..3363f48da2b7 100644
+> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> @@ -26,6 +26,7 @@ enum xe_sysctrl_group {
+>    * @XE_SYSCTRL_CMD_GET_COUNTER: Get error counter value
+>    * @XE_SYSCTRL_CMD_CLEAR_COUNTER: Clear error counter value
+>    * @XE_SYSCTRL_CMD_GET_PENDING_EVENT: Retrieve pending event
+> + * @XE_SYSCTRL_CMD_PAGE_OFFLINE: Instruct firmware to offline/decline a page
+>    * @XE_SYSCTRL_CMD_GET_HEALTH: Retrieve gpu health
+>    * @XE_SYSCTRL_CMD_SET_HEALTH: Set gpu health
+>    */
+> @@ -34,6 +35,7 @@ enum xe_sysctrl_gfsp_cmd {
+>   	XE_SYSCTRL_CMD_GET_COUNTER		= 0x03,
+>   	XE_SYSCTRL_CMD_CLEAR_COUNTER		= 0x04,
+>   	XE_SYSCTRL_CMD_GET_PENDING_EVENT	= 0x07,
+> +	XE_SYSCTRL_CMD_PAGE_OFFLINE             = 0x08,
+>   	XE_SYSCTRL_CMD_GET_HEALTH		= 0x0B,
+>   	XE_SYSCTRL_CMD_SET_HEALTH		= 0x0C,
+>   };
+--------------if3MC01eUyHM9gCt1BCNyua1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 25-08-2026 12:06 pm, Riana Tauro
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:20260825063615.3697317-9-riana.tauro@intel.com">
+      <pre wrap="" class="moz-quote-pre">This will be integrated with the related address-fault handling flow
+once this patch is merged.
+<a class="moz-txt-link-freetext" href="https://lore.kernel.org/intel-xe/20260818104055.3833974-14-tejas.upadhyay@intel.com/">https://lore.kernel.org/intel-xe/20260818104055.3833974-14-tejas.upadhyay@intel.com/</a>
+Sending for initial comments.
+
+Add basic support for sending page offline/decline requests to system
+controller and use it for device memory ECC error handling.
+Pages that belong to critical BOs cannot be handled by offlining and
+require a SBR (Secondary Bus Reset).
+Pages that are configured for log-only handling are not marked as bad by
+firmware.
+
+For all other valid page addresses, the first occurrence of error
+indicates a poison error and the page is offlined only by software.
+Firmware avoids permanently marking the page as bad. The second occurrence
+of an error indicates a Double-bit ECC error and the firmware
+permanently marks the page as bad.
+
+Cc: Tejas Upadhyay <a class="moz-txt-link-rfc2396E" href="mailto:tejas.upadhyay@intel.com">&lt;tejas.upadhyay@intel.com&gt;</a>
+Cc: Himal Prasad Ghimiray <a class="moz-txt-link-rfc2396E" href="mailto:himal.prasad.ghimiray@intel.com">&lt;himal.prasad.ghimiray@intel.com&gt;</a>
+Signed-off-by: Riana Tauro <a class="moz-txt-link-rfc2396E" href="mailto:riana.tauro@intel.com">&lt;riana.tauro@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/xe_ras.c                   | 121 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_ras_types.h             |  35 +++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   2 +
+ 3 files changed, 153 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index d25d25f77531..c643c7137a42 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -3,6 +3,7 @@
+  * Copyright © 2026 Intel Corporation
+  */
+ 
++#include &quot;xe_bo.h&quot;
+ #include &quot;xe_debugfs.h&quot;
+ #include &quot;xe_device.h&quot;
+ #include &quot;xe_drm_ras.h&quot;
+@@ -200,6 +201,115 @@ static inline const char *comp_to_str(u8 component)
+ 	return xe_ras_components[component];
+ }
+ 
++static int send_page_offline_cmd(struct xe_device *xe, u64 page_address,
++				 enum xe_ras_page_action action)
++{
++	struct xe_sysctrl_mailbox_command command = {0};
++	struct xe_ras_page_offline_request request = {0};
++	struct xe_ras_page_offline_response response = {0};
++	size_t rlen;
++	int ret;
++
++	if (!xe-&gt;info.has_sysctrl)
++		return 0;
++
++	if (action &gt;= XE_RAS_PAGE_ACTION_MAX) {
++		xe_log_err(xe, DEVICE_MEMORY, -EINVAL, &quot;Invalid page offline action %d\n&quot;, action);
++		return -EINVAL;
++	}
++
++	request.page_address = page_address;
++	request.action = action;
++
++	xe_sysctrl_create_command(&amp;command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_PAGE_OFFLINE,
++				  &amp;request, sizeof(request), &amp;response, sizeof(response));
++
++	ret = xe_sysctrl_send_command(&amp;xe-&gt;sc, &amp;command, &amp;rlen);
++	if (ret) {
++		xe_log_err_fatal(xe, SYSCTRL, ret, &quot;failed to send page offline command\n&quot;);
++		return ret;
++	}
++
++	if (rlen != sizeof(response)) {
++		xe_log_err(xe, SYSCTRL, -EINVAL,
++			   &quot;unexpected page offline response length %zu (expected %zu)\n&quot;,
++			   rlen, sizeof(response));
++		return -EINVAL;
++	}
++
++	ret = ras_status_to_errno(response.status);
++	if (ret) {
++		xe_log_err(xe, SYSCTRL, ret, &quot;page offline command failed with status %u\n&quot;,
++			   response.status);
++		return ret;
++	}
++
++	return ret;
++}
++
++static int handle_page_offline(struct xe_device *xe, u64 page_address, bool send_cmd)
++{
++	enum xe_ras_page_action action;
++	int ret = 0;
++
++	if (!IS_ALIGNED(page_address, XE_PAGE_SIZE)) {
++		xe_log_err(xe, SYSCTRL, -EINVAL, &quot;Unaligned physical page address: 0x%llx\n&quot;,
++			   page_address);
++		return -EINVAL;
++	}
++
++	/*
++	 * TODO: Call function to handle address fault
++	 * ret = xe_ttm_vram_handle_addr_fault(xe, page_address);
++	 */
++
++	/*
++	 * Handle return code from address fault handling function:
++	 *  0: Page soft offlined, decline to firmware
++	 * -EIO: Address belongs to a critical BO/stolen area that cannot be offlined
++	 * -EOPNOTSUPP: Address is valid and can be offlined but user policy is not to offline
++	 * -EXIST: Address is soft offlined but yet to be offlined by firmware for second occurrence</pre>
+    </blockquote>
+    nit: -EEXIST?
+    <blockquote type="cite" cite="mid:20260825063615.3697317-9-riana.tauro@intel.com">
+      <pre wrap="" class="moz-quote-pre">
++	 */
++
++	switch (ret) {
++	case 0:
++		action = XE_RAS_PAGE_ACTION_DECLINE;
++		xe_log_err(xe, DEVICE_MEMORY, 0,</pre>
+    </blockquote>
+    <p>I know, it's switch case using ret, please make use of errno as
+      ret from&nbsp;<span style="white-space: pre-wrap">xe_ttm_vram_handle_addr_fault</span>&nbsp;().</p>
+    <p>and make it consistency across all below xe_log_err.</p>
+    <blockquote type="cite" cite="mid:20260825063615.3697317-9-riana.tauro@intel.com">
+      <pre wrap="" class="moz-quote-pre">
++			   &quot;Poison detected at physical address 0x%llx, page software offlined\n&quot;,
++			   page_address);
++		break;
++	/* User policy set to decline page offlining */
++	case -EOPNOTSUPP:
++		action = XE_RAS_PAGE_ACTION_DECLINE;
++		break;
++	case -EIO:
++		xe_log_err(xe, DEVICE_MEMORY, -EIO,
++			   &quot;Physical page address belongs to critical BO: 0x%llx\n&quot;, page_address);
++		return ret;
++	case -EEXIST:
++		action = XE_RAS_PAGE_ACTION_OFFLINE;
++		xe_log_err(xe, DEVICE_MEMORY, -EEXIST,
++			   &quot;Double-bit ECC error detected at physical address 0x%llx, page already software offlined\n&quot;,
++			   page_address);
++		break;
++	default:
++		xe_log_err_fatal(xe, DEVICE_MEMORY, ret, &quot;Failed to handle address fault 0x%llx\n&quot;,
++				 page_address);
++		return 0;</pre>
+    </blockquote>
+    hmm, In default case, we need to use return ret; right?
+    <blockquote type="cite" cite="mid:20260825063615.3697317-9-riana.tauro@intel.com">
+      <pre wrap="" class="moz-quote-pre">
++	}
++
++	if (send_cmd) {
++		ret = send_page_offline_cmd(xe, page_address, action);
++		if (ret)
++			xe_log_err_fatal(xe, SYSCTRL, ret,
++					 &quot;Failed to offline page for physical address 0x%llx\n&quot;,
++					 page_address);
++		return ret;</pre>
+    </blockquote>
+    'return ret' should be inside {}&nbsp;
+    <blockquote type="cite" cite="mid:20260825063615.3697317-9-riana.tauro@intel.com">
+      <pre wrap="" class="moz-quote-pre">
++	}
++
++	return 0;
++}
++
+ static bool ras_counter_is_valid(struct xe_device *xe, struct xe_ras_error_class *counter)
+ {
+ 	u8 severity = counter-&gt;common.severity;
+@@ -367,11 +477,12 @@ static u8 handle_soc_internal_errors(struct xe_device *xe, struct xe_ras_error_a
+ static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_array *arr)
+ {
+ 	struct xe_ras_memory_error *info = (void *)arr-&gt;details;
++	int ret;
+ 
+ 	/*
+ 	 * For memory errors, the recovery action depends on the error category
+ 	 *
+-	 * TODO: Double-bit ECC errors: Page offlining
++	 * Double-bit ECC errors: Page offlining
+ 	 * Poison and data parity errors: Log only
+ 	 * For any other memory errors, request a reset as recovery mechanism
+ 	 */
+@@ -383,10 +494,10 @@ static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_
+ 		xe_info(xe, &quot;[RAS]: Data parity error detected\n&quot;);
+ 		break;
+ 	case XE_RAS_MEMORY_DB_ECC:
+-		xe_info(xe, &quot;[RAS]: Double-bit ECC error detected at sw address 0x%llx\n&quot;,
+-			info-&gt;sw_address);
+-		/* TODO: Add page offlining for Double-bit ECC error */
+-		fallthrough;
++		ret = handle_page_offline(xe, info-&gt;sw_address, true);</pre>
+    </blockquote>
+    <p>In case of soft page offline, we need not required reset right?
+      however when <span style="white-space: pre-wrap">send_page_offline_cmd</span></p>
+    <p>return err that case, reset is required. is that correct
+      behavior?</p>
+    <p>Thanks,</p>
+    <p>-/Mallesh</p>
+    <blockquote type="cite" cite="mid:20260825063615.3697317-9-riana.tauro@intel.com">
+      <pre wrap="" class="moz-quote-pre">
++		if (ret)
++			return XE_RAS_RECOVERY_ACTION_RESET;
++		break;
+ 	default:
+ 		return XE_RAS_RECOVERY_ACTION_RESET;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+index 99b2466e2062..2fac968879b6 100644
+--- a/drivers/gpu/drm/xe/xe_ras_types.h
++++ b/drivers/gpu/drm/xe/xe_ras_types.h
+@@ -17,6 +17,19 @@
+ #define XE_RAS_MEMORY_POISON			BIT(2)
+ #define XE_RAS_MEMORY_DATA_PARITY		BIT(5)
+ 
++/**
++ * enum xe_ras_page_action - Page offline actions for page offline request
++ *
++ * @XE_RAS_PAGE_ACTION_OFFLINE: Instruct firmware to offline the page
++ * @XE_RAS_PAGE_ACTION_DECLINE: Instruct firmware to remove the page from queue
++ * @XE_RAS_PAGE_ACTION_MAX: Max value
++ */
++enum xe_ras_page_action {
++	XE_RAS_PAGE_ACTION_OFFLINE,
++	XE_RAS_PAGE_ACTION_DECLINE,
++	XE_RAS_PAGE_ACTION_MAX
++};
++
+ /**
+  * enum xe_ras_recovery_action - RAS recovery actions
+  *
+@@ -245,6 +258,28 @@ struct xe_ras_memory_error {
+ 	u32 reserved2[10];
+ } __packed;
+ 
++/**
++ * struct xe_ras_page_offline_request - Request for page offline command
++ */
++struct xe_ras_page_offline_request {
++	/** @page_address: Page address (4KB aligned) */
++	u64 page_address;
++	/** @action: Action to be performed, see &amp;enum xe_ras_page_action */
++	u32 action;
++	/** @reserved: Reserved for future use */
++	u32 reserved;
++} __packed;
++
++/**
++ * struct xe_ras_page_offline_response - Response from page offline command
++ */
++struct xe_ras_page_offline_response {
++	/** @status: Status of the page offline request */
++	u32 status;
++	/** @reserved: Reserved for future use */
++	u32 reserved;
++} __packed;
++
+ /**
+  * struct xe_ras_get_health_request - Request structure for obtaining gpu health
+  */
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+index d0341538ad05..3363f48da2b7 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+@@ -26,6 +26,7 @@ enum xe_sysctrl_group {
+  * @XE_SYSCTRL_CMD_GET_COUNTER: Get error counter value
+  * @XE_SYSCTRL_CMD_CLEAR_COUNTER: Clear error counter value
+  * @XE_SYSCTRL_CMD_GET_PENDING_EVENT: Retrieve pending event
++ * @XE_SYSCTRL_CMD_PAGE_OFFLINE: Instruct firmware to offline/decline a page
+  * @XE_SYSCTRL_CMD_GET_HEALTH: Retrieve gpu health
+  * @XE_SYSCTRL_CMD_SET_HEALTH: Set gpu health
+  */
+@@ -34,6 +35,7 @@ enum xe_sysctrl_gfsp_cmd {
+ 	XE_SYSCTRL_CMD_GET_COUNTER		= 0x03,
+ 	XE_SYSCTRL_CMD_CLEAR_COUNTER		= 0x04,
+ 	XE_SYSCTRL_CMD_GET_PENDING_EVENT	= 0x07,
++	XE_SYSCTRL_CMD_PAGE_OFFLINE             = 0x08,
+ 	XE_SYSCTRL_CMD_GET_HEALTH		= 0x0B,
+ 	XE_SYSCTRL_CMD_SET_HEALTH		= 0x0C,
+ };
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------if3MC01eUyHM9gCt1BCNyua1--
