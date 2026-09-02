@@ -4,55 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B112C624D0
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 11:55:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21433C624D0
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 11:58:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77DB710E233;
-	Wed,  2 Sep 2026 11:55:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE13D10E233;
+	Wed,  2 Sep 2026 11:58:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fuuXFmcr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R8ZKkfoU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE1D110E008;
- Wed,  2 Sep 2026 11:55:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8090710E233;
+ Wed,  2 Sep 2026 11:58:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788350136; x=1819886136;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EYzMh0mRh1nk8N0pOODwf2l8y2EitKZz+cP/QX7Nbzc=;
- b=fuuXFmcrOy/9EOOVpJWgfblD6e/nRKQSe/5jN4B9K4Bor+g25KHtwLEa
- KLyg9ov08hZKGVBPJg+ozdfwlP6unttwxMTk86+KZrhnPydhDP/W3GRro
- zpBVvIzOJJEYo78JCtJWHFGdmIGzw6x5LmYETPvYwapxmgzQrKwQ6EsRX
- 2/+VSkwjtV/kDxYwN3IJgGKIzBkey2r66NfFAHDB8mpM7piZlBV5SigyP
- qGFSC1MJmAfkZr4neIGEl2APYVIPg6pTNE56BJ2SUvqCKwqmjtBTk2QNk
- nGpFserZNNbvrUxJuDtIXJvGiat32zB17F84/hQPJ2SgdvtfVqov1Qz+Y w==;
-X-CSE-ConnectionGUID: gi/7VYJLTlijn93qdG/o0g==
-X-CSE-MsgGUID: L4qH8ELnTAS/n342UtEKIQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="92506178"
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="92506178"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 04:55:35 -0700
-X-CSE-ConnectionGUID: h5+rsB85SgmOZouhrl+DAg==
-X-CSE-MsgGUID: aQEk/37iSVyt8UKQune8ww==
+ t=1788350319; x=1819886319;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=gwQOfQO1Bg3tsTdwNIDe/h63csalaDkWY8Y6k9TVoiE=;
+ b=R8ZKkfoUShGy6Evyp3euD7QUrEd5VvfeoMCesAmu5AMM1MfI7WLLCnCv
+ EnZYJR8KpqoTEEiHVfGYDkNV/HymVsh6S0GAFD/ovB8VkGy/ehzia6lBZ
+ boeqSTDgem48sXpXR87NS/jmdChX5Y0D98VghGClnQil/5MFsZTnquDi2
+ xsP6B1ZK/bDK3+2pfVPw3Fgt3XFC8AixpzOxHuL7xTiSl6Xbw9GQrJ6Fr
+ 9KMDhLnIcR3c0LtLUoco8DDTiWid+6hsGQW1Bk9uvrKkPj5mlf/+l7uHj
+ NL4khEWukIKGTujXLHNEWq5nJWkWyK1ShyYVJOsB+9apvpgKzh/4s7ZZc g==;
+X-CSE-ConnectionGUID: BpwaeLCWSG+bXVjfmDwD+Q==
+X-CSE-MsgGUID: lLZNTiD7S8uuLkGFbdB0wQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="106326685"
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="106326685"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 04:58:39 -0700
+X-CSE-ConnectionGUID: 85uAnLpDSYWeG3/AzGM/Vw==
+X-CSE-MsgGUID: ZZk9Db+mTLmQHfGoq3nVQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="307603617"
-Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa001.jf.intel.com with ESMTP; 02 Sep 2026 04:55:33 -0700
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v2 1/2] drm/i915/display: Reject flipq for commits with no
- plane updates
-Date: Wed,  2 Sep 2026 11:55:31 +0000
-Message-ID: <20260902115531.872831-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260902105448.809455-2-mika.kahola@intel.com>
-References: <20260902105448.809455-2-mika.kahola@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="269958723"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.200])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 04:58:37 -0700
+Date: Wed, 2 Sep 2026 14:58:34 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Kahola, Mika" <mika.kahola@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 1/3] drm/i915/display: Flush frontbuffer tracking on
+ flipq completion
+Message-ID: <apgPannjepWx3EfJ@intel.com>
+References: <20260807121540.2032283-1-mika.kahola@intel.com>
+ <20260807121540.2032283-2-mika.kahola@intel.com>
+ <apHVdiWPxaDwPQR3@intel.com>
+ <DS4PPF69154114F4A7D7B021C1E68EE783CEFA82@DS4PPF69154114F.namprd11.prod.outlook.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <DS4PPF69154114F4A7D7B021C1E68EE783CEFA82@DS4PPF69154114F.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,38 +76,270 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-flipq is pointless without an actual plane update to queue. Reject it.
+On Tue, Sep 01, 2026 at 11:31:19AM +0000, Kahola, Mika wrote:
+> > -----Original Message-----
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Sent: Friday, 28 August 2026 21.38
+> > To: Kahola, Mika <mika.kahola@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> > Subject: Re: [PATCH 1/3] drm/i915/display: Flush frontbuffer tracking on flipq completion
+> > 
+> > On Fri, Aug 07, 2026 at 12:15:38PM +0000, Mika Kahola wrote:
+> > > Flipq commits execute asynchronously via the pipe DMC, but we don't
+> > > notify frontbuffer tracking when they actually complete. A CRC grabbed
+> > > right after can therefore observe stale state (kms_cursor_crc's
+> > > cursor-alpha-opaque hits this).
+> > 
+> > There's nothing special about flipq vs. commit completion. The interrupt
+> > is supposed to fire on the delayed vblank after the flip has executed.
+> 
+> Right. I think we still need to have a bookkeeping on DMC ring buffer and signal flipq completion by verifying that head and tail are equal on flipq ring buffer. As per my understanding the interrupt (flipq_event/PIPEDMC_FLIPQ_PROG_DONE) may not be enough as a sync point if we have more than one entry in the ring buffer. crtc->flipq_event is a single per-crtc slot, so a second commit queued before the first entry drains overwrites the first commit's still-pending event before its interrupt fires. Hence, I would think that we would still need this polling for flipq completion.
 
-v2:
-- Drop the single-plane restriction, plane count doesn't matter (Ville)
-- Drop the update_wm_pre/post check, dead code for flipq-capable hw (Ville)
-- Drop the active/enabled planes check (Ville)
-- Drop the update_pipe/update_m_n/update_lrr check -- unreachable,
-  intel_crtc_needs_fastset() above is exactly update_pipe, and
-  update_m_n/update_lrr can only be set alongside it or a full modeset,
-  both already excluded (Sashiko AI review)
-- Drop the intel_flipq_commit_is_eligible() helper -- with the above
-  gone, all that's left is one extra check, not worth its own function
-  for a single call site
+There is never more than one entry in the queue.
 
-Assisted-by: Copilot:claude-sonnet-5
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 1 +
- 1 file changed, 1 insertion(+)
+> 
+> Does this sound reasonable approach?
+> 
+> Thanks for the review!
+> 
+> -Mika-
+> 
+> > 
+> > > Stash the fb_bits on the crtc when arming the commit, and flush
+> > > frontbuffer/FBC from a worker once intel_dsb_irq_handler() sees the
+> > > completion interrupt. Can't call these directly from there, it's
+> > > hardirq context and they may sleep.
+> > >
+> > > Also flush (rather than drop) any pending completion when the crtc
+> > > gets disabled out from under it.
+> > >
+> > > Assisted-by: Copilot:claude-sonnet-5
+> > > Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_crtc.c     |  3 +
+> > >  drivers/gpu/drm/i915/display/intel_display.c  |  3 +
+> > >  .../drm/i915/display/intel_display_types.h    |  9 +++
+> > >  drivers/gpu/drm/i915/display/intel_dsb.c      | 65 +++++++++++++++++++
+> > >  drivers/gpu/drm/i915/display/intel_dsb.h      |  2 +
+> > >  drivers/gpu/drm/i915/display/intel_fbc.c      | 21 ++++++
+> > >  drivers/gpu/drm/i915/display/intel_fbc.h      |  1 +
+> > >  7 files changed, 104 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > index 10ed9bdfee76..71559f86fa63 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > > @@ -25,6 +25,7 @@
+> > >  #include "intel_display_trace.h"
+> > >  #include "intel_display_types.h"
+> > >  #include "intel_drrs.h"
+> > > +#include "intel_dsb.h"
+> > >  #include "intel_dsi.h"
+> > >  #include "intel_fifo_underrun.h"
+> > >  #include "intel_parent.h"
+> > > @@ -341,6 +342,8 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
+> > >  	crtc->pipe = pipe;
+> > >  	crtc->num_scalers = DISPLAY_RUNTIME_INFO(display)->num_scalers[pipe];
+> > >
+> > > +	intel_dsb_crtc_init(crtc);
+> > > +
+> > >  	if (DISPLAY_VER(display) >= 9)
+> > >  		primary = skl_universal_plane_create(display, pipe, PLANE_1);
+> > >  	else
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > > index 829d7a411dcc..5cdaa59f005e 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -6889,6 +6889,8 @@ static void intel_update_crtc(struct intel_atomic_state *state,
+> > >  	if (new_crtc_state->use_flipq) {
+> > >  		intel_flipq_enable(new_crtc_state);
+> > >
+> > > +		crtc->flipq_fb_bits = new_crtc_state->fb_bits;
+> > > +
+> > >  		intel_crtc_prepare_vblank_event(new_crtc_state, &crtc->flipq_event);
+> > >
+> > >  		intel_flipq_add(crtc, INTEL_FLIPQ_PLANE_1, 0, INTEL_DSB_0,
+> > > @@ -6969,6 +6971,7 @@ static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
+> > >  			intel_atomic_get_new_crtc_state(state, pipe_crtc);
+> > >
+> > >  		pipe_crtc->active = false;
+> > > +		intel_dsb_crtc_disable(pipe_crtc);
+> > >  		intel_fbc_disable(pipe_crtc);
+> > >
+> > >  		if (!new_pipe_crtc_state->hw.active)
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > index 20a07ea06b5e..c644ca0fe9b8 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > @@ -1522,6 +1522,15 @@ struct intel_crtc {
+> > >  	struct drm_pending_vblank_event *dsb_event;
+> > >  	/* armed event for flip queue based updates */
+> > >  	struct drm_pending_vblank_event *flipq_event;
+> > > +	/*
+> > > +	 * Frontbuffer bits for a pending flipq/DSB-driven visible update.
+> > > +	 */
+> > > +	unsigned int flipq_fb_bits;
+> > > +	/*
+> > > +	 * intel_dsb_irq_handler() runs in hardirq context, so the
+> > > +	 * frontbuffer/FBC flush for flipq_fb_bits is deferred to this worker.
+> > > +	 */
+> > > +	struct work_struct flipq_fb_bits_work;
+> > >
+> > >  	/* Access to these should be protected by display->irq.lock. */
+> > >  	bool cpu_fifo_underrun_disabled;
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+> > > index d9a270362a82..66f107493f93 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> > > @@ -17,6 +17,8 @@
+> > >  #include "intel_display_types.h"
+> > >  #include "intel_dsb.h"
+> > >  #include "intel_dsb_regs.h"
+> > > +#include "intel_fbc.h"
+> > > +#include "intel_frontbuffer.h"
+> > >  #include "intel_psr.h"
+> > >  #include "intel_vblank.h"
+> > >  #include "intel_vrr.h"
+> > > @@ -1106,6 +1108,59 @@ void intel_dsb_cleanup(struct intel_dsb *dsb)
+> > >  	kfree(dsb);
+> > >  }
+> > >
+> > > +/*
+> > > + * Frontbuffer/FBC bookkeeping for a completed flipq commit may sleep (takes
+> > > + * mutexes), but intel_dsb_irq_handler() runs in hardirq context, so do it
+> > > + * here instead, on display->wq.unordered.
+> > > + */
+> > > +static void intel_dsb_flipq_fb_bits_work(struct work_struct *work)
+> > > +{
+> > > +	struct intel_crtc *crtc =
+> > > +		container_of(work, typeof(*crtc), flipq_fb_bits_work);
+> > > +	struct intel_display *display = to_intel_display(crtc);
+> > > +	unsigned int flipq_fb_bits;
+> > > +
+> > > +	spin_lock_irq(&display->drm->event_lock);
+> > > +	flipq_fb_bits = crtc->flipq_fb_bits;
+> > > +	crtc->flipq_fb_bits = 0;
+> > > +	spin_unlock_irq(&display->drm->event_lock);
+> > > +
+> > > +	if (!flipq_fb_bits)
+> > > +		return;
+> > > +
+> > > +	intel_frontbuffer_flip(display, flipq_fb_bits);
+> > > +	intel_fbc_flipq_post_update(display, crtc->pipe);
+> > > +}
+> > > +
+> > > +/**
+> > > + * intel_dsb_crtc_init - Initialize the per-CRTC DSB/flipq worker state.
+> > > + * @crtc: the CRTC
+> > > + */
+> > > +void intel_dsb_crtc_init(struct intel_crtc *crtc)
+> > > +{
+> > > +	INIT_WORK(&crtc->flipq_fb_bits_work, intel_dsb_flipq_fb_bits_work);
+> > > +}
+> > > +
+> > > +/**
+> > > + * intel_dsb_crtc_disable - Drop any stale pending flipq FBC completion.
+> > > + * @crtc: the CRTC
+> > > + *
+> > > + * A flipq commit's completion (and hence its deferred frontbuffer/FBC
+> > > + * flush) can still be outstanding when @crtc gets disabled, eg. across a
+> > > + * modeset. Cancel and discard it so it can't run later against whatever
+> > > + * @crtc is reconfigured to next.
+> > > + */
+> > > +void intel_dsb_crtc_disable(struct intel_crtc *crtc)
+> > > +{
+> > > +	struct intel_display *display = to_intel_display(crtc);
+> > > +
+> > > +	cancel_work_sync(&crtc->flipq_fb_bits_work);
+> > > +
+> > > +	spin_lock_irq(&display->drm->event_lock);
+> > > +	crtc->flipq_fb_bits = 0;
+> > > +	spin_unlock_irq(&display->drm->event_lock);
+> > > +}
+> > > +
+> > >  void intel_dsb_irq_handler(struct intel_display *display,
+> > >  			   enum pipe pipe, enum intel_dsb_id dsb_id)
+> > >  {
+> > > @@ -1130,6 +1185,16 @@ void intel_dsb_irq_handler(struct intel_display *display,
+> > >  		}
+> > >
+> > >  		spin_unlock(&display->drm->event_lock);
+> > > +
+> > > +		/*
+> > > +		 * Flipq-driven commits complete asynchronously via DSB/DMC.
+> > > +		 * Notify frontbuffer/FBC tracking only once the queued update
+> > > +		 * has actually completed. The unlocked peek is just to avoid
+> > > +		 * pointlessly queueing work; intel_dsb_flipq_fb_bits_work()
+> > > +		 * re-checks flipq_fb_bits under event_lock.
+> > > +		 */
+> > > +		if (READ_ONCE(crtc->flipq_fb_bits))
+> > > +			queue_work(display->wq.unordered, &crtc->flipq_fb_bits_work);
+> > >  	}
+> > >
+> > >  	errors = tmp & dsb_error_int_status(display);
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
+> > > index 3dcca9ed5371..86d4111c1850 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dsb.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dsb.h
+> > > @@ -73,5 +73,7 @@ void intel_dsb_wait(struct intel_dsb *dsb);
+> > >
+> > >  void intel_dsb_irq_handler(struct intel_display *display,
+> > >  			   enum pipe pipe, enum intel_dsb_id dsb_id);
+> > > +void intel_dsb_crtc_init(struct intel_crtc *crtc);
+> > > +void intel_dsb_crtc_disable(struct intel_crtc *crtc);
+> > >
+> > >  #endif
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > index f61b4a218d6e..05a26d991cd2 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > @@ -1930,6 +1930,27 @@ void intel_fbc_post_update(struct intel_atomic_state *state,
+> > >  	}
+> > >  }
+> > >
+> > > +/*
+> > > + * Flipq commits complete asynchronously, well after intel_fbc_post_update()
+> > > + * already ran against the not-yet-latched surface. Re-run the post-update
+> > > + * step for @pipe's FBC once the queued commit has actually completed, so any
+> > > + * flip nuke recompresses the surface that is really being scanned out.
+> > > + */
+> > > +void intel_fbc_flipq_post_update(struct intel_display *display, enum pipe pipe)
+> > > +{
+> > > +	struct intel_fbc *fbc = intel_fbc_for_pipe(display, pipe);
+> > > +
+> > > +	if (!fbc)
+> > > +		return;
+> > > +
+> > > +	mutex_lock(&fbc->lock);
+> > > +
+> > > +	if (fbc->state.plane && fbc->state.plane->pipe == pipe)
+> > > +		__intel_fbc_post_update(fbc);
+> > > +
+> > > +	mutex_unlock(&fbc->lock);
+> > > +}
+> > > +
+> > >  static unsigned int intel_fbc_get_frontbuffer_bit(struct intel_fbc *fbc)
+> > >  {
+> > >  	if (fbc->state.plane)
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i915/display/intel_fbc.h
+> > > index 6c96d690a2f5..ba7b93eb1424 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_fbc.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_fbc.h
+> > > @@ -34,6 +34,7 @@ bool intel_fbc_pre_update(struct intel_atomic_state *state,
+> > >  			  struct intel_crtc *crtc);
+> > >  void intel_fbc_post_update(struct intel_atomic_state *state,
+> > >  			   struct intel_crtc *crtc);
+> > > +void intel_fbc_flipq_post_update(struct intel_display *display, enum pipe pipe);
+> > >  void intel_fbc_init(struct intel_display *display);
+> > >  void intel_fbc_cleanup(struct intel_display *display);
+> > >  void intel_fbc_sanitize(struct intel_display *display);
+> > > --
+> > > 2.43.0
+> > 
+> > --
+> > Ville Syrjälä
+> > Intel
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 553c60d452dd..9272fe573ae2 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7385,6 +7385,7 @@ static void intel_atomic_dsb_prepare(struct intel_atomic_state *state,
- 	/* FIXME deal with everything */
- 	new_crtc_state->use_flipq =
- 		intel_flipq_supported(display) &&
-+		new_crtc_state->update_planes &&
- 		!new_crtc_state->do_async_flip &&
- 		!new_crtc_state->vrr.enable &&
- 		!new_crtc_state->has_psr &&
 -- 
-2.43.0
-
+Ville Syrjälä
+Intel
