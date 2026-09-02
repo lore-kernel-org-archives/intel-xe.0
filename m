@@ -4,27 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CA1CC624D3
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 15:07:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13571C61DD6
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 15:21:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E52E10F26C;
-	Wed,  2 Sep 2026 15:07:23 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03DB010F26C;
- Wed,  2 Sep 2026 15:07:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3933664510229917904=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4ACE10E4F6;
+	Wed,  2 Sep 2026 15:21:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="3p+3QKxJ";
+	dkim-atps=neutral
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012002.outbound.protection.outlook.com [52.101.48.2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3137F10E4F6;
+ Wed,  2 Sep 2026 15:21:20 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nkBPI8GLWDx/IKy9K00pqqnLLYGOuriNMv+lk7h9Vum33UuXBGKqjJVbeNxKfc0vTLm3EronmLxb+YYTmbm8PK0xfon4k0h/OtVnU/iqu7l5O93jHaVjUs3nHTbmM8F8sbf9bUSBova/oKVHa4Biy/Puefwu+yfJxyDlDP7x4MGzVS4dgbFH7EZ8zTDkp2vFVecuoxfxxhdY+Tz7dUCH/TYaTwGoUZPJNgRRebXBqAtjB8HZHiEJxpyArmmqsDKahE+N1OD168d91XD8Skp8ko0mwBL7PoaAydcJTg6xJ9cMWSKTEbk/PgK7vidoO5ndv+hEp8Ji9uZSliXncpu/mA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TQ8xdHqLAmHz0xeMMBVvJRLwrpBXTcQCfgKdJYi/7pc=;
+ b=GRcdpw16jf2ZjnX5K00ctH5RADk5fl7dH37PC/OahIoYfuHiolt9B17dzz9DOLPrZ4R9HR8FZmvbWZRTIOjl5fn414ZkNxz9+HEaUUgZpLOhDGvSPotKoeuK7GoT3iVd/OwUYzN2iL5XQjb2d/Y5IHsRyZOJSOQF7vLKGO7Zq9Oeit57eR7CrSEtPOpEFpWy0iP/IBu4jU2fctBoQ4HyoZpiNtoixfXdpR7+0wslVqk0KpAA4YAFn3uRcOEKfkymI/tgkFlVpbQIWFi2uxYKH2slI956UQbbd+GrPJTJFNg4VvOkh8gvzqxRGyskAybnr4GDQ+zJ/1bE3B13NypygQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TQ8xdHqLAmHz0xeMMBVvJRLwrpBXTcQCfgKdJYi/7pc=;
+ b=3p+3QKxJDqh+SsPgS89oYV1n2R1JdmlGWg/t8ObQ7ws49wSYhGZPn/M91QyrILlFudt5tx3ODLyzUmAH2P8bhElAo6xACjoyd1nb9aFYYjgvP2KjA7CzsKD3bAXT+xhppIBWY6nOb/i6Gaqw6SRT6X8unOzNHrlBDDJ1BWNKnPk=
+Received: from SJ0PR03CA0257.namprd03.prod.outlook.com (2603:10b6:a03:3a0::22)
+ by PH8PR12MB7304.namprd12.prod.outlook.com (2603:10b6:510:217::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Wed, 2 Sep
+ 2026 15:21:15 +0000
+Received: from BY1PEPF0001AE1D.namprd04.prod.outlook.com
+ (2603:10b6:a03:3a0:cafe::96) by SJ0PR03CA0257.outlook.office365.com
+ (2603:10b6:a03:3a0::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.382.11 via Frontend Transport; Wed, 2
+ Sep 2026 15:21:15 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BY1PEPF0001AE1D.mail.protection.outlook.com (10.167.242.106) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.382.8 via Frontend Transport; Wed, 2 Sep 2026 15:21:15 +0000
+Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Wed, 2 Sep 2026 10:21:09 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: <matthew.brost@intel.com>
+CC: <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+Subject: [PATCH v7 1/4] drm: Add drm_work_fence helper
+Date: Wed, 2 Sep 2026 20:50:46 +0530
+Message-ID: <20260902152049.183685-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260831134539.112690-2-srinivasan.shanmugam@amd.com>
+References: <20260831134539.112690-2-srinivasan.shanmugam@amd.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/pf=3A_Keep_VF_LMEM_B?=
- =?utf-8?q?AR_size_low_if_no_VFs_enabled_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Marcin Bernatowicz" <marcin.bernatowicz@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 02 Sep 2026 15:07:22 -0000
-Message-ID: <178836164200.112573.851158518550342358@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260902124751.512730-1-marcin.bernatowicz@linux.intel.com>
-In-Reply-To: <20260902124751.512730-1-marcin.bernatowicz@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BY1PEPF0001AE1D:EE_|PH8PR12MB7304:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2129713e-adff-4e86-6edc-08df0905d47e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|23010399003|82310400026|36860700016|1800799024|11063799006|10067099003|22082099003|18002099003|56012099006;
+X-Microsoft-Antispam-Message-Info: 1owMVDDJOEoszzO1oen9ocmOzlFMLu2qu9FX66bOt4pqEK7e5g/UWEqXs7Q2OXPdwJoyhHSfJaPb1RAhGqKVHsr337VHlPosEyf0VmwerpWeidvlbTRIOdqeEd0RHzXKdTy54eUxPqu1J1tFO+lDnPdGyI/5a3dB3Exhm4kN/phIY7ibCOK0mcm31b9fFQdmeG0/90n3geQ7EQMRamL9nV1J+p9uyCFKtCPiLJ9jwdSY3gGJ5wS40M31G4H+/E2OgEYB5EFTtSN17sm3CtnQbSyVBMjxn3EWPJCWwmuw0w/SSaF4QV/tyIF65PY4w75FxhwJbLhCah6OvUtt6Z1M4FOKUqBap/70tb00efFXNvXTM+xSgyEAE35MMEhzgGp4KSOxsGcXk8kU2sJ9S4XdRAZdPrWzGnkiyMqij0H7bQLbLJuDoiV9VIfyk1Us51QMF+axODMqClGZj0R5HWGNyvMHhCpne1wNA+HUddSt62SXWPBS/Y9IwykNeGp3bBR0Z8RN/QptQhH8gjkyUow9t/OLWRHbprSEXLFsBnZ9QLyVIt6yzwIZG40QldCLmooTcXs4FoMTNCYRhB3wrPkOmHaHxQutVuQwKX6zO4K2lhTo8osmvd2dDxeYi3fjDatv79rcYecGEhz5urzRpp4zt883AF9g8DKK3UDL0ACpsoHXvIJSRHQIwyqxXvod1tmpXmtJXSGb68kJA+HQS5cMtA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(82310400026)(36860700016)(1800799024)(11063799006)(10067099003)(22082099003)(18002099003)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: PrYsFb5vTlb8B0eDnyzF8oMONPU3SvWTMlo5iMqPxodbt8O6CaujagthKujbhMLPhcoG339y4/M3jaSlgO7dYeJJ51PQUGcfqOxzhHmZsaS9yt4HB1yBAkHlahcmje9eiN+5+TRYgwPAbf2ZqqCcPJUodh0YwT0qChtsml2MZBU3VZhd6B7ryXFAaAPfo7blvCBMMG+X9nf5zlGuBT3JrscD2sJekpWexCKFc8K9EVOYReWnRFOHUSDtS1KCLgQmNLu/5O71cKNna9/8+SEJizGfeMxQgTXIMEqQP0JxBGn4XLQKCSySwYrC9oK4AF/y+esyljZibP4zYD4nWb8FNn/PTWu9vuUyrpwReva/Iu8WRodOMBJeym2x9/pdTzXoRBCbZqh/hED3ZySp0RHmbO5Xcmnw8PQWKeeW21mJNdDh+Mc8dkT+/qP//M77QPk6
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2026 15:21:15.3171 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2129713e-adff-4e86-6edc-08df0905d47e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BY1PEPF0001AE1D.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7304
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,349 +110,320 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3933664510229917904==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+GPU drivers often need to queue work when a dma-fence signals
+because certain operations (copy_to_user, eventfd_signal, memory
+allocation) cannot run in IRQ context. This pattern is currently
+open-coded in multiple drivers.
 
-== Series Details ==
+Introduce drm_work_fence — an embeddable base structure that handles the
+dma-fence-callback-to-workqueue pattern in one place. Drivers embed this
+in their own structure and implement ops->writeback() for the deferred
+work and ops->destroy() for cleanup.
 
-Series: drm/xe/pf: Keep VF LMEM BAR size low if no VFs enabled (rev3)
-URL   : https://patchwork.freedesktop.org/series/154724/
-State : failure
+The helper manages:
+ - kref lifetime
+ - dma-fence callback registration
+ - workqueue dispatch on fence signal
+ - safe cancellation before driver teardown
 
-== Summary ==
+For work that additionally requires borrowing the process MM via
+kthread_use_mm(), see drm_user_fence which builds on top of this.
 
-CI Bug Log - changes from xe-5673-69771454478b3dc773dee91f76cef9220ea1ce93_BAT -> xe-pw-154724v3_BAT
-====================================================
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org
+Signed-off-by: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+---
+ drivers/gpu/drm/Makefile         |   1 +
+ drivers/gpu/drm/drm_work_fence.c | 184 +++++++++++++++++++++++++++++++
+ include/drm/drm_work_fence.h     |  69 ++++++++++++
+ 3 files changed, 254 insertions(+)
+ create mode 100644 drivers/gpu/drm/drm_work_fence.c
+ create mode 100644 include/drm/drm_work_fence.h
 
-Summary
--------
+diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+index e97faabcd783..c5be8e80d0c8 100644
+--- a/drivers/gpu/drm/Makefile
++++ b/drivers/gpu/drm/Makefile
+@@ -72,6 +72,7 @@ drm-y := \
+ 	drm_vblank.o \
+ 	drm_vblank_work.o \
+ 	drm_vma_manager.o \
++	drm_work_fence.o \
+ 	drm_writeback.o
+ drm-$(CONFIG_DRM_CLIENT) += \
+ 	drm_client.o \
+diff --git a/drivers/gpu/drm/drm_work_fence.c b/drivers/gpu/drm/drm_work_fence.c
+new file mode 100644
+index 000000000000..482eb3d4475f
+--- /dev/null
++++ b/drivers/gpu/drm/drm_work_fence.c
+@@ -0,0 +1,184 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2024 The Linux Foundation
++ *
++ * Common DRM work fence helper.
++ *
++ * When a GPU dma-fence signals, drivers often need to perform work that
++ * cannot run in IRQ context (e.g., memory allocation, copy_to_user,
++ * eventfd_signal). This helper queues a work item when a dma-fence
++ * signals, allowing that work to run safely in a workqueue context.
++ *
++ * NOTE: This helper consumes dma_fences but CANNOT implement
++ * dma_fence_ops. Work items queued here may sleep; dma_fence_ops
++ * callbacks are called under the fence spinlock and must not sleep.
++ *
++ * For work that additionally requires accessing userspace memory via
++ * kthread_use_mm(), see drm_user_fence which builds on top of this.
++ */
++
++#include <linux/workqueue.h>
++
++#include <drm/drm_work_fence.h>
++
++static void drm_work_fence_destroy(struct kref *kref)
++{
++	struct drm_work_fence *wfence =
++		container_of(kref, struct drm_work_fence, refcount);
++	struct dma_fence *fence = wfence->fence;
++
++	wfence->ops->destroy(wfence);
++	dma_fence_put(fence);	/* NULL-safe */
++}
++
++/**
++ * drm_work_fence_get - Acquire a reference to a work fence
++ * @wfence: work fence
++ */
++void drm_work_fence_get(struct drm_work_fence *wfence)
++{
++	kref_get(&wfence->refcount);
++}
++EXPORT_SYMBOL_GPL(drm_work_fence_get);
++
++/**
++ * drm_work_fence_put - Release a reference to a work fence
++ * @wfence: work fence
++ */
++void drm_work_fence_put(struct drm_work_fence *wfence)
++{
++	kref_put(&wfence->refcount, drm_work_fence_destroy);
++}
++EXPORT_SYMBOL_GPL(drm_work_fence_put);
++
++static void drm_work_fence_work(struct work_struct *w)
++{
++	struct drm_work_fence *wfence =
++		container_of(w, struct drm_work_fence, work);
++
++	wfence->ops->writeback(wfence);
++	drm_work_fence_put(wfence);
++}
++
++static void drm_work_fence_queue(struct drm_work_fence *wfence)
++{
++	queue_work(wfence->wq, &wfence->work);
++}
++
++static void drm_work_fence_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
++{
++	struct drm_work_fence *wfence =
++		container_of(cb, struct drm_work_fence, cb);
++
++	drm_work_fence_queue(wfence);
++	/* Single ref: wfence->fence released in drm_work_fence_destroy(). */
++}
++
++/**
++ * drm_work_fence_init - Initialize a work fence
++ * @wfence: work fence to initialize
++ * @wq: workqueue to run the worker on (must be ordered if sequencing matters)
++ * @ops: driver operations
++ */
++void drm_work_fence_init(struct drm_work_fence *wfence,
++			 struct workqueue_struct *wq,
++			 const struct drm_work_fence_ops *ops)
++{
++	kref_init(&wfence->refcount);
++	wfence->wq = wq;
++	wfence->ops = ops;
++	wfence->fence = NULL;
++	INIT_WORK(&wfence->work, drm_work_fence_work);
++}
++EXPORT_SYMBOL_GPL(drm_work_fence_init);
++
++/**
++ * drm_work_fence_add_callback - Attach a work fence to a dma-fence
++ * @wfence: work fence; caller retains their reference and must release
++ *          it via drm_work_fence_put() when no longer needed
++ * @fence: dma-fence to watch; one reference is consumed on any return value
++ *
++ * When @fence signals, a work item is queued that calls ops->writeback().
++ * If @fence has already signaled, the work item is queued immediately.
++ *
++ * Return: 0 on success, negative errno on error.
++ */
++int drm_work_fence_add_callback(struct drm_work_fence *wfence,
++				struct dma_fence *fence)
++{
++	int err;
++
++	drm_work_fence_get(wfence);
++	wfence->fence = fence;	/* transfer caller's ref — single ref, no get */
++
++	err = dma_fence_add_callback(fence, &wfence->cb, drm_work_fence_cb);
++	if (err == -ENOENT) {
++		drm_work_fence_queue(wfence);
++		err = 0;
++	} else if (err) {
++		wfence->fence = NULL;
++		dma_fence_put(fence);
++		drm_work_fence_put(wfence);
++	}
++
++	return err;
++}
++EXPORT_SYMBOL_GPL(drm_work_fence_add_callback);
++
++/**
++ * drm_work_fence_cancel - Cancel a pending work fence callback
++ * @wfence: work fence
++ *
++ * Attempts to remove the pending callback before driver context teardown.
++ * The caller must hold a reference to @wfence across this call.
++ *
++ * If the callback has already fired this returns false and all cleanup
++ * has been handled internally.
++ *
++ * If removal succeeds the callback reference is released internally.
++ * The caller must still release its own reference via drm_work_fence_put().
++ *
++ * This function is safe to call from atomic context as it only acquires
++ * the dma-fence spinlock internally. If the caller also needs to wait
++ * for the worker to finish, use drm_work_fence_cancel_sync() instead,
++ * which may sleep.
++ *
++ * Return: true if callback was removed, false if it had already fired.
++ */
++bool drm_work_fence_cancel(struct drm_work_fence *wfence)
++{
++	struct dma_fence *fence = wfence->fence;
++
++	if (!fence)
++		return false;
++
++	if (dma_fence_remove_callback(fence, &wfence->cb)) {
++		drm_work_fence_put(wfence);	/* drop ref from add_callback */
++		return true;
++	}
++
++	return false;
++}
++EXPORT_SYMBOL_GPL(drm_work_fence_cancel);
++
++/**
++ * drm_work_fence_cancel_sync - Cancel callback and wait for worker to finish
++ * @wfence: work fence
++ *
++ * Calls drm_work_fence_cancel() then cancel_work_sync() to guarantee
++ * the worker has fully completed before returning.
++ *
++ * This function may sleep. Must not be called from atomic or interrupt
++ * context. Use drm_work_fence_cancel() instead when sleeping is not allowed.
++ *
++ * Drivers must call this during teardown before freeing any resources
++ * accessed by ops->writeback().
++ */
++void drm_work_fence_cancel_sync(struct drm_work_fence *wfence)
++{
++	if (drm_work_fence_cancel(wfence))
++		return;
++	if (cancel_work_sync(&wfence->work))
++		drm_work_fence_put(wfence);
++}
++EXPORT_SYMBOL_GPL(drm_work_fence_cancel_sync);
+diff --git a/include/drm/drm_work_fence.h b/include/drm/drm_work_fence.h
+new file mode 100644
+index 000000000000..c8e3c5b9f0c4
+--- /dev/null
++++ b/include/drm/drm_work_fence.h
+@@ -0,0 +1,69 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2024 The Linux Foundation
++ */
++
++#ifndef __DRM_WORK_FENCE_H__
++#define __DRM_WORK_FENCE_H__
++
++#include <linux/dma-fence.h>
++#include <linux/kref.h>
++#include <linux/workqueue.h>
++
++struct drm_work_fence;
++
++/**
++ * struct drm_work_fence_ops - driver callbacks for a DRM work fence
++ */
++struct drm_work_fence_ops {
++	/**
++	 * @writeback: Called from workqueue context when the dma-fence signals.
++	 *
++	 * Perform the deferred work here (copy_to_user, eventfd_signal, etc.).
++	 * May sleep. Must not requeue the fence.
++	 */
++	void (*writeback)(struct drm_work_fence *wfence);
++
++	/**
++	 * @destroy: Called when the last reference is dropped.
++	 * Free the containing structure here.
++	 */
++	void (*destroy)(struct drm_work_fence *wfence);
++};
++
++/**
++ * struct drm_work_fence - DRM dma-fence-to-workqueue helper
++ *
++ * Embeddable base structure that queues a work item when a dma-fence signals.
++ * Drivers embed this in their own structure and implement ops->writeback()
++ * for the deferred work and ops->destroy() for cleanup.
++ *
++ * Call drm_work_fence_init() at creation and drm_work_fence_add_callback()
++ * to arm on a dma-fence. Call drm_work_fence_cancel_sync() before teardown.
++ */
++struct drm_work_fence {
++	/** @refcount: Reference count. */
++	struct kref refcount;
++	/** @wq: Workqueue on which to run the worker. */
++	struct workqueue_struct *wq;
++	/** @ops: Driver operations. */
++	const struct drm_work_fence_ops *ops;
++	/** @fence: The watched dma-fence; holds a single reference. */
++	struct dma_fence *fence;
++	/** @work: Work item queued when the fence signals. */
++	struct work_struct work;
++	/** @cb: Callback registered on the dma-fence. */
++	struct dma_fence_cb cb;
++};
++
++void drm_work_fence_init(struct drm_work_fence *wfence,
++			 struct workqueue_struct *wq,
++			 const struct drm_work_fence_ops *ops);
++void drm_work_fence_get(struct drm_work_fence *wfence);
++void drm_work_fence_put(struct drm_work_fence *wfence);
++int  drm_work_fence_add_callback(struct drm_work_fence *wfence,
++				 struct dma_fence *fence);
++bool drm_work_fence_cancel(struct drm_work_fence *wfence);
++void drm_work_fence_cancel_sync(struct drm_work_fence *wfence);
++
++#endif /* __DRM_WORK_FENCE_H__ */
+-- 
+2.34.1
 
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-154724v3_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-154724v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (12 -> 13)
-------------------------------
-
-  Additional (1): bat-nvls-2 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-154724v3_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-ptl-2:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5673-69771454478b3dc773dee91f76cef9220ea1ce93/bat-ptl-2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-ptl-2/igt@xe_waitfence@reltime.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-154724v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@eof:
-    - bat-nvls-2:         NOTRUN -> [SKIP][3] ([Intel XE#8742]) +4 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@fbdev@eof.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-nvls-2:         NOTRUN -> [SKIP][4] ([Intel XE#8757])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-nvls-2:         NOTRUN -> [SKIP][5] ([Intel XE#8756] / [Intel XE#8783]) +3 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-nvls-2:         NOTRUN -> [SKIP][6] ([Intel XE#8761] / [Intel XE#8773])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc:
-    - bat-nvls-2:         NOTRUN -> [SKIP][7] ([Intel XE#8755]) +13 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@kms_pipe_crc_basic@nonblocking-crc.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-nvls-2:         NOTRUN -> [SKIP][8] ([Intel XE#8758] / [Intel XE#8784]) +2 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@xe_evict@evict-small-multi-vm:
-    - bat-nvls-2:         NOTRUN -> [SKIP][9] ([Intel XE#8777]) +9 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_evict@evict-small-multi-vm.html
-
-  * igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:
-    - bat-nvls-2:         NOTRUN -> [SKIP][10] ([Intel XE#8744]) +1 other test skip
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
-
-  * igt@xe_exec_balancer@no-exec-virtual-basic:
-    - bat-nvls-2:         NOTRUN -> [SKIP][11] ([Intel XE#8741]) +17 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_exec_balancer@no-exec-virtual-basic.html
-
-  * igt@xe_exec_multi_queue@many-queues-basic-smem:
-    - bat-nvls-2:         NOTRUN -> [SKIP][12] ([Intel XE#8377]) +13 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_exec_multi_queue@many-queues-basic-smem.html
-
-  * igt@xe_huc_copy@huc_copy:
-    - bat-nvls-2:         NOTRUN -> [SKIP][13] ([Intel XE#8746])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_huc_copy@huc_copy.html
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-nvls-2:         NOTRUN -> [SKIP][14] ([Intel XE#8792])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_live_ktest@xe_bo.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
-    - bat-nvls-2:         NOTRUN -> [SKIP][15] ([Intel XE#8791] / [Intel XE#8792])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-nvls-2:         NOTRUN -> [SKIP][16] ([Intel XE#8791])
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  * igt@xe_mmap@vram:
-    - bat-nvls-2:         NOTRUN -> [SKIP][17] ([Intel XE#8747])
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-nvls-2:         NOTRUN -> [SKIP][18] ([Intel XE#8748])
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-nvls-2:         NOTRUN -> [SKIP][19] ([Intel XE#8743])
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-nvls-2:         NOTRUN -> [SKIP][20] ([Intel XE#8745])
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#8377]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8377
-  [Intel XE#8741]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8741
-  [Intel XE#8742]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8742
-  [Intel XE#8743]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8743
-  [Intel XE#8744]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8744
-  [Intel XE#8745]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8745
-  [Intel XE#8746]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8746
-  [Intel XE#8747]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8747
-  [Intel XE#8748]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8748
-  [Intel XE#8755]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8755
-  [Intel XE#8756]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8756
-  [Intel XE#8757]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8757
-  [Intel XE#8758]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8758
-  [Intel XE#8761]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8761
-  [Intel XE#8773]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8773
-  [Intel XE#8777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8777
-  [Intel XE#8783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8783
-  [Intel XE#8784]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8784
-  [Intel XE#8791]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8791
-  [Intel XE#8792]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8792
-
-
-Build changes
--------------
-
-  * Linux: xe-5673-69771454478b3dc773dee91f76cef9220ea1ce93 -> xe-pw-154724v3
-
-  IGT_9079: 9079
-  xe-5673-69771454478b3dc773dee91f76cef9220ea1ce93: 69771454478b3dc773dee91f76cef9220ea1ce93
-  xe-pw-154724v3: 154724v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/index.html
-
---===============3933664510229917904==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pf: Keep VF LMEM BAR size low if no VFs enabled (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154724/">https://patchwork.freedesktop.org/series/154724/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5673-69771454478b3dc773dee91f76cef9220ea1ce93_BAT -&gt; xe-pw-154724v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-154724v3_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-154724v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 13)</h2>
-<p>Additional (1): bat-nvls-2 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-154724v3_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5673-69771454478b3dc773dee91f76cef9220ea1ce93/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-154724v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@eof:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@fbdev@eof.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8742">Intel XE#8742</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8757">Intel XE#8757</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@kms_flip@basic-flip-vs-wf_vblank.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8756">Intel XE#8756</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8783">Intel XE#8783</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8761">Intel XE#8761</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8773">Intel XE#8773</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@kms_pipe_crc_basic@nonblocking-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8755">Intel XE#8755</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8758">Intel XE#8758</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8784">Intel XE#8784</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-small-multi-vm:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_evict@evict-small-multi-vm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8777">Intel XE#8777</a>) +9 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8744">Intel XE#8744</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_balancer@no-exec-virtual-basic:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_exec_balancer@no-exec-virtual-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8741">Intel XE#8741</a>) +17 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@many-queues-basic-smem:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_exec_multi_queue@many-queues-basic-smem.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8377">Intel XE#8377</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_huc_copy@huc_copy:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8746">Intel XE#8746</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8792">Intel XE#8792</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8791">Intel XE#8791</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8792">Intel XE#8792</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8791">Intel XE#8791</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8747">Intel XE#8747</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8748">Intel XE#8748</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8743">Intel XE#8743</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v3/bat-nvls-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8745">Intel XE#8745</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5673-69771454478b3dc773dee91f76cef9220ea1ce93 -&gt; xe-pw-154724v3</li>
-</ul>
-<p>IGT_9079: 9079<br />
-  xe-5673-69771454478b3dc773dee91f76cef9220ea1ce93: 69771454478b3dc773dee91f76cef9220ea1ce93<br />
-  xe-pw-154724v3: 154724v3</p>
-
-</body>
-</html>
-
---===============3933664510229917904==--
