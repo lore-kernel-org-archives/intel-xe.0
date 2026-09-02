@@ -4,27 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B450EC624D0
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 11:35:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53DC0C624D0
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 11:42:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EC8E10E4AC;
-	Wed,  2 Sep 2026 11:35:05 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C45C510E4AC;
- Wed,  2 Sep 2026 11:35:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5693499056167489243=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FEA910F138;
+	Wed,  2 Sep 2026 11:42:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nbLt5nYm";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6E5E10E008;
+ Wed,  2 Sep 2026 11:42:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788349371; x=1819885371;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=tfY6eqQdJgfndYeqc3gfPqste3JtZH0u0fDiciShKDI=;
+ b=nbLt5nYmU7Gr++I2bx7AUBBGNitywMQMLe9TylMW4H9kIjRNf3eL2lYl
+ sVcVD9JvMe9qdToU7CsBhrw0azWhqxyAKHPco0vfBdmiyedrn93YLaG5V
+ ksT/gWxL5OJ4xsHZSXEEb0vHWxabJzmDmPgn0UyTn4tqncBaQpg/omvxN
+ XlQQYje6HakJEen69bymGwZrsznycgUFMdemlYC5pIBuL3i55BEVVVUL3
+ SU2EcVQMpox2mFCkMxQCbN3T/7t2Pys6aauqGPKCKz534OClfs224RvMO
+ JcAZEsICbdk+HplNOgAjkAJ6SKEKY7m1wlMMV+Rz+9PLUicfXFNOCtvBy A==;
+X-CSE-ConnectionGUID: rezdQuKMT4GXiGR2EkUQlA==
+X-CSE-MsgGUID: jCcwSNmcQyGDGs+577rK5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="99138569"
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="99138569"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 04:42:51 -0700
+X-CSE-ConnectionGUID: 8ngnSo6fSPWQC4SYDDbNbQ==
+X-CSE-MsgGUID: TaW8zriBS9mjVm13sp/Xcg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="292898157"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.200])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 04:42:48 -0700
+Date: Wed, 2 Sep 2026 14:42:46 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ maarten.lankhorst@linux.intel.com,
+ Maarten Lankhorst <maarten.lankhorst@intel.com>
+Subject: Re: [PATCH v2 6/7] drm/i915: only timeout on fence waits for display
+ reset
+Message-ID: <apgLtqwv7g1gNiAd@intel.com>
+References: <cover.1787833879.git.jani.nikula@intel.com>
+ <bae61991e23be3bd8b16b7cab7d623f53c10a984.1787833879.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_VRAM_health_check_+_CCS_fix?=
- =?utf-8?q?_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 02 Sep 2026 11:35:03 -0000
-Message-ID: <178834890379.112573.11112461169082373721@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260902103931.826063-7-matthew.auld@intel.com>
-In-Reply-To: <20260902103931.826063-7-matthew.auld@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <bae61991e23be3bd8b16b7cab7d623f53c10a984.1787833879.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,176 +72,83 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5693499056167489243==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Aug 27, 2026 at 03:34:56PM +0300, Jani Nikula wrote:
+> As written by Maarten: Not waiting on fences until they're signaled is
+> an existing issue in i915, and was added as a workaround for a deadlock
+> when GPU reset has to reset display as well on old platforms.
 
-== Series Details ==
+IIRC the timeout wasn't added for that. It's there just as a backup to
+make sure we never get completely stuck. We had more proper handling for
+this stuff (== terminate/skip the fence wait on GPU reset) but lost that
+in the conversion to dma_fence.
 
-Series: VRAM health check + CCS fix (rev2)
-URL   : https://patchwork.freedesktop.org/series/172984/
-State : failure
+Since we Christian NAKed my dma_fence equivalent of the previous
+approach and I don't feel like attempting to resurrect my old display
+reset rw_lock branch right now, the best we can probably do is
+basically revert commit 9db529aac938 ("drm/i915: More surgically
+unbreak the modeset vs reset deadlock"). The upside of that would be
+that the display reset will become fast again, but the downside is
+that the full wedge will also kill innocent requests.
 
-== Summary ==
+> This
+> requires a modeset to disable everything, which may hang since it could
+> wait on a fence that may only be signaled after GPU reset completes.
+> 
+> Limit the timeout on fence waits a) to platforms where GPU reset
+> clobbers display, and b) when we're running forced display reset tests.
+> 
+> This change only impacts i915, as xe has MAX_SCHEDULE_TIMEOUT in any
+> case.
+> 
+> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Suggested-by: Maarten Lankhorst <maarten.lankhorst@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 12 +++++++++---
+>  1 file changed, 9 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index aa5d41dac8a9..76ec9161aaa3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -74,6 +74,7 @@
+>  #include "intel_display_driver.h"
+>  #include "intel_display_power.h"
+>  #include "intel_display_regs.h"
+> +#include "intel_display_reset.h"
+>  #include "intel_display_rpm.h"
+>  #include "intel_display_types.h"
+>  #include "intel_display_utils.h"
+> @@ -7277,15 +7278,20 @@ static void intel_atomic_commit_fence_wait(struct intel_atomic_state *state)
+>  	struct intel_display *display = to_intel_display(state);
+>  	struct drm_plane *plane;
+>  	struct drm_plane_state *new_plane_state;
+> -	long ret;
+> +	long timeout, ret;
+>  	int i;
+>  
+> +	if (intel_display_reset_needed_after_gpu_reset(display) ||
+> +	    intel_display_reset_test(display))
+> +		timeout = i915_fence_timeout();
+> +	else
+> +		timeout = MAX_SCHEDULE_TIMEOUT;
+> +
+>  	for_each_new_plane_in_state(&state->base, plane, new_plane_state, i) {
+>  		if (!new_plane_state->fence)
+>  			continue;
+>  
+> -		ret = dma_fence_wait_timeout(new_plane_state->fence, false,
+> -					     i915_fence_timeout());
+> +		ret = dma_fence_wait_timeout(new_plane_state->fence, false, timeout);
+>  		if (!ret)
+>  			ret = -ETIMEDOUT;
+>  		if (ret < 0) {
+> -- 
+> 2.47.3
 
-CI Bug Log - changes from xe-5672-f6e82e1b1b96ea7150f101ce93f139e1ff131d67_BAT -> xe-pw-172984v2_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-172984v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-172984v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-172984v2_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-ptl-2:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5672-f6e82e1b1b96ea7150f101ce93f139e1ff131d67/bat-ptl-2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172984v2/bat-ptl-2/igt@xe_waitfence@reltime.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-172984v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-nvls-1:         [PASS][3] -> [DMESG-WARN][4] ([Intel XE#8762] / [Intel XE#9069])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5672-f6e82e1b1b96ea7150f101ce93f139e1ff131d67/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172984v2/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-wcl-1:          [FAIL][5] ([Intel XE#9103]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5672-f6e82e1b1b96ea7150f101ce93f139e1ff131d67/bat-wcl-1/igt@xe_waitfence@engine.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172984v2/bat-wcl-1/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#8762]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762
-  [Intel XE#9069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069
-  [Intel XE#9103]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9103
-
-
-Build changes
--------------
-
-  * Linux: xe-5672-f6e82e1b1b96ea7150f101ce93f139e1ff131d67 -> xe-pw-172984v2
-
-  IGT_9079: 9079
-  xe-5672-f6e82e1b1b96ea7150f101ce93f139e1ff131d67: f6e82e1b1b96ea7150f101ce93f139e1ff131d67
-  xe-pw-172984v2: 172984v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172984v2/index.html
-
---===============5693499056167489243==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>VRAM health check + CCS fix (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172984/">https://patchwork.freedesktop.org/series/172984/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172984v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172984v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5672-f6e82e1b1b96ea7150f101ce93f139e1ff131d67_BAT -&gt; xe-pw-172984v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-172984v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-172984v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-172984v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5672-f6e82e1b1b96ea7150f101ce93f139e1ff131d67/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172984v2/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-172984v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5672-f6e82e1b1b96ea7150f101ce93f139e1ff131d67/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172984v2/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762">Intel XE#8762</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069">Intel XE#9069</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5672-f6e82e1b1b96ea7150f101ce93f139e1ff131d67/bat-wcl-1/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9103">Intel XE#9103</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172984v2/bat-wcl-1/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5672-f6e82e1b1b96ea7150f101ce93f139e1ff131d67 -&gt; xe-pw-172984v2</li>
-</ul>
-<p>IGT_9079: 9079<br />
-  xe-5672-f6e82e1b1b96ea7150f101ce93f139e1ff131d67: f6e82e1b1b96ea7150f101ce93f139e1ff131d67<br />
-  xe-pw-172984v2: 172984v2</p>
-
-</body>
-</html>
-
---===============5693499056167489243==--
+-- 
+Ville Syrjälä
+Intel
