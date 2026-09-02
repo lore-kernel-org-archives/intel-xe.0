@@ -4,61 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6E12C61DFD
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 09:18:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18871C624D5
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 09:27:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7031B10F0D2;
-	Wed,  2 Sep 2026 09:18:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53CA710F0A3;
+	Wed,  2 Sep 2026 09:27:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y/o9Aano";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XQW567dQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E4FE10E38E
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 09:18:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B0B910E486;
+ Wed,  2 Sep 2026 09:27:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788340719; x=1819876719;
+ t=1788341240; x=1819877240;
  h=from:date:to:cc:subject:in-reply-to:message-id:
  references:mime-version;
- bh=KU3Z5C0Ode6jN8ixHUZkLcwrmODUP5WeSYIYl8AIXjY=;
- b=Y/o9AanoMEBGdW6MqxJ2o4ktFjfOzcNInBd5ojhK6MsYwPl938IDdxAZ
- VZ1HIoEiaJxRaZ/qhVbngG5n9IH2T8KX1SEFrCocJ5EhsbQd0BoHgpi4u
- cJrNJ7XH5nehey46WtV7eOMChTr+bYrC38MC8JMLe1Avb3kkgkWe452Zu
- VOk3qM1D1zh7zVLm2S8TKnlSH/HKeoSmm60SB3Wb/mR3KvwXCTlzWavTc
- d16kaB/VV1SAOAbSQ+8H8QsKjwr6pdsqoBYZtrD+qAVdoh6rHGq7LAGJz
- qGbfZI2Xd/KEO0iV6SVhyamCk+GvO+Tn5VX4XBw68G5zNLGFj/gCtNm7X A==;
-X-CSE-ConnectionGUID: c5aL5uZMTBK49989WDmgxQ==
-X-CSE-MsgGUID: QPGcFuRxQbio8B8cRAQhiA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="114336126"
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="114336126"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ bh=KPrDvW0fnoXM/spnF4ccGetBZU62mAAZhQ0Hguq+iaE=;
+ b=XQW567dQqeWtAIeq2pTJ4EzAD67PN31TaopyWUd+iASC85fTw0EXHS55
+ 6gQRRzRxQrfz5OiWvM1Aq5ljh5nuJNCWgLZoGkcLTE9EdfiZsxm4EPOHA
+ /ELzdIYWKNInAmNrc5Zu3lmG3S5KGlDx32CBJUusekqg4O3c+k3Ep9ktv
+ h/A92vmQiedTpCu1kJ+UrVMLaDa4+Q2aRysO0ecF4ifGqbSTd5eTSyTvm
+ tI1K3sr+N/3p7kuO4KB2vam2Ty9NhiiuyYe0WuNUDWq3oDGpg47ssHeeG
+ QGeIHob0qUKQf0kGrO9Y8sGenSKHdxpCh+VdguNXXxkuq3Bw3hH8LfkQ/ A==;
+X-CSE-ConnectionGUID: fUP1VBmnQ2CQYsCCUwPbdw==
+X-CSE-MsgGUID: fgdjAyDVQpOnRmre6dVGzA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="114336702"
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="114336702"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 02:18:39 -0700
-X-CSE-ConnectionGUID: pe/L61IzR6+Wv7EcnYsfzQ==
-X-CSE-MsgGUID: 4vei3AiFTEWpdHE/71cwXg==
+ 02 Sep 2026 02:27:20 -0700
+X-CSE-ConnectionGUID: bQypmes+TVyLHiesV3Df/A==
+X-CSE-MsgGUID: uAFY43MYR6eU1d4FFI5Nkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="271325400"
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="263207963"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.185])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 02:18:33 -0700
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 02:27:13 -0700
 From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Wed, 2 Sep 2026 12:18:29 +0300 (EEST)
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-cc: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org, 
- Hans de Goede <hansg@kernel.org>, matthew.brost@intel.com, 
- rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com, 
- airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com, 
- anoop.c.vijay@intel.com, badal.nilawar@intel.com, 
- matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
-Subject: Re: [PATCH v4 06/18] platform/x86/intel/pmt: Do not remap when using
- callbacks
-In-Reply-To: <20260901192736.626777-26-michael.j.ruhl@intel.com>
-Message-ID: <30d90d16-a261-e5cc-8b49-c21884d6f8cb@linux.intel.com>
-References: <20260901192736.626777-20-michael.j.ruhl@intel.com>
- <20260901192736.626777-26-michael.j.ruhl@intel.com>
+Date: Wed, 2 Sep 2026 12:27:09 +0300 (EEST)
+To: Armin Wolf <W_Armin@gmx.de>
+cc: Hans de Goede <hansg@kernel.org>, platform-driver-x86@vger.kernel.org, 
+ LKML <linux-kernel@vger.kernel.org>, linux@weissschuh.net, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, lenb@kernel.org, 
+ linux-acpi@vger.kernel.org, alexander.deucher@amd.com, 
+ christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ patrik.r.jakobsson@gmail.com, maarten.lankhorst@linux.intel.com, 
+ mripard@kernel.org, tzimmermann@suse.de, jani.nikula@linux.intel.com, 
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com, 
+ tursulin@ursulin.net, intel-gfx@lists.freedesktop.org, 
+ matthew.brost@intel.com, thomas.hellstrom@linux.intel.com, 
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v3 0/3] platform/wmi: Add aarch64 support
+In-Reply-To: <46bd3385-4bd8-4a98-8ef3-57c29d00361c@gmx.de>
+Message-ID: <c8445c2e-6799-7856-610c-0742248e1c07@linux.intel.com>
+References: <20260724025959.142826-1-W_Armin@gmx.de>
+ <59aadf0f-953c-4b7c-8c92-9dd9bc4f89de@gmx.de>
+ <46bd3385-4bd8-4a98-8ef3-57c29d00361c@gmx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: multipart/mixed; boundary="8323328-507380628-1788341229=:1183"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,74 +79,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 1 Sep 2026, Michael J. Ruhl wrote:
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-> A callback indicates that the parent driver is responsible
-> for accessing the data area.  Creating a PMT memory remap
-> is redundant.
-> 
-> If a read_telem callback has been provided, do not create a
-> remap.
-> 
-> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
-> ---
->  drivers/platform/x86/intel/pmt/class.c | 19 +++++++++++--------
->  1 file changed, 11 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
-> index af7c951b569a..350129121ff1 100644
-> --- a/drivers/platform/x86/intel/pmt/class.c
-> +++ b/drivers/platform/x86/intel/pmt/class.c
-> @@ -373,7 +373,6 @@ static int intel_pmt_dev_register(struct intel_pmt_entry *entry,
->  				  struct device *parent)
->  {
->  	struct intel_vsec_device *ivdev = dev_to_ivdev(parent);
-> -	struct resource res = {0};
->  	struct device *dev;
->  	int ret;
->  
-> @@ -403,14 +402,18 @@ static int intel_pmt_dev_register(struct intel_pmt_entry *entry,
->  	if (!entry->size)
->  		return 0;
->  
-> -	res.start = entry->base_addr;
-> -	res.end = res.start + entry->size - 1;
-> -	res.flags = IORESOURCE_MEM;
-> +	if (!is_cb_read_telem(entry->cb)) {
-> +		struct resource res = {0};
+--8323328-507380628-1788341229=:1183
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
-I see you're copying this from the existing one, but this is wrong on 
-multiple counts:
+On Tue, 1 Sep 2026, Armin Wolf wrote:
 
-- For general initialization to default values, = {} should be used
-  (the extra zero is snakeoil).
-- HOWEVER, with struct resource, that won't produce a valid resource!
+> Am 07.08.26 um 23:03 schrieb Armin Wolf:
+>=20
+> > Am 24.07.26 um 04:59 schrieb Armin Wolf:
+> >=20
+> > > The aarch64-laptops project found out that some Windows-on-Arm
+> > > notebooks contain WMI-ACPI mapping devices (PNP0C14) that work
+> > > exactly like on x86. Those devices however are currently not
+> > > supported by the WMI driver core due to only supporting x86.
+> > >=20
+> > > The first patch removes this restriction and allows the WMI
+> > > driver core to run on all architectures that support ACPI.
+> > > The second patch updates the acpi-video driver to take advantage
+> > > of the improved support for architectures other than x86, and
+> > > the last patch enables the generic WMI BMOF driver to support
+> > > aarch64 as well.
+> > >=20
+> > > All patches have been tested on a ACPI-based aarch64 VM and
+> > > work just fine.
+> >=20
+> > Any thoughts about this series from the GPU driver people?
+> >=20
+> > Thanks,
+> > Armin Wolf=20
+>=20
+> Can i assume that the silence means "looks fine to me"?
 
-In this case, DEFINE_RES_MEM() should be used as you've everything 
-available to setup it right away.
+Hi,
 
-> -	entry->base = devm_ioremap_resource(dev, &res);
-> -	if (IS_ERR(entry->base)) {
-> -		ret = PTR_ERR(entry->base);
-> -		goto fail_ioremap;
-> +		res.start = entry->base_addr;
-> +		res.end = res.start + entry->size - 1;
+Those subjects may be too generic for the GPU people to realize we're=20
+waiting for their Acks.
 
-For the record, there would also be resource_set_range() but since you're 
-going to use DEFINE_RES_MEM(), that isn't necessary here.
+I suggest you send non-ML email (private) with a more descriptive subject=
+=20
+to the relevant maintainers asking for them to take look at this series=20
+(I'd have done that myself later this week but you can do it as well).
+Such an email is more likely to be caught in their radar.
 
-> +		res.flags = IORESOURCE_MEM;
-> +
-> +		entry->base = devm_ioremap_resource(dev, &res);
-> +		if (IS_ERR(entry->base)) {
-> +			ret = PTR_ERR(entry->base);
-> +			goto fail_ioremap;
-> +		}
->  	}
->  
->  	sysfs_bin_attr_init(&entry->pmt_bin_attr);
-> 
+> > > Armin Wolf (3):
+> > > =C2=A0=C2=A0 platform/wmi: Remove dependency on CONFIG_X86
+> > > =C2=A0=C2=A0 ACPI: video: Remove CONFIG_X86 handling from nvidia_wmi_=
+ec_supported()
+> > > =C2=A0=C2=A0 platform/x86: wmi-bmof: Move to generic WMI code
 
--- 
+--=20
  i.
 
+--8323328-507380628-1788341229=:1183--
