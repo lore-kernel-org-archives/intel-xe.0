@@ -4,43 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E816C61DD6
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 16:26:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96F57C61DD6
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 16:29:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CBC989233;
-	Wed,  2 Sep 2026 16:26:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 444D910F2C3;
+	Wed,  2 Sep 2026 16:29:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="gwBSe/Ul";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HIGr/swy";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B95F10F2E7
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 16:25:41 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id C12DA40268;
- Wed,  2 Sep 2026 16:25:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 841011F000E9;
- Wed,  2 Sep 2026 16:25:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788366340;
- bh=6rGiNWM4t/+HOtbQYgsqrZmimz+SlGKR3aKaXH8ao6Y=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=gwBSe/Ulhles0yFRCEOtctS51BR4UIUENt/WPoehCuZy9G5Rw2qsVFN6yk4Z30i1S
- 747HojuQoOJSLlXCVSPPDS6zBN6cDXhngdWPDSWl4iYRPDoC6noLW0jk46A2P0A3z6
- qdI7laxBSaedb/PTipJpmUOXf8Np1lRCrelNt0wkiosdurF4z52YRpDFs3xCCSf+se
- /xqjaW18dxCJKrsAOVps3LblrA+BX8dSpnjQAgnfhnqgmLPPbbXvLC+eT/myM4d4cz
- 66SLcfUlxS/1QU1kvKYA4+Ci29p6DqYOkU8KL8OETgsv6aHJ5inT+TDUoLKDxaalaT
- 8BTYrxnQMptxg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH V20 09/15] drm/xe/vram: Add VRAM page offline fault handler
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260902145343.465686-26-tejas.upadhyay@intel.com>
-References: <20260902145343.465686-17-tejas.upadhyay@intel.com>
- <20260902145343.465686-26-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 02 Sep 2026 16:25:40 +0000
-Message-Id: <20260902162540.841011F000E9@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D151710F2BE;
+ Wed,  2 Sep 2026 16:29:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788366569; x=1819902569;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=GVemaGkm1e3RJe7Evu+3M22a5n38XX429hRiJ+m0LpA=;
+ b=HIGr/swy7jYCwUV5HbXIo9xyKFtHJtiR+KYR8I/x1lNSedRZef27F8dd
+ HaZj3GCbJDsaxo35IDjTfMKRGgzmvu7XTJhOJTRPsM0SNvBHWrhX6FEoc
+ ga/HRzN7MvQuqW6gnBGuIIoqczXiNTEBW81oK7wbY/4VcgZ+/rl/iLsiJ
+ EZezhbXwR5t3nGKAAGURrodUddleike6bBP0GvO312Ax3zxjCfiNvvaO4
+ 20VZJJsPUAwtnJ7rKWTUwpukhyMiO+5PEt2npSHKpzQShpMipec2CFBFe
+ gt4sd7XMX4nRX8QE1dkmX7Nxrr1hvS90af8JGx85Fr8DOmhf2bKfzjqA+ A==;
+X-CSE-ConnectionGUID: Yi6MlAbSSZ2OI8kx53171Q==
+X-CSE-MsgGUID: 9alOjBS+SKmTpQzQEUJOrQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11894"; a="88881899"
+X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="88881899"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 09:29:29 -0700
+X-CSE-ConnectionGUID: ZG24gEDZQKyc5HzEcMboXg==
+X-CSE-MsgGUID: RqufSz2cQ6aHT8ewATWpAg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="292962687"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 09:29:28 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Wed, 2 Sep 2026 09:29:27 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Wed, 2 Sep 2026 09:29:27 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.34) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Wed, 2 Sep 2026 09:29:24 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oqZddGxDNBi39z08zGeLiJ8QyJWbPRMbqeRF3yiCeFwHVQbom6ZSFeabsHUzt6h9h2VeFq6cERmoWDgoMCfIplTJ4QYhBAKDUU35RPg+sgvj4FDcq3Wv4nCVk/XUvh36ZAld0Ono+Gwi4EVQmB3jBpaI3qLpEz3+K1bPlWp7GjpD/PrczA8ccnW0u7X57ziRsrcSxe5HQenhEAQnXTC4lsHG3sPOgqVTBy38EKUvB4Mzed87qMHTEAYkMRTd9l27JB6SpaqZyuLHasrcI5tXhVLwmDOp5qZ+LBHerCrot8uL9G+m9ooF325BZq6BfXqyezesljl2bZ0egYeBWhdMGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=96WAd+uPiWU3Owe9NMqvGCy3nudBkSWk9fJO56WRGJM=;
+ b=ZCybkz4QeGxrGz3sidcwYQebmzv50Iz8YgKHLLpKOIjUusX4+Ix4hJOlgMoxtUPdbmLBkOfLT548fjIOqESiq4tNNL6NaFNdYgmlSiSR/f1PJiR0VRVtAR/Ln3SpGNtIgWZ5p6zcLO3tKtow1Wdeu1hqwJLXpfyrBjPWgK+BzaSMAUtCDxk/svocays5Pjgb78P0DxglW+S4/l5B/MveUGEFlfOsWxePeDNAKx7CsPHgY7vQEV1AqEcopZu6SV5SzU2n4v9sAZ94m7CFNa2plOMt6Kci43ZgaYtIGsg3xcCdl7QBO7yINTimkyOWxN8Q4qxkmk1XYVP4LYHonQrgkA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
+ by CY8PR11MB7798.namprd11.prod.outlook.com (2603:10b6:930:77::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Wed, 2 Sep
+ 2026 16:29:21 +0000
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1%4]) with mapi id 15.21.0360.006; Wed, 2 Sep 2026
+ 16:29:21 +0000
+Message-ID: <a94db05a-aa39-4b28-851b-fc512f574833@intel.com>
+Date: Wed, 2 Sep 2026 21:59:12 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [v4 2/4] drm/i915/display: Force disable DC3co when AS SDP skip
+ frames is enabled
+To: Uma Shankar <uma.shankar@intel.com>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>
+References: <20260831213421.1804635-1-uma.shankar@intel.com>
+ <20260831213421.1804635-3-uma.shankar@intel.com>
+Content-Language: en-US
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20260831213421.1804635-3-uma.shankar@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0PR01CA0115.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:11d::13) To DM4PR11MB7183.namprd11.prod.outlook.com
+ (2603:10b6:8:111::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|CY8PR11MB7798:EE_
+X-MS-Office365-Filtering-Correlation-Id: 891bde95-55d9-4572-9522-08df090f57c1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|1800799024|366016|376014|22082099003|18002099003|3023799007|56012099006|6133799003|4143699003|11063799006|10067099003;
+X-Microsoft-Antispam-Message-Info: YR8XxUEjIsnJQncyxZNbyN73xkNKZ57+DhPNFh68JWBzWFhZqywfRQcWWQKw35NPTJ2eNzUzWMPFbMxXBoCmZ02KDAUXqfM7TSGFprnH7pvWkV+wf1rDkuBKTxanAHTFtf/tL7xMmb0vqHesKjHaF8872dLO5CUY+OUPq5CiH6A+BhObXTMPN8aLt5uBOp1mY921N89AkRhxpeFHpFXZgZpkkm6ZGkKXcOyJvhNNgeLswVjXTwT8I3+i8wNuFBENLciTU8+JFeyIS+jvqSHC5l+78HocUpTrJZVuWQa0I59qTj+8NFsozD/Q3HQ8eEgVXUug6V5DWGU2fvVcPnDn9pwX++fWitU5it+jFqS1oKK8mXCbJZNJWBsCOrsCiEXfNoLkgdn7asy3vEcN/ut83f90YpEBtkv+Jhlx7Ahv9NfhtislYYRAgJjP4QRCYwJixZ/faJor/ZnCwjX1R51YIrYQWD3dz/bam28HjVlGoY9Kj62FZitQmiJ/BETbOsk/6IxMXIhTQ3NMVXPSQU/p4f97LjvXILCKZ49KEyQWBfK6ZeebyRuGBy4TVZ9+3TqFsGVWWmKsTYU1pBkJV2rXo41F2ldOKPu1voi2ymBAkHNZY+QWI+NfKK4SRue4UyLC+zfZ8oeZ9iOrO0KG5ss9dhbl5m7c/tF+6GUvFIPAvTY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(22082099003)(18002099003)(3023799007)(56012099006)(6133799003)(4143699003)(11063799006)(10067099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M1YvTlExWSt2ejREOEk5TERwV3hLL0k1a2Y0ZlhWZExGQ2czSG5DYkFQT1lu?=
+ =?utf-8?B?Um9uYmQ5N3RzL0s0MWRtVm1USzdraUZUY0hDTHJ5bk1DN0NNSGVSVW9FQjc4?=
+ =?utf-8?B?OFNiamdvaTExbW02UERmL3JoVy9kMkUxK1k5T3JUNGxaRHdxdk9oTjZQT3RO?=
+ =?utf-8?B?ck84Sml2UzNNTzM0dEdGVzhEbEk0U3BpVFljQnJESVU1MlhwNUFFSmMvNmlD?=
+ =?utf-8?B?dGhvazJqUVNaKzYreFdFdUF1cmdnN1NHS0tEbU5ubXU3RFJGNkd1SmFnc2Ez?=
+ =?utf-8?B?c0dubFVCQkR6YWd4WTZkTkhmUWNGVWpId1JBOVVOb3Vsc0JNNEYrSTQzYVRJ?=
+ =?utf-8?B?eHJ2RDBHWkFyc0VzQlNLWUY0aG9qL0wzUU1VbHFqQytaTUZyZ3oyUFJveXpU?=
+ =?utf-8?B?R00rRWRvWnE0a2NXdFd4VGU3TFE0eUZqcW54MmVSM25xOU1Ib1V6UkFqSGx1?=
+ =?utf-8?B?TFdTK0d6RHlyWk1yYWlqeTk4em16SmVzenZjVDBRd1N2VmhJY2dIbFdBZldo?=
+ =?utf-8?B?THJob0FVdTFIL0doczl3aG9kUGZOSWVKNGpReGVwbGhSV1V0Y1d3WDV1Z2NS?=
+ =?utf-8?B?Zi83RWFuZlB1cUxiejNBN1FPSkN4elNtZXlPdTIrRStwTlF3S1dieEE0QWYy?=
+ =?utf-8?B?THFnNEpxZ1M4YVJpWGFiclJUNzFGMlNqeXZlbzZYRnpiZSsvSkw2MmxtbWZW?=
+ =?utf-8?B?Q3o0UjRBNmE0MUU0TnhWc3hYOWx0blFyWHRscGhrNDBoRmhhTUZ4b25mMzhX?=
+ =?utf-8?B?NzRpNVNxR21sVWVBSENkSW9CWU9zRmVvZzFEekxwbkczVWhxSDBWMzVOMDhv?=
+ =?utf-8?B?SEptL21IK0dJbXo1ekRWdlBBUkl5VkZMRzZlRHRSakNrWmg3a1JnZmJKaXRP?=
+ =?utf-8?B?TUoyZEw2V3hxcnhqZ2pRQllZRU1hR1VuV29pWGw4SE5odWxOMlBNWTBJcldD?=
+ =?utf-8?B?aGVURUFvZ0VtWFh5YVcyVXlpZGo4NE9iMmlpZnZzbFIyd1UyUUMwRGRnd2lj?=
+ =?utf-8?B?bkRUWjlzQUZtNHM2RGFlM3pXbmRaRy9pcEJESzRlUHRsYWVUSnJOVUFibE1B?=
+ =?utf-8?B?SWVSWUlxMUhEWXpyc00zcG4zS050dzJnMUtoblNYbUlwNVJ5WmovNDY5WkFK?=
+ =?utf-8?B?OG5pSTdnTlcwSVNUbFRXMmhwZnB5QW8yMlBSN0xZRDFZbnBKRDVRcjBqSkh3?=
+ =?utf-8?B?ZjFaQ0NyK2pSOCtXM0t6NUtjMGFTOFZUUVF1SEVyUGIvUmJXMnBpRlRDUVVi?=
+ =?utf-8?B?cEdjSnc3YXdUK0FDbUFlTjB1eEd2Wk1WS0hSdVczeEF2dnZSTXUra2xqSkhx?=
+ =?utf-8?B?SU54TEkwOERJVmtjbjhUWUI4WHY5c09zVEtac0puNWZkZm44SERzcGdmeXZC?=
+ =?utf-8?B?OGMvb0t0VzBsOXkrL1l0VFBlOUt6ZDhhKzRwZGFZTk45VXZRSXJxT3pFNVYr?=
+ =?utf-8?B?YmF2ZEF4MnpjQWgyWHA3TWh6eE5Zb3NwbElDUjZoVTdtZ09KUlFxcTZnRGdJ?=
+ =?utf-8?B?bmZzQksvc1hpUGl5azdoK3VOT2FyTEhFY3lVN29iM0VVVGhpR3E3THEzWmNt?=
+ =?utf-8?B?bkNBcHBZQ3pnTFN6emtVU0ZlOVZqbjBLK2NkVlZLbWxGZmI2bDNJZ2VXdTAv?=
+ =?utf-8?B?NWUzT3BuUm5hMUFKSkdKbE9WeWI2Q2RXa05Fdk9NbXdhNVZjNitFMHhRRU1Y?=
+ =?utf-8?B?bEVHaElZT3pLeDVLOUFUVGs0bHJPd2VwQmljTGlPbGxZUXQ4VEQzTXlJTCsx?=
+ =?utf-8?B?SGs4bFVCdENTZFIzUGUrWTBWY3Z3aUVHY1dkWHpEQkRJTkFIeG5Gdkdra3RB?=
+ =?utf-8?B?RkFoSjF4dnVXY0pVbnl1ODBZY1FOcHI2dUFVL0JIZzFYZ2xQOXAwbmUwa2dV?=
+ =?utf-8?B?Y2tTUUVsNWY2Qm82QzZzWEkwalhjYXZtQ3E5OVVTbUtML1Y4bWJTWE1sNjc3?=
+ =?utf-8?B?M0hwVzMxc0VlOEFhRGJ2NzNZZUhYNkxsSkY2Y1RXcGpYK0pxSTJRZ25Gam55?=
+ =?utf-8?B?eXpidnQzaThTVzJJZi9sek5TWTZ6NXQ3TnNuVkFaKzZTZzU2dVNsR2o3M1BB?=
+ =?utf-8?B?N2lxbVpMTXdsbWphUm01RmUxWkQzeVhncnFuem1lTS9memphSGVxejd1WVVq?=
+ =?utf-8?B?UWVDTDE5cUxzRGdOUDA2cVMxTGVaKzYyQnkyK2JPckFrR3l6ejdNQW5taWp6?=
+ =?utf-8?B?M3gvRTM0REl2TkhON1VsZWxIcmd5cXVweVhEZmJFbXR0UFdTNWY5WHNDUEx1?=
+ =?utf-8?B?Y0N3ZSt1V0k3U0pPZndRdXVqZ3dlTVZ5bksyMUFzTFRMbTdGVWFGa0dreWg0?=
+ =?utf-8?B?dmp5b2ExS0xXblUxblZXdDhGeUx2SzdKTHoyZi84SkRwdTg4dkhpN3R5SHNu?=
+ =?utf-8?Q?ZCt2BNYgbiOeBatZKmNexn6lC15cy2TKbicTV?=
+X-Exchange-RoutingPolicyChecked: lW0CMgn05LokhMcWusm8yHBHdlqwfQOmJ5v5x5RJ2uv2cOzS76hZju1IYr73PvgxgXFVwhCeoL6Uf8nbwfjr0riS2EGjgtNwoozkK7WYPGPRs3cvmhM5JfQ2BnEs/8eZqAikOj3RUC0ssEcHKSUtDNdQHK+t43AJf6p8YxO3ekDjehjzIXcmgYT8jrgMaBtVrIHO0512c1vifiDK6RzBPL991KsRsilTB4+VHrlzjf49KhiRvhckl7xJgOdhNZ2geUzUtwppq6laap+BKll8bB2cfwIwsfNaj8EE5rOdOjqoLfqdkBV4bfqAyZXkKc2JnibU6wRxcYLRjEZwNKAnAA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 891bde95-55d9-4572-9522-08df090f57c1
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2026 16:29:21.3683 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: t76Kp5IEqU/8yypdCbM/+pD4EjRPBaHZG9Xo/P3nBRjYtfDU9th1M9aSAMhwLVIXAxw1NQd7JaYa22vEL+TyHYpYexHbbOyaeOAizlPSkoE5YGt4lyyPRpcaTK49mJVV
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7798
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,247 +167,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
-s) to consider:
-- [High] Lockless read of `res->bo` in `xe_ttm_vram_block_owner_get` leads =
-to a Use-After-Free when racing with a TTM ghost object transfer.
-- [High] Race condition when offlining a free VRAM page allows the faulty p=
-age to be allocated and never purged.
-- [High] Forcefully unpinning BOs in `xe_ttm_vram_purge_page` violates pin =
-counting semantics and creates TOCTOU vulnerabilities.
-- [High] `xe_ttm_vram_addr_to_region` ignores the `kernel_vram` region, cau=
-sing hardware faults in critical kernel memory to be silently ignored.
-- [Medium] A race condition between two-phase page reservation and synchron=
-ous BO eviction falsely marks successfully offlined pages as failed.
---
-
-commit 23a2bf9a5461265765230ffd0e7a9d24c27ca918
-Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: drm/xe/vram: Add VRAM page offline fault handler
-
-This commit introduces a hardware VRAM page offline fault handler for the xe
-driver. It adds functionality to purge the buffer object containing the fau=
-lty
-address, ban the associated VM or exec queue, and reserve the hardware page=
- in
-the buddy allocator to prevent future use.
-
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe=
-_ttm_vram_mgr.c
-> index d97739a84a2d1..0ab92bc3c6998 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-[ ... ]
-> @@ -580,3 +618,295 @@ u64 xe_ttm_vram_get_avail(struct ttm_resource_manag=
-er *man)
-[ ... ]
-> +static int xe_ttm_vram_purge_page(struct xe_device *xe, struct xe_bo *bo)
+On 9/1/2026 3:04 AM, Uma Shankar wrote:
+> Periodic AS SDP (skip frames) relies on the AS SDP still being
+> transmitted while Panel Replay is active. DC3co uses the idle protocol
+> which suppresses AS SDP transmission entirely, so the two are mutually
+> exclusive: leaving DC3co enabled while skip frames is programmed breaks
+> the periodic AS SDP and the panel never sees the slower refresh.
+>
+> Add intel_alpm_pr_as_sdp_skip_frames_enabled() as the single predicate
+> for "skip frames will be programmed" (mirroring the gating in
+> lnl_alpm_configure(), including that it only applies when VRR is not
+> active) and use it in intel_display_power_dc3co_compute() to force the
+> DC3co trigger to NONE. This drops the pipe onto the
+> DC_STATE_EN_UPTO_DC6 target instead of DC3co whenever skip frames is
+> active, without touching the DC state module parameter or the allowed
+> DC mask, and only for the skip-frame case.
+>
+> v2: Fixed Sashiko review findings
+>
+> Assisted-by: Claude:claude-opus-4-8
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_alpm.c     | 23 +++++++++++++++++++
+>   drivers/gpu/drm/i915/display/intel_alpm.h     |  2 ++
+>   .../drm/i915/display/intel_display_power.c    |  9 ++++++++
+>   3 files changed, 34 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+> index a6838e0fd3aa..0a33a89975bc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
+> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+> @@ -404,6 +404,29 @@ static u32 intel_pr_as_sdp_skip_frames(struct intel_dp *intel_dp)
+>   		     REG_FIELD_MAX(PR_ALPM_CTL_AS_SDP_SKIP_FRAMES_MASK));
+>   }
+>   
+> +/*
+> + * Whether periodic AS SDP transmission (AS SDP skip frames) will be programmed
+> + * for this Panel Replay config. The skip counter needs the AS SDP to keep
+> + * flowing during PR active, which is incompatible with DC3co, so this is used
+> + * to keep DC3co disabled while skip frames is enabled.
+> + */
+> +bool intel_alpm_pr_as_sdp_skip_frames_enabled(struct intel_dp *intel_dp,
+> +					      const struct intel_crtc_state *crtc_state)
 > +{
-[ ... ]
-> +	xe_bo_set_purgeable_state(bo, XE_MADV_PURGEABLE_DONTNEED);
-> +	ttm_bo_unmap_virtual(&bo->ttm);   /* nuke CPU mmap + VRAM IO mappings */
-> +	if (xe_bo_is_pinned(bo))
-> +		xe_bo_unpin(bo);
-
-[Severity: High]
-Does this forcefully break the pin counting contract by unpinning a BO on
-behalf of an unknown owner?
-
-In xe_ttm_vram_purge_page(), this unconditionally unpins the BO if it is
-pinned, stealing a pin reference belonging to another subsystem (such as the
-display controller). When the true owner later unpins the BO, could this
-trigger an underflow crash?
-
-> +	ret =3D xe_ttm_bo_purge(&bo->ttm, &ctx);
-> +	xe_bo_unlock(bo);
-> +
-> +out:
-[ ... ]
-> +static struct xe_bo *xe_ttm_vram_block_owner_get(struct gpu_buddy_block =
-*block)
-> +{
-> +	struct ttm_resource *res =3D block->private;
-> +	struct ttm_buffer_object *tbo;
-> +	struct xe_bo *bo;
-> +
-> +	if (!res)
-> +		return NULL;
+> +	struct intel_display *display = to_intel_display(intel_dp);
 > +
 > +	/*
-> +	 * res->bo is updated under bdev->lru_lock by ttm_resource_set_bo().
-> +	 * Racing with a ghost transfer here is benign: we either see the old
-> +	 * owner (whose purge is a no-op and the retry path recovers) or the
-> +	 * ghost (rejected below).
-> +	 *
-> +	 * A ghost is a bare ttm_transfer_obj, not an xe_bo, so ttm_to_xe_bo()
-> +	 * on one would be out of bounds. xe_bo_is_xe_bo() rejects it since
-> +	 * only our own BOs carry xe_ttm_bo_destroy().
+> +	 * The AS SDP skip frames field only exists on Xe3p_LPD+. Periodic AS SDP
+> +	 * drives the panel down to its minimum refresh rate on its own, so it is
+> +	 * only used when VRR is not actively driving the refresh rate.
 > +	 */
-> +	tbo =3D READ_ONCE(res->bo);
-> +	if (!tbo || !xe_bo_is_xe_bo(tbo))
-> +		return NULL;
+> +	if (DISPLAY_VER(display) < 35 || !intel_dp->as_sdp_supported ||
+> +	    !crtc_state->has_panel_replay || crtc_state->vrr.enable)
+> +		return false;
 > +
-> +	bo =3D ttm_to_xe_bo(tbo);
-
-[Severity: High]
-Is it safe to read res->bo locklessly and pass it to xe_bo_is_xe_bo()?
-
-In xe_ttm_vram_block_owner_get(), tbo is read locklessly. A concurrent
-accelerated move or pipelined gutting can transfer the resource to a TTM
-ghost object under bdev->lru_lock. This drops the last reference to the
-original BO, freeing it via kfree().=20
-
-If the thread is preempted and resumes after the original BO is freed,
-passing the stale tbo pointer to xe_bo_is_xe_bo(tbo) will dereference
-tbo->destroy on freed memory, causing a use-after-free regression.
-
-> +
-> +	/* The BO may already be in teardown with a zero refcount */
-> +	return xe_bo_get_unless_zero(bo) ? bo : NULL;
+> +	return intel_pr_as_sdp_skip_frames(intel_dp) > 0;
 > +}
 > +
-> +static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, u64 ad=
-dr,
-> +					    struct xe_ttm_vram_mgr *vram_mgr, struct gpu_buddy *mm)
-> +{
-[ ... ]
-> +		if (block) {
-> +			pbo =3D xe_ttm_vram_block_owner_get(block);
-> +
-> +			/*
-> +			 * Critical kernel BO? Best-effort check without resv lock;
-> +			 * worst case a concurrent pin causes reset path unnecessarily.
-> +			 */
-> +			if (pbo && ((pbo->ttm.type =3D=3D ttm_bo_type_kernel &&
-> +				     !(pbo->flags & XE_BO_FLAG_PINNED_LATE_RESTORE)) ||
-> +				    (xe_bo_is_user(pbo) && xe_bo_is_pinned(pbo)))) {
+>   static void lnl_alpm_configure(struct intel_dp *intel_dp,
+>   			       const struct intel_crtc_state *crtc_state)
+>   {
+> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
+> index 1cf70668ab1b..328920027f1c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_alpm.h
+> +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
+> @@ -34,6 +34,8 @@ bool intel_alpm_aux_wake_supported(struct intel_dp *intel_dp);
+>   bool intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp);
+>   bool intel_alpm_is_alpm_aux_less(struct intel_dp *intel_dp,
+>   				 const struct intel_crtc_state *crtc_state);
+> +bool intel_alpm_pr_as_sdp_skip_frames_enabled(struct intel_dp *intel_dp,
+> +					      const struct intel_crtc_state *crtc_state);
+>   void intel_alpm_disable(struct intel_dp *intel_dp);
+>   bool intel_alpm_get_error(struct intel_dp *intel_dp);
+>   void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 0ebec6e0c240..1b60ce2dd00c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -10,6 +10,7 @@
+>   #include <drm/intel/intel_pcode_regs.h>
+>   #include <drm/intel/step.h>
+>   
+> +#include "intel_alpm.h"
+>   #include "intel_backlight_regs.h"
+>   #include "intel_cdclk.h"
+>   #include "intel_clock_gating.h"
+> @@ -488,6 +489,14 @@ void intel_display_power_dc3co_compute(struct intel_atomic_state *state)
+>   	if (crtc_state->has_sel_update)
+>   		trigger |= DC3CO_TRIGGER_PSR2;
+>   
+> +	/*
+> +	 * Periodic AS SDP (skip frames) needs the AS SDP to keep flowing during
+> +	 * PR active, which is incompatible with DC3co. Keep DC3co disabled while
+> +	 * skip frames is enabled.
+> +	 */
+> +	if (intel_alpm_pr_as_sdp_skip_frames_enabled(intel_dp, crtc_state))
+> +		trigger = DC3CO_TRIGGER_NONE;
 
-[Severity: High]
-Does this lockless pin check create a time-of-check to time-of-use race con=
-dition?
+I think this condition can be moved inside the for loop,
+where we already have similar checks:
+if (intel_alpm_pr_as_sdp_skip_frames_enabled(intel_dp, crtc_state))
+     goto done;
+This aligns with the existing checks for DC3CO entry.
 
-In xe_ttm_vram_reserve_page_at_addr(), xe_bo_is_pinned(pbo) is checked
-without holding the appropriate locks. A user BO could be pinned right after
-this check (e.g., for display scanout), and then forcefully unpinned and
-purged.=20
-
-The display hardware could then continue scanning out the old physical
-address, potentially leaking data of whatever new BO is allocated there.
-
-> +				kfree(nentry);
-> +				pbo_to_put =3D pbo;
-> +				drm_err(&xe->drm,
-> +					"%s: addr: 0x%llx is critical kernel bo, requesting SBR\n",
-> +					__func__, addr);
-> +				break;
-> +			}
-> +		}
-> +		/* Queue both free and occupied (to-be-purged) pages */
-> +		++vram_mgr->n_queued_pages;
-> +		list_add_rcu(&nentry->queued_link, &vram_mgr->queued_pages);
-> +	}
-> +
-> +	/* Deferred put outside lock to avoid recursive deadlock */
-
-[Severity: High]
-Can a concurrent allocation claim a faulty free page when the lock is dropp=
-ed?
-
-In xe_ttm_vram_reserve_page_at_addr(), when a hardware fault occurs at a fr=
-ee
-address, gpu_buddy_allocated_addr_to_block() returns NULL, meaning pbo is
-NULL. The page is queued and vram_mgr->lock is dropped to prevent deadlocks.
-
-During this lockless window, a concurrent TTM allocation can claim this
-exact free buddy block. When the fault handler later re-acquires the lock
-and attempts xe_ttm_vram_buddy_alloc(), it will fail, returning 0 without
-purging (since pbo was NULL). This leaves the newly allocated BO using a
-faulty hardware page, which will cause persistent hardware errors.
-
-> +	if (pbo_to_put) {
-> +		xe_bo_put(pbo_to_put);
-> +		/* Hint System controller driver for reset with -EIO  */
-> +		return -EIO;
-> +	}
-> +
-> +	if (pbo) {
-> +		/*
-> +		 * Purge BO containing address - reference held from above.
-> +		 * This does not necessarily free the blocks synchronously: if
-> +		 * the BO is not idle, ttm_bo_pipeline_gutting() hands the
-> +		 * resource to a ghost object and it is released only once the
-> +		 * move fences signal. The reservation below then fails and is
-> +		 * retried from xe_ttm_vram_mgr_del().
-> +		 */
-> +		ret =3D xe_ttm_vram_purge_page(xe, pbo);
-> +		xe_bo_put(pbo);
-> +		if (ret)
-> +			drm_warn(&xe->drm, "Purge failed at addr:0x%llx, ret:%d\n", addr, ret=
-);
-> +	}
-> +
-> +	scoped_guard(mutex, &vram_mgr->lock) {
-> +		ret =3D xe_ttm_vram_buddy_alloc(vram_mgr, addr, addr + size,
-> +					      size, size, &nentry->blocks,
-> +					      GPU_BUDDY_RANGE_ALLOCATION,
-> +					      NULL, &nentry->used_visible_size);
-> +		if (ret) {
-> +			nentry->status =3D XE_PAGE_RESERVE_FAIL;
-> +			drm_dbg(&xe->drm,
-> +				"Page at addr:0x%llx still busy (%d), deferring reservation\n",
-> +				addr, ret);
-> +			return 0;
-> +		}
-
-[Severity: Medium]
-Does this unconditionally attempt buddy allocation without checking if the
-retry path already succeeded?
-
-In xe_ttm_vram_reserve_page_at_addr(), if xe_ttm_vram_purge_page() frees the
-BO's VRAM resource synchronously, it invokes xe_ttm_vram_mgr_del() which
-triggers xe_ttm_vram_retry_queued_pages(). The retry logic will successfully
-allocate the buddy block.
-
-When the original thread re-acquires the lock here and blindly calls
-xe_ttm_vram_buddy_alloc(), it will fail with -ENOSPC because the block is
-already reserved. The page's status is then falsely marked as
-XE_PAGE_RESERVE_FAIL, leading to misleading internal state.
+Other than this, LGTM.
+Reviewed-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 
 > +
-> +		list_for_each_entry_safe(pos, n, &vram_mgr->queued_pages, queued_link)=
- {
-[ ... ]
-> +static struct xe_vram_region *xe_ttm_vram_addr_to_region(struct xe_devic=
-e *xe, u64 addr)
-> +{
-> +	struct xe_tile *tile;
-> +	u8 id;
-> +
-> +	for_each_tile(tile, xe, id) {
-> +		struct xe_vram_region *vr =3D tile->mem.vram;
-> +
-> +		if (!vr)
-> +			continue;
+>   done:
+>   	intel_display_power_dc3co_update(display, trigger);
+>   }
 
-[Severity: High]
-Does this skip checking the kernel-dedicated VRAM region?
-
-In xe_ttm_vram_addr_to_region(), the address lookup loop only checks
-tile->mem.vram and neglects tile->mem.kernel_vram. If a hardware fault occu=
-rs
-within kernel_vram, the address mapping fails and returns
-ERR_PTR(-EOPNOTSUPP). This causes faults in kernel memory to be silently
-ignored instead of triggering a system reset.
-
-> +
-> +		if (addr >=3D vr->dpa_base && addr < (vr->dpa_base + vr->usable_size))
-> +			return vr;
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260902145343.4656=
-86-17-tejas.upadhyay@intel.com?part=3D9
