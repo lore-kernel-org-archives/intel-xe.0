@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CC45C61DD6
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 05:33:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E13FC61DFD
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 05:41:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E1CA10E456;
-	Wed,  2 Sep 2026 05:33:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54E3010E468;
+	Wed,  2 Sep 2026 05:41:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fl+hdM8h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CDDZ/9QZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 135CC10E456;
- Wed,  2 Sep 2026 05:33:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CCF210E468;
+ Wed,  2 Sep 2026 05:40:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788327216; x=1819863216;
+ t=1788327659; x=1819863659;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=dFSYRdybayE34HpLRJHmFR5WbDpZrUY2oxtafhygk1w=;
- b=Fl+hdM8hD4VnscV3hjagCUbZ7VJAONtkBqJ7my2ty9lUX8IRXOmYk8u9
- KDZUAfyAbrCLsaM14kgoBsRegIo5dsyuuMISIEK9wW16Vg+yxCLjuPIoT
- CSxliAjVHHkakCGzJgnizfN+R7w3yzevt/rDCR2BmECEGyBZ6Du7/KMFu
- Zfj4Q/vVTmUBWKwzXy3R0HT+SK6F8TVPFQG9/FaWNAkDoFZrmgXq3t6L6
- 2fxCdmCKMDgplMP5yb4fw2QvxiK5NnDOH8TErtUwRznqH87tlx60DRstw
- 5n14B3bCbvuIPlw2RSiIsza78JfrhE5DqjFPGrwpqE3tiRU+2w99k8qya Q==;
-X-CSE-ConnectionGUID: oJ3zCJH5Qv6iqFtfljEx5A==
-X-CSE-MsgGUID: eQP9qsonSqawoTEykmS5aQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="114315312"
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="114315312"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2026 22:33:36 -0700
-X-CSE-ConnectionGUID: wMSPn9spSQ6CZ6d4o0k7eQ==
-X-CSE-MsgGUID: G0UcCHztRIW1hocFWwet9Q==
+ bh=zun/HW3AOBSL7G5qDe+jstqFZhj+fbUtJdD+0RJ6uuI=;
+ b=CDDZ/9QZsrLtzmbIoKznJtH/S07rWvvSY0+jVWwQlKv9YGjSmILYN8B4
+ EtIks8tdo5H7WUcoPUaS250nfUGUIqgNRyPfdTjK+oeVfyG6Fqtb52NGM
+ j1Ufihf8w6WxEvHdGha9PYzdzwLvc77biyVcJsDMQEc4YHHYkX+0KZDxe
+ GXDfPUkjrXBDx0PHhoK5U9sgEY7Ta2ad2XWn62PhJsjpCpa+dWf1Swx14
+ suKovryWfnnopLKVeArsTGYmDd8BepHxm1h/haoEunsFxH0W5jxIRkdpP
+ kBJ19e7PU4IPCR6I99BK7iS97bjaVN8pAPyvvIxaCGMkn6JK4biyk/QaK g==;
+X-CSE-ConnectionGUID: wbeR5L13TxG7vbXSOsmgIw==
+X-CSE-MsgGUID: HZmKWguDTby+ParFkGFhfg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="92593306"
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="92593306"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2026 22:40:59 -0700
+X-CSE-ConnectionGUID: I0bqALSETLai9GRpJRp8/g==
+X-CSE-MsgGUID: MhUBgF/QSOKRlk1WpUCidw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="266702392"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2026 22:33:35 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="274572374"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2026 22:40:59 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Tue, 1 Sep 2026 22:40:58 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 1 Sep 2026 22:33:35 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Tue, 1 Sep 2026 22:40:58 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.21) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Tue, 1 Sep 2026 22:33:35 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.34) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 1 Sep 2026 22:33:34 -0700
+ 15.2.2562.46; Tue, 1 Sep 2026 22:40:57 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=x4fhguJLqsAP49NFWm2muBL0nhTf6AkrX30xCnGueNjenZx0lgCBTZIVHYBIsl72l2OH5fq7f8A57pfuj7JLZ5X8lPPD2qShWy8bTtfE7JP3seAm7xq47G5+HQZFKBNBo6gDapEnkFQhNWVTS0Hg4ZAfpdslU8Y0eFKIPbzJN9xJBtMxTm7fRefGB0e8p2vLIgrnl4mjRaCrcNnvoz4lFYnWjK4y1S8TJRjGIEGHi4WHd6Wv0eH0tUF3WQ84JWXIQVAIFv+lfnwR6g34uJjnnHVgkK0iirmhm7LE6RQHtEIZBCjeYnQy/vr2YkBZUU6Kpw8hhdPYQ+gZLZpKIS6IAw==
+ b=ff0R95CSTeiXMKJFhj4gid0FkqwpPWJ2alg4FlO98Yk3W6sU9C4XXNZu7NnW5zPDTBFJPMDwY6IhExWAJrY/GVIsYcFQ/YfjvxZchazx/r4qOPDuldPBGocnzXfX+ih58l6QEcJlW1jrq6p6dvLgtktgmjlsiOIaHWic6Sgu1tK+Po1QX+6Xcqm1daKQCLo8NvfhoAiElYa9hJN1SbRDaRinudmJoRR6BbY2Er7NosNxUaS2+9XmMONZKJndyvZlK1wzCXenPrZLIQB8mhC/sZyVzIq9t/XzgNaY3/vAc+ddfMSAcKOk3OxFql7j0TDlrAzRnwa/rdLr20PMJ8urSg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KK2pZcav6AfvPzqotuP/Sd3D39uQvptwkGQXqkyT74Q=;
- b=Nx0V3pWbNxtPf1qT7i6JORp382cOAWFCn2miY/0TJCCY+jxhdIq1FPEYMEvNW5tWW6HI2D6vmreMyimgXE94q+XVeQ0LiOtrxWA0JLQHb2ShU54eM+CqOl+PjAa+HC3M2LsgO+//DjRSitY64xw/TPLAQJDxHi3Or6hNXTrjIQfmYJgDp2wN01l4Ej9pgdeeETz6MNGkcAAptEUOw5WhEgQfD++1kkra0kTG6EENV9tDRFtZTQljLzc1IYWOy+Mzt3nm52rIQUiXvnX/J3b2+YBNmgrB496xj9/h4jZIIVWfb9UULpa1EHyTKy6Z9G4m8W9GP1KYj0T+Ok6bgkn/mA==
+ bh=O5f4kBQHn0vD4kPwkPus/3kAzPms1dylHwMy0uBT1PA=;
+ b=jHxRIWtY+wlvx4e6X1+J2XRK093aN+HkR++CyFEllN27RJIkr9omWpWLBdBXdbbLkD6DK00UES7yigHFXlhn2bbhtTgAwfgXHXNE8azT4dK/ALLgN6zr6cicVDziHwzXiprZdU3pkGT4IbjYerBk4o4Dxc26vVb3X/GAIDPccmhnCWM9ZWaH73Ln9RbPcIjlv6L2thHODogWxuXPrqVxKSF4jvWBpA+EGUIz2Z/xFbu5znU0swmee8BpNoKZ3jNz+Qxtsf1bNDNqB4ehcPfxhD7/aAbfD9eykG2XWcTXPEeSFNCSIsNX7MTO8keiaCKodklMwngC6keI2ImL/AujmQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,86 +69,84 @@ Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
  by MN2PR11MB4678.namprd11.prod.outlook.com (2603:10b6:208:264::11)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Wed, 2 Sep
- 2026 05:33:32 +0000
+ 2026 05:40:51 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0360.008; Wed, 2 Sep 2026
- 05:33:26 +0000
-Date: Tue, 1 Sep 2026 22:33:23 -0700
+ 05:40:51 +0000
+Date: Tue, 1 Sep 2026 22:40:48 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: "Yadav, Arvind" <arvind.yadav@intel.com>
 CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, <intel-xe@lists.freedesktop.org>,
  <dri-devel@lists.freedesktop.org>, <himal.prasad.ghimiray@intel.com>,
  <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH 03/13] drm/xe: Drop queued page faults when device I/O is
- blocked
-Message-ID: <ape1I1UFDGD2r5Fv@gsse-cloud1.jf.intel.com>
+Subject: Re: [PATCH 04/13] drm/xe: Stop VM work when device I/O is blocked
+Message-ID: <ape24NZ9/0tUV3ZH@gsse-cloud1.jf.intel.com>
 References: <20260827101801.1247654-1-arvind.yadav@intel.com>
- <20260827101801.1247654-4-arvind.yadav@intel.com>
- <apXnb3_WmpYhPeUo@intel.com>
- <ec7667c6-edc8-497c-97f5-872ba5d63bc3@intel.com>
- <ape0gZng5JWbd+Sa@gsse-cloud1.jf.intel.com>
+ <20260827101801.1247654-5-arvind.yadav@intel.com>
+ <apXqRXClcZThJovR@intel.com>
+ <e1673532-3f31-4be2-ad35-0a998aaa9783@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ape0gZng5JWbd+Sa@gsse-cloud1.jf.intel.com>
-X-ClientProxiedBy: SJ0PR13CA0168.namprd13.prod.outlook.com
- (2603:10b6:a03:2c7::23) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <e1673532-3f31-4be2-ad35-0a998aaa9783@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0135.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c6::20) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MN2PR11MB4678:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8163d436-36f0-455b-3a73-08df08b3b640
+X-MS-Office365-Filtering-Correlation-Id: 1420dc13-5235-475b-0c5f-08df08b4bf80
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|366016|376014|1800799024|23010399003|10067099003|11063799006|56012099006|4143699003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: YTZXNJoUZZH7yl/iR0n4cmkUdFk/SBKPCuLixqBsj2ewQ98SNgYEXYiC39AbBTfvlaF7xlTxHGys0b1mikwE6lFZunBxy7bQkn9jUzDkrZoO/Mpk6bxQMBbfcpef2rEnXWBFVdRqzyQwIYsLheHUHAU5edmMoV3OsAtybB2XdCkxn+59tccTcrdJRfV/Vxwg6fiIzRBoHXI0/m+yvuHFhBYpTbsxu7Nf2l2vElcRGRRP2Ae8CN0CoKDP1xIaXFwpsiLKUz4qXh8QidYYzz7XpzcCRaOp8LGe9BvzmkackPo2F+vtlROlQvhPBFhkatpUZRmkmXHu5TU1PMKhluFIE22jxPOje8K//hlbdgqAR0KX05l8dzLzxR2NIqKKAOZtHMZor128OxjuoF+ORRmSCSWAo/PFgP70doJSTcWh48jhCzX7KQkSHJ1+gMckH6+1jPAnqQitKUenqSXVWG1yclAqFjGvmqSwZAgZ6ohmukdtYfUackuP6BvO+QOg0CJ5vWbc9f6W2CVWPp0aKgbYfNp85g4g6fcgpHLJQQQLzGCYQDrD3MrVviV9P/4cVrPmt9RfwWf07/c01xHzomdsIBkns/poMVjrqb0BeyPVUcsl3GbjoVy6u2sO3a+w8YIRIcfu+PbSneMu9mJtHKBy2NjAYPldJTRNWjJ5JKCPsDY=
+X-Microsoft-Antispam-Message-Info: k0iLYqxBxePW/ljpXm66c0bb85T62KjNIOW9qIzFjeq8Bx8Gmo5NBfXkZHG5zSi+yuJwkrCHzVGFv0sALOqngQwKUmnovDEZ1uw83JmK2yKcpuvkw1orNZDy4UJBiCPWXofYqxekJyfyIeUi7nR1NXwhqqymCm5WgfOmkWh4cC24JwOfw/eocdsouP2hXkGyST9ARjet9Tvg2tHpSlKKcN1q3Bj4ITvStd967o8O3W4oUsNkOvgyNynHk+Z77PMK0B4QYHuqUYRK12u/Ybt1Mgi0eE2SOb8l0FgGPNKG7qxeGi/kp43XHOl2/iqIzt5ZlYMi2Y7WlnpG1o8R+TXAksEkBzTPqrFrQvPQ8dwxtlvW8UvU3B4zBmvNj5Xz8mQxzqRZ/3qWfugvTKMVbZSS48VNhc2PWbzEXtPq+E0hlC51tgLBqhOwcQzrJjuNxx0yKpzbKIoBkKIxQHHJ8YA0P2R9LWtTIQXDuv5MBDMfiVaOoSrcVj84Y5so71YuKne6QUzOUkq9360O1E8SIDHdpaoiPpEjgZ5Hl5Bm00Q3CaIrznTTWqMD81L+nh6G9whOZHnTeSrECe9lAnwiAprt8ba7f7aBNBKQmgTpnIBozCHgp8iGvlxv9R1fi6OMJf+AbcmpSTG1/j1QHTAMgXeIKqH7e8EMn+FnrxiSMbI9ztg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(10067099003)(11063799006)(56012099006)(4143699003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?TQBVhK3gw9YojJ61UcxRouxw41UUO30GlCx9Y3hUIQ+aF2av5bMzhp7ftV?=
- =?iso-8859-1?Q?cXxINQuirHsjo0i/77hb/zug6dDkaxiUjG5s/fpLm+Omt2pOmKnd/x0zFH?=
- =?iso-8859-1?Q?7vbnUp6ldqvnAtsNHCzcyBc/tNadPiuOhJd3klz8SRQyZA3pnPJL3z8RRh?=
- =?iso-8859-1?Q?C8cmaq4eUECggJZJN3p43b9iwCkphB0z15Luhsz4tXLbMCNUzWuzjntVmy?=
- =?iso-8859-1?Q?9JAOnfqOhH6vfiaQPcp/fwdckLgrl4z5NryUIUvYXW6wnf+jBRp1jr5N5f?=
- =?iso-8859-1?Q?8802oSps3yBuSoI2QrhW57PsupwN3opf0S9+lbBjULJByuQAHIVUjtcv8D?=
- =?iso-8859-1?Q?69shniHYWRfYzyvQxdoy4Z3sfEfFhauhBSDOxQQOzhMe9pGnzIlenVyPKN?=
- =?iso-8859-1?Q?3VH3uK6EvcwEhgNNxgwUbJbbFWNKYPNEwTHgP3ZJfoezI8d4wy04XJpoQa?=
- =?iso-8859-1?Q?4uFjEP4uj2qy7GauSqeT4XL6peJZGLyziVVFvn9I7HgeJrQs1s3jS7jxlY?=
- =?iso-8859-1?Q?Rmq6QTJK8YdB1Xvij5IQoGquiXcPvlEnY1xhRWzVkNtBc34V5XY+ldHTE4?=
- =?iso-8859-1?Q?DAX0tf4RNffvvaOqVkB3EgeyJAyWq/UhAZ93eEkvQ+C/7WxIvkHXYgHzwT?=
- =?iso-8859-1?Q?QW0vtPgHD9bu28n9lo+n1P6uZ0kPPbMMdEil9yh7hTIXH+QDLSjT9t/M8M?=
- =?iso-8859-1?Q?aAkohkuFu5E8rCswNYH0QShArTi6oZuNX0OOne9I7zeXyQvgJ+Roouaof6?=
- =?iso-8859-1?Q?1ufbpXQw/MEbi+3jF0l3z26oGgEZeIsFiOPXh+mqvJQQwVknV/EyiNyRv+?=
- =?iso-8859-1?Q?h1w1aTln4ruVgNo9qx1HySIXl10CpiICtmc3QUEGvmNV2d/v9u+pbJ8/WT?=
- =?iso-8859-1?Q?5tNUGj8D4eaTcNHKacZp2RHesPi+nKnFJ2QUHKRyPZx4BAYF0VqLQy81iZ?=
- =?iso-8859-1?Q?PJZNi+dN+tVL46EpZhgjYICtVgJa/UGu7DB8THt9HAyKYBRnuJtRi1+kIp?=
- =?iso-8859-1?Q?fwjNtE1KiRPX6sHrD2986WSHNllzoHnHRqyf911+p+umAmcdhTUtJDwASD?=
- =?iso-8859-1?Q?XOy1yBCDQm3MLo0oStw9iHjWOD16FITcyFTeefS0HiwOdMW3R+bdZqiwf5?=
- =?iso-8859-1?Q?sLSb/nMwaK0gCeQB/LjckQ/krvWzDIAEheUMY+r4OcZML0uQ/4dcf8HOmm?=
- =?iso-8859-1?Q?emgCXF4bL5MZb7LvdGT6uwvVy6H8BM0a1J3ip0PERTz1TgLD/STDyk2xis?=
- =?iso-8859-1?Q?085VEi3lfF9YCOxb7eNLJnZAPi/e1FqsPTcPGczithmBnvf3xj6rC96qyB?=
- =?iso-8859-1?Q?IbIa8+NDVgnsNRZ9yPyozcaGssXHIQFbj5inuXC+WVVs1IKgD+V/iKzqwB?=
- =?iso-8859-1?Q?25738ghZNy6Wx3yj/rkqSyIF+XB8lprE3w/ws83ZO67Z9Kb9vaS2+Um00w?=
- =?iso-8859-1?Q?LFqA4fbQ0UtoT2MQ5ydJhAU+tvAieUlAzdcIvJEUpaoL5OhH/qXT817FF8?=
- =?iso-8859-1?Q?bK46IzoA2j1h71STAbFHi11MvfuB8MXXCDeGizUie9wJRwABWXAeUGeCcN?=
- =?iso-8859-1?Q?KGXk85da2g/hLgzcp1ti8WfVieNBMku0zWIGw0eVWBaysoBAyzsCqTdHIB?=
- =?iso-8859-1?Q?21YolEPYkF1ZmaujP1FtXFizKLPrmmM6XrBHpxwusXi+hvO3OsBnGfvcx3?=
- =?iso-8859-1?Q?SgIOUhwagkzhj6WpmcmuFsuVzakViwbuyLMaQIgs6zw1wyuNejBIzufGSI?=
- =?iso-8859-1?Q?TEGuTBli2Woqe1s4sJSjKYh0raOdonSN+B1qRhlc2g8CX5hVKAjxTdHAGQ?=
- =?iso-8859-1?Q?+1QVmcIi2cM4GtPZGxBWx6TLTI0ncCw=3D?=
-X-Exchange-RoutingPolicyChecked: aQsWgmvRM6u/iL2igmQcXERN00ngOwqS5cESvdzVKDeV/17ltpquDzem1rTvmfPlZLPGHlJPgYQm6aGYxLlVPlUaI+eyIasWxfeiZKcjVaRC2TgKpZjq60eCBP+NIQNiJIOSkXjXo49mGCAmaRHfbXg3I1c0Y0ZdEdkoiI7X0GjFHrgoXLS3j/ZuQ8u72Cux84zvGN083GmxXSVPfF9RGRmxamHeGMqiSvYQdLSVq1puOmWm/Fe0qzLCYSudjGU4azSLPVU1w1bTeG4TxrNGrwSHsgwj5i+bwuzfzIL3UKKzs1KAWyHpxY51mQE94CVCYhpIiUNq3bNrgGGwAfm4zA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8163d436-36f0-455b-3a73-08df08b3b640
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Cl/MSXPUc90eJBB+OMn338BZTEBm0NrLxvl+MiNlGiUg/YVrs4KNtouf4E?=
+ =?iso-8859-1?Q?z1SZ87Bm92auXMIGIsOle+8lOCmqauW2fDndowRGnWeMwt2MhBgrHigxiA?=
+ =?iso-8859-1?Q?LVYtF3AyNqDc2FHNfOD86Pcl9UfxQhukdu0sRBEOH2iCOe3WrwyzI/9jmZ?=
+ =?iso-8859-1?Q?83siLl49I8tAI52d+U6u7qWL1hddWHOJ2a12xeqWAqdkrcZgiZqq2yWd7N?=
+ =?iso-8859-1?Q?gIqWyO9GlizlwXqOaJ6z07rz4KDzHi2sajRb+aSajxuDTC9vKBuOQtpFtc?=
+ =?iso-8859-1?Q?oCpfEYbY76rbcJVq7KY/wOCeBF681dHvpolDXmPEXgmWcxhm/25h3nLE11?=
+ =?iso-8859-1?Q?ZC/BKeIPluRDkLvcsGT1CnPsEtjAsyo4QUI0ucAxLikg0/lTbh9dtF4Exy?=
+ =?iso-8859-1?Q?/08l+E8lP1myKls5OzjOKOsK6ifnKHX3vinuuSY12OfDJeipLqEaOlbGrq?=
+ =?iso-8859-1?Q?d5i6h6uOrNaVAtL2U93ROd7RJYwKdfS0KaIuvCi5qqhBzdylrDGoPTvKMb?=
+ =?iso-8859-1?Q?YmzSSP8FNOFqTwSiTvV28+3fT1C8yxMAWB+Gty2WrYZRqxe3/Kji6xmkex?=
+ =?iso-8859-1?Q?MMx/WiwXDfrVSvYP4rPLplOKInY1Ink5+hDLOptt5BNKt7TeB1xYgN0M6S?=
+ =?iso-8859-1?Q?veiZ4hsiX+PRQ2pkNNggH6nzelEy33SCCRqlciRxEEDtxzEq6/hnAVbaws?=
+ =?iso-8859-1?Q?xjZlaMMWv5GdwB40Yv4cYxBJmmnawB4JtLH80cll3DDp3vhl7XlrE1ATtD?=
+ =?iso-8859-1?Q?KNryAhTWYeySO3nC73zMbU5Fcv+56vJVRfDP5EUf5bUU43+mor67c8j3Qk?=
+ =?iso-8859-1?Q?NsExWkbE/oqNbcxbUrvHbmGCJMy88AERKut9Wx3DZSTEmh4WoDgRiRybsP?=
+ =?iso-8859-1?Q?aC9IHSxFj6g/jDuov9vcuxka8sUdYjewbKFNJb+7fRqN2p/KfUxkShpKPR?=
+ =?iso-8859-1?Q?1j6wVFUU0MNQBb8sXYSBkxgiZyRRkvR2WJLQv2Ic4xAwruRHDN8zOrCbX8?=
+ =?iso-8859-1?Q?uyzOiYkFukUpM4lvzn6hjYjccCXCsdboOxUmEcWuF1pKGHUM0uCz5S7F65?=
+ =?iso-8859-1?Q?mMpkG0bW9D65Bbez4zU2PiIkdOWyVjxj0agJ5y9oNzF0ik3zeXf4l3vnP/?=
+ =?iso-8859-1?Q?wr0RtZfZFhmIIyx+Wu8rRkvVVaSzx4DRLOyUm2DoDPrSrc/659xN8GxERg?=
+ =?iso-8859-1?Q?ekP2ZECMy9JYNac8Tg9lK3X4MBH/PvX71iqUPMwOgulGckDCUItfhoUUaX?=
+ =?iso-8859-1?Q?v7bRym5RlAOKItncHSr+hGmJMN4QAq4t7Sn61FiJdeI/YyMWS8R9JgliY7?=
+ =?iso-8859-1?Q?45DB0gVWXsFbFX2TzW+WFHrsVB+vIbt61GjSOQ3DPhBBJtSQTOp0TQC5hL?=
+ =?iso-8859-1?Q?0Ki2tj9YjIKwoM5D+ShV8LY12OSqRU5RfHGOPqxAWS+qiJ4tI74RaPDxOz?=
+ =?iso-8859-1?Q?kTWPrDrYdXL8itKhIs3ajt5K5dxMckCMxmSVAE4cyMtCTwEB3AHv/tWFz4?=
+ =?iso-8859-1?Q?n4ENr4Zcv014C3jEHs8aEhKnWhWFKjd5h2mxMEFTfziN759owR+gNDdrw+?=
+ =?iso-8859-1?Q?UPc/qosl2OO6R885DIWhLMKPZIcF14Ku5Cyx1nrc1BcTOD+H5TspesRODi?=
+ =?iso-8859-1?Q?APXi7DHL3gWX7Ek+dg1aF2wXBTA+dkUXguIpWoQCFrcPJU9AaOeh/1rW+d?=
+ =?iso-8859-1?Q?nU7MLH4CYiC7wbEz4QML4eXDThH0bkjkwAMbQxClvMZTDbAv8b8LNct+YN?=
+ =?iso-8859-1?Q?dszhyVNYc35hc+qWSo7WR4d+dBLr5oyWN93tb3JsicO44a6owqX/N8iKkr?=
+ =?iso-8859-1?Q?kZg1rnCDF7h2v12dRwUqTrlTH0a22nw=3D?=
+X-Exchange-RoutingPolicyChecked: 1Ga7QFtyl6gSO1cGbomSAJhjleigc02TjHnpk6EtEoK36AGiofu6FE3z/TLujAlKrF5+uXpgqAUy/BZqk7MfwNapb57po/6cfoYGSVn67+sCVMsDk3bTeFWjTxFVttxKAuDYFOgs4xnO/ZlZOqi73Duhw2BEP5iFNCzSAkXwrbrN/c9+4LCYbAKMynnlmoLmbuXVnIxw0alHcVG5Z7zOhaV5syJeTZ0U+bt7A4kqUR/dvfN8vAo3xb19gl5sNgdGVHNXfX+pnDNL2rZLu6KUWKnJQadJfy2cFoK0Ol8ltXt/FSsbSS6Xs9Nf89n34km8uU4Q7b7l3XO+uPYhO1KB/A==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1420dc13-5235-475b-0c5f-08df08b4bf80
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2026 05:33:26.1463 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2026 05:40:51.1643 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zApskVH8u2kSEsNsyMImzx8+dcpDNCcbjZyz5kjpfX0Qg34BwodBAfidnE103kiGEl2bfo7xdUl2nqiNTXIb7Q==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8fsxvOkfZR/8I6crhEqyv0gtYUWgi8DIrlgj6zEwCldH3/mW6aZ0qvqTzxGBA7hviJd54eNUXanXbRLfVIpjJw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4678
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -165,163 +163,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 01, 2026 at 10:30:41PM -0700, Matthew Brost wrote:
-> On Wed, Sep 02, 2026 at 10:19:22AM +0530, Yadav, Arvind wrote:
+On Tue, Sep 01, 2026 at 02:41:44PM +0530, Yadav, Arvind wrote:
+> 
+> On 01-09-2026 02:25, Rodrigo Vivi wrote:
+> > On Thu, Aug 27, 2026 at 03:47:52PM +0530, Arvind Yadav wrote:
+> > > SVM fault handling and VM rebind work may still run when PCI error
+> > > recovery starts or the device becomes permanently wedged. This work can
+> > > validate BOs, update page tables or submit migration work after device
+> > > I/O has been blocked.
+> > > 
+> > > Stop SVM fault handling, pagemap population, device-memory copies and
+> > > preempt rebind work when device I/O is blocked.
+> > > 
+> > > SVM invalidation still performs its software cleanup. Do not warn when
+> > > TLB invalidation returns -ECANCELED because hardware access is blocked.
+> > > 
+> > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > Assisted-by: Claude:claude-opus-4-8
+> > > Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+> > > ---
+> > >   drivers/gpu/drm/xe/xe_svm.c | 21 ++++++++++++++++++++-
+> > >   drivers/gpu/drm/xe/xe_vm.c  | 16 ++++++++++++++++
+> > >   2 files changed, 36 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+> > > index 627a741293d5..9e78131bfa39 100644
+> > > --- a/drivers/gpu/drm/xe/xe_svm.c
+> > > +++ b/drivers/gpu/drm/xe/xe_svm.c
+> > > @@ -11,6 +11,7 @@
+> > >   #include <drm/drm_pagemap_util.h>
+> > >   #include "xe_bo.h"
+> > > +#include "xe_device.h"
+> > >   #include "xe_exec_queue_types.h"
+> > >   #include "xe_gt_stats.h"
+> > >   #include "xe_migrate.h"
+> > > @@ -288,8 +289,11 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
+> > >   	err = xe_tlb_inval_range_tilemask_submit(xe, vm->usm.asid, adj_start, adj_end,
+> > >   						 tile_mask, &batch);
+> > > -	if (!WARN_ON_ONCE(err))
+> > > +	if (!err)
+> > >   		xe_tlb_inval_batch_wait(&batch);
+> > > +	else if (!(err == -ECANCELED &&
+> > > +		   xe_device_io_blocked(xe)))
+> > > +		WARN_ON_ONCE(err);
+> > if (!err)
+> >          xe_tlb_inval_batch_wait(&batch);
+> > else
+> >          WARN_ON_ONCE(err != -ECANCELED ||
+> >                       !xe_device_io_blocked(xe));
+> 
+> 
+> Noted.
+> 
+> Thanks,
+> Arvind
+> 
 > > 
-> > On 01-09-2026 02:13, Rodrigo Vivi wrote:
-> > > On Thu, Aug 27, 2026 at 03:47:51PM +0530, Arvind Yadav wrote:
-> > > > Page-fault work may still be queued when PCI error recovery starts or
-> > > > the device becomes permanently wedged. Servicing these faults can migrate
-> > > > memory or update page tables after device I/O has been blocked.
-> > > > 
-> > > > Check the device state before and after fault servicing to cover a reset
-> > > > racing with the worker. Drop the active fault and its chained faults
-> > > > without sending a hardware response, and invalidate the cached fault
-> > > > state.
-> > > > 
-> > > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > > Assisted-by: Claude:claude-opus-4-8
-> > > > Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
-> > > > ---
-> > > >   drivers/gpu/drm/xe/xe_pagefault.c | 40 +++++++++++++++++++++++++++++++
-> > > >   1 file changed, 40 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-> > > > index 2e415995f067..f486165f2323 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_pagefault.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_pagefault.c
-> > > > @@ -592,6 +592,38 @@ static void xe_pagefault_save_to_vm(struct xe_device *xe, struct xe_pagefault *p
-> > > >   	xe_vm_put(vm);
-> > > >   }
-> > > > +static bool
-> > > > +xe_pagefault_drop_if_blocked(struct xe_pagefault_queue *pf_queue,
-> > > > +			     struct xe_pagefault_work *pf_work,
-> > > > +			     struct xe_pagefault *pf,
-> > > > +			     u64 *cache_start)
-> > > > +{
-> > > > +	struct xe_pagefault *next;
-> > > > +
-> > > > +	if (!xe_device_io_blocked(pf_work->xe))
-> > > > +		return false;
-> > > > +
-> > > > +	/*
-> > > > +	 * cache_start is private to this worker invocation. pf_work->cache is
-> > > > +	 * shared with fault producers and must be invalidated under the queue
-> > > > +	 * lock.
-> > > > +	 */
-> > > > +	xe_pagefault_cache_start_invalidate(*cache_start);
-> > > > +
-> > > > +	guard(spinlock_irq)(&pf_queue->lock);
-> > > > +
-> > > > +	xe_pagefault_cache_invalidate(pf_queue, pf_work);
-> > > > +
-> > > > +	while (pf) {
-> > > > +		next = pf->consumer.next;
-> > > > +		pf->consumer.next = NULL;
-> > > > +		pf->consumer.alloc_state = XE_PAGEFAULT_ALLOC_STATE_FREE;
-> > > > +		pf = next;
-> > > is there some helper we could re-use? I know we cannot use the pop directly,
-> > > because it would deadlock, but perhaps we can unify some code here...
-> 
-> Why would it deadlock... xe_device_io_blocked is just an couple of
-> atomics, right?
-> 
-> So why wouldn't this work to squash all faults.
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-> index 2e415995f067..1c9e5539b90d 100644
-> --- a/drivers/gpu/drm/xe/xe_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_pagefault.c
-> @@ -477,6 +477,12 @@ static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
->                 lpf = xe_pagefault_queue_tail_fault(pf_queue);
->                 xe_pagefault_queue_advance(pf_queue);
-> 
-> +               if (xe_device_io_blocked(xe)) {
-> +                       lpf->consumer.alloc_state =
-> +                               XE_PAGEFAULT_ALLOC_STATE_FREE;
-> +                       continue;
-> +               }
-> +
+> > >   range_notifier_event_end:
+> > >   	r = first;
+> > > @@ -631,6 +635,11 @@ static int xe_svm_copy(struct page **pages,
+> > >   		}
+> > >   		XE_WARN_ON(spage && xe_page_to_vr(spage) != vr);
+> > > +		if (vr && xe_device_io_blocked(xe)) {
+> > > +			err = -ECANCELED;
+> > > +			goto err_out;
+> > > +		}
+> > > +
 
-^^^ This should actually go after the XE_PAGEFAULT_ALLOC_STATE_QUEUED check.
+Again a toctou given this state can immediately change.
+
+Unless I'm missing something - my answer is basically no, likely for the
+entire series unless this is a non-toctou check as otherwise we just have a
+bunch of weakly ordered checks throughout the driver which don't
+actually protect anything.
 
 Matt
 
->                 if (lpf->consumer.alloc_state !=
->                     XE_PAGEFAULT_ALLOC_STATE_QUEUED)
->                         continue;
-> 
-> 
-> > 
-> > 
-> > Noted,
-> > 
+> > >   		/*
+> > >   		 * CPU page and device page valid, capture physical address on
+> > >   		 * first device page, check if physical contiguous on subsequent
+> > > @@ -1125,6 +1134,11 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+> > >   	if (!drm_dev_enter(&xe->drm, &idx))
+> > >   		return -ENODEV;
+> > > +	if (xe_device_io_blocked(xe)) {
+> > > +		err = -ECANCELED;
+> > > +		goto out_drm;
+> > > +	}
+> > > +
+> > >   	xe_pm_runtime_get(xe);
+> > >   	xe_validation_guard(&vctx, &xe->val, &exec, (struct xe_val_flags) {}, err) {
+> > > @@ -1165,6 +1179,8 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+> > >   		xe_bo_put(bo);
+> > >   	}
+> > >   	xe_pm_runtime_put(xe);
+> > > +
+> > > +out_drm:
+> > >   	drm_dev_exit(idx);
+> > >   	return err;
+> > > @@ -1301,6 +1317,9 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+> > >   		drm_gpusvm_range_put(&range->base);
+> > >   	}
+> > > +	if (xe_device_io_blocked(vm->xe))
+> > > +		return -ECANCELED;
+> > > +
+> > >   	/* Always process UNMAPs first so view SVM ranges is current */
+> > >   	err = xe_svm_garbage_collector(vm);
+> > >   	if (err)
+> > > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> > > index 19b3d0be7928..0cee5306fb9c 100644
+> > > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > > @@ -497,6 +497,11 @@ static void preempt_rebind_work_func(struct work_struct *w)
+> > >   	}
+> > >   retry:
+> > > +	if (xe_device_io_blocked(vm->xe)) {
+> > > +		err = 0;
+> > > +		goto out_unlock_outer;
+> > > +	}
+> > > +
+> > >   	if (!try_wait_for_completion(&vm->xe->pm_block) && vm_suspend_rebind_worker(vm)) {
+> > >   		up_write(&vm->lock);
+> > >   		/* We don't actually block but don't make progress. */
+> > > @@ -518,6 +523,12 @@ static void preempt_rebind_work_func(struct work_struct *w)
+> > >   	drm_exec_until_all_locked(&exec) {
+> > >   		bool done = false;
+> > > +		if (xe_device_io_blocked(vm->xe)) {
+> > > +			xe_validation_ctx_fini(&ctx);
+> > > +			err = 0;
+> > > +			goto out_unlock_outer;
+> > > +		}
+> > > +
+> > >   		err = xe_preempt_work_begin(&exec, vm, &done);
+> > >   		drm_exec_retry_on_contention(&exec);
+> > >   		xe_validation_retry_on_oom(&ctx, &err);
+> > > @@ -531,6 +542,11 @@ static void preempt_rebind_work_func(struct work_struct *w)
+> > >   	if (err)
+> > >   		goto out_unlock;
+> > > +	if (xe_device_io_blocked(vm->xe)) {
+> > > +		err = 0;
+> > > +		goto out_unlock;
+> > > +	}
+> > > +
+> > >   	xe_vm_set_validation_exec(vm, &exec);
+> > >   	err = xe_vm_rebind(vm, true);
+> > >   	xe_vm_set_validation_exec(vm, NULL);
+> > > -- 
+> > > 2.43.0
 > > > 
-> > > > +	}
-> > > > +
-> > > > +	return true;
-> > > > +}
-> > > > +
-> > > >   static void xe_pagefault_queue_work(struct work_struct *w)
-> > > >   {
-> > > >   	struct xe_pagefault_work *pf_work =
-> > > > @@ -615,6 +647,10 @@ static void xe_pagefault_queue_work(struct work_struct *w)
-> > > >   		int err = 0;
-> > > >   		bool invalidated = false;
-> > > > +		if (xe_pagefault_drop_if_blocked(pf_queue, pf_work, pf,
-> > > > +						 &cache_start))
-> > > > +			continue;
-> > > do we really need to loop inside the loop or only check and let this main loop goes?
-> > 
-> > 
-> > Yes, The inner walk is needed. Chained faults have already been removed from
-> > the queue and linked through consumer.next. The outer pop loop will not see
-> > them.
-> > 
-> > > 
-> > > > +
-> > > >   		/* Last fault same address, ack immediately */
-> > > >   		if (xe_pagefault_match(pf, cache_start, cache_end, cache_asid)) {
-> > > >   			xe_gt_stats_incr(gt, XE_GT_STATS_ID_LAST_PAGEFAULT_COUNT, 1);
-> > > > @@ -623,6 +659,10 @@ static void xe_pagefault_queue_work(struct work_struct *w)
-> > > >   		err = xe_pagefault_service(pf);
-> > > > +		if (xe_pagefault_drop_if_blocked(pf_queue, pf_work, pf,
-> > > > +						 &cache_start))
-> > > do we really need to check after?
-> > 
-> > 
-> > Yes. The device can enter reset or become wedged while
-> > xe_pagefault_service() is running. The first check alone does not cover that
-> > race.
-> > 
-> 
-> But this is still toctou - really everything in patch is as immediately
-> after either check the state can change. I can't say I'm a fan of any
-> weak checks in this code...
-> 
-> But just for thought: after this point all we do is CT which should be
-> down and we'd drop it there before touching the hardware.
-> 
-> Matt
-> 
-> > > 
-> > > > +			continue;
-> > > > +
-> > > >   		if (err) {
-> > > now this err far from where it is collected is pretty bad...
-> > 
-> > 
-> > Agreed. i will keeps err next to its use.
-> > 
-> > Thanks,
-> > Arvind
-> > 
-> > > 
-> > > >   			if (!(pf->consumer.access_type & XE_PAGEFAULT_ACCESS_PREFETCH)) {
-> > > >   				xe_pagefault_save_to_vm(gt_to_xe(gt), pf);
-> > > > -- 
-> > > > 2.43.0
-> > > > 
