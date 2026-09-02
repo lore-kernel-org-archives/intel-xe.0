@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F657C624D3
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 15:35:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58233C61DD6
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 15:41:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA54B10F282;
-	Wed,  2 Sep 2026 15:34:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WCv+1E1/";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F106310F282;
- Wed,  2 Sep 2026 15:34:58 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id ABF5B43AB0;
- Wed,  2 Sep 2026 15:34:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 629531F00A3A;
- Wed,  2 Sep 2026 15:34:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788363298;
- bh=leHJ1krmsP+1jk2Z+sOOrfddQ8CBvBEPQU7q2DE7Tk8=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=WCv+1E1/L5yH9HlymQICwv4QxJTZqJ4iyyHwXTWaghk+tfXiFG6q5ziKOdbf88D3/
- Xbllo+m1FK6du9FCV+yyZi4BGayxhEwYwwC1TZ5hSACmirHpodjSXAySiY0ovTRUVQ
- iJ6Z8JZXhcF/1/u0oINvGtK8Gdfylon8MhdJ+LioK3ZiSFbGWpwb0rSlEHp0LeqPc5
- 6Z1edHYIkRB69THVMfDNYiO1GsF8a3E0TJWITUFbrv7xNSqzcctNJySNx991Qafx+9
- 7qEcBuv1AKrkfHhELUl6MvBjw/RGk2G7ZzsCyHGLVQdHpzKOGKGeO/jDN8MG0+4Zfj
- L8UmzZtLc1rnw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 3/4] drm/xe: Convert xe_user_fence to drm_user_fence
-To: "Srinivasan Shanmugam" <srinivasan.shanmugam@amd.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20260902152049.183685-3-srinivasan.shanmugam@amd.com>
-References: <20260831134539.112690-2-srinivasan.shanmugam@amd.com>
- <20260902152049.183685-1-srinivasan.shanmugam@amd.com>
- <20260902152049.183685-3-srinivasan.shanmugam@amd.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 02 Sep 2026 15:34:57 +0000
-Message-Id: <20260902153458.629531F00A3A@smtp.kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 047C910F299;
+	Wed,  2 Sep 2026 15:41:38 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1AF210F296;
+ Wed,  2 Sep 2026 15:41:36 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7616139871601673974=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Reset_u?=
+ =?utf-8?q?se=5Fflipq_when_duplicating_crtc_state?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kahola" <mika.kahola@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 02 Sep 2026 15:41:36 -0000
+Message-ID: <178836369685.112573.1327606926103540272@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260902140848.915941-1-mika.kahola@intel.com>
+In-Reply-To: <20260902140848.915941-1-mika.kahola@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,151 +36,124 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+--===============7616139871601673974==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-New issues:
-- [High] Race condition in user fence signaling causes spurious -EBUSY fail=
-ures for valid VMA unmap operations.
+== Series Details ==
 
-Pre-existing issues:
-- [High] Userspace can stall the global xe->ordered_wq indefinitely via use=
-rfaultfd on user fence signaling, causing a Denial of Service for all compu=
-te applications.
---
+Series: drm/i915/display: Reset use_flipq when duplicating crtc state
+URL   : https://patchwork.freedesktop.org/series/173216/
+State : success
 
-commit e66f332fb8f0deb8b5c5b3ca223be49da69834d3
-Author: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-drm/xe: Convert xe_user_fence to drm_user_fence
+== Summary ==
 
-This commit replaces the open-coded user fence implementation in xe_sync.c
-with the new common drm_user_fence helper. The xe_user_fence structure now
-embeds drm_user_fence and the previous local functions are replaced by
-operations provided to the drm helper.
+CI Bug Log - changes from xe-5674-3cd9a8edf7ff9738720597bd26bdb4a94a568143_BAT -> xe-pw-173216v1_BAT
+====================================================
 
-> diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-> index 37866768d64c2..05f6794af1ee2 100644
-> --- a/drivers/gpu/drm/xe/xe_sync.c
-> +++ b/drivers/gpu/drm/xe/xe_sync.c
-[ ... ]
-> @@ -19,36 +18,58 @@
->  #include "xe_macros.h"
->  #include "xe_sched_job_types.h"
-> =20
-> +/*
-> + * xe_user_fence wraps drm_user_fence with XE-specific fields.
-> + * The drm_user_fence base handles MM borrowing and work-item lifetime.
-> + */
->  struct xe_user_fence {
-> -	struct xe_device *xe;
-> -	struct kref refcount;
-> -	struct dma_fence_cb cb;
-> -	struct work_struct worker;
-> -	struct mm_struct *mm;
-> -	u64 __user *addr;
-> -	u64 value;
-> -	int signalled;
-> +	struct drm_user_fence base;
-> +	struct xe_device     *xe;
-> +	u64 __user           *addr;
-> +	u64                   value;
-> +	int                   signalled;
->  };
-> =20
-> -static void user_fence_destroy(struct kref *kref)
-> +static void xe_ufence_worker(struct drm_user_fence *base, bool mm_ok)
->  {
-> -	struct xe_user_fence *ufence =3D container_of(kref, struct xe_user_fenc=
-e,
-> -						 refcount);
-> +	struct xe_user_fence *ufence =3D container_of(base, struct xe_user_fenc=
-e, base);
-> =20
-> -	mmdrop(ufence->mm);
-> -	kfree(ufence);
-> -}
-> +	if (mm_ok) {
-> +		if (copy_to_user(ufence->addr, &ufence->value, sizeof(ufence->value)))
+Summary
+-------
 
-[Severity: High]
-This is a pre-existing issue, but can this copy_to_user() call cause a
-denial of service?
+  **SUCCESS**
 
-If a malicious unprivileged userspace process creates a user fence using
-DRM_XE_SYNC_TYPE_USER_FENCE and provides a memory address backed by
-userfaultfd, the page fault will block indefinitely here because userspace
-can refuse to resolve it.
+  No regressions found.
 
-> +			drm_dbg(&ufence->xe->drm,
-> +				"copy_to_user failed, user fence wasn't signaled\n");
-> +	} else {
-> +		drm_dbg(&ufence->xe->drm,
-> +			"mmget_not_zero() failed, ufence wasn't signaled\n");
-> +	}
-> =20
-> -static void user_fence_get(struct xe_user_fence *ufence)
-> -{
-> -	kref_get(&ufence->refcount);
-> +	/*
-> +	 * Ensure the fence value write is visible before signalled=3D1.
-> +	 * A UMD polling signalled must see the committed fence value.
-> +	 */
-> +	smp_wmb();
-> +
-> +	/*
-> +	 * Mark signalled after the user memory write so UMD can safely
-> +	 * reuse the same ufence without hitting -EBUSY.
-> +	 */
-> +	WRITE_ONCE(ufence->signalled, 1);
+  
 
-[Severity: High]
-Does this new ordering introduce a race condition causing spurious -EBUSY
-failures for valid VMA unmap operations?
+Participating hosts (13 -> 13)
+------------------------------
 
-The original code updated the ufence->signalled state before calling
-copy_to_user(). By inverting the order, if userspace is polling the memory
-address, it will observe the memory update and immediately issue a VM unmap
-ioctl.=20
+  No changes in participating hosts
 
-If this unmap ioctl reaches the driver before the worker thread executes
-WRITE_ONCE(ufence->signalled, 1), the kernel state will still read as 0 and
-incorrectly fail the unmap with -EBUSY.
+Known issues
+------------
 
-> +
-> +	wake_up_all(&ufence->xe->ufence_wq);
->  }
-[ ... ]
-> @@ -63,51 +84,22 @@ static struct xe_user_fence *user_fence_create(struct=
- xe_device *xe, u64 addr,
->  	if (!ufence)
->  		return ERR_PTR(-ENOMEM);
-> =20
-> -	ufence->xe =3D xe;
-> -	kref_init(&ufence->refcount);
-> -	ufence->addr =3D ptr;
-> +	ufence->xe    =3D xe;
-> +	ufence->addr  =3D ptr;
->  	ufence->value =3D value;
-> -	ufence->mm =3D current->mm;
-> -	mmgrab(ufence->mm);
-> +	drm_user_fence_init(&ufence->base, xe->ordered_wq, &xe_ufence_ops);
+  Here are the changes found in xe-pw-173216v1_BAT that come from known issues:
 
-[Severity: High]
-This is a pre-existing issue, but does using the global device-wide
-xe->ordered_wq amplify the impact of the userfaultfd block mentioned above?
+### IGT changes ###
 
-Since critical tasks like vm->preempt.rebind_work are queued on this same
-ordered workqueue, stalling it prevents preempt rebinds globally for all
-VMs, completely hanging the GPU driver.
+#### Possible fixes ####
 
-> =20
->  	return ufence;
->  }
+  * igt@xe_waitfence@engine:
+    - bat-ptl-2:          [FAIL][1] -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5674-3cd9a8edf7ff9738720597bd26bdb4a94a568143/bat-ptl-2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173216v1/bat-ptl-2/igt@xe_waitfence@engine.html
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260902152049.1836=
-85-1-srinivasan.shanmugam@amd.com?part=3D3
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-5674-3cd9a8edf7ff9738720597bd26bdb4a94a568143 -> xe-pw-173216v1
+
+  IGT_9079: 9079
+  xe-5674-3cd9a8edf7ff9738720597bd26bdb4a94a568143: 3cd9a8edf7ff9738720597bd26bdb4a94a568143
+  xe-pw-173216v1: 173216v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173216v1/index.html
+
+--===============7616139871601673974==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Reset use_flipq when duplicating crtc state</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173216/">https://patchwork.freedesktop.org/series/173216/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173216v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173216v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5674-3cd9a8edf7ff9738720597bd26bdb4a94a568143_BAT -&gt; xe-pw-173216v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-173216v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5674-3cd9a8edf7ff9738720597bd26bdb4a94a568143/bat-ptl-2/igt@xe_waitfence@engine.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173216v1/bat-ptl-2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5674-3cd9a8edf7ff9738720597bd26bdb4a94a568143 -&gt; xe-pw-173216v1</li>
+</ul>
+<p>IGT_9079: 9079<br />
+  xe-5674-3cd9a8edf7ff9738720597bd26bdb4a94a568143: 3cd9a8edf7ff9738720597bd26bdb4a94a568143<br />
+  xe-pw-173216v1: 173216v1</p>
+
+</body>
+</html>
+
+--===============7616139871601673974==--
