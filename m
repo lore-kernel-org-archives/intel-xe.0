@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41219C61DD6
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 13:33:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D33C9C624D3
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 13:37:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9CAA10F1E3;
-	Wed,  2 Sep 2026 13:33:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JNTGy5JU";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BE1E10E4FD;
- Wed,  2 Sep 2026 13:33:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788356015; x=1819892015;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=b5w0fUfxs1rBHu7dJfKQNlPcfhy0xIz52apr8xw0KCI=;
- b=JNTGy5JUE/ruGXl0tPdo4clYW7MywUo9Fuum0P0wOUhBHyRZcp/XFzWn
- x7K6uzIM7SOrOE0azuX9MVeVDuGBZge6qxVy7Iyj1aaYndtDYXBRNpc9E
- CveKVhp2gDslhZXqFBiCmf/8Me0LyvOWWnNt2vvu3Y6O2KB6q94w7slW5
- ZoHXXIn2iQvT1+QJo31l9nJviVSfsihkoDHxV0Mzs8VyNrPxFp2CCWQhV
- BVeoER2BpJ5u25ZMsTjEVWxfSpbOKyr9eax3nFR2KdwIELBZxEQnGm8nL
- NYY62Kc1Q7tyk6Zi450Eo6AFJsk/lMZT+9mGCXBPQUx/cm1ZkUMyYH/HG g==;
-X-CSE-ConnectionGUID: xr+A1xCZTymwI8ELWw53vg==
-X-CSE-MsgGUID: 7uP46X5aSWKu2cgml6aZ5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="99477732"
-X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="99477732"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 06:33:28 -0700
-X-CSE-ConnectionGUID: rjpSKsg+QGWfT8XBI6zPDA==
-X-CSE-MsgGUID: Hu4KzYL1RmO1ngAfNiXrEA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="272916439"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.245.200])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 06:33:27 -0700
-Date: Wed, 2 Sep 2026 16:33:23 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Mika Kahola <mika.kahola@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 2/2] drm/i915/display: Reset use_flipq when
- duplicating crtc state
-Message-ID: <apglo7fGdY24TjSs@intel.com>
-References: <20260902105448.809455-1-mika.kahola@intel.com>
- <20260902105448.809455-3-mika.kahola@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43E0B10F1EA;
+	Wed,  2 Sep 2026 13:37:13 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FBD010F1F2;
+ Wed,  2 Sep 2026 13:37:12 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3972716755249879454=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260902105448.809455-3-mika.kahola@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/panic=3A_Split_into_cor?=
+ =?utf-8?q?e_and_helpers_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 02 Sep 2026 13:37:12 -0000
+Message-ID: <178835623218.112572.5260315010949375127@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260902121930.597222-1-tzimmermann@suse.de>
+In-Reply-To: <20260902121930.597222-1-tzimmermann@suse.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,41 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 02, 2026 at 10:54:47AM +0000, Mika Kahola wrote:
-> intel_crtc_duplicate_state() resets use_dsb to false but not
-> use_flipq, letting a stale true value survive into the new state.
-> 
-> Reset use_flipq alongside use_dsb.
-> 
-> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+--===============3972716755249879454==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I had the same patch in some series, but that might need a rebase so
-let's go with yours.
+== Series Details ==
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: drm/panic: Split into core and helpers (rev3)
+URL   : https://patchwork.freedesktop.org/series/172394/
+State : success
 
-> ---
->  drivers/gpu/drm/i915/display/intel_atomic.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
-> index 9d0d47c79dd1..b66c2d4ba2b3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-> @@ -276,6 +276,7 @@ intel_crtc_duplicate_state(struct drm_crtc *crtc)
->  	crtc_state->dsb_color = NULL;
->  	crtc_state->dsb_commit = NULL;
->  	crtc_state->use_dsb = false;
-> +	crtc_state->use_flipq = false;
->  
->  	return &crtc_state->uapi;
->  }
-> -- 
-> 2.43.0
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from xe-5673-69771454478b3dc773dee91f76cef9220ea1ce93_BAT -> xe-pw-172394v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 6)
+------------------------------
+
+  Missing    (6): bat-lnl-1 bat-ptl-1 bat-atsm-2 bat-bmg-2 bat-nvls-1 bat-adlp-7 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5673-69771454478b3dc773dee91f76cef9220ea1ce93 -> xe-pw-172394v3
+
+  IGT_9079: 9079
+  xe-5673-69771454478b3dc773dee91f76cef9220ea1ce93: 69771454478b3dc773dee91f76cef9220ea1ce93
+  xe-pw-172394v3: 172394v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172394v3/index.html
+
+--===============3972716755249879454==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/panic: Split into core and helpers (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172394/">https://patchwork.freedesktop.org/series/172394/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172394v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172394v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5673-69771454478b3dc773dee91f76cef9220ea1ce93_BAT -&gt; xe-pw-172394v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 6)</h2>
+<p>Missing    (6): bat-lnl-1 bat-ptl-1 bat-atsm-2 bat-bmg-2 bat-nvls-1 bat-adlp-7 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5673-69771454478b3dc773dee91f76cef9220ea1ce93 -&gt; xe-pw-172394v3</li>
+</ul>
+<p>IGT_9079: 9079<br />
+  xe-5673-69771454478b3dc773dee91f76cef9220ea1ce93: 69771454478b3dc773dee91f76cef9220ea1ce93<br />
+  xe-pw-172394v3: 172394v3</p>
+
+</body>
+</html>
+
+--===============3972716755249879454==--
