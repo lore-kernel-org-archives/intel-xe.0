@@ -4,61 +4,159 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EE1FC624D0
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 12:27:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D5FDC61DD6
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 12:34:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D3C910E4D0;
-	Wed,  2 Sep 2026 12:27:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11AD810F1A1;
+	Wed,  2 Sep 2026 12:34:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cNHv6Qa2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G/wXxBrS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E8ED10E4D0;
- Wed,  2 Sep 2026 12:27:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BCDA10F1B7
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 12:34:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788352052; x=1819888052;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=lCIV5q6rgc2NWTjbN4/x14nhUptPcrH1fpH6QTblKQU=;
- b=cNHv6Qa2H4QBP9ur+qUjKa9tqC0IHBG3VVD89xDlh6zeYB9LL2kw6MKe
- J2XIHK/19KvGKWj1TI75XhDjJmvxyXS3hY3uQtS46z6Q+47RJ0Dz23fLa
- i4av0bS1snYSQxcjbxCa6qhU9WUPD+vnhUryfAj91sQiCn4mybFeZevZr
- HsfPmg2mGWFejYbo7dw2clHsZV6AeqpD//WaK/jrS8xpLo9W3wuuBLkMg
- 9ufDyIggNuBW1jpuHsKug3GEiKm96abZgNc/UyZmCz9cU4KMV6GgclZgw
- u6nycAelc6f4bkiw7EQcRXrdLA4IUSmktSYEm/yRe+YSEYLMiePbrI3S8 Q==;
-X-CSE-ConnectionGUID: LOXHOCmTTxOQb8v3lpgSSA==
-X-CSE-MsgGUID: 1jHhCokJRA+JxQYZF/nNkw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="88734740"
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="88734740"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 05:27:31 -0700
-X-CSE-ConnectionGUID: xg1DS3izTPOCkTcxarIWlA==
-X-CSE-MsgGUID: xTKRgjgETYOB5d7dCW0rHg==
+ t=1788352446; x=1819888446;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=f4LQIsRKmwWTLl03ew3c0mcUdaxYCm2Nq1FfpJbYde4=;
+ b=G/wXxBrS2qrUEFIEUq2A51BT/U3S4mnT5IK9bZkdMw9m0R4FFIcxprv/
+ d4DOCzwW1j3TrFBuWI0i74/2fMPYAOHu1B+C0tBrrHhO3Z/bpNmVGi1YR
+ DYWzOZxG58zllEKa3TDnmF2xLiOO+8nGFgqPShyY/ntmUKYE8eOd21syo
+ uG+jrmWiJzTQuws/KABhxQFk3fyulb78pvMZT/qPj3JUjEyN/R49FfvBq
+ qf/aVRR9hMpqDR/n2jUTC+vrIg8atFKnpzPrIz/ZZynOBS3skxNqiEDPz
+ /pqoQAXpRqdeDf+e4ZCZEQv4A3hbbaoDBDsCqavgogxb0Jn/MKDI89ILd g==;
+X-CSE-ConnectionGUID: 64JxBe32QlykCuFV5tgt9A==
+X-CSE-MsgGUID: O6GRdGk6SoKRd1xlbGlf0w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="100163400"
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="100163400"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 05:34:05 -0700
+X-CSE-ConnectionGUID: tqhQ5vdHTMe3rECi/E4olA==
+X-CSE-MsgGUID: c99BrC0nRNWpL8sO9+zwdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="274657796"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.245.200])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 05:27:29 -0700
-Date: Wed, 2 Sep 2026 15:27:26 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Mika Kahola <mika.kahola@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 1/2] drm/i915/display: Reject flipq for pipe or timing
- changes
-Message-ID: <apgWLiseQuBOrk70@intel.com>
-References: <20260902105448.809455-1-mika.kahola@intel.com>
- <20260902105448.809455-2-mika.kahola@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="269416867"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 05:34:05 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Wed, 2 Sep 2026 05:34:04 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Wed, 2 Sep 2026 05:34:04 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.43) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Wed, 2 Sep 2026 05:33:58 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=V3dFCWyiBEgVxvXBNNP0kjk7Wi9jysl/frV1qjzwqGJB0Y/dJzJqGTC2dY61pMAgeE8JIkmRPMzj7GXlMjSu2Es67ZPxWSE5TPKiwry6HFUjs4oy1w80eAf8nmS8lhfpKz9//Z4Y+N9Wij66ubwvIL+aI00ub0CaXfQWbBG2OYF0F0owqrWqCoPQ7Tk4WprUHszChdC72xE2VgiqsQa9VF+k90Y8yL7iE5z7wPErEeYk/cboKx0AJxo8/vzk6llGhqkqpqVaESicC7L4ZkUIvMqh62z0aNH3cK12zCB4q3eiI5xc32xoQr8EDLiAkxjYxK+cystBXSWw2kE813fB4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gs42tlVY/4uwpviN4zUzDbGM/2me4OTY+9kEhZDp5+A=;
+ b=f1hrse4hdSj+QANZr9jf00gG4axqkLKKj+VBVQuZS4Sg7JC+rjibQrrvxj35q3Nb7z+4t4YIJcm4zxfeui8g1JGsUEo1z/iFjFU/l4CUK/XH+xBt4oLos2ZdryrvQOJ8hGH5Wop4OqGB/QbfFcTP7ZM/ol1jS4Et6s7ogla9mB1oG43XFJ2MKZRGXmjtcseBmVW2Y5PN58Tpa7nsbJB/yKLv1wNnoZHR30QZkjTAmXPhqtiqtrd9lu36cRiBQUZymD0Asm835FVmwI3WqmDZiWdvvaBsAuGQBmBteC0yTA8SldT4y3vkFoCR4p0iBFq7o99H77Aa831uXLnRG1UuFw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB7551.namprd11.prod.outlook.com (2603:10b6:510:27c::12)
+ by SAWPR11MB9897.namprd11.prod.outlook.com (2603:10b6:806:54a::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Wed, 2 Sep
+ 2026 12:33:56 +0000
+Received: from PH7PR11MB7551.namprd11.prod.outlook.com
+ ([fe80::5cbf:6b33:5f0c:88a0]) by PH7PR11MB7551.namprd11.prod.outlook.com
+ ([fe80::5cbf:6b33:5f0c:88a0%4]) with mapi id 15.21.0360.008; Wed, 2 Sep 2026
+ 12:33:56 +0000
+Message-ID: <38edbb95-d9bb-4201-9a5e-829079de789e@intel.com>
+Date: Wed, 2 Sep 2026 14:33:50 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/4] drm/xe/log: Add GUCSUBMIT component
+To: Arvind Yadav <arvind.yadav@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: <rodrigo.vivi@intel.com>, <badal.nilawar@intel.com>,
+ <himal.prasad.ghimiray@intel.com>, <dnyaneshwar.bhadane@intel.com>,
+ <mallesh.koujalagi@intel.com>, <matthew.brost@intel.com>
+References: <20260901063059.2547247-1-arvind.yadav@intel.com>
+ <20260901063059.2547247-2-arvind.yadav@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20260901063059.2547247-2-arvind.yadav@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM8P190CA0011.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:20b:219::16) To PH7PR11MB7551.namprd11.prod.outlook.com
+ (2603:10b6:510:27c::12)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260902105448.809455-2-mika.kahola@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7551:EE_|SAWPR11MB9897:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4bd40853-22f2-4f63-2f14-08df08ee7485
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|23010399003|376014|10067099003|4143699003|22082099003|56012099006|11063799006|18002099003;
+X-Microsoft-Antispam-Message-Info: s0FBPbVUH1uHSunEI9dmDc8GPn7vrFJ9b/huWViPMSPE6T2ZaJHGf34IgwiLUZLyLkx5cJXHICgc4PZGyDvcRBsvDNptzw60apffRzANoqEaoPAtzkDGct9K1umI/y/jGWdL+b/BIKyjdXuKV8/DcPXQ/ZPLQh/kM89F17cEFfsF6CnBDGU/f17L3y3E+boCZuctoNmDZOHcQfHf4Yt3ze6vHH0Run8P7C5EKBkDD+mDwcR2IWOM/+rShhuWX4HoIjhlOcT4GYR8h59gurbJPBC9RcH8avY7dh0T6XyMCV0f8iD/I5IvtNI15idXsJnBaLZrXuzDEjY3fGT7Va5Wf9uiniBO0kFbVHSR6jhDfX34Q5OUvwbEmyYrBroBmPTFP+Q+c4OVliNAMGHvl16Y5eEXAzdB11bvXP5kzsLCKQv7xfWBIhclxk8Ng+bzBx22/wo+oXmuNmp7ZXiAHCsjyxfWdr28YPwmWuPdK9yY5G1Kv6ciGrfMqInu0acNoa54uagJUssh31n00TrT9hfupJUB4ZYPs6JHcRauEsydxf+PGhB55iIClm20/5I2YI3eg30QPDrasdYzXlyTmPTTSc0IZaLjMVhjJfojR0C9Q8nGt4aQ7/gRd+Ojk419Yh38FyeoAnU/hbBxLmS+YRRrHpbq+iodpEDnxLQ91wOah1o=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB7551.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(10067099003)(4143699003)(22082099003)(56012099006)(11063799006)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dkFVZjQ3ZWVhbHlNME1laXZnMzlPUmcwYW1SOFBuNURTK04vOUVKdXhTcGFo?=
+ =?utf-8?B?bFl6bXc1ZmZrdTJETVFBcmRzc1BDYzBUa2RlRHdkbHllaU1ablJBc0tiaytJ?=
+ =?utf-8?B?N2xvSjY3dnlrU1JkZzFaempqWXN6aVhscEgxR0pSNGZHYmovQ0lSWjJvRTlq?=
+ =?utf-8?B?TjhwV0hTWmVFSmJvK2l0cGcvMHpRYnhjaEtLM3V4UHhDSWovc3AvZmpydG5T?=
+ =?utf-8?B?SE5vZWlFb0llMXZUUjFtV2JnaVEzdFFpSUJ1ajZnQ0NKdXlKVllKYVJRcHZi?=
+ =?utf-8?B?NWswS2E4NWc5ZkRSMWhGVWQ2Z3JlUnhKdWFuYnpVc0NTL0E0Um83OXdtZnFz?=
+ =?utf-8?B?RFpXMytOQmFieE53Z0VyWno1aGg2YXQzbUhtQkF6V1VXNlhHdE1XL2FlRSs1?=
+ =?utf-8?B?dEJnYmlzNXFsQ0hmaWNobzdzS21CNFhnNkJZbm1IbFJQQytybmlacFZjbUZm?=
+ =?utf-8?B?UGcvVkdZd0ZvRTVueGRoUUh0UklReGFzOGNjMXRab3Zucm1WV283OXFzMXdp?=
+ =?utf-8?B?cWhRU1E5U0JMZ2V1VWd3cVBDVzBTWEQvYVQ0aHJEb1ZXWHQ2aG1aMkgrV0dY?=
+ =?utf-8?B?ZkpocEFMS2VJUUp2R2VvTDdBaG1oSUUydU1MRUNuMnRPNVhTOW13VWpra0VI?=
+ =?utf-8?B?MkhMOVRLK1NzTGFGZWJlVmNVV2FqdGVjbnp0amNSU0pocVhqSk9CbnpZNnVn?=
+ =?utf-8?B?bEViV2JuV1A3NVptQ1FvN3dPMWtpMnFBN09lK2Z1WTJDL3N4SFRDU3NHR204?=
+ =?utf-8?B?dndSMzgxWDhPYlpWQjdRVmM1Yk1zckUrS1lOMFpmWkdBRzJhRnVqY0UxNDJP?=
+ =?utf-8?B?Snh1U25TQ3NrcFVFVmR5ZitJa1hLTFYrTDdaNXQ0SGRVdWI5cUZjWFBWSmJG?=
+ =?utf-8?B?bXgxRG5CTTVKbzlqRWUvVWMzOVQwcVE4V2RPYmZaRjYyYloyZjBXc25vY3Bt?=
+ =?utf-8?B?VDQvd1JYRGJwWEtMWndHRTNIUWZmNnV4TWs3VU1UNVdNWHVxazBGdUxCb2lG?=
+ =?utf-8?B?U0ZWcFBBcVdMdDMvYUVXZ24vVkladGoySGtUeHM0RWlQL1hMcHhHYzJtRVRM?=
+ =?utf-8?B?K3hOZjFtNE1JQUNpamRJV05MNzVPQzFsWEQ1ZnZ0VjViS0lqNmdFSndsbkx2?=
+ =?utf-8?B?VUpUL0dWbENUaUd6OTlVQUNOd1ZIaGZBMG9jZk1RSHppM2NxaUt2TUxrUHlo?=
+ =?utf-8?B?eEgrc3Z6SjVSZkRPZ3YrTVVhVDdWZGFGUkFnd0JKenV6Z2dMUWlvb0ZIVGc4?=
+ =?utf-8?B?WGNNcEJBc01WdGpCT1psWVRNQlhMR0x0cUY5NzBnSUJwd3htNUNldk50N0Fl?=
+ =?utf-8?B?MHFIYTYwRDFJWWZIa2RUNWdVZGJqRkEwamhXQm1rVUpWbkVhT2lvQS9aTzc3?=
+ =?utf-8?B?SEg3Q2pWdkFVM0gvZ1BycGdGaDk4NVJFYXZwbjlaUXJMQVMxK29pUDloRE1K?=
+ =?utf-8?B?c2U3RHV2ekVEcHpvZ3lRT2wxd2UzUjVYSy9NaW5tdjVMNUk4THFtZ0xYMlRZ?=
+ =?utf-8?B?K3RuZllYNERtMWNNTS84R0M1a0gwNEIwNndzQXN4ZVVDZ1JrbWJ1My8zQjFo?=
+ =?utf-8?B?ZWo2c3pvSk1pdnhqc1dRZ3ZqQ2FsblhVc1cxT3EreTBRZVlmN3JaT0ZXNWYx?=
+ =?utf-8?B?U3JuVllkb0ZBbWZGaERueHRhZVdWTTlyTHk2bGY3SHVIWjE5a21oZVBzcmxx?=
+ =?utf-8?B?NEg2M2lYV0I2cVZpZ3lQSllHQUl3V1lhNkwxa28xUUVNeE9NUndjcGNDYVVX?=
+ =?utf-8?B?Nm1IR3JOcjQxSXJyblV5eG9OcEV3N3FndEFiOVBHYlNQRUNaeVFMVUlITndh?=
+ =?utf-8?B?eE9BWGNrQjFid3JIMmdKN3AzVzh0Y0k2a1k4UEg3UTB3TDE4UVVXbnNUYU1q?=
+ =?utf-8?B?T3pRN1ZLQXg2aEtNL1ArT3ZaU2xwWHdrandYazNBa0tFRFdVbDJTak52dUJL?=
+ =?utf-8?B?cDF2VERiZWVrZEdjelFCdnI2UVRyd1o1MmYxM1c0R3JsNXV4aUY2dlZGK25y?=
+ =?utf-8?B?aTRhVXBhVUpSM0dJcGhpdHRDRm51WHBwbVBTcVdIbVZuU05KazlhNEg3Mko2?=
+ =?utf-8?B?aVdQajU0cVlzaC93TUV4RzlqbkRoU2hMREFxWENGKzdVQmxETDJXVlJiaGNr?=
+ =?utf-8?B?ZjhLL0s0bVVqdXFzeTkxNDdtQm8wL2l0RXZzaUFIaVZmQW4wcFZDVjNoVTlp?=
+ =?utf-8?B?SEcybUZHcVZ2c1JDSHZmamJKOHJMY0JuVjJVNjBxeXl0WFJPQUtlc084b0ZB?=
+ =?utf-8?B?TjhuOWZyUjJDMXIxUmlXL0FJRDJlWmlvMkZUN0dVSUxhSm9EbllKY3QwUnda?=
+ =?utf-8?B?QWprakhrRmthTnhIYVdIS1RMM05zaytHNFRpTG01M2I2VFVvbGhqT1JXVXVK?=
+ =?utf-8?Q?zdHy3KEPOf99vmBA=3D?=
+X-Exchange-RoutingPolicyChecked: E6/eX6RUsqpy6rAwFWRTvo0QUCib4QLJjfDf36Xrn6XuP4S+wLzQ7aN22/xfPk2SdScWAU2DBbRrLbfFkykrIF5aDLWMLcN+O6HOmMmfWF8HVYgQpPaiQ+D5Fbbbjlk0haZQkQjqHdsGWWIKItThReRVjKptvo/qljCxdUUV0hhUc/VBoreQD2xBTo54i83U9lWEuse+LO04O9CsJT3cqFog/CPRlDC9Qx4UZgbqMq0tDp20+Vv29Mmh00GdODThu4vqGT+Iy4Qm7c+TrHa+B+noXlWavq4p5r5Ml94LgH1dPglppo1QEVNyuiitc04gz3JpGCyUMpcXR+2xsiFs9g==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4bd40853-22f2-4f63-2f14-08df08ee7485
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7551.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2026 12:33:56.1173 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lczjDWu97ei02E6h8nKRcdkuMPUMO440LjSZgiVFjOBBjtFufVquVCW2zL2GDqSjgo+YP25gausOR81lcC5zqZlorWmH9KhpN/kqWxaW4Ok=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SAWPR11MB9897
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,92 +171,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 02, 2026 at 10:54:46AM +0000, Mika Kahola wrote:
-> Our flipq eligibility check let pipe, M/N and LRR changes through.
-> Reject those too, alongside the existing async flip/VRR/PSR/color/
-> modeset/fastset exclusions.
+
+
+On 9/1/2026 8:30 AM, Arvind Yadav wrote:
+> Add a GUCSUBMIT component for structured SIGID logging.
 > 
-> v2:
-> - Drop the single-plane restriction, plane count doesn't matter (Ville)
-> - Drop the update_wm_pre/post check, dead code for flipq-capable hw (Ville)
-> - Drop the active/enabled planes check (Ville)
+> GuC submit failures can still map to an existing SIGID, but using the
+> generic GT component hides the source of the report. Add GUCSUBMIT as
+> a DRIVER component and map it to XE_SIGID_GT_TDR.
+
+nit: can we improve the commit message? maybe
+
+ "The proper SIGID for the GuC submission failures is GT_TDR, but use
+ "of the generic GT component may hide the real source of the report.
+ "Add GUCSUBMIT as a DRIVER component and map it to XE_SIGID_GT_TDR.
 > 
-> Assisted-by: Copilot:claude-sonnet-5
-> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+> Cc: Badal Nilawar <badal.nilawar@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 43 ++++++++++++++++----
->  1 file changed, 36 insertions(+), 7 deletions(-)
+> v6:
+>  - Moved GUCSUBMIT from DRIVER_FIRMWARE to DRIVER, since GuC submit
+>    is a driver submission component and not a firmware component.
+>    (Michal)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 553c60d452dd..f4b76a9547e3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7369,6 +7369,41 @@ static void intel_atomic_prepare_plane_clear_colors(struct intel_atomic_state *s
->  	}
->  }
->  
-> +static bool intel_flipq_commit_is_eligible(struct intel_atomic_state *state,
-> +					   struct intel_crtc *crtc)
-> +{
-> +	struct intel_display *display = to_intel_display(state);
-> +	const struct intel_crtc_state *new_crtc_state =
-> +		intel_atomic_get_new_crtc_state(state, crtc);
-> +
-> +	if (!intel_flipq_supported(display))
-> +		return false;
-> +
-> +	if (intel_crtc_needs_modeset(new_crtc_state) ||
-> +	    intel_crtc_needs_fastset(new_crtc_state) ||
-> +	    intel_crtc_needs_color_update(new_crtc_state))
-> +		return false;
-> +
-> +	if (!new_crtc_state->update_planes)
-> +		return false;
+>  drivers/gpu/drm/xe/abi/xe_log_abi.h | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/abi/xe_log_abi.h b/drivers/gpu/drm/xe/abi/xe_log_abi.h
+> index d6105520173e..91fe983ad917 100644
+> --- a/drivers/gpu/drm/xe/abi/xe_log_abi.h
+> +++ b/drivers/gpu/drm/xe/abi/xe_log_abi.h
+> @@ -144,6 +144,7 @@ enum xe_log_location_bits {
+>  	define(DRIVER, 4, RTP, SW, "Register Table Processing")			\
+>  	define(DRIVER, 5, WA, SW, "Workarounds")				\
+>  	define(DRIVER, 6, PAGEFAULT, MEM_FAULT, "Page Fault")			\
+> +	define(DRIVER, 7, GUCSUBMIT, GT_TDR, "GuC Submit")			\
 
-Why?
+nit: we can have "GuC Submission" as a full name
 
-> +
-> +	if (new_crtc_state->do_async_flip ||
-> +	    new_crtc_state->vrr.enable ||
-> +	    new_crtc_state->has_psr)
-> +		return false;
-> +
-> +	/*
-> +	 * Flipq is only suitable for simple queued plane updates that do
-> +	 * not require additional pipe or timing programming.
-> +	 */
-> +	if (new_crtc_state->update_pipe ||
-> +	    new_crtc_state->update_m_n ||
-> +	    new_crtc_state->update_lrr)
-> +		return false;
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>  	/* */									\
+>  	define(DRIVER_HARDWARE, 1, REGS, IO_BUS, "Registers")			\
+>  	define(DRIVER_HARDWARE, 2, GGTT, IO_BUS, "Global GTT")			\
 
-That is all covered by intel_crtc_needs_fastset().
-
-> +
-> +	return true;
-> +}
-> +
->  static void intel_atomic_dsb_prepare(struct intel_atomic_state *state,
->  				     struct intel_crtc *crtc)
->  {
-> @@ -7384,13 +7419,7 @@ static void intel_atomic_dsb_prepare(struct intel_atomic_state *state,
->  
->  	/* FIXME deal with everything */
->  	new_crtc_state->use_flipq =
-> -		intel_flipq_supported(display) &&
-> -		!new_crtc_state->do_async_flip &&
-> -		!new_crtc_state->vrr.enable &&
-> -		!new_crtc_state->has_psr &&
-> -		!intel_crtc_needs_modeset(new_crtc_state) &&
-> -		!intel_crtc_needs_fastset(new_crtc_state) &&
-> -		!intel_crtc_needs_color_update(new_crtc_state);
-> +		intel_flipq_commit_is_eligible(state, crtc);
->  
->  	new_crtc_state->use_dsb =
->  		!new_crtc_state->use_flipq &&
-> -- 
-> 2.43.0
-
--- 
-Ville Syrjälä
-Intel
