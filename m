@@ -4,159 +4,152 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 612D5C61DFD
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 07:37:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C79CC61DFD
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 07:45:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E9EE89B70;
-	Wed,  2 Sep 2026 07:37:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A306410E476;
+	Wed,  2 Sep 2026 07:45:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IauL7+fT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Baq9jGVx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B11EC89B70
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 07:37:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FA2010E476
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 07:45:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788334631; x=1819870631;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=iSgpihSt/1jLdm8C0whD5aNF0Ac397HDYdPVRx4ZPHM=;
- b=IauL7+fT+acQjcNRsfFKrI+OmsX5E160qVTfvx43i+YAsQsLas9jIX2+
- liF+3veonPE7cArWiYfBTNKry2M8KFwOaXNq1Pxomsx0ULnSRZLdjt+bu
- zZXhhcVXx0loeecGPzOGj2v3A4rh2W23uR35KOieqtTkgmnJe3GS85pcG
- 0jJdWlwS6TC8nLFTst/nhSmCBHhWWlRlVGP6u9ok0oiLWa9EpKXleAGKg
- hocg/KYvSxo3xsWZz6Yjy0YLia0GA3u5y1tjQfyPZJEAd4REUbZ20FOAc
- GURHE/az3GxKalVSbeV9jVKEkDiE+zre5SJ6jWgOLnThxRtX1imxf3dgK g==;
-X-CSE-ConnectionGUID: c23Ks/6RRku2Xfq3upKxDw==
-X-CSE-MsgGUID: 3U99EcAxScK84bsg6XWuBQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="88632147"
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="88632147"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 00:37:10 -0700
-X-CSE-ConnectionGUID: PXOPDaKzQAexuEyg8upNIA==
-X-CSE-MsgGUID: pGCLT/igRKWhc64UZLRDWA==
+ t=1788335144; x=1819871144;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=LXI/cTj277py9bR14D3hss/Ov6hGxfwTUxcS+SSjnL0=;
+ b=Baq9jGVx5VHZt34gGO6McCdkDLFxPS9fnE9YLTvekHdc+4e0/0DYrvHc
+ /T9fkk/YZvWxfmh8IBCBCI++w3lqjY3T6XepkA7VXfA8XtNUtEVtoT56P
+ V1UtEAh6/TMLKeMFfkCCYEBDLE90DxRimSAtiWdyYCsdGoj5NY2UYWTz2
+ Cz+CsIUqRm4Nqm0nA5vlCseQHxsGR5xphP0uml6aq87Ygqq98chpfK++0
+ yfkf9XU5QGeN7FlriA5pdWL2oUJJia6bAYT2kSgSbwij/Ns2la8Nmxs86
+ hAgROGgenlyjHaWYD6qhDA2u6kwUxGiWOmEpb7Z1i90yfGT/kIuXgf9eT A==;
+X-CSE-ConnectionGUID: 2aTy6fLATJK607g0m5DaAA==
+X-CSE-MsgGUID: Gjo6mcdHR2uNB5QZZBAXug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="91296340"
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="91296340"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 00:45:44 -0700
+X-CSE-ConnectionGUID: +WGb6AyKTt+tJHJz27vsZA==
+X-CSE-MsgGUID: x0VC2QbpRP2huBNfU631Hw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="273098737"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 00:37:11 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="307553459"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 00:45:44 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 2 Sep 2026 00:37:09 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.46; Wed, 2 Sep 2026 00:45:44 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Wed, 2 Sep 2026 00:37:09 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.60) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Wed, 2 Sep 2026 00:45:44 -0700
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.11) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 2 Sep 2026 00:37:09 -0700
+ 15.2.2562.46; Wed, 2 Sep 2026 00:45:43 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FcM2NSkBkQ9Fb8eovUC4brs94hV5kbXAYRFTqmzX5CNHGqCIygtQ31huR/boZmJMCXYJadZtXvoc+mMT3R/KjiUBdH88gVwuvn1anemPp2BHoFLsPFYlBtMKIOfJo8+w7zlF7fUu2hxDqN3BrqkKrIl1MDiTzsOP2FNHNbCCNvQrvvVYiNxrG0pIR226xyX9ESOb36p17DLYf7ks2Y6egGhNmyUnjtI7rQUcROdIYHs2qKvkNTDZ/gek4VWE8tVG9InkEM0tml5XlovqTWH30ulz+deCaNcNJfmEKI3ThHOPBKfpzrcryqreIoU2Ctg4wk+dvziLOAueukVwWJpaag==
+ b=nssOUKRcfwihxJGzQJP+lEedD8MRjDMM4FSCBKhkUwjsNrmSDa17LnZ2eSmHMliG31vEpLBIS3HYNjUEv+Sjg+Ur5LoCriC4sPBSCYmuWKk5JeSBbQnWWTl1y0TSKwdUdu6Esr7weZSNY9R6btDMwA4n2TmcDeWBtA+6r51uOIp8CxGG4ZsqXpSp7VYmBhSTDZxdeU6FuRLNOPws9KjsA0LrmLaMFcvuifxvTk+Ln5UvWClJWiqCv5MMSx3eAYpDVBU2gCN5LknSwgmXxUG93fa+Ss4x+kWN6+4o0NsjTrhj9HH7oGeA/kn8vNpEDJnlnQMAwN73o+4Gqk0aUF4C6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=koYwCHiigRutX0oWMOSBdT+siO/BGX98H29VvLj2kNc=;
- b=sJZWgPUQGYEtaRV3oPneeJOSlMFLOjbpGOZd29rP0Gy2lYL2l/eSdV83nc4XQ/BQ+5eZnhKQMApkjKxtK2rO22oDZxUwfd9Ddfu5YKBQp6NLsmZqX6q9Ihus0k/MrAjfHIMfIaIT19lhsP0vfj6XvJN5maBB6gscsOfWOm0Hlx2aEpKw9QD6sojaxBeaOhwsi0AB8UGIQvJRZ+h1+CYtg2ta7U0T8Pv1djdlFqXF2z2CHFCzhqY0RXMyf1P31L8q1I25bQBoj4mXd1peCH2xxjtOkkJ2HxJSVSDoKABS3ErrqQQAhCgh15GlBcvYvoOYODF1XMkkxF7vk+/KpFu3UQ==
+ bh=5AAOFMJ6CHY8WXmcWUNgiCxU3pf5QVpfL7g7E83H+XQ=;
+ b=Efc947/m14GZj9WcaawXAmP6p0+gs7sFkYgs5/YDPes/Hrmh8nHQvKEVN0qs/iq143/VuzgPCdNrkcLOjXbvM4KoJvXJPzJeic0nvqNBh2VbSgTB6jFp+mBymY/zJMhtzsQzIEYdPqqbpoPG56F5p6QXJM/J5e8+DipF9jHzgdm0lomrabrMEVOFB8b5ouLNm6s1ghgeK2wPV8B8H1k6d+zIBHcW3gpC9LrA19fX0E0kWUfmlbtvy91Ai+ngDcfGD/9LSRNaShszsyc3QMW6jk30sycdv1EL9Hoeso8k73H43llsHthE8dmx1jN3tePWOjEMO6zW8K7R17YO/srEvA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH0PR11MB5249.namprd11.prod.outlook.com (2603:10b6:610:e0::17)
- by IA0PR11MB7402.namprd11.prod.outlook.com (2603:10b6:208:432::21)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by DSVPR11MB9891.namprd11.prod.outlook.com (2603:10b6:8:45a::16) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Wed, 2 Sep
- 2026 07:37:06 +0000
-Received: from CH0PR11MB5249.namprd11.prod.outlook.com
- ([fe80::a665:5444:d558:23c3]) by CH0PR11MB5249.namprd11.prod.outlook.com
- ([fe80::a665:5444:d558:23c3%6]) with mapi id 15.21.0360.008; Wed, 2 Sep 2026
- 07:37:06 +0000
-Message-ID: <142766b8-f15b-4d9b-93a5-c469e8bb7388@intel.com>
-Date: Wed, 2 Sep 2026 13:06:58 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/9] drm/xe/hwmon: Enable fan curve control support
-To: "Purkait, Soham" <soham.purkait@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: <rodrigo.vivi@intel.com>, <anshuman.gupta@intel.com>,
- <badal.nilawar@intel.com>, <raag.jadav@intel.com>, <riana.tauro@intel.com>,
- <sk.anirban@intel.com>, <mallesh.koujalagi@intel.com>
-References: <20260717041757.2759084-1-karthik.poosa@intel.com>
- <20260717041757.2759084-7-karthik.poosa@intel.com>
- <5d1e276f-f048-41dd-b74d-22724b8c281d@intel.com>
-Content-Language: en-US
-From: "Poosa, Karthik" <karthik.poosa@intel.com>
-In-Reply-To: <5d1e276f-f048-41dd-b74d-22724b8c281d@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+ 2026 07:45:41 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0360.008; Wed, 2 Sep 2026
+ 07:45:41 +0000
+Date: Wed, 2 Sep 2026 00:45:39 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+CC: "Summers, Stuart" <stuart.summers@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "torvalds@linux-foundation.org" <torvalds@linux-foundation.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>, "thomas.hellstrom@linux.intel.com"
+ <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH 5/5] drm/xe/vram: add early VRAM health check
+Message-ID: <apfUI0/g1ZODGf1a@gsse-cloud1.jf.intel.com>
+References: <20260828151405.662533-7-matthew.auld@intel.com>
+ <20260828151405.662533-12-matthew.auld@intel.com>
+ <1e9b3dd558f064b431f90bad76437b52d6d853b0.camel@intel.com>
+ <962d9e46-0c9b-4964-9a82-765bfd7a8122@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0086.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d8::18) To CH0PR11MB5249.namprd11.prod.outlook.com
- (2603:10b6:610:e0::17)
+In-Reply-To: <962d9e46-0c9b-4964-9a82-765bfd7a8122@intel.com>
+X-ClientProxiedBy: BY5PR03CA0016.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::26) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH0PR11MB5249:EE_|IA0PR11MB7402:EE_
-X-MS-Office365-Filtering-Correlation-Id: aec5b30c-9cac-4a06-2705-08df08c4fcd5
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DSVPR11MB9891:EE_
+X-MS-Office365-Filtering-Correlation-Id: edb73fc3-a9be-4f56-54e8-08df08c6300c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|23010399003|376014|22082099003|18002099003|56012099006|6133799003|11063799006|4143699003|10067099003;
-X-Microsoft-Antispam-Message-Info: +7H8uQXzWzaXCWin3e1y5yb5Tqp4qVg1DNWj6GxIJN7G7olMNCh7pCk8isLfGLgnP7hf40h4j+vStyrhlWpJN5pD1VOX8jm9t9hBsdeqBZQrB61F2PnrfXo37tfXzQGDNCQldaUTgWptScf3F6sBOE5RqrtalSNor3+ZBeq2cOPCD1LaAuQNUPCOL7G1YRdt6ZvYRHWP5rNxitzB9VSpURno2IqxSswPgATP9y5Sd47M+MccdJYjPFacSFaNpsvStfMgIUdShDSZVFQhqnFf0Ymp1b41xqGk071ZGDaX43aUqvOyWUJXNAavwTGLDaTPJX32HLHhZJpIpUI4njJxz+UAOyWEnom+iTE8Pb3RzeJiDYGJlGm9529OHy/4MX+sQkTXKc/SI/hvXi1gnM8jn5Dg9Pgo9knJ4boZmup/sq6NDB9ayyX3z9OHlRL2kD6shDPM+gCa9jFNzRxVcV46wsnUWcg6M48OPosaoPMHexKTjIgh9cq9qIug8eh/ljOa//qsOL+/MclvTTZW4rRiqjVLWY3boYrK+O+rNHXbemJzhplbf13Y4B77096WBPqetuW97enI8UEiE7gMoS/68+j/VmhBGVGXAgVafTq85Cgv3f3RaaO15gB9MKeAmkrVUqXNN8O+OGgRiiOB06ou4NDrxlpM+C8X15u7Gfn2KkI=
+ ARA:13230040|1800799024|376014|366016|23010399003|56012099006|11063799006|5023799004|10067099003|4143699003|6133799003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: Z+X7Wa3pvIB3+sqUB3bTKiOusmNyOSstl0xbwLpCiAk4cnrvhwrOqjHSg4D8oxmdDvxshVAC3us8Kytn9CmybEFNACxTy+5zdPPjLworV2y0LtCTZc+oyf++MFZ0XJ2erO13Mi8G6YhJjwbq+FKK3mWE+0jwOblRTyA4SESeFjx287k/S7klYywlW9kUhY32nhyDBI4Ytw5IeX/GxlNlZ6FhJxVyLRTfPe4/ujRFbBODHpeofFalghtPM7HaVkCGMJTnLgXPFLyM2UPj9BBsH4JkOEK5B+dslWD5IkXfgsFIbvsYlWn37mDyiSm5OK8DLvYLp8XOa1+BPDvOzsEw8n/wglmvowON6JmAtdgUk12cbRTD47JmAk6m5WCl1DbWzzSOTxceZOBMaCjo200d/d/nn2d74iiDxkFdA/bSXneuslioUE02U2cx702FBlLDuLKQu2ZdEzNEVPfN2SMp4VQvXVjLzayb1PENMSDsXsg5uxg/m8oHq0P2GxKMrKmpYU7myjkcYa2hApx9JCUrAvGlV/U4wPyi8Bo/3Gsg5di8A9LyEz/U72JPb8JiUCqLxHWThS70VuwWEgMkZdxOgX/6YsKFoBLAlVtzt6ld9t1O5eR2bqH3DqMnXjbFcT9m5K4noOax416k1sCGZt3i4E0PvzSPI1TzJotSOArDMIg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5249.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(22082099003)(18002099003)(56012099006)(6133799003)(11063799006)(4143699003)(10067099003);
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(56012099006)(11063799006)(5023799004)(10067099003)(4143699003)(6133799003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Sll2ZWx4bTlPNllwV0NSZUZ1bFZ6bUhnLzVpNk1SbjY5NlRJeDlnRzNsNzRo?=
- =?utf-8?B?TVFFZVp2RW5rajdBV24zRnFXaTZYL3hWZ0xtWERNcW9pLzFpMkRSK2lRcFBD?=
- =?utf-8?B?Mm1uZFZyZ1pFMFNwQkxkTGsyR2RXQ3VMOEVxNjJvWnpvRGhzMFdBaDNmVnZJ?=
- =?utf-8?B?czZoMjduRjVXNmVoUVJVZ05kYlRNUjJkMk1kemo1MXJ2TCtHeEoyemJ1ZHV1?=
- =?utf-8?B?N0h1YW9mTmZ0dlI5cy9PNmlQUUtqUGpsL0RBZkFUNXYrT2RkVG5mTG5Nekkw?=
- =?utf-8?B?UENRUlBteklWUWJXUTZqU1ZVRnBKRS8wMXR6VXRQaXdrMkRHSnFQSzduSUcx?=
- =?utf-8?B?YTF3WlZYUlcrSS9sdCtxQ3d0bHBmVlgyeFZtdDdrTzF3TmhSazhMK0syc1Z4?=
- =?utf-8?B?V3BVZUZ4UnBiek5VaUFucGszRVI3clk4bGJQZ0I1Y3AxOExlQzhlVUlIVHFs?=
- =?utf-8?B?L3FlVUNBQWxEQjdmN3M4aHFLZXJkRnhEMlV2RG1jbkdCVFZiS3NKN3UwNGVR?=
- =?utf-8?B?c3J4anVIT0R4NndwelJEc0U2R0UzajFyckFQcXZSbTVPdzVMQWNtNXRTK3dU?=
- =?utf-8?B?d3ZzRTB1UXE0eDczemlNNzMveDBBS3lJcXJrTFpORVlRSkJMd1l3VXpNRTFC?=
- =?utf-8?B?aExGRHRRUUdyaTBiMzQvUnRNNHpQc2Y2am01MDRMa0pqOW5lZDVOUG5HdTZ3?=
- =?utf-8?B?cDJ4QUhCaEowMVN4L1Y2R2o2ZStwejZxeDJPWitmZ2NmVCt3SXZscjE4Y1Jw?=
- =?utf-8?B?U29lWUNYZXhpaE5YNkhqcU9IREk3M2RJZXdtTjRLSkE3SUg5MWlXSWRDWktV?=
- =?utf-8?B?aFdrUS9PRW4zMkxzQTdCYUh1R1o5QS9HM1dJUHhvN3pwQVFOYlJIZXo4WGhL?=
- =?utf-8?B?QWFwMDE5bGwvYzVKNEhxL1YvRWpQU1R5OUtJZnloVTRGS3QwckVkdEw3amla?=
- =?utf-8?B?RUJGb0hPWDN4cEVYY2hxdlZjTjY1cWdRZjdMRHVnV3ZtTUM3SkZYV2FWRjFF?=
- =?utf-8?B?UDUyc3Y3Rm1EU0RlRWc0MWhsMEkyYXpjQnFkS0hKa0NOS2dTK01rUm4zVHpk?=
- =?utf-8?B?T2R2cDI4U2JLWUNPUlpnUlJYT21ET3NNS0kyVFAybFd0UDRGVThsc29WODg4?=
- =?utf-8?B?UHdYZ3JlYVAyWmFjWlRLTUdNQWJUSlhxMGhiUXZNS0lQZHhQbEt4UGVEajky?=
- =?utf-8?B?djNQNW9JREVYYlhPelQ5RFMvR3BqQ3hWVk5HbDRuQnhSVGJ0cURBWXEzcVZN?=
- =?utf-8?B?MmZSVVdHOFh0M0NuVU4xNUZhS28ycE1jUWVJbkdZRVBTVGI5SzQ2TGtLMVVh?=
- =?utf-8?B?YklKa3NiK081SDJzREJ1NjJ5WUxRblpEZ2FuMUw3ZWJHU2pMMitjY0d6MHE1?=
- =?utf-8?B?N3FtTDViT1RzRXNoY0pRTjdqVGwweEYwNWw0V2Z4Skd1QWVQVm1ndHRrV0tP?=
- =?utf-8?B?SXFCaTRMdzl1VjhSRHdnV0RENGlZOGdlT21jOXdhWjBTaVk0NWNuMDVLVTZ4?=
- =?utf-8?B?SW5WSXh4bUpTSWx3T2FRRWxkMmM0TTJhVmZGNzgySnhiN1hTNWtCZ2Yrc3pV?=
- =?utf-8?B?OVVqajhvMnpxMHhWRm51WHVPTHh2ZXg1Um9jOGx0MUNrcmZIK0ZtMTVYclRp?=
- =?utf-8?B?eCtKMTkzMzJNU1ZMTmlPblJ0dWRRUWxYamlpT1dxeEpTZjFBcjhaeWZwRDA0?=
- =?utf-8?B?MXhNRTBTajdjTDlOWWNsaEtvMmcvcitkcXgwQ3pScWJQckpMeHF3ZFRqZEdM?=
- =?utf-8?B?YWMwR3FUeVFKMm1kWmIzT0xVUUZzM04zbStLdlhxZTlwaWZBWnlqRDllNUtK?=
- =?utf-8?B?TGdjWHlIY1NnMTM2a0M3ejYyNWZvWlZSdU9ZVm9ZTGVBdkZvNUpCNGpaa2Rw?=
- =?utf-8?B?R2Z0TzMwM1lwaTFJTm1RTElnemVwQkFkcnpnbG44NUhoREY3UHI5Rm9neGRO?=
- =?utf-8?B?RDFxTkYyU1d3MnZ1M0xJMmVRSHBPOXBic0FrZmV4M2lpYVgwdm5CWk85M01j?=
- =?utf-8?B?MWRLcXVRSnVycE9QVWs1Umh0Sy9nVUc3Y0RuaG5jQ1dKYzBiOWNHSGFKN0FD?=
- =?utf-8?B?TG9NaU5lL2lmcExEditUK1YwbXNrN1BrRUtxdzVOcmtVblJubnY3aFJGUm9D?=
- =?utf-8?B?K21nWnYzU1VxQU5mQlRYVjdFMGt1b0R1S0NEMVJTbWxxYkI0ZFg3UmM2T2VR?=
- =?utf-8?B?bmU3T0NUaUV6allHbElCUTMzRUdCN1BBQ1VmM0tDbDdGSGNzY1NOZkhTTGpT?=
- =?utf-8?B?bTV0d3BobW1xckhqUXVIU0xQU2YvVlpVaHYzY2FEWVNnWXFLSTA0MWIrK2t2?=
- =?utf-8?B?THdFb0lCbmVNdWdYcHYvak04RU5OVG0zUG0waUFPb2MxMVErdjdSdz09?=
-X-Exchange-RoutingPolicyChecked: L9wmOhKR+eSTSp2wiZl8hRvDZ6YhcAmbnJfV6/vGTeoipnoFLnQttz1zf55lr3c/zfGe++jVW2j9+Ysk2RsNN9RMibTmya7lz1ETanBpHaYXnmiWrO3Sq2pU/6BnHyVsIuqEuCRX9KAC59pOclxHbyflNreM/xFNZLWdgWKDwxT738obUp2LW54YC2PORoZgjmW+gKbAToz3qxNajI0KNSc96cr8rNGmPKhVq/UmOqV90rMQdu6NCTJ1n6Goj2/RDcle6/mp8FuZHSJ+9B6TmwpZ5lBg58ks9EYXdroQGWMdeJ9S3/KQ69Ds2+VtGMOU4RZCD93DTvEKo46DS9z35g==
-X-MS-Exchange-CrossTenant-Network-Message-Id: aec5b30c-9cac-4a06-2705-08df08c4fcd5
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5249.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?YxMa2QfXTnSptxjshKGeR44t/gYY44v4Yid+rHPa+xCAAGma2G5dTGKXuN?=
+ =?iso-8859-1?Q?rH0nHYgIcoJrIbQV5a/KwW/IvMFKO4YY59KoCOa6Bhxf1XdhIn+cPpl0TH?=
+ =?iso-8859-1?Q?IyGU2MglPTRIIJKYYOlA9DXUBfsRa+Psu+EdWIRYSB2UNfeZlnULbH/LYZ?=
+ =?iso-8859-1?Q?vQYBifmOwCGPJ3I+sOxDKgzK/KcyN4eFOOslge3VPMaRKHxssEtSxXLxmy?=
+ =?iso-8859-1?Q?/Lb2q7cNXul9vtC0CRS03eQlUE8kF5jhfDBsYLnTlP5u+fTrDafvi6yf8F?=
+ =?iso-8859-1?Q?ZWruiC1It5wtGQUlszsE+2Jcmu/89Y3x1/ICN+6arf+jCsODDKnQQpV3e4?=
+ =?iso-8859-1?Q?c0i4qlSRkCLKj2aPScgJRatRw6Y6ASiDA20PfpEq8csqoTgTgqs/1Quyhj?=
+ =?iso-8859-1?Q?afiRF9sEj+tPptJf44UyJSFqPDMRmnAr9lD50STh7q2dFHZResh+JvcM1y?=
+ =?iso-8859-1?Q?MQ73xAQWlh00aAcsAoDwVrRtKhkDImUYlSJr8RRo9JPaPLlkfcOe1Zqbut?=
+ =?iso-8859-1?Q?cIwvEy7c0d0GGOFCAj6VXuZtYrYV5xvAochj0VtaxCCJRwPlupWIx64AL5?=
+ =?iso-8859-1?Q?Z7OFYsrp1MD/29omIpcgxy4Z90Zrry9qDlo8NWrKLavRuOjCg7KkP+94BI?=
+ =?iso-8859-1?Q?PsngZUMeTzt4xXAEjPrJZ5ApOiZElbm6VLYvWeGSIqCjg8z6jhdxRDg2+3?=
+ =?iso-8859-1?Q?ymxOSLyk4lECrSz2LqO3Bh5aCxKhq/ktphsnGo6+TTQIn0e9bqcr1AG1Qo?=
+ =?iso-8859-1?Q?UfqrPF2Dk1hXUTQzZBGreEiXwXygZtUSbWic52G+yBJHYl1RRV1mRccF8S?=
+ =?iso-8859-1?Q?QJnbOeLEudgyj1LmKFImPkmyAyyYdvd/Ku7VY9XX0Zzzf+SPRv+CEJazjD?=
+ =?iso-8859-1?Q?Avs20mQQABNKJK84+i/b+itKBtJTurky2q2aUcHNVopCcbwfD5VHgMH0aV?=
+ =?iso-8859-1?Q?CJlUJy82qfhyeAbGF8u/TJn2sxRSrgS5bNp0ISfiuJfip7iACYFilMOVFT?=
+ =?iso-8859-1?Q?MNn5cDnqj/NE4JjBy4UA9Len22hGGkcEFD8yDqSDeQU6PDQVgtw+BAiKtb?=
+ =?iso-8859-1?Q?sdmTgOVhjK36hnb52ukwjpwz/PpIt7jDH1sEPHjNJGL1zzOEjdTEs3ROD2?=
+ =?iso-8859-1?Q?+sXdxtK1p94XMCmsQ9U+0CCeuge6RovuTTcw90GOEof3bCK3D71sD8tigO?=
+ =?iso-8859-1?Q?dshX/mz5jSDp6aNGAiTtsebRttSwFRnRsel91lKlpRUL6HnCcmE+UF/x8M?=
+ =?iso-8859-1?Q?zoQPJvRzaHa5MpC7jrmjOVXTUGJjwN01BChZyi5wVjpkLemQecBVRKcxk1?=
+ =?iso-8859-1?Q?eFvP9tybZjnch49toX+L+ZVDe2gbt8CwPMjUN0NDXiJSC+nvNwaiGtu02m?=
+ =?iso-8859-1?Q?IhHCKJBhmcUlPRy9Y93x1+IVCu/0tZjI2FMiItmog/ZnutvK2cVLyNGbzC?=
+ =?iso-8859-1?Q?ox0aweZxUcS3BiqZz8xYwn5saDpjOL39szPUapRDsF/Eb2BE6v6aZjc9uG?=
+ =?iso-8859-1?Q?Rbno2mS7I5pWSleVtAQcvm/+EpLKaBm0FXVFFlwvSV7shng3rPtcXtdTgv?=
+ =?iso-8859-1?Q?aRhQ/9/DYUOR/pFFzwYSd4GtVNTVHelXpe58HX9DiTKxcauHUq15w69Lr2?=
+ =?iso-8859-1?Q?fprUI3MXW2X1ouOA4OZJ0t2Db7GYnL40bCpqgCr6igR9f8VQg5P/4bp5Ae?=
+ =?iso-8859-1?Q?R3SRLmP9lI8EIfpG50mzxopCYHEOCPZ+9XWLKE5+tZ/j7duZJBLU28wb+X?=
+ =?iso-8859-1?Q?+fbeQ3Iau/3BASo8gMNNV1KVtTDVWrKWwezjhRPFlLVC2oHUYzrEfFbpZ2?=
+ =?iso-8859-1?Q?Sr3q6HfPNcHXiwqTq6dHEatcrrdrPBQ=3D?=
+X-Exchange-RoutingPolicyChecked: NesUqTHsnWwSaT1Rm7F+I0dqlhgNc+uTRIqlsGRqcgQIyAH9B7NhiF+GcA322y/PS+bC3/GYa2y5gZchcxZHmPmLGN1s4mDOAUc7Q+24nCGI+nSbyL4zbGC7j6Er8NHOytyWwu/TYmEqea3tsndDTmNJg0OQemhUBakfBJH4FfCwfC+Q2aaUj9uTvOoWtN1tqCuFKoOB/hFxB2t6D2BzZ1/3dbRuG9SBlVzGouVeRNNE+9qKNg4KQXhNqhuqUlPPUqtfn7tY2gKXU4CxA15TsYxto0Ycj7rOKzhfQR5zgjtw5dSGMY1xBGrwwEQjYgjrRv57duByD91rCCr4NGVusA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: edb73fc3-a9be-4f56-54e8-08df08c6300c
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2026 07:37:06.2174 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2026 07:45:41.3990 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6V2i7pu+boZPenLHPlV52HWM+090gp8WVNB6S9ivrGwksJYREMe67wTCVu/iiKna7EleD4pmOQWfIsXjxMe7Bg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7402
+X-MS-Exchange-CrossTenant-UserPrincipalName: YggROVsUNGE3nrbDn3vpCQ+o0q6tVKq1m1MqKvhf4NvJg88w/e3Emd9ij9E3mmqT0hY0sv9FfOtb71f6XKE6rQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DSVPR11MB9891
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -172,856 +165,557 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue, Sep 01, 2026 at 09:33:21AM +0100, Matthew Auld wrote:
+> On 28/08/2026 17:37, Summers, Stuart wrote:
+> > On Fri, 2026-08-28 at 16:14 +0100, Matthew Auld wrote:
+> > > During early probe, use the last page as a canary for BAR sizing, CCS
+> > > sizing, identity map setup etc. If something is wrong the last page
+> > > is
+> > > where we will likely find it. Hit it with everything we have. For now
+> > 
+> > Sorry coming in a little late here... but why only the last page and
+> > not implementing a full per byte/bit memory test to trigger any
+> > potential memory scanning on bit errors? Or is this not the intent
+> > here?
+> 
+> Current scope was just to catch obvious sizing errors, which will likely
+> show up in the last page (BAR, CCS, identity map). In particular this was
+> meant as a regression test for the bug Linus hit, where we had incorrect
+> VRAM/CCS sizing.
+> 
+> Also, this is hopefully non-destructive, since it gets triggered in CI on
+> probe. Also means it needs to be fast. We could extend this in the future as
+> needed.
 
-On 02-09-2026 12:05, Purkait, Soham wrote:
-> Hi Karthik,
->
-> On 17-07-2026 09:47, Karthik Poosa wrote:
->> Expose curve-point temperature and pwm controls via
->> pwmF_auto_point[P]_temp and pwmF_auto_point[P]_pwm, where
->> F is the fan number and P is the fan curve point number.
->> Each fan curve point has temperature and pwm sysfs.
->>
->> Update Xe hwmon ABI documentation for pwm auto point temperature
->> attributes.
->>
->> v2:
->> - Use xe helpers for dmesg logs.
->> - Update kernel version in Xe hwmon documentation.
->> - Correct debug level of some dmesg logs.
->>
->> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
->> Assisted-by: Codex:gpt-5-4
->> ---
->> Â  .../ABI/testing/sysfs-driver-intel-xe-hwmonÂ Â  |Â  16 +
->> Â  drivers/gpu/drm/xe/xe_hwmon.cÂ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  | 700 +++++++++++++++++-
->> Â  2 files changed, 715 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon 
->> b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
->> index effc7d38ce1f..68cc6b99e8a5 100644
->> --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
->> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
->> @@ -341,3 +341,19 @@ Description:Â Â  RW. Fan control mode selector.
->> Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  user table control and value 2 to use firmware 
->> default behavior.
->> Â  Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  Only supported for particular Intel Xe graphics 
->> platforms.
->> +
->> +What: 
->> /sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/pwm[1-3]_auto_point[1-10]_temp
-> Is there a way to get the number of max available points ? If it is 
-> not always 10 then user should be informed about it in the doc.
++1 on the approach.
 
-Currently Xe supports exactly 10 fan curve points, which is also the 
-maximum supported by the hardware.
+One nit with this patch: the commit message doesn't explain how the test
+catches this bug, or even what the test is actually doing. I reverse
+engineered the test and the code makes sense, but I'd suggest updating
+the commit message to describe the test case and how it exercises the
+bug.
 
-Therefore there is no separate attribute to query the number of 
-available points.
+Matt
 
-Support for fewer than 10 points may be added in future versions.
-
-In that case, users can determine the effective number of points by 
-reading the curve entries: a point with both |temp| and |pwm| set to 
-zero indicates that the previous entry is the last valid curve point.
-
-There is currently no standard hwmon/sysfs attribute that exposes the 
-fan curve point count, so the driver cannot report it through a 
-dedicated interface.
-
->> +Date:Â Â Â Â Â Â Â Â Â  June 2026
->> +KernelVersion: 7.2
->> +Contact:Â Â Â Â Â Â  intel-xe@lists.freedesktop.org
->> +Description:Â Â  RW. Temperature in millidegree Celsius for each fan 
->> curve point.
->> +
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â  Only supported for particular Intel Xe graphics 
->> platforms.
->> +
->> +What: 
->> /sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/pwm[1-3]_auto_point[1-10]_pwm
-> same as above.
-same as above
->> +Date:Â Â Â Â Â Â Â Â Â  June 2026
->> +KernelVersion: 7.2
->> +Contact:Â Â Â Â Â Â  intel-xe@lists.freedesktop.org
->> +Description:Â Â  RW. PWM duty value (0..255) for each fan curve point.
->> +
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â  Only supported for particular Intel Xe graphics 
->> platforms.
->> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c 
->> b/drivers/gpu/drm/xe/xe_hwmon.c
->> index fa9dbadd5fd6..a3ed139ad446 100644
->> --- a/drivers/gpu/drm/xe/xe_hwmon.c
->> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
->> @@ -173,6 +173,10 @@ struct xe_hwmon_fan_info {
->> Â Â Â Â Â Â Â Â Â Â Â Â Â  /** @speed: fan speed in percentage */
->> Â Â Â Â Â Â Â Â Â Â Â Â Â  u8 speed;
->> Â Â Â Â Â Â Â Â Â  } fcp[MAX_FAN_CONTROL_POINTS];
->> +Â Â Â Â Â Â Â  /** @last_point_temp_valid: last user temperature point was 
->> written */
->> +Â Â Â Â Â Â Â  bool last_point_temp_valid;
->> +Â Â Â Â Â Â Â  /** @last_point_speed_valid: last user PWM point was written */
->> +Â Â Â Â Â Â Â  bool last_point_speed_valid;
->> Â Â Â Â Â  } fan_table[FAN_TABLE_MAX];
->> Â Â Â Â Â Â Â Â Â  /** @max_rps: maximum fan RPS */
->> Â Â Â Â Â Â Â Â Â  u32 max_rps;
->> @@ -779,8 +783,11 @@ static const struct attribute_group 
->> hwmon_attrgroup = {
->> Â Â Â Â Â  .is_visible = xe_hwmon_attributes_visible,
->> Â  };
->> Â  +static const struct attribute_group hwmon_curve_attrgroup;
->> +
->> Â  static const struct attribute_group *hwmon_groups[] = {
->> Â Â Â Â Â  &hwmon_attrgroup,
->> +Â Â Â  &hwmon_curve_attrgroup,
->> Â Â Â Â Â  NULL
->> Â  };
->> Â  @@ -945,7 +952,7 @@ static int xe_hwmon_get_num_fans(const struct 
->> xe_hwmon *hwmon, u32 *num_fans)
->> Â  }
->> Â  Â  static int xe_hwmon_get_fan_point_count(struct xe_hwmon *hwmon, 
->> u8 fan, u32 *point_count,
->> -Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  int table_type)
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  enum fan_table_type table_type)
->> Â  {
->> Â Â Â Â Â  int ret;
->> Â  @@ -960,6 +967,16 @@ static int xe_hwmon_get_fan_point_count(struct 
->> xe_hwmon *hwmon, u8 fan, u32 *poi
->> Â Â Â Â Â Â Â Â Â  return ret;
->> Â Â Â Â Â  }
->> Â  +Â Â Â  xe_dbg(hwmon->xe, "fan %d %s point count read as %u\n", fan,
->> +Â Â Â Â Â Â Â Â Â Â  (table_type == USER_FAN_TABLE) ? "user" : "stock", 
->> *point_count);
->> +
->> +Â Â Â  if (*point_count > MAX_FAN_CONTROL_POINTS) {
->> +Â Â Â Â Â Â Â  xe_err(hwmon->xe, "fan %d %s point count %u exceeds max 
->> %u\n", fan,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â  (table_type == USER_FAN_TABLE) ? "user" : "stock", 
->> *point_count,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â  MAX_FAN_CONTROL_POINTS);
->> +Â Â Â Â Â Â Â  return -EINVAL;
->> +Â Â Â  }
->> +
->> Â Â Â Â Â  xe_dbg(hwmon->xe, "fan %d %s point count read as %u\n", fan,
->> Â Â Â Â Â Â Â Â Â Â Â Â  (table_type == USER_FAN_TABLE) ? "user" : "stock", 
->> *point_count);
->> Â  @@ -985,6 +1002,60 @@ static int 
->> xe_hwmon_write_user_fan_point(struct xe_hwmon *hwmon, u8 fan, u8 poin
->> Â Â Â Â Â  return ret;
->> Â  }
->> Â  +static int xe_hwmon_commit_user_fan_table(struct xe_hwmon *hwmon, 
->> u8 fan)
->> +{
->> +Â Â Â  struct xe_hwmon_fan_info *fi = &hwmon->fi[fan];
->> +Â Â Â  struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
->> +Â Â Â  u32 point_count = 
->> fi->fan_table[USER_FAN_TABLE].fan_control_point_count;
->> +Â Â Â  int point;
->> +Â Â Â  int ret;
->> +
->> +Â Â Â  if (!point_count)
->> +Â Â Â Â Â Â Â  return -ENODATA;
->> +
->> +Â Â Â  for (point = 0; point < point_count; point++) {
->> +Â Â Â Â Â Â Â  u8 temp = fi->fan_table[USER_FAN_TABLE].fcp[point].temp;
->> +Â Â Â Â Â Â Â  u8 speed = fi->fan_table[USER_FAN_TABLE].fcp[point].speed;
->> +
->> +Â Â Â Â Â Â Â  /* Ensure fan control points are strictly increasing order */
->> +Â Â Â Â Â Â Â  if (point > 0) {
->> +Â Â Â Â Â Â Â Â Â Â Â  u8 prev_temp = fi->fan_table[USER_FAN_TABLE].fcp[point - 
->> 1].temp;
->> +Â Â Â Â Â Â Â Â Â Â Â  u8 prev_speed = fi->fan_table[USER_FAN_TABLE].fcp[point 
->> - 1].speed;
->> +
->> +Â Â Â Â Â Â Â Â Â Â Â  if (temp < prev_temp || speed < prev_speed) {
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  drm_dbg(&hwmon->xe->drm,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  "fan %d invalid user point previous value > 
->> current %d: %u/%u prev=%u/%u\n",
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  fan, point, temp, speed, prev_temp, prev_speed);
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  return -EINVAL;
->> +Â Â Â Â Â Â Â Â Â Â Â  }
->> +Â Â Â Â Â Â Â  }
->> +
->> +Â Â Â Â Â Â Â  drm_dbg(&hwmon->xe->drm,
->> +Â Â Â Â Â Â Â Â Â Â Â  "committing fan %d user point %d temp %u, speed %u %%\n",
->> +Â Â Â Â Â Â Â Â Â Â Â  fan, point, temp, speed);
->> +Â Â Â Â Â Â Â  ret = xe_hwmon_write_user_fan_point(hwmon, fan, point, temp, 
->> speed);
->> +Â Â Â Â Â Â Â  if (ret)
->> +Â Â Â Â Â Â Â Â Â Â Â  return ret;
->> +Â Â Â  }
->> +
->> +Â Â Â  drm_dbg(&hwmon->xe->drm,
->> +Â Â Â Â Â Â Â  "committing fan %d user table with %d points\n", fan, 
->> point_count);
->> +Â Â Â  ret = xe_pcode_write_timeout(root_tile, 
->> PCODE_MBOX(FAN_SPEED_CONTROL,
->> + FSC_WRITE_NUM_FAN_CONTROL_POINTS,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  fan),
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  point_count, XE_PCODE_FAN_CONTROL_TIMEOUT_MS);
->> +Â Â Â  if (ret) {
->> +Â Â Â Â Â Â Â  drm_dbg(&hwmon->xe->drm,
->> +Â Â Â Â Â Â Â Â Â Â Â  "failed to update fan %d user table count, ret=%d\n", 
->> fan, ret);
->> +Â Â Â Â Â Â Â  return ret;
->> +Â Â Â  }
->> +
->> +Â Â Â  fi->pwm_enable_mode = XE_FAN_PWM_MANUAL_USER_TABLE;
->> +Â Â Â  fi->is_full_speed = false;
->> +
->> +Â Â Â  return 0;
->> +}
->> +
->> Â  static int xe_hwmon_activate_user_fan_table(struct xe_hwmon *hwmon, 
->> u8 fan,
->> Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  bool is_full_speed, enum fan_table_type 
->> table_source)
->> Â  {
->> @@ -1105,6 +1176,633 @@ static int xe_hwmon_set_user_fan_pwm(struct 
->> xe_hwmon *hwmon, u8 fan, u8 pwm)
->> Â Â Â Â Â  return 0;
->> Â  }
->> Â  +#define XE_CURVE_IDX(fan, point)Â Â Â  (((fan) << 8) | (point))
->> +#define XE_CURVE_FAN(idx)Â Â Â Â Â Â Â  ((u8)(((idx) >> 8) & 0xff))
->> +#define XE_CURVE_POINT(idx)Â Â Â Â Â Â Â  ((u8)((idx) & 0xff))
->> +
->> +static int
->> +xe_hwmon_decode_curve_index(u32 index, u8 *fan, u8 *point)
->> +{
->> +Â Â Â  u8 local_fan = XE_CURVE_FAN(index);
->> +Â Â Â  u8 local_point = XE_CURVE_POINT(index);
->> +
->> +Â Â Â  if (local_fan >= FAN_MAX || local_point >= MAX_FAN_CONTROL_POINTS)
->> +Â Â Â Â Â Â Â  return -EINVAL;
->> +
->> +Â Â Â  *fan = local_fan;
->> +Â Â Â  *point = local_point;
->> +
->> +Â Â Â  return 0;
->> +}
->> +
->> +static inline enum fan_table_type 
->> xe_hwmon_get_active_fan_table(struct xe_hwmon *hwmon, u8 fan)
->> +{
->> +Â Â Â  if (hwmon->fi[fan].pwm_enable_mode == XE_FAN_PWM_AUTO_STOCK_TABLE)
->> +Â Â Â Â Â Â Â  return STOCK_FAN_TABLE;
->> +Â Â Â  else
->> +Â Â Â Â Â Â Â  return USER_FAN_TABLE;
->> +}
->> +
->> +static ssize_t
->> +xe_hwmon_pwm_auto_point_temp_show(struct device *dev,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  struct device_attribute *attr, char *buf)
->> +{
->> +Â Â Â  struct sensor_device_attribute *sattr = to_sensor_dev_attr(attr);
->> +Â Â Â  struct xe_hwmon *hwmon = dev_get_drvdata(dev);
->> +Â Â Â  struct xe_hwmon_fan_info *fi;
->> +Â Â Â  u32 point_count;
->> +Â Â Â  u8 fan;
->> +Â Â Â  u8 point;
->> +Â Â Â  u8 temp;
->> +Â Â Â  int ret;
->> +Â Â Â  enum fan_table_type active_table;
->> +
->> +Â Â Â  ret = xe_hwmon_decode_curve_index(sattr->index, &fan, &point);
->> +Â Â Â  if (ret)
->> +Â Â Â Â Â Â Â  return ret;
->> +
->> +Â Â Â  fi = &hwmon->fi[fan];
->> +Â Â Â  active_table = xe_hwmon_get_active_fan_table(hwmon, fan);
->> +
->> +Â Â Â  guard(xe_pm_runtime)(hwmon->xe);
->> +
->> +Â Â Â  mutex_lock(&hwmon->hwmon_lock);
->> +
->> +Â Â Â  fi = &hwmon->fi[fan];
->> +
->> +Â Â Â  ret = xe_hwmon_get_fan_point_count(hwmon, fan, &point_count, 
->> active_table);
->> +Â Â Â  if (ret)
->> +Â Â Â Â Â Â Â  goto unlock;
->> +
->> +Â Â Â  if (point >= point_count) {
->> +Â Â Â Â Â Â Â  ret = -EINVAL;
->> +Â Â Â Â Â Â Â  goto unlock;
->> +Â Â Â  }
->> +
->> +Â Â Â  temp = fi->fan_table[active_table].fcp[point].temp;
->> +Â Â Â  ret = sysfs_emit(buf, "%u\n", temp * MILLIDEGREE_PER_DEGREE);
->> +
->> +unlock:
->> +Â Â Â  mutex_unlock(&hwmon->hwmon_lock);
->> +
->> +Â Â Â  return ret;
->> +}
->> +
->> +static int xe_hwmon_update_user_fan_point(struct xe_hwmon *hwmon, u8 
->> fan, u32 point,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  u32 point_count, u8 temp, u8 pwm)
->> +{
->> +Â Â Â  struct xe_hwmon_fan_info *fi = &hwmon->fi[fan];
->> +Â Â Â  int ret;
->> +
->> +Â Â Â  if (temp) {
->> +Â Â Â Â Â Â Â  fi->fan_table[USER_FAN_TABLE].fcp[point].temp = temp;
->> +Â Â Â Â Â Â Â  if (point == (point_count - 1))
->> + fi->fan_table[USER_FAN_TABLE].last_point_temp_valid = true;
->> +Â Â Â  } else {
->> +Â Â Â Â Â Â Â  fi->fan_table[USER_FAN_TABLE].fcp[point].speed = pwm;
->> +Â Â Â Â Â Â Â  if (point == (point_count - 1))
->> + fi->fan_table[USER_FAN_TABLE].last_point_speed_valid = true;
->> +Â Â Â  }
->> +
->> +Â Â Â  /* Cache intermediate points and commit once the last point 
->> arrives. */
->> +Â Â Â  if (point == (point_count - 1) &&
->> +Â Â Â Â Â Â Â  fi->fan_table[USER_FAN_TABLE].last_point_temp_valid &&
->> + fi->fan_table[USER_FAN_TABLE].last_point_speed_valid) {
->> +Â Â Â Â Â Â Â  ret = xe_hwmon_commit_user_fan_table(hwmon, fan);
->> +Â Â Â Â Â Â Â  if (ret)
->> +Â Â Â Â Â Â Â Â Â Â Â  return ret;
->> +Â Â Â Â Â Â Â  fi->fan_table[USER_FAN_TABLE].last_point_temp_valid = false;
->> +Â Â Â Â Â Â Â  fi->fan_table[USER_FAN_TABLE].last_point_speed_valid = false;
->> +Â Â Â  }
->> +Â Â Â  return 0;
->> +}
->> +
->> +static int xe_hwmon_get_u8_from_sysfs(long val, bool is_temp, u8 *out)
->> +{
->> +Â Â Â  long hw_val;
->> +
->> +Â Â Â  if (is_temp)
->> +Â Â Â Â Â Â Â  hw_val = DIV_ROUND_CLOSEST(val, MILLIDEGREE_PER_DEGREE);
->> +Â Â Â  else
->> +Â Â Â Â Â Â Â  hw_val = DIV_ROUND_CLOSEST(val * 100, U8_MAX);
->> +
->> +Â Â Â  if (hw_val < 0 || hw_val > U8_MAX)
->> +Â Â Â Â Â Â Â  return -EINVAL;
->> +
->> +Â Â Â  *out = hw_val;
->> +
->> +Â Â Â  return 0;
->> +}
->> +
->> +static ssize_t
->> +xe_hwmon_pwm_auto_point_temp_store(struct device *dev,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  struct device_attribute *attr,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  const char *buf, size_t count)
->> +{
->> +Â Â Â  struct sensor_device_attribute *sattr = to_sensor_dev_attr(attr);
->> +Â Â Â  struct xe_hwmon *hwmon = dev_get_drvdata(dev);
->> +Â Â Â  struct xe_hwmon_fan_info *fi;
->> +Â Â Â  u8 fan;
->> +Â Â Â  u8 point;
->> +Â Â Â  u32 point_count;
->> +Â Â Â  u8 temp;
->> +Â Â Â  long val;
->> +Â Â Â  int ret;
->> +
->> +Â Â Â  ret = xe_hwmon_decode_curve_index(sattr->index, &fan, &point);
->> +Â Â Â  if (ret)
->> +Â Â Â Â Â Â Â  return ret;
->> +
->> +Â Â Â  fi = &hwmon->fi[fan];
->> +
->> +Â Â Â  if (fi->pwm_enable_mode != XE_FAN_PWM_MANUAL_USER_TABLE) {
->> +Â Â Â Â Â Â Â  drm_err(&hwmon->xe->drm,
->> +Â Â Â Â Â Â Â Â Â Â Â  "pwm%d_enable not in manual mode; cannot update temp 
->> point %d\n",
->> +Â Â Â Â Â Â Â Â Â Â Â  fan, point);
->> +Â Â Â Â Â Â Â  return -EINVAL;
->> +Â Â Â  }
->> +
->> +Â Â Â  ret = kstrtol(buf, 10, &val);
->> +Â Â Â  if (ret)
->> +Â Â Â Â Â Â Â  return ret;
->> +
->> +Â Â Â  ret = xe_hwmon_get_u8_from_sysfs(val, true, &temp);
->> +Â Â Â  if (ret)
->> +Â Â Â Â Â Â Â  return ret;
->> +
->> +Â Â Â  guard(xe_pm_runtime)(hwmon->xe);
->> +
->> +Â Â Â  mutex_lock(&hwmon->hwmon_lock);
->> +
->> +Â Â Â  ret = xe_hwmon_get_fan_point_count(hwmon, fan, &point_count, 
->> USER_FAN_TABLE);
->> +Â Â Â  if (ret)
->> +Â Â Â Â Â Â Â  goto unlock;
->> +
->> +Â Â Â  if (point >= point_count) {
->> +Â Â Â Â Â Â Â  ret = -EINVAL;
->> +Â Â Â Â Â Â Â  goto unlock;
->> +Â Â Â  }
->> +
->> +Â Â Â  drm_dbg(&hwmon->xe->drm,
->> +Â Â Â Â Â Â Â  "updating fan %d point %d temp to %u, pwm %u\n", fan, point,
->> +Â Â Â Â Â Â Â  temp, fi->fan_table[USER_FAN_TABLE].fcp[point].speed);
->> +Â Â Â  ret = xe_hwmon_update_user_fan_point(hwmon, fan, point, 
->> point_count, temp, 0);
->> +
->> +unlock:
->> +Â Â Â  mutex_unlock(&hwmon->hwmon_lock);
->> +
->> +Â Â Â  return ret ? ret : count;
->> +}
->> +
->> +static ssize_t
->> +xe_hwmon_pwm_auto_point_pwm_show(struct device *dev,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  struct device_attribute *attr,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  char *buf)
->> +{
->> +Â Â Â  struct sensor_device_attribute *sattr = to_sensor_dev_attr(attr);
->> +Â Â Â  struct xe_hwmon *hwmon = dev_get_drvdata(dev);
->> +Â Â Â  struct xe_hwmon_fan_info *fi;
->> +Â Â Â  u8 fan;
->> +Â Â Â  u8 point;
->> +Â Â Â  u32 point_count;
->> +Â Â Â  int ret;
->> +Â Â Â  enum fan_table_type active_table;
->> +
->> +Â Â Â  ret = xe_hwmon_decode_curve_index(sattr->index, &fan, &point);
->> +Â Â Â  if (ret)
->> +Â Â Â Â Â Â Â  return ret;
->> +
->> +Â Â Â  fi = &hwmon->fi[fan];
->> +Â Â Â  active_table = xe_hwmon_get_active_fan_table(hwmon, fan);
->> +
->> +Â Â Â  guard(xe_pm_runtime)(hwmon->xe);
->> +
->> +Â Â Â  mutex_lock(&hwmon->hwmon_lock);
->> +
->> +Â Â Â  ret = xe_hwmon_get_fan_point_count(hwmon, fan, &point_count, 
->> active_table);
->> +Â Â Â  if (ret)
->> +Â Â Â Â Â Â Â  goto unlock;
->> +
->> +Â Â Â  if (point >= point_count) {
->> +Â Â Â Â Â Â Â  ret = -EINVAL;
->> +Â Â Â Â Â Â Â  goto unlock;
->> +Â Â Â  }
->> +
->> +Â Â Â  ret = sysfs_emit(buf, "%u\n",
->> + DIV_ROUND_CLOSEST(fi->fan_table[active_table].fcp[point].speed * 
->> U8_MAX,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  100));
->> +
->> +unlock:
->> +Â Â Â  mutex_unlock(&hwmon->hwmon_lock);
->> +
->> +Â Â Â  return ret;
->> +}
->> +
->> +static ssize_t
->> +xe_hwmon_pwm_auto_point_pwm_store(struct device *dev,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  struct device_attribute *attr,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  const char *buf, size_t count)
->> +{
->> +Â Â Â  struct sensor_device_attribute *sattr = to_sensor_dev_attr(attr);
->> +Â Â Â  struct xe_hwmon *hwmon = dev_get_drvdata(dev);
->> +Â Â Â  struct xe_hwmon_fan_info *fi;
->> +Â Â Â  u32 point_count;
->> +Â Â Â  long val;
->> +Â Â Â  u8 point;
->> +Â Â Â  u8 fan;
->> +Â Â Â  u8 pwm;
->> +Â Â Â  int ret;
->> +
->> +Â Â Â  ret = xe_hwmon_decode_curve_index(sattr->index, &fan, &point);
->> +Â Â Â  if (ret)
->> +Â Â Â Â Â Â Â  return ret;
->> +
->> +Â Â Â  fi = &hwmon->fi[fan];
->> +
->> +Â Â Â  if (fi->pwm_enable_mode != XE_FAN_PWM_MANUAL_USER_TABLE) {
->> +Â Â Â Â Â Â Â  drm_err(&hwmon->xe->drm,
->> +Â Â Â Â Â Â Â Â Â Â Â  "pwm%d_enable is not in manual user mode, cannot update 
->> pwm point %d\n",
->> +Â Â Â Â Â Â Â Â Â Â Â  fan, point);
->> +Â Â Â Â Â Â Â  return -EINVAL;
->> +Â Â Â  }
->> +
->> +Â Â Â  ret = kstrtol(buf, 10, &val);
->> +Â Â Â  if (ret)
->> +Â Â Â Â Â Â Â  return ret;
->> +
->> +Â Â Â  ret = xe_hwmon_get_u8_from_sysfs(val, false, &pwm);
->> +Â Â Â  if (ret)
->> +Â Â Â Â Â Â Â  return ret;
->> +
->> +Â Â Â  guard(xe_pm_runtime)(hwmon->xe);
->> +
->> +Â Â Â  mutex_lock(&hwmon->hwmon_lock);
->> +
->> +Â Â Â  ret = xe_hwmon_get_fan_point_count(hwmon, fan, &point_count, 
->> USER_FAN_TABLE);
->> +Â Â Â  if (ret)
->> +Â Â Â Â Â Â Â  goto unlock;
->> +
->> +Â Â Â  if (point >= point_count) {
->> +Â Â Â Â Â Â Â  ret = -EINVAL;
->> +Â Â Â Â Â Â Â  goto unlock;
->> +Â Â Â  }
->> +
->> +Â Â Â  pwm = max_t(u8, pwm, fi->min_pwm);
->> +
->> +Â Â Â  drm_dbg(&hwmon->xe->drm, "updating fan %d point %d pwm to %u\n",
->> +Â Â Â Â Â Â Â  fan, point, pwm);
->> +Â Â Â  ret = xe_hwmon_update_user_fan_point(hwmon, fan, point, 
->> point_count, 0, pwm);
->> +
->> +unlock:
->> +Â Â Â  mutex_unlock(&hwmon->hwmon_lock);
->> +
->> +Â Â Â  return ret ? ret : count;
->> +}
->> +
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point1_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 0));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point1_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 0));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point2_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 1));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point2_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 1));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point3_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 2));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point3_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 2));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point4_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 3));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point4_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 3));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point5_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 4));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point5_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 4));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point6_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 5));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point6_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 5));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point7_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 6));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point7_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 6));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point8_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 7));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point8_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 7));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point9_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 8));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point9_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 8));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point10_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 9));
->> +static SENSOR_DEVICE_ATTR(pwm1_auto_point10_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(0, 9));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point1_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 0));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point1_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 0));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point2_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 1));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point2_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 1));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point3_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 2));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point3_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 2));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point4_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 3));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point4_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 3));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point5_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 4));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point5_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 4));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point6_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 5));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point6_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 5));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point7_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 6));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point7_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 6));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point8_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 7));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point8_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 7));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point9_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 8));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point9_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 8));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point10_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 9));
->> +static SENSOR_DEVICE_ATTR(pwm2_auto_point10_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(1, 9));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point1_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 0));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point1_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 0));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point2_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 1));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point2_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 1));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point3_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 2));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point3_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 2));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point4_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 3));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point4_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 3));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point5_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 4));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point5_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 4));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point6_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 5));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point6_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 5));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point7_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 6));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point7_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 6));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point8_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 7));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point8_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 7));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point9_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 8));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point9_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 8));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point10_temp, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_temp_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 9));
->> +static SENSOR_DEVICE_ATTR(pwm3_auto_point10_pwm, 0644,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_show,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  xe_hwmon_pwm_auto_point_pwm_store,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â  XE_CURVE_IDX(2, 9));
->> +
->> +static struct attribute *hwmon_curve_attributes[] = {
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point1_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point2_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point3_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point4_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point5_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point6_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point7_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point8_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point9_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point10_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point1_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point2_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point3_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point4_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point5_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point6_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point7_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point8_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point9_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm1_auto_point10_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point1_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point2_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point3_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point4_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point5_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point6_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point7_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point8_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point9_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point10_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point1_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point2_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point3_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point4_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point5_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point6_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point7_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point8_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point9_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm2_auto_point10_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point1_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point2_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point3_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point4_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point5_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point6_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point7_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point8_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point9_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point10_temp.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point1_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point2_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point3_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point4_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point5_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point6_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point7_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point8_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point9_pwm.dev_attr.attr,
->> +Â Â Â  &sensor_dev_attr_pwm3_auto_point10_pwm.dev_attr.attr,
->> +Â Â Â  NULL
->> +};
->> +
->> +static umode_t xe_hwmon_curve_attributes_visible(struct kobject *kobj,
->> +Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â  struct attribute *attr, int index)
->> +{
->> +Â Â Â  struct device *dev = kobj_to_dev(kobj);
->> +Â Â Â  struct xe_hwmon *hwmon = dev_get_drvdata(dev);
->> +
->> +Â Â Â  /* Temp/PWM pairs for each point. */
->> +Â Â Â  u32 attrs_per_fan = 2 * MAX_FAN_CONTROL_POINTS;
->> +Â Â Â  u32 fan = index / attrs_per_fan;
->> +Â Â Â  u32 local = index % attrs_per_fan;
->> +Â Â Â  u32 point_count;
->> +
->> +Â Â Â  if (!hwmon->xe->info.has_fan_control)
->> +Â Â Â Â Â Â Â  return 0;
->> +
->> +Â Â Â  if (fan >= hwmon->num_fans)
->> +Â Â Â Â Â Â Â  return 0;
->> +
->> +Â Â Â  point_count = 
->> max(hwmon->fi[fan].fan_table[USER_FAN_TABLE].fan_control_point_count,
->> + hwmon->fi[fan].fan_table[STOCK_FAN_TABLE].fan_control_point_count);
->> +
->> +Â Â Â  if (!point_count)
->> +Â Â Â Â Â Â Â  return 0;
->> +
->> +Â Â Â  if (local < MAX_FAN_CONTROL_POINTS)
->> +Â Â Â Â Â Â Â  return (local + 1) <= point_count ? attr->mode : 0;
->> +
->> +Â Â Â  if (local < (2 * MAX_FAN_CONTROL_POINTS))
->> +Â Â Â Â Â Â Â  return (local - MAX_FAN_CONTROL_POINTS + 1) <= point_count ?
->> +Â Â Â Â Â Â Â Â Â Â Â  attr->mode : 0;
->> +
->> +Â Â Â  return 0;
->> +}
->> +
->> +static const struct attribute_group hwmon_curve_attrgroup = {
->> +Â Â Â  .attrs = hwmon_curve_attributes,
->> +Â Â Â  .is_visible = xe_hwmon_curve_attributes_visible,
->> +};
->> +
->> Â  static int xe_hwmon_read_fan_control_info(struct xe_hwmon *hwmon)
->> Â  {
->> Â Â Â Â Â  struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
+> 
+> > 
+> > If this is a production scenario, the last page makes sense, but if
+> > we're already wrapping this in a debug config...
+> > 
+> > Thanks,
+> > Stuart
+> > 
+> > > this is gated behind a debug config option, so shouldn't trigger on
+> > > production.
+> > > 
+> > > Main motivation is around CCS sizing where on some BMG cards the CCS
+> > > offset is programmed misaligned, for whatever reason, and our
+> > > handling
+> > > of that was busted, as found by Linus, leading to some amount of CCS
+> > > storage getting pulled into the allocator as normal VRAM.
+> > > 
+> > > Nothing in our CI farm has such a misaligned offset it would seem,
+> > > however I did get this to pop on my b570, which does also have the
+> > > misaligned CCS offset:
+> > > 
+> > >    Tile 0: Running VRAM memtest...
+> > >    Tile 0: VRAM bounds overlap CCS region! VRAM sizing is incorrect.
+> > > 
+> > > With the fix from Linus, this goes away:
+> > > 
+> > >    Tile 0: Running VRAM memtest...
+> > >    Tile 0: VRAM memtest completed.
+> > > 
+> > > Assisted-by: Gemini:gemini-3.1-pro-preview
+> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > > Cc: Linus Torvalds <torvalds@linux-foundation.org>
+> > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > ---
+> > >   drivers/gpu/drm/xe/xe_device.c     |   8 +
+> > >   drivers/gpu/drm/xe/xe_migrate.c    |  64 ++++++++
+> > >   drivers/gpu/drm/xe/xe_migrate.h    |   6 +
+> > >   drivers/gpu/drm/xe/xe_tile_types.h |   4 +
+> > >   drivers/gpu/drm/xe/xe_vram.c       | 241
+> > > +++++++++++++++++++++++++++++
+> > >   drivers/gpu/drm/xe/xe_vram.h       |  10 ++
+> > >   6 files changed, 333 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_device.c
+> > > b/drivers/gpu/drm/xe/xe_device.c
+> > > index 82e0a555fa69..80008bf5776c 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device.c
+> > > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > > @@ -1051,6 +1051,10 @@ int xe_device_probe(struct xe_device *xe)
+> > >          if (err)
+> > >                  return err;
+> > > +       err = xe_vram_reserve_memtest_bo(xe);
+> > > +       if (err)
+> > > +               return err;
+> > > +
+> > >          for_each_tile(tile, xe, id) {
+> > >                  err = xe_tile_init(tile);
+> > >                  if (err)
+> > > @@ -1067,6 +1071,10 @@ int xe_device_probe(struct xe_device *xe)
+> > >                          return err;
+> > >          }
+> > > +       err = xe_vram_memtest(xe);
+> > > +       if (err)
+> > > +               return err;
+> > > +
+> > >          err = xe_pagefault_init(xe);
+> > >          if (err)
+> > >                  return err;
+> > > diff --git a/drivers/gpu/drm/xe/xe_migrate.c
+> > > b/drivers/gpu/drm/xe/xe_migrate.c
+> > > index 0bf000d7c901..ff45c24d8889 100644
+> > > --- a/drivers/gpu/drm/xe/xe_migrate.c
+> > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> > > @@ -2650,3 +2650,67 @@ void xe_migrate_job_lock_assert(struct
+> > > xe_exec_queue *q)
+> > >   #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+> > >   #include "tests/xe_migrate.c"
+> > >   #endif
+> > > +
+> > > +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
+> > > +int xe_migrate_debug_ccs_overlap(struct xe_migrate *m,
+> > > +                                struct xe_bo *scratch_bo,
+> > > +                                bool write_to_ccs)
+> > > +{
+> > > +       struct xe_device *xe = tile_to_xe(m->tile);
+> > > +       struct xe_gt *gt = m->tile->primary_gt;
+> > > +       struct dma_fence *fence;
+> > > +       struct xe_bb *bb;
+> > > +       struct xe_sched_job *job;
+> > > +       u64 first_page_dpa, clear_L0_ofs, scratch_dpa,
+> > > scratch_L0_ofs;
+> > > +
+> > > +       if (!xe_device_has_flat_ccs(xe))
+> > > +               return -EINVAL;
+> > > +
+> > > +       first_page_dpa = xe_vram_region_dpa_base(m->tile->mem.vram);
+> > > +       clear_L0_ofs = xe_migrate_vram_ofs(xe, first_page_dpa, true);
+> > > +
+> > > +       scratch_dpa = xe_bo_addr(scratch_bo, 0, XE_PAGE_SIZE);
+> > > +       scratch_L0_ofs = xe_migrate_vram_ofs(xe, scratch_dpa, false);
+> > > +
+> > > +       bb = xe_bb_new(gt, EMIT_COPY_CCS_DW + 1, xe->info.has_usm);
+> > > +       if (IS_ERR(bb)) {
+> > > +               drm_warn(&xe->drm, "Failed to create bb for VRAM
+> > > overlap check\n");
+> > > +               return PTR_ERR(bb);
+> > > +       }
+> > > +
+> > > +       /* 4MB payload = 8KB CCS metadata */
+> > > +       if (write_to_ccs) {
+> > > +               emit_copy_ccs(gt, bb, clear_L0_ofs, true,
+> > > +                             scratch_L0_ofs, false, SZ_4M);
+> > > +       } else {
+> > > +               emit_copy_ccs(gt, bb, scratch_L0_ofs, false,
+> > > +                             clear_L0_ofs, true, SZ_4M);
+> > > +       }
+> > > +
+> > > +       bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+> > > +
+> > > +       job = xe_bb_create_migration_job(m->q, bb,
+> > > +                                        xe_migrate_batch_base(m, xe-
+> > > > info.has_usm),
+> > > +                                        0);
+> > > +       if (!IS_ERR(job)) {
+> > > +               xe_sched_job_add_migrate_flush(job, MI_FLUSH_DW_CCS);
+> > > +
+> > > +               mutex_lock(&m->job_mutex);
+> > > +               xe_sched_job_arm(job);
+> > > +
+> > > +               fence = dma_fence_get(&job->drm.s_fence->finished);
+> > > +               xe_sched_job_push(job);
+> > > +               mutex_unlock(&m->job_mutex);
+> > > +
+> > > +               dma_fence_wait(fence, false);
+> > > +               dma_fence_put(fence);
+> > > +       } else {
+> > > +               drm_warn(&xe->drm, "Failed to create job for VRAM
+> > > overlap check\n");
+> > > +               xe_bb_free(bb, NULL);
+> > > +               return PTR_ERR(job);
+> > > +       }
+> > > +
+> > > +       xe_bb_free(bb, NULL);
+> > > +       return 0;
+> > > +}
+> > > +#endif
+> > > diff --git a/drivers/gpu/drm/xe/xe_migrate.h
+> > > b/drivers/gpu/drm/xe/xe_migrate.h
+> > > index c3a268b01768..a9acc62f78f0 100644
+> > > --- a/drivers/gpu/drm/xe/xe_migrate.h
+> > > +++ b/drivers/gpu/drm/xe/xe_migrate.h
+> > > @@ -182,4 +182,10 @@ static inline void
+> > > xe_migrate_job_lock_assert(struct xe_exec_queue *q)
+> > >   void xe_migrate_job_lock(struct xe_migrate *m, struct xe_exec_queue
+> > > *q);
+> > >   void xe_migrate_job_unlock(struct xe_migrate *m, struct
+> > > xe_exec_queue *q);
+> > > +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
+> > > +int xe_migrate_debug_ccs_overlap(struct xe_migrate *m,
+> > > +                                struct xe_bo *scratch_bo,
+> > > +                                bool write_to_ccs);
+> > > +#endif
+> > > +
+> > >   #endif
+> > > diff --git a/drivers/gpu/drm/xe/xe_tile_types.h
+> > > b/drivers/gpu/drm/xe/xe_tile_types.h
+> > > index 0048100ccb72..e1368c04846a 100644
+> > > --- a/drivers/gpu/drm/xe/xe_tile_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_tile_types.h
+> > > @@ -97,6 +97,10 @@ struct xe_tile {
+> > >                   * Only main GT has page reclaim list allocations.
+> > >                   */
+> > >                  struct xe_sa_manager *reclaim_pool;
+> > > +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
+> > > +               /** @mem.memtest_bo: VRAM overlap check BO */
+> > > +               struct xe_bo *memtest_bo;
+> > > +#endif
+> > >          } mem;
+> > >          /** @sriov: tile level virtualization data */
+> > > diff --git a/drivers/gpu/drm/xe/xe_vram.c
+> > > b/drivers/gpu/drm/xe/xe_vram.c
+> > > index 0a2f1ab8416e..4a79580c5315 100644
+> > > --- a/drivers/gpu/drm/xe/xe_vram.c
+> > > +++ b/drivers/gpu/drm/xe/xe_vram.c
+> > > @@ -17,8 +17,11 @@
+> > >   #include "xe_device.h"
+> > >   #include "xe_force_wake.h"
+> > >   #include "xe_gt_mcr.h"
+> > > +#include "xe_map.h"
+> > > +#include "xe_migrate.h"
+> > >   #include "xe_mmio.h"
+> > >   #include "xe_sriov.h"
+> > > +#include "xe_tile.h"
+> > >   #include "xe_tile_sriov_vf.h"
+> > >   #include "xe_ttm_vram_mgr.h"
+> > >   #include "xe_vram.h"
+> > > @@ -403,3 +406,241 @@ resource_size_t
+> > > xe_vram_region_actual_physical_size(const struct xe_vram_region
+> > >          return vram ? vram->actual_physical_size : 0;
+> > >   }
+> > >   EXPORT_SYMBOL_IF_KUNIT(xe_vram_region_actual_physical_size);
+> > > +
+> > > +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
+> > > +static void memtest_bo_cleanup(void *arg)
+> > > +{
+> > > +       struct xe_device *xe = arg;
+> > > +
+> > > +       xe_vram_free_memtest_bos(xe);
+> > > +}
+> > > +
+> > > +int xe_vram_reserve_memtest_bo(struct xe_device *xe)
+> > > +{
+> > > +       struct xe_tile *tile;
+> > > +       u8 id;
+> > > +
+> > > +       if (IS_SRIOV_VF(xe))
+> > > +               return 0;
+> > > +
+> > > +       for_each_tile(tile, xe, id) {
+> > > +               u64 vram_size;
+> > > +
+> > > +               if (!tile->mem.vram)
+> > > +                       continue;
+> > > +
+> > > +               if (tile->mem.vram->io_size < tile->mem.vram-
+> > > > usable_size) {
+> > > +                       drm_info(&xe->drm,
+> > > +                                "Tile %d: Small-BAR system detected,
+> > > skipping VRAM memtest\n",
+> > > +                                id);
+> > > +                       continue;
+> > > +               }
+> > > +
+> > > +               vram_size = tile->mem.vram->usable_size;
+> > > +
+> > > +               tile->mem.memtest_bo =
+> > > xe_bo_create_pin_map_at_novm(xe, tile, SZ_64K,
+> > > +
+> > > vram_size - SZ_64K,
+> > > +
+> > > ttm_bo_type_kernel,
+> > > +
+> > > XE_BO_FLAG_VRAM_IF_DGFX(tile),
+> > > +
+> > > 0, false);
+> > > +               if (IS_ERR(tile->mem.memtest_bo)) {
+> > > +                       drm_warn(&xe->drm, "Tile %d: Failed to
+> > > reserve memtest BO\n", id);
+> > > +                       tile->mem.memtest_bo = NULL;
+> > > +                       continue;
+> > > +               }
+> > > +
+> > > +               drm_info(&xe->drm, "Tile %d: Reserved memtest BO at
+> > > offset 0x%llx\n",
+> > > +                        id, vram_size - SZ_64K);
+> > > +       }
+> > > +
+> > > +       return devm_add_action_or_reset(xe->drm.dev,
+> > > memtest_bo_cleanup, xe);
+> > > +}
+> > > +
+> > > +void xe_vram_free_memtest_bos(struct xe_device *xe)
+> > > +{
+> > > +       struct xe_tile *tile;
+> > > +       u8 id;
+> > > +
+> > > +       for_each_tile(tile, xe, id) {
+> > > +               if (tile->mem.memtest_bo) {
+> > > +                       xe_bo_unpin_map_no_vm(tile->mem.memtest_bo);
+> > > +                       tile->mem.memtest_bo = NULL;
+> > > +               }
+> > > +       }
+> > > +}
+> > > +
+> > > +int xe_vram_memtest(struct xe_device *xe)
+> > > +{
+> > > +       struct xe_tile *tile;
+> > > +       u8 id;
+> > > +       int err = 0;
+> > > +
+> > > +       if (IS_SRIOV_VF(xe))
+> > > +               return 0;
+> > > +
+> > > +       for_each_tile(tile, xe, id) {
+> > > +               struct xe_bo *last_page_bo = tile->mem.memtest_bo;
+> > > +               struct dma_fence *fence;
+> > > +               bool overlap = false;
+> > > +               int i;
+> > > +               u8 val;
+> > > +
+> > > +               if (!last_page_bo || !tile->migrate)
+> > > +                       continue;
+> > > +
+> > > +               drm_info(&xe->drm, "Tile %d: Running VRAM
+> > > memtest...\n", id);
+> > > +
+> > > +               /* CPU write and readback first and last byte of the
+> > > last page */
+> > > +               xe_map_wr(xe, &last_page_bo->vmap, 0, u8, 0xA5);
+> > > +               xe_map_wr(xe, &last_page_bo->vmap, SZ_64K - 1, u8,
+> > > 0x5A);
+> > > +
+> > > +               val = xe_map_rd(xe, &last_page_bo->vmap, 0, u8);
+> > > +               if (drm_WARN(&xe->drm, val != 0xA5,
+> > > +                            "Tile %d: CPU memtest failed at offset 0
+> > > (expected 0xA5, got 0x%02x)\n",
+> > > +                            id, val)) {
+> > > +                       err = -EIO;
+> > > +                       goto unpin;
+> > > +               }
+> > > +
+> > > +               val = xe_map_rd(xe, &last_page_bo->vmap, SZ_64K - 1,
+> > > u8);
+> > > +               if (drm_WARN(&xe->drm, val != 0x5A,
+> > > +                            "Tile %d: CPU memtest failed at offset
+> > > 65535 (expected 0x5A, got 0x%02x)\n",
+> > > +                            id, val)) {
+> > > +                       err = -EIO;
+> > > +                       goto unpin;
+> > > +               }
+> > > +
+> > > +               /* Non-CCS access via GPU on the last page */
+> > > +               xe_bo_lock(last_page_bo, false);
+> > > +               fence = xe_migrate_clear(tile->migrate, last_page_bo,
+> > > +                                        last_page_bo->ttm.resource,
+> > > +
+> > > XE_MIGRATE_CLEAR_FLAG_BO_DATA);
+> > > +               xe_bo_unlock(last_page_bo);
+> > > +
+> > > +               if (!IS_ERR(fence)) {
+> > > +                       dma_fence_wait(fence, false);
+> > > +                       dma_fence_put(fence);
+> > > +               } else {
+> > > +                       err = PTR_ERR(fence);
+> > > +                       goto unpin;
+> > > +               }
+> > > +
+> > > +               val = xe_map_rd(xe, &last_page_bo->vmap, 0, u8);
+> > > +               if (drm_WARN(&xe->drm, val != 0x00,
+> > > +                            "Tile %d: GPU memtest clear failed at
+> > > offset 0 (expected 0x00, got 0x%02x)\n",
+> > > +                            id, val)) {
+> > > +                       err = -EIO;
+> > > +                       goto unpin;
+> > > +               }
+> > > +
+> > > +               /*
+> > > +                * Check for CCS overlap on the root tile.
+> > > +                *
+> > > +                * TODO: maybe extend if we ever get multi-tile +
+> > > CCS. Pay
+> > > +                * special attention to the l2 flush below. Currently
+> > > that is
+> > > +                * hard coded to the root tile.
+> > > +                */
+> > > +               if (!id && xe_device_has_flat_ccs(xe) &&
+> > > +                   GRAPHICS_VERx100(xe) >= 2000) {
+> > > +                       struct xe_bo *scratch_bo_before;
+> > > +                       struct xe_bo *scratch_bo_after;
+> > > +
+> > > +                       scratch_bo_before =
+> > > xe_bo_create_pin_map_novm(xe, tile, SZ_64K,
+> > > +
+> > > ttm_bo_type_kernel,
+> > > +
+> > > XE_BO_FLAG_VRAM_IF_DGFX(tile),
+> > > +
+> > > false);
+> > > +                       if (IS_ERR(scratch_bo_before)) {
+> > > +                               err = PTR_ERR(scratch_bo_before);
+> > > +                               goto unpin;
+> > > +                       }
+> > > +
+> > > +                       scratch_bo_after =
+> > > xe_bo_create_pin_map_novm(xe, tile, SZ_64K,
+> > > +
+> > > ttm_bo_type_kernel,
+> > > +
+> > > XE_BO_FLAG_VRAM_IF_DGFX(tile),
+> > > +
+> > > false);
+> > > +                       if (IS_ERR(scratch_bo_after)) {
+> > > +                               xe_bo_unpin_map_no_vm(scratch_bo_befo
+> > > re);
+> > > +                               err = PTR_ERR(scratch_bo_after);
+> > > +                               goto unpin;
+> > > +                       }
+> > > +
+> > > +                       /* Save original CCS metadata for PA 0 + */
+> > > +                       err = xe_migrate_debug_ccs_overlap(tile-
+> > > > migrate, scratch_bo_before, false);
+> > > +                       if (err) {
+> > > +                               xe_bo_unpin_map_no_vm(scratch_bo_befo
+> > > re);
+> > > +                               xe_bo_unpin_map_no_vm(scratch_bo_afte
+> > > r);
+> > > +                               goto unpin;
+> > > +                       }
+> > > +
+> > > +                       /*
+> > > +                        * Fill last page. If there is CCS overlap in
+> > > the last
+> > > +                        * page this will snag the raw CCS storage.
+> > > +                        */
+> > > +                       xe_map_memset(xe, &last_page_bo->vmap, 0,
+> > > 0x5A, SZ_64K);
+> > > +                       xe_device_wmb(xe);
+> > > +
+> > > +                       /*
+> > > +                        * Global invalidation. Some BMG SKUs will
+> > > cache the BAR
+> > > +                        * writes in the GPU side VRAM cache. Make
+> > > sure above
+> > > +                        * writes are fully flushed out to VRAM, so
+> > > this is
+> > > +                        * hopefully more well behaved with the CCS
+> > > unit, if
+> > > +                        * there is indeed CCS overlap with normal
+> > > VRAM. Since
+> > > +                        * there is a separate CCS cache, the CCS
+> > > unit might not
+> > > +                        * respect the GPU VRAM cache for CCS
+> > > accesses, so opt
+> > > +                        * for being super careful here.
+> > > +                        */
+> > > +                       xe_device_l2_flush(xe, true);
+> > > +
+> > > +                       /* Use GPU to clear CCS state for PA 0 */
+> > > +                       xe_map_memset(xe, &scratch_bo_after->vmap, 0,
+> > > 0x00, SZ_64K);
+> > > +                       err = xe_migrate_debug_ccs_overlap(tile-
+> > > > migrate, scratch_bo_after, true);
+> > > +                       if (err) {
+> > > +                               xe_bo_unpin_map_no_vm(scratch_bo_befo
+> > > re);
+> > > +                               xe_bo_unpin_map_no_vm(scratch_bo_afte
+> > > r);
+> > > +                               goto unpin;
+> > > +                       }
+> > > +                       /*
+> > > +                        * Global invalidation. Ensure CCS caches
+> > > really are
+> > > +                        * nuked and the raw CCS data is visible in
+> > > VRAM, for
+> > > +                        * the below access.
+> > > +                        */
+> > > +                       xe_device_l2_flush(xe, true);
+> > > +
+> > > +                       /* Check if last_page_bo was corrupted by the
+> > > GPU CCS clear */
+> > > +                       for (i = 0; i < SZ_64K; i += 8) {
+> > > +                               u64 payload = xe_map_rd(xe,
+> > > &last_page_bo->vmap, i, u64);
+> > > +
+> > > +                               if (payload != 0x5A5A5A5A5A5A5A5AULL)
+> > > {
+> > > +                                       overlap = true;
+> > > +                                       break;
+> > > +                               }
+> > > +                       }
+> > > +
+> > > +                       /* Restore original CCS metadata for PA 0 +
+> > > */
+> > > +                       err = xe_migrate_debug_ccs_overlap(tile-
+> > > > migrate, scratch_bo_before, true);
+> > > +                       if (err)
+> > > +                               drm_warn(&xe->drm, "Failed to restore
+> > > CCS metadata\n");
+> > > +
+> > > +                       xe_bo_unpin_map_no_vm(scratch_bo_before);
+> > > +                       xe_bo_unpin_map_no_vm(scratch_bo_after);
+> > > +               }
+> > > +
+> > > +               if (drm_WARN(&xe->drm, overlap,
+> > > +                            "Tile %d: VRAM bounds overlap CCS
+> > > region! VRAM sizing is incorrect.\n",
+> > > +                            id)) {
+> > > +                       err = -EINVAL;
+> > > +                       goto unpin;
+> > > +               }
+> > > +
+> > > +               drm_info(&xe->drm, "Tile %d: VRAM memtest
+> > > completed.\n", id);
+> > > +
+> > > +unpin:
+> > > +               if (err)
+> > > +                       break;
+> > > +       }
+> > > +
+> > > +       xe_vram_free_memtest_bos(xe);
+> > > +
+> > > +       return err;
+> > > +}
+> > > +#endif
+> > > diff --git a/drivers/gpu/drm/xe/xe_vram.h
+> > > b/drivers/gpu/drm/xe/xe_vram.h
+> > > index dd1c8bf17922..38425d81f777 100644
+> > > --- a/drivers/gpu/drm/xe/xe_vram.h
+> > > +++ b/drivers/gpu/drm/xe/xe_vram.h
+> > > @@ -23,4 +23,14 @@ resource_size_t xe_vram_region_dpa_base(const
+> > > struct xe_vram_region *vram);
+> > >   resource_size_t xe_vram_region_usable_size(const struct
+> > > xe_vram_region *vram);
+> > >   resource_size_t xe_vram_region_actual_physical_size(const struct
+> > > xe_vram_region *vram);
+> > > +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
+> > > +int xe_vram_reserve_memtest_bo(struct xe_device *xe);
+> > > +void xe_vram_free_memtest_bos(struct xe_device *xe);
+> > > +int xe_vram_memtest(struct xe_device *xe);
+> > > +#else
+> > > +static inline int xe_vram_reserve_memtest_bo(struct xe_device *xe) {
+> > > return 0; }
+> > > +static inline void xe_vram_free_memtest_bos(struct xe_device *xe) {}
+> > > +static inline int xe_vram_memtest(struct xe_device *xe) { return 0;
+> > > }
+> > > +#endif
+> > > +
+> > >   #endif
+> > 
+> 
