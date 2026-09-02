@@ -4,59 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C189EC61DD6
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 14:36:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD229C624D3
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 14:41:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7178A10E00E;
-	Wed,  2 Sep 2026 14:36:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C45710E021;
+	Wed,  2 Sep 2026 14:41:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h7cJDA4E";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Jxboh07r";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FEDF10E00E
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 14:36:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788359808; x=1819895808;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=tzSkLlseCDwogDPQUmH8XLhXlBQfkVYvp/zSZw1UfD4=;
- b=h7cJDA4Eki4c0r6DwpEYWOhaJzVk+xCD3Z2B6q32B90ckcCis5DlkXVx
- hH06L9GJEhGP4d50VtdjdIL06wkzUb3ySknnge0i8HR1/2ZqRBcpMrj2E
- 6041FuRHR1yyb0HuMc0n+hT51HrjUFzYVLt+ZMd0dXzvSXDIuVNuEy1sF
- IIuxjttPpHO6cOEngxWby0JFMJZ7+iBhp71ozooKgSnjfzRtGYurnExGU
- dW85YWkqKNn52WRetgDmj6HqJAsjiEPYkQODJEo2KtWOzf5jC+fGcqWDY
- T+dPY5+GpKLgY9NDTfWmS8XJH2V1qm/1FinFqa1W8XO9ZvwYdugPpfljj g==;
-X-CSE-ConnectionGUID: DZA1haGBQq+F8A+6a7Y47g==
-X-CSE-MsgGUID: W9d18sXmRqOclTq3MA2kLw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11894"; a="88945066"
-X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="88945066"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 07:36:48 -0700
-X-CSE-ConnectionGUID: rs35QUJlQd6KbgL2iaoLmw==
-X-CSE-MsgGUID: gs0hHtCKReqFEKgFbkMLDg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="274699551"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.245.174])
- ([10.245.245.174])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 07:36:47 -0700
-Message-ID: <ec26b63e-9201-42dd-a5b1-129664e4cb0e@intel.com>
-Date: Wed, 2 Sep 2026 15:36:45 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/5] drm/xe/vram: revamp CPU VRAM mapping
-To: sashiko-reviews@lists.linux.dev
-Cc: intel-xe@lists.freedesktop.org
-References: <20260902124117.918018-7-matthew.auld@intel.com>
- <20260902124117.918018-10-matthew.auld@intel.com>
- <20260902131208.497C81F000E9@smtp.kernel.org>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260902131208.497C81F000E9@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14ED610E021;
+ Wed,  2 Sep 2026 14:41:31 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id F1CD7402FB;
+ Wed,  2 Sep 2026 14:41:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF131F000E9;
+ Wed,  2 Sep 2026 14:41:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788360090;
+ bh=HoNRIq8axkeZlkW9x5KJodxcA+EN2kvUq8aKX/Emc8E=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=Jxboh07rLuZTl8hMMDRVolFd51k06DSXbbWZJeMeyGTuDGgZhwjBdBGQCjSWF0AnT
+ Fa7d8iLaQqndW5n1Qp76vCnAStRmT5wuBiPSWoH1c7mPiykfMADFD5M5j7yZuEyx8X
+ LOz6YFC9MBtKV1PQ8ivJ3gNEBq6pzk3yfzruu2tZlhuq6t/6Uv1+hDz+7XRrx5OKD6
+ aTGGyymjxvbA/2FU7FRwrmBbosTVHrXSH2DFqI+lDWgra20Nk0Q7fGtaGM1oc0/T0c
+ deHWT2Dp5E6C5VjsGlEin0vW4Sl8nY/aie2K1hm8wLtp1r7v5N/guduyeyA4dCSVpj
+ RM+FwgDkkX+3g==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 2/2] perf: Add checks to prevent null ptr access
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+In-Reply-To: <20260902141824.733112-3-vinay.belgaumkar@intel.com>
+References: <20260902141824.733112-1-vinay.belgaumkar@intel.com>
+ <20260902141824.733112-3-vinay.belgaumkar@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 02 Sep 2026 14:41:30 +0000
+Message-Id: <20260902144130.9FF131F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,73 +52,98 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 02/09/2026 14:12, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> 
-> Pre-existing issues:
-> - [High] The panic handler incorrectly computes the virtual address for stolen memory framebuffers, silently corrupting normal VRAM instead of drawing the panic screen.
-> --
-> 
-> commit 122b98d2306bc2a11fb8cd83e0ebcab780bfb24e
-> Author: Matthew Auld <matthew.auld@intel.com>
-> 
-> drm/xe/vram: revamp CPU VRAM mapping
-> 
-> This commit moves the devm_ioremap_wc() call to vram_region_init(), mapping
-> VRAM on a per-tile basis restricted to usable_size. It helps catch
-> out-of-bounds CPU writes by placing a guard page at the end of each per-tile
-> mapping.
-> 
->> diff --git a/drivers/gpu/drm/xe/display/xe_panic.c b/drivers/gpu/drm/xe/display/xe_panic.c
->> index 12c6fb99015dd..1a6cee25e9d76 100644
->> --- a/drivers/gpu/drm/xe/display/xe_panic.c
->> +++ b/drivers/gpu/drm/xe/display/xe_panic.c
->> @@ -52,7 +52,8 @@ static void xe_panic_page_set_pixel(struct drm_scanout_buffer *sb, unsigned int
->>   	if (new_page != panic->page) {
->>   		if (xe_bo_is_vram(bo)) {
->>   			/* Display is always mapped on root tile */
->> -			struct xe_vram_region *vram = xe_bo_device(bo)->mem.vram;
->> +			struct xe_vram_region *vram =
->> +				xe_device_get_root_tile(xe_bo_device(bo))->mem.vram;
->>   
->>   			if (panic->page < 0 || new_page < panic->page) {
->>   				xe_res_first(bo->ttm.resource, new_page * PAGE_SIZE,
-> 
-> [Severity: High]
-> This isn't a bug introduced by this patch, but does the panic handler
-> incorrectly compute the virtual address for stolen memory framebuffers?
-> 
-> When a kernel panic occurs while the active framebuffer is in stolen memory
-> (XE_PL_STOLEN), xe_bo_is_vram() returns true. The code in
-> xe_panic_page_set_pixel() then adds panic->res.start (which is an offset
-> starting at 0 within the stolen region) to vram->mapping (which maps normal
-> VRAM) slightly below this hunk:
-> 
->      iosys_map_set_vaddr_iomem(&panic->vmap,
->                                vram->mapping + panic->res.start);
-> 
-> This could silently corrupt normal VRAM instead of drawing the panic screen.
-> 
-> While this is a pre-existing issue, restricting vram->mapping to
-> usable_size in this patch makes it structurally impossible to fix by merely
-> correcting the offset, as the stolen memory region is explicitly excluded
-> from the mapping.
-> 
-> Should the panic handler be updated to use xe->mem.stolen_mgr->mapping for
-> XE_PL_STOLEN buffers?
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
 
-xe_bo_is_vram() will only return true for dgfx + stolen or normal VRAM, 
-but we would never want to put frame buffers in the stolen part of VRAM, 
-and there is no path that would lead to such a thing. The stolen part of 
-VRAM is quite small and is a precious resource for stuff like FBC.
+Pre-existing issues:
+- [High] The lockless checks for revoked state and NULL PMU pointers are in=
+sufficient to prevent a Use-After-Free of the PMU structure or a NULL point=
+er dereference during concurrent unregistration.
+--
 
-It might be worth checking for this in xe_panic_setup() to make it 
-bulletproof though.
+commit 4a985bf8ccfd6853c89a279d4b7181e83c33bcef
+Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-> 
-> [ ... ]
-> 
+perf: Add checks to prevent null ptr access
 
+This commit adds a check for revoked states in perf_event_read_local() and
+a null pointer check for the PMU in __perf_event_read_cpu().
+
+> diff --git a/kernel/events/core.c b/kernel/events/core.c
+> index 7777e82aad5e7..059f82f0cadd4 100644
+> --- a/kernel/events/core.c
+> +++ b/kernel/events/core.c
+> @@ -4788,14 +4788,19 @@ static inline const struct cpumask *perf_scope_cp=
+u_topology_cpumask(unsigned int
+> =20
+>  static int __perf_event_read_cpu(struct perf_event *event, int event_cpu)
+>  {
+> +	struct pmu *pmu =3D READ_ONCE(event->pmu);
+>  	int local_cpu =3D smp_processor_id();
+>  	u16 local_pkg, event_pkg;
+> =20
+>  	if ((unsigned)event_cpu >=3D nr_cpu_ids)
+>  		return event_cpu;
+> =20
+> +	if (!pmu)
+> +		return -ENODEV;
+> +
+
+[Severity: High]
+This is a pre-existing issue, but does this lockless check provide a false
+sense of security against concurrent PMU unregistration? A concurrent
+perf_pmu_unregister() can set event->pmu =3D NULL and free the PMU memory. =
+Since
+this check relies on a cached pointer without holding locks that serialize
+against unregistration (e.g., ctx->lock), the PMU can be freed immediately
+after this check passes.
+
+>  	if (event->group_caps & PERF_EV_CAP_READ_SCOPE) {
+> -		const struct cpumask *cpumask =3D perf_scope_cpu_topology_cpumask(even=
+t->pmu->scope, event_cpu);
+> +		const struct cpumask *cpumask =3D perf_scope_cpu_topology_cpumask(pmu-=
+>scope,
+> +										event_cpu);
+
+[Severity: High]
+This is a pre-existing issue, but can this lead to a Use-After-Free when
+accessing pmu->scope? If the PMU is unregistered and freed by another CPU
+after we cache it but before we dereference it here, pmu->scope will read f=
+rom
+freed memory.
+
+[ ... ]
+
+> @@ -4917,6 +4922,11 @@ int perf_event_read_local(struct perf_event *event=
+, u64 *value,
+>  		goto out;
+>  	}
+> =20
+> +	if (READ_ONCE(event->state) <=3D PERF_EVENT_STATE_REVOKED) {
+> +		ret =3D -ENODEV;
+> +		goto out;
+> +	}
+> +
+
+[Severity: High]
+This is a pre-existing issue, but is this check vulnerable to a TOCTOU race?
+The event state can change immediately after this check if the event contex=
+t is
+inactive or belongs to a different CPU, allowing a concurrent unregistratio=
+n to
+detach the event and free the PMU while perf_event_read_local() continues
+executing. This leaves the subsequent call to event->pmu->read(event)
+unprotected, potentially resulting in a NULL pointer dereference or
+Use-After-Free.
+
+>  	/*
+>  	 * Get the event CPU numbers, and adjust them to local if the event is
+>  	 * a per-package event that can be read locally
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260902141824.7331=
+12-1-vinay.belgaumkar@intel.com?part=3D2
