@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C6EDC61DFD
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 09:05:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6BE4C624D0
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 09:07:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB3BA10F066;
-	Wed,  2 Sep 2026 09:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54B9810F088;
+	Wed,  2 Sep 2026 09:07:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QHgIlgl5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kpXfeor3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 644C310F0C8
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 09:05:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D54F10F088
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 09:07:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788339952; x=1819875952;
+ t=1788340065; x=1819876065;
  h=from:date:to:cc:subject:in-reply-to:message-id:
  references:mime-version;
- bh=HV83HFsC/vRxarZreJHWDr4ZlsxcgpO0Br1Wo72qxiE=;
- b=QHgIlgl5oFn9pYPldQyb243Mwr6oP96IMuYxIK+3s8fmh6eq/RTkQXYP
- a2SOKdV6h9eprLaFUCmNN0eIy1cWhR5AtR+gBegwNW4A3V6l4gGBBaU8T
- HY2qVu8sCfvqXcj4/YzdCj0o+zGevbo5AVGQivr908XdffXKbekNeNdrI
- oCYDvBvKJ9LZfx1hadbpFiomCX8OEWLBaz+YLp9WK767Ww1D9w5NDtQVy
- jbCdEZQbPKdhMB8MsRJ8Enm366turLIIwnVyb3+4mGoce0YfDl9PMMCVx
- vzD28VGhsYCddP5CN00W+zCMJnRASZxjAIztQK5CbTvyhEVaO17jatScs w==;
-X-CSE-ConnectionGUID: 9lFMTDKjQ0mVJ0zopR4vJg==
-X-CSE-MsgGUID: ZosjW8bCQQOPkrlzbN0tkg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="92660242"
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="92660242"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 02:05:51 -0700
-X-CSE-ConnectionGUID: lDPv72KmT7SaEXQ8lv2azA==
-X-CSE-MsgGUID: n8zimOrxQTyHmLb5CGNLEQ==
+ bh=24uNEfkJ70aINnryHhjrdD1pIcsXRicv+Qr31a1Grjg=;
+ b=kpXfeor3IMoA5qe09PowWtathcPAs+lGNMHMnaLc/7sI45vzbTGZI26j
+ CVbLwCvApEUX33v8HcGPGN67+oBGu5fcxxvxocefvOvl2y0kPBl+tNUGv
+ 8ZVolojTrUyAWQH7z6Hb3z0nzAahmVgAbejolz+Vt6loaKKG/qXYdwEcz
+ ZBuicoBbahuwdVnmB9HGoU6alNjTNelBxfTuJDJkDWzcXCWdWMAVoH0C9
+ CGrsAmOzStYMl7t/0tB46ytEy9Dnr5twq4VvXlsYE+Kk0TUnO2BRodDzT
+ 7/8Aa7t+G1cuNVR5LYqF2RXxCCq3ZUsVX/Zb4+vC49xvt1lzlk7kzFDup w==;
+X-CSE-ConnectionGUID: nf+/MadUS0a2ecNItirGQw==
+X-CSE-MsgGUID: niDWYlvET3ioVwdCIkWcRw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="99954609"
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="99954609"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 02:07:44 -0700
+X-CSE-ConnectionGUID: F1AxMNoJQ0aDIFdPLSvvww==
+X-CSE-MsgGUID: oUTL62K3Q/CeL0Ut1gQ3Bg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="265057091"
-Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="269912935"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.185])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 02:05:46 -0700
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 02:07:39 -0700
 From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Wed, 2 Sep 2026 12:05:37 +0300 (EEST)
+Date: Wed, 2 Sep 2026 12:07:32 +0300 (EEST)
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 cc: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org, 
  Hans de Goede <hansg@kernel.org>, matthew.brost@intel.com, 
@@ -54,7 +54,7 @@ cc: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
 Subject: Re: [PATCH v4 02/18] platform/x86/intel/pmt: refactor rmw with a
  return value
 In-Reply-To: <20260901192736.626777-22-michael.j.ruhl@intel.com>
-Message-ID: <82808204-b8a3-9c94-779d-1b1851146d4d@linux.intel.com>
+Message-ID: <5a191af8-3432-4948-9f97-e562f1176557@linux.intel.com>
 References: <20260901192736.626777-20-michael.j.ruhl@intel.com>
  <20260901192736.626777-22-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
@@ -77,8 +77,16 @@ On Tue, 1 Sep 2026, Michael J. Ruhl wrote:
 
 > Upcoming changes will include possible failures from HW
 > accesses.
-> 
+
+Too short line.
+
 > Refactor pmt_crashlog_rwm with a return value.
+
+Also, please include () in the changelog to any function name.
+
+--
+ i.
+
 > 
 > Update all necessary usage to use the return code.
 > 
@@ -217,15 +225,6 @@ On Tue, 1 Sep 2026, Michael J. Ruhl wrote:
 >  
 > -	return count;
 > +	return ret ? ret : count;
-
-You can use the more concise form for these:
-
-	return ret ?: count;
-
-
--- 
- i.
-
 >  }
 >  static DEVICE_ATTR_RW(consumed);
 >  
@@ -326,3 +325,7 @@ You can use the more concise form for these:
 >  static DEVICE_ATTR_RW(trigger);
 >  
 > 
+
+-- 
+ i.
+
