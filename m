@@ -4,67 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BABF1C624DE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4E03C79F81
 	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:59:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8AFD10F682;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD97710F68B;
 	Thu,  3 Sep 2026 15:59:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=metarealtyinc-ca.20251104.gappssmtp.com header.i=@metarealtyinc-ca.20251104.gappssmtp.com header.b="n+66HtLq";
+	dkim=pass (2048-bit key; unprotected) header.d=metarealtyinc-ca.20251104.gappssmtp.com header.i=@metarealtyinc-ca.20251104.gappssmtp.com header.b="E/R8IqMV";
 	dkim-atps=neutral
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com
- [209.85.222.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A86BD10F5A7
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 13:14:36 +0000 (UTC)
-Received: by mail-qk1-f174.google.com with SMTP id
- af79cd13be357-936c02e58dfso228994785a.3
- for <intel-xe@lists.freedesktop.org>; Thu, 03 Sep 2026 06:14:36 -0700 (PDT)
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com
+ [209.85.222.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47EDB10F327
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 19:25:37 +0000 (UTC)
+Received: by mail-qk1-f177.google.com with SMTP id
+ af79cd13be357-936e8bd9caaso134905485a.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 02 Sep 2026 12:25:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=metarealtyinc-ca.20251104.gappssmtp.com; s=20251104; t=1788441276;
- x=1789046076; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=9OzcMW4DCeAVquT/pRer644RBv1Bhzwct6ZyKM2ylb8=;
- b=n+66HtLqDocOOODhyOBR49mTjpgt9BmDMwPZrii6pOlaU3mk2Dohq/py6RARMCsrtP
- m9sb1tiFJYqgeYkBpTnCQNpufr9ftBnz9WGGvB26PHP4rn8JnrT5a30cuBK77TddacQA
- jJvLIx0k4WDZ9Y9xjpA1UotnZ3wyYKr2bTH8fIwVy/yYpERib3bH358blnE/Qj51fap+
- iryPC/GEhMEwzQjEgLV5OX7CEFYuYNZmHPjzL8c+yzx2wNFB8mpPp/AVAe2yZqtMzqHH
- MOcoFmpw/4Yd0BWFOwAPf/o870mf9eXMHYwxj74KoZyOkGJyDKTIgfXCqW2JEx6A+XeP
- JOhA==
+ d=metarealtyinc-ca.20251104.gappssmtp.com; s=20251104; t=1788377136;
+ x=1788981936; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=eOSZwZkh58hDRqe67j4/nlf7KiAfIEb1LAB7CKHGbec=;
+ b=E/R8IqMVLCNlARO/+03vPMCP3Cp3qoRsi3UgdqsDQBRzfmCDeeOfXmKeVX+QUI1CUd
+ oV5Z94ykY0Usnp5YEQgKrLj1GU84eiW75ft+Z/tLzKmtps1+chcl2qam/vMW5khUDuM7
+ FtOdELMe3bWmu2oTaTwBdQQLAW9PoeX6GFbVyA79KBQPCHOb+aSMIkTjrywvc9bE4uhp
+ PMdh4JA3JxkSFheB0K7xVt/nlYRNWBZjGVMR4rhTLemZ90A/xEJH+7psZjynbTGN1rQ2
+ gQuvrsPH6WdoC8p6vNKcIYp3yl5gtgXbzm3nO3i13OMqorOdMiyEDmWPm17a7+H4xT5m
+ FYFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1788441276; x=1789046076;
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=9OzcMW4DCeAVquT/pRer644RBv1Bhzwct6ZyKM2ylb8=;
- b=CRA+JNrCFj9489SDHelBxAZCTpWxnVTzl6mXceh07yH2BiBucs8xWx/XcKGZ2CgniT
- 6y4IGz/JkoE8mPT/e1rm0uSEYYisKBa062BkVghdNC+NBK12UvnYv2fksJ8YWT0ZsZNh
- KbcCNkHdSiDjsaePciPrfQIKCsXhqTkSIBMWPpPnhzTD/ZuvYSTEQLiCOCauXRE22HnC
- 1AiND+DzVSUdwjWMnsYBgHT1PBWFLRbStXqt7lvymtdDKVEDFbc3w50t1ON3IAYFeOwr
- bjLT85kcYzxjAi+cZmxQCzB8+v/1ahGVlPINBmTPdHA7dfcZTVc0aSOlCESe2QdkbwNS
- TUPA==
+ d=1e100.net; s=20251104; t=1788377136; x=1788981936;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=eOSZwZkh58hDRqe67j4/nlf7KiAfIEb1LAB7CKHGbec=;
+ b=P0pGJ4dXx8FZ/+a5Fnx5YXBzVhmu8pkLeFaUqZGhW/N+wei58GvxAcymr9zi9QurLV
+ /Qyhj29QldOglPksQtDYvm0e9jAN34aYNy+jLETPiHJ1/pmvSEQ6c3A5kW5gCV09ggqT
+ 13d8APzUctI3v16gxzCbanHN3o7gDzL/ICTaiPpD05AVNWm/zWtS8Zg/zhHiQOkm3va7
+ uCjVGUTHcA1myvf3iINtw3UxoGGZYRCtHrcKCYT2RODSz0NlIBbzP26xw/qaqQk7Gcrc
+ +lOsyLD7BkF51bHniufD/Z1T6SchGxsM00vLiH2sC9b8M9EIImZA77zAnE3kqXzdhQlz
+ qrcg==
 X-Forwarded-Encrypted: i=1;
- AKwUvByOmOW6c3O2+IytL9s2QYG1GNAtFzjVa++2dGnOH+BHTL76L5A8k5U6j1A+RoNeKJYbrq/PTKVqlg==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++k1CQZeKsuVFMHGcKQCQlgRwi5WqVwkfznFe5dsfWruI4n92pMI
- FjkMDVwHRS2mLlQWm0TQVwyxf3pG6mEYuu4voetulqngFRw4lRjrBJNwRWqWR6kWd4s=
-X-Gm-Gg: AYBFou0GJ3fupHQf5BavLIxO/2Nn4Ehjck0HXjd1pk0SrOiORSfhOQZT1rLaHFFxMOQ
- B81MzCK0CBYKmu7bNL6R/e9lJ4N8rT61tuIoBoHifLU8oQWUsHTLG1KtGm11qbfRzMecVj9R8jD
- VZ9N5cUxG384dZJdNw38bGMeZT9Gxfo4oUxAHTDh+AFBsrj2VxrXduPJ9m5+/zuxo1WBAB0pfjf
- M7L022FIgDjL9IxY41u/IjfiK6suiQaxlYl1CQU9w3TVWdXzCd2nqF2yl6jpLxwDS4v5xOgeO9e
- 2UEv5zvG7qT2VXz1XffFFclv4oHAIA/ysuJ4wthddzBxkGX/6RkmtViRJAH+cmxlC17u7hOAnLQ
- XuWpxpIB3aT+2vNSeSDz9wF3/934k3dlU12jGAWoe1KcQ+gMzlru7JolabojQKxIscPZmHE+KnV
- OkhjKdD8KqK9cy8TtCZTK4KUMTXrEYktxAyTtGT+pUPWry9JpKp6wqdRb4fkG8SEk57K2FTFcvo
- 56XDYTpkkzF2fBTXrvGaATgBOr5xSbUE9XrOjo2W7I7uh4lJG+UYk6IB6fc4cnthyHbgrwcX40T
- cHCl7UUWNSNYU2PYQ6OUeWr9hY7KbC4dfUf63g9WjtoquLS1OpSA9hhBWJg=
-X-Received: by 2002:a05:620a:280d:b0:939:6dbd:de55 with SMTP id
- af79cd13be357-9396dbdde9dmr741980585a.18.1788441275541; 
- Thu, 03 Sep 2026 06:14:35 -0700 (PDT)
+ AKwUvByuRfs81O/QGtcp8BEXF1X2NwRVC2rwSJPIwIDkD5uT6NdRQb2prBRmmHy13sMg7O3DdZxmFlDjlQ==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++nf7+Mx/exXPaMCcEbT/Vah1ZWfMB5gE0AU24oQfWUr4MDfC6ix
+ k+cmp3uK3Iq+FPBazeDl+t8m3L1eL6wJA4Pfnbbx8qb9yCrQcBVT+d4AeGKA+VawKMQ=
+X-Gm-Gg: AYBFou0fqgwqg1vXw/O8CrUql9qWCuLW0BXTrvFRNDcX/wKdn11IIVU2cf0IHbZXxwH
+ +MgPvzcF3IQW/8N7mZepWEjFih7VNVy4gF7uDT7ds8hmil0y7Sky7y9y790KiR7yG49jctF+j+Q
+ QFJPl87uo6gDXsPi7nJ4Ii8sqMICUqbW9ZsLtIqWY6agUHpaMcl+MfBhPQq4Xsrcefl+kzKl2b8
+ dD6qwM+ltyWkScepbr+64I+rbtNh/HP3rgrha/DMjYcVik8KimSYYu0scWLXtOjb3ml9KksGyBT
+ FMh2qIg6RVZ//mZ4UfTJnD2XTdGqeth5wzJZ9CMr2k7SlqVloXLSDUJFcl7tGnmpg1uRcgDO9Mc
+ H+mOChIkz+lc3y+kXwpCcxpw/Y7fOOmzrgWYS1m50pvZYENJFlfv3X+wSyvzBmSKNG/J98mxpT5
+ 2J9JYto5xSRFc7e+O7nczwDWwEHCIZvI1nL6a2dpGKGwIWM8ctxGVI6xf04wRQc1HQbr43BZ1CH
+ Qz0N0AEmmtK7HPLxcyAvm8aDzfjHV2IX1cHVWgUnSViQbJxWrFY/6IhzaNFk6XE2M9aeCdxDUGf
+ INvdg6GXlbYKDBdM7wYCjDkYtqZboCZry9FABzANxp/RXmYOqmt8ZJy3DwXFonW0dV2ryA==
+X-Received: by 2002:a05:620a:a716:b0:939:3cb9:553d with SMTP id
+ af79cd13be357-93960fdf834mr775651485a.38.1788377134732; 
+ Wed, 02 Sep 2026 12:25:34 -0700 (PDT)
 Received: from jake-laptop ([74.244.125.34]) by smtp.gmail.com with ESMTPSA id
- af79cd13be357-9397cebf93asm13692085a.23.2026.09.03.06.14.34
+ af79cd13be357-9396b7ae401sm102436985a.20.2026.09.02.12.25.33
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Sep 2026 06:14:35 -0700 (PDT)
+ Wed, 02 Sep 2026 12:25:34 -0700 (PDT)
 From: Jake Steinman <j@metarealtyinc.ca>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
@@ -74,14 +73,12 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
  Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Subject: Re: [BUG] PTL eDP PSR2 SU / Panel Replay: engine parks in SU_STANDBY,
  panel never refreshed (Dell XPS 16 DA16260)
-Date: Thu,  3 Sep 2026 09:14:32 -0400
-Message-ID: <20260903131432.44250-1-j@metarealtyinc.ca>
+Date: Wed,  2 Sep 2026 15:25:31 -0400
+Message-ID: <20260902192531.44003-1-j@metarealtyinc.ca>
 X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260902192531.44003-1-j@metarealtyinc.ca>
+In-Reply-To: <20260902162150.58778-1-j@metarealtyinc.ca>
 References: <20260902162150.58778-1-j@metarealtyinc.ca>
- <20260902192531.44003-1-j@metarealtyinc.ca>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 03 Sep 2026 15:59:47 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -98,12 +95,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2026-09-03 Jouni Högander wrote:
-> Best to report this :
-> https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+Follow-up after a day of A/B runs, all negative, each verified in the registers
+before the run:
 
-Will do. Filing it in the drm/xe tracker with dmesg from boot to the
-reproduction (drm.debug=0xe), VBT, EDID and the run logs, and I'll post
-the issue number here.
+- TRANS_VBLANK.VBLANK_START programmed with the real vblank start instead of 0
+- guardband forced to the full vblank (127 lines)
+- PSR2_MAN_TRK_CTL in the pre-ADL-P layout (4-line units)
+- ALPM_CTL with ALPM enable / keep FEC / AUX wake sleep hold set for PSR2
+- IO buffer wake at the 5-line minimum
+- PSR_DEBUG masking MEMUP only
+- no PIPE_SRCSZ_ERLY_TPT / DSC SU parameter writes
+- frames-before-SU 2, idle frames 6
+- SW VSC DIP disabled with VSC_SELECT = 3
+- sink: CRC verification bit set, MSA timing ignore cleared
 
-Jake
+Individually and all together: two captures after enable, then SU_STANDBY at
+every frame change, sink 0x200a never reports SU_VALID. Manual TRANS_PUSH
+SEND, CURSURFLIVE and LNL_SFF_CTL writes with the desktop idle are ignored as
+well, and PSR2_SU_STATUS stays at the block counts of the two entry captures.
+
+I have exhausted what can be derived from the driver source. What would settle
+this is a register dump from a Panther Lake machine where PSR2 SU or Panel
+Replay works, taken while it is active: 0x60000-0x610ff, 0x70000-0x707ff,
+0x420c0-0x420cf and 0x16fa00-0x16fa7f, plus DPCD 0x2008/0x200a. If anyone at
+Intel with a PTL eDP system (Windows or Linux) can share such a dump, or point
+at the Bspec condition the PSR2 engine needs to leave SU_STANDBY on Xe3 LPD
+with two VDSC streams, I will do the rest.
+
+Instrumented kernel, scripts and all run logs are available on request.
