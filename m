@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B77CCC624D4
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 16:48:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23C91C624D4
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 16:57:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D91E10E035;
-	Wed,  2 Sep 2026 16:48:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5FFA89906;
+	Wed,  2 Sep 2026 16:57:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KvdMOJfY";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Pq57KQ72";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8940810E035
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 16:48:24 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2279289906
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 16:57:01 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 267C9409C6;
- Wed,  2 Sep 2026 16:48:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD9C51F000E9;
- Wed,  2 Sep 2026 16:48:23 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 6FFF56013A;
+ Wed,  2 Sep 2026 16:57:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F104D1F000E9;
+ Wed,  2 Sep 2026 16:56:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788367704;
- bh=aoBU6bKXIEYqDj7ESzpH1r+U6Q56ky6fFcL/XOfg1GE=;
+ s=k20260515; t=1788368220;
+ bh=YVhWU2DF3Xx0v1etRDMwVGp176JQzgzXMtxHqqmwqwo=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=KvdMOJfYL9j0xOgDd8E8R8YbiRqg1cpgkHOE2gDi4nz883rgn+v6D81lhbVdajaCe
- 1gOvyMj/G7+29isbWVFoAFkgUAY38t04OU7/WX4Wa0oC3Fm701yhbBW2CD9lJ0u/Ef
- W9gK8Qu+d5mov2ARPx5oJySB8HZm2lPQ1iZLVZAITyAJUlsqJPapMQMhzgPeK0N9Iw
- MPLHulOo+nJQDbMpCYXokDMW/VfHv7gMxV3DDP2i9xnjCEvlfMk7Ww5wwoa2Ff3KZr
- b36kueiFEOdZy9vnvwPPpSn7UfZxJ5zoxXEsTbAKSkvxI9MRAYNhJxiaQeEIWHPffG
- iyRT5NHbJrG0Q==
+ b=Pq57KQ72XyizRcFm2uuMteaPEPSMfCrEsrH5AlFzFFGCgQVcZlwUMeFw9VdpiC/jO
+ F8KiXR2vyF/cfLOtwwsGrQQixuzuQS8Bs5YW/M8/nfgVc2v08/FCpmeK1T7sivl1LR
+ C5usVqitSoRQv46DNHgwDPttudKWV7anOnYE4xG8TVGCS/Sh2NlNVQ7Xk1hQoyjZ8k
+ ePvEUdl2Kqqvu4be+YG57b5/oLo4VpkzvRboQWma1cqw+U3/1thIW3j2mSQ0UF5Ja/
+ r1j4S0rJvxX27MxZLXQafCmYUFyq8nkC2AIpb/nXc6bMYh3wEJtQstHXcvWE118q8r
+ mkas7yNS1haaA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH V20 12/15] drm/xe/vram: Check disable_vram_page_offline
- policy in fault handler
+Subject: Re: [PATCH V20 13/15] drm/xe: Expose bad VRAM pages via debugfs
 To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260902145343.465686-29-tejas.upadhyay@intel.com>
+In-Reply-To: <20260902145343.465686-30-tejas.upadhyay@intel.com>
 References: <20260902145343.465686-17-tejas.upadhyay@intel.com>
- <20260902145343.465686-29-tejas.upadhyay@intel.com>
+ <20260902145343.465686-30-tejas.upadhyay@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 02 Sep 2026 16:48:23 +0000
-Message-Id: <20260902164823.DD9C51F000E9@smtp.kernel.org>
+Date: Wed, 02 Sep 2026 16:56:59 +0000
+Message-Id: <20260902165659.F104D1F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,57 +56,112 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] Unratelimited error logging in the VRAM address fault handler ca=
-n cause dmesg flooding and DoS.
+- [Low] Debugfs output computes GPU VRAM page frame numbers and sizes using=
+ host CPU macros (PAGE_SHIFT and PAGE_SIZE), causing silent truncation and =
+incorrect reporting on architectures with non-4K CPU pages.
+- [Low] The VRAM max_pages limit is printed globally using only tile 0's ma=
+nager, ignoring limits of other tiles on multi-tile devices.
 --
 
-commit 5bfee849427fab2b54c95eec2934afe083fd4e87
+commit c12841d073a619e5edeb8c8306adf6fd03042edd
 Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
-drm/xe/vram: Check disable_vram_page_offline policy in fault handler
+drm/xe: Expose bad VRAM pages via debugfs
 
-This commit introduces a check in the VRAM address fault handler to verify =
-the
-disable_vram_page_offline policy. If enabled, it logs the corrupted address
-and returns -EOPNOTSUPP so that RAS can report it without attempting to off=
-line
-the page.
+This commit adds a debugfs file to show offlined and queued VRAM pages
+across all tiles, displaying the page frame number, GPU page size, and
+status flag.
 
 > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe=
 _ttm_vram_mgr.c
-> index 0ab92bc3c6998..00569c5279a83 100644
+> index 00569c5279a83..d9da2454d968e 100644
 > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
 > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+
 [ ... ]
-> @@ -906,6 +907,12 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *=
+
+> @@ -917,3 +918,61 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *=
 xe, u64 addr)
->  	vram_mgr =3D &vr->ttm;
->  	mm =3D &vram_mgr->mm;
-> =20
-> +	if (xe->ras.disable_vram_page_offline) {
-> +		xe_err(xe, "0x%llx is reported as corrupted address by HW\n",
-> +		       addr);
-
-[Severity: Medium]
-Since this page is intentionally kept online and not offlined, can a corrup=
-ted
-VRAM page accessed in a tight loop by a userspace application, or polled
-continuously by the hardware, cause a log flood here?
-
-Could this use a rate-limited logging function to prevent a potential local
-Denial of Service (DoS) from continuous dmesg writes, especially on systems
-with serial consoles?
-
-> +		return -EOPNOTSUPP;
-> +	}
-> +
->  	/* Reserve page at address */
 >  	return xe_ttm_vram_reserve_page_at_addr(xe, addr - vr->dpa_base, vram_m=
 gr, mm);
 >  }
+>  EXPORT_SYMBOL(xe_ttm_vram_handle_addr_fault);
+> +
+> +static int vram_bad_pages_show(struct seq_file *m, void *unused)
+> +{
+> +	struct xe_device *xe =3D m->private;
+> +	struct xe_ttm_vram_offline_resource *pos;
+> +	struct ttm_resource_manager *man;
+> +	struct xe_ttm_vram_mgr *mgr;
+> +	struct xe_tile *tile;
+> +	u8 id;
+> +
+> +	man =3D ttm_manager_type(&xe->ttm, XE_PL_VRAM0);
+> +	if (man)
+> +		/* TODO Hook with RAS to show max_pages fetched from FW */
+> +		seq_printf(m, "max_pages: %d\n",
+> +			   to_xe_ttm_vram_mgr(man)->max_pages);
+
+[Severity: Low]
+Does this correctly represent the limit for multi-tile devices?=20
+
+By querying only the manager for XE_PL_VRAM0, it seems the max_pages
+value is printed as a global limit, which might ignore independent
+offline queue limits configured on subsequent tiles.
+
+> +
+> +	for_each_tile(tile, xe, id) {
+> +		struct xe_vram_region *vr =3D tile->mem.vram;
+> +
+> +		man =3D ttm_manager_type(&xe->ttm, XE_PL_VRAM0 + id);
+> +		if (!man || !vr)
+> +			continue;
+> +		mgr =3D to_xe_ttm_vram_mgr(man);
+> +
+> +		rcu_read_lock();
+> +
+> +		list_for_each_entry_rcu(pos, &mgr->offlined_pages, offlined_link) {
+> +			u64 pfn;
+> +
+> +			pfn =3D (pos->addr + vr->dpa_base) >> PAGE_SHIFT;
+> +			seq_printf(m, "0x%016llx : 0x%016lx : R\n", pfn, PAGE_SIZE);
+
+[Severity: Low]
+Can this cause incorrect PFN calculation and page size reporting on
+architectures with a non-4K CPU page size?=20
+
+Using the host CPU macros PAGE_SHIFT and PAGE_SIZE to compute GPU VRAM=20
+addresses couples the hardware memory topology to host CPU page boundaries.
+On a system with 64K CPU pages, shifting the 4K-aligned GPU address by 16
+truncates the lower 4 bits of the GPU PFN, and reports 64K as the VRAM page
+size instead of 4K.
+
+> +		}
+> +
+> +		list_for_each_entry_rcu(pos, &mgr->queued_pages, queued_link) {
+> +			u64 pfn;
+> +
+> +			pfn =3D (pos->addr + vr->dpa_base) >> PAGE_SHIFT;
+> +			seq_printf(m, "0x%016llx : 0x%016lx : %c\n",
+> +				   pfn, PAGE_SIZE, pos->status ? 'F' : 'P');
+
+[Severity: Low]
+This has the same PAGE_SHIFT and PAGE_SIZE host CPU macro coupling as
+above, which may truncate the PFN and report the wrong size on non-4K CPU
+architectures.
+
+> +		}
+> +
+> +		rcu_read_unlock();
+> +	}
+> +
+> +	return 0;
+> +}
+
+[ ... ]
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260902145343.4656=
-86-17-tejas.upadhyay@intel.com?part=3D12
+86-17-tejas.upadhyay@intel.com?part=3D13
