@@ -4,159 +4,160 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C036FC61DFD
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 07:15:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CD98C61DFD
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 07:15:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 670D410F031;
-	Wed,  2 Sep 2026 07:15:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9B4110F035;
+	Wed,  2 Sep 2026 07:15:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GTgWUout";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P6J281Q/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FFEF10F02E
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 07:15:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4354910F035
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 07:15:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788333318; x=1819869318;
+ t=1788333324; x=1819869324;
  h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=3jyySJ50LWRdTnfJzr5c9sGJM9yi8JhWuqOCwveCFuY=;
- b=GTgWUoutOCgzQexUOqpE3uTCPe0kZ0Rh6C0baAX/pVw3shlI5L+idEeu
- 6c+xfUZIguQF0s/ymPf2XXmw+hn4h81kwQS7Z37Sm19OtyjTGjN15Vb/K
- PWXmyD4M1dGZOM3FWGul/0hALk0JNxWYdqpUmdevnzVsaStDViWUpWh3Y
- cptkkHQzLT4NG4ihQbnZ9SXxB8bBn9MmpGVoSL07jZSj06ScYKeNUe1nC
- OaRKVHXyW8ilOe2u/tBNXfREPAIMY2cylwL5w3Cm3p/0DaTA8VaNfd7zr
- 67rHvWB6uXkzOuyCSVnIgqbCdwwgZzVx12uabyYMxhQKxa7wO61AABPpA g==;
-X-CSE-ConnectionGUID: a6KXllFnSmyl+juihRxETA==
-X-CSE-MsgGUID: cNqqUKyPTHy8APaTXyLKdw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="114324338"
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="114324338"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 00:15:17 -0700
-X-CSE-ConnectionGUID: kPjlPiwzQ/O6yGlwjiSk1A==
-X-CSE-MsgGUID: 7vkGEOsFRUCeSpi/vpyqtA==
+ in-reply-to:mime-version;
+ bh=Ylfrr9SKDa11K+WOIxVDbYzvPor/FQe3lG5tQSaf0l8=;
+ b=P6J281Q/5GN/G+Tk0BkvUpBNtYyyioE7nVlhrVaQsM+hQsMadM2HIxvw
+ p+AnDPi8l68XnfU/ukiSPUa94LXFtaxgR4/dDBen7rB3Wij2Fqs9vy4DK
+ rZbFwMQ6Jv3J99c77Hm6MQ8R6cJXmiKCxphxOsywnArX1FXy6qxxKExCf
+ gwzaiMbxeXMoG8y+i/DrMToNZbXrlYhSOXf3caOXqxkOGyg22tNcrDNUg
+ XvnJVtV6qa8Brj8DeZjeRUiYUS1RMnb5CxnUR+68lATmBl3qvABFtHx2F
+ nIu1pi/UXuF/22iUBoiRlaZHyX3oebfhUH9QL+qceJvAn+xSqP7N0SFcb Q==;
+X-CSE-ConnectionGUID: NAlrJ4kRQ0ifcRW+GSNM5Q==
+X-CSE-MsgGUID: qSe32o85S7CrgXvlRzFMIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="92480935"
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208,217";a="92480935"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 00:15:23 -0700
+X-CSE-ConnectionGUID: iOzbS5tySDGuedt3Nrh9JA==
+X-CSE-MsgGUID: H/ebUdQWQsOfgrLfQvHgcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="266724531"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 00:15:18 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; 
+ d="scan'208,217";a="273511611"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 00:15:23 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 2 Sep 2026 00:15:17 -0700
+ 15.2.2562.46; Wed, 2 Sep 2026 00:15:23 -0700
 Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Wed, 2 Sep 2026 00:15:17 -0700
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.43) by
+ 15.2.2562.46 via Frontend Transport; Wed, 2 Sep 2026 00:15:23 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.54) by
  edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 2 Sep 2026 00:15:14 -0700
+ 15.2.2562.46; Wed, 2 Sep 2026 00:15:21 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Kv2B7/7OtDjfvpQMi/j0N6Lk9/u0GdwBBRZjEu+ZehuEykKmfOeNiaiWEg97n/kepqZ4fo4T6rjpugMSrfcNsDiDUe5ExcqtnDEMpsDvND/bZ42/eSK5Q7LQ6lhnDqIeiNj2wsL73Tv2eSvSXa8NZ9+Gn1YrsU94OdzqAwP653iMU7C9BGnCGweZteyp0l1tsJPRamZ3H2GrA708NI4Cxy8H92eMERqbc84+HG8aq38fRtUStRIXegbr3dD8MUGX4NhKj40sOvxP5NnWZcltf8HRX9EoCPjHzwxx5+VG/9hKeqdWzRI+9H4xmPfMirhtJ2s2/Peq1OGbgUQQDzZ2/Q==
+ b=D1sM1aB7fBYJvoh/qva8c7u0FV431/tCwbm8WrSwzrp2YZ6UpG6ycxHRWe0Jcifkqc+uTl3H6XgnljPbg5iLTHw3Hn+WY3QPAIp4flCyifpguIgrE8RMnA1P9PPYa9ApuA5A5AZaHjHeTTQUQd/JtZZnEGc9MUXRlDmaAHoaKyQ9dFyFGWZjnWO2LgbWO4vQ7eQSBpqLdQU6fC3jKKRGq5UYlZx9xYMH8KsMjPZ8XGxne/rEHM31mby7D3uEVMDadZtRjlUbwD9s/FFEZS5hGePNjP2jHKR0zatrgjUZj/OxFBUX21Ua6v6L6iKiQuO7fKmr4l1V2u3OHsIMcNV3GQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8h0c62S/mzlrBBQNrFjFuyspOHwPHEpIiEpHs+V98tY=;
- b=yIAAhmsX9rYMMdzbxJjurY1joioQ9BCZaHi5hFP4gCh5+nm9C+roSq9tY3EEq4vH9JktImlIouR0wTVYO0yhZBmnBYrGfZgnd5ZZjwx87SdiQl3QDS8f/d0TjaKgzIXuXS+HHcWlh5S/ZTuyy/22rp/fhsY9q3/XDAZiEkj1ldfwxZFsnNlzwbrdo4fmgaqc/KnjOiqSo1bdpVLHa/TPHt540Evdel7VjMPczsB09xsU4mfM3gp6EdsiEGPQ1f8RPpiV+FZ/gJRS7rahtMkFVIa92KML3LXQxey1c2Yoy5Cbi1zD6ooeR+ggoR4KCYw9+hVjGFKSz3IT460+jWVukA==
+ bh=ViikgcwiBaHWzxVnknKQKeJmUsTVBZqQGt/XdVumQBA=;
+ b=MBkd4fzfi7JKtu6LLV1SMGrejrZkYQsSRtQn2ftJuS1FPu30Z7gjreUg5TezBHDxJzpTqmj0FAhIkZO0RqhhY39RHqLeHccNY0SQusA4rbiUfLs2qxJe/fyIlnTaVDTmYDabq81XnJ5zOL2Bo4iMx5bBe8Xpi23J9DkJ3rk06GGz6kaUrx2oWIipO4onfBG/0fmnPmqGjcIRvWm6bvrzrE5EyXrPuNEoOryMTKHHk0I4cwzex3GxT/GooerUJmMWLOIN+YbvEff2U09yYVnM4dnTx04fish728h2pNbarwUfReP1Yt7yQvKdhZ8CvGrZsAuJLp8jBRjGlsFkOYTGLg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH0PR11MB5249.namprd11.prod.outlook.com (2603:10b6:610:e0::17)
- by SJ0PR11MB4989.namprd11.prod.outlook.com (2603:10b6:a03:2d9::22)
+Received: from MN0PR11MB6207.namprd11.prod.outlook.com (2603:10b6:208:3c5::21)
+ by PH3PPF8B755DBFD.namprd11.prod.outlook.com (2603:10b6:518:1::d36)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Wed, 2 Sep
- 2026 07:15:07 +0000
-Received: from CH0PR11MB5249.namprd11.prod.outlook.com
- ([fe80::a665:5444:d558:23c3]) by CH0PR11MB5249.namprd11.prod.outlook.com
- ([fe80::a665:5444:d558:23c3%6]) with mapi id 15.21.0360.008; Wed, 2 Sep 2026
- 07:15:07 +0000
-Message-ID: <d71f2cd8-e1bf-42ea-bd20-654b0224e613@intel.com>
-Date: Wed, 2 Sep 2026 12:44:59 +0530
+ 2026 07:14:57 +0000
+Received: from MN0PR11MB6207.namprd11.prod.outlook.com
+ ([fe80::52eb:929f:a8b2:139d]) by MN0PR11MB6207.namprd11.prod.outlook.com
+ ([fe80::52eb:929f:a8b2:139d%4]) with mapi id 15.21.0360.008; Wed, 2 Sep 2026
+ 07:14:57 +0000
+Content-Type: multipart/alternative;
+ boundary="------------oYOdLHrpKT8z7YR8DedkPu0k"
+Message-ID: <796735b0-8703-4038-9541-3b693939284f@intel.com>
+Date: Wed, 2 Sep 2026 12:44:51 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/9] drm/xe/hwmon: expose pwm[1-3]
-To: "Purkait, Soham" <soham.purkait@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: <rodrigo.vivi@intel.com>, <anshuman.gupta@intel.com>,
- <badal.nilawar@intel.com>, <raag.jadav@intel.com>, <riana.tauro@intel.com>,
- <sk.anirban@intel.com>, <mallesh.koujalagi@intel.com>
-References: <20260717041757.2759084-1-karthik.poosa@intel.com>
- <20260717041757.2759084-5-karthik.poosa@intel.com>
- <b106d161-a6b9-4742-a447-be786619252c@intel.com>
+Subject: Re: [PATCH V18 11/14] drm/xe/vram: Check bad_page_reservation policy
+ in fault handler
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>, Tejas Upadhyay
+ <tejas.upadhyay@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: <himal.prasad.ghimiray@intel.com>, <rodrigo.vivi@intel.com>
+References: <20260826135136.204044-16-tejas.upadhyay@intel.com>
+ <20260826135136.204044-27-tejas.upadhyay@intel.com>
+ <e579d9c6-2c46-4910-a0e8-9e95860ce650@intel.com>
 Content-Language: en-US
-From: "Poosa, Karthik" <karthik.poosa@intel.com>
-In-Reply-To: <b106d161-a6b9-4742-a447-be786619252c@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0101.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d4::15) To CH0PR11MB5249.namprd11.prod.outlook.com
- (2603:10b6:610:e0::17)
+From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
+In-Reply-To: <e579d9c6-2c46-4910-a0e8-9e95860ce650@intel.com>
+X-ClientProxiedBy: MA5P287CA0081.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d8::13) To MN0PR11MB6207.namprd11.prod.outlook.com
+ (2603:10b6:208:3c5::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH0PR11MB5249:EE_|SJ0PR11MB4989:EE_
-X-MS-Office365-Filtering-Correlation-Id: a0802f0c-3534-47e0-d3c8-08df08c1ea95
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6207:EE_|PH3PPF8B755DBFD:EE_
+X-MS-Office365-Filtering-Correlation-Id: 93872667-c3ea-4308-1d60-08df08c1e4ba
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|23010399003|4143699003|11063799006|6133799003|18002099003|22082099003|56012099006|10067099003;
-X-Microsoft-Antispam-Message-Info: WcHKar2aIY0pniRz+p2qjc99pNZJcDfIElbGVqCisCOktzLcE3//uaD9J0N9Nub1GlUzmY/z+Yr/RfFigZ+Fy50ByZgIiX1ClySiZ+xLvMiNo8Nm8d9SwWNeyvRbkK1YybVlCt3mZewPAjitXHEE7Z3oRkhAcxvPJlAtFvKP+aqmmJLMfVJ30TRo1jDc4CZQ2nYOepEeG9wYl9vhccP2pSbS4Vo2z0diZLd9YuWjLmrp4NK10VgbcLBKOjfWxssAQnq+r7CVNG4RO/KcLqQz5B/a1NDA3EXtHmcb7hJzbBpmrFl9OwbbFDwG6ic6M/aFgUqx9463/zxBn2WYhYYy7AJThQZYmLSdcrhhPgDfxdPwUsr98mvrBrJU31MaE9/00JgwjIcR9nMMCnI/7v+9VV96reLSd4JOAVfmLjtAXQ5JvHP7xx1p/35JSyxR2izHWcXonPmO5EtGGOLQn/a3OvWkJ5stosoLy/OnO7e27tJnFPMMN65+f//J4hNu3QYu1lgEJ9mLQ0lZA6pm5pQ2T7sD/X1YJW0h4vcT3s8xuhOk7CfMmI06RTDhSvajYYQjado3eGUP6GYCnqG1aK4ELT6AT9yMT2pCf4xe7AVGffS+l27CVGX+0RS8kFiJ8N2iAmS5ECSNkddcY66aZ+EnXja3+Po0ot0PCwZncZHmdig=
+ ARA:13230040|366016|1800799024|23010399003|376014|10067099003|56012099006|22082099003|4143699003|11063799006|8096899003|18002099003|13003099007;
+X-Microsoft-Antispam-Message-Info: o0PnIoZQukD32ZuDm3zsGT3N8lqf1lOzhZBYP1YkR/EZGicNvT0OAcsrxCZa4Smhuf75xg5hMNLVNV50Z3xxacLwhUN5MG3eBRlViuzVD7AD7Ul87GRJHy2aDkfCXjJwr8eRaeZ2sqKCuinO7wY8jLFxnO9/r50PtCFjw0wsGswpxMgk49IAiY7C9Cc8aR80zHIU2m2EV21RZiubJpEuyisIpzJnRtdQNRD37eNtVVf0y71wGLTHLIRhhi70aohxZuGDCM+XzutuRiAzMfddBXOkTBQjTbYFPl5los9gHM26W9OoazeZNjIkWuoEZ/IyZhcrkbIP0Er24AguxMzBH126jjlg/aveP931XfZ9O1cZPsEVkIEMxyWz+qXjgxGU+Clew8/H6/hGDZZnqSoW1nL2Uj9n/SoauHT9rrhePwjGaKe+JKJXhfEEmlXE8BFHf/e7Z3i74XLPpRMyYUB28MUpHbctHh0w7BG5sSAMzAB2pJ32xVAiYLwfMfO57M2R3jDwD8t+HQuBAlq4OUfmfeKAyOcRPs64n9zkgA9+19/Ho48M85R357+lGwbDMXxrHzJc1jSTRUpQeNr1VpFdcIJ56IEOukijnAxxbH8SCoJwHTA2D5hMusbz2PuG9F76
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5249.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(4143699003)(11063799006)(6133799003)(18002099003)(22082099003)(56012099006)(10067099003);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(10067099003)(56012099006)(22082099003)(4143699003)(11063799006)(8096899003)(18002099003)(13003099007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eUE2ZHFKc2h6WU9veVJQdURlYURkS2I5SUtkMElPMnNheWZScytzWGZ1VGYr?=
- =?utf-8?B?aVR1RTVaVkFCa01VSWxDR0ozREdaUVE0UDJ5Ynp6amhEVXN1TG1QMys2MzJj?=
- =?utf-8?B?c2Q0cFkrVCs4b2lPN1RsdE53QTNCSXFYZSsrdnA3UVR1djh5WW8rSEtnK1Zv?=
- =?utf-8?B?VVZubUdLS2pSVFNsZCtNeXVoZ0V6NlI5VmliSXFXcFdQYUxVUnFIZ2NDNXB5?=
- =?utf-8?B?N2JuMExSUFNSVGJhcmZielphd1YzZExYNERXUlE0MFRaMW9CdldncWt0cVVW?=
- =?utf-8?B?UGtjeVJvamZHY2hWdjQ5N08zTHNmS28wQ245bmtkYWliRmtyQ0tPQ29NdlhG?=
- =?utf-8?B?MnA1YWI1b0d3dmxOaktCZm95d0RKQkR3WEw2UW9RN3hUVHZ1bjB4MWw1a3Ny?=
- =?utf-8?B?T2QvbGNxYlRHRWtmeElSdWcvVGNKaXJwRnk5aEpqbzlBbUxGdnc0WjdCTEFC?=
- =?utf-8?B?bHNrK0JTd1JUbW5YdTBEMG5hc08vblhJU3grMjlYRDBTeW1Oc0gzOVhHTlQz?=
- =?utf-8?B?aUVBVEh6aDk2akR3Wk5hbmo2dlBQc1pyUEl1dG55ZWM3VXhyeWI4Y01Lb1hl?=
- =?utf-8?B?cXN6blR1SUltQ3lwcjgzYmN4TTJGY0laT2JUTDJHTjBBc1RKWUVkaWxueUk5?=
- =?utf-8?B?QXZueGZmMCtwbDJ2aWo4WWRZT2hIWm93VzcvWEM3NFBKQ2M1K2VhQWgySXhk?=
- =?utf-8?B?b3V4L3FNck5QNWxaOGowV0IvL1V3UmV0MHZqR2FJOUFVSTRETy90dmU4bitY?=
- =?utf-8?B?WEtkQmc4MS9GMGRtN1RKYnpUd1ExK1BsYlhZcVZ6bWRNQitUaE8yVFhxTmo2?=
- =?utf-8?B?dFhadFFyTW1XeTJvTEgrZFIvNWhabExLVjhGK1lQaVhNTGNybVdrWlZoVGpi?=
- =?utf-8?B?VzcwZno5bDZtaFlGTE5qeDBFTG45T0RTVVc5ODdBTDk4L2VNUXFCSWVhRFNy?=
- =?utf-8?B?S3lEZFhzelhLc29Bd2JCWVFDb3BmamNZaUkyQ21xcWlnNElscUthYUNFR2Fy?=
- =?utf-8?B?ZUJ4aW9wMlk0dHNKWHJNeEg1TWlkSFgrVU5qUTVIRUZUdDZDcmZXV1RWM2dJ?=
- =?utf-8?B?Ym8zbHNmOWh6RzNzdk83eDE4cDdPaDZkeUFjdFBnbzIycktIaEhteFlWSURk?=
- =?utf-8?B?Y1lWeXEzSXc1dGg4MUt2Y2RNTjN1YU1EWEhmc1pER3NiNGRVc3h4dWtyRTM0?=
- =?utf-8?B?MUVuRDFXNVhPUDRnQ3ZKYnBSaVFUWGFHTjdYVENGOVoyT0lNSzVzVnJIcW00?=
- =?utf-8?B?SnBuaGU0bkJ4YjZ1MVdxRDJNQnFpUFd2cm9neEYxUkZ0c093OXdlR0tkenJr?=
- =?utf-8?B?cStPRWpaS0tDNUdlcUlzMnZETzZvdTBFRHRpWHBoSUZ0VjRrT1JYb0tZc3Vn?=
- =?utf-8?B?TStpZllRSHp5K0xpbUVOK0FTRmlpT054VFdDQng0bzFCTGorOC9SMFBFeUFN?=
- =?utf-8?B?ay9wVUNma1BYR1J1OEZhYWRhM0llTHFSL0h6Qm5yRW4ra1k4V0lmVUg4dUdx?=
- =?utf-8?B?MjVxa2hBanNqWmlockZFL2RmY3pzcDlScUIzeCtuT2dJZVJ6c1NIdmFKVmtG?=
- =?utf-8?B?TlQrLzdERzFGMWtMU29aTjlJNENublVIOTNWVmNGVE5wdlpvQlRuMmg1QkRp?=
- =?utf-8?B?Qllpd1JQVDdQZml0OG5Yc3BMVEVWbUVPTmMyVVFTWndEZW5JZTBHRWVET2tO?=
- =?utf-8?B?THl3YnpPcGZ6eE1zbnlmQzE4VFFsdzhPSW5uYXYrLzNmeXlZTGFaZHBwTlFw?=
- =?utf-8?B?cFZpdFFsUndtZkpmZTFiN0JoMjJYQURaeU1uaEhJVDVKdXNYM3ZCL0hjZml3?=
- =?utf-8?B?WUZFNjdmcFFQLzlja0I0UHhERVZCWUZiU0R2UGV0T3dRR3RJZ0kvVjJBdktI?=
- =?utf-8?B?RkJhNkw0QnpzNk9zNkh3YWZmOGhUWG9oUjlHZk9BZ3ExZ2pMTlREMXVrbitI?=
- =?utf-8?B?aXEvamRlYXlMNDd4SmNaWjYxd0JwdjYrbCtXUmhHb25ZTmN3WExaVCs2VUFY?=
- =?utf-8?B?LzVidHBZc1RNaythTCtXakhxYUE0dlBhM21oOXRQUHN2VmtWMW4wYlQ5Ritv?=
- =?utf-8?B?aVJKSFo4cjF5UzFpejRVSlNBNTFIWEhST1pHbDBxdmxkU0Q4Ymx1VDYza0Y1?=
- =?utf-8?B?cmNzK0hpUmFMaURUcEhzTURHeXV6bzJBOTdySVgrUEdmc2xkZGhsVDVoTzJL?=
- =?utf-8?B?WElhSkxpdXNWeUF0eWZ6VUJiUnlOYmU2TzJKZlpSNHN6NEdPZ0sxS25HNGFY?=
- =?utf-8?B?bWw4SnVPTm5rUUlpMHRMb3FpVkg4dXZiZGQrWjhWa0dZU0hudmJFRTRvY3gr?=
- =?utf-8?B?UXNlcHZ0Y1BUbUNUaldBRlhERjRkWkEySTNScncrdW44YTFja3I4UT09?=
-X-Exchange-RoutingPolicyChecked: Ouk7NWJH6Uaz3sDJj8pHyD2RRn2UUN1BjTUmKjDzFt8HnJ6QE2sy1KPNjJWGYfUK0+95+jkKWuIItwQPXDpdCzOHq2gkwT732DHrVjxx4eFPtpzyvHy02rGDZNeh0PtA4rd4HcQRtvkF6vySLtmSv9WqKifp3wYwW0CHJunofHPCSY/nyezXBpmv+6EEtJoLvzCG3obnqWOnJ5TWZ8PkbCQaWu5lQs5OFgbZKEKCiEJsBlaVNwNYrEUm4Ki6yTfvnRIFDM4j5Is8PtRNHGTHfeletY98QUl7xSazZJCxu+XVLIXb1v1sJGbTxAcEuJ1/AY+asVOw2OF6axPk00Djyg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: a0802f0c-3534-47e0-d3c8-08df08c1ea95
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5249.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MHVBK2FmVWxIeFBGcnZDTnRvQm9FZlM1QVZLWE9JTEJJbUJTTEpYNk1jbE1N?=
+ =?utf-8?B?MDJCR2pHMG1aYXhiMjBHYmlPVGlXNlREWEoweitYeTdGNDREcTdMRXAzRVE0?=
+ =?utf-8?B?cDdCOFNnRHYzZE91SldTZnA0bi9paVVZRlVad3BnSzBjTGIxNk5mRGtFZDNm?=
+ =?utf-8?B?UlhZdTduSzhSNklLZHdYQkZCQ3RqTUY1VENUSXBhZTlrMnZ5cGYrbEluV0lD?=
+ =?utf-8?B?T3RCOFpPdFVuc09qMEtGaENjZFovTk5YanJTK3lQYUVjRHMrQjdGWWpxaTFo?=
+ =?utf-8?B?MTJYUnM1K2pkdFpEdGppYXpGd2s5blNLN0RIMUJ5RlIyaXpjWFZ1ZVR0b2JU?=
+ =?utf-8?B?NDNMMCtOc0JObFo4TWJHTjRRV0pPcnZUU0RjV1JzNFdtaDkyM3Z3TWs4bGZT?=
+ =?utf-8?B?RnVHais5b1Z4OEQ4eEJMNGRDdkNteU9IRm43U28xU1RlSXRDREhQRlFHaHl1?=
+ =?utf-8?B?Zy8rT3c0VG5JWHMyTERJZTE5ZUE4dTltMGk0NUtRK2t1ZjgrQWRYZkVIMkpH?=
+ =?utf-8?B?d1k4allPNVE0Y3lOSys5ZEZ0cGVyODZzUTR0dTlFcE13QkltZnNadDNmQ3Qx?=
+ =?utf-8?B?ZmtWQXhUYVJlMEdyaGxwL25iUUN4clgrNWEwaVRRcU9FdGJqc0NwNmpRSjhG?=
+ =?utf-8?B?bnlMZkRxNlBOVFpXVmRWejRuSmlUaW9MSjhUbEFTZ3hQTUtrUVZ5SjBIVXVR?=
+ =?utf-8?B?TEV0K3JzR2lXWXBRL2pySXdEVzJFalNpc3drdUU3ems4dzUxYksvaWJuamxG?=
+ =?utf-8?B?ZUZSWUprK0dJMW9GU2MzektIQ01iMXY0eGJETVgrMGUyc3dZa1EwbURNN3ht?=
+ =?utf-8?B?RlAvNXpmNlpPejNadUVITTkrZWlDbkxmdjQwd3k1Mk1wRVplUk9vL05yVlpr?=
+ =?utf-8?B?aE5zVTVQK2xqOUorNXh3UUNmOVpCWGJTUUhxNnhCZS8xbXF5ZVNERmVQRHZo?=
+ =?utf-8?B?S2xKMFJoMWpmNUU1UzNYcEFNWENQdHl2VjZGTXV4ck5MNjdrbFJXN0RURzFt?=
+ =?utf-8?B?a3M2L09GVkdGdHZwSENiL3ZpS3BTdSthczEyTUFuc0JDN2JFUU8yNzhsZ2l4?=
+ =?utf-8?B?cWRFb0prRDErbGE3aGFWWG92QVpKNE1zRDNFZ0E3aFJXaTFFVURyc09ETkdl?=
+ =?utf-8?B?OVFTNC91VU5zMEJpQzMxdnVEaDloaVl2b1JzOEczMnR6QityQzFQZGpJVThR?=
+ =?utf-8?B?ZElJVjhKNGE3cVQ2U0xXbXBPWkpFSHVxak9YWFhQSVpwNHRkd3NSM2gvS3JV?=
+ =?utf-8?B?UTVoK0NUbC81NTlOYnM0RTZuVXRBMlEwSG84OFErVTZXM0ZzU0ZmejJDY0tC?=
+ =?utf-8?B?d0x6SlVUWUcyMVlwWjRNdmt1eWRLL3RoYVNkRzI3ekFBSXZ3SEI4dWZSempp?=
+ =?utf-8?B?U0ZGdFRoMHQ4STcxeHplMyt6R2U1TTN4SlhBRlR3TnpWY2RLVEh1RTU0YmRn?=
+ =?utf-8?B?bXZTcDYzUGJtS2dKRVRyNVVvck83K0xnVUJ4TmlOQmRscXpsTGJJSjl3YkpT?=
+ =?utf-8?B?R2IxT1VRYzdETDRQa0FpN21Uc3RVMkpLQWVTZFFPVVh4VkRMcGJxZlZ0ekkr?=
+ =?utf-8?B?SURETVI2QVU2MGN1U25TdWxXRnhrZG9Qd3JJTW9ZSVVjTFBwWGZsc2Jna1V6?=
+ =?utf-8?B?enZ0ZTByL01UWmVMSkZaVTg2akwxOFdtSTFEWXY3OXRyZjdVTXEwNTNlZVcx?=
+ =?utf-8?B?UmY0NE5qSlhBWVFwL0tXMkp3UmlSY09UNktYTVFzL2EyVTVvK2VXaXNNUjMz?=
+ =?utf-8?B?Zk1weVZObjZNZG9NSmVhYUxobzNpdjg0ODg4MDZYbEdVSFlqdVJxZ0tvU0NJ?=
+ =?utf-8?B?SXdOaElXQW5WQlFybjlIQlhEd1c2eklpVzIwWWk5WmlLeVFBVU5vM3RwUUlO?=
+ =?utf-8?B?Y2h2am43MDdGTXdmeTNuU1hVa1hwcytFRitka3N2eGE2dDVSR1Btci85UGpO?=
+ =?utf-8?B?YnFpdzh2WGE3UDNWYWNiUzliY2ZRR29TVUlpbzRldk5BTG0xQXdBV1VJc01o?=
+ =?utf-8?B?bWQ0bDRDRERaaXY2NGVIVmlQTE9rdjBxM0k5eEFFMWZzYk9FM3liMHR3WmVo?=
+ =?utf-8?B?ZXp5aDhJMFc1VkQ1dVhGREx0YkVacFFmRVBOQzM5c3hKbHFidUl6V2RRNC9o?=
+ =?utf-8?B?b0dyZkg4YkVBMTVMZjVNMlhmM2t0U2VIdWpoSDhyczhKRmZ0R290dHNjUHNv?=
+ =?utf-8?B?bk9UNG9COHJkY2F0NW5hYUFTNTJpN1pUMUNZclkvbDVxUzgwVkZMNjRhR2pZ?=
+ =?utf-8?B?NnRMVWJsT0k1SkZDbWloTFRCamIxL05sdk1QQkxtaHZUQ1ZVY1pYWXA2VXIr?=
+ =?utf-8?B?V0NjNnhWNEwyYXN1b2gyU1VKcmcyN2t0VGZ2TE04OXRrbmkvdTF1YVk4ZG1r?=
+ =?utf-8?Q?cQcIBpURqKfDvUFA=3D?=
+X-Exchange-RoutingPolicyChecked: 5Qwgdeq6IsdACk/2+LZiFIgeTJ2UQexSAgwVG9bRboQshzXSIjw8DfUDKsisaIBPaeqOI1T/V7E+hvwYwktonoyrhHEBJioGhENTd0cXg5hbAIf9dksLqi6wjEFtfugXer6Zq2iY1ZK/Jrs5kCc7pkSl2I57RBOIKxSeb7FJxNtEeHHpc4ilOjiP169S2SHMPFGHHXgDxPKMBcBu46O2PNLq1xTi513alr6V4eeJ3FbuePwfRyObjQPgcbrdJEt1xAtIC0H+lHk/ZjSi9DpOseFODgtILtbd6dWVEhpiLkb4v7jg8uXESZgbKekMt4ACjkZ5WcV/Q5czmJxrl0JKkg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 93872667-c3ea-4308-1d60-08df08c1e4ba
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6207.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2026 07:15:07.1730 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2026 07:14:57.2529 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8HxZk5A2r3d6W4tUCdPZhUB+ud/Vrdrn2oj5zTaQN1OfZOFAcgJU4vwKFVvXX8manx4anUD7GHaYcb+EliyjDA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4989
+X-MS-Exchange-CrossTenant-UserPrincipalName: oG8KGe6pyGPVcDIvP/OWyhtONnu4d/0Gajp0ueBTbuNKPkQXKJHbPb1iWeU0PQNGY68fFeUkCiPofEGnE69/v9qa14m4I0JuAi12M/mFk8I=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF8B755DBFD
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -172,410 +173,796 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--------------oYOdLHrpKT8z7YR8DedkPu0k
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 01-09-2026 11:36, Purkait, Soham wrote:
-> Hi Karthik,
+
+On 27-08-2026 08:34 pm, Michal Wajdeczko wrote:
 >
-> On 17-07-2026 09:47, Karthik Poosa wrote:
->> Expose pwm[1-3] fan duty attributes through hwmon.
+> On 8/26/2026 3:51 PM, Tejas Upadhyay wrote:
+>> Before reserving a page at a faulting address, check the cached
+>> bad_page_reservation policy from xe->ras. If the policy is disabled
+>> (logging only), log the corrupted address and return -EOPNOTSUPP so
+>> that RAS can report to firmware to drop the address from the SRAM
+>> queue without attempting to offline the page.
 >>
->> This enables reading and writing user PWM values (0..255) for each
->> available fan channel.
->>
->> Update Xe hwmon ABI documentation for pwm[1-3].
->>
->> This sysfs node can be used for manual control of fan speed,
->> irrespective of fan curve.
->>
->> v2:
->>   - Use xe helpers for dmesg logs.
->>   - Avoid use hwmon->num_fans to get fan count in 
->> xe_hwmon_pwm_is_visible().
->>
->> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
->> Assisted-by: Codex:gpt-5-4
+>> Signed-off-by: Tejas Upadhyay<tejas.upadhyay@intel.com>
 >> ---
->>   .../ABI/testing/sysfs-driver-intel-xe-hwmon   |   9 +
->>   drivers/gpu/drm/xe/xe_hwmon.c                 | 230 ++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_pcode_api.h             |   3 +
->>   3 files changed, 242 insertions(+)
+>>   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 6 ++++++
+>>   1 file changed, 6 insertions(+)
 >>
->> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon 
->> b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
->> index ec0b94d76e22..7383898890aa 100644
->> --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
->> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
->> @@ -321,3 +321,12 @@ Description:    RW. Package burst power limit 
->> interval (Tau in PL2/Tau) in
->>           milliseconds over which sustained power is averaged.
->>             Only supported for particular Intel Xe graphics platforms.
->> +
->> +What: /sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/pwm[1-3]
->> +Date:           July 2026
->> +KernelVersion:  7.2
->> +Contact:        intel-xe@lists.freedesktop.org
->> +Description:    RW. Target fan PWM duty value in the range 0..255. 0 
->> is zero
->> +                fan speed and 255 is 100% fan speed.
+>> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+>> index b2b6c1bd2c55..24d134754265 100644
+>> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+>> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+>> @@ -864,6 +864,12 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr)
+>>   	vram_mgr = &vr->ttm;
+>>   	mm = &vram_mgr->mm;
+>>   
+>> +	if (!xe->ras.bad_page_reservation) {
+>> +		drm_err(&xe->drm, "0x%llx is reported as corrupted address by HW\n",
+>> +			addr);
+> we do have easier to use
 >
-> Does zero fan speed means complete stop ? Or will it clamped up to the 
-> firmware-reported min_pwm ?
+> 	xe_err(xe, ...)
+>
+> and also recently added SIGID logs:
+>
+> 	xe_log_err(xe, ...)
+>
+> which maybe we should consider here?
+> or is it done by the other layer?
+>
+> @Mallesh ?
 
-If the platform supports min pwm of 0, driver will set pwm to 0 in the 
-hardware,
+Agree with @Michal
 
-else it will be clamped to min_pwm.
+Please use SIGID for err logging. xe_ttm_vram_handle_addr_fault() used in
 
->
-> And does the write only succeeds when pwm_enable == 1 ? if so, kindly 
-> also mention the same in the doc.
-Yes we can write to pwmX only in manual mode i.e pwm_enable=1
-I shall update this in the doc.
->
-> Thanks,
-> Soham
->
+handle_page_offline (https://patchwork.freedesktop.org/series/172710/), 
+where all error reporting using SIGID.
+
+
+Thanks,
+
+-/Mallesh
+
+>> +		return -EOPNOTSUPP;
+>> +	}
 >> +
->> +                Only supported for particular Intel Xe graphics 
->> platforms.
->> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c 
->> b/drivers/gpu/drm/xe/xe_hwmon.c
->> index 769f4d1da83e..d3379727b1a9 100644
->> --- a/drivers/gpu/drm/xe/xe_hwmon.c
->> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
->> @@ -803,6 +803,7 @@ static const struct hwmon_channel_info * const 
->> hwmon_info[] = {
->>       HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT | HWMON_E_LABEL, 
->> HWMON_E_INPUT | HWMON_E_LABEL),
->>       HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT | HWMON_F_MAX, 
->> HWMON_F_INPUT | HWMON_F_MAX,
->>                  HWMON_F_INPUT | HWMON_F_MAX),
->> +    HWMON_CHANNEL_INFO(pwm, HWMON_PWM_INPUT, HWMON_PWM_INPUT, 
->> HWMON_PWM_INPUT),
->>       NULL
->>   };
->>   @@ -928,6 +929,158 @@ static int xe_hwmon_get_num_fans(const struct 
->> xe_hwmon *hwmon, u32 *num_fans)
->>       return 0;
->>   }
->>   +static int xe_hwmon_get_fan_point_count(struct xe_hwmon *hwmon, u8 
->> fan, u32 *point_count,
->> +                    int table_type)
->> +{
->> +    int ret;
->> +
->> +    ret = xe_hwmon_pcode_read_fan_control(hwmon,
->> +                          (table_type == USER_FAN_TABLE) ?
->> +                          FSC_READ_USER_FAN_CONTROL_POINTS :
->> +                          FSC_READ_STOCK_FAN_CONTROL_POINTS,
->> +                          fan, point_count);
->> +    if (ret) {
->> +        xe_err(hwmon->xe, "failed to read fan %d %s point count, 
->> ret=%d\n", fan,
->> +               (table_type == USER_FAN_TABLE) ? "user" : "stock", ret);
->> +        return ret;
->> +    }
->> +
->> +    xe_dbg(hwmon->xe, "fan %d %s point count read as %u\n", fan,
->> +           (table_type == USER_FAN_TABLE) ? "user" : "stock", 
->> *point_count);
->> +
->> +    return 0;
->> +}
->> +
->> +static int xe_hwmon_write_user_fan_point(struct xe_hwmon *hwmon, u8 
->> fan, u8 point, u8 temp,
->> +                     u8 speed)
->> +{
->> +    struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
->> +    u16 user_fcp_raw = FIELD_PREP(FAN_CONTROL_POINT_TEMP_MASK, temp) |
->> +             FIELD_PREP(FAN_CONTROL_POINT_SPEED_MASK, speed);
->> +    int ret;
->> +
->> +    ret = xe_pcode_write_timeout(root_tile,
->> +                     PCODE_MBOX(FAN_SPEED_CONTROL, 
->> FSC_WRITE_FAN_TABLE, fan),
->> +                    (u32)user_fcp_raw, 
->> XE_PCODE_FAN_CONTROL_TIMEOUT_MS);
->> +    if (ret)
->> +        xe_dbg(hwmon->xe,
->> +               "failed to write fan %d user point %d temp %u, speed 
->> %u %%, ret=%d\n",
->> +               fan, point, temp, speed, ret);
->> +
->> +    return ret;
->> +}
->> +
->> +static int xe_hwmon_activate_user_fan_table(struct xe_hwmon *hwmon, 
->> u8 fan,
->> +                        bool is_full_speed, enum fan_table_type 
->> table_source)
->> +{
->> +    struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
->> +    struct xe_hwmon_fan_info *fi = &hwmon->fi[fan];
->> +    u32 point_count;
->> +    int ret;
->> +    int point;
->> +    struct fan_table *source_table = &fi->fan_table[table_source];
->> +
->> +    xe_dbg(hwmon->xe, "activating fan %d user table from %s 
->> table\n", fan,
->> +           (table_source == USER_FAN_TABLE) ? "user" : "stock");
->> +
->> +    point_count = source_table->fan_control_point_count;
->> +
->> +    if (!point_count) {
->> +        xe_err(hwmon->xe,
->> +               "fan %d %s table point count is 0, cannot activate 
->> user table\n", fan,
->> +               (table_source == USER_FAN_TABLE) ? "user" : "stock");
->> +        return -ENODATA;
->> +    }
->> +
->> +    for (point = 0; point < point_count; point++) {
->> +        u8 temp = source_table->fcp[point].temp;
->> +        u8 speed = is_full_speed ? 100 : max_t(u8, 
->> source_table->fcp[point].speed,
->> +                        min_t(u32, fi->min_pwm, U8_MAX));
->> +
->> +        ret = xe_hwmon_write_user_fan_point(hwmon, fan, point, temp, 
->> speed);
->> +        if (ret)
->> +            return ret;
->> +
->> +        if (table_source == STOCK_FAN_TABLE) {
->> +            /* Update user table cache with stock table values */
->> +            fi->fan_table[USER_FAN_TABLE].fcp[point].temp = temp;
->> +            fi->fan_table[USER_FAN_TABLE].fcp[point].speed = speed;
->> +        }
->> +        if (is_full_speed)
->> +            fi->fan_table[USER_FAN_TABLE].fcp[point].speed = speed;
->> +    }
->> +
->> +    ret = xe_pcode_write_timeout(root_tile,
->> +                     PCODE_MBOX(FAN_SPEED_CONTROL,
->> +                        FSC_WRITE_NUM_FAN_CONTROL_POINTS, fan),
->> +                     point_count, XE_PCODE_FAN_CONTROL_TIMEOUT_MS);
->> +    if (ret) {
->> +        xe_dbg(hwmon->xe, "failed to write fan %d user table, 
->> ret=%d\n", fan, ret);
->> +        return ret;
->> +    }
->> +
->> +    /* Verify if all the user points are set */
->> +    ret = xe_hwmon_get_fan_point_count(hwmon, fan, &point_count, 
->> USER_FAN_TABLE);
->> +    if (ret) {
->> +        xe_err(hwmon->xe,
->> +               "failed to read fan %d user table point count, 
->> ret=%d\n", fan, ret);
->> +        return ret;
->> +    }
->> +    if (point_count != source_table->fan_control_point_count) {
->> +        xe_err(hwmon->xe, "fan %d user table point count mismatch, 
->> expected %u, got %u\n",
->> +               fan, source_table->fan_control_point_count, 
->> point_count);
->> +        return -EIO;
->> +    }
->> +
->> +    fi->fan_table[USER_FAN_TABLE].fan_control_point_count = 
->> point_count;
->> +
->> +    return 0;
->> +}
->> +
->> +static int xe_hwmon_set_user_fan_pwm(struct xe_hwmon *hwmon, u8 fan, 
->> u8 pwm)
->> +{
->> +    struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
->> +    struct xe_hwmon_fan_info *fi = &hwmon->fi[fan];
->> +    u32 point_count = 
->> fi->fan_table[USER_FAN_TABLE].fan_control_point_count;
->> +    u8 clamped_pwm;
->> +    int ret;
->> +    int point;
->> +
->> +    /* Read user table fan point count, if it is not set, activate 
->> the user table */
->> +    ret = xe_hwmon_get_fan_point_count(hwmon, fan, &point_count, 
->> USER_FAN_TABLE);
->> +    if (ret)
->> +        return ret;
->> +
->> +    if (!point_count) {
->> +        xe_dbg(hwmon->xe, "fan %d user table not set, activating 
->> it\n", fan);
->> +        ret = xe_hwmon_activate_user_fan_table(hwmon, fan, false, 
->> STOCK_FAN_TABLE);
->> +        if (ret)
->> +            return ret;
->> +    }
->> +
->> +    pwm = DIV_ROUND_CLOSEST(pwm * 100, U8_MAX);
->> +    clamped_pwm = max_t(u8, pwm, min_t(u32, fi->min_pwm, U8_MAX));
->> +
->> +    for (point = 0; point < point_count; point++) {
->> +        u8 temp = fi->fan_table[USER_FAN_TABLE].fcp[point].temp;
->> +
->> +        ret = xe_hwmon_write_user_fan_point(hwmon, fan, point, temp, 
->> clamped_pwm);
->> +        if (ret)
->> +            return ret;
->> +
->> +        fi->fan_table[USER_FAN_TABLE].fcp[point].speed = clamped_pwm;
->> +    }
->> +
->> +    ret = xe_pcode_write(root_tile,
->> +                 PCODE_MBOX(FAN_SPEED_CONTROL, 
->> FSC_WRITE_NUM_FAN_CONTROL_POINTS, fan),
->> +                 point_count);
->> +    if (ret) {
->> +        xe_dbg(hwmon->xe, "failed to update fan %d user table count, 
->> ret=%d\n", fan, ret);
->> +        return ret;
->> +    }
->> +    return 0;
->> +}
->> +
->>   static int xe_hwmon_read_fan_control_info(struct xe_hwmon *hwmon)
->>   {
->>       struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
->> @@ -1424,6 +1577,20 @@ xe_hwmon_fan_is_visible(struct xe_hwmon 
->> *hwmon, u32 attr, int channel)
->>       }
->>   }
->>   +static umode_t
->> +xe_hwmon_pwm_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->> +{
->> +    if (!hwmon->xe->info.has_fan_control || channel >= hwmon->num_fans)
->> +        return 0;
->> +
->> +    switch (attr) {
->> +    case hwmon_pwm_input:
->> +        return 0644;
->> +    default:
->> +        return 0;
->> +    }
->> +}
->> +
->>   static int
->>   xe_hwmon_fan_input_read(struct xe_hwmon *hwmon, int channel, long 
->> *val)
->>   {
->> @@ -1478,6 +1645,62 @@ xe_hwmon_fan_read(struct xe_hwmon *hwmon, u32 
->> attr, int channel, long *val)
->>       }
->>   }
->>   +static int
->> +xe_hwmon_pwm_read(struct xe_hwmon *hwmon, u32 attr, int channel, 
->> long *val)
->> +{
->> +    struct xe_hwmon_fan_info *fi;
->> +    int ret = 0;
->> +
->> +    if (channel < 0 || channel >= FAN_MAX)
->> +        return -EINVAL;
->> +
->> +    fi = &hwmon->fi[channel];
->> +
->> +    switch (attr) {
->> +    case hwmon_pwm_input:
->> +        /* Check if user fan table is set else activate it.*/
->> +        if (!fi->fan_table[USER_FAN_TABLE].fan_control_point_count) {
->> +            xe_dbg(hwmon->xe, "fan %d user table not set, activating 
->> it\n", channel);
->> +            ret = xe_hwmon_activate_user_fan_table(hwmon, channel, 
->> false,
->> +                                   STOCK_FAN_TABLE);
->> +            if (ret)
->> +                return ret;
->> +        }
->> +        *val = 
->> DIV_ROUND_CLOSEST(fi->fan_table[USER_FAN_TABLE].fcp[0].speed *
->> +                        U8_MAX,    100);
->> +        return 0;
->> +    default:
->> +        return -EOPNOTSUPP;
->> +    }
->> +}
->> +
->> +static int
->> +xe_hwmon_pwm_write(struct xe_hwmon *hwmon, u32 attr, int channel, 
->> long val)
->> +{
->> +    int ret = 0;
->> +
->> +    if (channel < 0 || channel >= FAN_MAX)
->> +        return -EINVAL;
->> +
->> +    mutex_lock(&hwmon->hwmon_lock);
->> +
->> +    switch (attr) {
->> +    case hwmon_pwm_input:
->> +        if (val < 0 || val > U8_MAX) {
->> +            ret = -EINVAL;
->> +            break;
->> +        }
->> +        ret = xe_hwmon_set_user_fan_pwm(hwmon, channel, (u8)val);
->> +        break;
->> +    default:
->> +        ret = -EOPNOTSUPP;
->> +        break;
->> +    }
->> +    mutex_unlock(&hwmon->hwmon_lock);
->> +
->> +    return ret;
->> +}
->> +
->>   static umode_t
->>   xe_hwmon_is_visible(const void *drvdata, enum hwmon_sensor_types type,
->>               u32 attr, int channel)
->> @@ -1504,6 +1727,9 @@ xe_hwmon_is_visible(const void *drvdata, enum 
->> hwmon_sensor_types type,
->>       case hwmon_fan:
->>           ret = xe_hwmon_fan_is_visible(hwmon, attr, channel);
->>           break;
->> +    case hwmon_pwm:
->> +        ret = xe_hwmon_pwm_is_visible(hwmon, attr, channel);
->> +        break;
->>       default:
->>           ret = 0;
->>           break;
->> @@ -1533,6 +1759,8 @@ xe_hwmon_read(struct device *dev, enum 
->> hwmon_sensor_types type, u32 attr,
->>           return xe_hwmon_energy_read(hwmon, attr, channel, val);
->>       case hwmon_fan:
->>           return xe_hwmon_fan_read(hwmon, attr, channel, val);
->> +    case hwmon_pwm:
->> +        return xe_hwmon_pwm_read(hwmon, attr, channel, val);
->>       default:
->>           return -EOPNOTSUPP;
->>       }
->> @@ -1551,6 +1779,8 @@ xe_hwmon_write(struct device *dev, enum 
->> hwmon_sensor_types type, u32 attr,
->>           return xe_hwmon_power_write(hwmon, attr, channel, val);
->>       case hwmon_curr:
->>           return xe_hwmon_curr_write(hwmon, attr, channel, val);
->> +    case hwmon_pwm:
->> +        return xe_hwmon_pwm_write(hwmon, attr, channel, val);
->>       default:
->>           return -EOPNOTSUPP;
->>       }
->> diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h 
->> b/drivers/gpu/drm/xe/xe_pcode_api.h
->> index 419ab4f416fa..5c5fdc650a97 100644
->> --- a/drivers/gpu/drm/xe/xe_pcode_api.h
->> +++ b/drivers/gpu/drm/xe/xe_pcode_api.h
->> @@ -84,9 +84,12 @@
->>   #define     PCODE_MBOX_DOMAIN_HBM        0x2
->>     #define   FAN_SPEED_CONTROL            0x7D
->> +#define     FSC_WRITE_NUM_FAN_CONTROL_POINTS    0x0
->> +#define     FSC_WRITE_FAN_TABLE            0x1
->>   #define     FSC_READ_MAX_FAN_RPS        0x3
->>   #define     FSC_READ_NUM_FANS            0x4
->>   #define     FSC_READ_STOCK_FAN_CONTROL_POINTS    0x5
->> +#define     FSC_READ_USER_FAN_CONTROL_POINTS    0x6
->>   #define     FSC_READ_FAN_TABLE            0x7
->>   #define     FAN_CONTROL_POINT_TEMP_MASK        REG_GENMASK(7, 0)
->>   #define     FAN_CONTROL_POINT_SPEED_MASK    REG_GENMASK(15, 8)
+>>   	/* Reserve page at address */
+>>   	return xe_ttm_vram_reserve_page_at_addr(xe, addr - vr->dpa_base, vram_mgr, mm);
+>>   }
+--------------oYOdLHrpKT8z7YR8DedkPu0k
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 27-08-2026 08:34 pm, Michal
+      Wajdeczko wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:e579d9c6-2c46-4910-a0e8-9e95860ce650@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+
+On 8/26/2026 3:51 PM, Tejas Upadhyay wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">Before reserving a page at a faulting address, check the cached
+bad_page_reservation policy from xe-&gt;ras. If the policy is disabled
+(logging only), log the corrupted address and return -EOPNOTSUPP so
+that RAS can report to firmware to drop the address from the SRAM
+queue without attempting to offline the page.
+
+Signed-off-by: Tejas Upadhyay <a class="moz-txt-link-rfc2396E" href="mailto:tejas.upadhyay@intel.com">&lt;tejas.upadhyay@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index b2b6c1bd2c55..24d134754265 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -864,6 +864,12 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr)
+ 	vram_mgr = &amp;vr-&gt;ttm;
+ 	mm = &amp;vram_mgr-&gt;mm;
+ 
++	if (!xe-&gt;ras.bad_page_reservation) {
++		drm_err(&amp;xe-&gt;drm, &quot;0x%llx is reported as corrupted address by HW\n&quot;,
++			addr);
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+we do have easier to use
+
+	xe_err(xe, ...)
+
+and also recently added SIGID logs:
+
+	xe_log_err(xe, ...)
+
+which maybe we should consider here?
+or is it done by the other layer?
+
+@Mallesh ?
+</pre>
+    </blockquote>
+    <p>Agree with @Michal</p>
+    <p>Please use SIGID for err logging.&nbsp;<span style="white-space: pre-wrap">xe_ttm_vram_handle_addr_fault()</span>&nbsp;used
+      in&nbsp;<!--[if gte mso 9]><xml>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>Normal</w:View>
+  <w:Zoom>0</w:Zoom>
+  <w:TrackMoves/>
+  <w:TrackFormatting/>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-IN</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:EnableOpenTypeKerning/>
+   <w:DontFlipMirrorIndents/>
+   <w:OverrideTableStyleHps/>
+  </w:Compatibility>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="false"
+  DefSemiHidden="false" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="376">
+  <w:LsdException Locked="false" Priority="0" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index 9"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" Name="toc 9"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="header"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footer"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="index heading"/>
+  <w:LsdException Locked="false" Priority="35" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of figures"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="envelope return"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="footnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="line number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="page number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote reference"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="endnote text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="table of authorities"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="macro"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="toa heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Bullet 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Number 5"/>
+  <w:LsdException Locked="false" Priority="10" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Closing"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Signature"/>
+  <w:LsdException Locked="false" Priority="1" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="List Continue 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Message Header"/>
+  <w:LsdException Locked="false" Priority="11" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Salutation"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Date"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text First Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Note Heading"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Body Text Indent 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Block Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Hyperlink"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="FollowedHyperlink"/>
+  <w:LsdException Locked="false" Priority="22" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Document Map"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Plain Text"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="E-mail Signature"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Top of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Bottom of Form"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal (Web)"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Acronym"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Address"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Cite"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Code"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Definition"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Keyboard"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Preformatted"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Sample"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Typewriter"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="HTML Variable"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Normal Table"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="annotation subject"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="No List"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Outline List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Simple 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Classic 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Colorful 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Columns 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Grid 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 4"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 5"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 7"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table List 8"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table 3D effects 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Contemporary"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Elegant"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Professional"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Subtle 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 2"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Web 3"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Balloon Text"/>
+  <w:LsdException Locked="false" Priority="39" Name="Table Grid"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Table Theme"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" SemiHidden="true" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" QFormat="true"
+   Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" QFormat="true"
+   Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" QFormat="true"
+   Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" QFormat="true"
+   Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" QFormat="true"
+   Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" QFormat="true"
+   Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" SemiHidden="true"
+   UnhideWhenUsed="true" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="true"
+   UnhideWhenUsed="true" QFormat="true" Name="TOC Heading"/>
+  <w:LsdException Locked="false" Priority="41" Name="Plain Table 1"/>
+  <w:LsdException Locked="false" Priority="42" Name="Plain Table 2"/>
+  <w:LsdException Locked="false" Priority="43" Name="Plain Table 3"/>
+  <w:LsdException Locked="false" Priority="44" Name="Plain Table 4"/>
+  <w:LsdException Locked="false" Priority="45" Name="Plain Table 5"/>
+  <w:LsdException Locked="false" Priority="40" Name="Grid Table Light"/>
+  <w:LsdException Locked="false" Priority="46" Name="Grid Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="Grid Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="Grid Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="Grid Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="Grid Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="Grid Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="Grid Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="Grid Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="Grid Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="Grid Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="46" Name="List Table 1 Light"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark"/>
+  <w:LsdException Locked="false" Priority="51" Name="List Table 6 Colorful"/>
+  <w:LsdException Locked="false" Priority="52" Name="List Table 7 Colorful"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 1"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 1"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 1"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 2"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 2"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 2"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 3"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 3"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 3"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 4"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 4"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 4"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 5"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 5"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 5"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked="false" Priority="46"
+   Name="List Table 1 Light Accent 6"/>
+  <w:LsdException Locked="false" Priority="47" Name="List Table 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="48" Name="List Table 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="49" Name="List Table 4 Accent 6"/>
+  <w:LsdException Locked="false" Priority="50" Name="List Table 5 Dark Accent 6"/>
+  <w:LsdException Locked="false" Priority="51"
+   Name="List Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked="false" Priority="52"
+   Name="List Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Mention"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Smart Hyperlink"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Hashtag"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Unresolved Mention"/>
+  <w:LsdException Locked="false" SemiHidden="true" UnhideWhenUsed="true"
+   Name="Smart Link"/>
+ </w:LatentStyles>
+</xml><![endif]--><!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman",serif;}
+</style>
+<![endif]--><span style="font-size:12.0pt;font-family:&quot;Aptos&quot;,sans-serif;
+mso-fareast-font-family:Aptos;mso-fareast-theme-font:minor-latin;mso-bidi-font-family:
+Aptos;mso-ansi-language:EN-IN;mso-fareast-language:EN-IN;mso-bidi-language:
+AR-SA"><br>
+      </span></p>
+    <p><span style="font-size:12.0pt;font-family:&quot;Aptos&quot;,sans-serif;
+mso-fareast-font-family:Aptos;mso-fareast-theme-font:minor-latin;mso-bidi-font-family:
+Aptos;mso-ansi-language:EN-IN;mso-fareast-language:EN-IN;mso-bidi-language:
+AR-SA">handle_page_offline
+        (<a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/series/172710/">https://patchwork.freedesktop.org/series/172710/</a>), where all
+        error reporting using SIGID.</span></p>
+    <p><br>
+    </p>
+    <p>Thanks,</p>
+    <p>-/Mallesh</p>
+    <blockquote type="cite" cite="mid:e579d9c6-2c46-4910-a0e8-9e95860ce650@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">+		return -EOPNOTSUPP;
++	}
++
+ 	/* Reserve page at address */
+ 	return xe_ttm_vram_reserve_page_at_addr(xe, addr - vr-&gt;dpa_base, vram_mgr, mm);
+ }
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------oYOdLHrpKT8z7YR8DedkPu0k--
