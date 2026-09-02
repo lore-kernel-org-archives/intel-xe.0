@@ -4,60 +4,160 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7576BC624D0
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 12:41:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8707C624D0
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 12:44:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34DC510E4EC;
-	Wed,  2 Sep 2026 12:41:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F01610E4E3;
+	Wed,  2 Sep 2026 12:44:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U+3zbAGX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mrVdxjwp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7800210E4E8
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 12:41:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD0B589207
+ for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 12:44:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788352914; x=1819888914;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=adPmXdDbb1NEn/aVNRy8WcpeERgQjS9SCXsCKPY1ZZ8=;
- b=U+3zbAGXoHVhCMPmncXNDpkPsh7qsHqW5IE8JQLyxdPUh/YIdsfRYvuR
- ywGfYqB5x6jBjrDuSKbpN3m9W4BB4xTZhyaTYiW0uho1k5W9dDxT6RQ1H
- EBfrLND8K3lrOG+HyOyyikw39YbPyeewmK7CbKjdSzAHwspIZiAA02hmT
- TjOJzeG80GHXsQXWIO3fdjHNLY12NpFvSiwyZsVsMdsMoemM3PZh25cta
- O/p94fqHgCjSMWmWQEQ1d3y+eF66IrxAYdIJhM4mXKqk/SCtZg2lHBx1u
- M6h16QhlNARzhIUGNVqkuOoOpfR9x+NPJH2IzhSMV91QuQxbqPNftiq5c w==;
-X-CSE-ConnectionGUID: q3AiH3q3R92Qgkn4ZNkInQ==
-X-CSE-MsgGUID: CD1qFk5ITIaljTFQXHi8MA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="88829524"
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="88829524"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ t=1788353043; x=1819889043;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=K/LugCbWF3MwSOtC+0Q7OBmpJrhQxHjk9C+2VbbyYHc=;
+ b=mrVdxjwprBA8UnZTO8OzHGmMyIduZxu0QHFR5HVT4oCP6j+Q+ioB6X/C
+ Iw3Sa2ncxZeAjQjpFQJeEQKtpNj5SK7kGlDQUEbzF8JQqLhASMJ/wiIS3
+ RzB3+GMCfrv3XzT47Pjzbc2t12Id/2ur9qivovZ0DSrOTIkpgYDchjl87
+ F1KwtiClpJq1o5lRGtZaw1nKPZoxuYT4Dggjc6dVDec06WugvHxmQXlsq
+ hQtKUmtU7Tsv8s+HDpd33Ktj26GxRLRkYGN1hAER3hZXTNpCkNOWDNXy8
+ BODaezw+L1Es4GHo8pQ7z2s5/Jo5uYsE1K+mxYLEDQKB6SP8PwjaQjVUh w==;
+X-CSE-ConnectionGUID: BL/SETcKTlqeWemkFsjCww==
+X-CSE-MsgGUID: H7b7vzYFTU6qWjt7We3uCQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="88829742"
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="88829742"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 05:41:54 -0700
-X-CSE-ConnectionGUID: sQ7Rf/i7TvSYTa0EkwmhFg==
-X-CSE-MsgGUID: SjY4XvYoSE6bCXl1hsp8xw==
+ 02 Sep 2026 05:44:02 -0700
+X-CSE-ConnectionGUID: X9OfQgYcRXeLkBcD5waYqA==
+X-CSE-MsgGUID: bjxCJK3aR8qiBBNEx48UFQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="269965291"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.245.174])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 05:41:52 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Stuart Summers <stuart.summers@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v3 5/5] drm/xe/vram: add early VRAM health check
-Date: Wed,  2 Sep 2026 13:41:23 +0100
-Message-ID: <20260902124117.918018-12-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260902124117.918018-7-matthew.auld@intel.com>
-References: <20260902124117.918018-7-matthew.auld@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="269419200"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 05:44:03 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Wed, 2 Sep 2026 05:44:01 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Wed, 2 Sep 2026 05:44:01 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.40) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Wed, 2 Sep 2026 05:44:01 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yaGbKg9WaT2WrfR0VrHdMYQdMwVMPu7pjHM4twetS9vaQhuAaeXOFgvMfSuuIIc5wXxsSi/s6ImgJeJh0xWuldBbdO8NbjV8yAvwvIysMNAf9JywfN1fRvXiW+nwCGshh45GDbEozik/14BKFve/bpK47LuC2ie4n00Xqpa1bmXoBkYAG8CwadXrynqLLg2yV4dggbNGIcFk3j7s/eGz5zdvERHLps+1ao32V9BT2YIehm5LtZGLTDok+eGFrJCKqBboWwqtvg6ijEpO1X0JJs5ZfASV9EPhb702Cay1Qd2S0GVT6938AORUEtrCawSNXYDD6vEk5kYSP84bpNXvsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OVcdUOzpTej3JQ7uXpa0LcJHHht/QKzJ4+iLxSO1HYw=;
+ b=kM49g3vyKI7BWl/UGmvlXfxrfJvC6elUK6VydABOb8HjJpCb8wutL1fVB1G3JVDWVaNJCMTxSnGQru9ToalvXh3kACWRVc/ouo53bPkiXmRhgCW+gtUZ77d/E3kCjRDaSG48RSianfuUBJTzQh/kPGBGtWSP7Df4LPQl7hE3Q7uyyBffB3a9dbCjEYJgIhOlOjzxKUjwiVDIANpA1IM8bD4YQdXbqMksqkDJN6FzOJEd2Tj3j1+/IlW5j3meUAcl98n5WDWhsfRvRYgclV/uKIhP9mwzVlFKF3NLfFkeQrYjGQWWK0RqFsD8WNkBqkSnorbx/3ilaRpZor5VTSA10g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB7551.namprd11.prod.outlook.com (2603:10b6:510:27c::12)
+ by PH3PPF73E424DB7.namprd11.prod.outlook.com (2603:10b6:518:1::d2e)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Wed, 2 Sep
+ 2026 12:43:56 +0000
+Received: from PH7PR11MB7551.namprd11.prod.outlook.com
+ ([fe80::5cbf:6b33:5f0c:88a0]) by PH7PR11MB7551.namprd11.prod.outlook.com
+ ([fe80::5cbf:6b33:5f0c:88a0%4]) with mapi id 15.21.0360.008; Wed, 2 Sep 2026
+ 12:43:56 +0000
+Message-ID: <5166575b-d624-4234-a9df-1c239ec3b318@intel.com>
+Date: Wed, 2 Sep 2026 14:43:51 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/4] drm/xe/svm: Report terminal page-fault failures
+ using SIGID
+To: Arvind Yadav <arvind.yadav@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: <rodrigo.vivi@intel.com>, <badal.nilawar@intel.com>,
+ <himal.prasad.ghimiray@intel.com>, <dnyaneshwar.bhadane@intel.com>,
+ <mallesh.koujalagi@intel.com>, <matthew.brost@intel.com>
+References: <20260901063059.2547247-1-arvind.yadav@intel.com>
+ <20260901063059.2547247-4-arvind.yadav@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20260901063059.2547247-4-arvind.yadav@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM9P250CA0007.EURP250.PROD.OUTLOOK.COM
+ (2603:10a6:20b:21c::12) To PH7PR11MB7551.namprd11.prod.outlook.com
+ (2603:10b6:510:27c::12)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7551:EE_|PH3PPF73E424DB7:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5a9127c1-55ed-4d9f-d4e1-08df08efda33
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|23010399003|1800799024|366016|3023799007|10067099003|4143699003|11063799006|18002099003|56012099006|22082099003;
+X-Microsoft-Antispam-Message-Info: o7kyRAN1ULcCvRphaW4GdFNItKoS+dXbttNE15YINDUmi391e8mlSMQEjIS6zNayvEw4+t4GKGsmPidnGjLo9otfjidAxRMJfv982Eqqy6ySDZdT41ZPVhS8zVjSHXr0Fe4vvSpynwbRdZMg0JdMyh9uGelHTu66StMiubsNossLa6kiVPx687gqJNLFnWeRYLzV5OpY0JJX2OjQQAX42pBzdAHBIjd+sNPIQKcaptyVc4N0UMTYOccx9YNqkG1mMcVEXtFd5rZr0Y9nD8w7OVVavCuXezFqhzJAkHDAw8IexizuU9XvXOL0rT+YXZHQH/o19JK4REWFJSHUnfkSdldcoHgSQuE0tqrzGVd+O+G92fD6ejMwzWcLP+pbITpO5vGHT3rebpWCxkv/96ldnFC+FW68js9Ia1AweMtYlY3UACW2STH4iTjtQBSCkMX7Vtfvsa/vvq8d9UVCPHIq3gYQ9nM9ebsK8kAGztBC0yakNHvSFyMOGuBrbjzFgGvxfQuYue6BhSowrZJo2TaGdRr9YaAr+yUwComFb0M6Z5TCzW77/Ol5129CeiTTXkutM1KFc7A9RHPdWXk8IiefWoJQ5H+E3c3UyXPUs+8c9K3G2bcwP1TG0V/SYaijnkTVdGfeXHIjAjNEvPsZ7HVSfb5QKOhiSpuoxTqeRgJjll4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB7551.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(3023799007)(10067099003)(4143699003)(11063799006)(18002099003)(56012099006)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Umgrb0hXOUpNeldZcWJFemplK3VCQmZQKzNjcE5lTzFMV04xM25Wb2hySFdP?=
+ =?utf-8?B?UmpFTit1YWM0YkZYcFBPUlg5bENZL0c4RHFGRzI5Q2NnOXVoNzJhd2hEejVp?=
+ =?utf-8?B?SWw2cEk3alB3OGp6Q2ZpQWpaS2dWVC9HRTRBU1B5OUpiWGxjV08xdjJSMW9u?=
+ =?utf-8?B?VW9ReDFMNCtUUFVzdHFjNG1KMDZTOVo4TkYxOVdqZHRvWm8rTzdiVnNsaGlp?=
+ =?utf-8?B?V3liS3k0NUJhdEJqdGRBTWg3TnZUSDJlSFlncXNaTnJlWjFyRUVLZXdiczZW?=
+ =?utf-8?B?b1NKNWVnYWVCdWMxNTByRFd0M2psRjIzS1dzSUNlbFRQNldEYzBDdW53N25r?=
+ =?utf-8?B?SUExSEo5Z25jR2FVdHhYKzhacVdFYXR2SFFhbldIdUQxd3NvY3VRekpmVUJD?=
+ =?utf-8?B?TElnOGRoTjdRWkRqVk5BdU96NlplcFA1bHNuKzVYSitneUIxckQwM1Y4OFYv?=
+ =?utf-8?B?eWQyZC9JVnFlamxJS05kdFZmRjR1MjUyT0VDVVZTdjRHWU80eCs4d0RXZTRo?=
+ =?utf-8?B?MFVma1FDN0gyUVdaMWI1TURxNEVnUUsrSWx2NjZzTHFkRzY5Y1FKc3lrNGsy?=
+ =?utf-8?B?aEdoQlJXR0daZVZJMG5NV3htY0Y5TzdXSWRrdnVnekRscE80dFBpaVNqY2F2?=
+ =?utf-8?B?ZzE4L2RHVFlsZWJPVHoxc2I0Zm9POTNla3NvYUFHY1l1aExUdnA0Vng2K3Ru?=
+ =?utf-8?B?S0o2MERCSFRXZ0xPa2lJWDRRUUV3clJ1VktDMzh3ZnhmR1drRXBRUzM5RERv?=
+ =?utf-8?B?V0lVZ0lza3ZvRk5zbEEzL1hwbGxGZmxYVm13VVY0eDYvMDVUSlN0aWdKMndI?=
+ =?utf-8?B?Sno1RTFOMjc2Ui9LQ1ZpdG94VjdScExGSjlpWGV5Qzg0eHdmT2h2b0Q0VzB1?=
+ =?utf-8?B?Mnk2SHhWU0EwWTRHeWFmamZiZXQ5SzhKWEh1RWFjVzFISDI0azZhbkdHeVpU?=
+ =?utf-8?B?TkpmREtSU2pGZVVaZXkrcWxITS9pSThvT281MmE4SkhFUXJQOEhHQkxLTDZp?=
+ =?utf-8?B?YUtzMitzZmlKamRnNlpSaFRmTFBieDdEOVNDNXhVK2lnby9SdUtuVy93Rzho?=
+ =?utf-8?B?S1VwRlFTVFplQXBRTFN4cEFocHErUDkyZW5wSE9xMkhSN2tmS2pGb2x4NkxD?=
+ =?utf-8?B?UU5iZlljOGQxKzkyc3lFajZEUHQ1TWkyaU04bVdxaEJkUHpHSnR6UXBKVUFV?=
+ =?utf-8?B?S0VVUmtZckM5U3d4djIrNVpOZmYyNGtNWXpEak1mQmVaMnJLQXFrMzBwYnkz?=
+ =?utf-8?B?aE9JTjI1SG9JS3JXUHBQRU95RVUwRVlEUXVOMVlBcmd6aUE4S2pFYVVVZzI4?=
+ =?utf-8?B?b0V0bDdCczhJTmM4cEVkaFRzbjExMzhtWW9ZWXU4c2dDbTAzWFIrWEl1Y251?=
+ =?utf-8?B?YW1OVlRjMUlLMjREY2w2WjB6SlJRNloyMmpYUGJpRXR6OUZPZWV0QjcwdTRs?=
+ =?utf-8?B?SmJyS0NDdnNHYk9ZK1k1TzFZNjlQODNOU2hGcmdIWWljVE9UWmFEMmRENEhH?=
+ =?utf-8?B?c1dLbit3SnQ2KzlqNWkxZCtEbS8ySUVmKzVYSWl6ZDJBaVJQeTBYRTFyVkhU?=
+ =?utf-8?B?b0JqaFBPVXVROE5lMWJQbm1Od25qakdzVzNrMTd2MCtxVUlDa3BjVnlHYkJt?=
+ =?utf-8?B?TWlZNk9kWDIycWQzK01tT2ZaTERkelo4VjFhZTM1M0JyUk85ZVRiZlRBem5s?=
+ =?utf-8?B?MmM3Sm9XekZsTDdWV08zamVsMjRPb1JPenhXQlF3MUN4MmlYMXpYYnBvWEoz?=
+ =?utf-8?B?WU41RkxKeGR3b2Yza0N2dGc0b2syelJhNGhKODhCdm9wTERHM0hwR1RBdmNn?=
+ =?utf-8?B?M1pSeFpuNm1YOWtrZ0xCOHp2SmR2OC9KU3hOZ0IxRkNMTThlbGIxZVE1UDNI?=
+ =?utf-8?B?WkIxWVh5a2xCdnExM0Y5TURVQlRkWjRKSUlGN0FZN2dPaEUwM29ydERma3hJ?=
+ =?utf-8?B?WXFnZDVFUjMwVEdWaFJnUjJobjdzanlnMEJSMEExbmVnR0MxSjBtMFM0andw?=
+ =?utf-8?B?VFlrbTVWazhMT0d6VDV3bVhXV1YyUG5SN2Y2NDJ5b29tRVV5R2xJTVFGMWEr?=
+ =?utf-8?B?S0xqcWczamdhckhFNGZVVldHaXF4VjVUSTF2U2dsOGl2OVlucFlZYU05dWxi?=
+ =?utf-8?B?Ulp6S0QzY3dZUThwZVRyNGM0RWhQRzRJWXJoMHROY3J4aTYzcHBhZjhRVFBU?=
+ =?utf-8?B?eHdUYXZOa0hCa3lKZVJlRHpYZ2tNN21nREFDNzZvRXhyeE9GT0xyQkFaeUdX?=
+ =?utf-8?B?Mmp6dEUrQTFEMzM5ZDhhY3dxRHRyWkx1TlZBNi83ZlNsdkc2aHF3SGVOWUFp?=
+ =?utf-8?B?cWhidldBZmZOUm1LTUZLL1Z5ZzZrUHB1Ulc2N1dCZThpcFpaaEN2OFVrRHY4?=
+ =?utf-8?Q?Ctky4ygiHlURFgT4=3D?=
+X-Exchange-RoutingPolicyChecked: p81Qp266oE56Pz9DK7ZHmqDGX8/4mJvk0264BcdZRk3eMxu2McODksuKuTaofo4qIHOvV2I5nMTjUjgKPqgc61OdPkHFFAb1eK8mkIK6X3KowII0tb7YYzWEfe/ON2XD7equFPhY7VZkOZMDfvZp39RBE1Nev9k1rTUkJkui+91vujMpcZR/pBBYHu/Vrofjwg0fe3K0sySV6GHmMtZwUw9JT+/ECfn5x8bueqxUVYuYyQyCsxgYNCtm8H9xlvMvH1YTI+CzTRHeR6rTuMz5MVQJfun+wNnAtD1nA1sa6QbWPZy9vxTJHcPw7jMc0BlqvXUNnlziB0GEM/4eiOm5nA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a9127c1-55ed-4d9f-d4e1-08df08efda33
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7551.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2026 12:43:56.2667 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: o3ta3p+B4iOlac+tisdKAdVUWi/KrvqJ+3qXHaJ74MAO7qONNDDggNVPim4MAlGZOMzl8gU/cRzsRp7p0BQuFTXwSdbDUvxTuvoBIjXDHQM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF73E424DB7
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,464 +172,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During early probe, use the last page as a canary for BAR sizing, CCS
-sizing, identity map setup etc. If something is wrong the last page is
-where we will likely find it. Hit it with everything we have. For now
-this is gated behind a debug config option, so shouldn't trigger on
-production.
 
-Main motivation is around CCS sizing where on some BMG cards the CCS
-offset is programmed misaligned, for whatever reason, and our handling
-of that was busted, as found by Linus, leading to some amount of CCS
-storage getting pulled into the allocator as normal VRAM.
 
-Nothing in our CI farm has such a misaligned offset it would seem,
-however I did get this to pop on my b570, which does also have the
-misaligned CCS offset:
+On 9/1/2026 8:30 AM, Arvind Yadav wrote:
+> Route terminal SVM page-fault failures through the structured SIGID logging
+> helper.
+> 
+> These errors are reported only after the retry count is exceeded, so they
+> represent terminal page-fault handling failures rather than transient retry
+> conditions.
 
-  Tile 0: Running VRAM memtest...
-  Tile 0: VRAM bounds overlap CCS region! VRAM sizing is incorrect.
+that sounds like a LLM output
 
-With the fix from Linus, this goes away:
+> 
+> Use the PAGEFAULT component, which maps to XE_SIGID_MEM_FAULT, and pass the
+> real errno value to the helper. Pass the GT object so the report carries
+> tile/GT location. The helper renders the errno, so remove the manual
+> ERR_PTR() formatting from the message text.
 
-  Tile 0: Running VRAM memtest...
-  Tile 0: VRAM memtest completed.
+do we really need to explain here the details how xe_log() macro works?
+or that 'real errno' value will be used?
 
-For the VRAM health check itself, this adds:
+> 
+> Cc: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+> Cc: Badal Nilawar <badal.nilawar@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Suggested-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_svm.c | 13 +++++++------
+>  1 file changed, 7 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+> index 627a741293d5..349e307ca092 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -13,6 +13,7 @@
+>  #include "xe_bo.h"
+>  #include "xe_exec_queue_types.h"
+>  #include "xe_gt_stats.h"
+> +#include "xe_log.h"
+>  #include "xe_migrate.h"
+>  #include "xe_module.h"
+>  #include "xe_pagefault.h"
+> @@ -1361,9 +1362,9 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+>  				else
+>  					goto retry;
+>  			} else {
+> -				drm_err(&vm->xe->drm,
+> -					"VRAM allocation failed, retry count exceeded, asid=%u, errno=%pe\n",
+> -					vm->usm.asid, ERR_PTR(err));
+> +				xe_log_err(gt, PAGEFAULT, err,
+> +					   "VRAM allocation failed, retry count exceeded, asid=%u\n",
 
-  - CPU access to the last page (BAR).
-  - GPU access to the last page (identity map).
-  - CCS overlap check. This one is more involved, but overall idea is
-    fill the last page with a known pattern, and also save the CCS state
-    for the first 4M of VRAM to some scratch memory. We then zero the CCS
-    storage for that same range, all using the proper CCS copy instruction.
-    At this point we readback the last page, and check if the pattern we
-    wrote changed. Finally we restore the CCS state. This works since CCS
-    1:1 maps with VRAM, so the start of the raw CCS, should map to the
-    start of VRAM. This successfully catches the issue that Linus found
-    and fixed.
+s/asid/ASID
 
-Assisted-by: Gemini:gemini-3.1-pro-preview
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Stuart Summers <stuart.summers@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c     |   8 +
- drivers/gpu/drm/xe/xe_migrate.c    |  64 ++++++++
- drivers/gpu/drm/xe/xe_migrate.h    |   6 +
- drivers/gpu/drm/xe/xe_tile_types.h |   4 +
- drivers/gpu/drm/xe/xe_vram.c       | 241 +++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vram.h       |  10 ++
- 6 files changed, 333 insertions(+)
+> +					   vm->usm.asid);
+>  				goto err_out;
+>  			}
+>  		}
+> @@ -1384,9 +1385,9 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+>  			range_debug(range, "PAGE FAULT - RETRY PAGES");
+>  			goto retry;
+>  		} else {
+> -			drm_err(&vm->xe->drm,
+> -				"Get pages failed, retry count exceeded, asid=%u, gpusvm=%p, errno=%pe\n",
+> -				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+> +			xe_log_err(gt, PAGEFAULT, err,
+> +				   "Get pages failed, retry count exceeded, asid=%u, gpusvm=%p\n",
+> +				   vm->usm.asid, &vm->svm.gpusvm);
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index fa98b2d12204..8583b2e9ecf4 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1051,6 +1051,10 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
-+	err = xe_vram_reserve_memtest_bo(xe);
-+	if (err)
-+		return err;
-+
- 	for_each_tile(tile, xe, id) {
- 		err = xe_tile_init(tile);
- 		if (err)
-@@ -1067,6 +1071,10 @@ int xe_device_probe(struct xe_device *xe)
- 			return err;
- 	}
- 
-+	err = xe_vram_memtest(xe);
-+	if (err)
-+		return err;
-+
- 	err = xe_pagefault_init(xe);
- 	if (err)
- 		return err;
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 0bf000d7c901..ff45c24d8889 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -2650,3 +2650,67 @@ void xe_migrate_job_lock_assert(struct xe_exec_queue *q)
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
- #include "tests/xe_migrate.c"
- #endif
-+
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
-+int xe_migrate_debug_ccs_overlap(struct xe_migrate *m,
-+				 struct xe_bo *scratch_bo,
-+				 bool write_to_ccs)
-+{
-+	struct xe_device *xe = tile_to_xe(m->tile);
-+	struct xe_gt *gt = m->tile->primary_gt;
-+	struct dma_fence *fence;
-+	struct xe_bb *bb;
-+	struct xe_sched_job *job;
-+	u64 first_page_dpa, clear_L0_ofs, scratch_dpa, scratch_L0_ofs;
-+
-+	if (!xe_device_has_flat_ccs(xe))
-+		return -EINVAL;
-+
-+	first_page_dpa = xe_vram_region_dpa_base(m->tile->mem.vram);
-+	clear_L0_ofs = xe_migrate_vram_ofs(xe, first_page_dpa, true);
-+
-+	scratch_dpa = xe_bo_addr(scratch_bo, 0, XE_PAGE_SIZE);
-+	scratch_L0_ofs = xe_migrate_vram_ofs(xe, scratch_dpa, false);
-+
-+	bb = xe_bb_new(gt, EMIT_COPY_CCS_DW + 1, xe->info.has_usm);
-+	if (IS_ERR(bb)) {
-+		drm_warn(&xe->drm, "Failed to create bb for VRAM overlap check\n");
-+		return PTR_ERR(bb);
-+	}
-+
-+	/* 4MB payload = 8KB CCS metadata */
-+	if (write_to_ccs) {
-+		emit_copy_ccs(gt, bb, clear_L0_ofs, true,
-+			      scratch_L0_ofs, false, SZ_4M);
-+	} else {
-+		emit_copy_ccs(gt, bb, scratch_L0_ofs, false,
-+			      clear_L0_ofs, true, SZ_4M);
-+	}
-+
-+	bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
-+
-+	job = xe_bb_create_migration_job(m->q, bb,
-+					 xe_migrate_batch_base(m, xe->info.has_usm),
-+					 0);
-+	if (!IS_ERR(job)) {
-+		xe_sched_job_add_migrate_flush(job, MI_FLUSH_DW_CCS);
-+
-+		mutex_lock(&m->job_mutex);
-+		xe_sched_job_arm(job);
-+
-+		fence = dma_fence_get(&job->drm.s_fence->finished);
-+		xe_sched_job_push(job);
-+		mutex_unlock(&m->job_mutex);
-+
-+		dma_fence_wait(fence, false);
-+		dma_fence_put(fence);
-+	} else {
-+		drm_warn(&xe->drm, "Failed to create job for VRAM overlap check\n");
-+		xe_bb_free(bb, NULL);
-+		return PTR_ERR(job);
-+	}
-+
-+	xe_bb_free(bb, NULL);
-+	return 0;
-+}
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index c3a268b01768..a9acc62f78f0 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -182,4 +182,10 @@ static inline void xe_migrate_job_lock_assert(struct xe_exec_queue *q)
- void xe_migrate_job_lock(struct xe_migrate *m, struct xe_exec_queue *q);
- void xe_migrate_job_unlock(struct xe_migrate *m, struct xe_exec_queue *q);
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
-+int xe_migrate_debug_ccs_overlap(struct xe_migrate *m,
-+				 struct xe_bo *scratch_bo,
-+				 bool write_to_ccs);
-+#endif
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_tile_types.h b/drivers/gpu/drm/xe/xe_tile_types.h
-index 0048100ccb72..e1368c04846a 100644
---- a/drivers/gpu/drm/xe/xe_tile_types.h
-+++ b/drivers/gpu/drm/xe/xe_tile_types.h
-@@ -97,6 +97,10 @@ struct xe_tile {
- 		 * Only main GT has page reclaim list allocations.
- 		 */
- 		struct xe_sa_manager *reclaim_pool;
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
-+		/** @mem.memtest_bo: VRAM overlap check BO */
-+		struct xe_bo *memtest_bo;
-+#endif
- 	} mem;
- 
- 	/** @sriov: tile level virtualization data */
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index 04d831b101bd..dcedd8cfd731 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -17,8 +17,11 @@
- #include "xe_device.h"
- #include "xe_force_wake.h"
- #include "xe_gt_mcr.h"
-+#include "xe_map.h"
-+#include "xe_migrate.h"
- #include "xe_mmio.h"
- #include "xe_sriov.h"
-+#include "xe_tile.h"
- #include "xe_tile_sriov_vf.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_vram.h"
-@@ -407,3 +410,241 @@ resource_size_t xe_vram_region_actual_physical_size(const struct xe_vram_region
- 	return vram ? vram->actual_physical_size : 0;
- }
- EXPORT_SYMBOL_IF_KUNIT(xe_vram_region_actual_physical_size);
-+
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
-+static void memtest_bo_cleanup(void *arg)
-+{
-+	struct xe_device *xe = arg;
-+
-+	xe_vram_free_memtest_bos(xe);
-+}
-+
-+int xe_vram_reserve_memtest_bo(struct xe_device *xe)
-+{
-+	struct xe_tile *tile;
-+	u8 id;
-+
-+	if (IS_SRIOV_VF(xe))
-+		return 0;
-+
-+	for_each_tile(tile, xe, id) {
-+		u64 vram_size;
-+
-+		if (!tile->mem.vram)
-+			continue;
-+
-+		if (tile->mem.vram->io_size < tile->mem.vram->usable_size) {
-+			drm_info(&xe->drm,
-+				 "Tile %d: Small-BAR system detected, skipping VRAM memtest\n",
-+				 id);
-+			continue;
-+		}
-+
-+		vram_size = tile->mem.vram->usable_size;
-+
-+		tile->mem.memtest_bo = xe_bo_create_pin_map_at_novm(xe, tile, SZ_64K,
-+								    vram_size - SZ_64K,
-+								    ttm_bo_type_kernel,
-+								    XE_BO_FLAG_VRAM_IF_DGFX(tile),
-+								    0, false);
-+		if (IS_ERR(tile->mem.memtest_bo)) {
-+			drm_warn(&xe->drm, "Tile %d: Failed to reserve memtest BO\n", id);
-+			tile->mem.memtest_bo = NULL;
-+			continue;
-+		}
-+
-+		drm_info(&xe->drm, "Tile %d: Reserved memtest BO at offset 0x%llx\n",
-+			 id, vram_size - SZ_64K);
-+	}
-+
-+	return devm_add_action_or_reset(xe->drm.dev, memtest_bo_cleanup, xe);
-+}
-+
-+void xe_vram_free_memtest_bos(struct xe_device *xe)
-+{
-+	struct xe_tile *tile;
-+	u8 id;
-+
-+	for_each_tile(tile, xe, id) {
-+		if (tile->mem.memtest_bo) {
-+			xe_bo_unpin_map_no_vm(tile->mem.memtest_bo);
-+			tile->mem.memtest_bo = NULL;
-+		}
-+	}
-+}
-+
-+int xe_vram_memtest(struct xe_device *xe)
-+{
-+	struct xe_tile *tile;
-+	u8 id;
-+	int err = 0;
-+
-+	if (IS_SRIOV_VF(xe))
-+		return 0;
-+
-+	for_each_tile(tile, xe, id) {
-+		struct xe_bo *last_page_bo = tile->mem.memtest_bo;
-+		struct dma_fence *fence;
-+		bool overlap = false;
-+		int i;
-+		u8 val;
-+
-+		if (!last_page_bo || !tile->migrate)
-+			continue;
-+
-+		drm_info(&xe->drm, "Tile %d: Running VRAM memtest...\n", id);
-+
-+		/* CPU write and readback first and last byte of the last page */
-+		xe_map_wr(xe, &last_page_bo->vmap, 0, u8, 0xA5);
-+		xe_map_wr(xe, &last_page_bo->vmap, SZ_64K - 1, u8, 0x5A);
-+
-+		val = xe_map_rd(xe, &last_page_bo->vmap, 0, u8);
-+		if (drm_WARN(&xe->drm, val != 0xA5,
-+			     "Tile %d: CPU memtest failed at offset 0 (expected 0xA5, got 0x%02x)\n",
-+			     id, val)) {
-+			err = -EIO;
-+			goto unpin;
-+		}
-+
-+		val = xe_map_rd(xe, &last_page_bo->vmap, SZ_64K - 1, u8);
-+		if (drm_WARN(&xe->drm, val != 0x5A,
-+			     "Tile %d: CPU memtest failed at offset 65535 (expected 0x5A, got 0x%02x)\n",
-+			     id, val)) {
-+			err = -EIO;
-+			goto unpin;
-+		}
-+
-+		/* Non-CCS access via GPU on the last page */
-+		xe_bo_lock(last_page_bo, false);
-+		fence = xe_migrate_clear(tile->migrate, last_page_bo,
-+					 last_page_bo->ttm.resource,
-+					 XE_MIGRATE_CLEAR_FLAG_BO_DATA);
-+		xe_bo_unlock(last_page_bo);
-+
-+		if (!IS_ERR(fence)) {
-+			dma_fence_wait(fence, false);
-+			dma_fence_put(fence);
-+		} else {
-+			err = PTR_ERR(fence);
-+			goto unpin;
-+		}
-+
-+		val = xe_map_rd(xe, &last_page_bo->vmap, 0, u8);
-+		if (drm_WARN(&xe->drm, val != 0x00,
-+			     "Tile %d: GPU memtest clear failed at offset 0 (expected 0x00, got 0x%02x)\n",
-+			     id, val)) {
-+			err = -EIO;
-+			goto unpin;
-+		}
-+
-+		/*
-+		 * Check for CCS overlap on the root tile.
-+		 *
-+		 * TODO: maybe extend if we ever get multi-tile + CCS. Pay
-+		 * special attention to the l2 flush below. Currently that is
-+		 * hard coded to the root tile.
-+		 */
-+		if (!id && xe_device_has_flat_ccs(xe) &&
-+		    GRAPHICS_VERx100(xe) >= 2000) {
-+			struct xe_bo *scratch_bo_before;
-+			struct xe_bo *scratch_bo_after;
-+
-+			scratch_bo_before = xe_bo_create_pin_map_novm(xe, tile, SZ_64K,
-+								      ttm_bo_type_kernel,
-+								      XE_BO_FLAG_VRAM_IF_DGFX(tile),
-+								      false);
-+			if (IS_ERR(scratch_bo_before)) {
-+				err = PTR_ERR(scratch_bo_before);
-+				goto unpin;
-+			}
-+
-+			scratch_bo_after = xe_bo_create_pin_map_novm(xe, tile, SZ_64K,
-+								     ttm_bo_type_kernel,
-+								     XE_BO_FLAG_VRAM_IF_DGFX(tile),
-+								     false);
-+			if (IS_ERR(scratch_bo_after)) {
-+				xe_bo_unpin_map_no_vm(scratch_bo_before);
-+				err = PTR_ERR(scratch_bo_after);
-+				goto unpin;
-+			}
-+
-+			/* Save original CCS metadata for PA 0 + */
-+			err = xe_migrate_debug_ccs_overlap(tile->migrate, scratch_bo_before, false);
-+			if (err) {
-+				xe_bo_unpin_map_no_vm(scratch_bo_before);
-+				xe_bo_unpin_map_no_vm(scratch_bo_after);
-+				goto unpin;
-+			}
-+
-+			/*
-+			 * Fill last page. If there is CCS overlap in the last
-+			 * page this will snag the raw CCS storage.
-+			 */
-+			xe_map_memset(xe, &last_page_bo->vmap, 0, 0x5A, SZ_64K);
-+			xe_device_wmb(xe);
-+
-+			/*
-+			 * Global invalidation. Some BMG SKUs will cache the BAR
-+			 * writes in the GPU side VRAM cache. Make sure above
-+			 * writes are fully flushed out to VRAM, so this is
-+			 * hopefully more well behaved with the CCS unit, if
-+			 * there is indeed CCS overlap with normal VRAM. Since
-+			 * there is a separate CCS cache, the CCS unit might not
-+			 * respect the GPU VRAM cache for CCS accesses, so opt
-+			 * for being super careful here.
-+			 */
-+			xe_device_l2_flush(xe, true);
-+
-+			/* Use GPU to clear CCS state for PA 0 */
-+			xe_map_memset(xe, &scratch_bo_after->vmap, 0, 0x00, SZ_64K);
-+			err = xe_migrate_debug_ccs_overlap(tile->migrate, scratch_bo_after, true);
-+			if (err) {
-+				xe_bo_unpin_map_no_vm(scratch_bo_before);
-+				xe_bo_unpin_map_no_vm(scratch_bo_after);
-+				goto unpin;
-+			}
-+			/*
-+			 * Global invalidation. Ensure CCS caches really are
-+			 * nuked and the raw CCS data is visible in VRAM, for
-+			 * the below access.
-+			 */
-+			xe_device_l2_flush(xe, true);
-+
-+			/* Check if last_page_bo was corrupted by the GPU CCS clear */
-+			for (i = 0; i < SZ_64K; i += 8) {
-+				u64 payload = xe_map_rd(xe, &last_page_bo->vmap, i, u64);
-+
-+				if (payload != 0x5A5A5A5A5A5A5A5AULL) {
-+					overlap = true;
-+					break;
-+				}
-+			}
-+
-+			/* Restore original CCS metadata for PA 0 + */
-+			err = xe_migrate_debug_ccs_overlap(tile->migrate, scratch_bo_before, true);
-+			if (err)
-+				drm_warn(&xe->drm, "Failed to restore CCS metadata\n");
-+
-+			xe_bo_unpin_map_no_vm(scratch_bo_before);
-+			xe_bo_unpin_map_no_vm(scratch_bo_after);
-+		}
-+
-+		if (drm_WARN(&xe->drm, overlap,
-+			     "Tile %d: VRAM bounds overlap CCS region! VRAM sizing is incorrect.\n",
-+			     id)) {
-+			err = -EINVAL;
-+			goto unpin;
-+		}
-+
-+		drm_info(&xe->drm, "Tile %d: VRAM memtest completed.\n", id);
-+
-+unpin:
-+		if (err)
-+			break;
-+	}
-+
-+	xe_vram_free_memtest_bos(xe);
-+
-+	return err;
-+}
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_vram.h b/drivers/gpu/drm/xe/xe_vram.h
-index dd1c8bf17922..38425d81f777 100644
---- a/drivers/gpu/drm/xe/xe_vram.h
-+++ b/drivers/gpu/drm/xe/xe_vram.h
-@@ -23,4 +23,14 @@ resource_size_t xe_vram_region_dpa_base(const struct xe_vram_region *vram);
- resource_size_t xe_vram_region_usable_size(const struct xe_vram_region *vram);
- resource_size_t xe_vram_region_actual_physical_size(const struct xe_vram_region *vram);
- 
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
-+int xe_vram_reserve_memtest_bo(struct xe_device *xe);
-+void xe_vram_free_memtest_bos(struct xe_device *xe);
-+int xe_vram_memtest(struct xe_device *xe);
-+#else
-+static inline int xe_vram_reserve_memtest_bo(struct xe_device *xe) { return 0; }
-+static inline void xe_vram_free_memtest_bos(struct xe_device *xe) {}
-+static inline int xe_vram_memtest(struct xe_device *xe) { return 0; }
-+#endif
-+
- #endif
--- 
-2.55.0
+s/asid/ASID
+
+also, does it make sense to log the gpusv kernel pointer ??
+maybe log the gpusvm->name instead?
+
+>  		}
+>  	}
+>  	if (err) {
 
