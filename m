@@ -4,161 +4,169 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8B33C624D4
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 08:01:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B81EC61DD6
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 08:08:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 568B210F064;
-	Wed,  2 Sep 2026 08:01:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7C3A10F04E;
+	Wed,  2 Sep 2026 08:08:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GKeI5WL8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b+nfiAPs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AC2110F04C;
- Wed,  2 Sep 2026 08:01:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC71E10F04A;
+ Wed,  2 Sep 2026 08:08:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788336061; x=1819872061;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=o9doHcJLZxamMF+bxBIUKdH+Q1hLN7BpkgK5MWNmF0I=;
- b=GKeI5WL8Y353xUNmdiDcbTNsG0uuiO4SSaQxNTMWd4WeDI7ZGcnmRslf
- 6linAi1M0CaITC1JCzjVqwy15bg3Y2wcAp3R8BZUuRGmjYXMjABN+SKIy
- QGyljlq1kxL2YAVdkxNeXjPZk7kNjLtmio8qtJN/GW8pKYTYLJqVmiULZ
- B1aMiONXmkdaApR3gNa0XHt4uFQGs9pipO20ZxdGoMRF27Twzl8z3q7V1
- uVV725mX2keUdIia6fd/uHaqWFmDC88tjTd2A5PaJlUo6z+mX3EVmXYWK
- mFmIbelCV0y37AbiG2FypQw1tgJ7wrYZThrwquEv6uvo4XE7HJqr1bT23 w==;
-X-CSE-ConnectionGUID: BuhcICiDRfyH5qWUgNgvZw==
-X-CSE-MsgGUID: +bdsX+rjTzCnowwbZtXL4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="106154597"
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="106154597"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 01:01:00 -0700
-X-CSE-ConnectionGUID: UAAjCVQNSTa1/to7fX4Yrg==
-X-CSE-MsgGUID: LOUvOza6QNy5nhUwzI66Gw==
+ t=1788336517; x=1819872517;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=tfkaCFYOx2x4hh5/MdjKUDNak7UZO4m1mi673lRIhis=;
+ b=b+nfiAPsBdEfJ0vHc3i0/dTSqrs3wBJg5CTWgHmZ/ANX02TS0ddhJdGs
+ G2l50FiQHLhJSzpXRAF3pw4q1jV+6LB2+XfILq8/ZkIzdAKR7/FvFfTnB
+ Gv2m0XcH0Q38REK/Gm6jPIqSvP1JGYA4E0nIp/r30092uJt3FATdRxTi8
+ N8GuSlQYouZmBVpi3pjgeM9gv1mJi0nVoqVZFB0rPklNVFOa0XEWdmk5g
+ JVOtMLhSxaG4AEH5WJtIBX3tCFqtliYtP/PFbyEXQcelCNSAO1r5Nsbjt
+ xbCgYc4FtHfyT3u2nfD4gXo/EBzZiQ6pEaLBDU7PuEf38E24CCUZK//we w==;
+X-CSE-ConnectionGUID: 4MijxKWkSvycjUR2m+r0uA==
+X-CSE-MsgGUID: Jwds9QB4QEOyW31T/Xah1A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="114329350"
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="114329350"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 01:08:36 -0700
+X-CSE-ConnectionGUID: rnd4N/G+T/q9572YWakKHA==
+X-CSE-MsgGUID: kZqaFZTxQaGDZg2diJwetg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="267563053"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 01:01:00 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="268035277"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 01:08:36 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 2 Sep 2026 01:00:58 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.46; Wed, 2 Sep 2026 01:08:35 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Wed, 2 Sep 2026 01:00:58 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.50) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Wed, 2 Sep 2026 01:08:35 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.60) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 2 Sep 2026 01:00:58 -0700
+ 15.2.2562.46; Wed, 2 Sep 2026 01:08:34 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Y8LE7WJHK515GjN4QXgvBxi6ZX/3/5kSugB6CuJzJl3RuQDat1PYdcI682lKf4QdhQLHJo6fYU5z5NlNDfPavUkyg6Cem0SUuP4tXNAZIvOnTwAo94Yt57G2iePzywCLnamiVGvCeqh55RPdWr0VPIruVLaXJbY9Mk1qwEckTh0I0foFnGAK6zZuu6348j0yLdSC+o4jxshn6+gjz287rnEhzJ4XjR7o3J/qNVkO7gM3kBnZD36UbbJlRHAmtt3tZcKEyrWMBor2aVD9nZTwOe5c9aqooV7xq5Hj7W2KFJjAFpqzmlbAw4FOY/aM3Z0w4QkErJE7j+/UpPW2gioI7A==
+ b=Oeo2cOGiqahSzlsRtK1xCnI6s7n6A2dZ4nvn+K6vmmR5e58fHHufPTr0RZCanvZOY8TdGIrV/p7pGS0ebP9SRbQraaGlFgTr0zrH6s3n2PWaOZVT41muT3xnQY2b3NjaRHPV9qtDVl8M35gcCBS9YWdorF99X/SsYuB/8R5V+Ffp87of4E0tDXcMOMrGqammvtLA3kwOIH5dRH/hV2p4xED0l1b3sLcEhj4XcEyc/vfykPRySH1f8bY7Wdwm/WbvvjsnV2xbnZgHESki7TGnM7WhdkFV8hmH1Dgc4jFJgEhuBxO+rFuFk8G3SyF69dCnMieFvw8huwYd6bCPDTVsxw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VOoFRQI03a4ob5QS8cZsgOzc4SdpZgJwyNpa2B2vrjc=;
- b=t05FObU250k4luzTAZxiNDiLD03YnaDCDoYRUQyQTumrC2Z3rAYjYH4+nyRrPXIOBXimR7cQDf3Qx2lVIi4EVg8hty6nqeoL0ISJWgP6RCuoRLOrBKUygjStnRAufOSZ7CgiCdtGNrvdMSxY1LJquv2+Q8ocP7x2YK7yAbo7YxHt+prtBGX44PwcMB62XgaCcrWSrG8l0meRONPleLNHntqebSesJ7vcBdXiIjpmYucR/xwSsLpQLjYDf4aC9uPBDcEo4HeAIr66DLwD8x+9evbDRNGaEwn6s+Ig3UzVV8reKedDWbiHJgW22PuwizzOB0bjtJRmg2zhAn2/VejcQw==
+ bh=cVPCUwhK5hYjfPnHBNPjzUqxH3SNTvRnavZJ0hAqz70=;
+ b=xsFf699tOQm4jf4EHNLvJq4N6ioSLNJSLjSj+8s0vYJPROgNXmRNJdf1mHsvIF3/FUhpd87ECPLG9HCYE92z3WYmxkzSK05fMSfpb7YHpfdvq8ChwDR8XX7eYobvUd0ci7/20z67chOWdPRs6BuYJg7rjknjbcNNQSXaX3qiViOkiGrFVMK2LLPA5Vp/nCXYLeqSyJoshf5F8Sasf+tEKqxPVCdKO3pDbwYaInaYX4HLTBrUEQ6FzI7eQmWluOojfx3/ydHPsbUU1zRiPjCGNtt9QP5O/7c7NdjBk/vxFU4e0GcCjOPx4R9zsPUfNGuzw/ENlFkdfhLIXvaulU2sYA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SA3PR11MB7554.namprd11.prod.outlook.com (2603:10b6:806:315::9)
- by MW4PR11MB5775.namprd11.prod.outlook.com (2603:10b6:303:181::7)
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by DM3PPF1FCD3EAF0.namprd11.prod.outlook.com (2603:10b6:f:fc00::f12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.10; Wed, 2 Sep
- 2026 08:00:50 +0000
-Received: from SA3PR11MB7554.namprd11.prod.outlook.com
- ([fe80::3ec0:2280:db82:d67b]) by SA3PR11MB7554.namprd11.prod.outlook.com
- ([fe80::3ec0:2280:db82:d67b%5]) with mapi id 15.21.0360.008; Wed, 2 Sep 2026
- 08:00:48 +0000
-Message-ID: <8e295111-5bf6-4683-8aa8-c6fd99a2411c@intel.com>
-Date: Wed, 2 Sep 2026 13:30:40 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v5 2/2] drm/i915/audio: Prune ELD SADs based on HDMI audio
- bandwidth
-To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>
-CC: Kai Vehmanen <kai.vehmanen@linux.intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, "Vinod
- Govindapillai" <vinod.govindapillai@intel.com>, Mitul Golani
- <mitulkumar.ajitkumar.golani@intel.com>, Jani Nikula <jani.nikula@intel.com>
-References: <20260901103639.617757-1-chaitanya.kumar.borah@intel.com>
- <20260901103639.617757-3-chaitanya.kumar.borah@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260901103639.617757-3-chaitanya.kumar.borah@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Wed, 2 Sep
+ 2026 08:08:18 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0360.008; Wed, 2 Sep 2026
+ 08:08:18 +0000
+Date: Wed, 2 Sep 2026 01:08:16 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Nathan Bourgeois <iridescentrosesfall@gmail.com>, Dave Airlie
+ <airlied@gmail.com>
+CC: Dave Airlie <airlied@gmail.com>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>, "Rodrigo
+ Vivi" <rodrigo.vivi@intel.com>, Christian =?iso-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Matthew Auld <matthew.auld@intel.com>, "Simona
+ Vetter" <simona@ffwll.ch>
+Subject: Re: [PATCH] drm/xe: Fix unnecessary host-side population of ttm_tt
+ on non-TT resources
+Message-ID: <apfZcEF8IlDak/As@gsse-cloud1.jf.intel.com>
+References: <20260820031901.1018324-1-iridescentrosesfall@gmail.com>
+ <aoczaCuoaZfUkfm5@gsse-cloud1.jf.intel.com>
+ <CAMpTW2cxRrG4oJ0HrRoKhHrVHxWO01-L+QDoWMLCAUaSfw75sA@mail.gmail.com>
+ <CAMpTW2fxFRrpn1b5WGYBrtLLMfUo_fmx9s2D0b552GJp-sF5qg@mail.gmail.com>
+ <8b7001c68c94491095f41d2a3dff45090c0a95cf.camel@linux.intel.com>
+ <aoeUdfrPX+0ZnZMr@gsse-cloud1.jf.intel.com>
+ <CAPM=9twBded3B553KYzwDtVd0NbhbAwbiVDGw_bdrmBnOKgtKA@mail.gmail.com>
+ <CAMpTW2eXS9tBzppJvvfZ-FiwoJ5MKOAdB9sqYgCDPVQ_+___ZA@mail.gmail.com>
+ <ao+acQG/wyZYNYfW@gsse-cloud1.jf.intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0055.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1b8::6) To SA3PR11MB7554.namprd11.prod.outlook.com
- (2603:10b6:806:315::9)
+In-Reply-To: <ao+acQG/wyZYNYfW@gsse-cloud1.jf.intel.com>
+X-ClientProxiedBy: SJ0PR13CA0045.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c2::20) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA3PR11MB7554:EE_|MW4PR11MB5775:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5dab8071-a55f-479d-22fe-08df08c84c4b
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM3PPF1FCD3EAF0:EE_
+X-MS-Office365-Filtering-Correlation-Id: 67098c33-f3c0-4131-1fbe-08df08c958f1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|23010399003|366016|3023799007|10067099003|11063799006|56012099006|4143699003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 47VEfpDtfLSHEuRD8irdRmhq+WPccKSRg5K8DLW6W0LeEMm83+kQYpGFeQ8plAgWr27b/Yb+AnJoievxZiY8DMWp4QEhA8b3Hzy2tWavNDxj0nhx4s6q/rz2cNTH7r5TEL34ZiHkZBeok1AzFNXOJzQsVnG5ztWQURZN9LsEfpGSIyY2KPYz9s8MJiB5qaMWiWA38HhAJrqu2BAuHg4Yz8js0o55SDYqW93gIoPajWOT09EJWB3kwanPjya0n2Z7HuhtRC9lpvdcm4sGNmfulk5ZQ7XhW64ioHz1FpVchvH/upQM0dYW98qv5g2285d9OzdeAd0B3ASc8XERTb6BEc3I/hlDvFJb2xodFy5jGMo5VC0lhrxi0IfEYnuBGUO6DECQ4bqADbGnGHU0yooXIgH5pPv7wfnXpst4c/tnzWgfjRlXI89iFSRrxBsYH1Gxx9dd0FezuaZ6FYHn2dzSaL0vCzdemFNP96yvcKX9O+VIjvoo4EHBB2f0ofdeoiadK5WlDQk0ax4xD1gsoZNronyRxBljgeEH25FfUBiflgByvDW+TI3x9M1/2c3kg6PEWite7HDquJ4J8EFTLZvcLz95Zt4bvrh4xsTF4egKCEjV5e5W26QvnNbLUb15gk+uBUni3BZC4DfENLDu1Rkh4CokAa6GBaJW4tcXV9woxhs=
+ ARA:13230040|366016|1800799024|23010399003|376014|10067099003|6133799003|56012099006|4143699003|22082099003|11063799006|18002099003;
+X-Microsoft-Antispam-Message-Info: Hwls0FAXkiQ82FsfdMgnZm35x9homPpizpJBjs1Eu+eO/VgzzbWVVx4uT4f81/qbRpaZ7aZywIhzfQphXjP+fF+apHJEhBARTSl5YUmB4BdV9PcXDGnC7UOPhswP94Odc0g1y2PeaSBDin51o58HuP1Knvod3iUehQpkxE8UyHptqQMLnP48l1v6j5IoULxF9gyrtfwpjL3m/rVXBn1xlR2WoK12OZ2IHSXhM870NqFhQ2BIfRS6Xo+CWWhx3Eg9fSPnos2By5eRLLFlzvl93ch7H3GZ8bQo5vKdFQDd9gl7abHRCa6S/eEM/fR96F3ZjONWAP/rZ8j3HH4K9r1QBN3D8mXxtBgxqq9mMbMXXQ+CichNC3GKL8YcdSFQGRF0Xc5beHx+//JEE1l6nvaA2ZVMO74fb3OOFyD5NEfK1YCeXtJaXU1xhnwDLl3F9RUFonLZNXGO+HOuVTtkI4B4kB0aE/t78Lq3TB51NN58zK/Wej/khke94XhSTQ1dSzWzza2C4dg+B0d6tu4DBQ6/c05/phE/QvW4SkeXFyPohifokeCCySmjgakYllCkXCVcKckSdcuidf3bAAy4P4c9GoYVssXCUH8Ib09NMBFzA1xu/cLJRa+WyIiLJAie832f
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA3PR11MB7554.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(3023799007)(10067099003)(11063799006)(56012099006)(4143699003)(18002099003)(22082099003);
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(10067099003)(6133799003)(56012099006)(4143699003)(22082099003)(11063799006)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OWxIMC95dHdPR0xhQ0g3R1hhcEtKZ210QTMwZUJqdFhvaHhUdnRjTnF3emcv?=
- =?utf-8?B?MU1wbUFqdjBjNjkzdGNVZWY1Wld6OUt2OWtweWc2c0VtUjJIRGozeTJic2dm?=
- =?utf-8?B?bllMcm82dGlLSXRlMVo5UURpbzJmNlJ0b3g0ZnFDUU1na1lML1oybHhEbE1y?=
- =?utf-8?B?cENkTm13RXJVcXU5Nm1WVnRjekt3R0RzakNZSk5sYXpyTXJ3dWN0amF3VlZt?=
- =?utf-8?B?eGFKdGNuK1IvSmpEQWNCR21pRDV4WjdJYTFicXkyQmZDbWdySTdpeUw1Wmwx?=
- =?utf-8?B?VFhVbHZrNWJlMm1idDRtaCt1NWNYcHN5ditEeXowWENFZ0FpSHc2aFZqdnRD?=
- =?utf-8?B?emxFeCtDOTEveGhsOG1oWGVSQ0VTTm5BRDFZVFBlRlZML0poRjJEV01vMzhq?=
- =?utf-8?B?RW1kMjZ3d0RYN1NLVzZmOTd6ZjdFK2drTWQvOXc2QitYOHBDOGdaM3MrT3RZ?=
- =?utf-8?B?cFA3UVlLUy9jUUl4Z3ZkZzFaNzBGQ1hpZFNmYmJGSS9NOVhJb1N0OWp2Q0dj?=
- =?utf-8?B?TmwzN25Xd2piNm5XTUZrSkt1ekRyU1dmUHV0Um1lMjg4bVN2MXpXei80c1RX?=
- =?utf-8?B?cXBuenFneFR3UCtlc2RzT05OMTM1NVVHQkZCZ1JPK1FIeFNMZmV0eXFhK0ZX?=
- =?utf-8?B?NEFmNXluL0UzYmpjRGhBRjBSTlM1SmlaZEIwV2hSZmFmYjF2SkxWT25qRXFF?=
- =?utf-8?B?RThBdVc4dFFTSTVmVFVQYTFnZUx5RGhYRzk4TVVKSlJwN1pxUDVFaVYva2Qv?=
- =?utf-8?B?WTVKRUFSNWFiVlAxWmFuaDVuRUR5ZmtML0lLR0YxamhCSUlnQ3djY3BkMjBC?=
- =?utf-8?B?UkJEODhQYVR5Vkdra0dFN0RWTTNSMjNsVUZXTWFNTVNkS1dKZVJML29OMTcw?=
- =?utf-8?B?eTQ0Q0tNZ3hwUFVtR2hyY01KeVJ2MmpXTlNrVFBPbGlnaHUwTHdOV1k4UThT?=
- =?utf-8?B?c0RiMC9uZ0ppQTVqYjdyNzhJY2ZHNDBUSkVJcEZPZENCbEFTbnZJejhwUk0z?=
- =?utf-8?B?cGE4SDFWaVByMVRGZVpQV0V0NlIxNVpyb2JqM1dRZlcxNnE0Zm12RTV0ajN1?=
- =?utf-8?B?djBSUEhyVklqMzRlV2ltc3g1NXcwZ0oycE41QWNrRjVzNUdSWHdneDZiQUJE?=
- =?utf-8?B?WlluTUZYWkRiYVVOVU5xUm1CeHVNOUV6TnVIWG5DeWZlNDZlVGpseEZ1eWVQ?=
- =?utf-8?B?OGhCZWw4a0h4V1Q3Qk5rUGV0MklhV29TdnU2WkRta3psQlJVdno0akc3cGFT?=
- =?utf-8?B?K2dud3p0TGFoSW9hUnJRQzFVNThhMU9ORVpLNEtISzBMZUZNTFM5MWhUdzRv?=
- =?utf-8?B?TWt6K1h1blRBQ0YxTTF6UGgwQnpyNlFRM1BxY21RUjF4OVVIOFFkR2V0T2Ns?=
- =?utf-8?B?WTl3N3R4eU5neDVjYzdJK1RJWWFsVXFhUG9QTlRSTlQ0R2JSVUREVDFKdml1?=
- =?utf-8?B?eVQ3cjFiazR2R3ZLNTBDQ2FVc00zVWlWeVBmUCtMQ2lES2JGQTRXdlpsbysw?=
- =?utf-8?B?RkJ1UkRReXpxM2JLc1RuV1F4ZW1iWnhqQkFpV1poeHFDRVorWStyRTJwN1JN?=
- =?utf-8?B?dHZ5THcvWHo3Z2krT0RROUJvYjkwdmZ0NEJCSmZlUFFIeW0vdW9MaGM5TzJJ?=
- =?utf-8?B?T0JKdWVzT0JOYVUyS0JOR1JyWWJHMVE5TnRBckRVZlpieU9GUXE3aEVjcHp3?=
- =?utf-8?B?ZnlUSUhlRit1bVkyejZDL3JHbWs3V2U2TFl4bllLdlpvMXYxN3hOdXlsNlBG?=
- =?utf-8?B?Qy9sazlYdi9QQnJaOEllcUQ5eGJQdXROTC82dG5CUW5nQTVaRHhocWNFRnZH?=
- =?utf-8?B?Nkdua2RJWkNwQlE0dHBjeS93Ny9SVS9ZWkJJaHdBaUY2ZnkrY0lhVDBzWjBt?=
- =?utf-8?B?dFlOQm5jN0dqVXBENEUxcUJwdTZhMlhFRDNHVVVsS3NBWWo0VjdYVXFYNmNJ?=
- =?utf-8?B?cit3UWkxYjZYbzE3TkZyY0xrWUFvckdDTjhSMExzVnRDYmhDcWdWd0VSUzRl?=
- =?utf-8?B?eE5LNm9oQTE4dU8wcSttdlNLZHRMdWh3N1FtZmRJVW9mL3dveG90UC9TdFU0?=
- =?utf-8?B?NmFtdm1VNDVleUlZSTdRUUZZOU9WTk5pOEJSNzE0TnpxNWpHajhldktucy9k?=
- =?utf-8?B?RlMvNW1EZHRFMUg3VEY1L081aGVCSHF2ZHN5THdwS1pHMXB1Y1B1N0tIWUNv?=
- =?utf-8?B?QkdidEdhWHkzOHJub1QwMFZNaHh4V3dkYUVTVGtvaW8rcENjS21NUUI1c1VM?=
- =?utf-8?B?NzRGVGRBRUdtQy9tTWRoTzl2RlQwUGp0cE5NSjBiUjRZYjJrbi9xL0ZUQy95?=
- =?utf-8?B?a1BPbXNzRkplWUZJOStKK1NDQWc3YXFkZGphWHBlN3dTOWlXQnJIRmdISGxZ?=
- =?utf-8?Q?klJnd1yl8tY88QdQ=3D?=
-X-Exchange-RoutingPolicyChecked: JN0Dw7nScv1aNXd/dViOeGvp3nq0m6dsPlk8JpBrxAcBUI4+mDyRdmBxcTRX47qqExtgjL5xUnZOHdGWLFH6qt/lZiSxnQyp+ABoYEYHzpRDOBot+hUo7Zj13BFgkza4H0vuyHyWAAYUKHtQ/bvGkvEmovJvWAbJfCndxUFtmm674Db9ersiHUXDkSKPTcj05j8QogcK0tKr0hsy9ik02g0CPiRM8Jq0C4w64OnqTdzqTgtGLqbyR0sPuemPL5VXAkJdZtlEy9SiUp7/Z0+oeWgubyfMf6lBg+Ds9s0dSWqq9EG3UY65NL0VFfgVgKO+ezD8KbekzB13hH4D3DvU5g==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5dab8071-a55f-479d-22fe-08df08c84c4b
-X-MS-Exchange-CrossTenant-AuthSource: SA3PR11MB7554.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZlJTV0xNTDFyeTZsNTJ6M0FxblRFNGNFVmo5Zm92R0ExVHlZbGJ6MG5nMmZi?=
+ =?utf-8?B?eXhpME9nU0VaS1k1YmlNcWpiRmI5Ry9DMXJLWW83WUl3R05YVnZIQVpyRjYy?=
+ =?utf-8?B?RGZsRG9PdDR4NVA2a054dHJLdDJNV0xKTkx1SkowYVkvL2tTSVQzblVLYWU5?=
+ =?utf-8?B?MStwUmZXazM0Z1h1U1V3MzRYbTJrQzFaRVUrUWFWNGtKaXlEMkFtWkFyckN2?=
+ =?utf-8?B?bUlKTVo1Vm9ZYlZMc2FINHlxTkVvYkpwTWorSFdDbmxNdUFreVV3Q3JPNGxw?=
+ =?utf-8?B?ZGRaR0UyVnZnVlFxeE5DWWNLY1VxQXA1YmFZZW1Qck01WFRBYnA1RDluWkNV?=
+ =?utf-8?B?WVp1bmxIVGh0RUl2bGZIdUlIQVRzRkc1a3lDZ2lwSy9Qb2E1U2pIOU5ZL3NL?=
+ =?utf-8?B?dGVFUGYvejZock9MZ3c2eEZReFJrV1V3b1RjWGlrVHlzVitBUFNuRzZBdmdB?=
+ =?utf-8?B?YWJ5dk8zZ0d0NFl1VTNNZzhtcXJuaEZNdi9LSm1PSjlNVSt3MnR5VkE5MVlh?=
+ =?utf-8?B?OGdLVVh0SGVLNDlxMU02Umg4blJUeXY4WTFaWnREZWEwWVNFbWlmV2ZUaXJ3?=
+ =?utf-8?B?eHdya3k2cHhkS1gzYzZadzA5bldYWk92dENtclBjS3hsVXhTTjBRaTh4dGJC?=
+ =?utf-8?B?cm5WVXM1QTF0N0ptbWtFOHRJcUJoRWlDWk9mN0t2eTJPZTdBaXl2MlMyYnFW?=
+ =?utf-8?B?ZmRaQkQwb3dHYlg4UEwrTWhpUGJQcGx3TUFLQTRncStqUVJkNGRzVGxtZld2?=
+ =?utf-8?B?aWNzb3dmWkI1ZmVuVHl1TmRwV2crVkxrQ2hZMWN6QkphdUlBcUs5bThWbWNU?=
+ =?utf-8?B?U0NOUE1WMkxKOXFGS0wvcmh6OUw3cnhPWlBkeHV2c0dDN3BQSzcrUDFxSFM5?=
+ =?utf-8?B?VFpKUXIxWlcvNjhKNWdwQ3A1MHMzOVFQWGhMdWdpQVFlMkZqdmdxYnhHZHFo?=
+ =?utf-8?B?NTYxaVF5T3RjZFJCMlhYOHczalNrMDFJeDFXcmQrZHd3cmpBWDl2MVlsVklL?=
+ =?utf-8?B?NjV2bFUzQklLbjZQbElmMUdOaEJGd1Z1cm8rblVnT2hrQXFNV2VpaG5xUVBj?=
+ =?utf-8?B?YUh6Wk9sZXlBeEtidHFmdEh5Q1pUWGZEbGEyYyt3cHg0WHBMTDk1UU04UXhn?=
+ =?utf-8?B?NVl5SDRJenZlMUI4M2JvVk1LdzU5N0F0cTA5ZzcxOUc0OHRwWFF1V05lTVhG?=
+ =?utf-8?B?Y3lZR0FSdVZQVjRkTEx3K2VFTGtXZTF4MythcXB3NGxTandScER0Tkt4Wkc4?=
+ =?utf-8?B?c09ORk9tQ1VLV282MFZBRklRWkNiODhoOVJXVEtsOVRYSnRERWkrZUZaR2Fv?=
+ =?utf-8?B?WDBQcHU1VzY0V3ROeWhLd2JMR3VUMDgrK21FYUxNa2NKWXcxMHVpWXVxdXAz?=
+ =?utf-8?B?TittTUJTMzZBMDZjYjJnUkNSWHRjR1hhd1JpQTFSWXZMNGNmRW5sVlpjRjZ1?=
+ =?utf-8?B?bGpndURJWVhSNmVKR2ZVSlMxMFlYaGYwRDRPbmpiRm5naHJzdEhxVlVhMlFN?=
+ =?utf-8?B?eTRuMnpodWJzMjZlREt2WnVxdE50d1RzQzZMd2huN3dXSTBSK2hZM2VvN2Ux?=
+ =?utf-8?B?aXpNUmdoWkFLYVJab1BOdHhhVkFmcTY4cjZ6WEJ6cmtjcitUNTNMRW1zYXRw?=
+ =?utf-8?B?STc4NU05cmhySklnS3o5MVMwK3hKSDVXbS9PazRLM1o1VTViSzhTRnlXK29n?=
+ =?utf-8?B?Zk1udVloQkJoc1h3UVh2eDZvOC9EeXcyTUdNR2Q5NGxTL1VjS2k1c1lnUyt3?=
+ =?utf-8?B?TmwxSHQydXBCYjRLMXFwNEpib3cwWGttMC9ibjhCRVh0cGx4SkMxczY4aUpi?=
+ =?utf-8?B?NmhTVGxTS2RUeElOYnFOeWZkMGpJcGQ4a002Ryt2alZZdmdqdnhlS1pvaTZD?=
+ =?utf-8?B?NHJvM0pMZnF0TmVzOTdNaHV6TWZYaDN5VzV6Q2RTTGcyMUNjdmZnL0ZSMTZx?=
+ =?utf-8?B?Y2JPdDEvTzBDTk9GbFNhT1BhbU1mUm9NWGlGUHZza0VoZEFEUUVoaXJuWVQ5?=
+ =?utf-8?B?WXVHN2lkSE96eTBycmY3Zm01N1JwdytlU29sWDlCYUpwTTFVZyt1VzlwZWtF?=
+ =?utf-8?B?V3dUVU5oTmpXUWZhM203REU3MFI5SlNhOXJRWWpwT0I2RmFoWjZ5UjJmQm9M?=
+ =?utf-8?B?SEgyTWVadzdDRXlEVUNyd25nQkJxeVdydHFNaHowanM4MnJCUUt6czQ4anhN?=
+ =?utf-8?B?TW1DbC9CSEZVOUJ2TmMvS094Z1ZIUDVBTG92RU02NjdEMXE5Q0FBMG9EdGlQ?=
+ =?utf-8?B?RkVYazR4MUIzN3o3RWloN2FxTGpSelQ5Sy9XbVkxQUhaMXlLc2FPU3NTYVdk?=
+ =?utf-8?B?bmNlak9ITWEveUNUUjhZWjlnNHF4emlCWEFib1hxM21hOGg0V0pjOVZhWTI3?=
+ =?utf-8?Q?5D7+acfqdnJmq8AI=3D?=
+X-Exchange-RoutingPolicyChecked: rHdvmtQ1ap0i9W+VCSvl/qVrpAXEk/doo0AggbFLrm1Mk0PutMgKTutbU25UHzJXWS8K406qHB8Wsm7uqmVWeC68zt8Ng7uSh8nWDeML9zRSkmfd9ipbxRWI2tMRe4dkMenIXalFCEX/qGQ5tkcOUOdEoLhTKy+YAQy60+m7t7bKvQpyV02y7BlIsQDVluALkODzEQj2lOguy9RXY4FD65tafzkuFuH3K3O7JwFNG4kl/+w31Zp3gI3d0KXQ1A9EkfPPFAHMvM2APnP9qtayQgTsqdjLZMhF7W2qOpeRPIm9GgipmpCrccfgeJfWwBGqRisDIyImzNtZ90ooJUjDEg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67098c33-f3c0-4131-1fbe-08df08c958f1
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2026 08:00:48.1111 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2026 08:08:18.5656 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9nOOTmCnZ86K3BxdSN9XPGzAdaS1s9K2ES8ZOjQSTeuwf9ndzWcrBtq2AhTfxmWafFTNoeB9q4NDZMrzgNe9NKITKpBZsZ5KIORA5uq50qc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB5775
+X-MS-Exchange-CrossTenant-UserPrincipalName: gKnyx405R4HtTu2gDYoqdWKRp8TX+BBbcxwlGaSmX9a7Ge4z42l57a4D8zoTw7gnpdC6roLS+FRD+csC30covA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF1FCD3EAF0
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -174,228 +182,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, Aug 26, 2026 at 07:01:21PM -0700, Matthew Brost wrote:
 
-On 9/1/2026 4:06 PM, Chaitanya Kumar Borah wrote:
-> Add bandwidth check to determine whether a given audio sample rate and
-> channel count can be carried within the hblank period for HDMI TMDS mode.
->
-> Use this check to prune unsupported sample rates from each SAD in the
-> ELD during intel_audio_compute_config(). SADs with no remaining
-> supported rates are removed entirely.
->
-> Sample rates are pruned rather than channel counts, since compressed
-> formats (e.g. AC-3) are associated with specific channel counts.
->
-> v2:
->   - Use DIV64_U64_ROUND_UP() instead of DIV_ROUND_UP_ULL() to avoid
->     do_div() truncating the 64-bit divisor to 32-bit, which caused
->     audio_packets_line to be wildly inflated and all SADs to be pruned.
->   - Guard intel_audio_hdmi_eld_compute_config() against HDMI FRL modes.
->     (Remove it when BW calculations for FRL are added.)
->
-> v3:
->   - Rebase
->
-> v4:
->   - Rework SAD removal into a single-pass, two-pointer compaction
->     instead of memmove-ing the tail on every removal. (Jani)
->
-> v5:
->   - Drop the FRL guard, i915 doesn't support FRL yet. (Ankit)
->   - s/required_tmds/hblank_audio_min (Ankit)
->   - Add HDMI_TMDS_AUDIO_PACKETS_LINE_MAX macro
->     instead of a magic number 18. (Ankit)
->   - Use drm_eld_sad_get()/drm_eld_sad_set() instead of
->     raw ELD byte access. (Ankit)
->   - Drop extra blank line. (Ankit)
->
-> BSpec: 68944
-> Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Assisted-by: GitHub-Copilot:claude-opus-4.6
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Dave ping. Question below.
 
-
-LGTM.
-
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-
-> ---
->   drivers/gpu/drm/i915/display/intel_audio.c | 153 +++++++++++++++++++++
->   1 file changed, 153 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-> index eae76e961105..32f8c5e55319 100644
-> --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> @@ -697,6 +697,156 @@ static void ibx_audio_codec_enable(struct intel_encoder *encoder,
->   	mutex_unlock(&display->audio.mutex);
->   }
->   
-> +#define HDMI_TMDS_AUDIO_PACKETS_LINE_MAX	18
-> +
-> +static bool hdmi_audio_rate_supported(const struct intel_crtc_state *crtc_state,
-> +				      int available_tmds,
-> +				      int audio_rate, int channels)
-> +{
-> +	const struct drm_display_mode *mode = &crtc_state->hw.adjusted_mode;
-> +	int pixel_clk_max_hz;
-> +	int audio_pkt_factor;
-> +	u64 audio_pkt_rate_x4_x1000;
-> +	int audio_packets_line;
-> +	int hblank_overhead;
-> +	int hblank_audio_min;
-> +
-> +	/*
-> +	 * Part 2: Calculate TMDS clock cycles required for Audio Bandwidth
-> +	 *
-> +	 * Step 1: pixelclk_max = nominal_pixel_rate * (1 + 0.5%)
-> +	 * crtc_clock (kHz) * 1000 * 1.005 = crtc_clock * 1005 (Hz)
-> +	 */
-> +	pixel_clk_max_hz = mode->crtc_clock * 1005;
-> +
-> +	/*
-> +	 * Steps 3-4: Audio Packet Rate.
-> +	 *   R_AP = (audio_rate * AP + 2 * acrrate_max) * (1 + 1000 / 1e6)
-> +	 *        = (audio_rate * AP + 2*1500) * 1.001
-> +	 *
-> +	 * AP = 0.25 (2ch) or 1.0 (3-8ch); acrrate_max = 1500 Hz (max ACR
-> +	 * packet transmission rate per HDMI spec)
-> +	 *
-> +	 * Scale by 4*1000 to stay integer:
-> +	 *  x4: eliminates AP=0.25 -> audio_pkt_factor=1(2ch) or 4(3-8ch),
-> +	 *      scaled acrrate_max: 2 * 1500 * 4 = 12000
-> +	 *  x1000: eliminates 1.001 -> *1000*1.001 = *1001
-> +	 *
-> +	 * R_AP * 4 * 1000 = (audio_rate * audio_pkt_factor + 12000) * 1001
-> +	 */
-> +	audio_pkt_factor = (channels <= 2) ? 1 : 4;
-> +	audio_pkt_rate_x4_x1000 = (u64)(audio_rate * audio_pkt_factor + 12000) * 1001;
-> +
-> +	/*
-> +	 * Steps 2+5-6: Audio packets per line.
-> +	 *   AudioPackets_Line = CEIL[R_AP * htotal / f_pixelclk_max]
-> +	 *
-> +	 * With audio_pkt_rate_x4_x1000 = R_AP * 4 * 1000:
-> +	 *   = CEIL[audio_pkt_rate_x4_x1000 * htotal / (4 * 1000 * pixel_clk_max_hz)]
-> +	 */
-> +	audio_packets_line = DIV64_U64_ROUND_UP(audio_pkt_rate_x4_x1000 * mode->htotal,
-> +						(u64)4 * 1000 * pixel_clk_max_hz);
-> +
-> +	/*
-> +	 * Steps 7-9: Hblank overhead.
-> +	 * Standard:  2*dip_guardband + 2*control_period + video_guardband
-> +	 *          = 2*2 + 2*12 + 2 = 30
-> +	 * HDCP 1.x:  rekey_period + dip_guardband + control_period + video_guardband
-> +	 *          = 58 + 2 + 12 + 2 = 74
-> +	 *
-> +	 * Always use HDCP 1.x worst case (74) since HDCP can be toggled
-> +	 * via fastset without compute_config.
-> +	 */
-> +	hblank_overhead = 74;
-> +
-> +	/*
-> +	 * Step 10: Required TMDS cycles for Audio.
-> +	 *  32 TMDS clock cycles per audio packet.
-> +	 *   Hblank_audio_min = 32 * AudioPackets_Line + Hblank_overhead
-> +	 */
-> +	hblank_audio_min = 32 * audio_packets_line + hblank_overhead;
-> +
-> +	/*
-> +	 * Part 3: audio supported if Hblank_audio_min <= TB_blank and
-> +	 * audio packets per line <= Maximum allowed packets per line
-> +	 */
-> +	return hblank_audio_min <= available_tmds &&
-> +	       audio_packets_line <= HDMI_TMDS_AUDIO_PACKETS_LINE_MAX;
-> +}
-> +
-> +static void intel_audio_hdmi_eld_compute_config(struct intel_crtc_state *crtc_state)
-> +{
-> +	static const int sad_freqs[] = {
-> +		32000, 44100, 48000, 88200, 96000, 176400, 192000
-> +	};
-> +	const struct drm_display_mode *mode = &crtc_state->hw.adjusted_mode;
-> +	int hblank = mode->htotal - mode->hdisplay;
-> +	int bpc = crtc_state->pipe_bpp / 3;
-> +	int ycbcr_420_divider = (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) ? 2 : 1;
-> +	int available_tmds;
-> +	u8 *eld = crtc_state->eld;
-> +	int mnl = drm_eld_mnl(eld);
-> +	int sad_count = drm_eld_sad_count(eld);
-> +	int src, dst = 0;
-> +
-> +	/*
-> +	 * Part 1: Calculate available TMDS clock cycles (TB_blank).
-> +	 *
-> +	 * TB_blank = CEILING[hblank * K_CD / K_420]
-> +	 *
-> +	 * K_CD = 1 for YCbCr4:2:2, bpc / 8 otherwise.
-> +	 * K_420 = 2 for YCbCr4:2:0, 1 otherwise.
-> +	 * Rearranged: CEILING[hblank * bpc / (8 * K_420)]
-> +	 *
-> +	 * TODO: As and when support for YCbCr4:2:2 is added, set bpc = 8
-> +	 * to achieve K_CD = 1
-> +	 */
-> +	available_tmds = DIV_ROUND_UP(hblank * bpc, 8 * ycbcr_420_divider);
-> +
-> +	/*
-> +	 * Walk all SADs once, keeping the ones with at least one supported
-> +	 * rate and compacting them down to a contiguous [0, dst) range.
-> +	 */
-> +	for (src = 0; src < sad_count; src++) {
-> +		struct cea_sad sad;
-> +		u8 new_freq_mask = 0;
-> +		int channels;
-> +		int bit;
-> +
-> +		drm_eld_sad_get(eld, src, &sad);
-> +		channels = sad.channels + 1;
-> +
-> +		for (bit = 0; bit < 7; bit++) {
-> +			if (!(sad.freq & BIT(bit)))
-> +				continue;
-> +			if (hdmi_audio_rate_supported(crtc_state, available_tmds,
-> +						      sad_freqs[bit], channels))
-> +				new_freq_mask |= BIT(bit);
-> +		}
-> +
-> +		if (!new_freq_mask)
-> +			continue;
-> +
-> +		sad.freq = new_freq_mask;
-> +		drm_eld_sad_set(eld, dst, &sad);
-> +		dst++;
-> +	}
-> +
-> +	/* Clear the now-unused tail */
-> +	if (dst != sad_count)
-> +		memset(&eld[DRM_ELD_CEA_SAD(mnl, dst)], 0, (sad_count - dst) * 3);
-> +
-> +	sad_count = dst;
-> +
-> +	/* Update SAD count in ELD header */
-> +	eld[DRM_ELD_SAD_COUNT_CONN_TYPE] &= ~DRM_ELD_SAD_COUNT_MASK;
-> +	eld[DRM_ELD_SAD_COUNT_CONN_TYPE] |= sad_count << DRM_ELD_SAD_COUNT_SHIFT;
-> +
-> +	/* Recalculate baseline ELD length (in dwords) */
-> +	eld[DRM_ELD_BASELINE_ELD_LEN] =
-> +		DIV_ROUND_UP(drm_eld_calc_baseline_block_size(eld), 4);
-> +}
-> +
->   static
->   bool intel_audio_needs_cpu_transcoder_id(const struct intel_crtc_state *crtc_state)
->   {
-> @@ -725,6 +875,9 @@ bool intel_audio_compute_config(struct intel_encoder *encoder,
->   	BUILD_BUG_ON(sizeof(crtc_state->eld) != sizeof(connector->eld));
->   	memcpy(crtc_state->eld, connector->eld, sizeof(crtc_state->eld));
->   
-> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-> +		intel_audio_hdmi_eld_compute_config(crtc_state);
-> +
->   	crtc_state->eld[6] = drm_av_sync_delay(connector, adjusted_mode) / 2;
->   	mutex_unlock(&connector->eld_mutex);
->   
+> On Thu, Aug 20, 2026 at 10:34:49PM -0400, Nathan Bourgeois wrote:
+> > > Shouldn't we just be calling xe_bo_validate() here instead of
+> > > ttm_tt_populate? (With the correct xe_validation_guard() wrapping).
+> > 
+> > > Yes, this might be a better solution, making ttm_bo_setup_export()
+> > > completely unnecessary.
+> > 
+> > If ttm_bo_setup_export() is unnecessary, I'm happy to change the patch
+> > or make a new patch. I will attempt to implement and test this locally.
+> > 
+> > > This part looks good as different patch from what I'm assuming will be a
+> > > TTM fix.
+> > 
+> > Regarding this, what do you recommend I do, assuming the patch
+> > remains local to drm/xe? I'm still learning the ropes of contributing.
+> > 
+> 
+> 
+> For Xe I believe Thomas and I aligned a xe_bo_validate with a correct
+> xe_validation_guard is the Xe preferred solution in the existing
+> design... But a question to Dave below before I commit to anything.
+> 
+> > Nathan
+> > 
+> > On Thu, Aug 20, 2026 at 9:08 PM Dave Airlie <airlied@gmail.com> wrote:
+> > >
+> > > > Yes, this might be a better solution, making ttm_bo_setup_export()
+> > > > completely unnecessary.
+> > > >
+> > > > It's also a bit odd that, in flows where we don't have backing storage
+> > > > on export, we populate with pages and charge the system memory cgroup,
+> > > > only to move the data to VRAM when the import attach is triggered,
+> > > > resulting in a copy and a change in cgroup charging.
+> > > >
+> > > > I guess the question is why was ttm_bo_setup_export() introduced over
+> > > > just a validation at export?
+> > > >
+> > >
+> > > I'd like to think I had an answer for that, but I don't. Likely
+> > > because I wasn't thinking about VRAM charging at all, and just
+> > > worrying about making sure we had populated some pages for system
+> > > memory ones, so the other side couldn't DoS us.
+> > >
+> 
+> Dave:
+> 
+> We don't charge any cgroups yet, right? This would only come into play
+> once a version of [1] merges, correct?
+> 
+> What would prevent the pages populated for a TTM BO from being
+> immediately reclaimed and discarded? I'm fairly certain Xe's shrinker
+> could do exactly that, since we don't pin those pages. This seems to
+> imply that we'd need to store the cgroup associated with the TTM BO at
+> creation time and charge allocations to that cgroup, regardless of which
+> task ultimately triggers the page allocation.
+> 
+> Another option, instead of validating, is to revert
+> ttm_bo_setup_export() entirely and rethink the overall approach as part
+> of [1].
+> 
+> Matt
+> 
+> [1] https://patchwork.freedesktop.org/series/169831/
+> 
+> > > Dave.
