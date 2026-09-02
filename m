@@ -4,158 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 114D3C61DFD
-	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 05:58:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B40FC61DD6
+	for <intel-xe@archiver.kernel.org>; Wed,  2 Sep 2026 06:10:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94F8910E46B;
-	Wed,  2 Sep 2026 05:58:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29C6D10E179;
+	Wed,  2 Sep 2026 06:10:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="clv7mpeN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b2ViS0TD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2247F10E47D
- for <intel-xe@lists.freedesktop.org>; Wed,  2 Sep 2026 05:58:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B62510E179;
+ Wed,  2 Sep 2026 06:10:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788328689; x=1819864689;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:mime-version;
- bh=He6rqLV1kbwFb97mbFQmEHXKnhVyNxuTOiWFO1ub4GA=;
- b=clv7mpeND6hoWa9bGboFw5sexqRKKpAQOyzx5OWUrKZHWcDhQIk+K4eA
- ylsOdeo/hSNRCvlMwqmGiWYXf0I/wOT7CpSgvkTFGGEXWPBjWGtYua/rY
- 6MyEJJYuaUCteuk+R8FaJzXWjHs/zXAJRvA0mRU1oOr8n8QylG0MvqMa7
- VIdGwXLAD3VKaWu5oiL286Nbhpv5wzZQOzci5WP5EHontYAmFdukLCyNL
- I9Df4LB0NHENW0LcJDlWBE9KrsMPY5dXurs6oGlAJJiFgCCnBv/Ds5foj
- whiWrMcki0PBDKB95THTFfhFG5IZUGTQhuWrBE7RSgC7YpZUmPvVX3EPd g==;
-X-CSE-ConnectionGUID: kMCXltdDRxaJLR1jtLq52Q==
-X-CSE-MsgGUID: IiHBhNc8QN2RRIzDNOrzew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="88899164"
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208,217";a="88899164"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ t=1788329400; x=1819865400;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=9lvRmmu+bLpP0+vxzMJFPb/+1lzNfAZ+8B49bgQI3hc=;
+ b=b2ViS0TDyiSBNoJRpkcbESLWnxKPXla3mu9X0rmeUvIME6Zxa79bWhZX
+ 2yokYB6rnaKLpIsVo2+BBrcAlxCw/71sy+UIo8DBn3MK9bWNzGb1I0H1l
+ ghTSQG2xRJUXUOL0xfLPaudAzWRJUfVXJq2byT5kUoGSX0MEkgdaE+cmJ
+ H0jNmSrzYeDVjPpNuY4y38VfTVotEPugaeAZ6gyqiLAHUqRKACwrpLLT2
+ X6gvQ6IJDFMYNv68iYILDEx3hUMjs7VL8TM4JUJSu5mwDdIRkdnpLUCQh
+ fb+Pn0Y/kaasmydd3ZyeKzuD4UFRngVDOm+xc0fPlTvbCHt8SL4D8zlht g==;
+X-CSE-ConnectionGUID: aPRQWnQ7QpGJiixdpQo4Ig==
+X-CSE-MsgGUID: 5fXGHEDpTmi3tZ8W54xCTw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11893"; a="88900091"
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="88900091"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2026 22:58:07 -0700
-X-CSE-ConnectionGUID: 2AdL2kN0Rum6Tk4R/uoNqA==
-X-CSE-MsgGUID: YJz1XrUTTwCThgguML3/LA==
+ 01 Sep 2026 23:10:00 -0700
+X-CSE-ConnectionGUID: iCXeEPCgTVaM0tuuJb1wtQ==
+X-CSE-MsgGUID: n0CEtq1NTfu5tuHnNvuMuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; 
- d="scan'208,217";a="265591973"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2026 22:58:06 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 1 Sep 2026 22:58:05 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+X-IronPort-AV: E=Sophos;i="6.25,257,1779174000"; d="scan'208";a="263167828"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2026 23:10:00 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Tue, 1 Sep 2026 22:58:05 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.27) by
+ 15.2.2562.46; Tue, 1 Sep 2026 23:09:59 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Tue, 1 Sep 2026 23:09:59 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.58) by
  edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 1 Sep 2026 22:58:05 -0700
+ 15.2.2562.46; Tue, 1 Sep 2026 23:09:58 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YUUUDEctVtFR6TPCdKNRc0LSDbOviY5t9kJZL6RXR6dXmT99iKDsO3aGFxyYZe+BW9Us1ueIuak/+ahIB53MdmMdexakoeXY8HdfJEX1QW2UyuNANNy8wgaaEaf5ey4bC4j1FllBcnwyLBxPqgmLPALtRc0hBtklv7kLQC7UemxtjxKLnvbh7zVeSIMgrbGoA+FQnA2lcvsw8syBTf+AHfal8R+yvqmcjfA5Xu/w96qmIGd9QWO6VfZ2V+DI6eiNZA7CGusTtulHsjxFQbbgkTe0weezwKiy+3ek8c5Y1i2oETAOPs7IEW7aEgnvOqBb0FoY9fJRY0wCYbaovOZ0Zg==
+ b=dYRy5NpnllJ7oQPC2pG/zp7Dzle1qVeoqv7yFOfMBjv+9yb1nK81HEaS1Fg9/Hp1AfoZZzkoU0+EMjQp+K1NVq/aZE3eB1l8fiWfeSVYzY0KlnDLBfRXXfhxI/wzZDSNMD75kw8w6YgenTRAxs3fgyyw7HlmxcWRySp0qdm8zrQbFdDa4fsGEwiunTklGVqljIBsvi9hbCmeyICTINGwDBcJXMJ1GOJ+tOL0v5UgqiN3na3+zTqFFIRDTPM9kF8sv1VI57nLmnLXhSQEf7gBXWBlXS3K3x3e6WH3wwGxvMFxJ1BeegHG7nfEFOB25Fjv85IFgj0lvfpwi5stlwIeqg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qRApiqJymfjQp3i0WAg0cN5X7raHcowfOSSY5RNR8cM=;
- b=GeoruxTll6lbFVYelvjaT8E5RehtC7ZwaGV/9ps+O/cI46WhjF/8iN5G5L+7jgnxDz7sLFPYv1XCgFjnv38ZTkvS6ERYQu8f5Oiv40DAi6HP6ChcdFT3D+zVG6JlxxsmsoKPwoIC+BCpdEZMzED8fKd7cXcVz2o4ETzCuC98qiEZDfGIef4H0kI0J4lkdMoxAe4pVyfjFH3NpdixvbpVZ1DxVSMdv7HTTOgKNGTS0i9ioFmW3Bgyir0i4a1JgLHyWm3UQvDbmqCRsoikrqq5I+8TgW4jsmplKPf2WVyxZQ9qhPv2y+/gJb4TKif7nzomyLTdpNIHzDMFByODGU3IPg==
+ bh=9lvRmmu+bLpP0+vxzMJFPb/+1lzNfAZ+8B49bgQI3hc=;
+ b=PAK79WZrxTFeLBRjmk2k4nwypZuu0QedLbAFOqD8ak0MFptUaMivkm9Ta7hMb4fk0+QrUwRSsYvO3DoLMEAPLRTcatm8Xazte7Ty+nFjT3kIoYrNTgtcHW4UcXXyhJ5QbDt63ALm2XtzVSESe9DUes6MnSJY4e4kLiQN0ZVuW1q0Ji262bJrd9e020Dd5V+GyFCndBwOtc8BcwMJCmO21n5yB+wipcwguLU1ISuBXy2RMDPYACSR7WPRWQsy27mSqr7tnI08SXJ771fXCY0+Ls//qmpn6TI9cg3uOslvtRO53IR2gVYFCMOWp1UwcmTqkZ4KznM7nHIlPYSlsLsmaA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH3PR11MB8706.namprd11.prod.outlook.com (2603:10b6:610:1d1::22)
- by LV2PR11MB813179.namprd11.prod.outlook.com (2603:10b6:408:416::23)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
+ IA1PR11MB6323.namprd11.prod.outlook.com (2603:10b6:208:389::14) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Wed, 2 Sep
- 2026 05:57:58 +0000
-Received: from CH3PR11MB8706.namprd11.prod.outlook.com
- ([fe80::e419:ae5c:91ec:1e9d]) by CH3PR11MB8706.namprd11.prod.outlook.com
- ([fe80::e419:ae5c:91ec:1e9d%7]) with mapi id 15.21.0360.008; Wed, 2 Sep 2026
- 05:57:58 +0000
-Content-Type: multipart/alternative;
- boundary="------------G5eCouMeIoTwehwWg7kePmu4"
-Message-ID: <07319064-e31e-47d2-a95f-a6fcd3a9db82@intel.com>
-Date: Wed, 2 Sep 2026 11:27:48 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/9] drm/xe/hwmon: expose pwm[1-3]_enable
-To: Karthik Poosa <karthik.poosa@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <rodrigo.vivi@intel.com>, <anshuman.gupta@intel.com>,
- <badal.nilawar@intel.com>, <raag.jadav@intel.com>, <riana.tauro@intel.com>,
- <sk.anirban@intel.com>, <mallesh.koujalagi@intel.com>
-References: <20260717041757.2759084-1-karthik.poosa@intel.com>
- <20260717041757.2759084-6-karthik.poosa@intel.com>
+ 2026 06:09:51 +0000
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::9086:5e0b:ad24:762]) by DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::9086:5e0b:ad24:762%6]) with mapi id 15.21.0360.008; Wed, 2 Sep 2026
+ 06:09:51 +0000
+From: "Hogander, Jouni" <jouni.hogander@intel.com>
+To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Manna, 
+ Animesh" <animesh.manna@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+CC: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Nikula, Jani"
+ <jani.nikula@intel.com>
+Subject: Re: [PATCH v5 03/15] drm/i915/alpm: alpm_init() for DP2.1
+Thread-Topic: [PATCH v5 03/15] drm/i915/alpm: alpm_init() for DP2.1
+Thread-Index: AQHdNFmqx5rhlilqGkuZ8QTfVA0Keba62p6A
+Date: Wed, 2 Sep 2026 06:09:51 +0000
+Message-ID: <4eea170652a40dc402e348e34c9c4cff658b18c4.camel@intel.com>
+References: <20260825054536.3455704-1-animesh.manna@intel.com>
+ <20260825054536.3455704-4-animesh.manna@intel.com>
+In-Reply-To: <20260825054536.3455704-4-animesh.manna@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: "Purkait, Soham" <soham.purkait@intel.com>
-In-Reply-To: <20260717041757.2759084-6-karthik.poosa@intel.com>
-X-ClientProxiedBy: MA0PR01CA0010.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:80::19) To CH3PR11MB8706.namprd11.prod.outlook.com
- (2603:10b6:610:1d1::22)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8706:EE_|LV2PR11MB813179:EE_
-X-MS-Office365-Filtering-Correlation-Id: a6605aec-ffe3-44fe-e707-08df08b7237b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|23010399003|376014|10067099003|4143699003|6133799003|8096899003|22082099003|5023799004|56012099006|18002099003|18092099006|11063799006;
-X-Microsoft-Antispam-Message-Info: e3qIRgKd6QjtYz3nzWOQKrgh+onkGtQ7oeUej1j0lhCGpiYf5Yuc4N9tstNPWHxhIrZVUC+FkgC/3vgG1/5K/RxCYNT297VZ/bhJoeWtq0LQbK/iZNxftqmpEK5O6b37ik7ycREhSZDx0Y92GHPRmWGaUO0yUzPAGyeXNvslh9d2xDjNmK0oGQ1CXU6CxAuLBhHZ3RgYvukZmbVIVcXy9mrdN3Q77gLPnC/X5bB0lpylH+JbnmgngVqkhCgkx9XCWT/7Zo893/OM7RoOOSUVEqoqxgpyeWJ4PIRfLW5ztd2e5jpXHPZT9xY2UYEQRt96OKmU3lhrwwm/6dpLvxZ76vOSyOPl611iNOMeIJnUlppYiVFExaH+yvTsGaWp+sPpBcccP4nTgvrcLXux/9rhU1WvMYoKcuYdfUeB8WopgRoAwxmF/UzE2sfXlmEHYDPQ/73uEeHHCCgkCIv8jE/1UPxoMRMIys/qm5z8vBH58sQottDOMxUp4Ef5MjPyN9Z0eEPGRBqZHf8BC1EMVcMUkcK6j0leI//OvctlAIXZ4J0L9hAfp3m8C4bAa4pnCeQrCa5RZVAfwKyJCJsPzlMGJj507NWysa9XbKmc//WhBPCpEhiCPqMdJkEPFrK/1sP7oVMz7wqglLuCurLbte2ybsq9DU7DAOUDeoF7K2UK2oM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR11MB8706.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(10067099003)(4143699003)(6133799003)(8096899003)(22082099003)(5023799004)(56012099006)(18002099003)(18092099006)(11063799006);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|IA1PR11MB6323:EE_
+x-ms-office365-filtering-correlation-id: d641dc6f-4d9d-442c-4536-08df08b8cce8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|23010399003|366016|56012099006|10067099003|11063799006|4143699003|22082099003|18002099003|38070700021;
+x-microsoft-antispam-message-info: X5YtY6yeF/5sUxrjeoza5FF00k410S4L2lU1DCUlyH2CpF23BmGbJXWfQp4xWNVBg5PaZIKtz2R0k4OUU9RUOwLcYgFMFvvJ77/7M0z8vOFzJvD95HzHbk3+7eXAsABVV2FT2pBlFvsOs0T+e1f28SjL65cDp4Oc/MtSwFQYLHU5YC+Y6ZU1s8HNihgJZtIa4djtBNnHeFL6HQyIYaaV2pWW4vfpTnQnZLgKCB6AcrzsO6wuHNQ2K+902ROm4OeV5ZAJnmpAQ9WQKwt2VbxcNq7osFZ1qDtZpcAKJVUriijWqEDJJDgkYtv6diKhKBrphX/iDD9TtNLe+LkLhnrZqzLIImM+IWlIyqmbTlUOTWUbfOUbKFzvp6zzaZeYPIaFabTjjDB/nhadqZ2Wy2HG1XpdmUqLm8kibhOZHPobqBvzrlXKdsIxSA4rmIoaNTR3bngwTNYTQyxFM6acxgvaavG5yCBHZm6G197CdtUxsfY4WPZ7sp5XZdhziuNdEbinNunYfx7UC8/FxmPzu2IPFrLxpLx9I0TXBXOXuKofgKaUFu5+JBScWTHV9SNR9Gm22pmUQi7T1SCYM8mFoMCzILAhdi8REa+V0gcou7T0MlnIoS4hM1cj+WHBRukaOye8Y+xwreGeb0UKh46tjh6EW2MmaAtPf6jBlPb+zGfINU7a2vEPytRKkndJU76Gfu9gmtLgZmO4QaRmfp28zT+jRn3OcGo/gyr97S7zzUw1Vqc=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(56012099006)(10067099003)(11063799006)(4143699003)(22082099003)(18002099003)(38070700021);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VU5adytWSnk2Q0RRdkVVS1NSSmVTMGtIeFJFVlByTlFOb0tBM0o5UURsT2M4?=
- =?utf-8?B?Q3MxVGFKV25UOWtaWnFpNGtadDBnb01TdE5DUWdONHpjd3ZEVFNMRURrU2RO?=
- =?utf-8?B?MFJNanRocHM3NHB5THJPZjRIYWV5ZjBVWEdXbHE1RXBPVG9Db1piNkw5MDZI?=
- =?utf-8?B?OWtIa2IzTFFmVVR5d25mRElVNldqMEg3K3FxRlZsY1BORERZNlY5NXA1Qytl?=
- =?utf-8?B?VnovanJiZlE2ZVBQaXR1ZGR4YktPQVUwVkJnaTB4MllYbUw1NEJmLzd6T1lP?=
- =?utf-8?B?YlBSR3FJK1k5dzZTRTdNcDU3YmhKdTM2c2dHOWx6MzdFUDJqUFVpQnJmTkQ3?=
- =?utf-8?B?eDVIeVFzUllhSGhXLzBlR0Z0WW4xU1FZWjJIOWhXWlhXY3lEQm5mU3lNR0g0?=
- =?utf-8?B?NG0vbnlxdndUOU5PUGcwcHNhNVhYRDhqSUpyTStSSjNPTGxRaGFVaTU2am80?=
- =?utf-8?B?dXpMRml5NFBYbkk2elo0MEJzSUlOTjhONkpSU3owYlY2a3I3TFJQRTA2akJ0?=
- =?utf-8?B?WVFEbEJGYVdtZG1mLzgxUGx0T25WZ1NDUkVLNzZiRVROZ3RycFlSS212R0p4?=
- =?utf-8?B?azFoRk00VDk3OThsbW5ENCt6MVJaZElTbXYyd2hYcHN1MWEzeXJ5QnBzSHAz?=
- =?utf-8?B?YTZ2a3FJQnhxeG9wYzZ0a3lFUDRsN3B2THpoUjVWK2RYU1RncXNHbm1JRE9X?=
- =?utf-8?B?LzltSEQzalJGVDQ1M0IwRmJ1VlZhMExQd3FiRENONzkrSnlXU29qL2kxR3dC?=
- =?utf-8?B?OG9zQmY3bm5NRXh4NWJXc0U4dXllQ29nRGxxSTgxZTJ4aVVKUkExTDBUK3Vz?=
- =?utf-8?B?aUlJVGlSdGZva3ltUFRoeUZHdnRySVBpQXRncjhvNnYrK1lXMXZMM3B1eHZV?=
- =?utf-8?B?UFFOeTd1K2NlVXhqQUhiUWlkelZLL1hZOHFpY0JQbUs1cUNDVFdMbHpiOFBB?=
- =?utf-8?B?L05oQzlQTDZPYXdwdjBUUWtid1RjRjNtQXBmOGw4TzZycTRnbXN6TmFtNE83?=
- =?utf-8?B?czVIM0dOUXI1bXZSUFJtK05PWlhGUytWSHVPZ1ZidTUrWDRxendCNVpPbElH?=
- =?utf-8?B?aDFwTUVSVWVZMWFENy9xMDN1T20wb1NadFc2RVZiNTViRWZjTERIaFdXRmk4?=
- =?utf-8?B?a1BuMTJGZkNnamZzRFoxL25MaGQ2Y0YyMTRCVC9naG5vUUpFRVJhblpzMFpi?=
- =?utf-8?B?SFRBRUhrbjFTZ1RmdzZvZzZjclRhWFJKeTV6bzVNZ0FIa3l0QTdNdEdCQkUy?=
- =?utf-8?B?NUhKTVlNdE1La1JER2UyT0xpb0kzUGhaa3lYLzNnbmFXZWN0eHBiQm9USFY0?=
- =?utf-8?B?bWQyZjBVdVVFWEdOb2xuUEwwV2JZeTlpNWVzeTBHbVp6UzFDbnVIWDd5L3BK?=
- =?utf-8?B?eWdWK0dCTDlOTFBMVDRDVFZFL3F2WmVCZWd4bi9XM0FKcEh0czhRYXVRZUNI?=
- =?utf-8?B?VUVUSWNVZWE2cmNqS0UxR1BNQVJKK3lBb25mMWFQT0svUStZaTEyVVlLSFRT?=
- =?utf-8?B?N0wvNUhoaTF5MUh4dkd3aGhHTXhBTFg1N2wwRTNmVFVTNkRhYlpZTzRzUS85?=
- =?utf-8?B?TERrT2NrNDhDVTVXN3ZpdkIrem1yTDNQL2NaQ2RtK3hXYzVTTEs3S2FQeGN0?=
- =?utf-8?B?eE1XODdTbGc5Y3A2Qk1NQUVQVVNuUUpsYVdTU3h0Nmt1bDJxTG0yeGM2S3NC?=
- =?utf-8?B?aHNFVUtTNG1RdlhxdURzYTlLSS9PUW1MdlB5aHhkeHdoNHNlT296bWRYWFpI?=
- =?utf-8?B?UXNHRUw5Tk1ZNHVOcTl0U1RMcUdjL2tVOWRJbzlSWmU0WENkOGl4MlJibTRJ?=
- =?utf-8?B?ZXFnZCtqTlBsUENZUTZBQmpwUHY1UmJHRUFIQ2VGWXNoVjF2emtmYWszdFln?=
- =?utf-8?B?UGc2Yi9SVGVtenFWVGdwWUZyRFYwRkE1WC9SSEZibmM3akp0WGRmbkhaL0Z2?=
- =?utf-8?B?ZkNydDErN2lHdXIxNTlRbFJRSEMwTnU4OVV3QWdxbkJxVWF0YU91VVZhQkJi?=
- =?utf-8?B?QVFJYmNqZUdsRlBXNmZGVnFZY3E4elo2MkY5c2c1UkJYTktsamlHWGVqVnRV?=
- =?utf-8?B?ZGFkdnNmUEFXM3JrU3VIbWRHZ3NCTkZSaWNidVdzVEhEdjRTMzJWSXQyWkJL?=
- =?utf-8?B?QWRUVzQxU0FhOU81QXZQK1FoU1hna2orNjVPbFV3R3dsVXZjcVpKZndmei9u?=
- =?utf-8?B?dE4vZmlWUkF6QUN3OTR1UjNpd2hidG9TcWtjZHp2bS9qeUFCLzNlV1AzOE81?=
- =?utf-8?B?L2JGOHh6eHRESHp0Zm82TEk3NFBMNVlJWnZnS0RhOW5JbVRNUjIyUUtQYWp1?=
- =?utf-8?B?c2FZbzlDVVNwRHVacmJUd2I1eTlDa1A3aTNVd2M5UmlnK0N4YjlKUT09?=
-X-Exchange-RoutingPolicyChecked: HGwDBk+hWA9FiZNHE1rCrI+zGSTJWtDZIIpsuV60CA1UxKB/wDHXOQNihmGxMYK8DOhAa+Rq8nY94lgEWER8sE4CClH+7/GUH9JFe+gUuYhyt3QjCZ2FQ8zp5JuEyzc0wxh8FgekO74Gt2Em8kLOfmK8d4Smsi8RoWw0xrZsGeoiGEKmCdqNWhZtwnSSxT0iPzkumbix3GpseO3rir59Y6lzaQMqyTecUUyH42NBiOlhjN2PVvtjSEMgT4WaLXgePevGkxSVtcwCvYOh+F5LBtlVSg7Q0WIA1EuSZKe3g+rvcZlXXkbWQEJ/KgVpkj9YiVidXfKe8mhrHpD6fgQLYg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6605aec-ffe3-44fe-e707-08df08b7237b
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8706.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZVd5VjV1N3cyL01NMDFSKyt4L01YOFNFNGR2QkpkeEMzbzdFbXE5SWZjTGRH?=
+ =?utf-8?B?eDRDVU02cVFMQVIyT0FrUnQ5ZjhqSkFRMVc3eFQ4cTZoVkkycUc5MTJYcG9Z?=
+ =?utf-8?B?Vk1RWFpHL0xqVlhsM3dTQ0dtUHpaQUdhLzgvbzJaYkJra1dLRk96dklXN0dF?=
+ =?utf-8?B?NDdGSGZEZkZIb1hyZWtSSloySTZxR1ZuUmN6WlQwM3JBMzRMSnJwWjdIbk1h?=
+ =?utf-8?B?bEU4MHVMSnl0bjl1dG1valNxYy82YThuNVg3QVRJRW1YcmVKS1ZTR1UxR0U5?=
+ =?utf-8?B?N09MYWJOTERha0JQSGJXcjNFQlBiZU1yM1YySzNPdHIxRVBOMXVUdG1kK0pG?=
+ =?utf-8?B?d2p0UzNQbDg2WENwWlFrSTl0WWZUaWlEeEpnNEhZODBvSmx4b1ZtUWg1eUgw?=
+ =?utf-8?B?RGdxQk9JcGovSlpJUW1QSjQwaEVKeWFwNkdHZFRyNG9VQTF4L1F4SlMwZWND?=
+ =?utf-8?B?N3ljR3RUTUF4NkZ3K2x5MWFkRWdpZC9RbG4xbXJWYUswOXFsRkpHQXRZR3I0?=
+ =?utf-8?B?Y2Q1TXYzRlBKQmVlc0t2SW9jMzEzYXBEd2E5aUQ1bnpQTXFSMUJmK0FqUFFO?=
+ =?utf-8?B?WnBLRDMwb1NKU0hNUlh0d3pPR0FNOTd4d2lWN0k4a1ZnY0xrVG9NSjdJWk9s?=
+ =?utf-8?B?eFdPQXRSVWs3b3NNd1lmM0NMWWFnUzUxaWVUeTY5dE5VUXZFTW1WN0pYcWpq?=
+ =?utf-8?B?SFRUbkRnREtyZFVocmt0b1VCaFhKWnBTNHVCMzNrUmhmcmRySjVTVkNwQWU2?=
+ =?utf-8?B?Tmlzc3U5a0h3TVBLb25XVnlBcFNRVEoxSkx3dzNpNHcyV1JkMm1idGVNZmVx?=
+ =?utf-8?B?eUU1TzNRRm1GUzZQcm9ZUVZ1YkJ1SXVyZnAvdFNaUHpQa2QxaEEzTWpVMThT?=
+ =?utf-8?B?SloxaVZTclBFb0MzUzl1WGZESjJ0UEZzeDBwNVpsSk1qOGp5V2hwRnNhVFhx?=
+ =?utf-8?B?Nk1INDFSeVdKbUJTYWpJalIxQmNIeDRUR2pYVmhRcjNzWGNDZVVVU2pEU051?=
+ =?utf-8?B?WXRWWFlNMDVrK0ZqSEdxWW51YTlzbm4xdjgzaWdLQ3JhVHJqcktrOXVyYjVq?=
+ =?utf-8?B?T2cybVVLa2duaVprSFZvNFBDSVorV21OcG4vTnZDbllMOHo0SHhqUkowZ0NM?=
+ =?utf-8?B?K2JJcWtyL0ZHQVlCVzhicGFyWHRWbHprS0pyS0MwRTlRbWxaMkdZSGRXaWsz?=
+ =?utf-8?B?VnJZS3pRMlZmTmZpR3JoTHdyblowaStBczh0U3dWd1h4cUdEQTU1cWdBRWVa?=
+ =?utf-8?B?WFhKWXlhRmZ0WFlNcjdyZXRodjE0UVFtUEc0YzRHNmRZa256YkZzZ3didmwz?=
+ =?utf-8?B?ZDJLZzlMMW43UFZNRHIrQ0t4SGNWNnJOeTdIVEdLQkhORXF0S3crMlF5elhH?=
+ =?utf-8?B?NUxHTzhwK1FSUlVTLzBzaEVIMDdPWXdaS2xlbzAvK2VMemxXZ3FFVWJ3UHZs?=
+ =?utf-8?B?aWFMdjdCd1kzRTFiN0diV2IzL3JCaHlORXo4b0h2dGhqV1hqcHRiU2JtZmNm?=
+ =?utf-8?B?ZUtxKzgrcllSZm11c1lQWHRuVWttWWM0Qm1KWjBPckp5bmM2dkNkWFR6Y0Fs?=
+ =?utf-8?B?b1puSWtydHArZE9QZjZScXM5dVJZckYzYmlIbjZydHd4YXA3WVNPSUU2eTdR?=
+ =?utf-8?B?ZjhTcmdtVHB5NWpRNVFyNEJJYmpHVHdwRVI2TTNLV2txbC8yaTBmZ3BzTjV2?=
+ =?utf-8?B?dk1vTUNEV3FEd1FzeDhVRDVTMHhzVHlUWHJSR2N3RU9uVzRXRDJ1Q1Q0Mk9U?=
+ =?utf-8?B?VmtlQjFDeE9oZCtBT2NwTTFBSjBoeW5mSHQxUHNQb2hBOUR4NG5tMitFMzlP?=
+ =?utf-8?B?RmJUZlVSS0pLbUdqWFIyVStqcFhDWjRUN2xUaU1zKzAveURLcDNJLzBPN2tY?=
+ =?utf-8?B?dHdUU0srOXhCVWEycGc3eGxmc2lsVkRpcE96a2pRdWh5ZVRmRk41TUpyYkJE?=
+ =?utf-8?B?Z2pqaklzaEh4NWdsUEx2UlFacmlXY3pSeXoyaEQwRndrY1hBRmlYMlV5cjVo?=
+ =?utf-8?B?SjRneGRCelN0YmpQcU1VdGx5MUxua3FmYlBXNFJvZmFlaWw4cTRpdThwRU5u?=
+ =?utf-8?B?bTF3UVFCQWRuMDZXNTF1a0lzZCtxRFozeFJrM3dablJaUTZXa1VPb0NkZnRo?=
+ =?utf-8?B?T1FTbzEvY2lFY2Uzc3BjdW1qRkhuY2NPTUlzbVF0Q21GTzNxTzYwRE9Kem93?=
+ =?utf-8?B?aG5HMXR4MjdjOEYvRXBTTlpheC8veWxmWk9aSjFmc056Nk1uUzU1RkZCOWVl?=
+ =?utf-8?B?VnJTTkNwajk3YitxVkVxM2VBVVNiT1R0T2dtVjd4ZVRZbWNXQndSQm9MRHV5?=
+ =?utf-8?B?SmQxUXBySzRmeTVlRGNJWG51OTBCOCthWW5oNUcxUjBqZUxBc3Y3TWRXUFhN?=
+ =?utf-8?Q?Vq00eZ4PHnYUPfr0=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <600FE936E0B7EC42846A9EB1114687BF@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: CZcMJSORZUJEQO7kb5niGv6E0+la92ZiVklGBUAjXpak4mEZLeBBNcRZV195YDKOtfbukGh1TQW/WF3xOKRHoDd4kJg1b0QIwZjAvIh6nswc3xUn+6cVTxtFfHo209OnYtj2clYm+p6bbOo23rx7ZY7hqndGBxnzUI7Emz9i1wX3KJQCQKY/Smgiw1eY86ci/egGNJ+3sQgO4S9I8wfIfvvf4v5LdWGc4dKY9sFdAXwhDxEK/lth2LR75CvUFG0FtpLO44gEzqA3PCPDayKP4WA0r5iaKQxhkaTG02toFGMMi+M2MNCaAi81YXW4cVkkDwkBbUkozqxnRZmczzZBaw==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2026 05:57:58.3240 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9ZYPViRz1QlQv6Zi+G8cesTZKKBN/qWP1p2B5bMx8+/pIJCqnKN477XCq01KkCL1T01yrou/sCcqBy6emha5fQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB813179
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d641dc6f-4d9d-442c-4536-08df08b8cce8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Sep 2026 06:09:51.4569 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: QOLx1jb4mv1XuW+aGgdJeJ+7vsC/9bg8vozx0HTShCbIIJ4YOyzX49nG1Y6VnAUiK3hhGg8QLMA+llfnKIBxOjHJAfvC38NMgkULPXeUUPQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6323
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -171,484 +174,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------G5eCouMeIoTwehwWg7kePmu4
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-
-Hi Karthik,
-
-On 17-07-2026 09:47, Karthik Poosa wrote:
-> Expose pwm[1-3]_enable for fan control mode selection.
-> Value of 0 runs fan at full speed.
-> A value of 1 keeps user fan-table control active, while value 2
-> switches back to firmware control.
->
-> Update Xe hwmon ABI documentation for pwm[1-3]_enable.
->
-> v2:
->   - Use xe helpers for dmesg logs.
->   - Update kernel version in Xe hwmon documentation.
->   - Correct level of some dmesg logs.
->
-> Signed-off-by: Karthik Poosa<karthik.poosa@intel.com>
-> Assisted-by: Codex:gpt-5-4
-> ---
->   .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 11 +++
->   drivers/gpu/drm/xe/xe_hwmon.c                 | 91 ++++++++++++++++++-
->   2 files changed, 100 insertions(+), 2 deletions(-)
->
-> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> index 7383898890aa..effc7d38ce1f 100644
-> --- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-> @@ -330,3 +330,14 @@ Description:    RW. Target fan PWM duty value in the range 0..255. 0 is zero
->                   fan speed and 255 is 100% fan speed.
->   
->                   Only supported for particular Intel Xe graphics platforms.
-> +
-> +What:          /sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/pwm[1-3]_enable
-> +Date:          July 2026
-> +KernelVersion: 7.2
-> +Contact:intel-xe@lists.freedesktop.org
-> +Description:   RW. Fan control mode selector.
-> +
-> +               Use value 0 to run fans at full speed. Use value 1 to enable
-> +               user table control and value 2 to use firmware default behavior.
-> +
-> +               Only supported for particular Intel Xe graphics platforms.
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index d3379727b1a9..fa9dbadd5fd6 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -123,6 +123,15 @@ struct xe_hwmon_energy_info {
->   	long accum_energy;
->   };
->   
-> +enum xe_fan_pwm_enable_mode {
-> +	/** @XE_FAN_PWM_FULL_SPEED: force all user table points to full speed */
-> +	XE_FAN_PWM_FULL_SPEED = 0,
-> +	/** @XE_FAN_PWM_MANUAL_USER_TABLE: use the driver-managed user table */
-> +	XE_FAN_PWM_MANUAL_USER_TABLE = 1,
-> +	/** @XE_FAN_PWM_AUTO_STOCK_TABLE: use the firmware stock table */
-> +	XE_FAN_PWM_AUTO_STOCK_TABLE = 2,
-> +};
-> +
->   enum fan_table_type {
->   	/** @STOCK_FAN_TABLE: firmware-provided fan table */
->   	STOCK_FAN_TABLE,
-> @@ -169,6 +178,10 @@ struct xe_hwmon_fan_info {
->   		u32 max_rps;
->   	/** @min_pwm: minimum fan PWM */
->   	u32 min_pwm;
-> +	/** @pwm_enable_mode: current xe_fan_pwm_enable_mode */
-> +	u8 pwm_enable_mode;
-> +	/** @is_full_speed: flag indicating if fan is in full speed */
-> +	bool is_full_speed;
->   };
->   
->   /**
-> @@ -803,7 +816,9 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
->   	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT | HWMON_E_LABEL, HWMON_E_INPUT | HWMON_E_LABEL),
->   	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT | HWMON_F_MAX, HWMON_F_INPUT | HWMON_F_MAX,
->   			   HWMON_F_INPUT | HWMON_F_MAX),
-> -	HWMON_CHANNEL_INFO(pwm, HWMON_PWM_INPUT, HWMON_PWM_INPUT, HWMON_PWM_INPUT),
-> +	HWMON_CHANNEL_INFO(pwm, HWMON_PWM_INPUT | HWMON_PWM_ENABLE,
-> +			   HWMON_PWM_INPUT | HWMON_PWM_ENABLE,
-> +			   HWMON_PWM_INPUT | HWMON_PWM_ENABLE),
->   	NULL
->   };
->   
-> @@ -1033,7 +1048,8 @@ static int xe_hwmon_activate_user_fan_table(struct xe_hwmon *hwmon, u8 fan,
->   	}
->   
->   	fi->fan_table[USER_FAN_TABLE].fan_control_point_count = point_count;
-> -
-> +	fi->pwm_enable_mode = XE_FAN_PWM_MANUAL_USER_TABLE;
-> +	fi->is_full_speed = is_full_speed;
->   	return 0;
->   }
->   
-> @@ -1046,6 +1062,11 @@ static int xe_hwmon_set_user_fan_pwm(struct xe_hwmon *hwmon, u8 fan, u8 pwm)
->   	int ret;
->   	int point;
->   
-> +	if (fi->pwm_enable_mode == XE_FAN_PWM_AUTO_STOCK_TABLE) {
-> +		xe_dbg(hwmon->xe, "fan %d manual table is not active, cannot set pwm\n", fan);
-> +		return -EINVAL;
-> +	}
-> +
->   	/* Read user table fan point count, if it is not set, activate the user table */
->   	ret = xe_hwmon_get_fan_point_count(hwmon, fan, &point_count, USER_FAN_TABLE);
->   	if (ret)
-> @@ -1078,6 +1099,9 @@ static int xe_hwmon_set_user_fan_pwm(struct xe_hwmon *hwmon, u8 fan, u8 pwm)
->   		xe_dbg(hwmon->xe, "failed to update fan %d user table count, ret=%d\n", fan, ret);
->   		return ret;
->   	}
-> +
-> +	fi->pwm_enable_mode = XE_FAN_PWM_MANUAL_USER_TABLE;
-> +	fi->is_full_speed = false;
->   	return 0;
->   }
->   
-> @@ -1134,6 +1158,9 @@ static int xe_hwmon_read_fan_control_info(struct xe_hwmon *hwmon)
->   			       fi->fan_table[STOCK_FAN_TABLE].fcp[point].speed);
->   		}
->   
-> +		/* Set PWM enable mode to automatic i.e stock table in use. */
-> +		fi->pwm_enable_mode = XE_FAN_PWM_AUTO_STOCK_TABLE;
-> +
->   		/* Read minimum fan PWM */
->   		ret = xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_FAN_MIN_PWM, fan,
->   						      &fi->min_pwm);
-> @@ -1585,6 +1612,7 @@ xe_hwmon_pwm_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->   
->   	switch (attr) {
->   	case hwmon_pwm_input:
-> +	case hwmon_pwm_enable:
->   		return 0644;
->   	default:
->   		return 0;
-> @@ -1669,6 +1697,9 @@ xe_hwmon_pwm_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
->   		*val = DIV_ROUND_CLOSEST(fi->fan_table[USER_FAN_TABLE].fcp[0].speed *
->   						U8_MAX,	100);
->   		return 0;
-> +	case hwmon_pwm_enable:
-> +			*val = fi->is_full_speed ? XE_FAN_PWM_FULL_SPEED : fi->pwm_enable_mode;
-> +		return 0;
->   	default:
->   		return -EOPNOTSUPP;
->   	}
-> @@ -1677,11 +1708,15 @@ xe_hwmon_pwm_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
->   static int
->   xe_hwmon_pwm_write(struct xe_hwmon *hwmon, u32 attr, int channel, long val)
->   {
-> +	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-> +	struct xe_hwmon_fan_info *fi;
->   	int ret = 0;
->   
->   	if (channel < 0 || channel >= FAN_MAX)
->   		return -EINVAL;
->   
-> +	fi = &hwmon->fi[channel];
-> +
->   	mutex_lock(&hwmon->hwmon_lock);
->   
->   	switch (attr) {
-> @@ -1692,10 +1727,62 @@ xe_hwmon_pwm_write(struct xe_hwmon *hwmon, u32 attr, int channel, long val)
->   		}
->   		ret = xe_hwmon_set_user_fan_pwm(hwmon, channel, (u8)val);
->   		break;
-> +	case hwmon_pwm_enable:
-> +		if (val == XE_FAN_PWM_FULL_SPEED) {
-> +			/* Set fans at full speed. */
-> +			ret = xe_hwmon_activate_user_fan_table(hwmon, channel, true,
-> +							       STOCK_FAN_TABLE);
-> +			if (ret) {
-> +				xe_warn(hwmon->xe,
-> +					"full speed enable for fan %d failed, ret=%d\n",
-> +					channel, ret);
-> +			}
-> +		} else if (val == XE_FAN_PWM_MANUAL_USER_TABLE) {
-> +			/*
-> +			 * Manual fan speed control using user fan table.
-> +			 * If user fan table is not programmed, it would be initialized with
-nit: s/programmed/populated/
-> +			 * clamped stock points which allows manual control with some
-> +			 * default points.
-> +			 */
-> +			ret = xe_hwmon_activate_user_fan_table(hwmon, channel, false,
-> +							       USER_FAN_TABLE);
-
-How can USER_FAN_TABLE be the source of itself ? Should it be 
-STOCK_FAN_TABLE ?
-
-Thanks, Soham
-
-> +			if (ret) {
-> +				xe_warn(hwmon->xe,
-> +					"failed to activate user fan table for fan %d, ret=%d\n",
-> +					channel, ret);
-> +			}
-> +		} else if (val == XE_FAN_PWM_AUTO_STOCK_TABLE) {
-> +			/* Switch to stock table specifying the user points to 0. */
-> +			ret = xe_pcode_write_timeout(root_tile,
-> +						     PCODE_MBOX(FAN_SPEED_CONTROL,
-> +								FSC_WRITE_NUM_FAN_CONTROL_POINTS,
-> +								channel),
-> +						      0, XE_PCODE_FAN_CONTROL_TIMEOUT_MS);
-> +			if (ret) {
-> +				xe_warn(hwmon->xe,
-> +					"failed to disable user fan table for fan %d, ret=%d\n",
-> +					channel, ret);
-> +				break;
-> +			}
-> +			xe_dbg(hwmon->xe,
-> +			       "automatic control enabled for fan %d using stock table\n",
-> +			       channel);
-> +			       ret = 0;
-> +		} else {
-> +			ret = -EINVAL;
-> +		}
-> +		break;
->   	default:
->   		ret = -EOPNOTSUPP;
->   		break;
->   	}
-> +
-> +	/* Update PWM enable mode and full speed status if no error occurred */
-> +	if (!ret && attr == hwmon_pwm_enable) {
-> +		fi->pwm_enable_mode = val;
-> +		fi->is_full_speed = (val == XE_FAN_PWM_FULL_SPEED);
-> +	}
-> +
->   	mutex_unlock(&hwmon->hwmon_lock);
->   
->   	return ret;
---------------G5eCouMeIoTwehwWg7kePmu4
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p>Hi Karthik,</p>
-    <div class="moz-cite-prefix">On 17-07-2026 09:47, Karthik Poosa
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:20260717041757.2759084-6-karthik.poosa@intel.com">
-      <pre wrap="" class="moz-quote-pre">Expose pwm[1-3]_enable for fan control mode selection.
-Value of 0 runs fan at full speed.
-A value of 1 keeps user fan-table control active, while value 2
-switches back to firmware control.
-
-Update Xe hwmon ABI documentation for pwm[1-3]_enable.
-
-v2:
- - Use xe helpers for dmesg logs.
- - Update kernel version in Xe hwmon documentation.
- - Correct level of some dmesg logs.
-
-Signed-off-by: Karthik Poosa <a class="moz-txt-link-rfc2396E" href="mailto:karthik.poosa@intel.com">&lt;karthik.poosa@intel.com&gt;</a>
-Assisted-by: Codex:gpt-5-4
----
- .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 11 +++
- drivers/gpu/drm/xe/xe_hwmon.c                 | 91 ++++++++++++++++++-
- 2 files changed, 100 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-index 7383898890aa..effc7d38ce1f 100644
---- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-+++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-@@ -330,3 +330,14 @@ Description:    RW. Target fan PWM duty value in the range 0..255. 0 is zero
-                 fan speed and 255 is 100% fan speed.
- 
-                 Only supported for particular Intel Xe graphics platforms.
-+
-+What:          /sys/bus/pci/drivers/xe/.../hwmon/hwmon&lt;i&gt;/pwm[1-3]_enable
-+Date:          July 2026
-+KernelVersion: 7.2
-+Contact:       <a class="moz-txt-link-abbreviated" href="mailto:intel-xe@lists.freedesktop.org">intel-xe@lists.freedesktop.org</a>
-+Description:   RW. Fan control mode selector.
-+
-+               Use value 0 to run fans at full speed. Use value 1 to enable
-+               user table control and value 2 to use firmware default behavior.
-+
-+               Only supported for particular Intel Xe graphics platforms.
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index d3379727b1a9..fa9dbadd5fd6 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -123,6 +123,15 @@ struct xe_hwmon_energy_info {
- 	long accum_energy;
- };
- 
-+enum xe_fan_pwm_enable_mode {
-+	/** @XE_FAN_PWM_FULL_SPEED: force all user table points to full speed */
-+	XE_FAN_PWM_FULL_SPEED = 0,
-+	/** @XE_FAN_PWM_MANUAL_USER_TABLE: use the driver-managed user table */
-+	XE_FAN_PWM_MANUAL_USER_TABLE = 1,
-+	/** @XE_FAN_PWM_AUTO_STOCK_TABLE: use the firmware stock table */
-+	XE_FAN_PWM_AUTO_STOCK_TABLE = 2,
-+};
-+
- enum fan_table_type {
- 	/** @STOCK_FAN_TABLE: firmware-provided fan table */
- 	STOCK_FAN_TABLE,
-@@ -169,6 +178,10 @@ struct xe_hwmon_fan_info {
- 		u32 max_rps;
- 	/** @min_pwm: minimum fan PWM */
- 	u32 min_pwm;
-+	/** @pwm_enable_mode: current xe_fan_pwm_enable_mode */
-+	u8 pwm_enable_mode;
-+	/** @is_full_speed: flag indicating if fan is in full speed */
-+	bool is_full_speed;
- };
- 
- /**
-@@ -803,7 +816,9 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
- 	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT | HWMON_E_LABEL, HWMON_E_INPUT | HWMON_E_LABEL),
- 	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT | HWMON_F_MAX, HWMON_F_INPUT | HWMON_F_MAX,
- 			   HWMON_F_INPUT | HWMON_F_MAX),
--	HWMON_CHANNEL_INFO(pwm, HWMON_PWM_INPUT, HWMON_PWM_INPUT, HWMON_PWM_INPUT),
-+	HWMON_CHANNEL_INFO(pwm, HWMON_PWM_INPUT | HWMON_PWM_ENABLE,
-+			   HWMON_PWM_INPUT | HWMON_PWM_ENABLE,
-+			   HWMON_PWM_INPUT | HWMON_PWM_ENABLE),
- 	NULL
- };
- 
-@@ -1033,7 +1048,8 @@ static int xe_hwmon_activate_user_fan_table(struct xe_hwmon *hwmon, u8 fan,
- 	}
- 
- 	fi-&gt;fan_table[USER_FAN_TABLE].fan_control_point_count = point_count;
--
-+	fi-&gt;pwm_enable_mode = XE_FAN_PWM_MANUAL_USER_TABLE;
-+	fi-&gt;is_full_speed = is_full_speed;
- 	return 0;
- }
- 
-@@ -1046,6 +1062,11 @@ static int xe_hwmon_set_user_fan_pwm(struct xe_hwmon *hwmon, u8 fan, u8 pwm)
- 	int ret;
- 	int point;
- 
-+	if (fi-&gt;pwm_enable_mode == XE_FAN_PWM_AUTO_STOCK_TABLE) {
-+		xe_dbg(hwmon-&gt;xe, &quot;fan %d manual table is not active, cannot set pwm\n&quot;, fan);
-+		return -EINVAL;
-+	}
-+
- 	/* Read user table fan point count, if it is not set, activate the user table */
- 	ret = xe_hwmon_get_fan_point_count(hwmon, fan, &amp;point_count, USER_FAN_TABLE);
- 	if (ret)
-@@ -1078,6 +1099,9 @@ static int xe_hwmon_set_user_fan_pwm(struct xe_hwmon *hwmon, u8 fan, u8 pwm)
- 		xe_dbg(hwmon-&gt;xe, &quot;failed to update fan %d user table count, ret=%d\n&quot;, fan, ret);
- 		return ret;
- 	}
-+
-+	fi-&gt;pwm_enable_mode = XE_FAN_PWM_MANUAL_USER_TABLE;
-+	fi-&gt;is_full_speed = false;
- 	return 0;
- }
- 
-@@ -1134,6 +1158,9 @@ static int xe_hwmon_read_fan_control_info(struct xe_hwmon *hwmon)
- 			       fi-&gt;fan_table[STOCK_FAN_TABLE].fcp[point].speed);
- 		}
- 
-+		/* Set PWM enable mode to automatic i.e stock table in use. */
-+		fi-&gt;pwm_enable_mode = XE_FAN_PWM_AUTO_STOCK_TABLE;
-+
- 		/* Read minimum fan PWM */
- 		ret = xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_FAN_MIN_PWM, fan,
- 						      &amp;fi-&gt;min_pwm);
-@@ -1585,6 +1612,7 @@ xe_hwmon_pwm_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 
- 	switch (attr) {
- 	case hwmon_pwm_input:
-+	case hwmon_pwm_enable:
- 		return 0644;
- 	default:
- 		return 0;
-@@ -1669,6 +1697,9 @@ xe_hwmon_pwm_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
- 		*val = DIV_ROUND_CLOSEST(fi-&gt;fan_table[USER_FAN_TABLE].fcp[0].speed *
- 						U8_MAX,	100);
- 		return 0;
-+	case hwmon_pwm_enable:
-+			*val = fi-&gt;is_full_speed ? XE_FAN_PWM_FULL_SPEED : fi-&gt;pwm_enable_mode;
-+		return 0;
- 	default:
- 		return -EOPNOTSUPP;
- 	}
-@@ -1677,11 +1708,15 @@ xe_hwmon_pwm_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
- static int
- xe_hwmon_pwm_write(struct xe_hwmon *hwmon, u32 attr, int channel, long val)
- {
-+	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon-&gt;xe);
-+	struct xe_hwmon_fan_info *fi;
- 	int ret = 0;
- 
- 	if (channel &lt; 0 || channel &gt;= FAN_MAX)
- 		return -EINVAL;
- 
-+	fi = &amp;hwmon-&gt;fi[channel];
-+
- 	mutex_lock(&amp;hwmon-&gt;hwmon_lock);
- 
- 	switch (attr) {
-@@ -1692,10 +1727,62 @@ xe_hwmon_pwm_write(struct xe_hwmon *hwmon, u32 attr, int channel, long val)
- 		}
- 		ret = xe_hwmon_set_user_fan_pwm(hwmon, channel, (u8)val);
- 		break;
-+	case hwmon_pwm_enable:
-+		if (val == XE_FAN_PWM_FULL_SPEED) {
-+			/* Set fans at full speed. */
-+			ret = xe_hwmon_activate_user_fan_table(hwmon, channel, true,
-+							       STOCK_FAN_TABLE);
-+			if (ret) {
-+				xe_warn(hwmon-&gt;xe,
-+					&quot;full speed enable for fan %d failed, ret=%d\n&quot;,
-+					channel, ret);
-+			}
-+		} else if (val == XE_FAN_PWM_MANUAL_USER_TABLE) {
-+			/*
-+			 * Manual fan speed control using user fan table.
-+			 * If user fan table is not programmed, it would be initialized with</pre>
-    </blockquote>
-    nit: s/programmed/populated/
-    <blockquote type="cite" cite="mid:20260717041757.2759084-6-karthik.poosa@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+			 * clamped stock points which allows manual control with some
-+			 * default points.
-+			 */
-+			ret = xe_hwmon_activate_user_fan_table(hwmon, channel, false,
-+							       USER_FAN_TABLE);</pre>
-    </blockquote>
-    <p>How can&nbsp;<span style="white-space: pre-wrap">USER_FAN_TABLE be </span>the&nbsp;<span style="white-space: pre-wrap">source of itself ? Should it be STOCK_FAN_TABLE ?</span></p>
-    <p><span style="white-space: pre-wrap">Thanks,
-Soham</span></p>
-    <blockquote type="cite" cite="mid:20260717041757.2759084-6-karthik.poosa@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+			if (ret) {
-+				xe_warn(hwmon-&gt;xe,
-+					&quot;failed to activate user fan table for fan %d, ret=%d\n&quot;,
-+					channel, ret);
-+			}
-+		} else if (val == XE_FAN_PWM_AUTO_STOCK_TABLE) {
-+			/* Switch to stock table specifying the user points to 0. */
-+			ret = xe_pcode_write_timeout(root_tile,
-+						     PCODE_MBOX(FAN_SPEED_CONTROL,
-+								FSC_WRITE_NUM_FAN_CONTROL_POINTS,
-+								channel),
-+						      0, XE_PCODE_FAN_CONTROL_TIMEOUT_MS);
-+			if (ret) {
-+				xe_warn(hwmon-&gt;xe,
-+					&quot;failed to disable user fan table for fan %d, ret=%d\n&quot;,
-+					channel, ret);
-+				break;
-+			}
-+			xe_dbg(hwmon-&gt;xe,
-+			       &quot;automatic control enabled for fan %d using stock table\n&quot;,
-+			       channel);
-+			       ret = 0;
-+		} else {
-+			ret = -EINVAL;
-+		}
-+		break;
- 	default:
- 		ret = -EOPNOTSUPP;
- 		break;
- 	}
-+
-+	/* Update PWM enable mode and full speed status if no error occurred */
-+	if (!ret &amp;&amp; attr == hwmon_pwm_enable) {
-+		fi-&gt;pwm_enable_mode = val;
-+		fi-&gt;is_full_speed = (val == XE_FAN_PWM_FULL_SPEED);
-+	}
-+
- 	mutex_unlock(&amp;hwmon-&gt;hwmon_lock);
- 
- 	return ret;
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------G5eCouMeIoTwehwWg7kePmu4--
+T24gVHVlLCAyMDI2LTA4LTI1IGF0IDExOjE1ICswNTMwLCBBbmltZXNoIE1hbm5hIHdyb3RlOg0K
+PiBJbml0aWFsaXplIEFMUE0gZm9yIERQMi4xIGFuZCBzZXBhcmF0ZSBvdXQgQUxQTSBtdXRleC1p
+bml0DQo+IGZyb20gYWxwbS1pbml0Lg0KPiANCj4gdjI6IFNlcGFyYXRlIG91dCBtdXRleC1pbml0
+LiBbSmFuaV0NCj4gdjM6IFJlZmFjdG9yIGZ1cnRoZXIgdG8gYXZvaWQgRElTUExBWV9WRVIgY2hl
+Y2sgaW4gbXVsdGlwbGUgcGxhY2VzLg0KPiBbSmFuaV0NCj4gVjQ6IENvc21ldGljIGNoYW5nZXMu
+IFtTdXJhal0NCj4gDQo+IENjOiBKb3VuaSBIw7ZnYW5kZXIgPGpvdW5pLmhvZ2FuZGVyQGludGVs
+LmNvbT4NCj4gUmV2aWV3ZWQtYnk6IFN1cmFqIEthbmRwYWwgPHN1cmFqLmthbmRwYWxAaW50ZWwu
+Y29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBBbmltZXNoIE1hbm5hIDxhbmltZXNoLm1hbm5hQGludGVs
+LmNvbT4NCj4gLS0tDQo+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hbHBt
+LmMgfCAxMyArKysrKysrKysrKysrDQo+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9hbHBtLmggfMKgIDEgKw0KPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZHAuY8KgwqAgfMKgIDggKysrKysrLS0NCj4gwqAzIGZpbGVzIGNoYW5nZWQsIDIwIGluc2Vy
+dGlvbnMoKyksIDIgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hbHBtLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2FscG0uYw0KPiBpbmRleCA1NDI5MDBlMjlhMDEuLjA4YWQ3N2NkMzJmOCAx
+MDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hbHBtLmMN
+Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hbHBtLmMNCj4gQEAg
+LTQzLDYgKzQzLDE5IEBAIGJvb2wgaW50ZWxfYWxwbV9pc19hbHBtX2F1eF9sZXNzKHN0cnVjdCBp
+bnRlbF9kcA0KPiAqaW50ZWxfZHAsDQo+IMKgCQkoY3J0Y19zdGF0ZS0+aGFzX2xvYmYgJiYNCj4g
+aW50ZWxfYWxwbV9hdXhfbGVzc193YWtlX3N1cHBvcnRlZChpbnRlbF9kcCkpOw0KPiDCoH0NCj4g
+wqANCj4gK2Jvb2wgaW50ZWxfYWxwbV9zb3VyY2Vfc3VwcG9ydGVkKHN0cnVjdCBpbnRlbF9jb25u
+ZWN0b3IgKmNvbm5lY3RvcikNCj4gK3sNCj4gKwlzdHJ1Y3QgaW50ZWxfZGlzcGxheSAqZGlzcGxh
+eSA9IHRvX2ludGVsX2Rpc3BsYXkoY29ubmVjdG9yKTsNCj4gKw0KPiArCWlmICghKChjb25uZWN0
+b3ItPmJhc2UuY29ubmVjdG9yX3R5cGUgPT0NCj4gRFJNX01PREVfQ09OTkVDVE9SX0Rpc3BsYXlQ
+b3J0ICYmDQo+ICsJwqDCoMKgwqDCoMKgIERJU1BMQVlfVkVSKGRpc3BsYXkpID49IDM1KSB8fA0K
+PiArCcKgwqDCoCAoY29ubmVjdG9yLT5iYXNlLmNvbm5lY3Rvcl90eXBlID09DQo+IERSTV9NT0RF
+X0NPTk5FQ1RPUl9lRFAgJiYNCj4gKwnCoMKgwqDCoCBESVNQTEFZX1ZFUihkaXNwbGF5KSA+PSAy
+MCkpKQ0KDQpTZWUgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYzo6X3Bz
+cl9pbml0X2RwY2QuIFRoZXJlDQpQU1IyIGlzIGRlcGVuZGluZyBvbiBzaW5rIEFMUE0gc3VwcG9y
+dC4gSXMgY29ycmVjdCB2ZXJzaW9uID49IDkgb3INCm1heWJlIHRoaXMgaGVscGVyIHNob3VsZCBi
+ZSBqdXN0IGRyb3BwZWQuDQoNCj4gKwkJcmV0dXJuIGZhbHNlOw0KPiArDQo+ICsJcmV0dXJuIHRy
+dWU7DQo+ICt9DQo+ICsNCj4gwqB2b2lkIGludGVsX2FscG1faW5pdF9kcGNkKHN0cnVjdCBpbnRl
+bF9kcCAqaW50ZWxfZHApDQo+IMKgew0KPiDCoAl1OCBkcGNkOw0KPiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hbHBtLmgNCj4gYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2FscG0uaA0KPiBpbmRleCBmYWU2OGQ1NTc5NjAuLjcyODA4
+NjVlZDVmMCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9hbHBtLmgNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hbHBt
+LmgNCj4gQEAgLTE1LDYgKzE1LDcgQEAgc3RydWN0IGludGVsX2Nvbm5lY3RvcjsNCj4gwqBzdHJ1
+Y3QgaW50ZWxfYXRvbWljX3N0YXRlOw0KPiDCoHN0cnVjdCBpbnRlbF9jcnRjOw0KPiDCoA0KPiAr
+Ym9vbCBpbnRlbF9hbHBtX3NvdXJjZV9zdXBwb3J0ZWQoc3RydWN0IGludGVsX2Nvbm5lY3RvciAq
+Y29ubmVjdG9yKTsNCj4gwqB2b2lkIGludGVsX2FscG1faW5pdF9kcGNkKHN0cnVjdCBpbnRlbF9k
+cCAqaW50ZWxfZHApOw0KPiDCoHZvaWQgaW50ZWxfYWxwbV9pbml0KHN0cnVjdCBpbnRlbF9kcCAq
+aW50ZWxfZHApOw0KPiDCoGJvb2wgaW50ZWxfYWxwbV9jb21wdXRlX3BhcmFtcyhzdHJ1Y3QgaW50
+ZWxfZHAgKmludGVsX2RwLA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kcC5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
+cC5jDQo+IGluZGV4IDc3ZDUxNmYwYmQwNy4uMDQyYzZlOGI4ZTYwIDEwMDY0NA0KPiAtLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMNCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jDQo+IEBAIC02MzQzLDYgKzYzNDMsOSBAQCBp
+bnRlbF9kcF9kZXRlY3Qoc3RydWN0IGRybV9jb25uZWN0b3INCj4gKl9jb25uZWN0b3IsDQo+IMKg
+CWlmIChyZXQgPT0gMSkNCj4gwqAJCWNvbm5lY3Rvci0+YmFzZS5lcG9jaF9jb3VudGVyKys7DQo+
+IMKgDQo+ICsJaWYgKGludGVsX2FscG1fc291cmNlX3N1cHBvcnRlZChjb25uZWN0b3IpKQ0KPiAr
+CQlpbnRlbF9hbHBtX2luaXRfZHBjZChpbnRlbF9kcCk7DQoNClNlZSBteSBjb21tZW50IGFib3Zl
+LiBTaW5rIERQQ0QgY2FwYWJpbGl0eSBjb3VsZCBiZSByZWFkDQp1bmNvbmRpdGlvbmFsbHkuIElm
+IHlvdSB3YW50IHRvIGtlZXAgdGhpcyBhcHByb2FjaCB0aGVuIHlvdSBuZWVkIHRvIGZpeA0KaW50
+ZWxfYWxwbV9zb3VyY2Vfc3VwcG9ydGVkLiBPdGhlcndpc2UgUFNSMiBicmVha3Mgb24gZGlzcGxh
+eSB2ZXJzaW9uIDwNCjIwLg0KDQo+ICsNCj4gwqAJaWYgKCFpbnRlbF9kcF9pc19lZHAoaW50ZWxf
+ZHApKQ0KPiDCoAkJaW50ZWxfcHNyX2luaXRfZHBjZChpbnRlbF9kcCwgY29ubmVjdG9yKTsNCj4g
+wqANCj4gQEAgLTY5ODYsOCArNjk4OSw2IEBAIHN0YXRpYyBib29sIGludGVsX2VkcF9pbml0X2Nv
+bm5lY3RvcihzdHJ1Y3QNCj4gaW50ZWxfZHAgKmludGVsX2RwLA0KPiDCoAkgKi8NCj4gwqAJaW50
+ZWxfaHBkX2VuYWJsZV9kZXRlY3Rpb24oZW5jb2Rlcik7DQo+IMKgDQo+IC0JaW50ZWxfYWxwbV9p
+bml0KGludGVsX2RwKTsNCj4gLQ0KPiDCoAkvKiBDYWNoZSBEUENEIGFuZCBFRElEIGZvciBlZHAu
+ICovDQo+IMKgCWhhc19kcGNkID0gaW50ZWxfZWRwX2luaXRfZHBjZChpbnRlbF9kcCwgY29ubmVj
+dG9yKTsNCj4gwqANCj4gQEAgLTcyMDIsNiArNzIwMyw5IEBAIGludGVsX2RwX2luaXRfY29ubmVj
+dG9yKHN0cnVjdA0KPiBpbnRlbF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0LA0KPiDCoA0KPiDCoAlp
+bnRlbF9wc3JfaW5pdChpbnRlbF9kcCk7DQo+IMKgDQo+ICsJaWYgKGludGVsX2FscG1fc291cmNl
+X3N1cHBvcnRlZChjb25uZWN0b3IpKQ0KPiArCQlpbnRlbF9hbHBtX2luaXQoaW50ZWxfZHApOw0K
+DQpTYW1lIHByb2JsZW0gaGVyZS4gQW5vdGhlciB3YXkgY291bGQgYmUgdG8gaGlkZSBkZXRhaWxz
+IGludG8NCmludGVsX2FscG1faW5pdCBhbmQgY2FsbCBpbnRlbF9hbHBtX2luaXQgdW5jb25kaXRp
+b25hbGx5Lg0KDQpCUiwNCkpvdW5pIEjDtmdhbmRlcg0KDQo+ICsNCj4gwqAJcmV0dXJuIHRydWU7
+DQo+IMKgDQo+IMKgZmFpbDoNCg0K
