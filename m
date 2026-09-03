@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41D4DC624D6
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 14:03:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58F57C61DD3
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 14:04:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D71F710F5F7;
-	Thu,  3 Sep 2026 14:03:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E8CE10F5D3;
+	Thu,  3 Sep 2026 14:04:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gLVOdp6z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="euMYCEbq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74B0610F614
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 14:03:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7BA510F5EE
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 14:03:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788444230; x=1819980230;
+ t=1788444238; x=1819980238;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9trjvOL+5n19nyh6hrFch3ywnoDEzM5vTmkrlrJ9GKA=;
- b=gLVOdp6zSUK/lWInBuypbsxp5jn837V+wZ6gFQKio7fwd7hYHjxSU9WW
- oaoKRlS5ssVmI+D0QvZVwk/YGty+H9p4rFZkjVkGDGlGyZaLOk8qECV6a
- vUzyAJ5L7wL/CMuMjb0GzFcArGDv1AwvuzMn66w2c29sxS1yjZpZDEJ1m
- F7zY2vHRINPbYwR4MbpmtsYzYhbWYUHDbwt9JxXX555u6sWhmHId9x8Gw
- PVpCEkTwUrjIOjLQrQ6arA2cnVzrAHkCzJMWVjvLJJQ2Z8A/rofGhVJO2
- 2rFaeJZ89O8BizQl2PW5QvOSbInlEIJQpuE6WhU74OraXgGLcVd1fNJ/+ w==;
-X-CSE-ConnectionGUID: Cu1Xp8IvRWyuqwLX7BL5pQ==
-X-CSE-MsgGUID: T2sJdJtgSeaxJvEReyJDLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="87865974"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="87865974"
+ bh=OuPlWG9+0oy1bo4CpXu5wzpOLYGhMMoHWCydgA3Ma5s=;
+ b=euMYCEbqOucqEUMWgz3ydkW77Tdfw1Ty5rYAH3dHp5KG/13Gg+H94CK1
+ I50wRxHW5TGfM+qvL37jXYoN6N3pborZbLLUgu9tN/RhiaufYvT6cvmrN
+ QbtgmFOM0Tmcl/RGQnQOTKbinQyG7NgPb5hmWZ/M0pcXF5P+pmbzOg0ph
+ jS8okE+p9rJ6ljvt8s7LepJ8DymnjUunKebXn7uhtDLThivXMMrVtsLs0
+ wpZhhwOom1q71cw/oQEW0p+vvE+tFJJ9lZ8GdN42N33X45/WGP+vnnvbj
+ qcTlLHu7/IgFR2m+y7qL9LtfD3qmKFmbDVQKCXAkDVvCijABOx9xfxyQE g==;
+X-CSE-ConnectionGUID: QyYajlk0TdurbTxSJUT1Ig==
+X-CSE-MsgGUID: cC2fe+kMQYO5wjFfcqsoyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="87865981"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="87865981"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 07:03:50 -0700
-X-CSE-ConnectionGUID: 2tOrvT89TpujKPykYLvMJw==
-X-CSE-MsgGUID: IL3WCiuiSc+KlozFd7PGEQ==
+ 03 Sep 2026 07:03:54 -0700
+X-CSE-ConnectionGUID: oP2PYhTFREuEWHoW+8Mpkw==
+X-CSE-MsgGUID: N7IOK1WVRSOvjqATpaUB5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="267150163"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="267150181"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 07:03:47 -0700
+ 03 Sep 2026 07:03:50 -0700
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,14 +48,15 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v4 1/4] drm/xe/sysctrl: Add System Controller get application
- status
-Date: Thu,  3 Sep 2026 07:03:41 -0700
-Message-ID: <20260903140340.83500-7-anoop.c.vijay@intel.com>
+Subject: [PATCH v4 2/4] drm/xe/sysctrl: Add sysctrl debugfs infrastructure and
+ loopback test interface
+Date: Thu,  3 Sep 2026 07:03:42 -0700
+Message-ID: <20260903140340.83500-8-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260903140340.83500-6-anoop.c.vijay@intel.com>
 References: <20260903140340.83500-6-anoop.c.vijay@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,226 +74,318 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Add support for querying System Controller firmware application
-status. This allows callers to determine whether a given firmware
-application has completed boot and post-boot initialization.
+Add debugfs support for exercising System Controller mailbox
+interface from userspace. This adds the "sc/" debugfs root
+directory and a "loopback" entry that sends an arbitrary byte
+payload to the Core group's inverted-loopback command (group=0xFF,
+cmd=0x03) and reports the response:
 
-This patch is carried here only as a build dependency for this
-series; it is authored and under review as part of a separate
-get-app-status series and should be dropped/rebased away once that
-series lands.
-
-Link: https://lore.kernel.org/intel-xe/20260814095306.2482289-5-anoop.c.vijay@intel.com/
-Link: https://lore.kernel.org/intel-xe/20260814095306.2482289-6-anoop.c.vijay@intel.com/
+  echo "0x11 0x22 0x33 0x44" > /sys/kernel/debug/dri/0/sc/loopback
+  cat /sys/kernel/debug/dri/0/sc/loopback
 
 Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 ---
 v4 (Rodrigo):
-- Added lore links to the parent application-status series
+- Squashed debugfs infrastructure and loopback support into a single commit
 ---
- drivers/gpu/drm/xe/xe_sysctrl.c               | 82 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl.h               |  2 +
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h | 65 +++++++++++++++
- 3 files changed, 149 insertions(+)
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c               |   5 +
+ drivers/gpu/drm/xe/xe_sysctrl_debugfs.c       | 157 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl_debugfs.h       |  14 ++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   2 +
+ drivers/gpu/drm/xe/xe_sysctrl_types.h         |  35 ++++
+ 6 files changed, 214 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_debugfs.h
 
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
-index 62ccc9be71b4..5da591ade4e4 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.c
-@@ -13,9 +13,11 @@
- #include "xe_device.h"
- #include "xe_mmio.h"
- #include "xe_pm.h"
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 67b8b5477639..3484e9a523d1 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -128,6 +128,7 @@ xe-y += xe_bb.o \
+ 	xe_survivability_mode.o \
+ 	xe_sync.o \
+ 	xe_sysctrl.o \
++	xe_sysctrl_debugfs.o \
+ 	xe_sysctrl_event.o \
+ 	xe_sysctrl_mailbox.o \
+ 	xe_tile.o \
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 28135f84e286..74bf8515b49c 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -31,6 +31,8 @@
+ #include "xe_sriov_pf_debugfs.h"
+ #include "xe_sriov_vf.h"
+ #include "xe_step.h"
++#include "xe_sysctrl.h"
++#include "xe_sysctrl_debugfs.h"
+ #include "xe_tile_debugfs.h"
+ #include "xe_vsec.h"
+ #include "xe_wa.h"
+@@ -785,6 +787,9 @@ void xe_debugfs_register(struct xe_device *xe)
+ 
+ 	xe_fault_inject_debugfs_register(xe, root);
+ 
++	if (xe->info.has_sysctrl)
++		xe_sysctrl_debugfs_register(&xe->sc, root);
++
+ 	if (IS_SRIOV_PF(xe))
+ 		xe_sriov_pf_debugfs_register(xe, root);
+ 	else if (IS_SRIOV_VF(xe))
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
+new file mode 100644
+index 000000000000..2144d9d43fba
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
+@@ -0,0 +1,157 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#include <linux/cleanup.h>
++#include <linux/debugfs.h>
++#include <linux/err.h>
++#include <linux/kstrtox.h>
++#include <linux/seq_file.h>
++#include <linux/slab.h>
++#include <linux/string.h>
++#include <linux/uaccess.h>
++
++#include "xe_device.h"
++#include "xe_pm.h"
 +#include "xe_printk.h"
- #include "xe_soc_remapper.h"
- #include "xe_sysctrl.h"
- #include "xe_sysctrl_mailbox.h"
++#include "xe_sysctrl.h"
++#include "xe_sysctrl_debugfs.h"
++#include "xe_sysctrl_mailbox.h"
 +#include "xe_sysctrl_mailbox_types.h"
- #include "xe_sysctrl_types.h"
- 
- /**
-@@ -125,3 +127,83 @@ void xe_sysctrl_pm_resume(struct xe_device *xe)
- 
- 	xe->soc_remapper.set_sysctrl_region(xe, SYSCTRL_MAILBOX_INDEX);
- }
++#include "xe_sysctrl_types.h"
 +
-+static enum xe_sysctrl_fw_status
-+xe_sysctrl_check_app_status(struct xe_device *xe, enum xe_sysctrl_app_id app_id)
++static ssize_t xe_sysctrl_loopback_write(struct file *file, const char __user *ubuf,
++					 size_t len, loff_t *offp)
 +{
-+	struct xe_sysctrl_app_status_req req = {};
-+	struct xe_sysctrl_app_status_resp resp = {};
++	char *kbuf __free(kfree) = NULL;
++	u8 *input __free(kfree) = NULL;
++	struct seq_file *m = file->private_data;
++	struct xe_sysctrl_debugfs_entry *entry = m->private;
++	struct xe_device *xe = sc_to_xe(entry->sc);
 +	struct xe_sysctrl_mailbox_command cmd = {};
++	char *token, *tmp;
++	unsigned long val;
++	size_t input_len = 0;
++	size_t max_input;
 +	size_t out_len = 0;
-+	u32 flags;
-+	int ret;
 +
-+	if (!xe->info.has_sysctrl)
-+		return XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
++	if (len == 0 || len >= PAGE_SIZE)
++		return -EINVAL;
 +
-+	req.app_id = (u8)app_id;
++	kbuf = kmalloc(len + 1, GFP_KERNEL);
++	if (!kbuf)
++		return -ENOMEM;
 +
-+	xe_sysctrl_create_command(&cmd, XE_SYSCTRL_GROUP_CORE, XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID,
-+				  &req, sizeof(req), &resp, sizeof(resp));
++	max_input = min_t(size_t, len, XE_SYSCTRL_MB_MAX_MESSAGE_SIZE);
++	input = kmalloc(max_input, GFP_KERNEL);
++	if (!input)
++		return -ENOMEM;
 +
-+	ret = xe_sysctrl_send_command(&xe->sc, &cmd, &out_len);
-+	if (ret)
-+		return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
++	if (copy_from_user(kbuf, ubuf, len))
++		return -EFAULT;
++	kbuf[len] = '\0';
 +
-+	if (out_len != sizeof(resp)) {
-+		xe_err(xe, "sysctrl: unexpected get app status response length %zu (expected %zu)\n",
-+		       out_len, sizeof(resp));
-+		return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
++	tmp = kbuf;
++	while ((token = strsep(&tmp, " \t\n")) != NULL) {
++		if (*token == '\0')
++			continue;
++
++		if (input_len >= max_input) {
++			xe_err(xe, "sysctrl: loopback payload too large (max %d bytes)\n",
++			       XE_SYSCTRL_MB_MAX_MESSAGE_SIZE);
++			return -EINVAL;
++		}
++
++		if (kstrtoul(token, 0, &val) || val > 0xFF) {
++			xe_err(xe, "sysctrl: invalid loopback token '%s'\n", token);
++			return -EINVAL;
++		}
++
++		input[input_len++] = (u8)val;
 +	}
 +
-+	flags = resp.flags;
++	if (input_len == 0) {
++		xe_err(xe, "sysctrl: no loopback payload given\n");
++		return -EINVAL;
++	}
 +
-+	if (!(flags & XE_SYSCTRL_APP_RESP_VALID))
-+		return XE_SYSCTRL_FIRMWARE_APP_INVALID;
++	xe_sysctrl_create_command(&cmd, entry->group, entry->command,
++				  input, input_len, entry->response_buf, input_len);
 +
-+	if (!(flags & XE_SYSCTRL_APP_RESP_BOOTED))
-+		return XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED;
++	guard(xe_pm_runtime)(xe);
++	entry->status = xe_sysctrl_send_command(entry->sc, &cmd, &out_len);
++	entry->response_len = entry->status ? 0 : out_len;
 +
-+	if (!(flags & XE_SYSCTRL_APP_RESP_INITIALIZED))
-+		return XE_SYSCTRL_FIRMWARE_APP_BOOTED;
++	return entry->status ? entry->status : len;
++}
 +
-+	return XE_SYSCTRL_FIRMWARE_APP_INITIALIZED;
++static int xe_sysctrl_loopback_show(struct seq_file *m, void *data)
++{
++	struct xe_sysctrl_debugfs_entry *entry = m->private;
++	size_t i;
++
++	seq_printf(m, "Command: group=0x%02x cmd=0x%02x\n", entry->group, entry->command);
++	seq_printf(m, "Status: %d (%s)\n", entry->status, entry->status ? "FAILED" : "SUCCESS");
++	seq_printf(m, "Response: %zu bytes\n", entry->response_len);
++
++	if (entry->response_len) {
++		seq_puts(m, "Response data:\n");
++		for (i = 0; i < entry->response_len; i++) {
++			if (i && (i % 16) == 0)
++				seq_putc(m, '\n');
++			seq_printf(m, "%02x ", entry->response_buf[i]);
++		}
++		seq_putc(m, '\n');
++	}
++
++	return 0;
++}
++
++static int xe_sysctrl_loopback_open(struct inode *inode, struct file *file)
++{
++	return single_open(file, xe_sysctrl_loopback_show, inode->i_private);
++}
++
++static const struct file_operations xe_sysctrl_loopback_fops = {
++	.owner = THIS_MODULE,
++	.open = xe_sysctrl_loopback_open,
++	.read = seq_read,
++	.write = xe_sysctrl_loopback_write,
++	.llseek = seq_lseek,
++	.release = single_release,
++};
++
++static void xe_sysctrl_register_entry(struct dentry *root, struct xe_sysctrl_debugfs_entry *entry,
++				      struct xe_sysctrl *sc, const char *name,
++				      u8 group, u8 command,
++				      const struct file_operations *fops)
++{
++	entry->sc = sc;
++	entry->group = group;
++	entry->command = command;
++	entry->response_len = 0;
++	entry->status = 0;
++
++	debugfs_create_file(name, 0644, root, entry, fops);
 +}
 +
 +/**
-+ * xe_sysctrl_is_oobmsm_fw_ready() - Check if oCode firmware is fully initialized
-+ * @xe: xe device instance
-+ *
-+ * Returns true if oCode firmware has reached the initialized state, indicating
-+ * it is ready to handle requests. Returns true also on platforms without System
-+ * Controller support, as there is no firmware gate to wait on.
-+ *
-+ * Return: true if oCode is initialized or sysctrl is not present, false otherwise
++ * xe_sysctrl_debugfs_register - Register debugfs entries for System Controller
++ * @sc: xe_sysctrl instance
++ * @parent: parent debugfs directory
 + */
-+bool xe_sysctrl_is_oobmsm_fw_ready(struct xe_device *xe)
++void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent)
 +{
-+	enum xe_sysctrl_fw_status status =
-+		xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_OCODE);
++	struct dentry *root;
 +
-+	return status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED ||
-+	       status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
++	root = debugfs_create_dir("sc", parent);
++	if (IS_ERR(root))
++		return;
++
++	sc->debugfs.root = root;
++
++	xe_sysctrl_register_entry(root, &sc->debugfs.loopback, sc, "loopback",
++				  XE_SYSCTRL_GROUP_CORE, XE_SYSCTRL_CMD_LOOPBACK,
++				  &xe_sysctrl_loopback_fops);
 +}
-+
-+/**
-+ * xe_sysctrl_is_diag_fw_ready() - Check if diag firmware is fully initialized
-+ * @xe: xe device instance
-+ *
-+ * Returns true if diag firmware has reached the initialized state, indicating
-+ * it is ready to handle requests. Returns true also on platforms without System
-+ * Controller support, as there is no firmware gate to wait on.
-+ *
-+ * Return: true if diag firmware is initialized or sysctrl is not present, false otherwise
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.h b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.h
+new file mode 100644
+index 000000000000..d1414ac3562e
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
 + */
-+bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe)
-+{
-+	enum xe_sysctrl_fw_status status =
-+		xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_DIAG);
 +
-+	return status == XE_SYSCTRL_FIRMWARE_APP_INITIALIZED ||
-+	       status == XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
-index 090dffb6d55f..b69a3f474236 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.h
-@@ -20,5 +20,7 @@ void xe_sysctrl_event(struct xe_sysctrl *sc);
- int xe_sysctrl_init(struct xe_device *xe);
- void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl);
- void xe_sysctrl_pm_resume(struct xe_device *xe);
-+bool xe_sysctrl_is_oobmsm_fw_ready(struct xe_device *xe);
-+bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe);
- 
- #endif
++#ifndef _XE_SYSCTRL_DEBUGFS_H_
++#define _XE_SYSCTRL_DEBUGFS_H_
++
++struct dentry;
++struct xe_sysctrl;
++
++void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent);
++
++#endif
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index 66e7cbcc3f91..d756b50cde6b 100644
+index d756b50cde6b..04c9fcf5aa8a 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -14,9 +14,11 @@
-  * enum xe_sysctrl_group - System Controller command groups
+@@ -47,9 +47,11 @@ enum xe_sysctrl_gfsp_cmd {
+ /**
+  * enum xe_sysctrl_core_cmd - Commands supported by Core group
   *
-  * @XE_SYSCTRL_GROUP_GFSP: GFSP group
-+ * @XE_SYSCTRL_GROUP_CORE: Core group
++ * @XE_SYSCTRL_CMD_LOOPBACK: Loopback test command
+  * @XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID: Retrieve application status by ID
   */
- enum xe_sysctrl_group {
- 	XE_SYSCTRL_GROUP_GFSP			= 0x01,
-+	XE_SYSCTRL_GROUP_CORE			= 0xFF,
+ enum xe_sysctrl_core_cmd {
++	XE_SYSCTRL_CMD_LOOPBACK				= 0x03,
+ 	XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID		= 0x05,
  };
  
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h b/drivers/gpu/drm/xe/xe_sysctrl_types.h
+index 98c2f473f7c6..3c8bde2380b1 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_types.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
+@@ -10,7 +10,33 @@
+ #include <linux/types.h>
+ #include <linux/workqueue_types.h>
+ 
++#include "xe_sysctrl_mailbox_types.h"
++
+ struct xe_mmio;
++struct dentry;
++
++/**
++ * struct xe_sysctrl_debugfs_entry - Debugfs entry for a raw mailbox test command
++ */
++struct xe_sysctrl_debugfs_entry {
++	/** @sc: Back pointer to parent sysctrl instance */
++	struct xe_sysctrl *sc;
++
++	/** @group: Command group ID */
++	u8 group;
++
++	/** @command: Command ID within group */
++	u8 command;
++
++	/** @response_buf: Response data buffer, sized to the maximum mailbox message */
++	u8 response_buf[XE_SYSCTRL_MB_MAX_MESSAGE_SIZE];
++
++	/** @response_len: Actual response length from firmware */
++	size_t response_len;
++
++	/** @status: Last command result */
++	int status;
++};
+ 
  /**
-@@ -42,6 +44,69 @@ enum xe_sysctrl_gfsp_cmd {
- 	XE_SYSCTRL_CMD_SET_HEALTH		= 0x0C,
+  * struct xe_sysctrl - System Controller driver context
+@@ -31,6 +57,15 @@ struct xe_sysctrl {
+ 
+ 	/** @event_lock: Mutex protecting pending events */
+ 	struct mutex event_lock;
++
++	/** @debugfs: Debugfs entries */
++	struct {
++		/** @debugfs.root: Root debugfs directory */
++		struct dentry *root;
++
++		/** @debugfs.loopback: Loopback test entry */
++		struct xe_sysctrl_debugfs_entry loopback;
++	} debugfs;
  };
  
-+/**
-+ * enum xe_sysctrl_core_cmd - Commands supported by Core group
-+ *
-+ * @XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID: Retrieve application status by ID
-+ */
-+enum xe_sysctrl_core_cmd {
-+	XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID		= 0x05,
-+};
-+
-+/**
-+ * struct xe_sysctrl_app_status_req - Get application status request
-+ *
-+ * @app_id: Application ID for which to retrieve status
-+ */
-+struct xe_sysctrl_app_status_req {
-+	u8 app_id;
-+} __packed;
-+
-+/**
-+ * struct xe_sysctrl_app_status_resp - Get application status response
-+ * @flags: Application status flags (see XE_SYSCTRL_APP_RESP_* definitions)
-+ */
-+struct xe_sysctrl_app_status_resp {
-+	u32 flags;
-+} __packed;
-+
-+/** XE_SYSCTRL_APP_RESP_VALID - app_id is recognized by System Controller firmware */
-+#define XE_SYSCTRL_APP_RESP_VALID		BIT(0)
-+/** XE_SYSCTRL_APP_RESP_BOOTED - application has completed its boot sequence */
-+#define XE_SYSCTRL_APP_RESP_BOOTED		BIT(1)
-+/** XE_SYSCTRL_APP_RESP_INITIALIZED - application has completed all post-boot initialization */
-+#define XE_SYSCTRL_APP_RESP_INITIALIZED		BIT(2)
-+
-+/**
-+ * enum xe_sysctrl_fw_status - System Controller firmware application lifecycle states
-+ *
-+ * @XE_SYSCTRL_FIRMWARE_APP_INVALID: app_id is not recognized by firmware
-+ * @XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED: application is known but has not yet booted
-+ * @XE_SYSCTRL_FIRMWARE_APP_BOOTED: boot sequence completed, post-boot init pending
-+ * @XE_SYSCTRL_FIRMWARE_APP_INITIALIZED: application fully operational
-+ * @XE_SYSCTRL_FIRMWARE_APP_NOTSUPP: System Controller not available on this device
-+ * @XE_SYSCTRL_FIRMWARE_COMM_FAILURE: communication with System Controller firmware failed
-+ */
-+enum xe_sysctrl_fw_status {
-+	XE_SYSCTRL_FIRMWARE_APP_INVALID,
-+	XE_SYSCTRL_FIRMWARE_APP_NOT_LOADED,
-+	XE_SYSCTRL_FIRMWARE_APP_BOOTED,
-+	XE_SYSCTRL_FIRMWARE_APP_INITIALIZED,
-+	XE_SYSCTRL_FIRMWARE_APP_NOTSUPP,
-+	XE_SYSCTRL_FIRMWARE_COMM_FAILURE,
-+};
-+
-+/**
-+ * enum xe_sysctrl_app_id - Known System Controller application identifiers
-+ *
-+ * @XE_SYSCTRL_APP_OCODE: oCode application (firmware ID 12)
-+ * @XE_SYSCTRL_APP_DIAG: diag application (firmware ID 13)
-+ */
-+enum xe_sysctrl_app_id {
-+	XE_SYSCTRL_APP_OCODE	= 0x0C,
-+	XE_SYSCTRL_APP_DIAG	= 0x0D,
-+};
-+
- /**
-  * struct xe_sysctrl_mailbox_command - System Controller mailbox command
-  */
+ #endif
 -- 
 2.43.0
 
