@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5F2CC624D6
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 23:40:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F3D7C624DE
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 23:40:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8135B10ECCE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE39810EDA3;
 	Thu,  3 Sep 2026 23:40:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZTc12DB5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J4xB4SyU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0076910E26C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E360910ECCE
  for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 23:40:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1788478808; x=1820014808;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Z9hM5W2r18rYDlt/DzG6glKN9E30tbGM9AGLepXy8n8=;
- b=ZTc12DB5C1VPD0crFq1n6JmkOVOUzjaxxElobLzFw9oqiuvqAQo0rFrO
- zR6UNcDypKrQsrpIJ6sMstelyekW34zAEGLpxZsfanjyNhtSSQj3gFLNI
- ptyjUpH3mAI4w27jOhXgPFcUD+TrOSOoisrbevMGnyLYDaVioWTvUVIEH
- Ct9AP+7RBhzf5zz8RpfnzE2ivCA+LHBGv+cxr4ghLnyxb373/BQa1fOFJ
- dWPx/sEUi6nGcAqQ7OqWusAiq8zNEXCGZtTRbu3s2cd8Vn8NO1eNt7Qwp
- YRAsBu/iBXwcXyEPiCBX0RxcLIjOEOF/Ss8qsDCKZlHqOrPPbzwOOEB0D w==;
-X-CSE-ConnectionGUID: aq15hNAbRLOsjukkF1ehUQ==
-X-CSE-MsgGUID: MetdBNTLRfWGVAQG0IyYGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="91489313"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="91489313"
+ bh=1eCPXp5FS9tOt9aOO8Eb1NSZ1UkiSPhltj892fGco88=;
+ b=J4xB4SyU3x3ec9Zw2zHVSUd/Xfop3mNY3pU1H5uLV/p0+fsOufOE7MG0
+ pykB4HMtUxrEGcEVNMTit1SL2Z7FlVb31RfN7VwTpT9RGuaR+cJRWqOeE
+ q48iOCNptIBkDJr9yWbECqojeVgex5/0Z+SNNtgw50qv/nTUQ97omxY21
+ GjdXmMBoeu7rki51KrdDaNPQVSJ+dFmumaC+nXWTzvN7kQmxfuf4EcwJ9
+ FWH6x/dO44k6rP+eJDOCDLUd4FY+ogsAjxuLkO62EsTQcRRim8rm2oTI8
+ VXSTfSyi0eoQKk8lpkdOHyjk1JeYpoOmNvfGk+Kh1x5PEtaLpAfuHP74v w==;
+X-CSE-ConnectionGUID: UB/oGZdiQkGTgxjnWsM9iw==
+X-CSE-MsgGUID: onZqJKSwR1+ijFgIQ78brQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="91489309"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="91489309"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Sep 2026 16:40:06 -0700
-X-CSE-ConnectionGUID: wJgdRVIyRFymPT3ivkriCw==
-X-CSE-MsgGUID: oJT4MhR5R9aoqo07E/TIMQ==
+X-CSE-ConnectionGUID: ajSfYshWQ3ylkl7da6BZxw==
+X-CSE-MsgGUID: s7kIn/hSSPaAO8KCd2AIfA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="299735229"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="299735225"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Sep 2026 16:40:07 -0700
@@ -46,9 +46,10 @@ To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com, michal.wajdeczko@intel.com,
  aravind.iddamsetty@intel.com, mallesh.koujalagi@intel.com,
  alan.previn.teres.alexis@intel.com, julia.filipchuk@intel.com
-Subject: [PATCH v3 2/5] drm/xe/guc: Use different error codes for CT errors
-Date: Thu,  3 Sep 2026 16:40:01 -0700
-Message-ID: <20260903233958.475162-9-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v3 1/5] drm/xe/guc: Use different error codes for GuC load
+ errors
+Date: Thu,  3 Sep 2026 16:40:00 -0700
+Message-ID: <20260903233958.475162-8-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260903233958.475162-7-umesh.nerlige.ramappa@intel.com>
 References: <20260903233958.475162-7-umesh.nerlige.ramappa@intel.com>
@@ -68,198 +69,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of always returning -EPROTO for most errors, use different error
-codes based on the error type. -EPROTO is retained for the cases that
-are genuine protocol violations by the GuC.  The remaining cases now
-report what actually went wrong.
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-receive_g2h() used to escalate to CT_DEAD + kick_reset() by matching the
-two error codes that dequeue_one_g2h() could return on a fatal error.
-Invert the check to simplify reset handling.
+Instead of always returning -EPROTO no matter what goes wrong, use
+different error codes based on the error type.
 
-v2: (Michal)
-- Sync order of errors in g2h_read and __guc_ct_send_locked
-- For CT errors use EPIPE and for HXG errors use EPROTO
-- Convert the non-fatal EPIPE to EPERM in the helper
+v2: split to its own patch
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Assisted-by: Claude:claude-opus-5
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 51 +++++++++++++++++++++++++++-------
- 1 file changed, 41 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c | 22 ++++++++++++----------
+ 1 file changed, 12 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 5c4733da385c..c5a417fef913 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -947,6 +947,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	u32 cmd[H2G_CT_HEADERS];
- 	u32 tail = h2g->info.tail;
- 	u32 full_len;
-+	int err;
- 	struct iosys_map map = IOSYS_MAP_INIT_OFFSET(&h2g->cmds,
- 							 tail * sizeof(u32));
- 
-@@ -961,12 +962,14 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 
- 		desc_status = desc_read(xe, h2g, status);
- 		if (desc_status) {
-+			err = -EPIPE;
- 			xe_gt_err(gt, "CT write: non-zero status: %u\n", desc_status);
- 			goto corrupted;
- 		}
- 
- 		if (tail > h2g->info.size) {
- 			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
-+			err = -EPIPE;
- 			xe_gt_err(gt, "CT write: tail out of range: %u vs %u\n",
- 				  tail, h2g->info.size);
- 			goto corrupted;
-@@ -974,6 +977,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 
- 		if (desc_head >= h2g->info.size) {
- 			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
-+			err = -EPIPE;
- 			xe_gt_err(gt, "CT write: invalid head offset %u >= %u)\n",
- 				  desc_head, h2g->info.size);
- 			goto corrupted;
-@@ -1044,7 +1048,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 
- corrupted:
- 	CT_DEAD(ct, &ct->ctbs.h2g, H2G_WRITE);
--	return -EPIPE;
-+	return err;
- }
- 
- static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
-@@ -1067,11 +1071,6 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 		goto out;
- 	}
- 
--	if (unlikely(ct->ctbs.h2g.info.broken)) {
--		ret = -EPIPE;
--		goto out;
--	}
--
- 	if (ct->state == XE_GUC_CT_STATE_DISABLED) {
- 		ret = -ENODEV;
- 		goto out;
-@@ -1082,6 +1081,11 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 		goto out;
- 	}
- 
-+	if (unlikely(ct->ctbs.h2g.info.broken)) {
-+		ret = -EPIPE;
-+		goto out;
-+	}
-+
- 	xe_gt_assert(gt, xe_guc_ct_enabled(ct));
- 
- 	if (g2h_fence) {
-@@ -1809,10 +1813,12 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
- 	s32 avail;
- 	u32 action;
- 	u32 *hxg;
-+	int err;
- 
- 	xe_gt_assert(gt, xe_guc_ct_initialized(ct));
- 	lockdep_assert_held(&ct->fast_lock);
- 
-+	/* Keep in sync with g2h_err_is_fatal() */
- 	if (xe_device_wedged(xe))
- 		return -ENOTRECOVERABLE;
- 
-@@ -1823,7 +1829,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
- 		return -ECANCELED;
- 
- 	if (g2h->info.broken)
--		return -EPIPE;
-+		return -EPERM;
- 
- 	xe_gt_assert(gt, xe_guc_ct_enabled(ct));
- 
-@@ -1840,6 +1846,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
- 		}
- 
- 		if (desc_status) {
-+			err = -EPIPE;
- 			xe_gt_err(gt, "CT read: non-zero status: %u\n", desc_status);
- 			goto corrupted;
- 		}
-@@ -1871,6 +1878,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
- 
- 		if (g2h->info.head > g2h->info.size) {
- 			desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
-+			err = -EPIPE;
- 			xe_gt_err(gt, "CT read: head out of range: %u vs %u\n",
- 				  g2h->info.head, g2h->info.size);
- 			goto corrupted;
-@@ -1878,6 +1886,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
- 
- 		if (desc_tail >= g2h->info.size) {
- 			desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
-+			err = -EPIPE;
- 			xe_gt_err(gt, "CT read: invalid tail offset %u >= %u)\n",
- 				  desc_tail, g2h->info.size);
- 			goto corrupted;
-@@ -1898,6 +1907,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
- 			   sizeof(u32));
- 	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
- 	if (len > avail) {
-+		err = -EPIPE;
- 		xe_gt_err(gt, "G2H channel broken on read, avail=%d, len=%d, reset required\n",
- 			  avail, len);
- 		goto corrupted;
-@@ -1950,7 +1960,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
- 
- corrupted:
- 	CT_DEAD(ct, &ct->ctbs.g2h, G2H_READ);
--	return -EPROTO;
-+	return err;
- }
- 
- static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
-@@ -2042,6 +2052,27 @@ static int dequeue_one_g2h(struct xe_guc_ct *ct)
- 	return 1;
- }
- 
-+/*
-+ * Errors reported by dequeue_one_g2h() come in two flavours: either the channel
-+ * is simply not available right now, which is expected and handled gracefully,
-+ * or the channel state or the message itself is inconsistent, in which case the
-+ * only way forward is to declare the CT dead and reset the GuC. Since the
-+ * former is a short and well known list, check against that and treat anything
-+ * else as fatal, so that new error codes don't silently escape the escalation.
-+ */
-+static bool g2h_err_is_fatal(int err)
-+{
-+	switch (err) {
-+	case -ENOTRECOVERABLE:	/* device wedged */
-+	case -ENODEV:		/* CT disabled */
-+	case -ECANCELED:	/* CT stopped */
-+	case -EPERM:		/* CT already declared broken */
-+		return false;
-+	default:
-+		return true;
-+	}
-+}
-+
- static void receive_g2h(struct xe_guc_ct *ct)
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index c7f8bbd4cb92..5285d4cecbc8 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1144,8 +1144,8 @@ static void print_load_status_err(struct xe_gt *gt, u32 status)
+  * Check GUC_STATUS looking for known terminal states (either completion or
+  * failure) of either the microkernel status field or the boot ROM status field.
+  *
+- * Returns 1 for successful completion, -1 for failure and 0 for any
+- * intermediate state.
++ * Returns 0 for successful completion, -EBUSY for any intermediate state and
++ * other errno values for failure cases.
+  */
+ static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
  {
- 	bool ongoing;
-@@ -2079,8 +2110,8 @@ static void receive_g2h(struct xe_guc_ct *ct)
- 		ret = dequeue_one_g2h(ct);
- 		mutex_unlock(&ct->lock);
+@@ -1157,20 +1157,22 @@ static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
  
--		if (unlikely(ret == -EPROTO || ret == -EOPNOTSUPP)) {
--			xe_gt_err(ct_to_gt(ct), "CT dequeue failed: %d\n", ret);
-+		if (unlikely(ret < 0 && g2h_err_is_fatal(ret))) {
-+			xe_gt_err(ct_to_gt(ct), "CT dequeue failed (%pe)\n", ERR_PTR(ret));
- 			CT_DEAD(ct, NULL, G2H_RECV);
- 			kick_reset(ct);
- 		}
+ 	switch (ukernel) {
+ 	case XE_GUC_LOAD_STATUS_READY:
+-		return 1;
++		return 0;
+ 	case XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH:
+ 	case XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH:
+ 	case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
+ 	case XE_GUC_LOAD_STATUS_HWCONFIG_ERROR:
+ 	case XE_GUC_LOAD_STATUS_BOOTROM_VERSION_MISMATCH:
++		return -ENOEXEC;
+ 	case XE_GUC_LOAD_STATUS_DPC_ERROR:
+ 	case XE_GUC_LOAD_STATUS_EXCEPTION:
++		return -EIO;
+ 	case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
+ 	case XE_GUC_LOAD_STATUS_MPU_DATA_INVALID:
+ 	case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
+ 	case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
+ 	case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
+-		return -1;
++		return -EINVAL;
+ 	}
+ 
+ 	switch (bootrom) {
+@@ -1184,7 +1186,7 @@ static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
+ 	case XE_BOOTROM_STATUS_MPUMAP_INCORRECT:
+ 	case XE_BOOTROM_STATUS_EXCEPTION:
+ 	case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
+-		return -1;
++		return -ENOEXEC;
+ 	}
+ 
+ 	if (++*tries >= 100) {
+@@ -1197,7 +1199,7 @@ static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
+ 			  *status, ukernel, bootrom);
+ 	}
+ 
+-	return 0;
++	return -EBUSY;
+ }
+ 
+ static int guc_wait_ucode(struct xe_guc *guc)
+@@ -1213,21 +1215,21 @@ static int guc_wait_ucode(struct xe_guc *guc)
+ 	before_freq = xe_guc_pc_get_act_freq(guc_pc);
+ 	before = ktime_get();
+ 
+-	ret = poll_timeout_us(load_result = guc_load_done(gt, &status, &tries), load_result,
+-			      10 * USEC_PER_MSEC,
++	ret = poll_timeout_us(load_result = guc_load_done(gt, &status, &tries),
++			      load_result != -EBUSY, 10 * USEC_PER_MSEC,
+ 			      GUC_LOAD_TIMEOUT_SEC * USEC_PER_SEC, false);
+ 
+ 	delta_ms = ktime_to_ms(ktime_sub(ktime_get(), before));
+ 	act_freq = xe_guc_pc_get_act_freq(guc_pc);
+ 	cur_freq = xe_guc_pc_get_cur_freq_fw(guc_pc);
+ 
+-	if (ret || load_result <= 0) {
++	if (ret || load_result) {
+ 		xe_gt_err(gt, "load failed: status = 0x%08X, time = %lldms, freq = %dMHz (req %dMHz)\n",
+ 			  status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
+ 			  xe_guc_pc_get_cur_freq_fw(guc_pc));
+ 		print_load_status_err(gt, status);
+ 
+-		return -EPROTO;
++		return ret ?: load_result;
+ 	}
+ 
+ 	if (delta_ms > GUC_LOAD_TIME_WARN_MSEC) {
 -- 
 2.55.0
 
