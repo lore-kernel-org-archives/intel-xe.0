@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1407C79F82
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 23:59:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F2ACC79F83
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 23:59:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6072C10F7FC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3F5C10F804;
 	Thu,  3 Sep 2026 23:59:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LqYZpdb+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VBwTMxMS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF22A10F08F
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 23:58:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFB0810E4BC
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 23:58:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788479931; x=1820015931;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=C5ZyCBXpjYB4RVBMqN/QRtH3D0nuu2r/uRT3gXw4rvI=;
- b=LqYZpdb+UZAhf7FhRwP9ToEqh/70j4h7bqqBmVniNiRY1dXp6eSwIlYO
- H1rsMzD3szSk3Lxg9LSoPfSe88lYFwPwuImzAAsyiwFLRqL1g2ocl5RYe
- jjD3G5bHRWbohK9sGuUHubHz9ZTVr3BUEQ0aHwzlxs7BDDzQopH8iABQZ
- egFLnTf/lhOrGX1Syu8MCN5c/yLBRyM+5MYpagdNlbcQTVGvLx/GH+aVg
- 2HbGdx6K7NQIFemoTCWo0zKtCk+QFANI6LrzUJFY+b1hD3rtlGSyFm37f
- aPvvVgOoarGiTQQwTmNuY1F5QhfMp264aPz6jIOsADy1raIOu9+srHiQh w==;
-X-CSE-ConnectionGUID: aqN48YznS/2CJT3CZ8iQYQ==
-X-CSE-MsgGUID: qkHAtbEwRrWiqfU3N5YFVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="99637821"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="99637821"
+ t=1788479930; x=1820015930;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=7hz7K7ymTGgo7IFQicADgMT9IXLhYEAZauY39SxbdWI=;
+ b=VBwTMxMSWdiG1TXIjTH5fBzvHAooLkxql5V8qzvTpRmXy615qVV99gSz
+ IetIwNUQaXnqldGrBAOeNKutlIKHmo6q/lOHkr305pZu9JVoh2kj4XjNX
+ K5eOAJENBzjA8LmWJatJLqNDnxyj2o+y3Pd3E4Ha6boQewDXewc5qltXx
+ LLsSqHuTyk9uur6//CkGXZB21SIZouHoRBpHO28fvhYK3M9+WRY2WX4Ql
+ OjIh5z7FR1HcNElujiVj2Qn52mME1Z1vuLXzTRXE0A4w9taYWeBVM0dy4
+ MeQJIl7/VhVA2idl6QUDjWGtixjeQFOJrHEvwRw6F98RehnvcVN+gdAXB g==;
+X-CSE-ConnectionGUID: k6fkaEUMQxKgDo65abQjKg==
+X-CSE-MsgGUID: N+Xb5g31RIi6sGHPCwHaFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="99637804"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="99637804"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 16:58:50 -0700
-X-CSE-ConnectionGUID: OL3i/RZnQ2+EbSN1SvWmhg==
-X-CSE-MsgGUID: RkyXLP5ATVWBb9Q+kLpmfA==
+ 03 Sep 2026 16:58:49 -0700
+X-CSE-ConnectionGUID: X1sWRkfnQA+16PRcVfpvlQ==
+X-CSE-MsgGUID: Sg24KJ7CQ/ezAZLSLuHmWQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="274029063"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="274029039"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 16:58:50 -0700
+ 03 Sep 2026 16:58:49 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 21/25] drm/xe: Add ULLS migration job support to ring ops
-Date: Thu,  3 Sep 2026 16:58:38 -0700
-Message-Id: <20260903235842.3401722-22-matthew.brost@intel.com>
+Cc: Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH v4 04/25] drm/xe: Add job count to GuC exec queue snapshot
+Date: Thu,  3 Sep 2026 16:58:21 -0700
+Message-Id: <20260903235842.3401722-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260903235842.3401722-1-matthew.brost@intel.com>
 References: <20260903235842.3401722-1-matthew.brost@intel.com>
@@ -65,86 +66,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add preamble and postamble for ULLS migrations jobs. Preamble clears
-current semaphore for reuse. Postamble waits on next semaphore which is
-set upon next job submission. The last ULLS migration job skips BB
-submission and postamble (clear current semaphore, write seqno, exit
-ULLS).
+Add the job count to the GuC exec queue snapshot, as this is useful
+debug information.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-23-matthew.brost@intel.com
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+Link: https://patch.msgid.link/20260228013501.106680-5-matthew.brost@intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 2 ++
+ drivers/gpu/drm/xe/xe_guc_submit_types.h | 2 ++
+ 2 files changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 39a670e91ba7..f613c694d096 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -494,6 +494,28 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
- }
- 
-+static int emit_ulls_preamble(struct xe_lrc *lrc, u32 *dw, int i, u32 seqno)
-+{
-+	u32 addr = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno);
-+
-+	return emit_store_imm_ggtt(addr, LRC_MIGRATION_ULLS_SEMAPHORE_CLEAR,
-+				   dw, i);
-+}
-+
-+static int emit_ulls_postamble(struct xe_lrc *lrc, u32 *dw, int i, u32 seqno)
-+{
-+	dw[i++] = MI_SEMAPHORE_WAIT |
-+		MI_SEMW_GGTT |
-+		MI_SEMW_POLL |
-+		MI_SEMW_COMPARE(SAD_EQ_SDD);
-+	dw[i++] = LRC_MIGRATION_ULLS_SEMAPHORE_SIGNAL;
-+	dw[i++] = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno + 1);
-+	dw[i++] = 0;
-+	dw[i++] = 0;
-+
-+	return i;
-+}
-+
- static void emit_migration_job_gen12(struct xe_sched_job *job,
- 				     struct xe_lrc *lrc, u32 *head,
- 				     u32 seqno)
-@@ -507,10 +529,16 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- 
- 	xe_gt_assert(gt, !job->ring_ops_force_reset);
- 
-+	if (job->is_ulls)
-+		i = emit_ulls_preamble(lrc, dw, i, seqno);
-+
- 	i = emit_copy_timestamp(xe, lrc, dw, i);
- 
- 	i = emit_store_imm_ggtt(saddr, seqno, dw, i);
- 
-+	if (job->is_ulls_last || job->is_ulls_first)
-+		goto seqno_write;
-+
- 	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE; /* Enabled again below */
- 
- 	i = emit_bb_start(job->ptrs[0].batch_addr, BIT(8), dw, i);
-@@ -521,12 +549,16 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- 
- 	i = emit_bb_start(job->ptrs[1].batch_addr, BIT(8), dw, i);
- 
-+seqno_write:
- 	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno,
- 				job->migrate_flush_flags,
- 				dw, i);
- 
- 	i = emit_user_interrupt(dw, i);
- 
-+	if (job->is_ulls && !job->is_ulls_last)
-+		i = emit_ulls_postamble(lrc, dw, i, seqno);
-+
- 	xe_gt_assert(job->q->gt, i <= MAX_JOB_SIZE_DW);
- 
- 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 99d8c807ff05..cf306568ef30 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -3658,6 +3658,7 @@ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q)
+ 	snapshot->logical_mask = q->logical_mask;
+ 	snapshot->width = q->width;
+ 	snapshot->refcount = kref_read(&q->refcount);
++	snapshot->jobcount = atomic_read(&q->job_cnt);
+ 	snapshot->sched_timeout = sched->base.timeout;
+ 	snapshot->sched_props.timeslice_us = q->sched_props.timeslice_us;
+ 	snapshot->sched_props.preempt_timeout_us =
+@@ -3730,6 +3731,7 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+ 	drm_printf(p, "\tLogical mask: 0x%x\n", snapshot->logical_mask);
+ 	drm_printf(p, "\tWidth: %d\n", snapshot->width);
+ 	drm_printf(p, "\tRef: %d\n", snapshot->refcount);
++	drm_printf(p, "\tJob count: %d\n", snapshot->jobcount);
+ 	drm_printf(p, "\tTimeout: %ld (ms)\n", snapshot->sched_timeout);
+ 	drm_printf(p, "\tTimeslice: %u (us)\n",
+ 		   snapshot->sched_props.timeslice_us);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+index 7824f61b1290..8271702e692e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+@@ -77,6 +77,8 @@ struct xe_guc_submit_exec_queue_snapshot {
+ 	u16 width;
+ 	/** @refcount: ref count of this exec queue */
+ 	u32 refcount;
++	/** @jobcount: job count of this exec queue */
++	u32 jobcount;
+ 	/**
+ 	 * @sched_timeout: the time after which a job is removed from the
+ 	 * scheduler.
 -- 
 2.34.1
 
