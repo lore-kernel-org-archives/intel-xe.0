@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B889DC61DD3
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:24:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1C7DC624A4
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:26:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BB5F10F692;
-	Thu,  3 Sep 2026 15:24:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6849810E10B;
+	Thu,  3 Sep 2026 15:26:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="giw7ZYED";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nr/Fq/W7";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4430810F692
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 15:24:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FF5610E10B
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 15:26:07 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 23D4B4401E;
- Thu,  3 Sep 2026 15:24:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DACF41F00A3D;
- Thu,  3 Sep 2026 15:24:20 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 6911840799;
+ Thu,  3 Sep 2026 15:26:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21E0A1F00A3A;
+ Thu,  3 Sep 2026 15:26:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788449061;
- bh=FB45C17h6UOvLdZ/9NBsu6xTMEmWHxC2yyYYU2qcN7g=;
+ s=k20260515; t=1788449167;
+ bh=dr7WJ2j7iMyfBuDYiADw4VYVa8LHWUXPbww+V83umXM=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=giw7ZYEDN6TLXroP7Q21QqfSq9Fvr50JXaoDirNv0ra99Y8qdMwkeTldlqwMGbMrp
- G4KMPaie7bxLOgjpEvL4gmMDyg2hKPKlLPcJygq8dogJMOG7iy0PVO9IqkyDszuNOc
- DjnY5rhGT+z2tj2/8KcbL3MJ9ZJtT/+HfnTrccpggA9cI3/9+5gQOhtYjKcFSQg6Ho
- EQkKCMadTjFG4VqjY1aIUU41fw9UQ/3c1d20mSfpa9ibnMtlFu8D++x6JhyUK3POkD
- qVoMmbNu7UZf0aWQXjiPpB1bcLoumxSqqDpslFR1RKbQwpHm2bQ5+U5z0A/9PdzcWr
- fnZX3PvXMgfkQ==
+ b=nr/Fq/W7Im6zCWyC7ZCP87uqHXykI/lIukXCb8C/kM4rOtSmgZV+VzOwkx/Sk7pBU
+ oqcGG7tbgpohZTarCwJbfwrkPr46aLWYbnfTXy+8gvt7pdynhGNnsokXB5HBt5jr4O
+ ogEHZQaSIX2z3wobB/oJSXJqQ4DYje3kLoKPlZgY9SCGkh10FuVpW/V6mLqz9Orv1j
+ uAXw7zdL0IuUOG0RHZsSHMMLBkJqH7NbuYny1vOQ1GyI1t07q30rAZoRXyt2ClHtNc
+ 2J52GduCYfz6mcbbprpPtxX0pIJnHgiBcybm88j4muWa2kqNKfIjn3inOIR/n2nuhW
+ D/IHRC8/LSa8A==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 13/27] drm/xe/eudebug: Add userptr vm pread/pwrite
+Subject: Re: [PATCH v10 10/27] drm/xe/eudebug: Introduce vm bind and vm bind
+ debug data events
 To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260903145952.848051-14-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20260903145952.848051-11-mika.kuoppala@linux.intel.com>
 References: <20260903145952.848051-1-mika.kuoppala@linux.intel.com>
- <20260903145952.848051-14-mika.kuoppala@linux.intel.com>
+ <20260903145952.848051-11-mika.kuoppala@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 03 Sep 2026 15:24:20 +0000
-Message-Id: <20260903152420.DACF41F00A3D@smtp.kernel.org>
+Date: Thu, 03 Sep 2026 15:26:06 +0000
+Message-Id: <20260903152607.21E0A1F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,111 +57,85 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Critical] Time-of-Check to Time-of-Use (TOCTOU) race condition in `xe_eu=
-debug_vma_access()` allows a debugger to bypass security checks and read/wr=
-ite arbitrary memory in an unrelated privileged process.
-- [High] Debugger access to userptr memory spuriously fails with `-ESRCH` i=
-f the specific thread that bound the userptr exits, even though the process=
- and address space remain fully valid.
+- [High] Missing `xe_vm_in_lr_mode(vm)` check in `vm_discover_binds` causes=
+ debugger discovery to fail if non-LR VMs have debug data.
 --
 
-commit f0c74c4990322a45ea5e521e420b8ab7f3f80507
-Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-drm/xe/eudebug: Add userptr vm pread/pwrite
+commit c9fa46a5dd0ac097fb655eda186ce81f79cd82c1
+Author: Christoph Manszewski <c.manszewski@gmail.com>
 
-This commit implements debugger VM access for userptrs by taking a reference
-to the current task when the bind is done. During pread/pwrite, it uses this
-task parameter to access the debuggee VM via access_process_vm().
+drm/xe/eudebug: Introduce vm bind and vm bind debug data events
 
-> diff --git a/drivers/gpu/drm/xe/xe_eudebug_vm.c b/drivers/gpu/drm/xe/xe_e=
-udebug_vm.c
-> index 316fe29586b0a..42e24c1bc09c7 100644
-> --- a/drivers/gpu/drm/xe/xe_eudebug_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_eudebug_vm.c
+This commit introduces events to track bind ioctls and their associated
+debug data add and remove operations. It adds a bind event to signal debugg=
+er
+execution and implements discovery of existing binds when attaching.
+
+> diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eude=
+bug.c
+> index d70970f70a8bc..fe3b2ae06a31f 100644
+> --- a/drivers/gpu/drm/xe/xe_eudebug.c
+> +++ b/drivers/gpu/drm/xe/xe_eudebug.c
+
 [ ... ]
-> @@ -52,6 +53,50 @@ static int xe_eudebug_vma_access(struct xe_vma *vma,
-[ ... ]
-> +	} else if (xe_vma_is_userptr(vma)) {
-> +		struct xe_userptr *userptr =3D &to_userptr_vma(vma)->userptr;
-> +		struct mm_struct *mm;
-> +		int ret;
-[ ... ]
-> +		mm =3D get_task_mm(userptr->eudebug.task);
-> +		if (!mm)
-> +			return -ESRCH;
 
-[Severity: High]
-Will this cause spurious -ESRCH failures if the specific thread that bound
-the userptr exits?
-
-When the specific thread exits, its task->mm is cleared to NULL in exit_mm(=
-),
-causing get_task_mm() to return NULL here. If an application (like a
-Vulkan/OpenGL driver) uses background worker threads to allocate and bind
-memory, won't the debugger lose access to this valid memory once that worker
-thread terminates, even though the process and mm_struct are still fully
-alive?
-
-> +
-> +		ret =3D mm =3D=3D userptr->notifier.mm ? 0 : -ESRCH;
-> +		mmput(mm);
-> +		if (ret)
-> +			return ret;
-> +
-> +		return access_process_vm(userptr->eudebug.task,
-> +					 xe_vma_userptr(vma) + offset_in_vma,
-> +					 buf, bytes,
-> +					 write ? FOLL_WRITE : 0);
-
-[Severity: Critical]
-Does this sequence introduce a Time-of-Check to Time-of-Use (TOCTOU) race
-condition that could allow local privilege escalation?
-
-The code verifies that the mm matches the expected userptr->notifier.mm,
-but then it drops the reference with mmput(mm) before proceeding.
-
-Because access_process_vm() internally re-resolves the mm dynamically
-without ptrace_may_access() checks, could a malicious unprivileged process
-bind a userptr, pass the eudebug fd to a collaborating process, and call
-execve() on a setuid binary?=20
-
-If the execve() executes during the race window between mmput(mm) and
-access_process_vm(), it appears this would fetch the new, privileged mm of
-the setuid binary, granting the debugger arbitrary read/write access to it.
-
-> diff --git a/drivers/gpu/drm/xe/xe_userptr.h b/drivers/gpu/drm/xe/xe_user=
-ptr.h
-> index 2a3cd1b5efbb0..b0781618b3f46 100644
-> --- a/drivers/gpu/drm/xe/xe_userptr.h
-> +++ b/drivers/gpu/drm/xe/xe_userptr.h
-[ ... ]
-> @@ -133,4 +139,30 @@ static inline void xe_vma_userptr_force_invalidate(s=
-truct xe_userptr_vma *uvma)
-[ ... ]
-> +#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
-> +static inline void xe_eudebug_track_userptr_task(struct xe_userptr *user=
-ptr)
+> @@ -942,13 +1118,57 @@ static struct xe_file *xe_eudebug_target_get(struc=
+t xe_eudebug *d)
+>  	return xef;
+>  }
+> =20
+> +static int vm_discover_binds(struct xe_eudebug *d, struct xe_vm *vm)
 > +{
+> +	struct xe_debug_data *dd;
+> +	struct list_head *pos;
+> +	unsigned int ops, count;
+> +	u64 ref_seqno;
+> +	int err;
+> +
 > +	/*
-> +	 * We could use the mm which is on notifier. But
-> +	 * the access_remote_vm() is not exported. Thus
-> +	 * we get reference to task for access_process_vm()
+> +	 * Walked without vm->debug_data.lock. The caller holds the target's
+> +	 * eudebug.ioctl_lock for write, and everything that adds to or
+> +	 * removes from this list runs under DRM_XE_VM_BIND, which takes that
+> +	 * same rwsem for read, so the list cannot change under us here.
 > +	 */
-> +	userptr->eudebug.task =3D get_task_struct(current);
+> +	if (list_empty(&vm->debug_data.list))
+> +		return 0;
 
 [Severity: High]
-Should this track the process leader rather than the specific calling threa=
-d?
+Is it intentional that vm_discover_binds() lacks a check for LR mode?=20
+If a userspace client adds debug data to a non-LR VM, this function will
+still attempt to process it since it's missing a check like
+if (!xe_vm_in_lr_mode(vm)).
 
-By saving the specific thread (current) here, the userptr becomes bound to
-this thread's lifespan. Changing this to track the process leader instead
-(e.g., current->group_leader) might prevent the spurious -ESRCH failures
-in xe_eudebug_vma_access() when background worker threads exit.
+[ ... ]
 
-> +}
+> @@ -980,6 +1200,12 @@ static void discover_client(struct xe_eudebug *d)
+>  		if (err)
+>  			goto out;
+>  		vm_count++;
+> +
+> +		err =3D vm_discover_binds(d, vm);
+> +		if (err < 0)
+> +			goto out;
+
+[Severity: High]
+Can this sequence cause the debugger discovery to fail completely?
+
+In discover_client(), vm_create_event() correctly skips creating events=20
+and handles for non-LR VMs. However, vm_discover_binds() is called=20
+unconditionally for all VMs.
+
+If userspace adds debug data to a non-LR VM, vm_discover_binds() will=20
+attempt to send bind events via vm_bind_event(). Because the VM handle was=
+=20
+never registered, find_handle() will fail with -ENOENT.
+
+This error will propagate to the out label, immediately disconnecting the
+eudebug session. Could an unprivileged userspace client use this to
+intentionally break the eudebug facility for their process?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903145952.8480=
-51-1-mika.kuoppala@linux.intel.com?part=3D13
+51-1-mika.kuoppala@linux.intel.com?part=3D10
