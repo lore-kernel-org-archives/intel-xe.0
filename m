@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DC99C61DD3
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:27:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B8ECC624A4
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:31:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F20D10E10B;
-	Thu,  3 Sep 2026 15:27:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D45DE10E12F;
+	Thu,  3 Sep 2026 15:31:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="W6t2mXfi";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DCQ3lu7O";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7569110E10B
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 15:27:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0277310E12F
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 15:31:58 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 96E896053D;
- Thu,  3 Sep 2026 15:27:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21FE01F00A3A;
- Thu,  3 Sep 2026 15:27:13 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 5B3D860A55;
+ Thu,  3 Sep 2026 15:31:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA7861F00A3A;
+ Thu,  3 Sep 2026 15:31:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788449233;
- bh=OSp3ZpLjHZLdmN8cRBMuhCneZpsFwukfAv2jriSIDko=;
+ s=k20260515; t=1788449517;
+ bh=Yq6NqzFQ/M8wtEhAayPKRqLSw6VSYnlQUhM6TOHgw6M=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=W6t2mXfiaf2WSyEqC6hpGqSJKMmNukKCEQc9HAu5fcmdPLRlYWzDnKXkAtfEmgbXw
- 5T+8NO270yGS1fJFbXHJRU+uyNo+KkZqRCocayLtnCamoS0wDcbbCgVRNT+9UV9r6R
- m0UOu1+KUu3BPb29f51zfG3U7wDYRQwwEjXujlYrymsydY6lZl2oIu4/3V9MQXO9xx
- EftnWDob7GJdzKJ+ocSrP9zyXbeueq+luZDc2PCAUHXrPh9+Hnbiop3jLh7DORYLxp
- ccLKSp3WUT/CJONr1AjlT0SRNh5O+al3dg9AEEr/ucPLl/ut8WDkrVRctSP/uvcRLc
- i4tFadRqaolog==
+ b=DCQ3lu7On4WWHqnlJBdLjQVSupFVoD1k9ewXrWnN1Fi/SCw0z8J/ARsHPeLZoKI4n
+ eus4H/Dh5Hz476XMmTo8AgrZyRt7pzvqaj6nV12qPGUohbMdR3lC+hx9AcRK9M0oV8
+ sKcDkjF01sufNMhQxQX55svE/WjgrpvRVL72ywkQlU7uxgxPYiNx+GB++i5IiOUtU6
+ tXXZsPan0Zz+6yp+bh5hEBSE6OLmNlHidkir1bxWfqc60pn7A12vG0QyZaCs/1iAvp
+ +l6EWgSsbU8XtzCT6CXbARGpTq2lWESIjzxbQ0z+Da9EzbF9iJNbZew6gfNDaqcg0a
+ h3M5cVcBbmYqw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 12/27] drm/xe/eudebug: Add vm open/pread/pwrite
+Subject: Re: [PATCH v10 21/27] drm/xe/eudebug: Add read/count/compare helper
+ for eu attention
 To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260903145952.848051-13-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20260903145952.848051-22-mika.kuoppala@linux.intel.com>
 References: <20260903145952.848051-1-mika.kuoppala@linux.intel.com>
- <20260903145952.848051-13-mika.kuoppala@linux.intel.com>
+ <20260903145952.848051-22-mika.kuoppala@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 03 Sep 2026 15:27:12 +0000
-Message-Id: <20260903152713.21FE01F00A3A@smtp.kernel.org>
+Date: Thu, 03 Sep 2026 15:31:56 +0000
+Message-Id: <20260903153156.DA7861F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,146 +57,144 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
 s) to consider:
-- [High] Missing runtime PM reference acquisition before accessing device m=
-emory and MMIO registers in VM read/write and fsync operations.
-- [High] Missing bounds check on `timeout_ns` causes integer truncation and=
- allows a user-controlled unbounded timeout that leads to device-wide lock =
-starvation.
+- [High] Unaligned memory access and endianness bugs due to incorrect type =
+punning in `xe_eu_attentions_count`.
+- [High] Unbounded CPU stall / soft lockup due to 1.5-second `udelay()` bus=
+y-waiting in `xe_gt_eu_attentions_read`.
+- [Medium] Silent failure when reading hardware attentions causes the debug=
+ger to process zeroed memory as valid EU threads.
+- [Medium] Meaningful code and commit message mismatch: The patch claims to=
+ add an EU thread compare function, but the implementation is completely mi=
+ssing.
 --
 
-commit 4d072be6d2def21f4bb83f2b06e9fdfe40aeb1c5
-Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+commit a0b2cd07131e7090249ddf2ff617e3c4283b5549
+Author: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 
-    drm/xe/eudebug: Add vm open/pread/pwrite
-   =20
-    The debugger needs access to the client's vm to read and write, for
-    example to inspect ISA/ELF and set up breakpoints.
+drm/xe/eudebug: Add read/count/compare helper for eu attention
 
-> diff --git a/drivers/gpu/drm/xe/xe_eudebug_vm.c b/drivers/gpu/drm/xe/xe_e=
-udebug_vm.c
-> new file mode 100644
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_eudebug_vm.c
+This commit adds the xe_eu_attentions structure to capture and store EU
+attention bits. It also introduces functions to read and count the number of
+EU threads that have triggered attentions.
+
+>     drm/xe/eudebug: Add read/count/compare helper for eu attention
+>    =20
+>     Add xe_eu_attentions structure to capture and store eu attention bits.
+>     Add a function to count the number of eu threads that have turned on =
+from
+>     eu attentions, and add a function to count the number of eu threads t=
+hat
+>     have changed on a state between eu attentions.
+
+[Severity: Medium]
+This isn't a bug, but the commit message states it adds a compare helper "to
+count the number of eu threads that have changed on a state between eu
+attentions." Does the patch actually include this function? It appears to be
+missing from the implementation.
+
+> diff --git a/drivers/gpu/drm/xe/xe_gt_debug.c b/drivers/gpu/drm/xe/xe_gt_=
+debug.c
+> index b20e42e66c5bc..bff78c0b232a8 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_debug.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_debug.c
 [ ... ]
-> +static ssize_t __xe_eudebug_vm_access(struct file *file,
-> +				      char __user *r_buffer,
-> +				      const char __user *w_buffer,
-> +				      size_t count, loff_t *__pos)
+> @@ -199,3 +202,50 @@ int xe_gt_eu_threads_needing_attention(struct xe_gt =
+*gt)
+> =20
+>  	return err < 0 ? 0 : err;
+>  }
+> +
+> +static inline unsigned int
+> +xe_eu_attentions_count(const struct xe_eu_attentions *a)
 > +{
-[ ... ]
-> +	do {
-> +		const ssize_t len =3D min_t(ssize_t, bytes_left, alloc_len);
-> +
-> +		ret =3D __vm_read_write(vm, k_buffer,
-> +				      write ? NULL : r_buffer + copied,
-> +				      write ? w_buffer + copied : NULL,
-> +				      (u64)(pos + copied),
-> +				      len,
-> +				      write);
-> +		if (ret <=3D 0)
-> +			break;
-> +
-> +		bytes_left -=3D ret;
-> +		copied +=3D ret;
-> +	} while (bytes_left > 0);
-
-[Severity: High]
-Does this code need to acquire a runtime PM reference before accessing memo=
-ry?
-
-VM/VRAM access delegates down to ttm_bo_access(), which requires an active
-runtime PM reference that is absent in this call chain. Because the fops
-handlers execute as standard VFS file operations, they do not automatically
-hold the DRM IOCTL PM runtime reference. ttm_bo_access() delegates to
-xe_ttm_access_memory(), directly hitting the xe_device_assert_mem_access(xe)
-assertion. If the device has entered runtime suspend, accessing memory will
-crash the kernel.
-
-[ ... ]
-> +static int engine_rcu_flush(struct xe_eudebug *d,
-> +			    struct xe_hw_engine *hwe,
-> +			    unsigned int timeout_us)
-> +{
-[ ... ]
-> +	/* Prevent concurrent flushes */
-> +	mutex_lock(&d->xe->eudebug.lock);
-> +	psmi_ctrl =3D xe_mmio_read32(&gt->mmio, psmi_addr);
-> +	if (!(psmi_ctrl & IDLE_MSG_DISABLE))
-> +		xe_mmio_write32(&gt->mmio, psmi_addr,
-> +				REG_MASKED_FIELD_ENABLE(IDLE_MSG_DISABLE));
-> +
-> +	/* XXX: Timeout is per operation but in here we flush previous */
-> +	ret =3D xe_mmio_wait32(&gt->mmio, RCU_ASYNC_FLUSH,
-> +			     RCU_ASYNC_FLUSH_IN_PROGRESS, 0,
-> +			     timeout_us, NULL, false);
-
-[Severity: High]
-Does this code block indefinitely and cause lock starvation?
-
-There is no bounds check on timeout_ns when passed from user space, allowing
-an unbounded timeout. engine_rcu_flush() implicitly truncates the 64-bit
-value to a 32-bit unsigned int timeout_us. xe_mmio_wait32() will block for
-this duration while holding the device-wide d->xe->eudebug.lock mutex.=20
-
-Furthermore, because the PM runtime reference is missing during fsync (as
-noted below), the MMIO register read will likely return 0xFFFFFFFF, meaning
-the polling loop will never succeed and will guarantee the full sleep
-duration. This completely locks up the eudebug subsystem and EU page fault
-processing across the entire device.
-
-[ ... ]
-> +static int xe_eudebug_vm_fsync(struct file *file, loff_t start, loff_t e=
-nd, int datasync)
-> +{
-[ ... ]
-> +	for_each_gt(gt, d->xe, gt_id) {
-> +		struct xe_hw_engine *hwe;
-> +		enum xe_hw_engine_id id;
-> +
-> +		/* XXX: vm open per engine? */
-> +		xe_eudebug_for_each_hw_engine(hwe, gt, id) {
-> +			ret =3D engine_rcu_flush(d, hwe, vmf->timeout_us);
-> +			if (ret)
-> +				goto out;
-> +		}
-> +	}
-> +out:
-> +	return ret;
+> +	return bitmap_weight((void *)a->att, a->size * BITS_PER_BYTE);
 > +}
 
 [Severity: High]
-Does this code need to acquire a runtime PM reference before accessing MMIO
-registers?
+Does casting this u8 array to an unsigned long pointer cause unaligned memo=
+ry
+accesses?
 
-Hardware engines are iterated and MMIO registers flushed without asserting
-that the device is awake via a runtime PM reference. Because
-xe_eudebug_vm_fsync() executes as a standard VFS file operation, it does not
-automatically hold the DRM IOCTL PM runtime reference. engine_rcu_flush()
-directly accesses MMIO registers (RING_PSMI_CTL and RCU_ASYNC_FLUSH). If the
-device has entered runtime suspend, accessing MMIO registers will cause PCIe
-aborts or system hangs.
+In drivers/gpu/drm/xe/xe_gt_debug_types.h, the xe_eu_attentions struct
+declares att as a u8 array, meaning the struct has at most a 4-byte
+alignment (dictated by unsigned int size).=20
 
-[ ... ]
-> +long xe_eudebug_vm_open_ioctl(struct xe_eudebug *d, unsigned long arg)
+When xe_eu_attentions_count() in drivers/gpu/drm/xe/xe_gt_debug.c casts this
+array to void * and passes it to bitmap_weight(), which expects an unsigned
+long *, it can cause undefined behavior. Dereferencing a 4-byte aligned
+address as an 8-byte unsigned long can cause faults on architectures with
+strict alignment requirements, or incorrect bit counting on big-endian syst=
+ems.
+
+> +
+> +void xe_gt_eu_attentions_read(struct xe_gt *gt,
+> +			      struct xe_eu_attentions *a,
+> +			      const unsigned int settle_time_ms)
 > +{
-[ ... ]
-> +	kref_get(&d->ref);
-> +	vmf->debugger =3D d;
-> +	vmf->vm =3D vm;
-> +	vmf->flags =3D param.flags;
-> +	vmf->vm_handle =3D param.vm_handle;
-> +	vmf->timeout_us =3D div64_u64(param.timeout_ns, 1000ull);
+> +	unsigned int attn, prev =3D 0;
+> +	ktime_t end, now;
+> +
+> +	now =3D ktime_get_raw();
+> +	/* Initially wait longer for attentions to appear */
+> +	end =3D ktime_add_ms(now, settle_time_ms * 10);
+> +
+> +	a->size =3D min_t(int,
+> +			xe_gt_eu_attention_bitmap_size(gt),
+> +			sizeof(a->att));
+> +
+> +	do {
+> +		if (xe_gt_eu_attention_bitmap(gt, a->att, a->size) < 0)
+> +			return;
+
+[Severity: Medium]
+Will this early return swallow the error code and corrupt the debugger's
+data flow?
+
+If xe_gt_eu_attention_bitmap() fails in xe_gt_eu_attentions_read(), it
+returns early but leaves a->size set to a positive value. Since the function
+signature is void, the caller has no way of knowing a failure occurred.
+
+Could the caller then process the structure's att array (which contains
+zeroes) and falsely report that no threads triggered an attention?
+
+> +
+> +		if (!settle_time_ms)
+> +			break;
+> +
+> +		attn =3D xe_eu_attentions_count(a);
+> +
+> +		now =3D ktime_get_raw();
+> +
+> +		if (attn > prev) {
+> +			prev =3D attn;
+> +			end =3D ktime_add_ms(now, settle_time_ms);
+> +		}
+> +
+> +		udelay(15);
+> +
+> +		/*
+> +		 * XXX We are gathering data for production SIP to find
+> +		 * the upper limit of settle time. For now, we wait full
+> +		 * timeout value regardless.
+> +		 */
+> +	} while ((attn < a->size * 8) && ktime_before(now, end));
+> +}
 
 [Severity: High]
-Can a malicious userspace client provide a huge value for timeout_ns and
-cause lock starvation?
+Can this loop cause an unbounded CPU stall or soft lockup?
 
-This is where the user-controlled timeout is saved without any upper bound
-validation, setting up the lock starvation issue in engine_rcu_flush()
-mentioned above.
+The loop in xe_gt_eu_attentions_read() waits for a timeout of
+settle_time_ms * 10. When called from a pagefault handler with
+XE_GT_ATTENTION_TIMEOUT_MS (150ms), the timeout is 1.5 seconds. Inside the
+loop, it busy-waits using udelay(15) instead of a sleeping delay.
+
+Additionally, if any DSS in the middle of the topology is fused off, attn
+will never reach a->size * 8 because a->size overestimates the valid bits.
+Does this guarantee the loop will always busy-wait for the full 1.5 seconds
+per call?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903145952.8480=
-51-1-mika.kuoppala@linux.intel.com?part=3D12
+51-1-mika.kuoppala@linux.intel.com?part=3D21
