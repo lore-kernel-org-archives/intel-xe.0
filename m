@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45319C624D7
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 20:27:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FD96C624D7
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 20:28:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE93310E464;
-	Thu,  3 Sep 2026 20:27:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29F1910E464;
+	Thu,  3 Sep 2026 20:28:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lxe27TB/";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fWr3TSyF";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F346810E464
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 20:27:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A13D110E464
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 20:28:09 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 0885A60546;
- Thu,  3 Sep 2026 20:27:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A7691F000E9;
- Thu,  3 Sep 2026 20:27:42 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 2680E60219;
+ Thu,  3 Sep 2026 20:28:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8A5A1F000E9;
+ Thu,  3 Sep 2026 20:28:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788467262;
- bh=KVMwU4vJdM2lzzUj5LBwRivpHhY03ACVgOyEsrcMleU=;
+ s=k20260515; t=1788467288;
+ bh=eEemYMwAB3058LQa9VzXyDXUIRkEQel5asSBhz8YLAM=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=lxe27TB/gxNncHGobRxaLE900PXq0vXUBwpG9BxpV69TEEc82CK6lN/c2IUox4776
- 1uxu2+nplU7tvYR/6dvJ7QpjD3/BrRsTSxiyE8HyBiTMJZoXv8vr687y1BHqVwBHD+
- K0XcP78FvmbCwZCpY1bAvGriL8UnX2we8PjeMXEhr70ryk7/ldk8bz5Z4dqVVYwHpM
- LLvwZNVpbn4dxkmVy6qj5LgdUAcrEbWpB9tzvoltCsvIPDW0wDdqZk5WEI6Pb89fzv
- tj3OS9dhjWfyW1YcxPLbB7UTSAqoXNRUedPwVlnAAPzewNlaU5zRjdy4Tk2x7nAHVK
- 1DTqYkqrnDgbg==
+ b=fWr3TSyF9PUFnIOtpsX30Y+sNanCN0eRqJOClhUDaKmHMi0Ej2q5KdKKvYObIccAv
+ 0RAPrhfMmq3AkbjK3lcUyRiVkVpOhmlXBgbvl8V6UJmFusDB00ULNdQnMP56gxuqPv
+ MVH30BBhBjSO4TtA8C6d9rIDbSd0+RoEyQtTVFn4skXreqo9gMAvjctrP/ykt0Bhvv
+ 2Id5QOdZv1P19Dd2/kDWUrtUAzE4c3nJ3gNuvBQVV1DGVmrCViA2EDtvMiy2NXx3zp
+ 5Q9ronJes8Yg6YjQxujJpTdJl0+FncDYLCWOAMVZ0nJ0pqxWtCGhYnGYV3nThr4FYH
+ CNGfEUdTXiSjw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 01/18] platform/x86/intel/pmt: complete pcidev to
- device update
+Subject: Re: [PATCH v5 15/18] drm/xe/vsec: Support late bind fw information
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260903201002.1064889-21-michael.j.ruhl@intel.com>
+In-Reply-To: <20260903201002.1064889-35-michael.j.ruhl@intel.com>
 References: <20260903201002.1064889-20-michael.j.ruhl@intel.com>
- <20260903201002.1064889-21-michael.j.ruhl@intel.com>
+ <20260903201002.1064889-35-michael.j.ruhl@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 03 Sep 2026 20:27:42 +0000
-Message-Id: <20260903202742.8A7691F000E9@smtp.kernel.org>
+Date: Thu, 03 Sep 2026 20:28:08 +0000
+Message-Id: <20260903202808.A8A5A1F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,64 +56,143 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [High] Type confusion in `pmt_copy_region` when casting an ACPI device to=
- `struct pci_dev`.
+- [High] Asynchronous `devm` registration race causes memory leak and Use-A=
+fter-Free of the auxiliary device.
+- [High] Asynchronous runtime PM put during devm teardown leaves hardware i=
+n an incorrect power state.
+- [High] Delayed work accesses hardware MMIO during system suspend.
 --
 
-commit db191f282e57b915c53aca0bc92d3bca969e1af4
+commit 1b67a780c3fbc619f441f6dfdc210d11c50f6476
 Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-platform/x86/intel/pmt: complete pcidev to device update
+drm/xe/vsec: Support late bind fw information
 
-The update that moved struct pci_dev usage to struct device is
-incomplete. Only telemetry endpoints are covered. This patch changes
-the struct intel_pmt_entry pci_dev member to device, and updates
-callback usage to use the intel_pmt_entry rather than the telemetry
-endpoint.
+CRI FW is loaded on power on. Because of this, access to the FW cannot
+be done until it is running. Update the XE PMT probe and access to check
+for late bind devices, verify, and wait for the appropriate FW state
+before probe or access.
 
-> diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x8=
-6/intel/pmt/class.h
-> index a0ece4fc3837d..258cb460e61c2 100644
-> --- a/drivers/platform/x86/intel/pmt/class.h
-> +++ b/drivers/platform/x86/intel/pmt/class.h
+> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+> index 336c4b7d284bc..48cacd23b071e 100644
+> --- a/drivers/gpu/drm/xe/xe_vsec.c
+> +++ b/drivers/gpu/drm/xe/xe_vsec.c
 [ ... ]
-> @@ -42,7 +41,7 @@ struct intel_pmt_header {
+> @@ -281,6 +291,48 @@ static int xe_guid_decode(u32 guid, int *index, u32 =
+*offset)
+>  	return -ENODEV;
+>  }
 > =20
->  struct intel_pmt_entry {
->  	struct telem_endpoint	*ep;
-
+> +static void cri_late_bind_probe_work(struct work_struct *work)
+> +{
+> +	struct xe_device *xe =3D container_of(work, struct xe_device, pmt.work.=
+work);
+> +
+> +	if (xe_is_oobmsm_fw_ready(xe)) {
 [Severity: High]
-This is a pre-existing issue, but does this lead to type confusion in
-pmt_copy_region() when an ACPI device has registered telemetry?
+Does this code access hardware MMIO during system suspend?
 
-In drivers/platform/x86/intel/pmt/telemetry.c:pmt_copy_region(), there is an
-unconditional cast of this device (accessed via entry->ep->dev) to a PCI
-device:
+If a system suspend (e.g., S3) is initiated while the worker is actively
+polling, the device is forced into a suspended state (D3) by the system PM
+core, bypassing the runtime PM usage count held by the worker.
 
-	struct pci_dev *pdev =3D to_pci_dev(entry->ep->dev);
-	struct oobmsm_plat_info *plat_info;
+Because the work is on a non-freezable workqueue and not explicitly
+cancelled in the driver's system suspend callbacks, the worker can wake up
+while the hardware is powered down and call xe_is_oobmsm_fw_ready().
+Reading MMIO from a device in the D3 state causes master aborts, unhandled
+PCI errors, or silent 0xFFFFFFFF reads leading to undefined behavior.
 
-	plat_info =3D intel_vsec_get_mapping(pdev);
+> +		cri_late_bind_probe(xe);
+> +		xe_pm_runtime_put(xe);
+> +		return;
+> +	}
+[ ... ]
+> @@ -464,12 +534,44 @@ static enum xe_vsec get_platform_info(struct xe_dev=
+ice *xe)
+[ ... ]
+> +static void cri_late_bind_probe(struct xe_device *xe)
+> +{
+[ ... ]
+> +	intel_vsec_register(dev, info);
+[Severity: High]
+Can this asynchronous devm registration leak the auxiliary device?
 
-If the generic struct device is actually an ACPI device (as during runtime
-hardware enumeration of ACPI devices that expose PMT telemetry), can
-intel_vsec_get_mapping() calling pci_match_id() end up dereferencing
-PCI-specific fields (like vendor and device ID) at invalid memory offsets
-and cause an out-of-bounds memory read?
+Because intel_vsec_register() attaches its own devres actions to the parent
+device (xe->drm.dev), calling it from a delayed worker can race with the
+parent device teardown.
 
-This issue appears to have been introduced in commit 353042d54d82 and does
-not appear to be resolved by this patch.
+If the worker evaluates the firmware as ready and calls
+intel_vsec_register() while the parent's devres list has already been
+spliced during unbinding, these new devm actions are left behind on the
+empty devres_head and are never executed. This causes a permanent memory
+leak of the auxiliary device, and subsequent accesses can lead to a
+use-after-free since the parent xe_device has been freed.
 
-> -	struct pci_dev		*pcidev;
-> +	struct device		*dev;
->  	struct intel_pmt_header	header;
->  	u32			disc_header[PMT_DISC_DWORDS];
->  	struct bin_attribute	pmt_bin_attr;
+> +}
+> +
+> +static void vsec_disable_late_bind_work(void *arg)
+> +{
+> +	struct xe_device *xe =3D arg;
+> +
+> +	/*
+> +	 * If the queued work is canceled, the runtime reference needs to be
+> +	 * released here.
+> +	 */
+> +	if (disable_delayed_work_sync(&xe->pmt.work))
+[Severity: High]
+Does blocking to cancel the work here open the devres race window mentioned
+above?
+
+Since devres_release_all() has already spliced the devres list by the time
+this devm action executes, any concurrent worker that bypassed the
+cancellation check will attach its new devres actions to the already
+spliced parent list.
+
+> +		xe_pm_runtime_put(xe);
+[Severity: High]
+Could this asynchronous PM put leave the hardware active?
+
+Using xe_pm_runtime_put() (which executes asynchronously) immediately before
+device removal allows the pending async idle/suspend work to be cancelled
+by the core teardown's pm_runtime_disable().
+
+According to the PM subsystem guidelines, this requires a synchronous put
+(like pm_runtime_put_sync()) to ensure the hardware is suspended before
+teardown continues.
+
+> +}
+[ ... ]
+> @@ -477,30 +579,45 @@ void xe_vsec_init(struct xe_device *xe)
+[ ... ]
+>  	case XE_VSEC_CRI:
+>  		if (IS_SRIOV_VF(xe))
+> -			return;
+> +			return 0;
+> +
+>  		xe->pmt.base_offset =3D CRI_PMT_OFFSET;
+> +
+> +		xe->pmt.retry_count =3D 0;
+> +		INIT_DELAYED_WORK(&xe->pmt.work, cri_late_bind_probe_work);
+> +
+> +		xe_pm_runtime_get_noresume(xe);
+> +		if (!xe_is_oobmsm_fw_ready(xe)) {
+> +			schedule_delayed_work(&xe->pmt.work,
+> +					      msecs_to_jiffies(VSEC_LATE_BIND_DELAY_MSEC));
+[Severity: High]
+Is it safe to schedule this work on a non-freezable workqueue without
+suspend hooks?
+
+As noted earlier, scheduling this on the default workqueue allows the
+worker to execute during system suspend. This permits hardware MMIO
+accesses when the device is in a suspended state (D3).
+
+> +			return devm_add_action_or_reset(xe->drm.dev,
+> +							vsec_disable_late_bind_work,
+> +							xe);
+> +		}
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903201002.1064=
-889-20-michael.j.ruhl@intel.com?part=3D1
+889-20-michael.j.ruhl@intel.com?part=3D15
