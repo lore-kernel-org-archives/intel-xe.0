@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17ABFC79F88
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 13:44:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B1BEC79F90
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 13:44:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FF6F10F5D3;
-	Thu,  3 Sep 2026 13:44:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13CC210F605;
+	Thu,  3 Sep 2026 13:44:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ogGsxa/+";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cxQdb7sP";
 	dkim-atps=neutral
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com
- [209.85.221.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE02510F60F
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 13:44:18 +0000 (UTC)
-Received: by mail-wr1-f41.google.com with SMTP id
- ffacd0b85a97d-4843e9c5960so2338359f8f.0
- for <intel-xe@lists.freedesktop.org>; Thu, 03 Sep 2026 06:44:18 -0700 (PDT)
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com
+ [209.85.221.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 868B910F616
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 13:44:22 +0000 (UTC)
+Received: by mail-wr1-f42.google.com with SMTP id
+ ffacd0b85a97d-485853f8800so243742f8f.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 03 Sep 2026 06:44:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1788443057; x=1789047857; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1788443061; x=1789047861; darn=lists.freedesktop.org;
  h=content-transfer-encoding:reply-to:content-type:mime-version
  :references:in-reply-to:message-id:date:subject:to:from:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=8EdCrSCj77M32Pu3SEBs0Nl7Jw7mm9Bq+OEkpl3c1Aw=;
- b=ogGsxa/+tyxPYrJKDu1RbrMSVZtr5w7pHsOf3kCbqcPVSU9mh1AHjaqqTBFslTJJWr
- TgiYVJUshKSlf4UTJS8XT9MQRzvf2Xr2xXpMuLYiIgZCMiUGgjhU8fkU2spzhdXh7sOp
- LRPfw9DG/EwXnhs42h5iO1//fh9I1RrT4kz+Bus9ADcAnOlMNb4bAQinXirugjgyub5V
- CTrcfkyTTflMMVV4n5EJofWFbkxoVS3UJklS6hPCryEL2JnzAoMeirpBOYbblk891kaA
- YToWoiAbq/xMaJp70j9cxKQooMds+/iMPf18Sf4JtkZ+irNW3o4Y0bjSFU8uaQ77qjCy
- 7JDw==
+ bh=osmnXHfN1aAvpkeZJQXAogNz4+3Y+e31osw4EooYaq4=;
+ b=cxQdb7sP/NDcJRag7W6atmjLw72VpDydKIHQAB47X3mHiqOOz2Mxkr91WtzmAq+6HF
+ gEiaZd/jwxh6jVkLSAVziWSX4p438OPln7C7N6OSKsLpNGj5UNFykmyvAK5IcmtJGAdB
+ EUEU3AFvUato/dpf+7oub4KuvEINzi3aDUYqj/R/PUuHI+t3ddOqbcROsn09RIWCw99G
+ KcI6rt5x1N8CN6DH6Y6UO7a2wDMuvH1+EbF2SxlRQfsHaVFU5qvZd8Xw/VR6kRaymTei
+ RiO++FhpIvOFBCHA5n9+Y0ZHDMDRCQhEt7fdg5MIgmIqfChic5gLIHWwVARt2qwAX8vZ
+ 5Hnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1788443057; x=1789047857;
+ d=1e100.net; s=20251104; t=1788443061; x=1789047861;
  h=content-transfer-encoding:reply-to:content-type:mime-version
  :references:in-reply-to:message-id:date:subject:to:from:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=8EdCrSCj77M32Pu3SEBs0Nl7Jw7mm9Bq+OEkpl3c1Aw=;
- b=qxccTNj5ybH3CbXgfiOmGFCT62yVCJNShd2HWDH6oHOnNMHheIxwDd8gA2rVF3yQd5
- ow6zJfb6T135AmKnE9KCxfKBfNy6QsHTEii6mWc8VYmgF++1yuf0UEAIAV2xTC/4tkQJ
- Y6YqOfBjUK2+lDRzmrf58HUcMbUHdMdt/KCS6i79XxJFQIwS3PQtBryPdfhAI/c3vPoS
- 2v7Os9xUJXP8f10rn43HCZt5AYF0p+iX/yMWiFR45kYdAvTYmlCB9Gc1zgysIjpb8g6s
- RL5W4HJcgVW/CoyxlhArdjBTkoUmaGfe0BxfvzhqiQgb/60xLEKxqS+pApq0/3m/6T+x
- kWSg==
+ bh=osmnXHfN1aAvpkeZJQXAogNz4+3Y+e31osw4EooYaq4=;
+ b=W2th37lQ01Fs+OU8cYpOyauIm0VFn8f65e3HR073k2aK8mOtslV4pWVbJD0Mp0xCVs
+ DWolmMvsOgl9zfTCJQ8LTZ2ktNQDDiKfPpV9VNGmSjp72BqCP8yiyey5DleU3w/HnbPM
+ yxyVlcENnQezOu6aoGWHR+d8yoMNlD1zE/az58dbFhdI5GyaihC3ARU4R/gJdVAE3uTJ
+ ra4wlKaDb8iS6zua6oWMFjSYz0znPCqTQ/hjmGs2C2biMZyVW/8DNqkyLYihfFODHBNc
+ ZiSRhVkcFC2QfPhUSMe6de1f6BPdLVUAY2GopSDj6HuCbDrMNK1bvDcVBJKjMAxSYyIB
+ l5zg==
 X-Forwarded-Encrypted: i=1;
- AKwUvBzm+f2SGYx+/7ZkmM6sf4pXOdJ523yGtyLWF7urhJ3dsf7UGjqS7wGE15Wnm53KG4g5+tG+nCeuvg==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++lPYH8WLrxVDeAL0c824P1kErQ2uKORoRJ88vGZtMjDKMnvRC9Z
- DqpWQIkLjhyCDiv28Oaw/rr9ekEDr4jNudJj/nSvEwMjpA146pzazNQn
-X-Gm-Gg: AYBFou3wzZ74h3z/CysonwjOx5UjJzQgPKh069ME/jAzFBPXdyO27+1kV2mbgmH5IoM
- u1QM2dimNWbPN6zUsRL+C7Mx7aL+0gCl9HLf12e8PZoreaJNt3C6BmT9+oa6BnfGNk8Fy1EDfx9
- 3HS5xa9c62JOoCJqeKeAkfUUzgnJChSqN9suubazpdnRTjGSCzZ496QJrfU6vWRHIKY1vwOxAPm
- EP0UEeZNJc0i8ayOm27NktFlDerjnBl1HEG+tLphu/QgTrQ0xD9ZBHMqxu3FS69oISHxunlZfR/
- c1mcw6loffWcvPOfunCdnsqHG4JAazKWJaBQEPtcjFw8XfE7oU4G2NpY3LDNy8kI2N+72z+RS5y
- nOtDSfnyELHqF2RcwNCpDiKqwyUvuSR0JI7Q7937PVM88yW8iq6N2Sp5bMOjuFuceenokCmB/CK
- WHR100/McXSKBBxqcaXnnW3eh0L8JGwYw69Oc6t/WY1SzaLMQvYSFDiAoA5TYrcAPwDjeq3SToO
+ AKwUvByPVyU6Y0X3M1stY1PE1zKF0b0fmP7ylpQHf2VeKwBSiBiHWCt4zY8oDHRuRlpycYQfxEtpJoDTTQ==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++mZM+UBsJxBq3BwGXI2SX6dqGjZre66mtCm+tOhG5PXzmkWU4VV
+ 764ND+NnKH9PnT0x+lp1fJXlnrLSljLUoGWcZRUZLMl9MFkRvbaSrWBP
+X-Gm-Gg: AYBFou0dvsPWgpY6BYs1vdaW4Fz9bHDC80HM6mVX9Q7UUyXYxIqRKdbXLDcu+fRrYi8
+ aWplVmGMLDY0Bvu4iYiPTKAJi/tL0hGGl9PrSQQYN1m4KnYApO9IQPD6cj4IZLJzFY5la8EvsjF
+ WiV0639dxtm2GHVVY4yQBN0f8lT8VmjJK1gIJXI/yx6JZY+nk4TwA+9Sqxg1m8G0d4In1gkUG54
+ 07IIMvaZVu0pN8iuHrO+tOUi/W8UEKcsS+Jgk/yKQHfNY+MhhrJs9qtr/ItIkvLgpjbbZeLiggT
+ QVF3DxX56yaPcsRH2h8s00zkWjZOO0J6iAuLfxP/tuZq5qPL7Lgro5fK/VOWwB2C8m8zrrEyOJ5
+ GB+bQdeqyGrND2rinQXdlf00s8WtSH81IZ4fozqUmlGnpPzFUsH3GVd7tb2tf/+tN37F/VIrQcP
+ 4R0JptpVFyUkReV5yFOAMUGWaCkVumqmic2k/dG5lfz6bYAKa4rmxuek4yOiAaal+7MiEMWn8NG
  A==
-X-Received: by 2002:a5d:6f12:0:b0:485:81fd:734c with SMTP id
- ffacd0b85a97d-485860fa3afmr542807f8f.24.1788443056987; 
- Thu, 03 Sep 2026 06:44:16 -0700 (PDT)
+X-Received: by 2002:a5d:5e86:0:b0:485:8226:c693 with SMTP id
+ ffacd0b85a97d-4858226c906mr4126355f8f.18.1788443060763; 
+ Thu, 03 Sep 2026 06:44:20 -0700 (PDT)
 Received: from able.fritz.box ([2a00:e180:15d9:4700:e712:9f38:603a:54e4])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-48448e736a6sm13597080f8f.5.2026.09.03.06.44.16
+ ffacd0b85a97d-48448e736a6sm13597080f8f.5.2026.09.03.06.44.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 03 Sep 2026 06:44:16 -0700 (PDT)
+ Thu, 03 Sep 2026 06:44:19 -0700 (PDT)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
@@ -71,10 +71,9 @@ To: thomas.hellstrom@linux.intel.com, dakr@kernel.org, ecourtney@nvidia.com,
  matthew.brost@intel.com, nat@pixelcluster.dev,
  dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH 06/11] drm/mode_config: Use dma_resv_alloc for lockdep
- annotation
-Date: Thu,  3 Sep 2026 15:28:01 +0200
-Message-ID: <20260903134408.105317-7-christian.koenig@amd.com>
+Subject: [PATCH 09/11] drm/ttm/tests: Use dma_resv_alloc in test files
+Date: Thu,  3 Sep 2026 15:28:04 +0200
+Message-ID: <20260903134408.105317-10-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260903134408.105317-1-christian.koenig@amd.com>
 References: <20260903134408.105317-1-christian.koenig@amd.com>
@@ -96,65 +95,110 @@ Reply-To: christian.koenig@amd.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace the stack-allocated dma_resv in the lockdep annotation code
-with a dynamically allocated one using dma_resv_alloc(). This aligns
-with the move away from embedded dma_resv structures and towards
-reference-counted dynamic allocation.
+Replace the remaining dma_resv_init usage in TTM test files with
+dma_resv_alloc(). This completes the migration away from embedded
+dma_resv structures to reference-counted dynamic allocation throughout
+the DRM subsystem.
 
-The lockdep annotation block in drmm_mode_config_init() is used to
-establish lock ordering dependencies between modeset locks and dma_resv
-locks. Since this only runs when CONFIG_LOCKDEP is enabled and the resv
-is immediately freed after use, the change is straightforward.
+Changes in test files:
+- ttm_bo_validate_test.c: Convert stack-allocated resv to pointer and
+  use dma_resv_alloc() with proper cleanup via dma_resv_put()
+- ttm_bo_test.c: Replace kunit_kzalloc + dma_resv_init with direct
+  dma_resv_alloc() calls, add cleanup for external_resv
 
-If allocation fails, return -ENOMEM early. The existing dma_resv_put()
-at the end of the block properly handles the cleanup.
+All test assertions updated to check for successful allocation. The
+tests now properly exercise the dynamic allocation path that production
+code uses.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 Assisted-by: Claude:Sonnet 4
 ---
- drivers/gpu/drm/drm_mode_config.c | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/ttm/tests/ttm_bo_test.c          | 11 ++++-------
+ drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c | 13 ++++++++-----
+ 2 files changed, 12 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mode_config.c
-index 312d5e9675f0..de424b755c62 100644
---- a/drivers/gpu/drm/drm_mode_config.c
-+++ b/drivers/gpu/drm/drm_mode_config.c
-@@ -658,10 +658,12 @@ int drmm_mode_config_init(struct drm_device *dev)
- 	if (IS_ENABLED(CONFIG_LOCKDEP)) {
- 		struct drm_modeset_acquire_ctx modeset_ctx;
- 		struct ww_acquire_ctx resv_ctx;
--		struct dma_resv resv;
-+		struct dma_resv *resv;
- 		int ret;
+diff --git a/drivers/gpu/drm/ttm/tests/ttm_bo_test.c b/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
+index 3aff1c427cd1..853024724af9 100644
+--- a/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
++++ b/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
+@@ -339,14 +339,12 @@ static void ttm_bo_unreserve_bulk(struct kunit *test)
+ 	ttm_dev = kunit_kzalloc(test, sizeof(*ttm_dev), GFP_KERNEL);
+ 	KUNIT_ASSERT_NOT_NULL(test, ttm_dev);
  
--		dma_resv_init(&resv);
-+		resv = dma_resv_alloc();
-+		if (!resv)
-+			return -ENOMEM;
+-	resv = kunit_kzalloc(test, sizeof(*resv), GFP_KERNEL);
+-	KUNIT_ASSERT_NOT_NULL(test, resv);
+-
+ 	err = ttm_device_kunit_init(priv, ttm_dev, 0);
+ 	KUNIT_ASSERT_EQ(test, err, 0);
+ 	priv->ttm_dev = ttm_dev;
  
- 		drm_modeset_acquire_init(&modeset_ctx, 0);
- 		ret = drm_modeset_lock(&dev->mode_config.connection_mutex,
-@@ -672,16 +674,16 @@ int drmm_mode_config_init(struct drm_device *dev)
- 		might_fault();
+-	dma_resv_init(resv);
++	resv = dma_resv_alloc();
++	KUNIT_ASSERT_NOT_NULL(test, resv);
  
- 		ww_acquire_init(&resv_ctx, &reservation_ww_class);
--		ret = dma_resv_lock(&resv, &resv_ctx);
-+		ret = dma_resv_lock(resv, &resv_ctx);
- 		if (ret == -EDEADLK)
--			dma_resv_lock_slow(&resv, &resv_ctx);
-+			dma_resv_lock_slow(resv, &resv_ctx);
+ 	bo1 = ttm_bo_kunit_init(test, test->priv, BO_SIZE, resv);
+ 	bo2 = ttm_bo_kunit_init(test, test->priv, BO_SIZE, resv);
+@@ -441,11 +439,9 @@ static void ttm_bo_fini_shared_resv(struct kunit *test)
+ 	KUNIT_ASSERT_EQ(test, err, 0);
+ 	priv->ttm_dev = ttm_dev;
  
--		dma_resv_unlock(&resv);
-+		dma_resv_unlock(resv);
- 		ww_acquire_fini(&resv_ctx);
+-	external_resv = kunit_kzalloc(test, sizeof(*ttm_dev), GFP_KERNEL);
++	external_resv = dma_resv_alloc();
+ 	KUNIT_ASSERT_NOT_NULL(test, external_resv);
  
- 		drm_modeset_drop_locks(&modeset_ctx);
- 		drm_modeset_acquire_fini(&modeset_ctx);
--		dma_resv_put(&resv);
-+		dma_resv_put(resv);
- 	}
+-	dma_resv_init(external_resv);
+-
+ 	fence = kunit_kzalloc(test, sizeof(*fence), GFP_KERNEL);
+ 	KUNIT_ASSERT_NOT_NULL(test, fence);
  
- 	return drmm_add_action_or_reset(dev, drm_mode_config_init_release,
+@@ -464,6 +460,7 @@ static void ttm_bo_fini_shared_resv(struct kunit *test)
+ 	drm_gem_object_set_resv(&bo->base, external_resv);
+ 
+ 	ttm_bo_fini(bo);
++	dma_resv_put(external_resv);
+ }
+ 
+ static void ttm_bo_pin_basic(struct kunit *test)
+diff --git a/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c b/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
+index bb430763e7a5..e0ecadccccf8 100644
+--- a/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
++++ b/drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c
+@@ -201,7 +201,7 @@ static void ttm_bo_init_reserved_resv(struct kunit *test)
+ 	struct ttm_placement *placement;
+ 	struct ttm_buffer_object *bo;
+ 	struct ttm_place *place;
+-	struct dma_resv resv;
++	struct dma_resv *resv;
+ 	int err;
+ 
+ 	bo = kunit_kzalloc(test, sizeof(*bo), GFP_KERNEL);
+@@ -212,19 +212,22 @@ static void ttm_bo_init_reserved_resv(struct kunit *test)
+ 
+ 	err = drm_gem_private_object_init(priv->drm, &bo->base, size);
+ 	KUNIT_ASSERT_EQ(test, err, 0);
+-	dma_resv_init(&resv);
+-	dma_resv_lock(&resv, NULL);
++
++	resv = dma_resv_alloc();
++	KUNIT_ASSERT_NOT_NULL(test, resv);
++	dma_resv_lock(resv, NULL);
+ 
+ 	err = ttm_bo_init_reserved(priv->ttm_dev, bo, bo_type, placement,
+-				   PAGE_SIZE, &ctx, NULL, &resv,
++				   PAGE_SIZE, &ctx, NULL, resv,
+ 				   &dummy_ttm_bo_destroy);
+ 	dma_resv_unlock(bo->base.resv);
+ 
+ 	KUNIT_EXPECT_EQ(test, err, 0);
+-	KUNIT_EXPECT_PTR_EQ(test, bo->base.resv, &resv);
++	KUNIT_EXPECT_PTR_EQ(test, bo->base.resv, resv);
+ 
+ 	ttm_resource_free(bo, &bo->resource);
+ 	ttm_bo_fini(bo);
++	dma_resv_put(resv);
+ }
+ 
+ static void ttm_bo_validate_basic(struct kunit *test)
 -- 
 2.43.0
 
