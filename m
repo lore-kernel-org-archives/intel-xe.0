@@ -4,65 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 950B1C61DD3
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 09:58:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63DBEC624A4
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 10:01:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D8BA10F4C9;
-	Thu,  3 Sep 2026 09:58:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k83icyLc";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9538810F4D1
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 09:57:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788429478; x=1819965478;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=slCEe0aqepEkR/uRRVcGJix1e6wEL9sk4rLVWZBmYC0=;
- b=k83icyLcFbAuzZbV8AtMNCO8l2/wZCx/8P/8UCfje5j3tXSaPyY3IU18
- L/LNpdCf0mhHphr8fipnXLsZbAYkazeElZOrs9bje2lOOcJdawJZ7FC5r
- pXmg6KwbyGcdk6T1Vlxe8ZLppW9AQedFHulJTPiVPKt3+odoH/W7YqH2E
- vU6OCUNaaVxFOwHlzmJUm1L44pcbQeXiA2jffcSWREcYtmIaLZyX7cAO2
- wVZprMGeIA8M7cBjfMVkTEpDrPrzOio14i8pcyoUVvG4yJj+clCKLiLzc
- aNJ+0ZPwiBwHr94jsqp1jcT+95e8v3iasAJI1q3msrdG2aahRKd00PS/E A==;
-X-CSE-ConnectionGUID: UhleVVYHTe+kcrNM3rEQVA==
-X-CSE-MsgGUID: BK3vxM8SR46mN6Btnw5XfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11894"; a="88785556"
-X-IronPort-AV: E=Sophos;i="6.25,259,1779174000"; d="scan'208";a="88785556"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 02:57:58 -0700
-X-CSE-ConnectionGUID: vyZqaot5Tv6CZl64aWVNlg==
-X-CSE-MsgGUID: duRSKidsTeGTMdFXeIo0gw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,259,1779174000"; d="scan'208";a="265335194"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO [10.245.244.94])
- ([10.245.244.94])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 02:57:57 -0700
-Message-ID: <39308cce-1453-45aa-af14-81b78d761cce@intel.com>
-Date: Thu, 3 Sep 2026 10:57:54 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1419810F4BF;
+	Thu,  3 Sep 2026 10:01:38 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6234610F4B8;
+ Thu,  3 Sep 2026 10:01:36 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3938512978008379288=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] drm/xe/vram: add early VRAM health check
-To: "Summers, Stuart" <stuart.summers@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: "torvalds@linux-foundation.org" <torvalds@linux-foundation.org>,
- "Brost, Matthew" <matthew.brost@intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>
-References: <20260828151405.662533-7-matthew.auld@intel.com>
- <20260828151405.662533-12-matthew.auld@intel.com>
- <1e9b3dd558f064b431f90bad76437b52d6d853b0.camel@intel.com>
- <962d9e46-0c9b-4964-9a82-765bfd7a8122@intel.com>
- <3ff9049355a51ec4aeb1e1510a91adbf76ebea26.camel@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <3ff9049355a51ec4aeb1e1510a91adbf76ebea26.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vm=3A_Handle_purged_?=
+ =?utf-8?q?BOs_in_VM_snapshots?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arvind Yadav" <arvind.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 03 Sep 2026 10:01:36 -0000
+Message-ID: <178842969639.116940.3543831557827900137@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260903090630.3857182-1-arvind.yadav@intel.com>
+In-Reply-To: <20260903090630.3857182-1-arvind.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,651 +36,284 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 02/09/2026 21:34, Summers, Stuart wrote:
-> On Tue, 2026-09-01 at 09:33 +0100, Matthew Auld wrote:
->> On 28/08/2026 17:37, Summers, Stuart wrote:
->>> On Fri, 2026-08-28 at 16:14 +0100, Matthew Auld wrote:
->>>> During early probe, use the last page as a canary for BAR sizing,
->>>> CCS
->>>> sizing, identity map setup etc. If something is wrong the last
->>>> page
->>>> is
->>>> where we will likely find it. Hit it with everything we have. For
->>>> now
->>>
->>> Sorry coming in a little late here... but why only the last page
->>> and
->>> not implementing a full per byte/bit memory test to trigger any
->>> potential memory scanning on bit errors? Or is this not the intent
->>> here?
->>
->> Current scope was just to catch obvious sizing errors, which will
->> likely
->> show up in the last page (BAR, CCS, identity map). In particular this
->> was meant as a regression test for the bug Linus hit, where we had
->> incorrect VRAM/CCS sizing.
->>
->> Also, this is hopefully non-destructive, since it gets triggered in
->> CI
->> on probe. Also means it needs to be fast. We could extend this in the
->> future as needed.
-> 
-> Ok yeah makes sense. Basically we're just trying to make sure the
-> driver does the right thing here - this isn't about hardware
-> validation.
-> 
-> I'm thinking it would be interesting to have something like what we're
-> doing in i915 in intel_memory_region_memtest(). This is more about
-> hardware validation though so I agree maybe out of scope here.
+--===============3938512978008379288==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah, that is something we could explore.
+== Series Details ==
 
-> 
-> Is there a reason we didn't do this in kunit or part of the mm/memtest?
+Series: drm/xe/vm: Handle purged BOs in VM snapshots
+URL   : https://patchwork.freedesktop.org/series/173292/
+State : success
 
-Not sure how we could do this in mm/memtest? AFAICT that is more for low 
-level CPU access to some memory range. For something like the CCS bug, 
-you would not find it with that. Writing to the CCS portion using the 
-CPU looks normal, so not sure how you would detect it with that alone.
+== Summary ==
 
-We need working GPU submission so we can trigger something like 
-XY_CTRL_SURF_COPY_BLT. I think the only way to detect the CCS issue is 
-to have the GPU interact with the CCS in some way. But at this point we 
-also can't just globber everything in VRAM without killing the machine.
+CI Bug Log - changes from xe-5682-55c4728ed845a416ede64230f24ce55567da1736_BAT -> xe-pw-173292v1_BAT
+====================================================
 
-For kunit, if there is way to inject that into the probe sequence (post 
-migration layer) then that might work. But also we need to reserve the 
-last page as a separate step much earlier in the probe sequence, to stop 
-something stealing it, and then release it after the test part. Probe 
-should also fail if we detect an issue. Would that be a good fit for kunit?
+Summary
+-------
 
-> 
-> Anyway not a blocker for what you have here. For the flat ccs and BAR
-> pieces I agree this will work.
-> 
-> Thanks,
-> Stuart
-> 
->>
->>>
->>> If this is a production scenario, the last page makes sense, but if
->>> we're already wrapping this in a debug config...
->>>
->>> Thanks,
->>> Stuart
->>>
->>>> this is gated behind a debug config option, so shouldn't trigger
->>>> on
->>>> production.
->>>>
->>>> Main motivation is around CCS sizing where on some BMG cards the
->>>> CCS
->>>> offset is programmed misaligned, for whatever reason, and our
->>>> handling
->>>> of that was busted, as found by Linus, leading to some amount of
->>>> CCS
->>>> storage getting pulled into the allocator as normal VRAM.
->>>>
->>>> Nothing in our CI farm has such a misaligned offset it would
->>>> seem,
->>>> however I did get this to pop on my b570, which does also have
->>>> the
->>>> misaligned CCS offset:
->>>>
->>>>     Tile 0: Running VRAM memtest...
->>>>     Tile 0: VRAM bounds overlap CCS region! VRAM sizing is
->>>> incorrect.
->>>>
->>>> With the fix from Linus, this goes away:
->>>>
->>>>     Tile 0: Running VRAM memtest...
->>>>     Tile 0: VRAM memtest completed.
->>>>
->>>> Assisted-by: Gemini:gemini-3.1-pro-preview
->>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>> Cc: Linus Torvalds <torvalds@linux-foundation.org>
->>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>> ---
->>>>    drivers/gpu/drm/xe/xe_device.c     |   8 +
->>>>    drivers/gpu/drm/xe/xe_migrate.c    |  64 ++++++++
->>>>    drivers/gpu/drm/xe/xe_migrate.h    |   6 +
->>>>    drivers/gpu/drm/xe/xe_tile_types.h |   4 +
->>>>    drivers/gpu/drm/xe/xe_vram.c       | 241
->>>> +++++++++++++++++++++++++++++
->>>>    drivers/gpu/drm/xe/xe_vram.h       |  10 ++
->>>>    6 files changed, 333 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/xe_device.c
->>>> b/drivers/gpu/drm/xe/xe_device.c
->>>> index 82e0a555fa69..80008bf5776c 100644
->>>> --- a/drivers/gpu/drm/xe/xe_device.c
->>>> +++ b/drivers/gpu/drm/xe/xe_device.c
->>>> @@ -1051,6 +1051,10 @@ int xe_device_probe(struct xe_device *xe)
->>>>           if (err)
->>>>                   return err;
->>>>    
->>>> +       err = xe_vram_reserve_memtest_bo(xe);
->>>> +       if (err)
->>>> +               return err;
->>>> +
->>>>           for_each_tile(tile, xe, id) {
->>>>                   err = xe_tile_init(tile);
->>>>                   if (err)
->>>> @@ -1067,6 +1071,10 @@ int xe_device_probe(struct xe_device *xe)
->>>>                           return err;
->>>>           }
->>>>    
->>>> +       err = xe_vram_memtest(xe);
->>>> +       if (err)
->>>> +               return err;
->>>> +
->>>>           err = xe_pagefault_init(xe);
->>>>           if (err)
->>>>                   return err;
->>>> diff --git a/drivers/gpu/drm/xe/xe_migrate.c
->>>> b/drivers/gpu/drm/xe/xe_migrate.c
->>>> index 0bf000d7c901..ff45c24d8889 100644
->>>> --- a/drivers/gpu/drm/xe/xe_migrate.c
->>>> +++ b/drivers/gpu/drm/xe/xe_migrate.c
->>>> @@ -2650,3 +2650,67 @@ void xe_migrate_job_lock_assert(struct
->>>> xe_exec_queue *q)
->>>>    #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
->>>>    #include "tests/xe_migrate.c"
->>>>    #endif
->>>> +
->>>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
->>>> +int xe_migrate_debug_ccs_overlap(struct xe_migrate *m,
->>>> +                                struct xe_bo *scratch_bo,
->>>> +                                bool write_to_ccs)
->>>> +{
->>>> +       struct xe_device *xe = tile_to_xe(m->tile);
->>>> +       struct xe_gt *gt = m->tile->primary_gt;
->>>> +       struct dma_fence *fence;
->>>> +       struct xe_bb *bb;
->>>> +       struct xe_sched_job *job;
->>>> +       u64 first_page_dpa, clear_L0_ofs, scratch_dpa,
->>>> scratch_L0_ofs;
->>>> +
->>>> +       if (!xe_device_has_flat_ccs(xe))
->>>> +               return -EINVAL;
->>>> +
->>>> +       first_page_dpa = xe_vram_region_dpa_base(m->tile-
->>>>> mem.vram);
->>>> +       clear_L0_ofs = xe_migrate_vram_ofs(xe, first_page_dpa,
->>>> true);
->>>> +
->>>> +       scratch_dpa = xe_bo_addr(scratch_bo, 0, XE_PAGE_SIZE);
->>>> +       scratch_L0_ofs = xe_migrate_vram_ofs(xe, scratch_dpa,
->>>> false);
->>>> +
->>>> +       bb = xe_bb_new(gt, EMIT_COPY_CCS_DW + 1, xe-
->>>>> info.has_usm);
->>>> +       if (IS_ERR(bb)) {
->>>> +               drm_warn(&xe->drm, "Failed to create bb for VRAM
->>>> overlap check\n");
->>>> +               return PTR_ERR(bb);
->>>> +       }
->>>> +
->>>> +       /* 4MB payload = 8KB CCS metadata */
->>>> +       if (write_to_ccs) {
->>>> +               emit_copy_ccs(gt, bb, clear_L0_ofs, true,
->>>> +                             scratch_L0_ofs, false, SZ_4M);
->>>> +       } else {
->>>> +               emit_copy_ccs(gt, bb, scratch_L0_ofs, false,
->>>> +                             clear_L0_ofs, true, SZ_4M);
->>>> +       }
->>>> +
->>>> +       bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
->>>> +
->>>> +       job = xe_bb_create_migration_job(m->q, bb,
->>>> +                                        xe_migrate_batch_base(m,
->>>> xe-
->>>>> info.has_usm),
->>>> +                                        0);
->>>> +       if (!IS_ERR(job)) {
->>>> +               xe_sched_job_add_migrate_flush(job,
->>>> MI_FLUSH_DW_CCS);
->>>> +
->>>> +               mutex_lock(&m->job_mutex);
->>>> +               xe_sched_job_arm(job);
->>>> +
->>>> +               fence = dma_fence_get(&job->drm.s_fence-
->>>>> finished);
->>>> +               xe_sched_job_push(job);
->>>> +               mutex_unlock(&m->job_mutex);
->>>> +
->>>> +               dma_fence_wait(fence, false);
->>>> +               dma_fence_put(fence);
->>>> +       } else {
->>>> +               drm_warn(&xe->drm, "Failed to create job for VRAM
->>>> overlap check\n");
->>>> +               xe_bb_free(bb, NULL);
->>>> +               return PTR_ERR(job);
->>>> +       }
->>>> +
->>>> +       xe_bb_free(bb, NULL);
->>>> +       return 0;
->>>> +}
->>>> +#endif
->>>> diff --git a/drivers/gpu/drm/xe/xe_migrate.h
->>>> b/drivers/gpu/drm/xe/xe_migrate.h
->>>> index c3a268b01768..a9acc62f78f0 100644
->>>> --- a/drivers/gpu/drm/xe/xe_migrate.h
->>>> +++ b/drivers/gpu/drm/xe/xe_migrate.h
->>>> @@ -182,4 +182,10 @@ static inline void
->>>> xe_migrate_job_lock_assert(struct xe_exec_queue *q)
->>>>    void xe_migrate_job_lock(struct xe_migrate *m, struct
->>>> xe_exec_queue
->>>> *q);
->>>>    void xe_migrate_job_unlock(struct xe_migrate *m, struct
->>>> xe_exec_queue *q);
->>>>    
->>>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
->>>> +int xe_migrate_debug_ccs_overlap(struct xe_migrate *m,
->>>> +                                struct xe_bo *scratch_bo,
->>>> +                                bool write_to_ccs);
->>>> +#endif
->>>> +
->>>>    #endif
->>>> diff --git a/drivers/gpu/drm/xe/xe_tile_types.h
->>>> b/drivers/gpu/drm/xe/xe_tile_types.h
->>>> index 0048100ccb72..e1368c04846a 100644
->>>> --- a/drivers/gpu/drm/xe/xe_tile_types.h
->>>> +++ b/drivers/gpu/drm/xe/xe_tile_types.h
->>>> @@ -97,6 +97,10 @@ struct xe_tile {
->>>>                    * Only main GT has page reclaim list
->>>> allocations.
->>>>                    */
->>>>                   struct xe_sa_manager *reclaim_pool;
->>>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
->>>> +               /** @mem.memtest_bo: VRAM overlap check BO */
->>>> +               struct xe_bo *memtest_bo;
->>>> +#endif
->>>>           } mem;
->>>>    
->>>>           /** @sriov: tile level virtualization data */
->>>> diff --git a/drivers/gpu/drm/xe/xe_vram.c
->>>> b/drivers/gpu/drm/xe/xe_vram.c
->>>> index 0a2f1ab8416e..4a79580c5315 100644
->>>> --- a/drivers/gpu/drm/xe/xe_vram.c
->>>> +++ b/drivers/gpu/drm/xe/xe_vram.c
->>>> @@ -17,8 +17,11 @@
->>>>    #include "xe_device.h"
->>>>    #include "xe_force_wake.h"
->>>>    #include "xe_gt_mcr.h"
->>>> +#include "xe_map.h"
->>>> +#include "xe_migrate.h"
->>>>    #include "xe_mmio.h"
->>>>    #include "xe_sriov.h"
->>>> +#include "xe_tile.h"
->>>>    #include "xe_tile_sriov_vf.h"
->>>>    #include "xe_ttm_vram_mgr.h"
->>>>    #include "xe_vram.h"
->>>> @@ -403,3 +406,241 @@ resource_size_t
->>>> xe_vram_region_actual_physical_size(const struct xe_vram_region
->>>>           return vram ? vram->actual_physical_size : 0;
->>>>    }
->>>>    EXPORT_SYMBOL_IF_KUNIT(xe_vram_region_actual_physical_size);
->>>> +
->>>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
->>>> +static void memtest_bo_cleanup(void *arg)
->>>> +{
->>>> +       struct xe_device *xe = arg;
->>>> +
->>>> +       xe_vram_free_memtest_bos(xe);
->>>> +}
->>>> +
->>>> +int xe_vram_reserve_memtest_bo(struct xe_device *xe)
->>>> +{
->>>> +       struct xe_tile *tile;
->>>> +       u8 id;
->>>> +
->>>> +       if (IS_SRIOV_VF(xe))
->>>> +               return 0;
->>>> +
->>>> +       for_each_tile(tile, xe, id) {
->>>> +               u64 vram_size;
->>>> +
->>>> +               if (!tile->mem.vram)
->>>> +                       continue;
->>>> +
->>>> +               if (tile->mem.vram->io_size < tile->mem.vram-
->>>>> usable_size) {
->>>> +                       drm_info(&xe->drm,
->>>> +                                "Tile %d: Small-BAR system
->>>> detected,
->>>> skipping VRAM memtest\n",
->>>> +                                id);
->>>> +                       continue;
->>>> +               }
->>>> +
->>>> +               vram_size = tile->mem.vram->usable_size;
->>>> +
->>>> +               tile->mem.memtest_bo =
->>>> xe_bo_create_pin_map_at_novm(xe, tile, SZ_64K,
->>>> +
->>>> vram_size - SZ_64K,
->>>> +
->>>> ttm_bo_type_kernel,
->>>> +
->>>> XE_BO_FLAG_VRAM_IF_DGFX(tile),
->>>> +
->>>> 0, false);
->>>> +               if (IS_ERR(tile->mem.memtest_bo)) {
->>>> +                       drm_warn(&xe->drm, "Tile %d: Failed to
->>>> reserve memtest BO\n", id);
->>>> +                       tile->mem.memtest_bo = NULL;
->>>> +                       continue;
->>>> +               }
->>>> +
->>>> +               drm_info(&xe->drm, "Tile %d: Reserved memtest BO
->>>> at
->>>> offset 0x%llx\n",
->>>> +                        id, vram_size - SZ_64K);
->>>> +       }
->>>> +
->>>> +       return devm_add_action_or_reset(xe->drm.dev,
->>>> memtest_bo_cleanup, xe);
->>>> +}
->>>> +
->>>> +void xe_vram_free_memtest_bos(struct xe_device *xe)
->>>> +{
->>>> +       struct xe_tile *tile;
->>>> +       u8 id;
->>>> +
->>>> +       for_each_tile(tile, xe, id) {
->>>> +               if (tile->mem.memtest_bo) {
->>>> +                       xe_bo_unpin_map_no_vm(tile-
->>>>> mem.memtest_bo);
->>>> +                       tile->mem.memtest_bo = NULL;
->>>> +               }
->>>> +       }
->>>> +}
->>>> +
->>>> +int xe_vram_memtest(struct xe_device *xe)
->>>> +{
->>>> +       struct xe_tile *tile;
->>>> +       u8 id;
->>>> +       int err = 0;
->>>> +
->>>> +       if (IS_SRIOV_VF(xe))
->>>> +               return 0;
->>>> +
->>>> +       for_each_tile(tile, xe, id) {
->>>> +               struct xe_bo *last_page_bo = tile-
->>>>> mem.memtest_bo;
->>>> +               struct dma_fence *fence;
->>>> +               bool overlap = false;
->>>> +               int i;
->>>> +               u8 val;
->>>> +
->>>> +               if (!last_page_bo || !tile->migrate)
->>>> +                       continue;
->>>> +
->>>> +               drm_info(&xe->drm, "Tile %d: Running VRAM
->>>> memtest...\n", id);
->>>> +
->>>> +               /* CPU write and readback first and last byte of
->>>> the
->>>> last page */
->>>> +               xe_map_wr(xe, &last_page_bo->vmap, 0, u8, 0xA5);
->>>> +               xe_map_wr(xe, &last_page_bo->vmap, SZ_64K - 1,
->>>> u8,
->>>> 0x5A);
->>>> +
->>>> +               val = xe_map_rd(xe, &last_page_bo->vmap, 0, u8);
->>>> +               if (drm_WARN(&xe->drm, val != 0xA5,
->>>> +                            "Tile %d: CPU memtest failed at
->>>> offset 0
->>>> (expected 0xA5, got 0x%02x)\n",
->>>> +                            id, val)) {
->>>> +                       err = -EIO;
->>>> +                       goto unpin;
->>>> +               }
->>>> +
->>>> +               val = xe_map_rd(xe, &last_page_bo->vmap, SZ_64K -
->>>> 1,
->>>> u8);
->>>> +               if (drm_WARN(&xe->drm, val != 0x5A,
->>>> +                            "Tile %d: CPU memtest failed at
->>>> offset
->>>> 65535 (expected 0x5A, got 0x%02x)\n",
->>>> +                            id, val)) {
->>>> +                       err = -EIO;
->>>> +                       goto unpin;
->>>> +               }
->>>> +
->>>> +               /* Non-CCS access via GPU on the last page */
->>>> +               xe_bo_lock(last_page_bo, false);
->>>> +               fence = xe_migrate_clear(tile->migrate,
->>>> last_page_bo,
->>>> +                                        last_page_bo-
->>>>> ttm.resource,
->>>> +
->>>> XE_MIGRATE_CLEAR_FLAG_BO_DATA);
->>>> +               xe_bo_unlock(last_page_bo);
->>>> +
->>>> +               if (!IS_ERR(fence)) {
->>>> +                       dma_fence_wait(fence, false);
->>>> +                       dma_fence_put(fence);
->>>> +               } else {
->>>> +                       err = PTR_ERR(fence);
->>>> +                       goto unpin;
->>>> +               }
->>>> +
->>>> +               val = xe_map_rd(xe, &last_page_bo->vmap, 0, u8);
->>>> +               if (drm_WARN(&xe->drm, val != 0x00,
->>>> +                            "Tile %d: GPU memtest clear failed
->>>> at
->>>> offset 0 (expected 0x00, got 0x%02x)\n",
->>>> +                            id, val)) {
->>>> +                       err = -EIO;
->>>> +                       goto unpin;
->>>> +               }
->>>> +
->>>> +               /*
->>>> +                * Check for CCS overlap on the root tile.
->>>> +                *
->>>> +                * TODO: maybe extend if we ever get multi-tile +
->>>> CCS. Pay
->>>> +                * special attention to the l2 flush below.
->>>> Currently
->>>> that is
->>>> +                * hard coded to the root tile.
->>>> +                */
->>>> +               if (!id && xe_device_has_flat_ccs(xe) &&
->>>> +                   GRAPHICS_VERx100(xe) >= 2000) {
->>>> +                       struct xe_bo *scratch_bo_before;
->>>> +                       struct xe_bo *scratch_bo_after;
->>>> +
->>>> +                       scratch_bo_before =
->>>> xe_bo_create_pin_map_novm(xe, tile, SZ_64K,
->>>> +
->>>> ttm_bo_type_kernel,
->>>> +
->>>> XE_BO_FLAG_VRAM_IF_DGFX(tile),
->>>> +
->>>> false);
->>>> +                       if (IS_ERR(scratch_bo_before)) {
->>>> +                               err = PTR_ERR(scratch_bo_before);
->>>> +                               goto unpin;
->>>> +                       }
->>>> +
->>>> +                       scratch_bo_after =
->>>> xe_bo_create_pin_map_novm(xe, tile, SZ_64K,
->>>> +
->>>> ttm_bo_type_kernel,
->>>> +
->>>> XE_BO_FLAG_VRAM_IF_DGFX(tile),
->>>> +
->>>> false);
->>>> +                       if (IS_ERR(scratch_bo_after)) {
->>>> +                               xe_bo_unpin_map_no_vm(scratch_bo_
->>>> befo
->>>> re);
->>>> +                               err = PTR_ERR(scratch_bo_after);
->>>> +                               goto unpin;
->>>> +                       }
->>>> +
->>>> +                       /* Save original CCS metadata for PA 0 +
->>>> */
->>>> +                       err = xe_migrate_debug_ccs_overlap(tile-
->>>>> migrate, scratch_bo_before, false);
->>>> +                       if (err) {
->>>> +                               xe_bo_unpin_map_no_vm(scratch_bo_
->>>> befo
->>>> re);
->>>> +                               xe_bo_unpin_map_no_vm(scratch_bo_
->>>> afte
->>>> r);
->>>> +                               goto unpin;
->>>> +                       }
->>>> +
->>>> +                       /*
->>>> +                        * Fill last page. If there is CCS
->>>> overlap in
->>>> the last
->>>> +                        * page this will snag the raw CCS
->>>> storage.
->>>> +                        */
->>>> +                       xe_map_memset(xe, &last_page_bo->vmap, 0,
->>>> 0x5A, SZ_64K);
->>>> +                       xe_device_wmb(xe);
->>>> +
->>>> +                       /*
->>>> +                        * Global invalidation. Some BMG SKUs
->>>> will
->>>> cache the BAR
->>>> +                        * writes in the GPU side VRAM cache.
->>>> Make
->>>> sure above
->>>> +                        * writes are fully flushed out to VRAM,
->>>> so
->>>> this is
->>>> +                        * hopefully more well behaved with the
->>>> CCS
->>>> unit, if
->>>> +                        * there is indeed CCS overlap with
->>>> normal
->>>> VRAM. Since
->>>> +                        * there is a separate CCS cache, the CCS
->>>> unit might not
->>>> +                        * respect the GPU VRAM cache for CCS
->>>> accesses, so opt
->>>> +                        * for being super careful here.
->>>> +                        */
->>>> +                       xe_device_l2_flush(xe, true);
->>>> +
->>>> +                       /* Use GPU to clear CCS state for PA 0 */
->>>> +                       xe_map_memset(xe, &scratch_bo_after-
->>>>> vmap, 0,
->>>> 0x00, SZ_64K);
->>>> +                       err = xe_migrate_debug_ccs_overlap(tile-
->>>>> migrate, scratch_bo_after, true);
->>>> +                       if (err) {
->>>> +                               xe_bo_unpin_map_no_vm(scratch_bo_
->>>> befo
->>>> re);
->>>> +                               xe_bo_unpin_map_no_vm(scratch_bo_
->>>> afte
->>>> r);
->>>> +                               goto unpin;
->>>> +                       }
->>>> +                       /*
->>>> +                        * Global invalidation. Ensure CCS caches
->>>> really are
->>>> +                        * nuked and the raw CCS data is visible
->>>> in
->>>> VRAM, for
->>>> +                        * the below access.
->>>> +                        */
->>>> +                       xe_device_l2_flush(xe, true);
->>>> +
->>>> +                       /* Check if last_page_bo was corrupted by
->>>> the
->>>> GPU CCS clear */
->>>> +                       for (i = 0; i < SZ_64K; i += 8) {
->>>> +                               u64 payload = xe_map_rd(xe,
->>>> &last_page_bo->vmap, i, u64);
->>>> +
->>>> +                               if (payload !=
->>>> 0x5A5A5A5A5A5A5A5AULL)
->>>> {
->>>> +                                       overlap = true;
->>>> +                                       break;
->>>> +                               }
->>>> +                       }
->>>> +
->>>> +                       /* Restore original CCS metadata for PA 0
->>>> +
->>>> */
->>>> +                       err = xe_migrate_debug_ccs_overlap(tile-
->>>>> migrate, scratch_bo_before, true);
->>>> +                       if (err)
->>>> +                               drm_warn(&xe->drm, "Failed to
->>>> restore
->>>> CCS metadata\n");
->>>> +
->>>> +                       xe_bo_unpin_map_no_vm(scratch_bo_before);
->>>> +                       xe_bo_unpin_map_no_vm(scratch_bo_after);
->>>> +               }
->>>> +
->>>> +               if (drm_WARN(&xe->drm, overlap,
->>>> +                            "Tile %d: VRAM bounds overlap CCS
->>>> region! VRAM sizing is incorrect.\n",
->>>> +                            id)) {
->>>> +                       err = -EINVAL;
->>>> +                       goto unpin;
->>>> +               }
->>>> +
->>>> +               drm_info(&xe->drm, "Tile %d: VRAM memtest
->>>> completed.\n", id);
->>>> +
->>>> +unpin:
->>>> +               if (err)
->>>> +                       break;
->>>> +       }
->>>> +
->>>> +       xe_vram_free_memtest_bos(xe);
->>>> +
->>>> +       return err;
->>>> +}
->>>> +#endif
->>>> diff --git a/drivers/gpu/drm/xe/xe_vram.h
->>>> b/drivers/gpu/drm/xe/xe_vram.h
->>>> index dd1c8bf17922..38425d81f777 100644
->>>> --- a/drivers/gpu/drm/xe/xe_vram.h
->>>> +++ b/drivers/gpu/drm/xe/xe_vram.h
->>>> @@ -23,4 +23,14 @@ resource_size_t xe_vram_region_dpa_base(const
->>>> struct xe_vram_region *vram);
->>>>    resource_size_t xe_vram_region_usable_size(const struct
->>>> xe_vram_region *vram);
->>>>    resource_size_t xe_vram_region_actual_physical_size(const
->>>> struct
->>>> xe_vram_region *vram);
->>>>    
->>>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
->>>> +int xe_vram_reserve_memtest_bo(struct xe_device *xe);
->>>> +void xe_vram_free_memtest_bos(struct xe_device *xe);
->>>> +int xe_vram_memtest(struct xe_device *xe);
->>>> +#else
->>>> +static inline int xe_vram_reserve_memtest_bo(struct xe_device
->>>> *xe) {
->>>> return 0; }
->>>> +static inline void xe_vram_free_memtest_bos(struct xe_device
->>>> *xe) {}
->>>> +static inline int xe_vram_memtest(struct xe_device *xe) { return
->>>> 0;
->>>> }
->>>> +#endif
->>>> +
->>>>    #endif
->>>
->>
-> 
+  **SUCCESS**
 
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 13)
+------------------------------
+
+  Additional (1): bat-nvls-1 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-173292v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-nvls-1:         NOTRUN -> [SKIP][1] ([Intel XE#8757])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-nvls-1:         NOTRUN -> [SKIP][2] ([Intel XE#8759])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@kms_dsc@dsc-basic.html
+
+  * igt@xe_evict@evict-small-multi-vm:
+    - bat-nvls-1:         NOTRUN -> [SKIP][3] ([Intel XE#8777]) +9 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_evict@evict-small-multi-vm.html
+
+  * igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:
+    - bat-nvls-1:         NOTRUN -> [SKIP][4] ([Intel XE#8744]) +1 other test skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
+
+  * igt@xe_exec_balancer@twice-virtual-userptr-invalidate:
+    - bat-nvls-1:         NOTRUN -> [SKIP][5] ([Intel XE#8741]) +17 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_exec_balancer@twice-virtual-userptr-invalidate.html
+
+  * igt@xe_exec_multi_queue@many-queues-userptr-invalidate:
+    - bat-nvls-1:         NOTRUN -> [SKIP][6] ([Intel XE#8377]) +13 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_exec_multi_queue@many-queues-userptr-invalidate.html
+
+  * igt@xe_huc_copy@huc_copy:
+    - bat-nvls-1:         NOTRUN -> [SKIP][7] ([Intel XE#8746])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_huc_copy@huc_copy.html
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-nvls-1:         NOTRUN -> [SKIP][8] ([Intel XE#8792])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_live_ktest@xe_bo.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
+    - bat-nvls-1:         NOTRUN -> [SKIP][9] ([Intel XE#8791] / [Intel XE#8792])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-nvls-1:         NOTRUN -> [SKIP][10] ([Intel XE#8791])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  * igt@xe_mmap@vram:
+    - bat-nvls-1:         NOTRUN -> [SKIP][11] ([Intel XE#8747])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-nvls-1:         NOTRUN -> [SKIP][12] ([Intel XE#8748])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-nvls-1:         NOTRUN -> [SKIP][13] ([Intel XE#8743])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-nvls-1:         NOTRUN -> [SKIP][14] ([Intel XE#8745])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_pat@pat-index-xelpg.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-ptl-2:          [FAIL][15] ([Intel XE#9109]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5682-55c4728ed845a416ede64230f24ce55567da1736/bat-ptl-2/igt@xe_waitfence@engine.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-ptl-2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#8377]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8377
+  [Intel XE#8741]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8741
+  [Intel XE#8743]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8743
+  [Intel XE#8744]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8744
+  [Intel XE#8745]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8745
+  [Intel XE#8746]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8746
+  [Intel XE#8747]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8747
+  [Intel XE#8748]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8748
+  [Intel XE#8757]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8757
+  [Intel XE#8759]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8759
+  [Intel XE#8777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8777
+  [Intel XE#8791]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8791
+  [Intel XE#8792]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8792
+  [Intel XE#9109]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109
+
+
+Build changes
+-------------
+
+  * Linux: xe-5682-55c4728ed845a416ede64230f24ce55567da1736 -> xe-pw-173292v1
+
+  IGT_9081: 9081
+  xe-5682-55c4728ed845a416ede64230f24ce55567da1736: 55c4728ed845a416ede64230f24ce55567da1736
+  xe-pw-173292v1: 173292v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/index.html
+
+--===============3938512978008379288==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/vm: Handle purged BOs in VM snapshots</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173292/">https://patchwork.freedesktop.org/series/173292/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5682-55c4728ed845a416ede64230f24ce55567da1736_BAT -&gt; xe-pw-173292v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 13)</h2>
+<p>Additional (1): bat-nvls-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-173292v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8757">Intel XE#8757</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8759">Intel XE#8759</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-small-multi-vm:</p>
+<ul>
+<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_evict@evict-small-multi-vm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8777">Intel XE#8777</a>) +9 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:</p>
+<ul>
+<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8744">Intel XE#8744</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_balancer@twice-virtual-userptr-invalidate:</p>
+<ul>
+<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_exec_balancer@twice-virtual-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8741">Intel XE#8741</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@many-queues-userptr-invalidate:</p>
+<ul>
+<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_exec_multi_queue@many-queues-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8377">Intel XE#8377</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_huc_copy@huc_copy:</p>
+<ul>
+<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8746">Intel XE#8746</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo:</p>
+<ul>
+<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8792">Intel XE#8792</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
+<ul>
+<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8791">Intel XE#8791</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8792">Intel XE#8792</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8791">Intel XE#8791</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8747">Intel XE#8747</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8748">Intel XE#8748</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8743">Intel XE#8743</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-nvls-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8745">Intel XE#8745</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5682-55c4728ed845a416ede64230f24ce55567da1736/bat-ptl-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109">Intel XE#9109</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173292v1/bat-ptl-2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5682-55c4728ed845a416ede64230f24ce55567da1736 -&gt; xe-pw-173292v1</li>
+</ul>
+<p>IGT_9081: 9081<br />
+  xe-5682-55c4728ed845a416ede64230f24ce55567da1736: 55c4728ed845a416ede64230f24ce55567da1736<br />
+  xe-pw-173292v1: 173292v1</p>
+
+</body>
+</html>
+
+--===============3938512978008379288==--
