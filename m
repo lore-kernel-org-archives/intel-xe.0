@@ -4,62 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E24DC61DD3
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 16:52:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED292C61DD3
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 16:55:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D883110F659;
-	Thu,  3 Sep 2026 16:52:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CD0E10E1A5;
+	Thu,  3 Sep 2026 16:55:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IVg1HJxv";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="AkrY1g+R";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12B2C10E1A5;
- Thu,  3 Sep 2026 16:52:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788454335; x=1819990335;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4g74dxjAb6uKZrmWQIm7hKsaV8wMzF98QTi2SJ6D90c=;
- b=IVg1HJxvXvhP1SdwQDscg6w0mz0uv0gpvTFwZkgbZ6wGRNOQEJv46+YD
- ZFjQQfRu7zNkb/J0a5XamB+ShNXPwSXPwLd06h7aLawmNWwNvD6kphIL0
- DHEQ9xL49dGnDHrYf4bfSSbc+Grkj4kTP4v2atQbfslyxESLDTc9pJadv
- 34ZCIsNQEfJYXKmsC3gwVVq1FdZGQSRPDtBbF4IQgS9jVCC4PmB1kcVUt
- 7QQIbcJ8iF5Dv5WfAdcKSfQazNw2bSe2aG59p5vT7ZKK+jLQ3JmxBq9BO
- VjB4uVjsgLYkGIOB9m4QlAiJ62dg8Hs4Kj//sLk5K/3fNjyMKr+0n6nVe Q==;
-X-CSE-ConnectionGUID: WVKfDSxTTEC25wJ6h3waRQ==
-X-CSE-MsgGUID: kdK4nBwtSAyeLufoUfjoLA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="87884100"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="87884100"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 09:52:14 -0700
-X-CSE-ConnectionGUID: hu8K/60wTxKnAJkbiUrGsw==
-X-CSE-MsgGUID: Z9xzawxASkmXEzPLNL7jQQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="265449898"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.170])
- by fmviesa006-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2026 09:52:11 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Date: Thu, 03 Sep 2026 19:52:06 +0300
-Message-ID: <affe11af9d5eb9dc6f906441495cb843f9d4817c@intel.com>
-MIME-Version: 1.0
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3C1E10E1A5
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 16:55:53 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 7AAEF4017D;
+ Thu,  3 Sep 2026 16:55:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D4181F000E9;
+ Thu,  3 Sep 2026 16:55:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788454553;
+ bh=gJwv/QmSppgU2bEAc8rRfkZdxLCUAGHbWFcnxnKj3fw=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=AkrY1g+RYQaiZzvOEATl2j7WdRF+jNZp1sKOAydZCYy8LZSCA4Vor5oohg6WbOkDK
+ aFtCBz7oPVRkpQXRphIX0l5zqaegZOhIE3KhwGlBBT0wlq4+ECrtlQdVN1Z4UwsDD+
+ zGv+9G+XG7WFozMkhj6e/8teiDJdbz1ImrP8t9ctkZqRHJs4P1u68nsJ/xFLTynVa2
+ cEp1X16YzfYc7tfEEu7TOMkqiuA28BdpTSrOAdxByywcT+UIXLA7bZwDzJAeaYd5R0
+ ZJEFLWjbAsS7+HiMlv4d4KQ2lqcQ/BQe6VejrIQXnLWFB5SxyYoZGE50Qb2s3buhC5
+ 45oK6REbFyyIg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH V21 06/15] drm/xe: Guard teardown paths against purged BOs
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260903161553.528932-23-tejas.upadhyay@intel.com>
+References: <20260903161553.528932-17-tejas.upadhyay@intel.com>
+ <20260903161553.528932-23-tejas.upadhyay@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+Date: Thu, 03 Sep 2026 16:55:52 +0000
+Message-Id: <20260903165553.3D4181F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,88 +52,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] Unsafe access to purged pt_root vmap in xe_pt_clear() during VM te=
+ardown.
+--
 
-Hi Dave & Sima -
+commit 93911d5c837da7fe0353a26b41f2f3b5ce75d05b
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
-drm/i915 display fixes for v7.3-rc2.
+drm/xe: Guard teardown paths against purged BOs
 
-Half of these were already in Rodrigo's fixes pull request for v7.2
-final [1], but that one was somehow missed. Now rebased on v7.3-rc1.
+VRAM page offlining can purge BOs that are still referenced by page
+tables, exec queues, and DMA-buf exports. Add xe_bo_is_purged()
+guards in the teardown paths to prevent unpinning or mapping an
+already-purged BO.
 
-BR,
-Jani.
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index c255327669da5..b162753cebb70 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -3267,6 +3267,9 @@ void xe_bo_unpin(struct xe_bo *bo)
+>  	struct ttm_place *place =3D &bo->placements[0];
+>  	struct xe_device *xe =3D xe_bo_device(bo);
+> =20
+> +	if (xe_bo_is_purged(bo))
+> +		return;
+> +
 
+[Severity: High]
+Does xe_vm_close() also need to be guarded against purged BOs?
 
-[1] https://lore.kernel.org/r/an23lmV9ktpiHnTN@intel.com
+During VM teardown, if a VRAM page offline fault occurs on a userspace root
+page table BO, the offliner purges the BO which unmaps its CPU vmap. Later,
+when userspace closes the VM or the process exits, xe_vm_close()
+unconditionally calls xe_pt_clear() on the root page table:
 
+drivers/gpu/drm/xe/xe_vm.c:xe_vm_close() {
+    ...
+			for_each_tile(tile, xe, id)
+				if (vm->pt_root[id])
+					xe_pt_clear(xe, vm->pt_root[id]);
+    ...
+}
 
-drm-intel-fixes-2026-09-03:
-drm/i915 fixes for v7.3-rc2:
-- Drop an accidentally duplicated panel fitter call in DP MST
-- Fix DDI clock programming for Cx0 and LT PHY
-- Fix PTL CDCLK handling at probe, causing a glitch
-- Fix dg2_power_well_count() return type
-- Fix a NULL pointer deref at forced probe
-- Fix selective fetch disable
+This passes the cleared vmap to xe_map_memset(), leading to a kernel panic
+due to a NULL pointer dereference:
 
-BR,
-Jani.
+drivers/gpu/drm/xe/xe_pt.c:xe_pt_clear() {
+	struct iosys_map *map =3D &pt->bo->vmap;
 
-The following changes since commit cee9395acd8043be0644b25c34bfa86623f2b935:
-
-  Linux 7.3-rc1 (2026-08-30 13:34:40 -0700)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2=
-026-09-03
-
-for you to fetch changes up to 3785d40831ba5601296283e0197e10e089392757:
-
-  drm/i915: Guard against NULL driver_data in i915_pci_probe() (2026-08-31 =
-12:56:49 +0300)
-
-----------------------------------------------------------------
-drm/i915 fixes for v7.3-rc2:
-- Drop an accidentally duplicated panel fitter call in DP MST
-- Fix DDI clock programming for Cx0 and LT PHY
-- Fix PTL CDCLK handling at probe, causing a glitch
-- Fix dg2_power_well_count() return type
-- Fix a NULL pointer deref at forced probe
-- Fix selective fetch disable
-
-----------------------------------------------------------------
-Chaitanya Kumar Borah (1):
-      drm/i915/dp_mst: Remove duplicate intel_pfit_compute_config() call
-
-Deepanshu Kartikey (1):
-      drm/i915: Guard against NULL driver_data in i915_pci_probe()
-
-Nemesa Garg (1):
-      drm/i915/display: Clear SEL_FETCH_PLANE_CTL on plane disable
-
-Suraj Kandpal (3):
-      drm/i915/ddi: add helper to compute DDI clock frequency
-      drm/i915/cx0: program DDI_CLK_VALFREQ with DDI clock frequency
-      drm/i915/lt_phy: program DDI_CLK_VALFREQ with DDI clock frequency
-
-Ville Syrj=C3=A4l=C3=A4 (2):
-      drm/i915/cdclk: Avoid spurious cdclk sanitization on PTL+
-      drm/i915/cdclk: Fix dg2_power_well_count() return type
-
- drivers/gpu/drm/i915/display/intel_cdclk.c         | 10 ++++++----
- drivers/gpu/drm/i915/display/intel_cursor.c        | 15 ++++++++++-----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c       |  5 +++--
- drivers/gpu/drm/i915/display/intel_ddi.c           | 11 +++++++++++
- drivers/gpu/drm/i915/display/intel_ddi.h           |  1 +
- drivers/gpu/drm/i915/display/intel_dp_mst.c        |  4 ----
- drivers/gpu/drm/i915/display/intel_lt_phy.c        |  6 ++++--
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 15 ++++++++++-----
- drivers/gpu/drm/i915/i915_pci.c                    |  3 +++
- 9 files changed, 48 insertions(+), 22 deletions(-)
+	xe_map_memset(xe, map, 0, 0, SZ_4K);
+}
 
 --=20
-Jani Nikula, Intel
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903161553.5289=
+32-17-tejas.upadhyay@intel.com?part=3D6
