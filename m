@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A6ACC61DD3
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:01:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BC96C624D6
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:01:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0849A10F676;
-	Thu,  3 Sep 2026 15:01:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AD0810F680;
+	Thu,  3 Sep 2026 15:01:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="limcHPxS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fdJbiHBB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84E8E10F684
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 15:01:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9641910F680
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 15:01:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788447699; x=1819983699;
+ t=1788447703; x=1819983703;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Eg/SrsoTjDotLfrVsRGshHMjaPTP3kNn7R2HmF1EXBs=;
- b=limcHPxSGAWGwFEkyFuYzADvUTULiBNAvi+z1W//a59J3kqcwMjhMzQu
- XYn76aovdFOlas+Po8sPcaupFFdbfWF3IYrjYo+YOthq2vs0gKhqBfQex
- bZImNowcoCJvtkQ+jR3l1h0OPRXd9oceNMGKx4AvCTpN4/WqLpvZWwbXQ
- inGLex/YatcrZssgeMvtqh1K1i+J55Zv1/hv8ujOoX49D6yPghT1wdUQc
- fFs0gHx+2Q/+4nveBYXf1yTPTjquxumPBokTOQG5Ku5H1EbFyH87m6I+7
- TSRvNHPSgBUYUdTCevTiro20NOiRbQm1LbWm09RPcfg+OQzjXparrQl9z g==;
-X-CSE-ConnectionGUID: nO9xUz45TYm5Gu/+w758Ow==
-X-CSE-MsgGUID: QpKoJL9YQS+XwN6wen6GMw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="76486875"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="76486875"
+ bh=dmkFYuEXH3h91jC0Tp/7l31fNCmmaUNnwuusoEWyHf0=;
+ b=fdJbiHBBm3N3B0Z9xHIjPfeNdWXR75BR9bv4gESAs+ey8pmJcmXhrCK4
+ wMNaFjCcw5havh6ctPCQSQobKLsg08MQHWOyO9wBkfSzQIq3vrmEaHv/M
+ ys/l1J9wJx4A0CE+rfhYLy5wUvr4MyakqoXDUsZ0QQ3+gsJZmqsPxT7G/
+ QACDyxLqnWc0Yztx3PLhFvZyYe6YPW1mZQiuyafxEtGkKoRO0QXgTouNa
+ wsic8q9eTZnUfLIJTeFCiLDbYU08z62rG+YXG1b+S2pOj2svG9cy97E6l
+ ecmaMOlsKzMKcgIksXestkP+PNBn0Od7UzDWH5GOHAh04oZypHy9KxVUM g==;
+X-CSE-ConnectionGUID: C9Q3jXdlR0uKB/Iar5JAmA==
+X-CSE-MsgGUID: 2uYWIu3nQXmIjivvx5FH0Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="76486900"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="76486900"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 08:01:38 -0700
-X-CSE-ConnectionGUID: IXNFvUMdSP2sprmq3VUCPw==
-X-CSE-MsgGUID: cDa4o96BQJilRlM4yVfIpQ==
+ 03 Sep 2026 08:01:42 -0700
+X-CSE-ConnectionGUID: QRyjJBGKTt+VZeymvYruCQ==
+X-CSE-MsgGUID: ozOVMgG3R6ymFsd5RvtNvg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="268441317"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="268441366"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
  mkuoppal-desk.intel.com) ([10.245.246.233])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 08:01:33 -0700
+ 03 Sep 2026 08:01:38 -0700
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
@@ -51,13 +51,15 @@ Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
  andrzej.hajda@intel.com, matthew.auld@intel.com,
  maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com,
  Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: [PATCH v10 20/27] drm/xe/pagefault: export pagefault queue properties
-Date: Thu,  3 Sep 2026 17:59:44 +0300
-Message-ID: <20260903145952.848051-21-mika.kuoppala@linux.intel.com>
+Subject: [PATCH v10 21/27] drm/xe/eudebug: Add read/count/compare helper for
+ eu attention
+Date: Thu,  3 Sep 2026 17:59:45 +0300
+Message-ID: <20260903145952.848051-22-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260903145952.848051-1-mika.kuoppala@linux.intel.com>
 References: <20260903145952.848051-1-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,151 +75,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Maciej Patelczyk <maciej.patelczyk@intel.com>
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 
-Export pagefault queue related properties for eudebug.
+Add xe_eu_attentions structure to capture and store eu attention bits.
+Add a function to count the number of eu threads that have turned on from
+eu attentions, and add a function to count the number of eu threads that
+have changed on a state between eu attentions.
 
+v2: fix array size calculation (Christoph)
+v3: remote timestamp (Maciej)
+v4: settle time (Maciej)
+
+Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_pagefault.c       | 44 -------------------------
- drivers/gpu/drm/xe/xe_pagefault.h       | 10 ++++++
- drivers/gpu/drm/xe/xe_pagefault_types.h | 34 +++++++++++++++++++
- 3 files changed, 44 insertions(+), 44 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_debug.c       | 50 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_debug.h       |  6 +++-
+ drivers/gpu/drm/xe/xe_gt_debug_types.h | 22 ++++++++++++
+ 3 files changed, 77 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_debug_types.h
 
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index 2e415995f067..27c3a90e4e73 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -70,49 +70,6 @@
-  * free state once they are complete.
+diff --git a/drivers/gpu/drm/xe/xe_gt_debug.c b/drivers/gpu/drm/xe/xe_gt_debug.c
+index b20e42e66c5b..bff78c0b232a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debug.c
++++ b/drivers/gpu/drm/xe/xe_gt_debug.c
+@@ -3,12 +3,15 @@
+  * Copyright © 2023 Intel Corporation
   */
  
--/**
-- * enum xe_pagefault_alloc_state - lifetime state for a page fault queue entry
-- * @XE_PAGEFAULT_ALLOC_STATE_FREE:
-- *	Entry is unused and may be overwritten by the producer, consumer retry
-- *	or requeue..
-- * @XE_PAGEFAULT_ALLOC_STATE_QUEUED:
-- *	Entry has been enqueued and may be dequeued by a worker.
-- * @XE_PAGEFAULT_ALLOC_STATE_ACTIVE:
-- *	Entry has been dequeued and is the worker's currently serviced fault.
-- *	The worker may attach additional faults to it via consumer.next.
-- * @XE_PAGEFAULT_ALLOC_STATE_CHAINED:
-- *	Entry is not independently serviced; it has been chained onto an
-- *	ACTIVE entry via consumer.next and will be acknowledged when the
-- *	leading fault completes.
-- * @XE_PAGEFAULT_ALLOC_STATE_COUNT:
-- *	Count of allocation states.
-- *
-- * The page fault queue provides stable storage for outstanding faults so the
-- * IRQ handler can chain new cache hits directly onto a worker's active fault.
-- * Because entries may remain referenced outside the consumer dequeue window,
-- * the producer must only write into entries in the FREE state.
-- *
-- * State transitions are protected by the page fault queue lock. Workers return
-- * entries to FREE after acknowledging the fault (either as ACTIVE or CHAINED).
-- */
--enum xe_pagefault_alloc_state {
--	XE_PAGEFAULT_ALLOC_STATE_FREE		= 0,
--	XE_PAGEFAULT_ALLOC_STATE_QUEUED		= 1,
--	XE_PAGEFAULT_ALLOC_STATE_CHAINED	= 2,
--	XE_PAGEFAULT_ALLOC_STATE_ACTIVE		= 3,
--	XE_PAGEFAULT_ALLOC_STATE_COUNT		= 4,
--};
--
--static int xe_pagefault_entry_size(void)
--{
--	/*
--	 * Power of two alignment is not a hardware requirement, rather a
--	 * software restriction which makes the math for page fault queue
--	 * management simplier.
--	 */
--	return roundup_pow_of_two(sizeof(struct xe_pagefault));
--}
--
- static int xe_pagefault_begin(struct drm_exec *exec, struct xe_vma *vma,
- 			      struct xe_vram_region *vram, bool need_vram_move)
- {
-@@ -295,7 +252,6 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
- 	return err;
++#include <linux/delay.h>
++
+ #include "regs/xe_gt_regs.h"
+ #include "xe_device.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt.h"
+ #include "xe_gt_topology.h"
+ #include "xe_gt_debug.h"
++#include "xe_gt_debug_types.h"
+ #include "xe_gt_mcr.h"
+ #include "xe_pm.h"
+ #include "xe_macros.h"
+@@ -199,3 +202,50 @@ int xe_gt_eu_threads_needing_attention(struct xe_gt *gt)
+ 
+ 	return err < 0 ? 0 : err;
  }
- 
--#define XE_PAGEFAULT_CACHE_START_INVALID	U64_MAX
- #define xe_pagefault_cache_start_invalidate(val)	\
- 	(val = XE_PAGEFAULT_CACHE_START_INVALID)
- 
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.h b/drivers/gpu/drm/xe/xe_pagefault.h
-index e9c5d1f03760..83b68a19cc7c 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.h
-+++ b/drivers/gpu/drm/xe/xe_pagefault.h
-@@ -90,4 +90,14 @@ static inline u64 xe_pagefault_start_addr(struct xe_pagefault *pf)
- 	return pf->consumer.page_addr;
- }
- 
-+static inline int xe_pagefault_entry_size(void)
++
++static inline unsigned int
++xe_eu_attentions_count(const struct xe_eu_attentions *a)
 +{
-+	/*
-+	 * Power of two alignment is not a hardware requirement, rather a
-+	 * software restriction which makes the math for page fault queue
-+	 * management simplier.
-+	 */
-+	return roundup_pow_of_two(sizeof(struct xe_pagefault));
++	return bitmap_weight((void *)a->att, a->size * BITS_PER_BYTE);
 +}
 +
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h b/drivers/gpu/drm/xe/xe_pagefault_types.h
-index efeba5c3a58b..f99b4e22441c 100644
---- a/drivers/gpu/drm/xe/xe_pagefault_types.h
-+++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
-@@ -149,6 +149,39 @@ struct xe_pagefault {
- 	} producer;
- };
++void xe_gt_eu_attentions_read(struct xe_gt *gt,
++			      struct xe_eu_attentions *a,
++			      const unsigned int settle_time_ms)
++{
++	unsigned int attn, prev = 0;
++	ktime_t end, now;
++
++	now = ktime_get_raw();
++	/* Initially wait longer for attentions to appear */
++	end = ktime_add_ms(now, settle_time_ms * 10);
++
++	a->size = min_t(int,
++			xe_gt_eu_attention_bitmap_size(gt),
++			sizeof(a->att));
++
++	do {
++		if (xe_gt_eu_attention_bitmap(gt, a->att, a->size) < 0)
++			return;
++
++		if (!settle_time_ms)
++			break;
++
++		attn = xe_eu_attentions_count(a);
++
++		now = ktime_get_raw();
++
++		if (attn > prev) {
++			prev = attn;
++			end = ktime_add_ms(now, settle_time_ms);
++		}
++
++		udelay(15);
++
++		/*
++		 * XXX We are gathering data for production SIP to find
++		 * the upper limit of settle time. For now, we wait full
++		 * timeout value regardless.
++		 */
++	} while ((attn < a->size * 8) && ktime_before(now, end));
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_debug.h b/drivers/gpu/drm/xe/xe_gt_debug.h
+index 9dabe9cc1d25..70794d246e35 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debug.h
++++ b/drivers/gpu/drm/xe/xe_gt_debug.h
+@@ -9,9 +9,10 @@
+ #include <linux/bits.h>
+ #include <linux/math.h>
  
-+/**
-+ * enum xe_pagefault_alloc_state - lifetime state for a page fault queue entry
-+ * @XE_PAGEFAULT_ALLOC_STATE_FREE:
-+ *	Entry is unused and may be overwritten by the producer, consumer retry
-+ *	or requeue..
-+ * @XE_PAGEFAULT_ALLOC_STATE_QUEUED:
-+ *	Entry has been enqueued and may be dequeued by a worker.
-+ * @XE_PAGEFAULT_ALLOC_STATE_ACTIVE:
-+ *	Entry has been dequeued and is the worker's currently serviced fault.
-+ *	The worker may attach additional faults to it via consumer.next.
-+ * @XE_PAGEFAULT_ALLOC_STATE_CHAINED:
-+ *	Entry is not independently serviced; it has been chained onto an
-+ *	ACTIVE entry via consumer.next and will be acknowledged when the
-+ *	leading fault completes.
-+ * @XE_PAGEFAULT_ALLOC_STATE_COUNT:
-+ *	Maximum enum value.
-+ *
-+ * The page fault queue provides stable storage for outstanding faults so the
-+ * IRQ handler can chain new cache hits directly onto a worker's active fault.
-+ * Because entries may remain referenced outside the consumer dequeue window,
-+ * the producer must only write into entries in the FREE state.
-+ *
-+ * State transitions are protected by the page fault queue lock. Workers return
-+ * entries to FREE after acknowledging the fault (either as ACTIVE or CHAINED).
++struct xe_eu_attentions;
+ struct xe_gt;
+ 
+-#define XE_GT_ATTENTION_TIMEOUT_MS 100
++#define XE_GT_ATTENTION_TIMEOUT_MS 150
+ #define XE_GT_EU_ATT_ROWS 2u
+ 
+ unsigned int xe_gt_eu_att_regs(struct xe_gt *gt);
+@@ -29,4 +30,7 @@ int xe_gt_eu_attention_bitmap_size(struct xe_gt *gt);
+ int xe_gt_eu_attention_bitmap(struct xe_gt *gt, u8 *bits,
+ 			      unsigned int bitmap_size);
+ 
++void xe_gt_eu_attentions_read(struct xe_gt *gt,
++			      struct xe_eu_attentions *a,
++			      const unsigned int settle_time_ms);
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_gt_debug_types.h b/drivers/gpu/drm/xe/xe_gt_debug_types.h
+new file mode 100644
+index 000000000000..f24eed15cf7c
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gt_debug_types.h
+@@ -0,0 +1,22 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
 + */
-+enum xe_pagefault_alloc_state {
-+	XE_PAGEFAULT_ALLOC_STATE_FREE		= 0,
-+	XE_PAGEFAULT_ALLOC_STATE_QUEUED		= 1,
-+	XE_PAGEFAULT_ALLOC_STATE_CHAINED	= 2,
-+	XE_PAGEFAULT_ALLOC_STATE_ACTIVE		= 3,
-+	XE_PAGEFAULT_ALLOC_STATE_COUNT		= 4,
++
++#ifndef __XE_GT_DEBUG_TYPES_
++#define __XE_GT_DEBUG_TYPES_
++
++#include <linux/types.h>
++
++#define XE_GT_EU_ATT_ROWS 2u
++#define XE_GT_EU_ATT_MAX_THREADS 16
++#define XE_GT_EU_MAX_NUM  1024
++
++struct xe_eu_attentions {
++	u8 att[XE_GT_EU_MAX_NUM *
++	       XE_GT_EU_ATT_ROWS *
++	       XE_GT_EU_ATT_MAX_THREADS/8];
++	unsigned int size;
 +};
 +
- /**
-  * struct xe_pagefault_queue - Xe pagefault queue (consumer)
-  *
-@@ -188,6 +221,7 @@ struct xe_pagefault_work {
- 	 * Protected by the page fault queue lock.
- 	 */
- 	struct {
-+#define XE_PAGEFAULT_CACHE_START_INVALID	U64_MAX
- 		/** @cache.start: Start address of the current page fault */
- 		u64 start;
- 		/** @cache.end: End address of the current page fault */
++#endif
 -- 
 2.53.0
 
