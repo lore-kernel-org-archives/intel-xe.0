@@ -4,148 +4,160 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 241DCC624A4
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 04:22:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2540EC61DD3
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 04:33:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7BC710E04C;
-	Thu,  3 Sep 2026 04:22:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9263410E03C;
+	Thu,  3 Sep 2026 04:33:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iQUkFG0H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a0fg9ECM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD53810E04C
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 04:22:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9653810E03C
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 04:33:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788409348; x=1819945348;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=y7tEzx2ihwoqUkw2hofUiG4mTwn/7eKBxGH+NyptbLI=;
- b=iQUkFG0HqZKoo88ymn6R0HJt28/s1lBcsE/bINMiR+Hk01QMHfpNGeuu
- C1Qia0FKUa1uMGbrxfubGtIvP29G/XimnLGzKCSjtHeKcDSSbHGyZ/xFY
- GXJJlRURKTXVGz2HlnRr6xxWBmOJ/x07B3H+lvhCGZfUKc3TiX8R6p52J
- gaJy4y6N1377XZpoB8MmyY9VA7IRoLr9d3z4/owDcQiiSPVpsTtuyYyXC
- 90A4O+DTJ8kWxjdq7o/QQsyFY9ZTdTMLIwPODUtT8asXEOEu672x4zPkv
- o8LNNbl0df3La0Px89hWuEE2neKNskqYdw58JRdwaYRngFwINdiWsc31e w==;
-X-CSE-ConnectionGUID: C95tQjceQxiAPNJBDXfsvQ==
-X-CSE-MsgGUID: PV4q6MfzSYeCWCdp7g/N+A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11894"; a="100039329"
-X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="100039329"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 21:22:28 -0700
-X-CSE-ConnectionGUID: qBjUqKGnR5Cg3cozvJ5p6w==
-X-CSE-MsgGUID: bzOcOZChQnmeGGY1Dm482g==
+ t=1788409986; x=1819945986;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:mime-version;
+ bh=2cYlcO0SfXB4Kt/+DDpC9Wtw8XbFN0YByi2wZjfpU/U=;
+ b=a0fg9ECMYZhVdt8LGscEWNbaSXpGCkiEQiGq9psu7y24913D7L2hxmqm
+ lxvo4kZyDIzSp/SUdbtVodwBUvPzB4YN6NReSHuzAnG0f6414j483+Ygb
+ jTk+udWuNdTLNnn00ISsaZUk9K3nfAxi5CefA6qHp94YpzeZSabYZaANV
+ dmpv4c0CMeozjC9XuPvdf5QoMRwmlwP0Mr8NKhnjSI5DayV9cyv5PINRd
+ CUGlDS2d54NDr/ZeoVoueDVGSkpdEXZkxYXlBJ6bW9QGLPgAfSYGQ7icm
+ WYkt/HgFoBV/NOAeWR2UjFFJHtN2D939sbG13BaBgwez+hfpqfnQmhxTK g==;
+X-CSE-ConnectionGUID: ceIahPfJTZuTAt/QLKSL+A==
+X-CSE-MsgGUID: gahl8sXvQqGpioG15/r9Lg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11894"; a="88911370"
+X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208,217";a="88911370"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 21:33:05 -0700
+X-CSE-ConnectionGUID: 5Tg+zMEYS1WhNltc0l+OdA==
+X-CSE-MsgGUID: 0F0Mv6CVR9avASUQ4nmC4w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="269058687"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 21:22:29 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; 
+ d="scan'208,217";a="274895717"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 21:33:05 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 2 Sep 2026 21:22:27 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.46; Wed, 2 Sep 2026 21:33:04 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Wed, 2 Sep 2026 21:22:27 -0700
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.35) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Wed, 2 Sep 2026 21:33:04 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.0) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 2 Sep 2026 21:22:27 -0700
+ 15.2.2562.46; Wed, 2 Sep 2026 21:33:03 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pT3aMb2+tErM1cbYupqS1MZkqr7Y0/sdi54HxgHtlsnyYLMBxzhgRIcRYWe909hK/CtPvNrBaAf5GAn2W5o82PuJ72eH/PjkBLYeaMfnGdseeZaKaqcWGvGGLo4kU3ZTjT3hmzsZH0N8lYCFyPDI6ep8rkNn5hfsaf6wrcQMi8/HgAb0YSwKTwoKHA2WWelAufg+GJdQpeHqdUrAgmFPGiBvYmpFqB3Yp3AFxqV0JpYssKS52g5b2l1vq2y14+jUm9Tddz4FmggqdRRpEGc8vkXIkPdSWT9nBpJQhbB/SYk2ZFbCsc2z5PSQjDh+5ReY+GH4dTyUkyaWPnTL/+EhZg==
+ b=ZWTcBwsCd2HiUlfz1kbD6AsZMn1jrNXUAWLOrlZzowGi/KEQgQ+bLc99hFpYf+pmZLaO8kS3jrNStkj1oYFdTpxXXH+6UHYcpYnJYrCq6n/XQrIR9GYub2z2Q6WsSolPaCb6lVCFjbPz/ky3ytEgEOfX1ewbSsPyZv6lRRHIY2quWyfiKkR3X8jRL8teyOnadoW/hXMJAa06O8pxn/iUcUIUBu2nYOrjqMrr2UTnfcH6Fq2gEboXizECCZPNHvkBuOjuYZD3t27UnaDnPGUulRsaEJ1WCtN8Rclv3+N0hyqdPi2cFr+MXSH94v57bwc+wWeBxzZDddI/u1aWH0UiEg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AXaFcDFbYVwZf7H4UMBMyYtg/9OtPw5veAvHllS6UF4=;
- b=X0hhrcIY5elgAsZMvjpNTH8jvMLXlzkvMpLYWZ38FHWTuRBtovRXwXiG9UO9O9p1h0cpSaspLIlCc3OvEbxgBkbgFCKhZIt1cyUPxzhtpMtnm/2GpKH/X18U7jZwoKMnUy/YIbwnQ+Z19KucLOG+76irQP/ujEjtzebwgA1bkXCfFXF2kS3L91+74jqbLfJqh2PtLCrohvwCW2p90RedZwaf0QbCnrOU3knQwNO4EFebg9bMC1nkVCJEAUlv+7virCwkyFUpvC4n72VDNRiicyPy+qOM386NcXQGVaU+rFUpwleMtcYwVHx7VVzgUocduA9fmB0DcS6gIqa//scjKQ==
+ bh=RQnJdjhrN2S4NAVOPNaJ33u3Xe+lT37x6Gh9ZrXxp90=;
+ b=ucF087DORRd56Kk4PADG8VQjb+bsxRKLcos7M61/TXLhS5GSd9fsFzw0BUPIGDVzP5wFpxa/oTQ/lsN87fW4sJAxQO3TKVr+1EdjKaAZbfP4qtXtDqcngVC+2tFaisgXsI6w26G+qT1XA82mGuVGqcjCXcnaQNfq1dAh+7GBOaT2BAFOn7beNO0HKENB7A7Jg9MHJNmqaC9sWMmO/AR3OkiNVrds7dIlqBD9p0NpGRpxZ83mg1kevWqv6YIfXhrNdPYL8KHUA1ukOBWm/AlpkltMHf3UuJXqPqjJ3UwfUuIvAajhrrsK/JeenwxkUlGODNnrjchdmtTJ1gCf6yMObA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by IA4PR11MB8942.namprd11.prod.outlook.com (2603:10b6:208:56b::12)
+Received: from BN0PR11MB5709.namprd11.prod.outlook.com (2603:10b6:408:148::6)
+ by LV2PR11MB5976.namprd11.prod.outlook.com (2603:10b6:408:17c::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Thu, 3 Sep
- 2026 04:22:18 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0360.008; Thu, 3 Sep 2026
- 04:22:18 +0000
-Date: Wed, 2 Sep 2026 21:22:15 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <sashiko-reviews@lists.linux.dev>
-CC: Tejas Upadhyay <tejas.upadhyay@intel.com>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH V20 09/15] drm/xe/vram: Add VRAM page offline fault handler
-Message-ID: <apj199Z8fF8NU3t/@gsse-cloud1.jf.intel.com>
-References: <20260902145343.465686-17-tejas.upadhyay@intel.com>
- <20260902145343.465686-26-tejas.upadhyay@intel.com>
- <20260902162540.841011F000E9@smtp.kernel.org>
- <apiraQytMqBPagvH@gsse-cloud1.jf.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <apiraQytMqBPagvH@gsse-cloud1.jf.intel.com>
-X-ClientProxiedBy: MW4PR03CA0003.namprd03.prod.outlook.com
- (2603:10b6:303:8f::8) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+ 2026 04:32:40 +0000
+Received: from BN0PR11MB5709.namprd11.prod.outlook.com
+ ([fe80::ad31:3f30:20b8:26c]) by BN0PR11MB5709.namprd11.prod.outlook.com
+ ([fe80::ad31:3f30:20b8:26c%4]) with mapi id 15.21.0360.008; Thu, 3 Sep 2026
+ 04:32:40 +0000
+Content-Type: multipart/alternative;
+ boundary="------------L94XpbEsz0JfpfaST0JbDgiI"
+Message-ID: <e3b0a92d-14d6-4d32-969d-f6f52f6b7d51@intel.com>
+Date: Thu, 3 Sep 2026 10:02:32 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 4/4] drm/xe/gt: Report GT reset failure using SIGID
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: <rodrigo.vivi@intel.com>, <badal.nilawar@intel.com>,
+ <himal.prasad.ghimiray@intel.com>, <dnyaneshwar.bhadane@intel.com>,
+ <mallesh.koujalagi@intel.com>, <matthew.brost@intel.com>
+References: <20260901063059.2547247-1-arvind.yadav@intel.com>
+ <20260901063059.2547247-5-arvind.yadav@intel.com>
+ <f1d01885-1a97-4b5b-ac17-b53ad3541ca5@intel.com>
+Content-Language: en-US
+From: "Yadav, Arvind" <arvind.yadav@intel.com>
+In-Reply-To: <f1d01885-1a97-4b5b-ac17-b53ad3541ca5@intel.com>
+X-ClientProxiedBy: MA5P287CA0194.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1aa::6) To BN0PR11MB5709.namprd11.prod.outlook.com
+ (2603:10b6:408:148::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA4PR11MB8942:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2bf40491-27ee-44ea-7d4c-08df0972f0a9
+X-MS-TrafficTypeDiagnostic: BN0PR11MB5709:EE_|LV2PR11MB5976:EE_
+X-MS-Office365-Filtering-Correlation-Id: de0727cc-02e6-492c-0176-08df09746368
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|376014|366016|6133799003|10067099003|4143699003|11063799006|5023799004|56012099006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: PjgxvB4VMgO3rSKtV0pcMJH+53LugyFI23Flw8FbJqmLRiO7CcXHxrXJ6lJ0+QZk+keYB0OtvW+r5+Hx2eKVNP4MxhgFn1FX2ugbtiAqBYlkdAwFBjiXkAupDdy0xPUshYPoVmxX6kdOXKJPXEE5XTFhHvZn0AeuprQD+WMJEPdV+LhXbAIUQX4Z8q6ot9qjD8D4SKXnBSymXPvJr2sbo53mVSFx1q5/2ftL3o7yZ7WOKyP/WvWzwQhXUdKha0QzV/Qqa2KYIxxndFvLFpM6RUng2F54ExDC6rxA194Otg8rao+6ND6gOXhXpv6IKjCLcnE0kjnxLkhWigaURaZY9PtGOXranF1Cz4o4uKKsLL9fB32a7demael+D0DFJP5q1arMBCQeZa7k8tNO8mTTRF2alfmzfhQfffVTW1RuNZ1YCzi8VDRW1hL1ueEmyYbJavfDD0GnLKbcHM1Nrf6mrGgTXkxVgF5tdfpCTv87DTFFg0/ceBVa5+61JnTcVsBLCzRNSAxwWISPRJrw4yraDvyBweCYbgHvJ9uP2fuQ11SG7ImXIRXtaFb6efzNKdidYjj2lh3720ZcqYLUJwePOGqPa2W861SgVYiDns/H0MY=
+ ARA:13230040|1800799024|376014|23010399003|366016|10067099003|56012099006|11063799006|4143699003|22082099003|8096899003|18002099003;
+X-Microsoft-Antispam-Message-Info: 8/MhfHMV+rTdu5f+Jbe4p4fDB0Csksll9F8KApiOvE6NvS6x3JkDBnLbCB3+5lykOH/yrCf/Na+5uhCGg6r6YtMfinb/EtpSlCBqtJspxkApeV77IkpebF+PJO7dOqP7I3D7tPBNIK/gEgvw72YJ6pFTXaTGEUo4Dxjxjb3q+2O2blJOj2gtel8eCFpLgWG0m7j+VX32gX2XutPbDEzGVZZIqFOZaUKlqrsG2QGN5zYoraNs0RGdK5h16Q6bcuwU7WYNMUEpLNTTeHEBS2gdF42IWpdrzRHzK0lPoPWrXv1pNp+U8LQaApucgBEO3SWwrGKb8/ZB5jzNeJtXJIGWq1CDRlxPm2cDJYIIPisdvSRyVJiBe8P/PC3r4tFkDXV7TMSyR9QCEiqz78JX0pCgag4qLPIdMClNVtOktHMFNxlpcCfb3tREmZbdJAbbhD+HKoKUrzB2csJRaKhJrp0sLL2NNDz9JERemoltcrkTfDo6t7UvCkHvjIKtoH1MY9XWWA/eIRL/ZMwA3vjat31i4ChBPY8EyxU7LgWFgqEGJfpizL56QSQSWnUQJ8fVfjDeD0gHS3ii8s+ay6jzfbWwsT7jCbUHGbVzMXBoiqNLgvzaVKIQnaX1/t4gq0G7YRX6PoIcDFzSApGVJbTG/qyiA+cqNZaj6WSo0lEF/82upR4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(376014)(366016)(6133799003)(10067099003)(4143699003)(11063799006)(5023799004)(56012099006)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:BN0PR11MB5709.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(10067099003)(56012099006)(11063799006)(4143699003)(22082099003)(8096899003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?cX2O9fDhAjf1eNvQO8YJ4bEbnzsJRc+Y1wnvNUIFK6ExaHVGLYlq6yjCPC?=
- =?iso-8859-1?Q?kcU0wgonXBpNlULL6UA7MM4WGTR90goTh08ZYwP0UgZ1oqba9GFJJbh5LX?=
- =?iso-8859-1?Q?N6PUkysason7W6a157oBjRIvG5GE2qJgzrK+F4v50Xz6ASTOQMJUWtCfP5?=
- =?iso-8859-1?Q?JENg7kMFoqVms5MjbzNlU5W6ilzNiplUMOP6Wkk9Bx3rXRHS/3cjni0r4K?=
- =?iso-8859-1?Q?77WIpU3fDIqMrXubQPqa1Mvkt1YIG5XefMOG+zeAKudmyL8Hpx5Vhd87FV?=
- =?iso-8859-1?Q?0BSOMtjrUOHgb+T75IwLoJBSjaFewwnvJiNLxoKhOq9J4Rsea4LnqJNJiL?=
- =?iso-8859-1?Q?a/BRkcpeGkioPeA/zO8y1EPg/tXxiip/sbQkkuHHtL1A+6p+4AwVdtkQ5B?=
- =?iso-8859-1?Q?BN3EYPwD3R2W9fXZBEOPB4AXTv4/D787ku4QU8Q27BcsRqnZYAo5gu8pjE?=
- =?iso-8859-1?Q?0QiTQF37QMEob7QeGo13gFjlQjI+KNg21cZDocXpSvL1g7u6H9mJw0fRiL?=
- =?iso-8859-1?Q?ckdwWqtgZMJ3KDHO7JnVTSUa515RKSaj4+XFxMK+1QwfpyQG6qFq4mj50Z?=
- =?iso-8859-1?Q?8VcJVgNocz1p5Z7udDgWixSgTHmGb5Hv0Yo6qsO4f9BhAYxGBU3dy61kaP?=
- =?iso-8859-1?Q?Oh5hkie78NZvMp18Z65NNFQiL4TWKtiMUZZkDgPXdad5Q47vZxer1nX2KD?=
- =?iso-8859-1?Q?/k+zK3D/ONuwvY25W0r7EmkRd2HR9qno6Q/DkEC9UKo3S2zlqlR50rjavE?=
- =?iso-8859-1?Q?gDYSKn3eheSAyHwCNfR9Rf7baI028Yu9UGbvf44HXsOKCp4tTk55N6zm9K?=
- =?iso-8859-1?Q?M69uuySuq/3A/tZvUArVJWA39o1g9KSDyHmC0SbzxbT5OVZ8ldxDNbCB/q?=
- =?iso-8859-1?Q?yVpwQIJBxqER4SpOBilF6c0xe+pLk4uFBR/oMrgff8J3doLjaEfJH8x4Xn?=
- =?iso-8859-1?Q?v1lKprOR4TsR91HXMfrI7b1mwQQlUTNhqr6QAmWxbhTP5DbTYWkMy2iaXl?=
- =?iso-8859-1?Q?yBIQvnyUM4goUCKtlN8DaMHF2g5l3ncr0oFYKeMs6tdr43yEN5y80AK0eu?=
- =?iso-8859-1?Q?am3vSieviYUVK1o5S3fxwQCXvd69iOjbmLriEtzSJoDYOhJDCgTk7lxFNZ?=
- =?iso-8859-1?Q?Fqat3j4vbXqMe/vdYsf4AnpRmTn93KXSiabVbBxbeMmnV7jABCcHZF2f9k?=
- =?iso-8859-1?Q?qNqwwXN520yx6vSjdQ3xgQBV3FhiAwyWfDX1AwCCzVf++3WrmozlZ+LLVm?=
- =?iso-8859-1?Q?wUn29bzMp5QaN4qMqZskZFcgJiQs9bB/BZhl/Vp0avXlOCI8uMF/fxpmRC?=
- =?iso-8859-1?Q?wvA1hplu/NNuiE5bhZ6NuaCAtRpGPI/KPVIPoDQYRWnkpkkCe4cl14tHcT?=
- =?iso-8859-1?Q?H11bpfZKlME+TDF3nnCLwENHsU0GQmt5/bMt2k5rDYZv/kwAxYC/Y2ZWlv?=
- =?iso-8859-1?Q?EJOhJbSR8wOy6Fydvf7YboNwBr5E+814JOIeGwcOvEEwTu4Uiz+2AfRW0g?=
- =?iso-8859-1?Q?uqXm1LgG/WU7W+OuksYp0oUF/lShTKkCiqF1gvZbSBinkGRj18AR6QV9aV?=
- =?iso-8859-1?Q?+Uy8d0WRT+zpdDRGerWgPJFVUKCYVWIWrNKmMfj4dZMYso8U39n6t1z6D/?=
- =?iso-8859-1?Q?oSa+BxQOzRMkHANbD4Ott6dBcLHCOKgQUj5XPQKj3FZg/CJF22XZ1zgveG?=
- =?iso-8859-1?Q?4V3qO4jTvQ2dxxbYi6FFU8eIhB+b+Mx1Z35J8pbiTEPGfV2tmjXl8Zy0Ma?=
- =?iso-8859-1?Q?XWjATJLcozSDEN7XWEhfwc2j12UbbOK0xQ71Y8rGsfa3xVuWH4F+SPkEiZ?=
- =?iso-8859-1?Q?lnBg5wAKpobgJ0eoO4Ekd72IKhC4iNE=3D?=
-X-Exchange-RoutingPolicyChecked: Tn6/uKINgWhVVUhXDzGgxEwbCcnKyd4KRxK6YndnwgZJL/6/+HLcAon6TBEIpzkbyYuEXF7zoC6C8F+or+I9Uqj6VlOyRV0mfo5LosG0k2/FHxde2NNfgdOJ29YMPUd19e8x4FGv5wNHHciRZy/+6oyDeumz1uDx/ocpLqmtlvhKZF4adS54dk1ULyCHhh4mjZK5nBPUsTqZBkT+W+KOH7SzJPGuiKLcNWTstt+KkRqmuqPQa1EMG6kNp7ztyrmo+KaFTKcX4W0EvAUWc4p9/cbk4UigEtos6vjTneoO7uyXTbsavSxZPBH2KPlviJnShPLVJSYd3HUzltdPERVr2A==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2bf40491-27ee-44ea-7d4c-08df0972f0a9
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TExBLy9OQldEM2hnM0VFU3J5SjNya0dqdS8xdW0xODY0a2krWWo4YnR5a1JD?=
+ =?utf-8?B?Y1NKYjczSW94WDh0dDl1U2pCa1E3eDFBaGowSHV2WjJ3MU1qSHlxZXpnTG5V?=
+ =?utf-8?B?R25CSlZIYWlMZ3QwUTJRK0pYaGVOc2V2QUY0MjlONWdEOVgwb3JEY0VjVFdr?=
+ =?utf-8?B?d0NTeW8vWno4bU1WcjB6NStacktGcVRkWERtOURwd29qSWpKYm5kYjFZMGNT?=
+ =?utf-8?B?RWhDMzYzRUtLRnp6VXpZS2dxVGlYbGlBMCtVa1J2bUhVQm40UEpnWHpxTDdB?=
+ =?utf-8?B?K3lQZXlsZ0h2NzR1cG5EbDFBZ2RrUkhyTS9UWjJKUjZVdURYRlZ4R2crOGo3?=
+ =?utf-8?B?dnhvblpLS0Iva00rMGNPOUNweEtnc05QZ2NUK05XVGgvbW9PZzlWbWl2R3hN?=
+ =?utf-8?B?a1dnVlNWNFRMWHFyaEpONXFBazdhVEJHSXAvMzNiSHBvQXA4SU55R0JkQVkv?=
+ =?utf-8?B?NkMybUd6dHpMcGJGV29CdEIzZXAvY3F4cHU1Y29CSGV4VXYwUStyYlhSL1hJ?=
+ =?utf-8?B?TWNqanJjM0RDaWlNaTNjK01OZFpKaUEzRGVVdlFoL2svRjFpaVhwQ0s3SjZ2?=
+ =?utf-8?B?dFlzTnFjUFNMVWIyYzAzczFmakdTa3d5blBCNmFTQ0IzRnVxWk1HMlVOK3NN?=
+ =?utf-8?B?cUlRd01HS3VlbFZyYi96T1dLTFY1blU4RzdXR0FQM0M2elBwcVhSNnRMNjMx?=
+ =?utf-8?B?bzNPS0NDS3pQdngvZjJLaFFpbzdMUVprVEd0eW5kYzNRZDdhY1NIZk1wM3h2?=
+ =?utf-8?B?N1F4R0hQNVRMWlZGQ1lxSjVRSHlneXlocmVuWVJHWFB6RUozSU5jOUdYL3pN?=
+ =?utf-8?B?b085cUp2MWtzd213SDBpdWR4WnlET2wxcGVBZnZiaGFndG8zN1l4bTRjZWNQ?=
+ =?utf-8?B?WWNlWExGQSsrQ0RQc0Vtb3pSYnI5Y05sNFRwb2RuV1ViRlMxaDNIeHk0WWJU?=
+ =?utf-8?B?YWJMTExRaU10R0FaOGNnS0NVL2FKSTJwdkdZUEJkQ3AyNFB3bkZUcHZwaUhN?=
+ =?utf-8?B?Nlk0bERYYU9GNnhKaU5NWlhySmZEenVubjN6aWpRVnA2TnRwdzlNVTBXMnpF?=
+ =?utf-8?B?dlZwOEhESDVGT2cvWmFORmFsU0ZKeVJlL2w2UFdjdlY2bVVhaTNFcDdpaEls?=
+ =?utf-8?B?VFJUN1Jldm5lYkQ1amxPZVJ2ZzZvb3JUNEZ6c05CSHNIQWl2UEF0eXNkdEts?=
+ =?utf-8?B?amQybFlqTmlrWDJ4dXg2bjJIbHpDZnRpbUFlU0ZJcitnZnY2QnBzWS95dUty?=
+ =?utf-8?B?MW4yL2ZtZWc1Mlg1VU5MTjBiNmQ2VFd5QTVuNnJsVTJ4M3pQc0ZpcWUzQW1C?=
+ =?utf-8?B?RW1FbHF4Qk5tTkFFczJOWGFJcHUvbzMrblZldnhVdGVIOXVHM2xqNWc5VVNs?=
+ =?utf-8?B?OUJFY1N0bnh2T3NkOHJmaGlVNi92VVg5ei91a1BSSFg4N05ldDFMelVVV0lP?=
+ =?utf-8?B?N1k1TmloejlMMnlCcFZnUmQ1RzBqckQ5YmhJbThucDZRSDlaRExIeHZhV1NC?=
+ =?utf-8?B?TCtqMmIvU0VSRUVLc0l6clM3cUNQdGhuQnJKMWtVbnlvSWpJc29icVFQaFUy?=
+ =?utf-8?B?Vm5mM1ZHVng4VDFKblQrU09BNFQyTFgzeUM1dXhYVVhvQTF2VklKUUtOL2Js?=
+ =?utf-8?B?QWdubkxBcUVXTWZ6cGZjNy8wMkdDQ21VTXJrZ2diNDk4SFZJM0U0REVuSXFZ?=
+ =?utf-8?B?UmJJcHdZWHdiY0RsTFh1ZEhVSGx4VUdRV0VLSlhBRVF4d2c1K2dxRmhldUFO?=
+ =?utf-8?B?bGduNHBKMEdEV1JXazNIOW12WnppY1d2Umw1QXdxOXg3RUcyeVRxU1RySmM5?=
+ =?utf-8?B?amFmdjJ4bStlMVIvV1ZyQWRuRFNzVGw5Z1lhOWVYTHpUR01LTlZteGdoVlp5?=
+ =?utf-8?B?UEVLeVFWbkViY3dpNWFyckthdjVLZGhoS2JVcGd5bDVTaDRQZ2J4SkJ1ZUc5?=
+ =?utf-8?B?NGRZZXlqZlJSRStiN3FSZS9wYjBrZkRIUTJtbitJa0lPOXNhNG1xN2o2RDBu?=
+ =?utf-8?B?UnJHQ2s5MkpYVXcwYjlOazVRY2daT2o2UFV0M2hHWFFBTnI1RnZFNjkvSHRW?=
+ =?utf-8?B?K3d1NVVWaUdJem5zZVUzSmlXRFY1TW1Hbmx2MHl6SkVXQTd0YVVtTXFGZ3l1?=
+ =?utf-8?B?ZEFYdHA4WTROeWxXVitIUjlOcW82VktFU2Y5cWhJUjZsajVhODdTUE9BRlM1?=
+ =?utf-8?B?NVprVFhJRm5KYmFRLys5bGpDT0J1eXdvLzBSY3U0SGUwRThHTnpRRUVxemk0?=
+ =?utf-8?B?Z1k4bitwSlFxVUxYYnJtQjBRaHRValVleFlsVzRReThwR3ptQkNOU2RvS2h6?=
+ =?utf-8?B?RXdCMXp3K2ZobW0vTHFvZkxmVnkxUFhIbVVrVEQvMnZqOHR4b2t0Zz09?=
+X-Exchange-RoutingPolicyChecked: vlt+3aMqFgstkOxz8pwzFkO1W9X8orBtFxyA1cF6Xo5Z0Sslz/1uQMdjz6QAC5GKAqMZ4fa1n5322ZLC7CV0cP+OHdwlTV2PD8u5v8CBUu7gI2V9u+QZ2iYZQ7/vPbp3p1WtF/zfjBVQlRrhsUfA7qJDg0dK+NXzQ6eAc3LMs5cvhaYvuioaYqIbnUyfRCFM8g08HB6TWoA9HDkATIj1MlgNZA57CBxJowN32vHVV2BwwOAEAtK3U5XDtvHdjjczVrXNeay1zoQD4lERoiPIw+6cbqHD0n8e9QEgHpHxGm9ILUd17tyWrJPMhobpe8jlCmNzpqBFOqhAybeS5FY1WQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: de0727cc-02e6-492c-0176-08df09746368
+X-MS-Exchange-CrossTenant-AuthSource: BN0PR11MB5709.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2026 04:22:18.0415 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2026 04:32:40.1923 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hWse6aAHndR852ZUjMXz0RxD9IOnuN9Qb10hBto9KNBTWtjSgpSajowiZtAUJr1/xJ/jbZEdUl3FRNZEKuBSfA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB8942
+X-MS-Exchange-CrossTenant-UserPrincipalName: qOapLg6Z5LMj/voL2HtRTnyGJAr+kI4ipjwWPig0aIIhmfzVFpyhWUKKK1iABc9S/GUArhichsZeloTUZFk28Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB5976
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -161,313 +173,199 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 02, 2026 at 04:04:09PM -0700, Matthew Brost wrote:
+--------------L94XpbEsz0JfpfaST0JbDgiI
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-One mistake in a suggestion. Inline below.
 
-> On Wed, Sep 02, 2026 at 04:25:40PM +0000, sashiko-bot@kernel.org wrote:
-> > Thank you for your contribution! Sashiko AI review found 5 potential issue(s) to consider:
-> > - [High] Lockless read of `res->bo` in `xe_ttm_vram_block_owner_get` leads to a Use-After-Free when racing with a TTM ghost object transfer.
-> > - [High] Race condition when offlining a free VRAM page allows the faulty page to be allocated and never purged.
-> > - [High] Forcefully unpinning BOs in `xe_ttm_vram_purge_page` violates pin counting semantics and creates TOCTOU vulnerabilities.
-> > - [High] `xe_ttm_vram_addr_to_region` ignores the `kernel_vram` region, causing hardware faults in critical kernel memory to be silently ignored.
-> > - [Medium] A race condition between two-phase page reservation and synchronous BO eviction falsely marks successfully offlined pages as failed.
-> > --
-> > 
-> > commit 23a2bf9a5461265765230ffd0e7a9d24c27ca918
-> > Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> > Subject: drm/xe/vram: Add VRAM page offline fault handler
-> > 
-> > This commit introduces a hardware VRAM page offline fault handler for the xe
-> > driver. It adds functionality to purge the buffer object containing the faulty
-> > address, ban the associated VM or exec queue, and reserve the hardware page in
-> > the buddy allocator to prevent future use.
-> > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > index d97739a84a2d1..0ab92bc3c6998 100644
-> > > --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > > +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> > [ ... ]
-> > > @@ -580,3 +618,295 @@ u64 xe_ttm_vram_get_avail(struct ttm_resource_manager *man)
-> > [ ... ]
-> > > +static int xe_ttm_vram_purge_page(struct xe_device *xe, struct xe_bo *bo)
-> > > +{
-> > [ ... ]
-> > > +	xe_bo_set_purgeable_state(bo, XE_MADV_PURGEABLE_DONTNEED);
-> > > +	ttm_bo_unmap_virtual(&bo->ttm);   /* nuke CPU mmap + VRAM IO mappings */
-> > > +	if (xe_bo_is_pinned(bo))
-> > > +		xe_bo_unpin(bo);
-> > 
-> > [Severity: High]
-> > Does this forcefully break the pin counting contract by unpinning a BO on
-> > behalf of an unknown owner?
-> > 
-> > In xe_ttm_vram_purge_page(), this unconditionally unpins the BO if it is
-> > pinned, stealing a pin reference belonging to another subsystem (such as the
-> > display controller). When the true owner later unpins the BO, could this
-> > trigger an underflow crash?
-> > 
-> > > +	ret = xe_ttm_bo_purge(&bo->ttm, &ctx);
-> > > +	xe_bo_unlock(bo);
-> > > +
-> > > +out:
-> > [ ... ]
-> > > +static struct xe_bo *xe_ttm_vram_block_owner_get(struct gpu_buddy_block *block)
-> > > +{
-> > > +	struct ttm_resource *res = block->private;
-> > > +	struct ttm_buffer_object *tbo;
-> > > +	struct xe_bo *bo;
-> > > +
-> > > +	if (!res)
-> > > +		return NULL;
-> > > +
-> > > +	/*
-> > > +	 * res->bo is updated under bdev->lru_lock by ttm_resource_set_bo().
-> > > +	 * Racing with a ghost transfer here is benign: we either see the old
-> > > +	 * owner (whose purge is a no-op and the retry path recovers) or the
-> > > +	 * ghost (rejected below).
-> > > +	 *
-> > > +	 * A ghost is a bare ttm_transfer_obj, not an xe_bo, so ttm_to_xe_bo()
-> > > +	 * on one would be out of bounds. xe_bo_is_xe_bo() rejects it since
-> > > +	 * only our own BOs carry xe_ttm_bo_destroy().
-> > > +	 */
-> > > +	tbo = READ_ONCE(res->bo);
-> > > +	if (!tbo || !xe_bo_is_xe_bo(tbo))
-> > > +		return NULL;
-> > > +
-> > > +	bo = ttm_to_xe_bo(tbo);
-> > 
-> > [Severity: High]
-> > Is it safe to read res->bo locklessly and pass it to xe_bo_is_xe_bo()?
-> > 
-> > In xe_ttm_vram_block_owner_get(), tbo is read locklessly. A concurrent
-> > accelerated move or pipelined gutting can transfer the resource to a TTM
-> > ghost object under bdev->lru_lock. This drops the last reference to the
-> > original BO, freeing it via kfree(). 
-> > 
-> > If the thread is preempted and resumes after the original BO is freed,
-> > passing the stale tbo pointer to xe_bo_is_xe_bo(tbo) will dereference
-> > tbo->destroy on freed memory, causing a use-after-free regression.
-> > 
-> 
-> This one is correct and this memory unsafe here.
-> 
-> Luckily, this fix is easy...
-> 
-> This one will need to be fixed, snippet below:
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> index 6a954018012a..ff937ab3837a 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> @@ -733,7 +733,8 @@ static bool xe_ttm_vram_page_already_processed(struct xe_ttm_vram_mgr *mgr,
->   * blocks will hit xe_ttm_vram_mgr_del() on their own and the pending
->   * reservation is retried from there.
->   */
-> -static struct xe_bo *xe_ttm_vram_block_owner_get(struct gpu_buddy_block *block)
-> +static struct xe_bo *xe_ttm_vram_block_owner_get(struct xe_device *xe,
-> +                                                struct gpu_buddy_block *block)
->  {
->         struct ttm_resource *res = block->private;
->         struct ttm_buffer_object *tbo;
-> @@ -742,6 +743,8 @@ static struct xe_bo *xe_ttm_vram_block_owner_get(struct gpu_buddy_block *block)
->         if (!res)
->                 return NULL;
-> 
-> +       guard(spinlock)(&xe->ttm.lru_lock);
-> +
->         /*
->          * res->bo is updated under bdev->lru_lock by ttm_resource_set_bo().
->          * Racing with a ghost transfer here is benign: we either see the old
-> @@ -788,7 +791,7 @@ static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, u64 addr,
->                 nentry->addr = addr;
-> 
->                 if (block) {
-> -                       pbo = xe_ttm_vram_block_owner_get(block);
-> +                       pbo = xe_ttm_vram_block_owner_get(xe, block);
-> 
->                         /*
->                          * Critical kernel BO? Best-effort check without resv lock;
-> 
-> 
-> > > +
-> > > +	/* The BO may already be in teardown with a zero refcount */
-> > > +	return xe_bo_get_unless_zero(bo) ? bo : NULL;
-> > > +}
-> > > +
-> > > +static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, u64 addr,
-> > > +					    struct xe_ttm_vram_mgr *vram_mgr, struct gpu_buddy *mm)
-> > > +{
-> > [ ... ]
-> > > +		if (block) {
-> > > +			pbo = xe_ttm_vram_block_owner_get(block);
-> > > +
-> > > +			/*
-> > > +			 * Critical kernel BO? Best-effort check without resv lock;
-> > > +			 * worst case a concurrent pin causes reset path unnecessarily.
-> > > +			 */
-> > > +			if (pbo && ((pbo->ttm.type == ttm_bo_type_kernel &&
-> > > +				     !(pbo->flags & XE_BO_FLAG_PINNED_LATE_RESTORE)) ||
-> > > +				    (xe_bo_is_user(pbo) && xe_bo_is_pinned(pbo)))) {
-> > 
-> > [Severity: High]
-> > Does this lockless pin check create a time-of-check to time-of-use race condition?
-> > 
-> > In xe_ttm_vram_reserve_page_at_addr(), xe_bo_is_pinned(pbo) is checked
-> > without holding the appropriate locks. A user BO could be pinned right after
-> > this check (e.g., for display scanout), and then forcefully unpinned and
-> > purged. 
-> > 
-> > The display hardware could then continue scanning out the old physical
-> > address, potentially leaking data of whatever new BO is allocated there.
-> >
-> 
-> We should probably file a Jira for this, as I agree this possible with
-> the right race + NIC trying to pin the BO, but unsure how to handle one
-> properly.
->  
-> > > +				kfree(nentry);
-> > > +				pbo_to_put = pbo;
-> > > +				drm_err(&xe->drm,
-> > > +					"%s: addr: 0x%llx is critical kernel bo, requesting SBR\n",
-> > > +					__func__, addr);
-> > > +				break;
-> > > +			}
-> > > +		}
-> > > +		/* Queue both free and occupied (to-be-purged) pages */
-> > > +		++vram_mgr->n_queued_pages;
-> > > +		list_add_rcu(&nentry->queued_link, &vram_mgr->queued_pages);
-> > > +	}
-> > > +
-> > > +	/* Deferred put outside lock to avoid recursive deadlock */
-> > 
-> > [Severity: High]
-> > Can a concurrent allocation claim a faulty free page when the lock is dropped?
-> > 
-> > In xe_ttm_vram_reserve_page_at_addr(), when a hardware fault occurs at a free
-> > address, gpu_buddy_allocated_addr_to_block() returns NULL, meaning pbo is
-> > NULL. The page is queued and vram_mgr->lock is dropped to prevent deadlocks.
-> > 
-> > During this lockless window, a concurrent TTM allocation can claim this
-> > exact free buddy block. When the fault handler later re-acquires the lock
-> > and attempts xe_ttm_vram_buddy_alloc(), it will fail, returning 0 without
-> > purging (since pbo was NULL). This leaves the newly allocated BO using a
-> > faulty hardware page, which will cause persistent hardware errors.
-> > 
-> 
-> This also looks right. So I think:
-> 
-> @@ -804,10 +807,17 @@ static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, u64 addr,
->                                         __func__, addr);
->                                 break;
->                         }
-> +
-> +                       /* Queue both free and occupied (to-be-purged) pages */
-> +                       ++vram_mgr->n_queued_pages;
-> +                       list_add_rcu(&nentry->queued_link, &vram_mgr->queued_pages);
-> +               } else {
-> +                       /* Immediately offline */
-> +                       return xe_ttm_vram_buddy_alloc(vram_mgr, addr, addr + size,
-> +                                                      size, size, &nentry->blocks,
-> +                                                      GPU_BUDDY_RANGE_ALLOCATION,
-> +                                                      NULL, &nentry->used_visible_size);
+On 02-09-2026 18:21, Michal Wajdeczko wrote:
+>
+> On 9/1/2026 8:30 AM, Arvind Yadav wrote:
+>> Route the GT reset failure log through the structured SIGID logging helper.
+>>
+>> Failure to complete the full graphics reset means GT reset did not finish
+>> as expected. Use the GT component, which maps to XE_SIGID_GT_TDR, and pass
+>> the reset errno value to the helper.
+>>
+>> Also update the message to describe the actual failure. The driver does not
+>> clear GRDOM_FULL directly. the reset should complete and clear it within
+> The reset ...
 
-I missed adjusting n_offlined_pages and adding nentry to offlined_pages here.
 
-So I think check the return of xe_ttm_vram_buddy_alloc, then adjust
-n_offlined_pages + add nentry to offlined_pages.
+Noted,
 
-Matt
+>
+>> the timeout.
+>>
+>> Cc: Mallesh Koujalagi<mallesh.koujalagi@intel.com>
+>> Cc: Badal Nilawar<badal.nilawar@intel.com>
+>> Cc: Matthew Brost<matthew.brost@intel.com>
+>> Cc: Himal Prasad Ghimiray<himal.prasad.ghimiray@intel.com>
+>> Cc: Michal Wajdeczko<michal.wajdeczko@intel.com>
+>> Cc: Rodrigo Vivi<rodrigo.vivi@intel.com>
+>> Suggested-by: Mallesh Koujalagi<mallesh.koujalagi@intel.com>
+>> Signed-off-by: Arvind Yadav<arvind.yadav@intel.com>
+>> ---
+>> v6:
+>>   - Corrected the GT reset timeout in the log message to 5 ms.
+>>     (sashiko)
+>>
+>> v5:
+>>   - Kept this patch limited to the GT reset failure path. (Michal)
+>>   - Improved the GRDOM_FULL failure message to describe that full graphics
+>>     reset did not complete. (Michal)
+>>
+>>   drivers/gpu/drm/xe/xe_gt.c | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+>> index 6805e0d3bf21..d72c7ec9a956 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt.c
+>> @@ -824,8 +824,8 @@ static int do_gt_reset(struct xe_gt *gt)
+>>   	xe_mmio_write32(&gt->mmio, GDRST, GRDOM_FULL);
+>>   	err = xe_mmio_wait32(&gt->mmio, GDRST, GRDOM_FULL, 0, 5000, NULL, false);
+>>   	if (err)
+>> -		xe_gt_err(gt, "failed to clear GRDOM_FULL (%pe)\n",
+>> -			  ERR_PTR(err));
+>> +		xe_log_err(gt, GT, err,
+>> +			   "full graphics reset not completed in 5 ms\n");
+> hardcoding timeout value in the message seems wrong, to make it properly:
+>
+> #define GRDOM_RESET_TIMEOUT_MS	5			/* 5 ms */
+> or
+> #define GRDOM_RESET_TIMEOUT_US	(5 * USEC_PER_MSEC)	/* 5 ms */
+>
+> then
+> 	xe_mmio_wait32(... GRDOM_RESET_TIMEOUT_MS * USEC_PER_MSEC, ...)
+> or
+> 	xe_mmio_wait32(... GRDOM_RESET_TIMEOUT_US, ...)
+>
+> and
+> 	xe_log(... in %u ms\n", GRDOM_RESET_TIMEOUT_MS);
+> or
+> 	xe_log(... in %u ms\n", GRDOM_RESET_TIMEOUT_US / USEC_PER_MSEC);
+>>   
 
->                 }
-> -               /* Queue both free and occupied (to-be-purged) pages */
-> -               ++vram_mgr->n_queued_pages;
-> -               list_add_rcu(&nentry->queued_link, &vram_mgr->queued_pages);
->         }
-> 
-> 
-> > > +	if (pbo_to_put) {
-> > > +		xe_bo_put(pbo_to_put);
-> > > +		/* Hint System controller driver for reset with -EIO  */
-> > > +		return -EIO;
-> > > +	}
-> > > +
-> > > +	if (pbo) {
-> > > +		/*
-> > > +		 * Purge BO containing address - reference held from above.
-> > > +		 * This does not necessarily free the blocks synchronously: if
-> > > +		 * the BO is not idle, ttm_bo_pipeline_gutting() hands the
-> > > +		 * resource to a ghost object and it is released only once the
-> > > +		 * move fences signal. The reservation below then fails and is
-> > > +		 * retried from xe_ttm_vram_mgr_del().
-> > > +		 */
-> > > +		ret = xe_ttm_vram_purge_page(xe, pbo);
-> > > +		xe_bo_put(pbo);
-> > > +		if (ret)
-> > > +			drm_warn(&xe->drm, "Purge failed at addr:0x%llx, ret:%d\n", addr, ret);
-> > > +	}
-> > > +
-> > > +	scoped_guard(mutex, &vram_mgr->lock) {
-> > > +		ret = xe_ttm_vram_buddy_alloc(vram_mgr, addr, addr + size,
-> > > +					      size, size, &nentry->blocks,
-> > > +					      GPU_BUDDY_RANGE_ALLOCATION,
-> > > +					      NULL, &nentry->used_visible_size);
-> > > +		if (ret) {
-> > > +			nentry->status = XE_PAGE_RESERVE_FAIL;
-> > > +			drm_dbg(&xe->drm,
-> > > +				"Page at addr:0x%llx still busy (%d), deferring reservation\n",
-> > > +				addr, ret);
-> > > +			return 0;
-> > > +		}
-> > 
-> > [Severity: Medium]
-> > Does this unconditionally attempt buddy allocation without checking if the
-> > retry path already succeeded?
-> > 
-> > In xe_ttm_vram_reserve_page_at_addr(), if xe_ttm_vram_purge_page() frees the
-> > BO's VRAM resource synchronously, it invokes xe_ttm_vram_mgr_del() which
-> > triggers xe_ttm_vram_retry_queued_pages(). The retry logic will successfully
-> > allocate the buddy block.
-> > 
-> > When the original thread re-acquires the lock here and blindly calls
-> > xe_ttm_vram_buddy_alloc(), it will fail with -ENOSPC because the block is
-> > already reserved. The page's status is then falsely marked as
-> > XE_PAGE_RESERVE_FAIL, leading to misleading internal state.
-> > 
-> > > +
-> > > +		list_for_each_entry_safe(pos, n, &vram_mgr->queued_pages, queued_link) {
-> > [ ... ]
-> > > +static struct xe_vram_region *xe_ttm_vram_addr_to_region(struct xe_device *xe, u64 addr)
-> > > +{
-> > > +	struct xe_tile *tile;
-> > > +	u8 id;
-> > > +
-> > > +	for_each_tile(tile, xe, id) {
-> > > +		struct xe_vram_region *vr = tile->mem.vram;
-> > > +
-> > > +		if (!vr)
-> > > +			continue;
-> > 
-> > [Severity: High]
-> > Does this skip checking the kernel-dedicated VRAM region?
-> > 
-> > In xe_ttm_vram_addr_to_region(), the address lookup loop only checks
-> > tile->mem.vram and neglects tile->mem.kernel_vram. If a hardware fault occurs
-> > within kernel_vram, the address mapping fails and returns
-> > ERR_PTR(-EOPNOTSUPP). This causes faults in kernel memory to be silently
-> > ignored instead of triggering a system reset.
-> > 
-> 
-> tile->mem.kernel_vram = tile->mem.vram in the current code but for
-> completeness, this likely right too. I'd check the kernel_vram if
-> tile->mem.kernel_vram != tile->mem.vram.
-> 
-> Matt
-> 
-> > > +
-> > > +		if (addr >= vr->dpa_base && addr < (vr->dpa_base + vr->usable_size))
-> > > +			return vr;
-> > [ ... ]
-> > 
-> > -- 
-> > Sashiko AI review · https://sashiko.dev/#/patchset/20260902145343.465686-17-tejas.upadhyay@intel.com?part=9
+Agreed, I will add |GRDOM_RESET_TIMEOUT_MS.|
+
+|Thanks,
+~Arvind|
+
+>>   	xe_gsc_wa_14015076503(gt, false);
+>>   
+--------------L94XpbEsz0JfpfaST0JbDgiI
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 02-09-2026 18:21, Michal Wajdeczko
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:f1d01885-1a97-4b5b-ac17-b53ad3541ca5@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+
+On 9/1/2026 8:30 AM, Arvind Yadav wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">Route the GT reset failure log through the structured SIGID logging helper.
+
+Failure to complete the full graphics reset means GT reset did not finish
+as expected. Use the GT component, which maps to XE_SIGID_GT_TDR, and pass
+the reset errno value to the helper.
+
+Also update the message to describe the actual failure. The driver does not
+clear GRDOM_FULL directly. the reset should complete and clear it within
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+The reset ...</pre>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>Noted,</p>
+    <blockquote type="cite" cite="mid:f1d01885-1a97-4b5b-ac17-b53ad3541ca5@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">the timeout.
+
+Cc: Mallesh Koujalagi <a class="moz-txt-link-rfc2396E" href="mailto:mallesh.koujalagi@intel.com">&lt;mallesh.koujalagi@intel.com&gt;</a>
+Cc: Badal Nilawar <a class="moz-txt-link-rfc2396E" href="mailto:badal.nilawar@intel.com">&lt;badal.nilawar@intel.com&gt;</a>
+Cc: Matthew Brost <a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a>
+Cc: Himal Prasad Ghimiray <a class="moz-txt-link-rfc2396E" href="mailto:himal.prasad.ghimiray@intel.com">&lt;himal.prasad.ghimiray@intel.com&gt;</a>
+Cc: Michal Wajdeczko <a class="moz-txt-link-rfc2396E" href="mailto:michal.wajdeczko@intel.com">&lt;michal.wajdeczko@intel.com&gt;</a>
+Cc: Rodrigo Vivi <a class="moz-txt-link-rfc2396E" href="mailto:rodrigo.vivi@intel.com">&lt;rodrigo.vivi@intel.com&gt;</a>
+Suggested-by: Mallesh Koujalagi <a class="moz-txt-link-rfc2396E" href="mailto:mallesh.koujalagi@intel.com">&lt;mallesh.koujalagi@intel.com&gt;</a>
+Signed-off-by: Arvind Yadav <a class="moz-txt-link-rfc2396E" href="mailto:arvind.yadav@intel.com">&lt;arvind.yadav@intel.com&gt;</a>
+---
+v6:
+ - Corrected the GT reset timeout in the log message to 5 ms.
+   (sashiko)
+
+v5:
+ - Kept this patch limited to the GT reset failure path. (Michal)
+ - Improved the GRDOM_FULL failure message to describe that full graphics
+   reset did not complete. (Michal)
+
+ drivers/gpu/drm/xe/xe_gt.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 6805e0d3bf21..d72c7ec9a956 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -824,8 +824,8 @@ static int do_gt_reset(struct xe_gt *gt)
+ 	xe_mmio_write32(&amp;gt-&gt;mmio, GDRST, GRDOM_FULL);
+ 	err = xe_mmio_wait32(&amp;gt-&gt;mmio, GDRST, GRDOM_FULL, 0, 5000, NULL, false);
+ 	if (err)
+-		xe_gt_err(gt, &quot;failed to clear GRDOM_FULL (%pe)\n&quot;,
+-			  ERR_PTR(err));
++		xe_log_err(gt, GT, err,
++			   &quot;full graphics reset not completed in 5 ms\n&quot;);
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+hardcoding timeout value in the message seems wrong, to make it properly:
+
+#define GRDOM_RESET_TIMEOUT_MS	5			/* 5 ms */
+or
+#define GRDOM_RESET_TIMEOUT_US	(5 * USEC_PER_MSEC)	/* 5 ms */
+
+then
+	xe_mmio_wait32(... GRDOM_RESET_TIMEOUT_MS * USEC_PER_MSEC, ...)
+or
+	xe_mmio_wait32(... GRDOM_RESET_TIMEOUT_US, ...)
+
+and
+	xe_log(... in %u ms\n&quot;, GRDOM_RESET_TIMEOUT_MS);
+or
+	xe_log(... in %u ms\n&quot;, GRDOM_RESET_TIMEOUT_US / USEC_PER_MSEC);
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre"> </pre>
+      </blockquote>
+    </blockquote>
+    <p>Agreed,&nbsp;<span>I will add&nbsp;</span><code dir="ltr">GRDOM_RESET_TIMEOUT_MS.</code></p>
+    <p><code dir="ltr">Thanks,<br>
+        ~Arvind</code></p>
+    <blockquote type="cite" cite="mid:f1d01885-1a97-4b5b-ac17-b53ad3541ca5@intel.com">
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">
+ 	xe_gsc_wa_14015076503(gt, false);
+ 
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------L94XpbEsz0JfpfaST0JbDgiI--
