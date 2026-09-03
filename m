@@ -4,54 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0735C624A4
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 14:19:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 555B5C624A4
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 14:32:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD18F10F642;
-	Thu,  3 Sep 2026 14:19:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16E5510E123;
+	Thu,  3 Sep 2026 14:32:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SLRRoK/P";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LhCiOCDg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA84510F5D3
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 14:19:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788445198; x=1819981198;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=As5EnP5d1a5bws+b+2zjtyJYoeTuzb8Q6+tjAKYe+LU=;
- b=SLRRoK/Pw0XVZlZtnq/vSGPB+lYRtORb/JzTfMaFhtcTfK7ZrVSaZq1l
- e+rKWbpowDVSdDZjG9wg7AHexaTwCq9oWr9HD1hpXwbecvfTFQhJluGAq
- g+O7PXG42WitZYLkoAgZOIMDipnp1ij28wEF19PqmY15XTpMyJ1GhO75J
- GSIis45ZZqFYuWEeFxIN+h775G9Xwcm1Y5BtAe7noF+g11Qa+dY5Czk2o
- gM3RhHYScuRxwShOJBkYRh7ULUW7sQ9eGR1MR0Gaq0ssOUgcnmUV20KLP
- a89lTx8QfmvuKt9DiK/3fz9symU72BPwxBc8jXXzOcsU2BzTmT9PzVc9A Q==;
-X-CSE-ConnectionGUID: gI8hkreNQp6Zc6DCqqu5CA==
-X-CSE-MsgGUID: 97zi3++BRS2H3Z2lFdJnlA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="92797507"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="92797507"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 07:19:58 -0700
-X-CSE-ConnectionGUID: 9Tr6L4ApRqOI/7QJl+JzFw==
-X-CSE-MsgGUID: L+D3qtXbQcWmnbsjPhS/UQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="275014791"
-Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
- by fmviesa005.fm.intel.com with ESMTP; 03 Sep 2026 07:19:57 -0700
-From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: himal.prasad.ghimiray@intel.com, arvind.yadav@intel.com,
- tejas.upadhyay@intel.com, Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Subject: [PATCH v3 7/7] drm/xe/guc: capture additional engine state registers
-Date: Thu,  3 Sep 2026 19:48:34 +0530
-Message-ID: <20260903141834.1315675-8-naresh.kumar.g@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260903141834.1315675-1-naresh.kumar.g@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B82D110E123
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 14:32:27 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 66192414B9;
+ Thu,  3 Sep 2026 14:32:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28D741F00A3D;
+ Thu,  3 Sep 2026 14:32:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788445947;
+ bh=DEQ3rR8VpZuRjab3wJYyoCw/VZU5pVVuTNKbKSUTz4A=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=LhCiOCDgWfRasj6271jjE+MqjYSakfEv8vBGCTeCTsAZ7RO/uLij8n0ltUCdXPZyZ
+ o/35g2vS7j4BHJ1s4r+dN/1dl0XSXOVoxs7bm2wZHLRwuk5ofaXoaIotWU6yoj8seG
+ ZKxeStUxrgclAF0H2qPgL40RD+VsGyLvOfUM6aS0S/NlkBptC8IlFjEUIGHUQpzEpJ
+ DHQoQsH8D+u7wCbHaptpqyha46AJc50t4NIe/5bwbVh+MwQ0IVH1OFFI+upoOGw4fE
+ DNjY+2CQZKBrL9LRXNQKSnfS2q3dizawBRMFijROOR5Hi33fMJwylyb77K3E688CkE
+ YcbR+XI3bSxoA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 1/7] drm/xe/devcoredump: Capture GT fuse registers in
+ devcoredump
+To: "Nareshkumar Gollakoti" <naresh.kumar.g@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260903141834.1315675-2-naresh.kumar.g@intel.com>
 References: <20260903141834.1315675-1-naresh.kumar.g@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+ <20260903141834.1315675-2-naresh.kumar.g@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 03 Sep 2026 14:32:26 +0000
+Message-Id: <20260903143227.28D741F00A3D@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,190 +53,64 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a wider set of engine state registers to GuC error capture to improve
-post-mortem debugging of engine hangs and reset-related failures.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] Hardcoded array index used to check the POWERGATE_ENABLE register i=
+s fragile.
+--
 
-Define the missing register offsets in xe_engine_regs.h and include them in
-the GuC capture list. The additional registers cover reset state, front-end
-and back-end FSM state, power state, batch buffer state, instruction state,
-preemption status, and related chicken/debug controls.
+commit b7d03cc3b56be0544af3370f72a4384e4131de66
+Author: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 
-This provides more complete engine context in capture dumps, which should
-help root-cause analysis when investigating GuC-reported engine failures.
+    drm/xe/devcoredump: Capture GT fuse registers in devcoredump
+   =20
+    Capture fuse-related GT register state in the Xe devcoredump to preserve
+    additional hardware configuration information for postmortem debugging.
 
-v3:(Sashiko)
-- Move FF_SLICE_CS_CHICKEN1/2 out of COMMON_BASE_ENGINE_INSTANCE
-- Add XE3P_RC_SLICE_INSTANCE and include it only in xe3p_rc_inst_regs[]
-- Add XE_BCS_RCS_ENGINE_INSTANCE for registers shared only by
-  BCS/RCS paths
-- Include XE_BCS_RCS_ENGINE_INSTANCE only in
-  xe_blt_inst_regs[] and xe3p_rc_inst_regs[]
-- Keep COMMON_BASE_ENGINE_INSTANCE limited to registers
-  valid across all engine classes
+> diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_=
+devcoredump.c
+> --- a/drivers/gpu/drm/xe/xe_devcoredump.c
+> +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
 
-Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_engine_regs.h | 22 +++++++++++++++
- drivers/gpu/drm/xe/xe_guc_capture.c      | 35 ++++++++++++++++++++----
- 2 files changed, 52 insertions(+), 5 deletions(-)
+[ ... ]
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index 94033982e694..9f328b1b18f5 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -60,6 +60,8 @@
- 
- #define RING_START_UDW(base)			XE_REG((base) + 0x48)
- 
-+#define RING_CSFE_GLB_CHICKEN3(base)		XE_REG((base) + 0x4c)
-+
- #define RING_PSMI_CTL(base)			XE_REG((base) + 0x50, XE_REG_OPTION_MASKED)
- #define   RC_SEMA_IDLE_MSG_DISABLE		REG_BIT(12)
- #define   WAIT_FOR_EVENT_POWER_DOWN_DISABLE	REG_BIT(7)
-@@ -72,6 +74,7 @@
- #define RING_DMA_FADD_UDW(base)			XE_REG((base) + 0x60)
- #define RING_IPEHR(base)			XE_REG((base) + 0x68)
- #define RING_INSTDONE(base)			XE_REG((base) + 0x6c)
-+#define RING_INSTPS(base)			XE_REG((base) + 0x70)
- #define RING_ACTHD(base)			XE_REG((base) + 0x74)
- #define RING_DMA_FADD(base)			XE_REG((base) + 0x78)
- #define RING_HWS_PGA(base)			XE_REG((base) + 0x80)
-@@ -102,6 +105,8 @@
- #define   SELECTIVE_READ_GROUP			REG_GENMASK(29, 23)
- #define   SELECTIVE_READ_INSTANCE		REG_GENMASK(22, 16)
- 
-+#define RESET_CTRL(base)			XE_REG((base) + 0xd0)
-+
- /*
-  * CMD_CCTL read/write fields take a MOCS value and _not_ a table index.
-  * The lsb of each can be considered a separate enabling bit for encryption.
-@@ -123,15 +128,21 @@
- #define FF_SLICE_CS_CHICKEN1(base)		XE_REG((base) + 0xe0, XE_REG_OPTION_MASKED)
- #define   FFSC_PERCTX_PREEMPT_CTRL		REG_BIT(14)
- 
-+#define FF_SLICE_CS_CHICKEN2(base)		XE_REG((base) + 0xe4, XE_REG_OPTION_MASKED)
-+
- #define CS_DEBUG_MODE1(base)			XE_REG((base) + 0xec, XE_REG_OPTION_MASKED)
- #define   FF_DOP_CLOCK_GATE_DISABLE		REG_BIT(1)
- #define   REPLAY_MODE_GRANULARITY		REG_BIT(0)
- 
- #define INDIRECT_RING_STATE(base)		XE_REG((base) + 0x108)
- 
-+#define RING_BB_STATE(base)			XE_REG((base) + 0x110)
-+
- #define RING_BBADDR(base)			XE_REG((base) + 0x140)
- #define RING_BBADDR_UDW(base)			XE_REG((base) + 0x168)
- 
-+#define RING_BB_ADDR_DIFF(base)			XE_REG((base) + 0x154)
-+
- #define PR_CTR_CTRL(base)			XE_REG((base) + 0x178)
- #define   CTR_COUNT_SELECT_FF			REG_BIT(31)
- #define   CTR_LOGIC_OP_MASK			REG_GENMASK(30, 0)
-@@ -148,6 +159,8 @@
- #define   BLIT_CCTL_DST_MOCS_MASK		REG_GENMASK(14, 9)
- #define   BLIT_CCTL_SRC_MOCS_MASK		REG_GENMASK(6, 1)
- 
-+#define RING_CSBEFSM3(base)			XE_REG((base) + 0x224)
-+
- #define RING_EXECLIST_STATUS_LO(base)		XE_REG((base) + 0x234)
- #define RING_EXECLIST_STATUS_HI(base)		XE_REG((base) + 0x234 + 4)
- 
-@@ -169,9 +182,16 @@
- #define   GFX_MSIX_INTERRUPT_ENABLE		REG_BIT(13)
- #define   GFX_DISABLE_LEGACY_MODE		REG_BIT(3)
- 
-+#define RING_CSFESM(base)			XE_REG((base) + 0x2a0)
-+#define RING_CSFESM2(base)			XE_REG((base) + 0x2a4)
-+#define RING_CSFESM3(base)			XE_REG((base) + 0x2a8)
-+#define RING_CSPWRFSM(base)			XE_REG((base) + 0x2ac)
-+
- #define RING_CSMQDEBUG(base)			XE_REG((base) + 0x2b0)
- #define   CURRENT_ACTIVE_QUEUE_ID_MASK		REG_GENMASK(7, 0)
- 
-+#define RING_CSBEFSM(base)			XE_REG((base) + 0x2bc)
-+
- #define RING_QUEUE_TIMESTAMP(base)		XE_REG((base) + 0x4c0)
- #define RING_QUEUE_TIMESTAMP_UDW(base)		XE_REG((base) + 0x4c0 + 4)
- 
-@@ -217,6 +237,8 @@
- #define   PREEMPT_GPGPU_LEVEL_MASK		PREEMPT_GPGPU_LEVEL(1, 1)
- #define   PREEMPT_3D_OBJECT_LEVEL		REG_BIT(0)
- 
-+#define CS_PREEMPTION_STATUS(base)		XE_REG((base) + 0x5ac)
-+
- #define CS_GPR_DATA(base, n)			XE_REG((base) + 0x600 + (n) * 4)
- #define CS_GPR_REG(base, n)			CS_GPR_DATA((base), (n) * 2)
- #define CS_GPR_REG_UDW(base, n)			CS_GPR_DATA((base), (n) * 2 + 1)
-diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-index 026e8d628c30..7f8f9aaf8465 100644
---- a/drivers/gpu/drm/xe/xe_guc_capture.c
-+++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-@@ -127,11 +127,7 @@ struct __guc_capture_parsed_output {
- 	{ RING_START(0),		REG_64BIT_LOW_DW, 0,	0,	0,	NULL}, \
- 	{ RING_START_UDW(0),		REG_64BIT_HI_DW, 0,	0,	0,	"RING_START"}, \
- 	{ RING_DMA_FADD(0),		REG_64BIT_LOW_DW, 0,	0,	0,	NULL}, \
--	{ RING_DMA_FADD_UDW(0),		REG_64BIT_HI_DW, 0,	0,	0,	"RING_DMA_FADD"}, \
--	{ RING_EXECLIST_STATUS_LO(0),	REG_64BIT_LOW_DW, 0,	0,	0,	NULL}, \
--	{ RING_EXECLIST_STATUS_HI(0),	REG_64BIT_HI_DW, 0,	0,	0,	"RING_EXECLIST_STATUS"}, \
--	{ RING_EXECLIST_SQ_CONTENTS_LO(0), REG_64BIT_LOW_DW, 0,	0,	0,	NULL}, \
--	{ RING_EXECLIST_SQ_CONTENTS_HI(0), REG_64BIT_HI_DW, 0,	0,	0,	"RING_EXECLIST_SQ_CONTENTS"}
-+	{ RING_DMA_FADD_UDW(0),		REG_64BIT_HI_DW, 0,	0,	0,	"RING_DMA_FADD"}
- 
- #define COMMON_XELP_RC_CLASS \
- 	{ RCU_MODE,			REG_32BIT,	0,	0,	0,	"RCU_MODE"}
-@@ -150,6 +146,32 @@ struct __guc_capture_parsed_output {
- #define XE3P_BASE_ENGINE_INSTANCE \
- 	{ RING_CSMQDEBUG(0),		REG_32BIT,	0,	0,	0,	"CSMQDEBUG"}
- 
-+#define XE3P_RC_SLICE_INSTANCE \
-+	{ FF_SLICE_CS_CHICKEN1(0), REG_32BIT, 0, 0, 0, "FF_SLICE_CS_CHICKEN1"}, \
-+	{ FF_SLICE_CS_CHICKEN2(0), REG_32BIT, 0, 0, 0, "FF_SLICE_CS_CHICKEN2"}
-+
-+#define XE_BCS_RCS_ENGINE_INSTANCE \
-+	{ RING_EXECLIST_STATUS_LO(0), REG_64BIT_LOW_DW, 0, 0, 0, NULL}, \
-+	{ RING_EXECLIST_STATUS_HI(0), REG_64BIT_HI_DW, 0, 0, 0, "RING_EXECLIST_STATUS"}, \
-+	{ RING_EXECLIST_SQ_CONTENTS_LO(0), REG_64BIT_LOW_DW, 0, 0, 0, NULL}, \
-+	{ RING_EXECLIST_SQ_CONTENTS_HI(0), REG_64BIT_HI_DW, 0, 0, 0, "RING_EXECLIST_SQ_CONTENTS"}, \
-+	{ RESET_CTRL(0), REG_32BIT, 0, 0, 0, "RESET_CTRL"}, \
-+	{ RING_CSBEFSM3(0), REG_32BIT, 0, 0, 0, "RING_CSBEFSM3"}, \
-+	{ RING_CSFESM(0), REG_32BIT, 0, 0, 0, "RING_CSFESM"}, \
-+	{ RING_CSFESM2(0), REG_32BIT, 0, 0, 0, "RING_CSFESM2"}, \
-+	{ RING_CSFESM3(0), REG_32BIT, 0, 0, 0, "RING_CSFESM3"}, \
-+	{ RING_CSPWRFSM(0), REG_32BIT, 0, 0, 0, "RING_CSPWRFSM"}, \
-+	{ RING_CSBEFSM(0), REG_32BIT, 0, 0, 0, "RING_CSBEFSM"}, \
-+	{ BCS_SWCTRL(0), REG_32BIT, 0, 0, 0, "BCS_SWCTRL"}, \
-+	{ RING_CSFE_GLB_CHICKEN3(0), REG_32BIT, 0, 0, 0, "RING_CSFE_GLB_CHICKEN3"}, \
-+	{ RING_PSMI_CTL(0), REG_32BIT, 0, 0, 0, "RING_PSMI_CTL"}, \
-+	{ RING_INSTPS(0), REG_32BIT, 0, 0, 0, "RING_INSTPS"}, \
-+	{ RING_BB_ADDR_DIFF(0), REG_32BIT, 0, 0, 0, "RING_BB_ADDR_DIFF"}, \
-+	{ RING_BB_STATE(0), REG_32BIT, 0, 0, 0, "RING_BB_STATE"}, \
-+	{ CS_DEBUG_MODE1(0), REG_32BIT, 0, 0, 0, "CS_DEBUG_MODE1"}, \
-+	{ CS_CHICKEN1(0), REG_32BIT, 0, 0, 0, "CS_CHICKEN1"}, \
-+	{ CS_PREEMPTION_STATUS(0), REG_32BIT, 0, 0, 0, "CS_PREEMPTION_STATUS"}
-+
- /* XE_LP Global */
- static const struct __guc_mmio_reg_descr xe_lp_global_regs[] = {
- 	COMMON_XELP_BASE_GLOBAL,
-@@ -189,6 +211,7 @@ static const struct __guc_mmio_reg_descr xe_vec_inst_regs[] = {
- /* Blitter Per-Engine-Instance */
- static const struct __guc_mmio_reg_descr xe_blt_inst_regs[] = {
- 	COMMON_BASE_ENGINE_INSTANCE,
-+	XE_BCS_RCS_ENGINE_INSTANCE,
- };
- 
- /* XE_LP - GSC Per-Engine-Instance */
-@@ -200,6 +223,8 @@ static const struct __guc_mmio_reg_descr xe_lp_gsc_inst_regs[] = {
- static const struct __guc_mmio_reg_descr xe3p_rc_inst_regs[] = {
- 	COMMON_BASE_ENGINE_INSTANCE,
- 	XE3P_BASE_ENGINE_INSTANCE,
-+	XE_BCS_RCS_ENGINE_INSTANCE,
-+	XE3P_RC_SLICE_INSTANCE,
- };
- 
- /*
--- 
-2.43.0
+> +static const struct xe_reg_desc xe3p_gt_rpm_reglist[] =3D {
+> +	XE_REG_DESC(RPM_GCD, "RPM_GCD"),
+> +	XE_REG_DESC(POWERGATE_ENABLE, "POWERGATE_ENABLE"),
+> +};
 
+[ ... ]
+
+> +static void xe_gt_rpm_snapshot_print(struct drm_printer *p,
+> +				     const struct xe_dbg_reg_snapshot *snap)
+> +{
+> +	xe_dbg_reg_snapshot_print(p, snap);
+> +
+> +	if (snap && snap->num_regs >=3D 2 &&
+> +	    !(snap->regs[1].value & RENDER_POWERGATE_ENABLE))
+[Severity: Low]
+Is it safe to use a hardcoded array index in xe_gt_rpm_snapshot_print() her=
+e?
+
+This check tightly couples the print logic to the exact ordering of element=
+s in
+the xe3p_gt_rpm_reglist array, relying on POWERGATE_ENABLE remaining at ind=
+ex
+1. If a future commit inserts or reorders elements in xe3p_gt_rpm_reglist,
+it could silently break this print logic by evaluating the wrong register's
+value.
+
+Could this be made more robust against future modifications to the underlyi=
+ng
+static register list?
+
+> +		drm_puts(p, "render powergating appears not enabled\n");
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903141834.1315=
+675-1-naresh.kumar.g@intel.com?part=3D1
