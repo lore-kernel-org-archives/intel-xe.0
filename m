@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB4A7C624D6
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 23:58:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63CFAC79F84
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 23:58:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E03710F08F;
-	Thu,  3 Sep 2026 23:58:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B5FD10F7F2;
+	Thu,  3 Sep 2026 23:58:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A7gLqcVY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hlyBE7U0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CF8110E198
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 23:58:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2132210F7E7
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 23:58:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1788479931; x=1820015931;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=yG+qiM6S25EwPmrp3h1bFs2Wh8rSQzZMoOkSpBxCG3w=;
- b=A7gLqcVYEDj97XUI5xd7gf4oUo6PONX8oRLh+q91H+7rRLyO0s8mOB4T
- bLaI/9O/PD264Fz7QaESfeeUl+0iLE7+z3ko+XiA1sMGpyBRvDClWqrkV
- 4o+6Sk5QyHAUQFcAbeqb38fYkNOtLXPTaNjO8IB9b7iwaEZc6dG3sY+EV
- 0pB3yVl1yLEdGgbIzz47iWKLNPYyhU86LRmnGgXrrrbZ0Xw1Wusuf0x67
- vKNmdLz7J122Dtk70DR25mbetn2GrG6XTEZLQFOeUCqhli1j2lLuL2/mw
- u9OM8ycgHiuO4N17wygyekAqxDmKebuKUvh24vaW7DnzZXfxBv003tQw9 A==;
-X-CSE-ConnectionGUID: vv3K6m4nT1eua9wu+7Katw==
-X-CSE-MsgGUID: m9W1zjDDTs2DYl16eVKE5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="99637813"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="99637813"
+ bh=PaTb42btVkRqOC9KOVkUW3xLLOaresxt9KmY8sHAIyw=;
+ b=hlyBE7U0ulkUsrsARCNbpDwas9V0KyKL0ajBph3Q+j75sLmqoCZOS9Br
+ 5Zl3B0T74IkCa3/P//rtqCARoZlsVAFng7MZ6BD7jL8shvTJ2WNvi+CsX
+ WsTNE5elg2xBWnIKZsWL6rrEVnnhVk+OwFXmVGHPvnYV2sidfE8FQ+yh2
+ 2jlW3am6SBdcgenFND095qt5ywpfYW8b7vvPG0JT/Z/Y/NjNbhHGWp/6o
+ RgCaRZFy7TTsEUYQ/WQ7aq1Hhnbzl4KuiWw8vxQG/EuvK+ChJKQwyFDzg
+ Rak9Um3ugViPiBpjBgwTvLM818qNgxpQNA2ZL4W1+VdVrPyqx1s6L6t+r Q==;
+X-CSE-ConnectionGUID: kLl8wax0Q4KZ0VSJy552AQ==
+X-CSE-MsgGUID: lS2fD0NUTVi4sFDw0AIkrg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="99637824"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="99637824"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Sep 2026 16:58:50 -0700
-X-CSE-ConnectionGUID: 1okR4Y9pTg244lkc0EsiNg==
-X-CSE-MsgGUID: jCH00KUrQDufoIgt4pDj2A==
+X-CSE-ConnectionGUID: bjFDVG6xRemth3IDv+3liA==
+X-CSE-MsgGUID: ctTQ0wV9SeqfS63Z6aSJMw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="274029054"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="274029066"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 16:58:49 -0700
+ 03 Sep 2026 16:58:50 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 13/25] drm/xe: Enable CPU binds for jobs
-Date: Thu,  3 Sep 2026 16:58:30 -0700
-Message-Id: <20260903235842.3401722-14-matthew.brost@intel.com>
+Subject: [PATCH v4 24/25] drm/xe: Add modparam to enable / disable ULLS on
+ migrate queue
+Date: Thu,  3 Sep 2026 16:58:41 -0700
+Message-Id: <20260903235842.3401722-25-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260903235842.3401722-1-matthew.brost@intel.com>
 References: <20260903235842.3401722-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,415 +66,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-No reason to use the GPU for binds.
-
-Benefits of CPU-based binds:
-- Lower latency once dependencies are resolved, as there is no
-  interaction with the GuC or a hardware context switch both of which
-  are relatively slow.
-- Large arrays of binds do not risk running out of migration PTEs,
-  avoiding -ENOBUFS being returned to userspace.
-- Kernel binds are decoupled from the migration exec queue (which issues
-  copies and clears), so they cannot get stuck behind unrelated
-  jobs—this can be a problem with parallel GPU faults.
-- Paves the for path decouping binds from tiles and individual engines
-- Enables ULLS on the migration exec queue, as this queue has exclusive
-  access to the paging copy engine.
-
-Update migration layer to formulate a PT job which will issue CPU bind
-in the submission backend.
-
-All code related to GPU-based binding has been removed.
+Having modparam to enable / disable ULLS on migrate queue will help with
+quick experiments.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-14-matthew.brost@intel.com
+Link: https://patch.msgid.link/20260228013501.106680-26-matthew.brost@intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_bo_types.h |   2 -
- drivers/gpu/drm/xe/xe_migrate.c  | 249 +++----------------------------
- drivers/gpu/drm/xe/xe_pt.c       |   1 -
- 3 files changed, 17 insertions(+), 235 deletions(-)
+ drivers/gpu/drm/xe/xe_debugfs.c      | 1 +
+ drivers/gpu/drm/xe/xe_defaults.h     | 1 +
+ drivers/gpu/drm/xe/xe_device.c       | 1 +
+ drivers/gpu/drm/xe/xe_device_types.h | 5 +++++
+ drivers/gpu/drm/xe/xe_migrate.c      | 2 +-
+ drivers/gpu/drm/xe/xe_module.c       | 4 ++++
+ drivers/gpu/drm/xe/xe_module.h       | 1 +
+ 7 files changed, 14 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index e45f24301050..7a67d422dc30 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -82,8 +82,6 @@ struct xe_bo {
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 28135f84e286..a2d92729ed49 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -173,6 +173,7 @@ static int info(struct seq_file *m, void *data)
+ 	drm_printf(&p, "revid %d\n", xe->info.revid);
+ 	drm_printf(&p, "tile_count %d\n", xe->info.tile_count);
+ 	drm_printf(&p, "vm_max_level %d\n", xe->info.vm_max_level);
++	drm_printf(&p, "ulls_enable %s\n", str_yes_no(xe->info.ulls_enable));
+ 	drm_printf(&p, "has_flat_ccs %s\n", str_yes_no(xe->info.has_flat_ccs));
+ 	drm_printf(&p, "has_usm %s\n", str_yes_no(xe->info.has_usm));
+ 	drm_printf(&p, "skip_guc_pc %s\n", str_yes_no(xe->info.skip_guc_pc));
+diff --git a/drivers/gpu/drm/xe/xe_defaults.h b/drivers/gpu/drm/xe/xe_defaults.h
+index 0884224ef7c7..9c7e89a169c5 100644
+--- a/drivers/gpu/drm/xe/xe_defaults.h
++++ b/drivers/gpu/drm/xe/xe_defaults.h
+@@ -14,6 +14,7 @@
+ #endif
  
- 	/** @freed: List node for delayed put. */
- 	struct llist_node freed;
--	/** @update_index: Update index if PT BO */
--	int update_index;
- 	/** @created: Whether the bo has passed initial creation */
- 	bool created;
+ #define XE_DEFAULT_PROBE_DISPLAY		IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
++#define XE_DEFAULT_ULLS_ENABLE			true
+ #define XE_DEFAULT_VRAM_BAR_SIZE		0
+ #define XE_DEFAULT_FORCE_PROBE			CONFIG_DRM_XE_FORCE_PROBE
+ #define XE_DEFAULT_MAX_VFS			~0
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index ade971de1652..9b81759af28a 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -520,6 +520,7 @@ static void xe_device_parse_modparam(struct xe_device *xe)
+ 	xe->atomic_svm_timeslice_ms = 5;
+ 	xe->min_run_period_lr_ms = 5;
+ 	xe->info.num_pf_work = xe_modparam.num_pf_work;
++	xe->info.ulls_enable = xe_modparam.ulls_enable;
+ 	if (xe->info.num_pf_work < 1)
+ 		xe->info.num_pf_work = 1;
+ 	else if (xe->info.num_pf_work > XE_PAGEFAULT_WORK_MAX)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 997ac82fd571..fd4560378f5b 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -245,6 +245,11 @@ struct xe_device {
+ 		u8 skip_pcode:1;
+ 		/** @info.needs_shared_vf_gt_wq: needs shared GT WQ on VF */
+ 		u8 needs_shared_vf_gt_wq:1;
++		/**
++		 * @info.ulls_enable: Enable ULLS on migration queue in LR VM
++		 * open
++		 */
++		u8 ulls_enable:1;
+ 	} info;
  
+ 	/** @wa_active: keep track of active workarounds */
 diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 100e84b7b81d..62ae0e2e85be 100644
+index 80efa67fc2e1..87a718b95eb0 100644
 --- a/drivers/gpu/drm/xe/xe_migrate.c
 +++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -77,18 +77,12 @@ struct xe_migrate {
- 	 * Protected by @job_mutex.
- 	 */
- 	struct dma_fence *fence;
--	/**
--	 * @vm_update_sa: For integrated, used to suballocate page-tables
--	 * out of the pt_bo.
--	 */
--	struct drm_suballoc_manager vm_update_sa;
- 	/** @min_chunk_size: For dgfx, Minimum chunk size */
- 	u64 min_chunk_size;
- };
+@@ -485,7 +485,7 @@ void xe_migrate_ulls_enter(struct xe_migrate *m)
  
- #define MAX_PREEMPTDISABLE_TRANSFER SZ_8M /* Around 1ms. */
- #define MAX_CCS_LIMITED_TRANSFER SZ_4M /* XE_PAGE_SIZE * (FIELD_MAX(XE2_CCS_SIZE_MASK) + 1) */
--#define NUM_KERNEL_PDE 15
- #define NUM_PT_SLOTS 48
- #define LEVEL0_PAGE_TABLE_ENCODE_SIZE SZ_2M
- #define MAX_NUM_PTE 512
-@@ -113,7 +107,6 @@ static void xe_migrate_fini(void *arg)
+ 	xe_assert(xe, xe->info.has_usm);
  
- 	dma_fence_put(m->fence);
- 	xe_bo_put(m->pt_bo);
--	drm_suballoc_manager_fini(&m->vm_update_sa);
- 	mutex_destroy(&m->job_mutex);
- 	xe_vm_close_and_put(m->q->vm);
- 	xe_exec_queue_put(m->q);
-@@ -234,8 +227,6 @@ static int xe_migrate_pt_bo_alloc(struct xe_tile *tile, struct xe_migrate *m,
- 	BUILD_BUG_ON(NUM_PT_SLOTS > SZ_2M/XE_PAGE_SIZE);
- 	/* Must be a multiple of 64K to support all platforms */
- 	BUILD_BUG_ON(NUM_PT_SLOTS * XE_PAGE_SIZE % SZ_64K);
--	/* And one slot reserved for the 4KiB page table updates */
--	BUILD_BUG_ON(!(NUM_KERNEL_PDE & 1));
+-	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
++	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe) || !xe->info.ulls_enable)
+ 		return;
  
- 	/* Need to be sure everything fits in the first PT, or create more */
- 	xe_tile_assert(tile, m->batch_base_ofs + xe_bo_size(batch) < SZ_2M);
-@@ -391,17 +382,9 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 		}
- 	}
+ job_alloc:
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index 4bc28dfc1992..a8b546550ead 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -23,6 +23,7 @@
  
--	if (ofs)
--		*ofs = map_ofs;
--}
--
--static void xe_migrate_suballoc_manager_init(struct xe_migrate *m, u32 map_ofs)
--{
- 	/*
- 	 * Example layout created above, with root level = 3:
- 	 * [PT0...PT7]: kernel PT's for copy/clear; 64 or 4KiB PTE's
--	 * [PT8]: Kernel PT for VM_BIND, 4 KiB PTE's
--	 * [PT9...PT40]: Userspace PT's for VM_BIND, 4 KiB PTE's
- 	 * [PT41 = PDE 0] [PT44...PT47 = 4K and 2M vram identity maps]
- 	 *
- 	 * This makes the lowest part of the VM point to the pagetables.
-@@ -409,19 +392,13 @@ static void xe_migrate_suballoc_manager_init(struct xe_migrate *m, u32 map_ofs)
- 	 * and flushes, other parts of the VM can be used either for copying and
- 	 * clearing.
- 	 *
--	 * For performance, the kernel reserves PDE's, so about 20 are left
--	 * for async VM updates.
--	 *
- 	 * To make it easier to work, each scratch PT is put in slot (1 + PT #)
- 	 * everywhere, this allows lockless updates to scratch pages by using
- 	 * the different addresses in VM.
- 	 */
--#define NUM_VMUSA_UNIT_PER_PAGE	32
--#define VM_SA_UPDATE_UNIT_SIZE		(XE_PAGE_SIZE / NUM_VMUSA_UNIT_PER_PAGE)
--#define NUM_VMUSA_WRITES_PER_UNIT	(VM_SA_UPDATE_UNIT_SIZE / sizeof(u64))
--	drm_suballoc_manager_init(&m->vm_update_sa,
--				  (size_t)(map_ofs / XE_PAGE_SIZE - NUM_KERNEL_PDE) *
--				  NUM_VMUSA_UNIT_PER_PAGE, 0);
+ struct xe_modparam xe_modparam = {
+ 	.probe_display =	XE_DEFAULT_PROBE_DISPLAY,
++	.ulls_enable =		XE_DEFAULT_ULLS_ENABLE,
+ 	.guc_log_level =	XE_DEFAULT_GUC_LOG_LEVEL,
+ 	.force_probe =		XE_DEFAULT_FORCE_PROBE,
+ #ifdef CONFIG_PCI_IOV
+@@ -44,6 +45,9 @@ MODULE_PARM_DESC(probe_display, "Probe display HW, otherwise it's left untouched
+ 		 "[default=" __stringify(XE_DEFAULT_PROBE_DISPLAY) "])");
+ #endif
+ 
++module_param_named(ulls_enable, xe_modparam.ulls_enable, bool, 0444);
++MODULE_PARM_DESC(ulls_enable, "Enable ULLS on migration queue if LR VM open (default: true)");
 +
-+	if (ofs)
-+		*ofs = map_ofs;
- }
- 
- static bool xe_migrate_needs_ccs_emit(struct xe_device *xe)
-@@ -466,7 +443,6 @@ static int xe_migrate_lock_prepare_vm(struct xe_tile *tile, struct xe_migrate *m
- 			return err;
- 
- 		xe_migrate_prepare_vm(tile, m, vm, &map_ofs);
--		xe_migrate_suballoc_manager_init(m, map_ofs);
- 		drm_exec_retry_on_contention(&exec);
- 		xe_validation_retry_on_oom(&ctx, &err);
- 	}
-@@ -1169,6 +1145,9 @@ struct xe_lrc *xe_migrate_lrc(struct xe_migrate *migrate)
- 	return migrate->q->lrc[0];
- }
- 
-+/* XXX: With CPU binds this can be removed in a follow up */
-+#define NUM_KERNEL_PDE 15
-+
- static u64 migrate_vm_ppgtt_addr_tlb_inval(void)
- {
- 	/*
-@@ -1788,56 +1767,6 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 	return fence;
- }
- 
--static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
--			  const struct xe_vm_pgtable_update_op *pt_op,
--			  const struct xe_vm_pgtable_update *update,
--			  struct xe_migrate_pt_update *pt_update)
--{
--	const struct xe_migrate_pt_update_ops *ops = pt_update->ops;
--	struct xe_vm *vm = pt_update->vops->vm;
--	u32 chunk;
--	u32 ofs = update->ofs, size = update->qwords;
--
--	/*
--	 * If we have 512 entries (max), we would populate it ourselves,
--	 * and update the PDE above it to the new pointer.
--	 * The only time this can only happen if we have to update the top
--	 * PDE. This requires a BO that is almost vm->size big.
--	 *
--	 * This shouldn't be possible in practice.. might change when 16K
--	 * pages are used. Hence the assert.
--	 */
--	xe_tile_assert(tile, update->qwords < MAX_NUM_PTE);
--	if (!ppgtt_ofs)
--		ppgtt_ofs = xe_migrate_vram_ofs(tile_to_xe(tile),
--						xe_bo_addr(update->pt_bo, 0,
--							   XE_PAGE_SIZE), false);
--
--	do {
--		u64 addr = ppgtt_ofs + ofs * 8;
--
--		chunk = min(size, MAX_PTE_PER_SDI);
--
--		/* Ensure populatefn can do memset64 by aligning bb->cs */
--		if (!(bb->len & 1))
--			bb->cs[bb->len++] = MI_NOOP;
--
--		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(chunk);
--		bb->cs[bb->len++] = lower_32_bits(addr);
--		bb->cs[bb->len++] = upper_32_bits(addr);
--		if (pt_op->bind)
--			ops->populate(tile, NULL, bb->cs + bb->len,
--				      ofs, chunk, update);
--		else
--			ops->clear(vm, tile, NULL, bb->cs + bb->len,
--				   ofs, chunk, update);
--
--		bb->len += chunk * 2;
--		ofs += chunk;
--		size -= chunk;
--	} while (size);
--}
--
- struct xe_vm *xe_migrate_get_vm(struct xe_migrate *m)
- {
- 	return xe_vm_get(m->q->vm);
-@@ -1938,162 +1867,18 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
- {
- 	const struct xe_migrate_pt_update_ops *ops = pt_update->ops;
- 	struct xe_tile *tile = m->tile;
--	struct xe_gt *gt = tile->primary_gt;
--	struct xe_device *xe = tile_to_xe(tile);
- 	struct xe_sched_job *job;
- 	struct dma_fence *fence;
--	struct drm_suballoc *sa_bo = NULL;
--	struct xe_bb *bb;
--	u32 i, j, batch_size = 0, ppgtt_ofs, update_idx, page_ofs = 0;
--	u32 num_updates = 0, current_update = 0;
--	u64 addr;
--	int err = 0;
- 	bool is_migrate = is_migrate_queue(m, pt_update_ops->q);
--	bool usm = is_migrate && xe->info.has_usm;
--
--	for (i = 0; i < pt_update_ops->num_ops; ++i) {
--		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->pt_job_ops->ops[i];
--		struct xe_vm_pgtable_update *updates = pt_op->entries;
--
--		num_updates += pt_op->num_entries;
--		for (j = 0; j < pt_op->num_entries; ++j) {
--			u32 num_cmds = DIV_ROUND_UP(updates[j].qwords,
--						    MAX_PTE_PER_SDI);
--
--			/* align noop + MI_STORE_DATA_IMM cmd prefix */
--			batch_size += 4 * num_cmds + updates[j].qwords * 2;
--		}
--	}
--
--	/* fixed + PTE entries */
--	if (IS_DGFX(xe))
--		batch_size += 2;
--	else
--		batch_size += 6 * (num_updates / MAX_PTE_PER_SDI + 1) +
--			num_updates * 2;
--
--	bb = xe_bb_new(gt, batch_size, usm);
--	if (IS_ERR(bb))
--		return ERR_CAST(bb);
--
--	/* For sysmem PTE's, need to map them in our hole.. */
--	if (!IS_DGFX(xe)) {
--		u16 pat_index = xe_cache_pat_idx(xe, XE_CACHE_WB);
--		u32 ptes, ofs;
--
--		ppgtt_ofs = NUM_KERNEL_PDE - 1;
--		if (!is_migrate) {
--			u32 num_units = DIV_ROUND_UP(num_updates,
--						     NUM_VMUSA_WRITES_PER_UNIT);
--
--			if (num_units > m->vm_update_sa.size) {
--				err = -ENOBUFS;
--				goto err_bb;
--			}
--			sa_bo = drm_suballoc_new(&m->vm_update_sa, num_units,
--						 GFP_KERNEL, true, 0);
--			if (IS_ERR(sa_bo)) {
--				err = PTR_ERR(sa_bo);
--				goto err_bb;
--			}
--
--			ppgtt_ofs = NUM_KERNEL_PDE +
--				(drm_suballoc_soffset(sa_bo) /
--				 NUM_VMUSA_UNIT_PER_PAGE);
--			page_ofs = (drm_suballoc_soffset(sa_bo) %
--				    NUM_VMUSA_UNIT_PER_PAGE) *
--				VM_SA_UPDATE_UNIT_SIZE;
--		}
--
--		/* Map our PT's to gtt */
--		i = 0;
--		j = 0;
--		ptes = num_updates;
--		ofs = ppgtt_ofs * XE_PAGE_SIZE + page_ofs;
--		while (ptes) {
--			u32 chunk = min(MAX_PTE_PER_SDI, ptes);
--			u32 idx = 0;
--
--			bb->cs[bb->len++] = MI_STORE_DATA_IMM |
--				MI_SDI_NUM_QW(chunk);
--			bb->cs[bb->len++] = ofs;
--			bb->cs[bb->len++] = 0; /* upper_32_bits */
--
--			for (; i < pt_update_ops->num_ops; ++i) {
--				struct xe_vm_pgtable_update_op *pt_op =
--					&pt_update_ops->pt_job_ops->ops[i];
--				struct xe_vm_pgtable_update *updates = pt_op->entries;
--
--				for (; j < pt_op->num_entries; ++j, ++current_update, ++idx) {
--					struct xe_vm *vm = pt_update->vops->vm;
--					struct xe_bo *pt_bo = updates[j].pt_bo;
--
--					if (idx == chunk)
--						goto next_cmd;
--
--					xe_tile_assert(tile, xe_bo_size(pt_bo) == SZ_4K);
--
--					/* Map a PT at most once */
--					if (pt_bo->update_index < 0)
--						pt_bo->update_index = current_update;
--
--					addr = vm->pt_ops->pte_encode_bo(pt_bo, 0,
--									 pat_index, 0);
--					bb->cs[bb->len++] = lower_32_bits(addr);
--					bb->cs[bb->len++] = upper_32_bits(addr);
--				}
--
--				j = 0;
--			}
--
--next_cmd:
--			ptes -= chunk;
--			ofs += chunk * sizeof(u64);
--		}
--
--		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
--		update_idx = bb->len;
--
--		addr = xe_migrate_vm_addr(ppgtt_ofs, 0) +
--			(page_ofs / sizeof(u64)) * XE_PAGE_SIZE;
--		for (i = 0; i < pt_update_ops->num_ops; ++i) {
--			struct xe_vm_pgtable_update_op *pt_op =
--				&pt_update_ops->pt_job_ops->ops[i];
--			struct xe_vm_pgtable_update *updates = pt_op->entries;
--
--			for (j = 0; j < pt_op->num_entries; ++j) {
--				struct xe_bo *pt_bo = updates[j].pt_bo;
--
--				write_pgtable(tile, bb, addr +
--					      pt_bo->update_index * XE_PAGE_SIZE,
--					      pt_op, &updates[j], pt_update);
--			}
--		}
--	} else {
--		/* phys pages, no preamble required */
--		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
--		update_idx = bb->len;
--
--		for (i = 0; i < pt_update_ops->num_ops; ++i) {
--			struct xe_vm_pgtable_update_op *pt_op =
--				&pt_update_ops->pt_job_ops->ops[i];
--			struct xe_vm_pgtable_update *updates = pt_op->entries;
--
--			for (j = 0; j < pt_op->num_entries; ++j)
--				write_pgtable(tile, bb, 0, pt_op, &updates[j],
--					      pt_update);
--		}
--	}
-+	int err;
- 
--	job = xe_bb_create_migration_job(pt_update_ops->q, bb,
--					 xe_migrate_batch_base(m, usm),
--					 update_idx);
-+	job = xe_sched_job_create(pt_update_ops->q, NULL);
- 	if (IS_ERR(job)) {
- 		err = PTR_ERR(job);
--		goto err_sa;
-+		goto err_out;
- 	}
- 
--	xe_sched_job_add_migrate_flush(job, MI_INVALIDATE_TLB);
-+	xe_tile_assert(tile, job->is_pt_job);
- 
- 	if (ops->pre_commit) {
- 		pt_update->job = job;
-@@ -2104,6 +1889,12 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
- 	if (is_migrate)
- 		mutex_lock(&m->job_mutex);
- 
-+	job->pt_update[0].vm = pt_update->vops->vm;
-+	job->pt_update[0].tile = tile;
-+	job->pt_update[0].ops = ops;
-+	job->pt_update[0].pt_job_ops =
-+		xe_pt_job_ops_get(pt_update_ops->pt_job_ops);
-+
- 	xe_sched_job_arm(job);
- 	fence = dma_fence_get(&job->drm.s_fence->finished);
- 	xe_sched_job_push(job);
-@@ -2111,17 +1902,11 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
- 	if (is_migrate)
- 		mutex_unlock(&m->job_mutex);
- 
--	xe_bb_free(bb, fence);
--	drm_suballoc_free(sa_bo, fence);
--
- 	return fence;
- 
- err_job:
- 	xe_sched_job_put(job);
--err_sa:
--	drm_suballoc_free(sa_bo, NULL);
--err_bb:
--	xe_bb_free(bb, NULL);
-+err_out:
- 	return ERR_PTR(err);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 486de8a46a6a..baa6581f8d33 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -388,7 +388,6 @@ xe_pt_new_shared(struct xe_walk_update *wupd, struct xe_pt *parent,
- 	entry->pt = parent;
- 	entry->flags = 0;
- 	entry->qwords = 0;
--	entry->pt_bo->update_index = -1;
- 	entry->level = parent->level;
- 
- 	if (alloc_entries) {
+ module_param_named(vram_bar_size, xe_modparam.force_vram_bar_size, int, 0600);
+ MODULE_PARM_DESC(vram_bar_size, "Set the vram bar size in MiB (<0=disable-resize, 0=max-needed-size, >0=force-size "
+ 		 "[default=" __stringify(XE_DEFAULT_VRAM_BAR_SIZE) "])");
+diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
+index 6272d9e41207..5d88448c298a 100644
+--- a/drivers/gpu/drm/xe/xe_module.h
++++ b/drivers/gpu/drm/xe/xe_module.h
+@@ -13,6 +13,7 @@ struct work_struct;
+ /* Module modprobe variables */
+ struct xe_modparam {
+ 	bool probe_display;
++	bool ulls_enable;
+ 	int force_vram_bar_size;
+ 	int guc_log_level;
+ 	char *guc_firmware_path;
 -- 
 2.34.1
 
