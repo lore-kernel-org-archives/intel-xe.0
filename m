@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF63DC624D7
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 20:24:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6403FC61DD3
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 20:26:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A04D10E256;
-	Thu,  3 Sep 2026 20:24:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0271010E464;
+	Thu,  3 Sep 2026 20:26:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Z1Uqjmjp";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JeT9I6ky";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1D8D10E256
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 20:24:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B831410E464
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 20:26:11 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 9D9E841473;
- Thu,  3 Sep 2026 20:24:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FE301F000E9;
- Thu,  3 Sep 2026 20:24:20 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 440A2432E9;
+ Thu,  3 Sep 2026 20:26:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 092791F00A3D;
+ Thu,  3 Sep 2026 20:26:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788467060;
- bh=iN/8MpCfpf/M3XNkoYbn3TLnxNf5y19OU5VCHvVZR8E=;
+ s=k20260515; t=1788467171;
+ bh=1PM8lZnMWZg3x6SO3EBg2fPICUWpzVKfxtGJrKBvbrc=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Z1Uqjmjpnuq0ZLitZ+ov1zo4YaKuX7xBvV7VoQylvJ1VQMVuJH94jlOjvD5CnwVR9
- /fqOmoOJ3k9mCCZbcO+Pj7iREBM9C6tqnaIjeUW3RdMz6Rb8FuM1V/390o8mxmRmpw
- 8YYp+tzPJ4q3yIhQ33cQWj6jhO40CBFarq8fW+8cf29JmQ34kiJYeFgvsILqtMBft5
- V1Y9j7/bzwUrQKTeJGG8rgeM6n9MuhrXwJJyHBQfEG6kRChnP2959sVkrNhOGI3VyG
- /VjJRWHGWKDGFO6Sc4VQphFwMoZbRMH6bCRTQ3wLWJcMzlFaaU60jxNQvBjM7XWfJF
- gIFEOIEm8Nr4Q==
+ b=JeT9I6ky1ixgYu7yttpmIcgqwZ1/pVRDtjcSLPUp9VerIqlF7/YE/f0yftzobMfP8
+ mmYTiXfLMWrlqxNzyaR+v2wVp7xbJJCIqy8T/vXn/P+pw4qGuOJ7BypsximxBcpWfQ
+ ByWZkZdYOsazkxdn2y9mSGDL1hMVbHnG1NLSmhz0a5GDmzlVhhr5ppTduOONKQx4Nt
+ ObZ7iaxRYHT2H5fTah0eMokf7VVBGg3cKrF5O7TzOGY/kFTTg3JFpVTYBV/0mlNj4r
+ DGqxBaCoGYkeDVkkiVZaeg9iS7a3vr2cCsHBpgw8rqQJLMcSTPjXSn1DsY9b/GMRHy
+ uvwSSIqQRB+lA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 05/18] platform/x86/intel/pmt: Do not remap when
- using callbacks
+Subject: Re: [PATCH v5 14/18] drm/xe/vsec: Crescent Island PMT callbacks
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260903201002.1064889-25-michael.j.ruhl@intel.com>
+In-Reply-To: <20260903201002.1064889-34-michael.j.ruhl@intel.com>
 References: <20260903201002.1064889-20-michael.j.ruhl@intel.com>
- <20260903201002.1064889-25-michael.j.ruhl@intel.com>
+ <20260903201002.1064889-34-michael.j.ruhl@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 03 Sep 2026 20:24:19 +0000
-Message-Id: <20260903202420.5FE301F000E9@smtp.kernel.org>
+Date: Thu, 03 Sep 2026 20:26:10 +0000
+Message-Id: <20260903202611.092791F00A3D@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,121 +56,75 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-New issues:
-- [High] NULL pointer dereference in `pmt_telem_read32()` when accessing te=
-lemetry endpoints that provide a callback.
-- [Medium] PMT regions using callbacks break the `telemetry_region` API con=
-tract, causing KUnit test failures and silently dropped telemetry data.
-
-Pre-existing issues:
-- [High] Userspace mmap unconditionally exposes telemetry memory, allowing =
-it to bypass the `read_telem` callback and hardware protections.
+- [Medium] Using memcpy_toio() and memcpy_fromio() for 32-bit MMIO control =
+registers violates atomicity, lacks memory barriers, and breaks endianness =
+on big-endian architectures.
 --
 
-commit 12a3129bb64bc1b8ec1d2e409cf11d07b5c7a14a
+commit dbad67bc0c83cc3b6a60d78b23589e00b666a0f0
 Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
-Subject: platform/x86/intel/pmt: Do not remap when using callbacks
 
-This commit updates the Intel PMT driver to skip creating a memory remap wh=
-en
-a read_telem callback is provided. It avoids redundant mappings for devices
-where the parent driver manages data access.
+drm/xe/vsec: Crescent Island PMT callbacks
 
-> diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x8=
-6/intel/pmt/class.c
-> index 402d51df834a6..1c7a372b4fc42 100644
-> --- a/drivers/platform/x86/intel/pmt/class.c
-> +++ b/drivers/platform/x86/intel/pmt/class.c
+This commit introduces callbacks for Crescent Island PMT support to access
+the discovery status and control areas. It adds the glue logic and registers
+the functionality for the XE_CRESCENTISLAND platform.
+
+> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+> index 0438810337dd3..336c4b7d284bc 100644
+> --- a/drivers/gpu/drm/xe/xe_vsec.c
+> +++ b/drivers/gpu/drm/xe/xe_vsec.c
 [ ... ]
-> @@ -403,14 +403,19 @@ static int intel_pmt_dev_register(struct intel_pmt_=
-entry *entry,
->  	if (!entry->size)
->  		return 0;
-> =20
-> -	res.start =3D entry->base_addr;
-> -	res.end =3D res.start + entry->size - 1;
-> -	res.flags =3D IORESOURCE_MEM;
-> +	/*
-> +	 * The read_telem callback is responsible for this mapping, and may have
-> +	 * different requirements for use. If the callback is present do not
-> +	 * create the map.
-> +	 */
-> +	if (!(entry->cb && entry->cb->read_telem)) {
-> +		struct resource res =3D DEFINE_RES_MEM(entry->base_addr, entry->size);
-> =20
-> -	entry->base =3D devm_ioremap_resource(dev, &res);
-> -	if (IS_ERR(entry->base)) {
-> -		ret =3D PTR_ERR(entry->base);
-> -		goto fail_ioremap;
-> +		entry->base =3D devm_ioremap_resource(dev, &res);
-> +		if (IS_ERR(entry->base)) {
-> +			ret =3D PTR_ERR(entry->base);
-> +			goto fail_ioremap;
-> +		}
->  	}
-
-[Severity: High]
-Does skipping the memory mapping here cause a NULL pointer dereference in
-exported APIs?  When pmt_telem_read32() is called on a callback-enabled
-endpoint, it unconditionally dereferences ep->base without checking:
-
-drivers/platform/x86/intel/pmt/telemetry.c:pmt_telem_read32() {
-    ...
-    memcpy_fromio(data, ep->base + offset, NUM_BYTES_DWORD(count));
-    ...
-}
-
-Since this patch leaves entry->base (and subsequently ep->base) as NULL,
-will this result in a kernel panic when consumers use pmt_telem_read32()?
+> +static int xe_pmt_read_reg(struct device *dev, u32 guid, u32 *reg, u32 o=
+ffset)
+> +{
+[ ... ]
+> +	xe_pm_runtime_get(xe);
+> +	mutex_lock(&xe->pmt.lock);
+> +
+> +	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+> +
+> +	memcpy_fromio(reg, disc_addr, sizeof(*reg));
 
 [Severity: Medium]
-Similarly, does skipping the map break the telemetry_region API contract?
-In pmt_copy_region(), the region address is populated using ep->base:
+Does using memcpy_fromio() here instead of readl() cause endianness issues
+on big-endian platforms?
 
-drivers/platform/x86/intel/pmt/telemetry.c:pmt_copy_region() {
-    ...
-    region->addr =3D entry->ep->base;
-    region->size =3D entry->size;
-    ...
-}
+Since this is reading a 32-bit register, memcpy_fromio() omits endian
+conversion and implicit memory barriers. It might also break atomicity or
+cause PCIe target aborts if the underlying implementation falls back to 8-b=
+it
+byte accesses, which some hardware rejects for 32-bit registers.
 
-This sets region->addr to NULL for callback-enabled devices. Existing
-consumers expect a valid address, and the KUnit test for PMT regions
-explicitly fails on this:
+> +
+> +	mutex_unlock(&xe->pmt.lock);
+> +	xe_pm_runtime_put(xe);
+[ ... ]
+> +static int xe_pmt_write_reg(struct device *dev, u32 guid, u32 reg, u32 o=
+ffset)
+> +{
+[ ... ]
+> +	xe_pm_runtime_get(xe);
+> +	mutex_lock(&xe->pmt.lock);
+> +
+> +	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+> +
+> +	memcpy_toio(disc_addr, &reg, sizeof(reg));
 
-drivers/platform/x86/intel/pmt/discovery-kunit.c:validate_pmt_regions() {
-    ...
-    KUNIT_ASSERT_NOT_ERR_OR_NULL(test, (__force const void *)region->addr);
-    ...
-}
+[Severity: Medium]
+Could memcpy_toio() write these bytes in CPU endianness instead of the
+device's expected little-endian format?=20
 
-> =20
->  	sysfs_bin_attr_init(&entry->pmt_bin_attr);
->  	entry->pmt_bin_attr.attr.name =3D ns->name;
->  	entry->pmt_bin_attr.attr.mode =3D 0440;
->  	entry->pmt_bin_attr.mmap =3D intel_pmt_mmap;
+Using writel() here would properly handle endianness conversion, ensure=20
+I/O memory barriers, and guarantee a single atomic 32-bit write operation.
 
-[Severity: High]
-This is a pre-existing issue, but does assigning this mmap handler
-unconditionally expose telemetry memory and bypass the callbacks?
-
-If a userspace process calls mmap on the PMT sysfs file, the
-intel_pmt_mmap handler maps the raw physical memory directly into
-userspace using io_remap_pfn_range().  For endpoints that provide a
-read_telem callback, they rely on software mediation to safely access
-data (like waking the device, acquiring locks, etc.).
-
-Could userspace completely circumvent these protections and potentially
-cause hardware lockups or incorrect data reads by mapping the physical
-memory directly?
-
->  	entry->pmt_bin_attr.read =3D intel_pmt_read;
->  	entry->pmt_bin_attr.size =3D entry->size;
->
+> +
+> +	mutex_unlock(&xe->pmt.lock);
+> +	xe_pm_runtime_put(xe);
+[ ... ]
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903201002.1064=
-889-20-michael.j.ruhl@intel.com?part=3D5
+889-20-michael.j.ruhl@intel.com?part=3D14
