@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E08E7C61DD3
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 14:13:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 983EDC624A4
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 14:16:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A218410F5D3;
-	Thu,  3 Sep 2026 14:13:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CD8710E123;
+	Thu,  3 Sep 2026 14:16:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jdxciZk8";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OwcLcRLK";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BA0710F5D3
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 14:13:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA5E010E123
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 14:16:13 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id E33DF6053C;
- Thu,  3 Sep 2026 14:13:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F5811F00AC4;
- Thu,  3 Sep 2026 14:13:56 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 0CB7460A56;
+ Thu,  3 Sep 2026 14:16:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CA091F00AC4;
+ Thu,  3 Sep 2026 14:16:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788444836;
- bh=gkuBwdZrTjxZzk5+CD1rRG+SEf6z8D/ZmHhPrWrVJ1A=;
+ s=k20260515; t=1788444972;
+ bh=fgYzgBqbBUipXAQh0dXDsxc1+RlTlzLEFZYoxejGeDs=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=jdxciZk8ksJdFZyJurfKhpZlf1IvYnwGdZZuM2XwYLnBhD3KHiexSHkXv+XciLpCE
- UxSYBl32eSGSLr/d0IgntcMNOyvYtpvjLU5iO3ZKpHFMbPoOk534TWEun4A35/L8Nj
- A4ZTc7Q3TBQR9Fj9qR6v8NP3xX9n9qH585I61AZT20tYXL8Eagm4+D5BfrJBGW0D7l
- TF9hHY0Ht+NWpIlM8Xt/MPmqdrz4WF4hz3cnApuLZz9jAEKb7lIm5e2zY1y3ZL1bQZ
- HUTPgvCxLLd2b/oWD8P5S7aYjEHYQAX3Qub01Qd8V6rNkGJNPMVx3RDTpqJpmvL2rQ
- /hfN5V+VwE67A==
+ b=OwcLcRLKjiujf2lyqJiH3FqafpBosnuZYFPmtO4vL5zHUH4plMt/GZegn0GJyFdu8
+ cYmbpkBX/87ucTZ+xuPnjXjQn1T9C2E2bRf0WKLDIvSZi7dzY/dTmkKkuPBKOUXRtu
+ aWnsVOq3nTQzA6kzdVy0DSPuBh/Y/htOvHrLFdI7bNEhdVOY6TdRn78oRiEui1Wkx0
+ w1pfd51DR+/kQkHxvEtuA8dnVTf2AHV4Prc31Q0LBlyVQnzHVqtJ1lFHyCGh8XZROf
+ ZyW0oKej8PofqzIK5puUhnVimkjF6GaRn3ZwOq6VNfMYKxrjMHZuSs2/FJnlg1oK/O
+ RvqKSFqDA6Erg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 2/4] drm/xe/sysctrl: Add sysctrl debugfs
- infrastructure and loopback test interface
+Subject: Re: [PATCH v4 1/4] drm/xe/sysctrl: Add System Controller get
+ application status
 To: =?utf-8?b?QW5vb3AsIFZpamF5?= <anoop.c.vijay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260903140340.83500-8-anoop.c.vijay@intel.com>
+In-Reply-To: <20260903140340.83500-7-anoop.c.vijay@intel.com>
 References: <20260903140340.83500-6-anoop.c.vijay@intel.com>
- <20260903140340.83500-8-anoop.c.vijay@intel.com>
+ <20260903140340.83500-7-anoop.c.vijay@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 03 Sep 2026 14:13:56 +0000
-Message-Id: <20260903141356.6F5811F00AC4@smtp.kernel.org>
+Date: Thu, 03 Sep 2026 14:16:12 +0000
+Message-Id: <20260903141612.8CA091F00AC4@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,90 +59,106 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] Concurrent reads and writes to the loopback debugfs entry cause =
-data races and expose inconsistent state.
+
+Pre-existing issues:
+- [High] If the firmware responds with more data than expected, `sysctrl_re=
+ceive_frames()` exits its read loop early, permanently hanging the mailbox =
+state machine.
 --
 
-commit b7da09a9e8ead758b95d7f60c29e7f7b90c922ce
+commit b13ca50e46d24c8dd84b548f2ea15d17ffc919a8
 Author: Anoop Vijay <anoop.c.vijay@intel.com>
-Subject: drm/xe/sysctrl: Add sysctrl debugfs infrastructure and loopback te=
-st interface
 
-This commit adds debugfs support for exercising the System Controller mailb=
-ox
-interface from userspace. It introduces the sc/loopback entry which sends an
-arbitrary byte payload to the Core group's inverted-loopback command.
+drm/xe/sysctrl: Add System Controller get application status
+
+Add support for querying System Controller firmware application
+status. This allows callers to determine whether a given firmware
+application has completed boot and post-boot initialization.
+
+Link: https://lore.kernel.org/intel-xe/20260814095306.2482289-5-anoop.c.vij=
+ay@intel.com/
+Link: https://lore.kernel.org/intel-xe/20260814095306.2482289-6-anoop.c.vij=
+ay@intel.com/
+
+> diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysc=
+trl.c
+> index 62ccc9be71b45..5da591ade4e4b 100644
+> --- a/drivers/gpu/drm/xe/xe_sysctrl.c
+> +++ b/drivers/gpu/drm/xe/xe_sysctrl.c
 
 [ ... ]
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c b/drivers/gpu/drm/xe=
-/xe_sysctrl_debugfs.c
-> new file mode 100644
-> index 0000000000000..2144d9d43fba5
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-> @@ -0,0 +1,157 @@
-[ ... ]
-> +static ssize_t xe_sysctrl_loopback_write(struct file *file, const char _=
-_user *ubuf,
-> +					 size_t len, loff_t *offp)
+
+> @@ -125,3 +127,83 @@ void xe_sysctrl_pm_resume(struct xe_device *xe)
+> =20
+>  	xe->soc_remapper.set_sysctrl_region(xe, SYSCTRL_MAILBOX_INDEX);
+>  }
+> +
+> +static enum xe_sysctrl_fw_status
+> +xe_sysctrl_check_app_status(struct xe_device *xe, enum xe_sysctrl_app_id=
+ app_id)
 > +{
-[ ... ]
-> +	xe_sysctrl_create_command(&cmd, entry->group, entry->command,
-> +				  input, input_len, entry->response_buf, input_len);
+> +	struct xe_sysctrl_app_status_req req =3D {};
+> +	struct xe_sysctrl_app_status_resp resp =3D {};
+> +	struct xe_sysctrl_mailbox_command cmd =3D {};
+> +	size_t out_len =3D 0;
+> +	u32 flags;
+> +	int ret;
 > +
-> +	guard(xe_pm_runtime)(xe);
-> +	entry->status =3D xe_sysctrl_send_command(entry->sc, &cmd, &out_len);
-> +	entry->response_len =3D entry->status ? 0 : out_len;
-
-[Severity: Medium]
-Does this code leave the shared debugfs entry fields vulnerable to data rac=
-es
-if multiple userspace processes write to the loopback file concurrently?
-
-It appears that entry->status, entry->response_len, and entry->response_buf
-are modified here directly without any synchronization protecting the entry
-structure itself, as sc->cmd_lock inside xe_sysctrl_send_command() only
-serializes the hardware mailbox sequence.
-
+> +	if (!xe->info.has_sysctrl)
+> +		return XE_SYSCTRL_FIRMWARE_APP_NOTSUPP;
 > +
-> +	return entry->status ? entry->status : len;
-> +}
+> +	req.app_id =3D (u8)app_id;
 > +
-> +static int xe_sysctrl_loopback_show(struct seq_file *m, void *data)
-> +{
-> +	struct xe_sysctrl_debugfs_entry *entry =3D m->private;
-> +	size_t i;
+> +	xe_sysctrl_create_command(&cmd, XE_SYSCTRL_GROUP_CORE, XE_SYSCTRL_CMD_G=
+ET_APP_STATUS_BY_ID,
+> +				  &req, sizeof(req), &resp, sizeof(resp));
 > +
-> +	seq_printf(m, "Command: group=3D0x%02x cmd=3D0x%02x\n", entry->group, e=
-ntry->command);
-> +	seq_printf(m, "Status: %d (%s)\n", entry->status, entry->status ? "FAIL=
-ED" : "SUCCESS");
-> +	seq_printf(m, "Response: %zu bytes\n", entry->response_len);
+> +	ret =3D xe_sysctrl_send_command(&xe->sc, &cmd, &out_len);
+
+[Severity: High]
+This isn't a bug introduced by this patch, but calling
+xe_sysctrl_send_command() here exposes a pre-existing severe logic flaw in
+the mailbox protocol handler.
+
+If the firmware responds to this command with more data than expected, the
+driver will permanently hang the mailbox state machine.
+
+In drivers/gpu/drm/xe/xe_sysctrl_mailbox.c:sysctrl_receive_frames():
+
+	while (!done && remain) {
+		frame_size =3D min_t(size_t, remain, XE_SYSCTRL_MB_FRAME_SIZE);
+
+		ret =3D sysctrl_process_frame(sc, out, frame_size, timeout_ms,
+					    &done);
+		if (ret)
+			return ret;
+
+		remain -=3D frame_size;
+		out +=3D frame_size;
+	}
+
+If the response payload is larger than the requested data_out_len,
+sysctrl_receive_frames() strictly bounds its read loop by remain. When
+remain drops to 0, the loop terminates before done is set.
+
+This causes the host to stop reading the remaining frames and stop clearing
+SYSCTRL_MB_CTRL_RUN_BUSY_OUT. The firmware is left waiting indefinitely
+for the host to acknowledge the next frame, which will cause all subsequent
+mailbox commands to time out or corrupt the mailbox state.
+
+Does this need to be fixed in sysctrl_receive_frames() to properly drain
+unexpected trailing data instead of abandoning the transaction?
+
+> +	if (ret)
+> +		return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
 > +
-> +	if (entry->response_len) {
-> +		seq_puts(m, "Response data:\n");
-> +		for (i =3D 0; i < entry->response_len; i++) {
-> +			if (i && (i % 16) =3D=3D 0)
-> +				seq_putc(m, '\n');
-> +			seq_printf(m, "%02x ", entry->response_buf[i]);
-
-[Severity: Medium]
-Can a concurrent write to the loopback file cause torn reads or inconsistent
-state to be returned here?=20
-
-Since the entry fields are read locklessly, it seems possible to observe a =
-new
-buffer's contents alongside an old buffer's length, or a mismatched status,
-returning garbage diagnostic output to userspace.
-
-> +		}
-> +		seq_putc(m, '\n');
+> +	if (out_len !=3D sizeof(resp)) {
+> +		xe_err(xe, "sysctrl: unexpected get app status response length %zu (ex=
+pected %zu)\n",
+> +		       out_len, sizeof(resp));
+> +		return XE_SYSCTRL_FIRMWARE_COMM_FAILURE;
 > +	}
-> +
-> +	return 0;
-> +}
-[ ... ]
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903140340.8350=
-0-6-anoop.c.vijay@intel.com?part=3D2
+0-6-anoop.c.vijay@intel.com?part=3D1
