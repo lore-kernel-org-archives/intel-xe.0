@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B7B9C79F88
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B979C79F89
 	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 23:58:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABE7E10F7F6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC93D10F7FD;
 	Thu,  3 Sep 2026 23:58:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BxhWAMOT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l9A/7YRZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F91910E198
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B0CC10E4BC
  for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 23:58:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1788479930; x=1820015930;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=3h/2JTWv10YjsegIriyN+uyrzq+FkqiTseHVOhdKUyw=;
- b=BxhWAMOTnzAzX04uFz6cSmykmH36ffPYBjDrAcnw6rSylTXvzCWpl3c4
- coBqJfsuBd42pQraCJFkYA/IqQUYfrDVxkGKW4g8scrzrIcXjjyYOFypJ
- vX8jLi5tMjcHb4Hjr1JWfw8PgBGVDNQwrZTXyQdQ34SKEP8QH5asI4AVW
- i//ziXk/9I2+9RCuOcDyOluA5IAp0EynJiOuxnZ9W0hG2p+BNaBcqnu8v
- uOVUqld4MnGDXYfEJc6Bn1yvHCfY5I+rwh/28FlawCLmnNoVm+z61Pexh
- LUMuWtCLcOxElzuq2+bQ82aKQOsJEGAZFPPvBcznA8t7rYV+kesLxm3dh w==;
-X-CSE-ConnectionGUID: RjZewZkwSNCnJCefSCjHWg==
-X-CSE-MsgGUID: 66AOss5dSX2QOy/yxZL43g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="99637810"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="99637810"
+ bh=mEBUGAQ9ta0Lf1CQCRzKwEAyy3g0S9miYQtkkJu3jHE=;
+ b=l9A/7YRZtMw504DxYQ+jWKhCLds5RzbWFHtyDUI4ZIasCCcSKNPKd0+Q
+ NP5Sxh8Oo2qQe5I423lp3npv+ssDQ1Xwc9xn8F8zyQ48/9h521gUeQutU
+ DZpVFWxxwLKl1EMps8EAoXef4zc0c7LuagijK2KNoQ5/2SZzDpZK9am3/
+ PIQUb2xLIaa9ePye6K6JMYa0cuJXDH4qQQGPIfCeMaTgHDm8wOq8rze8H
+ Zq27MRptbzU2BCzAjpUDoc2pzwOmGAutFWQqlBGhTXrzq+HHFCutlbXmv
+ EL5CY41AvCCAbFH+15J5wGHyim1e78ubU9hGxb6Jvuu/6eVojxMtuHQOP g==;
+X-CSE-ConnectionGUID: kYXf1jLrRLSyVqR8r/E6+A==
+X-CSE-MsgGUID: FwW45j7WRz+2erZAAl+Kow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="99637812"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="99637812"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Sep 2026 16:58:50 -0700
-X-CSE-ConnectionGUID: 3izTuBRsQxGEZLTg6EGmeg==
-X-CSE-MsgGUID: JZuvliZbQ8W9keXuxJz8NQ==
+X-CSE-ConnectionGUID: 8lwMtiayTxW7nFx1v/SzrQ==
+X-CSE-MsgGUID: NJxZNSNJSJi7w0q2t7DlQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="274029049"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="274029053"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Sep 2026 16:58:49 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 10/25] drm/xe: Update GuC submission backend to run PT jobs
-Date: Thu,  3 Sep 2026 16:58:27 -0700
-Message-Id: <20260903235842.3401722-11-matthew.brost@intel.com>
+Subject: [PATCH v4 12/25] drm/xe: Don't use migrate exec queue for page fault
+ binds
+Date: Thu,  3 Sep 2026 16:58:29 -0700
+Message-Id: <20260903235842.3401722-13-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260903235842.3401722-1-matthew.brost@intel.com>
 References: <20260903235842.3401722-1-matthew.brost@intel.com>
@@ -65,140 +66,217 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PT jobs bypass GPU execution for the final step of a bind job, using the
-CPU to program the required page tables. Teach the GuC submission backend
-how to execute these jobs.
-
-PT job submission is implemented in the GuC backend for simplicity. A
-follow-up patch could introduce a dedicated backend for PT jobs.
+Now that the CPU is always used for binds even in jobs, CPU bind jobs
+can pass GPU jobs in the same exec queue resulting dma-fences signaling
+out-of-order. Use a dedicated exec queue for binds issued from page
+faults to avoid ordering issues and avoid blocking kernel binds on
+unrelated copies / clears.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-11-matthew.brost@intel.com
+Link: https://patch.msgid.link/20260228013501.106680-13-matthew.brost@intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 37 ++++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_migrate.c    | 13 ++++++++++-
- drivers/gpu/drm/xe/xe_migrate.h    |  8 +++++++
- 3 files changed, 52 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 47 ++++++++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_migrate.h |  1 +
+ drivers/gpu/drm/xe/xe_vm.c      | 17 +++++++-----
+ 3 files changed, 55 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index cf306568ef30..528869928c1d 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -37,9 +37,11 @@
- #include "xe_lrc.h"
- #include "xe_macros.h"
- #include "xe_map.h"
-+#include "xe_migrate.h"
- #include "xe_mocs.h"
- #include "xe_module.h"
- #include "xe_pm.h"
-+#include "xe_pt.h"
- #include "xe_ring_ops_types.h"
- #include "xe_sched_job.h"
- #include "xe_sleep.h"
-@@ -1236,6 +1238,20 @@ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 160045f08cb8..100e84b7b81d 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -51,6 +51,8 @@
+ struct xe_migrate {
+ 	/** @q: Default exec queue used for migration */
+ 	struct xe_exec_queue *q;
++	/** @bind_q: Default exec queue used for binds */
++	struct xe_exec_queue *bind_q;
+ 	/** @tile: Backpointer to the tile this struct xe_migrate belongs to. */
+ 	struct xe_tile *tile;
+ 	/** @job_mutex: Timeline mutex for @eng. */
+@@ -115,6 +117,7 @@ static void xe_migrate_fini(void *arg)
+ 	mutex_destroy(&m->job_mutex);
+ 	xe_vm_close_and_put(m->q->vm);
+ 	xe_exec_queue_put(m->q);
++	xe_exec_queue_put(m->bind_q);
  }
  
-+static bool is_pt_job(struct xe_sched_job *job)
+ static inline u16 xe_migrate_pat_index(struct xe_device *xe,
+@@ -504,6 +507,15 @@ int xe_migrate_init(struct xe_migrate *m)
+ 			goto err_out;
+ 		}
+ 
++		m->bind_q = xe_exec_queue_create(xe, vm, logical_mask, 1, hwe0,
++						 EXEC_QUEUE_FLAG_KERNEL |
++						 EXEC_QUEUE_FLAG_HIGH_PRIORITY |
++						 EXEC_QUEUE_FLAG_MIGRATE, 0);
++		if (IS_ERR(m->bind_q)) {
++			err = PTR_ERR(m->bind_q);
++			goto err_out;
++		}
++
+ 		/*
+ 		 * XXX: Currently only reserving 1 (likely slow) BCS instance on
+ 		 * PVC, may want to revisit if performance is needed.
+@@ -514,6 +526,15 @@ int xe_migrate_init(struct xe_migrate *m)
+ 					    EXEC_QUEUE_FLAG_MIGRATE |
+ 					    EXEC_QUEUE_FLAG_LOW_LATENCY, 0);
+ 	} else {
++		m->bind_q = xe_exec_queue_create_class(xe, primary_gt, vm,
++						       XE_ENGINE_CLASS_COPY,
++						       EXEC_QUEUE_FLAG_KERNEL |
++						       EXEC_QUEUE_FLAG_MIGRATE, 0);
++		if (IS_ERR(m->bind_q)) {
++			err = PTR_ERR(m->bind_q);
++			goto err_out;
++		}
++
+ 		m->q = xe_exec_queue_create_class(xe, primary_gt, vm,
+ 						  XE_ENGINE_CLASS_COPY,
+ 						  EXEC_QUEUE_FLAG_KERNEL |
+@@ -549,6 +570,8 @@ int xe_migrate_init(struct xe_migrate *m)
+ 	return err;
+ 
+ err_out:
++	if (!IS_ERR_OR_NULL(m->bind_q))
++		xe_exec_queue_put(m->bind_q);
+ 	xe_vm_close_and_put(vm);
+ 	return err;
+ 
+@@ -1505,6 +1528,17 @@ static u32 blt_mem_set_cmd_len(struct xe_device *xe)
+ 	return 7;
+ }
+ 
++/**
++ * xe_get_migrate_bind_queue() - Get the bind queue from migrate context.
++ * @migrate: Migrate context.
++ *
++ * Return: Pointer to bind queue on success, error on failure
++ */
++struct xe_exec_queue *xe_migrate_bind_queue(struct xe_migrate *migrate)
 +{
-+	return job->is_pt_job;
++	return migrate->bind_q;
 +}
 +
-+static void run_pt_job(struct xe_sched_job *job)
+ static void emit_clear_link_copy(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
+ 				 u32 size, u32 pitch)
+ {
+@@ -1892,6 +1926,11 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 	return dma_fence_get_stub();
+ }
+ 
++static bool is_migrate_queue(struct xe_migrate *m, struct xe_exec_queue *q)
 +{
-+	xe_migrate_update_pgtables_cpu_execute(job->pt_update[0].vm,
-+					       job->pt_update[0].tile,
-+					       job->pt_update[0].ops,
-+					       job->pt_update[0].pt_job_ops->ops,
-+					       job->pt_update[0].pt_job_ops->current_op);
++	return m->bind_q == q;
 +}
 +
  static struct dma_fence *
- guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+ __xe_migrate_update_pgtables(struct xe_migrate *m,
+ 			     struct xe_migrate_pt_update *pt_update,
+@@ -1909,7 +1948,7 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
+ 	u32 num_updates = 0, current_update = 0;
+ 	u64 addr;
+ 	int err = 0;
+-	bool is_migrate = pt_update_ops->q == m->q;
++	bool is_migrate = is_migrate_queue(m, pt_update_ops->q);
+ 	bool usm = is_migrate && xe->info.has_usm;
+ 
+ 	for (i = 0; i < pt_update_ops->num_ops; ++i) {
+@@ -2631,7 +2670,7 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
+  */
+ void xe_migrate_job_lock(struct xe_migrate *m, struct xe_exec_queue *q)
  {
-@@ -1261,14 +1277,25 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
- 				register_exec_queue(primary, GUC_CONTEXT_NORMAL);
- 		}
+-	bool is_migrate = q == m->q;
++	bool is_migrate = is_migrate_queue(m, q);
  
--		if (!exec_queue_registered(q))
--			register_exec_queue(q, GUC_CONTEXT_NORMAL);
--		if (!job->restore_replay)
--			q->ring_ops->emit_job(job);
--		submit_exec_queue(q, job);
-+		if (is_pt_job(job)) {
-+			xe_gt_assert(guc_to_gt(guc), !exec_queue_registered(q));
-+			run_pt_job(job);
-+		} else {
-+			if (!exec_queue_registered(q))
-+				register_exec_queue(q, GUC_CONTEXT_NORMAL);
-+			if (!job->restore_replay)
-+				q->ring_ops->emit_job(job);
-+			submit_exec_queue(q, job);
-+		}
- 		job->restore_replay = false;
- 	}
+ 	if (is_migrate)
+ 		mutex_lock(&m->job_mutex);
+@@ -2649,7 +2688,7 @@ void xe_migrate_job_lock(struct xe_migrate *m, struct xe_exec_queue *q)
+  */
+ void xe_migrate_job_unlock(struct xe_migrate *m, struct xe_exec_queue *q)
+ {
+-	bool is_migrate = q == m->q;
++	bool is_migrate = is_migrate_queue(m, q);
  
-+	if (is_pt_job(job)) {
-+		xe_pt_job_ops_put(job->pt_update[0].pt_job_ops);
-+		dma_fence_put(job->fence);	/* Drop ref from xe_sched_job_arm */
-+		return NULL;
-+	}
-+
- run_job_out:
+ 	if (is_migrate)
+ 		mutex_unlock(&m->job_mutex);
+@@ -2666,7 +2705,7 @@ void xe_migrate_job_lock_assert(struct xe_exec_queue *q)
+ {
+ 	struct xe_migrate *m = gt_to_tile(q->gt)->migrate;
  
- 	return job->fence;
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 92e378a45e53..160045f08cb8 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -1819,7 +1819,18 @@ struct migrate_test_params {
- 	container_of(_priv, struct migrate_test_params, base)
+-	xe_gt_assert(q->gt, q == m->q);
++	xe_gt_assert(q->gt, q == m->bind_q);
+ 	lockdep_assert_held(&m->job_mutex);
+ }
  #endif
- 
--static void
-+/**
-+ * xe_migrate_update_pgtables_cpu_execute() - Update a VM's PTEs via the CPU
-+ * @vm: The VM being updated
-+ * @tile: The tile being updated
-+ * @ops: The migrate PT update ops
-+ * @pt_ops: The VM PT update ops
-+ * @num_ops: The number of The VM PT update ops
-+ *
-+ * Execute the VM PT update ops array which results in a VM's PTEs being updated
-+ * via the CPU.
-+ */
-+void
- xe_migrate_update_pgtables_cpu_execute(struct xe_vm *vm, struct xe_tile *tile,
- 				       const struct xe_migrate_pt_update_ops *ops,
- 				       struct xe_vm_pgtable_update_op *pt_op,
 diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index 2ec9de896dfe..84403c242feb 100644
+index 84403c242feb..ee4c4a829963 100644
 --- a/drivers/gpu/drm/xe/xe_migrate.h
 +++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -24,6 +24,7 @@ struct xe_pt;
- struct xe_tile;
- struct xe_vm;
- struct xe_vm_pgtable_update;
-+struct xe_vm_pgtable_update_op;
- struct xe_vma;
+@@ -146,6 +146,7 @@ void xe_migrate_ccs_rw_copy_clear(struct xe_bo *src_bo,
  
- enum xe_sriov_vf_ccs_rw_ctxs;
-@@ -163,6 +164,13 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ struct xe_lrc *xe_migrate_lrc(struct xe_migrate *migrate);
+ struct xe_exec_queue *xe_migrate_exec_queue(struct xe_migrate *migrate);
++struct xe_exec_queue *xe_migrate_bind_queue(struct xe_migrate *migrate);
+ struct dma_fence *xe_migrate_vram_copy_chunk(struct xe_bo *vram_bo, u64 vram_offset,
+ 					     struct xe_bo *sysmem_bo, u64 sysmem_offset,
+ 					     u64 size, enum xe_migrate_copy_dir dir);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 2737bd25f39a..13e984ac4e4f 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -795,7 +795,9 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
+ 	struct xe_vma *vma, *next;
+ 	struct xe_vma_ops vops;
+ 	struct xe_vma_op *op, *next_op;
+-	int err, i;
++	struct xe_tile *tile;
++	u8 id;
++	int err;
  
- struct xe_vm *xe_migrate_get_vm(struct xe_migrate *m);
+ 	lockdep_assert_held(&vm->lock);
+ 	if ((xe_vm_in_lr_mode(vm) && !rebind_worker) ||
+@@ -803,8 +805,11 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
+ 		return 0;
  
-+
-+void
-+xe_migrate_update_pgtables_cpu_execute(struct xe_vm *vm, struct xe_tile *tile,
-+				       const struct xe_migrate_pt_update_ops *ops,
-+				       struct xe_vm_pgtable_update_op *pt_op,
-+				       int num_ops);
-+
- struct dma_fence *
- xe_migrate_update_pgtables(struct xe_migrate *m,
- 			   struct xe_migrate_pt_update *pt_update);
+ 	xe_vma_ops_init(&vops, vm, NULL, NULL, 0);
+-	for (i = 0; i < XE_MAX_TILES_PER_DEVICE; ++i)
+-		vops.pt_update_ops[i].wait_vm_bookkeep = true;
++	for_each_tile(tile, vm->xe, id) {
++		vops.pt_update_ops[id].wait_vm_bookkeep = true;
++		vops.pt_update_ops[id].q =
++			xe_migrate_bind_queue(tile->migrate);
++	}
+ 
+ 	xe_vm_assert_held(vm);
+ 	list_for_each_entry(vma, &vm->rebind_list, combined_links.rebind) {
+@@ -862,7 +867,7 @@ struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma, u8 tile_ma
+ 	for_each_tile(tile, vm->xe, id) {
+ 		vops.pt_update_ops[id].wait_vm_bookkeep = true;
+ 		vops.pt_update_ops[tile->id].q =
+-			xe_migrate_exec_queue(tile->migrate);
++			xe_migrate_bind_queue(tile->migrate);
+ 	}
+ 
+ 	err = xe_vm_ops_add_rebind(&vops, vma, tile_mask);
+@@ -954,7 +959,7 @@ struct dma_fence *xe_vm_range_rebind(struct xe_vm *vm,
+ 	for_each_tile(tile, vm->xe, id) {
+ 		vops.pt_update_ops[id].wait_vm_bookkeep = true;
+ 		vops.pt_update_ops[tile->id].q =
+-			xe_migrate_exec_queue(tile->migrate);
++			xe_migrate_bind_queue(tile->migrate);
+ 	}
+ 
+ 	err = xe_vm_ops_add_range_rebind(&vops, vma, range, tile_mask);
+@@ -1038,7 +1043,7 @@ struct dma_fence *xe_vm_range_unbind(struct xe_vm *vm,
+ 	for_each_tile(tile, vm->xe, id) {
+ 		vops.pt_update_ops[id].wait_vm_bookkeep = true;
+ 		vops.pt_update_ops[tile->id].q =
+-			xe_migrate_exec_queue(tile->migrate);
++			xe_migrate_bind_queue(tile->migrate);
+ 	}
+ 
+ 	err = xe_vm_ops_add_range_unbind(&vops, range);
 -- 
 2.34.1
 
