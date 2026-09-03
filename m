@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1C7DC624A4
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:26:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DC99C61DD3
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:27:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6849810E10B;
-	Thu,  3 Sep 2026 15:26:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F20D10E10B;
+	Thu,  3 Sep 2026 15:27:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nr/Fq/W7";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="W6t2mXfi";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FF5610E10B
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 15:26:07 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7569110E10B
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 15:27:14 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 6911840799;
- Thu,  3 Sep 2026 15:26:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21E0A1F00A3A;
- Thu,  3 Sep 2026 15:26:07 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 96E896053D;
+ Thu,  3 Sep 2026 15:27:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21FE01F00A3A;
+ Thu,  3 Sep 2026 15:27:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788449167;
- bh=dr7WJ2j7iMyfBuDYiADw4VYVa8LHWUXPbww+V83umXM=;
+ s=k20260515; t=1788449233;
+ bh=OSp3ZpLjHZLdmN8cRBMuhCneZpsFwukfAv2jriSIDko=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=nr/Fq/W7Im6zCWyC7ZCP87uqHXykI/lIukXCb8C/kM4rOtSmgZV+VzOwkx/Sk7pBU
- oqcGG7tbgpohZTarCwJbfwrkPr46aLWYbnfTXy+8gvt7pdynhGNnsokXB5HBt5jr4O
- ogEHZQaSIX2z3wobB/oJSXJqQ4DYje3kLoKPlZgY9SCGkh10FuVpW/V6mLqz9Orv1j
- uAXw7zdL0IuUOG0RHZsSHMMLBkJqH7NbuYny1vOQ1GyI1t07q30rAZoRXyt2ClHtNc
- 2J52GduCYfz6mcbbprpPtxX0pIJnHgiBcybm88j4muWa2kqNKfIjn3inOIR/n2nuhW
- D/IHRC8/LSa8A==
+ b=W6t2mXfiaf2WSyEqC6hpGqSJKMmNukKCEQc9HAu5fcmdPLRlYWzDnKXkAtfEmgbXw
+ 5T+8NO270yGS1fJFbXHJRU+uyNo+KkZqRCocayLtnCamoS0wDcbbCgVRNT+9UV9r6R
+ m0UOu1+KUu3BPb29f51zfG3U7wDYRQwwEjXujlYrymsydY6lZl2oIu4/3V9MQXO9xx
+ EftnWDob7GJdzKJ+ocSrP9zyXbeueq+luZDc2PCAUHXrPh9+Hnbiop3jLh7DORYLxp
+ ccLKSp3WUT/CJONr1AjlT0SRNh5O+al3dg9AEEr/ucPLl/ut8WDkrVRctSP/uvcRLc
+ i4tFadRqaolog==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 10/27] drm/xe/eudebug: Introduce vm bind and vm bind
- debug data events
+Subject: Re: [PATCH v10 12/27] drm/xe/eudebug: Add vm open/pread/pwrite
 To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260903145952.848051-11-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20260903145952.848051-13-mika.kuoppala@linux.intel.com>
 References: <20260903145952.848051-1-mika.kuoppala@linux.intel.com>
- <20260903145952.848051-11-mika.kuoppala@linux.intel.com>
+ <20260903145952.848051-13-mika.kuoppala@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 03 Sep 2026 15:26:06 +0000
-Message-Id: <20260903152607.21E0A1F00A3A@smtp.kernel.org>
+Date: Thu, 03 Sep 2026 15:27:12 +0000
+Message-Id: <20260903152713.21FE01F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,85 +56,146 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] Missing `xe_vm_in_lr_mode(vm)` check in `vm_discover_binds` causes=
- debugger discovery to fail if non-LR VMs have debug data.
+- [High] Missing runtime PM reference acquisition before accessing device m=
+emory and MMIO registers in VM read/write and fsync operations.
+- [High] Missing bounds check on `timeout_ns` causes integer truncation and=
+ allows a user-controlled unbounded timeout that leads to device-wide lock =
+starvation.
 --
 
-commit c9fa46a5dd0ac097fb655eda186ce81f79cd82c1
-Author: Christoph Manszewski <c.manszewski@gmail.com>
+commit 4d072be6d2def21f4bb83f2b06e9fdfe40aeb1c5
+Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-drm/xe/eudebug: Introduce vm bind and vm bind debug data events
+    drm/xe/eudebug: Add vm open/pread/pwrite
+   =20
+    The debugger needs access to the client's vm to read and write, for
+    example to inspect ISA/ELF and set up breakpoints.
 
-This commit introduces events to track bind ioctls and their associated
-debug data add and remove operations. It adds a bind event to signal debugg=
-er
-execution and implements discovery of existing binds when attaching.
-
-> diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eude=
-bug.c
-> index d70970f70a8bc..fe3b2ae06a31f 100644
-> --- a/drivers/gpu/drm/xe/xe_eudebug.c
-> +++ b/drivers/gpu/drm/xe/xe_eudebug.c
-
+> diff --git a/drivers/gpu/drm/xe/xe_eudebug_vm.c b/drivers/gpu/drm/xe/xe_e=
+udebug_vm.c
+> new file mode 100644
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_eudebug_vm.c
 [ ... ]
-
-> @@ -942,13 +1118,57 @@ static struct xe_file *xe_eudebug_target_get(struc=
-t xe_eudebug *d)
->  	return xef;
->  }
-> =20
-> +static int vm_discover_binds(struct xe_eudebug *d, struct xe_vm *vm)
+> +static ssize_t __xe_eudebug_vm_access(struct file *file,
+> +				      char __user *r_buffer,
+> +				      const char __user *w_buffer,
+> +				      size_t count, loff_t *__pos)
 > +{
-> +	struct xe_debug_data *dd;
-> +	struct list_head *pos;
-> +	unsigned int ops, count;
-> +	u64 ref_seqno;
-> +	int err;
+[ ... ]
+> +	do {
+> +		const ssize_t len =3D min_t(ssize_t, bytes_left, alloc_len);
 > +
-> +	/*
-> +	 * Walked without vm->debug_data.lock. The caller holds the target's
-> +	 * eudebug.ioctl_lock for write, and everything that adds to or
-> +	 * removes from this list runs under DRM_XE_VM_BIND, which takes that
-> +	 * same rwsem for read, so the list cannot change under us here.
-> +	 */
-> +	if (list_empty(&vm->debug_data.list))
-> +		return 0;
+> +		ret =3D __vm_read_write(vm, k_buffer,
+> +				      write ? NULL : r_buffer + copied,
+> +				      write ? w_buffer + copied : NULL,
+> +				      (u64)(pos + copied),
+> +				      len,
+> +				      write);
+> +		if (ret <=3D 0)
+> +			break;
+> +
+> +		bytes_left -=3D ret;
+> +		copied +=3D ret;
+> +	} while (bytes_left > 0);
 
 [Severity: High]
-Is it intentional that vm_discover_binds() lacks a check for LR mode?=20
-If a userspace client adds debug data to a non-LR VM, this function will
-still attempt to process it since it's missing a check like
-if (!xe_vm_in_lr_mode(vm)).
+Does this code need to acquire a runtime PM reference before accessing memo=
+ry?
+
+VM/VRAM access delegates down to ttm_bo_access(), which requires an active
+runtime PM reference that is absent in this call chain. Because the fops
+handlers execute as standard VFS file operations, they do not automatically
+hold the DRM IOCTL PM runtime reference. ttm_bo_access() delegates to
+xe_ttm_access_memory(), directly hitting the xe_device_assert_mem_access(xe)
+assertion. If the device has entered runtime suspend, accessing memory will
+crash the kernel.
 
 [ ... ]
-
-> @@ -980,6 +1200,12 @@ static void discover_client(struct xe_eudebug *d)
->  		if (err)
->  			goto out;
->  		vm_count++;
+> +static int engine_rcu_flush(struct xe_eudebug *d,
+> +			    struct xe_hw_engine *hwe,
+> +			    unsigned int timeout_us)
+> +{
+[ ... ]
+> +	/* Prevent concurrent flushes */
+> +	mutex_lock(&d->xe->eudebug.lock);
+> +	psmi_ctrl =3D xe_mmio_read32(&gt->mmio, psmi_addr);
+> +	if (!(psmi_ctrl & IDLE_MSG_DISABLE))
+> +		xe_mmio_write32(&gt->mmio, psmi_addr,
+> +				REG_MASKED_FIELD_ENABLE(IDLE_MSG_DISABLE));
 > +
-> +		err =3D vm_discover_binds(d, vm);
-> +		if (err < 0)
-> +			goto out;
+> +	/* XXX: Timeout is per operation but in here we flush previous */
+> +	ret =3D xe_mmio_wait32(&gt->mmio, RCU_ASYNC_FLUSH,
+> +			     RCU_ASYNC_FLUSH_IN_PROGRESS, 0,
+> +			     timeout_us, NULL, false);
 
 [Severity: High]
-Can this sequence cause the debugger discovery to fail completely?
+Does this code block indefinitely and cause lock starvation?
 
-In discover_client(), vm_create_event() correctly skips creating events=20
-and handles for non-LR VMs. However, vm_discover_binds() is called=20
-unconditionally for all VMs.
+There is no bounds check on timeout_ns when passed from user space, allowing
+an unbounded timeout. engine_rcu_flush() implicitly truncates the 64-bit
+value to a 32-bit unsigned int timeout_us. xe_mmio_wait32() will block for
+this duration while holding the device-wide d->xe->eudebug.lock mutex.=20
 
-If userspace adds debug data to a non-LR VM, vm_discover_binds() will=20
-attempt to send bind events via vm_bind_event(). Because the VM handle was=
-=20
-never registered, find_handle() will fail with -ENOENT.
+Furthermore, because the PM runtime reference is missing during fsync (as
+noted below), the MMIO register read will likely return 0xFFFFFFFF, meaning
+the polling loop will never succeed and will guarantee the full sleep
+duration. This completely locks up the eudebug subsystem and EU page fault
+processing across the entire device.
 
-This error will propagate to the out label, immediately disconnecting the
-eudebug session. Could an unprivileged userspace client use this to
-intentionally break the eudebug facility for their process?
+[ ... ]
+> +static int xe_eudebug_vm_fsync(struct file *file, loff_t start, loff_t e=
+nd, int datasync)
+> +{
+[ ... ]
+> +	for_each_gt(gt, d->xe, gt_id) {
+> +		struct xe_hw_engine *hwe;
+> +		enum xe_hw_engine_id id;
+> +
+> +		/* XXX: vm open per engine? */
+> +		xe_eudebug_for_each_hw_engine(hwe, gt, id) {
+> +			ret =3D engine_rcu_flush(d, hwe, vmf->timeout_us);
+> +			if (ret)
+> +				goto out;
+> +		}
+> +	}
+> +out:
+> +	return ret;
+> +}
+
+[Severity: High]
+Does this code need to acquire a runtime PM reference before accessing MMIO
+registers?
+
+Hardware engines are iterated and MMIO registers flushed without asserting
+that the device is awake via a runtime PM reference. Because
+xe_eudebug_vm_fsync() executes as a standard VFS file operation, it does not
+automatically hold the DRM IOCTL PM runtime reference. engine_rcu_flush()
+directly accesses MMIO registers (RING_PSMI_CTL and RCU_ASYNC_FLUSH). If the
+device has entered runtime suspend, accessing MMIO registers will cause PCIe
+aborts or system hangs.
+
+[ ... ]
+> +long xe_eudebug_vm_open_ioctl(struct xe_eudebug *d, unsigned long arg)
+> +{
+[ ... ]
+> +	kref_get(&d->ref);
+> +	vmf->debugger =3D d;
+> +	vmf->vm =3D vm;
+> +	vmf->flags =3D param.flags;
+> +	vmf->vm_handle =3D param.vm_handle;
+> +	vmf->timeout_us =3D div64_u64(param.timeout_ns, 1000ull);
+
+[Severity: High]
+Can a malicious userspace client provide a huge value for timeout_ns and
+cause lock starvation?
+
+This is where the user-controlled timeout is saved without any upper bound
+validation, setting up the lock starvation issue in engine_rcu_flush()
+mentioned above.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903145952.8480=
-51-1-mika.kuoppala@linux.intel.com?part=3D10
+51-1-mika.kuoppala@linux.intel.com?part=3D12
