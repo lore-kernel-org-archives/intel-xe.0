@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3215C624D6
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:20:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25B97C61DD3
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:22:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B40D610F68B;
-	Thu,  3 Sep 2026 15:20:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DADC210E12F;
+	Thu,  3 Sep 2026 15:22:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VVcijMUR";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TN8l3LnZ";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF69910E12F
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 15:20:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3F3310E12F
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 15:22:09 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id E581A60A57;
- Thu,  3 Sep 2026 15:20:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A2091F00A3A;
- Thu,  3 Sep 2026 15:20:06 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 042A26053B;
+ Thu,  3 Sep 2026 15:22:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83C481F000E9;
+ Thu,  3 Sep 2026 15:22:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788448806;
- bh=LwGF/Z2ehKKmVJk5Z+qwMmQZ6g+kBIgRi75/7bUG1ak=;
+ s=k20260515; t=1788448928;
+ bh=IctZjv6+PSNg2k6OXG7r0bJNLT5vb03nptuZOzC+0cc=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=VVcijMURqdOeB7nW1vrbDF+qqVZVYaXCleaSJqrqs4JXagBkQwt8zDm9DFVJWOqm8
- 3Lzg8ui5FJBk0wA0q67iRG8l+DZrLVDAwskcrrkx5gL2M2tdJHmliRD5o1RKkcFid2
- jGU6tosYY8EIV5gQCICdW5THmI20BN0SsidPCyT669UREo/9R1hWC39/1uAIABXbnM
- L05qz7lWX36FtNWb8Ta2giivurSK56tFgWt+s4/2VHgE7iQXdfKQMszygzL4YgotAh
- RqOoSOShQA94yKDy1Df+PAcULJ34CPyFG28J4FU6ZGhiezRZnDKB8XitEgAjPjlOFc
- KFmBHAnGor1Lg==
+ b=TN8l3LnZmr+jLo99kSYERnM5gODrwDExGUPw7Irjpd6gFKgwyzNjkZ0+nyA9H5KuR
+ TvDcoVP+LKu6E4VAjttrlqluHFgLWcZPpfeS1Wkwj5kwZuyBNsOkdi9wQegrXWhcmm
+ 4a6qO9s/ZtA5IK/8peIJEoVDeLF7wb7lmdOfeZd300xJW6iuOtyIXevJstCnw7748R
+ 4f0DnJHnSEDbeZyXTKJt3AxwNkzauW4ryBFffc3hZqIFsfxuUAWcV8PfWpeI7Nh4+7
+ LkJRT9iCrZ2HpypGK6MWf6vWBKFIPHapsNEerbTCy8ftIugOCS+9HdT/ikmmbuL5Xp
+ v4rXPrXDmQaiQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 11/27] drm/xe/eudebug: Add ufence events with acks
+Subject: Re: [PATCH v10 09/27] drm/xe: Introduce ADD_DEBUG_DATA and
+ REMOVE_DEBUG_DATA vm bind ops
 To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260903145952.848051-12-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20260903145952.848051-10-mika.kuoppala@linux.intel.com>
 References: <20260903145952.848051-1-mika.kuoppala@linux.intel.com>
- <20260903145952.848051-12-mika.kuoppala@linux.intel.com>
+ <20260903145952.848051-10-mika.kuoppala@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 03 Sep 2026 15:20:06 +0000
-Message-Id: <20260903152006.7A2091F00A3A@smtp.kernel.org>
+Date: Thu, 03 Sep 2026 15:22:08 +0000
+Message-Id: <20260903152208.83C481F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,128 +57,84 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] A race condition in `xe_eudebug_ufence_track` during debugger deta=
-chment leaves `ufence->eudebug.bind_ref_seqno` uncleared, triggering a `XE_=
-WARN_ON` during ufence destruction.
-- [High] Unbounded non-accounted kernel memory allocation in `xe_eudebug_tr=
-ack_ufence` allows a malicious debugger to exhaust system memory (DoS).
+- [High] Missing enforcement of the debug data extension for `ADD_DEBUG_DAT=
+A` and `REMOVE_DEBUG_DATA` operations, allowing them to silently execute as=
+ no-ops and pass a NULL pointer to eudebug.
 --
 
-commit a5714f9c14ecadc50ce9b02c008c2b316e1293f6
-Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+commit 7fdd31439ab20b18aec25bd5e11c3a84839d451e
+Author: Christoph Manszewski <c.manszewski@gmail.com>
 
-drm/xe/eudebug: Add ufence events with acks
+drm/xe: Introduce ADD_DEBUG_DATA and REMOVE_DEBUG_DATA vm bind ops
 
-This commit introduces ufence event tracking for the Xe eudebug interface.
-It allows the debugger to intercept workloads and stall the delivery of
-ufence signals until the debugger explicitly acknowledges the ufence via a
-new ioctl.
+This commit introduces new VM bind operations to add and remove per-VM
+debug data. It adds extension parsing to the VM bind ioctl to accept
+pseudopaths or file paths for mapping binary instructions to code lines.
 
-> diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eude=
-bug.c
-> index fe3b2ae06a31f..a1f07db6ad817 100644
-> --- a/drivers/gpu/drm/xe/xe_eudebug.c
-> +++ b/drivers/gpu/drm/xe/xe_eudebug.c
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
 [ ... ]
-> @@ -1038,11 +1155,169 @@ static int vm_bind_op(struct xe_eudebug *d, stru=
-ct xe_vm *vm,
-[ ... ]
-> +void xe_eudebug_ufence_fini(struct xe_user_fence *ufence)
-> +{
-> +	struct xe_eudebug *d;
+> @@ -3903,6 +4061,10 @@ static int vm_bind_ioctl_check_args(struct xe_devi=
+ce *xe, struct xe_vm *vm,
+>  			err =3D -EOPNOTSUPP;
+>  			goto free_bind_ops;
+>  		}
 > +
-> +	XE_WARN_ON(READ_ONCE(ufence->eudebug.bind_ref_seqno));
-> +
-> +	d =3D READ_ONCE(ufence->eudebug.debugger);
-> +	if (!d)
-> +		return;
-> +
-> +	/* last ref */
-> +	ufence->eudebug.debugger =3D NULL;
-> +
-> +	xe_eudebug_put(d);
-> +}
-> +
-> +static int xe_eudebug_track_ufence(struct xe_eudebug *d,
-> +				   struct xe_user_fence *f,
-> +				   u64 seqno)
-> +{
-> +	struct xe_eudebug_ack *ack;
-> +	struct rb_node *old;
-> +
-> +	ack =3D kzalloc_obj(*ack, GFP_KERNEL);
-> +	if (!ack) {
-> +		eu_dbg(d, "ack allocation fail");
-> +		return -ENOMEM;
-> +	}
+> +		err =3D vm_bind_ioctl_check_user_extensions(vm, op, extensions);
+> +		if (err)
+> +			goto free_bind_ops;
+>  	}
+> =20
+>  	return 0;
 
 [Severity: High]
-Can this unbounded allocation be exploited by a malicious debugger to exhau=
-st
-kernel memory?
+Does this code correctly enforce that the extensions field must be
+non-zero for DRM_XE_VM_BIND_OP_ADD_DEBUG_DATA and
+DRM_XE_VM_BIND_OP_REMOVE_DEBUG_DATA?
 
-The allocation here uses GFP_KERNEL without __GFP_ACCOUNT (which would char=
-ge
-it to the memory cgroup). A debugger could continuously read events via
-DRM_XE_EUDEBUG_IOCTL_READ_EVENT to clear the FIFO, but never acknowledge th=
-em
-using DRM_XE_EUDEBUG_IOCTL_ACK_EVENT.
+If extensions is 0, vm_bind_ioctl_check_user_extensions() simply returns 0=
+=20
+without validating that the required debug data struct is present. This
+allows a malformed VM bind ioctl to proceed.
 
-Because the ACKs and their associated ufences are only freed when explicitly
-acknowledged by userspace, a target process looping VM_BINDs with ufences
-could cause d->acks.tree to grow indefinitely until a system-wide
-Out-Of-Memory (OOM) panic occurs.
-
-> +
-> +	ack->seqno =3D seqno;
-> +	ack->ts_insert =3D ktime_get();
 [ ... ]
-> +bool xe_eudebug_ufence_track(struct xe_user_fence *ufence)
-> +{
-> +	struct xe_eudebug *d;
-> +	bool tracked =3D false;
-> +	int ret;
+> @@ -4180,11 +4342,17 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void=
+ *data, struct drm_file *file)
+>  		u64 obj_offset =3D bind_ops[i].obj_offset;
+>  		u32 prefetch_region =3D bind_ops[i].prefetch_mem_region_instance;
+>  		u16 pat_index =3D bind_ops[i].pat_index;
+> +		u64 extensions =3D bind_ops[i].extensions;
+> =20
+>  		ops[i] =3D vm_bind_ioctl_ops_create(vm, &vops, bos[i], obj_offset,
+>  						  addr, range, op, flags,
+> -						  prefetch_region, pat_index);
+> -		if (IS_ERR(ops[i])) {
+> +						  prefetch_region, pat_index, extensions);
 > +
-> +	spin_lock(&ufence->eudebug.lock);
-> +	d =3D ufence->eudebug.debugger;
-> +	if (d && !kref_get_unless_zero(&d->ref))
-> +		d =3D NULL;
-> +
-> +	if (!d || xe_eudebug_detached(d)) {
-> +		ufence->eudebug.bind_ref_seqno =3D 0;
-> +		ufence->eudebug.signalled_seqno =3D 0;
-> +	}
-> +	spin_unlock(&ufence->eudebug.lock);
-> +
-> +	if (!d)
-> +		return false;
-> +
-> +	if (xe_eudebug_detached(d)) {
-> +		xe_eudebug_put(d);
-> +		return false;
-> +	}
+> +		if (!IS_ERR(ops[i]) && extensions) {
+> +			err =3D vm_bind_ioctl_process_user_extensions(vm, ops[i], op, extensi=
+ons);
+> +			if (err)
+> +				goto unwind_ops;
+> +		} else if (IS_ERR(ops[i])) {
+>  			err =3D PTR_ERR(ops[i]);
+>  			ops[i] =3D NULL;
+>  			goto unwind_ops;
 
 [Severity: High]
-Is there a race condition here if the debugger detaches right after the lock
-is released?
+When extensions is 0, this block is skipped entirely, leaving the added and
+removed pointers in op->modify_debug_data as NULL.
 
-If xe_eudebug_detached(d) becomes true immediately after
-spin_unlock(&ufence->eudebug.lock), this check will evaluate to true and
-return false without clearing ufence->eudebug.bind_ref_seqno and
-signalled_seqno.
-
-Since false is returned, the caller user_fence_worker() will signal and
-release the ufence. When the ufence is subsequently destroyed,
-xe_eudebug_ufence_fini() will hit the
-XE_WARN_ON(READ_ONCE(ufence->eudebug.bind_ref_seqno)) assertion because the
-field was never cleared.
-
-> +
-> +	ret =3D track_ufence(d, ufence, &tracked);
-[ ... ]
+Later, xe_eudebug_vm_bind_execute() extracts this NULL dd pointer and
+passes it to vm_bind_op_event(), where debug_data->addr is unconditionally
+dereferenced. Can an unprivileged local user trigger a kernel panic by
+opening the DRM device, connecting via DRM_IOCTL_XE_EUDEBUG_CONNECT, and
+submitting a DRM_XE_VM_BIND_OP_ADD_DEBUG_DATA request with extensions set
+to 0?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903145952.8480=
-51-1-mika.kuoppala@linux.intel.com?part=3D11
+51-1-mika.kuoppala@linux.intel.com?part=3D9
