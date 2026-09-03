@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4BB5C624A4
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:22:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B889DC61DD3
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:24:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F75210F687;
-	Thu,  3 Sep 2026 15:22:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BB5F10F692;
+	Thu,  3 Sep 2026 15:24:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TtYLlXRM";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="giw7ZYED";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4381510F687
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 15:22:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4430810F692
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 15:24:21 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 0097643D2E;
- Thu,  3 Sep 2026 15:22:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD48C1F00A3F;
- Thu,  3 Sep 2026 15:22:24 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 23D4B4401E;
+ Thu,  3 Sep 2026 15:24:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DACF41F00A3D;
+ Thu,  3 Sep 2026 15:24:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788448944;
- bh=TV++4x1mtF63EZPQeU3Pd7lrT4ybDrIzXVkX0Cu7rw8=;
+ s=k20260515; t=1788449061;
+ bh=FB45C17h6UOvLdZ/9NBsu6xTMEmWHxC2yyYYU2qcN7g=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=TtYLlXRMIgMLedlOslkxVvBklgyBpO4SieWurGIdG2qppYwIPK1ggm0u1Q2vQWLdY
- pQbZKJp//lw0B+UQRX6uwA2bE9yYd3F2whxKShw0l+bL7vEHxh7dISX3Ql9C615D30
- gu7NL3t8PVO6EIzE5EKl0vONhzffXzQEPrM2Ba+nhWt6bhAmceQsKE76GAorsSSTyc
- 5yiMbntON3bPu581WZ50grohJfqaz6f3ZGDu7WW5mR+PiYrkdeDHTR4k1qbgvX1ZSp
- Sb3UPehortucpQOGA1jaJ3CztgixEXp770JjqPsF/l9eBHx22oG5pI+94v4ETz3Hax
- KMkhvc09QLxjA==
+ b=giw7ZYEDN6TLXroP7Q21QqfSq9Fvr50JXaoDirNv0ra99Y8qdMwkeTldlqwMGbMrp
+ G4KMPaie7bxLOgjpEvL4gmMDyg2hKPKlLPcJygq8dogJMOG7iy0PVO9IqkyDszuNOc
+ DjnY5rhGT+z2tj2/8KcbL3MJ9ZJtT/+HfnTrccpggA9cI3/9+5gQOhtYjKcFSQg6Ho
+ EQkKCMadTjFG4VqjY1aIUU41fw9UQ/3c1d20mSfpa9ibnMtlFu8D++x6JhyUK3POkD
+ qVoMmbNu7UZf0aWQXjiPpB1bcLoumxSqqDpslFR1RKbQwpHm2bQ5+U5z0A/9PdzcWr
+ fnZX3PvXMgfkQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 04/27] drm/xe/eudebug: Introduce discovery for
- resources
+Subject: Re: [PATCH v10 13/27] drm/xe/eudebug: Add userptr vm pread/pwrite
 To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260903145952.848051-5-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20260903145952.848051-14-mika.kuoppala@linux.intel.com>
 References: <20260903145952.848051-1-mika.kuoppala@linux.intel.com>
- <20260903145952.848051-5-mika.kuoppala@linux.intel.com>
+ <20260903145952.848051-14-mika.kuoppala@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 03 Sep 2026 15:22:23 +0000
-Message-Id: <20260903152224.AD48C1F00A3F@smtp.kernel.org>
+Date: Thu, 03 Sep 2026 15:24:20 +0000
+Message-Id: <20260903152420.DACF41F00A3D@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,158 +58,109 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] Global ordered workqueue stall via copy_from_user block while hold=
-ing ioctl_lock.
-- [Medium] Event sequence numbers (seqno) can be queued out-of-order in the=
- event stream due to a race between seqno generation and event queuing.
+- [Critical] Time-of-Check to Time-of-Use (TOCTOU) race condition in `xe_eu=
+debug_vma_access()` allows a debugger to bypass security checks and read/wr=
+ite arbitrary memory in an unrelated privileged process.
+- [High] Debugger access to userptr memory spuriously fails with `-ESRCH` i=
+f the specific thread that bound the userptr exits, even though the process=
+ and address space remain fully valid.
 --
 
-commit e2061e72d8e954a17bde35e9c970ee41bc2db0ad
+commit f0c74c4990322a45ea5e521e420b8ab7f3f80507
 Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+drm/xe/eudebug: Add userptr vm pread/pwrite
 
-    drm/xe/eudebug: Introduce discovery for resources
+This commit implements debugger VM access for userptrs by taking a reference
+to the current task when the bind is done. During pread/pwrite, it uses this
+task parameter to access the debuggee VM via access_process_vm().
 
-This commit introduces a resource discovery mechanism for debugger connecti=
-ons.
-When a debugger connects, all existing resources for the target client are
-relayed as events via an ordered workqueue, and DRM ioctls are blocked using
-an rw_semaphore until discovery is complete.
-
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
-e.c
-> index 032a7ec5fbc8d..f10959b898297 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
+> diff --git a/drivers/gpu/drm/xe/xe_eudebug_vm.c b/drivers/gpu/drm/xe/xe_e=
+udebug_vm.c
+> index 316fe29586b0a..42e24c1bc09c7 100644
+> --- a/drivers/gpu/drm/xe/xe_eudebug_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_eudebug_vm.c
 [ ... ]
-> @@ -238,8 +239,12 @@ static long xe_drm_ioctl(struct file *file, unsigned=
- int cmd, unsigned long arg)
-> =20
->  	ACQUIRE(xe_pm_runtime_ioctl, pm)(xe);
->  	ret =3D ACQUIRE_ERR(xe_pm_runtime_ioctl, &pm);
-> -	if (ret >=3D 0)
-> +	if (ret >=3D 0) {
-> +		bool lock =3D xe_eudebug_discovery_lock(file, cmd);
->  		ret =3D drm_ioctl(file, cmd, arg);
+> @@ -52,6 +53,50 @@ static int xe_eudebug_vma_access(struct xe_vma *vma,
+[ ... ]
+> +	} else if (xe_vma_is_userptr(vma)) {
+> +		struct xe_userptr *userptr =3D &to_userptr_vma(vma)->userptr;
+> +		struct mm_struct *mm;
+> +		int ret;
+[ ... ]
+> +		mm =3D get_task_mm(userptr->eudebug.task);
+> +		if (!mm)
+> +			return -ESRCH;
 
 [Severity: High]
-Does holding the discovery lock across drm_ioctl() create a vector for a
-workqueue stall?=20
+Will this cause spurious -ESRCH failures if the specific thread that bound
+the userptr exits?
 
-If an unprivileged user maps the ioctl argument pointer to a blocking FUSE
-or userfaultfd region, drm_ioctl() can be stalled indefinitely during
-copy_from_user() while holding xef->eudebug.ioctl_lock for read.
+When the specific thread exits, its task->mm is cleared to NULL in exit_mm(=
+),
+causing get_task_mm() to return NULL here. If an application (like a
+Vulkan/OpenGL driver) uses background worker threads to allocate and bind
+memory, won't the debugger lose access to this valid memory once that worker
+thread terminates, even though the process and mm_struct are still fully
+alive?
 
-> +		if (lock)
-> +			xe_eudebug_discovery_unlock(file, cmd);
-> +	}
-> =20
->  	return ret;
->  }
-[ ... ]
-> diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eude=
-bug.c
-> index 835dbd7309af5..7a5b14346e059 100644
-> --- a/drivers/gpu/drm/xe/xe_eudebug.c
-> +++ b/drivers/gpu/drm/xe/xe_eudebug.c
-[ ... ]
-> @@ -659,6 +705,87 @@ void xe_eudebug_vm_destroy(struct xe_file *xef, stru=
-ct xe_vm *vm)
->  	xe_eudebug_put(d);
->  }
-> =20
-> +static struct xe_file *xe_eudebug_target_get(struct xe_eudebug *d)
-> +{
-[ ... ]
-> +static void discover_client(struct xe_eudebug *d)
-> +{
-> +	struct xe_file *xef;
-> +	struct xe_vm *vm;
-> +	unsigned long i;
-> +	unsigned int vm_count =3D 0;
-> +	int err =3D 0;
 > +
-> +	xef =3D xe_eudebug_target_get(d);
-> +	if (!xef) {
-> +		complete_all(&d->discovery);
-> +		return;
-> +	}
+> +		ret =3D mm =3D=3D userptr->notifier.mm ? 0 : -ESRCH;
+> +		mmput(mm);
+> +		if (ret)
+> +			return ret;
 > +
+> +		return access_process_vm(userptr->eudebug.task,
+> +					 xe_vma_userptr(vma) + offset_in_vma,
+> +					 buf, bytes,
+> +					 write ? FOLL_WRITE : 0);
+
+[Severity: Critical]
+Does this sequence introduce a Time-of-Check to Time-of-Use (TOCTOU) race
+condition that could allow local privilege escalation?
+
+The code verifies that the mm matches the expected userptr->notifier.mm,
+but then it drops the reference with mmput(mm) before proceeding.
+
+Because access_process_vm() internally re-resolves the mm dynamically
+without ptrace_may_access() checks, could a malicious unprivileged process
+bind a userptr, pass the eudebug fd to a collaborating process, and call
+execve() on a setuid binary?=20
+
+If the execve() executes during the race window between mmput(mm) and
+access_process_vm(), it appears this would fetch the new, privileged mm of
+the setuid binary, granting the debugger arbitrary read/write access to it.
+
+> diff --git a/drivers/gpu/drm/xe/xe_userptr.h b/drivers/gpu/drm/xe/xe_user=
+ptr.h
+> index 2a3cd1b5efbb0..b0781618b3f46 100644
+> --- a/drivers/gpu/drm/xe/xe_userptr.h
+> +++ b/drivers/gpu/drm/xe/xe_userptr.h
+[ ... ]
+> @@ -133,4 +139,30 @@ static inline void xe_vma_userptr_force_invalidate(s=
+truct xe_userptr_vma *uvma)
+[ ... ]
+> +#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
+> +static inline void xe_eudebug_track_userptr_task(struct xe_userptr *user=
+ptr)
+> +{
 > +	/*
-> +	 * An xe_eudebug ref is taken for the discovery worker, which holds a
-> +	 * ref to the target xe_file; the xe_file in turn holds the vm and
-> +	 * exec_queue refs.
-> +	 *
-> +	 * All the relevant ioctls that manipulate the xe_file resources eudebug
-> +	 * cares about are gated behind down_read(&xef->eudebug.ioctl_lock).
-> +	 * Thus taking the write lock excludes all those ioctls, which lets us
-> +	 * peek into the resource lists without taking their individual locks.
+> +	 * We could use the mm which is on notifier. But
+> +	 * the access_remote_vm() is not exported. Thus
+> +	 * we get reference to task for access_process_vm()
 > +	 */
-> +	down_write(&xef->eudebug.ioctl_lock);
+> +	userptr->eudebug.task =3D get_task_struct(current);
 
 [Severity: High]
-If the target process is blocked in copy_from_user() inside drm_ioctl()
-while holding the read lock, will this down_write() block indefinitely?
+Should this track the process leader rather than the specific calling threa=
+d?
 
-Because discovery runs on a global ordered workqueue (configured below in
-xe_eudebug_init), this single blocked work item could stall all eudebug
-discovery operations system-wide, causing a Denial of Service for all
-debugger connections.
+By saving the specific thread (current) here, the userptr becomes bound to
+this thread's lifespan. Changing this to track the process leader instead
+(e.g., current->group_leader) might prevent the spurious -ESRCH failures
+in xe_eudebug_vma_access() when background worker threads exit.
 
-> +
-> +	if (xe_eudebug_detached(d))
-> +		goto out;
-[ ... ]
-> @@ -1126,12 +1266,20 @@ void xe_eudebug_init_early(struct xe_device *xe)
->  void xe_eudebug_init(struct xe_device *xe)
->  {
->  	struct drm_device *dev =3D &xe->drm;
-> +	struct workqueue_struct *wq;
->  	int err;
-> =20
->  	/* early init failed */
->  	if (xe->eudebug.cap_state =3D=3D XE_EUDEBUG_CAP_NOT_SUPPORTED)
->  		return;
-> =20
-> +	wq =3D drmm_alloc_ordered_workqueue(dev, "xe-eudebug-discovery", 0);
-
-[Severity: High]
-This allocates the workqueue as ordered (max_active=3D1), which means a sin=
-gle
-stalled work item blocks all other discovery work.
-
-Can the workqueue be allocated differently, or can the ioctl_lock be managed
-to avoid wrapping the copy_from_user() operations in drm_ioctl()?
-
-> +	if (IS_ERR(wq)) {
-> +		err =3D PTR_ERR(wq);
-> +		goto out_err;
-> +	}
-> +	xe->eudebug.discovery_wq =3D wq;
-> +
->  	err =3D sysfs_create_file(&dev->dev->kobj,
->  				&dev_attr_enable_eudebug.attr);
->  	if (err)
-[ ... ]
-
-[Severity: Medium]
-Can sequence numbers be queued out-of-order in the event stream?
-
-Looking at send_vm_bind_event() in xe_eudebug.c:
-
-	*seqno =3D atomic_long_inc_return(&d->events.seqno);
-
-	spin_lock(&d->events.lock);
-	event =3D xe_eudebug_prepare_event(d, DRM_XE_EUDEBUG_EVENT_VM_BIND,
-					 *seqno, base_flags, sz);
-
-Since the sequence number is incremented atomically outside of the FIFO
-spinlock, could two threads acquire sequence numbers N and N+1, but acquire
-the FIFO lock in reverse order?
-
-This same pattern appears in _xe_eudebug_add_handle(). Pushing N+1 before
-N would break the expected monotonicity of the event stream and could cause
-the debugger to drop events.
+> +}
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903145952.8480=
-51-1-mika.kuoppala@linux.intel.com?part=3D4
+51-1-mika.kuoppala@linux.intel.com?part=3D13
