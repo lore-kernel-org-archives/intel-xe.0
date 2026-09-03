@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6403FC61DD3
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 20:26:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DE56C624D7
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 20:26:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0271010E464;
-	Thu,  3 Sep 2026 20:26:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E77710E464;
+	Thu,  3 Sep 2026 20:26:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JeT9I6ky";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Oeq5Q1ku";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B831410E464
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 20:26:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BC3510E464
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 20:26:37 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 440A2432E9;
- Thu,  3 Sep 2026 20:26:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 092791F00A3D;
- Thu,  3 Sep 2026 20:26:11 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 057DC40A8E;
+ Thu,  3 Sep 2026 20:26:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1C511F000E9;
+ Thu,  3 Sep 2026 20:26:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788467171;
- bh=1PM8lZnMWZg3x6SO3EBg2fPICUWpzVKfxtGJrKBvbrc=;
+ s=k20260515; t=1788467196;
+ bh=DZlJBrj7vPEtf5sJDUsAp6mJKos7B+iRcbY272Rt+8A=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=JeT9I6ky1ixgYu7yttpmIcgqwZ1/pVRDtjcSLPUp9VerIqlF7/YE/f0yftzobMfP8
- mmYTiXfLMWrlqxNzyaR+v2wVp7xbJJCIqy8T/vXn/P+pw4qGuOJ7BypsximxBcpWfQ
- ByWZkZdYOsazkxdn2y9mSGDL1hMVbHnG1NLSmhz0a5GDmzlVhhr5ppTduOONKQx4Nt
- ObZ7iaxRYHT2H5fTah0eMokf7VVBGg3cKrF5O7TzOGY/kFTTg3JFpVTYBV/0mlNj4r
- DGqxBaCoGYkeDVkkiVZaeg9iS7a3vr2cCsHBpgw8rqQJLMcSTPjXSn1DsY9b/GMRHy
- uvwSSIqQRB+lA==
+ b=Oeq5Q1kuXzxG117mBHjQy2uigmMqi5wdGomK6eftTAcIuGRfsO+8Zk2xmRu/0RW3B
+ EnLLsJtrGtglwp5mtcKznMPd4uvIuT/Kl3W9UK7zQ1eIRLKGjVlm8QiHHg+0YTxz/v
+ enEIKvtce7d3s+sslKBOcNNTS0S7FesS5+ocLWKZI1d2Hc9RvJoJ1PovC72NCV6Cxs
+ ZJNh+pnSg6jRXZuUaDFMmYTt0023F0HCV9k6sfM+uDFla908ggrtC8g2xTwwEOXnz3
+ TXDIUJh9g4k/hSEQuIvnm20k0EHj0pz5oMDzqzedN8AywRDB4gM/hF6j4qH+CyPpvc
+ cYEccMbmAFOCw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 14/18] drm/xe/vsec: Crescent Island PMT callbacks
+Subject: Re: [PATCH v5 08/18] drm/xe/vsec: Use correct pm state get
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260903201002.1064889-34-michael.j.ruhl@intel.com>
+In-Reply-To: <20260903201002.1064889-28-michael.j.ruhl@intel.com>
 References: <20260903201002.1064889-20-michael.j.ruhl@intel.com>
- <20260903201002.1064889-34-michael.j.ruhl@intel.com>
+ <20260903201002.1064889-28-michael.j.ruhl@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 03 Sep 2026 20:26:10 +0000
-Message-Id: <20260903202611.092791F00A3D@smtp.kernel.org>
+Date: Thu, 03 Sep 2026 20:26:36 +0000
+Message-Id: <20260903202636.B1C511F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,73 +58,93 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] Using memcpy_toio() and memcpy_fromio() for 32-bit MMIO control =
-registers violates atomicity, lacks memory barriers, and breaks endianness =
-on big-endian architectures.
+
+Pre-existing issues:
+- [High] Missing `.read_reg` and `.write_reg` callbacks in `xe_pmt_cb` leav=
+es PMT crashlog control registers unprotected against accesses while the GP=
+U is in D3cold.
 --
 
-commit dbad67bc0c83cc3b6a60d78b23589e00b666a0f0
+commit a8bb406382664649dde97aed435f17b6cfd1536b
 Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-drm/xe/vsec: Crescent Island PMT callbacks
+drm/xe/vsec: Use correct pm state get
 
-This commit introduces callbacks for Crescent Island PMT support to access
-the discovery status and control areas. It adds the glue logic and registers
-the functionality for the XE_CRESCENTISLAND platform.
+This commit updates the PM runtime checks in the telemetry read path to ens=
+ure
+the device is properly awakened when reading crashlog data, as crashlog nee=
+ds
+to be collected at all times. It also adds a check for the WATCHER capabili=
+ty
+type for completeness.
 
 > diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-> index 0438810337dd3..336c4b7d284bc 100644
+> index dd7723ba6c1c2..468a221378faf 100644
 > --- a/drivers/gpu/drm/xe/xe_vsec.c
 > +++ b/drivers/gpu/drm/xe/xe_vsec.c
-[ ... ]
-> +static int xe_pmt_read_reg(struct device *dev, u32 guid, u32 *reg, u32 o=
-ffset)
-> +{
-[ ... ]
-> +	xe_pm_runtime_get(xe);
-> +	mutex_lock(&xe->pmt.lock);
-> +
-> +	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-> +
-> +	memcpy_fromio(reg, disc_addr, sizeof(*reg));
+> @@ -158,9 +159,18 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, =
+u64 *data, loff_t user_offse
+> =20
+>  	telem_addr +=3D offset + user_offset;
+> =20
+> -	/* indicate that we are not at an appropriate power level */
+> -	if (!xe_pm_runtime_get_if_active(xe))
+> -		return -ENODATA;
+> +	/* Always allow crashlog. Telemetry, only when powered */
+> +	switch (cap_type) {
+> +	case CRASHLOG:
+> +		xe_pm_runtime_get(xe);
+> +		break;
+> +	case TELEMETRY:
+> +		if (!xe_pm_runtime_get_if_active(xe))
+> +			return -ENODATA;
+> +		break;
+> +	case WATCHER:
+> +		return -EINVAL;
+> +	}
 
-[Severity: Medium]
-Does using memcpy_fromio() here instead of readl() cause endianness issues
-on big-endian platforms?
+[Severity: High]
+This is a pre-existing issue, but since this patch is addressing PM runtime
+protection for the crashlog data path, it seems the control registers are s=
+till
+left entirely unprotected.
 
-Since this is reading a 32-bit register, memcpy_fromio() omits endian
-conversion and implicit memory barriers. It might also break atomicity or
-cause PCIe target aborts if the underlying implementation falls back to 8-b=
-it
-byte accesses, which some hardware rejects for 32-bit registers.
+While xe_pmt_telem_read() now handles PM state correctly for data reads,
+xe_pmt_cb lacks .read_reg and .write_reg callbacks:
 
-> +
-> +	mutex_unlock(&xe->pmt.lock);
-> +	xe_pm_runtime_put(xe);
-[ ... ]
-> +static int xe_pmt_write_reg(struct device *dev, u32 guid, u32 reg, u32 o=
-ffset)
-> +{
-[ ... ]
-> +	xe_pm_runtime_get(xe);
-> +	mutex_lock(&xe->pmt.lock);
-> +
-> +	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-> +
-> +	memcpy_toio(disc_addr, &reg, sizeof(reg));
+drivers/gpu/drm/xe/xe_vsec.c:
+static struct pmt_callbacks xe_pmt_cb =3D {
+	.read_telem =3D xe_pmt_telem_read,
+};
 
-[Severity: Medium]
-Could memcpy_toio() write these bytes in CPU endianness instead of the
-device's expected little-endian format?=20
+When userspace accesses PMT crashlog control attributes (like enable, clear=
+, or
+trigger) via sysfs while the GPU is in D3cold, pmt_crashlog_read_reg() and
+pmt_crashlog_rmw() fall back to direct MMIO access:
 
-Using writel() here would properly handle endianness conversion, ensure=20
-I/O memory barriers, and guarantee a single atomic 32-bit write operation.
+drivers/platform/x86/intel/pmt/crashlog.c:pmt_crashlog_read_reg() {
+	...
+	if (entry->pdata->cb && entry->pdata->cb->read_reg)
+		return entry->pdata->cb->read_reg(entry->pdata->cb_data, offset, reg);
+	*reg =3D readl(entry->disc_table + offset);
+	...
+}
 
-> +
-> +	mutex_unlock(&xe->pmt.lock);
-> +	xe_pm_runtime_put(xe);
-[ ... ]
+Because the callbacks are NULL, the fallback access hits powered-down PCIe =
+MMIO
+space. Does this cause PCIe unsupported requests (UR) and lead to Advanced =
+Error
+Reporting (AER) panics, system freezes, or returning invalid data to usersp=
+ace?
+
+Could .read_reg and .write_reg callbacks be added to xe_pmt_cb to protect t=
+he
+control registers during D3cold?
+
+> =20
+>  	mutex_lock(&xe->pmt.lock);
+>
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903201002.1064=
-889-20-michael.j.ruhl@intel.com?part=3D14
+889-20-michael.j.ruhl@intel.com?part=3D8
