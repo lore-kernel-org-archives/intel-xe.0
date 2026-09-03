@@ -4,43 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEF07C61DD3
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 11:50:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEA23C61DD3
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 11:52:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85DA910F54A;
-	Thu,  3 Sep 2026 11:50:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Cctv+DSd";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 965ED10F54A
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 11:50:40 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 828846022D;
- Thu,  3 Sep 2026 11:50:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D4331F000E9;
- Thu,  3 Sep 2026 11:50:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788436239;
- bh=/HqkYKCpZGUmbn8nCElcTE4mUuMEe+Qxlgr1TPbydyU=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Cctv+DSddsycEEX4D+vPQSk2QBBVxP6N/hVK8B3KPxUv3Gqv/9EX4VvRqbRCnNT6U
- WkA0RWdffE1c6R1kXPnq6txUyaXqmPAY3gaYMGDUkHaiKoSyJSM/S8Dyk03pHCoaCV
- 7Sjp/ncQ2P3fxR6MHlsfgSXH+3RI4+DicFprtKzxHVqsUfFUotRF8UgUZTbY0IuZil
- EDsjX/QbkWhivWMYQ4JFUZxjvMCKY3Fpnz4X0riHFvANApjKgx2BnsaFqxEbLpOcAm
- lZIYlUf1v0wNAgDtDlurqnuA69r+LzLJOAndZRD6xHMnleL5lPVUMBbfER0tXbgzlr
- +P2Q4nJtfaaLA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2] drm/xe: Flush LSC untyped L1 dataport cache after
- rcs/ccs batches
-To: =?utf-8?b?VGhvbWFzIEhlbGxzdHLDtm0=?= <thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B39AF10F54A;
+	Thu,  3 Sep 2026 11:52:48 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D36B710F54A;
+ Thu,  3 Sep 2026 11:52:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Flush_LSC_untyp?=
+ =?utf-8?q?ed_L1_dataport_cache_after_rcs/ccs_batches_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260903114552.48634-1-thomas.hellstrom@linux.intel.com>
+Date: Thu, 03 Sep 2026 11:52:47 -0000
+Message-ID: <178843636785.116940.12590422319955332562@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260903114552.48634-1-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 03 Sep 2026 11:50:38 +0000
-Message-Id: <20260903115039.0D4331F000E9@smtp.kernel.org>
+In-Reply-To: <20260903114552.48634-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,74 +36,89 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+== Series Details ==
 
-Pre-existing issues:
-- [High] Unmitigated cross-process information leak via L1 dataport cache o=
-n MTL platforms.
---
+Series: drm/xe: Flush LSC untyped L1 dataport cache after rcs/ccs batches (rev2)
+URL   : https://patchwork.freedesktop.org/series/172216/
+State : warning
 
-commit 9a1c38c27d115c29ae7f3e8c47d4fe8e892e8d64
-Author: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+== Summary ==
 
-drm/xe: Flush LSC untyped L1 dataport cache after rcs/ccs batches
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d875049d2b299159a272bd5151994970cdcd1e31
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 93e5972421128b6aca656ec7cdf6cbcc0849f247
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Thu Sep 3 13:45:52 2026 +0200
 
-This commit introduces an explicit flush of the LSC untyped L1 dataport cac=
-he
-via PIPE_CONTROL in emit_render_cache_flush() for Xe2 and later platforms. =
-It
-addresses an issue where the L1 dataport cache was not reliably coupled to =
-the
-HDC Pipeline Flush starting from MTL. By explicitly setting this bit on
-GRAPHICS_VERx100(xe) >=3D 2000, it aims to prevent stale data leaks when me=
-mory
-is reclaimed.
+    drm/xe: Flush LSC untyped L1 dataport cache after rcs/ccs batches
+    
+    emit_render_cache_flush() sets PIPE_CONTROL0_HDC_PIPELINE_FLUSH to
+    flush the L2/HDC data cache before fence signalling, but it never
+    requests a flush of the LSC untyped L1 data cache via the 'Untyped
+    Data-Port Cache Flush Enable' bit in PIPE_CONTROL DWord0[11].
+    
+    Per the Bspec, in 3D pipeline mode HDC Pipeline Flush is documented to
+    also flush/invalidate the untyped L1 cache, but only depending on how
+    HDC_CHICKEN0[13:11] is programmed. Starting with MTL, this coupling
+    between HDC Pipeline Flush and the untyped L1 cache flush no longer
+    holds in practice, regardless of how HDC_CHICKEN0 is programmed, so
+    relying on it is not safe on newer platforms such as BMG. Mesa's Vulkan
+    driver (anv) has been assuming the kernel flushes both caches between
+    submissions, and hit user-visible corruption in apps such as Llama.cpp
+    because of this gap; it now works around it by flushing both caches
+    again from userspace at the end of every command buffer.
+    
+    Correctness between submissions on the same queue is userspace's
+    responsibility and belongs in Mesa, not the kernel. However, for
+    security we must ensure stale data can't leak through the untyped L1
+    dataport cache once memory is reclaimed or evicted, which requires the
+    KMD to flush it before releasing memory for reuse.
+    
+    Prior to MTL, HDC_CHICKEN0 could be programmed (as already done for
+    DG2 via Wa_22010960976/Wa_14013347512) to reliably keep HDC Pipeline
+    Flush coupled to the untyped L1 cache flush, so those platforms are
+    unaffected. Mesa's own anv driver found that on MTL the HW
+    disconnected the two independently of how HDC_CHICKEN0 is programmed,
+    and could not bring the old behavior back even by writing the register
+    by hand; see Mesa commit 7c2ff46a4fc3 ("anv: don't prevent L1 untyped
+    cache flush in 3D mode"). The kernel can't reliably request the flush
+    from the CS on MTL either, so restrict the new PIPE_CONTROL bit to
+    GRAPHICS_VERx100 >= 2000 (Xe2 and later), where it can be relied on.
+    
+    Explicitly set PIPE_CONTROL0_UNTYPED_DATAPORT_CACHE_FLUSH together
+    with PIPE_CONTROL0_HDC_PIPELINE_FLUSH in emit_render_cache_flush() on
+    Xe2 and later, so the L1 data cache is known clean before memory is
+    released for reuse, without depending on undocumented
+    platform-specific HDC_CHICKEN0 behavior.
+    
+    Bspec: 56551
+    Link: https://gitlab.freedesktop.org/mesa/mesa/-/commit/7c2ff46a4fc3e537573ac9503057e0cd29b6fff3
+    Fixes: 9f8f93bee3ef ("drm/xe: Emit a render cache flush after each rcs/ccs batch")
+    Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+    Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/8909
+    Cc: José Roberto de Souza <jose.souza@intel.com>
+    Cc: intel-xe@lists.freedesktop.org
+    Cc: <stable@vger.kernel.org> # v6.8+
+    Assisted-by: GitHub_Copilot:claude-sonnet-5
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: José Roberto de Souza <jose.souza@intel.com> #v1
++ /mt/dim checkpatch ac238a043f935a7115a9c6e099fd45a4682a1b3c drm-intel
+93e597242112 drm/xe: Flush LSC untyped L1 dataport cache after rcs/ccs batches
+-:38: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '7c2ff46a4fc3', maybe rebased or not pulled?
+#38: 
+by hand; see Mesa commit 7c2ff46a4fc3 ("anv: don't prevent L1 untyped
 
-Link: https://gitlab.freedesktop.org/mesa/mesa/-/commit/7c2ff46a4fc3e537573=
-ac9503057e0cd29b6fff3
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/8909
+total: 0 errors, 1 warnings, 0 checks, 30 lines checked
 
-> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_rin=
-g_ops.c
-> index 39a670e91ba72..08b4a4283e96a 100644
-> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
-> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-[ ... ]
-> @@ -220,6 +221,16 @@ static int emit_render_cache_flush(struct xe_sched_j=
-ob *job, u32 *dw, int i)
->  				      LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
-> =20
->  	flags0 =3D PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
-> +	/*
-> +	 * Prior to MTL, HDC Pipeline Flush reliably also flushes the LSC
-> +	 * untyped L1 dataport cache, provided HDC_CHICKEN0 is programmed
-> +	 * correctly. Starting with MTL that coupling no longer holds
-> +	 * regardless of how HDC_CHICKEN0 is programmed, but explicitly
-> +	 * requesting the flush via PIPE_CONTROL is itself only reliable
-> +	 * from Xe2 onward, so only gate it in on Xe2+.
-> +	 */
-> +	if (GRAPHICS_VERx100(xe) >=3D 2000)
-> +		flags0 |=3D PIPE_CONTROL0_UNTYPED_DATAPORT_CACHE_FLUSH;
 
-[Severity: High]
-This isn't a bug introduced by this patch, but does this condition leave
-MTL platforms vulnerable to a cross-process information leak?
-
-Since GRAPHICS_VERx100(xe) < 2000 for MTL platforms, they will not receive
-the L1 dataport cache flush here. If the command streamer (CS) flush is
-unreliable on MTL, does this mean sensitive data can still be read from the=
- L1
-cache by another process after memory is reclaimed or evicted?
-
-If the PIPE_CONTROL method cannot be relied on for MTL, is an alternative
-mitigation strategy, such as dummy shaders or MMIO-based flushes, needed to
-fully resolve the vulnerability on those platforms?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903114552.4863=
-4-1-thomas.hellstrom@linux.intel.com?part=3D1
