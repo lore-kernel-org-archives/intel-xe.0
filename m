@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE3F2C624DA
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:00:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5E1BC624DB
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:00:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E44F10F66D;
-	Thu,  3 Sep 2026 15:00:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8808E10E154;
+	Thu,  3 Sep 2026 15:00:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="loLwh3MD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SLnzgV8s";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A86C210F653
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 15:00:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFCCB10E154
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 15:00:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788447630; x=1819983630;
+ t=1788447640; x=1819983640;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/T6KZPZWgihmefcne7i6FbYRzlBsqthMyAhljTPlZME=;
- b=loLwh3MDtXOQPSYLt7pyDmnb1up75MXQ3btKGPmLSROkhtqUPFmcX1Pc
- VA8/wdHCzpiLxLMIHf5qdeyf5nI9vQoRYRmO3WU+Frf1UEzojj6r/CVwO
- rQP5gVJp1aAdrozgUpAFQhGn5+0aDUVeboWXXq1Xl3rhDL8v7Hvo5LRli
- 1yboltqLuurlGRXJpUfAX8TKDyTuufl0gYq7jvlYkVCUIUXL+mkS2/n9j
- xdbPZV+SplM6+0aoGid+Aklog8FW62oZYgFilO117jeM3a+2YqOWeXFd4
- FNG1ldMS7HQwR5hVvDhiSmfHeYZaK40YqgvNDdL1uYDIgsFgBzttbxZLY A==;
-X-CSE-ConnectionGUID: 7z0O+JToQPGmEU6SDhAtmQ==
-X-CSE-MsgGUID: Jmx4J5nZQki5QfzZ4N/VaA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="76486654"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="76486654"
+ bh=7wHDTwEWxbikUYlOEMwegGe0qIxIT3bonumpz0bb9BI=;
+ b=SLnzgV8sbK+2E4JHHKylI6Eh6YLsq7yuGdsv8svP+jrAH5mbfx/lRyNp
+ sgkJ5TotEvyoqPL8+oL7pn7PgkiV/NI332gBMkOl1Xiia+dtl4GSpJFzq
+ WiERnTWECHSVOsCKp+OBzEJNZEWxxePywDmmkfyMbBEzj/7ctfl31+VkB
+ XXQgFTeodtdFskpF+VM/74PbPyUigOVui/dwnss0lMGVt0gy0VxIvCeOX
+ VCICHo1tUn06GF1puyu/U9htxkwCewTYV0oyQFTqXQq7iBQg82SsNEjlD
+ 6Xg/fUt8Q82vD7Lxr+rmeBuzC3sup5EZ+drc7psXGLvP5RHeOx8pXio9V g==;
+X-CSE-ConnectionGUID: T7FnhUW4RRmiG1cz5mf75A==
+X-CSE-MsgGUID: Wz/ZUVltS3eHGwTW/XEsfA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="76486687"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="76486687"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 08:00:30 -0700
-X-CSE-ConnectionGUID: HNU4y/XiR8eUw7G4gcA0Bg==
-X-CSE-MsgGUID: ZKe8pCmYRdC79K57NYUDQg==
+ 03 Sep 2026 08:00:39 -0700
+X-CSE-ConnectionGUID: 6fxsRNLJSFqa14Xn48fe9Q==
+X-CSE-MsgGUID: kbqx8/kjRvqc29vStrTBpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="268440562"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="268440691"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
  mkuoppal-desk.intel.com) ([10.245.246.233])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 08:00:25 -0700
+ 03 Sep 2026 08:00:34 -0700
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
@@ -50,11 +50,14 @@ Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
  dominik.karol.piatkowski@intel.com, rodrigo.vivi@intel.com,
  andrzej.hajda@intel.com, matthew.auld@intel.com,
  maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com,
- Dominik Grzegorzek <dominik.grzegorzek@intel.com>,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: [PATCH v10 05/27] drm/xe: Add EUDEBUG_ENABLE exec queue property
-Date: Thu,  3 Sep 2026 17:59:29 +0300
-Message-ID: <20260903145952.848051-6-mika.kuoppala@linux.intel.com>
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Jan Sokolowski <jan.sokolowski@intel.com>,
+ Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+Subject: [PATCH v10 07/27] drm/xe/eudebug: Mark guc contexts as debuggable
+Date: Thu,  3 Sep 2026 17:59:31 +0300
+Message-ID: <20260903145952.848051-8-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260903145952.848051-1-mika.kuoppala@linux.intel.com>
 References: <20260903145952.848051-1-mika.kuoppala@linux.intel.com>
@@ -74,179 +77,239 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+Inform the GuC which contexts are debuggable, as their
+handling differs from ordinary contexts.
 
-Introduce an immutable eudebug property for exec_queues,
-using a flags value to enable eudebug-specific features. For now, the
-engine LRC uses this flag to enable the runalone hardware feature.
-Runalone ensures that only one hardware engine in a group
-[rcs0, ccs0-3] is active on a tile.
+v2: void return, use xe_gt_dbg, no need for lrc (Matt)
+v3: add the workaround enabling (Daniele)
+v4: version needed to 70.49.4
+v5: bail out early before registering eq (Daniele)
+v6: export the guc action for future (Mika)
+v7: remove redundant xe_gt_info (Sashiko)
 
-v2: - check CONFIG_DRM_XE_EUDEBUG and LR mode (Matthew)
-    - disable preempt (Dominik)
-    - lrc_create remove from engine init
-
-v3: - remove redundant runalone setup (Sashiko)
-v4: - deny if pxp is on (Sashiko)
-    - deny if secondary mq (Sashiko)
-    - deny if parallel (Sashiko)
-    - really deny if pxp (Claude)
-
-Assisted-by: Claude:claude-opus-5
 Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Jan Sokolowski <jan.sokolowski@intel.com>
+Assisted-by: Claude:claude-opus-5
 Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c       | 63 +++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_exec_queue.h       |  2 +
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  7 +++
- include/uapi/drm/xe_drm.h                |  2 +
- 4 files changed, 73 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h |  5 ++++
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h    |  1 +
+ drivers/gpu/drm/xe/xe_exec_queue.c       |  5 ++++
+ drivers/gpu/drm/xe/xe_guc.c              |  8 ++++++
+ drivers/gpu/drm/xe/xe_guc.h              |  6 +++++
+ drivers/gpu/drm/xe/xe_guc_ads.c          | 12 +++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 34 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.h       |  1 +
+ drivers/gpu/drm/xe/xe_wa_oob.rules       |  2 ++
+ 9 files changed, 74 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index a663c55b386d..d13f69eb025c 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -358,6 +358,9 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
- 	if (q->flags & EXEC_QUEUE_FLAG_DISABLE_STATE_CACHE_PERF_FIX)
- 		flags |= XE_LRC_DISABLE_STATE_CACHE_PERF_FIX;
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+index f5c9b37038d4..652c4e75ed2b 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+@@ -162,6 +162,7 @@ enum xe_guc_action {
+ 	XE_GUC_ACTION_NOTIFY_FLUSH_LOG_BUFFER_TO_FILE = 0x8003,
+ 	XE_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED = 0x8004,
+ 	XE_GUC_ACTION_NOTIFY_EXCEPTION = 0x8005,
++	XE_GUC_ACTION_EU_KERNEL_DEBUG = 0x8006,
+ 	XE_GUC_ACTION_TEST_G2G_SEND = 0xF001,
+ 	XE_GUC_ACTION_TEST_G2G_RECV = 0xF002,
+ 	XE_GUC_ACTION_LIMIT
+@@ -285,4 +286,8 @@ enum xe_guc_g2g_type {
+ /* invalid type for XE_GUC_ACTION_NOTIFY_MEMORY_CAT_ERROR */
+ #define XE_GUC_CAT_ERR_TYPE_INVALID 0xdeadbeef
  
-+	if (q->eudebug_flags & EXEC_QUEUE_EUDEBUG_FLAG_ENABLE)
-+		flags |= XE_LRC_CREATE_RUNALONE;
-+
- 	err = q->ops->init(q);
- 	if (err)
- 		return err;
-@@ -991,6 +994,51 @@ static int exec_queue_set_state_cache_perf_fix(struct xe_device *xe, struct xe_e
- 	return 0;
- }
- 
-+static int exec_queue_set_eudebug(struct xe_device *xe, struct xe_exec_queue *q,
-+				  u64 value)
-+{
-+	const u64 known_flags = DRM_XE_EXEC_QUEUE_EUDEBUG_FLAG_ENABLE;
-+
-+	if (XE_IOCTL_DBG(xe, (q->class != XE_ENGINE_CLASS_RENDER &&
-+			      q->class != XE_ENGINE_CLASS_COMPUTE)))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, (value & ~known_flags)))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, !IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)))
-+		return -EOPNOTSUPP;
-+
-+	if (XE_IOCTL_DBG(xe, !xe_exec_queue_is_lr(q)))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, xe_exec_queue_is_parallel(q)))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe,
-+			 !(value & DRM_XE_EXEC_QUEUE_EUDEBUG_FLAG_ENABLE)))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, !xe_eudebug_is_enabled(xe)))
-+		return -EPERM;
-+
-+	if (XE_IOCTL_DBG(xe, xe_exec_queue_uses_pxp(q)))
-+		return -EPERM;
-+
-+	if (XE_IOCTL_DBG(xe, xe_exec_queue_is_multi_queue_secondary(q)))
-+		return -EINVAL;
-+
-+	q->eudebug_flags = EXEC_QUEUE_EUDEBUG_FLAG_ENABLE;
-+	q->sched_props.preempt_timeout_us = 0;
-+
-+	return 0;
-+}
-+
-+int xe_exec_queue_is_debuggable(struct xe_exec_queue *q)
-+{
-+	return q->eudebug_flags & EXEC_QUEUE_EUDEBUG_FLAG_ENABLE;
-+}
-+
- typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
- 					     struct xe_exec_queue *q,
- 					     u64 value);
-@@ -1005,6 +1053,7 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
- 							exec_queue_set_multi_queue_priority,
- 	[DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX] =
- 							exec_queue_set_state_cache_perf_fix,
-+	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_EUDEBUG] = exec_queue_set_eudebug,
- };
- 
- /**
-@@ -1077,6 +1126,17 @@ static int exec_queue_user_ext_check(struct xe_exec_queue *q, u64 properties)
- 			 (properties & BIT_ULL(DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE))))
- 		return -EINVAL;
- 
-+	/*
-+	 * A debugger can inspect and modify the EU state and memory of a
-+	 * debuggable queue, so it must not be combined with protected content.
-+	 * Test the property mask rather than the queue state, as the extensions
-+	 * are applied in the order userspace chained them and either one may be
-+	 * processed first.
-+	 */
-+	if (XE_IOCTL_DBG(xe, (properties & BIT_ULL(DRM_XE_EXEC_QUEUE_SET_PROPERTY_EUDEBUG)) &&
-+			 (properties & BIT_ULL(DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE))))
-+		return -EINVAL;
-+
- 	return 0;
- }
- 
-@@ -1112,7 +1172,8 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
- 			 ext.property != DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE &&
- 			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP &&
- 			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY &&
--			 ext.property != DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX))
-+			 ext.property != DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX &&
-+			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_EUDEBUG))
- 		return -EINVAL;
- 
- 	idx = array_index_nospec(ext.property, ARRAY_SIZE(exec_queue_set_property_funcs));
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index 0225426c57b0..fb090704dd9f 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -162,4 +162,6 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
- struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q);
- struct xe_lrc *xe_exec_queue_get_lrc(struct xe_exec_queue *q, u16 idx);
- 
-+int xe_exec_queue_is_debuggable(struct xe_exec_queue *q);
++enum  xe_guc_eu_kernel_debug_request_type {
++	XE_GUC_EU_KERNEL_DEBUG_ENABLE = 0x3,
++};
 +
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 95f75d61a647..67c4c974d13d 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -154,6 +154,13 @@ struct xe_exec_queue {
- 	 */
- 	unsigned long flags;
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index 685c4ef17b73..85570453892c 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -522,6 +522,7 @@ enum xe_guc_klv_ids {
+ 	GUC_WA_KLV_WAKE_POWER_DOMAINS_FOR_OUTBOUND_MMIO					= 0x900a,
+ 	GUC_WA_KLV_RESET_BB_STACK_PTR_ON_VF_SWITCH					= 0x900b,
+ 	GUC_WA_KLV_RESTORE_UNSAVED_MEDIA_CONTROL_REG					= 0x900c,
++	GUC_WA_KLV_RESET_DEP_ENGINES_ON_DEBUG_CTX_SWITCH				= 0x900d,
+ 	GUC_WA_KLV_CLR_CS_INDIRECT_RING_STATE_IF_IDLE_AT_CTX_REG			= 0x900e,
+ 	GUC_WA_KLV_REMAP_RANGED_TLB_INV							= 0x900f,
+ 	GUC_WA_KLV_IGNORE_MMIO_READ_SEM_TOKEN_64					= 0x9010,
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 12410646d15d..98f32c99a3a3 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -19,6 +19,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_sriov_pf.h"
+ #include "xe_gt_sriov_vf.h"
++#include "xe_guc.h"
+ #include "xe_hw_engine_class_sysfs.h"
+ #include "xe_hw_engine_group.h"
+ #include "xe_irq.h"
+@@ -998,6 +999,7 @@ static int exec_queue_set_eudebug(struct xe_device *xe, struct xe_exec_queue *q,
+ 				  u64 value)
+ {
+ 	const u64 known_flags = DRM_XE_EXEC_QUEUE_EUDEBUG_FLAG_ENABLE;
++	struct xe_guc *guc = &q->gt->uc.guc;
  
-+	/**
-+	 * @eudebug_flags: immutable eudebug flags for this exec queue.
-+	 * Set up with DRM_XE_EXEC_QUEUE_SET_PROPERTY_EUDEBUG.
-+	 */
-+#define EXEC_QUEUE_EUDEBUG_FLAG_ENABLE		BIT(0)
-+	unsigned long eudebug_flags;
+ 	if (XE_IOCTL_DBG(xe, (q->class != XE_ENGINE_CLASS_RENDER &&
+ 			      q->class != XE_ENGINE_CLASS_COMPUTE)))
+@@ -1009,6 +1011,9 @@ static int exec_queue_set_eudebug(struct xe_device *xe, struct xe_exec_queue *q,
+ 	if (XE_IOCTL_DBG(xe, !IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)))
+ 		return -EOPNOTSUPP;
+ 
++	if (XE_IOCTL_DBG(xe, !xe_guc_has_debug_contexts(guc)))
++		return -EOPNOTSUPP;
 +
- 	union {
- 		/** @multi_gt_list: list head for VM bind engines if multi-GT */
- 		struct list_head multi_gt_list;
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 03cb1181c169..a938a9f095ce 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -1442,6 +1442,8 @@ struct drm_xe_exec_queue_create {
- #define     DRM_XE_MULTI_GROUP_CREATE				(1ull << 63)
- #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY	5
- #define   DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX	6
-+#define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_EUDEBUG		7
-+#define     DRM_XE_EXEC_QUEUE_EUDEBUG_FLAG_ENABLE		(1 << 0)
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
+ 	if (XE_IOCTL_DBG(xe, !xe_exec_queue_is_lr(q)))
+ 		return -EINVAL;
  
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index c7f8bbd4cb92..2a037aebf569 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1918,6 +1918,14 @@ u16 xe_hwe_guc_logical_instance(struct xe_hw_engine *hwe)
+ 	return hwe->logical_instance;
+ }
+ 
++bool xe_guc_has_debug_contexts(struct xe_guc *guc)
++{
++	return GUC_FIRMWARE_VER_AT_LEAST(guc,
++					 XE_GUC_VER_DEBUG_CONTEXTS_MAJOR,
++					 XE_GUC_VER_DEBUG_CONTEXTS_MINOR,
++					 XE_GUC_VER_DEBUG_CONTEXTS_PATCH);
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ #include "tests/xe_guc_g2g_test.c"
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+index 61e3ee19a59b..2d1e1bfd3d3b 100644
+--- a/drivers/gpu/drm/xe/xe_guc.h
++++ b/drivers/gpu/drm/xe/xe_guc.h
+@@ -29,6 +29,11 @@
+ #define GUC_FIRMWARE_VER_AT_LEAST(guc, ver...) \
+ 	xe_guc_fw_version_at_least((guc), MAKE_GUC_VER_ARGS(ver))
+ 
++/* Lowest GuC version that knows how to handle debuggable contexts */
++#define XE_GUC_VER_DEBUG_CONTEXTS_MAJOR	70
++#define XE_GUC_VER_DEBUG_CONTEXTS_MINOR	49
++#define XE_GUC_VER_DEBUG_CONTEXTS_PATCH	4
++
+ struct drm_printer;
+ 
+ void xe_guc_comm_init_early(struct xe_guc *guc);
+@@ -63,6 +68,7 @@ int xe_guc_start(struct xe_guc *guc);
+ void xe_guc_declare_wedged(struct xe_guc *guc);
+ bool xe_guc_using_main_gamctrl_queues(struct xe_guc *guc);
+ bool xe_guc_has_paging_engine(struct xe_guc *guc);
++bool xe_guc_has_debug_contexts(struct xe_guc *guc);
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ int xe_guc_g2g_test_notification(struct xe_guc *guc, u32 *payload, u32 len);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index ff8eee3831aa..8a6cab7bf0d4 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -396,6 +396,18 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
+ 				 GUC_FEATURE_KLV_DISABLE_MULTI_QUEUE);
+ 	}
+ 
++	if (IS_ENABLED(CONFIG_DRM_XE_EUDEBUG) && XE_GT_WA(gt, 14022766366)) {
++		if (xe_guc_has_debug_contexts(&gt->uc.guc)) {
++			guc_waklv_enable(ads, NULL, 0, &offset, &remain,
++					 GUC_WA_KLV_RESET_DEP_ENGINES_ON_DEBUG_CTX_SWITCH);
++		} else {
++			xe_gt_info(gt, "eudebug needs GuC version %u.%u.%u or greater\n",
++				   XE_GUC_VER_DEBUG_CONTEXTS_MAJOR,
++				   XE_GUC_VER_DEBUG_CONTEXTS_MINOR,
++				   XE_GUC_VER_DEBUG_CONTEXTS_PATCH);
++		}
++	}
++
+ 	size = guc_ads_waklv_size(ads) - remain;
+ 	if (!size)
+ 		return;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 99d8c807ff05..18a3ece25c3c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1013,6 +1013,37 @@ static u32 xe_hwe_guc_logical_to_submit_mask(struct xe_hw_engine *hwe, u32 logic
+ 	return logical_mask;
+ }
+ 
++int xe_guc_action_eu_kernel_debug(struct xe_guc *guc, u32 id, u32 cmd)
++{
++	const u32 action[] = {
++		XE_GUC_ACTION_EU_KERNEL_DEBUG,
++		id,
++		cmd,
++		0, /* reserved */
++	};
++
++	return xe_guc_ct_send(&guc->ct, action,
++			      ARRAY_SIZE(action), 0, 0);
++}
++
++static void set_eu_kernel_debug(struct xe_exec_queue *q)
++{
++	struct xe_guc *guc = exec_queue_to_guc(q);
++	struct xe_gt *gt = guc_to_gt(guc);
++	int ret;
++
++	ret = xe_guc_action_eu_kernel_debug(guc, q->guc->id,
++					    XE_GUC_EU_KERNEL_DEBUG_ENABLE);
++
++	if (ret)
++		xe_gt_err_ratelimited(gt,
++				      "GuC ctx=%u debug enabling failed with %d",
++				      q->guc->id, ret);
++	else
++		xe_gt_dbg(gt,
++			  "GuC ctx=%u enabled for debug", q->guc->id);
++}
++
+ static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
+ {
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+@@ -1074,6 +1105,9 @@ static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
+ 
+ 	if (xe_exec_queue_is_multi_queue_secondary(q))
+ 		guc_exec_queue_send_cgp_sync(q, CGP_SYNC_REGISTRATION);
++
++	if (xe_exec_queue_is_debuggable(q))
++		set_eu_kernel_debug(q);
+ }
+ 
+ static u32 wq_space_until_wrap(struct xe_exec_queue *q)
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index ccade320dc69..e7a24f8ecbc5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -56,5 +56,6 @@ void xe_guc_register_vf_exec_queue(struct xe_exec_queue *q, int ctx_type);
+ bool xe_guc_has_registered_mlrc_queues(struct xe_guc *guc);
+ 
+ int xe_guc_contexts_hwsp_rebase(struct xe_guc *guc, void *scratch);
++int xe_guc_action_eu_kernel_debug(struct xe_guc *guc, u32 id, u32 cmd);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index dd69ad07f7a9..3de46094ab5c 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -72,3 +72,5 @@
+ 16029897822	MEDIA_VERSION(3500)
+ 		GRAPHICS_VERSION(3510)
+ 14027054324	GRAPHICS_VERSION(3511)
++14022766366	GRAPHICS_VERSION_RANGE(2001, 2004)
++		GRAPHICS_VERSION_RANGE(3000, 3005)
 -- 
 2.53.0
 
