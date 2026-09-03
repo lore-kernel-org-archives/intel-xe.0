@@ -4,160 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2540EC61DD3
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 04:33:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4E30C61DD3
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 04:45:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9263410E03C;
-	Thu,  3 Sep 2026 04:33:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2987A10E03C;
+	Thu,  3 Sep 2026 04:45:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a0fg9ECM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P1rpeapw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9653810E03C
- for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 04:33:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F00410E03C
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 04:45:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788409986; x=1819945986;
+ t=1788410740; x=1819946740;
  h=message-id:date:subject:to:cc:references:from:
- in-reply-to:mime-version;
- bh=2cYlcO0SfXB4Kt/+DDpC9Wtw8XbFN0YByi2wZjfpU/U=;
- b=a0fg9ECMYZhVdt8LGscEWNbaSXpGCkiEQiGq9psu7y24913D7L2hxmqm
- lxvo4kZyDIzSp/SUdbtVodwBUvPzB4YN6NReSHuzAnG0f6414j483+Ygb
- jTk+udWuNdTLNnn00ISsaZUk9K3nfAxi5CefA6qHp94YpzeZSabYZaANV
- dmpv4c0CMeozjC9XuPvdf5QoMRwmlwP0Mr8NKhnjSI5DayV9cyv5PINRd
- CUGlDS2d54NDr/ZeoVoueDVGSkpdEXZkxYXlBJ6bW9QGLPgAfSYGQ7icm
- WYkt/HgFoBV/NOAeWR2UjFFJHtN2D939sbG13BaBgwez+hfpqfnQmhxTK g==;
-X-CSE-ConnectionGUID: ceIahPfJTZuTAt/QLKSL+A==
-X-CSE-MsgGUID: gahl8sXvQqGpioG15/r9Lg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11894"; a="88911370"
-X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208,217";a="88911370"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 21:33:05 -0700
-X-CSE-ConnectionGUID: 5Tg+zMEYS1WhNltc0l+OdA==
-X-CSE-MsgGUID: 0F0Mv6CVR9avASUQ4nmC4w==
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=74Y8t59H043ARh4laajAVvq2PMZy2OTxUbcYRGd6ZT0=;
+ b=P1rpeapwBd4C5CFIyK5Li4Wudo4TQElbVsI4tneYUPtp1YmBDzZlBsr8
+ hoI5zH36Nx1AtsbarTSQjx3Nbp93d6NPDMGfxGlyoxEb97bzVFdYnKdip
+ PyoNZ+gPAYu2AMsmBy/eQ7JUN8pteYljUeF+1wb4TnVhhPs2uXSvfulH/
+ pVBoC1eR3AvIgAyrXlBc+vXyvp0JBgP/pk7IuyheeiUAVYGZ4OUN9qlD0
+ /ZPBPmxEBm5DJ51jaq9tAUXAEi4xmgy+pQYCG/ykcHtPJcOOEKgmjEqYc
+ z2H+Ob/1SpBqXXIeEqZls8u/Qck8z7M4Lm1R0THZTmPLGBZnByvYtON/I w==;
+X-CSE-ConnectionGUID: Ysi/HaOzSa6pflMGol3qHg==
+X-CSE-MsgGUID: TzfNAT29QESLnSGpdw16OQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11894"; a="114420573"
+X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="114420573"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 21:45:40 -0700
+X-CSE-ConnectionGUID: fwhksjtTQuiqoM6qGG32Jg==
+X-CSE-MsgGUID: fs4uaUZ1See9prtp6ui16w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; 
- d="scan'208,217";a="274895717"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 21:33:05 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="293102196"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 21:45:40 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 2 Sep 2026 21:33:04 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.46; Wed, 2 Sep 2026 21:45:39 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Wed, 2 Sep 2026 21:33:04 -0700
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.0) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Wed, 2 Sep 2026 21:45:39 -0700
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.13) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 2 Sep 2026 21:33:03 -0700
+ 15.2.2562.46; Wed, 2 Sep 2026 21:45:39 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZWTcBwsCd2HiUlfz1kbD6AsZMn1jrNXUAWLOrlZzowGi/KEQgQ+bLc99hFpYf+pmZLaO8kS3jrNStkj1oYFdTpxXXH+6UHYcpYnJYrCq6n/XQrIR9GYub2z2Q6WsSolPaCb6lVCFjbPz/ky3ytEgEOfX1ewbSsPyZv6lRRHIY2quWyfiKkR3X8jRL8teyOnadoW/hXMJAa06O8pxn/iUcUIUBu2nYOrjqMrr2UTnfcH6Fq2gEboXizECCZPNHvkBuOjuYZD3t27UnaDnPGUulRsaEJ1WCtN8Rclv3+N0hyqdPi2cFr+MXSH94v57bwc+wWeBxzZDddI/u1aWH0UiEg==
+ b=qsvb4gVpl01+NjdqU6UVyWasCU/9YRxh/jYYoPCu1T/23YnNWNdHLGKwDsQwOyw6mrtPPOcHWeYkSOuq1/eAmUU5NZ5hHQjw2qKNouep9oKYqi52k3gpA/UueGU4VcJBSVCaTzy92WwK3zqInDUDMNzCGSzXQgx5VVesAibGSiSLY1lg7lLx3bLfheA6l13gRLpJZjVjoG1ZPS9nyMPildPH3aRoSY7h23zYWyyLCFmScgGc6mXSyKwC6ZoRI2C46yui5tWh1SRU0kvnf3EKTUmkbkFTVGLEewOURKmrxKrWqMIURLRWXwXJqGgoHkfwQY1qcXWbb3cWZSL39RzkwQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RQnJdjhrN2S4NAVOPNaJ33u3Xe+lT37x6Gh9ZrXxp90=;
- b=ucF087DORRd56Kk4PADG8VQjb+bsxRKLcos7M61/TXLhS5GSd9fsFzw0BUPIGDVzP5wFpxa/oTQ/lsN87fW4sJAxQO3TKVr+1EdjKaAZbfP4qtXtDqcngVC+2tFaisgXsI6w26G+qT1XA82mGuVGqcjCXcnaQNfq1dAh+7GBOaT2BAFOn7beNO0HKENB7A7Jg9MHJNmqaC9sWMmO/AR3OkiNVrds7dIlqBD9p0NpGRpxZ83mg1kevWqv6YIfXhrNdPYL8KHUA1ukOBWm/AlpkltMHf3UuJXqPqjJ3UwfUuIvAajhrrsK/JeenwxkUlGODNnrjchdmtTJ1gCf6yMObA==
+ bh=N/9qoHuXto75d7Dbmn4RbtlIvYNdE3UgahCqznYeEGI=;
+ b=dnhF95nan3Ih6acVoYUV3/kY56NKtgJJn439GoCVb9lBJkip4e/YggVpH0c+uhSN/oEGnDOK444BuI6jWEaC+rE/nJdMQM2hL576YkciNppHkGZerBApODs7OxoxPJwi/R28XCs5lgYEnwRJNavBKd6HChFrYWay16VzCO/RNDj1VL2zsFuDVIGELlMrOA4ToFeqs2m/cpTzQHSrWTkPRyuiy0IEU/Ghv4M6N+0BVRjX0FPniEbDx+TZlix41G9MB85COAf0Z1+xSnqRQynjXPyQn5mJcU69yxT49YdhoRFbWV4ImhFxbdiH8Lb/xnY6ZuwSBsuYGBY0meVqS44fKg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN0PR11MB5709.namprd11.prod.outlook.com (2603:10b6:408:148::6)
- by LV2PR11MB5976.namprd11.prod.outlook.com (2603:10b6:408:17c::13)
+Received: from MN0PR11MB6207.namprd11.prod.outlook.com (2603:10b6:208:3c5::21)
+ by SJ0PR11MB5867.namprd11.prod.outlook.com (2603:10b6:a03:42a::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Thu, 3 Sep
- 2026 04:32:40 +0000
-Received: from BN0PR11MB5709.namprd11.prod.outlook.com
- ([fe80::ad31:3f30:20b8:26c]) by BN0PR11MB5709.namprd11.prod.outlook.com
- ([fe80::ad31:3f30:20b8:26c%4]) with mapi id 15.21.0360.008; Thu, 3 Sep 2026
- 04:32:40 +0000
-Content-Type: multipart/alternative;
- boundary="------------L94XpbEsz0JfpfaST0JbDgiI"
-Message-ID: <e3b0a92d-14d6-4d32-969d-f6f52f6b7d51@intel.com>
-Date: Thu, 3 Sep 2026 10:02:32 +0530
+ 2026 04:45:36 +0000
+Received: from MN0PR11MB6207.namprd11.prod.outlook.com
+ ([fe80::52eb:929f:a8b2:139d]) by MN0PR11MB6207.namprd11.prod.outlook.com
+ ([fe80::52eb:929f:a8b2:139d%4]) with mapi id 15.21.0360.008; Thu, 3 Sep 2026
+ 04:45:36 +0000
+Message-ID: <24241b0a-487f-4600-b305-0a0b5f7ce329@intel.com>
+Date: Thu, 3 Sep 2026 10:15:27 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 4/4] drm/xe/gt: Report GT reset failure using SIGID
+Subject: Re: [PATCH v6 4/9] drm/xe/sysctrl: Make sysctrl_read_frame() void
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: <rodrigo.vivi@intel.com>, <badal.nilawar@intel.com>,
- <himal.prasad.ghimiray@intel.com>, <dnyaneshwar.bhadane@intel.com>,
- <mallesh.koujalagi@intel.com>, <matthew.brost@intel.com>
-References: <20260901063059.2547247-1-arvind.yadav@intel.com>
- <20260901063059.2547247-5-arvind.yadav@intel.com>
- <f1d01885-1a97-4b5b-ac17-b53ad3541ca5@intel.com>
+ <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
+ <matthew.brost@intel.com>
+CC: <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
+ <vinay.belgaumkar@intel.com>, <riana.tauro@intel.com>,
+ <karthik.poosa@intel.com>, <sk.anirban@intel.com>, <raag.jadav@intel.com>,
+ <aravind.iddamsetty@linux.intel.com>, <umesh.nerlige.ramappa@intel.com>,
+ <dnyaneshwar.bhadane@intel.com>, <anoop.c.vijay@intel.com>
+References: <20260831104456.1770605-11-mallesh.koujalagi@intel.com>
+ <20260831104456.1770605-15-mallesh.koujalagi@intel.com>
+ <acd3d811-fa93-4d93-b21f-1ebeadc58099@intel.com>
 Content-Language: en-US
-From: "Yadav, Arvind" <arvind.yadav@intel.com>
-In-Reply-To: <f1d01885-1a97-4b5b-ac17-b53ad3541ca5@intel.com>
-X-ClientProxiedBy: MA5P287CA0194.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1aa::6) To BN0PR11MB5709.namprd11.prod.outlook.com
- (2603:10b6:408:148::6)
+From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
+In-Reply-To: <acd3d811-fa93-4d93-b21f-1ebeadc58099@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0070.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ad::15) To MN0PR11MB6207.namprd11.prod.outlook.com
+ (2603:10b6:208:3c5::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN0PR11MB5709:EE_|LV2PR11MB5976:EE_
-X-MS-Office365-Filtering-Correlation-Id: de0727cc-02e6-492c-0176-08df09746368
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6207:EE_|SJ0PR11MB5867:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6ab8d75c-0130-4d36-71c4-08df0976323a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|23010399003|366016|10067099003|56012099006|11063799006|4143699003|22082099003|8096899003|18002099003;
-X-Microsoft-Antispam-Message-Info: 8/MhfHMV+rTdu5f+Jbe4p4fDB0Csksll9F8KApiOvE6NvS6x3JkDBnLbCB3+5lykOH/yrCf/Na+5uhCGg6r6YtMfinb/EtpSlCBqtJspxkApeV77IkpebF+PJO7dOqP7I3D7tPBNIK/gEgvw72YJ6pFTXaTGEUo4Dxjxjb3q+2O2blJOj2gtel8eCFpLgWG0m7j+VX32gX2XutPbDEzGVZZIqFOZaUKlqrsG2QGN5zYoraNs0RGdK5h16Q6bcuwU7WYNMUEpLNTTeHEBS2gdF42IWpdrzRHzK0lPoPWrXv1pNp+U8LQaApucgBEO3SWwrGKb8/ZB5jzNeJtXJIGWq1CDRlxPm2cDJYIIPisdvSRyVJiBe8P/PC3r4tFkDXV7TMSyR9QCEiqz78JX0pCgag4qLPIdMClNVtOktHMFNxlpcCfb3tREmZbdJAbbhD+HKoKUrzB2csJRaKhJrp0sLL2NNDz9JERemoltcrkTfDo6t7UvCkHvjIKtoH1MY9XWWA/eIRL/ZMwA3vjat31i4ChBPY8EyxU7LgWFgqEGJfpizL56QSQSWnUQJ8fVfjDeD0gHS3ii8s+ay6jzfbWwsT7jCbUHGbVzMXBoiqNLgvzaVKIQnaX1/t4gq0G7YRX6PoIcDFzSApGVJbTG/qyiA+cqNZaj6WSo0lEF/82upR4=
+ ARA:13230040|376014|366016|23010399003|1800799024|18002099003|22082099003|4143699003|56012099006|11063799006|10067099003;
+X-Microsoft-Antispam-Message-Info: z7ESBRGNVYu1xrYOI2jE2btXP+jjmWlBJwU6ljKKc1lZjuhNpY03cilhbalpeSPNbnn8WHPOeTfx10ilcUw16lc8NCAlbpip0LJlhyYKcHTqK4yjIrGg4hI627xWjBgX/kp9yUTnMSkEpJ1f0yQFmQFyfZYVCX5KYXQMfVK2AiyPI2T7RFtgCCCz5wOsHXDvdyDv2pQGSvOs+lRD2R49uOSYAp96RepnBTXvcZxLlHZtWSKbr0mEDydobQ502eD6plheT9SjLHsefrJyTcWyt4XKn6heneaqpsOEkx0ds44KlR3KoJkoV7aCTYyQ2OAYM1Z9zylDAqBIsJ7mUiZJqH3MpnBblgnNXrU61/VxtSdk19kZnfacxjHdgN0TYka3mnJ8zsYKdfOGAuktnrvur+B2agz1QYAyB77FcD+olMxEEOP3CJ58GpLUjykV43g1eoozqQftW+JCWq5m6w5b/NOTiNwX3Rd5ho2E5tImMrcUAzLE49SBK4kuBFwxl6/7UomL2XykL2M3HcSMjgfE85gQ4nvUcbC9TzSozze5iFt0PQQgFHc8o3FuwCOZ6Ej/xSTbbNVOo+wqVbu4TwiHgRnQdudFczKMsYkiiDBtIVdqQhgfb99IzVIiRWo/QgIXUvbHQ5Ux/QWkpA97/QNe48ovJZFHrd4LoOJflrQ546w=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN0PR11MB5709.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(10067099003)(56012099006)(11063799006)(4143699003)(22082099003)(8096899003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(18002099003)(22082099003)(4143699003)(56012099006)(11063799006)(10067099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TExBLy9OQldEM2hnM0VFU3J5SjNya0dqdS8xdW0xODY0a2krWWo4YnR5a1JD?=
- =?utf-8?B?Y1NKYjczSW94WDh0dDl1U2pCa1E3eDFBaGowSHV2WjJ3MU1qSHlxZXpnTG5V?=
- =?utf-8?B?R25CSlZIYWlMZ3QwUTJRK0pYaGVOc2V2QUY0MjlONWdEOVgwb3JEY0VjVFdr?=
- =?utf-8?B?d0NTeW8vWno4bU1WcjB6NStacktGcVRkWERtOURwd29qSWpKYm5kYjFZMGNT?=
- =?utf-8?B?RWhDMzYzRUtLRnp6VXpZS2dxVGlYbGlBMCtVa1J2bUhVQm40UEpnWHpxTDdB?=
- =?utf-8?B?K3lQZXlsZ0h2NzR1cG5EbDFBZ2RrUkhyTS9UWjJKUjZVdURYRlZ4R2crOGo3?=
- =?utf-8?B?dnhvblpLS0Iva00rMGNPOUNweEtnc05QZ2NUK05XVGgvbW9PZzlWbWl2R3hN?=
- =?utf-8?B?a1dnVlNWNFRMWHFyaEpONXFBazdhVEJHSXAvMzNiSHBvQXA4SU55R0JkQVkv?=
- =?utf-8?B?NkMybUd6dHpMcGJGV29CdEIzZXAvY3F4cHU1Y29CSGV4VXYwUStyYlhSL1hJ?=
- =?utf-8?B?TWNqanJjM0RDaWlNaTNjK01OZFpKaUEzRGVVdlFoL2svRjFpaVhwQ0s3SjZ2?=
- =?utf-8?B?dFlzTnFjUFNMVWIyYzAzczFmakdTa3d5blBCNmFTQ0IzRnVxWk1HMlVOK3NN?=
- =?utf-8?B?cUlRd01HS3VlbFZyYi96T1dLTFY1blU4RzdXR0FQM0M2elBwcVhSNnRMNjMx?=
- =?utf-8?B?bzNPS0NDS3pQdngvZjJLaFFpbzdMUVprVEd0eW5kYzNRZDdhY1NIZk1wM3h2?=
- =?utf-8?B?N1F4R0hQNVRMWlZGQ1lxSjVRSHlneXlocmVuWVJHWFB6RUozSU5jOUdYL3pN?=
- =?utf-8?B?b085cUp2MWtzd213SDBpdWR4WnlET2wxcGVBZnZiaGFndG8zN1l4bTRjZWNQ?=
- =?utf-8?B?WWNlWExGQSsrQ0RQc0Vtb3pSYnI5Y05sNFRwb2RuV1ViRlMxaDNIeHk0WWJU?=
- =?utf-8?B?YWJMTExRaU10R0FaOGNnS0NVL2FKSTJwdkdZUEJkQ3AyNFB3bkZUcHZwaUhN?=
- =?utf-8?B?Nlk0bERYYU9GNnhKaU5NWlhySmZEenVubjN6aWpRVnA2TnRwdzlNVTBXMnpF?=
- =?utf-8?B?dlZwOEhESDVGT2cvWmFORmFsU0ZKeVJlL2w2UFdjdlY2bVVhaTNFcDdpaEls?=
- =?utf-8?B?VFJUN1Jldm5lYkQ1amxPZVJ2ZzZvb3JUNEZ6c05CSHNIQWl2UEF0eXNkdEts?=
- =?utf-8?B?amQybFlqTmlrWDJ4dXg2bjJIbHpDZnRpbUFlU0ZJcitnZnY2QnBzWS95dUty?=
- =?utf-8?B?MW4yL2ZtZWc1Mlg1VU5MTjBiNmQ2VFd5QTVuNnJsVTJ4M3pQc0ZpcWUzQW1C?=
- =?utf-8?B?RW1FbHF4Qk5tTkFFczJOWGFJcHUvbzMrblZldnhVdGVIOXVHM2xqNWc5VVNs?=
- =?utf-8?B?OUJFY1N0bnh2T3NkOHJmaGlVNi92VVg5ei91a1BSSFg4N05ldDFMelVVV0lP?=
- =?utf-8?B?N1k1TmloejlMMnlCcFZnUmQ1RzBqckQ5YmhJbThucDZRSDlaRExIeHZhV1NC?=
- =?utf-8?B?TCtqMmIvU0VSRUVLc0l6clM3cUNQdGhuQnJKMWtVbnlvSWpJc29icVFQaFUy?=
- =?utf-8?B?Vm5mM1ZHVng4VDFKblQrU09BNFQyTFgzeUM1dXhYVVhvQTF2VklKUUtOL2Js?=
- =?utf-8?B?QWdubkxBcUVXTWZ6cGZjNy8wMkdDQ21VTXJrZ2diNDk4SFZJM0U0REVuSXFZ?=
- =?utf-8?B?UmJJcHdZWHdiY0RsTFh1ZEhVSGx4VUdRV0VLSlhBRVF4d2c1K2dxRmhldUFO?=
- =?utf-8?B?bGduNHBKMEdEV1JXazNIOW12WnppY1d2Umw1QXdxOXg3RUcyeVRxU1RySmM5?=
- =?utf-8?B?amFmdjJ4bStlMVIvV1ZyQWRuRFNzVGw5Z1lhOWVYTHpUR01LTlZteGdoVlp5?=
- =?utf-8?B?UEVLeVFWbkViY3dpNWFyckthdjVLZGhoS2JVcGd5bDVTaDRQZ2J4SkJ1ZUc5?=
- =?utf-8?B?NGRZZXlqZlJSRStiN3FSZS9wYjBrZkRIUTJtbitJa0lPOXNhNG1xN2o2RDBu?=
- =?utf-8?B?UnJHQ2s5MkpYVXcwYjlOazVRY2daT2o2UFV0M2hHWFFBTnI1RnZFNjkvSHRW?=
- =?utf-8?B?K3d1NVVWaUdJem5zZVUzSmlXRFY1TW1Hbmx2MHl6SkVXQTd0YVVtTXFGZ3l1?=
- =?utf-8?B?ZEFYdHA4WTROeWxXVitIUjlOcW82VktFU2Y5cWhJUjZsajVhODdTUE9BRlM1?=
- =?utf-8?B?NVprVFhJRm5KYmFRLys5bGpDT0J1eXdvLzBSY3U0SGUwRThHTnpRRUVxemk0?=
- =?utf-8?B?Z1k4bitwSlFxVUxYYnJtQjBRaHRValVleFlsVzRReThwR3ptQkNOU2RvS2h6?=
- =?utf-8?B?RXdCMXp3K2ZobW0vTHFvZkxmVnkxUFhIbVVrVEQvMnZqOHR4b2t0Zz09?=
-X-Exchange-RoutingPolicyChecked: vlt+3aMqFgstkOxz8pwzFkO1W9X8orBtFxyA1cF6Xo5Z0Sslz/1uQMdjz6QAC5GKAqMZ4fa1n5322ZLC7CV0cP+OHdwlTV2PD8u5v8CBUu7gI2V9u+QZ2iYZQ7/vPbp3p1WtF/zfjBVQlRrhsUfA7qJDg0dK+NXzQ6eAc3LMs5cvhaYvuioaYqIbnUyfRCFM8g08HB6TWoA9HDkATIj1MlgNZA57CBxJowN32vHVV2BwwOAEAtK3U5XDtvHdjjczVrXNeay1zoQD4lERoiPIw+6cbqHD0n8e9QEgHpHxGm9ILUd17tyWrJPMhobpe8jlCmNzpqBFOqhAybeS5FY1WQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: de0727cc-02e6-492c-0176-08df09746368
-X-MS-Exchange-CrossTenant-AuthSource: BN0PR11MB5709.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZWY5d1A0SFJTS21XVVZ1VXRKZmNkRHJXdy9sYUZYOERkWEVXeCtCbnEyZjlY?=
+ =?utf-8?B?Ym9IcWttL2xFeVNUNE5nTFd3TTcvdzN4eWZUb3hiOXlDKy9GNm9hTzc3RDNu?=
+ =?utf-8?B?TEFPK1QrcEJzeVBYeCtadWtPblZzeU5GV3Y5V1VOV1J0bTQ2b3BQUlhRMjJ3?=
+ =?utf-8?B?L2MyN01vRk10Rnh5VUtaKzZVTUdNak9ya1JMOSswelBuYSsySVRhNU0yWUN3?=
+ =?utf-8?B?V1UvRjFpQmppVXdWZjBPTy9OYWw3Vjk2bmErSEQvdFJRejZzRlZ3S055TndZ?=
+ =?utf-8?B?ekk2R2s5TVl6RkJ6MlptYXN6bnZhNFZrU3VYdk44ak84TkE0c2ZKeHdpYzJ2?=
+ =?utf-8?B?SXJqVm5FM2VDN0ZmZmpuMkE3ZnNoNHZwcFRQZ2NRbXJjRU5lL1ZkTkdVL2lL?=
+ =?utf-8?B?aU9yekxFbVFqM3pMTDRJYnVNR2lqTHN6ak1WVmVEYW9vT2dMaWFrL3hhMUo4?=
+ =?utf-8?B?RlRPSU9aZDIrdXBVWW14Qm8vKzRab2xTdHIyNmwrRkIweC8yeHVLTGxobmxS?=
+ =?utf-8?B?WEJOZStBOGJiMVhwTStkNm5GV1VQZGJCUTNiNktGV2NDZWgyVGtqZElhc2dI?=
+ =?utf-8?B?YVJBcVM4RFN5Nlp1NGVWMXF2WG9qc1dWK25XeUpTMnRnREhyYjhJVkRpMVBs?=
+ =?utf-8?B?WmE3Y2hnMjFxVXFBV0Q0VkRYY0FBNmNlYkhlNkRvZndKYlZJMGtPdXYraElx?=
+ =?utf-8?B?OEtIdE00MUJSTHRsUEZUVTZRUkw1UTBHWVAwWjJQWlVPUGlNZ2QyRHJXb1VS?=
+ =?utf-8?B?cUVmR1R3MGlmQ3BqZlBpK1p4KzJjaGQ5NXlsQW5SUHBZdCtQY3YySzU4REhG?=
+ =?utf-8?B?Y3NUSXJxdGkvU2dsUllGV2hTUFRRK3RMbzlZZExPNmt0bFBnQnUvTUFxUitz?=
+ =?utf-8?B?NWw1MWI4TmdPbU9lclBUV3ZkVDdOSW9LaHlTVHJERXFoSnRvM2pzQyt0WXZN?=
+ =?utf-8?B?Q1FqbGM4SlBHSDNYUGtZL0w4UThOZzFZUUZIVDlRa1hXQnVkWVZ3OVRvOWVh?=
+ =?utf-8?B?RjJJejB3VWVhOGhVWEZ2N3cwUkJCMlFQMFNDc0dndWloYkVESzNNajg3T3Rj?=
+ =?utf-8?B?T3M3Z2tZNTRlMnJBd01mUytSem5yNnB1M2ZEV1MwZEY1RUd0cndram1oSWFM?=
+ =?utf-8?B?VWtQYWZydEpJTUxldm5PZE15QkorSTBsalc0ZDFLOG5RRVV3ejhaWCt0bDds?=
+ =?utf-8?B?REw5SHJPRVlVZ3htVUI5WC9yOXRkR1BFVE8xUFVWdGFGc1BIN0ZOMGlidlI0?=
+ =?utf-8?B?OEtrSHoyL0RWOU45d3FpMTFvdThIS0VPVFNpQUY1dCtYMTBxa29XRjRvZUI2?=
+ =?utf-8?B?cEJPVEhCZ1FzNFJEQ1N1cVh3bitxUWtRc0ZzOWRKN0I1dnAzaDVIc3NjUmNI?=
+ =?utf-8?B?QnRSL0puRldCWWpueTJWZkoydlNtNnM3YmNodFpOZklPMEluYVB1cVB4M0xx?=
+ =?utf-8?B?MDB0T1ZJeVZxL1lZMzRQbFlvNEI3Q2FRRWJCSTNHTjVETjFXRWZVWnpXOERi?=
+ =?utf-8?B?S3hRVHAxSHNyM1BwVjZKMFpMdGExN0dwZGNiZElPVkVrRkdaWnhRSTJ3VllD?=
+ =?utf-8?B?ZC9DNGNtSFB2aXpnTVVLUTZ2ZDNUZFBzQUV2bVZyRUdETDdPZHZrdk8rYkFy?=
+ =?utf-8?B?bWJvMjJaY1NFSHNaZGRraHMwSTNncHNSUGxVNkV0YnFxY0J2Ky8vS01URVpp?=
+ =?utf-8?B?S0drbGNEV3FGWEEvTWNHL0lVOU1ydkc2VytPSU53L214bkdFczJubmo4OG1m?=
+ =?utf-8?B?aTQrQzJ6TkJNZ1hQc2xiVytyL0wwZ0Z5NXplR1BhMjlyL3krZEoyRUExQ1BY?=
+ =?utf-8?B?TWRDdFVKVVhvSTA2bGI2TWVndXAvNDdBK1RmUnJNbVQybFJ3bnpFOXNmNFNl?=
+ =?utf-8?B?RlFBeFNEOU1uZFYvbkpmMjlObXA5cEkzbE85YW1pY2lRVWErcDZyeG5ZVk5j?=
+ =?utf-8?B?VU9YS1l5Uk9HOE9JaXE3RThIRXVKVXIzY0tqUkdLZ09nc1ZsYVhmNDVvamRG?=
+ =?utf-8?B?cVQ5S2JNZmhtVXoxek5tTWJzYndBbVVoRm45TE5SUDAwWU1IWTVlTDVOb1Ns?=
+ =?utf-8?B?Vm93b2puYnVUVXEyaVVxdWVGZERrdUNGdVp1QTVMd0QwdVIwcUMvdy9BS2pz?=
+ =?utf-8?B?VXI0UHVBSmkvd0J5T1ZQN0RLdnBUTnFHT3hhZFI3RWRKOFFETk1ObGRaaUhj?=
+ =?utf-8?B?ZmI5dW1GcFFyZFJpRDdoY0dlT1I0TU5QMUZlNzRxQnNHcFR1RnlNdklvbEMv?=
+ =?utf-8?B?TmZNaGNsVEFCOGpKbDJReGxuUHgyeGkrWHVrRFdCcHJBWW96ekRRWmV0VjBY?=
+ =?utf-8?B?NGR6MmNTNEtEVzVQR3o2eTBuZVVjbnlDWDJ0ekFKdGd6MmdjTFRTRjV6NVMz?=
+ =?utf-8?Q?p1MNymTJo16vGV+A=3D?=
+X-Exchange-RoutingPolicyChecked: 3EqbRB34A+FPsWlkl4Mplk4y/YM52qzTLbya9Dc2Ixshgak2r/xxi5uGsnB+bgwirMvhJNcP5H1khVaT1Ri5Zcn6k0gtDYC/DxuoSABaW4wiUT1ALFgflkp6EqdR+xzbZXrTjk/49UgroRg6aNnmPpYmxel4BE1qVxMo70I3yzqzA2e+tF3ClTrocXcIO4ypIefROFS8TOWggx5vR2GyViRBfvY6+ftW8bJgoOXYhvbCvkzvYOlcsbjhFt5qvVWGBuUpLGuNLsLh0ye0lGSeW2HF7arFSpy+DYpIOHPP3kcSXi/haPZzN68/Aql3KF3KwsHpyhy0KoGfSWvr6W+kYw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ab8d75c-0130-4d36-71c4-08df0976323a
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6207.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2026 04:32:40.1923 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2026 04:45:36.5468 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qOapLg6Z5LMj/voL2HtRTnyGJAr+kI4ipjwWPig0aIIhmfzVFpyhWUKKK1iABc9S/GUArhichsZeloTUZFk28Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB5976
+X-MS-Exchange-CrossTenant-UserPrincipalName: yW/LirxnsV+58cy0aoZipq6tN2X1eKLV7QZdvUdYPhIV8kQqSyDrMiClJmLvJ1hGi/BldUQcF9cDCyZkFyXx8DpROQtMHX2EjIiIotgvwns=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5867
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -173,199 +176,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------L94XpbEsz0JfpfaST0JbDgiI
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
 
-
-On 02-09-2026 18:21, Michal Wajdeczko wrote:
+On 02-09-2026 09:46 pm, Michal Wajdeczko wrote:
 >
-> On 9/1/2026 8:30 AM, Arvind Yadav wrote:
->> Route the GT reset failure log through the structured SIGID logging helper.
->>
->> Failure to complete the full graphics reset means GT reset did not finish
->> as expected. Use the GT component, which maps to XE_SIGID_GT_TDR, and pass
->> the reset errno value to the helper.
->>
->> Also update the message to describe the actual failure. The driver does not
->> clear GRDOM_FULL directly. the reset should complete and clear it within
-> The reset ...
-
-
-Noted,
-
+> On 8/31/2026 12:45 PM, Mallesh Koujalagi wrote:
+>> Convert it to return void and remove the unnecessary error
+>> handling in sysctrl_process_frame().
+> ... as there are no places where this function can fail.
 >
->> the timeout.
->>
->> Cc: Mallesh Koujalagi<mallesh.koujalagi@intel.com>
->> Cc: Badal Nilawar<badal.nilawar@intel.com>
->> Cc: Matthew Brost<matthew.brost@intel.com>
->> Cc: Himal Prasad Ghimiray<himal.prasad.ghimiray@intel.com>
->> Cc: Michal Wajdeczko<michal.wajdeczko@intel.com>
->> Cc: Rodrigo Vivi<rodrigo.vivi@intel.com>
->> Suggested-by: Mallesh Koujalagi<mallesh.koujalagi@intel.com>
->> Signed-off-by: Arvind Yadav<arvind.yadav@intel.com>
+>> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+> Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Thanks Michal !!
+>
+> (a few tags Suggested-by: wouldn't hurt either ;)
+Sure! will add.
+>
 >> ---
->> v6:
->>   - Corrected the GT reset timeout in the log message to 5 ms.
->>     (sashiko)
+>>   drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 11 +++--------
+>>   1 file changed, 3 insertions(+), 8 deletions(-)
 >>
->> v5:
->>   - Kept this patch limited to the GT reset failure path. (Michal)
->>   - Improved the GRDOM_FULL failure message to describe that full graphics
->>     reset did not complete. (Michal)
->>
->>   drivers/gpu/drm/xe/xe_gt.c | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->> index 6805e0d3bf21..d72c7ec9a956 100644
->> --- a/drivers/gpu/drm/xe/xe_gt.c
->> +++ b/drivers/gpu/drm/xe/xe_gt.c
->> @@ -824,8 +824,8 @@ static int do_gt_reset(struct xe_gt *gt)
->>   	xe_mmio_write32(&gt->mmio, GDRST, GRDOM_FULL);
->>   	err = xe_mmio_wait32(&gt->mmio, GDRST, GRDOM_FULL, 0, 5000, NULL, false);
->>   	if (err)
->> -		xe_gt_err(gt, "failed to clear GRDOM_FULL (%pe)\n",
->> -			  ERR_PTR(err));
->> +		xe_log_err(gt, GT, err,
->> +			   "full graphics reset not completed in 5 ms\n");
-> hardcoding timeout value in the message seems wrong, to make it properly:
->
-> #define GRDOM_RESET_TIMEOUT_MS	5			/* 5 ms */
-> or
-> #define GRDOM_RESET_TIMEOUT_US	(5 * USEC_PER_MSEC)	/* 5 ms */
->
-> then
-> 	xe_mmio_wait32(... GRDOM_RESET_TIMEOUT_MS * USEC_PER_MSEC, ...)
-> or
-> 	xe_mmio_wait32(... GRDOM_RESET_TIMEOUT_US, ...)
->
-> and
-> 	xe_log(... in %u ms\n", GRDOM_RESET_TIMEOUT_MS);
-> or
-> 	xe_log(... in %u ms\n", GRDOM_RESET_TIMEOUT_US / USEC_PER_MSEC);
+>> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+>> index 3ef60067e226..4841dd7f2724 100644
+>> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+>> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+>> @@ -68,8 +68,8 @@ static void sysctrl_write_frame(struct xe_sysctrl *sc, const void *frame,
+>>   		xe_mmio_write32(sc->mmio, regs[i], val[i]);
+>>   }
 >>   
-
-Agreed, I will add |GRDOM_RESET_TIMEOUT_MS.|
-
-|Thanks,
-~Arvind|
-
->>   	xe_gsc_wa_14015076503(gt, false);
+>> -static int sysctrl_read_frame(struct xe_sysctrl *sc, void *frame,
+>> -			      size_t len)
+>> +static void sysctrl_read_frame(struct xe_sysctrl *sc, void *frame,
+>> +			       size_t len)
+>>   {
+>>   	static const struct xe_reg regs[] = {
+>>   		SYSCTRL_MB_DATA0, SYSCTRL_MB_DATA1, SYSCTRL_MB_DATA2, SYSCTRL_MB_DATA3
+>> @@ -85,8 +85,6 @@ static int sysctrl_read_frame(struct xe_sysctrl *sc, void *frame,
+>>   		val[i] = xe_mmio_read32(sc->mmio, regs[i]);
 >>   
---------------L94XpbEsz0JfpfaST0JbDgiI
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 02-09-2026 18:21, Michal Wajdeczko
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:f1d01885-1a97-4b5b-ac17-b53ad3541ca5@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-
-On 9/1/2026 8:30 AM, Arvind Yadav wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">Route the GT reset failure log through the structured SIGID logging helper.
-
-Failure to complete the full graphics reset means GT reset did not finish
-as expected. Use the GT component, which maps to XE_SIGID_GT_TDR, and pass
-the reset errno value to the helper.
-
-Also update the message to describe the actual failure. The driver does not
-clear GRDOM_FULL directly. the reset should complete and clear it within
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-The reset ...</pre>
-    </blockquote>
-    <p><br>
-    </p>
-    <p>Noted,</p>
-    <blockquote type="cite" cite="mid:f1d01885-1a97-4b5b-ac17-b53ad3541ca5@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">the timeout.
-
-Cc: Mallesh Koujalagi <a class="moz-txt-link-rfc2396E" href="mailto:mallesh.koujalagi@intel.com">&lt;mallesh.koujalagi@intel.com&gt;</a>
-Cc: Badal Nilawar <a class="moz-txt-link-rfc2396E" href="mailto:badal.nilawar@intel.com">&lt;badal.nilawar@intel.com&gt;</a>
-Cc: Matthew Brost <a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a>
-Cc: Himal Prasad Ghimiray <a class="moz-txt-link-rfc2396E" href="mailto:himal.prasad.ghimiray@intel.com">&lt;himal.prasad.ghimiray@intel.com&gt;</a>
-Cc: Michal Wajdeczko <a class="moz-txt-link-rfc2396E" href="mailto:michal.wajdeczko@intel.com">&lt;michal.wajdeczko@intel.com&gt;</a>
-Cc: Rodrigo Vivi <a class="moz-txt-link-rfc2396E" href="mailto:rodrigo.vivi@intel.com">&lt;rodrigo.vivi@intel.com&gt;</a>
-Suggested-by: Mallesh Koujalagi <a class="moz-txt-link-rfc2396E" href="mailto:mallesh.koujalagi@intel.com">&lt;mallesh.koujalagi@intel.com&gt;</a>
-Signed-off-by: Arvind Yadav <a class="moz-txt-link-rfc2396E" href="mailto:arvind.yadav@intel.com">&lt;arvind.yadav@intel.com&gt;</a>
----
-v6:
- - Corrected the GT reset timeout in the log message to 5 ms.
-   (sashiko)
-
-v5:
- - Kept this patch limited to the GT reset failure path. (Michal)
- - Improved the GRDOM_FULL failure message to describe that full graphics
-   reset did not complete. (Michal)
-
- drivers/gpu/drm/xe/xe_gt.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 6805e0d3bf21..d72c7ec9a956 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -824,8 +824,8 @@ static int do_gt_reset(struct xe_gt *gt)
- 	xe_mmio_write32(&amp;gt-&gt;mmio, GDRST, GRDOM_FULL);
- 	err = xe_mmio_wait32(&amp;gt-&gt;mmio, GDRST, GRDOM_FULL, 0, 5000, NULL, false);
- 	if (err)
--		xe_gt_err(gt, &quot;failed to clear GRDOM_FULL (%pe)\n&quot;,
--			  ERR_PTR(err));
-+		xe_log_err(gt, GT, err,
-+			   &quot;full graphics reset not completed in 5 ms\n&quot;);
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-hardcoding timeout value in the message seems wrong, to make it properly:
-
-#define GRDOM_RESET_TIMEOUT_MS	5			/* 5 ms */
-or
-#define GRDOM_RESET_TIMEOUT_US	(5 * USEC_PER_MSEC)	/* 5 ms */
-
-then
-	xe_mmio_wait32(... GRDOM_RESET_TIMEOUT_MS * USEC_PER_MSEC, ...)
-or
-	xe_mmio_wait32(... GRDOM_RESET_TIMEOUT_US, ...)
-
-and
-	xe_log(... in %u ms\n&quot;, GRDOM_RESET_TIMEOUT_MS);
-or
-	xe_log(... in %u ms\n&quot;, GRDOM_RESET_TIMEOUT_US / USEC_PER_MSEC);
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre"> </pre>
-      </blockquote>
-    </blockquote>
-    <p>Agreed,&nbsp;<span>I will add&nbsp;</span><code dir="ltr">GRDOM_RESET_TIMEOUT_MS.</code></p>
-    <p><code dir="ltr">Thanks,<br>
-        ~Arvind</code></p>
-    <blockquote type="cite" cite="mid:f1d01885-1a97-4b5b-ac17-b53ad3541ca5@intel.com">
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">
- 	xe_gsc_wa_14015076503(gt, false);
- 
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------L94XpbEsz0JfpfaST0JbDgiI--
+>>   	memcpy(frame, val, len);
+>> -
+>> -	return 0;
+>>   }
+>>   
+>>   static void sysctrl_clear_response(struct xe_sysctrl *sc)
+>> @@ -194,10 +192,7 @@ static int sysctrl_process_frame(struct xe_sysctrl *sc, void *out,
+>>   	total_frames = FIELD_GET(SYSCTRL_FRAME_TOTAL_MASK, ctrl_reg);
+>>   	curr_frame = FIELD_GET(SYSCTRL_FRAME_CURRENT_MASK, ctrl_reg);
+>>   
+>> -	ret = sysctrl_read_frame(sc, out, frame_size);
+>> -	if (ret)
+>> -		return ret;
+>> -
+>> +	sysctrl_read_frame(sc, out, frame_size);
+>>   	sysctrl_clear_response(sc);
+>>   
+>>   	if (curr_frame == total_frames)
