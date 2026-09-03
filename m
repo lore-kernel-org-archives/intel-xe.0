@@ -4,158 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23C55C624D4
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 06:37:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89EF0C61DD3
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 06:41:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D076B10F3B2;
-	Thu,  3 Sep 2026 06:37:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4087410E0A1;
+	Thu,  3 Sep 2026 06:41:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mXgI8EuQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V2R0iOIC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 924A310E391;
- Thu,  3 Sep 2026 06:37:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB9DD10E0A1;
+ Thu,  3 Sep 2026 06:41:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788417449; x=1819953449;
+ t=1788417681; x=1819953681;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=xnQD4yC3qm6B+1yEFLQjuht7N6v/1Av+NrG7imbaju0=;
- b=mXgI8EuQZHQDk5zF8UY7Vg0kLQlXxSdVJGZWehbBCDqPNmuFsVyTRw87
- ybxYNrdd/JHl4WUhya/IU1KqHNug3phwmDU8ngmp3bCEGGft+k23qusqf
- qSs58fAD6wHxIYZmmYvp7CCFurDnZTOwTIvx8n8wrzwCzom3/fz7ZWNJe
- mMB1ntbur2goPuWwdSASEYSUUq6bsRMGamsMYGfXG/7SaPKHLZHEo/QyG
- WgqjjQOdZM3efev8FgUgNbi62mYl9qbX7toQkOSOKOEqOgm+hkYmcG+ke
- NWbOIpfJ9SsAWbdliqoTJdHbtR07OTtUujJhvxC79ea50dTv1QQvNeqSX A==;
-X-CSE-ConnectionGUID: roLPoR8yQTmGW0EX2OTCEw==
-X-CSE-MsgGUID: TED/ahMsSliC4rOK28H9yw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11894"; a="106253561"
-X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="106253561"
+ bh=jWNM52aGPpclXK7akZgkq9Tba9uOSfQLRJ7x/iikFoo=;
+ b=V2R0iOIC36zxOS1LTLn/dqcgN1aVZznNn8fcNg222p97L1gYYAMlVaWT
+ w89UlAQIT5HA55zyETp5VQQSEMQ7V75IBnY4GE8a5RNGsBjxTLlV9hUku
+ 1Uo2C9SkmFg7wxX2UOKOybqYnWg9/Xr/osjooTyemeYh8Aue9IDDV6M4i
+ y5HvSM/xijkWBST4AXBpTUzrxQrqFjyD36gEKWu1WXLmVLP+kL7eAzxZw
+ EfMonUdzICq5TyBqKYpJPh0vQVD+S/xeDdHXBdVU6s5AsM90nBjtIMqyH
+ CVo4iUqzEEBEZQYDUr165lgUFStQvABiDzOfjcWhNki8vpbSeOHBobva/ w==;
+X-CSE-ConnectionGUID: V8xeCJ2oSCK21rpNc3FzNQ==
+X-CSE-MsgGUID: OkthgB0kRx2jp4IykTNOFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11894"; a="114430501"
+X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="114430501"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 23:37:05 -0700
-X-CSE-ConnectionGUID: ouACmP/1R8S8D3hnuegmfQ==
-X-CSE-MsgGUID: /ok5wKKQTUe4JfS+HF9A6w==
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Sep 2026 23:37:48 -0700
+X-CSE-ConnectionGUID: dtkI6JzuRra26BMEJ1w4iA==
+X-CSE-MsgGUID: P3SPNirOSxiH5JTo5zgUeg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="263452143"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+X-IronPort-AV: E=Sophos;i="6.25,258,1779174000"; d="scan'208";a="263452286"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Sep 2026 23:37:04 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 02 Sep 2026 23:37:48 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 2 Sep 2026 23:37:03 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.46; Wed, 2 Sep 2026 23:37:47 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Wed, 2 Sep 2026 23:37:03 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.6) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Wed, 2 Sep 2026 23:37:47 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.59) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 2 Sep 2026 23:37:02 -0700
+ 15.2.2562.46; Wed, 2 Sep 2026 23:37:47 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IRh3huks05yYY1WSIcSmz7yFOk4/gSnHQZpdpQetNH/cyJitZrRGaL8zx9uyOGROpVyK86XeychuqoWLAySbwOfLldrmLD3PJ/bJhV6orFqx9Am4XPosvaU8Exnkyn3VtekoeQGnjpIZRZsGaJqb9WLYMWe0QjnVp2hVDwUXUfjThTatPGh+aZSVOEHq4R1Pa5RlUMe3VnZTh/IHP4JUVm2TboGQZAKgd8rVghQgtutg/MhYkBeimjbwGwy+q9Yx4fPLLxT3b/jXQvcOvu6ALSwG4Ofa/DUkfHGOI8IV/tl4RhAv6mDxPVbHXqks2yYmQRbq1EZj0UitiKsvCazcEA==
+ b=LwGWGwacb4fGaqmrOJe4NF2QpH9gpYmk5I/Y9CpN0Hk0k506mm6mdyPE2b0C76DeRgOKdWrXnS65gL+rmjA+mCcUrg6umGJiGbywGnZSzchOVoXTkrO8ZX0cswR/mdZtaEqJVzLvPzRbYpuOYiIFI3ZfQ1YLcJfqXKVJmb2/pZWZ/sLppdEU+dN2RXcapDe0BLhl3UO7pJrXDzc9hkxgCo5pvbl3SseiyNDzIuZPVJHXv+Yhn4wIlzKhmEVwD91a+gYadNEtqM6amB+d6qmi24aVgkNBhKwL+68sDxA2tU0AsvXuT3PmUSadxjSm8Lpf0kAmNdvCP1uUkFoUZNE/UQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QQ8bKXJ0udbnkIHI7MUzEmwDuDMsw72Uzl/xIkKhz4g=;
- b=f+zs7CBI4i0W+BBWZpCJwu34aiS5cDhtXAzB+C17xDgZqCIIYWexE0ltOS6Hg65+U5Cso/6JPNWurDxDhUmiv0cWp5IRs1vAO+BPaDQNxPu4nJoDgSprlaZfu+xzWfcJhArwBe5egJaxIb0+umn2RbO2IxLw2p/RY+DrIuaCArTfZsI5Fa0nauIenDVkf0S1xW2Q2YnFNjmnUqvK/TBwjVddoSbUL90m8pNI65qqLP9OAVPXwMiCcIhYJtWfYfnz38BfiGk3kjq0+lmKUHilefRg1qPvZJWtuKEU/YW7KE7YnJEtVNjF8KulHIxUnfdJa2g6km0UobcwmXa7A5vRPw==
+ bh=sfkyXr+kymF2GoWD3ts2dCwC9XYr7Bgj51k01Z5x5kk=;
+ b=MpTz8DoreN0umtJqpa0K6e3ctjzgGT+TaK2qhD+pWbwCEd+OLymsDJIZY3kcxJvXWpVVyBV8Bngm79m5QUM4qMpyonf5ZB9n7UTHi2RcZSihkpCQdpMCbpbKaK+1VVEF2lSmAubkcCy/lYPWMxw1TcYs4ULz46QWw6Xsz2IQcbyTFBIqXoseFc0ew1ekwQ4nyVBqorO1F+3RZFjIFcNiK1nMrm39N+MD+66U/7YGjmEYtYrvV3RR/aJNbKw9DsYMa2hCLRebi0eidWM+Cjtfa1k6NpjrKmPj43hhgn+oNq61Bx4UlKJMU1plj/lowzh51kczFrTcANsSTlXIzoZa/A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MW4PR11MB7149.namprd11.prod.outlook.com (2603:10b6:303:221::14)
- by PH7PR11MB6499.namprd11.prod.outlook.com (2603:10b6:510:1f0::13)
+ by SJ2PR11MB8566.namprd11.prod.outlook.com (2603:10b6:a03:56e::16)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Thu, 3 Sep
- 2026 06:36:53 +0000
+ 2026 06:37:45 +0000
 Received: from MW4PR11MB7149.namprd11.prod.outlook.com
  ([fe80::75d3:519d:fced:5a6c]) by MW4PR11MB7149.namprd11.prod.outlook.com
  ([fe80::75d3:519d:fced:5a6c%4]) with mapi id 15.21.0360.008; Thu, 3 Sep 2026
- 06:36:53 +0000
-Message-ID: <1c95a6d3-5731-4dca-8398-69f46627847e@intel.com>
-Date: Thu, 3 Sep 2026 12:06:47 +0530
+ 06:37:45 +0000
+Message-ID: <522550e5-afaf-4014-b1ea-8ae8ff7c07df@intel.com>
+Date: Thu, 3 Sep 2026 12:07:40 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [v4 3/4] drm/i915/display: Reprogram AS SDP skip frames on
- seamless VRR transitions
+Subject: Re: [v4 4/4] drm/i915/display: Gate periodic AS SDP skip frames
+ behind a module parameter
 To: Uma Shankar <uma.shankar@intel.com>, <intel-gfx@lists.freedesktop.org>,
  <intel-xe@lists.freedesktop.org>
 CC: <dibin.moolakadan.subrahmanian@intel.com>
 References: <20260831213421.1804635-1-uma.shankar@intel.com>
- <20260831213421.1804635-4-uma.shankar@intel.com>
+ <20260831213421.1804635-5-uma.shankar@intel.com>
 Content-Language: en-US
 From: "Naladala, Ramanaidu" <Ramanaidu.naladala@intel.com>
-In-Reply-To: <20260831213421.1804635-4-uma.shankar@intel.com>
+In-Reply-To: <20260831213421.1804635-5-uma.shankar@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR13CA0049.namprd13.prod.outlook.com
- (2603:10b6:a03:2c2::24) To MW4PR11MB7149.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR13CA0043.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c2::18) To MW4PR11MB7149.namprd11.prod.outlook.com
  (2603:10b6:303:221::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR11MB7149:EE_|PH7PR11MB6499:EE_
-X-MS-Office365-Filtering-Correlation-Id: c7a03ab4-c71b-48fa-fc4b-08df0985bdfd
+X-MS-TrafficTypeDiagnostic: MW4PR11MB7149:EE_|SJ2PR11MB8566:EE_
+X-MS-Office365-Filtering-Correlation-Id: a7100b67-fbf8-408f-2813-08df0985dcc9
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|23010399003|1800799024|376014|6133799003|56012099006|5023799004|11063799006|4143699003|10067099003|3023799007|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: A0GTcnJFJA66HzYgWmC0xoQAyYTCTK0ObRkPZH5VWiMnJRykznKZ2HmbNAXIM0lcfgM+V96IY5xijuJI8xr3ssr6ogsyshr0h4gOuUpUhT/TT0hxLdC1UuKcSoxeg0lwuV0H80VrPGRvCMKBj/DFS5PPBJJV3+sX/1EjJeR185tj/72ZiRYHT5seCcdCeA4XJwAcV6clXim8csmuFHddDVmusTdQHsQLjqZ/jzOojIJ3h3hLWqX9NAkNEZ/iZwPYcCoriVzW0zJr6zfbLOKLwtcoKqnTUbklVJ2WQu145/eN/dMp1p/xTr2SJBXKlh2C0XQsC3kD87uJSSxjqHLs1RFwvqxDWZtf5ktNmKNKc3l2lq59Fg79cJZIykNT1XGo9QLnkpzBrp3hnO0548vigkfpgW+9ze9ePtQuGe7O26hz5sIRcvmZDl7pqO9gMujfNxrvcKEPskYMUPzJi/svwcHuz2ob5WDtB4HGQ75FRy3sbRDLbixoFqOhLGcmFXmEdJCgVJA4J5g22YJ4AKKSGnWtePLp8VCCBoVlHuAgFLvWIX0fIq3y9d/MTrGjKsBR3s+zqdxWo3XENUm7Z1d1SGJPl1X7McN+5d7tF+zFmkMhy8Vbsv1LOo4inIB1UtBAf+jSGnjt8yAaDxcEydZaVA3U5mzvAsA7RpMOst2So4w=
+ ARA:13230040|1800799024|376014|23010399003|366016|4143699003|11063799006|18002099003|22082099003|56012099006|10067099003;
+X-Microsoft-Antispam-Message-Info: u49v6yuNIDu8Dg59YDG90pqne3x/lU5mGzWRZyyMbgDyETNJEPXCl4pOQmIlgdYkSS/8ARqOYcUCDak6HA+Ttl4wlrPHc6TMjw+KK4cKS9a3TN5rCizkZ1m0c9G3pMVniIIpXmI5+7i9JYCH/FHC+sqH5sQqor3PsuTTaWRSlSYxip+14TXL0RrfYiWXNTGY9WzVWrlcgEdvzps/xatMlKLfEea8B7li4FeG8BdOYA0f+rVEq89oZFaRG36CYkpTMU8z34kMZ2QwrOO5bv2OZs95VzGkz3l/ErCa2PQl/8ZhjDU9VjfStJ2+d+fk5aS6vFaYlT4G5C30fL83jrerWwGG83EFeE9W2JiDSd60E5SWrN0rsFqfCUso/NsSd6adTR/Zo0rFxsP/SIasCikJtajbxyyS3IxDOx3qwnyHsooXHGBkFdYTsCESPfZr1fSI1Va1R8gDmZS2IAxAkYgA6kvVTvZLBoeNy84Elud3we9qtIs3CcN0zDMNVx7ZaQIxX16WSCbGOT/kGCf+cIl4wSIGOBCSbMqmzU35n7pjraYBtqQK316i1Oe4/vH2GBTIFuJ7+05ZOMAI8V3xyuaACWdn93uCP4bDy6qpcOl4kjoc6e1Ebl9ICKAqQkMypicr1qkh6R1vb08R0/CyYTlhvlW0lwI/VRvqMVwWm3EjOxc=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW4PR11MB7149.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(6133799003)(56012099006)(5023799004)(11063799006)(4143699003)(10067099003)(3023799007)(18002099003)(22082099003);
+ SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(4143699003)(11063799006)(18002099003)(22082099003)(56012099006)(10067099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eER3QVRBV1VQK2JuZzFDOVVJRzlUV1ZyeE5iNS9zZlBOUnhnVGp4R25JTHRP?=
- =?utf-8?B?dXhvUkRvd2xnU3lqbVc3eVp5dmU2eEI4clFLcDRab0JacGwyUTZ0alpCc2Y4?=
- =?utf-8?B?cVQveVp6MGtQdHQrdHk2SFAyQVlXUm9ja1RUbzJWVll2MnVGNlVpaExFa2Rn?=
- =?utf-8?B?bUJDczVEMzh0YllxQmZ5WXpEM29FMTNuTU9lME9tTHZ0MG93QW9kc1I4V2pY?=
- =?utf-8?B?cUFIZVd3TE5GdXh4KzhkRjl4ay9ySDJ2ZnVZbWlxYVlLblE3UHdQRW56NHVF?=
- =?utf-8?B?SldZMzdJMjd4NTBuMFJHdXBBaXBrSVF1WUJjcmtVZEJXWkxYSXFWNlBvaldj?=
- =?utf-8?B?QmI4TklSWm0wWlJDRjZRUkZLMHloRUZub29pMk4vNFFSUHczTnF3NmtHMEI4?=
- =?utf-8?B?TDlzZ3hncnRCbU1waEJxc2Z3MGVnU3JtL3huV0MwMUJVNTl3ZndZRmg4L0hY?=
- =?utf-8?B?Q3ZsaU1wRkt1VEZKa25tQ2V1TXNobXJJbEZJRWVYaHRwZk96MFppMzZ3Vk1H?=
- =?utf-8?B?UEQ5WlZVckZuYnlSMUhPT3BlYjhVYnd5ZWRyd0NTcGhhbmJxejNJZEg0VFRD?=
- =?utf-8?B?RXI2OW9CSGlyZjZBcDVaRlFVUTdNTTlwV0xKVFY0QmFxU2oxQksvZloreU4z?=
- =?utf-8?B?MUpSalpjVy9WTElaWVFQejdkK1Avam45T2Y0OVdMZUZIU211MVJLbUNldWZj?=
- =?utf-8?B?N1lXZ1dvZzNUNnFwcGVxTlNocTNYZUNlTDNBdldzd1dHc2g0UEFOdDBEdVYw?=
- =?utf-8?B?REdnaTVsMktUNkJvZ21rWGJzN080WEtSSy9WSkFzbTM3OUVHWE1HbFZKSExv?=
- =?utf-8?B?YXBJdlJIT2U4NUFveGZ2b09NcGtDd0ZTYTJIQU81KzNkREYvaXZaem85eWZF?=
- =?utf-8?B?eGx3WXZEM0IrNDhlRGJlTEU3Z3BHUDJUdGkyRElaTjRWSkJINjJVQUV1L1Iv?=
- =?utf-8?B?OGFJR3YwZFNnZzV0YXNENzJMRHgxVW5GLzZrVExCWU1NTGxBVG01bE9jU3Nx?=
- =?utf-8?B?UzBoY0RtOHdYd0R6cE5Qd0pXcTlPN1EyeEhCWVFnSWYvM0JRTFJCRnZyMVJo?=
- =?utf-8?B?QW5MdFJzL0M0S2E2N293VDBFcDVlSEM4dDJyV1JqM1NEcWhveWIvYWF6N0Jy?=
- =?utf-8?B?cXdtNy9DZU5nYmpTdjhVdGFieEUyampQUTJXYktXUlREUVBWQ1piMnIxTDVj?=
- =?utf-8?B?N1ptM2RjY3ZBWkFxdEhYaVFNWGltNTlBOGJGLzhNc1FEeHpIRm91dEZaS01p?=
- =?utf-8?B?WVBXTmNpeFhKU2ZST0M0bGNsdkNRUUpYaFZ4dksrdmJoQkFJS0Q3ZkJuS3dX?=
- =?utf-8?B?VGdDeTRCSEFseWtrbExoYklTUHZlSmlDZXV6aW1wK0Q0OE8rU3ZleG8ybmND?=
- =?utf-8?B?UktJVXNDQmJ6Ti8yTnc5T3A5YnloT0srRm1nQlFrN3hDT2pHZjdsWkN0Y0Fs?=
- =?utf-8?B?ZjI2ckRua0dCeXpRV015WHIreXVvUVk2WnhualovWG5wT1hmU2hFN3FBdTNL?=
- =?utf-8?B?ajUrM1J2YkxpVzZWd3ZDM2JFeDZNanZQQTV2aDVFaDRSY0M1MUZMQk1tOTU4?=
- =?utf-8?B?Z3kyVm5hbUlaQnhIUzlHQ2s3UmpxKzhldmxlZnVDcytIMjFYTG1WR1llQksz?=
- =?utf-8?B?bFU2VjlmOHFsSEs3b2g3K2p6aXZ4SlBQYnd1N1dsZElZdFdhOUliUlVnSXNY?=
- =?utf-8?B?TUNQYVZBQkEvTHdGMysrYUZPbDc0M1djQVR6VUlLcXpQRmRuUUg4TjloUmpF?=
- =?utf-8?B?aWZESEs4dEorUVlBV0MrbEVKR2hpdXRjRWpncGJCd0tXV1NHY0dGZU5jcGJC?=
- =?utf-8?B?MmFtazJzRzFCUmZlcmUraldSdXZ5emJnWC9KRjI4UktET0dGbjFpS2tyd2h0?=
- =?utf-8?B?TTdXdkN2ZXdUU1Z0NWN1eUh0U1NrVXl4Ny9oOE5JVEJ1bkJpWkxKeFQ5OWlp?=
- =?utf-8?B?cXdCYjZMOEI4cFVBOHc0dlJkNTFmalJRK0VnRkdnc0l1cklySWlaODh5RThy?=
- =?utf-8?B?M1RnVG1nNkx6anZxNFpyYmdSUHptYVBlODlRdHVOU3JVM1l6WHdFRjdlbDd5?=
- =?utf-8?B?K1pUTDBHdWdxMmwvYWI1MEVvdmdTWVpTYjFtRTBWNjQzbXhuSm0vZTBXczhO?=
- =?utf-8?B?ck9hSFRDazdRYXZnRHFSeVFqR1FTVDROSGRyNHpoMXVuRWxwcWNWd0x0aDlY?=
- =?utf-8?B?bk1jU0dVckw5dGx1bHRBTVcvMmVyUEd0TzAyTDFybkJtM2lSSHdGaTZKOHFt?=
- =?utf-8?B?NU4xVmV4VVI5U0J1Q1ZOZTZvdzFXbG14c00xN0kxTDBRSzNxU2tLOUU4aXE4?=
- =?utf-8?B?UDROcjVIMUZoeG5lbVlGK3NoVjM0R29weHdJcEo1LzY1OVJjbHZuamFiV29s?=
- =?utf-8?Q?3VZtxYZmcwNMwew4=3D?=
-X-Exchange-RoutingPolicyChecked: VLPeS6+HEDUznvTX58+xn7jEyGoBt1KZIV9crsTmyHSRh9x0RThdFR2LYKLr4A6Sb13k+Q+p0uKbXqpj4v1O7S8lsppqzFr9/HkihVy1a8zZGjjtNCxSKkd9wA57UqD9Sx0SjqC4HA2KQLn/YYL/hR+IYQKt66wz0rtngAI7JAeGB1K1oDyaCud4hQfz8jgQusWuAowGaLM12Z0jFZ42uxYa8qvBtABpM5aFF5HBLiCpFD3RpBDOswpxQSTqhkrBxb6l8qK48IddX5UoJzWgAYdYESh/jbKbilGaORhGGpRTjncBSnpBpQ+eOjsjHNW8ZmAu7sK3IMTWxKizL9gYvg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: c7a03ab4-c71b-48fa-fc4b-08df0985bdfd
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZXRTTC9EeENoM1c2Z3VpTlVGMGh2SHd3R1J3QmwyMkZKWlNVNjZXWURlN2xt?=
+ =?utf-8?B?R0NuczBrdXBjOTdLekRjemdkbFhQYTE2RjVxVHJxKzRVZmxUUVB0OGNkaXgx?=
+ =?utf-8?B?LzFkSE9jSXlWM0JudnpsZVJ5Y1hHZFJ3WlVJMVJPN2xvY1RZZlErblp2aTZB?=
+ =?utf-8?B?c2ZKaUlyT2pDOHordXgxS3UxY1ErVEhxcUQ3WTYrbnh1MlhtaGtLZVFadHR1?=
+ =?utf-8?B?NHQvK1plTUNneWZnT0U2T3ZEVEhqL2V0RjRBM0haeElacmtqbitDWjJETERK?=
+ =?utf-8?B?OXc4UVlqbmZ6NUhIWGppTkppQ0pEQ2Exb2pEWnlOR1ZYNHVYcTVFcUg0Rk56?=
+ =?utf-8?B?ZG81eHYxM1llMXhDQ0dZQUcybFc2emRNaTB0K0dpRXpQN2twSXFzSU81N1JQ?=
+ =?utf-8?B?eENGdFlMMjVRSGZNTjJTM1ZUWnhnOXFmeFdWTlFUY09TWlVnVm54bFpxQ0xp?=
+ =?utf-8?B?YXRpSW9zc1ZvNHM5SG9LRjlJREN2czVlTkI4UUxPekRjb29DdEkyemptS2di?=
+ =?utf-8?B?VDVaV25RWSsrUU5hMmtxSjZYRGlQaE05Smt4RTR3MC9iM09GU2lBcmYrVGpM?=
+ =?utf-8?B?NFFXVzJVYWl3S2kvRFRRZ0VEMS9PbXBOWXo3bWZCUmY5TnpoMm5mdmNmNFkz?=
+ =?utf-8?B?R1lsOUJVMk9uU3Y4QWxBM29GTWd6N1FDd3h4dC9BbHJUcG5jWUdYYy9QVlBT?=
+ =?utf-8?B?NjF3cXh3ZVA3K05ja0pMVjRMcGlYc0c5VVMrSTRMbUJUZnJDaFdwK01nbVEr?=
+ =?utf-8?B?QTFwNWJGNmxiODY4Kzl3QTArZWVNS1N2UjhvNUFYN3kxUHExS2FtS3IxbFd1?=
+ =?utf-8?B?NWdJN2N1dDBLM1Q5YmZOd1BEOGpWTEZ0WGdsQk85UVQzRW1KZWRzeTlFSi90?=
+ =?utf-8?B?R2FYRVdicWl2eU8yNWw4ejNqQ3c0a2JrQThRNzFzQ2c5SDUyZ05KSzJBUWdk?=
+ =?utf-8?B?enhuWmlXQTl2U0I3SWcvb0VOQVVibGcvNEQ4eVAzUlBFdnVQRm4zV0NLelpN?=
+ =?utf-8?B?aTg1dXlQMElOSjRRVkJjS3RTNnRNYnBPQUdMa3R5dHFaZzhxVk1xcjN2S1Nv?=
+ =?utf-8?B?cUNKbWRoQm81MkhlTGYzTy9CaEZxQ1cwRkp2OG9BSEd4N1ZOMXhPeFVtS08v?=
+ =?utf-8?B?U1loR2Z5eVhKZkw5ZmVWc2lQaHFMY3pEaE9sUTczSmE3LzNNRXJ1TC91UWF5?=
+ =?utf-8?B?N0pxR2ZoK0htRmhSbkZKVTJ0SFkyeFR1OE9LUzZtbG9XUmFCYmdFWkdZclk3?=
+ =?utf-8?B?c0pvMi8ySlp4aGk3UzJjWnJZY1lqdW56ZnRyTlVESlJHVEVmdHV2Q2FBdU0v?=
+ =?utf-8?B?cTFXd3lERTFpUGg4MGFES2pBbzNDeXJCQy9DRnVaanFlRFZYRWJSTUphMUZ2?=
+ =?utf-8?B?bVlkSWpVQTRXYUpqaDY4RWRmYnBLNXcxcS9sejNCMytwR1ozSHp3bk1senhF?=
+ =?utf-8?B?TURha1JUWGRXemVOdmtNWVJQZzhSSnQrcGpxOFQ4OXJMZUs2d05aL0dsRmxE?=
+ =?utf-8?B?OEZ4MDd3TTlvSEVWak9zOWhmUXdBS1poTlBadDRBWnlQNTBEeld0TXZ2U1V5?=
+ =?utf-8?B?L0gxblNFTnZoQitOOC9zallUYnh1SkJFa1QyWEgzUlRxN0FVbnIxcEQ2ZzNs?=
+ =?utf-8?B?N2tyeU1jQkFVcFVKRjBzNmIvVFhWbG45RDh6VE5JTDlJMDdaaVlwU1ZrYStO?=
+ =?utf-8?B?ZkVGc1VhMWlhZXJCVXNmUVZQbHlIN2dFUlVIQ2ZGNTAzNWloTGZSekVwSy9L?=
+ =?utf-8?B?M3RZdUhORjlYbys4Z3g3Q29UZml3WVh4ejdwd1QrYTJFNDUrdkgyS1hUeVBz?=
+ =?utf-8?B?ZTJJRWJwSWJXbFBFbnFGays2d0MzSTkvRzVjaUp3MzBjQ0hBVlIvS3Nody9t?=
+ =?utf-8?B?QmxsOGJqNWw5eHRCVEdmVkhlVENaajgza1phd1BiWkhuQzQ1SjJOQ2hHVmdU?=
+ =?utf-8?B?amxBbThDWWVIWUpWSDNlU09XWUZJV29ZbU5jSUs0dVBRMVc0WXZBcm85K1Fv?=
+ =?utf-8?B?bGdScjN6Y2Q3dFVBSVQ3QTVieU41dHVZaVA1V21hMzBaRUQvOFBxREE4NWRo?=
+ =?utf-8?B?aEt2Y2ZWY0Q2K1NBSWZBRVA3TmlaM2dCdnU5bUJXUkY2WHlhdU4xR1A1U0pm?=
+ =?utf-8?B?NDlJKzdlZXVBaFQ2NG5lLzFLcVEyejkvMlhhZlBQQzJQT0VFUVEyRHZyVDA3?=
+ =?utf-8?B?VW5kRUVvYktUL1VBbzBSY2R0dHYzZGR1WjFOM3FXcGE2ZTkvcE05cmNtbmhi?=
+ =?utf-8?B?NkdJdTI2QlEyODQyYkE1KzJ0S2svWmlJM2h6Rk8xOGdDK1lxMW1TTTI5ZE40?=
+ =?utf-8?B?eXVYc3JhbVh3OVBHaHBPUmt1S2ZwUU1NTVczL3B0Z01vbDJTdVVua1RQVTBP?=
+ =?utf-8?Q?utEirWb97JcmBG5M=3D?=
+X-Exchange-RoutingPolicyChecked: UkJcgCTXhv5/UcWpHg/9z2XaW/MOfXfmQggKPbWtWiyWlOrgqZmXmi8bp83JagG9aLmbJicU4hnLvZvl4lMsBYhBLNFTuC24kMMZg9PhbXlxZfjLOVc688GHWqP8wKp9GFIpnS+Ul2kJTEAftFXn3X9MIEsn3mPVbkkRQGkU8JKuR5Ep4UWtZq69nfsjlJ2tVDYzRKSDD3WcmalJWE0LdIMgcsngu1EN9ggy70818QlaClbGlB+pWS4SgXDpxac+yMhH5Pe5U1zgmuus+UtL5SyxWYo5oRItmKkmfV38ENYQ+HIY88ekeWUohQLeHeBhG4ZUaYYNL2PihxyuAAvCmw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: a7100b67-fbf8-408f-2813-08df0985dcc9
 X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7149.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2026 06:36:53.3656 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2026 06:37:45.0416 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pD1MjJ70+tlDM+rXYGywiDa36EaJ86BRjvvhuzexUGPJ5rx0yGzI3PGgz4nXS4OI3P71cpaVXBLiaE3KN6lMzshMm68Hg8ohFtwkbvGyxNk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6499
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9Ya+DL7tzjyODDzQs0ZxjV13z73jsmLdlZlwdayisNz6b3V4gQfzdoGXFvc2FSLCG+Pl73q7lOw+pZ7DAFM//PJts7hZEeA0B2+WLufGU7s=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8566
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -174,219 +174,76 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 Hi Uma,
 
 On 9/1/2026 3:04 AM, Uma Shankar wrote:
-> The AS SDP skip-frame count is written to PR_ALPM_CTL only from
-> lnl_alpm_configure(), which runs from intel_psr_enable_locked() on a
-> Panel Replay disabled->enabled transition. VRR, however, can be enabled
-> and disabled seamlessly - without a modeset and without cycling Panel
-> Replay (intel_crtc_vrr_enabling()/disabling() in the pipe update path).
+> Periodic AS SDP (skip frames) drives a Panel Replay panel down toward its
+> minimum refresh rate. It is a new, panel- and platform-sensitive behaviour,
+> so keep it opt-in rather than enabling it unconditionally.
 >
-> As a result, when a panel comes up with VRR off the non-zero skip count
-> is programmed, and when VRR is later turned on seamlessly PR stays
-> enabled, lnl_alpm_configure() is not re-invoked, and the stale skip
-> count is left in the register. This also leaves the coupled AS SDP
-> transmission / DC3CO idle-protocol bits inconsistent with the DC3co
-> state, which is recomputed on every commit.
+> Add a display module parameter, periodic_assdp_enable, shared by both the
+> i915 and xe drivers via the intel_display_params infrastructure. It defaults
+> to false (feature disabled); set it to true to enable periodic AS SDP.
 >
-> Factor the PR_ALPM_CTL AS SDP programming out of lnl_alpm_configure()
-> into intel_alpm_configure_pr_as_sdp() and expose
-> intel_alpm_pr_as_sdp_update(), which recomputes those fields for the
-> current VRR state. Call it from the seamless VRR enable and disable
-> sites (non-modeset only; a modeset re-runs PR enable anyway) so the skip
-> counter always matches whether VRR is actively driving the refresh rate.
->
-> v2: Fixed Sashiko review comments
+> Gate the feature at its single choke point, intel_pr_as_sdp_skip_frames():
+> returning a zero skip count when the parameter is off makes both the
+> PR_ALPM_CTL programming (intel_alpm_configure_pr_as_sdp()) and the DC3co
+> force-disable predicate (intel_alpm_pr_as_sdp_skip_frames_enabled()) a no-op,
+> so AS SDP continues to be sent on every frame as before.
 >
 > Assisted-by: Claude:claude-opus-4-8
 > Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_alpm.c    | 119 +++++++++++++------
->   drivers/gpu/drm/i915/display/intel_alpm.h    |   1 +
->   drivers/gpu/drm/i915/display/intel_display.c |  18 +++
->   3 files changed, 100 insertions(+), 38 deletions(-)
+>   drivers/gpu/drm/i915/display/intel_alpm.c           | 5 +++++
+>   drivers/gpu/drm/i915/display/intel_display_params.c | 6 ++++++
+>   drivers/gpu/drm/i915/display/intel_display_params.h | 1 +
+>   3 files changed, 12 insertions(+)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-> index 0a33a89975bc..c784e77f610b 100644
+> index c784e77f610b..537cad13f0b4 100644
 > --- a/drivers/gpu/drm/i915/display/intel_alpm.c
 > +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -427,6 +427,85 @@ bool intel_alpm_pr_as_sdp_skip_frames_enabled(struct intel_dp *intel_dp,
->   	return intel_pr_as_sdp_skip_frames(intel_dp) > 0;
->   }
->   
-> +/*
-> + * Program the AS SDP portion of PR_ALPM_CTL: the transmission position, the
-> + * skip-frame counter and the coupled AS SDP transmission / DC3CO idle-protocol
-> + * bits. This is a full recompute of those fields (the base value is built from
-> + * scratch, not read back), so it can be called both at PR enable time and when
-> + * VRR is toggled seamlessly - which changes whether periodic AS SDP is used.
-> + *
-> + * Caller must hold intel_dp->alpm.lock.
-> + */
-> +static void intel_alpm_configure_pr_as_sdp(struct intel_dp *intel_dp,
-> +					   const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(intel_dp);
-> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> +	u32 pr_alpm_ctl = get_pr_alpm_as_sdp_transmission_time(crtc_state);
-> +	u32 skip_frames = 0;
-> +
-> +	if (intel_alpm_pr_as_sdp_skip_frames_enabled(intel_dp, crtc_state))
-> +		skip_frames = intel_pr_as_sdp_skip_frames(intel_dp);
-> +
-> +	if (crtc_state->link_off_after_as_sdp_when_pr_active)
-> +		pr_alpm_ctl |= PR_ALPM_CTL_ALLOW_LINK_OFF_BETWEEN_AS_SDP_AND_SU;
-> +
-> +	/*
-> +	 * Skip frames needs the AS SDP to keep flowing during PR active, so it
-> +	 * is mutually exclusive with disabling AS SDP transmission in active and
-> +	 * with the DC3CO idle protocol.
-> +	 */
-> +	if (skip_frames) {
-> +		pr_alpm_ctl |= PR_ALPM_CTL_AS_SDP_SKIP_FRAMES(skip_frames);
-> +		pr_alpm_ctl &= ~PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
-> +		pr_alpm_ctl &= ~PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
-> +	} else {
-> +		pr_alpm_ctl &= ~PR_ALPM_CTL_AS_SDP_SKIP_FRAMES_MASK;
-> +
-> +		if (crtc_state->disable_as_sdp_when_pr_active)
-> +			pr_alpm_ctl |= PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
-> +
-> +		if (intel_display_power_dc3co_allowed(display))
-> +			pr_alpm_ctl |= PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
-> +	}
-> +
-> +	intel_de_write(display, PR_ALPM_CTL(display, cpu_transcoder), pr_alpm_ctl);
-> +}
-> +
-> +/*
-> + * VRR can be enabled or disabled seamlessly, i.e. without a modeset and without
-> + * cycling Panel Replay, so the AS SDP skip-frame programming done at PR enable
-> + * time would otherwise go stale across a VRR toggle. Reprogram it here so the
-> + * skip counter (and the coupled bits) matches the new VRR state.
-> + */
-> +void intel_alpm_pr_as_sdp_update(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	struct intel_encoder *encoder;
-> +
-> +	/* AS SDP skip frames field only exists on Xe3p_LPD+ */
-> +	if (DISPLAY_VER(display) < 35)
-> +		return;
-> +
-> +	for_each_intel_encoder_mask(display->drm, encoder,
-> +				    crtc_state->uapi.encoder_mask) {
-> +		struct intel_dp *intel_dp;
-> +
-> +		if (!intel_encoder_is_dp(encoder))
-> +			continue;
-> +
-> +		intel_dp = enc_to_intel_dp(encoder);
-> +
-> +		if (!intel_dp->as_sdp_supported ||
-> +		    !intel_alpm_is_alpm_aux_less(intel_dp, crtc_state))
-> +			continue;
-> +
-> +		mutex_lock(&intel_dp->alpm.lock);
-> +		intel_alpm_configure_pr_as_sdp(intel_dp, crtc_state);
-> +		mutex_unlock(&intel_dp->alpm.lock);
-> +	}
-> +}
-> +
->   static void lnl_alpm_configure(struct intel_dp *intel_dp,
->   			       const struct intel_crtc_state *crtc_state)
+> @@ -392,11 +392,16 @@ static u32 get_pr_alpm_as_sdp_transmission_time(const struct intel_crtc_state *c
+>    */
+>   static u32 intel_pr_as_sdp_skip_frames(struct intel_dp *intel_dp)
 >   {
-> @@ -449,44 +528,8 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
->   			ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_50_SYMBOLS |
->   			ALPM_CTL_AUX_LESS_WAKE_TIME(crtc_state->alpm_state.aux_less_wake_lines);
+> +	struct intel_display *display = to_intel_display(intel_dp);
+>   	const struct drm_display_info *info =
+>   		&intel_dp->attached_connector->base.display_info;
+>   	int max_vrefresh = info->monitor_range.max_vfreq;
+>   	int min_vrefresh = info->monitor_range.min_vfreq;
 >   
-> -		if (intel_dp->as_sdp_supported) {
-> -			u32 pr_alpm_ctl = get_pr_alpm_as_sdp_transmission_time(crtc_state);
-> -			u32 skip_frames = 0;
-> -
-> -			/*
-> -			 * AS SDP skip frames field only exists on Xe3p_LPD+, and
-> -			 * periodic AS SDP is a Panel Replay feature that is only
-> -			 * used when VRR is not actively driving the refresh rate.
-> -			 */
-> -			if (DISPLAY_VER(display) >= 35 && crtc_state->has_panel_replay &&
-> -			    !crtc_state->vrr.enable)
-> -				skip_frames = intel_pr_as_sdp_skip_frames(intel_dp);
-> -
-> -			if (crtc_state->link_off_after_as_sdp_when_pr_active)
-> -				pr_alpm_ctl |= PR_ALPM_CTL_ALLOW_LINK_OFF_BETWEEN_AS_SDP_AND_SU;
-> -
-> -			/*
-> -			 * Skip frames needs the AS SDP to keep flowing during PR
-> -			 * active, so it is mutually exclusive with disabling AS SDP
-> -			 * transmission in active and with the DC3CO idle protocol.
-> -			 */
-> -			if (skip_frames) {
-> -				pr_alpm_ctl |= PR_ALPM_CTL_AS_SDP_SKIP_FRAMES(skip_frames);
-> -				pr_alpm_ctl &= ~PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
-> -				pr_alpm_ctl &= ~PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
-> -			} else {
-> -				pr_alpm_ctl &= ~PR_ALPM_CTL_AS_SDP_SKIP_FRAMES_MASK;
-> -
-> -				if (crtc_state->disable_as_sdp_when_pr_active)
-> -					pr_alpm_ctl |= PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
-> -
-> -				if (intel_display_power_dc3co_allowed(display))
-> -					pr_alpm_ctl |= PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
-> -			}
-> -
-> -			intel_de_write(display, PR_ALPM_CTL(display, cpu_transcoder),
-> -				       pr_alpm_ctl);
-> -		}
-> +		if (intel_dp->as_sdp_supported)
-> +			intel_alpm_configure_pr_as_sdp(intel_dp, crtc_state);
->   
->   	} else {
->   		alpm_ctl = ALPM_CTL_EXTENDED_FAST_WAKE_ENABLE |
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-> index 328920027f1c..f8f605d94f96 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.h
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-> @@ -36,6 +36,7 @@ bool intel_alpm_is_alpm_aux_less(struct intel_dp *intel_dp,
->   				 const struct intel_crtc_state *crtc_state);
->   bool intel_alpm_pr_as_sdp_skip_frames_enabled(struct intel_dp *intel_dp,
->   					      const struct intel_crtc_state *crtc_state);
-> +void intel_alpm_pr_as_sdp_update(const struct intel_crtc_state *crtc_state);
->   void intel_alpm_disable(struct intel_dp *intel_dp);
->   bool intel_alpm_get_error(struct intel_dp *intel_dp);
->   void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index fc30a455bed3..9151ea6c15ab 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -1232,6 +1232,14 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
->   		intel_vrr_disable(old_crtc_state);
->   		intel_vrr_dcb_reset(old_crtc_state, crtc);
->   		intel_crtc_update_active_timings(old_crtc_state, false);
+> +	/* Off by default; gated by the periodic_assdp_enable module parameter. */
+> +	if (!display->params.periodic_assdp_enable)
+> +		return 0;
 > +
-> +		/*
-> +		 * VRR is being disabled seamlessly (no modeset, Panel Replay
-> +		 * stays enabled), so re-apply the AS SDP skip-frame programming
-> +		 * for the new (VRR off) state.
-> +		 */
-> +		if (!intel_crtc_needs_modeset(new_crtc_state))
-> +			intel_alpm_pr_as_sdp_update(new_crtc_state);
->   	}
+>   	if (min_vrefresh <= 0 || max_vrefresh <= min_vrefresh)
+>   		return 0;
 >   
->   	if (audio_disabling(old_crtc_state, new_crtc_state))
-> @@ -6971,6 +6979,16 @@ static void intel_update_crtc(struct intel_atomic_state *state,
->   		intel_crtc_update_active_timings(new_crtc_state,
->   						 new_crtc_state->vrr.enable);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
+> index 2aed110c5b09..a845d29610cf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
+> @@ -139,6 +139,12 @@ intel_display_param_named_unsafe(enable_dmc_wl, int, 0400,
+>   	"(-1=use per-chip default, 0=disabled, 1=enabled, 2=match any register, 3=always locked) "
+>   	"Default: -1");
 >   
-> +	/*
-> +	 * VRR is being enabled seamlessly (no modeset, Panel Replay stays
-> +	 * enabled), so re-apply the AS SDP skip-frame programming for the new
-> +	 * (VRR on) state. Done here, outside the vblank-evasion critical section
-> +	 * (which runs with interrupts disabled), because it takes alpm.lock.
-> +	 */
-> +	if (intel_crtc_vrr_enabling(state, crtc) &&
-> +	    !intel_crtc_needs_modeset(new_crtc_state))
-> +		intel_alpm_pr_as_sdp_update(new_crtc_state);
+> +intel_display_param_named_unsafe(periodic_assdp_enable, bool, 0600,
+> +	"Enable periodic Adaptive-Sync SDP (AS SDP skip frames) for Panel Replay "
+> +	"to drive the panel down to its minimum refresh rate "
+> +	"(0=disabled, 1=enabled) "
+> +	"Default: 0");
 > +
->   	if (new_crtc_state->vrr.dc_balance.enable)
->   		intel_vrr_dcb_increment_flip_count(new_crtc_state, crtc);
+>   __maybe_unused
+>   static void _param_print_bool(struct drm_printer *p, const char *driver_name,
+>   			      const char *name, bool val)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
+> index b95ecf728daa..4d912aab4811 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
+> @@ -50,6 +50,7 @@ struct drm_printer;
+>   	param(bool, psr_safest_params, false, 0400) \
+>   	param(bool, enable_psr2_sel_fetch, true, 0400) \
+>   	param(int, enable_dmc_wl, -1, 0400) \
+> +	param(bool, periodic_assdp_enable, false, 0600) \
+>   
+>   #define MEMBER(T, member, ...) T member;
+>   struct intel_display_params {
 Tested-by: Naladala Ramanaidu <ramanaidu.naladala@intel.com>
->   
