@@ -4,160 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49129C624D4
-	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:46:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1230C61DD3
+	for <intel-xe@archiver.kernel.org>; Thu,  3 Sep 2026 15:46:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6CBB10E433;
-	Thu,  3 Sep 2026 15:46:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A27A710E433;
+	Thu,  3 Sep 2026 15:46:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NPe94qbb";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="f0YhYrvC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC1DF10E433;
- Thu,  3 Sep 2026 15:46:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788450377; x=1819986377;
- h=date:from:to:cc:subject:message-id:
- content-transfer-encoding:mime-version;
- bh=owtWWGEQsFdGZLFUHq5FooG/mbim3QLEn5JiLeLfAkc=;
- b=NPe94qbb4GAiCy+gpXum6TEBpkkyqOD6805f8U1xVaihraDPn01H4qPv
- KxLvayPXh/+9hYwyK0M7yNlVgRVj618NLlRIOHIbIxr7BWhAq1fC3r2B7
- PF3Yi2mpMpO0MCEaGomQB4sOhtCnYXgC2NvawFvnhfe6FgY4XAfoytpK2
- BrCC6Tk/8HWEm4KU2OfI+UzB9rPmIxrHhjQ07/3mSJoBXZEWh8gUurjk+
- 2PjqZFIMCzTcAoWeY5ILClQWyo0l5O7XHVjPJfo4g6eybb3enSaCFk19q
- ZP+uE7SLxfn10uVZ2OafWlPoHdFG6S5vtto+ymt95yfTdtHRU/TVqW/FS Q==;
-X-CSE-ConnectionGUID: 2FoR1+PEQ7iIw3SvtUlMSg==
-X-CSE-MsgGUID: yPWp94nxTxC4A7XI8u5/ig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="88970768"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="88970768"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 08:46:16 -0700
-X-CSE-ConnectionGUID: VwxZuZPLSZWYtcfsxpYBzA==
-X-CSE-MsgGUID: TE/cTzr5TRyLCtOzSv4V8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="273909390"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 08:46:16 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 3 Sep 2026 08:46:15 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Thu, 3 Sep 2026 08:46:15 -0700
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.13) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 3 Sep 2026 08:46:09 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WyuUKVp2k5h6xCcS56tVS90vv9xMWyxUQ+ODrXwJNAKTquZvkE8gbRHAjODNJX3O1PU6IGOUaqA9WIVPo9bQsrFGCmMl5Q45J2p+ikG724OXAuhlhQG2kXvC1VstSsP8ffGK69x4UQd1Ctv1uMdAayExKS40c/LYUgRcqFCOmDncSTalimdgHe4Ll97UN/29JICnuK6buTw4LYTA8NWIFcMBMbhcrbjge+bUpBNtNZFEGo1Y90QQlMZROUVMR4BOIlEvrfFQ87stMGZaR7JVf5QHR6BKnOpirRBBQ9KEQb9/J/SP2mg+9TG956tzZaXtQp0XvbTyBNMn6+i+qvriSA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y+34gBbsW25XbClY472nwySzmoFEp3PJa3dcQGlqJy8=;
- b=OyMy4npQQF4Cw4tQCyGkEfnqbGSob9fdhaPAIuV8sNjZ3wvEvpKIDiFGC/Kr/x5tiMr5fAVWWUN8jkCHKgm6OMnOsbGz1jbnO4t53bfPOyjjfTKWO2lnXFLwmvP++rkvAbADlMl/iZT3+SFAVHNSSDtFfJx+LBBEo9s6A9v3o75LfyofH3vTHQZqSrqtyGjS0W99oOvK5VcIBDwm/bZqXO+MGh+rnYE89Tdp/k/K2Qt4q9EM43PrFYIdzkB911aSH+TCHUPb7r2sw2c4HGBTzW8zPvGhat3QvQhNXWCiWwZ0ad6bRXvDSeSf0AZ50cp4i7a6fRXr7aJRW/lD2P/sdA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA0PR11MB7187.namprd11.prod.outlook.com (2603:10b6:208:441::12)
- by CH3PR11MB7795.namprd11.prod.outlook.com (2603:10b6:610:120::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Thu, 3 Sep
- 2026 15:46:01 +0000
-Received: from IA0PR11MB7187.namprd11.prod.outlook.com
- ([fe80::be96:3f58:953d:6565]) by IA0PR11MB7187.namprd11.prod.outlook.com
- ([fe80::be96:3f58:953d:6565%4]) with mapi id 15.21.0360.008; Thu, 3 Sep 2026
- 15:46:01 +0000
-Date: Thu, 3 Sep 2026 11:45:56 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, "Oded
- Gabbay" <ogabbay@kernel.org>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <dim-tools@lists.freedesktop.org>
-Subject: [PULL] drm-intel-next
-Message-ID: <apmWNIUJ5lmsvNzc@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR03CA0056.namprd03.prod.outlook.com
- (2603:10b6:a03:33e::31) To IA0PR11MB7187.namprd11.prod.outlook.com
- (2603:10b6:208:441::12)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|CH3PR11MB7795:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0273447c-9311-4fc6-00e0-08df09d27484
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|23010399003|7416014|376014|10067099003|6133799003|3023799007|11063799006|56012099006|18002099003;
-X-Microsoft-Antispam-Message-Info: NT3sG5Z4lXsDd08G4In5BDyU5IHY+IeUleHd1w2pbw7ZDz4yFGhlj+gn2Df9g4DtnJKDmY93GhOYKa9pBT/kZnTUiSBG3uGwuadCT14Gfy79kxK2ifPt58NU8u8m2PtfII75RHobJrKcqbsQfyJLC1xcZr0avTYkKGbtMqTWTUCet68q5CAptEei+/XoLC3PQTe4MGqNfrpR8VkUVVGvrd/rAw8hSq6gLCEHgndz4npla1gZsFtzwlkdXCyoRwrH+4XVJDH+AZldtT4+13ZcPl1UJBXHGfiOllJXwzj/lYpAEAJ75nGZRcr5lHaSNiOB9uUtUqPau9qftIW/5GSVcXAldtsoyHjjuC8xSbv9tKAyxDtKgkDBvDUJWAzSWhVntZrKGjtdrljdJwYWr/klfdNHIXPIbIiOZy7mhioyXsH03TVZfALLLcfyXjdc1bCijj8NMYaIGjjNQsx0o9bMR8GDlVS2DI7BNbm05nuE098x0HlFf1KK1QMJz0kj/DkKlAOIa1/7yY/Ag276dXWmJadyQjYyCH9NdzQLrnstqTjXBSokX3VF9orP+9HFvidttKq+SwbWGHdGVq6w5cIPdshd6LH+dbqmyuMHJ7ZcMpkwqD/1GVgbCTdcmk5EQaZA
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7187.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(23010399003)(7416014)(376014)(10067099003)(6133799003)(3023799007)(11063799006)(56012099006)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bHI3Y1V5ZzNZRFd5TytkbVNPY1ZXaGZzRG55NjEyNnhzcDJ3QUhsa3pGcVVS?=
- =?utf-8?B?cmd6WmJOTzNtb1RaUnlVbStjVUlrSkpRYW54SWpseUtQREtxZ1V4VFNsRnZv?=
- =?utf-8?B?VHE1L3dCTWRxYjFEUXNNY2tQOUFhU0RpRFNrNVV3bjFYalFMMHE1TllWaFRL?=
- =?utf-8?B?Q1c4dnRPM0UxK2g0aWJ4YmNscEU5T0tIUlpxdkdvdjdYam0yY3ZMZVQrb282?=
- =?utf-8?B?N3B6TXFtY0hjY0xUUGRZZ1QyckJUN2lqWnp0eXVxbEZXbmlLWHJtTHlVNS9I?=
- =?utf-8?B?Q0ZxRW5PUlYzWWNOKzdmdzBQWHpMc1NmcnVnSkJZMXN4cXZGVlh0UEkyUEF2?=
- =?utf-8?B?OWwyU0NXMzkzY00rcGlOUVNQczRnMGF2YTBiUEN3ajBxNzE3WGxrS2ZYVk4y?=
- =?utf-8?B?REtKdTc1cHFwbE5QTkFIZXByUmg5bHkwWVZkak42M2NrREdReHJOa1UzZEhi?=
- =?utf-8?B?bTBwWklZenFtcHBnZi9DRkdlUFQxclRFS2FjdzdsekNmYkxKR1MxbG9Ublpi?=
- =?utf-8?B?c0R3bHhPWW1HVFpHSXNpM3puS25wL0c5UkY1aE1aM0w1bmc1MmZ0dklJeVpU?=
- =?utf-8?B?Q0t0TWxaTHpXSWFzWWRVbzlXZXRtK1l6ald3bUxZdUxGQmdvSktKQ1RXUmZv?=
- =?utf-8?B?OW43TGt0S0FqaE9rUkhQK2xvSStndm5uS3ppVHZNNEZOUTlOdkZFYlhKNU5G?=
- =?utf-8?B?SExpQ0oxVkhiMlVFckFrQWthcUMxVDJlSEgzTFNzZXAwNzJ3b2pUM25JK1I0?=
- =?utf-8?B?N0tWeVhCVHhrVkwvTlNxbjZ4dXlDNjlBazdDT3JuM3BKeWk3NU9IVkh3dnlT?=
- =?utf-8?B?S09GQWFUalJPeG54NVBiVlhpMmZIOEcxMDMxNlJpMnZxTVBxL0tmM0RLTktB?=
- =?utf-8?B?WVN5WXRvcDRMYnFZNGMzd3R1clI0aDBNVUpXdTd2dHhLUDByK2N6TFFNSkpn?=
- =?utf-8?B?ejdPTWxBejBHL1p2SFRnZm9Mc2dmRXlwbHhmVUF1cEJyWnZsVmtjOE1KOFBl?=
- =?utf-8?B?UENUODVIQjFWblc5ZEJtZE91cVFBZ0ovOFNwNy8wc3I3aUlRUjB6Vy8xdFlr?=
- =?utf-8?B?ZURaZ2RkbFlpeVFaS1FlWlhhYzNHUElCREF5bktnZkNNb2x4dUQ5Y2wvZ0lB?=
- =?utf-8?B?dlZvSmNnSmhoM25rM04wSHI2Y2RNdFNaTnJVaGpHSzM4RTVLa2RHMVRBUFMx?=
- =?utf-8?B?N2JRNFlPR2NlU3Bma1NCYUpEYlNRV0FhSWJGYyt2Myt4VGNBMDdSMk84Tktl?=
- =?utf-8?B?T0pXMXkvWEpNY1BYQ2RyNHVrNnVOSVM0SjNYczNkK2d3b244NVphY1FJWWtr?=
- =?utf-8?B?eVM1Q05TdUhCaE9Ya0lXOXpVQitQMW1QNHl0SmV0N01nbWFzVC93dGNOTDRx?=
- =?utf-8?B?Q21DS2d4bjhIcU1JQ3djUmxOTERqL1lDUHJMUEJKSWhDRGU4b28rWEZEMVgy?=
- =?utf-8?B?UFU5dVRJL3dndkRpaDFtTDhQRkdrREJCd0twMTRIZW1kM2VZZXVweXZUbGhS?=
- =?utf-8?B?bXB6L0xIb3l6VUtxQ0FZMDQzNFkxZnV2WWNHd2R5NEd2bldHcUFsL1R6UlI1?=
- =?utf-8?B?cEhKVW9ScmxMNlc3cEdjZHVHMUkxU3lMdFhCcFNNelpkUHpCd204NkpTS0Zu?=
- =?utf-8?B?cTUySWtWMFZIcjczc3R5NW1Da1lkS1BpanVPZFJqVlNiRkE3ejFYMFgyWHh2?=
- =?utf-8?B?LzhSWkhrbVdSYnBadU8ydWlDanZjeE1nZ2UyVDIwZC93eDJmQmtFL3VPMUZy?=
- =?utf-8?B?Y3RoaHhDdE5oeXlySXIwdXpybk9rNWtiNkc0TmRZM0ZSdmhCQjZ4UkhWTEVZ?=
- =?utf-8?B?NS9tUE45UnpxUEdUcEpoYUhKYVVZd1FkR3hPNHh2R05DNWpQenhhQmFUa3dl?=
- =?utf-8?B?QmVQM2RrQm8vQnJTbXhYTURNUDRpUllZMTZHd0ZkcWpKZTlJZ3pzN0lKM3U3?=
- =?utf-8?B?SGhLcE9nZ0RQcTMvSGJBZWp5VFVtWnBPNzFaZEQvangxZDhmS2tObnlFaVpw?=
- =?utf-8?B?YURuWnNPVGQ4L242SG5Oa0pCMC9meTRvdHJLSVFwVDhScUIxbmRSSEtOSFd5?=
- =?utf-8?B?Ymg3NjdhVXFza2lPRWdqTzU3SjN4cHlvTTlxcVJwNEcybWp6RFpWMzM0RDkr?=
- =?utf-8?B?NWo3UG9vcmlkMnlNQk1XOFNZWmJvVVd4dzFGUGtOL0dVbHI0SUxvWWU0V1ZX?=
- =?utf-8?B?Vis0WWROakZFdEdRRm81ZnQxQ3Q0ekwxQi9odkNVamhqV1lPcU8vRUZVNWty?=
- =?utf-8?B?MnJwV0NFcTdadU9zTVIwbjh3dTcvRXlHK2JWQTNjNzZGMHFhTXNEejlvb3Vr?=
- =?utf-8?B?eiticlNtSTZvSGhlMm1sZjJ4cys4eTlyekVaL1IzWHZZdS95QnVFQT09?=
-X-Exchange-RoutingPolicyChecked: vuzDqY1au10AL8iUeiwLnjkGTyTsw84qHe3MWl0770GbmgyRMIVu1KA8fzGKtXnIVxhueiPq3/XojOdYOgY+QimN6AwdkhyPTNodMSI62Su8P+svOsXyp9cfTKYpitFnog69ogSYeqMnv1ndq+/QI8/0tqbAcE+3EobwocO+T44M9htHXqgkE5kP85/z0Tml+TiVt2/DlbJuc3kJVzowB+yP2ruc/MWQoNMpWWKRKjiwMrpnwQDLVv7HGrt6urxCy01Wr9+u6EkW5uTKrNBxJFO8Hp/56OMzjh1HOjopr5XwTYxhetx3YnuyYxnoQoRNNc7SJaJOsrAnsYx4TC5wlw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0273447c-9311-4fc6-00e0-08df09d27484
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7187.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2026 15:46:01.6128 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1HR0IbZeJw10Nd2GUJ4No5Lllo2qUHuzJ5wVxcXEKEdha0KQKa1jcOWC6meS6HWKPJCppZwJ6o4gV64Fc1z2fQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7795
-X-OriginatorOrg: intel.com
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97B9210E433
+ for <intel-xe@lists.freedesktop.org>; Thu,  3 Sep 2026 15:46:47 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id DE069601EF;
+ Thu,  3 Sep 2026 15:46:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 687761F000E9;
+ Thu,  3 Sep 2026 15:46:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788450406;
+ bh=sqc2Qzck/aux5Gb45ZRLLd8BaHzD55QlfDlsYzGjrBI=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=f0YhYrvCCRwTyyhX1sEWxMKbj0PXImYs+mUikWFDkGe5Bmfx8n4BFwKATLEsWgj0/
+ lY3xrHEJW3DrBHeHggr77+b4mEs6FX0Q9bs/BSe8WgfYrqKowRQLStMwtO7RzrESIF
+ B8RBY2RnnZFFFHz07csnFi5itiHIARoCHwd23gkPNPA/pbKpweP2a48tLSuhHuPOB3
+ eAJ7wUyj5OT1SIiFiZfnpjQv3Ul7Idr0t5SvYbCq1mCyAqfBCgMscAVX6KCCjMgwO5
+ amEz1foJikxLjxGM0JUpiCM1e2KnfB01jeO/A6u4L1Q2h1gtYOElGyB+kE9HuTqawY
+ DUoNfuFvCFMew==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v10 27/27] drm/xe/eudebug: Enable EU pagefault handling
+To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260903145952.848051-28-mika.kuoppala@linux.intel.com>
+References: <20260903145952.848051-1-mika.kuoppala@linux.intel.com>
+ <20260903145952.848051-28-mika.kuoppala@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 03 Sep 2026 15:46:45 +0000
+Message-Id: <20260903154646.687761F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,235 +52,178 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave and Sima,
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+s) to consider:
+- [High] Temporary NULL VMAs for subsequent eudebug pagefaults are destroye=
+d immediately after ACKing the fault, creating a race condition that leads =
+to livelock.
+- [High] Successful SVM pagefaults bypass private tagging, which permanentl=
+y stalls the finalization of the active eudebug session.
+- [High] Pagefault cache hits bypass eudebug tagging, permanently hanging t=
+he debugger session.
+- [High] `xe_vm_svm_vma_subtract()` is called with unaligned address bounda=
+ries, corrupting the VM layout.
+--
 
-Here goes our first drm-intel PR towards 7.4.
+commit bd171058301961cced31067feb0527d9f0b38c87
+Author: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 
-Thanks,
-Rodrigo.
+drm/xe/eudebug: Enable EU pagefault handling
 
-drm-intel-next-2026-09-03:
-Xe related:
- - Some clean-ups around drm/xe/display (Jani)
+This commit enables EU pagefault handling for XE2/PVC hardware, allowing
+the driver to unhalt pagefaulted EU threads via SIP mode and a temporary
+null page.
 
-Display in general:
- - Regular clean-ups (Jani)
- - Enable CMRR (Content Match Refresh Rate) in fixed-RR VRR path (Mitul)
- - Switch DG2 Multi-protocol PLL (MPLLB) to the DPLL framework (Mika)
- - DP-HDMI PCON DSC fixes (Ankit)
- - Remove duplicated call introduced by a bad cherry-pick (Chaitanya)
- - Limit invalid joiner combinations harder (Jani)
- - Fix value being written to DDI_CLK_VALFREQ (Suraj)
- - Harden some bit-shifting operations (Luca)
- - Clear SEL_FETCH_PLANE_CTL on plane disable (Nemesa)
- - Update CURSOR_BUF/WM masks (Suraj)
- - CDCLK related fixes and refactor specially around PCODE interaction (Ville)
- - Reduce clock_gating interface between core and display (Luca)
- - Gate UHBR SST SDP splitting on sink capability (Mitul)
- - Enable joiner cursor fast updates (Nemesa)
- - Cear the Panel Replay error status register (Jake)
- - Add HDMI TMDS audio bandwidth check (Chaitanya)
- - Reset use_flipq when duplicating crtc state (Mika)
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pagefault.c b/drivers/gpu/drm/xe/x=
+e_guc_pagefault.c
+> --- a/drivers/gpu/drm/xe/xe_guc_pagefault.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_pagefault.c
+> @@ -59,13 +60,14 @@ static void guc_ack_fault(struct xe_pagefault *pf, in=
+t err)
+>  			      write_only);
+>  }
+> =20
+> -static void guc_ack_fault_end(void *private)
+> +static void guc_ack_fault_end(void *private, int err)
+>  {
+> -	struct xe_guc *guc =3D private;
+> +	struct xe_guc *guc =3D xe_eudebug_pagefault_get_private(private);
+> =20
+>  	if ((guc->pagefault_ack_counter & (XE_GUC_PAGEFAULT_FLUSH_PERIOD - 1)) =
+!=3D 1)
+>  		xe_guc_ct_send_flush(&guc->ct);
+>  	xe_guc_ct_unlock(&guc->ct);
+> +	xe_eudebug_pagefault_end(private, err);
 
-Beyond display:
- - Guard against NULL driver_data (Deepanshu)
- - Rename GEN6_PCODE_DATA to match spec (Michal)
-The following changes since commit f0cabcc880aba3f05ca59d735f6d166b7fceca80:
+[Severity: High]
+Does this create a race condition that leads to a livelock?=20
 
-  drm/i915/fbc: No surface size restrictions from LNL onwards (2026-07-24 11:48:36 +0300)
+When this calls xe_eudebug_pagefault_end(), temporary null VMAs for
+subsequent pagefaults are destroyed immediately (destroy_pf =3D 1) after
+ACKing the fault and signaling the hardware to resume.=20
 
-are available in the Git repository at:
+Since there is no synchronization to guarantee the EU thread has re-execute=
+d=20
+the faulting instruction before the KMD unbinds the VMA, if the VMA is
+unbound before the EU thread accesses the address, won't the thread
+pagefault again on the same instruction and loop infinitely?
 
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-2026-09-03
+>  }
+> =20
+> diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pa=
+gefault.c
+> --- a/drivers/gpu/drm/xe/xe_pagefault.c
+> +++ b/drivers/gpu/drm/xe/xe_pagefault.c
+[ ... ]
+> @@ -227,8 +228,56 @@ static int xe_pagefault_service(struct xe_pagefault =
+*pf)
+> =20
+>  	vma =3D xe_vm_find_vma_by_addr(vm, pf->consumer.page_addr);
+>  	if (!vma) {
+[ ... ]
+> +	} else {
+> +		/*
+> +		 * For non-SVM case:
+> +		 * Eudebug with active pagefault always needs to be attached
+> +		 * to pagefault since it waits for all pagefaults with matching
+> +		 * asid to be resolved.
+> +		 */
+> +		if (!xe_vma_is_cpu_addr_mirror(vma))
+> +			xe_eudebug_pagefault_set_private(pf, vm);
 
-for you to fetch changes up to 0d63d6fc993b1fb97e314f435bdefbf0ccd947bd:
+[Severity: High]
+Does skipping the private tagging for SVM (cpu_addr_mirror) VMAs cause the=
+=20
+eudebug session to hang permanently?=20
 
-  drm/i915/display: Reset use_flipq when duplicating crtc state (2026-09-03 10:17:54 +0300)
+If an active eudebug session exists for the same ASID and its finalization=
+=20
+was postponed because this SVM fault was still in the queue,=20
+xe_eudebug_pagefault_end() will see no eudebug tag and return immediately=20
+without triggering eudebug_pagefault_finalize(). This seems like it would=20
+leave the EU threads permanently stuck in SIP mode.
 
-----------------------------------------------------------------
-Xe related:
- - Some clean-ups around drm/xe/display (Jani)
+> +	}
+> =20
+>  	if (xe_vma_read_only(vma) &&
+> @@ -239,11 +288,52 @@ static int xe_pagefault_service(struct xe_pagefault=
+ *pf)
+> =20
+>  	atomic =3D xe_pagefault_access_is_atomic(pf->consumer.access_type);
+> =20
+> -	if (xe_vma_is_cpu_addr_mirror(vma))
+> +	if (xe_vma_is_cpu_addr_mirror(vma)) {
+>  		err =3D xe_svm_handle_pagefault(vm, vma, pf, gt,
+>  					      pf->consumer.page_addr, atomic);
+> -	else
+> +
+> +#if IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)
+> +		/*
+> +		 * If err is -ENOENT, it means that the cpu-address-space-mirrored
+> +		 * xe vma exists, but there is no mm vma allocated in
+> +		 * the CPU address space. This indicates that no memory has been
+> +		 * allocated in the CPU address space.
+> +		 */
+> +		if (err =3D=3D -ENOENT &&
+> +		    !xe_vm_is_closed_or_banned(vm) &&
+> +		    xe_eudebug_pagefault_creatable(gt, vm)) {
+> +			u32 page_size =3D vm->flags & XE_VM_FLAG_64K ? SZ_64K : SZ_4K;
+[ ... ]
+> +			vma =3D xe_vm_find_vma_by_addr(vm, pf->consumer.page_addr);
+> +			if (vma && xe_vma_is_cpu_addr_mirror(vma))
+> +				vma =3D xe_vm_svm_vma_subtract(vm, vma,
+> +							     pf->consumer.page_addr,
+> +							     pf->consumer.page_addr + page_size);
 
-Display in general:
- - Regular clean-ups (Jani)
- - Enable CMRR (Content Match Refresh Rate) in fixed-RR VRR path (Mitul)
- - Switch DG2 Multi-protocol PLL (MPLLB) to the DPLL framework (Mika)
- - DP-HDMI PCON DSC fixes (Ankit)
- - Remove duplicated call introduced by a bad cherry-pick (Chaitanya)
- - Limit invalid joiner combinations harder (Jani)
- - Fix value being written to DDI_CLK_VALFREQ (Suraj)
- - Harden some bit-shifting operations (Luca)
- - Clear SEL_FETCH_PLANE_CTL on plane disable (Nemesa)
- - Update CURSOR_BUF/WM masks (Suraj)
- - CDCLK related fixes and refactor specially around PCODE interaction (Ville)
- - Reduce clock_gating interface between core and display (Luca)
- - Gate UHBR SST SDP splitting on sink capability (Mitul)
- - Enable joiner cursor fast updates (Nemesa)
- - Cear the Panel Replay error status register (Jake)
- - Add HDMI TMDS audio bandwidth check (Chaitanya)
- - Reset use_flipq when duplicating crtc state (Mika)
+[Severity: High]
+Is it safe to pass pf->consumer.page_addr directly as the subtraction
+boundaries?=20
 
-Beyond display:
- - Guard against NULL driver_data (Deepanshu)
- - Rename GEN6_PCODE_DATA to match spec (Michal)
+The hardware fault address is not guaranteed to be aligned to page_size.=20
+Passing unaligned boundaries to xe_vm_svm_vma_subtract() will create
+unaligned head/tail VMAs via xe_vma_create().=20
 
-----------------------------------------------------------------
-Ankit Nautiyal (5):
-      drm/i915/hdmi: Use correct type for output_format parameter
-      drm/i915/display: Generalize intel_hdmi_dsc_get_num_slices helper
-      drm/i915/{dp,hdmi}: Pass bpc in intel_hdmi_dsc_get_bpp
-      drm/i915/hdmi: Add helper to get max FRL rate for an HDMI sink
-      drm/i915/dp: Use helpers for getting max FRL rate
+Inserting unaligned VMAs into the interval tree and page tables violates
+core memory management invariants and could lead to page table corruption or
+kernel panics.
 
-Chaitanya Kumar Borah (3):
-      drm/i915/dp_mst: Remove duplicate intel_pfit_compute_config() call
-      drm/i915/hdmi: Move audio compute config after format selection
-      drm/i915/audio: Prune ELD SADs based on HDMI audio bandwidth
+> +			else
+> +				vma =3D ERR_PTR(-EINVAL);
+[ ... ]
+> @@ -598,6 +688,12 @@ static void xe_pagefault_queue_work(struct work_stru=
+ct *w)
+>  		}
+> =20
+>  ack_fault:
+> +		/*
+> +		 * set private after xe_pagefault_service() since eudebug could swap
+> +		 * the pf->producer.private field. Also needed when cache was hit.
+> +		 */
+> +		private =3D pf->producer.private;
 
-Deepanshu Kartikey (1):
-      drm/i915: Guard against NULL driver_data in i915_pci_probe()
+[Severity: High]
+Does a pagefault cache hit permanently hang the eudebug session?=20
 
-Jake Steinman (1):
-      drm/i915/psr: clear the Panel Replay error status register
+When a pagefault matches the cache, the code jumps directly to ack_fault,=20
+skipping xe_pagefault_service(). Since the service routine is bypassed,=20
+xe_eudebug_pagefault_set_private() is never called, leaving the fault=20
+untagged.=20
 
-Jani Nikula (11):
-      drm/xe/display: remove unnecessary includes
-      drm/i915/dpt: remove unused include
-      drm/{i915,xe}/display: move transient data flush call to display parent interface
-      drm/xe/display: drop redundant intel_hpd_poll_fini() call
-      drm/xe/display: drop redundant intel_hdcp_component_fini() call
-      drm/xe/display: drop redundant intel_audio_deinit() call
-      drm/{i915,xe}/display: add core workaround query to display parent interface
-      drm/i915/display: Limit max joined dotclock on joiner pipes available
-      drm/i915/dp: Limit for_each_joiner_candidate() on joiner pipes available
-      drm/i915/dp: Limit compute config joining to pipes that can actually join
-      drm/i915/debugfs: Reject invalid force_joined_pipes harder
+Similar to the SVM bypass above, if the session postponed finalization for=
+=20
+this queued fault, it will never trigger eudebug_pagefault_finalize() upon=
+=20
+completion.
 
-Luca Coelho (7):
-      drm/i915/display: harden masks in HSW_AUD_PIN_ELD_CP_VLD macros
-      drm/i915/display: harden shifts in ICL_DPCLKA_CFGCR0_DDI_CLK_SEL macros
-      drm/i915/display: harden shift in intel_ddi_compute_config_late()
-      drm/i915/display: remove unnecessary PHY_NONE definition
-      drm/i915/display: consolidate Gen9 clock gating initialization
-      drm/i915/display: consolidate remaining clock gating initialization
-      drm/i915/display: remove unnecessary clock_gating include from intel_display.c
+> +
+>  		xe_assert(xe, pf->consumer.alloc_state =3D=3D
+>  			  XE_PAGEFAULT_ALLOC_STATE_ACTIVE);
+>  		xe_assert(xe, pf =3D=3D pf_work->cache.pf);
 
-Michał Grzelak (1):
-      drm/i915/pcode: rename GEN6_PCODE_DATA to match spec
-
-Mika Kahola (5):
-      drm/i915/display: Split out DG2 MPLLB enable helper
-      drm/i915/display: Add DG2 MPLLB DPLL manager support
-      drm/i915/display: Prepare DG2 DDI and compute paths for DPLL framework
-      drm/i915/display: Switch DG2 to use DPLL framework
-      drm/i915/display: Reset use_flipq when duplicating crtc state
-
-Mitul Golani (11):
-      drm/i915/psr: Do not enable PSR2 when CMRR is enabled
-      drm/i915/vrr: Restrict CMRR enable condition to VRR-TG-default platforms
-      drm/i915/vrr: Add per-CRTC vrr/cmrr debugfs control
-      drm/i915/vrr: Update AS_SDP target_rr_divider based on CMRR config request
-      drm/i915/display: Move CMRR crtc_state members under VRR
-      drm/i915/vrr: Compute CMRR fractional timings generically
-      drm/i915/vrr: Latch CMRR ratio via atomic commit on debugfs write
-      drm/i915/vrr: Program CMRR enable/disable from transcoder timings
-      drm/i915/vrr: Dump CMRR state in the crtc state dump
-      drm/i915/vrr: Enable CMRR
-      drm/i915/dp: Gate UHBR SST SDP splitting on sink capability
-
-Nemesa Garg (6):
-      drm/i915/display: Clear SEL_FETCH_PLANE_CTL on plane disable
-      drm/i915/cursor: Check joiner cursor commit status
-      drm/i915/cursor: Add helper to update cursor plane
-      drm/i915/cursor: Handle secondary cursor state
-      drm/i915/cursor: Program secondary cursor planes
-      drm/i915/cursor: Allow joiner cursor fast path update
-
-Suraj Kandpal (4):
-      drm/i915/ddi: add helper to compute DDI clock frequency
-      drm/i915/cx0: program DDI_CLK_VALFREQ with DDI clock frequency
-      drm/i915/lt_phy: program DDI_CLK_VALFREQ with DDI clock frequency
-      drm/i915/xe3p_lpd: Update CURSOR_BUF/WM masks
-
-Ville Syrjälä (17):
-      drm/i915/cdclk: Avoid spurious cdclk sanitization on PTL+
-      drm/i915/cdclk: Introduce has_cd2x_pipe_select()
-      drm/i915/cdclk: Fix dg2_power_well_count() return type
-      drm/i915/cdclk: Don't bail if pcode post nofify fails
-      drm/i915/cdclk: Pass CDCLK in MHz to pcode on DG2
-      drm/i915/cdclk: Do the DG2 CDCLK/pipe power well notify properly
-      drm/i915/cdclk: Notify DG2 pcode about pipe power wells regardless of CDCLK
-      drm/i915/cdclk: Stop forcing voltage level to 3 all the time on DG2
-      drm/i915/cdclk: Drop pointless platform check from bxt_set_cdclk()
-      drm/i915/cdclk: s/intel_/dg2_/ for DG2 specific stuff
-      drm/i915/cdclk: Unify the pcode pre/post notify in bxt_set_cdclk()
-      drm/i915/cdclk: Unify pcode related debugs
-      drm/i915/cdclk: Extract bdw_cdclk_pcode_{pre,post}_notify()
-      drm/i915/cdclk: Extract skl_cdclk_pcode_{pre,post}_notify()
-      drm/i915/cdclk: Extract bxt_cdclk_pcode_{pre,post}_notify()
-      drm/i915/cdclk: Introduce CDCLK .{pre,post}_notify() vfuncs
-      drm/i915/cdclk: Hoist intel_cdclk_{pre,post}_notify() calls upwards
-
- drivers/gpu/drm/i915/display/intel_atomic.c        |   1 +
- drivers/gpu/drm/i915/display/intel_audio.c         | 153 ++++++++
- drivers/gpu/drm/i915/display/intel_audio_regs.h    |  16 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c         | 334 +++++++++--------
- drivers/gpu/drm/i915/display/intel_cmtg.c          |   2 +-
- .../gpu/drm/i915/display/intel_crtc_state_dump.c   |   3 +
- drivers/gpu/drm/i915/display/intel_cursor.c        | 311 ++++++++++++----
- drivers/gpu/drm/i915/display/intel_cursor_regs.h   |   8 +-
- drivers/gpu/drm/i915/display/intel_cx0_phy.c       |   5 +-
- drivers/gpu/drm/i915/display/intel_ddi.c           |  47 ++-
- drivers/gpu/drm/i915/display/intel_ddi.h           |   1 +
- drivers/gpu/drm/i915/display/intel_display.c       |  76 +++-
- drivers/gpu/drm/i915/display/intel_display.h       |   3 +-
- .../drm/i915/display/intel_display_clock_gating.c  |  67 +++-
- .../drm/i915/display/intel_display_clock_gating.h  |  16 +-
- .../gpu/drm/i915/display/intel_display_debugfs.c   |  21 +-
- .../drm/i915/display/intel_display_power_well.c    |   6 +-
- drivers/gpu/drm/i915/display/intel_display_regs.h  |  18 +-
- drivers/gpu/drm/i915/display/intel_display_types.h |  19 +-
- drivers/gpu/drm/i915/display/intel_display_wa.c    |   4 +-
- drivers/gpu/drm/i915/display/intel_display_wa.h    |   9 -
- drivers/gpu/drm/i915/display/intel_dp.c            |  96 +++--
- drivers/gpu/drm/i915/display/intel_dp_mst.c        |   8 +-
- drivers/gpu/drm/i915/display/intel_dpll.c          |  22 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c      | 221 +++++++++++-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h      |  22 ++
- drivers/gpu/drm/i915/display/intel_frontbuffer.c   |   3 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c          |  53 ++-
- drivers/gpu/drm/i915/display/intel_hdmi.h          |  11 +-
- drivers/gpu/drm/i915/display/intel_hti.c           |   3 -
- drivers/gpu/drm/i915/display/intel_lt_phy.c        |   6 +-
- .../gpu/drm/i915/display/intel_modeset_verify.c    |   1 -
- drivers/gpu/drm/i915/display/intel_parent.c        |  10 +-
- drivers/gpu/drm/i915/display/intel_parent.h        |   3 +-
- drivers/gpu/drm/i915/display/intel_psr.c           |  18 +-
- drivers/gpu/drm/i915/display/intel_snps_phy.c      |  60 +---
- drivers/gpu/drm/i915/display/intel_snps_phy.h      |   2 +
- drivers/gpu/drm/i915/display/intel_tdf.h           |  25 --
- drivers/gpu/drm/i915/display/intel_vrr.c           | 395 ++++++++++++++++-----
- drivers/gpu/drm/i915/display/intel_vrr.h           |   2 +
- drivers/gpu/drm/i915/display/skl_universal_plane.c |  15 +-
- drivers/gpu/drm/i915/gvt/handlers.c                |   2 +-
- drivers/gpu/drm/i915/i915_dpt.c                    |   1 -
- drivers/gpu/drm/i915/i915_pci.c                    |   3 +
- drivers/gpu/drm/i915/i915_reg.h                    |   2 +-
- drivers/gpu/drm/i915/intel_clock_gating.c          |  30 +-
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c        |   2 +-
- drivers/gpu/drm/i915/intel_pcode.c                 |  14 +-
- drivers/gpu/drm/i915/intel_pcode.h                 |   2 +-
- drivers/gpu/drm/xe/Makefile                        |   3 +-
- drivers/gpu/drm/xe/display/xe_display.c            |  22 +-
- drivers/gpu/drm/xe/display/xe_display_rpm.c        |   2 -
- drivers/gpu/drm/xe/display/xe_display_wa.c         |  13 +-
- drivers/gpu/drm/xe/display/xe_display_wa.h         |   9 +
- drivers/gpu/drm/xe/display/xe_tdf.c                |  15 -
- include/drm/intel/display_parent_interface.h       |  15 +-
- 56 files changed, 1591 insertions(+), 640 deletions(-)
- delete mode 100644 drivers/gpu/drm/i915/display/intel_tdf.h
- create mode 100644 drivers/gpu/drm/xe/display/xe_display_wa.h
- delete mode 100644 drivers/gpu/drm/xe/display/xe_tdf.c
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903145952.8480=
+51-1-mika.kuoppala@linux.intel.com?part=3D27
