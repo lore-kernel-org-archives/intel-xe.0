@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1290FC624D3
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 18:51:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B66FC79F82
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 18:53:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF9F710E202;
-	Fri,  4 Sep 2026 18:51:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4E2C10E575;
+	Fri,  4 Sep 2026 18:53:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XM8uryA0";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZmbELXPr";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1D2E10E202
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 18:51:27 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D30910E575
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 18:53:29 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 3B57E406FC;
- Fri,  4 Sep 2026 18:51:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E61301F00A3D;
- Fri,  4 Sep 2026 18:51:26 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id D2EA4600D4;
+ Fri,  4 Sep 2026 18:53:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EC681F00A3D;
+ Fri,  4 Sep 2026 18:53:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788547887;
- bh=dSVqjP5XXd3maIroh0rJQ4uiYgzalGfZDUKUMCPDj9U=;
+ s=k20260515; t=1788548008;
+ bh=GP5r36Ny6COVkTBdXPfoUfW94OzMosNSn3G7xzeKwNk=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=XM8uryA0Mj+YQ9aB8mibRem4ef1ssf4YUgts/Pz5Liil3/ecaloPYasHDhSt4cwbj
- iTBI3XRB/Hz2CnnGv7lMr0wJfiFy+47JnwvT6vIG5HKSPot8zQ3RsdNZiqFTx3j12W
- qNYRhSoG441YdJzPsNh83z8vtW8NqAqNs9MbD858wDQfx6IlzTsyjCB2zkkvEjsRMB
- oSSKpSCaYzYQx5MINDMXjXqqUI//8JtPYl78SArWH5yuDFIeIIeDI2sEjauUx7/tsf
- Wi52k9hESmbgxt3paaTUX+V0KLTrZAD7yt86uJNPwbllEukB6rhhVxhDsTVrwVSWSV
- 9Q3eP9S2yVCKg==
+ b=ZmbELXPrVjmL6Nuw1TS3Z5qyTtGyA6nbxRKKaRUn607CLuP/JML5v0JQ8e+WOEMqi
+ k9qtjYhwOXMKjDhaRL/3K/p/RGHBs3CicAWM0lNxJnFySKEjLKVlDFdkn6avzrDseP
+ E/9laJ3FE93RlRw2eCiuv/i7rU39j9BhoRbcOPQ0CU3Ad1nZaxSvWVDU1Gv5E+kxLc
+ W15qY3gfLpZXR1OiO+92kp1+ghn+gtwP/8m6wWLugNnWhNppDW5UxiY32CPRfR1JQ9
+ jGuoI42JqgbHVVcb2R1dEK1VxBeVwOj1n0LYtf7j2rEB3wnmthVQP0S7IcvhtReae+
+ ZXzRZIrKZ78tg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 14/18] drm/xe/vsec: Crescent Island PMT callbacks
+Subject: Re: [PATCH v6 12/18] drm/xe/vsec: Refactor BattleMage PMT defines
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260904182451.1164868-34-michael.j.ruhl@intel.com>
+In-Reply-To: <20260904182451.1164868-32-michael.j.ruhl@intel.com>
 References: <20260904182451.1164868-20-michael.j.ruhl@intel.com>
- <20260904182451.1164868-34-michael.j.ruhl@intel.com>
+ <20260904182451.1164868-32-michael.j.ruhl@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 04 Sep 2026 18:51:26 +0000
-Message-Id: <20260904185126.E61301F00A3D@smtp.kernel.org>
+Date: Fri, 04 Sep 2026 18:53:27 +0000
+Message-Id: <20260904185328.5EC681F00A3D@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,77 +56,92 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] Concurrent telemetry reads during PMT crashlog probe corrupt disco=
-very header decoding, leading to out-of-bounds physical memory mapping.
+
+New issues:
+- [High] Uninitialized `xe->pmt.base_offset` causes `xe_pmt_telem_read()` t=
+o read from the wrong MMIO address when accessed before `xe_vsec_init()` co=
+mpletes.
+
+Pre-existing issues:
+- [High] Crashlog control sysfs attributes perform direct MMIO reads/writes=
+ on Xe without waking the device, risking hardware hangs.
 --
 
-commit 824cfdedc1e2d27191c139b8a85c1c3075a9999e
+commit 584b4caa6a3ecc5f2e93919c5b1cb6ab09e0654c
 Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-drm/xe/vsec: Crescent Island PMT callbacks
+drm/xe/vsec: Refactor BattleMage PMT defines
 
-This commit introduces callback functions (read_reg, write_reg) and initial=
-ization
-logic to support Crescent Island (CRI) PMT features, specifically for crash=
-log
-discovery and telemetry via an MMIO region.
+This commit refactors PMT definitions for Battlemage and introduces a
+configurable base offset to support multiple platforms. It modifies the
+PMT telemetry read path to use the new offset rather than a hardcoded macro.
 
 > diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-> index 22c4efb021328..7c3f9938701e3 100644
+> index a9baf0bfe572c..031c1c0ae5706 100644
 > --- a/drivers/gpu/drm/xe/xe_vsec.c
 > +++ b/drivers/gpu/drm/xe/xe_vsec.c
 [ ... ]
-> @@ -396,8 +489,17 @@ void xe_vsec_init(struct xe_device *xe)
->  		if (IS_SRIOV_VF(xe))
->  			return;
->  		xe->pmt.base_offset =3D BMG_TELEMETRY_OFFSET;
-> -		info->priv_data =3D &xe_pmt_cb;
-> +		info->priv_data =3D &xe_bmg_pmt_cb;
->  		break;
-> +
-> +	case XE_VSEC_CRI:
-> +		if (IS_SRIOV_VF(xe))
-> +			return;
-> +		xe->pmt.base_offset =3D CRI_PMT_OFFSET;
-> +		info->priv_data =3D &xe_cri_pmt_cb;
-> +		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+> @@ -140,37 +201,79 @@ static int xe_guid_decode(u32 guid, int *index, u32=
+ *offset)
+[ ... ]
+>  int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t us=
+er_offset,
+>  		      u32 count)
+>  {
+>  	struct xe_device *xe =3D kdev_to_xe_device(dev);
+> -	void __iomem *telem_addr =3D xe->mmio.regs + BMG_TELEMETRY_OFFSET;
+> +	u32 cap_type =3D FIELD_GET(GUID_CAP_TYPE, guid);
+> +	void __iomem *telem_addr =3D xe->mmio.regs + xe->pmt.base_offset;
 
 [Severity: High]
-Does this sequence allow concurrent telemetry reads to corrupt the PMT
-crashlog probe discovery header?
+Does this read from the wrong MMIO address during early probe?
 
-The remapper index is set once during init here, which seems to assume it w=
-ill
-remain unchanged during the sequential PMT core probes. However, if userspa=
-ce
-concurrently reads the telemetry sysfs file, it calls xe_pmt_telem_read()
-which modifies the index:
+During device initialization in xe_device_probe(), xe_hwmon_register() is
+called before xe_vsec_init(). The hwmon registration synchronously reads the
+initial energy value through this call chain:
 
-	mutex_lock(&xe->pmt.lock);
+xe_hwmon_register()
+  xe_hwmon_energy_is_visible()
+    xe_hwmon_energy_get()
+      xe_pmt_telem_read()
 
-	/* set SoC re-mapper index register based on GUID memory region */
-	xe->soc_remapper.set_telem_region(xe, mem_region);
+Since xe->pmt.base_offset is not initialized until xe_vsec_init() is called
+later in the probe sequence, it will still be 0 here. This would cause an
+out-of-bounds MMIO read (xe->mmio.regs + 0 + offset) that misses the
+SOC_BASE offset entirely, potentially triggering a machine check exception
+or hanging the system.
 
-	memcpy_fromio(data, telem_addr, count);
-
-	mutex_unlock(&xe->pmt.lock);
-
-Because xe_pmt_telem_read() modifies the shared SoC remapper index but fails
-to restore it to CRI_IDX_TELEM_DISCOVERY before unlocking, subsequent
-discovery table reads can get permanently corrupted.
-
-If the PMT class driver uses a corrupted discovery header's base_offset
-and size to call devm_ioremap_resource(), could this map an uncontrolled
-physical address and expose arbitrary physical memory contents to userspace?
-
-> +		break;
-> +
->  	default:
+[ ... ]
+> @@ -210,6 +313,9 @@ void xe_vsec_init(struct xe_device *xe)
+> =20
+>  	switch (platform) {
+>  	case XE_VSEC_BMG:
+> +		if (IS_SRIOV_VF(xe))
+> +			return;
+> +		xe->pmt.base_offset =3D BMG_TELEMETRY_OFFSET;
+>  		info->priv_data =3D &xe_pmt_cb;
 >  		break;
->  	}
+
+[Severity: High]
+This is a pre-existing issue, but does the lack of .read_reg and .write_reg
+callbacks in xe_pmt_cb risk unclocked MMIO accesses?
+
+The crashlog.c driver implements sysfs attributes (e.g., clear, trigger)
+that read and write PMT crashlog control registers. If the parent driver
+doesn't provide .read_reg and .write_reg callbacks, pmt_crashlog_read_reg()
+and pmt_crashlog_rmw() fall back to direct readl() and writel() on the
+mapped MMIO region (entry->disc_table).
+
+Since xe_pmt_cb only provides .read_telem, reading or writing these sysfs
+attributes while the Xe device is suspended (D3cold) will trigger unclocked
+MMIO accesses without waking the device via runtime PM. This can cause PCIe
+Unsupported Request faults or system hangs.
+
+Could .read_reg and .write_reg be implemented for Battlemage to ensure the
+device is woken up during these accesses?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260904182451.1164=
-868-20-michael.j.ruhl@intel.com?part=3D14
+868-20-michael.j.ruhl@intel.com?part=3D12
