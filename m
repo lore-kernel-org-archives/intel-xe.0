@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF084C624D3
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 18:50:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1290FC624D3
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 18:51:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9817910E202;
-	Fri,  4 Sep 2026 18:50:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF9F710E202;
+	Fri,  4 Sep 2026 18:51:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Eddxphbg";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XM8uryA0";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8290110E202
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 18:50:07 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1D2E10E202
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 18:51:27 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 9D21D600C8;
- Fri,  4 Sep 2026 18:50:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 339DC1F00A3D;
- Fri,  4 Sep 2026 18:50:06 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 3B57E406FC;
+ Fri,  4 Sep 2026 18:51:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E61301F00A3D;
+ Fri,  4 Sep 2026 18:51:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788547806;
- bh=s3fodXQ4NYRhwkrX5rUIrSIfo9THGLjNbBGXEua1WPU=;
+ s=k20260515; t=1788547887;
+ bh=dSVqjP5XXd3maIroh0rJQ4uiYgzalGfZDUKUMCPDj9U=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=EddxphbgqjOc7I1k1Tp4Opo21hUr13PRnieqfld/8pW+LHlCV+Z4hHJIiwudHLiFv
- IkgXHBAeLeDy2kquwnZr5u2gcz9Z2P8a8MqHiqxJdPt1ZBY0Dl4GD3MHfKzSIqL1Xe
- lRcjvhsGCHDwBHGo6FTMX0EKm5SvekkZ/PPxIhZeEUPXRKhsFzRKbYFEpTB6e3vpoW
- PHYOH3xq6QSszIJYQjbtFmD24o9lXbwDixNOHQAWAJzUShGEM33SO6a9s1OrOLb7t5
- 9oYqiHhVMWJh+ha7PbkDlBxlJHusUpc1VQrnmLddACAS4KyDpA0DeKJh0kJ/ndYANF
- 2JSzqzYTFTKlg==
+ b=XM8uryA0Mj+YQ9aB8mibRem4ef1ssf4YUgts/Pz5Liil3/ecaloPYasHDhSt4cwbj
+ iTBI3XRB/Hz2CnnGv7lMr0wJfiFy+47JnwvT6vIG5HKSPot8zQ3RsdNZiqFTx3j12W
+ qNYRhSoG441YdJzPsNh83z8vtW8NqAqNs9MbD858wDQfx6IlzTsyjCB2zkkvEjsRMB
+ oSSKpSCaYzYQx5MINDMXjXqqUI//8JtPYl78SArWH5yuDFIeIIeDI2sEjauUx7/tsf
+ Wi52k9hESmbgxt3paaTUX+V0KLTrZAD7yt86uJNPwbllEukB6rhhVxhDsTVrwVSWSV
+ 9Q3eP9S2yVCKg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 13/18] drm/xe/vsec: Crescent Island PMT decode
+Subject: Re: [PATCH v6 14/18] drm/xe/vsec: Crescent Island PMT callbacks
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260904182451.1164868-33-michael.j.ruhl@intel.com>
+In-Reply-To: <20260904182451.1164868-34-michael.j.ruhl@intel.com>
 References: <20260904182451.1164868-20-michael.j.ruhl@intel.com>
- <20260904182451.1164868-33-michael.j.ruhl@intel.com>
+ <20260904182451.1164868-34-michael.j.ruhl@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 04 Sep 2026 18:50:05 +0000
-Message-Id: <20260904185006.339DC1F00A3D@smtp.kernel.org>
+Date: Fri, 04 Sep 2026 18:51:26 +0000
+Message-Id: <20260904185126.E61301F00A3D@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,45 +58,75 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Low] Unused segment mask macros.
+- [High] Concurrent telemetry reads during PMT crashlog probe corrupt disco=
+very header decoding, leading to out-of-bounds physical memory mapping.
 --
 
-commit 33d506c12896273e5662ff3cb4664742e398c70e
+commit 824cfdedc1e2d27191c139b8a85c1c3075a9999e
 Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-drm/xe/vsec: Crescent Island PMT decode
+drm/xe/vsec: Crescent Island PMT callbacks
 
-This commit updates the PMT decode path and data read callback to support
-the Crescent Island (CRI) device, which uses different index and offset
-values for accessing the PMT data area.
+This commit introduces callback functions (read_reg, write_reg) and initial=
+ization
+logic to support Crescent Island (CRI) PMT features, specifically for crash=
+log
+discovery and telemetry via an MMIO region.
 
 > diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-> index 031c1c0ae5706..22c4efb021328 100644
+> index 22c4efb021328..7c3f9938701e3 100644
 > --- a/drivers/gpu/drm/xe/xe_vsec.c
 > +++ b/drivers/gpu/drm/xe/xe_vsec.c
-> @@ -120,19 +120,25 @@ static struct intel_vsec_platform_info xe_vsec_info=
-[] =3D {
 [ ... ]
->  #define GUID_TELEM_ITERATION	GENMASK(3, 0)
-> -#define GUID_SEGMENT		GENMASK(7, 4)
->  #define GUID_SOC_SKU		GENMASK(11, 8)
->  #define GUID_DEVICE_ID		GENMASK(27, 12)
->  #define GUID_CAP_TYPE		GENMASK(29, 28)
->  #define GUID_RECORD_ID		GENMASK(31, 30)
-> =20
-> +#define BMG_GUID_SEGMENT	GENMASK(7, 4)
+> @@ -396,8 +489,17 @@ void xe_vsec_init(struct xe_device *xe)
+>  		if (IS_SRIOV_VF(xe))
+>  			return;
+>  		xe->pmt.base_offset =3D BMG_TELEMETRY_OFFSET;
+> -		info->priv_data =3D &xe_pmt_cb;
+> +		info->priv_data =3D &xe_bmg_pmt_cb;
+>  		break;
 > +
-> +#define CRI_GUID_SEGMENT	GENMASK(5, 4)
+> +	case XE_VSEC_CRI:
+> +		if (IS_SRIOV_VF(xe))
+> +			return;
+> +		xe->pmt.base_offset =3D CRI_PMT_OFFSET;
+> +		info->priv_data =3D &xe_cri_pmt_cb;
+> +		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
 
-[Severity: Low]
-Are BMG_GUID_SEGMENT and CRI_GUID_SEGMENT intended to be used? They are
-defined here but do not appear to be utilized anywhere in the file or the
-rest of the codebase.
+[Severity: High]
+Does this sequence allow concurrent telemetry reads to corrupt the PMT
+crashlog probe discovery header?
 
-> +#define CRI_GUID_INSTANCE	GENMASK(7, 6)
+The remapper index is set once during init here, which seems to assume it w=
+ill
+remain unchanged during the sequential PMT core probes. However, if userspa=
+ce
+concurrently reads the telemetry sysfs file, it calls xe_pmt_telem_read()
+which modifies the index:
+
+	mutex_lock(&xe->pmt.lock);
+
+	/* set SoC re-mapper index register based on GUID memory region */
+	xe->soc_remapper.set_telem_region(xe, mem_region);
+
+	memcpy_fromio(data, telem_addr, count);
+
+	mutex_unlock(&xe->pmt.lock);
+
+Because xe_pmt_telem_read() modifies the shared SoC remapper index but fails
+to restore it to CRI_IDX_TELEM_DISCOVERY before unlocking, subsequent
+discovery table reads can get permanently corrupted.
+
+If the PMT class driver uses a corrupted discovery header's base_offset
+and size to call devm_ioremap_resource(), could this map an uncontrolled
+physical address and expose arbitrary physical memory contents to userspace?
+
+> +		break;
 > +
->  #define BMG_IDX_TELEM_PUNIT		0x00
+>  	default:
+>  		break;
+>  	}
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260904182451.1164=
-868-20-michael.j.ruhl@intel.com?part=3D13
+868-20-michael.j.ruhl@intel.com?part=3D14
