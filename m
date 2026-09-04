@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4293C61DD3
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 02:46:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A97BC61DD3
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 02:48:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51AFA10F833;
-	Fri,  4 Sep 2026 02:46:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFC0110E0EC;
+	Fri,  4 Sep 2026 02:48:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XSFTlGoz";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jxGWUAHX";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BF5610F833
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 02:46:22 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0805610E0EC
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 02:48:34 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 51B6742BB8;
- Fri,  4 Sep 2026 02:46:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A6B91F00A3D;
- Fri,  4 Sep 2026 02:46:21 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 50A5360A6B;
+ Fri,  4 Sep 2026 02:48:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB44B1F00A3F;
+ Fri,  4 Sep 2026 02:48:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788489982;
- bh=A7Ks6JDOMamzqu/w3tyW5pgI//cyE5zDkFwocL3TF6o=;
+ s=k20260515; t=1788490113;
+ bh=yTt3FC1eksqWYQrQrPgOaCG9khrPmsaFzBCAtt2J50I=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=XSFTlGozVGXQdiOuYCDWQ9ABBe/ob+e2bG0LrvgOd3f0X4OF6Cf4kgB2gNjRmbnub
- 1ZIpl40qB1R+RGaPsuvs/3IrCiWV1/jgosZ6xCWvLX6BPSr9V3FjiUAh68BrCG7ZWj
- 46EHcEQJVfb7uU1xd0IVCPFkd8w/e8oxqPAaKmPdFmRpqxfTwWvNQzFeOY7otsR2rd
- y5yNHVTEdO2cSMsReiwSmT0Ymtw6WHNSLuXPzagwQrjfRVzCI+z6Uft5LKg2SbjdV/
- V09du2G4jOxvIqSckQ1kQyjbyXIhV5LD1FjLUY9WPaD7K08xjYx6/H/7paT8rmzXv4
- JkA49M1N98lng==
+ b=jxGWUAHX/Tr7fQn4G8bNTgiCvtYIA35nJaUe2qrfmRQu6xIQSS9CtZyo73c2p7Dq2
+ CpX0ZvEKHSYFu2auCFG780CyOvvc0JElAacX/8LkF6I8sf6XidVZqwGOmYlC6PY7Mg
+ MEVvxPWSjRfWqXqDb6eNrT7Juj2EPD1OBlIzlL65mZ1pIOONIMUF/8gZSuieTwuhMq
+ Oq6lwvD5d2Jhg5xDzF5yXpHSbuLDZbCPQT0iK24278i9lCMEAVyNSXeDM5jY8ryQB4
+ xRc9EpVBjAedexuPwTkSEvI28TsMaUikj/OHjI/fcQYiW12JTtFz+r9SeWQ0kUJvpQ
+ QywXl12rm/vOQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 10/25] drm/xe: Update GuC submission backend to run
- PT jobs
+Subject: Re: [PATCH v5 09/25] drm/xe: Add struct xe_pt_job_ops
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260904022207.3490018-11-matthew.brost@intel.com>
+In-Reply-To: <20260904022207.3490018-10-matthew.brost@intel.com>
 References: <20260904022207.3490018-1-matthew.brost@intel.com>
- <20260904022207.3490018-11-matthew.brost@intel.com>
+ <20260904022207.3490018-10-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 04 Sep 2026 02:46:21 +0000
-Message-Id: <20260904024622.0A6B91F00A3D@smtp.kernel.org>
+Date: Fri, 04 Sep 2026 02:48:32 +0000
+Message-Id: <20260904024832.DB44B1F00A3F@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,76 +56,65 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Critical] PT jobs silently falsely report successful completion to the D=
-RM scheduler when skipped due to a killed, banned, or wedged execution queu=
-e, or when the job has an error.
-- [Medium] Memory leak of `pt_job_ops` when a PT job is canceled or destroy=
-ed before execution.
+
+Pre-existing issues:
+- [Critical] Ignored return value of xe_pt_walk_shared() in xe_pt_stage_unb=
+ind() can cause partial unbinds leading to device memory Use-After-Free.
 --
 
-commit b19832ca384abf64ac2c629d5560dfa5eee4d788
+commit becaaccdc6df0bb083fdb6279921f5ee714da885
 Author: Matthew Brost <matthew.brost@intel.com>
 
-drm/xe: Update GuC submission backend to run PT jobs
+drm/xe: Add struct xe_pt_job_ops
 
-This commit updates the GuC submission backend to execute PT (page table)
-jobs via the CPU. These jobs bypass normal GPU execution to program page
-tables for the final step of a bind job.
+Add struct xe_pt_job_ops, a dynamically refcounted object that contains
+the information required to issue a CPU bind via a job after the initial
+bind IOCTL returns.
 
-Link: https://patch.msgid.link/20260228013501.106680-11-matthew.brost@intel=
+Link: https://patch.msgid.link/20260228013501.106680-10-matthew.brost@intel=
 .com
 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
-uc_submit.c
-> index cf306568ef307..528869928c1d3 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index e560f167fdf1b..30127ebf1b605 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+
 [ ... ]
-> @@ -1261,14 +1277,25 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_=
-job)
-[ ... ]
->  		job->restore_replay =3D false;
->  	}
-> =20
-> +	if (is_pt_job(job)) {
+
+> @@ -2081,13 +2094,13 @@ xe_pt_commit_prepare_unbind(struct xe_vma *vma,
 
 [Severity: Critical]
-Does returning NULL here cause PT jobs to silently report successful
-completion to the DRM scheduler when they were actually skipped?
+This is a pre-existing issue, but is it safe to ignore the return value of
+xe_pt_walk_shared() in xe_pt_stage_unbind() just above this diff?
 
-If the execution queue is killed, banned, or wedged, or if the job has
-an error, the execution block earlier in guc_exec_queue_run_job() is
-skipped. However, this check unconditionally returns NULL for PT jobs
-even in those cases.
+If memory allocation fails during VMA unbind, the page table walk is
+prematurely aborted. The function casts the error to (void) and returns the
+count of successfully processed entries:
 
-Could this regression result in physical memory being freed and reallocated
-while the page tables were never updated by the CPU, potentially allowing
-a different queue in the same VM to access the reallocated memory?
+drivers/gpu/drm/xe/xe_pt.c:xe_pt_stage_unbind() {
+    ...
+	(void)xe_pt_walk_shared(&pt->base, pt->level, start, end,
+				&xe_walk.base);
+    ...
+}
 
-> +		xe_pt_job_ops_put(job->pt_update[0].pt_job_ops);
+If the caller proceeds to unbind only that subset of PTEs, does this allow
+the physical memory backing the VMA to be freed and reallocated to another
+process while the GPU retains a valid PTE mapping to it?
 
-[Severity: Medium]
-Is there a potential memory leak of the xe_pt_job_ops structures if a
-PT job is canceled or destroyed before it reaches this execution phase?
+If an unprivileged user triggers this by allocating and unmapping memory
+while intentionally applying memory pressure to force an allocation failure,
+can this result in a use-after-free and memory corruption?
 
-This drops the reference to pt_job_ops during the run_job execution phase.
-If the DRM scheduler is torn down (e.g. due to queue destruction, wedge,
-or driver unload) while jobs are pending, the backend free_job callback
-is invoked instead, bypassing this execution path.
-
-Does the teardown path in xe_sched_job_destroy() need to drop these
-pt_job_ops references as well to prevent a regression?
-
-> +		dma_fence_put(job->fence);	/* Drop ref from xe_sched_job_arm */
-> +		return NULL;
-> +	}
-> +
->  run_job_out:
-> =20
->  	return job->fence;
+>  static struct xe_vm_pgtable_update_op *
+>  to_pt_op(struct xe_vm_pgtable_update_ops *pt_update_ops, u32 op_idx)
+>  {
+> -	return &pt_update_ops->ops[op_idx];
+> +	return &pt_update_ops->pt_job_ops->ops[op_idx];
+>  }
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260904022207.3490=
-018-1-matthew.brost@intel.com?part=3D10
+018-1-matthew.brost@intel.com?part=3D9
