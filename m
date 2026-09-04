@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D38E6C61DD3
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 00:36:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF5B2C624D4
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 00:38:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7686110E0FD;
-	Fri,  4 Sep 2026 00:36:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7341A10E1C3;
+	Fri,  4 Sep 2026 00:38:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="W35upfi0";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ngmrNXE1";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5D2010E0FD
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 00:36:50 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2275D10E4BC
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 00:38:39 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 8E38F40794;
- Fri,  4 Sep 2026 00:36:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4686B1F000E9;
- Fri,  4 Sep 2026 00:36:50 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 3A62A60546;
+ Fri,  4 Sep 2026 00:38:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD1D71F000E9;
+ Fri,  4 Sep 2026 00:38:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788482210;
- bh=5I+PE8udZzbx7YJj7A06RXl7zaPsosQVyK3FOqwDVVU=;
+ s=k20260515; t=1788482317;
+ bh=KQaAn7kyzQl/dmmaB/xc7viGv6wVeUGI3WZxePZt2bg=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=W35upfi0TJISOMogQn+WicxofxcMVi/w+YMfMLRGh48oyJNnDi35SzjnqUnAi8a/p
- 1e7e84fFLC6K0DhbqaSjD/SgTiWqs0aYZzd0+hpvLecFgzXFt8bpUeO84Ij0d40WhW
- crXVt4iAXlstkGq8CZCTGsikTX9dhn1K5v7WMibIRU6Vj8IwsJ1R7l8kSnXHWGVX/+
- 0wxCl2MLNX/V0n2C6mqDYVal9vLewx4bJwN2eZZMyaWTc9EKNnuODkOfsn6+8JzEMD
- nB9/lDBOBQo6xn/zjfKfP93gfACWr/blYMIEt1al2enzerYTHKaFvSBQBG7J+KLnYS
- vcmBeliSQqS1Q==
+ b=ngmrNXE1OCymtCMf93y6sxeBlmtP42RNgyALNZxB9LmxBJc6D7xxCh4V8nDvtf+1O
+ 4oHp2uKRzc/B2toqUaMXa1mEDLqU2KNkh7LYNObrhag6scCDk8U+aXO5Wv1/AlZsEl
+ yVkhASVyqvks9k2RTQ8ondbWIYjNTGcgTl0QcION4M7xqjOVfIPMZbz9oCOIi+3oAx
+ Oxbclf3DEdYZhlvQ2RBhrgqPFfcA6LcMGeYY//pGo+NkKCn6LtG5tXqqVQPxxXly+J
+ 1ycqXryVaNJnBDbQU5EXOSf1jORLfMKJlvYrR8GghvDiPl5kpCsjVwEACLQ7aB+fvx
+ KcFCnyorUp4gQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 10/25] drm/xe: Update GuC submission backend to run
- PT jobs
+Subject: Re: [PATCH v4 22/25] drm/xe: Add ULLS migration job support to GuC
+ submission
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260903235842.3401722-11-matthew.brost@intel.com>
+In-Reply-To: <20260903235842.3401722-23-matthew.brost@intel.com>
 References: <20260903235842.3401722-1-matthew.brost@intel.com>
- <20260903235842.3401722-11-matthew.brost@intel.com>
+ <20260903235842.3401722-23-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 04 Sep 2026 00:36:49 +0000
-Message-Id: <20260904003650.4686B1F000E9@smtp.kernel.org>
+Date: Fri, 04 Sep 2026 00:38:37 +0000
+Message-Id: <20260904003837.BD1D71F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,96 +57,69 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] PT jobs on wedged, killed, or banned queues silently report succes=
-s to the DRM scheduler, masking failures.
-- [High] Memory leak of xe_pt_job_ops and dma_fence references if a PT job =
-is aborted before execution.
+- [Critical] Direct MMIO write to the physical engine's RING_TAIL for GuC-s=
+cheduled ULLS jobs causes hardware state corruption if the context is preem=
+pted or evicted.
 --
 
-commit 86f7996687fb641831b3ca6cb60d0fed641a6978
+commit f60d4c34d363517fe528679e6ff3d059b7861099
 Author: Matthew Brost <matthew.brost@intel.com>
 
-drm/xe: Update GuC submission backend to run PT jobs
+drm/xe: Add ULLS migration job support to GuC submission
 
-This commit teaches the GuC submission backend to execute PT (Page Table) j=
-obs.
-PT jobs bypass GPU execution for the final step of a bind job, instead using
-the CPU to program the required page tables.
+This commit adds ULLS migration job support to the GuC submission backend.
+It modifies the migration queue job limits and introduces direct hardware
+engine tail writes for subsequent ULLS jobs.
 
-Link: https://patch.msgid.link/20260228013501.106680-11-matthew.brost@intel=
+Link: https://patch.msgid.link/20260228013501.106680-24-matthew.brost@intel=
 .com
 
 > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
 uc_submit.c
+> index dcb4b8a4f3b78..1578d80b01b82 100644
 > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -1261,14 +1277,25 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_=
-job)
-
-[ ... ]
-
->  	if (!killed_or_banned_or_wedged && !xe_sched_job_is_error(job)) {
-
-[ ... ]
-
-> +		if (is_pt_job(job)) {
-> +			xe_gt_assert(guc_to_gt(guc), !exec_queue_registered(q));
-> +			run_pt_job(job);
-> +		} else {
-> +			if (!exec_queue_registered(q))
-> +				register_exec_queue(q, GUC_CONTEXT_NORMAL);
-> +			if (!job->restore_replay)
-> +				q->ring_ops->emit_job(job);
-> +			submit_exec_queue(q, job);
-> +		}
->  		job->restore_replay =3D false;
->  	}
+> @@ -1207,6 +1207,11 @@ static void submit_exec_queue(struct xe_exec_queue=
+ *q, struct xe_sched_job *job)
+>  	if (exec_queue_suspended(q))
+>  		return;
 > =20
-> +	if (is_pt_job(job)) {
-> +		xe_pt_job_ops_put(job->pt_update[0].pt_job_ops);
-> +		dma_fence_put(job->fence);	/* Drop ref from xe_sched_job_arm */
-> +		return NULL;
+> +	if (job->is_ulls && !job->is_ulls_first) {
+> +		xe_hw_engine_write_ring_tail(q->hwe, lrc->ring.tail);
+
+[Severity: Critical]
+Can this direct MMIO write to the engine's RING_TAIL cause hardware state
+corruption if the ULLS context is preempted or evicted?
+
+The driver bypasses the GuC submission interface (H2G) for ULLS jobs and
+directly writes to the engine's MMIO RING_TAIL register. If the ULLS
+migration context is not actively resident on the hardware engine at the ex=
+act
+moment of the write, the write will advance the ring tail of whichever cont=
+ext
+is currently resident on that engine (e.g., VM bind contexts sharing the sa=
+me
+USM engine).
+
+Since the GuC scheduler fundamentally owns engine context switching, it can
+preempt or evict the ULLS context for internal tasks or schedule other queu=
+es
+that explicitly share the USM engine. If the CPU submits a ULLS job while t=
+he
+ULLS context is swapped out, would the direct MMIO tail write hit the
+currently running context instead?
+
+> +		xe_lrc_set_ulls_semaphore(lrc, xe_sched_job_lrc_seqno(job));
 > +	}
+> +
+>  	if (!exec_queue_enabled(q)) {
+>  		action[len++] =3D XE_GUC_ACTION_SCHED_CONTEXT_MODE_SET;
+>  		action[len++] =3D q->guc->id;
 
-[Severity: High]
-If the queue is wedged, killed, or banned, the execution block above is
-skipped, but this block unconditionally returns NULL for PT jobs. Can this
-cause PT jobs on failed queues to silently report success to the DRM
-scheduler and mask failures?
-
-[Severity: High]
-This handles dropping the extra dma_fence and xe_pt_job_ops references duri=
-ng
-normal execution, but what happens if the DRM scheduler aborts the job befo=
-re
-it executes (for example, if the queue is destroyed)?
-
-Looking at xe_sched_job_destroy() in drivers/gpu/drm/xe/xe_sched_job.c:
-
-> void xe_sched_job_destroy(struct kref *ref)
-> {
->         struct xe_sched_job *job =3D
->                 container_of(ref, struct xe_sched_job, refcount);
-> ...
->         xe_sched_job_free_fences(job);
->         dma_fence_put(job->fence);
->         drm_sched_job_cleanup(&job->drm);
->         job_free(job);
-> ...
-> }
-
-It seems the destructor fails to call xe_pt_job_ops_put() for PT jobs and
-only drops the primary fence reference. Does this code leak the xe_pt_job_o=
-ps
-structure and the extra dma_fence reference taken during job arming if
-execution is aborted?
-
->  run_job_out:
-> =20
->  	return job->fence;
+[ ... ]
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903235842.3401=
-722-1-matthew.brost@intel.com?part=3D10
+722-1-matthew.brost@intel.com?part=3D22
