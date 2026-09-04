@@ -4,171 +4,160 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCAE0C624D3
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 11:57:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2035DC624DE
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 12:09:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73B2A10FADC;
-	Fri,  4 Sep 2026 11:57:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C847710FAF1;
+	Fri,  4 Sep 2026 12:09:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZoyNA18x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kb911962";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CF0610FADC
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 11:57:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F1F710FAF1
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 12:09:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788523039; x=1820059039;
+ t=1788523753; x=1820059753;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=/Q5iCrk3hU2MFlL3jjyMQhcRQPpvcsE+g9unIqM6tc0=;
- b=ZoyNA18xSbxWS4X2qU63nLG9ab3fVI6zxdlW7hDGOHHJO+tYDbpUpWGh
- c3Og5OlaQjpIwTBae1I6EaLljYnlpQ6iAmebEiwfCK9kEsZDYENgaCtct
- hEOWgJA7z1669p4D4YIm0JxVonIcltLXW1XuQYkLQubI8snhBlPt26cRy
- s/pJN745o/j3Ea7fBvlrEe4CkbTvDcLeI+5gK6ZycDaXBjtuLBWbNiQrH
- 6J3PfRpeXbBx0p50r+7qhs7q6OiiBRRfWEtjc6gX7NmQkFGFV7rM3wfOu
- lluK/wBGhitpjIUdcvuX4qaPIgDa42RQci+5mmdBUVWoWseJp1zNpfrsH w==;
-X-CSE-ConnectionGUID: +XYS0Gf9SWqESzy14AGgNQ==
-X-CSE-MsgGUID: P1kUBfeCS1qNIbSyoM0eWA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="99620210"
-X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="99620210"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 04:57:18 -0700
-X-CSE-ConnectionGUID: G33fU+FjSfKVTgMe26N1lA==
-X-CSE-MsgGUID: d0Yuh5fJT2yG//liOj4mzw==
+ bh=Psq1LuS7WSvgTpfeYpsSrtQtfeeg8k7cTeK61MK7Vvk=;
+ b=Kb9119628G1Qx3XHCAml8DE82EIeOppeJPuCE/JwkazonkfPgTXySeVD
+ mMLewXikdHjURI/dD7qmbYmClSpDwF605BUZNPBweBonV8yz1/0dyPhjk
+ L5bj7Wb9Z47gD2nU8OvTuRX8xwat7/cHJr8Z47RL8rJ2NDcitHCoRa5XP
+ UGQN3G5pg7O6rvfp1BWWm6UrsgJN9C2Z6BwcWGFK62NZPiUp9Egt9lG+z
+ 9whNMwhtmxQPa5FJM5eY7WjzqgUriA4NXlANn1tg6c+7ulr+Yjv4YgjsY
+ fiUmk9mbWYQy96KLyYoZcG9ViVKfu7fFUn2A5EsDmAnPHGKY/s/VWnVu8 A==;
+X-CSE-ConnectionGUID: BCxCIPmRShqbjL+GnHEmXg==
+X-CSE-MsgGUID: jeYlRLc+RPWDh7dj+Yalsg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="88165451"
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="88165451"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2026 05:09:13 -0700
+X-CSE-ConnectionGUID: 7nvmRjrATTOLWr4Ree3RcQ==
+X-CSE-MsgGUID: Kkndjc3/QN6UYhwaEfGmIA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="267446145"
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="294905600"
 Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 04:57:18 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2026 05:09:13 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
  fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 4 Sep 2026 04:57:17 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.46; Fri, 4 Sep 2026 05:09:12 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Fri, 4 Sep 2026 04:57:17 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.52) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Fri, 4 Sep 2026 05:09:12 -0700
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.8) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 4 Sep 2026 04:57:17 -0700
+ 15.2.2562.46; Fri, 4 Sep 2026 05:09:10 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Nc+Xazux3TnGfcPnd1UGtX6JVA8ByaJ8FilUwa5GHaldS9VNilmRHrPPwOFDvL4eRO/MvzvNHo2h+VCkyZ6v405NKFGmBMEyXV7/TJEb1bnSTwgQD0Bo9eatcgTyMQlZZXgHOzMbUj5WJPcAKI7UvnYQscJg8FRyH7FWMq2GxOOHTNbTlZc1u/YKK1+iTQrlKMgimBQHC9B52fWFqDYNlBiUsa9WfaCD9a/imdcKChRd0S/XM0tbNToCJ0xLHhIbw6W5Jsgo5Bt7OpWOjaLcDjTB1aDxk1RxhWeeR5g0NFHe4L90MGug3OxoKdBqHReGuiH1VnGzI3J/6lux0RucoQ==
+ b=KRW1q3TeYK+f+D7wpnCMXQTW4hYqGicCX+Xh0bDAgLlFevhh33pzv2gCO3sDpIexHTnfwLK0NkO0riYFZc0fjO217mZQpR+aQHzLEL18HexrJMUzFL3w/ATyt4EgvxBFr5X+MvLIgqlp9kfAca2p9GpZdEN0p95nUed+MaoMHp1AkiI6jFVkki8GzFnX+YfKJSDePq6ni/FG6YDOEO3pxtpytGOXU/6+qilvQ7jUrHpiz7vDxwpsFdqcl45yzXef9NtW0Gc6SyvT8F/MczGLoG/kf2ig/dRRSMEv11t4qu8tuRwJN8163YHfIx+4vOby6+Vh2IUP18TB3z2zPevpcg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iglhAl90rLtTn71pS7xHBccyfqzc1bKmnPaHwb12Bdc=;
- b=U8IOzuziSry2M166xZPHlI6tmBsfLMrgQbjlw1MWry7ACDGnuliebe6S/j3i4W6qK2hAuRsH9ChpRo0HjspU6eDD8jg5Is3X3ComF3WJliO6v22Ukz7BlALjRpIbcUgbeDVzWf8/7+LirR/bxfatFSIiH5eV3eLgdyI0Sgdq/4tyW7G6lWFjOMEA+iefo9frjOVwbzbXsgKIo4I722rxncJVrceOzZuWfdinK+fNFBg2shCikgrdbX3JgGolN6GiDy1x9GLDDqMymm0Iq3oeCad5s8M3S9DcPJhXP4iQowYY1oHxmgxd3YefEByGLAuwBmpNKvooap8HPlJ4a6i6/g==
+ bh=lxKPVdjoNLVRdYi0909uxa0Vd2GxpaEgKfBmJZUTAu4=;
+ b=gYp/2Ov+9AvPL1RNOBQufJ58TzGGU7a1Ka7T+RemeFVbxpLqEaFosiXDYH1DkM7RgP/ekfz8bRxzT5NATK7Z0py5aXLI/HLD+T1omfpic8oF/VL+SrrctPsUtPdYmrEIgOPTot8XpgInV6tyxP3Z2BmEJr4Ga7Lwk8hX/L+x481lJVCyoddNxf34xgGkTRK0uQNiEdSW6gSXSDoroiJGEPfT3YEtfoGQRkVLhJTTRPF9ZzjBO129k2R3RThOwP43ZqjVid1TcxaO8E72p35qfF7jzRxOVB1DtdW1kAScRsN+2akJFEN8uUeWcH0m0Wj3/8ugCpOj43qZDMPHSstfPA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7551.namprd11.prod.outlook.com (2603:10b6:510:27c::12)
- by DS4PR11MB9529.namprd11.prod.outlook.com (2603:10b6:8:34b::21) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from LV0PR11MB9792.namprd11.prod.outlook.com (2603:10b6:408:385::5)
+ by SA2PR11MB4938.namprd11.prod.outlook.com (2603:10b6:806:fb::14)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Fri, 4 Sep
- 2026 11:57:15 +0000
-Received: from PH7PR11MB7551.namprd11.prod.outlook.com
- ([fe80::5cbf:6b33:5f0c:88a0]) by PH7PR11MB7551.namprd11.prod.outlook.com
- ([fe80::5cbf:6b33:5f0c:88a0%4]) with mapi id 15.21.0360.008; Fri, 4 Sep 2026
- 11:57:15 +0000
-Message-ID: <9d6388b0-ed43-4210-abee-62c6ae3ed2a5@intel.com>
-Date: Fri, 4 Sep 2026 13:57:08 +0200
+ 2026 12:09:06 +0000
+Received: from LV0PR11MB9792.namprd11.prod.outlook.com
+ ([fe80::1b1f:d9a8:ce76:e9d8]) by LV0PR11MB9792.namprd11.prod.outlook.com
+ ([fe80::1b1f:d9a8:ce76:e9d8%5]) with mapi id 15.21.0360.008; Fri, 4 Sep 2026
+ 12:09:06 +0000
+Message-ID: <28c4db86-72e8-4ff1-95f6-c2f25b2cfa6d@intel.com>
+Date: Fri, 4 Sep 2026 17:38:58 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/7] drm/xe/sysctrl: Return error codes from
- sysctrl_wait_bit_clear()
-To: "Tauro, Riana" <riana.tauro@intel.com>, "Mallesh, Koujalagi"
- <mallesh.koujalagi@intel.com>, <intel-xe@lists.freedesktop.org>,
- <rodrigo.vivi@intel.com>, <matthew.brost@intel.com>,
- <aravind.iddamsetty@linux.intel.com>
-CC: <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
- <vinay.belgaumkar@intel.com>, <karthik.poosa@intel.com>,
- <sk.anirban@intel.com>, <raag.jadav@intel.com>,
- <umesh.nerlige.ramappa@intel.com>, <dnyaneshwar.bhadane@intel.com>,
- <anoop.c.vijay@intel.com>
-References: <20260820101632.527214-9-mallesh.koujalagi@intel.com>
- <20260820101632.527214-10-mallesh.koujalagi@intel.com>
- <9894fca5-809b-4952-9edf-01b3d448d9df@intel.com>
- <3ae4858b-0bbb-4052-9c73-726643cf7266@intel.com>
- <292aaec1-662d-466a-83a6-dc820dace637@intel.com>
- <87216310-a723-43ce-ae62-6b85d2525bbd@intel.com>
- <e37b716d-3fcf-44b0-993c-70b39fe59951@intel.com>
- <d76a1ee0-7317-4cf5-b521-46cb9998fa88@intel.com>
- <f3d29b84-0849-4513-9a55-f6861e92c076@intel.com>
+Subject: Re: [PATCH 2/2] drm/xe/i2c: Expose AMC Alert reason sysfs
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <raag.jadav@intel.com>, <riana.tauro@intel.com>,
+ <mallesh.koujalagi@intel.com>, <aravind.iddamsetty@intel.com>,
+ <heikki.krogerus@linux.intel.com>, <himal.prasad.ghimiray@intel.com>
+References: <20260823103523.554184-4-badal.nilawar@intel.com>
+ <20260823103523.554184-6-badal.nilawar@intel.com>
+ <aoya-4fWW7pLb9bc@intel.com>
 Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <f3d29b84-0849-4513-9a55-f6861e92c076@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VIUP296CA0102.AUTP296.PROD.OUTLOOK.COM
- (2603:10a6:800:351::14) To PH7PR11MB7551.namprd11.prod.outlook.com
- (2603:10b6:510:27c::12)
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <aoya-4fWW7pLb9bc@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0163.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1ba::11) To LV0PR11MB9792.namprd11.prod.outlook.com
+ (2603:10b6:408:385::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7551:EE_|DS4PR11MB9529:EE_
-X-MS-Office365-Filtering-Correlation-Id: ae5ad440-f99c-410f-95b7-08df0a7ba955
+X-MS-TrafficTypeDiagnostic: LV0PR11MB9792:EE_|SA2PR11MB4938:EE_
+X-MS-Office365-Filtering-Correlation-Id: e32f09dd-743f-41d1-cd2e-08df0a7d518b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|23010399003|376014|18002099003|22082099003|6133799003|56012099006|3023799007|10067099003|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info: EUHyy0+6EcGRxVcY/0WAtqpXreB04WKnnEq0DoT9Xacsu3hPh7uuowkXeAcPjOi6uYrp0x3fiMixzbW+oPnI2MGvZSG7z6ljC/5xYqZYDT67TV6pG7AIDjzEFrw8cjlE6qB++9Tee8R8mfZ08iIAUOSoVwOwHT+iOJs0mDAParMgDhF3++1mEZ3ZBE9CKOwPMqWehUuWqKaUkMPuiv3kU3FLuAX6bx4bGOhUp/z23Nq4KUWovmlDJf3UAcOLFGjEEOC+1XJln0gjzIsmXH4zwY2eTcE8ORRDnMyUaWaVwd0NiQ/M1Wsmb3DXcYqGzAs8fellER+GLy93Ws0xTfF4VJFILY2h4cpdF1BEJegIC7wMPla65jOL1cJLwjNzgc1pF9ZZaiasbb0i1wsfAQZGwsaKP+eRb2eKFOQQi2Q2FzCij+sc9+hyYsAUa7wg26Jso08WzAnISWH4i66p9MXFoNB8q9JBlBpJ60C6aXlXbFgtkuJ4tgIZ8iP6EXeHwCdOhKwC/4FrCHUM4KGPGg/Pp6N46qP+SvSN00Yv4G9KzegZzoAUky2zF5NVMDHoUi1gxdvYNpCK0c7HBq6JeVqjKgyzLUqEDxFmhfFv6pS6N4id7BiZihFx3LZ/rqxnrIbIh02HN/2aORNAxdUUbPDwoSmYVeLdmQJXiq1mlCdsHTc=
+ ARA:13230040|1800799024|366016|23010399003|376014|6133799003|18002099003|22082099003|11063799006|56012099006|4143699003|10067099003;
+X-Microsoft-Antispam-Message-Info: iNn+82bALmszkenHiVvHCj3wzHl4ULYpFEX0lJaoy5RQkrLyLpQKcyvCQFAvfsXrlm+46iqESIZ2MQeQjghhOR9kJ7srhO8GisgpF/2KSSld3nMG0fEQA+KRqYHfy5tzTq0wPwa2ob/LN1SeTPIVevFtGeuZ3r0TBZb/BQjOU8ngeBOnvBRqTHQI/4n9CjplFKner9gdrSSqvvyzss8k2huty8buaz1IWeelBLXGDGox3oPU4OMVRtC2JFsGDXJ1rh5qsqheksDpPn+fx+0nxZDqrI8OfbZHDR22SvvvpN1Ny6nbHArKVK4yqcKAq59+mvMwIknf9RaCgZgKI5jLheC2v8ZOUFulT8uW227Tis53BUiskzcJ11D11ci2O1E2LDg7zrIwDb38hY1XycDvEq9i9r0LNpBsFvYay+kHj7cr4P/Yai9rLuDdzJtMYfonOhocDIBiUAN9fmKpqLbo9nYQ+ulnowNPSukWJqUeNbhGhUk0FZBHWKHoiwpt4G7z5rFICjcFsdGubfN+Tku+P1JnFD2jZyuz7zx75RQlYwZg1cC7oNRybEMlOc9yaWw7zzntfC+pCLeZ1TyTGEEY7K8Qu7UQSljVGw8RJjgaskgB11eZZ5ZQ4sJDNmBSmqiB1vSjgQQHTrQVD6TTQAN2dBVR3U+2YmBPRJGWvIDdoJ4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7551.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(18002099003)(22082099003)(6133799003)(56012099006)(3023799007)(10067099003)(11063799006)(4143699003);
+ IPV:NLI; SFV:NSPM; H:LV0PR11MB9792.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(6133799003)(18002099003)(22082099003)(11063799006)(56012099006)(4143699003)(10067099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WVpOc2JOc0hBTGdSK1o4RWdhZC9pOW5INEVQUHBUTTF6TzJlWllHK0RZbDht?=
- =?utf-8?B?Vzd4aEdGM2JKZlBmWDM1aUhtV0xVS2Nia2hNRlh5ZFE1M1FKa0VuZURVb1kx?=
- =?utf-8?B?NUZmYlE0RTF0RFpNVmg4OGc3UmU3dWNLaWZFbUVjQUNPUTUyVmo5WjFoTEVL?=
- =?utf-8?B?WFRHNG4zVGhucE9OalRPYk9Zc1BqcFUyalJVeklMa3EzNVA5OVA2RnBDQ3FL?=
- =?utf-8?B?Uks1cFNhbUk3cVBtNGhtQXMvVjA2ZEdJTmRVY2I2NDNJc3U3TGFtcGMycWJV?=
- =?utf-8?B?RlIvOUIyOUdNNUlFWGVrRzdHMEZjTytNaW44SmRpR2RtL3RpQnVYMXhvN3dl?=
- =?utf-8?B?S1JWdzYxK011TzFvQXI5MmpXMS91NmhDd0tpcWlZNDRkMUNHTThhZkNHQTlk?=
- =?utf-8?B?aDZFWGVSN2YwbWV6WHVKNmZuQ0o2U2tNYi9JSGtLMGlJRHo2UVFhVkozY0h6?=
- =?utf-8?B?YXQ5SzlDWFA5N2JraWVqWm1oaTFQZ2IrbXR0TXYyUnJObkdFTHNBbFZHT2xF?=
- =?utf-8?B?NllDVVdLZWNxSmduSnpBdGRtR3psS0RsL2FHQTUzejZmamxtUnd1Qmh2WGVj?=
- =?utf-8?B?VEhNR1kwcktGVTJZYTQ3d2RQcVcrb2k0bGMzNkVpMWlXUU5IdlNCRFR3NHhw?=
- =?utf-8?B?WFlxRnk0NlNyd1ArZnZsYVZwY1ZkN1NJeTVrMkdESTdzcGJzM3psZitYRDJx?=
- =?utf-8?B?QTBsL0MyVDVOOU5mZ0FIMi9MN3BYc0V3K3RvR01jRWFmTktIV3ZKclFadkdC?=
- =?utf-8?B?WHIwZTRFcDQ3VFlOWmZJOVZBK3Z3RGhTeHVubi92aDIxMGg5bHI0YUJvLzdX?=
- =?utf-8?B?dEdlamJFRWJhTEJiazFtNS90Y01WWlZnTUJjMjczUlp4SjE2ejV0b0ZuS1BE?=
- =?utf-8?B?MEhSd1dLb0lqTzhIOTM4UWNBRitoYVpBVy9Ka0pad2YvdVpIeG4rZ1B1eFh6?=
- =?utf-8?B?WExSNkZYd2JMQ2xldG8rSnAxTEtNODhyMW1PQjEwdnRqc1UzY0tqaEduNWNL?=
- =?utf-8?B?MDM3Uk9MWkhIU3hRaktXcWZnK0ZjMTNCWHJVNzJHOExLb01tWEpaekRqdmww?=
- =?utf-8?B?T1NCemdraThnRXlWeE43cm5LSC9lRVp2azBmQTJ1eEd3K2llNUJMNlVpMXZ2?=
- =?utf-8?B?a21rUFpPdElxeGFmZ28vUkhuRkVkN3ZRZVJSbXZGa0FJZVNCS3p6M3J5eFFy?=
- =?utf-8?B?SGVsZ2ZxeFIza1BZM25MSFpiZWhPYzEwNUNad2VpbkFQRHZpQ0ZwRmthb0dP?=
- =?utf-8?B?TjZpNFRaRlAvSk04SER3VEhJNDJsVHUzbHlBWWdVeDhVNUpKSm1UaWtIYWNo?=
- =?utf-8?B?eUlmT1FmZkl5NnlVTUloa1h2dU1ZekwxbjlqQitkemN0enFQRmlSUEVndDZn?=
- =?utf-8?B?S0toY0x5U1E0WXFNQVU2VnF2THhaMTVXVVMrMjZPTDVhQURVQVBXeklHRmQv?=
- =?utf-8?B?VXZSZTFINHR4QjkxRFptMTdqQ0MwZ1RZNFBhZlJpS0c3TkUrQ0xQbXdBcmJ5?=
- =?utf-8?B?elY5YTNFZUY4QzNKeFRmdkFGWUhoZ2F0K3ZOZTRhbUtiUVZpYUZwblpZZGw2?=
- =?utf-8?B?MUNjRThvckE1T1BBS0dPbGFWOExNMG5OWTlYM2RqRUlDd2phMktVTUdOMlRs?=
- =?utf-8?B?QXNDelF1YmloRWNhUmdCa0lEUnUvUkd5bUJEVERFMUZYOE1MYWR5THJ5TDNM?=
- =?utf-8?B?T2VQK204VkJEenFnL0tGaHFCRHUvbHE1N01jei91M3VqUGNWR0VudGViY0N4?=
- =?utf-8?B?QVZvdGJNSVR0Q0VoQkFDWWY1cW1kald5eU54V0NaQlBDZStoTGJaWkRESDJZ?=
- =?utf-8?B?RXNaUXRBTFdsMU53S2w0Ynh1QUdpTUlwU05MUldrT2lFRWFnckhzWmdyd0pw?=
- =?utf-8?B?WUJhdFYrc1EyTlJRRmRSUjcxOFNjSWthdTIwa1I2ZG9xZEZFNmEzTDZyR2Fl?=
- =?utf-8?B?OC9wUmlsVFNrR0YzRFFQYkhsMWE3VmhHenZQTmlJV25yaFpDNzNscHVMdEdZ?=
- =?utf-8?B?RkdGNWI5aDVOUVFlZWJmbGY3QW9mY09wVkovOWNhWEJCNlFKUFZkL0tCOEpl?=
- =?utf-8?B?L2pOUC9WbTdEVlBuUEVXaU1jazVXM0VOSGYvSElqV2dGRjYxQk9nZ0hEc1E0?=
- =?utf-8?B?NnlUN0tCWGppUVJMNDREdnFDeE9WQ0paQ2J3Z3ZwR20zMmdud0NkV05TMDZp?=
- =?utf-8?B?MEViVXhFWHdhY0ExTEpqSVZDL2tQN1dvZjNmVDhJOTN1Vm1rbTRubHZiQ2hs?=
- =?utf-8?B?dmVJWWtac2Zkb3FjRTNmZ0JrWTlzaWVmT2w1MmhTcmZWaGtNcWlLaVpIZnhV?=
- =?utf-8?B?R0ZEY2J0b3RiamYyNDdTcjByeWd0NGdjZkpONUdLcUpSL0xEQXdzUG90WG5S?=
- =?utf-8?Q?0TlV/5ZarDOv8fxc=3D?=
-X-Exchange-RoutingPolicyChecked: PoZtx2aL+E5XK0Nity0qiirxe5xxtYHMux1ehiv5zPG9uBXgvOgaKIMSFuhTAEm1vdg3j78HjrInrBiu+ApmGxQvZ/05gWCChbpeZm0QZMcd6gZqUP4J/BU+6PeqTYV3tgq7fjAvAQ+Nv8/YKi0J2z9+i7ORuKN63rAuWCvqCOsIICYUvV07JFSsPCFHQr+6FnGK38YTL4N+fxPDirpFgkytCDy3Z+0CFyJsx/TEgTXEoQet53WtHjhCNtLjMV+7HdPIDxECU9ZtYxvYqXm/AvaEg8ymCxa5ZneUlvFEX5yFwXGzsz9Zyedg5l1RvYgb4WpvQZbpJ6e3FUtmHINz0Q==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ae5ad440-f99c-410f-95b7-08df0a7ba955
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7551.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S25WanQ3dmJiT2ZYTVBaTFVqOEdsTnZPcm5HaVNvVkFCT2ROeFZ3TkV3VWg5?=
+ =?utf-8?B?V0Y5UlRsdldxc2VNdkErV2JYb01kWkI4UUV5d2xLMlN1ZFZxeXgrOElhenJ3?=
+ =?utf-8?B?czNKR2dSdFlwRTJkUy84bzI1ajdvZ2FnbWlyam1LNWNINTBSejBIdDRGQ0dR?=
+ =?utf-8?B?NUprblNZcXEweTZoNk50OHYzY1JpWEs0MENMYWhiV2x2Y0FIbGZqaldMSW4y?=
+ =?utf-8?B?ZTVrcDMrQUhWbVN4dVJjcnhOcUJJbDkrRHpFQy9SRU1XRUN4RzB3WnlTSXFt?=
+ =?utf-8?B?bGtDeDNyMnFaam5HUnlMYVhtUmFwZDdpckFsMnFSbU9vVVNpZW9PYlN0cHpl?=
+ =?utf-8?B?TmpLMVVzczVSVGZ0SWJpVmZMQXM5R2JRR3VsVXIzTVo0RW54SlVWNGZTQzBM?=
+ =?utf-8?B?RU8rb2NqTU0rV1RVTXJWWjRqMXN6YzY0WDRNRkZqSTRjMWFRR3ExR2FmSUg0?=
+ =?utf-8?B?Z1FRSjExSnZTRDJITmxrekI1WGJveWFzMUJoN1RrQ2RuajFJUHozUGpVcGRY?=
+ =?utf-8?B?bCtLSzh3WmdNejB2enFhU28zWmU0SElYRGxnbWE1WStIeHdCV2xPbE4vdGti?=
+ =?utf-8?B?VWw2TkRFWXNtc2R4V0JLZGEva3hZTHFlQWpRdUkvTHJ1NjRRSkE1RFRRck1B?=
+ =?utf-8?B?TGRtRWlZNm5OWVIvSngydzE1clVSMCtEY3E0MlR5QnBpZlI1NWQrSFZycjlB?=
+ =?utf-8?B?UjFrK044ZjFOSGo0a3FKait3ZHBJT0hmY2pjSFpaSTZhc3JCS2xYbVlENlNY?=
+ =?utf-8?B?VlZEWlVFWm1TM0R3UlYvNmlsZE8zYzNFb3Y0YkZwdUM5VDZzcEVSK3Q2eGIz?=
+ =?utf-8?B?V2xXUjVDeGdWR3JrdmpsY2Y4Znc0WFIwQWdTQnd6TzZFTUdrTmh1cW92cVRS?=
+ =?utf-8?B?YmQwVmtwbmRZa3huakJLbVNuNTByTzFiUGh6TjVoK212MllnU0tzY0JRRkhD?=
+ =?utf-8?B?ZXg3U3VvbGJ6UEZtV1lFWWNPYTRzZ2p1V3JBWEg0c0ZwYUx0bGFMMUhUMFRr?=
+ =?utf-8?B?R29pWkZQRk9ZeFhZQ0pRUktWQ01HSmRRQ09yMDBsbkx1clBwTU43eG5JdFNU?=
+ =?utf-8?B?ZEh0KzhXZHZFNnBjNzVVeWQ4K0REeVZreXkvMk9meTZkL2pJY0lMTExubHJP?=
+ =?utf-8?B?cHhOWCtsZTRqTmQyOGJjRXdZUkFMVHl2cWhVaVNTeXRvaGxYdjJzS3ZTYUxs?=
+ =?utf-8?B?WjVPQkR0Y09uT0pzR05maVZ3WjA4VlJrODJqa05UOW1IcnhFZGc4dS85L1VQ?=
+ =?utf-8?B?bWlnd0pDWUp6WlI3QW9lTUtVSlhYUXpCQ3RoK3hHaEY3Q3ZrK2xTRUJmalNq?=
+ =?utf-8?B?dklFUzd2QTN2SHhLNjgwUjBNV1lWY21YNEFHcndYMEdNV2VYUGVoQVNiaTYw?=
+ =?utf-8?B?RzZwejhURXY4TlhoblA4aFNBYXhpWXI1d1MxdktGZHVSb1JudkVQV3NqMVZJ?=
+ =?utf-8?B?MVlyWk81TlhPajBKME0rWHM2VlA3OXhBMjNjaUt2VWJsbmlMTkxUTkRMU25h?=
+ =?utf-8?B?ZHYwSVVzMHBqOUpNcW5QSU1MRXlYZWxMbmVXeUs3MDlKSXAxZUNmNU9PWVl3?=
+ =?utf-8?B?blVvV3hBSjRoU1FkNFlGUlczZk8rZDBCU3NtWXl0WllNYzAzQXJsSHVxZkRZ?=
+ =?utf-8?B?Znl1TWthZE1heEpyVERnRytMQWxzUXFWb2R2Qkg1Sm5IQ2NPeHROQzh3Q2V4?=
+ =?utf-8?B?QnZwZll6Q0k1TlUvUW5JbVZEdkNyNFdQQ3NwZXhqU3hzV1hydHNSWDdzZDBh?=
+ =?utf-8?B?Nlp0Q3lBZ2lNcmlSVG9wYlpCZWhtaEhiWnI4ZHl6UlExdG84S1ZLT1hNNlJK?=
+ =?utf-8?B?a3NQcmxhT25zK0FSaERuVnBkZVhwNEZpZmhKK3hoZzU5a3BuaWNiVFFQTW8y?=
+ =?utf-8?B?U0pTL09KUTdWUy8rYUJxUjFvaGtnRllLM2R6dUYwaUkwRVBsbTU5OCtIVTZo?=
+ =?utf-8?B?aFpKQ3F0dlJ5b3Yvd0pxMG1GSnVBd3IzalpLR1UyTm8xRzdtL2JZVGdJQ3cy?=
+ =?utf-8?B?cXYyaXZWUWhYUXNwdmlIcGRINkE1OG93bVNDNXROR3FQUG0zdmtJSUp4RlV1?=
+ =?utf-8?B?YmZsQlhDclFQWUdtcDRoKzV0a1RmK1h0TkFXRStXcHUzdVVFRFFIYzd0WWRG?=
+ =?utf-8?B?RDd6djUwVTVUVmRCeWJQak91Z1RRalNVT0pNUUtvMDFHSVhKb1RWNzZMb2lE?=
+ =?utf-8?B?cGNtRWJyQkNPQVZWR3FMSkJtWGtwNVF0THNndWRjSlBLaHNPY3V0QzFrVHZV?=
+ =?utf-8?B?YVlKQ3lzQzArdzFUSnFBMEFTRlBIeDRQaFVhT1NzM3J6OVFzenhITkVCbHBP?=
+ =?utf-8?B?bHpSVHVpVmZUWkdpR3NlOTE4NFRPN0xFRVR6b2JYeFRHRGJ2TWE1VlZROWgv?=
+ =?utf-8?Q?kc7me9FH7Wmt3GXg=3D?=
+X-Exchange-RoutingPolicyChecked: qZltekGpybYhhdzDekyZ3ASsvjLal1Gmj2fUxnq3eXP1O49GYZZHLQQGB0V67NMoMbpdi4fiji8SezDUcbWG6gfMV2w9c8ztTaQo1kQZCKWrVApcdvh63SmZAAYh/GdC4E2AUMDNaYcCbH6Badq3KY8CUd92pU4DBt9J3cAlcEAm4pTJwioj2xVyf2W8frbHZL0pagPj2sI/3vnKRLpwopEb3h9ykayULvNXuLA2kb7KrhrGjelJNZ/W4lbHv3rzev2PTWGl+b19nAup2rd9VplVxeu41Pr+fUxWyXOkxhkLk7991ReVn6F24ZW+PykEJC8dPjL7Tsp90oK2TwaLkw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: e32f09dd-743f-41d1-cd2e-08df0a7d518b
+X-MS-Exchange-CrossTenant-AuthSource: LV0PR11MB9792.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2026 11:57:14.9699 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2026 12:09:06.5973 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YQAXztHQM7fFLtZbpx6tdf7SOwcOVXO3I1XwBQRETwlx53WfdhPzUFm6o7gLjVNZFRtQgpSWl24lyLSqnykKTIpg9A1FEnSnIV+TLgQwJIg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR11MB9529
+X-MS-Exchange-CrossTenant-UserPrincipalName: MAk8g0PhfAwmjFcoh3m7KGff9YliWx/qjx6XFk9MEDXRvXjulKQ03Z0E3CQp0uhSQtmyuVqpxBYJ8v4B+8cu+w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4938
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -185,168 +174,178 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
+On 25-08-2026 00:56, Rodrigo Vivi wrote:
+> On Sun, Aug 23, 2026 at 04:05:26PM +0530, Badal Nilawar wrote:
+>> AMC raises an SMBUS alert before performing a power removal or
+>> power-cycle operation. The xe driver then places the device into
+>> vendor-specific wedge mode until the recovery is performed.
+>>
+>> Expose a read-only xe_amc_alert_reason sysfs attribute to help users
+>> identify the required recovery action.
+>>
+>> Assisted-by: Claude:claude-opus-4.8
+>> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+>> ---
+>>   .../ABI/testing/sysfs-driver-intel-xe-amc     | 21 ++++++
+>>   drivers/gpu/drm/xe/xe_amc.c                   | 65 ++++++++++++++++++-
+>>   2 files changed, 84 insertions(+), 2 deletions(-)
+>>   create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-amc
+>>
+>> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-amc b/Documentation/ABI/testing/sysfs-driver-intel-xe-amc
+>> new file mode 100644
+>> index 000000000000..b3de933efe11
+>> --- /dev/null
+>> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-amc
+>> @@ -0,0 +1,21 @@
+>> +What:		/sys/bus/pci/drivers/xe/.../xe_amc_alert_reason
+> Should we do <bdf> instead of ... ?!
+Sure
+>
+>> +Date:		August 2026
+>> +KernelVersion:	7.3
+> this will be 7.4
+I will fix this.
+>
+>> +Contact:	intel-xe@lists.freedesktop.org
+>> +Description:
+>> +		This file exposes the reason for the most recent Add-In
+>> +		Management Controller (AMC) alert on Intel Xe platforms.
+>> +
+>> +		An AMC alert is delivered via an SMBUS interrupt and causes the
+>> +		device to be wedged, requiring vendor-specific recovery. This
+>> +		attribute is created when such an alert is handled and is
+>> +		available to all users as read-only.
+>> +
+>> +		Read returns a single line containing one of the following
+>> +		alert reasons:
+>> +
+>> +			Firmware Download
+>> +			Thermal Trip
+>> +			OOB Request
+>> +			OOB Reset
+>> +			Catastrophic
+>> diff --git a/drivers/gpu/drm/xe/xe_amc.c b/drivers/gpu/drm/xe/xe_amc.c
+>> index 8ecadee6eea3..ceb2c4d618fe 100644
+>> --- a/drivers/gpu/drm/xe/xe_amc.c
+>> +++ b/drivers/gpu/drm/xe/xe_amc.c
+>> @@ -18,6 +18,7 @@
+>>   #include "xe_device.h"
+>>   #include "xe_i2c.h"
+>>   #include "xe_mmio.h"
+>> +#include "xe_printk.h"
+>>   
+>>   /**
+>>    * DOC: Add-In Management Controller (AMC)
+>> @@ -56,6 +57,8 @@ static const char * const amc_alert[] = {
+>>   struct xe_amc {
+>>   	struct xe_i2c *i2c;
+>>   	struct work_struct work;
+>> +	u8 alert_reason;
+>> +	bool sysfs_created;
+>>   };
+>>   
+>>   struct amc_header {
+>> @@ -104,6 +107,54 @@ static const struct amc_request amc_get_alert_reason = {
+>>   	},
+>>   };
+>>   
+>> +/**
+>> + * DOC: AMC Alert Reason
+>> + *
+>> + * On Intel Xe platforms, AMC sends an alert notification via an SMBUS interrupt
+>> + * to notify events such as firmware download, thermal trip or a
+>> + * catastrophic error. See enum xe_amc_alert for the full list of reasons.
+>> + * Upon an AMC alert the device is wedged and requires vendor-specific recovery.
+>> + *
+>> + * The alert reason is exposed through
+>> + * /sys/bus/pci/drivers/xe/.../xe_amc_alert_reason
+> ditto
+>
+>> + *
+>> + * See Documentation/ABI/testing/sysfs-driver-intel-xe-amc for the ABI
+>> + * specification.
+>> + */
+>> +
+>> +static ssize_t xe_amc_alert_reason_show(struct device *dev,
+>> +					struct device_attribute *attr, char *buff)
+>> +{
+>> +	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
+>> +	struct xe_amc *amc = xe->i2c->amc;
+>> +
+>> +	return sysfs_emit(buff, "%s\n", amc_alert[amc->alert_reason]);
+>> +}
+>> +static DEVICE_ATTR_RO(xe_amc_alert_reason);
+>> +
+>> +static void xe_remove_amc_alert_sysfs(struct xe_device *xe)
+>> +{
+>> +	if (xe->i2c->amc->sysfs_created)
+>> +		device_remove_file(xe->drm.dev, &dev_attr_xe_amc_alert_reason);
+>> +}
+>> +
+>> +static void xe_create_amc_alert_sysfs(struct xe_device *xe)
+>> +{
+>> +	struct device *dev = xe->drm.dev;
+>> +	int ret;
+>> +
+>> +	if (xe->i2c->amc->sysfs_created)
+>> +		return;
+> Why do you need to track this?!
+> if this can be called from multiple places shoulnd't you protect with lock?
 
-On 9/4/2026 1:11 PM, Tauro, Riana wrote:
-> 
-> On 04-09-2026 15:48, Mallesh, Koujalagi wrote:
->>
->> On 04-09-2026 02:36 pm, Tauro, Riana wrote:
->>>
->>> On 04-09-2026 13:55, Mallesh, Koujalagi wrote:
->>>>
->>>> On 25-08-2026 01:05 pm, Tauro, Riana wrote:
->>>>>
->>>>> On 24-08-2026 16:34, Michal Wajdeczko wrote:
->>>>>>
->>>>>> On 8/24/2026 7:44 AM, Tauro, Riana wrote:
->>>>>>> Hi Mallesh/Michal
->>>>>>>
->>>>>>> On 20-08-2026 15:46, Mallesh Koujalagi wrote:
->>>>>>>> Make sysctrl_wait_bit_clear() return an error code rather than a bool.
->>>>>>>> and update callers to use xe_log_err() with the propagated error code.
->>>>>>> Bit confused here on the usage of SIGID. My assumption based on documentation and discussion was
->>>>>>> that SIG ID is only needed for error logs based on severity and requires a resolution which can be documented.
->>>>>>> Am i missing something?
->>>>>> from "How to pick a SIGID (the uniqueness rule)"
->>>>>>
->>>>>>   * A single underlying failure therefore legitimately produces a
->>>>>>   * *chain* of reports from different layers, each with its own SIGID -- e.g. a
->>>>>>   * GuC communication failure is reported as %XE_SIGID_RUNTIME_FW by the firmware
->>>>>>   * path, the failed recovery as %XE_SIGID_GT_TDR by the reset path, and an
->>>>>>   * aborted bind as %XE_SIGID_PROBE by the probe path. That chain lets triage
->>>>>>   * follow a fault from origin to final effect; it is not a duplicate.
->>>>>>
->>>>>> so in this case, some sysctrl timeout may eventually lead to a reset and/or
->>>>>> wedge and/or runtime-survivability-mode, and this intermediate FW SIGID may
->>>>>> help in any postmortem triage, and if we don't reach that final state then
->>>>>> we can still provide some generic resolution based on site and errno (COLLECT)
->>>>>
->>>>> What if the paths are also used in non-critical scenarios for ex: sysctrl commands are used for
->>>>> general counter telemetry, gpu health querying and firmware status.
->>>>> Wouldn't this be lead to a lot of sigids in dmesg in case of some unrelated failure ..
->>>>> Why not only add sigid for critical paths when we are sure it will cause a chain of failure
->>>>> instead of these prints on every trivial command failure.
->>>>
->>>> Ops I miss this.
->>>>
->>>> I agree that we should not add SIGID for every minor or noisy failure. The intent is not to log every non-critical cases,
->>>>
->>>> but to capture important intermediate failures that can help explain the real root cause. If we log only the final critical
->>>>
->>>> failure, we may miss the earlier cases that actually caused the issue. That makes triage and postmortem harder, since
->>>>
->>>> we lose visibility into how the failure occurred. The idea is to use SIGID only for meaningful failure in key execution paths.
->>>>
->>>> Even when these failure are not fatal, they can provide valuable context, make debugging easier and reduce
->>>>
->>>> mean-time-to triage (MTTT).
->>>
->>>
->>> Suppose a user uses invalid entries for gpu health or counter management, won't we be polluting the dmesg
->>> logs with sig id and cper logs unnecessarily since these are not fatal.
->>
->> No, we should not emit SIGID/CPER for bad user input  or invalid query parameters in gpu health/counter management path.
-> 
-> But the system controller interface is same for all where you have added sig id logs. A failure in sysctrl_send_cmd or receive/send frames will be
-> displayed in general non fatal cases too. And it could be due to invalid request.
-> 
-> This is not a call chain that leads to a critical failure always. Need conclusion on this because one of my patch has a similar condition.
+This will not be called from multiple places. Will drop this check.
 
-we can discuss what to do in case of explicit error (failure) codes returned by the FW on specific commands, as it looks that unlike the GuC, such errors/failures could be caused by the invalid data provided by the user.
+Thanks,
+Badal
 
-but IMO if the FW sends corrupted frames, which I assume is a part of the low-level FW communication channel, or we can't send some random command to FW - isn't that a good indication that there is a problem with the FW communication that should be reported?
-
-> 
-> Riana
-> 
+>
+> But I prefer that you ensure this is absolutely called only once and
+> remove this check.
+>
+>> +
+>> +	ret = device_create_file(dev, &dev_attr_xe_amc_alert_reason);
+>> +	if (ret)
+>> +		goto failed;
+>> +
+>> +	xe->i2c->amc->sysfs_created = true;
+>> +failed:
+>> +	dev_err(dev, "Failed to create sysfs file for amc alert reason\n");
+>> +}
+>> +
+>>   static void xe_amc_work(struct work_struct *work)
+>>   {
+>>   	const struct amc_request *request = &amc_get_alert_reason;
+>> @@ -158,10 +209,16 @@ static void xe_amc_work(struct work_struct *work)
+>>   	case AMC_ALERT_THERMAL_TRIP:
+>>   	case AMC_ALERT_OOB_REQUEST:
+>>   	case AMC_ALERT_OOB_RESET:
+>> -	case AMC_ALERT_CATERR:
+>> +	case AMC_ALERT_CATERR: {
+>> +		struct xe_device *xe = i2c_client_to_xe_device(client);
+>> +
+>>   		dev_warn(amc->i2c->drm_dev, "AMC Alert: %s\n", amc_alert[alert_reason]);
+>> -		xe_device_declare_wedged(i2c_client_to_xe_device(client));
+>> +		amc->alert_reason = alert_reason;
+>> +		xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_VENDOR);
+>> +		xe_device_declare_wedged(xe);
+>> +		xe_create_amc_alert_sysfs(xe);
+>>   		break;
+>> +	}
+>>   	default:
+>>   		dev_warn(amc->i2c->drm_dev, "unknown AMC alert: %d\n", alert_reason);
+>>   		break;
+>> @@ -190,8 +247,12 @@ int xe_amc_init(struct xe_i2c *i2c)
+>>   
+>>   void xe_amc_exit(struct xe_i2c *i2c)
+>>   {
+>> +	struct xe_device *xe;
+>> +
+>>   	if (i2c->amc) {
+>>   		cancel_work_sync(&i2c->amc->work);
+>> +		xe = i2c_client_to_xe_device(i2c->client[XE_I2C_CLIENT_AMC]);
+>> +		xe_remove_amc_alert_sysfs(xe);
+>>   		kfree(i2c->amc);
+>>   	}
+>>   }
+>> -- 
+>> 2.54.0
 >>
->> These are usage errors, not real device or firmware failures.
->>
->>
->> Thanks,
->>
->> -/Mallesh
->>
->>>
->>> Thanks
->>> Riana
->>>
->>>
->>>>
->>>>
->>>> Thanks,
->>>>
->>>> -/Mallesh
->>>>
->>>>>
->>>>> Thanks
->>>>> Riana
->>>>>
->>>>>>
->>>>>>> How do these errors indicate the need for a resolution.
->>>>>>> Do we need it for all kmd logs with components or for errors that need a recovery or can be recoverable?
->>>>>>>
->>>>>>> Thanks
->>>>>>> Riana
->>>>>>>
->>>>>>>> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
->>>>>>>> ---
->>>>>>>>    drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 26 ++++++++++++-------------
->>>>>>>>    1 file changed, 13 insertions(+), 13 deletions(-)
->>>>>>>>
->>>>>>>> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
->>>>>>>> index e13eebaac1d0..ef847f0a8f2c 100644
->>>>>>>> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
->>>>>>>> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
->>>>>>>> @@ -11,6 +11,7 @@
->>>>>>>>      #include "regs/xe_sysctrl_regs.h"
->>>>>>>>    #include "xe_device.h"
->>>>>>>> +#include "xe_log.h"
->>>>>>>>    #include "xe_mmio.h"
->>>>>>>>    #include "xe_pm.h"
->>>>>>>>    #include "xe_printk.h"
->>>>>>>> @@ -34,15 +35,11 @@ struct xe_sysctrl_mailbox_msg_hdr {
->>>>>>>>    #define XE_SYSCTRL_HDR_RESULT(hdr) \
->>>>>>>>        FIELD_GET(SYSCTRL_HDR_RESULT_MASK, le32_to_cpu((hdr)->data))
->>>>>>>>    -static bool sysctrl_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
->>>>>>>> -                   unsigned int timeout_ms)
->>>>>>>> +static int sysctrl_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
->>>>>>>> +                  unsigned int timeout_ms)
->>>>>>>>    {
->>>>>>>> -    int ret;
->>>>>>>> -
->>>>>>>> -    ret = xe_mmio_wait32_not(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
->>>>>>>> +    return xe_mmio_wait32_not(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
->>>>>>>>                     timeout_ms * 1000, NULL, false);
->>>>>>>> -
->>>>>>>> -    return ret == 0;
->>>>>>>>    }
->>>>>>>>      static bool sysctrl_wait_bit_set(struct xe_sysctrl *sc, u32 bit_mask,
->>>>>>>> @@ -145,12 +142,14 @@ static int sysctrl_send_frames(struct xe_sysctrl *sc,
->>>>>>>>        struct xe_device *xe = sc_to_xe(sc);
->>>>>>>>        u32 ctrl_reg, total_frames, frame;
->>>>>>>>        size_t bytes_sent, frame_size;
->>>>>>>> +    int ret;
->>>>>>>>          total_frames = DIV_ROUND_UP(cmd_size, XE_SYSCTRL_MB_FRAME_SIZE);
->>>>>>>>    -    if (!sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms)) {
->>>>>>>> -        xe_err(xe, "sysctrl: Mailbox busy\n");
->>>>>>>> -        return -EBUSY;
->>>>>>>> +    ret = sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms);
->>>>>>>> +    if (ret) {
->>>>>>>> +        xe_log_err(xe, SYSCTRL, ret, "Mailbox busy\n");
->>>>>>>> +        return ret;
->>>>>>>>        }
->>>>>>>>          sc->phase_bit ^= 1;
->>>>>>>> @@ -173,10 +172,11 @@ static int sysctrl_send_frames(struct xe_sysctrl *sc,
->>>>>>>>              xe_mmio_write32(sc->mmio, SYSCTRL_MB_CTRL, ctrl_reg);
->>>>>>>>    -        if (!sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms)) {
->>>>>>>> -            xe_err(xe, "sysctrl: Frame %u acknowledgment timeout\n", frame);
->>>>>>>> +        ret = sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms);
->>>>>>>> +        if (ret) {
->>>>>>>> +            xe_log_err(xe, SYSCTRL, ret, "Frame %u acknowledgment timeout\n", frame);
->>>>>>>>                sc->phase_bit = 0;
->>>>>>>> -            return -ETIMEDOUT;
->>>>>>>> +            return ret;
->>>>>>>>            }
->>>>>>>>              bytes_sent += frame_size;
-
