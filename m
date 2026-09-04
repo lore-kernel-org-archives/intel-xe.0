@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13151C79F85
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 21:16:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F5A7C79F95
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 21:16:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9300A10FB4D;
-	Fri,  4 Sep 2026 21:16:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A30A310FB52;
+	Fri,  4 Sep 2026 21:16:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j1z5QDQ3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eXR3iVY5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB1A810FB3A
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 21:16:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C3FA10E42F
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 21:16:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788556581; x=1820092581;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=IR2ZvF/GoWfQY0oOEmPuRogtElr9FRFVvkoa/S2Nhjk=;
- b=j1z5QDQ3tgkfleebIuWeArFyiU0zRcSRhTD448H4P9vwgN1sU14P41I5
- UHRfO0/qxjgBf6hCj+h+OL3AtAgbmElH/mQ2807kEmeEVjLLdx9Z7BfRn
- 3J6pfg9NbC6EI1tFQC2OOeMmWS+lqIsbj2JYNzVZwy0kZ4Fn/q7XqofS/
- n6hvUUFm2fYAeQeOyo+lsxEl6tPFEsb5xYQDq/IePWFAxvYB6IawbnMh+
- pDAenSO9IJVEinUQKYkOedQCCcJSPDJtottBymIKibArz0TOuHUHkykLw
- DUyn3y1VRG2617YXAJA5jhiBLFiiKcuuxuYdK4sjsgQ7U/+vQ/iXNmaGf A==;
-X-CSE-ConnectionGUID: a9Jt4Ny2RlGAZMJFz9RaAw==
-X-CSE-MsgGUID: Hi2QNVM0TamQ8zq8GMbsgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11896"; a="89096806"
-X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="89096806"
+ t=1788556580; x=1820092580;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2WrntfyHUlEIvNwpTpvFGlvRSy3LwCKQfitVPyOL6Lc=;
+ b=eXR3iVY54D5FkdxbhkWOYb/65xpATYlorCDU6aE4SdEfWe2l1u623ipc
+ OH0KnjEBgouO6j9xR26t7/6LhmTFL3NiHwNBt+eDm/DMqaoti80YvUfdW
+ p8te2lf0Ax2rw9H7omJfts7gmTbny2Z55v6nFjZqtjftLn00HE+s3wXgi
+ aLEUGKN6lrqCDisLyPLAX2PeqvFlSk+hXg57DOgECrEsvsZzOdC19srqd
+ isfZz/0JfqoDUYodsz2tZDfXCie7L3+m/MT6eBP6bM3naih/Yq9Bp0m+A
+ ryyuy9zucv/4q4mY83HD4VfxIkGPO0O1rQuR3YAjXq8K46p7BqsqCJvqk g==;
+X-CSE-ConnectionGUID: Nzbplf95TzKhArkZwkrm4Q==
+X-CSE-MsgGUID: 156hUbd2RB6h2+dzFBzNlA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11896"; a="89096797"
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="89096797"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 14:16:20 -0700
-X-CSE-ConnectionGUID: x4mlnmHYSYyCSH37tB1H6g==
-X-CSE-MsgGUID: 0+bj0RhWSNGfZlVptgsLOA==
+ 04 Sep 2026 14:16:19 -0700
+X-CSE-ConnectionGUID: t7Yqf3+pTReM0ADWtA6UqQ==
+X-CSE-MsgGUID: 6Zlxk0nXQLCz2pcxnQ09mA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="267563427"
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="267563404"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 14:16:21 -0700
+ 04 Sep 2026 14:16:20 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 09/24] drm/xe: Add struct xe_pt_job_ops
-Date: Fri,  4 Sep 2026 14:15:58 -0700
-Message-Id: <20260904211613.3934307-10-matthew.brost@intel.com>
+Subject: [PATCH v6 00/24] CPU binds and ULLS on migration queue
+Date: Fri,  4 Sep 2026 14:15:49 -0700
+Message-Id: <20260904211613.3934307-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260904211613.3934307-1-matthew.brost@intel.com>
-References: <20260904211613.3934307-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,358 +64,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add struct xe_pt_job_ops, a dynamically refcounted object that contains
-the information required to issue a CPU bind via a job after the initial
-bind IOCTL returns.
+We now have data demonstrating the need for CPU binds and ULLS on the
+migration queue, based on results generated from [1].
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-10-matthew.brost@intel.com
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/xe/xe_migrate.c  |  10 +--
- drivers/gpu/drm/xe/xe_pt.c       | 136 +++++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_pt.h       |   4 +
- drivers/gpu/drm/xe/xe_pt_types.h |  27 ++++--
- drivers/gpu/drm/xe/xe_vm.c       |  10 +--
- 5 files changed, 152 insertions(+), 35 deletions(-)
+On BMG, measurements show that when the GPU is continuously processing
+faults, copy jobs run approximately 30–40µs faster (depending on the
+test case) with ULLS compared to traditional GuC submission with SLPC
+enabled on the migration queue. Startup from a cold GPU shows an even
+larger speedup. Given the critical nature of fault performance, ULLS
+appears to be a worthwhile feature.
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 68a0b05f56ec..217e526526e0 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -1875,7 +1875,7 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
- 	}
- 
- 	xe_migrate_update_pgtables_cpu_execute(vm, m->tile, ops,
--					       pt_update_ops->ops,
-+					       pt_update_ops->pt_job_ops->ops,
- 					       pt_update_ops->num_ops);
- 
- 	return dma_fence_get_stub();
-@@ -1902,7 +1902,7 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
- 	bool usm = is_migrate && xe->info.has_usm;
- 
- 	for (i = 0; i < pt_update_ops->num_ops; ++i) {
--		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[i];
-+		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->pt_job_ops->ops[i];
- 		struct xe_vm_pgtable_update *updates = pt_op->entries;
- 
- 		num_updates += pt_op->num_entries;
-@@ -1971,7 +1971,7 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
- 
- 			for (; i < pt_update_ops->num_ops; ++i) {
- 				struct xe_vm_pgtable_update_op *pt_op =
--					&pt_update_ops->ops[i];
-+					&pt_update_ops->pt_job_ops->ops[i];
- 				struct xe_vm_pgtable_update *updates = pt_op->entries;
- 
- 				for (; j < pt_op->num_entries; ++j, ++current_update, ++idx) {
-@@ -2008,7 +2008,7 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
- 			(page_ofs / sizeof(u64)) * XE_PAGE_SIZE;
- 		for (i = 0; i < pt_update_ops->num_ops; ++i) {
- 			struct xe_vm_pgtable_update_op *pt_op =
--				&pt_update_ops->ops[i];
-+				&pt_update_ops->pt_job_ops->ops[i];
- 			struct xe_vm_pgtable_update *updates = pt_op->entries;
- 
- 			for (j = 0; j < pt_op->num_entries; ++j) {
-@@ -2026,7 +2026,7 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
- 
- 		for (i = 0; i < pt_update_ops->num_ops; ++i) {
- 			struct xe_vm_pgtable_update_op *pt_op =
--				&pt_update_ops->ops[i];
-+				&pt_update_ops->pt_job_ops->ops[i];
- 			struct xe_vm_pgtable_update *updates = pt_op->entries;
- 
- 			for (j = 0; j < pt_op->num_entries; ++j)
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index e560f167fdf1..30127ebf1b60 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -206,6 +206,7 @@ unsigned int xe_pt_shift(unsigned int level)
-  */
- void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
- {
-+	bool added = false;
- 	int i;
- 
- 	if (!pt)
-@@ -213,7 +214,19 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
- 
- 	XE_WARN_ON(!list_empty(&pt->bo->ttm.base.gpuva.list));
- 	xe_bo_unpin(pt->bo);
--	xe_bo_put_deferred(pt->bo, deferred, NULL);
-+	xe_bo_put_deferred(pt->bo, deferred, &added);
-+	if (added) {
-+		xe_assert(pt->bo->vm->xe, !kref_read(&pt->bo->ttm.base.refcount));
-+
-+		/*
-+		 * We need the VM present until the BO is destroyed as it shares
-+		 * a dma-resv and BO destroy is async. Reinit BO refcount so
-+		 * xe_bo_put_async can be used when the PT job ops refcount goes
-+		 * to zero.
-+		 */
-+		xe_vm_get(pt->bo->vm);
-+		pt->bo->flags |= XE_BO_FLAG_PUT_VM_ASYNC;
-+	}
- 
- 	if (pt->level > 0 && pt->num_live) {
- 		struct xe_pt_dir *pt_dir = as_xe_pt_dir(pt);
-@@ -2081,13 +2094,13 @@ xe_pt_commit_prepare_unbind(struct xe_vma *vma,
- static struct xe_vm_pgtable_update_op *
- to_pt_op(struct xe_vm_pgtable_update_ops *pt_update_ops, u32 op_idx)
- {
--	return &pt_update_ops->ops[op_idx];
-+	return &pt_update_ops->pt_job_ops->ops[op_idx];
- }
- 
- static u32
- get_current_op(struct xe_vm_pgtable_update_ops *pt_update_ops)
- {
--	return pt_update_ops->current_op;
-+	return pt_update_ops->pt_job_ops->current_op;
- }
- 
- static struct xe_vm_pgtable_update_op *
-@@ -2099,7 +2112,7 @@ to_current_pt_op(struct xe_vm_pgtable_update_ops *pt_update_ops)
- static void
- incr_current_op(struct xe_vm_pgtable_update_ops *pt_update_ops)
- {
--	++pt_update_ops->current_op;
-+	++pt_update_ops->pt_job_ops->current_op;
- }
- 
- static void
-@@ -2473,8 +2486,7 @@ static int op_prepare(struct xe_vm *vm,
- static void
- xe_pt_update_ops_init(struct xe_vm_pgtable_update_ops *pt_update_ops)
- {
--	init_llist_head(&pt_update_ops->deferred);
--	pt_update_ops->current_op = 0;
-+	pt_update_ops->pt_job_ops->current_op = 0;
- 	pt_update_ops->start = ~0x0ull;
- 	pt_update_ops->last = 0x0ull;
- 	pt_update_ops->needs_svm_lock = false;
-@@ -2824,7 +2836,8 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
- 			to_pt_op(pt_update_ops, i);
- 
- 		xe_pt_commit(pt_op->vma, pt_op->entries,
--			     pt_op->num_entries, &pt_update_ops->deferred);
-+			     pt_op->num_entries,
-+			     &pt_update_ops->pt_job_ops->deferred);
- 		pt_op->vma = NULL;	/* skip in xe_pt_update_ops_abort */
- 	}
- 
-@@ -2912,19 +2925,8 @@ void xe_pt_update_ops_fini(struct xe_tile *tile, struct xe_vma_ops *vops)
- {
- 	struct xe_vm_pgtable_update_ops *pt_update_ops =
- 		&vops->pt_update_ops[tile->id];
--	int i;
- 
- 	xe_page_reclaim_entries_put(pt_update_ops->prl.entries);
--
--	lockdep_assert_held(&vops->vm->lock);
--	xe_vm_assert_held(vops->vm);
--
--	for (i = 0; i < pt_update_ops->current_op; ++i) {
--		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[i];
--
--		xe_pt_free_bind(pt_op->entries, pt_op->num_entries);
--	}
--	xe_bo_put_commit(&vops->pt_update_ops[tile->id].deferred);
- }
- 
- /**
-@@ -2961,3 +2963,101 @@ void xe_pt_update_ops_abort(struct xe_tile *tile, struct xe_vma_ops *vops)
- 
- 	xe_pt_update_ops_fini(tile, vops);
- }
-+
-+/**
-+ * xe_pt_job_ops_alloc() - Allocate PT job ops
-+ * @num_ops: Number of VM PT update ops
-+ *
-+ * Allocate PT job ops and internal array of VM PT update ops.
-+ *
-+ * Return: Pointer to PT job ops or NULL
-+ */
-+struct xe_pt_job_ops *xe_pt_job_ops_alloc(u32 num_ops)
-+{
-+	struct xe_pt_job_ops *pt_job_ops;
-+
-+	pt_job_ops = kmalloc_obj(*pt_job_ops);
-+	if (!pt_job_ops)
-+		return NULL;
-+
-+	pt_job_ops->ops = kvmalloc_array(num_ops, sizeof(*pt_job_ops->ops),
-+					 GFP_KERNEL);
-+	if (!pt_job_ops->ops) {
-+		kfree(pt_job_ops);
-+		return NULL;
-+	}
-+
-+	pt_job_ops->current_op = 0;
-+	kref_init(&pt_job_ops->refcount);
-+	init_llist_head(&pt_job_ops->deferred);
-+
-+	return pt_job_ops;
-+}
-+
-+/**
-+ * xe_pt_job_ops_get() - Get PT job ops
-+ * @pt_job_ops: PT job ops to get
-+ *
-+ * Take a reference to PT job ops
-+ *
-+ * Return: Pointer to PT job ops or NULL
-+ */
-+struct xe_pt_job_ops *xe_pt_job_ops_get(struct xe_pt_job_ops *pt_job_ops)
-+{
-+	if (pt_job_ops)
-+		kref_get(&pt_job_ops->refcount);
-+
-+	return pt_job_ops;
-+}
-+
-+static void xe_pt_update_ops_free(struct xe_vm_pgtable_update_op *pt_op,
-+				  u32 num_ops)
-+{
-+	u32 i;
-+
-+	for (i = 0; i < num_ops; ++i, ++pt_op)
-+		xe_pt_free_bind(pt_op->entries, pt_op->num_entries);
-+}
-+
-+static void xe_pt_job_ops_destroy(struct kref *ref)
-+{
-+	struct xe_pt_job_ops *pt_job_ops =
-+		container_of(ref, struct xe_pt_job_ops, refcount);
-+	struct llist_node *freed;
-+	struct xe_bo *bo, *next;
-+
-+	xe_pt_update_ops_free(pt_job_ops->ops,
-+			      pt_job_ops->current_op);
-+
-+	freed = llist_del_all(&pt_job_ops->deferred);
-+	if (freed) {
-+		llist_for_each_entry_safe(bo, next, freed, freed) {
-+			struct xe_bo_dev *bo_device =
-+				&xe_bo_device(bo)->bo_device;
-+			/*
-+			 * If called from run_job, we are in the dma-fencing
-+			 * path and cannot take dma-resv locks so use an async
-+			 * put.
-+			 */
-+			if (llist_add(&bo->freed, &bo_device->async_list))
-+				schedule_work(&bo_device->async_free);
-+		}
-+	}
-+
-+	kvfree(pt_job_ops->ops);
-+	kfree(pt_job_ops);
-+}
-+
-+/**
-+ * xe_pt_job_ops_put() - Put PT job ops
-+ * @pt_job_ops: PT job ops to put
-+ *
-+ * Drop a reference to PT job ops
-+ */
-+void xe_pt_job_ops_put(struct xe_pt_job_ops *pt_job_ops)
-+{
-+	if (!pt_job_ops)
-+		return;
-+
-+	kref_put(&pt_job_ops->refcount, xe_pt_job_ops_destroy);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
-index 4daeebaab5a1..5faddb8e700c 100644
---- a/drivers/gpu/drm/xe/xe_pt.h
-+++ b/drivers/gpu/drm/xe/xe_pt.h
-@@ -49,4 +49,8 @@ bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma);
- bool xe_pt_zap_ptes_range(struct xe_tile *tile, struct xe_vm *vm,
- 			  struct xe_svm_range *range);
- 
-+struct xe_pt_job_ops *xe_pt_job_ops_alloc(u32 num_ops);
-+struct xe_pt_job_ops *xe_pt_job_ops_get(struct xe_pt_job_ops *pt_job_ops);
-+void xe_pt_job_ops_put(struct xe_pt_job_ops *pt_job_ops);
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
-index a7d1bb708b69..39c5b89ce9b7 100644
---- a/drivers/gpu/drm/xe/xe_pt_types.h
-+++ b/drivers/gpu/drm/xe/xe_pt_types.h
-@@ -91,12 +91,29 @@ struct xe_vm_pgtable_update_op {
- 	bool rebind;
- };
- 
-+/**
-+ * struct xe_pt_job_ops - Page-table update operations (dynamically allocated)
-+ *
-+ * This is the portion of &struct xe_vma_ops and
-+ * &struct xe_vm_pgtable_update_ops that is dynamically allocated, as it
-+ * must remain valid until the associated bind job completes. A reference
-+ * count controls its lifetime.
-+ */
-+struct xe_pt_job_ops {
-+	/** @current_op: current page-table update operation */
-+	u32 current_op;
-+	/** @refcount: reference count */
-+	struct kref refcount;
-+	/** @deferred: list of deferred PT entries to destroy */
-+	struct llist_head deferred;
-+	/** @ops: page-table update operations */
-+	struct xe_vm_pgtable_update_op *ops;
-+};
-+
- /** struct xe_vm_pgtable_update_ops: page table update operations */
- struct xe_vm_pgtable_update_ops {
--	/** @ops: operations */
--	struct xe_vm_pgtable_update_op *ops;
--	/** @deferred: deferred list to destroy PT entries */
--	struct llist_head deferred;
-+	/** @pt_job_ops: PT update operations dynamic allocation*/
-+	struct xe_pt_job_ops *pt_job_ops;
- 	/** @q: exec queue for PT operations */
- 	struct xe_exec_queue *q;
- 	/** @prl: embedded page reclaim list */
-@@ -107,8 +124,6 @@ struct xe_vm_pgtable_update_ops {
- 	u64 last;
- 	/** @num_ops: number of operations */
- 	u32 num_ops;
--	/** @current_op: current operations */
--	u32 current_op;
- 	/** @needs_svm_lock: Needs SVM lock */
- 	bool needs_svm_lock;
- 	/** @needs_invalidation: Needs invalidation */
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 753a5fc55baa..2737bd25f39a 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -681,11 +681,9 @@ static int xe_vma_ops_alloc(struct xe_vma_ops *vops, bool array_of_binds)
- 		if (!vops->pt_update_ops[i].num_ops)
- 			continue;
- 
--		vops->pt_update_ops[i].ops =
--			kmalloc_objs(*vops->pt_update_ops[i].ops,
--				     vops->pt_update_ops[i].num_ops,
--				     GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
--		if (!vops->pt_update_ops[i].ops)
-+		vops->pt_update_ops[i].pt_job_ops =
-+			xe_pt_job_ops_alloc(vops->pt_update_ops[i].num_ops);
-+		if (!vops->pt_update_ops[i].pt_job_ops)
- 			return array_of_binds ? -ENOBUFS : -ENOMEM;
- 	}
- 
-@@ -732,7 +730,7 @@ static void xe_vma_ops_fini(struct xe_vma_ops *vops)
- 	xe_vma_svm_prefetch_ops_fini(vops);
- 
- 	for (i = 0; i < XE_MAX_TILES_PER_DEVICE; ++i)
--		kfree(vops->pt_update_ops[i].ops);
-+		xe_pt_job_ops_put(vops->pt_update_ops[i].pt_job_ops);
- }
- 
- static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask, int inc_val)
+In addition to driver telemetry, UMD compute benchmarks consistently
+show multiple GB/s improvement in pagefault benchmarks with ULLS enabled.
+
+ULLS will consume more power (not yet measured) due to a continuously
+running batch on the paging engine. However, compute UMDs already do
+this on engines exposed to users, so this seems like a worthwhile
+tradeoff. To mitigate power concerns, ULLS will exit after a period of
+time in which no faults have been processed.
+
+CPU binds are required for ULLS to function, as the migration queue
+needs exclusive access to the paging hardware engine. Thus, CPU binds
+are included here.
+
+Beyond being a requirement for ULLS, CPU binds should also reduce
+VM-bind latency, provide clearer multi-tile and TLB-invalidation
+layering, reduce pressure on GuC during fault storms as it is bypassed,
+and decouple kernel binds from unrelated copy/clear jobs—especially
+beneficial when faults are serviced in parallel. In a parallel-faulting
+test case, average bind time was reduced by approximately 15µs. In the
+worst case, 2MB copy time (~60–140µs) × (number of pagefault threads −
+1) of latency would otherwise be added to a single fault. Reducing this
+latency increases overall throughput of the fault handler.
+
+This series can be merged in phases:
+
+Phase 1: CPU binds (patches 1–13)
+Phase 2: CPU-bind components and multi-tile relayers (patches 14–17)
+Phase 3: ULLS on the migration execution queue (patches 18–25)
+
+v2:
+ - Use delayed worker to exit ULLS mode in an effort to save on power
+ - Various other cleanups
+v3:
+ - CPU bind component, multi-tile relayer
+ - Split CPU bind patches in many small patches
+v4:
+ - Rebase, address feedback, add ULLS doc patch
+v5:
+ - Address Sashiko feedback, fix checkpatch issues
+v6:
+ - Reworked ULLS to drop KMD MMIO ring tail write, move this to ring
+   instruction(s)
+ - Several other small cleanups based on Sashiko feedback
+
+Matt
+
+[1] https://patchwork.freedesktop.org/series/149811/
+
+Matthew Brost (24):
+  drm/xe: Drop struct xe_migrate_pt_update argument from populate/clear
+    vfuns
+  drm/xe: Add xe_migrate_update_pgtables_cpu_execute helper
+  drm/xe: Decouple exec queue idle check from LRC
+  drm/xe: Add job count to GuC exec queue snapshot
+  drm/xe: Update xe_bo_put_deferred arguments to include writeback flag
+  drm/xe: Add XE_BO_FLAG_PUT_VM_ASYNC
+  drm/xe: Update scheduler job layer to support PT jobs
+  drm/xe: Add helpers to access PT ops
+  drm/xe: Add struct xe_pt_job_ops
+  drm/xe: Update GuC submission backend to run PT jobs
+  drm/xe: Store level in struct xe_vm_pgtable_update
+  drm/xe: Don't use migrate exec queue for page fault binds
+  drm/xe: Enable CPU binds for jobs
+  drm/xe: Remove unused arguments from xe_migrate_pt_update_ops
+  drm/xe: Make bind queues operate cross-tile
+  drm/xe: Add CPU bind layer
+  drm/xe: Add device flag to enable PT mirroring across tiles
+  drm/xe: Add ULLS support to LRC
+  drm/xe: Add ULLS migration job support to migration layer
+  drm/xe: Add ULLS migration job support to ring ops
+  drm/xe: Add ULLS migration job support to GuC submission
+  drm/xe: Enter ULLS for migration jobs upon page fault or SVM prefetch
+  drm/xe: Add modparam to enable / disable ULLS on migrate queue
+  drm/xe: Document ULLS for migration jobs
+
+ Documentation/gpu/xe/xe_migrate.rst      |   3 +
+ drivers/gpu/drm/xe/Makefile              |   1 +
+ drivers/gpu/drm/xe/xe_bo.c               |   8 +-
+ drivers/gpu/drm/xe/xe_bo.h               |  11 +-
+ drivers/gpu/drm/xe/xe_bo_types.h         |   2 -
+ drivers/gpu/drm/xe/xe_cpu_bind.c         | 298 +++++++++
+ drivers/gpu/drm/xe/xe_cpu_bind.h         | 118 ++++
+ drivers/gpu/drm/xe/xe_debugfs.c          |   1 +
+ drivers/gpu/drm/xe/xe_defaults.h         |   1 +
+ drivers/gpu/drm/xe/xe_device.c           |   6 +
+ drivers/gpu/drm/xe/xe_device_types.h     |  11 +
+ drivers/gpu/drm/xe/xe_drm_client.c       |   2 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 163 ++---
+ drivers/gpu/drm/xe/xe_exec_queue.h       |  16 +-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  20 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c       |  79 ++-
+ drivers/gpu/drm/xe/xe_guc_submit_types.h |   2 +
+ drivers/gpu/drm/xe/xe_lrc.c              |  73 +++
+ drivers/gpu/drm/xe/xe_lrc.h              |   4 +
+ drivers/gpu/drm/xe/xe_lrc_types.h        |   4 +
+ drivers/gpu/drm/xe/xe_migrate.c          | 759 ++++++++++------------
+ drivers/gpu/drm/xe/xe_migrate.h          |  95 +--
+ drivers/gpu/drm/xe/xe_module.c           |   4 +
+ drivers/gpu/drm/xe/xe_module.h           |   1 +
+ drivers/gpu/drm/xe/xe_pagefault.c        |   3 +
+ drivers/gpu/drm/xe/xe_pci.c              |   2 +
+ drivers/gpu/drm/xe/xe_pci_types.h        |   3 +-
+ drivers/gpu/drm/xe/xe_pt.c               | 785 ++++++++++++++---------
+ drivers/gpu/drm/xe/xe_pt.h               |  12 +-
+ drivers/gpu/drm/xe/xe_pt_types.h         |  49 +-
+ drivers/gpu/drm/xe/xe_ring_ops.c         |  86 +++
+ drivers/gpu/drm/xe/xe_ring_ops_types.h   |  24 +
+ drivers/gpu/drm/xe/xe_sched_job.c        | 103 ++-
+ drivers/gpu/drm/xe/xe_sched_job.h        |  56 ++
+ drivers/gpu/drm/xe/xe_sched_job_types.h  |  49 +-
+ drivers/gpu/drm/xe/xe_sync.c             |  20 +-
+ drivers/gpu/drm/xe/xe_tlb_inval_job.c    |  28 +-
+ drivers/gpu/drm/xe/xe_tlb_inval_job.h    |   4 +-
+ drivers/gpu/drm/xe/xe_trace.h            |   2 +-
+ drivers/gpu/drm/xe/xe_vm.c               | 240 +++----
+ drivers/gpu/drm/xe/xe_vm.h               |   3 +
+ drivers/gpu/drm/xe/xe_vm_types.h         |  12 +-
+ 42 files changed, 1956 insertions(+), 1207 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_cpu_bind.c
+ create mode 100644 drivers/gpu/drm/xe/xe_cpu_bind.h
+
 -- 
 2.34.1
 
