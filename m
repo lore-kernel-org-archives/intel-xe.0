@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A97BC61DD3
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 02:48:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96377C61DD3
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 02:49:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFC0110E0EC;
-	Fri,  4 Sep 2026 02:48:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EB7710E0EC;
+	Fri,  4 Sep 2026 02:49:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jxGWUAHX";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DQOk0Z0B";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0805610E0EC
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 02:48:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 488B910E0EC
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 02:49:36 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 50A5360A6B;
- Fri,  4 Sep 2026 02:48:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB44B1F00A3F;
- Fri,  4 Sep 2026 02:48:32 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 8F00660234;
+ Fri,  4 Sep 2026 02:49:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A7D71F000E9;
+ Fri,  4 Sep 2026 02:49:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788490113;
- bh=yTt3FC1eksqWYQrQrPgOaCG9khrPmsaFzBCAtt2J50I=;
+ s=k20260515; t=1788490175;
+ bh=d7bp45zcYB4+mXvuR3xw9xjE61QtMqrtdI1Su0UDPeI=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=jxGWUAHX/Tr7fQn4G8bNTgiCvtYIA35nJaUe2qrfmRQu6xIQSS9CtZyo73c2p7Dq2
- CpX0ZvEKHSYFu2auCFG780CyOvvc0JElAacX/8LkF6I8sf6XidVZqwGOmYlC6PY7Mg
- MEVvxPWSjRfWqXqDb6eNrT7Juj2EPD1OBlIzlL65mZ1pIOONIMUF/8gZSuieTwuhMq
- Oq6lwvD5d2Jhg5xDzF5yXpHSbuLDZbCPQT0iK24278i9lCMEAVyNSXeDM5jY8ryQB4
- xRc9EpVBjAedexuPwTkSEvI28TsMaUikj/OHjI/fcQYiW12JTtFz+r9SeWQ0kUJvpQ
- QywXl12rm/vOQ==
+ b=DQOk0Z0B7+543UR1ZeoZ53SyUzzvQHlC0jBT7t4Xr3ZODKdWn98Wk0v3XRsanLUMQ
+ 6R4Ojr2LW98Rm5j2zjEGI7ei2Y/lhMI94l7H3poXSOxUqzN8Ln+EyjHvAkivL4NcFC
+ LRYff/VQEIz7y8JYRd3Qrk/xbIChueRlGH/RA7srzdYDb2bsN2wmXTqpMCNytqnaSa
+ +ZJhrmRECMzff0m1FHK5yyRxWeOWobz3vsFBMYwkELbbkdI5Byyl7eqSwJJvvlGY6e
+ 3zgzPT99sztlXrSVY3Mr1hiZa/SrjTxtqrl0sku+2YkqXI4PVONbbgkFDVpWAx12zv
+ 4Aqex9jU5kjqA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 09/25] drm/xe: Add struct xe_pt_job_ops
+Subject: Re: [PATCH v5 22/25] drm/xe: Add ULLS migration job support to GuC
+ submission
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260904022207.3490018-10-matthew.brost@intel.com>
+In-Reply-To: <20260904022207.3490018-23-matthew.brost@intel.com>
 References: <20260904022207.3490018-1-matthew.brost@intel.com>
- <20260904022207.3490018-10-matthew.brost@intel.com>
+ <20260904022207.3490018-23-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 04 Sep 2026 02:48:32 +0000
-Message-Id: <20260904024832.DB44B1F00A3F@smtp.kernel.org>
+Date: Fri, 04 Sep 2026 02:49:34 +0000
+Message-Id: <20260904024935.1A7D71F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,63 +59,67 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [Critical] Ignored return value of xe_pt_walk_shared() in xe_pt_stage_unb=
-ind() can cause partial unbinds leading to device memory Use-After-Free.
+- [High] Missing MMIO readback to flush the posted write to RING_TAIL befor=
+e signaling the ULLS semaphore in memory.
 --
 
-commit becaaccdc6df0bb083fdb6279921f5ee714da885
+commit 454390e5dedb020c4422d2a8b279ed19fa3eb789
 Author: Matthew Brost <matthew.brost@intel.com>
 
-drm/xe: Add struct xe_pt_job_ops
+drm/xe: Add ULLS migration job support to GuC submission
 
-Add struct xe_pt_job_ops, a dynamically refcounted object that contains
-the information required to issue a CPU bind via a job after the initial
-bind IOCTL returns.
+This commit adds ULLS migration job support to the GuC submission backend.
+It updates the migration queue max jobs, directly sets the hardware engine
+tail via a MMIO write for ULLS jobs, and sets the ULLS semaphore for the
+current job releasing the last job.
 
-Link: https://patch.msgid.link/20260228013501.106680-10-matthew.brost@intel=
+Link: https://patch.msgid.link/20260228013501.106680-24-matthew.brost@intel=
 .com
 
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index e560f167fdf1b..30127ebf1b605 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
+uc_submit.c
+> index dcb4b8a4f3b78..1578d80b01b82 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -1207,6 +1207,11 @@ static void submit_exec_queue(struct xe_exec_queue=
+ *q, struct xe_sched_job *job)
+>  	if (exec_queue_suspended(q))
+>  		return;
+> =20
+> +	if (job->is_ulls && !job->is_ulls_first) {
+> +		xe_hw_engine_write_ring_tail(q->hwe, lrc->ring.tail);
+> +		xe_lrc_set_ulls_semaphore(lrc, xe_sched_job_lrc_seqno(job));
 
-[ ... ]
+[Severity: High]
+Does this sequence miss an MMIO readback to flush the posted write?
 
-> @@ -2081,13 +2094,13 @@ xe_pt_commit_prepare_unbind(struct xe_vma *vma,
+A posted MMIO write is issued to the hardware engine's RING_TAIL via
+xe_hw_engine_write_ring_tail(), and is immediately followed by a memory wri=
+te
+to signal the semaphore in xe_lrc_set_ulls_semaphore(). There is no
+intermediate MMIO readback to flush the posted write.
 
-[Severity: Critical]
-This is a pre-existing issue, but is it safe to ignore the return value of
-xe_pt_walk_shared() in xe_pt_stage_unbind() just above this diff?
+If the CS wakes up from the semaphore wait before the MMIO RING_TAIL write
+arrives, it can observe HEAD =3D=3D TAIL, assume the ring is empty, and go =
+idle.
+The context is then switched out. When the delayed MMIO write eventually
+arrives, it hits an idle engine (or worse, a different context), failing to
+execute the submitted ULLS job and hanging the migration queue.
 
-If memory allocation fails during VMA unbind, the page table walk is
-prematurely aborted. The function casts the error to (void) and returns the
-count of successfully processed entries:
+Because xe_migrate_ulls_exit would then hang indefinitely waiting for the
+unexecuted job's fence, and the migration queue handles GPU page faults and
+SVM prefetches, this can hang workloads utilizing SVM.
 
-drivers/gpu/drm/xe/xe_pt.c:xe_pt_stage_unbind() {
-    ...
-	(void)xe_pt_walk_shared(&pt->base, pt->level, start, end,
-				&xe_walk.base);
-    ...
-}
+Does this violate PCIe ordering requirements for flushing posted writes bef=
+ore
+dependent memory writes?
 
-If the caller proceeds to unbind only that subset of PTEs, does this allow
-the physical memory backing the VMA to be freed and reallocated to another
-process while the GPU retains a valid PTE mapping to it?
-
-If an unprivileged user triggers this by allocating and unmapping memory
-while intentionally applying memory pressure to force an allocation failure,
-can this result in a use-after-free and memory corruption?
-
->  static struct xe_vm_pgtable_update_op *
->  to_pt_op(struct xe_vm_pgtable_update_ops *pt_update_ops, u32 op_idx)
->  {
-> -	return &pt_update_ops->ops[op_idx];
-> +	return &pt_update_ops->pt_job_ops->ops[op_idx];
->  }
+> +	}
+> +
+>  	if (!exec_queue_enabled(q)) {
+>  		action[len++] =3D XE_GUC_ACTION_SCHED_CONTEXT_MODE_SET;
+>  		action[len++] =3D q->guc->id;
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260904022207.3490=
-018-1-matthew.brost@intel.com?part=3D9
+018-1-matthew.brost@intel.com?part=3D22
