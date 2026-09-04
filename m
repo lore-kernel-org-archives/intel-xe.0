@@ -4,58 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2359C79F82
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 18:25:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF11AC624D3
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 18:42:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 671AB10FAF8;
-	Fri,  4 Sep 2026 18:25:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99D9E10E55D;
+	Fri,  4 Sep 2026 18:42:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oC+lOhtF";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="gVSXk+U1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 991A210E57C
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 18:25:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788546308; x=1820082308;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=oLSU59ScGc4fReM/vHKENeNZ64rIz08b847IWNPXf7Y=;
- b=oC+lOhtFFEOTZ5KegOo1chFzVnKLuB/oQM9TPpRt2CD4IUWjcoJiihtS
- kQEUjluGdWwOK8n/E+UCsPOZ67hJVWZdABONyX9diICwAVunR9PzfR7vx
- ef3OErOwOgZQ9M1GqHHx5hdCOnyCJS6vSpaqfmD9PaOdVYv8tZfp6HJwt
- NHJxZRZJW08SxToxCcSjMFkOjKs12b9fqGXu3taUZf9idxZnfIKZEILp6
- njwN64TQ4AZHECxXeCmL8E45pHhKwJHChLBzTwC8XmrtCdISwKrq34yfd
- pjrg7ST2+87WvU13U2R5udtRwrtM6AxUwXKwYkuGaAAUoOaIus/UY3Rv/ A==;
-X-CSE-ConnectionGUID: a11IUozrTPaMqNplwbtNfA==
-X-CSE-MsgGUID: l/D7le2sT8SSERWURjFD1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11896"; a="88932215"
-X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="88932215"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 11:25:07 -0700
-X-CSE-ConnectionGUID: 5/l+zj68T3WbldTBMYemRA==
-X-CSE-MsgGUID: 2YN0gJcYTaGmuC+bWLkCAg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="294992477"
-Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 11:25:07 -0700
-From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
- hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
- rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
- airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
- anoop.c.vijay@intel.com, badal.nilawar@intel.com,
- matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
-Subject: [PATCH v6 07/18] drm/xe/vsec: Correct locking order
-Date: Fri,  4 Sep 2026 11:24:57 -0700
-Message-ID: <20260904182451.1164868-27-michael.j.ruhl@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260904182451.1164868-20-michael.j.ruhl@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB3FB10E55D
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 18:42:16 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 7A08841A38;
+ Fri,  4 Sep 2026 18:42:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AFCE1F00A3D;
+ Fri,  4 Sep 2026 18:42:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788547336;
+ bh=Gg9G3RR4CEe01KY6PZhP1NJq7zFjAEFDFBGjYG/FQj8=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=gVSXk+U1T4Jt+R39Uua8xx2ZEabuU5JfiVj/DdZgoNfKrTWF3GBpy9pWj63mnf6UH
+ Jwuqd76NaunhE6yL3wX9cDPH/ZLW92AtgxcMC13pC/wvcoCYgV2EHwmweLaoPM06oC
+ S+6MQw+TweG/E/nFoIzIozdvCbjOqTOE2MUJRX0ivFviS4c6R4KkgPhSGjUiwa/Tvh
+ BXICSg0LMITfwP9o9wf2O7bcx8IKKBz93Yn6vJNbZZi5IIqB+8IaHLxjyU7b5wpDhJ
+ f1HYrLt7IvCIv8BXLeKIrfYQ6Do3zX8sZeYX4PP5Q2T0DRLcqMnBlqK7iYDdgtSRWo
+ FRGx8uv55ikyw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 05/18] platform/x86/intel/pmt: Do not remap when
+ using callbacks
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260904182451.1164868-25-michael.j.ruhl@intel.com>
 References: <20260904182451.1164868-20-michael.j.ruhl@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+ <20260904182451.1164868-25-michael.j.ruhl@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 04 Sep 2026 18:42:15 +0000
+Message-Id: <20260904184216.3AFCE1F00A3D@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,45 +53,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Xe locking order is power state first, and then local locks.
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [High] NULL pointer dereference in `pmt_telem_read32()` for callback-mana=
+ged endpoints.
+- [High] Resource access control bypass via sysfs `mmap` for callback-manag=
+ed endpoints.
+- [Medium] Application Energy Telemetry (AET) integration silently fails fo=
+r callback-managed endpoints.
+--
 
-Reorder locking to correct usage.
-Use explicit functions because of multiple locks.
+commit 4b5eaf240c4891c9b29025f06df395bf25b62269
+Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
----
- drivers/gpu/drm/xe/xe_vsec.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+platform/x86/intel/pmt: Do not remap when using callbacks
 
-diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index 71bc359b2ad1..dd7723ba6c1c 100644
---- a/drivers/gpu/drm/xe/xe_vsec.c
-+++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -158,16 +158,19 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
- 
- 	telem_addr += offset + user_offset;
- 
--	guard(mutex)(&xe->pmt.lock);
--
- 	/* indicate that we are not at an appropriate power level */
- 	if (!xe_pm_runtime_get_if_active(xe))
- 		return -ENODATA;
- 
-+	mutex_lock(&xe->pmt.lock);
-+
- 	/* set SoC re-mapper index register based on GUID memory region */
- 	xe->soc_remapper.set_telem_region(xe, mem_region);
- 
- 	memcpy_fromio(data, telem_addr, count);
-+
-+	mutex_unlock(&xe->pmt.lock);
-+
- 	xe_pm_runtime_put(xe);
- 
- 	return count;
--- 
-2.43.0
+A callback indicates that the parent driver is responsible for accessing
+the data area. Creating a PMT memory remap is redundant. If a read_telem
+callback has been provided, do not create a remap.
 
+> diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x8=
+6/intel/pmt/class.c
+> index 402d51df834a6..1c7a372b4fc42 100644
+> --- a/drivers/platform/x86/intel/pmt/class.c
+> +++ b/drivers/platform/x86/intel/pmt/class.c
+[ ... ]
+> @@ -403,14 +403,19 @@ static int intel_pmt_dev_register(struct intel_pmt_=
+entry *entry,
+>  	if (!entry->size)
+>  		return 0;
+> =20
+> -	res.start =3D entry->base_addr;
+> -	res.end =3D res.start + entry->size - 1;
+> -	res.flags =3D IORESOURCE_MEM;
+> +	/*
+> +	 * The read_telem callback is responsible for this mapping, and may have
+> +	 * different requirements for use. If the callback is present do not
+> +	 * create the map.
+> +	 */
+> +	if (!(entry->cb && entry->cb->read_telem)) {
+> +		struct resource res =3D DEFINE_RES_MEM(entry->base_addr, entry->size);
+> =20
+> -	entry->base =3D devm_ioremap_resource(dev, &res);
+> -	if (IS_ERR(entry->base)) {
+> -		ret =3D PTR_ERR(entry->base);
+> -		goto fail_ioremap;
+> +		entry->base =3D devm_ioremap_resource(dev, &res);
+> +		if (IS_ERR(entry->base)) {
+> +			ret =3D PTR_ERR(entry->base);
+> +			goto fail_ioremap;
+> +		}
+>  	}
+
+[Severity: High]
+Does leaving entry->base unmapped cause a NULL pointer dereference in
+pmt_telem_read32()?
+
+Because entry->base is intentionally left unmapped (NULL) for callback-mana=
+ged
+devices, any invocation of pmt_telem_read32() on such a device will
+unconditionally dereference ep->base:
+
+drivers/platform/x86/intel/pmt/telemetry.c:pmt_telem_read32() {
+    ...
+    memcpy_fromio(data, ep->base + offset, NUM_BYTES_DWORD(count));
+    ...
+}
+
+[Severity: High]
+Does unconditionally registering intel_pmt_mmap() in this function allow
+userspace to bypass the device-specific callback requirements?
+
+If a callback is required for safe access, the mmap handler still directly =
+maps
+the physical address to userspace:
+
+drivers/platform/x86/intel/pmt/class.c:intel_pmt_mmap() {
+    ...
+	if (io_remap_pfn_range(vma, vma->vm_start, pfn,
+		vsize, vma->vm_page_prot))
+		return -EAGAIN;
+    ...
+}
+
+Because entry->pmt_bin_attr.mmap =3D intel_pmt_mmap; is unconditionally set=
+ a
+few lines below, this exposes a lockless bypass to userspace for hardware t=
+hat
+explicitly requires callback synchronization.
+
+[Severity: Medium]
+Will this silently break Application Energy Telemetry (AET) integration for
+callback-managed endpoints?
+
+During runtime reads, the AET driver expects the region address to be mappe=
+d,
+but since it is now NULL, it skips all regions without emitting errors:
+
+arch/x86/kernel/cpu/resctrl/intel_aet.c:intel_aet_read_event() {
+    ...
+	for (int i =3D 0; i < e->pfg->count; i++) {
+		if (!e->pfg->regions[i].addr)
+			continue;
+        ...
+		evtcount =3D readq(e->pfg->regions[i].addr + idx * sizeof(u64));
+    ...
+}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260904182451.1164=
+868-20-michael.j.ruhl@intel.com?part=3D5
