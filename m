@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4269C79F87
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 15:49:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C25BC624DE
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 15:49:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 758CB10E130;
-	Fri,  4 Sep 2026 15:49:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B714D10E1E9;
+	Fri,  4 Sep 2026 15:49:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NCWfUTVQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M4L8gnvp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FFA410E130
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 15:49:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04B4A10E1E9
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 15:49:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788536961; x=1820072961;
+ t=1788536964; x=1820072964;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=U5Kjdce/Lkuph7rZPQNaAr6XgiB3OnNAiOXvHGDxGXE=;
- b=NCWfUTVQ8NUF8k/hZS+66B1ir6BGw2Tfd6DqakzKJEfw0C9VC/HupW5O
- nVRmpD3/Vh/G/Av9U+otFIXw/kqDIaj1VIHXJ0EH3MO6NRifWb1nmdONm
- DGf7x2XHRs/SCU0dG0sQzisLCqUavsRnwHACaifBX9XRQk0Qh2+zlBwRx
- 9mfgOfiCbxqQLtrIyrnn6k4/qqfRyiYmpOun6VY209YX7VLGq5oKVkhwU
- u7pnhx/vCU4KIJvtIeGh7nqu+H8q/A81QYBqgAnD7VXEYgoKKXVfH4Z1P
- 6XJNJgKOz485mQ3igDvLWSwyP2/bRzBRIHXdRuMpW2PDG1yVWVc5GlKDa g==;
-X-CSE-ConnectionGUID: ZKnHCtgdSjCw/uY5NU+lvA==
-X-CSE-MsgGUID: NiQRXAARTyCjk8+QcEPipw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="100563160"
-X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="100563160"
+ bh=V1+H82Lg5wz1lo8H9yv1pWBil9n3Ip0HuXSfu93BSiM=;
+ b=M4L8gnvp+HX8jEoXMcR6CMPu6J4XUkFZBNFLkYiElxXCDpbQi/1Yrp9L
+ JEO9mbRKJDVYI6Y55Wp+A8BbcYyR9EMLp5AoN6ehKOzixXyaLNS1HVvnV
+ sX7OO8pJBnNWTxL8LXTNfHt7/GP9vz0K7iF+j0fj83yyPxt+sKI2K92Ni
+ OZBQjnNIBZV/Wa5Rx5E/fFa11Kqmw2tNeJmbcs70Y0GTcxyYnfmlT7QRi
+ /pwkTGnRvRsGEaatlA4dA01mbTQBDtX3SxY90RQP1iVPXXVCZeWViioWw
+ YMJQmz89QqKPbHzGgwzEdul4qU6besWB4cTTXKd2s12w6TB6m+dqAcNA7 Q==;
+X-CSE-ConnectionGUID: WVtjEfOdQtanrMGQ7nyA+A==
+X-CSE-MsgGUID: bYQ4BkMEQjCS5pvA0x0K1g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="100563162"
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="100563162"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 08:49:21 -0700
-X-CSE-ConnectionGUID: Nai3N/mYT16Z47KuYncDSg==
-X-CSE-MsgGUID: 7i2paAR8SK+GVLNezYjiAA==
+ 04 Sep 2026 08:49:23 -0700
+X-CSE-ConnectionGUID: Kj5v7kStQTmFmyYeeUT0Ng==
+X-CSE-MsgGUID: JFHTjyjhRPqivKz9tEouSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="263871885"
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="263871895"
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 08:49:18 -0700
+ 04 Sep 2026 08:49:21 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com, raag.jadav@intel.com,
  riana.tauro@intel.com, mallesh.koujalagi@intel.com,
  aravind.iddamsetty@intel.com, heikki.krogerus@linux.intel.com,
  himal.prasad.ghimiray@intel.com
-Subject: [PATCH 1/2] drm/xe/i2c: Expose AMC Alert reason sysfs
-Date: Fri,  4 Sep 2026 21:36:10 +0530
-Message-ID: <20260904160608.2004174-5-badal.nilawar@intel.com>
+Subject: [PATCH 2/2] drm/xe/cri: Expose device UUID through sysfs
+Date: Fri,  4 Sep 2026 21:36:11 +0530
+Message-ID: <20260904160608.2004174-6-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260904160608.2004174-4-badal.nilawar@intel.com>
 References: <20260904160608.2004174-4-badal.nilawar@intel.com>
@@ -69,172 +69,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-AMC raises an SMBUS alert before performing a power removal or
-power-cycle operation. The xe driver then places the device into
-vendor-specific wedge mode until the recovery is performed.
-
-Expose a read-only xe_amc_alert_reason sysfs attribute to help users
-identify the required recovery action.
+Expose a read-only sysfs attribute, device_uuid, that reports the
+GPU's unique hardware identifier.
 
 Assisted-by: Claude:claude-opus-4.8
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
-v2:
- - Created sysfs during i2c probe time
- - Fix Documentation (Rodrigo)
----
- .../ABI/testing/sysfs-driver-intel-xe-amc     | 21 +++++++
- drivers/gpu/drm/xe/xe_amc.c                   | 61 ++++++++++++++++++-
- 2 files changed, 79 insertions(+), 3 deletions(-)
- create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-amc
+ .../ABI/testing/sysfs-driver-intel-xe-gpu     | 10 ++++++
+ drivers/gpu/drm/xe/regs/xe_regs.h             |  2 ++
+ drivers/gpu/drm/xe/xe_device.c                |  3 ++
+ drivers/gpu/drm/xe/xe_device_sysfs.c          | 36 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_device_types.h          |  3 ++
+ 5 files changed, 54 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-gpu
 
-diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-amc b/Documentation/ABI/testing/sysfs-driver-intel-xe-amc
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-gpu b/Documentation/ABI/testing/sysfs-driver-intel-xe-gpu
 new file mode 100644
-index 000000000000..4e5389163dbb
+index 000000000000..1a4bdfbad8d7
 --- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-amc
-@@ -0,0 +1,21 @@
-+What:		/sys/bus/pci/drivers/xe/.../xe_amc_alert_reason
++++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-gpu
+@@ -0,0 +1,10 @@
++What:		/sys/bus/pci/drivers/xe/.../device_uuid
 +Date:		September 2026
 +KernelVersion:	7.4
 +Contact:	intel-xe@lists.freedesktop.org
-+Description:
-+		This file exposes the reason for the most recent Add-In
-+		Management Controller (AMC) alert on Intel Xe platforms.
++Description:	RO. Unique 64-bit identifier of the device instance, read from
++		the device's CRI_DEVICE_UUID register and printed as a
++		zero-padded 16-digit hexadecimal string.
 +
-+		An AMC alert is delivered via an SMBUS interrupt and causes the
-+		device to be wedged, requiring vendor-specific recovery. This
-+		attribute is created when such an alert is handled and is
-+		available to all users as read-only.
++		This sysfs file is present only on Intel Xe platforms that
++		provide a device UUID. It is available to all users.
+diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
+index ef4746b7b5d3..68226fe0b659 100644
+--- a/drivers/gpu/drm/xe/regs/xe_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+@@ -30,6 +30,8 @@
+ #define XEHP_MTCFG_ADDR				XE_REG(0x101800)
+ #define   TILE_COUNT				REG_GENMASK(15, 8)
+ 
++#define CRI_DEVICE_UUID				XE_REG(0x102008)
 +
-+		Read returns a single line containing one of the following
-+		alert reasons:
+ #define GGC					XE_REG(0x108040)
+ #define   GMS_MASK				REG_GENMASK(15, 8)
+ #define   GGMS_MASK				REG_GENMASK(7, 6)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 8583b2e9ecf4..e8db8871990b 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -801,6 +801,9 @@ int xe_device_probe_early(struct xe_device *xe)
+ 	if (IS_SRIOV_VF(xe))
+ 		vf_update_device_info(xe);
+ 
++	if (xe->info.platform == XE_CRESCENTISLAND)
++		xe->device_uuid = xe_mmio_read64_2x32(xe_root_tile_mmio(xe), CRI_DEVICE_UUID);
 +
-+			Firmware Download
-+			Thermal Trip
-+			OOB Request
-+			OOB Reset
-+			Catastrophic
-diff --git a/drivers/gpu/drm/xe/xe_amc.c b/drivers/gpu/drm/xe/xe_amc.c
-index 8ecadee6eea3..c2d516c76502 100644
---- a/drivers/gpu/drm/xe/xe_amc.c
-+++ b/drivers/gpu/drm/xe/xe_amc.c
-@@ -18,6 +18,7 @@
+ 	/*
+ 	 * Check for pcode uncore_init status to confirm if the SoC
+ 	 * initialization is complete. Until done, any MMIO or lmem access from
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+index a73e0e957cb0..a4d326159dce 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+@@ -8,6 +8,7 @@
+ #include <linux/pci.h>
+ #include <linux/sysfs.h>
+ 
++#include "regs/xe_regs.h"
  #include "xe_device.h"
- #include "xe_i2c.h"
+ #include "xe_device_sysfs.h"
  #include "xe_mmio.h"
-+#include "xe_printk.h"
- 
- /**
-  * DOC: Add-In Management Controller (AMC)
-@@ -46,6 +47,7 @@ enum xe_amc_alert {
- };
- 
- static const char * const amc_alert[] = {
-+	[AMC_ALERT_UNKNOWN]		= "None",
- 	[AMC_ALERT_FW_DOWNLOAD]		= "Firmware Download",
- 	[AMC_ALERT_THERMAL_TRIP]	= "Thermal Trip",
- 	[AMC_ALERT_OOB_REQUEST]		= "OOB Request",
-@@ -56,6 +58,8 @@ static const char * const amc_alert[] = {
- struct xe_amc {
- 	struct xe_i2c *i2c;
- 	struct work_struct work;
-+	u8 alert_reason;
-+	bool sysfs_created;
- };
- 
- struct amc_header {
-@@ -104,6 +108,45 @@ static const struct amc_request amc_get_alert_reason = {
- 	},
+@@ -264,6 +265,35 @@ static const struct attribute_group auto_link_downgrade_attr_group = {
+ 	.attrs = auto_link_downgrade_attrs,
  };
  
 +/**
-+ * DOC: AMC Alert Reason
++ * DOC: device_uuid
 + *
-+ * On Intel Xe platforms, AMC sends an alert notification via an SMBUS interrupt
-+ * to notify events such as firmware download, thermal trip or a
-+ * catastrophic error. See enum xe_amc_alert for the full list of reasons.
-+ * Upon an AMC alert the device is wedged and requires vendor-specific recovery.
++ * Each Xe device exposes a 64-bit UUID that uniquely identifies the SoC.
++ * The value is read from the CRI_DEVICE_UUID register and can be
++ * read back through the ``device_uuid`` sysfs entry.
 + *
-+ * The alert reason is exposed through
-+ * /sys/bus/pci/devices/<BDF>/xe_amc_alert_reason
-+ *
-+ * See Documentation/ABI/testing/sysfs-driver-intel-xe-amc for the ABI
-+ * specification.
++ *    $ cat /sys/bus/pci/devices/<bdf>/device_uuid
 + */
 +
-+static ssize_t xe_amc_alert_reason_show(struct device *dev,
-+					struct device_attribute *attr, char *buff)
++static ssize_t
++device_uuid_show(struct device *dev, struct device_attribute *attr, char *buf)
 +{
-+	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
-+	struct xe_amc *amc = xe->i2c->amc;
++	struct pci_dev *pdev = to_pci_dev(dev);
++	struct xe_device *xe = pdev_to_xe_device(pdev);
 +
-+	return sysfs_emit(buff, "%s\n", amc_alert[amc->alert_reason]);
++	return sysfs_emit(buf, "%016llx\n", xe->device_uuid);
 +}
-+static DEVICE_ATTR_RO(xe_amc_alert_reason);
++static DEVICE_ATTR_RO(device_uuid);
 +
-+static void xe_amc_remove_alert_sysfs(struct xe_i2c *i2c)
-+{
-+	struct device *dev = i2c->drm_dev;
++static struct attribute *device_uuid_attrs[] = {
++	&dev_attr_device_uuid.attr,
++	NULL
++};
 +
-+	device_remove_file(dev, &dev_attr_xe_amc_alert_reason);
-+}
++static const struct attribute_group device_uuid_attr_group = {
++	.attrs = device_uuid_attrs,
++};
 +
-+static int xe_amc_create_alert_sysfs(struct xe_i2c *i2c)
-+{
-+	struct device *dev = i2c->drm_dev;
-+
-+	return device_create_file(dev, &dev_attr_xe_amc_alert_reason);
-+}
-+
- static void xe_amc_work(struct work_struct *work)
+ int xe_device_sysfs_init(struct xe_device *xe)
  {
- 	const struct amc_request *request = &amc_get_alert_reason;
-@@ -158,10 +201,15 @@ static void xe_amc_work(struct work_struct *work)
- 	case AMC_ALERT_THERMAL_TRIP:
- 	case AMC_ALERT_OOB_REQUEST:
- 	case AMC_ALERT_OOB_RESET:
--	case AMC_ALERT_CATERR:
-+	case AMC_ALERT_CATERR: {
-+		struct xe_device *xe = i2c_client_to_xe_device(client);
-+
- 		dev_warn(amc->i2c->drm_dev, "AMC Alert: %s\n", amc_alert[alert_reason]);
--		xe_device_declare_wedged(i2c_client_to_xe_device(client));
-+		amc->alert_reason = alert_reason;
-+		xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_VENDOR);
-+		xe_device_declare_wedged(xe);
- 		break;
+ 	struct device *dev = xe->drm.dev;
+@@ -285,5 +315,11 @@ int xe_device_sysfs_init(struct xe_device *xe)
+ 			return ret;
+ 	}
+ 
++	if (xe->info.platform == XE_CRESCENTISLAND) {
++		ret = devm_device_add_group(dev, &device_uuid_attr_group);
++		if (ret)
++			return ret;
 +	}
- 	default:
- 		dev_warn(amc->i2c->drm_dev, "unknown AMC alert: %d\n", alert_reason);
- 		break;
-@@ -176,6 +224,7 @@ void xe_amc_handle_alert(struct xe_i2c *i2c)
- int xe_amc_init(struct xe_i2c *i2c)
- {
- 	struct xe_amc *amc;
-+	int ret;
- 
- 	amc = kzalloc(sizeof(*amc), GFP_KERNEL);
- 	if (!amc)
-@@ -185,11 +234,17 @@ int xe_amc_init(struct xe_i2c *i2c)
- 	i2c->amc = amc;
- 	amc->i2c = i2c;
- 
--	return 0;
-+	ret =  xe_amc_create_alert_sysfs(i2c);
-+	if (ret)
-+		kfree(i2c->amc);
 +
-+	return ret;
+ 	return 0;
  }
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 180d450a6deb..6fdd16eac906 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -257,6 +257,9 @@ struct xe_device {
+ 		bool oob_initialized;
+ 	} wa_active;
  
- void xe_amc_exit(struct xe_i2c *i2c)
- {
-+	xe_amc_remove_alert_sysfs(i2c);
++	/** @device_uuid: unique 64-bit identifier read from CRI_DEVICE_UUID */
++	u64 device_uuid;
 +
- 	if (i2c->amc) {
- 		cancel_work_sync(&i2c->amc->work);
- 		kfree(i2c->amc);
+ 	/** @survivability: survivability information for device */
+ 	struct xe_survivability survivability;
+ 
 -- 
 2.54.0
 
