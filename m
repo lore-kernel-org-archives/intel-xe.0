@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53E4CC624DE
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 12:43:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5399C61DD6
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 12:46:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D90510E1C7;
-	Fri,  4 Sep 2026 12:43:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5DF10E159;
+	Fri,  4 Sep 2026 12:46:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dhCVS3ve";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HTn7M899";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11E5F10E1AB;
- Fri,  4 Sep 2026 12:43:25 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D867F10E13D;
+ Fri,  4 Sep 2026 12:46:36 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id D77F641530;
- Fri,  4 Sep 2026 12:43:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D9D61F00A3D;
- Fri,  4 Sep 2026 12:43:24 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id EBA96600C8;
+ Fri,  4 Sep 2026 12:46:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CEDD1F00A3E;
+ Fri,  4 Sep 2026 12:46:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788525804;
- bh=BB9ZKxwWO65MgGfZM3MXm0bRSheUTWWKX7ryfSIH74c=;
+ s=k20260515; t=1788525995;
+ bh=VsTyuv4OMceezZJ/7Ejj7FU/Qts0Xja/7Wr/sG8fY+c=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=dhCVS3veO+X1hhuqdCaTHzqwFfW5NN3sgqOjDqZ96MyxF7mnYBsFojppkyby6A++R
- 1/dwd4yRuhj9JGOLySLGHkbnrZjHiHvXld1u2EsfxQi8c570IZtexB5NfDOTOMzDwt
- /RGGKEk5j5Mp0db0rmcB3eathp2IxMO917JdBkvD+13akEcdCsL0PY/L1hJVd3Kbze
- sxEUTTJVl+HD+ZzjMx0CZWd46j68y3oedkD0m+BRPn8han/GL2sN9j4wHmZu6sDBEY
- 6zrwLRnrEeeBIXolasY0ABlOkLXG4B8sOXrsqmZn9VLqg3XEzLoyXRU5w2wbFkeyP7
- TFnIcEWH9B3AQ==
+ b=HTn7M899un3fKBSHHKUuYJX4v9u+y4xlK85Qz9xQbO/KlS5UEJo3iLvBjL3a0JheU
+ zP395896EBOqJdXdlEytb0GT5mUMmDn6P9MokKdQ6xfpWNPWqnzsb/18YXjlhp8kl6
+ iY5fVQ9ecqlIjFOQCgp0xEDgV5q8EQEMVpOkPCRq8WgT2sOGA7FbKcAX/Xs/knngEo
+ JI/ZcAj1ylt6QZIOPnpJn9Ze7JqtrLsUbKIFJBWCTROfvJtPkxRVoZ+llYYdezbetb
+ NQVWMy+FcOjCcFnFrWmMCfmolxN2fYqhZ/rVsOtzfmkC5iMzABOFvgU1oiKxJgYotd
+ aA4p1e/pEqCNQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v12 2/8] drm/i915/bios: store VBT #57's metadata in
- intel_vbt_data
+Subject: Re: [PATCH v12 4/8] drm/i915/bios: de/allocate VS/PE-O buffers for
+ each port
 To: =?utf-8?b?TWljaGHFgiBHcnplbGFr?= <michal.grzelak@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20260904123148.2165596-3-michal.grzelak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+In-Reply-To: <20260904123148.2165596-5-michal.grzelak@intel.com>
 References: <20260904123148.2165596-1-michal.grzelak@intel.com>
- <20260904123148.2165596-3-michal.grzelak@intel.com>
+ <20260904123148.2165596-5-michal.grzelak@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 04 Sep 2026 12:43:24 +0000
-Message-Id: <20260904124324.8D9D61F00A3D@smtp.kernel.org>
+Date: Fri, 04 Sep 2026 12:46:34 +0000
+Message-Id: <20260904124635.6CEDD1F00A3E@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,109 +57,75 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Missing bounds validation for VBT block 57 dimensions leading to o=
-ut-of-bounds read
-- [High] Unaligned pointer assignment drops __packed attribute, causing und=
-efined behavior
-- [Medium] Hardware assumption violation by proxying C20 PHY presence with =
-DISPLAY_VER >=3D 14
+- [High] Missing validation for `num_rows` allows allocation of a zero-leng=
+th override buffer, leading to ZERO_SIZE_PTR bypass and potential out-of-bo=
+unds array access.
 --
 
-commit ab5a1ab3ad655d1164dc5ca45a58ad0f45df01fb
+commit 8e0ea30f286f43a0a8c7581e1d9abc3a9fc3887e
 Author: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
 
-drm/i915/bios: store VBT #57's metadata in intel_vbt_data
-   =20
-Store tables, number of tables, number of rows and number of columns in
-intel_vbt_data when search for the VBT #57 has succeeded. Structurize
-all VS/PE-O relevant metadata inside anonymous struct named as vspeo.
+drm/i915/bios: de/allocate VS/PE-O buffers for each port
+
+Every devdata needs VS/PE-O dedicated buffers since each port can
+request an override. Add intel_ddi_buf_trans{,_entry} pointers into
+intel_bios_encoder_data and allocate/free them for the port if requested.
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
 i915/display/intel_bios.c
-> index ece4df4a9d62a..06a8dd7581bb8 100644
+> index 9610b794bc147..1a09f7933e491 100644
 > --- a/drivers/gpu/drm/i915/display/intel_bios.c
 > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
 [ ... ]
-> +static int vswing_preemph_num_rows(struct intel_display *display)
-> +{
-> +	return DISPLAY_VER(display) >=3D 14 ? 16 : 10;
-
-[Severity: Medium]
-Does this heuristic correctly identify C20 PHY presence across all variants?
-
-The commit message states that the presence of C20 or newer PHY causes each
-table to contain 16 rows, and proxies this check with DISPLAY_VER >=3D 14.
-However, platform families can encompass multiple variants (for instance,
-Meteor Lake can have both C10 and C20 PHYs).
-
-If a hardware variant covered by DISPLAY_VER >=3D 14 does not contain a C20=
- PHY,
-could the VBT provide a 10-row table instead, causing the 16-row assumption
-to misinterpret the data?
-
-> +}
-> +
->  static void
->  parse_vswing_preemph_override(struct intel_display *display)
->  {
-[ ... ]
-> @@ -2218,6 +2223,11 @@ parse_vswing_preemph_override(struct intel_display=
- *display)
->  	/* pre-ICL GOPs don't have VBT #57 */
->  	if (!block)
->  		return;
-> +
-> +	display->vbt.vspeo.tables =3D block->tables;
-
-[Severity: High]
-Does this assignment drop the __packed attribute and cause unaligned pointer
-dereferences?
-
-Since struct bdb_vswing_preemph is marked __packed, its tables flexible arr=
-ay
-can be at an unaligned offset. Assigning block->tables to const u32 *tables
-(which assumes a standard 4-byte alignment) drops the packed attribute.
-Could this lead to alignment faults or undefined behavior when elements of
-vspeo.tables are accessed?
-
-[Severity: High]
-Is it possible for a malformed VBT to cause an out-of-bounds read here?
-
-The fields num_tables and num_columns are accepted directly from the untrus=
-ted
-VBT block and stored without validating that the actual block size (via
-get_blocksize(block)) is large enough to contain the calculated number of
-elements in the flexible tables array.
-
-Could this lead to reading past the end of the heap allocation when the dri=
-ver
-later indexes into vspeo.tables?
-
-> +	display->vbt.vspeo.num_tables =3D block->num_tables;
-> +	display->vbt.vspeo.num_columns =3D block->num_columns;
-> +	display->vbt.vspeo.num_rows =3D vswing_preemph_num_rows(display);
+> @@ -2648,6 +2651,30 @@ static void sanitize_device_type(struct intel_bios=
+_encoder_data *devdata,
+>  	devdata->child.device_type |=3D DEVICE_TYPE_NOT_HDMI_OUTPUT;
 >  }
 > =20
->  static u8 translate_iboost(struct intel_display *display, u8 val)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/=
-gpu/drm/i915/display/intel_display_core.h
-> index 7e988b7b1fe7a..c80b4a2f74f9e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-[ ... ]
-> @@ -244,6 +244,13 @@ struct intel_vbt_data {
->  	struct list_head display_devices;
->  	struct list_head bdb_blocks;
-> =20
-> +	struct {
-> +		const u32 *tables;
-> +		int num_tables;
-> +		int num_columns;
-> +		int num_rows;
-> +	} vspeo;
+> +static void allocate_vswing_preemph_override(struct intel_bios_encoder_d=
+ata *devdata)
+> +{
+> +	int num_rows =3D devdata->display->vbt.vspeo.num_rows;
+> +	union intel_ddi_buf_trans_entry *entries;
+> +	struct intel_ddi_buf_trans *vspeo;
+> +
+> +	if (!intel_bios_encoder_requests_vspeo(devdata))
+> +		return;
+> +
+> +	vspeo =3D kzalloc_obj(*vspeo);
+> +	if (!vspeo)
+> +		return;
+> +
+> +	entries =3D kzalloc_objs(*entries, num_rows);
+> +	if (!entries) {
+
+[Severity: High]
+If a system provides a malformed VBT where use_vbt_vswing is true but the
+BDB_VSWING_PREEMPH block is missing, could num_rows be 0 here?
+
+When num_rows is 0, kzalloc_objs() returns ZERO_SIZE_PTR. Because
+ZERO_SIZE_PTR is not NULL, it bypasses this !entries check.
+
+This results in the creation of a zero-entry table that signals to
+downstream code that override data is present. Later, when this table is
+fetched by intel_ddi_buf_trans_get() and passed to intel_ddi_level(),
+the index is clamped to n_entries - 1 (yielding -1).
+
+Could this lead to an out-of-bounds memory read relative to ZERO_SIZE_PTR
+when the caller accesses trans->entries[-1]?
+
+> +		kfree(vspeo);
+> +		return;
+> +	}
+> +
+> +	devdata->entries =3D entries;
+> +	devdata->vspeo =3D vspeo;
+> +	devdata->vspeo->num_entries =3D num_rows;
+> +}
+> +
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260904123148.2165=
-596-1-michal.grzelak@intel.com?part=3D2
+596-1-michal.grzelak@intel.com?part=3D4
