@@ -4,27 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90545C61DD3
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 00:09:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AC2DC61DD3
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 00:15:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4178710F800;
-	Fri,  4 Sep 2026 00:09:58 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E476410F800;
- Fri,  4 Sep 2026 00:09:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7585911839970352558=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Rename_xe=5Fvm=5F?=
- =?utf-8?q?fault_to_drm=5Fxe=5Fvm=5Ffault?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF74310F7EE;
+	Fri,  4 Sep 2026 00:15:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="SeiBf14p";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E361510F80B
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 00:15:11 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 4CF54437DB;
+ Fri,  4 Sep 2026 00:15:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0545B1F000E9;
+ Fri,  4 Sep 2026 00:15:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788480911;
+ bh=r917WTKrS/U/0tpngihDi1jERUlKXZIHUAgg9+21ryA=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=SeiBf14p4C+QMR9FNINGeP+SgbIgqzrmLTnk6HkWU92wE77SkU3xzKR7+EoJkkf/o
+ nqKAXINePBgjw99pXR178gN4Ll94X6LHPerBBoI9zi3/hxl+XHg3Q7MBnmv9lKf9cw
+ FRxIKExcYhFA0Pd7SkLpsHI4tp0BUPicp6BQayXQnPgjLEm04qPQCa/FtdSNsqtUMD
+ XuDfOOlePweVaTVEmJBhuhL6hB7+i51BaAfUOtQJqFNcNySXyOruCDBLQOZYxLiTTH
+ JXszmsCeP+9DGz3uz2tD9WqS+VmZw9wmXVz7N9VJQ4c87mNYlbqE5pDHXqMoeSgfSJ
+ Z+c0Gc5bTgLUQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 02/25] drm/xe: Add
+ xe_migrate_update_pgtables_cpu_execute helper
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 04 Sep 2026 00:09:56 -0000
-Message-ID: <178848059692.121714.17487881324377268786@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260903231632.399765-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20260903231632.399765-1-jonathan.cavitt@intel.com>
+In-Reply-To: <20260903235842.3401722-3-matthew.brost@intel.com>
+References: <20260903235842.3401722-1-matthew.brost@intel.com>
+ <20260903235842.3401722-3-matthew.brost@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 04 Sep 2026 00:15:10 +0000
+Message-Id: <20260904001511.0545B1F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +53,83 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7585911839970352558==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [Low] Flawed assertion sequence causes kernel panic instead of warning wh=
+en `update->pt_bo` is NULL.
+- [Low] Redundant and meaningless assertion on `update`.
+- [Low] Type mismatch for `num_ops` argument.
+--
 
-== Series Details ==
+commit f45575c8533ab8798dcc0ef542bd7c22dad7e2b3
+Author: Matthew Brost <matthew.brost@intel.com>
+drm/xe: Add xe_migrate_update_pgtables_cpu_execute helper
 
-Series: drm/xe: Rename xe_vm_fault to drm_xe_vm_fault
-URL   : https://patchwork.freedesktop.org/series/173343/
-State : success
+This commit adds the xe_migrate_update_pgtables_cpu_execute helper for
+CPU-side page-table updates, allowing submission backends to call this
+after resolving bind job dependencies. Asserts are also added to provide
+basic sanity checks on function arguments.
 
-== Summary ==
+Link: https://patch.msgid.link/20260228013501.106680-3-matthew.brost@intel.=
+com
 
-CI Bug Log - changes from xe-5690-71bc3b7cc55631a9b3807da98e2b2880838b9623_BAT -> xe-pw-173343v1_BAT
-====================================================
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
+ate.c
+> index 149c5fa654e67..084bfee0d0474 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -1819,6 +1819,38 @@ struct migrate_test_params {
+>  	container_of(_priv, struct migrate_test_params, base)
+>  #endif
+> =20
+> +static void
+> +xe_migrate_update_pgtables_cpu_execute(struct xe_vm *vm, struct xe_tile =
+*tile,
+> +				       const struct xe_migrate_pt_update_ops *ops,
+> +				       struct xe_vm_pgtable_update_op *pt_op,
+> +				       int num_ops)
 
-Summary
--------
+[Severity: Low]
+Is this type mismatch intentional? The source pt_update_ops->num_ops and
+the loop counter j below are both defined as u32, but the helper function
+takes int num_ops. This causes a narrowing conversion and a mixed-type
+comparison in the loop.
 
-  **SUCCESS**
+> +{
+> +	u32 j, i;
+> +
+> +	for (j =3D 0; j < num_ops; ++j, ++pt_op) {
+> +		for (i =3D 0; i < pt_op->num_entries; i++) {
+> +			const struct xe_vm_pgtable_update *update =3D
+> +				&pt_op->entries[i];
+> +
+> +			xe_tile_assert(tile, update);
 
-  No regressions found.
+[Severity: Low]
+Does this assertion provide any validation? The update pointer is derived by
+taking the address of an array element (&pt_op->entries[i]). This is
+mathematically guaranteed to be non-NULL, making the assertion a tautology.
 
-  
+> +			xe_tile_assert(tile, update->pt_bo);
+> +			xe_tile_assert(tile, !iosys_map_is_null(&update->pt_bo->vmap));
 
-Participating hosts (12 -> 12)
-------------------------------
+[Severity: Low]
+Can this sequence cause an unintended kernel panic?
 
-  No changes in participating hosts
+If update->pt_bo is NULL, the first assertion will trigger a warning and
+execution will continue. The next assertion evaluates &update->pt_bo->vmap
+(calculating an offset from NULL, producing an invalid pointer) and passes =
+it
+to iosys_map_is_null(). This function dereferences the invalid pointer to
+check map->is_iomem, which would cause a page fault panic, defeating the
+non-fatal nature of xe_tile_assert.
 
+[ ... ]
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5690-71bc3b7cc55631a9b3807da98e2b2880838b9623 -> xe-pw-173343v1
-
-  IGT_9084: 9084
-  xe-5690-71bc3b7cc55631a9b3807da98e2b2880838b9623: 71bc3b7cc55631a9b3807da98e2b2880838b9623
-  xe-pw-173343v1: 173343v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173343v1/index.html
-
---===============7585911839970352558==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Rename xe_vm_fault to drm_xe_vm_fault</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173343/">https://patchwork.freedesktop.org/series/173343/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173343v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173343v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5690-71bc3b7cc55631a9b3807da98e2b2880838b9623_BAT -&gt; xe-pw-173343v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5690-71bc3b7cc55631a9b3807da98e2b2880838b9623 -&gt; xe-pw-173343v1</li>
-</ul>
-<p>IGT_9084: 9084<br />
-  xe-5690-71bc3b7cc55631a9b3807da98e2b2880838b9623: 71bc3b7cc55631a9b3807da98e2b2880838b9623<br />
-  xe-pw-173343v1: 173343v1</p>
-
-</body>
-</html>
-
---===============7585911839970352558==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903235842.3401=
+722-1-matthew.brost@intel.com?part=3D2
