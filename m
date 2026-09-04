@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F5A7C79F95
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B2FDC79F91
 	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 21:16:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A30A310FB52;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DE4010FB48;
 	Fri,  4 Sep 2026 21:16:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eXR3iVY5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YllM3Hnv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C3FA10E42F
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 21:16:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A88710E580
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 21:16:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788556580; x=1820092580;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2WrntfyHUlEIvNwpTpvFGlvRSy3LwCKQfitVPyOL6Lc=;
- b=eXR3iVY54D5FkdxbhkWOYb/65xpATYlorCDU6aE4SdEfWe2l1u623ipc
- OH0KnjEBgouO6j9xR26t7/6LhmTFL3NiHwNBt+eDm/DMqaoti80YvUfdW
- p8te2lf0Ax2rw9H7omJfts7gmTbny2Z55v6nFjZqtjftLn00HE+s3wXgi
- aLEUGKN6lrqCDisLyPLAX2PeqvFlSk+hXg57DOgECrEsvsZzOdC19srqd
- isfZz/0JfqoDUYodsz2tZDfXCie7L3+m/MT6eBP6bM3naih/Yq9Bp0m+A
- ryyuy9zucv/4q4mY83HD4VfxIkGPO0O1rQuR3YAjXq8K46p7BqsqCJvqk g==;
-X-CSE-ConnectionGUID: Nzbplf95TzKhArkZwkrm4Q==
-X-CSE-MsgGUID: 156hUbd2RB6h2+dzFBzNlA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11896"; a="89096797"
-X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="89096797"
+ t=1788556582; x=1820092582;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=Fxa2FO9CH1QWD9hxetr2dnV85zF8uKpswGmlqPVCUdU=;
+ b=YllM3HnvoaIiw/d92hiZwPDS0JbDK0GcEGsbPccwGdf6SIOlFVOL3l9l
+ yx4yzxAUqB4P87sQaMQhRtZcp7jHhlzrbZf+zpkZtrbGQVOniOojkQVKn
+ Uy4Osxyfxn0y7fe2bHmC/U6WExiJ6RfBYqsjJeJrs86tFgwf8xt5vblIr
+ VJ9kfbc2DIzF7WlxQr6S3Ns2RqFj9BAH8o8ekT0/2ewQItfIVXJ52JnJ1
+ nwERSN8pIDjlHQuqG/MCHP+pdSswH/fM58RS+sYauJOXs1X9IETFSM1g8
+ dYBXfTgLIH2A9Sc8oe4ryoFdmj9ntu8QHRUZUTsv7UHgUXb8o5Nscc941 A==;
+X-CSE-ConnectionGUID: OoDPChocRYaozMDnUbDz4A==
+X-CSE-MsgGUID: astji4nqSbu+wKQe8cWP9g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11896"; a="89096814"
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="89096814"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 14:16:19 -0700
-X-CSE-ConnectionGUID: t7Yqf3+pTReM0ADWtA6UqQ==
-X-CSE-MsgGUID: 6Zlxk0nXQLCz2pcxnQ09mA==
+ 04 Sep 2026 14:16:21 -0700
+X-CSE-ConnectionGUID: 2berFkwFT+WS4Ci/8k+vbQ==
+X-CSE-MsgGUID: Qs+NYqJsSJqpTjTBTWX5nw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="267563404"
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="267563437"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 14:16:20 -0700
+ 04 Sep 2026 14:16:21 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 00/24] CPU binds and ULLS on migration queue
-Date: Fri,  4 Sep 2026 14:15:49 -0700
-Message-Id: <20260904211613.3934307-1-matthew.brost@intel.com>
+Subject: [PATCH v6 17/24] drm/xe: Add device flag to enable PT mirroring
+ across tiles
+Date: Fri,  4 Sep 2026 14:16:06 -0700
+Message-Id: <20260904211613.3934307-18-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260904211613.3934307-1-matthew.brost@intel.com>
+References: <20260904211613.3934307-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,137 +66,288 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We now have data demonstrating the need for CPU binds and ULLS on the
-migration queue, based on results generated from [1].
+Some multi-tile devices may want to mirror page tables across tiles for
+memory-bandwidth reasons, while others may not. Add a device flag that
+allows enabling or disabling page-table mirroring across tiles.
 
-On BMG, measurements show that when the GPU is continuously processing
-faults, copy jobs run approximately 30–40µs faster (depending on the
-test case) with ULLS compared to traditional GuC submission with SLPC
-enabled on the migration queue. Startup from a cold GPU shows an even
-larger speedup. Given the critical nature of fault performance, ULLS
-appears to be a worthwhile feature.
+Setting the flag to true (the existing behavior) on PVC, but both modes
+have been tested and are working on PVC.
 
-In addition to driver telemetry, UMD compute benchmarks consistently
-show multiple GB/s improvement in pagefault benchmarks with ULLS enabled.
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Link: https://patch.msgid.link/20260228013501.106680-18-matthew.brost@intel.com
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+ drivers/gpu/drm/xe/xe_migrate.c      |  5 ++--
+ drivers/gpu/drm/xe/xe_pci.c          |  2 ++
+ drivers/gpu/drm/xe/xe_pci_types.h    |  3 ++-
+ drivers/gpu/drm/xe/xe_pt.c           | 36 +++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.c           | 37 +++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_vm.h           |  3 +++
+ 7 files changed, 79 insertions(+), 9 deletions(-)
 
-ULLS will consume more power (not yet measured) due to a continuously
-running batch on the paging engine. However, compute UMDs already do
-this on engines exposed to users, so this seems like a worthwhile
-tradeoff. To mitigate power concerns, ULLS will exit after a period of
-time in which no faults have been processed.
-
-CPU binds are required for ULLS to function, as the migration queue
-needs exclusive access to the paging hardware engine. Thus, CPU binds
-are included here.
-
-Beyond being a requirement for ULLS, CPU binds should also reduce
-VM-bind latency, provide clearer multi-tile and TLB-invalidation
-layering, reduce pressure on GuC during fault storms as it is bypassed,
-and decouple kernel binds from unrelated copy/clear jobs—especially
-beneficial when faults are serviced in parallel. In a parallel-faulting
-test case, average bind time was reduced by approximately 15µs. In the
-worst case, 2MB copy time (~60–140µs) × (number of pagefault threads −
-1) of latency would otherwise be added to a single fault. Reducing this
-latency increases overall throughput of the fault handler.
-
-This series can be merged in phases:
-
-Phase 1: CPU binds (patches 1–13)
-Phase 2: CPU-bind components and multi-tile relayers (patches 14–17)
-Phase 3: ULLS on the migration execution queue (patches 18–25)
-
-v2:
- - Use delayed worker to exit ULLS mode in an effort to save on power
- - Various other cleanups
-v3:
- - CPU bind component, multi-tile relayer
- - Split CPU bind patches in many small patches
-v4:
- - Rebase, address feedback, add ULLS doc patch
-v5:
- - Address Sashiko feedback, fix checkpatch issues
-v6:
- - Reworked ULLS to drop KMD MMIO ring tail write, move this to ring
-   instruction(s)
- - Several other small cleanups based on Sashiko feedback
-
-Matt
-
-[1] https://patchwork.freedesktop.org/series/149811/
-
-Matthew Brost (24):
-  drm/xe: Drop struct xe_migrate_pt_update argument from populate/clear
-    vfuns
-  drm/xe: Add xe_migrate_update_pgtables_cpu_execute helper
-  drm/xe: Decouple exec queue idle check from LRC
-  drm/xe: Add job count to GuC exec queue snapshot
-  drm/xe: Update xe_bo_put_deferred arguments to include writeback flag
-  drm/xe: Add XE_BO_FLAG_PUT_VM_ASYNC
-  drm/xe: Update scheduler job layer to support PT jobs
-  drm/xe: Add helpers to access PT ops
-  drm/xe: Add struct xe_pt_job_ops
-  drm/xe: Update GuC submission backend to run PT jobs
-  drm/xe: Store level in struct xe_vm_pgtable_update
-  drm/xe: Don't use migrate exec queue for page fault binds
-  drm/xe: Enable CPU binds for jobs
-  drm/xe: Remove unused arguments from xe_migrate_pt_update_ops
-  drm/xe: Make bind queues operate cross-tile
-  drm/xe: Add CPU bind layer
-  drm/xe: Add device flag to enable PT mirroring across tiles
-  drm/xe: Add ULLS support to LRC
-  drm/xe: Add ULLS migration job support to migration layer
-  drm/xe: Add ULLS migration job support to ring ops
-  drm/xe: Add ULLS migration job support to GuC submission
-  drm/xe: Enter ULLS for migration jobs upon page fault or SVM prefetch
-  drm/xe: Add modparam to enable / disable ULLS on migrate queue
-  drm/xe: Document ULLS for migration jobs
-
- Documentation/gpu/xe/xe_migrate.rst      |   3 +
- drivers/gpu/drm/xe/Makefile              |   1 +
- drivers/gpu/drm/xe/xe_bo.c               |   8 +-
- drivers/gpu/drm/xe/xe_bo.h               |  11 +-
- drivers/gpu/drm/xe/xe_bo_types.h         |   2 -
- drivers/gpu/drm/xe/xe_cpu_bind.c         | 298 +++++++++
- drivers/gpu/drm/xe/xe_cpu_bind.h         | 118 ++++
- drivers/gpu/drm/xe/xe_debugfs.c          |   1 +
- drivers/gpu/drm/xe/xe_defaults.h         |   1 +
- drivers/gpu/drm/xe/xe_device.c           |   6 +
- drivers/gpu/drm/xe/xe_device_types.h     |  11 +
- drivers/gpu/drm/xe/xe_drm_client.c       |   2 +-
- drivers/gpu/drm/xe/xe_exec_queue.c       | 163 ++---
- drivers/gpu/drm/xe/xe_exec_queue.h       |  16 +-
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  20 +-
- drivers/gpu/drm/xe/xe_guc_submit.c       |  79 ++-
- drivers/gpu/drm/xe/xe_guc_submit_types.h |   2 +
- drivers/gpu/drm/xe/xe_lrc.c              |  73 +++
- drivers/gpu/drm/xe/xe_lrc.h              |   4 +
- drivers/gpu/drm/xe/xe_lrc_types.h        |   4 +
- drivers/gpu/drm/xe/xe_migrate.c          | 759 ++++++++++------------
- drivers/gpu/drm/xe/xe_migrate.h          |  95 +--
- drivers/gpu/drm/xe/xe_module.c           |   4 +
- drivers/gpu/drm/xe/xe_module.h           |   1 +
- drivers/gpu/drm/xe/xe_pagefault.c        |   3 +
- drivers/gpu/drm/xe/xe_pci.c              |   2 +
- drivers/gpu/drm/xe/xe_pci_types.h        |   3 +-
- drivers/gpu/drm/xe/xe_pt.c               | 785 ++++++++++++++---------
- drivers/gpu/drm/xe/xe_pt.h               |  12 +-
- drivers/gpu/drm/xe/xe_pt_types.h         |  49 +-
- drivers/gpu/drm/xe/xe_ring_ops.c         |  86 +++
- drivers/gpu/drm/xe/xe_ring_ops_types.h   |  24 +
- drivers/gpu/drm/xe/xe_sched_job.c        | 103 ++-
- drivers/gpu/drm/xe/xe_sched_job.h        |  56 ++
- drivers/gpu/drm/xe/xe_sched_job_types.h  |  49 +-
- drivers/gpu/drm/xe/xe_sync.c             |  20 +-
- drivers/gpu/drm/xe/xe_tlb_inval_job.c    |  28 +-
- drivers/gpu/drm/xe/xe_tlb_inval_job.h    |   4 +-
- drivers/gpu/drm/xe/xe_trace.h            |   2 +-
- drivers/gpu/drm/xe/xe_vm.c               | 240 +++----
- drivers/gpu/drm/xe/xe_vm.h               |   3 +
- drivers/gpu/drm/xe/xe_vm_types.h         |  12 +-
- 42 files changed, 1956 insertions(+), 1207 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_cpu_bind.c
- create mode 100644 drivers/gpu/drm/xe/xe_cpu_bind.h
-
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index bc60833c39a7..997ac82fd571 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -224,6 +224,8 @@ struct xe_device {
+ 		u8 has_usm:1;
+ 		/** @info.has_64bit_timestamp: Device supports 64-bit timestamps */
+ 		u8 has_64bit_timestamp:1;
++		/** @info.has_pt_mirror: Device has PT mirroring across tiles */
++		u8 has_pt_mirror:1;
+ 		/** @info.is_dgfx: is discrete device */
+ 		u8 is_dgfx:1;
+ 		/** @info.needs_scratch: needs scratch page for oob prefetch to work */
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index f7e1a81434b2..471ae5741836 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -246,7 +246,8 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	u16 pat_index = xe_cache_pat_idx(xe, XE_CACHE_WB);
+ 	u8 id = tile->id;
+-	u32 num_entries = NUM_PT_SLOTS, num_level = vm->pt_root[id]->level;
++	u32 num_entries = NUM_PT_SLOTS, num_level =
++		xe_vm_pt_root(vm, id)->level;
+ #define VRAM_IDENTITY_MAP_PT_COUNT	4
+ 	u32 num_setup = num_level + VRAM_IDENTITY_MAP_PT_COUNT;
+ #undef VRAM_IDENTITY_MAP_PT_COUNT
+@@ -258,7 +259,7 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 	u64 l1_pt_ofs = xe_bo_size(bo) - 5 * XE_PAGE_SIZE;
+ 
+ 	entry = vm->pt_ops->pde_encode_bo(bo, l1_pt_ofs);
+-	xe_pt_write(xe, &vm->pt_root[id]->bo->vmap, 0, entry);
++	xe_pt_write(xe, &xe_vm_pt_root(vm, id)->bo->vmap, 0, entry);
+ 
+ 	map_ofs = (num_entries - num_setup) * XE_PAGE_SIZE;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index ab4da1d9a9f1..d9030cb4f1ad 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -371,6 +371,7 @@ static const __maybe_unused struct xe_device_desc pvc_desc = {
+ 	.has_display = false,
+ 	.has_drm_ras = true,
+ 	.has_gsc_nvm = 1,
++	.has_pt_mirror = 1,
+ 	.has_heci_gscfi = 1,
+ 	.max_gt_per_tile = 1,
+ 	.max_remote_tiles = 1,
+@@ -808,6 +809,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.has_mert = desc->has_mert;
+ 	xe->info.has_page_reclaim_hw_assist = desc->has_page_reclaim_hw_assist;
+ 	xe->info.has_pre_prod_wa = desc->has_pre_prod_wa;
++	xe->info.has_pt_mirror = desc->has_pt_mirror;
+ 	xe->info.has_pxp = desc->has_pxp;
+ 	xe->info.has_soc_remapper_sysctrl = desc->has_soc_remapper_sysctrl;
+ 	xe->info.has_soc_remapper_telem = desc->has_soc_remapper_telem;
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index fed509ff601e..71068cdb3558 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -52,8 +52,9 @@ struct xe_device_desc {
+ 	u8 has_mbx_power_limits:1;
+ 	u8 has_mbx_thermal_info:1;
+ 	u8 has_mert:1;
+-	u8 has_pre_prod_wa:1;
+ 	u8 has_page_reclaim_hw_assist:1;
++	u8 has_pre_prod_wa:1;
++	u8 has_pt_mirror:1;
+ 	u8 has_pxp:1;
+ 	u8 has_soc_remapper_sysctrl:1;
+ 	u8 has_soc_remapper_telem:1;
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 05bbac6c2632..7e42067c79e4 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -812,7 +812,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 		.wupd.entries = entries,
+ 		.clear_pt = clear_pt,
+ 	};
+-	struct xe_pt *pt = vm->pt_root[tile->id];
++	struct xe_pt *pt = xe_vm_pt_root(vm, tile->id);
+ 	int ret;
+ 	bool is_purged = false;
+ 
+@@ -1005,6 +1005,11 @@ static int xe_pt_zap_ptes_entry(struct xe_ptw *parent, pgoff_t offset,
+ 	return 0;
+ }
+ 
++static bool pt_mirroring_disabled_for_tile(struct xe_vm *vm, u8 tile_id)
++{
++	return xe_vm_pt_root(vm, tile_id) != vm->pt_root[tile_id];
++}
++
+ static const struct xe_pt_walk_ops xe_pt_zap_ptes_ops = {
+ 	.pt_entry = xe_pt_zap_ptes_entry,
+ };
+@@ -1046,6 +1051,9 @@ bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma)
+ 	if (!(pt_mask & BIT(tile->id)))
+ 		return false;
+ 
++	if (pt_mirroring_disabled_for_tile(xe_vma_vm(vma), tile->id))
++		return true;
++
+ 	(void)xe_pt_walk_shared(&pt->base, pt->level, xe_vma_start(vma),
+ 				xe_vma_end(vma), &xe_walk.base);
+ 
+@@ -1098,6 +1106,9 @@ bool xe_pt_zap_ptes_range(struct xe_tile *tile, struct xe_vm *vm,
+ 	if (!(pt_mask & BIT(tile->id)))
+ 		return false;
+ 
++	if (pt_mirroring_disabled_for_tile(vm, tile->id))
++		return true;
++
+ 	(void)xe_pt_walk_shared(&pt->base, pt->level, xe_svm_range_start(range),
+ 				xe_svm_range_end(range), &xe_walk.base);
+ 
+@@ -1988,7 +1999,7 @@ static unsigned int xe_pt_stage_unbind(struct xe_tile *tile,
+ 		.wupd.entries = entries,
+ 		.prl = pt_update_op->prl,
+ 	};
+-	struct xe_pt *pt = vm->pt_root[tile->id];
++	struct xe_pt *pt = xe_vm_pt_root(vm, tile->id);
+ 
+ 	(void)xe_pt_walk_shared(&pt->base, pt->level, start, end,
+ 				&xe_walk.base);
+@@ -2541,9 +2552,21 @@ int xe_pt_update_ops_prepare(struct xe_device *xe, struct xe_vma_ops *vops)
+ 	int id, err;
+ 
+ 	for_each_tile(tile, xe, id) {
++		struct xe_vm_pgtable_update_ops *pt_update_ops =
++			&vops->pt_update_ops[id];
++
+ 		if (!vops->pt_update_ops[id].num_ops)
+ 			continue;
+ 
++		if (pt_mirroring_disabled_for_tile(vops->vm, id)) {
++			struct xe_page_reclaim_list *prl = &pt_update_ops->prl;
++
++			/* Transfer root PT update ops PRL to current */
++			*prl = vops->pt_update_ops[0].prl;
++			xe_page_reclaim_entries_get(prl->entries);
++			continue;
++		}
++
+ 		err = __xe_pt_update_ops_prepare(tile, vops);
+ 		if (err)
+ 			return err;
+@@ -2835,6 +2858,12 @@ xe_pt_update_ops_run(struct xe_device *xe, struct xe_vma_ops *vops)
+ 		struct xe_vm_pgtable_update_ops *pt_update_ops =
+ 			&vops->pt_update_ops[j];
+ 
++		if (pt_mirroring_disabled_for_tile(vm, j)) {
++			xe_tile_assert(tile, !get_current_op(pt_update_ops));
++			tile_mask |= BIT(tile->id);
++			continue;
++		}
++
+ 		for (i = 0; i < get_current_op(pt_update_ops); ++i) {
+ 			struct xe_vm_pgtable_update_op *pt_op =
+ 				to_pt_op(pt_update_ops, i);
+@@ -2948,6 +2977,9 @@ void xe_pt_update_ops_abort(struct xe_device *xe, struct xe_vma_ops *vops)
+ 			&vops->pt_update_ops[id];
+ 		int i;
+ 
++		if (pt_mirroring_disabled_for_tile(vops->vm, id))
++			continue;
++
+ 		for (i = pt_update_ops->num_ops - 1; i >= 0; --i) {
+ 			struct xe_vm_pgtable_update_op *pt_op =
+ 				to_pt_op(pt_update_ops, i);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index fbfc42afef8b..795d0ebb1004 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -845,6 +845,14 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
+ 	return err;
+ }
+ 
++static u8 adjust_rebind_tile_mask(struct xe_vm *vm, u8 tile_mask)
++{
++	if (vm->xe->info.has_pt_mirror)
++		return tile_mask;
++
++	return (0x1 << vm->xe->info.tile_count) - 1;
++}
++
+ struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma, u8 tile_mask)
+ {
+ 	struct dma_fence *fence = NULL;
+@@ -861,7 +869,8 @@ struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma, u8 tile_ma
+ 	vops.flags |= XE_VMA_OPS_FLAG_SKIP_TLB_WAIT |
+ 		XE_VMA_OPS_FLAG_WAIT_VM_BOOKKEEP;
+ 
+-	err = xe_vm_ops_add_rebind(&vops, vma, tile_mask);
++	err = xe_vm_ops_add_rebind(&vops, vma,
++				   adjust_rebind_tile_mask(vm, tile_mask));
+ 	if (err)
+ 		return ERR_PTR(err);
+ 
+@@ -948,7 +957,8 @@ struct dma_fence *xe_vm_range_rebind(struct xe_vm *vm,
+ 	vops.flags |= XE_VMA_OPS_FLAG_SKIP_TLB_WAIT |
+ 		XE_VMA_OPS_FLAG_WAIT_VM_BOOKKEEP;
+ 
+-	err = xe_vm_ops_add_range_rebind(&vops, vma, range, tile_mask);
++	err = xe_vm_ops_add_range_rebind(&vops, vma, range,
++					 adjust_rebind_tile_mask(vm, tile_mask));
+ 	if (err)
+ 		return ERR_PTR(err);
+ 
+@@ -1738,7 +1748,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
+ 
+ 		for_each_tile(tile, xe, id) {
+ 			if (flags & XE_VM_FLAG_MIGRATION &&
+-			    tile->id != XE_VM_FLAG_TILE_ID(flags))
++			    tile->id != XE_VM_FLAG_TILE_ID(flags) &&
++			    (vm->xe->info.has_pt_mirror || id))
+ 				continue;
+ 
+ 			vm->pt_root[id] = xe_pt_create(vm, tile, xe->info.vm_max_level,
+@@ -2047,7 +2058,7 @@ struct xe_vm *xe_vm_lookup(struct xe_file *xef, u32 id)
+ 
+ u64 xe_vm_pdp4_descriptor(struct xe_vm *vm, struct xe_tile *tile)
+ {
+-	return vm->pt_ops->pde_encode_bo(vm->pt_root[tile->id]->bo, 0);
++	return vm->pt_ops->pde_encode_bo(xe_vm_pt_root(vm, tile->id)->bo, 0);
+ }
+ 
+ static struct xe_exec_queue *
+@@ -5072,3 +5083,21 @@ void xe_vm_remove_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+ 	}
+ 	up_write(&vm->exec_queues.lock);
+ }
++
++/**
++ * xe_vm_pt_root() - Retrieve VM page-table root
++ * @vm: The VM.
++ * @tile_id: Tile ID
++ *
++ * Retrieve VM page-table root for a tile ID, used to abstract if PT mirroring is
++ * enabled across tiles.
++ *
++ * Return: VM page-table root for a tile ID
++ */
++struct xe_pt *xe_vm_pt_root(struct xe_vm *vm, u8 tile_id)
++{
++	if (vm->xe->info.has_pt_mirror)
++		return vm->pt_root[tile_id];
++
++	return vm->pt_root[0];
++}
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index c5b900f38ded..89c4f95984a2 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -436,4 +436,7 @@ static inline struct drm_exec *xe_vm_validation_exec(struct xe_vm *vm)
+ 	((READ_ONCE(tile_present) & ~READ_ONCE(tile_invalidated)) & BIT((tile)->id))
+ 
+ void xe_vma_mem_attr_copy(struct xe_vma_mem_attr *to, struct xe_vma_mem_attr *from);
++
++struct xe_pt *xe_vm_pt_root(struct xe_vm *vm, u8 tile_id);
++
+ #endif
 -- 
 2.34.1
 
