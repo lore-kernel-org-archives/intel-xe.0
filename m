@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19CFAC624D6
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 00:29:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02122C61DD3
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 00:31:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C567910E0FD;
-	Fri,  4 Sep 2026 00:29:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2F5510E0FD;
+	Fri,  4 Sep 2026 00:31:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="eEHmpze4";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fFxHiTJg";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 019F310E0FD
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 00:29:55 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E51D10E0FD
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 00:31:45 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 2565F60234;
- Fri,  4 Sep 2026 00:29:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B10C41F000E9;
- Fri,  4 Sep 2026 00:29:53 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id AAFD640192;
+ Fri,  4 Sep 2026 00:31:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DA551F000E9;
+ Fri,  4 Sep 2026 00:31:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788481793;
- bh=wTPgtISho5Skp3AN3Cx/Fs1VgKtktCZm8kT1HWyPcC8=;
+ s=k20260515; t=1788481904;
+ bh=K/Q/cC3B/+BRmAnVvG4vTx53g5UchsgvhJT7GlPwCy4=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=eEHmpze4jptunAEzOmXbuCXa/Cw9XxF3FYslpuEUDGt96+K7VZOL0gbJ8g5ROGPYn
- EQ4EVDiPQ5CF1vIfoYH3gsFKGvE11ARnq/HBKl5rF5VGFR1nhOdMDwuW682Ak3tUC0
- z5CXavFLPiwd489zIFIR9b5OpoxxpvtlfaORfd5aq3CKaJElTWIbypTlcjPey+tI0b
- PiF6fmmblLE2DYyC3/MmOsCffDBaBodvQFgVCb2ZwlWvAkTdmaoeooFF1SlQzebVOB
- TbiI9d3QxGaC2rV+r2ukR7+QOMWhp05wa+q6OZ3l1Y6qsMJtUL/laLXEc2nu9ARGqb
- pGRRA3teVdXEw==
+ b=fFxHiTJgF2CzfN7VJTHL0fIgbdgMjM5ve5R+CO6IIiHcGeuKFwqj6ZXtNcPzgraOH
+ JpsfYHuyDEBwbsi1XoDGUGGnsOd++mfwh4wCb9vy5SZw9yUQaPUWIqWB7VY48RWdzH
+ 25/L8RTZd3v3rG2R/k6o5WXgtRe2jESyrvdVfis+ZZwBJTcx03K1ewstf8IT2MYBeB
+ 84zdXgpGThmRDoFRTkDULM9X0LmdDpsTAt/nP/uKJJMjgF9jhLTqsIcJqNWweMk9rn
+ FWpzjDRfuDemUUP2cX7QKy+lxcGPDbCzdqu5j6iISdOTdPCV6Ut6RzO+dAGCuZn+6C
+ Kf40QWN0cO/Zg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 17/25] drm/xe: Add device flag to enable PT mirroring
- across tiles
+Subject: Re: [PATCH v4 13/25] drm/xe: Enable CPU binds for jobs
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260903235842.3401722-18-matthew.brost@intel.com>
+In-Reply-To: <20260903235842.3401722-14-matthew.brost@intel.com>
 References: <20260903235842.3401722-1-matthew.brost@intel.com>
- <20260903235842.3401722-18-matthew.brost@intel.com>
+ <20260903235842.3401722-14-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 04 Sep 2026 00:29:53 +0000
-Message-Id: <20260904002953.B10C41F000E9@smtp.kernel.org>
+Date: Fri, 04 Sep 2026 00:31:44 +0000
+Message-Id: <20260904003144.6DA551F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,122 +56,141 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
 s) to consider:
-- [High] Incorrect tile mask generation causes missing TLB invalidations on=
- secondary tiles
-- [High] Shallow copy of Page Reclaim List (PRL) leads to Double Free durin=
-g TLB invalidation
-- [Medium] Unnecessary allocation of unused page table roots and scratch ta=
-bles
+- [Critical] A Use-After-Free of `xe_vm` occurs because CPU-based PT update=
+s execute asynchronously on the device-global bind queue without holding a =
+reference to the VM.
+- [High] execlist backend ignores is_pt_job and submits PT jobs to hardware=
+, skipping CPU updates.
+- [High] The `xe_pt_job_ops` reference is leaked when a PT job is aborted o=
+r destroyed without running.
+- [Medium] xe_sched_job_snapshot_capture reads from the wrong union member =
+for PT jobs.
 --
 
-commit 084f96016724c31d7bcd97e7c49979198c29fe71
+commit 1bc0a17fc99eb78f42df916d66ac3038c0338a83
 Author: Matthew Brost <matthew.brost@intel.com>
-Subject: drm/xe: Add device flag to enable PT mirroring across tiles
+Subject: drm/xe: Enable CPU binds for jobs
 
-Some multi-tile devices may want to mirror page tables across tiles for
-memory-bandwidth reasons, while others may not. Add a device flag that
-allows enabling or disabling page-table mirroring across tiles.
+This commit updates the migration layer to formulate a PT job which will is=
+sue
+CPU binds in the submission backend. All code related to GPU-based binding =
+has
+been removed.
 
-Link: https://patch.msgid.link/20260228013501.106680-18-matthew.brost@intel=
+Link: https://patch.msgid.link/20260228013501.106680-14-matthew.brost@intel=
 .com
 
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index 821edeaecaed9..deb33e85e6eb7 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-[ ... ]
-> @@ -2542,9 +2553,20 @@ int xe_pt_update_ops_prepare(struct xe_device *xe,=
- struct xe_vma_ops *vops)
->  	int id, err;
-> =20
->  	for_each_tile(tile, xe, id) {
-> +		struct xe_vm_pgtable_update_ops *pt_update_ops =3D
-> +			&vops->pt_update_ops[id];
-> +
->  		if (!vops->pt_update_ops[id].num_ops)
->  			continue;
-> =20
-> +		if (pt_mirroring_disabled_for_tile(vops->vm, id)) {
-> +			struct xe_page_reclaim_list *prl =3D &pt_update_ops->prl;
-> +
-> +			/* Transfer root PT update ops PRL to current */
-> +			*prl =3D vops->pt_update_ops[0].prl;
-
-[Severity: High]
-Does this shallow copy of the Page Reclaim List (PRL) cause a double free?
-
-By copying the structure directly without incrementing a reference count,
-multiple tiles now hold a pointer to the same page. Later, when
-xe_tlb_inval_job_create() adds this to jobs in xe_pt_update_ops_run(), both
-jobs take ownership. When the jobs finish, they will both call
-xe_page_reclaim_entries_put(), freeing the same page twice.
-
-> +			continue;
-> +		}
-> +
->  		err =3D __xe_pt_update_ops_prepare(tile, vops);
->  		if (err)
->  			return err;
-[ ... ]
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 33ef4ccc3550b..d9a9c0844c5e3 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -844,6 +844,14 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worke=
-r)
->  	return err;
->  }
-> =20
-> +static u8 adjust_rebind_tile_mask(struct xe_vm *vm, u8 tile_mask)
-> +{
-> +	if (vm->xe->info.has_pt_mirror)
-> +		return tile_mask;
-> +
-> +	return (0x1 << vm->xe->info.max_gt_per_tile) - 1;
-
-[Severity: High]
-Is max_gt_per_tile being used here incorrectly instead of the total tile co=
-unt?
-
-If a device (like PVC) has 1 GT per tile, this evaluates to 1, causing the
-generated mask to omit secondary tiles. During xe_vma_rebind(), the num_ops
-will only be incremented for tile 0.
-
-Consequently, xe_pt_update_ops_prepare() skips preparation for the secondary
-tiles, leaving their start and last variables uninitialized (zeroed). When
-TLB invalidation jobs are created later, they use a range of [0, 0] for
-these tiles, leaving stale TLB entries that could cause memory corruption.
-
-> +}
-> +
->  struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma, u8=
- tile_mask)
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
+ate.c
+> index 100e84b7b81df..62ae0e2e85be5 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -1938,162 +1867,18 @@ __xe_migrate_update_pgtables(struct xe_migrate *=
+m,
 >  {
->  	struct dma_fence *fence =3D NULL;
+
 [ ... ]
-> @@ -1737,7 +1747,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u3=
-2 flags, struct xe_file *xef)
+
+>  	int err;
 > =20
->  		for_each_tile(tile, xe, id) {
->  			if (flags & XE_VM_FLAG_MIGRATION &&
-> -			    tile->id !=3D XE_VM_FLAG_TILE_ID(flags))
-> +			    tile->id !=3D XE_VM_FLAG_TILE_ID(flags) &&
-> +			    (vm->xe->info.has_pt_mirror || id))
->  				continue;
+> -	job =3D xe_bb_create_migration_job(pt_update_ops->q, bb,
+> -					 xe_migrate_batch_base(m, usm),
+> -					 update_idx);
+> +	job =3D xe_sched_job_create(pt_update_ops->q, NULL);
+>  	if (IS_ERR(job)) {
+>  		err =3D PTR_ERR(job);
+> -		goto err_sa;
+> +		goto err_out;
+>  	}
 > =20
->  			vm->pt_root[id] =3D xe_pt_create(vm, tile, xe->info.vm_max_level,
->  						       &exec);
+> -	xe_sched_job_add_migrate_flush(job, MI_INVALIDATE_TLB);
+> +	xe_tile_assert(tile, job->is_pt_job);
+
+[Severity: High]
+If the platform uses the execlist backend (e.g., GuC disabled), does
+execlist_run_job() properly handle CPU-only PT jobs?
+
+Looking at the execlist backend, execlist_run_job() appears to unconditiona=
+lly
+call q->ring_ops->emit_job(job) without checking job->is_pt_job. Because
+job->ptrs and job->pt_update share a union, the ring ops might read a garba=
+ge
+value (like the ops kernel pointer) as batch_addr and emit a hardware migra=
+tion
+job instead.
+
+Could this regression cause an immediate GPU fault or hang from executing an
+invalid address, while completely skipping the actual page table update on =
+the
+CPU?
+
+> =20
+>  	if (ops->pre_commit) {
+>  		pt_update->job =3D job;
+> @@ -2104,6 +1889,12 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
+>  	if (is_migrate)
+>  		mutex_lock(&m->job_mutex);
+> =20
+> +	job->pt_update[0].vm =3D pt_update->vops->vm;
+
+[Severity: Critical]
+Is it possible for the xe_vm pointer assigned here to be used after it is f=
+reed?
+
+PT jobs are assigned a raw VM pointer without taking an xe_vm_get() referen=
+ce.
+CPU binds are queued and executed on a device-global queue (xe->cpu_bind->q=
+).
+If the user closes the VM, xe_vm_close_and_put() kills the VM's specific
+queues and frees the struct xe_vm, but it does not appear to wait for jobs
+pending on the global cpu_bind->q.
+
+When the DRM scheduler later executes the pending PT job on the cpu_bind->q,
+could it access the now-freed vm pointer during CPU execution, resulting in=
+ a
+use-after-free regression?
 
 [Severity: Medium]
-For standard user VMs, does this unconditionally allocate page table roots
-and scratch tables for secondary tiles even when PT mirroring is disabled?
+When xe_sched_job_snapshot_capture() iterates over q->width, will it safely
+handle PT jobs?
 
-When has_pt_mirror is false, xe_vm_pt_root() is hardcoded to return
-vm->pt_root[0]. As a result, the allocations made here for id > 0 (and their
-associated scratch tables) are never used, wasting VRAM.
+It appears that xe_sched_job_snapshot_capture() accesses job->ptrs[i].batch=
+_addr
+unconditionally. For PT jobs, job->ptrs aliases with job->pt_update via a u=
+nion.
+
+This causes batch_addr to overlap with the ops kernel pointer (or similar
+members) from xe_pt_update_args. Could this mangled pointer then be
+uncanonicalized and included in GPU devcoredumps, leading to corrupted state
+data and a potential kernel pointer information leak?
+
+> +	job->pt_update[0].tile =3D tile;
+> +	job->pt_update[0].ops =3D ops;
+> +	job->pt_update[0].pt_job_ops =3D
+> +		xe_pt_job_ops_get(pt_update_ops->pt_job_ops);
+
+[Severity: High]
+What happens to the pt_job_ops reference if the PT job is aborted or destro=
+yed
+without running?
+
+The job destruction path in xe_sched_job_destroy() does not seem to check f=
+or
+is_pt_job, and thus skips calling xe_pt_job_ops_put(). If the job is cancel=
+ed,
+aborted, or its execution queue is destroyed before it runs, the DRM schedu=
+ler
+bypasses the normal execution path and directly calls the free_job callback.
+
+Would this permanently leak the pt_job_ops structure on those failure paths?
+
+> +
+>  	xe_sched_job_arm(job);
+>  	fence =3D dma_fence_get(&job->drm.s_fence->finished);
+>  	xe_sched_job_push(job);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903235842.3401=
-722-1-matthew.brost@intel.com?part=3D17
+722-1-matthew.brost@intel.com?part=3D13
