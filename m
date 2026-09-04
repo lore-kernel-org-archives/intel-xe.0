@@ -4,157 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FDCEC79F80
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 04:02:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99941C61DD6
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 04:10:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B74E110E10F;
-	Fri,  4 Sep 2026 04:02:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F72410F804;
+	Fri,  4 Sep 2026 04:10:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KRMFGCIZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QQOCFB/O";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC82410E10F
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 04:02:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E82DE10F804
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 04:10:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788494575; x=1820030575;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=LbP8yvNIZ3jS9KloQoLsufZVAxRFNGP4Ld4LVOALEx8=;
- b=KRMFGCIZhzzQnI76SjTZmLWQ/H1ZUt+Mpt+xgixqXqryZxLdOITJ408f
- 5b9Pm7K/Tc8NsCvNdlzBZl9ErzygfUt/psuRPuQBoRcTJzIRm0hnQ/H1h
- alNnMHBV1fvMaoL0qxaxCymD/EbaPnVPlMZpPUFA8EzoMhUjm6Pu75S5E
- QDrr8qPfQR5oEZ82kxFv54OipWl0GHFz/a/ovOMexUnbDUG+ucCE4EVTX
- FRpyx/kjK7PYvbBQYbEOgL0sbydEyh24WO0/8dmxPnx72lNq+jfm+zq2B
- iiIbdi6UjWIzSS716RTagcPF0i7C0h6V7BalavTZQRJZu5MyvC6PNjgMn A==;
-X-CSE-ConnectionGUID: SoLfpPbQQ3KqQqWmQNhLpQ==
-X-CSE-MsgGUID: +D3E6k+oQ7SEwE7nzE7HgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="106512402"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="106512402"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 21:02:54 -0700
-X-CSE-ConnectionGUID: OMjPbs63TFKGsLxlFZQLCg==
-X-CSE-MsgGUID: ZRPK+L9VTFqfPXYVHXDQNg==
+ t=1788495024; x=1820031024;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=ZeQxCQLW6nrGILk8NsBXxNi6laj95AQTMwdHa3ied/U=;
+ b=QQOCFB/OE81Cs3VqRcNPpmj0xO0dfHGjMo0Qo0JXOuO/t6apz+K9oKRy
+ ecRb6pW/5sdy1r6Hlfpl96PDSD0ALTsgh7UNKpo8Xtffpw/2n4qw7PWy1
+ WFrY5Qpip1xJH32aZESzUXK7LrRqS7PaQPEBWO+DvHt1gFMKeyfAULn1z
+ iJBcLdzGFefx8YiJHUKAg44PjXCZo8QpTFxxHWZYWO4AKdip4SmYJhHcx
+ qBrtRPZS7ZoG+Pv2HXRJl59f8TYvxDrQiiLJCWs8su6wmlxIqevoZQeKg
+ wHnUMFkBXx0hqCm7IElPxxaQPkoPeRDZAv16jNdUm8MzQGbcI5ANkVfZp A==;
+X-CSE-ConnectionGUID: 4izEL5vEQue+dlF++UZp/Q==
+X-CSE-MsgGUID: KOt0chylRJ+EF5AbCRmZ+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="88134158"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="88134158"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2026 21:10:23 -0700
+X-CSE-ConnectionGUID: GPwj+B7aRvOmWqBJ545uhQ==
+X-CSE-MsgGUID: cF6ALUTYRw26FQK0W+zMrA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="273711978"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 21:02:54 -0700
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="268185167"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2026 21:10:23 -0700
 Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 3 Sep 2026 21:02:53 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ 15.2.2562.46; Thu, 3 Sep 2026 21:10:22 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
  FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Thu, 3 Sep 2026 21:02:53 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.24) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Thu, 3 Sep 2026 21:10:22 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.61) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 3 Sep 2026 21:02:53 -0700
+ 15.2.2562.46; Thu, 3 Sep 2026 21:10:21 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=k6Kt8egG7Shivzp4v62ZadDMV/Ors/XRNQNy/VGu5RK+vxLTplPKadZhtn0lVpBEFc8wGHi7CYrr/Aimt3VQ060eZoFEhAdZ/bY1K0uC+LlK07yG8cp9v5/4eVLdltYaIkl5Hr+WJBm0CSlgJvRgkViurjslQGQFaXmrPt2mlfBRhEp6MNpj5aQQNBLL2ZRmIQptUKUbmt+Me1vthiO6NsEEFG42t5YNN23lqF1xSxB2gR+v6Wpsp8Z5ghpsmga9XudEsx141brsqjhHDQWBJtuhf/m+JrW+Qw/jQE5i6xpsXmLhcLgbRyLPNrqMdiyViTbC5iztNrD5dJ0MBOd+5g==
+ b=pGe1tMT7kr164hqEj6Hv7kqdD25qYDMW0qDvhtkc9UdE6Q44pLFjblr/efbo8O1nKfsXshOQtLk8wv/v2DPhICMQHg+9FQtEBBMtOSfnXd6Gfc8M93R42mumM2BE017OkRxqJQdsy9wrvSuvBdEVgAt+VaNI+s7ZOhPKBMeUpviTiXvmhNdQP26w51tMUq01uL++uTIMKCWBzHi0w46rHczJ51lRGpB6ZYbQ0sSGQVwpQavlUd5MJPkUKz4SkXEGvd+RCtuZMqZI/JOkhmVeGJFiTOAVirSCtF07QQs0NAgpnZWuLcngi0AucLvR3evdZpnNqpQ4XCx93PuOrZE2zQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kchYDeMgo3prBvJFsY8eQBYG2xcSlISxt7hedTuVvGM=;
- b=VGPyhW+AgAmOOb0SPpSeLxTqgu9tyBbzjx5taVi9Qq5eGl4SV3CuRd9LxHKxtzFMpbI0ib1JpWkVktB2gzKUOZGiaghfwTqWBihzYSeKC0ZQoyGSiR30hHP2fZ6g0Mq7i/h6/q9uLsiVpLspcty1AZSdfZZYVaBjETfmAyeTI/LMt0rPfMKAEZTRUR5hL9+bDBvBJnQ4rgpZcXjnwPAuaA8U4hvirlc14WuhlmC3LLdRUW8XUztfIMOhjZzMJqgkVLfTbbKaXPz5J4G+K6PE8AG5d656N4Mw7YPdTKEnF77EE5Ni7dLqx+kdZ9+bwACgsKYPhJiSbkAy7/ir2bqqpg==
+ bh=VulwyufhNPrszLrs5p5RTKXoWyRj8i7VrdEZcd3tgwo=;
+ b=s8TdlSD3COFCl0a0X2jogN8zdwXv+ryDQjtVPRZ6sIFghtg+aYti5j6ik4zIIhmaPRwp5iB4xS2vG1L/cxo8SGVdfFP8JY3uvWCEbWGreZ139F5+96L58lCjTLr1c6bdd0p/7yTmwKWxof3+L1FfsHHuoKo8gfHmrNH+J+7a6nx/W/bTXNtEclsEE/ZA9BDiEV9T8jlxNtNIisc+HUbMXJYhcfjv9MbRoXyTpdOjpmIB1OfaJP6xZd38m+OVMFKIOFVbWy3W2v2mcP8F3hrNoDZUW/kfzwJNmLGK0hI1Xrcz79NLDtEqD8JjXwQXxsg0K5vHPENlnRtHXGw0P37pbg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH3PR11MB8706.namprd11.prod.outlook.com (2603:10b6:610:1d1::22)
- by SA1PR11MB5923.namprd11.prod.outlook.com (2603:10b6:806:23a::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Fri, 4 Sep
- 2026 04:02:50 +0000
-Received: from CH3PR11MB8706.namprd11.prod.outlook.com
- ([fe80::e419:ae5c:91ec:1e9d]) by CH3PR11MB8706.namprd11.prod.outlook.com
- ([fe80::e419:ae5c:91ec:1e9d%7]) with mapi id 15.21.0360.008; Fri, 4 Sep 2026
- 04:02:50 +0000
-Message-ID: <5082034f-13f5-419e-98d0-a558a6f8d111@intel.com>
-Date: Fri, 4 Sep 2026 09:32:39 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 7/9] drm/xe/hwmon: Add kernel-doc for fan control
-To: Karthik Poosa <karthik.poosa@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <rodrigo.vivi@intel.com>, <anshuman.gupta@intel.com>,
- <badal.nilawar@intel.com>, <raag.jadav@intel.com>, <riana.tauro@intel.com>,
- <sk.anirban@intel.com>, <mallesh.koujalagi@intel.com>
-References: <20260717041757.2759084-1-karthik.poosa@intel.com>
- <20260717041757.2759084-8-karthik.poosa@intel.com>
-Content-Language: en-US
-From: "Purkait, Soham" <soham.purkait@intel.com>
-In-Reply-To: <20260717041757.2759084-8-karthik.poosa@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0134.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1d5::11) To CH3PR11MB8706.namprd11.prod.outlook.com
- (2603:10b6:610:1d1::22)
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by DS0PR11MB7927.namprd11.prod.outlook.com (2603:10b6:8:fd::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.382.10; Fri, 4 Sep
+ 2026 04:10:17 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0360.008; Fri, 4 Sep 2026
+ 04:10:16 +0000
+Date: Thu, 3 Sep 2026 21:10:14 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <sashiko-reviews@lists.linux.dev>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v5 17/25] drm/xe: Add device flag to enable PT mirroring
+ across tiles
+Message-ID: <appEprATsO8O4lEU@gsse-cloud1.jf.intel.com>
+References: <20260904022207.3490018-1-matthew.brost@intel.com>
+ <20260904022207.3490018-18-matthew.brost@intel.com>
+ <20260904024347.D0DC81F000E9@smtp.kernel.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260904024347.D0DC81F000E9@smtp.kernel.org>
+X-ClientProxiedBy: MW4PR04CA0257.namprd04.prod.outlook.com
+ (2603:10b6:303:88::22) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8706:EE_|SA1PR11MB5923:EE_
-X-MS-Office365-Filtering-Correlation-Id: 524f7deb-29b9-41aa-d150-08df0a3962e7
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS0PR11MB7927:EE_
+X-MS-Office365-Filtering-Correlation-Id: 154b7eb2-bfd3-4b0c-ef30-08df0a3a6d39
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|23010399003|1800799024|11063799006|6133799003|10067099003|4143699003|56012099006|18002099003|22082099003|3023799007;
-X-Microsoft-Antispam-Message-Info: coU4OV18Zq5fNzTkITAVqO5gEVSZPLkZKlUHainKxUCNLlyATiMzcHSGjS0emmCmvLPKha7VEvSE2nzg7ONRIDhP4z4UND9UG3QibVkCTJXRSfclze+NcyR7v4hpsgaR7DWq3O3SDkpAS32HEN1Bzg6b32Mkmpzfj8iQuuwfpuBeexcaPS/Po2UuiT/KGQFD756TLQMBg0huhBOAe6mR/PVGeVQYG2Bk/NjZhp9e61cUQnSnHgfqNBaKhC4HqcEqrvE4pQ5XqTqL0BD/vSUGHGb6UfjfVcQJXqqum9lE2PTE0GSnVeJmNbwPbZbk67+zn+ueRgSqYcqtw2j0jlube1kscHR1zOsQ1KeWgE1Iy4Wi6sJP4yWGwuyb3gxX/3dNb7TyMioPEH5HdNvb/wGxnpJha5I632hyc7LV7L1V3pZtvcz8u5XJO+VoQwrDwmSxcomumLaEuDqueHJmrc+kBsrz1ZAZUjXDlACfUKUXN/LMwdbaZwJAz+NMFrxcixLEJzfQpnUAnuZ7YXBWo6E3SRKMR53SgXv/jpEBAocRt7Im6k64QVFYyPQIJlijMLqyGEGK8qqxlyU/CrI8IcVUr/SBIOLYnWGazSwu7jlk8rSFUJwO7fFiXo+j/+IaZfFnO1Rk/2rhMhQ4lrwwKldmOu7ng4FrMhTf333qlhT6f9I=
+ ARA:13230040|376014|23010399003|1800799024|366016|6133799003|11063799006|56012099006|4143699003|10067099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: il1mqFx0+sFiFGnem2cwmoxuaBcE7awx/ESykMMvzFKByzeaklj9I6UX/P7JlArqx4TZiwf5CIT4C3FiP0YemtH+9qmnz7/Ddl/8xxelh3uenqdj7/sjRhqtKatB9UQdwQutc+ia6DtpVf2oONSrgZ0QIGbSCCmPk3Ho8wuRqWZezcdiFiV6wUDAF0arIZuxGd3+QigI2xBU1t45Ov3VnlxU7WxoMFqbN36UhBdCFgPNU2bw6czZmSclpz8rwGB5STl+LJXeFx1UnOvui6UUdBGJmZnBb9dcy0JMgmPAH65akg+sagF+2A4eGtep7eaIHeYmGoyVL1F47CCNlPHwget/s7ojQM+wB5Ps67i8gwgpL26SU8A23IenJyWgfoBMfAeSCqgnsSwkHJHsGd44A2+0YipOS5r19sOObj9pQ6hrZvH5RCHtxUQDMUAN6gg3Juqw3wWchSiyrrx8gHo/8rg7rF2+Dn8In1ipCOboy0svXg3VG9k14wv0yKrWicWJKj4zWuy7GeZxLAX1BkUGGExtCKk2e/at7S/hVnMIyqgh8v+eAa1B3yJfF3q9cpv//Syq8Cn9Uem7+o9IMQ8m1F5NJKRnLV9ON3zVHG81WhM=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR11MB8706.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(11063799006)(6133799003)(10067099003)(4143699003)(56012099006)(18002099003)(22082099003)(3023799007);
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(6133799003)(11063799006)(56012099006)(4143699003)(10067099003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NVRiMkZNVTlLZEN2R3MvK2lSRSt3blZNc1V4Y1FWYS91MEJYK2FvcDNqZ2Rs?=
- =?utf-8?B?ZWp5SEUraXFxM0FReHFqek1qRFRORFpzVW14S0x0UTg4eVJpVFczWHJhazdt?=
- =?utf-8?B?bFdJcUV6WEg1VUNQSWRSTDkzVDdpZFZhTjlkOVdIRXR4OW9XRXZpNEkrQnZ0?=
- =?utf-8?B?SWY0Q0VwZG9vb0plR0owbnRSMGFUQmJTeGZycTRXQTJGdmdnWEd1SmVLNTNS?=
- =?utf-8?B?Umk1dTN4ODVHZVNldnBicklOcmIwNEx3RHErZ3RmZWNTY1BicjNoaE02SUh6?=
- =?utf-8?B?ZjJJdDAxQW9BZ2ZveTlaYzlUbHA0SUxlZDY3TDE0NFpYOWo2MkNUeDYwbE8v?=
- =?utf-8?B?MVRVUVh6Z1NFSzBYWlVmMHJvcjRpVUZSNmtEaDR0SllsRTREYUs0TmpiR1lX?=
- =?utf-8?B?bEVuUGpFMGY4TWtDaHZxZjBXVmN4SnlLcGNhTC9idGo2amVrTnBwVlBBeXNy?=
- =?utf-8?B?T2JTL2tBYktqd0NUQm9NMXR1TFZiaWpaUGxEVWRYSGptL2NOMGFDMCtRbGVx?=
- =?utf-8?B?MGwzQjRIRWVYbTdnWnloVkpuWmswclBEWHpuUTdWOWFLY1FxWjVXOW5ZeEV2?=
- =?utf-8?B?OFNHMGtKeFB1Vm9JMUdFcEgwUTNEanVWVm0vS1Y3d3pIZ0lJeENmSjZsZzI3?=
- =?utf-8?B?U2VCMXpoRUtnNlY5NHlldlpLSnRvT0s0WXhHNXE1UEpCRFZpMUxnWlJLMWQv?=
- =?utf-8?B?V2Fubmo0QVNsK25xbnI4bkVreVJ4TXo2WGpRY2gxWHd2c2hKS1lBejlvMHpR?=
- =?utf-8?B?WGVSNWE0TWN3VXMwbzZrZS9SK3lTQUt3STVIOUMrbWdHUHdCQ0RNeHcxc1RD?=
- =?utf-8?B?ZXVoRUZJejlqRlBwV3k0Skl2ZlBtNHBJUVhPb1hEV2FhUUFwT2ZFQSswK0RH?=
- =?utf-8?B?b05vQWFrS1h3SjE3eVdna2RPRzhuWlRJbmptSFZSbk9LUSs0VkxMSk13UDhI?=
- =?utf-8?B?U1IwZi8rU3RweUZIYVpIRmxTNXkzWmJnZEpIM0hGUUtjZit5VXFhTWNmR3Ay?=
- =?utf-8?B?d0NZSWlxTXNFTEtRS3l1UE5VUk8wSUpPandZUnZlekVxN2ljTG1qenFLVHhn?=
- =?utf-8?B?d20zYk40NkZ3R2FObnUvYXlsUEYwcWw4NHNoM3NTYytFR2Vad0U2bjVqS3VS?=
- =?utf-8?B?UjBNR1pzTDVWVm1IZDVoY1B4ZTRscTFTVWNRYW1RVnJjOW5nZ0pJaU8rVmdL?=
- =?utf-8?B?UHdKVmc4ckR0QzF4NFNWQnZOUkNNQzdqci9WTFdBakdhNkFiZjNDM2xXSDlW?=
- =?utf-8?B?RXVUOWxUdHN4TTRBR0lTTmRJMERFNU0xek0rTVc2UHBpS0xHdnpiRGtTWFFj?=
- =?utf-8?B?dytWUTlXMnRHVGh3dHdkWUI4OVFRcWIzVWZkNFV1WG9LMkF4aWxDaTFaWW9F?=
- =?utf-8?B?U1BaT3ZHQzhHTTlpT0dwaEVobTFtL0hWbE43R2lZL3diN2N3ZHd1dVUzNlkw?=
- =?utf-8?B?RDgzbGNNZ3hsMVNicDdBa2JzNWdUaEhicVVRWjFDUHNzdEhURGlFRzZOOXRT?=
- =?utf-8?B?WGprM3FZcU45WXpUbzdMQzhHZis0Q3c5T2ZIMU1IeFR1UWN5eUxoc1NSalg2?=
- =?utf-8?B?YjhYazA0Z0k1cHR3RzhySU5panBadjBHOUdmMlJoZnJReHh0SmZwcVgzZ0t3?=
- =?utf-8?B?VXF4SXdNek1ieE5KVjNGOE9CNmdKU2x5eXhxWVM0TFZ5TTZrZnRycE1nSWJt?=
- =?utf-8?B?czI5ZEE3MHVER2NQR1FMYmNMbm9Hd09iREpWTlp3VGc0SmFlME55YjhEZkdD?=
- =?utf-8?B?TzgzM0xCTHFYdm02eXhqbWc3VUdLeWM0dXduZmhDSGROckwrb01NVjcvYlpQ?=
- =?utf-8?B?SVR3aWNMeHFuaVhLTnhrR1NHRWZFNXpBYmFhQm45WUxMYVVYZjRWS29DZ3lE?=
- =?utf-8?B?ZjlycHF6TkI3OXRldTJJWFI2WnJ5NG1Vc056VFI4MU1uMmtuOExMUnY2anNu?=
- =?utf-8?B?MkxySlpPVGduWUc4WEV6cjhMYmdMcUkyTHJWTnJBTnJNRWNEU09IdE04UjVE?=
- =?utf-8?B?YmJuU2h5YUpRaFE2d0xNenIyRnRqRmMwWXFnOVZIM04zY3VTUnNCSjErNW5m?=
- =?utf-8?B?WEFpaGJCT2k0aHBtTCtlVEdvV0VQN1o4OE9PK2FRRG4wdzBldXltbjM5UnFU?=
- =?utf-8?B?eUVmYU5sUGpVSE55cWZvR2FnRFgvdHZPeVpIZ25rL2w1NTBhMGdTcHlqVU9P?=
- =?utf-8?B?SS81UjVWbGpTR1FudHF2RXRsTC93dmRXcVRHeWVEZ2RWOVBHTGRUb2VqYis5?=
- =?utf-8?B?WUphZHk5bnVSaUtiQnNqK0FYTGJXSUhSVXpLcnBQT040YW8rcnFleEJSb3RF?=
- =?utf-8?B?V0ZtZnFNSWk2alZtUlZTR0lJQVFrZW41VGVNZFRNMmtpdnBKZHJsdz09?=
-X-Exchange-RoutingPolicyChecked: pdJ75fekHe7al1jxGMr6GbyVdUxbJxRHwqIjiRJOT7wYCmdTQnLDa+UK6Bs9UvTLoqqYT2gnUzH9lo3d44epWejrl48iCG0+0bpXbnRVqlB/zK2aPIXtrLqc2jg0o5OzSJbrllQ1t22luoHvKp+h0Ro5xjgM2HDX0qpa2UcDdY664VRQj/henKFsMzly97NV99rcQ961Z9sPsKlOHY+vtOaxBM8ZMa/8f0ts1l40gL+1VP0cbJ3JQsW20jkqmxh8aC9jYQCpz/hU9AjBCa4n6w8F9yEoIK6q3TH+n4goGpG6r0N+PCHcQ5TIqMKPiAt9M8LX1KydeNW5JsWrV9RQAw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 524f7deb-29b9-41aa-d150-08df0a3962e7
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8706.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?xqckdTSuzlkzTzN5rTt2fJR8sg0rPep4wSrEdxWC0oX1e3aq9rw21FjguV?=
+ =?iso-8859-1?Q?CcyjnvPlvXiCmCLstkDJfpqOZZyPG+Z5Pg5qiUyHHl+9gUCwrGjLUIW8jK?=
+ =?iso-8859-1?Q?urfkaNDinqkL7XbijXpNivm6ykvJnO5ixQdINJY8QfaALCbpNAlZ9+ABvG?=
+ =?iso-8859-1?Q?QgV6YeyVRBQBhaensYlo6eYE6g0i/pSckpTBZTbnoKPjSUv9PSk/gNFhid?=
+ =?iso-8859-1?Q?kIJFgqXw435Vbbc0EjNRom9FCSd2yYYAzhcTc8Sc1Ijk0hwEm+zHPPjkpV?=
+ =?iso-8859-1?Q?mmxvD6Pprra6oiZNI6uiLzt6rQYixMkCHfTAoUeSwjTLNwUN+mk6sM1s7n?=
+ =?iso-8859-1?Q?t7O9esiuh9jFrFS9S+idh/STnJYNzuWC8dG6w4pi9hgIyx5FtNP5cEsD7g?=
+ =?iso-8859-1?Q?NHHll/+0uCvAnU9IigHPEoQQZ3oZjt/VhIOEDN4+kOgiGePCO7GTE//juf?=
+ =?iso-8859-1?Q?AQ9veH64UVGgz4UT/s4VhPuDSDH3tvKjvsdROtU8l6GMklCNgWHJvBuC/F?=
+ =?iso-8859-1?Q?srFARRfp8ojytm3HM3KDh0jbtSBmwYORrIudh2dzBbwGmEZu/VK66ZUF+X?=
+ =?iso-8859-1?Q?VwPUzdgBBXPuEelZGA74gcKZrh7Lu08oGQSzyIRk9vTO6Zl5gYUDxbAoQv?=
+ =?iso-8859-1?Q?ouT7kRh+UvpzyY3Q5mes9cm5sCew3Jy7D01UlO5uMOSnAZR1LY5HaUJ5BF?=
+ =?iso-8859-1?Q?hleItCvmSroBTRFHjE1ucCYIGvxSPWGvRmxkSQ21Ah4pJiw+mAMQyJNijU?=
+ =?iso-8859-1?Q?Kbr4LvjcWbw2kx3soNKdvJGAYiC1ZnJhk57/XKzIYDJEapwu+cbjs9xFz5?=
+ =?iso-8859-1?Q?skPvswRDMoFgZ/GQ7j6WqedepbSq/+amD95TZl1p7umGftpGbMytvfVka1?=
+ =?iso-8859-1?Q?KZTcRrQ1MjAeg2Ufskxb80J+on1VbPnVff7xNPSSNdS0zhJIiKnIeuNX8r?=
+ =?iso-8859-1?Q?C0CYFrsY2SlOgMMc3haEQD6HlASp6PmNgJuFQaRkBTNRNjK4FTTEKU6nZu?=
+ =?iso-8859-1?Q?oqkU9LGtwRR3RZU3WYDcTIb/MsSRKqGoW2thf7vyvdZ4HpDjwYa0IfcS3a?=
+ =?iso-8859-1?Q?miONqXo6ZV00KF20s7OnzXkAPbAvtV6E+cd0j4WDohpznQf4a9ERIpACy8?=
+ =?iso-8859-1?Q?EOccN21r+S6IVEAhOlkUfCqJ4OvooDDEsQQeO2bUfv/QDxYsiZiivNBj3N?=
+ =?iso-8859-1?Q?DicCR073hSjLOJwzVJFOjycOMp+dLpHL4oUpczSQMkTDQ4418bP9efKtE7?=
+ =?iso-8859-1?Q?kT2mvdulqUO2b8K3TYflQX0KMJ3sFbVi8aiAue0EIgUeanjZrlHwcvW0r/?=
+ =?iso-8859-1?Q?+PWW8avTLZ5B2qF0IdUNiuGuAkjlMVZnl14a3fjfDYom6OftY5LlECx+Ck?=
+ =?iso-8859-1?Q?LmE7cQYbh1AOsvlwm5pIbVJJuJjg8cA1wap45Dpv85CkPQNQIzg6f0SIqM?=
+ =?iso-8859-1?Q?CZJuOGgfAqCO5N7en46WwCVWyBta+3u6rWjTj4/yBazLvavnO6K1R5oVza?=
+ =?iso-8859-1?Q?hqnq00vp7SUxiF3sxUXpggwmjLKcrfEfOoelaOKqfbwDxERBRMBbtNPKj3?=
+ =?iso-8859-1?Q?v79275DVlMVec158gnYZ2lk4i5x+HnFhBXown3NGXXX54yBR5iF6ruxmn/?=
+ =?iso-8859-1?Q?jMusBF4sBtlTRN67gnFzXDZyW2EVCaP3dwc/fiF6MKW4YVbR+6hHznXmGI?=
+ =?iso-8859-1?Q?UVqxw6WvkwZhYpMytWLm6wUP7nYRcfwnwBA27l0l9WJeK78scW9imGB179?=
+ =?iso-8859-1?Q?QEkvRIfKknuW6yTzELX2wcsk6F0+N3m+tVTD/hZq1HFY6EgmPY3chQev7L?=
+ =?iso-8859-1?Q?xCKdLxaXjZq4cMJxUojLf65QmOgPDEU=3D?=
+X-Exchange-RoutingPolicyChecked: llWPrzU54fOwAExSR0rJRQdTTM9op1JLL2kzD+p4c4bUUzuSu6TwcarY10D3PXIRMKVI5uijI7TGYQRopZoiAFo/P65o/BUeevvY5s9wotudMkDBtAQc0U8ZNULrE3W/OymBB3CKMn1qRtbRI8BVWmea6jpkai3B0W2xNLw6GUAUmqT5GeMKIDv0r9oPyAlFTyLHABNcQov67+d87MenGz9ulHzYhgxVfZXvfwfj5zsTeH4CN0fCEDdoY+GD5eAXcMQfB08zCAXJaCGQ3lk9/zIAoXnR6+vP61jSEMDsqjkgOZd2UxZrYKYT32aeYU+lgq5MH61qNT6Y4BF5N6TWGA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 154b7eb2-bfd3-4b0c-ef30-08df0a3a6d39
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2026 04:02:50.2794 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2026 04:10:16.8733 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jBkBwMeBHpE2d+NPo/M3aDLIkbB3DeyP5EUAVrco3F5ZhFdciKUidmCgc4zt0YjiIHYOqqML/NTonA/wYDjFrg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5923
+X-MS-Exchange-CrossTenant-UserPrincipalName: c96qo9lmm6lqTI3z/DpOrbMRkUtvq/eUmZINTIAAXnkRhin5gPgrc04ajUHiLhoun3agTIkF5UxBt+9SsIgQ6A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7927
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -170,85 +161,152 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-HI Karthik,
+On Fri, Sep 04, 2026 at 02:43:47AM +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
+> - [High] Unused page tables and scratch buffers are incorrectly allocated for secondary tiles when PT mirroring is disabled, wasting VRAM, and migration VMs are forced to use remote page tables.
+> - [Medium] Memory leak of page reclaim entries (`prl->entries`) on error paths or when TLB invalidation is bypassed for tiles with disabled page table mirroring.
+> --
+> 
+> commit 38fe6ff118093de1244d8bbcc84d59616c09c17c
+> Author: Matthew Brost <matthew.brost@intel.com>
+> 
+> drm/xe: Add device flag to enable PT mirroring across tiles
+> 
+> This commit introduces a device flag to enable or disable page-table
+> mirroring across tiles for memory-bandwidth reasons. The flag defaults
+> to the existing behavior on PVC but allows flexibility for other devices.
+> 
+> Link: https://patch.msgid.link/20260228013501.106680-18-matthew.brost@intel.com
+> 
+> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> > index 05bbac6c2632e..bf2cdef44179d 100644
+> > --- a/drivers/gpu/drm/xe/xe_pt.c
+> > +++ b/drivers/gpu/drm/xe/xe_pt.c
+> [ ... ]
+> > @@ -2541,9 +2552,21 @@ int xe_pt_update_ops_prepare(struct xe_device *xe, struct xe_vma_ops *vops)
+> >  	int id, err;
+> >  
+> >  	for_each_tile(tile, xe, id) {
+> > +		struct xe_vm_pgtable_update_ops *pt_update_ops =
+> > +			&vops->pt_update_ops[id];
+> > +
+> >  		if (!vops->pt_update_ops[id].num_ops)
+> >  			continue;
+> >  
+> > +		if (pt_mirroring_disabled_for_tile(vops->vm, id)) {
+> > +			struct xe_page_reclaim_list *prl = &pt_update_ops->prl;
+> > +
+> > +			/* Transfer root PT update ops PRL to current */
+> > +			*prl = vops->pt_update_ops[0].prl;
+> > +			xe_page_reclaim_entries_get(prl->entries);
+> > +			continue;
+> > +		}
+> > +
+> >  		err = __xe_pt_update_ops_prepare(tile, vops);
+> >  		if (err)
+> >  			return err;
+> [ ... ]
+> > @@ -2924,6 +2953,9 @@ void xe_pt_update_ops_fini(struct xe_device *xe, struct xe_vma_ops *vops)
+> >  		if (!pt_update_ops->num_ops)
+> >  			continue;
+> >  
+> > +		if (pt_mirroring_disabled_for_tile(vops->vm, id))
+> > +			continue;
+> > +
+> >  		xe_page_reclaim_entries_put(pt_update_ops->prl.entries);
+> 
+> [Severity: Medium]
+> Does this skip releasing the page reclaim entries for secondary tiles?
+> 
+> When PT mirroring is disabled, xe_pt_update_ops_prepare() takes an extra
+> reference to prl->entries for secondary tiles. If the operation succeeds but
+> TLB invalidation is bypassed (or if called on cleanup),
+> xe_pt_update_ops_fini() is executed. By checking
+> pt_mirroring_disabled_for_tile() and continuing, it skips the needed
+> xe_page_reclaim_entries_put() call, which can lead to a memory leak.
+> 
+> >  	}
+> >  }
+> > @@ -2948,6 +2980,9 @@ void xe_pt_update_ops_abort(struct xe_device *xe, struct xe_vma_ops *vops)
+> >  			&vops->pt_update_ops[id];
+> >  		int i;
+> >  
+> > +		if (pt_mirroring_disabled_for_tile(vops->vm, id))
+> > +			continue;
+> > +
+> >  		for (i = pt_update_ops->num_ops - 1; i >= 0; --i) {
+> 
+> [Severity: Medium]
+> Similar to the issue above in xe_pt_update_ops_fini(), does this leak the
+> page reclaim entries when an operation is aborted?
+> 
+> By skipping secondary tiles when mirroring is disabled,
+> xe_pt_update_ops_abort() also bypasses xe_pt_update_ops_fini() for those
+> tiles, meaning the reference acquired in xe_pt_update_ops_prepare() is
+> never put on error paths.
+> 
 
-On 17-07-2026 09:47, Karthik Poosa wrote:
-> Add kernel-doc for xe hwmon fan control and describe the fan control
-> model built around firmware stock tables and driver-managed user tables.
->
-> Document the exposed sysfs files for fan speed, maximum speed, pwm
-> control, pwm mode selection, and per-point fan curve temperature/PWM
-> programming.
->
-> This makes the hwmon fan control userspace interface easier to discover
-> and understand.
->
-> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-> Assisted-by: Codex:gpt-5-4
-> ---
->   drivers/gpu/drm/xe/xe_hwmon.c | 43 +++++++++++++++++++++++++++++++++++
->   1 file changed, 43 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index a3ed139ad446..770f07fb6511 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -123,6 +123,49 @@ struct xe_hwmon_energy_info {
->   	long accum_energy;
->   };
->   
-> +/**
-> + * DOC: Xe fan control
-> + *
-> + * Xe fan control is exposed through the hwmon pwm and fan interfaces when the
-> + * platform advertises PCODE-backed fan management support.
-> + *
-> + * The implementation tracks two fan tables per fan:
-> + *
-> + * - A stock table read from firmware through PCODE.
-> + * - A user table cached in the driver and programmed back through PCODE.
-> + *
-> + * The pwmN_enable sysfs mode selects how those tables are used:
-> + *
-> + * - ``XE_FAN_PWM_AUTO_STOCK_TABLE`` restores automatic control using the stock
-> + *   firmware table.
-> + * - ``XE_FAN_PWM_MANUAL_USER_TABLE`` enables the user table for manual control.
-> + * - ``XE_FAN_PWM_FULL_SPEED`` reuses the user table path but programs every
-> + *   point to 100 percent duty cycle as a full-speed override.
-> + *
-> + * The fan-control sysfs files are:
-> + *
-> + * - ``fanN_input`` reports the measured fan speed in RPM.
-> + * - ``fanN_max`` reports the maximum supported fan speed in RPM.
-> + * - ``pwmN`` reads or sets the manual PWM duty cycle in the hwmon 0..255
-> + *   range. Manual writes are accepted only while ``pwmN_enable`` is set to
-> + *   ``XE_FAN_PWM_MANUAL_USER_TABLE``.
-Could you please double check this claim ? Seems like in 
-XE_FAN_PWM_FULL_SPEED mode of pwmN_enable also accepts the manual write.
-> + * - ``pwmN_enable`` selects stock automatic mode, manual user-table mode, or
-> + *   full-speed override.
-> + * - ``pwmN_auto_pointM_temp`` exposes the temperature threshold for user-table
-> + *   point ``M`` in millidegrees Celsius.
-> + * - ``pwmN_auto_pointM_pwm`` exposes the PWM value for user-table point ``M``
-> + *   in the hwmon 0..255 range.
+Both of these are correct, pt_mirroring_disabled_for_tile should be
+deleted from xe_pt_update_ops_fini.
 
-Is it always user-table point ? What happens when mode is set to 
-XE_FAN_PWM_AUTO_STOCK_TABLE ?
+Matt
 
-Thanks,
-Soham
-
-> + *
-> + * Writes to pwmN_auto_pointM_temp and pwmN_auto_pointM_pwm update the cached
-> + * user table entries. The driver commits the full user table once the last
-> + * point has both temperature and PWM values, which keeps intermediate sysfs
-> + * writes from pushing partially updated curves to firmware.
-> + *
-> + * Writes to pwmN provide a constant manual duty cycle by rewriting every point
-> + * in the active user table to the same PWM value, clamped against the minimum
-> + * duty cycle reported by firmware for that fan.
-> + */
-> +
->   enum xe_fan_pwm_enable_mode {
->   	/** @XE_FAN_PWM_FULL_SPEED: force all user table points to full speed */
->   	XE_FAN_PWM_FULL_SPEED = 0,
+> >  			struct xe_vm_pgtable_update_op *pt_op =
+> >  				to_pt_op(pt_update_ops, i);
+> [ ... ]
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> > index fbfc42afef8b1..795d0ebb10047 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> [ ... ]
+> > @@ -1738,7 +1748,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
+> >  
+> >  		for_each_tile(tile, xe, id) {
+> >  			if (flags & XE_VM_FLAG_MIGRATION &&
+> > -			    tile->id != XE_VM_FLAG_TILE_ID(flags))
+> > +			    tile->id != XE_VM_FLAG_TILE_ID(flags) &&
+> > +			    (vm->xe->info.has_pt_mirror || id))
+> >  				continue;
+> >  
+> >  			vm->pt_root[id] = xe_pt_create(vm, tile, xe->info.vm_max_level,
+> 
+> [Severity: High]
+> Does this allocate unused page tables and scratch buffers for secondary tiles
+> when PT mirroring is disabled?
+> 
+> When has_pt_mirror is false, the loop does not skip secondary tiles for
+> normal VMs, causing it to unconditionally allocate pt_root structures and
+> scratch pages for all of them. 
+> 
+> Additionally, for migration VMs on secondary tiles, this allocates both
+> pt_root[0] and pt_root[tile_id]. Since xe_vm_pt_root() unconditionally
+> returns pt_root[0] when mirroring is disabled, this abandons the memory
+> allocated for secondary tiles and forces the migration engine to use
+> pt_root[0] over the cross-tile interconnect, defeating the locality benefits.
+> 
+> [ ... ]
+> > @@ -5072,3 +5083,21 @@ void xe_vm_remove_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+> >  	}
+> >  	up_write(&vm->exec_queues.lock);
+> >  }
+> > +
+> > +/**
+> > + * xe_vm_pt_root() - Retrieve VM page-table root
+> > + * @vm: The VM.
+> > + * @tile_id: Tile ID
+> > + *
+> > + * Retrieve VM page-table root for a tile ID, used to abstract if PT mirroring is
+> > + * enabled across tiles.
+> > + *
+> > + * Return: VM page-table root for a tile ID
+> > + */
+> > +struct xe_pt *xe_vm_pt_root(struct xe_vm *vm, u8 tile_id)
+> > +{
+> > +	if (vm->xe->info.has_pt_mirror)
+> > +		return vm->pt_root[tile_id];
+> > +
+> > +	return vm->pt_root[0];
+> > +}
+> 
+> -- 
+> Sashiko AI review · https://sashiko.dev/#/patchset/20260904022207.3490018-1-matthew.brost@intel.com?part=17
