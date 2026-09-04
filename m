@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 169F7C79F89
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44ABFC79F87
 	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 21:16:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3F6D10FAD9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB0E510FB3A;
 	Fri,  4 Sep 2026 21:16:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VNCun7v7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ain0vIOT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8923210E580
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6839A10E42F
  for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 21:16:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1788556581; x=1820092581;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=oavOCoqQIJ7x1Xuf0wOb7Ukn+Rv7ethno0w9tb1gTGE=;
- b=VNCun7v7OlgQ1gx+cRcN63isalt8nTHj4PaC4VikR3tRd5sokbunTuau
- +A22a0q75YoyKBNTsdmnJiyF2aR2RXEuqqSVunWKhjgrfgJYNqfCEE9N9
- eUlZoAocdFGw9VfBhnPOCHf8LaCSA5LCp3A9p/+Rx60d2Ypj5jMp8prLR
- 71AJ/wOIGrL3tdXaVgyt5+ehFZ2cGRNU4HLBVs6wG4j0CSsYLSkWxiTtH
- /CllEhcmfzLpWYC7ku/0Kce/K51XALa9ha6iJZQcPVe05JcADTM3KOcJl
- EHROWAIpFpXTx6k4RWP888JP3ljQzZVv6gkWtlCnt//sAZE9CZotq+Efh Q==;
-X-CSE-ConnectionGUID: kLFQxmV4SUqv4ijoDLOO2w==
-X-CSE-MsgGUID: Rn0UAU4gTsG8ILh2SJmMWQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11896"; a="89096803"
-X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="89096803"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Yt8uqNfFHGxRZ3j2uSIDsQHSkdTUmUYSJEGtk5c771g=;
+ b=Ain0vIOTaFiIz4MyJOUb3Z9kyysLkyeOszinU0tYxnS4BjFY34JekCJf
+ L7IzORT68/qH0Mym8yLC3p3UBw6qH59X+ZucB6iJ6zKvbuHLPKPcMT4QT
+ qtmRwWj23jmBGkVGIih0XmklrRbSU9ZpZNfZrARYy6ei2A3n4y1OUZoge
+ DqjIitdYnuGFSJbjmBSXDVF00EMJREJUVTR15yMWImPqFzRK1TooPTBKz
+ tXin4bjph1RAU+esIGRtOsShqQAGzpY2IXoOXFfEEyy8iVbo6OnFRDJLW
+ 5EhUl85fPvEBEh5zpHahjDoO48zHwlC2Q8CamTeQok7ZLO+FwV0wtih+q Q==;
+X-CSE-ConnectionGUID: 79JNFuiISNKt28HxdldUIA==
+X-CSE-MsgGUID: yLdZghfsR261SXuCxfAx4A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11896"; a="89096801"
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="89096801"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 Sep 2026 14:16:20 -0700
-X-CSE-ConnectionGUID: 16burRuWR0ClJBVufznRNw==
-X-CSE-MsgGUID: zJmaXVdyQu+toAOcbMj9kw==
+X-CSE-ConnectionGUID: 5cxwdTB6SQuHYw1zMOwNEw==
+X-CSE-MsgGUID: nYoOJqndQG20bvn/roSkcw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="267563421"
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="267563417"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 Sep 2026 14:16:20 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 06/24] drm/xe: Add XE_BO_FLAG_PUT_VM_ASYNC
-Date: Fri,  4 Sep 2026 14:15:55 -0700
-Message-Id: <20260904211613.3934307-7-matthew.brost@intel.com>
+Cc: Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH v6 04/24] drm/xe: Add job count to GuC exec queue snapshot
+Date: Fri,  4 Sep 2026 14:15:53 -0700
+Message-Id: <20260904211613.3934307-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260904211613.3934307-1-matthew.brost@intel.com>
 References: <20260904211613.3934307-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,52 +66,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add XE_BO_FLAG_PUT_VM_ASYNC, which indicates that an async BO put must
-also drop an additional reference to the BO’s VM. This is useful when a
-kernel BO, one that does not normally hold a VM reference, needs to be
-put asynchronously, ensuring the shared dma-resv object does not
-disappear before the BO.
+Add the job count to the GuC exec queue snapshot, as this is useful
+debug information.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-7-matthew.brost@intel.com
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+Link: https://patch.msgid.link/20260228013501.106680-5-matthew.brost@intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 8 +++++++-
- drivers/gpu/drm/xe/xe_bo.h | 1 +
- 2 files changed, 8 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 2 ++
+ drivers/gpu/drm/xe/xe_guc_submit_types.h | 2 ++
+ 2 files changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index b162753cebb7..aea4b0fee8e3 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -3998,8 +3998,14 @@ void xe_bo_put_commit(struct llist_head *deferred)
- 	if (!freed)
- 		return;
- 
--	llist_for_each_entry_safe(bo, next, freed, freed)
-+	llist_for_each_entry_safe(bo, next, freed, freed) {
-+		struct xe_vm *vm = bo->vm;
-+		bool async = bo->flags & XE_BO_FLAG_PUT_VM_ASYNC;
-+
- 		drm_gem_object_free(&bo->ttm.base.refcount);
-+		if (async)
-+			xe_vm_put(vm);
-+	}
- }
- 
- static void xe_bo_dev_work_func(struct work_struct *work)
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 01975586ee88..2168aac1ed1e 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -54,6 +54,7 @@
- #define XE_BO_FLAG_FORCE_USER_VRAM	BIT(25)
- #define XE_BO_FLAG_NO_COMPRESSION	BIT(26)
- #define XE_BO_FLAG_NEEDS_1G		BIT(27)
-+#define XE_BO_FLAG_PUT_VM_ASYNC		BIT(28)
- 
- /* this one is trigger internally only */
- #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 0a6e2b81b5a5..8b8673f4e037 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -3684,6 +3684,7 @@ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q)
+ 	snapshot->logical_mask = q->logical_mask;
+ 	snapshot->width = q->width;
+ 	snapshot->refcount = kref_read(&q->refcount);
++	snapshot->jobcount = atomic_read(&q->job_cnt);
+ 	snapshot->sched_timeout = sched->base.timeout;
+ 	snapshot->sched_props.timeslice_us = q->sched_props.timeslice_us;
+ 	snapshot->sched_props.preempt_timeout_us =
+@@ -3756,6 +3757,7 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+ 	drm_printf(p, "\tLogical mask: 0x%x\n", snapshot->logical_mask);
+ 	drm_printf(p, "\tWidth: %d\n", snapshot->width);
+ 	drm_printf(p, "\tRef: %d\n", snapshot->refcount);
++	drm_printf(p, "\tJob count: %d\n", snapshot->jobcount);
+ 	drm_printf(p, "\tTimeout: %ld (ms)\n", snapshot->sched_timeout);
+ 	drm_printf(p, "\tTimeslice: %u (us)\n",
+ 		   snapshot->sched_props.timeslice_us);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+index 7824f61b1290..8271702e692e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+@@ -77,6 +77,8 @@ struct xe_guc_submit_exec_queue_snapshot {
+ 	u16 width;
+ 	/** @refcount: ref count of this exec queue */
+ 	u32 refcount;
++	/** @jobcount: job count of this exec queue */
++	u32 jobcount;
+ 	/**
+ 	 * @sched_timeout: the time after which a job is removed from the
+ 	 * scheduler.
 -- 
 2.34.1
 
