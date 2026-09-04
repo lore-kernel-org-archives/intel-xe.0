@@ -4,27 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 215E4C624D4
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 01:33:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB342C624D4
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 01:34:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D312010F3A4;
-	Fri,  4 Sep 2026 01:33:04 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72C1F10F3A4;
- Fri,  4 Sep 2026 01:33:03 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5492450743919289424=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_CPU_binds_and_ULLS_on_migra?=
- =?utf-8?q?tion_queue_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 04 Sep 2026 01:33:03 -0000
-Message-ID: <178848558345.121714.11445027876301603374@61270ab9df2a>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75E7F10F3A4;
+	Fri,  4 Sep 2026 01:34:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YSTrEk3m";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A97FD10F3A4
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 01:34:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788485646; x=1820021646;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=kzL70TDFNblAZtDFc6B86f0eEgSFwI8ilrDdkAKuCOs=;
+ b=YSTrEk3m1Sp15cJdb5pa6zNJEWs4MOHcjP9iKnCoeJItsF6J2fLAGgk3
+ UvKkZ4kkaGpvfYfi3JZDrUCVN1y1BEHr19XR21dRvB+0/f1xBxOwQtCKc
+ 9nbLjXArkRyGtdKigcd8sLV4gl+sfmI1qPFT9gHrzKK3IavwL7AZfYb+K
+ QY3LXLbNNI2Pq/ZI0AeeEMSWOLHj3OnXT14hp4bRGMhSFn43/m3fHJqRq
+ r0VkTqooab28RbZoq/I/WNXqbd441ktnxdT9II3ls84mns+ZSPxBVTdUz
+ jf7FGaJNoZF3+baI0xL/0b0VlyV+eSflQgr6OhP69SDZPwY0l7NCAdN4f w==;
+X-CSE-ConnectionGUID: DXfKaLciQX2oX5zzAHhhgg==
+X-CSE-MsgGUID: NNkm2QWHQ5WM1a7C310uyQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="89107322"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="89107322"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2026 18:34:06 -0700
+X-CSE-ConnectionGUID: 4Lq5G5S+SOq3ckrTrFrexw==
+X-CSE-MsgGUID: HImSFnmARRG5mLY07mkMsw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="268155754"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Sep 2026 18:34:06 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Thu, 3 Sep 2026 18:34:05 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Thu, 3 Sep 2026 18:34:05 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.29) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Thu, 3 Sep 2026 18:34:05 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pb24CMo4YezZh0/KaWS92fXypKUJkkfcGpN9xARgTPIZW3PjDUKwEWGD2/2bJUKecOUa2c2qPyjVfK4eSa2u3TL9CZH64OttA5dKF+g1TSYa/KNONIA691mJyk51yD8J4dh95m3aQCJ2q4pt00ko0nBc/Gzeq7p6yaLM/hTfpUj/MCavyrBq2+fjdIpi1qod3+qzDNtYdfTp+a1AiD0U5p8GeBmSJX/GbVyQ44sViql/rvNN9Y7pcrNq4ecSnCe/P6YVr2oJXMvFO4nbV0ZmENpozY3jiU1xe7BLb2HvizMUNsBv62rM0B+hA7XCJY1XWrH5UX4MlH6aA2nGEeLL0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bXxDsA/BSFfNet8rRIt2s7SWhqwloPOG8IMAl9N7PR4=;
+ b=Byn43tWxM+Ku/vTKUvTRlthiLRy21wKypWBadISZmd95bQWUV6CFDyhKXtdMLXitEt/y8QTZ+1Rw/VX/YonynS0tbSFErV03oOVNV34fz2ZUodnLnNHqX2XHFk5Sf5ZtEsXFD27o/9BjGAmzRFH8GQ6ihaiRXHyUZXVrKlwf+w9u9w67kbIH7QAz8W2C2pRRru5MhrvITTfs3bSHvA9QFV3qnf2RR/ZgFAvhKgfqlETvOv7m8CjczvR0b7IXdDO6+XWgqOC9rrGUxkahCR7H5whHhqHMyRDKYDCrbJoAmu0a+8N3ZC0z7yEMDjWyXV4wVVruJnPMNd3uG8bKoelvsA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by IA3PR11MB9351.namprd11.prod.outlook.com (2603:10b6:208:57c::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Fri, 4 Sep
+ 2026 01:33:58 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0360.008; Fri, 4 Sep 2026
+ 01:33:58 +0000
+Date: Thu, 3 Sep 2026 18:33:56 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <sashiko-reviews@lists.linux.dev>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v4 17/25] drm/xe: Add device flag to enable PT mirroring
+ across tiles
+Message-ID: <apogBNby1891GbhR@gsse-cloud1.jf.intel.com>
 References: <20260903235842.3401722-1-matthew.brost@intel.com>
-In-Reply-To: <20260903235842.3401722-1-matthew.brost@intel.com>
+ <20260903235842.3401722-18-matthew.brost@intel.com>
+ <20260904002953.B10C41F000E9@smtp.kernel.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260904002953.B10C41F000E9@smtp.kernel.org>
+X-ClientProxiedBy: MW3PR06CA0020.namprd06.prod.outlook.com
+ (2603:10b6:303:2a::25) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA3PR11MB9351:EE_
+X-MS-Office365-Filtering-Correlation-Id: 41aeecf4-24e1-4e54-c356-08df0a249760
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|23010399003|10067099003|11063799006|56012099006|4143699003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: cpcwwpaR2A4Uf6NSZ69OBHnIKFfYaiB4T8qyREdM3roVLMkqIzDUziscPuuxZ1Xsj2W/xaCFYyW0rwiIwTQy+WDkZuLQiUQDTxs3i6FJhB7GcpqmcTIJvltT2+2TJ4RJPpXWFoDFi67PBdqP4wlVW4F3FO/u/T6FbTAIgEPEIQxv5SwsDJaNbbKT90/KYqjX1BVCBtBioXXA7kX65w+Ii9mJ47bdJHtmMz5HVfUOdw3TYlBawKY/LzqSXTh3+YqGvUpFWePq0Ou+GxXX3dMhdWOVGpmp637XORj7NX5uxRMmsOT6tFYbRKFbvmWCPxlegmK4oyJaGzR1adFYhXoJzqutRl/0qbgpcudOVq0Wd+4dec4XSok93s0NQTV5PG9yIsul4X01ZSMvA+THppDbDoW6Jdf/kie6sbn9Z4KqwHls/yQi2dCa/SXg6UnaW2YqZFH72zBgzFBae/YQSZhM5+qAX/6P9OBO737Iy4r4Ebfxp2evWt8f7QnVn9svl1UH2JG+lapz8lMl3JL2nDvD2v+6iiSxqGLT+zSuzVyQUaoWhqcS6MHghpCx94cMJKqSVX/FDmzGyVm1FDqLEGIToCX5WnhYGZ7WOjYn4AroxfU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(10067099003)(11063799006)(56012099006)(4143699003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?+BuF11PTjEg0Xxm/73IDOmNsqQnD91PPD7i9tgQGgFqNHVHWa4bXvuKM6p?=
+ =?iso-8859-1?Q?8T6kLIgyBYyf4khcKuPgM8Audo+Yf0u8/dqQqofmS8rFBbbCud6cCd2+aC?=
+ =?iso-8859-1?Q?jN+v0ctEUqklpFq6nLKNhkOfBdZAgET6Iu55Rp0uGicOkNXCYE8XYbp/CF?=
+ =?iso-8859-1?Q?bhUP6zTM4aejZiaUo8XxaNH7Y1JDwcxKRN0kYe8PmYF+MG9hi5krpl9Vzb?=
+ =?iso-8859-1?Q?qjGU3OPcWWr9aGU7+XNUwDcPY6t+SUyL8cT8o2C9i6y/CltAFQlRXeq7Z6?=
+ =?iso-8859-1?Q?J6oXNFzRlBJNWa+W9Uf6Yu94RIod+dqeN9rzyF25/vuiat6zpO4/qjGch4?=
+ =?iso-8859-1?Q?3ES4t0XqtIVKz7VHpSVQixBLTaUEUVEE3H2zCr8MtWEeDrYug8G0hcfgs6?=
+ =?iso-8859-1?Q?8Ma52ihYTGUnpn7EdHzPjEHBb3xf2RH6Zg3GF0nWUbbLbzhKjULQFsMJ0y?=
+ =?iso-8859-1?Q?+nAGDB7CRKRvs9FZAptNUQl1oM3lUPY3w1y6k3Bruh9KmlaHR+z0LxN2ls?=
+ =?iso-8859-1?Q?VIwUYEOkp27yFScFCswfYtmF+BqzX+9KHZhtG1FKoUgy3qiqPah35T1w63?=
+ =?iso-8859-1?Q?P6C7NMLaWQr3rj6W9IPFXtT7ndoePnRE9eUkM1/g493H2mv7k/fJ+V3Wks?=
+ =?iso-8859-1?Q?48SH48q8bt4rsXlFcLaib6LOjuex+M+A4e2KLuxJ2mtgJGiADHqD9qbWTb?=
+ =?iso-8859-1?Q?MST5j4nh12bTJ/82Res/JiOcibSCuZIqQ4ceP1EnXiVeUKc7+hkqDwT9FC?=
+ =?iso-8859-1?Q?9TE22hZBYp5OkSOlfrOvfE8BBRNDNl9nakWQQSKL+wWfeS4P9XvWDW7dsm?=
+ =?iso-8859-1?Q?9BjnWIcsrpLWuMga4/wLv0D7S9ms8eIk8LEK9cQSDKQ3Qq9zc8DtUBx+Rz?=
+ =?iso-8859-1?Q?FKG48EBzYg6hDB6Ms60A5HvCaqI87s0CsH9YiYZwBaMjtJ3tHvqntY6Do/?=
+ =?iso-8859-1?Q?jjNRCoGtk400s/PHniF2cv0Q8NCsbaoAFkj6q9jch+ZPLD3u3a5yiWNIcM?=
+ =?iso-8859-1?Q?IaH801Dsvq278AmmBB7odANE7GeI8cDvOYDDt+JEqYnIDLribFVLCFAomg?=
+ =?iso-8859-1?Q?h3oaZ6SuOKPHa729U5Y60wWkV7O7v49cBqopkVxwCYxuY96dLrTUdwqdTW?=
+ =?iso-8859-1?Q?dKAGGeRGZPTwuEfa2GGn8RoZJwy+E+yZTCeb4L7jWm1GYV8aVZd55p3oni?=
+ =?iso-8859-1?Q?NFML/n1a3YRYIyMfNCeyXL0IxmQIhPqCQADSD/J1HPzcayds8t+RDdIlOM?=
+ =?iso-8859-1?Q?61s/sU3y9fqgY6qo3dHp4Wog1ubeFSU62wQIo6Xo0OvLxIUWDei3QZFgrs?=
+ =?iso-8859-1?Q?dJn39R8vaZurLqvlKpA60ta2h2p88IFQ7jN6+serFXG2TFl1jzRB0YOYSw?=
+ =?iso-8859-1?Q?2F1TwKofuM/xuFHZNdP12aP2ttuUiJdc/y/wRJ/7cVDPd3WMlez6CSzzjL?=
+ =?iso-8859-1?Q?t6J7GYTPYoisxa+5S7/3uM243z4jzX2VU8lUdLXAS4afNQ30+kspAPJbZl?=
+ =?iso-8859-1?Q?GdkwMVLu9AZ1Hgx4fttf3uZvDmMhHr0CSGZXNa2jtU2gJFUUQVaAsi5GtD?=
+ =?iso-8859-1?Q?0fTvZVRhcIp4MsXyJnpDrOVZPVBJDPtXBfhf7AiBWCq5NCDawVG/MabnzQ?=
+ =?iso-8859-1?Q?agsVf6OmurkF/btrY//3RQHrJ3coEq7RJ8mMaJiN3LgLqiM2XIbCobNk3/?=
+ =?iso-8859-1?Q?FhJ/cJhQotXM/1pQbVrgyu7CNbNuELj5Wmy4vaq1iqu8CNS7KgQDlE9m10?=
+ =?iso-8859-1?Q?pGICfrl69Tb0mw42b/1K2tfANyNBMdphkQrd38JbDlJKk7RCopgQzCD6v5?=
+ =?iso-8859-1?Q?f0sSkxwua8CSwTm5S9+rZv413JNnc3I=3D?=
+X-Exchange-RoutingPolicyChecked: 1RKQC/lJ2/et7dZh9TdV1jTO0TKvGdUGF72RanE5wsmox181RhG0dHZD9Ab78xXf58+qDJK0DHRkmtO0T0Gx0fnqbexaoxkphFbUgDtGcAvzm7Upzc6yqMkQSgc9r3IBcN2SPWMfrHZX70sc2XDDK+aov+1hU25O/MmDYxLyCmo404XsD2EMrGE9rSVB6amTLfM5b4YgnF51Y9oMNYIlE0Bt6mV22fzbekiMC/dMOzHJDpckE1iHXm2N7N5mLr3Ob2gFDyCLApPUHBMLNzZSZJBE/2/lt/Ua9CVYk0khi1O1/rzlhQ18x9K27nPQp/zJBgTE2HS5cFzqgcrT4d3Fjw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41aeecf4-24e1-4e54-c356-08df0a249760
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2026 01:33:58.5680 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9E8j5D1E3MisIJwr7XQ7G3khpNeTuaLzy9Ahfq0tf4IOe8G9FARX7JFL2NW6OOKZgwTKES1P/V991PXy006ZNA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9351
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,241 +158,127 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5492450743919289424==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Sep 04, 2026 at 12:29:53AM +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 3 potential issue(s) to consider:
+> - [High] Incorrect tile mask generation causes missing TLB invalidations on secondary tiles
+> - [High] Shallow copy of Page Reclaim List (PRL) leads to Double Free during TLB invalidation
+> - [Medium] Unnecessary allocation of unused page table roots and scratch tables
+> --
+> 
+> commit 084f96016724c31d7bcd97e7c49979198c29fe71
+> Author: Matthew Brost <matthew.brost@intel.com>
+> Subject: drm/xe: Add device flag to enable PT mirroring across tiles
+> 
+> Some multi-tile devices may want to mirror page tables across tiles for
+> memory-bandwidth reasons, while others may not. Add a device flag that
+> allows enabling or disabling page-table mirroring across tiles.
+> 
+> Link: https://patch.msgid.link/20260228013501.106680-18-matthew.brost@intel.com
+> 
+> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> > index 821edeaecaed9..deb33e85e6eb7 100644
+> > --- a/drivers/gpu/drm/xe/xe_pt.c
+> > +++ b/drivers/gpu/drm/xe/xe_pt.c
+> [ ... ]
+> > @@ -2542,9 +2553,20 @@ int xe_pt_update_ops_prepare(struct xe_device *xe, struct xe_vma_ops *vops)
+> >  	int id, err;
+> >  
+> >  	for_each_tile(tile, xe, id) {
+> > +		struct xe_vm_pgtable_update_ops *pt_update_ops =
+> > +			&vops->pt_update_ops[id];
+> > +
+> >  		if (!vops->pt_update_ops[id].num_ops)
+> >  			continue;
+> >  
+> > +		if (pt_mirroring_disabled_for_tile(vops->vm, id)) {
+> > +			struct xe_page_reclaim_list *prl = &pt_update_ops->prl;
+> > +
+> > +			/* Transfer root PT update ops PRL to current */
+> > +			*prl = vops->pt_update_ops[0].prl;
+> 
+> [Severity: High]
+> Does this shallow copy of the Page Reclaim List (PRL) cause a double free?
+> 
+> By copying the structure directly without incrementing a reference count,
+> multiple tiles now hold a pointer to the same page. Later, when
+> xe_tlb_inval_job_create() adds this to jobs in xe_pt_update_ops_run(), both
+> jobs take ownership. When the jobs finish, they will both call
+> xe_page_reclaim_entries_put(), freeing the same page twice.
+> 
 
-== Series Details ==
+This is correct. Will fix.
 
-Series: CPU binds and ULLS on migration queue (rev6)
-URL   : https://patchwork.freedesktop.org/series/149888/
-State : success
+> > +			continue;
+> > +		}
+> > +
+> >  		err = __xe_pt_update_ops_prepare(tile, vops);
+> >  		if (err)
+> >  			return err;
+> [ ... ]
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> > index 33ef4ccc3550b..d9a9c0844c5e3 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -844,6 +844,14 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
+> >  	return err;
+> >  }
+> >  
+> > +static u8 adjust_rebind_tile_mask(struct xe_vm *vm, u8 tile_mask)
+> > +{
+> > +	if (vm->xe->info.has_pt_mirror)
+> > +		return tile_mask;
+> > +
+> > +	return (0x1 << vm->xe->info.max_gt_per_tile) - 1;
+> 
+> [Severity: High]
+> Is max_gt_per_tile being used here incorrectly instead of the total tile count?
+> 
+> If a device (like PVC) has 1 GT per tile, this evaluates to 1, causing the
+> generated mask to omit secondary tiles. During xe_vma_rebind(), the num_ops
+> will only be incremented for tile 0.
+> 
+> Consequently, xe_pt_update_ops_prepare() skips preparation for the secondary
+> tiles, leaving their start and last variables uninitialized (zeroed). When
+> TLB invalidation jobs are created later, they use a range of [0, 0] for
+> these tiles, leaving stale TLB entries that could cause memory corruption.
+> 
 
-== Summary ==
+This is correct. Will fix.
 
-CI Bug Log - changes from xe-5690-71bc3b7cc55631a9b3807da98e2b2880838b9623_BAT -> xe-pw-149888v6_BAT
-====================================================
+> > +}
+> > +
+> >  struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma, u8 tile_mask)
+> >  {
+> >  	struct dma_fence *fence = NULL;
+> [ ... ]
+> > @@ -1737,7 +1747,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
+> >  
+> >  		for_each_tile(tile, xe, id) {
+> >  			if (flags & XE_VM_FLAG_MIGRATION &&
+> > -			    tile->id != XE_VM_FLAG_TILE_ID(flags))
+> > +			    tile->id != XE_VM_FLAG_TILE_ID(flags) &&
+> > +			    (vm->xe->info.has_pt_mirror || id))
+> >  				continue;
+> >  
+> >  			vm->pt_root[id] = xe_pt_create(vm, tile, xe->info.vm_max_level,
+> >  						       &exec);
+> 
+> [Severity: Medium]
+> For standard user VMs, does this unconditionally allocate page table roots
+> and scratch tables for secondary tiles even when PT mirroring is disabled?
+> 
+> When has_pt_mirror is false, xe_vm_pt_root() is hardcoded to return
+> vm->pt_root[0]. As a result, the allocations made here for id > 0 (and their
+> associated scratch tables) are never used, wasting VRAM.
+> 
 
-Summary
--------
+Techincally, but I'm not going to worry about 4k vs functionality
+required for the migrate layer.
 
-  **SUCCESS**
+Matt 
 
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 13)
-------------------------------
-
-  Additional (1): bat-bmg-2 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-149888v6_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@write:
-    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@fbdev@write.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-bmg-2:          NOTRUN -> [SKIP][2] ([Intel XE#2233])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - bat-bmg-2:          NOTRUN -> [SKIP][3] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - bat-bmg-2:          NOTRUN -> [SKIP][4] ([Intel XE#2482]) +3 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-bmg-2:          NOTRUN -> [SKIP][5] ([Intel XE#2434] / [Intel XE#2548] / [Intel XE#6314])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-bmg-2:          NOTRUN -> [SKIP][6] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@xe_exec_multi_queue@priority:
-    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#8364]) +13 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@xe_exec_multi_queue@priority.html
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-2:          NOTRUN -> [SKIP][8] ([Intel XE#2229])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-bmg-2:          NOTRUN -> [SKIP][9] ([Intel XE#1420] / [Intel XE#7590])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-2:          NOTRUN -> [SKIP][10] ([Intel XE#2245] / [Intel XE#7590])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#2236] / [Intel XE#7590])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
-  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
-  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
-  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
-  [Intel XE#6314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
-
-
-Build changes
--------------
-
-  * Linux: xe-5690-71bc3b7cc55631a9b3807da98e2b2880838b9623 -> xe-pw-149888v6
-
-  IGT_9084: 9084
-  xe-5690-71bc3b7cc55631a9b3807da98e2b2880838b9623: 71bc3b7cc55631a9b3807da98e2b2880838b9623
-  xe-pw-149888v6: 149888v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/index.html
-
---===============5492450743919289424==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>CPU binds and ULLS on migration queue (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/149888/">https://patchwork.freedesktop.org/series/149888/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5690-71bc3b7cc55631a9b3807da98e2b2880838b9623_BAT -&gt; xe-pw-149888v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 13)</h2>
-<p>Additional (1): bat-bmg-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-149888v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314">Intel XE#6314</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@priority:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@xe_exec_multi_queue@priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-149888v6/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5690-71bc3b7cc55631a9b3807da98e2b2880838b9623 -&gt; xe-pw-149888v6</li>
-</ul>
-<p>IGT_9084: 9084<br />
-  xe-5690-71bc3b7cc55631a9b3807da98e2b2880838b9623: 71bc3b7cc55631a9b3807da98e2b2880838b9623<br />
-  xe-pw-149888v6: 149888v6</p>
-
-</body>
-</html>
-
---===============5492450743919289424==--
+> -- 
+> Sashiko AI review · https://sashiko.dev/#/patchset/20260903235842.3401722-1-matthew.brost@intel.com?part=17
