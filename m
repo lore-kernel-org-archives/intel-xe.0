@@ -4,43 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84263C79F82
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 18:20:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DA84C79F82
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 18:25:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 325B210E1FD;
-	Fri,  4 Sep 2026 18:20:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 906B010E203;
+	Fri,  4 Sep 2026 18:25:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aIeQqgay";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mdMfcctU";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9C5910E1FD
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 18:20:05 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 9967F41781;
- Fri,  4 Sep 2026 18:20:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FBEB1F00A3F;
- Fri,  4 Sep 2026 18:20:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788546005;
- bh=4vLLxi4wYtqyg0sCAU1tC7JLIQ+iVkomsb0aTDM4MY8=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=aIeQqgayAthVKfUHF6i3WUsprFkzpfawfCffH8TigAFW+flZOTgzxAw56hrYbOYVD
- 64v7WWFRPvcHTYdISven6vs7/QHbnScsHO+o7+f7yt+3wR/GDed8z88uMVumET7HbP
- VK9qQrzxpLFbrD5Fllh2dpjUFGAiY19NKeQsc9dESuU/LVRoULjU5i8rwtEPIcsm0g
- y4NPAKvhZY2h8SAMMdbRJSBYkIPuSTqkMD/TS1G0raLgfcz7am5KwCU1XXCw+cJ5wq
- S+hIGxN0gSMUIXHTDn9E6fPfJE71C6Vr1/g32jPuSoUcfXXVTcC+Uh3Bdo71k3vjIQ
- vtR5qojMBZutg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] drm/xe/guc: skip TDR timeout check when ctx_timestamp
- is 0 or 1
-To: "Jia Yao" <jia.yao@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260904180943.3455267-1-jia.yao@intel.com>
-References: <20260904180943.3455267-1-jia.yao@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 04 Sep 2026 18:20:04 +0000
-Message-Id: <20260904182005.4FBEB1F00A3F@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ABB310E203
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 18:25:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788546303; x=1820082303;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mVKKFoxD+/jahQL/y9sz6eq729/iisufCT1clQ9Fum4=;
+ b=mdMfcctUpxB6mgTvMaZr8fH5BwDBh4kddwWkqncg33gcSxXWIvRFcEmC
+ pvCC9d62L3PU+phxn4CHaDG3xFCoZ3pIhGJUVu1r15Hm2x7SIle9Qofj0
+ W+N1FTmWe81ll3PuFxNzLNkdMtb7vkbfJT3er6l4xe46t+cBB737Qd6vs
+ z3/r41dBItrJkVuYorXRGp30/j2Dl5osaAGc+JOZ2tnVf2L+T8B+l3UN6
+ +EdWYeXIA7MCKtU6bZUeStT0Rr+o/IaI2U22sAE4KF9dvxGPMIKGEitcs
+ EbVtynpvRBGW4cGOvqXadpZ8XIDWM8aSXzwrOmtvbWCLYxnh2XihjnoXT g==;
+X-CSE-ConnectionGUID: jKchvI8qSBGuLt39QnBJjQ==
+X-CSE-MsgGUID: 7Z2wlZRiRk2Emg2x65cIHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11896"; a="88932174"
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="88932174"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2026 11:25:02 -0700
+X-CSE-ConnectionGUID: NLo0sAH5S6uPuMJ/ei1oag==
+X-CSE-MsgGUID: C6Q8XKGDQzi62DfLMZi1FQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="294992452"
+Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2026 11:25:02 -0700
+From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
+ rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
+ airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
+ anoop.c.vijay@intel.com, badal.nilawar@intel.com,
+ matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
+Subject: [PATCH v6 00/18] Crescent Island PMT support
+Date: Fri,  4 Sep 2026 11:24:50 -0700
+Message-ID: <20260904182451.1164868-20-michael.j.ruhl@intel.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,70 +65,115 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] Resetting `job->sample_timestamp` to `U64_MAX` when `ctx_timestamp=
- <=3D 1` unconditionally bypasses the TDR watchdog if the GPU hangs during =
-context restore, causing an infinite loop that completely disables hang rec=
-overy.
---
+The Crescent Island (CRI) GPU supports PMT via Xe driver
+registration.
 
-commit e50d47eb7a620614e04b8e05f251f148a49a7005
-Author: Jia Yao <jia.yao@intel.com>
+The CRI PMT MMIO mapping is shared for each PMT feature and it is
+necessary to set an index register value to access the correct memory
+space.
 
-drm/xe/guc: skip TDR timeout check when ctx_timestamp is 0 or 1
+The PMT driver has a callback infrastructure to access data areas with
+driver specific access. It is does not support the PMT control access.
 
-This commit updates the TDR timeout check to skip when ctx_timestamp
-is 0 or 1. It resets the sampling baseline instead, under the assumption
-that the timestamp is not yet valid.
+CRI discovery/control spaces are part of the access window so a driver
+callback is necessary to allow for the correct window to be exposed.
 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
-uc_submit.c
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-[ ... ]
-> @@ -1428,6 +1428,20 @@ static bool check_timeout(struct xe_exec_queue *q,=
- struct xe_sched_job *job)
->  		return xe_sched_invalidate_job(job, 0);
->  	}
-> =20
-> +	/*
-> +	 * A ctx_timestamp of 0 or 1 indicates an invalid timestamp:
-> +	 * - 1 (CONTEXT_ACTIVE) is the cookie written by the WA BB immediately
-> +	 *   after a full context restore, before the spinner has run.
-> +	 * - 0 can occur when lrc->ctx_timestamp shadow is uninitialized or was
-> +	 *   last updated while the context was being restored.
-> +	 * In both cases the timestamp is not yet valid, so reset the sampling
-> +	 * baseline and wait for the next check_timeout() call.
-> +	 */
-> +	if (ctx_timestamp <=3D 1) {
-> +		job->sample_timestamp =3D U64_MAX;
-> +		return false;
-> +	}
-> +
+Add control path callback support to the PMT driver.
 
-[Severity: High]
-Does this unconditionally bypass the TDR watchdog if the GPU hangs during a
-context restore?
+Add CRI PMT discovery information.
 
-If the hardware stalls while ctx_timestamp is 0 or 1 (e.g., during context
-restore or while the WA BB is executing), check_timeout() will continuously
-reset job->sample_timestamp to U64_MAX and return false.
+Update the Xe driver to support the CRI PMT access.
 
-On all subsequent TDR ticks, ctx_timestamp will still be 0 or 1, which does
-not equal U64_MAX. Won't this repeat the reset and return false indefinitel=
-y,
-preventing the DRM scheduler from ever invalidating the job and triggering a
-GPU reset?
+The crashlog access needs to be done with power enabled (telem is only
+available when the device is powered).
 
->  	job->sample_timestamp =3D ctx_timestamp;
->  	ctx_job_timestamp =3D xe_lrc_ctx_job_timestamp(q->lrc[0]);
->
+Determine which access is requested, and do the appropriate power
+request.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260904180943.3455=
-267-1-jia.yao@intel.com?part=3D1
+CRI FW is loaded at device power.  Support the late-binding API to
+wait for FW readiness. (pending sysctl patch set implements the API).
+
+v2:
+  Address AI feedback:
+  - add missing entry->cb check
+  - address SRIOV VF concerns
+  - use xe_pm_runtime_put instead of _get in error path
+
+  Address review comments:
+  - redo power/lock sequencing
+  - support device hotplug events
+
+v3:
+  - cleanup power manangement flow
+  - fixed an out of order power management locking issue
+  - add a GUID caching mechanism, for GUID read
+  - removed unused parameter (mmio)
+
+v4:
+ - address various review comments
+ - refactor crashlog to allow for return values
+ - for callback usage, decouple PMT remap of data areas
+ - use IS_SRIOV_VF() rather than expose soc-remapper internals
+ - separate locking fixes intos distinct steps
+ - refactor define update patches to seperate BMG and CRI updates
+ - separate internal GUID into separate steps
+
+v5:
+ - removed callback helpers
+ - do not return error message with sysfs
+ - fix missed return code check in trigger_store
+ - return error value not false
+ - use DEFINE_RES_MEM
+ - document when base is unused
+ - return error on invalid GUID request
+
+v6:
+ - fix enabled/disabled inversion
+ - fix missing DOC reference
+ - change memcpy_to/fromio to readl/writel for register read
+ - guid cache comment and update on valid guid
+
+Michael J. Ruhl (18):
+  platform/x86/intel/pmt: complete pcidev to device update
+  platform/x86/intel/pmt: refactor rmw with a return value
+  platform/x86/intel/pmt: refactor rc with a return value
+  platform/x86/intel/pmt: Add register access callbacks
+  platform/x86/intel/pmt: Do not remap when using callbacks
+  drm/xe/vsec: Do not register BMG PMT for VF
+  drm/xe/vsec: Correct locking order
+  drm/xe/vsec: Use correct pm state get
+  drm/xe/vsec: Add DOC text for VSEC
+  drm/xe/vsec: Support possible hotplug exit
+  drm/xe/vsec: Support Crescent Island PMT
+  drm/xe/vsec: Refactor BattleMage PMT defines
+  drm/xe/vsec: Crescent Island PMT decode
+  drm/xe/vsec: Crescent Island PMT callbacks
+  drm/xe/vsec: Support late bind fw information
+  drm/xe/vsec: Add PMT GUID internal access
+  drm/xe/vsec: Update PMT internal access
+  drm/xe/vsec: Refactor platform check
+
+ Documentation/gpu/xe/index.rst             |   1 +
+ Documentation/gpu/xe/xe_vsec.rst           |  14 +
+ drivers/gpu/drm/xe/regs/xe_pmt.h           |  12 +-
+ drivers/gpu/drm/xe/xe_debugfs.c            |  45 +-
+ drivers/gpu/drm/xe/xe_device.c             |   4 +-
+ drivers/gpu/drm/xe/xe_device_types.h       |   9 +
+ drivers/gpu/drm/xe/xe_hwmon.c              |  10 +-
+ drivers/gpu/drm/xe/xe_pcode.c              |  10 +-
+ drivers/gpu/drm/xe/xe_vsec.c               | 542 +++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vsec.h               |   3 +-
+ drivers/platform/x86/intel/pmt/class.c     |  26 +-
+ drivers/platform/x86/intel/pmt/class.h     |   5 +-
+ drivers/platform/x86/intel/pmt/crashlog.c  | 237 ++++++---
+ drivers/platform/x86/intel/pmt/discovery.c |   2 +-
+ include/linux/intel_vsec.h                 |  14 +-
+ 15 files changed, 770 insertions(+), 164 deletions(-)
+ create mode 100644 Documentation/gpu/xe/xe_vsec.rst
+
+-- 
+2.43.0
+
