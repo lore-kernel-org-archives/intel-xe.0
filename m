@@ -4,42 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7109C61DD6
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 06:46:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27BA5C624DE
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 07:10:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DF1810E54F;
-	Fri,  4 Sep 2026 06:46:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4417C10F885;
+	Fri,  4 Sep 2026 07:10:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="R9j6kQ/B";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g/giY1B3";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E245510E3A8;
- Fri,  4 Sep 2026 06:45:59 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id EB7D960A6D;
- Fri,  4 Sep 2026 06:45:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D59E1F00A3D;
- Fri,  4 Sep 2026 06:45:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788504358;
- bh=Xs6g+BBEEe5TdIfZ3uv+bhRKfMeHtjZFW1ADkQcJLTQ=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=R9j6kQ/BlvuZC7H2v/KmyT+OCPHWkbIFnH5OEmhFu1Y/fHhMPVuzlthGk/D5IankY
- Y2qvSojwG3hNweL9aZxZHiMMIL9/p/BYNlShbG0ntzFVlq+e27OaAmwPZRbl8hhf65
- 0TPyFD4poKxtOGUIc0XSV+r+honrYNn/vJ+M4/5GxSkd9S/ECvlerK/hRKZR/YcBBV
- Q3sYkyFmyVIzOs0gIbSn3x1vfWxpxVEQRDIwcwoYx+TqsAX4DqcV2E749P9iKvi8IL
- tjSIEcxtflCRS1eiRSzN9LNol6e0V5tILw/zOUs+tvWW9nZls+03Gj60hmau32s8Ef
- 9x7HYz2Q6X0RA==
-From: sashiko-bot@kernel.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 918A410E13B;
+ Fri,  4 Sep 2026 07:10:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788505839; x=1820041839;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=WqmuqwKQnF/E5rxeOPBqmJpNR7Vf1Bx2BKzlO3uTG2o=;
+ b=g/giY1B3wKptEvjekIpazgptey5aKeH9GNpt+ze9wgUGnKVM4kTeprRD
+ kPXGiMo5CUX5zP81tnQdxXKCOHNbEQEYNycJaKLpaPfyb+mS3MDirJOoR
+ zD1tRNhnNGAWUfknyeKBxtQqy0+pXYAoktw3hoypt/0r56yjltR6Zy632
+ tyWNd6eVMgjI/zOCI+H/5EhxB8PsnjYZynr4M0nRuS65H7YoGzeRhGwpr
+ StfiO+Ajq3DVkAfRjMqSUGiSKwX4ZiXz+/x5EMFW2AI132ZuD8gwNo+Dh
+ 2XB5MIxsLdDJW9/WUccy+sqrD9eV8UaqUOkeVOCcsAdutaTChkBidMPb4 Q==;
+X-CSE-ConnectionGUID: IKnUEByzQVae0uLSlmRXuQ==
+X-CSE-MsgGUID: 44dI2Dx+SFqjPGV/A2IW5w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="76557210"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="76557210"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2026 00:10:39 -0700
+X-CSE-ConnectionGUID: cZI28kdARfS5he5rr/BvQA==
+X-CSE-MsgGUID: zKAucWnhSIGMOHjuv7TBLA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="265616271"
+Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.170])
+ by fmviesa006-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2026 00:10:37 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Nemesa Garg <nemesa.garg@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Nemesa Garg <nemesa.garg@intel.com>
 Subject: Re: [PATCH] drm/i915/display: Limit SEL_FETCH clear to supported pipes
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 In-Reply-To: <20260904062744.3010375-1-nemesa.garg@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260904062744.3010375-1-nemesa.garg@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 04 Sep 2026 06:45:58 +0000
-Message-Id: <20260904064558.6D59E1F00A3D@smtp.kernel.org>
+Date: Fri, 04 Sep 2026 10:10:34 +0300
+Message-ID: <9514a15f9ded3fa79572f92a61f33650c4ab02e6@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,85 +65,64 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The patch adds a check to prevent unclaimed register accesses fo=
-r uninstantiated SEL_FETCH registers, but incorrectly limits this check str=
-ictly to Display Ver 12, leaving Ver 13+ platforms vulnerable.
---
+On Fri, 04 Sep 2026, Nemesa Garg <nemesa.garg@intel.com> wrote:
+> Commit 7f1172a2ac0d ("drm/i915/display: Clear SEL_FETCH_PLANE_CTL
+> on plane disable") started clearing SEL_FETCH_PLANE_CTL and
+> SEL_FETCH_CUR_CTL on every plane and cursor disable.
+>
+> Not all pipes implement these registers. Clearing them on a pipe
+> that does not have them leads to an unclaimed register access.
 
-commit 5a2a4e5321d7248032644f135d53b64d20ede511
-Author: Nemesa Garg <nemesa.garg@intel.com>
+Where are the corresponding checks on the enable side, and what
+prevented this before 7f1172a2ac0d?
 
-drm/i915/display: Limit SEL_FETCH clear to supported pipes
+BR,
+Jani.
 
-This patch adds checks to skip clearing SEL_FETCH_PLANE_CTL and
-SEL_FETCH_CUR_CTL on pipes that do not implement these registers,
-preventing unclaimed register accesses when disabling planes and cursors.
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/dr=
-m/i915/display/intel_cursor.c
-> index cce041e1da51d..de4359cbe306d 100644
+>
+> Skip the clear on pipes that do not implement the registers.
+>
+> Fixes: 7f1172a2ac0d ("drm/i915/display: Clear SEL_FETCH_PLANE_CTL on plane disable")
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16876
+> Assisted-by: GitHub-Copilot:claude-opus-4.6
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cursor.c        | 4 ++++
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c | 4 ++++
+>  2 files changed, 8 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+> index 86bb96ac449b..3c06d5482691 100644
 > --- a/drivers/gpu/drm/i915/display/intel_cursor.c
 > +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> @@ -545,6 +545,10 @@ static void i9xx_cursor_disable_sel_fetch_arm(struct=
- intel_dsb *dsb,
+> @@ -544,6 +544,10 @@ static void i9xx_cursor_disable_sel_fetch_arm(struct intel_dsb *dsb,
 >  	if (!HAS_PSR2_SEL_FETCH(display))
 >  		return;
-> =20
+>  
 > +	/* Display ver 12 only instantiates these registers for pipe A */
-> +	if (DISPLAY_VER(display) =3D=3D 12 && pipe !=3D PIPE_A)
+> +	if (DISPLAY_VER(display) == 12 && pipe != PIPE_A)
 > +		return;
 > +
-
-[Severity: Medium]
-Does this check leave Display Ver 13+ platforms vulnerable to the same issu=
-e?
-
-Because PSR2 is only supported on transcoders A and B on newer platforms
-(like Alderlake P), the SEL_FETCH registers for pipes C and D are not
-instantiated.=20
-
-With this check strictly limited to DISPLAY_VER(display) =3D=3D 12, disabli=
-ng a
-cursor on pipe C or D on Ver 13+ will evaluate to false, bypass this
-protection, and still cause an unclaimed register access.
-
 >  	intel_de_write_dsb(display, dsb, SEL_FETCH_CUR_CTL(pipe), 0);
 >  }
-> =20
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers=
-/gpu/drm/i915/display/skl_universal_plane.c
-> index 5cda1ab90e40f..252df30debc9b 100644
+>  
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index 5cda1ab90e40..252df30debc9 100644
 > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
 > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -893,6 +893,10 @@ static void icl_plane_disable_sel_fetch_arm(struct i=
-ntel_dsb *dsb,
+> @@ -893,6 +893,10 @@ static void icl_plane_disable_sel_fetch_arm(struct intel_dsb *dsb,
 >  	if (!HAS_PSR2_SEL_FETCH(display))
 >  		return;
-> =20
+>  
 > +	/* Display ver 12 only instantiates these registers for pipe A */
-> +	if (DISPLAY_VER(display) =3D=3D 12 && pipe !=3D PIPE_A)
+> +	if (DISPLAY_VER(display) == 12 && pipe != PIPE_A)
 > +		return;
 > +
-
-[Severity: Medium]
-Similarly for planes, does limiting this check to exactly Ver 12 allow
-unclaimed register accesses on Ver 13+?
-
-Disabling a plane on pipe C or D on a Display Ver 13+ platform will also by=
-pass
-this check and attempt to write to uninstantiated SEL_FETCH registers.
-
->  	intel_de_write_dsb(display, dsb, SEL_FETCH_PLANE_CTL(pipe, plane->id), =
-0);
+>  	intel_de_write_dsb(display, dsb, SEL_FETCH_PLANE_CTL(pipe, plane->id), 0);
 >  }
->
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260904062744.3010=
-375-1-nemesa.garg@intel.com?part=3D1
+-- 
+Jani Nikula, Intel
