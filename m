@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3DC9C61DD6
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 10:31:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77317C61DD6
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 10:40:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5578910FA39;
-	Fri,  4 Sep 2026 10:31:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1ACF410E358;
+	Fri,  4 Sep 2026 10:40:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gOm/EVtT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RruTcUFn";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CFC410FA39
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 10:31:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6C8D10E358
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 10:40:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788517904; x=1820053904;
+ t=1788518421; x=1820054421;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=wBuukTC0+ma/pwLP+9wpBxXZGKSs64KFNZ1gDL1uzsc=;
- b=gOm/EVtTOyBrQvxd0qvB841D2vLjMlKeFnFPlnFOmp8eDcCXTNlohJBD
- txWOOQMOpuoiYz3EE8qPER4uQY4C1vv1QI63u8F+1FPEIXOtf5HgSHeD7
- r7OzH0zTIeGpa5PmXCBFaLVLDuvToo7p9cF9FXMa2NWI1pNKUrdLZ0RXx
- Agw3tQGrTvPg4G94nqHX9sc1oA2Ivggi4O2iT1I82x/scXhqMmK7huVKW
- 9tbrph1lTinm2MdoIG/64mRcYNELAlaN5v5Y3EJ3ujT+9/2MCBvgxVXwd
- xTOnKkX3SFW8dos9/KmEu1uwa67pEJq6lqhgQMdDYJtI1q4QPYu1mrHeQ w==;
-X-CSE-ConnectionGUID: rwHoi6eATuuAjoRfx2IuXA==
-X-CSE-MsgGUID: up3pJUQYQvqwDLxmSFWqEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="88864095"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="88864095"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 03:31:43 -0700
-X-CSE-ConnectionGUID: mjz8yM4OSAWxDpoZGS/KqA==
-X-CSE-MsgGUID: r4niEe7eQjmBlfeyxnURBg==
+ bh=B+9m5d9y24JAVHmSfsUQmFTHHFSP8KQoAZE1u4jIBLQ=;
+ b=RruTcUFnyr4zFPb7PjzQd6oKyQhYwpwJ2+3BDatQ6go7B6Wxb8xNsuef
+ UvxnCPQrPXM2MpcxNVuZWHZJw6lBQys/BOvxtmNGqEUz37VVRF1Bkd0fy
+ 63OEktsjUW9vXkaFCB+ONyiInsUPprD8eWeTji7bdH8HBSl0SRCd1e8qp
+ yfgO7WGPFcSdltSQ9vV3cRgxS2X7yFCI2LtVYhKqnyuitGe0UiE6Ev9K4
+ GedSaS8MCd+XmRZTmeXrCnrgoB8d8Qe2XcA0g+tGAKXg++qw0VOVsgyI6
+ cr2zD1+vaDw09lsP1xmft18g4lvl85FuxyBJ91xP2J74+bc/oi0uiK5Rb Q==;
+X-CSE-ConnectionGUID: KX++kJDJRVitHkQoTiB/xA==
+X-CSE-MsgGUID: nZVh32vMQD6l2Ye6jGVpLw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="100535628"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="100535628"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2026 03:40:20 -0700
+X-CSE-ConnectionGUID: 83TKg5hFSJqKsO+rru6OpQ==
+X-CSE-MsgGUID: tznsK0FgTYyaIXB40krDgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="271944495"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 03:31:43 -0700
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="268276360"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2026 03:40:21 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 4 Sep 2026 03:31:42 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ 15.2.2562.46; Fri, 4 Sep 2026 03:40:20 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Fri, 4 Sep 2026 03:31:42 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.70) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Fri, 4 Sep 2026 03:40:20 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.58) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 4 Sep 2026 03:31:42 -0700
+ 15.2.2562.46; Fri, 4 Sep 2026 03:40:19 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JZsT7GbTn+VpD/eE7QsmLzbvG7ITpQLYDksH3t43rrmbFdTDhgIYU3Ys4N0bzy36QB2nIZVAJ5b0pWU/L1/89EdJjZkkoc5hlaihmrCT26a3XLhH/BFDLeQNqaK4+31Mf0krA49y32GsZqomMwkMD1pCp+eAMqfVwMDQ9ulfsISu0s9sFujGN0bkLfedbOBaJ0XVFvh+WaqBuWeUETDKm1GeIKD6BQG/wv/U7hSTjYQMGZ9F2IGZ9oTNerd/8mzsvDgwjEGXt4uVsZWYRkq3SceSIIMGfPsRXh50p7NJzk7EXFIVrxjo03yaBnW0Rzz0NIHPjFJE5V/vGmcrGsua7w==
+ b=dGLQXMcJXy2l10KvSjfnar528n9OenrQ1pJP4grgfz3k4b1jU8HgUV6XLvoFOaENOZAH0/AVXA1LnT0zSeQabH6hXPHNRxJAopxXkPL07Ij1R4FGH9dxUD9ySSa8NkwA28OZq8lAM+kBgRVieHgkzKMer2XjjhciRGCDkFT6Dzhi+wg/yPXorwM9zqMLMLNLP7kSJdRjFFEYoHNsP/Pa413dF3Hs0E/QUlJHZdi3cm94bApYmF0HubhFPXupuU7cTY0o9J4zKEP7t2Eyll4yRmsOqrxPEjHklPLyNZYPxgrX3Xk0LA4jCM2ReQTrkzaccm3ObwlVMH3WZ4APojEgwg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fCdlgp5lgemcmTRakO8rEnWlGhfdKaTrxXem33ZxCSc=;
- b=r2y1nrAAo2vhybs8MAQQeTFiu60jrE6RjDYf+g5ZcwInztYdGSVU9W/mX18IKY5JtfKIioi7HyxxrO1TtfpcT555K7i7IhhQBKcd85Fy930pjoG+8QlAJd9rHN141X+u48xE13jqZhdw1CR6YIiue6GKjTsC+rQgjFIRVNW1o8yVysmyqz2FERTtuepE9X3w+ZP8F+ZNlcCWetJwq5SyERtEcufhasUWwkf+rvSLmp/rptMoD2Xw7AuiwSGF9t6ajC/Ja+HnCsg0U97qWTlGKJv9eUHkZA/2N2AtkyjbVKbKUvqc168qw//lMRiUtyEyESYyEey3ruM08SaVRX9QYg==
+ bh=hzP+sLl0lhnaJgFZ6ymTx3mg+FOOjscBZJfpyK2Zvis=;
+ b=hNFyY2vZw1pJ/xz4lydtLQ5YXnU6GwXOFOh+lA2VPiJGszxICpab+UoX3aRxZ3WoYq7vXT+pHtUaQWGEtm85BRod0tJwma8Yypkjvip7GTBzR32UT23qVFqVAsJpZhqSHkBorHYFlwice+6guOPcVOPdWELZXC5IXKQOxPiud7Bd3wKW/Fq9WHLoImM5J0cG7syeWld8CKYceVPiyyiwe+5wJBp6CmxETrFV5ifNuizZx+QFWluczUAzvNDIhYbYwCHhH3q5MD5mkqFoRpArgYshqa6Ra5IxUp4hJJuWUTNw0TUp/Rx2pkcy9ycKNkVxweeCWRF25Zq3hDHcUnJkZQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,93 +69,96 @@ Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
  DS7PR11MB6040.namprd11.prod.outlook.com (2603:10b6:8:77::5) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.360.12; Fri, 4 Sep 2026 10:31:39 +0000
+ 15.21.360.12; Fri, 4 Sep 2026 10:40:16 +0000
 Received: from DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::8cb2:cffc:b684:9a99%4]) with mapi id 15.21.0360.008; Fri, 4 Sep 2026
- 10:31:39 +0000
-Message-ID: <e2cd7c18-1943-4c57-bdf3-99ab82e1819f@intel.com>
-Date: Fri, 4 Sep 2026 16:01:28 +0530
+ 10:40:16 +0000
+Message-ID: <d16a1fc8-2524-4ad5-90b5-e943f112c4a2@intel.com>
+Date: Fri, 4 Sep 2026 16:10:06 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] drm/xe/xe_drm_ras: Rename ras to drm_ras in xe_device
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+Subject: Re: [RFC PATCH 2/5] drm/xe/xe_ras: Handle page offline requests for
+ device memory ecc errors
+To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
+CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
  <aravind.iddamsetty@linux.intel.com>, <badal.nilawar@intel.com>,
  <raag.jadav@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
- <mallesh.koujalagi@intel.com>, <soham.purkait@intel.com>,
- <tejas.upadhyay@intel.com>, <himal.prasad.ghimiray@intel.com>
+ <soham.purkait@intel.com>, <tejas.upadhyay@intel.com>,
+ <himal.prasad.ghimiray@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
 References: <20260825063615.3697317-7-riana.tauro@intel.com>
- <20260825063615.3697317-8-riana.tauro@intel.com> <apGlsHhoC9ig7olz@intel.com>
+ <20260825063615.3697317-9-riana.tauro@intel.com>
+ <17780d34-b06b-4db7-888e-e3734530ae31@intel.com>
 Content-Language: en-US
 From: "Tauro, Riana" <riana.tauro@intel.com>
-In-Reply-To: <apGlsHhoC9ig7olz@intel.com>
+In-Reply-To: <17780d34-b06b-4db7-888e-e3734530ae31@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0258.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:21c::11) To DS0PR11MB7958.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA5PR01CA0256.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:21c::14) To DS0PR11MB7958.namprd11.prod.outlook.com
  (2603:10b6:8:f9::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|DS7PR11MB6040:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1a01da29-ba9f-4cd5-b9bc-08df0a6fb404
+X-MS-Office365-Filtering-Correlation-Id: 917b390e-0271-4d2e-9865-08df0a70e826
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|376014|1800799024|23010399003|366016|18002099003|6133799003|10067099003|4143699003|56012099006|11063799006|22082099003;
-X-Microsoft-Antispam-Message-Info: anQblUBpUlHOPD67j1YSLKxh0LEnrKtKtDwz0LDgQcCPqklNZzPMxeCR/zmEPEmMqono3ca7HE88LUXVl2uTQzAj7aT/K25NRgvaEFFj4afEvRFoWbNfDHAvOVKFKfgNKh+TG/y0A2DSGZXpVw3eOXGoPpqi4eh1lU0nvY7T3afWIcnZD6o1uEm6r5lcE4NfBp+fBZOM37nV+jXgLSgVQS6ZimW/lrzcNjMNoN1Ckn3ERB8xKwVPHRD+Kg2VvrAvN39fPlWWHPJpPZkDsAQWHkptIrcsQfqYPbz+SI6lvlPNTf7U7DpX1gJxAHglzkxeo0AyA28lZYGDiO2uH4jtyTLGVrIoQHBXZvaDTK5XdmIV2wBWiilk6o62SUwOErMR2BjoJ/aSNHm46xqHRGE9WCdgliiuirSoH+/86DguYNHnyPdxc/IxwyZy6W2tt2qGL/wFm2EMMJR6tcZ8eD6g9sdLAXRoMaiYA135kRoyNhoDiGWgtWSipRNGxudGmiwFrLR05UEDh8KbHxqh7y9gNGe10YmBZW+H4J0arOwf6e4MU5hqPzsLdw1W1BfgmnTAfUGNRR3U860EZSiX473AbSIS/isUkOW9scp56LE8r4Pyvhjr1oXzr9raa0QozRkboVSZDatl+Sz5axqDYgIHVXSEd83OE/yFkXZKC7fa74c=
+X-Microsoft-Antispam-Message-Info: A8PyWbjkRUJ9zTHt/IEWFQ7iTBhZ3aLHSm7pCuFnCfsxTour1VFRSvQWmTOz1oFcGn1CoLRLssxhnBFKtPeRfvxwKCrsSGMZYvRHdh5nOdnCoLZWyj4W7xBGO2KC/hb1lkKJqFAMMPWtyRaufeGfzc994ZxyHCDjzIQT7sCrbSLMs+VpIUKWJgok2cQske/ZTd9uTqGOmbUa4veNbxB6QWEkiTv7J2yOBiLPwFiyEPLtE0psfhKYeAdZFaR6lkTOOxJwn/5V1YsU4mU3U3AgJsClF5C79jbrTKexkomnSrNmdynSz6Gwz+FAYNaePQlsO/fGMXmwjB06v0ZC6Z3fgdOyckfzuqd7k7vZ9UppCMkoC9Pc0at4qj2Fcekd6/ad1GNL4F4CKd1TI3ik/FB/kJOuR+kNr7N1avs9XSTHqr8CenmN7tOnhdj4Spq6/Ar03jRGihIyrVjwtDwsh2KTdttkbcR9eGw4bgXJqkeEUcdLrGw8D7kyg41Ia2ujCeD2ck/GVK4RjjMshtLifSlPKDkn6MepWTPX4otWLadRzcnQME7/mXzOw8/diwcUMxgiZCuivi63CjoGE+Dvp9sVfG0/R/QQlapVwOQvxRCRZkXks5+MBi/lAegFVqYdY0DLClT1miK6jEjO0xCpwxKJl9zJ1k1FywmdnKSGlrNQspk=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(18002099003)(6133799003)(10067099003)(4143699003)(56012099006)(11063799006)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZVg4YzBPRXhnT24xS25nQUJ6dlFXbWc5K2t3KzJ3NTV3ZnpHUkh6N1BrcklY?=
- =?utf-8?B?U3RtTGhYWTZSSHg5UUllUnZrQmcxd0V3aXRlY1c3ZUtPKytnSTN4ZGE1VjZ1?=
- =?utf-8?B?YTZQOFZvMkxJem9HQ24vTzRRSWFzOVFvSDZsbVExckxHcldUck1iQlJ1OWJa?=
- =?utf-8?B?WmtuUXUzVCsvT01oTyswelFDdkRub1N4bC9DR2RiN0kwRXdKQU1PbmVtZWh5?=
- =?utf-8?B?bTRjN3FadEs5WGg1OFBsNTBMbkFEclBiTGlpREVUNW1MODNwNzY5NzUxWEN2?=
- =?utf-8?B?bGU2T3hXRnJUMXJ0RHVGMVAxZmd0a0h6cy9TVmQ1OFZzWUpNdDZ3c0xSLzMy?=
- =?utf-8?B?YVNTNkFyNG9wMklEWEpxL1dGUFNralF3SExUZ3NZTjh2R2h3SW5NUnpWaGsr?=
- =?utf-8?B?dEh2b3AvenlrUWVScUhWUG9tMElGVCt5Z3ZZbExBMHlnUTd6aDVPWVAzb2ti?=
- =?utf-8?B?TmpEM0lVZjhFZndYR0xHMTVTWWFJV1FZUU5pbmpWTkdhWW5FNVZ4bi9FOXgr?=
- =?utf-8?B?YW4raHRQY2ZSUWIvbnVNSFhkd0RYL3J1Nk5uWnptb0RHVy9ld05SZm00WUpT?=
- =?utf-8?B?bFFHVjYyMVpIcUhhbWlIRGxESUNmU2tiME9iT3V6bHc4U0FPTmRTQWVaZ3k5?=
- =?utf-8?B?cE81TkE2cEliRDlLRmFObUJJaGQ1akNMZG13WTJXTzdkWTB3ZDVaSkMxbTVM?=
- =?utf-8?B?dTFmVFVxcSs1TDBSUGYyVkUzaXJ5MnkvVml1TDhWWk40Y28wdWdaVUszZjZG?=
- =?utf-8?B?QmoxZEZFMXpjQTMrdk1tUVdWZVZCblNrcmxDZjdOQ2w4SnRpL1hWMTRpc0s5?=
- =?utf-8?B?N05rQ3hOZ0xuRG56T0tQNXphK2V3MkVmMWJLc21QdVdFaFhHcU44YlptbGxm?=
- =?utf-8?B?SzVPb2sxSVBLd0p6dVZSc1dPY1YrME1hUUhNSnFJOGdXTTVmRDdNSXNlTk5S?=
- =?utf-8?B?cjBaK1E3QmtLdGo2cnRkRUNpOGNuU2o5WXZRcStxTWE0SzVoOCtSWUF5L0VD?=
- =?utf-8?B?elNDQ1E2N1UxSlh6alJCUjZTRGlvei9vejI4MjU4WDZYdG93ZkRoNWFhSjBK?=
- =?utf-8?B?NFp5MzU5ZUgvTXZ5bDVuNXM4cXFxcndiMGdmOWR4ZjRXd21yVk1FRkM1YW0r?=
- =?utf-8?B?U2loRWN5dkpmSTR6Q0xUck1RODA5SFNTU0dwS0o0dEROUER5MUtxRzZjcDJq?=
- =?utf-8?B?VEJrWHZhbjdYczR5dG5IUXdEZ2tvV3dGaXNrazFWOHluR1Vsem1OTWVhdDFT?=
- =?utf-8?B?ZXNEN2ExUi95VGtERkpWRGFKQ0dMQmJFa1lFa1pUb2ZNSC82NVNCelEzbDZp?=
- =?utf-8?B?SWIxWitmYW5tNTM4ZkcxYzE3NHM5M2cvZERjNnFQZ1lKek5KYWNuSXk1SDJx?=
- =?utf-8?B?Sjh0cjNPQWgzMjhraGZ4cTlBcWlxdFYrWjVMaGUwdGR3ZW91U3Bqdlk3RHJG?=
- =?utf-8?B?K1RYVkJONVhJWGMvWHNqYmZ2TmVjZVpzN0M2WmUwSTRzSEQ2RGhiVUVUM3Yv?=
- =?utf-8?B?OGcvOHlnSzBTdTJzTEFodnFheHMza05oU0F2cU11RGc2ZTdzenpWVGh5VVl0?=
- =?utf-8?B?UzZnenY5TksrUlVkL0tXSUFCcEs3bW1qODR6V3FKT09kN1pqZ2JhbEtYc2lk?=
- =?utf-8?B?bnBhWDZyOWxCTytrUURhRmUyMjdZRERDTU0za1BHbkowQUh0RzRhVlBsZll4?=
- =?utf-8?B?bStEYW0zRXZZQTFBNE56Ukp2aEp2aklEWjg4UUtEajFueUpSZVFPK3dqVmw4?=
- =?utf-8?B?SEtxMmVTTk9qT1p5TFQrNk93dDdBMW1hVlN4UnVnWnp1U0VmWTYxdGoxZS9W?=
- =?utf-8?B?Yk5ScVJ6anNQRlNVMGJQRVZpSFg4TVh6T0grdE5ZQytUajBCYU0xRUlnemNM?=
- =?utf-8?B?eVY2dXZxMUJuZjh1SlBYbHcwQ3hrci8xR2tKZDdmakVvWk5BM1BtRlhBZVEx?=
- =?utf-8?B?TzZBSFVQUmdaekhDblRWbjZUclVrajZWdS8xQk5RQXZlbytqdytObXZRdk0v?=
- =?utf-8?B?MkRPYVNxQ0lsRlVEOXpyUWRld2MwNUxEaVVVWjlmbDl0S0hLQ09qbng1UTdt?=
- =?utf-8?B?bUwxZ3AwRzN1VWpPdDVSTjdMNk9FQTV5azNzaW9Md0pNMFJEMWFGUUhaTkNZ?=
- =?utf-8?B?RjZqYm9sY25JbXB5WWJmZ2ZYbWRUK2dUV2NaSDR5eWV1ZTNnUnNyanI3WERu?=
- =?utf-8?B?N3JEeW9WdGJ5SWx4bGFpTFpXSFRoSTA5SzM0YllMNCtmVmJtZmFZc2lTMXVX?=
- =?utf-8?B?WXlRZmZXMmNtbkFCTk1INUllMEJwUEovakdLUVdBNkw4U1BmMmhCMlRveWNM?=
- =?utf-8?B?bkdVc2RqTXh0RE9CMFA1cHlKVTZEcTlLWmhEY21jQlFVYzVmRkhHZz09?=
-X-Exchange-RoutingPolicyChecked: J2Mn/I+IHG141pUhI2rASXx63WK2/LYfPxO0GPqFAee4ZJtx5NiAtirEJsRwpWwAie1dWc8HW4hxhByDyEnFr6bMnans6AS1iUFMUXEvKl8OCfJ0I16ZHQOG1pYALrEccZOSJnuLN+GE/ngWhKWKTpmI23ECZY80ovkzIWNAwHrKqaw5j1lkgn0owQNaP/pBFoFH1Kyyz/WEdV05GilwR+C0FM/adIbnPMK+OAbsW3HhF7nhu8I+gn7cy+x+OQTItMxybC9EqoumBzoOZ3cyFIhG4DYxiX0kLpx2HBpSiiZPO48xYFkTxpajAwSFZShmw/i2CGPzAb/mQhDvSW6nAQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1a01da29-ba9f-4cd5-b9bc-08df0a6fb404
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?akhyamt2WFl0VUhWc3JoVHRGdEk4V1lVWmVyWUJicVA5aExHeW5VRTlMa3NH?=
+ =?utf-8?B?cmNHMngzNC9ZYVpKWlUvMlZSWlpYZmppU21GWkdjRG9RNktGUzZnbyt2MVNU?=
+ =?utf-8?B?dDBOYkZCYU9sSk9SN0c4U3dTVytmZWRTUGhnZzd5T3pYMlkyQjBiZDlUUmk2?=
+ =?utf-8?B?TXZYMEk5dWVzNHFCcXNyNFR4NWRrR2pKTUFQTUNidkthMDZXNDNrdFNEejJ4?=
+ =?utf-8?B?c0g1bDFMZDdtV0xYcjhaMm1oZ1BRanpxWHgvdFFQempjeURha0NwVEs3bTNr?=
+ =?utf-8?B?SGVHK0JQNFJOcW92MHhBbW9hNTdkNyt0NW9ZWld5WDJXOFBvQTBUMExJbXdk?=
+ =?utf-8?B?c1RHcEtPZWVBOGJXYU12d2dva0VlTDdwTWFjVU9pUEtKUU5iVko3WG1KajNt?=
+ =?utf-8?B?UUpRVk1YSFV6YldESW1VYUdhVnZvVHdoelE3NkJLbDNmUXJtUFR5Y0JzR1Ix?=
+ =?utf-8?B?OHY3eG9LN2hxMnRVbXFtNlJ2bkxsUkR4ekNPVzFmVUFGeVhvUnJXV2xJTDQ5?=
+ =?utf-8?B?RFFUNnFIM1pjUUpQUEVwS3lWNUozeW5RT2JrS01RZDlqWi8ydWV6a3NGY05W?=
+ =?utf-8?B?NDZMYUs3cWN1aDN5VCtNV2l0WjUwV1RQS3dOYzRiYWE2T0RmUnZzWVE4RnhX?=
+ =?utf-8?B?bkZIZUN0bUMyK1ZHajNKK0gxYlJXbFdCNUJ6dlB4aTBPUzVKVTFLQ285Wmo5?=
+ =?utf-8?B?bHIrVFNGRjdTT3JQMGJhY1YzZTJ6bFl4YS8xSDVqZnRoL085bWJCZVlMYUlx?=
+ =?utf-8?B?ZHNad1drM1gzZTJVbXB4OVhqVEVXN2g0UjNJbzlXSVBOdllZNWw2WDNnOCto?=
+ =?utf-8?B?Q2V5WlVYV0ZXYkVvbmhMS0dqaGRnQlJZZndQSy9iV1RTYXVkTWRSKzJtTEJy?=
+ =?utf-8?B?eWJsZThjYXkxT05ublZsejNrODJtaWV1dm5TMzJ5TTFSL1QrODd0SmxCV0gr?=
+ =?utf-8?B?K2UreGdHOTJzY2gvOHUySTdGd09GV01iRmJmanVUWWRNQjRDSUR0R1l6ZVRX?=
+ =?utf-8?B?Y3A0UkQ2eXNSdWdKeXZwNHRWWk00amY4V1dxQlo1UkZBUDVSYUdiWGxBMlNS?=
+ =?utf-8?B?LzNsRUlPVGRkTFdMUmk5QUFSaDMvUXdDMzRIS2o1Z09JUElScDdOS01jdEVV?=
+ =?utf-8?B?Nk9UUTJXTG9iS3M5YkRJdVA1UFR3MGdPTWRqQWNJQzN2UVp5a2pSaVZReFdC?=
+ =?utf-8?B?UHNYd0dYSXAyaGkrVUV5RklsVGJGYlY0YURuSC84bUYzM0FhaXpQQXJTRjdF?=
+ =?utf-8?B?TTZkdlJ1MjM2dCt1VG5RRFFLN3JuVlVWRnlYMzlxM0JxektHeVZiLzNPbjhP?=
+ =?utf-8?B?MGVoZDgrTkRDOTlSaHo5Q3RaZDE1R21EYzYrc3RhczNOYVlmVUNyems0VlY0?=
+ =?utf-8?B?c0NmZUlPNVl5M3k2dVlNazJlUldreUFPQVpaMEU1Z3JTQW9jem1DK0pwbWly?=
+ =?utf-8?B?NCtsMndaQkRaaS9vVm9OVjYxTUNyNzhia3orbkpIUmcybzRPUUNwZ1JOR0s1?=
+ =?utf-8?B?N1RGWUpJbTcySnpYTlZrSWsvdGlzUjMrT291OWI2T3lPZEIzQ2ZqZDBtVzE5?=
+ =?utf-8?B?bVkrYm4rWGRKaGFEc05sdXVmRk5sZmRnbkF4eGEzMDc2U3JmaGgrcDZRRVJm?=
+ =?utf-8?B?MEVESWhYTTBwSkdqNGx3L3NiY29iSm8xdGhOenRwQUp6d2t5M0RJMjZVaHJz?=
+ =?utf-8?B?ck1TRy8raEFoazczY2YvTmErNVNGL2x3c0lCSHRNbFpkMGZmSGhSNzVTbGtV?=
+ =?utf-8?B?ZU1TM2d3a2dKUzBNQ2ZFYlpwTnZtajN5bzRJd1pIUjNtQjRTMm01Nm5pK1B5?=
+ =?utf-8?B?ZHZ0M2t2Mml6cDl0NUVCOTUrLzRpMDBLTnVSY0JYNWNSZTJ4eHVpaXEyN1d2?=
+ =?utf-8?B?bHYzYXNncE4yL0wrOGx2Q3BRd3h1S2RLNzZDd1ppWURCMnVuY25leWJrN0Fv?=
+ =?utf-8?B?Qm9xMkZDcHlWcDJsN1hoZTROUS81S3VvL2RwUkRvUVRWMGlJdGduZlMycitO?=
+ =?utf-8?B?YVB2VmNJNnBXdFJUc1ZnZFQ3YUdjMHNFcUMwd2R4TE8xMFc2MjFIWjUrcVFi?=
+ =?utf-8?B?NWtEQmp3L0Z1a3dTWUc2ZUM5aGxsdXBTeHNVTmc3WmZFNHB6czlya1JNbFpl?=
+ =?utf-8?B?TVlsSjZyR0RZSSttTEFyT041dnhtMW42ZEdRSDJUUmd3cE1SRm5kVUFHUW9Q?=
+ =?utf-8?B?Wlg2em05cm4xQkovTTAzbWd1OXR6SWFtaXZ4eWNDc3prSFJYRlBSYi9HcllC?=
+ =?utf-8?B?bVVOUmx4NlJQRzFyYmRZeDg4V0FjVWlJZzJleDIvZWtDSFZSSDBZTm1BQ0x6?=
+ =?utf-8?B?VDEwU2VaWnRSVSszL3JkWkN6bEVGU0VDUXVtNUpPeWRUbzNKM3d2dz09?=
+X-Exchange-RoutingPolicyChecked: GL/FA12O2Hr2BdOwTWb+1kShzCqPPNYcEHD38YYRJTKcRQP9/UKi2CcF2vkmFrW3wyNK8EHNUYLf/YfRdbjx/cWHzoKVhFGsKY1WEBh67v2WdFnnTBJ5nyffK4bOoOwlw6ZO0bg9jl/dqLrj6DOHRnw+2C1dTrdU+xJUa/qqnSWKgSRzLBDmq7KxCwBlC/nGQP6XEkTXEgZc12UGA/xkSsEfIKCLdznQHm3ODGL+aLCNXDimA/v7gZapJNXbJFuGf6E3yAO9ZDY/kJaAsgjiJvBDnx/NYRA7jxkqB3AUA5CpEtMxcq4yJ5+JLM8eZvenZM87H/js+WOX4avX3Ws2ng==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 917b390e-0271-4d2e-9865-08df0a70e826
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2026 10:31:38.9156 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2026 10:40:16.0971 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: b83XVbRN2RoHu3LR8IC3jkrU7Fr/HiQz+KMs4w9m0ARup3VLAcubllzApXFikPvSv51iXMpKGzW6kFXzhLTFGg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: O1Tx4q3gFvISgLJgLViI+7bZxH8M4A/mJYZXwvxuiuFjt41Vrh3PFYJiSRIhmlYibr7M4mgonIeS8HGNS+pBtA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6040
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -173,144 +176,306 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 28-08-2026 20:43, Rodrigo Vivi wrote:
-> On Tue, Aug 25, 2026 at 12:06:16PM +0530, Riana Tauro wrote:
->> Rename ras to drm_ras in xe_device to distinquish drm-ras functionality
->> from device related RAS functionality.
+On 02-09-2026 12:00, Mallesh, Koujalagi wrote:
+>
+>
+> On 25-08-2026 12:06 pm, Riana Tauro wrote:
+>> This will be integrated with the related address-fault handling flow
+>> once this patch is merged.
+>> https://lore.kernel.org/intel-xe/20260818104055.3833974-14-tejas.upadhyay@intel.com/
+>> Sending for initial comments.
 >>
->> No functional changes.
+>> Add basic support for sending page offline/decline requests to system
+>> controller and use it for device memory ECC error handling.
+>> Pages that belong to critical BOs cannot be handled by offlining and
+>> require a SBR (Secondary Bus Reset).
+>> Pages that are configured for log-only handling are not marked as bad by
+>> firmware.
 >>
->> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+>> For all other valid page addresses, the first occurrence of error
+>> indicates a poison error and the page is offlined only by software.
+>> Firmware avoids permanently marking the page as bad. The second occurrence
+>> of an error indicates a Double-bit ECC error and the firmware
+>> permanently marks the page as bad.
+>>
+>> Cc: Tejas Upadhyay<tejas.upadhyay@intel.com>
+>> Cc: Himal Prasad Ghimiray<himal.prasad.ghimiray@intel.com>
+>> Signed-off-by: Riana Tauro<riana.tauro@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_device_types.h |  4 ++--
->>   drivers/gpu/drm/xe/xe_drm_ras.c      | 12 ++++++------
->>   drivers/gpu/drm/xe/xe_hw_error.c     |  6 +++---
->>   3 files changed, 11 insertions(+), 11 deletions(-)
+>>   drivers/gpu/drm/xe/xe_ras.c                   | 121 +++++++++++++++++-
+>>   drivers/gpu/drm/xe/xe_ras_types.h             |  35 +++++
+>>   drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   2 +
+>>   3 files changed, 153 insertions(+), 5 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->> index 180d450a6deb..1494f3a6c62b 100644
->> --- a/drivers/gpu/drm/xe/xe_device_types.h
->> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->> @@ -550,8 +550,8 @@ struct xe_device {
->>   	/** @pmu: performance monitoring unit */
->>   	struct xe_pmu pmu;
+>> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+>> index d25d25f77531..c643c7137a42 100644
+>> --- a/drivers/gpu/drm/xe/xe_ras.c
+>> +++ b/drivers/gpu/drm/xe/xe_ras.c
+>> @@ -3,6 +3,7 @@
+>>    * Copyright © 2026 Intel Corporation
+>>    */
 >>   
->> -	/** @ras: RAS structure for device */
->> -	struct xe_drm_ras ras;
->> +	/** @drm_ras: drm-ras structure for device */
->> +	struct xe_drm_ras drm_ras;
-> perhaps xe_ras ?!
+>> +#include "xe_bo.h"
+>>   #include "xe_debugfs.h"
+>>   #include "xe_device.h"
+>>   #include "xe_drm_ras.h"
+>> @@ -200,6 +201,115 @@ static inline const char *comp_to_str(u8 component)
+>>   	return xe_ras_components[component];
+>>   }
+>>   
+>> +static int send_page_offline_cmd(struct xe_device *xe, u64 page_address,
+>> +				 enum xe_ras_page_action action)
+>> +{
+>> +	struct xe_sysctrl_mailbox_command command = {0};
+>> +	struct xe_ras_page_offline_request request = {0};
+>> +	struct xe_ras_page_offline_response response = {0};
+>> +	size_t rlen;
+>> +	int ret;
+>> +
+>> +	if (!xe->info.has_sysctrl)
+>> +		return 0;
+>> +
+>> +	if (action >= XE_RAS_PAGE_ACTION_MAX) {
+>> +		xe_log_err(xe, DEVICE_MEMORY, -EINVAL, "Invalid page offline action %d\n", action);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	request.page_address = page_address;
+>> +	request.action = action;
+>> +
+>> +	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_PAGE_OFFLINE,
+>> +				  &request, sizeof(request), &response, sizeof(response));
+>> +
+>> +	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
+>> +	if (ret) {
+>> +		xe_log_err_fatal(xe, SYSCTRL, ret, "failed to send page offline command\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	if (rlen != sizeof(response)) {
+>> +		xe_log_err(xe, SYSCTRL, -EINVAL,
+>> +			   "unexpected page offline response length %zu (expected %zu)\n",
+>> +			   rlen, sizeof(response));
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	ret = ras_status_to_errno(response.status);
+>> +	if (ret) {
+>> +		xe_log_err(xe, SYSCTRL, ret, "page offline command failed with status %u\n",
+>> +			   response.status);
+>> +		return ret;
+>> +	}
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int handle_page_offline(struct xe_device *xe, u64 page_address, bool send_cmd)
+>> +{
+>> +	enum xe_ras_page_action action;
+>> +	int ret = 0;
+>> +
+>> +	if (!IS_ALIGNED(page_address, XE_PAGE_SIZE)) {
+>> +		xe_log_err(xe, SYSCTRL, -EINVAL, "Unaligned physical page address: 0x%llx\n",
+>> +			   page_address);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	/*
+>> +	 * TODO: Call function to handle address fault
+>> +	 * ret = xe_ttm_vram_handle_addr_fault(xe, page_address);
+>> +	 */
+>> +
+>> +	/*
+>> +	 * Handle return code from address fault handling function:
+>> +	 *  0: Page soft offlined, decline to firmware
+>> +	 * -EIO: Address belongs to a critical BO/stolen area that cannot be offlined
+>> +	 * -EOPNOTSUPP: Address is valid and can be offlined but user policy is not to offline
+>> +	 * -EXIST: Address is soft offlined but yet to be offlined by firmware for second occurrence
+> nit: -EEXIST?
+
+Thanks. Typo will fix it
+
+
+>> +	 */
+>> +
+>> +	switch (ret) {
+>> +	case 0:
+>> +		action = XE_RAS_PAGE_ACTION_DECLINE;
+>> +		xe_log_err(xe, DEVICE_MEMORY, 0,
 >
-> drm_ras makes me think this is a drm level structure...
+> I know, it's switch case using ret, please make use of errno as ret 
+> from xe_ttm_vram_handle_addr_fault ().
 >
-> but I would keep this as ras and change the ones inside the functions
-> if/when/as needed...
+
+This is 0.. do you mean replace 0 with ret?
+
+> and make it consistency across all below xe_log_err.
+>
+>> +			   "Poison detected at physical address 0x%llx, page software offlined\n",
+>> +			   page_address);
+>> +		break;
+>> +	/* User policy set to decline page offlining */
+>> +	case -EOPNOTSUPP:
+>> +		action = XE_RAS_PAGE_ACTION_DECLINE;
+>> +		break;
+>> +	case -EIO:
+>> +		xe_log_err(xe, DEVICE_MEMORY, -EIO,
+>> +			   "Physical page address belongs to critical BO: 0x%llx\n", page_address);
+>> +		return ret;
+>> +	case -EEXIST:
+>> +		action = XE_RAS_PAGE_ACTION_OFFLINE;
+>> +		xe_log_err(xe, DEVICE_MEMORY, -EEXIST,
+>> +			   "Double-bit ECC error detected at physical address 0x%llx, page already software offlined\n",
+>> +			   page_address);
+>> +		break;
+>> +	default:
+>> +		xe_log_err_fatal(xe, DEVICE_MEMORY, ret, "Failed to handle address fault 0x%llx\n",
+>> +				 page_address);
+>> +		return 0;
+> hmm, In default case, we need to use return ret; right?
+
+If we return err, then we would cause a SBR
+which is needed only in cases of system controller's failure to respond 
+or belongs to critical bo.
+Any invalid address can be ignored.
 
 
-This is used for xe_drm_ras.  Wanted to add a different structure for 
-caching sysctrl
-values for RAS as required in [PATCH 4/5] drm/xe/xe_ras: Add function to 
-get maximum pages firmware can store - Riana Tauro 
-<https://lore.kernel.org/intel-xe/20260825063615.3697317-11-riana.tauro@intel.com/>.
+>> +	}
+>> +
+>> +	if (send_cmd) {
+>> +		ret = send_page_offline_cmd(xe, page_address, action);
+>> +		if (ret)
+>> +			xe_log_err_fatal(xe, SYSCTRL, ret,
+>> +					 "Failed to offline page for physical address 0x%llx\n",
+>> +					 page_address);
+>> +		return ret;
+> 'return ret' should be inside {} 
 
-Will rename the other structure or embed it within (struct xe_drm_ras ras)
+It is inside {}
+
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   static bool ras_counter_is_valid(struct xe_device *xe, struct xe_ras_error_class *counter)
+>>   {
+>>   	u8 severity = counter->common.severity;
+>> @@ -367,11 +477,12 @@ static u8 handle_soc_internal_errors(struct xe_device *xe, struct xe_ras_error_a
+>>   static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_array *arr)
+>>   {
+>>   	struct xe_ras_memory_error *info = (void *)arr->details;
+>> +	int ret;
+>>   
+>>   	/*
+>>   	 * For memory errors, the recovery action depends on the error category
+>>   	 *
+>> -	 * TODO: Double-bit ECC errors: Page offlining
+>> +	 * Double-bit ECC errors: Page offlining
+>>   	 * Poison and data parity errors: Log only
+>>   	 * For any other memory errors, request a reset as recovery mechanism
+>>   	 */
+>> @@ -383,10 +494,10 @@ static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_
+>>   		xe_info(xe, "[RAS]: Data parity error detected\n");
+>>   		break;
+>>   	case XE_RAS_MEMORY_DB_ECC:
+>> -		xe_info(xe, "[RAS]: Double-bit ECC error detected at sw address 0x%llx\n",
+>> -			info->sw_address);
+>> -		/* TODO: Add page offlining for Double-bit ECC error */
+>> -		fallthrough;
+>> +		ret = handle_page_offline(xe, info->sw_address, true);
+>
+> In case of soft page offline, we need not required reset right? 
+> however when send_page_offline_cmd
+>
+
+We do if system controller fails to respond or if it belongs to critical BO.
 
 Thanks
 Riana
 
+> return err that case, reset is required. is that correct behavior?
 >
+> Thanks,
+>
+> -/Mallesh
+>
+>> +		if (ret)
+>> +			return XE_RAS_RECOVERY_ACTION_RESET;
+>> +		break;
+>>   	default:
+>>   		return XE_RAS_RECOVERY_ACTION_RESET;
+>>   	}
+>> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+>> index 99b2466e2062..2fac968879b6 100644
+>> --- a/drivers/gpu/drm/xe/xe_ras_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
+>> @@ -17,6 +17,19 @@
+>>   #define XE_RAS_MEMORY_POISON			BIT(2)
+>>   #define XE_RAS_MEMORY_DATA_PARITY		BIT(5)
 >>   
->>   	/** @i2c: I2C host controller */
->>   	struct xe_i2c *i2c;
->> diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
->> index 78184b6ea7d4..9f37ae732770 100644
->> --- a/drivers/gpu/drm/xe/xe_drm_ras.c
->> +++ b/drivers/gpu/drm/xe/xe_drm_ras.c
->> @@ -20,7 +20,7 @@ static int query_error_counter(struct xe_device *xe,
->>   			       enum drm_xe_ras_error_severity severity,
->>   			       u32 error_id, const char **name, u32 *val)
->>   {
->> -	struct xe_drm_ras *ras = &xe->ras;
->> +	struct xe_drm_ras *ras = &xe->drm_ras;
->>   	struct xe_drm_ras_counter *info = ras->info[severity];
+>> +/**
+>> + * enum xe_ras_page_action - Page offline actions for page offline request
+>> + *
+>> + * @XE_RAS_PAGE_ACTION_OFFLINE: Instruct firmware to offline the page
+>> + * @XE_RAS_PAGE_ACTION_DECLINE: Instruct firmware to remove the page from queue
+>> + * @XE_RAS_PAGE_ACTION_MAX: Max value
+>> + */
+>> +enum xe_ras_page_action {
+>> +	XE_RAS_PAGE_ACTION_OFFLINE,
+>> +	XE_RAS_PAGE_ACTION_DECLINE,
+>> +	XE_RAS_PAGE_ACTION_MAX
+>> +};
+>> +
+>>   /**
+>>    * enum xe_ras_recovery_action - RAS recovery actions
+>>    *
+>> @@ -245,6 +258,28 @@ struct xe_ras_memory_error {
+>>   	u32 reserved2[10];
+>>   } __packed;
 >>   
->>   	if (!info || !info[error_id].name)
->> @@ -41,7 +41,7 @@ static int clear_error_counter(struct xe_device *xe,
->>   			       enum drm_xe_ras_error_severity severity,
->>   			       u32 error_id)
->>   {
->> -	struct xe_drm_ras *ras = &xe->ras;
->> +	struct xe_drm_ras *ras = &xe->drm_ras;
->>   	struct xe_drm_ras_counter *info = ras->info[severity];
->>   
->>   	if (!info || !info[error_id].name)
->> @@ -110,7 +110,7 @@ static int assign_node_params(struct xe_device *xe, struct drm_ras_node *node,
->>   			      const enum drm_xe_ras_error_severity severity)
->>   {
->>   	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->> -	struct xe_drm_ras *ras = &xe->ras;
->> +	struct xe_drm_ras *ras = &xe->drm_ras;
->>   	const char *device_name;
->>   
->>   	device_name = kasprintf(GFP_KERNEL, "%04x:%02x:%02x.%d",
->> @@ -156,7 +156,7 @@ static void cleanup_node(struct drm_device *drm, void *node)
->>   
->>   static int register_nodes(struct xe_device *xe)
->>   {
->> -	struct xe_drm_ras *ras = &xe->ras;
->> +	struct xe_drm_ras *ras = &xe->drm_ras;
->>   	struct drm_ras_node *node;
->>   	int i, ret;
->>   
->> @@ -196,7 +196,7 @@ static int register_nodes(struct xe_device *xe)
+>> +/**
+>> + * struct xe_ras_page_offline_request - Request for page offline command
+>> + */
+>> +struct xe_ras_page_offline_request {
+>> +	/** @page_address: Page address (4KB aligned) */
+>> +	u64 page_address;
+>> +	/** @action: Action to be performed, see &enum xe_ras_page_action */
+>> +	u32 action;
+>> +	/** @reserved: Reserved for future use */
+>> +	u32 reserved;
+>> +} __packed;
+>> +
+>> +/**
+>> + * struct xe_ras_page_offline_response - Response from page offline command
+>> + */
+>> +struct xe_ras_page_offline_response {
+>> +	/** @status: Status of the page offline request */
+>> +	u32 status;
+>> +	/** @reserved: Reserved for future use */
+>> +	u32 reserved;
+>> +} __packed;
+>> +
+>>   /**
+>>    * struct xe_ras_get_health_request - Request structure for obtaining gpu health
 >>    */
->>   void xe_drm_ras_event(struct xe_device *xe, u32 component, u32 severity, u32 value)
->>   {
->> -	struct xe_drm_ras *ras = &xe->ras;
->> +	struct xe_drm_ras *ras = &xe->drm_ras;
->>   	struct xe_drm_ras_counter *info = ras->info[severity];
->>   	struct drm_ras_node *node;
->>   	int ret;
->> @@ -226,7 +226,7 @@ void xe_drm_ras_event(struct xe_device *xe, u32 component, u32 severity, u32 val
+>> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+>> index d0341538ad05..3363f48da2b7 100644
+>> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+>> @@ -26,6 +26,7 @@ enum xe_sysctrl_group {
+>>    * @XE_SYSCTRL_CMD_GET_COUNTER: Get error counter value
+>>    * @XE_SYSCTRL_CMD_CLEAR_COUNTER: Clear error counter value
+>>    * @XE_SYSCTRL_CMD_GET_PENDING_EVENT: Retrieve pending event
+>> + * @XE_SYSCTRL_CMD_PAGE_OFFLINE: Instruct firmware to offline/decline a page
+>>    * @XE_SYSCTRL_CMD_GET_HEALTH: Retrieve gpu health
+>>    * @XE_SYSCTRL_CMD_SET_HEALTH: Set gpu health
 >>    */
->>   int xe_drm_ras_init(struct xe_device *xe)
->>   {
->> -	struct xe_drm_ras *ras = &xe->ras;
->> +	struct xe_drm_ras *ras = &xe->drm_ras;
->>   	struct drm_ras_node *node;
->>   	int err;
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
->> index 5f2abc9485ff..90b73077ef41 100644
->> --- a/drivers/gpu/drm/xe/xe_hw_error.c
->> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
->> @@ -240,7 +240,7 @@ static void log_soc_error(struct xe_tile *tile, const char * const *reg_info,
->>   {
->>   	const char *severity_str = error_severity[severity];
->>   	struct xe_device *xe = tile_to_xe(tile);
->> -	struct xe_drm_ras *ras = &xe->ras;
->> +	struct xe_drm_ras *ras = &xe->drm_ras;
->>   	struct xe_drm_ras_counter *info = ras->info[severity];
->>   	const char *name;
->>   
->> @@ -260,7 +260,7 @@ static void gt_hw_error_handler(struct xe_tile *tile, const enum hardware_error
->>   {
->>   	const enum drm_xe_ras_error_severity severity = hw_err_to_severity(hw_err);
->>   	struct xe_device *xe = tile_to_xe(tile);
->> -	struct xe_drm_ras *ras = &xe->ras;
->> +	struct xe_drm_ras *ras = &xe->drm_ras;
->>   	struct xe_drm_ras_counter *info = ras->info[severity];
->>   	struct xe_mmio *mmio = &tile->mmio;
->>   	unsigned long err_stat = 0;
->> @@ -422,7 +422,7 @@ static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_er
->>   	const enum drm_xe_ras_error_severity severity = hw_err_to_severity(hw_err);
->>   	const char *severity_str = error_severity[severity];
->>   	struct xe_device *xe = tile_to_xe(tile);
->> -	struct xe_drm_ras *ras = &xe->ras;
->> +	struct xe_drm_ras *ras = &xe->drm_ras;
->>   	struct xe_drm_ras_counter *info = ras->info[severity];
->>   	unsigned long flags, err_src;
->>   	u32 err_bit;
->> -- 
->> 2.47.1
->>
+>> @@ -34,6 +35,7 @@ enum xe_sysctrl_gfsp_cmd {
+>>   	XE_SYSCTRL_CMD_GET_COUNTER		= 0x03,
+>>   	XE_SYSCTRL_CMD_CLEAR_COUNTER		= 0x04,
+>>   	XE_SYSCTRL_CMD_GET_PENDING_EVENT	= 0x07,
+>> +	XE_SYSCTRL_CMD_PAGE_OFFLINE             = 0x08,
+>>   	XE_SYSCTRL_CMD_GET_HEALTH		= 0x0B,
+>>   	XE_SYSCTRL_CMD_SET_HEALTH		= 0x0C,
+>>   };
