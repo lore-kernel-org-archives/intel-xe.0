@@ -4,56 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27BA5C624DE
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 07:10:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E873C79F80
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 07:23:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4417C10F885;
-	Fri,  4 Sep 2026 07:10:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E47E010F8E2;
+	Fri,  4 Sep 2026 07:23:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g/giY1B3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kw6WeiY9";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 918A410E13B;
- Fri,  4 Sep 2026 07:10:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46EC510F8C7
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 07:23:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788505839; x=1820041839;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=WqmuqwKQnF/E5rxeOPBqmJpNR7Vf1Bx2BKzlO3uTG2o=;
- b=g/giY1B3wKptEvjekIpazgptey5aKeH9GNpt+ze9wgUGnKVM4kTeprRD
- kPXGiMo5CUX5zP81tnQdxXKCOHNbEQEYNycJaKLpaPfyb+mS3MDirJOoR
- zD1tRNhnNGAWUfknyeKBxtQqy0+pXYAoktw3hoypt/0r56yjltR6Zy632
- tyWNd6eVMgjI/zOCI+H/5EhxB8PsnjYZynr4M0nRuS65H7YoGzeRhGwpr
- StfiO+Ajq3DVkAfRjMqSUGiSKwX4ZiXz+/x5EMFW2AI132ZuD8gwNo+Dh
- 2XB5MIxsLdDJW9/WUccy+sqrD9eV8UaqUOkeVOCcsAdutaTChkBidMPb4 Q==;
-X-CSE-ConnectionGUID: IKnUEByzQVae0uLSlmRXuQ==
-X-CSE-MsgGUID: 44dI2Dx+SFqjPGV/A2IW5w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="76557210"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="76557210"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 00:10:39 -0700
-X-CSE-ConnectionGUID: cZI28kdARfS5he5rr/BvQA==
-X-CSE-MsgGUID: zKAucWnhSIGMOHjuv7TBLA==
+ t=1788506586; x=1820042586;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KZO6NKGFWh42W8EDKB6Cv9PvJ5QcQHaMowjGJpnytk4=;
+ b=Kw6WeiY9EbBx0GTD7PFKytRSgzDvHm5h4fVQ7XJN5oOCs6BcIFzekVzr
+ 2MKPClX4+QyKUCYfdd6DxaxEOWYGxgbIrPmys0MVcVbPR8lXHkAS1yeu4
+ oE/9NwcZwP/e87rgy/6hByjXj4HtBErz2YP6/vF5pPLIN5gi5RLxKu3gn
+ xPA8Jz9e3FlqYCVVsI4J4d6uKMQd54dYrtL7GltJZrZqRO7oUY0fy4/WN
+ oLEXPzHS+jUvr1zKI1MuT6f+R9fU5eGmyzZokpScoP/ULXzIuctW5pB5N
+ LK01PigsGulUIt+gK6TMiVsM2xknd/tz120GfKnaXW+m8NZFGkCVktQFf Q==;
+X-CSE-ConnectionGUID: cwsuTM7JSqymhCSASklSMA==
+X-CSE-MsgGUID: O5Is+tIXTHy3oIzLQ+v1Eg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="92822948"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="92822948"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2026 00:23:06 -0700
+X-CSE-ConnectionGUID: vgQAMguJRAOk11Ul28W2RQ==
+X-CSE-MsgGUID: KrLzkRmhT12/vpeKL504Iw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="265616271"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.170])
- by fmviesa006-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2026 00:10:37 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Nemesa Garg <nemesa.garg@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: Re: [PATCH] drm/i915/display: Limit SEL_FETCH clear to supported pipes
-In-Reply-To: <20260904062744.3010375-1-nemesa.garg@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260904062744.3010375-1-nemesa.garg@intel.com>
-Date: Fri, 04 Sep 2026 10:10:34 +0300
-Message-ID: <9514a15f9ded3fa79572f92a61f33650c4ab02e6@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="269424444"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2026 00:23:05 -0700
+From: Arvind Yadav <arvind.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
+ thomas.hellstrom@linux.intel.com, Sashiko <sashiko-bot@kernel.org>
+Subject: [PATCH v2] drm/xe/vm: Handle purged BOs in VM snapshots
+Date: Fri,  4 Sep 2026 12:52:52 +0530
+Message-ID: <20260904072252.4009491-1-arvind.yadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,61 +66,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 04 Sep 2026, Nemesa Garg <nemesa.garg@intel.com> wrote:
-> Commit 7f1172a2ac0d ("drm/i915/display: Clear SEL_FETCH_PLANE_CTL
-> on plane disable") started clearing SEL_FETCH_PLANE_CTL and
-> SEL_FETCH_CUR_CTL on every plane and cursor disable.
->
-> Not all pipes implement these registers. Clearing them on a pipe
-> that does not have them leads to an unclaimed register access.
+A purged BO can remain in a VM after its TTM resource has been freed.
+xe_vm_snapshot_capture() can then dereference a NULL resource while
+capturing a devcoredump.
 
-Where are the corresponding checks on the enable side, and what
-prevented this before 7f1172a2ac0d?
+Record -ENODATA for the affected VMA instead of dereferencing
+the resource.
 
-BR,
-Jani.
+v2:
+ - Read the BO resource once with READ_ONCE(). (Matt)
 
->
-> Skip the clear on pipes that do not implement the registers.
->
-> Fixes: 7f1172a2ac0d ("drm/i915/display: Clear SEL_FETCH_PLANE_CTL on plane disable")
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16876
-> Assisted-by: GitHub-Copilot:claude-opus-4.6
-> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cursor.c        | 4 ++++
->  drivers/gpu/drm/i915/display/skl_universal_plane.c | 4 ++++
->  2 files changed, 8 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-> index 86bb96ac449b..3c06d5482691 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> @@ -544,6 +544,10 @@ static void i9xx_cursor_disable_sel_fetch_arm(struct intel_dsb *dsb,
->  	if (!HAS_PSR2_SEL_FETCH(display))
->  		return;
->  
-> +	/* Display ver 12 only instantiates these registers for pipe A */
-> +	if (DISPLAY_VER(display) == 12 && pipe != PIPE_A)
-> +		return;
-> +
->  	intel_de_write_dsb(display, dsb, SEL_FETCH_CUR_CTL(pipe), 0);
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 5cda1ab90e40..252df30debc9 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -893,6 +893,10 @@ static void icl_plane_disable_sel_fetch_arm(struct intel_dsb *dsb,
->  	if (!HAS_PSR2_SEL_FETCH(display))
->  		return;
->  
-> +	/* Display ver 12 only instantiates these registers for pipe A */
-> +	if (DISPLAY_VER(display) == 12 && pipe != PIPE_A)
-> +		return;
-> +
->  	intel_de_write_dsb(display, dsb, SEL_FETCH_PLANE_CTL(pipe, plane->id), 0);
->  }
+Fixes: ad9843aac91a ("drm/xe/madvise: Implement purgeable buffer object support")
+Reported-by: Sashiko <sashiko-bot@kernel.org>
+Closes: https://sashiko.dev/#/patchset/20260831064942.315720-17-tejas.upadhyay%40intel.com?part=4
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_vm.c | 31 ++++++++++++++++++++-----------
+ 1 file changed, 20 insertions(+), 11 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 19b3d0be7928..fcdd34c4f0fa 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -4663,20 +4663,29 @@ struct xe_vm_snapshot *xe_vm_snapshot_capture(struct xe_vm *vm)
+ 			XE_VM_SNAP_FLAG_READ_ONLY : 0;
+ 		snap->snap[i].pat_index = vma->attr.pat_index;
+ 		if (bo) {
++			struct ttm_resource *res;
++
+ 			snap->snap[i].cpu_caching = bo->cpu_caching;
+ 			snap->snap[i].bo = xe_bo_get(bo);
+ 			snap->snap[i].bo_ofs = xe_vma_bo_offset(vma);
+-			switch (bo->ttm.resource->mem_type) {
+-			case XE_PL_SYSTEM:
+-			case XE_PL_TT:
+-				snap->snap[i].uapi_mem_region = 0;
+-				break;
+-			case XE_PL_VRAM0:
+-				snap->snap[i].uapi_mem_region = 1;
+-				break;
+-			case XE_PL_VRAM1:
+-				snap->snap[i].uapi_mem_region = 2;
+-				break;
++			snap->snap[i].uapi_mem_region = -1;
++
++			res = READ_ONCE(bo->ttm.resource);
++			if (!res) {
++				snap->snap[i].data = ERR_PTR(-ENODATA);
++			} else {
++				switch (res->mem_type) {
++				case XE_PL_SYSTEM:
++				case XE_PL_TT:
++					snap->snap[i].uapi_mem_region = 0;
++					break;
++				case XE_PL_VRAM0:
++					snap->snap[i].uapi_mem_region = 1;
++					break;
++				case XE_PL_VRAM1:
++					snap->snap[i].uapi_mem_region = 2;
++					break;
++				}
+ 			}
+ 		} else if (xe_vma_is_userptr(vma)) {
+ 			struct mm_struct *mm =
 -- 
-Jani Nikula, Intel
+2.43.0
+
