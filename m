@@ -4,60 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98513C624D3
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 10:03:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6754EC624D3
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 10:11:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C9D610FA29;
-	Fri,  4 Sep 2026 10:03:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E23D610E51F;
+	Fri,  4 Sep 2026 10:11:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AI/F3/oJ";
+	dkim=pass (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="SYJWhHJx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09F8A10FA27;
- Fri,  4 Sep 2026 10:03:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788516221; x=1820052221;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=BXhpqxWTwo/XFr6cwjwTn8oug7KdNu9b+NqrPztNxGQ=;
- b=AI/F3/oJiboERHU7iJ3JaHZeNWDBQPOYrndAk0N0RVDNR/pEjL3g1YK0
- fyCJ9aqAZHYLU8gBTqOlmowDONHmcmfQv2LT1ubKDyXRAPb7RWnQUspqY
- U0lXTZJrCOhrXit/jfSXJikWgr5I6IBDY4L77458xtOFrtvJxQtajuVIR
- 5qpVysr6X/8W1kpgdvH/iDASqYc4e649Ka0PCF0qZROq33NnHsG4syWPq
- 6LTryMPapIQKaK4e36V6Oyk5IRRdCOf1t6tKLIh8qfZvSunt+2ClxKYBt
- DKqtqiqK0cWlfF9wmU7io6EUJHLjIihKifoRDqTm+r1LQFlEzcp9XpYew Q==;
-X-CSE-ConnectionGUID: faV2ZyhVSd2w2eiZky146g==
-X-CSE-MsgGUID: hRll3gWsRk6yz+NoLrG2yA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="92712484"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="92712484"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 03:03:30 -0700
-X-CSE-ConnectionGUID: 1BSr8Sm4TDST1V7KjRuUJg==
-X-CSE-MsgGUID: /cGXGq4sSYmF52s1SF5ixA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="293507088"
-Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.29])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 03:03:28 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, imre.deak@intel.com,
- jouni.hogander@intel.com
-Subject: Re: [PATCH v2 5/5] drm/xe/pm: handle the PME capability and runtime
- pm routines
-In-Reply-To: <20260903080410.489411-6-vinod.govindapillai@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260903080410.489411-1-vinod.govindapillai@intel.com>
- <20260903080410.489411-6-vinod.govindapillai@intel.com>
-Date: Fri, 04 Sep 2026 13:03:25 +0300
-Message-ID: <f5e074540e36b2c9fee11a9bfd14beabcc8cf016@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DACBA10E169;
+ Fri,  4 Sep 2026 10:11:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:From:Cc:To:Subject:
+ MIME-Version:Date:Message-ID:From:Reply-To;
+ bh=hEI++qg2XaVSpdPRcw3c9ZofFCQ9pwoV4Af+mNZye+g=; b=SYJWhHJxaqvz3o2nQZQv8TL2qv
+ eQvdONrf1t1S9SWbwG1H9ElkXSRMDAZTK1nNgNVaqtJ/WwbRlj311rJLHZPN9yCR8nlHjL+NegFc4
+ BxcyN8WEZdyzunuv1ROUAjAmsaWMLmr1JB6QdsJ/EfoMYS3UUE90ryOZG6hN3lIGOp9DSp+vqzNQ3
+ qC1CHIA188Qco7kv06uvocqtFwgDXsTvjf4Lmz7iTw17F3J014giUIaOlmMNQOh1d8KhMhnG2hcC9
+ ygM2+FkQIqvfjOh80IlWi6g3cAN406aZjbq+pLrbLfLK6F3mwqlBuF81OMaVder6a2X6Wn9IYF1Wl
+ tSElaZQQ==;
+Received: from [81.79.79.1] (helo=[192.168.0.116])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1x2QtG-00EpJO-LF; Fri, 04 Sep 2026 12:11:22 +0200
+Message-ID: <33fabbd4-d87b-440d-b5f8-3b9be9618d7b@igalia.com>
+Date: Fri, 4 Sep 2026 11:11:21 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH i-g-t v6 6/9] lib/amdgpu: add amdgpu support to
+ igt_dmem_driver
+To: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
+ igt-dev@lists.freedesktop.org
+Cc: siqueira@igalia.com, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Christian Koenig <christian.koenig@amd.com>,
+ maarten.lankhorst@linux.intel.com,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>, Natalie Vock <natalie.vock@gmx.de>,
+ kernel-dev@igalia.com
+References: <20260903-dmem_max-v6-0-61dc62970fae@igalia.com>
+ <20260903-dmem_max-v6-6-61dc62970fae@igalia.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <20260903-dmem_max-v6-6-61dc62970fae@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,135 +67,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 03 Sep 2026, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
-> During the runtime suspend, check if device is capable of wakeup
-> from PME. If yes update the helper so that IRQ reset and HPD
-> polling can be handled accordingly. For PME capable devices,
-> HPD related IRQs are not reset during runtime suspend and
-> do not start polling for HPDs every 10s. Instead PME can be
-> generated from HPDs and corresponding runtime resume calls
-> can be invoked by PME.
->
-> Bspec: 52979, 52980, 68857, 68867, 68970
-> Assisted-by: GitHub_Copilot:claude-opus-5
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+
+On 03/09/2026 23:00, Thadeu Lima de Souza Cascardo wrote:
+> This allows dmem cgroups tests to run on top of amdgpu driver, adding
+> support to allocate and release VRAM memory.
+> 
+> This does this by allocating a BO from VRAM domain, which will try to
+> place BOs on VRAM, but may fallback to GTT.
+> 
+> Signed-off-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
 > ---
->  drivers/gpu/drm/xe/display/xe_display.c | 10 ++++++++++
->  drivers/gpu/drm/xe/display/xe_display.h |  4 ++++
->  drivers/gpu/drm/xe/xe_pci.c             | 16 +++++++++++++++-
->  3 files changed, 29 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 7b25c0814674..ff4a74c5c763 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -236,6 +236,16 @@ void xe_display_irq_postinstall(struct xe_device *xe)
->  	intel_display_irq_postinstall(display);
->  }
->  
-> +void xe_display_set_pme_capable(struct xe_device *xe, bool pme_from_hpd)
+>   lib/amdgpu/amd_dmem.c | 90 +++++++++++++++++++++++++++++++++++++++++++++++++++
+>   lib/igt_dmem_driver.h |  1 +
+>   lib/meson.build       |  1 +
+>   3 files changed, 92 insertions(+)
+> 
+> diff --git a/lib/amdgpu/amd_dmem.c b/lib/amdgpu/amd_dmem.c
+> new file mode 100644
+> index 000000000000..cb0fed4b870a
+> --- /dev/null
+> +++ b/lib/amdgpu/amd_dmem.c
+> @@ -0,0 +1,90 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright 2026 Valve Corporation
+> + * Authors:
+> + *  Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
+> + */
+> +
+> +#include <errno.h>
+> +
+> +#include "igt.h"
+> +#include "igt_cgroup.h"
+> +#include "igt_dmem_driver.h"
+> +#include "lib/amdgpu/amd_memory.h"
+> +
+> +struct amdgpu_dmem_ctx {
+> +	int fd;
+> +	amdgpu_device_handle device;
+> +};
+> +
+> +static int amdgpu_dmem_init(void **ctx, int fd)
 > +{
-> +	struct intel_display *display = xe->display;
+> +	struct amdgpu_dmem_ctx *actx;
+> +	uint32_t major, minor;
+> +	int err;
 > +
-> +	if (!xe->info.probe_display)
-> +		return;
+> +	actx = malloc(sizeof(*actx));
+> +	if (!actx)
+> +		return -ENOMEM;
 > +
-> +	intel_hpd_set_pme_capable(display, pme_from_hpd);
-
-The downside with this is that I've been trying hard to *reduce* the
-number of direct low-level calls from i915 and xe core to display.
-
-There are 100+ calls already. IMO we need to drop them to the ballpark
-of less than half.
-
-This would go directly to a TODO list of things to refactor and clean
-up.
-
-Feels like it would be more clean with a parent interface for the
-display to ask if pme is available, when needed, even though the parent
-interface is also too big...
-
-BR,
-Jani.
-
-
-
+> +	err = amdgpu_device_initialize(fd, &major, &minor, &actx->device);
+> +	if (err)
+> +		goto out;
+> +
+> +	actx->fd = fd;
+> +
+> +	*ctx = actx;
+> +
+> +	return 0;
+> +
+> +out:
+> +	free(actx);
+> +
+> +	return err;
 > +}
 > +
->  static bool suspend_to_idle(void)
->  {
->  #if IS_ENABLED(CONFIG_ACPI_SLEEP)
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
-> index 0babb50bfc77..a77a8fa1d802 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.h
-> +++ b/drivers/gpu/drm/xe/display/xe_display.h
-> @@ -37,6 +37,8 @@ void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir);
->  void xe_display_irq_reset(struct xe_device *xe);
->  void xe_display_irq_postinstall(struct xe_device *xe);
->  
-> +void xe_display_set_pme_capable(struct xe_device *xe, bool pme_from_hpd);
+> +static void amdgpu_dmem_deinit(void *ctx)
+> +{
+> +	struct amdgpu_dmem_ctx *actx = ctx;
 > +
->  void xe_display_pm_suspend(struct xe_device *xe);
->  void xe_display_pm_suspend_late(struct xe_device *xe);
->  void xe_display_pm_resume_early(struct xe_device *xe);
-> @@ -75,6 +77,8 @@ static inline void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir)
->  static inline void xe_display_irq_reset(struct xe_device *xe) {}
->  static inline void xe_display_irq_postinstall(struct xe_device *xe) {}
->  
-> +static inline void xe_display_set_pme_capable(struct xe_device *xe, bool pme_from_hpd) {}
+> +	amdgpu_device_deinitialize(actx->device);
+> +	free(actx);
+> +}
 > +
->  static inline void xe_display_pm_suspend(struct xe_device *xe) {}
->  static inline void xe_display_pm_suspend_late(struct xe_device *xe) {}
->  static inline void xe_display_pm_resume_early(struct xe_device *xe) {}
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index f8e16aefd2f8..46a33956c5b4 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -1385,6 +1385,8 @@ static int xe_pci_runtime_suspend(struct device *dev)
->  {
->  	struct pci_dev *pdev = to_pci_dev(dev);
->  	struct xe_device *xe = pdev_to_xe_device(pdev);
-> +	pci_power_t state = xe->d3cold.allowed ? PCI_D3cold : PCI_D3hot;
-> +	bool pme_capable = pci_enable_wake(pdev, state, true) == 0;
->  	int err;
->  
->  	/*
-> @@ -1396,9 +1398,17 @@ static int xe_pci_runtime_suspend(struct device *dev)
->  	xe_assert(xe, !IS_SRIOV_VF(xe));
->  	xe_assert(xe, !pci_num_vf(pdev));
->  
-> +	xe_display_set_pme_capable(xe, pme_capable);
+> +static char * amdgpu_dmem_get_region_name(void *ctx)
+> +{
+> +	struct amdgpu_dmem_ctx *actx = ctx;
 > +
->  	err = xe_pm_runtime_suspend(xe);
-> -	if (err)
-> +	if (err) {
-> +		if (pme_capable) {
-> +			pci_enable_wake(pdev, state, false);
-> +			xe_display_set_pme_capable(xe, false);
-> +		}
+> +	return amdgpu_cgroup_region_name(actx->fd);
+> +}
 > +
->  		return err;
-> +	}
->  
->  	pci_save_state(pdev);
->  
-> @@ -1419,12 +1429,16 @@ static int xe_pci_runtime_resume(struct device *dev)
->  {
->  	struct pci_dev *pdev = to_pci_dev(dev);
->  	struct xe_device *xe = pdev_to_xe_device(pdev);
-> +	pci_power_t state = xe->d3cold.allowed ? PCI_D3cold : PCI_D3hot;
->  	int err;
->  
->  	err = pci_set_power_state(pdev, PCI_D0);
->  	if (err)
->  		return err;
->  
-> +	pci_enable_wake(pdev, state, false);
-> +	xe_display_set_pme_capable(xe, false);
+> +static int amdgpu_dmem_allocate_vram(void *ctx, size_t len, void **ret_handle)
+> +{
+> +	struct amdgpu_dmem_ctx *actx = ctx;
+> +	amdgpu_bo_handle handle;
+> +	int err;
 > +
->  	pci_restore_state(pdev);
->  
->  	if (xe->d3cold.allowed) {
+> +	err = amdgpu_bo_alloc_wrap(actx->device, len, 4096,
+> +				   AMDGPU_GEM_DOMAIN_VRAM, 0, &handle);
+> +	if (err)
+> +		return err;
+> +
+> +	if (ret_handle)
+> +		*ret_handle = (void *) handle;
 
--- 
-Jani Nikula, Intel
+Is there an use case for ret_handle == NULL? Xe backend does not bother 
+with the check. This aside, the rest looks good to me:
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+
+Regards,
+
+Tvrtko
+
+> +
+> +	return 0;
+> +}
+> +
+> +static void amdgpu_dmem_free_vram(void *ctx, void *handle)
+> +{
+> +	amdgpu_bo_free(handle);
+> +}
+> +
+> +const struct igt_dmem_driver amdgpu_dmem_driver = {
+> +	.name = "amdgpu",
+> +	.get_region_name = amdgpu_dmem_get_region_name,
+> +	.init = amdgpu_dmem_init,
+> +	.deinit = amdgpu_dmem_deinit,
+> +	.allocate_vram = amdgpu_dmem_allocate_vram,
+> +	.free_vram = amdgpu_dmem_free_vram,
+> +};
+> diff --git a/lib/igt_dmem_driver.h b/lib/igt_dmem_driver.h
+> index e6998387eff9..f2d9d74196db 100644
+> --- a/lib/igt_dmem_driver.h
+> +++ b/lib/igt_dmem_driver.h
+> @@ -30,5 +30,6 @@ struct igt_dmem_driver {
+>   };
+>   
+>   extern const struct igt_dmem_driver xe_dmem_driver;
+> +extern const struct igt_dmem_driver amdgpu_dmem_driver;
+>   
+>   #endif
+> diff --git a/lib/meson.build b/lib/meson.build
+> index 022408ce6864..e191793f0097 100644
+> --- a/lib/meson.build
+> +++ b/lib/meson.build
+> @@ -205,6 +205,7 @@ if libdrm_amdgpu.found()
+>   		'amdgpu/amd_mmd_shared.c',
+>   		'amdgpu/amd_jpeg_shared.c',
+>   		'amdgpu/amd_utils.c',
+> +		'amdgpu/amd_dmem.c',
+>   		'amdgpu/amd_vcn_shared.c'
+>   	]
+>   	if libdrm_amdgpu.version().version_compare('> 2.4.99')
+> 
+
