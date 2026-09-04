@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E6DAC61DD3
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 02:22:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 783EFC79F81
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 02:22:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4F4310F83B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E08B10F83A;
 	Fri,  4 Sep 2026 02:22:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gh5dSPpH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AVwe/v2E";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8583210E1CD
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6975410E1BB
  for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 02:22:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1788488536; x=1820024536;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=zbarbtk0MHe4vPs/1Ts3Zgn9KUe9thz5/jPFZ/L31dw=;
- b=gh5dSPpHss3/fHMQjSGia/lqv4WK7aF/aNaJjOpWU2iqplcpyfvj1Wwl
- APNkmcoRt3s4feTBE3FKRni4ZRDvGZz3ypwCBKRel0DoYisSPS0v6WdsQ
- tOXiKQIril0W3u2svdYIpnTAloAP7IpCP4zIzUj8xuEhbpwfRtXAbqweX
- uMTKabD4Le7LMVT7bbsiGYl0xpVRJFA0VDhCcVswKWkYTfQs/De8QiA40
- X4IeA3TGx9kqXiJXC/eX2YKyoZgQ54gWZA0Ea2l8ryBMke1zD2GjJuSzA
- k8fYoLnmJOFJgdG88sfSgERBsojgl2X0jPnbfMoC/doV0XoD9dYBPPzQO A==;
-X-CSE-ConnectionGUID: +u7pNH2YT5CfFuJkgQus+Q==
-X-CSE-MsgGUID: dG0ZyZfRRRa3CkS3gF8jHQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="106506291"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="106506291"
+ bh=7L03yDXmx43L9Hpk+bDr9cM9Yk8c1KsvZmrjC/unvWI=;
+ b=AVwe/v2EISyZGesx8H0Bj5Cx0hKKxxtEAGBukZm/Q8ZHoV6Vy8bVmua7
+ O5x+mCf5KWOjcMJPtpbvg0dug97EUEti3Q/iB8Q+kLD2qpo6Wynq3shxS
+ seJI4/Y/isfU8SK+YlTKsgqhIcwHtrrcypMpNhGqPggbTWiLViTyKM//J
+ xWCOnrVRPztZPEl4FmbjPc9gbW1wVUvX6UOhX+ZiOstkLtUNN6uUSXwF+
+ BEKulc3cIH9Z8UnB+wMki8rI/sp/7FWycCFbCsBQOKvEw8N7Gmrvtrd51
+ 78uwhwk7Lf1VKeNxn7JFq2okwPPBjWwpl9/vLbcwNE0FRFn4F/746eifJ A==;
+X-CSE-ConnectionGUID: x0EHD2/nRre4/NpbuQlwrg==
+X-CSE-MsgGUID: NDl7GHlgQNiBKDpjQWcC1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="106506289"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="106506289"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Sep 2026 19:22:15 -0700
-X-CSE-ConnectionGUID: FeDPBoeISKCCv/cmrLbaIA==
-X-CSE-MsgGUID: 5OOogecVTGmDpp4aH21I5g==
+X-CSE-ConnectionGUID: xOnDu/HsTv2GBPkX3dFSYg==
+X-CSE-MsgGUID: crQp9rZxS+Ci8Znf2659RA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="275185136"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="275185134"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Sep 2026 19:22:15 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5 19/25] drm/xe: Add ULLS support to LRC
-Date: Thu,  3 Sep 2026 19:22:01 -0700
-Message-Id: <20260904022207.3490018-20-matthew.brost@intel.com>
+Subject: [PATCH v5 17/25] drm/xe: Add device flag to enable PT mirroring
+ across tiles
+Date: Thu,  3 Sep 2026 19:21:59 -0700
+Message-Id: <20260904022207.3490018-18-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260904022207.3490018-1-matthew.brost@intel.com>
 References: <20260904022207.3490018-1-matthew.brost@intel.com>
@@ -65,131 +66,298 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Define memory layout for ULLS semaphores stored in LRC memory. Add
-support functions to return GGTT address and set semaphore based on a
-job's seqno.
+Some multi-tile devices may want to mirror page tables across tiles for
+memory-bandwidth reasons, while others may not. Add a device flag that
+allows enabling or disabling page-table mirroring across tiles.
+
+Setting the flag to true (the existing behavior) on PVC, but both modes
+have been tested and are working on PVC.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-20-matthew.brost@intel.com
+Link: https://patch.msgid.link/20260228013501.106680-18-matthew.brost@intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_lrc.c       | 51 +++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.h       |  3 ++
- drivers/gpu/drm/xe/xe_lrc_types.h |  4 +++
- 3 files changed, 58 insertions(+)
+ drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+ drivers/gpu/drm/xe/xe_migrate.c      |  5 ++--
+ drivers/gpu/drm/xe/xe_pci.c          |  2 ++
+ drivers/gpu/drm/xe/xe_pci_types.h    |  3 ++-
+ drivers/gpu/drm/xe/xe_pt.c           | 39 ++++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.c           | 37 +++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_vm.h           |  3 +++
+ 7 files changed, 82 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 25fe9dbc9141..a1a256a3932f 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -706,6 +706,7 @@ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc)
- #define LRC_CTX_JOB_TIMESTAMP_OFFSET 512
- #define LRC_ENGINE_ID_PPHWSP_OFFSET 1024
- #define LRC_PARALLEL_PPHWSP_OFFSET 2048
-+#define LRC_ULLS_PPHWSP_OFFSET 2048	/* Mutually exclusive with parallel */
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index bc60833c39a7..997ac82fd571 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -224,6 +224,8 @@ struct xe_device {
+ 		u8 has_usm:1;
+ 		/** @info.has_64bit_timestamp: Device supports 64-bit timestamps */
+ 		u8 has_64bit_timestamp:1;
++		/** @info.has_pt_mirror: Device has PT mirroring across tiles */
++		u8 has_pt_mirror:1;
+ 		/** @info.is_dgfx: is discrete device */
+ 		u8 is_dgfx:1;
+ 		/** @info.needs_scratch: needs scratch page for oob prefetch to work */
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index f7e1a81434b2..471ae5741836 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -246,7 +246,8 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	u16 pat_index = xe_cache_pat_idx(xe, XE_CACHE_WB);
+ 	u8 id = tile->id;
+-	u32 num_entries = NUM_PT_SLOTS, num_level = vm->pt_root[id]->level;
++	u32 num_entries = NUM_PT_SLOTS, num_level =
++		xe_vm_pt_root(vm, id)->level;
+ #define VRAM_IDENTITY_MAP_PT_COUNT	4
+ 	u32 num_setup = num_level + VRAM_IDENTITY_MAP_PT_COUNT;
+ #undef VRAM_IDENTITY_MAP_PT_COUNT
+@@ -258,7 +259,7 @@ static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 	u64 l1_pt_ofs = xe_bo_size(bo) - 5 * XE_PAGE_SIZE;
  
- #define LRC_SEQNO_OFFSET 0
- #define LRC_START_SEQNO_OFFSET (LRC_SEQNO_OFFSET + 8)
-@@ -768,6 +769,12 @@ static inline u32 __xe_lrc_engine_id_offset(struct xe_lrc *lrc)
- 	return xe_lrc_pphwsp_offset(lrc) + LRC_ENGINE_ID_PPHWSP_OFFSET;
+ 	entry = vm->pt_ops->pde_encode_bo(bo, l1_pt_ofs);
+-	xe_pt_write(xe, &vm->pt_root[id]->bo->vmap, 0, entry);
++	xe_pt_write(xe, &xe_vm_pt_root(vm, id)->bo->vmap, 0, entry);
+ 
+ 	map_ofs = (num_entries - num_setup) * XE_PAGE_SIZE;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index ab4da1d9a9f1..d9030cb4f1ad 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -371,6 +371,7 @@ static const __maybe_unused struct xe_device_desc pvc_desc = {
+ 	.has_display = false,
+ 	.has_drm_ras = true,
+ 	.has_gsc_nvm = 1,
++	.has_pt_mirror = 1,
+ 	.has_heci_gscfi = 1,
+ 	.max_gt_per_tile = 1,
+ 	.max_remote_tiles = 1,
+@@ -808,6 +809,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.has_mert = desc->has_mert;
+ 	xe->info.has_page_reclaim_hw_assist = desc->has_page_reclaim_hw_assist;
+ 	xe->info.has_pre_prod_wa = desc->has_pre_prod_wa;
++	xe->info.has_pt_mirror = desc->has_pt_mirror;
+ 	xe->info.has_pxp = desc->has_pxp;
+ 	xe->info.has_soc_remapper_sysctrl = desc->has_soc_remapper_sysctrl;
+ 	xe->info.has_soc_remapper_telem = desc->has_soc_remapper_telem;
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index fed509ff601e..71068cdb3558 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -52,8 +52,9 @@ struct xe_device_desc {
+ 	u8 has_mbx_power_limits:1;
+ 	u8 has_mbx_thermal_info:1;
+ 	u8 has_mert:1;
+-	u8 has_pre_prod_wa:1;
+ 	u8 has_page_reclaim_hw_assist:1;
++	u8 has_pre_prod_wa:1;
++	u8 has_pt_mirror:1;
+ 	u8 has_pxp:1;
+ 	u8 has_soc_remapper_sysctrl:1;
+ 	u8 has_soc_remapper_telem:1;
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 05bbac6c2632..bf2cdef44179 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -812,7 +812,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 		.wupd.entries = entries,
+ 		.clear_pt = clear_pt,
+ 	};
+-	struct xe_pt *pt = vm->pt_root[tile->id];
++	struct xe_pt *pt = xe_vm_pt_root(vm, tile->id);
+ 	int ret;
+ 	bool is_purged = false;
+ 
+@@ -1005,6 +1005,11 @@ static int xe_pt_zap_ptes_entry(struct xe_ptw *parent, pgoff_t offset,
+ 	return 0;
  }
  
-+static u32 __xe_lrc_ulls_offset(struct xe_lrc *lrc)
++static bool pt_mirroring_disabled_for_tile(struct xe_vm *vm, u8 tile_id)
 +{
-+	/* The ulls is stored in the driver-defined portion of PPHWSP */
-+	return xe_lrc_pphwsp_offset(lrc) + LRC_ULLS_PPHWSP_OFFSET;
++	return xe_vm_pt_root(vm, tile_id) != vm->pt_root[tile_id];
 +}
 +
- static u32 __xe_lrc_ctx_timestamp_offset(struct xe_lrc *lrc)
- {
- 	return __xe_lrc_regs_offset(lrc) + CTX_TIMESTAMP * sizeof(u32);
-@@ -835,6 +842,7 @@ DECL_MAP_ADDR_HELPERS(ctx_job_timestamp, lrc->bo)
- DECL_MAP_ADDR_HELPERS(ctx_timestamp, lrc->bo)
- DECL_MAP_ADDR_HELPERS(ctx_timestamp_udw, lrc->bo)
- DECL_MAP_ADDR_HELPERS(parallel, lrc->bo)
-+DECL_MAP_ADDR_HELPERS(ulls, lrc->bo)
- DECL_MAP_ADDR_HELPERS(indirect_ring, lrc->bo)
- DECL_MAP_ADDR_HELPERS(engine_id, lrc->bo)
- DECL_MAP_ADDR_HELPERS(queue_timestamp, lrc->bo)
-@@ -1984,6 +1992,49 @@ static u32 xe_lrc_engine_id(struct xe_lrc *lrc)
- 	return xe_map_read32(xe, &map);
+ static const struct xe_pt_walk_ops xe_pt_zap_ptes_ops = {
+ 	.pt_entry = xe_pt_zap_ptes_entry,
+ };
+@@ -1046,6 +1051,9 @@ bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma)
+ 	if (!(pt_mask & BIT(tile->id)))
+ 		return false;
+ 
++	if (pt_mirroring_disabled_for_tile(xe_vma_vm(vma), tile->id))
++		return true;
++
+ 	(void)xe_pt_walk_shared(&pt->base, pt->level, xe_vma_start(vma),
+ 				xe_vma_end(vma), &xe_walk.base);
+ 
+@@ -1098,6 +1106,9 @@ bool xe_pt_zap_ptes_range(struct xe_tile *tile, struct xe_vm *vm,
+ 	if (!(pt_mask & BIT(tile->id)))
+ 		return false;
+ 
++	if (pt_mirroring_disabled_for_tile(vm, tile->id))
++		return true;
++
+ 	(void)xe_pt_walk_shared(&pt->base, pt->level, xe_svm_range_start(range),
+ 				xe_svm_range_end(range), &xe_walk.base);
+ 
+@@ -1988,7 +1999,7 @@ static unsigned int xe_pt_stage_unbind(struct xe_tile *tile,
+ 		.wupd.entries = entries,
+ 		.prl = pt_update_op->prl,
+ 	};
+-	struct xe_pt *pt = vm->pt_root[tile->id];
++	struct xe_pt *pt = xe_vm_pt_root(vm, tile->id);
+ 
+ 	(void)xe_pt_walk_shared(&pt->base, pt->level, start, end,
+ 				&xe_walk.base);
+@@ -2541,9 +2552,21 @@ int xe_pt_update_ops_prepare(struct xe_device *xe, struct xe_vma_ops *vops)
+ 	int id, err;
+ 
+ 	for_each_tile(tile, xe, id) {
++		struct xe_vm_pgtable_update_ops *pt_update_ops =
++			&vops->pt_update_ops[id];
++
+ 		if (!vops->pt_update_ops[id].num_ops)
+ 			continue;
+ 
++		if (pt_mirroring_disabled_for_tile(vops->vm, id)) {
++			struct xe_page_reclaim_list *prl = &pt_update_ops->prl;
++
++			/* Transfer root PT update ops PRL to current */
++			*prl = vops->pt_update_ops[0].prl;
++			xe_page_reclaim_entries_get(prl->entries);
++			continue;
++		}
++
+ 		err = __xe_pt_update_ops_prepare(tile, vops);
+ 		if (err)
+ 			return err;
+@@ -2835,6 +2858,12 @@ xe_pt_update_ops_run(struct xe_device *xe, struct xe_vma_ops *vops)
+ 		struct xe_vm_pgtable_update_ops *pt_update_ops =
+ 			&vops->pt_update_ops[j];
+ 
++		if (pt_mirroring_disabled_for_tile(vm, j)) {
++			xe_tile_assert(tile, !get_current_op(pt_update_ops));
++			tile_mask |= BIT(tile->id);
++			continue;
++		}
++
+ 		for (i = 0; i < get_current_op(pt_update_ops); ++i) {
+ 			struct xe_vm_pgtable_update_op *pt_op =
+ 				to_pt_op(pt_update_ops, i);
+@@ -2924,6 +2953,9 @@ void xe_pt_update_ops_fini(struct xe_device *xe, struct xe_vma_ops *vops)
+ 		if (!pt_update_ops->num_ops)
+ 			continue;
+ 
++		if (pt_mirroring_disabled_for_tile(vops->vm, id))
++			continue;
++
+ 		xe_page_reclaim_entries_put(pt_update_ops->prl.entries);
+ 	}
+ }
+@@ -2948,6 +2980,9 @@ void xe_pt_update_ops_abort(struct xe_device *xe, struct xe_vma_ops *vops)
+ 			&vops->pt_update_ops[id];
+ 		int i;
+ 
++		if (pt_mirroring_disabled_for_tile(vops->vm, id))
++			continue;
++
+ 		for (i = pt_update_ops->num_ops - 1; i >= 0; --i) {
+ 			struct xe_vm_pgtable_update_op *pt_op =
+ 				to_pt_op(pt_update_ops, i);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index fbfc42afef8b..795d0ebb1004 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -845,6 +845,14 @@ int xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
+ 	return err;
  }
  
-+#define semaphore_offset(seqno) \
-+	(sizeof(u32) * ((seqno) % LRC_MIGRATION_ULLS_SEMAPHORE_COUNT))
-+
-+/**
-+ * xe_lrc_ulls_semaphore_ggtt_addr() - ULLS semaphore GGTT address
-+ * @lrc: Pointer to the lrc.
-+ * @seqno: seqno of current job.
-+ *
-+ * Calculate ULLS semaphore GGTT address based on input seqno
-+ *
-+ * Returns: ULLS semaphore GGTT address
-+ */
-+u32 xe_lrc_ulls_semaphore_ggtt_addr(struct xe_lrc *lrc, u32 seqno)
++static u8 adjust_rebind_tile_mask(struct xe_vm *vm, u8 tile_mask)
 +{
-+	xe_assert(lrc_to_xe(lrc), semaphore_offset(seqno) <
-+		  LRC_PPHWSP_SIZE - LRC_ULLS_PPHWSP_OFFSET);
++	if (vm->xe->info.has_pt_mirror)
++		return tile_mask;
 +
-+	return __xe_lrc_ulls_ggtt_addr(lrc) + semaphore_offset(seqno);
++	return (0x1 << vm->xe->info.tile_count) - 1;
 +}
 +
-+/**
-+ * xe_lrc_set_ulls_semaphore() - Set ULLS semaphore
-+ * @lrc: Pointer to the lrc.
-+ * @seqno: seqno of current job.
-+ *
-+ * Set ULLS semaphore based on input seqno
-+ */
-+void xe_lrc_set_ulls_semaphore(struct xe_lrc *lrc, u32 seqno)
-+{
-+	struct xe_device *xe = lrc_to_xe(lrc);
-+	struct iosys_map map = __xe_lrc_ulls_map(lrc);
-+
-+	xe_assert(xe, semaphore_offset(seqno) <
-+		  LRC_PPHWSP_SIZE - LRC_ULLS_PPHWSP_OFFSET);
-+
-+	xe_device_wmb(xe);	/* Ensure everything before in code is ordered */
-+
-+	iosys_map_incr(&map, semaphore_offset(seqno));
-+	xe_map_write32(xe, &map, LRC_MIGRATION_ULLS_SEMAPHORE_SIGNAL);
-+
-+	xe_device_wmb(xe);	/* Flush write to hardware */
-+}
-+
- static int instr_dw(u32 cmd_header)
+ struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma, u8 tile_mask)
  {
- 	/* GFXPIPE "SINGLE_DW" opcodes are a single dword */
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 7be5e3da8bc8..c13e03807c2d 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -127,6 +127,9 @@ void xe_default_lrc_update_memirq_regs_with_address(struct xe_hw_engine *hwe);
- void xe_lrc_update_memirq_regs_with_address(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 					    u32 *regs);
+ 	struct dma_fence *fence = NULL;
+@@ -861,7 +869,8 @@ struct dma_fence *xe_vma_rebind(struct xe_vm *vm, struct xe_vma *vma, u8 tile_ma
+ 	vops.flags |= XE_VMA_OPS_FLAG_SKIP_TLB_WAIT |
+ 		XE_VMA_OPS_FLAG_WAIT_VM_BOOKKEEP;
  
-+u32 xe_lrc_ulls_semaphore_ggtt_addr(struct xe_lrc *lrc, u32 seqno);
-+void xe_lrc_set_ulls_semaphore(struct xe_lrc *lrc, u32 seqno);
+-	err = xe_vm_ops_add_rebind(&vops, vma, tile_mask);
++	err = xe_vm_ops_add_rebind(&vops, vma,
++				   adjust_rebind_tile_mask(vm, tile_mask));
+ 	if (err)
+ 		return ERR_PTR(err);
+ 
+@@ -948,7 +957,8 @@ struct dma_fence *xe_vm_range_rebind(struct xe_vm *vm,
+ 	vops.flags |= XE_VMA_OPS_FLAG_SKIP_TLB_WAIT |
+ 		XE_VMA_OPS_FLAG_WAIT_VM_BOOKKEEP;
+ 
+-	err = xe_vm_ops_add_range_rebind(&vops, vma, range, tile_mask);
++	err = xe_vm_ops_add_range_rebind(&vops, vma, range,
++					 adjust_rebind_tile_mask(vm, tile_mask));
+ 	if (err)
+ 		return ERR_PTR(err);
+ 
+@@ -1738,7 +1748,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
+ 
+ 		for_each_tile(tile, xe, id) {
+ 			if (flags & XE_VM_FLAG_MIGRATION &&
+-			    tile->id != XE_VM_FLAG_TILE_ID(flags))
++			    tile->id != XE_VM_FLAG_TILE_ID(flags) &&
++			    (vm->xe->info.has_pt_mirror || id))
+ 				continue;
+ 
+ 			vm->pt_root[id] = xe_pt_create(vm, tile, xe->info.vm_max_level,
+@@ -2047,7 +2058,7 @@ struct xe_vm *xe_vm_lookup(struct xe_file *xef, u32 id)
+ 
+ u64 xe_vm_pdp4_descriptor(struct xe_vm *vm, struct xe_tile *tile)
+ {
+-	return vm->pt_ops->pde_encode_bo(vm->pt_root[tile->id]->bo, 0);
++	return vm->pt_ops->pde_encode_bo(xe_vm_pt_root(vm, tile->id)->bo, 0);
+ }
+ 
+ static struct xe_exec_queue *
+@@ -5072,3 +5083,21 @@ void xe_vm_remove_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+ 	}
+ 	up_write(&vm->exec_queues.lock);
+ }
 +
- u32 xe_lrc_read_ctx_reg(struct xe_lrc *lrc, int reg_nr);
- void xe_lrc_write_ctx_reg(struct xe_lrc *lrc, int reg_nr, u32 val);
- 
-diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
-index 53ef48feebfc..b18daf1092e6 100644
---- a/drivers/gpu/drm/xe/xe_lrc_types.h
-+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-@@ -12,6 +12,10 @@
- 
- struct xe_bo;
- 
-+#define LRC_MIGRATION_ULLS_SEMAPHORE_COUNT	64	/* Must be pow2 */
-+#define LRC_MIGRATION_ULLS_SEMAPHORE_CLEAR	0
-+#define LRC_MIGRATION_ULLS_SEMAPHORE_SIGNAL	1
++/**
++ * xe_vm_pt_root() - Retrieve VM page-table root
++ * @vm: The VM.
++ * @tile_id: Tile ID
++ *
++ * Retrieve VM page-table root for a tile ID, used to abstract if PT mirroring is
++ * enabled across tiles.
++ *
++ * Return: VM page-table root for a tile ID
++ */
++struct xe_pt *xe_vm_pt_root(struct xe_vm *vm, u8 tile_id)
++{
++	if (vm->xe->info.has_pt_mirror)
++		return vm->pt_root[tile_id];
 +
- /**
-  * struct xe_lrc - Logical ring context (LRC) and submission ring object
-  */
++	return vm->pt_root[0];
++}
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index c5b900f38ded..89c4f95984a2 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -436,4 +436,7 @@ static inline struct drm_exec *xe_vm_validation_exec(struct xe_vm *vm)
+ 	((READ_ONCE(tile_present) & ~READ_ONCE(tile_invalidated)) & BIT((tile)->id))
+ 
+ void xe_vma_mem_attr_copy(struct xe_vma_mem_attr *to, struct xe_vma_mem_attr *from);
++
++struct xe_pt *xe_vm_pt_root(struct xe_vm *vm, u8 tile_id);
++
+ #endif
 -- 
 2.34.1
 
