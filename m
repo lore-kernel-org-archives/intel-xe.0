@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77229C79F82
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 21:28:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61C44C624DE
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 21:34:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CCD710E22C;
-	Fri,  4 Sep 2026 21:28:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 153F810E580;
+	Fri,  4 Sep 2026 21:34:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HxsEpOVh";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BV3Zck2r";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B67610E22C
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 21:28:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 528DB10E580
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 21:34:01 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 74AD760209;
- Fri,  4 Sep 2026 21:28:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00A8C1F00A3D;
- Fri,  4 Sep 2026 21:28:12 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 46B8F60209;
+ Fri,  4 Sep 2026 21:34:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C53C61F00A3D;
+ Fri,  4 Sep 2026 21:33:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788557293;
- bh=xdcc4aR4BIKePdK1BQDAQaKAhXA/ll8pot2MLbIho+Y=;
+ s=k20260515; t=1788557640;
+ bh=2uor7C2Kr/92I1DjXg+yxehp8+I4ZoyJ9wZujodHoq8=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=HxsEpOVhej+s/37FsfXnq9RTdsIbjuRVBd6fh2JgWBicdkHAUjWSLtVkiaWLm2KAp
- dxMUAUYEZEbYNKf/6gW9FLAtEX6SLT5GNu9vLsr13kCFRKhm49NzuGcbnhcUYEdnTa
- h1xYWEW5r/28oNAkK0rtHvTj5da02eFncEvewfS8VJjsrwU6DNHBfpkWIuoIGg7YgG
- 2xWUF8CKwqUTwgF3tB74PqEGA1Rb4cj0Oyq+OqsCz7nNlQGYFVqBcpju3ST8XaJpgR
- 6EEuwSRPR8c5GJOKgZEu0KZ9Ycj8ltmeChuTJxskaV7wsilrMGOIEmq3khF1u6Zz/R
- Iv4YNCDNVGWBA==
+ b=BV3Zck2rL9PaTbf0oOE4Qy8+zvLQrMpEWC2/q6lV5nMdo9+jg62MJs3ZIM31g3UZ2
+ +yoJmUoIyoZD+w3KCQfXA2+DlnMr2kYlAgVAGX8DAdyAb1rkK6WtWsT1C985OFysnf
+ Iw1vtF0AdFXgXQtIN/d8QIjlApb87zdL0eVU9wGHbaguaE8Pdf69pzQmxNB9fthcwg
+ AecEbo+bGio1ss6Znv2nnGPtfT2jDo+3jD+uM9V+XnCEeOAMeSkNPWxZ2gwvFzaIfJ
+ 3Vjg7xLiWqe3WPSHsbnuFmN+NNzo0jbfbd6mQnKMS5aSxbSyOG7ZwMsTR0RQtlmIPh
+ DeTSKQ2w6B+7Q==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 02/24] drm/xe: Add
- xe_migrate_update_pgtables_cpu_execute helper
+Subject: Re: [PATCH v6 06/24] drm/xe: Add XE_BO_FLAG_PUT_VM_ASYNC
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260904211613.3934307-3-matthew.brost@intel.com>
+In-Reply-To: <20260904211613.3934307-7-matthew.brost@intel.com>
 References: <20260904211613.3934307-1-matthew.brost@intel.com>
- <20260904211613.3934307-3-matthew.brost@intel.com>
+ <20260904211613.3934307-7-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 04 Sep 2026 21:28:12 +0000
-Message-Id: <20260904212813.00A8C1F00A3D@smtp.kernel.org>
+Date: Fri, 04 Sep 2026 21:33:59 +0000
+Message-Id: <20260904213359.C53C61F00A3D@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,79 +58,73 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] Structurally flawed assertions cause kernel oops and include tau=
-tological checks.
+- [High] Premature drop of VM reference in xe_bo_put_commit() allows the VM=
+ and its shared dma-resv to be freed while the BO is still alive in TTM, le=
+ading to a use-after-free on the resv.
 --
 
-commit 780cddb686fdf43f07c0012e23c36d21d368d194
+commit b2fad1ac33df0229950ed8b4d71c885827c4b7e3
 Author: Matthew Brost <matthew.brost@intel.com>
 
-drm/xe: Add xe_migrate_update_pgtables_cpu_execute helper
+drm/xe: Add XE_BO_FLAG_PUT_VM_ASYNC
 
-This commit extracts the CPU-side page-table update logic into a new helper
-function xe_migrate_update_pgtables_cpu_execute. This helper is intended to
-support implementing CPU binds when a bind job's dependencies are resolved.
-It also introduces basic sanity checks on the function arguments.
+This commit adds a new flag, XE_BO_FLAG_PUT_VM_ASYNC, which indicates that =
+an
+asynchronous BO put should also drop an additional reference to the BO's VM=
+ to
+prevent the shared dma-resv from disappearing before the BO.
 
-Link: https://patch.msgid.link/20260228013501.106680-3-matthew.brost@intel.=
+Link: https://patch.msgid.link/20260228013501.106680-7-matthew.brost@intel.=
 com
 
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
-ate.c
-> index 149c5fa654e67..68a0b05f56ec9 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index b162753cebb70..aea4b0fee8e33 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -3998,8 +3998,14 @@ void xe_bo_put_commit(struct llist_head *deferred)
+>  	if (!freed)
+>  		return;
+> =20
+> -	llist_for_each_entry_safe(bo, next, freed, freed)
+> +	llist_for_each_entry_safe(bo, next, freed, freed) {
+> +		struct xe_vm *vm =3D bo->vm;
+> +		bool async =3D bo->flags & XE_BO_FLAG_PUT_VM_ASYNC;
+> +
+>  		drm_gem_object_free(&bo->ttm.base.refcount);
+> +		if (async)
+> +			xe_vm_put(vm);
+
+[Severity: High]
+Does this sequence drop the VM reference prematurely and risk a use-after-f=
+ree
+on the VM's dma_resv?
+
+Looking at xe_bo_put_commit(), we call drm_gem_object_free(), which can
+trigger ttm_bo_release(). If ttm_bo_individualize_resv() fails due to
+memory pressure while the VM's shared dma_resv is concurrently locked by
+another thread, TTM handles this by queuing the BO for delayed deletion
+via ttm_bo_delayed_delete() and returning early.
+
+If TTM returns early keeping the BO alive, and we immediately proceed
+to drop the VM reference here:
+
+    drm_gem_object_free(&bo->ttm.base.refcount);
+    if (async)
+        xe_vm_put(vm);
+
+could this free the VM and its embedded dma_resv if it was the last
+reference? Later, when ttm_bo_delayed_delete() executes, it would
+attempt to call dma_resv_lock(bo->base.resv) on the freed VM resv,
+causing a regression.
+
+Is there a mechanism to ensure the VM stays alive as long as TTM delays the
+BO deletion?
+
+> +	}
+>  }
 
 [ ... ]
 
-> @@ -1819,6 +1819,38 @@ struct migrate_test_params {
->  	container_of(_priv, struct migrate_test_params, base)
->  #endif
-> =20
-> +static void
-> +xe_migrate_update_pgtables_cpu_execute(struct xe_vm *vm, struct xe_tile =
-*tile,
-> +				       const struct xe_migrate_pt_update_ops *ops,
-> +				       struct xe_vm_pgtable_update_op *pt_op,
-> +				       u32 num_ops)
-> +{
-> +	u32 j, i;
-> +
-> +	for (j =3D 0; j < num_ops; ++j, ++pt_op) {
-> +		for (i =3D 0; i < pt_op->num_entries; i++) {
-> +			const struct xe_vm_pgtable_update *update =3D
-> +				&pt_op->entries[i];
-> +
-> +			xe_tile_assert(tile, update);
-> +			xe_tile_assert(tile, update->pt_bo);
-> +			xe_tile_assert(tile, !iosys_map_is_null(&update->pt_bo->vmap));
-
-[Severity: Medium]
-Are these assertions structurally flawed?
-
-First, update is derived from &pt_op->entries[i], meaning the address is
-evaluated inline and will never be NULL, making xe_tile_assert(tile, update)
-a tautology.
-
-Second, if update->pt_bo is indeed NULL, the
-xe_tile_assert(tile, update->pt_bo) macro will warn but execution will
-continue. The subsequent assertion computes &update->pt_bo->vmap, yielding =
-an
-invalid pointer (NULL + offset), and passes it to iosys_map_is_null(). This
-inline function dereferences the pointer, causing a kernel oops/panic. This
-defeats the purpose of the sanity checks, as an internal invariant violation
-will cause a hard crash.
-
-Note that this code is moved to xe_cpu_bind_update_pgtables_execute in
-drivers/gpu/drm/xe/xe_cpu_bind.c by the later patch "drm/xe: Add CPU bind
-layer", but the structural flaw remains unfixed there.
-
-> +
-> +			if (pt_op->bind)
-> +				ops->populate(tile, &update->pt_bo->vmap,
-> +					      NULL, update->ofs, update->qwords,
-> +					      update);
-
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260904211613.3934=
-307-1-matthew.brost@intel.com?part=3D2
+307-1-matthew.brost@intel.com?part=3D6
