@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1867C624DE
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 21:39:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51FDEC624DE
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 21:40:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9539210E59A;
-	Fri,  4 Sep 2026 21:39:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F187B10E59A;
+	Fri,  4 Sep 2026 21:40:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VL0Q3142";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jDRzA6/G";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EDBD10E59A
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 21:39:28 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDA3910E59A
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 21:40:03 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id CAACA60209;
- Fri,  4 Sep 2026 21:39:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4860F1F00A3D;
- Fri,  4 Sep 2026 21:39:27 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 52F25407ED;
+ Fri,  4 Sep 2026 21:40:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09F171F00A3D;
+ Fri,  4 Sep 2026 21:40:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788557967;
- bh=YK7+PeCVH7rs3VO8/KQCEoABlqaAIlu+tW+0UvN6fc4=;
+ s=k20260515; t=1788558003;
+ bh=maqDPNNBDZQXxkyWKkhFh7+rMFMLiDosJjfFXD3SOC4=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=VL0Q3142Jndz0bqNZdNEnL2SZfaJzFKjpQZYkt9JcUYrd+GMoAeiZXzFcoFnp39mN
- eu9nJK2tAR2x/Bu/miVSgbrN6xqXQQ9AMWOfp7lZtoHJ7G2YK+qe+P/8iATbKTMdDy
- eSBZT9DjXtolM/zhMchyynzcacKqXVHhZGqJdNzAKb4CelYD9SoBh/5LwesK5u+Zl4
- aLVr67xsJFO7RK06uU5Bwnmi4cyBMv+SEb2WMbyDpsxn8WE0UNbCB/5w2BzZzyO/Jb
- gQpNfZZhKa2oLD3iVX6OldxUbyXSdiRY8mKE0Xdo4KXr0lme8g763QwIskBQQFpgAs
- kCjd11cVWvo0w==
+ b=jDRzA6/G2B/xC6CiejtljqSwBaNKAAqWL3nfBYEWIRl8TqbFrqND8LvF6UgrUB5Pt
+ YY9GckHBlVjKQ9k4VFWNq48caLRpo6SF7WwIzgHhanUh3yDt4b9pSVyyZp9x8ckExN
+ cChBbYmdEWO2ClbYQmWvYvygnEuOzbUaHZsbWJDf88KDzadISpGXiTjIBdQMdGbHt/
+ 5xw2+Ykqi9DQW+gcRrIbr8uzX6aUT/s/LRZWZvNnTaTtIXBCvhXxz1KiXPxfFnbKTK
+ f0CoY2G7Fer6AbMXoUvnkBj43CQJaRAseHzFs86v0nn9Nzm99Xc9a6lj0jf/tWsRxK
+ GZhHGJcqODKYw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 10/24] drm/xe: Update GuC submission backend to run
- PT jobs
+Subject: Re: [PATCH v6 09/24] drm/xe: Add struct xe_pt_job_ops
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260904211613.3934307-11-matthew.brost@intel.com>
+In-Reply-To: <20260904211613.3934307-10-matthew.brost@intel.com>
 References: <20260904211613.3934307-1-matthew.brost@intel.com>
- <20260904211613.3934307-11-matthew.brost@intel.com>
+ <20260904211613.3934307-10-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 04 Sep 2026 21:39:26 +0000
-Message-Id: <20260904213927.4860F1F00A3D@smtp.kernel.org>
+Date: Fri, 04 Sep 2026 21:40:02 +0000
+Message-Id: <20260904214003.09F171F00A3D@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,126 +56,96 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Critical] PT jobs swallow dependency and cancellation errors, silently r=
-eporting false success and potentially leaving page tables in an inconsiste=
-nt state.
-- [High] Memory leak of xe_pt_job_ops and a dma_fence reference when a PT j=
-ob is canceled or destroyed without being executed.
+- [High] Missing BO refcount re-initialization causes refcount underflow an=
+d memory leak during async free.
 --
 
-commit c6e167292efa7934a75cd29809e1057eae0d18c2
+commit 6e95dc31189c14b0582d03e7feb8e249921d75d3
 Author: Matthew Brost <matthew.brost@intel.com>
+Subject: drm/xe: Add struct xe_pt_job_ops
 
-drm/xe: Update GuC submission backend to run PT jobs
+This commit introduces struct xe_pt_job_ops, a dynamically refcounted object
+containing the information required to issue a CPU bind via a job after the
+initial bind IOCTL returns.
 
-PT jobs bypass GPU execution for the final step of a bind job, using the
-CPU to program the required page tables. Teach the GuC submission backend
-how to execute these jobs.
-
-Link: https://patch.msgid.link/20260228013501.106680-11-matthew.brost@intel=
+Link: https://patch.msgid.link/20260228013501.106680-10-matthew.brost@intel=
 .com
 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
-uc_submit.c
-> index 8b8673f4e037c..b7ec96650405a 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index e560f167fdf1b..30127ebf1b605 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+
 [ ... ]
-> @@ -1262,14 +1278,25 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_=
-job)
->  				register_exec_queue(primary, GUC_CONTEXT_NORMAL);
->  		}
+
+> @@ -213,7 +214,19 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, stru=
+ct llist_head *deferred)
 > =20
-> -		if (!exec_queue_registered(q))
-> -			register_exec_queue(q, GUC_CONTEXT_NORMAL);
-> -		if (!job->restore_replay)
-> -			q->ring_ops->emit_job(job);
-> -		submit_exec_queue(q, job);
-> +		if (is_pt_job(job)) {
-> +			xe_gt_assert(guc_to_gt(guc), !exec_queue_registered(q));
-> +			run_pt_job(job);
-> +		} else {
-> +			if (!exec_queue_registered(q))
-> +				register_exec_queue(q, GUC_CONTEXT_NORMAL);
-> +			if (!job->restore_replay)
-> +				q->ring_ops->emit_job(job);
-> +			submit_exec_queue(q, job);
-> +		}
->  		job->restore_replay =3D false;
->  	}
-> =20
-> +	if (is_pt_job(job)) {
-> +		xe_pt_job_ops_put(job->pt_update[0].pt_job_ops);
-> +		dma_fence_put(job->fence);	/* Drop ref from xe_sched_job_arm */
-> +		return NULL;
+>  	XE_WARN_ON(!list_empty(&pt->bo->ttm.base.gpuva.list));
+>  	xe_bo_unpin(pt->bo);
+> -	xe_bo_put_deferred(pt->bo, deferred, NULL);
+> +	xe_bo_put_deferred(pt->bo, deferred, &added);
+> +	if (added) {
+> +		xe_assert(pt->bo->vm->xe, !kref_read(&pt->bo->ttm.base.refcount));
+> +
+> +		/*
+> +		 * We need the VM present until the BO is destroyed as it shares
+> +		 * a dma-resv and BO destroy is async. Reinit BO refcount so
+> +		 * xe_bo_put_async can be used when the PT job ops refcount goes
+> +		 * to zero.
+> +		 */
+> +		xe_vm_get(pt->bo->vm);
+> +		pt->bo->flags |=3D XE_BO_FLAG_PUT_VM_ASYNC;
 > +	}
 
 [Severity: High]
-Does this code leak the xe_pt_job_ops array and dma_fence objects when a PT
-job is canceled before execution?
+Does this code forget to actually re-initialize the BO refcount? The comment
+explicitly mentions reinitializing the BO refcount so xe_bo_put_async can be
+used, but it looks like only the VM is retrieved and the flag is set. Witho=
+ut a
+call to reinitialize the kref (like kref_init for pt->bo->ttm.base.refcount=
+),=20
+the refcount remains at zero.
 
-Because the cleanup operations (xe_pt_job_ops_put() and the extra
-dma_fence_put()) are tied to job execution here in guc_exec_queue_run_job(),
-they appear to be missed if the job is destroyed before running.
+[ ... ]
 
-Looking at xe_sched_job_destroy() in drivers/gpu/drm/xe/xe_sched_job.c:
+> +static void xe_pt_job_ops_destroy(struct kref *ref)
+> +{
+> +	struct xe_pt_job_ops *pt_job_ops =3D
+> +		container_of(ref, struct xe_pt_job_ops, refcount);
+> +	struct llist_node *freed;
+> +	struct xe_bo *bo, *next;
+> +
+> +	xe_pt_update_ops_free(pt_job_ops->ops,
+> +			      pt_job_ops->current_op);
+> +
+> +	freed =3D llist_del_all(&pt_job_ops->deferred);
+> +	if (freed) {
+> +		llist_for_each_entry_safe(bo, next, freed, freed) {
+> +			struct xe_bo_dev *bo_device =3D
+> +				&xe_bo_device(bo)->bo_device;
+> +			/*
+> +			 * If called from run_job, we are in the dma-fencing
+> +			 * path and cannot take dma-resv locks so use an async
+> +			 * put.
+> +			 */
+> +			if (llist_add(&bo->freed, &bo_device->async_list))
+> +				schedule_work(&bo_device->async_free);
+> +		}
+> +	}
 
-void xe_sched_job_destroy(struct kref *ref)
-{
-	...
-	xe_sched_job_free_fences(job);
-	dma_fence_put(job->fence);
-	drm_sched_job_cleanup(&job->drm);
-	job_free(job);
-	...
-}
-
-If a PT job is armed, it takes a reference to pt_job_ops and an extra
-reference to job->fence. If the queue is killed and the job aborted before =
-it
-executes, xe_sched_job_destroy() misses the xe_pt_job_ops_put() call and
-only drops one dma_fence_put() reference.
-
-Can an unprivileged user repeatedly submit PT jobs via bind ioctls and
-immediately destroy the queue before execution to trigger this?
-
-[Severity: Critical]
-Does returning NULL unconditionally here swallow dependency and cancellation
-errors?
-
-If a queue is banned, guc_exec_queue_run_job() skips run_pt_job() but still
-returns NULL here, which the DRM scheduler treats as a synchronous success.
-
-Additionally, PT jobs are initialized with a stub fence:
-
-struct xe_sched_job *xe_sched_job_create(...)
-{
-	...
-	if (!batch_addr) {
-		job->fence =3D dma_fence_get_stub();
-		job->is_pt_job =3D true;
-	}
-	...
-}
-
-Since a stub fence is permanently signaled with error =3D 0,
-xe_sched_job_set_error() fails to set any error state, and
-xe_sched_job_is_error() evaluates to false.
-
-Can this result in page table updates silently failing while reporting succ=
-ess
-to userspace? For unbind operations, this could leave memory mapped in the
-GPU after it is freed, potentially allowing read or write access to realloc=
-ated
-memory from another queue in the same VM.
-
-> =20
->  run_job_out:
-> =20
->  	return job->fence;
+[Severity: High]
+Because the BO refcount was left at zero during xe_pt_destroy, will the lat=
+er
+xe_bo_put in the async_free worker trigger a refcount underflow here? A kre=
+f_put
+on a zero refcount returns false and skips the release function (such as
+drm_gem_object_free). Can this cause the page table BO memory to be permane=
+ntly
+leaked?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260904211613.3934=
-307-1-matthew.brost@intel.com?part=3D10
+307-1-matthew.brost@intel.com?part=3D9
