@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D10E2C79F82
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 21:40:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11854C79F82
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 21:40:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87EF510FB3A;
-	Fri,  4 Sep 2026 21:40:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B677A10E59A;
+	Fri,  4 Sep 2026 21:40:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lL75P6mY";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bcXeT0tx";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 394F510E59A
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 21:40:04 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB52E10E59A
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 21:40:40 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 21F0943238;
- Fri,  4 Sep 2026 21:40:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD5A61F00A3D;
- Fri,  4 Sep 2026 21:40:03 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 1378360209;
+ Fri,  4 Sep 2026 21:40:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 938631F00A3D;
+ Fri,  4 Sep 2026 21:40:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788558004;
- bh=n93Ayfg7gLn3jKNKsrh/N6zF7HiDBmFdSzJITSzbnPI=;
+ s=k20260515; t=1788558039;
+ bh=eYoGGNAQE52wElqPikKDSa2NHs5g4l4+GxTf/rxbzG8=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=lL75P6mYMEUQTS+8fkKn5F+6mTNxVJHAAq8UZ4QxpxepMfIk+RHLSeam8bnAm/ZJT
- FlGaJ/mEVOb4LRxUxj/RUO5OJ5HYsBvxqYgC1iCLjrBDJRcZr9n351P4Z3CGX6Vcri
- oDyiAZ/b4uYlqUgqMDIby9xJUODCIb3FWu9JqG41SKiclXT3WpuoN1R8Lz5R1mpDLZ
- EinWr3xITkmCo8/elCR1A31EVjMWgjNsSlJ88HRfXW1RaSXncq+djkj5g0dOIwjOra
- Fe4XvfUkcCTJt53Bq3oIA5rh74MM/smUM5nNg2k+ulDu4KGa+bDorigzxgTBbF5dCE
- Pt4ToBKcCgHKg==
+ b=bcXeT0txUhCS7QFkpRrTYhX5WaejtVfhy+T3Bz6kH2nGjcrQElJ9HfT3LYf70ncpp
+ iyuROsuoFJGCU6ZnB4dvpwcOkde2GQ+La0x/x/lTf473ou0ox4LlKCK/7m2jA02CjD
+ bLR6vtVNpe7CdCHvh5roH7vzUKwf1cflPkfkodV2owCOJT2mDITbe+O6lim6d76EFJ
+ LGNnv1Buuji5WB7LAcKg4Ay5mzc8amyKFCcPQPml/iiLpoOlDV4Vbvb95E7BWjDsp7
+ xmO9rJA5m7OmjyAB0mXtV6ACKEef5ubh5vlZt/gOw4QPO7STdJt8mOd3g0ojyfNHZs
+ 8yaLWCwwv6BIA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 19/24] drm/xe: Add ULLS migration job support to
- migration layer
+Subject: Re: [PATCH v6 17/24] drm/xe: Add device flag to enable PT mirroring
+ across tiles
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260904211613.3934307-20-matthew.brost@intel.com>
+In-Reply-To: <20260904211613.3934307-18-matthew.brost@intel.com>
 References: <20260904211613.3934307-1-matthew.brost@intel.com>
- <20260904211613.3934307-20-matthew.brost@intel.com>
+ <20260904211613.3934307-18-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 04 Sep 2026 21:40:03 +0000
-Message-Id: <20260904214003.CD5A61F00A3D@smtp.kernel.org>
+Date: Fri, 04 Sep 2026 21:40:39 +0000
+Message-Id: <20260904214039.938631F00A3D@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,73 +59,59 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Holding job_mutex while waiting on a dma_fence in xe_migrate_ulls_=
-exit violates the dma_fence contract and risks deadlocks during GPU reset.
+- [Medium] Unnecessary allocation of page table roots and scratch structure=
+s for secondary tiles when PT mirroring is disabled.
 --
 
-commit bbc9d2795fb53c65f8a7edb5c701c0f994595d7a
+commit 34b539e899a7643dc15dedad6a3cd229e0c0f4d5
 Author: Matthew Brost <matthew.brost@intel.com>
 
-drm/xe: Add ULLS migration job support to migration layer
+drm/xe: Add device flag to enable PT mirroring across tiles
 
-This commit adds a function to enter ULLS mode for migration jobs and a
-delayed worker to exit it for power savings. It sets flags on migration
-jobs so submission backends can submit in ULLS mode, which is only
-supported on DGFX and USM platforms.
+This commit introduces a device flag to toggle page-table mirroring across
+tiles for memory bandwidth considerations. It updates the VM creation,
+rebind, and page table update paths to check this flag and fall back to the
+primary tile's root page table when mirroring is disabled.
 
-Link: https://patch.msgid.link/20260228013501.106680-21-matthew.brost@intel=
+Link: https://patch.msgid.link/20260228013501.106680-18-matthew.brost@intel=
 .com
 
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
-ate.c
-> index 471ae5741836e..3e59aeeca614d 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
 
 [ ... ]
 
-> @@ -448,6 +468,161 @@ static int xe_migrate_lock_prepare_vm(struct xe_til=
-e *tile, struct xe_migrate *m
-[ ... ]
-> +static void xe_migrate_ulls_exit(struct work_struct *work)
-> +{
-[ ... ]
-> +	mutex_lock(&m->job_mutex);
-> +
-> +	if (!xe_exec_queue_is_idle(m->q, 1))
-> +		goto unlock_exit;
-> +
-> +	xe_sched_job_get(job);
-> +	fence =3D __xe_migrate_job_push(m, job, ULLS_EXIT);
-> +
-> +	/* Serialize the PM put against the ring being taken off the hardware */
-> +	dma_fence_wait(fence, false);
+> @@ -1738,7 +1748,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u3=
+2 flags, struct xe_file *xef)
+> =20
+>  		for_each_tile(tile, xe, id) {
+>  			if (flags & XE_VM_FLAG_MIGRATION &&
+> -			    tile->id !=3D XE_VM_FLAG_TILE_ID(flags))
+> +			    tile->id !=3D XE_VM_FLAG_TILE_ID(flags) &&
+> +			    (vm->xe->info.has_pt_mirror || id))
+>  				continue;
+> =20
+>  			vm->pt_root[id] =3D xe_pt_create(vm, tile, xe->info.vm_max_level,
 
-[Severity: High]
-Can this lead to a deadlock during GPU reset?
+[Severity: Medium]
+Does this code unnecessarily allocate page table roots and scratch structur=
+es
+for secondary tiles when PT mirroring is disabled?
 
-In xe_migrate_ulls_exit(), the delayed worker acquires m->job_mutex, pushes
-the ULLS_EXIT job, and blocks on its completion fence via dma_fence_wait()
-before releasing the mutex.
+For standard user VMs, XE_VM_FLAG_MIGRATION is unset, meaning this if
+condition evaluates to false and we proceed to allocate pt_root[id] for all
+tiles.=20
 
-Since m->job_mutex is explicitly tainted with fs_reclaim during
-initialization, marking it as used in memory reclaim paths, blocking on a
-dma_fence while holding this lock violates dma_fence locking rules. Fence
-signaling can depend on memory allocations, creating a circular dependency
-(job_mutex -> dma_fence -> fs_reclaim -> job_mutex).
+However, when vm->xe->info.has_pt_mirror is false, xe_vm_pt_root()
+unconditionally returns pt_root[0]. This means the allocated pt_root[id]=20
+(and associated scratch page tables up to vm_max_level) for id > 0 will nev=
+er
+be used, permanently wasting VRAM for the lifetime of every VM.
 
-If the GPU hangs while processing the ULLS_EXIT job, the thread blocks
-indefinitely. Will the DRM scheduler's GPU reset recovery path permanently
-deadlock here if it needs to evict memory using xe_migrate_copy() or
-xe_migrate_clear(), which also attempt to acquire m->job_mutex?
-
-> +	dma_fence_put(fence);
-> +
-> +	m->ulls.enabled =3D false;
-> +unlock_exit:
-> +	if (job)
-> +		xe_sched_job_put(job);
+Should there be an explicit check to skip secondary tile allocations when
+has_pt_mirror is false, regardless of whether it is a migration VM?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260904211613.3934=
-307-1-matthew.brost@intel.com?part=3D19
+307-1-matthew.brost@intel.com?part=3D17
