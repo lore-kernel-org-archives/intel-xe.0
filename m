@@ -4,85 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3BA0C79F82
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 18:37:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10627C79FAA
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 18:37:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86CFD10E142;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAFCB10ED17;
 	Tue,  8 Sep 2026 18:37:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=metarealtyinc-ca.20251104.gappssmtp.com header.i=@metarealtyinc-ca.20251104.gappssmtp.com header.b="gMFOM89M";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GpGhdHhZ";
 	dkim-atps=neutral
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com
- [209.85.222.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71FD510F970
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 13:32:35 +0000 (UTC)
-Received: by mail-qk1-f171.google.com with SMTP id
- af79cd13be357-92e50a650a0so96867885a.1
- for <intel-xe@lists.freedesktop.org>; Fri, 04 Sep 2026 06:32:35 -0700 (PDT)
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com
+ [209.85.161.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FE4E10E186
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 12:02:36 +0000 (UTC)
+Received: by mail-oo1-f45.google.com with SMTP id
+ 006d021491bc7-6b354127480so707567eaf.1
+ for <intel-xe@lists.freedesktop.org>; Fri, 04 Sep 2026 05:02:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=metarealtyinc-ca.20251104.gappssmtp.com; s=20251104; t=1788528754;
- x=1789133554; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=nUDERenzGagFWWWNYxzhz036bpMy1iX3Z2WSyHGWcNI=;
- b=gMFOM89Mh7O1cuAhCQbPxC0aJ0fovGCTnWxLjayOO/rhx8RygJ3N3hNZIhMO6r/T1f
- OXesTmhdszXW6JjO4SFGXvYEnRu9ARvIatsJq7jORv7tcwjoQYnz9yVOP3wrq++w0CuC
- JTZHcAsWsHSlgF3JU4AzHuRrvDEHeJFbW7fLQyWU1dcvVmt4RgCMiwWfx6x1YCCVOcp/
- QfI17oeQcW6Q1ZbKMUKBRFMKLGTc3ihVAoUq/gxU7o9z7WtjhDGajb5fY7K627cEqjCt
- eYh/rqifZZBqXJsarqeWJuyWB+AD5MibiO0BVAjquSlXmSpGHM7Ztid6MDinzoSiFGyN
- DtjQ==
+ d=gmail.com; s=20251104; t=1788523355; x=1789128155; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=MSrHHKF/QU1b/Dh6LeXUkOxqaikEIYdeQRpXfVfhK+M=;
+ b=GpGhdHhZ8lMttt50rG3tr/pN0hSyn6xU0KHDJxITMANhL/JMpnQTuEOgv3cRz1SHr2
+ EQDXSljewVX42xM1pF7M39K1HBxG1/jcFYf1yJhEC0pZeaTHp2HY8DA/DHqdMM4zY2LD
+ OOtIOknesks0uy+wvaXTCo1aqWVcOYNfUSUOnwJBsKHI5IkWRv6cigT/FpubugWxoUnC
+ zWLXAN9Eu7IR37RTaRZOXQVnDYeiIGXruDE6e5wE8apqty8Bs3Sadk2zqlD32rTihHfL
+ FE1HTb0C6RqoWAYDciyDrhuN8M8wsmHV1tDtStpmbbuEALdC0iYS/bIsrrvtN5zJ407u
+ VEWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1788528754; x=1789133554;
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=nUDERenzGagFWWWNYxzhz036bpMy1iX3Z2WSyHGWcNI=;
- b=AvurmztdW2qJzkGcmoIQG5GA0sww3cEMITvwNfX0cv+A1PulQpR8jD+QhmSaXpfw+G
- OBsdf8wf8UxOf57Ott218XhG2+N56PQiqHK0TI22Bp60VRRhxZWgHFI8YWsCACJ0zFgl
- EsLAPGjiFf6Un1SRTqW2FBsDQuagSxDHqhSV6HzKkkSHiNDMEhnuj4vkQQPt+sArzctH
- kV0NJ0d/4jXEl+zBh4iflss1WIXkcjrB+08HRfaIc2NwEdw5Yx6xv2e5kEqdSpDjDi0b
- 6nsvo8sUC5NoDEI7ryM0OD5wAljTvn1OtB60cBgB7v504AFkFZZeBU+S3yDbWnVC8bWs
- HOjQ==
+ d=1e100.net; s=20251104; t=1788523355; x=1789128155;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=MSrHHKF/QU1b/Dh6LeXUkOxqaikEIYdeQRpXfVfhK+M=;
+ b=VR0jkrR4WHT9Fmf6E/AVunxHhCPrzebO4ocunV4lVClVjnPsbcfooVXnI21/nE5QY1
+ Wsuuvks8TVqlaZ/ThPtQcmalDcsbaPMVgm+tfBZHdvI0m2JvdfdMKBCJa6du646SUsLD
+ TLlSjUX6zrW7n9q5zFvJoR80bklAYmM4YprqSPqOazpZVJKHUwf3c4R536d212mMXdDq
+ yxNxndjf8xqtdrBSWjNIoIo1fseY8551IgyhsQssUHyAxk4ltdkhwlpaGVTG4hMG3I/W
+ VZdW/TjCaxYiHDuZtJjojSaZc4uFiClQmpf9Y0JdKCKfxuqQUFVvfybg8L1Po6FTbH+z
+ ROFA==
 X-Forwarded-Encrypted: i=1;
- AKwUvByxxnfM/Nhb/JDW9X7Z9CmeVw5uu4VQngOuPwNMiL9Ryx0MtdhUYT5xFfe5jphd9JQkqrHOt82CDg==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++khZEPXYl4mm6Lcn7qJZ3188a/eaoFyC8t1hcI34dzX0b73/a2d
- xjqEOoqtfY2JDFbJewADprXuiv00mDWbr9PZq7OHzMDbXClVRcMHpdNCJI0HakKu/VQ=
-X-Gm-Gg: AYBFou11hqjUzy3SvSXwJZPgWxsU8EKJcna23R+HTkUkoJWn7q5L6pOCfNV+lzwLYGd
- XLHCQhu3ylEMfJiQk72U5rQ5Uv3atjldjJEtLm/p4fz9YVBog3K/9M21mexkcy57+kc9HJjmFTZ
- jZefyKe4KvarKRt9CLGm/FZeDXWZiYlYXHt8r9rfjUwPsUfp7NYvaOwIj1l3Cze5qbx19Jd9qsD
- 4wEXrwaXrTXvkIdGIppban1Dp9Tdaa5WrRXRcatZHzlgElofCWIGJ8Od1NsF908+hRyeLZSe7yg
- JKHE2fe6MC423Wh0T8u3F220N68IN+mowYAnPnwTuKdgMt7Bin8ILvzhdwLx5Pzw6k5V3EwrmuH
- uGCNjv/idIr7f+fLilqg4sT2zxp9bHnRaEEBtakjLiunxYG9gqoSl885uYkmZCNShDOo4GrIQaL
- rsbRZAV61GgECEHqI1aozJh5aqNi8ewcQMTWX4SS21sK5knPU7WNWPSr/ZbBXk6e6o578JLpRJN
- EpksFOLDhsbaONgIMky4ewI+fedkqkhKPPmoxfXIuek0GRAt1zzS87g//Wwt+mI6KLb61367aOx
- HWGkiwFpzFJvSNrb5PcBDuEk9z6/a48khTX4hUnE6x27TCTwgRpIbOp1Ip0T4Y1/kSZx
-X-Received: by 2002:a05:620a:870d:20b0:939:6df9:1278 with SMTP id
- af79cd13be357-939804c0ce4mr468511785a.51.1788528754174; 
- Fri, 04 Sep 2026 06:32:34 -0700 (PDT)
-Received: from jake-laptop ([153.67.39.26]) by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-91041fa4d65sm14043076d6.15.2026.09.04.06.32.32
+ AKwUvBzyUpjO1PKKMevVPL1rhlIfBOULy0ru9Ck7plRq5POiE7NGkhVb04t9Q3j5KtqPc9yWdaf5D2gNIA==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++nDiiMhxXtvvxtwy4dZPTbw8I1/u6bL8HOEsF6EbZ/jxKMrFISY
+ v5e5jLPe1dxQBFcfbSvkJM2DAq/8GGiySZGQRBn6XnB+J31htbIhJjxB
+X-Gm-Gg: AYBFou2+00EwdkMOfmbHYFgu02HvV3LrxYrRJ38ruIanqddbiNUPMiawWxgtArfXjC7
+ 8eDbeCh8n1FRBLCk3j2Z0M3c1HgFldxMG8wdkBficjCg6SMgr03zo/fzcnz8SQFcyaxtm/mz6wL
+ VGnC9XteiB9nqYJsdU5QvkYV9qYZziE7if4pMq25YPnfCPFuiyS0nEuSEsmXeFoFfwEJMavjQoY
+ vx7X+fotUn4XsBCxJ2FDG+IEz+pUZg7Hb9FeR51BpouS+m3jcUQwL81h59zh+2d1ZA/H9ohuA3I
+ IcPAHVY0hzFxBsvpH4jDzNhytQals/uQI/pCDmRmcRwxx/+3ywXA1l29L/5R/hCAwyjDAhK5zqf
+ zsegFVrShs/AUKEBFJuiP+ZI7SPZ7aQJPQa2qV7alVaFkzFw+/KeB1ySWghnCO9WjYbsUpYegjy
+ +Se1oPlxYXXHT9bq2psLf9189xGzKQL38dFOckoI5B4UTU/7x9ZqfpSEN2haZDZ7g1sTiFDZtE9
+ CvklX9h/tH9xyGa+JDtYageiIw=
+X-Received: by 2002:a05:6820:1791:b0:6b7:f498:cec3 with SMTP id
+ 006d021491bc7-6b7f498e151mr266433eaf.35.1788523355085; 
+ Fri, 04 Sep 2026 05:02:35 -0700 (PDT)
+Received: from volcano9f6e-hostos.amd.com ([165.204.217.251])
+ by smtp.gmail.com with ESMTPSA id
+ a92af1059eb24-1432435648esm7713194c88.5.2026.09.04.05.02.31
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Sep 2026 06:32:33 -0700 (PDT)
-From: Jake Steinman <j@metarealtyinc.ca>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Animesh Manna <animesh.manna@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v3] drm/i915/alpm: Add a quirk to keep the fast wake ahead
- of the IO buffer wake
-Date: Fri,  4 Sep 2026 09:32:31 -0400
-Message-ID: <20260904133231.9028-1-j@metarealtyinc.ca>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260904114835.483057-1-j@metarealtyinc.ca>
-References: <20260903131724.49496-1-j@metarealtyinc.ca>
- <20260904004308.185788-1-j@metarealtyinc.ca>
- <20260904114835.483057-1-j@metarealtyinc.ca>
+ Fri, 04 Sep 2026 05:02:34 -0700 (PDT)
+From: Hemanth Selam <hemanth.selam@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/i915: fix typos in comments
+Date: Fri,  4 Sep 2026 17:32:20 +0530
+Message-ID: <20260904120225.15868-2-hemanth.selam@gmail.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20260904120225.15868-1-hemanth.selam@gmail.com>
+References: <20260904120225.15868-1-hemanth.selam@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 08 Sep 2026 18:37:11 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -99,36 +94,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2026-09-04 Jouni Högander wrote:
-> I think PSR2 was working on that setup at the point when I introduced
-> that quirk
-> ...
-> Maybe this is actually matter of bisection?
+Fix typos in comments, reported by scripts/checkpatch.pl using the
+misspelling list in scripts/spelling.txt.  Only touches comments, no code
+changes.
 
-Checked that today with a probe that only polls the sink (0x2006,
-0x2008, 0x200a every 200 ms, error bit cleared after each read), so it
-runs the same on any kernel:
+Assisted-by: Cursor:claude-opus-5
+Signed-off-by: Hemanth Selam <hemanth.selam@gmail.com>
+---
+ drivers/gpu/drm/i915/display/icl_dsi.c      | 2 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c   | 2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c   | 4 ++--
+ drivers/gpu/drm/i915/display/intel_vdsc.c   | 2 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c    | 2 +-
+ drivers/gpu/drm/i915/display/skl_scaler.c   | 2 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c      | 2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 2 +-
+ drivers/gpu/drm/i915/gt/intel_migrate.c     | 2 +-
+ 9 files changed, 10 insertions(+), 10 deletions(-)
 
-  stock 7.2.2, io/fast 11/11:    CRC error re-latched on every poll,
-                                 0x2008 = 3 throughout,
-                                 0x200a shows SU_VALID in 2 of 94 polls
-  7.3-rc1, io/fast 11/11:        same, SU_VALID in 7 of 90 polls
-  7.3-rc1, io/fast 11/12:        no CRC errors, 0x2008 = 2,
-                                 SU_VALID never
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index ea0cdb7822f3..d2b1a0b68260 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -958,7 +958,7 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
+ 	/* TRANS_HSYNC register to be programmed only for video mode */
+ 	if (is_vid_mode(intel_dsi)) {
+ 		if (intel_dsi->video_mode == NON_BURST_SYNC_PULSE) {
+-			/* BSPEC: hsync size should be atleast 16 pixels */
++			/* BSPEC: hsync size should be at least 16 pixels */
+ 			if (hsync_size < 16)
+ 				drm_err(display->drm,
+ 					"hsync size < 16 pixels\n");
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index e56df337dc6d..0003dd7b106b 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -787,7 +787,7 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
+ 
+ 	/*
+ 	 * When V prime mismatches, DP Spec mandates re-read of
+-	 * V prime atleast twice.
++	 * V prime at least twice.
+ 	 */
+ 	for (i = 0; i < tries; i++) {
+ 		ret = intel_hdcp_validate_v_prime(connector, shim,
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 8a019d3574df..59af06443476 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -3234,7 +3234,7 @@ intel_hdmi_dsc_get_num_slices(const struct intel_crtc_state *crtc_state,
+ #define HDMI_DSC_PEAK_PIXEL_RATE		2720000
+ /*
+  * Rates at which the source and sink are required to process pixels in each
+- * slice, can be two levels: either atleast 340000KHz or atleast 40000KHz.
++ * slice, can be two levels: either at least 340000KHz or at least 40000KHz.
+  */
+ #define HDMI_DSC_MAX_ENC_THROUGHPUT_0		340000
+ #define HDMI_DSC_MAX_ENC_THROUGHPUT_1		400000
+@@ -3267,7 +3267,7 @@ intel_hdmi_dsc_get_num_slices(const struct intel_crtc_state *crtc_state,
+ 
+ 	/*
+ 	 * As per spec, the rate at which the source and the sink process
+-	 * the pixels per slice are at two levels: atleast 340Mhz or 400Mhz.
++	 * the pixels per slice are at two levels: at least 340Mhz or 400Mhz.
+ 	 * This depends upon the pixel clock rate and output formats
+ 	 * (kslice adjust).
+ 	 * If pixel clock * kslice adjust >= 2720MHz slices can be processed
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 8f06c3a4d56d..e61808dc2ce6 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -378,7 +378,7 @@ int intel_dsc_compute_params(struct intel_crtc_state *pipe_config)
+ 
+ 	/*
+ 	 * From XE_LPD onwards we supports compression bpps in steps of 1
+-	 * upto uncompressed bpp-1, hence add calculations for all the rc
++	 * up to uncompressed bpp-1, hence add calculations for all the rc
+ 	 * parameters
+ 	 *
+ 	 * We don't want to calculate all rc parameters when the panel
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 51e4f3309b8b..4e1e849ab150 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -46,7 +46,7 @@ bool intel_vrr_is_capable(struct intel_connector *connector)
+ 	/*
+ 	 * DP Sink is capable of VRR video timings if
+ 	 * Ignore MSA bit is set in DPCD.
+-	 * EDID monitor range also should be atleast 10 for reasonable
++	 * EDID monitor range also should be at least 10 for reasonable
+ 	 * Adaptive Sync or Variable Refresh Rate end user experience.
+ 	 */
+ 	switch (connector->base.connector_type) {
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index 7994b983d509..066fb0587aa3 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -194,7 +194,7 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
+ 
+ 	/*
+ 	 * if plane is being disabled or scaler is no more required or force detach
+-	 *  - free scaler binded to this plane/crtc
++	 *  - free scaler bound to this plane/crtc
+ 	 *  - in order to do this, update crtc->scaler_usage
+ 	 *
+ 	 * Here scaler state in crtc_state is set free so that
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 8829f365592e..693084164713 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -1028,7 +1028,7 @@ static void bxt_dsi_get_pipe_config(struct intel_encoder *encoder,
+ 	adjusted_mode_sw = &crtc->config->hw.adjusted_mode;
+ 
+ 	/*
+-	 * Atleast one port is active as encoder->get_config called only if
++	 * At least one port is active as encoder->get_config called only if
+ 	 * encoder->get_hw_state() returns true.
+ 	 */
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index c58ffa5a8fa6..ee9d2991f162 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -1378,7 +1378,7 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
+ 	list_for_each_entry_reverse(rq, &ce->timeline->requests, link) {
+ 		bool found;
+ 
+-		/* timeline is already completed upto this point? */
++		/* timeline is already completed up to this point? */
+ 		if (!i915_request_get_rcu(rq))
+ 			break;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
+index aff5aca591e6..86927e0c76e2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_migrate.c
++++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
+@@ -643,7 +643,7 @@ calculate_chunk_sz(struct drm_i915_private *i915, bool src_is_lmem,
+ {
+ 	if (ccs_bytes_to_cpy && !src_is_lmem)
+ 		/*
+-		 * When CHUNK_SZ is passed all the pages upto CHUNK_SZ
++		 * When CHUNK_SZ is passed all the pages up to CHUNK_SZ
+ 		 * will be taken for the blt. in Flat-ccs supported
+ 		 * platform Smem obj will have more pages than required
+ 		 * for main memory hence limit it to the required size
+-- 
+2.48.1
 
-So what looks like PSR2 working is the link failing on every wake and
-the engine re-entering over and over. Each re-entry does its two entry
-captures, those carry SU_VALID, then the engine parks in SU_STANDBY
-until the next failed wake resets it. Screen updates come from the
-resyncs, not from selective updates. With the wake clean there are no
-resyncs and the panel stays on the stale frame.
-
-I doubt bisecting finds anything for PSR2: it was in this state in
-April too unless the wake formulas were different then, and
-intel_alpm.c has four commits since March, none touching them. Panel
-Replay uses the aux-less wake, which does not fail, so it froze
-outright from the start. That is the quirk.
-
-Probe script and logs are on 9119.
-
-Jake
