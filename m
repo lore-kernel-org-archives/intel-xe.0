@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51FDEC624DE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D10E2C79F82
 	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 21:40:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F187B10E59A;
-	Fri,  4 Sep 2026 21:40:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87EF510FB3A;
+	Fri,  4 Sep 2026 21:40:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jDRzA6/G";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lL75P6mY";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDA3910E59A
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 21:40:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 394F510E59A
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 21:40:04 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 52F25407ED;
+ by sea.source.kernel.org (Postfix) with ESMTP id 21F0943238;
+ Fri,  4 Sep 2026 21:40:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD5A61F00A3D;
  Fri,  4 Sep 2026 21:40:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09F171F00A3D;
- Fri,  4 Sep 2026 21:40:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788558003;
- bh=maqDPNNBDZQXxkyWKkhFh7+rMFMLiDosJjfFXD3SOC4=;
+ s=k20260515; t=1788558004;
+ bh=n93Ayfg7gLn3jKNKsrh/N6zF7HiDBmFdSzJITSzbnPI=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=jDRzA6/G2B/xC6CiejtljqSwBaNKAAqWL3nfBYEWIRl8TqbFrqND8LvF6UgrUB5Pt
- YY9GckHBlVjKQ9k4VFWNq48caLRpo6SF7WwIzgHhanUh3yDt4b9pSVyyZp9x8ckExN
- cChBbYmdEWO2ClbYQmWvYvygnEuOzbUaHZsbWJDf88KDzadISpGXiTjIBdQMdGbHt/
- 5xw2+Ykqi9DQW+gcRrIbr8uzX6aUT/s/LRZWZvNnTaTtIXBCvhXxz1KiXPxfFnbKTK
- f0CoY2G7Fer6AbMXoUvnkBj43CQJaRAseHzFs86v0nn9Nzm99Xc9a6lj0jf/tWsRxK
- GZhHGJcqODKYw==
+ b=lL75P6mYMEUQTS+8fkKn5F+6mTNxVJHAAq8UZ4QxpxepMfIk+RHLSeam8bnAm/ZJT
+ FlGaJ/mEVOb4LRxUxj/RUO5OJ5HYsBvxqYgC1iCLjrBDJRcZr9n351P4Z3CGX6Vcri
+ oDyiAZ/b4uYlqUgqMDIby9xJUODCIb3FWu9JqG41SKiclXT3WpuoN1R8Lz5R1mpDLZ
+ EinWr3xITkmCo8/elCR1A31EVjMWgjNsSlJ88HRfXW1RaSXncq+djkj5g0dOIwjOra
+ Fe4XvfUkcCTJt53Bq3oIA5rh74MM/smUM5nNg2k+ulDu4KGa+bDorigzxgTBbF5dCE
+ Pt4ToBKcCgHKg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 09/24] drm/xe: Add struct xe_pt_job_ops
+Subject: Re: [PATCH v6 19/24] drm/xe: Add ULLS migration job support to
+ migration layer
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260904211613.3934307-10-matthew.brost@intel.com>
+In-Reply-To: <20260904211613.3934307-20-matthew.brost@intel.com>
 References: <20260904211613.3934307-1-matthew.brost@intel.com>
- <20260904211613.3934307-10-matthew.brost@intel.com>
+ <20260904211613.3934307-20-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 04 Sep 2026 21:40:02 +0000
-Message-Id: <20260904214003.09F171F00A3D@smtp.kernel.org>
+Date: Fri, 04 Sep 2026 21:40:03 +0000
+Message-Id: <20260904214003.CD5A61F00A3D@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,94 +59,73 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] Missing BO refcount re-initialization causes refcount underflow an=
-d memory leak during async free.
+- [High] Holding job_mutex while waiting on a dma_fence in xe_migrate_ulls_=
+exit violates the dma_fence contract and risks deadlocks during GPU reset.
 --
 
-commit 6e95dc31189c14b0582d03e7feb8e249921d75d3
+commit bbc9d2795fb53c65f8a7edb5c701c0f994595d7a
 Author: Matthew Brost <matthew.brost@intel.com>
-Subject: drm/xe: Add struct xe_pt_job_ops
 
-This commit introduces struct xe_pt_job_ops, a dynamically refcounted object
-containing the information required to issue a CPU bind via a job after the
-initial bind IOCTL returns.
+drm/xe: Add ULLS migration job support to migration layer
 
-Link: https://patch.msgid.link/20260228013501.106680-10-matthew.brost@intel=
+This commit adds a function to enter ULLS mode for migration jobs and a
+delayed worker to exit it for power savings. It sets flags on migration
+jobs so submission backends can submit in ULLS mode, which is only
+supported on DGFX and USM platforms.
+
+Link: https://patch.msgid.link/20260228013501.106680-21-matthew.brost@intel=
 .com
 
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index e560f167fdf1b..30127ebf1b605 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
+ate.c
+> index 471ae5741836e..3e59aeeca614d 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
 
 [ ... ]
 
-> @@ -213,7 +214,19 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, stru=
-ct llist_head *deferred)
-> =20
->  	XE_WARN_ON(!list_empty(&pt->bo->ttm.base.gpuva.list));
->  	xe_bo_unpin(pt->bo);
-> -	xe_bo_put_deferred(pt->bo, deferred, NULL);
-> +	xe_bo_put_deferred(pt->bo, deferred, &added);
-> +	if (added) {
-> +		xe_assert(pt->bo->vm->xe, !kref_read(&pt->bo->ttm.base.refcount));
-> +
-> +		/*
-> +		 * We need the VM present until the BO is destroyed as it shares
-> +		 * a dma-resv and BO destroy is async. Reinit BO refcount so
-> +		 * xe_bo_put_async can be used when the PT job ops refcount goes
-> +		 * to zero.
-> +		 */
-> +		xe_vm_get(pt->bo->vm);
-> +		pt->bo->flags |=3D XE_BO_FLAG_PUT_VM_ASYNC;
-> +	}
-
-[Severity: High]
-Does this code forget to actually re-initialize the BO refcount? The comment
-explicitly mentions reinitializing the BO refcount so xe_bo_put_async can be
-used, but it looks like only the VM is retrieved and the flag is set. Witho=
-ut a
-call to reinitialize the kref (like kref_init for pt->bo->ttm.base.refcount=
-),=20
-the refcount remains at zero.
-
+> @@ -448,6 +468,161 @@ static int xe_migrate_lock_prepare_vm(struct xe_til=
+e *tile, struct xe_migrate *m
 [ ... ]
-
-> +static void xe_pt_job_ops_destroy(struct kref *ref)
+> +static void xe_migrate_ulls_exit(struct work_struct *work)
 > +{
-> +	struct xe_pt_job_ops *pt_job_ops =3D
-> +		container_of(ref, struct xe_pt_job_ops, refcount);
-> +	struct llist_node *freed;
-> +	struct xe_bo *bo, *next;
+[ ... ]
+> +	mutex_lock(&m->job_mutex);
 > +
-> +	xe_pt_update_ops_free(pt_job_ops->ops,
-> +			      pt_job_ops->current_op);
+> +	if (!xe_exec_queue_is_idle(m->q, 1))
+> +		goto unlock_exit;
 > +
-> +	freed =3D llist_del_all(&pt_job_ops->deferred);
-> +	if (freed) {
-> +		llist_for_each_entry_safe(bo, next, freed, freed) {
-> +			struct xe_bo_dev *bo_device =3D
-> +				&xe_bo_device(bo)->bo_device;
-> +			/*
-> +			 * If called from run_job, we are in the dma-fencing
-> +			 * path and cannot take dma-resv locks so use an async
-> +			 * put.
-> +			 */
-> +			if (llist_add(&bo->freed, &bo_device->async_list))
-> +				schedule_work(&bo_device->async_free);
-> +		}
-> +	}
+> +	xe_sched_job_get(job);
+> +	fence =3D __xe_migrate_job_push(m, job, ULLS_EXIT);
+> +
+> +	/* Serialize the PM put against the ring being taken off the hardware */
+> +	dma_fence_wait(fence, false);
 
 [Severity: High]
-Because the BO refcount was left at zero during xe_pt_destroy, will the lat=
-er
-xe_bo_put in the async_free worker trigger a refcount underflow here? A kre=
-f_put
-on a zero refcount returns false and skips the release function (such as
-drm_gem_object_free). Can this cause the page table BO memory to be permane=
-ntly
-leaked?
+Can this lead to a deadlock during GPU reset?
+
+In xe_migrate_ulls_exit(), the delayed worker acquires m->job_mutex, pushes
+the ULLS_EXIT job, and blocks on its completion fence via dma_fence_wait()
+before releasing the mutex.
+
+Since m->job_mutex is explicitly tainted with fs_reclaim during
+initialization, marking it as used in memory reclaim paths, blocking on a
+dma_fence while holding this lock violates dma_fence locking rules. Fence
+signaling can depend on memory allocations, creating a circular dependency
+(job_mutex -> dma_fence -> fs_reclaim -> job_mutex).
+
+If the GPU hangs while processing the ULLS_EXIT job, the thread blocks
+indefinitely. Will the DRM scheduler's GPU reset recovery path permanently
+deadlock here if it needs to evict memory using xe_migrate_copy() or
+xe_migrate_clear(), which also attempt to acquire m->job_mutex?
+
+> +	dma_fence_put(fence);
+> +
+> +	m->ulls.enabled =3D false;
+> +unlock_exit:
+> +	if (job)
+> +		xe_sched_job_put(job);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260904211613.3934=
-307-1-matthew.brost@intel.com?part=3D9
+307-1-matthew.brost@intel.com?part=3D19
