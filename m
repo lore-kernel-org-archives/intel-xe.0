@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 378DFC624D6
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 00:18:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF109C61DD3
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 00:19:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0E7B10E4BC;
-	Fri,  4 Sep 2026 00:18:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1880910E0FD;
+	Fri,  4 Sep 2026 00:19:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jgUAPFis";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="gNxOwqCl";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0257A10E4BC
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 00:18:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6CF510E0FD
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 00:19:33 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id B254C423C3;
- Fri,  4 Sep 2026 00:18:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B0BD1F00A3E;
- Fri,  4 Sep 2026 00:18:27 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 78DD04186A;
+ Fri,  4 Sep 2026 00:19:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A8F21F000E9;
+ Fri,  4 Sep 2026 00:19:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788481107;
- bh=upkad+VMvJATbxFQtzBObF8wuurXvx9eHVGnFCyPrls=;
+ s=k20260515; t=1788481173;
+ bh=EYVLihRP5zGKTT5VMm3GWwi1T6+jGt/09GULShhS6Vw=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=jgUAPFisPWC2N7Uz3O4FTa72+TlEmmQIFQpx9iP9QoGvdYF83wUDc+DdaBQRu53l0
- ANKQC+ZXRM/ktXIXkuHfmnuBHojrkbzqXO2d49bzvdJj4MiTyVd19+9U1KRIup43cW
- PvOT0YCR1Rz/TTHllCN/ELUoIKLlCzklAY0ip43QVNxU9WTEtYwNViAepkBSMn5A4d
- 3p1UA+t5sG2gIi1BuE1m/P1sRVfd4tOj5dM7Sbpnf5se4uHPYGOdot5USl7SHntgqQ
- pMbiWFgZ/aHi5/jHk6EUXhaGWDj6Dgj2XSBm+S2eRkpPwKlrkNzKNTlfplGS3STvi9
- 59uI+YlZJLu5g==
+ b=gNxOwqCl7GxtD00sLw2NUzYyUsna+5pVAmfvbHGSn43Ttp1mkMLpE5nY+sc/Do5lq
+ otTyEGQ6W5TVK9O9u6NJoqIgNCprvYnq1LyZSLPgKdBEwb5XdxbyvX+d0++9b5mtME
+ ev7XtRGog4KbC1DY4OdN8ChLlBWRlkjvmXSIlk3ZSnHXzVAoGKd39G279MiUCfhX8b
+ S3qfnXLkQI5STewQetNsrrRRu9z2YOVfPX3C2GIB2cXp3TQMjgETsGvSSNTypKSV9q
+ ttLHWQa+VqqafLV7/7DQJ9y/lrGQMJp0F6oBA5gvNlhp4/qS77WTG2mYehzuKcIMbk
+ yG1tqAYQKOYgA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 06/25] drm/xe: Add XE_BO_FLAG_PUT_VM_ASYNC
+Subject: Re: [PATCH v4 11/25] drm/xe: Store level in struct
+ xe_vm_pgtable_update
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260903235842.3401722-7-matthew.brost@intel.com>
+In-Reply-To: <20260903235842.3401722-12-matthew.brost@intel.com>
 References: <20260903235842.3401722-1-matthew.brost@intel.com>
- <20260903235842.3401722-7-matthew.brost@intel.com>
+ <20260903235842.3401722-12-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 04 Sep 2026 00:18:26 +0000
-Message-Id: <20260904001827.6B0BD1F00A3E@smtp.kernel.org>
+Date: Fri, 04 Sep 2026 00:19:32 +0000
+Message-Id: <20260904001933.3A8F21F000E9@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,75 +57,66 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] The XE_BO_FLAG_PUT_VM_ASYNC mechanism causes VM reference leaks if=
- xe_bo_put_async() is called when the BO's refcount is greater than 1.
-- [High] Dropping the VM reference synchronously in xe_bo_put_commit causes=
- a Use-After-Free of the shared dma_resv object if TTM defers destruction.
+
+Pre-existing issues:
+- [Critical] Silent failure during page-table unbind due to unhandled -ENOM=
+EM can lead to GPU Use-After-Free.
 --
 
-commit 73ce65401a8053bf565b7b064086594d1dafb49a
+commit e87f781059d52f2b1352d4dadd77d587b14fe864
 Author: Matthew Brost <matthew.brost@intel.com>
 
-drm/xe: Add XE_BO_FLAG_PUT_VM_ASYNC
+drm/xe: Store level in struct xe_vm_pgtable_update
 
-This commit introduces XE_BO_FLAG_PUT_VM_ASYNC, which indicates that an
-async BO put must also drop an additional reference to the BO's VM. This
-ensures the shared dma-resv object does not disappear before the BO when
-a kernel BO is put asynchronously.
+This commit stores the level directly in struct xe_vm_pgtable_update to
+avoid accessing struct xe_pt during bind jobs. This is necessary because
+struct xe_pt may no longer be valid in memory when CPU binds are supported
+in bind jobs.
 
-Link: https://patch.msgid.link/20260228013501.106680-7-matthew.brost@intel.=
-com
+Link: https://patch.msgid.link/20260228013501.106680-12-matthew.brost@intel=
+.com
 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index dde309821237b..5cde5dff2d481 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -3989,8 +3989,14 @@ void xe_bo_put_commit(struct llist_head *deferred)
->  	if (!freed)
->  		return;
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index 4c277153398e6..486de8a46a6a5 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -389,6 +389,7 @@ xe_pt_new_shared(struct xe_walk_update *wupd, struct =
+xe_pt *parent,
+>  	entry->flags =3D 0;
+>  	entry->qwords =3D 0;
+>  	entry->pt_bo->update_index =3D -1;
+> +	entry->level =3D parent->level;
 > =20
-> -	llist_for_each_entry_safe(bo, next, freed, freed)
-> +	llist_for_each_entry_safe(bo, next, freed, freed) {
-> +		struct xe_vm *vm =3D bo->vm;
-> +		bool async =3D bo->flags & XE_BO_FLAG_PUT_VM_ASYNC;
-> +
->  		drm_gem_object_free(&bo->ttm.base.refcount);
-> +		if (async)
-> +			xe_vm_put(vm);
+>  	if (alloc_entries) {
+>  		entry->pt_entries =3D kmalloc_objs(*entry->pt_entries, XE_PDES);
 
-[Severity: High]
-Does this code leak the VM reference if xe_bo_put_async() is called when the
-BO's refcount is greater than 1?
+[Severity: Critical]
+This is a pre-existing issue, but can this silent failure during page-table
+unbind lead to a GPU use-after-free?
 
-If xe_bo_put_async() is called while concurrent paths (like show_meminfo or
-xe_bo_evict_all) hold a temporary reference, the BO won't be added to the
-async_list.
+When unbind_op_prepare() calls xe_pt_stage_unbind(), the unbind uses
+xe_pt_walk_shared() which eventually calls xe_pt_new_shared() with
+alloc_entries=3Dtrue. If kmalloc_objs() fails here, -ENOMEM is returned up =
+to
+xe_pt_walk_shared(), terminating the walk early.
 
-Later, when the temporary reference is dropped via a synchronous xe_bo_put(=
-),
-the BO is destroyed by xe_ttm_bo_destroy(), which only drops bo->vm if
-xe_bo_is_user(bo) is true (which is false for kernel PT BOs). Thus, the VM
-reference could be permanently leaked.
+However, xe_pt_stage_unbind() ignores this failure by casting the return
+value to (void):
 
-[Severity: High]
-Can dropping the VM reference synchronously here cause a use-after-free of
-the shared dma_resv object if TTM defers destruction?
+drivers/gpu/drm/xe/xe_pt.c:xe_pt_stage_unbind() {
+	...
+	(void)xe_pt_walk_shared(&pt->base, pt->level, start, end,
+				&xe_walk.base);
+	...
+}
 
-In xe_bo_put_commit(), drm_gem_object_free() drops the GEM reference. If TTM
-concurrently holds an extra reference to the BO (e.g., via
-ttm_bo_get_unless_zero() during an LRU walk), the BO will not be immediately
-destroyed.
-
-However, xe_bo_put_commit() continues and calls xe_vm_put(vm). If this drops
-the last reference to the VM, the VM and its embedded resv are freed.
-Because the BO is still alive and bo->ttm.base.resv points to the freed
-vm->resv, TTM might later attempt to use the freed reservation object.
-
-> +	}
->  }
+Because the error is swallowed and a truncated update array is returned, the
+unbind only partially unmaps the target VMA. The GPU page table retains val=
+id
+mappings to memory that is subsequently freed by the CPU.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260903235842.3401=
-722-1-matthew.brost@intel.com?part=3D6
+722-1-matthew.brost@intel.com?part=3D11
