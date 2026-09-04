@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34245C79F80
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41A6BC624DE
 	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 17:05:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCBF510FA96;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D305710FA98;
 	Fri,  4 Sep 2026 17:05:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CqkIlSHL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="enq3BYJM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2293610E55D
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 17:05:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42B3E10FA91
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 17:05:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788541544; x=1820077544;
+ t=1788541547; x=1820077547;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4mJBUDTH417GEjWjI0AIW65hHHm/ZkFPKPBn/JWGK2c=;
- b=CqkIlSHL0Q8rETC6KjEKss6mME/dXy9fR8KcYakcdkCTjoOGapaadncw
- 4oOlN51bvNZC5Isew0Xbc+MG0hAaBLRtaM022UMdzukEb0QkdGkXKvA5s
- ATa8X+0EWLr4D27M02E0FmT1/zoaOQNj5qe0e8ao0676L2hyHvAO012M+
- G5Olyri6NJHVr+Hb9dF2MOE0TLq8kWh8J2J6Fi6cPFJSyJH9eTKqjv0st
- IIGSLKOU6/5lUzqRv2gRI8RXnlrHMAeImNknQQiPWgcUxmzJezoDXyVPE
- oNcKxjfv9VxaOdzb80wWJCHWA/LLzxYme4d9s/507TWdL4j2tsXhJMYkf w==;
-X-CSE-ConnectionGUID: PVoaIMqtSuyQezb0y07lww==
-X-CSE-MsgGUID: 9t+wSS1ITqmvxAd4pDYB0Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11896"; a="89082200"
-X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="89082200"
+ bh=yZt12TZui/jygueU4ZCxENShJDmX/9HI395siX/OXMM=;
+ b=enq3BYJMkwHwrFOE1dEC6fTSn02EjtVLHK5oJOqKQWEu3RnsloWUNdZB
+ 0jp3GoFypiaCrKM5l2g/Kz+Y31VZDhmItJ/ppj99odOdgC2uUhT7o2ZIo
+ qSkFq0rJkXS+gfTsnaMkQz4BjqrUEbShySiyXbTFk3ua+nTn4x7EEL8t7
+ ke7mBv+yKxkaUx5rCVjdidATcFpux4d46fzq+o8rMBkB7+zDIJ3lh48/J
+ t8Drjz6QmOu4sbm1lfwrma6CNDddwHosxFsdFyRIs1QXgq3VE0iZxYnUf
+ OzooAIfxWXcV1MNqr6WXm9EmEJFRFMka9vRRtw0V+hoezGCxbOPRyux6O A==;
+X-CSE-ConnectionGUID: 3DYGTCILRuGVQPWPK9CG7g==
+X-CSE-MsgGUID: 33oHlMrlTHaTK7Es5KpQfQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11896"; a="89082210"
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="89082210"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 10:05:44 -0700
-X-CSE-ConnectionGUID: zFZCMD7uTjeo24higgiQUg==
-X-CSE-MsgGUID: f9CfoHUnS82jx6OEY/4Pdg==
+ 04 Sep 2026 10:05:47 -0700
+X-CSE-ConnectionGUID: axzgrTZvRPae87wP2savqQ==
+X-CSE-MsgGUID: zpk/5eL+SrS61zYOi0iFMg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="273882658"
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="273882678"
 Received: from johndonn-mobl2.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.17.174])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2026 10:05:43 -0700
+ 04 Sep 2026 10:05:46 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
  Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH 1/6] drm/xe: Drop unused parameter from xe_info_init
-Date: Fri,  4 Sep 2026 19:05:25 +0200
-Message-ID: <20260904170531.516-2-michal.wajdeczko@intel.com>
+Subject: [PATCH 3/6] drm/xe: Drop redundant parameters from xe_info_init_early
+Date: Fri,  4 Sep 2026 19:05:27 +0200
+Message-ID: <20260904170531.516-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260904170531.516-1-michal.wajdeczko@intel.com>
 References: <20260904170531.516-1-michal.wajdeczko@intel.com>
@@ -68,47 +69,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We don't need anything from struct xe_device_desc in xe_info_init()
+We can now obtain the const pointers to struct xe_device_desc and
+xe_subplatform_desc directly from the xe, no need to pass them as
+explicit parameters.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
  drivers/gpu/drm/xe/tests/xe_pci.c | 2 +-
- drivers/gpu/drm/xe/xe_pci.c       | 3 +--
- 2 files changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_pci.c       | 6 +++---
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
-index bb0393475524..4965a01f6ba5 100644
+index 48d5ee478fe6..c817692c0ce3 100644
 --- a/drivers/gpu/drm/xe/tests/xe_pci.c
 +++ b/drivers/gpu/drm/xe/tests/xe_pci.c
-@@ -382,7 +382,7 @@ int xe_pci_fake_device_init(struct xe_device *xe)
- 		return err;
- 
- 	xe_info_init_early(xe, desc, subplatform_desc, &probed_info);
--	xe_info_init(xe, desc, &probed_info);
-+	xe_info_init(xe, &probed_info);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index ab4da1d9a9f1..47fad696545c 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -1011,7 +1011,6 @@ static int xe_probe_info(struct xe_device *xe,
-  * present in device info.
-  */
- static int xe_info_init(struct xe_device *xe,
--			const struct xe_device_desc *desc,
- 			struct xe_probed_info *probed_info)
- {
- 	const struct xe_ip *graphics_ip;
-@@ -1244,7 +1243,7 @@ static int __xe_pci_probe(struct pci_dev *pdev, const struct xe_device_desc *des
+@@ -383,7 +383,7 @@ int xe_pci_fake_device_init(struct xe_device *xe)
  	if (err)
  		return err;
  
--	err = xe_info_init(xe, desc, &probed_info);
-+	err = xe_info_init(xe, &probed_info);
+-	xe_info_init_early(xe, desc, subplatform_desc, &probed_info);
++	xe_info_init_early(xe, &probed_info);
+ 	xe_info_init(xe, &probed_info);
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 191e69fb0e3d..d19478c9439e 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -771,10 +771,10 @@ static int xe_probe_info_early(struct xe_device *xe,
+  * passed to the driver at probe time from PCI ID table.
+  */
+ static int xe_info_init_early(struct xe_device *xe,
+-			      const struct xe_device_desc *desc,
+-			      const struct xe_subplatform_desc *subplatform_desc,
+ 			      struct xe_probed_info *probed_info)
+ {
++	const struct xe_subplatform_desc *subplatform_desc = xe->subplatform_desc;
++	const struct xe_device_desc *desc = xe->desc;
+ 	int err;
+ 
+ 	xe->info.devid = probed_info->devid;
+@@ -1222,7 +1222,7 @@ static int __xe_pci_probe(struct pci_dev *pdev, const struct xe_device_desc *des
+ 	if (err)
+ 		return err;
+ 
+-	err = xe_info_init_early(xe, desc, subplatform_desc, &probed_info);
++	err = xe_info_init_early(xe, &probed_info);
  	if (err)
  		return err;
  
