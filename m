@@ -4,54 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4219C79F87
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 12:40:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F39A7C61DD6
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 12:40:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86B2210FACF;
-	Fri,  4 Sep 2026 12:40:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03ADE10E554;
+	Fri,  4 Sep 2026 12:40:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="MdbgDKP5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IZ7rEv2S";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD66110E1AB;
- Fri,  4 Sep 2026 12:40:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:From:Cc:To:Subject:
- MIME-Version:Date:Message-ID:From:Reply-To;
- bh=Gw99tT+N6x1OL/o3iwipTcioh1ScKGsVIVybRoGfeaE=; b=MdbgDKP5su4pt0vUAXtIDUMvnj
- ZyunS+0GfNkJSeR6l1BMO2h/nHGQ4+RPWKCxdR21kcPKL55tVf8qtxTyHVUaSRRMHRIcKtjuiZH53
- svzN3Q+31wOKKN2BdG9ehY/fMrTyJfVE8gs4Vt6z8cXKwp6hAGghwXmMQoxAMPJuo+S2Uqt5IX20z
- eJpSOdfYwrPTGlB7ZbY56x02SmvIdhvdBpQdq+AfoYGxiICroNjjEFhVzjKzUK4mxWJCRJkxq7tb6
- hQnzuJA0NDi9+atZO8C6B47KTiR+7Lmgu8BxLPtIOYZXxC3R1V61wuHz3oqVj8VUcKNtJ372a17z1
- H/BTgzCg==;
-Received: from [81.79.79.1] (helo=[192.168.0.116])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1x2TDg-00EsvX-TJ; Fri, 04 Sep 2026 14:40:36 +0200
-Message-ID: <26f0c07d-5284-406e-ab26-5994859da6c0@igalia.com>
-Date: Fri, 4 Sep 2026 13:40:35 +0100
-MIME-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF3F610E554
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 12:40:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788525646; x=1820061646;
+ h=message-id:date:subject:from:to:cc:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=1pmtR5ToeLfh9QFQOfJEkFbXudgvksbUWmKXCKFRTGw=;
+ b=IZ7rEv2Sju41v2Vku7r2plrOcSehGw7vapBvFST7Erm8h7orjnF3oAab
+ rb4K/H65zSDn6uQm5LYVtnG7GyDfi5kMQFwTCrx0Ef9Bw4Tsv39B3u+vq
+ le1H61kTmmoA5nvjWtzEkyco5UlmCQ32HC64TqtVDAR9iBzhfPaa0+bSO
+ L5+v3rXhRnvI4qkx3xVv46NZ+4PfBaeGsYNBQKm4vi8mS8XZimnU+ZBSt
+ eAul5vZyJ6OYuhzgE6v33SqAHlozjA4apBz7ai+t51PsRLg5swMMPAfND
+ 00nUQF+Ai0l6UN/IYVkUDhItaJXB6CmCAzckISdqhLyryzx3u08iunU6m A==;
+X-CSE-ConnectionGUID: FLE/APccTS+RswzrKNs/Fw==
+X-CSE-MsgGUID: qXyEN3agQjSSqZcz9tBCNA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="92724880"
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="92724880"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2026 05:40:46 -0700
+X-CSE-ConnectionGUID: We0a/XT4RwGD3XJEt/jxgw==
+X-CSE-MsgGUID: qYRJ0TzoRz2X73a/TASrYg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,262,1779174000"; d="scan'208";a="270560623"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Sep 2026 05:40:45 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Fri, 4 Sep 2026 05:40:45 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Fri, 4 Sep 2026 05:40:45 -0700
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.67) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Fri, 4 Sep 2026 05:40:44 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=V4xvMW3ZDXn3uHwisgRlNjUaXSm3CCeBFjD+24Ad9l4iJt8bHV/S7/VN3Dt5FQgm3wzjnb8hThDvOh8GdT+CodSgrc5CivADm4Gorg7EH7Lf+A6sIYY5ft5ca/g4Mlckjqet1Fo/CPOMzXfaJiO+RqoQrVfoHXQhsAj1aEbh+ZEeqepU04id9XrxwOXZmAIRTTCOD5tzjAPbq7ov6KmKVVbQUP0M4/Ev2TS/b3nkuoOVpvFF311GYR4tDZsFPCCz/kJRyODGBlKACXEMgSTQPVZubdVd7VBKrq+vK/BS3i86k+eHMllM3ZLe48CaKCaMwhjzxUis/5owXnZ9dHBTDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DwaarflKCljg0CZDs4D0WqaaDd7a3h7zDFRy8OPQnj8=;
+ b=hkg1GTG23z1g4tgC944lXmYt3tqbykMV7Y0uvJD5lqnB+ySuHykIvAIXPDkxJP0mxYe9ckdMRMAtWdNusTENmcrwGBJQZFF0iWGJ0U0l+JWcRqOoBK27cspnozREq224cLINBcl58VrC//Cd33VmhrzWZ5LZAnbAhzsBDK8C7NqCBY9YZPHcBlJ+3jMXdF4TRKWZNjvC3NyfAG3VOBICVs2vlLq3xMma4xGoFoejLe6bmnKMnNG6YDP6l6K0K5zWL2kJbELBq9ai7JL5uZdlfvxg2TQhDfWpMu3TfuDOSEIV0TcVeA/TgfEAJP6UiomvF3qRIQjSU80LY9eCD3WRuw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from LV0PR11MB9792.namprd11.prod.outlook.com (2603:10b6:408:385::5)
+ by PH8PR11MB9746.namprd11.prod.outlook.com (2603:10b6:510:3a4::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Fri, 4 Sep
+ 2026 12:40:43 +0000
+Received: from LV0PR11MB9792.namprd11.prod.outlook.com
+ ([fe80::1b1f:d9a8:ce76:e9d8]) by LV0PR11MB9792.namprd11.prod.outlook.com
+ ([fe80::1b1f:d9a8:ce76:e9d8%5]) with mapi id 15.21.0360.008; Fri, 4 Sep 2026
+ 12:40:43 +0000
+Message-ID: <4894efcd-a321-47ee-b79b-1bd5217c0dcf@intel.com>
+Date: Fri, 4 Sep 2026 18:10:34 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH i-g-t v6 7/9] tests/cgroup_dmem: add test for dmem.current
-To: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
- igt-dev@lists.freedesktop.org
-Cc: siqueira@igalia.com, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Christian Koenig <christian.koenig@amd.com>,
- maarten.lankhorst@linux.intel.com,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Vitaly Prosyak <vitaly.prosyak@amd.com>, Natalie Vock <natalie.vock@gmx.de>,
- kernel-dev@igalia.com
-References: <20260903-dmem_max-v6-0-61dc62970fae@igalia.com>
- <20260903-dmem_max-v6-7-61dc62970fae@igalia.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20260903-dmem_max-v6-7-61dc62970fae@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH 2/2] drm/xe/i2c: Expose AMC Alert reason sysfs
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <raag.jadav@intel.com>, <riana.tauro@intel.com>,
+ <mallesh.koujalagi@intel.com>, <aravind.iddamsetty@intel.com>,
+ <heikki.krogerus@linux.intel.com>, <himal.prasad.ghimiray@intel.com>
+References: <20260823103523.554184-4-badal.nilawar@intel.com>
+ <20260823103523.554184-6-badal.nilawar@intel.com>
+ <aoya-4fWW7pLb9bc@intel.com> <28c4db86-72e8-4ff1-95f6-c2f25b2cfa6d@intel.com>
+Content-Language: en-US
+In-Reply-To: <28c4db86-72e8-4ff1-95f6-c2f25b2cfa6d@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0194.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b2::7) To LV0PR11MB9792.namprd11.prod.outlook.com
+ (2603:10b6:408:385::5)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV0PR11MB9792:EE_|PH8PR11MB9746:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a3d9466-8c3b-4eed-3083-08df0a81bbf0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|366016|1800799024|376014|6133799003|11063799006|10067099003|4143699003|56012099006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 5UbuXMSQLrev6kCm/irg5vE0SIFixvBGYY5WGVLJIXLe+EZToX6aTTgILVj1GvE1kT5QsnEbKFkx7vSr6vi43BBYrhljqYNXREah7CqlhoOLeMLLBAUi/lI3tiCj4rBfyUoukV9uogxMB4mDLZYqo4pxTVYtYj1eizK10B6BMMwyarmofxp9Fp7V87s/nKrI4z5DoV20mtMnzYZZ1qNf2varPY+bLhppjVym2hkgelBuhvYGIKMd8lJtAN613rIM1ID2XzjYgUqBIcyjHqgJsKFyjcQU0cgZMLeedZJeaqTEAhX/pXUkfhoK/G9EpPA8d9ine71JdXIM+2Anr5yOgXdK2NZUYlZ9LqE41hU4mmWMDt6tvVWaBAD9MswSwBYTugo9tp3TajmRK+nbrZ3i5K92Yc79sKjET3oSYddyoEcqboM50CRMpV2L7KKzMpKI8+sox48lEjcOA4ZLg8a0mcNimVsWy9Nocku2y9c6VlwJx1FLXEMymCxOgefb06U6um/1Lwne5M/U+hX4q3kLCvpWtV2pT/t5Zhb77VkBN8wYlBaTMswDWGTRIOoyNY2rQTAv6RZsUpomDiWZpL7eMQQB2wONEF/3dmyZYx/7xs2qVFP4v/HD/kvCr5ArbYcupz7FRoD8LhBL5z5PmS0r4GAP2dzQM6ij4s0AW1EEiC0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV0PR11MB9792.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(6133799003)(11063799006)(10067099003)(4143699003)(56012099006)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YUxMQmNQalFHRDFnN2xndHZodVBXb0t0dzdOL2JKV3NheGxHd1JxY1I4OWhT?=
+ =?utf-8?B?dGFlRkhLdHpDYWNJZ3NJckZVeU5jL1I3YW9RbXBHU05xTG9kQXZ1WEc4UHAw?=
+ =?utf-8?B?ci8yeTVrb2xGaVA3Y0tMSW9PeDVKdWR2YnA0b2FyZkRYTFI5K29Rb2lscitT?=
+ =?utf-8?B?NDRsTkNyalgwakFVSFg5cXNhalJEbi94aTE0Wk5hZjcwMDVQSlVWTGc0bUgy?=
+ =?utf-8?B?NDNrR0RWTXNxMUY1K014cm9MR1dlUm43NE91QVFFSytSUVJvK3Q1OEVpNnVS?=
+ =?utf-8?B?Ump1dnJGMmlsenk2SVZ3OWdoY2MzeEdVR3RWY2Y2Z3l6YjdQQ3kzNWpqdTNI?=
+ =?utf-8?B?bnhneEVXSzlmajRUN1NnRG9CS3padXZwZGhoU2VKaGRUVnlramdrVVkvVFpC?=
+ =?utf-8?B?d2JERG94aFd0N3ZXRDlwSG5XT1hTbm1MRDluNGl6bXpzSXdSNmMxbmh6aEdR?=
+ =?utf-8?B?ejhQNEFLMkplUU9vYUZEY200WnpZSEtOTkMyVTB1M0xCeXg5ZVVrOHUycys1?=
+ =?utf-8?B?MVF5S29xSWNqcUY2MVhEdS9IMnVyQVlyRjlTSmxUTXZOR3VXRWF2ZVBUSnl4?=
+ =?utf-8?B?QVJRNDd5ZVpKYVNKVkJCMmtKenFBMjJScnhUYTdPaUFnOEViYlZEQ1lkS2dG?=
+ =?utf-8?B?SjRCaGFsdzdxT3VVak9XZ1owZXJtcW5wSHhtNmtFbk9qWCtxY3FIQmc0SlUz?=
+ =?utf-8?B?VHBWaXorc0FQYko5R2tRemR3NXlQRGNnVHF6UnVXbTljMHgvekpXMXF4cmp5?=
+ =?utf-8?B?aEVYTUpsUzNEUGFEb3dnbDNJL1owaXBZZXRkUjNLM2YrL1pHb1J5Y2hybUJm?=
+ =?utf-8?B?UlpzOU13ZlRSRDJiRGdkM1JxOUtQRnVYamRNeDdaUlBiQ0pCVGROZWdKcUV0?=
+ =?utf-8?B?SmhkSVpTY2ZsRE5PWDB0Ny9VOWM3U25YenRZektDVGtPdjhZbDU5TXZsYVJU?=
+ =?utf-8?B?L2F1VTEzY0dqeGlGMHN4TmFJMjhVTXdlRDQrL3l6cWZzenJselRhUUtmcElm?=
+ =?utf-8?B?QllTY0xmN3ZFRy9xTEJJM25nRGN6Q0wwWHJUaXZGWnZ1aWNDdWJPOUlSVU5u?=
+ =?utf-8?B?WWJ6Ty81UnJRQUdlSHlmUUFRUnI2QlZvY0tKNW96T09ONm4zWUN4WExhYTFV?=
+ =?utf-8?B?a2V0RUlLTlAxRFc4dVBXYXN3MGRXU3U3am56aDB0VnIrU25ITzRRcWVyZ2dN?=
+ =?utf-8?B?Uy9FZmoyb2pORWxTcWhQaENxUEhNWlRMaFRHVk9LNlltT04ybjd4MTlJREEv?=
+ =?utf-8?B?TEJXeE9Bd29wL2ZaVHRSY2IzM0VYaTh6RFBmbm9ncGZBQXBlYmpzOTA5bkF1?=
+ =?utf-8?B?S041a2lEb1FNMXA5NEtIWmlFZGpXdEVzZlAvREtvRkg5UmFVUy82eUhhek1S?=
+ =?utf-8?B?QjhlOGoybnRKeVVSQUhFUE1aN0lKYlBPWlk5bDA0VUsrcTlhRDhuWXR2V01O?=
+ =?utf-8?B?bjk3Y0ZENjNkNHhJNHJDMFVETExhUUZXSUxoa3VTTG5KaXZIcGdqRGYzd1Jy?=
+ =?utf-8?B?Y1VRbFN2UzZ4RzBEdVV0VkdvYnN1MGdLREp3eEVFTm04L1pvUi9SWjQyNk11?=
+ =?utf-8?B?NWswTnhMdVBHVWlHLzBBTElsZWo5aC9KUXNGaFVmY21HcE84b1FSMWsvdjFo?=
+ =?utf-8?B?NWptL0NuVEVUdTcxZnF5SVRKdVdXU2dtRllSbDd0OVRPbDVaZU5QMGlwNFA3?=
+ =?utf-8?B?YWsrZHJ5dG9OVWdzc0RNYk5hQjBFOUF6MWRjT0pyTEphV0k1WVFRajNiVUFv?=
+ =?utf-8?B?NlRkY0lSVE1DMzZ1d3ZWejROaFdzVVZXa1JOcWRDckFrV3J6YmpZNWdKTitD?=
+ =?utf-8?B?dE8yNVkxYm9tUUtNZy8ydmpzTktTQmc2S0M0SVpCcnhEZlBITThEakRtZjU1?=
+ =?utf-8?B?dW5ta1hrMDZrN1Joa2lib0E5V3VDZXpWbUhraTlGYzJzN3R0UUZGZ0tXWHcr?=
+ =?utf-8?B?UmtyUXlnb3pqaEVvaHd3eC9jbE9kRU92V05OQ2lHQXlJaFZZU0FzK1FycGdO?=
+ =?utf-8?B?dkxwSkxEbUtmNDhveTdmUWlacDlvR2xseXdqNm1TYUJvQWpJckxnVCtlamhw?=
+ =?utf-8?B?YVdpOGsvS0JJcnEzeGhaL3RFNkEvand0Y3hoYkZPbHZJNlBIb0hSd0E2SGVn?=
+ =?utf-8?B?blZqZzRlVUpDd3FYYVhUUi9jbUZpZVNKbXdPajNaZ242MXc5RFowMjNESVNi?=
+ =?utf-8?B?ODNtVm9LOGNoYXBSZXIvS2xZZjF3YjV4dGFiZ20rVTBQV3pHWGdZQUdFOWZt?=
+ =?utf-8?B?SXNTRjlPQ2dIOVltLzJiVm1xb3hpUWtDcEFJTmNhSWZORmt6empHVm1uemdy?=
+ =?utf-8?B?Z1ArbzcxYnZ0bWtaZjg4OEdTeTZ0RzQvZHEvMHZ1YTd2Ni9aeFhlN2RiSVRk?=
+ =?utf-8?Q?WPYtJxdlL9FvcxOY=3D?=
+X-Exchange-RoutingPolicyChecked: 5lJjrPXe5/olji9aPff2+he0ncfEc2TStaNr12ujJzDpGuGSkKAAjj6vmeEkSTtLSO9Hk8O7iOBrfHKJ5cdSydR5W0j0+noJC/jxdLPpfBc5roqqM03qmd3Qhx5WXj2+LRirGuiz+Vq0bzCwj3uKd5Yj69kzfwZQwN6H9OQZnyiGHmnGBa8z8Za4772RgBqjenuRQH6YNyTprhBeHKyC8+SbImWO75MrUHGU8SjqsiXCYJsp3WoLrkrnddk4p5nbFlraIL8RzhBhS//mUfqccOREoyQZKZTNSMhQovgNlj5bI/Bp+/QMtM1uzx0lo8hgtTUl5YAqFSpbP4wTteA+rg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a3d9466-8c3b-4eed-3083-08df0a81bbf0
+X-MS-Exchange-CrossTenant-AuthSource: LV0PR11MB9792.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2026 12:40:43.0976 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GfOvDLqusl8LSCvUuS6zqMBxntipepXhaUPQvVBt32dGHM5mcfQNfyOXB1O571BJnV+gnMYiiz2riGDZezD1cw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB9746
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,383 +174,196 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 03/09/2026 23:00, Thadeu Lima de Souza Cascardo wrote:
-> Based on the work of Thomas Hellström to test dmem.max eviction, add a
-> test for dmem.current usage after allocations and setting dmem.max.
-> 
-> Create a dmem cgroup, allocate close to capacity (or at most 4GiB),
-> check current usage is within a small slack of the expected allocation.
-> Then, set max to a small value and check allocations and current usage
-> are limited to the max set.  Set max to less than a single BO size, then
-> check no allocations are allowed and current usage is also within the
-> slack. After each allocation, release memory and check current usage
-> has gone down.
-> 
-> Signed-off-by: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-> ---
->   tests/cgroup_dmem.c | 262 +++++++++++++++++++++++++++++++++++++++++++++++++++-
->   1 file changed, 257 insertions(+), 5 deletions(-)
-> 
-> diff --git a/tests/cgroup_dmem.c b/tests/cgroup_dmem.c
-> index 442c965f9bbf..ba5e6a2e3deb 100644
-> --- a/tests/cgroup_dmem.c
-> +++ b/tests/cgroup_dmem.c
-> @@ -1,6 +1,8 @@
->   // SPDX-License-Identifier: MIT
->   /*
->    * Copyright © 2025 Intel Corporation
-> + * Copyright © 2026 Intel Corporation
+On 04-09-2026 17:38, Nilawar, Badal wrote:
+>
+> On 25-08-2026 00:56, Rodrigo Vivi wrote:
+>> On Sun, Aug 23, 2026 at 04:05:26PM +0530, Badal Nilawar wrote:
+>>> AMC raises an SMBUS alert before performing a power removal or
+>>> power-cycle operation. The xe driver then places the device into
+>>> vendor-specific wedge mode until the recovery is performed.
+>>>
+>>> Expose a read-only xe_amc_alert_reason sysfs attribute to help users
+>>> identify the required recovery action.
+>>>
+>>> Assisted-by: Claude:claude-opus-4.8
+>>> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+>>> ---
+>>>   .../ABI/testing/sysfs-driver-intel-xe-amc     | 21 ++++++
+>>>   drivers/gpu/drm/xe/xe_amc.c                   | 65 
+>>> ++++++++++++++++++-
+>>>   2 files changed, 84 insertions(+), 2 deletions(-)
+>>>   create mode 100644 
+>>> Documentation/ABI/testing/sysfs-driver-intel-xe-amc
+>>>
+>>> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-amc 
+>>> b/Documentation/ABI/testing/sysfs-driver-intel-xe-amc
+>>> new file mode 100644
+>>> index 000000000000..b3de933efe11
+>>> --- /dev/null
+>>> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-amc
+>>> @@ -0,0 +1,21 @@
+>>> +What:        /sys/bus/pci/drivers/xe/.../xe_amc_alert_reason
+>> Should we do <bdf> instead of ... ?!
+> Sure
+>>
+>>> +Date:        August 2026
+>>> +KernelVersion:    7.3
+>> this will be 7.4
+> I will fix this.
+>>
+>>> +Contact: intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        This file exposes the reason for the most recent Add-In
+>>> +        Management Controller (AMC) alert on Intel Xe platforms.
+>>> +
+>>> +        An AMC alert is delivered via an SMBUS interrupt and causes 
+>>> the
+>>> +        device to be wedged, requiring vendor-specific recovery. This
+>>> +        attribute is created when such an alert is handled and is
+>>> +        available to all users as read-only.
+>>> +
+>>> +        Read returns a single line containing one of the following
+>>> +        alert reasons:
+>>> +
+>>> +            Firmware Download
+>>> +            Thermal Trip
+>>> +            OOB Request
+>>> +            OOB Reset
+>>> +            Catastrophic
+>>> diff --git a/drivers/gpu/drm/xe/xe_amc.c b/drivers/gpu/drm/xe/xe_amc.c
+>>> index 8ecadee6eea3..ceb2c4d618fe 100644
+>>> --- a/drivers/gpu/drm/xe/xe_amc.c
+>>> +++ b/drivers/gpu/drm/xe/xe_amc.c
+>>> @@ -18,6 +18,7 @@
+>>>   #include "xe_device.h"
+>>>   #include "xe_i2c.h"
+>>>   #include "xe_mmio.h"
+>>> +#include "xe_printk.h"
+>>>     /**
+>>>    * DOC: Add-In Management Controller (AMC)
+>>> @@ -56,6 +57,8 @@ static const char * const amc_alert[] = {
+>>>   struct xe_amc {
+>>>       struct xe_i2c *i2c;
+>>>       struct work_struct work;
+>>> +    u8 alert_reason;
+>>> +    bool sysfs_created;
+>>>   };
+>>>     struct amc_header {
+>>> @@ -104,6 +107,54 @@ static const struct amc_request 
+>>> amc_get_alert_reason = {
+>>>       },
+>>>   };
+>>>   +/**
+>>> + * DOC: AMC Alert Reason
+>>> + *
+>>> + * On Intel Xe platforms, AMC sends an alert notification via an 
+>>> SMBUS interrupt
+>>> + * to notify events such as firmware download, thermal trip or a
+>>> + * catastrophic error. See enum xe_amc_alert for the full list of 
+>>> reasons.
+>>> + * Upon an AMC alert the device is wedged and requires 
+>>> vendor-specific recovery.
+>>> + *
+>>> + * The alert reason is exposed through
+>>> + * /sys/bus/pci/drivers/xe/.../xe_amc_alert_reason
+>> ditto
+>>
+>>> + *
+>>> + * See Documentation/ABI/testing/sysfs-driver-intel-xe-amc for the ABI
+>>> + * specification.
+>>> + */
+>>> +
+>>> +static ssize_t xe_amc_alert_reason_show(struct device *dev,
+>>> +                    struct device_attribute *attr, char *buff)
+>>> +{
+>>> +    struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
+>>> +    struct xe_amc *amc = xe->i2c->amc;
+>>> +
+>>> +    return sysfs_emit(buff, "%s\n", amc_alert[amc->alert_reason]);
+>>> +}
+>>> +static DEVICE_ATTR_RO(xe_amc_alert_reason);
+>>> +
+>>> +static void xe_remove_amc_alert_sysfs(struct xe_device *xe)
+>>> +{
+>>> +    if (xe->i2c->amc->sysfs_created)
+>>> +        device_remove_file(xe->drm.dev, 
+>>> &dev_attr_xe_amc_alert_reason);
+>>> +}
+>>> +
+>>> +static void xe_create_amc_alert_sysfs(struct xe_device *xe)
+>>> +{
+>>> +    struct device *dev = xe->drm.dev;
+>>> +    int ret;
+>>> +
+>>> +    if (xe->i2c->amc->sysfs_created)
+>>> +        return;
+>> Why do you need to track this?!
+>> if this can be called from multiple places shoulnd't you protect with 
+>> lock?
+>
+> This will not be called from multiple places. Will drop this check.
 
-This is from a patch by Thomas? I would put a Co-developed-by: or his 
-SoB even if that is agreeable since Intel's copyright is being recorded.
+Forgot to mention, I will create this sysfs probe time. When no valid 
+alert reason it will give EINVAL.
 
-> + * Copyright 2026 Valve Corporation
->    */
->   
->   /**
-> @@ -17,10 +19,217 @@
->    * Test category: uapi
->    */
->   
-> +#include <errno.h>
->   #include <inttypes.h>
-> +#include <signal.h>
-> +#include <stdatomic.h>
-> +#include <stdint.h>
-> +#include <stdlib.h>
-> +#include <string.h>
-> +#include <unistd.h>
->   
-> +#include "drmtest.h"
->   #include "igt.h"
-> +#include "igt_aux.h"
->   #include "igt_cgroup.h"
-> +#include "igt_dmem_driver.h"
-> +
-> +#define BO_SIZE			SZ_64M
-> +#define MAX_LIMIT		((uint64_t)4 * SZ_1G)
-> +#define USAGE_POLL_MS		10
-> +#define USAGE_DROP_TIMEOUT_MS	1000
-> +
-> +/**
-> + * SUBTEST: simple
-> + * DESCRIPTION:
-> + *  Creates a cgroup, moves the process into it, enumerates all dmem regions,
-> + *  prints their capacity, system-wide current usage, per-cgroup current usage
-> + *  and configured limits, then destroys the cgroup.
-> + */
-> +
-> +/**
-> + * SUBTEST: current
-> + * DESCRIPTION:
-> + *  Create a dmem cgroup, allocate close to capacity (or at most 4GiB),
-> + *  check current usage is within a small slack of the expected allocation.
-> + *  Then, set max to a small value and check allocations and current usage
-> + *  are limited to the max set.
-> + *  Set max to less than a single BO size, then check no allocations are allowed
-> + *  and current usage is also within the slack.
-> + *  After each allocation, release memory and check current usage has gone
-> + *  down.
-> + * REQUIREMENTS: xe or amdgpu device with at least one VRAM region
+Thanks,
+Badal
 
-I am out of touch the IGT documentation requirements but assuming the 
-REQUIREMENTS: is real, I would suggest instead of "xe or amdgpu device" 
-you put something like "a device supported by igt_dmem_driver.c" or 
-something like that.
-
-> + */
-> +
-> +static uint64_t wait_for_usage_drop(struct igt_cgroup *cg, const char *region,
-> +				    uint64_t limit)
-> +{
-> +	uint64_t current;
-> +	unsigned int elapsed = 0;
-> +
-> +	do {
-> +		igt_cgroup_dmem_get_current(cg, region, &current);
-> +		if (current <= limit)
-> +			return current;
-> +		usleep(USAGE_POLL_MS * 1000);
-> +		elapsed += USAGE_POLL_MS;
-> +	} while (elapsed < USAGE_DROP_TIMEOUT_MS);
-> +
-> +	return current;
-> +}
-> +
-> +static int allocate_vram(void **handles, const struct igt_dmem_driver *drv,
-> +			 void *ctx, int max_bo, size_t len)
-> +{
-> +	int i, err = 0;
-
-Nit - blank lines between the declarations and bodies are a bit 
-inconsistent in the patch.
-
-> +	for (i = 0; i < max_bo; i++) {
-> +		err = drv->allocate_vram(ctx, len, &handles[i]);
-> +		if (err)
-> +			break;
-> +	}
-> +	/* These are expected failures we can ignore. */
-> +	if (err == -ENOMEM || err == -ENOSPC)
-> +		err = 0;
-> +	if (!err)
-> +		return i;
-> +	for (i--; i >= 0; i--)
-> +		drv->free_vram(ctx, handles[i]);
-> +	return err;
-> +}
-> +
-> +static void free_vram(void **handles, const struct igt_dmem_driver *drv,
-> +		      void *ctx, int max_bo)
-> +{
-> +	int i;
-> +	for (i = 0; i < max_bo; i++)
-> +		drv->free_vram(ctx, handles[i]);
-> +}
-> +
-> +static void test_current(int fd, char *cg_region, unsigned int flags, const struct igt_dmem_driver *drv, void *ctx)
-> +{
-> +	struct igt_cgroup *cg;
-> +	void **handles;
-> +	uint64_t current, capacity, cg_max;
-> +	int n_bo = 0, max_bo;
-> +
-> +	igt_cgroup_dmem_get_capacity(cg_region, &capacity);
-> +	igt_require_f(capacity >= 4 * BO_SIZE,
-
-4 * BO_SIZE = 256 Mib - is that what you intended?
-
-> +		      "VRAM capacity (%"PRIu64" MiB) too small to test\n",
-> +		      capacity / SZ_1M);
-> +
-> +	/*
-> +	 * Use up to 4 GiB, or the full capacity if the device has less.
-> +	 * Leave one BO_SIZE worth of headroom so the device isn't completely
-> +	 * exhausted before the cgroup limit is hit.
-> +	 */
-> +	cg_max = min(MAX_LIMIT, capacity - BO_SIZE);
-> +	cg_max = ALIGN_DOWN(cg_max, BO_SIZE);
-> +
-> +	/* Create cgroup and move into it */
-> +	cg = igt_cgroup_new("igt_cgroups_test");
-
-Looking at the igt_cgroup_new() implementation there isn't any automatic 
-cleanup on failure registered, right? If so, then any test failure below 
-will prevent further tests from running. At least for the Intel's 
-automated CI that will be a problem but I let Intel people give their 
-opinion on what should happen.
-
-> +	igt_cgroup_move_current(cg);
-> +
-> +	max_bo = cg_max / BO_SIZE;
-> +
-> +	handles = calloc(max_bo, sizeof(handles[0]));
-
-If clearing on alloc is required then it could be that clearing in 
-free_vram() also is since the array is reused in the test? Or clearing 
-is not needed at either end? What I am trying to say is that it looks 
-both should be the same in this respect.
-
-> +	igt_assert_f(handles, "failed to allocate handles array");
-> +
-> +	n_bo = allocate_vram(handles, drv, ctx, max_bo, BO_SIZE);
-> +	igt_assert_f(n_bo > 0, "failed to allocate VRAM\n");
-> +
-> +	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-> +	igt_debug("After fill: cgroup current = %"PRIu64" MiB, "
-> +		  "max = %"PRIu64" MiB\n",
-> +		  current / SZ_1M, cg_max / SZ_1M);
-> +	igt_assert_f(current == cg_max,
-> +		     "current usage (%"PRIu64" MiB) is not requested allocation (%"PRIu64" MiB)\n",
-> +		     current / SZ_1M, cg_max / SZ_1M);
-
-Similar class of a problem as above - if the test fails here objects are 
-not freed and because fd is shared subsquent tests will also fail, right?
-
-On the assert itself, the strict equality may become a problem if driver 
-internal objects start getting charger to the cgroup. I know there are 
-plans underway to close that gap. So maybe it would be best to start 
-with current >= cg_max.
-
-> +
-> +	free_vram(handles, drv, ctx, n_bo);
-> +	wait_for_usage_drop(cg, cg_region, 0);
-
-Similar as above - usage may not drop to zero all while the fd is open. 
-I would make it robust by sampling a baseline at the start of the test 
-and have the checks relative to it.
-
-> +
-> +	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-> +	igt_debug("After free: cgroup current = %"PRIu64" MiB, "
-> +		  "max = %"PRIu64" MiB\n",
-> +		  current / SZ_1M, cg_max / SZ_1M);
-> +	igt_assert_f(current == 0,
-> +		     "current usage (%"PRIu64" MiB) is not zero\n",
-> +		     current / SZ_1M);
-> +
-> +	/* Allow for a slack as there might be some extra pages allocated. */
-> +	igt_cgroup_dmem_set_max(cg, cg_region, 2 * BO_SIZE, false);
-
-I did not get what is the slack? Max is set to 2 BOs and then below it 
-is checked usage is exactly 2 BOs.
-
-> +
-> +	n_bo = allocate_vram(handles, drv, ctx, max_bo, BO_SIZE);
-> +	igt_assert_f(n_bo > 0, "failed to allocate VRAM\n");
-> +
-> +	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-> +	igt_debug("After fill: cgroup current = %"PRIu64" MiB, "
-> +		  "max = %"PRIu64" MiB\n",
-> +		  current / SZ_1M, cg_max / SZ_1M);
-> +	igt_assert_f(current == 2 * BO_SIZE,
-> +		     "current usage (%"PRIu64" MiB) is not requested max allocation (%"PRIu64" MiB)\n",
-> +		     current / SZ_1M, cg_max / SZ_1M);
-> +
-> +	free_vram(handles, drv, ctx, n_bo);
-> +	wait_for_usage_drop(cg, cg_region, 0);
-> +
-> +	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-> +	igt_debug("After free: cgroup current = %"PRIu64" MiB, "
-> +		  "max = %"PRIu64" MiB\n",
-> +		  current / SZ_1M, cg_max / SZ_1M);
-> +	igt_assert_f(current == 0,
-> +		     "current usage (%"PRIu64" MiB) is not zero\n",
-> +		     current / SZ_1M);
-> +
-> +	igt_cgroup_dmem_set_max(cg, cg_region, 0, false);
-> +
-> +	n_bo = allocate_vram(handles, drv, ctx, max_bo, BO_SIZE);
-> +
-> +	/*
-> +	 * amdgpu may succeed the allocation, by falling back to GTT, so no assertion here.
-> +	 * Verify by reading current usage.
-> +	 */
-
-On APUs or even discrete? Could you make the test explicitly control it 
-and ask for no automatic fallback?
-
-Ar at least pass drivers[].driver_flag so test can have stricter 
-asserts. Even strcmp on drv->name could work.
-
-Regards,
-
-Tvrtko
-
-> +
-> +	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-> +	igt_debug("After fill: cgroup current = %"PRIu64" MiB, "
-> +		  "max = %"PRIu64" MiB\n",
-> +		  current / SZ_1M, cg_max / SZ_1M);
-> +	igt_assert_f(current == 0,
-> +		     "current usage (%"PRIu64" MiB) is not zero\n",
-> +		     current / SZ_1M);
-> +
-> +	if (n_bo > 0)
-> +		free_vram(handles, drv, ctx, n_bo);
-> +	wait_for_usage_drop(cg, cg_region, 0);
-> +
-> +	igt_cgroup_dmem_get_current(cg, cg_region, &current);
-> +	igt_debug("After free: cgroup current = %"PRIu64" MiB, "
-> +		  "max = %"PRIu64" MiB\n",
-> +		  current / SZ_1M, cg_max / SZ_1M);
-> +	igt_assert_f(current == 0,
-> +		     "current usage (%"PRIu64" MiB) is not zero\n",
-> +		     current / SZ_1M);
-> +
-> +	igt_cgroup_free(cg);
-> +}
-> +
-> +static const struct {
-> +	const char *name;
-> +	void (*test_fn)(int fd, char *cg_region, unsigned int flags, const struct igt_dmem_driver *drv, void *ctx);
-> +	unsigned int flags;
-> +} subtests[] = {
-> +	{ "current", test_current, 0 },
-> +	{ }
-> +};
-> +
-> +static const struct {
-> +	int driver_flag;
-> +	const struct igt_dmem_driver *driver;
-> +} drivers[] = {
-> +	{ DRIVER_XE, &xe_dmem_driver },
-> +	{ DRIVER_AMDGPU, &amdgpu_dmem_driver },
-> +	{ },
-> +};
->   
->   IGT_TEST_DESCRIPTION("Exercises the cgroup v2 dmem controller interface.");
->   
-> @@ -32,7 +241,7 @@ static void fmt_bytes(uint64_t v, char *buf, size_t len)
->   		snprintf(buf, len, "%" PRIu64, v);
->   }
->   
-> -int igt_simple_main()
-> +static void simple_cgroup(void)
->   {
->   	struct igt_cgroup *cg;
->   	const char *region;
-> @@ -42,10 +251,6 @@ int igt_simple_main()
->   	char min_s[32], low_s[32], max_s[32];
->   	int i;
->   
-> -	igt_require_f(igt_cgroup_dmem_available(),
-> -		      "No dmem regions found; is cgroup v2 with the "
-> -		      "dmem controller available?\n");
-> -
->   	cg = igt_cgroup_new("igt-cgroup-dmem-test");
->   	igt_assert_f(cg, "Failed to create cgroup\n");
->   
-> @@ -90,3 +295,50 @@ int igt_simple_main()
->   	igt_cgroup_dmem_regions_free(regions);
->   	igt_cgroup_free(cg);
->   }
-> +
-> +int igt_main()
-> +{
-> +	igt_fixture() {
-> +		igt_require_f(getuid() == 0, "Test requires root\n");
-> +		/* Check dmem cgroup controller is available before doing anything else */
-> +		igt_require_f(igt_cgroup_dmem_available(),
-> +			      "dmem cgroup controller not available (no cgroup v2 or no registered regions)\n");
-> +
-> +	}
-> +
-> +	igt_subtest("simple")
-> +		simple_cgroup();
-> +
-> +	for (int d = 0; drivers[d].driver; d++) {
-> +		igt_subtest_group() {
-> +			int fd = -1;
-> +			int ret = -1;
-> +			char *cg_region = NULL;
-> +			void *ctx = NULL;
-> +			igt_fixture() {
-> +				fd = drm_open_driver(drivers[d].driver_flag);
-> +				igt_require_f(fd >= 0,
-> +					"No %s device found, skipping\n",
-> +					drivers[d].driver->name);
-> +				ret = drivers[d].driver->init(&ctx, fd);
-> +				igt_require_f(ret == 0,
-> +					"Failed to initialize %s device, skipping\n",
-> +					drivers[d].driver->name);
-> +				cg_region = drivers[d].driver->get_region_name(ctx);
-> +				igt_require_f(cg_region, "Region not tracked by dmem cgroup controller\n");
-> +			}
-> +
-> +			for (int i = 0; subtests[i].name; i++)
-> +				igt_subtest_f("%s-%s", drivers[d].driver->name, subtests[i].name)
-> +					subtests[i].test_fn(fd, cg_region, subtests[i].flags, drivers[d].driver, ctx);
-> +
-> +			igt_fixture() {
-> +				if (!ret)
-> +					drivers[d].driver->deinit(ctx);
-> +				if (fd >= 0)
-> +					drm_close_driver(fd);
-> +				free(cg_region);
-> +			}
-> +		}
-> +	}
-> +}
-> 
-
+>
+> Thanks,
+> Badal
+>
+>>
+>> But I prefer that you ensure this is absolutely called only once and
+>> remove this check.
+>>
+>>> +
+>>> +    ret = device_create_file(dev, &dev_attr_xe_amc_alert_reason);
+>>> +    if (ret)
+>>> +        goto failed;
+>>> +
+>>> +    xe->i2c->amc->sysfs_created = true;
+>>> +failed:
+>>> +    dev_err(dev, "Failed to create sysfs file for amc alert 
+>>> reason\n");
+>>> +}
+>>> +
+>>>   static void xe_amc_work(struct work_struct *work)
+>>>   {
+>>>       const struct amc_request *request = &amc_get_alert_reason;
+>>> @@ -158,10 +209,16 @@ static void xe_amc_work(struct work_struct *work)
+>>>       case AMC_ALERT_THERMAL_TRIP:
+>>>       case AMC_ALERT_OOB_REQUEST:
+>>>       case AMC_ALERT_OOB_RESET:
+>>> -    case AMC_ALERT_CATERR:
+>>> +    case AMC_ALERT_CATERR: {
+>>> +        struct xe_device *xe = i2c_client_to_xe_device(client);
+>>> +
+>>>           dev_warn(amc->i2c->drm_dev, "AMC Alert: %s\n", 
+>>> amc_alert[alert_reason]);
+>>> - xe_device_declare_wedged(i2c_client_to_xe_device(client));
+>>> +        amc->alert_reason = alert_reason;
+>>> +        xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_VENDOR);
+>>> +        xe_device_declare_wedged(xe);
+>>> +        xe_create_amc_alert_sysfs(xe);
+>>>           break;
+>>> +    }
+>>>       default:
+>>>           dev_warn(amc->i2c->drm_dev, "unknown AMC alert: %d\n", 
+>>> alert_reason);
+>>>           break;
+>>> @@ -190,8 +247,12 @@ int xe_amc_init(struct xe_i2c *i2c)
+>>>     void xe_amc_exit(struct xe_i2c *i2c)
+>>>   {
+>>> +    struct xe_device *xe;
+>>> +
+>>>       if (i2c->amc) {
+>>>           cancel_work_sync(&i2c->amc->work);
+>>> +        xe = i2c_client_to_xe_device(i2c->client[XE_I2C_CLIENT_AMC]);
+>>> +        xe_remove_amc_alert_sysfs(xe);
+>>>           kfree(i2c->amc);
+>>>       }
+>>>   }
+>>> -- 
+>>> 2.54.0
+>>>
