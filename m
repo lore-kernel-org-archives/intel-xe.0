@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7F35C624DE
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 21:44:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35738C624DE
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 21:50:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65F6510E580;
-	Fri,  4 Sep 2026 21:44:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADE8110E199;
+	Fri,  4 Sep 2026 21:50:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="MKVJ5qEb";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ggtwfqcc";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4462210E580
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 21:44:12 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF1A910E199
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 21:50:03 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 7E78460209;
- Fri,  4 Sep 2026 21:44:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A74E1F00A3D;
- Fri,  4 Sep 2026 21:44:10 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 91C1940A35;
+ Fri,  4 Sep 2026 21:50:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 485491F00A3D;
+ Fri,  4 Sep 2026 21:50:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788558251;
- bh=QHFJZ7XG4P3V8UAnuYwPcUpjv+bKd9fYoorNmleMX+U=;
+ s=k20260515; t=1788558603;
+ bh=IBrYMNAoPqCQM6mRtGhRg6hn9C/v9ZWujRfHEq05jDM=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=MKVJ5qEbVCocx1vIPkKSNTSH1rTBdbWPiQqz39qJgLy5dH8DjKMU91wxPdDClBmSm
- hOe0J1SmwbxXIrqCDeVFSgFW88K+m140zh3rw8oHDzqURLmjkvNwTwuY9wBKIkuEJJ
- /PzkxhaDUvUNJlnlJl2mnM6t8zHDFXGx+f5Pz6q6p1sJWB0fzmycqXSXEcgoMjvj9q
- irdofxHqbV1Bo1qcTjHlACjl+PDd1qm6xYIlS3wQeIc3xgw4vBP2erXac3nsZZ1Zag
- x9Zbs3yaIXSPfNG2j8T/k4ELZqbAM/uUgUDRzs1KpGzbyGatApLZxzUoxu0X2zELj6
- wutgVHvDGnLFg==
+ b=ggtwfqcchYtkoYSICj6Zuuf+rW6opi8+UmPeS/3MYN0Dpvv0tGWm7ArqA5Kiz+vx9
+ JQ3jJEHhffpsbJjsFu7445Jxw2WKYSnUkjesQYyQ/UmAeffEsTkX+vimvkemebiPpq
+ MJzczKbkz7r+QJNfrooV0nVygN2Syu6TpStDNvmg3R8g+R3C8aoey9zRI6x3QuOYQL
+ JrNU9lNxSQn2K+cmJ7eFxRhqm2kkb4ET88rFLv/VeftILsICi67HBJxWQzJbR2rDeg
+ V23SdIBFIJNeTZyG3ezFeQstVh+Nc6i83mUo3GZ9r8wI/tw4epceSybq+fZUmUImhG
+ ZLfZ7hA1PC7OQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 13/24] drm/xe: Enable CPU binds for jobs
+Subject: Re: [PATCH v6 16/24] drm/xe: Add CPU bind layer
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260904211613.3934307-14-matthew.brost@intel.com>
+In-Reply-To: <20260904211613.3934307-17-matthew.brost@intel.com>
 References: <20260904211613.3934307-1-matthew.brost@intel.com>
- <20260904211613.3934307-14-matthew.brost@intel.com>
+ <20260904211613.3934307-17-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 04 Sep 2026 21:44:10 +0000
-Message-Id: <20260904214411.0A74E1F00A3D@smtp.kernel.org>
+Date: Fri, 04 Sep 2026 21:50:02 +0000
+Message-Id: <20260904215003.485491F00A3D@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,78 +56,92 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] Memory leak of `xe_pt_job_ops` and `job->fence` when PT jobs are=
- aborted by the DRM scheduler.
+
+Pre-existing issues:
+- [High] Concurrent RB-tree corruption in `xe_range_fence_insert()` during =
+PREFETCH operations.
+- [High] Memory leak of `pt_job_ops` and deferred page table BOs when a PT =
+job is dropped by the DRM scheduler.
 --
 
-commit 5533668320d4e1611a5ff8ddda82df8a65a1b27b
+commit dab33f2788d31662c4784993dd54e7509cc455e6
 Author: Matthew Brost <matthew.brost@intel.com>
+drm/xe: Add CPU bind layer
 
-drm/xe: Enable CPU binds for jobs
-   =20
-This patch removes GPU-based binding and updates the migration layer to
-formulate a PT job which will issue CPU bind in the submission backend. This
-lowers latency and avoids running out of migration PTEs.
+This commit introduces a dedicated CPU bind layer at the device level,
+decoupling it from the migrate layer. It updates the PT layer to generate
+a single bind job when pages are mirrored across tiles. The patch includes
+a significant refactor to ensure functional equivalence.
 
-Link: https://patch.msgid.link/20260228013501.106680-14-matthew.brost@intel=
+Link: https://patch.msgid.link/20260228013501.106680-17-matthew.brost@intel=
 .com
 
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
-ate.c
-> index ba8e195afcc89..e5c46e0fa9607 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-[ ... ]
-> @@ -2104,6 +1889,12 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
->  	if (is_migrate)
->  		mutex_lock(&m->job_mutex);
+> diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sc=
+hed_job.c
+> --- a/drivers/gpu/drm/xe/xe_sched_job.c
+> +++ b/drivers/gpu/drm/xe/xe_sched_job.c
+> @@ -73,8 +73,9 @@ static void job_free(struct xe_sched_job *job)
+>  	struct xe_exec_queue *q =3D job->q;
+>  	bool is_migration =3D xe_sched_job_is_migration(q);
 > =20
-> +	job->pt_update[0].vm =3D pt_update->vops->vm;
-> +	job->pt_update[0].tile =3D tile;
-> +	job->pt_update[0].ops =3D ops;
-> +	job->pt_update[0].pt_job_ops =3D
-> +		xe_pt_job_ops_get(pt_update_ops->pt_job_ops);
-> +
->  	xe_sched_job_arm(job);
->  	fence =3D dma_fence_get(&job->drm.s_fence->finished);
->  	xe_sched_job_push(job);
+> -	kmem_cache_free(xe_exec_queue_is_parallel(job->q) || is_migration ?
+> -			xe_sched_job_parallel_slab : xe_sched_job_slab, job);
+> +	kmem_cache_free(job->is_pt_job || xe_exec_queue_is_parallel(job->q) ||
+> +			is_migration ? xe_sched_job_parallel_slab :
+> +			xe_sched_job_slab, job);
+>  }
 
-[Severity: Medium]
-Are these references correctly released if the DRM scheduler aborts the job?
+[Severity: High]
+This is a pre-existing issue, but does dropping a PT job leak the pt_job_ops
+and its deferred page table BOs?
 
-When a PT job is created and armed, pt_job_ops gets a reference here, and t=
+When a page table update job is created (e.g. in
+xe_cpu_bind_update_pgtables_job()), a reference to pt_job_ops is acquired v=
+ia
+xe_pt_job_ops_get(). This is normally released when the job executes in
+guc_exec_queue_run_job().
+
+However, if the execution queue is destroyed before execution, the DRM
+scheduler aborts the job and calls the backend's .free_job callback
+(guc_exec_queue_free_job()). That callback invokes job_free() which frees t=
 he
-job's fence receives an extra reference. Normally, guc_exec_queue_run_job()
-drops both of these references:
+job memory, but fails to call xe_pt_job_ops_put() for PT jobs. This appears
+to permanently leak the xe_pt_job_ops structure and the BOs it tracks.
 
-drivers/gpu/drm/xe/xe_guc_submit.c:guc_exec_queue_run_job() {
-	if (is_pt_job(job)) {
-		xe_pt_job_ops_put(job->pt_update[0].pt_job_ops);
-		dma_fence_put(job->fence);	/* Drop ref from xe_sched_job_arm */
-		return NULL;
-	}
-...
-}
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+[ ... ]
+> @@ -2821,67 +2824,61 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct=
+ xe_vma_ops *vops)
+[ ... ]
+> -	if (xe_range_fence_insert(&vm->rftree[tile->id], rfence,
+> +	if (xe_range_fence_insert(&vm->rftree, rfence,
+>  				  &xe_range_fence_kfree_ops,
+> -				  pt_update_ops->start,
+> -				  pt_update_ops->last, fence))
+> +				  vops->start, vops->last, fence))
 
-However, if the job is aborted (e.g., queue closed, wedging), run_job() is
-bypassed and the scheduler calls xe_sched_job_destroy() instead. Looking at
-xe_sched_job_destroy(), it only puts job->fence once and lacks a call to
-xe_pt_job_ops_put() entirely:
+[Severity: High]
+This isn't a bug introduced by this patch, but does xe_range_fence_insert()
+have a concurrent RB-tree corruption risk here?
 
-drivers/gpu/drm/xe/xe_sched_job.c:xe_sched_job_destroy() {
-...
-	xe_sched_job_free_fences(job);
-	dma_fence_put(job->fence);
-	drm_sched_job_cleanup(&job->drm);
-	job_free(job);
-...
-}
+In xe_vm_bind_ioctl(), if an operation does not modify the GPU VA (such as
+DRM_XE_VM_BIND_OP_PREFETCH on non-userptr memory),
+XE_VMA_OPS_FLAG_DOWNGRADE_LOCK is set and vm->lock is downgraded to a read
+lock (downgrade_write(&vm->lock)).
 
-Does this permanently leak the pt_job_ops structure and the second fence
-reference when PT jobs are aborted during error paths?
+When multiple prefetch binds on the same VM execute concurrently, they will
+reach xe_pt_update_ops_run() and unconditionally call xe_range_fence_insert=
+()
+to track the page table update. Since xe_range_fence_insert() modifies the
+RB-tree directly without any internal synchronization, this concurrent acce=
+ss
+under a read lock could lead to structural corruption of the shared
+vm->rftree.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260904211613.3934=
-307-1-matthew.brost@intel.com?part=3D13
+307-1-matthew.brost@intel.com?part=3D16
