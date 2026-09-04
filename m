@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17D3FC79F84
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 02:22:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2DB7C61DD3
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Sep 2026 02:22:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6772410F845;
-	Fri,  4 Sep 2026 02:22:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 769C110F82D;
+	Fri,  4 Sep 2026 02:22:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E1MajHZJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="anbBaOJJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1CD110E1CD
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 02:22:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7925310F81B
+ for <intel-xe@lists.freedesktop.org>; Fri,  4 Sep 2026 02:22:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788488535; x=1820024535;
+ t=1788488536; x=1820024536;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Ok4A+TPyhxAJ7KYbaJgm9E+QDD/0GiW01S1Z2qt4EzE=;
- b=E1MajHZJtx8mMhxNP+91w2sFzuXB2lcTt58Gqfu9E+GB2j3GFpc5M1Id
- mTEOvFokXfbSCyTJL7o4Y1GkOIb34DevbZQmvUKzTzkQNyQKZF8kjjiZQ
- zzynls4b2VO0l3Kb70f8qAA4JfxUj/S68faSs8+f3fQaSFTWn+pE/2KIh
- Al9TDIz5TTqfE+PtmO5Ti8Nmo44bvsjMyxBN/lVMjyiQjYQVWpDYDVaGo
- RGfej4ASRDYpO2H2/Ve15SwAacC3Su+X1lMTEa3GnhzLC73k+vmYszgG5
- usHLMRX8lHuC8nYhjQ04rPz+YiTWE6XB5jquzffy3d7dchvOBbpRG/XST g==;
-X-CSE-ConnectionGUID: VccVh18qRWW+cFbrES1ikQ==
-X-CSE-MsgGUID: TKMIHhk7RzO2k+qu08Ur5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="106506279"
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="106506279"
+ bh=tFV2D7I5QQ1QVytaaVZ+afHw01cS7wg6UiF5jPNAkFY=;
+ b=anbBaOJJ50UKmbhMTEYgprluhZw6//QFFDt4RtQ0jIphqcTuUG3+JpTP
+ GyWHRHKh3Pt7F/UqL4xJ5SpTdBFjXrqTJP2brI4V8l8eTn74fQgkIM3qZ
+ 2ROpNrupppN8AxV9ua4KQqDKOjt3jSV/gtB8QqnPn2Ht9aqHEzRCrDFg1
+ Z2+CLIzuv+MnYy3Za6giAwton9ftB5uDmlcbHDnOx5hBSKiKEFnih7HEn
+ /uLbMq1SmL6p8CQUSn/geis6jINTrkiZs4sddu6MwZibXicvnTYmKqmJN
+ Sv2Bz+ZkLH1o/s1XS+q6y4MRZ+phQ1JeHu3H5xz79hFRui/HEhrZDFiFb A==;
+X-CSE-ConnectionGUID: 8Hbhyl0TRg2wPHtYwwnNsQ==
+X-CSE-MsgGUID: IDaKQh5KQKmKLdJ4IoS48w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11895"; a="106506290"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="106506290"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 19:22:14 -0700
-X-CSE-ConnectionGUID: yuCKJGO+TymrWPi5RN3eKw==
-X-CSE-MsgGUID: 7+t3dhegROWmOnPFsH3C/Q==
+ 03 Sep 2026 19:22:15 -0700
+X-CSE-ConnectionGUID: 3KsCAjOjRti6GYP/fWbnzg==
+X-CSE-MsgGUID: pbCGoEliQx2a3cXKSXte8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="275185120"
+X-IronPort-AV: E=Sophos;i="6.25,260,1779174000"; d="scan'208";a="275185135"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Sep 2026 19:22:14 -0700
+ 03 Sep 2026 19:22:15 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5 07/25] drm/xe: Update scheduler job layer to support PT jobs
-Date: Thu,  3 Sep 2026 19:21:49 -0700
-Message-Id: <20260904022207.3490018-8-matthew.brost@intel.com>
+Subject: [PATCH v5 18/25] drm/xe: Add xe_hw_engine_write_ring_tail
+Date: Thu,  3 Sep 2026 19:22:00 -0700
+Message-Id: <20260904022207.3490018-19-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260904022207.3490018-1-matthew.brost@intel.com>
 References: <20260904022207.3490018-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,263 +65,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update the scheduler job layer to support PT jobs. PT jobs are executed
-entirely on the CPU and do not require LRC fences or a batch address.
-Repurpose the LRC fence storage to hold PT‑job arguments and update the
-scheduler job layer to distinguish between PT jobs and jobs that require
-an LRC.
+ULLS for migration jobs need to directly set hw engine ring tail, add
+function to support this.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Link: https://patch.msgid.link/20260228013501.106680-8-matthew.brost@intel.com
+Link: https://patch.msgid.link/20260228013501.106680-19-matthew.brost@intel.com
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_sched_job.c       | 95 ++++++++++++++++---------
- drivers/gpu/drm/xe/xe_sched_job_types.h | 31 +++++++-
- drivers/gpu/drm/xe/xe_trace.h           |  2 +-
- 3 files changed, 92 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_engine.c | 20 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hw_engine.h |  1 +
+ 2 files changed, 21 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-index a4fa00632a30..841d67ebd5b0 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.c
-+++ b/drivers/gpu/drm/xe/xe_sched_job.c
-@@ -26,19 +26,22 @@ static struct kmem_cache *xe_sched_job_parallel_slab;
- 
- int __init xe_sched_job_module_init(void)
- {
-+	struct xe_sched_job *job;
-+	size_t size;
-+
-+	size = struct_size(job, ptrs, 1);
- 	xe_sched_job_slab =
--		kmem_cache_create("xe_sched_job",
--				  sizeof(struct xe_sched_job) +
--				  sizeof(struct xe_job_ptrs), 0,
-+		kmem_cache_create("xe_sched_job", size, 0,
- 				  SLAB_HWCACHE_ALIGN, NULL);
- 	if (!xe_sched_job_slab)
- 		return -ENOMEM;
- 
-+	size = max_t(size_t,
-+		     struct_size(job, ptrs,
-+				 XE_HW_ENGINE_MAX_INSTANCE),
-+		     struct_size(job, pt_update, 1));
- 	xe_sched_job_parallel_slab =
--		kmem_cache_create("xe_sched_job_parallel",
--				  sizeof(struct xe_sched_job) +
--				  sizeof(struct xe_job_ptrs) *
--				  XE_HW_ENGINE_MAX_INSTANCE, 0,
-+		kmem_cache_create("xe_sched_job_parallel", size, 0,
- 				  SLAB_HWCACHE_ALIGN, NULL);
- 	if (!xe_sched_job_parallel_slab) {
- 		kmem_cache_destroy(xe_sched_job_slab);
-@@ -84,6 +87,9 @@ static void xe_sched_job_free_fences(struct xe_sched_job *job)
- {
- 	int i;
- 
-+	if (job->is_pt_job)
-+		return;
-+
- 	for (i = 0; i < job->q->width; ++i) {
- 		struct xe_job_ptrs *ptrs = &job->ptrs[i];
- 
-@@ -93,10 +99,23 @@ static void xe_sched_job_free_fences(struct xe_sched_job *job)
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 010499766fce..635744f79be6 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -282,6 +282,26 @@ static void hw_engine_fini(void *arg)
+ 	hwe->gt = NULL;
  }
  
-+/**
-+ * xe_sched_job_create() - Create a scheduler job
-+ * @q: exec queue to create the scheduler job for
-+ * @batch_addr: array of batch addresses for the job; must match the width of
-+ * @q, or NULL to indicate a PT job that does not require a batch address
-+ *
-+ * Create a scheduler job for submission.
-+ *
-+ * Context: Reclaim
-+ *
-+ * Return: a &xe_sched_job object on success, or an ERR_PTR on failure.
-+ */
- struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 					 u64 *batch_addr)
- {
- 	bool is_migration = xe_sched_job_is_migration(q);
-+	struct xe_device *xe = gt_to_xe(q->gt);
- 	struct xe_sched_job *job;
- 	int err;
- 	int i;
-@@ -105,6 +124,9 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 	/* only a kernel context can submit a vm-less job */
- 	XE_WARN_ON(!q->vm && !(q->flags & EXEC_QUEUE_FLAG_KERNEL));
- 
-+	xe_assert(xe, batch_addr ||
-+		  q->flags & (EXEC_QUEUE_FLAG_VM | EXEC_QUEUE_FLAG_MIGRATE));
++static void xe_hw_engine_mmio_write32(struct xe_hw_engine *hwe, struct xe_reg reg, u32 val)
++{
++	xe_gt_assert(hwe->gt, !(reg.addr & hwe->mmio_base));
++	xe_force_wake_assert_held(gt_to_fw(hwe->gt), hwe->domain);
 +
- 	job = job_alloc(xe_exec_queue_is_parallel(q) || is_migration);
- 	if (!job)
- 		return ERR_PTR(-ENOMEM);
-@@ -119,34 +141,39 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 	if (err)
- 		goto err_free;
- 
--	for (i = 0; i < q->width; ++i) {
--		struct dma_fence *fence = xe_lrc_alloc_seqno_fence();
--		struct dma_fence_chain *chain;
--
--		if (IS_ERR(fence)) {
--			err = PTR_ERR(fence);
--			goto err_sched_job;
-+	if (!batch_addr) {
-+		job->fence = dma_fence_get_stub();
-+		job->is_pt_job = true;
-+	} else {
-+		for (i = 0; i < q->width; ++i) {
-+			struct dma_fence *fence = xe_lrc_alloc_seqno_fence();
-+			struct dma_fence_chain *chain;
++	reg.addr += hwe->mmio_base;
 +
-+			if (IS_ERR(fence)) {
-+				err = PTR_ERR(fence);
-+				goto err_sched_job;
-+			}
-+			job->ptrs[i].lrc_fence = fence;
-+
-+			if (i + 1 == q->width)
-+				continue;
-+
-+			chain = dma_fence_chain_alloc();
-+			if (!chain) {
-+				err = -ENOMEM;
-+				goto err_sched_job;
-+			}
-+			job->ptrs[i].chain_fence = chain;
- 		}
--		job->ptrs[i].lrc_fence = fence;
- 
--		if (i + 1 == q->width)
--			continue;
-+		width = q->width;
-+		if (is_migration)
-+			width = 2;
- 
--		chain = dma_fence_chain_alloc();
--		if (!chain) {
--			err = -ENOMEM;
--			goto err_sched_job;
--		}
--		job->ptrs[i].chain_fence = chain;
-+		for (i = 0; i < width; ++i)
-+			job->ptrs[i].batch_addr = batch_addr[i];
- 	}
- 
--	width = q->width;
--	if (is_migration)
--		width = 2;
--
--	for (i = 0; i < width; ++i)
--		job->ptrs[i].batch_addr = batch_addr[i];
--
- 	atomic_inc(&q->job_cnt);
- 	xe_pm_runtime_get_noresume(job_to_xe(job));
- 	trace_xe_sched_job_create(job);
-@@ -246,7 +273,7 @@ bool xe_sched_job_completed(struct xe_sched_job *job)
- void xe_sched_job_arm(struct xe_sched_job *job)
- {
- 	struct xe_exec_queue *q = job->q;
--	struct dma_fence *fence, *prev;
-+	struct dma_fence *fence = job->fence, *prev;
- 	struct xe_vm *vm = q->vm;
- 	u64 seqno = 0;
- 	int i;
-@@ -266,6 +293,9 @@ void xe_sched_job_arm(struct xe_sched_job *job)
- 		job->ring_ops_flush_tlb = true;
- 	}
- 
-+	if (job->is_pt_job)
-+		goto arm;
-+
- 	/* Arm the pre-allocated fences */
- 	for (i = 0; i < q->width; prev = fence, ++i) {
- 		struct dma_fence_chain *chain;
-@@ -286,6 +316,7 @@ void xe_sched_job_arm(struct xe_sched_job *job)
- 		fence = &chain->base;
- 	}
- 
-+arm:
- 	job->fence = dma_fence_get(fence);	/* Pairs with put in scheduler */
- 	drm_sched_job_arm(&job->drm);
- }
-@@ -329,7 +360,7 @@ xe_sched_job_snapshot_capture(struct xe_sched_job *job)
- 
- 	snapshot->batch_addr_len = q->width;
- 	for (i = 0; i < q->width; i++)
--		snapshot->batch_addr[i] =
-+		snapshot->batch_addr[i] = job->is_pt_job ? 0 :
- 			xe_device_uncanonicalize_addr(xe, job->ptrs[i].batch_addr);
- 
- 	return snapshot;
-diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-index 0490b1247a6e..5e1824c36c74 100644
---- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-+++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-@@ -10,10 +10,29 @@
- 
- #include <drm/gpu_scheduler.h>
- 
--struct xe_exec_queue;
- struct dma_fence;
- struct dma_fence_chain;
- 
-+struct xe_exec_queue;
-+struct xe_migrate_pt_update_ops;
-+struct xe_pt_job_ops;
-+struct xe_tile;
-+struct xe_vm;
++	xe_mmio_write32(&hwe->gt->mmio, reg, val);
++}
 +
 +/**
-+ * struct xe_pt_update_args - PT update arguments
++ * xe_hw_engine_write_ring_tail() - Write ring tail
++ * @hwe: engine
++ * @val: desired 32-bit value to write
 + */
-+struct xe_pt_update_args {
-+	/** @vm: VM which is being bound */
-+	struct xe_vm *vm;
-+	/** @tile: Tile which page tables belong to */
-+	struct xe_tile *tile;
-+	/** @ops: Migrate PT update ops */
-+	const struct xe_migrate_pt_update_ops *ops;
-+	/** @pt_job_ops: PT job ops state */
-+	struct xe_pt_job_ops *pt_job_ops;
-+};
++void xe_hw_engine_write_ring_tail(struct xe_hw_engine *hwe, u32 val)
++{
++	xe_hw_engine_mmio_write32(hwe, RING_TAIL(0), val);
++}
 +
  /**
-  * struct xe_job_ptrs - Per hw engine instance data
-  */
-@@ -71,8 +90,14 @@ struct xe_sched_job {
- 	bool restore_replay;
- 	/** @last_replay: last job being replayed */
- 	bool last_replay;
--	/** @ptrs: per instance pointers. */
--	struct xe_job_ptrs ptrs[];
-+	/** @is_pt_job: is a PT job */
-+	bool is_pt_job;
-+	union {
-+		/** @ptrs: per instance pointers. */
-+		DECLARE_FLEX_ARRAY(struct xe_job_ptrs, ptrs);
-+		/** @pt_update: PT update arguments */
-+		DECLARE_FLEX_ARRAY(struct xe_pt_update_args, pt_update);
-+	};
- };
+  * xe_hw_engine_mmio_read32() - Read engine register
+  * @hwe: engine
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+index c3ee37f8cfc0..e13610a56ad7 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+@@ -77,5 +77,6 @@ u64 xe_hw_engine_read_timestamp(struct xe_hw_engine *hwe);
+ enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe);
  
- struct xe_sched_job_snapshot {
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index 2fe8f89a1e34..d4e9d91f6f7f 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -261,7 +261,7 @@ DECLARE_EVENT_CLASS(xe_sched_job,
- 			   __entry->flags = job->q->flags;
- 			   __entry->error = job->fence ? job->fence->error : 0;
- 			   __entry->fence = job->fence;
--			   __entry->batch_addr = (u64)job->ptrs[0].batch_addr;
-+			   __entry->batch_addr = job->is_pt_job ? 0 : (u64)job->ptrs[0].batch_addr;
- 			   ),
+ u32 xe_hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg);
++void xe_hw_engine_write_ring_tail(struct xe_hw_engine *hwe, u32 val);
  
- 		    TP_printk("dev=%s, fence=%p, seqno=%u, lrc_seqno=%u, gt=%u, guc_id=%d, batch_addr=0x%012llx, guc_state=0x%x, flags=0x%x, error=%d",
+ #endif
 -- 
 2.34.1
 
