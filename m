@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B724C624DB
-	for <intel-xe@archiver.kernel.org>; Sat,  5 Sep 2026 20:02:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56382C79F99
+	for <intel-xe@archiver.kernel.org>; Sat,  5 Sep 2026 20:02:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA77510E33F;
-	Sat,  5 Sep 2026 20:02:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D93B910E410;
+	Sat,  5 Sep 2026 20:02:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="URPLRvGw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DnXY9+oH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F56710E326
- for <intel-xe@lists.freedesktop.org>; Sat,  5 Sep 2026 20:02:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00F2A10E410
+ for <intel-xe@lists.freedesktop.org>; Sat,  5 Sep 2026 20:02:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788638531; x=1820174531;
+ t=1788638532; x=1820174532;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qWfm8q0q6RkKynRefxPtHutkhBGL/fJHQAIy4jV6zWU=;
- b=URPLRvGw7DCI+WiuYE/w3tzowpsg7DYTsGJLJ3HJ3hEiJQ59E4TtgSrT
- /eGf7mCxMauSDw0wTrFcN4ZI5/oaVE8XnvRAlK7k1EMCNj8/MVrEf9kya
- ZCIGjJcE5C9rg34T0Wz29CqBacLibclBiUTnxbgExgbtcXlOC79JFW1Ec
- AcqFnsxVYNH5ExYAvktfXrb9yn4zT3vNeMKOuPurthlMZloTNqPf3fh/j
- xarDMQR6B5EIknO2kgt0B9Vf4hgIYXnuQlFxT4juPPdrpdm24wtLTu71j
- G3TjQ3ysgSQBwv47Z96mkGycsNzytJsZ/lE2/wsQ/eERh1gOEfR49uSFa w==;
-X-CSE-ConnectionGUID: rGF24bWRRVqRsaEfppBtfw==
-X-CSE-MsgGUID: pySl8qz4T8KwdfdR7q/92g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11897"; a="88248625"
-X-IronPort-AV: E=Sophos;i="6.25,264,1779174000"; d="scan'208";a="88248625"
+ bh=nWXX7Kdt+eFBXMv7M9AfOpggc+l8T63DRKdXYGogw10=;
+ b=DnXY9+oHSHUgSXTs6hkq+aBoEcfJQxNJpJJ5FkDWeskN3r+jtqoESyQp
+ r0MI9865aziQcj2a/yjU+5rJYyrFIRafRHhHwo1vX3iupg3qMMpwLRPHX
+ ZFRc0u7SrOwHuTuYPzdYC1o4nZ+JaCqreVZ7kIFl93UXtRu6+ERxdbYb3
+ u4CpolgtD5BlFk+zlt8i8aCLeqPVzu56sMbrstd0XAuO/Lc0m8e89fbwC
+ GQ+Tt+Zb+LbCZehoHmAcvm6DTmR2yNFKgtN0L0NW0VSM/3SjzSSwhxS78
+ k9qrKMV4kzo2prI6LrnRtfj4WB9C93OvasXZMmZIX5TdMTlqjgOaEvnP3 Q==;
+X-CSE-ConnectionGUID: 3DwZOscJTJ6tf3kR2OohpQ==
+X-CSE-MsgGUID: vHB2/65tSOKDPq63T3+JQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11897"; a="88248627"
+X-IronPort-AV: E=Sophos;i="6.25,264,1779174000"; d="scan'208";a="88248627"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2026 13:02:11 -0700
-X-CSE-ConnectionGUID: p+9mRE09TxOTzJ/gf7FvWA==
-X-CSE-MsgGUID: eBDShBZZRNSFKz3foofZYw==
+ 05 Sep 2026 13:02:12 -0700
+X-CSE-ConnectionGUID: A1Sp3kUwRjmYC6ArtVNKnQ==
+X-CSE-MsgGUID: I3khIAvhSvy/Pr1o0RhxbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,264,1779174000"; d="scan'208";a="274154556"
+X-IronPort-AV: E=Sophos;i="6.25,264,1779174000"; d="scan'208";a="274154562"
 Received: from yshashi-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.113.202])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2026 13:02:09 -0700
+ 05 Sep 2026 13:02:10 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH 1/2] drm/xe/tests: Fix default subplatform selection
-Date: Sat,  5 Sep 2026 22:01:56 +0200
-Message-ID: <20260905200157.3164-2-michal.wajdeczko@intel.com>
+Subject: [PATCH 2/2] drm/xe/tests: Fix subplatform selection
+Date: Sat,  5 Sep 2026 22:01:57 +0200
+Message-ID: <20260905200157.3164-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260905200157.3164-1-michal.wajdeczko@intel.com>
 References: <20260905200157.3164-1-michal.wajdeczko@intel.com>
@@ -68,32 +68,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If a test does not specify details about the fake device it wants
-to create, our helper selects the device descriptor from the first
-entry from the pciidlist and uses NULL for the subplatform descriptor.
-While this works fine today, as the first device is a TGL which does
-not have any subplatforms, it will be broken if we reorder pciidlist.
+If a test does not specify subplatform details about the fake device
+it wants to create, our helper may select a sentinel of the subplatform
+descriptors list instead of the first available subplatform.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_pci.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/tests/xe_pci.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
-index bb0393475524..a82cab7a2b86 100644
+index a82cab7a2b86..8ab4270cf5d8 100644
 --- a/drivers/gpu/drm/xe/tests/xe_pci.c
 +++ b/drivers/gpu/drm/xe/tests/xe_pci.c
-@@ -351,7 +351,7 @@ int xe_pci_fake_device_init(struct xe_device *xe)
+@@ -364,13 +364,23 @@ int xe_pci_fake_device_init(struct xe_device *xe)
+ 	if (!ent->device)
+ 		return -ENODEV;
  
- 	if (!data) {
- 		desc = (const void *)ent->driver_data;
--		subplatform_desc = NULL;
++	if (data->subplatform == XE_SUBPLATFORM_NONE) {
++		subplatform_desc = NULL;
++		goto done;
++	}
++
++	if (data->subplatform == XE_SUBPLATFORM_UNINITIALIZED) {
 +		subplatform_desc = desc->subplatforms;
- 		goto done;
- 	}
++		goto done;
++	}
++
+ 	for (subplatform_desc = desc->subplatforms;
+ 	     subplatform_desc && subplatform_desc->subplatform;
+ 	     subplatform_desc++)
+ 		if (subplatform_desc->subplatform == data->subplatform)
+ 			break;
  
+-	if (data->subplatform != XE_SUBPLATFORM_NONE && !subplatform_desc)
++	if (!subplatform_desc || !subplatform_desc->subplatform)
+ 		return -ENODEV;
+ 
+ done:
 -- 
 2.47.1
 
