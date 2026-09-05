@@ -4,56 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56382C79F99
-	for <intel-xe@archiver.kernel.org>; Sat,  5 Sep 2026 20:02:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B53FC79F8B
+	for <intel-xe@archiver.kernel.org>; Sat,  5 Sep 2026 20:04:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D93B910E410;
-	Sat,  5 Sep 2026 20:02:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2018310E326;
+	Sat,  5 Sep 2026 20:04:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DnXY9+oH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l9819b9w";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00F2A10E410
- for <intel-xe@lists.freedesktop.org>; Sat,  5 Sep 2026 20:02:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 867E710E326
+ for <intel-xe@lists.freedesktop.org>; Sat,  5 Sep 2026 20:04:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788638532; x=1820174532;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=nWXX7Kdt+eFBXMv7M9AfOpggc+l8T63DRKdXYGogw10=;
- b=DnXY9+oHSHUgSXTs6hkq+aBoEcfJQxNJpJJ5FkDWeskN3r+jtqoESyQp
- r0MI9865aziQcj2a/yjU+5rJYyrFIRafRHhHwo1vX3iupg3qMMpwLRPHX
- ZFRc0u7SrOwHuTuYPzdYC1o4nZ+JaCqreVZ7kIFl93UXtRu6+ERxdbYb3
- u4CpolgtD5BlFk+zlt8i8aCLeqPVzu56sMbrstd0XAuO/Lc0m8e89fbwC
- GQ+Tt+Zb+LbCZehoHmAcvm6DTmR2yNFKgtN0L0NW0VSM/3SjzSSwhxS78
- k9qrKMV4kzo2prI6LrnRtfj4WB9C93OvasXZMmZIX5TdMTlqjgOaEvnP3 Q==;
-X-CSE-ConnectionGUID: 3DwZOscJTJ6tf3kR2OohpQ==
-X-CSE-MsgGUID: vHB2/65tSOKDPq63T3+JQA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11897"; a="88248627"
-X-IronPort-AV: E=Sophos;i="6.25,264,1779174000"; d="scan'208";a="88248627"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2026 13:02:12 -0700
-X-CSE-ConnectionGUID: A1Sp3kUwRjmYC6ArtVNKnQ==
-X-CSE-MsgGUID: I3khIAvhSvy/Pr1o0RhxbQ==
+ t=1788638641; x=1820174641;
+ h=date:from:to:cc:subject:message-id;
+ bh=DK8exT07rW9ccfkYkYm7Bi5V58xA3lqUG/GmlTzYTY8=;
+ b=l9819b9wg4RNJTacEBCfzB+POf2McXH+0OSOAL0jTFZV1lQkAThy6VuB
+ O/kYeu/PlBEVQePBRtzkFuMnqkwpmVpddYbop1SSJn8P0+5mV5QADPh4T
+ MipAX52zp0Rl6e9vMkym5COCANMCGLQOHSeWkX2WvqfCmQ6Az8qLX+vLn
+ HSReVgJOP4H3372qVnd1EsJmSP988RLUNxjDdvDq1TYFR6jSyDv4UKlNI
+ Y6j88T/UrJ0c5skxWcfoG2myGO60UZ5aD3RV3pxxjogrY6h8t34bMXZWV
+ r2SHNBfI2rTlu3WhjMOBpbtdMlZhUAozqswrEdTIEJjIN90lbmstACkLL Q==;
+X-CSE-ConnectionGUID: A8/ik2yXRm2wTKGmA0Yd9w==
+X-CSE-MsgGUID: xy8RGxWPTLKXQSK5LUhyFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11897"; a="88980996"
+X-IronPort-AV: E=Sophos;i="6.25,264,1779174000"; d="scan'208";a="88980996"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2026 13:04:01 -0700
+X-CSE-ConnectionGUID: Fjqg72uATWypU1Y7TwkD5g==
+X-CSE-MsgGUID: Nyvi5Im4S3GJHdM+A7iRBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,264,1779174000"; d="scan'208";a="274154562"
-Received: from yshashi-mobl1.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.245.113.202])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2026 13:02:10 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH 2/2] drm/xe/tests: Fix subplatform selection
-Date: Sat,  5 Sep 2026 22:01:57 +0200
-Message-ID: <20260905200157.3164-3-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260905200157.3164-1-michal.wajdeczko@intel.com>
-References: <20260905200157.3164-1-michal.wajdeczko@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.25,264,1779174000"; d="scan'208";a="269030609"
+Received: from lkp-server01.sh.intel.com (HELO 73f3364bc37e) ([10.239.97.150])
+ by orviesa010.jf.intel.com with ESMTP; 05 Sep 2026 13:04:00 -0700
+Received: from kbuild by 73f3364bc37e with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1x2wcI-0000000013b-0MHi;
+ Sat, 05 Sep 2026 20:03:58 +0000
+Date: Sun, 06 Sep 2026 04:03:37 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 6ef3eb10aea4260f752c06489a5369c2b67848b0
+Message-ID: <202609060434.Fhg3K8YI-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,46 +64,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If a test does not specify subplatform details about the fake device
-it wants to create, our helper may select a sentinel of the subplatform
-descriptors list instead of the first available subplatform.
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 6ef3eb10aea4260f752c06489a5369c2b67848b0  drm/xe: Add fault-inject based VRAM page offline injection
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_pci.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+elapsed time: 2271m
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
-index a82cab7a2b86..8ab4270cf5d8 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci.c
-+++ b/drivers/gpu/drm/xe/tests/xe_pci.c
-@@ -364,13 +364,23 @@ int xe_pci_fake_device_init(struct xe_device *xe)
- 	if (!ent->device)
- 		return -ENODEV;
- 
-+	if (data->subplatform == XE_SUBPLATFORM_NONE) {
-+		subplatform_desc = NULL;
-+		goto done;
-+	}
-+
-+	if (data->subplatform == XE_SUBPLATFORM_UNINITIALIZED) {
-+		subplatform_desc = desc->subplatforms;
-+		goto done;
-+	}
-+
- 	for (subplatform_desc = desc->subplatforms;
- 	     subplatform_desc && subplatform_desc->subplatform;
- 	     subplatform_desc++)
- 		if (subplatform_desc->subplatform == data->subplatform)
- 			break;
- 
--	if (data->subplatform != XE_SUBPLATFORM_NONE && !subplatform_desc)
-+	if (!subplatform_desc || !subplatform_desc->subplatform)
- 		return -ENODEV;
- 
- done:
--- 
-2.47.1
+configs tested: 55
+configs skipped: 0
 
+The following configs have been built successfully.
+More configs may be tested in the coming days.
+
+tested configs:
+alpha         allnoconfig    gcc-16.1.0
+alpha        allyesconfig    gcc-16.1.0
+arc          allmodconfig    clang-24
+arc           allnoconfig    gcc-16.1.0
+arc          allyesconfig    clang-24
+arm           allnoconfig    gcc-16.1.0
+arm          allyesconfig    clang-24
+arm64        allmodconfig    clang-24
+arm64         allnoconfig    gcc-16.1.0
+csky         allmodconfig    gcc-16.1.0
+csky          allnoconfig    gcc-16.1.0
+hexagon      allmodconfig    gcc-16.1.0
+hexagon       allnoconfig    gcc-16.1.0
+i386         allmodconfig    clang-22
+i386          allnoconfig    gcc-16.1.0
+i386         allyesconfig    clang-22
+loongarch    allmodconfig    clang-24
+loongarch     allnoconfig    gcc-16.1.0
+m68k         allmodconfig    gcc-16.1.0
+m68k          allnoconfig    gcc-16.1.0
+m68k         allyesconfig    clang-24
+microblaze    allnoconfig    gcc-16.1.0
+microblaze   allyesconfig    gcc-16.1.0
+mips         allmodconfig    gcc-16.1.0
+mips          allnoconfig    gcc-16.1.0
+mips         allyesconfig    gcc-16.1.0
+nios2        allmodconfig    clang-20
+nios2         allnoconfig    clang-24
+openrisc     allmodconfig    clang-20
+openrisc      allnoconfig    clang-24
+parisc       allmodconfig    gcc-16.1.0
+parisc        allnoconfig    clang-24
+parisc       allyesconfig    clang-17
+powerpc      allmodconfig    gcc-16.1.0
+powerpc       allnoconfig    clang-24
+riscv        allmodconfig    clang-24
+riscv         allnoconfig    clang-24
+riscv        allyesconfig    clang-24
+s390         allmodconfig    clang-17
+s390          allnoconfig    clang-24
+s390         allyesconfig    gcc-16.1.0
+sh           allmodconfig    gcc-16.1.0
+sh            allnoconfig    clang-24
+sh           allyesconfig    clang-17
+sparc         allnoconfig    clang-24
+sparc64      allmodconfig    clang-20
+um           allmodconfig    clang-17
+um            allnoconfig    clang-24
+um           allyesconfig    gcc-16.1.0
+x86_64       allmodconfig    clang-22
+x86_64        allnoconfig    clang-24
+x86_64       allyesconfig    clang-22
+x86_64      rhel-9.4-rust    clang-22
+xtensa        allnoconfig    clang-24
+xtensa       allyesconfig    clang-20
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
