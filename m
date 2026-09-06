@@ -4,156 +4,157 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4C22C79F8C
-	for <intel-xe@archiver.kernel.org>; Sun,  6 Sep 2026 05:36:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23E46C79F8C
+	for <intel-xe@archiver.kernel.org>; Sun,  6 Sep 2026 05:56:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C31D10E149;
-	Sun,  6 Sep 2026 05:36:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98F6B10E16C;
+	Sun,  6 Sep 2026 05:56:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SGr+WR/z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dSsVBxGM";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E757610E149
- for <intel-xe@lists.freedesktop.org>; Sun,  6 Sep 2026 05:36:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58E6910E16C
+ for <intel-xe@lists.freedesktop.org>; Sun,  6 Sep 2026 05:56:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788672985; x=1820208985;
+ t=1788674185; x=1820210185;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=JIXP6C2h662c+YhgG/kzSBZME7BZwhw3uszH/dyTr80=;
- b=SGr+WR/zf7T0FFATvaBGSkZBTH26EesCm4gDgQolh1viHLkw6x8k3uWi
- TlnorU2YGb74uUJvKKk8bJ/wovy6HWyKPEZemCOLEWn7keIx3nw5mvu9b
- cR9TODX9LtlPmzQ5YIVQUHcFI/vjAr5YB7vRXWn53UZfd14u1RUBek8Jl
- 0Ll6w4hOfnVhMUjkBotU/FKzaOIeX5vaZG440QOHLrJ1RZFYjUVTImXx+
- B0eQGh1iPZeZZ0lSLdLvGwIQxphePlBRCZPwUpERaty8nvuFllAwSRLqi
- 2JP7WNOllH+o7QxI1riaxXzXA0oyvDhhGqWi5tF/M7cvh6Cpq9URWy5aM Q==;
-X-CSE-ConnectionGUID: 3F8GLvEXQf+BgvuCKkcB0Q==
-X-CSE-MsgGUID: Jmutq/LGReGvoaid3UQwwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11897"; a="100635017"
-X-IronPort-AV: E=Sophos;i="6.25,264,1779174000"; d="scan'208";a="100635017"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2026 22:36:24 -0700
-X-CSE-ConnectionGUID: Yg8xKVIrTqWUXikmsM9IKQ==
-X-CSE-MsgGUID: A1YVozbGTgOyzD17SagjUQ==
+ bh=dH5a38+F0gqYGuaJsx630PCTSoeqSUV/vftC/de2oXU=;
+ b=dSsVBxGM699V5uUDhKRtZUhoSse94rOUdZhn+Yxpa+LVUKouVaEOWl/4
+ q9DurN3HKsZkZ3zAdNKnmPC+ERJjSl1XvhBiGm00WQIEs9vUvlINLUAuP
+ 4ArwQwqHvzJQylKI8yrb1dQfNGyS3PslQYg8tU+95Il5oy2yBQgoBPXka
+ jXbYyyvV/Fh1NgrZ+mpfBaRmlV3V00DueaPE1iBT/G3QzroaF6pxC6evh
+ T99z2gdJAjnWfxtYGZ/TgLzIO9zZW7eI26vyOr5evgQFiMJe/ZM5s9ZgO
+ KPtsfh1aQx8sr1Xb9pBEoIsagc2hzJZYQ5ut/+4Y3b4WhCVAf4bhRCs36 Q==;
+X-CSE-ConnectionGUID: EAW40VmfRMarf0KvSZP/sg==
+X-CSE-MsgGUID: eyEBnrDlQPGJxvig7MtnQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11897"; a="89040457"
+X-IronPort-AV: E=Sophos;i="6.25,264,1779174000"; d="scan'208";a="89040457"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2026 22:56:24 -0700
+X-CSE-ConnectionGUID: 4OB+b2/iTXy1kcRBM9SzyA==
+X-CSE-MsgGUID: XXyKqKUjTmKAgdxmqym0sw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,264,1779174000"; d="scan'208";a="269096883"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2026 22:36:25 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,264,1779174000"; d="scan'208";a="300304594"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2026 22:56:24 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Sat, 5 Sep 2026 22:36:23 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.46; Sat, 5 Sep 2026 22:56:23 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Sat, 5 Sep 2026 22:36:23 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.70) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Sat, 5 Sep 2026 22:56:23 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.34) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Sat, 5 Sep 2026 22:36:23 -0700
+ 15.2.2562.46; Sat, 5 Sep 2026 22:56:23 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iQvhTKQQJOMkpurz9U0CeI5njbJEaQoluSDKC1y/UdC3EJNJTWdYe2D5EVpirGczos9GFEVNjvODpmprd8wl8wQG6/rWptsryyYLxTBswY1EBcjyaPdWhnCxF/tjZ7mUagB3YsKtTQfexKus8XI+NzA2e7Lqh/T1G4ov7lLosOqo7rariENZ+mIbBMvEk/uJMIZfu+i04NcKR4ZAIJEWpy1SNOnzgb4lp95PKq0GvMvsjqb1f7pDDM+N/pOcgceNMvgRugpqgQaCz6pVrIuGegmzjDSKawt5H9QsiHvSov4YODNtBEXyj4zjAgq0+0Y7AAFb5awlbB2y3HF9bgLvpA==
+ b=ugahM3lv5S9/ek5OAmg7MJynmVvKa+di7dpTJBwy6WXARPJc/WE2kwKL3IGEoHCwbOFCBgCZk01/zXSn+CBjB14ckNC8rhexklxGVZqO+z9t6yeGEs/IEOlR3zAkUBiRDk+ZCVLJ7xjeQrMdadmaKStXNaJ1Hifyg9bkCheiBBqUMldcw7RYCH5LyED1hkRRrEzv6vR4lNpm8k0LI6yJVVCF+U5qybMJNAtpVXvkcCPvWTcfWcz1tp5Wge/jQqWLni/QgioG72CgtHhHS1jbShOT2QwMgvQniH1w5XkPcycaNU7DNMGzoxexOaXvQKU1OWfvANdD/xFpIPgdevB92A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TRVNOnarO3qG0125K6/qUyE1sbJfAfftwErCqlZWTc0=;
- b=qt9/if7T5zLfeQG4LwpSU08530E+OAaRF7e1s4HkWhpfUbdm+ByCEykZuqqBfafQnN0pCMY55HYYwtK2qlZxhAWZxxQtcuWj2ZhDFcCgOYGu4qwEZYriUZNbEaYUXcdzqdzS0GXTRWiXDuzK4I9cfhD36zsDg1umu79YUFdyFJB/0CjwZ8XsAu5wiotwezWzaCR7Cm7EwpEvhoY6uQFcrHBg8esjezEVQNGa4p13S2ToLxFarjufLknnWzFieLbfLiMvvueEDnCr3LyT3IWzRIEVAjmQB+E7bp2TR7sP7RLH64btpVy11SgpcDug1PoagttCgYyFgA2Vnp2exoj0tg==
+ bh=ppVSg2jhSgkSlHk2oI1bA2xranoXdJEQUKU/2HR+fto=;
+ b=mIlwr6PUgXzl7T+o32ze2zN6LLNYY07M4thkHYLvzB0CLVLwcpbiV5RwD2K1fMe5Sg+Ts+iLaMSQJfYtxHhAMBQGOg4pJ5P0fCjhupV3zW3dstGf+1qsfDc5PLneaNBXXNNrHjIMh0cbyHCm+rX8A2z2XJdQzCY4QRwRFwHuaBnZRA8FnCgZQBiXUs22fgorrhe3KWIOagt915EQ0S6Vhk6GK9C6UxKvE2FFP8ULjNr/3MnYScOgfI+jWHwrlV8LcjBK9p4olK5H03GK43wW4JH2wz6livaiKlhsQpgQxoR9oI/HCGTIZ46RDnrAgaMQK9fxRt1yAfb2CKK5ZdwOqQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from LV0PR11MB9792.namprd11.prod.outlook.com (2603:10b6:408:385::5)
- by DS0PPFB53330162.namprd11.prod.outlook.com (2603:10b6:f:fc02::50b)
+ by SA2PR11MB4986.namprd11.prod.outlook.com (2603:10b6:806:114::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.382.15; Sun, 6 Sep
- 2026 05:36:20 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.13; Sun, 6 Sep
+ 2026 05:56:16 +0000
 Received: from LV0PR11MB9792.namprd11.prod.outlook.com
  ([fe80::1b1f:d9a8:ce76:e9d8]) by LV0PR11MB9792.namprd11.prod.outlook.com
  ([fe80::1b1f:d9a8:ce76:e9d8%5]) with mapi id 15.21.0382.012; Sun, 6 Sep 2026
- 05:36:20 +0000
-Message-ID: <5e0bdf20-add6-4405-9779-8f1a283d844a@intel.com>
-Date: Sun, 6 Sep 2026 11:06:13 +0530
+ 05:56:14 +0000
+Message-ID: <3b128dea-409c-4f2d-8109-58ee3c87898f@intel.com>
+Date: Sun, 6 Sep 2026 11:26:07 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 03/11] drm/xe/cper: Add CPER structures and trace event
+Subject: Re: [PATCH v2 01/11] drm/xe/xe_ras: Add support to retrieve info
+ queue data for CRI
 To: <sashiko-reviews@lists.linux.dev>
 CC: <intel-xe@lists.freedesktop.org>
 References: <20260825175916.1103841-13-badal.nilawar@intel.com>
- <20260825175916.1103841-16-badal.nilawar@intel.com>
- <20260825175107.93D371F000E9@smtp.kernel.org>
+ <20260825175916.1103841-14-badal.nilawar@intel.com>
+ <20260825175317.6C7271F000E9@smtp.kernel.org>
 Content-Language: en-US
 From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <20260825175107.93D371F000E9@smtp.kernel.org>
+In-Reply-To: <20260825175317.6C7271F000E9@smtp.kernel.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0228.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1b4::7) To LV0PR11MB9792.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA5PR01CA0086.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1ad::12) To LV0PR11MB9792.namprd11.prod.outlook.com
  (2603:10b6:408:385::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV0PR11MB9792:EE_|DS0PPFB53330162:EE_
-X-MS-Office365-Filtering-Correlation-Id: c089ab89-10a2-45a7-9ef2-08df0bd8c78c
+X-MS-TrafficTypeDiagnostic: LV0PR11MB9792:EE_|SA2PR11MB4986:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4bf5b6b8-5179-4cf5-6d65-08df0bdb8f50
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|23010399003|376014|10067099003|3023799007|22082099003|18002099003|56012099006|4143699003|11063799006;
-X-Microsoft-Antispam-Message-Info: yyP8PTJl372x9GGuMFqUypTfH5AcxErAt8BvXpHvMp0vlUMzGph0soa43nvm1J24pNYsBoJtF6w1uaLQq1jb199/Ud5NHbT91AMArkNJg9tw/0zu6V+qaIUulgPjLsKW3XtnxNHDzLgWLqMBfdcwybi5osqiDOP1dvcSgYRsEfUvgNUKGz6PNUS3CfVGGR7aSF5oib4zLphC2Lk1v3i7O79geyxt/fP4BmFc+NT7VRQM1Jay6odKk7FFiE5+svLrf41Yfeiq0/ESkExTgoSj9FMr72aheciSya3Uj4LQu9K++dPziJYrfLqQPfW/FQ4Yf8DMcPkfkZn5D1emHzw06sr6r7kiHEcV6l3ftiNkHrGX7nKgU8AzkD0dB3r6S9/GKhL6DpFyuf6AH7BWmsUnsniFm1QbZacTeRIEib5raA2/G5u8Nbe7YOssSEMzNbBI2GGTVr2rFfTvbRkAjqxctbir3Y1Q16K+EAWjuaOMXXnF/pyGIhcbyQ5VtyKLUjK6Tty+98ITikMcrRmJNB+CbnRJBX+DlgqpElFKiEq5NkzaO4u55Pw4wVQ5360hJmkCQr5zJneL8e4nFhU0KmAo250fI5xpNTID/aXJM6Fw3OmEHbhR/5zr5DTH9pZPsyAf4bUfCqp/gwcRLKapwXzULhjciauGJsUT3i7iTMY/CoI=
+ ARA:13230040|366016|23010399003|376014|1800799024|18096099006|4143699003|20046099003|10067099003|56012099006|5023799004|11063799006|3023799007|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: z5CW6GM3W02KcQY9LmitrudL8HlxScIK5FJRuVG1QnEzk/8Y/ZlJkf3oJVJUo2MIiD1ZMprKQYlKZAiOzWwqxbV8yi+Ota9ITb3kiaAyiL4XjN0kTdwVHg8q6teCfYZEAZvGl+RiT5DW0j6eQYM8JWyOyaHNNWAduh7SW7rTJKRMq5Zi7XxkdPTk/w2bvxn/Z+a0+u3fEADzNc0FFPWFDlvO+1ejlfz66Wg3qxKnysQ/mRkjMulnR/9V52aVH1Ro+aKAMIWubYvr0J58zIychU8zA0FhUDt0eKMwJ8vVPCQ9eKj6awb0n+OxvvOT+hzy5hEMXw/RqZkSAydmBnzY2wOHbi10oWonKNVd8NWv5l3PO2fSn8rTdpfgAwE/qj39FT6hFBz/xF47EWCWg3k0A6HRzWEavXgXpJ2kyC12bgzrtl8wWDcve8ijk0q6VJio3w+qzb4sRWdPEJAA4Xv/DGHit9befjgEVkgOlowwxb9EfiRh03rth9zbol/Zr427wQ3plsGBWr87Havqkz/f7WIlD6fnHb7yVeMgL42iCth03KZ1DVdVLyd+97WVVjhIZs+zs+X19PlRlm2guD5NeVvmK08oCePw7bckGTO4yxRQ1xoEzS0VRE9r9SF2wIvzjV4b2j00d/Hlhz0QjZmTSCVvFKlbvLfY7IVEixRhhd0=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:LV0PR11MB9792.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(10067099003)(3023799007)(22082099003)(18002099003)(56012099006)(4143699003)(11063799006);
+ SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(18096099006)(4143699003)(20046099003)(10067099003)(56012099006)(5023799004)(11063799006)(3023799007)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ajUvSVpXY2hJL1BKOGtVRW5Wb3hSZFpqTXBYSFhPdWhuT2NhUmhOSGdwMTBR?=
- =?utf-8?B?MVBYbnBmRW93dXhCT3FuenIrVUNlSnp2Z2JMcmhwZzd3NjJlOE5pbFBWczVF?=
- =?utf-8?B?RmE1ZGVHdnE5anRUZU5JV0pudllIdzRENm9wSlMyckZqa2hIOTlUKy9yek1Y?=
- =?utf-8?B?YjBNLzQwamthMkJGaFRkYTFDdm5uT0x5QUI4Slk5NVUzRGp5RmpYTE13QU9T?=
- =?utf-8?B?N3k2MVMvMi9EcE8yZDdCMVhwZWw3SXVMb0htWVROVk41cStTLzhFWi9MUVNG?=
- =?utf-8?B?cFd2amRmU0J0MlVJWDY2b0lxV0lvZzdMTTgzS1dtOThzVFZMaHoxNHI0THBt?=
- =?utf-8?B?bVVTS2FNMEx1NVFsamdOYkFRM2xpU0ZYQnYxVHQzakZyRnJ0RVJQby9LeDdY?=
- =?utf-8?B?V00xNkd1U0lDaExSVFd4bnhtVDZ0aHd2RDJtSUdJMEt3QnpMdFBVLyt6TEpT?=
- =?utf-8?B?dHFZRGJVNXRnUWg1aER0Yi9WeHBWamp4dGdIcHdZRlFYeTcvN3JjT1RQWUJX?=
- =?utf-8?B?MFVOQnNrb1FFamZ6Wi9YOC9iMlVPMGRLRmlxcXA2b29HU09HQWllL2pSN0ZG?=
- =?utf-8?B?K3lCdkZCSHNDV01SM1Q2UlRmTUtiYTJoRjhmaVBmc1Q4TDN6T2pBc1ZuZXpF?=
- =?utf-8?B?N1dCaUt2ZnUreFdSR3luelViQXMyUnh2WUtaVVBJczBxYUF1c3lYby9iaHdH?=
- =?utf-8?B?eUx3VHZHMHZ5aG9OVkN0c253Wk1VWk5ZM0QwN1hkNHZXZlgwYU9SWXZ3enNP?=
- =?utf-8?B?Q1ZES29Hbnd3d1dxNUszdkR4YndrT1pDMEMvZWQ2YVB0cG5CaTdwWW1rRVc1?=
- =?utf-8?B?RmpsVGEzUU1aelYzVWpPdDdNQmxTZzR4Z25YRG5RZDAvOEhCMFY0cHRZLyt4?=
- =?utf-8?B?VCsrdEtQVFpZaUgvRHN1SHFtTkpRV3NVQWNwUlIzWDVmK1Vmams5dVJkMzIv?=
- =?utf-8?B?RndUR0gwMWlxTkdaTmhOelNaRThyWFRDcDdYNkk4SWpPcGNvdzhvVGplYnFM?=
- =?utf-8?B?djlpQWdEQVZLdUcrUXFWTVEzbjREcy9TOThPcmhlNnIxbTBjRmFlT0pURUVQ?=
- =?utf-8?B?Tm9sbEN1Rzl0RFRYRERUVXorV1B6MDMvMDNwZ2xmS0IraEI2TGJPQ29PWFk3?=
- =?utf-8?B?V0QzR1k4NHNTT3d1aWhwc2Vwa25SVGlDNGRMTzNrcUs5MmxwTzNoWXZWYVpw?=
- =?utf-8?B?VTBYS0ZFZW0xejdJa3Z3bVY2L08zd3p1dFdpMlIwWW9qVEVJN0plZWw1b0JQ?=
- =?utf-8?B?MnZaczFiaGlKWnUwdXlzdHlJSitnMHZpaVJVRzNrQjdxaTdvOHNLSHkxY2ky?=
- =?utf-8?B?TnI4M0xlY1R4amZQVU9QWUs4UW82MWxXRkpxMkJLekp6VW5kdVpGblZsT0V0?=
- =?utf-8?B?QkhBNEN4NEJQQVhCM2lnOWo3ODAxYXRWOWJ5ODVLNHhRM2U3V2xmOFU3LzZx?=
- =?utf-8?B?eEZIeW1EbXUzajNBVWJYbGVodmZuMkxWaGdIV2c2c2FMSUxsNTBkQysySEtO?=
- =?utf-8?B?N0lqQWQzb1c4eEk4dTZJUDd5TU4vdkFlL3lERjJiVHRvOVA4dDlJWS9WMTht?=
- =?utf-8?B?TmJNNVQyc0RBakVESGhZKytDMk1Ib2ZYa1lQeXJiNEdCNC81MmJ0dVNXT21r?=
- =?utf-8?B?L2p0RDRhc2dPdk42VGQ1THEySkpxemxJTzJXcmNkVUVORWNueTBBamVmRHdQ?=
- =?utf-8?B?VTFROElOdFoxazFrUTgyNjFWUmZXb3c0YVZmbEVLOCtmRURqM0J0ckY5NVlF?=
- =?utf-8?B?YVduUVBxZVhtNnIvelJINTV3N0F1anp0QXZ2U0tpWWlBV0dEaTlUa1FLS01P?=
- =?utf-8?B?Q3hLeWU5L3l4dzdRRk9BZ0M4UTQrR3NuakVWQnFmbGl2UUNxTFhYN1l6U1E3?=
- =?utf-8?B?QVdBRGR6eUptQmdIbXNHZzUyS1pPbGJIeGFCNGtUT25vMXFpTm9SY2dQSGdZ?=
- =?utf-8?B?ZTJEc3BOdVVqaFJVVzYrZUZHV2JRbExSRUkxakM0eFN1bHp4UWtiOFZNQTdM?=
- =?utf-8?B?Tkk5RmpZYitGaG52aEV1OGlRSnBiNTkwbTBId29NU3FZTnRYSnRSMmpsTFpz?=
- =?utf-8?B?QVl5OGFpa1Y3cnZhMjg1ZVlIV3dXSEhCVFpRNUh0QngwbUw0U1V2bUZ2bVdF?=
- =?utf-8?B?Z2VKU01aU0VyRGhhbjFrRUdrSFJkM0YwN0hrc3NybW5MajQ3bnVMSCtFc0VI?=
- =?utf-8?B?SjRWbWZjQ0l2QkljQ2RFOTRkTDdHUjdjQkVjT1E3YlBDZE1TeHRhYmw3QThS?=
- =?utf-8?B?Z2NqdlduY1JQdmxibEpsbHE3eVZPQmxyOStPVFNUS2dxR2FqdGhyWWJucjVr?=
- =?utf-8?B?d2hyTHpwUHpoRjk4Z1BrakNWWGEwN1BZcC91NWFvMG5pb3ZaaUlvdz09?=
-X-Exchange-RoutingPolicyChecked: 4u5CELhAfuxW2FGqoc3ovNeq5aGuHkfEt4rWr8Q2+HpYrpdg12dqYjq40AkVmvwpRQa8A/HzZhAMcrQ62m/eKILCqUU0PyFh3UjNRbXVsT8sgxyh8TciVcJQRfbPJee2CXPuR414ZFQsC6p5gbJwcOlpl0aJeMQbssGQKhj2px/DaplRLJq1IY0gMgjHpZO/JaMpB0Rw8SfocXjmdeFsRBcEM5x6FFNu4LRsAeGjRFfefgJGVy4sXAG/mSwSY6feZzHZ7FAPd8K58bn4oSMm3yOgOaQi+PMkQA4kFiq2Yc91wm9KElSMIbsq5k5MybsZxJmYl85eEYki6skuUHTdKw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: c089ab89-10a2-45a7-9ef2-08df0bd8c78c
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bzRHbXpBL0FkeXR5Q3crd211WkpTRXQrc0Zvc05DWldoc2JPTGprZTc4TGd0?=
+ =?utf-8?B?UnpSMXJuZ1krdnZCUVV5SkRUQ0VhTTFFeENXRGtrYTY3MG5uMWlBaUM0MUZh?=
+ =?utf-8?B?T3dBZ2tUYlFXVTIxOHkzRXRaMFoxYmdjTUZ5L3dUb3M0M1hVVmJGU1lJS0lu?=
+ =?utf-8?B?UHpkVmVzQ0lmWHIxajh6UjN2MVhqTVFQRmVOUEtZT1I2REY3QlNrUiticTFi?=
+ =?utf-8?B?d0lUSU51OE9GcGR4Q0tLZkJtZ3Z2MkMvekV3bkNaaVdHMGNzTnRvS0dsQVpZ?=
+ =?utf-8?B?N2s0bmYwMXMxeEVuREpuWFMyK0hNL1AxVEo2MHRGeXVDSlRUQzVidG5SV1BF?=
+ =?utf-8?B?MjRzRFRYWWc1Z0Ryb2hRTm9XVnpVaHRmR0dVaHFXY2JYVEZ3bUVGdytOaGlE?=
+ =?utf-8?B?cFMxN0ZMOTJ2bEpJT0IvRUZHWFJkNkUvRE1QL0FSK2l6ZUwva0R3RFEwUnR2?=
+ =?utf-8?B?S1dDbVloUEcxNERvSlNzK2pDRmJPcWRDRVFtdTVYNHpWQXVFdGdVVXhhM1hW?=
+ =?utf-8?B?Qm43UTY3UmM1Sy9BWThlUURwc3k4RjRaemozMWNzVXFudm43M0IyL1NZZHRZ?=
+ =?utf-8?B?WUdhYjNuN1RrY2RzQkY4QTJUcFRZNXl4OVRaUEpQWFBlN1lNcFNyUllKUSs0?=
+ =?utf-8?B?TG43YUtZSGtiV2E4SEZ0MVQzQms0M3ZNQnFmRHVOZGJ5TkZQUDRZTVlBVlBs?=
+ =?utf-8?B?M3JyVkhVK1V3OUdTVU14bFdNVHRUSktDYnlzejRoenNlQ3VWWi9nQnlzOGt6?=
+ =?utf-8?B?UWZiV3JEZmM5S2c1QlAvQzZOUEhlWUdvMGZUKzk3TFJsMjV2UmFzYWZ2a0NR?=
+ =?utf-8?B?V3UxQ3hEbUdyeG8vUTl1Q1A3VXlMSGlMWktZVzZTS1dlNFFQOXc2bzFuY2FB?=
+ =?utf-8?B?Q0s3c3NCa0FIUzROVWY1UzZCblBGZ3BHTXowblRoTXZzSUFOSmxPWGJhL1Vl?=
+ =?utf-8?B?bnJHZFl6dnlSRkZ0aFlpWDNVeHJ6aEl2Ky9lME5iQkRsZFFkRkVuSTY1ZTho?=
+ =?utf-8?B?djRkNGxaMXNtdHZmR1hkV3FtYVdFUnRvTEhqQWc1RHBISWd3UW5GQjVYSUpI?=
+ =?utf-8?B?NWFjbXJ4K0RXVVlxMGJlRWdDNmxSQjhtcVQrK2NIMjl4eTVDcFN4K1FNY1E3?=
+ =?utf-8?B?M1o3NG43bkUxZDAvSDlGL3U3TjdLalZpQzR6WWpaNDR3WTkxelY4ZWlCVzlv?=
+ =?utf-8?B?M1IzTjNucWNSbGZKT1pOMWNqaDZiQW0zdmdqeTlRRjFLb2NvY0NpOWw3NC9j?=
+ =?utf-8?B?QzVQK3ErcmRnZEkwaWRYLzJ0STRvK283SEp2Z29ubGVDdGk1N0NYTVdlQUFw?=
+ =?utf-8?B?MHVZSU9Rc09DajNkKzVHd3MvMTZ5c09ueEgwNkhubWVBclF5WUphR0I1bWJY?=
+ =?utf-8?B?RVJ5VTRzYlhBZVNJV211VGF3TldLVXJ3M2I2OGlZVi90d2ZiY1NXRm05N09F?=
+ =?utf-8?B?S2pXSjkwVXRITk1hd2tYazdnZ203eTMxRHFoNVhXeG51eGNhTzZLVFVlWmly?=
+ =?utf-8?B?UXZwa3ArcS94bzA2amxUbWZQa1RZT05CWFNLb3dSaCtQUlgyK043OWt2dWFW?=
+ =?utf-8?B?aWlBUkdEb2ZBbGV1MGtvY2w2Q1NDVERIZnh6K0xjR1ZkYlBQbmg4ZTJOMG81?=
+ =?utf-8?B?cnVVMGMrRzZtTXlTdytMVm9VMVQwWDVTWEVJcFVSL21RRmZTOTlrME9SMkIw?=
+ =?utf-8?B?UVZOWG1LTVVERW81QldTVjlWVEhmVkFMTDlmQ0Fkc2gzSmpFeko2bVh0dEdo?=
+ =?utf-8?B?YWZyZnFaNG1FN1o0Zk43UDBTRk8wejNrKytzMmoyNHk5bjJadE9MNlJ2ejlu?=
+ =?utf-8?B?S3lFMk1EQkplMExjbFZlaWhIT2Y2KzRLNG43blhyL2JlN0o2dGJud2QxeUdN?=
+ =?utf-8?B?MkRHVjNwK0NwQ3Y2dUJEVkdGN1R3M3ZuRjcxMWZOYzNMcXc3VGZkQWZnSUNv?=
+ =?utf-8?B?Ym5MQ3BZUW4zSnZEM3JJSG51SmxRclVTdWoyOWxmUTBRdDVWYzBuZldqVGd1?=
+ =?utf-8?B?S0ZiSTE3c2lmWi93UzQzdHBoQlc0UmZqUWdBcmNDUlJRcmpCVWc0Rjl1QVFQ?=
+ =?utf-8?B?RzlLNUpNNkFkSUhYY1hUbCthNHN1R3JNbmlNVU5VNU12aTVJdzU1K1NuVDhP?=
+ =?utf-8?B?cGQvMGRMTndjWVpvYS8yZTJaWXRpdmo1bnpRMC9BTDNxMnJlNnpMMjdsckVp?=
+ =?utf-8?B?a0JFNzJscEt1NTFsLzRuVmEyQWMyUVVQUUVSaUppK2YxdVphaGx4YXNhYno4?=
+ =?utf-8?B?bU1JZVVuVFJTd01KOTVvbXlLRFZMbjNHK1dFT2p4NkN6Sjg3S3V6VEVoeXlG?=
+ =?utf-8?B?dVZkNm1iUWYzbCtWZ1k5RVNWa2lIdlRuSzF1NXM4UzNpajNuMDRqUT09?=
+X-Exchange-RoutingPolicyChecked: gzhAuB6Cqguxqx4PdiAO5XR5lBaybNl4076gXbQL987diyVlMAOFnEWlBoTPdKPB42AF6NTf2fRRu8lCqJNt/FDcXeNNU6C+N8XMSfdguhuD7T6sHNdFEbuLylGa37WMBXi2Vo9EDOkvcnWmCLJVfMAxxLvuhqfDdI+3cAwAnKqiKUAmQYal3Vuswq19Km8KtRUKsnqaJopVaQhZRgGRTxB2lbzolsh9GNt2AuRGON3zq3bYeQ4/vwZk2YVU8ul0E8caRUBJY/X8ZRVuan9mP6hJdPaC0To5OCWTyFKpgFGbRGsagLPoiNA8qHYG1Qz3WWmNogQwkGHbmzoN3pQILw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4bf5b6b8-5179-4cf5-6d65-08df0bdb8f50
 X-MS-Exchange-CrossTenant-AuthSource: LV0PR11MB9792.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2026 05:36:19.9398 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2026 05:56:14.0587 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nODcHilEiYdZ30P/3f2tfOM4GwKU+/jA4y3GVgxu7aEOjzp7Ht2ttgFpB5X+fYt6a5iUM0I37xjnetWOlzIVuQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PPFB53330162
+X-MS-Exchange-CrossTenant-UserPrincipalName: yf4z9qE1ISLpU0d/3CNjypHYUaHJfsjthQJUlISGiUpIUha5RNUHaQk1YBW7a4a2I3hfQYPgXZOJRi7x4JDBfg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4986
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -170,111 +171,105 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 25-08-2026 23:21, sashiko-bot@kernel.org wrote:
+On 25-08-2026 23:23, sashiko-bot@kernel.org wrote:
 > Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
-> - [Medium] CPER structures use native integer types and C bitfields for a standardized external binary format, causing ABI corruption on non-little-endian architectures.
-> - [Medium] Tracepoint uses `%pU` to print `guid_t` fields, incorrectly formatting them as big-endian.
+> - [Medium] Unportable use of C bitfields inside a packed structure for a firmware message interface.
+> - [Low] The patch introduces a static function `get_info_queue_data` without any callers, causing a `-Wunused-function` compiler warning that breaks the build.
 > --
 >
-> commit ad510a6c4b7008ac7d33a168936259e5f8400da7
+> commit 82a6804e91047f9e3f922cd878001d1bc3e9d8ed
 > Author: Badal Nilawar <badal.nilawar@intel.com>
 >
-> drm/xe/cper: Add CPER structures and trace event
+> drm/xe/xe_ras: Add support to retrieve info queue data for CRI
 >
-> Define packed data structures and Intel-specific GUID macros needed
-> to build Intel GPU CPER (Common Platform Error Record) non-standard
-> records.
+> This commit adds support to retrieve info queue data. It introduces
+> various structures for the info queue data request and response, and adds
+> a function to send the command to the system controller.
 >
->> diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_cper_types.h
->> new file mode 100644
->> index 0000000000000..82167ea4eb161
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_cper_types.h
+>> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+>> index d25d25f775310..6830872354825 100644
+>> --- a/drivers/gpu/drm/xe/xe_ras.c
+>> +++ b/drivers/gpu/drm/xe/xe_ras.c
 > [ ... ]
->> +struct xe_cper_sec_intel_err_hdr {
->> +	/** @error_class: Error classification (type, component, location, cause) */
->> +	union {
->> +		struct {
->> +			/** @error_class.error_type: RAS error severity */
->> +			u8  error_type;
->> +			/** @error_class.error_component: IP block that raised the error */
->> +			u8  error_component;
->> +			/** @error_class.tile: Tile number */
->> +			u8  tile;
->> +			/** @error_class.instance: Instance within the tile */
->> +			u32 instance;
->> +			/** @error_class.cause: Error cause code */
->> +			u32 cause;
->> +			/** @error_class.reserved: Reserved, must be zero */
->> +			u8  reserved;
->> +		} error_class;
->> +		/** @class: Raw byte view of the error class */
->> +		u8 class[12];
->> +	};
->> +	/** @first_timestamp: Timestamp of the first occurrence of this error class */
->> +	u64 first_timestamp;
-> [Severity: Medium]
-> Can this native u64 type break the CPER binary layout on big-endian
-> architectures?
-This timestamp is reported by firmware, represents ticks since boot.
+>> @@ -661,6 +661,40 @@ int xe_ras_clear_counter(struct xe_device *xe, u8 severity, u8 component)
+>>   	return 0;
+>>   }
+>>   
+>> +static int get_info_queue_data(struct xe_device *xe,
+>> +			       const struct xe_ras_get_info_queue_data_request *req,
+>> +			       struct xe_ras_get_info_queue_data_response *out)
+> [Severity: Low]
+> Does this function have any callers in this patch?
 >
-> The CPER standard dictates a strict binary layout and requires multi-byte fields
-> to be little-endian. Using architecture-dependent native integer types like u64
-> causes the struct's binary representation to vary based on host endianness,
-> which can produce corrupted CPER records on big-endian architectures.
+> Adding a static function without using it in the same patch will cause a
+> -Wunused-function compiler warning, which breaks the build when compiling
+> with -Werror. To maintain git bisect functionality, every intermediate patch
+> should compile independently.
 >
-> Should this use explicitly sized and endian-specific types like __le64?
+> Could get_info_queue_data() be introduced in the patch that first uses it,
+> or temporarily marked with __maybe_unused?
+This will be fixed in next rev.
 >
->> +	/** @sig_id: Aggregated error class SIG ID; set to U32_MAX if unknown */
->> +	u32 sig_id;
->> +	/** @error_count: Number of times this error has been observed */
->> +	u32 error_count;
->> +	/** @valid_bits: Bitmask indicating which header fields are populated */
->> +	union {
->> +		struct {
->> +			/** @valid_bits.location: @error_class field is valid */
->> +			u16 location		: 1;
-> [Severity: Medium]
-> Will this compiler-dependent bitfield cause ABI corruption?
->
-> Since bitfield layout is compiler- and architecture-dependent, it breaks the
-> exact bit-level binary layout required for the CPER standard.
->
-> Should this be handled with standard bitwise operations instead?
-This will be taken care in next rev
->
+>> +{
+>> +	struct xe_ras_get_info_queue_data_response response = {0};
+>> +	struct xe_sysctrl_mailbox_command command = {0};
+>> +	size_t rlen;
+>> +	int ret;
 > [ ... ]
->> diff --git a/drivers/gpu/drm/xe/xe_trace_cper.h b/drivers/gpu/drm/xe/xe_trace_cper.h
->> new file mode 100644
->> index 0000000000000..6d2dbf5048884
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_trace_cper.h
+>> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+>> index 99b2466e2062c..d87db9f5174a2 100644
+>> --- a/drivers/gpu/drm/xe/xe_ras_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
 > [ ... ]
->> +	TP_printk("dev=%s severity=%d platform_id=%pU fru_id=%pU "
+>> @@ -95,6 +99,109 @@ struct xe_ras_threshold_crossed {
+>>   	struct xe_ras_error_class counters[XE_RAS_NUM_COUNTERS];
+>>   } __packed;
+>>   
+>> +/**
+>> + * struct xe_ras_info_queue_header - Metadata for large info queue data transfers
+>> + *
+>> + * Provides chunk metadata for commands that support extended info queue
+>> + * functionality. Used when the total data exceeds a single mailbox response.
+>> + */
+>> +struct xe_ras_info_queue_header {
+>> +	/** @total_size: Total size of the complete info queue data in bytes */
+>> +	u32 total_size;
+>> +	/** @chunk_offset: Offset of this chunk within the total data in bytes */
+>> +	u32 chunk_offset;
+>> +	/** @chunk_size: Size of the data in this chunk in bytes */
+>> +	u32 chunk_size;
+>> +	/** @sequence_number: Sequence number for this chunk, starts at 0 */
+>> +	u32 sequence_number;
+>> +	/** @flags: Info queue control flags (RAS_INFO_QUEUE_FLAG_*) */
+>> +	u32 flags:8;
+>> +	/** @compression_type: Compression algorithm used; 0 = none */
+>> +	u32 compression_type:4;
+>> +	/** @num_headers: Number of detailed counter headers at start of queue_data */
+>> +	u32 num_headers:5;
+>> +	/** @reserved: Reserved for future use */
+>> +	u32 reserved:15;
 > [Severity: Medium]
-> Does this tracepoint format guid_t fields incorrectly?
->
-> The printk format specifier %pU defaults to %pUb, which formats UUIDs in
-> big-endian byte order (RFC 4122). However, guid_t represents little-endian
-> UUIDs.
->
-> Using %pU instead of %pUl causes the first three components of the GUID to be
-> incorrectly byte-swapped in the trace output, presenting a corrupted GUID to
-> userspace consumers.
+> Are these C bitfields safe to use for a firmware message interface?
 
-This is expected, followed the non_standard_event from 
-include/ras/ras_event.h
+Yes, safe with xe kmd, which runs on x86 architectures.
 
 Thanks,
 Badal
 
 >
->> +		"intel_err_hdr_raw=%s cper_len=%u cper_raw=%s",
->> +		__get_str(dev), __entry->sev,
->> +		__entry->platform_id, __entry->fru_id,
->> +		__print_hex(__entry->ihdr_raw,
->> +		    sizeof(struct xe_cper_sec_intel_err_hdr)),
->> +		__entry->cper_len,
->> +		__print_hex(__get_dynamic_array(cper),
->> +		    __entry->cper_len))
->> +);
+> When the driver communicates with the firmware on a big-endian architecture
+> or using a compiler with different bitfield ordering rules, the bitfields
+> in xe_ras_info_queue_header will map to the wrong bits in the underlying
+> 32-bit word.
+>
+> Using C bitfields inside a __packed struct for a hardware/firmware ABI is
+> generally avoided because their memory layout is compiler-dependent and
+> endian-dependent. Would it be safer to use fixed-width types like u32
+> along with FIELD_GET() and FIELD_PREP() macros?
+>
+>> +	/** @checksum: CRC32 checksum of this chunk data */
+>> +	u32 checksum;
+>> +} __packed;
+>> +
+> [ ... ]
+>
