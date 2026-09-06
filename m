@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15DE7C79F8C
-	for <intel-xe@archiver.kernel.org>; Sun,  6 Sep 2026 17:09:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C925FC79F8C
+	for <intel-xe@archiver.kernel.org>; Sun,  6 Sep 2026 17:09:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BABEE10E108;
-	Sun,  6 Sep 2026 17:09:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6932C10E1F2;
+	Sun,  6 Sep 2026 17:09:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dh3YlYSC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l+vaOxfH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FA6110E108
- for <intel-xe@lists.freedesktop.org>; Sun,  6 Sep 2026 17:09:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1B4C10E1F2
+ for <intel-xe@lists.freedesktop.org>; Sun,  6 Sep 2026 17:09:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788714558; x=1820250558;
+ t=1788714562; x=1820250562;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ARPwQ+pBf4ttVOtMRoXWWCf4K1H628D1NfYx6/V8QQU=;
- b=dh3YlYSC+zrl+T5/PaThHiVvsat02fRKghQp0d5bhktyFbhoqBF6X0m4
- BOZ+hojk/2YxuEQ3vXJg0mbN0/iSeeCVX5pnBaxYw0dSj02+Yh8SNLo2N
- X/Qu+NMNUcXcfm1VNqVk4cCVItDSxCruyObuv/NTp773/P1HPmEh+w84a
- QAW5hXvz2aBBmqAx5IOc9U83+vjcRX49ewLGfBxjY/rFzeVHGAebkDYbN
- G8hUS74yGgJcKY2DopB5rCpRPPZudcLCo3s7YdH7pIEs02Vnq6QPy3R6p
- Z3ohBIMaZdoZ6YfX7jPaizJyzO622dUykqM16jOdeZaEPsEoQ18gho8Q4 w==;
-X-CSE-ConnectionGUID: X9sya4cGQ8+6a6Ak4NZO0Q==
-X-CSE-MsgGUID: XSqehqRjRP+Efrn4TNXVwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11898"; a="88071441"
-X-IronPort-AV: E=Sophos;i="6.25,265,1779174000"; d="scan'208";a="88071441"
+ bh=CD7hXRb5xhC+v9bm/FbgXMYlFXDagB014Yq87aF7E0s=;
+ b=l+vaOxfHNQNynJo5+JBqPEHTQHXGtHol9vkb+8SfBdp8PscXwi8ENk7I
+ iERWgW2SfUKP2yTf43qKP56TSjruGSoQ4n7yDNi+hxMTk6cNm5KhvwXQk
+ lqS0SkEJQrCpvl7lCv9I31C6i+XKBr1b4gbeNELyytfL+UwYEgUJuxSHd
+ mATz336X9nSKTzg1mzZN/bLPqZwapmR2F0mJoH695LR8LFDgN0wlHJIiK
+ OiEjsb2OHSoEi4hBPIvdGeWnyhxlq2lWAsXGRYo4M5+IQgNVexi8mEBxe
+ mQQMeDtLEhV6xs3Hdh6dtS+GwRO/sdzfQ8vsj5eq/HbgxJD8BAyNR+S9f g==;
+X-CSE-ConnectionGUID: ROItXM5PQUanwv+bPbVYGA==
+X-CSE-MsgGUID: 3+B84//fQf+hAaFdq5VVFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11898"; a="88071442"
+X-IronPort-AV: E=Sophos;i="6.25,265,1779174000"; d="scan'208";a="88071442"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2026 10:09:18 -0700
-X-CSE-ConnectionGUID: FvSbfZDoT2u68aBJ8qCASQ==
-X-CSE-MsgGUID: UvgLC6VrQE6aLyQV6WpuXw==
+ 06 Sep 2026 10:09:22 -0700
+X-CSE-ConnectionGUID: qF/sE4ECQyehSdTZA9Fk4g==
+X-CSE-MsgGUID: G6kFbjTuT1OoXrTP2J6+LA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,265,1779174000"; d="scan'208";a="269996112"
+X-IronPort-AV: E=Sophos;i="6.25,265,1779174000"; d="scan'208";a="269996115"
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2026 10:09:15 -0700
+ 06 Sep 2026 10:09:19 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
@@ -49,15 +49,14 @@ Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@intel.com, michal.wajdeczko@intel.com,
  himal.prasad.ghimiray@intel.com, arvind.yadav@intel.com,
  syed.abdul.muqthyar.ahmed@intel.com, nitin.r.gote@intel.com
-Subject: [PATCH v3 01/12] drm/xe/cper: Hardware error CPER reporting from
- xe_log
-Date: Sun,  6 Sep 2026 22:56:06 +0530
-Message-ID: <20260906172604.2215987-15-badal.nilawar@intel.com>
+Subject: [PATCH v3 02/12] drm/xe/cper: Retrieve the error counter record for
+ CPER reporting
+Date: Sun,  6 Sep 2026 22:56:07 +0530
+Message-ID: <20260906172604.2215987-16-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260906172604.2215987-14-badal.nilawar@intel.com>
 References: <20260906172604.2215987-14-badal.nilawar@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,155 +72,290 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce xe_emit_hardware_error_cper() as public entry point
-for CPER reporting.
-
-Wire xe_log to route hardware SIGIDs through the new helper.
-No functional change is intended yet, as the CPER emission logic
-is added in follow-up patches.
+Retrieve error counter record required to build a CPER record when
+one not provided by the caller.
 
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile  |  2 ++
- drivers/gpu/drm/xe/xe_cper.c | 37 ++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_cper.h | 25 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_log.c  | 17 +++++++++++------
- 4 files changed, 75 insertions(+), 6 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_cper.c
- create mode 100644 drivers/gpu/drm/xe/xe_cper.h
+ drivers/gpu/drm/xe/xe_cper.c |  15 ++++++
+ drivers/gpu/drm/xe/xe_ras.c  | 100 ++++++++++++++++++++++-------------
+ drivers/gpu/drm/xe/xe_ras.h  |   3 ++
+ 3 files changed, 80 insertions(+), 38 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 67b8b5477639..06b064add77d 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -166,6 +166,8 @@ xe-$(CONFIG_HWMON) += xe_hwmon.o
- xe-$(CONFIG_PERF_EVENTS) += xe_pmu.o
- xe-$(CONFIG_CONFIGFS_FS) += xe_configfs.o
- 
-+xe-$(CONFIG_UEFI_CPER_X86) += xe_cper.o
-+
- # graphics virtualization (SR-IOV) support
- xe-y += \
- 	xe_gt_sriov_vf.o \
 diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
-new file mode 100644
-index 000000000000..e8017e3ee3a0
---- /dev/null
+index e8017e3ee3a0..f04a91223a43 100644
+--- a/drivers/gpu/drm/xe/xe_cper.c
 +++ b/drivers/gpu/drm/xe/xe_cper.c
-@@ -0,0 +1,37 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include <linux/pci.h>
-+
-+#include <drm/drm_print.h>
-+
-+#include "xe_cper.h"
-+#include "xe_device.h"
-+#include "xe_ras_types.h"
-+
-+/**
-+ * xe_emit_hardware_error_cper() - Emit a hardware error CPER record
-+ * @pdev: PCI device associated with the Xe device
-+ * @cper_sev: CPER severity
-+ * @sigid: Error signature identifier
-+ * @error_class: Hardware error classification details
-+ * @response: Response of get counter
-+ *
-+ * Emit a CPER record for a hardware error
-+ */
-+void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
-+				 struct xe_ras_error_class *counter,
-+				 struct xe_ras_get_counter_response *response)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+
-+	if (!xe)
-+		return;
-+
-+	if ((int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START)
-+		return;
-+
-+	/* TODO */
-+}
-diff --git a/drivers/gpu/drm/xe/xe_cper.h b/drivers/gpu/drm/xe/xe_cper.h
-new file mode 100644
-index 000000000000..c4be7f25a369
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_cper.h
-@@ -0,0 +1,25 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _XE_CPER_H_
-+#define _XE_CPER_H_
-+
-+#include "abi/xe_sigid_abi.h"
-+
-+struct pci_dev;
-+struct xe_ras_error_class;
-+struct xe_ras_get_counter_response;
-+
-+#if IS_REACHABLE(CONFIG_UEFI_CPER_X86)
-+void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
-+				 struct xe_ras_error_class *counter,
-+				 struct xe_ras_get_counter_response *response);
-+#else
-+static inline void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev,
-+					       enum xe_sigid sigid,
-+					       struct xe_ras_error_class *counter,
-+					       struct xe_ras_get_counter_response *response) {}
-+#endif
-+#endif /* _XE_CPER_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_log.c b/drivers/gpu/drm/xe/xe_log.c
-index 5549ef6966fd..2957adec41aa 100644
---- a/drivers/gpu/drm/xe/xe_log.c
-+++ b/drivers/gpu/drm/xe/xe_log.c
-@@ -8,17 +8,27 @@
+@@ -9,6 +9,8 @@
  
- #include "abi/xe_log_abi.h"
- 
-+#include "xe_cper.h"
+ #include "xe_cper.h"
  #include "xe_device.h"
- #include "xe_log.h"
- #include "xe_printk.h"
++#include "xe_printk.h"
++#include "xe_ras.h"
+ #include "xe_ras_types.h"
  
-+static bool is_hw_sigid(enum xe_sigid sigid)
-+{
-+	return (int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START;
-+}
-+
- static void log_emit_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
- 			  u32 component, u32 location, const void *data, size_t len,
- 			  struct va_format *vaf)
+ /**
+@@ -26,6 +28,8 @@ void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev, enum xe_sig
+ 				 struct xe_ras_get_counter_response *response)
  {
- 	KUNIT_STATIC_STUB_REDIRECT(log_emit_cper, pdev, cper_sev, sigid,
- 				   component, location, data, len, vaf);
--	/* TODO */
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
++	struct xe_ras_get_counter_response local_resp = {};
++	struct xe_ras_get_counter_response *counter_response = response;
+ 
+ 	if (!xe)
+ 		return;
+@@ -33,5 +37,16 @@ void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev, enum xe_sig
+ 	if ((int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START)
+ 		return;
+ 
++	if (!counter || !xe_ras_counter_is_valid(xe, counter))
++		return;
 +
-+	if (is_hw_sigid(sigid) && !IS_ERR(data))
-+		xe_emit_hardware_error_cper(pdev, cper_sev, sigid,
-+					    (struct xe_ras_error_class *)data, NULL);
-+	/* TODO software CPER */
++	if (!counter_response) {
++		counter_response = &local_resp;
++		if (xe_ras_get_counter_response(xe, counter, counter_response)) {
++			xe_err(xe, "[RAS]: CPER: failed to get counter, skipping record\n");
++			return;
++		}
++	}
++
+ 	/* TODO */
+ }
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index 7a85735c57d5..0fb9065cdd76 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -103,8 +103,6 @@ static const char * const gpu_health_states[] = {
+ };
+ static_assert(ARRAY_SIZE(gpu_health_states) == XE_RAS_HEALTH_MAX);
+ 
+-static int get_counter(struct xe_device *xe, struct xe_ras_error_class *counter, u32 *value);
+-
+ static u8 drm_to_xe_ras_severity(u8 severity)
+ {
+ 	switch (severity) {
+@@ -201,24 +199,6 @@ static inline const char *comp_to_str(u8 component)
+ 	return xe_ras_components[component];
  }
  
- static const char *log_unknown_component_prefix(u32 component)
-@@ -100,11 +110,6 @@ static const char *log_location_prefix(struct pci_dev *pdev, u32 location, char
- 	return buf;
- }
- 
--static bool is_hw_sigid(enum xe_sigid sigid)
+-static bool ras_counter_is_valid(struct xe_device *xe, struct xe_ras_error_class *counter)
 -{
--	return (int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START;
+-	u8 severity = counter->common.severity;
+-	u8 component = counter->common.component;
+-
+-	if (!in_range(severity, XE_RAS_SEV_NOT_SUPPORTED + 1, XE_RAS_SEV_MAX - 1)) {
+-		xe_err(xe, "sysctrl: unexpected severity %u\n", severity);
+-		return false;
+-	}
+-
+-	if (!in_range(component, XE_RAS_COMP_NOT_SUPPORTED + 1, XE_RAS_COMP_MAX - 1)) {
+-		xe_err(xe, "sysctrl: unexpected component %u\n", component);
+-		return false;
+-	}
+-
+-	return true;
 -}
 -
- static bool is_sev_error(int cper_sev)
+ static struct pci_dev *find_usp_dev(struct pci_dev *pdev)
  {
- 	return cper_sev != CPER_SEV_INFORMATIONAL;
+ 	struct pci_dev *vsp;
+@@ -284,21 +264,21 @@ static void ras_usp_aer_init(struct xe_device *xe)
+ static void ras_send_error_event(struct xe_device *xe, u8 severity, u8 component)
+ {
+ 	struct xe_ras_error_class counter = {0};
++	struct xe_ras_get_counter_response response = {0};
+ 	u8 drm_severity, drm_component;
+-	u32 value;
+ 	int ret;
+ 
+ 	counter.common.severity = severity;
+ 	counter.common.component = component;
+ 
+-	ret = get_counter(xe, &counter, &value);
++	ret = xe_ras_get_counter_response(xe, &counter, &response);
+ 	if (ret)
+ 		return;
+ 
+ 	drm_severity = xe_to_drm_ras_severity(severity);
+ 	drm_component = xe_to_drm_ras_component(component);
+ 
+-	xe_drm_ras_event(xe, drm_component, drm_severity, value);
++	xe_drm_ras_event(xe, drm_component, drm_severity, response.value);
+ }
+ 
+ static u8 handle_core_compute_errors(struct xe_ras_error_array *arr)
+@@ -395,6 +375,33 @@ static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_
+ 	return XE_RAS_RECOVERY_ACTION_RECOVERED;
+ }
+ 
++/**
++ * xe_ras_counter_is_valid() - Validate a RAS error counter
++ * @xe: Xe device instance
++ * @counter: RAS error class to validate
++ *
++ * Validate that counter represents a supported RAS error class
++ *
++ * Return: true if counter is valid, false otherwise.
++ */
++bool xe_ras_counter_is_valid(struct xe_device *xe, struct xe_ras_error_class *counter)
++{
++	u8 severity = counter->common.severity;
++	u8 component = counter->common.component;
++
++	if (!in_range(severity, XE_RAS_SEV_NOT_SUPPORTED + 1, XE_RAS_SEV_MAX - 1)) {
++		xe_err(xe, "sysctrl: unexpected severity %u\n", severity);
++		return false;
++	}
++
++	if (!in_range(component, XE_RAS_COMP_NOT_SUPPORTED + 1, XE_RAS_COMP_MAX - 1)) {
++		xe_err(xe, "sysctrl: unexpected component %u\n", component);
++		return false;
++	}
++
++	return true;
++}
++
+ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
+ 				      struct xe_sysctrl_event_response *response)
+ {
+@@ -418,7 +425,7 @@ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
+ 		severity = errors[id].common.severity;
+ 		component = errors[id].common.component;
+ 
+-		if (!ras_counter_is_valid(xe, &errors[id]))
++		if (!xe_ras_counter_is_valid(xe, &errors[id]))
+ 			continue;
+ 
+ 		xe_warn(xe, "[RAS]: %s %s detected\n",
+@@ -433,19 +440,30 @@ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
+ 	}
+ }
+ 
+-static int get_counter(struct xe_device *xe, struct xe_ras_error_class *counter, u32 *value)
++/**
++ * xe_ras_get_counter_response() - Get error counter record
++ * @xe: Xe device instance
++ * @counter: ras error class
++ * @out: Counter record retrieved
++ *
++ * This function retrieves the counter record of specific error counter
++ *
++ * Return: 0 on success, negative error code on failure.
++ */
++int xe_ras_get_counter_response(struct xe_device *xe, struct xe_ras_error_class *counter,
++				struct xe_ras_get_counter_response *out)
+ {
+-	struct xe_ras_get_counter_response response = {0};
+ 	struct xe_ras_get_counter_request request = {0};
+ 	struct xe_sysctrl_mailbox_command command = {0};
+ 	struct xe_ras_error_common *common;
+ 	size_t rlen;
+ 	int ret;
+ 
++	memset(out, 0, sizeof(*out));
+ 	request.counter = *counter;
+ 
+ 	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_GET_COUNTER,
+-				  &request, sizeof(request), &response, sizeof(response));
++				  &request, sizeof(request), out, sizeof(*out));
+ 
+ 	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
+ 	if (ret) {
+@@ -453,19 +471,18 @@ static int get_counter(struct xe_device *xe, struct xe_ras_error_class *counter,
+ 		return ret;
+ 	}
+ 
+-	if (rlen != sizeof(response)) {
++	if (rlen != sizeof(*out)) {
+ 		xe_err(xe, "sysctrl: unexpected get counter response length %zu (expected %zu)\n",
+-		       rlen, sizeof(response));
++		       rlen, sizeof(*out));
+ 		return -EIO;
+ 	}
+ 
+-	if (!ras_counter_is_valid(xe, &response.counter))
++	if (!xe_ras_counter_is_valid(xe, &out->counter))
+ 		return -EBADMSG;
+ 
+-	common = &response.counter.common;
+-	*value = response.value;
++	common = &out->counter.common;
+ 
+-	xe_dbg(xe, "[RAS]: get counter %u for %s %s\n", *value, comp_to_str(common->component),
++	xe_dbg(xe, "[RAS]: get counter %u for %s %s\n", out->value, comp_to_str(common->component),
+ 	       sev_to_str(common->severity));
+ 
+ 	return 0;
+@@ -534,7 +551,7 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
+ 			component = arr->counter.common.component;
+ 			severity = arr->counter.common.severity;
+ 
+-			if (!ras_counter_is_valid(xe, &arr->counter))
++			if (!xe_ras_counter_is_valid(xe, &arr->counter))
+ 				continue;
+ 
+ 			xe_info(xe, "[RAS]: %s %s detected\n", comp_to_str(component),
+@@ -596,12 +613,19 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
+ int xe_ras_get_counter(struct xe_device *xe, u8 severity, u8 component, u32 *value)
+ {
+ 	struct xe_ras_error_class counter = {0};
++	struct xe_ras_get_counter_response response = {0};
++	int ret;
+ 
+ 	counter.common.severity = drm_to_xe_ras_severity(severity);
+ 	counter.common.component = drm_to_xe_ras_component(component);
+ 
+ 	guard(xe_pm_runtime)(xe);
+-	return get_counter(xe, &counter, value);
++	ret = xe_ras_get_counter_response(xe, &counter, &response);
++	if (ret)
++		return ret;
++
++	*value = response.value;
++	return 0;
+ }
+ 
+ /**
+@@ -653,7 +677,7 @@ int xe_ras_clear_counter(struct xe_device *xe, u8 severity, u8 component)
+ 
+ 	counter = &response.counter;
+ 
+-	if (!ras_counter_is_valid(xe, counter))
++	if (!xe_ras_counter_is_valid(xe, counter))
+ 		return -EBADMSG;
+ 
+ 	xe_dbg(xe, "[RAS]: clear counter for %s %s\n", comp_to_str(counter->common.component),
+@@ -703,7 +727,7 @@ int xe_ras_get_threshold(struct xe_device *xe, u8 severity, u8 component, u32 *t
+ 		return -EIO;
+ 	}
+ 
+-	if (!ras_counter_is_valid(xe, &response.counter))
++	if (!xe_ras_counter_is_valid(xe, &response.counter))
+ 		return -EBADMSG;
+ 
+ 	counter = &response.counter;
+@@ -765,7 +789,7 @@ int xe_ras_set_threshold(struct xe_device *xe, u8 severity, u8 component, u32 th
+ 
+ 	counter = &response.counter;
+ 
+-	if (!ras_counter_is_valid(xe, counter))
++	if (!xe_ras_counter_is_valid(xe, counter))
+ 		return -EBADMSG;
+ 
+ 	xe_dbg(xe, "[RAS]: set threshold %u for %s %s\n", response.threshold,
+diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+index 0b8669f28d56..e83e022cd363 100644
+--- a/drivers/gpu/drm/xe/xe_ras.h
++++ b/drivers/gpu/drm/xe/xe_ras.h
+@@ -20,5 +20,8 @@ int xe_ras_get_threshold(struct xe_device *xe, u8 severity, u8 component, u32 *t
+ int xe_ras_set_threshold(struct xe_device *xe, u8 severity, u8 component, u32 threshold);
+ void xe_ras_init(struct xe_device *xe);
+ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe);
++int xe_ras_get_counter_response(struct xe_device *xe, struct xe_ras_error_class *counter,
++				struct xe_ras_get_counter_response *out);
++bool xe_ras_counter_is_valid(struct xe_device *xe, struct xe_ras_error_class *counter);
+ 
+ #endif
 -- 
 2.54.0
 
