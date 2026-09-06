@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 933F0C79F85
-	for <intel-xe@archiver.kernel.org>; Sun,  6 Sep 2026 17:27:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 947D1C79F8C
+	for <intel-xe@archiver.kernel.org>; Sun,  6 Sep 2026 17:27:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A8E710E088;
-	Sun,  6 Sep 2026 17:27:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A2BC10E0BD;
+	Sun,  6 Sep 2026 17:27:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="I5ZRLJrk";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ADTOVtCX";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E32A10E088
- for <intel-xe@lists.freedesktop.org>; Sun,  6 Sep 2026 17:27:42 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A762610E0BD
+ for <intel-xe@lists.freedesktop.org>; Sun,  6 Sep 2026 17:27:54 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 87F3D40290;
- Sun,  6 Sep 2026 17:27:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 488C11F00A3A;
- Sun,  6 Sep 2026 17:27:42 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id C12BD601DE;
+ Sun,  6 Sep 2026 17:27:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C3CC1F00A3A;
+ Sun,  6 Sep 2026 17:27:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788715662;
- bh=UwdarWbPtLTnTBbQX/taCiRl+Ok6vEgunPQJHsLj2cQ=;
+ s=k20260515; t=1788715673;
+ bh=DJCJ4UZBoIZ/qiTyMnZAkMVC8wfPzHTfmAuy4szGRug=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=I5ZRLJrk81rRcukRvk4PQK5rJl268lDAb+KPeaKJbLxfGO6S1lo5J+3BMRk7hOCRS
- VgES7xnbhLr+w9cpxVHALpuw8ibXA9oUnjgNqCLmAFMAmQYVXY50Hyfe/oyDqOdDvW
- jXRTwFmxe+nZLojod644y5X+pCIoh8denZLvZYYB5wU5AejluGHvu3D9V63oXMcmpV
- sNuBXZN2e0ZtFdYfx3E3PBCqNW379YcGRUBcX9s5064zFQXO2Xp56TP9mvEK2hpvr4
- 0wXSMdq6VxKyOfY0SP1ypGuIfzntGX8IJOtWAnbrG/tvWeOwLnx1QdRiXq3ZM6feTX
- z1Ca2UYffu01g==
+ b=ADTOVtCXgy7rbNuyVjLYVC7UtMM72HCcUCBXItWyxyodMbeKXtCiuOwyDFMkPFELV
+ K++Vnj+FuWJkLV3A1y9d1eqK3KKKA52kP6v5l1ml7JE6vuprizt0hzCAH6OIWw2DOn
+ F27y0G1rECkX7UU8mjwliFJOn0LrimYbWX8MBMxe4iYDlPtxgAztqn4EN2byeGbhFz
+ SRsYUQHE/tZO2zzlX2NbiKZcrah8HA95Ab9k1jD1uAORedtb8peqPFR86RRh4H15U3
+ HLGnTlwBepffPLsV/B9nFI+kxEWoaAalPaDou4QYGGcYECTA0iJqZCnymkXujD90vM
+ xSRG48FijVzsg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 08/12] drm/xe/xe_ras: Report device memory errors
- using SIGID
+Subject: Re: [PATCH v3 04/12] drm/xe/cper: Prepare CPER record
 To: "Badal Nilawar" <badal.nilawar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260906172604.2215987-22-badal.nilawar@intel.com>
+In-Reply-To: <20260906172604.2215987-18-badal.nilawar@intel.com>
 References: <20260906172604.2215987-14-badal.nilawar@intel.com>
- <20260906172604.2215987-22-badal.nilawar@intel.com>
+ <20260906172604.2215987-18-badal.nilawar@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sun, 06 Sep 2026 17:27:41 +0000
-Message-Id: <20260906172742.488C11F00A3A@smtp.kernel.org>
+Date: Sun, 06 Sep 2026 17:27:52 +0000
+Message-Id: <20260906172753.4C3CC1F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,106 +60,88 @@ Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
 
 New issues:
-- [Medium] Double-bit ECC memory errors are incorrectly reported with CPER_=
-SEV_INFORMATIONAL severity despite being severe enough to trigger a device =
-reset.
+- [High] Reading the PF-only CRI_FRU_ID SOC_BASE MMIO resource from a Virtu=
+al Function (VF) context will cause a hardware timeout.
 
 Pre-existing issues:
-- [High] Hardware CPER records are silently discarded due to an inverted SI=
-GID check.
+- [High] Logic inversion in `xe_emit_hardware_error_cper` prevents emitting=
+ CPER records for hardware errors.
 --
 
-commit 0369a03d8670385fb852c68b7ab519615f2c4e05
+commit 9f7667556e38b9fe8c03f7e28c7370b664d666ce
 Author: Badal Nilawar <badal.nilawar@intel.com>
+Date:   Sun Sep 6 17:26:09 2026 +0000
 
-drm/xe/xe_ras: Report device memory errors using SIGID
+    drm/xe/cper: Prepare CPER record
+   =20
+    Initialize Intel-specific CPER metadata and construct
+    CPER record for Intel GPU hardware errors.
 
-This commit updates device memory error reporting to use the
-xe_log_comp_info helper. It maps memory errors like poison, data parity,
-and double-bit ECC to this new telemetry interface.
-
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index 288dbc0942f58..3a7f80370827e 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-
+> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+> index f04a91223a43c..31ca53ce1aa75 100644
+> --- a/drivers/gpu/drm/xe/xe_cper.c
+> +++ b/drivers/gpu/drm/xe/xe_cper.c
 [ ... ]
-
-> @@ -387,14 +387,17 @@ static u8 handle_device_memory_errors(struct xe_dev=
-ice *xe, struct xe_ras_error_
->  	 */
->  	switch (info->category) {
->  	case XE_RAS_MEMORY_POISON:
-> -		xe_info(xe, "[RAS]: Poison error detected\n");
-> +		xe_log_comp_info(xe, DEVICE_MEMORY, &arr->counter, sizeof(arr->counter=
-),
-> +				 "Poison error detected\n");
->  		break;
->  	case XE_RAS_MEMORY_DATA_PARITY:
-> -		xe_info(xe, "[RAS]: Data parity error detected\n");
-> +		xe_log_comp_info(xe, DEVICE_MEMORY, &arr->counter, sizeof(arr->counter=
-),
-> +				 "Data parity error detected\n");
->  		break;
->  	case XE_RAS_MEMORY_DB_ECC:
-> -		xe_info(xe, "[RAS]: Double-bit ECC error detected at sw address 0x%llx=
-\n",
-> -			info->sw_address);
-> +		xe_log_comp_info(xe, DEVICE_MEMORY, &arr->counter, sizeof(arr->counter=
-),
-> +				 "Double-bit ECC error detected at sw address 0x%llx\n",
-> +				 info->sw_address);
-
-[Severity: Medium]
-Will this incorrectly report double-bit ECC memory errors with
-CPER_SEV_INFORMATIONAL severity despite being severe enough to trigger a
-device reset?
-
-The xe_log_comp_info macro hardcodes the CPER severity to
-CPER_SEV_INFORMATIONAL. After logging, the switch statement falls through
-to the default case and returns XE_RAS_RECOVERY_ACTION_RESET.=20
-
-Could this break automated fleet management that acts on CPER severities
-because a severe uncorrectable double-bit ECC error is logged as
-informational while the driver actually resets the GPU?
-
->  		/* TODO: Add page offlining for Double-bit ECC error */
->  		fallthrough;
->  	default:
->  		return XE_RAS_RECOVERY_ACTION_RESET;
->  	}
-
-[ ... ]
-
-
-This isn't a bug introduced by this patch, but looking at the broader
-telemetry handling in drivers/gpu/drm/xe/xe_cper.c:
-
-> void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev, enum=
- xe_sigid sigid,
-> 				 struct xe_ras_error_class *counter,
-> 				 struct xe_ras_get_counter_response *response)
-> {
-> 	struct xe_device *xe =3D pdev_to_xe_device(pdev);
->       ...
->=20
-> 	if ((int)sigid >=3D INTEL_SIGID_GPU_XE_HARDWARE_START)
-> 		return;
->       ...
+> +static guid_t read_fru_id(struct xe_device *xe)
+> +{
+> +	struct xe_mmio *mmio =3D xe_root_tile_mmio(xe);
+> +	guid_t guid =3D GUID_INIT(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+> +	u64 val;
+> +
+> +	val =3D xe_mmio_read64_2x32(mmio, CRI_FRU_ID);
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 [Severity: High]
-Are hardware CPER records being silently discarded here due to an inverted
-SIGID check?
+Does this code execute safely on Virtual Functions?
 
-When xe_emit_hardware_error_cper() is called to emit a record for a hardware
-error, the sigid parameter is greater than or equal to
-INTEL_SIGID_GPU_XE_HARDWARE_START, which is the base value for all hardware
-SIGIDs.=20
+Accessing PF-only SOC_BASE registers from a VF causes hardware failures or
+MMIO timeouts. The CRI_FRU_ID register is in the SOC_BASE region.
 
-This condition evaluates to true, causing the function to immediately return
-before any CPER record is emitted, rendering the logging API calls
-completely ineffective for hardware faults.
+When a hardware error is logged from a Virtual Function,
+xe_emit_hardware_error_cper() calls xe_cper_record_emit() which
+unconditionally calls read_fru_id(). Shouldn't this read be guarded with an
+IS_SRIOV_VF(xe) check to prevent a driver crash or wedged device?
+
+> +
+> +	memcpy(&guid, &val, sizeof(val));
+> +
+> +	return guid;
+> +}
+[ ... ]
+> @@ -48,5 +209,15 @@ void xe_emit_hardware_error_cper(struct pci_dev *pdev=
+, int cper_sev, enum xe_sig
+>  		}
+>  	}
+> =20
+> +	xe_cper_init_intel_err_hdr(xe,
+> +				   (const u8 *)counter,
+> +				   counter_response->timestamp,
+> +				   sigid,
+> +				   counter_response->value,
+> +				   &ihdr);
+> +
+> +	xe_cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR,
+> +			    &ihdr, NULL, 0);
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^=
+^^^
+
+[Severity: High]
+This isn't a bug introduced by this patch, but will this code ever execute
+for hardware errors?
+
+Earlier in xe_emit_hardware_error_cper(), there is a pre-existing check:
+
+	if ((int)sigid >=3D INTEL_SIGID_GPU_XE_HARDWARE_START)
+		return;
+
+This appears to abort execution for all valid hardware SIGIDs, meaning the
+new CPER record generation will act as dead code and fail to emit records
+for genuine hardware errors. Could we fix that logic inversion?
+
+> +
+>  	/* TODO */
+>  }
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260906172604.2215=
-987-14-badal.nilawar@intel.com?part=3D8
+987-14-badal.nilawar@intel.com?part=3D4
