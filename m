@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D891AC79F85
-	for <intel-xe@archiver.kernel.org>; Sun,  6 Sep 2026 17:09:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15DE7C79F8C
+	for <intel-xe@archiver.kernel.org>; Sun,  6 Sep 2026 17:09:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3245110E088;
-	Sun,  6 Sep 2026 17:09:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BABEE10E108;
+	Sun,  6 Sep 2026 17:09:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E2KPIapC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dh3YlYSC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68ABC10E088
- for <intel-xe@lists.freedesktop.org>; Sun,  6 Sep 2026 17:09:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FA6110E108
+ for <intel-xe@lists.freedesktop.org>; Sun,  6 Sep 2026 17:09:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788714555; x=1820250555;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=7czT+9VBlWRvt02F0Skb6tKqybzdVKpINTiSDKJX8cY=;
- b=E2KPIapCkWHG49EwX5V722KV5TR2cBfcJkT7bzeuKnVwK1COT39GLQgX
- 6eVFfO1IFtrlDOFS2KXMUKMjUwAT+1Mybj044hX66YI/Pd0cv3/6EWSLJ
- wXOVi2XDFpVyCPovW9T5K+5OUmfXTj67lRnT40Pl6LIKqGovutkSGP9jB
- X6si8P8jJhJA0s3UwyWTpIqPv9ryCbGae4T8VR7cZf28GcfnJumtKhf/c
- O13UWydY0oup4QgYnoDmZB80P+m8kiV93t3Pk/liDDqALcPjRU0R2tIU2
- yCExdxuuRHRvTFYdqYTotoLXd3SqPAo8+ZuJCWr7/Qv+W5CPmVxT5ldR2 A==;
-X-CSE-ConnectionGUID: rVxWSPSuRWmAh7Moqe9uIA==
-X-CSE-MsgGUID: k9KXxQLESquk+HJ2XB39Fg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11898"; a="88071440"
-X-IronPort-AV: E=Sophos;i="6.25,265,1779174000"; d="scan'208";a="88071440"
+ t=1788714558; x=1820250558;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ARPwQ+pBf4ttVOtMRoXWWCf4K1H628D1NfYx6/V8QQU=;
+ b=dh3YlYSC+zrl+T5/PaThHiVvsat02fRKghQp0d5bhktyFbhoqBF6X0m4
+ BOZ+hojk/2YxuEQ3vXJg0mbN0/iSeeCVX5pnBaxYw0dSj02+Yh8SNLo2N
+ X/Qu+NMNUcXcfm1VNqVk4cCVItDSxCruyObuv/NTp773/P1HPmEh+w84a
+ QAW5hXvz2aBBmqAx5IOc9U83+vjcRX49ewLGfBxjY/rFzeVHGAebkDYbN
+ G8hUS74yGgJcKY2DopB5rCpRPPZudcLCo3s7YdH7pIEs02Vnq6QPy3R6p
+ Z3ohBIMaZdoZ6YfX7jPaizJyzO622dUykqM16jOdeZaEPsEoQ18gho8Q4 w==;
+X-CSE-ConnectionGUID: X9sya4cGQ8+6a6Ak4NZO0Q==
+X-CSE-MsgGUID: XSqehqRjRP+Efrn4TNXVwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11898"; a="88071441"
+X-IronPort-AV: E=Sophos;i="6.25,265,1779174000"; d="scan'208";a="88071441"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2026 10:09:15 -0700
-X-CSE-ConnectionGUID: XbNPiwxYRF2UDDnRYc05iA==
-X-CSE-MsgGUID: ZGdkucYDQG+Pc5S1FzIyEQ==
+ 06 Sep 2026 10:09:18 -0700
+X-CSE-ConnectionGUID: FvSbfZDoT2u68aBJ8qCASQ==
+X-CSE-MsgGUID: UvgLC6VrQE6aLyQV6WpuXw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,265,1779174000"; d="scan'208";a="269996109"
+X-IronPort-AV: E=Sophos;i="6.25,265,1779174000"; d="scan'208";a="269996112"
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2026 10:09:12 -0700
+ 06 Sep 2026 10:09:15 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
@@ -49,11 +49,15 @@ Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@intel.com, michal.wajdeczko@intel.com,
  himal.prasad.ghimiray@intel.com, arvind.yadav@intel.com,
  syed.abdul.muqthyar.ahmed@intel.com, nitin.r.gote@intel.com
-Subject: [PATCH v3 00/12] Add CPER logging support for CRI
-Date: Sun,  6 Sep 2026 22:56:05 +0530
-Message-ID: <20260906172604.2215987-14-badal.nilawar@intel.com>
+Subject: [PATCH v3 01/12] drm/xe/cper: Hardware error CPER reporting from
+ xe_log
+Date: Sun,  6 Sep 2026 22:56:06 +0530
+Message-ID: <20260906172604.2215987-15-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260906172604.2215987-14-badal.nilawar@intel.com>
+References: <20260906172604.2215987-14-badal.nilawar@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,54 +73,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch series adds CPER (Common Platform Error Record) logging support
-for Correctable errors reported by Intel Xe GPUs. CPER logging is done
-through trace event.
+Introduce xe_emit_hardware_error_cper() as public entry point
+for CPER reporting.
 
-v2:
-   - Extended CPER logging to Uncorrectable errors and xe_ras_get_counter
-     request
-   - Log CPER records via xe_log SIGID infra 
+Wire xe_log to route hardware SIGIDs through the new helper.
+No functional change is intended yet, as the CPER emission logic
+is added in follow-up patches.
 
-v3:
-  - Added the patches in incremental order (Raag)
-  - Fixed Sashiko warnings which are applicable 
-
-
-Badal Nilawar (12):
-  drm/xe/cper: Hardware error CPER reporting from xe_log
-  drm/xe/cper: Retrieve the error counter record for CPER reporting
-  drm/xe/cper: Add Intel specific CPER structures
-  drm/xe/cper: Prepare CPER record
-  drm/xe/xe_ras: Add support to retrieve info queue data for CRI
-  drm/xe/cper: Prepare Intel CPER error info records
-  drm/xe/cper: Log CPER records for aggregate counter retrival
-  drm/xe/xe_ras: Report device memory errors using SIGID
-  drm/xe/xe_ras: Report core compute errors using SIGID
-  drm/xe/xe_ras: Report soc internal errors using SIGID
-  drm/xe/xe_ras: Report correctable errors using SIGID
-  drm/xe/cper: Emit cper record to trace buf
-
- drivers/gpu/drm/xe/Makefile                   |   3 +
- drivers/gpu/drm/xe/regs/xe_regs.h             |   2 +
- drivers/gpu/drm/xe/xe_cper.c                  | 479 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_cper.h                  |  25 +
- drivers/gpu/drm/xe/xe_cper_types.h            | 179 +++++++
- drivers/gpu/drm/xe/xe_drm_ras_types.h         |   3 +
- drivers/gpu/drm/xe/xe_log.c                   |  17 +-
- drivers/gpu/drm/xe/xe_ras.c                   | 358 +++++++++++--
- drivers/gpu/drm/xe/xe_ras.h                   |   6 +
- drivers/gpu/drm/xe/xe_ras_types.h             | 118 ++++-
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   2 +
- drivers/gpu/drm/xe/xe_trace_cper.c            |   9 +
- drivers/gpu/drm/xe/xe_trace_cper.h            |  66 +++
- 13 files changed, 1211 insertions(+), 56 deletions(-)
+Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile  |  2 ++
+ drivers/gpu/drm/xe/xe_cper.c | 37 ++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_cper.h | 25 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_log.c  | 17 +++++++++++------
+ 4 files changed, 75 insertions(+), 6 deletions(-)
  create mode 100644 drivers/gpu/drm/xe/xe_cper.c
  create mode 100644 drivers/gpu/drm/xe/xe_cper.h
- create mode 100644 drivers/gpu/drm/xe/xe_cper_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_trace_cper.c
- create mode 100644 drivers/gpu/drm/xe/xe_trace_cper.h
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 67b8b5477639..06b064add77d 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -166,6 +166,8 @@ xe-$(CONFIG_HWMON) += xe_hwmon.o
+ xe-$(CONFIG_PERF_EVENTS) += xe_pmu.o
+ xe-$(CONFIG_CONFIGFS_FS) += xe_configfs.o
+ 
++xe-$(CONFIG_UEFI_CPER_X86) += xe_cper.o
++
+ # graphics virtualization (SR-IOV) support
+ xe-y += \
+ 	xe_gt_sriov_vf.o \
+diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+new file mode 100644
+index 000000000000..e8017e3ee3a0
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_cper.c
+@@ -0,0 +1,37 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#include <linux/pci.h>
++
++#include <drm/drm_print.h>
++
++#include "xe_cper.h"
++#include "xe_device.h"
++#include "xe_ras_types.h"
++
++/**
++ * xe_emit_hardware_error_cper() - Emit a hardware error CPER record
++ * @pdev: PCI device associated with the Xe device
++ * @cper_sev: CPER severity
++ * @sigid: Error signature identifier
++ * @error_class: Hardware error classification details
++ * @response: Response of get counter
++ *
++ * Emit a CPER record for a hardware error
++ */
++void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
++				 struct xe_ras_error_class *counter,
++				 struct xe_ras_get_counter_response *response)
++{
++	struct xe_device *xe = pdev_to_xe_device(pdev);
++
++	if (!xe)
++		return;
++
++	if ((int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START)
++		return;
++
++	/* TODO */
++}
+diff --git a/drivers/gpu/drm/xe/xe_cper.h b/drivers/gpu/drm/xe/xe_cper.h
+new file mode 100644
+index 000000000000..c4be7f25a369
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_cper.h
+@@ -0,0 +1,25 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef _XE_CPER_H_
++#define _XE_CPER_H_
++
++#include "abi/xe_sigid_abi.h"
++
++struct pci_dev;
++struct xe_ras_error_class;
++struct xe_ras_get_counter_response;
++
++#if IS_REACHABLE(CONFIG_UEFI_CPER_X86)
++void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
++				 struct xe_ras_error_class *counter,
++				 struct xe_ras_get_counter_response *response);
++#else
++static inline void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev,
++					       enum xe_sigid sigid,
++					       struct xe_ras_error_class *counter,
++					       struct xe_ras_get_counter_response *response) {}
++#endif
++#endif /* _XE_CPER_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_log.c b/drivers/gpu/drm/xe/xe_log.c
+index 5549ef6966fd..2957adec41aa 100644
+--- a/drivers/gpu/drm/xe/xe_log.c
++++ b/drivers/gpu/drm/xe/xe_log.c
+@@ -8,17 +8,27 @@
+ 
+ #include "abi/xe_log_abi.h"
+ 
++#include "xe_cper.h"
+ #include "xe_device.h"
+ #include "xe_log.h"
+ #include "xe_printk.h"
+ 
++static bool is_hw_sigid(enum xe_sigid sigid)
++{
++	return (int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START;
++}
++
+ static void log_emit_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
+ 			  u32 component, u32 location, const void *data, size_t len,
+ 			  struct va_format *vaf)
+ {
+ 	KUNIT_STATIC_STUB_REDIRECT(log_emit_cper, pdev, cper_sev, sigid,
+ 				   component, location, data, len, vaf);
+-	/* TODO */
++
++	if (is_hw_sigid(sigid) && !IS_ERR(data))
++		xe_emit_hardware_error_cper(pdev, cper_sev, sigid,
++					    (struct xe_ras_error_class *)data, NULL);
++	/* TODO software CPER */
+ }
+ 
+ static const char *log_unknown_component_prefix(u32 component)
+@@ -100,11 +110,6 @@ static const char *log_location_prefix(struct pci_dev *pdev, u32 location, char
+ 	return buf;
+ }
+ 
+-static bool is_hw_sigid(enum xe_sigid sigid)
+-{
+-	return (int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START;
+-}
+-
+ static bool is_sev_error(int cper_sev)
+ {
+ 	return cper_sev != CPER_SEV_INFORMATIONAL;
 -- 
 2.54.0
 
