@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E2A3C79F85
-	for <intel-xe@archiver.kernel.org>; Sun,  6 Sep 2026 17:23:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51520C79F85
+	for <intel-xe@archiver.kernel.org>; Sun,  6 Sep 2026 17:24:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C59A10E088;
-	Sun,  6 Sep 2026 17:23:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F190610E088;
+	Sun,  6 Sep 2026 17:24:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lUYQu7S3";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="QHSzMGAm";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A06F110E088
- for <intel-xe@lists.freedesktop.org>; Sun,  6 Sep 2026 17:23:43 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63D1010E088
+ for <intel-xe@lists.freedesktop.org>; Sun,  6 Sep 2026 17:24:00 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 5C77B41895;
- Sun,  6 Sep 2026 17:23:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A77A1F00A3A;
- Sun,  6 Sep 2026 17:23:43 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 72810601DE;
+ Sun,  6 Sep 2026 17:23:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 061C41F00A3A;
+ Sun,  6 Sep 2026 17:23:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788715423;
- bh=tcvjCC3AU6mQdCcWjYMNDLMAoQ63TQL7MZz+I96m3z8=;
+ s=k20260515; t=1788715439;
+ bh=ZCVyTabIzP10rXhEAa996blPWkb11kSu/MS0xghFGR8=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=lUYQu7S3DBlRgE4Ay6CChBjqFHFrdulrWptKFfFHseDw1kAl5oXHPSHlK/84FFuFO
- mkoKLV3DIuIhQurN3ug6xXep9SR/Sgz7fHA950yk1G1ZtaSN6EMjM4xRN/XbcvUaBX
- PLCeHL5TtArkA2ixctdCuF5IgOnoHXhAKeLT360x/L8K6g42vBOOs0A0R0gN23Qs3E
- 1VANl8RbwPMjvMVPX6Avp15jvEySGg30Z4Lxi0Yje7ZScMBv4BziG35ta7ejYPox3J
- YoLXpT5q1mD1HMz0lxC0Lcy5x0WPxjEdTpuU+Vpb2I7hr3U2XNCIiqS1SZ/1OdQsae
- vvVksXB58UQkw==
+ b=QHSzMGAmslBNFNA8ClXXJBxq+BXSlcJ8N7TKXF2jCFAcgYDH5wnqfzPB2CUYigFBI
+ kjuk93x1+XhQ8w+VXvuXqRW0+B4mGo3rCQ0p/5EIHA3fIe+pNgtJzd28v9sbQwRuCn
+ 0aiZVdA4+c8BmOWDwfMRxBIMIliJV/mZMYshCD7sALwV+7nX0kLVwWuwqq9dtUbXa/
+ ozp2Q2PBVUic4HC8q4MMDXtpvO6xRsjPWNe8t1nFyBFTNle9XEqPyKshYsbAjZMwd0
+ Grgr7Ve3a/TZXIp7cjN5wBbSqL9J6fAkwpMF/3IEVBAL0YWaOZACdx7/0dGHyffOWv
+ whod4k+1TtVEA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 02/12] drm/xe/cper: Retrieve the error counter record
- for CPER reporting
+Subject: Re: [PATCH v3 07/12] drm/xe/cper: Log CPER records for aggregate
+ counter retrival
 To: "Badal Nilawar" <badal.nilawar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260906172604.2215987-16-badal.nilawar@intel.com>
+In-Reply-To: <20260906172604.2215987-21-badal.nilawar@intel.com>
 References: <20260906172604.2215987-14-badal.nilawar@intel.com>
- <20260906172604.2215987-16-badal.nilawar@intel.com>
+ <20260906172604.2215987-21-badal.nilawar@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sun, 06 Sep 2026 17:23:42 +0000
-Message-Id: <20260906172343.2A77A1F00A3A@smtp.kernel.org>
+Date: Sun, 06 Sep 2026 17:23:58 +0000
+Message-Id: <20260906172359.061C41F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,109 +57,151 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
 
 New issues:
-- [High] Fetching error counters from the generic logging emission path int=
-roduces a might_sleep() restriction into generic logging macros.
-- [High] xe_emit_hardware_error_cper reads MMIO registers via sysctrl comma=
-nd without ensuring the device is awake, leading to potential system crashe=
-s or PCIe AER errors if called when the device is in D3cold.
-- [Medium] The patch introduces redundant, synchronous sysctrl mailbox comm=
-ands to fetch counter values that the driver either already possesses or fe=
-tches again immediately.
+- [Medium] Passing incompletely initialized query counter struct to CPER lo=
+gging instead of the fully populated response counter returned by hardware.
+- [Low] The sysfs attribute `cper_on_query` is created with 0600 permission=
+s, contradicting its documentation which states it is readable by all users.
 
 Pre-existing issues:
-- [High] Preexisting logic bug causes xe_emit_hardware_error_cper to immedi=
-ately abort for hardware SIGIDs, making the newly added code unreachable.
+- [High] The preexisting `xe_emit_hardware_error_cper` function silently ab=
+orts when passed a valid hardware sigid, completely breaking the new CPER l=
+ogging functionality.
 --
 
-commit ea598ea85d76d6f40d20fe1e15edf6a22c8e705c
+commit 4840bdedfff2abbfbb8ce20f95bb4403db40e936
 Author: Badal Nilawar <badal.nilawar@intel.com>
 
-drm/xe/cper: Retrieve the error counter record for CPER reporting
+drm/xe/cper: Log CPER records for aggregate counter retrival
 
-Retrieve the error counter record required to build a CPER record when
-one is not provided by the caller.
+This commit adds support to log CPER records for aggregate counter
+retrieval from userspace. It introduces a new sysfs attribute
+cper_on_query to control this behavior.
 
-> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
-> index e8017e3ee3a09..f04a91223a43c 100644
-> --- a/drivers/gpu/drm/xe/xe_cper.c
-> +++ b/drivers/gpu/drm/xe/xe_cper.c
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index 7e3e627504485..288dbc0942f58 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
 [ ... ]
-> @@ -26,6 +28,8 @@ void xe_emit_hardware_error_cper(struct pci_dev *pdev, =
-int cper_sev, enum xe_sig
->  				 struct xe_ras_get_counter_response *response)
+> @@ -612,6 +641,7 @@ enum xe_ras_recovery_action xe_ras_process_errors(str=
+uct xe_device *xe)
+>   */
+>  int xe_ras_get_counter(struct xe_device *xe, u8 severity, u8 component, =
+u32 *value)
 >  {
->  	struct xe_device *xe =3D pdev_to_xe_device(pdev);
-> +	struct xe_ras_get_counter_response local_resp =3D {};
-> +	struct xe_ras_get_counter_response *counter_response =3D response;
-> =20
->  	if (!xe)
->  		return;
-> @@ -33,5 +37,16 @@ void xe_emit_hardware_error_cper(struct pci_dev *pdev,=
- int cper_sev, enum xe_sig
->  	if ((int)sigid >=3D INTEL_SIGID_GPU_XE_HARDWARE_START)
->  		return;
-
-[Severity: High]
-This isn't a bug introduced by this patch, but does this condition in
-xe_emit_hardware_error_cper() prevent the newly added code from executing?
-
-Since hardware SIGIDs are strictly greater than or equal to
-INTEL_SIGID_GPU_XE_HARDWARE_START, checking if sigid is greater than or
-equal to this constant seems to cause an immediate return for all hardware
-errors, silently disabling the CPER record emission.
-
-> +	if (!counter || !xe_ras_counter_is_valid(xe, counter))
-> +		return;
+> +	struct pci_dev *pdev =3D to_pci_dev(xe->drm.dev);
+>  	struct xe_ras_error_class counter =3D {0};
+>  	struct xe_ras_get_counter_response response =3D {0};
+>  	int ret;
+> @@ -623,8 +653,13 @@ int xe_ras_get_counter(struct xe_device *xe, u8 seve=
+rity, u8 component, u32 *val
+>  	ret =3D xe_ras_get_counter_response(xe, &counter, &response);
+>  	if (ret)
+>  		return ret;
+> -
+>  	*value =3D response.value;
 > +
-> +	if (!counter_response) {
-> +		counter_response =3D &local_resp;
-> +		if (xe_ras_get_counter_response(xe, counter, counter_response)) {
-
-[Severity: High]
-Does fetching error counters from the generic logging emission path
-introduce a sleep restriction into logging macros?
-
-If a generic macro like xe_log_comp_fatal() is called from an atomic contex=
-t,
-this synchronous fetch via xe_ras_get_counter_response() will invoke
-xe_sysctrl_send_command(). The underlying sysctrl command asserts might_sle=
-ep()
-and waits on a mutex, which could cause a bug or deadlock if triggered from=
- an
-interrupt handler or spinlock.
-
-[Severity: High]
-Also, does this hardware access ensure the device is runtime-resumed?
-
-The sysctrl command path uses guard(xe_pm_runtime_noresume)(xe), which
-increments the usage counter but avoids waking a suspended device. If this
-logging path executes while the device is in D3cold, will the subsequent
-MMIO reads hit powered-off hardware and trigger unhandled PCIe AER errors?
+> +	if (xe->ras.cper_on_query)
+> +		xe_emit_hardware_error_cper(pdev, ras_sev_to_cper_sev(counter.common.s=
+everity),
+> +					    ras_comp_to_hw_sigid(counter.common.component),
+> +					    (struct xe_ras_error_class *)&counter,
 
 [Severity: Medium]
-Finally, does this force a new mailbox command to fetch data that the caller
-might already possess?
+Does this code pass the incompletely initialized query counter instead of t=
+he=20
+fully populated &response.counter returned by hardware?=20
 
-For example, in xe_ras_process_errors(), the driver already executes a
-mailbox command that returns the counter values. However, it passes only a
-pointer to the generic logging function, forcing
-xe_emit_hardware_error_cper() to issue an entirely new, redundant synchrono=
-us
-mailbox command to fetch the same value. Can this be optimized to reuse the
-existing data and avoid extra latency during error handling?
+The CPER record emitted will be missing the product-specific hardware
+classification fields (like tile, instance, cause), leading to information =
+loss
+in RAS logging.
 
-> +			xe_err(xe, "[RAS]: CPER: failed to get counter, skipping record\n");
-> +			return;
-> +		}
-> +	}
-> +
->  	/* TODO */
+[Severity: High]
+This is a pre-existing issue, but xe_emit_hardware_error_cper() silently
+aborts when passed a valid hardware sigid (which are all=20
+>=3D INTEL_SIGID_GPU_XE_HARDWARE_START) due to a backwards check:
+
+drivers/gpu/drm/xe/xe_cper.c:xe_emit_hardware_error_cper() {
+	if ((int)sigid >=3D INTEL_SIGID_GPU_XE_HARDWARE_START)
+		return;
+    ...
+}
+
+Does this completely break the new CPER logging functionality intended by=20
+this patch?
+
+> +					    (struct xe_ras_get_counter_response *)&response);
+>  	return 0;
 >  }
+> =20
+[ ... ]
+> @@ -1069,6 +1104,56 @@ static const struct attribute_group gpu_health_gro=
+up =3D {
+>  	.attrs =3D gpu_health_attrs,
+>  };
+> =20
+> +static ssize_t cper_on_query_show(struct device *dev, struct device_attr=
+ibute *attr, char *buf)
+> +{
+> +	struct xe_device *xe =3D kdev_to_xe_device(dev);
+> +
+> +	return sysfs_emit(buf, "%u\n", xe->ras.cper_on_query);
+> +}
+> +
+> +static ssize_t cper_on_query_store(struct device *dev, struct device_att=
+ribute *attr,
+> +				   const char *buf, size_t count)
+> +{
+> +	struct xe_device *xe =3D kdev_to_xe_device(dev);
+> +	bool enable;
+> +	int ret;
+> +
+> +	ret =3D kstrtobool(buf, &enable);
+> +	if (ret)
+> +		return ret;
+> +
+> +	xe->ras.cper_on_query =3D enable;
+> +
+> +	return count;
+> +}
+> +static DEVICE_ATTR_ADMIN_RW(cper_on_query);
+
+[Severity: Low]
+Does this incorrectly enforce 0600 permissions, preventing non-root users f=
+rom=20
+reading the value?=20
+
+The documentation below states it should be readable by all users:
+
+> +
+> +static struct attribute *cper_on_query_attrs[] =3D {
+> +	&dev_attr_cper_on_query.attr,
+> +	NULL
+> +};
+> +
+> +/**
+> + * DOC: CPER on query
+> + *
+> + * On Intel Xe platforms that support the RAS error reporting interface,
+> + * the driver can emit a CPER (Common Platform Error Record) each time an
+> + * error counter is queried. This behaviour is controlled through the
+> + * following sysfs attribute::
+> + *
+> + *     /sys/bus/pci/devices/<device>/cper_on_query
+> + *
+> + * The attribute is a boolean (``0`` or ``1``). When set to ``1``, every
+> + * counter query emits a CPER record built from the associated info queue
+> + * data; when set to ``0`` (default) no record is emitted on query.
+> + *
+> + * Reading the attribute is available to all users and returns the curre=
+nt
+> + * setting, whereas writing is restricted to administrative users.
+> + */
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260906172604.2215=
-987-14-badal.nilawar@intel.com?part=3D2
+987-14-badal.nilawar@intel.com?part=3D7
