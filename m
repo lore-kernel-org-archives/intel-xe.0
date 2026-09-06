@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73CF5C79F8C
-	for <intel-xe@archiver.kernel.org>; Sun,  6 Sep 2026 17:30:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA3A4C79F8C
+	for <intel-xe@archiver.kernel.org>; Sun,  6 Sep 2026 17:55:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 291CC10E088;
-	Sun,  6 Sep 2026 17:30:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VXd2e9/5";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC68110E088
- for <intel-xe@lists.freedesktop.org>; Sun,  6 Sep 2026 17:30:16 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id AB387412B7;
- Sun,  6 Sep 2026 17:30:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CE4B1F00A3A;
- Sun,  6 Sep 2026 17:30:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788715816;
- bh=11Une6TKncNsLLCmNyxc0osL5+nN321oiEWig5QIZAc=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=VXd2e9/5UUYACsgFT3vrjTRqXjLcZFa6NGuAhOSYIC0EE+lw+n0IynWDW5Qmjm8Ca
- iDd38aCtglckG0rpJqCl0q8ElvoJ5WBzYyDGJADcO5Jw2/uyiraksfMIPdgS8R95X3
- pw+0F7NMd1+B7QIzSy9h6QS80hDoifNNafzBpXTxsNfv8fE3FipoZ2Ku1S2h4FGrMe
- 62uyxpWxnTeHFbWefbmjWpovO7aOwuD2qnsQWdmgXb5izhJRC3G/LE1QvpL6BTZJb/
- l3ONUDZfLleopzLNQDT5RoyF3gzf/AoAfp2/VgB7/O5Mn1DMu9Etf0OSRFRKVuLzVZ
- JuP85PHPm3Y1w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 06/12] drm/xe/cper: Prepare Intel CPER error info
- records
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52C7610E088;
+	Sun,  6 Sep 2026 17:55:18 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F09010E088;
+ Sun,  6 Sep 2026 17:55:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0462034396727145677=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_CPER_logging_support_fo?=
+ =?utf-8?q?r_CRI_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Badal Nilawar" <badal.nilawar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260906172604.2215987-20-badal.nilawar@intel.com>
+Date: Sun, 06 Sep 2026 17:55:17 -0000
+Message-ID: <178871731700.127407.14031688046829097849@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260906172604.2215987-14-badal.nilawar@intel.com>
- <20260906172604.2215987-20-badal.nilawar@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sun, 06 Sep 2026 17:30:16 +0000
-Message-Id: <20260906173016.6CE4B1F00A3A@smtp.kernel.org>
+In-Reply-To: <20260906172604.2215987-14-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,144 +36,130 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
+--===============0462034396727145677==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-New issues:
-- [High] Incorrect parsing of aggregate info queue logs causes offset corru=
-ption and truncated error counts.
+== Series Details ==
 
-Pre-existing issues:
-- [High] Inverted hardware SIGID check causes the hardware error handler to=
- unconditionally abort.
-- [High] Unbounded loop in `xe_ras_drain_info_queue_raw` leading to Denial =
-of Service.
---
+Series: Add CPER logging support for CRI (rev3)
+URL   : https://patchwork.freedesktop.org/series/169692/
+State : success
 
-commit 08c625ea20b49a15a86e85dcc258d1ff791d3145
-Author: Badal Nilawar <badal.nilawar@intel.com>
-drm/xe/cper: Prepare Intel CPER error info records
+== Summary ==
 
-This patch prepares xe_cper_sec_intel_error_info records from RAS info
-queue data. Depending on the error class type, one or more error info
-records are generated and embedded in the CPER record.
+CI Bug Log - changes from xe-5696-496ff8213a2d2e1e5b1c8efe8b55e1dcdc3e3f8f_BAT -> xe-pw-169692v3_BAT
+====================================================
 
-> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
-> --- a/drivers/gpu/drm/xe/xe_cper.c
-> +++ b/drivers/gpu/drm/xe/xe_cper.c
-[ ... ]
-> +static struct xe_cper_einfo_entry *
-> +xe_prepare_cper_error_info(struct xe_device *xe,
-> +			   const struct xe_ras_get_counter_response *counter_resp,
-> +			   const struct xe_ras_error_class *error_class,
-> +			   u32 *count_out)
-> +{
-[ ... ]
-> +	raw_buf =3D kzalloc(XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE, GFP_KERNEL);
-> +	if (!raw_buf)
-> +		return NULL;
-> +
-> +	raw_total =3D xe_ras_drain_info_queue_raw(xe, counter_resp, raw_buf,
-> +						XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE);
+Summary
+-------
 
-[Severity: High]
-This is a pre-existing issue, but since this patch adds a call to it here,
-can xe_ras_drain_info_queue_raw() cause a denial of service if the
-hardware misbehaves?
+  **SUCCESS**
 
-Looking at xe_ras_drain_info_queue_raw() in drivers/gpu/drm/xe/xe_ras.c,
-the loop bounds check evaluates the received chunk offset:
+  No regressions found.
 
-    if (check_add_overflow(qhdr->chunk_offset, qhdr->chunk_size, &end) ||
-        end > XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE || end > raw_buf_size) {
+  
 
-However, the loop termination relies entirely on the MORE_DATA flag:
+Participating hosts (12 -> 12)
+------------------------------
 
-    } while (iq_response.queue_response.queue_header.flags &
-             XE_RAS_INFO_QUEUE_FLAG_MORE_DATA);
+  No changes in participating hosts
 
-It never checks if the accumulated iq_offset exceeds the total maximum
-limit across iterations. Could a malfunctioning or malicious firmware
-hang the kernel by continuously returning valid small chunks with the
-MORE_DATA flag set?
+Known issues
+------------
 
-[ ... ]
-> +		for (i =3D 0; i < num_headers; i++) {
-> +			u32 num_logs =3D min_t(u32, hdrs[i].counter, XE_RAS_NUM_COUNTERS);
-> +			struct xe_cper_sec_intel_error_info *einfo;
-> +
-> +			if (log_offset + num_logs > avail_logs) {
-> +				xe_warn(xe, "[RAS]: CPER: header[%u] claims %u logs but only %u rema=
-in\n",
-> +					i, num_logs, avail_logs - log_offset);
-> +				break;
-> +			}
-> +
-> +			if (!num_logs)
-> +				continue;
-> +
-> +			einfo =3D build_einfo(&all_logs[log_offset], num_logs,
-> +					    &hdrs[i].error_class, num_logs,
-> +					    &einfo_arr[einfo_count].einfo_size,
-> +					    &einfo_arr[einfo_count].timestamp);
+  Here are the changes found in xe-pw-169692v3_BAT that come from known issues:
 
-[Severity: High]
-Does clamping num_logs to XE_RAS_NUM_COUNTERS here cause parsing
-desynchronization?
+### IGT changes ###
 
-If the hardware returns an aggregate info queue where hdrs[i].counter is
-greater than XE_RAS_NUM_COUNTERS, num_logs is clamped. But this clamped
-value is also passed to build_einfo() as the error_count, leading to
-truncated error counts.
+#### Possible fixes ####
 
-> +			if (!einfo) {
-> +				free_einfo_arr(einfo_arr, einfo_count);
-> +				kfree(raw_buf);
-> +				return NULL;
-> +			}
-> +
-> +			einfo_arr[einfo_count].hdr   =3D hdrs[i];
-> +			einfo_arr[einfo_count].einfo =3D einfo;
-> +			log_offset +=3D num_logs;
+  * igt@xe_waitfence@engine:
+    - bat-ptl-2:          [FAIL][1] ([Intel XE#9109]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5696-496ff8213a2d2e1e5b1c8efe8b55e1dcdc3e3f8f/bat-ptl-2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v3/bat-ptl-2/igt@xe_waitfence@engine.html
+    - bat-wcl-1:          [FAIL][3] ([Intel XE#9103]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5696-496ff8213a2d2e1e5b1c8efe8b55e1dcdc3e3f8f/bat-wcl-1/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v3/bat-wcl-1/igt@xe_waitfence@engine.html
 
-[Severity: High]
-Additionally, does incrementing log_offset by the clamped amount rather
-than the claimed amount cause subsequent headers to read the wrong log
-data? It seems like it would leave unconsumed logs in the stream,
-corrupting the offset for the next iteration.
+  
+  [Intel XE#9103]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9103
+  [Intel XE#9109]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109
 
-[ ... ]
->  void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev, enu=
-m xe_sigid sigid,
->  				 struct xe_ras_error_class *counter,
->  				 struct xe_ras_get_counter_response *response)
->  {
->  	struct xe_device *xe =3D pdev_to_xe_device(pdev);
->  	struct xe_ras_get_counter_response local_resp =3D {};
->  	struct xe_ras_get_counter_response *counter_response =3D response;
->  	struct xe_cper_sec_intel_err_hdr ihdr =3D {};
-> +	struct xe_cper_einfo_entry *einfo_arr =3D NULL;
-> +	u32 einfo_count =3D 0;
-> +	u32 i;
-> =20
->  	if (!xe)
->  		return;
-> =20
->  	if ((int)sigid >=3D INTEL_SIGID_GPU_XE_HARDWARE_START)
->  		return;
 
-[Severity: High]
-This is a pre-existing issue, but is this check inverted?
+Build changes
+-------------
 
-It aborts if the error is >=3D INTEL_SIGID_GPU_XE_HARDWARE_START, which
-seems to dead-code the entire hardware error logging feature. Since this
-occurs on every hardware error, does this check completely neutralize
-xe_emit_hardware_error_cper() for hardware errors?
+  * Linux: xe-5696-496ff8213a2d2e1e5b1c8efe8b55e1dcdc3e3f8f -> xe-pw-169692v3
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260906172604.2215=
-987-14-badal.nilawar@intel.com?part=3D6
+  IGT_9084: 9084
+  xe-5696-496ff8213a2d2e1e5b1c8efe8b55e1dcdc3e3f8f: 496ff8213a2d2e1e5b1c8efe8b55e1dcdc3e3f8f
+  xe-pw-169692v3: 169692v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v3/index.html
+
+--===============0462034396727145677==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add CPER logging support for CRI (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169692/">https://patchwork.freedesktop.org/series/169692/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5696-496ff8213a2d2e1e5b1c8efe8b55e1dcdc3e3f8f_BAT -&gt; xe-pw-169692v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-169692v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5696-496ff8213a2d2e1e5b1c8efe8b55e1dcdc3e3f8f/bat-ptl-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109">Intel XE#9109</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v3/bat-ptl-2/igt@xe_waitfence@engine.html">PASS</a></li>
+<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5696-496ff8213a2d2e1e5b1c8efe8b55e1dcdc3e3f8f/bat-wcl-1/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9103">Intel XE#9103</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v3/bat-wcl-1/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5696-496ff8213a2d2e1e5b1c8efe8b55e1dcdc3e3f8f -&gt; xe-pw-169692v3</li>
+</ul>
+<p>IGT_9084: 9084<br />
+  xe-5696-496ff8213a2d2e1e5b1c8efe8b55e1dcdc3e3f8f: 496ff8213a2d2e1e5b1c8efe8b55e1dcdc3e3f8f<br />
+  xe-pw-169692v3: 169692v3</p>
+
+</body>
+</html>
+
+--===============0462034396727145677==--
