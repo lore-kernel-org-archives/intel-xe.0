@@ -4,27 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F08F4C79F9E
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 14:00:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45C81C79FA0
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 14:06:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A30A689D56;
-	Mon,  7 Sep 2026 14:00:36 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78BB789D56;
- Mon,  7 Sep 2026 14:00:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7348141536254641001=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Vswing_/_Pre-emphasis_Overr?=
- =?utf-8?q?ide_=28rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 07 Sep 2026 14:00:35 -0000
-Message-ID: <178878963548.130175.2974652261255518779@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260904123148.2165596-1-michal.grzelak@intel.com>
-In-Reply-To: <20260904123148.2165596-1-michal.grzelak@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE79510E84B;
+	Mon,  7 Sep 2026 14:06:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fVdyHPff";
+	dkim-atps=neutral
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F155F10E4A5;
+ Mon,  7 Sep 2026 14:06:54 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id F4005601F9;
+ Mon,  7 Sep 2026 14:06:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7449E1F00A3A;
+ Mon,  7 Sep 2026 14:06:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788790013;
+ bh=XftCkt0rru1BjiLFvXRM4UQUlwpigrSKtv6vIPwLo9I=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=fVdyHPff/uQ5j/aUh6P9oCMSauAi96f66srVsWRsmrfNupdG8irlwd5t6AEAuPefm
+ cYhwukj+KcNqMZFSZU1LGGEnW/Js5V/byO4jrAqWLntf7ZjTSUDqXjECpQWzEJ82c6
+ pOQ2az3qwdEVAsJIqNPAqgPDr4IrDHAEO5F8VmANBJa6bxBOcJ2zl0jbL2wHqYjjK2
+ PlnyK+em1u6PTLAYmANwaD6ZcfDRQry/j5WZugpEFIvg1GfPUXtLKEOvrumg+mraSs
+ yJEZKVD+9Dn48r7eZHIuaQewqwURy1IFEf7ImPafSz7uiTfiDJgCHPd+F3rXqkElEW
+ y5NJjfUltc0nw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 2/2] drm/i915/dmc: Harden DMC firmware payload parsing
+To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20260907135048.1403587-6-dibin.moolakadan.subrahmanian@intel.com>
+References: <20260907135048.1403587-4-dibin.moolakadan.subrahmanian@intel.com>
+ <20260907135048.1403587-6-dibin.moolakadan.subrahmanian@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 07 Sep 2026 14:06:52 +0000
+Message-Id: <20260907140653.7449E1F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,241 +52,79 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7348141536254641001==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
 
-== Series Details ==
+Pre-existing issues:
+- [High] Partial initialization of `dmc_info` on payload allocation failure=
+ leaves a stale `mmio_count`, leading to unintended hardware MMIO programmi=
+ng for missing firmwares.
+--
 
-Series: Vswing / Pre-emphasis Override (rev8)
-URL   : https://patchwork.freedesktop.org/series/167570/
-State : success
+commit bbb6b21d216798e993d4045cdf8b46c4ba305c9b
+Author: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.=
+com>
 
-== Summary ==
+drm/i915/dmc: Harden DMC firmware payload parsing
 
-CI Bug Log - changes from xe-5697-c60540b13d7bacc21848ed94fd368a968454d5db_BAT -> xe-pw-167570v8_BAT
-====================================================
+This commit validates the DMC firmware size conversion using
+check_mul_overflow() to prevent integer overflow. It also rejects zero-leng=
+th
+payloads and zero MMIO counts, and delays setting dmc_fw_size until after t=
+he
+payload allocation succeeds.
 
-Summary
--------
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i=
+915/display/intel_dmc.c
+> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
 
-  **SUCCESS**
+[ ... ]
 
-  No regressions found.
+> @@ -1237,12 +1247,12 @@ static u32 parse_dmc_fw_header(struct intel_dmc *=
+dmc,
+>  	dmc_info->mmio_count =3D mmio_count;
+>  	dmc_info->start_mmioaddr =3D start_mmioaddr;
+> =20
+> -	dmc_info->dmc_fw_size =3D dmc_header->fw_size;
+> -
+>  	dmc_info->payload =3D kmalloc(payload_size, GFP_KERNEL);
+>  	if (!dmc_info->payload)
+>  		return 0;
 
-  
+[Severity: High]
+This is a pre-existing issue, but partial initialization of dmc_info here
+leaves a stale mmio_count on allocation failure.
 
-Participating hosts (13 -> 14)
-------------------------------
+Since this patch already moves the dmc_fw_size assignment below the kmalloc
+check to avoid leaving stale state, should mmio_count and start_mmioaddr be
+moved down as well?
 
-  Additional (1): bat-bmg-2 
+If kmalloc() fails, parse_dmc_fw_header() returns 0 but leaves
+dmc_info->mmio_count set to a non-zero value. Later in the firmware loading
+sequence, intel_dmc_load_program() will proceed to call dmc_load_program()
+for the failed secondary DMC, where it calls:
 
-Known issues
-------------
+drivers/gpu/drm/i915/display/intel_dmc.c:dmc_load_program() {
+    ...
+    dmc_load_mmio(display, dmc_id);
+    ...
+}
 
-  Here are the changes found in xe-pw-167570v8_BAT that come from known issues:
+Does this cause dmc_load_mmio() to iterate up to the stale mmio_count and
+write the partially initialized mmiodata to hardware registers for a
+firmware payload that was never loaded?
 
-### IGT changes ###
+> +	dmc_info->dmc_fw_size =3D dmc_header->fw_size;
+> +
+>  	payload =3D (u8 *)(dmc_header) + header_len_bytes;
+>  	memcpy(dmc_info->payload, payload, payload_size);
+>
 
-#### Issues hit ####
-
-  * igt@fbdev@write:
-    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@fbdev@write.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-bmg-2:          NOTRUN -> [SKIP][2] ([Intel XE#2233])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - bat-bmg-2:          NOTRUN -> [SKIP][3] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - bat-bmg-2:          NOTRUN -> [SKIP][4] ([Intel XE#2482]) +3 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-bmg-2:          NOTRUN -> [SKIP][5] ([Intel XE#2434] / [Intel XE#2548] / [Intel XE#6314])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-bmg-2:          NOTRUN -> [SKIP][6] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@xe_exec_multi_queue@priority:
-    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#8364]) +13 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@xe_exec_multi_queue@priority.html
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-2:          NOTRUN -> [SKIP][8] ([Intel XE#2229])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-bmg-2:          NOTRUN -> [SKIP][9] ([Intel XE#1420] / [Intel XE#7590])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-2:          NOTRUN -> [SKIP][10] ([Intel XE#2245] / [Intel XE#7590])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#2236] / [Intel XE#7590])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
-  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
-  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
-  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
-  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
-  [Intel XE#6314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
-
-
-Build changes
--------------
-
-  * Linux: xe-5697-c60540b13d7bacc21848ed94fd368a968454d5db -> xe-pw-167570v8
-
-  IGT_9084: 9084
-  xe-5697-c60540b13d7bacc21848ed94fd368a968454d5db: c60540b13d7bacc21848ed94fd368a968454d5db
-  xe-pw-167570v8: 167570v8
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/index.html
-
---===============7348141536254641001==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Vswing / Pre-emphasis Override (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167570/">https://patchwork.freedesktop.org/series/167570/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5697-c60540b13d7bacc21848ed94fd368a968454d5db_BAT -&gt; xe-pw-167570v8_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 14)</h2>
-<p>Additional (1): bat-bmg-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-167570v8_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314">Intel XE#6314</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@priority:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@xe_exec_multi_queue@priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167570v8/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5697-c60540b13d7bacc21848ed94fd368a968454d5db -&gt; xe-pw-167570v8</li>
-</ul>
-<p>IGT_9084: 9084<br />
-  xe-5697-c60540b13d7bacc21848ed94fd368a968454d5db: c60540b13d7bacc21848ed94fd368a968454d5db<br />
-  xe-pw-167570v8: 167570v8</p>
-
-</body>
-</html>
-
---===============7348141536254641001==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260907135048.1403=
+587-4-dibin.moolakadan.subrahmanian@intel.com?part=3D2
