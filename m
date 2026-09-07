@@ -4,146 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61AFFC79FA1
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 17:44:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64BC6C79F9F
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 17:59:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 323DA10E056;
-	Mon,  7 Sep 2026 17:44:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1492F10E04F;
+	Mon,  7 Sep 2026 17:59:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D+b3FWaK";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kvs5a7z+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FD3B10E048;
- Mon,  7 Sep 2026 17:44:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788803080; x=1820339080;
- h=from:to:cc:subject:date:message-id:
- content-transfer-encoding:mime-version;
- bh=I5rEZk5sPQxOEYKAg1GXV+al9jhYatoT6ryx5rbUPOs=;
- b=D+b3FWaKcfPkn3f+ZwcBoux6fQk7MaXQHKcA+kW2dFwQqvjhSilQ7AMQ
- Twuib9tvQSyvYjdSlnPzZ/2tpJXgelmkSbYgKuQvhSWrScJ05Bf5sKoFF
- 1eMTdCFLPcwQIJl0P13xFZNigCDFZsDMumTiL30vGHMmyPffSG/qf0180
- PEIU05IrzQE8oT4tKWi/2UOdJM+l0cL2LCQ5WOwTWonqJkIrDPR44BF6B
- r+zmtmTnT7S1MewjQMQJ6yg9kTyJysmgOuT9DrBBSedOVkpMAZRVyGlqz
- Fu/huEqiKnYUfUBm+dqcucLdu5LMU7gjXkVDM6Qr0Km8bXpSk3umg/Ugf Q==;
-X-CSE-ConnectionGUID: odrPYrd/SVWtBp/Dw+vH5A==
-X-CSE-MsgGUID: Ivt2hU0/QoCS3HDAV+w+QA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="93027271"
-X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="93027271"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2026 10:44:39 -0700
-X-CSE-ConnectionGUID: uYWTnz+7SoSFwjh7Yh1mTQ==
-X-CSE-MsgGUID: nfX09rUXSCemxeRjDI6qYA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="270253364"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2026 10:44:39 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 7 Sep 2026 10:44:38 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Mon, 7 Sep 2026 10:44:38 -0700
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.19) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 7 Sep 2026 10:44:38 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gcS/pLokgutQ66IX+TKMA85KmasLLVs6u4i71YzwZQOio4gsq4nqaCjrd7WHA4TkYSwSWpgs/6/IhD2N51qMV3D8DvzokptTmV6Apy594OR1eQmw3vJvKXHAS5vpGYkU5lZ2m7H0lQ16ohoFx1VOzTtOTyxHUZ9HNxDlRQPNYXmJLQ9kaVFwvMY0RM5EVfbh+X8B3HzSNtlIBThG8dzGXs+5QN1BB2Yo0FYNhA1Ev/r5ZajkP2CWYeZ3b89dqcIrFU5ZB5lvI3sELPbvDBQbt90Mrqx2RorfjiFp+cveCyqA0YTcZTumXuOXP4AgBcG7OXQfiShnF+sr30MzrPGXxA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6VdbiVjq4fYFrarkmtC5b9szHlOsPqLI11yq0eaZff8=;
- b=hMUU2gTf45ma1r0BHO+o1WrG146AAyFaFxluudrOH0mnHxl52OMdhZLU7PgmLA3lA20NSSeWrIVb6ZQaglL7I73aSxvmKP9DKh6NIxZTT9sf9CZbhCwqXiM2v+tMv9kBXNecYdp0Yb9UFubMoXpyOWaCTgaH/VZNbPGKolauTdJQ2+xlrzbw87+Ovbkx8dwPzCN9j/yaEEEp/lsT87n63frUAjGl841Rl0cpF9CyVpkRjXnFeQnylX1IWamQVMXNpadmsSJxjo/IJG+qG08LyGth9z2s4ivbog0gvpTJhQWX4kL1L+vXZ5VaqKPuaa9H9CTym6BbYjofXEgjGBdfCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA3SPRMB0045.namprd11.prod.outlook.com (2603:10b6:208:57f::14)
- by DM6PR11MB4612.namprd11.prod.outlook.com (2603:10b6:5:2a8::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.382.15; Mon, 7 Sep
- 2026 17:44:18 +0000
-Received: from IA3SPRMB0045.namprd11.prod.outlook.com
- ([fe80::28ac:4593:a748:4b56]) by IA3SPRMB0045.namprd11.prod.outlook.com
- ([fe80::28ac:4593:a748:4b56%5]) with mapi id 15.21.0382.014; Mon, 7 Sep 2026
- 17:44:17 +0000
-From: Imre Deak <imre.deak@intel.com>
-To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-CC: <stable@vger.kernel.org>
-Subject: [PATCH 1/2] drm/i915/dp_mst: Fix configuring FEC for a disconnected
- stream
-Date: Mon, 7 Sep 2026 20:44:12 +0300
-Message-ID: <20260907174413.741851-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.49.1
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: GV3P280CA0065.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:a::23) To IA3SPRMB0045.namprd11.prod.outlook.com
- (2603:10b6:208:57f::14)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA3SPRMB0045:EE_|DM6PR11MB4612:EE_
-X-MS-Office365-Filtering-Correlation-Id: d0c582ee-fb90-403c-8713-08df0d07a406
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|23010399003|1800799024|376014|10067099003|6133799003|11063799006|56012099006|18002099003;
-X-Microsoft-Antispam-Message-Info: NsMo4SXE9f2LZ8bIv8pwEie2skG6S95O22bpdBaN8oX/tZTNTbnZsVDPaGnh5UkcGfi8G/LkPt2sW+FedR8Pz3Lnt3iTD+EbTtAMBJhr1W8agGKRjchhPFpg9cmVD2cXpGEh7qGz8i0OCQoh/o6A94NmgMAnKYxC7NDwVJ+ru29Jm34BQVYxNg3L5OMVQeQscUNP2m+kKeeS/SvaXTAllFnGWlqMx/dRnmsnGpSFhvCgtJRwl9Q3pRyVBFf1eQ1tOytkPQgAr/6ZskeZfnnTJkd5oiXw/tDkcnV/RuL9Tmu4zSyDgGYkoRtf3rYJJLGrARKxe4r3WPk0fXTb1CZXqF9NoJuTzwV4RGnkFE+2W2NNSroRGCxmML9m/2Lw+YKH+90L4ZJ+TcT2RTOEYCTztmnKZ5Enhto6ZRQRQwO+mCxrYGWaOT0/8FsngH8JnZide+7FFQB1LJhR/irmDUcnytVE5WXPgEaJ+Y/nR5mchYUYiNQQLDNEP760phAzpYpFjIYO3vJ+nOav9mIoF+TFFN+JxRSDjDO9m1CxCusUu/rJh0Cf4qJ23UwbmDUxbZIsShKuf5/um83NxwCr2uGXwzFpuWEBeHCAkm8b11NicdM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA3SPRMB0045.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(10067099003)(6133799003)(11063799006)(56012099006)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?JIf0G2UM/kU4/K7fFdqOWP8Pp3yj6hw+FMeKTKlkR/6mmGk9jAiz5bFUEAHv?=
- =?us-ascii?Q?7yrD1LE/awO7sih/tKzjgLcdxUyi434iPacCmt0iX3VWpddAdmo/+KdcNtUF?=
- =?us-ascii?Q?Hf54X5W9zL+e1h5910jLxHym/FOLVepgEJYu30CFO0PdGymRCzhn3lIIj8G5?=
- =?us-ascii?Q?hrlvjFdMfsvOadizxzAYLeq+f2TFRZ+M6lNTel0o9tBhRvxO2C6K5r56MycT?=
- =?us-ascii?Q?IFxhfu5KKF0mU8p6xkrr5ISbaAw8n4DDKV6I28/gPQAuuXu1rHMtXt1E5DmX?=
- =?us-ascii?Q?XdNE8IhBVNNZD9dFI8g4keDdwvH4MMelFJftT4yR2OKhA6o3Ri4/guKaZZ++?=
- =?us-ascii?Q?Y1cfl6HxVvCbg97tv64PU/U7klNT7Ss5l/W+q/ZPqi35BSqKYxklCn1Ho+R0?=
- =?us-ascii?Q?zeKOQqqVG1zL3jgx4xGJKB8kRWZHMyOsSSnArddzES0OjngNstN99Fhi4+CO?=
- =?us-ascii?Q?MMFzhUSriY47atd39XR9DikEQiVXW55Fr7ekwbLIQ7Vj69+nhahSYTWzq50j?=
- =?us-ascii?Q?jSmHznaRdv2/1iEV/URShMzV7R7oq8uiXkuF6ONt52J9BmsCv6nMQIG3OC0v?=
- =?us-ascii?Q?mf7iCJiwuG2BOBS9X4P9bUOKaBWMbdXKIvDn+U3bpNZ+yEBubCdBNRbQq5df?=
- =?us-ascii?Q?r05OM97GJDNIyjhR3MUVBn4mFEXwAJ4ycxQ03nipjoyfoLoQ4INmRLgI/5H9?=
- =?us-ascii?Q?NHeXR/BDGo2HV7/vFKZPMK1iz2xpd6MmJRPAPZvP+3Q/TyXZSJvh5O/L8rS6?=
- =?us-ascii?Q?93kZoeapyE0G5dzW9nuMwgCBtjQOEP7NhGgdUal4rWtxL2POWN2kb2kHAY6B?=
- =?us-ascii?Q?K5T+205wBkJ9HMju9XQoNYexYXXkyA8oPA2atHj5g2LRCrG5qxOKJdX1f0Ho?=
- =?us-ascii?Q?wGLI5Yh0aJuYQXHmMq8J5os5zdxZbM3GP1Vtpz9si7i9D3oEsGE6dsxhId6X?=
- =?us-ascii?Q?csLnIO9Qqd2PMa2WgA5pWpo7yu9jcXeqRdQva74NRc3cuvlAoezbnAExVWDj?=
- =?us-ascii?Q?XZI4X2GjLfuYRSVD51JLei9aUEu7ks5Eom6DO1QjN69kH/vKC3PHNbkbdsur?=
- =?us-ascii?Q?1+TdU3xJ452pcs2Z85cQgd655qGeyBjmR2eLLx3zt/ip/sojW036HLTkk8ag?=
- =?us-ascii?Q?/sgRbG8bwZNJTiWUdeu1iMR95Uz3kaksY1N0gEaLIwOZyOfhaQ9aYst7QP8T?=
- =?us-ascii?Q?tVvI5ljzY3ktluofFGpvo5r9QtVdwUvBiRnoQbjRWT/lgx/JWB03tvUGF+AQ?=
- =?us-ascii?Q?tjbsexjvJqb8HqlYo/7EsaEwvfSF38C7+eoHEzmOijVFxdARNY4DJR70r+Vm?=
- =?us-ascii?Q?tVPjx6fSucE05q4OgEjRI75a1icYeioCP/d9Z1fnIr7JKwyjSM8MeyY/gpUp?=
- =?us-ascii?Q?VQhys0TQQ+me5iEyNd3hiwmKLedkD8JO9J6IB3v7cqmrdEPei8OiUXqQocp6?=
- =?us-ascii?Q?y7BUUKCluAFD3OU0nNAXsXhIxrDVNxbPw8YnTECOC82oAD0KVJ47n1naFmyu?=
- =?us-ascii?Q?lPCpzQM4Dm6N8MT5Vj5u6alE+3Sy8979BSo+N8ZiWw/Ej3dwmS5vQH3Qj57Y?=
- =?us-ascii?Q?R+EhlIb1dcCeiB+tB2OmQZuJuQxUXsbCoyQysscH+1bLJWGUWyKzuOnw3sqr?=
- =?us-ascii?Q?jE+tS0tF2NqVlrVhgT/6IW23jMuu+OyuEf7UCCWjMjF6k2L+UQSh5XqsVpLP?=
- =?us-ascii?Q?nbizLF9vGmUzNdN9sLoYBjgnZXHgu9warw9lBmMFH63ZbYz1Cc0B1ZVFjqTS?=
- =?us-ascii?Q?Gvv1c1i+HQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: KO/rOTwJ8RtaEBHr8xs11lqPfK3OvMMH/5/5lijlFX/8mDXpppLL3H4XUn0NcIG11zgtrCB8Y2Ojv17ncVBF/toFyje7m273/kNPK6W9opgzTSG/dpGP8Rdnq4oxS1cGLLu0ccSr/hHQUUMANdYKyybPOVdv09F4//oYarwogLYsrOVkQO97rhpQxijCKdPnsdN9C3XFhA5tZu/r76MkOSd/YUhLAYCF9QlJ/ZwTwkPNZcStcag115EOFqLZ63F9ezPutymfAJ2qwf5B/Isy3iY0Eql2U97DD9+5vnRuFA0qkoI1bTU/VAm2EmQ4EPqyTFgZwxUlqJF0raKka68h3g==
-X-MS-Exchange-CrossTenant-Network-Message-Id: d0c582ee-fb90-403c-8713-08df0d07a406
-X-MS-Exchange-CrossTenant-AuthSource: IA3SPRMB0045.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2026 17:44:17.9204 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: z013ypv50zuK3TGCYMXRpzEoJ8ZfhGJ+Enmfg8gtMvVv4lBPSJ9YHd0NvMNxqV1NNUEI9PMq1kRvVd7ViqIrmA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4612
-X-OriginatorOrg: intel.com
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5112A10E035;
+ Mon,  7 Sep 2026 17:59:05 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id DF8EE40E44;
+ Mon,  7 Sep 2026 17:59:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 865941F00A3A;
+ Mon,  7 Sep 2026 17:59:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788803944;
+ bh=QDdsYy8Y5oRtO8dimv0U6stgwX/nujHZjFKAMQdmJTQ=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=kvs5a7z+6D+KaphoCyGw6PwO10SsQqaB+H2lStKpB/1Sz6oOBiXZNWESu0sTOKl59
+ G3iPiwZosuMnnNzAjkq0mZbGiLiumI6hAOxiq/FzCwtWjcQvfGjj4xUaLyWqv1cyBH
+ xbMtcX8yRqnD/Jr+5Bq//oAVqYrqQh2bPRUi2wGTDOxlt+bmi9k0KLib+/MyrdxTHE
+ dGC+u1dK6mc4/nGAOPDe/r4Gflu3TEwP3dOFmXMLFE9n5oD+AKJPQhTH/obcYzUKdd
+ Pp6Ytam2p4elI5SVQDUOpmbmz/o0cSz+fLYwWup83BNWj0X8tkLh6DwEYKwJ4WSJro
+ IdJFOF+AYYAeg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/2] drm/i915/dp_mst: Fix configuring TUs for a
+ disconnected stream
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+In-Reply-To: <20260907174413.741851-2-imre.deak@intel.com>
+References: <20260907174413.741851-1-imre.deak@intel.com>
+ <20260907174413.741851-2-imre.deak@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 07 Sep 2026 17:59:04 +0000
+Message-Id: <20260907175904.865941F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,50 +53,71 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During an atomic commit after all the MST stream CRTC state is computed
-the driver ensures that the FEC is configured the same way (enabled or
-disabled) for all the streams on a given MST topology's link.
-drm_dp_mst_port_downstream_of_parent() used to determine if a stream is
-downstream of an MST port will return false if the whole topology is
-disconnected, since in that case it can't verify that the port/
-parent_port passed to it is in the given MST topology. This is a problem
-during the above FEC configuration check, since
-intel_dp_mst_check_dsc_change()->get_pipes_downstream_of_mst_ports()
-will not return all the stream CRTCs/pipes for the topology as expected.
-Since passing parent_port==NULL to get_pipes_downstream_of_mst_port()
-is meant to return all the streams for the given topology (i.e. mst_mgr)
-skip checking if an MST port is downstream of a parent port in this
-case.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] NULL pointer dereference when accessing `crtc_state` for disconnec=
+ted MST streams during a partial atomic commit.
+--
 
-This fixes a problem where the FEC configuration check explained above
-failed to ensure that all streams' FEC is configured the same way if the
-topology was disconnected, leading to a FEC state mismatch error.
+commit 2c1463a6e51d57b066fd631411fc6eb110086a46
+Author: Imre Deak <imre.deak@intel.com>
+
+drm/i915/dp_mst: Fix configuring TUs for a disconnected stream
+
+This commit fixes the TU configuration for a disconnected MST stream by reu=
+sing
+the maximum link BPP limit from the stream's old state. This ensures the li=
+nk's
+sum of TUs stays within limits instead of destroying the link state complet=
+ely,
+as userspace may disable them one-by-one in a deferred way.
 
 Cc: stable@vger.kernel.org # v6.10+
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16073
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16384
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16073
+Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16384
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 6a869d0f6ffc0..20766b6c0bcfa 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -856,7 +856,8 @@ static u8 get_pipes_downstream_of_mst_port(struct intel_atomic_state *state,
- 		if (&connector->mst.dp->mst.mgr != mst_mgr)
- 			continue;
- 
--		if (connector->mst.port != parent_port &&
-+		if (parent_port &&
-+		    connector->mst.port != parent_port &&
- 		    !drm_dp_mst_port_downstream_of_parent(mst_mgr,
- 							  connector->mst.port,
- 							  parent_port))
--- 
-2.49.1
+[ ... ]
 
+> diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.c b/drivers/gpu/d=
+rm/i915/display/intel_link_bw.c
+> index b47474a3e9fec..e71e76d6fd3e0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_link_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_link_bw.c
+> @@ -64,7 +64,8 @@ void intel_link_bw_init_limits(struct intel_atomic_stat=
+e *state,
+>  			intel_atomic_get_new_crtc_state(state, crtc);
+>  		int forced_bpp_x16 =3D get_forced_link_bpp_x16(state, crtc);
+> =20
+> -		if (state->base.duplicated && crtc_state) {
+> +		if ((state->base.duplicated && crtc_state) ||
+> +		    intel_dp_mst_stream_disconnected(state, crtc)) {
+>  			limits->max_bpp_x16[pipe] =3D crtc_state->max_link_bpp_x16;
+
+[Severity: High]
+Could this lead to a NULL pointer dereference in intel_link_bw_init_limits()
+if crtc_state is NULL?
+
+If userspace issues an atomic commit that modifies a non-routing property
+on a disconnected connector, the connector is added to the atomic state
+but its CRTC might not be. In this scenario, intel_atomic_get_new_crtc_stat=
+e()
+returns NULL.
+
+Since intel_dp_mst_stream_disconnected() evaluates to true when the connect=
+or
+is unregistered, this block is entered even when crtc_state is NULL.
+
+This results in an unconditional dereference of crtc_state when assigning
+crtc_state->max_link_bpp_x16, which is reachable from unprivileged userspace
+via the DRM atomic ioctl and could crash the system.
+
+>  			if (intel_dsc_enabled_on_link(crtc_state))
+>  				limits->link_dsc_pipes |=3D BIT(pipe);
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260907174413.7418=
+51-1-imre.deak@intel.com?part=3D2
