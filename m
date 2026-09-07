@@ -4,163 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 743CCC79F89
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 11:48:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FE2AC79F9E
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 11:55:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3954E10E7B8;
-	Mon,  7 Sep 2026 11:48:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64A5F10E7B6;
+	Mon,  7 Sep 2026 11:55:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lp1D50Gg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FYUm/wwT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CB0710E49D
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Sep 2026 11:48:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C26C110E7B6
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Sep 2026 11:55:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788781701; x=1820317701;
+ t=1788782140; x=1820318140;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=yLtjQJVgXKmLFRqQwCG5n+A37IvSTxqPQUZIwxBJTeU=;
- b=Lp1D50GgrTUo4YSVBFoR7nSxAkZLYbagC/9nDU9oz8tSGGqY1ztyBFoq
- eIxRf5I7Wxu+C7RQ0Rdmij3YEDSKKAi6uFUyWFb9VK4uasLty2k+F9g7M
- LLkasD8dMjtB70LAZAJJvJVccV6ac3VNyID9QyCvXU6+ZGusDM+ZUB4Bt
- sepcgdLE/C1gZt402IM8GdOCgN441D08qhT5fD2gPrlfdOjYScV3cLpvT
- MEYhBBTItUSV9IXmWYEM4Sv9qckFkfSOGyiac9M6Jg5QMfKjMAL1kuLzk
- rKgi7jJ/TuXkM5DT6bvhNQU4tOIeLI1+pxOmPj/3K9VkKU21QJwOV1hNJ A==;
-X-CSE-ConnectionGUID: dv91L/cQQqSTsAGMTQWEWw==
-X-CSE-MsgGUID: HDvJgjR/RUq7uH00cU80pQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11898"; a="88118370"
-X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="88118370"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2026 04:48:21 -0700
-X-CSE-ConnectionGUID: AH/a/t8vREGXB1LDx6DD0Q==
-X-CSE-MsgGUID: QRfHMgvaRcK/QNodHOt6zA==
+ bh=qc3+gG+768R7HDS+1UZtNEcf49VJgCH2uQk+NZLdlqE=;
+ b=FYUm/wwTXNjPZtvf996NhU7o6+f8POqlRpH8n32WOIJnmGPAlmWFcGoz
+ eWn8BPinFm9O+EUkXIouEHLUF22J7dtHQSlllhcfSrBgsNcUFxkvLpRL9
+ gvrNbsoYamfgoWIkbHPwH5GKh90jDUiUtTijMsFB+f+G/cPOcTxdN00F8
+ hSeMT801XbPVrwOUXw9fXY6QQOzpM2YvqO533Qh2fqIgcYRQjbHl4Ut0E
+ dB+dWETFa8+uYVdnfUPoMo0zDEeXsiwc/3EjXAhGJ06KDM1ShaHjrR2ud
+ SMt7pZblTeAjksYe1nRRnEMh6t8eGKk9JkA7jjRSj9QJvsxAxwb4izoDT A==;
+X-CSE-ConnectionGUID: dlpxoxPdT/yBkAtmx5F09w==
+X-CSE-MsgGUID: tITTmpADRq+79ezxjLVqtw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11898"; a="99517437"
+X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="99517437"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2026 04:55:39 -0700
+X-CSE-ConnectionGUID: hG+bJXMuToGHC7mKI2IUuw==
+X-CSE-MsgGUID: VAT61+dHSmepKnVhdRURXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="274491314"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2026 04:48:21 -0700
+X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="264496063"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2026 04:55:39 -0700
 Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 7 Sep 2026 04:48:20 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Mon, 7 Sep 2026 04:48:20 -0700
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.0) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.46; Mon, 7 Sep 2026 04:55:38 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 7 Sep 2026 04:48:20 -0700
+ 15.2.2562.46 via Frontend Transport; Mon, 7 Sep 2026 04:55:38 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.63) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Mon, 7 Sep 2026 04:55:38 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=u8U7xgRRtOpAC4TH2gh6BUPFDm68OlEfKm+/+F1V0odJm/Qs16COn2fDCleruc0g1gL92nSccSQlsQFXfc03QER7tCTCZ2htYSHFhqQ+Qo2+mz3sIaHBpzusSujCrc4hvc5k2A8n/IbY6oiiZrB6EcBC+q0LbhcfJq7DM/K2RIXOd84IX5K1oSyqKKhsELaR4PWY85hm0zcqO7QKxmwpJn2qDTdU/utLsX8PTNRSC5/mF0jPzL3/qXx7Qj5hdex86NTqUQvYcXFb/LQQv7YX/bhg/6ezG85/csy8JNGuuPullr0wwK97LJrUpYzOiZI9Il6LWiFqgSXhHF/M0GoHSA==
+ b=oWMO8LTvkFY3v82caTutjMBulLyVq5T5Eah4EXIueBTkUln9e5x5CPmteVvvFLtfWoLN1PqfBsLnUIEY7ZxL31DB2jycyRxcOCP4w5lOwmF06cUeaj1+acSJru8QAovyLUSKKWegLp8lk3/84r66W2AHWU1ef0T1GqQmPj4Kc9G0W0mXFAckEOEfPL8VH+NeqZ8jFFJ1MHZsaMP4bW7qEdmJxCikEk3KTRrn1doCiaqGeTvP4drMmzbwWnF6oDkPluHH570k/xpvDOvjYZdX5BswReA2nUgYBJcE/Js6rhdN1RJ7uywLeTs0Nfc4sGMNC/knS99mH/dNZymFn64rAA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DyH7Ne9vpFBimyfOz9nGA+ErVP5IPndCndxBvZYjpEs=;
- b=UEX/c8KlaSNSY9itJYGSroS2h3Q1S+az1xDMUEuCNXxw7g5CitiJfoU0ROSc5xDZNF7Bhk/PqZXSSCvm2+8DDsWsf8Rgrqxaw7GOKMdwt3Y7i+xkrqHj0BexepAEjKtohup83tW/08A4XRmohLZESx1f6c3IHH5ZX6DCeVRMRZGGyy6rKXzAPyWv6a6tPeRTjyhmOLxhULgKi5bBbMoOFELLoa5ANKFhu0VMRPQ5W3keTfZSebnedEmXOV9sm6HUSCIjuGegV+Xwx3YTiSzEkHKW7wevQpQ985Oc+8/dBaQfGb2DdijasyjFuMrLTFwxG8T/5wbDJHhsJZTEDvm4TQ==
+ bh=K0vzV2cL+oo9qkVtc1vag97ZUIDunXh77rB5xyVzOqk=;
+ b=N0kTrtFSKyUwNhnJ8b6j4sU/XHaKfuhpLHuNex4Bfihe/WxX5iVRz80hRrfNbSl6bFn2NN3tO5DfRbf0PIR8DMcFftoMHXkPrfvTHp0Q4WGNDsazeQjfAI5Y2AGdV8yiVJT5KbMIaA6CqawMFk6JTTZ9o91P4eU8gbHZl27l9yFsQTYWd4mFJ4hG1/cfVf5ghDUXsXCflbo1pM0/sfDt4re0CjDX5H9HLBsRWeaMmQlmR2Wa7h9q0znoGtzviukCeI63kUhkaQf9JYioQz2vRtO4l+Iq6g5P9VmDCO5Jmt+qoC9kryNudxVvxmeWjQi2ju+iv7Vz2f2+BTsOJEQC7Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB7530.namprd11.prod.outlook.com (2603:10b6:8:146::15)
- by CH0PR11MB8086.namprd11.prod.outlook.com (2603:10b6:610:190::8) with
+ by DS6PR11MB065147.namprd11.prod.outlook.com (2603:10b6:8:52a::20) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.382.15; Mon, 7 Sep
- 2026 11:48:18 +0000
+ 2026 11:55:36 +0000
 Received: from DS0PR11MB7530.namprd11.prod.outlook.com
  ([fe80::4957:93c1:7385:6c52]) by DS0PR11MB7530.namprd11.prod.outlook.com
  ([fe80::4957:93c1:7385:6c52%6]) with mapi id 15.21.0382.014; Mon, 7 Sep 2026
- 11:48:17 +0000
-Message-ID: <3be73c89-0ad9-4299-8c6e-ed55120f6b64@intel.com>
-Date: Mon, 7 Sep 2026 13:47:54 +0200
+ 11:55:36 +0000
+Message-ID: <01acf34a-3231-45c7-b8ce-e70ead34a44d@intel.com>
+Date: Mon, 7 Sep 2026 13:55:29 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 6/9] drm/xe/sysctrl: Replace FIELD_GET() with
- REG_FIELD_GET()
-To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
- <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
- <matthew.brost@intel.com>
-CC: <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
- <vinay.belgaumkar@intel.com>, <riana.tauro@intel.com>,
- <karthik.poosa@intel.com>, <sk.anirban@intel.com>, <raag.jadav@intel.com>,
- <aravind.iddamsetty@linux.intel.com>, <umesh.nerlige.ramappa@intel.com>,
- <dnyaneshwar.bhadane@intel.com>, <anoop.c.vijay@intel.com>
-References: <20260907105313.2208003-11-mallesh.koujalagi@intel.com>
- <20260907105313.2208003-17-mallesh.koujalagi@intel.com>
+Subject: Re: [PATCH 2/2] drm/xe/cri: Expose device UUID through sysfs
+To: "Nilawar, Badal" <badal.nilawar@intel.com>,
+ <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>
+CC: <anshuman.gupta@intel.com>, <raag.jadav@intel.com>,
+ <riana.tauro@intel.com>, <mallesh.koujalagi@intel.com>,
+ <aravind.iddamsetty@intel.com>, <heikki.krogerus@linux.intel.com>,
+ <himal.prasad.ghimiray@intel.com>
+References: <20260904160608.2004174-4-badal.nilawar@intel.com>
+ <20260904160608.2004174-6-badal.nilawar@intel.com>
+ <65b77b6b-a21f-4631-9cb3-a5c0e07645c5@intel.com>
+ <5ac64235-025a-48c9-ac18-893fcfd6db6a@intel.com>
 Content-Language: en-US
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20260907105313.2208003-17-mallesh.koujalagi@intel.com>
+In-Reply-To: <5ac64235-025a-48c9-ac18-893fcfd6db6a@intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VIYP296CA0005.AUTP296.PROD.OUTLOOK.COM
- (2603:10a6:800:29d::6) To PH7PR11MB7551.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VIYP296CA0011.AUTP296.PROD.OUTLOOK.COM
+ (2603:10a6:800:29d::16) To PH7PR11MB7551.namprd11.prod.outlook.com
  (2603:10b6:510:27c::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7530:EE_|CH0PR11MB8086:EE_
-X-MS-Office365-Filtering-Correlation-Id: bf998785-6e78-47bd-9419-08df0cd5e0f1
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7530:EE_|DS6PR11MB065147:EE_
+X-MS-Office365-Filtering-Correlation-Id: c4119e6d-81fa-4e03-6e8f-08df0cd6edae
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|23010399003|11063799006|4143699003|56012099006|10067099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: fwFvk6LyFbX6+gxxDu1iNoOZl1AgAackU4i/HoVhthtG7NIUYU6n5o8C/f6PoN5GdSXsOtvzpP/lTX9xLLqQJE+wK8v12SzssVVQBFY/4NpbkN33ROQHKS4ail+IK9Ge0uJLaQDsiElwtIclurm2pmmy9/Nqh3e+zdcAqtyCHBxSfZ/VYgqs/sJEsOYF985LYoJEuto7hL/3ntDAxlTm/GlS6nlgiUQv3eaSzJxLpA4ssA88bFiL9tpaWh/BqVLNd3mmbRTIh9TGul5J9+FFJKuzkYy9QoDdDl20tzawis9j2mqpeW9rgzD2P5i4p9m3cKjQnhmLIdwxFZsWTQ8xXfFga6s+ZWETRd+bm03Vax+/vobFaTJPcTMFcp7zWPR7VMNn5koIbWHKRsMMZykVDKl92wI5Lj5uuoYEd8P6JbwisR7uSoH3FtiA+dk40ws8fvXXIF4rHPjraUB4qJYUZbxMQWbPOfS3xUwDdJN8GhvwtiKpHkcrVXRwVOPtPA1FRPA1KMVZnwQ2ZAsYOs0DIQpiSGkjeDkR2aRE3gGHuIAYnZ1q2EexR7VdJtglrVF8fD7ONliKaKbUutUk+I+pKPojs4ZcatClvRY4ntNPNILm6fibfWqhvj+env5pZGoJpQPK8zPWs2UHFxIU2wyFRQ36ObVnS2IZ29XaXA2aiGc=
+ ARA:13230040|376014|1800799024|23010399003|366016|6133799003|10067099003|4143699003|56012099006|11063799006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: Ldm81h7hWBygtQNAtw9sDlX9l9Dj77+U6aCKWas81VQturcaqZAahTZdPue80Qnlf0eiBZxwunh1gW5ApCiuFVwrBGjX9TtVMro5Fn/LvGgD6ybxy156EAMyNtuvtjjU0vrodelW5YM92T60G4KvcAgcHnutyvYiaUKKkryyEKlBJi2oAAf8SDPU21JewSpMLwy+LsT6+U3tGCEeYdO1DnVpz6ElxS5h1TS+K2Wv1wsNmr+eKowh0S+BGBBPJGifkQAj9E8Zf3Cx+moDezwB7Pc2kj0j36KsevaKGSKkE4DSi/OJl8hJCD7j1C1LuPcDGdwgILe/sIrv3+7+w1MGqKz/iLRED5cbIlc7b4x3aBnTURfUPVI/oksp1LVLlFDq5XRrOWa7wZiErhMn/iJ5rt3wOATdO440w4ifH2pKD93mwzxaSBmcjR/ux4JflykkETGGjiWrazTJvA7pRR93R4TV+KpRuw17v//lEnoaDhxMmki4LrL7MIHAgwQS7f/ipWcHz3BA9ARbwriWZgtEhbxYeCT2JZTRZ3AoGulktYLuvIzXCg8rSa/f6Zqn6yIGZeuRulnKdulwrrr/fJi0/MchAS7fKDjdNrhxiJesZBkVp4aEPY7/0VOAi9sN2SApsC3yx6ALPelvbPCw81neJ0M1NgcIJRXqvmAF8t3Mapo=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB7530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(23010399003)(11063799006)(4143699003)(56012099006)(10067099003)(18002099003)(22082099003);
+ SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(6133799003)(10067099003)(4143699003)(56012099006)(11063799006)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dHpmazN0QlZlcU5NMlVHd0o3MnpuQmxsYXNrT21wVDJ4K0pWK05VZEdMd3Bm?=
- =?utf-8?B?bnM4UVZmWjhoY3pOejMweEU3bzlWVkdYbGVpdWhOTkZUQ2tPaHR1TSt4RGll?=
- =?utf-8?B?djdZN0p2SUt3THNZVzZjQy9KT1BEc2M2NkVlcDFOODRnYUNtS1lZblZXT3ZS?=
- =?utf-8?B?QnJiNVUrZWNUS1U4NGdBRFlIaURDOTdLWlR3R1RBTG1nUmQ1RFdCWVZyNVlG?=
- =?utf-8?B?dDNvdHN6V0NHQjU4eW9EdFZPOUFSZkFDY0JtaEJOa281N21FWmlabFR5UEdP?=
- =?utf-8?B?U04za0V2QmNnR3l4QXo3TlVrMUhjNUdRRUZ2UTI0MSsxZ0FvWC9DcldMcTdY?=
- =?utf-8?B?WXZ4OS9JY0ZLR29PTytlemIrMzR0cWhCbTNDaE9INTJYTHpmSkt6RENYcmZt?=
- =?utf-8?B?ZkxhaGE2ZkF5RmVsQysvY0Z2cWx1NjJwRkVYcjVILzVPNWF3ZVdsclYzd1o5?=
- =?utf-8?B?bFdPQnpLdXFZUUZ4ck5NMjBVWWlNKzZTcnExQURERmh6QjVTZlJGWHdndHNK?=
- =?utf-8?B?K2ZuaUJnRVA0WEVxeFY2UDBNUERVbVpXVE8vN1lWMG1ST0FPVkZjVnZOQWJq?=
- =?utf-8?B?ZE12dHVUcy9uRU9rQXVaRWtYRXlsYXVBVzBPeFpVK2VKOGhzMmhMQ0xHSE9m?=
- =?utf-8?B?VFJndjVXMWx4ellvN1RNbFgzT05yZ1ZCbU0vZVdzM3QwMk1TR3dNejh1VXB2?=
- =?utf-8?B?WTB5R0xRMU5mVkk0dlFPSzVRSmxpTzdwb25kd01WYkxuWFR4M3JMWmZaM3BQ?=
- =?utf-8?B?WkdzaFJRNDZGR1FKVWpqSk9iaWU5cm9hVytlb2J2ajJiZnYyTXhHR1UxVGE5?=
- =?utf-8?B?Z0IrTEVJT3RnZS9GNmEvbHc0RElaVzMreURxNHEzSGI0aXllOHBBTTY0aFNF?=
- =?utf-8?B?dmVCMGZCdHJIdy9iMkhObHRHUUNuU2VrclVCYVl1bGRsa2x3eEh5NzcxeHVw?=
- =?utf-8?B?Z3pUYnBpa2R4bzNXdUNuYWRpWkwwWFMwTlVZcnZSZXREdk5sNGZYeXBiTU9S?=
- =?utf-8?B?M3BDVEFFeGdCaXBXVGZyZHJVZ3F5aWErYjg2bmRnNFk2eWhXM0RZK0kzZkh6?=
- =?utf-8?B?Z2oxamNmZm1xbldEVHZpcmpqSm45ZkpvSmJFa1NuOGlna0hCTGlHVFEyd0Q2?=
- =?utf-8?B?Um9ILzR0dUQ2S0R3dVBUSndmMGRudkxnL0R5RzJGcDNUeGdwdEY5NzNGQjRl?=
- =?utf-8?B?cEs1TjdZQm1CYjM0N0c0djRVRTRsRGJjSUhLMjlRTXlWb3FBU25QMnlpZnhZ?=
- =?utf-8?B?QTNHU3ZzamJsc1RVSEEyZ3VTQkZXdHBhSUhhSDZhMHdoNExZQ1laSmxTaFU4?=
- =?utf-8?B?ZnJKQlp2cTk2OFhKUTd1eS8vSUdla1NOZm1kWUlxNFQ4KzJKNlJyNWdOdEJZ?=
- =?utf-8?B?MTdMcXRXVGZsalV0aDd0OHU5d1pWMkpadlc3YjJnSGRmSG1jTVFYWm1UV2l2?=
- =?utf-8?B?VnRxZXJtbVExbVVXY0ZsbW9XaHJIVmtacDJsbDBmWExxNXVXVjBDaEluTlZE?=
- =?utf-8?B?cC95NStWZ284bFJEdDRBdEw3RERRb2Jld0ZFM25BamVZQmlwYm9BUUJidGhC?=
- =?utf-8?B?bnlzN1BYSnB6KytIblo4NmtBSGpEMmM0RTlKYUVoNnVnSERERUM2K2xxb2ps?=
- =?utf-8?B?U2ZZc0VJMmlLbUxxS3RRYjNNOVRZTEN2a3FCZjNjZnNDUDczNFMrS2pqaHFq?=
- =?utf-8?B?VXZuVXZsUE9DY0N1VmxWZTlmR3FvTUFVVkVRemozYWVQazBzb2t5S3dIbmdE?=
- =?utf-8?B?cjRXenB1VkJpZnhaZmYvV0hxOThVNFd1Szdub1dlL1FGNktsUWlRekpQUFc3?=
- =?utf-8?B?TndEaWZkUUs5UVdqdU9zVk0yaExOT2htQ1V1V3lORllDZXZtcVM2Mm8zaVRU?=
- =?utf-8?B?RFU0NHJ2SkU1V0s4OHRvcG5tWkNCYVlBZDAwcURTTXowTW9GcTJyN04wYm0z?=
- =?utf-8?B?R2Z3V2ZqVS93dTBDR01NeDg3T2ROR214TFVUNnlHWkVFL0RycExNVVZXaGMz?=
- =?utf-8?B?WmdBRGlxOE9vTnIwR0ppWFJ1eDF1NUprLythWEpaVjE1NFQvNFVtc2lrVGhO?=
- =?utf-8?B?a21aNityVlZxRms5L21Gc2M3OEluWW81U2Z5N05tbVV2MGJsNVp4TkJtaC9n?=
- =?utf-8?B?MWsvd1I4bGRRY2pJN1YvRzZDZXYwb2NsanBIaHhWTjJEaFVNR2IraXNiTVlE?=
- =?utf-8?B?aERLU0w1YWRzUkpOeE5WbDhNRHVFU3M1SitkaUhTcjJKdm1RS0hubWRwRjRC?=
- =?utf-8?B?VWs5WXNHbU9aYlBpaC9wK25ZQjBscGxMMTIwdGFVeGwzSVRQSE9MaGNNSjFQ?=
- =?utf-8?B?OUtkcHVzTWNBdEd6RVg1T2xMcWdPTW5UeVJRN2kvdlVnS3J1ZlBsUWdybjN2?=
- =?utf-8?Q?KOK1CsFxSuCZIbeM=3D?=
-X-Exchange-RoutingPolicyChecked: RwOb4YmJXv8RFJgIFW9jBj10liyZJ6MYCHVBSuUi6GfuWxm/Ej4sjdQhlvuWI11Pr1FnB4QnqnA74ZhlWKtOH81Vq5sAfLoTkOLSo3utgx7i69NnZq5XZGIc6qxB6qsoCydTOE5UHpDDPOV7u++AIy2J+gY0k9XHfk7TWRyjTQbNFsa8ovqeTZUKgLu+iyVT8iW8lgEqn4YwlMHjrb+tCcKFDkvqm3CveoQ+ajRPLYgoMXtnadvRvMirnzWa6f2E9z0fFWKMniEYYlpiqtjT3vm/fql6t2ldo4tvXnSytiTX5M8BwotmqAjdIvCY0qV4fmB4oRTqSZdtEzp0+sOwJQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf998785-6e78-47bd-9419-08df0cd5e0f1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Qk9meEFoMjdzaVdZRGE5Nzd3R0NtWEthbS82T21HT09GeUdFcTZxM2wyODhE?=
+ =?utf-8?B?eTV6dGl3SVNpV0N3ZVc0ZXF1SXZKclJ3eEZRNGxQNGpTamtjQlBXVWhWUGlS?=
+ =?utf-8?B?OEl6NUM1OWF0SmtkL25TWWYyL1FCZ3RJcG50ZHZGN3hyUXkra0dYK3N0TUN6?=
+ =?utf-8?B?WCtXd2dzZzE3M1RIZVNGTnpKNUtHYytBY05kWDFZMU81Y0hnS3h2Y2JLZW1L?=
+ =?utf-8?B?R3V4RUhLMW02aG54K0dZbTUzenI2SjkvRG93RkxFZndlTWlHSjdEY0F1MEZX?=
+ =?utf-8?B?ODJCbzg0dk0yY1dUaGlYM1k5dXh2RnozbDhNUFhtekF1c2wyT21PNTZGcEhh?=
+ =?utf-8?B?U05WV3J2T3ZhYzVpS0NxNTlnRXo2aUExSWFGRUdpZnpjSmRRNEE5am9IUW5i?=
+ =?utf-8?B?UnZ4OE85VjVFaGFpRm9UcVBRdFJNVXI4MHNtRHFDeC8vaWZwc1E5bGN5OHBy?=
+ =?utf-8?B?L0FZMDJMSE9vOTVEdytmdTJ3eE5xMzRLcGtxa002SE12QmJRTmFCYkpUTXRW?=
+ =?utf-8?B?aVlaWHEyNWU1TStBQno2ZTZLc0dTZ2ZpNnJwakJhRzNDUU1QWU5oZGpheWpk?=
+ =?utf-8?B?N1lTb0NMQnpSVmlQT2hyMTJzUHZqTGp4aGNkUGFBbUNqSDRJa2FWNkpORFpx?=
+ =?utf-8?B?b2dveFJxbUhVcWlyZk5XNTBrejJqcUNkaDMveXZHd0NLZmM5M2RxTmR2Uk15?=
+ =?utf-8?B?dEU4T1lvVzlGVVFzS3ZodmhXRzRIdDhNRVJuWFFzYXVBN25nMCtJVEgvenBL?=
+ =?utf-8?B?bllOZllmdkVGdmVJMXQ0d1I5VnIyYUgvaUlpUXFGU3lvS1crVE0zL0R6S1ZK?=
+ =?utf-8?B?Yi83dlVYMk9vRUErWGxxeFJ2MTRqSmw2R0gyVVVOZWUvYWFLenhlaGovMWVP?=
+ =?utf-8?B?RzloTHA3Um90RWtsUjN4ZVVHRjBuWmtFR3RCTmhTc0czaE5vUjNCRElJMFFR?=
+ =?utf-8?B?SndlZkdUVnlmOHZkT2lvOHdKSUxBcTZvZUxVOGlPWlRDT3A1YzVzbTJ4Zk1n?=
+ =?utf-8?B?R2FGbjRxM3RXbkwrbjJSdklZblhleUJydHlKeTJaMjRxaDJYMVpIOGRuNUVC?=
+ =?utf-8?B?S1FRS2hLVVBqMTZVUVluWlZ1aXhTTVdSRDZKZ0pYSTJOUmZKZWlCc0lnVGhL?=
+ =?utf-8?B?Yy9BRHRsVGREVXdXTlNLRmY3VnhTY0EvejMyN202VFl0aU82eU90WWFVdXNK?=
+ =?utf-8?B?YlovZk9yTjJ4RXpEc1M3cFYxeTRZcWU2bXBPcWRYeXVnRlgzOVpnalBRWVJz?=
+ =?utf-8?B?anNEUVFXdENCbGw4M3dwNVJ3SmVNOVVyc3lTeEVwMWkwbytDZm43TFRPWXVo?=
+ =?utf-8?B?NVoxRituMko4Wk1uY0d6NXZvZS9pcklwU3VPZ3kyZkYyMG5HSGtybGYzNUxV?=
+ =?utf-8?B?M0dvRWpXUVFUaGhPUWU5aVFuVGx4VGtIMG43eHdGUVlUYkNvb1o2Q2hSZERZ?=
+ =?utf-8?B?NnY5SThmS0t0OUtZd280L1ZJdGJYTlhyaU82N053YVhxT0VRcGpndE11NHBU?=
+ =?utf-8?B?UTJzNERxYittYnBMQ0hhZDBrKzNiRDdlT2hmYk5VVjBFU05na2hiMlJSc3Bi?=
+ =?utf-8?B?UnVWcnZvTmxFZEJkTjZ4c3ZCQUl2enpGUXFwVFNhUWtLcHdMTnBHTEVPemNi?=
+ =?utf-8?B?U2xyQ2d3WTNaWTFaV0ZBZGdLaW5hT3JNYmYwYlFPUEhuYloveURZMUI2V3dI?=
+ =?utf-8?B?ZW1oRUVRNDIvcVZvMUdDcHB6RGhZMXEwMXk0YWdvQjE4bGErL1orVlg5TTJF?=
+ =?utf-8?B?ZWlUZDB5MXZXYWREWGM2Qk1SdFkrUkxlL2pKU1lLTGg1dStyZE1LYkVBMmY5?=
+ =?utf-8?B?L0hRNkllN2p1M0toT1h6QlRXK1lrYWMydVJ0YVdPNFp4R1dleU9uRUtjRUEy?=
+ =?utf-8?B?TnF2M2UxejZhRkZ4V1BGQjZCYTkxWG15Q0QrOWpFZEFQNWpRV0dWU3A3VHZZ?=
+ =?utf-8?B?U1VzUFVVR0VTbTlaY2lqZHdaY1U0YWFZKzlzVU9CeTUxRW1ESUM0U0pEbnM3?=
+ =?utf-8?B?UnpsdUd5Z3kvK1ZMc2krZUljTmIyMlBxZHRMZkR0UFp5eDNwQ3NpamQzL1lw?=
+ =?utf-8?B?S1lKa2o3S1E0WUg4Mi9ZV0RwMFJOU3hlYXRvbTVyVnp6ekUweHdIT2tZNmFa?=
+ =?utf-8?B?Z2lVNTRreEduMTNRU2dCdm8rdGlHdk0zeURYcUZTUHN3Qll0K2NsSUJUckRl?=
+ =?utf-8?B?WkpCUGE3eHhPSkxRZ295djUzVmFvZ1ZMRUhpV3k0QWpQZTFYNk1sUXh2Um1B?=
+ =?utf-8?B?NkROdCs5TmpQK21FT2R1TG1YWGM0WkRBK3p4bmkzdjIvb0FGS3NBRWd4ZVZL?=
+ =?utf-8?B?dGRFZE1oUzVZSzVERm9WcmpIUVBDNDByRDBXV0tuMnVTMFpUMHVIL1E5WmtQ?=
+ =?utf-8?Q?wOBpc63xPPlXL93k=3D?=
+X-Exchange-RoutingPolicyChecked: EmdwZeqv8Gxe94lFRgoMfUsomc+D9EuAxd1oSYJt7H71UEFIXvVKqbrkLJbSMa+EZ1mPHrmDzKd80LIaLLKIk32psxMdIIbE50XOB6Wi0UVRTYp6KWuToHuac1LRBqOopCFSI9hmm2resN4YqNOI66se1q8Z0n89Cb7zzT/FSyvK/f9oznwNtxtUTNUKbm9myTBDK7yFCMLRYVqgkrYObZsQMplzV7CjvItcr4WcOvuxm9M4IXN8VXOkmL37wCi+j7brA6epb/5ElYv0lEtNPcKoBmqSVnJ41yJKDrt14I68xOK3tXgCve3DzpHw/EPgp1e7vwpW0b1JtGZbtcrLyg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c4119e6d-81fa-4e03-6e8f-08df0cd6edae
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7551.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2026 11:48:17.7539 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2026 11:55:36.7559 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Te24aze/cdE5FEcjonRNp85fp5x4LSQUYNsuHFUSgmi4/9ZLbONBBDz6WLo9771CpyB3GTcpFSCBQp5ZtTVBGqMyCXaLu6D+uTRmM1BWe8o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB8086
+X-MS-Exchange-CrossTenant-UserPrincipalName: pYgukgXcFhmuDpHJEfz7QaBHVGtmx7JG0I6tvgC5mvHQHenpjks63yzKJtY84RaYZK0mFBYYoRua8o1wsVFVwt9OIbdW04n3NQf7rvpDIoA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS6PR11MB065147
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,111 +177,175 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 9/7/2026 12:53 PM, Mallesh Koujalagi wrote:
-> Use REG_FIELD_GET() when extracting fields from SysCtrl and
-
-nit:
-
-Use REG_FIELD_GET()and REG_FIELD_PREP() when working with fields
-
-> application headers. This better reflects that the masks
-> represent register-style bitfields and improves consistency.
+On 9/7/2026 11:13 AM, Nilawar, Badal wrote:
 > 
-> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-> ---
-> v7:
-> - Update FIELD_PREP to REG_FIELD_PREP. (Sashiko)
-> - Update FIELD_GET to REG_FIELD_GET.
-> ---
->  drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 20 ++++++++++----------
->  drivers/gpu/drm/xe/xe_sysctrl_mailbox.h |  6 +++---
->  2 files changed, 13 insertions(+), 13 deletions(-)
+> On 04-09-2026 22:07, Michal Wajdeczko wrote:
+>>
+>> On 9/4/2026 6:06 PM, Badal Nilawar wrote:
+>>> Expose a read-only sysfs attribute, device_uuid, that reports the
+>>> GPU's unique hardware identifier.
+>>>
+>> Bspec: 53048,53049
+> Sure
+>>
+>>> Assisted-by: Claude:claude-opus-4.8
+>>> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+>>> ---
+>>>   .../ABI/testing/sysfs-driver-intel-xe-gpu     | 10 ++++++
+>>>   drivers/gpu/drm/xe/regs/xe_regs.h             |  2 ++
+>>>   drivers/gpu/drm/xe/xe_device.c                |  3 ++
+>>>   drivers/gpu/drm/xe/xe_device_sysfs.c          | 36 +++++++++++++++++++
+>>>   drivers/gpu/drm/xe/xe_device_types.h          |  3 ++
+>>>   5 files changed, 54 insertions(+)
+>>>   create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-gpu
+>>>
+>>> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-gpu b/Documentation/ABI/testing/sysfs-driver-intel-xe-gpu
+>>> new file mode 100644
+>>> index 000000000000..1a4bdfbad8d7
+>>> --- /dev/null
+>>> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-gpu
+>>> @@ -0,0 +1,10 @@
+>>> +What:        /sys/bus/pci/drivers/xe/.../device_uuid
+>>> +Date:        September 2026
+>>> +KernelVersion:    7.4
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:    RO. Unique 64-bit identifier of the device instance, read from
+>>> +        the device's CRI_DEVICE_UUID register and printed as a
+>> hmm, maybe in the user facing documentation we should refer to this register as
+>>
+>>     DEVICE_UUID(102008)
+>>
+>> instead of the meaningless macro name?
+> I will drop "read from ..." statement.
+>>
+>>> +        zero-padded 16-digit hexadecimal string.
+>> if this is UUID, shouldn't we print it in UUID format? see %pU
+> I this is not UUID, i will rename the node as device_uid.
+>>
+>>> +
+>>> +        This sysfs file is present only on Intel Xe platforms that
+>>> +        provide a device UUID. It is available to all users.
+>>> diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
+>>> index ef4746b7b5d3..68226fe0b659 100644
+>>> --- a/drivers/gpu/drm/xe/regs/xe_regs.h
+>>> +++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+>>> @@ -30,6 +30,8 @@
+>>>   #define XEHP_MTCFG_ADDR                XE_REG(0x101800)
+>>>   #define   TILE_COUNT                REG_GENMASK(15, 8)
+>>>   +#define CRI_DEVICE_UUID                XE_REG(0x102008)
+>>> +
+>>>   #define GGC                    XE_REG(0x108040)
+>>>   #define   GMS_MASK                REG_GENMASK(15, 8)
+>>>   #define   GGMS_MASK                REG_GENMASK(7, 6)
+>>> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+>>> index 8583b2e9ecf4..e8db8871990b 100644
+>>> --- a/drivers/gpu/drm/xe/xe_device.c
+>>> +++ b/drivers/gpu/drm/xe/xe_device.c
+>>> @@ -801,6 +801,9 @@ int xe_device_probe_early(struct xe_device *xe)
+>>>       if (IS_SRIOV_VF(xe))
+>>>           vf_update_device_info(xe);
+>>>   +    if (xe->info.platform == XE_CRESCENTISLAND)
+>>> +        xe->device_uuid = xe_mmio_read64_2x32(xe_root_tile_mmio(xe), CRI_DEVICE_UUID);
+>>> +
+>>>       /*
+>>>        * Check for pcode uncore_init status to confirm if the SoC
+>>>        * initialization is complete. Until done, any MMIO or lmem access from
+>>> diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+>>> index a73e0e957cb0..a4d326159dce 100644
+>>> --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
+>>> +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+>>> @@ -8,6 +8,7 @@
+>>>   #include <linux/pci.h>
+>>>   #include <linux/sysfs.h>
+>>>   +#include "regs/xe_regs.h"
+>>>   #include "xe_device.h"
+>>>   #include "xe_device_sysfs.h"
+>>>   #include "xe_mmio.h"
+>>> @@ -264,6 +265,35 @@ static const struct attribute_group auto_link_downgrade_attr_group = {
+>>>       .attrs = auto_link_downgrade_attrs,
+>>>   };
+>>>   +/**
+>>> + * DOC: device_uuid
+>> do we need this?
+>> you already described that in Documentation/ABI
+> I think I will drop the Documentation/ABI and keep DOC: section.
+
+hmm, but all other sysfs entries are defined in Documentation/ABI
+(which IMO is the correct place, not a local DOC section)
+
+
+>>
+>>> + *
+>>> + * Each Xe device exposes a 64-bit UUID that uniquely identifies the SoC.
+>>> + * The value is read from the CRI_DEVICE_UUID register and can be
+>>> + * read back through the ``device_uuid`` sysfs entry.
+>>> + *
+>>> + *    $ cat /sys/bus/pci/devices/<bdf>/device_uuid
+>>> + */
+>>> +
+>>> +static ssize_t
+>>> +device_uuid_show(struct device *dev, struct device_attribute *attr, char *buf)
+>>> +{
+>>> +    struct pci_dev *pdev = to_pci_dev(dev);
+>>> +    struct xe_device *xe = pdev_to_xe_device(pdev);
+>>> +
+>>> +    return sysfs_emit(buf, "%016llx\n", xe->device_uuid);
+>> %pU ?
+> Not needed.
+>>
+>>> +}
+>>> +static DEVICE_ATTR_RO(device_uuid);
+>>> +
+>>> +static struct attribute *device_uuid_attrs[] = {
+>>> +    &dev_attr_device_uuid.attr,
+>>> +    NULL
+>>> +};
+>>> +
+>>> +static const struct attribute_group device_uuid_attr_group = {
+>>> +    .attrs = device_uuid_attrs,
+>>> +};
+>>> +
+>>>   int xe_device_sysfs_init(struct xe_device *xe)
+>>>   {
+>>>       struct device *dev = xe->drm.dev;
+>>> @@ -285,5 +315,11 @@ int xe_device_sysfs_init(struct xe_device *xe)
+>>>               return ret;
+>>>       }
+>>>   +    if (xe->info.platform == XE_CRESCENTISLAND) {
+>> use .is_visible instead
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-> index 50bbdab072de..cdd929ebed4a 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-> @@ -24,16 +24,16 @@ struct xe_sysctrl_mailbox_msg_hdr {
->  } __packed;
->  
->  #define XE_SYSCTRL_HDR_GROUP_ID(hdr) \
-> -	FIELD_GET(SYSCTRL_HDR_GROUP_ID_MASK, le32_to_cpu((hdr)->data))
-> +	REG_FIELD_GET(SYSCTRL_HDR_GROUP_ID_MASK, le32_to_cpu((hdr)->data))
->  
->  #define XE_SYSCTRL_HDR_COMMAND(hdr) \
-> -	FIELD_GET(SYSCTRL_HDR_COMMAND_MASK, le32_to_cpu((hdr)->data))
-> +	REG_FIELD_GET(SYSCTRL_HDR_COMMAND_MASK, le32_to_cpu((hdr)->data))
->  
->  #define XE_SYSCTRL_HDR_IS_RESPONSE(hdr) \
-> -	FIELD_GET(SYSCTRL_HDR_IS_RESPONSE, le32_to_cpu((hdr)->data))
-> +	REG_FIELD_GET(SYSCTRL_HDR_IS_RESPONSE, le32_to_cpu((hdr)->data))
->  
->  #define XE_SYSCTRL_HDR_RESULT(hdr) \
-> -	FIELD_GET(SYSCTRL_HDR_RESULT_MASK, le32_to_cpu((hdr)->data))
-> +	REG_FIELD_GET(SYSCTRL_HDR_RESULT_MASK, le32_to_cpu((hdr)->data))
->  
->  static int sysctrl_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
->  				  unsigned int timeout_ms)
-> @@ -112,8 +112,8 @@ static int sysctrl_prepare_command(struct xe_device *xe,
->  		return -ENOMEM;
->  
->  	hdr = (struct xe_sysctrl_mailbox_msg_hdr *)buffer;
-> -	hdr->data = cpu_to_le32(FIELD_PREP(SYSCTRL_HDR_GROUP_ID_MASK, group_id) |
-> -				     FIELD_PREP(SYSCTRL_HDR_COMMAND_MASK, command));
-> +	hdr->data = cpu_to_le32(REG_FIELD_PREP(SYSCTRL_HDR_GROUP_ID_MASK, group_id) |
-> +				REG_FIELD_PREP(SYSCTRL_HDR_COMMAND_MASK, command));
->  
->  	if (data_in && data_in_len)
->  		memcpy(buffer + sizeof(*hdr), data_in, data_in_len);
-> @@ -186,8 +186,8 @@ static int sysctrl_process_frame(struct xe_sysctrl *sc, void *out,
->  	}
->  
->  	ctrl_reg = xe_mmio_read32(sc->mmio, SYSCTRL_MB_CTRL);
-> -	total_frames = FIELD_GET(SYSCTRL_FRAME_TOTAL_MASK, ctrl_reg);
-> -	curr_frame = FIELD_GET(SYSCTRL_FRAME_CURRENT_MASK, ctrl_reg);
-> +	total_frames = REG_FIELD_GET(SYSCTRL_FRAME_TOTAL_MASK, ctrl_reg);
-> +	curr_frame = REG_FIELD_GET(SYSCTRL_FRAME_CURRENT_MASK, ctrl_reg);
->  
->  	sysctrl_read_frame(sc, out, frame_size);
->  	sysctrl_clear_response(sc);
-> @@ -295,8 +295,8 @@ void xe_sysctrl_create_command(struct xe_sysctrl_mailbox_command *command, u8 gr
->  {
->  	struct xe_sysctrl_app_msg_hdr header = {0};
->  
-> -	header.data = FIELD_PREP(APP_HDR_GROUP_ID_MASK, group_id) |
-> -		      FIELD_PREP(APP_HDR_COMMAND_MASK, cmd_id);
-> +	header.data = REG_FIELD_PREP(APP_HDR_GROUP_ID_MASK, group_id) |
-> +		      REG_FIELD_PREP(APP_HDR_COMMAND_MASK, cmd_id);
+> Will add has flag.
 
-hmm, shouldn't we use le32 conversion here?
-other sysctrl cmd/hdr parsing/prep seems to use it
+to be clear: my point was to move this check to the
+
+	attribute_group.is_visible
+
+and I don't care whether it will use .has_uid or .platform field
 
 
->  
->  	command->header = header;
->  	command->data_in = request;
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
-> index f0d5e3d7f5e3..5a3dd14e3a11 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
-> @@ -15,13 +15,13 @@ struct xe_sysctrl;
->  struct xe_sysctrl_mailbox_command;
->  
->  #define XE_SYSCTRL_APP_HDR_GROUP_ID(hdr) \
-> -	FIELD_GET(APP_HDR_GROUP_ID_MASK, (hdr)->data)
-> +	REG_FIELD_GET(APP_HDR_GROUP_ID_MASK, (hdr)->data)
->  
->  #define XE_SYSCTRL_APP_HDR_COMMAND(hdr) \
-> -	FIELD_GET(APP_HDR_COMMAND_MASK, (hdr)->data)
-> +	REG_FIELD_GET(APP_HDR_COMMAND_MASK, (hdr)->data)
->  
->  #define XE_SYSCTRL_APP_HDR_VERSION(hdr) \
-> -	FIELD_GET(APP_HDR_VERSION_MASK, (hdr)->data)
-> +	REG_FIELD_GET(APP_HDR_VERSION_MASK, (hdr)->data)
-
-ditto
-
->  
->  void xe_sysctrl_create_command(struct xe_sysctrl_mailbox_command *command, u8 group_id, u8 cmd_id,
->  			       void *request, size_t request_len, void *response,
+> 
+> Thanks,
+> Badal
+> 
+>>
+>>> +        ret = devm_device_add_group(dev, &device_uuid_attr_group);
+>>> +        if (ret)
+>>> +            return ret;
+>>> +    }
+>>> +
+>>>       return 0;
+>>>   }
+>>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+>>> index 180d450a6deb..6fdd16eac906 100644
+>>> --- a/drivers/gpu/drm/xe/xe_device_types.h
+>>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+>>> @@ -257,6 +257,9 @@ struct xe_device {
+>>>           bool oob_initialized;
+>>>       } wa_active;
+>>>   +    /** @device_uuid: unique 64-bit identifier read from CRI_DEVICE_UUID */
+>>> +    u64 device_uuid;
+>>> +
+>>>       /** @survivability: survivability information for device */
+>>>       struct xe_survivability survivability;
+>>>   
 
