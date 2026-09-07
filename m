@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D69BC79F9E
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 08:50:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AACDC79F89
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 08:54:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFEA310E6E7;
-	Mon,  7 Sep 2026 08:50:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06CE010E6F9;
+	Mon,  7 Sep 2026 08:54:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="k6PS3fMw";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="M/HiToqB";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8B7010E6E7
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Sep 2026 08:50:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B1C110E6F9
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Sep 2026 08:54:41 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id C632660052;
- Mon,  7 Sep 2026 08:50:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D5281F00A3A;
- Mon,  7 Sep 2026 08:50:27 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id B9F0F60052;
+ Mon,  7 Sep 2026 08:54:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 506041F00A3A;
+ Mon,  7 Sep 2026 08:54:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788771027;
- bh=OJMZhJ91lfKN8hnZ2uF5HIEV+33/R5peMfT4ulznrBk=;
+ s=k20260515; t=1788771280;
+ bh=xuHYMqQ1fxoAMaMYXkV6jHksm/5kJixQor0Yq4smeCM=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=k6PS3fMwjt9cs+ziSxTyzldNB1WeAeYUZ0XfCX54LQ6QijeoL+y7e+o0nvU6VlRCC
- ilsVHQuma0sR+PGgIuRKwNeM8VewqvzKj7/nAxMuRCIl38ODfvhQb/lNmYtKihb3N4
- AbIpFYU9Y5NVNQy5dO/tsl84Yfft5q/Gn2snW9Birru0hMO6zdk6RBByQkB0j9d4v0
- yxkZQYjuivxk41dHlR3HDFR55ogJY0CpU9Gvk9WipPXNcoGpw/xAbZ1r4GZhiOyGtZ
- RQg7zlikPN4QwkQ8XWQ44IRBoWKhGx5aFKY8Cxdt1/Xw2PQZcEgNa6g8zvL8iH/6KO
- OqWPc1EBmJlmA==
+ b=M/HiToqBCnDNECF8crjNNyeULP294D/wWHrgarHS2GS2YJXNIhaccEZeoRTRI/fPm
+ XV+c1cluQFCMNQz+JqaCGboE9kkF9qkFEKfj1gA1qg+ZxPzK7GSbtQP49B6wTgQfWh
+ WaA1htWE/FB4tuubmJjOExPOIVaxJMv67TuPC4gOCSxJcbmB61ssG6CEhbcHjbKJUW
+ 5spwx3PjsCG/ddohqv6sJBBUD9K4aSx9EdXlepvKcpd5AZJaFLXvTKZ0oJBdrSnPp5
+ 2g6BInix65bkUPS8gqS5R8Uadta2crP2BLF5rT24ldXHL5Xr4Zq9Dy7v2nkr1Pp/WJ
+ PWcliAODcUjSQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 1/5] drm/xe/gt: Use GT ordered workqueue for wedging
+Subject: Re: [PATCH v3 2/5] drm/xe: Move xe_device_wedged_fini()
+ registration to xe_device_probe_early()
 To: "Raag Jadav" <raag.jadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260907083541.2194747-2-raag.jadav@intel.com>
+In-Reply-To: <20260907083541.2194747-3-raag.jadav@intel.com>
 References: <20260907083541.2194747-1-raag.jadav@intel.com>
- <20260907083541.2194747-2-raag.jadav@intel.com>
+ <20260907083541.2194747-3-raag.jadav@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 07 Sep 2026 08:50:26 +0000
-Message-Id: <20260907085027.5D5281F00A3A@smtp.kernel.org>
+Date: Mon, 07 Sep 2026 08:54:39 +0000
+Message-Id: <20260907085440.506041F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,61 +57,115 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
 s) to consider:
-- [High] Lockless TOCTOU race on work_struct initialization can lead to que=
-ueing an uninitialized work item.
+
+Pre-existing issues:
+- [High] Unbalanced PM runtime reference leak (underflow) during PCI error =
+recovery.
+- [High] Unbounded memory accumulation (Denial of Service) via `barrier_fau=
+lt` dummy page allocation.
+- [High] Uninitialized work_struct (`csc_hw_error_work`) on remote tiles le=
+ads to kernel panic.
+- [High] Uncanceled `csc_hw_error_work` leads to Use-After-Free during driv=
+er unload.
 --
 
-commit 70fa657e4e9d6562a705a7808a6bc4a42f57256e
+commit 372b7f6c41961551c6da41044311be66293a0cdb
 Author: Raag Jadav <raag.jadav@intel.com>
-Subject: drm/xe/gt: Use GT ordered workqueue for wedging
 
-This commit introduces a GT ordered workqueue for GT wedge handling to
-avoid disrupting the scheduler with in-flight jobs. It adds a wedge worker
-initialized during GT init and queued when a wedge is declared.
+drm/xe: Move xe_device_wedged_fini() registration to xe_device_probe_early()
 
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 478e047031f4f..200e34331c195 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
+This commit moves the registration of the wedged cleanup action to the early
+probe phase. This helps prevent a PM reference leak if the driver probe fai=
+ls
+after the device is declared wedged but before the cleanup was registered.
 
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
+e.c
 [ ... ]
-
-> @@ -1195,6 +1207,7 @@ void xe_gt_declare_wedged(struct xe_gt *gt)
->  {
->  	xe_gt_assert(gt, gt_to_xe(gt)->wedged.mode);
+> @@ -838,6 +840,10 @@ int xe_device_probe_early(struct xe_device *xe)
+>  	if (err)
+>  		return err;
 > =20
-> -	xe_uc_declare_wedged(&gt->uc);
-> -	xe_tlb_inval_reset(&gt->tlb_inval);
-> +	/* Prevent queueing uninitialized worker if hit during probe */
-> +	if (gt->wedge.worker.func)
-> +		queue_work(gt->ordered_wq, &gt->wedge.worker);
+> +	err =3D drmm_add_action_or_reset(&xe->drm, xe_device_wedged_fini, xe);
+> +	if (err)
+> +		return err;
+> +
+>  	return 0;
+>  }
 
 [Severity: High]
-Could this lockless check of the work_struct func field lead to list
-corruption on weakly ordered architectures?
+This is a pre-existing issue, but I noticed a potential unbalanced PM runti=
+me
+reference leak related to the wedged cleanup action being registered here.
 
-During driver probe, an asynchronous hardware fault (such as a PCI AER or
-an I2C interrupt) could trigger xe_gt_declare_wedged() concurrently with
-xe_gt_init().
+In xe_pci_error_slot_reset() within drivers/gpu/drm/xe/xe_pci_error.c, the
+wedged flag is forcibly set:
 
-In xe_gt_init(), the worker is initialized via:
+    atomic_set(&xe->wedged.flag, 1);
 
-INIT_WORK(&gt->wedge.worker, gt_wedge_worker);
+If a PCI error triggers this, the flag is set to 1 without taking a PM runt=
+ime
+reference. If the device is hot-unplugged before xe_pci_error_resume() can
+clear the flag, xe_device_wedged_fini() will see the flag set during teardo=
+wn
+and call xe_pm_runtime_put(xe).
 
-This macro sets the work_struct's data, entry, and finally func, but does so
-without memory barriers. If an interrupting CPU observes the writes out of
-order due to CPU store reordering, func could be seen as non-NULL while data
-or entry remain uninitialized.
+Will this cause a PM usage counter underflow?
 
-If that happens, xe_gt_declare_wedged() would pass this check and call
-queue_work() with a partially initialized work_struct. This can cause a
-kernel panic in the workqueue core. Is there a safer way to synchronize
-this probe-time wedge check without relying on lockless field inspection?
+[Severity: High]
+This is a pre-existing issue, but while looking at drmm_add_action_or_reset=
+()
+usage in this file, I noticed a potential memory accumulation in
+barrier_fault() within drivers/gpu/drm/xe/xe_device.c.
 
->  }
+When barrier_fault() allocates a dummy page, it registers a cleanup action:
+
+    if (drmm_add_action_or_reset(dev, barrier_release_dummy_page, page))
+
+These callbacks are tied to the drm_device lifecycle. If a device is unplug=
+ged
+(causing drm_dev_enter to fail) and a local user repeatedly maps, accesses =
+to
+fault, and unmaps the barrier offset, will this leak memory until the file
+descriptor is fully closed?
+
+[Severity: High]
+This is a pre-existing issue, but reviewing the hardware error paths reveal=
+ed
+a potential kernel panic with uninitialized work structures.
+
+In xe_hw_error_init() within drivers/gpu/drm/xe/xe_hw_error.c, the hardware
+error work is only initialized for the root tile:
+
+    INIT_WORK(&tile->csc_hw_error_work, csc_hw_error_work);
+
+If a CSC hardware error occurs on a remote tile, xe_hw_error_irq_handler()
+attempts to schedule it:
+
+    schedule_work(&tile->csc_hw_error_work);
+
+Could this crash the kernel when the workqueue core manipulates the
+uninitialized list on the remote tile?
+
+[Severity: High]
+This is a pre-existing issue, but there also appears to be a use-after-free
+risk with this same work structure during driver unload.
+
+The work is initialized in xe_hw_error_init() within
+drivers/gpu/drm/xe/xe_hw_error.c:
+
+    INIT_WORK(&tile->csc_hw_error_work, csc_hw_error_work);
+
+If a CSC error schedules this work on the global workqueue, and the driver =
+is
+subsequently unbound (e.g., via hot-unplug or probe failure) before the work
+executes, the xe_tile memory structure is freed.
+
+Since there is no corresponding cancel_work_sync() during teardown, can the
+worker function access a freed tile pointer when it eventually runs?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260907083541.2194=
-747-1-raag.jadav@intel.com?part=3D1
+747-1-raag.jadav@intel.com?part=3D2
