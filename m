@@ -4,43 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87AFBC79F99
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 10:51:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 742A3C79F99
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 10:53:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 557A410E789;
-	Mon,  7 Sep 2026 10:51:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2981310E215;
+	Mon,  7 Sep 2026 10:53:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Mb753mtE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HRSXeXdX";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FBB310E499;
- Mon,  7 Sep 2026 10:51:54 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id BDDC340A79;
- Mon,  7 Sep 2026 10:51:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75DED1F00ADE;
- Mon,  7 Sep 2026 10:51:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788778313;
- bh=RBpEEU4S0sBfXQ56DpmzRtiZgCRvZ1bgHjvzpiTo0ls=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Mb753mtE2a6AtJ5XEa6jugP6yei7KxhIuhu6ELnNjTabM6C426jVWG5bDryCBmEFH
- zx5373vDXGlu1XzCkIUyFfD/37tCjnIlsweSciRuiEOQhAcJyB10Z9AodO5w/qA/i5
- EkjahaA0Q83kJuln0geZfOxQ53k6BpLI3cJaJJvTt8uxwvwujtSmrQAJJJCKOXj2te
- m03+xOVWwMeI5WEGeK9n8833iuoPIk92lzz7V7Yjwx9s1RkOMtLnJTlBo3BAltoJFy
- aQl2XKI9oZnDUQ22ShMendVXzQ0pwGwUJqxH1XGzTjp/zp+c27m+21oznsUJvv3LY6
- tmlgc9ugVg+jw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 1/2] drm/i915/dmc: Add sanity check for DMC load address
-To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20260907103731.1379922-5-dibin.moolakadan.subrahmanian@intel.com>
-References: <20260907103731.1379922-4-dibin.moolakadan.subrahmanian@intel.com>
- <20260907103731.1379922-5-dibin.moolakadan.subrahmanian@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 07 Sep 2026 10:51:53 +0000
-Message-Id: <20260907105153.75DED1F00ADE@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8154410E215
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Sep 2026 10:53:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788778409; x=1820314409;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=D/jtxOPcBY4Lzs1RXFqBLWv+FlNgGEZ2i+MjRYUPv3g=;
+ b=HRSXeXdX9gkhUy05xnCBUYfXcBNXtLU9pdRi5hhB8LYOh3UGycWlT6QW
+ LgMP6V3kNN9DF/I+61NWEdTvPU4IYDaz1mMDmI8S2jTg4QVWlyGeLuGiz
+ 1QTW4d9D7CdbirrcR2oj4aTjOKvlrDoO1Kba5p5gfo8Y5RWh8/ThIhZbF
+ cQ+HjRJi1Whhvwi7qQbUIJqTvrEWuc7R3usoh4fYN6p8j9cws5AjG201M
+ mZI664od/QpS+X4NOgzTj9POjuLliZSGnaZDBAgyzQw29jzZjGZxmWcdE
+ 5AvaoAcpzQtoEf+KnDRUZv2A7Jw+x12MNazLOpwhPrYKWTy4Um6bNaHim g==;
+X-CSE-ConnectionGUID: j80t+KYCQh69lPwlwzPIbg==
+X-CSE-MsgGUID: 0Ker828rQMChDGkYHmhBwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11898"; a="89024489"
+X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="89024489"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2026 03:53:28 -0700
+X-CSE-ConnectionGUID: RU/qAGGCRberxflw32SHdA==
+X-CSE-MsgGUID: tQdy38ymTJSJmoalYMEwlA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="308908358"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa001.jf.intel.com with ESMTP; 07 Sep 2026 03:53:24 -0700
+From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ matthew.brost@intel.com
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ vinay.belgaumkar@intel.com, riana.tauro@intel.com, karthik.poosa@intel.com,
+ sk.anirban@intel.com, raag.jadav@intel.com, michal.wajdeczko@intel.com,
+ aravind.iddamsetty@linux.intel.com, umesh.nerlige.ramappa@intel.com,
+ dnyaneshwar.bhadane@intel.com, anoop.c.vijay@intel.com,
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v7 0/9] drm/xe/sysctrl: Clean up error handling in
+Date: Mon,  7 Sep 2026 16:23:14 +0530
+Message-ID: <20260907105313.2208003-11-mallesh.koujalagi@intel.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,127 +66,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+The patch series improves error handling in the System Controller mailbox
+driver by making error propagation more consistent and using
+xe_log_err() for structured error reporting.
 
-Pre-existing issues:
-- [High] NULL pointer dereference in dmc_load_program() when firmware paylo=
-ad allocation fails for secondary pipes.
-- [High] Firmware with fw_size =3D=3D 0 bypasses sanity checks and causes a=
- ZERO_SIZE_PTR dereference in assert_dmc_loaded().
---
+It also removes a few redundant checks and simplifies helper
+interfaces where no error path exists.
 
-commit f7a48dbeca10ad9c2178ea5ef93894eef607fc54
-Author: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.=
-com>
+v2:
+- Use -EOVERFLOW.
+- Drop sysctrl in xe_log_err. (Michal)
+- Drop redundant %pe.
+- Print response->count.
 
-drm/i915/dmc: Add sanity check for DMC load address
-   =20
-For DMC firmware header version 3, the firmware load address is stored
-in dmc_info->start_mmioaddr and later used by dmc_load_program().
-Unlike the MMIO address table, the firmware load address is not
-validated. Add a sanity check to ensure it is within the valid range.
+v3:
+- Rebase.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i=
-915/display/intel_dmc.c
-> index a191eee240d9f..051b721a08959 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> @@ -1023,6 +1023,56 @@ static void dmc_set_fw_offset(struct intel_dmc *dm=
-c,
->  	}
->  }
-> =20
-> +/*
-> + * Check if the load address is within the valid range for the given DMC=
- ID.
-> + */
-> +static bool dmc_load_addr_sanity_check(struct intel_dmc *dmc,
-> +				       u32 start_addr, u32 payload_size,
-> +				       int header_ver, enum intel_dmc_id dmc_id)
-> +{
-> +	struct intel_display *display =3D dmc->display;
-> +	u32 start_range, end_range, end_addr;
-[ ... ]
-> +	if (payload_size =3D=3D 0)
-> +		end_addr =3D start_addr;
+v4:
+- Replace xe_warn to xe_log_err_info for. (Michal)
+- Use xe_assert().
+- Change sysctrl_wait_bit_* to return errno.
+- Make sysctrl_write_frame return type as void.
+- Log mismatched header info.
 
-[Severity: High]
-This is a pre-existing issue, but this patch explicitly allows a 0-byte
-payload to bypass the sanity check. If a firmware file has fw_size =3D=3D 0,
-kmalloc(0) will return ZERO_SIZE_PTR, which is not NULL.
+v5:
+- Fix align issue. (Michal)
+- Use %#x after REG_FIELD_GET change.
+- Use REG_FIELD_GET instead of FIELD_GET.
+- Modify logging message.
+- Change Error as EXFULL.
+- Update logging message.
 
-Because payload is not NULL, has_dmc_id_fw() will return true, and
-assert_dmc_loaded() will try to dereference it:
+v6:
+- Move REG_FIELD_GET to different patch. (Michal)
+- Update response message.
+- Move all REG_FIELD_GET to single patch.
+- Update log message. (Michal)
+- Change correct errno. (Michal)
 
-intel_dmc.c:assert_dmc_loaded() {
-    ...
-	found =3D intel_de_read(display, DMC_PROGRAM(dmc->dmc_info[dmc_id].start_m=
-mioaddr, 0));
-	expected =3D dmc->dmc_info[dmc_id].payload[0];
-    ...
-}
+v7:
+- Update FIELD_PREP to REG_FIELD_PREP. (Michal/Sashiko)
+- Update FIELD_GET to REG_FIELD_GET.
+- Remove le32_to_cpu. (Michal)
 
-Could this cause a kernel panic due to a ZERO_SIZE_PTR dereference?
-Should the sanity check instead reject firmware with a 0-byte payload?
+Mallesh Koujalagi (9):
+  drm/xe/sysctrl: Return error codes from sysctrl_wait_bit_clear()
+  drm/xe/sysctrl: Return error codes from sysctrl_wait_bit_set()
+  drm/xe/sysctrl: Make sysctrl_write_frame() void
+  drm/xe/sysctrl: Make sysctrl_read_frame() void
+  drm/xe/sysctrl: Use xe_assert() for payload size validation
+  drm/xe/sysctrl: Replace FIELD_GET() with REG_FIELD_GET()
+  drm/xe/sysctrl: Improve firmware response error logging
+  drm/xe/sysctrl: Log group and command ID on mailbox failure
+  drm/xe/sysctrl: Report 'System Controller event' error using SIGID
 
-> +	else if (check_add_overflow(start_addr, payload_size - 1, &end_addr))
-> +		return false;
-> +
-> +	if (start_addr < start_range || end_addr > end_range)
-> +		return false;
-> +
-> +	return true;
-> +}
-[ ... ]
-> @@ -1169,17 +1237,6 @@ static u32 parse_dmc_fw_header(struct intel_dmc *d=
-mc,
->  	dmc_info->mmio_count =3D mmio_count;
->  	dmc_info->start_mmioaddr =3D start_mmioaddr;
-> =20
-> -	rem_size -=3D header_len_bytes;
-> -
-> -	/* fw_size is in dwords, so multiplied by 4 to convert into bytes. */
-> -	payload_size =3D dmc_header->fw_size * 4;
-> -	if (rem_size < payload_size)
-> -		goto error_truncated;
-> -
-> -	if (payload_size > dmc->max_fw_size) {
-> -		drm_err(display->drm, "DMC FW too big (%u bytes)\n", payload_size);
-> -		return 0;
-> -	}
->  	dmc_info->dmc_fw_size =3D dmc_header->fw_size;
-> =20
->  	dmc_info->payload =3D kmalloc(payload_size, GFP_KERNEL);
+ drivers/gpu/drm/xe/xe_sysctrl_event.c   |  14 +--
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 108 +++++++++++-------------
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.h |   6 +-
+ 3 files changed, 60 insertions(+), 68 deletions(-)
 
-[Severity: High]
-This isn't a bug introduced by this patch, but if kmalloc() fails here
-for a secondary pipe (like DMC_FW_PIPEA), does this leave the struct in
-an inconsistent state?
+-- 
+2.48.1
 
-If kmalloc() fails, the function returns 0, but dmc_info->dmc_fw_size is
-already updated. Since parse_dmc_fw() ignores the return value for
-secondary pipes, could this cause a NULL pointer dereference later in
-dmc_load_program()?
-
-intel_dmc_load_program() will call dmc_load_program() which iterates
-based on dmc_fw_size:
-
-intel_dmc.c:dmc_load_program() {
-	for (i =3D 0; i < dmc->dmc_info[dmc_id].dmc_fw_size; i++) {
-		intel_de_write_fw(display,
-				  DMC_PROGRAM(dmc->dmc_info[dmc_id].start_mmioaddr, i),
-				  dmc->dmc_info[dmc_id].payload[i]);
-	}
-}
-
-Would it be safer to only update dmc_fw_size after payload allocation
-succeeds?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260907103731.1379=
-922-4-dibin.moolakadan.subrahmanian@intel.com?part=3D1
