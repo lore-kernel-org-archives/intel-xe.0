@@ -4,75 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2A9DC79F82
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 18:37:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5903AC79F99
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 18:37:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEF6610E142;
-	Tue,  8 Sep 2026 18:37:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6EB010ED10;
+	Tue,  8 Sep 2026 18:37:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FDRlW/+u";
+	dkim=pass (2048-bit key; unprotected) header.d=metarealtyinc-ca.20251104.gappssmtp.com header.i=@metarealtyinc-ca.20251104.gappssmtp.com header.b="yUVklsXh";
 	dkim-atps=neutral
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
- [209.85.214.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 403D410E226
- for <intel-xe@lists.freedesktop.org>; Sat,  5 Sep 2026 14:25:41 +0000 (UTC)
-Received: by mail-pl1-f180.google.com with SMTP id
- d9443c01a7336-2d942c7cc2fso15400495ad.3
- for <intel-xe@lists.freedesktop.org>; Sat, 05 Sep 2026 07:25:41 -0700 (PDT)
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com
+ [209.85.222.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 142CB10E519
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Sep 2026 13:12:39 +0000 (UTC)
+Received: by mail-qk1-f179.google.com with SMTP id
+ af79cd13be357-9399ccafdbfso114408785a.0
+ for <intel-xe@lists.freedesktop.org>; Mon, 07 Sep 2026 06:12:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1788618341; x=1789223141; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=irtRdSHYVWU6V1hRtF1N7wOshHHRxGrEgOQHGUw+S0o=;
- b=FDRlW/+u8lA29qN+drgG/atl6HWHIti7aQ2oJyBe+njHdxFkAYNPh5RNFgJpJz4+Z9
- NNJmS3P+L968NrvMmZAJul2fGt4BSBMe7yUYTOSKEwkB7qiBQHO4QW2GsnP0jizogf5c
- cWKZFAngbX9qi7LHog3hOJj5AOm3WuPUCPAN6ZV41RZkf07Mg/cYbqR1tUNZln7CF3MB
- mWDqFRIE6W1SpXotPHSNVUGXJ7Yn2Nokl0RgBu2/mYA/MTmCMG1oHZlYHHMkIcs20Jxx
- vJr236vG76Cr2JeO3WnSR4aifyOMLudWYgrGjTRAgUEP4qtoBjnKf70Y8woEk7kbaXct
- Z5Rw==
+ d=metarealtyinc-ca.20251104.gappssmtp.com; s=20251104; t=1788786758;
+ x=1789391558; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:content-type:mime-version:references
+ :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=dDBausewcADcia+BBUgNqpTK1ysJTTFUlremu8l44DA=;
+ b=yUVklsXhhBPKctKXNUcjMj8VeKMwLt/1M6wItcPh0K3ExK45yFz5Ijfib7AY2/JFrE
+ 0s/CUC/KyPZjbyEnhpBCGVhb3Rze6Qtk3AAqT64YTd4PqXqZ9eopHm3Vs6CLsnLiRIk2
+ e+RofE/afeGbBocXXblgNaJM/BshpgUnBvd0PlZ6Z6/LxSR6nVO65E+pmudio/U3D7il
+ RdDeRCBrrnbCmFkWzqoywesdLHjW4oaVAROK/sh5oJ3PGJJtbnU8m6/XEVw8x7XSxCbj
+ nVsSjIcZqkora6du7XZQmr5P8UjTX/m80HtWyrFxQsPBOysVrmO6x3h7gWHd7PyK5Y6X
+ 0HfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1788618341; x=1789223141;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=irtRdSHYVWU6V1hRtF1N7wOshHHRxGrEgOQHGUw+S0o=;
- b=r6uw30oX2p6zUg4PtnJkfwoKqm7uqrH812bYBV/q737G6aEiSif+p4vdKTdppe/6QB
- 1n3KRY6bjwCfm1Gh8xZprAx7zByYsyZst/lhNa/4tWlMVtjpOOHRpJWxy2wEE2yptxJ9
- HzcedFcEhZGpFfWmenzt4m06v5760rHguvNKaDz1VYtIgiUx8nTnxCa76O1s6CCkxES6
- dForXgO9Zxdl8+XkUAdKXW+xQjiWnfrccSeIbBZ2Tk4S4EmOsVBT3n+jpWVP5ptG4oXa
- Jpr8tIWVsyGw+wFOaEVXxBd4qdDUtMe4JIDefSKMFAO4tglqLBZswm1uUubcmwZKqdXK
- /w/w==
-X-Gm-Message-State: AFuF++kFbTxWYYuTHz9CoQTKMY2Y4lUZLZYSM/nIzkQaWd5FSC9QVZyC
- 8/E+ebDcpZw8HahzseLg3TaebFtN7KwytePBQ1CWCFaTeZtesDLmopgOQMoXAyGakff9oA==
-X-Gm-Gg: AYBFou0wLgdxsDUZFUHXcFh/JXrgxzuygH2d82Mkdy3dKGnZj3do3/PWu6RyseorQ3d
- yPxu0GkS1SjkDaZ73brHYENgtBPfkhzU4LZFxOzWKbRwmeiFSJOPMOkgrFyIyoob853qTSjan9s
- nQe9yZEGCpA5wJtEeWzQ50myryBOZe+rJ8/aI1Q+Ysu7ln8rlBdiiZmXNsyOlt6d2x2YXNhieZA
- aMX4mTG4DIhxiVf79hGkUK3RQIoFaRz7+uCLzTXFBlc9MqftniUimxdGv9Lkt1rDf4EIuXKj8B8
- gZXkWzwVLd7Gs2s4j9W5Ewgm5obr0+cU0IKIK+wCT5bPRWGCk6v6ivUDcVaWLwL531+V+d1pR01
- DowA0MP5muPd3xkLHqua8+L1n+xfWU5VaFLcfR+hXijbtTmYnPrP3y0LzEqVe+5MdMtJzXYXEzW
- QQdpHDL92hg+Y9+4RglP6oHJ8u66r/MD8agl/9ui/6SbSB/2pV/oGJe+EJj8I1c3wPidtOOdizH
- L7egIq9YRe6GqiGaMxi5p/kwh7Ki+R0fRRW8YvNgJwFO/uM7UUS
-X-Received: by 2002:a17:90b:3a81:b0:398:c292:ac80 with SMTP id
- 98e67ed59e1d1-39b2612eaa4mr17477270a91.10.1788618340676; 
- Sat, 05 Sep 2026 07:25:40 -0700 (PDT)
-Received: from XiaomiLaptop (n112119120034.netvigator.com. [112.119.120.34])
- by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-39b260fdf9asm10501790a91.9.2026.09.05.07.25.37
+ d=1e100.net; s=20251104; t=1788786758; x=1789391558;
+ h=content-transfer-encoding:content-type:mime-version:references
+ :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=dDBausewcADcia+BBUgNqpTK1ysJTTFUlremu8l44DA=;
+ b=SE1rYT9uVqfJd9stDi6GkOzA05vLTc7Kboq5uHNuT3mYlZ2eQpY6xblVx97wtRMEK5
+ 6mcfyLQW0wll1KCw1ptgYL6Yja/ZtjzOFqnaOgBc2r7Cyq+B/rfGUYhsOiJc5GtINFlC
+ BMmKLsKXd2qmXVjl8K5r3GcIKALu8FQfyiYR72zA7RWG3hKUTEBbnbU6zLrm3NrhiOH8
+ SSdlhxnxWOaTHY4lk6M4zdSA+dUw3mI5yHUvqJSdZkPtWhDV78jNr2fi9bwD93pvwr4v
+ 08/5M/uJ4jcllpC/R2P4z/wr/Pe3J79vIfkAIZkfxaUTCu09IZ2wh910OgEgGqRea6g8
+ N9WA==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBxpXSh29GXpVrYj+2cSIK6F6k23xwTGgcrkqdMo/olRDf2i0eN1kxVe4LmXYNTfkQLQMUbiK4wgaA==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++nLdSYKmAvRVzHhJfHejk4z0ePXsuRZt7OFzUKnCRlnnt8vC+Jj
+ rIjp7wUE06NHcYpApNG9USiWC2ai1o/ObNEUxsnI4Cih+L9tO2UbQpTe/QQssM6guFk=
+X-Gm-Gg: AYBFou0zjvLYrN6EczQ5Lnd57cB8t/bk1jxoeFNIsx62JsaPFVIEG+4vdpTFuC7Tay2
+ Qgj5FQzS2qEV/bh+VdtfVsQEim12c8sEPpzsjMyzp+p0wXb3Ye68Bt3HxmJGTxMPhclNL0XRRcl
+ n054ab0VAaqgfYTSiDwD8tTs5BXLjqQ2Y/QV+XtbY8pWCpdDhJm50G751E6jQqso1O+cE88W8Pu
+ KHYVl55T0kb5I0bHzVbQm9VnleoNfTLTT45BlABT9dxrgHhYdfkgWrvbj0/E9w2W8ST4n/J3Qx3
+ 8OuuJpiD5unA5L1YBdvArm6mGXRoBaj9EaAKYZqOlJBSiBWg5j/0w0vy/iKZrZT/JbpA8z9uEm1
+ 18W+u7mVEzt0ylvVvjYeK0Z5OvDHvXFq9z4cfZ6lAsYg+o5Mn2IS5acF2h8alewu0zvWupi4JWE
+ h4s6IeLMxujbQNe7tlnptd7/3atJCrI/nM0AIG42xjxMrhgIkzh8CfsMyab8s3Mz3QPP7tbU6Q7
+ U5+R09PovOwuMFokbJaHuP9A+xgWpfP+0UyWa4y2C5eBPJ2CU5gRAXtxoE7FMSRuvcW9mCXYVKG
+ RhWargr4a1Ab3itZqWamCQ7STgvJg7Q3xkdPBYL53/oDmnB8W5hA4e6p9pOW
+X-Received: by 2002:a05:620a:2a12:b0:939:518d:7f6e with SMTP id
+ af79cd13be357-9398034352fmr2312249285a.22.1788786757678; 
+ Mon, 07 Sep 2026 06:12:37 -0700 (PDT)
+Received: from jake-laptop ([74.244.125.129]) by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-9397f9f151esm878405785a.6.2026.09.07.06.12.36
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 05 Sep 2026 07:25:40 -0700 (PDT)
-From: Andrew Zhou <zhoulol888@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Andrew Zhou <zhoulol888@gmail.com>
-Subject: [PATCH] drm/xe/display: Remove invalid initial plane PTE check for
- iGPU
-Date: Sat,  5 Sep 2026 22:25:00 +0800
-Message-ID: <20260905142500.17666-1-zhoulol888@gmail.com>
+ Mon, 07 Sep 2026 06:12:37 -0700 (PDT)
+From: Jake Steinman <j@metarealtyinc.ca>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Animesh Manna <animesh.manna@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [PATCH v3] drm/i915/alpm: Add a quirk to keep the fast wake ahead
+ of the IO buffer wake
+Date: Mon,  7 Sep 2026 09:12:35 -0400
+Message-ID: <20260907131235.11904-1-j@metarealtyinc.ca>
 X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260904133231.9028-1-j@metarealtyinc.ca>
+References: <20260903131724.49496-1-j@metarealtyinc.ca>
+ <20260904004308.185788-1-j@metarealtyinc.ca>
+ <20260904114835.483057-1-j@metarealtyinc.ca>
+ <20260904133231.9028-1-j@metarealtyinc.ca>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 08 Sep 2026 18:37:11 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -89,45 +100,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Pantherlake intergrated graphics can have the XE_GGTT_PTEDM bit set
-in the BIOS-initialised framebuffer PTE. The new validation rejects
-this and fails to create the initial frambuffer, resulting in static.
+On Mon, 2026-09-07 Jouni Högander wrote:
+> Is PSR2 working on your setup with this quirk?
 
-Remove the too-strict validation.
+No. With the quirk the link is clean (no CRC errors, no resyncs) and the
+panel sits on a stale frame, because the engine never sends a selective
+update. That is 9119. Without the quirk the screen keeps moving only
+because every wake fails and the sink resyncs.
 
-Signed-off-by: Andrew Zhou <zhoulol888@gmail.com>
-Tested-by: Andrew Zhou <zhoulol888@gmail.com>
-Tested-on: Intel Core Ultra X7 358H, integrated graphics, B0 stepping
----
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 8 --------
- 1 file changed, 8 deletions(-)
+So the quirk is correct for the link but useless until 9119 is fixed.
+Fine to park it until then. Thanks for the mmiotrace on 9119, I'm
+comparing it against this machine now.
 
-diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index 0f86b7303..8c95dc4e6 100644
---- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-+++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -85,7 +85,6 @@ initial_plane_bo(struct xe_device *xe,
- 			    &phys_base);
- 	} else {
- 		struct ttm_resource_manager *stolen;
--		u64 pte;
- 
- 		stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
- 		if (!stolen) {
-@@ -93,13 +92,6 @@ initial_plane_bo(struct xe_device *xe,
- 			return NULL;
- 		}
- 
--		pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
--
--		if (is_pte_local(pte) != need_pte_local(xe)) {
--			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
--			return NULL;
--		}
--
- 		phys_base = base;
- 		flags |= XE_BO_FLAG_STOLEN;
- 
--- 
-2.55.0
-
+Jake
