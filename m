@@ -4,60 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8E33C79F89
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 08:23:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22B9EC79F9E
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 08:36:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6064610E6CC;
-	Mon,  7 Sep 2026 08:23:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE43B10E707;
+	Mon,  7 Sep 2026 08:36:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jTf/XMFq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jhbzWkOt";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8096710E6CC
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Sep 2026 08:23:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04B558928D
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Sep 2026 08:36:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788769432; x=1820305432;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=eOi11PKSm5047/Ad620jaj+gRDN8t8b7lwYyMJ859mw=;
- b=jTf/XMFq3loFDukHVy6ehqr/0IFPbQYs1PY+ucvwOFxUNFNxA2SSJWhq
- K7Uja+KrUWUhibWFK3ZZeTCfJjwoKBe5GiS8pko2Nsl6yPy54J6qlk88C
- zdmAhRKMS9+nLpsbYHANCMtRIMEb5FtqAHzbojivn5sG8LHS5fHFt/MXz
- gVIjA5IquKgrgSWvZ1ObaqnO6J2mcikPKydpQX5QZD70Vze8cDVkHNXvq
- Xpb9MQy4q+NcAuw3P7Mv6gaOw0Y6hq5uti1URCVOciFsTXsBD/gZ7b3yY
- hLZPppC21bXFrhYnicdrqAq7P6tT2kwDHo2jisF7Jw2oHwER2BYk7fpvy Q==;
-X-CSE-ConnectionGUID: Nifqx/1tQ5OA9z6KP+JX6Q==
-X-CSE-MsgGUID: G+HP+F2mTgq4NnXKzkJ4uw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11898"; a="106685602"
-X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="106685602"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2026 01:23:52 -0700
-X-CSE-ConnectionGUID: EF2Ne75+T6Sj0wWgT8hjEw==
-X-CSE-MsgGUID: J8/Xnrj7SvqMqQBk6T5sKg==
+ t=1788770168; x=1820306168;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=H3ZufxZJWijd43z4Fog6SlHfGIkSQSq39vMWnPiXsTs=;
+ b=jhbzWkOtP3J00M6Ps+K3nfzPfjYFZ3Z3d5W0/WfzOxSRB3nYD6L7YRe+
+ iOGYNNw/I/tt5Mm6xr25x2MGtyYtl1u0qZQbH/Mj3hyjFKxoG++sAmPCe
+ 2Hn/bmvQlJJJT6hZYhw7JshrHn4oUg0sgNXHjffIACtyHVdFNfVhRteOz
+ gMmqQf2oi+LTVfEIoD/ENYHRRnUjS145zVHswusUgMB2BwbjWoDi4LmJo
+ RKupPMULmxmGKObFnM7G6NhufZ8KhaoBTgT4bWmXsKRs+qcQy/OKc2m2D
+ D2DVpr6B6f9elLR3ZqBsgMRYJLPfS48gNcgoC2QUc9y3H9oVSwuCpFnEr w==;
+X-CSE-ConnectionGUID: 0aMcF4aqRtWxLZgdmoO9JQ==
+X-CSE-MsgGUID: 9ZpH4nBRSjih58znRYVSUQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11898"; a="76725967"
+X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="76725967"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2026 01:36:08 -0700
+X-CSE-ConnectionGUID: RUpaD+QgR2yq0+AqGWkcYg==
+X-CSE-MsgGUID: IdJ5QQQqQpyrDCGVwZ6/Lg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="272580861"
-Received: from abityuts-desk1.ger.corp.intel.com (HELO [10.245.245.240])
- ([10.245.245.240])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2026 01:23:51 -0700
-Message-ID: <4fd1fca025af55962a5b58b1f5b7e970ac0c51f4.camel@linux.intel.com>
-Subject: Re: [PATCH v6 2/2] drm/xe/shrinker: Take a runtime PM ref before
- shrinking non-system memory
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Shuicheng Lin <shuicheng.lin@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>, Matthew Brost
- <matthew.brost@intel.com>
-Date: Mon, 07 Sep 2026 10:23:49 +0200
-In-Reply-To: <20260904215049.543535-3-shuicheng.lin@intel.com>
-References: <20260904215049.543535-1-shuicheng.lin@intel.com>
- <20260904215049.543535-3-shuicheng.lin@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="274451010"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa004.jf.intel.com with ESMTP; 07 Sep 2026 01:36:05 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, michal.wajdeczko@intel.com, lukasz.laguna@intel.com,
+ matthew.d.roper@intel.com, matthew.brost@intel.com, rodrigo.vivi@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v3 0/5] Introduce xe_wedge
+Date: Mon,  7 Sep 2026 14:04:35 +0530
+Message-ID: <20260907083541.2194747-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,252 +65,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2026-09-04 at 21:50 +0000, Shuicheng Lin wrote:
-> __xe_shrinker_walk() walks the SYSTEM and TT LRUs without a runtime
-> PM
-> reference.=C2=A0 Shrinking a bo outside system memory invalidates its GPU
-> mappings, which needs the device resumed, so while it is runtime
-> suspended the page table zap trips an assert and the TLB invalidation
-> returns -ENODEV:
->=20
-> =C2=A0 WARNING: drivers/gpu/drm/xe/xe_bo.c:770 at
-> xe_bo_move_notify+0x1fc/0x450 [xe]
-> =C2=A0=C2=A0 xe_bo_shrink+0x20f/0x2b0 [xe]
-> =C2=A0=C2=A0 __xe_shrinker_walk+0x174/0x410 [xe]
-> =C2=A0=C2=A0 xe_shrinker_scan+0x10c/0x1e0 [xe]
-> =C2=A0=C2=A0 do_shrink_slab+0x176/0x7e0
-> =C2=A0=C2=A0 drop_caches_sysctl_handler+0x9c/0xf0
->=20
-> Take a reference before walking a memory type other than XE_PL_SYSTEM
-> and stop there if it cannot be acquired.=C2=A0 Reuse the shrinker's
-> existing
-> acquire path, which resumes the device directly where reclaim allows
-> that and otherwise queues the PM worker for a later scan.=C2=A0 Stop the
-> walk
-> once the scan target is met, so a satisfied scan does not wake the
-> device.=C2=A0 System memory is still reclaimed while the device is
-> suspended.
->=20
-> Gate this on xe_device_is_l2_flush_optimized(), the same condition
-> under
-> which xe_bo_trigger_rebind() issues the invalidation for a non-fault-
-> mode
-> vm, so reclaim is unaffected elsewhere.=C2=A0 The System CCS copy already
-> has
-> its own reference in xe_bo_shrink().
->=20
-> Only a non-fault-mode vm can reach this, since a fault-mode vm
-> requires
-> LR mode and that holds a runtime PM reference for the vm's lifetime.
->=20
-> Reproduced with igt@xe_madvise@dontneed-before-exec while the GPU is
-> runtime suspended.
->=20
-> v2: simplify needs_rpm check. (Matt)
-> =C2=A0=C2=A0=C2=A0 retarget Fixes tag since the issue occurs with the non=
--fault-mode
-> =C2=A0=C2=A0=C2=A0 path added by 4e7ebff69aed.
-> v3: handle this in xe_shrinker.c instead of xe_bo.c (Thomas)
-> v4: stop the walk once the scan target is met. (Sashiko)
-> v5: rebase on the freed page accounting fix. (Sashiko)
-> v6: reuse the shrinker acquire path so runtime pm can be resumed
-> =C2=A0=C2=A0=C2=A0 directly instead of always queueing a worker. (Thomas)
->=20
-> Fixes: 4e7ebff69aed ("drm/xe/xe3p_lpg: flush shrinker bo cachelines
-> manually")
-> Assisted-by: Claude:claude-opus-5
-> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_shrinker.c | 67 ++++++++++++++++++++++-------=
--
-> --
-> =C2=A01 file changed, 46 insertions(+), 21 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_shrinker.c
-> b/drivers/gpu/drm/xe/xe_shrinker.c
-> index 89445cd20238..13f49ac873b4 100644
-> --- a/drivers/gpu/drm/xe/xe_shrinker.c
-> +++ b/drivers/gpu/drm/xe/xe_shrinker.c
-> @@ -54,13 +54,33 @@ xe_shrinker_mod_pages(struct xe_shrinker
-> *shrinker, long shrinkable, long purgea
-> =C2=A0	write_unlock(&shrinker->lock);
-> =C2=A0}
-> =C2=A0
-> -static int __xe_shrinker_walk(struct xe_device *xe,
-> +static bool __xe_shrinker_runtime_pm_get(struct xe_shrinker
-> *shrinker)
-> +{
-> +	struct xe_device *xe =3D shrinker->xe;
-> +
-> +	if (xe_pm_runtime_get_if_active(xe))
-> +		return true;
-> +
-> +	if (xe_rpm_reclaim_safe(xe) && !ttm_bo_shrink_avoid_wait())
-> {
-> +		xe_pm_runtime_get(xe);
-> +		return true;
-> +	}
-> +
-> +	queue_work(xe->unordered_wq, &shrinker->pm_worker);
-> +
-> +	return false;
-> +}
-> +
-> +static int __xe_shrinker_walk(struct xe_shrinker *shrinker,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct xe_bo_shrink_flags f=
-lags,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long to_scan, unsigned l=
-ong
-> *scanned,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long *freed)
-> =C2=A0{
-> +	struct xe_device *xe =3D shrinker->xe;
-> =C2=A0	unsigned int mem_type;
-> +	bool rpm =3D false;
-> +	int ret =3D 0;
-> =C2=A0	s64 lret;
-> =C2=A0
-> =C2=A0	for (mem_type =3D XE_PL_SYSTEM; mem_type <=3D XE_PL_TT;
-> ++mem_type) {
-> @@ -75,23 +95,36 @@ static int __xe_shrinker_walk(struct xe_device
-> *xe,
-> =C2=A0		if (!man || !man->use_tt)
-> =C2=A0			continue;
-> =C2=A0
-> +		if (mem_type !=3D XE_PL_SYSTEM && !rpm &&
-> +		=C2=A0=C2=A0=C2=A0 xe_device_is_l2_flush_optimized(xe)) {
-> +			if (!__xe_shrinker_runtime_pm_get(shrinker))
-> +				break;
-> +			rpm =3D true;
-> +		}
-> +
-> =C2=A0		ttm_bo_lru_for_each_reserved_guarded(&curs, man,
-> &arg, ttm_bo) {
-> =C2=A0			if (!ttm_bo_shrink_suitable(ttm_bo, ctx))
-> =C2=A0				continue;
-> =C2=A0
-> =C2=A0			lret =3D xe_bo_shrink(ctx, ttm_bo, flags,
-> scanned);
-> -			if (lret < 0)
-> -				return lret;
-> +			if (lret < 0) {
-> +				ret =3D lret;
-> +				goto out;
-> +			}
-> =C2=A0
-> =C2=A0			*freed +=3D lret;
-> =C2=A0			if (*scanned >=3D to_scan)
-> -				break;
-> +				goto out;
-> =C2=A0		}
-> =C2=A0		/* Trylocks should never error, just fail. */
-> =C2=A0		xe_assert(xe, !IS_ERR(ttm_bo));
-> =C2=A0	}
-> =C2=A0
-> -	return 0;
-> +out:
-> +	if (rpm)
-> +		xe_pm_runtime_put(xe);
+In the history of xe technical debt, this series takes one more step and
+consolidates all wedging implementation into a dedicated xe_wedge component.
 
-xe_shrinker_runtime_pm_put()
+While at it, this fixes a few pre-existing issues related to wedge handling.
+Detailed description in commit message.
 
-With that
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+v1: https://patchwork.freedesktop.org/series/172727/
 
+v2: Split fixes into separate patches (Rodrigo, Michal)
+    Also move struct xe_wedge and wedged_mode debt to xe_wedge (Lukasz, Michal)
+    Naming and aesthetic adjustments (Lukasz, Michal)
 
-> +
-> +	return ret;
-> =C2=A0}
-> =C2=A0
-> =C2=A0/*
-> @@ -100,7 +133,7 @@ static int __xe_shrinker_walk(struct xe_device
-> *xe,
-> =C2=A0 * add writeback. This avoids stalls and explicit writebacks with
-> light or
-> =C2=A0 * moderate memory pressure.
-> =C2=A0 */
-> -static int xe_shrinker_walk(struct xe_device *xe,
-> +static int xe_shrinker_walk(struct xe_shrinker *shrinker,
-> =C2=A0			=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx,
-> =C2=A0			=C2=A0=C2=A0=C2=A0 const struct xe_bo_shrink_flags flags,
-> =C2=A0			=C2=A0=C2=A0=C2=A0 unsigned long to_scan, unsigned long
-> *scanned,
-> @@ -112,20 +145,21 @@ static int xe_shrinker_walk(struct xe_device
-> *xe,
-> =C2=A0
-> =C2=A0	swap(no_wait_gpu, ctx->no_wait_gpu);
-> =C2=A0	save_flags.writeback =3D false;
-> -	ret =3D __xe_shrinker_walk(xe, ctx, save_flags, to_scan,
-> scanned, freed);
-> +	ret =3D __xe_shrinker_walk(shrinker, ctx, save_flags, to_scan,
-> scanned,
-> +				 freed);
-> =C2=A0	swap(no_wait_gpu, ctx->no_wait_gpu);
-> =C2=A0	if (ret || *scanned >=3D to_scan)
-> =C2=A0		return ret;
-> =C2=A0
-> =C2=A0	if (!ctx->no_wait_gpu) {
-> -		ret =3D __xe_shrinker_walk(xe, ctx, save_flags,
-> to_scan, scanned,
-> +		ret =3D __xe_shrinker_walk(shrinker, ctx, save_flags,
-> to_scan, scanned,
-> =C2=A0					 freed);
-> =C2=A0		if (ret || *scanned >=3D to_scan)
-> =C2=A0			return ret;
-> =C2=A0	}
-> =C2=A0
-> =C2=A0	if (flags.writeback)
-> -		ret =3D __xe_shrinker_walk(xe, ctx, flags, to_scan,
-> scanned,
-> +		ret =3D __xe_shrinker_walk(shrinker, ctx, flags,
-> to_scan, scanned,
-> =C2=A0					 freed);
-> =C2=A0
-> =C2=A0	return ret;
-> @@ -176,16 +210,7 @@ static bool xe_shrinker_runtime_pm_get(struct
-> xe_shrinker *shrinker, bool force,
-> =C2=A0			return false;
-> =C2=A0	}
-> =C2=A0
-> -	if (!xe_pm_runtime_get_if_active(xe)) {
-> -		if (xe_rpm_reclaim_safe(xe) &&
-> !ttm_bo_shrink_avoid_wait()) {
-> -			xe_pm_runtime_get(xe);
-> -			return true;
-> -		}
-> -		queue_work(xe->unordered_wq, &shrinker->pm_worker);
-> -		return false;
-> -	}
-> -
-> -	return true;
-> +	return __xe_shrinker_runtime_pm_get(shrinker);
-> =C2=A0}
-> =C2=A0
-> =C2=A0static void xe_shrinker_runtime_pm_put(struct xe_shrinker *shrinker=
-,
-> bool runtime_pm)
-> @@ -221,7 +246,7 @@ static unsigned long xe_shrinker_scan(struct
-> shrinker *shrink, struct shrink_con
-> =C2=A0	runtime_pm =3D xe_shrinker_runtime_pm_get(shrinker, false,
-> nr_to_scan, can_backup);
-> =C2=A0
-> =C2=A0	if (purgeable && nr_scanned < nr_to_scan)
-> -		xe_shrinker_walk(shrinker->xe, &ctx, shrink_flags,
-> +		xe_shrinker_walk(shrinker, &ctx, shrink_flags,
-> =C2=A0				 nr_to_scan, &nr_scanned, &freed);
-> =C2=A0
-> =C2=A0	sc->nr_scanned =3D nr_scanned;
-> @@ -234,7 +259,7 @@ static unsigned long xe_shrinker_scan(struct
-> shrinker *shrink, struct shrink_con
-> =C2=A0
-> =C2=A0	shrink_flags.purge =3D false;
-> =C2=A0
-> -	xe_shrinker_walk(shrinker->xe, &ctx, shrink_flags,
-> +	xe_shrinker_walk(shrinker, &ctx, shrink_flags,
-> =C2=A0			 nr_to_scan, &nr_scanned, &freed);
-> =C2=A0
-> =C2=A0	sc->nr_scanned =3D nr_scanned;
+v3: Respect the component namespace (Rodrigo)
+    Avoid chaining header includes (Rodrigo)
+    Squash debugfs changes with xe_wedge patch (Lukasz)
+
+Raag Jadav (5):
+  drm/xe/gt: Use GT ordered workqueue for wedging
+  drm/xe: Move xe_device_wedged_fini() registration to
+    xe_device_probe_early()
+  drm/xe: Make xe_device_declare_wedged() IRQ safe
+  drm/xe: Introduce xe_wedge
+  drm/xe/ras: Move xe_ras_process_errors() to xe_ras
+
+ Documentation/gpu/xe/xe_device.rst          |   2 +-
+ drivers/gpu/drm/xe/Makefile                 |   1 +
+ drivers/gpu/drm/xe/tests/xe_kunit_helpers.c |   3 +-
+ drivers/gpu/drm/xe/xe_amc.c                 |   3 +-
+ drivers/gpu/drm/xe/xe_bo.c                  |   3 +-
+ drivers/gpu/drm/xe/xe_debugfs.c             |  66 +----
+ drivers/gpu/drm/xe/xe_device.c              | 190 +------------
+ drivers/gpu/drm/xe/xe_device.h              |  10 -
+ drivers/gpu/drm/xe/xe_device_types.h        |  28 +-
+ drivers/gpu/drm/xe/xe_gsc.c                 |   3 +-
+ drivers/gpu/drm/xe/xe_gt.c                  |  26 +-
+ drivers/gpu/drm/xe/xe_gt.h                  |   2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c         |   3 +-
+ drivers/gpu/drm/xe/xe_gt_types.h            |   6 +
+ drivers/gpu/drm/xe/xe_guc.c                 |   4 +-
+ drivers/gpu/drm/xe/xe_guc.h                 |   2 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c              |   7 +-
+ drivers/gpu/drm/xe/xe_guc_pc.c              |  11 +-
+ drivers/gpu/drm/xe/xe_guc_rc.c              |   5 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c          |  13 +-
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c       |   3 +-
+ drivers/gpu/drm/xe/xe_mert.c                |   5 +-
+ drivers/gpu/drm/xe/xe_pci_error.c           |   9 +-
+ drivers/gpu/drm/xe/xe_ras.c                 |  12 +-
+ drivers/gpu/drm/xe/xe_sriov_pf.c            |   3 +-
+ drivers/gpu/drm/xe/xe_survivability_mode.c  |   5 +-
+ drivers/gpu/drm/xe/xe_uc.c                  |   6 +-
+ drivers/gpu/drm/xe/xe_uc.h                  |   2 +-
+ drivers/gpu/drm/xe/xe_wedge.c               | 286 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wedge.h               |  20 ++
+ drivers/gpu/drm/xe/xe_wedge_types.h         |  45 +++
+ 31 files changed, 454 insertions(+), 330 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_wedge.c
+ create mode 100644 drivers/gpu/drm/xe/xe_wedge.h
+ create mode 100644 drivers/gpu/drm/xe/xe_wedge_types.h
+
+-- 
+2.43.0
+
