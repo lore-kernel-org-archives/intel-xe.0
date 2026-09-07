@@ -4,44 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64BC6C79F9F
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 17:59:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3127DC79F9F
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 18:09:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1492F10E04F;
-	Mon,  7 Sep 2026 17:59:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kvs5a7z+";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5112A10E035;
- Mon,  7 Sep 2026 17:59:05 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id DF8EE40E44;
- Mon,  7 Sep 2026 17:59:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 865941F00A3A;
- Mon,  7 Sep 2026 17:59:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788803944;
- bh=QDdsYy8Y5oRtO8dimv0U6stgwX/nujHZjFKAMQdmJTQ=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=kvs5a7z+6D+KaphoCyGw6PwO10SsQqaB+H2lStKpB/1Sz6oOBiXZNWESu0sTOKl59
- G3iPiwZosuMnnNzAjkq0mZbGiLiumI6hAOxiq/FzCwtWjcQvfGjj4xUaLyWqv1cyBH
- xbMtcX8yRqnD/Jr+5Bq//oAVqYrqQh2bPRUi2wGTDOxlt+bmi9k0KLib+/MyrdxTHE
- dGC+u1dK6mc4/nGAOPDe/r4Gflu3TEwP3dOFmXMLFE9n5oD+AKJPQhTH/obcYzUKdd
- Pp6Ytam2p4elI5SVQDUOpmbmz/o0cSz+fLYwWup83BNWj0X8tkLh6DwEYKwJ4WSJro
- IdJFOF+AYYAeg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] drm/i915/dp_mst: Fix configuring TUs for a
- disconnected stream
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCC5C10E035;
+	Mon,  7 Sep 2026 18:09:45 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A55B610E035;
+ Mon,  7 Sep 2026 18:09:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5B1?=
+ =?utf-8?q?/2=5D_drm/i915/dp=5Fmst=3A_Fix_configuring_FEC_for_a_disconnected?=
+ =?utf-8?q?_stream?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20260907174413.741851-2-imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 07 Sep 2026 18:09:44 -0000
+Message-ID: <178880458467.130175.1241161220610145838@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260907174413.741851-1-imre.deak@intel.com>
- <20260907174413.741851-2-imre.deak@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 07 Sep 2026 17:59:04 +0000
-Message-Id: <20260907175904.865941F00A3A@smtp.kernel.org>
+In-Reply-To: <20260907174413.741851-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,71 +37,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] NULL pointer dereference when accessing `crtc_state` for disconnec=
-ted MST streams during a partial atomic commit.
---
+== Series Details ==
 
-commit 2c1463a6e51d57b066fd631411fc6eb110086a46
+Series: series starting with [1/2] drm/i915/dp_mst: Fix configuring FEC for a disconnected stream
+URL   : https://patchwork.freedesktop.org/series/173530/
+State : warning
+
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d875049d2b299159a272bd5151994970cdcd1e31
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b796095f1875bf25ef49ec165f3b8f345515377b
 Author: Imre Deak <imre.deak@intel.com>
+Date:   Mon Sep 7 20:44:13 2026 +0300
 
-drm/i915/dp_mst: Fix configuring TUs for a disconnected stream
+    drm/i915/dp_mst: Fix configuring TUs for a disconnected stream
+    
+    During an atomic commit after all the MST stream CRTC state is computed
+    the driver ensures that the sum of TUs of all the streams on a given MST
+    topology link is within limits (63 for 8b10 and 64 for 128b132b). For a
+    disconnected stream the DRM MST core's BW verification doesn't ensure
+    this, because the topology state it uses for this is destroyed as soon
+    as the stream (i.e. MST connector/port) is disconnected. The driver
+    should keep the link state valid even for such disconnected streams, as
+    userspace may disable them one-by-one only in a deferred way. Ensure the
+    link's sum of TUs stays within limits in this case by simply reusing the
+    maximum link BPP limit from the stream's (i.e. CRTC's) old state.
+    
+    The disconnection can happen either via the whole topology getting
+    disconnected or via only the given stream's port getting disconnected.
+    Check for both of these conditions separately, as a connector gets
+    unregistered after a link disconnect event only in a deferred way.
+    
+    Cc: stable@vger.kernel.org # v6.10+
+    Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16073
+    Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16384
+    Signed-off-by: Imre Deak <imre.deak@intel.com>
++ /mt/dim checkpatch 16562a45b1291d85f8402628a1f7d3778e2bebce drm-intel
+fcfeac2e8f7a drm/i915/dp_mst: Fix configuring FEC for a disconnected stream
+-:44: WARNING:MISSING_FIXES_TAG: The commit message has 'stable@', perhaps it also needs a 'Fixes:' tag?
 
-This commit fixes the TU configuration for a disconnected MST stream by reu=
-sing
-the maximum link BPP limit from the stream's old state. This ensures the li=
-nk's
-sum of TUs stays within limits instead of destroying the link state complet=
-ely,
-as userspace may disable them one-by-one in a deferred way.
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
+b796095f1875 drm/i915/dp_mst: Fix configuring TUs for a disconnected stream
+-:86: WARNING:MISSING_FIXES_TAG: The commit message has 'stable@', perhaps it also needs a 'Fixes:' tag?
 
-Cc: stable@vger.kernel.org # v6.10+
-Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16073
-Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16384
+total: 0 errors, 1 warnings, 0 checks, 44 lines checked
 
-[ ... ]
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.c b/drivers/gpu/d=
-rm/i915/display/intel_link_bw.c
-> index b47474a3e9fec..e71e76d6fd3e0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_link_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_link_bw.c
-> @@ -64,7 +64,8 @@ void intel_link_bw_init_limits(struct intel_atomic_stat=
-e *state,
->  			intel_atomic_get_new_crtc_state(state, crtc);
->  		int forced_bpp_x16 =3D get_forced_link_bpp_x16(state, crtc);
-> =20
-> -		if (state->base.duplicated && crtc_state) {
-> +		if ((state->base.duplicated && crtc_state) ||
-> +		    intel_dp_mst_stream_disconnected(state, crtc)) {
->  			limits->max_bpp_x16[pipe] =3D crtc_state->max_link_bpp_x16;
-
-[Severity: High]
-Could this lead to a NULL pointer dereference in intel_link_bw_init_limits()
-if crtc_state is NULL?
-
-If userspace issues an atomic commit that modifies a non-routing property
-on a disconnected connector, the connector is added to the atomic state
-but its CRTC might not be. In this scenario, intel_atomic_get_new_crtc_stat=
-e()
-returns NULL.
-
-Since intel_dp_mst_stream_disconnected() evaluates to true when the connect=
-or
-is unregistered, this block is entered even when crtc_state is NULL.
-
-This results in an unconditional dereference of crtc_state when assigning
-crtc_state->max_link_bpp_x16, which is reachable from unprivileged userspace
-via the DRM atomic ioctl and could crash the system.
-
->  			if (intel_dsc_enabled_on_link(crtc_state))
->  				limits->link_dsc_pipes |=3D BIT(pipe);
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260907174413.7418=
-51-1-imre.deak@intel.com?part=3D2
