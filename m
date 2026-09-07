@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 573AEC79F9F
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 09:47:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 562EEC79F89
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 09:47:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11BC810E73D;
-	Mon,  7 Sep 2026 09:47:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17B5E10E744;
+	Mon,  7 Sep 2026 09:47:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yr799lua";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GlkgqQ2H";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFC5610E73D
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Sep 2026 09:47:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B68BF10E744
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Sep 2026 09:47:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788774465; x=1820310465;
+ t=1788774468; x=1820310468;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Y4wxwVmeyyNeRlDcYWKuTNO83B9KYNM5NFAf9/P+Z7E=;
- b=Yr799luay9C0v4w6yNZ9VqdjYzzBjDW5t6pWnqbbUBa3D7NVoa+hNjyq
- oOwDG8X6AtawTPJ8Y/69S5PWVe2QjZofx9yyXsfwcKO73WoGER8pP79uX
- DuspTG7NoZdTcOWpKC1hsBNAZDJzsVpDtuUqIi/KCz3psSe5YA4x/2Zq2
- yhoJO2wkksvPxQTXiQ0CbocKPaJfTXgVV13ciDm+8hVwIO2DGjqF8WcBM
- 8G5tsES7m4x2SenvTSQgQZO0U3vth5KuQ+iSd/1ZjD4fq9cAGwt5gm+dc
- rqeauWC2WQOhGJnifqVWzVPxZXVDU9tV2T8AQskL7ejGXwyDKaC3UJQuK g==;
-X-CSE-ConnectionGUID: +7ArOe4uQM2y+NOn1Ld+vg==
-X-CSE-MsgGUID: OVEOA8bPSBCkpaa624WVQw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11898"; a="100532034"
-X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="100532034"
+ bh=QSy4N5+rjOo6Eaw6yCAbOuhYZq+ObIWJifhfw2E+IRA=;
+ b=GlkgqQ2HccLTCqKoeXeClellYMYxK4sU/16/HI+lPyzWqlWZx5HklzUL
+ mVgLu8VRddkIyKIQBRcxlFJQWLyHBORF2JJbxukgXCFUe15xYyS1ACQiR
+ xkgGsDc/FhTimV/vJ4jREq33skSowjUQJE8LoqaWdGIkg+SolbClGuP8e
+ R7JRKb5LimMrH5c7fq5Ojfz3QyxDaapn24y9B+qUEeVw5d8+iZ4BvAPy6
+ viBtpn+FN4MOJsS0QghawDf2QuunSWcF/WbiMQNflJzGJ808xcZAoOW1D
+ /emBt+nB6M6ycR9qYVDGiQCdEFChXaZSxNd6EvFG8U6hoI9n8lIq/ZSAu g==;
+X-CSE-ConnectionGUID: 9KnfUJBIRyO0YCjTYIvgyA==
+X-CSE-MsgGUID: yl3fujvBTuCGCYShY44gvA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11898"; a="100532037"
+X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="100532037"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2026 02:47:44 -0700
-X-CSE-ConnectionGUID: ahRW5f4SQAOMQUN2ZvQVUA==
-X-CSE-MsgGUID: MoKUf75jSUSi1OuvWNwBow==
+ 07 Sep 2026 02:47:48 -0700
+X-CSE-ConnectionGUID: xUtW41pNRmigbsW8iigZnw==
+X-CSE-MsgGUID: dZWFb3MySXGIJiHfayINpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="274175760"
+X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="274175772"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2026 02:47:43 -0700
+ 07 Sep 2026 02:47:46 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
@@ -48,10 +48,10 @@ Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  tejas.upadhyay@intel.com
-Subject: [PATCH v2 2/6] drm/xe/xe_ras: Add support to query page offline queue
- and list
-Date: Mon,  7 Sep 2026 15:17:08 +0530
-Message-ID: <20260907094706.1407436-10-riana.tauro@intel.com>
+Subject: [PATCH v2 3/6] drm/xe: Separate drm-ras netlink data from device and
+ firmware RAS state
+Date: Mon,  7 Sep 2026 15:17:09 +0530
+Message-ID: <20260907094706.1407436-11-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260907094706.1407436-8-riana.tauro@intel.com>
 References: <20260907094706.1407436-8-riana.tauro@intel.com>
@@ -71,228 +71,264 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support to query page offline list and queue from firmware
-during module load. The page offline list command retrieves pages that
-are already offlined by the firmware. The page offline queue command
-retrieves the pages pending to be offlined by the firmware.
+Keep the DRM RAS data used for netlink reporting separate from the
+device and firmware RAS state in xe_device.
 
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
-v2: rebase
-    store total pages once per response (Sashiko)
----
- drivers/gpu/drm/xe/xe_ras.c                   | 105 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_ras_types.h             |  43 +++++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   4 +
- 3 files changed, 152 insertions(+)
+ drivers/gpu/drm/xe/xe_device_types.h  | 11 +++++++++--
+ drivers/gpu/drm/xe/xe_drm_ras.c       | 16 ++++++++--------
+ drivers/gpu/drm/xe/xe_drm_ras_types.h |  3 ---
+ drivers/gpu/drm/xe/xe_hw_error.c      |  6 +++---
+ drivers/gpu/drm/xe/xe_ras.c           | 15 +++++++--------
+ drivers/gpu/drm/xe/xe_ras.h           |  6 ++++++
+ drivers/gpu/drm/xe/xe_ras_types.h     | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c  |  3 ++-
+ 8 files changed, 45 insertions(+), 25 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 180d450a6deb..f9dd65d94417 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -21,6 +21,7 @@
+ #include "xe_platform_types.h"
+ #include "xe_pmu_types.h"
+ #include "xe_pt_types.h"
++#include "xe_ras_types.h"
+ #include "xe_sriov_pf_types.h"
+ #include "xe_sriov_types.h"
+ #include "xe_sriov_vf_types.h"
+@@ -550,8 +551,14 @@ struct xe_device {
+ 	/** @pmu: performance monitoring unit */
+ 	struct xe_pmu pmu;
+ 
+-	/** @ras: RAS structure for device */
+-	struct xe_drm_ras ras;
++	/** @ras: RAS (Reliability, Availability, Serviceability) structures */
++	struct {
++		/** @ras.nl_data: drm-ras netlink data */
++		struct xe_drm_ras nl_data;
++
++		/** @ras.state: RAS device and firmware state */
++		struct xe_ras_state state;
++	} ras;
+ 
+ 	/** @i2c: I2C host controller */
+ 	struct xe_i2c *i2c;
+diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
+index 7f3695707611..38d77561facf 100644
+--- a/drivers/gpu/drm/xe/xe_drm_ras.c
++++ b/drivers/gpu/drm/xe/xe_drm_ras.c
+@@ -20,7 +20,7 @@ static int query_error_counter(struct xe_device *xe,
+ 			       enum drm_xe_ras_error_severity severity,
+ 			       u32 error_id, const char **name, u32 *val)
+ {
+-	struct xe_drm_ras *ras = &xe->ras;
++	struct xe_drm_ras *ras = &xe->ras.nl_data;
+ 	struct xe_drm_ras_counter *info = ras->info[severity];
+ 
+ 	if (!info || !info[error_id].name)
+@@ -41,7 +41,7 @@ static int clear_error_counter(struct xe_device *xe,
+ 			       enum drm_xe_ras_error_severity severity,
+ 			       u32 error_id)
+ {
+-	struct xe_drm_ras *ras = &xe->ras;
++	struct xe_drm_ras *ras = &xe->ras.nl_data;
+ 	struct xe_drm_ras_counter *info = ras->info[severity];
+ 
+ 	if (!info || !info[error_id].name)
+@@ -90,7 +90,7 @@ static int query_correctable_error_threshold(struct drm_ras_node *ep, u32 error_
+ 					     const char **name, u32 *threshold)
+ {
+ 	struct xe_device *xe = ep->priv;
+-	struct xe_drm_ras *ras = &xe->ras;
++	struct xe_drm_ras *ras = &xe->ras.nl_data;
+ 	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
+ 
+ 	if (!info || !info[error_id].name)
+@@ -106,7 +106,7 @@ static int query_correctable_error_threshold(struct drm_ras_node *ep, u32 error_
+ static int set_correctable_error_threshold(struct drm_ras_node *ep, u32 error_id, u32 threshold)
+ {
+ 	struct xe_device *xe = ep->priv;
+-	struct xe_drm_ras *ras = &xe->ras;
++	struct xe_drm_ras *ras = &xe->ras.nl_data;
+ 	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
+ 
+ 	if (!info || !info[error_id].name)
+@@ -142,7 +142,7 @@ static int assign_node_params(struct xe_device *xe, struct drm_ras_node *node,
+ 			      const enum drm_xe_ras_error_severity severity)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+-	struct xe_drm_ras *ras = &xe->ras;
++	struct xe_drm_ras *ras = &xe->ras.nl_data;
+ 	const char *device_name;
+ 
+ 	device_name = kasprintf(GFP_KERNEL, "%04x:%02x:%02x.%d",
+@@ -190,7 +190,7 @@ static void cleanup_node(struct drm_device *drm, void *node)
+ 
+ static int register_nodes(struct xe_device *xe)
+ {
+-	struct xe_drm_ras *ras = &xe->ras;
++	struct xe_drm_ras *ras = &xe->ras.nl_data;
+ 	struct drm_ras_node *node;
+ 	int i, ret;
+ 
+@@ -230,7 +230,7 @@ static int register_nodes(struct xe_device *xe)
+  */
+ void xe_drm_ras_event(struct xe_device *xe, u32 component, u32 severity, u32 value)
+ {
+-	struct xe_drm_ras *ras = &xe->ras;
++	struct xe_drm_ras *ras = &xe->ras.nl_data;
+ 	struct xe_drm_ras_counter *info = ras->info[severity];
+ 	struct drm_ras_node *node;
+ 	int ret;
+@@ -260,7 +260,7 @@ void xe_drm_ras_event(struct xe_device *xe, u32 component, u32 severity, u32 val
+  */
+ int xe_drm_ras_init(struct xe_device *xe)
+ {
+-	struct xe_drm_ras *ras = &xe->ras;
++	struct xe_drm_ras *ras = &xe->ras.nl_data;
+ 	struct drm_ras_node *node;
+ 	int err;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_drm_ras_types.h b/drivers/gpu/drm/xe/xe_drm_ras_types.h
+index 0be218ba2db7..8d729ad6a264 100644
+--- a/drivers/gpu/drm/xe/xe_drm_ras_types.h
++++ b/drivers/gpu/drm/xe/xe_drm_ras_types.h
+@@ -43,9 +43,6 @@ struct xe_drm_ras {
+ 
+ 	/** @info: info array for all types of errors */
+ 	struct xe_drm_ras_counter *info[DRM_XE_RAS_ERR_SEV_MAX];
+-
+-	/** @disable_vram_page_offline: cached configfs policy, immutable after init */
+-	bool disable_vram_page_offline;
+ };
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+index 5f2abc9485ff..f53a6b3055de 100644
+--- a/drivers/gpu/drm/xe/xe_hw_error.c
++++ b/drivers/gpu/drm/xe/xe_hw_error.c
+@@ -240,7 +240,7 @@ static void log_soc_error(struct xe_tile *tile, const char * const *reg_info,
+ {
+ 	const char *severity_str = error_severity[severity];
+ 	struct xe_device *xe = tile_to_xe(tile);
+-	struct xe_drm_ras *ras = &xe->ras;
++	struct xe_drm_ras *ras = &xe->ras.nl_data;
+ 	struct xe_drm_ras_counter *info = ras->info[severity];
+ 	const char *name;
+ 
+@@ -260,7 +260,7 @@ static void gt_hw_error_handler(struct xe_tile *tile, const enum hardware_error
+ {
+ 	const enum drm_xe_ras_error_severity severity = hw_err_to_severity(hw_err);
+ 	struct xe_device *xe = tile_to_xe(tile);
+-	struct xe_drm_ras *ras = &xe->ras;
++	struct xe_drm_ras *ras = &xe->ras.nl_data;
+ 	struct xe_drm_ras_counter *info = ras->info[severity];
+ 	struct xe_mmio *mmio = &tile->mmio;
+ 	unsigned long err_stat = 0;
+@@ -422,7 +422,7 @@ static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_er
+ 	const enum drm_xe_ras_error_severity severity = hw_err_to_severity(hw_err);
+ 	const char *severity_str = error_severity[severity];
+ 	struct xe_device *xe = tile_to_xe(tile);
+-	struct xe_drm_ras *ras = &xe->ras;
++	struct xe_drm_ras *ras = &xe->ras.nl_data;
+ 	struct xe_drm_ras_counter *info = ras->info[severity];
+ 	unsigned long flags, err_src;
+ 	u32 err_bit;
 diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 94ffd0852938..648e46df831d 100644
+index 648e46df831d..b5b0c1a3a663 100644
 --- a/drivers/gpu/drm/xe/xe_ras.c
 +++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -326,6 +326,108 @@ static bool ras_counter_is_valid(struct xe_device *xe, struct xe_ras_error_class
- 	return true;
- }
- 
-+static void get_queued_pages(struct xe_device *xe)
-+{
-+	struct xe_sysctrl_mailbox_command command = {0};
-+	struct xe_ras_page_offline_queue response = {0};
-+	u32 count = 0, total_pages = 0;
-+	size_t rlen;
-+	int ret, i;
-+
-+	/* Supported only on platforms with system controller */
-+	if (!xe->info.has_sysctrl)
-+		return;
-+
-+	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP,
-+				  XE_SYSCTRL_CMD_GET_OFFLINE_QUEUE, NULL, 0, &response,
-+				  sizeof(response));
-+
-+	do {
-+		memset(&response, 0, sizeof(response));
-+
-+		ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
-+		if (ret) {
-+			xe_log_err(xe, SYSCTRL, ret, "failed to get page offline queue\n");
-+			return;
-+		}
-+		if (rlen != sizeof(response)) {
-+			xe_log_err(xe, SYSCTRL, -EINVAL,
-+				   "unexpected page offline queue response length %zu (expected %zu)\n",
-+				   rlen, sizeof(response));
-+			return;
-+		}
-+
-+		for (i = 0; i < response.pages_returned && i < XE_RAS_NUM_PAGES; i++)
-+			handle_page_offline(xe, response.page_addresses[i], true);
-+
-+		count += response.pages_returned;
-+		if (!response.pages_returned)
-+			break;
-+
-+		if (!total_pages)
-+			total_pages = response.total_pages;
-+
-+		if (count > total_pages) {
-+			xe_log_err(xe, SYSCTRL, -EINVAL,
-+				   "Pages returned from queue exceed total pages %u, returned %u\n",
-+				   total_pages, count);
-+			return;
-+		}
-+	} while (response.additional_data);
-+}
-+
-+static void get_offlined_list(struct xe_device *xe)
-+{
-+	struct xe_sysctrl_mailbox_command command = {0};
-+	struct xe_ras_offline_list_response response = {0};
-+	struct xe_ras_offline_list_request request = {0};
-+	u32 count = 0, total_pages = 0;
-+	size_t rlen;
-+	int ret, i;
-+
-+	/* Supported only on platforms with system controller */
-+	if (!xe->info.has_sysctrl)
-+		return;
-+
-+	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_GET_OFFLINE_LIST,
-+				  &request, sizeof(request), &response, sizeof(response));
-+
-+	do {
-+		memset(&response, 0, sizeof(response));
-+		request.index = count;
-+
-+		ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
-+		if (ret) {
-+			xe_log_err(xe, SYSCTRL, ret, "failed to get page offline list\n");
-+			return;
-+		}
-+
-+		if (rlen != sizeof(response)) {
-+			xe_log_err(xe, SYSCTRL, -EINVAL,
-+				   "unexpected page offline list response length %zu (expected %zu)\n",
-+				   rlen, sizeof(response));
-+			return;
-+		}
-+
-+		for (i = 0; i < response.pages_returned && i < XE_RAS_NUM_PAGES; i++)
-+			handle_page_offline(xe, response.page_addresses[i], false);
-+
-+		count += response.pages_returned;
-+		if (!response.pages_returned)
-+			break;
-+
-+		if (!total_pages)
-+			total_pages = response.total_pages;
-+
-+		if (count > total_pages) {
-+			xe_log_err(xe, SYSCTRL, -EINVAL,
-+				   "Pages returned from list exceed total pages %u, returned %u\n",
-+				   total_pages, count);
-+			return;
-+		}
-+	} while (response.additional_data);
-+}
-+
- static struct pci_dev *find_usp_dev(struct pci_dev *pdev)
+@@ -1126,19 +1126,18 @@ void xe_ras_init(struct xe_device *xe)
  {
- 	struct pci_dev *vsp;
-@@ -1040,6 +1142,9 @@ void xe_ras_init(struct xe_device *xe)
+ 	int ret;
+ 
+-	/*
+-	 * TODO: Replace platform check with xe->info.has_disable_vram_page_offline
+-	 * once the feature flag is plumbed through device info.
+-	 */
+-	if (xe->info.platform == XE_CRESCENTISLAND)
+-		xe->ras.disable_vram_page_offline =
+-			xe_configfs_get_disable_vram_page_offline(to_pci_dev(xe->drm.dev));
+-
+ 	xe_drm_ras_init(xe);
+ 
+ 	if (!xe->info.has_sysctrl)
+ 		return;
+ 
++	/*
++	 * TODO: Replace platform check with xe->info.has_disable_vram_page_offline
++	 * once the feature flag is plumbed through device info.
++	 */
++	xe->ras.state.disable_page_offline =
++		xe_configfs_get_disable_vram_page_offline(to_pci_dev(xe->drm.dev));
++
  	if (IS_ENABLED(CONFIG_PCIEAER))
  		ras_usp_aer_init(xe);
  
-+	get_queued_pages(xe);
-+	get_offlined_list(xe);
+diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+index 0b8669f28d56..6e65443cd262 100644
+--- a/drivers/gpu/drm/xe/xe_ras.h
++++ b/drivers/gpu/drm/xe/xe_ras.h
+@@ -7,6 +7,7 @@
+ #define _XE_RAS_H_
+ 
+ #include <linux/types.h>
++#include "xe_device_types.h"
+ #include "xe_ras_types.h"
+ 
+ struct xe_device;
+@@ -21,4 +22,9 @@ int xe_ras_set_threshold(struct xe_device *xe, u8 severity, u8 component, u32 th
+ void xe_ras_init(struct xe_device *xe);
+ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe);
+ 
++static inline bool xe_ras_get_disable_page_offline(struct xe_device *xe)
++{
++	return xe->ras.state.disable_page_offline;
++}
 +
- 	ret = devm_device_add_group(xe->drm.dev, &gpu_health_group);
- 	if (ret)
- 		xe_err(xe, "Failed to create GPU health sysfs, err=%d\n", ret);
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-index 20c74593ce05..7bfd86c9d135 100644
+index 7bfd86c9d135..ca459e785add 100644
 --- a/drivers/gpu/drm/xe/xe_ras_types.h
 +++ b/drivers/gpu/drm/xe/xe_ras_types.h
-@@ -10,6 +10,7 @@
- 
- #define XE_RAS_NUM_COUNTERS			16
- #define XE_RAS_NUM_ERROR_ARR			3
-+#define XE_RAS_NUM_PAGES			25
- /* Error bits in IEH global error status register */
- #define XE_RAS_SOC_IEH_PUNIT			BIT(1)
- /* Device memory error categories */
-@@ -330,6 +331,48 @@ struct xe_ras_page_offline_response {
- 	u32 reserved;
+@@ -414,4 +414,14 @@ struct xe_ras_set_health_response {
+ 	/** @reserved1: Reserved for future use */
+ 	u32 reserved1[2];
  } __packed;
++
++/* Device structures */
++
++/**
++ * struct xe_ras_state - RAS device and firmware state
++ */
++struct xe_ras_state {
++	/** @disable_page_offline: cached configfs policy, immutable after init */
++	bool disable_page_offline;
++};
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 9a514d983e90..2c4722a956a0 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -24,6 +24,7 @@
+ #include "xe_mmio.h"
+ #include "xe_pm.h"
+ #include "xe_printk.h"
++#include "xe_ras.h"
+ #include "xe_res_cursor.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_ttm_vram_mgr.h"
+@@ -933,7 +934,7 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr)
+ 	vram_mgr = &vr->ttm;
+ 	mm = &vram_mgr->mm;
  
-+/**
-+ * struct xe_ras_offline_list_request - Request for get offline list command
-+ */
-+struct xe_ras_offline_list_request {
-+	/** @index: Zero-based index into the offline page list */
-+	u32 index;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_offline_list_response - Response from get offline list command
-+ */
-+struct xe_ras_offline_list_response {
-+	/** @max_entries: Total no of pages that can be stored in flash */
-+	u32 max_entries;
-+	/** @total_pages: Total number of permanently offlined pages */
-+	u32 total_pages;
-+	/** @pages_returned: Number of pages returned in this response */
-+	u32 pages_returned;
-+	/** @page_addresses: Array of permanently offlined page addresses (4KB aligned) */
-+	u64 page_addresses[XE_RAS_NUM_PAGES];
-+	/** @additional_data: Indicates if more data is available */
-+	u8 additional_data;
-+	/** @reserved: Reserved for future use */
-+	u8 reserved[3];
-+} __packed;
-+
-+/**
-+ * struct xe_ras_page_offline_queue - Response from get offline queue command
-+ */
-+struct xe_ras_page_offline_queue {
-+	/** @total_pages: Total number of queued pages */
-+	u32 total_pages;
-+	/** @pages_returned: Number of pages returned in this response */
-+	u32 pages_returned;
-+	/** @page_addresses: Array of page addresses (4KB aligned) */
-+	u64 page_addresses[XE_RAS_NUM_PAGES];
-+	/** @additional_data: Indicates if more data is available */
-+	u8 additional_data;
-+	/** @reserved: Reserved for future use */
-+	u8 reserved[3];
-+} __packed;
-+
- /**
-  * struct xe_ras_get_health_request - Request structure for obtaining gpu health
-  */
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index 590dd408399c..a96aeb11d061 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -29,6 +29,8 @@ enum xe_sysctrl_group {
-  * @XE_SYSCTRL_CMD_SET_THRESHOLD: Set error threshold
-  * @XE_SYSCTRL_CMD_GET_PENDING_EVENT: Retrieve pending event
-  * @XE_SYSCTRL_CMD_PAGE_OFFLINE: Instruct firmware to offline/decline a page
-+ * @XE_SYSCTRL_CMD_GET_OFFLINE_LIST: Retrieve list of all offlined pages from flash
-+ * @XE_SYSCTRL_CMD_GET_OFFLINE_QUEUE: Retrieve list of offlined queued pages from firmware
-  * @XE_SYSCTRL_CMD_GET_HEALTH: Retrieve gpu health
-  * @XE_SYSCTRL_CMD_SET_HEALTH: Set gpu health
-  */
-@@ -40,6 +42,8 @@ enum xe_sysctrl_gfsp_cmd {
- 	XE_SYSCTRL_CMD_SET_THRESHOLD		= 0x06,
- 	XE_SYSCTRL_CMD_GET_PENDING_EVENT	= 0x07,
- 	XE_SYSCTRL_CMD_PAGE_OFFLINE             = 0x08,
-+	XE_SYSCTRL_CMD_GET_OFFLINE_LIST		= 0x09,
-+	XE_SYSCTRL_CMD_GET_OFFLINE_QUEUE	= 0x0A,
- 	XE_SYSCTRL_CMD_GET_HEALTH		= 0x0B,
- 	XE_SYSCTRL_CMD_SET_HEALTH		= 0x0C,
- };
+-	if (xe->ras.disable_vram_page_offline) {
++	if (xe_ras_get_disable_page_offline(xe)) {
+ 		xe_err(xe, "0x%llx is reported as corrupted address by HW\n",
+ 		       addr);
+ 		return -EOPNOTSUPP;
 -- 
 2.47.1
 
