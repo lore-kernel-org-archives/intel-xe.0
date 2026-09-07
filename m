@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6A87C79F89
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 10:53:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C88F4C79F99
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 10:53:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F8B110E487;
-	Mon,  7 Sep 2026 10:53:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76C2910E78C;
+	Mon,  7 Sep 2026 10:53:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XolSiOCY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EpjPdku3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38E7510E487
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Sep 2026 10:53:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02C7410E78C
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Sep 2026 10:53:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788778413; x=1820314413;
+ t=1788778416; x=1820314416;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wAzEjXBTBk6mQXVAzw9UtP9+IGoArMe67zUaVBxNWCQ=;
- b=XolSiOCYJp+Wv4uJHmhFFf7BIBovRL+CUUuYgvn+29wFVsQmgSTO2rmT
- /1GSaQGDmnnvB20bObiCCOH0o03MOXYwhlECKVoQbQ3vcSdjCUxn1bscw
- gZjX4K8JU5muQHsr8hTlwi8ksKdckL0YVGeyxitjCpkcS7Ii2vREn3XHQ
- nIt/tZQiH2N2++dUCkTRczjlzl+TLw376FAOIJ7uIpO998BkzQdtkyuWw
- Q/2Z6a4te2TgwNiQqUnsfheNSKmstnuSyuybJQyYqsFcCsdd3qcTdDuLE
- LyiRoiYl//cQdrPtRjjfmz/N4Z3JVL5MailVQ9qDCvo1d+LOoUzNS+rvR g==;
-X-CSE-ConnectionGUID: w+ZlqiyzSvCIcQOi4kNv6w==
-X-CSE-MsgGUID: jkqL3EurReuL7SmEGZCl9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11898"; a="89024492"
-X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="89024492"
+ bh=Syectxli4a90KeQUBM1Nr6D33WURcTsEFyvg5MWY09c=;
+ b=EpjPdku35DzHwCmbLmHFQ3VWr+RVih7F0FAg5uVJuTNgt0KnL34GvetX
+ lHKtaMdgWD1Kn/6E8IfMIowqXDCCmyXjzo81zKdxJ8e9KCBq4N31JI4VH
+ J4LnMGDfZIfK9tD8U2ZtW2/EzbYfTb/r+gVvBi/HlFwEk3gqP7s01IlOF
+ GUtNkirartfNlXc7+yTkXAbTu8uGtvR75ID8BMO3vHTLi191Aszs/BPO9
+ A3MTZ91DMouPOsehfB+lVScgb4NGP8Ow+EzMJ9isjcVrAR7+Xg00mGtXV
+ H+Cn7qNhGRugt+aVrX16tzWD1RuP+7DNjO0eyENGQ2YMee3/7MfUZzVKQ A==;
+X-CSE-ConnectionGUID: v+PcBlWBRnSE/i8zuGMiWA==
+X-CSE-MsgGUID: Fy5W5GgfRsmcnHJjPO+deg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11898"; a="89024495"
+X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="89024495"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2026 03:53:32 -0700
-X-CSE-ConnectionGUID: mlZ07e9XS36Ij6M3WHqXzw==
-X-CSE-MsgGUID: tT9iPLZiSkO9nxJ4LaE3zA==
+ 07 Sep 2026 03:53:36 -0700
+X-CSE-ConnectionGUID: ECqmmnvaQ4G96Z5W3SepkQ==
+X-CSE-MsgGUID: xmSOdgKIRESxAn85+TmbdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="308908369"
+X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="308908376"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa001.jf.intel.com with ESMTP; 07 Sep 2026 03:53:28 -0700
+ by orviesa001.jf.intel.com with ESMTP; 07 Sep 2026 03:53:32 -0700
 From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  matthew.brost@intel.com
@@ -49,10 +49,10 @@ Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
  aravind.iddamsetty@linux.intel.com, umesh.nerlige.ramappa@intel.com,
  dnyaneshwar.bhadane@intel.com, anoop.c.vijay@intel.com,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v7 1/9] drm/xe/sysctrl: Return error codes from
- sysctrl_wait_bit_clear()
-Date: Mon,  7 Sep 2026 16:23:15 +0530
-Message-ID: <20260907105313.2208003-12-mallesh.koujalagi@intel.com>
+Subject: [PATCH v7 2/9] drm/xe/sysctrl: Return error codes from
+ sysctrl_wait_bit_set()
+Date: Mon,  7 Sep 2026 16:23:16 +0530
+Message-ID: <20260907105313.2208003-13-mallesh.koujalagi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260907105313.2208003-11-mallesh.koujalagi@intel.com>
 References: <20260907105313.2208003-11-mallesh.koujalagi@intel.com>
@@ -72,7 +72,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Make sysctrl_wait_bit_clear() return an error code rather than a bool
+Make sysctrl_wait_bit_set() return an error code rather than a bool
 and update callers to use xe_log_err() with the propagated error code.
 
 Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
@@ -81,73 +81,47 @@ Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 v5:
 - Fix align issue. (Michal)
 ---
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 28 ++++++++++++-------------
- 1 file changed, 14 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 19 ++++++++-----------
+ 1 file changed, 8 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-index 72baf1aa4b3a..c36cac8c6288 100644
+index c36cac8c6288..b3d1538c8990 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-@@ -11,6 +11,7 @@
+@@ -42,15 +42,11 @@ static int sysctrl_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
+ 				  timeout_ms * 1000, NULL, false);
+ }
  
- #include "regs/xe_sysctrl_regs.h"
- #include "xe_device.h"
-+#include "xe_log.h"
- #include "xe_mmio.h"
- #include "xe_pm.h"
- #include "xe_printk.h"
-@@ -34,15 +35,11 @@ struct xe_sysctrl_mailbox_msg_hdr {
- #define XE_SYSCTRL_HDR_RESULT(hdr) \
- 	FIELD_GET(SYSCTRL_HDR_RESULT_MASK, le32_to_cpu((hdr)->data))
- 
--static bool sysctrl_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
--				   unsigned int timeout_ms)
-+static int sysctrl_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
-+				  unsigned int timeout_ms)
+-static bool sysctrl_wait_bit_set(struct xe_sysctrl *sc, u32 bit_mask,
+-				 unsigned int timeout_ms)
++static int sysctrl_wait_bit_set(struct xe_sysctrl *sc, u32 bit_mask,
++				unsigned int timeout_ms)
  {
 -	int ret;
 -
--	ret = xe_mmio_wait32_not(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
--				 timeout_ms * 1000, NULL, false);
+-	ret = xe_mmio_wait32(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
+-			     timeout_ms * 1000, NULL, false);
 -
 -	return ret == 0;
-+	return xe_mmio_wait32_not(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
-+				  timeout_ms * 1000, NULL, false);
++	return xe_mmio_wait32(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
++			      timeout_ms * 1000, NULL, false);
  }
  
- static bool sysctrl_wait_bit_set(struct xe_sysctrl *sc, u32 bit_mask,
-@@ -146,12 +143,14 @@ static int sysctrl_send_frames(struct xe_sysctrl *sc,
- 	u32 ctrl_reg, total_frames, frame;
- 	size_t bytes_sent, frame_size;
- 	bool phase;
-+	int ret;
+ static int sysctrl_write_frame(struct xe_sysctrl *sc, const void *frame,
+@@ -193,9 +189,10 @@ static int sysctrl_process_frame(struct xe_sysctrl *sc, void *out,
+ 	struct xe_device *xe = sc_to_xe(sc);
+ 	int ret;
  
- 	total_frames = DIV_ROUND_UP(cmd_size, XE_SYSCTRL_MB_FRAME_SIZE);
- 
--	if (!sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms)) {
--		xe_err(xe, "sysctrl: Mailbox busy\n");
--		return -EBUSY;
-+	ret = sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms);
+-	if (!sysctrl_wait_bit_set(sc, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, timeout_ms)) {
+-		xe_err(xe, "sysctrl: Response frame timeout\n");
+-		return -ETIMEDOUT;
++	ret = sysctrl_wait_bit_set(sc, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, timeout_ms);
 +	if (ret) {
-+		xe_log_err(xe, SYSCTRL, ret, "Mailbox busy\n");
++		xe_log_err(xe, SYSCTRL, ret, "Response frame timeout\n");
 +		return ret;
  	}
  
  	ctrl_reg = xe_mmio_read32(sc->mmio, SYSCTRL_MB_CTRL);
-@@ -174,9 +173,10 @@ static int sysctrl_send_frames(struct xe_sysctrl *sc,
- 
- 		xe_mmio_write32(sc->mmio, SYSCTRL_MB_CTRL, ctrl_reg);
- 
--		if (!sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms)) {
--			xe_err(xe, "sysctrl: Frame %u acknowledgment timeout\n", frame);
--			return -ETIMEDOUT;
-+		ret = sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms);
-+		if (ret) {
-+			xe_log_err(xe, SYSCTRL, ret, "Frame %u acknowledgment timeout\n", frame);
-+			return ret;
- 		}
- 
- 		bytes_sent += frame_size;
 -- 
 2.48.1
 
