@@ -4,54 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DCB5C79FA0
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 08:36:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32812C79F89
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 08:36:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D52C58928D;
-	Mon,  7 Sep 2026 08:36:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE24410E6D6;
+	Mon,  7 Sep 2026 08:36:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XeX7CdRO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BufcKPLW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3BFC8928D
- for <intel-xe@lists.freedesktop.org>; Mon,  7 Sep 2026 08:36:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2007C8928D
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Sep 2026 08:36:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1788770173; x=1820306173;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FlM2crE4mhq4NGV6X5i+JtKM7wQLMnUugDJVQCZJ6lI=;
- b=XeX7CdRO88m7q3SNLbpQHfcbce6h7VnAL2hOoncTmaN4wXIJdtlYck6/
- 5gz4mktROeEeBwlEsB3gOPhaAY73Q/cyKfn3MYJpQeYbN46YwqMRYEkvx
- tZavIsJ1TKaw48jvXdyK2RQnB+VQDuOHCzLq9XNC5pzpVV0TkVzzL4oEV
- J3lb00BnLZ+DwekgbmZPF3v52eJ7DdawTNutrtUeTgafe9L3fmaxKJsBN
- jTUePXs0aWf90g8r/jztc6KcGoG+KbvNuRsY/zuqAmaTvkr8EfK4vlH/X
- kjQngKpGCwvwONzHPKwtTKE6ehswEAFNlLENatO9bN/BQiCbCGnnDPNwY A==;
-X-CSE-ConnectionGUID: 5VtGBtLNT3OKy2UfnFAk6g==
-X-CSE-MsgGUID: 3eL7L0xtR4+f6hAjyG8o3w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11898"; a="76725975"
-X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="76725975"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2026 01:36:12 -0700
-X-CSE-ConnectionGUID: P5nE2zQjRSy09kYr5DOYVA==
-X-CSE-MsgGUID: FHuttJw7Qq6ShmZ2JMGbEA==
+ bh=rxsSQXho5wC79YSlFVYlf2VrIVP/xd8DzDKwJGVlTO8=;
+ b=BufcKPLWXKcYpKYEL01KC8Duh82vsfulL0BBHY0rlGKd/lVsLdmBmM1d
+ NKjuIdmND+yOJ2P8dgz56GFdeiOgr2yK8jg0Z5DONmP4hTgy7byXe3oF0
+ kU1taidYDSf8sF58gVe5FBBhAt+jyNGgsIJkWKTJ+JnPOQgv2Imda7Z2m
+ QsBxmfp6LkrvXDEhNIPweVbmwJRsw08Kn1DGjTJHvsQDmlYndw2A9xfkR
+ r1zVt7vdBRo6V79LUqo/aSx0WJotp5Jy+a0uWk3R3WEkcgMusMYceqbvG
+ NZN6jIu02ZSaiMsRdo+pSpLcEBHEXoGb+eXJE3Uuk4PplImL1zy3Q35J/ w==;
+X-CSE-ConnectionGUID: NIaSJsm8TimsW14g6EdGHQ==
+X-CSE-MsgGUID: qhDHloCKSfeHeSi39VdFvA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11898"; a="99829309"
+X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="99829309"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2026 01:36:13 -0700
+X-CSE-ConnectionGUID: YEfTop3RQKOb+R4aigv7nA==
+X-CSE-MsgGUID: CCo/B12YTWuvPVQpVswE/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="274451020"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa004.jf.intel.com with ESMTP; 07 Sep 2026 01:36:11 -0700
-From: Raag Jadav <raag.jadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,267,1779174000"; d="scan'208";a="266299820"
+Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2026 01:36:10 -0700
+From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, michal.wajdeczko@intel.com, lukasz.laguna@intel.com,
- matthew.d.roper@intel.com, matthew.brost@intel.com, rodrigo.vivi@intel.com,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v3 2/5] drm/xe: Move xe_device_wedged_fini() registration to
- xe_device_probe_early()
-Date: Mon,  7 Sep 2026 14:04:37 +0530
-Message-ID: <20260907083541.2194747-3-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260907083541.2194747-1-raag.jadav@intel.com>
-References: <20260907083541.2194747-1-raag.jadav@intel.com>
+Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com,
+ ravi.kishore.koppuravuri@intel.com, Karthik Poosa <karthik.poosa@intel.com>
+Subject: [PATCH v2 1/2] drm/xe/pcode: Increase default pcode mailbox timeout
+ to 10ms
+Date: Mon,  7 Sep 2026 14:05:19 +0530
+Message-Id: <20260907083520.192418-2-karthik.poosa@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20260907083520.192418-1-karthik.poosa@intel.com>
+References: <20260907083520.192418-1-karthik.poosa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,55 +70,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The device can be declared wedged while processing boot-time hardware
-errors, which can result in PM reference leak if driver probe fails
-before xe_device_wedged_fini() is registered.
+The previous 1ms timeout may be insufficient for some mailbox commands,
+leading to spurious -ETIMEDOUT failures under load. Increase the default
+timeout to 10ms and introduce PCODE_DEFAULT_TIMEOUT_MS for a shared
+timeout definition, in line with pcode mailbox specification guidance.
 
-Early register the required cleanup action and fix this.
-
-Fixes: a7df563b45b0 ("drm/xe/xe_hw_error: Handle CSC Firmware reported Hardware errors")
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
 ---
-v2: Split fixes into separate patches (Rodrigo, Michal)
----
- drivers/gpu/drm/xe/xe_device.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_pcode.c | 2 +-
+ drivers/gpu/drm/xe/xe_pcode.h | 4 +++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 8583b2e9ecf4..c4194507118b 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -770,6 +770,8 @@ static int xe_device_vram_alloc(struct xe_device *xe)
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index d502205bb72a..266deecbb100 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -140,7 +140,7 @@ int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val0, u32 *val1)
+ 	int err;
  
-+static void xe_device_wedged_fini(struct drm_device *drm, void *arg);
+ 	mutex_lock(&tile->pcode.lock);
+-	err = pcode_mailbox_rw(tile, mbox, val0, val1, 1, true, false);
++	err = pcode_mailbox_rw(tile, mbox, val0, val1, PCODE_DEFAULT_TIMEOUT_MS, true, false);
+ 	mutex_unlock(&tile->pcode.lock);
+ 
+ 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
+index ba8a1d1b2152..7e43792b0037 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.h
++++ b/drivers/gpu/drm/xe/xe_pcode.h
+@@ -18,6 +18,8 @@ struct xe_pcode_version {
+ 	u32 engg;
+ };
+ 
++#define PCODE_DEFAULT_TIMEOUT_MS	10
 +
- /**
-  * xe_device_probe_early: Device early probe
-  * @xe: xe device instance
-@@ -838,6 +840,10 @@ int xe_device_probe_early(struct xe_device *xe)
- 	if (err)
- 		return err;
+ int xe_pcode_init_early(struct xe_tile *tile);
+ int xe_pcode_probe_early(struct xe_device *xe);
+ int xe_pcode_ready(struct xe_device *xe, bool locked);
+@@ -31,7 +33,7 @@ int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0,
+ int xe_get_pcode_version(struct xe_device *xe, struct xe_pcode_version *version);
  
-+	err = drmm_add_action_or_reset(&xe->drm, xe_device_wedged_fini, xe);
-+	if (err)
-+		return err;
-+
- 	return 0;
- }
- ALLOW_ERROR_INJECTION(xe_device_probe_early, ERRNO); /* See xe_pci_probe() */
-@@ -1156,10 +1162,6 @@ int xe_device_probe(struct xe_device *xe)
+ #define xe_pcode_write(tile, mbox, val) \
+-	xe_pcode_write_timeout(tile, mbox, val, 1)
++	xe_pcode_write_timeout(tile, mbox, val, PCODE_DEFAULT_TIMEOUT_MS)
  
- 	detect_preproduction_hw(xe);
- 
--	err = drmm_add_action_or_reset(&xe->drm, xe_device_wedged_fini, xe);
--	if (err)
--		goto err_unregister_display;
--
- 	/*
- 	 * Process and log any errors detected by hardware. Possible results can
- 	 * include declaring the device as wedged, which must be done only after
+ int xe_pcode_request(struct xe_tile *tile, u32 mbox, u32 request,
+ 		     u32 reply_mask, u32 reply, int timeout_ms);
 -- 
-2.43.0
+2.25.1
 
