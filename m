@@ -4,44 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B031C79F82
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:23:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F028EC79FA1
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:24:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CB7210EB15;
-	Tue,  8 Sep 2026 10:23:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 956A010EB16;
+	Tue,  8 Sep 2026 10:24:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UvfYvXDf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HHx/gxlj";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FE0910EB15
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:23:58 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 963A44150F;
- Tue,  8 Sep 2026 10:23:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 580051F00A3A;
- Tue,  8 Sep 2026 10:23:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788863037;
- bh=57hVmgGv3SdZaPiIliMjnAWoMv5cO03DnmeqQKVl9ac=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=UvfYvXDf+BkMK1hlLhn5vqwW6iZhuCBCPjNTVyGfdoFg6pKRUCsQqlM+Tx9BdSFC2
- D54i4r5yTYOYACAfOx0WbaGTwJUp+Mgn9zGepQb3lGCQypPGCGhss5bx0t4gS2dLzQ
- 0mim91eJE6rfgGr4HdEXLA+acnaYXGmCG0BNMZsT4p+3EW0GqO4Bf5AT30lSbMiOSD
- 7b0zv1zgVwIcxThAKQtTJExO445yCsvhXtVdDjgYt6UqClBThFEK1qag8knxBcav4Y
- ebwLJIGZOgHgmfFbgg373ZFPAwCVJ+mU0CSHUL3LP1AHy53at8e3aLVJ4fB2vOsAZ3
- 8ddS8dhf1QStA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 01/13] drm/xe/log: Add VRAM, PAT, and HWMON
- DRIVER_HARDWARE components
-To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260908101849.1219614-2-dnyaneshwar.bhadane@intel.com>
-References: <20260908101849.1219614-1-dnyaneshwar.bhadane@intel.com>
- <20260908101849.1219614-2-dnyaneshwar.bhadane@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 08 Sep 2026 10:23:56 +0000
-Message-Id: <20260908102357.580051F00A3A@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35CF510EB16
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:24:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788863049; x=1820399049;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=CnwoAjALtAK7fmj9/T6G5nMrCNod3dw2UtaaFsAkqyQ=;
+ b=HHx/gxljtdzrhFY+ZCiaUqGJdF9c3kmTBatzKStKTzC9YgWfKcPuSSDy
+ cvG+6QPSZRjypXqc0vhGgJO4dgTW75UCvKM4RhFVlo4NxZbrygQHG9ZY6
+ GEqNSPWLK83T/AlLtSoBg6IzEfHpvSxZ5xxvREkjXKLdjXfN6qHTPVtS7
+ yMtGl8JIKpe9TkKxtGudbn6oQ7p9Rs5TNuT7hiMRXy8olmiGyRGPn+4+k
+ z+g2Prs7mu1b/YHivnXahDCBZ8cYhsgbivNRe8/cKxJ0QCJqPqyZpHuhg
+ MYGYZ51nIPpABQG1dWCB+Khu3yZBlEEPatRweoEf7tyNvZ9nQxM+rYvjy w==;
+X-CSE-ConnectionGUID: JWbBs9zTQOWWXUpHaFtcHw==
+X-CSE-MsgGUID: vvJ9wS5BS9W3R9Impe85aA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="89278647"
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="89278647"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2026 03:24:09 -0700
+X-CSE-ConnectionGUID: OelauuELTQKN7HR0EW3sIw==
+X-CSE-MsgGUID: oIUd/UguSD2Vd+rWFpfyrw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="269628918"
+Received: from unknown (HELO [10.66.117.203]) ([10.66.117.203])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2026 03:24:08 -0700
+Message-ID: <bca4af8a-7029-4cff-88fe-f1eeaf0b3885@Intel.com>
+Date: Tue, 8 Sep 2026 15:54:05 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 05/12] drm/xe/memirq: Report errors using structured
+ xe_log API
+To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: michal.wajdeczko@intel.com
+References: <20260819191442.1957986-1-dnyaneshwar.bhadane@intel.com>
+ <20260819191442.1957986-6-dnyaneshwar.bhadane@intel.com>
+ <a478cbbe-abaa-4a3d-861a-8531b360300d@intel.com>
+Content-Language: en-US
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@Intel.com>
+Organization: intel
+In-Reply-To: <a478cbbe-abaa-4a3d-861a-8531b360300d@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,44 +70,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] The VRAM log component is incorrectly named "Virtual RAM" instead o=
-f "Video RAM" in the macro definition.
---
 
-commit 7e2394ed2d7e6aa2312536fe5e3e318f1713fb04
-Author: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-drm/xe/log: Add VRAM, PAT, and HWMON DRIVER_HARDWARE components
+On 26-Aug-26 3:39 PM, Mallesh, Koujalagi wrote:
+> 
+> On 20-08-2026 12:44 am, Dnyaneshwar Bhadane wrote:
+>> Replace memirq_err() calls with xe_log_err() using the MEMIRQ
+>> component tag for memory-based IRQ failures
+>>
+>> Signed-off-by: Dnyaneshwar Bhadane<dnyaneshwar.bhadane@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_memirq.c | 5 +++--
+>>   1 file changed, 3 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
+>> index 9dfe965cb46e..45eae58d418f 100644
+>> --- a/drivers/gpu/drm/xe/xe_memirq.c
+>> +++ b/drivers/gpu/drm/xe/xe_memirq.c
+>> @@ -15,6 +15,7 @@
+>>   #include "xe_gt.h"
+>>   #include "xe_guc.h"
+>>   #include "xe_hw_engine.h"
+>> +#include "xe_log.h"
+>>   #include "xe_memirq.h"
+>>   #include "xe_tile_printk.h"
+>>   
+>> @@ -232,7 +233,7 @@ static int memirq_alloc_pages(struct xe_memirq *memirq)
+>>   	return 0;
+>>   
+>>   out:
+>> -	memirq_err(memirq, "Failed to allocate memirq page (%pe)\n", ERR_PTR(err));
+>> +	xe_log_err(xe, MEMIRQ, err, "Failed to allocate memirq page (%pe)\n", ERR_PTR(err));
+> Already logging errno, no need log again, drop ERR_PTR(err)
+Yes sure thank you.>>   	return err;
+>>   }
+>>   
+>> @@ -370,7 +371,7 @@ int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc)
+>>   	return 0;
+>>   
+>>   failed:
+>> -	memirq_err(memirq, "Failed to setup report pages in %s (%pe)\n",
+>> +	xe_log_err(memirq_to_xe(memirq), MEMIRQ, err, "Failed to setup report pages in %s (%pe)\n",
+>>   		   guc_name(guc), ERR_PTR(err));
+> ditto
+>>   	return err;
+>>   }
 
-This commit registers new DRIVER_HARDWARE log components for VRAM, PAT, and
-HWMON subsystems to enable structured error reporting. It assigns them IDs
-and string names for use in the ABI.
-
-> diff --git a/drivers/gpu/drm/xe/abi/xe_log_abi.h b/drivers/gpu/drm/xe/abi=
-/xe_log_abi.h
-> index d6105520173e7..4a60aa48fab19 100644
-> --- a/drivers/gpu/drm/xe/abi/xe_log_abi.h
-> +++ b/drivers/gpu/drm/xe/abi/xe_log_abi.h
-[ ... ]
-> @@ -150,6 +150,9 @@ enum xe_log_location_bits {
->  	define(DRIVER_HARDWARE, 3, GT, GT_TDR, "Graphics Technology")		\
->  	define(DRIVER_HARDWARE, 4, LMTT, IO_BUS, "LMEM Translation Table")	\
->  	define(DRIVER_HARDWARE, 5, MEMIRQ, IO_BUS, "Memory Based IRQ")		\
-> +	define(DRIVER_HARDWARE, 6, VRAM, IO_BUS, "Virtual RAM")			\
-
-[Severity: Low]
-Is the string name for this component correct? VRAM typically stands for
-"Video RAM" rather than "Virtual RAM" in the context of hardware subsystems.
-The commit message describes it as "Video RAM access", but this ABI definit=
-ion
-exposes it as "Virtual RAM" in structured error logs.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260908101849.1219=
-614-1-dnyaneshwar.bhadane@intel.com?part=3D1
