@@ -4,54 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8335CC79FAE
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 20:07:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63F75C79F99
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 20:14:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3117310E4BE;
-	Tue,  8 Sep 2026 20:07:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="IsGe1pGR";
-	dkim-atps=neutral
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
- [157.90.84.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1791010E4BE;
- Tue,  8 Sep 2026 20:07:15 +0000 (UTC)
-Received: from wsembach-tuxedo.buero.augsburg.tuxedo.de
- (business-24-134-105-141.pool2.vodafone-ip.de [24.134.105.141])
- (Authenticated sender: wse@tuxedocomputers.com)
- by mail.tuxedocomputers.com (Postfix) with ESMTPA id 170142FC008B;
- Tue,  8 Sep 2026 22:07:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
- s=default; t=1788898033;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=7o/89PLTN4U51tEmLs7Y8nmhdGxBiG8G10SgvfZEyj0=;
- b=IsGe1pGRz2pjAljjYyLmBLdHTwqhdOlKHwiH5yWyvwhZroQjJb6Ekpbs7T0em+w/0MDdlR
- LOU1mL+qpxYcj6h32WqR+sfTaE7HQlMI772tX1Rd7e13bin/QmwNp9fkK6o5UvsOlOUsXU
- Iv3a6OsQ/+Lk3omJ9tUEVbeEsJJHp/c=
-Authentication-Results: mail.tuxedocomputers.com;
- auth=pass smtp.auth=wse@tuxedocomputers.com
- smtp.mailfrom=wse@tuxedocomputers.com
-From: Werner Sembach <wse@tuxedocomputers.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Werner Sembach <wse@tuxedocomputers.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/intel: Add quirk to disable rc6 on some TUXEDO devices
-Date: Tue,  8 Sep 2026 22:05:29 +0200
-Message-ID: <20260908200707.65516-2-wse@tuxedocomputers.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260908200707.65516-1-wse@tuxedocomputers.com>
-References: <20260908200707.65516-1-wse@tuxedocomputers.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B37810ED47;
+	Tue,  8 Sep 2026 20:14:48 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDDB610E4BE;
+ Tue,  8 Sep 2026 20:14:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5B1?=
+ =?utf-8?q?/2=5D_drm/intel=3A_Generalize_PCI_ID_macro_for_subvendor_and_subi?=
+ =?utf-8?q?d?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Werner Sembach" <wse@tuxedocomputers.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 08 Sep 2026 20:14:46 -0000
+Message-ID: <178889848677.137999.10057925794180885351@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260908200707.65516-1-wse@tuxedocomputers.com>
+In-Reply-To: <20260908200707.65516-1-wse@tuxedocomputers.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,57 +37,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some TUXEDO devices have random rare hard resets during video streaming.
+== Series Details ==
 
-Disabling rc6 fixes this. Until the root cause is found this is a pragmatic
-workaround.
+Series: series starting with [1/2] drm/intel: Generalize PCI ID macro for subvendor and subid
+URL   : https://patchwork.freedesktop.org/series/173627/
+State : warning
 
-Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
----
- drivers/gpu/drm/i915/i915_pci.c | 11 +++++++++++
- include/drm/intel/pciids.h      | 22 ++++++++++++++++++++++
- 2 files changed, 33 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 2f03f95945f1b..a52b56bedcf4f 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -687,6 +687,16 @@ static const struct intel_device_info adl_p_info = {
- 	.dma_mask_size = 39,
- };
- 
-+static const struct intel_device_info adl_p_tux_ibp8_quirk_info = {
-+	GEN12_FEATURES,
-+	PLATFORM(INTEL_ALDERLAKE_P),
-+	.platform_engine_mask =
-+		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
-+	.__runtime.ppgtt_size = 48,
-+	.dma_mask_size = 39,
-+	.has_rc6 = 0,
-+};
-+
- #undef GEN
- 
- #define XE_HP_PAGE_SIZES \
-@@ -863,6 +873,7 @@ static const struct pci_device_id pciidlist[] = {
- 	INTEL_DG1_IDS(INTEL_VGA_DEVICE, &dg1_info),
- 	INTEL_RPLS_IDS(INTEL_VGA_DEVICE, &adl_s_info),
- 	INTEL_RPLU_IDS(INTEL_VGA_DEVICE, &adl_p_info),
-+	INTEL_RPLP_TUX_IBP8_QUIRK_IDS(INTEL_VGA_DEVICE, &adl_p_tux_ibp8_quirk_info),
- 	INTEL_RPLP_IDS(INTEL_VGA_DEVICE, &adl_p_info),
- 	INTEL_DG2_IDS(INTEL_VGA_DEVICE, &dg2_info),
- 	INTEL_ATS_M_IDS(INTEL_VGA_DEVICE, &ats_m_info),
-diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
-index 7a4a5658942d2..e4f74916a62c2 100644
---- a/include/drm/intel/pciids.h
-+++ b/include/drm/intel/pciids.h
-@@ -712,6 +712,28 @@
- 	MACRO__(0xA7AC, ## __VA_ARGS__), \
- 	MACRO__(0xA7AD, ## __VA_ARGS__)
- 
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d875049d2b299159a272bd5151994970cdcd1e31
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6d713155ed235998c7faea1b99b289883e2dff12
+Author: Werner Sembach <wse@tuxedocomputers.com>
+Date:   Tue Sep 8 22:05:29 2026 +0200
+
+    drm/intel: Add quirk to disable rc6 on some TUXEDO devices
+    
+    Some TUXEDO devices have random rare hard resets during video streaming.
+    
+    Disabling rc6 fixes this. Until the root cause is found this is a pragmatic
+    workaround.
+    
+    Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
++ /mt/dim checkpatch dd822035c9dcd89e47cbfa75da6f3119617fbada drm-intel
+4a18cd4844c0 drm/intel: Generalize PCI ID macro for subvendor and subid
+6d713155ed23 drm/intel: Add quirk to disable rc6 on some TUXEDO devices
+-:50: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#50: FILE: include/drm/intel/pciids.h:715:
 +#define INTEL_RPLP_TUX_IBP8_QUIRK_IDS(MACRO__, ...) \
 +	MACRO__##_SUB(0xA720, 0x1D05, 0x124A, ## __VA_ARGS__), \
 +	MACRO__##_SUB(0xA720, 0x1D05, 0x124C, ## __VA_ARGS__), \
@@ -135,10 +96,25 @@ index 7a4a5658942d2..e4f74916a62c2 100644
 +	MACRO__##_SUB(0xA7AB, 0x1D05, 0x124C, ## __VA_ARGS__), \
 +	MACRO__##_SUB(0xA7AB, 0x1D05, 0x124E, ## __VA_ARGS__), \
 +	MACRO__##_SUB(0xA7AB, 0x1D05, 0x130F, ## __VA_ARGS__)
-+
- /* RPL-P */
- #define INTEL_RPLP_IDS(MACRO__, ...) \
- 	MACRO__(0xA720, ## __VA_ARGS__), \
--- 
-2.43.0
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+total: 1 errors, 0 warnings, 0 checks, 51 lines checked
+
 
