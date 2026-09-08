@@ -4,61 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED599C79FA1
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:26:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A935DC79F82
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:26:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E6D710EB20;
-	Tue,  8 Sep 2026 10:26:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5936710EB1B;
+	Tue,  8 Sep 2026 10:26:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GaZ7jpok";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="QTeMe9IZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E263F10EB20
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:26:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788863178; x=1820399178;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=xi/d+VQ6YAQqa8u5dq3oUljbhYWPw9kqpq53gj8Wq+I=;
- b=GaZ7jpoknNOjuxuESD1VEteU0BCZLcFOaheV6z5528JIPsyAjgLG0kyT
- 0MJfvLjguHBzqFifxQCntiOcQFtnTGWx9lUa4hF4hXpy8OYCp8z8UdYH1
- uaLr+F+wxW81YrKkDWz/tDU06Iey5amHw9G+TKeVdrYf8//Mx8eDXLGD1
- KknBxIPqkO83NRqZK7NPC4xkQPfdqJe89+TtugTSJS/QHFhkx6Zsqp3oV
- U//sIcuR0tPI9OhpCfY+wACw5ISuTN7iraqUP7L3+g3iSS43RWY81IfxW
- ckYsn6fNM3K9rCPztZbXk43RQdQoE8s0sS4M3XGbmVZ+pSiYZLPaSgJVE A==;
-X-CSE-ConnectionGUID: yCXj2SwNS5KzNMt+XAzMfg==
-X-CSE-MsgGUID: wUWpM+J4Qh++eTChj2WRNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="99592539"
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="99592539"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 03:26:17 -0700
-X-CSE-ConnectionGUID: lUo3yNcGT0GyYHweYs/BfQ==
-X-CSE-MsgGUID: cB4CP7pVRcOC134fp/v2lg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="272887359"
-Received: from unknown (HELO [10.66.117.203]) ([10.66.117.203])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 03:26:16 -0700
-Message-ID: <2d78b3c1-1b80-44f1-a19b-f91733b60f9e@Intel.com>
-Date: Tue, 8 Sep 2026 15:56:14 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/12] drm/xe/lmtt: Report invalidation errors using
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3ED1910EB1E
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:26:22 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 3D9BD601DB;
+ Tue,  8 Sep 2026 10:26:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C95AA1F00A3A;
+ Tue,  8 Sep 2026 10:26:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788863181;
+ bh=kReIaNLI0mZLTwEfdEaP9cKIZUczLuFL/boXmTn4mVw=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=QTeMe9IZQ3zVa0/AeuO9GHYmiuQMrPD03o5ig3W2T+UIyMSZnF3PCDzzFfOVT4F/3
+ QbZrLJmauNv5ZhEw1CKAYV1QxPEkGlW5xNaPT95mIR0jAKKz7P0FKaUYUNWP8QaZ7r
+ Smwm0ymHZDWhLh/qFRtTqpYt/QRK/o866oc47mQLQC5ff55QLr48YVIBZWjEH4zgl/
+ jMy4CXq/wR5A5LGRWDlk6wNql/kLgk9iT5w3/XGPze14PbFpSB1BZ4bHFjY5rf2Tfp
+ PDXIu1NcpRVHZNnXz8vV6UbeZVNQ2SS5GGNcv53MWdrF5amnBsXViPL+dS+jxYkCwm
+ VMd7ClWSekS1A==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 09/13] drm/xe/pat: Report missing PAT table using
  structured xe_log API
-To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: michal.wajdeczko@intel.com
-References: <20260819191442.1957986-1-dnyaneshwar.bhadane@intel.com>
- <20260819191442.1957986-12-dnyaneshwar.bhadane@intel.com>
- <f5ee9db3-824d-4d94-84d2-8dce7b45a689@intel.com>
-Content-Language: en-US
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@Intel.com>
-Organization: intel
-In-Reply-To: <f5ee9db3-824d-4d94-84d2-8dce7b45a689@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260908101849.1219614-10-dnyaneshwar.bhadane@intel.com>
+References: <20260908101849.1219614-1-dnyaneshwar.bhadane@intel.com>
+ <20260908101849.1219614-10-dnyaneshwar.bhadane@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 08 Sep 2026 10:26:20 +0000
+Message-Id: <20260908102620.C95AA1F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,58 +53,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] Inconsistent error code between structured log and function return =
+value
+--
 
+commit 3f9326bca2893681a5346e8107dec4ac43a4112b
+Author: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-On 26-Aug-26 3:59 PM, Mallesh, Koujalagi wrote:
-> 
-> On 20-08-2026 12:44 am, Dnyaneshwar Bhadane wrote:
->> Replace xe_tile_sriov_err() with xe_log_err() using the LMTT component
->> tag for LMTT and MERT invalidation failures, preserving the SR-IOV
->> prefix in the log message.
->>
->> Signed-off-by: Dnyaneshwar Bhadane<dnyaneshwar.bhadane@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_lmtt.c | 11 +++++++----
->>   1 file changed, 7 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
->> index 0c726eda9390..a9feeacbae55 100644
->> --- a/drivers/gpu/drm/xe/xe_lmtt.c
->> +++ b/drivers/gpu/drm/xe/xe_lmtt.c
->> @@ -14,6 +14,7 @@
->>   #include "xe_bo.h"
->>   #include "xe_tlb_inval.h"
->>   #include "xe_lmtt.h"
->> +#include "xe_log.h"
->>   #include "xe_map.h"
->>   #include "xe_mert.h"
->>   #include "xe_mmio.h"
->> @@ -302,14 +303,16 @@ void xe_lmtt_invalidate_hw(struct xe_lmtt *lmtt)
->>   
->>   	err = lmtt_invalidate_hw(lmtt);
->>   	if (err)
->> -		xe_tile_sriov_err(tile, "LMTT invalidation failed (%pe)",
->> -				  ERR_PTR(err));
->> +		xe_log_err(tile, LMTT, -EIO,  "%s invalidation failed (%pe)",
-> Use err as errno.
-I will update this for sure thank you Mallesh. >> +			 
-xe_sriov_printk_prefix(xe),
->> +			   ERR_PTR(err));
-> nit: drop ERR_PTR(err.
->>   
->>   	if (xe_device_has_mert(xe) && xe_tile_is_root(tile)) {
->>   		err = xe_mert_invalidate_lmtt(xe);
->>   		if (err)
->> -			xe_tile_sriov_err(tile, "MERT LMTT invalidation failed (%pe)",
->> -					  ERR_PTR(err));
->> +			xe_log_err(tile, LMTT, -EIO,  "%s MERT invalidation failed (%pe)",
->> +				   xe_sriov_printk_prefix(xe),
->> +				   ERR_PTR(err));
-> ditto
->>   	}
->>   }
->>   
+drm/xe/pat: Report missing PAT table using structured xe_log API
 
+This commit replaces the standard drm_err() logging with the structured
+xe_log_err() API using the PAT component tag for platforms that do not
+have a matching PAT table entry.
+
+> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+> index 8af92e3c4c17c..f012eaba838a2 100644
+> --- a/drivers/gpu/drm/xe/xe_pat.c
+> +++ b/drivers/gpu/drm/xe/xe_pat.c
+
+[ ... ]
+
+> @@ -678,8 +679,9 @@ int xe_pat_init_early(struct xe_device *xe)
+>  		xe->pat.idx[XE_CACHE_WT] =3D 2;
+>  		xe->pat.idx[XE_CACHE_WB] =3D 0;
+>  	} else {
+> -		drm_err(&xe->drm, "Missing PAT table for platform with graphics versio=
+n %d.%02d!\n",
+> -			GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
+> +		xe_log_err(xe, PAT, -EINVAL,
+> +			   "Missing PAT table for platform with graphics version %d.%02d!\n",
+> +			   GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
+>  		return -ENODATA;
+
+[Severity: Low]
+Does this code intentionally log -EINVAL but return -ENODATA? Reaching the
+end of the platform matching chain in xe_pat_init_early() logs one error
+code (-EINVAL) to the structured telemetry API but returns a different one
+(-ENODATA) to its caller. Would it be better to align these error codes to
+prevent confusion during debugging or automated log analysis?
+
+> =20
+>  	}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260908101849.1219=
+614-1-dnyaneshwar.bhadane@intel.com?part=3D9
