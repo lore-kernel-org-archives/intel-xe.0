@@ -4,51 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BCB4C79FA0
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 08:38:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DF29C79FA0
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 08:46:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D62CD10E0D7;
-	Tue,  8 Sep 2026 08:38:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4030010E51D;
+	Tue,  8 Sep 2026 08:46:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iowyZZug";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZagvFGLw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F329810E0D7
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 08:38:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788856704; x=1820392704;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ZO7X+7Q6d/XSn3zJW+GZ8/ma2AuSBrnaXLimqJiMmsE=;
- b=iowyZZug5qS/c08RhYspiLZKFNrMKxdtP2+f2AUfb9BAuSjQ78M0K7dY
- nI29+m9gW4lbyc1AK3c7FEk5IytolzhFdUiTQQf+yNcu5aJEFL47g9ljm
- lqWGjgxvoVbEe+a24dB9JNZbGDYb+JfYc0I8GAIQ4IW5N/dI3OlIzF43m
- OPCnfoQJdiqurNLcXpaT0rIgsq2HblukPGpS0/ll7+etSzYETyIwgCKkn
- ZyZSMYmeYERp1ADEKKP6cJjTT5g6Z5h78HcMGsokDlK4JZSN8rNfX95sQ
- xhFKHvY2A6cnpylEneP5e1AcSHk3ByC7RExBrC8H9yfIQPk3uQAfrvxAw w==;
-X-CSE-ConnectionGUID: uvOkIVGZTmmXntCk4L5aPQ==
-X-CSE-MsgGUID: a4+la/nkSZm+SBx/EFE5/g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="89456558"
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="89456558"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 01:38:24 -0700
-X-CSE-ConnectionGUID: mjzrSNk/S7iEKIHiTYWsLw==
-X-CSE-MsgGUID: Y+C/BD9FSzOxUNuC5G4LMQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="274717369"
-Received: from tilak-z690i-a-ultra-plus.iind.intel.com ([10.190.239.38])
- by orviesa004.jf.intel.com with ESMTP; 08 Sep 2026 01:38:23 -0700
-From: tilak.tirumalesh.tangudu@intel.com
-To: tilak.tirumalesh.tangudu@intel.com,
-	intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p platforms
-Date: Tue,  8 Sep 2026 14:06:56 +0530
-Message-ID: <20260908083656.51704-1-tilak.tirumalesh.tangudu@intel.com>
-X-Mailer: git-send-email 2.46.0
+Received: from BYAPR05CU005.outbound.protection.outlook.com
+ (mail-westusazon11010006.outbound.protection.outlook.com [52.101.85.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2471310E0D7;
+ Tue,  8 Sep 2026 08:46:49 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RDC3uhhzBrFH89G/l7l9RL0F/4tEvfH0Ie2LJbODB9XcoMxeLvCtq3XXkUf8XSstG07hpZ3W98QUyDBdvq17lcpTcXjUsxr3tXMM2XL6z2eASrthoeKaopSQIZCwn8eXicZJwOUN2TPPVxmISnpkbFEK2kYR1eyMdn9ieeweWLGSESuvVFVKkq9KARM1nkSVKbky3CJvyuPuSQ0CeCQCna4SOy79yAYR1aRKP5USYrq/NmfKb+206AreRUm8U6OZR+10ndr4AF3/QNkivZOOufNCkyi5tsTz2WPVM62WRGyXfzbkKFSK2iUYirYKa1Yj7eKaCMJX+VTzjTCEgiwE5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6brJ9xSKGLWRtz5LgcT1HlzZrssaw79bS9DxugncFHk=;
+ b=gtIiV0+KCe3CrEr6eESSduOg8U3S2EfOg8VORWAFKYCK/NNv5LWocZTCalpBRLTHHDlTz8UtnqJ3LPJbgt0uSq6MskBKi0rQ1dZtTpu1f0FXb25eN3lriEDWHLoZv9EWzFhwQbHCofc0yJraOX5HO7aqZj6MtO9i9viPVp3Hk0LBkxIXx+y0pvCGJdtnlRDYw7IotFhBatzbalpJIo5oHIXgLIJMivM/x+N528EbYaSZSSDvGeU/p5D/39rZaI+62bf+vbW9qrcUuds+vfzzn6NfyDpvDsyx3CSAVE1a0pAJ0XF0n7sPkGAZUJvyt91aqEWFaqFNT6CI7HMqEQjLqg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=intel.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6brJ9xSKGLWRtz5LgcT1HlzZrssaw79bS9DxugncFHk=;
+ b=ZagvFGLwmy30db0PwQtVJ/Zb5w0a+Mq3bgLz4UUCotbx2/sRmPME/Z1006gWzN/8Tpj3gvt1TLQZfjrhhSn5VlUT/SwPA66t/TMqXRIr5tn0W39WcCGm/oSRK81goES36ffEXnEyTk6fE1HJywS3OBaz+zLYIE+UAP8WmaLPyCg=
+Received: from BN9PR03CA0295.namprd03.prod.outlook.com (2603:10b6:408:f5::30)
+ by MN0PR12MB6223.namprd12.prod.outlook.com (2603:10b6:208:3c1::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.382.15; Tue, 8 Sep
+ 2026 08:46:45 +0000
+Received: from BL6PEPF00022570.namprd02.prod.outlook.com
+ (2603:10b6:408:f5:cafe::1e) by BN9PR03CA0295.outlook.office365.com
+ (2603:10b6:408:f5::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.382.15 via Frontend Transport; Tue, 8
+ Sep 2026 08:46:45 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ BL6PEPF00022570.mail.protection.outlook.com (10.167.249.38) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.406.5 via Frontend Transport; Tue, 8 Sep 2026 08:46:45 +0000
+Received: from srishanm-Cloudripper.amd.com (10.180.168.240) by
+ satlexmb07.amd.com (10.181.42.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Tue, 8 Sep 2026 03:46:42 -0500
+From: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
+To: <matthew.brost@intel.com>
+CC: <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <amd-gfx@lists.freedesktop.org>, Srinivasan Shanmugam
+ <srinivasan.shanmugam@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+Subject: [PATCH v8 0/3] drm: Extract dma-fence-to-workqueue pattern into
+ common helpers
+Date: Tue, 8 Sep 2026 14:16:24 +0530
+Message-ID: <20260908084627.352535-1-srinivasan.shanmugam@amd.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF00022570:EE_|MN0PR12MB6223:EE_
+X-MS-Office365-Filtering-Correlation-Id: cb617224-cb1c-414e-ed14-08df0d85b683
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|82310400026|23010399003|1800799024|36860700016|10067099003|56012099006|11063799006|18002099003;
+X-Microsoft-Antispam-Message-Info: IXW8TpY3m7orO7ieIAfvnAYDKBWwMeSEo92neQcSxtXv7WggXLqvWoGyDgXtF7Tr4PQ2aZtu6g4H3xtJhKiU1sEEnZ2wscfFza4rxdzcjOdQOzEuQ6mNNmBa3sw0YwPcn4CnkYK69cXh5PTfmn4FbXQ811hEhaY8xAtt+dlZhKBeCNlaGqgid6DLSeVDFacqUNXBwFCqD6kDLLCnQL2BzidxhdcDL9F7JmLu/ttUZP8nmJ92m0S3CTneatwduCrzi14kJ2+/g+Y+V11gS8fA1QMNIneNRKQMX6PT+3LfiAS8KaSFVTlwupfmWZyL9+W6pyKK9YEObbojsUWyusRLFrOgm5xK6NxvDQJJwFGr50VGz016nAJupMMP4kIS8orn353zIyB5exmW9qILoJDSz3G+JnEllQP6tI2AY/dNs5uCOskcnmhvvrSt2V+PXAdM+xqkLsZSLe+iPhktd6J/OszLjgFs7MSAzbch+pav+VWa7vmAmcWV/3cm/GHmrtNelnNND9949kzHtBRQSAek6ejaRlPnKb07MuDx0+IqOydt2Sn6CFN9XOD8evwGG0YYtM+yKQ4InXeGbF9EwxCUDDTJgCzjNMz7ri9zkrTQZ9kgXcAY20yIJDY4I+raDayjO6iOHWqXFyOUGuYef3D7MO+p9UF5Bqt6Ktdz+8cNiifumL2Y8xpkxBK2btRKjv0VpnqqSyN183MesyR0F6WiDA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(82310400026)(23010399003)(1800799024)(36860700016)(10067099003)(56012099006)(11063799006)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: +0HT9dlc1/hRJUFkuFAjR05K+cU7Hb+E8ik/eBn4+pO269mf00AyaxL8LoSsz9WeOjgROMnm45/UWBCpVCUTfn8uRBxbAncBQwGBLHWta8Pzr6SA5laQcqPSXiNfi3Xm/VTO00cLiiTaC8t9JkLtRsaesLWj5i2JKArlWmuQlXxQ1RsfM4gEMYBEDigfa7IfHoEZCoK3vCNXbYJGVELNkwtMZ1Ts8hbVzMJ95zmkD/eA8NZuVjaojmohbmzraN9MBB+Fw9Iyhbf8dNakLIyxLghLUd4UIbIQSCZqJ6sokSyARYdrWKMwvocHxHnTJfbuyR3UGpbVUqrRNyeyW66CAttkdONXvyL8oxJjeHTzS7t98S97fXKPl89Cn7POdMF5Zd2HQLUtrRS1GLoVrj/AnBdf9cw2VHEXSBY5OHsi4rgIGXLCi/aa3y6newo0Z7kq
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2026 08:46:45.3373 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cb617224-cb1c-414e-ed14-08df0d85b683
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00022570.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6223
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,127 +111,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+This series extracts the dma-fence-callback-to-workqueue pattern shared
+between XE and AMDGPU into common DRM helpers.
 
-Avoid IDLEDLY timer programming lessthan 5 micro secs.
-Apply wa_14025941587 to Graphics Versions 20.01 to 35.11
-and Media Versions 13.01 to 35.03
+Patch 1 introduces drm_work_fence — a generic helper that queues a work
+item when a dma-fence signals, for work that cannot run in IRQ context.
 
-v2: Use xe_rtp_match_not_sriov_vf, move to local variable
-    Remove warn and other knits            - Matt R
+Patch 2 introduces drm_user_fence — extends drm_work_fence with
+kthread_use_mm() support for drivers that need to write completion
+status to userspace memory.
 
-v3: Add verbose comment - Tejas
+Patch 3 converts XE's open-coded xe_user_fence to use drm_user_fence.
 
-v4: Restore IDLE_DLY register on engine reset.
-    Add it to GUC save-restore list. -Vivek
+v8:
+- Fix copyright: The Linux Foundation → Advanced Micro Devices, Inc.
+- Switch EXPORT_SYMBOL_GPL → EXPORT_SYMBOL for MIT-licensed code (Matt)
+- Rename drm_work_fence_ops callback: writeback → worker (Matt)
+- Rename drm_user_fence_ops callback: worker → writeback (Matt)
+- Fix xe_ufence_worker ordering: WRITE_ONCE before copy_to_user,
+  add smp_wmb() before wake_up_all (Matt, confirmed via 8ae04fe9ffc93)
+- Rename .worker → .writeback in xe_ufence_ops (Matt)
+- Drop Patch 4 pending design decision on compare address read method
 
-v5: Extend WA to Media Versions 13.01 to 35.03 - Vinay
-v6: Avoid clearing inhibit switch - Bala
-    Refactor code accordingly by adding idle_reg_val.
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Suggested-by: Christian König <christian.koenig@amd.com>
 
-Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
-Reviewed-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_ads.c    |  2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c  | 52 ++++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_wa_oob.rules |  2 ++
- 3 files changed, 45 insertions(+), 11 deletions(-)
+Srinivasan Shanmugam (3):
+  drm: Add drm_work_fence helper
+  drm: Add drm_user_fence helper
+  drm/xe: Convert xe_user_fence to drm_user_fence
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index ff8eee3831aa..58a3f6293ce4 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -864,7 +864,7 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
- 		}
- 	}
- 
--	if (XE_GT_WA(hwe->gt, 16023105232))
-+	if (XE_GT_WA(hwe->gt, 16023105232) || XE_GT_WA(hwe->gt, 14025941587))
- 		guc_mmio_regset_write_one(ads, regset_map,
- 					  RING_IDLEDLY(hwe->mmio_base),
- 					  count++);
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 010499766fce..5a87f26d7dd4 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -588,25 +588,57 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
- static void adjust_idledly(struct xe_hw_engine *hwe)
- {
- 	struct xe_gt *gt = hwe->gt;
--	u32 idledly, maxcnt;
-+	u32 idledly, idledly_reg_val, maxcnt;
- 	u32 idledly_units_ps = 8 * gt->info.timestamp_base;
- 	u32 maxcnt_units_ns = 640;
--	bool inhibit_switch = 0;
-+	bool inhibit_switch = false;
-+	bool wa_applied = false;
- 
--	if (!IS_SRIOV_VF(gt_to_xe(hwe->gt)) && XE_GT_WA(gt, 16023105232)) {
--		idledly = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
-+	if ((!IS_SRIOV_VF(gt_to_xe(hwe->gt)) && XE_GT_WA(gt, 16023105232)) ||
-+	    XE_GT_WA(gt, 14025941587)) {
-+		u32 mincnt_idledly_ns = 5000;
-+
-+		idledly_reg_val = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
- 		maxcnt = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
- 
--		inhibit_switch = idledly & INHIBIT_SWITCH_UNTIL_PREEMPTED;
--		idledly = REG_FIELD_GET(IDLE_DELAY, idledly);
-+		inhibit_switch = idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED;
-+		idledly = REG_FIELD_GET(IDLE_DELAY, idledly_reg_val);
- 		idledly = DIV_ROUND_CLOSEST(idledly * idledly_units_ps, 1000);
- 		maxcnt = REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt);
- 		maxcnt *= maxcnt_units_ns;
- 
--		if (xe_gt_WARN_ON(gt, idledly >= maxcnt || inhibit_switch)) {
--			idledly = DIV_ROUND_CLOSEST(((maxcnt - 1) * 1000),
--						    idledly_units_ps);
--			xe_mmio_write32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base), idledly);
-+		/* Wa_14025941587: applied prior to Wa_16023105232,
-+		 * as the latter has higher priority, although conflict
-+		 * is not expected.
-+		 */
-+		if (XE_GT_WA(gt, 14025941587) &&
-+		    idledly < mincnt_idledly_ns) {
-+			idledly = mincnt_idledly_ns;
-+			wa_applied = true;
-+		}
-+
-+		if (XE_GT_WA(gt, 16023105232) &&
-+		    xe_gt_WARN_ON(gt, idledly >= maxcnt || inhibit_switch)) {
-+			idledly = (maxcnt - 1);
-+			wa_applied = true;
-+			/* inhibit_switch override to keep
-+			 * semantics of Wa_16023105232
-+			 */
-+			if (inhibit_switch)
-+				idledly_reg_val &= ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
-+		}
-+
-+		if (wa_applied) {
-+			idledly_reg_val &= ~IDLE_DELAY;
-+			idledly_reg_val |= REG_FIELD_PREP(IDLE_DELAY,
-+						 DIV_ROUND_CLOSEST(idledly * 1000,
-+								   idledly_units_ps));
-+			xe_gt_dbg(gt, "idledly %s: set %u max=%u inh=%u ts=%u\n",
-+				  hwe->name, idledly, maxcnt,
-+				  !!inhibit_switch, gt->info.timestamp_base);
-+			xe_mmio_write32(&gt->mmio,
-+					RING_IDLEDLY(hwe->mmio_base),
-+					idledly_reg_val);
- 		}
- 	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index dd69ad07f7a9..27af7f2eb095 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -72,3 +72,5 @@
- 16029897822	MEDIA_VERSION(3500)
- 		GRAPHICS_VERSION(3510)
- 14027054324	GRAPHICS_VERSION(3511)
-+14025941587    GRAPHICS_VERSION_RANGE(2001, 3511), FUNC(xe_rtp_match_not_sriov_vf)
-+	       MEDIA_VERSION_RANGE(1301, 3503), FUNC(xe_rtp_match_not_sriov_vf)
+ drivers/gpu/drm/Makefile           |   2 +
+ drivers/gpu/drm/drm_user_fence.c   |  70 +++++++++++
+ drivers/gpu/drm/drm_work_fence.c   | 184 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sync.c       | 154 +++++++++++++-----------
+ drivers/gpu/drm/xe/xe_sync.h       |   2 +
+ drivers/gpu/drm/xe/xe_sync_types.h |   1 -
+ drivers/gpu/drm/xe/xe_vm.c         |   1 +
+ include/drm/drm_user_fence.h       | 123 +++++++++++++++++++
+ include/drm/drm_work_fence.h       |  69 +++++++++++
+ 9 files changed, 537 insertions(+), 69 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_user_fence.c
+ create mode 100644 drivers/gpu/drm/drm_work_fence.c
+ create mode 100644 include/drm/drm_user_fence.h
+ create mode 100644 include/drm/drm_work_fence.h
+
 -- 
-2.46.0
+2.34.1
 
