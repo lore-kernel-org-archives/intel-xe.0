@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E37A4C79FA1
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:18:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AB5AC79FAD
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:18:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D10110EB04;
-	Tue,  8 Sep 2026 10:18:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0104910EAFB;
+	Tue,  8 Sep 2026 10:18:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ftymYqMc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="anm5BsBN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39C8C10EAFB
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:18:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0610D10EAF8
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:18:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788862736; x=1820398736;
+ t=1788862735; x=1820398735;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=f7QzSOA+aQqSYJRXWO58wKslQLqYfklKChIUDid2sj4=;
- b=ftymYqMca6QsDeLXoNPTud2wdskV+UJAZEjvNT+PBE94Vr8TN8MpXOmH
- d4qtUuPAzr6FTD2Hma0rmegdFfssfzFsnR+ioYjjYMQZLpfOnhEDB3RZe
- x7L9/w7uLohS6vw73HZdAkhoeE1q+8DtPXrJ7tEN8Sco1hqZ7tTpGHLTf
- /arn5Ki/LcBT7n2W9MyGZEltA4J/eraNcglbXzWiz05rJaecQ67stbQko
- x1+TK0cRE/G4QxmoakhlY/1ClFibLwAeDcI5FFEF233Rvp88T2j0I/Bfi
- 4UDvf3/jMJt2XupH7EY9oOME8jo0n+7M9r/KKa+NF+lZcEbZ8B/JSOgDi Q==;
-X-CSE-ConnectionGUID: wiVgdBB7Qc+QSydXqp9FxA==
-X-CSE-MsgGUID: cSYiYHClQIqlVB8EAtb5AA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="89278266"
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="89278266"
+ bh=nxaXg64yN44+knaiPsdlHqO0+PCZz0UByWlJVgs0tlg=;
+ b=anm5BsBNfFf20dtQ+nXOZOwMWFpMA9rb5ElRlnqdqhf4F39IxAr7rrUi
+ HbliMaOp2MTDa34ow23Keb8CuewZiF8GEBartxdKzFPliljYtmO+/v9aY
+ zkE4Lu0avY0gVxHTlhvBviLfKPppfqMp6dntoOQ2K5EN4ur8T99eR0PEG
+ tALQ9cQ2lbYHWdafKe/pMox1U2kFrBxSj/LFYFsCw7baluJLzEkrzbm9W
+ DvwTpQxkWWKZZSZ2FPVP535qtZZRaiv3qB3MyLcYR6PbXiPRTADWA0NeG
+ HPkNQ5vZxii6Qotag0Rclwlx8IyB8dbRihYMb53VlmEANH4dV3qxYlrKT A==;
+X-CSE-ConnectionGUID: 3baHYNHDTzCeUk/ZYYpo7A==
+X-CSE-MsgGUID: kLc6FTDQSqqngel4Mcn4JA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="89278265"
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="89278265"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 03:18:56 -0700
-X-CSE-ConnectionGUID: QLksHgsaTgiD0zlcivCfYQ==
-X-CSE-MsgGUID: MxnJdqIDSe26JR8YpJzLUg==
+ 08 Sep 2026 03:18:54 -0700
+X-CSE-ConnectionGUID: 6JjMC6i3TyiiHd8zDQ9RQw==
+X-CSE-MsgGUID: 2LwOOUjfSl6h+Gmi4coanA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="269628423"
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="269628417"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by orviesa010.jf.intel.com with ESMTP; 08 Sep 2026 03:18:55 -0700
+ by orviesa010.jf.intel.com with ESMTP; 08 Sep 2026 03:18:54 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: mallesh.koujalagi@intel.com,
  Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH v2 02/13] drm/xe/ggtt: Report GGTT errors using structured
- logging
-Date: Tue,  8 Sep 2026 15:48:38 +0530
-Message-ID: <20260908101849.1219614-3-dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH v2 01/13] drm/xe/log: Add VRAM, PAT,
+ and HWMON DRIVER_HARDWARE components
+Date: Tue,  8 Sep 2026 15:48:37 +0530
+Message-ID: <20260908101849.1219614-2-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260908101849.1219614-1-dnyaneshwar.bhadane@intel.com>
 References: <20260908101849.1219614-1-dnyaneshwar.bhadane@intel.com>
@@ -67,48 +67,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace xe_tile_err() calls with xe_log_err_fatal() using the GGTT
-component tag in GGTT initialization error paths.
+Register new DRIVER_HARDWARE log components for hardware I/O subsystems
+that currently lack structured error reporting:
+
+  - VRAM (ID 6): Video RAM access and BAR visibility errors
+  - PAT (ID 7): Page Attribute Table programming errors
+  - HWMON (ID 8): Hardware monitor registration and sensor errors
+
+All three use IO_BUS as their default SIGID since they interact with
+hardware through MMIO or PCode register paths.
 
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/abi/xe_log_abi.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 63e8bf193605..773777afc68a 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -23,6 +23,7 @@
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
- #include "xe_gt_types.h"
-+#include "xe_log.h"
- #include "xe_map.h"
- #include "xe_mmio.h"
- #include "xe_pat.h"
-@@ -403,7 +404,8 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- 		else
- 			gsm_size = probe_gsm_size(pdev);
- 		if (gsm_size == 0) {
--			xe_tile_err(ggtt->tile, "Hardware reported no preallocated GSM\n");
-+			xe_log_err_fatal(ggtt->tile, GGTT, -ENOMEM,
-+					 "Hardware reported no preallocated GSM\n");
- 			return -ENOMEM;
- 		}
- 		ggtt_start = wopcm;
-@@ -414,8 +416,9 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- 
- 		if (ggtt_start < wopcm ||
- 		    ggtt_start + ggtt_size > GUC_GGTT_TOP) {
--			xe_tile_err(ggtt->tile, "Invalid GGTT configuration: %#llx-%#llx\n",
--				    ggtt_start, ggtt_start + ggtt_size - 1);
-+			xe_log_err_fatal(ggtt->tile, GGTT, -ERANGE,
-+					 "Invalid GGTT configuration: %#llx-%#llx\n",
-+					 ggtt_start, ggtt_start + ggtt_size - 1);
- 			return -ERANGE;
- 		}
- 	}
+diff --git a/drivers/gpu/drm/xe/abi/xe_log_abi.h b/drivers/gpu/drm/xe/abi/xe_log_abi.h
+index d6105520173e..4a60aa48fab1 100644
+--- a/drivers/gpu/drm/xe/abi/xe_log_abi.h
++++ b/drivers/gpu/drm/xe/abi/xe_log_abi.h
+@@ -150,6 +150,9 @@ enum xe_log_location_bits {
+ 	define(DRIVER_HARDWARE, 3, GT, GT_TDR, "Graphics Technology")		\
+ 	define(DRIVER_HARDWARE, 4, LMTT, IO_BUS, "LMEM Translation Table")	\
+ 	define(DRIVER_HARDWARE, 5, MEMIRQ, IO_BUS, "Memory Based IRQ")		\
++	define(DRIVER_HARDWARE, 6, VRAM, IO_BUS, "Virtual RAM")			\
++	define(DRIVER_HARDWARE, 7, PAT, IO_BUS, "Page Attribute Table")		\
++	define(DRIVER_HARDWARE, 8, HWMON, IO_BUS, "Hardware Monitoring")	\
+ 	/* */									\
+ 	define(DRIVER_FEATURE, 1, PF, SW, "SR-IOV Physical Function")		\
+ 	define(DRIVER_FEATURE, 2, VF, SW, "SR-IOV Virtual Function")		\
 -- 
 2.54.0
 
