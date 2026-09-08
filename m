@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DCE1C79F82
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:18:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E37A4C79FA1
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:18:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6FFE10EB03;
-	Tue,  8 Sep 2026 10:18:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D10110EB04;
+	Tue,  8 Sep 2026 10:18:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hUlc14rS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ftymYqMc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5972510EAF8
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:18:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39C8C10EAFB
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:18:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788862734; x=1820398734;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1GpY+slU1fLotvpYtF0kwlNCVWXqYIRTBl4LUFXW6nk=;
- b=hUlc14rSu/gJf9a4X9EwWJeHXb4SXphpcCEarok3vAYXNx+9YZOWo0mD
- 9LIGBxxV+BcFgYbOxs/dMAKNazX2PrjbxHD0aSvavkZ9l6sDPqWahF5cx
- JnsMtlDO0peoJJYSQeg1Fa5BDI/85BbXW8+3eLC4gB3X5jGHwGNQq1fRb
- RGhJEkdNMZlvcOJgt1xghxdbeh0qxA8iAb0j2Mv5znWiiSx6TSyzAhYfo
- imk3ExrXU23IxMwPTLKfX/xqlVaX0uD2GyUtAH7iYnZGjoNaS+TRfGpOn
- 50mC/8RJ+95UrdPesTHODNvuNy3WcX+hF2ewxoK7GmWzncGmg/LVwTC7d g==;
-X-CSE-ConnectionGUID: gWxNNdiDSfSBEjAw9cY/Sg==
-X-CSE-MsgGUID: 6s8sCmceRtOAScWcsKuxDg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="89278264"
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="89278264"
+ t=1788862736; x=1820398736;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=f7QzSOA+aQqSYJRXWO58wKslQLqYfklKChIUDid2sj4=;
+ b=ftymYqMca6QsDeLXoNPTud2wdskV+UJAZEjvNT+PBE94Vr8TN8MpXOmH
+ d4qtUuPAzr6FTD2Hma0rmegdFfssfzFsnR+ioYjjYMQZLpfOnhEDB3RZe
+ x7L9/w7uLohS6vw73HZdAkhoeE1q+8DtPXrJ7tEN8Sco1hqZ7tTpGHLTf
+ /arn5Ki/LcBT7n2W9MyGZEltA4J/eraNcglbXzWiz05rJaecQ67stbQko
+ x1+TK0cRE/G4QxmoakhlY/1ClFibLwAeDcI5FFEF233Rvp88T2j0I/Bfi
+ 4UDvf3/jMJt2XupH7EY9oOME8jo0n+7M9r/KKa+NF+lZcEbZ8B/JSOgDi Q==;
+X-CSE-ConnectionGUID: wiVgdBB7Qc+QSydXqp9FxA==
+X-CSE-MsgGUID: cSYiYHClQIqlVB8EAtb5AA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="89278266"
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="89278266"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 03:18:54 -0700
-X-CSE-ConnectionGUID: hMUKqxs1Q0u7kNNTe8rhqA==
-X-CSE-MsgGUID: uQWFf6ljRCqRSWv/87s5QA==
+ 08 Sep 2026 03:18:56 -0700
+X-CSE-ConnectionGUID: QLksHgsaTgiD0zlcivCfYQ==
+X-CSE-MsgGUID: MxnJdqIDSe26JR8YpJzLUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="269628413"
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="269628423"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by orviesa010.jf.intel.com with ESMTP; 08 Sep 2026 03:18:53 -0700
+ by orviesa010.jf.intel.com with ESMTP; 08 Sep 2026 03:18:55 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: mallesh.koujalagi@intel.com,
  Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH v2 00/13] drm/xe: Convert IO_BUS errors to structured xe_log
- API
-Date: Tue,  8 Sep 2026 15:48:36 +0530
-Message-ID: <20260908101849.1219614-1-dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH v2 02/13] drm/xe/ggtt: Report GGTT errors using structured
+ logging
+Date: Tue,  8 Sep 2026 15:48:38 +0530
+Message-ID: <20260908101849.1219614-3-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260908101849.1219614-1-dnyaneshwar.bhadane@intel.com>
+References: <20260908101849.1219614-1-dnyaneshwar.bhadane@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,54 +67,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series meant for converitng the logs struct of IO_BUS device hardware
-catergories with different components such as GT, HWWOM, REGS, PAT, GT,
-LMTT, VRAM.
+Replace xe_tile_err() calls with xe_log_err_fatal() using the GGTT
+component tag in GGTT initialization error paths.
 
-Patch 1 adds the new component definitions. Patches 2-13 convert individual
-subsystems to use xe_log_err/xe_log_err_fatal/xe_log_info with the
-appropriate component tags:
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ggtt.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-  - GGTT: GSM probe and configuration errors
-  - HWMON: PCode readback and registration failures
-  - MMIO/REGS: BAR mapping, save-restore, whitelist, and force-wake errors
-  - MEMIRQ: Page allocation and GuC setup failures
-  - PAT: Missing PAT table detection
-  - GT: Unknown GMDID version reporting
-  - LMTT: HW invalidation failures
-  - VRAM: BAR validation and visibility errors
-
-Dnyaneshwar Bhadane (13):
-  drm/xe/log: Add VRAM, PAT, and HWMON DRIVER_HARDWARE components
-  drm/xe/ggtt: Report GGTT errors using structured logging
-  drm/xe/hwmon: Report errors using structured xe_log API
-  drm/xe/mmio: Report BAR mapping errors using structured xe_log API
-  drm/xe/memirq: Report errors using structured xe_log API
-  drm/xe/reg_whitelist: Report whitelist overflow using structured
-    xe_log API
-  drm/xe/reg_sr: Report save-restore errors using structured xe_log API
-  drm/xe/pat: Return error from xe_pat_init_early() on unknown platform
-  drm/xe/pat: Report missing PAT table using structured xe_log API
-  drm/xe/pci: Report unknown GMDID versions using structured xe_log API
-  drm/xe/lmtt: Report invalidation errors using structured xe_log API
-  drm/xe/vram: Report tile vs device VRAM visibility errors
-  drm/xe/vram: Report VRAM errors using structured xe_log API
-
- drivers/gpu/drm/xe/abi/xe_log_abi.h   |  3 +++
- drivers/gpu/drm/xe/xe_device.c        |  4 +++-
- drivers/gpu/drm/xe/xe_ggtt.c          |  9 ++++++---
- drivers/gpu/drm/xe/xe_hwmon.c         | 10 ++++++----
- drivers/gpu/drm/xe/xe_lmtt.c          | 10 ++++++----
- drivers/gpu/drm/xe/xe_memirq.c        |  7 ++++---
- drivers/gpu/drm/xe/xe_mmio.c          | 12 ++++++++----
- drivers/gpu/drm/xe/xe_pat.c           | 20 +++++++++-----------
- drivers/gpu/drm/xe/xe_pat.h           |  2 +-
- drivers/gpu/drm/xe/xe_pci.c           | 10 ++++++----
- drivers/gpu/drm/xe/xe_reg_sr.c        | 22 +++++++++++-----------
- drivers/gpu/drm/xe/xe_reg_whitelist.c |  7 ++++---
- drivers/gpu/drm/xe/xe_vram.c          | 20 +++++++++++++++-----
- 13 files changed, 82 insertions(+), 54 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 63e8bf193605..773777afc68a 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -23,6 +23,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_printk.h"
+ #include "xe_gt_types.h"
++#include "xe_log.h"
+ #include "xe_map.h"
+ #include "xe_mmio.h"
+ #include "xe_pat.h"
+@@ -403,7 +404,8 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 		else
+ 			gsm_size = probe_gsm_size(pdev);
+ 		if (gsm_size == 0) {
+-			xe_tile_err(ggtt->tile, "Hardware reported no preallocated GSM\n");
++			xe_log_err_fatal(ggtt->tile, GGTT, -ENOMEM,
++					 "Hardware reported no preallocated GSM\n");
+ 			return -ENOMEM;
+ 		}
+ 		ggtt_start = wopcm;
+@@ -414,8 +416,9 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 
+ 		if (ggtt_start < wopcm ||
+ 		    ggtt_start + ggtt_size > GUC_GGTT_TOP) {
+-			xe_tile_err(ggtt->tile, "Invalid GGTT configuration: %#llx-%#llx\n",
+-				    ggtt_start, ggtt_start + ggtt_size - 1);
++			xe_log_err_fatal(ggtt->tile, GGTT, -ERANGE,
++					 "Invalid GGTT configuration: %#llx-%#llx\n",
++					 ggtt_start, ggtt_start + ggtt_size - 1);
+ 			return -ERANGE;
+ 		}
+ 	}
 -- 
 2.54.0
 
