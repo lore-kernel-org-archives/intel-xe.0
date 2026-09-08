@@ -4,43 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25E8AC79F82
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 14:09:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91EA2C79F82
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 14:10:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF94110EC12;
-	Tue,  8 Sep 2026 14:09:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D20810EC12;
+	Tue,  8 Sep 2026 14:10:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="NWcns4FP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZFMuxi/+";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4886710EC13
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 14:09:40 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 20A174063C;
- Tue,  8 Sep 2026 14:09:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD9811F00A3A;
- Tue,  8 Sep 2026 14:09:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788876580;
- bh=7VULVfebZbUxUztiRtSFYDATef8KX8/Mzcky7QH/mQM=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=NWcns4FPmF3zU63hmKTZVZ9wzZEsJI6mZAmWLcoGnaORqv9NwMntL268RUpeW9ai7
- rK7fPJo56Y/VgdxWY8mIIE0uQ4wNYtUDKWprjg1yegiUzcpphLaIyW/aXuxyIky+Hn
- uQLlqQyYaM8tB2oaW2sfijUxo8GPLdWL38YYDeQQVFZoU5rEaWXI9VdNySz3kyr8NT
- /Q/8BWr2+v//VolExIkeGkGHMo8xWMaJ8qRlasXXOvToe4yF67UxkKfr4vDPj2Mi5W
- FmmqEwZg+3jdFmefu4x23NWGOpAFvVtx0ywOKPqmPThQJgUT5qu6s8ttFG26iZlElr
- j4R0wYH1NTdUA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 8/8] drm/xe: convert PCI barrier mmap to use xe_mmio_gem
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260908134955.1344429-18-matthew.auld@intel.com>
-References: <20260908134955.1344429-10-matthew.auld@intel.com>
- <20260908134955.1344429-18-matthew.auld@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 08 Sep 2026 14:09:39 +0000
-Message-Id: <20260908140939.CD9811F00A3A@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62AC110EC12;
+ Tue,  8 Sep 2026 14:10:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788876655; x=1820412655;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=B/1K5p3WJGU2CrbI+/NXgUwm1oRIoQkhbMPfoTs3Iqg=;
+ b=ZFMuxi/+bA3YmNk96dmwXNG1+P1fQRQw2J/TV60VaZq8lbju+qYpT30x
+ 3BEyp2tqCyq3sh4+N7gsu/hAqa2j5MbNse3EckwbhG/qke1t6imRoIpMu
+ gt8IlaRgDYn/ESkfizWaQgDeK7TEwd0Gsw6E1Sx9lufaKfIogh81B5otw
+ BhplINoTh6nDdrpwCRlS0EmfMge4aqcZbWUQOJ/ozy6/p60SymHtOAmWJ
+ lnaUYngVca27ZQlMC+yW37eWVf8eNtHaq/l4MxULzwPi/SXJO/hV0B9x1
+ rgQ5UBBMlHZn64UICHVRoVN96WJFarzt9e8BJKbzJy6bhxVTBYD+yOOfY w==;
+X-CSE-ConnectionGUID: JyN930SMRZuAPLY+r+3l0Q==
+X-CSE-MsgGUID: wOyyiBhQQCKwI0rYhogb7A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="88429074"
+X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="88429074"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2026 07:10:55 -0700
+X-CSE-ConnectionGUID: TB1m8VxvQfGIpKiHqdJ8sg==
+X-CSE-MsgGUID: LG7PCybiQyGEbuCnKn4Dpw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="268451291"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.140])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2026 07:10:54 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com
+Subject: Re: [PATCH v3 1/1] drm/i915/display: Implement Wa_16024710867
+In-Reply-To: <20260203084937.1447834-2-mitulkumar.ajitkumar.golani@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260203084937.1447834-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20260203084937.1447834-2-mitulkumar.ajitkumar.golani@intel.com>
+Date: Tue, 08 Sep 2026 17:10:51 +0300
+Message-ID: <9eeb256c9e8626e7118adb0c58d985ef5d727c69@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,66 +67,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] The migration of the PCI barrier mmap to use `xe_mmio_gem` removed=
- the `VM_READ` restriction, allowing userspace to map and read from the doo=
-rbell register.
---
+On Tue, 03 Feb 2026, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> wrote:
+> Defeature port sync feature for xe3lpd onwards.
+>
+> --v1:
+> - Use xe3lpd naming (Suraj)
+> - Use IS_DISPLAY_VER (Suraj)
+>
+> --v2:
+> - Comments update and Adding Bspec link (Suraj)
+>
+> Bspec: 69965
+> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-commit 545a53278606e03a94bbfc5ae72975b8ad8c6cae
-Author: Matthew Auld <matthew.auld@intel.com>
+This regresses [1] and probably needs to be reverted.
 
-drm/xe: convert PCI barrier mmap to use xe_mmio_gem
+BR,
+Jani.
 
-This commit converts the PCI barrier mmap over to use xe_mmio_gem, simplify=
-ing
-the codebase and replacing the hard coded fake offset design. It introduces=
- the
-first user of xe_mmio_gem for mapping the PCIe doorbell register.
 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
-e.c
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-[ ... ]
-> -static int xe_pci_barrier_mmap(struct file *filp,
-> -			       struct vm_area_struct *vma)
-> -{
-[ ... ]
-> -	if (vma->vm_flags & (VM_READ | VM_EXEC))
-> -		return -EINVAL;
-> -
-> -	vm_flags_clear(vma, VM_MAYREAD | VM_MAYEXEC);
+[1] https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8991
 
-[Severity: High]
-Does removing this VM_READ restriction allow userspace to map the PCIe
-doorbell register with read permissions?
 
-The original xe_pci_barrier_mmap implementation explicitly restricted mappi=
-ngs
-to write-only by rejecting VM_READ and clearing VM_MAYREAD. By migrating to
-the generic xe_mmio_gem_mmap implementation in xe_mmio_gem.c, this read
-restriction is dropped, as the generic code only restricts VM_EXEC:
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index d8739e2bb004..f92323664162 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4588,8 +4588,10 @@ intel_ddi_port_sync_transcoders(const struct intel_crtc_state *ref_crtc_state,
+>  	/*
+>  	 * We don't enable port sync on BDW due to missing w/as and
+>  	 * due to not having adjusted the modeset sequence appropriately.
+> +	 * From, xe3lpd onwards we have defeatured this with reference to
+> +	 * Wa_16024710867
+>  	 */
+> -	if (DISPLAY_VER(display) < 9)
+> +	if (!IS_DISPLAY_VER(display, 9, 20))
+>  		return 0;
+>  
+>  	if (!intel_crtc_has_type(ref_crtc_state, INTEL_OUTPUT_DP))
 
-drivers/gpu/drm/xe/xe_mmio_gem.c:xe_mmio_gem_mmap() {
-        if (vma->vm_flags & VM_EXEC)
-                return -EINVAL;
-
-        vma->vm_page_prot =3D pgprot_noncached(vma_get_page_prot(vma));
-        vm_flags_mod(vma, VM_IO | VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP |
-                     VM_NORESERVE, VM_MAYEXEC);
-}
-
-Reading from write-only PCIe doorbell registers can trigger an Unsupported
-Request or PCIe completion timeout, resulting in a Machine Check Exception
-and a full system hang. Because this mapping is accessible to unprivileged
-userspace, could this introduce a denial of service vulnerability?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260908134955.1344=
-429-10-matthew.auld@intel.com?part=3D8
+-- 
+Jani Nikula, Intel
