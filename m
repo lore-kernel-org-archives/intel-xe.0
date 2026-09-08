@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F71FC79F99
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 20:33:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BF0EC79FA1
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 21:08:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F25E110ED66;
-	Tue,  8 Sep 2026 20:33:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FXMNhAB9";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CCEB10ED66;
- Tue,  8 Sep 2026 20:33:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788899605; x=1820435605;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=C1VAkch/ILViMxSV5rGwKQDYeRoN5gaegzdh+U0+5Zo=;
- b=FXMNhAB9rSUMJWR3Bt0qd51jO/+1dhFZA3dFkiKDAKeZbVVaoQKhGK/+
- usCrT6GGsJ4x7uERkzzoqKNulpIwiLzjQhRNS8p6kVtxKJeCz1fa2F5Y9
- htclWMyFqQbKeOra1+jNqoV+Yee6x7azRURHcKS0zO/bkrzBYBS1An/Zl
- Blv29VE14rqx1IgyFQrdaThdbgWjb3bVe/RJZjUFQB3sc+0exbgJ6BVZu
- YzY7VdUp8jwSJ3+NWT5911ti4Z9hkv1OKxH6UGrbcXnNOIxNb6qVph4g4
- IVfISLVgypjpx5Yum6+jZHYEL6T2rYwavOp6gxWIs/CRB627Y6gBLsAq2 g==;
-X-CSE-ConnectionGUID: 6tJAu4PiSjyw2SkD4kABOg==
-X-CSE-MsgGUID: VBzsuCvKQxqA34BJvhBrpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="99977239"
-X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="99977239"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 13:33:25 -0700
-X-CSE-ConnectionGUID: Rd3P/sm4QDOvhfi1/K43Cg==
-X-CSE-MsgGUID: UIh+/PFvTQqerynD0VaRsw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="274647463"
-Received: from aalteres-desk1.fm.intel.com ([10.121.64.173])
- by orviesa003.jf.intel.com with ESMTP; 08 Sep 2026 13:33:25 -0700
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- dri-devel@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH] drm/xe/mmio: Fix xe_mmio_wait32() to honor delay/sleep
- maximums
-Date: Tue,  8 Sep 2026 13:33:23 -0700
-Message-ID: <20260908203323.397466-2-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7B4410E12C;
+	Tue,  8 Sep 2026 21:08:27 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B82710E0F5;
+ Tue,  8 Sep 2026 21:08:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8121561506195179980=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
+ =?utf-8?q?=5D_drm/intel=3A_Generalize_PCI_ID_macro_for_subvendor_and_subid?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Werner Sembach" <wse@tuxedocomputers.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 08 Sep 2026 21:08:26 -0000
+Message-ID: <178890170604.137999.13759462806494201204@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260908200707.65516-1-wse@tuxedocomputers.com>
+In-Reply-To: <20260908200707.65516-1-wse@tuxedocomputers.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,68 +36,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Check for overflow in udelay/usleep_range use in __xe_mmio_wait32
-and pick the correct helper according to the wait time and atomic.
-Implement a similar helper to replace DIV_ROUND_UP for 32-bit CPUs.
-Avoid growing delays becoming intollerably large by capping the
-in-loop wait time.
+--===============8121561506195179980==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v3: - Use div64_s64 kernel API for 32-bit vs 64-bit division.
-v2: - Fixed checkpatch failure.
-    - Added helper for 64-bit DIV_ROUND_UP on 32-bit CPU (Shasiko
-      review). Fixed bug max range in usleep_range(Shasiko review)
+== Series Details ==
 
-Fixes: 5c09bd6ccd41 ("drm/xe/mmio: Move xe_mmio_wait32() to xe_mmio.c")
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-Assisted-by: Github-Copilot:Claude-Sonnet-5-0
----
- drivers/gpu/drm/xe/xe_mmio.c | 23 ++++++++++++++++++-----
- 1 file changed, 18 insertions(+), 5 deletions(-)
+Series: series starting with [1/2] drm/intel: Generalize PCI ID macro for subvendor and subid
+URL   : https://patchwork.freedesktop.org/series/173627/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 7fa18dfcb5a2..507095f33cec 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -7,6 +7,7 @@
- 
- #include <linux/delay.h>
- #include <linux/io-64-nonatomic-lo-hi.h>
-+#include <linux/math64.h>
- #include <linux/minmax.h>
- #include <linux/pci.h>
- 
-@@ -349,11 +350,23 @@ static int __xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u
- 		if (ktime_after(ktime_add_us(cur, wait), end))
- 			wait = ktime_us_delta(end, cur);
- 
--		if (atomic)
--			udelay(wait);
--		else
--			usleep_range(wait, wait << 1);
--		wait <<= 1;
-+#define __XE_MMIO_WAIT_MAX_INLOOP_100MS (100 * USEC_PER_MSEC)
-+		if (atomic) {
-+			if (wait <= MAX_UDELAY_MS * USEC_PER_MSEC)
-+				udelay(wait);
-+			else
-+				mdelay(div64_s64(wait, USEC_PER_MSEC));
-+		} else {
-+			usleep_range(wait, wait + (wait >> 2)); /* range till wait + 25% */
-+		}
-+		/*
-+		 * As we keep doubling the wait time for every check that fails, cap the
-+		 * in-loop delay-or-sleep to less than 2x 100 milliseconds to prevent from
-+		 * expanding 'wait' into exponentially longer wait times per loop that
-+		 * end up delaying the next completion check way later than tolerable.
-+		 */
-+		wait = wait < __XE_MMIO_WAIT_MAX_INLOOP_100MS >> 1 ?
-+		       wait << 1 : __XE_MMIO_WAIT_MAX_INLOOP_100MS;
- 	}
- 
- 	if (ret != 0) {
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -> xe-pw-173627v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-173627v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@engine:
+    - bat-ptl-2:          [PASS][1] -> [FAIL][2] ([Intel XE#9109])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada/bat-ptl-2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173627v1/bat-ptl-2/igt@xe_waitfence@engine.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-ptl-2:          [PASS][3] -> [FAIL][4] ([Intel XE#9115])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada/bat-ptl-2/igt@xe_waitfence@reltime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173627v1/bat-ptl-2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#9109]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109
+  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
+
+
+Build changes
+-------------
+
+  * Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -> xe-pw-173627v1
+
+  IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada
+  xe-pw-173627v1: 173627v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173627v1/index.html
+
+--===============8121561506195179980==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/intel: Generalize PCI ID macro for subvendor and subid</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173627/">https://patchwork.freedesktop.org/series/173627/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173627v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173627v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -&gt; xe-pw-173627v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-173627v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada/bat-ptl-2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173627v1/bat-ptl-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109">Intel XE#9109</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173627v1/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -&gt; xe-pw-173627v1</li>
+</ul>
+<p>IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada<br />
+  xe-pw-173627v1: 173627v1</p>
+
+</body>
+</html>
+
+--===============8121561506195179980==--
