@@ -4,151 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 538FFC79F82
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 03:25:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D9ADC79F99
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 03:34:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F6C810E979;
-	Tue,  8 Sep 2026 03:25:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2BC310E97C;
+	Tue,  8 Sep 2026 03:34:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V0B2jzGl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OyhOg5nj";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90C7F10E08D;
- Tue,  8 Sep 2026 03:25:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3822C10E97C
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 03:34:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788837914; x=1820373914;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=fRTqqFva9mcnU/6IIe0gdQlQSPGy2r0bVgXdy2o8NH0=;
- b=V0B2jzGl8WiXVWpIRojLa+vtPPxM8l6I3F2Oxy1DdsYghZEjv9u8tzBI
- nUKg+jjes7rAYwuhXcsKPb4Kc+inySGffPXnO67k97jzXv0t7HAAy0m90
- nhrs5qoMV+8UFF+E7Fo5yHuMI904MZaPxHikoHqy0kQVlc+1RKn/eYnnF
- IQ8RUW2US0mrncyBDtMrLqhQPw6MKrFlLUyBZuZXdyKRUlTBzoTinahAE
- vJ0p2WiMEEbZqDBzpy5Zy81H6Yjv5CTL6Kf+687gVfuOEd1wI2jTARNEI
- okwx58xQeSz2cFN3xXrd48/kGlBYV+zY392o2x1i1dzD1C8VdPDgNGd8F A==;
-X-CSE-ConnectionGUID: SmjEAC5kSdS9LXRaWfJYjQ==
-X-CSE-MsgGUID: znWrIc2zRUmOE8mtsaTr9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="99890982"
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="99890982"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2026 20:25:14 -0700
-X-CSE-ConnectionGUID: Ou5A7IrORsqjayymd/IcTQ==
-X-CSE-MsgGUID: GpP1iherR/+OOEbDNppLyA==
+ t=1788838467; x=1820374467;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VrODtEfQQW28Flt+U9Ewc7wcGtM0K91dnz88kNtxYDI=;
+ b=OyhOg5nj1DhQ08asoKT9QxY8CH/L04lmWDOwyKZI3aD+hgq0zIOswuW+
+ /vQNUoFjvDzSgHknpp4yzhYReFHWOVEE+dbQHMdX6jyoBCOVvTrNfjdES
+ Z4rdeWNKyy4Mtt7NSwAXOYDWZ+c3VUc/E/OkimPLG637IQYaLFTh94D3Y
+ JY94jdJ8fKoXokUsessmMLH/IYzYpU2knP5LqGgSMpFPh6Nr1Ov4F6zER
+ XKOCcv9iWHHfnl+YlNuVz+gzgTiIapBZSsLlO0CgHKxiDzvDFNAxfLYup
+ 0i1N5s5hQ5Zp/4USHetHgQ9Jz71kD4zWM2vhAA66Isxq72bScmy+B9VC5 g==;
+X-CSE-ConnectionGUID: dqybvjDmRqKHRBmNXPCoRw==
+X-CSE-MsgGUID: dN9iPrLlSo23/OqhicY5nA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="88167329"
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="88167329"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2026 20:34:27 -0700
+X-CSE-ConnectionGUID: f5F1YyqGSFGM98L7lI2BqQ==
+X-CSE-MsgGUID: jyntiF7BSmeNFR5w6U1WcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="269133528"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2026 20:25:13 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 7 Sep 2026 20:25:11 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Mon, 7 Sep 2026 20:25:11 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.4) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 7 Sep 2026 20:25:11 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aasRZ3b8gVN5B+j6ct/TszFWASXy9tuYI8BsqMhgg26IdZX29jzgewIFzccnq5yYWRDdIAKpo+wf37ChQkgusrf0wPkmXuOf4R+mV/MV8kjN24x7IrQw7gSn8SYOavsGwrOX0qMaTW5g5qILboIMss8orivvUjjqpDg5zU7+hJ01vfevdO076T8c/zSj/zKo0+rUBozLByjCXLBj4whcnVjH3CJtKHcdZ1p3WMH5a3Vm6eKFTWXvh14gFbw7y1vVxXylFC94W0CBLworqQlyD7W7W2xz2qZsNCCnf/hSdzV4iTUF0hZLrJ87m0vZt7U3fh5+EtbgZvSbyaJQruFfmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V0Nw7HE0OcdwMMwuE6RDJ6syh4wVcwlguBG15BdB55U=;
- b=Vr5sX2TUOXt8bW40HV7QhxyrgtDON+1uFBThBDAq5qI4kyfCT6mN+FPoBnh2e9DTdpuYCSj+Pu6ltyGHMD6Bg9Y6wceURp/iLBXYy4AheFDKZCC79XvN5T2VoAtiT4OEHUo611ReezwjKPSt01QakwhcT0PyZTR0kmn63hwZ5FFAx0Q97bC+L7HSQ6gNz3KmXtetf51qw5K4deFai63Bca+NWwZ8lWtCZBJMyktKOvkE2rCNLduc9ncaaXUOs8v6oPIwidWHwrTC1on0ap0b1L/1m50JHxEHUJXPY1w6WFHmXNQJtKRbwFFPHi1NY2BLaE8XPv1xXPME7y46ANuZrw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CH3PR11MB7300.namprd11.prod.outlook.com (2603:10b6:610:150::21)
- by DM4PR11MB6335.namprd11.prod.outlook.com (2603:10b6:8:b7::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.382.15; Tue, 8 Sep
- 2026 03:25:04 +0000
-Received: from CH3PR11MB7300.namprd11.prod.outlook.com
- ([fe80::c319:6d18:282a:cac8]) by CH3PR11MB7300.namprd11.prod.outlook.com
- ([fe80::c319:6d18:282a:cac8%6]) with mapi id 15.21.0382.014; Tue, 8 Sep 2026
- 03:25:04 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "stable@vger.kernel.org" <stable@vger.kernel.org>
-Subject: RE: [PATCH 1/2] drm/i915/dp_mst: Fix configuring FEC for a
- disconnected stream
-Thread-Topic: [PATCH 1/2] drm/i915/dp_mst: Fix configuring FEC for a
- disconnected stream
-Thread-Index: AQHdPvCeEbvLqJDdjk2T52ot77VDHbbEBPLA
-Date: Tue, 8 Sep 2026 03:25:04 +0000
-Message-ID: <CH3PR11MB7300904CF56A4A0DDA801FB4BAB12@CH3PR11MB7300.namprd11.prod.outlook.com>
-References: <20260907174413.741851-1-imre.deak@intel.com>
-In-Reply-To: <20260907174413.741851-1-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH3PR11MB7300:EE_|DM4PR11MB6335:EE_
-x-ms-office365-filtering-correlation-id: 10ac8bb7-4764-4a69-698d-08df0d58c644
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|23010399003|366016|1800799024|376014|10067099003|6133799003|18002099003|22082099003|56012099006|11063799006|38070700021;
-x-microsoft-antispam-message-info: BMUEJVUvm5LzZszziM+ToVHwWPr+Xa18fvroFNhjEJIECxxxSUBy3r3GbwW5NrVTdooDgBEY34RsveaXJFERmJ16PGW5k25ea7mnM432N5P7BbSG8QmMMv9B+GDYBh73N86yUFZiyb9gXPaOY0EnY/bjKdNkGBaQ288LpK5kUbk1VIO2aQ7eGvpFEiJq9E+3OERRPSPEhDmuMTZhD2ybWGwvhVWpLYn9HtyQR7Jla0CeGYFuRYdkMPez6eMrU0/aHVtPwK7ZJXwTSUvUwnMf7rUA4RLE+xgU3FoqqUUBAGSm2L0pPJCE1/j4JdeZCruRZ2Lfka2Ohdq/HJhUhFHh8PgQ3tu/Ma98fy7h1quujxGCMzjsoDOqXxYVbeeSZ/+CE8R6o8ZUbQIoAUrKsDDtWKpY/KnkWEfnprg7ch0g6K4bKwpiTwrlcF16CedviGKvImM6fYsRlDOdVOe+e0n6OZ+HA87AuDP1qFW1of//UZ8qtYmRjDTwP/CiNiIyPp6FCqz9LyFwch1LGZOXvx94KuyrAf1uvhXvAGqjhQ8anFvZSpKFs9mEuN1mMzknhCShjSG0HPK5yLwSLUEj5Wmmz6+0QGROJmV77v+qJL3u20ISQHDR9JSaOdheFva1fe8HToPvSIMIJ4Lh13FLpGsK/j7Oo3t3z/DDf/nfo59+Dfo=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR11MB7300.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(10067099003)(6133799003)(18002099003)(22082099003)(56012099006)(11063799006)(38070700021);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?2XgdYEjPmrwt0gQTKvenb9nGigVNCpC/TmRTHnnSsgPM01PyrtT+P6bozvZg?=
- =?us-ascii?Q?zs5I+84WKU21hijCpuMbLzLTWI1/esTHgP2dZfmk8P77FjNwwLwlem+vob4q?=
- =?us-ascii?Q?Qn3EnfvbjMtbvPef7sNK0Rl+CW7Yv6opaKS11asJCkf/0KSpKivoGyMXXjvw?=
- =?us-ascii?Q?7Pxazi4sPfk+d/qDz2GYH2Cjqi+x2Ij9off6moJi7nZXFuTkKxoSH15xNRYd?=
- =?us-ascii?Q?JAjs8Zv49RkixJF5jDn1tPEEzg0gK6FKmUL3u2UlQcHpq/panoC8hu8dHO4m?=
- =?us-ascii?Q?IXNHGUFBN/d5L7UHtNFk9MoC4qWirMqbMp+JbzZDwOB7uLNuj5Kpnwx6JBc9?=
- =?us-ascii?Q?6UH1cYWtmUv4+WU8N3ydziSRo4s4f56lalawV2aonmfnvq9rXMJhMMSNoaeZ?=
- =?us-ascii?Q?tMobilpDc+Zt0kYtVSQ9RajVtGH8UII/62V6NtHxGAIx+kpzohEX9sNhZsd6?=
- =?us-ascii?Q?3oweybome5CwrS804bjSxZJ4k59hvGty1nhWs120I54rsy2UG3l1cJ4F2Hnu?=
- =?us-ascii?Q?K1MqhVJs3bo5gLVPh6oTog6ifWOnLPTWJTgu02ALR5iGAlfvm6e08bPA/Q01?=
- =?us-ascii?Q?EmHUcbw1ziB2vJ7Yi210lvyT3lxauygKy1ov96SQCE3A9XFUtBE3mZMQ+u/k?=
- =?us-ascii?Q?78AWk49yazMT1GWpSadIXzkCzzzKF4aR2THIyUzMHNlbqa+4JogHHDzbdYhI?=
- =?us-ascii?Q?zdhw+aCJM3kqY3ELldgB2hxaVeqmADnmduMG8CGbpxFbxZ9Onb4ODDYEilYK?=
- =?us-ascii?Q?wIkv7Uu0uBsG08wM57QG/KzOpW9kBFkSr5hfWcMJVsghw8VeP0r5BuQPmOjr?=
- =?us-ascii?Q?lyhLqG4yA9fvvR4d8p+GWkva4u4sBf0rJQxkGvwjefr8kMUelRioym4k4ju2?=
- =?us-ascii?Q?dRhCwNTFWRtHUCTdCSAAGQ/cet4EmIcQsnchs5zV2rs4z4/KNgIYVFQVwg3j?=
- =?us-ascii?Q?3aPGPBOtsxglsdHpKJidjUvWHdbbgElq5u/XfE3lHHb0gtsgK+CT67aFLcEQ?=
- =?us-ascii?Q?zEahmMuGam8MaluPV8RFChibMkUlH8Au4Fr/R+pAnXFnxBWa6oSWh2a+RT7S?=
- =?us-ascii?Q?yGqpULNNRqySopbPdhGIv2YOiaCABK4mT5zAbYoj5vsppzr4t87o8lPy90qt?=
- =?us-ascii?Q?29A7Nl621EVfdR0cjoaOYlDjFO3hXxNW+mms5e9V+YvgeroxbIVi29C0izGR?=
- =?us-ascii?Q?m/5IuOMTcw0BdC352+UaaT364pfpRiG9yRJAC89xhaTur5lusN0y5a45pMDt?=
- =?us-ascii?Q?XNQ4d8vgv9ZWa1L/HYtHfBv5wZVzs4jdPcPsynnDQttuwbc2drUDcwvtIjia?=
- =?us-ascii?Q?8PXZNVPcXTzQukF56G3XEOKkL4CmNHr/B5kGzKXra2IzM3D/NejKRLQyhSt+?=
- =?us-ascii?Q?2D0phFMzn/vJOIe8Io4KWQn4/M1MTUdXNoH1yEMZLFl1ZR5+U86F3F4b8Td4?=
- =?us-ascii?Q?ITFtAaK6Fgy7zH6KTSCXADyIAoDgpXUr/aiu+7ADnbNAPZRh8pSbYs3XrMP0?=
- =?us-ascii?Q?B8Xjwc+8g58xl7bDm9FMw5JBxRVGAhWLJ+HNx2Uy2ubYAPcS5B/znh6q85fA?=
- =?us-ascii?Q?O0ZGBWTaMLRLEP6zZgoYJ7i1FEER/yYPc+W70e8VQbwpmzhSHavEPVu0lWDj?=
- =?us-ascii?Q?visXhxEXxkA/fLLFuMTFgrZBEEtL6wr9lVzMj0wi65vOpd3pULlx9t18X48S?=
- =?us-ascii?Q?EhWwyPlyCdtsVnymWrh2E/hIqjrkZDxMqd8ACrZhsTy1Bgn2VWzO/amGKzzc?=
- =?us-ascii?Q?NOk1AmVQZQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="274373401"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2026 20:34:26 -0700
+From: Varun Gupta <varun.gupta@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com, tejas.upadhyay@intel.com,
+ gustavo.sousa@intel.com
+Subject: [PATCH v4] drm/xe: Add multi_queue_active_lrca debugfs
+Date: Tue,  8 Sep 2026 09:04:18 +0530
+Message-ID: <20260908033417.1019602-2-varun.gupta@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: etUVyyJVY8N65Ap4lb3XVYvEzZA0qqSl5axxE7rVy03Yq9LFbQuAwZ9Hr0PKs+k+k0pUB9gL3qxQTTY+gzrS6JLnRIOdvqlp79H8CYAsyfOrSDydWXUg7PJMcyjvJD18fTmc6DEMwDxX5he+YC/ET7wvmvHvH5+hVX5qZryV4cbNLT+lIUUPjy/esvYAiMTw9sXnLnFezZTwR5OrDAQW6UlXa0gg5c/JYF6JqjHkDe+uWpPmNcoOEXnZ82A05nDkJdI69/PBQ8zLT2c/uOjyFg/U3DKvSAhz6UTTTO93gGDtnZICPWfUlkamYs/Fx+OtawwBZvzP7sMq9TLpHMPbtg==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB7300.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10ac8bb7-4764-4a69-698d-08df0d58c644
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Sep 2026 03:25:04.4275 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Oa1I23n43EBEO/ekGoEURwHJkioHauWzCOqs7CzJVhYWdqkIRrr0NWUpC44JU9MfZ7/u/uQkwuhz0sntRyVhjQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6335
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,72 +65,285 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Add a per-GT debugfs file, multi_queue_active_lrca, that prints, for
+every engine supporting multi-queue, the currently active queue ID
+(CSMQDEBUG) and the LRCA of the exec queue occupying that slot within
+the running multi-queue group.
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Im=
-re
-> Deak
-> Sent: Monday, September 7, 2026 11:14 PM
-> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: stable@vger.kernel.org
-> Subject: [PATCH 1/2] drm/i915/dp_mst: Fix configuring FEC for a disconnec=
-ted
-> stream
->=20
-> During an atomic commit after all the MST stream CRTC state is computed t=
-he
-> driver ensures that the FEC is configured the same way (enabled or
-> disabled) for all the streams on a given MST topology's link.
-> drm_dp_mst_port_downstream_of_parent() used to determine if a stream is
-> downstream of an MST port will return false if the whole topology is
-> disconnected, since in that case it can't verify that the port/ parent_po=
-rt passed
-> to it is in the given MST topology. This is a problem during the above FE=
-C
-> configuration check, since
-> intel_dp_mst_check_dsc_change()->get_pipes_downstream_of_mst_ports()
-> will not return all the stream CRTCs/pipes for the topology as expected.
-> Since passing parent_port=3D=3DNULL to get_pipes_downstream_of_mst_port()
-> is meant to return all the streams for the given topology (i.e. mst_mgr) =
-skip
-> checking if an MST port is downstream of a parent port in this case.
->=20
-I already have a fix for this posted long back.
-https://patchwork.freedesktop.org/series/168570/
+RING_CURRENT_LRCA only reports the primary queue's LRCA for the group
+and does not update to reflect the active queue in multi-queue mode,
+which makes it hard to tell which queue is actually running when
+debugging multi-queue CSB/context-switch issues. Resolve the active
+LRCA by matching the primary LRCA against each queue's group and
+picking the queue at the reported active_id position.
 
-Thanks and Regards,
-Arun R Murthy
---------------------
-> This fixes a problem where the FEC configuration check explained above fa=
-iled
-> to ensure that all streams' FEC is configured the same way if the topolog=
-y was
-> disconnected, leading to a FEC state mismatch error.
->=20
-> Cc: stable@vger.kernel.org # v6.10+
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16073
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16384
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index 6a869d0f6ffc0..20766b6c0bcfa 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -856,7 +856,8 @@ static u8 get_pipes_downstream_of_mst_port(struct
-> intel_atomic_state *state,
->  		if (&connector->mst.dp->mst.mgr !=3D mst_mgr)
->  			continue;
->=20
-> -		if (connector->mst.port !=3D parent_port &&
-> +		if (parent_port &&
-> +		    connector->mst.port !=3D parent_port &&
->  		    !drm_dp_mst_port_downstream_of_parent(mst_mgr,
->  							  connector->mst.port,
->  							  parent_port))
-> --
-> 2.49.1
+v4:
+ - Extracted multi_queue_active_lrca into a dedicated
+   multi_queue_debugfs_list to prevent debugfs node registration on
+   platforms lacking multi-queue support entirely, via
+   xe_gt_has_multi_queue() gating. (Tejas)
+v3:
+ - Use xe_exec_queue_get_lrc() instead of raw pointer dereference to
+   safely handle concurrent multi-queue group creation and avoid race
+   conditions (Sashiko)
+v2:
+ - Maintain alphabetical order for includes and
+   pf_only_debugfs_list (Tejas)
+ - Export and reuse xe_lrc_get_multi_queue_active_queue_id() instead
+   of duplicate MMIO read (Tejas)
+
+Bspec: 60321, 73976
+Signed-off-by: Varun Gupta <varun.gupta@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_debugfs.c | 54 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c | 73 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.h |  5 ++
+ drivers/gpu/drm/xe/xe_lrc.c        |  6 +--
+ drivers/gpu/drm/xe/xe_lrc.h        |  1 +
+ 5 files changed, 136 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index 361a70234d1f..bb09e70ee44c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -13,6 +13,7 @@
+ #include <drm/drm_managed.h>
+ #include <linux/math.h>
+ 
++#include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+ #include "xe_device.h"
+ #include "xe_force_wake.h"
+@@ -25,6 +26,7 @@
+ #include "xe_gt_stats.h"
+ #include "xe_gt_topology.h"
+ #include "xe_guc_hwconfig.h"
++#include "xe_guc_submit.h"
+ #include "xe_hw_engine.h"
+ #include "xe_lrc.h"
+ #include "xe_mmio.h"
+@@ -130,6 +132,48 @@ static int hw_engines(struct xe_gt *gt, struct drm_printer *p)
+ 	return 0;
+ }
+ 
++static int multi_queue_active_lrca(struct xe_gt *gt, struct drm_printer *p)
++{
++	struct xe_guc *guc = &gt->uc.guc;
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
++
++	for_each_hw_engine(hwe, gt, id) {
++		u32 cur_lrca, active_id, lrca;
++		unsigned int fw_ref;
++
++		if (!xe_gt_supports_multi_queue(gt, hwe->class))
++			continue;
++
++		/*
++		 * Forcewake is dropped before xe_guc_submit_active_multi_queue_lrca()
++		 * below, which takes guc->submission_state.lock, to avoid holding a
++		 * GT forcewake ref across a mutex acquired elsewhere in the opposite
++		 * order.
++		 */
++		fw_ref = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++		if (!xe_force_wake_ref_has_domain(fw_ref, XE_FORCEWAKE_ALL)) {
++			drm_printf(p, "%s\tforcewake failed, skipping\n", hwe->name);
++			xe_force_wake_put(gt_to_fw(gt), fw_ref);
++			continue;
++		}
++
++		cur_lrca = xe_mmio_read32(&gt->mmio,
++					  RING_CURRENT_LRCA(hwe->mmio_base));
++		active_id = xe_lrc_get_multi_queue_active_queue_id(hwe);
++
++		xe_force_wake_put(gt_to_fw(gt), fw_ref);
++
++		lrca = xe_guc_submit_active_multi_queue_lrca(guc, hwe, cur_lrca,
++							     active_id);
++
++		drm_printf(p, "%s\tactive_queue_id %u\tcurrent_lrca 0x%08x\tactive_lrca 0x%08x\n",
++			   hwe->name, active_id, cur_lrca, lrca);
++	}
++
++	return 0;
++}
++
+ static int steering(struct xe_gt *gt, struct drm_printer *p)
+ {
+ 	xe_gt_mcr_steering_dump(gt, p);
+@@ -254,6 +298,11 @@ static const struct drm_info_list pf_only_debugfs_list[] = {
+ 	{ "steering", .show = xe_gt_debugfs_show_with_rpm, .data = steering },
+ };
+ 
++static const struct drm_info_list multi_queue_debugfs_list[] = {
++	{ "multi_queue_active_lrca",
++		.show = xe_gt_debugfs_show_with_rpm, .data = multi_queue_active_lrca },
++};
++
+ static ssize_t write_to_gt_call(const char __user *userbuf, size_t count, loff_t *ppos,
+ 				void (*call)(struct xe_gt *), struct xe_gt *gt)
+ {
+@@ -521,6 +570,11 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
+ 					 ARRAY_SIZE(pf_only_debugfs_list),
+ 					 root, minor);
+ 
++	if (!IS_SRIOV_VF(xe) && xe_gt_has_multi_queue(gt))
++		drm_debugfs_create_files(multi_queue_debugfs_list,
++					 ARRAY_SIZE(multi_queue_debugfs_list),
++					 root, minor);
++
+ 	if (xe_gt_is_main_type(gt) && !IS_DGFX(xe) && !IS_SRIOV_VF(xe))
+ 		debugfs_create_file("gt_ia_bias", 0600, root, gt, &gt_ia_bias_fops);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 99d8c807ff05..a39dcb85e3f4 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -3853,6 +3853,79 @@ bool xe_guc_has_registered_mlrc_queues(struct xe_guc *guc)
+ 	return false;
+ }
+ 
++/**
++ * xe_guc_submit_active_multi_queue_lrca() - Resolve the LRCA of the active
++ * queue in the multi-queue group currently running on an engine.
++ * @guc: the &xe_guc managing the exec queues
++ * @hwe: the &xe_hw_engine whose active queue is being resolved
++ * @cur_lrca: value read from RING_CURRENT_LRCA, identifies the running group
++ * @active_id: current Active Queue ID read from CSMQDEBUG (position in group)
++ *
++ * The running group is identified by matching @cur_lrca against the group's
++ * primary LRCA; @active_id then selects the active queue within that group.
++ *
++ * Return: the LRCA of the active queue, or 0 if no matching queue is found.
++ */
++u32 xe_guc_submit_active_multi_queue_lrca(struct xe_guc *guc,
++					  struct xe_hw_engine *hwe,
++					  u32 cur_lrca, u32 active_id)
++{
++	struct xe_exec_queue *q;
++	unsigned long index;
++	u32 lrca = 0;
++
++	/*
++	 * submission_state.lock also protects exec_queue teardown: an exec
++	 * queue is removed from exec_queue_lookup before its group/primary
++	 * are freed, so any q found in the xarray below has a live group
++	 * and primary for as long as we hold the lock.
++	 */
++	guard(mutex)(&guc->submission_state.lock);
++
++	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
++		struct xe_exec_queue_group *group = q->multi_queue.group;
++		struct xe_lrc *active_lrc;
++		struct xe_lrc *primary_lrc;
++
++		if (!q->multi_queue.valid || !group || !group->primary)
++			continue;
++		/*
++		 * Multi-queue exec queues are bound to a hw engine class;
++		 * GuC dynamically schedules them onto one of the class's
++		 * physical instances, so there is no fixed queue-to-instance
++		 * mapping to filter on here.
++		 */
++		if (q->class != hwe->class)
++			continue;
++		if (q->multi_queue.pos != active_id)
++			continue;
++		/*
++		 * LRCAs are page-aligned (4K) addresses in GGTT; the low
++		 * bits reported by RING_CURRENT_LRCA are not meaningful, so
++		 * only compare bits [31:12].
++		 */
++		primary_lrc = xe_exec_queue_get_lrc(group->primary, 0);
++		if (!primary_lrc)
++			continue;
++
++		if ((xe_lrc_ggtt_addr(primary_lrc) ^ cur_lrca) & GENMASK(31, 12)) {
++			xe_lrc_put(primary_lrc);
++			continue;
++		}
++
++		active_lrc = xe_exec_queue_get_lrc(q, 0);
++		xe_lrc_put(primary_lrc);
++		if (!active_lrc)
++			continue;
++
++		lrca = xe_lrc_ggtt_addr(active_lrc);
++		xe_lrc_put(active_lrc);
++		break;
++	}
++
++	return lrca;
++}
++
+ /**
+  * xe_guc_contexts_hwsp_rebase - Re-compute GGTT references within all
+  * exec queues registered to given GuC.
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index ccade320dc69..29abf07d8f04 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -11,6 +11,7 @@
+ struct drm_printer;
+ struct xe_exec_queue;
+ struct xe_guc;
++struct xe_hw_engine;
+ 
+ int xe_guc_submit_init(struct xe_guc *guc, unsigned int num_ids);
+ int xe_guc_submit_enable(struct xe_guc *guc);
+@@ -55,6 +56,10 @@ void xe_guc_register_vf_exec_queue(struct xe_exec_queue *q, int ctx_type);
+ 
+ bool xe_guc_has_registered_mlrc_queues(struct xe_guc *guc);
+ 
++u32 xe_guc_submit_active_multi_queue_lrca(struct xe_guc *guc,
++					  struct xe_hw_engine *hwe,
++					  u32 cur_lrca, u32 active_id);
++
+ int xe_guc_contexts_hwsp_rebase(struct xe_guc *guc, void *scratch);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 25fe9dbc9141..f1cf1463f1b2 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -2705,7 +2705,7 @@ static u64 get_queue_timestamp(struct xe_hw_engine *hwe)
+ 				   RING_QUEUE_TIMESTAMP(hwe->mmio_base));
+ }
+ 
+-static u32 get_multi_queue_active_queue_id(struct xe_hw_engine *hwe)
++u32 xe_lrc_get_multi_queue_active_queue_id(struct xe_hw_engine *hwe)
+ {
+ 	u32 val = xe_mmio_read32(&hwe->gt->mmio,
+ 				 RING_CSMQDEBUG(hwe->mmio_base));
+@@ -2739,14 +2739,14 @@ static u64 xe_lrc_multi_queue_timestamp(struct xe_lrc *lrc)
+ 	if (!hwe)
+ 		return xe_lrc_queue_timestamp(lrc);
+ 
+-	if (get_multi_queue_active_queue_id(hwe) != lrc->multi_queue.pos)
++	if (xe_lrc_get_multi_queue_active_queue_id(hwe) != lrc->multi_queue.pos)
+ 		return xe_lrc_queue_timestamp(lrc);
+ 
+ 	/* queue is active, so store the queue timestamp register */
+ 	reg_queue_ts = get_queue_timestamp(hwe);
+ 
+ 	/* double check queue and primary queue are both still active */
+-	if (get_multi_queue_active_queue_id(hwe) != lrc->multi_queue.pos ||
++	if (xe_lrc_get_multi_queue_active_queue_id(hwe) != lrc->multi_queue.pos ||
+ 	    !context_active(primary_lrc))
+ 		return xe_lrc_queue_timestamp(lrc);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 7be5e3da8bc8..a8ff4e59a1f4 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -158,6 +158,7 @@ int xe_lrc_lookup_default_reg_value(struct xe_gt *gt,
+ u32 *xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, u32 *cs);
+ 
+ void xe_lrc_set_multi_queue_priority(struct xe_lrc *lrc, enum xe_multi_queue_priority priority);
++u32 xe_lrc_get_multi_queue_active_queue_id(struct xe_hw_engine *hwe);
+ 
+ struct xe_lrc_snapshot *xe_lrc_snapshot_capture(struct xe_lrc *lrc);
+ void xe_lrc_snapshot_capture_delayed(struct xe_lrc_snapshot *snapshot);
+-- 
+2.43.0
 
