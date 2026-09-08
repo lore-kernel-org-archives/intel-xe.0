@@ -4,53 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D090EC79F82
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:07:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 697D3C79F82
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:12:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80A3A10EAF9;
-	Tue,  8 Sep 2026 10:07:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0787010E0D6;
+	Tue,  8 Sep 2026 10:12:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gRW5NZsb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y0GQd45F";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA55810EAF9;
- Tue,  8 Sep 2026 10:07:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D808F10E0D6
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:12:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788862051; x=1820398051;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HBhzUzpaFbtZUb1Zfgssi0AuwbWwqd49bwb8RgBcJsg=;
- b=gRW5NZsbmbcSfCu4pyrUN1aLJDp9v0JqXkOLIs48ghtiiKJ+3gcmiFjm
- VqjP7EZS/gS8ZxYEAhOyf6vZB9GigWeG3UbUvKA+8XHKddzZHFn2OwWK+
- GAHFoTNTlRhoUAIjrN6gogx6jVlsofC98i0dHyUDlLssltfD+MeestY3C
- yND4ZXb2ytfmsgHOHRUXYDaCB2mW2c2LtxYPl5F+8JcCS+QlFA+n1dHy2
- lBSlZpD0WbCEJGvmygTWlsalD6nsCToHUI5i2x4R9ApXzZntSw6KJy3Jw
- CuxbtZnld3Iff9i8JMDGQej9X+cqyt8XWg+IN2HShRVqyGqIEIuQIwQy6 A==;
-X-CSE-ConnectionGUID: HzZ2JcuYQYqLIJ7JAQ1TVw==
-X-CSE-MsgGUID: b+Y9xIDgQmOXRJzKRnDoOg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="112037090"
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="112037090"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 03:07:31 -0700
-X-CSE-ConnectionGUID: Ztg8iGRLT0eVkJJsC/zR1w==
-X-CSE-MsgGUID: 5GP1rTb3R+ai12ykNR5MBg==
+ t=1788862359; x=1820398359;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=RojSC81fT8Uenj2/uiSK1kxPgp8HmKz5iTr8hNiXTTg=;
+ b=Y0GQd45FPZRIFBMjWqhkyIp7gi+LHnXY3rXB5xAoOJAaUBc6JHjw7See
+ Zvv2RHzn1e9mlFDWw2j+8eDDONir4aFbjWEinvodjoFADHdQhpFfpJhMc
+ O4W+hZ2Vw+CEYt98gChN6LRXT761UFGXEvdatl637GBQd4sGsKYeku+/r
+ iLjYkaxbHjU1sJ08h7pEEJVOjvQ0zCa4htSfQRHk1dR7bMIKA5FqUaLDN
+ sE6vgoP2gD3J4QEq+r5Vvj3VX70fh7chEDPNlWqqyrToa+J/yXyAip1Pr
+ WwAvKlDYnPKwwrHdwo1/TPNS84vdiuySW/0FP5bJDHeUl2OaQpzrDOZ8P g==;
+X-CSE-ConnectionGUID: QEWdLa+WSnGdaZ+2+3JDiQ==
+X-CSE-MsgGUID: oerZ2TpfQBGTOFxidA/96Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="114799546"
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="114799546"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2026 03:12:36 -0700
+X-CSE-ConnectionGUID: U8Qh+ZKITf27slFePY2QYA==
+X-CSE-MsgGUID: TSe+SzwbRuOvtVM1KYYaxA==
 X-ExtLoop1: 1
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO hazy.intel.com)
- ([10.245.244.144])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 03:07:28 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	imre.deak@intel.com
-Subject: [PATCH] drm/i915/display: check configuration index before shifting
-Date: Tue,  8 Sep 2026 13:06:51 +0300
-Message-ID: <20260908100659.113555-1-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.53.0
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="271464602"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2026 03:12:34 -0700
+Date: Tue, 8 Sep 2026 12:12:30 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, daniele.ceraolospurio@intel.com,
+ riana.tauro@intel.com, mallesh.koujalagi@intel.com,
+ aravind.iddamsetty@intel.com, michal.wajdeczko@intel.com,
+ himal.prasad.ghimiray@intel.com, arvind.yadav@intel.com,
+ syed.abdul.muqthyar.ahmed@intel.com, nitin.r.gote@intel.com
+Subject: Re: [PATCH v3 01/12] drm/xe/cper: Hardware error CPER reporting from
+ xe_log
+Message-ID: <ap_fjltTIY1mXyXF@black.igk.intel.com>
+References: <20260906172604.2215987-14-badal.nilawar@intel.com>
+ <20260906172604.2215987-15-badal.nilawar@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260906172604.2215987-15-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,54 +74,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The calc_allowed_config_filter() function passes the return value of
-iter_pos_to_idx() directly to BIT(), but the helper can return -1 for
-an invalid iterator.
+On Sun, Sep 06, 2026 at 10:56:06PM +0530, Badal Nilawar wrote:
+> Introduce xe_emit_hardware_error_cper() as public entry point
+> for CPER reporting.
+> 
+> Wire xe_log to route hardware SIGIDs through the new helper.
+> No functional change is intended yet, as the CPER emission logic
+> is added in follow-up patches.
+> 
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> ---
+>  drivers/gpu/drm/xe/Makefile  |  2 ++
+>  drivers/gpu/drm/xe/xe_cper.c | 37 ++++++++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_cper.h | 25 ++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_log.c  | 17 +++++++++++------
+>  4 files changed, 75 insertions(+), 6 deletions(-)
+>  create mode 100644 drivers/gpu/drm/xe/xe_cper.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_cper.h
+> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 67b8b5477639..06b064add77d 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -166,6 +166,8 @@ xe-$(CONFIG_HWMON) += xe_hwmon.o
+>  xe-$(CONFIG_PERF_EVENTS) += xe_pmu.o
+>  xe-$(CONFIG_CONFIGFS_FS) += xe_configfs.o
+>  
+> +xe-$(CONFIG_UEFI_CPER_X86) += xe_cper.o
 
-The iterator already rejects negative indices before doing a
-configuration, so this should not matter in normal flows.  In any
-case, for robustness, check the index explicitly and warn if it is
-negative, avoiding an undefined shift.
+Why x86?
 
-Fixes: 39e30bdf2f92 ("drm/i915/dp_link_caps: Add link configuration iterator")
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_link_caps.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+>  # graphics virtualization (SR-IOV) support
+>  xe-y += \
+>  	xe_gt_sriov_vf.o \
+> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+> new file mode 100644
+> index 000000000000..e8017e3ee3a0
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_cper.c
+> @@ -0,0 +1,37 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2026 Intel Corporation
+> + */
+> +
+> +#include <linux/pci.h>
+> +
+> +#include <drm/drm_print.h>
+> +
+> +#include "xe_cper.h"
+> +#include "xe_device.h"
+> +#include "xe_ras_types.h"
+> +
+> +/**
+> + * xe_emit_hardware_error_cper() - Emit a hardware error CPER record
+> + * @pdev: PCI device associated with the Xe device
+> + * @cper_sev: CPER severity
+> + * @sigid: Error signature identifier
+> + * @error_class: Hardware error classification details
+> + * @response: Response of get counter
+> + *
+> + * Emit a CPER record for a hardware error
+> + */
+> +void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
-index 7b6cc6055da8..98657aa4d3d5 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
-@@ -426,12 +426,15 @@ calc_allowed_config_filter(struct intel_dp_link_caps *link_caps,
- 			   const struct intel_dp_link_config *forced_params)
- {
- 	struct intel_dp_link_caps_filter allowed_configs = INTEL_DP_LINK_CAPS_FILTER_NONE;
-+	struct intel_display *display = to_intel_display(link_caps->dp);
- 	struct intel_dp_link_caps_order order = bw_desc_config_order();
- 	struct intel_dp_link_caps_iter iter;
- 	struct intel_dp_link_config config;
- 
- 	iter_start(&iter, link_caps, order, enabled_configs);
- 	for_each_dp_link_config(&iter, &config) {
-+		int config_idx;
-+
- 		if (forced_params->rate &&
- 		    forced_params->rate != config.rate)
- 			continue;
-@@ -446,7 +449,11 @@ calc_allowed_config_filter(struct intel_dp_link_caps *link_caps,
- 		if (config.lane_count > max_limits->lane_count)
- 			continue;
- 
--		allowed_configs.config_mask |= BIT(iter_pos_to_idx(link_caps, order, iter.pos));
-+		config_idx = iter_pos_to_idx(link_caps, order, iter.pos);
-+		if (drm_WARN_ON(display->drm, config_idx < 0))
-+			continue;
-+
-+		allowed_configs.config_mask |= BIT(config_idx);
- 	}
- 	intel_dp_link_caps_iter_end(&iter);
- 
--- 
-2.53.0
+Why the long names? Can't this be simply xe_cper_hw_emit()?
 
+> +				 struct xe_ras_error_class *counter,
+> +				 struct xe_ras_get_counter_response *response)
+> +{
+> +	struct xe_device *xe = pdev_to_xe_device(pdev);
+> +
+> +	if (!xe)
+> +		return;
+> +
+> +	if ((int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START)
+> +		return;
+> +
+> +	/* TODO */
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_cper.h b/drivers/gpu/drm/xe/xe_cper.h
+> new file mode 100644
+> index 000000000000..c4be7f25a369
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_cper.h
+> @@ -0,0 +1,25 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2026 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_CPER_H_
+> +#define _XE_CPER_H_
+> +
+> +#include "abi/xe_sigid_abi.h"
+> +
+> +struct pci_dev;
+> +struct xe_ras_error_class;
+> +struct xe_ras_get_counter_response;
+> +
+> +#if IS_REACHABLE(CONFIG_UEFI_CPER_X86)
+> +void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
+> +				 struct xe_ras_error_class *counter,
+> +				 struct xe_ras_get_counter_response *response);
+> +#else
+> +static inline void xe_emit_hardware_error_cper(struct pci_dev *pdev, int cper_sev,
+> +					       enum xe_sigid sigid,
+> +					       struct xe_ras_error_class *counter,
+> +					       struct xe_ras_get_counter_response *response) {}
+> +#endif
+> +#endif /* _XE_CPER_H_ */
+> diff --git a/drivers/gpu/drm/xe/xe_log.c b/drivers/gpu/drm/xe/xe_log.c
+> index 5549ef6966fd..2957adec41aa 100644
+> --- a/drivers/gpu/drm/xe/xe_log.c
+> +++ b/drivers/gpu/drm/xe/xe_log.c
+> @@ -8,17 +8,27 @@
+>  
+>  #include "abi/xe_log_abi.h"
+>  
+> +#include "xe_cper.h"
+>  #include "xe_device.h"
+>  #include "xe_log.h"
+>  #include "xe_printk.h"
+>  
+> +static bool is_hw_sigid(enum xe_sigid sigid)
+> +{
+> +	return (int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START;
+
+Shouldn't this be
+
+	return in_range(sigid, INTEL_SIGID_GPU_XE_HARDWARE_START, INTEL_SIGID_GPU_XE_HARDWARE_END);
+
+> +}
+> +
+>  static void log_emit_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
+>  			  u32 component, u32 location, const void *data, size_t len,
+>  			  struct va_format *vaf)
+>  {
+>  	KUNIT_STATIC_STUB_REDIRECT(log_emit_cper, pdev, cper_sev, sigid,
+>  				   component, location, data, len, vaf);
+> -	/* TODO */
+> +
+> +	if (is_hw_sigid(sigid) && !IS_ERR(data))
+
+Why not !IS_ERR_OR_NULL(data)?
+
+Raag
+
+> +		xe_emit_hardware_error_cper(pdev, cper_sev, sigid,
+> +					    (struct xe_ras_error_class *)data, NULL);
+> +	/* TODO software CPER */
+>  }
+>  
+>  static const char *log_unknown_component_prefix(u32 component)
+> @@ -100,11 +110,6 @@ static const char *log_location_prefix(struct pci_dev *pdev, u32 location, char
+>  	return buf;
+>  }
+>  
+> -static bool is_hw_sigid(enum xe_sigid sigid)
+> -{
+> -	return (int)sigid >= INTEL_SIGID_GPU_XE_HARDWARE_START;
+> -}
+> -
+>  static bool is_sev_error(int cper_sev)
+>  {
+>  	return cper_sev != CPER_SEV_INFORMATIONAL;
+> -- 
+> 2.54.0
+> 
