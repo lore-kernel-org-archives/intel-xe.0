@@ -4,57 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0B47C79F82
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 09:09:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82DCEC79FA0
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 09:14:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2A5510EAC4;
-	Tue,  8 Sep 2026 09:09:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2905910E12B;
+	Tue,  8 Sep 2026 09:14:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gcdv3+eA";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ihgBs0py";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3450D10EAC4;
- Tue,  8 Sep 2026 09:09:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEC6E10E12B;
+ Tue,  8 Sep 2026 09:14:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788858585; x=1820394585;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1dQHmGzgIX5Sm76l3AnEA8MGw0gVZwv9+Q1wSk7d0hw=;
- b=gcdv3+eA3S+oVY5WHGoPEjzg9pXwXEFtZTEDPyfL6Z9SqrbCHmdONig4
- xEIT7aMDOvZlY9L3rIxmj3CMo1lIf5dUqlLCCro+EXhPdAs0N9JnjYIR/
- f6fO4zIxy6CmTqBJJHOL1aeSd1PXs3HdMLkwvF4lgqGgu+H+COdRZvs1E
- u7/sQsBN+OeSBNK4MRVIdmOQCQPjeWEXyotw2MnoUQqcm/gnD3Pe7rPbA
- EjiwT9URk/ODYXBRR/GYhMbGOBJq4VnfgtcsS4+WgUJPBEixNW4jO3U3I
- /MG2n+YCKmTQ/go0bh3wq9EkQAxU136lu8l/qEYvrNuveZndRLkO5HY8K A==;
-X-CSE-ConnectionGUID: fMKcUQ6zRei46Sqbkp5ZbA==
-X-CSE-MsgGUID: TnMp5zD/QAiKO7MLqt8D1Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="89285083"
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="89285083"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ t=1788858868; x=1820394868;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ in-reply-to:mime-version;
+ bh=nlufL0ee2ra408xEL1w64KNgPg8K12WgFznKNK/VJn0=;
+ b=ihgBs0pybO3SSLRC/PjKYs0I37qq6yDO2tgYwynnwxilcRehyskq0vrB
+ ARD727bQS4Muo0zyMUnom0tdbgZS5pwBMtzR5XO1+8n/40ltflk1eYvrQ
+ hRcR/j82mYIDQEKgzzLIxY8itynkD6B6BOpbc6H3kXHQaf0pq1pEhH6Cm
+ sLFUFk3DQ2fAfXC9x5GnaRsivK4MPRB+JUem0zCawPbC3PclwXmmr93Qs
+ +3yJlNbLuqAlh7LDbM5nlvcj9Tl60W4Fq9yTD9FdsdrPlOBKYttSCe3Qp
+ GVHG9ODTnLKeAtMtPgotvG5Z6GQARp1dXmQS6eD1YofcnE5TEa0p2hjSN g==;
+X-CSE-ConnectionGUID: MrDVUdeHQRmoJ2t9RUaQ+w==
+X-CSE-MsgGUID: 8McMDGoIQvy20j+8DAYpuA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="89286042"
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="89286042"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 02:09:44 -0700
-X-CSE-ConnectionGUID: k8dqfKPhR1OB2Efajbg8Ag==
-X-CSE-MsgGUID: D5VMiDzHTd2ARUtvRabz4Q==
+ 08 Sep 2026 02:13:52 -0700
+X-CSE-ConnectionGUID: +5cqDdcJQSuRlC4jmRidtA==
+X-CSE-MsgGUID: BMFgOkUuQ/2XbVGwrV3Ung==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="267690308"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO hazy.intel.com)
- ([10.245.244.144])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 02:09:42 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	jani.nikula@linux.intel.com
-Subject: [PATCH v4 1/2] drm/i915/display: add a way to restore only
- display/pch registers in clock_gating
-Date: Tue,  8 Sep 2026 11:43:02 +0300
-Message-ID: <20260908090924.52117-2-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260908090924.52117-1-luciano.coelho@intel.com>
-References: <20260908090924.52117-1-luciano.coelho@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="269614278"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2026 02:13:51 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Tue, 8 Sep 2026 02:13:50 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Tue, 8 Sep 2026 02:13:50 -0700
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.15) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Tue, 8 Sep 2026 02:13:50 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iqdloia+NuAthtFnMDxOwLCrHeMWLGX5vDrNjebvpnZXiHViyLTnKCwQS7IV+9Rq8dbaf2QYdwV4z7ZQCixymLeu1rmfk26UPwLKFZ2Bc+Ru9ITOYrOh+pVjBdvk4GykL4PknswB6lOgrJlJJajnHzDE0G+PmKt7zsQcM/Y7d5ZNr3kww3q1V1VzM9HGD6WTfJjlCHjbrpEEwKHL1hi0Qu3zKQC1IeF0hQFobjqdANlN0Ph3Yh/EBcUSWlwbFqP1XXqs4c+l0Vz9sVUHeGzww4AKv/IWnqDTbooFGdNuWySepkPJCblmG0ElLa88Y8bNtCY4Q4CHN7RNYCuMZqHbSA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0kMvd3ax+/yhmhtBxKIRjw3CT2e4isZuhbpP5WfBEsI=;
+ b=JYzw6MbqNmbqEHug5Dm70iJVdWlPuF7n0XKyNXdk5eGWki8mj1/19lKsUjWRpN32MRNAx+/x2Sg77YVvcsDygvzqvAQbiWzhi4IHCgbGQms6nIi1kkIqzfClMxt13E06m/Q0lDpXmqlM16NmTb+g6fb9Gk5vvBUzjnRXTNNuVsLbstQRcYiHPjzcG7KFTBAHKrCMkgNdmHFnCjka8Jv5oxIENJdjSm0VWwRz5WBvkS1plPI8HX70ebErZ6Vh+IqYgSy14kqp8MyWFnDyctij9trQPe6xDyGBPltu6OBFYHICdYX1YPNDgFy2DFLxTS2GJmLaC9du8dhUjr5eQP32GA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ5PPF57F27BA08.namprd11.prod.outlook.com
+ (2603:10b6:a0f:fc02::82b) by CY8PR11MB7134.namprd11.prod.outlook.com
+ (2603:10b6:930:62::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.382.15; Tue, 8 Sep
+ 2026 09:13:48 +0000
+Received: from SJ5PPF57F27BA08.namprd11.prod.outlook.com
+ ([fe80::68e:cafc:75a:3e02]) by SJ5PPF57F27BA08.namprd11.prod.outlook.com
+ ([fe80::68e:cafc:75a:3e02%8]) with mapi id 15.21.0382.014; Tue, 8 Sep 2026
+ 09:13:47 +0000
+Date: Tue, 8 Sep 2026 12:13:33 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
+Subject: Re: [PATCH 1/2] drm/i915/dp_mst: Fix configuring FEC for a
+ disconnected stream
+Message-ID: <ap_Q6_BX4Rv0DntW@ideak-desk.lan>
+References: <20260907174413.741851-1-imre.deak@intel.com>
+ <CH3PR11MB7300904CF56A4A0DDA801FB4BAB12@CH3PR11MB7300.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CH3PR11MB7300904CF56A4A0DDA801FB4BAB12@CH3PR11MB7300.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-ClientProxiedBy: GVZP280CA0046.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:150:273::17) To DS4PPF69AE895C5.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2b)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PPF57F27BA08:EE_|CY8PR11MB7134:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6071a587-b317-4e4b-3641-08df0d897c54
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|23010399003|1800799024|366016|6133799003|10067099003|56012099006|4143699003|11063799006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: e9hEKmBcgGh/gNKo0tBIz9pJRZxKimsIcKtq5nzC0UdLScMn9ccKHqRxp0sX+fLN1jEGkDX3+bnTwHp9mFU2hIE1jrT7vzibsTPmnBv+A93tqxNPchcCwkh5bVyRGl6E6jra1ffCVZCGGJGJdTCtHyyDnmY+idoiJiowbhqK1lrA8fkj0uQvEnt5ih+OBk+JEHDnYSy58OUIeu5DeYwwBKSKdh+OYdBl7Prp0jBeWRn2212UaNbgepj8SCnK2T7UP2F9vte1HpaUGbL+Xw+va6T9MzGHrVM3RAnmDmmn5YaDy5rR6FdykAR1ooHwt4O71L+QZ9pp4gdXkDbqd0qqDCzqgXOxVoRvpwgpxdhqxZlDjguBQGKzM73pF5Id6io0E6PEdORbsHyFnP6tVozBhb0usUc4tXSDyeW+eosoJeauQzKa+u+G3hmv7LVgDrLHtrLVzlUvfAxdWwayfWCg/tCPmwUAkLxemDO366YjEgbNx6tyF+nNCAbRr8zgxo4bDvTwBRUEUwzy9cvNAcx1cVQYOvMrEo4kKdtgE761vzkcKVyZR2YJZWRYoEgOjv88he5BMDqApUvRLejpMCFO5IWuyRZPc2mAgFk0lD/5yiI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ5PPF57F27BA08.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(6133799003)(10067099003)(56012099006)(4143699003)(11063799006)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7x+NbO4IxNXo4zYSlKMGG3TKwXWeXpuAC8abw9itIz7nAV4sS4F982OvswT2?=
+ =?us-ascii?Q?COGFpoJlpDOkxpRkpQc0AbW0W5TAW6jF9YgDzN/crlupxJB5/iRD6jhIduv7?=
+ =?us-ascii?Q?YPt0FIrBP07vdTJru0kiF92EmCpwunBYtOMw7ss1hRmJu8WN3WlxtKJsJdv+?=
+ =?us-ascii?Q?KoX+QteUZAOIX+5TnoY1dVExxZHiWA+LU6LnCvjWnMbJCCGknMUO33Nri3LZ?=
+ =?us-ascii?Q?vbHp2qx0CZeF0C0EQp1YwpDbjHz/vcu6kJ70cRH6DXDg5FqTwZiqRcGQ0DwZ?=
+ =?us-ascii?Q?y195/2B0hGZWTGofEy/fPjv1XABBSIfXaJlypKkQ+xmLNRfp8ugjj0/3Cj7W?=
+ =?us-ascii?Q?OZ+T3MDmztZnLDMCE7WzX6Un8jgR5v9fiT5bQaLpCWjXtHm4v3pFWNnv4c7t?=
+ =?us-ascii?Q?Tqmsc7aDpZtsHoyIBr5WSfu61TqCSCGP/+vzud/Un0f0zd3G5ccCYNt7CGN9?=
+ =?us-ascii?Q?waE58QuNhzrSQ9IWSgsBv6NeRuDS5Rx9uQ54v8W3GzsSXbnEdPqHBduhFndV?=
+ =?us-ascii?Q?DSfnz00vnC6KmTW8eSdPDp6G2niKNHsuygN7ej85vT1fyU2aqBpJsjHpCK36?=
+ =?us-ascii?Q?rzHCbuc3UHIieTbSxl39A8mbqsAvxNTx0pY4An6rU7c6TE9ErUw2cs4eRYHA?=
+ =?us-ascii?Q?CTAI3CfDlNWS2X5WXtk4GfrAhWVAb+o4Twdkj4jaItpGbjKHOeYCkKIKBz6u?=
+ =?us-ascii?Q?tpOxV0m/e7c6BYC3eKvxPa6QOwb9XYMFhz3hELHgX1MZAhjNpOj2ZEabZlXT?=
+ =?us-ascii?Q?fTwfzQtzid4y0gHQzjPUXV6lbCyhzw+qWwA/BAIHxRkZ0fDGGSa9r1dKOehM?=
+ =?us-ascii?Q?YOzxJV/SYLkHY5d13iMHdqlvNIGi2SEa21IZB2lsn1EXcHAzhawvRXkImn2u?=
+ =?us-ascii?Q?1Gs4OpB/oCana2+lNc2NLymBvfULt/imD0ymui+Hiqm6ec0mpMlqTGoeOk6N?=
+ =?us-ascii?Q?OuFb8ecMQ+ZOmtA3np5ujU55eKjUIBFXMmZzEeyR1yFnTjU0qlgWW+eR6PQO?=
+ =?us-ascii?Q?tazSqemkq5799kimYZ2VW/+Z/BGu+HybV+Asg4951o8oXzN3StEvuW8Xv/Rs?=
+ =?us-ascii?Q?xVnJ0dKZ+kT+JcrvVT8Bozhh44DLD4sXkFv0nITx5ZXtm9ESIBpAU5n7JhQJ?=
+ =?us-ascii?Q?FeN+IW030mtGKC8H83YCoR9XR/yzjY6QxOA3rmGilPuJ5+QXruXhmv1k8y3L?=
+ =?us-ascii?Q?ff8J08L1zcordwEVMJfHx+SDDs6MobflhzuWUwBvhD4s0WrCPbf+F5oQPFP9?=
+ =?us-ascii?Q?7ovMlkRfu3ljwuNE7S631GAl2ftpuDWibUwsOiFWywZgIzN7AfuceOwJGljr?=
+ =?us-ascii?Q?+a23HxHN5gpa1yKMTvrtgkbAXOy+30uwp7mQcPUPzZM63Go1zFRu1bRuOCUF?=
+ =?us-ascii?Q?VSyJYXF1GmAEAkb5lQraJ36HQ/gtsx06swEbsYq9/d6FXIsRGmIBupb0AnUx?=
+ =?us-ascii?Q?xu/Iv3VmDxjirzt7aPNCJQIaPpSlyWY9aUp8rvAHKoaFKkieB5Nq/r/NNsDm?=
+ =?us-ascii?Q?IZXEum8l/Cgxegrt7TyCNDQnz9GpIrHN3/Unj2vhKPgh0LXuTpy44goj8YoW?=
+ =?us-ascii?Q?ghP9yQpOhggus3zU70f3RdkfraWfv8OOzRlPKxPxg5jtAoTv+AWTWojk6c7T?=
+ =?us-ascii?Q?jL9cDPLcLypIzYapOHsne/odiMELYViUX3yLJZexfYbj/tkAIULX1KzrZWYc?=
+ =?us-ascii?Q?TORIrVy/nsYUJf6NwQEoZyRg3tQpVbHE10YDSjHVdpT71hGu+E9Dl+aTjmQH?=
+ =?us-ascii?Q?GOpS7xrZ8w=3D=3D?=
+X-Exchange-RoutingPolicyChecked: i7CJLl0ejQ3pqNWpqlmg4aMQRN7foThCWDvij8anGir2kmh6McqcKgxDZo9PzZz931mlFxkDnMdcNvO1gF8+cA8RxY2CfrszqCFjStkYsHNbzWXTL4kunbkq2hwuN/xV7eGfGoZ2wxNszjQr3a8FdxDnaiW1ysyXg5WvrEH6JfLF7yFDE+ecEbyp1bWBy4cuOJmyOI86x/CwB3qpOCdbigTI8nOQGYIc75N53F2XMbcnafgwjgVUfIUk4O5Fc2+/rcUmm++9kvkVV10P4fLONYHm01qrwZ+ChqP150/I3Slcy0NfScZ08w+Pk+y0GZzUQgHU8kQiacxCLJJKvq0qqA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6071a587-b317-4e4b-3641-08df0d897c54
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPF69AE895C5.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2026 09:13:47.8917 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: KOFV+dAoIXXijaflQ7HeA+GQ7M7W+EgaiOYVQ3/KBEQyPLfDcg6/vK8EXMqyxdlGZtRdzX2g1F0OSh/OzWXpCg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7134
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,272 +159,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently, hsw_disable_pc8() calls intel_clock_gating_init() to restore
-clock gating after PC8+ exit.  This makes display call into core i915
-initialization, which in turn calls back into display code.
+On Tue, Sep 08, 2026 at 06:25:04AM +0300, Murthy, Arun R wrote:
+> 
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Imre
+> > Deak
+> > Sent: Monday, September 7, 2026 11:14 PM
+> > To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> > Cc: stable@vger.kernel.org
+> > Subject: [PATCH 1/2] drm/i915/dp_mst: Fix configuring FEC for a disconnected
+> > stream
+> > 
+> > During an atomic commit after all the MST stream CRTC state is computed the
+> > driver ensures that the FEC is configured the same way (enabled or
+> > disabled) for all the streams on a given MST topology's link.
+> > drm_dp_mst_port_downstream_of_parent() used to determine if a stream is
+> > downstream of an MST port will return false if the whole topology is
+> > disconnected, since in that case it can't verify that the port/ parent_port passed
+> > to it is in the given MST topology. This is a problem during the above FEC
+> > configuration check, since
+> > intel_dp_mst_check_dsc_change()->get_pipes_downstream_of_mst_ports()
+> > will not return all the stream CRTCs/pipes for the topology as expected.
+> > Since passing parent_port==NULL to get_pipes_downstream_of_mst_port()
+> > is meant to return all the streams for the given topology (i.e. mst_mgr) skip
+> > checking if an MST port is downstream of a parent port in this case.
+> > 
+> I already have a fix for this posted long back.
+> https://patchwork.freedesktop.org/series/168570/
 
-Add intel_display_restore_clock_gating() to restore display and PCH
-registers directly.  Split out the HSW/BDW GT/uncore programming and
-restore it through the display parent interface, preserving the
-existing workarounds without calling core clock gating initialization
-from display.
+I explained the problem of that patchset in:
+https://lore.kernel.org/all/ah60jJkzbbw25R-L@ideak-desk.lan
 
-Assisted-by: Copilot:claude-sonnet-5
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
- .../i915/display/intel_display_clock_gating.c |  7 ++++
- .../i915/display/intel_display_clock_gating.h |  1 +
- .../drm/i915/display/intel_display_power.c    |  7 +++-
- drivers/gpu/drm/i915/display/intel_parent.c   |  9 +++++
- drivers/gpu/drm/i915/display/intel_parent.h   |  3 ++
- drivers/gpu/drm/i915/i915_driver.c            |  1 +
- drivers/gpu/drm/i915/intel_clock_gating.c     | 37 ++++++++++++++++---
- drivers/gpu/drm/i915/intel_clock_gating.h     |  2 +
- drivers/gpu/drm/xe/Makefile                   |  1 +
- include/drm/intel/display_parent_interface.h  |  7 ++++
- 10 files changed, 67 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-index ef1ee72494df..6716c377ef93 100644
---- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-@@ -11,6 +11,7 @@
- #include "intel_display_clock_gating.h"
- #include "intel_display_core.h"
- #include "intel_display_regs.h"
-+#include "intel_pch.h"
- 
- static void intel_display_gen9_init_clock_gating(struct intel_display *display)
- {
-@@ -305,3 +306,9 @@ void intel_display_init_clock_gating(struct intel_display *display)
- 	else if (display->platform.i965gm)
- 		intel_display_i965gm_init_clock_gating(display);
- }
-+
-+void intel_display_restore_clock_gating(struct intel_display *display)
-+{
-+	intel_display_init_clock_gating(display);
-+	intel_pch_init_clock_gating(display);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-index dbfa5892cffe..074708a22436 100644
---- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-@@ -9,5 +9,6 @@
- struct intel_display;
- 
- void intel_display_init_clock_gating(struct intel_display *display);
-+void intel_display_restore_clock_gating(struct intel_display *display);
- 
- #endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 0ebec6e0c240..6e38cabc5581 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -12,7 +12,7 @@
- 
- #include "intel_backlight_regs.h"
- #include "intel_cdclk.h"
--#include "intel_clock_gating.h"
-+#include "intel_display_clock_gating.h"
- #include "intel_combo_phy.h"
- #include "intel_crtc.h"
- #include "intel_de.h"
-@@ -1588,7 +1588,10 @@ static void hsw_disable_pc8(struct intel_display *display)
- 	intel_init_pch_refclk(display);
- 
- 	/* Many display registers don't survive PC8+ */
--	intel_clock_gating_init(display->drm);
-+	intel_display_restore_clock_gating(display);
-+
-+	/* Some GT/uncore clock gating workarounds don't survive PC8+ either */
-+	intel_parent_clock_gating_restore_gt(display);
- }
- 
- static void intel_pch_reset_handshake(struct intel_display *display,
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index 99cebb17763a..d8c38f138396 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.c
-+++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -24,6 +24,15 @@
- #include "intel_display_core.h"
- #include "intel_parent.h"
- 
-+/* clock_gating */
-+void intel_parent_clock_gating_restore_gt(struct intel_display *display)
-+{
-+	if (drm_WARN_ON_ONCE(display->drm, !display->parent->clock_gating))
-+		return;
-+
-+	display->parent->clock_gating->restore_gt(display->drm);
-+}
-+
- /* dpt */
- struct intel_dpt *intel_parent_dpt_create(struct intel_display *display,
- 					  struct drm_gem_object *obj, size_t size)
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-index cc4a58f63166..db2272ad9be3 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.h
-+++ b/drivers/gpu/drm/i915/display/intel_parent.h
-@@ -22,6 +22,9 @@ struct intel_panic;
- struct intel_stolen_node;
- struct iosys_map;
- 
-+/* clock_gating */
-+void intel_parent_clock_gating_restore_gt(struct intel_display *display);
-+
- /* dpt */
- struct intel_dpt *intel_parent_dpt_create(struct intel_display *display,
- 					  struct drm_gem_object *obj, size_t size);
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index ce6d20958320..8da72cef63c9 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -745,6 +745,7 @@ static bool vgpu_active(struct drm_device *drm)
- 
- static const struct intel_display_parent_interface parent = {
- 	.bo = &i915_display_bo_interface,
-+	.clock_gating = &i915_display_clock_gating_interface,
- 	.dpt = &i915_display_dpt_interface,
- 	.dsb = &i915_display_dsb_interface,
- 	.fb_pin = &i915_display_fb_pin_interface,
-diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-index c5c4441f3a61..180cb5862016 100644
---- a/drivers/gpu/drm/i915/intel_clock_gating.c
-+++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-@@ -26,6 +26,7 @@
-  */
- 
- #include <drm/drm_print.h>
-+#include <drm/intel/display_parent_interface.h>
- #include <drm/intel/intel_gmd_interrupt_regs.h>
- #include <drm/intel/intel_gmd_misc_regs.h>
- #include <drm/intel/mchbar_regs.h>
-@@ -203,10 +204,8 @@ static void skl_init_clock_gating(struct drm_i915_private *i915)
- 	intel_display_init_clock_gating(i915->display);
- }
- 
--static void bdw_init_clock_gating(struct drm_i915_private *i915)
-+static void bdw_restore_gt_clock_gating(struct drm_i915_private *i915)
- {
--	intel_display_init_clock_gating(i915->display);
--
- 	/* WaSwitchSolVfFArbitrationPriority:bdw */
- 	intel_uncore_rmw(&i915->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
- 
-@@ -224,8 +223,6 @@ static void bdw_init_clock_gating(struct drm_i915_private *i915)
- 	/* WaProgramL3SqcReg1Default:bdw */
- 	gen8_set_l3sqc_credits(i915, 30, 2);
- 
--	intel_pch_init_clock_gating(i915->display);
--
- 	/* WaDisableDopClockGating:bdw
- 	 *
- 	 * Also see the CHICKEN2 write in bdw_init_workarounds() to disable DOP
-@@ -234,16 +231,30 @@ static void bdw_init_clock_gating(struct drm_i915_private *i915)
- 	intel_uncore_rmw(&i915->uncore, GEN6_UCGCTL1, 0, GEN6_EU_TCUNIT_CLOCK_GATE_DISABLE);
- }
- 
--static void hsw_init_clock_gating(struct drm_i915_private *i915)
-+static void bdw_init_clock_gating(struct drm_i915_private *i915)
- {
- 	intel_display_init_clock_gating(i915->display);
- 
-+	bdw_restore_gt_clock_gating(i915);
-+
-+	intel_pch_init_clock_gating(i915->display);
-+}
-+
-+static void hsw_restore_gt_clock_gating(struct drm_i915_private *i915)
-+{
- 	/* This is required by WaCatErrorRejectionIssue:hsw */
- 	intel_uncore_rmw(&i915->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
- 			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
- 
- 	/* WaSwitchSolVfFArbitrationPriority:hsw */
- 	intel_uncore_rmw(&i915->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
-+}
-+
-+static void hsw_init_clock_gating(struct drm_i915_private *i915)
-+{
-+	intel_display_init_clock_gating(i915->display);
-+
-+	hsw_restore_gt_clock_gating(i915);
- 
- 	intel_pch_init_clock_gating(i915->display);
- }
-@@ -448,6 +459,20 @@ void intel_clock_gating_init(struct drm_device *drm)
- 	i915->clock_gating_funcs->init_clock_gating(i915);
- }
- 
-+static void intel_clock_gating_restore_gt(struct drm_device *drm)
-+{
-+	struct drm_i915_private *i915 = to_i915(drm);
-+
-+	if (IS_BROADWELL(i915))
-+		bdw_restore_gt_clock_gating(i915);
-+	else if (IS_HASWELL(i915))
-+		hsw_restore_gt_clock_gating(i915);
-+}
-+
-+const struct intel_display_clock_gating_interface i915_display_clock_gating_interface = {
-+	.restore_gt = intel_clock_gating_restore_gt,
-+};
-+
- static void nop_init_clock_gating(struct drm_i915_private *i915)
- {
- 	drm_dbg_kms(&i915->drm,
-diff --git a/drivers/gpu/drm/i915/intel_clock_gating.h b/drivers/gpu/drm/i915/intel_clock_gating.h
-index 3a4b443d9b8b..5c0f7c91c4f7 100644
---- a/drivers/gpu/drm/i915/intel_clock_gating.h
-+++ b/drivers/gpu/drm/i915/intel_clock_gating.h
-@@ -11,4 +11,6 @@ struct drm_device;
- void intel_clock_gating_init(struct drm_device *drm);
- void intel_clock_gating_hooks_init(struct drm_device *drm);
- 
-+extern const struct intel_display_clock_gating_interface i915_display_clock_gating_interface;
-+
- #endif /* __INTEL_CLOCK_GATING_H__ */
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 67b8b5477639..7737fb27b259 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -260,6 +260,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_ddi_buf_trans.o \
- 	i915-display/intel_de.o \
- 	i915-display/intel_display.o \
-+	i915-display/intel_display_clock_gating.o \
- 	i915-display/intel_display_conversion.o \
- 	i915-display/intel_display_device.o \
- 	i915-display/intel_display_driver.o \
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index 5e44c022d1ae..c6638c108009 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -65,6 +65,10 @@ struct intel_display_bo_interface {
- #endif
- };
- 
-+struct intel_display_clock_gating_interface {
-+	void (*restore_gt)(struct drm_device *drm);
-+};
-+
- struct intel_display_dpt_interface {
- 	struct intel_dpt *(*create)(struct drm_gem_object *obj, size_t size);
- 	void (*destroy)(struct intel_dpt *dpt);
-@@ -250,6 +254,9 @@ struct intel_display_parent_interface {
- 	/** @bo: BO interface */
- 	const struct intel_display_bo_interface *bo;
- 
-+	/** @clock_gating: Clock gating interface. Optional. */
-+	const struct intel_display_clock_gating_interface *clock_gating;
-+
- 	/** @dpt: DPT interface. Optional. */
- 	const struct intel_display_dpt_interface *dpt;
- 
--- 
-2.53.0
-
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
+> > This fixes a problem where the FEC configuration check explained above failed
+> > to ensure that all streams' FEC is configured the same way if the topology was
+> > disconnected, leading to a FEC state mismatch error.
+> > 
+> > Cc: stable@vger.kernel.org # v6.10+
+> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16073
+> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16384
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > index 6a869d0f6ffc0..20766b6c0bcfa 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > @@ -856,7 +856,8 @@ static u8 get_pipes_downstream_of_mst_port(struct
+> > intel_atomic_state *state,
+> >  		if (&connector->mst.dp->mst.mgr != mst_mgr)
+> >  			continue;
+> > 
+> > -		if (connector->mst.port != parent_port &&
+> > +		if (parent_port &&
+> > +		    connector->mst.port != parent_port &&
+> >  		    !drm_dp_mst_port_downstream_of_parent(mst_mgr,
+> >  							  connector->mst.port,
+> >  							  parent_port))
+> > --
+> > 2.49.1
+> 
