@@ -4,42 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EE4BC79F82
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 12:05:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4924EC79F82
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 12:13:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8EC710EB92;
-	Tue,  8 Sep 2026 12:05:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="FxOAo69K";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6F2510EB92
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 12:04:59 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id D3CC860A9D;
- Tue,  8 Sep 2026 12:04:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D42F1F00A3A;
- Tue,  8 Sep 2026 12:04:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788869098;
- bh=xb6C/jQIYdeC8dtzmHUeoYtv6Qle4hjtQ6Uj2e1tMFI=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=FxOAo69Kqq7DrFtnSUqdIXNpWjyqR1hERp5zcY+MUD2FJsm9y68Ob/YpjpzSCwss6
- dZ6n4CPf5Z1vJ9I/rQ8rvMwwvM2bvagqfI9JPrnVit/Pw487PI8RNFyjJmN60XBc3w
- aXY8zxaKFtSnO9LSCy9VgDnmMdwr2gq7U0K7mnjB7IT/1vVciK/UG+B2pdNDsixgjO
- yzfKOwQQxl83ok9cNxearKAi/akeKisulfWT6B8zmWwCR2Jutw1w1bS3ckDTAItwgs
- CsYYnELlNoitijUWyyaa7UXyodQ5/UKC5R9Pqo4ZnUhiyMIqkYSpYdD09pF2I5LbZj
- YdfZzm8bJRdpg==
-From: sashiko-bot@kernel.org
-Subject: Re: [V3] drm/xe: Skip clearing purged page-table BOs
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC2D610EB9F;
+	Tue,  8 Sep 2026 12:13:46 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BF3910EB9F;
+ Tue,  8 Sep 2026 12:13:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7621085510170864755=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_reduce_?=
+ =?utf-8?q?clock=5Fgating_interface_between_core_and_display_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Luca Coelho" <luciano.coelho@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260908114545.915049-2-tejas.upadhyay@intel.com>
-References: <20260908114545.915049-2-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 08 Sep 2026 12:04:58 +0000
-Message-Id: <20260908120458.6D42F1F00A3A@smtp.kernel.org>
+Date: Tue, 08 Sep 2026 12:13:45 -0000
+Message-ID: <178886962549.134388.4771939693695900280@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260908090924.52117-1-luciano.coelho@intel.com>
+In-Reply-To: <20260908090924.52117-1-luciano.coelho@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,112 +36,304 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+--===============7621085510170864755==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-New issues:
-- [Critical] Early release of xe_svm_notifier_lock in xe_vm_close allows MM=
-U notifiers to unmap memory while GPU page tables are still valid, leading =
-to a physical memory use-after-free.
+== Series Details ==
 
-Pre-existing issues:
-- [High] Missing NULL check for pagetable BO `vmap` in `xe_pt_zap_ptes_entr=
-y` leads to a crash if the BO is purged.
---
+Series: drm/i915/display: reduce clock_gating interface between core and display (rev2)
+URL   : https://patchwork.freedesktop.org/series/172330/
+State : success
 
-commit 70efaa606c2633943ad2267dfc95c288525971af
-Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+== Summary ==
 
-drm/xe: Skip clearing purged page-table BOs
+CI Bug Log - changes from xe-5704-06602b51786b6c2a0f97e58f0e0f168be1ada27e_BAT -> xe-pw-172330v2_BAT
+====================================================
 
-VRAM page offlining can clear a page-table BO's vmap before VM teardown
-calls xe_pt_clear(). Check for a purged BO under its dma-resv lock before
-writing to the mapping.
+Summary
+-------
 
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index 5d990c1c3740a..426e8a29c755a 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-> @@ -236,9 +236,11 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, stru=
-ct llist_head *deferred)
->   */
->  void xe_pt_clear(struct xe_device *xe, struct xe_pt *pt)
->  {
-> -	struct iosys_map *map =3D &pt->bo->vmap;
-> +	struct xe_bo *bo =3D pt->bo;
-> =20
-> -	xe_map_memset(xe, map, 0, 0, SZ_4K);
-> +	xe_bo_assert_held(bo);
-> +	if (!iosys_map_is_null(&bo->vmap))
-> +		xe_map_memset(xe, &bo->vmap, 0, 0, SZ_4K);
->  }
+  **SUCCESS**
 
-[Severity: High]
-This isn't a bug introduced by this patch, but does xe_pt_zap_ptes_entry()
-in drivers/gpu/drm/xe/xe_pt.c have a similar regression with missing NULL
-checks for the pagetable BO vmap?
+  No regressions found.
 
-Looking at xe_pt_zap_ptes_entry(), it accesses &xe_child->bo->vmap without
-validating it:
+  
 
-	xe_map_memset(tile_to_xe(xe_walk->tile), &xe_child->bo->vmap,
-		      offset * sizeof(u64), 0,
-		      (end_offset - offset) * sizeof(u64));
+Participating hosts (13 -> 13)
+------------------------------
 
-This is reachable via xe_vm_invalidate_vma(), which only holds the user BO's
-dma_resv lock or the SVM notifier_lock as seen in xe_pt_zap_ptes():
+  No changes in participating hosts
 
-	else if (xe_vma_is_userptr(vma))
-		lockdep_assert_held(&xe_vma_vm(vma)->svm.gpusvm.notifier_lock);
+Known issues
+------------
 
-Since the page-table BO's dma_resv lock (the VM dma_resv lock) is not held,
-could a concurrent VRAM page offlining event purge the page-table BO
-and clear its vmap, leading to a NULL pointer dereference when
-xe_map_memset() executes?
+  Here are the changes found in xe-pw-172330v2_BAT that come from known issues:
 
-[ ... ]
+### IGT changes ###
 
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 9e71567b27cc7..e77ff3cf3ca38 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -1876,10 +1876,13 @@ static void xe_vm_close(struct xe_vm *vm)
->  	bound =3D drm_dev_enter(&xe->drm, &idx);
-> =20
->  	down_write(&vm->lock);
-> +	xe_vm_lock(vm, false);
-> +
->  	if (xe_vm_in_fault_mode(vm))
->  		xe_svm_notifier_lock(vm);
-> -
->  	vm->size =3D 0;
-> +	if (xe_vm_in_fault_mode(vm))
-> +		xe_svm_notifier_unlock(vm);
+#### Issues hit ####
 
-[Severity: Critical]
-Does moving xe_svm_notifier_unlock() here create a race condition with MMU
-notifiers?
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-lnl-1:          NOTRUN -> [SKIP][1] ([Intel XE#1466])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
 
-If xe_svm_notifier_unlock() is called here before the GPU page tables are
-cleared and the TLB is invalidated, a concurrent MMU notifier like
-xe_svm_invalidate() could execute.
+  * igt@kms_dsc@dsc-basic:
+    - bat-lnl-1:          NOTRUN -> [SKIP][2] ([Intel XE#8265])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@kms_dsc@dsc-basic.html
 
-Since vm->size is 0, xe_svm_invalidate() in drivers/gpu/drm/xe/xe_svm.c
-will check:
+  * igt@kms_force_connector_basic@force-connector-state:
+    - bat-lnl-1:          NOTRUN -> [SKIP][3] ([Intel XE#352]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@kms_force_connector_basic@force-connector-state.html
 
-	if (xe_vm_is_closed(vm))
-		goto range_notifier_event_end;
+  * igt@kms_hdmi_inject@inject-audio:
+    - bat-lnl-1:          NOTRUN -> [SKIP][4] ([Intel XE#1470] / [Intel XE#2853])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@kms_hdmi_inject@inject-audio.html
 
-This check evaluates to true, skipping the zapping of GPU page tables and
-allowing the physical memory to be freed prematurely. Could the GPU then
-still read and write to these freed physical pages (which might be
-reallocated to other processes) until xe_vm_close() finally clears the
-page tables?
+  * igt@sriov_basic@enable-vfs-autoprobe-on:
+    - bat-lnl-1:          NOTRUN -> [SKIP][5] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260908114545.9150=
-49-2-tejas.upadhyay@intel.com?part=3D1
+  * igt@xe_evict@evict-beng-small-cm:
+    - bat-lnl-1:          NOTRUN -> [SKIP][6] ([Intel XE#6540] / [Intel XE#688]) +11 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_evict@evict-beng-small-cm.html
+
+  * igt@xe_exec_balancer@no-exec-parallel-basic:
+    - bat-lnl-1:          NOTRUN -> [SKIP][7] ([Intel XE#7482]) +17 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_exec_balancer@no-exec-parallel-basic.html
+
+  * igt@xe_exec_multi_queue@priority:
+    - bat-lnl-1:          NOTRUN -> [SKIP][8] ([Intel XE#8364]) +13 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_exec_multi_queue@priority.html
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-lnl-1:          NOTRUN -> [SKIP][9] ([Intel XE#2229]) +2 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_live_ktest@xe_bo.html
+
+  * igt@xe_mmap@vram:
+    - bat-lnl-1:          NOTRUN -> [SKIP][10] ([Intel XE#1416])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-lnl-1:          NOTRUN -> [SKIP][11] ([Intel XE#1420] / [Intel XE#2838] / [Intel XE#7590])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-lnl-1:          NOTRUN -> [SKIP][12] ([Intel XE#7590] / [Intel XE#977])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-lnl-1:          NOTRUN -> [SKIP][13] ([Intel XE#7590] / [Intel XE#979])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_pat@pat-index-xelpg.html
+
+  * igt@xe_sriov_flr@flr-vf1-clear:
+    - bat-lnl-1:          NOTRUN -> [SKIP][14] ([Intel XE#3342])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_sriov_flr@flr-vf1-clear.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-ptl-2:          [FAIL][15] ([Intel XE#9109]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5704-06602b51786b6c2a0f97e58f0e0f168be1ada27e/bat-ptl-2/igt@xe_waitfence@engine.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-ptl-2/igt@xe_waitfence@engine.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-ptl-2:          [FAIL][17] ([Intel XE#9115]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5704-06602b51786b6c2a0f97e58f0e0f168be1ada27e/bat-ptl-2/igt@xe_waitfence@reltime.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-ptl-2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
+  [Intel XE#1416]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#1466]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466
+  [Intel XE#1470]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
+  [Intel XE#2853]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853
+  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
+  [Intel XE#352]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/352
+  [Intel XE#6540]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6540
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
+  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
+  [Intel XE#8265]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265
+  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
+  [Intel XE#9109]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109
+  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+
+
+Build changes
+-------------
+
+  * Linux: xe-5704-06602b51786b6c2a0f97e58f0e0f168be1ada27e -> xe-pw-172330v2
+
+  IGT_9085: 9085
+  xe-5704-06602b51786b6c2a0f97e58f0e0f168be1ada27e: 06602b51786b6c2a0f97e58f0e0f168be1ada27e
+  xe-pw-172330v2: 172330v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/index.html
+
+--===============7621085510170864755==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: reduce clock_gating interface between core and display (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172330/">https://patchwork.freedesktop.org/series/172330/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5704-06602b51786b6c2a0f97e58f0e0f168be1ada27e_BAT -&gt; xe-pw-172330v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-172330v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1466">Intel XE#1466</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265">Intel XE#8265</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@kms_force_connector_basic@force-connector-state.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/352">Intel XE#352</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470">Intel XE#1470</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853">Intel XE#2853</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-beng-small-cm:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6540">Intel XE#6540</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +11 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_balancer@no-exec-parallel-basic:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_exec_balancer@no-exec-parallel-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@priority:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_exec_multi_queue@priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416">Intel XE#1416</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
+<ul>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-lnl-1/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5704-06602b51786b6c2a0f97e58f0e0f168be1ada27e/bat-ptl-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109">Intel XE#9109</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-ptl-2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5704-06602b51786b6c2a0f97e58f0e0f168be1ada27e/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172330v2/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5704-06602b51786b6c2a0f97e58f0e0f168be1ada27e -&gt; xe-pw-172330v2</li>
+</ul>
+<p>IGT_9085: 9085<br />
+  xe-5704-06602b51786b6c2a0f97e58f0e0f168be1ada27e: 06602b51786b6c2a0f97e58f0e0f168be1ada27e<br />
+  xe-pw-172330v2: 172330v2</p>
+
+</body>
+</html>
+
+--===============7621085510170864755==--
