@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B893AC79FA1
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:28:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A052C79F82
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:28:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69A5B10EB1D;
-	Tue,  8 Sep 2026 10:28:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAEF710EB1F;
+	Tue,  8 Sep 2026 10:28:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bbpuIC13";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Jr+TKdDH";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAF4210EB1D
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:28:34 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 037E410EB1F
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:28:50 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 2FB9660A9F;
- Tue,  8 Sep 2026 10:28:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBE7E1F00A3A;
- Tue,  8 Sep 2026 10:28:33 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id C261E40DB4;
+ Tue,  8 Sep 2026 10:28:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 851771F00A3A;
+ Tue,  8 Sep 2026 10:28:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788863313;
- bh=kW7Dl4fY5P0nthChvL5kWT4nBxEaT0QO+nTI5GtjiH4=;
+ s=k20260515; t=1788863329;
+ bh=UrUQcIJdHCiYKANRhi/rTz2q0a4CVWvqGwgufLBC3/w=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=bbpuIC13776/mANJTi8bRSJH0HufKTZMNItFzql2d2ZKT8SpN2rZmCLiaJ0NRwIKH
- SbOQsrzQglanZOZnmKeWTsklB0vht6KpVrZtlp+BN1XMdbZZvqmw8eixhqRHJd991T
- D3uT8Mzhigy7oduQbXLctlOzLUkzfrG0Jo0Hch9axD5cpHTgFAuZdRpjvSGCQvWV4Q
- Gxkg2wBUop5d4c73BBt1ICzkxzFaIBjEQKL78lHOuyc/XHpn9K8StzRB1u91+kQBPH
- gmI29odSQ+GIZkzumQXnidvwg+gej6wXs5GIA2jnFay1J+UKbINRYdK1cKw77QiaPb
- YtClF7DZL6+tA==
+ b=Jr+TKdDHOui76wuMi5I5u9ttjaAY1GNic4qbda75IgRHaKMNeIa0Oa9NqtZT0c/Ff
+ ypPhDW7U1Fn7t3Af3VGlThZ2t/vxG94q3BzPvwPoCXdeujAw8SP1ePgV5nztr4sEeO
+ fGMJt2xj6R7KPv6mls1coL301vgR33abxy/uH7rtcsrUbGfBjIkBLcJpjGM68r1j9R
+ DBchnLawf6dzOwP9ZLHPkEWSXc7lA3aVJR9OF8bOW9jNxGqSHRzhL1pzkvt32FpaYi
+ LxKOpDiLt7d9ta741mKcTNhI6qIg00m7FuZ5RD8brvdtmgKfycMtlnYlIHaFgqXwnv
+ fqsmg0TEHnKGA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 05/13] drm/xe/memirq: Report errors using structured
- xe_log API
+Subject: Re: [PATCH v2 10/13] drm/xe/pci: Report unknown GMDID versions
+ using structured xe_log API
 To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260908101849.1219614-6-dnyaneshwar.bhadane@intel.com>
+In-Reply-To: <20260908101849.1219614-11-dnyaneshwar.bhadane@intel.com>
 References: <20260908101849.1219614-1-dnyaneshwar.bhadane@intel.com>
- <20260908101849.1219614-6-dnyaneshwar.bhadane@intel.com>
+ <20260908101849.1219614-11-dnyaneshwar.bhadane@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 08 Sep 2026 10:28:33 +0000
-Message-Id: <20260908102833.BBE7E1F00A3A@smtp.kernel.org>
+Date: Tue, 08 Sep 2026 10:28:49 +0000
+Message-Id: <20260908102849.851771F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,44 +59,61 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Low] The `memirq_err` macro definition was left behind as dead code afte=
-r all of its usages were replaced.
+- [Medium] The patch uses the 'REGS' component tag instead of the 'GT' tag =
+claimed in the commit message.
 --
 
-commit 391745f6a990d1f601917ad8a478f9eb84f04e45
+commit 5fd6d40222829ad569de8cdf73c334a89531ce68
 Author: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-drm/xe/memirq: Report errors using structured xe_log API
+drm/xe/pci: Report unknown GMDID versions using structured xe_log API
 
-Replace memirq_err() calls with xe_log_err() using the MEMIRQ
-component tag for memory-based IRQ failures
+This commit updates the GMDID handling code to replace drm_err() with the
+structured xe_log_err() function when hardware reports unrecognized graphics
+or media IP versions.
 
-> diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memir=
-q.c
-> index 9dfe965cb46ec..32b9f87a10ecf 100644
-> --- a/drivers/gpu/drm/xe/xe_memirq.c
-> +++ b/drivers/gpu/drm/xe/xe_memirq.c
-> @@ -232,7 +233,7 @@ static int memirq_alloc_pages(struct xe_memirq *memir=
-q)
->  	return 0;
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -718,8 +718,9 @@ static int handle_gmdid(struct xe_device *xe,
 > =20
->  out:
-> -	memirq_err(memirq, "Failed to allocate memirq page (%pe)\n", ERR_PTR(er=
-r));
-> +	xe_log_err(tile, MEMIRQ, err, "Failed to allocate memirq page\n");
->  	return err;
->  }
+>  	*graphics_ip =3D find_graphics_ip(ver);
+>  	if (!*graphics_ip) {
+> -		drm_err(&xe->drm, "Hardware reports unknown graphics version %u.%02u\n=
+",
+> -			ver / 100, ver % 100);
+> +		xe_log_err(xe, REGS, -EINVAL,
+> +			   "Hardware reports unknown graphics version %u.%02u\n",
+> +			   ver / 100, ver % 100);
 
-[Severity: Low]
-Should the memirq_err() macro definition also be removed?
+[Severity: Medium]
+The commit message states this replaces drm_err() with xe_log_err() "using
+the GT component tag". However, handle_gmdid() uses the REGS tag here.
+Should this use the GT tag as described in the commit message, or is REGS
+the intended tag for this log?
 
-Since this patch replaced all of its usages, the macro definition at the top
-of drivers/gpu/drm/xe/xe_memirq.c is left behind as unused dead code:
+>  	}
+> =20
+>  	ret =3D read_gmdid(xe, GMDID_MEDIA, &ver, media_revid);
+> @@ -732,8 +733,9 @@ static int handle_gmdid(struct xe_device *xe,
+> =20
+>  	*media_ip =3D find_media_ip(ver);
+>  	if (!*media_ip) {
+> -		drm_err(&xe->drm, "Hardware reports unknown media version %u.%02u\n",
+> -			ver / 100, ver % 100);
+> +		xe_log_err(xe, REGS, -EINVAL,
+> +			   "Hardware reports unknown media version %u.%02u\n",
+> +			   ver / 100, ver % 100);
 
-#define memirq_err(m, _fmt, ...)	memirq_printk(m, err, _fmt, ##__VA_ARGS__)
+[Severity: Medium]
+Similarly, this uses the REGS tag for the unknown media version error. Does
+this also need to be updated to use the GT tag to match the commit
+description?
 
-[ ... ]
+>  	}
+> =20
+>  	return 0;
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260908101849.1219=
-614-1-dnyaneshwar.bhadane@intel.com?part=3D5
+614-1-dnyaneshwar.bhadane@intel.com?part=3D10
