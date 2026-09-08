@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18F26C79F99
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Sep 2026 23:55:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE2FFC79F99
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 00:01:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54DC310E516;
-	Mon,  7 Sep 2026 23:55:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GpnA0YbO";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8061A10E07E;
- Mon,  7 Sep 2026 23:55:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788825329; x=1820361329;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=IXxN/Q2r+lids8V4kL1tlzzu7NcTV+57RaGth+rzIIc=;
- b=GpnA0YbO7BLrNITPCHZbyWWtOmuQWvCI/05z2wERB2jXqPeEcefqPlmp
- WY1Kv3TGa5obxb8ileUnAWAMuJg/qVcVpyfriI2y9z4Fo1qsjGsfrSPow
- VfnN0C+TbS1v+/ycWP1YVaSQqcIjCTqo7i8klRuFjHuFDSRero9WmN5OG
- mZd3VVdtK/C03PTcLt4zjqmdiZEmCV9YpodQur1EB1j0DIuhalE4q9lRn
- nhrBMMWwl+9ZgUPXDkM5IBa53DKMDfkwgZVLKr8EsUKQsqt86+lcC5skv
- ERHHiactWrYEerWJFRFG9AaHpFRoILXB/90QDLfFFBv5aY9IuKmg3dGk5 w==;
-X-CSE-ConnectionGUID: D0ad9sa/TfWneiYaSSpMCQ==
-X-CSE-MsgGUID: 1YPZdr69Ql6LEKKuGPC7mQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="100380283"
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="100380283"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2026 16:55:28 -0700
-X-CSE-ConnectionGUID: y7hjhfq4SYGC+STNCRugEA==
-X-CSE-MsgGUID: i/ndgK/vReeAUxruZ0qKcQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="272765419"
-Received: from aalteres-desk1.fm.intel.com ([10.121.64.173])
- by fmviesa004.fm.intel.com with ESMTP; 07 Sep 2026 16:55:27 -0700
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- dri-devel@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH] drm/xe/mmio: Fix xe_mmio_wait32() to honor delay/sleep
- maximums
-Date: Mon,  7 Sep 2026 16:55:23 -0700
-Message-ID: <20260907235524.7807-2-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AD1710E516;
+	Tue,  8 Sep 2026 00:01:49 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1A5410E07E;
+ Tue,  8 Sep 2026 00:01:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/mmio=3A_Fix_xe=5Fm?=
+ =?utf-8?q?mio=5Fwait32=28=29_to_honor_delay/sleep_maximums?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 08 Sep 2026 00:01:47 -0000
+Message-ID: <178882570791.130176.9041123374618370559@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260907235524.7807-2-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20260907235524.7807-2-alan.previn.teres.alexis@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,56 +36,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Check for overflow in udelay/usleep_range use in __xe_mmio_wait32
-and pick the correct helper accordingly. Fix sign-overflow and avoid
-growing delays becoming intollerably large by capping the in-loop
-wait time. Simplify sleep_min assignment by removing redundant cast.
+== Series Details ==
 
-Fixes: 5c09bd6ccd41 ("drm/xe/mmio: Move xe_mmio_wait32() to xe_mmio.c")
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-Assisted-by: Github-Copilot:Claude-Sonnet-4-6
----
- drivers/gpu/drm/xe/xe_mmio.c | 22 +++++++++++++++++-----
- 1 file changed, 17 insertions(+), 5 deletions(-)
+Series: drm/xe/mmio: Fix xe_mmio_wait32() to honor delay/sleep maximums
+URL   : https://patchwork.freedesktop.org/series/173538/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 7fa18dfcb5a2..cf2e05aaa4b2 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -349,11 +349,23 @@ static int __xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u
- 		if (ktime_after(ktime_add_us(cur, wait), end))
- 			wait = ktime_us_delta(end, cur);
- 
--		if (atomic)
--			udelay(wait);
--		else
--			usleep_range(wait, wait << 1);
--		wait <<= 1;
-+#define __XE_MMIO_WAIT_MAX_INLOOP_TIME (100 * USEC_PER_MSEC)
-+		if (atomic) {
-+			if (wait <= MAX_UDELAY_MS * USEC_PER_MSEC)
-+				udelay(wait);
-+			else
-+				mdelay(DIV_ROUND_UP(wait, USEC_PER_MSEC));
-+		} else {
-+			usleep_range(wait, __XE_MMIO_WAIT_MAX_INLOOP_TIME);
-+		}
-+		/*
-+		 * As we keep doubling the wait time for every check that fails, cap the
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d875049d2b299159a272bd5151994970cdcd1e31
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 97a8e6feb3e21390c7900fca82370d2d251e5eaa
+Author: Alan Previn <alan.previn.teres.alexis@intel.com>
+Date:   Mon Sep 7 16:55:23 2026 -0700
+
+    drm/xe/mmio: Fix xe_mmio_wait32() to honor delay/sleep maximums
+    
+    Check for overflow in udelay/usleep_range use in __xe_mmio_wait32
+    and pick the correct helper accordingly. Fix sign-overflow and avoid
+    growing delays becoming intollerably large by capping the in-loop
+    wait time. Simplify sleep_min assignment by removing redundant cast.
+    
+    Fixes: 5c09bd6ccd41 ("drm/xe/mmio: Move xe_mmio_wait32() to xe_mmio.c")
+    Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+    Assisted-by: Github-Copilot:Claude-Sonnet-4-6
++ /mt/dim checkpatch 303ba83101bce8edfa88f91dc82d2697f596c095 drm-intel
+97a8e6feb3e2 drm/xe/mmio: Fix xe_mmio_wait32() to honor delay/sleep maximums
+-:40: WARNING:TYPO_SPELLING: 'miliseconds' may be misspelled - perhaps 'milliseconds'?
+#40: FILE: drivers/gpu/drm/xe/xe_mmio.c:363:
 +		 * in-loop delay-or-sleep to less than 2x 100 miliseconds to prevent from
-+		 * expanding 'wait' into exponentially longer wait times per loop that
-+		 * end up delaying the next completion check way later than tolerable.
-+		 */
-+		wait = wait < __XE_MMIO_WAIT_MAX_INLOOP_TIME >> 1 ?
-+		       wait << 1 : __XE_MMIO_WAIT_MAX_INLOOP_TIME;
- 	}
- 
- 	if (ret != 0) {
+ 		                                              ^^^^^^^^^^^
 
-base-commit: 71bc3b7cc55631a9b3807da98e2b2880838b9623
--- 
-2.43.0
+total: 0 errors, 1 warnings, 0 checks, 28 lines checked
+
 
