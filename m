@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F63CC79F82
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 08:58:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3D26C79FA0
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 09:00:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0D0B10E96D;
-	Tue,  8 Sep 2026 08:58:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40A0810EAA4;
+	Tue,  8 Sep 2026 09:00:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="O6WZZ5om";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="NJQ1BAWj";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CF1810E81A;
- Tue,  8 Sep 2026 08:58:41 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77FB810EA0F;
+ Tue,  8 Sep 2026 09:00:51 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id D5B8A601DB;
- Tue,  8 Sep 2026 08:58:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57CFB1F00A3D;
- Tue,  8 Sep 2026 08:58:40 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 501FB40B15;
+ Tue,  8 Sep 2026 09:00:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC6441F00A3A;
+ Tue,  8 Sep 2026 09:00:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788857920;
- bh=aH26wH+fJnU5hoJxue/sRsPR364h/BpWw8xFR/sa41c=;
+ s=k20260515; t=1788858051;
+ bh=a8Ltia0GByPxgdoSJvLhktlFCPb5qC9/gzdL1/p1hgA=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=O6WZZ5omvqycjzOrmuQtRTSL44Vwxx6ma94i6qr3G//x3LriJ/aXdvH9FWKZusk7b
- I1M2b53+vZkdvxTxWAIL93f/v6tyncT9sFy7R0+swQqLEfqyswyRszeP8Uz2k877p1
- zBp2GstyI8qgF+t2ns9vQTXh0hWRBB8XzpnlYbL67g7EiEKHhuHdF0dqkOfDzG0rbt
- sTC2rSCJADrd86ONW6vRf21OIHxphaeUDLQAolna0OXMxMEcVZ3rGJRudZpHcj9WcY
- EQNFvOEu9sT3fZfzXM7zDjqWcew2rc+SPai8yKuLyp6c9cJwlSQqkOr4efw6xIqSMO
- K5wgGsEnbmcxw==
+ b=NJQ1BAWjrfP4ZIg1TWuQMpTWGWwiaYfwRFWKbt3DeIZc8ucbt7LKriV3qieaxLnTf
+ Yp6jE9JLx+3F8qsXYzjKrDx2JoCfMsGFhlZ/gZu7GsTMkXuqYE02T2vvvc485BP6gZ
+ mRm3qOVnNmsiHQ4ThSyJaAhP5Lgr4jw4Rs+UXb3f+WQUIr9YBpzdPvsZT/QvfY29iO
+ P7PPDotAzvoiA6K1zPe5zfd7cQ7rJuAT0wh2o+CF0X4jdHQt6qNA14STgG1cD7Pc0T
+ ych2DVgfum0nTaDb34NNmSOzkLqKsWDRonyrC9d9mDmRsZcN8D/iwArOo3VFtFcQd7
+ m6QaSRaqMHL3g==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v8 1/3] drm: Add drm_work_fence helper
+Subject: Re: [PATCH v8 3/3] drm/xe: Convert xe_user_fence to drm_user_fence
 To: "Srinivasan Shanmugam" <srinivasan.shanmugam@amd.com>
 Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20260908084627.352535-2-srinivasan.shanmugam@amd.com>
+In-Reply-To: <20260908084627.352535-4-srinivasan.shanmugam@amd.com>
 References: <20260908084627.352535-1-srinivasan.shanmugam@amd.com>
- <20260908084627.352535-2-srinivasan.shanmugam@amd.com>
+ <20260908084627.352535-4-srinivasan.shanmugam@amd.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 08 Sep 2026 08:58:39 +0000
-Message-Id: <20260908085840.57CFB1F00A3D@smtp.kernel.org>
+Date: Tue, 08 Sep 2026 09:00:50 +0000
+Message-Id: <20260908090050.BC6441F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,107 +56,109 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Critical] Race conditions in dma-fence signaling and callback addition a=
-llow deferred work to be queued after cancellation completes, leading to Us=
-e-After-Free.
+
+New issues:
+- [High] Missing memory barrier allows visibility inversion between the use=
+r fence value and the signalled flag.
+
+Pre-existing issues:
+- [High] Denial of Service (DoS) due to indefinitely blocking `copy_to_user=
+` stalling the device-wide ordered workqueue.
 --
 
-commit 43b8d6b8cd3ff463894478af19fe890e4879d181
+commit a3a566db4faca9c6c8375b3c0711ddb1c2742bca
 Author: Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>
-Subject: drm: Add drm_work_fence helper
+Subject: drm/xe: Convert xe_user_fence to drm_user_fence
 
-GPU drivers often need to queue work when a dma-fence signals
-because certain operations (copy_to_user, eventfd_signal, memory
-allocation) cannot run in IRQ context. This helper handles the
-dma-fence-callback-to-workqueue pattern.
+This commit replaces the open-coded user fence implementation in the xe dri=
+ver
+with the new common drm_user_fence helper. It wraps the new helper in
+xe_user_fence and moves the worker and callback logic to the provided
+writeback and destroy ops.
 
-> diff --git a/drivers/gpu/drm/drm_work_fence.c b/drivers/gpu/drm/drm_work_=
-fence.c
-> index 0000000000000..ac66ba129ffff
-> --- /dev/null
-> +++ b/drivers/gpu/drm/drm_work_fence.c
+> diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+> index 37866768d64c2..c0e720cf579ac 100644
+> --- a/drivers/gpu/drm/xe/xe_sync.c
+> +++ b/drivers/gpu/drm/xe/xe_sync.c
 [ ... ]
-> +static void drm_work_fence_cb(struct dma_fence *fence, struct dma_fence_=
-cb *cb)
-> +{
-> +	struct drm_work_fence *wfence =3D
-> +		container_of(cb, struct drm_work_fence, cb);
-> +
-> +	drm_work_fence_queue(wfence);
-> +	/* Single ref: wfence->fence released in drm_work_fence_destroy(). */
-> +}
+> +static void xe_ufence_worker(struct drm_user_fence *base, bool mm_ok)
+>  {
+> +	struct xe_user_fence *ufence =3D container_of(base, struct xe_user_fenc=
+e, base);
+> =20
+> -	mmdrop(ufence->mm);
+> -	kfree(ufence);
+> -}
+> +	/*
+> +	 * Mark signalled before the userspace write so that if userspace
+> +	 * observes the written value and immediately issues a VM unmap,
+> +	 * check_ufence() will see signalled=3D1 and not return -EBUSY.
+> +	 *
+> +	 * NOTE: copy_to_user() may block if userspace backs the address with
+> +	 * userfaultfd or FUSE. Drivers requiring non-blocking semantics should
+> +	 * use a dedicated workqueue instead of xe->ordered_wq.
+> +	 */
+> +	WRITE_ONCE(ufence->signalled, 1);
+> =20
+> -static void user_fence_get(struct xe_user_fence *ufence)
+> -{
+> -	kref_get(&ufence->refcount);
+> +	if (mm_ok) {
+> +		if (copy_to_user(ufence->addr, &ufence->value,
+> +				 sizeof(ufence->value)))
 
-[Severity: Critical]
-Does this callback execution leave a race window?
+[Severity: High]
+Does this missing memory barrier allow visibility inversion?
 
-The callback in drm_work_fence_cb() executes asynchronously. Between its
-execution and the call to queue_work(), there appears to be no state indica=
-ting
-to cancel_work_sync() that the work is active.
+In xe_ufence_worker(), WRITE_ONCE(ufence->signalled, 1) is called before
+copy_to_user(). If a weakly ordered CPU (like ARM64) reorders these stores,
+could userspace observe the new value in memory and issue a VM unmap ioctl
+before the signalled flag is globally visible?
 
+The previous implementation relied on the implicit full memory barrier of
+mmget_not_zero() between these two operations, but this refactoring moved
+that check before the worker executes. Should there be an smp_wmb() between
+the WRITE_ONCE() and copy_to_user() calls to prevent spurious -EBUSY
+failures in the VM unmap path?
+
+> +			drm_dbg(&ufence->xe->drm,
+> +				"copy_to_user failed, user fence wasn't signaled\n");
+> +	} else {
+> +		drm_dbg(&ufence->xe->drm,
+> +			"mmget_not_zero() failed, ufence wasn't signaled\n");
+> +	}
 [ ... ]
-> +int drm_work_fence_add_callback(struct drm_work_fence *wfence,
-> +				struct dma_fence *fence)
-> +{
-> +	int err;
-> +
-> +	drm_work_fence_get(wfence);
-> +	wfence->fence =3D fence;	/* transfer caller's ref =E2=80=94 single ref,=
- no get */
-> +
-> +	err =3D dma_fence_add_callback(fence, &wfence->cb, drm_work_fence_cb);
-> +	if (err =3D=3D -ENOENT) {
-> +		drm_work_fence_queue(wfence);
-> +		err =3D 0;
+> -	ufence->xe =3D xe;
+> -	kref_init(&ufence->refcount);
+> -	ufence->addr =3D ptr;
+> +	ufence->xe    =3D xe;
+> +	ufence->addr  =3D ptr;
+>  	ufence->value =3D value;
+> -	ufence->mm =3D current->mm;
+> -	mmgrab(ufence->mm);
+> +	drm_user_fence_init(&ufence->base, xe->ordered_wq, &xe_ufence_ops);
 
-[Severity: Critical]
-Does this -ENOENT fast path also contain the same race window?
+[Severity: High]
+This is a pre-existing issue, but can this indefinitely blocking userspace
+memory access stall the device-wide ordered workqueue?
 
-If drm_work_fence_cancel_sync() is called by a teardown thread just before
-drm_work_fence_queue() is executed here, it seems cancel_work_sync() could
-fail to wait for the work to finish.
+If an unprivileged userspace application maps a memory region with
+userfaultfd, submits a user fence operation pointing to this region, and
+refuses to resolve the fault, copy_to_user() will block indefinitely.
 
+Since the worker is initialized with xe->ordered_wq, this could permanently
+stall the single-threaded workqueue used for critical device-wide operations
+like GT resets, TDRs, and compute mode preempt rebinds, leading to a denial
+of service.
+
+> =20
+>  	return ufence;
+>  }
+> =20
 [ ... ]
-> +void drm_work_fence_cancel_sync(struct drm_work_fence *wfence)
-> +{
-> +	if (drm_work_fence_cancel(wfence))
-> +		return;
-> +	if (cancel_work_sync(&wfence->work))
-> +		drm_work_fence_put(wfence);
-> +}
-
-[Severity: Critical]
-Could this logic lead to a use-after-free regression during teardown?
-
-This function seems to assume that if the callback is not in the list, eith=
-er
-the work is already pending/running, or the work has finished. It appears to
-ignore the window where the work is about to be queued but is not yet pendi=
-ng.
-
-Can this sequence occur when an unprivileged userspace application concurre=
-ntly
-signals a fence and destroys the context?
-
-CPU1 (signaling thread or -ENOENT path)
-Removes callback from the list, then executes drm_work_fence_cb() but is
-preempted before calling queue_work().
-
-CPU2 (teardown thread) sees this in drm_work_fence_cancel_sync():
-    if (drm_work_fence_cancel(wfence))
-        // Returns false because callback is not in the list
-
-    if (cancel_work_sync(&wfence->work))
-        // Returns false immediately because work hasn't been queued yet
-
-Function returns, allowing the driver to tear down resources.
-
-CPU1 resumes:
-Calls queue_work(), and the worker executes, accessing the freed driver
-resources.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260908084627.3525=
-35-1-srinivasan.shanmugam@amd.com?part=3D1
+35-1-srinivasan.shanmugam@amd.com?part=3D3
