@@ -4,43 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99BA0C79F99
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 17:23:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D914C79F99
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 17:36:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4168C10E339;
-	Tue,  8 Sep 2026 17:23:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nrT+sZxT";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E66310E339
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 17:23:38 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 2D73443833;
- Tue,  8 Sep 2026 17:23:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E78F41F00A3A;
- Tue,  8 Sep 2026 17:23:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788888218;
- bh=ELlGTlCBgu+T97s67mBoz6fRP5fTjOY+nLNMib4Xwjs=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=nrT+sZxTmFpG+3pKp3mPdIo7ly/MnXB7jCveb2bPegCT8AY4v97Vm+IKsBbC8WawH
- opbm8i9k4PwikGbcG6UlpsiOzKDi+wntf+Rn2P9+nRQ5GRfhdkRBkpNRC2rIMEUVmG
- E3+yPId+zkPyZatoGqHixsEEClmu/9Kr4HlOYBExHIZqwI1NB2/EnZwgGv9XnD9MV6
- BdXIQK2bILz92um/g/la3IzfBY1FVWeBP76GXLWErt8Pw24FPcQjWNRo5GMKWhX9WS
- OAzvEsOHkJxqctw7hkWZTKToS3JzwSWEgVcDZ+m43z8LUZIHVw19+PxIhQHQ2nvUKn
- V8l7P3F7UE9LQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 8/8] drm/xe: convert PCI barrier mmap to use xe_mmio_gem
-To: "Matthew Auld" <matthew.auld@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E02C110E148;
+	Tue,  8 Sep 2026 17:36:21 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D344110E148;
+ Tue,  8 Sep 2026 17:36:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5320261803507473624=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/mmio=5Fgem=3A_fix_fa?=
+ =?utf-8?q?ult_handler_and_destroy_path_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Levi, Ilia" <ilia.levi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260908165046.1393557-18-matthew.auld@intel.com>
+Date: Tue, 08 Sep 2026 17:36:19 -0000
+Message-ID: <178888897985.137411.2598015514297208248@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260908165046.1393557-10-matthew.auld@intel.com>
- <20260908165046.1393557-18-matthew.auld@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 08 Sep 2026 17:23:37 +0000
-Message-Id: <20260908172337.E78F41F00A3A@smtp.kernel.org>
+In-Reply-To: <20260908165046.1393557-10-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,77 +36,170 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] The conversion to generic `xe_mmio_gem_mmap` drops the read access=
- restrictions for the PCI barrier, allowing unprivileged userspace to map t=
-he write-only PCIe doorbell with `PROT_READ`.
---
+--===============5320261803507473624==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit ef90a93714d00fe81619728388f0697e023978dd
-Author: Matthew Auld <matthew.auld@intel.com>
+== Series Details ==
 
-drm/xe: convert PCI barrier mmap to use xe_mmio_gem
+Series: drm/xe/mmio_gem: fix fault handler and destroy path (rev5)
+URL   : https://patchwork.freedesktop.org/series/167217/
+State : success
 
-This commit converts the PCI barrier mmap to use xe_mmio_gem, which
-replaces the hard-coded fake offset design and removes duplicate code.
-Userspace still queries the fake offset as before, but it is now managed
-by the generic component.
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-[ ... ]
-> @@ -3664,6 +3665,39 @@ int xe_gem_create_ioctl(struct drm_device *dev, vo=
-id *data,
->  	return err;
->  }
-> =20
-> +static int xe_gem_pci_barrier_mmap_offset(struct xe_device *xe, struct d=
-rm_file *file,
-> +					  struct drm_xe_gem_mmap_offset *args)
-> +{
-[ ... ]
-> +		if (!*barrier) {
-> +			phys_addr_t phys_addr;
-> +
-> +#define LAST_DB_PAGE_OFFSET 0x7ff000
-> +			phys_addr =3D pci_resource_start(to_pci_dev(xe->drm.dev), 0) +
-> +				LAST_DB_PAGE_OFFSET;
-> +			*barrier =3D xe_mmio_gem_create(xe, file, phys_addr, SZ_4K);
+CI Bug Log - changes from xe-5708-c55e420034fcb99888f58a88eb64f1e81ec189a4_BAT -> xe-pw-167217v5_BAT
+====================================================
 
-[Severity: High]
-Does the conversion to the generic xe_mmio_gem framework drop the read
-access restrictions for the PCI barrier?
+Summary
+-------
 
-The original xe_pci_barrier_mmap handler explicitly checked and rejected
-read access before it was removed in this patch:
+  **SUCCESS**
 
-xe_pci_barrier_mmap() {
-        ...
-        if (vma->vm_flags & (VM_READ | VM_EXEC))
-                return -EINVAL;
+  No regressions found.
 
-        vm_flags_clear(vma, VM_MAYREAD | VM_MAYEXEC);
-        ...
-}
+  
 
-Without this protection, unprivileged userspace might be able to map the
-write-only PCIe doorbell with PROT_READ. If userspace issues a memory read
-to this write-only hardware register, the PCIe endpoint typically returns
-an Unsupported Request (UR) completion.
+Participating hosts (14 -> 14)
+------------------------------
 
-Could this trigger Advanced Error Reporting (AER) faults, Machine Check
-Exceptions (MCE), or system hangs, leading to a local denial of service?
+  No changes in participating hosts
 
-> +			if (IS_ERR(*barrier)) {
-> +				int err =3D PTR_ERR(*barrier);
-[ ... ]
+Known issues
+------------
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260908165046.1393=
-557-10-matthew.auld@intel.com?part=3D8
+  Here are the changes found in xe-pw-167217v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-nvls-1:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#8762] / [Intel XE#9069])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5708-c55e420034fcb99888f58a88eb64f1e81ec189a4/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167217v5/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@xe_waitfence@engine:
+    - bat-ptl-2:          [PASS][3] -> [FAIL][4] ([Intel XE#9109])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5708-c55e420034fcb99888f58a88eb64f1e81ec189a4/bat-ptl-2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167217v5/bat-ptl-2/igt@xe_waitfence@engine.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [ABORT][5] ([Intel XE#8007]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5708-c55e420034fcb99888f58a88eb64f1e81ec189a4/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167217v5/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-ptl-2:          [FAIL][7] ([Intel XE#9115]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5708-c55e420034fcb99888f58a88eb64f1e81ec189a4/bat-ptl-2/igt@xe_waitfence@reltime.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167217v5/bat-ptl-2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
+  [Intel XE#8762]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762
+  [Intel XE#9069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069
+  [Intel XE#9109]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109
+  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
+
+
+Build changes
+-------------
+
+  * Linux: xe-5708-c55e420034fcb99888f58a88eb64f1e81ec189a4 -> xe-pw-167217v5
+
+  IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5708-c55e420034fcb99888f58a88eb64f1e81ec189a4: c55e420034fcb99888f58a88eb64f1e81ec189a4
+  xe-pw-167217v5: 167217v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167217v5/index.html
+
+--===============5320261803507473624==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/mmio_gem: fix fault handler and destroy path (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167217/">https://patchwork.freedesktop.org/series/167217/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167217v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167217v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5708-c55e420034fcb99888f58a88eb64f1e81ec189a4_BAT -&gt; xe-pw-167217v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-167217v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5708-c55e420034fcb99888f58a88eb64f1e81ec189a4/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167217v5/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762">Intel XE#8762</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069">Intel XE#9069</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5708-c55e420034fcb99888f58a88eb64f1e81ec189a4/bat-ptl-2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167217v5/bat-ptl-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109">Intel XE#9109</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5708-c55e420034fcb99888f58a88eb64f1e81ec189a4/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167217v5/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5708-c55e420034fcb99888f58a88eb64f1e81ec189a4/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167217v5/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5708-c55e420034fcb99888f58a88eb64f1e81ec189a4 -&gt; xe-pw-167217v5</li>
+</ul>
+<p>IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5708-c55e420034fcb99888f58a88eb64f1e81ec189a4: c55e420034fcb99888f58a88eb64f1e81ec189a4<br />
+  xe-pw-167217v5: 167217v5</p>
+
+</body>
+</html>
+
+--===============5320261803507473624==--
