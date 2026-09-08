@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 311B2C79F82
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80925C79F99
 	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 16:51:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D67DE10ED25;
-	Tue,  8 Sep 2026 16:51:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B39E10ED37;
+	Tue,  8 Sep 2026 16:51:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CnYh3uzD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KYpH9ayK";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36A1410ED0E
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 16:51:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E989710ED16
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 16:51:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788886273; x=1820422273;
+ t=1788886275; x=1820422275;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dLnRShD0558W3BVNEJZOyxXiroDKtr7Ejg7+9Hd8l8U=;
- b=CnYh3uzDH6DK8z3ZFiko+Zim76Bn3TrLA3mIhw/LuuVsnkTyaAf9KDeV
- /3M1ks+W3vnJ0FDspyE9Yup6trG+xaCZmKcmEVjQoVpqp8RpEInreae/d
- HggLoky98Wj0FxuD5omjoaADsFkpJVK/5x2SmZI214Xlizz4aVHx2RKrm
- LWALIHBMIT9PwRJBU1LobrKVichUyEmvSUaqrFzLaDfZyuAKq0vkJbEIA
- z1wt/D6nZuGhtF23Za6fvnCa/R5tv76gJ0kB07uIAjLyLI6HDEIFRjHtw
- Xh3E6C+RrPlt1907C6a++GB32a47EjIMJYh84Bg3GwruqI5g8QeAy8TFC w==;
-X-CSE-ConnectionGUID: C0C+460zQBGXywvBmQ+J5g==
-X-CSE-MsgGUID: mwxwO515QyiW5E+1hcnReg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="99888272"
-X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="99888272"
+ bh=tn9aqsUNGQ3a5OqSkWGV0OCwZYupMzrIbI9zp20C8mg=;
+ b=KYpH9ayKJxW3HIOxCrl8IjNmgQbo5x2qrM+pRX0XfVzydkb6G3FwMeys
+ N1tvbe7Hq1OOVkSKoGPvTaUH+4HzSwZUDMkbrfyXk02/svCleQQEhZWfo
+ zJ+MUq7f0uPLKP2l5Bso8y26a6lPntmB6B/UMG0l/uutR1t6O91+Kco1L
+ MXKXM6Qz3HD8VEsSPf82BnjFf/1WJOG5OCsxCaX1qjDtrjDQo7PO0yEKB
+ ack7pBRulra5TA//XGC1g/gKWFdE61FA6r8K5EzfKdvb80xQIfP7yjqbC
+ YynqzWkX34a8esPFokd7FyUM2efaFdCeCvd/gpfZ25nSO6dbgvT2dxxcl Q==;
+X-CSE-ConnectionGUID: TD6lytdXRxeVd0GyXqkS0g==
+X-CSE-MsgGUID: nOjfv1w4RIy2B6SrZuYEgg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="99888273"
+X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="99888273"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 09:51:13 -0700
-X-CSE-ConnectionGUID: I50GoQ2QTO6KcvEF/pvyfA==
-X-CSE-MsgGUID: WZPaR+15TamoilyY5IadAw==
+ 08 Sep 2026 09:51:15 -0700
+X-CSE-ConnectionGUID: aR3oOaOqTAC6SNIyeT+COg==
+X-CSE-MsgGUID: tLctTbTxQFK4sUP8olxvRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="272995681"
+X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="272995689"
 Received: from rvuia-mobl.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.244.158])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 09:51:12 -0700
+ 08 Sep 2026 09:51:13 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Ilia Levi <ilia.levi@intel.com>
-Subject: [PATCH v5 3/8] drm/xe/mmio_gem: simplify fault handler loop
-Date: Tue,  8 Sep 2026 17:50:50 +0100
-Message-ID: <20260908165046.1393557-13-matthew.auld@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+	Ilia Levi <ilia.levi@intel.com>
+Subject: [PATCH v5 4/8] drm/xe/mmio_gem: Revoke drm_vma_node on xe_mmio_gem
+ destroy
+Date: Tue,  8 Sep 2026 17:50:51 +0100
+Message-ID: <20260908165046.1393557-14-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260908165046.1393557-10-matthew.auld@intel.com>
 References: <20260908165046.1393557-10-matthew.auld@intel.com>
@@ -67,50 +69,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ilia Levi <ilia.levi@intel.com>
+From: Shuicheng Lin <shuicheng.lin@intel.com>
 
-Make the iteration over the addresses in the VMA more explicit.
-No functional change, as the VMA matches the GEM object exactly.
+xe_mmio_gem_create() calls drm_vma_node_allow() but nothing ever calls
+drm_vma_node_revoke(). The drm_vma_offset_file rb-tree entry allocated
+by drm_vma_node_allow() is not freed by drm_gem_object_release(), so
+it is leaked on every create/destroy cycle.
 
-Signed-off-by: Ilia Levi <ilia.levi@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Add a struct drm_file * parameter to xe_mmio_gem_destroy() and call
+drm_vma_node_revoke() from there, mirroring the drm_vma_node_allow()
+call in xe_mmio_gem_create().
+
+Fixes: 1ffcf8b8ae8a ("drm/xe: Support for mmap-ing mmio regions")
+Suggested-by: Ilia Levi <ilia.levi@intel.com>
+Assisted-by: Claude:claude-opus-4.6
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+Reviewed-by: Ilia Levi <ilia.levi@intel.com>
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mmio_gem.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_mmio_gem.c | 4 +++-
+ drivers/gpu/drm/xe/xe_mmio_gem.h | 2 +-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_mmio_gem.c b/drivers/gpu/drm/xe/xe_mmio_gem.c
-index 96f3bf46fd75..3b6d04efe81a 100644
+index 3b6d04efe81a..3c42d8358c7d 100644
 --- a/drivers/gpu/drm/xe/xe_mmio_gem.c
 +++ b/drivers/gpu/drm/xe/xe_mmio_gem.c
-@@ -200,7 +200,7 @@ static vm_fault_t xe_mmio_gem_vm_fault(struct vm_fault *vmf)
- 	struct xe_mmio_gem *obj = to_xe_mmio_gem(base);
- 	struct drm_device *dev = base->dev;
- 	vm_fault_t ret = VM_FAULT_NOPAGE;
--	unsigned long i;
-+	unsigned long addr, pfn;
- 	int idx;
+@@ -138,14 +138,16 @@ static void xe_mmio_gem_free(struct drm_gem_object *base)
+ /**
+  * xe_mmio_gem_destroy - Destroy the GEM object that exposes an MMIO region
+  * @gem: the GEM object to destroy
++ * @file: DRM file descriptor previously passed to xe_mmio_gem_create()
+  *
+  * This function releases resources associated with the GEM object created by
+  * xe_mmio_gem_create().
+  *
+  * See: "Exposing MMIO regions to userspace"
+  */
+-void xe_mmio_gem_destroy(struct xe_mmio_gem *gem)
++void xe_mmio_gem_destroy(struct xe_mmio_gem *gem, struct drm_file *file)
+ {
++	drm_vma_node_revoke(&gem->base.vma_node, file);
+ 	xe_mmio_gem_free(&gem->base);
+ }
  
- 	if (!drm_dev_enter(dev, &idx)) {
-@@ -213,13 +213,13 @@ static vm_fault_t xe_mmio_gem_vm_fault(struct vm_fault *vmf)
- 		return xe_mmio_gem_vm_fault_dummy_page(vmf);
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_mmio_gem.h b/drivers/gpu/drm/xe/xe_mmio_gem.h
+index 4b76d5586ebb..80d7795f07c8 100644
+--- a/drivers/gpu/drm/xe/xe_mmio_gem.h
++++ b/drivers/gpu/drm/xe/xe_mmio_gem.h
+@@ -15,6 +15,6 @@ struct xe_mmio_gem;
+ struct xe_mmio_gem *xe_mmio_gem_create(struct xe_device *xe, struct drm_file *file,
+ 				       phys_addr_t phys_addr, size_t size);
+ u64 xe_mmio_gem_mmap_offset(struct xe_mmio_gem *gem);
+-void xe_mmio_gem_destroy(struct xe_mmio_gem *gem);
++void xe_mmio_gem_destroy(struct xe_mmio_gem *gem, struct drm_file *file);
  
--	for (i = 0; i < base->size; i += PAGE_SIZE) {
--		unsigned long addr = vma->vm_start + i;
--		unsigned long phys_addr = obj->phys_addr + i;
--
--		ret = vmf_insert_pfn(vma, addr, PHYS_PFN(phys_addr));
-+	pfn = PHYS_PFN(obj->phys_addr);
-+	for (addr = vma->vm_start; addr < vma->vm_end; addr += PAGE_SIZE) {
-+		ret = vmf_insert_pfn(vma, addr, pfn);
- 		if (ret & VM_FAULT_ERROR)
- 			break;
-+
-+		pfn++;
- 	}
- 
- 	drm_dev_exit(idx);
+ #endif /* _XE_MMIO_GEM_H_ */
 -- 
 2.55.0
 
