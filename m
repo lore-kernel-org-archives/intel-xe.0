@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A302C79F82
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 13:50:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32AD8C79F99
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 13:50:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D74C510EBF9;
-	Tue,  8 Sep 2026 13:50:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E216710EBFF;
+	Tue,  8 Sep 2026 13:50:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HKk/8JOR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k2aZb+GR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E15D310EBF9
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 13:50:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90A7F10EBF9
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 13:50:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1788875449; x=1820411449;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=3pckxe3uvJGRhx09nDorQW6Wtljn0gtkoUBz8uRSpdU=;
- b=HKk/8JORxkr1lCprs0QSqlqFfKhwD5QmKCs+CQECMVSu1e4QeZsVKalv
- zkPL2CcqRMAOZIDDxc8f6Meey2cgyeO5apjeFuS9r4lNUnAw0DeO1JCq2
- 9A8uFiyIcCvCr4RZ1LCiFJ9zTvKcceykTCoKV4ZRMFA+biT6shZHUEhq0
- /gHc4LlatpVRQQqgJzByynJS5o6UIJONVVMRIC1/BwVXOFz5Qoa3O/oxE
- FHfvPqLfzaxTpLbfubxdrwD8CtHbgBA3Znqk07IxDbUucGUjr4Qev6Lv5
- oQn+WFRkDj8z3bsJCcf9YO82H8e6/z3dWgrSvybAk2/N1S9RULyzY+0l1 g==;
-X-CSE-ConnectionGUID: KY9+0QpDQlCUxXrj+8SNHg==
-X-CSE-MsgGUID: IYjJ8kqbTfCTpwdhCkl4Pw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="106793374"
-X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="106793374"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=JbOBMaxTAGHqy13TrMlewOAlcBMo+8i51BEV4MGDev8=;
+ b=k2aZb+GRcQjkvkNDREPfXt41I9jo6Yin87GP7mtqD14ecdafg5I0Ajoz
+ QxPOQlqfL7VtWELfJgWeHDBstosgGLpAWoNjdl/scvNrqudicfp6dBErC
+ CwKJBzkogAF2f0U1wsUepnQ6MDn5pY6T9fFWR23k6PqYoRSeMbS/ort06
+ 3creDJWIVgxabzr2DrCB2LTL5HgTz32tngtyf4J6MZiGByUFvywVnn8ia
+ BvGQ+URZGEH+D9eAieiF/9r6zvGepR/CYFQrPhtuhqX78IxM/PXUlPnAj
+ QTgWVOSgzfGBfND1QN9/ufakpI+yfz4tgPs4mtmm/rzG4BOMHVasUopy9 w==;
+X-CSE-ConnectionGUID: O3/vtA4GRKejUluKzlIADQ==
+X-CSE-MsgGUID: zpcJR6z7Q4aTebNwBvZm8w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="106793375"
+X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="106793375"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 06:50:48 -0700
-X-CSE-ConnectionGUID: p5LC3cFgRoqopd47asJGnw==
-X-CSE-MsgGUID: gqt3L+8ZQA+yg0B3Ea3HrQ==
+ 08 Sep 2026 06:50:49 -0700
+X-CSE-ConnectionGUID: 2OrkCw0zSw6AMTcXRJGM8g==
+X-CSE-MsgGUID: XMUw5GS1QCSz6+CG6yGYmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="270519655"
+X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="270519671"
 Received: from rvuia-mobl.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.244.158])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 06:50:47 -0700
+ 08 Sep 2026 06:50:48 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 0/8] drm/xe/mmio_gem: fix fault handler and destroy path
-Date: Tue,  8 Sep 2026 14:49:56 +0100
-Message-ID: <20260908134955.1344429-10-matthew.auld@intel.com>
+Cc: Ilia Levi <ilia.levi@intel.com>
+Subject: [PATCH v4 1/8] drm/xe/mmio_gem: forbid VMA split
+Date: Tue,  8 Sep 2026 14:49:57 +0100
+Message-ID: <20260908134955.1344429-11-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260908134955.1344429-10-matthew.auld@intel.com>
+References: <20260908134955.1344429-10-matthew.auld@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,33 +67,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Picking up the series from Ilia:
-https://lore.kernel.org/intel-xe/20260723161832.137153-1-ilia.levi@intel.com/
+From: Ilia Levi <ilia.levi@intel.com>
 
-This series fixes several issues in xe_mmio_gem, introduced by
-1ffcf8b8ae8a ("drm/xe: Support for mmap-ing mmio regions"):
-split VMA handling, WB/UC aliasing of the dummy page, a rb-tree
-leak on destroy, dummy page accumulation, and use-after-free / MMIO
-access after destroy. It also converts the existing PCI barrier mmap
-to build on xe_mmio_gem now that the infrastructure is in place.
+The fault handler assumes it always operates on a VMA spanning the entire
+GEM object. This does not hold when the VMA has been split, e.g. by a
+partial munmap or mprotect. In that case the handler may map wrong
+physical pages or cause SIGBUS.
 
-v4:
-- One extra patch for VM_EXEC and DONTCOPY.
-- Tweak the commit message in "use write-back mapping for dummy page" wrt x86.
-v3: (Matt Auld)
-- New patch using the xe_mmio_gem infra for PCI barrier mmap
-- New patch for rejecting VMA split
-- Using dma_resv lock for synchronization
-- SIGBUS instead of dummy page on access after destroy
-- Some changes in patch splitting (e.g. the vm_pgoff handling now lives
-  in the destroy-flow patch alongside the zap that needs it)
-v2:
-- New patch 1/5: fix dummy page WB/UC aliasing (Sashiko)
-- Patch 2/5: no longer modifies xe_mmio_gem_vm_fault_dummy_page() (handled by 1/5)
-- Patch 3/5: unchanged
-- Patch 4/5: compute pfn inside scoped_guard
-- Patch 5/5: adapt to xe_mmio_gem_vm_fault_dummy_page() signature change, fix "objecthas" typo
+Handle this by forbidding VMA split, as partial unmaps are not deemed
+useful for MMIO GEMs.
 
+Suggested-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Ilia Levi <ilia.levi@intel.com>
+Fixes: 1ffcf8b8ae8a ("drm/xe: Support for mmap-ing mmio regions")
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/xe/xe_mmio_gem.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_mmio_gem.c b/drivers/gpu/drm/xe/xe_mmio_gem.c
+index 3741ae60f532..d54477b93b6e 100644
+--- a/drivers/gpu/drm/xe/xe_mmio_gem.c
++++ b/drivers/gpu/drm/xe/xe_mmio_gem.c
+@@ -39,10 +39,20 @@ struct xe_mmio_gem {
+ 	phys_addr_t phys_addr;
+ };
+ 
++static int xe_mmio_gem_vm_may_split(struct vm_area_struct *area, unsigned long addr)
++{
++	/*
++	 * Forbid splitting. Together with VM_DONTEXPAND, this keeps the VMA
++	 * matching the GEM object exactly.
++	 */
++	return -EINVAL;
++}
++
+ static const struct vm_operations_struct vm_ops = {
+ 	.open = drm_gem_vm_open,
+ 	.close = drm_gem_vm_close,
+ 	.fault = xe_mmio_gem_vm_fault,
++	.may_split = xe_mmio_gem_vm_may_split,
+ };
+ 
+ static const struct drm_gem_object_funcs xe_mmio_gem_funcs = {
 -- 
 2.55.0
 
