@@ -4,158 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F83FC79FA0
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 06:06:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25A5CC79F99
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 06:11:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C355A10E9B4;
-	Tue,  8 Sep 2026 06:06:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEA7510E070;
+	Tue,  8 Sep 2026 06:11:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cyEBh3wg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LHAUIT0l";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4798E10E9B4
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 06:06:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C20A10E070
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 06:11:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788847595; x=1820383595;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=J2e3+G5TFrUfKxWjj6udoK7jYYxkE8RK5/UHzH3+7D4=;
- b=cyEBh3wgvJlCrDTWPqW/wbnzeOlbzKGfTQD1rZUVB7casmhydIaafB5P
- qNhsCZJUsjDF+jr993gBVNe4MZLS++b9+DpcyJPRAFr5IqTWudD26vPO0
- ZmIb4AT/1D8EfmURpOoAkNjwblMP6PEt+tqGYVeA6I7Tj9XD37iT21PlY
- R2JzyurZ5zG1hXXJtYpAwl89iY0ZfYcPpJizBkdAqaSJb2AeiWhmzUWue
- XM2PbhjsmNS/IJIjNbzAv/Zb6soyza24OHmz2uE2BZp8QFp45pogAGP/j
- sNn26+v4I6PwoQ8UYMADlGY8Aarc0htatmltrxGj4ARFrz4QDM5sRgxbx Q==;
-X-CSE-ConnectionGUID: gHEZCHuHRyGwlnHeRGA++Q==
-X-CSE-MsgGUID: /+F6UHlFSlOrAGN/RZNEwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="99573139"
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="99573139"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2026 23:06:34 -0700
-X-CSE-ConnectionGUID: Kb0tnLFNTSeJ8pQOwtB85A==
-X-CSE-MsgGUID: B18bYrllSuqfb+fYQpL2Lw==
+ t=1788847910; x=1820383910;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=F5DvWTnsdBABgSmfRfQcDZDd2VF0kviFvTxD/69ZBt0=;
+ b=LHAUIT0lH1IhNwJ8Fl5O5bfv0xMvluD+7bmb+7gg01iXhDX7pmuGkR08
+ rucK0bSeYpdDjkJGG1tycwwyUqmDCcv01wPM+Tj9Y2QIYMT6r6A5xBNX4
+ FtLi4ttnUbdE9TKU85HEPvwx04ybD89HgPHeolXMyPPo95uIdcBnVa8sK
+ 3daHpC62NEdRrJZTmu5czAgqAczkos5ZhFAq+jxFrVeEuXtbwgCmLKeO4
+ zCymBtaFOjPDGc8VHqUfrPF4R84gUsEF7S9e/a4xOQif0XYW8KWr9Ov6l
+ HD/iHbmYSxDwwa176Y8BJ+vyS+XS0Mesw+HHBCmB8UZceO5RvHggeUvjN g==;
+X-CSE-ConnectionGUID: Ej4rSoroRfqWyZQNkkOUWg==
+X-CSE-MsgGUID: o58VOwkESb6I36ZyYoynvg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="106611883"
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="106611883"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2026 23:11:50 -0700
+X-CSE-ConnectionGUID: Q4oUu+lzSICcLky4jchhBg==
+X-CSE-MsgGUID: VlBP6Ml0Tvq/noaDvqWB9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="268311151"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2026 23:06:34 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 7 Sep 2026 23:06:33 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Mon, 7 Sep 2026 23:06:33 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.1) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 7 Sep 2026 23:06:31 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gLgIBhu/JL+n4hbriwuqahNEei+0LKDqm05Hm3mUMHS4nwrTSc2h4Vj6+hXJZecD4SvWHOQhEtQY1wdM6bfteRIUeuDCiSspzCgmFsnD6PASRnvHcgibL4lDKjdgwtm1fNX/hm3DJvRk0y+XEbpSSup4w4hxcgpx2uakCyvtywP6AwUIcWMfuju+wdTEDHmdSl8j9LTjbn/6xzcRyakGBVrWZhbjZHLugStDnYL6MQwMNlBD643H6aqZIZg7HLq0YISGqGPVqVtIdKnaj5TCZkuzgFnDMAsZD71T7vgNfIepmxbIeou/YdpZmAMmUEDFkfp5hFXS7U8dj++mLYwf2w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Hy3HjhONhyPF4A+kz9tCKWRorG99QKH7Fdcwwpaxeow=;
- b=cFGuGMuqAnvb5FRzgr2wUXubPn6ITboOWK7mNGPc3M3SoDY+EcNOrFGz2uf6K+mDJqKTaAtvAS7Mo20NosipzK8nVp4kVYQ0/+dnb0c+4a2pOsXwdle9zh3+OEjJqgjsmQ+lC7gxs+jDOH2m/esvgLGnbxHKxsirKKJgiukkW7v1myJbXgnOPaDN5Hc/XfJDpi3MLR5ddAphn4AYtOWOeIRIagIi5Xv0Yb76fI+ewUAYoKgjkz2yesNgTOYNb1OKKYnVsdPLEVuYtVb89KzhuNoYmTGwAgKLLWoRz5w/86AV9K3oL4Hd4kZrNrOrdGjQuVLlL6PAeUKjWVRbImHlRA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH0PR11MB5249.namprd11.prod.outlook.com (2603:10b6:610:e0::17)
- by IA3PR11MB9349.namprd11.prod.outlook.com (2603:10b6:208:571::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.382.15; Tue, 8 Sep
- 2026 06:06:29 +0000
-Received: from CH0PR11MB5249.namprd11.prod.outlook.com
- ([fe80::a665:5444:d558:23c3]) by CH0PR11MB5249.namprd11.prod.outlook.com
- ([fe80::a665:5444:d558:23c3%6]) with mapi id 15.21.0360.008; Tue, 8 Sep 2026
- 06:06:29 +0000
-Message-ID: <700408bf-660a-432f-8feb-1cd97da8fdc6@intel.com>
-Date: Tue, 8 Sep 2026 11:36:23 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] drm/xe/hwmon: Use shared pcode default timeout for
- power limit write
-To: <sashiko-reviews@lists.linux.dev>
-CC: <intel-xe@lists.freedesktop.org>
-References: <20260907083520.192418-1-karthik.poosa@intel.com>
- <20260907083520.192418-3-karthik.poosa@intel.com>
- <20260907084418.1720E1F00A3A@smtp.kernel.org>
-Content-Language: en-US
-From: "Poosa, Karthik" <karthik.poosa@intel.com>
-In-Reply-To: <20260907084418.1720E1F00A3A@smtp.kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0065.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1b3::7) To CH0PR11MB5249.namprd11.prod.outlook.com
- (2603:10b6:610:e0::17)
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="300773338"
+Received: from unknown (HELO anirban-Z690I-A-ULTRA-PLUS.iind.intel.com)
+ ([10.190.216.83])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2026 23:11:48 -0700
+From: Sk Anirban <sk.anirban@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, raag.jadav@intel.com, soham.purkait@intel.com,
+ mallesh.koujalagi@intel.com, vinay.belgaumkar@intel.com,
+ Sk Anirban <sk.anirban@intel.com>
+Subject: [PATCH v3] drm/xe/debugfs: Expose per-engine idle status
+Date: Tue,  8 Sep 2026 11:31:04 +0530
+Message-ID: <20260908060103.999079-2-sk.anirban@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH0PR11MB5249:EE_|IA3PR11MB9349:EE_
-X-MS-Office365-Filtering-Correlation-Id: af4e32fc-a16f-48bc-dd8d-08df0d6f5275
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|23010399003|11063799006|4143699003|6133799003|56012099006|10067099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: IL7g3opLXV10+qLC0Kg5gTlNX56yyKKfo05zNGYuruGgUdaEjucz4R07rd0nGYTdRqE8Irrh/GZumZvGwwFuaoEMKONyZAWMugQoBQILhszv47gYpv4ZKF+HjPzwEGCNlY2dBblSzZY7957WGeqTLkL/Zi3FJnfB/h5TkgJ+oYFGZ1q6NyUaNhQU0QtKrk4d/O3bC5SeDqdf/Mi0aPvSE5hfLXLmlLhWHhj7te37JTVfoPCODJv2uOWk4i2XxYFp9O8gKwkG5U71JtclYZkvhZoJ6IAi1mxZlgNhz5px588lKvG8D6+36wehXxxZgLTAOrIEmnQqpgHyX9xkrrbrh49UwmqHaYAk4bg4ltuetMQRTkbXb7BzbsTClAOmMIDzbYgI2FwxiTKUTKEEWK2kXwylhEOk+pciVTW8GWF9F/W+RKykWO/bLGiP5KAmdGF0AnlhrGP4GXzrN7xXh4GWfidrimPEqUrdWUzrh/Zf7KzgxqZuGuMM8fe1o4BrZjCmUutcEykLRv3A/Lm1ojvh4g/KAzpNR+reWcovGL5LFb8dFAAXGMg0qZdNooIasGUUAPVhB18svTteeAKUm3619wkqNjz6EknKRbwOk1tyIzHAxB/s+BNhk8pTXdeiNIutwoAbxa45rzZ6Ee8dCJon5qpLMeS5L03mtceRN2z/aIM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5249.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(23010399003)(11063799006)(4143699003)(6133799003)(56012099006)(10067099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?blNhbE1tWGpWbWxHaTNmdmw2RUZlT3QwTk56dWJjRy9oUnlncTJsRzZTUysr?=
- =?utf-8?B?TTFBNTBWOFNoVGV5V2s5aEh1cDBMeDQvS1V3MTV5WHVjN1MyR3NudlJFZ29p?=
- =?utf-8?B?ZjAyUG1UT083cVQxZ0k5V2M4Z0RVR0xGb2dVMDJTUWFHUWNNcHpBSFBJeEpi?=
- =?utf-8?B?bHlxSWNiUmJpelg5UTNxcDV2cVVQenREZjJMSWMxMTNUSmRHU0N0Qmc2OG5H?=
- =?utf-8?B?MFo4T3JUMEQwWGZXWHcvd2hxdU9YeFdqK2lwWno1M3grWnNUZlJsZzdLcDlV?=
- =?utf-8?B?SlFsVllrVzJuVkU3Yzl0cDdEbVRCS2VRWWs2K0RJeWRYN3A3L1p2MjlNQzVa?=
- =?utf-8?B?eGdRT1l3Y2ZyeXI1M29kQzFKQmRxMDNHRTM3ZnRMYjBuSzJsRkVINU5DWEtF?=
- =?utf-8?B?ZG8rQldaaTA0a0RDNFVSQTVPblNHZHZVb1BNRkVBRitQQ0orMEg0b3c4S3kv?=
- =?utf-8?B?ZXhLR09abGpnbmxtYXhRSWZHU25MSEdzOXV5QUtKSWVSYnpBMElpMGdsZEFp?=
- =?utf-8?B?M0MwK00xMlhFaXJLWUp4UENpcDNMbVllN2tPODNvTCt0aDVsc3ozNjRDY2Ux?=
- =?utf-8?B?T0VJVUpUOGdqM05ja3EwMkc5Q1dQQlFHKy8vajRpVEpPRDIxaUpBbjRZR21T?=
- =?utf-8?B?R3l2NmdvWFBiVDd3YnhxcVNyeTFpcitRQmdlSEdhbFRLeURyYXdTKzdJZ25Z?=
- =?utf-8?B?MDJlcEphU0FGZ3U4blBNWWZud0VPNjJPOTFhc04zUnBaWk1INHgxWVgrRGNG?=
- =?utf-8?B?TlpzMVRXT214YUxvYlphQlZZSVZCbDhHSWh3ZXJWMTRGT0luTWU3ZVJqSlNk?=
- =?utf-8?B?bysxVVJxRG1vWmVSaytjNU1qeWkvUnlwQmFaSFJBRGJhVUFzc1NTMXVpTnlZ?=
- =?utf-8?B?ZzcrakRhTzEzd04yVWZFbnJoUVdNTlN2dTRGd2ExQUpzYVlzL2VMRE5QcDQ5?=
- =?utf-8?B?aVJiSHkvdTAxWldjaytFeHd1U3FvNURBOVFsbExnekxKUWFpUHpQSkFSVUZR?=
- =?utf-8?B?dFB1Wmd6WWhKbTI2RWlMS3loWE51YTdsWkEvL1h3RnR2dFNIQ1dMaFByb3BV?=
- =?utf-8?B?SWJ5TDFnK2Z2NVFRS3lTRjhMVlpCVHQ0NE9JZTQ2RGNFTXlQbU9xeGNENUF2?=
- =?utf-8?B?QUpzK0hmSTB6bUVRclJwMXRFYjgybXVieThVOThGTDJodlMvbE5hMU1Vckdo?=
- =?utf-8?B?a3ROaXFyOGZlQzNKTWQ1cHNCTlhWWGlGVTAwNkUzSHpKTnFJNHJMNll3QkM2?=
- =?utf-8?B?MGNXdlVHUG8zVUt5NkVHeUZWNWVoR21qanZhWC9WU0g3amNiem1SbXJVcjN0?=
- =?utf-8?B?NkdzalYyZG5FZS9DeGVDR0xsZ2IvUGFBY0w4cnBuYkVsWjhHekVQTDBrTWJY?=
- =?utf-8?B?d0J0MGNlMkhydEN0SWkvQmZKeVhMdFJQaUJKYVkycmZiN1c1SERJM0pDWm05?=
- =?utf-8?B?SkZWOHQ5VS9UTkY0blhKRHR1Vm82V2tqL2c2S3dPb085cUxmQkREMit6RWpD?=
- =?utf-8?B?OTYrOGNNOW12VFFmUjVTc3crQ1FFOHkzK3RVVmxWb0ZCNVhmNUpXMmhkaVFx?=
- =?utf-8?B?UGtMSjJvSHFZa3ZMbGMvaXA0SjdIOVk0OS9xbXZJMDBKSFZua2pGaGQ0N3Zs?=
- =?utf-8?B?aCtFYi9NamNoVnQvVXdmbkxIVWRoczVJK1lPY0twVVpTU3UrOXo2VjdnTDMw?=
- =?utf-8?B?U2FxSHRDcjNLWWpOVjBoY2w0WlMybDBKNHdnMU94RGx6bzJMWjcrZXBrZGpX?=
- =?utf-8?B?Q0VPYUVZSEpQWDVFNmlIVlpSUVpGRmI3bzUzb203TGpFV0twOGlSWmk2MHNo?=
- =?utf-8?B?QnZoT2l0OTNsMVJ1UGQ5UXVSZlFDZ3JtV1VDamJJTEZYTER1RzkyZ1pXUXdm?=
- =?utf-8?B?aUZIalI3VTVXdHRxQjRjcjhDdkw1NXNlRElmaWJRQytTOXdjTlpBUGVyK3ht?=
- =?utf-8?B?UUUvTWlvK0hSMG5GNGs4N0lkQUxLekl3NW1iNldSZ2dobW0wWDVYdjl5cnFJ?=
- =?utf-8?B?UTV5ZFdqSjB3akcvR1FvNGpLY1BnRTcxNm15MTZ6OFN5dnR0N1hXcVpKWUJI?=
- =?utf-8?B?ZHNybUdWbUlGUFp1djJXN0VwUlNrbW84bmxYZy8zRjRpQjRUSWkrdUttV2ZB?=
- =?utf-8?B?Nk1iT1JNRzRNRW1QejBJRjJ3cTg1SlNhUzNnNXNRaEc4MzhrdlpxMHVtNjVI?=
- =?utf-8?B?U211ZVh1c201WGlOV2VDbm9OLzZqeGNaMHlGRW1OeG1URmlSYk5hTkppcWhw?=
- =?utf-8?B?M0JaK3RqaGRJYktWUDNDbzU0Y1JoSVdyTzQ2UE1CeUh0QWlXbVRLYzRFSG5x?=
- =?utf-8?B?UExtS2k3UHdUVmxTNWlOUk9oSVN6elE2N1V1NU9Rd1RnR0huVDBVUT09?=
-X-Exchange-RoutingPolicyChecked: SpZ5GBnVKjnTElwbWSNKc1kuC7+RkAvuvxcNUkzjyRjzilubqjLhbSTm7kDxe62GS0dOK9yy9PIr8Lywq+B8D4GGp4h9J9EJVUTr82siEuoiNUTCbS76uRD1TA3tFeRnr3iKdXn1pepW7zlUlBdKwZFgtw/oQyI1nURaNO8LhsZyCNxqiRPiJZl18lvha2QFgjhSxCX7SSItS+dFnw1q5Oe/tGl8M6jVfCDZZH9D4O+Mfko6I6Ic0xozASRgyYDe0VrKnnvOxSX7+Ib11V2WdmJrWxySUmF1E0NTMjHeNTWk7sEBBorJxAlX8n2ZaVTNRbJJYTE33FG4vx/osebKQw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: af4e32fc-a16f-48bc-dd8d-08df0d6f5275
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5249.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2026 06:06:28.9416 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: U1z7pixpM7a8DW+FRuvW9NZGFp+fK14i1YUgcfoQaMOPKhtnSusZURq0Xiuse1A8lYkPKUFzAL1z0/aXgKHFrA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9349
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,55 +68,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Extend the existing "hw_engines" debugfs to iterate over all hardware
+engines and dump their idle state: whether the engine pipe is idle or
+busy, whether C6 entry is allowed, and (where available) the forcewake
+request status.
 
-On 07-09-2026 14:14, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
->
-> Pre-existing issues:
-> - [High] Missing early return on PCODE mailbox read failure causes hardware misconfiguration and corruption of pcode registers.
-> --
->
-> commit d67ad2da2fb13ff7d9f642e82666f4e587b00a48
-> Author: Karthik Poosa <karthik.poosa@intel.com>
-> drm/xe/hwmon: Use shared pcode default timeout for power limit write
->
-> This commit drops the local PL_WRITE_MBX_TIMEOUT_MS macro and uses the common
-> PCODE_DEFAULT_TIMEOUT_MS for the power limit write mailbox command.
->
->> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
->> index 5284cab6703d8..5edeac961ec33 100644
->> --- a/drivers/gpu/drm/xe/xe_hwmon.c
->> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> [ ... ]
->> @@ -252,7 +247,7 @@ static int xe_hwmon_pcode_rmw_power_limit(const struct xe_hwmon *hwmon, u32 attr
->>   							     (channel == CHANNEL_CARD) ?
->>   							     WRITE_PSYSGPU_POWER_LIMIT :
->>   							     WRITE_PACKAGE_POWER_LIMIT, 0),
-> [Severity: High]
-> This isn't a bug introduced by this patch, but looking at the earlier read
-> operation in xe_hwmon_pcode_rmw_power_limit() in drivers/gpu/drm/xe/xe_hwmon.c,
-> is an early return missing upon read failure?
->
-> If xe_pcode_read() encounters an error, such as a mailbox timeout, it logs a
-> debug message but execution falls through without returning. The val0 and val1
-> variables remain 0, and the read-modify-write operation is applied to them:
->
->          ret = xe_pcode_read(..., &val0, &val1);
->          if (ret)
->                  drm_dbg(...);
->
->          if (attr == PL1_HWMON_ATTR)
->                  val0 = (val0 & ~clr) | set;
->          else if (attr == PL2_HWMON_ATTR)
->                  val1 = (val1 & ~clr) | set;
->
-> Can this fall-through cause the subsequent write to clear all other fields in
-> the power limit registers, like time windows and enable bits, potentially
-> leaving the hardware power configuration in a corrupted state?
-Yes, this shall be addressed in separate patch.
->
->> -							     val0, val1, PL_WRITE_MBX_TIMEOUT_MS);
->> +							     val0, val1, PCODE_DEFAULT_TIMEOUT_MS);
->>   	if (ret)
->>   		drm_dbg(&hwmon->xe->drm, "write failed ch %d val0 0x%08x, val1 0x%08x, ret %d\n",
->>   			channel, val0, val1, ret);
+v2: Use existing debugfs (Matt Brost)
+v3: Rename macro (Vinay)
+
+Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 27 +++++++++++++++
+ drivers/gpu/drm/xe/xe_devcoredump.c  |  4 ++-
+ drivers/gpu/drm/xe/xe_gt_debugfs.c   | 52 +++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_capture.c  |  2 --
+ 4 files changed, 81 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 48c515d91882..933fb880f09c 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -196,6 +196,33 @@
+ #define   MSC_MSAA_REODER_BUF_BYPASS_DISABLE	REG_BIT(14)
+ #define   FAST_CLEAR_VALIGN_FIX			REG_BIT(13)
+ 
++#define MSG_IDLE_CS				XE_REG(0x8000)
++#define MSG_IDLE_VCS0				XE_REG(0x8004)
++#define MSG_IDLE_VCS1				XE_REG(0x8008)
++#define MSG_IDLE_VCS2				XE_REG(0x80C0)
++#define MSG_IDLE_VCS3				XE_REG(0x80C4)
++#define MSG_IDLE_VCS4				XE_REG(0x80C8)
++#define MSG_IDLE_VCS5				XE_REG(0x80CC)
++#define MSG_IDLE_VCS6				XE_REG(0x80D0)
++#define MSG_IDLE_VCS7				XE_REG(0x80D4)
++#define MSG_IDLE_VECS0				XE_REG(0x8010)
++#define MSG_IDLE_VECS1				XE_REG(0x80D8)
++#define MSG_IDLE_VECS2				XE_REG(0x80DC)
++#define MSG_IDLE_VECS3				XE_REG(0x80E0)
++#define MSG_IDLE_BCS0				XE_REG(0x800C)
++#define MSG_IDLE_BCS1				XE_REG(0x8680)
++#define MSG_IDLE_BCS2				XE_REG(0x8684)
++#define MSG_IDLE_BCS3				XE_REG(0x8688)
++#define MSG_IDLE_BCS4				XE_REG(0x868C)
++#define MSG_IDLE_BCS5				XE_REG(0x8690)
++#define MSG_IDLE_BCS6				XE_REG(0x8694)
++#define MSG_IDLE_BCS7				XE_REG(0x8698)
++#define MSG_IDLE_BCS8				XE_REG(0x869C)
++#define MSG_IDLE_GSCCS0				XE_REG(0xA62C)
++#define   MSG_IDLE_INDICATION			REG_BIT(0)
++#define   MSG_IDLE_C6_ALLOWED			REG_BIT(1)
++#define   MSG_IDLE_FW_STATUS			REG_GENMASK(13, 9)
++
+ #define XE2LPM_CCCHKNREG1			XE_REG(0x82a8)
+ 
+ #define VF_PREEMPTION				XE_REG(0x83a4, XE_REG_OPTION_MASKED)
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index 5f2b90b18f97..b918f046ae15 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -127,8 +127,10 @@ static ssize_t __xe_devcoredump_read(char *buffer, ssize_t count,
+ 
+ 	drm_puts(&p, "\n**** HW Engines ****\n");
+ 	for (i = 0; i < XE_NUM_HW_ENGINES; i++)
+-		if (ss->hwe[i])
++		if (ss->hwe[i]) {
+ 			xe_engine_snapshot_print(ss->hwe[i], &p);
++			drm_puts(&p, "\n");
++		}
+ 
+ 	drm_puts(&p, "\n**** VM state ****\n");
+ 	xe_vm_snapshot_print(ss->vm, &p);
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index 361a70234d1f..27ee20b03d4a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -117,6 +117,38 @@ int xe_gt_debugfs_show_with_rpm(struct seq_file *m, void *data)
+ 
+ static int hw_engines(struct xe_gt *gt, struct drm_printer *p)
+ {
++	static const struct {
++		struct xe_reg reg;
++		bool has_fw;
++	} msg_idle_reg[XE_NUM_HW_ENGINES] = {
++		[XE_HW_ENGINE_RCS0] = { MSG_IDLE_CS, true },
++		[XE_HW_ENGINE_BCS0] = { MSG_IDLE_BCS0, true },
++		[XE_HW_ENGINE_BCS1] = { MSG_IDLE_BCS1, false },
++		[XE_HW_ENGINE_BCS2] = { MSG_IDLE_BCS2, false },
++		[XE_HW_ENGINE_BCS3] = { MSG_IDLE_BCS3, false },
++		[XE_HW_ENGINE_BCS4] = { MSG_IDLE_BCS4, false },
++		[XE_HW_ENGINE_BCS5] = { MSG_IDLE_BCS5, false },
++		[XE_HW_ENGINE_BCS6] = { MSG_IDLE_BCS6, false },
++		[XE_HW_ENGINE_BCS7] = { MSG_IDLE_BCS7, false },
++		[XE_HW_ENGINE_BCS8] = { MSG_IDLE_BCS8, false },
++		[XE_HW_ENGINE_VCS0] = { MSG_IDLE_VCS0, true },
++		[XE_HW_ENGINE_VCS1] = { MSG_IDLE_VCS1, true },
++		[XE_HW_ENGINE_VCS2] = { MSG_IDLE_VCS2, true },
++		[XE_HW_ENGINE_VCS3] = { MSG_IDLE_VCS3, true },
++		[XE_HW_ENGINE_VCS4] = { MSG_IDLE_VCS4, true },
++		[XE_HW_ENGINE_VCS5] = { MSG_IDLE_VCS5, true },
++		[XE_HW_ENGINE_VCS6] = { MSG_IDLE_VCS6, true },
++		[XE_HW_ENGINE_VCS7] = { MSG_IDLE_VCS7, true },
++		[XE_HW_ENGINE_VECS0] = { MSG_IDLE_VECS0, true },
++		[XE_HW_ENGINE_VECS1] = { MSG_IDLE_VECS1, true },
++		[XE_HW_ENGINE_VECS2] = { MSG_IDLE_VECS2, true },
++		[XE_HW_ENGINE_VECS3] = { MSG_IDLE_VECS3, true },
++		[XE_HW_ENGINE_CCS0] = { MSG_IDLE_CS, true },
++		[XE_HW_ENGINE_CCS1] = { MSG_IDLE_CS, true },
++		[XE_HW_ENGINE_CCS2] = { MSG_IDLE_CS, true },
++		[XE_HW_ENGINE_CCS3] = { MSG_IDLE_CS, true },
++		[XE_HW_ENGINE_GSCCS0] = { MSG_IDLE_GSCCS0, false },
++	};
+ 	struct xe_hw_engine *hwe;
+ 	enum xe_hw_engine_id id;
+ 
+@@ -124,9 +156,27 @@ static int hw_engines(struct xe_gt *gt, struct drm_printer *p)
+ 	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL))
+ 		return -ETIMEDOUT;
+ 
+-	for_each_hw_engine(hwe, gt, id)
++	for_each_hw_engine(hwe, gt, id) {
++		struct xe_reg reg = msg_idle_reg[id].reg;
++		u32 val;
++
+ 		xe_hw_engine_print(hwe, p);
+ 
++		val = xe_mmio_read32(&gt->mmio, reg);
++
++		if (msg_idle_reg[id].has_fw)
++			drm_printf(p, "\tpipe %s, C6 %s, fw_req 0x%02x\n",
++				   val & MSG_IDLE_INDICATION ? "idle" : "busy",
++				   val & MSG_IDLE_C6_ALLOWED ? "allowed" : "not allowed",
++				   REG_FIELD_GET(MSG_IDLE_FW_STATUS, val));
++		else
++			drm_printf(p, "\tpipe %s, C6 %s\n",
++				   val & MSG_IDLE_INDICATION ? "idle" : "busy",
++				   val & MSG_IDLE_C6_ALLOWED ? "allowed" : "not allowed");
++
++		drm_puts(p, "\n");
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+index 82df19b304e1..5a4d085660a2 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.c
++++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+@@ -1868,8 +1868,6 @@ void xe_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm
+ 		snapshot_print_by_list_order(snapshot, p, GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS,
+ 					     list);
+ 	}
+-
+-	drm_puts(p, "\n");
+ }
+ 
+ /**
+-- 
+2.43.0
+
