@@ -4,54 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9DF2C79FAD
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:46:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EC07C79FA1
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:51:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C63A10EB0B;
-	Tue,  8 Sep 2026 10:46:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5C5110E0D6;
+	Tue,  8 Sep 2026 10:51:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YU/Y+L6x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i7y7uMXB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE7C510EAF7
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:46:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71C2010E0D6
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:51:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788864362; x=1820400362;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=OOJyFi1JJ5FRTXb4+vOLs7LhpuVz7azU1aLeRQd8gFI=;
- b=YU/Y+L6xjI+GRDT36DQxs83GKRPaGSntaDnDZ1/6IAK+bFQhxwrvkQYK
- Ov07gD3sBynPFElgF+BpoK2sQ+Aeg9O9ZOHot+p6IZVbikKdhM5U6ofTY
- MvVaZKuEJqtkn0VD2hpCmd7znB3LuPgYgEba0RBICRiFUfU75J3KyZnTm
- XQxz3LykRqNK7QW1bFAJQg9iXCVxOEv9CkV2IpV8hQV71PkAqlYu9ApTB
- KHF1rFhEIiz1CG3PGqbMat/bnZrCGviLm+8jDtkPXjbqRi25fX7etxI1S
- bm+AFIOvW2xFeGMsvwTVCSJFhAHzsTZr8ZFZ4tXUY81+ZRwhEiAcq6yB2 A==;
-X-CSE-ConnectionGUID: 3zRstmK0SbOjhyMihzlNlQ==
-X-CSE-MsgGUID: aQe3w63HS3K1gkfWRhyhRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="91773079"
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="91773079"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 03:46:01 -0700
-X-CSE-ConnectionGUID: lKUijIuFQ7CV0BoeDGjOIQ==
-X-CSE-MsgGUID: JIaIFB+KTl2w50SXE5008w==
+ t=1788864696; x=1820400696;
+ h=date:from:to:cc:subject:message-id;
+ bh=sHpZeYcRVzhSqj+u5mtOjNdGHRJ7Cf6FccSDF3BOnTA=;
+ b=i7y7uMXBGdWeaKmZ6mbOTxG57PyN8Ai6nyfnpHQKVuriOPo5N9E1kc29
+ YeSxJBz37DW0gamAw0B9Ccf4/BDgYJzQFi22XQnSr795sTiLTrBY6plgv
+ IMU46sqi3+BmoefJFE23n0w81nbNPEG3Gunp6SqqN4Q7IyM+4vDuwWkk9
+ 2IKnwtcS8SL4iD0q9AMvmPd05qU8ArtChtfx5KbZKbuxFnYWI34DsvJFT
+ 9beRILufMo+QQ43pd7gpmWyyzo3qXV4BlOQkLy5gZK/SCs00d/1BDzMxd
+ CKBaeZMMPPMkYdUe8dPAJh/7hV0iwumRXMbK+kAGSdScjht7EPHJ+O1nA Q==;
+X-CSE-ConnectionGUID: OeMzeA3tQ8WfmA+TPNY+OA==
+X-CSE-MsgGUID: DD3kqM1YRL6NHuFfZaWQ0w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="114802391"
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="114802391"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2026 03:51:36 -0700
+X-CSE-ConnectionGUID: 2mbJ76rQT0miRWqdGC5WAA==
+X-CSE-MsgGUID: KKCifmybTAuwrstEpI17dQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="264759109"
-Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by fmviesa009.fm.intel.com with ESMTP; 08 Sep 2026 03:46:00 -0700
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH v3 08/13] drm/xe/pat: Return error from xe_pat_init_early() on
- unknown platform
-Date: Tue,  8 Sep 2026 16:15:45 +0530
-Message-ID: <20260908104550.1283933-9-dnyaneshwar.bhadane@intel.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260908104550.1283933-1-dnyaneshwar.bhadane@intel.com>
-References: <20260908104550.1283933-1-dnyaneshwar.bhadane@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="270923673"
+Received: from igk-lkp-server01.igk.intel.com (HELO cc074f2a4298)
+ ([10.211.93.152])
+ by orviesa007.jf.intel.com with ESMTP; 08 Sep 2026 03:51:34 -0700
+Received: from kbuild by cc074f2a4298 with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1x3tQJ-000000000f8-3YRy;
+ Tue, 08 Sep 2026 10:51:31 +0000
+Date: Tue, 08 Sep 2026 12:51:02 +0200
+From: kernel test robot <lkp@intel.com>
+To: Honglei Huang <honghuan@amd.com>
+Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ Matthew Brost <matthew.brost@intel.com>, linux-doc@vger.kernel.org
+Subject: [drm-xe:drm-xe-next 3/6] htmldocs:
+ Documentation/gpu/rfc/gpusvm:70: ./drivers/gpu/drm/drm_gpusvm.c:70: WARNING:
+ Lexing literal_block 'struct driver_range {\n        struct drm_gpusvm_range
+ base;\n        unsigned int num_pages; // 1: inline_pages, >1: pages[]\n
+ union {\n  ...
+Message-ID: <202609081240.TB3UjW0m-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,90 +69,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_pat_init_early() currently only logs an error when the platform's
-graphics version doesn't match any known PAT table, but continues
-probing with an uninitialized pat.ops. This can lead to a NULL
-pointer dereference later when pat.ops is used.
+tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+head:   18299151caddd61adc977a56ef54c3043f5ed85e
+commit: cc2a6cbd6823678fe70ba76f88623827a6e06a87 [3/6] drm/gpusvm: let drm_gpusvm_get_pages() map an array of pages
+compiler: clang version 22.1.8 (https://github.com/llvm/llvm-project ca7933e47d3a3451d81e72ac174dcb5aa28b59d1)
+docutils: docutils (Docutils 0.21.2, Python 3.13.5, on linux)
+reproduce: (https://download.01.org/0day-ci/archive/20260908/202609081240.TB3UjW0m-lkp@intel.com/reproduce)
 
-Change xe_pat_init_early() to return an int and propagate -ENODATA
-to xe_device_probe() so the driver fails to load cleanly instead of
-continuing in a broken state.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202609081240.TB3UjW0m-lkp@intel.com/
 
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c |  4 +++-
- drivers/gpu/drm/xe/xe_pat.c    | 14 +++++---------
- drivers/gpu/drm/xe/xe_pat.h    |  2 +-
- 3 files changed, 9 insertions(+), 11 deletions(-)
+All warnings (new ones prefixed by >>):
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 8583b2e9ecf4..b7f78d45dee1 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -960,7 +960,9 @@ int xe_device_probe(struct xe_device *xe)
- 	int err;
- 	u8 id;
- 
--	xe_pat_init_early(xe);
-+	err = xe_pat_init_early(xe);
-+	if (err)
-+		return err;
- 
- 	err = xe_sriov_init(xe);
- 	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index a5fe1beec652..8af92e3c4c17 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -590,7 +590,7 @@ static const struct xe_pat_ops xe3p_xpc_pat_ops = {
- 	.entry_dump = xe3p_xpc_pat_entry_dump,
- };
- 
--void xe_pat_init_early(struct xe_device *xe)
-+int xe_pat_init_early(struct xe_device *xe)
- {
- 	xe->pat.idx[XE_CACHE_WB_COMPRESSION] = XE_PAT_INVALID_IDX;
- 	xe->pat.idx[XE_CACHE_NONE_COMPRESSION] = XE_PAT_INVALID_IDX;
-@@ -678,22 +678,18 @@ void xe_pat_init_early(struct xe_device *xe)
- 		xe->pat.idx[XE_CACHE_WT] = 2;
- 		xe->pat.idx[XE_CACHE_WB] = 0;
- 	} else {
--		/*
--		 * Going forward we expect to need new PAT settings for most
--		 * new platforms; failure to provide a new table can easily
--		 * lead to subtle, hard-to-debug problems.  If none of the
--		 * conditions above match the platform we're running on we'll
--		 * raise an error rather than trying to silently inherit the
--		 * most recent platform's behavior.
--		 */
- 		drm_err(&xe->drm, "Missing PAT table for platform with graphics version %d.%02d!\n",
- 			GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
-+		return -ENODATA;
-+
- 	}
- 
-+	xe_assert(xe, xe->pat.ops);
- 	xe_assert(xe, xe->pat.ops->dump);
- 	xe_assert(xe, xe->pat.ops->program_graphics);
- 	xe_assert(xe, MEDIA_VER(xe) < 13 || xe->pat.ops->program_media);
- 	xe_assert(xe, GRAPHICS_VER(xe) < 20 || xe->pat.ops->entry_dump);
-+	return 0;
- }
- 
- void xe_pat_init(struct xe_gt *gt)
-diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
-index 7060f66e1d63..66e335fb3b0c 100644
---- a/drivers/gpu/drm/xe/xe_pat.h
-+++ b/drivers/gpu/drm/xe/xe_pat.h
-@@ -43,7 +43,7 @@ struct xe_pat_table_entry {
-  * xe_pat_init_early - SW initialization, setting up data based on device
-  * @xe: xe device
-  */
--void xe_pat_init_early(struct xe_device *xe);
-+int xe_pat_init_early(struct xe_device *xe);
- 
- /**
-  * xe_pat_init - Program HW PAT table
--- 
-2.54.0
+   Documentation/userspace-api/landlock:621: ./include/uapi/linux/landlock.h:58: ERROR: Unknown target name: "network flags". [docutils]
+   Documentation/userspace-api/landlock:621: ./include/uapi/linux/landlock.h:63: ERROR: Unknown target name: "scope flags". [docutils]
+   Documentation/userspace-api/landlock:621: ./include/uapi/linux/landlock.h:24: ERROR: Unknown target name: "filesystem flags". [docutils]
+   Documentation/userspace-api/landlock:630: ./include/uapi/linux/landlock.h:241: ERROR: Unknown target name: "filesystem flags". [docutils]
+   Documentation/userspace-api/landlock:630: ./include/uapi/linux/landlock.h:264: ERROR: Unknown target name: "network flags". [docutils]
+>> Documentation/gpu/rfc/gpusvm:70: ./drivers/gpu/drm/drm_gpusvm.c:70: WARNING: Lexing literal_block 'struct driver_range {\n        struct drm_gpusvm_range base;\n        unsigned int num_pages; // 1: inline_pages, >1: pages[]\n        union {\n                struct drm_gpusvm_pages inline_pages;\n                struct drm_gpusvm_pages *pages;\n        };\n};\n\nstatic struct drm_gpusvm_pages *\ndriver_pages(struct driver_range *drange)\n{\n        return drange->num_pages == 1 ? :c:type:`drange->inline_pages <drange>` :\n                                        drange->pages;\n}' as "c" resulted in an error at token: '`'. Retrying in relaxed mode. [misc.highlighting_failure]
+>> Documentation/gpu/rfc/gpusvm:70: ./drivers/gpu/drm/drm_gpusvm.c:102: WARNING: Lexing literal_block '// GPU fault handler: one fault, one DMA mapping per device\nerr = drm_gpusvm_get_pages(gpusvm, driver_pages(drange),\n                           drange->num_pages, gpusvm->mm,\n                           :c:type:`range->notifier <range>`->notifier,\n                           drm_gpusvm_range_start(range),\n                           drm_gpusvm_range_end(range), :c:type:`ctx`);\n\n// Notifier callback: mark every instance unmapped in one call\ndrm_gpusvm_range_set_unmapped(range, driver_pages(drange),\n                              drange->num_pages, mmu_range);' as "c" resulted in an error at token: '`'. Retrying in relaxed mode. [misc.highlighting_failure]
+   Documentation/networking/checksum-offloads:157: ./include/linux/skbuff.h:181: WARNING: Failed to create a cross reference. A title or caption not found: 'crc' [ref.ref]
 
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
