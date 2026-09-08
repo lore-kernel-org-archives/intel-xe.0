@@ -4,59 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D942C79F82
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 17:23:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99BA0C79F99
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 17:23:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F25D10E1A5;
-	Tue,  8 Sep 2026 17:23:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4168C10E339;
+	Tue,  8 Sep 2026 17:23:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kaRSDZ06";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nrT+sZxT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 364DF10E1A5
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 17:23:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788888215; x=1820424215;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=50LqJ4sLn1G9RiMSyszMEM8JnlsfHvY4mihN8QV/IrQ=;
- b=kaRSDZ06mP2+2EdXQB1nYifVfyoojUsmvlqGZVeSNLZrhd+hJtb9yekc
- uPx+HiyzWbEZU7HX3Fxky2lqAMwqx57Cy0KH8NJjBugdLn3QTqdpU4SXv
- oIj5zfXpNF9bPZSqoZJmz5+fIdtqO0oEzfuxecH48pmhnKR1nVZo4YtVv
- zJ0AQ0sFEBsTibOZmrKE5u7/l9bpPKgmw0f4emSH3kLPWHrrqc1GMtKLN
- lW88wrl0MyZuOwDaUpQVVKYkWOedjzCTqBTrnY/esmCnmZjoVBFNUK0zs
- k0Zx2VRRCOPfLbjdX0ZZGpsCiGNkR+a+WU9cpiO32307Bdh+/Cuhj3hEM Q==;
-X-CSE-ConnectionGUID: tvgNmTOfTA+AqC3kwHan0Q==
-X-CSE-MsgGUID: HkcbHfFITs67lXdbL1T+kQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="114838527"
-X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="114838527"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 10:23:35 -0700
-X-CSE-ConnectionGUID: DRBdbyydTsSqTubUpaUXNA==
-X-CSE-MsgGUID: B43g+XUtQ7GtI9gSpU/aig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="276304649"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO [10.245.244.158])
- ([10.245.244.158])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 10:23:34 -0700
-Message-ID: <183c1f62-0193-41c5-b67f-a6e143ed933a@intel.com>
-Date: Tue, 8 Sep 2026 18:23:32 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 6/8] drm/xe/mmio_gem: fix destroy flow
-To: sashiko-reviews@lists.linux.dev
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E66310E339
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 17:23:38 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 2D73443833;
+ Tue,  8 Sep 2026 17:23:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E78F41F00A3A;
+ Tue,  8 Sep 2026 17:23:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788888218;
+ bh=ELlGTlCBgu+T97s67mBoz6fRP5fTjOY+nLNMib4Xwjs=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=nrT+sZxTmFpG+3pKp3mPdIo7ly/MnXB7jCveb2bPegCT8AY4v97Vm+IKsBbC8WawH
+ opbm8i9k4PwikGbcG6UlpsiOzKDi+wntf+Rn2P9+nRQ5GRfhdkRBkpNRC2rIMEUVmG
+ E3+yPId+zkPyZatoGqHixsEEClmu/9Kr4HlOYBExHIZqwI1NB2/EnZwgGv9XnD9MV6
+ BdXIQK2bILz92um/g/la3IzfBY1FVWeBP76GXLWErt8Pw24FPcQjWNRo5GMKWhX9WS
+ OAzvEsOHkJxqctw7hkWZTKToS3JzwSWEgVcDZ+m43z8LUZIHVw19+PxIhQHQ2nvUKn
+ V8l7P3F7UE9LQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 8/8] drm/xe: convert PCI barrier mmap to use xe_mmio_gem
+To: "Matthew Auld" <matthew.auld@intel.com>
 Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260908165046.1393557-18-matthew.auld@intel.com>
 References: <20260908165046.1393557-10-matthew.auld@intel.com>
- <20260908165046.1393557-16-matthew.auld@intel.com>
- <20260908171241.EE84B1F00A3F@smtp.kernel.org>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260908171241.EE84B1F00A3F@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ <20260908165046.1393557-18-matthew.auld@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 08 Sep 2026 17:23:37 +0000
+Message-Id: <20260908172337.E78F41F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,62 +52,77 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 08/09/2026 18:12, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> 
-> Pre-existing issues:
-> - [High] GFP_KERNEL allocation under dma_resv lock triggers lockdep splat and potential deadlock
-> --
-> 
-> commit 6f195ca9ff5839faa94b4a50effe5cb10176e87b
-> Author: Ilia Levi <ilia.levi@intel.com>
-> Subject: drm/xe/mmio_gem: fix destroy flow
-> 
-> This commit fixes a use-after-free in the gem object destroy flow by
-> introducing proper synchronization and refcounting. It uses the dma_resv lock
-> to serialize the fault handler with the destroy operation and unmaps existing
-> pages to cut off access to the real mmio after destruction.
-> 
->> diff --git a/drivers/gpu/drm/xe/xe_mmio_gem.c b/drivers/gpu/drm/xe/xe_mmio_gem.c
->> index 970b1e2f49815..5ffe03d361902 100644
->> --- a/drivers/gpu/drm/xe/xe_mmio_gem.c
->> +++ b/drivers/gpu/drm/xe/xe_mmio_gem.c
-> [ ... ]
->> @@ -176,10 +189,9 @@ static int alloc_dummy_page_if_needed(struct drm_gem_object *base)
->>   {
->>   	struct xe_mmio_gem *obj = to_xe_mmio_gem(base);
->>   
->> -	dma_resv_lock(base->resv, NULL);
->> +	dma_resv_assert_held(base->resv);
->>   	if (!obj->dummy_page)
->>   		obj->dummy_page = alloc_page(GFP_KERNEL | __GFP_ZERO);
-> 
-> [Severity: High]
-> This isn't a bug introduced by this patch, but does this allocation context
-> create a lockdep violation or potential deadlock?
-> 
-> The vma fault handler calls xe_mmio_gem_vm_fault, which takes the
-> dma_resv_lock. If the device is unplugged, it eventually calls
-> alloc_dummy_page_if_needed, executing alloc_page(GFP_KERNEL | __GFP_ZERO)
-> while holding base->resv. Since dma_resv locks are taken by shrinkers during
-> memory reclaim, holding it while doing a GFP_KERNEL allocation creates a
-> circular dependency.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] The conversion to generic `xe_mmio_gem_mmap` drops the read access=
+ restrictions for the PCI barrier, allowing unprivileged userspace to map t=
+he write-only PCIe doorbell with `PROT_READ`.
+--
 
-We are allowed to allocate under dma-resv. Loads of places do it. From 
-shrinker side, it is trylock all the way down for dma-resv, at least for 
-direct-reclaim.
+commit ef90a93714d00fe81619728388f0697e023978dd
+Author: Matthew Auld <matthew.auld@intel.com>
 
-> 
-> This can be reached by any unprivileged userspace process that mmaps the mmio
-> gem object and triggers a page fault while the device is in an unplugged
-> state.
-> 
->> -	dma_resv_unlock(base->resv);
->>   
->>   	return obj->dummy_page ? 0 : -ENOMEM;
->>   }
-> 
+drm/xe: convert PCI barrier mmap to use xe_mmio_gem
 
+This commit converts the PCI barrier mmap to use xe_mmio_gem, which
+replaces the hard-coded fake offset design and removes duplicate code.
+Userspace still queries the fake offset as before, but it is now managed
+by the generic component.
+
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+[ ... ]
+> @@ -3664,6 +3665,39 @@ int xe_gem_create_ioctl(struct drm_device *dev, vo=
+id *data,
+>  	return err;
+>  }
+> =20
+> +static int xe_gem_pci_barrier_mmap_offset(struct xe_device *xe, struct d=
+rm_file *file,
+> +					  struct drm_xe_gem_mmap_offset *args)
+> +{
+[ ... ]
+> +		if (!*barrier) {
+> +			phys_addr_t phys_addr;
+> +
+> +#define LAST_DB_PAGE_OFFSET 0x7ff000
+> +			phys_addr =3D pci_resource_start(to_pci_dev(xe->drm.dev), 0) +
+> +				LAST_DB_PAGE_OFFSET;
+> +			*barrier =3D xe_mmio_gem_create(xe, file, phys_addr, SZ_4K);
+
+[Severity: High]
+Does the conversion to the generic xe_mmio_gem framework drop the read
+access restrictions for the PCI barrier?
+
+The original xe_pci_barrier_mmap handler explicitly checked and rejected
+read access before it was removed in this patch:
+
+xe_pci_barrier_mmap() {
+        ...
+        if (vma->vm_flags & (VM_READ | VM_EXEC))
+                return -EINVAL;
+
+        vm_flags_clear(vma, VM_MAYREAD | VM_MAYEXEC);
+        ...
+}
+
+Without this protection, unprivileged userspace might be able to map the
+write-only PCIe doorbell with PROT_READ. If userspace issues a memory read
+to this write-only hardware register, the PCIe endpoint typically returns
+an Unsupported Request (UR) completion.
+
+Could this trigger Advanced Error Reporting (AER) faults, Machine Check
+Exceptions (MCE), or system hangs, leading to a local denial of service?
+
+> +			if (IS_ERR(*barrier)) {
+> +				int err =3D PTR_ERR(*barrier);
+[ ... ]
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260908165046.1393=
+557-10-matthew.auld@intel.com?part=3D8
