@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FC0BC79FAD
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:06:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 862A1C79FA1
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:06:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA23210EAF0;
-	Tue,  8 Sep 2026 10:06:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F55D10EAF4;
+	Tue,  8 Sep 2026 10:06:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uopm25V+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="niAUyZti";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 289D110EAF0
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:06:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CACD110EAF4
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:06:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788861979; x=1820397979;
+ t=1788861984; x=1820397984;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=LowYE4W49fj+fUcz51WE5xyavCDMmO6LKFg84cSzMaI=;
- b=Uopm25V+LuqpHgWzdyJVcpNgfqIBuUB2XVlY/3fJ6AgbY70aF0nUUuLH
- 3QEIqIZyX9HHIQDdOwMaGZYmvxOlWf35Pnwn+DYPZ+GXSJCRZF780/Mpo
- 9HD4eyXwws2ZCWtk/NLj6JUIpVNzBXW8PEyqJfCr8dfH2uoSaIFuN/9+y
- ayLioS2JKEdBuTCtmhNbONRBmkJaZWIF3u7hlM8EdvXSFqeMgmQFieDkn
- ilRphg8p5WGUqMJplpgqEWv1NmlPZiWVt8F1/WyXkT5BQmRTkDdIXT0Tj
- 4QZQ9dDM84XFQ1eh+dvqoRgWp4K/k1vUVr90KnWE9c2uV3+LA3Zkq0j6K w==;
-X-CSE-ConnectionGUID: bZKNSDh5TcaisLExaAoASA==
-X-CSE-MsgGUID: hrB70ZOrS/OhpIIP95IAeQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="99920487"
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="99920487"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 03:06:19 -0700
-X-CSE-ConnectionGUID: KdI8wkEbSquI2lWQVZ5OWg==
-X-CSE-MsgGUID: 9FfMEkgnTNyfCVRi7+VKSg==
+ bh=8CJdTP4Gbzj5nWLO98ie15HlNi1QTx+xnVjRJ9SthDE=;
+ b=niAUyZtiRtRasZffj4xcLHceC5W+jzSSkQcJzP6qS86L2FP6WJd0xMrE
+ VK99EsqoBWgkFT8rnUvSJ5dyEVJaAyr5CHy+4Yb+ab4FGTDp7Vdj0iU5w
+ 5oVaRLbjHyduuw+h1qqbkNLZ/mWEnl73vGr5R7msraCydh1tA3K2yf52+
+ 15iBKWB4W7Ip/HJ46nGRAJFvJCl5NxztG6sCRuWkh2IgJ9kEK+0IrjH02
+ e687LFs1KjdCKKu0m9vDrFwJfSpziY9Ei+McZcJUx0JOJkMBczA9ttdi0
+ QIx44LfGygOv3DCcsdHRstZ3ayLdtPkZSuzUmurdhUSgtmUJkBQVEYq4o A==;
+X-CSE-ConnectionGUID: 12APBvi+ScmmxdqiMcvzWQ==
+X-CSE-MsgGUID: 2n+rE18jS4Ckw1y5j8aJyQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="89103131"
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="89103131"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2026 03:06:24 -0700
+X-CSE-ConnectionGUID: d6s9YG8dSiSIYgWPT7r51g==
+X-CSE-MsgGUID: nocMaA+dSquVVxqCanZ1Ow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="270455080"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 03:06:19 -0700
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="267275401"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2026 03:06:23 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 8 Sep 2026 03:06:18 -0700
+ 15.2.2562.46; Tue, 8 Sep 2026 03:06:22 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Tue, 8 Sep 2026 03:06:18 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.17)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Tue, 8 Sep 2026 03:06:22 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.4) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 8 Sep 2026 03:06:18 -0700
+ 15.2.2562.46; Tue, 8 Sep 2026 03:06:22 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rwSEh3FC/8R+rNZ+YiwkEwmCrDmZPp+4PSykNOJ1bqsUZL4qjHCtqTVnRWVKwoQOmDzoDGc2fc52Hcnymju0XDxmCm6GWBrsNMTu0836ndmiIG9q12mV1aP0ILGErm8T0uJL1jXe5xbmUUQBixGtQQAj2oLLH9/Sk+VyVpPgtxJC3gnpUFz5XSGvYLiSfbz1GWUNlN1An/wcYje9I+0ooQgsICgIs+HAuNxK085ymYW7cr86zWR+jlHxeoNxPbKLLZqp5IhuzIfex9n9aPNSAGFaX3UtjXTWZ52mjbvXTQ5fyV919apG7NGpreGX8eL07Ix3Yn/7jLySvKk9ye+jFw==
+ b=J30/akiieJoBYc1L/5A7Aj8mmhHi4Y4aIvBmkaq+t+yljHUGezo/JK8wclX3jtGCcrSdMMnlgitOAYtB0WJg6D336QNLqQFDiWRT87Vp4bAigsKzwYOAigQQJucviPTfiq6+OEaRf73c2z3tR3H3foCw7ASBEezSUYC244en0+vrZfejlDxwKKCjS6bKLWuuYN8lyhYCNcy9tx4MBL9yHHslj9rsWujRZqe/OL08i3h8xkZt1URjiT7Pc7zPf0T5AmgEpvsgI2kkWObf5aCGrUmoQXY5LayEARSh1YWFK53g8B6whNSb0NJK2g3Nt/VX7U+C8j8WN4o9AhYYDeGpcQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5Q6+oJ8mRtBiWmzZUc11ft8w0C7jcJPSO0SmL6W/yCQ=;
- b=wAofl35XGNZKQKs0lzvKY5p4wvqQWqx7gbB+KlPulM7AfRc086U00zvLo4eSNKnfAg7AH4X20LhWZcr8QHJlMLjXwQEbgPiD5hNqr/YXkzD73U+bByW3X3qxCY+LleGIY/obrBEDwaloXmyEuYznOsvuP6zX2fD8MzppqI6JGeG2JmUUYV4D6RPtR2vONYkznZGDeDVRTBM+4kVYrmgoV8F9MVCfFTiWEuMtLSjm6j+S37Z8gDqLO+8TMn4W9IMI/ziuG5j70Q9/SyABp+HXeg4t8GKJkngIEss9WFOaC8d/Nhk2V0XmsJ8CarM1jcdT+AuWbaOrPs8HZJ74L0k6cw==
+ bh=06gmbyEqI8ckBoikXyyrRGK8pczFVgFKBK+eKEiixVk=;
+ b=PnVFz0ntmXhOCOgXC6t73qaHQnkpPCOonah0YPtRFMiSUlnBuz0vONVZncKpcsGZQONHKx60crDgpgiUZqEMSxn6VZVgWdWNTDD2YAUvnDFeImqj4cK9y8fPYqVl4Th/Wd97ngAD7uYNFUC6JpB1znzNq5IUaPKJMId1jzHReqfj+lIvAfwmYODTTZiIshtvQPRx5wPV7Vaynrb0t6QzaU951SI8SJ46PKBnGM00xP9hY/kMz+TUNbYQk9AA9FMrj/1uNAMZsQLnX3y9PGq9HcmKu1LpAOs3OFMUsu2av10tIR1w70g8YDqbxztiPe1+LbHS1kM5B9j57D3IeA9pcQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,91 +69,91 @@ Received: from PH8PR11MB8039.namprd11.prod.outlook.com (2603:10b6:510:25f::18)
  by SA1PR11MB9827.namprd11.prod.outlook.com (2603:10b6:806:4d8::10)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.7; Tue, 8 Sep 2026
- 10:06:17 +0000
+ 10:06:21 +0000
 Received: from PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92]) by PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92%2]) with mapi id 15.21.0406.005; Tue, 8 Sep 2026
- 10:06:17 +0000
+ 10:06:21 +0000
 From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>, "Michal
  Wajdeczko" <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v5 2/4] drm/xe/ggtt: Split GGTT into usable and shareable pools
-Date: Tue, 8 Sep 2026 12:06:00 +0200
-Message-ID: <20260908100602.1626556-3-piotr.piorkowski@intel.com>
+Subject: [PATCH v5 3/4] drm/xe/ggtt: Initialize GGTT pools by SR-IOV mode
+Date: Tue, 8 Sep 2026 12:06:01 +0200
+Message-ID: <20260908100602.1626556-4-piotr.piorkowski@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260908100602.1626556-1-piotr.piorkowski@intel.com>
 References: <20260908100602.1626556-1-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: DU2PR04CA0018.eurprd04.prod.outlook.com
- (2603:10a6:10:3b::23) To PH8PR11MB8039.namprd11.prod.outlook.com
+X-ClientProxiedBy: DU7P194CA0006.EURP194.PROD.OUTLOOK.COM
+ (2603:10a6:10:553::15) To PH8PR11MB8039.namprd11.prod.outlook.com
  (2603:10b6:510:25f::18)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|SA1PR11MB9827:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9df47e3b-11c3-4547-f6bc-08df0d90d289
+X-MS-Office365-Filtering-Correlation-Id: 90e1f2ef-602c-4fc8-dc3a-08df0d90d4e4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|366016|376014|23010399003|1800799024|6133799003|18002099003|22082099003|11063799006|56012099006|10067099003;
-X-Microsoft-Antispam-Message-Info: 14gAhqOxGjtxOmvebWr89hP64bNpQMTbVC8460LFvF39e+SIR84bcXY/L4q/9G+CcTA/KGwsFmsvNj4hPHbke5XDPREaiToRC/nzY8KJrWAF3KIrWugFOv29kWyrmHAsNCVMUnLD4OzBVugVVBtSuNQvbDb2Q8WhV+MzJRRcLvocKIfHGlC8B9nJsTVGVPXs8ZjtuwrCJYQhlNt57nN+yFdJK+CZCGFzhw1dEqaZNBcwg79CkuGr6LoXCxCvTmXpIOuTDbeqeIOWuqtAJ/lKPfHV0NUC9oTyMR3jMG9i1zaXG7DKzndKqotHpeRLH6BSphb0q7SfZv1fd/WWmjUcB3QNEj2RlNnXKrAHBb2TMW3WpN/chFOE2qMguSRK/B4rxrrNt4pkI/8ANwjuU4XejzqBswFa7rAs7zqqMWOhDS99ZgJTiBG+VwMbV/G8ca9oOavzvSL0csPwLU+0K3BR67cYKldEv5R6ak08erAH4My4hifFAGYoLV0iHHpBryuLHDit6gInH6qxiDK3kIG0jdcDjKa8PwGHuWZMgrEjjeLLUqtVRwL97b+TFm19d74k94HlL7j6TuHk1KNr+tBYIje1tfiYwMQRDcGAqTTplRWMK66JiSyLjFcd9cEo9/cOqAjnGDSOy9qMv5VOGT7MlJLHiWqNZmIX1Eh0Vw/CsgU=
+X-Microsoft-Antispam-Message-Info: vryKUfyES79qsm4JeDBialTLtNyMQ1YQerhYE+ZSs7PQJN1zU1LBwL7MkMnqn8YX8KgwAA6//NoudmovvdK2AI8pFIrj/rLE2kYTVW8oNYshgMJqhqk1ny1TfvsGX4dj8ZKitoniYvL67sv8MuEXJWex2TIkc6YQu1LETCApXRN1rBDlOjMU16DH+CmitrcvJaruBw+tinFd8A4NKVLnG6pNln7N2vhxfWPC5NylSUhKf7QFuKPJmMLnmnufJi4Byg8/7kYmCMt+aNkcHUVr5whhJhEgDzH4T5R7EM89kjBqRhdmzPwIZ1Pwx6h0BJ59HDAsRJgiZQJ6+jHvjhsSvKNQ/EAqGD7aPD/vMt4rLDbdjjmWLLhKG63GlqSzgqZBtQuRT5kNSDFhOiEvziuonoyJeZueUAgU6GUCivS/CEWEtBZSRP5iwNNSMXn2/l3WTaVn8MCxYcqqVtqSZHzEDhPFSTYJa4MsdCJRp4QeL1eyFAOvfYcrKKaK6y2k87UpA7F1i9hen49r3oeCIEth9tG9Lw5lbPxg61LrZ23Z8oTyRZrllnkGmiKxNigF8OJ/DXGhuN8frhOWiR57VbQmSqgIR+9mLe4V587nfIt6ev4ke9dbM1soEhDnasBSFyBI/SXFuT3sCfSbibYbA77IQutgvHmltP+5BoKYKJVvj5A=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8039.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(23010399003)(1800799024)(6133799003)(18002099003)(22082099003)(11063799006)(56012099006)(10067099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K1dHRGdZMUptZFVSN0lDTzVXUG5yZkNjOFhUay9uMjhHY3RuSzNKVjZSUE9x?=
- =?utf-8?B?bnpodkhMNXNwMWVEeG1OWTVuYkFpOFFxNisxdWw2anZzbEVCazFwNHp6VmVp?=
- =?utf-8?B?L29Qbnc1SW1hTEhWemV2ZElsQnVBTktwUzhKOW53MytrMllOTDVZVEpDbWVT?=
- =?utf-8?B?ZUIvTjhwaFdjOEJQM054Sm9jS0tpSjkyeWJMN29oSXdBWTR4bkwyWmc0Mkd6?=
- =?utf-8?B?Zk43UUM0bDNNOVhicjJEeFJvL2FWYTRLa01KZWxPb3BsRnRIUUsvaklFZXlW?=
- =?utf-8?B?S1ZrV2VQdlhGVVYyT3dIZDFmNmtuZXhSNVZTZEE0eHFXemFFbVBlY2JrTWdM?=
- =?utf-8?B?WE5OSGZvbTllTUU5YzkvUXp3QlBtRDVDeFNNWXhTL1R1elgvemhsTDNoSmdI?=
- =?utf-8?B?WVp2andPMXRsNXpGWDhxR2xuTUF2N3FVMVZQdnRtcWxSSTBIYlNsd3FJZWFm?=
- =?utf-8?B?WlRENWRldUl1V0c3YWxoUVFOTVBDeFVCeU5wMW0vbFptc1Z5MFk4aTVBMDJl?=
- =?utf-8?B?aE55Qm9JbU50TGY2LytWYWRKd0t5NzlvUC9pY0NPZXZTdTJta1BxZ2dPdE5H?=
- =?utf-8?B?ZU5sOGc0TnVCYmhvbVJYNEs3aXFWWTFEWXZVZDNHYVVtNFJFcU1UZWwxemJ2?=
- =?utf-8?B?cWVaQ1Yza3Zlc1ZOUldzY0hVZE1ubmhKTTNKYm4yemxrK1MxMkE1aCtCQzlj?=
- =?utf-8?B?T0ZZUGxyZVg5ZFZvMDliODFZOENHSHNUZVVRNnFOcGNjeFBSWHNCMmQxTFZG?=
- =?utf-8?B?Wmc3bzRFWUt5dTFNT01RalJJd042MVFFb1VwQTFqSHlXTVZNQzFLNGhQL25G?=
- =?utf-8?B?eWhzYkJqZ2FqSk5wZ2I2NGhHWWlYQ2x0OXB4U0FoY3l6SHFEV29UazBmbERi?=
- =?utf-8?B?dDZBNEc2azhjSkFDOG9ndlVUdTM4dmhFQnd0TWFFMjZ6UG5zcmJ4Ujd0UVRx?=
- =?utf-8?B?NTlxL0pzSGNxRnpHL3BjUGlHVHN4RCsrczJCekpYQi9pQnkxY3VjVTJDRmFW?=
- =?utf-8?B?RTJUU3BJd2RWK3Nva0d2clNYZzBlYjFzZGFyb05ITEtRenFpUHA5aFFVVXB5?=
- =?utf-8?B?YnJDYW5mNlg3VGQxcDBsMy9DOHBuZmtwYUQ3QUs4bmlGdEpwNEVFTW1NYmlt?=
- =?utf-8?B?ZXYwRkRja3F6QnFQNXN3ZTNBRktObmZVNENKa2I3cGRpa0pxVFRUNmgxWE5t?=
- =?utf-8?B?bUUwenFvUGRGU09BNzlialh1WjR3a1ZkSnhERXZsdjdUK2lVSnFjNGZTN2VJ?=
- =?utf-8?B?SEt6S0NFdnRYY0VJb2gxMFNVV3FxclNkUUltdFg4ZFhNUHhESEJIdHdsQVBo?=
- =?utf-8?B?RlJGQ0p6TFd0S3puNGVsUm1TeGxMazlCUVhoNWdDVTUzUWJGNXB3dlloSUM0?=
- =?utf-8?B?bkswQk9KZnZHcFhkcm1JeUFIMFpKMDZLcE1ZTlJSSEpRTDBpelAwWFphYXZ5?=
- =?utf-8?B?eDN5Q3gyNzJuRjBNZFZxaG9QZzZOVHB6cmdIVEpCYVlrdGlWRGw5WTViSEdO?=
- =?utf-8?B?U1VKL1VqalJMNzl1M0RtZVMvOUMrY1IrSGtramlBZHVTZi9zbGxIVXlGMTJn?=
- =?utf-8?B?TnhzTTVpWG5hckkyWnZIdjNUQU5RaTgwZ3d3NEhWZHNMMExCQ08xNHROQnhq?=
- =?utf-8?B?bVR3NXVZcGh5eG01bjF1djNwV0tYU0ExRzJ4RWdZWGE1SDdYOTdGMFlYL1pF?=
- =?utf-8?B?T2U4ZGpJWkFMaHZWQmNlTVN2bkFNR2pZYmhmSTlJamNHNENQOFVGMnRaNTRS?=
- =?utf-8?B?MHZTSUlpVXoyWjlmT05YOG5lVmJCWW5mdGlyb2xWaTV1Mm1udTg5V2pYTU9V?=
- =?utf-8?B?TGYyNW5PKzdQSjJkQlIzQTNqNXlXMjNJdGtMTVBRZXBXWUtEcXVIWGp3VDhV?=
- =?utf-8?B?RnU5dmN5bG1GcDR3OHB0UjNGNWdqY3FJRkZXQjBhd1dGL1BadFVoRkZQUnN1?=
- =?utf-8?B?em9JY2pRRmozcytCVG4wdm5kMy9LcC83cVlSTnBMQnd5WGIvOUZwK2JDU0hM?=
- =?utf-8?B?Q2M3dVNadDZjRkJxZFNMMFJiQzJrbVlvb3ZaUUJGRjc0TE9zZEIyWlN0ai9k?=
- =?utf-8?B?WmtCQngvNXZkYXpyb1k0TmlweklmSTZvekVvTmhIWjZUUjRYdjhwN0UyVEh5?=
- =?utf-8?B?M1l2VzJsc1VqREtuOHhFNHFyQS9jcUQvYTBiVzNESUhZSEo3VjlRbkZQam45?=
- =?utf-8?B?eWI3U282UU5oSmg4V0hPMGlkTTJ1VHNGL1JxVTlqeFJLcFFCR25nRzhHNFBR?=
- =?utf-8?B?cEtjdmJ6WXJuTGY0bEowN1V6UDdhaGNlei9PQTFtVmoyMVZDR2xua3YvYnhC?=
- =?utf-8?B?ZjVLOEdXVlJ6TThFTHAvWmxGM1MvWWJaR1lsZlBYemdHMzhVcWM3NXFmNWh6?=
- =?utf-8?Q?d4tCQk/XsDpb1ERA=3D?=
-X-Exchange-RoutingPolicyChecked: Fm8xHHEdMJBOLs2ZhyCtBnFwv6keggZ1PQxU2Q6LCXN/+JEKGkZHeRI0wu8JiBafItRDynijufSyJjCdEgyz3zaAt3clVDq77HFCxgGD8+32KOl3wb+fkHhFcbGNj80XPZkly0qpwAZqjFXXLq/qwjWf5a/SxEK/8FIoMQHYxIRozEE5JHnW9DwGirXSa8ZuUSf34hTk7Lsjo7Lplco1qZlnHTktPDB4+AQbMFUsP8Bxci62K7mU83ZE6LdO7tfNWiaE0LlT2hCoubk236YA7YhEEe5ss6cHSieZ3vwUNzkP6dXMpV6dOe+IIomRIX1tA18HBs2kH6C+l20ZWdM8HQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9df47e3b-11c3-4547-f6bc-08df0d90d289
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Tk9seUM2WVpOSW5mTHI4dW9NNHBWMWNWMVpLVm1QZUFFYWtHYXMrSU9hSGZy?=
+ =?utf-8?B?Zi9LLzNIaVNDVkt1V1czdC9pUHJmTllRdndKa2Z6OUw5QkZNZ09BMWhGWlkr?=
+ =?utf-8?B?b09qenVaL1pvSjhKMHlwdHMxSDlhNTVUdWdLVU1lVXBOUWVNZTBoa0Q4TGR0?=
+ =?utf-8?B?VCtmNDNHcGFJNzBtcy9wSWx2bkZLR2JOQmVueC9SS3VLUHJ2aTF0ZVd1a2ZW?=
+ =?utf-8?B?dEYzRS8xd2luT2I2MFU0UHpHSkJja2VQWHJrdmFGOFgzNjkzTmVLNGpPSFpO?=
+ =?utf-8?B?NCtvNmZRQWpieVhtMzNQRFp4cHdJMzlxZXA1YWYyL0VzRyszczZLU0dCUVZG?=
+ =?utf-8?B?d2Mycjh3UUJSYTFsRktVN0FIQXFnT1RSOU9BL2F3djM0Z2d4ZklSc0dlNFd6?=
+ =?utf-8?B?eGZ5eDlpYk5MRnNHUU1CMjRtSmo1MGN5bm9IVjNhSUtPelBCTDE2K1JBcnVj?=
+ =?utf-8?B?TndUSjQ0UUswdGpLaDRTM3MwL0MyZkdnam9OMEpXVUh3YVFOUjJDMWU1MjBq?=
+ =?utf-8?B?ZmNKSDdGbXUreURCSzNVNnh5bFlKTU96OVV0RFRPL2piRkdLeUZrVEs3RDBO?=
+ =?utf-8?B?ODZIMWFnVFYrT3B0azdxNEhPZmU4SGtmZHh0bm4zeEJpdlBDcGgyVFo4Y1pS?=
+ =?utf-8?B?NkdKSTJuc0lQcU5BNERoYWdPNjg0YTAvTUpnMVFYQ0NLUWRyUzJTcDJuREhj?=
+ =?utf-8?B?dmJNYitNeGhTbjBmQ0hKUFY0VGpIcEh5cC96WU1BOFNFbkZDcnUrZzhMV0VF?=
+ =?utf-8?B?SDhydEJBQ0o1emd6NVdQOEkyK2JaMWh0cDhxcENZTkZYTlFVbm84aGM1a0lD?=
+ =?utf-8?B?V2E0ZEVCeUU3Qk5IdDZLamJlaHFWVDQxSVVvYjNLM2JiNEgzZm4zTU1xbTRO?=
+ =?utf-8?B?c1RST1dKdlVYeFlxYW5zb1JGVHZqQTAvR1RpcDhlOUxXMWJCZUs0bHh0ZExY?=
+ =?utf-8?B?TzBlZTNxWVlOVE5KYUdHWkxuOEdnNlB1UnhSVDk4bGJVa01vTmxqQTZpV3ZD?=
+ =?utf-8?B?bVFPK0M1UmhZWnkwTXF1bHRoT1Vid1hBUUdlbVQ2SkJHd3pXdDU0VDJPeHdU?=
+ =?utf-8?B?N24zSlM0YjhHdHlGZHMrbkUwZm5BRVIxZkdkZ0w5aG1QMmRseDhIdGdsRjNv?=
+ =?utf-8?B?Rm1uSWp1RFFJTEUzWDNnVHo0SXkzTisvYTZ5T2J5dlMweVdvNDlDdlI2UzJH?=
+ =?utf-8?B?N3lXcXhqTFk5WllWYkRYbDRpYW9FNG9QdEVsOEt4WGwweTd2YmNZenQ3MEN3?=
+ =?utf-8?B?VWV5L1VYb1g2SkFreG53M24zM3h0a0hQOGptT1lYckNCMUJuWndmeXpRY2tn?=
+ =?utf-8?B?eTFOQUh6OVlqeUdJajdtMDNwRFVIeGpZcXNobzdVeVJrdUJKQ1JaSTVDYWZr?=
+ =?utf-8?B?dGxwTDdGeXpWbjZxRTQxQ2ZKRGtwRHpqWmFndXV1ZjhIbG1IR1V6c2dhNGdi?=
+ =?utf-8?B?WHBWT2pGdWNOOU9qOUw2cEZjMWFvZmhBWFgwYS94djM0bXJkVVBaYzh1WXJN?=
+ =?utf-8?B?UDcwRldXaU1Ra2txM0dFb0FEMU5GN3N5bVEydkg3T0xZVHhXT3ZCS3A0aFRG?=
+ =?utf-8?B?a3VDZGdNR2Y2OFhyQTA3Y0NuOUpnSHMzK3JGdS9SUFdMSitWdFEzYU4vbDhl?=
+ =?utf-8?B?c0dwV3lOaW40YjRBaythanVyS1Y4VEVjSGtiODFWU04xNkFYUFlJSUQxNDBZ?=
+ =?utf-8?B?ZDZoWG96UVRBNVo5TmdKU3hQVEsvWjc3TWtvR1JkUEQyemoyU0x6blZHaStL?=
+ =?utf-8?B?ZGFrRVFCc3doSFh1blE0VlVqNGhsbWZUL2pkZU5Xc3lheForanlGTnFUVEFE?=
+ =?utf-8?B?c3J0MU1LNU5SRmQ5VnJYcHZGMjRNUWFDZ041TkpLcTI4b3ZVVUdNK2czNk02?=
+ =?utf-8?B?NFQ4d2svVWpoc0xQUHEyN3h2KzRmYmxsSEVvRlhEOWF1SlNZV2VLQ3pmMHI2?=
+ =?utf-8?B?Y3llbGZDM09taTl2Z1FnSWVxNFFJV1dVeUlwL2JTYW1aaHBEa3ZhZWlnUUtX?=
+ =?utf-8?B?TzVxMURqNEVnNllCNllxdTJEVllvdFBmMVJKVUhwOUxCSzBvdk1EekNBQTRW?=
+ =?utf-8?B?VDVoTmFuemN3ajZxQ1RyeTdzYjJHUUV4S25RaXduNUphMy9aRXNCb3dRSXdD?=
+ =?utf-8?B?MFFIeWtSR1NzSWUwWUVOZ1ViTS9IaDhjMCszQzc5Sy9rckwzNkE1d05qUzdz?=
+ =?utf-8?B?NDFxT21taGdxZVNQK1pnQ3pDb3RVeG0yUlRCL0xVVVVxcnBHQWFrZUlHNTR5?=
+ =?utf-8?B?Vk1UaEllWkFOWUlGTGYyVFR0NFh3dEZQNWhITTBGNHAzUEMxNnA4c1Jxb1kz?=
+ =?utf-8?B?a3BtQlVyRFFJY0p3SUNyMXNaY1Y2UmRDdjJDN1VkLy8zK2NWTkZzN1NkeFU2?=
+ =?utf-8?Q?C9m9LTp34I+dSMcE=3D?=
+X-Exchange-RoutingPolicyChecked: YwHlsxO1Np19RY5OEDS8fLBC4bTYXN2fTti7Eq4rZxGKxaA0u9kRIxVudgo6B7CoMBfJY4bH9Pg7UGrk/AKG+mw+4m8INup1kzyjlKR3eV7a/m5PZhp70g0vQJCM2Vit1bs/u7Oiu8IAYIC0PNuC/rs/I8BqsLVfu3UvFw7dhlv0zpIEH5przO8JzkKV98l3l+jYC/X80cn6tqaSPsrMP+X8d5BmAOIugdzBOiy6pPS65zZz8bnr8fJsEfB3WknCI2amXAvj1EaITYEZTJkgo3EI28joXjZgu5CjYMrwXM+g+fb57YtuCCUXu7fcI0gL1WyVF2TGfYFX1Tl3szYSLA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90e1f2ef-602c-4fc8-dc3a-08df0d90d4e4
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8039.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2026 10:06:16.9706 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2026 10:06:20.9504 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HAxaxyE4HB5s6LcvyGCC7npMDOWm4OgEPxeMBdxZdUJQL7uI8JgvrbxpuGtirDppaUsRPMRfYQB4JTsPtJuNO2lX5sxQn7T1qsByeXzOdJo=
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZkpREelIifr8hXw5KhKGl2ledlvUlDGLSAPnjO+hTNYA+1Lhl3/u45IF4R8xS1mhOwyabwyurC+w9tnODTKqs9h3LJe9/uEBS9qF/8x0uVY=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB9827
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -172,31 +172,18 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-Driver-owned GGTT allocations and VF provisioning currently use a single
-GGTT pool. Split it into a usable pool for driver-owned allocations and a
-shareable pool for VF provisioning.
+GGTT initialization currently uses the full available range for both the
+usable and shareable pools, regardless of the SR-IOV mode. The range is
+read from hardware on native and PF devices and assigned by GuC on VFs.
 
-The pools are separate logical ranges and may overlap, but allocations are
-limited to the configured size of their corresponding pool. Allocate from
-the bottom of the usable pool and from the top of the shareable pool when a
-shareable pool is present.
-
-Add separate insertion APIs for the usable and shareable pools.
+Separate range discovery from pool setup and initialize the pools based on
+SR-IOV mode. Native and VF modes use only the usable pool. Shared PF mode
+uses both pools over the same full range, so they fully overlap.
 
 v2:
- - Rename ggtt->usable_size back to ggtt->size.
- - Remove the ggtt_insert_node_in_range() helper.
-v3:
- - Introduce the full_size struct field instead of the ggtt_accessible_size
-   function.
-v4:
- - Set the shareable pool size only for SR-IOV PF,
- - Return -ENOSPC instead of asserting when a large BO no longer fits after
-   end is clamped to ggtt->size.
-v5:
- - Move range initializer rename and full_size parameter here.
- - Use shareable_size and compute the shareable start on demand.
- - Constrain regular allocations to the usable pool.
+ - Rename the native range discovery helper to ggtt_probe().
+ - Treat out-of-range VF GGTT as invalid instead of clamping it.
+ - Move GGTT range logging into the common initialization path.
 
 Assisted-by: Claude:claude-5-sonnet
 Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
@@ -204,332 +191,168 @@ Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Cc: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 166 +++++++++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_ggtt.h |   4 +
- 2 files changed, 143 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/xe/xe_ggtt.c | 125 ++++++++++++++++++++++++++---------
+ 1 file changed, 94 insertions(+), 31 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index c54a4cf967df9..6a59fc20153bf 100644
+index 6a59fc20153bf..4eec94e377c98 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.c
 +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -144,8 +144,19 @@ struct xe_ggtt {
- 	unsigned int access_count;
- 	/** @wq: Dedicated unordered work queue to process node removals */
- 	struct workqueue_struct *wq;
-+#ifdef CONFIG_PCI_IOV
-+	/** @shareable_size: Size of the GGTT range reserved for sharing with VFs */
-+	u64 shareable_size;
-+#endif
- };
- 
-+#ifdef CONFIG_PCI_IOV
-+static inline u64 ggtt_shareable_start(struct xe_ggtt *ggtt)
-+{
-+	return ggtt->full_size - ggtt->shareable_size;
-+}
-+#endif
-+
- static u64 xelp_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
- {
- 	u64 pte = XE_PAGE_PRESENT;
-@@ -357,17 +368,30 @@ static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
- 	.ggtt_get_pte = xe_ggtt_get_pte,
- };
- 
--static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u64 start, u64 size)
-+static void ggtt_init_ranges(struct xe_ggtt *ggtt, u64 start, u64 full_size,
-+			     u64 usable_size, u64 shareable_size)
- {
-+	struct xe_gt *gt = ggtt->tile->primary_gt;
-+
-+	xe_gt_assert(gt, full_size);
-+	xe_gt_assert(gt, usable_size);
-+	xe_gt_assert(gt, usable_size <= full_size);
-+	xe_gt_assert(gt, shareable_size <= full_size);
-+
- 	ggtt->start = start;
--	ggtt->full_size = size;
--	ggtt->size = size;
--	drm_mm_init(&ggtt->mm, 0, size);
-+	ggtt->full_size = full_size;
-+	ggtt->size = usable_size;
-+
-+#ifdef CONFIG_PCI_IOV
-+	if (shareable_size)
-+		ggtt->shareable_size = shareable_size;
-+#endif
-+	drm_mm_init(&ggtt->mm, 0, ggtt->full_size);
+@@ -389,9 +389,97 @@ static void ggtt_init_ranges(struct xe_ggtt *ggtt, u64 start, u64 full_size,
+ 	drm_mm_init(&ggtt->mm, 0, ggtt->full_size);
  }
  
- int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 start, u32 size)
+-int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 start, u32 size)
++static int ggtt_probe(struct xe_ggtt *ggtt, u64 *start, u64 *size)
++{
++	struct xe_device *xe = tile_to_xe(ggtt->tile);
++	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++	unsigned int gsm_size;
++
++	if (GRAPHICS_VERx100(xe) >= 1250)
++		gsm_size = SZ_8M; /* GGTT is expected to be 4GiB */
++	else
++		gsm_size = probe_gsm_size(pdev);
++
++	if (!gsm_size) {
++		xe_tile_err(ggtt->tile, "Hardware reported no preallocated GSM\n");
++		return -ENOMEM;
++	}
++
++	*start = xe_wopcm_size(xe);
++	*size = (gsm_size / 8) * (u64)XE_PAGE_SIZE - *start;
++
++	return 0;
++}
++
++static int ggtt_get_range_from_guc(struct xe_ggtt *ggtt, u64 *start, u64 *size)
++{
++	struct xe_device *xe = tile_to_xe(ggtt->tile);
++	u64 wopcm = xe_wopcm_size(xe);
++
++	*start = xe_tile_sriov_vf_ggtt_base(ggtt->tile);
++	*size = xe_tile_sriov_vf_ggtt(ggtt->tile);
++
++	if (*start < wopcm || *start + *size > GUC_GGTT_TOP) {
++		xe_tile_err(ggtt->tile, "Invalid GGTT configuration: %#llx-%#llx\n",
++			    *start, *start + *size - 1);
++		return -ERANGE;
++	}
++
++	return 0;
++}
++
++static int ggtt_read_available_range(struct xe_ggtt *ggtt, u64 *start, u64 *size)
++{
++	struct xe_device *xe = tile_to_xe(ggtt->tile);
++	int err;
++
++	if (IS_SRIOV_VF(xe))
++		err = ggtt_get_range_from_guc(ggtt, start, size);
++	else
++		err = ggtt_probe(ggtt, start, size);
++	if (err)
++		return err;
++
++	if (!IS_SRIOV_VF(xe) && *start + *size > GUC_GGTT_TOP)
++		*size = GUC_GGTT_TOP - *start;
++
++	return 0;
++}
++
++static void ggtt_init_native(struct xe_ggtt *ggtt, u64 start, u64 size)
  {
--	__xe_ggtt_init_early(ggtt, start, size);
-+	ggtt_init_ranges(ggtt, start, size, size, 0);
+ 	ggtt_init_ranges(ggtt, start, size, size, 0);
++}
++
++static void ggtt_init_shared(struct xe_ggtt *ggtt, u64 start, u64 size)
++{
++	ggtt_init_ranges(ggtt, start, size, size, size);
++}
++
++static void ggtt_init_generic(struct xe_ggtt *ggtt, u64 start, u64 size)
++{
++	struct xe_device *xe = tile_to_xe(ggtt->tile);
++
++	if (!IS_SRIOV_PF(xe))
++		ggtt_init_native(ggtt, start, size);
++	else
++		ggtt_init_shared(ggtt, start, size);
++
++	xe_tile_info(ggtt->tile, "GGTT usable %#llx-%#llx = %lluK\n",
++		     ggtt->start, ggtt->start + ggtt->size - 1,
++		     ggtt->size / SZ_1K);
++#ifdef CONFIG_PCI_IOV
++	if (IS_SRIOV_PF(xe))
++		xe_tile_info(ggtt->tile, "GGTT shareable %#llx-%#llx = %lluK\n",
++			     ggtt->start + ggtt_shareable_start(ggtt),
++			     ggtt->start + ggtt->full_size - 1,
++			     ggtt->shareable_size / SZ_1K);
++#endif
++}
++
++int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 start, u32 size)
++{
++	ggtt_init_generic(ggtt, start, size);
  	return 0;
  }
  EXPORT_SYMBOL_IF_KUNIT(xe_ggtt_init_kunit);
-@@ -442,7 +466,8 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+@@ -419,41 +507,17 @@ static void dev_fini_ggtt(void *arg)
+ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ {
+ 	struct xe_device *xe = tile_to_xe(ggtt->tile);
+-	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+-	unsigned int gsm_size;
+-	u64 ggtt_start, wopcm = xe_wopcm_size(xe), ggtt_size;
++	u64 ggtt_start, ggtt_size;
+ 	int err;
+ 
+-	if (!IS_SRIOV_VF(xe)) {
+-		if (GRAPHICS_VERx100(xe) >= 1250)
+-			gsm_size = SZ_8M; /* GGTT is expected to be 4GiB */
+-		else
+-			gsm_size = probe_gsm_size(pdev);
+-		if (gsm_size == 0) {
+-			xe_tile_err(ggtt->tile, "Hardware reported no preallocated GSM\n");
+-			return -ENOMEM;
+-		}
+-		ggtt_start = wopcm;
+-		ggtt_size = (gsm_size / 8) * (u64)XE_PAGE_SIZE - ggtt_start;
+-	} else {
+-		ggtt_start = xe_tile_sriov_vf_ggtt_base(ggtt->tile);
+-		ggtt_size = xe_tile_sriov_vf_ggtt(ggtt->tile);
+-
+-		if (ggtt_start < wopcm ||
+-		    ggtt_start + ggtt_size > GUC_GGTT_TOP) {
+-			xe_tile_err(ggtt->tile, "Invalid GGTT configuration: %#llx-%#llx\n",
+-				    ggtt_start, ggtt_start + ggtt_size - 1);
+-			return -ERANGE;
+-		}
+-	}
++	err = ggtt_read_available_range(ggtt, &ggtt_start, &ggtt_size);
++	if (err)
++		return err;
+ 
+ 	ggtt->gsm = ggtt->tile->mmio.regs + SZ_8M;
+ 	if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+ 		ggtt->flags |= XE_GGTT_FLAGS_64K;
+ 
+-	if (ggtt_size + ggtt_start > GUC_GGTT_TOP)
+-		ggtt_size = GUC_GGTT_TOP - ggtt_start;
+-
+ 	if (GRAPHICS_VERx100(xe) >= 1270)
+ 		ggtt->pt_ops =
+ 			(ggtt->tile->media_gt && XE_GT_WA(ggtt->tile->media_gt, 22019338487)) ||
+@@ -466,8 +530,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
  	if (!ggtt->wq)
  		return -ENOMEM;
  
--	__xe_ggtt_init_early(ggtt, ggtt_start, ggtt_size);
-+	ggtt_init_ranges(ggtt, ggtt_start, ggtt_size, ggtt_size,
-+			 IS_SRIOV_PF(xe) ? ggtt_size : 0);
+-	ggtt_init_ranges(ggtt, ggtt_start, ggtt_size, ggtt_size,
+-			 IS_SRIOV_PF(xe) ? ggtt_size : 0);
++	ggtt_init_generic(ggtt, ggtt_start, ggtt_size);
  
  	err = drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt);
  	if (err)
-@@ -636,6 +661,11 @@ static void xe_ggtt_invalidate_engine(struct xe_ggtt *ggtt)
- 	ggtt_invalidate_gt_engine_tlb(ggtt->tile->media_gt);
- }
- 
-+static inline u64 xe_ggtt_bottom(struct xe_ggtt *ggtt)
-+{
-+	return xe_wopcm_size(tile_to_xe(ggtt->tile));
-+}
-+
- /**
-  * xe_ggtt_shift_nodes() - Shift GGTT nodes to adjust for a change in usable address range.
-  * @ggtt: the &xe_ggtt struct instance
-@@ -647,24 +677,63 @@ static void xe_ggtt_invalidate_engine(struct xe_ggtt *ggtt)
-  * This function may be called multiple times during recovery, but if
-  * @new_start is unchanged from the current base, it's a noop.
-  *
-- * @new_start should be a value between xe_wopcm_size() and #GUC_GGTT_TOP.
-+ * @new_start should be a value between the GGTT bottom and #GUC_GGTT_TOP.
-  */
- void xe_ggtt_shift_nodes(struct xe_ggtt *ggtt, u64 new_start)
- {
- 	guard(mutex)(&ggtt->lock);
- 
--	xe_tile_assert(ggtt->tile, new_start >= xe_wopcm_size(tile_to_xe(ggtt->tile)));
-+	xe_tile_assert(ggtt->tile, new_start >= xe_ggtt_bottom(ggtt));
- 	xe_tile_assert(ggtt->tile, new_start + ggtt->size <= GUC_GGTT_TOP);
-+#ifdef CONFIG_PCI_IOV
-+	xe_tile_assert(ggtt->tile, ggtt->shareable_size == 0);
-+#endif
- 
- 	/* pairs with READ_ONCE in xe_ggtt_node_addr() */
- 	WRITE_ONCE(ggtt->start, new_start);
- }
- 
--static int xe_ggtt_insert_node_locked(struct xe_ggtt_node *node,
--				      u32 size, u32 align, u32 mm_flags)
-+static int ggtt_insert_node_in_range_locked(struct xe_ggtt_node *node, u32 size,
-+					    u32 align, u64 range_start,
-+					    u64 range_size, u32 mm_flags)
-+{
-+	struct xe_ggtt *ggtt = node->ggtt;
-+	u64 range_end = range_start + range_size;
-+
-+	lockdep_assert_held(&ggtt->lock);
-+
-+	if (!range_size || range_end <= range_start)
-+		return -EINVAL;
-+
-+	if (range_end > ggtt->full_size)
-+		return -ERANGE;
-+
-+	if (size > range_size)
-+		return -ENOSPC;
-+
-+	return drm_mm_insert_node_in_range(&ggtt->mm, &node->base, size, align, 0,
-+					  range_start, range_end, mm_flags);
-+}
-+
-+/*
-+ * When the shareable range is present, allocations start from the bottom
-+ * to leave space at the top; otherwise they start from the top.
-+ */
-+static u32 ggtt_usable_insert_flags(struct xe_ggtt *ggtt)
- {
--	return drm_mm_insert_node_generic(&node->ggtt->mm, &node->base, size, align, 0,
--					  mm_flags);
-+#ifdef CONFIG_PCI_IOV
-+	if (ggtt->shareable_size > 0)
-+		return DRM_MM_INSERT_LOW;
-+#endif
-+	return DRM_MM_INSERT_HIGH;
-+}
-+
-+static int xe_ggtt_insert_node_locked(struct xe_ggtt_node *node, u32 size, u32 align)
-+{
-+	struct xe_ggtt *ggtt = node->ggtt;
-+
-+	return ggtt_insert_node_in_range_locked(node, size, align, 0,
-+						ggtt->size, ggtt_usable_insert_flags(ggtt));
- }
- 
- static struct xe_ggtt_node *ggtt_node_init(struct xe_ggtt *ggtt)
-@@ -681,12 +750,12 @@ static struct xe_ggtt_node *ggtt_node_init(struct xe_ggtt *ggtt)
- }
- 
- /**
-- * xe_ggtt_insert_node - Insert a &xe_ggtt_node into the GGTT
-+ * xe_ggtt_insert_node() - Insert a &xe_ggtt_node into the GGTT
-  * @ggtt: the &xe_ggtt into which the node should be inserted.
-  * @size: size of the node
-  * @align: alignment constrain of the node
-  *
-- * Return: &xe_ggtt_node on success or a ERR_PTR on failure.
-+ * Return: &xe_ggtt_node on success or an ERR_PTR on failure.
-  */
- struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 align)
- {
-@@ -698,8 +767,45 @@ struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 ali
- 		return node;
- 
- 	guard(mutex)(&ggtt->lock);
--	ret = xe_ggtt_insert_node_locked(node, size, align,
--					 DRM_MM_INSERT_HIGH);
-+
-+	ret = xe_ggtt_insert_node_locked(node, size, align);
-+	if (ret) {
-+		ggtt_node_fini(node);
-+		return ERR_PTR(ret);
-+	}
-+
-+	return node;
-+}
-+
-+#ifdef CONFIG_PCI_IOV
-+/**
-+ * xe_ggtt_insert_node_shareable() - Insert a new node in the shareable GGTT range
-+ * @ggtt: the &xe_ggtt into which the node should be inserted.
-+ * @size: size of the node
-+ * @align: alignment constrain of the node
-+ *
-+ * Allocations always start from the top (DRM_MM_INSERT_HIGH).
-+ *
-+ * Return: &xe_ggtt_node on success or an ERR_PTR on failure.
-+ */
-+struct xe_ggtt_node *xe_ggtt_insert_node_shareable(struct xe_ggtt *ggtt, u32 size, u32 align)
-+{
-+	struct xe_ggtt_node *node;
-+	int ret;
-+
-+	if (!ggtt->shareable_size)
-+		return ERR_PTR(-ENOSPC);
-+
-+	node = ggtt_node_init(ggtt);
-+	if (IS_ERR(node))
-+		return node;
-+
-+	guard(mutex)(&ggtt->lock);
-+
-+	ret = ggtt_insert_node_in_range_locked(node, size, align,
-+					       ggtt_shareable_start(ggtt),
-+					       ggtt->shareable_size,
-+					       DRM_MM_INSERT_HIGH);
- 	if (ret) {
- 		ggtt_node_fini(node);
- 		return ERR_PTR(ret);
-@@ -707,6 +813,7 @@ struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 ali
- 
- 	return node;
- }
-+#endif
- 
- /**
-  * xe_ggtt_node_pt_size() - Get the size of page table entries needed to map a GGTT node.
-@@ -790,6 +897,7 @@ void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo)
-  *
-  * This function allows inserting a GGTT node with a custom transformation function.
-  * This is useful for display to allow inserting rotated framebuffers to GGTT.
-+ * Allocates from the usable range only.
-  *
-  * Return: A pointer to %xe_ggtt_node struct on success. An ERR_PTR otherwise.
-  */
-@@ -810,7 +918,7 @@ struct xe_ggtt_node *xe_ggtt_insert_node_transform(struct xe_ggtt *ggtt,
- 		goto err;
- 	}
- 
--	ret = xe_ggtt_insert_node_locked(node, size, align, 0);
-+	ret = xe_ggtt_insert_node_locked(node, size, align);
- 	if (ret)
- 		goto err_unlock;
- 
-@@ -832,6 +940,7 @@ struct xe_ggtt_node *xe_ggtt_insert_node_transform(struct xe_ggtt *ggtt,
- static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 				  u64 start, u64 end, struct drm_exec *exec)
- {
-+	struct xe_device *xe = tile_to_xe(ggtt->tile);
- 	u64 alignment = bo->min_align > 0 ? bo->min_align : XE_PAGE_SIZE;
- 	u8 tile_id = ggtt->tile->id;
- 	int err;
-@@ -849,16 +958,16 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 	if (err)
- 		return err;
- 
--	xe_pm_runtime_get_noresume(tile_to_xe(ggtt->tile));
-+	guard(xe_pm_runtime_noresume)(xe);
- 
- 	bo->ggtt_node[tile_id] = ggtt_node_init(ggtt);
- 	if (IS_ERR(bo->ggtt_node[tile_id])) {
- 		err = PTR_ERR(bo->ggtt_node[tile_id]);
- 		bo->ggtt_node[tile_id] = NULL;
--		goto out;
-+		return err;
- 	}
- 
--	mutex_lock(&ggtt->lock);
-+	guard(mutex)(&ggtt->lock);
- 	/*
- 	 * When inheriting the initial framebuffer, the framebuffer is
- 	 * physically located at VRAM address 0, and usually at GGTT address 0 too.
-@@ -877,28 +986,31 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 	else
- 		end = 0;
- 
--	xe_tile_assert(ggtt->tile, end >= start + xe_bo_size(bo));
-+	end = min(end, ggtt->size);
-+
-+	if (end < start + xe_bo_size(bo)) {
-+		ggtt_node_fini(bo->ggtt_node[tile_id]);
-+		bo->ggtt_node[tile_id] = NULL;
-+		return -ENOSPC;
-+	}
- 
- 	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node[tile_id]->base,
--					  xe_bo_size(bo), alignment, 0, start, end, 0);
-+					  xe_bo_size(bo), alignment, 0, start, end,
-+					  ggtt_usable_insert_flags(ggtt));
- 	if (err) {
- 		ggtt_node_fini(bo->ggtt_node[tile_id]);
- 		bo->ggtt_node[tile_id] = NULL;
- 	} else {
- 		u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
--		u16 pat_index = xe_cache_pat_idx(tile_to_xe(ggtt->tile), cache_mode);
-+		u16 pat_index = xe_cache_pat_idx(xe, cache_mode);
- 		u64 pte = ggtt->pt_ops->pte_encode_flags(bo, pat_index);
- 
- 		xe_ggtt_map_bo(ggtt, bo->ggtt_node[tile_id], bo, pte);
- 	}
--	mutex_unlock(&ggtt->lock);
- 
- 	if (!err && bo->flags & XE_BO_FLAG_GGTT_INVALIDATE)
- 		xe_ggtt_invalidate(ggtt);
- 
--out:
--	xe_pm_runtime_put(tile_to_xe(ggtt->tile));
--
- 	return err;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index c864cc975a695..59b2f02870195 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -24,6 +24,10 @@ u64 xe_ggtt_size(struct xe_ggtt *ggtt);
- 
- struct xe_ggtt_node *
- xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 align);
-+#ifdef CONFIG_PCI_IOV
-+struct xe_ggtt_node *
-+xe_ggtt_insert_node_shareable(struct xe_ggtt *ggtt, u32 size, u32 align);
-+#endif
- struct xe_ggtt_node *
- xe_ggtt_insert_node_transform(struct xe_ggtt *ggtt,
- 			      struct xe_bo *bo, u64 pte,
 -- 
 2.34.1
 
