@@ -4,147 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68534C79F99
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 19:31:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6940C79F82
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 19:37:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0745010E165;
-	Tue,  8 Sep 2026 19:31:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bfxAVjc8";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 851B610E165
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 19:31:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788895875; x=1820431875;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=eryyGHuTxNaEVPEwnatnFcIbuVNII7DjI+FAhM2Mfyc=;
- b=bfxAVjc8OSknNvy3TSSTZGVPxy8MwBF5bTiiMD78QjywjlXPswvRGOXn
- lsTwGA0KgQTpf1g9tzhbKY/RSSSYWX/Hb16DEbCL3Kxs6VijYOnDt6EGI
- hejm1PTofIRB1gdf5WZt9h2/jLeFcAOCAyf8tk47+XyymbGqiHSFxJAWB
- m6bz22SiNf2MvoiKWrJkY24iDwRhBJ1gU05m5FR8HLyOXM9CJSJHqMXGz
- nhm25eI0E9sLwtOPSfTLJWrRtxJOM0QIW/N6LLQE50QynIg76sFOUfEU8
- LZYPewhrwM5NHQllDfN0NQhLc2tjnSrkc/vEIebu64aKsbKWqx3E3e+N8 Q==;
-X-CSE-ConnectionGUID: c7BOW4AZSWiIeXHUPtQ5kw==
-X-CSE-MsgGUID: MXtwGbihQ82bQF8+FGGN3g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="106827229"
-X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="106827229"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 12:31:15 -0700
-X-CSE-ConnectionGUID: vgW852VpTtSyuifp6U4Gsw==
-X-CSE-MsgGUID: ackIv4+6TBuXHXgeswCrKA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="294604197"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 12:31:15 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 8 Sep 2026 12:31:14 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Tue, 8 Sep 2026 12:31:14 -0700
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.39) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 8 Sep 2026 12:31:14 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aB4abT93veH7PuQpy+K2tWKKQ50mCoM5ruIpogso8ntSw0PwebgpGgvnpFR9CGWuZCDIK2/XDsInH+m3WcEFhX/L67scVMJe8r3Ik1qyXjiadgh8lp3Rafv3e1pLCSWGvSA51/zO8BU0sUGpWKWzL457KlEe0UrTY9J6wNC5v569rb1dhmmxZm/bHJ+UfPAOVQ2EDq+iiD+rVxb4IiMAzV/TU73U+oAScLd5gTkv11vi/SkBRz4VJmN6vhPtmMq+466Ahl5srwLXEksg6KxbUdVv8dsyxLW0I2QiQxsGYW/QE26bKDXydiBV4iFB6kRAopmsRQu6K7SdqF3SLc1Wsg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pWtOeBt1n03pMbZ3gb9uALHXNVIkKkmwmMmiMQplknw=;
- b=IIXOs9M1f4rQaZMr90Y7aP2qjRqcyY+wtQ+TfKwJPQMWOU25vz97FVY1hF4X0xE/mqV1WLwG+xOoNsM5jYwA6BDUZCbUpdql5BnvqjapYchisqeuGP/oAoPFu4Ku/jGYvXHf+sQj3KILJtVYdhZjyMgAAtL/Mm2xaeSEb71bmINR0JhuaG0LUIICgsf4OK7cgaxnFC2JXYXHMijYhmSGQLaWxTfNHJUD4BHul1cIoioMiRaDWPqbWWqD/0YIk8qOfCjLpDb0X+mmWiV2Mp3aVL0Q1F+3Oyn7OJlcgp+7Ipg6rxLhYm5AG+341trBXLh3urC6jzd2xkFPW1TeFfI3Ig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
- by DS6PR11MB180335.namprd11.prod.outlook.com (2603:10b6:8:521::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.7; Tue, 8 Sep 2026
- 19:31:13 +0000
-Received: from CO1PR11MB4787.namprd11.prod.outlook.com
- ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
- ([fe80::e7eb:a872:53d1:21fd%3]) with mapi id 15.21.0406.005; Tue, 8 Sep 2026
- 19:31:13 +0000
-Date: Tue, 8 Sep 2026 12:31:11 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <sashiko-reviews@lists.linux.dev>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/xe: Keep walking on SVM eviction failure
-Message-ID: <aqBif1V2aY92MxRG@gsse-cloud1.jf.intel.com>
-References: <20260908184346.92332-1-matthew.brost@intel.com>
- <20260908185523.6EC501F00AC4@smtp.kernel.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260908185523.6EC501F00AC4@smtp.kernel.org>
-X-ClientProxiedBy: MW4PR03CA0041.namprd03.prod.outlook.com
- (2603:10b6:303:8e::16) To CO1PR11MB4787.namprd11.prod.outlook.com
- (2603:10b6:303:95::23)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C5B510E40D;
+	Tue,  8 Sep 2026 19:37:07 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A829C10E40D;
+ Tue,  8 Sep 2026 19:37:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4688712856356179992=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|DS6PR11MB180335:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1f9fcfb4-ab63-440a-49a9-08df0ddfbe3e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|23010399003|366016|6133799003|10067099003|11063799006|56012099006|4143699003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 4uzoIDcG7flQLzPJS5Qv5+EY+/qSMYokjEpgbdhHvweKx1Izs8/H0l1nleocCLz4cPfvIQUMTcOXQ7XgrumNsFyUB3yco4p6GZnXglbEm37Pv9sByhjsLdcVzWG5vyKUjKL3xjd8ffsrYzoI5sFc/5mjlFxCVuxrhdzte7aO5HA5H4ViCeY8sQiJ58IcnRzVjYMkYxfC3aksxQ8Dqg7h+2wtlznRAIhCbEUqoWKeBofRuh79qhdvu3yai16mb1wKcImlLAvTmDQP1bg6x08JloQk9/iJZk+it2/AUpvG/XGfofntwXTZ3S/LioCxJCQmtovxgq4XwhY8FRpXyUCxBxPKf+lDc11uHyLLaOXS6bxLkOxnFUAygFkEOUpJd2YLlehkUfqienNMkfLqCp0iA600im14XfbToelvWlieVi0WmOvZNikpj1Mbz93ZwqzWhVk3hJcJrzOX0zSzbsRQQwChYr7hcoKqq0XvtQPhmbDSHGhdlrJtPK9mbgYyjpIJ40CpP45mpOjfFlPmDpgKS89TntJNG9uETWgEH/IeGAEPR0J8AlbpeiSmLQhljSI2+/v1bLTYKzcyzUlh1VXkttEVrPPDhogdTRTMj0PvKdE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(6133799003)(10067099003)(11063799006)(56012099006)(4143699003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?FITzr5URtFAYCWm/t0fEiDKEUcPRtC75hPwxcKtKcJ0ESLNMgJ9F77bJmz?=
- =?iso-8859-1?Q?qOL/cgmm7dcVbyNLlVXkw2eEVahtjTrGMAd1VPeEvvkNIVDi6+11SiFbzF?=
- =?iso-8859-1?Q?4P4WzSPVmzRrA0uT2mZIRA9GBst3Bm0D/ECBbB2H1mkB86oeKY2J/4pGYV?=
- =?iso-8859-1?Q?PIQnNFdOCh1X6ALcdsQ4YKiP1kORyWV+jNhNBhDgUFUqNJr/FU/KNLgOqe?=
- =?iso-8859-1?Q?vYput/v9raVAJqi6pBjMAWujGIVcEVh0XSqD2mIpW3nDiAZLk9/9ZxJwYy?=
- =?iso-8859-1?Q?/gqs0HVHwfnNJSh47C8iveyOOmSOxTvtrlpTep4l2eRPyrDKgnLn8MG9VQ?=
- =?iso-8859-1?Q?2mLU322OAPT4GnZY+nvsUbjF3BBKUChRfGdwAK1iearOP5bE4838vbotZ6?=
- =?iso-8859-1?Q?fG+QfeaX6vTE3FdQ89++/t4lSkrolFYIXTuoJAhkhLBsbolt85RYed85Si?=
- =?iso-8859-1?Q?I+6/mXbywXTDrjAV0fK6gHu9SXAmbViy2O0MpTbFdl1IPGHtSzrNOVBRT3?=
- =?iso-8859-1?Q?5DM2mhgN/xXbmvQxddUqMShzrgVceSpyDcSImW7ciVQae4pbXyy/olWrdy?=
- =?iso-8859-1?Q?XfDmoUxlLiY3whp6GFBWUcCYRZJRPdxHEK4jIhLP2kc0tEqtN/AmeF6U01?=
- =?iso-8859-1?Q?8Tm+E4eAi3F+R/Z7OPPwt4obgz9/F7dym6+0i3s27biyvBjtv4S5aGO62i?=
- =?iso-8859-1?Q?vJFNJK1488A/jDp+borvlmtZzJp50EaKYiW0eZT7RcPmHi8w39HP1FcD9L?=
- =?iso-8859-1?Q?WDOuL8GZ/aFLjo9MC3nRj5UhqDwnVHzLJtx46gR01/s/7hqvRwLMOnTFcF?=
- =?iso-8859-1?Q?VPE1NSclQsY4giKrpqnrZgursaxcn6vD0RTwAFmBaX36niKMYmfL07AbAz?=
- =?iso-8859-1?Q?LKAATSnc5+Fru3JK7eBoTmpbCUzKzW2KaNulReZRpr9/7hxJi2voBzI+Ld?=
- =?iso-8859-1?Q?eWzFwbk+kTh0rQZ9OV1JniBj0mxtljUdnZM9AgUbIdEQf+EPgdIJ5odrGo?=
- =?iso-8859-1?Q?g9KMJnrPETG3UO5Bn5yacsA156h6gQh9M/kbnYA13YQXXIAyFaa8qnwg94?=
- =?iso-8859-1?Q?VUuQAGSM6kBXZnsRFZj596+LVtiBTuCo1AaoBWmGzGAVpSYhIb4B8OFbOM?=
- =?iso-8859-1?Q?I7DJfuxLR5zypYEKPvzSX6MthgF29H0BD2XRYjPw/6ADz1Yg5Xxm5mfCtx?=
- =?iso-8859-1?Q?0l0cU5ruPOUOEvhSvM2+buB6Hc/OuaHjIxsHEXVyHUpcA2vsxWtvVzrKdr?=
- =?iso-8859-1?Q?QkUNH9GUgd7QBHM9rH4pWJbN0OJTJZS1zzFsaPoWecG6pjK+jDzcSE/hEC?=
- =?iso-8859-1?Q?53WyeaBKluKiPPA3y9UY3PpzMhDl+z5PQLmFu5xtcKhtF3EweRYU//98a/?=
- =?iso-8859-1?Q?fnnzWaAucvAKAblTtiwCUF5fAX/dx0oBt05RPenLkRi+OGXfjPNctPupkg?=
- =?iso-8859-1?Q?oHDTOtaDtOJCbAAugMpC9P7UhkAc8w5K11gqdAbgh4oY78nhn6P6hfffNO?=
- =?iso-8859-1?Q?SnB9Ax7kayWxcY027NVwg5WHDytEZmLlKwxAk3Rv4Uy5ikrTDVBMs+u9Tz?=
- =?iso-8859-1?Q?uKF/uQ4hTt7RCjDqj84UAIqQX5WZljR9ThAzatQEiIY6hbXkEa9XiDgQfc?=
- =?iso-8859-1?Q?A09+cBwGq8NUb0yp6BwFOmSIbO5ibOht2ZuictCAfF4G03ncD5RSetz2yV?=
- =?iso-8859-1?Q?HsDeyblvnyemutEG2FPC1VBV5P3AoPy9mmAXyn8gwznonVsRGBTHtXSO5c?=
- =?iso-8859-1?Q?DmvS9xm0blw5f0+++3W2WAh6Yy1Ouq+aE7ybkHwrpEZYDoOvWfAPpny+7/?=
- =?iso-8859-1?Q?FoNDwwY3oSxxJpR5zDOGiJtWaEOxZX8=3D?=
-X-Exchange-RoutingPolicyChecked: NFaYnfhXEGXVkHI8Or9iH2rZT1xEfPkY2WVyVo9+LfaE/IiuojN2CpdyYRU5NdV+mq+ZwhQKhc/NRNZ/mbKwjWxL3bmkS7uerde5ryo40W/9W4cXzlQCFCkzmUfyT2nrEBFn9O1FjaL9xgAPCfH7x9Zoego7Zwd68TOdZqN8qpPog8BYXqFNeBFNZg7gdc4ixMzvb/kiP4KbmQX8X9A8lfykCbtkjc+FkBk3FrT7mp70xtP/m6Denu+MK/aqbwRLiJ6B0Hf5PiU3Ybp7LYK60AwOzlGoJwR3CUuzrdO96U+BltS3F/W9pXw4+p9P7UtID0bETsqXA91aEkDmzWxlNg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f9fcfb4-ab63-440a-49a9-08df0ddfbe3e
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2026 19:31:13.2226 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TKIC419dB1/oos/SKaOV/DfDPjwaDezmloS3KZGv3dGAx+6O9FriKoG74OdyJ/klEmKzbY4MJGoKcPmQT8G0yQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS6PR11MB180335
-X-OriginatorOrg: intel.com
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Keep_walking_on_S?=
+ =?utf-8?q?VM_eviction_failure?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 08 Sep 2026 19:37:05 -0000
+Message-ID: <178889622568.137411.3314042260045324111@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260908184346.92332-1-matthew.brost@intel.com>
+In-Reply-To: <20260908184346.92332-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,70 +36,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 08, 2026 at 06:55:22PM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] Unconditionally masking `xe_svm_bo_evict()` errors as `-ENOSPC` hides fatal errors and triggers TTM error log spam.
-> --
-> 
-> commit 8fcbc00a7aa0e3b2119f7df96129747882247423
-> Author: Matthew Brost <matthew.brost@intel.com>
-> 
-> drm/xe: Keep walking on SVM eviction failure
-> 
-> This commit adjusts the error handling in xe_bo_move() for SVM eviction
-> failures. It overwrites the return code from xe_svm_bo_evict() with -ENOSPC
-> to force TTM to continue walking the LRU list for eviction candidates.
-> 
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > @@ -1043,6 +1043,11 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
-> >  		} else {
-> >  			drm_dbg(&xe->drm, "Evict system allocator BO failed=%pe\n",
-> >  				ERR_PTR(ret));
-> > +			/*
-> > +			 * The semantic we want upon SVM eviction failure is
-> > +			 * keep walking for eviction, which is -ENOSPC.
-> > +			 */
-> > +			ret = -ENOSPC;
-> 
-> [Severity: Medium]
-> Does unconditionally overwriting the error with -ENOSPC hide fatal errors like
-> -ENOMEM?
-> 
-> When system memory is exhausted, xe_svm_bo_evict() can return -ENOMEM. By
-> masking this as -ENOSPC, it seems we might break proper error propagation to
-> higher layers, preventing expected OOM handling.
-> 
+--===============4688712856356179992==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yea.. Perhaps -ENOMEM should actually be returned to the upper layers as
-this indicates we are out of system memory and attemping more evictions
-is unlikely to help.
+== Series Details ==
 
-Second opinion from the Xe team on this one?
+Series: drm/xe: Keep walking on SVM eviction failure
+URL   : https://patchwork.freedesktop.org/series/173621/
+State : success
 
-> Furthermore, could this trigger a TTM error log spam loop? When returned to
-> TTM, -ENOSPC causes ttm_bo_evict() to log an unconditional
-> pr_err("Buffer eviction failed\n"). Since -ENOSPC is converted to -EBUSY in
-> ttm_bo_evict_cb(), it signals the LRU walker (ttm_lru_walk_for_evict()) to
-> skip the BO and continue walking. 
-> 
-> During genuine resource exhaustion, this might cause a fruitless iteration over
-> the entire LRU list, logging a pr_err() for every single buffer object. Even
-> benign SVM races might spam the kernel log with errors.
->
+== Summary ==
 
-The spam is probably seperate issue in TTM. -ENOSPC likely shouldn't
-emit a pr_err as it continues walking.
+CI Bug Log - changes from xe-5709-5cb17454a3e04fcc1133d87451c9c582c297e92d_BAT -> xe-pw-173621v1_BAT
+====================================================
 
-Matt
+Summary
+-------
 
-> >  		}
-> >  
-> >  		goto out;
-> 
-> -- 
-> Sashiko AI review · https://sashiko.dev/#/patchset/20260908184346.92332-1-matthew.brost@intel.com?part=1
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-173621v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [ABORT][1] ([Intel XE#8007]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5709-5cb17454a3e04fcc1133d87451c9c582c297e92d/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173621v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-wcl-1:          [FAIL][3] ([Intel XE#9115]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5709-5cb17454a3e04fcc1133d87451c9c582c297e92d/bat-wcl-1/igt@xe_waitfence@reltime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173621v1/bat-wcl-1/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
+  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
+
+
+Build changes
+-------------
+
+  * Linux: xe-5709-5cb17454a3e04fcc1133d87451c9c582c297e92d -> xe-pw-173621v1
+
+  IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5709-5cb17454a3e04fcc1133d87451c9c582c297e92d: 5cb17454a3e04fcc1133d87451c9c582c297e92d
+  xe-pw-173621v1: 173621v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173621v1/index.html
+
+--===============4688712856356179992==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Keep walking on SVM eviction failure</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173621/">https://patchwork.freedesktop.org/series/173621/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173621v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173621v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5709-5cb17454a3e04fcc1133d87451c9c582c297e92d_BAT -&gt; xe-pw-173621v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-173621v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5709-5cb17454a3e04fcc1133d87451c9c582c297e92d/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173621v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5709-5cb17454a3e04fcc1133d87451c9c582c297e92d/bat-wcl-1/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173621v1/bat-wcl-1/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5709-5cb17454a3e04fcc1133d87451c9c582c297e92d -&gt; xe-pw-173621v1</li>
+</ul>
+<p>IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5709-5cb17454a3e04fcc1133d87451c9c582c297e92d: 5cb17454a3e04fcc1133d87451c9c582c297e92d<br />
+  xe-pw-173621v1: 173621v1</p>
+
+</body>
+</html>
+
+--===============4688712856356179992==--
