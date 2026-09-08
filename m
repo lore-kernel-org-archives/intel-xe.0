@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63514C79F82
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 21:47:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E579C79F82
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 22:24:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DD8110E492;
-	Tue,  8 Sep 2026 21:47:19 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC25210E492;
- Tue,  8 Sep 2026 21:47:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4063031526005530591=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF2B510EDD8;
+	Tue,  8 Sep 2026 22:24:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P5ZsF8hU";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AD8510EDD8
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 22:24:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788906247; x=1820442247;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=ROODc69RrOKA3ctpLN3VQJgksv+snHA61b3IsXWspDY=;
+ b=P5ZsF8hU1AiyRj9f4zf58zJHPJ+i1R7MQWkmCViXsp86hvOmSH3FMtP8
+ n+XS/7/77RMlcbuoM+llSe84bYTTYbFdxWOYjwAPkWP03g3b6zV1yqmw5
+ 2sKr3osoNVJFD65uTYOdhFQz7Qw+n9ioDcVtWQgu7sBBhM73rNGW/0za/
+ 4cweRW7KXij4y3qv1iq/NpPT762MykjJnNRECkkAPKzCgZDG8EMNl1+53
+ /XV+8KksZvaEbN+cPk+LZO0L7OjOJGbFl9u8a1yRdP+lYpI5O3Duqhzeg
+ rUMVQY38RXZBGsEcWS9kG8GXxSPLTtDT83YpJCx3aWhDc9UCrVRu3onRY A==;
+X-CSE-ConnectionGUID: uAZ4biZDRaeD4nWA0SaBxg==
+X-CSE-MsgGUID: dchY0vyZQBieNrd+x5XLyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="100677198"
+X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="100677198"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2026 15:24:06 -0700
+X-CSE-ConnectionGUID: E0UIsdR5QWKIw6SdDhYoSQ==
+X-CSE-MsgGUID: OEwr7WSoSbCcX3Y1V9rcwQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,269,1779174000"; d="scan'208";a="270638218"
+Received: from unerlige-desk1.jf.intel.com ([10.24.80.43])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2026 15:24:07 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: intel-xe@lists.freedesktop.org, Ashutosh Dixit <ashutosh.dixit@intel.com>
+Subject: [PATCH 1/3] drm/xe/xe_oa: Clear status only if relevant bits are set
+Date: Tue,  8 Sep 2026 15:23:58 -0700
+Message-ID: <20260908222356.1210175-6-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260908222356.1210175-5-umesh.nerlige.ramappa@intel.com>
+References: <20260908222356.1210175-5-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/mmio=3A_Fix_xe=5Fmmi?=
- =?utf-8?q?o=5Fwait32=28=29_to_honor_delay/sleep_maximums_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 08 Sep 2026 21:47:17 -0000
-Message-ID: <178890403789.137999.15806168448947299013@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260908203323.397466-2-alan.previn.teres.alexis@intel.com>
-In-Reply-To: <20260908203323.397466-2-alan.previn.teres.alexis@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +62,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4063031526005530591==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+OA monitors only a few bits in the status field. The current
+read-modify-write will write to the MMIO even if none of the relevant
+bits are set. Clear the status only if relevant bits are set.
 
-== Series Details ==
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/xe/xe_oa.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-Series: drm/xe/mmio: Fix xe_mmio_wait32() to honor delay/sleep maximums (rev3)
-URL   : https://patchwork.freedesktop.org/series/173538/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index a3484e943c55..2353a8c0e6c1 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -542,15 +542,17 @@ static int xe_oa_wait_unlocked(struct xe_oa_stream *stream)
+ static int __xe_oa_read(struct xe_oa_stream *stream, char __user *buf,
+ 			size_t count, size_t *offset)
+ {
+-	/* Only clear our bits to avoid side-effects */
+-	stream->oa_status = xe_mmio_rmw32(&stream->gt->mmio, __oa_regs(stream)->oa_status,
+-					  OASTATUS_RELEVANT_BITS, 0);
++	stream->oa_status = xe_mmio_read32(&stream->gt->mmio, __oa_regs(stream)->oa_status);
+ 	/*
+ 	 * Signal to userspace that there is non-zero OA status to read via
+ 	 * @DRM_XE_OBSERVATION_IOCTL_STATUS observation stream fd ioctl
+ 	 */
+-	if (stream->oa_status & OASTATUS_RELEVANT_BITS)
++	if (stream->oa_status & OASTATUS_RELEVANT_BITS) {
++		/* Only clear our bits to avoid side-effects */
++		xe_mmio_write32(&stream->gt->mmio, __oa_regs(stream)->oa_status,
++				stream->oa_status & ~OASTATUS_RELEVANT_BITS);
+ 		return -EIO;
++	}
+ 
+ 	return xe_oa_append_reports(stream, buf, count, offset);
+ }
+-- 
+2.53.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -> xe-pw-173538v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-173538v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#8007])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173538v3/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-
-
-Build changes
--------------
-
-  * Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -> xe-pw-173538v3
-
-  IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada
-  xe-pw-173538v3: 173538v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173538v3/index.html
-
---===============4063031526005530591==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/mmio: Fix xe_mmio_wait32() to honor delay/sleep maximums (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173538/">https://patchwork.freedesktop.org/series/173538/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173538v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173538v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -&gt; xe-pw-173538v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-173538v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173538v3/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -&gt; xe-pw-173538v3</li>
-</ul>
-<p>IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada<br />
-  xe-pw-173538v3: 173538v3</p>
-
-</body>
-</html>
-
---===============4063031526005530591==--
