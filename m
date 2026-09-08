@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AF85C79F82
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88717C79FAD
 	for <intel-xe@archiver.kernel.org>; Tue,  8 Sep 2026 10:45:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D17B10EB1D;
-	Tue,  8 Sep 2026 10:45:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E35710EB1B;
+	Tue,  8 Sep 2026 10:45:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dWTlNxW7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kk5DdcvB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61FB910EB0F
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:45:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2867610EB1B
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Sep 2026 10:45:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788864353; x=1820400353;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=1GpY+slU1fLotvpYtF0kwlNCVWXqYIRTBl4LUFXW6nk=;
- b=dWTlNxW7eFvLIu5ftauNPb5TFFS4YEEVEsbFE0sd9mty8D1WSw5+zRr1
- gA7rgSmF5RyLfed/Xx37kXLACo+r2NsSINm3n4golLP+D6m0YFySMsm4D
- WhVI7aYBQaxC8wSwsKqbAYwO6jS9vs85cLLFa64hG6LN4qJUMEUJyai9Q
- TY8TalHTiPhD4tXXXPfrsGdzQ8MmhXlXiscj0JYQmhDV524rYpvEtAsmf
- Ovkg9rHPYr1dN1L05sDDSnf2H9b5CDRnsKhvap/3Mg/tMMOaUrhzKb197
- fh094KzPStaIz27xOAG4s1zfDNnBmDiQ76le7j5VcWcc1L4+ktsqhdNBD Q==;
-X-CSE-ConnectionGUID: BD+ERMcrTBW64m29mIZyxQ==
-X-CSE-MsgGUID: S3n2ycM/TaeXO9A0f5mY8Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="91773065"
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="91773065"
+ t=1788864354; x=1820400354;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=so6Hlee5JY7+msfu7v2oqSNubkdspWRafkW2vQ0qzAE=;
+ b=Kk5DdcvB/369ld0HvLfcFJ/TmDRQB4WZ/renMYoQv3+KaJk4FUec4n8m
+ jsdQv6aMPdZD1c1ipF1EosLKqdDEcoyMIS09ph78gmYgFuyn3z0L1J5fh
+ drOqW2PiK2Zynbn2uvYtBlCd4yTUZlFqixnhd87x16AyoNzGJGFnfKZkL
+ K4+NzGFmEoHLrvbiTd0P7bnGoOQmTjCLN3nJqX8qmrMER7i7fFTvrj122
+ X8aSQiHq5UhX2sHrVanF8Fc3mtnwAXG+33XSp1xnCv3vwjGE58AOsPwWl
+ /FGfSK66/jgjbcncEYurAPr6mBZafWyYcyUql05y6qYMXpEyQqF0RtuIL w==;
+X-CSE-ConnectionGUID: gsrz5mPqS/2uGbD+lIl7Qg==
+X-CSE-MsgGUID: oRcj3JNnT9qUcX2QA7RKig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11899"; a="91773067"
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="91773067"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 03:45:53 -0700
-X-CSE-ConnectionGUID: 4VsZ++OwSpGy9MRNeX0Frg==
-X-CSE-MsgGUID: iSLHxCqTRHKi33KORiy8JQ==
+ 08 Sep 2026 03:45:54 -0700
+X-CSE-ConnectionGUID: wkb9pdceS7mwu/E4DbGavQ==
+X-CSE-MsgGUID: b0Nl7Q6nSkewFGLTD2ZZmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="264759057"
+X-IronPort-AV: E=Sophos;i="6.25,268,1779174000"; d="scan'208";a="264759062"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by fmviesa009.fm.intel.com with ESMTP; 08 Sep 2026 03:45:52 -0700
+ by fmviesa009.fm.intel.com with ESMTP; 08 Sep 2026 03:45:53 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH v3 00/13] drm/xe: Convert IO_BUS errors to structured xe_log
- API
-Date: Tue,  8 Sep 2026 16:15:37 +0530
-Message-ID: <20260908104550.1283933-1-dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH v3 01/13] drm/xe/log: Add VRAM, PAT,
+ and HWMON DRIVER_HARDWARE components
+Date: Tue,  8 Sep 2026 16:15:38 +0530
+Message-ID: <20260908104550.1283933-2-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260908104550.1283933-1-dnyaneshwar.bhadane@intel.com>
+References: <20260908104550.1283933-1-dnyaneshwar.bhadane@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,54 +66,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series meant for converitng the logs struct of IO_BUS device hardware
-catergories with different components such as GT, HWWOM, REGS, PAT, GT,
-LMTT, VRAM.
+Register new DRIVER_HARDWARE log components for hardware I/O subsystems
+that currently lack structured error reporting:
 
-Patch 1 adds the new component definitions. Patches 2-13 convert individual
-subsystems to use xe_log_err/xe_log_err_fatal/xe_log_info with the
-appropriate component tags:
+  - VRAM (ID 6): Virtual RAM access and BAR visibility errors
+  - PAT (ID 7): Page Attribute Table programming errors
+  - HWMON (ID 8): Hardware monitor registration and sensor errors
 
-  - GGTT: GSM probe and configuration errors
-  - HWMON: PCode readback and registration failures
-  - MMIO/REGS: BAR mapping, save-restore, whitelist, and force-wake errors
-  - MEMIRQ: Page allocation and GuC setup failures
-  - PAT: Missing PAT table detection
-  - GT: Unknown GMDID version reporting
-  - LMTT: HW invalidation failures
-  - VRAM: BAR validation and visibility errors
+All three use IO_BUS as their default SIGID since they interact with
+hardware through MMIO or PCode register paths.
 
-Dnyaneshwar Bhadane (13):
-  drm/xe/log: Add VRAM, PAT, and HWMON DRIVER_HARDWARE components
-  drm/xe/ggtt: Report GGTT errors using structured logging
-  drm/xe/hwmon: Report errors using structured xe_log API
-  drm/xe/mmio: Report BAR mapping errors using structured xe_log API
-  drm/xe/memirq: Report errors using structured xe_log API
-  drm/xe/reg_whitelist: Report whitelist overflow using structured
-    xe_log API
-  drm/xe/reg_sr: Report save-restore errors using structured xe_log API
-  drm/xe/pat: Return error from xe_pat_init_early() on unknown platform
-  drm/xe/pat: Report missing PAT table using structured xe_log API
-  drm/xe/pci: Report unknown GMDID versions using structured xe_log API
-  drm/xe/lmtt: Report invalidation errors using structured xe_log API
-  drm/xe/vram: Report tile vs device VRAM visibility errors
-  drm/xe/vram: Report VRAM errors using structured xe_log API
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+---
+ drivers/gpu/drm/xe/abi/xe_log_abi.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
- drivers/gpu/drm/xe/abi/xe_log_abi.h   |  3 +++
- drivers/gpu/drm/xe/xe_device.c        |  4 +++-
- drivers/gpu/drm/xe/xe_ggtt.c          |  9 ++++++---
- drivers/gpu/drm/xe/xe_hwmon.c         | 10 ++++++----
- drivers/gpu/drm/xe/xe_lmtt.c          | 10 ++++++----
- drivers/gpu/drm/xe/xe_memirq.c        |  7 ++++---
- drivers/gpu/drm/xe/xe_mmio.c          | 12 ++++++++----
- drivers/gpu/drm/xe/xe_pat.c           | 20 +++++++++-----------
- drivers/gpu/drm/xe/xe_pat.h           |  2 +-
- drivers/gpu/drm/xe/xe_pci.c           | 10 ++++++----
- drivers/gpu/drm/xe/xe_reg_sr.c        | 22 +++++++++++-----------
- drivers/gpu/drm/xe/xe_reg_whitelist.c |  7 ++++---
- drivers/gpu/drm/xe/xe_vram.c          | 20 +++++++++++++++-----
- 13 files changed, 82 insertions(+), 54 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/abi/xe_log_abi.h b/drivers/gpu/drm/xe/abi/xe_log_abi.h
+index d6105520173e..4a60aa48fab1 100644
+--- a/drivers/gpu/drm/xe/abi/xe_log_abi.h
++++ b/drivers/gpu/drm/xe/abi/xe_log_abi.h
+@@ -150,6 +150,9 @@ enum xe_log_location_bits {
+ 	define(DRIVER_HARDWARE, 3, GT, GT_TDR, "Graphics Technology")		\
+ 	define(DRIVER_HARDWARE, 4, LMTT, IO_BUS, "LMEM Translation Table")	\
+ 	define(DRIVER_HARDWARE, 5, MEMIRQ, IO_BUS, "Memory Based IRQ")		\
++	define(DRIVER_HARDWARE, 6, VRAM, IO_BUS, "Virtual RAM")			\
++	define(DRIVER_HARDWARE, 7, PAT, IO_BUS, "Page Attribute Table")		\
++	define(DRIVER_HARDWARE, 8, HWMON, IO_BUS, "Hardware Monitoring")	\
+ 	/* */									\
+ 	define(DRIVER_FEATURE, 1, PF, SW, "SR-IOV Physical Function")		\
+ 	define(DRIVER_FEATURE, 2, VF, SW, "SR-IOV Virtual Function")		\
 -- 
 2.54.0
 
