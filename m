@@ -4,138 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CCA3C79FB6
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 11:02:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7554C79FB6
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 11:02:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31B6710E168;
-	Wed,  9 Sep 2026 11:02:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A35310E111;
+	Wed,  9 Sep 2026 11:02:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="G7WM3SRE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mBshTSIC";
 	dkim-atps=neutral
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011059.outbound.protection.outlook.com [52.101.52.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FCEA10E168;
- Wed,  9 Sep 2026 11:02:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C7C110E111
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 11:02:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1788951766; x=1820487766;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:mime-version;
+ bh=wRwKIjtMTsIVHYfxsrd02QjNT5Nn/HiCjXhBNqUAD7o=;
+ b=mBshTSICz5d9jCzDcnJbOn9E6OVV/cPH3hZKgaoUfLwCmSj2pySodrJy
+ Fj7P/PVzC9lAUW4NfMP7i9SaJrmX0u5+wa72ZAgHo3ZCT1Vx4zbx61y57
+ 5RTjDA6EvDTIiDOQsl7szmxNF07FqbFxVCVYI6XtEuFtW3oIS1dLQGjPw
+ g8R24/80pS3NRZTCE0cWymR9EV5mRHqoG7xF4g9TaEjTX4XZp2+cbZ5ay
+ jEtfVBCQB1PcOJvKzu9NEn5GguXRBkdv9JB+hGjdqgLqYuZAawxZ7VSnY
+ jRXMAYjB8kDNhNj+AQLmCwTkNz0t2KMa4aJAXCqo+IqgHXR6qTAcBovId A==;
+X-CSE-ConnectionGUID: kkn1M2AjTqiHrO1nR30G1A==
+X-CSE-MsgGUID: qboAMO1zSC+2/icKUJkC8g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="91888383"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208,217";a="91888383"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2026 04:02:46 -0700
+X-CSE-ConnectionGUID: MSoKUsRWTPiTS4c9G+vG3g==
+X-CSE-MsgGUID: xhyZ4hwyR96EWZwKspyP9w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; 
+ d="scan'208,217";a="267610923"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2026 04:02:45 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Wed, 9 Sep 2026 04:02:45 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Wed, 9 Sep 2026 04:02:45 -0700
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.65) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Wed, 9 Sep 2026 04:02:45 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KOSJwPRoKBUW2B3hMkLX1MKdL91AvYDEkCnrowMF3sO6v4a7DpsZgZ/q4V9f85NEoLVOApCyg6yoY4d7kwNeoBFk2kMjPn36jdbl1bXstzwqgapG328OKcG7rsJd2T9mwFtv7cwDAwTuoM+Ua5ag+WjHofvsoL5Re73BTmKVF243ouBSV5DpLXmqV9XlaxxJPbgXokZqcrI2kZ2oRTvnHidjnxpjDhaR7ETwzdGVtg3Cu1elYmS32/kSQhiJBnhKxFBchqJHWB+eFbtsLGXzpMe+UV8wooQNYjO8/zrmnz+bGtxarxdDUj4LnIesUqGMY/lt50/bnVvQWmS4TULpvw==
+ b=dwR8lWxcDv54JDrH/4cJji2Uyw2LL19yFYKdg7BuKouzyaxgPhEPgZ8JytIDFLwfE5hyoL/Q1q6uhKCLYwtzuQOxp1STiT56rlWXUW0XdFKbJ7ykSGJQzBeTfRmpuOHCSAi+1ylrTqpZPKwJLjqNrFeM6ru6nkg3lEZgMerq+KQiEGCqi9BYrAmLT44396nIqIQxsesEUxArKxtTT1y9OWs25NOLv+9/BCf2gC8HsrOa0s6s+qpMHv/RtzZ+yJUKRz6+wwJeYyZTpBFF2nL2jySnn5eBDbGkaHEPWTSchvfystJSDMfLNlpMy8uhcLfjitQmpJFJGZcx80zK8EjyHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CX04wFwdGnFT8Frfnw3aKCnaYyTSp9UpaTMXgb7CoxE=;
- b=s/dq4csDFRfZ98sfhskfcCyv5j3UDTcprW77c1XVEwF2JNc0Fe94bk77zX8oTXtihf7XTuFWytJ2eSm7CImGRdsaMPdOng/ru8W8MUHQ7KePrJrCKQ9x1mE76WJKFMnk5nhXvwlpjh+Dju1rMBKSRnRHup8gPfRCneaonhdiVrPHCP9j8QwkJ+uMn/xE6gMYQ0Ij54LUq3lGAIr4KGEIhF4NL7swWr99O5nD3kQh3szxwrWkpSUFvlSYK9f6jb1Sue/EXittHboV4exjbwGEuZJM8kursZ8P6Lp5hr0mHLRUd79TO/2hX8A0gkVjDjZHWUY+E74xpnbBJ9lHnthiCQ==
+ bh=Ioa3P3OxHUdZF2NRLJzHW+igmxpG6rDdUghVo8LvEbE=;
+ b=KVAv6Mud0l22nGw/PDZHmrKIZbOntJmW/bZKG0KvLbzf2kGhjdSwUlC2tXWFyhBx7ezTkqdI4aaqJ07IOQ/QNP0G9Jotx63Be/qEjJh6ZOvXEUpdvyayDB/5Wx5PNAyEOQNx8b4ZfO5qVdRgijbrs+5o8MqFWalD1sjboR90iJ0CZ0PdNnFbC/a1Bt5Wb4dyS7a67zxcnlTnFpNO3t1gU9k+cr5z49sWPUM3a5RUknOjmrWD2YXaFTgVfkQYnRln/k0E/YI2ZZgr34yz11dVQ/QMMNmQCgs1mN2MY23Yzrk3Vb0+5CI/mACQYlKA1hbav8ClZ2Mm8o0JMCqk5fOr+Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CX04wFwdGnFT8Frfnw3aKCnaYyTSp9UpaTMXgb7CoxE=;
- b=G7WM3SREPlR1AIkXy9uhAV0uASkBTfX7flmjo/QeGtImNeQwc52f+UKjSwSnovLTAWQZk3D8QVcsP+kmcnfF2mq41VR1V5V5EmSy3Dg50NZvuTMAe0UQENPfc/9bDcXUT2DSBaTVVzcG8WC4H0VejR8kl7wk1gLv/66582MLugg=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by IA0PR12MB7651.namprd12.prod.outlook.com (2603:10b6:208:435::9)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6207.namprd11.prod.outlook.com (2603:10b6:208:3c5::21)
+ by CYYPR11MB8429.namprd11.prod.outlook.com (2603:10b6:930:c2::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.8; Wed, 9 Sep 2026
- 11:02:27 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%3]) with mapi id 15.21.0406.005; Wed, 9 Sep 2026
- 11:02:27 +0000
-Message-ID: <785085e8-c9db-4d84-ab55-3a8caf9f4a35@amd.com>
-Date: Wed, 9 Sep 2026 13:02:21 +0200
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.7; Wed, 9 Sep 2026
+ 11:02:20 +0000
+Received: from MN0PR11MB6207.namprd11.prod.outlook.com
+ ([fe80::52eb:929f:a8b2:139d]) by MN0PR11MB6207.namprd11.prod.outlook.com
+ ([fe80::52eb:929f:a8b2:139d%4]) with mapi id 15.21.0406.007; Wed, 9 Sep 2026
+ 11:02:19 +0000
+Content-Type: multipart/alternative;
+ boundary="------------7XhbIeb9tPhO0hcnZMYB2lDW"
+Message-ID: <e54e1f08-a16d-4acf-82bc-8b73ccc794ea@intel.com>
+Date: Wed, 9 Sep 2026 16:32:12 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: FUSE deadlocks vs. copy_from_user() and locks (Was: Re: [PATCH
- v10 04/27] drm/xe/eudebug: Introduce discovery for resources)
-To: Simona Vetter <simona.vetter@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Miklos Szeredi <miklos@szeredi.hu>, Bernd Schubert <bernd@bsbernd.com>,
- Joanne Koong <joannelkoong@gmail.com>, Amir Goldstein <amir73il@gmail.com>,
- intel-xe@lists.freedesktop.org, fuse-devel@lists.linux.dev,
- sashiko-bot@kernel.org, sashiko-reviews@lists.linux.dev,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>
-References: <20260903145952.848051-1-mika.kuoppala@linux.intel.com>
- <20260903145952.848051-5-mika.kuoppala@linux.intel.com>
- <20260903152224.AD48C1F00A3F@smtp.kernel.org>
- <178878748003.179185.16833574173741290547@jlahtine-mobl>
- <178894801687.37859.4186888279082797860@jlahtine-mobl>
- <aqEzHQMrI8p9XVcu@phenom.ffwll.local>
+Subject: Re: [PATCH 6/6] drm/xe/log: Relax location ID recognition
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20260904170531.516-1-michal.wajdeczko@intel.com>
+ <20260904170531.516-7-michal.wajdeczko@intel.com>
+ <f0f7e21a-6d90-498c-92bc-e8227a393d8d@intel.com>
+ <37ba4065-9a0d-4c97-93db-e34ebb99da77@intel.com>
 Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <aqEzHQMrI8p9XVcu@phenom.ffwll.local>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN0PR02CA0001.namprd02.prod.outlook.com
- (2603:10b6:208:530::21) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
+In-Reply-To: <37ba4065-9a0d-4c97-93db-e34ebb99da77@intel.com>
+X-ClientProxiedBy: MA5PR01CA0070.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b7::10) To MN0PR11MB6207.namprd11.prod.outlook.com
+ (2603:10b6:208:3c5::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA0PR12MB7651:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1ef4361c-eb59-4c91-4bd4-08df0e61d5b5
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6207:EE_|CYYPR11MB8429:EE_
+X-MS-Office365-Filtering-Correlation-Id: d679c5c8-5fee-417b-8914-08df0e61d10d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|366016|7416014|376014|6133799003|10067099003|5023799004|11063799006|4143699003|56012099006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: Pun1P0zRYf99lyZd31ocECjw+qWMkxo7G+CUg5a4C5GQA4sK1qBTNhpHYtcVDncNNJNEsp9i3rs/bu0e1MgpXOe1XuatFVsxFzsmlDH1lSWb7TvalP0BCmAODJMhM09wnpO5rLW+cIMSMDkVZRs3Nz8HqLI8qtV9246P3Kc47J3O/aKLVBWaL/Pl533mxObZHf846eTCRD3jr53VyBIh7/iJDELFSE7FjlnZ6WW+cRet1+ob+f5HwM8oLw3kigGBSc0PA8kOnqWN/Z9yyZ+Zr4Y8MRzEqmkUyp2PgZIgnBGOEOlEbktzpHQMKrEtmW6F54mlzdFdWDsNb6o9538AyqT5NmQT6Dm63Bz3sTgtsyJaL79vK04kPIo6Tn0KGpB2pFhlfGsAQnurUrEREa4/BCU4In9HJ2M5AHM25M90ZFU2dp+c+bVwsHN1sBTti6tzAakklmH94/0s6Cam4zMLP7ZxJpHVwqRxuNHdLOpOYIU7kTY5dQ/DH+BxI5qpxHJMI0j2jkd6ySOPLgC6zfcGjxIB7BZ5rrNkmYPjVP2ket9v64uw3sepx9I8SvGN2m2xCXwCGHOoilVT3ljB+Aed2TQVPXSnY3eR2dtY6zWMBxQ=
+ ARA:13230040|366016|376014|23010399003|1800799024|4143699003|11063799006|10067099003|56012099006|22082099003|18002099003|6133799003|3023799007|8096899003|13003099007;
+X-Microsoft-Antispam-Message-Info: zI+tk01QrEYWBtv5c7eUz2G8HZXfeXEOZMLvyAIyry81x90HxITZSwRTkXqHYt8in9Dz4zrIz9bHKJTmH8tIP8cpamrnELuNQugG5lr5cdJPbYh3Ou4NvYiDK0NiEIdwLoGgzTt8utP/PLVIMR4s8l+gzFPssDUoSuKvELpIqIfN9ERrOY9nVY4WacvvkQfRkrGLGNJISMU/fIup+gO0CY0GQPCto9fy+eU/LVfd8ovU2BGiBoKxQHWxZkFJxU7+DGrbPI0XECOFbyXllk2HbP1PU5RTQ/6YHWhM8BP4SFA4eeFr0YgLRSnNv3uxbUHTkoa6I8jUJdf5V1gYGZHCQ0Uoe/3/NdiCJePCWK9G+NDb+vvH1JDQydcq9gOa4cq493LlodNmeEUjCEILfF14rUQmzD1pJ6/32yLjyZ62zDkgDFsIC1w/Y0bvsaZ7mT3yxb0m43I7JgQbLH0GUtwIFm+fJZo1dq5TPKm2Y3+Ay6OfHqY2A3bm2dkdy8C7c68Fhd521TOSdKoSjEs628dyFJEqPpbhlRgf40kw9YwQ+bmHQuZKL8aOIGPHfYUQsYvXDdScGC60BZ9TRbJsmsJRA41ddnirDYawnXKaYOaPy8Zoja3oGXo2FctxLzaPDSxV
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(366016)(7416014)(376014)(6133799003)(10067099003)(5023799004)(11063799006)(4143699003)(56012099006)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6207.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(23010399003)(1800799024)(4143699003)(11063799006)(10067099003)(56012099006)(22082099003)(18002099003)(6133799003)(3023799007)(8096899003)(13003099007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MnFrcjBmNnpCQUF1U0FqdWhyQ1k4SDM4T1hzNmNkaDJJbS9iWVpyNGgwNm5w?=
- =?utf-8?B?RXdzTjlmckRlUGd0NjE4Z0hKY3RTZnBod3o0NGs4TWNEbHNKeHZHalJEcTM4?=
- =?utf-8?B?NXJLQURtV1ZmWFJINFlNSlZ5T2gyakJaYjRCZGxmSTV2S0F6ODdtMkswQ2x0?=
- =?utf-8?B?bmlKaHpybGtiUWlyQmZTbzNyOXdZTm9UakcrMFVwbG4zWDhxanphTkVaY0Js?=
- =?utf-8?B?czE3cUpyMzBualZkNGkzUG4vNU5WWk0wdysxRGdXZ0FPMzJqUkFLaktkNEN1?=
- =?utf-8?B?TnJOY0daUEtIL3RqQ2YvS1pITEZLVVlwUWhWYXdXQnV1d2gxMEQ4YzB3eHhU?=
- =?utf-8?B?dDI2QitWTHF1dzlvd2FRWWRQN2xlSEg2TytQVFR4dGo1cllOcVgyZzAweGZX?=
- =?utf-8?B?eFhjUFdIQ1NHamdsblVNbFZneHhQZk1CcHZQeG1ZV2Z2TWovcitjSVl4Sk52?=
- =?utf-8?B?TExEcm52dzhDTm1jZEx1YmN2dE15QWVsYlFBekYzZkt4NkQrWUhyUUtzUjVp?=
- =?utf-8?B?eENUNFBFMGdJeXBZSmRnZlFab2N1Z1d3YVora3BQcStaVVlWZnRDcFhFb0Ey?=
- =?utf-8?B?YlBQQWliNE1QRVNwNElQUGR2d0NYUVhPaHZxTFlCWlIzZjYwRHA0QUw0Q3Ux?=
- =?utf-8?B?NitNa3htcWd3alkyRUdsbW50WmF2R1ltbURiell1QnFsbGFNUUI0aGgxVGNP?=
- =?utf-8?B?bWRVTWs4ZlNsVDNsdHNjckg0cTBMUXVTZ0E5T3E3NGd2MWoxTk8vYnZFY1hX?=
- =?utf-8?B?N0VKbzR4OHp5QWZoRkErOXQ5MWtWQkRuelAxNXg3YnRWRzdTWnR3S1Z6YkdN?=
- =?utf-8?B?RTZuZWl2WTAzdzhmS1I2OXVNVEJiSklndWdPSXhvRjFpcTU5dWNDMVFYRVVB?=
- =?utf-8?B?cjVFTklBLy8vUTlvTHc3b0YzLzI2aEV5N3dsdGF4OUY5MVkyVUhVRHdxZ2FN?=
- =?utf-8?B?TDgzUXNVNFNxWWNjS09BakNpd0pjVVZvUitxWEZXNEs5bGFneTVkeHByeDlw?=
- =?utf-8?B?cU5VclN1aEZtZk5HWklrbkdXVVZUUmhqVnV2VlE5L3I0QlgzSy9uQTJWSmNy?=
- =?utf-8?B?bFJ2d1NZdk9HaTd0S3UvZDJLUUdHSWh4d3pOUnRUUHJzQUZMRUkxR2RRQ0gv?=
- =?utf-8?B?WUpZN1FoVEJmQ2FWZ2xZR0ZCaWxseUN2WnR4SytaYzdaNEUraXEvSTlURDhv?=
- =?utf-8?B?TzVyUnVYMkJwdjN5enBXdjJLT1JzbE04MEN1aVc2NDV5VFRoL0loZytybHkx?=
- =?utf-8?B?eU5lcE1JWjNLaERIV1U2aVFPaEl6QVdRRFVoeFMrQ2RPbGZjODhCQXFHMVFW?=
- =?utf-8?B?cHNZaEsxdHdDTzZkRkN2SmkxTnZ6dUlyOWpUeG1VTFdVT2NEUzNKb2NzMita?=
- =?utf-8?B?dUduTFhXS25wN21mNEE0YmpzbysvSVZBek1WanY0aDdRdVpkemFXZWJpSllv?=
- =?utf-8?B?Tm9HeTlyR0xYMFhIcGtnZ0hEbStzV2RMcnYzajlmT1l2K0psc2h3SXJRcGlO?=
- =?utf-8?B?RDdERkV5dmZqc3NLeHIxbFpKMjdNU3h3UDNqUFVwcnc1Mmlxem1KMXRTS0x3?=
- =?utf-8?B?Zm1oYXExY2tjVnBzc3IwZXdneVFYNjJHTjludjE3dVVyMDlmVHY1QkFPUzJ4?=
- =?utf-8?B?eHdzUENuWGUrR1pQUFNFaEVhbmo0TTkxYmpEb3l1bWYvVHFXeFo0Mmw5Q1lq?=
- =?utf-8?B?UWQ0a2VNZ0FrMkxtblZRRlkxTzNJUTJHaDVOeUM1cys2WFB6QWpuNkZMQVUv?=
- =?utf-8?B?K1dtSWp6YVA1RW5BT0FlY0RKeVo4SVZ5SkRSQjJLTGU3VllvbmRtZXIyQ0FJ?=
- =?utf-8?B?Qk1QVWxZVEVTMjR1RVJ0dld3Ry9DYkF4NWZRakVVWk5pQ1JMd2wwZ0RLOUZM?=
- =?utf-8?B?aUdVTUR3NVZsdzJlT0ZUd3FEdE5Icm40bTFoVHlTZXZ6SCtQdi9LcWpNbXJp?=
- =?utf-8?B?aThTVm1xcVlSR1ZkemQxdVZtYVFsVGtRbkpPNEVydXpWWldQTjdZWXpuRndC?=
- =?utf-8?B?VEk5NU1uNEdnZGNvc0VmYnZLeFI1NVhla0pwYm13NTZIOUpTZTZpM3ZmTnNF?=
- =?utf-8?B?aUtKMExpd0JNZlFRNE9YWXhMdURIeTNRSkRCMW1oWWNYS2pWRkVBajFXTmtM?=
- =?utf-8?B?MUl3NXZlRkp5TnY4SVNJZkQ3TjJ1WFozZEVOYTNNZDUzWkZtR2tINk41Y0Jk?=
- =?utf-8?B?T01Ib1NVOG5XbXU1dXA1VExtVU5jM09NSlBJRVg4RDdoa0pxQThSazlHVUkx?=
- =?utf-8?B?OTl6blRSeHdIUmczMTZOMGlZaHQvUWRxZ2tOZG8yb1k5Q0FPcUVSTGV2THlm?=
- =?utf-8?Q?4oQh5mLL4M6mEUGup6?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ef4361c-eb59-4c91-4bd4-08df0e61d5b5
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SEdReEU5VVp4SXY3eUFkZERJVzQ3Z21YU015NytCZm5QL1ZYQ3gyT1MrVDNz?=
+ =?utf-8?B?R0hHT1lYcUdqQTVzbUdwV1ZWRTFDRGhlWENxVHJPdjZORmZZRnMyQ3pmMmlL?=
+ =?utf-8?B?bStpNllNVlBCU0pvdlBpOFF6NlRvYitURjdRVVN6OHVZVGJYc3RZcDBsN01x?=
+ =?utf-8?B?aHI4VG5YV25qQWVnWHl2SUQrYkxYZk5XbmMwUVNxemxTb3VhM3lvbmZCTjRM?=
+ =?utf-8?B?SDZ1TUZpYldtMlBUaDhBU0VNSy9wbnh6MWlzclFUa2tHTDM2T3RlMFI1aFIz?=
+ =?utf-8?B?S0I3aGVHN1lvOWFla0pQdlFQSGJUbCsxUSt4UU55QVA5UlNJNXBGK0FmMFlo?=
+ =?utf-8?B?RkN6RmJjTGY5c3o2VXlzUjVSQ3ZUVXEvd0NTd2ZLWVR3eDkzVVVBUkMvK2pq?=
+ =?utf-8?B?QW4xMnlTZXJWdTgrZlNLd2NGRklvR3IzNVRWdGdaWXg1bCtlSTR3My9oY3A0?=
+ =?utf-8?B?TWlGbzdRcmdjS1gxTmM2TnJON2pnbUtMQ0htazEvQytOSFlzM0JiVk5VeXNt?=
+ =?utf-8?B?em1LenpreW9Jb2FlRmdhVUJ6ckFEaVYweUs0Sy8xdlZEcFgrR0Y4Z25CTHdK?=
+ =?utf-8?B?cW8xWitMNjFqSU1FV0wyc0VqOFlqdjU2bGw0cmdiY2RTaGt1T0wwaGJaRGNw?=
+ =?utf-8?B?aVhUTVc4VmNQSkNkRHZxRzM5eVpPL2xsRUlaa2MyajJtMDNNU1RMTDIvNFZi?=
+ =?utf-8?B?N2xsaWRLNnIrVVhWN1B6MHhTUFJKVWx3a0JKRWY1OVplSVA2ZmRoNVVoMjZn?=
+ =?utf-8?B?aTVTcHhUanU2Tjc4WnRNL1FuMmJHQ3N4eGdmL25lZjdZZkhsUDR0V2M0Y3NR?=
+ =?utf-8?B?amlFQm9KaGJnQUxJT0pUak1aK1p1cjVJd0xSUk1FalMzQnFEZEJiYW5mWkpE?=
+ =?utf-8?B?engvK1JpNFdNYlJUSlJ0elJERWpadVlvR3l6VHJVMWVDK0FPeGk0QzQwM2pO?=
+ =?utf-8?B?ZERQN1R6cDNnVTlldU9NbVdOVGV1bCtVTm9WdWsvaG9sQmduMlpUWWFTcGNu?=
+ =?utf-8?B?QTNlVG9ycElOeDUwYmZqTHRuakhjMlFsMDZKejQxNjRtRDdlZGRmZVYyOHJK?=
+ =?utf-8?B?Wm5WL0k2bHMvaXdLMnZNTlpPaFZWNklMT0gwWWUzaVViUEVTTFNGZ2JaVWwz?=
+ =?utf-8?B?cW9rYWhkYk01Qjlka2tJbi84T1hpR1RMU0t0aFFtRlpzcERYUEpIRjRZb2Zj?=
+ =?utf-8?B?QWt4QldxL3JYYlJTdDNPdXZ1MUl0N1BXc2M2V0lHSE00L2NQRTdwS1BZdFBo?=
+ =?utf-8?B?RHc3L3FCRVRWcGhnUEhqQmppOWFIT3RFbU80OG5rQVNaeHd3akdJZUVvMzFy?=
+ =?utf-8?B?bzg2ZlZTdG44S29KZm1OUzlxREFuNGtjbXdXQmkydWFmNDdGWCtaSzZXcWVS?=
+ =?utf-8?B?ZVpkMktHSW1rV2c1M2ZoZ2hQRDZKc25YVW1GYlJCSjVpN0h5djZQdHdqVURo?=
+ =?utf-8?B?dE9JcUZjZk1wVHFJSVVEcm1rNjI1clBqSHdveXljTGZVYUJJV2lvV1ZuZXgw?=
+ =?utf-8?B?a1hMa1BpSncvdVRPMmMrTm5lNTlLS2tLT1R6RmFXT21ZQnZVdmhQY2twL2lE?=
+ =?utf-8?B?aDVMZmw4R1hMZE8xdGxaeGxxbDFGNnV3bHdJNTZ1ckV5LzR1OWlXZ0NUMGMy?=
+ =?utf-8?B?VkRkSGRkUWdHZzZmVWswYXUrWFBqZnl0UzVNOXdrenVSMUoxZjk0cXRwL1JK?=
+ =?utf-8?B?elJreXVFRjVKaWZndHB4aDBBYWtQSFZvekZvcWl5WlpkbE5rN0k5Z21KRlRo?=
+ =?utf-8?B?T0J6Mlh0NzJDMXRCenA2VG1wWjRIcm1ZaEo3eGZEQlcwM2x3VWZDcEpadUc5?=
+ =?utf-8?B?c2lpTzdSZWhkR3ZNU0dlcHZnZG43SmhyZEVMZU40RTRrNFJQRlZFaUplTnlN?=
+ =?utf-8?B?aFVTdy9rUWlHVk1UN2c1T1NYWHczcjVyVC96Zjc1NC9xdnlQUTFBS3ZVTFdv?=
+ =?utf-8?B?eVA2Z3UvRFVDd3M2MlVwOFplTWMyM3pya0FmVXV5SjhEdmtLOXNsN2J3Zm1t?=
+ =?utf-8?B?SWdUNDZmT3dVZ1F3NndzUS9xV0FMN1R2TDZGUTRVb2VpdXFtaS9HZ3hMcTV4?=
+ =?utf-8?B?T29vb3VxVzRXTHB5MHhnV0p2aVhEVlJRSHNQczBiZXVmUmlpVks0ZlpiYjNQ?=
+ =?utf-8?B?L1dsaTBaY3lNbXkyd2ZUYWxMVkVsd296bEoyT3E3SDFZeFJyWmh1TzJWZEQv?=
+ =?utf-8?B?SWp3cUpVT3lhaFNvakNCcGNnVDMvQnArSXo2bHI2NXAzU3hxdWh3MVR5Yzla?=
+ =?utf-8?B?SzBvZ1Q2clowN09YZWJwNkFCaFJOUCtKbFFaU2l6bTMwczBhU0gzd25YSTNX?=
+ =?utf-8?B?NHZQWVZpTTBoSGNWakJzcTQyQ3QzUzR2cTlPVmo0c0t3Zk9rdmJUQS9pODhz?=
+ =?utf-8?Q?oez9xp9eIJCFPWVA=3D?=
+X-Exchange-RoutingPolicyChecked: huUmdHLMEMjyCrEDEDvsBVfjGID5AU80NRVfhv2Ak3TDyC0Uba1Wot6+O1Ac+ZDrcxugZvfsk37UY6mlA8Wz5jyHkVSHhLP7VzdqEN7HcVzJ/BAJin32sKUe/oX1kRompeA6c7r4DypjPwgFYUe61OhBo7ersvknz05/9GQoQ9Y+yhnYHzWwHeVvAeVi9ha/UWb7YaT/mWnGk32T3te3QMV1cWs+2tnHEIk0eSVJDny2gaZwEQl/oooxgOkfjPZwJUrpk6BGs/n1LIFxDmSAdIOAoXuttgvZAK5NlTyZol21gollNHoBIlw3xZGSg/LT/Jg94Uwh7+1eEW230HQiBA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: d679c5c8-5fee-417b-8914-08df0e61d10d
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6207.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2026 11:02:27.1903 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2026 11:02:19.6481 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: //d/+yT5SDZQrOuLc/zxN5jLweK6CRTw5VB5HPlfY0DyWFWotmNpZV0YJx8VQ5Jq
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB7651
+X-MS-Exchange-CrossTenant-UserPrincipalName: T69oK+xttMLUGTfPINnBki7MOAed447jG61FQ5repyoUxfTFOC9638wshWxLZCutHv7dXc2UCA2HTJJh3V4zpnSuLnlYA4T3pnhyq9t8fg8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8429
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,137 +173,439 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 9/9/26 12:21, Simona Vetter wrote:
-> On Wed, Sep 09, 2026 at 01:00:16PM +0300, Joonas Lahtinen wrote:
->> (Adding bunch of FUSE folks and DRM folks in the hopes of coming to a
->> resolution here.)
->>
->> Quoting Joonas Lahtinen (2026-09-07 16:24:40)
->>> Quoting sashiko-bot@kernel.org (2026-09-03 18:22:23)
->>>> Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
->>>> - [High] Global ordered workqueue stall via copy_from_user block while holding ioctl_lock.
->>>> - [Medium] Event sequence numbers (seqno) can be queued out-of-order in the event stream due to a race between seqno generation and event queuing.
->>>> --
->>>>
->>>> commit e2061e72d8e954a17bde35e9c970ee41bc2db0ad
->>>> Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
->>>>
->>>>     drm/xe/eudebug: Introduce discovery for resources
->>>>
->>>> This commit introduces a resource discovery mechanism for debugger connections.
->>>> When a debugger connects, all existing resources for the target client are
->>>> relayed as events via an ordered workqueue, and DRM ioctls are blocked using
->>>> an rw_semaphore until discovery is complete.
->>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->>>>> index 032a7ec5fbc8d..f10959b898297 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_device.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_device.c
->>>> [ ... ]
->>>>> @@ -238,8 +239,12 @@ static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
->>>>>  
->>>>>       ACQUIRE(xe_pm_runtime_ioctl, pm)(xe);
->>>>>       ret = ACQUIRE_ERR(xe_pm_runtime_ioctl, &pm);
->>>>> -     if (ret >= 0)
->>>>> +     if (ret >= 0) {
->>>>> +             bool lock = xe_eudebug_discovery_lock(file, cmd);
->>>>>               ret = drm_ioctl(file, cmd, arg);
->>>>
->>>> [Severity: High]
->>>> Does holding the discovery lock across drm_ioctl() create a vector for a
->>>> workqueue stall? 
->>>>
->>>> If an unprivileged user maps the ioctl argument pointer to a blocking FUSE
->>>> or userfaultfd region, drm_ioctl() can be stalled indefinitely during
->>>> copy_from_user() while holding xef->eudebug.ioctl_lock for read.
+--------------7XhbIeb9tPhO0hcnZMYB2lDW
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+
+
+On 09-09-2026 03:12 pm, Michal Wajdeczko wrote:
+>
+> On 9/9/2026 11:00 AM, Mallesh, Koujalagi wrote:
+>> On 04-09-2026 10:35 pm, Michal Wajdeczko wrote:
+>>> It turned out that during early probe phase, VFs use detached from
+>>> the xe_device, temporary xe_gt objects, which when used as location
+>>> in xe_log() macros, will be treated by the dmesg decoration code as
+>>> bogus, possibly triggering a WARN, and the output will look like:
 >>>
->>> Don't think this is a very realistic vector to address, as it would
->>> also extend to every other copy_from_user() and also to userptr across
->>> all drivers.
-
-Yeah I don't think that this is a major problem.
-
-Using copy_from_user() while holding a lock is usually fundamentally broken in the first place.
-
-But there are other issues which are much more problematic.
-
+>>>   [drm] *ERROR* SIGID=104 (-ETIMEDOUT) LOC3.0? GUC: MMIO request ...
+>                                           ^^^^^^^
+> [here] ----------------------------------^^^^^^^
+>
+>>> instead of expected:
 >>>
->>> Having a malfunctioning FUSE driver and getting a malfunctioning system
->>> as a result is probably somewhat expected.
+>>>   [drm] *ERROR* SIGID=104 (-ETIMEDOUT) Tile0: GT0: GUC: MMIO request ...
+>>>
+>>> Relax the tile/GT id validation and instead of looking for the real
+>>> objects, only check if encoded id is within the range of possible
+>>> tiles or GTs on the current xe device, using data from the device
+>>> descriptor rather then the object list.
+>> nit: 'rather than'
 >>
->> Based on further chatting on this with Sima, I was volunteered to pull
->> together the discussion here.
+>> Please mention invalid id case, how it's going to render like
 >>
->> We seem to have Sashiko picking up on patterns about accessing userspace
->> memory with locks held and potential for copy_from_user() (or userptr) to
->> then take indefinitely long to resolve. And that spreads to deadlocks
->> everywhere situation very fast.
+>> Warn + Tile3?  GT9? now.
+> invalid ID it is shown [here] and in the cover letter
+>
+> regarding a WARN, it will not show up in production builds,
+> but it would look like:
+>
+>   [ ] xe 0000:00:02.1: LOG: unrecognized location 3.0
+>   [ ] WARNING: drivers/gpu/drm/xe/xe_log.c:97 at __xe_log_emit+0x3ba/0xaa0 [xe], CPU#9: sh/5268
+>   [ ] Tainted: [W]=WARN
+>   [ ] RIP: 0010:__xe_log_emit+0x3ce/0xaa0 [xe]
+>   [ ] Call Trace:
+>   [ ]  <TASK>
+>   [ ]  ? mark_held_locks+0x46/0x90
+>   [ ]  ? __xe_mmio_wait32+0x87/0x170 [xe]
+>   [ ]  xe_guc_mmio_send_recv+0x354/0xc10 [xe]
+>   [ ]  ? dev_printk_emit+0xa0/0xe0
+>   [ ]  xe_guc_mmio_send+0x10/0x20 [xe]
+>   [ ]  vf_reset_guc_state+0x47/0x100 [xe]
+>   [ ]  ? rcu_read_unlock+0x1c/0x80
+>   [ ]  xe_gt_sriov_vf_bootstrap+0x2f/0xcb0 [xe]
+>   [ ]  ? xe_gt_mmio_init+0x30/0x1e0 [xe]
+>   [ ]  ? __drm_dev_dbg+0xa9/0xe0
+>   [ ]  ? __kmalloc_large_noprof+0x115/0x130
+>   [ ]  read_gmdid+0xf3/0x310 [xe]
+>   [ ]  ? xe_device_probe_early+0x143/0x710 [xe]
+>   [ ]  ? xe_pci_rebar_resize+0x17e/0x2e0 [xe]
+>   [ ]  ? __pci_set_master+0x61/0x100
+>   [ ]  xe_pci_probe+0x554/0xac0 [xe]
+>   [ ]  ? mark_held_locks+0x46/0x90
+>   [ ]  ? __pm_runtime_resume+0x5b/0x90
+>   [ ]  ? _raw_spin_unlock_irqrestore+0x67/0x90
+>
+I was looking:
+
+*Valid case:*
+
+[drm] *ERROR* SIGID=104 (-ETIMEDOUT) Tile0: GT0: GUC: MMIO request ...
+
+* Invalid case now:*
+
+*xe 0000:03:00.0: LOG: invalid GT identifier: 5*
+
+:
+
+xe 0000:03:00.0: [drm] *ERROR* SIGID=104 (-ETIMEDOUT) Tile5? GT5? GUC: 
+MMIO request ...
+
+right?
+
+>>> Fixes: 1151b9f6f465 ("drm/xe/log: Add component/location decorations to dmesg")
+>>> Signed-off-by: Michal Wajdeczko<michal.wajdeczko@intel.com>
+>>> ---
+>>> Cc: Rodrigo Vivi<rodrigo.vivi@intel.com>
+>>> Cc: Mallesh Koujalagi<mallesh.koujalagi@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/xe_log.c | 40 ++++++++++++++++++++++++-------------
+>>>   1 file changed, 26 insertions(+), 14 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_log.c b/drivers/gpu/drm/xe/xe_log.c
+>>> index 5549ef6966fd..29eb16db3320 100644
+>>> --- a/drivers/gpu/drm/xe/xe_log.c
+>>> +++ b/drivers/gpu/drm/xe/xe_log.c
+>>> @@ -10,6 +10,7 @@
+>>>   
+>>>   #include "xe_device.h"
+>>>   #include "xe_log.h"
+>>> +#include "xe_pci_types.h"
+>>>   #include "xe_printk.h"
+>>>   
+>>>   static void log_emit_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
+>>> @@ -52,18 +53,24 @@ static const char *log_component_prefix(u32 component)
+>>>   	return component ? log_unknown_component_prefix(component) : "";
+>>>   }
+>>>   
+>>> -static struct xe_gt *get_gt_safe(struct pci_dev *pdev, u8 id)
+>>> +static bool allowed_tile_id(struct xe_device *xe, u8 tile_id)
+>>>   {
+>>> -	struct xe_device *xe = pdev_to_xe_device(pdev);
+>>> +	return tile_id < 1 + xe->desc->max_remote_tiles;
+>>> +}
+>>>   
+>>> -	return xe ? xe_device_get_gt(xe, id) : NULL;
+>>> +static bool allowed_gt_id(struct xe_device *xe, u8 gt_id)
+>>> +{
+>>> +	return gt_id < (1 + xe->desc->max_remote_tiles) * xe->desc->max_gt_per_tile;
+>>>   }
+>>>   
+>>> -static struct xe_tile *get_tile_safe(struct pci_dev *pdev, u8 id)
+>>> +static u8 gt_id_to_tile_id(struct xe_device *xe, u8 gt_id)
+>>>   {
+>>> -	struct xe_device *xe = pdev_to_xe_device(pdev);
+>>> +	return gt_id / xe->desc->max_gt_per_tile;
+>> hmm, we need to check max_gt_per_tile should not be zero to avoid hard Oops. I know in real scenario, max_gt_per_tile
 >>
->> Based on reading of [1] and [2], it seems pretty much expected FUSE
->> drivers can trivially deadlock and ultimately in worst case the situation
->> can only be solved by manually aborting those connections by sysadmin.
+>> value is greater than 0 and less than equal to XE_MAX_GT_PER_TILE, however rogue user can write kunit test case and manipulate it, to avoid such scenario, we need to handle it.
+> desc->max_gt_per_tile are const and are defined in xe_pci.c, so ordinary user can't change that
+Agreed!
+>
+> we also have a test check_platform_desc [2] to make sure no developer will define max_gt_per_tile as 0
+>
+> and we can't really control rouge user that will prepare and use invalid descriptor for kunit,
+> but even then, it will crash just that kunit, so who cares?
 
-The real problem comes with userfaultfd and the combination with HMM.
+I know we can't control rogue user, his intention might be different. 
+IMO, at least we can alert it right?  Upto you, how are u going to take 
+rogue user case.
 
-Drivers implementing HMM usually use a background workers to resolve recoverable page faults using the function hmm_range_fault().
+>
+> [2]https://elixir.bootlin.com/linux/v7.3-rc1/source/drivers/gpu/drm/xe/tests/xe_pci_test.c#L63
 
-If userfaultfd together with hmm_range_fault() can block those background workers indefinitely it can block other applications from using the HW without any sysadmin having any chance to figure out what is going on.
+I saw max_gt_per_tile, kunit check where it's should be greater than 0 
+and less than equal to XE_MAX_GT_PER_TILE to avoid such scenario.
 
-That is a classic local deny of service attack and I fear hmm_range_fault() needs something like a timeout to handle that.
->> It also seems (from the Sashiko comments) that by design, there's no
->> upper bound for how long an operation can take, so a bad FUSE driver
->> may stall for however long it sees fit to serve page-fault or in the
->> case of [3] it may decide to not actually populate the PTEs (or maybe
->> invalidate them immediately).
+Thanks,
+
+-/Mallesh
+
+>> Thanks,
 >>
->> Should we really be refactoring the whole kernel for the sake of
->> knowingly allowing potentially malicious userspace driver to idefinitely
->> stall or incorrectly resolve page faults? That'll be quite a lot of
->> complexity added to all the other drivers.
-
-+1
-
-Regards,
-Christian.
-
+>> -/Mallesh
 >>
->> Or should there be more protections on FUSE / uffd to ensure such
->> idefinitive stall can't happen? Or maybe this is just an academic
->> problem and we amend review-prompts not to bring it up?
->>
->> Or maybe I missed some part of the FUSE docs and this isn't a real
->> problem?
-> 
-> Thanks for typing this up, matches what I think is going on here.
-> 
->> Regards, Joonas
->>
->> PS. There is a related patch in [3] which tries to address the problem,
->> but we'll quickly run into live-locks and other issues even if we
->> refactored things into: pre-fault, take locks, do _nofault() access, and
->> retry if that fails.
-> 
-> Yeah just quickly wanting to add here that in my opinion, trying to sort
-> this out in all the various subsystem is not how we should even start to
-> think about this issue. This would be a fundamental change in how
-> subsystems are allowed to nest locking with stuff that can trigger
-> userspace faults.
-> 
-> I did ponder a bit how this could be solved on the fuse side of things,
-> maybe with some seccomp style filters. Like maybe lockdep could be
-> enlisted to help catch deadlocks, with a special "this is a fuse process,
-> it all defacto runs in fault handler context. But that only catches bugs
-> in normal use, not malicious exploits. And given that userspace can choose
-> the timing and unblock at will (I think so at least), this is pretty
-> powerful tool for being nasty to the kernel.
-> 
-> But mostly I want to really, really stand back in awe about this issue and
-> not think too hard about it.
-> 
-> Cheers, Sima
-> 
->> [1] https://www.kernel.org/doc/html/next/filesystems/fuse.html#kernel-userspace-interface
->> [2] https://www.kernel.org/doc/html/next/filesystems/fuse.html#aborting-a-filesystem-connection
->> [3] https://sashiko.dev/#/patchset/20260827062142.4038272-1-srinivasan.shanmugam%40amd.com
-> 
+>>> +}
+>>>   
+>>> -	return xe && id < xe->info.tile_count ? &xe->tiles[id] : NULL;
+>>> +static const char *location_suffix(bool valid)
+>>> +{
+>>> +	return valid ? ":" : "?";
+>>>   }
+>>>   
+>>>   static const char *log_location_prefix(struct pci_dev *pdev, u32 location, char *buf, size_t size)
+>>> @@ -76,17 +83,22 @@ static const char *log_location_prefix(struct pci_dev *pdev, u32 location, char
+>>>   			goto unrecognized;
+>>>   		strscpy(buf, "", size);
+>>>   	} else if (type == XE_LOG_LOCATION_TYPE_TILE) {
+>>> -		struct xe_tile *tile = get_tile_safe(pdev, id);
+>>> +		struct xe_device *xe = xe_any_to_xe(pdev);
+>>> +		bool valid = xe ? allowed_tile_id(xe, id) : false;
+>>> +		const char *pad = location_suffix(valid);
+>>>   
+>>> -		if (!tile)
+>>> -			goto unrecognized;
+>>> -		snprintf(buf, size, "Tile%u: ", id);
+>>> +		pci_WARN(pdev, !valid && IS_ENABLED(CONFIG_DRM_XE_DEBUG),
+>>> +			 "LOG: invalid tile identifier: %u\n", id);
+>>> +		snprintf(buf, size, "Tile%u%s ", id, pad);
+>>>   	} else if (type == XE_LOG_LOCATION_TYPE_GT) {
+>>> -		struct xe_gt *gt = get_gt_safe(pdev, id);
+>>> +		struct xe_device *xe = xe_any_to_xe(pdev);
+>>> +		bool valid = xe ? allowed_gt_id(xe, id) : false;
+>>> +		const char *pad = location_suffix(valid);
+>>> +		u8 tile_id = xe ? gt_id_to_tile_id(xe, id) : 0;
+>>>   
+>>> -		if (!gt)
+>>> -			goto unrecognized;
+>>> -		snprintf(buf, size, "Tile%u: GT%u: ", gt->tile->id, id);
+>>> +		pci_WARN(pdev, !valid && IS_ENABLED(CONFIG_DRM_XE_DEBUG),
+>>> +			 "LOG: invalid GT identifier: %u\n", id);
+>>> +		snprintf(buf, size, "Tile%u%s GT%u%s ", tile_id, pad, id, pad);
+>>>   	} else {
+>>>   		goto unrecognized;
+>>>   	}
+--------------7XhbIeb9tPhO0hcnZMYB2lDW
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 09-09-2026 03:12 pm, Michal
+      Wajdeczko wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:37ba4065-9a0d-4c97-93db-e34ebb99da77@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+
+On 9/9/2026 11:00 AM, Mallesh, Koujalagi wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">
+On 04-09-2026 10:35 pm, Michal Wajdeczko wrote:
+</pre>
+        <blockquote type="cite">
+          <pre wrap="" class="moz-quote-pre">It turned out that during early probe phase, VFs use detached from
+the xe_device, temporary xe_gt objects, which when used as location
+in xe_log() macros, will be treated by the dmesg decoration code as
+bogus, possibly triggering a WARN, and the output will look like:
+
+ [drm] *ERROR* SIGID=104 (-ETIMEDOUT) LOC3.0? GUC: MMIO request ...
+</pre>
+        </blockquote>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">                                         ^^^^^^^
+[here] ----------------------------------^^^^^^^
+
+</pre>
+      <blockquote type="cite">
+        <blockquote type="cite">
+          <pre wrap="" class="moz-quote-pre">
+instead of expected:
+
+ [drm] *ERROR* SIGID=104 (-ETIMEDOUT) Tile0: GT0: GUC: MMIO request ...
+
+Relax the tile/GT id validation and instead of looking for the real
+objects, only check if encoded id is within the range of possible
+tiles or GTs on the current xe device, using data from the device
+descriptor rather then the object list.
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">
+nit: 'rather than'
+
+Please mention invalid id case, how it's going to render like&nbsp;
+
+Warn + Tile3?&nbsp; GT9? now.
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+invalid ID it is shown [here] and in the cover letter
+
+regarding a WARN, it will not show up in production builds,
+but it would look like:
+
+ [ ] xe 0000:00:02.1: LOG: unrecognized location 3.0
+ [ ] WARNING: drivers/gpu/drm/xe/xe_log.c:97 at __xe_log_emit+0x3ba/0xaa0 [xe], CPU#9: sh/5268
+ [ ] Tainted: [W]=WARN
+ [ ] RIP: 0010:__xe_log_emit+0x3ce/0xaa0 [xe]
+ [ ] Call Trace:
+ [ ]  &lt;TASK&gt;
+ [ ]  ? mark_held_locks+0x46/0x90
+ [ ]  ? __xe_mmio_wait32+0x87/0x170 [xe]
+ [ ]  xe_guc_mmio_send_recv+0x354/0xc10 [xe]
+ [ ]  ? dev_printk_emit+0xa0/0xe0
+ [ ]  xe_guc_mmio_send+0x10/0x20 [xe]
+ [ ]  vf_reset_guc_state+0x47/0x100 [xe]
+ [ ]  ? rcu_read_unlock+0x1c/0x80
+ [ ]  xe_gt_sriov_vf_bootstrap+0x2f/0xcb0 [xe]
+ [ ]  ? xe_gt_mmio_init+0x30/0x1e0 [xe]
+ [ ]  ? __drm_dev_dbg+0xa9/0xe0
+ [ ]  ? __kmalloc_large_noprof+0x115/0x130
+ [ ]  read_gmdid+0xf3/0x310 [xe]
+ [ ]  ? xe_device_probe_early+0x143/0x710 [xe]
+ [ ]  ? xe_pci_rebar_resize+0x17e/0x2e0 [xe]
+ [ ]  ? __pci_set_master+0x61/0x100
+ [ ]  xe_pci_probe+0x554/0xac0 [xe]
+ [ ]  ? mark_held_locks+0x46/0x90
+ [ ]  ? __pm_runtime_resume+0x5b/0x90
+ [ ]  ? _raw_spin_unlock_irqrestore+0x67/0x90
+
+</pre>
+    </blockquote>
+    <p>I was looking:</p>
+    <p><b>Valid case:</b></p>
+    <pre wrap="" class="moz-quote-pre">[drm] *ERROR* SIGID=104 (-ETIMEDOUT) Tile0: GT0: GUC: MMIO request ...</pre>
+    <p><b>&nbsp;Invalid case now:</b></p>
+    <p><b>xe 0000:03:00.0: LOG: invalid GT identifier: 5</b></p>
+    <p>:</p>
+    <p>xe 0000:03:00.0: [drm] *ERROR* SIGID=104 (-ETIMEDOUT) Tile5? GT5?
+      GUC: MMIO request ...</p>
+    <p>right?</p>
+    <blockquote type="cite" cite="mid:37ba4065-9a0d-4c97-93db-e34ebb99da77@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">
+</pre>
+        <blockquote type="cite">
+          <pre wrap="" class="moz-quote-pre">Fixes: 1151b9f6f465 (&quot;drm/xe/log: Add component/location decorations to dmesg&quot;)
+Signed-off-by: Michal Wajdeczko <a class="moz-txt-link-rfc2396E" href="mailto:michal.wajdeczko@intel.com">&lt;michal.wajdeczko@intel.com&gt;</a>
+---
+Cc: Rodrigo Vivi <a class="moz-txt-link-rfc2396E" href="mailto:rodrigo.vivi@intel.com">&lt;rodrigo.vivi@intel.com&gt;</a>
+Cc: Mallesh Koujalagi <a class="moz-txt-link-rfc2396E" href="mailto:mallesh.koujalagi@intel.com">&lt;mallesh.koujalagi@intel.com&gt;</a>
+---
+ drivers/gpu/drm/xe/xe_log.c | 40 ++++++++++++++++++++++++-------------
+ 1 file changed, 26 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_log.c b/drivers/gpu/drm/xe/xe_log.c
+index 5549ef6966fd..29eb16db3320 100644
+--- a/drivers/gpu/drm/xe/xe_log.c
++++ b/drivers/gpu/drm/xe/xe_log.c
+@@ -10,6 +10,7 @@
+ 
+ #include &quot;xe_device.h&quot;
+ #include &quot;xe_log.h&quot;
++#include &quot;xe_pci_types.h&quot;
+ #include &quot;xe_printk.h&quot;
+ 
+ static void log_emit_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigid,
+@@ -52,18 +53,24 @@ static const char *log_component_prefix(u32 component)
+ 	return component ? log_unknown_component_prefix(component) : &quot;&quot;;
+ }
+ 
+-static struct xe_gt *get_gt_safe(struct pci_dev *pdev, u8 id)
++static bool allowed_tile_id(struct xe_device *xe, u8 tile_id)
+ {
+-	struct xe_device *xe = pdev_to_xe_device(pdev);
++	return tile_id &lt; 1 + xe-&gt;desc-&gt;max_remote_tiles;
++}
+ 
+-	return xe ? xe_device_get_gt(xe, id) : NULL;
++static bool allowed_gt_id(struct xe_device *xe, u8 gt_id)
++{
++	return gt_id &lt; (1 + xe-&gt;desc-&gt;max_remote_tiles) * xe-&gt;desc-&gt;max_gt_per_tile;
+ }
+ 
+-static struct xe_tile *get_tile_safe(struct pci_dev *pdev, u8 id)
++static u8 gt_id_to_tile_id(struct xe_device *xe, u8 gt_id)
+ {
+-	struct xe_device *xe = pdev_to_xe_device(pdev);
++	return gt_id / xe-&gt;desc-&gt;max_gt_per_tile;
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">
+hmm, we need to check&nbsp;max_gt_per_tile&nbsp;should not be zero to avoid hard Oops. I know in real scenario,&nbsp;max_gt_per_tile
+
+value is greater than 0 and less than equal to XE_MAX_GT_PER_TILE, however rogue user can write kunit test case and manipulate it, to avoid such scenario, we need to handle it.
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+desc-&gt;max_gt_per_tile are const and are defined in xe_pci.c, so ordinary user can't change that</pre>
+    </blockquote>
+    Agreed!
+    <blockquote type="cite" cite="mid:37ba4065-9a0d-4c97-93db-e34ebb99da77@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+
+we also have a test check_platform_desc [2] to make sure no developer will define max_gt_per_tile as 0
+
+and we can't really control rouge user that will prepare and use invalid descriptor for kunit,
+but even then, it will crash just that kunit, so who cares?</pre>
+    </blockquote>
+    <p>I know we can't control rogue user, his intention might be
+      different. IMO, at least we can alert it right?&nbsp; Upto you, how are
+      u going to take rogue user case.</p>
+    <blockquote type="cite" cite="mid:37ba4065-9a0d-4c97-93db-e34ebb99da77@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+
+[2] <a class="moz-txt-link-freetext" href="https://elixir.bootlin.com/linux/v7.3-rc1/source/drivers/gpu/drm/xe/tests/xe_pci_test.c#L63">https://elixir.bootlin.com/linux/v7.3-rc1/source/drivers/gpu/drm/xe/tests/xe_pci_test.c#L63</a>
+</pre>
+    </blockquote>
+    <p>I saw&nbsp;<span style="white-space: pre-wrap">max_gt_per_tile, kunit check where it's should be greater than 0 and less than equal to </span><span style="white-space: pre-wrap">XE_MAX_GT_PER_TILE to avoid such scenario.</span></p>
+    <p><span style="white-space: pre-wrap">
+</span></p>
+    <p><span style="white-space: pre-wrap">Thanks,</span></p>
+    <p><span style="white-space: pre-wrap">-/Mallesh</span></p>
+    <blockquote type="cite" cite="mid:37ba4065-9a0d-4c97-93db-e34ebb99da77@intel.com">
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">
+Thanks,
+
+-/Mallesh
+
+</pre>
+        <blockquote type="cite">
+          <pre wrap="" class="moz-quote-pre">+}
+ 
+-	return xe &amp;&amp; id &lt; xe-&gt;info.tile_count ? &amp;xe-&gt;tiles[id] : NULL;
++static const char *location_suffix(bool valid)
++{
++	return valid ? &quot;:&quot; : &quot;?&quot;;
+ }
+ 
+ static const char *log_location_prefix(struct pci_dev *pdev, u32 location, char *buf, size_t size)
+@@ -76,17 +83,22 @@ static const char *log_location_prefix(struct pci_dev *pdev, u32 location, char
+ 			goto unrecognized;
+ 		strscpy(buf, &quot;&quot;, size);
+ 	} else if (type == XE_LOG_LOCATION_TYPE_TILE) {
+-		struct xe_tile *tile = get_tile_safe(pdev, id);
++		struct xe_device *xe = xe_any_to_xe(pdev);
++		bool valid = xe ? allowed_tile_id(xe, id) : false;
++		const char *pad = location_suffix(valid);
+ 
+-		if (!tile)
+-			goto unrecognized;
+-		snprintf(buf, size, &quot;Tile%u: &quot;, id);
++		pci_WARN(pdev, !valid &amp;&amp; IS_ENABLED(CONFIG_DRM_XE_DEBUG),
++			 &quot;LOG: invalid tile identifier: %u\n&quot;, id);
++		snprintf(buf, size, &quot;Tile%u%s &quot;, id, pad);
+ 	} else if (type == XE_LOG_LOCATION_TYPE_GT) {
+-		struct xe_gt *gt = get_gt_safe(pdev, id);
++		struct xe_device *xe = xe_any_to_xe(pdev);
++		bool valid = xe ? allowed_gt_id(xe, id) : false;
++		const char *pad = location_suffix(valid);
++		u8 tile_id = xe ? gt_id_to_tile_id(xe, id) : 0;
+ 
+-		if (!gt)
+-			goto unrecognized;
+-		snprintf(buf, size, &quot;Tile%u: GT%u: &quot;, gt-&gt;tile-&gt;id, id);
++		pci_WARN(pdev, !valid &amp;&amp; IS_ENABLED(CONFIG_DRM_XE_DEBUG),
++			 &quot;LOG: invalid GT identifier: %u\n&quot;, id);
++		snprintf(buf, size, &quot;Tile%u%s GT%u%s &quot;, tile_id, pad, id, pad);
+ 	} else {
+ 		goto unrecognized;
+ 	}
+</pre>
+        </blockquote>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------7XhbIeb9tPhO0hcnZMYB2lDW--
