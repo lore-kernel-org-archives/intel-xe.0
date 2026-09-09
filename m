@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB031C79FBD
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 16:18:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 251A1C79FB6
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 16:18:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A90410F1FB;
-	Wed,  9 Sep 2026 16:18:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC09D10F219;
+	Wed,  9 Sep 2026 16:18:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jcht8FuH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HDTmjyAY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47D3F10F1FB;
- Wed,  9 Sep 2026 16:18:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83D8C10F216;
+ Wed,  9 Sep 2026 16:18:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788970683; x=1820506683;
+ t=1788970687; x=1820506687;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qgI+SKJxj6UNiKiyWmt6lDZrwAkPB4IkNdyRXjHlbqM=;
- b=Jcht8FuH34aECF2c9L2Mm1FIDx+NhYzpPrMBlaRA0sgiBbjebi0uRnY2
- oYzU2UtAV5ffjZe6K4t8NwArpsNg2xuNdeF5+39JNHBv/lGyKob0/yLJY
- 87QtZJ9Js9jsGnndoy1ifVAtPKOS+KIel2WuWIdWnHw7Mf5RpZD9J3q1c
- Jg36OuPE9iDflrd7qVde4ghWoS1IgFF4iXAdcIUuln4BoSEdwXcTM8qrk
- I4bEW4A7zzkxNc3u55NG+GUaSZXF727hmyGC/wHMlo0JdU5I4VYC+B0el
- OCibG15h1SU76X5CrOEdxggx0aRbnoZJQZTI2FwK/cIt8NpJxmH5Ad8AA w==;
-X-CSE-ConnectionGUID: QsJgAdVIQZyWGe2cyKLcNg==
-X-CSE-MsgGUID: yXKwNW2rTZutwJEL+c8KBw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="114946775"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="114946775"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 09:18:03 -0700
-X-CSE-ConnectionGUID: EQn/maR8SAKIZ70a+va/Rg==
-X-CSE-MsgGUID: 9H21kHuhTgyer/WiFIQG0g==
+ bh=OIFt7BM3GODwpPOMhri6YsvH3wKjOPcTtAW8hvF6J58=;
+ b=HDTmjyAYebZiz0ozH6i/nV+yfySXMWyz51sDkeEtQ6vPVzxucV46jo7t
+ iOO8z7UIlJX6tAxXXAsYB6gsH59YjeAAaeC687d1K5zNQePL/+vz+r7ks
+ h+L6+L9PchxzVZrF/Y9XoxmKvnnqLItsUgv/4IH68nsEhtYe7kvpoLQtS
+ EXH7rpbke9hzZoKPWG4utJFaRoOz0qJP4+YDummwgE1Onfsvi6oDJ2KWU
+ dml/ruxQ2HIEJ1fW9XfX+ZBatlGndzNffQlrpFL3WFPwtZGtrYk+2Zm+8
+ 7qeQqvXvXP+AXAHlvoB4lR1EKKckwPUoPK7Z6Ym8Iw61JuEhRpUk7hOp3 g==;
+X-CSE-ConnectionGUID: yDNVRECEQFC42ubs4onyPA==
+X-CSE-MsgGUID: ABwWmdusRSuGUBC8AktDcg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="100064623"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="100064623"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2026 09:18:07 -0700
+X-CSE-ConnectionGUID: 77158BpIQ6yXIcECY2bDSw==
+X-CSE-MsgGUID: +pihUAC3SXSG5UX3FOCDrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="296298956"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="275503313"
 Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.137])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 09:18:02 -0700
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2026 09:18:07 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 07/13] drm/i915: Extract intel_dsb_supported()
-Date: Wed,  9 Sep 2026 19:17:24 +0300
-Message-ID: <20260909161730.12969-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 08/13] drm/i915: Use intel_dsb_supported() to determine
+ 'use_dsb'
+Date: Wed,  9 Sep 2026 19:17:25 +0300
+Message-ID: <20260909161730.12969-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260909161730.12969-1-ville.syrjala@linux.intel.com>
 References: <20260909161730.12969-1-ville.syrjala@linux.intel.com>
@@ -72,60 +73,31 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Extract the "do we have a DSB and should be use it?" check
-into a helper. This mirrors intel_flipq_supported() and should
-help unify the logic around selecting the codepath which will
-be used to perform the commit (mmio vs. DSB. vs. flip queue).
+Currently we calculate crtc_state->use_dsb by simply assuming
+that DSB is available, and then falling back to MMIO when the
+actual DSB buffer allocation fails.
+
+This is somewhat confusing, and doesn't match how the flip queue
+counterpart (use_flipq) is calculated.  Check whether DSB is
+available ahead of time, just like we in the flip queue case.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 13 +++++++++----
- drivers/gpu/drm/i915/display/intel_dsb.h |  1 +
- 2 files changed, 10 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index d9a270362a82..8e01e1eed291 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -1025,6 +1025,14 @@ void intel_dsb_wait(struct intel_dsb *dsb)
- 			  dsb_error_int_status(display) | DSB_PROG_INT_STATUS);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index fc30a455bed3..7741f1395375 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7392,6 +7392,7 @@ static void intel_atomic_dsb_prepare(struct intel_atomic_state *state,
+ 		!intel_crtc_needs_color_update(new_crtc_state);
  
-+bool intel_dsb_supported(struct intel_display *display)
-+{
-+	if (!display->params.enable_dsb)
-+		return false;
-+
-+	return HAS_DSB(display);
-+}
-+
- /**
-  * intel_dsb_prepare() - Allocate, pin and map the DSB command buffer.
-  * @state: the atomic state
-@@ -1049,10 +1057,7 @@ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
- 	struct intel_dsb *dsb;
- 	unsigned int size;
- 
--	if (!HAS_DSB(display))
--		return NULL;
--
--	if (!display->params.enable_dsb)
-+	if (!intel_dsb_supported(display))
- 		return NULL;
- 
- 	dsb = kzalloc_obj(*dsb);
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
-index 3dcca9ed5371..87d9c90da08f 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-@@ -26,6 +26,7 @@ enum intel_dsb_id {
- 	I915_MAX_DSBS,
- };
- 
-+bool intel_dsb_supported(struct intel_display *display);
- unsigned int intel_dsb_size(struct intel_dsb *dsb);
- unsigned int intel_dsb_head(struct intel_dsb *dsb);
- struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
+ 	new_crtc_state->use_dsb =
++		intel_dsb_supported(display) &&
+ 		!new_crtc_state->use_flipq &&
+ 		!new_crtc_state->do_async_flip &&
+ 		(DISPLAY_VER(display) >= 20 || !new_crtc_state->has_psr) &&
 -- 
 2.54.0
 
