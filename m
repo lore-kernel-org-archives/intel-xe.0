@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78C3CC79F8C
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 06:28:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D85F6C79F8C
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 06:30:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FE0E10E07C;
-	Wed,  9 Sep 2026 06:28:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 823BF10EED8;
+	Wed,  9 Sep 2026 06:30:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KG2qpPJ+";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="e5xKctds";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BACDC10E07C
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 06:28:44 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E66410EECC
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 06:30:16 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 70BC342ABC;
- Wed,  9 Sep 2026 06:28:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4010C1F00A3A;
- Wed,  9 Sep 2026 06:28:44 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 63A80601FD;
+ Wed,  9 Sep 2026 06:30:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E27331F00A3A;
+ Wed,  9 Sep 2026 06:30:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788935324;
- bh=9u4lriZrYOYyNqlHUwU+QTVj5cdc5qZXi4Ror49PjnU=;
+ s=k20260515; t=1788935415;
+ bh=4YP5pjpSdF32q2B3UGjRSm7HMCO5ikokQNp1ltuHk0E=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=KG2qpPJ+3SQ33cyeXmXJ6a2cuTm9FwvGxGuy6yvAI8g5eTXlTq5Hvlcyvfr5bZ1vp
- AHmIHiJdm389IOwpQQ9jTWfdrDxGIh4KZbeYcp+algUtIwxJw1erGsrpEatHR5/tRf
- hSgfgfk21QutMpKZVgfiz0Ud7wcfS7IQno8Iy8n/CuxNPjwq0rRgAsUZWCtTXVM/7S
- ygFePeP1vb5n4kxbnGvRqypUPE8zfA6WCXkvfOGO7ryV9ktOJ65P2m6loyFdv/FZ1P
- 2aQRy7M0EKFxeYwQnxzCU7BBwCYP0LyS5zTD6DmKJ447ouMESRTuKVExzl49uQKp5v
- FZMn11qsb2t8g==
+ b=e5xKctdsfoyJMZJFxoBRx+XId76Bkx3k5IvdpeA6DG3cF1zAIsc0bRMMOnGxTxFxe
+ ITRr/FzXVSFUiaSA0341spgeNYHBNNrtJgU5ZGCIjjullr3+kN4AglSCuOJyoki1X7
+ VAZ0W+MH4oNAJTs+N4uZ9EsCtlzsHHLrIM+WtzTKZh8qikFj5h+3YTSJSo2XQYDNpW
+ xZF10bvLpmiftUdux/FtTMtHz1O8JyN2f00wL+Oi6tv7BvJE4cXTcgM56zGmUlPGbf
+ vOyQ+K55Z1yt0rH1m3PtxMi2ana3s550jsBv4jRnzHKlgY8Q7OrJOARFkyt/JmzyGq
+ HYbQ6cDZLINcg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 4/4] drm/xe/tests: Add xe_migrate_access_memory subtest
+Subject: Re: [PATCH v3 2/4] drm/xe/xe_migrate: Fix page tracking in
+ access_memory
 To: "Jan Maslak" <jan.maslak@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260909061845.4048047-5-jan.maslak@intel.com>
+In-Reply-To: <20260909061845.4048047-3-jan.maslak@intel.com>
 References: <20260909061845.4048047-1-jan.maslak@intel.com>
- <20260909061845.4048047-5-jan.maslak@intel.com>
+ <20260909061845.4048047-3-jan.maslak@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 09 Sep 2026 06:28:43 +0000
-Message-Id: <20260909062844.4010C1F00A3A@smtp.kernel.org>
+Date: Wed, 09 Sep 2026 06:30:14 +0000
+Message-Id: <20260909063014.E27331F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,137 +57,65 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
 
-New issues:
-- [Medium] The byte-wise verification logic in `verify_access_memory_read` =
-assumes a little-endian memory layout, causing the test to fail on big-endi=
-an architectures.
-- [Low] The fallback condition `if (!unaligned_offset)` is dead code and wi=
-ll never evaluate to true.
-
 Pre-existing issues:
-- [High] Infinite recursion in `xe_migrate_access_memory` when the allocate=
-d bounce buffer is not cacheline aligned.
+- [High] Infinite recursion leading to kernel stack overflow in the unalign=
+ed bounce-buffer path when `kmalloc` does not return a cacheline-aligned ad=
+dress.
 --
 
-commit bc41ecbf5d587d033724f3736f3ff4ebc8156d3a
-Author: Jan Maslak <jan.maslak@intel.com>
-Subject: drm/xe/tests: Add xe_migrate_access_memory subtest
+commit 3d0f83e8f2ae774cef204374c69860cdf0e2e7c3
+Author: Christoph Manszewski <c.manszewski@gmail.com>
 
-This commit adds a new subtest to xe_migrate to verify vram to sram migrati=
-on.
-It specifically tests scenarios where the destination address, migration si=
-ze,
-or source BO offset are not 4-byte aligned.
+drm/xe/xe_migrate: Fix page tracking in access_memory
 
-> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/t=
-ests/xe_migrate.c
-> index f10d9513747b4..9e18fcd51e26c 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-[ ... ]
-> +static bool verify_access_memory_read(struct kunit *test, u8 *buf,
-> +				      u32 buf_start, u32 bo_start,
-> +				      u32 size, const char *scenario)
-> +{
-> +	u32 j;
-> +
-> +	for (j =3D 0; j < size; j++) {
-> +		u32 bo_byte_offset =3D bo_start + j;
-> +		u32 byte_in_cell =3D bo_byte_offset % sizeof(u32);
-> +		u32 cell_idx =3D bo_byte_offset / sizeof(u32);
-> +		u32 cell_value =3D cell_idx;
-> +		u8 expected_byte =3D (cell_value >> (byte_in_cell * 8)) & 0xFF;
+This commit updates xe_migrate_access_memory() to include the initial page
+offset when recalculating current_page. This ensures that subsequent loop
+iterations continue to index the mapped pages correctly.
 
-[Severity: Medium]
-Will this test fail spuriously on big-endian architectures?=20
-
-The bit-shift logic here in verify_access_memory_read() explicitly expects=
-=20
-bytes to be laid out in little-endian order, but the array is primed in the
-host's native byte order later in access_memory_test_run_tile().
-
-[ ... ]
-> +static void access_memory_test_unaligned_bo_offset(struct kunit *test,
-> +						    struct xe_migrate *m,
-> +						    struct xe_bo *bo, u8 *buf,
-> +						    u32 unaligned_offset)
-> +{
-> +	u32 partial_size =3D ACCESS_MEM_BO_SIZE - unaligned_offset;
-> +	int ret;
-> +
-> +	memset(buf, 0, ACCESS_MEM_BO_SIZE);
-> +
-> +	kunit_info(test, "Partial read: bo_offset=3D0x%x bytes=3D0x%x\n",
-> +		   unaligned_offset, partial_size);
-> +
-> +	ret =3D xe_migrate_access_memory(m, bo, unaligned_offset, buf,
-> +				       partial_size, false);
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
+ate.c
+> index 7da57dc522896..7b8148930738d 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -2571,7 +2571,7 @@ int xe_migrate_access_memory(struct xe_migrate *m, =
+struct xe_bo *bo,
 
 [Severity: High]
-This is a pre-existing issue, but could these unaligned tests trigger an
-infinite recursion loop in xe_migrate_access_memory()?=20
+This isn't a bug introduced by this patch, but is there a risk of an
+infinite recursion in the bounce-buffer path of xe_migrate_access_memory()
+when memory debugging is enabled?
 
-When handling an unaligned vram access on a platform without
-has_mem_copy_instr, xe_migrate_access_memory() allocates a bounce buffer:
+If xe->info.has_mem_copy_instr is false and the access is unaligned, the
+code allocates a bounce buffer:
 
     bounce =3D kmalloc(XE_CACHELINE_BYTES, GFP_KERNEL);
 
-If debugging options like Kasan or Slub redzoning are enabled, kmalloc is n=
-ot
-guaranteed to return a cacheline-aligned pointer. The unaligned bounce buff=
-er
-pointer is then passed to the recursive call where it fails the alignment
-check again, leading to another allocation and recursing infinitely.
+If KASAN or SLUB_DEBUG is enabled, kmalloc() may return a buffer that is
+not cacheline-aligned due to redzones. The function then recursively
+calls itself:
 
-[ ... ]
-> +static void access_memory_test_run_tile(struct xe_device *xe,
-> +					struct xe_tile *tile,
-> +					struct kunit *test,
-> +					bool use_random_offset)
-> +{
-> +	unsigned int bo_flags =3D XE_BO_FLAG_VRAM_IF_DGFX(tile);
-> +	struct xe_migrate *m =3D tile->migrate;
-> +	u32 j, unaligned_offset;
-> +	struct xe_bo *bo;
-> +	u8 *buf;
-> +	int ret;
-> +
-> +	if (use_random_offset) {
-> +		unaligned_offset =3D get_random_u32() % (ACCESS_MEM_BO_SIZE / 2);
-> +		/* Ensure the offset is not 4-byte aligned */
-> +		if (IS_ALIGNED(unaligned_offset, 4))
-> +			unaligned_offset |=3D 2;
-> +		if (!unaligned_offset)
+    err =3D xe_migrate_access_memory(m, bo,
+                                   offset & ~XE_CACHELINE_MASK,
+                                   bounce,
+                                   XE_CACHELINE_BYTES, 0);
 
-[Severity: Low]
-Is this fallback condition dead code?=20
+Because the bounce buffer is still unaligned, could the recursion base case
+fail? This would cause it to allocate another bounce buffer and recurse
+infinitely, potentially leading to a kernel stack overflow if an
+unprivileged context triggers an unaligned memory access.
 
-The value of unaligned_offset can never be 0 at this point. Since 0 is 4-by=
-te
-aligned, the preceding bitwise OR is guaranteed to execute and change the
-value to 2, rendering this subsequent check permanently false.
-
-> +			unaligned_offset =3D 3;
-> +	} else {
-> +		unaligned_offset =3D ACCESS_MEM_UNALIGNED_OFFSET;
-> +	}
-[ ... ]
-> +	/* Prime the BO */
-> +	for (j =3D 0; j < ACCESS_MEM_NUM_CELLS; j++)
-> +		((u32 *)buf)[j] =3D j;
-
-[Severity: Medium]
-Does this code create a mismatch on big-endian architectures?=20
-
-The array is primed in the host's native byte order here in
-access_memory_test_run_tile(), creating a mismatch when verified against the
-little-endian assumption in verify_access_memory_read().
-
-[ ... ]
+> =20
+>  		buf +=3D current_bytes;
+>  		offset +=3D current_bytes;
+> -		current_page =3D (int)(buf - orig_buf) / PAGE_SIZE;
+> +		current_page =3D (int)(buf - orig_buf + page_offset) / PAGE_SIZE;
+>  		bytes_left -=3D current_bytes;
+>  		if (bytes_left)
+>  			xe_res_next(&cursor, current_bytes);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260909061845.4048=
-047-1-jan.maslak@intel.com?part=3D4
+047-1-jan.maslak@intel.com?part=3D2
