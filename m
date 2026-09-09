@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9FFDC79FAD
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 12:42:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD90BC79FB9
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 12:42:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AB7F10F127;
-	Wed,  9 Sep 2026 12:42:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60D9C10F119;
+	Wed,  9 Sep 2026 12:42:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IFSppbrf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gD3+Xs8u";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49AA210F11A
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 12:42:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FF0110F121
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 12:42:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788957733; x=1820493733;
+ t=1788957739; x=1820493739;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Aa3NKxw0cdliOhRPcd8ggCTJ9cVIVSdTNtwKNHGU1yM=;
- b=IFSppbrfJuTrhp05Wzes0QK6Oga5gpogtETLZMG4zPErOEK9oY5/M4td
- W6cTP3cTUTqhmClVd5OJk8dLx623nwnMudBD1T9sOsWZ95FDdxEZwv3H2
- Ishxu22FiZytiOpmCzn2mt2Uv/+7LAD3YCa2FHbCiSrlcIQWCy83GgiY9
- k4RlHvPvXNJmeJunRFFSMsCWx+0XCmG2aJ73kETfeFV/59haYMlUDZVUF
- foWQeTfkBskpYvPSdUdiuqz2BhGqvZ1gZ9gEuvc1E4nw/WGoGnHHmLZwd
- cQl2e0vepvoulsGGz1nAPKkJY6lJjXztJlIdkP2ENnDgwGKTDmu/MuF6F Q==;
-X-CSE-ConnectionGUID: jhItdo+bTt6S5NgwFUiM8A==
-X-CSE-MsgGUID: h7EVKI1SQrCKLrlRPm/Czg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="99715569"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="99715569"
+ bh=Fv52Fj9H4m7bL/9Xy8C6U5bZpFia5ahg/X9ymYdIsmw=;
+ b=gD3+Xs8unowfN6OLWxa47lYZPNvoQ7Lao9PM5h+Q0pr97xDsx+aaByBi
+ lx87FchudTn8f1eTIB/0vfoBiRe0gj4qAVu3agV/P096aSJ5NUrXbzimX
+ kqp2VhWpEJyjHqKCXmQZk1d5Rji4+aPCswPXeYJ5Ql+8q8K4E9/zRNsat
+ 8u1DtrXIVapowBwTXYimzo5c1bp1KxRKptbdDbiS7PwcMk+tzjlfGiL8m
+ D82xCXD5MubJt4wPD2dlFzG5NOBJD095IEoLLVqCoF7TyMspUVdiJ1ES1
+ k8F+sJBT445hhud1lyiqvFjtyP8WHkzAxwV/zbYPNpwAY27yL8qmBbWd4 w==;
+X-CSE-ConnectionGUID: te7Pg9d9QKeobYAY9Lz7zg==
+X-CSE-MsgGUID: pPbzxR9cSia/BhUpl45LsA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="99715580"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="99715580"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 05:42:13 -0700
-X-CSE-ConnectionGUID: ygXWLlhOSqusmiXJkIXgSQ==
-X-CSE-MsgGUID: nIy9Tid/RrC6SUAnXyNJ/A==
+ 09 Sep 2026 05:42:19 -0700
+X-CSE-ConnectionGUID: WcMEL9vKQweTJ12JEA4KGw==
+X-CSE-MsgGUID: TQ23VZ/zTAK38lcBdMhxRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="296246654"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="296246667"
 Received: from hghimira.iind.intel.com ([10.190.239.34])
- by fmviesa001.fm.intel.com with ESMTP; 09 Sep 2026 05:42:11 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 09 Sep 2026 05:42:17 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [RFC v2 15/21] drm/xe/lrc: Pass exec_queue to xe_lrc_create for
- access counter params
-Date: Wed,  9 Sep 2026 18:15:09 +0530
-Message-ID: <20260909124457.1610890-38-himal.prasad.ghimiray@intel.com>
+Subject: [RFC v2 19/21] drm/xe/svm: Add MIGRATE_ON_ACCESS_COUNTER bind flag
+Date: Wed,  9 Sep 2026 18:15:13 +0530
+Message-ID: <20260909124457.1610890-42-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260909124457.1610890-23-himal.prasad.ghimiray@intel.com>
 References: <20260909124457.1610890-23-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,170 +67,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update xe_lrc_create() and xe_lrc_init() to receive exec_queue pointer,
-enabling access to q->acc.{trigger, notify, granularity} during LRC
-initialization. Program CTX_ACC_CTR_THOLD and CTX_ASID registers with
-access counter values.
+The default SVM placement policy for a range with no explicit preferred
+location is first-touch: the first GPU to fault the range eagerly
+migrates it to that GPU's local VRAM. For workloads that only touch a
+range briefly, or where the hot GPU is not the first one to fault, this
+eager migration is wasted work.
 
-Bspec: 59264, 59265
+Add DRM_XE_VM_BIND_FLAG_MIGRATE_ON_ACCESS_COUNTER, an opt-in bind flag
+(valid only together with DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR on a MAP
+op) that defers first placement to access counters: the range stays
+where the CPU placed it on the initial GPU page fault and is migrated to
+a GPU's local VRAM only once that GPU's access counter reports it hot.
+
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h | 10 +++++++
- drivers/gpu/drm/xe/xe_exec_queue.c      |  2 +-
- drivers/gpu/drm/xe/xe_execlist.c        |  2 +-
- drivers/gpu/drm/xe/xe_lrc.c             | 35 ++++++++++++++++++-------
- drivers/gpu/drm/xe/xe_lrc.h             |  5 ++--
- 5 files changed, 41 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.c      | 15 ++++++++++++---
+ drivers/gpu/drm/xe/xe_vm.c       | 10 ++++++++--
+ drivers/gpu/drm/xe/xe_vm_types.h |  1 +
+ include/uapi/drm/xe_drm.h        | 10 ++++++++++
+ 4 files changed, 31 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-index 6f7abc0181b5..c32e47e87f88 100644
---- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-+++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-@@ -45,4 +45,14 @@
- #define INDIRECT_CTX_RING_START_UDW	(0x08 + 1)
- #define INDIRECT_CTX_RING_CTL		(0x0a + 1)
- 
-+/* Fields for CTX_ACC_CTR_THOLD */
-+#define ACC_TRIGGER_MASK		REG_GENMASK(15, 0)
-+#define ACC_TRIGGER_VAL(x)		REG_FIELD_PREP(ACC_TRIGGER_MASK, x)
-+#define ACC_NOTIFY_MASK			REG_GENMASK(31, 16)
-+#define ACC_NOTIFY_VAL(x)		REG_FIELD_PREP(ACC_NOTIFY_MASK, x)
-+
-+/* Fields for CTX_ASID */
-+#define ACC_GRANULARITY_MASK            REG_GENMASK(22, 20)
-+#define ACC_GRANULARITY_VAL(x)          REG_FIELD_PREP(ACC_GRANULARITY_MASK, x)
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 9773b27ad2a0..390288e09b40 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -436,7 +436,7 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
- 
- 			marker = xe_gt_sriov_vf_wait_valid_ggtt(q->gt);
- 
--			lrc = xe_lrc_create(q->hwe, q->vm, q->replay_state,
-+			lrc = xe_lrc_create(q, q->hwe, q->vm, q->replay_state,
- 					    xe_lrc_ring_size(), q->msix_vec, flags);
- 			if (IS_ERR(lrc)) {
- 				err = PTR_ERR(lrc);
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index a36db39dcda8..14d5f90e234d 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -259,7 +259,7 @@ struct xe_execlist_port *xe_execlist_port_create(struct xe_device *xe,
- 
- 	port->hwe = hwe;
- 
--	port->lrc = xe_lrc_create(hwe, NULL, NULL, SZ_16K, XE_IRQ_DEFAULT_MSIX, 0);
-+	port->lrc = xe_lrc_create(NULL, hwe, NULL, NULL, SZ_16K, XE_IRQ_DEFAULT_MSIX, 0);
- 	if (IS_ERR(port->lrc)) {
- 		err = PTR_ERR(port->lrc);
- 		goto err;
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 25fe9dbc9141..ec85e88dcbe1 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1516,8 +1516,10 @@ static void xe_lrc_set_gpgpu_preemption_level(struct xe_lrc *lrc, struct xe_gt *
- 	xe_lrc_write_ctx_reg(lrc, CTX_CS_CHICKEN1, val);
- }
- 
--static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
--			   void *replay_state, u16 msix_vec, u32 init_flags)
-+static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_exec_queue *q,
-+			   struct xe_hw_engine *hwe, struct xe_vm *vm,
-+			   void *replay_state,
-+			   u16 msix_vec, u32 init_flags)
- {
- 	struct xe_gt *gt = hwe->gt;
- 	struct xe_tile *tile = gt_to_tile(gt);
-@@ -1616,8 +1618,20 @@ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct
- 		xe_lrc_write_ctx_reg(lrc, CTX_QUEUE_TIMESTAMP_UDW, 0);
- 	}
- 
--	if (xe->info.has_asid && vm)
--		xe_lrc_write_ctx_reg(lrc, CTX_ASID, vm->usm.asid);
-+	if (xe->info.has_asid && vm) {
-+		u32 asid;
-+
-+		if (q)
-+			asid = vm->usm.asid | ACC_GRANULARITY_VAL(q->acc.granularity);
-+		else
-+			asid = vm->usm.asid;
-+		xe_lrc_write_ctx_reg(lrc, CTX_ASID, asid);
-+	}
-+
-+	if (q && xe->info.has_access_counter && vm)
-+		xe_lrc_write_ctx_reg(lrc, CTX_ACC_CTR_THOLD,
-+				     ACC_NOTIFY_VAL(q->acc.notify) |
-+				     ACC_TRIGGER_VAL(q->acc.trigger));
- 
- 	if (GRAPHICS_VER(xe) >= 20 && hwe->class == XE_ENGINE_CLASS_RENDER)
- 		xe_lrc_set_gpgpu_preemption_level(lrc, gt);
-@@ -1662,7 +1676,8 @@ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct
- 	return err;
- }
- 
--static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
-+static int xe_lrc_init(struct xe_lrc *lrc, struct xe_exec_queue *q,
-+		       struct xe_hw_engine *hwe, struct xe_vm *vm,
- 		       void *replay_state, u32 ring_size, u16 msix_vec, u32 init_flags)
- {
- 	struct xe_gt *gt = hwe->gt;
-@@ -1718,7 +1733,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_v
- 	xe_hw_fence_ctx_init(&lrc->fence_ctx, hwe->gt,
- 			     hwe->fence_irq, hwe->name);
- 
--	err = xe_lrc_ctx_init(lrc, hwe, vm, replay_state, msix_vec, init_flags);
-+	err = xe_lrc_ctx_init(lrc, q, hwe, vm, replay_state, msix_vec, init_flags);
- 	if (err)
- 		goto err_lrc_finish;
- 
-@@ -1734,6 +1749,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_v
- 
- /**
-  * xe_lrc_create - Create a LRC
-+ * @q: Exec queue (can be NULL for kernel queues)
-  * @hwe: Hardware Engine
-  * @vm: The VM (address space)
-  * @replay_state: GPU hang replay state
-@@ -1746,8 +1762,9 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_v
-  * Return pointer to created LRC upon success and an error pointer
-  * upon failure.
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 6e0fc0c80905..9fc02d2fb346 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -57,9 +57,12 @@
+  *      hot the range is migrated to that GPU's local VRAM.
+  *    - The GPU that fires the AC event wins placement.
+  *
+- * 3. TODO: "Migrate only once hot" — skip migration on the initial GPU page
+- *    fault entirely and rely solely on AC events for first placement, avoiding
+- *    unnecessary early migrations.  Addressed by a later patch in this series.
++ * 3. Migrate only once hot (opt-in via DRM_XE_VM_BIND_FLAG_MIGRATE_ON_ACCESS_COUNTER):
++ *
++ *    Like policy 2, but the eager first-touch migration is skipped: the range
++ *    stays where the CPU placed it on the initial GPU page fault and is
++ *    migrated to a GPU's local VRAM only once that GPU's access counter
++ *    reports it hot, avoiding unnecessary early migrations.
   */
--struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
--			     void *replay_state, u32 ring_size, u16 msix_vec, u32 flags)
-+struct xe_lrc *xe_lrc_create(struct xe_exec_queue *q, struct xe_hw_engine *hwe,
-+			     struct xe_vm *vm, void *replay_state, u32 ring_size,
-+			     u16 msix_vec, u32 flags)
- {
- 	struct xe_lrc *lrc;
- 	int err;
-@@ -1756,7 +1773,7 @@ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
- 	if (!lrc)
- 		return ERR_PTR(-ENOMEM);
- 
--	err = xe_lrc_init(lrc, hwe, vm, replay_state, ring_size, msix_vec, flags);
-+	err = xe_lrc_init(lrc, q, hwe, vm, replay_state, ring_size, msix_vec, flags);
- 	if (err) {
- 		kfree(lrc);
- 		return ERR_PTR(err);
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 7be5e3da8bc8..ca1943f1c1ba 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -61,8 +61,9 @@ struct xe_lrc_snapshot {
- #define XE_LRC_CREATE_USER_CTX		BIT(2)
- #define XE_LRC_DISABLE_STATE_CACHE_PERF_FIX	BIT(3)
- 
--struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
--			     void *replay_state, u32 ring_size, u16 msix_vec, u32 flags);
-+struct xe_lrc *xe_lrc_create(struct xe_exec_queue *q, struct xe_hw_engine *hwe,
-+			     struct xe_vm *vm, void *replay_state,
-+			     u32 ring_size, u16 msix_vec, u32 flags);
- void xe_lrc_destroy(struct kref *ref);
  
  /**
+@@ -1381,7 +1384,13 @@ static int __xe_svm_range_setup(struct xe_vm *vm, struct xe_vma *vma,
+ 	if (acc_ctr_trigger && !range_flags.migrate_devmem)
+ 		goto out;
+ 
++	/*
++	 * With MIGRATE_ON_ACCESS_COUNTER, defer first placement to access
++	 * counters: skip the eager migrate on a normal page fault, but still
++	 * migrate when this setup was itself triggered by an AC event.
++	 */
+ 	if (--migrate_try_count >= 0 &&
++	    (acc_ctr_trigger || !(vma->gpuva.flags & XE_VMA_MIGRATE_ON_ACC)) &&
+ 	    xe_svm_range_needs_migrate_to_vram(range, vma, dpagemap)) {
+ 		ktime_t migrate_start = xe_gt_stats_ktime_get();
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index c60de5ad76c5..c78df5f57a8b 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -752,7 +752,8 @@ static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask,
+ 	XE_VMA_DUMPABLE |		    \
+ 	XE_VMA_SYSTEM_ALLOCATOR |           \
+ 	DRM_GPUVA_SPARSE |		    \
+-	XE_VMA_MADV_AUTORESET)
++	XE_VMA_MADV_AUTORESET |		    \
++	XE_VMA_MIGRATE_ON_ACC)
+ 
+ static void xe_vm_populate_rebind(struct xe_vma_op *op, struct xe_vma *vma,
+ 				  u8 tile_mask)
+@@ -2563,6 +2564,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 				op->map.vma_flags |= XE_VMA_DUMPABLE;
+ 			if (flags & DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET)
+ 				op->map.vma_flags |= XE_VMA_MADV_AUTORESET;
++			if (flags & DRM_XE_VM_BIND_FLAG_MIGRATE_ON_ACCESS_COUNTER)
++				op->map.vma_flags |= XE_VMA_MIGRATE_ON_ACC;
+ 			op->map.request_decompress = flags & DRM_XE_VM_BIND_FLAG_DECOMPRESS;
+ 			op->map.pat_index = pat_index;
+ 			op->map.invalidate_on_bind =
+@@ -3785,7 +3788,8 @@ ALLOW_ERROR_INJECTION(vm_bind_ioctl_ops_execute, ERRNO);
+ 	 DRM_XE_VM_BIND_FLAG_CHECK_PXP | \
+ 	 DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR | \
+ 	 DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET | \
+-	 DRM_XE_VM_BIND_FLAG_DECOMPRESS)
++	 DRM_XE_VM_BIND_FLAG_DECOMPRESS | \
++	 DRM_XE_VM_BIND_FLAG_MIGRATE_ON_ACCESS_COUNTER)
+ 
+ #ifdef TEST_VM_OPS_ERROR
+ #define SUPPORTED_FLAGS	(SUPPORTED_FLAGS_STUB | FORCE_OP_ERROR)
+@@ -3919,6 +3923,8 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+ 		    XE_IOCTL_DBG(xe, obj &&
+ 				 op == DRM_XE_VM_BIND_OP_UNMAP) ||
+ 		    XE_IOCTL_DBG(xe, (flags & DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET) &&
++				 (!is_cpu_addr_mirror || op != DRM_XE_VM_BIND_OP_MAP)) ||
++		    XE_IOCTL_DBG(xe, (flags & DRM_XE_VM_BIND_FLAG_MIGRATE_ON_ACCESS_COUNTER) &&
+ 				 (!is_cpu_addr_mirror || op != DRM_XE_VM_BIND_OP_MAP))) {
+ 			err = -EINVAL;
+ 			goto free_bind_ops;
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index a21f73f23c59..a88e20329e9f 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -52,6 +52,7 @@ struct xe_vm_pgtable_update_op;
+ #define XE_VMA_DUMPABLE		(DRM_GPUVA_USERBITS << 8)
+ #define XE_VMA_SYSTEM_ALLOCATOR	(DRM_GPUVA_USERBITS << 9)
+ #define XE_VMA_MADV_AUTORESET	(DRM_GPUVA_USERBITS << 10)
++#define XE_VMA_MIGRATE_ON_ACC	(DRM_GPUVA_USERBITS << 11)
+ 
+ /**
+  * struct xe_vma_mem_attr - memory attributes associated with vma
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index c68e88d4d490..5f37415239b9 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1073,6 +1073,15 @@ struct drm_xe_vm_destroy {
+  *    "no-compression" PAT. Only meaningful for VRAM-backed BOs on devices that
+  *    support Flat CCS and the required HW generation XE2+.
+  *
++ *  - %DRM_XE_VM_BIND_FLAG_MIGRATE_ON_ACCESS_COUNTER - Can be used in combination
++ *    with %DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR to defer device placement to
++ *    access counters: skip the eager first-touch migration on the initial GPU
++ *    page fault and migrate the range to a GPU's local VRAM only once that
++ *    GPU's access counter reports it hot. Ignored when madvise has set an
++ *    explicit preferred device location (placement is already pinned) and never
++ *    overrides migrations required for correctness, such as device atomics.
++ *    Only valid for DRM_XE_VM_BIND_OP_MAP.
++ *
+  * The @prefetch_mem_region_instance for %DRM_XE_VM_BIND_OP_PREFETCH can also be:
+  *  - %DRM_XE_CONSULT_MEM_ADVISE_PREF_LOC, which ensures prefetching occurs in
+  *    the memory region advised by madvise.
+@@ -1182,6 +1191,7 @@ struct drm_xe_vm_bind_op {
+ #define DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR	(1 << 5)
+ #define DRM_XE_VM_BIND_FLAG_MADVISE_AUTORESET	(1 << 6)
+ #define DRM_XE_VM_BIND_FLAG_DECOMPRESS (1 << 7)
++#define DRM_XE_VM_BIND_FLAG_MIGRATE_ON_ACCESS_COUNTER	(1 << 8)
+ 	/** @flags: Bind flags */
+ 	__u32 flags;
+ 
 -- 
 2.43.0
 
