@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAB91C79FAD
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 09:18:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AE9BC79F8C
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 09:20:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6040110F03F;
-	Wed,  9 Sep 2026 09:18:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A899910F046;
+	Wed,  9 Sep 2026 09:20:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KEdtIu5E";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="S2+TeWn6";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FBF310F03F;
- Wed,  9 Sep 2026 09:18:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B77C10F046;
+ Wed,  9 Sep 2026 09:20:32 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 92613601FD;
- Wed,  9 Sep 2026 09:18:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0C841F00A3A;
- Wed,  9 Sep 2026 09:18:48 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 52C83601FF;
+ Wed,  9 Sep 2026 09:20:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 921B81F00A3A;
+ Wed,  9 Sep 2026 09:20:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788945529;
- bh=TxQ1SGVg5bf3+jdluA66EMwI/A8dCOwuitYEA/8Ik30=;
+ s=k20260515; t=1788945631;
+ bh=/yTpR67LKXqhtOBeQLGNsUk698G52btJcNEw5A2wmjI=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=KEdtIu5EsimEJjwrs4A1JJMAIrfPyFZtTT4WGJAgu7Qm1RrxfHK9SVCfzLvdjiUhU
- 5Lh32qMVt/PCDMfvbjXQN4JdFt0FW166yKhgyC4AUyz66LJn+liOOgz1jyOsfbmYsy
- E2zU0RxR4ANnEIfD/A5q6vLhv5/FVhNh7k33QD824d3PvWtqXcORnUlLBY4VpyW0OD
- Dj9vwi5j4b4h9uopFZtgu6STlFABjJ3u49EpP1oalIocjA5TF48HPEvLgI4gbA1qy2
- 8pDn9KatKk195qrAWPn852P9ilzL4GpOd01NziOmllqOQIBEXOZ39I2btz2Raftdj2
- 5CXraxBTo5LIw==
+ b=S2+TeWn6s7NBFSMi0P5y2ikuK48WfV4guvChrGbE02XqPWfRerODcA49aTI5wFV8P
+ IrHSQnL9LlFBW/MtL231u5JNHKdIO+bLldiZ42vSZsacsAiacYWwfylowAg00zIeZN
+ fESTZJTQVoR4y87T26drb4PXdebF6AGzaH9E9J7GLuAhVdYlEBoMrz8wu3D/j0knJj
+ bzLw5nkY/UVaumu/cfxw7q1LXNMtV/Ci07eJDXi9/Q3bE6HR85+mXNGFRmpMVrCDB/
+ 5OvQmF9Dsn7FMnypdojlY4GI4BFl2MSN+WcbAkFs2yIUBzdc1rQAVpRycLmoZ1/2HN
+ SJFgNxVR8PZ3Q==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 07/14] drm/panic: Return from screen_user if display
- is too small
+Subject: Re: [PATCH v4 09/14] drm/panic: Split draw_panic_plane()
 To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Cc: linux-hyperv@vger.kernel.org, imx@lists.linux.dev,
- virtualization@lists.linux.dev, wsa+renesas@sang-engineering.com,
- dri-devel@lists.freedesktop.org, gary@garyguo.net,
- intel-xe@lists.freedesktop.org, Frank.Li@kernel.org, ojeda@kernel.org,
- intel-gfx@lists.freedesktop.org, "Michael
- S. Tsirkin" <mst@redhat.com>, "Eugenio Perez" <eperezma@redhat.com>
-In-Reply-To: <20260909085826.64529-8-tzimmermann@suse.de>
+Cc: ojeda@kernel.org, gary@garyguo.net, dri-devel@lists.freedesktop.org,
+ "Michael
+ S. Tsirkin" <mst@redhat.com>, virtualization@lists.linux.dev, "Eugenio
+ Perez" <eperezma@redhat.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
+ Frank.Li@kernel.org, wsa+renesas@sang-engineering.com, imx@lists.linux.dev
+In-Reply-To: <20260909085826.64529-10-tzimmermann@suse.de>
 References: <20260909085826.64529-1-tzimmermann@suse.de>
- <20260909085826.64529-8-tzimmermann@suse.de>
+ <20260909085826.64529-10-tzimmermann@suse.de>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 09 Sep 2026 09:18:48 +0000
-Message-Id: <20260909091848.A0C841F00A3A@smtp.kernel.org>
+Date: Wed, 09 Sep 2026 09:20:30 +0000
+Message-Id: <20260909092030.921B81F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,13 +61,17 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> Return an error if the display is too small to display at least a
-> single character. If the panic handler cannot display any message
-> it does at least not destroy the current output, which might help
-> with identifying the problem.
+> Move locking and parameters from draw_panic_plane() into the new
+> helper drm_panic_display_panic_screen(). Call draw_panic_plane() from
+> there.
 >=20
-> v4:
-> - also check font height against scanout buffer (Jocelyn)
+> The new helper drm_panic_display_panic_screen() is now the DRM core's
+> interface for displaying a panic screen. The code remaining in
+> draw_panic_plane() still does all the heavy lifting. It will become a
+> plane helper for DRM drivers.
+>=20
+> v2:
+> - use panic_type argument in draw_panic_plane() (Sashiko)
 >=20
 > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 
@@ -76,5 +79,5 @@ Sashiko has reviewed this patch and found no issues. It looks great!
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260909085826.6452=
-9-1-tzimmermann@suse.de?part=3D7
+9-1-tzimmermann@suse.de?part=3D9
 
