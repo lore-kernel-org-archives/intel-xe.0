@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD5A3C79FAA
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 07:42:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FA9FC79FAA
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 07:42:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4661310EF75;
-	Wed,  9 Sep 2026 07:42:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7DA010EF7A;
+	Wed,  9 Sep 2026 07:42:42 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB49110EF75;
- Wed,  9 Sep 2026 07:42:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8489201755926148825=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF7110EF7A;
+ Wed,  9 Sep 2026 07:42:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Fix_stale_selective_fetch_e?=
- =?utf-8?q?nable_bit?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5Bv?=
+ =?utf-8?q?2=2C1/1=5D_drm/xe/guc=3A_Fix_wake=5Fup_race_in_handle=5Fsched=5Fd?=
+ =?utf-8?q?one?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
+To: "Jakub Legowski" <jakub.legowski@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Sep 2026 07:42:34 -0000
-Message-ID: <178893975482.139265.13293261792819060116@61270ab9df2a>
+Date: Wed, 09 Sep 2026 07:42:41 -0000
+Message-ID: <178893976164.139265.5475755612383844853@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260909062523.3516962-1-nemesa.garg@intel.com>
-In-Reply-To: <20260909062523.3516962-1-nemesa.garg@intel.com>
+References: <20260909070825.228551-1-jakub.legowski@intel.com>
+In-Reply-To: <20260909070825.228551-1-jakub.legowski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +41,59 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8489201755926148825==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Fix stale selective fetch enable bit
-URL   : https://patchwork.freedesktop.org/series/173662/
-State : success
+Series: series starting with [v2,1/1] drm/xe/guc: Fix wake_up race in handle_sched_done
+URL   : https://patchwork.freedesktop.org/series/173680/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -> xe-pw-173662v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d875049d2b299159a272bd5151994970cdcd1e31
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e658a28fae4c406c766b3b836e6d4c38df51af67
+Author: Jakub Legowski <jakub.legowski@intel.com>
+Date:   Wed Sep 9 09:08:25 2026 +0200
 
-Summary
--------
+    drm/xe/guc: Fix wake_up race in handle_sched_done
+    
+    Move wake_up_all() after clear_exec_queue_pending_disable()
+    
+    When a SCHED_DONE G2H arrives for a banned exec queue,
+    handle_sched_done() calls wake_up_all() before
+    clear_exec_queue_pending_disable(). This creates a race with the
+    wait_event_timeout() in guc_exec_queue_timedout_job() that waits
+    for pending_disable to be cleared:
+    
+        smp_rmb();
+        ret = wait_event_timeout(guc->ct.wq,
+                     ...
+                     ...);
+    
+    This was observed as:
+    [drm:guc_exec_queue_timedout_job [xe]] Tile0: GT0: Check job timeout: seqno=4294967169, lrc_seqno=4294967169, guc_id=4, running_time_ms=0, timeout_ms=5000, diff=0x00000001
+    
+    Moving the wake_up_all() (along with its smp_wmb())
+    after all paths that clear pending_disable, ensuring that waiters
+    always observe the updated state when woken.
+    
+    Same as for runnable_state == 1 in the beginning of
+    handle_sched_done().
+    
+    Signed-off-by: Jakub Legowski <jakub.legowski@intel.com>
++ /mt/dim checkpatch dd822035c9dcd89e47cbfa75da6f3119617fbada drm-intel
+e658a28fae4c drm/xe/guc: Fix wake_up race in handle_sched_done
+-:20: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#20: 
+[drm:guc_exec_queue_timedout_job [xe]] Tile0: GT0: Check job timeout: seqno=4294967169, lrc_seqno=4294967169, guc_id=4, running_time_ms=0, timeout_ms=5000, diff=0x00000001
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 12)
-------------------------------
-
-  Missing    (2): bat-nvls-2 bat-lnl-2 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_9086 -> IGT_9087
-  * Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -> xe-pw-173662v1
-
-  IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_9087: 9087
-  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada
-  xe-pw-173662v1: 173662v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173662v1/index.html
-
---===============8489201755926148825==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 41 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix stale selective fetch enable bit</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173662/">https://patchwork.freedesktop.org/series/173662/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173662v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173662v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -&gt; xe-pw-173662v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 12)</h2>
-<p>Missing    (2): bat-nvls-2 bat-lnl-2 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9086 -&gt; IGT_9087</li>
-<li>Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -&gt; xe-pw-173662v1</li>
-</ul>
-<p>IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_9087: 9087<br />
-  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada<br />
-  xe-pw-173662v1: 173662v1</p>
-
-</body>
-</html>
-
---===============8489201755926148825==--
