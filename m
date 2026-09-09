@@ -4,93 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B534C79F8C
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 10:21:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29DAEC79FAD
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 10:25:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 155F110E552;
-	Wed,  9 Sep 2026 10:21:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="JcUNDWOH";
-	dkim-atps=neutral
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
- [209.85.128.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEC5810E552
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 10:21:21 +0000 (UTC)
-Received: by mail-wm1-f47.google.com with SMTP id
- 5b1f17b1804b1-498028b3d5eso53958475e9.1
- for <intel-xe@lists.freedesktop.org>; Wed, 09 Sep 2026 03:21:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1788949280; x=1789554080; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:content-type:mime-version
- :references:message-id:subject:cc:to:from:date:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=QW7FwcI5CLpgkHE+mMHfthdjtYGSrqpt8xAnoW9r4Hs=;
- b=JcUNDWOHspgpusORcP2YfA8TykvuaMI3SOU0yflUnWCxMHId+yiL9MrlpSC0Xy01Hl
- 6VTe4g/o1J5EdyQfVNaX4DM9TiOr1M/1bqBN7csTPRXVuxPCL2nVSYnuHbbQ2mFd003F
- JtZ2OnqtFpzn9I8ZyT2JU0+lkjdFNsHLTTtpM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1788949280; x=1789554080;
- h=in-reply-to:content-disposition:content-type:mime-version
- :references:message-id:subject:cc:to:from:date:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=QW7FwcI5CLpgkHE+mMHfthdjtYGSrqpt8xAnoW9r4Hs=;
- b=s/1H/pZyHhAMiZm/3c0dPYafEuYAiOb/apDsPs9LiahYmKwSlQZA3/PG01pSZEplFB
- uw6j+8EL5uHgWUT+0nkZlYdqzsiZVF/lamCvOMszi6PFST016rVoCXHWm8GMLKzIAJn6
- MoxVvGA47fEcyz6cGqYN64t8dciot5LiCOq1YKbkLoblQee1hmqfWyZHr7OLxfoMV8b2
- jXFAILl2NIeeLCH3mHetztfHcC2ePhrjLffXqQ9ifV1E/l125Rp13oW+9ZiBOK5CQA8l
- aMdTZJyMs6/2oUjAMCoZ+hidLRc4Gpa0l2KdAuVOE3jDERrSgo+SSxe6fZkOjo/oolPQ
- 8k7Q==
-X-Forwarded-Encrypted: i=1;
- AKwUvBwshMh1HkA7Vw/NCmPoRKFzxO0klN18eAj89Dkwf4Jy6VeysEgcmcgVDORPID5r6bChKRoMMoTHJw==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++kaHE4UmZDAsVT0PEGwfOQaeIRuhlMXjYee5T7i4QAcIUgrM+Y/
- 1ZLymcvdPymB8IUnK7Kfn7G/6tZXU/SLRyZAKSs/DZx/tJ+yl7DrdI1PBbz3lXFDSa69n1woQz5
- bXdfhQ4U=
-X-Gm-Gg: AYBFou2yT/zOpBKr0HYQOnZ4EEAMEi16rhcZjZzCRXISdDSy3RarqVamv9VEI5pNl6L
- Y3m2MewodaHn3Nyu7VSYfgTV41Q8TemTtFJUwkeDac5KSOh8ZjQlhzBb4lu9JPNN96PE1BBe8+Q
- rczrh+LF4Po8R+/YMUjIF243Vo96O4Q3C2Rk8KXgq5RBKDhMKk+6Mk7XqEGP5JhZTNEXVFWQBdg
- 6nUe6VGK/llkSOMX66rxVCPQN7ZK3WpdE2uvpjJastOQGQ+LjX+eEN2rg5JbSs3sAkIWZxRNVEe
- SgAYVfi+p4cPPA6L3iJwNkAcS3I24XVKm5YjpvQXjimbkA9wBDpbemytWsMYateFfToiYK+iWca
- PrTfQSAmg73DtebestVXGvzTPXA9AQGvgdAl1kHeQw0e1K3qVZx/M3iWbopZKghqOms7rO9HCPc
- p1jcKFXZVRMDLEHWpf7igPpy16htgojaY8CEaefZcW+a5K3M6Pk62kVXZN5ZEoJDmWhAOmYxRBj
- FIuQm9cG2k=
-X-Received: by 2002:a05:600c:3e06:b0:49d:99:1d98 with SMTP id
- 5b1f17b1804b1-49d00991db1mr277639155e9.9.1788949280007; 
- Wed, 09 Sep 2026 03:21:20 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-49cf7740d44sm1008046105e9.15.2026.09.09.03.21.18
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Sep 2026 03:21:19 -0700 (PDT)
-Date: Wed, 9 Sep 2026 12:21:17 +0200
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Miklos Szeredi <miklos@szeredi.hu>, Bernd Schubert <bernd@bsbernd.com>,
- Joanne Koong <joannelkoong@gmail.com>,
- Amir Goldstein <amir73il@gmail.com>, intel-xe@lists.freedesktop.org,
- fuse-devel@lists.linux.dev, sashiko-bot@kernel.org,
- sashiko-reviews@lists.linux.dev, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- dri-devel@lists.freedesktop.org,
- Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: Re: FUSE deadlocks vs. copy_from_user() and locks (Was: Re: [PATCH
- v10 04/27] drm/xe/eudebug: Introduce discovery for resources)
-Message-ID: <aqEzHQMrI8p9XVcu@phenom.ffwll.local>
-References: <20260903145952.848051-1-mika.kuoppala@linux.intel.com>
- <20260903145952.848051-5-mika.kuoppala@linux.intel.com>
- <20260903152224.AD48C1F00A3F@smtp.kernel.org>
- <178878748003.179185.16833574173741290547@jlahtine-mobl>
- <178894801687.37859.4186888279082797860@jlahtine-mobl>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E131110F0A6;
+	Wed,  9 Sep 2026 10:25:39 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E70AD10F0A6;
+ Wed,  9 Sep 2026 10:25:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4717962976095044637=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <178894801687.37859.4186888279082797860@jlahtine-mobl>
-X-Operating-System: Linux phenom 7.1.3+deb14-amd64 
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Enable_?=
+ =?utf-8?q?AS_SDP_Skip_Frames_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 09 Sep 2026 10:25:38 -0000
+Message-ID: <178894953893.139265.18019056287988841572@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260909080810.2202879-1-uma.shankar@intel.com>
+In-Reply-To: <20260909080810.2202879-1-uma.shankar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,122 +36,210 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 09, 2026 at 01:00:16PM +0300, Joonas Lahtinen wrote:
-> (Adding bunch of FUSE folks and DRM folks in the hopes of coming to a
-> resolution here.)
-> 
-> Quoting Joonas Lahtinen (2026-09-07 16:24:40)
-> > Quoting sashiko-bot@kernel.org (2026-09-03 18:22:23)
-> > > Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
-> > > - [High] Global ordered workqueue stall via copy_from_user block while holding ioctl_lock.
-> > > - [Medium] Event sequence numbers (seqno) can be queued out-of-order in the event stream due to a race between seqno generation and event queuing.
-> > > --
-> > > 
-> > > commit e2061e72d8e954a17bde35e9c970ee41bc2db0ad
-> > > Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> > > 
-> > >     drm/xe/eudebug: Introduce discovery for resources
-> > > 
-> > > This commit introduces a resource discovery mechanism for debugger connections.
-> > > When a debugger connects, all existing resources for the target client are
-> > > relayed as events via an ordered workqueue, and DRM ioctls are blocked using
-> > > an rw_semaphore until discovery is complete.
-> > > 
-> > > > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> > > > index 032a7ec5fbc8d..f10959b898297 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_device.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_device.c
-> > > [ ... ]
-> > > > @@ -238,8 +239,12 @@ static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
-> > > >  
-> > > >       ACQUIRE(xe_pm_runtime_ioctl, pm)(xe);
-> > > >       ret = ACQUIRE_ERR(xe_pm_runtime_ioctl, &pm);
-> > > > -     if (ret >= 0)
-> > > > +     if (ret >= 0) {
-> > > > +             bool lock = xe_eudebug_discovery_lock(file, cmd);
-> > > >               ret = drm_ioctl(file, cmd, arg);
-> > > 
-> > > [Severity: High]
-> > > Does holding the discovery lock across drm_ioctl() create a vector for a
-> > > workqueue stall? 
-> > > 
-> > > If an unprivileged user maps the ioctl argument pointer to a blocking FUSE
-> > > or userfaultfd region, drm_ioctl() can be stalled indefinitely during
-> > > copy_from_user() while holding xef->eudebug.ioctl_lock for read.
-> > 
-> > Don't think this is a very realistic vector to address, as it would
-> > also extend to every other copy_from_user() and also to userptr across
-> > all drivers.
-> > 
-> > Having a malfunctioning FUSE driver and getting a malfunctioning system
-> > as a result is probably somewhat expected.
-> 
-> Based on further chatting on this with Sima, I was volunteered to pull
-> together the discussion here.
-> 
-> We seem to have Sashiko picking up on patterns about accessing userspace
-> memory with locks held and potential for copy_from_user() (or userptr) to
-> then take indefinitely long to resolve. And that spreads to deadlocks
-> everywhere situation very fast.
-> 
-> Based on reading of [1] and [2], it seems pretty much expected FUSE
-> drivers can trivially deadlock and ultimately in worst case the situation
-> can only be solved by manually aborting those connections by sysadmin.
-> 
-> It also seems (from the Sashiko comments) that by design, there's no
-> upper bound for how long an operation can take, so a bad FUSE driver
-> may stall for however long it sees fit to serve page-fault or in the
-> case of [3] it may decide to not actually populate the PTEs (or maybe
-> invalidate them immediately).
-> 
-> Should we really be refactoring the whole kernel for the sake of
-> knowingly allowing potentially malicious userspace driver to idefinitely
-> stall or incorrectly resolve page faults? That'll be quite a lot of
-> complexity added to all the other drivers.
-> 
-> Or should there be more protections on FUSE / uffd to ensure such
-> idefinitive stall can't happen? Or maybe this is just an academic
-> problem and we amend review-prompts not to bring it up?
-> 
-> Or maybe I missed some part of the FUSE docs and this isn't a real
-> problem?
+--===============4717962976095044637==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks for typing this up, matches what I think is going on here.
+== Series Details ==
 
-> Regards, Joonas
-> 
-> PS. There is a related patch in [3] which tries to address the problem,
-> but we'll quickly run into live-locks and other issues even if we
-> refactored things into: pre-fault, take locks, do _nofault() access, and
-> retry if that fails.
+Series: drm/i915/display: Enable AS SDP Skip Frames (rev6)
+URL   : https://patchwork.freedesktop.org/series/162015/
+State : success
 
-Yeah just quickly wanting to add here that in my opinion, trying to sort
-this out in all the various subsystem is not how we should even start to
-think about this issue. This would be a fundamental change in how
-subsystems are allowed to nest locking with stuff that can trigger
-userspace faults.
+== Summary ==
 
-I did ponder a bit how this could be solved on the fuse side of things,
-maybe with some seccomp style filters. Like maybe lockdep could be
-enlisted to help catch deadlocks, with a special "this is a fuse process,
-it all defacto runs in fault handler context. But that only catches bugs
-in normal use, not malicious exploits. And given that userspace can choose
-the timing and unblock at will (I think so at least), this is pretty
-powerful tool for being nasty to the kernel.
+CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -> xe-pw-162015v6_BAT
+====================================================
 
-But mostly I want to really, really stand back in awe about this issue and
-not think too hard about it.
+Summary
+-------
 
-Cheers, Sima
+  **SUCCESS**
 
-> [1] https://www.kernel.org/doc/html/next/filesystems/fuse.html#kernel-userspace-interface
-> [2] https://www.kernel.org/doc/html/next/filesystems/fuse.html#aborting-a-filesystem-connection
-> [3] https://sashiko.dev/#/patchset/20260827062142.4038272-1-srinivasan.shanmugam%40amd.com
+  No regressions found.
 
--- 
-Simona Vetter
-Software Engineer
-http://blog.ffwll.ch
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  Additional (1): bat-ptl-vm 
+  Missing    (1): bat-nvls-2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-162015v6_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-small-cm:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][1] ([Intel XE#5764]) +11 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html
+
+  * igt@xe_exec_balancer@no-exec-cm-virtual-basic:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][2] ([Intel XE#7482]) +17 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html
+
+  * igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][3] ([Intel XE#8364]) +13 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][4] ([Intel XE#5775]) +2 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
+
+  * igt@xe_mmap@vram:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][5] ([Intel XE#5776])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][6] ([Intel XE#5777] / [Intel XE#7590])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][7] ([Intel XE#5771] / [Intel XE#7590])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][8] ([Intel XE#5780] / [Intel XE#7590])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#5764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764
+  [Intel XE#5771]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771
+  [Intel XE#5775]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775
+  [Intel XE#5776]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776
+  [Intel XE#5777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777
+  [Intel XE#5780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780
+  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
+  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
+  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9086 -> IGT_9088
+  * Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -> xe-pw-162015v6
+
+  IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_9088: 55a88d20e327d5c440cd3f3d661684fb83f29027 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada
+  xe-pw-162015v6: 162015v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/index.html
+
+--===============4717962976095044637==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Enable AS SDP Skip Frames (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162015/">https://patchwork.freedesktop.org/series/162015/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -&gt; xe-pw-162015v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>Additional (1): bat-ptl-vm <br />
+  Missing    (1): bat-nvls-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-162015v6_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small-cm:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764">Intel XE#5764</a>) +11 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_balancer@no-exec-cm-virtual-basic:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775">Intel XE#5775</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776">Intel XE#5776</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777">Intel XE#5777</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771">Intel XE#5771</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162015v6/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780">Intel XE#5780</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9086 -&gt; IGT_9088</li>
+<li>Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -&gt; xe-pw-162015v6</li>
+</ul>
+<p>IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_9088: 55a88d20e327d5c440cd3f3d661684fb83f29027 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada<br />
+  xe-pw-162015v6: 162015v6</p>
+
+</body>
+</html>
+
+--===============4717962976095044637==--
