@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2774BC88E4A
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 15:48:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AD56C79FB7
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 15:56:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3BF110F1F5;
-	Wed,  9 Sep 2026 15:48:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f+lGHEde";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8D9A10F1DD
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 15:47:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788968878; x=1820504878;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=K+7N+eyYCakclv4eLqzUQZSRPz+ClcRF/qU44GyuiB8=;
- b=f+lGHEdeGuI577Y2LbhxGGkHxDaZ5Y4UF/9Z+E6kI6dWzOiutjFZk2xJ
- TX4gg4VJQfVFON1tCIcTQGGl5q5pjNx8T9OhIuhkQmuR/afmJSsCYOcAk
- pqzyJzsMFOMIB3cUriR2f3V5KUlVDnfdhqYjh63AvLNzIEsGiRyULd6+n
- ba93ZSO3sjgt9m2k424vn97wj+pSRyQjrZgI4zuVnMriXZKiPeXGxyfsy
- vv6nQGbDHim9LOMSwNcwuHDWzepeOn7WRq6g9csyu+CKFpJZa7IcQsXJG
- 9UI/0y+pDjvZwq37IPqfGne7EEXQTxAiMxvyOh25JDTbtiY1WWRNkBLYB g==;
-X-CSE-ConnectionGUID: SSYpuDBRSmCAbMBrkdIRSQ==
-X-CSE-MsgGUID: Em7c3QZcQvywvqa4I400fw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="93091805"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="93091805"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 08:47:57 -0700
-X-CSE-ConnectionGUID: 6W00TAicRzOeZJjnE4vTVw==
-X-CSE-MsgGUID: xtGjwBfqRD61/H25MzeY1A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="268102498"
-Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 08:47:56 -0700
-From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
- hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
- rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
- airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
- anoop.c.vijay@intel.com, badal.nilawar@intel.com,
- matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
-Subject: [PATCH v7 03/20] platform/x86/intel/pmt: refactor rc with a return
- value
-Date: Wed,  9 Sep 2026 08:47:42 -0700
-Message-ID: <20260909154739.1515514-25-michael.j.ruhl@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260909154739.1515514-22-michael.j.ruhl@intel.com>
-References: <20260909154739.1515514-22-michael.j.ruhl@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC03510E1CA;
+	Wed,  9 Sep 2026 15:56:06 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85C7C10E1CA;
+ Wed,  9 Sep 2026 15:56:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Crescent_Island_PMT_suppo?=
+ =?utf-8?q?rt_=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 09 Sep 2026 15:56:05 -0000
+Message-ID: <178896936554.143971.16580626481871010403@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260909154739.1515514-22-michael.j.ruhl@intel.com>
+In-Reply-To: <20260909154739.1515514-22-michael.j.ruhl@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,252 +36,65 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Upcoming changes will include possible failures from HW accesses.
+== Series Details ==
 
-Refactor pmt_crashlog_rw() with a return value.
+Series: Crescent Island PMT support (rev9)
+URL   : https://patchwork.freedesktop.org/series/160717/
+State : warning
 
-Update all necessary usage to use the return code.
+== Summary ==
 
-Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
----
- drivers/platform/x86/intel/pmt/crashlog.c | 101 ++++++++++++++++------
- 1 file changed, 74 insertions(+), 27 deletions(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d875049d2b299159a272bd5151994970cdcd1e31
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8bb2dc057910aefcf5a68f6851096b26ac023c0d
+Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
+Date:   Wed Sep 9 08:47:59 2026 -0700
 
-diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
-index 831cff743803..b6540f3a9a17 100644
---- a/drivers/platform/x86/intel/pmt/crashlog.c
-+++ b/drivers/platform/x86/intel/pmt/crashlog.c
-@@ -144,27 +144,29 @@ static int pmt_crashlog_rmw(struct crashlog_entry *crashlog, u32 bit, bool set)
- }
- 
- /* Read the status register and see if the specified @bit is set */
--static bool pmt_crashlog_rc(struct crashlog_entry *crashlog, u32 bit)
-+static int pmt_crashlog_rc(struct crashlog_entry *crashlog, u32 bit, bool *state)
- {
- 	const struct crashlog_status *status = &crashlog->info->status;
- 	u32 reg = readl(crashlog->entry.disc_table + status->offset);
- 
--	return !!(reg & bit);
-+	*state = !!(reg & bit);
-+
-+	return 0;
- }
- 
--static bool pmt_crashlog_complete(struct crashlog_entry *crashlog)
-+static int pmt_crashlog_complete(struct crashlog_entry *crashlog, bool *state)
- {
- 	/* return current value of the crashlog complete flag */
--	return pmt_crashlog_rc(crashlog, crashlog->info->status.complete);
-+	return pmt_crashlog_rc(crashlog, crashlog->info->status.complete, state);
- }
- 
--static bool pmt_crashlog_disabled(struct crashlog_entry *crashlog)
-+static int pmt_crashlog_disabled(struct crashlog_entry *crashlog, bool *state)
- {
- 	/* return current value of the crashlog disabled flag */
--	return pmt_crashlog_rc(crashlog, crashlog->info->status.disabled);
-+	return pmt_crashlog_rc(crashlog, crashlog->info->status.disabled, state);
- }
- 
--static bool pmt_crashlog_supported(struct intel_pmt_entry *entry, u32 *crash_type, u32 *version)
-+static int pmt_crashlog_supported(struct intel_pmt_entry *entry, u32 *crash_type, u32 *version)
- {
- 	u32 discovery_header = readl(entry->disc_table + CONTROL_OFFSET);
- 
-@@ -199,14 +201,14 @@ static int pmt_crashlog_set_execute(struct crashlog_entry *crashlog)
- 	return pmt_crashlog_rmw(crashlog, crashlog->info->control.manual, true);
- }
- 
--static bool pmt_crashlog_cleared(struct crashlog_entry *crashlog)
-+static int pmt_crashlog_cleared(struct crashlog_entry *crashlog, bool *state)
- {
--	return pmt_crashlog_rc(crashlog, crashlog->info->status.cleared);
-+	return pmt_crashlog_rc(crashlog, crashlog->info->status.cleared, state);
- }
- 
--static bool pmt_crashlog_consumed(struct crashlog_entry *crashlog)
-+static int pmt_crashlog_consumed(struct crashlog_entry *crashlog, bool *state)
- {
--	return pmt_crashlog_rc(crashlog, crashlog->info->status.consumed);
-+	return pmt_crashlog_rc(crashlog, crashlog->info->status.consumed, state);
- }
- 
- static int pmt_crashlog_set_consumed(struct crashlog_entry *crashlog)
-@@ -214,14 +216,14 @@ static int pmt_crashlog_set_consumed(struct crashlog_entry *crashlog)
- 	return pmt_crashlog_rmw(crashlog, crashlog->info->control.consume, true);
- }
- 
--static bool pmt_crashlog_error(struct crashlog_entry *crashlog)
-+static int pmt_crashlog_error(struct crashlog_entry *crashlog, bool *state)
- {
--	return pmt_crashlog_rc(crashlog, crashlog->info->status.error);
-+	return pmt_crashlog_rc(crashlog, crashlog->info->status.error, state);
- }
- 
--static bool pmt_crashlog_rearm(struct crashlog_entry *crashlog)
-+static int pmt_crashlog_rearm(struct crashlog_entry *crashlog, bool *state)
- {
--	return pmt_crashlog_rc(crashlog, crashlog->info->status.rearmed);
-+	return pmt_crashlog_rc(crashlog, crashlog->info->status.rearmed, state);
- }
- 
- static int pmt_crashlog_set_rearm(struct crashlog_entry *crashlog)
-@@ -236,7 +238,12 @@ static ssize_t
- clear_show(struct device *dev, struct device_attribute *attr, char *buf)
- {
- 	struct crashlog_entry *crashlog = dev_get_drvdata(dev);
--	bool cleared = pmt_crashlog_cleared(crashlog);
-+	bool cleared;
-+	int ret;
-+
-+	ret = pmt_crashlog_cleared(crashlog, &cleared);
-+	if (ret)
-+		return ret;
- 
- 	return sysfs_emit(buf, "%d\n", cleared);
- }
-@@ -271,7 +278,12 @@ static ssize_t
- consumed_show(struct device *dev, struct device_attribute *attr, char *buf)
- {
- 	struct crashlog_entry *crashlog = dev_get_drvdata(dev);
--	bool consumed = pmt_crashlog_consumed(crashlog);
-+	bool consumed;
-+	int ret;
-+
-+	ret = pmt_crashlog_consumed(crashlog, &consumed);
-+	if (ret)
-+		return ret;
- 
- 	return sysfs_emit(buf, "%d\n", consumed);
- }
-@@ -281,7 +293,9 @@ consumed_store(struct device *dev, struct device_attribute *attr, const char *bu
- 	       size_t count)
- {
- 	struct crashlog_entry *crashlog;
-+	bool complete;
- 	bool consumed;
-+	bool disabled;
- 	int ret;
- 
- 	crashlog = dev_get_drvdata(dev);
-@@ -296,10 +310,16 @@ consumed_store(struct device *dev, struct device_attribute *attr, const char *bu
- 
- 	guard(mutex)(&crashlog->control_mutex);
- 
--	if (pmt_crashlog_disabled(crashlog))
-+	ret = pmt_crashlog_disabled(crashlog, &disabled);
-+	if (ret)
-+		return ret;
-+	if (disabled)
- 		return -EBUSY;
- 
--	if (!pmt_crashlog_complete(crashlog))
-+	ret = pmt_crashlog_complete(crashlog, &complete);
-+	if (ret)
-+		return ret;
-+	if (!complete)
- 		return -EEXIST;
- 
- 	ret = pmt_crashlog_set_consumed(crashlog);
-@@ -312,9 +332,14 @@ static ssize_t
- enable_show(struct device *dev, struct device_attribute *attr, char *buf)
- {
- 	struct crashlog_entry *crashlog = dev_get_drvdata(dev);
--	bool enabled = !pmt_crashlog_disabled(crashlog);
-+	bool disabled;
-+	int ret;
- 
--	return sprintf(buf, "%d\n", enabled);
-+	ret = pmt_crashlog_disabled(crashlog, &disabled);
-+	if (ret)
-+		return ret;
-+
-+	return sysfs_emit(buf, "%d\n", !disabled);
- }
- 
- static ssize_t
-@@ -343,7 +368,12 @@ static ssize_t
- error_show(struct device *dev, struct device_attribute *attr, char *buf)
- {
- 	struct crashlog_entry *crashlog = dev_get_drvdata(dev);
--	bool error = pmt_crashlog_error(crashlog);
-+	bool error;
-+	int ret;
-+
-+	ret = pmt_crashlog_error(crashlog, &error);
-+	if (ret)
-+		return ret;
- 
- 	return sysfs_emit(buf, "%d\n", error);
- }
-@@ -353,7 +383,12 @@ static ssize_t
- rearm_show(struct device *dev, struct device_attribute *attr, char *buf)
- {
- 	struct crashlog_entry *crashlog = dev_get_drvdata(dev);
--	int rearmed = pmt_crashlog_rearm(crashlog);
-+	bool rearmed;
-+	int ret;
-+
-+	ret = pmt_crashlog_rearm(crashlog, &rearmed);
-+	if (ret)
-+		return ret;
- 
- 	return sysfs_emit(buf, "%d\n", rearmed);
- }
-@@ -389,11 +424,15 @@ trigger_show(struct device *dev, struct device_attribute *attr, char *buf)
- {
- 	struct crashlog_entry *crashlog;
- 	bool trigger;
-+	int ret;
- 
- 	crashlog = dev_get_drvdata(dev);
--	trigger = pmt_crashlog_complete(crashlog);
- 
--	return sprintf(buf, "%d\n", trigger);
-+	ret = pmt_crashlog_complete(crashlog, &trigger);
-+	if (ret)
-+		return ret;
-+
-+	return sysfs_emit(buf, "%d\n", trigger);
- }
- 
- static ssize_t
-@@ -401,6 +440,8 @@ trigger_store(struct device *dev, struct device_attribute *attr,
- 	      const char *buf, size_t count)
- {
- 	struct crashlog_entry *crashlog;
-+	bool complete;
-+	bool disabled;
- 	bool trigger;
- 	int ret;
- 
-@@ -413,7 +454,10 @@ trigger_store(struct device *dev, struct device_attribute *attr,
- 	guard(mutex)(&crashlog->control_mutex);
- 
- 	/* if device is currently disabled, return busy */
--	if (pmt_crashlog_disabled(crashlog))
-+	ret = pmt_crashlog_disabled(crashlog, &disabled);
-+	if (ret)
-+		return ret;
-+	if (disabled)
- 		return -EBUSY;
- 
- 	if (!trigger) {
-@@ -422,7 +466,10 @@ trigger_store(struct device *dev, struct device_attribute *attr,
- 	}
- 
- 	/* we cannot trigger a new crash if one is still pending */
--	if (pmt_crashlog_complete(crashlog))
-+	ret = pmt_crashlog_complete(crashlog, &complete);
-+	if (ret)
-+		return ret;
-+	if (complete)
- 		return -EEXIST;
- 
- 	ret = pmt_crashlog_set_execute(crashlog);
--- 
-2.43.0
+    drm/xe/vsec: Refactor platform check
+    
+    For debugfs, residencies and pcode_info are available on the BMG and
+    CRI (!SRIOV_VF) platforms.
+    
+    Refactor to have one code path for adding the debugfs entries.
+    
+    Reviewed-by: Karthik Poosa <karthik.poosa@intel.com>
+    Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
++ /mt/dim checkpatch 0d30bc4f35590b6353a77f23e397ab2168b69673 drm-intel
+24a377ef6d0e platform/x86/intel/pmt: complete pcidev to device update
+c37c86ebbd76 platform/x86/intel/pmt: refactor rmw with a return value
+6890cdac8f39 platform/x86/intel/pmt: refactor rc with a return value
+525907e0c3b6 platform/x86/intel/pmt: Add register access callbacks
+25192c883054 platform/x86/intel/pmt: Do not remap when using callbacks
+b9bef2b86264 drm/xe/vsec: Do not register BMG PMT for VF
+1b425caf2f9c drm/xe/vsec: Correct locking order
+2f164d2ea178 drm/xe/vsec: Use correct pm state get
+f379b48be500 drm/xe/vsec: Add DOC text for VSEC
+-:20: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#20: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 53 lines checked
+b450216d7ea0 drm/xe/vsec: Support possible hotplug exit
+a5c84e9506df drm/xe/vsec: Refactor BattleMage PMT defines
+9d3fcef1a541 drm/xe/vsec: Support EAGAIN return value
+f2a242ec878b drm/xe/vsec: Add base_offset to allow for more flexibilty
+d86b5b9a86c3 drm/xe/vsec: Support Crescent Island PMT
+2a9edfa33ad6 drm/xe/vsec: Crescent Island PMT decode
+de23ff3da447 drm/xe/vsec: Crescent Island PMT callbacks
+c64f15202fef drm/xe/vsec: Support late bind fw information
+24f944f8d5de drm/xe/vsec: Add PMT GUID internal access
+2323a5b0be85 drm/xe/vsec: Update PMT internal access
+8bb2dc057910 drm/xe/vsec: Refactor platform check
+
 
