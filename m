@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FA17C79FAD
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 09:29:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40851C79FAD
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 09:32:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A59610F068;
-	Wed,  9 Sep 2026 09:29:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CACAF10F079;
+	Wed,  9 Sep 2026 09:32:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jdnQp7UF";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="iegvzD2E";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15EDE10F055;
- Wed,  9 Sep 2026 09:29:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D53A110F065;
+ Wed,  9 Sep 2026 09:32:45 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id E833740A7C;
- Wed,  9 Sep 2026 09:29:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3160A1F00A3A;
- Wed,  9 Sep 2026 09:29:07 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id A0E38405CF;
+ Wed,  9 Sep 2026 09:32:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E02581F00A3D;
+ Wed,  9 Sep 2026 09:32:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788946147;
- bh=tXl2UpBmj4NE2SOI6/ACR693kuQ7Q5jjNZtO/VSraRs=;
+ s=k20260515; t=1788946365;
+ bh=pjZHiFRHuvig4QcBz8WoADhabzi1k9JT3b4nNK9B9To=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=jdnQp7UFVW1IKReMMuPnXAFIA8SOrQC+TCReTSQQuqrUXLiRKZpXLagvaIcXvk9L0
- y0Oe1TNwFC/cGWusKFg/GyykFBu8svW/sO6JBcpffQ+Wt/UoU0GqLgU2fLsARNNSAK
- LrCZVLFo3wq0yrii5AzeEv2yqvBnWSq6rribYnwU4D+1wB4tx6+0OKUUZz6tCUgM5M
- JHXnt4zD+C7asx4tLd/ZHGj7WkXKd3N/XmqxRc4qSiKsHaURSTWc3NpYuPU85QpoKj
- pL4vJ+5eJnPEZdbSqWiwCgSf+svzukI8KMsavdq3jZCA829ATZhbega64p8dG9rUnz
- d4CXI9YtvsYQg==
+ b=iegvzD2E1kx7hSizRGHiMOswmqoAprg+Br1Aw423R9194IJZ+etFpV/rPjahaMqKE
+ 81LR+RC1HvJMLV/Efvbt9Qm6ApupMF/dtPtCQvo2BiMAwWhq+hj+ORHY8DtvmS+gXb
+ qLiJLUeLqZ5uhmbELUM46bgKOeGqLYrXMTocjOMxZnsCXAKzo+p3cvO6uG2EPIN4mn
+ m11sf3tUbzccfkDQ3uX0wZJ65FBmtD7yjqAD2V0ZOArfu+n2e5RuOF6QxxBiU3iuVX
+ YHCwMih+14WXhr0Z4EJ8MatUL6TdVaS6rw8S3UJsqs/4Hurzd0+nEnQOvJh9eNf8gR
+ 0bp6eJSD6iY8w==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 11/14] drm/panic: Display panic screen via per-plane
- callback
+Subject: Re: [PATCH v4 13/14] drm/panic: Move panic display code into helper
+ library
 To: "Thomas Zimmermann" <tzimmermann@suse.de>
-Cc: intel-gfx@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
- Frank.Li@kernel.org, "Eugenio
- Perez" <eperezma@redhat.com>, imx@lists.linux.dev,
- virtualization@lists.linux.dev, gary@garyguo.net,
- wsa+renesas@sang-engineering.com, intel-xe@lists.freedesktop.org,
- ojeda@kernel.org, dri-devel@lists.freedesktop.org, "Michael
- S. Tsirkin" <mst@redhat.com>
-In-Reply-To: <20260909085826.64529-12-tzimmermann@suse.de>
+Cc: virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ imx@lists.linux.dev, gary@garyguo.net, "Michael
+ S. Tsirkin" <mst@redhat.com>, wsa+renesas@sang-engineering.com,
+ intel-gfx@lists.freedesktop.org, ojeda@kernel.org, Frank.Li@kernel.org,
+ linux-hyperv@vger.kernel.org, dri-devel@lists.freedesktop.org, "Eugenio
+ Perez" <eperezma@redhat.com>
+In-Reply-To: <20260909085826.64529-14-tzimmermann@suse.de>
 References: <20260909085826.64529-1-tzimmermann@suse.de>
- <20260909085826.64529-12-tzimmermann@suse.de>
+ <20260909085826.64529-14-tzimmermann@suse.de>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 09 Sep 2026 09:29:06 +0000
-Message-Id: <20260909092907.3160A1F00A3A@smtp.kernel.org>
+Date: Wed, 09 Sep 2026 09:32:44 +0000
+Message-Id: <20260909093244.E02581F00A3D@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,31 +62,54 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> Add display_panic_screen to struct drm_plane_funcs. If set on a plane,
-> register a panic handler for the plane from the DRM core's panic
-> handling. Invoke this helper from the core to display a panic screen.
->=20
-> The new callback replaces get_scanout_buffer as signal for panic
-> support in a plane. Using get_scanout_buffer is now merely a detail
-> of the implementation. This will also free struct drm_scanout_buffer
-> for use cases besides panic handling.
->=20
-> With display_panic_screen in place, rename draw_panic_plane() to
-> drm_plane_helper_display_panic_screen() and make it available to DRM
-> drivers via drm_panic_helper.h. Do not change the implementation or
-> functionality of this code. drm_plane_helper_display_panic_screen()
-> still supports kernel messages, user messages and QR codes on various
-> color formats.
-> [ ... ]
-> - only consider planes with get_scanout_buffer (Sashiko)
-> - set callback for planes create with drm_crtc_init() (Sashiko)
-> - return errno code from display_panic_screen
->=20
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] CONFIG_DRM_PANIC_SCREEN_QR_CODE can be enabled without its source c=
+ode being compiled.
+--
 
-Sashiko has reviewed this patch and found no issues. It looks great!
+commit cfc7923d9a3badf08604fdffe1b2f5534bf2b0b6
+Author: Thomas Zimmermann <tzimmermann@suse.de>
+
+drm/panic: Move panic display code into helper library
+
+This commit moves the panic display code and drm_plane_helper_display_panic=
+_screen()
+into a new drm_panic_helper.c library. It renames symbols and updates the Q=
+R-related
+code accordingly, linking the object files into the drm_kms_helper module.
+
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index e635fcffd3790..f0c340aa2ec60 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+[ ... ]
+> @@ -157,6 +156,8 @@ drm_kms_helper-y :=3D \
+>  	drm_simple_kms_helper.o \
+>  	drm_vblank_helper.o
+>  drm_kms_helper-$(CONFIG_DRM_PANEL_BRIDGE) +=3D bridge/panel.o
+> +drm_kms_helper-$(CONFIG_DRM_PANIC_HELPER) +=3D drm_panic_helper.o
+> +drm_kms_helper-$(CONFIG_DRM_PANIC_SCREEN_QR_CODE) +=3D drm_panic_helper_=
+qr.o
+
+[Severity: Low]
+Does this allow CONFIG_DRM_PANIC_SCREEN_QR_CODE to be enabled without its
+source code being compiled?
+
+Since drm_panic_helper_qr.o is now built into drm_kms_helper, if a kernel is
+configured with CONFIG_DRM_KMS_HELPER=3Dn and CONFIG_DRM_PANIC_SCREEN_QR_CO=
+DE=3Dy,
+the QR code source (drm_panic_helper_qr.rs) will be silently omitted from t=
+he
+build. The definition for CONFIG_DRM_PANIC_SCREEN_QR_CODE in
+drivers/gpu/drm/Kconfig currently does not depend on or select DRM_KMS_HELP=
+ER.
+
+Should the Kconfig dependencies be updated to prevent this configuration
+mismatch?
+
+[ ... ]
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260909085826.6452=
-9-1-tzimmermann@suse.de?part=3D11
-
+9-1-tzimmermann@suse.de?part=3D13
