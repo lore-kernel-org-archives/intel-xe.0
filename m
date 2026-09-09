@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E673C79FB6
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 16:18:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB031C79FBD
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 16:18:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B214810F206;
-	Wed,  9 Sep 2026 16:18:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A90410F1FB;
+	Wed,  9 Sep 2026 16:18:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oEIfo7W0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jcht8FuH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 234C710F1FB;
- Wed,  9 Sep 2026 16:18:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47D3F10F1FB;
+ Wed,  9 Sep 2026 16:18:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788970681; x=1820506681;
+ t=1788970683; x=1820506683;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=puGau2f19nadnxxl+/weP9lcwiitrDO6NYtWsqExxoU=;
- b=oEIfo7W01dAcOi/F8pKlMnBv1fFTFvDc6Jjp5g2Jggwg+WmkkOVWRvqf
- yX70R66Zb5h+/D4rpG9qlZJN3a7tbXG0t9Fn2IGU50SxIP/0Bj2gLzSo7
- bSHNuyGaNCc04JU8qTJYJL+nP5kaJGOZnFj8cyMoPYT2MuJ4CvWX/ls9H
- AYJGeI1TSgXAg+kjY9s1XI3OH6fHVYkvKztEKoNn+6s1VGVC46dOP6eVK
- 7aKjYUuQsM12KnwgUGU6KGK8pQg43esXCd7qnX6ntKJHf+B0u+cNFQIEt
- 3Gbwt26nAf9FFwiLcZsMOujkO2cP8qLPcbhkzFtM5Us31V+uoiwEcayxB A==;
-X-CSE-ConnectionGUID: hpJjU3+/QtaPOWOluniMNQ==
-X-CSE-MsgGUID: nfgU9J5TQAiU1ABZt8A9FA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="114946770"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="114946770"
+ bh=qgI+SKJxj6UNiKiyWmt6lDZrwAkPB4IkNdyRXjHlbqM=;
+ b=Jcht8FuH34aECF2c9L2Mm1FIDx+NhYzpPrMBlaRA0sgiBbjebi0uRnY2
+ oYzU2UtAV5ffjZe6K4t8NwArpsNg2xuNdeF5+39JNHBv/lGyKob0/yLJY
+ 87QtZJ9Js9jsGnndoy1ifVAtPKOS+KIel2WuWIdWnHw7Mf5RpZD9J3q1c
+ Jg36OuPE9iDflrd7qVde4ghWoS1IgFF4iXAdcIUuln4BoSEdwXcTM8qrk
+ I4bEW4A7zzkxNc3u55NG+GUaSZXF727hmyGC/wHMlo0JdU5I4VYC+B0el
+ OCibG15h1SU76X5CrOEdxggx0aRbnoZJQZTI2FwK/cIt8NpJxmH5Ad8AA w==;
+X-CSE-ConnectionGUID: QsJgAdVIQZyWGe2cyKLcNg==
+X-CSE-MsgGUID: yXKwNW2rTZutwJEL+c8KBw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="114946775"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="114946775"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 09:17:59 -0700
-X-CSE-ConnectionGUID: 2GI6j4D6SGy0fgRYk1Z1ng==
-X-CSE-MsgGUID: RSG10T37S++wpVduu1C7GA==
+ 09 Sep 2026 09:18:03 -0700
+X-CSE-ConnectionGUID: EQn/maR8SAKIZ70a+va/Rg==
+X-CSE-MsgGUID: 9H21kHuhTgyer/WiFIQG0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="296298893"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="296298956"
 Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.137])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 09:17:58 -0700
+ 09 Sep 2026 09:18:02 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 06/13] drm/i915: Make intel_crtc_needs_vblank_work() easier
- on the eye
-Date: Wed,  9 Sep 2026 19:17:23 +0300
-Message-ID: <20260909161730.12969-7-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 07/13] drm/i915: Extract intel_dsb_supported()
+Date: Wed,  9 Sep 2026 19:17:24 +0300
+Message-ID: <20260909161730.12969-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260909161730.12969-1-ville.syrjala@linux.intel.com>
 References: <20260909161730.12969-1-ville.syrjala@linux.intel.com>
@@ -73,39 +72,60 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We will never use the vblank worker based LUT update path on
-hardware with double buffered LUTs. Split that check out from
-the semi-illegble mess in intel_crtc_needs_vblank_work()
-so that it's clear what's happening.
-
-The rest of the checks in that mess are more about dynamic
-runtime state, so keeping those together makes some sense.
+Extract the "do we have a DSB and should be use it?" check
+into a helper. This mirrors intel_flipq_supported() and should
+help unify the logic around selecting the codepath which will
+be used to perform the commit (mmio vs. DSB. vs. flip queue).
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 13 +++++++++----
+ drivers/gpu/drm/i915/display/intel_dsb.h |  1 +
+ 2 files changed, 10 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 58a99c265598..0de24d221e48 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -491,11 +491,13 @@ static bool intel_crtc_needs_vblank_work(const struct intel_crtc_state *crtc_sta
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index d9a270362a82..8e01e1eed291 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -1025,6 +1025,14 @@ void intel_dsb_wait(struct intel_dsb *dsb)
+ 			  dsb_error_int_status(display) | DSB_PROG_INT_STATUS);
+ }
  
-+	if (HAS_DOUBLE_BUFFERED_LUT(display))
++bool intel_dsb_supported(struct intel_display *display)
++{
++	if (!display->params.enable_dsb)
 +		return false;
 +
- 	return crtc_state->hw.active &&
-+		intel_crtc_needs_color_update(crtc_state) &&
- 		!crtc_state->preload_luts &&
- 		!intel_crtc_needs_modeset(crtc_state) &&
--		(intel_crtc_needs_color_update(crtc_state) &&
--		 !HAS_DOUBLE_BUFFERED_LUT(display)) &&
- 		!intel_color_uses_dsb(crtc_state) &&
- 		!crtc_state->use_flipq &&
- 		!crtc_state->use_dsb;
++	return HAS_DSB(display);
++}
++
+ /**
+  * intel_dsb_prepare() - Allocate, pin and map the DSB command buffer.
+  * @state: the atomic state
+@@ -1049,10 +1057,7 @@ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
+ 	struct intel_dsb *dsb;
+ 	unsigned int size;
+ 
+-	if (!HAS_DSB(display))
+-		return NULL;
+-
+-	if (!display->params.enable_dsb)
++	if (!intel_dsb_supported(display))
+ 		return NULL;
+ 
+ 	dsb = kzalloc_obj(*dsb);
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
+index 3dcca9ed5371..87d9c90da08f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.h
++++ b/drivers/gpu/drm/i915/display/intel_dsb.h
+@@ -26,6 +26,7 @@ enum intel_dsb_id {
+ 	I915_MAX_DSBS,
+ };
+ 
++bool intel_dsb_supported(struct intel_display *display);
+ unsigned int intel_dsb_size(struct intel_dsb *dsb);
+ unsigned int intel_dsb_head(struct intel_dsb *dsb);
+ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
 -- 
 2.54.0
 
