@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BEDCC79FB7
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 16:33:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58251C79FB7
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 16:34:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC7AE10F20E;
-	Wed,  9 Sep 2026 16:33:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1538210F223;
+	Wed,  9 Sep 2026 16:34:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cfpFQWCi";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="gdl/E96f";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E736710F20E
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 16:33:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 890DB10F21E;
+ Wed,  9 Sep 2026 16:34:50 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id D15FD4045A;
- Wed,  9 Sep 2026 16:33:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AA771F000FF;
- Wed,  9 Sep 2026 16:33:07 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 4779E42A69;
+ Wed,  9 Sep 2026 16:34:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 000EE1F00898;
+ Wed,  9 Sep 2026 16:34:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788971587;
- bh=ysCZKNt+3uXamS1lTbTO10GvBir7iCQrPccwv/Cq2qQ=;
+ s=k20260515; t=1788971690;
+ bh=65NxpK4aAjHY4erwa0huEmvlMddwj01kuPWOjahOQEM=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=cfpFQWCiCGMEEbpTACLo2HX9G0w5v+7jE12Kmcegr1boHIas2TatqfqWXsI22noYB
- s/TEZcFqsvxEr1HaZS0OXEACshZf92+Rm0QOZtFC7VRDWJ1ahwTX0PJjnVwMlUsHw4
- w7b123u0PPz4ZvZ9aXHHo1UzNTaZiI2g2sj+1W34/rTToGDT4M8GLbOU0Mj+/0719N
- 7xlNLG6gN2ePu7yFBhm0EPKtYY5CloWWo6PNzfN8MqrNRgYLAwclxGjZxTF6tucCpG
- +ZAeKE2l0DGAW49am4bXMBWZN1E+knapybYHRAk6CovlRvkfDPIFj4wQH1KJbElce4
- ATwWUX9JWh5PQ==
+ b=gdl/E96fZ5yoOsbocU+eJ0fmdN0EjHb2ryVc+my3+TXRG93x8BcgbWYA0ZR0LOCaU
+ HGKzv3TS/qL30b1PrFm+FW1mA67VZ7cbZS2Sppl3Di4BUIE+BBSqdAKi0+73gPIotH
+ t/F9YWkOikcVsvC7hVvLIuO1s1BC978dIAcFvAhtooMOqDRe+B/SX8ToKwjcIwDZF0
+ e+R/fn/ZqnVHz05GG2MOBdLkLHHNHGBzO32IYrc+t/3ew8xlQoImy7AdPT0fX4+rxt
+ lMsFo2+UXyoQLfMDPWIZDMipqb+Tx9lDeNud2kxuma47Nq1wvFHz6ZQE0vRh3XY2fE
+ 30oCjpvKXzb6A==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p
- platforms
-To: tilak.tirumalesh.tangudu@intel.com
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260909161844.125147-3-tilak.tirumalesh.tangudu@intel.com>
-References: <20260909161844.125147-1-tilak.tirumalesh.tangudu@intel.com>
- <20260909161844.125147-3-tilak.tirumalesh.tangudu@intel.com>
+Subject: Re: [PATCH v2 12/13] drm/i915/dsb: Add tracepoints for DSB commit
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20260909161730.12969-13-ville.syrjala@linux.intel.com>
+References: <20260909161730.12969-1-ville.syrjala@linux.intel.com>
+ <20260909161730.12969-13-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 09 Sep 2026 16:33:07 +0000
-Message-Id: <20260909163307.8AA771F000FF@smtp.kernel.org>
+Date: Wed, 09 Sep 2026 16:34:49 +0000
+Message-Id: <20260909163450.000EE1F00898@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,91 +56,134 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] Tick quantization rounding up causes `idledly` to exceed `maxcnt=
-`, triggering spurious kernel warnings and WA invariant violations.
+- [High] Calling `intel_get_crtc_scanline()` inside the tracepoint's `TP_fa=
+st_assign` block acquires a sleeping lock while in atomic context, causing =
+a kernel panic on PREEMPT_RT.
+- [Medium] The `intel_dsb_done` tracepoint is conditionally called only whe=
+n a userspace vblank event is present, leading to unbalanced commit/done tr=
+ace events for background updates.
 --
 
-commit d777113f52ced7ebda03cbb9155258701e427a45
-Author: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+commit b6804a525207ea31e82f537e553534efcdaa5b8f
+Author: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p platforms
+drm/i915/dsb: Add tracepoints for DSB commit
+   =20
+This commit adds new tracepoints intel_dsb_commit and intel_dsb_done to tra=
+ck
+when the display state buffer performs operations on the hardware.
 
-This commit avoids programming the IDLEDLY timer to less than 5 microsecond=
-s.
-It applies wa_14025941587 to Graphics Versions 20.01 to 35.11 and Media
-Versions 13.01 to 35.03.
-
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw=
-_engine.c
-> index c86890e09b555..37cd7fe38c2b5 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers=
+/gpu/drm/i915/display/intel_display_trace.h
+> index 504d105935bc0..06cf662931fe3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_trace.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
 [ ... ]
-> @@ -588,33 +588,78 @@ static void hw_engine_init_early(struct xe_gt *gt, =
-struct xe_hw_engine *hwe,
->  static void adjust_idledly(struct xe_hw_engine *hwe)
->  {
->  	struct xe_gt *gt =3D hwe->gt;
+> @@ -681,6 +682,56 @@ TRACE_EVENT(intel_fbc_nuke,
+>  		      __entry->frame, __entry->scanline)
+>  );
+> =20
+> +TRACE_EVENT(intel_dsb_commit,
+> +	    TP_PROTO(struct intel_crtc *crtc, enum intel_dsb_id dsb_id),
+> +	    TP_ARGS(crtc, dsb_id),
+> +
+> +	    TP_STRUCT__entry(
+> +			     __string(dev, __dev_name_kms(crtc))
+> +			     __field(char, pipe_name)
+> +			     __field(u32, dsb_id)
+> +			     __field(u32, frame)
+> +			     __field(u32, scanline)
+> +			     ),
+> +
+> +	    TP_fast_assign(
+> +			   __assign_str(dev);
+> +			   __entry->pipe_name =3D pipe_name(crtc->pipe);
+> +			   __entry->dsb_id =3D dsb_id;
+> +			   __entry->frame =3D intel_crtc_get_vblank_counter(crtc);
+> +			   __entry->scanline =3D intel_get_crtc_scanline(crtc);
+
+[Severity: High]
+Does calling intel_get_crtc_scanline() from within a TP_fast_assign block
+cause issues on preempt-rt kernels?
+
+When this tracepoint is active, TP_fast_assign executes in an atomic
+context (RCU read-side critical section with preemption disabled).
+intel_get_crtc_scanline() eventually acquires uncore->lock:
+
+intel_get_crtc_scanline()
+  intel_vblank_section_enter()
+    uncore->lock (spinlock_t)
+
+On preempt-rt, spinlock_t becomes a sleepable rt_mutex, which will cause a
+scheduling while atomic panic.
+
+> +			   ),
+> +
+> +	    TP_printk("dev %s, pipe %c, DSB %d, frame=3D%u, scanline=3D%u",
+> +		      __get_str(dev), __entry->pipe_name, __entry->dsb_id,
+> +		      __entry->frame, __entry->scanline)
+> +);
+> +
+> +TRACE_EVENT(intel_dsb_done,
+> +	    TP_PROTO(struct intel_crtc *crtc, enum intel_dsb_id dsb_id),
+> +	    TP_ARGS(crtc, dsb_id),
+> +
+> +	    TP_STRUCT__entry(
+> +			     __string(dev, __dev_name_kms(crtc))
+> +			     __field(char, pipe_name)
+> +			     __field(u32, dsb_id)
+> +			     __field(u32, frame)
+> +			     __field(u32, scanline)
+> +			     ),
+> +
+> +	    TP_fast_assign(
+> +			   __assign_str(dev);
+> +			   __entry->pipe_name =3D pipe_name(crtc->pipe);
+> +			   __entry->dsb_id =3D dsb_id;
+> +			   __entry->frame =3D intel_crtc_get_vblank_counter(crtc);
+> +			   __entry->scanline =3D intel_get_crtc_scanline(crtc);
+
+[Severity: High]
+This appears to have the same preempt-rt issue as the intel_dsb_commit
+tracepoint where it acquires a sleeping lock while in atomic context.
+
+> +			   ),
+> +
+> +	    TP_printk("dev %s, pipe %c, DSB %d, frame=3D%u, scanline=3D%u",
+> +		      __get_str(dev), __entry->pipe_name, __entry->dsb_id,
+> +		      __entry->frame, __entry->scanline)
+> +);
+> +
 [ ... ]
-> +		if (XE_GT_WA(gt, 16023105232) &&
-> +		    xe_gt_WARN_ON(gt, idledly >=3D maxcnt || inhibit_switch)) {
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i=
+915/display/intel_dsb.c
+> index 8e01e1eed291e..299d778520a22 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+[ ... ]
+> @@ -1124,6 +1127,8 @@ void intel_dsb_irq_handler(struct intel_display *di=
+splay,
+>  		spin_lock(&display->drm->event_lock);
+> =20
+>  		if (crtc->dsb_event) {
+> +			trace_intel_dsb_done(crtc, dsb_id);
+> +
 
 [Severity: Medium]
-Will this warning spuriously fire on subsequent reads?
+Will this lead to unbalanced commit/done trace events for background update=
+s?
 
-If maxcnt is unprogrammed (0), the two workarounds conflict entirely (one
-forcing 5000, the other forcing 0), which would cause a WARN_ON and clamp
-cycle on every reset.
+The trace_intel_dsb_done() tracepoint is conditionally called only when a
+userspace vblank event is present. If a commit completes in hardware
+without an associated vblank event, the irq handler will skip emitting the
+completion tracepoint.
 
-Additionally, if maxcnt tightly bounds the 5000ns minimum, the tick
-quantization rounding up below can push the delay time above maxcnt. On the
-next engine reset or resume, this triggers this xe_gt_WARN_ON() and forces a
-clamp, causing idledly to oscillate and violate the invariants of
-Wa_16023105232.
-
-> +			/* maxcnt may be 0 if IDLE_WAIT_TIME is unprogrammed. */
-> +			idledly =3D maxcnt ? maxcnt - 1 : 0;
-> +			clamped_below_maxcnt =3D true;
-> +			wa_applied =3D true;
-> +			/* inhibit_switch override to keep
-> +			 * semantics of Wa_16023105232
-> +			 */
-> +			if (inhibit_switch)
-> +				idledly_reg_val &=3D ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
-> +		}
-> +
-> +		if (wa_applied) {
-> +			u32 idledly_ticks;
-> +
-> +			/*
-> +			 * Wa_16023105232 requires idledly < maxcnt, so floor
-> +			 * that clamp; otherwise round up to guarantee the
-> +			 * Wa_14025941587 minimum survives tick quantization.
-> +			 */
-> +			if (clamped_below_maxcnt)
-> +				idledly_ticks =3D DIV_ROUND_DOWN_ULL((u64)idledly * 1000,
-> +								   idledly_units_ps);
-> +			else
-> +				idledly_ticks =3D DIV_ROUND_UP_ULL((u64)idledly * 1000,
-> +								 idledly_units_ps);
-                                                                 ^^^^^^^^^^=
-^^^^^^^^
-
-[Severity: Medium]
-Does this ceiling division push the delay time above the maxcnt boundary?
-
-When maxcnt is close to the 5000ns minimum (e.g. 5120ns), rounding up idled=
-ly
-to ticks produces a delay (e.g. 5417ns) that exceeds maxcnt, storing a value
-that will fail the Wa_16023105232 check on the next read.
-
-> +
-> +			idledly_reg_val &=3D ~IDLE_DELAY;
-> +			idledly_reg_val |=3D REG_FIELD_PREP(IDLE_DELAY, idledly_ticks);
+>  			/*
+>  			 * Update vblank counter/timestamp in case it
+>  			 * hasn't been done yet for this frame.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260909161844.1251=
-47-1-tilak.tirumalesh.tangudu@intel.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260909161730.1296=
+9-1-ville.syrjala@linux.intel.com?part=3D12
