@@ -4,58 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62C5BC79FB6
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 15:59:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0090C79FB6
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 16:00:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0934710F1E0;
-	Wed,  9 Sep 2026 15:59:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2A5A10F1EB;
+	Wed,  9 Sep 2026 16:00:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=tuxedocomputers.com header.i=@tuxedocomputers.com header.b="Is9kMMCF";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="R6OIZ3Lr";
 	dkim-atps=neutral
-Received: from mail.tuxedocomputers.com (mail.tuxedocomputers.com
- [157.90.84.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7427310F1E0;
- Wed,  9 Sep 2026 15:59:39 +0000 (UTC)
-Received: from [10.10.12.8] (business-24-134-105-141.pool2.vodafone-ip.de
- [24.134.105.141]) (Authenticated sender: wse@tuxedocomputers.com)
- by mail.tuxedocomputers.com (Postfix) with ESMTPSA id B0F7D2FC0076;
- Wed,  9 Sep 2026 17:59:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tuxedocomputers.com;
- s=default; t=1788969577;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=R742K260h+prY0Wjg3U/nzTCp2+H6DNxhAQ73zIGadA=;
- b=Is9kMMCF+XNHsV35p8D+rFCEAJX/D3Gqg80t3q5jKImvy5tCQY49wzu3TdnADZgKx2bT0j
- a+r3vw0zYALZRcqlH2tqLhP38rPAYvzE8UDip8MM1LPioeJZ8RC96hy6RZw/Xya5PLWDOp
- 0Z1pJyX+IXbHMujH7sPDxYRNwhv5sRQ=
-Authentication-Results: mail.tuxedocomputers.com;
- auth=pass smtp.auth=wse@tuxedocomputers.com
- smtp.mailfrom=wse@tuxedocomputers.com
-Message-ID: <1e0bd720-cda9-483e-a9a0-e221f7df14a9@tuxedocomputers.com>
-Date: Wed, 9 Sep 2026 17:59:36 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/intel: Add quirk to disable rc6 on some TUXEDO
- devices
-From: Werner Sembach <wse@tuxedocomputers.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org
-References: <20260908200707.65516-1-wse@tuxedocomputers.com>
- <20260908200707.65516-2-wse@tuxedocomputers.com>
- <7764d157c4bd6f832adeb7860baded67ae151901@intel.com>
- <267b62f1-cc8e-4fa3-87fe-aedd5cba914b@tuxedocomputers.com>
-Content-Language: en-US
-In-Reply-To: <267b62f1-cc8e-4fa3-87fe-aedd5cba914b@tuxedocomputers.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A147310F1EB
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 16:00:52 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id E782043B09;
+ Wed,  9 Sep 2026 16:00:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A12C61F00A3A;
+ Wed,  9 Sep 2026 16:00:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788969651;
+ bh=0YutiE2I6LY6knyCn6soNpoqFmJi5kd3ZhbkChGjbug=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=R6OIZ3LrYZ6hjfdGW+aTLdzgfTVRURWL8KKinObJOkWZ5FzjCHhOjbuReYceU33Ob
+ zYJZlkN3PRrT+0lniP827ZlQHI/plGc1KzV0qHqUsWWS6ikqWJbwuXDHhf1Xi60Xxp
+ hzzqKGorRbw22D1xUfT0aZ21DEboEyDW35kakpaT+r6KbVWoI3GBVt2tvqCuWQ8eGY
+ qQJNnAWBqntWn9jOT8Kmb39xW6+KtYiQwWEKNpTmNQrhh7cGIMlzoVI5JmuK0Wcemh
+ /qHqvxZBQ0hHt0NNTmIXoXNGFilkxLJ89Yv3dT+M5bj2uzSwGmQgBLlrL9mmjF6vps
+ Sq5GJJCcylNcw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v7 05/20] platform/x86/intel/pmt: Do not remap when
+ using callbacks
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260909154739.1515514-27-michael.j.ruhl@intel.com>
+References: <20260909154739.1515514-22-michael.j.ruhl@intel.com>
+ <20260909154739.1515514-27-michael.j.ruhl@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 09 Sep 2026 16:00:51 +0000
+Message-Id: <20260909160051.A12C61F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,111 +53,91 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] Unconditional sysfs `mmap` support allows userspace to bypass hard=
+ware synchronization and power management.
+--
 
-Am 09.09.26 um 15:45 schrieb Werner Sembach:
-> Hi Jani,
->
-> Am 09.09.26 um 08:32 schrieb Jani Nikula:
->> On Tue, 08 Sep 2026, Werner Sembach <wse@tuxedocomputers.com> wrote:
->>> Some TUXEDO devices have random rare hard resets during video streaming.
->> Is there a gitlab issue for this?
-> Not yet, but I can make one, presumably here? 
-> https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items?sort=created_date&state=opened&first_page_size=20 
->
-Now there is one: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/17013
->>
->>> Disabling rc6 fixes this. Until the root cause is found this is a pragmatic
->>> workaround.
->> The way to do this is to add your own local struct pci_device_id array
->> somewhere, and use pci_match_id() or similar on it.
->>
->> We're *not* going to change the high level device info or PCI ID
->> definitions for this.
-> OK, can do it in v2, was mislead here by the INTEL_QUANTA_VGA_DEVICE which 
-> also depends on specific sub-ids so thought it is ok to add also very specific 
-> entries here.
->>
->> Ugly stuff needs to be localized and hidden away.
->
-> I probably do it somewhere around the where the HAS_RC6 macro is called? Sadly 
-> that's not a function so can't directly integrate it easily.
->
-> Best regards,
->
-> Werner
->
->>
->>
->> BR,
->> Jani.
->>
->>
->>> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
->>> ---
->>>   drivers/gpu/drm/i915/i915_pci.c | 11 +++++++++++
->>>   include/drm/intel/pciids.h      | 22 ++++++++++++++++++++++
->>>   2 files changed, 33 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
->>> index 2f03f95945f1b..a52b56bedcf4f 100644
->>> --- a/drivers/gpu/drm/i915/i915_pci.c
->>> +++ b/drivers/gpu/drm/i915/i915_pci.c
->>> @@ -687,6 +687,16 @@ static const struct intel_device_info adl_p_info = {
->>>       .dma_mask_size = 39,
->>>   };
->>>   +static const struct intel_device_info adl_p_tux_ibp8_quirk_info = {
->>> +    GEN12_FEATURES,
->>> +    PLATFORM(INTEL_ALDERLAKE_P),
->>> +    .platform_engine_mask =
->>> +        BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
->>> +    .__runtime.ppgtt_size = 48,
->>> +    .dma_mask_size = 39,
->>> +    .has_rc6 = 0,
->>> +};
->>> +
->>>   #undef GEN
->>>     #define XE_HP_PAGE_SIZES \
->>> @@ -863,6 +873,7 @@ static const struct pci_device_id pciidlist[] = {
->>>       INTEL_DG1_IDS(INTEL_VGA_DEVICE, &dg1_info),
->>>       INTEL_RPLS_IDS(INTEL_VGA_DEVICE, &adl_s_info),
->>>       INTEL_RPLU_IDS(INTEL_VGA_DEVICE, &adl_p_info),
->>> +    INTEL_RPLP_TUX_IBP8_QUIRK_IDS(INTEL_VGA_DEVICE, 
->>> &adl_p_tux_ibp8_quirk_info),
->>>       INTEL_RPLP_IDS(INTEL_VGA_DEVICE, &adl_p_info),
->>>       INTEL_DG2_IDS(INTEL_VGA_DEVICE, &dg2_info),
->>>       INTEL_ATS_M_IDS(INTEL_VGA_DEVICE, &ats_m_info),
->>> diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
->>> index 7a4a5658942d2..e4f74916a62c2 100644
->>> --- a/include/drm/intel/pciids.h
->>> +++ b/include/drm/intel/pciids.h
->>> @@ -712,6 +712,28 @@
->>>       MACRO__(0xA7AC, ## __VA_ARGS__), \
->>>       MACRO__(0xA7AD, ## __VA_ARGS__)
->>>   +#define INTEL_RPLP_TUX_IBP8_QUIRK_IDS(MACRO__, ...) \
->>> +    MACRO__##_SUB(0xA720, 0x1D05, 0x124A, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA720, 0x1D05, 0x124C, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA720, 0x1D05, 0x124E, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA720, 0x1D05, 0x130F, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7A0, 0x1D05, 0x124A, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7A0, 0x1D05, 0x124C, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7A0, 0x1D05, 0x124E, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7A0, 0x1D05, 0x130F, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7A8, 0x1D05, 0x124A, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7A8, 0x1D05, 0x124C, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7A8, 0x1D05, 0x124E, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7A8, 0x1D05, 0x130F, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7AA, 0x1D05, 0x124A, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7AA, 0x1D05, 0x124C, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7AA, 0x1D05, 0x124E, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7AA, 0x1D05, 0x130F, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7AB, 0x1D05, 0x124A, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7AB, 0x1D05, 0x124C, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7AB, 0x1D05, 0x124E, ## __VA_ARGS__), \
->>> +    MACRO__##_SUB(0xA7AB, 0x1D05, 0x130F, ## __VA_ARGS__)
->>> +
->>>   /* RPL-P */
->>>   #define INTEL_RPLP_IDS(MACRO__, ...) \
->>>       MACRO__(0xA720, ## __VA_ARGS__), \
+commit 7fda3c54de1f0a266f9aa7c8acdc3ab9ae36340e
+Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
+Subject: platform/x86/intel/pmt: Do not remap when using callbacks
+
+A callback indicates that the parent driver is responsible for accessing
+the data area, making a PMT memory remap redundant. This commit skips
+creating a remap if a read_telem callback has been provided.
+
+> diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x8=
+6/intel/pmt/class.c
+> index 402d51df834a6..1c7a372b4fc42 100644
+> --- a/drivers/platform/x86/intel/pmt/class.c
+> +++ b/drivers/platform/x86/intel/pmt/class.c
+[ ... ]
+> @@ -403,14 +403,19 @@ static int intel_pmt_dev_register(struct intel_pmt_=
+entry *entry,
+>  	if (!entry->size)
+>  		return 0;
+> =20
+> -	res.start =3D entry->base_addr;
+> -	res.end =3D res.start + entry->size - 1;
+> -	res.flags =3D IORESOURCE_MEM;
+> +	/*
+> +	 * The read_telem callback is responsible for this mapping, and may have
+> +	 * different requirements for use. If the callback is present do not
+> +	 * create the map.
+> +	 */
+> +	if (!(entry->cb && entry->cb->read_telem)) {
+> +		struct resource res =3D DEFINE_RES_MEM(entry->base_addr, entry->size);
+> =20
+> -	entry->base =3D devm_ioremap_resource(dev, &res);
+> -	if (IS_ERR(entry->base)) {
+> -		ret =3D PTR_ERR(entry->base);
+> -		goto fail_ioremap;
+> +		entry->base =3D devm_ioremap_resource(dev, &res);
+> +		if (IS_ERR(entry->base)) {
+> +			ret =3D PTR_ERR(entry->base);
+> +			goto fail_ioremap;
+> +		}
+>  	}
+> =20
+>  	sysfs_bin_attr_init(&entry->pmt_bin_attr);
+>  	entry->pmt_bin_attr.attr.name =3D ns->name;
+>  	entry->pmt_bin_attr.attr.mode =3D 0440;
+>  	entry->pmt_bin_attr.mmap =3D intel_pmt_mmap;
+
+[Severity: High]
+Does unconditionally assigning intel_pmt_mmap in intel_pmt_dev_register() a=
+llow
+userspace to bypass the read_telem callback requirements?
+
+Since intel_pmt_mmap() in drivers/platform/x86/intel/pmt/class.c directly m=
+aps
+the physical BAR memory into userspace:
+
+drivers/platform/x86/intel/pmt/class.c:intel_pmt_mmap() {
+    ...
+    if (io_remap_pfn_range(vma, vma->vm_start, pfn, vsize, vma->vm_page_pro=
+t))
+    ...
+}
+
+any process with read permissions can mmap the sysfs attribute. If the proc=
+ess
+then reads this mapping, won't it entirely bypass the parent driver's power
+management (like xe_pm_runtime_get_if_active) and hardware synchronization?
+
+If the device is in a low-power state, an unpowered MMIO read might cause a
+system-level PCIe bus hang, or read corrupt state if the SoC re-mapper is n=
+ot
+configured.
+
+Should mmap support on the sysfs attribute be disabled when a read_telem
+callback is present?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260909154739.1515=
+514-22-michael.j.ruhl@intel.com?part=3D5
