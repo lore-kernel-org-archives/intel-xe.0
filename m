@@ -4,27 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAB61C79FAD
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 09:33:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AC27C79FAD
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 09:37:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 330C610F065;
-	Wed,  9 Sep 2026 09:33:44 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7442910F056;
- Wed,  9 Sep 2026 09:33:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2106844748285241381=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_wa=5F14025941?=
- =?utf-8?q?587_to_xe2=2C_xe3_and_xe3p_platforms_=28rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: tilak.tirumalesh.tangudu@intel.com
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Sep 2026 09:33:43 -0000
-Message-ID: <178894642346.137999.15283071653544707750@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260909072540.99303-1-tilak.tirumalesh.tangudu@intel.com>
-In-Reply-To: <20260909072540.99303-1-tilak.tirumalesh.tangudu@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F7E810F062;
+	Wed,  9 Sep 2026 09:37:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lFcips2d";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EE0810F059;
+ Wed,  9 Sep 2026 09:37:29 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 1B1B740C4E;
+ Wed,  9 Sep 2026 09:37:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E1931F00A3A;
+ Wed,  9 Sep 2026 09:37:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788946649;
+ bh=HjXCv/IRivEd/0jUidSfuc1KTFFdu2s/p3PtFBwX+Zs=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=lFcips2dNZb6YLBKKYInKBk99Ih0a0yB6P8InbZqxryG8B5GvaJoaJZNssN8/bMFK
+ g46Mr8oYPQOaUNKjhuB7oS4ptmd8cItVTuWI5Evee03G3Jw2JjwlOH2ZaJDdccHUL0
+ UNdggCSq53AH7f+1aoSC9aOEx1+bjxPm+lsDK4FhM8uP6SJPOODnoWIAA+bGbIIy3F
+ ofPHZg/XY4vUSH0o4N/4di6RhllmgQBII7peekz7KG6LTTcRCzZC+DtjyQDnVaWcwJ
+ D/Wmqk6CTJ/GWioDnYaHXvx+hViUDUeAc9ef6fbY4nYRTh72rDyAMmoJOyg/P8OG3Q
+ KXRD4uNgbwQqg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 14/14] drm/panic: Compile KUnit tests as module
+To: "Thomas Zimmermann" <tzimmermann@suse.de>
+Cc: dri-devel@lists.freedesktop.org, Frank.Li@kernel.org, imx@lists.linux.dev,
+ intel-gfx@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, virtualization@lists.linux.dev,
+ gary@garyguo.net, "Michael
+ S. Tsirkin" <mst@redhat.com>, "Eugenio Perez" <eperezma@redhat.com>,
+ wsa+renesas@sang-engineering.com, ojeda@kernel.org
+In-Reply-To: <20260909085826.64529-15-tzimmermann@suse.de>
+References: <20260909085826.64529-1-tzimmermann@suse.de>
+ <20260909085826.64529-15-tzimmermann@suse.de>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 09 Sep 2026 09:37:27 +0000
+Message-Id: <20260909093728.4E1931F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,210 +57,86 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2106844748285241381==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] The KUnit test exit function `drm_test_panic_exit()` fails to clea=
+r the global panic description, leaving a dangling pointer that can crash t=
+he panic handler.
+--
 
-== Series Details ==
+commit 7eb0aee35aa7e3c110129d29f0c30be49ac71dab
+Author: Thomas Zimmermann <tzimmermann@suse.de>
 
-Series: drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p platforms (rev8)
-URL   : https://patchwork.freedesktop.org/series/167706/
-State : success
+drm/panic: Compile KUnit tests as module
 
-== Summary ==
+This commit fixes the panic-helper KUnit tests dependency and enables them =
+to
+be built as a module. It exports necessary interfaces if KUnit is enabled a=
+nd
+adds cleanup logic for the tests.
 
-CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -> xe-pw-167706v8_BAT
-====================================================
+> diff --git a/drivers/gpu/drm/drm_panic_helper.c b/drivers/gpu/drm/drm_pan=
+ic_helper.c
+[ ... ]
+> @@ -815,7 +820,7 @@ static int draw_panic_helper_dispatch(struct drm_scan=
+out_buffer *sb,
+>  	return ret;
+>  }
+> =20
+> -static void drm_panic_helper_set_description(const char *description)
+> +VISIBLE_IF_KUNIT void drm_panic_helper_set_description(const char *descr=
+iption)
+>  {
+>  	u32 len;
+> =20
+> @@ -830,6 +835,7 @@ static void drm_panic_helper_set_description(const ch=
+ar *description)
+>  		desc_line->len =3D len;
+>  	}
+>  }
+> +EXPORT_SYMBOL_IF_KUNIT(drm_panic_helper_set_description);
+[ ... ]
+> diff --git a/drivers/gpu/drm/tests/drm_panic_helper_test.c b/drivers/gpu/=
+drm/tests/drm_panic_helper_test.c
+[ ... ]
+> @@ -86,6 +90,11 @@ static int drm_test_panic_init(struct kunit *test)
+>  	return 0;
+>  }
+> =20
+> +static void drm_test_panic_exit(struct kunit *test)
+> +{
+> +	drm_panic_helper_set_description(NULL);
+> +}
 
-Summary
--------
+[Severity: High]
+Does this leave a dangling pointer in the global panic_msg array when the t=
+est
+module is unloaded?
 
-  **SUCCESS**
+Looking at drm_panic_helper_set_description() in drm_panic_helper.c, it
+checks if the argument is valid before modifying the state:
 
-  No regressions found.
+    if (description) {
+        struct drm_panic_line *desc_line =3D &panic_msg[panic_msg_lines - 1=
+];
+        desc_line->txt =3D description;
+        ...
+    }
 
-  
+When drm_test_panic_exit() calls drm_panic_helper_set_description(NULL) to
+clear the state, the NULL argument is silently ignored.=20
 
-Participating hosts (14 -> 14)
-------------------------------
+Since drm_test_panic_init() originally sets the description to a string
+located in the test module's read-only data, the global panic_msg array will
+retain a pointer to this memory even after the module is freed.
 
-  Additional (1): bat-ptl-vm 
-  Missing    (1): bat-nvls-2 
+If a system panic occurs later, could the panic handler fault when trying to
+dereference this stale pointer and fail to render the panic screen?
 
-Known issues
-------------
-
-  Here are the changes found in xe-pw-167706v8_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_evict@evict-beng-small-cm:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][1] ([Intel XE#5764]) +11 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html
-
-  * igt@xe_exec_balancer@no-exec-cm-virtual-basic:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][2] ([Intel XE#7482]) +17 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html
-
-  * igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][3] ([Intel XE#8364]) +13 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][4] ([Intel XE#5775]) +2 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-
-  * igt@xe_mmap@vram:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][5] ([Intel XE#5776])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][6] ([Intel XE#5777] / [Intel XE#7590])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][7] ([Intel XE#5771] / [Intel XE#7590])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][8] ([Intel XE#5780] / [Intel XE#7590])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#5764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764
-  [Intel XE#5771]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771
-  [Intel XE#5775]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775
-  [Intel XE#5776]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776
-  [Intel XE#5777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777
-  [Intel XE#5780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780
-  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
-
-
-Build changes
--------------
-
-  * IGT: IGT_9086 -> IGT_9088
-  * Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -> xe-pw-167706v8
-
-  IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_9088: 55a88d20e327d5c440cd3f3d661684fb83f29027 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada
-  xe-pw-167706v8: 167706v8
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/index.html
-
---===============2106844748285241381==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p platforms (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167706/">https://patchwork.freedesktop.org/series/167706/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -&gt; xe-pw-167706v8_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>Additional (1): bat-ptl-vm <br />
-  Missing    (1): bat-nvls-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-167706v8_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-small-cm:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764">Intel XE#5764</a>) +11 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_balancer@no-exec-cm-virtual-basic:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775">Intel XE#5775</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776">Intel XE#5776</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777">Intel XE#5777</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771">Intel XE#5771</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v8/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780">Intel XE#5780</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9086 -&gt; IGT_9088</li>
-<li>Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -&gt; xe-pw-167706v8</li>
-</ul>
-<p>IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_9088: 55a88d20e327d5c440cd3f3d661684fb83f29027 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada<br />
-  xe-pw-167706v8: 167706v8</p>
-
-</body>
-</html>
-
---===============2106844748285241381==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260909085826.6452=
+9-1-tzimmermann@suse.de?part=3D14
