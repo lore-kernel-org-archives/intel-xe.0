@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15FFEC79FB7
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 16:29:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30BF6C79FB7
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 16:33:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C795610F1E9;
-	Wed,  9 Sep 2026 16:29:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E66FD10F1F8;
+	Wed,  9 Sep 2026 16:33:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OgqE6ecd";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dGxXZFUk";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA22910F1E9
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 16:29:20 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7368810F20E
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 16:33:02 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id CFE53601EF;
- Wed,  9 Sep 2026 16:29:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B2A01F000FF;
- Wed,  9 Sep 2026 16:29:19 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 28BA741755;
+ Wed,  9 Sep 2026 16:33:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D63781F000FF;
+ Wed,  9 Sep 2026 16:33:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788971359;
- bh=XhMwJhUea01O8BYdatJPf8kelMjAzU20nHBhnfdNLNw=;
+ s=k20260515; t=1788971582;
+ bh=y3b2IHA5BIt3cEoM5rQ8WwPTUG6PzzS2bamIUGN/Auc=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=OgqE6ecdzlbiAZeIfnm5jb5+hjSIKO3fY0lKwkMeYYbajifYj5p1meTaZODzVa6z6
- lnPCSixXbPlc81Cha7u+mi3Wtm5SkbVlMff68U+Fo8PgKzHPuxIWsUChFLzrNcu8pZ
- 4G4ja5ufUBvny5oBR+r00PBfkZDPvHipbWeiI4yBNmpUpGDA618Gbbx9ak4zr6JKwG
- OCg26s1pJls00h/Txhg5bYLlWws7wUBWIrs79vRuXL8qEkGsBwzQixTOUvwjoRmOCq
- Dq13tZqoS+jzFRg4D2TJjnDoOI0DdDiloZq+8YPUw7o82pxADwZRhM/v0YJiaXCLrf
- VGUbFbHhgZ0XQ==
+ b=dGxXZFUkxtjMf9sCCrIuNEms0CjUBAZZDAdCDFhflTz0FHBG+4yCLAGXBtxIVjYoI
+ WEVotspU3RrtyFTc5Xm/DHwXRubuo3sV4/mOTzXX2WFkvzHBY8bMSAuABGuFOoKOoc
+ XJaHM4L3CO2XQ/6Aq70v9MgTTa/95Bkje4g8+ThCIs2R9JKmxKIvyZCU29HJlQAz9u
+ Go607LKoKZn8aCJf9N4qXm++VfBwbowf72qUc8pt/MSG2RjSBFK4vA2nJ1ZRbciGJH
+ EvZz6dg3n/YTn9dAvcFeaAk/RgRpPQzFgE5PGes1fVFPapmdJst4nlNIZmnMpk4tfo
+ /FC8HEGuu9uwQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 1/2] drm/xe/shrinker: Return the freed page count
- through a parameter
+Subject: Re: [PATCH v7 2/2] drm/xe/shrinker: Take a runtime PM ref before
+ shrinking non-system memory
 To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260909162102.1097006-2-shuicheng.lin@intel.com>
+In-Reply-To: <20260909162102.1097006-3-shuicheng.lin@intel.com>
 References: <20260909162102.1097006-1-shuicheng.lin@intel.com>
- <20260909162102.1097006-2-shuicheng.lin@intel.com>
+ <20260909162102.1097006-3-shuicheng.lin@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 09 Sep 2026 16:29:18 +0000
-Message-Id: <20260909162919.5B2A01F000FF@smtp.kernel.org>
+Date: Wed, 09 Sep 2026 16:33:01 +0000
+Message-Id: <20260909163301.D63781F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,60 +61,75 @@ Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
 
 Pre-existing issues:
-- [High] The LRU shrinker walk aborts entirely upon encountering a buffer o=
-bject (BO) that is unsuitable for shrinking, potentially causing a livelock=
- where the shrinker fails to make progress.
+- [High] Shrinker scan aborts entirely when encountering a single unsuitabl=
+e buffer object.
 --
 
-commit fdbe7158df33982691ee678948191c46bf0f5148
+commit 90a5cf734495d4bcf94edcf044500adfd18b2a39
 Author: Shuicheng Lin <shuicheng.lin@intel.com>
-drm/xe/shrinker: Return the freed page count through a parameter
 
-This commit refactors __xe_shrinker_walk() and xe_shrinker_walk() to return
-status errors and accumulate freed pages via a parameter. This prevents
-dropping the count of already freed pages when an error occurs during the s=
-can.
+drm/xe/shrinker: Take a runtime PM ref before shrinking non-system memory
+
+This commit updates the xe shrinker to take a runtime PM reference before
+walking non-system memory LRUs. It reuses the existing acquire path to resu=
+me
+the device directly or queue a worker, and stops the scan early once the
+target is met.
 
 > diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shr=
 inker.c
-> index 83374cd576608..89445cd202380 100644
+> index 89445cd202380..deb4378c1ec15 100644
 > --- a/drivers/gpu/drm/xe/xe_shrinker.c
 > +++ b/drivers/gpu/drm/xe/xe_shrinker.c
 [ ... ]
-> @@ -82,7 +83,7 @@ static s64 __xe_shrinker_walk(struct xe_device *xe,
->  			if (lret < 0)
->  				return lret;
+> @@ -75,23 +101,35 @@ static int __xe_shrinker_walk(struct xe_device *xe,
+>  		if (!man || !man->use_tt)
+>  			continue;
 > =20
-> -			freed +=3D lret;
-> +			*freed +=3D lret;
+> +		if (mem_type !=3D XE_PL_SYSTEM && !rpm &&
+> +		    xe_device_is_l2_flush_optimized(xe)) {
+> +			if (!__xe_shrinker_runtime_pm_get(shrinker))
+> +				break;
+> +			rpm =3D true;
+> +		}
+> +
+>  		ttm_bo_lru_for_each_reserved_guarded(&curs, man, &arg, ttm_bo) {
+>  			if (!ttm_bo_shrink_suitable(ttm_bo, ctx))
+>  				continue;
+> =20
+>  			lret =3D xe_bo_shrink(ctx, ttm_bo, flags, scanned);
+> -			if (lret < 0)
+> -				return lret;
+> +			if (lret < 0) {
+> +				ret =3D lret;
+> +				goto out;
+> +			}
 
 [Severity: High]
-This is a pre-existing issue, but does this early return abort the entire
-shrinker walk if a single buffer object is unsuitable for shrinking?
+This is a pre-existing issue, but does this inappropriately abort the entire
+LRU traversal rather than skipping to the next buffer object when a non-fat=
+al
+error code is returned?
 
-In xe_bo_shrink() located in drivers/gpu/drm/xe/xe_bo.c, -EBUSY is
-legitimately returned if the BO cannot be shrunk. For instance, when
-a non-purgeable BO is encountered during a purge pass:
+During the __xe_shrinker_walk() LRU iteration in
+drivers/gpu/drm/xe/xe_shrinker.c, if xe_bo_shrink() returns -EBUSY, the loop
+treats this as a fatal error and immediately aborts the entire scan via the
+goto out branch.
 
-        if (!(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE) ||
-            (flags.purge && !xe_tt->purgeable))
-                return -EBUSY;
+This can happen frequently, such as when xe_bo_eviction_valuable() evaluates
+to false:
 
-        if (!xe_bo_eviction_valuable(bo, &place))
-                return -EBUSY;
+drivers/gpu/drm/xe/xe_bo.c:xe_bo_shrink() {
+	...
+	if (!xe_bo_eviction_valuable(bo, &place))
+		return -EBUSY;
+	...
+}
 
-If __xe_shrinker_walk() receives this -EBUSY, the entire iteration is abort=
-ed.
-Because the iteration starts from the head of the LRU, an unshrinkable BO at
-the head could perpetually abort the shrinker on its first step, failing to
-make progress under memory pressure.
-
-Should the loop ignore -EBUSY and continue scanning?
-
->  			if (*scanned >=3D to_scan)
->  				break;
->  		}
+Will the memory shrinker fail to reclaim pages if it encounters a buffer
+object that cannot be evicted, potentially leading to system OOM because
+reclaim progress is permanently blocked by the first unsuitable BO?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260909162102.1097=
-006-1-shuicheng.lin@intel.com?part=3D1
+006-1-shuicheng.lin@intel.com?part=3D2
