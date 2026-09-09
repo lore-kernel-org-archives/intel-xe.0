@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A6B4C79FB5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53818C79FB7
 	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 06:19:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9C1E10EED3;
-	Wed,  9 Sep 2026 06:19:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11C2C10EED5;
+	Wed,  9 Sep 2026 06:19:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FkumUIpH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V73ouTAr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1CF510EED3
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 06:19:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09F6010EED5
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 06:19:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1788934763; x=1820470763;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9ZEFCzzz2r2CALEJ3R8zF+pYaMgzCwQ0koTsYYJFgMI=;
- b=FkumUIpHXfXU+GNnd6zCtZEApIAWN3Sml98OplyKogUnpgEzqBNOdV01
- xanF+FyB7ZWwNRSCJRR73OvYW/HaSGziiWsD4jezysOY5g5Gt8lSZzDNH
- czywMGPKKBlZ1HF4t3Rv2A8zH8YJxXyU0P1nxFpfzBRYT6IYT2fnY2H+2
- M80Jbj/HcocyS7Y1zI2FKP623iWtUxhQ8Lgci8RwiGjH9KUz0EfSoufON
- bZUUqlrSWEYGZXBx9SbVaDa5fS3FvWKOnFaWVp3WPLP2jEvn8LKEFUd0n
- I4CqyVEc9/1Iu+SQHYglTpIWJ08UaAfwFap22gTNVW6JyUV9/9vzobu5Q A==;
-X-CSE-ConnectionGUID: xg6rjzoYTeiGfmDlWkJWRg==
-X-CSE-MsgGUID: yFaJnL7vQL+41AlIPL2YbQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="89220594"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="89220594"
+ bh=Sc8v+N7ux6kzU4ddAW74R2F20KuJWlHyCsO4FxtDHiY=;
+ b=V73ouTArTWJLiYh2ctmSSj2bHYBbRZSvZk8KItKX0JGTu8NvOMqB6S1B
+ xwflqWnrbYebzTGk7+nLEBJYVj4XchRZaOYupFjcvPVEmh8aGcBJMIUNX
+ RYeefb7UigGPs3ltf/lB3iOj7m4cSA1IP3dMF1WEFvhjhKkzvaz0jrDxR
+ y8AjJHqqz9qY7VRJY9yghmc1xhj54cF8k2gXIQSW5ZCo2T7rfpTbMlrmK
+ a0VakAEklcRcUYymfSMMZe6oLiaV0S2t+Z17YhldYS69lC0sqCa7DR8Tl
+ AUSGCtMwfcGwczTwjkFgdWIEDqToDtwjBSjZRigft2YJ3IXUVCc++yCmQ g==;
+X-CSE-ConnectionGUID: CmZJaNpdSxSC78IUdbOTRw==
+X-CSE-MsgGUID: Np0RfQJJSJGMpdHKlpP7rQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="89220600"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="89220600"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 23:19:11 -0700
-X-CSE-ConnectionGUID: XeYCz0iZR/2Hdo7t3BSJ5g==
-X-CSE-MsgGUID: z69N7wCVQOu8Txz11V1XRQ==
+ 08 Sep 2026 23:19:13 -0700
+X-CSE-ConnectionGUID: 4YMB6nJyTiW8mKhFsJ4fVA==
+X-CSE-MsgGUID: aCZDthiQTW29JJGIrn1F0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="270733923"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="270733929"
 Received: from art-dev-395.igk.intel.com ([10.211.135.233])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 23:19:10 -0700
+ 08 Sep 2026 23:19:12 -0700
 From: Jan Maslak <jan.maslak@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.auld@intel.com, matthew.brost@intel.com,
  thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  Jan Maslak <jan.maslak@intel.com>,
  Christoph Manszewski <christoph.manszewski@intel.com>
-Subject: [PATCH v3 3/4] drm/xe/xe_migrate: Optimize unaligned access_memory
- copies
-Date: Wed,  9 Sep 2026 08:18:44 +0200
-Message-ID: <20260909061845.4048047-4-jan.maslak@intel.com>
+Subject: [PATCH v3 4/4] drm/xe/tests: Add xe_migrate_access_memory subtest
+Date: Wed,  9 Sep 2026 08:18:45 +0200
+Message-ID: <20260909061845.4048047-5-jan.maslak@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260909061845.4048047-1-jan.maslak@intel.com>
 References: <20260909061845.4048047-1-jan.maslak@intel.com>
@@ -70,191 +69,320 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When xe_migrate_access_memory() falls back to a smaller pitch for an
-unaligned destination, the copy can end up running linearly for the
-entire transfer.
-
-Reduce the number of copy jobs by first using a short linear copy to
-reach a better destination alignment, then using the largest matrix copy
-pitch that alignment supports, and finally using a linear copy for any
-remaining tail bytes.
+Add a new xe_migrate subtest for vram to sram migration works:
+ - when the dst address is not 4-byte aligned
+ - when the dst address in not 4-byte aligned but the migration size is
+ - when src BO offset is not 4-byte aligned
 
 Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
 Signed-off-by: Jan Maslak <jan.maslak@intel.com>
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 151 ++++++++++++++++++++++++++++++--
- 1 file changed, 142 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_migrate.c | 278 ++++++++++++++++++++++++++
+ 1 file changed, 278 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index c40e0cc7499e..0bf63d3de56b 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -2225,6 +2225,86 @@ static u32 xe_migrate_copy_pitch(struct xe_device *xe, u32 len, u64 dst_addr)
- 	return pitch;
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index f10d9513747b..9e18fcd51e26 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -6,9 +6,12 @@
+ #include <kunit/test.h>
+ #include <kunit/visibility.h>
+ 
++#include <linux/prandom.h>
++
+ #include "tests/xe_kunit_helpers.h"
+ #include "tests/xe_pci_test.h"
+ 
++#include "xe_migrate.h"
+ #include "xe_pat.h"
+ #include "xe_pci.h"
+ #include "xe_pm.h"
+@@ -770,9 +773,284 @@ static void xe_validate_ccs_kunit(struct kunit *test)
+ 	validate_ccs_test_run_device(xe);
  }
  
-+/**
-+ * xe_migrate_dst_pitch() - Determine max pitch supported by dst alignment
-+ * @dst_addr: Destination address (page offset)
++#define ACCESS_MEM_BO_SIZE		SZ_512K
++#define ACCESS_MEM_NUM_CELLS		(ACCESS_MEM_BO_SIZE / sizeof(u32))
++#define ACCESS_MEM_UNALIGNED_OFFSET	0x215ee
++
++/*
++ * Verify byte-by-byte that data read from the BO matches expected cell pattern.
++ * The BO is primed with u32 cells where cell[i] = i, so BO byte at offset B
++ * has value: (B / 4 >> (B%4 * 8)) & 0xFF.
 + *
-+ * Returns the largest pitch (PAGE_SIZE, SZ_4K, SZ_256, or 4) that dst_addr
-+ * supports based solely on its alignment. Returns 1 if not even 4-byte aligned.
++ * @buf:       the target buffer
++ * @buf_start: index into buf where read data begins
++ * @bo_start:  the BO byte offset corresponding to buf[buf_start]
++ * @size:      number of bytes to verify
++ * @scenario:  label for error messages
++ *
++ * Returns true if all bytes match, false on first mismatch.
 + */
-+static u32 xe_migrate_dst_pitch(u64 dst_addr)
++static bool verify_access_memory_read(struct kunit *test, u8 *buf,
++				      u32 buf_start, u32 bo_start,
++				      u32 size, const char *scenario)
 +{
-+	if (IS_ALIGNED(dst_addr, PAGE_SIZE))
-+		return PAGE_SIZE;
-+	if (IS_ALIGNED(dst_addr, SZ_4K))
-+		return SZ_4K;
-+	if (IS_ALIGNED(dst_addr, SZ_256))
-+		return SZ_256;
-+	if (IS_ALIGNED(dst_addr, 4))
-+		return 4;
-+	return 1;
++	u32 j;
++
++	for (j = 0; j < size; j++) {
++		u32 bo_byte_offset = bo_start + j;
++		u32 byte_in_cell = bo_byte_offset % sizeof(u32);
++		u32 cell_idx = bo_byte_offset / sizeof(u32);
++		u32 cell_value = cell_idx;
++		u8 expected_byte = (cell_value >> (byte_in_cell * 8)) & 0xFF;
++		u8 got_byte = buf[buf_start + j];
++
++		if (got_byte != expected_byte) {
++			u32 context_end = min(j + 8, size - 1);
++			u32 context_start = (j >= 8) ? j - 8 : 0;
++			u32 k;
++
++			KUNIT_FAIL(test,
++				   "%s MISMATCH\n"
++				   "  Buffer index:    %u (0x%x)\n"
++				   "  BO offset:       0x%x\n"
++				   "  Cell index:      %u (BO offset 0x%x..0x%x)\n"
++				   "  Byte in cell:    %u\n"
++				   "  Expected value:  0x%02x (from cell_value 0x%08x)\n"
++				   "  Got value:       0x%02x\n",
++				   scenario,
++				   buf_start + j, buf_start + j,
++				   bo_byte_offset,
++				   cell_idx, cell_idx * 4, cell_idx * 4 + 3,
++				   byte_in_cell,
++				   expected_byte, cell_value,
++				   got_byte);
++
++			kunit_info(test, "Buffer context around mismatch (buf[%u..%u]):\n",
++				   buf_start + context_start,
++				   buf_start + context_end);
++
++			for (k = context_start; k <= context_end; k++) {
++				u32 k_bo_offset = bo_start + k;
++				u32 k_cell = k_bo_offset / sizeof(u32);
++				u32 k_byte = k_bo_offset % sizeof(u32);
++				u32 k_cell_val = k_cell;
++				u8 k_expected = (k_cell_val >> (k_byte * 8)) & 0xFF;
++
++				kunit_info(test,
++					   "  buf[%4u] @ BO 0x%05x: got 0x%02x, expected 0x%02x %s\n",
++					   buf_start + k, k_bo_offset,
++					   buf[buf_start + k], k_expected,
++					   (k == j) ? "<-- MISMATCH" : "");
++			}
++			return false;
++		}
++	}
++	return true;
 +}
 +
-+/**
-+ * xe_migrate_bytes_to_align() - Calculate bytes needed to reach target alignment
-+ * @dst_addr: Current destination address
-+ * @alignment: Target alignment (PAGE_SIZE, SZ_4K, SZ_256, or 4)
-+ *
-+ * Returns: Number of bytes to copy to reach the target alignment.
-+ */
-+static u32 xe_migrate_bytes_to_align(u64 dst_addr, u32 alignment)
++static void access_memory_test_unaligned_bo_offset(struct kunit *test,
++						    struct xe_migrate *m,
++						    struct xe_bo *bo, u8 *buf,
++						    u32 unaligned_offset)
 +{
-+	return round_up(dst_addr, alignment) - dst_addr;
++	u32 partial_size = ACCESS_MEM_BO_SIZE - unaligned_offset;
++	int ret;
++
++	memset(buf, 0, ACCESS_MEM_BO_SIZE);
++
++	kunit_info(test, "Partial read: bo_offset=0x%x bytes=0x%x\n",
++		   unaligned_offset, partial_size);
++
++	ret = xe_migrate_access_memory(m, bo, unaligned_offset, buf,
++				       partial_size, false);
++	if (ret) {
++		KUNIT_FAIL(test, "Partial read failed: %d\n", ret);
++		return;
++	}
++
++	if (verify_access_memory_read(test, buf, 0, unaligned_offset,
++				      partial_size,
++				      "Partial read from unaligned BO offset"))
++		kunit_info(test, "Partial read from unaligned BO offset 0x%x verified\n",
++			   unaligned_offset);
 +}
 +
-+/**
-+ * xe_migrate_best_alignment() - Find the best alignment reachable within max_bytes
-+ * @dst_addr: Current destination address
-+ * @max_bytes: Maximum bytes we can copy to reach alignment (typically U16_MAX)
-+ *
-+ * Returns the largest alignment (PAGE_SIZE, SZ_4K, SZ_256, or 4) that dst_addr
-+ * can reach by copying at most max_bytes. Returns 0 if already at best alignment
-+ * or if no useful alignment can be reached.
-+ */
-+static u32 xe_migrate_best_alignment(u64 dst_addr, u32 max_bytes)
++static void access_memory_test_unaligned_dst(struct kunit *test,
++					     struct xe_migrate *m,
++					     struct xe_bo *bo, u8 *buf,
++					     u32 unaligned_offset)
 +{
-+	u32 bytes_to_page = xe_migrate_bytes_to_align(dst_addr, PAGE_SIZE);
-+	u32 bytes_to_4k = xe_migrate_bytes_to_align(dst_addr, SZ_4K);
-+	u32 bytes_to_256 = xe_migrate_bytes_to_align(dst_addr, SZ_256);
-+	u32 bytes_to_4 = xe_migrate_bytes_to_align(dst_addr, 4);
++	u32 partial_size = ACCESS_MEM_BO_SIZE - unaligned_offset;
++	int ret;
 +
-+	if (bytes_to_page == 0)
++	memset(buf, 0, ACCESS_MEM_BO_SIZE);
++
++	kunit_info(test, "Read to unaligned dst: bo_offset=0x0 dst_offset=0x%x bytes=0x%x\n",
++		   unaligned_offset, partial_size);
++
++	ret = xe_migrate_access_memory(m, bo, 0, buf + unaligned_offset,
++				       partial_size, false);
++	if (ret) {
++		KUNIT_FAIL(test, "Read to unaligned dst failed: %d\n", ret);
++		return;
++	}
++
++	if (verify_access_memory_read(test, buf, unaligned_offset, 0,
++				      partial_size,
++				      "Read to unaligned dst"))
++		kunit_info(test, "Read to unaligned dst offset 0x%x verified\n",
++			   unaligned_offset);
++}
++
++static void access_memory_test_unaligned_dst_aligned_size(struct kunit *test,
++							  struct xe_migrate *m,
++							  struct xe_bo *bo,
++							  u8 *buf,
++							  u32 unaligned_offset)
++{
++	u32 partial_size = round_down(ACCESS_MEM_BO_SIZE - unaligned_offset, 4);
++	int ret;
++
++	memset(buf, 0, ACCESS_MEM_BO_SIZE);
++
++	kunit_info(test, "Read to unaligned dst (aligned size): bo_offset=0x0 dst_offset=0x%x bytes=0x%x\n",
++		   unaligned_offset, partial_size);
++
++	ret = xe_migrate_access_memory(m, bo, 0, buf + unaligned_offset,
++				       partial_size, false);
++	if (ret) {
++		KUNIT_FAIL(test, "Read to unaligned dst (aligned size) failed: %d\n", ret);
++		return;
++	}
++
++	if (verify_access_memory_read(test, buf, unaligned_offset, 0,
++				      partial_size,
++				      "Read to unaligned dst (aligned size)"))
++		kunit_info(test, "Read to unaligned dst (aligned size) offset 0x%x verified\n",
++			   unaligned_offset);
++}
++
++static void access_memory_test_run_tile(struct xe_device *xe,
++					struct xe_tile *tile,
++					struct kunit *test,
++					bool use_random_offset)
++{
++	unsigned int bo_flags = XE_BO_FLAG_VRAM_IF_DGFX(tile);
++	struct xe_migrate *m = tile->migrate;
++	u32 j, unaligned_offset;
++	struct xe_bo *bo;
++	u8 *buf;
++	int ret;
++
++	if (use_random_offset) {
++		unaligned_offset = get_random_u32() % (ACCESS_MEM_BO_SIZE / 2);
++		/* Ensure the offset is not 4-byte aligned */
++		if (IS_ALIGNED(unaligned_offset, 4))
++			unaligned_offset |= 2;
++		if (!unaligned_offset)
++			unaligned_offset = 3;
++	} else {
++		unaligned_offset = ACCESS_MEM_UNALIGNED_OFFSET;
++	}
++
++	kunit_info(test, "Using unaligned offset: 0x%x (%s)\n",
++		   unaligned_offset, use_random_offset ? "random" : "predefined");
++
++	buf = kvmalloc(ACCESS_MEM_BO_SIZE, GFP_KERNEL);
++	if (!buf) {
++		KUNIT_FAIL(test, "Failed to allocate buffer\n");
++		return;
++	}
++
++	bo = xe_bo_create_user(xe, NULL, ACCESS_MEM_BO_SIZE,
++			       DRM_XE_GEM_CPU_CACHING_WC,
++			       bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS, NULL);
++	if (IS_ERR(bo)) {
++		KUNIT_FAIL(test, "Failed to create bo: %pe\n", bo);
++		goto free_buf;
++	}
++
++	/* Prime the BO */
++	for (j = 0; j < ACCESS_MEM_NUM_CELLS; j++)
++		((u32 *)buf)[j] = j;
++
++	kunit_info(test, "Writing %lu KiB to VRAM bo\n",
++		   (unsigned long)ACCESS_MEM_BO_SIZE / SZ_1K);
++
++	xe_bo_lock(bo, false);
++	ret = xe_migrate_access_memory(m, bo, 0, buf, ACCESS_MEM_BO_SIZE, true);
++	if (ret) {
++		KUNIT_FAIL(test, "Failed to write bo: %d\n", ret);
++		goto cleanup_bo;
++	}
++
++	/* Full read */
++	memset(buf, 0, ACCESS_MEM_BO_SIZE);
++	kunit_info(test, "Full read: bo_offset=0x0 bytes=0x%x\n", ACCESS_MEM_BO_SIZE);
++
++	ret = xe_migrate_access_memory(m, bo, 0, buf, ACCESS_MEM_BO_SIZE, false);
++	if (ret) {
++		KUNIT_FAIL(test, "Full read failed: %d\n", ret);
++		goto cleanup_bo;
++	}
++
++	for (j = 0; j < ACCESS_MEM_NUM_CELLS; j++) {
++		u32 expected = j;
++		u32 got = ((u32 *)buf)[j];
++
++		if (got != expected) {
++			KUNIT_FAIL(test, "Full read mismatch at cell %u: expected 0x%08x, got 0x%08x\n",
++				   j, expected, got);
++			goto cleanup_bo;
++		}
++	}
++	kunit_info(test, "Full read verified\n");
++
++	access_memory_test_unaligned_bo_offset(test, m, bo, buf, unaligned_offset);
++	access_memory_test_unaligned_dst(test, m, bo, buf, unaligned_offset);
++	access_memory_test_unaligned_dst_aligned_size(test, m, bo, buf, unaligned_offset);
++
++cleanup_bo:
++	xe_bo_unlock(bo);
++	xe_bo_put(bo);
++free_buf:
++	kvfree(buf);
++}
++
++static int access_memory_test_run_device(struct xe_device *xe)
++{
++	struct kunit *test = kunit_get_current_test();
++	struct xe_tile *tile;
++	int id;
++
++	if (!IS_DGFX(xe)) {
++		kunit_skip(test, "non-discrete device\n");
 +		return 0;
++	}
 +
-+	if (bytes_to_page <= max_bytes)
-+		return PAGE_SIZE;
++	guard(xe_pm_runtime)(xe);
++	for_each_tile(tile, xe, id) {
++		kunit_info(test, "Testing tile id %d (predefined offset)\n", id);
++		access_memory_test_run_tile(xe, tile, test, false);
 +
-+	if (bytes_to_4k > 0 && bytes_to_4k <= max_bytes)
-+		return SZ_4K;
-+
-+	if (bytes_to_256 > 0 && bytes_to_256 <= max_bytes)
-+		return SZ_256;
-+
-+	if (bytes_to_4 > 0 && bytes_to_4 <= max_bytes)
-+		return 4;
++		kunit_info(test, "Testing tile id %d (random offset)\n", id);
++		access_memory_test_run_tile(xe, tile, test, true);
++	}
 +
 +	return 0;
 +}
 +
-+/**
-+ * xe_migrate_aligned_copy_len() - Calculate the aligned copy length for matrix copy
-+ * @len: Remaining bytes
-+ * @pitch: The pitch to use for matrix copy
-+ *
-+ * Returns: Length rounded down to pitch, or 0 if less than pitch.
-+ */
-+static u32 xe_migrate_aligned_copy_len(u32 len, u32 pitch)
++static void xe_migrate_access_memory_kunit(struct kunit *test)
 +{
-+	if (len < pitch)
-+		return 0;
-+	return round_down(len, pitch);
++	struct xe_device *xe = test->priv;
++
++	access_memory_test_run_device(xe);
 +}
 +
- static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
- 					 unsigned long len,
- 					 unsigned long sram_offset,
-@@ -2558,15 +2638,68 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
- 		else
- 			current_bytes = min_t(int, bytes_left, cursor.size);
+ static struct kunit_case xe_migrate_tests[] = {
+ 	KUNIT_CASE_PARAM(xe_migrate_sanity_kunit, xe_pci_live_device_gen_param),
+ 	KUNIT_CASE_PARAM(xe_validate_ccs_kunit, xe_pci_live_device_gen_param),
++	KUNIT_CASE_PARAM(xe_migrate_access_memory_kunit, xe_pci_live_device_gen_param),
+ 	{}
+ };
  
--		pitch = xe_migrate_copy_pitch(xe, current_bytes,
--					      write ? vram_addr :
--					      (unsigned long)buf & ~PAGE_MASK);
--		if (xe->info.has_mem_copy_instr)
--			current_bytes = min_t(int, current_bytes, U16_MAX * pitch);
--		else
--			current_bytes = min_t(int, current_bytes,
--					      round_down(S16_MAX * pitch,
--							 XE_CACHELINE_BYTES));
-+		{
-+			/*
-+			 * Optimized copy strategy to minimize number of jobs:
-+			 * 1. Linear copy to align dst to best reachable alignment
-+			 * 2. Matrix copy for bulk data copy
-+			 * 3. Single linear copy for remaining bytes
-+			 *
-+			 * The phase logic controls transfer chunking; emit_copy() selects
-+			 * MEM_COPY_CMD or XY_FAST_COPY_BLT based on hardware support.
-+			 */
-+			u64 dst_addr = write ? vram_addr :
-+					       (unsigned long)buf & ~PAGE_MASK;
-+			u32 max_linear = xe->info.has_mem_copy_instr ? U16_MAX :
-+					 round_down(S16_MAX, XE_CACHELINE_BYTES);
-+			u32 best_align = xe_migrate_best_alignment(dst_addr, max_linear);
-+			u32 bytes_to_align = best_align ?
-+					     xe_migrate_bytes_to_align(dst_addr, best_align) : 0;
-+
-+			if (bytes_to_align > 0 && bytes_to_align <= (u32)current_bytes) {
-+				/*
-+				 * Phase 1: Linear copy to reach best alignment.
-+				 * Copy just enough bytes to align dst_addr.
-+				 */
-+				pitch = 1;
-+				current_bytes = min_t(int, bytes_to_align, max_linear);
-+			} else if (IS_ALIGNED(dst_addr, 4)) {
-+				/*
-+				 * Phase 2: Matrix copy for aligned bulk data.
-+				 * Use the best pitch that dst alignment supports,
-+				 * then round down len to that pitch.
-+				 */
-+				u32 dst_pitch = xe_migrate_dst_pitch(dst_addr);
-+				u32 aligned_len = xe_migrate_aligned_copy_len(current_bytes,
-+								      dst_pitch);
-+
-+				if (aligned_len >= dst_pitch) {
-+					pitch = dst_pitch;
-+					if (xe->info.has_mem_copy_instr) {
-+						current_bytes = min_t(int, aligned_len,
-+								      U16_MAX * pitch);
-+					} else {
-+						current_bytes = min_t(int, aligned_len,
-+								      round_down(S16_MAX * pitch,
-+										 XE_CACHELINE_BYTES));
-+					}
-+				} else {
-+					/*
-+					 * Phase 3: Linear copy for remainder.
-+					 * Not enough for matrix copy - do single linear copy.
-+					 */
-+					pitch = 1;
-+					current_bytes = min_t(int, current_bytes, max_linear);
-+				}
-+			} else {
-+				/*
-+				 * Phase 3: Linear copy for remainder.
-+				 * dst not 4-aligned and can't reach alignment - linear copy.
-+				 */
-+				pitch = 1;
-+				current_bytes = min_t(int, current_bytes, max_linear);
-+			}
-+		}
- 
- 		__fence = xe_migrate_vram(m, current_bytes,
- 					  (unsigned long)buf & ~PAGE_MASK,
 -- 
 2.43.0
 
