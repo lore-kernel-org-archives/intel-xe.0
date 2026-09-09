@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D0C7C79FB5
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 07:48:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27218C79F8C
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 07:48:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E77910EF91;
-	Wed,  9 Sep 2026 07:48:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C077E10EF96;
+	Wed,  9 Sep 2026 07:48:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O+kcNy29";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jz7MjnJX";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BE0E10EF8E;
- Wed,  9 Sep 2026 07:48:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC31F10EF8F;
+ Wed,  9 Sep 2026 07:48:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788940093; x=1820476093;
+ t=1788940118; x=1820476118;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2qCKG3b1TO5S0rYlypuXmbgQFFfub8oBZSycQIVLFys=;
- b=O+kcNy29cVWnizM5orLXhm0liTr7yQBLBdXVRcfyZh/5jjYlreknws8T
- Et4BXw2OrGj9vrCZ0hW3R+rvxpNnyL+5HsuUCza+7kiE+8KLRaDMUvelz
- O7lzTUlwVWEqP1o/Ig3MFULp03jBskEDMN/UfZnTvyDuYCQHNYYRMwgNX
- ihbBObyR0O5Q2+I1F3pfvnbB5aZAmasZtj66PBWwuX0Jr9dMt+o5olsOZ
- K1W8Y91yXt9RBHy74ylFtiE4/IXS2LSID8nykOQALZJRhC5+Ofcsr7BDl
- LGZEsiFdkoFOZF9eAlktt7BHu7arNW07u/W23M5+pAUh7njrL+lIW3V+g A==;
-X-CSE-ConnectionGUID: q+uFP69xRzGgKlmJASL24g==
-X-CSE-MsgGUID: Tz2W5v+LR+6DfQCce0Nn+Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="89480429"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="89480429"
+ bh=nopxqm2RanTtBIwEWT62089R3z6T6p01w8FZjDqDnbc=;
+ b=Jz7MjnJX4pur2tAd142Gg2h/2B2/jCW8xQOXQ0EzdhjblF9/t/jsXIM6
+ nU5mfeTLgNH9M8PaNVxwTAdPqo8OV+C5l4ie9AH/juRbMH1Dt/uhlQKto
+ gbjNLPsaZxqNW+ejCPCnmSc8/TxVNXYMFr/JZ4ERm5WNBY84mjJ6TfeC9
+ xayv0PpTIVVkphQECt/X5WtAwOJYLtLLBujGamaUL7JF82gQEfzMZ2OaT
+ OCIwVYQ2Pd5mdwOI90kjZYOyNptuogmmN+1pfn6KjLdvTYMpI7WlTyKZY
+ LG+mb+ApO1cSvDNx8YLm7JC1Is5NNetv527ESx575h5fraR1TTnqdKo68 Q==;
+X-CSE-ConnectionGUID: GWqWGRWRR1C/m/HDVv2laA==
+X-CSE-MsgGUID: CpXduf8cRqGw0f9ALMYtOA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="89480430"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="89480430"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 00:48:13 -0700
-X-CSE-ConnectionGUID: 200P7nxAR0KJaRknGaUGEQ==
-X-CSE-MsgGUID: q2jihIf9Tb6mqnwQGyISVw==
+ 09 Sep 2026 00:48:15 -0700
+X-CSE-ConnectionGUID: lYmFoHdtQPqVdLqUAMghew==
+X-CSE-MsgGUID: ckjfw2owT2u+059LgkY8Lg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="268680914"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="268680926"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa008.fm.intel.com with ESMTP; 09 Sep 2026 00:48:11 -0700
+ by fmviesa008.fm.intel.com with ESMTP; 09 Sep 2026 00:48:13 -0700
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dibin.moolakadan.subrahmanian@intel.com, ramanaidu.naladala@intel.com
 Cc: Uma Shankar <uma.shankar@intel.com>
-Subject: [v5 2/4] drm/i915/display: Force disable DC3co when AS SDP skip
- frames is enabled
-Date: Wed,  9 Sep 2026 13:38:08 +0530
-Message-ID: <20260909080810.2202879-3-uma.shankar@intel.com>
+Subject: [v5 3/4] drm/i915/display: Reprogram AS SDP skip frames on seamless
+ VRR transitions
+Date: Wed,  9 Sep 2026 13:38:09 +0530
+Message-ID: <20260909080810.2202879-4-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260909080810.2202879-1-uma.shankar@intel.com>
 References: <20260909080810.2202879-1-uma.shankar@intel.com>
@@ -67,107 +67,223 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Periodic AS SDP (skip frames) relies on the AS SDP still being
-transmitted while Panel Replay is active. DC3co uses the idle protocol
-which suppresses AS SDP transmission entirely, so the two are mutually
-exclusive: leaving DC3co enabled while skip frames is programmed breaks
-the periodic AS SDP and the panel never sees the slower refresh.
+The AS SDP skip-frame count is written to PR_ALPM_CTL only from
+lnl_alpm_configure(), which runs from intel_psr_enable_locked() on a
+Panel Replay disabled->enabled transition. VRR, however, can be enabled
+and disabled seamlessly - without a modeset and without cycling Panel
+Replay (intel_crtc_vrr_enabling()/disabling() in the pipe update path).
 
-Add intel_alpm_pr_as_sdp_skip_frames_enabled() as the single predicate
-for "skip frames will be programmed" (mirroring the gating in
-lnl_alpm_configure(), including that it only applies when VRR is not
-active) and use it in intel_display_power_dc3co_compute() to force the
-DC3co trigger to NONE. This drops the pipe onto the
-DC_STATE_EN_UPTO_DC6 target instead of DC3co whenever skip frames is
-active, without touching the DC state module parameter or the allowed
-DC mask, and only for the skip-frame case.
+As a result, when a panel comes up with VRR off the non-zero skip count
+is programmed, and when VRR is later turned on seamlessly PR stays
+enabled, lnl_alpm_configure() is not re-invoked, and the stale skip
+count is left in the register. This also leaves the coupled AS SDP
+transmission / DC3CO idle-protocol bits inconsistent with the DC3co
+state, which is recomputed on every commit.
 
-v2: Fixed Sashiko review findings
+Factor the PR_ALPM_CTL AS SDP programming out of lnl_alpm_configure()
+into intel_alpm_configure_pr_as_sdp() and expose
+intel_alpm_pr_as_sdp_update(), which recomputes those fields for the
+current VRR state. Call it from the seamless VRR enable and disable
+sites (non-modeset only; a modeset re-runs PR enable anyway) so the skip
+counter always matches whether VRR is actively driving the refresh rate.
+
+v2: Fixed Sashiko review comments
 
 Assisted-by: Claude:claude-opus-4-8
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 Reviewed-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 Tested-by: Naladala Ramanaidu <ramanaidu.naladala@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c     | 23 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_alpm.h     |  2 ++
- .../drm/i915/display/intel_display_power.c    |  9 ++++++++
- 3 files changed, 34 insertions(+)
+ drivers/gpu/drm/i915/display/intel_alpm.c    | 119 +++++++++++++------
+ drivers/gpu/drm/i915/display/intel_alpm.h    |   1 +
+ drivers/gpu/drm/i915/display/intel_display.c |  18 +++
+ 3 files changed, 100 insertions(+), 38 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index a6838e0fd3aa..0a33a89975bc 100644
+index 0a33a89975bc..c784e77f610b 100644
 --- a/drivers/gpu/drm/i915/display/intel_alpm.c
 +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -404,6 +404,29 @@ static u32 intel_pr_as_sdp_skip_frames(struct intel_dp *intel_dp)
- 		     REG_FIELD_MAX(PR_ALPM_CTL_AS_SDP_SKIP_FRAMES_MASK));
+@@ -427,6 +427,85 @@ bool intel_alpm_pr_as_sdp_skip_frames_enabled(struct intel_dp *intel_dp,
+ 	return intel_pr_as_sdp_skip_frames(intel_dp) > 0;
  }
  
 +/*
-+ * Whether periodic AS SDP transmission (AS SDP skip frames) will be programmed
-+ * for this Panel Replay config. The skip counter needs the AS SDP to keep
-+ * flowing during PR active, which is incompatible with DC3co, so this is used
-+ * to keep DC3co disabled while skip frames is enabled.
++ * Program the AS SDP portion of PR_ALPM_CTL: the transmission position, the
++ * skip-frame counter and the coupled AS SDP transmission / DC3CO idle-protocol
++ * bits. This is a full recompute of those fields (the base value is built from
++ * scratch, not read back), so it can be called both at PR enable time and when
++ * VRR is toggled seamlessly - which changes whether periodic AS SDP is used.
++ *
++ * Caller must hold intel_dp->alpm.lock.
 + */
-+bool intel_alpm_pr_as_sdp_skip_frames_enabled(struct intel_dp *intel_dp,
-+					      const struct intel_crtc_state *crtc_state)
++static void intel_alpm_configure_pr_as_sdp(struct intel_dp *intel_dp,
++					   const struct intel_crtc_state *crtc_state)
 +{
 +	struct intel_display *display = to_intel_display(intel_dp);
++	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
++	u32 pr_alpm_ctl = get_pr_alpm_as_sdp_transmission_time(crtc_state);
++	u32 skip_frames = 0;
++
++	if (intel_alpm_pr_as_sdp_skip_frames_enabled(intel_dp, crtc_state))
++		skip_frames = intel_pr_as_sdp_skip_frames(intel_dp);
++
++	if (crtc_state->link_off_after_as_sdp_when_pr_active)
++		pr_alpm_ctl |= PR_ALPM_CTL_ALLOW_LINK_OFF_BETWEEN_AS_SDP_AND_SU;
 +
 +	/*
-+	 * The AS SDP skip frames field only exists on Xe3p_LPD+. Periodic AS SDP
-+	 * drives the panel down to its minimum refresh rate on its own, so it is
-+	 * only used when VRR is not actively driving the refresh rate.
++	 * Skip frames needs the AS SDP to keep flowing during PR active, so it
++	 * is mutually exclusive with disabling AS SDP transmission in active and
++	 * with the DC3CO idle protocol.
 +	 */
-+	if (DISPLAY_VER(display) < 35 || !intel_dp->as_sdp_supported ||
-+	    !crtc_state->has_panel_replay || crtc_state->vrr.enable)
-+		return false;
++	if (skip_frames) {
++		pr_alpm_ctl |= PR_ALPM_CTL_AS_SDP_SKIP_FRAMES(skip_frames);
++		pr_alpm_ctl &= ~PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
++		pr_alpm_ctl &= ~PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
++	} else {
++		pr_alpm_ctl &= ~PR_ALPM_CTL_AS_SDP_SKIP_FRAMES_MASK;
 +
-+	return intel_pr_as_sdp_skip_frames(intel_dp) > 0;
++		if (crtc_state->disable_as_sdp_when_pr_active)
++			pr_alpm_ctl |= PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
++
++		if (intel_display_power_dc3co_allowed(display))
++			pr_alpm_ctl |= PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
++	}
++
++	intel_de_write(display, PR_ALPM_CTL(display, cpu_transcoder), pr_alpm_ctl);
++}
++
++/*
++ * VRR can be enabled or disabled seamlessly, i.e. without a modeset and without
++ * cycling Panel Replay, so the AS SDP skip-frame programming done at PR enable
++ * time would otherwise go stale across a VRR toggle. Reprogram it here so the
++ * skip counter (and the coupled bits) matches the new VRR state.
++ */
++void intel_alpm_pr_as_sdp_update(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_encoder *encoder;
++
++	/* AS SDP skip frames field only exists on Xe3p_LPD+ */
++	if (DISPLAY_VER(display) < 35)
++		return;
++
++	for_each_intel_encoder_mask(display->drm, encoder,
++				    crtc_state->uapi.encoder_mask) {
++		struct intel_dp *intel_dp;
++
++		if (!intel_encoder_is_dp(encoder))
++			continue;
++
++		intel_dp = enc_to_intel_dp(encoder);
++
++		if (!intel_dp->as_sdp_supported ||
++		    !intel_alpm_is_alpm_aux_less(intel_dp, crtc_state))
++			continue;
++
++		mutex_lock(&intel_dp->alpm.lock);
++		intel_alpm_configure_pr_as_sdp(intel_dp, crtc_state);
++		mutex_unlock(&intel_dp->alpm.lock);
++	}
 +}
 +
  static void lnl_alpm_configure(struct intel_dp *intel_dp,
  			       const struct intel_crtc_state *crtc_state)
  {
+@@ -449,44 +528,8 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 			ALPM_CTL_AUX_LESS_SLEEP_HOLD_TIME_50_SYMBOLS |
+ 			ALPM_CTL_AUX_LESS_WAKE_TIME(crtc_state->alpm_state.aux_less_wake_lines);
+ 
+-		if (intel_dp->as_sdp_supported) {
+-			u32 pr_alpm_ctl = get_pr_alpm_as_sdp_transmission_time(crtc_state);
+-			u32 skip_frames = 0;
+-
+-			/*
+-			 * AS SDP skip frames field only exists on Xe3p_LPD+, and
+-			 * periodic AS SDP is a Panel Replay feature that is only
+-			 * used when VRR is not actively driving the refresh rate.
+-			 */
+-			if (DISPLAY_VER(display) >= 35 && crtc_state->has_panel_replay &&
+-			    !crtc_state->vrr.enable)
+-				skip_frames = intel_pr_as_sdp_skip_frames(intel_dp);
+-
+-			if (crtc_state->link_off_after_as_sdp_when_pr_active)
+-				pr_alpm_ctl |= PR_ALPM_CTL_ALLOW_LINK_OFF_BETWEEN_AS_SDP_AND_SU;
+-
+-			/*
+-			 * Skip frames needs the AS SDP to keep flowing during PR
+-			 * active, so it is mutually exclusive with disabling AS SDP
+-			 * transmission in active and with the DC3CO idle protocol.
+-			 */
+-			if (skip_frames) {
+-				pr_alpm_ctl |= PR_ALPM_CTL_AS_SDP_SKIP_FRAMES(skip_frames);
+-				pr_alpm_ctl &= ~PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
+-				pr_alpm_ctl &= ~PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
+-			} else {
+-				pr_alpm_ctl &= ~PR_ALPM_CTL_AS_SDP_SKIP_FRAMES_MASK;
+-
+-				if (crtc_state->disable_as_sdp_when_pr_active)
+-					pr_alpm_ctl |= PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
+-
+-				if (intel_display_power_dc3co_allowed(display))
+-					pr_alpm_ctl |= PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
+-			}
+-
+-			intel_de_write(display, PR_ALPM_CTL(display, cpu_transcoder),
+-				       pr_alpm_ctl);
+-		}
++		if (intel_dp->as_sdp_supported)
++			intel_alpm_configure_pr_as_sdp(intel_dp, crtc_state);
+ 
+ 	} else {
+ 		alpm_ctl = ALPM_CTL_EXTENDED_FAST_WAKE_ENABLE |
 diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index 1cf70668ab1b..328920027f1c 100644
+index 328920027f1c..f8f605d94f96 100644
 --- a/drivers/gpu/drm/i915/display/intel_alpm.h
 +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -34,6 +34,8 @@ bool intel_alpm_aux_wake_supported(struct intel_dp *intel_dp);
- bool intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp);
- bool intel_alpm_is_alpm_aux_less(struct intel_dp *intel_dp,
+@@ -36,6 +36,7 @@ bool intel_alpm_is_alpm_aux_less(struct intel_dp *intel_dp,
  				 const struct intel_crtc_state *crtc_state);
-+bool intel_alpm_pr_as_sdp_skip_frames_enabled(struct intel_dp *intel_dp,
-+					      const struct intel_crtc_state *crtc_state);
+ bool intel_alpm_pr_as_sdp_skip_frames_enabled(struct intel_dp *intel_dp,
+ 					      const struct intel_crtc_state *crtc_state);
++void intel_alpm_pr_as_sdp_update(const struct intel_crtc_state *crtc_state);
  void intel_alpm_disable(struct intel_dp *intel_dp);
  bool intel_alpm_get_error(struct intel_dp *intel_dp);
  void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 0ebec6e0c240..1b60ce2dd00c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -10,6 +10,7 @@
- #include <drm/intel/intel_pcode_regs.h>
- #include <drm/intel/step.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index fc30a455bed3..9151ea6c15ab 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1232,6 +1232,14 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+ 		intel_vrr_disable(old_crtc_state);
+ 		intel_vrr_dcb_reset(old_crtc_state, crtc);
+ 		intel_crtc_update_active_timings(old_crtc_state, false);
++
++		/*
++		 * VRR is being disabled seamlessly (no modeset, Panel Replay
++		 * stays enabled), so re-apply the AS SDP skip-frame programming
++		 * for the new (VRR off) state.
++		 */
++		if (!intel_crtc_needs_modeset(new_crtc_state))
++			intel_alpm_pr_as_sdp_update(new_crtc_state);
+ 	}
  
-+#include "intel_alpm.h"
- #include "intel_backlight_regs.h"
- #include "intel_cdclk.h"
- #include "intel_clock_gating.h"
-@@ -488,6 +489,14 @@ void intel_display_power_dc3co_compute(struct intel_atomic_state *state)
- 	if (crtc_state->has_sel_update)
- 		trigger |= DC3CO_TRIGGER_PSR2;
+ 	if (audio_disabling(old_crtc_state, new_crtc_state))
+@@ -6971,6 +6979,16 @@ static void intel_update_crtc(struct intel_atomic_state *state,
+ 		intel_crtc_update_active_timings(new_crtc_state,
+ 						 new_crtc_state->vrr.enable);
  
 +	/*
-+	 * Periodic AS SDP (skip frames) needs the AS SDP to keep flowing during
-+	 * PR active, which is incompatible with DC3co. Keep DC3co disabled while
-+	 * skip frames is enabled.
++	 * VRR is being enabled seamlessly (no modeset, Panel Replay stays
++	 * enabled), so re-apply the AS SDP skip-frame programming for the new
++	 * (VRR on) state. Done here, outside the vblank-evasion critical section
++	 * (which runs with interrupts disabled), because it takes alpm.lock.
 +	 */
-+	if (intel_alpm_pr_as_sdp_skip_frames_enabled(intel_dp, crtc_state))
-+		trigger = DC3CO_TRIGGER_NONE;
++	if (intel_crtc_vrr_enabling(state, crtc) &&
++	    !intel_crtc_needs_modeset(new_crtc_state))
++		intel_alpm_pr_as_sdp_update(new_crtc_state);
 +
- done:
- 	intel_display_power_dc3co_update(display, trigger);
- }
+ 	if (new_crtc_state->vrr.dc_balance.enable)
+ 		intel_vrr_dcb_increment_flip_count(new_crtc_state, crtc);
+ 
 -- 
 2.50.1
 
