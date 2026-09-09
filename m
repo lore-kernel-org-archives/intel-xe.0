@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38B65C79FBF
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 12:42:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B924C88E40
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 12:42:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D586210F114;
-	Wed,  9 Sep 2026 12:42:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9ECFD10F121;
+	Wed,  9 Sep 2026 12:42:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FP5VHIhW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lK2mKZOM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CADB010F114
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 12:42:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA32B10F114
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 12:42:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788957735; x=1820493735;
+ t=1788957738; x=1820493738;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=F4kXF5oUc9Mp8wExrzAg8pv89BiZy7e+VKzuSNJ+5Ms=;
- b=FP5VHIhWdgDUy5XcN8AEA+ADYEcwsY+ClyIT5xKdS0uLJ+u7k2qb3FI4
- 8k/Uv6COCejs8z/shsIiE+iMzAm2A/O6i9SrAhbTA0uKOfwgBv8BPQfTe
- pAN9GBbKDu5VR0LxEn9uUfqN93a4BttqgbU2utGf80A+lrxxhcH9BSFZ3
- xya6RFva9fKQIsVxEKWj7f2i4hR4UKXObHS0+Il4KKDnGsiMouppVvOJv
- 4BpAGFKI3bfnJ7UroUu5Z5ZneUIv6znAisJJDVGQCvdiMRMGAr9UJyj7L
- Na7TUbUEkbe8+VbwdxWc+ZQo0iYUYhiVgzNgVrq2O7zKTzcqneW8tv0h6 A==;
-X-CSE-ConnectionGUID: jToMYPUjRwCMfyFvnSHLAg==
-X-CSE-MsgGUID: Yxyl8x0ZTjuTJsfz2Br2QA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="99715571"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="99715571"
+ bh=4p4NguyPEapapBvM3nJ9BoYzSAmyXMB1Gt5YAA0Bkwc=;
+ b=lK2mKZOMblGMriUQ/+bMlf+MmyZQIRcQKw+klx5+517dvWBHGmbDKv+s
+ yqdkzXtNrfoXT3MZXqjHcVsGFb6w+tqtCQbl3qlOHTB7eCk0x2AZLNBOR
+ eRVR0zJwJCyEtGfBtXKfE/L6O5xuTi1BijURBvFEcmBayVan2NXdXeBwV
+ qhEe0+9t7Cou7YUIm8pyfOA+fR4m05dx+SQ/Zm0WJMpv1KNqPpBBlFa1D
+ gnjy4gm/8e6CihmnamJRwQ93e4uLBNf8wMHePn54WqZ6Wdr2xtzYauYpe
+ aSVStxA826LOtIkyDkibJSTXsmLBQ5wGhnE9Z1nKG/saWW0boJXEzVbme A==;
+X-CSE-ConnectionGUID: 0hFLyXGdRb68Y22G/uVD6A==
+X-CSE-MsgGUID: ceEwos2WRO6ABtTXKJor8A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="99715577"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="99715577"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 05:42:15 -0700
-X-CSE-ConnectionGUID: 0l9S6XF7THCZKjSZwpJiwQ==
-X-CSE-MsgGUID: O0k2UiINReidFWEO6oVoZA==
+ 09 Sep 2026 05:42:17 -0700
+X-CSE-ConnectionGUID: qSEz+g9yQqqXz/LFiHLkDw==
+X-CSE-MsgGUID: fm0ryviHRe69bJCYfzapyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="296246657"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="296246664"
 Received: from hghimira.iind.intel.com ([10.190.239.34])
- by fmviesa001.fm.intel.com with ESMTP; 09 Sep 2026 05:42:13 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 09 Sep 2026 05:42:16 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [RFC v2 16/21] drm/xe/vm: Add xe_vma_supports_access_ctr() helper
-Date: Wed,  9 Sep 2026 18:15:10 +0530
-Message-ID: <20260909124457.1610890-39-himal.prasad.ghimiray@intel.com>
+Subject: [RFC v2 18/21] drm/xe/svm: Define access counter migration policy
+Date: Wed,  9 Sep 2026 18:15:12 +0530
+Message-ID: <20260909124457.1610890-41-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260909124457.1610890-23-himal.prasad.ghimiray@intel.com>
 References: <20260909124457.1610890-23-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,167 +67,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hardware access counter slots are finite resources. Add a helper
-to determine whether a VMA is eligible for access counting, so
-callers will avoid wasting slots on BOs that cannot benefit from
-migration hints.
+Access counters are a hardware mechanism that tracks how frequently a
+GPU accesses a memory region. When a counter becomes hot the driver can
+migrate the backing pages to device-local VRAM to improve performance.
+Until now the NC (no-count) PTE bit was programmed without a clearly
+defined policy for which GPU should own AC-triggered migration in a
+multi-GPU system, and the SVM range setup read the range flags
+inconsistently.
 
-A VMA is eligible if:
-  - The device is a discrete GPU (access counters unused on iGPU)
-  - It is a CPU address mirror (SVM) VMA, which is always migratable
-  - The backing BO has more than one placement region
-  - The BO is not already resident in VRAM local to the triggering tile
+Define and document the policy, keyed off the VMA's madvise preferred
+location, and implement it in xe_vma_supports_access_ctr():
 
-Userptr and null VMAs are excluded as they have no associated BO.
+ - Explicit preferred GPU: only that tile maps the range with NC clear,
+   so only the owning GPU generates AC events and triggers migration.
+   Every other tile maps with NC set and never counts accesses to it.
 
+ - Explicit system memory (DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM): all
+   tiles map with NC set; the range stays in system RAM and no
+   AC-triggered migration occurs.
+
+ - No preference (DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE, the default):
+   first-touch-then-migrate-on-hot. The first GPU to fault migrates the
+   range to its own local VRAM (device-side first-touch); NC is left
+   clear on all tiles so a different GPU can later win the range once
+   its access counter becomes hot.
+
+For single-GPU systems with default memory attributes the behaviour is
+unchanged.
+
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_access_counter.c | 32 ++++++++++++++++---
- drivers/gpu/drm/xe/xe_vm.c             | 44 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h             |  3 ++
- 3 files changed, 75 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c  | 10 +++++++++
+ drivers/gpu/drm/xe/xe_svm.c | 42 +++++++++++++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.c  | 30 +++++++++++++++++++++++++-
+ 3 files changed, 79 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_access_counter.c b/drivers/gpu/drm/xe/xe_access_counter.c
-index 1aff8b710862..ed1ed6091ac5 100644
---- a/drivers/gpu/drm/xe/xe_access_counter.c
-+++ b/drivers/gpu/drm/xe/xe_access_counter.c
-@@ -68,7 +68,7 @@ static int xe_access_counter_vma_setup(struct xe_vm *vm, struct xe_vma *vma,
- 	struct xe_tile *tile = gt_to_tile(gt);
- 	struct xe_validation_ctx ctx;
- 	struct drm_exec exec;
--	struct dma_fence *fence;
-+	struct dma_fence *fence = NULL;
- 	int err = 0;
- 
- 	/*TODO : Handle userptr move to vram */
-@@ -89,9 +89,22 @@ static int xe_access_counter_vma_setup(struct xe_vm *vm, struct xe_vma *vma,
- 	dma_fence_put(vma->ac_move_fence);
- 	vma->ac_move_fence = NULL;
- 
--	/* Lock VM and BOs dma-resv */
--	xe_validation_ctx_init(&ctx, &vm->xe->val, &exec, (struct xe_val_flags) {});
-+	/*
-+	 * Ignore duplicate locks: the eligibility check below needs the BO
-+	 * resv held, so we lock the VMA explicitly and xe_vma_lock_and_validate()
-+	 * then locks the same BO again.
-+	 */
-+	xe_validation_ctx_init(&ctx, &vm->xe->val, &exec,
-+			       (struct xe_val_flags) { .exec_ignore_duplicates = true });
- 	drm_exec_until_all_locked(&exec) {
-+		err = xe_vm_lock_vma(&exec, vma);
-+		drm_exec_retry_on_contention(&exec);
-+		if (err)
-+			break;
-+
-+		if (!xe_vma_supports_access_ctr(vm->xe, vma, tile))
-+			break;
-+
- 		err = xe_vma_lock_and_validate(&exec, vma, tile->mem.vram, true);
- 		drm_exec_retry_on_contention(&exec);
- 		xe_validation_retry_on_oom(&ctx, &err);
-@@ -110,7 +123,7 @@ static int xe_access_counter_vma_setup(struct xe_vm *vm, struct xe_vma *vma,
- 	 * store the fence on the VMA so the page-fault handler can wait on it
- 	 * if needed, rather than blocking here under vm->lock.
- 	 */
--	if (!err && !IS_ERR(fence))
-+	if (!err && fence && !IS_ERR(fence))
- 		vma->ac_move_fence = fence;
- 
- 	xe_validation_ctx_fini(&ctx);
-@@ -143,6 +156,12 @@ static int xe_access_counter_service(struct xe_access_counter *ac)
- 		goto unlock_vm;
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 9000e882e51d..03a5d0e846c8 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -866,6 +866,16 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
  	}
  
-+	if (!IS_DGFX(xe)) {
-+		/* Access counter migration hints target device VRAM only. */
-+		ac->consumer.page_va = ac->gran_end;
-+		goto unlock_vm;
-+	}
-+
- 	page_va = ac->consumer.page_va;
- 	gran_end = ac->gran_end;
- 
-@@ -180,6 +199,11 @@ static int xe_access_counter_service(struct xe_access_counter *ac)
- 	if (xe_vma_is_cpu_addr_mirror(vma)) {
- 		struct xe_svm_range *range;
- 
-+		if (!xe_vma_supports_access_ctr(xe, vma, gt_to_tile(gt))) {
-+			ac->consumer.page_va = min(xe_vma_end(vma), gran_end);
-+			goto unlock_vm;
-+		}
-+
- 		/*
- 		 * Find the first existing SVM range in [hint_va, gran_end).
- 		 * We use range_find (not find_or_insert) because AC events are
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 68adb2a7422c..5f09f446d86f 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -4874,6 +4874,50 @@ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap)
- 	kvfree(snap);
- }
+ 	if (range) {
++		/*
++		 * Always set NC (no-count) on VRAM PTEs for SVM ranges so
++		 * this GPU does not generate access counter events for memory
++		 * it is already responsible for.  Today default_vram_pte
++		 * covers only local VRAM; once UAL lands, remote-device VRAM
++		 * pages will also flow through default_vram_pte — NC remains
++		 * the right setting there too, as the owning device handles
++		 * AC for its own local memory.  Update this comment when UAL
++		 * support is added and adjust if the semantics change.
++		 */
+ 		xe_walk.default_vram_pte |= XE_PPGTT_PTE_NC;
+ 		range_flags.__flags = READ_ONCE(range->base.flags.__flags);
+ 		if (!range_flags.migrate_devmem)
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 75da11c3bbb2..6e0fc0c80905 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -30,6 +30,38 @@
+ #define XE_PEER_PAGEMAP ((void *)0ul)
+ #define XE_PEER_VM ((void *)1ul)
  
 +/**
-+ * xe_vma_supports_access_ctr - Determine if VMA is eligible for access counting
-+ * @xe: Pointer to the Xe device structure
-+ * @vma: The VMA
-+ * @tile: Tile with which VMA bound is associated to
++ * DOC: SVM access counter migration policy
 + *
-+ * Note, access counters are not used unless enabled in LRC.
++ * Access counters are a hardware mechanism that tracks how frequently the GPU
++ * accesses memory regions.  When counters become hot, the kernel driver can
++ * migrate memory to device-local VRAM for better performance.  The policy
++ * governing when and where AC-triggered migration happens is as follows:
++ *
++ * 1. Explicit preferred location (set via madvise DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC):
++ *
++ *    - If the preferred location resolves to a specific GPU tile, only that
++ *      tile's PTEs have the NC (no-count) bit clear, so only that GPU generates
++ *      AC events and triggers migration.  All other GPUs map the memory with
++ *      NC set and never generate AC events for it.
++ *    - If the preferred location is system memory (DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM),
++ *      all GPUs map with NC set — no AC-triggered migration occurs.
++ *
++ * 2. No explicit preference (default — DRM_XE_PREFERRED_LOC_DEFAULT_DEVICE or unset):
++ *
++ *    First-touch-then-migrate-on-hot policy:
++ *    - The first GPU to fault the range migrates it to that GPU's local VRAM
++ *      (device-side first-touch placement).
++ *    - NC is left clear on all tiles, so any other GPU that subsequently
++ *      accesses the range keeps counting; once its access counter becomes
++ *      hot the range is migrated to that GPU's local VRAM.
++ *    - The GPU that fires the AC event wins placement.
++ *
++ * 3. TODO: "Migrate only once hot" — skip migration on the initial GPU page
++ *    fault entirely and rely solely on AC events for first placement, avoiding
++ *    unnecessary early migrations.  Addressed by a later patch in this series.
 + */
-+bool xe_vma_supports_access_ctr(struct xe_device *xe,
-+				struct xe_vma *vma,
-+				struct xe_tile *tile)
-+{
-+	struct xe_bo *bo = xe_vma_bo(vma);
-+	struct ttm_resource *res;
-+
-+	if (!IS_DGFX(xe))
-+		return false;
-+
-+	if (xe_vma_is_cpu_addr_mirror(vma)) {
-+		/*TODO: Add policy based on preferred locations */
-+		return true;
-+	}
-+
-+	/* userptr or using null vma */
-+	if (!bo)
-+		return false;
-+
-+	xe_bo_assert_held(bo);
-+	res = bo->ttm.resource;
-+	/* if for some reason no backing store, nothing to migrate */
-+	if (!res)
-+		return false;
-+
-+	/* cannot migrate if single placement */
-+	if (bo->placement.num_placement <= 1)
-+		return false;
-+
-+	/* cannot migrate to ourself (already in VRAM local to @tile) */
-+	if (!tile->mem.vram || res->mem_type == tile->mem.vram->placement)
-+		return false;
-+
-+	return true;
-+}
 +
  /**
-  * xe_vma_need_vram_for_atomic - Check if VMA needs VRAM migration for atomic operations
-  * @xe: Pointer to the Xe device structure
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index ef34fe742d22..2a5ae0aacc97 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -185,6 +185,9 @@ struct xe_vma *xe_vm_find_vma_by_addr(struct xe_vm *vm, u64 page_addr);
+  * DOC: drm_pagemap reference-counting in xe:
+  *
+@@ -1339,9 +1371,15 @@ static int __xe_svm_range_setup(struct xe_vm *vm, struct xe_vma *vma,
  
- int xe_vma_need_vram_for_atomic(struct xe_device *xe, struct xe_vma *vma, bool is_atomic);
+ 	range_debug(range, "PAGE FAULT");
  
-+bool xe_vma_supports_access_ctr(struct xe_device *xe, struct xe_vma *vma,
-+				struct xe_tile *tile);
+-	if (acc_ctr_trigger && !range_flags.migrate_devmem) {
++	/*
++	 * AC-triggered setup: if the range is already in device memory a
++	 * rebind is all that's needed.  Otherwise proceed to the
++	 * migration path — with no explicit madvise preferred location, the
++	 * default first-touch-then-migrate-on-hot policy applies and we
++	 * should attempt VRAM placement for this hot range.
++	 */
++	if (acc_ctr_trigger && !range_flags.migrate_devmem)
+ 		goto out;
+-	}
+ 
+ 	if (--migrate_try_count >= 0 &&
+ 	    xe_svm_range_needs_migrate_to_vram(range, vma, dpagemap)) {
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 5f09f446d86f..c60de5ad76c5 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -4880,6 +4880,17 @@ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap)
+  * @vma: The VMA
+  * @tile: Tile with which VMA bound is associated to
+  *
++ * For CPU address mirror VMAs the decision is policy-driven:
++ *
++ * - If madvise has set an explicit preferred location that resolves to a
++ *   pagemap belonging to a *different* tile, this tile should not generate
++ *   access counter events (the user declared where the memory lives).  Set
++ *   NC so AC events are suppressed.
++ * - If the preferred location is system memory (DEFAULT_SYSTEM), no GPU
++ *   should migrate via AC; suppress on all tiles.
++ * - Otherwise (no preference / DEFAULT_DEVICE) apply first-touch-then-hot
++ *   policy: enable AC so this tile can migrate the range once it becomes hot.
++ *
+  * Note, access counters are not used unless enabled in LRC.
+  */
+ bool xe_vma_supports_access_ctr(struct xe_device *xe,
+@@ -4893,7 +4904,24 @@ bool xe_vma_supports_access_ctr(struct xe_device *xe,
+ 		return false;
+ 
+ 	if (xe_vma_is_cpu_addr_mirror(vma)) {
+-		/*TODO: Add policy based on preferred locations */
++		struct drm_pagemap *preferred = xe_vma_resolve_pagemap(vma, tile);
 +
- int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t addr, uint64_t size);
++		/*
++		 * Explicit system preference: no AC on any GPU — the user
++		 * has stated memory should remain in system RAM.
++		 */
++		if (vma->attr.preferred_loc.devmem_fd == DRM_XE_PREFERRED_LOC_DEFAULT_SYSTEM)
++			return false;
++
++		/*
++		 * Explicit device preference pointing at a *different* tile:
++		 * suppress AC on this tile so migrates only happen on the
++		 * owning GPU.
++		 */
++		if (preferred && preferred != xe_tile_local_pagemap(tile))
++			return false;
++
++		/* No preference or this tile is preferred: enable AC. */
+ 		return true;
+ 	}
  
- int xe_vm_alloc_cpu_addr_mirror_vma(struct xe_vm *vm, uint64_t addr, uint64_t size);
 -- 
 2.43.0
 
