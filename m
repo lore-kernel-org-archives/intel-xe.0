@@ -4,43 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2598BC79FA1
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 01:56:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAF8AC79FB5
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 02:26:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE44610E06B;
-	Wed,  9 Sep 2026 01:56:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bkuxtXat";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B25810E06B
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 01:56:06 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 3FEBE601FB;
- Wed,  9 Sep 2026 01:56:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF1D91F00A3A;
- Wed,  9 Sep 2026 01:56:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788918965;
- bh=FGC4RYDa0k7tCTBsN/JlJeahf+zr7s2BwDAMHlEiBTM=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=bkuxtXatLtt8UMfTIp1oZFsMqbhyJVHSWkTVuisQRbSSpGvD/FDMMmHC5dBLr0ASL
- knoFAv7mJaJxBlG8N42tGOP1lFXB3/fagnotoDxZQW3Tf0CdDWrKMj9Ccfq/epCRsC
- YueiJ67cPQZo3Md1vJ8pLKp2PwBy9XHlYxCJGtmxzAABhe9dJ6Lqw8BNK4ia50Nck3
- 7MGHaxQB8YoxrliJa6JYgCNMZS3tlzJJaL3ar/7yOxjwnzhq8EBzu8A10ixXiGabtU
- W6Lq0PoKbCUjNSTfq5UX9tRmGer+nFhXp8bF3iMUtPEbJAeoHjtnDdJrel9HM6dw1x
- uhyqyC4pmCmrw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/2] drm/xe: Inspect all forcewake bits for runtime
- idleness
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A2AF10EE53;
+	Wed,  9 Sep 2026 02:26:43 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6CB610EE52;
+ Wed,  9 Sep 2026 02:26:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6114436910155907857=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
+ =?utf-8?q?=5D_drm/xe=3A_Inspect_all_forcewake_bits_for_runtime_idleness?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260909013712.1962521-1-vinay.belgaumkar@intel.com>
+Date: Wed, 09 Sep 2026 02:26:42 -0000
+Message-ID: <178892080293.137999.4725524406807533786@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260909013712.1962521-1-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 09 Sep 2026 01:56:04 +0000
-Message-Id: <20260909015604.CF1D91F00A3A@smtp.kernel.org>
+In-Reply-To: <20260909013712.1962521-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,97 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] Returning -EAGAIN from `xe_pci_runtime_idle` aborts the runtime PM=
- idle transition but fails to schedule a retry, permanently preventing runt=
-ime suspend.
-- [Medium] Using `xe_gt_info` in a runtime PM path will cause severe log sp=
-am when forcewake is held.
---
+--===============6114436910155907857==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 987ddc78bc72644b422f8d130f4407129128a641
-Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+== Series Details ==
 
-drm/xe: Inspect all forcewake bits for runtime idleness
+Series: series starting with [1/2] drm/xe: Inspect all forcewake bits for runtime idleness
+URL   : https://patchwork.freedesktop.org/series/173641/
+State : success
 
-This commit updates the runtime idleness check to inspect all forcewake
-bits across all domains. If any bit is set, it returns -EAGAIN to skip=20
-the suspend operation.
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_f=
-orce_wake.c
-[ ... ]
-> +bool xe_force_wake_any_bit_set(struct xe_force_wake *fw)
-> +{
-> +	struct xe_gt *gt =3D fw->gt;
-> +	struct xe_force_wake_domain *domain;
-> +	unsigned int tmp;
-> +	u32 val;
-> +
-> +	for_each_fw_domain(domain, fw, tmp) {
-> +		val =3D xe_mmio_read32(&gt->mmio, domain->reg_ctl);
-> +		if (val & 0xFFFF) {
-> +			xe_gt_info(gt, "FW bit set in domain: %d, val: 0x%x",
-> +				   domain->id, val);
+CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -> xe-pw-173641v1_BAT
+====================================================
 
-[Severity: Medium]
-Will this cause severe log spam in high-frequency runtime PM paths?
+Summary
+-------
 
-Forcewake can be legitimately held for long periods (for example, by
-userspace profiling tools, IGT tests, or debugfs readers). Every time the
-driver drops its PM reference and triggers a runtime idle check, this
-unconditional info message will print if the external agent is still holding
-forcewake.=20
+  **SUCCESS**
 
-Should this be a debug-level log (xe_gt_dbg) or rate-limited instead?
+  No regressions found.
 
-> +			return true;
-> +		}
-> +	}
-> +
-> +	return false;
-> +}
+  
 
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-[ ... ]
-> @@ -1437,9 +1438,14 @@ static int xe_pci_runtime_idle(struct device *dev)
->  {
->  	struct pci_dev *pdev =3D to_pci_dev(dev);
->  	struct xe_device *xe =3D pdev_to_xe_device(pdev);
-> +	struct xe_gt *gt;
-> +	u8 id;
-> =20
->  	xe_pm_d3cold_allowed_toggle(xe);
-> =20
-> +	for_each_gt(gt, xe, id)
-> +		if (xe_force_wake_any_bit_set(gt_to_fw(gt)))
-> +			return -EAGAIN;
+Participating hosts (14 -> 12)
+------------------------------
 
-[Severity: High]
-Will returning -EAGAIN here permanently prevent runtime suspend?
+  Missing    (2): bat-nvls-2 bat-lnl-2 
 
-When the PM core's rpm_idle() function receives a non-zero return value, it
-aborts the idle transition and bypasses the subsequent call to rpm_suspend(=
-).
-Returning an error code does not automatically instruct the PM core to poll
-or reschedule an autosuspend.
 
-If a forcewake bit happens to be set at the moment the PM usage count drops
-to 0, it seems the device will remain stranded in the active (D0) state
-indefinitely.=20
+Changes
+-------
 
-Should this explicitly schedule a retry, perhaps by calling
-pm_runtime_mark_last_busy() and pm_runtime_autosuspend() before returning?
+  No changes found
 
->  	return 0;
->  }
->
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260909013712.1962=
-521-1-vinay.belgaumkar@intel.com?part=3D1
+Build changes
+-------------
+
+  * IGT: IGT_9086 -> IGT_9087
+  * Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -> xe-pw-173641v1
+
+  IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_9087: 9087
+  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada
+  xe-pw-173641v1: 173641v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173641v1/index.html
+
+--===============6114436910155907857==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe: Inspect all forcewake bits for runtime idleness</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173641/">https://patchwork.freedesktop.org/series/173641/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173641v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173641v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -&gt; xe-pw-173641v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 12)</h2>
+<p>Missing    (2): bat-nvls-2 bat-lnl-2 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9086 -&gt; IGT_9087</li>
+<li>Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -&gt; xe-pw-173641v1</li>
+</ul>
+<p>IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_9087: 9087<br />
+  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada<br />
+  xe-pw-173641v1: 173641v1</p>
+
+</body>
+</html>
+
+--===============6114436910155907857==--
