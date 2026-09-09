@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C412BC79FB6
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 16:18:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD457C88E40
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 16:18:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3912E10F21E;
-	Wed,  9 Sep 2026 16:18:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C0F810F224;
+	Wed,  9 Sep 2026 16:18:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mlb8ngma";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AxxcMKgm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1951C10F21E;
- Wed,  9 Sep 2026 16:18:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2358310F220;
+ Wed,  9 Sep 2026 16:18:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788970702; x=1820506702;
+ t=1788970705; x=1820506705;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZS/VWLfl8Rt607CENR+5bgo1zM2NXobscobgqfz/EnI=;
- b=mlb8ngma/npFz1NfA2R5IC6MLlUCcrj1mG83XwznmVS+xtkjQq/T7yQO
- 7wJOGeE8ELiELRrSYPKANUCVlwZzlctdp9Nw2ymEXm2Gk7mgRfdDcgDzw
- R6KgC+3QP/yTIAyH3Hi0WokTkAlXUwW1nMe67pFER8+5YC3V+k0SLC1x1
- Ko8OTriBk0v4wclYwD0ffHu3+c7J2HKUnFF0J5s/oE06u4D8uVMXP+9Mo
- Ff1ihNUjoKEw4RBrEbSLUzpwDX94ArtM62rnkCtIONbjsBVuhnO9EsFmb
- SrMWxriDxkqV8W9gDafBlz732pMWki+MO/io5fgVyNYN6orB7psuZRsxX Q==;
-X-CSE-ConnectionGUID: zA5zs2aSShSfR3nRE0Ghjw==
-X-CSE-MsgGUID: 1vv5byfZQ6WCMrUU/IsdEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="100064628"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="100064628"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 09:18:11 -0700
-X-CSE-ConnectionGUID: 41Q6xor9QDCb5OEvBADpuw==
-X-CSE-MsgGUID: T7WtwTltTv2TIv+leGCWOQ==
+ bh=Me+1t8/HhvwgdsTTkRYLJoAstlAPd8ISRf1/g3R3OzQ=;
+ b=AxxcMKgmwWLaj1sd9SFvkrgddGjSxdh0nFNs49en2D5YrdE8sLXPxxXT
+ dgp7Y25a5tOEfXwzXCoj/8rTfwml7I+1xRVbYuTTE6rYwRzj0bG0yGDBE
+ AmBg0uizQOAAFcGCklwAnGDJUhuKQF5m3u9TiIpahNv8mB1HT4lzZ7Tfo
+ 1O30V4GZBDpmtIWC6tRDKYcX47De6SMGT4/E2AzUZu/WnlXh5lTAL5sj0
+ L3N/HbwstMePwQKsn/+4ZL+uHU6OCaH3h4PvI2OCeMjYmHEDBRy2WlPJz
+ YLnpYujASW1GKc9fISm5b0awc3GF7PZiMRshbEy2VaFezU3ao3h/6aRu8 w==;
+X-CSE-ConnectionGUID: MS4+1y56T7ytEZrcveo0Dg==
+X-CSE-MsgGUID: fNxrDY0wSpeZsYiSUDHuXw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="89446199"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="89446199"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2026 09:18:24 -0700
+X-CSE-ConnectionGUID: BuKhGGWgRKSZegLfotBX+Q==
+X-CSE-MsgGUID: deEG3Cf3Q5GjbWgj+nZzIA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="275503342"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="276592096"
 Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.137])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 09:18:11 -0700
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2026 09:18:22 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 09/13] drm/i915: Extract commit_dsb_max_cmds()
-Date: Wed,  9 Sep 2026 19:17:26 +0300
-Message-ID: <20260909161730.12969-10-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 12/13] drm/i915/dsb: Add tracepoints for DSB commit
+Date: Wed,  9 Sep 2026 19:17:29 +0300
+Message-ID: <20260909161730.12969-13-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260909161730.12969-1-ville.syrjala@linux.intel.com>
 References: <20260909161730.12969-1-ville.syrjala@linux.intel.com>
@@ -72,72 +72,119 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The code to determine the number of required DSB commands for
-the commit is now split into two parts in a messy way, and the
-comment explaining the numbers is completely ditached from the
-place that actually has those numbers. Consolidtate it all into
-a single function that makes sense.
+Currently DSB based commits don't leave any breadcrumbs via
+tracepoints. Add new intel_dsb_commit and intel_dsb_done
+tracepoints that at least indicates when the DSB does something.
+
+We might want to improve this later somehow to have a slightly
+better idea what the DSB might end up doing. But at least this
+now shows that *something* is happening on the hardware.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 31 +++++++++++++-------
- 1 file changed, 21 insertions(+), 10 deletions(-)
+ .../drm/i915/display/intel_display_trace.h    | 51 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dsb.c      |  5 ++
+ 2 files changed, 56 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 7741f1395375..d7bd1b862aa9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7402,29 +7402,40 @@ static void intel_atomic_dsb_prepare(struct intel_atomic_state *state,
- 	intel_color_prepare_commit(state, crtc);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
+index 504d105935bc..06cf662931fe 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_trace.h
++++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
+@@ -22,6 +22,7 @@
+ #include "intel_display_core.h"
+ #include "intel_display_limits.h"
+ #include "intel_display_types.h"
++#include "intel_dsb.h"
+ #include "intel_vblank.h"
+ 
+ #define __dev_name_display(display) dev_name((display)->drm->dev)
+@@ -681,6 +682,56 @@ TRACE_EVENT(intel_fbc_nuke,
+ 		      __entry->frame, __entry->scanline)
+ );
+ 
++TRACE_EVENT(intel_dsb_commit,
++	    TP_PROTO(struct intel_crtc *crtc, enum intel_dsb_id dsb_id),
++	    TP_ARGS(crtc, dsb_id),
++
++	    TP_STRUCT__entry(
++			     __string(dev, __dev_name_kms(crtc))
++			     __field(char, pipe_name)
++			     __field(u32, dsb_id)
++			     __field(u32, frame)
++			     __field(u32, scanline)
++			     ),
++
++	    TP_fast_assign(
++			   __assign_str(dev);
++			   __entry->pipe_name = pipe_name(crtc->pipe);
++			   __entry->dsb_id = dsb_id;
++			   __entry->frame = intel_crtc_get_vblank_counter(crtc);
++			   __entry->scanline = intel_get_crtc_scanline(crtc);
++			   ),
++
++	    TP_printk("dev %s, pipe %c, DSB %d, frame=%u, scanline=%u",
++		      __get_str(dev), __entry->pipe_name, __entry->dsb_id,
++		      __entry->frame, __entry->scanline)
++);
++
++TRACE_EVENT(intel_dsb_done,
++	    TP_PROTO(struct intel_crtc *crtc, enum intel_dsb_id dsb_id),
++	    TP_ARGS(crtc, dsb_id),
++
++	    TP_STRUCT__entry(
++			     __string(dev, __dev_name_kms(crtc))
++			     __field(char, pipe_name)
++			     __field(u32, dsb_id)
++			     __field(u32, frame)
++			     __field(u32, scanline)
++			     ),
++
++	    TP_fast_assign(
++			   __assign_str(dev);
++			   __entry->pipe_name = pipe_name(crtc->pipe);
++			   __entry->dsb_id = dsb_id;
++			   __entry->frame = intel_crtc_get_vblank_counter(crtc);
++			   __entry->scanline = intel_get_crtc_scanline(crtc);
++			   ),
++
++	    TP_printk("dev %s, pipe %c, DSB %d, frame=%u, scanline=%u",
++		      __get_str(dev), __entry->pipe_name, __entry->dsb_id,
++		      __entry->frame, __entry->scanline)
++);
++
+ TRACE_EVENT(intel_crtc_vblank_work_start,
+ 	    TP_PROTO(struct intel_crtc *crtc),
+ 	    TP_ARGS(crtc),
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index 8e01e1eed291..299d778520a2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -14,6 +14,7 @@
+ #include "intel_de.h"
+ #include "intel_display_regs.h"
+ #include "intel_display_rpm.h"
++#include "intel_display_trace.h"
+ #include "intel_display_types.h"
+ #include "intel_dsb.h"
+ #include "intel_dsb_regs.h"
+@@ -982,6 +983,8 @@ void intel_dsb_commit(struct intel_dsb *dsb)
+ 	intel_de_write_fw(display, DSB_HEAD(pipe, dsb->id),
+ 			  intel_dsb_head(dsb));
+ 
++	trace_intel_dsb_commit(crtc, dsb->id);
++
+ 	intel_de_write_fw(display, DSB_TAIL(pipe, dsb->id),
+ 			  intel_dsb_tail(dsb));
  }
+@@ -1124,6 +1127,8 @@ void intel_dsb_irq_handler(struct intel_display *display,
+ 		spin_lock(&display->drm->event_lock);
  
-+static unsigned int
-+commit_dsb_max_cmds(const struct intel_crtc_state *crtc_state)
-+{
-+	/* just enough to start the chained DSB */
-+	if (!crtc_state->use_dsb && !crtc_state->use_flipq)
-+		return 16;
+ 		if (crtc->dsb_event) {
++			trace_intel_dsb_done(crtc, dsb_id);
 +
-+	/*
-+	 * Rough estimate:
-+	 * ~64 registers per each plane * 8 planes = 512
-+	 * Double that for pipe stuff and other overhead.
-+	 * ~4913 registers for 3DLUT
-+	 * ~200 color registers * 3 HDR planes
-+	 */
-+	if (crtc_state->plane_color_changed)
-+		return 8192;
-+	else
-+		return 1024;
-+}
-+
- static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 				    struct intel_crtc *crtc)
- {
- 	struct intel_display *display = to_intel_display(state);
- 	struct intel_crtc_state *new_crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
--	unsigned int size = new_crtc_state->plane_color_changed ? 8192 : 1024;
- 
- 	if (!new_crtc_state->use_flipq &&
- 	    !new_crtc_state->use_dsb &&
- 	    !new_crtc_state->dsb_color)
- 		return;
- 
--	/*
--	 * Rough estimate:
--	 * ~64 registers per each plane * 8 planes = 512
--	 * Double that for pipe stuff and other overhead.
--	 * ~4913 registers for 3DLUT
--	 * ~200 color registers * 3 HDR planes
--	 */
- 	new_crtc_state->dsb_commit = intel_dsb_prepare(state, crtc, INTEL_DSB_0,
--						       new_crtc_state->use_dsb ||
--						       new_crtc_state->use_flipq ? size : 16);
-+						       commit_dsb_max_cmds(new_crtc_state));
- 	if (!new_crtc_state->dsb_commit) {
- 		new_crtc_state->use_flipq = false;
- 		new_crtc_state->use_dsb = false;
+ 			/*
+ 			 * Update vblank counter/timestamp in case it
+ 			 * hasn't been done yet for this frame.
 -- 
 2.54.0
 
