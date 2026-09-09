@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7311CC79FAA
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 06:32:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CA9EC79FAA
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 07:04:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1562410EEDD;
-	Wed,  9 Sep 2026 06:32:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="FoJHBpC+";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89D6B10EEDD
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 06:32:27 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id C534560207;
- Wed,  9 Sep 2026 06:32:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5008B1F00AC4;
- Wed,  9 Sep 2026 06:32:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788935546;
- bh=1Q/UkauQji1oU/fT3pTOwKcum8WlRFuA2oWiU1wUTc0=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=FoJHBpC+BIBZUuf11hRMS2sjGI85W0JeJz3o1AhLmKlrZq7Z7lfiDL4VGdmS+TJDH
- QCUUKEzq9Gd4fCwb02VF5q8QWmaWp1A+KA4afy6TFF3BStaydX4ZciBxqNxTuLPE6g
- sBpEzTIUICBXgxvpTKeGc7yh3spMBtGYtHYKatG8xwYLVfPsG/uD34EGSu9HGrnQHX
- L1g+tPprCMxBiPw1M25mPX2La16QXOw9wUdj1cjWr7xqMHL1xtde8QqBvVLclz9sSv
- Ra4tJgvmdRM8n0TbHHXmPe2ns52UapZHMsVcBQomeTRTmlaYeKs4//wvWcHaYsmi4E
- eHL1rcuKMsHRg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 1/4] drm/xe/xe_migrate: Align MEM_COPY pitch with
- destination address
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3841410EF77;
+	Wed,  9 Sep 2026 07:04:56 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2AD010EF77;
+ Wed,  9 Sep 2026 07:04:54 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6398502692678668680=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/xe=5Fmigrate=3A_Fix_?=
+ =?utf-8?q?memory_corruption_with_unaligned_dst_in_MEM=5FCOPY_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jan Maslak" <jan.maslak@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260909061845.4048047-2-jan.maslak@intel.com>
+Date: Wed, 09 Sep 2026 07:04:54 -0000
+Message-ID: <178893749479.139265.6422616391370329559@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260909061845.4048047-1-jan.maslak@intel.com>
- <20260909061845.4048047-2-jan.maslak@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 09 Sep 2026 06:32:25 +0000
-Message-Id: <20260909063226.5008B1F00AC4@smtp.kernel.org>
+In-Reply-To: <20260909061845.4048047-1-jan.maslak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,100 +36,177 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
+--===============6398502692678668680==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-New issues:
-- [Medium] Memory leak of struct xe_bb in xe_migrate_vram when copying with=
- unsupported alignment.
+== Series Details ==
 
-Pre-existing issues:
-- [High] The bounce buffer allocation uses kmalloc(64) which is not guarant=
-eed to return a 64-byte aligned pointer when SLUB debugging (redzoning) or =
-KASAN is enabled. If it returns an unaligned pointer, the recursive call to=
- xe_migrate_access_memory will fail the alignment check again, leading to i=
-nfinite recursion and a kernel stack overflow.
---
+Series: drm/xe/xe_migrate: Fix memory corruption with unaligned dst in MEM_COPY (rev3)
+URL   : https://patchwork.freedesktop.org/series/167675/
+State : failure
 
-commit 750ad7c695067571d7f0d70322bbf7d762b30994
-Author: Christoph Manszewski <c.manszewski@gmail.com>
+== Summary ==
 
-drm/xe/xe_migrate: Align MEM_COPY pitch with destination address
+CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -> xe-pw-167675v3_BAT
+====================================================
 
-This commit fixes memory corruption in MATRIX_COPY mode when the pitch
-is not aligned to the destination address. It updates the pitch selection
-to ensure it is aligned to both the copy length and the destination address.
+Summary
+-------
 
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
-ate.c
-> index 75b83687f1b5d..7da57dc522896 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-[ ... ]
-> @@ -2225,16 +2226,11 @@ static struct dma_fence *xe_migrate_vram(struct x=
-e_migrate *m,
-[ ... ]
->  	}
-> =20
-> +	pitch =3D xe_migrate_copy_pitch(xe, len, dst_L0_ofs);
-> +	if (!xe->info.has_mem_copy_instr &&
-> +	    drm_WARN_ON(&xe->drm,
-> +			(!IS_ALIGNED(len, pitch)) ||
-> +			(sram_offset | vram_addr) & XE_CACHELINE_MASK))
-> +		return ERR_PTR(-EOPNOTSUPP);
-> +
+  **FAILURE**
 
-[Severity: Medium]
-Does this code leak the batch buffer?
+  Serious unknown changes coming with xe-pw-167675v3_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-167675v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-Looking at xe_migrate_vram(), bb is allocated earlier with xe_bb_new().
-If this alignment check fails, we return ERR_PTR(-EOPNOTSUPP) directly. Sho=
-uld
-we jump to the err label to free bb using xe_bb_free(bb, NULL) instead?
+  
 
->  	bb->cs[bb->len++] =3D MI_BATCH_BUFFER_END;
->  	update_idx =3D bb->len;
-[ ... ]
-> @@ -2538,7 +2541,9 @@ int xe_migrate_access_memory(struct xe_migrate *m, =
-struct xe_bo *bo,
->  		else
->  			current_bytes =3D min_t(int, bytes_left, cursor.size);
-> =20
-> -		pitch =3D xe_migrate_copy_pitch(xe, current_bytes);
-> +		pitch =3D xe_migrate_copy_pitch(xe, current_bytes,
-> +					      write ? vram_addr :
-> +					      (unsigned long)buf & ~PAGE_MASK);
+Participating hosts (14 -> 12)
+------------------------------
 
-[Severity: High]
-This is a pre-existing issue, but can the bounce buffer allocation earlier =
-in
-this function cause an infinite recursion?
+  Missing    (2): bat-nvls-2 bat-lnl-2 
 
-When an unaligned memory access triggers the bounce buffer path in
-xe_migrate_access_memory(), it calls:
+Possible new issues
+-------------------
 
-    bounce =3D kmalloc(XE_CACHELINE_BYTES, GFP_KERNEL);
+  Here are the unknown changes that may have been introduced in xe-pw-167675v3_BAT:
 
-If SLUB debugging (redzoning) or KASAN is enabled, kmalloc() might not retu=
-rn
-a 64-byte aligned pointer. If it returns an unaligned pointer, the recursive
-call to xe_migrate_access_memory() checks
-!IS_ALIGNED(page_offset, XE_CACHELINE_BYTES) where page_offset is derived
-from the unaligned bounce buffer address.
+### IGT changes ###
 
-Since the bounce buffer is unaligned, this check fails again, triggering
-another allocation and recursion until the kernel stack overflows.
+#### Possible regressions ####
 
-Should this use a mechanism that guarantees natural alignment?
+  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit (NEW):
+    - bat-adlp-7:         NOTRUN -> [SKIP][1]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
+    - bat-wcl-2:          NOTRUN -> [SKIP][2]
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/bat-wcl-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
+    - bat-nvls-1:         NOTRUN -> [SKIP][3]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/bat-nvls-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
+    - bat-ptl-2:          NOTRUN -> [SKIP][4]
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/bat-ptl-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
+    - bat-wcl-1:          NOTRUN -> [SKIP][5]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/bat-wcl-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
+    - bat-ptl-1:          NOTRUN -> [SKIP][6]
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/bat-ptl-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
+    - bat-lnl-1:          NOTRUN -> [SKIP][7]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/bat-lnl-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
 
->  		if (xe->info.has_mem_copy_instr)
->  			current_bytes =3D min_t(int, current_bytes, U16_MAX * pitch);
->  		else
+  
+New tests
+---------
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260909061845.4048=
-047-1-jan.maslak@intel.com?part=3D1
+  New tests have been introduced between xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT and xe-pw-167675v3_BAT:
+
+### New IGT tests (1) ###
+
+  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:
+    - Statuses : 4 pass(s) 7 skip(s)
+    - Exec time: [0.04, 61.24] s
+
+  
+
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9086 -> IGT_9087
+  * Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -> xe-pw-167675v3
+
+  IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_9087: 9087
+  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada
+  xe-pw-167675v3: 167675v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/index.html
+
+--===============6398502692678668680==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe_migrate: Fix memory corruption with unaligned dst in MEM_COPY (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167675/">https://patchwork.freedesktop.org/series/167675/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -&gt; xe-pw-167675v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-167675v3_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-167675v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (14 -&gt; 12)</h2>
+<p>Missing    (2): bat-nvls-2 bat-lnl-2 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-167675v3_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit (NEW):<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a></li>
+<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/bat-wcl-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a></li>
+<li>bat-nvls-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/bat-nvls-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a></li>
+<li>bat-ptl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/bat-ptl-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a></li>
+<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/bat-wcl-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a></li>
+<li>bat-ptl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/bat-ptl-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a></li>
+<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167675v3/bat-lnl-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a></li>
+</ul>
+</li>
+</ul>
+<h2>New tests</h2>
+<p>New tests have been introduced between xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT and xe-pw-167675v3_BAT:</p>
+<h3>New IGT tests (1)</h3>
+<ul>
+<li>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:<ul>
+<li>Statuses : 4 pass(s) 7 skip(s)</li>
+<li>Exec time: [0.04, 61.24] s</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9086 -&gt; IGT_9087</li>
+<li>Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -&gt; xe-pw-167675v3</li>
+</ul>
+<p>IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_9087: 9087<br />
+  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada<br />
+  xe-pw-167675v3: 167675v3</p>
+
+</body>
+</html>
+
+--===============6398502692678668680==--
