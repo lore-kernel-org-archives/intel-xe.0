@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E84CC88E40
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48B90C79FB7
 	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 15:48:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3449810F1EA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0277010F1E6;
 	Wed,  9 Sep 2026 15:48:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KJT0c3Si";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e37vA2s6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D725E10F1DD
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 15:47:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E00A10F1E6
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 15:47:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1788968879; x=1820504879;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Y05JvbiBoc6hnW2yndM8nHg4xST78/jI1JnLeTfb6qQ=;
- b=KJT0c3SiMzy8VVvF7DYf/MjDVd3zeTr23LUATfXAbCIWS1mDAWA/3sC1
- TYbuhNsUTZSb6vxIFoshmVy+ag0wTYQkSGvTrsGFdXwUYOeBC3t7BuP5j
- su5Q0vLoR7ugQzxBakrNBHa72Ex3KXkCV7/OU8Co52j1Uh7CQ9DXJxjAt
- D4bO3tFXl2jwHeIuQbGNvZ+jeeqpzMECokVWkgTi6snym+rccbJDoYjk+
- oLCnMfT6MgrzcDxDqXXZXzoYtIRcRi0aTh6CaNPmxJvvT9/zE8Dcow4YO
- ju4aELNeGe9lklrbZi05nL0n92OU7ZYkIjXL+t0UapusIUbojb77dRaLd w==;
-X-CSE-ConnectionGUID: xL8rF5slTZ6xsyaqgKl8Sg==
-X-CSE-MsgGUID: wMHv6R0LTqKEZtWZZYSIaA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="93091835"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="93091835"
+ bh=W/xQHZJIzB+cFBbgFF0gpUdYzff/tHO2v19/mB1Qblg=;
+ b=e37vA2s6P+QgYbafbiPcJutD3rc65iJsSq/Ga791o8E3r+8BQjCK/nxR
+ 1g3WOna96+QIcmrzu84n2z8Spf1A0HcJ9PQdSoDK9Fc/H14rCY9+iL8On
+ LzbvzjK91xtz1mDDbACowVoblm8QrlYHpRHF+UrK1yn/p7Prm8RVLrPp5
+ Dl20mLuvnXFRhaKhfGHzQdwUSHIv/cP/bgoGe9wxzvMuo2sS01ZSgZbwS
+ pwliaYtqFkjAfRbUETkjMRUiAxAvys/KZSu4WgK4ueHTMR5sRQB+rVZuY
+ 6T3jbI7KFRNUZ0rdocfQabUPXy1o8l35vgcIK3sSNVnJCkqP5BVWsxMCz Q==;
+X-CSE-ConnectionGUID: 0XnrR2TxTBS4ilMBOOpVgw==
+X-CSE-MsgGUID: +bplXC/5RDCt3qpSSxeqnw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="93091884"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="93091884"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 08:47:58 -0700
-X-CSE-ConnectionGUID: cTshm3adRxa8R0IKjw6WlQ==
-X-CSE-MsgGUID: OlSUFOATTfWGwr78wsomAg==
+ 09 Sep 2026 08:47:59 -0700
+X-CSE-ConnectionGUID: QZQpHQHAQ52BuvXNjmqfTQ==
+X-CSE-MsgGUID: P8RqG/15RZKgQejjwwfgQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="268102520"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="268102550"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Sep 2026 08:47:57 -0700
@@ -48,9 +48,9 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
-Subject: [PATCH v7 10/20] drm/xe/vsec: Support possible hotplug exit
-Date: Wed,  9 Sep 2026 08:47:49 -0700
-Message-ID: <20260909154739.1515514-32-michael.j.ruhl@intel.com>
+Subject: [PATCH v7 20/20] drm/xe/vsec: Refactor platform check
+Date: Wed,  9 Sep 2026 08:47:59 -0700
+Message-ID: <20260909154739.1515514-42-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260909154739.1515514-22-michael.j.ruhl@intel.com>
 References: <20260909154739.1515514-22-michael.j.ruhl@intel.com>
@@ -70,97 +70,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DRM has an API that will verify that a device is valid in the hotplug
-context.
+For debugfs, residencies and pcode_info are available on the BMG and
+CRI (!SRIOV_VF) platforms.
 
-Verify device is valid before access in the VSEC callback API.
+Refactor to have one code path for adding the debugfs entries.
 
+Reviewed-by: Karthik Poosa <karthik.poosa@intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vsec.c | 35 +++++++++++++++++++++++++++--------
- 1 file changed, 27 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_debugfs.c | 19 +++++++++----------
+ 1 file changed, 9 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index c0252f5b508f..3bea89f2a5c5 100644
---- a/drivers/gpu/drm/xe/xe_vsec.c
-+++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -10,6 +10,8 @@
- #include <linux/pci.h>
- #include <linux/types.h>
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 53ff542806f9..ec8c8dafe78b 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -762,23 +762,22 @@ void xe_debugfs_register(struct xe_device *xe)
+ 				 ARRAY_SIZE(debugfs_list),
+ 				 root, minor);
  
-+#include <drm/drm_drv.h>
+-	if (xe->info.platform == XE_BATTLEMAGE && !IS_SRIOV_VF(xe)) {
+-		drm_debugfs_create_files(debugfs_residencies,
+-					 ARRAY_SIZE(debugfs_residencies),
+-					 root, minor);
+-	}
+-
+ 	/*
+-	 * Pcode version read from PMT is currently only supported on CRI and BMG platforms in PF
+-	 * mode, as both platforms support the necessary telemetry read mechanism and have a fixed
+-	 * PUNIT_VERSION_OFFSET.
++	 * Residencies and Pcode version read from PMT is currently only supported on CRI and BMG
++	 * platforms in PF mode.  Both platforms support the necessary telemetry read mechanism
++	 * and have a fixed offsets for the required data.
+ 	 * Attempting this access on other platforms must be verified before enabling support.
+ 	 */
+ 	if (!IS_SRIOV_VF(xe) &&
+-	    (xe->info.platform == XE_CRESCENTISLAND || xe->info.platform == XE_BATTLEMAGE))
++	    (xe->info.platform == XE_CRESCENTISLAND || xe->info.platform == XE_BATTLEMAGE)) {
++		drm_debugfs_create_files(debugfs_residencies,
++					 ARRAY_SIZE(debugfs_residencies),
++					 root, minor);
 +
- #include "xe_device.h"
- #include "xe_device_types.h"
- #include "xe_mmio.h"
-@@ -159,7 +161,12 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
-  * @user_offset: a user offset relative to the beginning of the data to read
-  * @count: bytes to read
-  *
-+ * This is a callback API.  I.e this can be accessed external to the XE driver
-+ * (PMT driver scope).  Because of this, DRM hotplug needs to be verified
-+ * (drm_dev_enter()).
-+ *
-  * Return:
-+ * * -ENODEV device is not available (hotplug)
-  * * -EINVAL for VF and PMT WATCHER requests
-  * * count   number of bytes read on success
-  */
-@@ -171,14 +178,20 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
- 	u32 cap_type = FIELD_GET(GUID_CAP_TYPE, guid);
- 	u32 mem_region;
- 	u32 offset;
--	int ret;
-+	int ret = 0;
-+	int idx;
- 
--	if (IS_SRIOV_VF(xe))
--		return -EINVAL;
-+	if (!drm_dev_enter(&xe->drm, &idx))
-+		return -ENODEV;
-+
-+	if (IS_SRIOV_VF(xe)) {
-+		ret = -EINVAL;
-+		goto dev_exit;
+ 		drm_debugfs_create_files(pcode_info_debugfs,
+ 					 ARRAY_SIZE(pcode_info_debugfs),
+ 					 root, minor);
 +	}
  
- 	ret = xe_guid_decode(guid, &mem_region, &offset);
- 	if (ret)
--		return ret;
-+		goto dev_exit;
- 
- 	telem_addr += offset + user_offset;
- 
-@@ -188,11 +201,14 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
- 		xe_pm_runtime_get(xe);
- 		break;
- 	case TELEMETRY:
--		if (!xe_pm_runtime_get_if_active(xe))
--			return -ENODATA;
-+		if (!xe_pm_runtime_get_if_active(xe)) {
-+			ret = -ENODATA;
-+			goto dev_exit;
-+		}
- 		break;
- 	case WATCHER:
--		return -EINVAL;
-+		ret = -EINVAL;
-+		goto dev_exit;
- 	}
- 
- 	mutex_lock(&xe->pmt.lock);
-@@ -206,7 +222,10 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
- 
- 	xe_pm_runtime_put(xe);
- 
--	return count;
-+dev_exit:
-+	drm_dev_exit(idx);
-+
-+	return ret == 0 ? count : ret;
- }
- 
- static struct pmt_callbacks xe_pmt_cb = {
+ 	debugfs_create_file("forcewake_all", 0400, root, xe,
+ 			    &forcewake_all_fops);
 -- 
 2.43.0
 
