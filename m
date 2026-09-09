@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A67FC79FBD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67EB6C79FBF
 	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 15:47:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF00610F1E3;
-	Wed,  9 Sep 2026 15:47:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23BBB10F1E0;
+	Wed,  9 Sep 2026 15:47:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bLz+jdeM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l9SCVo31";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DBDF10F1D5
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05AA810F1DD
  for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 15:47:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788968877; x=1820504877;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=GnGoW+R5rpw53GGw0uSyLodY1FUcWGPs08yyaRS24Mg=;
- b=bLz+jdeMweB+x9/ernWSviNo7fW9Vn8zXQKUqBZc8cgTz7D5J+AguTo1
- juPVDGi/Prmalx7l4QA/ClftDi7gvsWWqPwtua6HD1O9/JJ94V+zt1xHY
- hEh3B7QxxdUbaiLdRV3WVtoViY5tCrps9geiFJOlCcBHRD/5bxvZA7c/E
- Jdp8CvqZRQz1y8cPa5cUUCD06hk7rmd7msLF1DpKMS/VhveM0iHQZBmP8
- vKGDGqieHM+daBsxKM0qYruJsmeNR3cNJ2sNxrA6S8qzLMIMbJ+oKlQiG
- 63fSn8sUGucE7mSJtvGKc5C2IW0NGPU0xltmcTnlqV3viwFEMKHawqHcM A==;
-X-CSE-ConnectionGUID: hma9j8duRHq3uI9db0RkzQ==
-X-CSE-MsgGUID: tZRYJ+qeRWOBoBBq3+ZUTw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="93091789"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="93091789"
+ t=1788968878; x=1820504878;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=c13m+bMyzAXIiX7EPlEQon2O3s1IvHEEc2Fd25DUkh8=;
+ b=l9SCVo31a76ysak5xoeXVFipEfhtEO3Lu0GrQlm01NeCr5jVFimoaGug
+ dK6Juq2R39xmsiYH+mYkU6DODSEulMhXvxYUCO2b9U+BiwCltQUnEOtRM
+ snwky5UKIMS2K4pc9BMABlMwANdQ2jdmsUNdcFh3W0OS56x7QzjTRWmBa
+ LtEZ4dH6IHm2kCjN6wnr/1JsAPpSNFJ5J1IB2DYHMhJyR2Prq75Ysr2iD
+ Uh9TB+W16D8NH6D894KbVtwZaDTuZdOwmvb6Hs9eOYzBnUNHgKJmJOC4/
+ wpVyk8WeiDtrcbTdPo1L5sSemgdgZnvsHs+fqImr6Ra4E1zO98+w+x44R w==;
+X-CSE-ConnectionGUID: YSj4r8v5S/qmrXFuaa+uUA==
+X-CSE-MsgGUID: lmIDLy4rQpa+4q5Mk0APlg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="93091809"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="93091809"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Sep 2026 08:47:57 -0700
-X-CSE-ConnectionGUID: 2F7XAw1LSPqhlzlekYpdXA==
-X-CSE-MsgGUID: F1YMbMoSSpa5JJpd1sJOJw==
+X-CSE-ConnectionGUID: QcO6Sml+RIiDLR8TmfYYQQ==
+X-CSE-MsgGUID: mfaMU135Q0SyWXB8FK4sYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="268102489"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="268102502"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  09 Sep 2026 08:47:56 -0700
@@ -48,10 +48,12 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
-Subject: [PATCH v7 00/20] Crescent Island PMT support
-Date: Wed,  9 Sep 2026 08:47:39 -0700
-Message-ID: <20260909154739.1515514-22-michael.j.ruhl@intel.com>
+Subject: [PATCH v7 04/20] platform/x86/intel/pmt: Add register access callbacks
+Date: Wed,  9 Sep 2026 08:47:43 -0700
+Message-ID: <20260909154739.1515514-26-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260909154739.1515514-22-michael.j.ruhl@intel.com>
+References: <20260909154739.1515514-22-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,119 +70,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The Crescent Island (CRI) GPU supports PMT via Xe driver
-registration.
+Some HW does not have direct MMIO access to PMT control and data
+features.
 
-The CRI PMT MMIO mapping is shared for each PMT feature and it is
-necessary to set an index register value to access the correct memory
-space.
+Augment the current callback infrastructure (data access) to allow
+a registered driver to customize read/write access to the control
+paths for PMT usage.
 
-The PMT driver has a callback infrastructure to access data areas with
-driver specific access. It is does not support the PMT control access.
+Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+---
+ drivers/platform/x86/intel/pmt/crashlog.c | 46 +++++++++++++++++++++--
+ include/linux/intel_vsec.h                | 14 ++++++-
+ 2 files changed, 56 insertions(+), 4 deletions(-)
 
-CRI discovery/control spaces are part of the access window so a driver
-callback is necessary to allow for the correct window to be exposed.
-
-Add control path callback support to the PMT driver.
-
-Add CRI PMT discovery information.
-
-Update the Xe driver to support the CRI PMT access.
-
-The crashlog access needs to be done with power enabled (telem is only
-available when the device is powered).
-
-Determine which access is requested, and do the appropriate power
-request.
-
-CRI FW is loaded at device power.  Support the late-binding API to
-wait for FW readiness. (pending sysctl patch set implements the API).
-
-v2:
-  Address AI feedback:
-  - add missing entry->cb check
-  - address SRIOV VF concerns
-  - use xe_pm_runtime_put instead of _get in error path
-
-  Address review comments:
-  - redo power/lock sequencing
-  - support device hotplug events
-
-v3:
-  - cleanup power manangement flow
-  - fixed an out of order power management locking issue
-  - add a GUID caching mechanism, for GUID read
-  - removed unused parameter (mmio)
-
-v4:
- - address various review comments
- - refactor crashlog to allow for return values
- - for callback usage, decouple PMT remap of data areas
- - use IS_SRIOV_VF() rather than expose soc-remapper internals
- - separate locking fixes intos distinct steps
- - refactor define update patches to seperate BMG and CRI updates
- - separate internal GUID into separate steps
-
-v5:
- - removed callback helpers
- - do not return error message with sysfs
- - fix missed return code check in trigger_store
- - return error value not false
- - use DEFINE_RES_MEM
- - document when base is unused
- - return error on invalid GUID request
-
-v6:
- - fix enabled/disabled inversion
- - fix missing DOC reference
- - change memcpy_to/fromio to readl/writel for register read
- - guid cache comment and update on valid guid
-
-v7:
- - reordered to have BMG updates followed by CRI support
- - separate base_offset usage for clarity
- - added EAGAIN usage to block uninitialized use of the API
-
-Michael J. Ruhl (18):
-  platform/x86/intel/pmt: complete pcidev to device update
-  platform/x86/intel/pmt: refactor rmw with a return value
-  platform/x86/intel/pmt: refactor rc with a return value
-  platform/x86/intel/pmt: Add register access callbacks
-  platform/x86/intel/pmt: Do not remap when using callbacks
-  drm/xe/vsec: Do not register BMG PMT for VF
-  drm/xe/vsec: Correct locking order
-  drm/xe/vsec: Use correct pm state get
-  drm/xe/vsec: Add DOC text for VSEC
-  drm/xe/vsec: Support possible hotplug exit
-  drm/xe/vsec: Refactor BattleMage PMT defines
-  drm/xe/vsec: Support EAGAIN return value
-  drm/xe/vsec: Add base_offset to allow for more flexibilty
-  drm/xe/vsec: Support Crescent Island PMT
-  drm/xe/vsec: Crescent Island PMT decode
-  drm/xe/vsec: Crescent Island PMT callbacks
-  drm/xe/vsec: Support late bind fw information
-  drm/xe/vsec: Add PMT GUID internal access
-  drm/xe/vsec: Update PMT internal access
-  drm/xe/vsec: Refactor platform check
-
- Documentation/gpu/xe/index.rst             |   1 +
- Documentation/gpu/xe/xe_vsec.rst           |  14 +
- drivers/gpu/drm/xe/regs/xe_pmt.h           |  12 +-
- drivers/gpu/drm/xe/xe_debugfs.c            |  48 +-
- drivers/gpu/drm/xe/xe_device.c             |   4 +-
- drivers/gpu/drm/xe/xe_device_types.h       |   9 +
- drivers/gpu/drm/xe/xe_hwmon.c              |  14 +-
- drivers/gpu/drm/xe/xe_pcode.c              |  13 +-
- drivers/gpu/drm/xe/xe_vsec.c               | 548 +++++++++++++++++++--
- drivers/gpu/drm/xe/xe_vsec.h               |   3 +-
- drivers/platform/x86/intel/pmt/class.c     |  26 +-
- drivers/platform/x86/intel/pmt/class.h     |   5 +-
- drivers/platform/x86/intel/pmt/crashlog.c  | 237 ++++++---
- drivers/platform/x86/intel/pmt/discovery.c |   2 +-
- include/linux/intel_vsec.h                 |  14 +-
- 15 files changed, 783 insertions(+), 167 deletions(-)
- create mode 100644 Documentation/gpu/xe/xe_vsec.rst
-
+diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
+index b6540f3a9a17..912b61c334a6 100644
+--- a/drivers/platform/x86/intel/pmt/crashlog.c
++++ b/drivers/platform/x86/intel/pmt/crashlog.c
+@@ -11,10 +11,12 @@
+ #include <linux/auxiliary_bus.h>
+ #include <linux/cleanup.h>
+ #include <linux/intel_vsec.h>
++#include <linux/io.h>
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/mutex.h>
+ #include <linux/pci.h>
++#include <linux/printk.h>
+ #include <linux/slab.h>
+ #include <linux/uaccess.h>
+ #include <linux/overflow.h>
+@@ -124,12 +126,36 @@ struct pmt_crashlog_priv {
+  * I/O
+  */
+ 
++static int pmt_crashlog_read_reg(struct intel_pmt_entry *entry, u32 *reg, u32 offset)
++{
++	int ret;
++
++	*reg = 0;
++
++	if (entry->cb && entry->cb->read_reg) {
++		ret = entry->cb->read_reg(entry->dev, entry->header.guid, reg, offset);
++		if (ret) {
++			pr_err_ratelimited("failed to read reg: %d\n", ret);
++			return ret;
++		}
++	} else {
++		*reg = readl(entry->disc_table + offset);
++	}
++
++	return 0;
++}
++
+ /* Read, modify, write the control register, setting or clearing @bit based on @set */
+ static int pmt_crashlog_rmw(struct crashlog_entry *crashlog, u32 bit, bool set)
+ {
+ 	const struct crashlog_control *control = &crashlog->info->control;
+ 	struct intel_pmt_entry *entry = &crashlog->entry;
+-	u32 reg = readl(entry->disc_table + control->offset);
++	u32 reg;
++	int ret;
++
++	ret = pmt_crashlog_read_reg(entry, &reg, control->offset);
++	if (ret)
++		return ret;
+ 
+ 	reg &= ~control->trigger_mask;
+ 
+@@ -138,7 +164,15 @@ static int pmt_crashlog_rmw(struct crashlog_entry *crashlog, u32 bit, bool set)
+ 	else
+ 		reg &= ~bit;
+ 
+-	writel(reg, entry->disc_table + control->offset);
++	if (entry->cb && entry->cb->write_reg) {
++		ret = entry->cb->write_reg(entry->dev, entry->header.guid, reg, control->offset);
++		if (ret) {
++			pr_err_ratelimited("failed to write reg: %d\n", ret);
++			return ret;
++		}
++	} else {
++		writel(reg, entry->disc_table + control->offset);
++	}
+ 
+ 	return 0;
+ }
+@@ -147,7 +181,13 @@ static int pmt_crashlog_rmw(struct crashlog_entry *crashlog, u32 bit, bool set)
+ static int pmt_crashlog_rc(struct crashlog_entry *crashlog, u32 bit, bool *state)
+ {
+ 	const struct crashlog_status *status = &crashlog->info->status;
+-	u32 reg = readl(crashlog->entry.disc_table + status->offset);
++	struct intel_pmt_entry *entry = &crashlog->entry;
++	u32 reg;
++	int ret;
++
++	ret = pmt_crashlog_read_reg(entry, &reg, status->offset);
++	if (ret)
++		return ret;
+ 
+ 	*state = !!(reg & bit);
+ 
+diff --git a/include/linux/intel_vsec.h b/include/linux/intel_vsec.h
+index 843cda8f8644..917d9397a993 100644
+--- a/include/linux/intel_vsec.h
++++ b/include/linux/intel_vsec.h
+@@ -90,13 +90,25 @@ enum intel_vsec_quirks {
+  * @read_telem: when specified, called by client driver to access PMT
+  * data (instead of direct copy).
+  * * dev:   device reference for the callback's use
+- * * guid:  ID of data to acccss
++ * * guid:  ID of data to access
+  * * data:  buffer for the data to be copied
+  * * off:   offset into the requested buffer
+  * * count: size of buffer
++ * @read_reg: when specified called by client driver to read PMT state
++ * * dev:      device reference for the callback's use
++ * * guid:     ID of data to access
++ * * reg_data: register data
++ * * offset:   offset of register to read
++ * @write_reg: when specified called by client driver to write PMT state
++ * * dev:      device reference for the callback's use
++ * * guid:     ID of data to access
++ * * reg_data: register data
++ * * offset:   offset of register to write
+  */
+ struct pmt_callbacks {
+ 	int (*read_telem)(struct device *dev, u32 guid, u64 *data, loff_t off, u32 count);
++	int (*read_reg)(struct device *dev, u32 guid, u32 *reg_data, u32 offset);
++	int (*write_reg)(struct device *dev, u32 guid, u32 reg_data, u32 offset);
+ };
+ 
+ struct vsec_feature_dependency {
 -- 
 2.43.0
 
