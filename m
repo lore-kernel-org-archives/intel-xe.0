@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BE90C79FBF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBDFCC79FBE
 	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 12:42:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB79110F0FA;
-	Wed,  9 Sep 2026 12:42:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84D1A10F112;
+	Wed,  9 Sep 2026 12:42:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B0bNeBtf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J3+5OXIA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 831D810F114
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 12:42:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB6DB10F0FA
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 12:42:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788957723; x=1820493723;
+ t=1788957727; x=1820493727;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=iPCwJ1IjLt2LEmM1QpSPLcCrJdHZ7MJkKFnQOcU5L5o=;
- b=B0bNeBtfpIlBv8nwaJKMf8j7fmc/JN8TNCB3WVkgXJfdxJILqGytBX3z
- zgpgkxM79zTMfwD9P0NMR40Z0xJj1Qoiz3pyW/msZyhOWDrX8+iqDapvs
- ZYtLTQbR9FEeUAi/4k1+4ZOdtwFf7zIy4xYSq1zRYdObBZdfd59MS3ZAp
- 82w45JYKsIw8af/c1VZ4M5CoAxGEy2l1HebyULzmDeAqfse9WjxGGpvub
- v3KHxUkCU4OaTOidB5e/xOIBex/l3Sb3/4htKiwHFjHx6CAYPQmH3mAq3
- 3oqUeHS1m3rs/0N9jzJDDI2Rk+iKfnoKf+DSuFqYUmS4ZRK5UAqH15kMU Q==;
-X-CSE-ConnectionGUID: gMNjNCSCQN2zaXTjGTB0lA==
-X-CSE-MsgGUID: uLJHw93ITKSHkMt6wfXsEg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="99715531"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="99715531"
+ bh=fBvd2Otkeecdu39qbz7Ull5eWCKabU5lU0yKPbSftq8=;
+ b=J3+5OXIAkQAZttOMJhESlSoEnAac0uURCmwYW9MfxVaGyZMLTKe2wb53
+ MENvfE+e4LcZqnyWVJ5SvHIGtyU8PVg/tVwIXaRPTgBOSkGJGHPaQfY5h
+ BZv4bxUfN3cyHT7lzgQ5iYeaVjeLZ3hTyR/nGCLnHQYoKt6Gi2rWnvLK5
+ kLbcvj7JwwXFxIrnuJW4JAmfph/XCXtXvHasdX/FHROMo+PqsT+8ObhcP
+ NriGh0oA+sIAuPn0MQwBbIu6S7nMAMAJumn3Kl6d9Y8qx5VjA+ijPXjN2
+ AQgyA+UJvCCPUnTtflM5xlU+05DIgH6nBQNRd7S+TzKuW37bKWF6nuQiB Q==;
+X-CSE-ConnectionGUID: Iw9dTijISga0TKuwbZiFFg==
+X-CSE-MsgGUID: KCFitwaxT764zR7nXleMfw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="99715548"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="99715548"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 05:42:03 -0700
-X-CSE-ConnectionGUID: fxtjCzK+TCiarn1H2znZdA==
-X-CSE-MsgGUID: ydgMLH8hT4yyBMr7CJD9Ng==
+ 09 Sep 2026 05:42:06 -0700
+X-CSE-ConnectionGUID: CDP+azY6SpqkWWLJRnWSgA==
+X-CSE-MsgGUID: GuYd4inHRduXfDasa8v7rQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="296246597"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="296246633"
 Received: from hghimira.iind.intel.com ([10.190.239.34])
- by fmviesa001.fm.intel.com with ESMTP; 09 Sep 2026 05:42:02 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 09 Sep 2026 05:42:05 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [RFC v2 09/21] drm/xe: Implement xe_access_counter_service
-Date: Wed,  9 Sep 2026 18:15:03 +0530
-Message-ID: <20260909124457.1610890-32-himal.prasad.ghimiray@intel.com>
+Subject: [RFC v2 11/21] drm/xe/svm: Handle svm vma for acc_ctr trigger
+Date: Wed,  9 Sep 2026 18:15:05 +0530
+Message-ID: <20260909124457.1610890-34-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260909124457.1610890-23-himal.prasad.ghimiray@intel.com>
 References: <20260909124457.1610890-23-himal.prasad.ghimiray@intel.com>
@@ -66,206 +66,277 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement xe_access_counter_service() to look up the VM and VMA for an
-access counter notification and rebind the VMA to VRAM.
+The SVM range binding logic in __xe_svm_handle_pagefault() is currently
+reachable only from the page-fault path. Access counter handling needs
+the same "look up / create a range, optionally migrate to VRAM, and bind"
+flow, but driven by a hardware access-counter trigger instead of a fault.
 
-Rather than waiting on the rebind fence under vm->lock, store it in
-vma->ac_move_fence so the page-fault handler can wait on it before
-checking xe_vm_has_valid_gpu_mapping(). Duplicate access counter events
-for the same VMA are dropped if an unsignaled ac_move_fence is already
-present. The fence is released in xe_vma_destroy_late() if the VMA is
-destroyed before it signals.
+Generalize __xe_svm_handle_pagefault() into __xe_svm_range_setup() and
+expose it through a new xe_svm_range_setup() wrapper that takes a
+struct xe_svm_range_setup_flags {atomic, acc_ctr_trigger}. The existing
+xe_svm_handle_pagefault() becomes a thin wrapper that passes
+acc_ctr_trigger = false, so the page-fault path is functionally unchanged.
+
+When invoked for an access-counter trigger (acc_ctr_trigger = true):
+
+- Migration to device memory is forced (devmem_only), since the whole
+  point of the trigger is to pull a hot range into VRAM.
+- If the range cannot be migrated to devmem (!migrate_devmem), the setup
+  bails out early -- there is nothing useful to do for a non-migratable
+  range on an advisory trigger.
+- Page-fault-specific bookkeeping is skipped: SVM pagefault stats are not
+  incremented and the immediate-ack start/end address hints are not set,
+  because there is no fault to ack.
+
+Also add xe_svm_range_find_first(), which returns the first already
+existing SVM range overlapping a [start, end) window without creating a
+new one (unlike find_or_insert). Access counter servicing uses it to walk
+only ranges the GPU has actually touched within a granularity window.
 
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_access_counter.c | 98 +++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_pagefault.c      |  9 +++
- drivers/gpu/drm/xe/xe_vm.c             |  2 +
- drivers/gpu/drm/xe/xe_vm_types.h       | 10 +++
- 4 files changed, 116 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.c | 120 +++++++++++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_svm.h |  14 +++++
+ 2 files changed, 111 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_access_counter.c b/drivers/gpu/drm/xe/xe_access_counter.c
-index f54b4bd6cb2b..60595f93cd74 100644
---- a/drivers/gpu/drm/xe/xe_access_counter.c
-+++ b/drivers/gpu/drm/xe/xe_access_counter.c
-@@ -12,7 +12,9 @@
- #include "xe_access_counter_types.h"
- #include "xe_device.h"
- #include "xe_gt_printk.h"
-+#include "xe_hw_engine.h"
- #include "xe_usm_queue.h"
-+#include "xe_vm.h"
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 627a741293d5..75da11c3bbb2 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -1264,9 +1264,10 @@ DECL_SVM_RANGE_US_STATS(get_pages, GET_PAGES)
+ DECL_SVM_RANGE_US_STATS(bind, BIND)
+ DECL_SVM_RANGE_US_STATS(fault, PAGEFAULT)
  
- /**
-  * DOC: Xe access counters
-@@ -29,10 +31,98 @@
-  * xe_access_counter.c implements the consumer layer.
-  */
- 
-+static void xe_access_counter_print(struct xe_access_counter *ac)
-+{
-+	xe_gt_dbg(ac->gt, "\n\tASID: %d\n"
-+		  "\tVA: 0x%08x%08x\n"
-+		  "\tCounter Type: %d\n"
-+		  "\tGranularity: %d\n"
-+		  "\tSub-Granularity: 0x%08x\n"
-+		  "\tEngineClass: %d %s\n"
-+		  "\tEngineInstance: %d\n",
-+		  ac->consumer.asid,
-+		  upper_32_bits(ac->consumer.page_va),
-+		  lower_32_bits(ac->consumer.page_va),
-+		  ac->consumer.counter_type,
-+		  ac->consumer.granularity,
-+		  ac->consumer.sub_granularity,
-+		  ac->consumer.engine_class,
-+		  xe_hw_engine_class_to_str(ac->consumer.engine_class),
-+		  ac->consumer.engine_instance);
-+}
-+
- static int xe_access_counter_service(struct xe_access_counter *ac)
+-static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+-				     struct xe_pagefault *pf, struct xe_gt *gt,
+-				     u64 fault_addr, bool need_vram)
++static int __xe_svm_range_setup(struct xe_vm *vm, struct xe_vma *vma,
++				struct xe_pagefault *pf, struct xe_gt *gt,
++				u64 fault_addr, bool need_vram,
++				bool acc_ctr_trigger)
  {
--	/* TODO: Implement */
--	return 0;
-+	struct xe_gt *gt = ac->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_tile *tile = gt_to_tile(gt);
-+	struct xe_validation_ctx ctx;
-+	struct drm_exec exec;
-+	struct dma_fence *fence;
-+	struct xe_vm *vm;
-+	struct xe_vma *vma;
-+	int err = 0;
-+
-+	vm = xe_device_asid_to_fault_vm(xe, ac->consumer.asid);
-+	if (IS_ERR(vm))
-+		return PTR_ERR(vm);
-+
-+	down_write(&vm->lock);
-+
-+	if (xe_vm_is_closed(vm)) {
-+		err = -ENOENT;
-+		goto unlock_vm;
-+	}
-+	/* Lookup VMA */
-+	vma = xe_vm_find_overlapping_vma(vm, ac->consumer.page_va, SZ_4K);
-+	if (!vma) {
-+		err = -EINVAL;
-+		goto unlock_vm;
-+	}
-+
-+	/* TODO: Handle svm vma's  */
-+	if (xe_vma_has_no_bo(vma))
-+		goto unlock_vm;
-+
-+	/* Drop duplicate event if migration/rebind is already in-flight */
-+	if (vma->ac_move_fence && !dma_fence_is_signaled(vma->ac_move_fence))
-+		goto unlock_vm;
-+
-+	/* Previous migration completed; release its fence before starting a new one */
-+	dma_fence_put(vma->ac_move_fence);
-+	vma->ac_move_fence = NULL;
-+
-+	/* Lock VM and BOs dma-resv */
-+	xe_validation_ctx_init(&ctx, &vm->xe->val, &exec, (struct xe_val_flags) {});
-+	drm_exec_until_all_locked(&exec) {
-+		err = xe_vma_lock_and_validate(&exec, vma, tile->mem.vram, true);
-+		drm_exec_retry_on_contention(&exec);
-+		xe_validation_retry_on_oom(&ctx, &err);
-+		if (err)
-+			break;
-+
-+		xe_vm_set_validation_exec(vm, &exec);
-+		fence = xe_vma_rebind(vm, vma, BIT(tile->id));
-+		xe_vm_set_validation_exec(vm, NULL);
-+		if (IS_ERR(fence))
-+			err = PTR_ERR(fence);
+ 	int devmem_possible = IS_DGFX(vm->xe) &&
+ 		IS_ENABLED(CONFIG_DRM_XE_PAGEMAP);
+@@ -1274,7 +1275,7 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 		.read_only = xe_vma_read_only(vma),
+ 		.devmem_possible = devmem_possible,
+ 		.check_pages_threshold = devmem_possible ? SZ_64K : 0,
+-		.devmem_only = need_vram && devmem_possible,
++		.devmem_only = (need_vram || acc_ctr_trigger) && devmem_possible,
+ 		.timeslice_ms = need_vram && devmem_possible ?
+ 			vm->xe->atomic_svm_timeslice_ms : 0,
+ 	};
+@@ -1292,7 +1293,8 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	lockdep_assert_held(&vm->lock);
+ 	xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(vma));
+ 
+-	xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_PAGEFAULT_COUNT, 1);
++	if (!acc_ctr_trigger)
++		xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_PAGEFAULT_COUNT, 1);
+ 
+ retry:
+ 	/* Release old range */
+@@ -1314,7 +1316,8 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	if (IS_ERR(range))
+ 		return PTR_ERR(range);
+ 
+-	xe_svm_range_fault_count_stats_incr(gt, range);
++	if (!acc_ctr_trigger)
++		xe_svm_range_fault_count_stats_incr(gt, range);
+ 
+ 	mutex_lock(&range->lock);
+ 
+@@ -1336,6 +1339,10 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 
+ 	range_debug(range, "PAGE FAULT");
+ 
++	if (acc_ctr_trigger && !range_flags.migrate_devmem) {
++		goto out;
 +	}
 +
-+	/*
-+	 * Migrations and binds are pipelined GPU operations with no H2G ack;
-+	 * store the fence on the VMA so the page-fault handler can wait on it
-+	 * if needed, rather than blocking here under vm->lock.
-+	 */
-+	if (!err && !IS_ERR(fence))
-+		vma->ac_move_fence = fence;
+ 	if (--migrate_try_count >= 0 &&
+ 	    xe_svm_range_needs_migrate_to_vram(range, vma, dpagemap)) {
+ 		ktime_t migrate_start = xe_gt_stats_ktime_get();
+@@ -1399,6 +1406,7 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	}
+ 
+ 	xe_svm_range_get_pages_us_stats_incr(gt, range, get_pages_start);
 +
-+	xe_validation_ctx_fini(&ctx);
-+
-+unlock_vm:
-+	up_write(&vm->lock);
-+	xe_vm_put(vm);
-+
-+	return err;
+ 	range_debug(range, "PAGE FAULT - BIND");
+ 
+ 	bind_start = xe_gt_stats_ktime_get();
+@@ -1425,11 +1433,12 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	xe_svm_range_bind_us_stats_incr(gt, range, bind_start);
+ 
+ out:
+-	/* Give hint to immediately ack faults */
+-	xe_pagefault_set_start_addr(pf,  xe_svm_range_start(range));
+-	xe_pagefault_set_end_addr(pf, xe_svm_range_end(range));
+-
+-	xe_svm_range_fault_us_stats_incr(gt, range, start);
++	if (!acc_ctr_trigger) {
++		/* Give hint to immediately ack faults */
++		xe_pagefault_set_start_addr(pf,  xe_svm_range_start(range));
++		xe_pagefault_set_end_addr(pf, xe_svm_range_end(range));
++		xe_svm_range_fault_us_stats_incr(gt, range, start);
++	}
+ 	mutex_unlock(&range->lock);
+ 	drm_gpusvm_range_put(&range->base);
+ 	return 0;
+@@ -1448,37 +1457,38 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
  }
  
- static void xe_access_counter_queue_work_func(struct work_struct *w)
-@@ -48,9 +138,11 @@ static void xe_access_counter_queue_work_func(struct work_struct *w)
- 	if (ac.gt) {	/* Skip if access counter was squashed during reset */
- 		int err = xe_access_counter_service(&ac);
+ /**
+- * xe_svm_handle_pagefault() - SVM handle page fault
++ * xe_svm_range_setup - Setup range for GPU access
+  * @vm: The VM.
+  * @vma: The CPU address mirror VMA.
+  * @pf: Pagefault structure
+- * @gt: The gt upon the fault occurred.
+- * @fault_addr: The GPU fault address.
+- * @atomic: The fault atomic access bit.
++ * @gt: The gt for which binding.
++ * @addr: Addr for which need to bind svm range.
++ * @flags: struct xe_svm_range_setup_flags
+  *
+- * Create GPU bindings for a SVM page fault. Optionally migrate to device
++ * Create GPU bindings for a SVM vma. Optionally migrate to device
+  * memory.
+  *
+  * Return: 0 on success, negative error code on error.
+  */
+-int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+-			    struct xe_pagefault *pf, struct xe_gt *gt,
+-			    u64 fault_addr, bool atomic)
++int xe_svm_range_setup(struct xe_vm *vm, struct xe_vma *vma,
++		       struct xe_pagefault *pf, struct xe_gt *gt,
++		       u64 addr, struct xe_svm_range_setup_flags flags)
+ {
+ 	int need_vram, ret;
+ retry:
+-	need_vram = xe_vma_need_vram_for_atomic(vm->xe, vma, atomic);
++	need_vram = xe_vma_need_vram_for_atomic(vm->xe, vma, flags.atomic);
+ 	if (need_vram < 0)
+ 		return need_vram;
  
--		if (err)
-+		if (err) {
-+			xe_access_counter_print(&ac);
- 			xe_gt_dbg(ac.gt, "Access counter handling: Unsuccessful %pe\n",
- 				  ERR_PTR(err));
+-	ret =  __xe_svm_handle_pagefault(vm, vma, pf, gt, fault_addr,
+-					 need_vram ? true : false);
++	ret =  __xe_svm_range_setup(vm, vma, pf, gt, addr,
++				    need_vram ? true : false,
++				    flags.acc_ctr_trigger);
+ 	if (ret == -EAGAIN) {
+ 		/*
+ 		 * Retry once on -EAGAIN to re-lookup the VMA, as the original VMA
+ 		 * may have been split by xe_svm_range_set_default_attr.
+ 		 */
+-		vma = xe_vm_find_vma_by_addr(vm, fault_addr);
++		vma = xe_vm_find_vma_by_addr(vm, addr);
+ 		if (!vma)
+ 			return -EINVAL;
+ 
+@@ -1487,6 +1497,70 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	return ret;
+ }
+ 
++/**
++ * xe_svm_handle_pagefault() - SVM handle page fault
++ * @vm: The VM.
++ * @vma: The CPU address mirror VMA.
++ * @pf: Pagefault structure.
++ * @gt: The gt upon the fault occurred.
++ * @fault_addr: The GPU fault address.
++ * @atomic: The fault atomic access bit.
++ *
++ * Create GPU bindings for a SVM page fault. Optionally migrate to device
++ * memory.
++ *
++ * Return: 0 on success, negative error code on error.
++ */
++int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
++			    struct xe_pagefault *pf, struct xe_gt *gt,
++			    u64 fault_addr, bool atomic)
++{
++	return xe_svm_range_setup(vm, vma, pf, gt, fault_addr,
++				  (struct xe_svm_range_setup_flags) {
++					.atomic = atomic,
++					.acc_ctr_trigger = false,
++				  });
++}
++
++/**
++ * xe_svm_range_find_first() - Find first existing SVM range in a VA window
++ * @vm: The VM.
++ * @start: Start of the VA window.
++ * @end: End (exclusive) of the VA window.
++ *
++ * Returns the first already-existing SVM range whose address overlaps
++ * [start, end), skipping holes natively via the interval tree.  Does NOT
++ * create a new range if none exists (unlike xe_svm_range_find_or_insert).
++ *
++ * May be called with vm->lock held in read mode; range_lock is taken to guard
++ * the interval-tree walk against concurrent insert/remove.
++ *
++ * Return: Referenced pointer to the range (drop with xe_svm_range_put()), or
++ * NULL if no range exists in the window.
++ */
++struct xe_svm_range *xe_svm_range_find_first(struct xe_vm *vm,
++					     u64 start, u64 end)
++{
++	struct drm_gpusvm_notifier *notifier;
++
++	lockdep_assert_held(&vm->lock);
++
++	guard(mutex)(&vm->svm.range_lock);
++
++	drm_gpusvm_for_each_notifier(notifier, &vm->svm.gpusvm, start, end) {
++		u64 n_end = min_t(u64, end, drm_gpusvm_notifier_end(notifier));
++		struct drm_gpusvm_range *r;
++
++		r = drm_gpusvm_range_find(notifier, start, n_end);
++		if (r) {
++			drm_gpusvm_range_get(r);
++			return to_xe_range(r);
 +		}
- 	}
- 
- 	/*
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index f4b0c0e5113a..77e357384872 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -136,6 +136,15 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
- 	trace_xe_vma_pagefault(vma);
- 
- 	guard(mutex)(&vma->fault_lock);
-+	/*
-+	 * If an access-counter triggered migration is in-flight, wait for it
-+	 * to complete before checking whether the GPU mapping is already valid.
-+	 */
-+	if (vma->ac_move_fence) {
-+		dma_fence_wait(vma->ac_move_fence, false);
-+		dma_fence_put(vma->ac_move_fence);
-+		vma->ac_move_fence = NULL;
 +	}
- 
- 	/* Check if VMA is valid, opportunistic check only */
- 	if (xe_vm_has_valid_gpu_mapping(tile, vma->tile_present,
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 7dd8fbf94bc8..68adb2a7422c 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1219,6 +1219,8 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
- 		vma->ufence = NULL;
- 	}
- 
-+	dma_fence_put(vma->ac_move_fence);
 +
- 	if (xe_vma_is_userptr(vma)) {
- 		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 648031e64145..a21f73f23c59 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -175,6 +175,16 @@ struct xe_vma {
- 	 */
- 	struct xe_user_fence *ufence;
- 
-+	/**
-+	 * @ac_move_fence: Fence for an in-progress access-counter triggered
-+	 * migration/rebind. Written by the AC service and read+cleared by the
-+	 * page-fault handler, both under down_read(&vm->lock) + @fault_lock;
-+	 * any access under the read lock MUST also hold @fault_lock. The final
-+	 * put on VMA destroy (xe_vma_destroy_late()) is unlocked - safe as no
-+	 * other reference to the VMA remains.
-+	 */
-+	struct dma_fence *ac_move_fence;
++	return NULL;
++}
 +
- 	/**
- 	 * @attr: The attributes of vma which determines the migration policy
- 	 * and encoding of the PTEs for this vma.
+ /**
+  * xe_svm_has_mapping() - SVM has mappings
+  * @vm: The VM.
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index 2a0dc0d125c9..99baeae041df 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -28,6 +28,14 @@ struct xe_vm;
+ struct xe_vma;
+ struct xe_vram_region;
+ 
++/** struct xe_svm_range_setup_flags -flags for range setup */
++struct xe_svm_range_setup_flags {
++	/** @atomic: is atomic access */
++	u32 atomic : 1;
++	/** @acc_ctr_trigger: is called by access ctr trigger */
++	u32 acc_ctr_trigger : 1;
++};
++
+ /** struct xe_svm_range - SVM range */
+ struct xe_svm_range {
+ 	/** @base: base drm_gpusvm_range */
+@@ -109,6 +117,12 @@ void xe_svm_fini(struct xe_vm *vm);
+ 
+ void xe_svm_close(struct xe_vm *vm);
+ 
++int xe_svm_range_setup(struct xe_vm *vm, struct xe_vma *vma,
++		       struct xe_pagefault *pf, struct xe_gt *gt,
++		       u64 addr, struct xe_svm_range_setup_flags flags);
++
++struct xe_svm_range *xe_svm_range_find_first(struct xe_vm *vm, u64 start, u64 end);
++
+ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			    struct xe_pagefault *pf, struct xe_gt *gt,
+ 			    u64 fault_addr, bool atomic);
 -- 
 2.43.0
 
