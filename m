@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97367C79FB7
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 16:01:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D4FFC79FBD
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 16:03:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CC9A10F1F7;
-	Wed,  9 Sep 2026 16:01:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B974310F1F8;
+	Wed,  9 Sep 2026 16:03:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="A7oKMpnE";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TPomX29l";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41DC010F1F7
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 16:01:19 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5441210F1F4
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 16:02:59 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 8AD30600CB;
- Wed,  9 Sep 2026 16:01:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17CDF1F00A3A;
- Wed,  9 Sep 2026 16:01:18 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 31A2641FBB;
+ Wed,  9 Sep 2026 16:02:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE3701F00A3A;
+ Wed,  9 Sep 2026 16:02:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788969678;
- bh=IGkEvSYk6cta+zv4C2Y0RP9WzqaabaaC+66g32cUSEI=;
+ s=k20260515; t=1788969779;
+ bh=EdJa9Pavw0JFLMEWostR++YvzmfLPMzYQENhfd26fA8=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=A7oKMpnEzX80w5KhfveA05Rwa3TEPEK7MapxybqfXC+wJYBKKmP9Z2xSe7umQYnX9
- mk8/EeoYyukddzV2JAe1hQdPfhojH/TvPyleUBk1mO/uTTt1EtN1fOKSXf/zdvBRNS
- iU6P3GVO8m25K+ZIE0y3FgXg2e0kfzVXIiW7XbjgQ8paTnt2vajlXfUSetCAYKuHIV
- A6QzK9hSmSnIncd0QLe+AlHRgofbBKchp2jVg+Lc6TWI6d603/Abijqustjt5+qQcH
- Z44dOh5zFHTF1rfLMeONNPhDO5b9yufVTgFHq95GGVK6Wl+EKRiKv3tCqdjeVPB+9p
- 7Er+ymEYoCqUw==
+ b=TPomX29lxIA/jk0zBIHNkH7m+02BWq/SFfG9QMrZ+b/n647GiKH1+N/sec0gS72Lt
+ durGjTHVc9+t62wk2TuPd+ciCocG4Hr822EClVsl/skupJyRTzVooXSfLpLwmXJzoM
+ sa5ToB3u+GjjHY/29O4dH6HyifAOwau8+7CSfQjQVNyTmBeteFtRKTuNnaNh2jH12V
+ xTQE3WJt68otMnTiYVT6c1QEqVrRMZo6E96u7ns7W2K+osagSyZ0cJSQkzdz4lHOqG
+ aFeJuIxnENy4CegXa+ghcJeLngSR8i/UHnZyk9EMnZys/w5BlrBhEF2rmW42VSUwJX
+ JqMmVrJOvkPaw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 12/20] drm/xe/vsec: Support EAGAIN return value
+Subject: Re: [PATCH v7 13/20] drm/xe/vsec: Add base_offset to allow for more
+ flexibilty
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260909154739.1515514-34-michael.j.ruhl@intel.com>
+In-Reply-To: <20260909154739.1515514-35-michael.j.ruhl@intel.com>
 References: <20260909154739.1515514-22-michael.j.ruhl@intel.com>
- <20260909154739.1515514-34-michael.j.ruhl@intel.com>
+ <20260909154739.1515514-35-michael.j.ruhl@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 09 Sep 2026 16:01:17 +0000
-Message-Id: <20260909160118.17CDF1F00A3A@smtp.kernel.org>
+Date: Wed, 09 Sep 2026 16:02:58 +0000
+Message-Id: <20260909160258.DE3701F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,79 +59,86 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [Medium] xe_hwmon_energy_get() incorrectly masks the -EAGAIN error by ret=
-urning 0, which corrupts power calculations and permanently hides sysfs att=
-ributes.
+- [High] Time-of-check to time-of-use (TOCTOU) race condition in xe_pmt_tel=
+em_read when calculating telem_addr.
 --
 
-commit 99e578f62cb6212c825a10a5de5875717c46d4a9
+commit 7e5dc04a0fcd634a62684607ee28e4cb12e99eb2
 Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-drm/xe/vsec: Support EAGAIN return value
+drm/xe/vsec: Add base_offset to allow for more flexibilty
 
-This commit updates call locations of xe_pmt_telem_read() to explicitly
-ignore the -EAGAIN return value and prevent it from logging warnings.
+This commit introduces a base_offset for pmt_telem_read() to support other
+devices that require a non-fixed offset. It adds a check to verify that the
+offset has been set before allowing device access.
 
+> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+> index ca8414441a692..856973473fd75 100644
+> --- a/drivers/gpu/drm/xe/xe_vsec.c
+> +++ b/drivers/gpu/drm/xe/xe_vsec.c
 [ ... ]
+> @@ -173,14 +173,15 @@ static int xe_guid_decode(u32 guid, int *index, u32=
+ *offset)
+>   * Return:
+>   * * -ENODEV device is not available (hotplug)
+>   * * -EINVAL for VF and PMT WATCHER requests
+> + * * -EAGAIN base_offset has not been set, so init path has not yet been=
+ done.
+>   * * count   number of bytes read on success
+>   */
+>  int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t us=
+er_offset,
+>  		      u32 count)
+>  {
+>  	struct xe_device *xe =3D kdev_to_xe_device(dev);
+>  	u32 cap_type =3D FIELD_GET(GUID_CAP_TYPE, guid);
+> +	void __iomem *telem_addr =3D xe->mmio.regs + xe->pmt.base_offset;
 
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index 5284cab6703d8..ecd52a04175d0 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -522,7 +522,9 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, int chann=
-el, long *energy)
->  					xe_mmio_read32(mmio, PUNIT_TELEMETRY_GUID),
->  					&pmt_val, BMG_ENERGY_STATUS_PMT_OFFSET,	sizeof(pmt_val));
->  		if (ret !=3D sizeof(pmt_val)) {
-> -			drm_warn(&hwmon->xe->drm, "energy read from pmt failed, ret %d\n", re=
-t);
-> +			if (ret !=3D -EAGAIN)
-> +				drm_warn(&hwmon->xe->drm, "energy read from pmt failed, ret %d\n",
-> +					 ret);
+[Severity: High]
+Can this cause an out-of-bounds MMIO read due to a time-of-check to
+time-of-use (TOCTOU) race?
 
-[Severity: Medium]
-This isn't a bug introduced by this patch, but since we are modifying the
-error handling here, does swallowing -EAGAIN break sysfs attribute
-registration and runtime energy reporting?
+If an unprivileged user reads the hwmon sysfs files (e.g., energy1_input)
+during driver load, xe_pmt_telem_read() can be invoked concurrently with
+xe_device_probe() before xe_vsec_init() sets base_offset.
 
-During device initialization, xe_hwmon_register() evaluates sysfs attribute
-visibility by calling xe_hwmon_energy_get():
+At this point, xe->pmt.base_offset is 0, so telem_addr is evaluated as
+xe->mmio.regs.
 
-xe_hwmon_energy_is_visible() {
-    ...
-    if (hwmon->xe->info.platform =3D=3D XE_BATTLEMAGE) {
-        xe_hwmon_energy_get(hwmon, channel, &energy);
-        return energy ? 0444 : 0;
-    }
-    ...
-}
+>  	u32 mem_region;
+>  	u32 offset;
+>  	int ret =3D 0;
+> @@ -194,6 +195,11 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, =
+u64 *data, loff_t user_offse
+>  		goto dev_exit;
+>  	}
+> =20
+> +	if (!xe->pmt.base_offset) {
+> +		ret =3D -EAGAIN;
+> +		goto dev_exit;
+> +	}
 
-Because xe_vsec_init() (which sets PMT base_offset) is called after
-xe_hwmon_register() in xe_device.c, the PMT read deterministically returns
--EAGAIN during probe.
+[Severity: High]
+Because drm_dev_enter() (called just before this in the function) acts as a
+compiler and memory barrier, if xe_vsec_init() executes concurrently and
+sets base_offset:
 
-By swallowing the error here and resetting the output to 0:
+CPU1
+xe_vsec_init()
+   xe->pmt.base_offset =3D BMG_TELEMETRY_OFFSET;
 
->  			*energy =3D 0;
->  			return;
->  		}
+CPU2
+xe_pmt_telem_read()
+   // calculated telem_addr earlier with base_offset =3D=3D 0
+   if (!xe->pmt.base_offset) // Now reads BMG_TELEMETRY_OFFSET, passes
 
-The visibility check sees energy=3D0 and permanently hides the sysfs attrib=
-utes
-(e.g., energy1_input) for Battlemage GPUs.
+Will the function then proceed to use the stale telem_addr (derived from 0)
+instead of the proper offset, resulting in reading from the wrong hardware
+registers when memcpy_fromio() is later called?
 
-Additionally, if -EAGAIN occurs during a later runtime read in
-xe_hwmon_energy_read(), returning 0 microjoules instead of propagating the
-error code corrupts power monitoring tools that compute power from this
-monotonic accumulator.
-
-Could we change xe_hwmon_energy_get() to return an error code instead of
-void so callers can distinguish between an actual 0 value and a failure?
-
-[ ... ]
+Should telem_addr be computed after this validation check to ensure the
+correct offset is used?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260909154739.1515=
-514-22-michael.j.ruhl@intel.com?part=3D12
+514-22-michael.j.ruhl@intel.com?part=3D13
