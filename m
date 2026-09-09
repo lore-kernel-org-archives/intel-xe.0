@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68AF9C79FB7
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 16:17:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2427C79FB7
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 16:17:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1EF110F200;
-	Wed,  9 Sep 2026 16:17:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DDDC10F1FF;
+	Wed,  9 Sep 2026 16:17:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BKHVfM3U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LbyZ5A7q";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 807FC10F1FD;
- Wed,  9 Sep 2026 16:17:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B20210F1FF;
+ Wed,  9 Sep 2026 16:17:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788970658; x=1820506658;
+ t=1788970663; x=1820506663;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XFDe8Qe++Aszenwbdkkhvhs9KMmNHG869iHpsOSr+Ms=;
- b=BKHVfM3UOQpA1paoxI23CVSJTGm26CUW79MizO5/6UIf6lyWjuyiM/UL
- rMUYfMFxEIh7DO2KIzF1K4JbIUhHWemV+voF21xTM/0nDVlEbRnBu7vwu
- flwF6gZY2xhkOQxTXI8Z9LdZjI06rdRHm+1gDcSrx5jprVbVGtBgI9VRF
- WajzSf/PBckrsNJBoFivdaWDXSqkDsxo9CtVdB8N1Fd1hbECZ1Yn8WsTf
- XPEUgiwj8TogR6WQSZS9ICEJFVAERFtnAA8BE+7y7kUOWATQJOGzkaUPs
- LbRU9BzRR6qBGienxySOwOJT6ORh1Y7hLYHVz7/8zEqiYZqBr6v2xI0G2 A==;
-X-CSE-ConnectionGUID: SjI7TwgDQ5GzQ3MAl3CjKA==
-X-CSE-MsgGUID: PsnxWnMOSY+q1AQrhEM2Xw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="114946745"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="114946745"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 09:17:38 -0700
-X-CSE-ConnectionGUID: hSLpJCPaS+GsA4ZUM3CeSQ==
-X-CSE-MsgGUID: x95126jiTGufdCqmUeTD2Q==
+ bh=DsU4ydw5T0P+ZrcdmnOpqTmfy3uZJv7vR7jkpFSjrLU=;
+ b=LbyZ5A7qSPo7ho3Fv2CGaT5SgZWxYoNJcotvb8D9PI0bYFId80unm7uN
+ 81MJeC/hgVRM5Vjc9sU1UPxp8caFQIqcXQaW5oCjiQbP1avrViXY/xWMj
+ HKgWlatCM8Y4/C0Yi32AVayQMOf9jCGhakFZ2BlCTM+zM6TgUebBHG6i4
+ 4NHrH/32C5KSSq031hugIFZ85JeUsJrYjwaje8rrsPDk8Ep6VjC+pXqUg
+ TaVgOpe3UGbP7YCzf1p9axB1jwsXYqxFtEG3hk0EEwcjX0YhMIausE+Fn
+ ewqC9pqP7yPp55rUqi4zfjUXy4B9JdL5w58oiYi2mONFnOYAqttgbUeVZ A==;
+X-CSE-ConnectionGUID: F9NM7nnRTIKdZgwOmh6GzQ==
+X-CSE-MsgGUID: SCbplNddQNC6IyIYssBAdg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="100064549"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="100064549"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2026 09:17:43 -0700
+X-CSE-ConnectionGUID: Ymv4BgmUSHqD0qHGplM7VA==
+X-CSE-MsgGUID: 837GCRK3Qra/xwTqn3p4tQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="296298814"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="275503151"
 Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.137])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 09:17:37 -0700
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2026 09:17:43 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 01/13] drm/i915: Give up on DSB/flip queue if we fail to
- allocate the color DSB buffer
-Date: Wed,  9 Sep 2026 19:17:18 +0300
-Message-ID: <20260909161730.12969-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 02/13] drm/i915: Check use_flipq in
+ intel_crtc_needs_vblank_work()
+Date: Wed,  9 Sep 2026 19:17:19 +0300
+Message-ID: <20260909161730.12969-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260909161730.12969-1-ville.syrjala@linux.intel.com>
 References: <20260909161730.12969-1-ville.syrjala@linux.intel.com>
@@ -73,41 +73,29 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We don't have a codepath that does the color LUT update via
-MMIO while writing the double buffered registers via DSB/flip queue.
-So if we fail to allocate the DSB buffer for the LUT update we have
-to fall back to a full MMIO based update. Make it so.
-
-If we hit this with the current code then the entire LUT update
-is simply skipped. After the fix the entire update, including
-the LUT, will happen.
-
-v2: Keep the use_dsb check in intel_crtc_needs_vblank_work()
-    for the case when we need a color update but we have no
-    LUTs, and thus we can end up doing the update via the DSB
-    with intel_color_uses_dsb()==false
+Check use_flipq in addition to use_dsb in
+intel_crtc_needs_vblank_work(). Currently this is never the case
+as we only use the vblank work for LUT updates, but we never
+take the flipq path when a LUT update is needed. The plan is to
+replace use_flipq/dsb with a single enum, so checking both will
+make that change clearer.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 87ced9f6ff40..26e92221fa19 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -2028,8 +2028,11 @@ void intel_color_prepare_commit(struct intel_atomic_state *state,
- 	else
- 		crtc_state->dsb_color = intel_dsb_prepare(state, crtc, INTEL_DSB_1, 1024);
- 
--	if (!intel_color_uses_dsb(crtc_state))
-+	if (!intel_color_uses_dsb(crtc_state)) {
-+		crtc_state->use_flipq = false;
-+		crtc_state->use_dsb = false;
- 		return;
-+	}
- 
- 	display->color.funcs->load_luts(crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 10ed9bdfee76..c7a85dce6aca 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -497,6 +497,7 @@ static bool intel_crtc_needs_vblank_work(const struct intel_crtc_state *crtc_sta
+ 		(intel_crtc_needs_color_update(crtc_state) &&
+ 		 !HAS_DOUBLE_BUFFERED_LUT(display)) &&
+ 		!intel_color_uses_dsb(crtc_state) &&
++		!crtc_state->use_flipq &&
+ 		!crtc_state->use_dsb;
+ }
  
 -- 
 2.54.0
