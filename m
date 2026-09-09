@@ -4,51 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D25EC79FAD
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 11:06:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 205C2C79FB6
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 11:06:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EDAA10E180;
-	Wed,  9 Sep 2026 11:06:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7AF510F0C3;
+	Wed,  9 Sep 2026 11:06:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MXLHXE1b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XV9M7OaE";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C501610E16B;
- Wed,  9 Sep 2026 11:06:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D48C10F0C3;
+ Wed,  9 Sep 2026 11:06:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788951967; x=1820487967;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=k8EcJ8owXN+8bU1/aPgdSS/1mYSPvRri/Cm/zA2G0ZQ=;
- b=MXLHXE1br6oN+3piyEggeObc5swSX1PZRP1GXy7amN/fZsM3Cwsn6N+L
- Xsol3uOPP23KZpFA39uzxpSBJX46Q6GRlWLvF8BWqCq1JatvSnmi6qwnv
- CsEvB47rMrqsqjjdeBEZl5ajSgZQiWfzUROvC7QT8ZdqRVyNQ3KzuRiP6
- inofXsEKk/J/TT3P6YjFJOwnuKqmHRQ8TXJh3xQ9PNr3nYlac7ywEbofG
- x/FlnyuOdGlkuCh6s5bvvJOyDRZXSgwby2ViQgDBcPLXrHrZGp+Dt2ZTP
- 2pZ6ayIMuylbsLjzsiqAd9ohr6WEjwzn+njF7vYP94YpM8sHYAoejYSBT Q==;
-X-CSE-ConnectionGUID: Kegj3wqPQ3yG3KglZn4+pA==
-X-CSE-MsgGUID: MOIBt/6NRh2Kvedes9LqwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="91888656"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="91888656"
+ t=1788951969; x=1820487969;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=T7UV6R9AHjRfnIPf0DCTeeGdQ7XCUPJApSwLBTK4IXU=;
+ b=XV9M7OaE57zhd1kCyY25p7K6eVmg187XfncwERpIvd5/O+0ch/fW3TkN
+ ePYvETmrwwZxIQD5QBHW7/KYzbF8VDeEo9dYSFS0+ZpafdlNh+LOKDyls
+ SbIEPbPHvfVi61ERwyri696+8py7ZksM+yXUYSVpVv037OJtF5drkngYp
+ rWnH2dC7RZCDlXOGv8oAip/zdt2XMSV9QfdI5iNvQVD7BaoAe9Wwcb2J3
+ xvQBF54o5OOXWUWoo5sw9dLpWSwwaydnpZEDmULy2xnkHSpIkO/1J37/R
+ lTwHbINeo/NIN3y2Gd5DmZkXJvKrmdLqCveOMDC2QJLdyjYcRgLPGFsof Q==;
+X-CSE-ConnectionGUID: obPquhOSRkGOyeV/umH7iw==
+X-CSE-MsgGUID: e3+Fne1wRNuRFTrBJIJyaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="91888657"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="91888657"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 04:06:07 -0700
-X-CSE-ConnectionGUID: DJtzJxjPS9mBTqQe5Q84ww==
-X-CSE-MsgGUID: 9RqoDdGlSGKMJ9c0YL3Klw==
+ 09 Sep 2026 04:06:09 -0700
+X-CSE-ConnectionGUID: 8flxUoTERamxcGK5dwgY1g==
+X-CSE-MsgGUID: VhjDpn6wQTqDa4KJQ0qGmA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="275425311"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="275425321"
 Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa005.jf.intel.com with ESMTP; 09 Sep 2026 04:06:06 -0700
+ by orviesa005.jf.intel.com with ESMTP; 09 Sep 2026 04:06:08 -0700
 From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 0/2]  Fix stale selective fetch enable bit
-Date: Wed,  9 Sep 2026 16:33:30 +0530
-Message-Id: <20260909110332.3528029-1-nemesa.garg@intel.com>
+Cc: Nemesa Garg <nemesa.garg@intel.com>, stable@vger.kernel.org,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH 1/2] Revert "drm/i915/display: Clear SEL_FETCH_PLANE_CTL on
+ plane disable"
+Date: Wed,  9 Sep 2026 16:33:31 +0530
+Message-Id: <20260909110332.3528029-2-nemesa.garg@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20260909110332.3528029-1-nemesa.garg@intel.com>
+References: <20260909110332.3528029-1-nemesa.garg@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,33 +69,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Selective fetch is dropped while pipe CRC is active, but the per-plane
-SEL_FETCH_PLANE_CTL()/SEL_FETCH_CUR_CTL() enable bits stay set in
-hardware. A plane disabled during that window never gets its bit cleared,
-since the disable path is guarded by enable_psr2_sel_fetch. When selective
-fetch returns, hardware keeps fetching for a plane that is gone and holds
-its DDB range.
+This reverts commit 7f1172a2ac0d7e50850785e2e65789c8aac8411a.
 
-Commit 7f1172a2ac0d ("drm/i915/display: Clear SEL_FETCH_PLANE_CTL on
-plane disable") fixed that by swapping the guard for
-HAS_PSR2_SEL_FETCH(), but that caused unclaimed register access on
-pipes driving HDMI.
+This commit replaced the crtc_state->enable_psr2_sel_fetch guard in
+icl_plane_disable_sel_fetch_arm() and i9xx_cursor_disable_sel_fetch_arm()
+with HAS_PSR2_SEL_FETCH(). This is a display version check and
+says nothing about the pipe, so every plane and cursor disable on a
+display 12+ platform started writing SEL_FETCH_PLANE_CTL() /
+SEL_FETCH_CUR_CTL(), including on pipes that do not implement them.
+It shows up as an unclaimed register access on pipes driving HDMI where
+selective fetch was never enabled.
 
-Patch 1 reverts it. Patch 2 clears the bits at the point selective fetch
-is turned off instead. Atomic check has both the old and the new crtc
-state, so record the transition there and let the plane and cursor arm
-paths write the registers to 0 for that commit.
+The stale selective fetch enable bit that commit addressed is handled
+in the next patch.
 
-Nemesa Garg (2):
-  Revert "drm/i915/display: Clear SEL_FETCH_PLANE_CTL on plane disable"
-  drm/i915/psr: Clear stale sel fetch enable bits on sel fetch disable
+Fixes: 7f1172a2ac0d ("drm/i915/display: Clear SEL_FETCH_PLANE_CTL on plane disable")
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16876
+Cc: stable@vger.kernel.org
+Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cursor.c       | 15 +++++----------
+ .../gpu/drm/i915/display/skl_universal_plane.c    | 15 +++++----------
+ 2 files changed, 10 insertions(+), 20 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_cursor.c   | 20 ++++++++---------
- .../drm/i915/display/intel_display_types.h    |  2 ++
- drivers/gpu/drm/i915/display/intel_psr.c      | 15 +++++++++++++
- .../drm/i915/display/skl_universal_plane.c    | 22 +++++++------------
- 4 files changed, 34 insertions(+), 25 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index cce041e1da51..90173040d825 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -531,18 +531,13 @@ static int i9xx_check_cursor(struct intel_crtc_state *crtc_state,
+ }
+ 
+ static void i9xx_cursor_disable_sel_fetch_arm(struct intel_dsb *dsb,
+-					      struct intel_plane *plane)
++					      struct intel_plane *plane,
++					      const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(plane);
+ 	enum pipe pipe = plane->pipe;
+ 
+-	/*
+-	 * Clear this whenever the hardware has selective fetch, not just when
+-	 * the current state uses it. The cursor may have been enabled with
+-	 * selective fetch earlier and had its enable bit orphaned when the
+-	 * feature was switched off.
+-	 */
+-	if (!HAS_PSR2_SEL_FETCH(display))
++	if (!crtc_state->enable_psr2_sel_fetch)
+ 		return;
+ 
+ 	intel_de_write_dsb(display, dsb, SEL_FETCH_CUR_CTL(pipe), 0);
+@@ -592,7 +587,7 @@ static void i9xx_cursor_update_sel_fetch_arm(struct intel_dsb *dsb,
+ 		if (crtc_state->enable_psr2_su_region_et)
+ 			wa_16021440873(dsb, plane, crtc_state, plane_state);
+ 		else
+-			i9xx_cursor_disable_sel_fetch_arm(dsb, plane);
++			i9xx_cursor_disable_sel_fetch_arm(dsb, plane, crtc_state);
+ 	}
+ }
+ 
+@@ -701,7 +696,7 @@ static void i9xx_cursor_update_arm(struct intel_dsb *dsb,
+ 	if (plane_state)
+ 		i9xx_cursor_update_sel_fetch_arm(dsb, plane, crtc_state, plane_state);
+ 	else
+-		i9xx_cursor_disable_sel_fetch_arm(dsb, plane);
++		i9xx_cursor_disable_sel_fetch_arm(dsb, plane, crtc_state);
+ 
+ 	if (plane->cursor.base != base ||
+ 	    plane->cursor.size != fbc_ctl ||
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 5cda1ab90e40..07a683293352 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -879,18 +879,13 @@ skl_plane_disable_arm(struct intel_dsb *dsb,
+ }
+ 
+ static void icl_plane_disable_sel_fetch_arm(struct intel_dsb *dsb,
+-					    struct intel_plane *plane)
++					    struct intel_plane *plane,
++					    const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(plane);
+ 	enum pipe pipe = plane->pipe;
+ 
+-	/*
+-	 * Clear this whenever the hardware has selective fetch, not just when
+-	 * the current state uses it. The plane may have been enabled with
+-	 * selective fetch earlier and had its enable bit orphaned when the
+-	 * feature was switched off.
+-	 */
+-	if (!HAS_PSR2_SEL_FETCH(display))
++	if (!crtc_state->enable_psr2_sel_fetch)
+ 		return;
+ 
+ 	intel_de_write_dsb(display, dsb, SEL_FETCH_PLANE_CTL(pipe, plane->id), 0);
+@@ -926,7 +921,7 @@ icl_plane_disable_arm(struct intel_dsb *dsb,
+ 
+ 	skl_write_plane_wm(dsb, plane, crtc_state);
+ 
+-	icl_plane_disable_sel_fetch_arm(dsb, plane);
++	icl_plane_disable_sel_fetch_arm(dsb, plane, crtc_state);
+ 
+ 	if (plane_has_normalizer(plane))
+ 		intel_de_write_dsb(display, dsb,
+@@ -1646,7 +1641,7 @@ static void icl_plane_update_sel_fetch_arm(struct intel_dsb *dsb,
+ 		intel_de_write_dsb(display, dsb, SEL_FETCH_PLANE_CTL(pipe, plane->id),
+ 				   SEL_FETCH_PLANE_CTL_ENABLE);
+ 	else
+-		icl_plane_disable_sel_fetch_arm(dsb, plane);
++		icl_plane_disable_sel_fetch_arm(dsb, plane, crtc_state);
+ }
+ 
+ static void
 -- 
 2.25.1
 
