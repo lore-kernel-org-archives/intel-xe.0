@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37546C88E42
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 12:42:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A87DC88E43
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 12:42:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D556410F115;
-	Wed,  9 Sep 2026 12:42:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9493910F11F;
+	Wed,  9 Sep 2026 12:42:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IihrW1NB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AcgA6ynv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E31910F12A
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 12:42:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 057CD10F10D
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 12:42:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788957725; x=1820493725;
+ t=1788957730; x=1820493730;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=g3oUKAqHYaO9UndFKxvQelUJhVEWOav8HS6NiO29HNI=;
- b=IihrW1NBPT4Mz9EVqAcgMF2/v5QWc0p86vC9fSLWZKd/5U0YWRsT7tYk
- Zt12yU54aa5n5An78EMJyL6VuIr/eJ5hsiGUFqRtHoW6E6O3PgbvLaPll
- H1hXvic7KiCzwO/+uWQrY+Rh7OFkMGsk07jwE6aJT/iopWuR3qozTgaOO
- EbMy8kjDhCsCpMtMtkEAQQXxhzO1MH84N/yz0J7vvydjk3aoshaPwocLu
- RuwBVOopOLP1bAP70yPDScbcTAttALy9g7ztJksOA+Av8Oivy9Sd/rsQL
- QnNUGksElVjsgB0v9XDJJlLvOkDUIb+xSdeCfRCiRSzWYiWj85ZzwquxH Q==;
-X-CSE-ConnectionGUID: zxRq/7y+T6eKQXjtVLrlKw==
-X-CSE-MsgGUID: 54MPL36WRtmDFrVKAIZYkw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="99715545"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="99715545"
+ bh=SOaBkbx7S7+YU7xJRanrBHc9e4G8jsFTq2MGI+vaE7M=;
+ b=AcgA6ynv/CPkx4XPZbNdWFLuUEjBXv96f16bE71QwbG+MemcQMgatbYH
+ 2t4E4rVzKUjtFqDmEZ52LjcD8Yol9V5JwWg0MzN35irb1geWoBRuTE9uM
+ O6HsOtewdbq3yQTX8HEl61buhPs80BlmE//xUEwPPwY331+/0BXkPazl4
+ 8HggE3q11WyeFbCwT7UWeACEkv0nQjLFcymj+iiNL+AcxzAjy1bC7GbZz
+ KsYkwpVxB01o70TxxpwPkWKwKUuQ6rr10QkniKEsRoDzBvDCL/HGGG4mw
+ Ov03+0OC5Ef5hPte7h9UlVwsrCmoARPQbyiCn9xQkJh5YVcwEfOBHsW6H g==;
+X-CSE-ConnectionGUID: EtUX1879RKOeIiowAsr9jA==
+X-CSE-MsgGUID: Q+l44rS1R82Ud6Q/Dfxu+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="99715563"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="99715563"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 05:42:05 -0700
-X-CSE-ConnectionGUID: /aXxn8lvQNK6gFBc65uPJg==
-X-CSE-MsgGUID: hiLKQs6GQM+YG+K5/GM8zQ==
+ 09 Sep 2026 05:42:10 -0700
+X-CSE-ConnectionGUID: kJCzTUKqRweCvBh7WQCfRg==
+X-CSE-MsgGUID: oPiNmWriSMKg0ZgmIjhVtg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="296246615"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="296246647"
 Received: from hghimira.iind.intel.com ([10.190.239.34])
- by fmviesa001.fm.intel.com with ESMTP; 09 Sep 2026 05:42:03 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 09 Sep 2026 05:42:08 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [RFC v2 10/21] drm/xe/trace: Add xe_vma_acc trace event for access
- counter notifications
-Date: Wed,  9 Sep 2026 18:15:04 +0530
-Message-ID: <20260909124457.1610890-33-himal.prasad.ghimiray@intel.com>
+Subject: [RFC v2 13/21] drm/xe: Add xe_guc_access_counter layer
+Date: Wed,  9 Sep 2026 18:15:07 +0530
+Message-ID: <20260909124457.1610890-36-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260909124457.1610890-23-himal.prasad.ghimiray@intel.com>
 References: <20260909124457.1610890-23-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,107 +67,192 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Trace VMA access counter notifications with asid, address range, and
-counter type (TRIGGER or NOTIFY) to aid debugging of migration hints.
+Add GuC to host (G2H) access counter notification handler to parse
+GuC firmware messages into struct xe_access_counter and forward to
+xe_access_counter_handler for processing.
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_access_counter.c       |  3 ++
- drivers/gpu/drm/xe/xe_access_counter_types.h |  8 +++++
- drivers/gpu/drm/xe/xe_trace_bo.h             | 32 ++++++++++++++++++--
- 3 files changed, 40 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/Makefile                  |  1 +
+ drivers/gpu/drm/xe/xe_access_counter_types.h | 12 ++++
+ drivers/gpu/drm/xe/xe_guc_access_counter.c   | 74 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_access_counter.h   | 15 ++++
+ drivers/gpu/drm/xe/xe_guc_ct.c               |  4 ++
+ drivers/gpu/drm/xe/xe_guc_fwif.h             |  1 +
+ 6 files changed, 107 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_access_counter.c
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_access_counter.h
 
-diff --git a/drivers/gpu/drm/xe/xe_access_counter.c b/drivers/gpu/drm/xe/xe_access_counter.c
-index 60595f93cd74..c386b3585b20 100644
---- a/drivers/gpu/drm/xe/xe_access_counter.c
-+++ b/drivers/gpu/drm/xe/xe_access_counter.c
-@@ -13,6 +13,7 @@
- #include "xe_device.h"
- #include "xe_gt_printk.h"
- #include "xe_hw_engine.h"
-+#include "xe_trace_bo.h"
- #include "xe_usm_queue.h"
- #include "xe_vm.h"
- 
-@@ -80,6 +81,8 @@ static int xe_access_counter_service(struct xe_access_counter *ac)
- 		goto unlock_vm;
- 	}
- 
-+	trace_xe_vma_acc(vma, ac->consumer.counter_type);
-+
- 	/* TODO: Handle svm vma's  */
- 	if (xe_vma_has_no_bo(vma))
- 		goto unlock_vm;
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 96a4f83c5d89..ad1acc67ee0b 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -74,6 +74,7 @@ xe-y += xe_access_counter.o \
+ 	xe_guc_id_mgr.o \
+ 	xe_guc_klv_helpers.o \
+ 	xe_guc_log.o \
++	xe_guc_access_counter.o \
+ 	xe_guc_pagefault.o \
+ 	xe_guc_pc.o \
+ 	xe_guc_rc.o \
 diff --git a/drivers/gpu/drm/xe/xe_access_counter_types.h b/drivers/gpu/drm/xe/xe_access_counter_types.h
-index 343365776037..deecd25b990a 100644
+index 7cdcdae4e357..955d63e2c204 100644
 --- a/drivers/gpu/drm/xe/xe_access_counter_types.h
 +++ b/drivers/gpu/drm/xe/xe_access_counter_types.h
-@@ -14,6 +14,14 @@ struct xe_device;
- struct xe_gt;
- struct xe_access_counter;
+@@ -40,6 +40,18 @@ enum xe_access_counter_granularity {
+ 	XE_ACCESS_COUNTER_GRANULARITY_64M  = 3,
+ };
  
-+/** enum xe_access_counter_type - Xe access counter type */
-+enum xe_access_counter_type {
-+	/** @XE_ACCESS_COUNTER_TYPE_TRIGGER */
-+	XE_ACCESS_COUNTER_TYPE_TRIGGER		= 0,
-+	/** @XE_ACCESS_COUNTER_TYPE_NOTIFY*/
-+	XE_ACCESS_COUNTER_TYPE_NOTIFY	= 1,
-+};
++static inline u64 xe_access_counter_granularity_to_size(u8 granularity)
++{
++	switch (granularity) {
++	case XE_ACCESS_COUNTER_GRANULARITY_128K: return SZ_128K;
++	case XE_ACCESS_COUNTER_GRANULARITY_2M:   return SZ_2M;
++	case XE_ACCESS_COUNTER_GRANULARITY_16M:  return SZ_16M;
++	case XE_ACCESS_COUNTER_GRANULARITY_64M:  return SZ_64M;
++	default:
++		return SZ_128K;
++	}
++}
 +
  /**
   * struct xe_access_counter - Xe access counter
   *
-diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
-index 86323cf3be2c..eae5a5d0dbdc 100644
---- a/drivers/gpu/drm/xe/xe_trace_bo.h
-+++ b/drivers/gpu/drm/xe/xe_trace_bo.h
-@@ -12,6 +12,7 @@
- #include <linux/tracepoint.h>
- #include <linux/types.h>
- 
-+#include "xe_access_counter_types.h"
- #include "xe_bo.h"
- #include "xe_bo_types.h"
- #include "xe_vm.h"
-@@ -125,9 +126,34 @@ DEFINE_EVENT(xe_vma, xe_vma_pagefault,
- 	     TP_ARGS(vma)
- );
- 
--DEFINE_EVENT(xe_vma, xe_vma_acc,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
-+TRACE_EVENT(xe_vma_acc,
-+	    TP_PROTO(struct xe_vma *vma, u8 counter_type),
-+	    TP_ARGS(vma, counter_type),
+diff --git a/drivers/gpu/drm/xe/xe_guc_access_counter.c b/drivers/gpu/drm/xe/xe_guc_access_counter.c
+new file mode 100644
+index 000000000000..7e9b835e1ed6
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_guc_access_counter.c
+@@ -0,0 +1,74 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ */
 +
-+	    TP_STRUCT__entry(
-+		     __string(dev, __dev_name_vma(vma))
-+		     __field(struct xe_vma *, vma)
-+		     __field(struct xe_vm *, vm)
-+		     __field(u32, asid)
-+		     __field(u64, start)
-+		     __field(u64, end)
-+		     __field(u8, counter_type)
-+		     ),
++#include "xe_guc_access_counter.h"
 +
-+	    TP_fast_assign(
-+		   __assign_str(dev);
-+		   __entry->vma = vma;
-+		   __entry->vm = xe_vma_vm(vma);
-+		   __entry->asid = xe_vma_vm(vma)->usm.asid;
-+		   __entry->start = xe_vma_start(vma);
-+		   __entry->end = xe_vma_end(vma) - 1;
-+		   __entry->counter_type = counter_type;
-+		   ),
++#include "xe_access_counter.h"
++#include "xe_device.h"
++#include "xe_exec_queue.h"
++#include "xe_gt.h"
++#include "xe_guc.h"
++#include "xe_guc_fwif.h"
++#include "xe_guc_submit.h"
++#include "xe_printk.h"
 +
-+	    TP_printk("dev=%s, vma=%p, vm=%p, asid=0x%05x, start=0x%012llx, end=0x%012llx, type=%s",
-+		      __get_str(dev), __entry->vma, __entry->vm,
-+		      __entry->asid, __entry->start, __entry->end,
-+		      __entry->counter_type == XE_ACCESS_COUNTER_TYPE_NOTIFY ? "NOTIFY" : "TRIGGER")
- );
++static u64 xe_guc_access_counter_page_va(struct xe_device *xe, u64 addr, u8 gran)
++{
++	u64 gran_size = xe_access_counter_granularity_to_size(gran);
++	u64 sub_gran_size = gran_size / 32;
++	u64 region_base = ALIGN_DOWN(addr, gran_size);
++	u64 offset_in_subchunk = addr & (sub_gran_size - 1);
++	u64 page_va = region_base + offset_in_subchunk;
++
++	xe_dbg(xe, "gran_size = %llx, addr = = %llx, region_base = %llx, page_va=%llx\n",
++	       gran_size, addr, region_base, page_va);
++	return page_va;
++}
++
++/**
++ * xe_guc_access_counter_handler() - G2H access counter handler
++ * @guc: GuC object
++ * @msg: G2H message
++ * @len: Length of G2H message
++ *
++ * Parse GuC to host (G2H) message into a struct xe_access_counter and forward
++ * onto the Xe access counter layer.
++ *
++ * Return: 0 on success, negative error code on failure
++ */
++int xe_guc_access_counter_handler(struct xe_guc *guc, u32 *msg, u32 len)
++{
++	struct xe_access_counter ac = {};
++	struct xe_device *xe = guc_to_xe(guc);
++	u64 addr;
++#define GUC_ACC_MSG_LEN_DW	\
++	(sizeof(struct xe_guc_acc_desc) / sizeof(u32))
++
++	if (len != GUC_ACC_MSG_LEN_DW)
++		return -EPROTO;
++
++	ac.gt = guc_to_gt(guc);
++
++	/* Parse access counter descriptor */
++	ac.consumer.granularity = FIELD_GET(ACC_GRANULARITY, msg[2]);
++	ac.consumer.sub_granularity = FIELD_GET(ACC_SUBG_HI, msg[1]) << ACC_SUBG_LO_WIDTH |
++				      FIELD_GET(ACC_SUBG_LO, msg[0]);
++	ac.consumer.counter_type = FIELD_GET(ACC_TYPE, msg[0]);
++	if (ac.consumer.counter_type > XE_ACCESS_COUNTER_TYPE_NOTIFY)
++		return -EINVAL;
++
++	addr = ((u64)(msg[3] & ACC_VIRTUAL_ADDR_RANGE_HI) << 32) |
++		(msg[2] & ACC_VIRTUAL_ADDR_RANGE_LO);
++	ac.consumer.page_va = xe_guc_access_counter_page_va(xe, addr, ac.consumer.granularity);
++	ac.gran_end = ac.consumer.page_va +
++		      xe_access_counter_granularity_to_size(ac.consumer.granularity);
++	ac.consumer.asid = FIELD_GET(ACC_ASID, msg[1]);
++	ac.consumer.engine_class = FIELD_GET(ACC_ENG_CLASS, msg[1]);
++	ac.consumer.engine_instance = FIELD_GET(ACC_ENG_INSTANCE, msg[1]);
++	ac.consumer.vfid = FIELD_GET(ACC_VFID, msg[2]);
++#undef GUC_ACC_MSG_LEN_DW
++
++	return xe_access_counter_handler(xe, &ac);
++}
+diff --git a/drivers/gpu/drm/xe/xe_guc_access_counter.h b/drivers/gpu/drm/xe/xe_guc_access_counter.h
+new file mode 100644
+index 000000000000..1ac8e76398d2
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_guc_access_counter.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_GUC_ACCESS_COUNTER_H_
++#define _XE_GUC_ACCESS_COUNTER_H_
++
++#include <linux/types.h>
++
++struct xe_guc;
++
++int xe_guc_access_counter_handler(struct xe_guc *guc, u32 *msg, u32 len);
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 5c4733da385c..3068cbbff8c7 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -26,6 +26,7 @@
+ #include "xe_gt_sriov_pf_monitor.h"
+ #include "xe_guc.h"
+ #include "xe_guc_log.h"
++#include "xe_guc_access_counter.h"
+ #include "xe_guc_pagefault.h"
+ #include "xe_guc_relay.h"
+ #include "xe_guc_submit.h"
+@@ -1753,6 +1754,9 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 	case XE_GUC_ACTION_REPORT_PAGE_FAULT_REQ_DESC:
+ 		ret = xe_guc_pagefault_handler(guc, payload, adj_len);
+ 		break;
++	case XE_GUC_ACTION_ACCESS_COUNTER_NOTIFY:
++		ret = xe_guc_access_counter_handler(guc, payload, adj_len);
++		break;
+ 	case XE_GUC_ACTION_TLB_INVALIDATION_DONE:
+ 		ret = xe_guc_tlb_inval_done_handler(guc, payload, adj_len);
+ 		break;
+diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
+index 971b850f2136..a2a77b252d3e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_fwif.h
++++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
+@@ -299,6 +299,7 @@ struct xe_guc_acc_desc {
+ #define ACC_TRIGGER	0
+ #define ACC_NOTIFY	1
+ #define ACC_SUBG_LO	GENMASK(31, 1)
++#define ACC_SUBG_LO_WIDTH 31
  
- DEFINE_EVENT(xe_vma, xe_vma_bind,
+ 	u32 dw1;
+ #define ACC_SUBG_HI	BIT(0)
 -- 
 2.43.0
 
