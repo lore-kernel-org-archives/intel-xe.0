@@ -4,101 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B5E5C79F9F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93C6BC88E42
 	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 14:24:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C556E10E171;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF49C10E210;
 	Thu, 10 Sep 2026 14:24:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="frB7x9l8";
+	dkim=pass (1024-bit key; unprotected) header.d=szeredi.hu header.i=@szeredi.hu header.b="mEx4ynb6";
 	dkim-atps=neutral
-Received: from mail-wm2-f12.google.com (mail-wm2-f12.google.com
- [74.125.225.140])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D9EC10E557
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 17:36:14 +0000 (UTC)
-Received: by mail-wm2-f12.google.com with SMTP id
- 5b1f17b1804b1-499db1740e4so2944785e9.0
- for <intel-xe@lists.freedesktop.org>; Wed, 09 Sep 2026 10:36:13 -0700 (PDT)
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com
+ [209.85.219.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43DF710F0A5
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 10:30:35 +0000 (UTC)
+Received: by mail-qv1-f41.google.com with SMTP id
+ 6a1803df08f44-90cc0ebbf4bso49446896d6.3
+ for <intel-xe@lists.freedesktop.org>; Wed, 09 Sep 2026 03:30:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1788949834; cv=none;
+ d=google.com; s=arc-20260327;
+ b=VPtHjwq1/sAEDg/pC+03enQOdAJHjUlES4nh7af2njsczv8XDwZBCQo+9HrbJGs2kI
+ RQBagz/d7fr6O1RA7Xs3d/38KTskWeu46N5l4ces3X4lPkbPmmCZ23lmv/kmTtk2bQEf
+ X4X1sKdRmJffReEzGxvOtmXiuDC+zvgIaVkjzf1rw4omOjZGr4Sd0VEuISpI2uQsjB4/
+ IsmrHuNQRWDP4731aLjwHti7hiyp6I83NMB3kx8HdCSnt1ahN9S04dRmNBmNbzJNByEi
+ 9C6F13NYlAWPnJuapwayoi89is7tRfdd4TqwBSyN41X0PD2ijlZ4ITjeUM5ExwofqS0V
+ WYwA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:dkim-signature;
+ bh=jpRvNvSvD7V0OL3stsnfs9SVxZoTLrRcZKUqJWQu3kQ=;
+ fh=PM+JoTgtvwIQfublu4jIq3tcKARxZ0/llEZm+bAkv3k=;
+ b=QqidoL4tQx+spH8YRTG5DT4ftFEAtQTF51Neq69F9fydAGExPgNJ+HSvSr9+G8vmEU
+ dtItUKKtGN1DaUHsiDQuWxZgjZxMFdS9iEU/gkbKiL5m/ndBo8k0F3cUCecin1TziV9h
+ GumqqoO+J1+ciOCJywxHJtlV0Zo7jM+U8Cdl+n/zd0w4IYsXcGQ7b35NwvRbr+mWz4de
+ 6cuQBQsKWywWgzdREtqZzWbYl3ovo0B0PIyC70vPR7+PSdV6RPNiiiw+frBX8HvKwGNj
+ SmTtuiEG/ZkzPZ1Fe6oWUMcuSTizkbC78Vq2bKjqr8aCuTCWaGEI96z2GTxOzqO2fTho
+ sgIA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1788975372; x=1789580172; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=WLa/2IhG0uPxKott5hiW6gEdbabkA+pAUSYZZS+3kb0=;
- b=frB7x9l8Crenbt1bg+sjXRoqk1/L1pkejdGVTvTEPszl/LLrAaP6eIwpQQj6DltEEA
- W3Rxq3CRHhJA/W7g/Zm11RybkK9V6p9qVjFeoCW46HkFHmiPPRFe3XuouRKAbSgHo08g
- 3O0nmuGfmpF1E5wgvObakfjsFWEvnsGoHH6VszfEx8WjczdzRmtvDS5hG5Xk3hwdxXqI
- pPAg6HSA0YlC15RTgOTqyUWvBGnYzeXZtTeX+c/WM1YFFZstcH/xWAqnZACpDX/Nuonh
- tUOFBARu7Vik6B7XA/ryrPIbBCmtGTdFJF1cmMgf36QnEAh/laxCweL+zjqCiUCuBmJy
- Oa5Q==
+ d=szeredi.hu; s=google; t=1788949834; x=1789554634; darn=lists.freedesktop.org;
+ h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+ :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=jpRvNvSvD7V0OL3stsnfs9SVxZoTLrRcZKUqJWQu3kQ=;
+ b=mEx4ynb6OCfaub9Fv4e292wq7T+lw6whmfDdYkJlQ8ertK/gTJZ2cnr8/tDzj/LIJF
+ wmVFlk3zCk6rv58oDAuIAVNkszwitNP75EWXowDuESiQgfHAw6aS8/PjThwRTN5a3Pkj
+ 8HY0tNu8+4sz0gyTifmY4K9TMydAqlbstHPGw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1788975372; x=1789580172;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to:content-type;
- bh=WLa/2IhG0uPxKott5hiW6gEdbabkA+pAUSYZZS+3kb0=;
- b=kWx0VpDLSzciGCZAPeU5lEh14NzleSoTLFyMpFJIdPEY6sJv+NqgGXpw4/ZObEhfs8
- o6+zAdeD5UlrGm+UM3QD6MyuJjwwE8JvWq/vTYdYrMi20rtwZf5cFIrs/F2RDx43ZyIa
- tug9+M1zhcyfzS/uMYCF52hX26W5ewoxfilCNywt4mFrvtXqCpWTY6ySNhVSkquR4apq
- r89tM1WHX4dereaZFpcJwDKVZKgG40iYklrvjhS0hPtour6/O5OYuGSoEtDOu9OmO+zi
- VrwvzCkvqas3ezbsbdwyJ9OpisEfdb2HVW+mnt6FtGJPPVkQF0cPEYIJf9t9NLJNFg5C
- VSMQ==
+ d=1e100.net; s=20251104; t=1788949834; x=1789554634;
+ h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+ :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to:content-type;
+ bh=jpRvNvSvD7V0OL3stsnfs9SVxZoTLrRcZKUqJWQu3kQ=;
+ b=TROepfnAEAdYtC3dpYDukftFkbWe/zRy11vELMcrCEf1UW6JgZi8B7u34FEFxTYTdZ
+ 46vohgHDdesifya6GTZyI/21ygFHKuWrF8UhhAufYp87F0jUvZ70jzJdRM7CMUKv3+7h
+ RE/4hV/OM0/V3nbOWW795L5nUauOsOZOYMXgm0uyqbDlezv/F3E5b5/0sgv70XY9xdhn
+ GvI1LRSsbw/9ftOk+vDPKIWtIQIswkM8cy20cnvjJ04cdV5oPAw5gXny2TTm4nscNmJr
+ Y9icPFXJ5LWxXkFBJpYZ0ZyNe4n1QNBGL3fc+LvNArrT27lpcM7Bu8sxlnHd+qT8AJib
+ H/Sw==
 X-Forwarded-Encrypted: i=1;
- AKwUvBxgQ5UyJsN016ZGTv+av3lNKOZbn+aYODniQK0KXPZO0j+92r+JPwJvPGYB8GatexBkX8dWSSza6Q==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++nZHlrwD2Hyk94qYPqxPPvlh0Lf/p9yU26g03754krFUt6VC8AG
- +lEVOSsqmM8IzpjUD2Sf53WaQ0c44mUJKEinpvMnIjdfQNB+ybnl6DWw
-X-Gm-Gg: AYBFou3RN1ndFutWz9WkmCsh6QY+xMFzRLNTUPmHfZ3ewMkcNj+k5KEhth+0aaQddpi
- ehf7zRfSVbFYOykS5HoAmLjeCrRyaqb8v4PLXSVPV+hckXdlOmvvIxLybNID3HFt7Ztr/hiaElU
- gnkQTtbwhI6IPnwuVrRX9xeT7QP1SyNCLCjQ+yXgvaRJmVFGmOiL+WugJ4W1GTammUZRCEpkj44
- iTyLh/73UOhy/S0tN0PwpgCQTu5Sug3fsX+mr0y8pamZ0h+KOOJ+cUwAVmw+FlbuTgKgXWqnkKI
- Sl3DYcOYLP6XyunCIX2TG9vLKfQrSmHWqBCblJt2JlTvvj+/DU7g+Pi9mJgX5bUDxgxyg/EqsKU
- UVA4K6QDtkc9LSiqkdkipMiqfsbgKUL24gFJ5uhO8DArdt2/+U3GlmExwXBByQpUE3gU0d5cTwJ
- TsKdzz+0NYOBzKeEN92mOpV+D+HksaOjeWPUxGd46Y9Ngjs4ne1TtSKdYCSWce92hEZCCUF6pgh
- vHydbNU5aYXS5n0XYPMJ+8OPdaW9At6Qb9GrJ7jO6DeCDsj6QipCDMYDZfDsry8uCeRfYnuerHC
- Lw==
-X-Received: by 2002:a05:600c:a305:b0:49c:ff81:e062 with SMTP id
- 5b1f17b1804b1-49cff81e076mr237967455e9.2.1788975372348; 
- Wed, 09 Sep 2026 10:36:12 -0700 (PDT)
-Received: from OrangePi5-Plus.BB-HOME
- (20014C4E1B836900B0110705BF092680.dsl.pool.telekom.hu.
- [2001:4c4e:1b83:6900:b011:705:bf09:2680])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-49d26c06f04sm6876575e9.13.2026.09.09.10.36.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Sep 2026 10:36:11 -0700 (PDT)
-From: Igor Paunovic <royalnet026@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Cc: Igor Paunovic <royalnet026@gmail.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Sandy Huang <hjc@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Ville Syrjala <ville.syrjala@linux.intel.com>,
- Imre Deak <imre.deak@intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v2 2/3] drm/display: bridge-connector: Preserve max bpc across
- connector reset
-Date: Wed,  9 Sep 2026 19:35:39 +0200
-Message-ID: <20260909173542.14030-3-royalnet026@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260909163206.36409-1-royalnet026@gmail.com>
-References: <20260909163206.36409-1-royalnet026@gmail.com>
+ AKwUvBy6P2hYQh16U+/xTikUK8ShuSMqEgbzHVj/1zr56WpiUF5p+piLsPWPQ9S95qRU9roP5kGZ//AW+Q==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++lvzyI/pNKBqf9/vKjbFnjLwTGHyNvSYUv2p9XWCpihhyHvVc3M
+ AUQ5Jzuz5eXrEtwgBL22S4LLx8B7AAUUUY1XJL58vBXf6PM9uSXzCdjwPf+7GlzQ3jee61sN06m
+ WB4/D7reLLrB3AEFC2rZr5MZ7gsOzAYQjANJcBKFI9g==
+X-Gm-Gg: AYBFou2nVup7F8mQ/CG5NmpghaKOrvQ+lwMS3wzefntXKoz4Do4o1r0yENbCdPp1J6K
+ 9ga4E2Nd02SFg3C5g35P20K1OKq5CqgGfCmr6KK8Ye88FOnG2YK3XmFGKn/RNJSvs/f7DOSeBC3
+ S6WNUCYiScVK09Brm9SmIGEFctg8kh+VSvMV5IL13MtM7nVRJ1thT6CRja0wwpljW8ZvU6QNyGR
+ nvww8CmBwZFQmADUgGrrEUmmeAx4oh0/0Emg+mBRvFh8g+DP4x8aPF7boqRYdDnvVGUcM7O99iR
+ hpq2B1ZaTb7dJuArfqHgcW5PN2IZ6kf9P6tsm2q180n7AfPyjmrmqPduZjqPC88pIGkKPbF688m
+ RZtyIlAZMvT2q
+X-Received: by 2002:a05:622a:1489:b0:52f:bc89:4933 with SMTP id
+ d75a77b69052e-5305483d9ecmr389465191cf.20.1788949831561; Wed, 09 Sep 2026
+ 03:30:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260903145952.848051-1-mika.kuoppala@linux.intel.com>
+ <20260903145952.848051-5-mika.kuoppala@linux.intel.com>
+ <20260903152224.AD48C1F00A3F@smtp.kernel.org>
+ <178878748003.179185.16833574173741290547@jlahtine-mobl>
+ <178894801687.37859.4186888279082797860@jlahtine-mobl>
+In-Reply-To: <178894801687.37859.4186888279082797860@jlahtine-mobl>
+From: Miklos Szeredi <miklos@szeredi.hu>
+Date: Wed, 9 Sep 2026 12:30:20 +0200
+X-Gm-Features: AcwNN1Uh9cE_469mX3O2aBqf9qMn4Rt3GJCs03Vdits2s9ouaewG7zKYcPHnkzU
+Message-ID: <CAJfpegsFJkghPimBYAnJ_KyZt43T66cAATAvpENZeX5Lj73zSQ@mail.gmail.com>
+Subject: Re: FUSE deadlocks vs. copy_from_user() and locks (Was: Re: [PATCH
+ v10 04/27] drm/xe/eudebug: Introduce discovery for resources)
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Bernd Schubert <bernd@bsbernd.com>, Joanne Koong <joannelkoong@gmail.com>, 
+ Amir Goldstein <amir73il@gmail.com>, intel-xe@lists.freedesktop.org, 
+ fuse-devel@lists.linux.dev, sashiko-bot@kernel.org, 
+ sashiko-reviews@lists.linux.dev, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>,
+ Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ dri-devel@lists.freedesktop.org, 
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Thu, 10 Sep 2026 14:24:03 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -114,92 +116,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-drm_connector_attach_max_bpc_property() initializes max_requested_bpc
-and max_bpc in the connector state, but nothing restores them when the
-connector state is later thrown away and re-created:
-drm_bridge_connector_create_state() returns a zeroed state for
-non-HDMI bridge connectors, and drm_mode_config_reset() installs such
-a fresh state on every connector that implements
-&drm_connector_funcs.atomic_create_state instead of a .reset hook.
+On Wed, 9 Sept 2026 at 12:00, Joonas Lahtinen
+<joonas.lahtinen@linux.intel.com> wrote:
 
-This matters because drivers can attach the property before
-drm_mode_config_reset() runs. Rockchip, for example, binds its
-component drivers (which create connectors and attach properties)
-before calling drm_mode_config_reset(). After that reset,
-max_requested_bpc is 0, so drm_atomic_connector_check() computes
-max_bpc = min(info->bpc ?: 8, 0) = 0. Any driver that filters output
-formats on conn_state->max_bpc then rejects every format, and clients
-that never set the "max bpc" property - fbcon in particular - end up
-with a black screen. meson already attaches the property on a
-drm_bridge_connector before drm_mode_config_reset() and so already
-boots with max_requested_bpc = 0 today. dw-hdmi's format negotiation
-does consume the value there, but meson attaches the property with a
-maximum of 8 and the 8-bit fallback formats are not gated on it, so
-negotiation yields the same result for 0 and 8 - the change is a
-no-op for meson.
+> Based on reading of [1] and [2], it seems pretty much expected FUSE
+> drivers can trivially deadlock and ultimately in worst case the situation
+> can only be solved by manually aborting those connections by sysadmin.
 
-HDMI bridge connectors are immune: drm_bridge_connector_create_state()
-calls __drm_atomic_helper_connector_hdmi_state_init(), which
-initializes both fields from connector->max_bpc. amdgpu likewise
-re-initializes max_requested_bpc in its own .reset implementation.
-Non-HDMI bridge connectors have no equivalent.
+Exactly.
 
-Mirror the HDMI helper on the non-HDMI path: record the upper attach
-limit in connector->max_bpc (drmm_connector_hdmi_init() already stores
-the same value there) and restore max_requested_bpc and max_bpc from
-it in drm_bridge_connector_create_state() whenever the "max bpc"
-property is attached. Connectors without the property behave exactly
-as before.
+The real question is, how far the effects of this deadlock can spread.
+If it remains within control of the user that mounted the fuse
+filesystem, than that's okay.  If it affects processes not controlled
+by the user, that's bad.
 
-Assisted-by: LLM checkpatch
-Signed-off-by: Igor Paunovic <royalnet026@gmail.com>
----
- drivers/gpu/drm/display/drm_bridge_connector.c | 6 +++++-
- drivers/gpu/drm/drm_connector.c                | 5 +++++
- 2 files changed, 10 insertions(+), 1 deletion(-)
+So it's not about being able to stall a process that accesses the
+filesystem, that's trivially doable using fuse even without any page
+faults.
 
-diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
-index 00feb73e63d7f..6197fb80f7cc2 100644
---- a/drivers/gpu/drm/display/drm_bridge_connector.c
-+++ b/drivers/gpu/drm/display/drm_bridge_connector.c
-@@ -279,9 +279,13 @@ drm_bridge_connector_create_state(struct drm_connector *connector)
- 	if (IS_ERR(conn_state))
- 		return conn_state;
- 
--	if (bridge_connector->bridge_hdmi)
-+	if (bridge_connector->bridge_hdmi) {
- 		__drm_atomic_helper_connector_hdmi_state_init(connector,
- 							      conn_state);
-+	} else if (connector->max_bpc_property) {
-+		conn_state->max_requested_bpc = connector->max_bpc;
-+		conn_state->max_bpc = connector->max_bpc;
-+	}
- 
- 	return conn_state;
- }
-diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-index 8b4baed060f3a..0400a6a92e2b7 100644
---- a/drivers/gpu/drm/drm_connector.c
-+++ b/drivers/gpu/drm/drm_connector.c
-@@ -2866,6 +2866,10 @@ EXPORT_SYMBOL(drm_connector_set_link_status_property);
-  * @max: The maximum bit depth supported by the connector.
-  *
-  * This is used to add support for limiting the bit depth on a connector.
-+ * @max is also recorded in &drm_connector.max_bpc, so that
-+ * &drm_connector_funcs.atomic_create_state and &drm_connector_funcs.reset
-+ * implementations can restore the property default when re-creating the
-+ * connector state.
-  *
-  * Returns:
-  * Zero on success, negative errno on failure.
-@@ -2888,6 +2892,7 @@ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
- 	drm_object_attach_property(&connector->base, prop, max);
- 	connector->state->max_requested_bpc = max;
- 	connector->state->max_bpc = max;
-+	connector->max_bpc = max;
- 
- 	return 0;
- }
--- 
-2.43.0
+I'ts about being able to stall an unrelated process.
 
+Thanks,
+Miklos
