@@ -4,54 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E718C79FAA
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 07:27:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3C18C79F8C
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 07:30:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5231C10EF7E;
-	Wed,  9 Sep 2026 07:27:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C0B510EF75;
+	Wed,  9 Sep 2026 07:30:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VWQ9HAMR";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="k0DZ6nY1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEC6D10EF7E
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 07:27:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788938833; x=1820474833;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=l0r6rbkPenWZLZdehsiUbNMY9Mc/xTOB7FUzLZZLTjA=;
- b=VWQ9HAMRRWJjnsi4IF8AAaDBjheI9mnLfj11wr/bkV/zwAl93coOrFEs
- xJ3pHcoCFDyMee+y6SJRG5NxJkW7DqipDn6Ff6pVdIHN1+5p96F8S8U1t
- 2unX2O2T+ZFBsQ2N+rMrElaw/yo+ofsGyTbpCSEE0ZrK/H/kRdYOchbJs
- LGlaouoEYP1/2Pbdk176pw1doa6EMeMt+fUPl8tsAr7eyg6xv0AIiQT5J
- jsXDFhAM6oQbbi2qQSFY9EgHIe6WvBC5xzE/DmavBQs1yK5pHC2bcBqET
- ZMhJRS+AbJwP85v0LzhCQQxydMl/9fS/+Zv8UbmY99XuX5FTunlPr7tIH A==;
-X-CSE-ConnectionGUID: KVaVFX8JQdqCEeFVW1q0lg==
-X-CSE-MsgGUID: vXu2LiTWQduvMNc+a1Ec2A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="89193010"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="89193010"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 00:27:12 -0700
-X-CSE-ConnectionGUID: EWZjCj37TZaP/N1ZlW6fPw==
-X-CSE-MsgGUID: fSqkjpNjQFWoCmhA5cOiSQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="296175664"
-Received: from tilak-z690i-a-ultra-plus.iind.intel.com ([10.190.239.38])
- by fmviesa001.fm.intel.com with ESMTP; 09 Sep 2026 00:27:10 -0700
-From: tilak.tirumalesh.tangudu@intel.com
-To: tilak.tirumalesh.tangudu@intel.com, vinay.belgaumkar@intel.com,
- tejas.upadhyay@intel.com, gustavo.sousa@intel.com,
- intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p platforms
-Date: Wed,  9 Sep 2026 12:55:40 +0530
-Message-ID: <20260909072540.99303-3-tilak.tirumalesh.tangudu@intel.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20260909072540.99303-1-tilak.tirumalesh.tangudu@intel.com>
-References: <20260909072540.99303-1-tilak.tirumalesh.tangudu@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7613910EF75
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 07:30:07 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 9A234601FD;
+ Wed,  9 Sep 2026 07:30:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F4281F00AC4;
+ Wed,  9 Sep 2026 07:30:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788939006;
+ bh=g2yxbrdQHdlrqjG8UgS0umrr4c7m1biNLgnXpjZApHA=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=k0DZ6nY1bPhS5Gl8u9t9wxbjVTwSA6oxTHXwXCFld7HDm8RTvEA90W444joY5Khdk
+ qAd+3uSB+jEPAO/KlqfKi02iHXGKu8u+DHeTd9M61azH1xeFIV7UiN4SNCK6n3XkLH
+ WxtjIurtCe39Gu0GWVOn2t6iT4A8BufFuRwssBcsW544lebizaO/RJ2UR3P5zI0Jbt
+ 03TkyFbBDrBofzvhgYx0iXGASx2qs0ro3xUlM1f3JMYyekESg00T8pSvP2sJWIuUsj
+ uKmMAnlbUiI2a4dcRIw1ywg01Nx4DWtLFxVIXoy8nv8loyJzjcINAhbsaYNwXm/yvx
+ sBsURnRkAQsjQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 1/1] drm/xe/guc: Fix wake_up race in handle_sched_done
+To: "Jakub Legowski" <jakub.legowski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260909070825.228551-1-jakub.legowski@intel.com>
+References: <20260909070825.228551-1-jakub.legowski@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 09 Sep 2026 07:30:05 +0000
+Message-Id: <20260909073006.2F4281F00AC4@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,143 +51,145 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-Avoid programming the IDLEDLY timer to less than 5 microseconds.
-Apply wa_14025941587 to Graphics Versions 20.01 to 35.11
-and Media Versions 13.01 to 35.03
+Pre-existing issues:
+- [High] Waiters on `guc->ct.wq` will time out if a suspend-related schedul=
+e disable completes on bare metal, as the patch fails to add `wake_up_all()=
+` in the `suspend_pending` branch.
+- [High] Waiters on `guc->ct.wq` can time out because the wakeup is strictl=
+y conditional on `exec_queue_banned(q)`, skipping multi-queue primaries.
+--
 
-v2: Use xe_rtp_match_not_sriov_vf, move to local variable
-    Remove warn and other knits            - Matt R
+commit f80ea1dec48e9b0b18afdae4e0b791bbac894219
+Author: Jakub Legowski <jakub.legowski@intel.com>
 
-v3: Add verbose comment - Tejas
+drm/xe/guc: Fix wake_up race in handle_sched_done
 
-v4: Restore IDLE_DLY register on engine reset.
-    Add it to GUC save-restore list. -Vivek
+When a SCHED_DONE G2H arrives for a banned exec queue,
+handle_sched_done() calls wake_up_all() before
+clear_exec_queue_pending_disable(). This creates a race with the
+wait_event_timeout() in guc_exec_queue_timedout_job() that waits
+for pending_disable to be cleared. This moves the wake_up_all()
+after all paths that clear pending_disable.
 
-v5: Extend WA to Media Versions 13.01 to 35.03 - Vinay
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
+uc_submit.c
+> index 99d8c807ff056..a181b50422934 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -3239,25 +3239,27 @@ static void handle_sched_done(struct xe_guc *guc,=
+ struct xe_exec_queue *q,
+>  			clear_exec_queue_pending_disable(q);
+>  			suspend_fence_signal(q);
+>  		} else {
 
-v6: Avoid clearing inhibit switch - Bala
-    Refactor code accordingly by adding idle_reg_val.
+[Severity: High]
+This is a pre-existing issue, but won't waiters on guc->ct.wq time out if a
+suspend-related schedule disable completes on bare metal?
 
-v7: Rebased with the divide-by-zero/overflow guards living in
-    a separate hardening patch.
+When a queue is being suspended, it issues a disable and sets suspend_pendi=
+ng.
+Concurrently, guc_exec_queue_timedout_job() or disable_scheduling_deregiste=
+r()
+waits on guc->ct.wq for pending_disable to clear:
 
-Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
-Reviewed-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_ads.c    |  2 +-
- drivers/gpu/drm/xe/xe_hw_engine.c  | 52 ++++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_wa_oob.rules |  2 ++
- 3 files changed, 45 insertions(+), 11 deletions(-)
+drivers/gpu/drm/xe/xe_guc_submit.c:guc_exec_queue_timedout_job()
+	ret =3D wait_event_timeout(guc->ct.wq,
+				 (!exec_queue_pending_enable(primary) &&
+				  !exec_queue_pending_disable(primary)) ||
+				 xe_guc_read_stopped(guc) ||
+				 vf_recovery(guc), HZ * 5);
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index ff8eee3831aa..58a3f6293ce4 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -864,7 +864,7 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
- 		}
- 	}
- 
--	if (XE_GT_WA(hwe->gt, 16023105232))
-+	if (XE_GT_WA(hwe->gt, 16023105232) || XE_GT_WA(hwe->gt, 14025941587))
- 		guc_mmio_regset_write_one(ads, regset_map,
- 					  RING_IDLEDLY(hwe->mmio_base),
- 					  count++);
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 6ffb0ece0561..033740c34aa6 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -588,23 +588,27 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
- static void adjust_idledly(struct xe_hw_engine *hwe)
- {
- 	struct xe_gt *gt = hwe->gt;
--	u32 idledly, maxcnt;
-+	u32 idledly, idledly_reg_val, maxcnt;
- 	u32 idledly_units_ps = 8 * gt->info.timestamp_base;
- 	u32 maxcnt_units_ns = 640;
--	bool inhibit_switch = 0;
-+	bool inhibit_switch = false;
-+	bool wa_applied = false;
-+
-+	if ((!IS_SRIOV_VF(gt_to_xe(hwe->gt)) && XE_GT_WA(gt, 16023105232)) ||
-+	    XE_GT_WA(gt, 14025941587)) {
-+		u32 mincnt_idledly_ns = 5000;
- 
--	if (!IS_SRIOV_VF(gt_to_xe(hwe->gt)) && XE_GT_WA(gt, 16023105232)) {
- 		/* xe_gt_clock_init() zeroes timestamp_base on unknown crystal clock. */
- 		if (!idledly_units_ps) {
- 			xe_gt_warn(gt, "idledly WA skipped: timestamp_base is 0\n");
- 			return;
- 		}
- 
--		idledly = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
-+		idledly_reg_val = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
- 		maxcnt = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
- 
--		inhibit_switch = idledly & INHIBIT_SWITCH_UNTIL_PREEMPTED;
--		idledly = REG_FIELD_GET(IDLE_DELAY, idledly);
-+		inhibit_switch = idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED;
-+		idledly = REG_FIELD_GET(IDLE_DELAY, idledly_reg_val);
- 		idledly = DIV_ROUND_CLOSEST_ULL((u64)idledly * idledly_units_ps, 1000);
- 		maxcnt = REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt);
- 
-@@ -614,10 +618,38 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
- 
- 		maxcnt *= maxcnt_units_ns;
- 
--		if (xe_gt_WARN_ON(gt, idledly >= maxcnt || inhibit_switch)) {
--			idledly = DIV_ROUND_CLOSEST_ULL((u64)(maxcnt - 1) * 1000,
--							idledly_units_ps);
--			xe_mmio_write32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base), idledly);
-+		/* Wa_14025941587: applied prior to Wa_16023105232,
-+		 * as the latter has higher priority, although conflict
-+		 * is not expected.
-+		 */
-+		if (XE_GT_WA(gt, 14025941587) &&
-+		    idledly < mincnt_idledly_ns) {
-+			idledly = mincnt_idledly_ns;
-+			wa_applied = true;
-+		}
-+
-+		if (XE_GT_WA(gt, 16023105232) &&
-+		    xe_gt_WARN_ON(gt, idledly >= maxcnt || inhibit_switch)) {
-+			idledly = (maxcnt - 1);
-+			wa_applied = true;
-+			/* inhibit_switch override to keep
-+			 * semantics of Wa_16023105232
-+			 */
-+			if (inhibit_switch)
-+				idledly_reg_val &= ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
-+		}
-+
-+		if (wa_applied) {
-+			idledly_reg_val &= ~IDLE_DELAY;
-+			idledly_reg_val |= REG_FIELD_PREP(IDLE_DELAY,
-+						DIV_ROUND_CLOSEST_ULL((u64)idledly * 1000,
-+								      idledly_units_ps));
-+			xe_gt_dbg(gt, "idledly %s: set %u max=%u inh=%u ts=%u\n",
-+				  hwe->name, idledly, maxcnt,
-+				  !!inhibit_switch, gt->info.timestamp_base);
-+			xe_mmio_write32(&gt->mmio,
-+					RING_IDLEDLY(hwe->mmio_base),
-+					idledly_reg_val);
- 		}
- 	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index dd69ad07f7a9..3001155f8d09 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -72,3 +72,5 @@
- 16029897822	MEDIA_VERSION(3500)
- 		GRAPHICS_VERSION(3510)
- 14027054324	GRAPHICS_VERSION(3511)
-+14025941587	GRAPHICS_VERSION_RANGE(2001, 3511), FUNC(xe_rtp_match_not_sriov_vf)
-+		MEDIA_VERSION_RANGE(1301, 3503), FUNC(xe_rtp_match_not_sriov_vf)
--- 
-2.46.0
+When the disable completes, handle_sched_done() clears pending_disable and
+calls suspend_fence_signal(). However, on bare metal, suspend_fence_signal()
+only wakes suspend_wait:
 
+drivers/gpu/drm/xe/xe_guc_submit.c:__suspend_fence_signal()
+	if (IS_SRIOV_VF(xe))
+		wake_up_all(&guc->ct.wq);
+	else
+		wake_up(&q->guc->suspend_wait);
+
+Could this leave guc->ct.wq waiters stranded, causing spurious 5-second
+timeouts and unnecessary GT resets?
+
+> +			bool destroyed =3D exec_queue_destroyed(q);
+> +
+> +			/*
+> +			 * Make sure to clear the pending_disable only
+> +			 * after sampling the destroyed state. We want
+> +			 * to ensure we don't trigger the unregister too
+> +			 * early with something intending to only
+> +			 * disable scheduling. The caller doing the
+> +			 * destroy must wait for an ongoing
+> +			 * pending_disable before marking as destroyed.
+> +			 */
+> +			clear_exec_queue_pending_disable(q);
+> +
+>  			if (exec_queue_banned(q)) {
+
+[Severity: High]
+This isn't a bug introduced by this patch, but can waiters on guc->ct.wq ti=
+me
+out because the wakeup is strictly conditional on exec_queue_banned(q), ski=
+pping
+multi-queue primaries?
+
+If a job on a multi-queue secondary queue times out,
+guc_exec_queue_timedout_job() bans the secondary queue (q) but issues
+disable_scheduling on the primary queue, waiting on guc->ct.wq for the prim=
+ary's
+pending_disable to clear:
+
+drivers/gpu/drm/xe/xe_guc_submit.c:guc_exec_queue_timedout_job()
+	set_exec_queue_banned(q);
+
+	/* Kick job / queue off hardware */
+	if (!xe_device_is_in_reset(xe) && !wedged &&
+	    (exec_queue_enabled(primary) || exec_queue_pending_disable(primary))) {
+		...
+		ret =3D wait_event_timeout(guc->ct.wq,
+					 !xe_uc_fw_is_running(&guc->fw) ||
+					 !exec_queue_pending_disable(primary) ||
+					 xe_guc_read_stopped(guc) ||
+					 vf_recovery(guc), HZ * 5);
+
+When SCHED_DONE arrives for the primary, handle_sched_done() skips the wake=
+up
+because exec_queue_banned(primary) is false. Could this lead to guaranteed
+5-second timeouts and GT resets when a multi-queue secondary job hangs?
+
+> +				/* Pairs with smp_rmb in guc_exec_queue_timedout_job */
+>  				smp_wmb();
+>  				wake_up_all(&guc->ct.wq);
+>  			}
+> -			if (exec_queue_destroyed(q)) {
+> -				/*
+> -				 * Make sure to clear the pending_disable only
+> -				 * after sampling the destroyed state. We want
+> -				 * to ensure we don't trigger the unregister too
+> -				 * early with something intending to only
+> -				 * disable scheduling. The caller doing the
+> -				 * destroy must wait for an ongoing
+> -				 * pending_disable before marking as destroyed.
+> -				 */
+> -				clear_exec_queue_pending_disable(q);
+> +
+> +			if (destroyed)
+>  				deregister_exec_queue(guc, q);
+> -			} else {
+> -				clear_exec_queue_pending_disable(q);
+> -			}
+>  		}
+>  	}
+>  }
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260909070825.2285=
+51-1-jakub.legowski@intel.com?part=3D1
