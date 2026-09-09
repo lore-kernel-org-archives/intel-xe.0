@@ -4,98 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39F40C88E47
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 14:24:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C5CEC88E40
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 14:24:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C81E510E467;
-	Thu, 10 Sep 2026 14:24:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4FCC10E00D;
+	Thu, 10 Sep 2026 14:24:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="pZcE0QJ/";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="W1vAYdNT";
 	dkim-atps=neutral
-Received: from mail-wm2-f12.google.com (mail-wm2-f12.google.com
- [74.125.225.140])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23D0E10F341
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 07:52:03 +0000 (UTC)
-Received: by mail-wm2-f12.google.com with SMTP id
- 5b1f17b1804b1-49b93204449so3706065e9.3
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 00:52:03 -0700 (PDT)
+Received: from mail-wr2-f12.google.com (mail-wr2-f12.google.com
+ [74.125.225.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA79910E227
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 19:41:41 +0000 (UTC)
+Received: by mail-wr2-f12.google.com with SMTP id
+ ffacd0b85a97d-4843971bdd0so689492f8f.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 09 Sep 2026 12:41:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1789026721; x=1789631521; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1788982900; x=1789587700; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to:content-type;
- bh=hSvkvCa4QalyG2BNxJcMEEX0DpoCO16400N3JfxMgjQ=;
- b=pZcE0QJ/Bfd32reE+IVYJ0CkME3JCB/JSb8N6SS0ZNMqsC8/WJQSMFFzj0GOCWex/J
- Bsdge9YyICVEdtfj3xmR3OetQxHpbcglg4nWUfC9ksHr9wfs0ED0GHbCpLIKTFvIaA94
- MitcYxDS3ZG67tuz+MHPpefjLSXv/JgOKdpXeaElMJLLWhK7pHnGD0UYA5JmLb78GbbM
- 1YT9v4aRu98zPYEBp9Ucf/a+AUdYkPN9sYyqkdhEOSJ8mg/pkNAvfuboawIKnhbZ+tj9
- rzMmZfobTWBv2DblpghFW/yU+4ceQCu5a2VZ9GPj4nQPc1ygDkg2kV1TlXPkrHcEgbXP
- LyNQ==
+ bh=BMV0mMGaUxuAC5co0uH2uhYqExWWNSi7vJ8S06jVFgM=;
+ b=W1vAYdNT03QcmCM0abY/2+j1pBXDbIWA6QNYGRlKzJfUAowxews0Bquh0vcmZH52V3
+ YnPhZv131AVNiXi9HES5P/jFlvHXeW6qhR7MqxfggWKN3iNflTPpfnvwQHZ6v+Z8k67w
+ CXOfrcVUlSmublkVBYsTAuQjw8gs3cACKmUlEWfFDI0s+2ZSInYbgFyATnUJnFe1U/Cc
+ 2wufGZ6hBBhlOUByF0tVsZF/I3AfDr87nB7OmDKgRV8EywuxCw2Ql+Bpha+0QViSSBUD
+ XoQByjh19CxDw9Tu7KsLV+QQ+iyBzQDE8BzBrnoGlGQb4Ha7ROHY2fxKXq2PJQ0RXwHZ
+ vVKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1789026721; x=1789631521;
+ d=1e100.net; s=20251104; t=1788982900; x=1789587700;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to:content-type;
- bh=hSvkvCa4QalyG2BNxJcMEEX0DpoCO16400N3JfxMgjQ=;
- b=hO+gmN9MbgX/ur05tvEhAXZr2H1yN/9DDOGSuM6Kns7//uKCKMF3BvdCl2WRbBVjts
- Gvd4njrAk4Y9gwWkPb+cfm3+srqtJbc9fjOkPmb3JDB8Uu69PalkQErEDtDoDXSdcksg
- xozjxez6R5XAaevsG+VkcIkZbvwzoAp9u8H/WuHITqu7lbV/b6swtc8d6ROAFjlT1OvJ
- sLLiBeYiRFHiChvBZawO2Tdv3n5PcG3+IQREK9ONiY518/Xz7Uv8KZeSqsLTB3ARQDXd
- iYJ5UYD+BJPlq5cjxJNV+lnE96jM6DKHo71dLmAhjDwhmRkNrGeCmKormsIFjUfXwsyv
- 2xIQ==
+ bh=BMV0mMGaUxuAC5co0uH2uhYqExWWNSi7vJ8S06jVFgM=;
+ b=PP/ha8RG14Pv+NTCtigQP/rpyAv/vlsbzCeL1bcXiqs2QtjnjFsD1YHnIMaWh5EFRM
+ +wKeqddeO+gXyjx/olkaM4BbZU+qHPeV6gToX4wzm1eO7BWe34N1zxZby8DzLWGjvUsL
+ ZnDaeBM9x3KJDf8L5gx9h5PWBNjAE4HU/jvWruzH0mPnoDRVcVkGzIJPYDqraSmns1iK
+ JoiYJ4NqaW29Vrf6ejU7+7FR2G8tstPY4hZqWDdB2mRpTaKYr31+ctfMZuj62czfdWx8
+ Kr69eE2KNf6d9hLMNomuO4Se4Mj7J9fhgSvAIbLhnDruxLXQkhRRjzeIWQa403tH5MVi
+ Q/yQ==
 X-Forwarded-Encrypted: i=1;
- AKwUvBx70Uhh70Ckbwhph6VRr3nnV5hX8kMwqKXaKXLWMp7jCcpsy/uJKflKiMMEN8nmN5F9OdScBbvmdg==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++mup5C41KJW/FQaqGmNYRFDyExpZI+JvIwxQ43gqkchKY3xpTgs
- nsxFA6fshNSchoqZaV02c7VIwpks0qGY6yOY5kwiSV7/br9ZUb5UC3I5
-X-Gm-Gg: AYBFou2GlfG0guxxdYZAD/P3+edev5LXNxuYHAA1iwT0Dc1dsMqUmsmi5g6fUebeGOB
- 5jwsRnKlO/0CMWFyhnmhM6eamd97H1m3YnQETI2CM2dg+IROfEZxaa6YSzbMX0zU0hT3rbXNwla
- 8HEs/e1LfPExaD0cZv4BWJH4OuPeWfCT6UZSlujjD+3epbOljBBvhYRkIT4Oy4roXy3iDI8uMMS
- C+Jc8X2mzqArbnP0vn7jYHxaUMFpMHPuCWIR5C1T/gpGu2deGafyEEQimgeScsOBMrZqs07YASd
- lsCD9ADacgoZMNHRoet+LWbvr8Pqc4nVHdSIYN7t2YG3ntnfBE2yF19RQMul60BpXNsfvl7ccKD
- Mr+ZqwhsBwFB9A86ZOf+JvJFRCoZpY6Py8TcEipl/kJcgfQqysFgU6Pp5jHhQFzpCEfToKRLm4r
- kWEl6x2sB7qLzFM9BTLtfZ7LbmgDsnOqm+C5k4KJfZ6lFSMEFJ88kJgI2nFU3NEQYbNN25d2O2+
- eZ1KRLuCmSZyXMD0QCeQQHbgk3DJP33E23boDknJk0pbRNJzb6z8auyXO7r3gwx9zx8hMswBBVX
- hi6H
-X-Received: by 2002:a05:600c:530d:b0:49c:e363:c66e with SMTP id
- 5b1f17b1804b1-49d01dce86fmr291744635e9.1.1789026720937; 
- Thu, 10 Sep 2026 00:52:00 -0700 (PDT)
+ AKwUvByR0GRbvS/5hw2xsEdrS2PELofjGs1sy+ruKYv/qaahTgpyZWrY+xm++zUQvZhdfHUvby7HHUNw2Q==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++nJbxUXMJHX2gNoZPz6o06OovL5DP7bBXyhzbxZSFSJUlug5uCO
+ LJyQqc6ci/tjoVhpIgGtZRgSlhZ3fUfSiR/JMtl+lT8AGqvCLFy8B7Go
+X-Gm-Gg: AYBFou2kdrqiur+Dlf2X4Q1j4u7iqkzjWjJAP5dipgxzopgrVTb7bFLsPLxXAq+qmMk
+ UcUHmUvEGCu08P445Z20nTl6EXU4RyaEf6lELys+gs60lXGRAV6NoFIF9IX96h5qFs+tk1lhBrH
+ DAWlvzagm1QfaBCpzsK0U/1q67+C0Tacc4q8UG/pP8IXmcNFVWYmiiXAG+IaXn/5TjHq/U58Usy
+ MVfvl1AnbbEjJu7nQBmXI/QDnpn9nI19StCEWPTaNoELJgRmKVisTpNpgURCBrKm+0+CiCUAUiU
+ XoQNzxMzvdVAdSpyoUcyzHQlF3qKf/vpPG0yVFc0lBXufMrp4GQe6e7qEdj1Qqy+RMTTa1H6ozN
+ WOgrm6paY8kewhKy1hgcV6OEnswdVU+mYrOEOLIgGSIolb14GBJnrBDKcZkh9lDAe28dyiqAJm0
+ wUwKkFerrZ2KwV3B9d7VZoMvI3lp5epRri1XOoiMWhwqhf4brHQU4ipIOmYpwRVc13uWWUvX8lJ
+ ypyiMlclZtOTxhJdXJzDI7V+PrKhPltuhkQg05JXBhvSE4Ur9AwJIbzMvWaCl62Mc32PMS1feSf
+ Yckb
+X-Received: by 2002:a05:600c:474a:b0:49c:ff81:e062 with SMTP id
+ 5b1f17b1804b1-49d276628c8mr3990025e9.2.1788982899647; 
+ Wed, 09 Sep 2026 12:41:39 -0700 (PDT)
 Received: from OrangePi5-Plus.BB-HOME
- (20014C4E1B9146001C92980EE71198AB.dsl.pool.telekom.hu.
- [2001:4c4e:1b91:4600:1c92:980e:e711:98ab])
+ (20014C4E1B836900C06E5685D4591C35.dsl.pool.telekom.hu.
+ [2001:4c4e:1b83:6900:c06e:5685:d459:1c35])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-49d20fce7a7sm251593715e9.4.2026.09.10.00.51.58
+ 5b1f17b1804b1-49d20fce7a7sm167161505e9.4.2026.09.09.12.41.37
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 10 Sep 2026 00:52:00 -0700 (PDT)
+ Wed, 09 Sep 2026 12:41:38 -0700 (PDT)
 From: Igor Paunovic <royalnet026@gmail.com>
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: Igor Paunovic <royalnet026@gmail.com>, dri-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+To: dri-devel@lists.freedesktop.org
+Cc: Igor Paunovic <royalnet026@gmail.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ Maxime Ripard <mripard@kernel.org>,
  Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Sandy Huang <hjc@rock-chips.com>,
  Heiko Stuebner <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
  Sebastian Reichel <sebastian.reichel@collabora.com>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Ville Syrjala <ville.syrjala@linux.intel.com>,
- Imre Deak <imre.deak@intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 Subject: Re: [PATCH v2 3/3] drm/rockchip: dw_dp: Attach "max bpc" connector
  property
-Date: Thu, 10 Sep 2026 09:51:40 +0200
-Message-ID: <20260910075141.48803-1-royalnet026@gmail.com>
+Date: Wed,  9 Sep 2026 21:40:35 +0200
+Message-ID: <20260909194036.8889-1-royalnet026@gmail.com>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <9e77b5c5-f1d9-484b-ae02-846fae1b3642@rock-chips.com>
-References: <9e77b5c5-f1d9-484b-ae02-846fae1b3642@rock-chips.com>
+In-Reply-To: <20260909173542.14030-4-royalnet026@gmail.com>
+References: <20260909173542.14030-4-royalnet026@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 10 Sep 2026 14:24:03 +0000
@@ -113,48 +100,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Chaoyi,
+The bot is right, and it is worse than it reported. I went and read the
+code rather than taking either its word or my own.
 
-On 9/10/26 09:16, Chaoyi Chen wrote:
-> I don't think this is the correct way to go.
->
-> I believe max_bpc should be handled in drm_bridge_connector_init().
-> Take a look at its implementation. HDMI already does max_bpc there,
-> so DP should probably do something similar.
+drm_bridge_connector_init() has two paths. With an HDMI bridge in the
+chain it calls drmm_connector_hdmi_init() (drm_bridge_connector.c:1016);
+otherwise drmm_connector_init() (:1027). And drmm_connector_hdmi_init()
+already contains, at drm_connector.c:621-631, the exact block this patch
+adds - same shape, same comment, because that is where I took it from -
+and then calls drm_connector_attach_max_bpc_property() itself at :633.
 
-Agreed - that is the question I left open in my reply to the bot. v3
-moves it into drm_bridge_connector_init() and drops this glue patch.
+So on a chain with an HDMI bridge my patch does two wrong things, not
+one:
 
-Three points I would rather ask than guess, since it is shared code:
+ - it overwrites a connector->state that has just been allocated, which
+   is the leak the bot found;
 
-1. How the bridge advertises it. drm_bridge.max_bpc is documented as
-   "only relevant if DRM_BRIDGE_OP_HDMI is set" and the helper only
-   reads it inside the OP_HDMI block. I intend to honour it on the
-   non-HDMI path too, relax that doc sentence, and have dw-dp set
-   bridge->max_bpc = 10. If you prefer to keep the field HDMI-only,
-   a separate field is easy - I just did not want to add one unasked.
+ - it calls drm_connector_attach_max_bpc_property() a second time. That
+   one is not a leak: the helper reuses connector->max_bpc_property when
+   it already exists, so my 6..10 range is silently discarded and the
+   8..max_bpc property created by the HDMI path stays. It does re-attach
+   the same property to the object and overwrite state->max_bpc.
 
-2. The range. HDMI attaches 8..max_bpc. dw-dp's format table goes down
-   to 6 bpc RGB and i915 attaches 6..N on its DP connectors, so I intend
-   6..max_bpc when connector_type is DisplayPort, 8..max_bpc otherwise -
-   the same gate Dmitry used for the DP subconnector property in his
-   msm series [1]. Nothing is attached unless a bridge declared
-   max_bpc, so existing non-HDMI bridge connectors are unchanged.
+On the boards I care about there is no HDMI bridge behind dw-dp, so
+neither fires today - but "does not fire on my board" is not a reason to
+leave it.
 
-3. Where the default lives. 2/3 restores max_requested_bpc from
-   connector->max_bpc after drm_mode_config_reset(), but Cristian's
-   v11 71/74 removes that field [2] (HDMI keeps it in hdmi.funcs). I
-   intend to keep the value in struct drm_bridge_connector and restore
-   it from there in drm_bridge_connector_create_state(), which folds
-   2/3 into the same patch. 1/3 is unaffected.
+For v3 both blocks get guarded on what is already there:
 
-The state still has to exist before the property is attached, so the
-non-HDMI path gets the same create-state block drmm_connector_hdmi_init()
-has. If you would rather see that block factored into a helper for both
-callers, say so and I will do that instead.
+	if (!connector->state) {
+		... create the state ...
+	}
 
-[1] https://lore.kernel.org/all/20260722-drm-msm-display-interface-v1-24-368c10fe62fd@oss.qualcomm.com/
-[2] https://lore.kernel.org/all/20260901-dw-hdmi-qp-scramb-v11-71-bc12954a0688@collabora.com/
+	if (!connector->max_bpc_property) {
+		ret = drm_connector_attach_max_bpc_property(connector, 6, 10);
+		...
+	}
 
-Thanks,
+That leaves a question I would rather ask than paper over. The state
+creation exists only in drmm_connector_hdmi_init(), while
+drm_bridge_connector_init() leaves the plain path without a state - so
+any bridge driver that wants a connector property at bind time has to
+copy that block, as I did. Would it be better to move it into
+drm_bridge_connector_init() so both paths get a state, and have drivers
+just attach their properties? I am happy to write that instead, but it
+touches shared code and I would rather be told than guess.
+
+On the pre-existing [High]: the bot is right that the error path I add
+inherits it. dw_dp_bind() takes devm resources on the component device,
+including a non-shared devm_request_threaded_irq(), so a failed bind
+leaves them held and the retry gets -EBUSY. My dw_dp_unbind() call does
+not release devres. With the guards above the new path becomes hard to
+reach, but it does not stop being wrong, and I did not introduce it.
+I can send a separate patch moving those to the master device if the
+maintainers want it - it is a different change from this one.
+
 Igor
