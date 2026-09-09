@@ -4,64 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2460CC79F8C
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 06:32:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7311CC79FAA
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 06:32:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE15F10EED3;
-	Wed,  9 Sep 2026 06:32:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1562410EEDD;
+	Wed,  9 Sep 2026 06:32:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZA+l7Emj";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="FoJHBpC+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CADFC10EED3;
- Wed,  9 Sep 2026 06:32:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788935545; x=1820471545;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=/h5dVSsvfROejpBSrh4qJEooPtApHAkZjDTpJfrhuQY=;
- b=ZA+l7EmjqprglOrQWzB0i9sufXFof/FXgFyqNqZjLnsxHJEI6lq1+Qy4
- Rs+hTFpn3ypJFF5OJ183TOF2spXA+n6/8qcYXunXVTs+8VGZfBo/UVOm9
- VpARtbDKC4dYGPz9cxe/Uo52EXG+eNRv2PB41COekxCmN6mz7ZAB5lisJ
- DMQdLHUjCCkyU5nh8ihC5edPcmw7WFV6TNKGylB3mzz2CIEBJS64Ninlb
- QFNZqHr+za7k3kFR+a8QUeDG7zP9/gTXtzcqZg/siFwEwfH56GX1qkzBt
- QSHHIHJXw2l2VO2MzpYBjp0uB8vLya7MyqvZv4I3xPYz8QgmE97+qqXcx w==;
-X-CSE-ConnectionGUID: 2JH5RXQ4TpCq+djf4dfUmQ==
-X-CSE-MsgGUID: sFKN2jS/SkKBNuVhgiGThA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="88287201"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="88287201"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 23:32:23 -0700
-X-CSE-ConnectionGUID: SDa6DcYJTIC/ahidQJuRXg==
-X-CSE-MsgGUID: TO1bLLsmSXWOgVzeU5xgkw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="269886196"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.245.20])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2026 23:32:20 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Werner Sembach <wse@tuxedocomputers.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Werner Sembach <wse@tuxedocomputers.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm/intel: Add quirk to disable rc6 on some TUXEDO
- devices
-In-Reply-To: <20260908200707.65516-2-wse@tuxedocomputers.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260908200707.65516-1-wse@tuxedocomputers.com>
- <20260908200707.65516-2-wse@tuxedocomputers.com>
-Date: Wed, 09 Sep 2026 09:32:16 +0300
-Message-ID: <7764d157c4bd6f832adeb7860baded67ae151901@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89D6B10EEDD
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 06:32:27 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id C534560207;
+ Wed,  9 Sep 2026 06:32:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5008B1F00AC4;
+ Wed,  9 Sep 2026 06:32:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1788935546;
+ bh=1Q/UkauQji1oU/fT3pTOwKcum8WlRFuA2oWiU1wUTc0=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=FoJHBpC+BIBZUuf11hRMS2sjGI85W0JeJz3o1AhLmKlrZq7Z7lfiDL4VGdmS+TJDH
+ QCUUKEzq9Gd4fCwb02VF5q8QWmaWp1A+KA4afy6TFF3BStaydX4ZciBxqNxTuLPE6g
+ sBpEzTIUICBXgxvpTKeGc7yh3spMBtGYtHYKatG8xwYLVfPsG/uD34EGSu9HGrnQHX
+ L1g+tPprCMxBiPw1M25mPX2La16QXOw9wUdj1cjWr7xqMHL1xtde8QqBvVLclz9sSv
+ Ra4tJgvmdRM8n0TbHHXmPe2ns52UapZHMsVcBQomeTRTmlaYeKs4//wvWcHaYsmi4E
+ eHL1rcuKMsHRg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 1/4] drm/xe/xe_migrate: Align MEM_COPY pitch with
+ destination address
+To: "Jan Maslak" <jan.maslak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260909061845.4048047-2-jan.maslak@intel.com>
+References: <20260909061845.4048047-1-jan.maslak@intel.com>
+ <20260909061845.4048047-2-jan.maslak@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 09 Sep 2026 06:32:25 +0000
+Message-Id: <20260909063226.5008B1F00AC4@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,99 +53,100 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 08 Sep 2026, Werner Sembach <wse@tuxedocomputers.com> wrote:
-> Some TUXEDO devices have random rare hard resets during video streaming.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
 
-Is there a gitlab issue for this?
+New issues:
+- [Medium] Memory leak of struct xe_bb in xe_migrate_vram when copying with=
+ unsupported alignment.
 
-> Disabling rc6 fixes this. Until the root cause is found this is a pragmatic
-> workaround.
+Pre-existing issues:
+- [High] The bounce buffer allocation uses kmalloc(64) which is not guarant=
+eed to return a 64-byte aligned pointer when SLUB debugging (redzoning) or =
+KASAN is enabled. If it returns an unaligned pointer, the recursive call to=
+ xe_migrate_access_memory will fail the alignment check again, leading to i=
+nfinite recursion and a kernel stack overflow.
+--
 
-The way to do this is to add your own local struct pci_device_id array
-somewhere, and use pci_match_id() or similar on it.
+commit 750ad7c695067571d7f0d70322bbf7d762b30994
+Author: Christoph Manszewski <c.manszewski@gmail.com>
 
-We're *not* going to change the high level device info or PCI ID
-definitions for this.
+drm/xe/xe_migrate: Align MEM_COPY pitch with destination address
 
-Ugly stuff needs to be localized and hidden away.
+This commit fixes memory corruption in MATRIX_COPY mode when the pitch
+is not aligned to the destination address. It updates the pitch selection
+to ensure it is aligned to both the copy length and the destination address.
 
-
-BR,
-Jani.
-
-
->
-> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> ---
->  drivers/gpu/drm/i915/i915_pci.c | 11 +++++++++++
->  include/drm/intel/pciids.h      | 22 ++++++++++++++++++++++
->  2 files changed, 33 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-> index 2f03f95945f1b..a52b56bedcf4f 100644
-> --- a/drivers/gpu/drm/i915/i915_pci.c
-> +++ b/drivers/gpu/drm/i915/i915_pci.c
-> @@ -687,6 +687,16 @@ static const struct intel_device_info adl_p_info = {
->  	.dma_mask_size = 39,
->  };
->  
-> +static const struct intel_device_info adl_p_tux_ibp8_quirk_info = {
-> +	GEN12_FEATURES,
-> +	PLATFORM(INTEL_ALDERLAKE_P),
-> +	.platform_engine_mask =
-> +		BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VCS2),
-> +	.__runtime.ppgtt_size = 48,
-> +	.dma_mask_size = 39,
-> +	.has_rc6 = 0,
-> +};
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
+ate.c
+> index 75b83687f1b5d..7da57dc522896 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+[ ... ]
+> @@ -2225,16 +2226,11 @@ static struct dma_fence *xe_migrate_vram(struct x=
+e_migrate *m,
+[ ... ]
+>  	}
+> =20
+> +	pitch =3D xe_migrate_copy_pitch(xe, len, dst_L0_ofs);
+> +	if (!xe->info.has_mem_copy_instr &&
+> +	    drm_WARN_ON(&xe->drm,
+> +			(!IS_ALIGNED(len, pitch)) ||
+> +			(sram_offset | vram_addr) & XE_CACHELINE_MASK))
+> +		return ERR_PTR(-EOPNOTSUPP);
 > +
->  #undef GEN
->  
->  #define XE_HP_PAGE_SIZES \
-> @@ -863,6 +873,7 @@ static const struct pci_device_id pciidlist[] = {
->  	INTEL_DG1_IDS(INTEL_VGA_DEVICE, &dg1_info),
->  	INTEL_RPLS_IDS(INTEL_VGA_DEVICE, &adl_s_info),
->  	INTEL_RPLU_IDS(INTEL_VGA_DEVICE, &adl_p_info),
-> +	INTEL_RPLP_TUX_IBP8_QUIRK_IDS(INTEL_VGA_DEVICE, &adl_p_tux_ibp8_quirk_info),
->  	INTEL_RPLP_IDS(INTEL_VGA_DEVICE, &adl_p_info),
->  	INTEL_DG2_IDS(INTEL_VGA_DEVICE, &dg2_info),
->  	INTEL_ATS_M_IDS(INTEL_VGA_DEVICE, &ats_m_info),
-> diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
-> index 7a4a5658942d2..e4f74916a62c2 100644
-> --- a/include/drm/intel/pciids.h
-> +++ b/include/drm/intel/pciids.h
-> @@ -712,6 +712,28 @@
->  	MACRO__(0xA7AC, ## __VA_ARGS__), \
->  	MACRO__(0xA7AD, ## __VA_ARGS__)
->  
-> +#define INTEL_RPLP_TUX_IBP8_QUIRK_IDS(MACRO__, ...) \
-> +	MACRO__##_SUB(0xA720, 0x1D05, 0x124A, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA720, 0x1D05, 0x124C, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA720, 0x1D05, 0x124E, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA720, 0x1D05, 0x130F, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7A0, 0x1D05, 0x124A, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7A0, 0x1D05, 0x124C, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7A0, 0x1D05, 0x124E, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7A0, 0x1D05, 0x130F, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7A8, 0x1D05, 0x124A, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7A8, 0x1D05, 0x124C, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7A8, 0x1D05, 0x124E, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7A8, 0x1D05, 0x130F, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7AA, 0x1D05, 0x124A, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7AA, 0x1D05, 0x124C, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7AA, 0x1D05, 0x124E, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7AA, 0x1D05, 0x130F, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7AB, 0x1D05, 0x124A, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7AB, 0x1D05, 0x124C, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7AB, 0x1D05, 0x124E, ## __VA_ARGS__), \
-> +	MACRO__##_SUB(0xA7AB, 0x1D05, 0x130F, ## __VA_ARGS__)
-> +
->  /* RPL-P */
->  #define INTEL_RPLP_IDS(MACRO__, ...) \
->  	MACRO__(0xA720, ## __VA_ARGS__), \
 
--- 
-Jani Nikula, Intel
+[Severity: Medium]
+Does this code leak the batch buffer?
+
+Looking at xe_migrate_vram(), bb is allocated earlier with xe_bb_new().
+If this alignment check fails, we return ERR_PTR(-EOPNOTSUPP) directly. Sho=
+uld
+we jump to the err label to free bb using xe_bb_free(bb, NULL) instead?
+
+>  	bb->cs[bb->len++] =3D MI_BATCH_BUFFER_END;
+>  	update_idx =3D bb->len;
+[ ... ]
+> @@ -2538,7 +2541,9 @@ int xe_migrate_access_memory(struct xe_migrate *m, =
+struct xe_bo *bo,
+>  		else
+>  			current_bytes =3D min_t(int, bytes_left, cursor.size);
+> =20
+> -		pitch =3D xe_migrate_copy_pitch(xe, current_bytes);
+> +		pitch =3D xe_migrate_copy_pitch(xe, current_bytes,
+> +					      write ? vram_addr :
+> +					      (unsigned long)buf & ~PAGE_MASK);
+
+[Severity: High]
+This is a pre-existing issue, but can the bounce buffer allocation earlier =
+in
+this function cause an infinite recursion?
+
+When an unaligned memory access triggers the bounce buffer path in
+xe_migrate_access_memory(), it calls:
+
+    bounce =3D kmalloc(XE_CACHELINE_BYTES, GFP_KERNEL);
+
+If SLUB debugging (redzoning) or KASAN is enabled, kmalloc() might not retu=
+rn
+a 64-byte aligned pointer. If it returns an unaligned pointer, the recursive
+call to xe_migrate_access_memory() checks
+!IS_ALIGNED(page_offset, XE_CACHELINE_BYTES) where page_offset is derived
+from the unaligned bounce buffer address.
+
+Since the bounce buffer is unaligned, this check fails again, triggering
+another allocation and recursion until the kernel stack overflows.
+
+Should this use a mechanism that guarantees natural alignment?
+
+>  		if (xe->info.has_mem_copy_instr)
+>  			current_bytes =3D min_t(int, current_bytes, U16_MAX * pitch);
+>  		else
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260909061845.4048=
+047-1-jan.maslak@intel.com?part=3D1
