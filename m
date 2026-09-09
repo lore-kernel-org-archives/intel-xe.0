@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F7D5C79F8C
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 07:55:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5A0EC79F8C
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 08:00:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3180B10EF91;
-	Wed,  9 Sep 2026 07:55:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A70710EFA1;
+	Wed,  9 Sep 2026 08:00:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="noTf2XlN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mEcBBaCA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F8F410EF91
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 07:55:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8784410EF9E;
+ Wed,  9 Sep 2026 08:00:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788940556; x=1820476556;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=ffv+Nd5MMWmMfOwKMlWYjnmg2Q7ja6HmGcTmgKa+xpY=;
- b=noTf2XlNpSaJ1WgQzhBq/opVtlRf55qjU7nvmM73ikp0jb2fUXRS4XTM
- F1vUv/hpm+tcIeaLxOsn5IIw7Du2UfdK6ZU6rE76qnycSM3ymMgY29fmk
- 5tYQ7vWgmWX8u5PRyK8FD30mUoMGEBApPguBvsPAMyi8owPIHv3v4gutY
- 0IMhWZ47wPpLF9zt4i/hTm7i5LcGNH1ApbSREYGUiAMS9zwfN3ItDXeY2
- nzTykBpI2yP3HpgFp/MSr7MHa9oWPGkzEarakxFRZLMM07IX2QA4rdsAB
- GkfspitsyFBXZIioim4AdOCXeZujRAB8s5KX59UDAy+Yt2oxyALLiXcDu g==;
-X-CSE-ConnectionGUID: CfJ5JwSTTd+59AnqnpJClA==
-X-CSE-MsgGUID: RsPaYL/KQqq/AFZxsm3q8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="76916341"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="76916341"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 00:55:56 -0700
-X-CSE-ConnectionGUID: nVaN9HZtQqycSnUSJ2ObfA==
-X-CSE-MsgGUID: 8FoxFFR2TBKV8z0SRL1XLw==
+ t=1788940847; x=1820476847;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=xwxFHsHn1F090XyTB1Kp1qw44FUJLR6CM2Jgj9YUKvM=;
+ b=mEcBBaCAQKmVEeHSgbXg2cPWugn1WbJJfv7pq3scMk7vsIwFnQC8ny0a
+ Z3Ujq0E+Xcgg7AvmcDZD/zRIf3++/xl4UxvnJegOxJeZopyTugsgojVFA
+ M+TTNe486JJxKaCoRLz7btkrIou8RGCiJsYHSikzNAHbS3NI/locAJ76V
+ i5ZNeWWzhW32Fhqs3jE5+Hks9ONnrrpKX8MXQmjeW+te1rvUxuYXM/Y4b
+ o50TeJhetYDwE0eGvzfZjlvVdNhq/As+tVpEdyp5QOEFKKoR6bO/4PQ/c
+ yEQy9S3CyJQHGVOPxyIoCTMD9dw6JAMIFhDTRgjgcA/qW6e0sZXRdiPvR g==;
+X-CSE-ConnectionGUID: NoVtv1zeSf+auQttrRBCwQ==
+X-CSE-MsgGUID: u5SMYUfcT7iYbNq5Z3SsCw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="93224303"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="93224303"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2026 01:00:46 -0700
+X-CSE-ConnectionGUID: wgvsihG8RFujZLgo1BM+IA==
+X-CSE-MsgGUID: 3VYrXyGtSOmMWnrDxP7X1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="265037002"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO [10.245.245.60])
- ([10.245.245.60])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 00:55:54 -0700
-Message-ID: <a17944e24497617abc5ea17f991347c82de09448.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Keep walking on SVM eviction failure
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, sashiko-reviews@lists.linux.dev
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 09 Sep 2026 09:55:52 +0200
-In-Reply-To: <aqBif1V2aY92MxRG@gsse-cloud1.jf.intel.com>
-References: <20260908184346.92332-1-matthew.brost@intel.com>
- <20260908185523.6EC501F00AC4@smtp.kernel.org>
- <aqBif1V2aY92MxRG@gsse-cloud1.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="271232236"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.20])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2026 01:00:44 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ dri-devel@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH] drm/xe/mmio: Fix xe_mmio_wait32() to honor delay/sleep
+ maximums
+In-Reply-To: <20260908185609.359565-2-alan.previn.teres.alexis@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260908185609.359565-2-alan.previn.teres.alexis@intel.com>
+Date: Wed, 09 Sep 2026 11:00:41 +0300
+Message-ID: <04c865dcd2135c202cf604b111084fc809ae322c@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,100 +71,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2026-09-08 at 12:31 -0700, Matthew Brost wrote:
-> On Tue, Sep 08, 2026 at 06:55:22PM +0000,
-> sashiko-bot@kernel.org=C2=A0wrote:
-> > Thank you for your contribution! Sashiko AI review found 1
-> > potential issue(s) to consider:
-> > - [Medium] Unconditionally masking `xe_svm_bo_evict()` errors as `-
-> > ENOSPC` hides fatal errors and triggers TTM error log spam.
-> > --
-> >=20
-> > commit 8fcbc00a7aa0e3b2119f7df96129747882247423
-> > Author: Matthew Brost <matthew.brost@intel.com>
-> >=20
-> > drm/xe: Keep walking on SVM eviction failure
-> >=20
-> > This commit adjusts the error handling in xe_bo_move() for SVM
-> > eviction
-> > failures. It overwrites the return code from xe_svm_bo_evict() with
-> > -ENOSPC
-> > to force TTM to continue walking the LRU list for eviction
-> > candidates.
-> >=20
-> > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > > b/drivers/gpu/drm/xe/xe_bo.c
-> > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > @@ -1043,6 +1043,11 @@ static int xe_bo_move(struct
-> > > ttm_buffer_object *ttm_bo, bool evict,
-> > > =C2=A0		} else {
-> > > =C2=A0			drm_dbg(&xe->drm, "Evict system
-> > > allocator BO failed=3D%pe\n",
-> > > =C2=A0				ERR_PTR(ret));
-> > > +			/*
-> > > +			 * The semantic we want upon SVM
-> > > eviction failure is
-> > > +			 * keep walking for eviction, which is -
-> > > ENOSPC.
-> > > +			 */
-> > > +			ret =3D -ENOSPC;
-> >=20
-> > [Severity: Medium]
-> > Does unconditionally overwriting the error with -ENOSPC hide fatal
-> > errors like
-> > -ENOMEM?
-> >=20
-> > When system memory is exhausted, xe_svm_bo_evict() can return -
-> > ENOMEM. By
-> > masking this as -ENOSPC, it seems we might break proper error
-> > propagation to
-> > higher layers, preventing expected OOM handling.
-> >=20
->=20
-> Yea.. Perhaps -ENOMEM should actually be returned to the upper layers
-> as
-> this indicates we are out of system memory and attemping more
-> evictions
-> is unlikely to help.
->=20
-> Second opinion from the Xe team on this one?
+On Tue, 08 Sep 2026, Alan Previn <alan.previn.teres.alexis@intel.com> wrote:
+> Check for overflow in udelay/usleep_range use in __xe_mmio_wait32
+> and pick the correct helper according to the wait time and atomic.
+> Implement a similar helper to replace DIV_ROUND_UP for 32-bit CPUs.
+> Avoid growing delays becoming intollerably large by capping the
+> in-loop wait time.
 
-IMO we should just convert specific errors (or exclude specific errors)
-and add a motivation in the commit message for future reference.
+I think it might be a better idea to remove the exponentially growing
+wait time instead. It might have seemed good on paper, but you should do
+the math in typical use cases and see how it actually behaves. (Spoiler:
+Lots of useless back-to-back reads in the beginning, and then quickly
+increasing to waits beyond the timeout and delay maximums.)
 
-Thanks,
-Thomas
+This is code that should be possible to understand. I'd suggest
+simplifying the whole thing instead of making it more complex.
+
+I think it would be much better to migrate xe mmio to use
+poll_timeout_us() and poll_timeout_us_atomic() instead. For the rare
+cases that actually need the quick hammering followed by slower waits,
+you can trivially do two calls with delays and timeouts considered for
+*that* particular use case.
+
+I also think it's a mistake (copy-pasted from i915) to specify "atomic"
+as a parameter. They should be separate functions all the way from the
+caller.
 
 
+BR,
+Jani.
 
->=20
-> > Furthermore, could this trigger a TTM error log spam loop? When
-> > returned to
-> > TTM, -ENOSPC causes ttm_bo_evict() to log an unconditional
-> > pr_err("Buffer eviction failed\n"). Since -ENOSPC is converted to -
-> > EBUSY in
-> > ttm_bo_evict_cb(), it signals the LRU walker
-> > (ttm_lru_walk_for_evict()) to
-> > skip the BO and continue walking.=20
-> >=20
-> > During genuine resource exhaustion, this might cause a fruitless
-> > iteration over
-> > the entire LRU list, logging a pr_err() for every single buffer
-> > object. Even
-> > benign SVM races might spam the kernel log with errors.
-> >=20
->=20
-> The spam is probably seperate issue in TTM. -ENOSPC likely shouldn't
-> emit a pr_err as it continues walking.
->=20
-> Matt
->=20
-> > > =C2=A0		}
-> > > =C2=A0
-> > > =C2=A0		goto out;
-> >=20
-> > --=20
-> > Sashiko AI review =C2=B7
-> > https://sashiko.dev/#/patchset/20260908184346.92332-1-matthew.brost@int=
-el.com?part=3D1
+
+>
+> v2: - Fixed checkpatch failure.
+>     - Added helper for 64-bit DIV_ROUND_UP on 32-bit CPU (Shasiko
+>       review). Fixed bug max range in usleep_range(Shasiko review)
+>
+> Fixes: 5c09bd6ccd41 ("drm/xe/mmio: Move xe_mmio_wait32() to xe_mmio.c")
+> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+> Assisted-by: Github-Copilot:Claude-Sonnet-5-0
+> ---
+>  drivers/gpu/drm/xe/xe_mmio.c | 50 ++++++++++++++++++++++++++++++++----
+>  1 file changed, 45 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+> index 7fa18dfcb5a2..1ae382f009de 100644
+> --- a/drivers/gpu/drm/xe/xe_mmio.c
+> +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> @@ -7,6 +7,8 @@
+>  
+>  #include <linux/delay.h>
+>  #include <linux/io-64-nonatomic-lo-hi.h>
+> +#include <linux/math.h>
+> +#include <linux/math64.h>
+>  #include <linux/minmax.h>
+>  #include <linux/pci.h>
+>  
+> @@ -320,6 +322,30 @@ u64 xe_mmio_read64_2x32(struct xe_mmio *mmio, struct xe_reg reg)
+>  	return (u64)udw << 32 | ldw;
+>  }
+>  
+> +/**
+> + * __div_round_up64() - alternative to DIV_ROUND_UP for use by __xe_mmio_wait32
+> + * @dividend: 64 bit positive number to divide
+> + * @divisor: 64 bit positive divisor
+> + *
+> + * DIV_ROUND_UP() relies on plain '/' and '%' operators, which for 64-bit
+> + * operands on a 32-bit CPU get turned into calls to libgcc's __divdi3()/
+> + * __moddi3(), routines the kernel does not link against. Provide a
+> + * do_div()-based equivalent that works for signed 64-bit inputs on any
+> + * architecture.
+> + *
+> + * Returns: rounded up division result
+> + */
+> +static inline s64 __div_round_up64(s64 dividend, s64 divisor)
+> +{
+> +	u64 abs_dividend = abs(dividend);
+> +	u64 abs_divisor = abs(divisor);
+> +	u64 result = abs_dividend + abs_divisor - 1;
+> +
+> +	do_div(result, abs_divisor);
+> +	/* dont check for negative values as local caller only uses positive numbers */
+> +	return (s64)result;
+> +}
+> +
+>  static int __xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val,
+>  			    u32 timeout_us, u32 *out_val, bool atomic, bool expect_match)
+>  {
+> @@ -349,11 +375,25 @@ static int __xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u
+>  		if (ktime_after(ktime_add_us(cur, wait), end))
+>  			wait = ktime_us_delta(end, cur);
+>  
+> -		if (atomic)
+> -			udelay(wait);
+> -		else
+> -			usleep_range(wait, wait << 1);
+> -		wait <<= 1;
+> +#define __XE_MMIO_WAIT_MAX_INLOOP_100MS (100 * USEC_PER_MSEC)
+> +		if (atomic) {
+> +			if (wait <= MAX_UDELAY_MS * USEC_PER_MSEC)
+> +				udelay(wait);
+> +			else if (BITS_PER_LONG == 32)
+> +				mdelay(DIV_ROUND_UP(wait, USEC_PER_MSEC));
+> +			else
+> +				mdelay(__div_round_up64(wait, USEC_PER_MSEC));
+> +		} else {
+> +			usleep_range(wait, wait + (wait >> 2)); /* range till wait + 25% */
+> +		}
+> +		/*
+> +		 * As we keep doubling the wait time for every check that fails, cap the
+> +		 * in-loop delay-or-sleep to less than 2x 100 milliseconds to prevent from
+> +		 * expanding 'wait' into exponentially longer wait times per loop that
+> +		 * end up delaying the next completion check way later than tolerable.
+> +		 */
+> +		wait = wait < __XE_MMIO_WAIT_MAX_INLOOP_100MS >> 1 ?
+> +		       wait << 1 : __XE_MMIO_WAIT_MAX_INLOOP_100MS;
+>  	}
+>  
+>  	if (ret != 0) {
+
+-- 
+Jani Nikula, Intel
