@@ -4,107 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6903EC79F9F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 962EEC88E40
 	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 14:24:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25C5F10E2D2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5028210F49C;
 	Thu, 10 Sep 2026 14:24:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=szeredi.hu header.i=@szeredi.hu header.b="h6d+Ybgb";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="pYgHYVYY";
 	dkim-atps=neutral
-Received: from mail-qk2-f12.google.com (mail-qk2-f12.google.com
- [74.125.230.204])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FE6110F0CB
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 11:44:39 +0000 (UTC)
-Received: by mail-qk2-f12.google.com with SMTP id
- d75a77b69052e-52fb76543e1so7863791cf.0
- for <intel-xe@lists.freedesktop.org>; Wed, 09 Sep 2026 04:44:39 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1788954278; cv=none;
- d=google.com; s=arc-20260327;
- b=Xnku5pyv6uyT9VUoyZXNm5rSyhVpO5yDfcSBIIKsGlICBXY8G+8PYRCYNecZ6EDxz5
- v9m5bjZhlF3/EBUSyMzaG6ZUnb4RUsz71orGOpuu9HD0rVrME5szY193kLbhI4vXiOx2
- we3ZBLE2HmNV3Be2xx0HpS6LV7er0PzziXHBr4Bv38FkHgxyYZkrbZ6VxXs5zHHjKsHl
- wf1ISmWV12L3TwBw2UrxZClUWj9xOUMJjp7SIdUXETxCQ944kt+S4ZeyJy7Wvat3AQaE
- 14Ua5ERLdWemwPHCXP5Z1swBTEzIKMi4UxajoE+++/sbeeWC6k+0nSpvcmBhKZdk5P09
- 3Cfw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=/N+0yVy13tQgS5+ScpnESpLk/uyTrS9jGVGpFKTxRCA=;
- fh=KBt64CEOiXjhS8GvMKCZbBUMLEvIZAbod3aKkrB33kQ=;
- b=iniZopes9SBcii5DeYKwOkF5ft+e339iX79zzF6ur2wAiCm6LDEwSp5N8GfwKcHTu2
- /cOC5F7S3kU4ibUzOf1YnwX7xt+W9MBWPE5BgJu+Hvgwo+Lw3wvgGI9sZPoxKA5NWn1U
- 8EaLfOj3/vO7i3fsVZkW7toN+f28VbQ3zZv1n8aeWcSaHovJTJxwIGec50u2KYCnB2ST
- tGxCBsg/WhRqAQu4qlRG1m51/WboZg/j/ZJdklI4R40fWnnmkTZ/qugwcuZsOzk9uc+R
- b2/IkKkO0zrjyeBMaOXazpswJ1YcHYtYSlNFUWDg1FgMucxSz6yw/5L+21zrrxQeyNkN
- FsbA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-wm2-f12.google.com (mail-wm2-f12.google.com
+ [74.125.225.140])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 392F910E557
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 17:36:10 +0000 (UTC)
+Received: by mail-wm2-f12.google.com with SMTP id
+ 5b1f17b1804b1-499db17b40eso2293695e9.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 09 Sep 2026 10:36:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=szeredi.hu; s=google; t=1788954278; x=1789559078; darn=lists.freedesktop.org;
- h=content-type:cc:to:subject:message-id:date:from:in-reply-to
- :references:mime-version:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=/N+0yVy13tQgS5+ScpnESpLk/uyTrS9jGVGpFKTxRCA=;
- b=h6d+YbgbyqEbfKK/b+tCcIWZGSFIHvml3Na7AppBgPBjexN1pjNACqIXHCGMJi8SW1
- kP7LR0ed8dF3PBDXsMCrQdZUINaq/0tIwrZ4+pE6HPhRhg2yvxRISv3p7yuxSJnlGGd0
- MYmPWOyjvKXebJxyE8suryiy0SSaQm+KW/QkM=
+ d=gmail.com; s=20251104; t=1788975368; x=1789580168; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=K5xZwe6BB14FgiUoJeEDcecfAKoT6SnPT8CWcokGDbQ=;
+ b=pYgHYVYY2dfe/B1aGHFWYO3Lih0hLkN4BYmv1xPWKQvKAv3cujppK9ztTQEOttMDD4
+ Ivoau9NRtrydbOdJ5/OqgTCGeQo1WR7V6jLNCfdH8N3TNGEMC3RZWxLx8IdO8xiuLT0W
+ wBVA59uO/dYIVmoqLRdu92JoQfK3YomWS4uJcqX7ZQb5d2BXV1i/JH5dmwNkDT7WaTet
+ 6tVQvO/6EwoTEp+ifxxIVLKhVDvZkPkm1EUCtrBS5TkP/VEWwdwrzs1gBEgBFTr7qb0r
+ t0AnRU3cMTxRFQ0WYs9zEUZw+ZQF0tI4SInF2ikec5qbpLUBkreljBPy45TU7Jq0X5Np
+ YKxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1788954278; x=1789559078;
- h=content-type:cc:to:subject:message-id:date:from:in-reply-to
- :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to:content-type;
- bh=/N+0yVy13tQgS5+ScpnESpLk/uyTrS9jGVGpFKTxRCA=;
- b=hFYB+G8Y2G9/RXzbCp+pvGiWmh8AFmy+QAU7bTfz3qMhGEQlujsGbGI1BXNVPqrLIJ
- ZHiig7KcyivnONKdzxdnL61Xwd0g6WNQK+0NB+WRUDCeE2cEDNDadu8Mp8np3kAU2izH
- qD7aM4KV1tKO2bDNQbl5O2DdMH4LgdDs4RcwZ5srQcIxa5Q1r3K39zfq1+SnJ4SRva/F
- llsyyDWQwwhOeL66dWd31KL+k/xDAWTqsxQtF3IMyAqQFmkveXmt+1ntJfVHiPCA0vNP
- dtHaKAIXTJGwKbEfKj/Hz2AXlJFEYzVsWBz/wi/an1MTaH/MpMgIh+1PF0q2ebmWHP1i
- jDDw==
+ d=1e100.net; s=20251104; t=1788975368; x=1789580168;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=K5xZwe6BB14FgiUoJeEDcecfAKoT6SnPT8CWcokGDbQ=;
+ b=E7JZPkSn8XVgSeibl35iycoBPco4aDqzJWyBjc+1tovOdE2vaNDe22E/vIufJHeuCw
+ OoPzDPkj3oJlgQauuyxvTaezhvW0HtJ952cblFQNaFPCiFedOUSPXZcepmd1VcS5mzQM
+ QTdqjlwGqb/hT8DesxhSQP92eJD9F3QnuelGbx2+9f2gjr8zDcCtF1yG635mGBl0ERQ9
+ K5bZ1SwDevQ4F45jbxGPKvkPWthwdaKaHsMr45RowsjOOXaahUPxKxTBg17nYHIsZyYQ
+ PXyA3p2WmHIwPEb1OSeDFOYsvh6caiLhpaAw9tYKIXHVr9shBNWX0xTBUSyeqt1A2Bm/
+ gFoA==
 X-Forwarded-Encrypted: i=1;
- AKwUvBwnCODfW/UAbyPQW2/FJujCkompJ9KLupdbG9BH0OxFnPQtqaGVzXoZ7SKgOcCsqX8l3a70IPBjEA==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++l2yA+XDejxXQlQTP/rlQSTPoEbaptrxgfLHn60/54mObNT7SoJ
- LK1RtC7eRpWvTbfS/Q+N5MkMxy2mRUYZnDaKz4bMvta2wjvICxQ6sxszee4be60c3rWvIntXC2s
- 0bUYujI3Q3mYM2AnPve36OuhlXwAEki9OuHOqgCHoDA==
-X-Gm-Gg: AYBFou0VlwYcya1bVxDCJc+nj4XSGT2OY+ZggHW2tXUbMevJNOMl4ZfWvJidWaRoKBD
- pmQrYcucwVVja4bCI+SW0JMRO3ozTNymxvHdYcqneKNKCRsnZ6OscYfZ6z4NjQYU33zEOQ+17KO
- 718t3XaXPC/53s64DQfM5IAV8EczYLOcFTAix+QfMqeL+PRau4TjhTCvjFvz5SmpUQbnZiUcL4o
- B/oKZgq3ZUVp3OlKii0ZmUJstqXD/Zlv3rl1DHng5/YXEm1yvCAyYPP0zhV2zGiJp9+50sFifjc
- 1rpF4iw6Ur0qXJAlZgm8w/8J0cP8/BNQ9IqBslDgbpKuZccqgOC+D0KDlX8ATykwv3/CTUEuxpZ
- gAk+VKw1OrgI+
-X-Received: by 2002:a05:622a:308:b0:530:42e5:f39d with SMTP id
- d75a77b69052e-530913734b9mr126064511cf.25.1788954278478; Wed, 09 Sep 2026
- 04:44:38 -0700 (PDT)
+ AKwUvBxTWccmRhOUIn1oOelJ7dXOm5N+1W8Mi0bqnxYc0yWVS5Cj9G03dBoEuDoblS85Unsj5oWh5fyVew==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++lziF2U22BZ5VlJz3gzETLED7zsbVIlnIo3+gquW+HStNId3d5+
+ 1mZ+Sb4b3u6JGm3ExFQnjk2PVFSmRgMOu1cKJvMVuQ3cwVIqeCsKKBT5
+X-Gm-Gg: AYBFou2V8Xk9uUm1WYB8IhIpdt+kjiGMHSJsg8UFiVUgGaUhdVWx84gywVk3WRaihEb
+ tTX/3UqML/eAzW8pbghHsQOel5NqqFeCzal56DotC9oZWkUU2ElpjY01msFae0UTylnGCACq31u
+ YLZSStGHjCaoh7NEt2zO92fcVbfMzJGo8KriXEs4p5LSGKl4cxaBGku06SUChawrk9tQYRNcJsG
+ F43fSWjSxe0Ui/QPxEo5z8jVfFAxpHYE1uP57Ebngq9qQtsTKzHA1YLTqJgkwGTnK4nxtnVU2ZB
+ xns2VJGRMwaS6Lrpxnrh1kW1GwLebBD0rH7jEMHjTbHSx0Qw+rf047+FjpzQZ+Lzzac5Bl2AYfV
+ xw9t4dOk3jWc0pST7l1JkPPZod9V/qSt42OumZXj4PN8GOGr8pmLJradHMrlOhD/Q03SgdA5YoQ
+ nDtqrgMdBSc0kb2EivadZAIzWJhrvgSYbyXP3Ae3u5YxNbcx/M0TNacV20ACNx3ggPN0fzNflZc
+ HuIQmW2PGvHb5waXfpcKuqdLia+LUHDi53r3F/PTKYuvcnvfx/A3EBrObe9KTz2lwV4qVbb43Om
+ 0w==
+X-Received: by 2002:a05:600c:8485:b0:499:5b0f:72b with SMTP id
+ 5b1f17b1804b1-49d01dcc32cmr256409415e9.1.1788975368210; 
+ Wed, 09 Sep 2026 10:36:08 -0700 (PDT)
+Received: from OrangePi5-Plus.BB-HOME
+ (20014C4E1B836900B0110705BF092680.dsl.pool.telekom.hu.
+ [2001:4c4e:1b83:6900:b011:705:bf09:2680])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-49d26c06f04sm6876575e9.13.2026.09.09.10.36.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 09 Sep 2026 10:36:07 -0700 (PDT)
+From: Igor Paunovic <royalnet026@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Cc: Igor Paunovic <royalnet026@gmail.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Sandy Huang <hjc@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>,
+ Imre Deak <imre.deak@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH v2 0/3] drm/dp: shared HDR metadata SDP helper,
+ and max bpc for dw-dp
+Date: Wed,  9 Sep 2026 19:35:37 +0200
+Message-ID: <20260909173542.14030-1-royalnet026@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260909163206.36409-1-royalnet026@gmail.com>
+References: <20260909163206.36409-1-royalnet026@gmail.com>
 MIME-Version: 1.0
-References: <20260903145952.848051-1-mika.kuoppala@linux.intel.com>
- <20260903145952.848051-5-mika.kuoppala@linux.intel.com>
- <20260903152224.AD48C1F00A3F@smtp.kernel.org>
- <178878748003.179185.16833574173741290547@jlahtine-mobl>
- <178894801687.37859.4186888279082797860@jlahtine-mobl>
- <aqEzHQMrI8p9XVcu@phenom.ffwll.local>
- <785085e8-c9db-4d84-ab55-3a8caf9f4a35@amd.com>
- <178895308548.62143.17472983986994555742@jlahtine-mobl>
-In-Reply-To: <178895308548.62143.17472983986994555742@jlahtine-mobl>
-From: Miklos Szeredi <miklos@szeredi.hu>
-Date: Wed, 9 Sep 2026 13:44:26 +0200
-X-Gm-Features: AcwNN1V9qQ9dKCqab0SB2yrcU61pfAYqyf8l3R94yNLcs1Mbssj6NoYvC5wSIfw
-Message-ID: <CAJfpegv_qh6u+GSFuPp8-PDXLoAqVWwz+kkwXv_zsxyL1PnkPA@mail.gmail.com>
-Subject: Re: FUSE deadlocks vs. copy_from_user() and locks (Was: Re: [PATCH
- v10 04/27] drm/xe/eudebug: Introduce discovery for resources)
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Simona Vetter <simona.vetter@ffwll.ch>, Bernd Schubert <bernd@bsbernd.com>, 
- Joanne Koong <joannelkoong@gmail.com>, Amir Goldstein <amir73il@gmail.com>, 
- intel-xe@lists.freedesktop.org, fuse-devel@lists.linux.dev, 
- sashiko-bot@kernel.org, sashiko-reviews@lists.linux.dev, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Matthew Brost <matthew.brost@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- dri-devel@lists.freedesktop.org, 
- Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 10 Sep 2026 14:24:03 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -120,18 +114,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 9 Sept 2026 at 13:24, Joonas Lahtinen
-<joonas.lahtinen@linux.intel.com> wrote:
+The three patches of this series never reached the lists. The mistake
+is mine: when sending, only the cover letter carried the recipients,
+so the patches went to nobody but my own inbox. I noticed while
+checking the archive after the fact.
 
-> From my position, if userspace is injected to the dependency path for
-> resolving page-faults, with potentially unbounded execution times, the
-> timeouts would better be asserted at the FUSE/UFFD side and then simply
-> failing the operations with a bang if not met.
+Resent below as replies to this cover, byte-identical to what should
+have arrived with it. Sorry for the noise.
 
-It's possible to set request timeouts in fuse, but it's not going to
-be made universal.   There's just no good general timeout value.
-Whatever you choose it's going to be too short for one case and too
-long for another.
-
-Thanks,
-Miklos
+Igor
