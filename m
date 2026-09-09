@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F8C7C79FAD
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 12:55:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35AB5C79FAD
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 12:56:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC77110F13E;
-	Wed,  9 Sep 2026 12:55:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEA6E10F133;
+	Wed,  9 Sep 2026 12:56:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HCNH8Be7";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="FIbF8kgP";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C02FE10F133
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 12:55:11 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF48510F133
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 12:56:26 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id F121060213;
- Wed,  9 Sep 2026 12:55:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 895DF1F00A3A;
- Wed,  9 Sep 2026 12:55:10 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 9039C43578;
+ Wed,  9 Sep 2026 12:56:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 495E71F00A3A;
+ Wed,  9 Sep 2026 12:56:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788958510;
- bh=0LkpcVqobJHVrdm+4ZMimkM6cDtJN0EV+JGY7ACi4VM=;
+ s=k20260515; t=1788958586;
+ bh=Opq8GQKR1HvAO5sTe4jm+aM98xREVnVrCXfTIlNn1Fo=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=HCNH8Be7sco0nbJfJeN/WjZnCYP+O71SuSOPOFxoihXc9nu2y1BwZPHpZ8rzH+df1
- mSQQ/h7ZzeIAgDp4JqTQCWzTwokcn6P7Y5FzNCtrKwp9Pxz91E1JQ8mK6oc176IKSF
- J7GnJRn3jVcUCJpviMyYlT9/H3ef51jshZC3BLvmiidG55zjXYZ0u2T6Sag7W5cjd8
- Ey/GTQM9dpSFL/ZUjPwPsx6+zqDP6AJva69bA8Q/YyC9oCGTx/kZtD+/UG8/VpFd6m
- YcAO7zrLqCaJPk5f03U8Aw9PkLGLOcqBu2GDe+mQ4uOCa6nsFgd/+BzgG0u5bY7BGz
- PPSVdaa05PtuQ==
+ b=FIbF8kgPtwODzUXgqR46MZcuX0C7IM8D4BenfNbuzYxaL/DQMrIf+IZtheLjOGQJ1
+ MkvNxFu4Uj7g7Tu4Dz7tcdLlRzssN5sVzNSc9NDRd1lyDCgA8SpTjEGdvQhPf4JULk
+ bar7xMB4BN2Ac8gIqN/LWbkELqrfD7inXByOPDwGdsY6S6IInVLomEN93nk+G6e0cV
+ 4yXOrDkUHy8Zrng1MmFAwfaE8gw/ifTpIrARDxo1+0jHht/zz9Wpwg8t02QygNstbI
+ OXVwvlesW/ghxomXto8zxw3pnCZAFiqb/TRYKytkTxUIejHAM7qCLYmf352I6SncEd
+ v95A+M08UHAyg==
 From: sashiko-bot@kernel.org
-Subject: Re: [RFC v2 03/21] drm/xe: Implement xe_access_counter_init
+Subject: Re: [RFC v2 17/21] drm/xe/pt: Set NC PTE bit for VMAs ineligible
+ for access counting
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260909124457.1610890-26-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20260909124457.1610890-40-himal.prasad.ghimiray@intel.com>
 References: <20260909124457.1610890-23-himal.prasad.ghimiray@intel.com>
- <20260909124457.1610890-26-himal.prasad.ghimiray@intel.com>
+ <20260909124457.1610890-40-himal.prasad.ghimiray@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 09 Sep 2026 12:55:10 +0000
-Message-Id: <20260909125510.895DF1F00A3A@smtp.kernel.org>
+Date: Wed, 09 Sep 2026 12:56:25 +0000
+Message-Id: <20260909125626.495E71F00A3A@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,65 +59,77 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-
-Pre-existing issues:
-- [Critical] Use-After-Free of pagefault_wq during driver teardown
+- [Low] Compilation fails when `CONFIG_DRM_XE_GPUSVM` is disabled due to mi=
+ssing `flags` member in the fallback definition of `struct xe_svm_range`.
 --
 
-commit 20e692318868f2addad6bfad38a665a6947c5cfe
+commit a329d005c363a2e1052a0d0ac8ba4b191802a6e5
 Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-drm/xe: Implement xe_access_counter_init
+drm/xe/pt: Set NC PTE bit for VMAs ineligible for access counting
 
-This commit implements initialization for access counter queues and
-per-queue workers. It reuses the existing page fault workqueue for
-the shared USM domain.
+This commit sets the XE_PPGTT_PTE_NC flag on PTEs for VMAs that are ineligi=
+ble
+for access counter migration hints to avoid wasteful slot allocation.
 
-> diff --git a/drivers/gpu/drm/xe/xe_access_counter.c b/drivers/gpu/drm/xe/=
-xe_access_counter.c
-> index f3a8a93b5135d..ae939576b72da 100644
-> --- a/drivers/gpu/drm/xe/xe_access_counter.c
-> +++ b/drivers/gpu/drm/xe/xe_access_counter.c
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -800,6 +800,7 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma =
+*vma,
+>  		.clear_pt =3D clear_pt,
+>  	};
+>  	struct xe_pt *pt =3D vm->pt_root[tile->id];
+> +	struct drm_gpusvm_range_flags range_flags;
+
 [ ... ]
-> @@ -35,7 +52,29 @@
->  int xe_access_counter_init(struct xe_device *xe)
->  {
-[ ... ]
-> +	/*
-> +	 * drmm-managed so it outlives destroy_workqueue(pagefault_wq), which
-> +	 * drains the shared AC workers during xe_pagefault_fini.
-> +	 */
 
-[Severity: Critical]
-This is a pre-existing issue, but does reusing the page fault workqueue
-here expose the driver to a use-after-free during teardown?
-
-The pagefault_wq is destroyed in xe_pagefault_fini() (in
-drivers/gpu/drm/xe/xe_pagefault.c) via a devm action, which runs early
-during driver unbind or probe failure.=20
-
-However, the GuC CT g2h_worker that receives page faults and routes
-them to this workqueue is stopped via a drmm action in guc_ct_fini(),
-which runs much later when the last reference to the DRM device is dropped.
-
-This creates a lifecycle mismatch window. If the hardware generates a fault
-from a still-executing workload during unbind, the driver unbinds and
-destroys pagefault_wq, but the g2h_worker remains active. When the
-G2H message arrives, xe_pagefault_handler() calls queue_work() on the
-freed workqueue.
-
-Could this occur deterministically during driver unbind?
-
-> +	ac_queue->data =3D drmm_kzalloc(&xe->drm, ac_queue->size, GFP_KERNEL);
-> +	if (!ac_queue->data)
-> +		return -ENOMEM;
+> @@ -862,6 +863,18 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma=
+ *vma,
+>  			XE_USM_PPGTT_PTE_AE : 0;
+>  	}
+> =20
+> +	if (!xe_vma_supports_access_ctr(xe, vma, tile)) {
+> +		xe_walk.default_vram_pte |=3D XE_PPGTT_PTE_NC;
+> +		xe_walk.default_system_pte |=3D XE_PPGTT_PTE_NC;
+> +	}
 > +
-> +	spin_lock_init(&ac_queue->lock);
-> +	xe_access_counter_queue_init(xe, ac_queue);
+> +	if (range) {
+> +		xe_walk.default_vram_pte |=3D XE_PPGTT_PTE_NC;
+> +		range_flags.__flags =3D READ_ONCE(range->base.flags.__flags);
+
+[Severity: Low]
+Does this cause a compilation failure when CONFIG_DRM_XE_GPUSVM is disabled?
+
+Looking at the fallback definition of struct xe_svm_range in xe_svm.h used
+when GPUSVM is disabled:
+
+struct xe_svm_range {
+	struct {
+		struct interval_tree_node itree;
+	} base;
+	struct {
+		const struct drm_pagemap_addr *dma_addr;
+	} pages;
+	struct mutex lock;
+	u32 tile_present;
+	u32 tile_invalidated;
+};
+
+The base struct does not contain a flags member in this configuration.
+Additionally, the struct drm_gpusvm_range_flags type used for range_flags
+above is undefined when the kernel is compiled without GPUSVM support, as
+the gpusvm header is not included.
+
+> +		if (!range_flags.migrate_devmem)
+> +			xe_walk.default_system_pte |=3D XE_PPGTT_PTE_NC;
+> +	}
 > +
->  	return 0;
->  }
+>  	xe_walk.default_vram_pte |=3D XE_PPGTT_PTE_DM;
+>  	xe_walk.dma_offset =3D (bo && !is_purged) ? vram_region_gpu_offset(bo->=
+ttm.resource) : 0;
+>  	if (!range)
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260909124457.1610=
-890-23-himal.prasad.ghimiray@intel.com?part=3D3
+890-23-himal.prasad.ghimiray@intel.com?part=3D17
