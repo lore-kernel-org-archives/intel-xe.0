@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 152ABC79FAA
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 07:39:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD5A3C79FAA
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 07:42:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C05D310EF75;
-	Wed,  9 Sep 2026 07:39:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KvGpdL4Y";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19A2D10EF75
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 07:39:27 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 0057B41940;
- Wed,  9 Sep 2026 07:39:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADDAD1F00A3A;
- Wed,  9 Sep 2026 07:39:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1788939566;
- bh=LyswCk3XqonkaEPEyhdfZe5aK1GgbgU2YOPWIn9BYJ0=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=KvGpdL4YtALhPf1NBfhjl7o7Znl5rDvvJTtLL+Gkrt2iuu2ag7ZHAHanVYT5cHtbo
- +xR28gq1KAf6JmfCLPTGjucSw14W2Xkx4FTtqOE2MLw8JTc+oTOT9uW6IiZOHw86+Z
- tjy6qe6EsVRG9tZ4oCcxjTpB57Tr5FCWoETY+XAs4W4p2+MfXNm7VreA30is9M2B0g
- CnNFSAmBLK9Qb+US9cHuzsg5Mx8OzmYaeQvosk+w7FQzgqMaNPoChGKIRZ/w9kfPnP
- 3KpOaLEBFWH9KhMuYGEbVaONPnC0sRFLtgclEeoaKHt4yDRetJsaIdMw4SMt1A2b/6
- 5SQXpH510h8FA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/2] drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p
- platforms
-To: tilak.tirumalesh.tangudu@intel.com
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4661310EF75;
+	Wed,  9 Sep 2026 07:42:36 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB49110EF75;
+ Wed,  9 Sep 2026 07:42:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8489201755926148825=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Fix_stale_selective_fetch_e?=
+ =?utf-8?q?nable_bit?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260909072540.99303-3-tilak.tirumalesh.tangudu@intel.com>
-References: <20260909072540.99303-1-tilak.tirumalesh.tangudu@intel.com>
- <20260909072540.99303-3-tilak.tirumalesh.tangudu@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 09 Sep 2026 07:39:26 +0000
-Message-Id: <20260909073926.ADDAD1F00A3A@smtp.kernel.org>
+Date: Wed, 09 Sep 2026 07:42:34 -0000
+Message-ID: <178893975482.139265.13293261792819060116@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260909062523.3516962-1-nemesa.garg@intel.com>
+In-Reply-To: <20260909062523.3516962-1-nemesa.garg@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,93 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Medium] Early return when maxcnt is 0 silently bypasses Wa_14025941587
-- [Medium] Mutated idledly variable causes spurious WARN_ON and violates WA=
- 14025941587 constraint
---
+--===============8489201755926148825==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit ca2474376ef20b3f47a408b5ebe9a4945d93d22c
-Author: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+== Series Details ==
 
-drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p platforms
+Series: Fix stale selective fetch enable bit
+URL   : https://patchwork.freedesktop.org/series/173662/
+State : success
 
-Avoid programming the IDLEDLY timer to less than 5 microseconds.
-Apply wa_14025941587 to Graphics Versions 20.01 to 35.11
-and Media Versions 13.01 to 35.03
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw=
-_engine.c
-> index 6ffb0ece05612..033740c34aa66 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-[ ... ]
-> @@ -614,10 +618,38 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
-> =20
->  		maxcnt *=3D maxcnt_units_ns;
-> =20
-> -		if (xe_gt_WARN_ON(gt, idledly >=3D maxcnt || inhibit_switch)) {
-> -			idledly =3D DIV_ROUND_CLOSEST_ULL((u64)(maxcnt - 1) * 1000,
-> -							idledly_units_ps);
-> -			xe_mmio_write32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base), idledly);
+CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -> xe-pw-173662v1_BAT
+====================================================
 
-[Severity: Medium]
-In adjust_idledly(), there is an existing check just before this hunk:
+Summary
+-------
 
-	maxcnt =3D REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt);
+  **SUCCESS**
 
-	if (!maxcnt)
-		return;
+  No regressions found.
 
-If maxcnt evaluates to 0, the function executes an early return. Does this
-unintentionally bypass the new Wa_14025941587 workaround added below,
-skipping the 5 microsecond limit enforcement if the initial maxcnt from the
-hardware happens to be 0?
+  
 
-> +		/* Wa_14025941587: applied prior to Wa_16023105232,
-> +		 * as the latter has higher priority, although conflict
-> +		 * is not expected.
-> +		 */
-> +		if (XE_GT_WA(gt, 14025941587) &&
-> +		    idledly < mincnt_idledly_ns) {
-> +			idledly =3D mincnt_idledly_ns;
-> +			wa_applied =3D true;
-> +		}
-> +
-> +		if (XE_GT_WA(gt, 16023105232) &&
-> +		    xe_gt_WARN_ON(gt, idledly >=3D maxcnt || inhibit_switch)) {
-> +			idledly =3D (maxcnt - 1);
+Participating hosts (14 -> 12)
+------------------------------
 
-[Severity: Medium]
-Can this sequence trigger a spurious WARN_ON and violate the 5000ns minimum?
+  Missing    (2): bat-nvls-2 bat-lnl-2 
 
-If the original idledly is less than 5000ns, WA 14025941587 mutates idledly
-to 5000. Immediately after, if maxcnt happens to be 5000 or less (e.g. 4480=
-),
-the WARN_ON will trigger because it evaluates the mutated idledly
-(5000 >=3D 4480), even if the original hardware value was safe (e.g.
-2000 < 4480).=20
 
-Following the WARN_ON, idledly is then set to maxcnt - 1 (e.g. 4479), which
-silently breaks the 5000ns minimum required by Wa_14025941587.
+Changes
+-------
 
-Should the second workaround evaluate the original hardware state rather th=
-an
-the software-mutated value?
+  No changes found
 
-> +			wa_applied =3D true;
-> +			/* inhibit_switch override to keep
-> +			 * semantics of Wa_16023105232
-> +			 */
-> +			if (inhibit_switch)
-> +				idledly_reg_val &=3D ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
-> +		}
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260909072540.9930=
-3-1-tilak.tirumalesh.tangudu@intel.com?part=3D2
+Build changes
+-------------
+
+  * IGT: IGT_9086 -> IGT_9087
+  * Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -> xe-pw-173662v1
+
+  IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_9087: 9087
+  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada
+  xe-pw-173662v1: 173662v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173662v1/index.html
+
+--===============8489201755926148825==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Fix stale selective fetch enable bit</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173662/">https://patchwork.freedesktop.org/series/173662/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173662v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173662v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada_BAT -&gt; xe-pw-173662v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 12)</h2>
+<p>Missing    (2): bat-nvls-2 bat-lnl-2 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9086 -&gt; IGT_9087</li>
+<li>Linux: xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada -&gt; xe-pw-173662v1</li>
+</ul>
+<p>IGT_9086: a89061ecccede222b8da2f310f3bf71ed908c365 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_9087: 9087<br />
+  xe-5710-dd822035c9dcd89e47cbfa75da6f3119617fbada: dd822035c9dcd89e47cbfa75da6f3119617fbada<br />
+  xe-pw-173662v1: 173662v1</p>
+
+</body>
+</html>
+
+--===============8489201755926148825==--
