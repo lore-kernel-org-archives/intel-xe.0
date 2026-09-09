@@ -4,55 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1814C79FB5
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 07:48:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F7D5C79F8C
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 07:55:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7856310EF94;
-	Wed,  9 Sep 2026 07:48:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3180B10EF91;
+	Wed,  9 Sep 2026 07:55:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DkXHcbFz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="noTf2XlN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E056910EF93;
- Wed,  9 Sep 2026 07:48:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F8F410EF91
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 07:55:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788940118; x=1820476118;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ADhni/y26ZrlgoHuaN8kFwhh051HfF292qgcQaWpdn8=;
- b=DkXHcbFz+tO0uEel30bxJSCkIItRq8DQReeD026LeHCpOHHw+WNKm8hz
- X5cDXxP9uYpiJBlM9K8FqFBPLf+VEd++pq3XGYUsE8QBXlByNSa3iyu25
- FOmJa1Rn4SM+mNU00J3uXQ6EvuCUEPb6SvktSTy1Uzjm+IWl9gJVPJFmK
- c3tQCTojZrXF5C5F8BTFeEMYZuXPPWSeT4BkJl0DnJbHv5ck1gytqCcl6
- kwgUQUJ9tEgM5QxedAAp6GgHID35Tb3jxKCUx+Gv8fpj4y/EIPQM2zXMd
- 0pbmd6nqzBMKL+zX1YJey4Yi/q3Bu1D9NKCJpgzGbezxe79LWuBGgEuAA Q==;
-X-CSE-ConnectionGUID: tM1fjBXvQjqAvPzp+BtOHA==
-X-CSE-MsgGUID: XbRxFqzORZOzcsRij8F/gw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="89480431"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="89480431"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 00:48:17 -0700
-X-CSE-ConnectionGUID: MwgmjvQ7TvG3suKRmR6ZZg==
-X-CSE-MsgGUID: qupB5NXrSQmalrMnMDDjSA==
+ t=1788940556; x=1820476556;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=ffv+Nd5MMWmMfOwKMlWYjnmg2Q7ja6HmGcTmgKa+xpY=;
+ b=noTf2XlNpSaJ1WgQzhBq/opVtlRf55qjU7nvmM73ikp0jb2fUXRS4XTM
+ F1vUv/hpm+tcIeaLxOsn5IIw7Du2UfdK6ZU6rE76qnycSM3ymMgY29fmk
+ 5tYQ7vWgmWX8u5PRyK8FD30mUoMGEBApPguBvsPAMyi8owPIHv3v4gutY
+ 0IMhWZ47wPpLF9zt4i/hTm7i5LcGNH1ApbSREYGUiAMS9zwfN3ItDXeY2
+ nzTykBpI2yP3HpgFp/MSr7MHa9oWPGkzEarakxFRZLMM07IX2QA4rdsAB
+ GkfspitsyFBXZIioim4AdOCXeZujRAB8s5KX59UDAy+Yt2oxyALLiXcDu g==;
+X-CSE-ConnectionGUID: CfJ5JwSTTd+59AnqnpJClA==
+X-CSE-MsgGUID: RsPaYL/KQqq/AFZxsm3q8w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="76916341"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="76916341"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2026 00:55:56 -0700
+X-CSE-ConnectionGUID: nVaN9HZtQqycSnUSJ2ObfA==
+X-CSE-MsgGUID: 8FoxFFR2TBKV8z0SRL1XLw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="268680933"
-Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa008.fm.intel.com with ESMTP; 09 Sep 2026 00:48:15 -0700
-From: Uma Shankar <uma.shankar@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dibin.moolakadan.subrahmanian@intel.com, ramanaidu.naladala@intel.com
-Cc: Uma Shankar <uma.shankar@intel.com>
-Subject: [v5 4/4] drm/i915/display: Gate periodic AS SDP skip frames behind a
- debugfs knob
-Date: Wed,  9 Sep 2026 13:38:10 +0530
-Message-ID: <20260909080810.2202879-5-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260909080810.2202879-1-uma.shankar@intel.com>
-References: <20260909080810.2202879-1-uma.shankar@intel.com>
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="265037002"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO [10.245.245.60])
+ ([10.245.245.60])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Sep 2026 00:55:54 -0700
+Message-ID: <a17944e24497617abc5ea17f991347c82de09448.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Keep walking on SVM eviction failure
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, sashiko-reviews@lists.linux.dev
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 09 Sep 2026 09:55:52 +0200
+In-Reply-To: <aqBif1V2aY92MxRG@gsse-cloud1.jf.intel.com>
+References: <20260908184346.92332-1-matthew.brost@intel.com>
+ <20260908185523.6EC501F00AC4@smtp.kernel.org>
+ <aqBif1V2aY92MxRG@gsse-cloud1.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,71 +71,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Periodic AS SDP (skip frames) drives a Panel Replay panel down toward its
-minimum refresh rate. It is a new, panel- and platform-sensitive behaviour,
-so keep it opt-in rather than enabling it unconditionally.
+On Tue, 2026-09-08 at 12:31 -0700, Matthew Brost wrote:
+> On Tue, Sep 08, 2026 at 06:55:22PM +0000,
+> sashiko-bot@kernel.org=C2=A0wrote:
+> > Thank you for your contribution! Sashiko AI review found 1
+> > potential issue(s) to consider:
+> > - [Medium] Unconditionally masking `xe_svm_bo_evict()` errors as `-
+> > ENOSPC` hides fatal errors and triggers TTM error log spam.
+> > --
+> >=20
+> > commit 8fcbc00a7aa0e3b2119f7df96129747882247423
+> > Author: Matthew Brost <matthew.brost@intel.com>
+> >=20
+> > drm/xe: Keep walking on SVM eviction failure
+> >=20
+> > This commit adjusts the error handling in xe_bo_move() for SVM
+> > eviction
+> > failures. It overwrites the return code from xe_svm_bo_evict() with
+> > -ENOSPC
+> > to force TTM to continue walking the LRU list for eviction
+> > candidates.
+> >=20
+> > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > > b/drivers/gpu/drm/xe/xe_bo.c
+> > > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > > @@ -1043,6 +1043,11 @@ static int xe_bo_move(struct
+> > > ttm_buffer_object *ttm_bo, bool evict,
+> > > =C2=A0		} else {
+> > > =C2=A0			drm_dbg(&xe->drm, "Evict system
+> > > allocator BO failed=3D%pe\n",
+> > > =C2=A0				ERR_PTR(ret));
+> > > +			/*
+> > > +			 * The semantic we want upon SVM
+> > > eviction failure is
+> > > +			 * keep walking for eviction, which is -
+> > > ENOSPC.
+> > > +			 */
+> > > +			ret =3D -ENOSPC;
+> >=20
+> > [Severity: Medium]
+> > Does unconditionally overwriting the error with -ENOSPC hide fatal
+> > errors like
+> > -ENOMEM?
+> >=20
+> > When system memory is exhausted, xe_svm_bo_evict() can return -
+> > ENOMEM. By
+> > masking this as -ENOSPC, it seems we might break proper error
+> > propagation to
+> > higher layers, preventing expected OOM handling.
+> >=20
+>=20
+> Yea.. Perhaps -ENOMEM should actually be returned to the upper layers
+> as
+> this indicates we are out of system memory and attemping more
+> evictions
+> is unlikely to help.
+>=20
+> Second opinion from the Xe team on this one?
 
-Expose it as a per-device debugfs knob, enable_periodic_assdp, rather than a
-module parameter. The behaviour is panel-specific, so the correct granularity
-is per-device, not per-module. The knob is added through the intel_display_params
-infrastructure (shared by i915 and xe) with a debugfs entry only. It defaults to
-false (feature disabled); write 1 to the debugfs file to enable periodic AS SDP
-at runtime.
+IMO we should just convert specific errors (or exclude specific errors)
+and add a motivation in the commit message for future reference.
 
-Gate the feature at its single choke point, intel_pr_as_sdp_skip_frames():
-returning a zero skip count when the knob is off makes both the PR_ALPM_CTL
-programming (intel_alpm_configure_pr_as_sdp()) and the DC3co force-disable
-predicate (intel_alpm_pr_as_sdp_skip_frames_enabled()) a no-op, so AS SDP
-continues to be sent on every frame as before.
+Thanks,
+Thomas
 
-v2: Switch to debugfs entry and drop module param
 
-Assisted-by: Claude:claude-opus-4-8
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-Reviewed-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-Tested-by: Naladala Ramanaidu <ramanaidu.naladala@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c           | 5 +++++
- drivers/gpu/drm/i915/display/intel_display_params.h | 5 +++++
- 2 files changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index c784e77f610b..10943539bc7c 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -392,11 +392,16 @@ static u32 get_pr_alpm_as_sdp_transmission_time(const struct intel_crtc_state *c
-  */
- static u32 intel_pr_as_sdp_skip_frames(struct intel_dp *intel_dp)
- {
-+	struct intel_display *display = to_intel_display(intel_dp);
- 	const struct drm_display_info *info =
- 		&intel_dp->attached_connector->base.display_info;
- 	int max_vrefresh = info->monitor_range.max_vfreq;
- 	int min_vrefresh = info->monitor_range.min_vfreq;
- 
-+	/* Off by default; gated by the enable_periodic_assdp debugfs knob. */
-+	if (!display->params.enable_periodic_assdp)
-+		return 0;
-+
- 	if (min_vrefresh <= 0 || max_vrefresh <= min_vrefresh)
- 		return 0;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
-index b95ecf728daa..ba01aeaf8944 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-@@ -50,6 +50,11 @@ struct drm_printer;
- 	param(bool, psr_safest_params, false, 0400) \
- 	param(bool, enable_psr2_sel_fetch, true, 0400) \
- 	param(int, enable_dmc_wl, -1, 0400) \
-+	/*
-+	 * Debugfs-only knob (per-device): no matching module_param is registered
-+	 * in intel_display_params.c on purpose. Runtime-toggle via debugfs.
-+	 */ \
-+	param(bool, enable_periodic_assdp, false, 0600) \
- 
- #define MEMBER(T, member, ...) T member;
- struct intel_display_params {
--- 
-2.50.1
-
+>=20
+> > Furthermore, could this trigger a TTM error log spam loop? When
+> > returned to
+> > TTM, -ENOSPC causes ttm_bo_evict() to log an unconditional
+> > pr_err("Buffer eviction failed\n"). Since -ENOSPC is converted to -
+> > EBUSY in
+> > ttm_bo_evict_cb(), it signals the LRU walker
+> > (ttm_lru_walk_for_evict()) to
+> > skip the BO and continue walking.=20
+> >=20
+> > During genuine resource exhaustion, this might cause a fruitless
+> > iteration over
+> > the entire LRU list, logging a pr_err() for every single buffer
+> > object. Even
+> > benign SVM races might spam the kernel log with errors.
+> >=20
+>=20
+> The spam is probably seperate issue in TTM. -ENOSPC likely shouldn't
+> emit a pr_err as it continues walking.
+>=20
+> Matt
+>=20
+> > > =C2=A0		}
+> > > =C2=A0
+> > > =C2=A0		goto out;
+> >=20
+> > --=20
+> > Sashiko AI review =C2=B7
+> > https://sashiko.dev/#/patchset/20260908184346.92332-1-matthew.brost@int=
+el.com?part=3D1
