@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67952C79FB9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9FFDC79FAD
 	for <intel-xe@archiver.kernel.org>; Wed,  9 Sep 2026 12:42:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8C1510F117;
-	Wed,  9 Sep 2026 12:42:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AB7F10F127;
+	Wed,  9 Sep 2026 12:42:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E2ErEJDj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IFSppbrf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C03310F117
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 12:42:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49AA210F11A
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Sep 2026 12:42:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1788957742; x=1820493742;
+ t=1788957733; x=1820493733;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Btk5Z0Nqg71uQzHfv8wgx6HA/eIOJaVxR1lnHofvZhc=;
- b=E2ErEJDjEGhsXoa49BXPgSK1IRs93dEyRiDpKHJI3mmgcUuiWTKmmReg
- C6lKtpzE3zcTQXK1vhWBTLzLpu/evV4QPIe1vZRuaml2MzW5zE5quX52o
- PwqY9++sKArX1Q0J9MFGmE//wCc3QWIyURdjkygxvSCzAOTurII+5BPn9
- aC1ePczhgzZXEyStny/55zK2Cwa9Lpw3XBt8M+O0dtuNLbEZRiV0N+4dI
- N9Y4JM38CZnUEdwmQOriNFSI7DqiMj14r+LGRSGPNjBjUG0/fTquEtinB
- to/GawLeShF/gjpjj320/oI1wWlfac8mokp9AyNfHsxPFZtAM/jgfXG46 Q==;
-X-CSE-ConnectionGUID: xJ0x7pNxT0GfoO59rOhakw==
-X-CSE-MsgGUID: gLQ00aB0SLyIkvrLVe+w6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="99715592"
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="99715592"
+ bh=Aa3NKxw0cdliOhRPcd8ggCTJ9cVIVSdTNtwKNHGU1yM=;
+ b=IFSppbrfJuTrhp05Wzes0QK6Oga5gpogtETLZMG4zPErOEK9oY5/M4td
+ W6cTP3cTUTqhmClVd5OJk8dLx623nwnMudBD1T9sOsWZ95FDdxEZwv3H2
+ Ishxu22FiZytiOpmCzn2mt2Uv/+7LAD3YCa2FHbCiSrlcIQWCy83GgiY9
+ k4RlHvPvXNJmeJunRFFSMsCWx+0XCmG2aJ73kETfeFV/59haYMlUDZVUF
+ foWQeTfkBskpYvPSdUdiuqz2BhGqvZ1gZ9gEuvc1E4nw/WGoGnHHmLZwd
+ cQl2e0vepvoulsGGz1nAPKkJY6lJjXztJlIdkP2ENnDgwGKTDmu/MuF6F Q==;
+X-CSE-ConnectionGUID: jhItdo+bTt6S5NgwFUiM8A==
+X-CSE-MsgGUID: h7EVKI1SQrCKLrlRPm/Czg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="99715569"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="99715569"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Sep 2026 05:42:22 -0700
-X-CSE-ConnectionGUID: Y+WiAVntT7qPlYXuFil+uQ==
-X-CSE-MsgGUID: jEI799JrRHW+GcE9NF2FWw==
+ 09 Sep 2026 05:42:13 -0700
+X-CSE-ConnectionGUID: ygXWLlhOSqusmiXJkIXgSQ==
+X-CSE-MsgGUID: nIy9Tid/RrC6SUAnXyNJ/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="296246674"
+X-IronPort-AV: E=Sophos;i="6.25,270,1779174000"; d="scan'208";a="296246654"
 Received: from hghimira.iind.intel.com ([10.190.239.34])
- by fmviesa001.fm.intel.com with ESMTP; 09 Sep 2026 05:42:20 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 09 Sep 2026 05:42:11 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [RFC v2 21/21] drm/xe/svm: Distinguish access-counter-triggered range
- setup in logs
-Date: Wed,  9 Sep 2026 18:15:15 +0530
-Message-ID: <20260909124457.1610890-44-himal.prasad.ghimiray@intel.com>
+Subject: [RFC v2 15/21] drm/xe/lrc: Pass exec_queue to xe_lrc_create for
+ access counter params
+Date: Wed,  9 Sep 2026 18:15:09 +0530
+Message-ID: <20260909124457.1610890-38-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260909124457.1610890-23-himal.prasad.ghimiray@intel.com>
 References: <20260909124457.1610890-23-himal.prasad.ghimiray@intel.com>
@@ -67,96 +67,170 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-__xe_svm_range_setup() serves both the page-fault path and the access
-counter trigger path (acc_ctr_trigger). Its range_debug() traces were
-hardcoded to "PAGE FAULT - ...", making it impossible to tell from the
-logs whether a given setup/migration was driven by a GPU page fault or
-by an access counter event.
+Update xe_lrc_create() and xe_lrc_init() to receive exec_queue pointer,
+enabling access to q->acc.{trigger, notify, granularity} during LRC
+initialization. Program CTX_ACC_CTR_THOLD and CTX_ASID registers with
+access counter values.
 
-Select the trace prefix based on acc_ctr_trigger so each step reports
-"ACCESS COUNTER TRIGGERED - ..." when invoked from the access counter
-path and "PAGE FAULT - ..." otherwise. No functional change.
-
+Bspec: 59264, 59265
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c | 26 +++++++++++++++++++-------
- 1 file changed, 19 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h | 10 +++++++
+ drivers/gpu/drm/xe/xe_exec_queue.c      |  2 +-
+ drivers/gpu/drm/xe/xe_execlist.c        |  2 +-
+ drivers/gpu/drm/xe/xe_lrc.c             | 35 ++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_lrc.h             |  5 ++--
+ 5 files changed, 41 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 20591054e520..72b2a14a2883 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -1368,11 +1368,14 @@ static int __xe_svm_range_setup(struct xe_vm *vm, struct xe_vma *vma,
+diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+index 6f7abc0181b5..c32e47e87f88 100644
+--- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
++++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+@@ -45,4 +45,14 @@
+ #define INDIRECT_CTX_RING_START_UDW	(0x08 + 1)
+ #define INDIRECT_CTX_RING_CTL		(0x0a + 1)
  
- 	if (xe_svm_range_is_valid(range, tile, ctx.devmem_only, dpagemap)) {
- 		xe_svm_range_valid_fault_count_stats_incr(gt, range);
--		range_debug(range, "PAGE FAULT - VALID");
-+		range_debug(range, acc_ctr_trigger ?
-+			    "ACCESS COUNTER TRIGGERED - VALID" :
-+			    "PAGE FAULT - VALID");
- 		goto out;
++/* Fields for CTX_ACC_CTR_THOLD */
++#define ACC_TRIGGER_MASK		REG_GENMASK(15, 0)
++#define ACC_TRIGGER_VAL(x)		REG_FIELD_PREP(ACC_TRIGGER_MASK, x)
++#define ACC_NOTIFY_MASK			REG_GENMASK(31, 16)
++#define ACC_NOTIFY_VAL(x)		REG_FIELD_PREP(ACC_NOTIFY_MASK, x)
++
++/* Fields for CTX_ASID */
++#define ACC_GRANULARITY_MASK            REG_GENMASK(22, 20)
++#define ACC_GRANULARITY_VAL(x)          REG_FIELD_PREP(ACC_GRANULARITY_MASK, x)
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 9773b27ad2a0..390288e09b40 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -436,7 +436,7 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+ 
+ 			marker = xe_gt_sriov_vf_wait_valid_ggtt(q->gt);
+ 
+-			lrc = xe_lrc_create(q->hwe, q->vm, q->replay_state,
++			lrc = xe_lrc_create(q, q->hwe, q->vm, q->replay_state,
+ 					    xe_lrc_ring_size(), q->msix_vec, flags);
+ 			if (IS_ERR(lrc)) {
+ 				err = PTR_ERR(lrc);
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index a36db39dcda8..14d5f90e234d 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -259,7 +259,7 @@ struct xe_execlist_port *xe_execlist_port_create(struct xe_device *xe,
+ 
+ 	port->hwe = hwe;
+ 
+-	port->lrc = xe_lrc_create(hwe, NULL, NULL, SZ_16K, XE_IRQ_DEFAULT_MSIX, 0);
++	port->lrc = xe_lrc_create(NULL, hwe, NULL, NULL, SZ_16K, XE_IRQ_DEFAULT_MSIX, 0);
+ 	if (IS_ERR(port->lrc)) {
+ 		err = PTR_ERR(port->lrc);
+ 		goto err;
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 25fe9dbc9141..ec85e88dcbe1 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -1516,8 +1516,10 @@ static void xe_lrc_set_gpgpu_preemption_level(struct xe_lrc *lrc, struct xe_gt *
+ 	xe_lrc_write_ctx_reg(lrc, CTX_CS_CHICKEN1, val);
+ }
+ 
+-static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
+-			   void *replay_state, u16 msix_vec, u32 init_flags)
++static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_exec_queue *q,
++			   struct xe_hw_engine *hwe, struct xe_vm *vm,
++			   void *replay_state,
++			   u16 msix_vec, u32 init_flags)
+ {
+ 	struct xe_gt *gt = hwe->gt;
+ 	struct xe_tile *tile = gt_to_tile(gt);
+@@ -1616,8 +1618,20 @@ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct
+ 		xe_lrc_write_ctx_reg(lrc, CTX_QUEUE_TIMESTAMP_UDW, 0);
  	}
  
--	range_debug(range, "PAGE FAULT");
-+	range_debug(range, acc_ctr_trigger ?
-+		    "ACCESS COUNTER TRIGGERED" : "PAGE FAULT");
+-	if (xe->info.has_asid && vm)
+-		xe_lrc_write_ctx_reg(lrc, CTX_ASID, vm->usm.asid);
++	if (xe->info.has_asid && vm) {
++		u32 asid;
++
++		if (q)
++			asid = vm->usm.asid | ACC_GRANULARITY_VAL(q->acc.granularity);
++		else
++			asid = vm->usm.asid;
++		xe_lrc_write_ctx_reg(lrc, CTX_ASID, asid);
++	}
++
++	if (q && xe->info.has_access_counter && vm)
++		xe_lrc_write_ctx_reg(lrc, CTX_ACC_CTR_THOLD,
++				     ACC_NOTIFY_VAL(q->acc.notify) |
++				     ACC_TRIGGER_VAL(q->acc.trigger));
  
- 	/*
- 	 * AC-triggered setup: if the range is already in device memory a
-@@ -1429,7 +1432,9 @@ static int __xe_svm_range_setup(struct xe_vm *vm, struct xe_vma *vma,
- 	range_debug(range, "GET PAGES");
- 	err = xe_svm_range_get_pages(vm, range, &ctx);
- 	if (err == -EOPNOTSUPP)
--		range_debug(range, "PAGE FAULT - EVICTED PAGES");
-+		range_debug(range, acc_ctr_trigger ?
-+			    "ACCESS COUNTER TRIGGERED - EVICTED PAGES" :
-+			    "PAGE FAULT - EVICTED PAGES");
- 	/* Corner where CPU mappings have changed */
- 	if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM) {
- 		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
-@@ -1437,7 +1442,9 @@ static int __xe_svm_range_setup(struct xe_vm *vm, struct xe_vma *vma,
- 			drm_dbg(&vm->xe->drm,
- 				"Get pages failed, falling back to retrying, asid=%u, gpusvm=%p, errno=%pe\n",
- 				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
--			range_debug(range, "PAGE FAULT - RETRY PAGES");
-+			range_debug(range, acc_ctr_trigger ?
-+				    "ACCESS COUNTER TRIGGERED - RETRY PAGES" :
-+				    "PAGE FAULT - RETRY PAGES");
- 			goto retry;
- 		} else {
- 			drm_err(&vm->xe->drm,
-@@ -1446,7 +1453,9 @@ static int __xe_svm_range_setup(struct xe_vm *vm, struct xe_vma *vma,
- 		}
- 	}
+ 	if (GRAPHICS_VER(xe) >= 20 && hwe->class == XE_ENGINE_CLASS_RENDER)
+ 		xe_lrc_set_gpgpu_preemption_level(lrc, gt);
+@@ -1662,7 +1676,8 @@ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct
+ 	return err;
+ }
+ 
+-static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
++static int xe_lrc_init(struct xe_lrc *lrc, struct xe_exec_queue *q,
++		       struct xe_hw_engine *hwe, struct xe_vm *vm,
+ 		       void *replay_state, u32 ring_size, u16 msix_vec, u32 init_flags)
+ {
+ 	struct xe_gt *gt = hwe->gt;
+@@ -1718,7 +1733,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_v
+ 	xe_hw_fence_ctx_init(&lrc->fence_ctx, hwe->gt,
+ 			     hwe->fence_irq, hwe->name);
+ 
+-	err = xe_lrc_ctx_init(lrc, hwe, vm, replay_state, msix_vec, init_flags);
++	err = xe_lrc_ctx_init(lrc, q, hwe, vm, replay_state, msix_vec, init_flags);
+ 	if (err)
+ 		goto err_lrc_finish;
+ 
+@@ -1734,6 +1749,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_v
+ 
+ /**
+  * xe_lrc_create - Create a LRC
++ * @q: Exec queue (can be NULL for kernel queues)
+  * @hwe: Hardware Engine
+  * @vm: The VM (address space)
+  * @replay_state: GPU hang replay state
+@@ -1746,8 +1762,9 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_v
+  * Return pointer to created LRC upon success and an error pointer
+  * upon failure.
+  */
+-struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+-			     void *replay_state, u32 ring_size, u16 msix_vec, u32 flags)
++struct xe_lrc *xe_lrc_create(struct xe_exec_queue *q, struct xe_hw_engine *hwe,
++			     struct xe_vm *vm, void *replay_state, u32 ring_size,
++			     u16 msix_vec, u32 flags)
+ {
+ 	struct xe_lrc *lrc;
+ 	int err;
+@@ -1756,7 +1773,7 @@ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+ 	if (!lrc)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	err = xe_lrc_init(lrc, hwe, vm, replay_state, ring_size, msix_vec, flags);
++	err = xe_lrc_init(lrc, q, hwe, vm, replay_state, ring_size, msix_vec, flags);
  	if (err) {
--		range_debug(range, "PAGE FAULT - FAIL PAGE COLLECT");
-+		range_debug(range, acc_ctr_trigger ?
-+			    "ACCESS COUNTER TRIGGERED - FAIL PAGE COLLECT" :
-+			    "PAGE FAULT - FAIL PAGE COLLECT");
- 		goto err_out;
- 	} else if (IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)) {
- 		drm_dbg(&vm->xe->drm, "After page collect data location is %sin \"%s\".\n",
-@@ -1456,7 +1465,8 @@ static int __xe_svm_range_setup(struct xe_vm *vm, struct xe_vma *vma,
+ 		kfree(lrc);
+ 		return ERR_PTR(err);
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 7be5e3da8bc8..ca1943f1c1ba 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -61,8 +61,9 @@ struct xe_lrc_snapshot {
+ #define XE_LRC_CREATE_USER_CTX		BIT(2)
+ #define XE_LRC_DISABLE_STATE_CACHE_PERF_FIX	BIT(3)
  
- 	xe_svm_range_get_pages_us_stats_incr(gt, range, get_pages_start);
+-struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+-			     void *replay_state, u32 ring_size, u16 msix_vec, u32 flags);
++struct xe_lrc *xe_lrc_create(struct xe_exec_queue *q, struct xe_hw_engine *hwe,
++			     struct xe_vm *vm, void *replay_state,
++			     u32 ring_size, u16 msix_vec, u32 flags);
+ void xe_lrc_destroy(struct kref *ref);
  
--	range_debug(range, "PAGE FAULT - BIND");
-+	range_debug(range, acc_ctr_trigger ?
-+		    "ACCESS COUNTER TRIGGERED - BIND" : "PAGE FAULT - BIND");
- 
- 	bind_start = xe_gt_stats_ktime_get();
- 	xe_validation_guard(&vctx, &vm->xe->val, &exec, (struct xe_val_flags) {}, err) {
-@@ -1495,7 +1505,9 @@ static int __xe_svm_range_setup(struct xe_vm *vm, struct xe_vma *vma,
- err_out:
- 	if (err == -EAGAIN) {
- 		ctx.timeslice_ms <<= 1;	/* Double timeslice if we have to retry */
--		range_debug(range, "PAGE FAULT - RETRY BIND");
-+		range_debug(range, acc_ctr_trigger ?
-+			    "ACCESS COUNTER TRIGGERED - RETRY BIND" :
-+			    "PAGE FAULT - RETRY BIND");
- 		goto retry;
- 	}
- 
+ /**
 -- 
 2.43.0
 
