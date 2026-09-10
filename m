@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74DF2C79F9F
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 17:56:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5677DC88E40
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 17:56:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2260B10E191;
-	Thu, 10 Sep 2026 17:56:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A73D10E2BF;
+	Thu, 10 Sep 2026 17:56:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LkVIY5Id";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HZ6w3oIH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E2D010E191
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 17:56:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 203A010E298
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 17:56:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789062989; x=1820598989;
+ t=1789062996; x=1820598996;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ttCVjNXkb6U9BXkFSgRQM3hiwwTW14scDReADX6AdWo=;
- b=LkVIY5IdZ5iOfLy3nI+G1kWmenXF/ZRsLoiaQvKrBYcR2lJzwDpVATxE
- I4laa3kPZE/yvx59J6ElK/Ag9UBO/cDQGJP6NGm9DOfC/goct9cLcol3I
- XSv5z0kNHAX5dkMLZYHbJUVCzZoLou+gGKg0AnRp8X+dDs0vHu6DN2X/7
- UijLxpd4q6YmA+4zzu/znQrA8tLAzJ7jfhsYtzdhSqc0K3rDOUYzAPBfl
- vpdAHIOfU6/UzcxezjDX1M230xZS+dAFiSq/iJsN7pVGMIIc/c5CgDKY/
- +BCzLNuu4N+fIqxTJSm5m5FyJaUYDdrAkJAvN1pZ3GGNSni6VBcJQc3B5 A==;
-X-CSE-ConnectionGUID: /OlDQaczSBewZwtsGaaQSA==
-X-CSE-MsgGUID: Wxl+vK7ySju/L8eCGMb+Yg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11901"; a="100183563"
-X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="100183563"
+ bh=mvb05kfhwKdjePpwf5h7ue1ksYmQI3OZgeMKmRJbYn4=;
+ b=HZ6w3oIH25lcg0VZcBA6n3MNSLeOcFyDJSg1icNYl3ucmkYPctmnWuDw
+ AVzTMnhlZu35hpyMp9WkBuOSB9cPSlXOAtCSbyDp1eCWGhCOwiVFAJ8M/
+ N4hwfKoHNoRqv6+ixn8ZYcwmOYQnh92CEo1rsD9/Vi6LI7e4MwbuPE2IA
+ /vakrcwWme/vh20Q+v6t5f/ifu2Bw+W6TiKB3lrt3Z4z/pN5+lNJA6kei
+ EjaT944JrrbIcf3+0y+NisCARl+Oyrf9LqHWzfhyOXptiSwm8Io2ZfVB3
+ rjcXwCTviyEzZh4CzzeR/4btYQu2lLvn66tWaAZnpGvnbwKAHBG+vdqQ7 w==;
+X-CSE-ConnectionGUID: 1+NqJjDJQ5CajALbHeXDrg==
+X-CSE-MsgGUID: sb3ljcdZRzyezcahNXvxzQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11901"; a="100183575"
+X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="100183575"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2026 10:56:29 -0700
-X-CSE-ConnectionGUID: ip7LYlP6SZKsbZvhVZJ6jQ==
-X-CSE-MsgGUID: Xpl0wabnThKjJbQiN7TWvQ==
+ 10 Sep 2026 10:56:36 -0700
+X-CSE-ConnectionGUID: j7Y38hgrSqaF+eB+//hC7A==
+X-CSE-MsgGUID: 2fuWDaJeRAqyBuVSfh6Ecw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="271677833"
+X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="271677872"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2026 10:56:26 -0700
+ 10 Sep 2026 10:56:33 -0700
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,15 +48,14 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v5 1/3] drm/xe/sysctrl: Add sysctrl debugfs infrastructure and
- loopback test interface
-Date: Thu, 10 Sep 2026 10:56:20 -0700
-Message-ID: <20260910175619.3176089-6-anoop.c.vijay@intel.com>
+Subject: [PATCH v5 3/3] drm/xe/sysctrl: Add generic mailbox passthrough
+ debugfs entry
+Date: Thu, 10 Sep 2026 10:56:22 -0700
+Message-ID: <20260910175619.3176089-8-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260910175619.3176089-5-anoop.c.vijay@intel.com>
 References: <20260910175619.3176089-5-anoop.c.vijay@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,99 +73,38 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Add debugfs support for exercising System Controller mailbox
-interface from userspace. This adds the "sc/" debugfs root
-directory and a "loopback" entry that sends an arbitrary byte
-payload to the Core group's inverted-loopback command (group=0xFF,
-cmd=0x03) and reports the response:
+Add a "mailbox" debugfs entry that allows any System Controller
+mailbox command to be issued for bring-up and debug. group and
+command are supplied by the caller as the first two tokens of every
+write:
 
-  echo "0x11 0x22 0x33 0x44" > /sys/kernel/debug/dri/0/sc/loopback
-  cat /sys/kernel/debug/dri/0/sc/loopback
+- Usage: echo "<group> <command> [byte0 byte1 ...]" \
+             > /sys/kernel/debug/dri/0/sc/mailbox
+         cat /sys/kernel/debug/dri/0/sc/mailbox
 
 Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 ---
 v5:
 - Add per-entry locking for debugfs accesses
-- Drop unused xe_device.h include
+- Skip empty mailbox group/command tokens
 
-v4 (Rodrigo):
-- Squashed debugfs infrastructure and loopback support into a single commit
+v4:
+- Added a generic mailbox debugfs entry
 ---
- drivers/gpu/drm/xe/Makefile                   |   1 +
- drivers/gpu/drm/xe/xe_debugfs.c               |   5 +
- drivers/gpu/drm/xe/xe_sysctrl_debugfs.c       | 167 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl_debugfs.h       |  14 ++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   2 +
- drivers/gpu/drm/xe/xe_sysctrl_types.h         |  38 ++++
- 6 files changed, 227 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_debugfs.h
+ drivers/gpu/drm/xe/xe_sysctrl_debugfs.c | 132 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl_types.h   |   3 +
+ 2 files changed, 135 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 67b8b5477639..3484e9a523d1 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -128,6 +128,7 @@ xe-y += xe_bb.o \
- 	xe_survivability_mode.o \
- 	xe_sync.o \
- 	xe_sysctrl.o \
-+	xe_sysctrl_debugfs.o \
- 	xe_sysctrl_event.o \
- 	xe_sysctrl_mailbox.o \
- 	xe_tile.o \
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 80f62634fae5..7c6af4f7a3fa 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -31,6 +31,8 @@
- #include "xe_sriov_pf_debugfs.h"
- #include "xe_sriov_vf.h"
- #include "xe_step.h"
-+#include "xe_sysctrl.h"
-+#include "xe_sysctrl_debugfs.h"
- #include "xe_tile_debugfs.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_vsec.h"
-@@ -836,6 +838,9 @@ void xe_debugfs_register(struct xe_device *xe)
- 
- 	xe_fault_inject_debugfs_register(xe, root);
- 
-+	if (xe->info.has_sysctrl)
-+		xe_sysctrl_debugfs_register(&xe->sc, root);
-+
- 	if (IS_SRIOV_PF(xe))
- 		xe_sriov_pf_debugfs_register(xe, root);
- 	else if (IS_SRIOV_VF(xe))
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-new file mode 100644
-index 000000000000..c0454c4c0ae0
---- /dev/null
+index 0c537248b30d..c6c58ba7e5a6 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-@@ -0,0 +1,167 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include <linux/cleanup.h>
-+#include <linux/debugfs.h>
-+#include <linux/err.h>
-+#include <linux/kstrtox.h>
-+#include <linux/seq_file.h>
-+#include <linux/slab.h>
-+#include <linux/string.h>
-+#include <linux/uaccess.h>
-+
-+#include "xe_pm.h"
-+#include "xe_printk.h"
-+#include "xe_sysctrl.h"
-+#include "xe_sysctrl_debugfs.h"
-+#include "xe_sysctrl_mailbox.h"
-+#include "xe_sysctrl_mailbox_types.h"
-+#include "xe_sysctrl_types.h"
-+
-+static ssize_t xe_sysctrl_loopback_write(struct file *file, const char __user *ubuf,
-+					 size_t len, loff_t *offp)
+@@ -281,6 +281,135 @@ static void xe_sysctrl_register_entry(struct dentry *root, struct xe_sysctrl_deb
+ 	debugfs_create_file(name, 0644, root, entry, fops);
+ }
+ 
++static ssize_t xe_sysctrl_mailbox_write(struct file *file, const char __user *ubuf,
++					size_t len, loff_t *offp)
 +{
 +	char *kbuf __free(kfree) = NULL;
 +	u8 *input __free(kfree) = NULL;
@@ -179,6 +117,7 @@ index 000000000000..c0454c4c0ae0
 +	size_t input_len = 0;
 +	size_t max_input;
 +	size_t out_len = 0;
++	u8 group, command;
 +	int status;
 +
 +	if (len == 0 || len >= PAGE_SIZE)
@@ -198,43 +137,60 @@ index 000000000000..c0454c4c0ae0
 +	kbuf[len] = '\0';
 +
 +	tmp = kbuf;
++
++	do {
++		token = strsep(&tmp, " \t\n");
++	} while (token && *token == '\0');
++	if (!token || kstrtoul(token, 0, &val) || val > 0xFF) {
++		xe_err(xe, "sysctrl: invalid mailbox group id\n");
++		return -EINVAL;
++	}
++	group = (u8)val;
++
++	do {
++		token = strsep(&tmp, " \t\n");
++	} while (token && *token == '\0');
++	if (!token || kstrtoul(token, 0, &val) || val > 0xFF) {
++		xe_err(xe, "sysctrl: invalid mailbox command id\n");
++		return -EINVAL;
++	}
++	command = (u8)val;
++
 +	while ((token = strsep(&tmp, " \t\n")) != NULL) {
 +		if (*token == '\0')
 +			continue;
 +
 +		if (input_len >= max_input) {
-+			xe_err(xe, "sysctrl: loopback payload too large (max %d bytes)\n",
++			xe_err(xe, "sysctrl: mailbox payload too large (max %d bytes)\n",
 +			       XE_SYSCTRL_MB_MAX_MESSAGE_SIZE);
 +			return -EINVAL;
 +		}
 +
 +		if (kstrtoul(token, 0, &val) || val > 0xFF) {
-+			xe_err(xe, "sysctrl: invalid loopback token '%s'\n", token);
++			xe_err(xe, "sysctrl: invalid mailbox payload byte '%s'\n", token);
 +			return -EINVAL;
 +		}
 +
 +		input[input_len++] = (u8)val;
 +	}
 +
-+	if (input_len == 0) {
-+		xe_err(xe, "sysctrl: no loopback payload given\n");
-+		return -EINVAL;
-+	}
-+
-+	xe_sysctrl_create_command(&cmd, entry->group, entry->command,
-+				  input, input_len, entry->response_buf, input_len);
-+
 +	scoped_guard(mutex, &entry->lock) {
++		entry->group = group;
++		entry->command = command;
++
++		xe_sysctrl_create_command(&cmd, group, command, input_len ? input : NULL, input_len,
++					  entry->response_buf, XE_SYSCTRL_MB_MAX_MESSAGE_SIZE);
++
 +		guard(xe_pm_runtime)(xe);
-+		entry->status = xe_sysctrl_send_command(entry->sc, &cmd, &out_len);
-+		entry->response_len = entry->status ? 0 : out_len;
-+		status = entry->status;
++		status = xe_sysctrl_send_command(entry->sc, &cmd, &out_len);
++		entry->status = status;
++		entry->response_len = status ? 0 : out_len;
 +	}
 +
 +	return status ? status : len;
 +}
 +
-+static int xe_sysctrl_loopback_show(struct seq_file *m, void *data)
++static int xe_sysctrl_mailbox_show(struct seq_file *m, void *data)
 +{
 +	struct xe_sysctrl_debugfs_entry *entry = m->private;
 +	size_t i;
@@ -255,154 +211,52 @@ index 000000000000..c0454c4c0ae0
 +		seq_putc(m, '\n');
 +	}
 +
++	seq_puts(m, "\nUsage:\n");
++	seq_puts(m, "  echo \"<group> <command> [byte0 byte1 ...]\" > mailbox\n");
++	seq_puts(m, "  cat mailbox\n");
++
 +	return 0;
 +}
 +
-+static int xe_sysctrl_loopback_open(struct inode *inode, struct file *file)
++static int xe_sysctrl_mailbox_open(struct inode *inode, struct file *file)
 +{
-+	return single_open(file, xe_sysctrl_loopback_show, inode->i_private);
++	return single_open(file, xe_sysctrl_mailbox_show, inode->i_private);
 +}
 +
-+static const struct file_operations xe_sysctrl_loopback_fops = {
++static const struct file_operations xe_sysctrl_mailbox_fops = {
 +	.owner = THIS_MODULE,
-+	.open = xe_sysctrl_loopback_open,
++	.open = xe_sysctrl_mailbox_open,
 +	.read = seq_read,
-+	.write = xe_sysctrl_loopback_write,
++	.write = xe_sysctrl_mailbox_write,
 +	.llseek = seq_lseek,
 +	.release = single_release,
 +};
 +
-+static void xe_sysctrl_register_entry(struct dentry *root, struct xe_sysctrl_debugfs_entry *entry,
-+				      struct xe_sysctrl *sc, const char *name,
-+				      u8 group, u8 command,
-+				      const struct file_operations *fops)
-+{
-+	struct xe_device *xe = sc_to_xe(sc);
-+
-+	if (devm_mutex_init(xe->drm.dev, &entry->lock))
-+		return;
-+
-+	entry->sc = sc;
-+	entry->group = group;
-+	entry->command = command;
-+	entry->response_len = 0;
-+	entry->status = 0;
-+
-+	debugfs_create_file(name, 0644, root, entry, fops);
-+}
-+
-+/**
-+ * xe_sysctrl_debugfs_register - Register debugfs entries for System Controller
-+ * @sc: xe_sysctrl instance
-+ * @parent: parent debugfs directory
-+ */
-+void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent)
-+{
-+	struct dentry *root;
-+
-+	root = debugfs_create_dir("sc", parent);
-+	if (IS_ERR(root))
-+		return;
-+
-+	sc->debugfs.root = root;
-+
-+	xe_sysctrl_register_entry(root, &sc->debugfs.loopback, sc, "loopback",
-+				  XE_SYSCTRL_GROUP_CORE, XE_SYSCTRL_CMD_LOOPBACK,
-+				  &xe_sysctrl_loopback_fops);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.h b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.h
-new file mode 100644
-index 000000000000..d1414ac3562e
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _XE_SYSCTRL_DEBUGFS_H_
-+#define _XE_SYSCTRL_DEBUGFS_H_
-+
-+struct dentry;
-+struct xe_sysctrl;
-+
-+void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent);
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index c236e5377f30..501a4a4c16ff 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -47,9 +47,11 @@ enum xe_sysctrl_gfsp_cmd {
  /**
-  * enum xe_sysctrl_core_cmd - Commands supported by Core group
-  *
-+ * @XE_SYSCTRL_CMD_LOOPBACK: Loopback test command
-  * @XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID: Retrieve application status by ID
-  */
- enum xe_sysctrl_core_cmd {
-+	XE_SYSCTRL_CMD_LOOPBACK				= 0x03,
- 	XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID		= 0x05,
- };
- 
+  * xe_sysctrl_debugfs_register - Register debugfs entries for System Controller
+  * @sc: xe_sysctrl instance
+@@ -303,4 +432,7 @@ void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent)
+ 	xe_sysctrl_register_entry(root, &sc->debugfs.ras_error_inject, sc, "ras_error_inject",
+ 				  XE_SYSCTRL_GROUP_DIAG, XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT,
+ 				  &xe_sysctrl_ras_error_inject_fops);
++
++	xe_sysctrl_register_entry(root, &sc->debugfs.mailbox, sc, "mailbox", 0, 0,
++				  &xe_sysctrl_mailbox_fops);
+ }
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-index 98c2f473f7c6..9ad3c40de97a 100644
+index 8ea6e1f29ddd..77cbd7403d1a 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_types.h
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-@@ -10,7 +10,36 @@
- #include <linux/types.h>
- #include <linux/workqueue_types.h>
+@@ -71,6 +71,9 @@ struct xe_sysctrl {
  
-+#include "xe_sysctrl_mailbox_types.h"
+ 		/** @debugfs.ras_error_inject: RAS error injection test entry */
+ 		struct xe_sysctrl_debugfs_entry ras_error_inject;
 +
- struct xe_mmio;
-+struct dentry;
-+
-+/**
-+ * struct xe_sysctrl_debugfs_entry - Debugfs entry for a raw mailbox test command
-+ */
-+struct xe_sysctrl_debugfs_entry {
-+	/** @sc: Back pointer to parent sysctrl instance */
-+	struct xe_sysctrl *sc;
-+
-+	/** @group: Command group ID */
-+	u8 group;
-+
-+	/** @command: Command ID within group */
-+	u8 command;
-+
-+	/** @lock: Protects @status, @response_len and @response_buf below */
-+	struct mutex lock;
-+
-+	/** @response_buf: Response data buffer, sized to the maximum mailbox message */
-+	u8 response_buf[XE_SYSCTRL_MB_MAX_MESSAGE_SIZE];
-+
-+	/** @response_len: Actual response length from firmware */
-+	size_t response_len;
-+
-+	/** @status: Last command result */
-+	int status;
-+};
- 
- /**
-  * struct xe_sysctrl - System Controller driver context
-@@ -31,6 +60,15 @@ struct xe_sysctrl {
- 
- 	/** @event_lock: Mutex protecting pending events */
- 	struct mutex event_lock;
-+
-+	/** @debugfs: Debugfs entries */
-+	struct {
-+		/** @debugfs.root: Root debugfs directory */
-+		struct dentry *root;
-+
-+		/** @debugfs.loopback: Loopback test entry */
-+		struct xe_sysctrl_debugfs_entry loopback;
-+	} debugfs;
++		/** @debugfs.mailbox: Generic, user-parameterized mailbox entry */
++		struct xe_sysctrl_debugfs_entry mailbox;
+ 	} debugfs;
  };
  
- #endif
 -- 
 2.43.0
 
