@@ -4,42 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4FA5C79F9F
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 12:05:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CC5AC79F9F
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 12:14:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56BE910E5FD;
-	Thu, 10 Sep 2026 12:05:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D0DB10F18C;
+	Thu, 10 Sep 2026 12:14:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="iIKYfDm9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VmvYU8u+";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0F6C10E5FD
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 12:05:02 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 7E8664138F;
- Thu, 10 Sep 2026 12:05:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4175A1F000FF;
- Thu, 10 Sep 2026 12:05:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789041902;
- bh=OMBHpuxSnG6koI5VxGnCM0JSVA7azUVctrQ4+dLNrqk=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=iIKYfDm9Sdh4wFIlMoDv70ugz4pjUvoOtq6x1LhQYJKMJtDs8mDaCH37iQ+JYp3Iq
- K7j409curHd2bv0mCrruWIsbo9LQ9Q3NwmQfxHXGIafMZrksayIBAHgJB/BqFrxpA4
- YB2A3fkDHUZaXwHnnDOaT7jeMGdEKxZBoDpi6HEsRjZ/hYC8Awhx/mGir7VNpSffSI
- qn0PwWFNNYEg8pulb4j+ynPMlzP8yDtJ6j1udpvCBGet9uLJdw+WtL3Ih77UbWiGel
- QQGPg4EG1rsabudpD4Tx+xv0nBzddL4XXgnQfI7g8g5pcpCu25nbQAS5uTlboXbAfz
- hNJ41MHG0GQoQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4] [CI-ONLY][DONOT-REVIEW] Access counter squash
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260910114407.1801795-2-himal.prasad.ghimiray@intel.com>
-References: <20260910114407.1801795-2-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 10 Sep 2026 12:05:01 +0000
-Message-Id: <20260910120502.4175A1F000FF@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B20610E27A;
+ Thu, 10 Sep 2026 12:14:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789042492; x=1820578492;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=aiUJSWXtIWBpFBHi5tpB3kKu2k1TmWKGJYqBznbgFOA=;
+ b=VmvYU8u+njhgcr9vQd6IBwr8/ABYQudg5aPR6AxVUGQzSWzIhxyEg+HV
+ uHM+/pFWHShrUwx8yQTpADlThXQOwjqIpmfoIlOiffCH0jGTcbAjU/bp/
+ k1RprzCpNdfRo3uzuDH1K2r8Vhf87ILpBDrwUxd0bGwdiSnneSnlQ13yQ
+ QO01yWE9XEYIuLPCDcn7KuUKv3ccLTShjH+zmF5cSXvDlPSlgFZGZNjIT
+ lSq/6GiJyBgQmCLf0gcOuBonsnpvE6LwMPzkuDDQUYY6fqcv9qBfRf5GK
+ tznlbjA3j2Hee7k2+UihVNDd+giMRYwc1P3xyac6xwnRoTJ4sb9kk4irH g==;
+X-CSE-ConnectionGUID: s3spZqQaSjKdaBHDlP6itA==
+X-CSE-MsgGUID: 9WH/XOxwRjm3S9o7/f9uPQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="100843634"
+X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="100843634"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2026 05:14:51 -0700
+X-CSE-ConnectionGUID: TeVJeUduR5S8BJQ+l+Mbbw==
+X-CSE-MsgGUID: /wzAPVnSQ3+J90NlF52p0g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="295110470"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2026 05:14:51 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Thu, 10 Sep 2026 05:14:51 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Thu, 10 Sep 2026 05:14:51 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.3) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Thu, 10 Sep 2026 05:14:50 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=w4ZfRZ80K/w8zWvGyazwJQI9bZ+BVWHODRuOzWjj3NR0450Buz+T9QNOaeI3CsWq1RdbShAVXdNiXSxYcsTqeHxJMzsMWiyfDQRF+NUCXb4a7xzymFmRdMfYQTMRPVi7mUgg9JlxkPQQDJMHnCpHU+utktvMwM6feBV7p+v2iMXa2bSdNkCpi+wBkR5nmtyyzbVPMlBTrtIC3anHeAnw/15l46MU+m+XC7LtzDb804kPdU1/EMEzsLJ2SbuZBFC3I6Ia/itI2aDtDe4YnCZtA76lf72hny+8PHu/GF5HNiKZJ2CGsVQgq9hSGkvCvxvk00+YJMA7efrm2BpgwgGwZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aiUJSWXtIWBpFBHi5tpB3kKu2k1TmWKGJYqBznbgFOA=;
+ b=elIyrzEELEIoZHO0bilzGq8F3YLZe2l2LSfEXogrEjJb/+bNTlNHg6ZvSfkXDxj0AuXbx8N+m0FXwBCV0YaoFWOfbzSYCIurOsMDbkE/K23kHKoonVwRNjqsd1Mvl3ahcOxjUmZcWAbf8lAJpzbQhOLfhfd1IXW32ydqEGqGVkfQT2GW0xuA/30MTh+QXI6ngwWtYr5nIbUQTg+u70u2rDs9G7/q6DbONJ0Et5SheeSA2Ga3RYga2lGch4wMbqQ4ChujEx/pHkBheDGiXE6E8dB9NpFqgtih8o18Pu9MvobTX6OybLlvvu5fxrCaRNoJpZXu4MzuTXD8kpfKSaYwKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from MW4PR11MB6887.namprd11.prod.outlook.com (2603:10b6:303:225::16)
+ by SA2PR11MB4793.namprd11.prod.outlook.com (2603:10b6:806:fa::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.9; Thu, 10 Sep
+ 2026 12:14:48 +0000
+Received: from MW4PR11MB6887.namprd11.prod.outlook.com
+ ([fe80::91f5:637d:7c4a:6494]) by MW4PR11MB6887.namprd11.prod.outlook.com
+ ([fe80::91f5:637d:7c4a:6494%5]) with mapi id 15.21.0382.012; Thu, 10 Sep 2026
+ 12:14:48 +0000
+From: "Garg, Nemesa" <nemesa.garg@intel.com>
+To: "sashiko-reviews@lists.linux.dev" <sashiko-reviews@lists.linux.dev>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: RE: [PATCH 2/2] drm/i915/psr: Clear stale sel fetch enable bits on
+ sel fetch disable
+Thread-Topic: [PATCH 2/2] drm/i915/psr: Clear stale sel fetch enable bits on
+ sel fetch disable
+Thread-Index: AQHdQEs/zGibcrYjLkmfiJR6dIDXZrbGHReAgAGbHtA=
+Date: Thu, 10 Sep 2026 12:14:48 +0000
+Message-ID: <MW4PR11MB68878EBFFCF64D83B19B460BE3BF2@MW4PR11MB6887.namprd11.prod.outlook.com>
+References: <20260909110332.3528029-1-nemesa.garg@intel.com>
+ <20260909110332.3528029-3-nemesa.garg@intel.com>
+ <20260909113205.B55FA1F00A3D@smtp.kernel.org>
+In-Reply-To: <20260909113205.B55FA1F00A3D@smtp.kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MW4PR11MB6887:EE_|SA2PR11MB4793:EE_
+x-ms-office365-filtering-correlation-id: adcecdbf-0695-4d83-26a5-08df0f351bd5
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|366016|23010399003|376014|38070700021|4143699003|6133799003|11063799006|10067099003|56012099006|22082099003|18002099003;
+x-microsoft-antispam-message-info: elQxv7GlreKKdFMhrUbxusL5yrvX9huZFIiLvhVmiWamiGTXZA51NfVQAJ8Goyt1bBERmoA4Vsn2eBxNxpvJgLkSLJOzTkaMozen5ZEED51liJe3Gw+MZijeacwYoaCn3mhRNXET1gYBKcuzNYw5TUo1eK2dDLa1+JKVPwGRfY/3Of8nu7mGweg9iPIwuik98DEjhtIgtgXn6fITkFiIt/3bjiyaWc0sPUQH8WzsiT8JlByMJn0QVifQOy8TYjsgTr48lcbcTlVNeX/H3vT1cBQhMilLLM5jima9/RIyWIUyM60cL3SvWuEX0pzSZSxlqKsgyeoh0lQ/lKTdZCFhotMbzA8TH6QMTpB/D1LtICMDx0p74EGvrQWDlu5Ub87Kg3qQBzOT6i+M7l9RI+zrrWEaFSZEXPEPWQ8MXSS7ZuIlKnl5g83rqg3mI1Xhoymp3jFspHy6dvWRQiIy86l6doLdwOTMhPRAQY0YqfPRn9Z+TuWUtmtn1m2sMCWqsABjA5OEadqb4Clj+FVnpy+CoiYg2LSaysAdV7N+KSNDqfCkxp5iKyZCdHFXEn5qeZpTF0hJkSsQajWdZP7ylRYzZu5GXGmwgo7CdZglGdTsjvKz8+8g/du0R/1/KF7smqCerg5hMqlAXZp0WuMQWks+flHJZSCvudJXFby4Ea5ZshM=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW4PR11MB6887.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(38070700021)(4143699003)(6133799003)(11063799006)(10067099003)(56012099006)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dzZzK3N3M0wyVkNrQ1VORVdaOXdJUExwbzVCTy9tRG44NEhodGhURDMwUkJy?=
+ =?utf-8?B?NEJqV0NnSmFEWjZlR2VUZHlDMFFxcXFFUW10VkJTdU1wNnY1cnpXWWhUc1lH?=
+ =?utf-8?B?OGtkNTdJNW92UnRYRTlLR0xYSFQybkI5Mm80dzBIUk91K2hBMFpnczNsQ1Zr?=
+ =?utf-8?B?U3hKNHlVR01GYXN6S1d3eGZKVkxWNllEeW5ZNUtKYUZ4OEg4V2w0ZjhRR3ZE?=
+ =?utf-8?B?azNtWUE5NFRQOGJpbm40VG5Nc3orWUQ1eDN4L3BDNi94ZlVtVzlTNWVyeFls?=
+ =?utf-8?B?Z1Z1NTdSWmlOOUpsM0F5dGNMeEl2aXE4V25YaGdqZnJYN1VJcjhIRFNBQnpZ?=
+ =?utf-8?B?b0VDVGpvUTI0c1d1UzdIUlNLcXM4cEw3UkVlTEJGM2FCWXkweVYrME1TNDJ5?=
+ =?utf-8?B?OUE5VS9MQlVsM2ROM0ZqT0x6MHZpMDlNNWg4dkZHN2FNUXQ4akhhaHg2b3hy?=
+ =?utf-8?B?dmRSTWZtbkpPYXk3cTVuR04rUDhONEl6YS9PNHphb2pZV29CTmFWYTFRQmdp?=
+ =?utf-8?B?bFpHaFFSeHBYN250MUEzWVp5MGZ3cDMxN0ttVjZsN2tXRlNRQVZJejIvSTlo?=
+ =?utf-8?B?eVJGTkk3d1BWcXJvQ09ZblZ0cDBpN1FXby9BZy9BdkpOZncvVXpjUkYyZVZv?=
+ =?utf-8?B?THRHeUdBUXVONnJCQmt3Smw2VExuTVUvUGJpbzRHUXBYYlJxRmpEZjBLZ01B?=
+ =?utf-8?B?Sm1iTUtWRUZKazFRYUtncEFQU0N0TFQxODN3OXFENjlLd09uWGxwa3ZLNlE2?=
+ =?utf-8?B?NGovUlZwVyt5ZXpnVWE5eWIzeThOS2NXZlJva00yaUZLcUVobXlnQ25ycEZT?=
+ =?utf-8?B?bEhuNFRGTEdBbHFwL2NiUmFpc3YzdmxDS0MvampJeHF3a3RQT2doVUNidkph?=
+ =?utf-8?B?eTNJVnlScXJEdmJCVWhHdVI1ak91VkFDbGtYQStOeUQ3VWJJZDBmcTNLNTJR?=
+ =?utf-8?B?OUNydCtwd3BkWVNEYUMySnlHUlBUTkJLTjlQaHlXREgycndpS25TRUovQ3Rz?=
+ =?utf-8?B?TUdGektEeTJjMHBtZlhVM3I3ZUJOeWdnSTVOb3V3R3Y2R08vVlprbk5YWVpq?=
+ =?utf-8?B?NDJKN3pLMmNPQi8ralRjSHRtN3hzMGMzekxkTEhrRTcrTFZXd1hIbzJ1OE8v?=
+ =?utf-8?B?djVsV1N5ZkxjVUdTM0h2RDlhN2hlbGRNZ3o2SzZ0UW9YblhHa1VwSVRrSWVH?=
+ =?utf-8?B?TDZhREl5WEtGbElmRWQ1WndmMGo5Q2cwcE9YU3NKMCtpNDBQYjBPN0JiZHRy?=
+ =?utf-8?B?enB4UkZjVjVUOG4wdWViNnVLVjVwbWcvc0dFcFczWU8yK1N0VHBmVUJNckhi?=
+ =?utf-8?B?ZkVNMDMrenhqQzlEM0RiYkI2NjBBMnpEMU1NbzkxcllvbXlkc0YzcVVXOHRE?=
+ =?utf-8?B?cERVK3ZlRlhTMjlMN3hLUHllaG5jREd5QTgycU5BL0VwM3RxTC9Lc3N3NTlG?=
+ =?utf-8?B?aGQzM1h0WXp5RW1OSVNYRjhiYzEyVlZoQ0VqejB1eVJLSkc4dEJJNlJZd1RD?=
+ =?utf-8?B?OTZyOXNTLzloa3l5SHhkNlIyMHgzRE80eGkrZGpiWTZETjdTQ091L0RnbEZU?=
+ =?utf-8?B?bU1UZlhlUmRQVTdaQ1ZmWkE3bzFRQ1BWcGdadFZFNDJNbWdMNDNWVnRrdkxl?=
+ =?utf-8?B?VjJPOFJnRXdjQWM1M2hxQWNseGdMVjI4TGNvOEl5YmZWbXptMFNIcVB3bUhq?=
+ =?utf-8?B?aHB0dFNZY1N5eHl1RzNMT0VqblpNR2ExU2lMNlVBNGdnNVJrWjFEUDQreWQy?=
+ =?utf-8?B?N0lkcWY5bHRFaHhxNjFtQk9lQ1JKWlBra2wwZDMxYXVlMXF1YnA3UnlxdmpE?=
+ =?utf-8?B?dWtSZlVEL0VMQXdZR3NCM2d4cHNrVno2Y21QZXkwTTJNU0dDclYrYmhvVFRG?=
+ =?utf-8?B?Mi9FeUVDZytwb1U3bkx4N2cvaGZPa2dtYnFIa1pHTzJBUnRuSDZqNUMxWEox?=
+ =?utf-8?B?WWVQTXI5VTZCNCtjYnhZaEJvNC81d1gzb2ovN2owQ0ljSHRGbEdpYzVyTFRT?=
+ =?utf-8?B?ODJFeHQrNVNWaFNXejZkaHBHVzFYNzBXMGdWQWVQUkdzbTIydTJDVk9nUm5J?=
+ =?utf-8?B?RlM1Y3kxRnBSRSszUFRsRkN2b0ozYlFLUVd0U0V4ZDFIeVdYbUQ2dk1pQUdT?=
+ =?utf-8?B?MHNCd0VZejA3ZjNhZjFyR21Fb21QWWxZOVdEQ0xIVS9OTS9hU1dpejhKSmlH?=
+ =?utf-8?B?WVljUnU1NVd5ZG8wK0xXeUxHVEhZek5kMUdRY0IwamdHc2FpMVRpaWp5akV2?=
+ =?utf-8?B?VlRWS0RVWmhEQ3FKcko3V083anJpVXhPSU5XNUgxc0tYZWVnM0prWXpGQ2Js?=
+ =?utf-8?B?cUlQYXNpYTdjblkrRDZNZ2l4M2g3eEVNdDgzVHc1Mi9uVDhISlpFUT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: uOyPFWQTjSSH5ebAwkWLMH4rKqmUUK7DbkyHDCSBdIWAKp38vyxSL/LNAwuE1Wil0jkVYsZRmsSFt4wRNChQc6Ly775ZM27IKZJbMqGCSGU2ruHt+h3I+QjHC8yko7SXPfXxx5B7e+cy76iZB4mongRbztCQ5ubhouCLej/XFq7bTybGrvzg5SyGYKHdrWlO/evIRsRykhQTwTgn6FgOAzC0M203WZBgs4Db1lr560kafTKX09WAigSgkIS6ORXJRRiIGloIsv6hJEBmBrxngQSAuQWn2Avd90YcRgyn4XoWfLeUQUd1Wj1ghLQthEhwgZR76IIVxQwOo9OAyWOf4Q==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6887.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: adcecdbf-0695-4d83-26a5-08df0f351bd5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Sep 2026 12:14:48.4401 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fGPlHMNlwAQZc9BrnzMip4+2/f77f0HxFSYX/eQKGFnSaUZAYuuRaQj3i+9Qv8rkdI5VsVfRw4PvsXaxIs9h1A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4793
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,183 +170,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 7 potential issue(=
-s) to consider:
-- [Critical] Returning -ENOSPC from `xe_access_counter_handler` when the qu=
-eue is full causes a fatal GuC CT crash.
-- [High] Incorrect calculation of `page_va` drops the sub-granularity index=
- and shifts the processing window.
-- [High] Access counter events are silently dropped for non-faulting VMs be=
-cause the handler strictly requires fault mode.
-- [High] AC-triggered migrations for non-migratable ranges unconditionally =
-fail with `-EACCES`, prematurely aborting the rest of the window.
-- [High] Missing error check after `xe_vm_drm_exec_lock` allows rebind with=
-out holding locks.
-- [High] The `XE_VMA_MIGRATE_ON_ACC` flag incorrectly skips VRAM migration =
-on first-touch for device atomics, causing an infinite fault loop.
-- [Medium] Missing access counter queue reset during GT reset violates UAPI=
- documentation guarantees.
---
-
-commit 3591a7b3a4219975acccb43af71c55d2243241d9
-Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-
-Access counter squash
-
-The commit introduces hardware access counters handling for the Xe driver. =
-It
-includes queue management, VM integration, SVM range setup based on counter=
-s,
-and user API extensions to control access counter parameters.
-
-> diff --git a/drivers/gpu/drm/xe/xe_access_counter.c b/drivers/gpu/drm/xe/=
-xe_access_counter.c
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_access_counter.c
-[ ... ]
-> +static int xe_access_counter_service(struct xe_access_counter *ac)
-> +{
-[ ... ]
-> +	vm =3D xe_device_asid_to_fault_vm(xe, ac->consumer.asid);
-> +	if (IS_ERR(vm))
-> +		return PTR_ERR(vm);
-
-[Severity: High]
-Does strict usage of xe_device_asid_to_fault_vm() here unintentionally drop
-events for normal (non-SVM) buffer objects? xe_device_asid_to_fault_vm()
-requires xe_vm_in_fault_mode(vm) to be true, but xe_vma_supports_access_ctr=
-()
-indicates access counters are also supported for standard VMs.
-
-[ ... ]
-> +int xe_access_counter_handler(struct xe_device *xe, struct xe_access_cou=
-nter *ac)
-> +{
-[ ... ]
-> +	spin_lock_irqsave(&ac_queue->lock, flags);
-> +	idx =3D xe_access_counter_work_index(xe);
-> +	full =3D xe_usm_queue_full(ac_queue);
-> +	if (!full) {
-> +		xe_usm_queue_push(ac_queue, ac);
-> +		queue_work(xe->usm.pagefault_wq, &xe->usm.ac_workers[idx].work);
-> +	} else {
-> +		drm_warn(&xe->drm,
-> +			 "AccessCounter Queue full, shouldn't be possible\n");
-> +	}
-> +	spin_unlock_irqrestore(&ac_queue->lock, flags);
-> +
-> +	return full ? -ENOSPC : 0;
-> +}
-
-[Severity: Critical]
-Is it safe to return -ENOSPC when the access counter queue is full? If this
-error propagates to process_g2h_msg() in the GuC CT layer, it treats any
-non-zero return value as a fatal error and calls CT_DEAD(), wedging the
-device. Should we safely drop the event and return 0 instead of crashing the
-GPU under heavy access counter loads?
-
-> diff --git a/drivers/gpu/drm/xe/xe_guc_access_counter.c b/drivers/gpu/drm=
-/xe/xe_guc_access_counter.c
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_guc_access_counter.c
-[ ... ]
-> +static u64 xe_guc_access_counter_page_va(struct xe_device *xe, u64 addr,=
- u8 gran)
-> +{
-> +	u64 gran_size =3D xe_access_counter_granularity_to_size(gran);
-> +	u64 sub_gran_size =3D gran_size / 32;
-> +	u64 region_base =3D ALIGN_DOWN(addr, gran_size);
-> +	u64 offset_in_subchunk =3D addr & (sub_gran_size - 1);
-> +	u64 page_va =3D region_base + offset_in_subchunk;
-
-[Severity: High]
-Is this calculation for page_va correct? It extracts offset_in_subchunk usi=
-ng
-addr & (sub_gran_size - 1), but adding this directly to region_base discards
-the higher bits of the subchunk index. Does this cause the sliding window
-bounds [page_va, gran_end) to shift to unaligned addresses, corrupting the
-migration target?
-
-> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-> --- a/drivers/gpu/drm/xe/xe_svm.c
-> +++ b/drivers/gpu/drm/xe/xe_svm.c
-[ ... ]
-> +static int __xe_svm_range_setup(struct xe_vm *vm, struct xe_vma *vma,
-[ ... ]
-> +	/* READ_ONCE pairs with WRITE_ONCE in drm_gpusvm_range_set_unmapped() */
-> +	range_flags.__flags =3D READ_ONCE(range->base.flags.__flags);
-> +	if (ctx.devmem_only && !range_flags.migrate_devmem) {
-> +		err =3D -EACCES;
-> +		goto err_out;
-> +	}
-
-[Severity: High]
-Does this early check cause unintended failures for AC triggers? When trigg=
-ered
-by an AC event, ctx.devmem_only is forced to true. If this encounters a
-non-migratable range, it returns -EACCES and aborts the entire window
-iteration. Should this be safely skipped instead, since the code later tries
-to handle if (acc_ctr_trigger && !range_flags.migrate_devmem) goto out;?
-
-[ ... ]
-> +	/*
-> +	 * With MIGRATE_ON_ACCESS_COUNTER, defer first placement to access
-> +	 * counters: skip the eager migrate on a normal page fault, but still
-> +	 * migrate when this setup was itself triggered by an AC event.
-> +	 */
->  	if (--migrate_try_count >=3D 0 &&
-> +	    (acc_ctr_trigger || !(vma->gpuva.flags & XE_VMA_MIGRATE_ON_ACC)) &&
->  	    xe_svm_range_needs_migrate_to_vram(range, vma, dpagemap)) {
-
-[Severity: High]
-Does applying the XE_VMA_MIGRATE_ON_ACC flag break device atomic accesses? =
-If
-a normal page fault is triggered for a device atomic operation, VRAM placem=
-ent
-is required for correctness. However, this condition suppresses VRAM migrat=
-ion
-on first-touch if MIGRATE_ON_ACC is set, causing an infinite fault loop when
-xe_svm_range_get_pages() subsequently fails.
-
-[ ... ]
-> +	bind_start =3D xe_gt_stats_ktime_get();
-> +	xe_validation_guard(&vctx, &vm->xe->val, &exec, (struct xe_val_flags) {=
-}, err) {
-> +		err =3D xe_vm_drm_exec_lock(vm, &exec);
-> +		drm_exec_retry_on_contention(&exec);
-> +
-> +		xe_vm_set_validation_exec(vm, &exec);
-> +		fence =3D xe_vm_range_rebind(vm, vma, range, BIT(tile->id));
-
-[Severity: High]
-What happens if xe_vm_drm_exec_lock() fails with a non-contention error (li=
-ke
--EINTR)? There doesn't seem to be an error check before calling
-xe_vm_range_rebind(). Could this lead to VMA rebinding proceeding without
-holding the necessary locks, causing use-after-free or data corruption?
-
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-[ ... ]
-> + * Access counter parameters cannot be removed or changed after the exec=
- queue
-> + * is created.  During a GT reset the kernel squashes any in-flight acce=
-ss
-> + * counter notifications for that GT (pending work items are discarded),=
- but
-
-[Severity: Medium]
-The uAPI documentation for DRM_XE_EXEC_QUEUE_EXTENSION_SET_ACC_PARAM
-guarantees that in-flight access counter notifications are squashed during a
-GT reset. I don't see a reset or squash hook in xe_access_counter.c to clear
-xe->usm.ac_queue. Are stale access counter events persisting across GT rese=
-ts?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260910114407.1801=
-795-2-himal.prasad.ghimiray@intel.com?part=3D1
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogc2FzaGlrby1ib3RAa2Vy
+bmVsLm9yZyA8c2FzaGlrby1ib3RAa2VybmVsLm9yZz4NCj4gU2VudDogV2VkbmVzZGF5LCBTZXB0
+ZW1iZXIgOSwgMjAyNiA1OjAyIFBNDQo+IFRvOiBHYXJnLCBOZW1lc2EgPG5lbWVzYS5nYXJnQGlu
+dGVsLmNvbT4NCj4gQ2M6IGludGVsLXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgaW50ZWwtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBTdWJqZWN0OiBSZTogW1BBVENIIDIvMl0gZHJtL2k5
+MTUvcHNyOiBDbGVhciBzdGFsZSBzZWwgZmV0Y2ggZW5hYmxlIGJpdHMgb24gc2VsDQo+IGZldGNo
+IGRpc2FibGUNCj4gDQo+IFRoYW5rIHlvdSBmb3IgeW91ciBjb250cmlidXRpb24hIFNhc2hpa28g
+QUkgcmV2aWV3IGZvdW5kIDEgcG90ZW50aWFsIGlzc3VlKHMpDQo+IHRvIGNvbnNpZGVyOg0KPiAt
+IFtIaWdoXSBUaGUgcGF0Y2ggaW50cm9kdWNlcyBgY2xlYXJfcHNyMl9zZWxfZmV0Y2hgIHRvIGNs
+ZWFyIHN0YWxlIGhhcmR3YXJlDQo+IGJpdHMgd2hlbiBzZWxlY3RpdmUgZmV0Y2ggaXMgZGlzYWJs
+ZWQsIGJ1dCBpbW1lZGlhdGVseSByZXR1cm5zIGVhcmx5LCBza2lwcGluZw0KPiB0aGUgYWRkaXRp
+b24gb2YgcGxhbmVzIHRvIHRoZSBhdG9taWMgc3RhdGUuIFRoaXMgY2F1c2VzIHRoZSBmaXggdG8g
+ZmFpbCBkdXJpbmcNCj4gbm9uLW1vZGVzZXQgdHJhbnNpdGlvbnMuDQo+IC0tDQo+IA0KPiBjb21t
+aXQgNmQ5NWY1ODQ1MjhkYmUwNWUxY2Q5NzZkYjQ2MWE0NWM3MmZiNTMxOQ0KPiBBdXRob3I6IE5l
+bWVzYSBHYXJnIDxuZW1lc2EuZ2FyZ0BpbnRlbC5jb20+DQo+IGRybS9pOTE1L3BzcjogQ2xlYXIg
+c3RhbGUgc2VsIGZldGNoIGVuYWJsZSBiaXRzIG9uIHNlbCBmZXRjaCBkaXNhYmxlDQo+IA0KPiBU
+aGlzIGNvbW1pdCBhdHRlbXB0cyB0byBjbGVhciBzdGFsZSBzZWxlY3RpdmUgZmV0Y2ggZW5hYmxl
+IGJpdHMgYnkgdHJhY2tpbmcgdGhlDQo+IHRyYW5zaXRpb24gaW4gY2xlYXJfcHNyMl9zZWxfZmV0
+Y2ggYW5kIGhhdmluZyB0aGUgcGxhbmUvY3Vyc29yIGFybSBwYXRocw0KPiB3cml0ZSAwIHRvIHRo
+ZSByZWdpc3RlcnMuIEl0IHVwZGF0ZXMgaW50ZWxfcHNyMl9zZWxfZmV0Y2hfdXBkYXRlKCkgdG8g
+cmVjb3JkDQo+IHdoZW4gc2VsZWN0aXZlIGZldGNoIGlzIHR1cm5lZCBvZmYuDQo+IA0KPiBDbG9z
+ZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0veGUva2VybmVsLy0vd29ya19p
+dGVtcy84NzM5DQo+IA0KPiBbIC4uLiBdDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfcHNyLmMNCj4gPiBpbmRleCBmNDkwYmViNjY2MjllLi44NzJlMjUzZGIxNzg2
+IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNy
+LmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+
+IFsgLi4uIF0NCj4gPiBAQCAtMjkwMSw2ICsyOTAzLDE5IEBAIGludCBpbnRlbF9wc3IyX3NlbF9m
+ZXRjaF91cGRhdGUoc3RydWN0DQo+IGludGVsX2F0b21pY19zdGF0ZSAqc3RhdGUsDQo+ID4gIAli
+b29sIGZ1bGxfdXBkYXRlID0gZmFsc2UsIHN1X2FyZWFfY2hhbmdlZDsNCj4gPiAgCWludCBpLCBy
+ZXQ7DQo+ID4NCj4gPiArCS8qDQo+ID4gKwkgKiBTZWxlY3RpdmUgZmV0Y2ggaXMgbm90IGFsd2F5
+cyB1c2FibGUsIGZvciBpbnN0YW5jZSBpdCBpcyBkcm9wcGVkDQo+ID4gKwkgKiB3aGlsZSBwaXBl
+IENSQyBpcyBhY3RpdmUuIFRoZSBwbGFuZXMga2VlcCB0aGVpciBzZWxlY3RpdmUgZmV0Y2gNCj4g
+PiArCSAqIGVuYWJsZSBiaXQgc2V0IGluIGhhcmR3YXJlIG92ZXIgdGhhdCwgYW5kIGEgcGxhbmUg
+ZGlzYWJsZWQgd2hpbGUNCj4gPiArCSAqIHNlbGVjdGl2ZSBmZXRjaCBpcyBvZmYgbmV2ZXIgZ2V0
+cyB0aGUgYml0IGNsZWFyZWQuIE9uY2Ugc2VsZWN0aXZlDQo+ID4gKwkgKiBmZXRjaCBjb21lcyBi
+YWNrIHRoZSBoYXJkd2FyZSB3b3VsZCByZXN1bWUgZmV0Y2hpbmcgZm9yIGEgcGxhbmUNCj4gdGhh
+dA0KPiA+ICsJICogaXMgbm8gbG9uZ2VyIGVuYWJsZWQgYW5kIGtlZXAgaXRzIEREQiByYW5nZSBy
+ZXNlcnZlZCwgc28gaGF2ZSB0aGUNCj4gPiArCSAqIHBsYW5lIHVwZGF0ZSBkcm9wIHRoZSBiaXQg
+Zm9yIGV2ZXJ5IHBsYW5lIG9mIHRoZSBwaXBlIGFzIHNlbGVjdGl2ZQ0KPiA+ICsJICogZmV0Y2gg
+aXMgdHVybmVkIG9mZi4NCj4gPiArCSAqLw0KPiA+ICsJY3J0Y19zdGF0ZS0+Y2xlYXJfcHNyMl9z
+ZWxfZmV0Y2ggPSBvbGRfY3J0Y19zdGF0ZS0NCj4gPmVuYWJsZV9wc3IyX3NlbF9mZXRjaCAmJg0K
+PiA+ICsJCSFjcnRjX3N0YXRlLT5lbmFibGVfcHNyMl9zZWxfZmV0Y2g7DQo+ID4gKw0KPiA+ICAJ
+aWYgKCFjcnRjX3N0YXRlLT5lbmFibGVfcHNyMl9zZWxfZmV0Y2gpDQo+ID4gIAkJcmV0dXJuIDA7
+DQo+IA0KPiBbU2V2ZXJpdHk6IEhpZ2hdDQo+IFdpbGwgdGhpcyBlYXJseSByZXR1cm4gc2tpcCBh
+ZGRpbmcgdW5tb2RpZmllZCBwbGFuZXMgdG8gdGhlIGF0b21pYyBzdGF0ZQ0KPiBkdXJpbmcgbm9u
+LW1vZGVzZXQgdHJhbnNpdGlvbnM/DQo+IA0KPiBEdXJpbmcgYSBub24tbW9kZXNldCBhdG9taWMg
+Y29tbWl0IChsaWtlIGEgZmFzdHNldCB0cmlnZ2VyZWQgYnkgY29sb3INCj4gbWFuYWdlbWVudCBv
+ciBDRENMSyB1cGRhdGVzKSB0aGF0IGRpc2FibGVzIFBTUjIgc2VsZWN0aXZlIGZldGNoLCB0aGUg
+Y29yZQ0KPiBkcm1fYXRvbWljX2hlbHBlcl9jaGVja19tb2Rlc2V0KCkgZnVuY3Rpb24gZG9lcyBu
+b3QgYXV0b21hdGljYWxseSBhZGQNCj4gYWxsIHBsYW5lcyB0byB0aGUgc3RhdGUuDQo+IA0KPiBX
+aGVuIGludGVsX3BzcjJfc2VsX2ZldGNoX3VwZGF0ZSgpIGRldGVjdHMgdGhpcyB0cmFuc2l0aW9u
+LCBpdCBzZXRzDQo+IGNsZWFyX3BzcjJfc2VsX2ZldGNoIHRvIHRydWUsIGJ1dCB0aGVuIGltbWVk
+aWF0ZWx5IHJldHVybnMgMCBoZXJlIGJlY2F1c2UNCj4gZW5hYmxlX3BzcjJfc2VsX2ZldGNoIGlz
+IGZhbHNlLg0KPiANCj4gQmVjYXVzZSB0aGUgZnVuY3Rpb24gcmV0dXJucyBiZWZvcmUgcmVhY2hp
+bmcgdGhlDQo+IGRybV9hdG9taWNfYWRkX2FmZmVjdGVkX3BsYW5lcygpIGNhbGwgZnVydGhlciBk
+b3duLCB1bm1vZGlmaWVkIHBsYW5lcyBhcmUNCj4gbm90IGFkZGVkIHRvIHRoZSBhdG9taWMgc3Rh
+dGUuIENvdWxkIHRoaXMgY2F1c2UgdGhlaXIgcGxhbmUgYXJtIGNhbGxiYWNrcyB0bw0KPiBiZSBz
+a2lwcGVkIGVudGlyZWx5LCBsZWF2aW5nIHRoZSBoYXJkd2FyZSBiaXRzIGFjdGl2ZSBhbmQgcG90
+ZW50aWFsbHkgY2F1c2luZw0KPiB0aGUgZGlzcGxheSBjb3JydXB0aW9uIHRoaXMgcGF0Y2ggd2Fz
+IGludGVuZGVkIHRvIGZpeD8NCj4gDQplbmFibGVfcHNyMl9zZWxfZmV0Y2ggaXMgcmVjb21wdXRl
+ZCBmcm9tIGludGVsX21vZGVzZXRfcGlwZV9jb25maWcoKSwNCndoaWNoIGludGVsX2F0b21pY19j
+aGVja19jb25maWcoKSBjYWxscyBqdXN0IGZvciBjcnRjcyB0aGF0IG5lZWQgbW9kZXNldC4NClNv
+IG9sZF9jcnRjX3N0YXRlLT5lbmFibGVfcHNyMl9zZWxfZmV0Y2ggJiYgIWVuYWJsZV9wc3IyX3Nl
+bF9mZXRjaA0KaW1wbGllcyB0aGUgY3J0YyBuZWVkZWQgYSBtb2Rlc2V0IHdoZW4gZHJtX2F0b21p
+Y19oZWxwZXJfY2hlY2tfbW9kZXNldCgpIHJhbiwNCmFuZCB0aGF0IGhhcyBhbHJlYWR5IGNhbGxl
+ZCBkcm1fYXRvbWljX2FkZF9hZmZlY3RlZF9wbGFuZXMoKSBmb3IgaXQuIA0KVGhlIGZhc3RzZXQg
+ZG93bmdyYWRlIGluIGludGVsX2NydGNfY2hlY2tfZmFzdHNldCgpIGhhcHBlbnMgYWZ0ZXIgdGhh
+dCwgc28gdGhlIHBsYW5lcw0Kc3RheSBpbiB0aGUgc3RhdGUuICANCg0KQ29sb3VyIG1hbmFnZW1l
+bnQgZG9lcyBub3QgcmVjb21wdXRlIHRoZSBQU1IgY29uZmlnLCBhbmQgdGhlIENEQ0xLIHBhdGgN
+CmdvZXMgdGhyb3VnaCBpbnRlbF9tb2Rlc2V0X3BpcGUoKSwgd2hpY2ggY2FsbHMgaW50ZWxfcGxh
+bmVfYWRkX2FmZmVjdGVkKCkgaXRzZWxmLg0KDQpUaGFua3MgYW5kIFJlZ2FyZHMsDQpOZW1lc2EN
+Cg0KPiAtLQ0KPiBTYXNoaWtvIEFJIHJldmlldyDCtyBodHRwczovL3Nhc2hpa28uZGV2LyMvcGF0
+Y2hzZXQvMjAyNjA5MDkxMTAzMzIuMzUyODAyOS0NCj4gMS1uZW1lc2EuZ2FyZ0BpbnRlbC5jb20/
+cGFydD0yDQo=
