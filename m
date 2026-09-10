@@ -4,60 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EB1BC79FB9
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 09:20:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A70EC79FB9
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 09:31:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 202CF10F3BB;
-	Thu, 10 Sep 2026 09:20:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e8mJQWOp";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DA0310F3BB
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 09:20:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789032037; x=1820568037;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=o+My2V6AGxpPJ3gnfS8QhCLL62KpwOq5S9EUi01cx4Q=;
- b=e8mJQWOpICxlPaRrYjZYPXaWa/TeRVcZp1Lxw7anpHA0zhynfxV0Wgid
- uhe0XRfCG1BcOx0foOVjcMv4AP8F3TjLPc0z1HbmP5QyW5/FKPx7hbBGi
- gvqbVbgLxk2EuikAwiXKw9aiXuhJsDt8HJngbrkRvfxi+xZLRnITVaAVJ
- LvZeaEKCqsQto4wSO+9Fx2Se1ib1sU53pyQHZ6ef6Hm27CgeMRF7Bk8JX
- T5N+mo9UrQ6DaKCEQSjltMkDbJ1etSPDj4ovt8aNuvuxkP+N7gKrYIYmN
- kyNWHSDxmZE/enqGdNtCGNGoT7SQ7EPNnsxmnmHamyZYnmqsNgBr+1s0p Q==;
-X-CSE-ConnectionGUID: /QrLd0wvRjqPSiZClGejqQ==
-X-CSE-MsgGUID: RmGiaTdpT5KCF2NJZCNxfQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="99806693"
-X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; 
-   d="scan'208";a="99806693"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2026 02:20:36 -0700
-X-CSE-ConnectionGUID: PohlQm8zQ52MJuSH4y8UcA==
-X-CSE-MsgGUID: jsl7PBX5RiSXx8Wi2iI+VQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="275352151"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2026 02:20:34 -0700
-Date: Thu, 10 Sep 2026 11:20:30 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Sk Anirban <sk.anirban@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, riana.tauro@intel.com,
- karthik.poosa@intel.com, soham.purkait@intel.com,
- mallesh.koujalagi@intel.com, vinay.belgaumkar@intel.com,
- srinivasa.adatrao@intel.com
-Subject: Re: [PATCH] drm/xe/gt_throttle: Report power brake as a throttle
- reason on CRI
-Message-ID: <aqJ2Xsl3KHGPhXaT@black.igk.intel.com>
-References: <20260909114931.1039331-2-sk.anirban@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB88910F3B6;
+	Thu, 10 Sep 2026 09:31:47 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E3A710E5D2;
+ Thu, 10 Sep 2026 09:31:46 +0000 (UTC)
+Received: from 91-158-54-113.elisa-laajakaista.fi ([91.158.54.113]
+ helo=[192.168.100.133])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1x4b8A-00000003PbM-0WnI; Thu, 10 Sep 2026 12:31:44 +0300
+Message-ID: <00613437ad4aacce854eb2c095308a2f0d7dd119.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: stable@vger.kernel.org
+Date: Thu, 10 Sep 2026 12:31:38 +0300
+In-Reply-To: <20260907174413.741851-1-imre.deak@intel.com>
+References: <20260907174413.741851-1-imre.deak@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-10 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260909114931.1039331-2-sk.anirban@intel.com>
+Subject: Re: [PATCH 1/2] drm/i915/dp_mst: Fix configuring FEC for a
+ disconnected stream
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,13 +45,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 09, 2026 at 05:19:32PM +0530, Sk Anirban wrote:
-> CRI defines bit 5 of the perf limit reasons register as a power brake
-> (PWRBRK) indicator. Add PWRBRK_MASK and a reason_pwrbrk sysfs attribute
-> for CRI in place of reason_ratl.
+On Mon, 2026-09-07 at 20:44 +0300, Imre Deak wrote:
+> During an atomic commit after all the MST stream CRTC state is computed
+> the driver ensures that the FEC is configured the same way (enabled or
+> disabled) for all the streams on a given MST topology's link.
+> drm_dp_mst_port_downstream_of_parent() used to determine if a stream is
+> downstream of an MST port will return false if the whole topology is
+> disconnected, since in that case it can't verify that the port/
+> parent_port passed to it is in the given MST topology. This is a problem
+> during the above FEC configuration check, since
+> intel_dp_mst_check_dsc_change()->get_pipes_downstream_of_mst_ports()
+> will not return all the stream CRTCs/pipes for the topology as expected.
+> Since passing parent_port=3D=3DNULL to get_pipes_downstream_of_mst_port()
+> is meant to return all the streams for the given topology (i.e. mst_mgr)
+> skip checking if an MST port is downstream of a parent port in this
+> case.
+>=20
+> This fixes a problem where the FEC configuration check explained above
+> failed to ensure that all streams' FEC is configured the same way if the
+> topology was disconnected, leading to a FEC state mismatch error.
+>=20
+> Cc: stable@vger.kernel.org # v6.10+
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16073
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16384
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
+m/i915/display/intel_dp_mst.c
+> index 6a869d0f6ffc0..20766b6c0bcfa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -856,7 +856,8 @@ static u8 get_pipes_downstream_of_mst_port(struct int=
+el_atomic_state *state,
+>  		if (&connector->mst.dp->mst.mgr !=3D mst_mgr)
+>  			continue;
+> =20
+> -		if (connector->mst.port !=3D parent_port &&
+> +		if (parent_port &&
+> +		    connector->mst.port !=3D parent_port &&
+>  		    !drm_dp_mst_port_downstream_of_parent(mst_mgr,
+>  							  connector->mst.port,
+>  							  parent_port))
 
-Fixes: 8578e6d0546c ("drm/xe/gt_throttle: Drop individual show functions")
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-> Signed-off-by: Sk Anirban <sk.anirban@intel.com>
-
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+--
+Cheers,
+Luca.
