@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67C0AC79FBF
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 18:42:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B45FC79F9F
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 18:45:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25E7510E27F;
-	Thu, 10 Sep 2026 18:42:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="R2qR4/xs";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A25310E27F
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 18:42:45 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 87EA96022C;
- Thu, 10 Sep 2026 18:42:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DA8A1F000FF;
- Thu, 10 Sep 2026 18:42:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789065764;
- bh=cmz1QObSvcT5eNQUqHarJ6eS5ebheu3jqWTskCvMcFY=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=R2qR4/xsEvunPfiW49uLqjEVc3rr1GFu0gxwg7Q4fkv8UUP5T4nOfpqct6XEuER2p
- LblRElAGQoQ91ym7pggw1MNlXqJEQq1e6BP6XR740dSFbSTANNCI7DjHB5UuvcaaBo
- FNfSpTVks5teN38n5x0Z3fwjexK7scw534hZpGLkjbGB7EVBQl6zggBiDABgyylrsk
- 3SENDhVJVSjHABSNIh5pkXSjkRFmz9Vp142iy8UDzfs/ztBF+zNbvFo+g8Tlw8rktk
- rDYg27UXuPisZBZVO6HkPK/U3mlfAl3L4i6tG55m2PTayjN1rnFI7AdQv6ZlUOwMSf
- +qPW355ANyr4w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 1/5] drm/xe/hwmon: Detect unavailable temperature
- sensors
-To: "Karthik Poosa" <karthik.poosa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC55610E2C8;
+	Thu, 10 Sep 2026 18:45:27 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A14DE10E2C8;
+ Thu, 10 Sep 2026 18:45:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0640260203223264464=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/sysctrl=3A_Add_Syste?=
+ =?utf-8?q?m_Controller_debugfs_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260910182756.638830-2-karthik.poosa@intel.com>
-References: <20260910182756.638830-1-karthik.poosa@intel.com>
- <20260910182756.638830-2-karthik.poosa@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 10 Sep 2026 18:42:43 +0000
-Message-Id: <20260910184244.1DA8A1F000FF@smtp.kernel.org>
+Date: Thu, 10 Sep 2026 18:45:26 -0000
+Message-ID: <178906592665.147924.5396533185629596092@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260910175619.3176089-5-anoop.c.vijay@intel.com>
+In-Reply-To: <20260910175619.3176089-5-anoop.c.vijay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,101 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Medium] Repeated fallible PCODE mailbox reads during sysfs attribute vis=
-ibility checks block driver probe and can cause flaky attribute registratio=
-n.
-- [Medium] Data race on `hwmon->temp.value` shared scratchpad buffer when `=
-get_mc_temp()` is called lockless from sysfs callbacks.
---
+--===============0640260203223264464==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit daf20f08a8a78b5a377223b407b9b3a08568942e
-Author: Karthik Poosa <karthik.poosa@intel.com>
-Subject: drm/xe/hwmon: Detect unavailable temperature sensors
+== Series Details ==
 
-This commit introduces is_temp_available() to validate sensor presence duri=
-ng
-sysfs attribute registration. It uses hwmon_temp_is_visible() to hide
-attributes for sensors that report invalid values, avoiding exposing=20
-unavailable sensors to userspace.
+Series: drm/xe/sysctrl: Add System Controller debugfs (rev5)
+URL   : https://patchwork.freedesktop.org/series/161655/
+State : success
 
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index 5284cab6703d8..faed2f5da3947 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-[ ... ]
-> -static inline bool is_vram_ch_available(struct xe_hwmon *hwmon, int chan=
-nel)
-> +static bool is_temp_available(struct xe_hwmon *hwmon, int channel)
->  {
->  	struct xe_mmio *mmio =3D xe_root_tile_mmio(hwmon->xe);
-[ ... ]
-> +	case CHANNEL_MCTRL:
-> +		return hwmon->temp.count && !get_mc_temp(hwmon, NULL);
-> +	case CHANNEL_PCIE:
-> +		return hwmon->temp.count && !get_pcie_temp(hwmon, NULL);
-> +	default:
-> +		return false;
-> +	}
->  }
-> =20
->  static umode_t
-> @@ -973,14 +1019,13 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u=
-32 attr, int channel)
->  	case hwmon_temp_emergency:
->  		switch (channel) {
->  		case CHANNEL_PKG:
-> -			return hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN] ? 0444 : 0;
-> -		case CHANNEL_VRAM:
-> -			return hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN] ? 0444 : 0;
->  		case CHANNEL_MCTRL:
->  		case CHANNEL_PCIE:
-> -			return hwmon->temp.count ? 0444 : 0;
-> +			return (is_temp_available(hwmon, channel) &&
-> +				hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN]) ? 0444 : 0;
+== Summary ==
 
-[Severity: Medium]
-Is it safe to execute lockless hardware I/O from the sysfs visibility callb=
-ack?
+CI Bug Log - changes from xe-5723-de0b423cd4c2178272a2057ee6c7b05fbd4015a6_BAT -> xe-pw-161655v5_BAT
+====================================================
 
-The xe_hwmon_temp_is_visible callback executes get_mc_temp without holding
-hwmon->hwmon_lock. Because the sysfs core creates attributes one by one, an
-aggressive userspace process can open and read an early attribute as soon as
-it appears.=20
+Summary
+-------
 
-This could trigger a concurrent lockless execution of get_mc_temp from
-xe_hwmon_temp_read while the sysfs core is still evaluating is_visible=20
-for subsequent attributes. Both threads would concurrently execute=20
-xe_pcode_read and perform unsynchronized writes to the shared=20
-hwmon->temp.value array. Could this lead to torn or corrupted temperature=20
-readings?
+  **SUCCESS**
 
-[Severity: Medium]
-Could these repeated hardware reads cause flaky attribute registration and =
-slow
-down device probe?
+  No regressions found.
 
-During hwmon_device_register_with_info, the sysfs core sequentially evaluat=
-es
-the is_visible callback for every attribute in a group. For CHANNEL_MCTRL a=
-nd
-CHANNEL_PCIE, this now unconditionally executes blocking hardware mailbox r=
-eads
-(get_mc_temp and get_pcie_temp).=20
+  
 
-If the PCU mailbox is busy and times out for a single attribute's check, th=
-at
-specific attribute might be silently omitted while others in the same chann=
-el
-are successfully created. Should the sensor availability be probed once and
-cached during initialization instead of evaluating it dynamically for every
-sysfs attribute?
+Participating hosts (15 -> 15)
+------------------------------
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260910182756.6388=
-30-1-karthik.poosa@intel.com?part=3D1
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161655v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-wcl-2:          [FAIL][1] ([Intel XE#9115]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5723-de0b423cd4c2178272a2057ee6c7b05fbd4015a6/bat-wcl-2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161655v5/bat-wcl-2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
+
+
+Build changes
+-------------
+
+  * Linux: xe-5723-de0b423cd4c2178272a2057ee6c7b05fbd4015a6 -> xe-pw-161655v5
+
+  IGT_9090: 9090
+  xe-5723-de0b423cd4c2178272a2057ee6c7b05fbd4015a6: de0b423cd4c2178272a2057ee6c7b05fbd4015a6
+  xe-pw-161655v5: 161655v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161655v5/index.html
+
+--===============0640260203223264464==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/sysctrl: Add System Controller debugfs (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161655/">https://patchwork.freedesktop.org/series/161655/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161655v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161655v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5723-de0b423cd4c2178272a2057ee6c7b05fbd4015a6_BAT -&gt; xe-pw-161655v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161655v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5723-de0b423cd4c2178272a2057ee6c7b05fbd4015a6/bat-wcl-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161655v5/bat-wcl-2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5723-de0b423cd4c2178272a2057ee6c7b05fbd4015a6 -&gt; xe-pw-161655v5</li>
+</ul>
+<p>IGT_9090: 9090<br />
+  xe-5723-de0b423cd4c2178272a2057ee6c7b05fbd4015a6: de0b423cd4c2178272a2057ee6c7b05fbd4015a6<br />
+  xe-pw-161655v5: 161655v5</p>
+
+</body>
+</html>
+
+--===============0640260203223264464==--
