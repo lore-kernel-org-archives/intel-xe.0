@@ -4,54 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEC18C79FB9
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 12:18:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60E76C79FB9
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 12:24:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8618E10E287;
-	Thu, 10 Sep 2026 12:18:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l0ifCIga";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F016810E20E
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 12:18:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789042704; x=1820578704;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=7oQZaiLJIk8SsIzKL/EoDlk1Jdh47a/FrlW6GP9QkaM=;
- b=l0ifCIgaEQ17DozVp7K3uu25mzOrq+a2D6RXxMMn0fDt0m1t6qt/YhFs
- 5s1P4EojKI1zUhWaVYCYRStq8M/Dzj25VHd5A7AjDWT2em8O03k5iU7P/
- 3rR8MKReodALdwX9GX1NfWFh+tDNQDkL9wecxslP9eSAP0ttPP2EUd51i
- KdMezlSPwQISL67DiGqnb+V/9/AjmomIK5NTLuNX+G2k399pfBPvY9Sro
- 06iANb+pgSJlzEW5v7fsKH+wx3vVUXCOkP0ZuseLCwNupcP5cllcBfrQv
- Pko1GMR/tM7DD6c2BeC5qu1+2vUk0mYSofVPePSXN6cloiY40s0reUVvG g==;
-X-CSE-ConnectionGUID: vPxi6rN1SW+LCW9Yhwwknw==
-X-CSE-MsgGUID: z/ImybGTSVWqFmueeshxdg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="93355540"
-X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; 
-   d="scan'208";a="93355540"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2026 05:18:23 -0700
-X-CSE-ConnectionGUID: LfG2TgkCQFKUG2yTQatThg==
-X-CSE-MsgGUID: P/goq5bTQvW8aXp4qRdGYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="270264504"
-Received: from dev-274.igk.intel.com ([10.211.136.198])
- by orviesa010.jf.intel.com with ESMTP; 10 Sep 2026 05:18:21 -0700
-From: Jakub Legowski <jakub.legowski@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, maciej.patelczyk@intel.com,
- Jakub Legowski <jakub.legowski@intel.com>, stable@vger.kernel.org
-Subject: [PATCH v3 1/1] drm/xe/guc: Fix wake_up race in handle_sched_done
-Date: Thu, 10 Sep 2026 14:17:59 +0200
-Message-ID: <20260910121759.1835037-1-jakub.legowski@intel.com>
-X-Mailer: git-send-email 2.48.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0473210E22F;
+	Thu, 10 Sep 2026 12:24:57 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CB2810E234;
+ Thu, 10 Sep 2026 12:24:54 +0000 (UTC)
+Received: from [62.183.198.118] (helo=[10.147.29.250])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1x4dpf-00000003Psx-1i7t; Thu, 10 Sep 2026 15:24:52 +0300
+Message-ID: <001a17caa12acbbb62b73d65bc0d8c1d7739d726.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ stable@vger.kernel.org
+Date: Thu, 10 Sep 2026 15:24:45 +0300
+In-Reply-To: <aqKQSYPEonBCauQc@ideak-desk.lan>
+References: <20260907174413.741851-1-imre.deak@intel.com>
+ <20260907174413.741851-2-imre.deak@intel.com>
+ <676822730026eb7eed7513dbc8f1461f24c6a1a7.camel@coelho.fi>
+ <aqKQSYPEonBCauQc@ideak-desk.lan>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-10 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 2/2] drm/i915/dp_mst: Fix configuring TUs for a
+ disconnected stream
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,94 +47,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move wake_up_all() after clear_exec_queue_pending_disable()
+On Thu, 2026-09-10 at 14:11 +0300, Imre Deak wrote:
+> On Thu, Sep 10, 2026 at 12:50:16PM +0300, Luca Coelho wrote:
+> > On Mon, 2026-09-07 at 20:44 +0300, Imre Deak wrote:
+> > > During an atomic commit after all the MST stream CRTC state is comput=
+ed
+> > > the driver ensures that the sum of TUs of all the streams on a given =
+MST
+> > > topology link is within limits (63 for 8b10 and 64 for 128b132b). For=
+ a
+> > > disconnected stream the DRM MST core's BW verification doesn't ensure
+> > > this, because the topology state it uses for this is destroyed as soo=
+n
+> > > as the stream (i.e. MST connector/port) is disconnected. The driver
+> > > should keep the link state valid even for such disconnected streams, =
+as
+> > > userspace may disable them one-by-one only in a deferred way. Ensure =
+the
+> > > link's sum of TUs stays within limits in this case by simply reusing =
+the
+> > > maximum link BPP limit from the stream's (i.e. CRTC's) old state.
+> > >=20
+> > > The disconnection can happen either via the whole topology getting
+> > > disconnected or via only the given stream's port getting disconnected=
+.
+> > > Check for both of these conditions separately, as a connector gets
+> > > unregistered after a link disconnect event only in a deferred way.
+> > >=20
+> > > Cc: stable@vger.kernel.org # v6.10+
+> > > Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/160=
+73
+> > > Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/163=
+84
+> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_dp_mst.c  | 21 ++++++++++++++++++=
+++
+> > >  drivers/gpu/drm/i915/display/intel_dp_mst.h  |  2 ++
+> > >  drivers/gpu/drm/i915/display/intel_link_bw.c |  3 ++-
+> > >  3 files changed, 25 insertions(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gp=
+u/drm/i915/display/intel_dp_mst.c
+> > > index 20766b6c0bcfa..0c362784afe4a 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > > @@ -2172,6 +2172,27 @@ bool intel_dp_mst_crtc_needs_modeset(struct in=
+tel_atomic_state *state,
+> > >  	return false;
+> > >  }
+> > > =20
+> > > +bool intel_dp_mst_stream_disconnected(struct intel_atomic_state *sta=
+te,
+> > > +				      const struct intel_crtc *crtc)
+> > > +{
+> > > +	struct intel_connector *connector;
+> > > +
+> > > +	connector =3D get_connector_in_state_for_crtc(state, crtc);
+> > > +	if (!connector)
+> > > +		return false;
+> > > +
+> > > +	if (!connector->mst.dp)
+> > > +		return false;
+> > > +
+> > > +	if (!connector->mst.dp->mst.mgr.mst_state)
+> > > +		return true;
+> > > +
+> > > +	if (drm_connector_is_unregistered(&connector->base))
+> > > +		return true;
+> > > +
+> > > +	return false;
+> > > +}
+> > > +
+> > >  /**
+> > >   * intel_dp_mst_prepare_probe - Prepare an MST link for topology pro=
+bing
+> > >   * @intel_dp: DP port object
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gp=
+u/drm/i915/display/intel_dp_mst.h
+> > > index ab09b487c6bb5..8ce89242c05c9 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
+> > > @@ -28,6 +28,8 @@ int intel_dp_mst_atomic_check_link(struct intel_ato=
+mic_state *state,
+> > >  				   struct intel_link_bw_limits *limits);
+> > >  bool intel_dp_mst_crtc_needs_modeset(struct intel_atomic_state *stat=
+e,
+> > >  				     struct intel_crtc *crtc);
+> > > +bool intel_dp_mst_stream_disconnected(struct intel_atomic_state *sta=
+te,
+> > > +				      const struct intel_crtc *crtc);
+> > >  void intel_dp_mst_prepare_probe(struct intel_dp *intel_dp);
+> > >  bool intel_dp_mst_verify_dpcd_state(struct intel_dp *intel_dp);
+> > > =20
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.c b/drivers/g=
+pu/drm/i915/display/intel_link_bw.c
+> > > index b47474a3e9fec..e71e76d6fd3e0 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_link_bw.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_link_bw.c
+> > > @@ -64,7 +64,8 @@ void intel_link_bw_init_limits(struct intel_atomic_=
+state *state,
+> > >  			intel_atomic_get_new_crtc_state(state, crtc);
+> > >  		int forced_bpp_x16 =3D get_forced_link_bpp_x16(state, crtc);
+> > > =20
+> > > -		if (state->base.duplicated && crtc_state) {
+> > > +		if ((state->base.duplicated && crtc_state) ||
+> > > +		    intel_dp_mst_stream_disconnected(state, crtc)) {
+> > >  			limits->max_bpp_x16[pipe] =3D crtc_state->max_link_bpp_x16;
+> > >  			if (intel_dsc_enabled_on_link(crtc_state))
+> > >  				limits->link_dsc_pipes |=3D BIT(pipe);
+> >=20
+> > I think Sashiko's NULL-dereference commment is valid.  Can you check
+> > it?
+>=20
+> At least I can't see how a connector can get into the atomic state
+> without the crtc state for the CRTC associated with the connector.
+> Sashiko didn't provide the exact scenario it had in mind.
 
-When a SCHED_DONE G2H arrives for a banned exec queue,
-handle_sched_done() calls wake_up_all() before
-clear_exec_queue_pending_disable(). This creates a race with the
-wait_event_timeout() in guc_exec_queue_timedout_job() that waits
-for pending_disable to be cleared:
+As discussed offline, this is not really a problem, and it's a safe
+bypass the NULL pointer check here.
 
-    smp_rmb();
-    ret = wait_event_timeout(guc->ct.wq,
-                 ...
-                 ...);
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-This was observed as:
-[drm:guc_exec_queue_timedout_job [xe]] Tile0: GT0: Check job
- timeout: seqno=4294967169, lrc_seqno=4294967169,
- guc_id=4, running_time_ms=0, timeout_ms=5000, diff=0x00000001
-
-Moving the wake_up_all() (along with its smp_wmb())
-after all paths that clear pending_disable, ensuring that waiters
-always observe the updated state when woken.
-
-Same as for runnable_state == 1 in the beginning of
-handle_sched_done().
-
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Cc: stable@vger.kernel.org
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
-Signed-off-by: Jakub Legowski <jakub.legowski@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_submit.c | 30 ++++++++++++++++--------------
- 1 file changed, 16 insertions(+), 14 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 99d8c807ff05..a181b5042293 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -3239,25 +3239,27 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
- 			clear_exec_queue_pending_disable(q);
- 			suspend_fence_signal(q);
- 		} else {
-+			bool destroyed = exec_queue_destroyed(q);
-+
-+			/*
-+			 * Make sure to clear the pending_disable only
-+			 * after sampling the destroyed state. We want
-+			 * to ensure we don't trigger the unregister too
-+			 * early with something intending to only
-+			 * disable scheduling. The caller doing the
-+			 * destroy must wait for an ongoing
-+			 * pending_disable before marking as destroyed.
-+			 */
-+			clear_exec_queue_pending_disable(q);
-+
- 			if (exec_queue_banned(q)) {
-+				/* Pairs with smp_rmb in guc_exec_queue_timedout_job */
- 				smp_wmb();
- 				wake_up_all(&guc->ct.wq);
- 			}
--			if (exec_queue_destroyed(q)) {
--				/*
--				 * Make sure to clear the pending_disable only
--				 * after sampling the destroyed state. We want
--				 * to ensure we don't trigger the unregister too
--				 * early with something intending to only
--				 * disable scheduling. The caller doing the
--				 * destroy must wait for an ongoing
--				 * pending_disable before marking as destroyed.
--				 */
--				clear_exec_queue_pending_disable(q);
-+
-+			if (destroyed)
- 				deregister_exec_queue(guc, q);
--			} else {
--				clear_exec_queue_pending_disable(q);
--			}
- 		}
- 	}
- }
--- 
-2.48.1
-
----------------------------------------------------------------------
-Intel Technology Poland sp. z o.o.
-ul. Slowackiego 173 | 80-298 Gdansk | Sad Rejonowy Gdansk Polnoc | VII Wydzial Gospodarczy Krajowego Rejestru Sadowego - KRS 101882 | NIP 957-07-52-316 | Kapital zakladowy 200.000 PLN.
-Spolka oswiadcza, ze posiada status duzego przedsiebiorcy w rozumieniu ustawy z dnia 8 marca 2013 r. o przeciwdzialaniu nadmiernym opoznieniom w transakcjach handlowych.
-
-Ta wiadomosc wraz z zalacznikami jest przeznaczona dla okreslonego adresata i moze zawierac informacje poufne. W razie przypadkowego otrzymania tej wiadomosci, prosimy o powiadomienie nadawcy oraz trwale jej usuniecie; jakiekolwiek przegladanie lub rozpowszechnianie jest zabronione.
-This e-mail and any attachments may contain confidential material for the sole use of the intended recipient(s). If you are not the intended recipient, please contact the sender and delete all copies; any review or distribution by others is strictly prohibited.
-
+--
+Cheers,
+Luca.
