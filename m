@@ -4,80 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1033C88E40
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 14:41:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DD5EC79FB9
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 14:48:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8670A10E210;
-	Thu, 10 Sep 2026 14:41:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8D0E10F4C7;
+	Thu, 10 Sep 2026 14:48:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VOCXO39A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H5l17kZz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA27A10E2D2
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 14:41:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF7E910F4C7
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 14:48:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789051278; x=1820587278;
+ t=1789051704; x=1820587704;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=hGvikhaeoQeqWqmbEO7bJsIVve5Im3dPguJT/7GMx/0=;
- b=VOCXO39AGHE0LuRm4+UKfX8aCIJITNJmA+HgJiF9fm6jESqlCQfXQ38/
- b+gvNR1xmQ/v+FdQpoWIsExQ7yzSGfA3VWwPGutc7kxBXRPyWLEa3J0Ax
- X4j2wpWzAMmFGjyOFglxUpcII2mM3JvEbQfUJUoznS6NZV3i7ZKlm4X6S
- FSWJwpOOoqaRQt2KXhtZd9floJQx4Uf8n07IPQ8UhtY3X/ud5mA44BWgz
- xkG5iJyR88lscSKr0ns74FnfcZc/01MJZJVkcjoZVdCTrCxyLOeeb/PvY
- QM1qLv/OIdF2NbsR1Lmc+E4p2VJMwhfi2jyf//Qtq5gklKaZlm1ktDAeC g==;
-X-CSE-ConnectionGUID: u+NbHarZQqCCavGmfCZZxA==
-X-CSE-MsgGUID: TptLWvAtTwm7Achxm5bzKg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11901"; a="101021518"
-X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="101021518"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2026 07:41:17 -0700
-X-CSE-ConnectionGUID: 4M+aYI82RHaN3lLVF3EVZw==
-X-CSE-MsgGUID: m08j8SSzQZakXn1Mgt6EBQ==
+ bh=eNEszjWywCzUyB/JnNMufFsfjfYsdmpEBIxhLYHXNkQ=;
+ b=H5l17kZz/NBUUKe6LDwEDaIp1aZlLqvpEf8uhNZ3bRwOHi8wWILXG0MC
+ mlwanSQaOI3hrGmdaWHOPizB2fw/gOQ0bP1Pbxxaf6QTjPoaXtK7V0Vup
+ IGmZEsvcFqdPJ9OlQ2IAl6wUCxRgSsqfSDmBDYlFcMpOFlQrXzs3SHhne
+ HZW51yNB9r2DfVjmF8/VHkya05JX3l1gEdEvHH9pWoSC0X3M3XhHCrVve
+ DN0DCrEaMsFD9Ydt6DXNM6tEEebLT7C80kDA2+rLJ4SGqSp/Jyr8sl4Nq
+ +hvtL3FbGlRl1sUVcPWSYLZIX6wwBeO8g3qmbGRwgXNvUVwMPtxzm98BO Q==;
+X-CSE-ConnectionGUID: fcBuQDP5Qfiml367ov4u6A==
+X-CSE-MsgGUID: 1Tc/zF5JTKm+sB95VHDLrw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11901"; a="115048381"
+X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="115048381"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2026 07:48:23 -0700
+X-CSE-ConnectionGUID: DhR7h289SWyX5iEwspcLQw==
+X-CSE-MsgGUID: 9WVh/7tiQuWpH38Z3kH7yQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="267381655"
+X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; 
+   d="scan'208";a="15913"
 Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2026 07:41:17 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ by fmviesa011.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2026 07:48:23 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
  fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 10 Sep 2026 07:41:16 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.46; Thu, 10 Sep 2026 07:48:23 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Thu, 10 Sep 2026 07:41:16 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.15) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Thu, 10 Sep 2026 07:48:23 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.42) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 10 Sep 2026 07:41:16 -0700
+ 15.2.2562.46; Thu, 10 Sep 2026 07:48:22 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vohBNy3ixmzmLLdlXe1WLEj/Elhlf7tVSgDVkxURxXDLESed6AuR6d1R7YAldRRzhXeWDH93F+OsXyvw9N4d6IIwAZDEnsnEGmb/wbXjeIOvMG+vsYANPwMOk3nXr2vwdx2JaZhGTPiyCAIHsVaIZRSMulI2Oo+SvQcj6Jf+tjTnafr1O2Q1VEriZr/9cOpom/a6NZ1fcanBPFmulwGAdIRomEtLtnRaOCxEXQLGM0YB2RbOjhOUZxpN8bg/5QtzINX3gse9d6Jl2yI2i8H9r4qyXUQihEteCw+RSARgAQo0KT7//b+UAAe3q/E/xv6LgOYVVg98xRVxHDXE9cuyjw==
+ b=ojEB09k1QcLHNCi9mIiyhovWD05hX7zbs8k0fFVzU6BnthTBaprhMf5Kt+wAkI34l9x++IzyoSa5/82fQvOU3rblr7kznhLVEUgonlzW84xvtVCowzvlXB0BbBaWRRqMzyinBKC85sAB0zZJuaDjT4sivWRw8PMsDabQt20FwoNvV591aTIm1VgzM5lvIjIGqjBr0Mo51L5aknEFb0SUKjfLXxCNxq13eqaSFBDCakoCzPXedH7Ry+/FvGhm7FfEQFB9RLOR9PrvfyWUdqnFV2B1dGEpw4Ro9p1sgiAZa3zuG0duplCRovT3GB5UvAmymXIv0VNUlDGkiDmpXyl98w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qtNPq3At/J0Fg20Cyo05rIHTDkME9sLghDqVIosY3Lg=;
- b=Yd7X7TDAx53CSY8UhV6d1bw68Cg1qYZf1ca9fl+aNS+PkujZnQBQMNzC0Ojmj21CDOBxQqr63Odv/UuLA9K8QJ5ZMQ/+BDjNam8RpizkN1/5DZ6SLV9DSjvJ6HesD+zLeVGhW9l4d8btCnoKsOw8Mw0Ohx7NRrKtcrN8skuD5XuA9RWF8MS0UX560psj14mlq2CLN2UErFe/DEkDaZRlKO5zN1+6sBQq0o61DgBR05coIcwC+vtazh2tsrZvmC8x/SnEXmlbP9zAPNwPuKxNxhpYhqbMUDUjnT7QbaMpLfBB9s0DUqv9HgLRWnpHtlZdL+LE7xRwYyCKWeHpUk7DQg==
+ bh=gCQXhYWm8OlZGlsarsa6ibhRHMzKsn9lRte4oxoUQf4=;
+ b=TErKRcJc/axYcRciXGRv+tRDVz45HuYWaaIhm3UiZiHvn/RZ6ZgHS03hEY4GvV8ZoqQBbI+R57KA+gtNF6TsIomcCPveb2hbtHkPJKE258MURqH0YbTjFbXKjJu0tH+w4wi3clp5rBipkWJPOwMSxGDguysrBOlrxi2L/TDy35ZxC94G5DH+FEIcnsgarOzehPBQMJvlP/0NQsruo4eWMXBL6AFy9bAaiX5wZkj9GAGLQhXgOKwwonsaBH8t/a31EzSNxLu04vbyaSqAr/KQFsdaIY/vdb46zvU8eWWiGmUx2+3SFOt81ZUM3y0VcJMI3Gk5gi4uRJ67l5ooMtI4Fw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB7551.namprd11.prod.outlook.com (2603:10b6:510:27c::12)
- by SA1PR11MB226156.namprd11.prod.outlook.com (2603:10b6:806:51d::19)
+ by SN7PR11MB7140.namprd11.prod.outlook.com (2603:10b6:806:2a3::22)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.9; Thu, 10 Sep
- 2026 14:41:09 +0000
+ 2026 14:48:20 +0000
 Received: from PH7PR11MB7551.namprd11.prod.outlook.com
  ([fe80::5cbf:6b33:5f0c:88a0]) by PH7PR11MB7551.namprd11.prod.outlook.com
  ([fe80::5cbf:6b33:5f0c:88a0%4]) with mapi id 15.21.0406.007; Thu, 10 Sep 2026
- 14:41:09 +0000
-Message-ID: <df934dcf-5a91-4b83-9c17-174c77ade36a@intel.com>
-Date: Thu, 10 Sep 2026 16:41:02 +0200
+ 14:48:20 +0000
+Message-ID: <aa05003f-8630-4640-b7fb-6b305b93b5f4@intel.com>
+Date: Thu, 10 Sep 2026 16:48:13 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] drm/xe/i2c: Expose AMC Alert reason sysfs
+Subject: Re: [PATCH v2 2/2] drm/xe/cri: Expose device UID through sysfs
 To: Badal Nilawar <badal.nilawar@intel.com>, <intel-xe@lists.freedesktop.org>, 
  <rodrigo.vivi@intel.com>
 CC: <anshuman.gupta@intel.com>, <raag.jadav@intel.com>,
@@ -85,79 +86,79 @@ CC: <anshuman.gupta@intel.com>, <raag.jadav@intel.com>,
  <aravind.iddamsetty@intel.com>, <heikki.krogerus@linux.intel.com>,
  <himal.prasad.ghimiray@intel.com>
 References: <20260910124151.3135801-4-badal.nilawar@intel.com>
- <20260910124151.3135801-5-badal.nilawar@intel.com>
+ <20260910124151.3135801-6-badal.nilawar@intel.com>
 Content-Language: en-US
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20260910124151.3135801-5-badal.nilawar@intel.com>
+In-Reply-To: <20260910124151.3135801-6-badal.nilawar@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR0502CA0019.eurprd05.prod.outlook.com
- (2603:10a6:803:1::32) To PH7PR11MB7551.namprd11.prod.outlook.com
+X-ClientProxiedBy: VI1PR0502CA0027.eurprd05.prod.outlook.com
+ (2603:10a6:803:1::40) To PH7PR11MB7551.namprd11.prod.outlook.com
  (2603:10b6:510:27c::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7551:EE_|SA1PR11MB226156:EE_
-X-MS-Office365-Filtering-Correlation-Id: dcb6b4d9-5dd7-4e40-7022-08df0f498d6e
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7551:EE_|SN7PR11MB7140:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9beb31c6-32dc-4c31-bfc7-08df0f4a8e25
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|376014|366016|6133799003|10067099003|18002099003|56012099006|11063799006|4143699003|22082099003;
-X-Microsoft-Antispam-Message-Info: vR55jQ7n3EHPx6phgJFDRkv/239eqploGIpIXAD9mQUIGPFxkzqQmkQL4nkTFwttfxXEj9djfkNSovVg4/b3bjfNk/LYhD98gYko7F20pDV9sp9VjHbf2hdn+gfr7OJYAWgIpXMavx2KlJqnTuzDhPdw9SDiSG2TXFyqMpNGxZy4+p+cuotlh6cPFi9179wuKhMfu+gySpgJTs1eimXDla8cUb3i7FVXFX/Ig7ZSHLZRRcCftuOSVGVuh+I3nWlu63eaBKZjle+nKv3WU4sMtLyt9/2vYYVJHs8IGr1trJQvFDFK38de9/IyqVkzpvWo/bxCaNi2qAEdTydXRV2dEPhB9g3I7oZlGPj6lXmyZjAflY6RVtwsbOgBJDw8Q6SVDMhuBC2onhDxgybnvZVqpISIlcCavW1eYhQv3aYuh2+FNK2yr3Xdx0nAdjXXpzEtYMtJhsHCh55SdrL7l0FjUjPwavKD9LOwFM76Pi0ANZ+XLmqM5/7R7hWhYTR3kvPr9aUgHFHO4GiR/X2SL7R57rgKDpOfspkVUU/+ZIQ6bP7Ou4305cyi/9a9gXrETEgtsnwWA+ihXF+ZEWJdfNGTfa+zF2Fv6mcqqwsNHeLeCONEsfNomyoivxItcOpf1k358CDDQsxZP1W5Eh5NOT1oIUUAvK/1twZjscd9BgUp0fs=
+ ARA:13230040|376014|366016|1800799024|23010399003|11063799006|56012099006|6133799003|4143699003|18002099003|22082099003|10067099003;
+X-Microsoft-Antispam-Message-Info: ajlK8YMcbKy8AX3G4fExWerwCYif+HwVyFq/Gt1b591oqdJs7M1292vnRcIHPkVlApfmrD7jBJtHe+ejX/f7aL2mqs2eJ2B1SwegwvPKJE/FsGC93tbCRWea08uIPXIbxiu6p34Gy3+rScMs7wi/0BC3kzulXrJMGFk4e2BG3jMOMjF9CLkad+DkO0642IYEBKNEs7IyOWGE+/fWrgnN3a4Ovhk8kzECIh2JIviXP9aD6RRbustU7I4dHSUTl6azW7+V+LxpOynw6dV1CYdTA4GRzpIFf2WwlcKpM8OXF1Db2SH12xtOYBFbuf3uDAUKUecQ8Ij6wx6Zmq02unVOifCDN71dxY1ySuj7EQghyt61sbJ9jb7u3FyUN50PmzqPzGVierL0d4jeuGhZODuN8lyQCC2ZRqeXS/bJkOTxfA7ptDiy+YgyZhyHeILZgQxUq36gXq4J6apo5ZmUV/nfriNMpIFggLIuDKt2n+X50EQ9nj1N/p+wUbkt1ZAwHkJM/oRH38LCt0+N9x4CLFOujSEf6M9PsBgfS1xU6/2Th+8H97cI8HEbXdC/aUh0oO6V+P+Ein3CIb8NtaMKwIaa8LEo1Iv2+4PXYSEmGsGLBcXxS5jFik9hMpVnYNEamG//jy+oBZta9DpTYIK44zGqHAo/FJhbO+ZvdWAJqbwcB4Q=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB7551.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(376014)(366016)(6133799003)(10067099003)(18002099003)(56012099006)(11063799006)(4143699003)(22082099003);
+ SFS:(13230040)(376014)(366016)(1800799024)(23010399003)(11063799006)(56012099006)(6133799003)(4143699003)(18002099003)(22082099003)(10067099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S1FLSDE5bDhTQVErSThrOHcxczE0UGdicHNXRlVTdkN6MmphbUEyc09vWE1r?=
- =?utf-8?B?ZndlTnAreGIyVU9OaXU4Z0lBMEU1RmVzdUxONjBncGZ4RDNJR0h0NmpocHRD?=
- =?utf-8?B?MGxzTmtqVnNVRmN2REpRK2l6K1ltUDRNUm5JaW93cHlxRVdPck1Md1dBbGFS?=
- =?utf-8?B?OFI0QUNoa2ZMV1Q2NVhjTHNaaEJDd0F0WElCdHJZYXpGVGVvL1NuZnd0MjIr?=
- =?utf-8?B?Y3BjSmtVbWh2RnMvVFdUWEpKZHlSeTJJTm5XSFZXZkw3QzZDYlNNeTNGWVJS?=
- =?utf-8?B?cDhGN09JWU1pYjJtTU5tcC91OWYycnJnRHhZMlNRdUNyRTlVdlRxbTNSbXdp?=
- =?utf-8?B?YklYZzJCbjJua2w1dk9TZFRHQThwT0ZNN1FrMUUyekhNcUw4aENBUkhwck1z?=
- =?utf-8?B?Zml3ZXQ1V2ZqWGZuU1hGd2E5a0FNc2hwN0JYeCtGMi9UWWk2Yi9JRnVRYmp3?=
- =?utf-8?B?UDJ2RTFFT2J1VUk2RnVXSFF5REZnK25ldXd1VjZKOTNhelVaQ1RuM01pNEY5?=
- =?utf-8?B?UjhkYW01c0Nkc0dUNWpzajNOWmxpTldIcC8zL3Z3cFlmNUFuc2F5U0VLMVFO?=
- =?utf-8?B?L25SVm41R1hLM1FGMGFRcEhIbHcvQmlrRDJBVVJZQi84Smh5K2FWZ043TVgr?=
- =?utf-8?B?LzdCeXArcEtjSXdQSHI5OXNzNVV2ZlUvQ0FjOEpEV25xN014OFJzNXZRMVp5?=
- =?utf-8?B?UWcrQXI5enBmZklyWFNBR3dpUk1EVS9Pbmw2OEhWakdkVy8zcDVlVm1mYWJa?=
- =?utf-8?B?dWJjTTdpSFM3ZDdVZzFua0sxZ2hCdFNQcVo0NmhNdG51SUE2MDBnTjdKRG4y?=
- =?utf-8?B?akt1QmRaOXR1ZkRIcnZzUVF3dUdTR1VmSDZrK3VqZmdlZmxYMU9FWndQR0Q3?=
- =?utf-8?B?ZVp3S3VNTHRKNU13cG5ZMWJWbGJ6UzZGT2l1TE8zVnVFbE84WHpFdUxpUlRM?=
- =?utf-8?B?WmRnY2R3elVROFdUWFk5ejdqc3JPV01pM2x3eTBJV055MkJLVWRYT0dLVXQx?=
- =?utf-8?B?WU1NZGZUMW5qbnFoa2U5UXR6aktKSjZVL3R4dHZUWTR0d0hZWXBlYkVEdXRn?=
- =?utf-8?B?ZjR2MDZkUThyZUFCQkJiU1k3NUtwMkw0QTFySEkvQU5ybGsweXordGhKZjVU?=
- =?utf-8?B?UDlWLzRuRHhHU3gyZUZEZVI4WFdaV3g2UXZUaWlPemNuaU93SFVQKzN1bWVF?=
- =?utf-8?B?UlZCbkFBRThPeHZ1V1k0OGFwenZYNjFYNFJMV3VNbnFlcFdGcHhKTjZiTVVP?=
- =?utf-8?B?MzZYc3g5UWU5Qis5V216WFVCWWphZXJSaXdtU3daUGE2YTFCc0Rkd1JRNDJh?=
- =?utf-8?B?d21aQ1Y0d0sycEhKS2oyNjIwTkd4ZE56UzZGZFlFc2NFN0VVa1B2YTNEaWZ3?=
- =?utf-8?B?OXdzUW9kek40YXBvazR2QzgyQ1RQZzBVR0orNS9kSFU5a1hDa3hBcDIxc2hZ?=
- =?utf-8?B?bHcwMk5uNENpbURPTjU5azVFSmpOTGM4TlVjbmdZWllQMHFJUlI5UGVLVlJD?=
- =?utf-8?B?Q1JxeFRMSEZyZWxRNFhEVkkrQkZMOVZ1Umd0cVFMZDFhMm0wbE51cW54TVhs?=
- =?utf-8?B?aDltVEk2NmlVQWtMekZLWno1eXJsbk1NQmhpeUd6SVZIT0lOeFF1RkU0a2tV?=
- =?utf-8?B?QXovOFRnQmZJbzdoa1FkNGdkVThuMHU2cW1sd3YxVjBQSkVmQUNRR1J1TXkr?=
- =?utf-8?B?ejk3b08xWWh5R3Fjc2VvN0FMWHkzZlFXT0VmbG1IeWM3VytNZkR0RnlsMjVs?=
- =?utf-8?B?K2tFSi9NenRETWRmMkxtOWRlbFBkT1B5OFZkV2NQZHBVZlppQVR0U1hmc20y?=
- =?utf-8?B?S0xPL0NSWTFpTU9GN0hFeVFxWXFWNURaSGlueWNZaGhnMEV0SjBwdG5renFp?=
- =?utf-8?B?VTlBTk5kRUFkMUtPeVc0b3lmWWdVT3JIWE9rd1JhVmlVUm12TVFSUGNsamFT?=
- =?utf-8?B?VFpIRVdFMElEMnZjT3B3QkgwTU1MVkZFczFKWE15bHJ5YVhjUFFpb2hxWXIr?=
- =?utf-8?B?Q1h3S1ptTC9nMlBEOHB0emxYNkQ3RHlPdjVBeTBDaVFaUkNiV1FudkZ1Y01G?=
- =?utf-8?B?azlaQ2xDYUJQOWtPQUswQ3JRUnZUODNlcWlXZWhQbTZzeUVOY2pUSElLUWJo?=
- =?utf-8?B?RmtZQjhIMVdaVkNzSVp5Y0dQOEltRnA4b0Q4TnJ1K1lPc3V5SFI1WXJERzVD?=
- =?utf-8?B?L2lvVFhZZjdBZkFnY2lYNm1UVzRhdFdoMGhKSVpDUDZDb2NLVmVEUTY5bXAz?=
- =?utf-8?B?U3Y1bEVvTmloYWc2UVpkc09XVkRlbVZXYWRtLytHVUVmTGNNR3VjQUtya2Ja?=
- =?utf-8?B?Z3lDRWRqYUFQU3RsQ2cvV1BVT1RqQjRHZzdSbUtzZEhEendOWUVXK3NxQ1M0?=
- =?utf-8?Q?2Tm2o2M3iFcs4oKg=3D?=
-X-Exchange-RoutingPolicyChecked: L37abD/rv8LuyHCgsI7bJZ6c28XVQO/+231wOB+EzKTDXo7R/LGFZ7sHJ36hqceNmvnlxp+YKP2nFcvwXmjiVj6e7/ESH+IaOdbKIjfzKsWFAi0rdJRnQQzHMzFXUZcyA5jX61dMHCZ3oIuHMTE9cegH/A16Pe3dktWRuIiVwCkqiOdAFNeM33DSe/Gi9ioWAE+zFVnYp2SbJ9CC+nUWscpkTxa4veusSK6diQ4/2cRBZvr7Ruou0fcVZ6OP7Ba7PRErf8Mmsi3QXj0vIQWJwneZTw099kvIehlkrJObPMr14lbKL8HCzxY2R7I8PRrz6KnlithkJWI3Pqyu7pxZKQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: dcb6b4d9-5dd7-4e40-7022-08df0f498d6e
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dkZZT0d3bzJwZzZpaXdiTW5BOUE4VnhCVVN0dk9UbGhCeC9XVkRpTGE3ckEy?=
+ =?utf-8?B?VElWQTFRTktPbEUyYzlMWWdzalNFVzNBZlhpMW0zc1VoaXRCam5SZ3dWaHl1?=
+ =?utf-8?B?TnB2MEg4am1RdDZNYWNzR3FoclRsSXNMTU9INTN2QjNWemh6Tk1kSHEyUWZN?=
+ =?utf-8?B?QTU2VFpSdGFUTkJLaWJZdDBqcGtqWTNDeTduTTVkMmMwdm5sc2dyT25lZGF6?=
+ =?utf-8?B?bC9JS25vQ09ibkNLZ0kzRTlYd1ZXYnhlMHhGa215LzJHZ2tVZzNTOFhEcFBH?=
+ =?utf-8?B?QmdRclpvckpldi8yZ3JoU2x5VUJubzZnbSthV09RaXJJcC9HYmFVTVMzOVRs?=
+ =?utf-8?B?OVdLWStMU2kwdGhoa2hEZHZEOVY0Z05sbGdUQW9zVFQ3bmdqbXpKWitKdHJv?=
+ =?utf-8?B?TWV1UDRrNGRTdUovU0wwRnhoWmNDRkJnRHMrbjFQNlJiSGxUdU42VkkvOEtO?=
+ =?utf-8?B?UXNLQWdUZVI3SkwzZWZPUGV1bDVlNi9rNEM3a2VqbEdLdmM5RzJRMmdaWG40?=
+ =?utf-8?B?U1dSYVhsNzM3ZDk2dlRwaUJ2Zkp3S1ZyZ25OUGUxZndqTlFudDFzTCs5R3p5?=
+ =?utf-8?B?alRRNGFVaXg1UW5kYlNQR0Z0ZGZCVlFET1puSGJXSUpMZ2cyRFo4ZjdZRVV5?=
+ =?utf-8?B?WEhoSXd0S1NqL09mUWIxYkY4OVBTbEZ2ODFHY2VSb243VFlBVzI0YnNkRjJY?=
+ =?utf-8?B?Um90TWtBMHIwNTFrUTYwSW5qU05NL2lsOU1hOVd3NDNzTnZERkV5Vkw4ZVJz?=
+ =?utf-8?B?bXRaejZKelh4a0dLdGttQ29OeFVKbFpzRkJRenZVK0ZNYnRZd1AydjFQbnJu?=
+ =?utf-8?B?ZkV5RXFnTWxjWVF2SUVTQlU0bUx4TmtiM1V4d1YzcCtoY0E4N1FoZU9CWEpj?=
+ =?utf-8?B?N0ZmYTR1V2IrK20rN1dzU3pZSW43emp4YlpoVzdzR2JFM0w2c09Zam9JdWpE?=
+ =?utf-8?B?aDFnMGFGYXZhYmwxV29SK1BtUG9rZzNHZ3RTbkJtQTZmMUY2VjU2dkYreEMr?=
+ =?utf-8?B?VnpUeWJSaEtTNmw5OTZTeVVGd3VPazRxaEtUZ2xOMFh0eXpWNlo5STJKZ1U1?=
+ =?utf-8?B?QlFKNk5MdmlXbjRRMGVKTitjbXR0L1JsUUE5dFhNNW10YUNRalVSWkI1VXRN?=
+ =?utf-8?B?akZDQ29nbGVlaE1HL3VLeENNb0tVZHI4SlpydWxVVXBYNzV5dWN2SDFSM1pT?=
+ =?utf-8?B?dDBnM2lxaFY0WlZaams0Z0lRWFVPOWxLQTBYVFhIUzB6NHAwd3ZzWVZSTndJ?=
+ =?utf-8?B?MFhuUlpvSHJ2RWVtSmduMmxBdHVpVXBqQlkwUU9NNllYV1BKZEZNZDYzdFBr?=
+ =?utf-8?B?MlZJZ0I3bUV1V1B2UVFGSmcwQ0dLMnh1ZHBLdXJqa1lKMitBWmZCT3FacWtn?=
+ =?utf-8?B?cktJS3VCRWc2SmMyOWN5eVZiaUQ4ZDEzNjhPRUxENGlLRU1hVm1FbGJENlhC?=
+ =?utf-8?B?VVc0SFVOYTR4Z3ExWlhqQjdObjVWRmZmb3F3RVUzcEloalltQTdTWWJydjRC?=
+ =?utf-8?B?dS96cWdoTk9tN1FKbnJtb2ExSXdnS3duNkpackE1eUREUVdzS2ZNSHhNNWNN?=
+ =?utf-8?B?d2MxNTUxSm5nK3ZaOHV6T0ZGSmZvWTJNcE9DSGJXSEd3UGZ3dmwxanJVZ2J3?=
+ =?utf-8?B?WXBEY3dBWG4rdys0aU1TVmx1cmJtRHQvU3VpYStUUXdoUFdhT0NQSU1SOHlV?=
+ =?utf-8?B?SFYvaCs4N0FxeVRKTFhONUhIR1ZUT0Z1RlpBRExCdFVFLy9iS2pHZTFyZ1hR?=
+ =?utf-8?B?V2RSVitQZmovemxsWHVLWVZLekxiYjJlazRwUk9zdThaR0hPdlVPSENuTnBl?=
+ =?utf-8?B?bTlXK1FUT3J0NGZOTm9JM2hYSTBtL0E0cVprY2wxZk1MRFNqWm8rK1ltKzdz?=
+ =?utf-8?B?bDVGWGNqV3RIS25hVVdGdVc0Zk9DS1doVU82VDkycFU4TDRlS1QzNWduR2RE?=
+ =?utf-8?B?K3p4UFhqOURmbjJ1d0xTTVNpLzZ4U2ltbWZrNkU5OUtQbjAxSGpoQmpOVzVy?=
+ =?utf-8?B?c3kwSHVsbjY4QlRtekJldnVWVVdhS0phSnRMbGxndlpXQkZCUUovTHBSNnZp?=
+ =?utf-8?B?c1Njb1pucEduZytWanZYTFlqUmFtL1Bzc3NXTk1uKzZmV3dQYVF3S3Y0WW9B?=
+ =?utf-8?B?Ry8vQjJSS3JDYjlQRXVWOU1ZNTI2L2dWbDdjN24vMk9haitkYUpxN3VsdXZU?=
+ =?utf-8?B?UldGYUcvNVl2UWMxQW9JbStlUlRJQ2RHSnZPVk1NWnVic0Zkc2U3YWViWTBw?=
+ =?utf-8?B?LzB3dnVzTy85Lzc2WHo0Zjhsa2had1VCWVJyaHZnYTU2MFdhaVY3emlUVjJ3?=
+ =?utf-8?B?QllibEkrendKb0FKUlJkdDZOd29sMHgyL3pXVy9XVXM0cTYzYzFtYWJyMXBz?=
+ =?utf-8?Q?pH/VvDnalY7nGjgA=3D?=
+X-Exchange-RoutingPolicyChecked: ovMXG6S6knYwbuwmvdIByS24/2/70pygto8Yo9jAgWZsrOQ74Aygfr80lvk/IYPBLl5UlgyYGpOcBK/ydMrmIpdXxzAUBE+Y7YbRJavQoSJ2JdmKdFxBeV/JvngRSwUuqnueRYTffL4wVjUlt05p9nKC1U79xx1n2azkZiDSuDrAnTqAaXRVHMcRxFLxL2k+wkZzsX9UNltrda1NIgq74+ghW4vOsi7wBhYw9Tcqsy4rDx4MPPfwbg8F6h1fPxGBvDXBBo03pWwtt96HlkMHlthkQSQg80aEGpgihpVE3AyGinqf1lT/pmip9FaA3bp+z84JCAa24mLRlc54Ya91Xw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9beb31c6-32dc-4c31-bfc7-08df0f4a8e25
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7551.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2026 14:41:09.2196 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2026 14:48:20.0681 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: heKjdR6f76sMzkliAPtdiS49Pu7OpOb+sTJT2/Ycy2EBDpt3NAwIOVcxDjJu5meH5dog1fA5reHAoGdNvTT81IDRASELkFUoMsqXb572Mmk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB226156
+X-MS-Exchange-CrossTenant-UserPrincipalName: H9ZpZB53O98gaPI5wUE6avx8oQZgnjZJ8N+SP9BIdpxf6uRbSpZGgzG9ONFdBd0+6JtTZ0xtcZT//lftwVvWCMIJrsmOjmP+Sf7W6/4jcEY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7140
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -176,243 +177,205 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 9/10/2026 2:41 PM, Badal Nilawar wrote:
-> AMC raises an SMBUS alert before performing a power removal or
-> power-cycle operation. The xe driver then places the device into
-> vendor-specific wedge mode until the recovery is performed.
+> Expose a read-only sysfs attribute, device_uid, that reports the
+> GPU's unique hardware identifier.
 > 
-> Expose a read-only xe_amc_alert_reason sysfs attribute to help users
-> identify the required recovery action.
-> 
+
+still no Bspec references
+
 > Assisted-by: Claude:claude-opus-4.8
 > Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 > ---
 > v2:
->  - Created sysfs during i2c probe time
->  - Fix Documentation (Rodrigo)
-> v3:
->  - Keep limited information in "DOC:" section (Michal)
->  - Handle AMC alert none and unknown cases, document
->    in ABI
->  - Clear i2c->amc on sysfs creation failure (Sashiko)
+>   - add has flag instead of platform check to determin uid support (Anshuman)
+>   - Fix the DOC: section (Michal)
+>   - %s/_uuid/uid (Joonas)
 > ---
->  .../ABI/testing/sysfs-driver-intel-xe-amc     | 25 ++++++
->  drivers/gpu/drm/xe/xe_amc.c                   | 78 ++++++++++++++++---
->  2 files changed, 93 insertions(+), 10 deletions(-)
->  create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-amc
+>  .../ABI/testing/sysfs-driver-intel-xe-gpu     | 10 ++++++
+>  drivers/gpu/drm/xe/regs/xe_regs.h             |  2 ++
+>  drivers/gpu/drm/xe/xe_device.c                |  4 +++
+>  drivers/gpu/drm/xe/xe_device_sysfs.c          | 36 +++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_device_types.h          |  5 +++
+>  drivers/gpu/drm/xe/xe_pci.c                   |  2 ++
+>  drivers/gpu/drm/xe/xe_pci_types.h             |  1 +
+>  7 files changed, 60 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-gpu
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-amc b/Documentation/ABI/testing/sysfs-driver-intel-xe-amc
+> diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-gpu b/Documentation/ABI/testing/sysfs-driver-intel-xe-gpu
 > new file mode 100644
-> index 000000000000..3bae78d1e0d9
+> index 000000000000..36182bbb1b54
 > --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-amc
-> @@ -0,0 +1,25 @@
-> +What:		/sys/bus/pci/drivers/xe/.../xe_amc_alert_reason
-
-do we need this 'xe' prefix?
-it is already listed as available on xe drivers only
-
+> +++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-gpu
+> @@ -0,0 +1,10 @@
+> +What:		/sys/bus/pci/drivers/xe/.../device_uid
 > +Date:		September 2026
 > +KernelVersion:	7.4
 > +Contact:	intel-xe@lists.freedesktop.org
 > +Description:
-> +		This file exposes the reason for the most recent Add-In
-> +		Management Controller (AMC) alert on Intel Xe platforms.
+> +		RO. Unique 64-bit identifier of the GPU device, exposed as
+> +		hexadecimal value.
+> +
+> +		This sysfs file is present only on Intel Xe platforms that
+> +		provide a device UID. It is available to all users.
+> diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
+> index ef4746b7b5d3..437485b5a0af 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+> @@ -30,6 +30,8 @@
+>  #define XEHP_MTCFG_ADDR				XE_REG(0x101800)
+>  #define   TILE_COUNT				REG_GENMASK(15, 8)
+>  
+> +#define CRI_DEVICE_UID				XE_REG(0x102008)
+> +
+>  #define GGC					XE_REG(0x108040)
+>  #define   GMS_MASK				REG_GENMASK(15, 8)
+>  #define   GGMS_MASK				REG_GENMASK(7, 6)
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 205cb4e7f9e8..99f6d4184b79 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -671,6 +671,7 @@ static void vf_update_device_info(struct xe_device *xe)
+>  	xe->info.skip_guc_pc = 1;
+>  	xe->info.skip_pcode = 1;
+>  	xe->info.has_drm_ras = false;
+> +	xe->info.has_device_uid = false;
+>  }
+>  
+>  static int xe_device_vram_alloc(struct xe_device *xe)
+> @@ -878,6 +879,9 @@ int xe_device_probe(struct xe_device *xe)
+>  	int err;
+>  	u8 id;
+>  
+> +	if (xe->info.has_device_uid)
+> +		xe->device_uid = xe_mmio_read64_2x32(xe_root_tile_mmio(xe), CRI_DEVICE_UID);
 
-I guess we should add "... on selected Xe platforms."
+avoid low-level code in top level function, use some helper for this:
+
+	xe_probe_uid(xe);
 
 > +
-> +		An AMC alert is delivered via an SMBUS interrupt and causes the
-> +		device to be wedged, requiring vendor-specific recovery. This
-> +		attribute is created when such an alert is handled and is
-> +		available to all users as read-only.
-> +
-> +		Read returns a single line containing one of the following
-> +		alert reasons:
-> +
-> +			none
-
-other ABI documentations are quoting possible names:
-
-			"none"
-
-> +				No AMC alert has been received
-> +			unknown
-
-			"unknown"
-...
-
-> +				AMC alert received but with invalid reason code
-
-maybe either change above tag to "invalid" or description: "... with unknown reason ..."
-
-> +			firmware_download
-> +			thermal_trip
-> +			oob_request
-> +			oob_reset
-> +			catastrophic
-> diff --git a/drivers/gpu/drm/xe/xe_amc.c b/drivers/gpu/drm/xe/xe_amc.c
-> index edd50bf8261e..bb9d260f800f 100644
-> --- a/drivers/gpu/drm/xe/xe_amc.c
-> +++ b/drivers/gpu/drm/xe/xe_amc.c
-> @@ -18,6 +18,7 @@
+>  	xe_pat_init_early(xe);
+>  
+>  	err = xe_sriov_init(xe);
+> diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> index a73e0e957cb0..657742c22d90 100644
+> --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
+> +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/pci.h>
+>  #include <linux/sysfs.h>
+>  
+> +#include "regs/xe_regs.h"
 >  #include "xe_device.h"
->  #include "xe_i2c.h"
+>  #include "xe_device_sysfs.h"
 >  #include "xe_mmio.h"
-> +#include "xe_printk.h"
->  
->  /**
->   * DOC: Add-In Management Controller (AMC)
-> @@ -43,19 +44,23 @@ enum xe_amc_alert {
->  	AMC_ALERT_OOB_REQUEST,
->  	AMC_ALERT_OOB_RESET,
->  	AMC_ALERT_CATERR,
-> +	AMC_ALERT_NONE = U8_MAX,
-
-is this defined by AMC (as part of the AMC ABI?
-
-if not, then maybe you need private field:
-
-	bool alert_valid;
-
->  };
->  
->  static const char * const amc_alert[] = {
-> -	[AMC_ALERT_FW_DOWNLOAD]		= "Firmware Download",
-> -	[AMC_ALERT_THERMAL_TRIP]	= "Thermal Trip",
-> -	[AMC_ALERT_OOB_REQUEST]		= "OOB Request",
-> -	[AMC_ALERT_OOB_RESET]		= "OOB Reset",
-> -	[AMC_ALERT_CATERR]		= "Catastrophic",
-> +	[AMC_ALERT_UNKNOWN]		= "unknown",
-> +	[AMC_ALERT_FW_DOWNLOAD]		= "firmware_download",
-> +	[AMC_ALERT_THERMAL_TRIP]	= "thermal_trip",
-> +	[AMC_ALERT_OOB_REQUEST]		= "oob_request",
-> +	[AMC_ALERT_OOB_RESET]		= "oob_reset",
-> +	[AMC_ALERT_CATERR]		= "catastrophic",
-> +	[AMC_ALERT_NONE]		= "none",
-
-is there any strict requirement that we need to use lowercase/underscores only?
-
-for sysfs we are printing text line, IMO we should be good with old names
-
->  };
->  
->  struct xe_amc {
->  	struct xe_i2c *i2c;
->  	struct work_struct work;
-> +	u8 alert_reason;
->  };
->  
->  struct amc_header {
-> @@ -104,6 +109,42 @@ static const struct amc_request amc_get_alert_reason = {
->  	},
+> @@ -264,6 +265,35 @@ static const struct attribute_group auto_link_downgrade_attr_group = {
+>  	.attrs = auto_link_downgrade_attrs,
 >  };
 >  
 > +/**
-> + * DOC: AMC Alert Reason
+> + * DOC: device_uid
+
+	DOC: Device Unique ID
+
 > + *
-> + * On Intel Xe platforms, AMC sends an alert notification via an SMBUS interrupt
-> + * to notify events such as firmware download, thermal trip or a
-> + * catastrophic error. See enum xe_amc_alert for the full list of reasons.
-> + * Upon an AMC alert the device is wedged and requires vendor-specific recovery.
+> + * On supported platforms, Xe devices expose a unique 64-bit GPU SOC
+> + * identifier through the 'device_uid' sysfs entry.
 > + *
-> + * See Documentation/ABI/testing/sysfs-driver-intel-xe-amc for the ABI
+> + * See Documentation/ABI/testing/sysfs-driver-intel-xe-gpu for the ABI
 > + * specification.
 > + */
 > +
-> +static ssize_t xe_amc_alert_reason_show(struct device *dev,
-> +					struct device_attribute *attr, char *buf)
+> +static ssize_t
+> +device_uid_show(struct device *dev, struct device_attribute *attr, char *buf)
 > +{
-> +	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
-> +	struct xe_amc *amc = xe->i2c->amc;
+> +	struct pci_dev *pdev = to_pci_dev(dev);
+> +	struct xe_device *xe = pdev_to_xe_device(pdev);
 > +
-> +	return sysfs_emit(buf, "%s\n", amc_alert[amc->alert_reason]);
-> +}
-> +static DEVICE_ATTR_RO(xe_amc_alert_reason);
-> +
-> +static void xe_amc_remove_alert_sysfs(struct xe_i2c *i2c)
-> +{
-> +	struct device *dev = i2c->drm_dev;
-> +
-> +	device_remove_file(dev, &dev_attr_xe_amc_alert_reason);
-> +}
-> +
-> +static int xe_amc_create_alert_sysfs(struct xe_i2c *i2c)
-> +{
-> +	struct device *dev = i2c->drm_dev;
-> +
-> +	return device_create_file(dev, &dev_attr_xe_amc_alert_reason);
+> +	return sysfs_emit(buf, "%016llx\n", xe->device_uid);
 
-can't we use managed variant of sysfs initialization?
+no 0x prefix?
 
 > +}
+> +static DEVICE_ATTR_RO(device_uid);
 > +
->  static void xe_amc_work(struct work_struct *work)
+> +static struct attribute *device_uid_attrs[] = {
+> +	&dev_attr_device_uid.attr,
+> +	NULL
+> +};
+> +
+> +static const struct attribute_group device_uid_attr_group = {
+> +	.attrs = device_uid_attrs,
+> +};
+> +
+>  int xe_device_sysfs_init(struct xe_device *xe)
 >  {
->  	const struct amc_request *request = &amc_get_alert_reason;
-> @@ -158,12 +199,19 @@ static void xe_amc_work(struct work_struct *work)
->  	case AMC_ALERT_THERMAL_TRIP:
->  	case AMC_ALERT_OOB_REQUEST:
->  	case AMC_ALERT_OOB_RESET:
-> -	case AMC_ALERT_CATERR:
-> -		dev_warn(amc->i2c->drm_dev, "AMC Alert: %s\n", amc_alert[alert_reason]);
-> -		xe_device_declare_wedged(i2c_client_to_xe_device(client));
-> +	case AMC_ALERT_CATERR: {
-> +		struct xe_device *xe = i2c_client_to_xe_device(client);
-> +
-> +		dev_warn(amc->i2c->drm_dev,
-> +			 "AMC Alert: %s (%u)\n", amc_alert[alert_reason], alert_reason);
-
-maybe we should use xe_log(AMC) ?
-> +		amc->alert_reason = alert_reason;
-> +		xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_VENDOR);
-> +		xe_device_declare_wedged(xe);
->  		break;
-> +	}
->  	default:
-> -		dev_warn(amc->i2c->drm_dev, "unknown AMC alert: %d\n", alert_reason);
-> +		amc->alert_reason = AMC_ALERT_UNKNOWN;
-
-hmm, is AMC_ALERT_UNKNOWN(0) actual AMC ABI definition or it is just a driver define?
-
-shouldn't we still store alert_reason code?
-then in sysfs you will be able to emit:
-
-		"Unknown alert %#x"
-
-> +		dev_warn(amc->i2c->drm_dev, "AMC Alert: unknown (%u)\n", alert_reason);
->  		break;
+>  	struct device *dev = xe->drm.dev;
+> @@ -285,5 +315,11 @@ int xe_device_sysfs_init(struct xe_device *xe)
+>  			return ret;
 >  	}
->  }
-> @@ -176,6 +224,7 @@ void xe_amc_handle_alert(struct xe_i2c *i2c)
->  int xe_amc_init(struct xe_i2c *i2c)
->  {
->  	struct xe_amc *amc;
-> +	int ret;
 >  
->  	amc = kzalloc_obj(*amc);
->  	if (!amc)
-> @@ -185,13 +234,22 @@ int xe_amc_init(struct xe_i2c *i2c)
->  	i2c->amc = amc;
->  	amc->i2c = i2c;
->  
-> -	return 0;
-> +	amc->alert_reason = AMC_ALERT_NONE;
-> +	ret = xe_amc_create_alert_sysfs(i2c);
-> +	if (ret) {
-> +		kfree(i2c->amc);
-> +		i2c->amc = NULL;
+> +	if (xe->info.has_device_uid) {
+> +		ret = devm_device_add_group(dev, &device_uid_attr_group);
+> +		if (ret)
+> +			return ret;
 > +	}
 > +
-> +	return ret;
+>  	return 0;
 >  }
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index f88bacf63c83..65366e8173c9 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -174,6 +174,8 @@ struct xe_device {
+>  		u8 has_cached_pt:1;
+>  		/** @info.has_device_atomics_on_smem: Supports device atomics on SMEM */
+>  		u8 has_device_atomics_on_smem:1;
+> +		/** @info.has_device_uid: Device supports unique 64-bit GPU SOC ID */
+> +		u8 has_device_uid:1;
+>  		/** @info.has_drm_ras: Device supports drm_ras (Reliability, Availability, Serviceability) */
+>  		u8 has_drm_ras:1;
+>  		/** @info.has_fan_control: Device supports fan control */
+> @@ -258,6 +260,9 @@ struct xe_device {
+>  		bool oob_initialized;
+>  	} wa_active;
 >  
->  void xe_amc_exit(struct xe_i2c *i2c)
->  {
->  	if (i2c->amc) {
-> +		xe_amc_remove_alert_sysfs(i2c);
->  		cancel_work_sync(&i2c->amc->work);
->  		kfree(i2c->amc);
-> +		i2c->amc = NULL;
->  	}
->  }
+> +	/** @device_uid: unique 64-bit GPU SOC identifier */
+> +	u64 device_uid;
+> +
+>  	/** @survivability: survivability information for device */
+>  	struct xe_survivability survivability;
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index ab4da1d9a9f1..2900f18c7b4c 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -471,6 +471,7 @@ static const struct xe_device_desc cri_desc = {
+>  	PLATFORM(CRESCENTISLAND),
+>  	.dma_mask_size = 52,
+>  	.has_display = false,
+> +	.has_device_uid = true,
+>  	.has_drm_ras = true,
+>  	.has_flat_ccs = false,
+>  	.has_gsc_nvm = 1,
+> @@ -793,6 +794,7 @@ static int xe_info_init_early(struct xe_device *xe,
+>  
+>  	xe->info.is_dgfx = desc->is_dgfx;
+>  	xe->info.has_cached_pt = desc->has_cached_pt;
+> +	xe->info.has_device_uid = desc->has_device_uid;
+>  	xe->info.has_drm_ras = desc->has_drm_ras;
+>  	xe->info.has_fan_control = desc->has_fan_control;
+>  	/* runtime fusing may force flat_ccs to disabled later */
+> diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+> index fed509ff601e..fe327323a0be 100644
+> --- a/drivers/gpu/drm/xe/xe_pci_types.h
+> +++ b/drivers/gpu/drm/xe/xe_pci_types.h
+> @@ -40,6 +40,7 @@ struct xe_device_desc {
+>  
+>  	u8 has_cached_pt:1;
+>  	u8 has_display:1;
+> +	u8 has_device_uid:1;
+>  	u8 has_drm_ras:1;
+>  	u8 has_fan_control:1;
+>  	u8 has_flat_ccs:1;
 
