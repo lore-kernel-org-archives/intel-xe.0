@@ -4,35 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60E76C79FB9
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 12:24:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81E5DC79FB9
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 12:25:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0473210E22F;
-	Thu, 10 Sep 2026 12:24:57 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CB2810E234;
- Thu, 10 Sep 2026 12:24:54 +0000 (UTC)
-Received: from [62.183.198.118] (helo=[10.147.29.250])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1x4dpf-00000003Psx-1i7t; Thu, 10 Sep 2026 15:24:52 +0300
-Message-ID: <001a17caa12acbbb62b73d65bc0d8c1d7739d726.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- stable@vger.kernel.org
-Date: Thu, 10 Sep 2026 15:24:45 +0300
-In-Reply-To: <aqKQSYPEonBCauQc@ideak-desk.lan>
-References: <20260907174413.741851-1-imre.deak@intel.com>
- <20260907174413.741851-2-imre.deak@intel.com>
- <676822730026eb7eed7513dbc8f1461f24c6a1a7.camel@coelho.fi>
- <aqKQSYPEonBCauQc@ideak-desk.lan>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-10 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20D2310E2B3;
+	Thu, 10 Sep 2026 12:25:03 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sw2OPny0";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4057A10E2B3
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 12:25:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789043101; x=1820579101;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AOyK7VDG5PkETgD2iRQx3SsJjRHZezR0ZXoE4NO8c/M=;
+ b=Sw2OPny0v7g9SmNRmjmo/2fHS7Yuc+h5K/fZiZxo2JORomDCU8En42Im
+ 7gB8s2TVVuDNVRLW1LMWj5j1axXy10/u5h9afyLuGKJN6lTB4pWzQy6gf
+ +ZuL+bM1ss9FU0VOlxxVj5jE5OdWTbGTIYUKVlR7TwzI9c0PCuVszp0an
+ R37914DipnbWRY1GGH/Hx3tIHqQD2cOO1YxS2DIruvSj1oP3f0WZ9b8d+
+ cE0FelGsLNIMcdBjD5C72feB2GRc7WtefkPVLtjpuQwkwvepId0AmjAIV
+ tNX+q+/1KK8lyUGKma5jUcZiNYd9/82ruiKXNYzht+GkE2Ahy5/64IL2M A==;
+X-CSE-ConnectionGUID: 37/i7kMYTVS7HkfCrXS4iA==
+X-CSE-MsgGUID: hqpYZRKEThazwWzU9uA/uQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="93181623"
+X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; 
+   d="scan'208";a="93181623"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2026 05:25:00 -0700
+X-CSE-ConnectionGUID: lXCQNJL7SlOc/FLOCCNYvw==
+X-CSE-MsgGUID: g27OiwPDQeuKD7v7yWQ3dA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="272121179"
+Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2026 05:24:59 -0700
+From: Badal Nilawar <badal.nilawar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com, raag.jadav@intel.com,
+ riana.tauro@intel.com, mallesh.koujalagi@intel.com,
+ aravind.iddamsetty@intel.com, heikki.krogerus@linux.intel.com,
+ himal.prasad.ghimiray@intel.com
+Subject: [PATCH v2 0/2] Expose device sysfs for AMC and GPU UUID
+Date: Thu, 10 Sep 2026 18:11:51 +0530
+Message-ID: <20260910124151.3135801-4-badal.nilawar@intel.com>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/2] drm/i915/dp_mst: Fix configuring TUs for a
- disconnected stream
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,128 +68,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2026-09-10 at 14:11 +0300, Imre Deak wrote:
-> On Thu, Sep 10, 2026 at 12:50:16PM +0300, Luca Coelho wrote:
-> > On Mon, 2026-09-07 at 20:44 +0300, Imre Deak wrote:
-> > > During an atomic commit after all the MST stream CRTC state is comput=
-ed
-> > > the driver ensures that the sum of TUs of all the streams on a given =
-MST
-> > > topology link is within limits (63 for 8b10 and 64 for 128b132b). For=
- a
-> > > disconnected stream the DRM MST core's BW verification doesn't ensure
-> > > this, because the topology state it uses for this is destroyed as soo=
-n
-> > > as the stream (i.e. MST connector/port) is disconnected. The driver
-> > > should keep the link state valid even for such disconnected streams, =
-as
-> > > userspace may disable them one-by-one only in a deferred way. Ensure =
-the
-> > > link's sum of TUs stays within limits in this case by simply reusing =
-the
-> > > maximum link BPP limit from the stream's (i.e. CRTC's) old state.
-> > >=20
-> > > The disconnection can happen either via the whole topology getting
-> > > disconnected or via only the given stream's port getting disconnected=
-.
-> > > Check for both of these conditions separately, as a connector gets
-> > > unregistered after a link disconnect event only in a deferred way.
-> > >=20
-> > > Cc: stable@vger.kernel.org # v6.10+
-> > > Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/160=
-73
-> > > Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/163=
-84
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_dp_mst.c  | 21 ++++++++++++++++++=
-++
-> > >  drivers/gpu/drm/i915/display/intel_dp_mst.h  |  2 ++
-> > >  drivers/gpu/drm/i915/display/intel_link_bw.c |  3 ++-
-> > >  3 files changed, 25 insertions(+), 1 deletion(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gp=
-u/drm/i915/display/intel_dp_mst.c
-> > > index 20766b6c0bcfa..0c362784afe4a 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > > @@ -2172,6 +2172,27 @@ bool intel_dp_mst_crtc_needs_modeset(struct in=
-tel_atomic_state *state,
-> > >  	return false;
-> > >  }
-> > > =20
-> > > +bool intel_dp_mst_stream_disconnected(struct intel_atomic_state *sta=
-te,
-> > > +				      const struct intel_crtc *crtc)
-> > > +{
-> > > +	struct intel_connector *connector;
-> > > +
-> > > +	connector =3D get_connector_in_state_for_crtc(state, crtc);
-> > > +	if (!connector)
-> > > +		return false;
-> > > +
-> > > +	if (!connector->mst.dp)
-> > > +		return false;
-> > > +
-> > > +	if (!connector->mst.dp->mst.mgr.mst_state)
-> > > +		return true;
-> > > +
-> > > +	if (drm_connector_is_unregistered(&connector->base))
-> > > +		return true;
-> > > +
-> > > +	return false;
-> > > +}
-> > > +
-> > >  /**
-> > >   * intel_dp_mst_prepare_probe - Prepare an MST link for topology pro=
-bing
-> > >   * @intel_dp: DP port object
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gp=
-u/drm/i915/display/intel_dp_mst.h
-> > > index ab09b487c6bb5..8ce89242c05c9 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
-> > > @@ -28,6 +28,8 @@ int intel_dp_mst_atomic_check_link(struct intel_ato=
-mic_state *state,
-> > >  				   struct intel_link_bw_limits *limits);
-> > >  bool intel_dp_mst_crtc_needs_modeset(struct intel_atomic_state *stat=
-e,
-> > >  				     struct intel_crtc *crtc);
-> > > +bool intel_dp_mst_stream_disconnected(struct intel_atomic_state *sta=
-te,
-> > > +				      const struct intel_crtc *crtc);
-> > >  void intel_dp_mst_prepare_probe(struct intel_dp *intel_dp);
-> > >  bool intel_dp_mst_verify_dpcd_state(struct intel_dp *intel_dp);
-> > > =20
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_link_bw.c b/drivers/g=
-pu/drm/i915/display/intel_link_bw.c
-> > > index b47474a3e9fec..e71e76d6fd3e0 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_link_bw.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_link_bw.c
-> > > @@ -64,7 +64,8 @@ void intel_link_bw_init_limits(struct intel_atomic_=
-state *state,
-> > >  			intel_atomic_get_new_crtc_state(state, crtc);
-> > >  		int forced_bpp_x16 =3D get_forced_link_bpp_x16(state, crtc);
-> > > =20
-> > > -		if (state->base.duplicated && crtc_state) {
-> > > +		if ((state->base.duplicated && crtc_state) ||
-> > > +		    intel_dp_mst_stream_disconnected(state, crtc)) {
-> > >  			limits->max_bpp_x16[pipe] =3D crtc_state->max_link_bpp_x16;
-> > >  			if (intel_dsc_enabled_on_link(crtc_state))
-> > >  				limits->link_dsc_pipes |=3D BIT(pipe);
-> >=20
-> > I think Sashiko's NULL-dereference commment is valid.  Can you check
-> > it?
->=20
-> At least I can't see how a connector can get into the atomic state
-> without the crtc state for the CRTC associated with the connector.
-> Sashiko didn't provide the exact scenario it had in mind.
+Expose device sysfs entries for AMC SMBUS alert reason and GPU UID
 
-As discussed offline, this is not really a problem, and it's a safe
-bypass the NULL pointer check here.
+v2:
+  - Fixed sashiko warning in AMC sysfs patch
+  - Dropped references of UUID in uid sysfs patch  
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+Badal Nilawar (2):
+  drm/xe/i2c: Expose AMC Alert reason sysfs
+  drm/xe/cri: Expose device UID through sysfs
 
---
-Cheers,
-Luca.
+ .../ABI/testing/sysfs-driver-intel-xe-amc     | 25 ++++++
+ .../ABI/testing/sysfs-driver-intel-xe-gpu     | 10 +++
+ drivers/gpu/drm/xe/regs/xe_regs.h             |  2 +
+ drivers/gpu/drm/xe/xe_amc.c                   | 78 ++++++++++++++++---
+ drivers/gpu/drm/xe/xe_device.c                |  4 +
+ drivers/gpu/drm/xe/xe_device_sysfs.c          | 36 +++++++++
+ drivers/gpu/drm/xe/xe_device_types.h          |  5 ++
+ drivers/gpu/drm/xe/xe_pci.c                   |  2 +
+ drivers/gpu/drm/xe/xe_pci_types.h             |  1 +
+ 9 files changed, 153 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-amc
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-gpu
+
+-- 
+2.54.0
+
