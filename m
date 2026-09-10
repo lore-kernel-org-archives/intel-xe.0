@@ -4,61 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DF40C79FBF
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 10:08:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B64AC79FB9
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 10:20:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D82B310F422;
-	Thu, 10 Sep 2026 10:08:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE5E610F3F4;
+	Thu, 10 Sep 2026 10:20:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kuux1Pn6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DeP37498";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B536C10F422;
- Thu, 10 Sep 2026 10:08:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D398810F3F4
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 10:20:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789034885; x=1820570885;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=57ELQZY/6YSaNa7cAB52Gwj5BqsKa034ylhG3IY3A2k=;
- b=kuux1Pn6ggCMl+fyiNkI4VKUFD7T+9RqCJsJdnvB/N8S72lvR2QZraCf
- O3wrtzUemPcX8wBhO2Wj7ftKFJCmPhqW++rEEL/SzAP8WheTSzAA5XJ1o
- dyZPrOcVyMyH2hNq5joJmXWqHFWS7x5wxN5ZVU7hUaVzHttryKcAtvAFr
- y2my+PNKhT0FfdkpKF3BLcOjV6fQoe+L/fGgaRJMsFlIDjh8DQ5IXBd8m
- l5HBIYYa8tSEFVTT87Hd5X8ASkGbVxTiJWVOvcWVUwX/v1rgUrgHk48tO
- Y5SSe1es/7vK2GXgQNHViw5O6HkHg3d9mwP1IU+PZEG9ZzsTL7Yvo0J0p w==;
-X-CSE-ConnectionGUID: sdMnSs/XQwatcM6NXRPlyA==
-X-CSE-MsgGUID: QL28/fSkS7ab3UgSytfZcw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="93345731"
-X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; 
-   d="scan'208";a="93345731"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2026 03:08:05 -0700
-X-CSE-ConnectionGUID: 97P/1oY7ShiO3mu6tU85bw==
-X-CSE-MsgGUID: pzb/FopiRJO9i0V8gBWBRA==
+ t=1789035635; x=1820571635;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=bF7bmKV7xUSw+VdxUp7Kv475CxNTM2AaK+VvO8OH1gM=;
+ b=DeP37498QCtEtcPw66JW/jqOFh49+KF16EIP1SoMUfyAaLl1eg6Jl3YJ
+ CQxML+sEu5wtijXlq2FpZtpetfV7cYUbjAWG+CIe33evA3KAX4Kx67dju
+ qvoILpWW1WANtTpyQE+fusD3nHfvCwkvlTYTw/HKXhZuBubh9r9ufAs3K
+ 8q0pW5h9xTcXWq29JQVYRgfrMHeYszQvsxlSaVbzC/mY3r+rxksEJItb4
+ K8VrxVU/89ABQoW8hHA/WZt0tiifA7lNz/duiqXb898ZftfxEwqGx78hd
+ +oi5okobqCc3s2ADgo0JiB9EAoukgdJCDdro6nwf842xII04p0qX67IYw A==;
+X-CSE-ConnectionGUID: pcrDcnh6S3G7oWvHaxgMCQ==
+X-CSE-MsgGUID: /UOb8hwxQuSR8CZ3ZyaW4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="100073294"
+X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="100073294"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2026 03:20:35 -0700
+X-CSE-ConnectionGUID: 2EfctjnZQLexFBlHX3vuqg==
+X-CSE-MsgGUID: nULOL98gSPGqYzeDxgMaIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="301482347"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.193])
- ([10.245.245.193])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2026 03:08:03 -0700
-Message-ID: <3d75cfb6dd151ddb99eccec1e2712c80bfd334ef.camel@linux.intel.com>
-Subject: Re: [PATCH 02/13] drm/xe: Separate AER reset state from device wedging
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Arvind Yadav <arvind.yadav@intel.com>, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com, 
- rodrigo.vivi@intel.com
-Date: Thu, 10 Sep 2026 12:07:59 +0200
-In-Reply-To: <20260827101801.1247654-3-arvind.yadav@intel.com>
-References: <20260827101801.1247654-1-arvind.yadav@intel.com>
- <20260827101801.1247654-3-arvind.yadav@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="272097998"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2026 03:20:36 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Thu, 10 Sep 2026 03:20:34 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Thu, 10 Sep 2026 03:20:34 -0700
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.23) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Thu, 10 Sep 2026 03:20:34 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UvpjM61/XT0OPFQXN45m1XxE+WbYhTjYc3XL0S2UGP1Sy9T9m9oTiOZdJkeXzSmt+mrfRKEWs6Qsass9wcqCTcdCe8TNYnGXmK/YAa/WekuPrXjDp6QGyeQ86w3i49UAABIo6U3LYzHsLr5yxKV1rI9rSihly3MTwTKnNWSpDkFVpB3mtuvang7ce2qqO6DqKuPEWQc+LQiseBLsyXaw/9xUck3b6Cse0s3BkjErVzEyrdCAq04NlI0h/gaQU15tisGFMJnsD+1sWjej4L2yrC3aWDNXIJ2TkjblBOXJIYPZfpsQEPS6JQDcL+ci4WRQE418Sf7+BeDZtE37+gWLNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PwmTJNA7ZJ/VF9jtX8zyKMTNruoGN80kvLdGezcdDOg=;
+ b=ufAGLp1IUNwXX3f1jC87sPNAT0jhaLDvL/XK6oHEB3wM1kvpNNJ0wFpViOvbioZjy9zGyOA9qF+Wq3rjlX7cIBVOGd9Sdgfupl4d+y2EEowLGAcTDiIZLwMyMUf3LNav0frRe5xQMaGTvqncK+zjIpYs1MfvC9gzyEDBoJAJXygqITmFsjE8b/vouo0eAQ4bKqmy66OTdqej33i6IdvSsT5USxtlkVxRo/UbmzpoD9zx0WLLi47Blyt40IrBz7q1F37TQ5nvt7+wO/8/xaBfAkEkj5JeTSMccNolLOIOJveFm1VjRIn8gfP957UaCq31Dp52x4T36C9mmTmCvr1ggw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB5885.namprd11.prod.outlook.com (2603:10b6:510:134::22)
+ by DS4PR11MB204441.namprd11.prod.outlook.com (2603:10b6:8:514::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.9; Thu, 10 Sep
+ 2026 10:20:26 +0000
+Received: from PH7PR11MB5885.namprd11.prod.outlook.com
+ ([fe80::9e5b:e01e:24c0:204c]) by PH7PR11MB5885.namprd11.prod.outlook.com
+ ([fe80::9e5b:e01e:24c0:204c%3]) with mapi id 15.21.0406.007; Thu, 10 Sep 2026
+ 10:20:26 +0000
+Message-ID: <62f487d6-a673-47ef-91c5-66232a0d910e@intel.com>
+Date: Thu, 10 Sep 2026 12:20:07 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/1] drm/xe/guc: Fix wake_up race in handle_sched_done
+To: Jakub Legowski <jakub.legowski@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: <matthew.brost@intel.com>
+References: <20260909070825.228551-1-jakub.legowski@intel.com>
+Content-Language: en-US
+From: Maciej Patelczyk <maciej.patelczyk@intel.com>
+In-Reply-To: <20260909070825.228551-1-jakub.legowski@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VIVP296CA0057.AUTP296.PROD.OUTLOOK.COM
+ (2603:10a6:800:35a::15) To SA1PR11MB5900.namprd11.prod.outlook.com
+ (2603:10b6:806:238::21)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB5885:EE_|DS4PR11MB204441:EE_
+X-MS-Office365-Filtering-Correlation-Id: fa79c26c-8da9-4473-75e5-08df0f2518dd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|366016|376014|1800799024|6133799003|10067099003|11063799006|56012099006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: ycRwoxhr/cDbGaptQIUcL/FtkVI2BneIaRCLxMWyl7bxgDGjxSd10X6ZHGGezFqlTvUlt4yk1nNWEw3N14Qj4kE41oSxsLRy8AZUS9Woda85W07M/cDleHy8OW1P8BKut+AEluHMgr+OcPDyXtuIu76bPV+LOujC5Elh+ExAptK8x40bqPso5qsYEWQdA8x2hm47L6Jz9sygtD2cve/fT3MjVqkveFG3ZSjRkKG3gNkP8sCUymv48mcOlgnPzDJx18rUGNIs85bUMPe+V7hZ8+gDg4Qqh2C7IpCYSuV3N8AFbRJnyf/uRjeoKPrYWwn3l+qptBn01mp+tr7MRhpxd6yZD5rMgbVzPiI0/QP4Q7LT7cUFTXuOA7oIwdb4mI37bF1d+selVMM6XJzsMbqEmeZ2Sq5ICY/UPDqOZtqCoL3AMAT6YkoYoO8BF6X3kbLODow6wfq/TJEEqTtG98pTgBnfRlAcVGF1G1nrYSYzxv9zOBAsKT9/pZ9zEwX2Jm8vKZdlQt2i4/ijJ2M0Mjuofzp3mm/QotYN6kd18MGd5ppiDJMDgqi8gBCLVOuiAak1Am1qJqv8FvbUBK6ocCAfH17jh6MmuL0/FhGh8lZWDkN7HRACvJCmy2IQhpv2sBbvqHIqDKSPHMkVHO7yq/C4T62cUW9mB8utXvfH8WFUwtA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB5885.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(6133799003)(10067099003)(11063799006)(56012099006)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cHNjeDYrc1ZYbUVUWHJSemx6NVg2Z3MxRWJHbnJVQzVVUXlXVWhibTlTYk9z?=
+ =?utf-8?B?RHQ2cHBFMFBmMjRINDRVdmdPRW1WLytCTDVmYUdyT1lOYkR1MWt3WkdGU211?=
+ =?utf-8?B?T0M1STUxbXRvc3d0VFQwaFJIVEZyK093WWpLRHRGaW84bGdVM3BkYzVPYVlU?=
+ =?utf-8?B?Y1E5L1VqUHBneUdJTDJVK3N6QVFPMThYanFjU3FxeUt5cmpYSGd6SFR3VWhV?=
+ =?utf-8?B?UkRTK01icTh1by85NllxSlRjWVE1dXZOQlBuUXJIRkpyM2NtV0NVbzJkWDFR?=
+ =?utf-8?B?VitjQmR2VWRGM2lHWWdmZENJTjlTSG5mTnhIaFVVWE1seVBoV21HYW9pTTlW?=
+ =?utf-8?B?K3R6cjR3ZWpiNmI4c1VlZ3cwZGZaZ2RVUldlYUMrK0orQjhpZnZHSFd6ck9r?=
+ =?utf-8?B?N25pakw4OTF0QUtwUzlQM0gwdVNxMEk1NDRrN3dSYjFHbjVjaVlrOFB4Ujd0?=
+ =?utf-8?B?cUZmY2hUWjdJNmJGeHF5QUFIVUxPbXJWL1JZbG5YZENiV1NIU0RCb0ZsbFNv?=
+ =?utf-8?B?NFpXTEo1RDRMM0RZMkp5cjBJK3U3NXNvN1lGTnlZQmFpeWdUTjM1WUFjaWI4?=
+ =?utf-8?B?c2sxMW1qM3JOYmJMUitzeFN4c2tWdk9xT0U0TC92OE11azFmeXJEMERPbG1m?=
+ =?utf-8?B?bVF4dzN0VjRuOWM1Q2pwRGVQaEJoV2JRZnJYaUw0ZWZ4OGRIMkFqN1oyR2Nw?=
+ =?utf-8?B?K3J4WEJyNlpFUEd2OGpKbFNQMTNDczdQbnJsaCtWTE9zVkMzVjRMSTJWZFRS?=
+ =?utf-8?B?SlVvMUJhY3RJdStFa0I4RGwyWjc3RWtIbmJWeXlFWktxWGVGeVY3RXhqSEsr?=
+ =?utf-8?B?SURuS1ZidTIxUjNTbUpZbTdreERDNXFqSkZRam53RlR1bHpKTlA5WENDR1Np?=
+ =?utf-8?B?a1E5Q2NuSHlIUDN6dkIzcElRcStKM2pEdDVBbjh3TWVZOHNtdlFwdW96TktU?=
+ =?utf-8?B?M1hKMldMUkZ0bW1Qbk03Y1lnbkhFb2FRV0pqbURhRmcwQjdCRzdhK3U1dnI1?=
+ =?utf-8?B?a1hpb29SRVZnZmJvTUFhb28vZXJmMmZsWHBHTk1XVjFmUENtcTV6M3hFL2Rl?=
+ =?utf-8?B?ZUhJVUlwaHBwOGxLcnlSREIvODNwK0JxVWEzam05d3RqMjN4N0ZZNnd4bEsw?=
+ =?utf-8?B?b1dmTXRHOXNEMEF0djFPMTZ3b0Q2K3IybFJlUlppbGdWM0hBNHdRc1hYbEIr?=
+ =?utf-8?B?aWZDMFh5ZzVtYUdETzhpS2FSQXRVQXlNVFBEZW5Wa2NGc283bisvbExNVmZU?=
+ =?utf-8?B?QzUxcnoyMkhRWnNPdzF2MHFBMVRGakkrdzZOTnJyNEdEa21GNUw1VzNzV1g2?=
+ =?utf-8?B?Sml5VGkzRWNrMU9peitKTlg4Vldmc05mdlp5dzM5NVovaVlVM0JDV0xUNWht?=
+ =?utf-8?B?bU1SdGRiUXJRcHJyMEhQMW1BTzEzcUhYd2x4b2hTaHo2bExPZ3hiYUYwVHZX?=
+ =?utf-8?B?VFNFVDRMZE9KY21yRjdoMlkwQ1NwNzJJNXVSN2YrVnBzTFZLa0lJaVRnNDlD?=
+ =?utf-8?B?bWo5MFAvd0lHWXpjYitjQktDdEFXQ3JVMUtKYkhtSkNnSGxGVk93ZkFwcUhu?=
+ =?utf-8?B?MlEvY2J3RVhzL2MyMzlQT1JQQ2k3L2h6Um9pbkVhaVNSZDVMQWd5dFBRVTVZ?=
+ =?utf-8?B?WlBoaTZFUkQ3Tm05bVcveHJJNjBzRHBhaTkxMldTWndZcWVyaWdmTjVIVFhC?=
+ =?utf-8?B?ZDliNGVXT3B1d05tSm54NjR6MkZJd21DeEdIQWxDSmxlcUhlUFpBM1lCN2l0?=
+ =?utf-8?B?UkFXVVFpbkxTc2hjUkxaRWZPR2hwSE1uSE5GTGdCRy9zcFg5Q0hkNGRMTVRz?=
+ =?utf-8?B?a0RXcXc5Z2tBTHdrZnhvak0ySDZqMlVWNkJKL3pmQ0RZVTRFc3pNa2ZNeVps?=
+ =?utf-8?B?NC9NYXU4SEVqdE9jbnVhZFR0UUQ4RmY5N2RTdVZkYk9QUUFoS1BmTVk0eE1n?=
+ =?utf-8?B?L09tM2xVNTRFSUpZblpCbVJNUEt3Q1FjU2lPN3BrbUxFSWsvL1lBM01oS1c5?=
+ =?utf-8?B?T1RJTkF6dnd5OFBYM1RiRUQ4TzE5NHAyMDBMWjlKcFo4bDZTYy9Xc0VUUDhy?=
+ =?utf-8?B?RzRrbjhaQ2l5TmUwMFc4OWZsNGo3Wi8wKzQ3ZndYdzBPT0pnWmlUdTcyTStE?=
+ =?utf-8?B?MU5yY3pyS3Q1U0hsNjdsZmFpSDlzU0pXdXVJSkE5cTBtU3JwOFVIc1pqb2JK?=
+ =?utf-8?B?U2gzQ3hVV1FKbGtWZ3dqZGFiU1hTN01vUW56ZmpqWEhVRUNzWmJpRmZXd0Zl?=
+ =?utf-8?B?ZHE0TlpuV2Y0NStrcmpVNXpRMEZMcVBjaVVxZFg0aWwxNVRpdnBMaFJ5bDhp?=
+ =?utf-8?B?RU1JeXVMa055Y1VOSVN5ZVhLT3FVZlBES1d0WStBNVFJUEpEcFp6OVFJdVFh?=
+ =?utf-8?Q?HohyHtxMwaHqVqPY=3D?=
+X-Exchange-RoutingPolicyChecked: gmEj+h69EhNNkmaDjqE0QIBZ7Bm5Q7dRvZlj6kyxhMorrpO9lUSXH05TnWGJPW23y5tlKYoGT2MIh271EQlk2oS3NT9PyS5tsh4NOBCyVYLKAqzxvcg0gBwYWWyKNI/a8oWUNyvyAmauvg49jmUR1uJpZ4BhWKPMdZ0MF1arhpno5R4tv+PiD9WHRksw3OQYCgmnq3KHMkNlsqs87/+14aBcN7yfKs8lb6mSm8NXhmel2ekjph1aNparaAHF+Soup4FMKtAkx11vV+9ib7UFoWxRZc0EkV31R6DfcGCN/i7YWMSm+bB4z8bStnRRPglR314i/knTmRKSXLKxQf1hPw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa79c26c-8da9-4473-75e5-08df0f2518dd
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB5900.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2026 10:20:26.4163 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lU59nrzX7M9pmGRKdfmqOahWeZTWurWs4rkxj3c5k8vZznRbQmmH4EfrzuIJrFWZEewJn5Ihz4n1kWO2DjibkORJP3fFxKgVdDbekWWYtho=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR11MB204441
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,414 +168,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2026-08-27 at 15:47 +0530, Arvind Yadav wrote:
-> PCI error recovery currently uses xe->wedged.flag to block driver
-> access. This mixes a temporary AER reset with a permanent device
-> wedge.
->=20
-> If the device wedges during AER recovery, the wedge is not seen as
-> the
-> first transition. The AER resume callback may then clear the flag and
-> make the permanently wedged device appear usable again.
->=20
-> Keep the old device blocked while slot reset removes it, and block
-> the
-> new device until the AER resume callback.
->=20
-> The old AER path took a runtime PM reference to balance
-> xe_device_wedged_fini(), which drops one when wedged.flag is set. AER
-> no
-> longer sets that flag, so keeping the Xe-owned reference would leak
-> it.
-> pcie_do_recovery() holds a PCI-core runtime PM reference across the
-> error_detected, slot_reset and resume callbacks.
->=20
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Assisted-by: Claude:claude-opus-4-8
-> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+On 09/09/2026 09:08, Jakub Legowski wrote:
+
+> Move wake_up_all() after clear_exec_queue_pending_disable()
+>
+> When a SCHED_DONE G2H arrives for a banned exec queue,
+> handle_sched_done() calls wake_up_all() before
+> clear_exec_queue_pending_disable(). This creates a race with the
+> wait_event_timeout() in guc_exec_queue_timedout_job() that waits
+> for pending_disable to be cleared:
+>
+>      smp_rmb();
+>      ret = wait_event_timeout(guc->ct.wq,
+>                   ...
+>                   ...);
+>
+> This was observed as:
+> [drm:guc_exec_queue_timedout_job [xe]] Tile0: GT0: Check job timeout: seqno=4294967169, lrc_seqno=4294967169, guc_id=4, running_time_ms=0, timeout_ms=5000, diff=0x00000001
+>
+> Moving the wake_up_all() (along with its smp_wmb())
+> after all paths that clear pending_disable, ensuring that waiters
+> always observe the updated state when woken.
+>
+> Same as for runnable_state == 1 in the beginning of
+> handle_sched_done().
+>
+> Signed-off-by: Jakub Legowski <jakub.legowski@intel.com>
 > ---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
-> =C2=A0drivers/gpu/drm/xe/xe_device.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0 4 ++--
-> =C2=A0drivers/gpu/drm/xe/xe_device.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 12 ++++++++++++
-> =C2=A0drivers/gpu/drm/xe/xe_guc_ct.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0 4 ++--
-> =C2=A0drivers/gpu/drm/xe/xe_guc_pc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 10 +++++-----
-> =C2=A0drivers/gpu/drm/xe/xe_guc_rc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0 4 ++--
-> =C2=A0drivers/gpu/drm/xe/xe_guc_submit.c=C2=A0=C2=A0=C2=A0 |=C2=A0 8 ++++=
-++--
-> =C2=A0drivers/gpu/drm/xe/xe_guc_tlb_inval.c |=C2=A0 8 +++++++-
-> =C2=A0drivers/gpu/drm/xe/xe_pci_error.c=C2=A0=C2=A0=C2=A0=C2=A0 | 22 ++++=
-+++++++-----------
-> =C2=A0drivers/gpu/drm/xe/xe_sriov_pf.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 2 +-
-> =C2=A010 files changed, 49 insertions(+), 27 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index dde309821237..b86cd6030ed6 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -2094,7 +2094,7 @@ static vm_fault_t xe_bo_cpu_fault(struct
-> vm_fault *vmf)
-> =C2=A0	int err =3D 0;
-> =C2=A0	int idx;
-> =C2=A0
-> -	if (xe_device_wedged(xe) || !drm_dev_enter(&xe->drm, &idx))
-> +	if (xe_device_io_blocked(xe) || !drm_dev_enter(&xe->drm,
-> &idx))
-> =C2=A0		return ttm_bo_vm_dummy_page(vmf, vmf->vma-
-> >vm_page_prot);
-> =C2=A0
-> =C2=A0	ret =3D xe_bo_cpu_fault_fastpath(vmf, xe, bo, needs_rpm);
-> diff --git a/drivers/gpu/drm/xe/xe_device.c
-> b/drivers/gpu/drm/xe/xe_device.c
-> index 74d566693dfd..a92e90acdf0d 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -225,7 +225,7 @@ static long xe_drm_ioctl(struct file *file,
-> unsigned int cmd, unsigned long arg)
-> =C2=A0	struct xe_device *xe =3D to_xe_device(file_priv->minor->dev);
-> =C2=A0	long ret;
-> =C2=A0
-> -	if (xe_device_wedged(xe))
-> +	if (xe_device_io_blocked(xe))
-> =C2=A0		return -ECANCELED;
-> =C2=A0
-> =C2=A0	ACQUIRE(xe_pm_runtime_ioctl, pm)(xe);
-> @@ -243,7 +243,7 @@ static long xe_drm_compat_ioctl(struct file
-> *file, unsigned int cmd, unsigned lo
-> =C2=A0	struct xe_device *xe =3D to_xe_device(file_priv->minor->dev);
-> =C2=A0	long ret;
-> =C2=A0
-> -	if (xe_device_wedged(xe))
-> +	if (xe_device_io_blocked(xe))
-> =C2=A0		return -ECANCELED;
-> =C2=A0
-> =C2=A0	ACQUIRE(xe_pm_runtime_ioctl, pm)(xe);
-> diff --git a/drivers/gpu/drm/xe/xe_device.h
-> b/drivers/gpu/drm/xe/xe_device.h
-> index 6c4cfaebc44a..a3f876c60d76 100644
-> --- a/drivers/gpu/drm/xe/xe_device.h
-> +++ b/drivers/gpu/drm/xe/xe_device.h
-> @@ -212,6 +212,18 @@ static inline bool xe_device_wedged(struct
-> xe_device *xe)
-> =C2=A0	return atomic_read(&xe->wedged.flag);
-> =C2=A0}
-> =C2=A0
-> +/*
-> + * Return true when device access must be blocked either permanently
-> because
-> + * the device is wedged or temporarily while PCI error recovery is
-> running.
-> + *
-> + * Do not use this helper for one-way wedged-device decisions such
-> as DMA
-> + * isolation, IRQ resume suppression or recovery-method reporting.
-> + */
-> +static inline bool xe_device_io_blocked(struct xe_device *xe)
-> +{
-> +	return xe_device_wedged(xe) || xe_device_is_in_reset(xe);
-> +}
-> +
-> =C2=A0#ifdef CONFIG_DRM_XE_DEBUG_PAGE_SIZE
-> =C2=A0static inline bool xe_debug_page_size_supported(struct xe_device
-> *xe)
-> =C2=A0{
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c
-> b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index 5c4733da385c..3c3fe4928fa2 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -1062,7 +1062,7 @@ static int __guc_ct_send_locked(struct
-> xe_guc_ct *ct, const u32 *action,
-> =C2=A0	xe_gt_assert(gt, g2h_len || !num_g2h);
-> =C2=A0	lockdep_assert_held(&ct->lock);
-> =C2=A0
-> -	if (xe_device_wedged(ct_to_xe(ct))) {
-> +	if (xe_device_io_blocked(ct_to_xe(ct))) {
-> =C2=A0		ret =3D -ENOTRECOVERABLE;
-> =C2=A0		goto out;
-> =C2=A0	}
-> @@ -1813,7 +1813,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32
-> *msg, bool fast_path)
-> =C2=A0	xe_gt_assert(gt, xe_guc_ct_initialized(ct));
-> =C2=A0	lockdep_assert_held(&ct->fast_lock);
-> =C2=A0
-> -	if (xe_device_wedged(xe))
-> +	if (xe_device_io_blocked(xe))
-> =C2=A0		return -ENOTRECOVERABLE;
-> =C2=A0
-> =C2=A0	if (ct->state =3D=3D XE_GUC_CT_STATE_DISABLED)
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c
-> b/drivers/gpu/drm/xe/xe_guc_pc.c
-> index 097b075bd89a..9fe397296dc4 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-> @@ -188,7 +188,7 @@ static int pc_action_reset(struct xe_guc_pc *pc)
-> =C2=A0	int ret;
-> =C2=A0
-> =C2=A0	ret =3D xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
-> -	if (ret && !(xe_device_wedged(pc_to_xe(pc)) && ret =3D=3D -
-> ECANCELED))
-> +	if (ret && !(xe_device_io_blocked(pc_to_xe(pc)) && ret =3D=3D -
-> ECANCELED))
-> =C2=A0		xe_gt_err(pc_to_gt(pc), "GuC PC reset failed:
-> %pe\n",
-> =C2=A0			=C2=A0 ERR_PTR(ret));
-> =C2=A0
-> @@ -212,7 +212,7 @@ static int pc_action_query_task_state(struct
-> xe_guc_pc *pc)
-> =C2=A0
-> =C2=A0	/* Blocking here to ensure the results are ready before
-> reading them */
-> =C2=A0	ret =3D xe_guc_ct_send_block(ct, action, ARRAY_SIZE(action));
-> -	if (ret && !(xe_device_wedged(pc_to_xe(pc)) && ret =3D=3D -
-> ECANCELED))
-> +	if (ret && !(xe_device_io_blocked(pc_to_xe(pc)) && ret =3D=3D -
-> ECANCELED))
-> =C2=A0		xe_gt_err(pc_to_gt(pc), "GuC PC query task state
-> failed: %pe\n",
-> =C2=A0			=C2=A0 ERR_PTR(ret));
-> =C2=A0
-> @@ -235,7 +235,7 @@ static int pc_action_set_param(struct xe_guc_pc
-> *pc, u8 id, u32 value)
-> =C2=A0		return -EAGAIN;
-> =C2=A0
-> =C2=A0	ret =3D xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
-> -	if (ret && !(xe_device_wedged(pc_to_xe(pc)) && ret =3D=3D -
-> ECANCELED))
-> +	if (ret && !(xe_device_io_blocked(pc_to_xe(pc)) && ret =3D=3D -
-> ECANCELED))
-> =C2=A0		xe_gt_err(pc_to_gt(pc), "GuC PC set param[%u]=3D%u
-> failed: %pe\n",
-> =C2=A0			=C2=A0 id, value, ERR_PTR(ret));
-> =C2=A0
-> @@ -257,7 +257,7 @@ static int pc_action_unset_param(struct xe_guc_pc
-> *pc, u8 id)
-> =C2=A0		return -EAGAIN;
-> =C2=A0
-> =C2=A0	ret =3D xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
-> -	if (ret && !(xe_device_wedged(pc_to_xe(pc)) && ret =3D=3D -
-> ECANCELED))
-> +	if (ret && !(xe_device_io_blocked(pc_to_xe(pc)) && ret =3D=3D -
-> ECANCELED))
-> =C2=A0		xe_gt_err(pc_to_gt(pc), "GuC PC unset param failed:
-> %pe",
-> =C2=A0			=C2=A0 ERR_PTR(ret));
-> =C2=A0
-> @@ -1357,7 +1357,7 @@ static void xe_guc_pc_fini_hw(void *arg)
-> =C2=A0	struct xe_guc_pc *pc =3D arg;
-> =C2=A0	struct xe_device *xe =3D pc_to_xe(pc);
-> =C2=A0
-> -	if (xe_device_wedged(xe))
-> +	if (xe_device_io_blocked(xe))
-> =C2=A0		return;
-> =C2=A0
-> =C2=A0	xe_guc_pc_stop(pc);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_rc.c
-> b/drivers/gpu/drm/xe/xe_guc_rc.c
-> index 99fa127b261f..eb5ec443f7ee 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_rc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_rc.c
-> @@ -40,7 +40,7 @@ static int guc_action_setup_gucrc(struct xe_guc
-> *guc, u32 control)
-> =C2=A0	int ret;
-> =C2=A0
-> =C2=A0	ret =3D xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
-> 0, 0);
-> -	if (ret && !(xe_device_wedged(guc_to_xe(guc)) && ret =3D=3D -
-> ECANCELED))
-> +	if (ret && !(xe_device_io_blocked(guc_to_xe(guc)) && ret =3D=3D
-> -ECANCELED))
-> =C2=A0		xe_gt_err(guc_to_gt(guc),
-> =C2=A0			=C2=A0 "GuC RC setup %s(%u) failed (%pe)\n",
-> =C2=A0			=C2=A0=C2=A0 control =3D=3D GUCRC_HOST_CONTROL ?
-> "HOST_CONTROL" :
-> @@ -73,7 +73,7 @@ static void xe_guc_rc_fini_hw(void *arg)
-> =C2=A0	struct xe_device *xe =3D guc_to_xe(guc);
-> =C2=A0	struct xe_gt *gt =3D guc_to_gt(guc);
-> =C2=A0
-> -	if (xe_device_wedged(xe))
-> +	if (xe_device_io_blocked(xe))
-> =C2=A0		return;
-> =C2=A0
-> =C2=A0	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
-> b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index 99d8c807ff05..a307af458cf8 100644
+>   drivers/gpu/drm/xe/xe_guc_submit.c | 30 ++++++++++++++++--------------
+>   1 file changed, 16 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index 99d8c807ff05..a181b5042293 100644
 > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -2452,7 +2452,7 @@ static int
-> guc_exec_queue_wait_suspend_done(struct xe_exec_queue *q, bool blocki
-> =C2=A0						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 WAIT_COND, HZ
-> * 5);
-> =C2=A0	}
-> =C2=A0
-> -	if (!blocking && vf_recovery(guc) && !xe_device_wedged(xe))
-> +	if (!blocking && vf_recovery(guc) &&
-> !xe_device_io_blocked(xe))
-> =C2=A0		return -EAGAIN;
-> =C2=A0
-> =C2=A0	if (!ret)
-> @@ -2694,7 +2694,11 @@ int xe_guc_submit_reset_prepare(struct xe_guc
-> *guc)
-> =C2=A0
-> =C2=A0void xe_guc_submit_reset_wait(struct xe_guc *guc)
-> =C2=A0{
-> -	wait_event(guc->ct.wq, xe_device_wedged(guc_to_xe(guc)) ||
-> +	/*
-> +	 * AER sets in_reset before declaring the GT wedged, which
-> wakes this
-> +	 * waitqueue.
-> +	 */
-> +	wait_event(guc->ct.wq, xe_device_io_blocked(guc_to_xe(guc))
-> ||
-> =C2=A0		=C2=A0=C2=A0 !xe_guc_read_stopped(guc));
-> =C2=A0}
-> =C2=A0
-> diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> index 046d0655122f..646e13671cd9 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> @@ -34,6 +34,9 @@ static int send_tlb_inval(struct xe_guc *guc, const
-> u32 *action, int len)
-> =C2=A0
-> =C2=A0	xe_gt_assert(gt, action[1]);	/* Seqno */
-> =C2=A0
-> +	if (xe_device_io_blocked(guc_to_xe(guc)))
-> +		return -ECANCELED;
+> @@ -3239,25 +3239,27 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
+>   			clear_exec_queue_pending_disable(q);
+>   			suspend_fence_signal(q);
+>   		} else {
+> +			bool destroyed = exec_queue_destroyed(q);
 > +
-> =C2=A0	xe_gt_stats_incr(gt, XE_GT_STATS_ID_TLB_INVAL, 1);
-> =C2=A0	return xe_guc_ct_send(&guc->ct, action, len,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 G2H_LEN_DW_TLB_INVALIDATE, 1);
-> @@ -69,6 +72,9 @@ static int send_tlb_inval_ggtt(struct xe_tlb_inval
-> *tlb_inval, u32 seqno)
-> =C2=A0	 * signals waiters.
-> =C2=A0	 */
-> =C2=A0
-> +	if (xe_device_io_blocked(xe))
-> +		return -ECANCELED;
+> +			/*
+> +			 * Make sure to clear the pending_disable only
+> +			 * after sampling the destroyed state. We want
+> +			 * to ensure we don't trigger the unregister too
+> +			 * early with something intending to only
+> +			 * disable scheduling. The caller doing the
+> +			 * destroy must wait for an ongoing
+> +			 * pending_disable before marking as destroyed.
+> +			 */
+> +			clear_exec_queue_pending_disable(q);
 > +
-> =C2=A0	if (xe_guc_ct_enabled(&guc->ct) && guc-
-> >submission_state.enabled) {
-> =C2=A0		u32 action[] =3D {
-> =C2=A0			XE_GUC_ACTION_TLB_INVALIDATION,
-> @@ -77,7 +83,7 @@ static int send_tlb_inval_ggtt(struct xe_tlb_inval
-> *tlb_inval, u32 seqno)
-> =C2=A0		};
-> =C2=A0
-> =C2=A0		return send_tlb_inval(guc, action,
-> ARRAY_SIZE(action));
-> -	} else if (xe_device_uc_enabled(xe) &&
-> !xe_device_wedged(xe)) {
-> +	} else if (xe_device_uc_enabled(xe)) {
-> =C2=A0		struct xe_mmio *mmio =3D &gt->mmio;
-> =C2=A0
-> =C2=A0		if (IS_SRIOV_VF(xe))
-> diff --git a/drivers/gpu/drm/xe/xe_pci_error.c
-> b/drivers/gpu/drm/xe/xe_pci_error.c
-> index 79ce0c671549..d82256d8721f 100644
-> --- a/drivers/gpu/drm/xe/xe_pci_error.c
-> +++ b/drivers/gpu/drm/xe/xe_pci_error.c
-> @@ -9,7 +9,6 @@
-> =C2=A0#include "xe_gt.h"
-> =C2=A0#include "xe_log.h"
-> =C2=A0#include "xe_pci.h"
-> -#include "xe_pm.h"
-> =C2=A0#include "xe_printk.h"
-> =C2=A0#include "xe_ras.h"
-> =C2=A0#include "xe_survivability_mode.h"
-> @@ -20,14 +19,15 @@ static void prepare_device_for_reset(struct
-> pci_dev *pdev)
-> =C2=A0	struct xe_gt *gt;
-> =C2=A0	u8 id;
-> =C2=A0
+>   			if (exec_queue_banned(q)) {
+> +				/* Pairs with smp_rmb in guc_exec_queue_timedout_job */
+>   				smp_wmb();
+>   				wake_up_all(&guc->ct.wq);
+>   			}
+> -			if (exec_queue_destroyed(q)) {
+> -				/*
+> -				 * Make sure to clear the pending_disable only
+> -				 * after sampling the destroyed state. We want
+> -				 * to ensure we don't trigger the unregister too
+> -				 * early with something intending to only
+> -				 * disable scheduling. The caller doing the
+> -				 * destroy must wait for an ongoing
+> -				 * pending_disable before marking as destroyed.
+> -				 */
+> -				clear_exec_queue_pending_disable(q);
 > +
-> =C2=A0	/*
-> -	 * Wedge the device to prevent userspace access but do not
-> send the uevent.
-> -	 * xe_device_wedged_fini() releases runtime pm if wedged
-> flag is set, so acquire a runtime
-> -	 * pm reference to avoid underflow.
-> +	 * Block device access while PCI error recovery is in
-> progress.
-> +	 *
-> +	 * The old runtime PM reference balanced
-> xe_device_wedged_fini() while
-> +	 * AER set wedged.flag. AER no longer sets that flag, and
-> +	 * pcie_do_recovery() holds its own runtime PM reference
-> across the
-> +	 * recovery callbacks.
+> +			if (destroyed)
+>   				deregister_exec_queue(guc, q);
+> -			} else {
+> -				clear_exec_queue_pending_disable(q);
+> -			}
+>   		}
+>   	}
+>   }
 
-This is an in-code comment describing what this patch is doing. A
-future code reader has no idea what "The old runtime PM reference" is.
-Please keep comments involving the old pre-patch code in the commit
-message.
+Apply suggested changes by Matthew.
 
+Looks good.
 
-> =C2=A0	 */
-> -	if (!atomic_xchg(&xe->wedged.flag, 1))
-> -		xe_pm_runtime_get_noresume(xe);
-> -
-> =C2=A0	xe_device_set_in_reset(xe);
-> =C2=A0
-> =C2=A0	for_each_gt(gt, xe, id)
-> @@ -116,7 +116,6 @@ static pci_ers_result_t
-> xe_pci_error_slot_reset(struct pci_dev *pdev)
-> =C2=A0	 * TODO: optimize by re-initializing only the hardware state
-> and re-creating
-> =C2=A0	 * kernel BOs.
-> =C2=A0	 */
-> -	xe_device_clear_in_reset(xe);
-> =C2=A0	pdev->driver->remove(pdev);
-> =C2=A0	devres_release_group(&pdev->dev, xe->devres_group);
-> =C2=A0
-> @@ -125,8 +124,8 @@ static pci_ers_result_t
-> xe_pci_error_slot_reset(struct pci_dev *pdev)
-> =C2=A0
-> =C2=A0	xe =3D pdev_to_xe_device(pdev);
-> =C2=A0
-> -	/* Wedge the device to prevent I/O operations till the
-> resume callback */
-> -	atomic_set(&xe->wedged.flag, 1);
-> +	/* Block the new instance until the resume callback. */
-> +	xe_device_set_in_reset(xe);
-> =C2=A0
-> =C2=A0	return PCI_ERS_RESULT_RECOVERED;
-> =C2=A0}
-> @@ -137,7 +136,8 @@ static void xe_pci_error_resume(struct pci_dev
-> *pdev)
-> =C2=A0
-> =C2=A0	xe_info(xe, "PCI error: resume\n");
-> =C2=A0
-> -	atomic_set(&xe->wedged.flag, 0);
-> +	/* Resume I/O operations. */
-> +	xe_device_clear_in_reset(xe);
-> =C2=A0}
-> =C2=A0
-> =C2=A0const struct pci_error_handlers xe_pci_error_handlers =3D {
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c
-> b/drivers/gpu/drm/xe/xe_sriov_pf.c
-> index 33bd754d138f..568b7ed7c380 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov_pf.c
-> +++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
-> @@ -157,7 +157,7 @@ int xe_sriov_pf_wait_ready(struct xe_device *xe)
-> =C2=A0	unsigned int id;
-> =C2=A0	int err;
-> =C2=A0
-> -	if (xe_device_wedged(xe))
-> +	if (xe_device_io_blocked(xe))
-> =C2=A0		return -ECANCELED;
-> =C2=A0
-> =C2=A0	for_each_gt(gt, xe, id) {
+Reviewed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 
-
-/Thomas
