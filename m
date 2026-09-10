@@ -4,149 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ECF4C79FBB
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 21:18:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B442C88E42
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 21:23:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6A8310E8BE;
-	Thu, 10 Sep 2026 21:18:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F283C10E8C0;
+	Thu, 10 Sep 2026 21:23:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="deF8GRUQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YvZyeyqW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38CE810E875
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 21:18:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9857A10E331;
+ Thu, 10 Sep 2026 21:23:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789075103; x=1820611103;
+ t=1789075428; x=1820611428;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=dKdrGt0ggwSXwEgEc8M7JCXfmqiODSi+MQaVsbddhQ8=;
- b=deF8GRUQ9COocvP37HR+GBKBQRbN1SztVICCAJpawJX1L3lmxhw5fzHh
- TvKCg0P+XoGBZVQMlRPUruuYjG6htSx1Zt4sDABa7oihpXyPv1tmfg4ai
- asoxpD8mdvlXus6bS0UbskVb/KL/ljnOETJC4zS/WcnKIxV/1BMTtMqUc
- suoDcHHb2sYpwkvjItDajpfIOXGj6OrYUNXorpAY9e8hs7/Rhowjxj1NI
- Girisd6ObQuzBNMbnSfxw1ELVsGVAuEcN4Nh1t1yxvsAgow4pffFzhYxi
- Cj4rBFqyghxL4ydi0TrkSXdYah7txdqDYbBV6hO0Dg5UNuYMgBo5NLunN A==;
-X-CSE-ConnectionGUID: 5kDWCE8KQbKaXaZKazkgzA==
-X-CSE-MsgGUID: REzld3LWQKq3LD/xp/9rcw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11901"; a="89567726"
+ bh=PB+w2HlQ6WTdm9Rn2UgHh3XVFcCJ87xXeJfgwQGUBSI=;
+ b=YvZyeyqWhT8SnUpBJGP8Ob6hIBf+1KRcfXFe1i5J6Rip1ysv7rTPw+VW
+ CI15pGt/O+tC6eXG0zM/8PVs3X7d6vPkZEy7JE07er/pzokCAaevUIGXM
+ 4KlF+KwrHezxwdB5E9ED4WOvNhHUG1Pfoaxe5/6rxa1gx/Yo5XuSZK8v/
+ G2uXWGJnDPugqLXaRSr0TXo0qL3fjCwcpf8cM/Wpckl3NMmyI3J/DN9MT
+ lvgFBGNOAk6LvhlQzb7J3PtkbdeeXkyYd7A3vOo1f1sMlDPredoS/TJrE
+ mYMAFHW7OSSBeVy7JceWaD5ZZf8QWb4r7wfY7Dlh91vpSqoXC+x7vrG0U A==;
+X-CSE-ConnectionGUID: BkUZY087QSSizKgcvTt0bg==
+X-CSE-MsgGUID: Ik4MgLBjSL2CB4ScDlP/Kg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11901"; a="89749242"
 X-IronPort-AV: E=Sophos;i="6.27,96,1787036400"; 
-   d="scan'208";a="89567726"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2026 14:18:22 -0700
-X-CSE-ConnectionGUID: 8Bvp/xJbR3ePk0EGmzqhdQ==
-X-CSE-MsgGUID: AwaoyF1CSuye5Nv4l9epbg==
+   d="scan'208";a="89749242"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2026 14:23:47 -0700
+X-CSE-ConnectionGUID: sLSJOAszRsO4palQ7l065A==
+X-CSE-MsgGUID: b4W0K/54RvmdhYKS/0RQ0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,96,1787036400"; d="scan'208";a="275271556"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2026 14:18:22 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,96,1787036400"; d="scan'208";a="275897738"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2026 14:23:47 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 10 Sep 2026 14:18:21 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.46; Thu, 10 Sep 2026 14:23:46 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Thu, 10 Sep 2026 14:18:21 -0700
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.67) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Thu, 10 Sep 2026 14:23:46 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.56) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 10 Sep 2026 14:18:20 -0700
+ 15.2.2562.46; Thu, 10 Sep 2026 14:23:46 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TF8Yk1USBTMVsKxxWrUYELiwe2du918jHBxlFNHcWsYuJqH8b094KRfH5HHrgfe/fOScK6LeSxVszkVPOpT856E0BY63p1iQCTi3g4xZfbOCglI+5Ec29sFk+Hh/wuyEXOYYizOO3iELfP+si8CEFW55dUgW32lEmmdbITj1Am7Pb6DvSkBd/1bG/fVcgTxY/DrmoMAXjMzdgJhvvKvE8wwHhKYr/lVHYbPMSjxLjzcXq1RMe+xlGLOHuixRRUC6s2Jxi68hUbl1WPHRgZZxmdL2U/gy8u7Kn22DdxXUqBHR32EO45e0Id40Nb6osqh2TNvRQ/OWOd8JOtCce6nyAw==
+ b=BVN0FksP5MXKeJ1EzFnm8ftq4Ncf6o6sFp9IvqSSI9m+jRimYEx1U1P5hxYk94dvXISA1K7RN31KKfmwZfHKZWT8SfE9gO/xw/8WD9DRr6/rn6LgZfSKbBCdcdS/qLGDGr4VD3uNgtp03Wgy97sq2NSzM11SiHzPtK1/ISizUBZqTOfwhFDJRdRHdXCQRaYcpDbtLq+yHYysUMpoazcIfYUSM2CIg9bx62NxJR0BPdcuRSvUtY12vs2VrxDGAAgv2TLYZDXf4cFXf/NNWOUlcpIhEbGUhBjq5eh7tVs80kdGNdcFSFfJHZ77YFsz97BIgmiRAZ9T22Z5/x4nrCSbcw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B1oVivieeQEiF4EyZkiIKRcLyMNkRX8x9WFtctKsCyw=;
- b=qcJFVR2mFEVESEAQkNrM30PDJCwhf6d+6ArOFDVa7TSHc2hmDtwPg+a8N59p+nFKsiy6oPz/mxRG3K8ZVIRGMBeV+gYxCBqz0trVmabgnuLzKkyaMcyKnWZxiRLA/3dD5h7KxrI89KzAhzLv5r8W7txCW6j342b2/HF6OCZDr+54wtONuzHnYPfioZDkJ7tNFXZKS4PwU+Xr93txPv6XRjZqTTV38EMgmSctEjSOPoEVwDT/4XYyPphhrFilavVWHmK30qbWg3WH6T5Ger2TwV9r/Zk86x0CdsPcZ6zCZkul7EIZtjW5qChyQVhVjnEQ9B95YrMFSkn7YNxaTGKu5A==
+ bh=Goo0xvndSAw+DsKPX1r/rY4LmQCGxDCMjlXEI+UDsog=;
+ b=pusLRsE+jPb9EVlAkCK7HYA+iLcowhm7n4vkgP52oxfdN2lZE/jj3K16trQ11sP+VtRAhrc2TtI/5bo5ttrUAWx6BLgbgxkIM1ZMsNA9y1wTRljoB3vjnkSyROteiUB8lzD+lNUD3GtWYlqnfInWmda4LSrslYF1KUBwfP+J4bEYpvlvMI3Ty6lg+EFhYA2z8QopW9qntVFyENZ0E3pSpR0lJgbGgg5qA2V+F55OFiJ0H9L5h4m10ouzNU+s0u2fx12myfdvVtQAGfRCvMa5s9jGV03hrhaaE0hc4oaZjB4PEa1AXS/gbl7y/GX9dO5VB87K80uKGEvtHjx7CiGqiA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from IA0PR11MB7187.namprd11.prod.outlook.com (2603:10b6:208:441::12)
- by PH8PR11MB6610.namprd11.prod.outlook.com (2603:10b6:510:1cd::17)
+ by SA3PR11MB8048.namprd11.prod.outlook.com (2603:10b6:806:2fd::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.9; Thu, 10 Sep
- 2026 21:18:16 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.7; Thu, 10 Sep
+ 2026 21:23:44 +0000
 Received: from IA0PR11MB7187.namprd11.prod.outlook.com
  ([fe80::be96:3f58:953d:6565]) by IA0PR11MB7187.namprd11.prod.outlook.com
  ([fe80::be96:3f58:953d:6565%4]) with mapi id 15.21.0406.005; Thu, 10 Sep 2026
- 21:18:14 +0000
-Date: Thu, 10 Sep 2026 17:18:10 -0400
+ 21:23:43 +0000
+Date: Thu, 10 Sep 2026 17:23:36 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Alan Previn <alan.previn.teres.alexis@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <julia.filipchuk@intel.com>,
- <matthew.brost@intel.com>, Zhanjun Dong <zhanjun.dong@intel.com>,
- =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Subject: Re: [PATCH v8 2/2] drm/xe/guc: Compress GuC log and CTB dump with zstd
-Message-ID: <aqMekldlWxNWQrFD@intel.com>
-References: <20260902234039.885267-4-alan.previn.teres.alexis@intel.com>
- <20260902234039.885267-6-alan.previn.teres.alexis@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+CC: Hawking Zhang <Hawking.Zhang@amd.com>, Tao Zhou <tao.zhou1@amd.com>,
+ YiPeng Chai <YiPeng.Chai@amd.com>, Jinzhou Su <jinzhou.su@amd.com>, Ce Sun
+ <cesun102@amd.com>, Lijo Lazar <lijo.lazar@amd.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Christian =?iso-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, <amd-gfx@lists.freedesktop.org>, Dave Airlie
+ <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <netdev@vger.kernel.org>, Tejas Upadhyay <tejas.upadhyay@intel.com>, "Himal
+ Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>, Riana Tauro
+ <riana.tauro@intel.com>, Raag Jadav <raag.jadav@intel.com>, "Joshua Santhosh
+ Ranjan" <joshua.santosh.ranjan@intel.com>, Ashwin Kumar Kulkarni
+ <ashwin.kumar.kulkarni@intel.com>, Pratik Bari <pratik.bari@intel.com>,
+ <srinivasa.adatrao@intel.com>
+Subject: Re: [RFC] drm/xe: Expose retired VRAM pages via drm-ras
+Message-ID: <aqMf2OOqa-X4TLt0@intel.com>
+References: <20260831133843.1076705-1-aravind.iddamsetty@linux.intel.com>
+ <apXDa759PsTggOK5@intel.com>
+ <75348f48-ce00-43f0-9030-a6e4cdea90b2@linux.intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260902234039.885267-6-alan.previn.teres.alexis@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0278.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::13) To IA0PR11MB7187.namprd11.prod.outlook.com
+In-Reply-To: <75348f48-ce00-43f0-9030-a6e4cdea90b2@linux.intel.com>
+X-ClientProxiedBy: SJ0PR03CA0007.namprd03.prod.outlook.com
+ (2603:10b6:a03:33a::12) To IA0PR11MB7187.namprd11.prod.outlook.com
  (2603:10b6:208:441::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|PH8PR11MB6610:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4ef432fe-30b0-4d25-b121-08df0f81061a
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|SA3PR11MB8048:EE_
+X-MS-Office365-Filtering-Correlation-Id: b50ac22e-bd5f-43e0-708e-08df0f81ca3d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|1800799024|366016|4143699003|6133799003|10067099003|56012099006|11063799006|18002099003|22082099003|3023799007;
-X-Microsoft-Antispam-Message-Info: H4mh2cQy5q+iux7g9oSj/Hgw0m5NIlFDcVUSoE+Y4zJdmwkLcztMltV1tBA9RBb7oXRmVPsS5IJe79EGP6ehKYuQc9MT29hrUVN4sAHea6zdNHwrsRAMRX28Fb5jF1ykM7G9UTLlPdN8Vy4SLKh14HV3x2P75JVzDOYjAcC6RDec9Mtf3A7EUpTxgterOoiVQT7/MLsm36e3ob078yg2ekrCGCGud1i2+eFUst2dY0G6hMUwXXVKLgF8rRkkXr7Y2b+/e7zlNDJwYgn+D9fS6H3KEzwD0AzCPGTCZH6vEWZyFAUL79UT9sQ6ymMxxN1erofm0jbSgZ4sRDAAbxvp3XFEKiNovqtBuOQx1w9xMMJeVUKKEXCR9iU1MpRnEBdbTkmhdoPrK/UEQ8UJTtq7wD46+I0mHM48Ux0V3Nuap47dqeOH2WC9tk+QXa+wl/zSJQewhmnhUL7KicFWDZxuk9aZUwig/SL3cjSS7t80wCJhIzN0J92XXSE9dVpvFOzEsKUd+NwghvRRM1u1ejfryIBTv6mVBAsDL2dNEfqI5fQ6Wh5FIBILQJRqh0Sbp9hdDETDj9rvOZI3m60bZ2lHUc+Vl60ONTTOXe6tpCzWUx2od2Iph6dvwJb7QBE43IwIQCqCNcQ87Sc8lPyNefy5TCSziRvo4WHMX1JOkOvXrmI=
+ ARA:13230040|376014|7416014|366016|1800799024|23010399003|6133799003|3023799007|10067099003|4143699003|56012099006|11063799006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: l72kn764Lb3GUlF6pOYDbljGkWw+ATK01jEOrFmTH7L/RMG778vTW7p99wpcz7UF9nvAM7seeD3ChGgoRjI+mk09CkTzUDUoABER3jGqjSEm7uu3oRoGr0oj0yqy+5oG2gUznbN985zSGQcvxuZnxbtAROEqQaYf3KjK00H9qVb1Y3GlmW4Xg6afzDfrKh/sBKcTZkOzUhRA+WWQobwr3Zp0sj58oWWivPhen0Htq/Vc1INFLQhVJezRqJexD1wGkCjhShRVBXcbIIVQTkaQcfiEugO5ayY64fz46KZ1hZH5slE+PRjep0B8nVhifWSvC3hzzMn94Nsk8zkjrZOX7ddWAMiErwcEe92L2bffOcXf8ugizmkTT74iojozCtaTGS5YJuLy9KJLuJKdlIer0FMo8QTHhgTavX+8x+8d3u8RSm6napIkQ3OP5+2m3u2xbR2rgylbaCLe0WReLuAtkOsVOhxNShI42rHDa2/dKyPHaYHzbT6TJ7k5xFZFt31/e2agZqL3hIhLpMh9Ac+/X76M8hq+hJtGr2qZ0sCp0hWTZVpyrlcxMqbEBwVgFWDksgd60xT17dzK2xzVeT6OTA6GNaTjaRzkTyQCumzDhf2w37rQXWNvgIl/j1lnRJMempx5oRjau0mswzQhzaB+zwpTlu17wARoeG3ynEkz59k=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA0PR11MB7187.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(4143699003)(6133799003)(10067099003)(56012099006)(11063799006)(18002099003)(22082099003)(3023799007);
+ SFS:(13230040)(376014)(7416014)(366016)(1800799024)(23010399003)(6133799003)(3023799007)(10067099003)(4143699003)(56012099006)(11063799006)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?X17dENXpV43ZC3iM7ne4W7DJ5OesgwY/plug8FiYr7uyVf4d8LBr8z90gC?=
- =?iso-8859-1?Q?uyXoVTOlUXXBlTN5hh6xQpEQ+8nkE1P78Qk1QohQOh45wwUD7+j7itukRK?=
- =?iso-8859-1?Q?qWSnmT26D7BxbcHBLJ6OUr4m0o3SR4czeRKMELnK3BkUOJK/P/kB0pvRnG?=
- =?iso-8859-1?Q?xhrn/JBo+Hsb+IvvM1in7wZR5SRYw8xrcCwrbzSxoOPWt9+lYX1JtdLqkY?=
- =?iso-8859-1?Q?/NBSGmZVPrjQURibicnqz4mvKR+4A8GnbUGn4rZ8T6zON8GygRiTNeF26u?=
- =?iso-8859-1?Q?lpgzXg9F2BcuZf0Qlzvh6Hdt58jEfbiIN7bFZxdCI3P/HMmZjUynv6EluJ?=
- =?iso-8859-1?Q?W8NpicPB9CVNvO7QkQSEb0FFJTrrHcFp6cz+L0EOimxf1MdcZMpVDHBsng?=
- =?iso-8859-1?Q?JLoINPqoBVe2e/Da/tm+8YHU2igoOJA5bTc3Ls3h0e0em/LH2Yc44qW6YF?=
- =?iso-8859-1?Q?6shKiP0E1Az6LvpNCSobEObSnUNt1tIBjtnXqUjRwZeb/8fGcD6j2igE7E?=
- =?iso-8859-1?Q?wrVy/66wdhquMOUK9MsqRYI3vNnUic9j7dcUAaFAWFSmsVk83R3X3KtITz?=
- =?iso-8859-1?Q?Eb1xrb35x2ePSeiH6dZHFwWLZX3EP9BJUo6Jl4PoW2QuwtDXmTOCFOqG0m?=
- =?iso-8859-1?Q?ugDryiONP4TwRh6U4+TPOlUNvWRe8/tH72o8zAZKoF0RZ/4tdxJwmSoUkj?=
- =?iso-8859-1?Q?+mwelMr8IvfpwrGIsAYaLtLSb0oElpWzpWUdRiECHCF4nQzrQTDJbhF8C+?=
- =?iso-8859-1?Q?o5khJ+w5mK7Xo1yeGNGXaSf2PXFaNSnss7vcdjsurRUN/8aSQeRm5nqOPH?=
- =?iso-8859-1?Q?Eo58HAWTD7r9L87EenekWD08Qk4IYv2hBs/2tqFb0F0VuKTxLxugjxkc0o?=
- =?iso-8859-1?Q?779awljBy5bELcXlJ/1f2KVgv5iiR8rNyKYbdrH7i0fQwq8dqYx+Bjg5zz?=
- =?iso-8859-1?Q?we0U2c3d8Hhune8Fbyt0lbIDujqTairdSHVnd2LQNS0egD8CinOV/2otk3?=
- =?iso-8859-1?Q?wEpFbcf4OJ7lKRUk1qzmwS7B+KoREtiA4E6Zk1ubZwxB1TYeY6gIPFAyV5?=
- =?iso-8859-1?Q?62SVxiz4P9dzljYPJ0hUfqbkY3dPSaf3z671WC/ssQ9nrhoEtON2gtTAjY?=
- =?iso-8859-1?Q?i1k/7a5gVCAyeu2Ua8/L4esRqlmmHKkBHyVtI46gyDEtDA+F9Ad1T58c7G?=
- =?iso-8859-1?Q?3+vwhcNdAjJShRht2JHZMaKUF3ZqMxyuCzu9QMuD5QPXSSCgjYSXUZkPxt?=
- =?iso-8859-1?Q?QSrhDhfmctEljfq1QzkWCVYuQEdHQsRUD0fJj8cedGl635imJ8CA6FCAbK?=
- =?iso-8859-1?Q?a4J9amZXK4AwEuTwvsHXGaUjbj4+pwtAGjLUCTlOQLPRo6HxpYWo0Ob0xr?=
- =?iso-8859-1?Q?hp26fiDY5Y5+OXrUoZZq4lGeIdp4O22lwK8eKkW1kSLgzYydRCvC7aHdV7?=
- =?iso-8859-1?Q?rnt5eYPlHAh2auThRsJmmuzNI7Ulm9alKrR+DyolkNLfkfsbGGIAhX62D2?=
- =?iso-8859-1?Q?+z6q3qIepGoCLh4i1K9jKm75kyNLUzKLiiYIgyM3+hR2TQoWTNZrJ3IjST?=
- =?iso-8859-1?Q?P2AHmigcyhkH2H9s9QoE9kEu/OjB1rFeA6f7HjomNvQSjro3m54XFrNlNa?=
- =?iso-8859-1?Q?CZf7hr8foxRqQOCz2UWXfl81JA0P9Xa1HvtE6Wk08zNbKWCuK+KTDbmJZU?=
- =?iso-8859-1?Q?0CGgPU0lF6e5Ao629R4lZP+Gc7PCoegydiuqFXEg+PyjWD9lE7BwqOKc4U?=
- =?iso-8859-1?Q?r0UlBSjs8GTGpe4fHI8DqKOrTahpraffDpumyQiSfr+tIICUGl7EhAQMXZ?=
- =?iso-8859-1?Q?rZyD0tNMNw=3D=3D?=
-X-Exchange-RoutingPolicyChecked: V+GNw1xrSB7bTX8mfPcuy2P4ADsoxX2mPuHiAR8r4+o/n6Fr9jZBCOjSptpvNXCYGgqeCxDuLZ+P2EC/rNVY0ghKnCvsYSk5etskDnJxVheQdU/pbytPKcDK+vSjmB2CUJ/ug/SjLSLQ9+LYxtYGcgWSfcH751/ANMWCT86w8ylR8HlbCjoRY0BFXRAigTYBOW0gdINaLgx1sOna5N8i/iPjKqZDcyWvdbRHsC65h+UhfcbeAO3wSsrt3LOQLpqx4kmr+oWYuI2DmRpp9/2yuQXRp81X4WPBtIHokSP20pgcQhcfx3RqW2U+2s15W9V+k/mKSSDz9GI8yDa+lX/Zgg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ef432fe-30b0-4d25-b121-08df0f81061a
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MmNKQ0NVejdYTXpDMnJ6QXJLZzNrYkJLN0dqazBsYlM4alNOOWdwQStDVDNJ?=
+ =?utf-8?B?R3pJY2xmbEgrYWV1dnpsME5sQy9Ka1ozVzFUcS96MEhYMzFxWWhVSGtPbzRN?=
+ =?utf-8?B?TVJBVHdyQi9hUWdhU0U3SDJKZlcvcDdpOVdwQmV2SmJHczh3aTZ3c3owd050?=
+ =?utf-8?B?dWs0N2FsQ3V4cTMvUTBhMWhaYkNkdkVLWkNUVXZSRVBDbW5Zb0thTjh6SWFt?=
+ =?utf-8?B?d1Y2VjREQ2xyTFZBNExPeUdqeVcxZTlEb3pwWERmQUxKTlVGaCtYQklhdXhj?=
+ =?utf-8?B?QVdSUzZXWmw5Rk1BUmxiSnBDWUlwRmlXWmp3aVhsL1pLTXgyN1N1d2lQaGdy?=
+ =?utf-8?B?Z1YwVnZqbGVOREtzZC9EYVR1aFdxa0hXcmhhWU1tNmNuWFFIK3pncWNwMVNp?=
+ =?utf-8?B?NlJuZG9KTkY1cmczVDV4SjBaNHBNMWEwVDlXRGFtdGZocGl6OW5pS3l3Zjcw?=
+ =?utf-8?B?ZUc4MUhYYjJ2YmNQc2lTSE0ydDJYTmlIdFp6RFpyVEluN2NHWS8wekNNaVRY?=
+ =?utf-8?B?cG9BWkVlOGNHYUpaNnBwWUpJSnpoSEhJdUtydm5HR2VrNkNJakpER3FMU3l4?=
+ =?utf-8?B?SUYvSTRIeUc3UzFIMjkzVHlQNkdUSDBxb3Z0aFdQRjBCTTNiaGdtSzdMSmVl?=
+ =?utf-8?B?TTdEeWVqWWZQRVE5THlWU2gvanRaSlJKWXdtTXRXbjhjNmVUU0FXU1c3dVRR?=
+ =?utf-8?B?TVV1YU5OOVhVc0NndlBTV2lPVThtMi9tckRBanZWWFF0YUk2VFBISjVQRkZ4?=
+ =?utf-8?B?Vkhyd3F0emFzZVliNUJyRHR1SlBKYlRnSzlEMGhFcVpqeTFCSUJPMEVIRmlI?=
+ =?utf-8?B?blltRjBIeDdRKzBhWmJuZHdLNVVKNDUwcFBreGZXaTdWOVBScjR6dHdOTlhi?=
+ =?utf-8?B?QVoyWG1EdTZ2bEN0MHBOYlpubGNCMGJkMG1BQ2h4c2d6S2x0WEYxL0dKRTBw?=
+ =?utf-8?B?T09NOXV0NzR0QlhZc0hyaDRPUW1hQlBkaENyTCtnd0xsZHhiYWdzT2xUQllB?=
+ =?utf-8?B?ZGlKQXJNT0F1V2hmYXVQM1JHNHlmZ0lJWWdxbWRrb3ZKUStxQndZeEIxd2tP?=
+ =?utf-8?B?Q1BpSEhPT2ZObnI1b1JKbWYrWUJNOGRYSUprSU5zajNDY2p6UmxRSktVQW1X?=
+ =?utf-8?B?VkMyYjMyZERMdlNQNkpuSkdaWkdvc0d2UUZiL3RjQ1pqWVl3TmtnZUZUUWJt?=
+ =?utf-8?B?Z0lubGs0eTNuNXowSDB4M05TdXBQMG5OVWMxRmJVU1h3alBLdU5ldndKQm9R?=
+ =?utf-8?B?Y1doRys5WjZxT0lGVk81N3JwYU9TWWtMSko3SkVtT09mU2YvTVh6Q3o1Zzky?=
+ =?utf-8?B?VDVjdkczdXdZclNnWVY2UXZZNjNGRW9HOHZSbFNabkE3NG84dG9JMkllZnk1?=
+ =?utf-8?B?L3R4WFk3SWpEZFFlUmwvRm9ubTloYlVvZ2xOaENaRm9rZytvbXZGeExNMENS?=
+ =?utf-8?B?UHRLUDBNd01Wdy8wVDl0QmtYTTVkL25CKzZYME1aazk0S09xSEFRZkhTSTNC?=
+ =?utf-8?B?K3grL2xTRXdTd25RTDJ4Y1grRUZOOVl6MCtaYnlYcEdIZlVqTE5sMnhmaWlM?=
+ =?utf-8?B?VU9oNWl4NnpzNDNaNEVZWDlTVFZzeDdLQk1VdHBQdW01SWtxTUFjVy9uK1d4?=
+ =?utf-8?B?S1NvcGY2aDdNTlFpUU4ycWRMVFE1ZDlLMlF4Z05BU3o4SnFmSFZjQ3NRcDBM?=
+ =?utf-8?B?RGhDcllHM3d4L0hJZ1RKMHNUM0ExWXVXUStZYWlZc0lZaEwyTGp2anAvbVJT?=
+ =?utf-8?B?bDZrV1ZPejZoMkNYajNXSVBtSjQ2enlzSzBoS1lxc3dXT1BXaitSTWlOb2xZ?=
+ =?utf-8?B?cXFVQ0gvb01zakVQazM4UlQwVGx3NjRvZHoydGRiZTR0dzROS282QTE4ZkR5?=
+ =?utf-8?B?MmIzaXlteDRhVTRub0h4emt5ZGlCOXM3TG5mMjFoeHNHb2JaaU1rVlAxV081?=
+ =?utf-8?B?SkJyaU1TenQxZmdwTkJUdXA2ZWRyVDdGWTdRcTZJT1ZVK0lJd29pUGVpQ1RS?=
+ =?utf-8?B?U003QS8yVkZiVkV5bzFQQkEyV1ZJU1RPSWxyUjN2cVNRSElPK3gweDhjU3FD?=
+ =?utf-8?B?alNXVEJnR3hra3ZYdkt2RVE2VHM1dVpnQngzMk9CNytwczUrNUh5Q3V4RE9K?=
+ =?utf-8?B?ZDI3UENHNWptVzBYUFhsSFcrdE8rSWJ1SnVXdlFqRGx0VldxeWNiTnJaS0hL?=
+ =?utf-8?B?YWZkc3U1SHAvTUlYdzNuTGJkNEowcVVSMFlzSll1amZ6N3JWd0JEK3g5ZXBE?=
+ =?utf-8?B?dCtmZkRTTVRORkU1Q1M0ZEpHMnZjSnE3QWdsb2RTdFBnTEZaUjh2UU8yTVhD?=
+ =?utf-8?B?c3V3Y1RxM1pTYVYxRThWQ3BMV0s2Y1c0dEFlZGZlZUhudVBDV3ZrZz09?=
+X-Exchange-RoutingPolicyChecked: 2Mg8DskmZobldeVsaSLrXsHfuIXcy0nhO/VTtlMS9ikk4Ap2LronXQdU42E4ClbA1weS+X63Q2MAJIvuJIUtP58QNc4IUegMMODFDYXzr1BMzcxn3+OKKjJB53ICfKAVgMN9j/bxub0IkDMK3fDqttND3tbxtyKbkfreDaz8KAQkcg7JSWY5MuQA8mvr+5rb2hFfSM77k7VTsEhnr3m1VBVFlnL2EnNeUSIjpP2l0MTrKanJ+k3xYrU4e19p4Rv74xlQex17siXd14T25wGv6t7IsvMmnvBb2/TCLHYR0HVmuKHe61HcJRvBJdlwRfaKUXhmfK6jO3GIbNMBzjC+Vg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: b50ac22e-bd5f-43e0-708e-08df0f81ca3d
 X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7187.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2026 21:18:14.2188 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2026 21:23:43.4935 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: p03NwRymyd9jSmUWuilqLFpfD7eRV6q1PP6luMYNCUW2qHMsn9+yR/JcorfD10Q7mTcjSx7KdJROGZMbrD3uJw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6610
+X-MS-Exchange-CrossTenant-UserPrincipalName: pK1Oz6FFMvBGkCIeHx4xuCxL3S1tAbW5g1REcaNsYvHOQXZ7PxekEEnKQjcmNujY47gRW8zeJ/Ov3gF5zNUBsw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB8048
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -162,412 +181,1176 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 02, 2026 at 04:40:34PM -0700, Alan Previn wrote:
-> From: Zhanjun Dong <zhanjun.dong@intel.com>
+On Thu, Sep 03, 2026 at 02:50:14PM +0530, Aravind Iddamsetty wrote:
 > 
-> With default settings, GuC log is 8MB in size and
-> dumping the log is time-consuming. In debugging scenarios,
-> dump-to-dmesg suffers truncation loss because CI's size limit is 2MB.
-> Additionally, if also forwarded to serial console, it takes several
-> minutes. In use-case of continuous error+log collection over extended
-> period, we pressure CI's allocated storage. Thus, compress the
-> GuC log data dump to address these issues and multiply any benefits
-> from a future upgrade in CI's size limits.
-> 
-> Replace the raw ascii85 dumps of GuC log snapshots with a
-> zstd-compressed ascii85 stream and reuse the same helper for CTB
-> snapshot output.
-> 
-> Use zstd streaming with the default compression level of 3 and an
-> estimated source size of 0 so the compression workspace stays bounded
-> even for multi-megabyte logs.
-> 
-> Add a new Kconfig option DRM_XE_COMPRESS_DUMP to control whether
-> GuC log and CTB dumps are compressed with ZSTD. This allows users to
-> choose between reduced dump sizes and lower memory usage.
-> 
-> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-> Acked-by: Jos� Roberto de Souza <jose.souza@intel.com>
+> On 31-08-2026 23:39, Rodrigo Vivi wrote:
+> > Ccing AMD folks...
+> >
+> > AMD folks, I understand you have your sysfs for your 'uniras' in
+> > production and already using your sysfs entries. But I would appreciate
+> > if you guys can take a look to this drm-ras proposed API for the
+> > memory page offline RAS related entry. Perhaps this is something that
+> > you might want to align in the future. So, it would be good to design
+> > something that is generic or flexible enough.
+> >
+> > On Mon, Aug 31, 2026 at 07:08:43PM +0530, Aravind Iddamsetty wrote:
+> >
+> > For a bit of context to AMD folks, I blocked Intel attempt to create
+> > a sysfs for the memory page offlining feature because it was breaking
+> > the sysfs rules and using a mixed fancy formatting.
+> >
+> > That solution apparently was inspired by the AMD's gpu_vram_bad_pages
+> > where each record is  0x%08x : 0x%08x : %1s\n  — three different types
+> > with decorative  :  separators. That's the "fancy formatting" clause.
+> > And it's ASCII text stuffed into a binary attribute, so it gets neither
+> > benefit: not parseable as a blob, not compliant as text.
+> >
+> > The rule for reference:
+> > Documentation/filesystems/sysfs.rst:
+> >
+> > """
+> > Attributes should be ASCII text files, preferably with only one value per file.
+> > It is noted that it may not be efficient to contain only one value per file, so
+> > it is socially acceptable to express an array of values of the same type.
+> >
+> > Mixing types, expressing multiple lines of data, and doing fancy formatting of
+> > data is heavily frowned upon. Doing these things may get you publicly humiliated
+> > and your code rewritten without notice.
+> > """
+> >
+> >> The memory page offlining support tracks bad VRAM pages and currently
+> >> only exposes them through debugfs (vram_bad_pages), which is not a
+> >> stable ABI. Add a proper userspace interface on top of it using the
+> >> drm-ras generic netlink family.
+> > After considering every other API and placement for this infrastructure,
+> > I agree that the drm-ras netlink is the one that aligns better wit the
+> > need of the mem page offline flows and semantics.
+> >
+> > But I have a few doubts about some of the choices below.
+> >
+> >> Introduce a new node type DRM_RAS_NODE_TYPE_RETIRED_RESOURCES which
+> >> enumerates hardware resources that have been permanently taken out of
+> >> service. The node type is designed to be extensible: each entry carries
+> >> a resource-type discriminator plus a type-specific nested attribute, so
+> >> future resource types can be added without touching existing consumers.
+> >> VRAM pages are the first supported type, reported via the vram-page nest
+> >> as {address, size} with a retirement status
+> >> (retired/pending/failed).
+> > I understand that your goal of creating this retired-resources is to
+> > make this generic and easy to extend.
+> > And this aligns with the goal and original design of the drm-ras itself,
+> > which is be extensible by definition from day 0.
+> >
+> > However, I'm afraid that in this case here I couldn't think of other
+> > kind of 'resources' that we would want to 'retire' at runtime. So,
+> > I'm afraid that this is forcing the user-space to go one extra level without
+> > a good reason.
+> >
+> > What about a new drm-ras node that is simply 'bad-vram-pages' or even better:
+> > 'memory-offline' ?!
+> in future if there are any repairable resources like memory, fabric if
+> they support sparings performed through in field repair those can be
+> exposed via this interface so designed it to be generic.
 
-Please always sign-off whenever handling (submitting or merging) any kind
-of patch.
+ack
 
-Also, please mention what you have changed in comparison the previous
-version submitted by Zhanjun.
-
-The CI reasoning now is much better.
-
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-> ---
->  drivers/gpu/drm/xe/Kconfig          |  15 +++
->  drivers/gpu/drm/xe/xe_devcoredump.c |   4 +-
->  drivers/gpu/drm/xe/xe_guc_ct.c      |  19 ++--
->  drivers/gpu/drm/xe/xe_guc_ct.h      |   4 +-
->  drivers/gpu/drm/xe/xe_guc_log.c     | 161 +++++++++++++++++++++++++---
->  drivers/gpu/drm/xe/xe_guc_log.h     |   9 +-
->  6 files changed, 183 insertions(+), 29 deletions(-)
+> >
+> >> Two operations are added on the node:
+> >>  - GET_RETIRED_RESOURCES: dump the list of retired resources.
+> >>  - GET_RETIRED_RESOURCES_INFO: dump per-type limits and occupancy
+> >>    (max/offlined/queued counts), e.g. the FW-provided maximum number of
+> >>    pages that can be offlined.
+> >>
+> >> Eg:
+> >> $ sudo ./tools/net/ynl/pyynl/cli.py \
+> >>      --spec Documentation/netlink/specs/drm_ras.yaml \
+> >>      --dump list-nodes
+> >>
+> >> [{'device-name': '0000:03:00.0', 'node-id': 0, 'node-name':'correctable-errors', 'node-type': 'error-counter'},
+> >>  {'device-name': '0000:03:00.0', 'node-id': 1, 'node-name':'uncorrectable-errors', 'node-type': 'error-counter'},
+> >>  {'device-name': '0000:03:00.0', 'node-id': 2, 'node-name':'vram-retired-pages', 'node-type': 'retired-resources'}]
+> >>
+> >> $ sudo ./tools/net/ynl/pyynl/cli.py --spec \
+> >> Documentation/netlink/specs/drm_ras.yaml  --dump  get-retired-resources \
+> >> --json '{"node-id": 2}'
+> >>
+> >> [{'node-id': 2, 'status': 'retired', 'type': 'vram-page', 'vram-page': {'address': 12807041024, 'size': 4096}}]
+> > I'm confused here, isn't status such as 'retired' a per-page attribute?
+> > Why isn't it inside the vram-page itself?
+> >
+> > $ sudo ynl --dump get-memory-offline --json '{"node-id": 2}'
+> >
+> > [{'node-id': 2,
+> >   'page': [{'address': 12807041024, 'size': 4096,  'status': 'offlined'},
+> >            {'address': 12807045120, 'size': 4096,  'status': 'offlined'},
+> >            {'address': 12812345344, 'size': 4096,  'status': 'pending'},
+> >            {'address': 12898765312, 'size': 65536, 'status': 'failed'}]}]
+> >
+> >
+> > Although I doubt we would get different page sizes here, I believe this is
+> > generic and matches better with AMD's current sysfs needs.
 > 
-> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-> index 4d7dcaff2b91..18a682a44b31 100644
-> --- a/drivers/gpu/drm/xe/Kconfig
-> +++ b/drivers/gpu/drm/xe/Kconfig
-> @@ -33,6 +33,7 @@ config DRM_XE
->  	select ACPI_WMI if X86 && ACPI
->  	select SYNC_FILE
->  	select CRC32
-> +	select ZSTD_COMPRESS if DRM_XE_COMPRESS_DUMP
->  	select SND_HDA_I915 if SND_HDA_CORE
->  	select CEC_CORE if CEC_NOTIFIER
->  	select VMAP_PFN
-> @@ -101,6 +102,20 @@ config DRM_XE_PAGEMAP
->  
->  	  If in doubt say "Y".
->  
-> +config DRM_XE_COMPRESS_DUMP
-> +	bool "Enable ZSTD compression for error dumps"
-> +	depends on DRM_XE
-> +	default y
-> +	help
-> +	  Enable this option to compress GuC log and CTB dumps with ZSTD
-> +	  compression. This can significantly reduce the size of error dumps
-> +	  but requires additional memory for compression workspace.
-> +
-> +	  Disable this option if you want to save memory or prefer uncompressed
-> +	  error dumps for debugging.
-> +
-> +	  If in doubt say "Y".
-> +
->  config DRM_XE_FORCE_PROBE
->  	string "Force probe xe for selected Intel hardware IDs"
->  	depends on DRM_XE
-> diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-> index 5f2b90b18f97..27473c25aad2 100644
-> --- a/drivers/gpu/drm/xe/xe_devcoredump.c
-> +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-> @@ -115,9 +115,9 @@ static ssize_t __xe_devcoredump_read(char *buffer, ssize_t count,
->  	drm_printf(&p, "\tTile: %d\n", ss->gt->tile->id);
->  
->  	drm_puts(&p, "\n**** GuC Log ****\n");
-> -	xe_guc_log_snapshot_print(ss->guc.log, &p);
-> +	xe_guc_log_snapshot_print(ss->guc.log, &p, ss->gt);
->  	drm_puts(&p, "\n**** GuC CT ****\n");
-> -	xe_guc_ct_snapshot_print(ss->guc.ct, &p);
-> +	xe_guc_ct_snapshot_print(ss->guc.ct, &p, ss->gt);
->  
->  	drm_puts(&p, "\n**** Contexts ****\n");
->  	xe_guc_exec_queue_snapshot_print(ss->ge, &p);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index 5c4733da385c..10a8cf327036 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -2186,11 +2186,12 @@ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct)
->   * xe_guc_ct_snapshot_print - Print out a given GuC CT snapshot.
->   * @snapshot: GuC CT snapshot object.
->   * @p: drm_printer where it will be printed out.
-> + * @gt: GT structure for error reporting
->   *
->   * This function prints out a given GuC CT snapshot object.
->   */
->  void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
-> -			      struct drm_printer *p)
-> +			      struct drm_printer *p, struct xe_gt *gt)
->  {
->  	if (!snapshot)
->  		return;
-> @@ -2204,11 +2205,10 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
->  		drm_printf(p, "\tg2h outstanding: %d\n",
->  			   snapshot->g2h_outstanding);
->  
-> -		if (snapshot->ctb) {
-> -			drm_printf(p, "[CTB].length: 0x%zx\n", snapshot->ctb_size);
-> -			xe_print_blob_ascii85(p, "[CTB].data", '\n',
-> -					      snapshot->ctb, 0, snapshot->ctb_size);
-> -		}
-> +		if (snapshot->ctb)
-> +			xe_guc_print_blob(gt, p, "[CTB]", "[CTB].data",
-> +					  &snapshot->ctb, 1,
-> +					  snapshot->ctb_size, snapshot->ctb_size);
->  	} else {
->  		drm_puts(p, "CT disabled\n");
->  	}
-> @@ -2242,9 +2242,10 @@ void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot)
->  void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb)
->  {
->  	struct xe_guc_ct_snapshot *snapshot;
-> +	struct xe_gt *gt = ct_to_gt(ct);
->  
->  	snapshot = guc_ct_snapshot_capture(ct, false, want_ctb);
-> -	xe_guc_ct_snapshot_print(snapshot, p);
-> +	xe_guc_ct_snapshot_print(snapshot, p, gt);
->  	xe_guc_ct_snapshot_free(snapshot);
->  }
->  
-> @@ -2342,10 +2343,10 @@ static void ct_dead_print(struct xe_dead_ct *dead)
->  	drm_printf(&lp, "\tTile: %d\n", gt->tile->id);
->  
->  	drm_puts(&lp, "**** GuC Log ****\n");
-> -	xe_guc_log_snapshot_print(dead->snapshot_log, &lp);
-> +	xe_guc_log_snapshot_print(dead->snapshot_log, &lp, gt);
->  
->  	drm_puts(&lp, "**** GuC CT ****\n");
-> -	xe_guc_ct_snapshot_print(dead->snapshot_ct, &lp);
-> +	xe_guc_ct_snapshot_print(dead->snapshot_ct, &lp, gt);
->  
->  	drm_puts(&lp, "Done.\n");
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-> index 3ddc665ab84a..f950d68a060a 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-> @@ -12,6 +12,7 @@
->  
->  struct drm_printer;
->  struct xe_device;
-> +struct xe_gt;
->  
->  int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct);
->  int xe_guc_ct_init(struct xe_guc_ct *ct);
-> @@ -26,7 +27,8 @@ void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
->  void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
->  
->  struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct);
-> -void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_printer *p);
-> +void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_printer *p,
-> +			      struct xe_gt *gt);
->  void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
->  void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-> index 538d4df0f7aa..aaeb0f76af30 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_log.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_log.c
-> @@ -6,6 +6,9 @@
->  #include "xe_guc_log.h"
->  
->  #include <linux/fault-inject.h>
-> +#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-> +#include <linux/zstd.h>
-> +#endif
->  
->  #include <linux/utsname.h>
->  #include <drm/drm_managed.h>
-> @@ -225,16 +228,148 @@ struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log,
->  	return snapshot;
->  }
->  
-> +#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-> +static void xe_guc_print_blob_compressed(struct xe_gt *gt, struct drm_printer *p,
-> +					 const char *length_label, const char *data_label,
-> +					 void **chunks, int num_chunks,
-> +					 size_t chunk_size, size_t total_size)
-> +{
-> +	zstd_parameters params;
-> +	zstd_cstream *cstream;
-> +	zstd_out_buffer outbuf;
-> +	size_t wksp_size, dst_size;
-> +	size_t remain, ret;
-> +	void *wksp = NULL;
-> +	char *dst = NULL;
-> +	int i;
-> +
-> +	/*
-> +	 * Pass 0 as estimated_src_size to use zstd level-3 defaults
-> +	 * (windowLog=18, 256KB window). Passing the full total_size would
-> +	 * cause zstd to inflate windowLog proportionally (e.g. windowLog=24
-> +	 * for a 19MB log), making the workspace tens of MB.  With 0, the
-> +	 * workspace stays ~1.5MB, well within kmalloc limits.
-> +	 */
-> +	params = zstd_get_params(3, 0);
-> +
-> +	wksp_size = zstd_cstream_workspace_bound(&params.cParams);
-> +	wksp = kvzalloc(wksp_size, GFP_KERNEL);
-> +	if (!wksp)
-> +		goto err;
-> +
-> +	dst_size = zstd_compress_bound(total_size);
-> +	dst = kvzalloc(dst_size, GFP_KERNEL);
-> +	if (!dst)
-> +		goto err;
-> +
-> +	cstream = zstd_init_cstream(&params, 0, wksp, wksp_size);
-> +	if (!cstream) {
-> +		xe_gt_err(gt, "failed to init zstd cstream\n");
-> +		goto err;
-> +	}
-> +
-> +	outbuf.dst = dst;
-> +	outbuf.size = dst_size;
-> +	outbuf.pos = 0;
-> +
-> +	remain = total_size;
-> +	for (i = 0; i < num_chunks && remain; i++) {
-> +		size_t size = min(chunk_size, remain);
-> +		zstd_in_buffer inbuf = { .src = chunks[i], .size = size, .pos = 0 };
-> +
-> +		while (inbuf.pos < inbuf.size) {
-> +			ret = zstd_compress_stream(cstream, &outbuf, &inbuf);
-> +			if (ZSTD_isError(ret)) {
-> +				xe_gt_err(gt, "zstd_compress_stream failed: %s\n",
-> +					  ZSTD_getErrorName(ret));
-> +				goto err;
-> +			}
-> +		}
-> +		remain -= size;
-> +	}
-> +
-> +	do {
-> +		ret = zstd_end_stream(cstream, &outbuf);
-> +		if (ZSTD_isError(ret)) {
-> +			xe_gt_err(gt, "zstd_end_stream failed: %s\n",
-> +				  ZSTD_getErrorName(ret));
-> +			goto err;
-> +		}
-> +	} while (ret > 0 && outbuf.pos < outbuf.size);
-> +
-> +	drm_printf(p, "%s.length: 0x%zx -> 0x%zx Algo: ZSTD\n",
-> +		   length_label, total_size, outbuf.pos);
-> +	xe_print_blob_ascii85(p, data_label, '\n', dst, 0,
-> +			      DIV_ROUND_UP(outbuf.pos, sizeof(u32)) * sizeof(u32));
-> +	goto out;
-> +
-> +err:
-> +	drm_printf(p, "%s.length: 0x%zx Algo: ERROR (compression failed)\n",
-> +		   length_label, total_size);
-> +out:
-> +	kvfree(dst);
-> +	kvfree(wksp);
-> +}
-> +#endif
-> +
->  /**
-> - * xe_guc_log_snapshot_print - dump a previously saved copy of the GuC log to some useful location
-> - * @snapshot: a snapshot of the GuC log
-> - * @p: the printer object to output to
-> + * xe_guc_print_blob - Print binary data (compressed or uncompressed) as ascii85
-> + * @gt: GT structure for error reporting
-> + * @p: drm_printer for output
-> + * @length_label: label prefix for the length/metadata line (e.g. "[LOG]" or "[CTB]")
-> + * @data_label: label for the ascii85 blob (e.g. "[LOG].data" or "[CTB].data")
-> + * @chunks: array of pointers to source data chunks
-> + * @num_chunks: number of elements in @chunks
-> + * @chunk_size: nominal size of each chunk; the last chunk may hold fewer valid bytes
-> + * @total_size: total uncompressed byte count across all chunks
-> + *
-> + * If CONFIG_DRM_XE_COMPRESS_DUMP is enabled, compresses @total_size bytes using
-> + * zstd level-3 streaming compression and prints the result via @p using ascii85
-> + * encoding. Otherwise, directly prints the uncompressed data.
-> + * On failure the function returns without printing the data blob.
->   */
-> -void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p)
-> +void xe_guc_print_blob(struct xe_gt *gt __maybe_unused, struct drm_printer *p,
-> +		       const char *length_label, const char *data_label,
-> +		       void **chunks, int num_chunks,
-> +		       size_t chunk_size, size_t total_size)
->  {
-> +#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-> +	xe_guc_print_blob_compressed(gt, p, length_label, data_label,
-> +				     chunks, num_chunks, chunk_size, total_size);
-> +#else
->  	size_t remain;
->  	int i;
->  
-> +	drm_printf(p, "%s.length: 0x%zx Algo: RAW\n", length_label, total_size);
-> +
-> +	/*
-> +	 * Print each chunk directly without merging into a single buffer.
-> +	 * xe_print_blob_ascii85() supports multiple calls - use suffix=0
-> +	 * for all but the last chunk to omit the newline between chunks.
-> +	 */
-> +	remain = total_size;
-> +	for (i = 0; i < num_chunks && remain; i++) {
-> +		size_t size = min(chunk_size, remain);
-> +		const char *prefix = i ? NULL : data_label;
-> +		/* Add suffix only on the last chunk */
-> +		char suffix = (remain == size) ? '\n' : 0;
-> +
-> +		xe_print_blob_ascii85(p, prefix, suffix, chunks[i], 0,
-> +				      DIV_ROUND_UP(size, sizeof(u32)) * sizeof(u32));
-> +		remain -= size;
-> +	}
-> +#endif
-> +}
-> +
-> +/**
-> + * xe_guc_log_snapshot_print - dump a previously saved copy of the GuC log to some useful location
-> + * @snapshot: a snapshot of the GuC log
-> + * @p: the printer object to output to
-> + * @gt: GT structure of the GuC log
-> + */
-> +void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p,
-> +			       struct xe_gt *gt)
-> +{
->  	if (!snapshot) {
->  		drm_printf(p, "GuC log snapshot not allocated!\n");
->  		return;
-> @@ -248,16 +383,9 @@ void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_
->  	drm_printf(p, "GuC timestamp: 0x%08llX [%llu]\n", snapshot->stamp, snapshot->stamp);
->  	drm_printf(p, "Log level: %u\n", snapshot->level);
->  
-> -	drm_printf(p, "[LOG].length: 0x%zx\n", snapshot->size);
-> -	remain = snapshot->size;
-> -	for (i = 0; i < snapshot->num_chunks; i++) {
-> -		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
-> -		const char *prefix = i ? NULL : "[LOG].data";
-> -		char suffix = i == snapshot->num_chunks - 1 ? '\n' : 0;
-> -
-> -		xe_print_blob_ascii85(p, prefix, suffix, snapshot->copy[i], 0, size);
-> -		remain -= size;
-> -	}
-> +	xe_guc_print_blob(gt, p, "[LOG]", "[LOG].data",
-> +			  snapshot->copy, snapshot->num_chunks,
-> +			  GUC_LOG_CHUNK_SIZE, snapshot->size);
->  }
->  
->  static inline void lfd_output_binary(struct drm_printer *p, char *buf, int buf_size)
-> @@ -598,12 +726,13 @@ void xe_guc_log_print_dmesg(struct xe_guc_log *log)
->  void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
->  {
->  	struct xe_guc_log_snapshot *snapshot;
-> +	struct xe_gt *gt = log_to_gt(log);
->  
->  	drm_printf(p, "**** GuC Log ****\n");
->  
->  	snapshot = xe_guc_log_snapshot_capture(log, false);
-> -	drm_printf(p, "CS reference clock: %u\n", log_to_gt(log)->info.reference_clock);
-> -	xe_guc_log_snapshot_print(snapshot, p);
-> +	drm_printf(p, "CS reference clock: %u\n", gt->info.reference_clock);
-> +	xe_guc_log_snapshot_print(snapshot, p, gt);
->  	xe_guc_log_snapshot_free(snapshot);
->  }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
-> index 4649a260755e..3e97647ee8b5 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_log.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_log.h
-> @@ -11,6 +11,7 @@
->  
->  struct drm_printer;
->  struct xe_device;
-> +struct xe_gt;
->  
->  #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_GUC)
->  #define XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE	SZ_16M
-> @@ -59,7 +60,13 @@ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p);
->  void xe_guc_log_print_lfd(struct xe_guc_log *log, struct drm_printer *p);
->  void xe_guc_log_print_dmesg(struct xe_guc_log *log);
->  struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic);
-> -void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p);
-> +
-> +void xe_guc_print_blob(struct xe_gt *gt, struct drm_printer *p, const char *length_label,
-> +		       const char *data_label, void **chunks, int num_chunks,
-> +		       size_t chunk_size, size_t total_size);
-> +
-> +void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p,
-> +			       struct xe_gt *gt);
->  void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot);
->  
->  static inline u32
-> -- 
-> 2.43.0
+> the status is still a per entry I just had  type to indicate what is the
+> resource may be that confused, i will drop the type here as its obvious,
+> and also make the format simpler like you suggested
 > 
+> ./tools/net/ynl/pyynl/cli.py --spec
+> Documentation/netlink/specs/drm_ras.yaml  --dump  get-retired-resources
+> --json '{"node-id": 2}'
+> [{'node-id': 2, 'status': 'retired', 'type': 'vram-page', 'vram-page':
+> {'address': 22451773440, 'size': 4096}},
+>  {'node-id': 2, 'status': 'retired', 'type': 'vram-page', 'vram-page':
+> {'address': 22451777536, 'size': 4096}}]
+> 
+> new format to be:
+> 
+> {'node-id': 2, 'address': 0x2a4b000, 'size': 4096, 'status': 'retired'}
+> {'node-id': 2, 'address': 0x2a4c000, 'size': 4096, 'status': 'pending'}
+
+cool, thanks
+
+> 
+> >
+> >
+> >> $ sudo ./tools/net/ynl/pyynl/cli.py --spec \
+> >> Documentation/netlink/specs/drm_ras.yaml  --dump \
+> >> get-retired-resources-info --json '{"node-id": 2}'
+> >>
+> >> [{'max-count': 100, 'node-id': 2, 'offlined-count': 1, 'queued-count': 0, 'type': 'vram-page'}]
+> >>
+> >> This change is built on top of and depends on the memory page offline
+> >> patch series [1]
+> >>
+> >> [1] https://lore.kernel.org/all/20260831064942.315720-17-tejas.upadhyay@intel.com/
+> >>
+> >> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> >> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> >> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> >> Cc: Riana Tauro <riana.tauro@intel.com>
+> >> Cc: Raag Jadav <raag.jadav@intel.com>
+> >> Cc: Joshua Santhosh Ranjan <joshua.santosh.ranjan@intel.com>
+> >> Cc: Ashwin Kumar Kulkarni <ashwin.kumar.kulkarni@intel.com>
+> >> Cc: Pratik Bari <pratik.bari@intel.com>
+> >>
+> >> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+> >> Assisted-by: Copilot:claude-opus-4.8
+> >>
+> >> ---
+> >>  Documentation/netlink/specs/drm_ras.yaml | 131 +++++++++++++-
+> >>  drivers/gpu/drm/drm_ras.c                | 221 ++++++++++++++++++++++-
+> >>  drivers/gpu/drm/drm_ras_nl.c             |  24 +++
+> >>  drivers/gpu/drm/drm_ras_nl.h             |   4 +
+> >>  drivers/gpu/drm/xe/xe_drm_ras.c          |  81 +++++++++
+> >>  drivers/gpu/drm/xe/xe_drm_ras_types.h    |   3 +
+> >>  drivers/gpu/drm/xe/xe_ttm_vram_mgr.c     | 134 ++++++++++++++
+> >>  drivers/gpu/drm/xe/xe_ttm_vram_mgr.h     |   5 +
+> >>  include/drm/drm_ras.h                    |  87 +++++++++
+> >>  include/uapi/drm/drm_ras.h               |  63 ++++++-
+> >>  10 files changed, 742 insertions(+), 11 deletions(-)
+> >>
+> >> diff --git a/Documentation/netlink/specs/drm_ras.yaml b/Documentation/netlink/specs/drm_ras.yaml
+> > Btw, this doesn't apply on recent drm-tip. There were some changes to this spec
+> > merged recently. Please do a v2 in a recent drm-tip/
+> sure will fix and respin
+> >
+> >> index 8aed3d4515e5..37fe297eeb2e 100644
+> >> --- a/Documentation/netlink/specs/drm_ras.yaml
+> >> +++ b/Documentation/netlink/specs/drm_ras.yaml
+> >> @@ -16,11 +16,34 @@ definitions:
+> >>      type: enum
+> >>      name: node-type
+> >>      value-start: 1
+> >> -    entries: [error-counter]
+> >> +    entries: [error-counter, retired-resources]
+> >>      doc: >-
+> >> -         Type of the node. Currently, only error-counter nodes are
+> >> -         supported, which expose reliability counters for a hardware/software
+> >> -         component.
+> >> +         Type of the node.
+> >> +         error-counter nodes expose reliability counters for a
+> >> +         hardware/software component. retired-resources nodes enumerate
+> >> +         hardware resources (e.g. VRAM pages) that have been permanently
+> >> +         taken out of service.
+> >> +  -
+> >> +    type: enum
+> >> +    name: retired-resource-status
+> >> +    value-start: 0
+> >> +    entries: [retired, pending, failed]
+> >> +    doc: >-
+> >> +         Status of a retired resource entry. retired means the resource is
+> >> +         permanently reserved and out of service; pending means retirement is
+> >> +         queued but the reservation is not yet complete; failed means the
+> >> +         reservation failed and the resource may still be in use.
+> >> +  -
+> >> +    type: enum
+> >> +    name: retired-resource-type
+> >> +    value-start: 1
+> >> +    entries: [vram-page]
+> >> +    doc: >-
+> >> +         Type of a retired resource entry. The type selects which type-specific
+> >> +         nested attribute is present. New hardware resource types can be added
+> >> +         here, each carrying its own nested attribute set, without affecting
+> >> +         existing types. vram-page describes a VRAM page by device address and
+> >> +         size.
+> >>  
+> >>  attribute-sets:
+> >>    -
+> >> @@ -96,6 +119,66 @@ attribute-sets:
+> >>          name: error-value
+> >>          type: u32
+> >>          doc: Current value of the error counter.
+> >> +  -
+> >> +    name: retired-resource-attrs
+> >> +    attributes:
+> >> +      -
+> >> +        name: node-id
+> >> +        type: u32
+> >> +        doc: Node ID targeted by this retired resource operation.
+> >> +      -
+> >> +        name: type
+> >> +        type: u32
+> >> +        doc: Type of the retired resource, selects the type-specific nest.
+> >> +        enum: retired-resource-type
+> >> +      -
+> >> +        name: status
+> >> +        type: u32
+> >> +        doc: Retirement status of the resource.
+> >> +        enum: retired-resource-status
+> >> +      -
+> >> +        name: vram-page
+> >> +        type: nest
+> >> +        nested-attributes: vram-page-attrs
+> >> +        doc: Type-specific payload present when type is vram-page.
+> >> +  -
+> >> +    name: vram-page-attrs
+> >> +    attributes:
+> >> +      -
+> >> +        name: address
+> >> +        type: u64
+> >> +        doc: Device address of the retired VRAM page (e.g. DPA).
+> >> +      -
+> >> +        name: size
+> >> +        type: u64
+> >> +        doc: Size of the retired VRAM page in bytes.
+> >> +      -
+> >> +        name: pad
+> >> +        type: pad
+> >> +  -
+> >> +    name: retired-resource-info-attrs
+> >> +    attributes:
+> >> +      -
+> >> +        name: node-id
+> >> +        type: u32
+> >> +        doc: Node ID targeted by this retired resource info operation.
+> >> +      -
+> >> +        name: type
+> >> +        type: u32
+> >> +        doc: Resource type this info entry describes.
+> >> +        enum: retired-resource-type
+> >> +      -
+> >> +        name: max-count
+> >> +        type: u32
+> >> +        doc: Maximum resources of this type that can be retired.
+> >> +      -
+> >> +        name: offlined-count
+> >> +        type: u32
+> >> +        doc: Resources of this type currently retired and out of service.
+> >> +      -
+> >> +        name: queued-count
+> >> +        type: u32
+> >> +        doc: Resources of this type queued for retirement (pending or failed).
+> >>  
+> >>  operations:
+> >>    list:
+> >> @@ -167,6 +250,46 @@ operations:
+> >>            - error-id
+> >>            - error-name
+> >>            - error-value
+> >> +    -
+> >> +      name: get-retired-resources
+> >> +      doc: >-
+> >> +           Enumerate the resources (e.g. VRAM pages) that a retired-resources
+> >> +           node has taken out of service. Each entry includes a type, a
+> >> +           retirement status and one type-specific nested attribute selected by
+> >> +           the type. User space must obtain the node ID from list-nodes first.
+> >> +      attribute-set: retired-resource-attrs
+> >> +      flags: [admin-perm]
+> >> +      dump:
+> >> +        request:
+> >> +          attributes:
+> >> +            - node-id
+> >> +        reply:
+> >> +          attributes:
+> >> +            - node-id
+> >> +            - type
+> >> +            - status
+> >> +            - vram-page
+> >> +    -
+> >> +      name: get-retired-resources-info
+> >> +      doc: >-
+> >> +           Enumerate per-type retired resource limits and current occupancy for
+> >> +           a retired-resources node: for each resource type the node tracks, the
+> >> +           maximum number of resources that can be retired and the current
+> >> +           retired and queued counts. User space must obtain the node ID from
+> >> +           list-nodes first.
+> >> +      attribute-set: retired-resource-info-attrs
+> >> +      flags: [admin-perm]
+> >> +      dump:
+> >> +        request:
+> >> +          attributes:
+> >> +            - node-id
+> >> +        reply:
+> >> +          attributes:
+> >> +            - node-id
+> >> +            - type
+> >> +            - max-count
+> >> +            - offlined-count
+> >> +            - queued-count
+> >>  
+> >>  mcast-groups:
+> >>    list:
+> >> diff --git a/drivers/gpu/drm/drm_ras.c b/drivers/gpu/drm/drm_ras.c
+> >> index 39155fb514de..a708fec7b68f 100644
+> >> --- a/drivers/gpu/drm/drm_ras.c
+> >> +++ b/drivers/gpu/drm/drm_ras.c
+> >> @@ -56,7 +56,6 @@
+> >>   * Node type:
+> >>   *
+> >>   * - ERROR_COUNTER:
+> >> - *     + Currently, only error counters are supported.
+> >>   *     + The driver must implement the query_error_counter() callback to provide
+> >>   *       the name and the value of the error counter.
+> >>   *     + The driver must provide a error_counter_range.last value informing the
+> >> @@ -67,6 +66,13 @@
+> >>   *       driver must return -ENOENT to the query_error_counter as an indication
+> >>   *       that the ID should be skipped and not listed in the netlink API.
+> >>   *
+> >> + * - RETIRED_RESOURCES:
+> >> + *     + Enumerates hardware resources (e.g. VRAM pages) permanently taken out
+> >> + *       of service.
+> >> + *     + The driver must implement the query_retired_resource() callback, which
+> >> + *       is called with an incrementing index and returns -ENOENT once the last
+> >> + *       entry has been reported.
+> >> + *
+> >>   * Netlink handlers:
+> >>   *
+> >>   * - drm_ras_nl_list_nodes_dumpit(): Implements the LIST_NODES
+> >> @@ -77,6 +83,9 @@
+> >>   *   operation, fetching a counter value from a specific node.
+> >>   * - drm_ras_nl_clear_error_counter_doit(): Implements the CLEAR_ERROR_COUNTER doit
+> >>   *   operation, clearing a counter value from a specific node.
+> >> + * - drm_ras_nl_get_retired_resources_dumpit(): Implements the
+> >> + *   GET_RETIRED_RESOURCES dumpit operation, enumerating retired resources of a
+> >> + *   specific node.
+> >>   */
+> >>  
+> >>  static DEFINE_XARRAY_ALLOC(drm_ras_xa);
+> >> @@ -87,6 +96,8 @@ static DEFINE_XARRAY_ALLOC(drm_ras_xa);
+> >>  struct drm_ras_ctx {
+> >>  	/* Which xarray id to restart the dump from */
+> >>  	unsigned long restart;
+> >> +	/* Ordering-key cursor for retired-resource dumps (inclusive lower bound) */
+> >> +	u64 cursor;
+> >>  };
+> >>  
+> >>  /**
+> >> @@ -456,6 +467,197 @@ int drm_ras_nl_clear_error_counter_doit(struct sk_buff *skb,
+> >>  	return node->clear_error_counter(node, error_id);
+> >>  }
+> >>  
+> >> +static int msg_put_retired_resource(struct sk_buff *skb, u32 node_id,
+> >> +				    const struct drm_ras_retired_resource *res)
+> >> +{
+> >> +	struct nlattr *nest;
+> >> +
+> >> +	if (nla_put_u32(skb, DRM_RAS_A_RETIRED_RESOURCE_ATTRS_NODE_ID, node_id) ||
+> >> +	    nla_put_u32(skb, DRM_RAS_A_RETIRED_RESOURCE_ATTRS_TYPE, res->type) ||
+> >> +	    nla_put_u32(skb, DRM_RAS_A_RETIRED_RESOURCE_ATTRS_STATUS, res->status))
+> >> +		return -EMSGSIZE;
+> >> +
+> >> +	switch (res->type) {
+> >> +	case DRM_RAS_RETIRED_RESOURCE_TYPE_VRAM_PAGE:
+> >> +		nest = nla_nest_start(skb,
+> >> +				      DRM_RAS_A_RETIRED_RESOURCE_ATTRS_VRAM_PAGE);
+> >> +		if (!nest)
+> >> +			return -EMSGSIZE;
+> >> +
+> >> +		if (nla_put_u64_64bit(skb, DRM_RAS_A_VRAM_PAGE_ATTRS_ADDRESS,
+> >> +				      res->vram_page.address,
+> >> +				      DRM_RAS_A_VRAM_PAGE_ATTRS_PAD) ||
+> >> +		    nla_put_u64_64bit(skb, DRM_RAS_A_VRAM_PAGE_ATTRS_SIZE,
+> >> +				      res->vram_page.size,
+> >> +				      DRM_RAS_A_VRAM_PAGE_ATTRS_PAD)) {
+> >> +			nla_nest_cancel(skb, nest);
+> >> +			return -EMSGSIZE;
+> >> +		}
+> >> +
+> >> +		nla_nest_end(skb, nest);
+> >> +		break;
+> >> +	default:
+> >> +		/* Unknown type: common attributes were still reported. */
+> >> +		break;
+> >> +	}
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +/**
+> >> + * drm_ras_nl_get_retired_resources_dumpit() - Dump retired resources of a node
+> >> + * @skb: Netlink message buffer
+> >> + * @cb: Callback context for multi-part dumps
+> >> + *
+> >> + * Iterates over all retired resources of a %DRM_RAS_NODE_TYPE_RETIRED_RESOURCES
+> >> + * node and appends their attributes to the given netlink message buffer. Each
+> >> + * entry carries a common type and status, plus one type-specific nested
+> >> + * attribute selected by the type. Uses @cb->ctx to store an ordering-key cursor
+> >> + * so multi-part dumps resume by key rather than position, staying correct if
+> >> + * the list changes concurrently between message parts.
+> >> + *
+> >> + * Return: 0 if all entries fit in @skb, number of bytes added to @skb if
+> >> + *          the buffer filled up (requires multi-part continuation), or
+> >> + *          a negative error code on failure.
+> >> + */
+> >> +int drm_ras_nl_get_retired_resources_dumpit(struct sk_buff *skb,
+> >> +					    struct netlink_callback *cb)
+> >> +{
+> >> +	const struct genl_info *info = genl_info_dump(cb);
+> >> +	struct drm_ras_ctx *ctx = (void *)cb->ctx;
+> >> +	struct drm_ras_retired_resource res;
+> >> +	struct drm_ras_node *node;
+> >> +	struct nlattr *hdr;
+> >> +	u32 node_id;
+> >> +	u64 cursor;
+> >> +	int ret = 0;
+> >> +
+> >> +	if (!info->attrs ||
+> >> +	    GENL_REQ_ATTR_CHECK(info, DRM_RAS_A_RETIRED_RESOURCE_ATTRS_NODE_ID))
+> >> +		return -EINVAL;
+> >> +
+> >> +	node_id = nla_get_u32(info->attrs[DRM_RAS_A_RETIRED_RESOURCE_ATTRS_NODE_ID]);
+> >> +
+> >> +	node = xa_load(&drm_ras_xa, node_id);
+> >> +	if (!node || node->type != DRM_RAS_NODE_TYPE_RETIRED_RESOURCES ||
+> >> +	    !node->query_retired_resource)
+> >> +		return -ENOENT;
+> >> +
+> >> +	cursor = ctx->cursor;
+> >> +	for (;;) {
+> >> +		memset(&res, 0, sizeof(res));
+> >> +		ret = node->query_retired_resource(node, cursor, &res);
+> >> +		/* -ENOENT marks the end of the list. */
+> >> +		if (ret == -ENOENT) {
+> >> +			ret = 0;
+> >> +			break;
+> >> +		}
+> >> +		if (ret)
+> >> +			return ret;
+> >> +
+> >> +		hdr = genlmsg_iput(skb, info);
+> >> +		if (!hdr) {
+> >> +			ret = -EMSGSIZE;
+> >> +			break;
+> >> +		}
+> >> +
+> >> +		ret = msg_put_retired_resource(skb, node_id, &res);
+> >> +		if (ret) {
+> >> +			genlmsg_cancel(skb, hdr);
+> >> +			break;
+> >> +		}
+> >> +
+> >> +		genlmsg_end(skb, hdr);
+> >> +		/* Advance past this entry; keys are unique. */
+> >> +		cursor = res.key + 1;
+> >> +	}
+> >> +
+> >> +	/* On buffer-full the current entry was not emitted; resume at it. */
+> >> +	if (ret == -EMSGSIZE)
+> >> +		ctx->cursor = cursor;
+> >> +
+> >> +	return ret;
+> >> +}
+> >> +
+> >> +/**
+> >> + * drm_ras_nl_get_retired_resources_info_dumpit() - Dump node retired limits
+> >> + * @skb: Netlink message buffer
+> >> + * @cb: Callback context for multi-part dumps
+> >> + *
+> >> + * Reports per-type limits and current occupancy for a
+> >> + * %DRM_RAS_NODE_TYPE_RETIRED_RESOURCES node. Each entry carries the resource
+> >> + * type, the maximum number of resources of that type that can be retired, and
+> >> + * the current retired and queued counts. A node that tracks several resource
+> >> + * types reports one entry per type. Uses @cb->ctx to track the next type index
+> >> + * in case the buffer fills up, allowing multi-part dump support.
+> >> + *
+> >> + * Return: 0 if all entries fit in @skb, number of bytes added to @skb if
+> >> + *          the buffer filled up (requires multi-part continuation), or
+> >> + *          a negative error code on failure.
+> >> + */
+> >> +int drm_ras_nl_get_retired_resources_info_dumpit(struct sk_buff *skb,
+> >> +						 struct netlink_callback *cb)
+> >> +{
+> >> +	const struct genl_info *info = genl_info_dump(cb);
+> >> +	struct drm_ras_ctx *ctx = (void *)cb->ctx;
+> >> +	struct drm_ras_retired_info rinfo;
+> >> +	struct drm_ras_node *node;
+> >> +	struct nlattr *hdr;
+> >> +	u32 node_id, index;
+> >> +	int ret = 0;
+> >> +
+> >> +	if (!info->attrs ||
+> >> +	    GENL_REQ_ATTR_CHECK(info, DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_NODE_ID))
+> >> +		return -EINVAL;
+> >> +
+> >> +	node_id = nla_get_u32(info->attrs[DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_NODE_ID]);
+> >> +
+> >> +	node = xa_load(&drm_ras_xa, node_id);
+> >> +	if (!node || node->type != DRM_RAS_NODE_TYPE_RETIRED_RESOURCES ||
+> >> +	    !node->query_retired_info)
+> >> +		return -ENOENT;
+> >> +
+> >> +	for (index = ctx->restart; ; index++) {
+> >> +		memset(&rinfo, 0, sizeof(rinfo));
+> >> +		ret = node->query_retired_info(node, index, &rinfo);
+> >> +		/* -ENOENT marks the end of the type list. */
+> >> +		if (ret == -ENOENT) {
+> >> +			ret = 0;
+> >> +			break;
+> >> +		}
+> >> +		if (ret)
+> >> +			return ret;
+> >> +
+> >> +		hdr = genlmsg_iput(skb, info);
+> >> +		if (!hdr) {
+> >> +			ret = -EMSGSIZE;
+> >> +			break;
+> >> +		}
+> >> +
+> >> +		if (nla_put_u32(skb, DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_NODE_ID,
+> >> +				node_id) ||
+> >> +		    nla_put_u32(skb, DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_TYPE,
+> >> +				rinfo.type) ||
+> >> +		    nla_put_u32(skb, DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_MAX_COUNT,
+> >> +				rinfo.max_count) ||
+> >> +		    nla_put_u32(skb, DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_OFFLINED_COUNT,
+> >> +				rinfo.offlined_count) ||
+> >> +		    nla_put_u32(skb, DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_QUEUED_COUNT,
+> >> +				rinfo.queued_count)) {
+> >> +			genlmsg_cancel(skb, hdr);
+> >> +			ret = -EMSGSIZE;
+> >> +			break;
+> >> +		}
+> >> +
+> >> +		genlmsg_end(skb, hdr);
+> >> +	}
+> >> +
+> >> +	if (ret == -EMSGSIZE)
+> >> +		ctx->restart = index;
+> >> +
+> >> +	return ret;
+> >> +}
+> >> +
+> >>  /**
+> >>   * drm_ras_node_register() - Register a new RAS node
+> >>   * @node: Node structure to register
+> >> @@ -470,15 +672,24 @@ int drm_ras_node_register(struct drm_ras_node *node)
+> >>  	if (!node->device_name || !node->node_name)
+> >>  		return -EINVAL;
+> >>  
+> >> -	/* Currently, only Error Counter Endpoints are supported */
+> >> -	if (node->type != DRM_RAS_NODE_TYPE_ERROR_COUNTER)
+> >> -		return -EINVAL;
+> >> -
+> >>  	/* Mandatory entries for Error Counter Node */
+> >>  	if (node->type == DRM_RAS_NODE_TYPE_ERROR_COUNTER &&
+> >>  	    (!node->error_counter_range.last || !node->query_error_counter))
+> >>  		return -EINVAL;
+> >>  
+> >> +	/* Mandatory entries for Retired Resources Node */
+> >> +	if (node->type == DRM_RAS_NODE_TYPE_RETIRED_RESOURCES &&
+> >> +	    !node->query_retired_resource)
+> >> +		return -EINVAL;
+> >> +
+> >> +	switch (node->type) {
+> >> +	case DRM_RAS_NODE_TYPE_ERROR_COUNTER:
+> >> +	case DRM_RAS_NODE_TYPE_RETIRED_RESOURCES:
+> >> +		break;
+> >> +	default:
+> >> +		return -EINVAL;
+> >> +	}
+> >> +
+> >>  	return xa_alloc(&drm_ras_xa, &node->id, node, xa_limit_32b, GFP_KERNEL);
+> >>  }
+> >>  EXPORT_SYMBOL(drm_ras_node_register);
+> >> diff --git a/drivers/gpu/drm/drm_ras_nl.c b/drivers/gpu/drm/drm_ras_nl.c
+> >> index 9d3123cc9f9c..b194d065ec48 100644
+> >> --- a/drivers/gpu/drm/drm_ras_nl.c
+> >> +++ b/drivers/gpu/drm/drm_ras_nl.c
+> >> @@ -28,6 +28,16 @@ static const struct nla_policy drm_ras_clear_error_counter_nl_policy[DRM_RAS_A_E
+> >>  	[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID] = { .type = NLA_U32, },
+> >>  };
+> >>  
+> >> +/* DRM_RAS_CMD_GET_RETIRED_RESOURCES - dump */
+> >> +static const struct nla_policy drm_ras_get_retired_resources_nl_policy[DRM_RAS_A_RETIRED_RESOURCE_ATTRS_NODE_ID + 1] = {
+> >> +	[DRM_RAS_A_RETIRED_RESOURCE_ATTRS_NODE_ID] = { .type = NLA_U32, },
+> >> +};
+> >> +
+> >> +/* DRM_RAS_CMD_GET_RETIRED_RESOURCES_INFO - dump */
+> >> +static const struct nla_policy drm_ras_get_retired_resources_info_nl_policy[DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_NODE_ID + 1] = {
+> >> +	[DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_NODE_ID] = { .type = NLA_U32, },
+> >> +};
+> >> +
+> >>  /* Ops table for drm_ras */
+> >>  static const struct genl_split_ops drm_ras_nl_ops[] = {
+> >>  	{
+> >> @@ -56,6 +66,20 @@ static const struct genl_split_ops drm_ras_nl_ops[] = {
+> >>  		.maxattr	= DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID,
+> >>  		.flags		= GENL_ADMIN_PERM | GENL_CMD_CAP_DO,
+> >>  	},
+> >> +	{
+> >> +		.cmd		= DRM_RAS_CMD_GET_RETIRED_RESOURCES,
+> >> +		.dumpit		= drm_ras_nl_get_retired_resources_dumpit,
+> >> +		.policy		= drm_ras_get_retired_resources_nl_policy,
+> >> +		.maxattr	= DRM_RAS_A_RETIRED_RESOURCE_ATTRS_NODE_ID,
+> >> +		.flags		= GENL_ADMIN_PERM | GENL_CMD_CAP_DUMP,
+> >> +	},
+> >> +	{
+> >> +		.cmd		= DRM_RAS_CMD_GET_RETIRED_RESOURCES_INFO,
+> >> +		.dumpit		= drm_ras_nl_get_retired_resources_info_dumpit,
+> >> +		.policy		= drm_ras_get_retired_resources_info_nl_policy,
+> >> +		.maxattr	= DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_NODE_ID,
+> >> +		.flags		= GENL_ADMIN_PERM | GENL_CMD_CAP_DUMP,
+> >> +	},
+> >>  };
+> >>  
+> >>  static const struct genl_multicast_group drm_ras_nl_mcgrps[] = {
+> >> diff --git a/drivers/gpu/drm/drm_ras_nl.h b/drivers/gpu/drm/drm_ras_nl.h
+> >> index 03ec275aca92..c46f2b4a6e8a 100644
+> >> --- a/drivers/gpu/drm/drm_ras_nl.h
+> >> +++ b/drivers/gpu/drm/drm_ras_nl.h
+> >> @@ -20,6 +20,10 @@ int drm_ras_nl_get_error_counter_dumpit(struct sk_buff *skb,
+> >>  					struct netlink_callback *cb);
+> >>  int drm_ras_nl_clear_error_counter_doit(struct sk_buff *skb,
+> >>  					struct genl_info *info);
+> >> +int drm_ras_nl_get_retired_resources_dumpit(struct sk_buff *skb,
+> >> +					    struct netlink_callback *cb);
+> >> +int drm_ras_nl_get_retired_resources_info_dumpit(struct sk_buff *skb,
+> >> +						 struct netlink_callback *cb);
+> >>  
+> >>  enum {
+> >>  	DRM_RAS_NLGRP_ERROR_REPORT,
+> >> diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
+> >> index 78184b6ea7d4..11ddd12a42e2 100644
+> >> --- a/drivers/gpu/drm/xe/xe_drm_ras.c
+> >> +++ b/drivers/gpu/drm/xe/xe_drm_ras.c
+> >> @@ -12,6 +12,7 @@
+> >>  #include "xe_device_types.h"
+> >>  #include "xe_drm_ras.h"
+> >>  #include "xe_ras.h"
+> >> +#include "xe_ttm_vram_mgr.h"
+> >>  
+> >>  static const char * const error_components[] = DRM_XE_RAS_ERROR_COMPONENT_NAMES;
+> >>  static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
+> >> @@ -154,6 +155,79 @@ static void cleanup_node(struct drm_device *drm, void *node)
+> >>  	cleanup_node_param(node);
+> >>  }
+> >>  
+> >> +static int query_retired_resource(struct drm_ras_node *node, u64 cursor,
+> >> +				  struct drm_ras_retired_resource *res)
+> >> +{
+> >> +	struct xe_device *xe = node->priv;
+> >> +	int ret;
+> >> +
+> >> +	ret = xe_ttm_vram_get_retired_page(xe, cursor, &res->vram_page.address,
+> >> +					   &res->vram_page.size, &res->status);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	res->type = DRM_RAS_RETIRED_RESOURCE_TYPE_VRAM_PAGE;
+> >> +	res->key = res->vram_page.address;
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static int query_retired_info(struct drm_ras_node *node, u32 index,
+> >> +			      struct drm_ras_retired_info *info)
+> >> +{
+> >> +	struct xe_device *xe = node->priv;
+> >> +
+> >> +	/* This node currently tracks a single resource type: VRAM pages. */
+> >> +	if (index > 0)
+> >> +		return -ENOENT;
+> >> +
+> >> +	info->type = DRM_RAS_RETIRED_RESOURCE_TYPE_VRAM_PAGE;
+> >> +	xe_ttm_vram_get_retired_info(xe, &info->max_count, &info->offlined_count,
+> >> +				     &info->queued_count);
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static int register_retired_node(struct xe_device *xe)
+> >> +{
+> >> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> >> +	struct xe_drm_ras *ras = &xe->ras;
+> >> +	struct drm_ras_node *node;
+> >> +	const char *device_name;
+> >> +	int ret;
+> >> +
+> >> +	/* Retired VRAM pages are only tracked on platforms with page offline */
+> >> +	if (xe->info.platform != XE_CRESCENTISLAND)
+> >> +		return 0;
+> >> +
+> >> +	node = drmm_kzalloc(&xe->drm, sizeof(*node), GFP_KERNEL);
+> >> +	if (!node)
+> >> +		return -ENOMEM;
+> >> +
+> >> +	device_name = kasprintf(GFP_KERNEL, "%04x:%02x:%02x.%d",
+> >> +				pci_domain_nr(pdev->bus), pdev->bus->number,
+> >> +				PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
+> >> +	if (!device_name)
+> >> +		return -ENOMEM;
+> >> +
+> >> +	node->device_name = device_name;
+> >> +	node->node_name = "vram-retired-pages";
+> >> +	node->type = DRM_RAS_NODE_TYPE_RETIRED_RESOURCES;
+> >> +	node->query_retired_resource = query_retired_resource;
+> >> +	node->query_retired_info = query_retired_info;
+> >> +	node->priv = xe;
+> >> +
+> >> +	ret = drm_ras_node_register(node);
+> >> +	if (ret) {
+> >> +		cleanup_node_param(node);
+> >> +		return ret;
+> >> +	}
+> >> +
+> >> +	ras->retired_node = node;
+> >> +
+> >> +	return drmm_add_action_or_reset(&xe->drm, cleanup_node, node);
+> >> +}
+> >> +
+> >>  static int register_nodes(struct xe_device *xe)
+> >>  {
+> >>  	struct xe_drm_ras *ras = &xe->ras;
+> >> @@ -245,5 +319,12 @@ int xe_drm_ras_init(struct xe_device *xe)
+> >>  		return err;
+> >>  	}
+> >>  
+> >> +	err = register_retired_node(xe);
+> >> +	if (err) {
+> >> +		drm_err(&xe->drm, "Failed to register DRM RAS retired node (%pe)\n",
+> >> +			ERR_PTR(err));
+> >> +		return err;
+> >> +	}
+> >> +
+> >>  	return 0;
+> >>  }
+> >> diff --git a/drivers/gpu/drm/xe/xe_drm_ras_types.h b/drivers/gpu/drm/xe/xe_drm_ras_types.h
+> >> index 83899cf04793..e1bdb7edd0e1 100644
+> >> --- a/drivers/gpu/drm/xe/xe_drm_ras_types.h
+> >> +++ b/drivers/gpu/drm/xe/xe_drm_ras_types.h
+> >> @@ -41,6 +41,9 @@ struct xe_drm_ras {
+> >>  	/** @node: DRM RAS node */
+> >>  	struct drm_ras_node *node;
+> >>  
+> >> +	/** @retired_node: DRM RAS retired-resources node for VRAM bad pages */
+> >> +	struct drm_ras_node *retired_node;
+> >> +
+> >>  	/** @info: info array for all types of errors */
+> >>  	struct xe_drm_ras_counter *info[DRM_XE_RAS_ERR_SEV_MAX];
+> >>  
+> >> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> >> index c54ad017725f..bc2fa43009f4 100644
+> >> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> >> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> >> @@ -15,6 +15,8 @@
+> >>  #include <drm/ttm/ttm_placement.h>
+> >>  #include <drm/ttm/ttm_range_manager.h>
+> >>  
+> >> +#include <uapi/drm/drm_ras.h>
+> >> +
+> >>  #include "regs/xe_regs.h"
+> >>  #include "xe_bo.h"
+> >>  #include "xe_configfs.h"
+> >> @@ -581,6 +583,138 @@ u64 xe_ttm_vram_get_avail(struct ttm_resource_manager *man)
+> >>  	return avail;
+> >>  }
+> >>  
+> >> +/**
+> >> + * xe_ttm_vram_get_retired_page - Fetch the next retired VRAM page by address
+> >> + * @xe: xe device instance
+> >> + * @min_addr: inclusive lower bound; return the page with the smallest DPA >=
+> >> + *            this value
+> >> + * @addr: output, device physical address (DPA) of the page
+> >> + * @size: output, size of the page in bytes
+> >> + * @status: output, retirement status (enum drm_ras_retired_resource_status)
+> >> + *
+> >> + * Scans the offlined and queued page lists across all tiles and returns the
+> >> + * entry with the smallest DPA that is >= @min_addr. Because retired pages have
+> >> + * unique addresses, iterating with @min_addr = previous_addr + 1 walks every
+> >> + * entry in a stable address order, which is robust against concurrent
+> >> + * insertion or removal between calls. Intended to back the drm-ras
+> >> + * retired-resources node enumeration.
+> >> + *
+> >> + * Return: 0 on success, -ENOENT when no page has a DPA >= @min_addr.
+> >> + */
+> >> +int xe_ttm_vram_get_retired_page(struct xe_device *xe, u64 min_addr,
+> >> +				 u64 *addr, u64 *size, u32 *status)
+> >> +{
+> >> +	struct xe_ttm_vram_offline_resource *pos;
+> >> +	struct ttm_resource_manager *man;
+> >> +	struct gpu_buddy_block *block;
+> >> +	struct xe_ttm_vram_mgr *mgr;
+> >> +	u64 best_addr = 0, best_size = 0;
+> >> +	struct xe_tile *tile;
+> >> +	u32 best_status = 0;
+> >> +	bool found = false;
+> >> +	u8 id;
+> >> +
+> >> +	for_each_tile(tile, xe, id) {
+> >> +		struct xe_vram_region *vr = tile->mem.vram;
+> >> +		u64 a, s;
+> >> +
+> >> +		man = ttm_manager_type(&xe->ttm, XE_PL_VRAM0 + id);
+> >> +		if (!man || !vr)
+> >> +			continue;
+> >> +		mgr = to_xe_ttm_vram_mgr(man);
+> >> +
+> >> +		rcu_read_lock();
+> >> +
+> >> +		list_for_each_entry_rcu(pos, &mgr->offlined_pages, offlined_link) {
+> >> +			block = list_first_entry_or_null(&pos->blocks,
+> >> +							 struct gpu_buddy_block, link);
+> >> +			if (block) {
+> >> +				a = gpu_buddy_block_offset(block) + vr->dpa_base;
+> >> +				s = gpu_buddy_block_size(&mgr->mm, block);
+> >> +			} else {
+> >> +				a = pos->addr + vr->dpa_base;
+> >> +				s = SZ_4K;
+> >> +			}
+> >> +
+> >> +			if (a >= min_addr && (!found || a < best_addr)) {
+> >> +				best_addr = a;
+> >> +				best_size = s;
+> >> +				best_status = DRM_RAS_RETIRED_RESOURCE_STATUS_RETIRED;
+> >> +				found = true;
+> >> +			}
+> >> +		}
+> >> +
+> >> +		list_for_each_entry_rcu(pos, &mgr->queued_pages, queued_link) {
+> >> +			block = list_first_entry_or_null(&pos->blocks,
+> >> +							 struct gpu_buddy_block, link);
+> >> +			if (block) {
+> >> +				a = gpu_buddy_block_offset(block) + vr->dpa_base;
+> >> +				s = gpu_buddy_block_size(&mgr->mm, block);
+> >> +			} else {
+> >> +				a = pos->addr + vr->dpa_base;
+> >> +				s = SZ_4K;
+> >> +			}
+> >> +
+> >> +			if (a >= min_addr && (!found || a < best_addr)) {
+> >> +				best_addr = a;
+> >> +				best_size = s;
+> >> +				best_status = pos->status == XE_PAGE_RESERVE_FAIL ?
+> >> +					      DRM_RAS_RETIRED_RESOURCE_STATUS_FAILED :
+> >> +					      DRM_RAS_RETIRED_RESOURCE_STATUS_PENDING;
+> >> +				found = true;
+> >> +			}
+> >> +		}
+> >> +
+> >> +		rcu_read_unlock();
+> >> +	}
+> >> +
+> >> +	if (!found)
+> >> +		return -ENOENT;
+> >> +
+> >> +	*addr = best_addr;
+> >> +	*size = best_size;
+> >> +	*status = best_status;
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +/**
+> >> + * xe_ttm_vram_get_retired_info - Fetch device-wide retired page limits/counts
+> >> + * @xe: xe device instance
+> >> + * @max: output, maximum pages that can be offlined (summed across tiles)
+> >> + * @offlined: output, pages currently retired (summed across tiles)
+> >> + * @queued: output, pages queued for retirement (summed across tiles)
+> >> + *
+> >> + * Aggregates the per-tile VRAM offline limits and occupancy. Intended to back
+> >> + * the drm-ras retired-resources info query.
+> >> + */
+> >> +void xe_ttm_vram_get_retired_info(struct xe_device *xe, u32 *max,
+> >> +				  u32 *offlined, u32 *queued)
+> >> +{
+> >> +	struct ttm_resource_manager *man;
+> >> +	struct xe_ttm_vram_mgr *mgr;
+> >> +	struct xe_tile *tile;
+> >> +	u32 m = 0, o = 0, q = 0;
+> >> +	u8 id;
+> >> +
+> >> +	for_each_tile(tile, xe, id) {
+> >> +		man = ttm_manager_type(&xe->ttm, XE_PL_VRAM0 + id);
+> >> +		if (!man || !tile->mem.vram)
+> >> +			continue;
+> >> +		mgr = to_xe_ttm_vram_mgr(man);
+> >> +
+> >> +		scoped_guard(mutex, &mgr->lock) {
+> >> +			m += mgr->max_pages;
+> > This is awkward. You document the max_count as the maximum that can be retired,
+> > but you are actually counting how many are retired at a given point.
+> yes the max count should be coming from FW query and its static, i will
+> fix it thanks for catching
+> >
+> >> +			o += mgr->n_offlined_pages;
+> >> +			q += mgr->n_queued_pages;
+> >
+> > You should probably have a single function that gets all the entries and
+> > the count. Otherwise you might have inconsistencies in the information.
+> >
+> > info command followed by dump can show different discrepant information...
+> >
+> > perhaps we could even delete the info command entirely and only use the dump?
+> 
+> makes sense I believe we can even drop the offlined and queued counts as
+> anyways that info can be retrieved from the earlier ops and can be
+> derived by userspace consumer.
+> 
+> So will just have the max_page count as the leading information to per
+> page entries.
+> 
+> >
+> >> +		}
+> >> +	}
+> >> +
+> >> +	*max = m;
+> >> +	*offlined = o;
+> >> +	*queued = q;
+> >> +}
+> >> +
+> >>  static int xe_ttm_vram_purge_page(struct xe_device *xe, struct xe_bo *bo)
+> >>  {
+> >>  	u32	q_flag = DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE;
+> >> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> >> index 8878e36292b2..9f849ee40e5b 100644
+> >> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> >> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+> >> @@ -35,6 +35,11 @@ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
+> >>  int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr);
+> >>  int xe_ttm_vram_inject_fault(struct xe_device *xe);
+> >>  void xe_ttm_vram_debugfs_init(struct xe_device *xe, struct dentry *root);
+> >> +int xe_ttm_vram_get_retired_page(struct xe_device *xe, u64 min_addr,
+> >> +				 u64 *addr, u64 *size, u32 *status);
+> >> +void xe_ttm_vram_get_retired_info(struct xe_device *xe, u32 *max,
+> >> +				  u32 *offlined, u32 *queued);
+> >> +
+> >>  static inline struct xe_ttm_vram_mgr_resource *
+> >>  to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
+> >>  {
+> >> diff --git a/include/drm/drm_ras.h b/include/drm/drm_ras.h
+> >> index ee2caa0edc6f..024f6a08c079 100644
+> >> --- a/include/drm/drm_ras.h
+> >> +++ b/include/drm/drm_ras.h
+> >> @@ -10,6 +10,54 @@
+> >>  
+> >>  #include <uapi/drm/drm_ras.h>
+> >>  
+> >> +/**
+> >> + * struct drm_ras_retired_resource - A single retired resource entry
+> >> + *
+> >> + * Describes one hardware resource that has been taken out of service and is
+> >> + * reported by a %DRM_RAS_NODE_TYPE_RETIRED_RESOURCES node. @type selects which
+> >> + * member of the anonymous union is valid, allowing new hardware resource types
+> >> + * to be added without changing the common fields.
+> >> + */
+> >> +struct drm_ras_retired_resource {
+> >> +	/** @type: Resource type (enum drm_ras_retired_resource_type). */
+> >> +	__u32 type;
+> >> +	/** @status: Retirement status (enum drm_ras_retired_resource_status). */
+> >> +	__u32 status;
+> >> +	/**
+> >> +	 * @key: Opaque, driver-assigned ordering key for this entry. drm-ras
+> >> +	 * uses it only to advance the dump cursor; entries must be enumerable
+> >> +	 * in strictly increasing @key order and keys must be unique.
+> >> +	 */
+> >> +	__u64 key;
+> >> +	union {
+> >> +		/** @vram_page: Valid when @type is VRAM_PAGE. */
+> >> +		struct {
+> >> +			/** @vram_page.address: Device address (e.g. DPA). */
+> >> +			__u64 address;
+> >> +			/** @vram_page.size: Size in bytes. */
+> >> +			__u64 size;
+> >> +		} vram_page;
+> >> +	};
+> >> +};
+> >> +
+> >> +/**
+> >> + * struct drm_ras_retired_info - Per-type retired resource limits and counts
+> >> + *
+> >> + * Reported by a %DRM_RAS_NODE_TYPE_RETIRED_RESOURCES node to describe the
+> >> + * capacity and current occupancy of one resource type. A node that tracks
+> >> + * several resource types reports one entry per type.
+> >> + */
+> >> +struct drm_ras_retired_info {
+> >> +	/** @type: Resource type (enum drm_ras_retired_resource_type). */
+> >> +	__u32 type;
+> >> +	/** @max_count: Maximum resources of @type that can be retired. */
+> >> +	__u32 max_count;
+> >> +	/** @offlined_count: Resources of @type currently retired. */
+> >> +	__u32 offlined_count;
+> >> +	/** @queued_count: Resources of @type queued (pending or failed). */
+> >> +	__u32 queued_count;
+> >> +};
+> >> +
+> >>  /**
+> >>   * struct drm_ras_node - A DRM RAS Node
+> >>   */
+> >> @@ -71,6 +119,45 @@ struct drm_ras_node {
+> >>  	 */
+> >>  	int (*clear_error_counter)(struct drm_ras_node *node, u32 error_id);
+> >>  
+> >> +	/**
+> >> +	 * @query_retired_resource:
+> >> +	 *
+> >> +	 * This callback is used by drm-ras to enumerate retired resources of a
+> >> +	 * %DRM_RAS_NODE_TYPE_RETIRED_RESOURCES node. It is called with @cursor
+> >> +	 * and must return the next entry whose ordering key is greater than or
+> >> +	 * equal to @cursor, setting @res->key to that entry's key. drm-ras
+> >> +	 * resumes multi-part dumps from the returned key, so enumeration stays
+> >> +	 * correct across concurrent insertion or removal.
+> >> +	 *
+> >> +	 * The @query_retired_resource is a mandatory callback for
+> >> +	 * retired-resources nodes.
+> >> +	 *
+> >> +	 * Returns: 0 on success,
+> >> +	 *          -ENOENT when no entry has a key >= @cursor, used as an
+> >> +	 *                  indication that enumeration is complete.
+> >> +	 *          Other negative values on errors that should terminate the
+> >> +	 *          netlink query.
+> >> +	 */
+> >> +	int (*query_retired_resource)(struct drm_ras_node *node, u64 cursor,
+> >> +				      struct drm_ras_retired_resource *res);
+> >> +
+> >> +	/**
+> >> +	 * @query_retired_info:
+> >> +	 *
+> >> +	 * This optional callback is used by drm-ras to report per-type limits
+> >> +	 * and current occupancy for a %DRM_RAS_NODE_TYPE_RETIRED_RESOURCES node.
+> >> +	 * It is called with @index starting at 0 and incrementing until the
+> >> +	 * driver returns -ENOENT, allowing one entry per resource type.
+> >> +	 *
+> >> +	 * Returns: 0 on success,
+> >> +	 *          -ENOENT when @index is past the last type, used as an
+> >> +	 *                  indication that enumeration is complete.
+> >> +	 *          Other negative values on errors that should terminate the
+> >> +	 *          netlink query.
+> >> +	 */
+> >> +	int (*query_retired_info)(struct drm_ras_node *node, u32 index,
+> >> +				  struct drm_ras_retired_info *info);
+> >> +
+> >>  	/** @priv: Driver private data */
+> >>  	void *priv;
+> >>  };
+> >> diff --git a/include/uapi/drm/drm_ras.h b/include/uapi/drm/drm_ras.h
+> >> index eab8231aa87c..de6f6dd3ffa9 100644
+> >> --- a/include/uapi/drm/drm_ras.h
+> >> +++ b/include/uapi/drm/drm_ras.h
+> > you are auto-generating these with the ynl commands right? please make sure
+> > to mention that in the commit message just to be sure.
+> 
+> sure will do it.
+> 
+> Thanks,
+> Aravind.
+> >
+> > Thanks,
+> > Rodrigo.
+> >
+> >> @@ -11,11 +11,38 @@
+> >>  #define DRM_RAS_FAMILY_VERSION	1
+> >>  
+> >>  /*
+> >> - * Type of the node. Currently, only error-counter nodes are supported, which
+> >> - * expose reliability counters for a hardware/software component.
+> >> + * Type of the node.
+> >> + *  - error-counter nodes expose reliability counters for a
+> >> + *    hardware/software component.
+> >> + *  - retired-resources nodes enumerate hardware resources (e.g. VRAM pages)
+> >> + *    that have been permanently taken out of service.
+> >>   */
+> >>  enum drm_ras_node_type {
+> >>  	DRM_RAS_NODE_TYPE_ERROR_COUNTER = 1,
+> >> +	DRM_RAS_NODE_TYPE_RETIRED_RESOURCES,
+> >> +};
+> >> +
+> >> +/*
+> >> + * Status of a retired resource entry reported by a retired-resources node.
+> >> + *  - retired: resource is permanently reserved and out of service.
+> >> + *  - pending: retirement is queued but reservation is not yet complete.
+> >> + *  - failed:  reservation of the resource failed and it may still be in use.
+> >> + */
+> >> +enum drm_ras_retired_resource_status {
+> >> +	DRM_RAS_RETIRED_RESOURCE_STATUS_RETIRED = 0,
+> >> +	DRM_RAS_RETIRED_RESOURCE_STATUS_PENDING,
+> >> +	DRM_RAS_RETIRED_RESOURCE_STATUS_FAILED,
+> >> +};
+> >> +
+> >> +/*
+> >> + * Type of a retired resource entry. The type selects which type-specific
+> >> + * nested attribute is present in a retired-resource entry. New hardware
+> >> + * resource types can be added here, each carrying its own nested attribute
+> >> + * set, without affecting existing types.
+> >> + *  - vram-page: a VRAM page identified by device address and size.
+> >> + */
+> >> +enum drm_ras_retired_resource_type {
+> >> +	DRM_RAS_RETIRED_RESOURCE_TYPE_VRAM_PAGE = 1,
+> >>  };
+> >>  
+> >>  enum {
+> >> @@ -50,11 +77,43 @@ enum {
+> >>  	DRM_RAS_A_ERROR_EVENT_ATTRS_MAX = (__DRM_RAS_A_ERROR_EVENT_ATTRS_MAX - 1)
+> >>  };
+> >>  
+> >> +enum {
+> >> +	DRM_RAS_A_RETIRED_RESOURCE_ATTRS_NODE_ID = 1,
+> >> +	DRM_RAS_A_RETIRED_RESOURCE_ATTRS_TYPE,
+> >> +	DRM_RAS_A_RETIRED_RESOURCE_ATTRS_STATUS,
+> >> +	DRM_RAS_A_RETIRED_RESOURCE_ATTRS_VRAM_PAGE,
+> >> +
+> >> +	__DRM_RAS_A_RETIRED_RESOURCE_ATTRS_MAX,
+> >> +	DRM_RAS_A_RETIRED_RESOURCE_ATTRS_MAX = (__DRM_RAS_A_RETIRED_RESOURCE_ATTRS_MAX - 1)
+> >> +};
+> >> +
+> >> +enum {
+> >> +	DRM_RAS_A_VRAM_PAGE_ATTRS_ADDRESS = 1,
+> >> +	DRM_RAS_A_VRAM_PAGE_ATTRS_SIZE,
+> >> +	DRM_RAS_A_VRAM_PAGE_ATTRS_PAD,
+> >> +
+> >> +	__DRM_RAS_A_VRAM_PAGE_ATTRS_MAX,
+> >> +	DRM_RAS_A_VRAM_PAGE_ATTRS_MAX = (__DRM_RAS_A_VRAM_PAGE_ATTRS_MAX - 1)
+> >> +};
+> >> +
+> >> +enum {
+> >> +	DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_NODE_ID = 1,
+> >> +	DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_TYPE,
+> >> +	DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_MAX_COUNT,
+> >> +	DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_OFFLINED_COUNT,
+> >> +	DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_QUEUED_COUNT,
+> >> +
+> >> +	__DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_MAX,
+> >> +	DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_MAX = (__DRM_RAS_A_RETIRED_RESOURCE_INFO_ATTRS_MAX - 1)
+> >> +};
+> >> +
+> >>  enum {
+> >>  	DRM_RAS_CMD_LIST_NODES = 1,
+> >>  	DRM_RAS_CMD_GET_ERROR_COUNTER,
+> >>  	DRM_RAS_CMD_CLEAR_ERROR_COUNTER,
+> >>  	DRM_RAS_CMD_ERROR_EVENT,
+> >> +	DRM_RAS_CMD_GET_RETIRED_RESOURCES,
+> >> +	DRM_RAS_CMD_GET_RETIRED_RESOURCES_INFO,
+> >>  
+> >>  	__DRM_RAS_CMD_MAX,
+> >>  	DRM_RAS_CMD_MAX = (__DRM_RAS_CMD_MAX - 1)
+> >> -- 
+> >> 2.25.1
+> >>
