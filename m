@@ -4,162 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 702FDC79FB9
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 11:57:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4FA5C79F9F
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 12:05:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24DF810E0A7;
-	Thu, 10 Sep 2026 11:57:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56BE910E5FD;
+	Thu, 10 Sep 2026 12:05:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OeZQY7GP";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="iIKYfDm9";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 015A610E0A7
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 11:57:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789041449; x=1820577449;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=bfVbaZVUfQutiKHAh9GeKd6qVzP78RyJa7wBbHgg/4Q=;
- b=OeZQY7GPhecCireer+9okd7BLirPz1A0K5Eo25oOiY6WZNnaGcA2JRxj
- 309J1T25XMMONS5IIJHnnGUahjZjZ6mZSh2usSspSvjLvT88uSjN0kkx6
- h7K2fArN2Wwx0F7j52Q6QKJqBs2x/VSCtrvuSwLEOTwzM7ZQWbycenS1d
- RuK8gOBiW0/luFYHQDgXn0gS5P06lKwnsH0pyY9UqdqBYKla1UpDJrsK6
- sfVUPYoBWWjIc+E8B5j197RC3pjyqSDsrOW6lC/ppr85r1wzqvEmu5dpL
- ctcD7UsmKxRZIZ+l2t5lPsdMw/Dy/B9/xnOYvC9t6E4xjPMOd+ZAAyKta w==;
-X-CSE-ConnectionGUID: DxyznbdRQiGfFdnUjmw0NQ==
-X-CSE-MsgGUID: 2s7fYb7MS5q15pFt8m/C2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="115034075"
-X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="115034075"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2026 04:57:29 -0700
-X-CSE-ConnectionGUID: VXdc4cJ1RP2XkALo7yfztg==
-X-CSE-MsgGUID: uB8EyqYRT92imdSfswo+HQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,95,1787036400"; d="scan'208";a="271115380"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2026 04:57:29 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 10 Sep 2026 04:57:28 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Thu, 10 Sep 2026 04:57:28 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.34) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 10 Sep 2026 04:57:28 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LR6LGGCtXy8UntI0QpDNLeF8V/BoOhqLzWPOVOnq18TZheN1z6xb7YalItoi4KrLeuhgJ3Iy8aDaAz/bQwH77KJ715TSiNylxGu7v1nVom+tZvyuFNydm9bOae8/skbCx3GKlHxnms20FV+vY/WhNG9O2ZrYzVGb20yQakDA9SOut2+eLqKqYnkku8OteCOoHnP1SZjXU3+Gnt2SenI/c+CUNfxg/xS9xVxI287atxiTrVB+au4txB5G//bF4JsuMz3d63oHEZvSCSpXpILbHB+jFHt+WRXt8jISbYZ47pR6gSHAn/YEM4ZBr+aISbeUuZNWY90HdJIFsk0PNR+CdQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Wu7o6m1jBollbYpBeWPvRnD+b3rL6tNGjgMThWU2VxU=;
- b=MXesGwW+EfWQY8QyRYT8pK0kwOBJwfiWX20NNQY51hdjr0t6F0ZrqTKLVtuhAz508t8j6U5TbUececdktKkE4n7qMlNE2VVMPNNKp8O4farbXLiSzRes/9pDEs3BPjqAd9z5QXuU6MR0VO3YWPuh22wGdrUpSxSqu7/XbWQKDhfBRZgCRvlDRItGHxYZXhmSgW63+IhFfAUJeB2nvoBU0K9d0vdWWEmkto2FrYBb8F9mdK8C/H/UqIEbbZomGMjXtFnqrMUIRPkfAzBnyAPUhb1VeV7fqKPh8FJODVHukV6mEKkU/VWklXxzLSYTGYF1tFK0F4gEHsyO6Tnj5B2n4g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from LV0PR11MB9792.namprd11.prod.outlook.com (2603:10b6:408:385::5)
- by PH0PR11MB5030.namprd11.prod.outlook.com (2603:10b6:510:41::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.9; Thu, 10 Sep
- 2026 11:57:26 +0000
-Received: from LV0PR11MB9792.namprd11.prod.outlook.com
- ([fe80::1b1f:d9a8:ce76:e9d8]) by LV0PR11MB9792.namprd11.prod.outlook.com
- ([fe80::1b1f:d9a8:ce76:e9d8%5]) with mapi id 15.21.0406.007; Thu, 10 Sep 2026
- 11:57:26 +0000
-Message-ID: <62914acf-3e61-4868-85e4-44e270cd55ae@intel.com>
-Date: Thu, 10 Sep 2026 17:27:15 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 03/12] drm/xe/cper: Add Intel specific CPER structures
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>
-CC: <anshuman.gupta@intel.com>, <daniele.ceraolospurio@intel.com>,
- <raag.jadav@intel.com>, <riana.tauro@intel.com>,
- <mallesh.koujalagi@intel.com>, <aravind.iddamsetty@intel.com>,
- <himal.prasad.ghimiray@intel.com>, <arvind.yadav@intel.com>,
- <syed.abdul.muqthyar.ahmed@intel.com>, <nitin.r.gote@intel.com>
-References: <20260906172604.2215987-14-badal.nilawar@intel.com>
- <20260906172604.2215987-17-badal.nilawar@intel.com>
- <0f51a1c9-a8fa-44fb-9733-97ea9e3e5899@intel.com>
-Content-Language: en-US
-From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <0f51a1c9-a8fa-44fb-9733-97ea9e3e5899@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0176.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1af::17) To LV0PR11MB9792.namprd11.prod.outlook.com
- (2603:10b6:408:385::5)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV0PR11MB9792:EE_|PH0PR11MB5030:EE_
-X-MS-Office365-Filtering-Correlation-Id: 072c0672-86e2-4378-69b5-08df0f32ae87
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|376014|1800799024|56012099006|10067099003|11063799006|4143699003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: sDJGW34vzeREzs5oteqQyH6Xo02MoxY9hqz9XCxJ62QzvVri+q+zYiz4lg4+dfcJKpwYI56yYrYjTIi41ksokS547JOqoZjRp3p45NMNVTGkljhka8DWLmV+mx0mJMwHX/555FJWn8fJhcORgZcdiqQSlxVxRm5VQ9/K6bQp06xesQdhT/xJ74CnZSztIa/ifysSqQXlqxRz9Vq4zeFyHmx4GAkmADt9IMuPdeQ4Pn/kF5SRzRxfjt2OalfTiaTSG4CPXc4pJynLDPUVZIER2wy6JN6N84tmUGZLGUXq/uAQICAvUiFSjqrCT4rxj7v2xSlNzZguRebYHrMgA50/g2qwVYk+VwPOePhQWzpya0iL8AZFWF9szBEn8T0341aJ4CR7KmiNgoybbZdNPES1xyRAksiH3ypk+qaclgWbOVYcgSTVjotzrYtZRvtEuZpxsnAafn/dIePyv3UGburuBHmeix/LEjeHzNwukiTeBMikQBtNW9RQYHRBX7hoQNFaN8ZRi8lYqJzIzgCkBcZZKJWH4uqkIfLAj3999SolDlqF4sEbKxsYCS495H9rYTUzAQS7eXk4W4Mdbjdn0LBzYE1kg3DpUD7GldncfwBTp2U98PqVGjDWVAxtg72lNKCm
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV0PR11MB9792.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(56012099006)(10067099003)(11063799006)(4143699003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bmdOdjZadXZkOXRVK0MrVTZxOGk4bEN5MHdCQk0vSEMrNUZ3eitxc1dnZzV0?=
- =?utf-8?B?WTUwWEZqSHR3Q09yMVEraTd4eTVYL0lLK0Y0Q0NIQ2U2bWtuTThqckQyTU53?=
- =?utf-8?B?Mnliakd4d29Va082UTExT294SzVHbGVLMEJ1NStrUDl1VDZUNXpqc1F6ejhy?=
- =?utf-8?B?M1FNWkEzWVZ2Y2xxbjFwMC8wZ0tNWEtpUi9tdUJLSXFITXRUZ0h6aU5rZFo4?=
- =?utf-8?B?WS9Nc24xZ3NGMkMzeW1tZ0xlUGp2QkdsTEE0cmxtZDVmT1RPWVEraHg2RFVH?=
- =?utf-8?B?VnBGcWo0dnZjZDlkNzFtT25yLzNKMGpIVnFpYnhPSVQ0QzVJWTg4eWJSUWVu?=
- =?utf-8?B?aW9OVWdmZDZyeTM3eVlWT09KSjZ3bFUzcmRscWpia3MxNGgyWW5BeW1KZWd5?=
- =?utf-8?B?eG9ZQUtEcXFlUzdjWGM4YUgxQTUybkhxbFFFeDZPYnhLVGsvczB2emRDbWd0?=
- =?utf-8?B?SmtQeDlPWW9lb3VEWE80RmhESlJBN2VuOTRsTlBnRFV4b0d3MU5veVM4WkM5?=
- =?utf-8?B?dENIVFZtODF3WVRDQllOdWdWVU1yVHVrbVduaFhMMGp3cDN4ZWRaeGhTVnhz?=
- =?utf-8?B?aENSNHhkQ3F0SDQ1cWlNL1FFV21QUUh2bkduVncxQlpxczJLV25tWkxmeC82?=
- =?utf-8?B?Tzh4aUxWVEdrdjBuUkFlMFh3Slc5U2JNczlqT08vRVV4NzZIRnREM0tNZFJ4?=
- =?utf-8?B?akQ2UTBCMnJNSmE0RS8yb2VmLzdMdG85N29JcVpwbWprM2VwZXdtNXppUktx?=
- =?utf-8?B?ZUlaOC9vTmh1QWNYcy90c2pXaG1qQndMMTZpbWtoem4yTjE5MUNMS3YvZlR6?=
- =?utf-8?B?emp6QU9sZFNWNVVKcHk0NVpCKzBNaEpKYjV0aVJIRDNNYmx4czE5eTVuUVpp?=
- =?utf-8?B?c0Q4aG1lWm1FNUY4TTJPRW8zQkJ3S2JrSGRIQVF1NE5LK2N1T0s1cVlsam9z?=
- =?utf-8?B?M2d3Q29qK2N0RmFrdmpQRkdRY3NHeVVabkJFTGM4ak0vaSs2aFpWRHI1MnpI?=
- =?utf-8?B?bU4rNTJ2UTRna2RGZStvbUFDUFlrTUgwSEZjeTZ2a3k1S09nSlpCQVJJbFNk?=
- =?utf-8?B?YVNGMUoybDVGazIvVnpPbkdudHAzbzZPeDdvTEdWMlhDQi9LZ2pvRjhxbWpV?=
- =?utf-8?B?b2ZrTHppemEvYmg0VFNYL3F2eUVHeXZGSUZ2TlhQTEpEZWI4Njl0dmRzRnZS?=
- =?utf-8?B?ZDRmVWR5a0RrZCthY2prUWpRcW40bUlaZ05ORHdSaVIrbTdMUENNVS9RK2ha?=
- =?utf-8?B?enRnK2FRV0NyYzRkR3pLNVY5V0JNTzdoNUdBZGU3UUxzNVUwbTl0c2NYR0p4?=
- =?utf-8?B?TTFmYVNlL1ByVmtXY0VQYllUUG1ldVVwTnpFbkxiU2tpd2toYm0zWkYwWlEr?=
- =?utf-8?B?dlRHVFd3VHpyR0dOY2RtVVNOUWx2bStpL3FhU1QxRkZGVFRZQlU0dXMyTzJ3?=
- =?utf-8?B?SFF3VEljelF2YVFjdEFrbEROK0lBTjFEQ3FWRGNMbDR6Tll6azVrMjg5NXJJ?=
- =?utf-8?B?cXE2VzREOEp5WU5tK1B5TStBQUJlNXl0SytKWTBaTU0xSnhrbHNIaUtJcFJq?=
- =?utf-8?B?NHUzbGFnaUtFQ0wzMFVlNCtuOXNhNm9WZnp4YXpMZFlVZkpraFRFN0ZTQllm?=
- =?utf-8?B?NzVtbWtNVlF4VGNJQ1p0WEtxUm1vM21zZDNsSVFLYStqZ2J0d3oxNkVyNmF0?=
- =?utf-8?B?RFNTeFprUW96M1FVUHFxMXpqOVZnc1ZQT3podkUvbVRIb002UlMxMElQSEgr?=
- =?utf-8?B?d1lPVnhOVDdkMEM3dXNxdFNNbksxT2J2azhmZ3hUcW94ejBaSitHZ2h1SHJk?=
- =?utf-8?B?K21xWkp5Si90M3dJWHRacm5oLzJnZGxwNG9Jb0lmLzNHcVc5ckJHVkg0QWxS?=
- =?utf-8?B?VzJxMWZXMEg3UGl1M1pyc2JpMkpsN1BzZktuN01KN2VQM1oxV2VNM2hlUWNL?=
- =?utf-8?B?blQ5TjlwZlJzVGEwakk5VTRVTlZOaGkvcU1YbjBoK2lacEtUR253OUpUUklK?=
- =?utf-8?B?YlJrajRBVm1USWVMaGhLYkQxSzlVWVIvM1BIV3VxMnVreldhWE4xN0h3OFN3?=
- =?utf-8?B?Ky90bDFGUDVua1pKTHhJODdHZkhpMXVkTzRIcVBtS1VoamdNU0ZBU3g1Wmpn?=
- =?utf-8?B?cElEYUZFd2graUlFbGI2cjdydWVUdDd3b3hyZFVmcEt3SU92RXJRVkd5ajNM?=
- =?utf-8?B?NG5BNE1UNnhwQkxBd3EwVm45YUx6dklnbnhMNHVXd0xnbkpqbnE5ejZONXJk?=
- =?utf-8?B?QnNNL3dqNlNWU3JHUXB2NGx2cWhDMG9Yb1lreTVHeUlDMmo0UzRRVVVPRFF2?=
- =?utf-8?B?NXdtQjM1Y1RjWVZ4dmZnYWRoTytselhmcFdyTXZxeUl0T0VrRzB3UT09?=
-X-Exchange-RoutingPolicyChecked: dkgoEVQyjw/xEkbGgA927RWtw1bVTzzVg5b3C8LhDmJQIDK3IY5q7FwgvVuRu7wdxoZwkzNtvmKsetKPG1HR3FWadWUc7LD/8dHwgnQ0sFbk1WZVRgh4Kppx9yKP11nsPXH0tWDjQvIqoudB5IH/w5BrUL8A+EL5woyknWTHZcFq6kXFzfcwZOey+I2UX9VdUdt1CF9c1rhWp4ikALQ1rlg6nc0DZKOiPWf+Q3swHt2wrTREuuGrGxX2nq5eObAoK9ulqXCRp1Pr5kuGAiDU1byI2F6L8QkEU5CFJjj6/9pUVozkHiH+gEC4OMLBHBEr1QSYX9w6vT+bx4c74+Sn0A==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 072c0672-86e2-4378-69b5-08df0f32ae87
-X-MS-Exchange-CrossTenant-AuthSource: LV0PR11MB9792.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2026 11:57:26.1574 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /uXu94MWTUws6FFvnFfBp3xdtMp1mZRGhC6Xbcch1svt/8wcovmTwsYMgP9ftoDF0qUmR33nO1Te/NhxLfiWJA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5030
-X-OriginatorOrg: intel.com
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0F6C10E5FD
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 12:05:02 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 7E8664138F;
+ Thu, 10 Sep 2026 12:05:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4175A1F000FF;
+ Thu, 10 Sep 2026 12:05:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1789041902;
+ bh=OMBHpuxSnG6koI5VxGnCM0JSVA7azUVctrQ4+dLNrqk=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=iIKYfDm9Sdh4wFIlMoDv70ugz4pjUvoOtq6x1LhQYJKMJtDs8mDaCH37iQ+JYp3Iq
+ K7j409curHd2bv0mCrruWIsbo9LQ9Q3NwmQfxHXGIafMZrksayIBAHgJB/BqFrxpA4
+ YB2A3fkDHUZaXwHnnDOaT7jeMGdEKxZBoDpi6HEsRjZ/hYC8Awhx/mGir7VNpSffSI
+ qn0PwWFNNYEg8pulb4j+ynPMlzP8yDtJ6j1udpvCBGet9uLJdw+WtL3Ih77UbWiGel
+ QQGPg4EG1rsabudpD4Tx+xv0nBzddL4XXgnQfI7g8g5pcpCu25nbQAS5uTlboXbAfz
+ hNJ41MHG0GQoQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4] [CI-ONLY][DONOT-REVIEW] Access counter squash
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260910114407.1801795-2-himal.prasad.ghimiray@intel.com>
+References: <20260910114407.1801795-2-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 10 Sep 2026 12:05:01 +0000
+Message-Id: <20260910120502.4175A1F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,269 +51,183 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Thank you for your contribution! Sashiko AI review found 7 potential issue(=
+s) to consider:
+- [Critical] Returning -ENOSPC from `xe_access_counter_handler` when the qu=
+eue is full causes a fatal GuC CT crash.
+- [High] Incorrect calculation of `page_va` drops the sub-granularity index=
+ and shifts the processing window.
+- [High] Access counter events are silently dropped for non-faulting VMs be=
+cause the handler strictly requires fault mode.
+- [High] AC-triggered migrations for non-migratable ranges unconditionally =
+fail with `-EACCES`, prematurely aborting the rest of the window.
+- [High] Missing error check after `xe_vm_drm_exec_lock` allows rebind with=
+out holding locks.
+- [High] The `XE_VMA_MIGRATE_ON_ACC` flag incorrectly skips VRAM migration =
+on first-touch for device atomics, causing an infinite fault loop.
+- [Medium] Missing access counter queue reset during GT reset violates UAPI=
+ documentation guarantees.
+--
 
-On 07-09-2026 18:43, Michal Wajdeczko wrote:
->
-> On 9/6/2026 7:26 PM, Badal Nilawar wrote:
->> Define Intel-specific data structures and GUIDs needed to build
->> Intel GPU CPER recoreds
-> typo
->
->> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
->> ---
->> v2: Fixed sashiko warning about bit fields usage
->> ---
->>   drivers/gpu/drm/xe/xe_cper_types.h | 179 +++++++++++++++++++++++++++++
->>   1 file changed, 179 insertions(+)
->>   create mode 100644 drivers/gpu/drm/xe/xe_cper_types.h
->>
->> diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_cper_types.h
->> new file mode 100644
->> index 000000000000..b81b70501e0e
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_cper_types.h
->> @@ -0,0 +1,179 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2026 Intel Corporation
->> + */
->> +
->> +#ifndef _XE_CPER_TYPES_H_
->> +#define _XE_CPER_TYPES_H_
->> +
->> +#include <linux/cper.h>
->> +#include <linux/types.h>
->> +#include <linux/uuid.h>
->> +
->> +/*
->> + * Validation bits definition for validation_bits in struct
->> + * xe_cper_sec_intel_err_hdr. When set, corresponding fields in header
->> + * contains valid data
->> + */
->> +#define XE_CPER_VALID_LOCATION		0x0001
->> +#define XE_CPER_VALID_FIRST_TIMESTAMP	0x0002
->> +#define XE_CPER_VALID_SIG_ID		0x0004
->> +#define XE_CPER_VALID_PCI_BDF		0x0008
->> +#define XE_CPER_VALID_DRV_VERSION	0x0010
->> +#define XE_CPER_VALID_FW_ID		0x0020
-> 	BIT(0)
-> 	BIT(1)
-> 	...
-> or
->
-> enum xe_cper_valid_bits {
-> 	XE_CPER_VALID_LOCATION = 0,
-> 	XE_CPER_VALID_FIRST_TIMESTAMP,
-> 	...	
->
-> 	BIT(XE_CPER_VALID_LOCATION)
-> 	BIT(XE_CPER_VALID_FIRST_TIMESTAMP)
+commit 3591a7b3a4219975acccb43af71c55d2243241d9
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-Followed the include/linux/cper.h
+Access counter squash
 
-/*
-  * Validation bits definition for validation_bits in struct
-  * cper_record_header. If set, corresponding fields in struct
-  * cper_record_header contain valid information.
-  */
-#define CPER_VALID_PLATFORM_ID                0x0001
-#define CPER_VALID_TIMESTAMP                    0x0002
-#define CPER_VALID_PARTITION_ID                0x0004
+The commit introduces hardware access counters handling for the Xe driver. =
+It
+includes queue management, VM integration, SVM range setup based on counter=
+s,
+and user API extensions to control access counter parameters.
 
-> 	...
->
->> +
->> +/*
->> + * Intel CPER GUID Namespace — RFC 9562 UUIDv5 (SHA-1 name-based)
->> + *
->> + * All values below are generated deterministically by uuid generator.
->> + * Do not hand-edit the byte values.
->> + */
->> +
->> +/* Creator IDs */
->> +#define INTEL_CPER_CREATOR_XEKMD \
->> +	GUID_INIT(0x9a42070f, 0xdf9d, 0x555e, \
->> +		  0xba, 0x02, 0x7c, 0xbc, 0x86, 0x3d, 0x37, 0x1c)
->> +
->> +#define INTEL_CPER_CREATOR_AMC \
->> +	GUID_INIT(0x215803da, 0xfc7a, 0x5925, \
->> +		  0xb7, 0x8b, 0x1f, 0xc1, 0x19, 0x61, 0x58, 0xd1)
->> +
->> +/* Notification Types */
->> +#define INTEL_CPER_NOTIFY_GPU_ERROR \
->> +	GUID_INIT(0x4ae12aef, 0x8745, 0x5fc7, \
->> +		  0xb9, 0x96, 0x71, 0xee, 0xbb, 0x51, 0xf2, 0x23)
-> only this one will be used for now, right?
-> maybe introduce other when needed?
-Sure.
->
->> +
->> +#define INTEL_CPER_NOTIFY_DRV_ERROR \
->> +	GUID_INIT(0xcef7e934, 0x51e7, 0x535f, \
->> +		  0xa6, 0x78, 0x5a, 0x4c, 0xcc, 0xb6, 0x96, 0x09)
->> +
->> +/* Section Types */
->> +#define INTEL_CPER_SECTION_ACCEL_GENERIC \
->> +	GUID_INIT(0xea9d8f84, 0x4258, 0x5227, \
->> +		  0x80, 0x28, 0xb9, 0xb1, 0x3e, 0x6d, 0x58, 0xb0)
-> as this seems to be new ABI, shouldn't we define it at least in our abi/ folder?
->
-> 	drivers/gpu/drm/xe/abi/xe_cper_abi.h
-You mean above GUIDs?
->
->> +
->> +#pragma pack(push, 1)
->> +
->> +/**
->> + * struct xe_cper_sec_intel_err_hdr - Intel-specific CPER error section header
-> if this is a Intel header, maybe it should start with intel_ prefix?
->
-> 	intel_cper_section_...
->> + *
->> + * Fixed-size header for the Intel GPU error section of a CPER record.
-> if this is GPU section, shouldn't we have gpu_ tag in the struct name?
->
-> 	intel_cper_section_gpu_error
-Followed the specs. Fields from these structures will be overloaded for 
-software CPER as well.
->
->> + * All multi-byte fields are little-endian; the structure is packed.
->> + */
->> +struct xe_cper_sec_intel_err_hdr {
->> +	/** @error_class: Error classification (type, component, location, cause) */
->> +	union {
->> +		struct {
->> +			/** @error_class.error_type: RAS error severity */
->> +			u8  error_type;
->> +			/** @error_class.error_component: IP block that raised the error */
->> +			u8  error_component;
->> +			/** @error_class.tile: Tile number */
->> +			u8  tile;
->> +			/** @error_class.instance: Instance within the tile */
->> +			u32 instance;
->> +			/** @error_class.cause: Error cause code */
->> +			u32 cause;
->> +			/** @error_class.reserved: Reserved, must be zero */
->> +			u8  reserved;
->> +		} error_class;
->> +		/** @class: Raw byte view of the error class */
->> +		u8 class[12];
->> +	};
->> +	/** @first_timestamp: Timestamp of the first occurrence of this error class */
->> +	u64 first_timestamp;
->> +	/** @sig_id: Aggregated error class SIG ID; set to U32_MAX if unknown */
->> +	u32 sig_id;
->> +	/** @error_count: Number of times this error has been observed */
->> +	u32 error_count;
->> +	/** @validation_bits: Raw u16 view of all valid bits */
->> +	u16 validation_bits;
->> +	/** @pci_bdf: PCI location string, format "DDDD:bb:dd.f" */
->> +	char pci_bdf[16];
->> +	/** @drv_version: Driver source version string (THIS_MODULE->srcversion) */
->> +	char drv_version[25];
->> +	/** @fw_id: Firmware version string (GFSP+PCODE+CSC+GUC or MNG+NUC+RAS+GUC) */
->> +	char fw_id[256];
->> +	/** @reserved: Reserved for future use, must be zero */
->> +	u8 reserved[5];
->> +};
->> +
->> +/**
->> + * struct xe_cper_sec_intel_error_info - Variable-length Intel GPU error payload
->> + *
->> + * Appended after &xe_cper_sec_intel_err_hdr when detailed per-event data
->> + * is available. The @event_queue flexible array holds @event_queue_count
->> + * packed &xe_intel_priv_event_entry records.
->> + */
->> +struct xe_cper_sec_intel_error_info {
->> +	/** @error_class: Error classification (mirrors the header error_class) */
-> if it is the same, shouldn't we define dedicated struct for it?
-> doing a plain copy/paste is error prone
-Sure.
->
->> +	union {
->> +		struct {
->> +			u8  error_type;
->> +			u8  error_component;
->> +			u8  tile;
->> +			u32 instance;
->> +			u32 cause;
->> +			u8  reserved;
->> +		} error_class;
->> +		/** @class: Raw byte view of the error class */
->> +		u8 class[12];
->> +	};
->> +	/** @error_count: Total number of errors recorded */
->> +	u32 error_count;
->> +	/** @event_queue_length: Total byte size of the @event_queue array */
->> +	u32 event_queue_length;
->> +	/** @event_queue_count: Number of entries in @event_queue */
->> +	u32 event_queue_count;
->> +	/** @event_queue: Packed array of &xe_intel_priv_event_entry records */
->> +	u8 event_queue[];
->> +};
->> +
->> +/**
->> + * struct xe_intel_priv_event_entry - Single error event in the event queue
-> no cper_ in the name?
-will add.
->
->> + *
->> + * Each entry is variable-length; @entry_length gives the byte size of
->> + * @metadata only (not including @entry_length or @timestamp).
->> + */
->> +struct xe_intel_priv_event_entry {
->> +	/** @entry_length: Byte length of the @metadata payload */
->> +	u32 entry_length;
->> +	/** @timestamp: Hardware timestamp of this event */
->> +	u64 timestamp;
->> +	/** @metadata: Event-specific payload bytes */
->> +	u8  metadata[];
->> +};
->> +
->> +/**
->> + * struct xe_cper_nonstd_record - Fixed-size portion of an Intel GPU CPER record
->> + *
->> + * Contains the standard CPER record header, section descriptor, and the
->> + * Intel error section header. A &xe_cper_sec_intel_error_info payload
->> + * (with its flexible @event_queue array) is appended dynamically.
->> + */
->> +struct xe_cper_nonstd_record {
->> +	/** @record_hdr: Standard CPER record header (UEFI Appendix N.2.1) */
->> +	struct cper_record_header record_hdr;
->> +	/** @section_desc: CPER section descriptor */
->> +	struct cper_section_descriptor section_desc;
->> +	/** @intel_hdr: Intel-specific error section header */
->> +	struct xe_cper_sec_intel_err_hdr intel_hdr;
->> +};
-> hmm, this one looks like our helper struct, not a real ABI
->
-> [1] https://uefi.org/specs/UEFI/2.10/Apx_N_Common_Platform_Error_Record.html#format
+> diff --git a/drivers/gpu/drm/xe/xe_access_counter.c b/drivers/gpu/drm/xe/=
+xe_access_counter.c
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_access_counter.c
+[ ... ]
+> +static int xe_access_counter_service(struct xe_access_counter *ac)
+> +{
+[ ... ]
+> +	vm =3D xe_device_asid_to_fault_vm(xe, ac->consumer.asid);
+> +	if (IS_ERR(vm))
+> +		return PTR_ERR(vm);
 
-Yes it is helper structure.
+[Severity: High]
+Does strict usage of xe_device_asid_to_fault_vm() here unintentionally drop
+events for normal (non-SVM) buffer objects? xe_device_asid_to_fault_vm()
+requires xe_vm_in_fault_mode(vm) to be true, but xe_vma_supports_access_ctr=
+()
+indicates access counters are also supported for standard VMs.
 
-Thanks,
-Badal
+[ ... ]
+> +int xe_access_counter_handler(struct xe_device *xe, struct xe_access_cou=
+nter *ac)
+> +{
+[ ... ]
+> +	spin_lock_irqsave(&ac_queue->lock, flags);
+> +	idx =3D xe_access_counter_work_index(xe);
+> +	full =3D xe_usm_queue_full(ac_queue);
+> +	if (!full) {
+> +		xe_usm_queue_push(ac_queue, ac);
+> +		queue_work(xe->usm.pagefault_wq, &xe->usm.ac_workers[idx].work);
+> +	} else {
+> +		drm_warn(&xe->drm,
+> +			 "AccessCounter Queue full, shouldn't be possible\n");
+> +	}
+> +	spin_unlock_irqrestore(&ac_queue->lock, flags);
+> +
+> +	return full ? -ENOSPC : 0;
+> +}
 
->
->
->> +
->> +#pragma pack(pop)
->> +
->> +/**
->> + * struct xe_platform_id_entry - Mapping from PCI device ID to CPER platform GUID
->> + *
->> + * Used to resolve the platform_id field in a CPER section descriptor.
->> + * GUIDs are UUIDv5 (RFC 9562, SHA-1) derived from the Intel CPER namespace
->> + * with name string "platform/8086:<dev_id_hex_lower>".
->> + */
->> +struct xe_platform_id_entry {
->> +	/** @device_id: PCI device ID */
->> +	u16       device_id;
->> +	/** @platform_id: Corresponding UUIDv5 platform GUID */
->> +	guid_t    platform_id;
->> +};
->> +
->> +#endif
+[Severity: Critical]
+Is it safe to return -ENOSPC when the access counter queue is full? If this
+error propagates to process_g2h_msg() in the GuC CT layer, it treats any
+non-zero return value as a fatal error and calls CT_DEAD(), wedging the
+device. Should we safely drop the event and return 0 instead of crashing the
+GPU under heavy access counter loads?
+
+> diff --git a/drivers/gpu/drm/xe/xe_guc_access_counter.c b/drivers/gpu/drm=
+/xe/xe_guc_access_counter.c
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_guc_access_counter.c
+[ ... ]
+> +static u64 xe_guc_access_counter_page_va(struct xe_device *xe, u64 addr,=
+ u8 gran)
+> +{
+> +	u64 gran_size =3D xe_access_counter_granularity_to_size(gran);
+> +	u64 sub_gran_size =3D gran_size / 32;
+> +	u64 region_base =3D ALIGN_DOWN(addr, gran_size);
+> +	u64 offset_in_subchunk =3D addr & (sub_gran_size - 1);
+> +	u64 page_va =3D region_base + offset_in_subchunk;
+
+[Severity: High]
+Is this calculation for page_va correct? It extracts offset_in_subchunk usi=
+ng
+addr & (sub_gran_size - 1), but adding this directly to region_base discards
+the higher bits of the subchunk index. Does this cause the sliding window
+bounds [page_va, gran_end) to shift to unaligned addresses, corrupting the
+migration target?
+
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+[ ... ]
+> +static int __xe_svm_range_setup(struct xe_vm *vm, struct xe_vma *vma,
+[ ... ]
+> +	/* READ_ONCE pairs with WRITE_ONCE in drm_gpusvm_range_set_unmapped() */
+> +	range_flags.__flags =3D READ_ONCE(range->base.flags.__flags);
+> +	if (ctx.devmem_only && !range_flags.migrate_devmem) {
+> +		err =3D -EACCES;
+> +		goto err_out;
+> +	}
+
+[Severity: High]
+Does this early check cause unintended failures for AC triggers? When trigg=
+ered
+by an AC event, ctx.devmem_only is forced to true. If this encounters a
+non-migratable range, it returns -EACCES and aborts the entire window
+iteration. Should this be safely skipped instead, since the code later tries
+to handle if (acc_ctr_trigger && !range_flags.migrate_devmem) goto out;?
+
+[ ... ]
+> +	/*
+> +	 * With MIGRATE_ON_ACCESS_COUNTER, defer first placement to access
+> +	 * counters: skip the eager migrate on a normal page fault, but still
+> +	 * migrate when this setup was itself triggered by an AC event.
+> +	 */
+>  	if (--migrate_try_count >=3D 0 &&
+> +	    (acc_ctr_trigger || !(vma->gpuva.flags & XE_VMA_MIGRATE_ON_ACC)) &&
+>  	    xe_svm_range_needs_migrate_to_vram(range, vma, dpagemap)) {
+
+[Severity: High]
+Does applying the XE_VMA_MIGRATE_ON_ACC flag break device atomic accesses? =
+If
+a normal page fault is triggered for a device atomic operation, VRAM placem=
+ent
+is required for correctness. However, this condition suppresses VRAM migrat=
+ion
+on first-touch if MIGRATE_ON_ACC is set, causing an infinite fault loop when
+xe_svm_range_get_pages() subsequently fails.
+
+[ ... ]
+> +	bind_start =3D xe_gt_stats_ktime_get();
+> +	xe_validation_guard(&vctx, &vm->xe->val, &exec, (struct xe_val_flags) {=
+}, err) {
+> +		err =3D xe_vm_drm_exec_lock(vm, &exec);
+> +		drm_exec_retry_on_contention(&exec);
+> +
+> +		xe_vm_set_validation_exec(vm, &exec);
+> +		fence =3D xe_vm_range_rebind(vm, vma, range, BIT(tile->id));
+
+[Severity: High]
+What happens if xe_vm_drm_exec_lock() fails with a non-contention error (li=
+ke
+-EINTR)? There doesn't seem to be an error check before calling
+xe_vm_range_rebind(). Could this lead to VMA rebinding proceeding without
+holding the necessary locks, causing use-after-free or data corruption?
+
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+[ ... ]
+> + * Access counter parameters cannot be removed or changed after the exec=
+ queue
+> + * is created.  During a GT reset the kernel squashes any in-flight acce=
+ss
+> + * counter notifications for that GT (pending work items are discarded),=
+ but
+
+[Severity: Medium]
+The uAPI documentation for DRM_XE_EXEC_QUEUE_EXTENSION_SET_ACC_PARAM
+guarantees that in-flight access counter notifications are squashed during a
+GT reset. I don't see a reset or squash hook in xe_access_counter.c to clear
+xe->usm.ac_queue. Are stale access counter events persisting across GT rese=
+ts?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260910114407.1801=
+795-2-himal.prasad.ghimiray@intel.com?part=3D1
