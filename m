@@ -4,93 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C05DC88E53
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 21:45:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FB16C88E4D
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 21:45:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00E9A10E599;
-	Fri, 11 Sep 2026 21:45:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 324B210E5C0;
+	Fri, 11 Sep 2026 21:45:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="V1BedFKT";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="s0Af+rxv";
 	dkim-atps=neutral
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
- [209.85.221.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EB6110F65D
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 15:05:09 +0000 (UTC)
-Received: by mail-wr1-f46.google.com with SMTP id
- ffacd0b85a97d-48436216a98so664872f8f.0
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 08:05:09 -0700 (PDT)
+Received: from mail-pj2-f12.google.com (mail-pj2-f12.google.com
+ [74.125.227.140])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8131010E2AC
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 16:00:18 +0000 (UTC)
+Received: by mail-pj2-f12.google.com with SMTP id
+ d9443c01a7336-2db22383fe8so13598465ad.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 09:00:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1789139108; x=1789743908; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:content-type:mime-version:message-id:date
- :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=mniijplyGZlkQZmDrYFnOPglJBLK+WFjfb4odBVk/dg=;
- b=V1BedFKT64n6GOpbO/JpGOpzLgyIijYwldqwvPoOebpj6iIeiFMgQQ/U/dhWcl3PeJ
- Mt96cfykNoiyTN6eqLf1dAr7fJqLXmzsX6JEPKKce73UlOgNI1EcCjOqxpIU7iH7B4Rz
- kagFOG6TzpuxjevUu9p74CFT4ymZUJQegGnsJsbvyE0xh0MpNALTokXy9ibvUrf5UYTV
- rh/h/d24nzVLYixZFnUZrMktrTsJGxOftpGS6hjMT7hY5EuzuxxszJ9TtffgaA1dT8m5
- 8d7hw3aa28DFL3oquB9jBfcjbzFbSo+6an32Muzjg/6/Iw0BTT3tIPth2WPV0cGjJczq
- eYLQ==
+ d=gmail.com; s=20251104; t=1789056018; x=1789660818; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+ bh=bXD/U7hlVPQRpHS1AI7lVEOW2y8sGkOWMG9ZHqUS/sc=;
+ b=s0Af+rxvUmpH5czSptgISIYRw141PqEq94tSdWanp9YDD0IssetZawsRLxjb38B2Kf
+ c3YfU6+WlMnWEo6QPUI6BFLtIs3f1pmHwh+DMuidP2LTmJWtcvxHjQrqxlcjQBgXqqlQ
+ 9HLIUwmCgw7MRVchG0cSJNLwOxsYkD6E6BOwvhFuJXQTg5cpYoj+25rRyZ5TymMBdcnv
+ FKV02BchAE4sdvi9TRX+u9KImYb4JWxOg0bjMEUUCYORtCMyj0a5vD7aFDwDTNhIzNoj
+ IPxiDUdJOJ7+qfj3gIDALiCrcyywGXxyV3QGXO7S4zpxciJsPT0ynYy21YfA1O6pTrsk
+ YOPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1789139108; x=1789743908;
- h=content-transfer-encoding:content-type:mime-version:message-id:date
- :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=mniijplyGZlkQZmDrYFnOPglJBLK+WFjfb4odBVk/dg=;
- b=GKqujTwRt6mYrraE2XuwLKmGzNRUSB9YILClSW7OQZbvFn/I1I5izbX0p2Z6X6y8tC
- J8rIpScHRjBJpKTijHSxzBmBBUW4sDeiPUUsgkZXDDrgCaMqT+VcPiGw3pdMuZrpmoRF
- +5X5TJgZZW1V43+bmZZMhh3arftDiUp+Dlvtsm52hpNisdzN/XvewoWFu3dUmWYcMKtk
- nEOV9irUSseVTtFJxSeJIv64n0/KBTqMhciZ52pWdTrPljsC9e4G2jd2ffbjvM7i8YxN
- tSHOgW2fObkSJ3lf5lIfL/2HPL3+Nmlmys8ww29hwe/7YtYok+xiC4uybEFIq5lIn5uX
- IgmQ==
+ d=1e100.net; s=20251104; t=1789056018; x=1789660818;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=bXD/U7hlVPQRpHS1AI7lVEOW2y8sGkOWMG9ZHqUS/sc=;
+ b=TkKLc6dZ4jLVi6/CNypoeesGW1UffNaUw7X2m2MZBqOsJg7KSZVC2ikW3GtGfWB3ro
+ vJazlLpAGDacZ3Dg4sJ0vrvP2tu+syb1EXiK0ggXygqOUTuyZVXvp+F6mEbHU7ejs8ci
+ x2ZBmW/n73rmMnVA1ObZ1SE41WKSa7dtiNOfWPDHTLXGmFz+uiqITgoMu/2g463eGZw4
+ yoQmYTmpvxlEf6s0NHhL43coVMEeDwXBFKhF294KiCk3kev9w4snRazLLQe/bmoksJg9
+ iiEgtQZdwMk35AyCBSbUA2KAVvx+qDRyhRnAgJrex1ejXED231Vn0kL+Aleh5ROBLopI
+ 70BA==
 X-Forwarded-Encrypted: i=1;
- AKwUvBxB93n1udD7yMtdW3UUOWMb9h2DhpjOm2fShJCTQT5bqB6owXqctYtOpLPThLwAVcLv2W1EH2Qsww==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++kojrOpvC3vEZZalOib9bQtbI9zMnYhWpqmyq8bPSc6sj0J3SyP
- 1b8dLmDqw1RUDkALYbE2MhctP2/xnsOam85EChsHXRidRQtgEN6CW5fY9f9KvxbD480=
-X-Gm-Gg: AYBFou2TTXpLMl61dFVAMPdG/wr01xaRC6hWbn7od6UmSJ1Oof6YP/PkGifz7DQzPSe
- J5PNeyandXW8sn6sV2YstpBcuJlf8G355ka36g/FWeSW3wWpZczroWpsZshElXfYL+F781W1q67
- h/c2hCuRuQHQ6LJ2t6RJS9eCD0U6fj9d5q47oVkB+/ss0jmR2M2MKOq0GWUJkINg1SwJYlzoUeb
- H7/cMsLWE6rDqjwg/i3cNnzvi70psz9UCnwKl3uO4YAHnz3Dm7EGImq/qv5PQzO8GXSMGql1SbB
- 8C0oL2RuuZqHlFShYfRbjQON2uaEMT1tnIce5b1mMJ4LMAv29B1WSz6mSrqABZriNhj1w1NFu0Y
- NjqQun0xH9+FMWMnT9N01gxMHn4fBfyM9xqsW78D+NmuTAAtyZTCT1dPHsoWLLP6C+BEoIOTLgk
- Qe+LdNjnifydUkawS+UI2dTQmfF2N9Nm97G9AvItBQgTJctxYtMg4ivpODM3I+mvFfm2ovtrW9k
- CZmPejXJBolRSpU
-X-Received: by 2002:adf:ee86:0:b0:485:8c17:975f with SMTP id
- ffacd0b85a97d-486eb2ffac7mr4035568f8f.33.1789139107698; 
- Fri, 11 Sep 2026 08:05:07 -0700 (PDT)
-Received: from localhost.localdomain ([2001:af0:8000:1409:193:86:92:181])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-486eb350686sm6853579f8f.27.2026.09.11.08.05.06
+ AKwUvBwurYF4igw3/abe5e5Fm5q7kfWLZwqNq3wxZZ0zDFr36ve846ytSy+QtWZTaJapiMsomc038Z0KMA==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++lCsLBDFl8xq1FpwLJTB9NQAVxESi9ySCrU1XFNfi4AWVrkoGqV
+ dcr9cFJXw5jqcm6OkFh30xSXoiJG/0agzHFvdxoblORm8Ch10pOGTAF4
+X-Gm-Gg: AYBFou1A8j0hyxNJSJKZKhQd3JIbTuDC3ZCH+9fVOXWYRLlXiYjmEd9Wvp+naVmyV4w
+ 2DkBQK/gg7+SPipwu1t5AK8JfM2QBRtKWLUqYHBjVV4Q04bDcDJm8rWqyLV2HWDfEq90tbI3Hje
+ osPdS1tmrXYpYuuWrALHoU/QBNaIcHhg9iXLvkmcg5kI0pi5VQSycNTbWfMwh5mcCuiQ7c0Powa
+ fva7bBCXtFsS5L0eObOxV7V5xZu3Xv6CqDZDQqj0eO+CJOMztMeQohc5fqVAo33SnFheyDA5W6k
+ VG6FDXrNBxRpdGwTTYS2xnkJzpypX9CzqFrvfL2Dgt1K8gdarf0XzgpV3z093adA8TbivPle4WK
+ GjMC+ldgqqjN/m0USDkWLKyM9Ryf2rW7fCNjMDucpca1x0AfPvJ58D1vj9XFDUi/4caf0jdCmfG
+ Ayl83KTQYuVX5jeDSwi6VYFlJ3WyQ6PLMg6Xs+AL7SBu8fj6Yr2NikFKPCFtYg+ps+8sPb0VA=
+X-Received: by 2002:a17:902:ea0b:b0:2d6:3c22:99bf with SMTP id
+ d9443c01a7336-2dd2a1ef505mr1333475ad.9.1789056017830; 
+ Thu, 10 Sep 2026 09:00:17 -0700 (PDT)
+Received: from G15-5520 ([103.206.144.4]) by smtp.gmail.com with ESMTPSA id
+ 5a478bee46e88-3397d6d1becsm15350364eec.22.2026.09.10.09.00.13
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 11 Sep 2026 08:05:07 -0700 (PDT)
-From: Petr Pavlu <petr.pavlu@suse.com>
-To: Jens Axboe <axboe@kernel.dk>, Jakub Kicinski <kuba@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
+ Thu, 10 Sep 2026 09:00:17 -0700 (PDT)
+From: Lalit Shankar Chowdhury <lalitshankarch@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Simon Horman <horms@kernel.org>, David Airlie <airlied@gmail.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>,
- Francois Dugast <francois.dugast@intel.com>,
- Luis Chamberlain <mcgrof@kernel.org>, Petr Pavlu <petr.pavlu@suse.com>,
- Daniel Gomez <da.gomez@kernel.org>,
- Sami Tolvanen <samitolvanen@google.com>,
- Aaron Tomlin <atomlin@atomlin.com>, linux-block@vger.kernel.org,
- netdev@vger.kernel.org, linux-api@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-modules@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH 0/6] Remove the error-injection.h include from linux/module.h
-Date: Fri, 11 Sep 2026 17:04:00 +0200
-Message-ID: <20260911-module-include-error_injection-v1-0-5da895d8c84d@suse.com>
-X-Mailer: git-send-email 2.55.0
+ intel-gfx@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
+ DRIVERS), 
+ intel-xe@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
+ DRIVERS), dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
+ linux-kernel@vger.kernel.org (open list)
+Cc: Lalit Shankar Chowdhury <lalitshankarch@gmail.com>
+Subject: [PATCH] drm/i915/fb: replace kmalloc_array with kmalloc_objs
+Date: Thu, 10 Sep 2026 15:58:45 +0000
+Message-ID: <20260910155846.79513-1-lalitshankarch@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Change-ID: 20260816-module-include-error_injection-4f80e37a8ea6
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 11 Sep 2026 21:45:10 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -107,73 +93,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-linux/module.h appears in roughly 15k #include directives across the
-kernel. This makes it a "hot" header, so it should avoid pulling in
-unnecessary definitions.
+Replace the remaining kmalloc_array instance with kmalloc_objs.
 
-The header currently includes linux/error-injection.h to obtain the
-definition of `struct error_injection_entry`. However, this is unnecessary
-because the type is only referenced in the file as a pointer, for which an
-incomplete type is sufficient.
-
-Add explicit includes of linux/error-injection.h to files that use the
-ALLOW_ERROR_INJECTION() macro and currently rely on it being provided
-indirectly via linux/module.h. Then remove the linux/error-injection.h
-include from linux/module.h.
-
-The first five patches can go through their respective trees if preferred.
-The final patch depends on the preceding cleanups.
-
+Signed-off-by: Lalit Shankar Chowdhury <lalitshankarch@gmail.com>
 ---
-Petr Pavlu (6):
-      block: Include error-injection.h for ALLOW_ERROR_INJECTION()
-      net: Include error-injection.h for ALLOW_ERROR_INJECTION()
-      syscalls: Include error-injection.h for ALLOW_ERROR_INJECTION()
-      drm/i915: Include error-injection.h for ALLOW_ERROR_INJECTION()
-      drm/xe: Include error-injection.h for ALLOW_ERROR_INJECTION()
-      module: Remove the error-injection.h include from linux/module.h
+ drivers/gpu/drm/i915/display/intel_fb.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- block/blk-core.c                                    | 1 +
- drivers/gpu/drm/i915/display/intel_connector.c      | 1 +
- drivers/gpu/drm/i915/display/intel_display_driver.c | 1 +
- drivers/gpu/drm/i915/gt/intel_engine_cs.c           | 1 +
- drivers/gpu/drm/i915/gt/intel_gt.c                  | 2 ++
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c           | 1 +
- drivers/gpu/drm/i915/gt/uc/intel_uc.c               | 1 +
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c            | 1 +
- drivers/gpu/drm/i915/i915_driver.c                  | 1 +
- drivers/gpu/drm/i915/i915_pci.c                     | 2 ++
- drivers/gpu/drm/i915/intel_uncore.c                 | 1 +
- drivers/gpu/drm/xe/xe_device.c                      | 2 +-
- drivers/gpu/drm/xe/xe_exec_queue.c                  | 1 +
- drivers/gpu/drm/xe/xe_ggtt.c                        | 2 +-
- drivers/gpu/drm/xe/xe_guc.c                         | 1 +
- drivers/gpu/drm/xe/xe_guc_ads.c                     | 2 +-
- drivers/gpu/drm/xe/xe_guc_ct.c                      | 2 +-
- drivers/gpu/drm/xe/xe_guc_log.c                     | 2 +-
- drivers/gpu/drm/xe/xe_guc_relay.c                   | 2 +-
- drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.c       | 1 +
- drivers/gpu/drm/xe/xe_hw_engine_group.c             | 2 ++
- drivers/gpu/drm/xe/xe_mmio.c                        | 1 +
- drivers/gpu/drm/xe/xe_oa.c                          | 1 +
- drivers/gpu/drm/xe/xe_pm.c                          | 2 +-
- drivers/gpu/drm/xe/xe_pt.c                          | 2 ++
- drivers/gpu/drm/xe/xe_pxp.c                         | 2 ++
- drivers/gpu/drm/xe/xe_sriov.c                       | 2 +-
- drivers/gpu/drm/xe/xe_sync.c                        | 1 +
- drivers/gpu/drm/xe/xe_tile.c                        | 2 +-
- drivers/gpu/drm/xe/xe_tuning.c                      | 2 ++
- drivers/gpu/drm/xe/xe_uc_fw.c                       | 2 +-
- drivers/gpu/drm/xe/xe_vm.c                          | 1 +
- drivers/gpu/drm/xe/xe_wa.c                          | 2 +-
- drivers/gpu/drm/xe/xe_wopcm.c                       | 2 +-
- drivers/net/netdevsim/tc.c                          | 1 +
- include/linux/compat.h                              | 1 +
- include/linux/module.h                              | 1 -
- include/linux/syscalls.h                            | 1 +
- kernel/module/main.c                                | 1 +
- net/core/skb_fault_injection.c                      | 1 +
- 40 files changed, 45 insertions(+), 13 deletions(-)
----
-base-commit: df2908090cda368b01ff43709f51890076c56157
-change-id: 20260816-module-include-error_injection-4f80e37a8ea6
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 1c0859d5f829..c3e4c3f6d8cf 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -596,7 +596,7 @@ u64 *intel_fb_plane_get_modifiers(struct intel_display *display,
+ 			count++;
+ 	}
+ 
+-	list = kmalloc_array(count, sizeof(*list), GFP_KERNEL);
++	list = kmalloc_objs(*list, count);
+ 	if (drm_WARN_ON(display->drm, !list))
+ 		return NULL;
+ 
+-- 
+2.53.0
+
