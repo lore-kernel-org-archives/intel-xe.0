@@ -4,103 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70BF6C79FB7
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 07:36:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2053CC79FB9
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Sep 2026 07:58:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01FBB10F332;
-	Thu, 10 Sep 2026 07:36:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC2F610F351;
+	Thu, 10 Sep 2026 07:58:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="QvayVyIk";
-	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="De8+MDnj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DOh5c8F8";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB7F110F330
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 07:36:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1789025789;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=fhiJfocRqbrYnuPz9RkY0OnbkGrAJA6KUWww65lP/c4=;
- b=QvayVyIkUkOdHQht+bfu5W3TlEOMgmP6tdx/wTERWcWYhwia3CVFP3/UI9m1bL1pZ2u8CF
- bKTIXMgd83temYbtwGeb9+mAAoHz+f1Lm1F8xnFiiY/ceurB8opGjCr2xs7mJG9GpjMhTq
- 9x8o+i/pkaHHfelq/WvFrC6/M90FfQY=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-317-To6f0p5mPDWBf_K2RXyL_g-1; Thu, 10 Sep 2026 03:36:27 -0400
-X-MC-Unique: To6f0p5mPDWBf_K2RXyL_g-1
-X-Mimecast-MFC-AGG-ID: To6f0p5mPDWBf_K2RXyL_g_1789025786
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-49991beee7aso61831385e9.2
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 00:36:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=redhat.com; s=google; t=1789025786; x=1789630586; darn=lists.freedesktop.org;
- h=content-disposition:content-type:mime-version:message-id:subject:cc
- :to:from:date:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=fhiJfocRqbrYnuPz9RkY0OnbkGrAJA6KUWww65lP/c4=;
- b=De8+MDnjvnaZLkbT4LMvbKIqt6hOKj28cl0hsbNuLTVEI3tqY5YVKjLZBIKZASstqq
- D9bBsBTHbNnnFvGXo0a0aJBdRKwK9PiIz7C3eO6VTANk0O7DsYhIlPy2CVyEVbB6TMsY
- 4hJPBUflXPkNKTTHNF32LrSRAsnlxuLayu4mmOszjpSf8Vfur3G0/djXmsG3/X3NH+D1
- hlDb7zJz4OpKNeHeon8yMT6e55TsvE1jQn7Rs5R5ijVS9iZ5N1qmNHk4oOjVUJ1JaXrD
- IGsbxaqmLnBHcxiiSiFmhueQ0Ganb3EApiyRYiuDWn0SgmCCgDeV0rGfcIeYVRDfn0/k
- WMBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1789025786; x=1789630586;
- h=content-disposition:content-type:mime-version:message-id:subject:cc
- :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=fhiJfocRqbrYnuPz9RkY0OnbkGrAJA6KUWww65lP/c4=;
- b=StiKik4GqjTamaPYu7ySYRVkWNx59SstR/gOY/ZyCsDSFktkLCMQO1RLvxYof+OXx4
- t6J7MASn2zVrYzDnhaWV1+Y7zfP67munXDDgv608SAyRM4Q5rpAuOt/RquY7GHPq0Uu4
- xyK3r7fxO7L4Ylbr0XoZ0dtRCsMWMf4uT8/exmzMlmOuhvDFCmm8G/4r5SueyK6SalJe
- gb/zQjS23FGSPoI/i+6mSdwT4eDt61cnj0Tidr4Y9IUenCcquaWXvD1HMeHKvlG+6O3w
- ea80twAYnK99gRHsTo450ciuXVT8oQCz3jaA5MNjzD1ro4cUkAReCT1UPeQ1P5PMHVlH
- m1bg==
-X-Forwarded-Encrypted: i=1;
- AKwUvBz+07H84TTpdrPw19SXlKlNz079XQJaSrpZgOyYTQ9BMPzW3/64RFBg+vSDXorOQffHBK5vviRRwA==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++mnmjdUzt9yigIVC7oubKZT7EpjglJPNzUI5SSGJ/gO07t37knr
- /fpIX/LSxnoIif/3XD17E0ZU/PDgEnVpMDMH/bbh1MhXNvBUTA+8e0pdSt/gajvDhq5Ic7Zdkv3
- raLRCiAxV34nLIRq8coFWYC2BuQotnF8Ivl1bYfGZqMzOgYr9+EbU0erLmf24EJTbrs75mFUn1u
- sW
-X-Gm-Gg: AYBFou33zxf6wLy9w/RCNtSwANVSTYgU6n2hOhhSKCzI65IIyAOxiaG4c7iKkHrrTrB
- 7kXMJGmEFTRFFECnKwaMmQpu1OXLBpXea2w2BHZOZcVMA+BZ8CMuJtXvBTqcoW7TisgV3Nsxc5f
- CBroJw7PBkcAtA5ZQF2w6npgi+vtTtAsXRbg0jpiXcALSdujxGYvWy9ctermfh3HhmMgkDlkmmz
- pg1N8ckYLOFtQgGByZYi4oT9/GMTpqDzLjuAL++PGLILap18yzKHXWalbq8kTC9tRHVxygiwvr1
- 4apgFxqDWn4xQAXbDB+hHKRGFnOdom32tnKcpFHVldeSXyj1BbfJJzInvAeJXa9jzeuwXQZrTw=
- =
-X-Received: by 2002:a05:600c:1e24:b0:49c:cee0:e7c1 with SMTP id
- 5b1f17b1804b1-49d259502f1mr106251575e9.16.1789025785781; 
- Thu, 10 Sep 2026 00:36:25 -0700 (PDT)
-X-Received: by 2002:a05:600c:1e24:b0:49c:cee0:e7c1 with SMTP id
- 5b1f17b1804b1-49d259502f1mr106250675e9.16.1789025785264; 
- Thu, 10 Sep 2026 00:36:25 -0700 (PDT)
-Received: from localhost ([2a01:e0a:a99:9822:ca7f:54ff:fe01:374c])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-4859207c28fsm44595353f8f.5.2026.09.10.00.36.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 10 Sep 2026 00:36:24 -0700 (PDT)
-Date: Thu, 10 Sep 2026 09:36:22 +0200
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Matthew Brost <matthew.brost@intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <aqJd5TPXpwqwsM0F@houat>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 935AE10F351
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Sep 2026 07:58:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789027093; x=1820563093;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=OLblpcGsQvNuCC6b6eSE/6V9uxr33T+AmI38tUgEcmo=;
+ b=DOh5c8F8Tk+TgvpVTHryhJuOJBRqZL0XqLe858IOxTY6wRQyykbwFnHP
+ Pr93+0T3VSM9rz4mMux0a18IqfUCVx/SHAFmYdVs2kPaRSxxOOyNWNul9
+ C0/hHpkkW6bZgrvW5mhX+quOfw5jOw3/gdF7Kq4HzkKIici5TSAjqRCKB
+ Zgg4gfnM77k6eXOCO6V915CjVjH1PPOH2gSfmlPbJGmVIP6KiDDONF/PP
+ 3pcKVe2AOqOtgKEy7ogxnJX4ovJult2353REDf+Wglk9TEtPNkhs9JoGs
+ AajGDgJZ1mG9Hz1W+voSL3CTji1idB9gt9k12K6/1DtA7x18WLs8rDgIu A==;
+X-CSE-ConnectionGUID: t9OEPZB2QAumTKiShDPI8w==
+X-CSE-MsgGUID: l84whxlNSIGWTJhpSiStKA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11900"; a="93159175"
+X-IronPort-AV: E=Sophos;i="6.25,271,1779174000"; d="scan'208";a="93159175"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2026 00:58:11 -0700
+X-CSE-ConnectionGUID: VMWMx4MmShOiCJ3SC+il9g==
+X-CSE-MsgGUID: pSRuXeXgTgux+c9L5+I87g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,271,1779174000"; d="scan'208";a="267868676"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2026 00:58:07 -0700
+Date: Thu, 10 Sep 2026 09:58:04 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, daniele.ceraolospurio@intel.com,
+ riana.tauro@intel.com, mallesh.koujalagi@intel.com,
+ aravind.iddamsetty@intel.com, michal.wajdeczko@intel.com,
+ himal.prasad.ghimiray@intel.com, arvind.yadav@intel.com,
+ syed.abdul.muqthyar.ahmed@intel.com, nitin.r.gote@intel.com
+Subject: Re: [PATCH v3 12/12] drm/xe/cper: Emit cper record to trace buf
+Message-ID: <aqJjDA08LIkA5jS7@black.igk.intel.com>
+References: <20260906172604.2215987-14-badal.nilawar@intel.com>
+ <20260906172604.2215987-26-badal.nilawar@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="3xkcu43eemue6yqx"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260906172604.2215987-26-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,131 +73,152 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Sun, Sep 06, 2026 at 10:56:17PM +0530, Badal Nilawar wrote:
+> Emit cper record to trace buf.
 
---3xkcu43eemue6yqx
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: [PULL] drm-misc-fixes
-MIME-Version: 1.0
+Okay, so all the xe_log conversions are redundant until this is in place.
+Please sequence them after this patch.
 
-Hi Sima, Dave,
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> Assisted-by: Copilot:claude-sonnet-4.6
+> ---
+>  drivers/gpu/drm/xe/Makefile        |  3 +-
+>  drivers/gpu/drm/xe/xe_cper.c       |  4 +-
+>  drivers/gpu/drm/xe/xe_trace_cper.c |  9 ++++
+>  drivers/gpu/drm/xe/xe_trace_cper.h | 66 ++++++++++++++++++++++++++++++
+>  4 files changed, 80 insertions(+), 2 deletions(-)
+>  create mode 100644 drivers/gpu/drm/xe/xe_trace_cper.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_trace_cper.h
+> 
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 06b064add77d..7831f7d94784 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -166,7 +166,8 @@ xe-$(CONFIG_HWMON) += xe_hwmon.o
+>  xe-$(CONFIG_PERF_EVENTS) += xe_pmu.o
+>  xe-$(CONFIG_CONFIGFS_FS) += xe_configfs.o
+>  
+> -xe-$(CONFIG_UEFI_CPER_X86) += xe_cper.o
+> +xe-$(CONFIG_UEFI_CPER_X86) += xe_cper.o \
+> +			      xe_trace_cper.o
+>  
+>  # graphics virtualization (SR-IOV) support
+>  xe-y += \
+> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+> index ebf4dc4ab2bb..0818ee6ae8ae 100644
+> --- a/drivers/gpu/drm/xe/xe_cper.c
+> +++ b/drivers/gpu/drm/xe/xe_cper.c
+> @@ -16,6 +16,7 @@
+>  #include "xe_printk.h"
+>  #include "xe_ras.h"
+>  #include "xe_ras_types.h"
+> +#include "xe_trace_cper.h"
+>  
+>  static const struct xe_platform_id_entry xe_platform_ids[] = {
+>  	/* 0x674C  platform/8086:674c */
+> @@ -169,7 +170,8 @@ static void xe_cper_record_emit(struct xe_device *xe, u8 severity,
+>  	if (einfo && einfo_len)
+>  		memcpy((u8 *)rec + sizeof(*rec), einfo, einfo_len);
+>  
+> -	/* TODO: Emit trace event */
+> +	trace_xe_error_cper(xe, &rhdr->platform_id, &sdesc->fru_id, severity,
+> +			    &rec->intel_hdr, total_len, (u8 *)rec);
+>  
+>  	kfree(rec);
+>  }
+> diff --git a/drivers/gpu/drm/xe/xe_trace_cper.c b/drivers/gpu/drm/xe/xe_trace_cper.c
+> new file mode 100644
+> index 000000000000..caea8783ab7c
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_trace_cper.c
+> @@ -0,0 +1,9 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright © 2026 Intel Corporation
+> + */
+> +
+> +#ifndef __CHECKER__
+> +#define CREATE_TRACE_POINTS
+> +#include "xe_trace_cper.h"
+> +#endif
 
-Here's this week drm-misc-fixes PR
+This looks like a redundant file that should not exist. Why not have the
+TRACE_EVENT() as part of xe_trace.h and drop this?
 
-Maxime
+Raag
 
-drm-misc-fixes-2026-09-10:
-A fair amount of fixes this week as well:
-
-- create blend mode property for more driver planes
-- Kconfig cleanups across the board
-- sched: null pointer dereference fix in kunit tests
-- ethosu misc fixes about error handling and corner cases handling
-- ivpu fixes about buffer and metadata validation
-- rockchip: fixes around buffer overflow and kconfig
-- tc358768: fix bus flags and error handling
-The following changes since commit df2908090cda368b01ff43709f51890076c56157:
-
-  Linux 7.3-rc2 (2026-09-06 15:07:20 -0700)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-09-10
-
-for you to fetch changes up to 4600b4d1a9ee730d03ddac5ce409cd2730ce8c0c:
-
-  drm/bridge: ti-sn65dsi83: Fix error handling in sn65dsi83_reset_work() (2026-09-09 17:07:54 +0200)
-
-----------------------------------------------------------------
-A fair amount of fixes this week as well:
-
-- create blend mode property for more driver planes
-- Kconfig cleanups across the board
-- sched: null pointer dereference fix in kunit tests
-- ethosu misc fixes about error handling and corner cases handling
-- ivpu fixes about buffer and metadata validation
-- rockchip: fixes around buffer overflow and kconfig
-- tc358768: fix bus flags and error handling
-
-----------------------------------------------------------------
-Dawid Osuchowski (1):
-      accel/ivpu: Limit firmware log name prints to field size
-
-Esben Haabendal (1):
-      drm/bridge: ti-sn65dsi83: Fix error handling in sn65dsi83_reset_work()
-
-Igor Paunovic (2):
-      drm/rockchip: dw_dp: Select DRM_BRIDGE_CONNECTOR
-      drm/rockchip: rk3066_hdmi: Add missing Kconfig selects
-
-Karl Mehltretter (2):
-      drm/adp: Drop the select of the nonexistent CONFIG_DRM_KMS_DMA_HELPER
-      drm/logicvc: Drop the select of the nonexistent CONFIG_DRM_KMS_DMA_HELPER
-
-Leonardo Costa (1):
-      drm/bridge: tc358768: Enforce input bus flags via atomic_check
-
-Magdalena Schulfer (2):
-      accel/ivpu: Validate full buffer range in ivpu_to_cpu_addr
-      accel/ivpu: Validate firmware log buffer metadata
-
-Qinyun Tan (4):
-      drm/ast: create blend mode property on cursor plane
-      drm/qxl: create blend mode property on primary and cursor planes
-      drm/virtio: create blend mode property on cursor plane
-      drm/vboxvideo: create blend mode property on planes
-
-Rob Herring (Arm) (5):
-      accel: ethosu: Fix ethosu_job_open() return value
-      accel: ethosu: Drop IRQF_SHARED flag
-      accel: ethosu: Ensure cmd stream ends with a stop op
-      accel: ethosu: Ensure SRAM size is 0 on mapping failure
-      accel: ethosu: Ensure SRAM region size matches job
-
-Shixiong Ou (1):
-      drm/sched: Create a fake device for KUnit tests
-
-Sunil Khatri (1):
-      drm/drm_exec: fix up contended obj when num_objects is 0
-
-Thomas Zimmermann (1):
-      Merge drm/drm-fixes into drm-misc-fixes
-
-Yudi Yang (1):
-      drm/rockchip: analogix_dp: fix unchecked bound endpoint name length
-
- drivers/accel/ethosu/ethosu_device.h             |  1 +
- drivers/accel/ethosu/ethosu_drv.c                |  3 +-
- drivers/accel/ethosu/ethosu_gem.c                |  9 +++
- drivers/accel/ethosu/ethosu_job.c                | 16 ++---
- drivers/accel/ivpu/ivpu_fw_log.c                 | 87 ++++++++++++++----------
- drivers/accel/ivpu/ivpu_gem.h                    | 14 +++-
- drivers/accel/ivpu/ivpu_ipc.c                    |  7 +-
- drivers/gpu/drm/adp/Kconfig                      |  1 -
- drivers/gpu/drm/ast/ast_cursor.c                 |  3 +
- drivers/gpu/drm/bridge/tc358768.c                | 15 ++--
- drivers/gpu/drm/bridge/ti-sn65dsi83.c            |  6 +-
- drivers/gpu/drm/drm_exec.c                       | 13 ++++
- drivers/gpu/drm/logicvc/Kconfig                  |  1 -
- drivers/gpu/drm/qxl/qxl_display.c                |  4 ++
- drivers/gpu/drm/rockchip/Kconfig                 |  3 +
- drivers/gpu/drm/rockchip/analogix_dp-rockchip.c  |  7 +-
- drivers/gpu/drm/scheduler/tests/mock_scheduler.c | 11 +++
- drivers/gpu/drm/vboxvideo/vbox_mode.c            |  4 ++
- drivers/gpu/drm/virtio/virtgpu_plane.c           |  4 ++
- 19 files changed, 145 insertions(+), 64 deletions(-)
-
---3xkcu43eemue6yqx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaqJd9gAKCRAnX84Zoj2+
-doTKAX9M8i+ZyZFOPtMLBgbELSG2rIaEAmdtCE/krakwFppuut0Hqoyg4a8WnkXI
-1qh5brYBgO4onsdHI70y/5RvZVnesb1kkhlCokyMk11buYl5AC0DNsAjIGNdqTfL
-VjSGS/PzSA==
-=P2bZ
------END PGP SIGNATURE-----
-
---3xkcu43eemue6yqx--
-
+> diff --git a/drivers/gpu/drm/xe/xe_trace_cper.h b/drivers/gpu/drm/xe/xe_trace_cper.h
+> new file mode 100644
+> index 000000000000..6d2dbf504888
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_trace_cper.h
+> @@ -0,0 +1,66 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright © 2026 Intel Corporation
+> + */
+> +
+> +#undef TRACE_SYSTEM
+> +#define TRACE_SYSTEM xe
+> +
+> +#if !defined(_XE_TRACE_CPER_H_) || defined(TRACE_HEADER_MULTI_READ)
+> +#define _XE_TRACE_CPER_H_
+> +
+> +#include <linux/tracepoint.h>
+> +#include <linux/types.h>
+> +
+> +#include "xe_cper_types.h"
+> +#include "xe_device_types.h"
+> +
+> +#define __dev_name_xe(xe)	dev_name((xe)->drm.dev)
+> +
+> +TRACE_EVENT(xe_error_cper,
+> +	TP_PROTO(struct xe_device *xe,
+> +	    const guid_t *platform_id, const guid_t *fru_id,
+> +	    const u8 severity,
+> +	    const struct xe_cper_sec_intel_err_hdr *ihdr,
+> +	    u32 cper_len, const u8 *cper),
+> +	TP_ARGS(xe, platform_id, fru_id, severity, ihdr, cper_len, cper),
+> +
+> +	TP_STRUCT__entry(
+> +	    __string(dev, __dev_name_xe(xe))
+> +	    __array(char, platform_id, UUID_SIZE)
+> +	    __array(char, fru_id, UUID_SIZE)
+> +	    __field(u8, sev)
+> +	    __array(u8, ihdr_raw, sizeof(struct xe_cper_sec_intel_err_hdr))
+> +	    __field(u32, cper_len)
+> +	    __dynamic_array(u8, cper, cper_len)
+> +	    ),
+> +
+> +	TP_fast_assign(
+> +	    __assign_str(dev);
+> +	    __entry->sev = severity;
+> +	    memcpy(__entry->platform_id, platform_id, UUID_SIZE);
+> +	    memcpy(__entry->fru_id, fru_id, UUID_SIZE);
+> +	    memcpy(__entry->ihdr_raw, ihdr, sizeof(struct xe_cper_sec_intel_err_hdr));
+> +	    __entry->cper_len = cper_len;
+> +	    memcpy(__get_dynamic_array(cper), cper, cper_len);
+> +	    ),
+> +
+> +	TP_printk("dev=%s severity=%d platform_id=%pU fru_id=%pU "
+> +		"intel_err_hdr_raw=%s cper_len=%u cper_raw=%s",
+> +		__get_str(dev), __entry->sev,
+> +		__entry->platform_id, __entry->fru_id,
+> +		__print_hex(__entry->ihdr_raw,
+> +		    sizeof(struct xe_cper_sec_intel_err_hdr)),
+> +		__entry->cper_len,
+> +		__print_hex(__get_dynamic_array(cper),
+> +		    __entry->cper_len))
+> +);
+> +
+> +#endif
+> +
+> +/* This part must be outside protection */
+> +#undef TRACE_INCLUDE_PATH
+> +#undef TRACE_INCLUDE_FILE
+> +#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+> +#define TRACE_INCLUDE_FILE xe_trace_cper
+> +#include <trace/define_trace.h>
+> -- 
+> 2.54.0
+> 
