@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09A8CC88E50
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 483F4C88E4D
 	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 21:45:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E44910E57A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 946CE10E597;
 	Fri, 11 Sep 2026 21:45:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="dEZ8uZxs";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="UV/uHAvo";
 	dkim-atps=neutral
-Received: from mail-wr2-f12.google.com (mail-wr2-f12.google.com
- [74.125.225.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D10BC10F665
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 15:05:10 +0000 (UTC)
-Received: by mail-wr2-f12.google.com with SMTP id
- ffacd0b85a97d-4843cedd129so637852f8f.0
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 08:05:10 -0700 (PDT)
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+ [209.85.221.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5E5C10F66E
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 15:05:17 +0000 (UTC)
+Received: by mail-wr1-f47.google.com with SMTP id
+ ffacd0b85a97d-485850cf499so831819f8f.3
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 08:05:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1789139109; x=1789743909; darn=lists.freedesktop.org; 
+ d=suse.com; s=google; t=1789139116; x=1789743916; darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
  :date:message-id:reply-to:content-type;
- bh=KmDwdyq9Q0uxbSq8SDMOz/Ug4vndqaUQy+VL3xEV3E0=;
- b=dEZ8uZxs249XdRbgQv1/dP8lLP3TbJbzf3Vg0MEnMjzeFSwCDM9qednXZHo1Qu002Q
- r1V4cbUiV1ECQ6LOLJ93jwaYRKapaoSWjsfhW5sO7RQgDJwkj0Zc8CiAAZ8rWDNRc8b4
- PdCPqSIkEBkmjQkkZxEcpe5NtQ7gLbbyYRBlb09GCGlzoOzO2yM6OmzO1/NkLK35XebC
- UVUbnEG+tLkTaDO3dbrIVo6PLiLXRAMx6I+Px+19K+MnfTtm5alPjzyQsRD/K838YZM9
- rFVAOa2NqNo9KuyYbWCCKJGf/GUvaICDj5ukI1jt5f8+AABukBFjwSMYXYzknhlyxpUc
- DKWg==
+ bh=a258DNEK6aR0v+xDimWu2caaAUdwCvMljBObmnBjN5k=;
+ b=UV/uHAvowqaPOP/yltYPgD6G7/52L93IXQWZ1gWg9DdYCUFHxm32mFE4FCBMO1QR6X
+ z2V24Xq7aysMfqTsIbqJod0nDJ0xs29IHne1Qdfii/1KimKSaF3KZrt0veE5/gwgeV6u
+ VTvXEE+/t7Cc0VwNzGsH2MeC+AcS44l7UkMW3d3QL5RaGmqP2yUNfkP5aMT8XP0Jy4ZG
+ Y2hiQt5xAEOOHVFOORwxr6lzwdqwZQkx++VkmwcC/Djx+tS/vJrmJEJkxW2cFoE+b2OF
+ nmKM9Jgr0Bg7wyGz/Go+6MMw/JfMyKYQeW5I8tKb/XmXmRlUeO2LGhfB6iaAbnolpyyS
+ BDcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1789139109; x=1789743909;
+ d=1e100.net; s=20251104; t=1789139116; x=1789743916;
  h=content-transfer-encoding:content-type:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=KmDwdyq9Q0uxbSq8SDMOz/Ug4vndqaUQy+VL3xEV3E0=;
- b=ngbUz7I6bNfGA8hKFxNU5OfTlLEeADWCz/bqW+3MkIVb47oNPiZvlyQKdoH96RxTb3
- N6clWrsvjw28NWeONRZemNxFoDFCvn0wxwpjC+oA0HB5NdmsLwDzrMaIzV5rRyouW1ec
- QsQK5nfgRlyxYVA4nUi5Cx6jIA7Ve/AdRhnJwHb1P6KLM8wx/tMO9pXDuVYOSKtiMjKd
- 6HnSXDGIcFlQEVfC4uLAe5A8DEkTxBB6Gfb3MSUZ+DLz7hBHMe5TdX233f86Ub8mCuUH
- lSredMBizucJYGMhIIFxE5mEB5yDKHs32HITQ759KR6DQG5xVdzwa48QbYk40hkkcAAX
- dRKg==
+ bh=a258DNEK6aR0v+xDimWu2caaAUdwCvMljBObmnBjN5k=;
+ b=XeI7kFdIfzF5Ea+5bF8nMr61d+K0ug1cUpBBO+aVSS74kZlAaS68UUAu56OctFKrHK
+ TCi4TYU8S0quG3DukAwD4rveJTz7tIn4iwtVCyWbr3zABGEtAO+yaphQKXEhrReDSDIC
+ 8bctyKsqYgYx3r+Y/GXjXEUO42nCRyGier+iOv54cKdnXO8P0CJk3d8YZzV6mBDI9UwL
+ 0IujwVvzPBmSk+hdKG3jsH7y33uMgx5cLqx9/yogp9n7G36SpALQCFHAK/VHsIuoAple
+ 6Ti0Q2a37QMYzGjcmW5y0H72KgEWs7yojgBdtm8bL8mRtxstDiy5OMVOiNW3e3nPm7/H
+ QK1Q==
 X-Forwarded-Encrypted: i=1;
- AKwUvBxeqzMy6G07gkdI0VSNLPbIN7ZTF9XxuRhGtkxjH5flfrB9wE3QlhQouomYQqMmLIyk20LrXt/FdA==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++mb2wiZWCXZvyOEd8sPvO/8emFK3HDIts1c+zlXtoXzO3csM96x
- ASshTiFtX4lN4L9ABU05rytr9BjZgnKJvVR/giPodW4twrRLEIPHwMErzWOnZUD5J6U=
-X-Gm-Gg: AYBFou2kl4iwxaJzMUvVmZAl00bpt3HgcaYIVEh6Pibprft8XzUaQOdMZ9p5/o/F+4l
- VZYTCOWMuQA+SW1v24VDHOxlesDy2G9Oz33J5U0plvRjMynzNmSrbrCVz4rOFX7V/NdNl5qXTm5
- 0elbQ9BkGoeLfOKh92MhlCt0wjm8P5jIozg93AH4wMkTp0om5vw+++f+ya3IhXGJ67rgy8tuXrS
- s8HWbdov7DZIqC96FLl19+Jb+HScHBmXfOtF+5OW6/z/ME9jAJEDUux/CO/uC1s5tzXAYz0lESt
- e6G9wRan1MfEaaZ5UoqTn8iEu/X0ZPbbeSiMnubEF9DpPtO0xxAn7ka9uTCE2QXRiiaXQaMCoTj
- CDWUH3cO5xYcp2Vbt+f5FLAPfEZ+EgtCL1I0QeavAECrJOXbffYvU28fj3LAr2XtfjvSQ3rABnQ
- TLeDSm1iKCbGujy4OPd0s8+lSP6V4fohSNbBZro6UYUpGVeHWQPrV3cQkpkc8s+swbtEArwIFjE
- tScgQ==
-X-Received: by 2002:a05:6000:29d8:b0:486:f4b1:8c4a with SMTP id
- ffacd0b85a97d-486f4b18d31mr887113f8f.10.1789139109105; 
- Fri, 11 Sep 2026 08:05:09 -0700 (PDT)
+ AKwUvBwRUJ8Xlkl/s5WRrVxdp0aL1moRn+R56qD3xh3QUwou+6U/NIVnFXFYAW7rl5iehHHweSwMromA4w==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++lMkoVr/Wv+idAwwTIdgAgx1Cm8onLbFeAhmswLK64y5fSwarOb
+ BMk1eYdJj5q7CUNKLeWCc2x0LxWmF97f6O2y11DQOj1L7MQok/F5cV1Zfy+n4pYVD5o=
+X-Gm-Gg: AYBFou06fIJDfngUyvcoWBvwFBDWOGgxTcGzQq9ngmQmsv9Q5VtikiDOeTYeYMCqpyq
+ NEt2IjX0y6yzuiSChE9an1+ud0+q51p/bDaPmRdG9e42i3daHMVV57DQroap9UkGOqAMvEE9rLG
+ 0Buoxqa6jqNBu3OJSgEtWFkTE8+D7dLpqYGsZhDKbgxnYnehfVqP4ZHwaTmMsauI3QqcLxCdMSk
+ nut+cvDTrFns807SPfIZ8s09M6mQRecn3LxuwNUMJK4jlquXVl74U20MC7OXyb61DxCl1IM1X7r
+ 31XOOPXQWc4vdUACOwN22f3IsmExIDoAUnTeUB2efUkUdfVvdf+gcfaBOM+mG9MVA5pRs8BSzHW
+ 3v8eMdSLoU/FK4lrRckKQzewgKKSd2dI3IlJIXttoSlSq7EIzxkOjPkiG4ihIv8DsEEaYudIIfb
+ aOnN40wqlIJ45zY7rEvQMRCeVcuExW0ldm0PwKVLjhoQtHTEqCC8FLqtFqrDeIHUreoPuY6mCo7
+ 92VdYY=
+X-Received: by 2002:a05:6000:491e:b0:486:f4b6:3bce with SMTP id
+ ffacd0b85a97d-486f4b63c4fmr559176f8f.24.1789139115924; 
+ Fri, 11 Sep 2026 08:05:15 -0700 (PDT)
 Received: from localhost.localdomain ([2001:af0:8000:1409:193:86:92:181])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-486eb350686sm6853579f8f.27.2026.09.11.08.05.07
+ ffacd0b85a97d-486eb350686sm6853579f8f.27.2026.09.11.08.05.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 11 Sep 2026 08:05:08 -0700 (PDT)
+ Fri, 11 Sep 2026 08:05:15 -0700 (PDT)
 From: Petr Pavlu <petr.pavlu@suse.com>
 To: Jens Axboe <axboe@kernel.dk>, Jakub Kicinski <kuba@kernel.org>,
  Andrew Lunn <andrew+netdev@lunn.ch>,
@@ -86,10 +86,10 @@ Cc: Simon Horman <horms@kernel.org>, David Airlie <airlied@gmail.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-modules@vger.kernel.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH 1/6] block: Include error-injection.h for
- ALLOW_ERROR_INJECTION()
-Date: Fri, 11 Sep 2026 17:04:01 +0200
-Message-ID: <20260911-module-include-error_injection-v1-1-5da895d8c84d@suse.com>
+Subject: [PATCH 6/6] module: Remove the error-injection.h include from
+ linux/module.h
+Date: Fri, 11 Sep 2026 17:04:06 +0200
+Message-ID: <20260911-module-include-error_injection-v1-6-5da895d8c84d@suse.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260911-module-include-error_injection-v1-0-5da895d8c84d@suse.com>
 References: <20260911-module-include-error_injection-v1-0-5da895d8c84d@suse.com>
@@ -111,30 +111,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-block/blk-core.c uses ALLOW_ERROR_INJECTION(), which is defined in
-asm-generic/error-injection.h. It currently relies on this header being
-included indirectly through linux/module.h -> linux/error-injection.h.
+linux/module.h appears in roughly 15k #include directives across the
+kernel. This makes it a "hot" header, so it should avoid pulling in
+unnecessary definitions.
 
-Add the missing include in preparation for removing the
-linux/error-injection.h include from linux/module.h.
+The header currently includes linux/error-injection.h to obtain the
+definition of `struct error_injection_entry`. However, this is unnecessary
+because the type is only referenced in the file as a pointer, for which an
+incomplete type is sufficient.
+
+Remove the linux/error-injection.h include from linux/module.h and add it
+to kernel/module/main.c instead, where
+`sizeof(struct error_injection_entry)` is actually needed.
 
 Signed-off-by: Petr Pavlu <petr.pavlu@suse.com>
 ---
- block/blk-core.c | 1 +
- 1 file changed, 1 insertion(+)
+ include/linux/module.h | 1 -
+ kernel/module/main.c   | 1 +
+ 2 files changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/block/blk-core.c b/block/blk-core.c
-index 196bccf27f58..324a2d1bb727 100644
---- a/block/blk-core.c
-+++ b/block/blk-core.c
-@@ -40,6 +40,7 @@
- #include <linux/part_stat.h>
- #include <linux/sched/sysctl.h>
- #include <linux/blk-crypto.h>
+diff --git a/include/linux/module.h b/include/linux/module.h
+index 96cc98568eea..b3a3d5827384 100644
+--- a/include/linux/module.h
++++ b/include/linux/module.h
+@@ -24,7 +24,6 @@
+ #include <linux/jump_label.h>
+ #include <linux/export.h>
+ #include <linux/rbtree_latch.h>
+-#include <linux/error-injection.h>
+ #include <linux/tracepoint-defs.h>
+ #include <linux/srcu.h>
+ #include <linux/static_call_types.h>
+diff --git a/kernel/module/main.c b/kernel/module/main.c
+index d0e1e0bd2ad0..f1392c10907a 100644
+--- a/kernel/module/main.c
++++ b/kernel/module/main.c
+@@ -60,6 +60,7 @@
+ #include <linux/codetag.h>
+ #include <linux/debugfs.h>
+ #include <linux/execmem.h>
 +#include <linux/error-injection.h>
+ #include <uapi/linux/module.h>
+ #include "internal.h"
  
- #define CREATE_TRACE_POINTS
- #include <trace/events/block.h>
 
 -- 
 2.55.0
