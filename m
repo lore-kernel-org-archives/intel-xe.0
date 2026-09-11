@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4F1FC88E4D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3318C88E59
 	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 18:33:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AA4910F6AE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4654210F6B5;
 	Fri, 11 Sep 2026 18:33:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BFa368TE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fh2eaN+k";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0CED10E2A4
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 18:33:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A838410F6AE
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 18:33:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789151591; x=1820687591;
+ t=1789151589; x=1820687589;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/2+TUmuebyNziDjrJbFl6wpYBsQCc9g8eZB9afXpbzM=;
- b=BFa368TEcKCVZWa9LMmEMBA/38pedUx9KegzaNHkxUZkM6bh2JXxwVLy
- pbiGDRn8z9i/qeRcLs+y2x1oREp6lzHiSjfbDiP4f0FcWHeSD0uJI30Fy
- JuPu0EArF0hdr2BNB19ehq3OncYIxHg5p8V9eZQC3Yn3dwtqTZBXfdE3c
- o6+gH24StfiSmydaAer/Ec3w2nerKLfAjr0LeXl1PrkbyvMflt0eDTK3S
- h3LUsRXGyLNRbD/80dwKji4/n7ePMGLwyumcOD22yvpBgXaNnMS9v30uY
- LnqKFT4c/tFmVHldPBQ6FRVnoU8rP5yGIpPTm0uhHn312TeX9SNES6JuH A==;
-X-CSE-ConnectionGUID: Q73S9ZmnTzOPHHaIckue0g==
-X-CSE-MsgGUID: yY4Wnzl1QBWqhwy7vcCUsw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11902"; a="89383781"
+ bh=pr+CTGt2heYzvN4uypsPy/dpoZ0NXC4Y6XGboOGyi6s=;
+ b=Fh2eaN+kDlW4YdQ4ShV6ccO9OwAME5Z5ikEJV/vggV3mrHG6+jPk5mIh
+ Ph+XoxiVCskVpIpPN6AMTBhlXL3gW0jPOuAFaPEm4cZoHFEsDWrRKjMik
+ MSz+acctBUAOq3X2Ug+vF2mP8SLrD7F1Wb2PiVcNlyBSyTV3wRg0pCOex
+ RKlPO3NzbDpR5z7LRnFDcExGR3Srdna14eiH/2K/Zaw50S1Ti7RM1bVBF
+ 0NlBWhV8qjNZWbJenS5WAAyCQwUhZ9B1hXjhKSwxq1Y40jVPo8d0xz/vw
+ mrtp2UNACYcDvkf8ASWF1Za8z/mFOY/3OnP57dnP42TQtfrALqoDzrfDy Q==;
+X-CSE-ConnectionGUID: cMKO7aViR26ECzqc5tZrkw==
+X-CSE-MsgGUID: IqIdwZnaQVu95q8f1gtzwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11902"; a="89383777"
 X-IronPort-AV: E=Sophos;i="6.27,97,1787036400"; 
-   d="scan'208";a="89383781"
+   d="scan'208";a="89383777"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2026 11:33:10 -0700
-X-CSE-ConnectionGUID: GrF6azkuTTODejCwoz+XHA==
-X-CSE-MsgGUID: pR600QgeSJuEmKrngSPGGA==
+ 11 Sep 2026 11:33:09 -0700
+X-CSE-ConnectionGUID: Qqj7HBffRH2/dFmBDas+3A==
+X-CSE-MsgGUID: 4VFY/ZOMTlKTIYvpYor+7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,97,1787036400"; d="scan'208";a="275748006"
+X-IronPort-AV: E=Sophos;i="6.27,97,1787036400"; d="scan'208";a="275747988"
 Received: from ncataldi-mobl3.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.17.174])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2026 11:33:10 -0700
+ 11 Sep 2026 11:33:09 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 3/3] drm/xe/pf: Add _locked variant of the fair sched config
+Subject: [PATCH 2/3] drm/xe/pf: Add _locked variant of the release config
  function
-Date: Fri, 11 Sep 2026 20:32:57 +0200
-Message-ID: <20260911183257.14999-4-michal.wajdeczko@intel.com>
+Date: Fri, 11 Sep 2026 20:32:56 +0200
+Message-ID: <20260911183257.14999-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260911183257.14999-1-michal.wajdeczko@intel.com>
 References: <20260911183257.14999-1-michal.wajdeczko@intel.com>
@@ -69,82 +69,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We will soon want to auto provision all VFs in a single step, while
+We will soon want to unprovision all VFs in a single step, while
 already holding the master mutex. Split existing function into two.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 23 +++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 25 ++++++++++++++++++----
  drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  1 +
- 2 files changed, 21 insertions(+), 3 deletions(-)
+ 2 files changed, 22 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 146981aedf5f..6947aeed458e 100644
+index 8de8f42ed4d0..146981aedf5f 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -2784,15 +2784,16 @@ static bool pf_needs_provision_sched(struct xe_gt *gt, unsigned int num_vfs)
- #define XE_ADMIN_PF_SCHED_PRIORITY	GUC_SCHED_PRIORITY_HIGH
+@@ -2932,26 +2932,26 @@ static void pf_release_vf_config(struct xe_gt *gt, unsigned int vfid)
+ }
  
  /**
-- * xe_gt_sriov_pf_config_set_fair_sched() - Provision PF and VFs with fair scheduling.
-+ * xe_gt_sriov_pf_config_set_fair_sched_locked() - Provision PF and VFs with fair scheduling.
+- * xe_gt_sriov_pf_config_release - Release and reset VF configuration.
++ * xe_gt_sriov_pf_config_release_locked() - Release and reset VF configuration.
   * @gt: the &xe_gt
-  * @num_vfs: number of VFs to provision (can't be 0)
+  * @vfid: the VF identifier (can't be PF)
+  * @force: force configuration release
   *
-+ * The caller must hold the master PF mutex.
++ * Note: The caller must hold the master PF mutex.
   * This function can only be called on PF.
   *
   * Return: 0 on success or a negative error code on failure.
   */
--int xe_gt_sriov_pf_config_set_fair_sched(struct xe_gt *gt, unsigned int num_vfs)
-+int xe_gt_sriov_pf_config_set_fair_sched_locked(struct xe_gt *gt, unsigned int num_vfs)
+-int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool force)
++int xe_gt_sriov_pf_config_release_locked(struct xe_gt *gt, unsigned int vfid, bool force)
  {
- 	int result = 0;
  	int err;
-@@ -2801,7 +2802,7 @@ int xe_gt_sriov_pf_config_set_fair_sched(struct xe_gt *gt, unsigned int num_vfs)
- 	xe_gt_assert(gt, XE_FAIR_EXEC_QUANTUM_MS);
- 	xe_gt_assert(gt, XE_FAIR_PREEMPT_TIMEOUT_US);
  
--	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
+ 	xe_gt_assert(gt, vfid);
 +	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
  
- 	if (!pf_needs_provision_sched(gt, num_vfs))
- 		return 0;
-@@ -2822,6 +2823,22 @@ int xe_gt_sriov_pf_config_set_fair_sched(struct xe_gt *gt, unsigned int num_vfs)
- 	return result;
+-	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
+ 	err = pf_send_vf_cfg_reset(gt, vfid);
+ 	if (!err || force)
+ 		pf_release_vf_config(gt, vfid);
+-	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
+ 
+ 	if (unlikely(err)) {
+ 		xe_gt_sriov_notice(gt, "VF%u unprovisioning failed with error (%pe)%s\n",
+@@ -2962,6 +2962,23 @@ int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool forc
+ 	return force ? 0 : err;
  }
  
 +/**
-+ * xe_gt_sriov_pf_config_set_fair_sched() - Provision PF and VFs with fair scheduling.
++ * xe_gt_sriov_pf_config_release() - Release and reset VF configuration.
 + * @gt: the &xe_gt
-+ * @num_vfs: number of VFs to provision (can't be 0)
++ * @vfid: the VF identifier (can't be PF)
++ * @force: force configuration release
 + *
 + * This function can only be called on PF.
 + *
 + * Return: 0 on success or a negative error code on failure.
 + */
-+int xe_gt_sriov_pf_config_set_fair_sched(struct xe_gt *gt, unsigned int num_vfs)
++int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool force)
 +{
 +	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
 +
-+	return xe_gt_sriov_pf_config_set_fair_sched_locked(gt, num_vfs);
++	return xe_gt_sriov_pf_config_release_locked(gt, vfid, force);
 +}
 +
- static int pf_provision_threshold(struct xe_gt *gt, unsigned int vfid,
- 				  enum xe_guc_klv_threshold_index index, u32 value)
+ static void pf_sanitize_ggtt(struct xe_ggtt_node *ggtt_region, unsigned int vfid)
  {
+ 	if (ggtt_region)
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-index d43da8599977..3e10697d2174 100644
+index 84246978d21e..d43da8599977 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-@@ -87,6 +87,7 @@ int xe_gt_sriov_pf_config_set_threshold(struct xe_gt *gt, unsigned int vfid,
- 					enum xe_guc_klv_threshold_index index, u32 value);
- 
- int xe_gt_sriov_pf_config_set_fair_sched(struct xe_gt *gt, unsigned int num_vfs);
-+int xe_gt_sriov_pf_config_set_fair_sched_locked(struct xe_gt *gt, unsigned int num_vfs);
+@@ -90,6 +90,7 @@ int xe_gt_sriov_pf_config_set_fair_sched(struct xe_gt *gt, unsigned int num_vfs)
  int xe_gt_sriov_pf_config_set_fair(struct xe_gt *gt, unsigned int vfid, unsigned int num_vfs);
  int xe_gt_sriov_pf_config_sanitize(struct xe_gt *gt, unsigned int vfid, long timeout);
  int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool force);
++int xe_gt_sriov_pf_config_release_locked(struct xe_gt *gt, unsigned int vfid, bool force);
+ int xe_gt_sriov_pf_config_push(struct xe_gt *gt, unsigned int vfid, bool refresh);
+ 
+ ssize_t xe_gt_sriov_pf_config_save(struct xe_gt *gt, unsigned int vfid, void *buf, size_t size);
 -- 
 2.47.1
 
