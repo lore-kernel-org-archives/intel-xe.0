@@ -4,96 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9403FC88E50
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 12:47:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C705C88E56
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 12:47:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48CB210F5D6;
-	Fri, 11 Sep 2026 12:47:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DA7D10F5D0;
+	Fri, 11 Sep 2026 12:47:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="gMKKI35N";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="L7fq0MNf";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="sNjHtXyp";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="i1ecveDB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hA6+c3Wf";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D401310F5DF;
- Fri, 11 Sep 2026 12:47:13 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 0C91F2196A;
- Fri, 11 Sep 2026 12:45:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1789130750; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=O2Yr9OrnNDZjlA90D6cZ+gWm8uTtHLX+B6GYW/UsvrQ=;
- b=gMKKI35NNmfNhKeHCg2nQttU2uRMPrGNQXN+7BvtZl04nms4xDA8kvbJOarhl6IrqquTeA
- uiK3iEZ65Z1Zph/M98+zgdSD5iTGR52msrVGpqlCCOul9E7/O9sGh0nbccNYFERfub9Ow/
- NvnQriko6VSX4OlDeN9G2dpLLXAbAFY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1789130750;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=O2Yr9OrnNDZjlA90D6cZ+gWm8uTtHLX+B6GYW/UsvrQ=;
- b=L7fq0MNfcmNJp9l3XjiKdF84QXsZMC5w+udQWdJiFJl/Bjngfvdaaq83qsBRrhaE+KPebv
- aKGxMtK9rkPLMdCw==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1789130746; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=O2Yr9OrnNDZjlA90D6cZ+gWm8uTtHLX+B6GYW/UsvrQ=;
- b=sNjHtXypvnSsYXKEDdnswTs6UFKGcXZkPQ099LO0etnecAMgo9TWM65xzi2Pb3TqXjws+S
- hLlE/5962SdgmF3bCzeag0cQD7K4haRXF72jYr4x5fcKxNd8m40RDCFc0HvoH1TBYEXLOf
- dfWd5jHWNKF1EZN6u+02awP88M3Rs1o=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1789130746;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=O2Yr9OrnNDZjlA90D6cZ+gWm8uTtHLX+B6GYW/UsvrQ=;
- b=i1ecveDBoGD6+9xtHDqEUCqqrOiTdezw/zo9z5qP9nXO8KeV2jS6a3WqDxnP8XzYhHrlAm
- wsTG3UU8SiEVBIAA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 61ED7132D3;
- Fri, 11 Sep 2026 12:45:45 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id QmjCEfn3o2r8EQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 11 Sep 2026 12:45:45 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: jfalempe@redhat.com, javierm@redhat.com, airlied@gmail.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- geert@linux-m68k.org, rdunlap@infradead.org
-Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, virtualization@lists.linux.dev,
- sashiko-reviews@lists.linux.dev, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v5 00/14] drm/panic: Split into core and helpers
-Date: Fri, 11 Sep 2026 14:43:53 +0200
-Message-ID: <20260911124540.279841-1-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.55.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DA8410F5C7;
+ Fri, 11 Sep 2026 12:47:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789130843; x=1820666843;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=SCbtAi+u9vHzwxQzx2jsGMI9nDFzUe1EuUY4SVd09KA=;
+ b=hA6+c3WfK8gZNB0HYj8WRjwP9RfQBv467DfqUt24XjhSTgXmIB4mfOX7
+ wk05dobo6RaET8z7IVV6Fr491T9YbjaJEUnEFYNtUGqhPD5MA6Ozwms0m
+ 8BarvMtnZboVQfOamGRkH6POw/HvEtsP3N3gj8Yd3s9HP87x+zkNw3EAu
+ RoLVkXf4xCQti3E29Cuc2bzjT4jPeG0mAL/3Nesjdd52xPdM+nALfg0Is
+ TMmoYkE1v0pKq5I2xFylVeLqm1Kkz/VCPX0VSBfRMYNjsLKZ/NaAB4rwH
+ 32g5TWWWDKimMio+PbFXEMYYmRcMv/R9MmJpj2WU/3vmmBF/7Cy7CPkjt g==;
+X-CSE-ConnectionGUID: rfBjpFDXS4SLO5tc+maE2w==
+X-CSE-MsgGUID: k+CMDkFKQ9eKLDoeKeKHXA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11901"; a="93285077"
+X-IronPort-AV: E=Sophos;i="6.27,97,1787036400"; 
+   d="scan'208";a="93285077"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2026 05:47:23 -0700
+X-CSE-ConnectionGUID: 4ijEimhoSo66umxCiw2b0w==
+X-CSE-MsgGUID: wFfUAAVRReSkG/Plt4uhWg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,97,1787036400"; d="scan'208";a="295395888"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.127])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2026 05:47:21 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
+Cc: "Deak, Imre" <imre.deak@intel.com>
+Subject: Re: [PATCH v2 5/5] drm/xe/pm: handle the PME capability and runtime
+ pm routines
+In-Reply-To: <83e32e6c3fafdc6a5da34593718a8a403ccd3695.camel@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260903080410.489411-1-vinod.govindapillai@intel.com>
+ <20260903080410.489411-6-vinod.govindapillai@intel.com>
+ <f5e074540e36b2c9fee11a9bfd14beabcc8cf016@intel.com>
+ <83e32e6c3fafdc6a5da34593718a8a403ccd3695.camel@intel.com>
+Date: Fri, 11 Sep 2026 15:47:18 +0300
+Message-ID: <ac1db55f3e2c4ea59e790d0253a106b3fe2d22be@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-0.999];
- MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- FROM_HAS_DN(0.00)[]; ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+];
- TO_DN_SOME(0.00)[]; RCPT_COUNT_TWELVE(0.00)[21];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,drm_panic_helper_qr.rs:url,drm_panic_qr.rs:url,imap1.dmz-prg2.suse.org:helo];
- RCVD_VIA_SMTP_AUTH(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- RCVD_COUNT_TWO(0.00)[2];
- FREEMAIL_TO(0.00)[redhat.com,gmail.com,linux.intel.com,kernel.org,linux-m68k.org,infradead.org];
- RCVD_TLS_ALL(0.00)[];
- R_RATELIMIT(0.00)[to_ip_from(RLhthb38qh1ntkuzcrgoc19dwi)];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,145 +77,194 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Split DRM's current panic handling into a core and a helper module.
-The core is still part of DRM's core library. The panic helpers are
-part of DRM's KMS helper module (for now).
+On Tue, 08 Sep 2026, "Hogander, Jouni" <jouni.hogander@intel.com> wrote:
+> On Fri, 2026-09-04 at 13:03 +0300, Jani Nikula wrote:
+>> On Thu, 03 Sep 2026, Vinod Govindapillai
+>> <vinod.govindapillai@intel.com> wrote:
+>> > During the runtime suspend, check if device is capable of wakeup
+>> > from PME. If yes update the helper so that IRQ reset and HPD
+>> > polling can be handled accordingly. For PME capable devices,
+>> > HPD related IRQs are not reset during runtime suspend and
+>> > do not start polling for HPDs every 10s. Instead PME can be
+>> > generated from HPDs and corresponding runtime resume calls
+>> > can be invoked by PME.
+>> >=20
+>> > Bspec: 52979, 52980, 68857, 68867, 68970
+>> > Assisted-by: GitHub_Copilot:claude-opus-5
+>> > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+>> > ---
+>> > =C2=A0drivers/gpu/drm/xe/display/xe_display.c | 10 ++++++++++
+>> > =C2=A0drivers/gpu/drm/xe/display/xe_display.h |=C2=A0 4 ++++
+>> > =C2=A0drivers/gpu/drm/xe/xe_pci.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 16 +++++++++++++++-
+>> > =C2=A03 files changed, 29 insertions(+), 1 deletion(-)
+>> >=20
+>> > diff --git a/drivers/gpu/drm/xe/display/xe_display.c
+>> > b/drivers/gpu/drm/xe/display/xe_display.c
+>> > index 7b25c0814674..ff4a74c5c763 100644
+>> > --- a/drivers/gpu/drm/xe/display/xe_display.c
+>> > +++ b/drivers/gpu/drm/xe/display/xe_display.c
+>> > @@ -236,6 +236,16 @@ void xe_display_irq_postinstall(struct
+>> > xe_device *xe)
+>> > =C2=A0	intel_display_irq_postinstall(display);
+>> > =C2=A0}
+>> > =C2=A0
+>> > +void xe_display_set_pme_capable(struct xe_device *xe, bool
+>> > pme_from_hpd)
+>> > +{
+>> > +	struct intel_display *display =3D xe->display;
+>> > +
+>> > +	if (!xe->info.probe_display)
+>> > +		return;
+>> > +
+>> > +	intel_hpd_set_pme_capable(display, pme_from_hpd);
+>>=20
+>> The downside with this is that I've been trying hard to *reduce* the
+>> number of direct low-level calls from i915 and xe core to display.
+>>=20
+>> There are 100+ calls already. IMO we need to drop them to the
+>> ballpark
+>> of less than half.
+>>=20
+>> This would go directly to a TODO list of things to refactor and clean
+>> up.
+>>=20
+>> Feels like it would be more clean with a parent interface for the
+>> display to ask if pme is available, when needed, even though the
+>> parent
+>> interface is also too big...
+>
+> Would it be ok to solve this by doing all this in display runtime
+> callbacks?
+>
+> Possible d3cold entry could be found out by using pci_target_state.
+>
+> Is it ok to acces pci device (pci_enable_wake and pci_target_state) in
+> display pm runtime callbacks.
 
-The motivation behind this series is to get panic handling's drawing
-code out of the DRM core. At some point it should share a single
-module with DRM's other drawing and format conversion.
+Full disclosure: I really don't know how this xe d3cold runtime
+suspend/resume path is supposed to work. i915 disables PCI d3cold before
+runtime suspend, and enables it again at runtime resume.
 
-With the series applied, panic handling follows DRM's established
-design pattern of having a DRM core interface with a dedicated
-implementation in each driver. Drivers share common code in helper
-modules. For panic handling, the DRM core still contains the panic
-entry points, the parameters and the debugfs interface. All drawing
-is now located in the panic helpers.
+The display part should be unified for both (though its fine if i915
+disables it like it does now), and xe really should stop calling
+low-level display functions directly from the xe_display_enable_d3cold()
+and xe_display_disable_d3cold() functions.
 
-Patches 1 to 4 improve several issues in the current panic code. It
-makes sense to fix them before moving the core around.
-
-Patches 5 to 8 put handling of all panic state and locking into a
-single place, drm_panic_display_panic_screen(). It is maintained by
-panic handling's DRM core code. This also enables the test cases to
-work more independently from the kernel's configuration.
-
-Patches 9 to 13 split the panic-handling code into the core and panic
-helpers. The former maintains all state, locking and public interfaces.
-The latter handles drawing and details of the involved framebuffers.
-
-DRM devices that offer panic handling provide a single callback, struct
-drm_plane_funcs.display_panic_screen. A new initializer macro makes it
-point to the existing panic-drawing implementation. Hence there's no
-change in features or functionality. If panic handling is configured
-off, it all clears out to NULL.
-
-Patch 14 reworks the test cases slighly, so that they can be build as
-a separate module. Do 'modprobe drm_panic_helper_test' to run them.
-
-Tested under bochs, i915, amdgpu with debugfs and test cases.
-
-Future directions:
-
-- Panic handling shares drawing code with format conversion and
-clients. There's even more drawing code in vkms. Later series' can
-attempt to unify and harmonize all these implementations in a single
-draw module.
-
-- The drawing helper drm_plane_helper_display_panic_screen() still
-implements various access schemes (map, set_pixel, memcpy) in a single
-function. It could be split up into specialized helpers.
-
-- If we ever need a driver-specific helper, it is now possible to
-implement a custom version of display_panic_screen.
-
-v5:
-- clear test description with drm_panic_helper_clear_description()
-v4:
-- test font size against scanout buffer (Jocelyn)
-- remove obsolete comment on fbcon (Jocelyn)
-v3:
-- keep qrbuf allocation as-is (Jocelyn)
-- handle kmap failures gracefully
-- handle unescaped URL strings correctly
-- fix per-plane panic testing
-- clean up after test cases
-v2:
-- resolve the various Kconfig issues (Randy)
-- remove changes to qrbuf allocation (Jocelyn, Geert)
-- fix possible URL format-string attack
-- make test cases work again uder certain edge cases
-- add better error reporting from failed draw_screen
-- filter out non-primary planes from panic handling
-
-Thomas Zimmermann (14):
-  drm/panic: Do not use un-escaped URL as format string
-  drm/panic: Test address from kmap op for NULL
-  drm/panic: Return -EINVAL if font is not available
-  drm/panic: Return errno codes if panic output fails
-  drm/panic: Pass colors to draw_panic_dispatch()
-  drm/panic: Pass global module parameters to drm_panic_dispatch()
-  drm/panic: Return from screen_user if display is too small
-  drm/panic: Retry in dispatch function if panic output fails
-  drm/panic: Split draw_panic_plane()
-  drm/panic: Restrict to primary planes
-  drm/panic: Display panic screen via per-plane callback
-  drm/panic: Internalize panic locking in DRM core and helpers
-  drm/panic: Move panic display code into helper library
-  drm/panic: Compile KUnit tests as module
-
- Documentation/gpu/drm-kms-helpers.rst         |  11 +-
- Documentation/gpu/drm-kms.rst                 |   3 +
- MAINTAINERS                                   |  11 +-
- drivers/gpu/drm/Kconfig                       |   9 +-
- drivers/gpu/drm/Kconfig.debug                 |   1 +
- drivers/gpu/drm/Makefile                      |   3 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |   2 +
- drivers/gpu/drm/ast/ast_mode.c                |   2 +
- drivers/gpu/drm/drm_atomic_helper.c           |   2 +-
- drivers/gpu/drm/drm_crtc_internal.h           |   2 -
- drivers/gpu/drm/drm_drv.c                     |   3 +-
- drivers/gpu/drm/drm_kms_helper_common.c       |  14 +
- drivers/gpu/drm/drm_modeset_helper.c          |   2 +
- drivers/gpu/drm/drm_panic.c                   | 925 +-----------------
- drivers/gpu/drm/drm_panic_helper.c            | 919 +++++++++++++++++
- ...drm_panic_qr.rs => drm_panic_helper_qr.rs} |   4 +-
- drivers/gpu/drm/drm_panic_internal.h          |  69 ++
- drivers/gpu/drm/hyperv/hyperv_drm_modeset.c   |   2 +
- drivers/gpu/drm/i915/display/i9xx_plane.c     |   3 +
- .../drm/i915/display/skl_universal_plane.c    |   4 +
- drivers/gpu/drm/imx/ipuv3/ipuv3-plane.c       |   2 +
- drivers/gpu/drm/mgag200/mgag200_drv.h         |   4 +-
- drivers/gpu/drm/nouveau/dispnv50/wndw.c       |   2 +
- .../gpu/drm/renesas/rcar-du/rcar_du_plane.c   |   2 +
- .../drm/renesas/shmobile/shmob_drm_plane.c    |   2 +
- drivers/gpu/drm/sysfb/drm_sysfb_helper.h      |   4 +-
- drivers/gpu/drm/sysfb/vesadrm.c               |   1 +
- drivers/gpu/drm/tests/Makefile                |   1 +
- ...m_panic_test.c => drm_panic_helper_test.c} |  73 +-
- drivers/gpu/drm/tidss/tidss_plane.c           |   2 +
- drivers/gpu/drm/tiny/bochs.c                  |   4 +-
- drivers/gpu/drm/virtio/virtgpu_plane.c        |   2 +
- include/drm/drm_mode_config.h                 |   4 +-
- include/drm/drm_modeset_helper_vtables.h      |  11 +-
- include/drm/drm_panic.h                       | 117 +--
- include/drm/drm_panic_helper.h                |  41 +
- include/drm/drm_plane.h                       |  57 ++
- rust/bindings/bindings_helper.h               |   4 +-
- 38 files changed, 1288 insertions(+), 1036 deletions(-)
- create mode 100644 drivers/gpu/drm/drm_panic_helper.c
- rename drivers/gpu/drm/{drm_panic_qr.rs => drm_panic_helper_qr.rs} (99%)
- create mode 100644 drivers/gpu/drm/drm_panic_internal.h
- rename drivers/gpu/drm/tests/{drm_panic_test.c => drm_panic_helper_test.c} (77%)
- create mode 100644 include/drm/drm_panic_helper.h
+BR,
+Jani.
 
 
-base-commit: cf3f6830cd1a44f792534b4f5695c5ca7a69943d
-prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
-prerequisite-patch-id: a5a973e527c88a5b47053d7a72aefe0b550197cb
-prerequisite-patch-id: b9adc9622920a3e70168e672c2c92795b3e3a106
-prerequisite-patch-id: 5030de433a01c2e99056cadb676a8e2ba35f055a
-prerequisite-patch-id: 6f645bbd39e5c6af230c94ecaf78db518a8e2e10
--- 
-2.55.0
 
+
+
+
+
+
+
+>
+> BR,
+> Jouni H=C3=B6gander
+>
+>>=20
+>> BR,
+>> Jani.
+>>=20
+>>=20
+>>=20
+>> > +}
+>> > +
+>> > =C2=A0static bool suspend_to_idle(void)
+>> > =C2=A0{
+>> > =C2=A0#if IS_ENABLED(CONFIG_ACPI_SLEEP)
+>> > diff --git a/drivers/gpu/drm/xe/display/xe_display.h
+>> > b/drivers/gpu/drm/xe/display/xe_display.h
+>> > index 0babb50bfc77..a77a8fa1d802 100644
+>> > --- a/drivers/gpu/drm/xe/display/xe_display.h
+>> > +++ b/drivers/gpu/drm/xe/display/xe_display.h
+>> > @@ -37,6 +37,8 @@ void xe_display_irq_enable(struct xe_device *xe,
+>> > u32 gu_misc_iir);
+>> > =C2=A0void xe_display_irq_reset(struct xe_device *xe);
+>> > =C2=A0void xe_display_irq_postinstall(struct xe_device *xe);
+>> > =C2=A0
+>> > +void xe_display_set_pme_capable(struct xe_device *xe, bool
+>> > pme_from_hpd);
+>> > +
+>> > =C2=A0void xe_display_pm_suspend(struct xe_device *xe);
+>> > =C2=A0void xe_display_pm_suspend_late(struct xe_device *xe);
+>> > =C2=A0void xe_display_pm_resume_early(struct xe_device *xe);
+>> > @@ -75,6 +77,8 @@ static inline void xe_display_irq_enable(struct
+>> > xe_device *xe, u32 gu_misc_iir)
+>> > =C2=A0static inline void xe_display_irq_reset(struct xe_device *xe) {}
+>> > =C2=A0static inline void xe_display_irq_postinstall(struct xe_device
+>> > *xe) {}
+>> > =C2=A0
+>> > +static inline void xe_display_set_pme_capable(struct xe_device
+>> > *xe, bool pme_from_hpd) {}
+>> > +
+>> > =C2=A0static inline void xe_display_pm_suspend(struct xe_device *xe) {}
+>> > =C2=A0static inline void xe_display_pm_suspend_late(struct xe_device
+>> > *xe) {}
+>> > =C2=A0static inline void xe_display_pm_resume_early(struct xe_device
+>> > *xe) {}
+>> > diff --git a/drivers/gpu/drm/xe/xe_pci.c
+>> > b/drivers/gpu/drm/xe/xe_pci.c
+>> > index f8e16aefd2f8..46a33956c5b4 100644
+>> > --- a/drivers/gpu/drm/xe/xe_pci.c
+>> > +++ b/drivers/gpu/drm/xe/xe_pci.c
+>> > @@ -1385,6 +1385,8 @@ static int xe_pci_runtime_suspend(struct
+>> > device *dev)
+>> > =C2=A0{
+>> > =C2=A0	struct pci_dev *pdev =3D to_pci_dev(dev);
+>> > =C2=A0	struct xe_device *xe =3D pdev_to_xe_device(pdev);
+>> > +	pci_power_t state =3D xe->d3cold.allowed ? PCI_D3cold :
+>> > PCI_D3hot;
+>> > +	bool pme_capable =3D pci_enable_wake(pdev, state, true) =3D=3D
+>> > 0;
+>> > =C2=A0	int err;
+>> > =C2=A0
+>> > =C2=A0	/*
+>> > @@ -1396,9 +1398,17 @@ static int xe_pci_runtime_suspend(struct
+>> > device *dev)
+>> > =C2=A0	xe_assert(xe, !IS_SRIOV_VF(xe));
+>> > =C2=A0	xe_assert(xe, !pci_num_vf(pdev));
+>> > =C2=A0
+>> > +	xe_display_set_pme_capable(xe, pme_capable);
+>> > +
+>> > =C2=A0	err =3D xe_pm_runtime_suspend(xe);
+>> > -	if (err)
+>> > +	if (err) {
+>> > +		if (pme_capable) {
+>> > +			pci_enable_wake(pdev, state, false);
+>> > +			xe_display_set_pme_capable(xe, false);
+>> > +		}
+>> > +
+>> > =C2=A0		return err;
+>> > +	}
+>> > =C2=A0
+>> > =C2=A0	pci_save_state(pdev);
+>> > =C2=A0
+>> > @@ -1419,12 +1429,16 @@ static int xe_pci_runtime_resume(struct
+>> > device *dev)
+>> > =C2=A0{
+>> > =C2=A0	struct pci_dev *pdev =3D to_pci_dev(dev);
+>> > =C2=A0	struct xe_device *xe =3D pdev_to_xe_device(pdev);
+>> > +	pci_power_t state =3D xe->d3cold.allowed ? PCI_D3cold :
+>> > PCI_D3hot;
+>> > =C2=A0	int err;
+>> > =C2=A0
+>> > =C2=A0	err =3D pci_set_power_state(pdev, PCI_D0);
+>> > =C2=A0	if (err)
+>> > =C2=A0		return err;
+>> > =C2=A0
+>> > +	pci_enable_wake(pdev, state, false);
+>> > +	xe_display_set_pme_capable(xe, false);
+>> > +
+>> > =C2=A0	pci_restore_state(pdev);
+>> > =C2=A0
+>> > =C2=A0	if (xe->d3cold.allowed) {
+>>=20
+>
+
+--=20
+Jani Nikula, Intel
