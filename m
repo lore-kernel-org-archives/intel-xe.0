@@ -4,96 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56CC5C88E50
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 21:45:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9908C88E4D
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 21:45:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15FA910F6ED;
-	Fri, 11 Sep 2026 21:45:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9327C10E57A;
+	Fri, 11 Sep 2026 21:45:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="bAv9f4pf";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jB4Yr0RH";
 	dkim-atps=neutral
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B927110F674
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 15:05:13 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-49b0d8bc2aaso12095455e9.0
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 08:05:13 -0700 (PDT)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
+ [209.85.221.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 074C510E345
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 20:02:14 +0000 (UTC)
+Received: by mail-wr1-f49.google.com with SMTP id
+ ffacd0b85a97d-4843f205a5bso942224f8f.1
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 13:02:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1789139112; x=1789743912; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=7/A+IkvGH5yYLsl3B/FA+2ENzgeK330huKjO7uo/XWA=;
- b=bAv9f4pfJGUPJfFmpSAe/nMN+MkKIUfQwlO66RRkerY2TXy1ayMI6m4GMQbrrGEq8P
- BsTTAWkG6TRmCmvI5epva9H7HlgHtsgo+K7UkGW0tpHH/SveHiKL57pnxVnu5OmUOjMP
- KgZz1hgePlH9qMyg+MM2+3ONbTKS6GcyLwNpehALxV2NgmW+cPGHdfxCE8T8JAIoknXL
- 8hh6c5Ze7/QWpxGCQ4ezb/Cl1oEePq9QkV52EaSiZKq8DfIrXBjI/Lwfl26sI/cjXjUC
- /VLRJRlzRYAVuggpJkZCHuuQ9gWgzS0wuoV6TgXU0PHFhJNatFHpnm3BC8Ugr2pfyKoD
- me4w==
+ d=gmail.com; s=20251104; t=1789156932; x=1789761732; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+ bh=WpWwiGaL36YcweuGSaJBrN203pu/dlOicI/VWEKjlnY=;
+ b=jB4Yr0RHvhnAQV/NgIpMAsjfti/wrso5mv1Pb2Aptx6lPPCxdtimMcI4K+MZvaUzUu
+ Eh2jKQHdF/L3NIdXEGx1ZFBMVVxxzc+PwY04lvQgyUy48VKRtDzJ+4BsZGcveQqmZkdK
+ D6wlKe07gcJIiRWOPKAWZDMYITCI7Z9I713avAEIEzAtzUasr1uIFRaPYLdTCbhWF9e1
+ RPE6mtFcpMKl4QUjPi2k18YVpc3ZzRyQh1qXI8171OAEqZjvfWJNH1DBYwmfAmAs6P0v
+ ZhfN3KSuG2mYG/Zst/HFvKpMukTgR4VHXYE433d0q/6K11BAwG8VKU+LGryfOPXsvbuN
+ k8vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1789139112; x=1789743912;
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=7/A+IkvGH5yYLsl3B/FA+2ENzgeK330huKjO7uo/XWA=;
- b=YBAbi/no8rtHFIug7gMIUCarEWfvlIQs+jyIQXtO/TjZJ0PBYGpXzWtic0Jq6Tq0zN
- D8R0RimoR3PJYanH6rglmo6W4cqA9qFWdJQtBY8SAT5AaaI1BBDu92wMXRbRJA6FA8v6
- o9VrcOxokwErXItpuQ41CxmEwEx8D2It5TKPUku2VRqCadGFF0MzHkGxlY0fdojTavQF
- mBKdAhjm29Melg4e9BJCNTH03UzauuLq7J3J9FHxBoSvFELSBc6/0U9xvM2j4bNUglyy
- 5+16JZl57xWugS19TLiAkiTCjhJK3FwT1/+OnjOZg8KcT+HACSOEjsHWSMTo/YaO1We7
- KSyw==
+ d=1e100.net; s=20251104; t=1789156932; x=1789761732;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=WpWwiGaL36YcweuGSaJBrN203pu/dlOicI/VWEKjlnY=;
+ b=p+gglDGgFzVO9euowomxDGcjTMJP97olvORv0EmxI/TfjssgXgDBXvyrYwpdBKU6Ph
+ M4fOp3vZ7Y76jsDCcdAF7qfmKDOW6H25l400ZNM8Fte1cvwvcN3A7stWnP/zmTidP2XZ
+ k+VG885oLjc0RRL36aoVtTIdPPo57t9AdYcLWpq7at5TMjx7e2S9GJ6e3ueRKJbJcxMa
+ pbX3Eoty/Q25y/xDglQ2m/vNIswIElvv+XiVgfmBkoiLL+W9hViyPiQvCD/JqqBIg/jA
+ zeWBz3GS7mPZR9Ak0D0YxE/IqYJWnB9+b/qXibLlI/+iP38qtNovEqlNWe3rTKK4DiZz
+ m/5w==
 X-Forwarded-Encrypted: i=1;
- AKwUvByYf0viik3He+Himj8y03LfsEpcez+/Wugas4RcK2bdatn9Jm9ISGOGJQNyTFczjf2TX2lEFVvhMg==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++m2+TbRraZGhI0rJYJxjG1D7wCdDnxtvRppc7weHL0LtIIz62UB
- yyx6GHtsxNxBcy0GnOVdeN3u9Qj5X6ajPnxCW/FyZuuFdseGz+BhUVkeYWno8beJDZ0=
-X-Gm-Gg: AYBFou0TOvrWG/Cj6BPuG/PUTMZKwRBYulYLJ52wnEtll1vhXhWJqsvh85EnWLX91Op
- RM0ALAZs7BfPb+KyBYN39OJtDasWqECiW6YUgnznUzC5krpvEcaGFFQf5Ih+Y+UN+69hiH4I/px
- Jzf2Y3B7WCSa/jksFaKDaLqVngBcjoXezqcRprvfGu+8c48Q7CiUrtjawIo3q3aSMdeO5jDjnQR
- GxSZT1jT526FKTeIG7N94kOJPB4plXXVftu9D1SYT25cjDleDH0SDhAZXu32T7ImQVoz2HtT4Gk
- mj6nu5lAebDZT4X1AuQqPshLn6vwjKBDSdQvERJVI7mL19o8CqaUS/1+w7n+qXF1fVdOfOPAkFv
- r1pcVFyPeYFDqQXADDNr1NI1eYXNGk3qmAbQPUKzoDdJ0+3zPeIXeTQY6YYH5TIbdMW4Qo5qbib
- tTS2ZKfKcJCzPP/wUhQkLm6bd3CcWsvY9lgEPfD291eYa/GOufsQa/1gRlPtViBqE=
-X-Received: by 2002:a05:600d:8498:20b0:49c:fc6c:be15 with SMTP id
- 5b1f17b1804b1-49e619c6eecmr39713085e9.27.1789139111976; 
- Fri, 11 Sep 2026 08:05:11 -0700 (PDT)
-Received: from localhost.localdomain ([2001:af0:8000:1409:193:86:92:181])
+ AKwUvByPL4FyqVo1RsAeEUnMCOqnPwgAZMOxqm4GKOxG077VP3mABJGtVvIX6TlbCl3z1SrmwW+Pky0ixg==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++k4FtYDHdBYUtLk3vqqgeGK7/rQolz+yZvwJtgtfVmV/PY0etrc
+ U3O2O/1a8BUvpRmaefeidKyIU+uVNnO3mRHH2KzTSHNxTasu6Eh0oNHs
+X-Gm-Gg: AYBFou1n3Ny92tdFEyocHO3mffJLoBk/I30dXumIEWpzMlow4yl5DAN/Jn8HVIvR6Lj
+ A9H5r6srqLXmphuSstGMTWukYVFG8PcuDTLswEsKFTOR4+a4I1BpeeGJFbAkg54IwAS34pvYMNl
+ rn/6+xRD5hvd0KDtIpfydiqnRp6zUE/1hrvns81W66jgbFElldYNmvWy5N+NaOS8LPqcdF9jWZZ
+ ZpL52t3Oq87j2/D+y884G3Y4BVBuCm+jQVH9gJfH6wkU965extN53xIFYln3yOo2FrK555p3873
+ iAw1L9wU2kXehaLsB/V3bgNYzOeFnchRsflsx+XybuDzTVKouNKiYG2ZwjFZRkGLyDTXjhRP4KT
+ XOaHYhgdLjUuQ+oase6l6hsVWWjf9sDw+T5PxcVDxbccaZECRiDjEiQ7YsjmX0FeB17GHDJ0bqB
+ TjMfrItW2gagoirMnlayZyeF87tEXS8rmAIBlBx7+6ghAQcHvGoWb/uz8A9uTf9hUQzl3v93oVu
+ iFb1OPqVkGZC4okjJnMry79GmdgTEbYfqnJkKLd9k7jRXf8qHkazgFkWLi2IyIOVTt8N7QH7NIg
+ x8r6A2GAuL0kYlCPKjm/e6gFeimhgsvu8Qfy
+X-Received: by 2002:a05:600c:4691:b0:49c:fea1:f792 with SMTP id
+ 5b1f17b1804b1-49e6198f947mr76504605e9.12.1789156932186; 
+ Fri, 11 Sep 2026 13:02:12 -0700 (PDT)
+Received: from localhost.localdomain
+ (dynamic-095-114-033-154.95.114.pool.telefonica.de. [95.114.33.154])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-486eb350686sm6853579f8f.27.2026.09.11.08.05.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 11 Sep 2026 08:05:11 -0700 (PDT)
-From: Petr Pavlu <petr.pavlu@suse.com>
-To: Jens Axboe <axboe@kernel.dk>, Jakub Kicinski <kuba@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
+ 5b1f17b1804b1-49e69f02c92sm28156515e9.2.2026.09.11.13.02.10
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Fri, 11 Sep 2026 13:02:10 -0700 (PDT)
+From: Karl Mehltretter <kmehltretter@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Simon Horman <horms@kernel.org>, David Airlie <airlied@gmail.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>,
- Francois Dugast <francois.dugast@intel.com>,
- Luis Chamberlain <mcgrof@kernel.org>, Petr Pavlu <petr.pavlu@suse.com>,
- Daniel Gomez <da.gomez@kernel.org>,
- Sami Tolvanen <samitolvanen@google.com>,
- Aaron Tomlin <atomlin@atomlin.com>, linux-block@vger.kernel.org,
- netdev@vger.kernel.org, linux-api@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-modules@vger.kernel.org,
+ =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Karl Mehltretter <kmehltretter@gmail.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org
-Subject: [PATCH 3/6] syscalls: Include error-injection.h for
- ALLOW_ERROR_INJECTION()
-Date: Fri, 11 Sep 2026 17:04:03 +0200
-Message-ID: <20260911-module-include-error_injection-v1-3-5da895d8c84d@suse.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260911-module-include-error_injection-v1-0-5da895d8c84d@suse.com>
-References: <20260911-module-include-error_injection-v1-0-5da895d8c84d@suse.com>
+Subject: [PATCH] drm/i915/audio: Fix names that do not exist in kernel-doc
+ comments
+Date: Fri, 11 Sep 2026 22:00:53 +0200
+Message-Id: <20260911200053.78731-1-kmehltretter@gmail.com>
+X-Mailer: git-send-email 2.39.5 (Apple Git-154)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 11 Sep 2026 21:45:10 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -110,44 +98,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-include/linux/compat.h and include/linux/syscalls.h use
-ALLOW_ERROR_INJECTION(), which is defined in asm-generic/error-injection.h.
-They currently rely on that header being included indirectly through other
-files, typically via linux/module.h -> linux/error-injection.h.
+The audio component overview still refers to the former
+i915_audio_component_ops and i915_audio_component_audio_ops struct
+names. The generic audio component split renamed these types to
+drm_audio_component_ops and drm_audio_component_audio_ops.
 
-Add the missing include in preparation for removing the
-linux/error-injection.h include from linux/module.h.
+Update both references to match the current types.
 
-Signed-off-by: Petr Pavlu <petr.pavlu@suse.com>
+Fixes: ae891abe7c2c ("drm/i915: Split audio component to a generic type")
+Assisted-by: LLM
+Signed-off-by: Karl Mehltretter <kmehltretter@gmail.com>
 ---
- include/linux/compat.h   | 1 +
- include/linux/syscalls.h | 1 +
- 2 files changed, 2 insertions(+)
+ drivers/gpu/drm/i915/display/intel_audio.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/include/linux/compat.h b/include/linux/compat.h
-index 8da0a15c95f4..ad37ca617e65 100644
---- a/include/linux/compat.h
-+++ b/include/linux/compat.h
-@@ -18,6 +18,7 @@
- #include <linux/aio_abi.h>	/* for aio_context_t */
- #include <linux/uaccess.h>
- #include <linux/unistd.h>
-+#include <linux/error-injection.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index eae76e9611055ea684dd98c34889be2413a89f80..c703da26914c1d957dff61a0220b70d3275255ce 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -63,9 +63,9 @@
+  * covered here.)
+  *
+  * The struct &i915_audio_component is used to interact between the graphics
+- * and audio drivers. The struct &i915_audio_component_ops @ops in it is
++ * and audio drivers. The struct &drm_audio_component_ops @ops in it is
+  * defined in graphics driver and called in audio driver. The
+- * struct &i915_audio_component_audio_ops @audio_ops is called from i915 driver.
++ * struct &drm_audio_component_audio_ops @audio_ops is called from i915 driver.
+  */
  
- #include <asm/compat.h>
- #include <asm/siginfo.h>
-diff --git a/include/linux/syscalls.h b/include/linux/syscalls.h
-index 8413b624ad47..552d9710a0d5 100644
---- a/include/linux/syscalls.h
-+++ b/include/linux/syscalls.h
-@@ -92,6 +92,7 @@ struct file_attr;
- #include <linux/quota.h>
- #include <linux/key.h>
- #include <linux/personality.h>
-+#include <linux/error-injection.h>
- #include <trace/syscall.h>
- 
- #ifdef CONFIG_ARCH_HAS_SYSCALL_WRAPPER
-
--- 
-2.55.0
+ struct intel_audio_funcs {
