@@ -4,98 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00D82C88E50
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 21:45:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0017EC88E4D
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 21:46:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB7A210E58F;
-	Fri, 11 Sep 2026 21:45:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="KYNLcoI2";
-	dkim-atps=neutral
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
- [209.85.221.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 471F110F66E
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 15:05:12 +0000 (UTC)
-Received: by mail-wr1-f44.google.com with SMTP id
- ffacd0b85a97d-486f282cad5so365774f8f.0
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 08:05:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1789139111; x=1789743911; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=glNc1H2atyKhB4WSC099onb1QIuZPymRMjgiGWekzpE=;
- b=KYNLcoI2F/XfkIIkD3pEwNeHdMpDRESxYbOS4PKHPihoEEiZFaqxzXfp1Y13fiOiqB
- 8xKuoEaCGLtC3PtFy4wXaLB/1gazsSw+6duh6a0wOOsgB9PL/jPQdtOvrRAY15DDecL2
- ZtvxL/14OjXonhFuEWOnFybLcQhLd4rbJv5RKzBzpXhFUZIOwbzPWnOdS1HPcO56WYEC
- /eBCoUcGDRL/sOBTka4MbI+gdQASsmg7c3gorizoFLpqJJ3IU5oeJRA8RrxX2u34bUiq
- Rmsg0JGhYIdbem8ultL+9l0cSh3/5/+FTqoMuM2mEni1o8JNUlX46wRuf12gxWbxP3bH
- mVOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1789139111; x=1789743911;
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=glNc1H2atyKhB4WSC099onb1QIuZPymRMjgiGWekzpE=;
- b=XY+R9OmKBeqcSxIKhNl6rnvVP/AfTZ3ntaMVK/2layGSic/m3HUNscMN2tnag3TfyV
- FufjLUxwGQPw728ysJe6y7fQ/taMqR+Q3aFBVveuXgnVP5reX39n2gdTDdc11wjLdRPf
- gCf2K2orTALHGDVstXv05W2oa3ry+CEBrrCJmsxlszfqg0MK7GbkzaFHKQCR/VSEVgM1
- IfzdxGM4SRl3gxD6IqerRwLpYUklblQETyuIIKW2BhNm7aH22K6gE3WKEM6x+9qkav1A
- 4DUGwf8vZ/BzNoefVVj9mxgSXncov27E0vW67pWMDFp7dXH/BrlXNhYAtsxqVoNOKTa4
- 8aIQ==
-X-Forwarded-Encrypted: i=1;
- AKwUvBxaF/zSJMXE1IsDui4hq9mXahloY35qswvolFqGtuJGreRpLlr86uhOQjtCmNtxQM9cmM4N3T8Ctw==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++ky5YrSYXmGtySstgUnidPZX170IP7No/iMY6KFycNzRp6rHcK+
- W6nICUMztPz8dk4x7B8ntqNSr2U+wNfxNoWwE8h/B2TyYLrmSOhZy9+SLE6uez/UcZA=
-X-Gm-Gg: AYBFou2l8FKpHkWkWLgQzkdz/QCXthv7UF39IJXUjB1LBWRZ8TfS5WQtDz7sXKAGnXm
- //KVZMRt4cMQy/3cHmy6f5GACNFWlVDxKXvwuqTo3ss1rxR5ab/k52c/X95TlUtfibLwWlMM3Xn
- kx3cfDiv7+wG9O6sGrEtugtEb0XLQPyZE7ha3FE+XF0HSezR0YZVo9njmnIleSlEX6a3efW+Uu7
- RyTfTBPfkqLgp7A2g5x/+GFrWK5BzzfuXXDCwzZUjr9tqJrPNDmUrI8QY0zlBWNKQWUtiWQyG9M
- xJ4U6SuWYVGqBxCt2yjwplVUxZ0eemhduifk4ULgfPtVPp6lQA0JlgsfFPEcopWCpVJJ6iMe3+Z
- e0T3y4jC8c76TBIeELGVz0FqSr3lPoizVM6JRjfftqh9Ri1QlGysWjlfWB6ZR1b+zJwaqs0pq8M
- baloIPY7cHRh7JXBdH4CHRkr6Al67OwWna4jGKL87/ygzSxJZPaw1rvF6UEtxwaDf8vbs4jt93p
- DeMs21lfcpTMzYL
-X-Received: by 2002:a05:6000:1acf:b0:485:8a46:b3b8 with SMTP id
- ffacd0b85a97d-486eb32253bmr5503727f8f.32.1789139110499; 
- Fri, 11 Sep 2026 08:05:10 -0700 (PDT)
-Received: from localhost.localdomain ([2001:af0:8000:1409:193:86:92:181])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-486eb350686sm6853579f8f.27.2026.09.11.08.05.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 11 Sep 2026 08:05:10 -0700 (PDT)
-From: Petr Pavlu <petr.pavlu@suse.com>
-To: Jens Axboe <axboe@kernel.dk>, Jakub Kicinski <kuba@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: Simon Horman <horms@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Francois Dugast <francois.dugast@intel.com>,
- Luis Chamberlain <mcgrof@kernel.org>, Petr Pavlu <petr.pavlu@suse.com>,
- Daniel Gomez <da.gomez@kernel.org>,
- Sami Tolvanen <samitolvanen@google.com>,
- Aaron Tomlin <atomlin@atomlin.com>, linux-block@vger.kernel.org,
- netdev@vger.kernel.org, linux-api@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-modules@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH 2/6] net: Include error-injection.h for ALLOW_ERROR_INJECTION()
-Date: Fri, 11 Sep 2026 17:04:02 +0200
-Message-ID: <20260911-module-include-error_injection-v1-2-5da895d8c84d@suse.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260911-module-include-error_injection-v1-0-5da895d8c84d@suse.com>
-References: <20260911-module-include-error_injection-v1-0-5da895d8c84d@suse.com>
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id B197910E597;
+	Fri, 11 Sep 2026 21:46:14 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0709C10E597;
+ Fri, 11 Sep 2026 21:46:14 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 11 Sep 2026 21:45:10 +0000
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915/fb=3A_?=
+ =?utf-8?q?replace_kmalloc=5Farray_with_kmalloc=5Fobjs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lalit Shankar Chowdhury" <lalitshankarch@gmail.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 11 Sep 2026 21:46:14 -0000
+Message-ID: <178916317402.153190.7652291146767262788@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260910155846.79513-1-lalitshankarch@gmail.com>
+In-Reply-To: <20260910155846.79513-1-lalitshankarch@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,46 +36,21 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-drivers/net/netdevsim/tc.c and net/core/skb_fault_injection.c use
-ALLOW_ERROR_INJECTION(), which is defined in asm-generic/error-injection.h.
-They currently rely on this header being included indirectly through
-linux/module.h -> linux/error-injection.h.
+== Series Details ==
 
-Add the missing include in preparation for removing the
-linux/error-injection.h include from linux/module.h.
+Series: drm/i915/fb: replace kmalloc_array with kmalloc_objs
+URL   : https://patchwork.freedesktop.org/series/173896/
+State : failure
 
-Signed-off-by: Petr Pavlu <petr.pavlu@suse.com>
----
- drivers/net/netdevsim/tc.c     | 1 +
- net/core/skb_fault_injection.c | 1 +
- 2 files changed, 2 insertions(+)
+== Summary ==
 
-diff --git a/drivers/net/netdevsim/tc.c b/drivers/net/netdevsim/tc.c
-index a415e02a6df1..e2d7d3aba193 100644
---- a/drivers/net/netdevsim/tc.c
-+++ b/drivers/net/netdevsim/tc.c
-@@ -1,5 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- 
-+#include <linux/error-injection.h>
- #include <linux/netdevice.h>
- #include <net/pkt_sched.h>
- #include <net/pkt_cls.h>
-diff --git a/net/core/skb_fault_injection.c b/net/core/skb_fault_injection.c
-index 4235db6bdfad..2c7f519bef80 100644
---- a/net/core/skb_fault_injection.c
-+++ b/net/core/skb_fault_injection.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0-only
- 
- #include <linux/debugfs.h>
-+#include <linux/error-injection.h>
- #include <linux/fault-inject.h>
- #include <linux/netdevice.h>
- #include <linux/skbuff.h>
+Series author address 'lalitshankarch@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
+If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
+Exception occurred during validation, bailing out!
+Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1277338/ (on master)
 
--- 
-2.55.0
+
