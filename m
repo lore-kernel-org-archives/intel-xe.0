@@ -4,65 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C705C88E56
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 12:47:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B942C88E4D
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 12:47:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DA7D10F5D0;
-	Fri, 11 Sep 2026 12:47:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1037E10F5D6;
+	Fri, 11 Sep 2026 12:47:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hA6+c3Wf";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="zTvPwQ0q";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="hNCVBgBo";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="FQKwaZZ+";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="xQUchLEH";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DA8410F5C7;
- Fri, 11 Sep 2026 12:47:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789130843; x=1820666843;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=SCbtAi+u9vHzwxQzx2jsGMI9nDFzUe1EuUY4SVd09KA=;
- b=hA6+c3WfK8gZNB0HYj8WRjwP9RfQBv467DfqUt24XjhSTgXmIB4mfOX7
- wk05dobo6RaET8z7IVV6Fr491T9YbjaJEUnEFYNtUGqhPD5MA6Ozwms0m
- 8BarvMtnZboVQfOamGRkH6POw/HvEtsP3N3gj8Yd3s9HP87x+zkNw3EAu
- RoLVkXf4xCQti3E29Cuc2bzjT4jPeG0mAL/3Nesjdd52xPdM+nALfg0Is
- TMmoYkE1v0pKq5I2xFylVeLqm1Kkz/VCPX0VSBfRMYNjsLKZ/NaAB4rwH
- 32g5TWWWDKimMio+PbFXEMYYmRcMv/R9MmJpj2WU/3vmmBF/7Cy7CPkjt g==;
-X-CSE-ConnectionGUID: rfBjpFDXS4SLO5tc+maE2w==
-X-CSE-MsgGUID: k+CMDkFKQ9eKLDoeKeKHXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11901"; a="93285077"
-X-IronPort-AV: E=Sophos;i="6.27,97,1787036400"; 
-   d="scan'208";a="93285077"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2026 05:47:23 -0700
-X-CSE-ConnectionGUID: 4ijEimhoSo66umxCiw2b0w==
-X-CSE-MsgGUID: wFfUAAVRReSkG/Plt4uhWg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,97,1787036400"; d="scan'208";a="295395888"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.127])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2026 05:47:21 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-Cc: "Deak, Imre" <imre.deak@intel.com>
-Subject: Re: [PATCH v2 5/5] drm/xe/pm: handle the PME capability and runtime
- pm routines
-In-Reply-To: <83e32e6c3fafdc6a5da34593718a8a403ccd3695.camel@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260903080410.489411-1-vinod.govindapillai@intel.com>
- <20260903080410.489411-6-vinod.govindapillai@intel.com>
- <f5e074540e36b2c9fee11a9bfd14beabcc8cf016@intel.com>
- <83e32e6c3fafdc6a5da34593718a8a403ccd3695.camel@intel.com>
-Date: Fri, 11 Sep 2026 15:47:18 +0300
-Message-ID: <ac1db55f3e2c4ea59e790d0253a106b3fe2d22be@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49A3D10F5D6;
+ Fri, 11 Sep 2026 12:47:33 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 19E1121C13;
+ Fri, 11 Sep 2026 12:45:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1789130755; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=gzg0pk9+7zA32pgHFdJrFnZp49of5cCIK8J846hIh9E=;
+ b=zTvPwQ0qkivys+XDI17TLCI/qydPRMsOeyD+Mb27M30+l0lASAV7DLi1HAv48JLNSlIkgM
+ vDjjvH79oP+EbgtU31mPMD1n/i+hStYKQI05whSADwIyjfHufe2f7zgxspkV7tAleZE0aP
+ 127Fh0J6++LsS28+rSVTnFF9/YL8Ch0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1789130755;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=gzg0pk9+7zA32pgHFdJrFnZp49of5cCIK8J846hIh9E=;
+ b=hNCVBgBod98Il4/jOhp1XBOdborrxNRaOMi8WqoFGmogfk/8JJMaulhWGHfHoaB0EK/JJP
+ gFCm5bmYOJPnilCQ==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1789130751; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=gzg0pk9+7zA32pgHFdJrFnZp49of5cCIK8J846hIh9E=;
+ b=FQKwaZZ+Zvw13jecxW98kaZDSS2ARV8N3fXSRoybaVfb+24UkLRyJ9evMIP5ukhnTZ3uwG
+ XvKxSStbTfJez1IkEcpMEnnmpVyciZ10cwM8AtHI7ejmz0McpalW7A50+osa6Cg1D4ybbe
+ 4vcpYwYGtkFNMDLV4iY/8Nx0yD3UcHY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1789130751;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=gzg0pk9+7zA32pgHFdJrFnZp49of5cCIK8J846hIh9E=;
+ b=xQUchLEH2/BVsd9/kEwlRqlO5R91SeyFXt9RNQQeljJHNnfGXNlCWGKqDVitcvGEi5F0F1
+ Jq5FWGFXUDz2vVAg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3318F137EC;
+ Fri, 11 Sep 2026 12:45:48 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id wJocC/z3o2r8EQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 11 Sep 2026 12:45:48 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: jfalempe@redhat.com, javierm@redhat.com, airlied@gmail.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ geert@linux-m68k.org, rdunlap@infradead.org
+Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, virtualization@lists.linux.dev,
+ sashiko-reviews@lists.linux.dev, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v5 05/14] drm/panic: Pass colors to draw_panic_dispatch()
+Date: Fri, 11 Sep 2026 14:43:58 +0200
+Message-ID: <20260911124540.279841-6-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260911124540.279841-1-tzimmermann@suse.de>
+References: <20260911124540.279841-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-6.80 / 50.00]; REPLY(-4.00)[];
+ BAYES_HAM(-3.00)[100.00%]; MID_CONTAINS_FROM(1.00)[];
+ NEURAL_HAM_LONG(-1.00)[-1.000]; R_MISSING_CHARSET(0.50)[];
+ NEURAL_HAM_SHORT(-0.20)[-0.999]; MIME_GOOD(-0.10)[text/plain];
+ RCVD_COUNT_TWO(0.00)[2]; FROM_HAS_DN(0.00)[]; ARC_NA(0.00)[];
+ MIME_TRACE(0.00)[0:+]; TO_DN_SOME(0.00)[];
+ RCPT_COUNT_TWELVE(0.00)[21]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[];
+ FREEMAIL_TO(0.00)[redhat.com,gmail.com,linux.intel.com,kernel.org,linux-m68k.org,infradead.org];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:helo];
+ FROM_EQ_ENVFROM(0.00)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ RCVD_TLS_ALL(0.00)[];
+ R_RATELIMIT(0.00)[to_ip_from(RLhthb38qh1ntkuzcrgoc19dwi)];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,194 +119,218 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 08 Sep 2026, "Hogander, Jouni" <jouni.hogander@intel.com> wrote:
-> On Fri, 2026-09-04 at 13:03 +0300, Jani Nikula wrote:
->> On Thu, 03 Sep 2026, Vinod Govindapillai
->> <vinod.govindapillai@intel.com> wrote:
->> > During the runtime suspend, check if device is capable of wakeup
->> > from PME. If yes update the helper so that IRQ reset and HPD
->> > polling can be handled accordingly. For PME capable devices,
->> > HPD related IRQs are not reset during runtime suspend and
->> > do not start polling for HPDs every 10s. Instead PME can be
->> > generated from HPDs and corresponding runtime resume calls
->> > can be invoked by PME.
->> >=20
->> > Bspec: 52979, 52980, 68857, 68867, 68970
->> > Assisted-by: GitHub_Copilot:claude-opus-5
->> > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
->> > ---
->> > =C2=A0drivers/gpu/drm/xe/display/xe_display.c | 10 ++++++++++
->> > =C2=A0drivers/gpu/drm/xe/display/xe_display.h |=C2=A0 4 ++++
->> > =C2=A0drivers/gpu/drm/xe/xe_pci.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 16 +++++++++++++++-
->> > =C2=A03 files changed, 29 insertions(+), 1 deletion(-)
->> >=20
->> > diff --git a/drivers/gpu/drm/xe/display/xe_display.c
->> > b/drivers/gpu/drm/xe/display/xe_display.c
->> > index 7b25c0814674..ff4a74c5c763 100644
->> > --- a/drivers/gpu/drm/xe/display/xe_display.c
->> > +++ b/drivers/gpu/drm/xe/display/xe_display.c
->> > @@ -236,6 +236,16 @@ void xe_display_irq_postinstall(struct
->> > xe_device *xe)
->> > =C2=A0	intel_display_irq_postinstall(display);
->> > =C2=A0}
->> > =C2=A0
->> > +void xe_display_set_pme_capable(struct xe_device *xe, bool
->> > pme_from_hpd)
->> > +{
->> > +	struct intel_display *display =3D xe->display;
->> > +
->> > +	if (!xe->info.probe_display)
->> > +		return;
->> > +
->> > +	intel_hpd_set_pme_capable(display, pme_from_hpd);
->>=20
->> The downside with this is that I've been trying hard to *reduce* the
->> number of direct low-level calls from i915 and xe core to display.
->>=20
->> There are 100+ calls already. IMO we need to drop them to the
->> ballpark
->> of less than half.
->>=20
->> This would go directly to a TODO list of things to refactor and clean
->> up.
->>=20
->> Feels like it would be more clean with a parent interface for the
->> display to ask if pme is available, when needed, even though the
->> parent
->> interface is also too big...
->
-> Would it be ok to solve this by doing all this in display runtime
-> callbacks?
->
-> Possible d3cold entry could be found out by using pci_target_state.
->
-> Is it ok to acces pci device (pci_enable_wake and pci_target_state) in
-> display pm runtime callbacks.
+Set the panic-screen colors in draw_panic_plane() as a single point
+of truth. Pass the values into the individual drawing functions.
 
-Full disclosure: I really don't know how this xe d3cold runtime
-suspend/resume path is supposed to work. i915 disables PCI d3cold before
-runtime suspend, and enables it again at runtime resume.
+In the test cases, replace the Kconfig-defined colors with white and
+black. Allows for removal of the tests' limitations and dependency on
+the exact values. All tests now always verify the generated output.
 
-The display part should be unified for both (though its fine if i915
-disables it like it does now), and xe really should stop calling
-low-level display functions directly from the xe_display_enable_d3cold()
-and xe_display_disable_d3cold() functions.
+Hardcoding the test colors will later also allow for building the
+test case without having DRM panic handling enabled.
 
-BR,
-Jani.
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Jocelyn Falempe <jfalempe@redhat.com>
+---
+ drivers/gpu/drm/drm_panic.c            | 54 +++++++++++++++-----------
+ drivers/gpu/drm/tests/drm_panic_test.c | 26 +++++++++----
+ 2 files changed, 49 insertions(+), 31 deletions(-)
 
+diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
+index cc33a2b4bb52..834653d288a9 100644
+--- a/drivers/gpu/drm/drm_panic.c
++++ b/drivers/gpu/drm/drm_panic.c
+@@ -480,12 +480,8 @@ static void drm_panic_logo_draw(struct drm_scanout_buffer *sb, struct drm_rect *
+ 				   fg_color);
+ }
+ 
+-static int draw_panic_screen_user(struct drm_scanout_buffer *sb)
++static int draw_panic_screen_user(struct drm_scanout_buffer *sb, u32 fg_color, u32 bg_color)
+ {
+-	u32 fg_color = drm_draw_color_from_xrgb8888(CONFIG_DRM_PANIC_FOREGROUND_COLOR,
+-						    sb->format->format);
+-	u32 bg_color = drm_draw_color_from_xrgb8888(CONFIG_DRM_PANIC_BACKGROUND_COLOR,
+-						    sb->format->format);
+ 	const struct font_desc *font = get_default_font(sb->width, sb->height, NULL, NULL);
+ 	struct drm_rect r_screen, r_logo, r_msg;
+ 	unsigned int msg_width, msg_height;
+@@ -493,6 +489,9 @@ static int draw_panic_screen_user(struct drm_scanout_buffer *sb)
+ 	if (!font)
+ 		return -EINVAL;
+ 
++	fg_color = drm_draw_color_from_xrgb8888(fg_color, sb->format->format);
++	bg_color = drm_draw_color_from_xrgb8888(bg_color, sb->format->format);
++
+ 	r_screen = DRM_RECT_INIT(0, 0, sb->width, sb->height);
+ 	drm_panic_logo_rect(&r_logo, font);
+ 
+@@ -551,12 +550,8 @@ static int draw_line_with_wrap(struct drm_scanout_buffer *sb, const struct font_
+  * Draw the kmsg buffer to the screen, starting from the youngest message at the bottom,
+  * and going up until reaching the top of the screen.
+  */
+-static int draw_panic_screen_kmsg(struct drm_scanout_buffer *sb)
++static int draw_panic_screen_kmsg(struct drm_scanout_buffer *sb, u32 fg_color, u32 bg_color)
+ {
+-	u32 fg_color = drm_draw_color_from_xrgb8888(CONFIG_DRM_PANIC_FOREGROUND_COLOR,
+-						    sb->format->format);
+-	u32 bg_color = drm_draw_color_from_xrgb8888(CONFIG_DRM_PANIC_BACKGROUND_COLOR,
+-						    sb->format->format);
+ 	const struct font_desc *font = get_default_font(sb->width, sb->height, NULL, NULL);
+ 	struct drm_rect r_screen = DRM_RECT_INIT(0, 0, sb->width, sb->height);
+ 	struct kmsg_dump_iter iter;
+@@ -568,6 +563,9 @@ static int draw_panic_screen_kmsg(struct drm_scanout_buffer *sb)
+ 	if (!font || font->width > sb->width)
+ 		return -EINVAL;
+ 
++	fg_color = drm_draw_color_from_xrgb8888(fg_color, sb->format->format);
++	bg_color = drm_draw_color_from_xrgb8888(bg_color, sb->format->format);
++
+ 	yoffset = sb->height - font->height - (sb->height % font->height) / 2;
+ 
+ 	/* Fill with the background color, and draw text on top */
+@@ -742,12 +740,9 @@ static int drm_panic_get_qr_code(u8 **qr_image)
+ /*
+  * Draw the panic message at the center of the screen, with a QR Code
+  */
+-static int _draw_panic_screen_qr_code(struct drm_scanout_buffer *sb)
++static int _draw_panic_screen_qr_code(struct drm_scanout_buffer *sb,
++				      u32 fg_color, u32 bg_color)
+ {
+-	u32 fg_color = drm_draw_color_from_xrgb8888(CONFIG_DRM_PANIC_FOREGROUND_COLOR,
+-						    sb->format->format);
+-	u32 bg_color = drm_draw_color_from_xrgb8888(CONFIG_DRM_PANIC_BACKGROUND_COLOR,
+-						    sb->format->format);
+ 	const struct font_desc *font = get_default_font(sb->width, sb->height, NULL, NULL);
+ 	struct drm_rect r_screen, r_logo, r_msg, r_qr, r_qr_canvas;
+ 	unsigned int max_qr_size, scale;
+@@ -760,6 +755,9 @@ static int _draw_panic_screen_qr_code(struct drm_scanout_buffer *sb)
+ 	if (!font)
+ 		return -EINVAL;
+ 
++	fg_color = drm_draw_color_from_xrgb8888(fg_color, sb->format->format);
++	bg_color = drm_draw_color_from_xrgb8888(bg_color, sb->format->format);
++
+ 	r_screen = DRM_RECT_INIT(0, 0, sb->width, sb->height);
+ 
+ 	drm_panic_logo_rect(&r_logo, font);
+@@ -814,10 +812,10 @@ static int _draw_panic_screen_qr_code(struct drm_scanout_buffer *sb)
+ 	return 0;
+ }
+ 
+-static int draw_panic_screen_qr_code(struct drm_scanout_buffer *sb)
++static int draw_panic_screen_qr_code(struct drm_scanout_buffer *sb, u32 fg_color, u32 bg_color)
+ {
+-	if (_draw_panic_screen_qr_code(sb))
+-		return draw_panic_screen_user(sb);
++	if (_draw_panic_screen_qr_code(sb, fg_color, bg_color))
++		return draw_panic_screen_user(sb, fg_color, bg_color);
+ 	return 0;
+ }
+ #else
+@@ -889,22 +887,22 @@ static bool drm_panic_is_format_supported(const struct drm_format_info *format)
+ 	return drm_draw_can_convert_from_xrgb8888(format->format);
+ }
+ 
+-static int draw_panic_dispatch(struct drm_scanout_buffer *sb)
++static int draw_panic_dispatch(struct drm_scanout_buffer *sb, u32 fg_color, u32 bg_color)
+ {
+ 	int ret;
+ 
+ 	switch (drm_panic_type) {
+ 	case DRM_PANIC_TYPE_KMSG:
+-		ret = draw_panic_screen_kmsg(sb);
++		ret = draw_panic_screen_kmsg(sb, fg_color, bg_color);
+ 		break;
+ #if IS_ENABLED(CONFIG_DRM_PANIC_SCREEN_QR_CODE)
+ 	case DRM_PANIC_TYPE_QR:
+-		ret = draw_panic_screen_qr_code(sb);
++		ret = draw_panic_screen_qr_code(sb, fg_color, bg_color);
+ 		break;
+ #endif
+ 	case DRM_PANIC_TYPE_USER:
+ 	default:
+-		ret = draw_panic_screen_user(sb);
++		ret = draw_panic_screen_user(sb, fg_color, bg_color);
+ 	}
+ 
+ 	return ret;
+@@ -939,6 +937,16 @@ static void draw_panic_plane(struct drm_plane *plane, const char *description)
+ 	struct drm_scanout_buffer sb = { };
+ 	int ret;
+ 	unsigned long flags;
++#if defined(CONFIG_DRM_PANIC_FOREGROUND_COLOR)
++	u32 fg_color = CONFIG_DRM_PANIC_FOREGROUND_COLOR;
++#else
++	u32 fg_color = 0x00ffffff;
++#endif
++#if defined(CONFIG_DRM_PANIC_BACKGROUND_COLOR)
++	u32 bg_color = CONFIG_DRM_PANIC_BACKGROUND_COLOR;
++#else
++	u32 bg_color = 0x00000000;
++#endif
+ 
+ 	if (!drm_panic_trylock(plane->dev, flags))
+ 		return;
+@@ -954,7 +962,7 @@ static void draw_panic_plane(struct drm_plane *plane, const char *description)
+ 
+ 	drm_panic_set_description(description);
+ 
+-	ret = draw_panic_dispatch(&sb);
++	ret = draw_panic_dispatch(&sb, fg_color, bg_color);
+ 	if (!ret) {
+ 		/*
+ 		 * Only flush if we have a panic screen to display. Otherwise
+diff --git a/drivers/gpu/drm/tests/drm_panic_test.c b/drivers/gpu/drm/tests/drm_panic_test.c
+index fdd77b0cc54c..969a096ec840 100644
+--- a/drivers/gpu/drm/tests/drm_panic_test.c
++++ b/drivers/gpu/drm/tests/drm_panic_test.c
+@@ -14,17 +14,10 @@
+ #include <linux/units.h>
+ #include <linux/vmalloc.h>
+ 
+-/* Check the framebuffer color only if the panic colors are the default */
+-#if (CONFIG_DRM_PANIC_BACKGROUND_COLOR == 0 && \
+-	CONFIG_DRM_PANIC_FOREGROUND_COLOR == 0xffffff)
+-
+ static void drm_panic_check_color_byte(struct kunit *test, u8 b)
+ {
+ 	KUNIT_EXPECT_TRUE(test, (b == 0 || b == 0xff));
+ }
+-#else
+-static void drm_panic_check_color_byte(struct kunit *test, u8 b) {}
+-#endif
+ 
+ struct drm_test_mode {
+ 	const int width;
+@@ -48,10 +41,27 @@ struct drm_test_mode {
+ 	.width = w, \
+ 	.height = h, \
+ 	.format = f, \
+-	.draw_screen = draw_panic_screen_##name, \
++	.draw_screen = draw_panic_screen_ ## name ## _default, \
+ 	.fname = #name, \
+ 	}, \
+ 
++static int draw_panic_screen_user_default(struct drm_scanout_buffer *sb)
++{
++	return draw_panic_screen_user(sb, 0x00ffffff, 0x00000000);
++}
++
++static int draw_panic_screen_kmsg_default(struct drm_scanout_buffer *sb)
++{
++	return draw_panic_screen_kmsg(sb, 0x00ffffff, 0x00000000);
++}
++
++#if IS_ENABLED(CONFIG_DRM_PANIC_SCREEN_QR_CODE)
++static int draw_panic_screen_qr_code_default(struct drm_scanout_buffer *sb)
++{
++	return draw_panic_screen_qr_code(sb, 0x00ffffff, 0x00000000);
++}
++#endif
++
+ static const struct drm_test_mode drm_test_modes_cases[] = {
+ 	DRM_TEST_MODE_LIST(user)
+ 	DRM_TEST_MODE_LIST(kmsg)
+-- 
+2.55.0
 
-
-
-
-
-
-
-
->
-> BR,
-> Jouni H=C3=B6gander
->
->>=20
->> BR,
->> Jani.
->>=20
->>=20
->>=20
->> > +}
->> > +
->> > =C2=A0static bool suspend_to_idle(void)
->> > =C2=A0{
->> > =C2=A0#if IS_ENABLED(CONFIG_ACPI_SLEEP)
->> > diff --git a/drivers/gpu/drm/xe/display/xe_display.h
->> > b/drivers/gpu/drm/xe/display/xe_display.h
->> > index 0babb50bfc77..a77a8fa1d802 100644
->> > --- a/drivers/gpu/drm/xe/display/xe_display.h
->> > +++ b/drivers/gpu/drm/xe/display/xe_display.h
->> > @@ -37,6 +37,8 @@ void xe_display_irq_enable(struct xe_device *xe,
->> > u32 gu_misc_iir);
->> > =C2=A0void xe_display_irq_reset(struct xe_device *xe);
->> > =C2=A0void xe_display_irq_postinstall(struct xe_device *xe);
->> > =C2=A0
->> > +void xe_display_set_pme_capable(struct xe_device *xe, bool
->> > pme_from_hpd);
->> > +
->> > =C2=A0void xe_display_pm_suspend(struct xe_device *xe);
->> > =C2=A0void xe_display_pm_suspend_late(struct xe_device *xe);
->> > =C2=A0void xe_display_pm_resume_early(struct xe_device *xe);
->> > @@ -75,6 +77,8 @@ static inline void xe_display_irq_enable(struct
->> > xe_device *xe, u32 gu_misc_iir)
->> > =C2=A0static inline void xe_display_irq_reset(struct xe_device *xe) {}
->> > =C2=A0static inline void xe_display_irq_postinstall(struct xe_device
->> > *xe) {}
->> > =C2=A0
->> > +static inline void xe_display_set_pme_capable(struct xe_device
->> > *xe, bool pme_from_hpd) {}
->> > +
->> > =C2=A0static inline void xe_display_pm_suspend(struct xe_device *xe) {}
->> > =C2=A0static inline void xe_display_pm_suspend_late(struct xe_device
->> > *xe) {}
->> > =C2=A0static inline void xe_display_pm_resume_early(struct xe_device
->> > *xe) {}
->> > diff --git a/drivers/gpu/drm/xe/xe_pci.c
->> > b/drivers/gpu/drm/xe/xe_pci.c
->> > index f8e16aefd2f8..46a33956c5b4 100644
->> > --- a/drivers/gpu/drm/xe/xe_pci.c
->> > +++ b/drivers/gpu/drm/xe/xe_pci.c
->> > @@ -1385,6 +1385,8 @@ static int xe_pci_runtime_suspend(struct
->> > device *dev)
->> > =C2=A0{
->> > =C2=A0	struct pci_dev *pdev =3D to_pci_dev(dev);
->> > =C2=A0	struct xe_device *xe =3D pdev_to_xe_device(pdev);
->> > +	pci_power_t state =3D xe->d3cold.allowed ? PCI_D3cold :
->> > PCI_D3hot;
->> > +	bool pme_capable =3D pci_enable_wake(pdev, state, true) =3D=3D
->> > 0;
->> > =C2=A0	int err;
->> > =C2=A0
->> > =C2=A0	/*
->> > @@ -1396,9 +1398,17 @@ static int xe_pci_runtime_suspend(struct
->> > device *dev)
->> > =C2=A0	xe_assert(xe, !IS_SRIOV_VF(xe));
->> > =C2=A0	xe_assert(xe, !pci_num_vf(pdev));
->> > =C2=A0
->> > +	xe_display_set_pme_capable(xe, pme_capable);
->> > +
->> > =C2=A0	err =3D xe_pm_runtime_suspend(xe);
->> > -	if (err)
->> > +	if (err) {
->> > +		if (pme_capable) {
->> > +			pci_enable_wake(pdev, state, false);
->> > +			xe_display_set_pme_capable(xe, false);
->> > +		}
->> > +
->> > =C2=A0		return err;
->> > +	}
->> > =C2=A0
->> > =C2=A0	pci_save_state(pdev);
->> > =C2=A0
->> > @@ -1419,12 +1429,16 @@ static int xe_pci_runtime_resume(struct
->> > device *dev)
->> > =C2=A0{
->> > =C2=A0	struct pci_dev *pdev =3D to_pci_dev(dev);
->> > =C2=A0	struct xe_device *xe =3D pdev_to_xe_device(pdev);
->> > +	pci_power_t state =3D xe->d3cold.allowed ? PCI_D3cold :
->> > PCI_D3hot;
->> > =C2=A0	int err;
->> > =C2=A0
->> > =C2=A0	err =3D pci_set_power_state(pdev, PCI_D0);
->> > =C2=A0	if (err)
->> > =C2=A0		return err;
->> > =C2=A0
->> > +	pci_enable_wake(pdev, state, false);
->> > +	xe_display_set_pme_capable(xe, false);
->> > +
->> > =C2=A0	pci_restore_state(pdev);
->> > =C2=A0
->> > =C2=A0	if (xe->d3cold.allowed) {
->>=20
->
-
---=20
-Jani Nikula, Intel
