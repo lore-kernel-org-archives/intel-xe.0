@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0E69C79FA1
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 04:15:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A717C88E4D
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 04:15:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89F0A10F2E6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E80D310F463;
 	Fri, 11 Sep 2026 04:15:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MryGN6Lz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jm2GVP0T";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FA4210EBDA;
- Fri, 11 Sep 2026 04:15:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C15710EA68;
+ Fri, 11 Sep 2026 04:15:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789100114; x=1820636114;
+ t=1789100116; x=1820636116;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=a5280bqZC0FB78xnrlnAKcTEvf4yJyXvLeq6+E7xR3c=;
- b=MryGN6LzsXPIKFrmd1BGNZd1lx++ykP45pdSYuQoX8BJXGR9lqjp6jRu
- pqaP7iOFvXudL4gVsh7zsPPueAXa/27TBY2bDFvOzh89KO2ZmM1rlzOLy
- /NTHd+JdnGrsdtgHrqWq/rOG6/uTYyR2XFnxc5WeCbQunLSqHW3+bo//v
- SoqjDOKxmazKzWnM8fco0gvhVTkPOubi3xduRlS0Qu43PZxGyUS8aMPOI
- OXDbVk2I2SW5YwH0+UUcDA+xvkj3159M0Iyfm1ZILyJf6k73pVk1QiChd
- a9NxNPcRH6o+dJAV6ui9gH3+4j/eDVxYDQvuqISy2jEkZaxtmiItCYMTF g==;
-X-CSE-ConnectionGUID: Pv+g1tGuRdmfP6LFzD6L3A==
-X-CSE-MsgGUID: W6dcxJ3wToub+FNJ8XwONQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11901"; a="89599962"
+ bh=q0es8S46vu/Ac6Ifr7Ig6Bo+gh6AKGxq8OhAK6boGRI=;
+ b=jm2GVP0TPYpH7unByvw9VUBFEvGb8XwNcLgzFe6XOgS9oePYh6ZQwClM
+ aZJXttwCTed9EVGLsVKjebzCaF2QE2OnOeF+o7f/5W+Lyfbf38V7zJ432
+ /TEwdK8GZXSDbYnLbrYCqM2/p1vYTAM36SCW3qXKjrrlnPW56SoBU0969
+ fOvAAmkjlqzmPTyCFd4biJtstJTLR79M3i1T4bmIVHg+e/u+ECEjsGjF4
+ vDT3s9BcBquaSU29Y0FZAuhgqV77OFtmKpis7IIl6JE82Qwh8sxHTpFH5
+ aVh2Y2E65Wnes0I8tOZaLrRffnEVJzzuUKgdLQ7Y4nJ9jranqSaNdMFfB g==;
+X-CSE-ConnectionGUID: R3Fa5tacQK+/ZpUfazT3qw==
+X-CSE-MsgGUID: d4nqKGbiQ7GJziyF5tZO5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11901"; a="89599965"
 X-IronPort-AV: E=Sophos;i="6.27,96,1787036400"; 
-   d="scan'208";a="89599962"
+   d="scan'208";a="89599965"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2026 21:15:14 -0700
-X-CSE-ConnectionGUID: e2XcZ3n1RO23WI+cPceyGA==
-X-CSE-MsgGUID: eaym8tXFS06ym2G/HwcQFQ==
+ 10 Sep 2026 21:15:16 -0700
+X-CSE-ConnectionGUID: cJEFQVsTQCqq9YS+baQcrw==
+X-CSE-MsgGUID: /tZUzxx1ROy5S5OWElk85w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,96,1787036400"; d="scan'208";a="275334464"
+X-IronPort-AV: E=Sophos;i="6.27,96,1787036400"; d="scan'208";a="275334471"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa003.jf.intel.com with ESMTP; 10 Sep 2026 21:15:12 -0700
+ by orviesa003.jf.intel.com with ESMTP; 10 Sep 2026 21:15:15 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 08/10] drm/i915/display: Implement Wa_14021768792 for BMG DP
- for link_m/n ratio > 10
-Date: Fri, 11 Sep 2026 09:44:47 +0530
-Message-Id: <20260911041449.3699400-9-suraj.kandpal@intel.com>
+Subject: [PATCH 10/10] drm/i915/dp: Bump the max Link M/N ratio to 22 for
+ DISPLAY_VER >= 35
+Date: Fri, 11 Sep 2026 09:44:49 +0530
+Message-Id: <20260911041449.3699400-11-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260911041449.3699400-1-suraj.kandpal@intel.com>
 References: <20260911041449.3699400-1-suraj.kandpal@intel.com>
@@ -69,110 +69,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Starting Xe3p max M/N ratio has been increased to 22.
 
-Handle the bypass logic for the M/N ratio limit for DP.
-Calculate the M/N ratio, check if it can bypass the limit, and set the
-appropriate flags for the workaround.
-
-The workaround is only intended for 128b/132b links, so restrict it to
-those.
-
-Bspec also restricts the Link M/N values from changing outside of a
-modeset while the mechanism is active, so disable DRRS and the seamless
-M/N fastset path for such a configuration.
-
-Bspec: 49266
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Bspec: 68922
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c |  1 -
- drivers/gpu/drm/i915/display/intel_display.h |  2 ++
- drivers/gpu/drm/i915/display/intel_dp.c      | 26 ++++++++++++++++----
- 3 files changed, 23 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 068798658bd1..f0adf3c9a097 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3529,7 +3529,6 @@ void intel_get_m_n(struct intel_display *display,
- 	m_n->tu = REG_FIELD_GET(TU_SIZE_MASK, intel_de_read(display, data_m_reg)) + 1;
- }
- 
--static
- bool intel_display_can_bypass_m_n_limit(struct intel_display *display,
- 					int m_n_ratio,
- 					enum pipe pipe)
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index fc474d9cd533..dc1c0da3e45d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -526,5 +526,7 @@ int intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_state);
- void intel_display_get_link_m_n(u32 *link_m, u32 *link_n,
- 				u32 pixel_clock,
- 				u32 link_clock);
-+bool intel_display_can_bypass_m_n_limit(struct intel_display *display,
-+					int m_n_ratio, enum pipe pipe);
- 
- #endif
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 585762be07bb..27ffd937c75f 100644
+index c2db83f80c7e..3405e411c324 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3353,6 +3353,9 @@ static bool can_enable_drrs(struct intel_connector *connector,
- 	if (pipe_config->vrr.enable)
- 		return false;
- 
-+	if (pipe_config->dp_m_n.bypass_m_n_ratio_limit)
-+		return false;
-+
- 	/*
- 	 * DRRS and PSR can't be enable together, so giving preference to PSR
- 	 * as it allows more power-savings by complete shutting down display,
-@@ -3377,6 +3380,7 @@ void intel_dp_check_m_n_ratio(struct intel_crtc_state *crtc_state,
- 			      struct intel_link_m_n *m_n)
+@@ -1269,6 +1269,9 @@ bool intel_dp_has_dsc(const struct intel_connector *connector)
+ static int
+ intel_dp_get_max_m_n_ratio(struct intel_display *display)
  {
- 	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	int max_m_n_ratio = intel_dp_get_max_m_n_ratio(display);
- 	int m_n_ratio;
- 
-@@ -3385,10 +3389,21 @@ void intel_dp_check_m_n_ratio(struct intel_crtc_state *crtc_state,
- 
- 	m_n_ratio = DIV_ROUND_UP(m_n->link_m, m_n->link_n);
- 
--	if (m_n_ratio > max_m_n_ratio)
--		drm_WARN(display->drm, 1,
--			 "Link M/N ratio (%d) exceeds max allowed (%d)\n",
--			 m_n_ratio, max_m_n_ratio);
-+	if (m_n_ratio <= max_m_n_ratio)
-+		return;
++	if (DISPLAY_VER(display) >= 35)
++		return 22;
 +
-+	if (intel_dp_is_uhbr(crtc_state) &&
-+	    intel_display_can_bypass_m_n_limit(display, m_n_ratio, crtc->pipe)) {
-+		m_n->bypass_m_n_ratio_limit = true;
-+		drm_dbg_kms(display->drm,
-+			    "Bypassing Link_m/Link_n ratio limit (ratio %d)\n",
-+			    m_n_ratio);
-+		return;
-+	}
-+
-+	drm_WARN(display->drm, 1,
-+		 "Link M/N ratio (%d) exceeds max allowed (%d)\n",
-+		 m_n_ratio, max_m_n_ratio);
- }
+ 	if (display->platform.dg2)
+ 		return 4;
  
- static void
-@@ -3405,7 +3420,8 @@ intel_dp_drrs_compute_config(struct intel_connector *connector,
- 	 * FIXME all joined pipes share the same transcoder.
- 	 * Need to account for that when updating M/N live.
- 	 */
--	if (has_seamless_m_n(connector) && !pipe_config->joiner_pipes)
-+	if (has_seamless_m_n(connector) && !pipe_config->joiner_pipes &&
-+	    !pipe_config->dp_m_n.bypass_m_n_ratio_limit)
- 		pipe_config->update_m_n = true;
- 
- 	if (!can_enable_drrs(connector, pipe_config, downclock_mode)) {
 -- 
 2.34.1
 
