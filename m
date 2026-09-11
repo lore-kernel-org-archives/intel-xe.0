@@ -4,42 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14653C79FA1
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 04:54:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4C8AC79FA1
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 05:01:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF82410E50A;
-	Fri, 11 Sep 2026 04:54:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Z3chL5yd";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F03810E50A
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 04:54:39 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 1D6DB411E2;
- Fri, 11 Sep 2026 04:54:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C909B1F00893;
- Fri, 11 Sep 2026 04:54:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789102479;
- bh=B0kAQ3XV5A9Td3B/XNtEw7LtIx9rZv3VhmkcTjYWqC4=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Z3chL5ydmAikdou0jBLZezjSxMxVcAlzLrM78mjErQY1ccvG9Aw+Obdg3h71ahiA7
- GqwzF1q2qoQKGrf6yYBxO6ddv4QqVCX6ZolAhsa/NUZ3nL/nORLktVKSc8VKAEiEwc
- R2AxspDn0hJ/2oAUmv84HBiiGFDEjzBFSOnjElobZUM7dA4nLMoFd2YhSagTCct4rD
- MOicpMGER6LrrLWSJrp1GyiJFoyqIbSotB63+kLWWmL1FUHWr0RwZVhcWQ656XhqDC
- DQ1SUFjUnOAl++3Xg13a8NQlPKUa0YYNZdm3IYQbEmvl+x2T/b59ppVLVrwS8crLz0
- g0pYjgarIKhjg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v1] drm/xe/i2c: Disable IRQ on unbind
-To: "Raag Jadav" <raag.jadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3845110E342;
+	Fri, 11 Sep 2026 05:01:09 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3A3B10E342;
+ Fri, 11 Sep 2026 05:01:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2113147146083434749=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Implement_Wa=5F14021768792_?=
+ =?utf-8?q?to_bypass_m=5Fn_ratio_limit_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260911044021.2393342-1-raag.jadav@intel.com>
-References: <20260911044021.2393342-1-raag.jadav@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 11 Sep 2026 04:54:38 +0000
-Message-Id: <20260911045438.C909B1F00893@smtp.kernel.org>
+Date: Fri, 11 Sep 2026 05:01:07 -0000
+Message-ID: <178910286772.148519.14897271844668778166@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260911041449.3699400-1-suraj.kandpal@intel.com>
+In-Reply-To: <20260911041449.3699400-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,82 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
+--===============2113147146083434749==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Pre-existing issues:
-- [High] The patch attempts to fix a Use-After-Free by disabling the I2C IR=
-Q in hardware during `xe_i2c_remove()`, but it leaves multiple UAF vectors =
-open: a synchronous UAF in the later devres teardown path due to a dangling=
- `xe->i2c` pointer, and asynchronous UAFs due to missing IRQ synchronizatio=
-n and work cancellation.
---
+== Series Details ==
 
-commit 45a43617b8b535b9ff0b0cfa6ca5c0e40ebb1dc5
-Author: Raag Jadav <raag.jadav@intel.com>
+Series: Implement Wa_14021768792 to bypass m_n ratio limit (rev6)
+URL   : https://patchwork.freedesktop.org/series/138256/
+State : success
 
-drm/xe/i2c: Disable IRQ on unbind
+== Summary ==
 
-This commit disables the I2C IRQ explicitly during driver unbind. It
-attempts to fix a potential use-after-free if the SGUnit IRQ is hit in the
-small window before the IRQ is disabled by the subsystem.
+CI Bug Log - changes from xe-5726-cf3f6830cd1a44f792534b4f5695c5ca7a69943d_BAT -> xe-pw-138256v6_BAT
+====================================================
 
-> diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-> index d8fa68206f418..82b22c5412bab 100644
-> --- a/drivers/gpu/drm/xe/xe_i2c.c
-> +++ b/drivers/gpu/drm/xe/xe_i2c.c
-> @@ -324,8 +324,10 @@ void xe_i2c_pm_resume(struct xe_device *xe, bool d3c=
-old)
->  static void xe_i2c_remove(void *data)
->  {
->  	struct xe_i2c *i2c =3D data;
-> +	struct xe_device *xe =3D tile_to_xe(i2c->mmio->tile);
->  	unsigned int i;
-> =20
-> +	xe_i2c_irq_reset(xe);
->  	xe_amc_exit(i2c);
+Summary
+-------
 
-[Severity: High]
-This is a pre-existing issue, but does this teardown sequence leave open
-a synchronous use-after-free in the devres teardown path?
+  **SUCCESS**
 
-During driver unbind, devres executes teardown actions in LIFO order. While
-xe_i2c_remove() is called here, it fails to set xe->i2c =3D NULL. The memory
-for the i2c struct (allocated via devm_kzalloc()) is then freed by devres.
+  No regressions found.
 
-Later in the teardown, the irq_uninstall() devres action executes, leading
-to this call chain:
+  
 
-irq_uninstall() -> xe_irq_reset() -> xe_i2c_irq_reset() -> xe_i2c_irq_prese=
-nt()
+Participating hosts (15 -> 15)
+------------------------------
 
-Inside xe_i2c_irq_present(), the dangling pointer is dereferenced:
+  No changes in participating hosts
 
-static bool xe_i2c_irq_present(struct xe_device *xe)
-{
-	return xe->i2c && xe->i2c->ep.capabilities & XE_I2C_EP_CAP_IRQ &&
-		!xe_survivability_mode_is_boot_enabled(xe);
-}
+Known issues
+------------
 
-Could we prevent this by clearing the pointer here with xe->i2c =3D NULL?
+  Here are the changes found in xe-pw-138256v6_BAT that come from known issues:
 
-Additionally, is there an asynchronous use-after-free if a concurrent IRQ
-handler is executing? Without a call to synchronize_irq(), a concurrent
-handler could execute immediately after xe_amc_exit() frees i2c->amc, and
-attempt to queue work on the freed memory:
+### IGT changes ###
 
-void xe_amc_handle_alert(struct xe_i2c *i2c)
-{
-	queue_work(system_long_wq, &i2c->amc->work);
-}
+#### Issues hit ####
 
-Would it be appropriate to include synchronize_irq() and perhaps a call to
-cancel_work_sync() in this teardown path?
+  * igt@xe_waitfence@reltime:
+    - bat-ptl-2:          [PASS][1] -> [FAIL][2] ([Intel XE#9115])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5726-cf3f6830cd1a44f792534b4f5695c5ca7a69943d/bat-ptl-2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138256v6/bat-ptl-2/igt@xe_waitfence@reltime.html
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260911044021.2393=
-342-1-raag.jadav@intel.com?part=3D1
+  
+  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9090 -> IGT_9091
+  * Linux: xe-5726-cf3f6830cd1a44f792534b4f5695c5ca7a69943d -> xe-pw-138256v6
+
+  IGT_9090: 9090
+  IGT_9091: 9091
+  xe-5726-cf3f6830cd1a44f792534b4f5695c5ca7a69943d: cf3f6830cd1a44f792534b4f5695c5ca7a69943d
+  xe-pw-138256v6: 138256v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138256v6/index.html
+
+--===============2113147146083434749==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Implement Wa_14021768792 to bypass m_n ratio limit (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138256/">https://patchwork.freedesktop.org/series/138256/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138256v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138256v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5726-cf3f6830cd1a44f792534b4f5695c5ca7a69943d_BAT -&gt; xe-pw-138256v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-138256v6_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5726-cf3f6830cd1a44f792534b4f5695c5ca7a69943d/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-138256v6/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9090 -&gt; IGT_9091</li>
+<li>Linux: xe-5726-cf3f6830cd1a44f792534b4f5695c5ca7a69943d -&gt; xe-pw-138256v6</li>
+</ul>
+<p>IGT_9090: 9090<br />
+  IGT_9091: 9091<br />
+  xe-5726-cf3f6830cd1a44f792534b4f5695c5ca7a69943d: cf3f6830cd1a44f792534b4f5695c5ca7a69943d<br />
+  xe-pw-138256v6: 138256v6</p>
+
+</body>
+</html>
+
+--===============2113147146083434749==--
