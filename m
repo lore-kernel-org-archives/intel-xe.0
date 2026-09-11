@@ -4,42 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA023C88E50
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 12:31:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E15DDC88E50
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 12:45:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6134D10F595;
-	Fri, 11 Sep 2026 12:31:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UrF2+1NH";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B68B10F595
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 12:31:52 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id DD799400BB;
- Fri, 11 Sep 2026 12:31:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F9DB1F000FF;
- Fri, 11 Sep 2026 12:31:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789129911;
- bh=iAH0L+0DbdgH3t6a6eWhMP0azq2fuUjtxXgPHrWnT/I=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=UrF2+1NHSoil8cx8sjnyykKmWIiKyPilSJGvvPWRZqzFaL0RyqXtUPMi90zmGQru4
- CRKDtjDZqb8cerFBm8SDJufMeGCyqTZodJujoU+bPOMFtn2S6E2G13rNxkq8tgdfWF
- RitKU/myNbwVRxbuGH5GapuCKn8n7O/d/spPcM5hrh309Na9hGm64196FhLbze7ZQ8
- nsl6Kfrp05c3VWIgateMOPBO9e9ekZQUYg58R977/NZmCdlcIZYbPtxRpcvY+7GmzS
- GPQk5FKDFYwSZ+7+Djaz2dOyzm4QGEdA8lWqcrmd+zweJDiEvDLyxpv5MJVZAi71V8
- DX/So2dJL22mA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2] drm/xe/i2c: Disable IRQ on unbind
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260911121547.2407261-1-raag.jadav@intel.com>
-References: <20260911121547.2407261-1-raag.jadav@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 11 Sep 2026 12:31:51 +0000
-Message-Id: <20260911123151.9F9DB1F000FF@smtp.kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9066F10F5A6;
+	Fri, 11 Sep 2026 12:45:59 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E0EF10F5A0;
+ Fri, 11 Sep 2026 12:45:58 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id E672421B74;
+ Fri, 11 Sep 2026 12:45:50 +0000 (UTC)
+Authentication-Results: smtp-out1.suse.de;
+	none
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A0B8A137DE;
+ Fri, 11 Sep 2026 12:45:47 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 4OL4Jfv3o2r8EQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 11 Sep 2026 12:45:47 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: jfalempe@redhat.com, javierm@redhat.com, airlied@gmail.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ geert@linux-m68k.org, rdunlap@infradead.org
+Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ linux-hyperv@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, nouveau@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, virtualization@lists.linux.dev,
+ sashiko-reviews@lists.linux.dev, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v5 04/14] drm/panic: Return errno codes if panic output fails
+Date: Fri, 11 Sep 2026 14:43:57 +0200
+Message-ID: <20260911124540.279841-5-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260911124540.279841-1-tzimmermann@suse.de>
+References: <20260911124540.279841-1-tzimmermann@suse.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Pre-Result: action=no action; module=replies;
+ Message is reply to one we originated
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Queue-Id: E672421B74
+X-Rspamd-Pre-Result: action=no action; module=replies;
+ Message is reply to one we originated
+X-Spamd-Result: default: False [-4.00 / 50.00];
+	REPLY(-4.00)[]
+X-Rspamd-Action: no action
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,132 +69,230 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
+Return errno codes from the panic output helpers to detect invalid
+panic handling. Avoid flushing the display if an error ocured. The
+unflushed display output might be helpful in debugging.
 
-New issues:
-- [Medium] Disabling I2C interrupts before flushing work or unregistering I=
-2C clients causes subsequent I2C transfers to time out and fail.
+For now, test the result values in the panic test cases. A later patch
+will add support for retrying failed panic output.
 
-Pre-existing issues:
-- [High] The patch attempts to fix a Use-After-Free (UAF) by explicitly dis=
-abling the I2C IRQ in `xe_i2c_remove()`, but it fails to wait for already-e=
-xecuting IRQ handlers, leaving a critical race window open that leads to a =
-UAF of `i2c->amc`.
-- [High] Missing cancellation of `i2c->work` in `xe_i2c_remove()` leads to =
-a Use-After-Free of the `i2c` structure.
-- [High] Dangling `xe->i2c` pointer on `xe_i2c_probe()` error paths leads t=
-o a UAF during probe failure teardown.
---
+v2:
+- forward return value of draw_panic_screen_user() (Sashiko)
+- forward errno code from drm_panic_get_qr_code
 
-commit 3fffddfb454e12e0901f531980c05e733fae1cc6
-Author: Raag Jadav <raag.jadav@intel.com>
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Jocelyn Falempe <jfalempe@redhat.com>
+---
+ drivers/gpu/drm/drm_panic.c            | 47 +++++++++++++++++---------
+ drivers/gpu/drm/tests/drm_panic_test.c | 16 +++++----
+ 2 files changed, 41 insertions(+), 22 deletions(-)
 
-drm/xe/i2c: Disable IRQ on unbind
+diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
+index 62490d32019c..cc33a2b4bb52 100644
+--- a/drivers/gpu/drm/drm_panic.c
++++ b/drivers/gpu/drm/drm_panic.c
+@@ -480,7 +480,7 @@ static void drm_panic_logo_draw(struct drm_scanout_buffer *sb, struct drm_rect *
+ 				   fg_color);
+ }
+ 
+-static void draw_panic_screen_user(struct drm_scanout_buffer *sb)
++static int draw_panic_screen_user(struct drm_scanout_buffer *sb)
+ {
+ 	u32 fg_color = drm_draw_color_from_xrgb8888(CONFIG_DRM_PANIC_FOREGROUND_COLOR,
+ 						    sb->format->format);
+@@ -491,7 +491,7 @@ static void draw_panic_screen_user(struct drm_scanout_buffer *sb)
+ 	unsigned int msg_width, msg_height;
+ 
+ 	if (!font)
+-		return;
++		return -EINVAL;
+ 
+ 	r_screen = DRM_RECT_INIT(0, 0, sb->width, sb->height);
+ 	drm_panic_logo_rect(&r_logo, font);
+@@ -510,6 +510,8 @@ static void draw_panic_screen_user(struct drm_scanout_buffer *sb)
+ 		drm_panic_logo_draw(sb, &r_logo, font, fg_color);
+ 
+ 	draw_txt_rectangle(sb, font, panic_msg, panic_msg_lines, true, &r_msg, fg_color);
++
++	return 0;
+ }
+ 
+ /*
+@@ -549,7 +551,7 @@ static int draw_line_with_wrap(struct drm_scanout_buffer *sb, const struct font_
+  * Draw the kmsg buffer to the screen, starting from the youngest message at the bottom,
+  * and going up until reaching the top of the screen.
+  */
+-static void draw_panic_screen_kmsg(struct drm_scanout_buffer *sb)
++static int draw_panic_screen_kmsg(struct drm_scanout_buffer *sb)
+ {
+ 	u32 fg_color = drm_draw_color_from_xrgb8888(CONFIG_DRM_PANIC_FOREGROUND_COLOR,
+ 						    sb->format->format);
+@@ -564,7 +566,7 @@ static void draw_panic_screen_kmsg(struct drm_scanout_buffer *sb)
+ 	int yoffset;
+ 
+ 	if (!font || font->width > sb->width)
+-		return;
++		return -EINVAL;
+ 
+ 	yoffset = sb->height - font->height - (sb->height % font->height) / 2;
+ 
+@@ -591,6 +593,8 @@ static void draw_panic_screen_kmsg(struct drm_scanout_buffer *sb)
+ 			start--;
+ 		}
+ 	}
++
++	return 0;
+ }
+ 
+ #if defined(CONFIG_DRM_PANIC_SCREEN_QR_CODE)
+@@ -767,7 +771,9 @@ static int _draw_panic_screen_qr_code(struct drm_scanout_buffer *sb)
+ 	max_qr_size = min(3 * sb->width / 4, 3 * sb->height / 4);
+ 
+ 	qr_width = drm_panic_get_qr_code(&qr_image);
+-	if (qr_width <= 0)
++	if (qr_width < 0)
++		return qr_width;
++	else if (!qr_width)
+ 		return -ENOSPC;
+ 
+ 	qr_canvas_width = qr_width + QR_MARGIN * 2;
+@@ -808,10 +814,11 @@ static int _draw_panic_screen_qr_code(struct drm_scanout_buffer *sb)
+ 	return 0;
+ }
+ 
+-static void draw_panic_screen_qr_code(struct drm_scanout_buffer *sb)
++static int draw_panic_screen_qr_code(struct drm_scanout_buffer *sb)
+ {
+ 	if (_draw_panic_screen_qr_code(sb))
+-		draw_panic_screen_user(sb);
++		return draw_panic_screen_user(sb);
++	return 0;
+ }
+ #else
+ static void drm_panic_qr_init(void) {};
+@@ -882,23 +889,25 @@ static bool drm_panic_is_format_supported(const struct drm_format_info *format)
+ 	return drm_draw_can_convert_from_xrgb8888(format->format);
+ }
+ 
+-static void draw_panic_dispatch(struct drm_scanout_buffer *sb)
++static int draw_panic_dispatch(struct drm_scanout_buffer *sb)
+ {
++	int ret;
++
+ 	switch (drm_panic_type) {
+ 	case DRM_PANIC_TYPE_KMSG:
+-		draw_panic_screen_kmsg(sb);
++		ret = draw_panic_screen_kmsg(sb);
+ 		break;
+-
+ #if IS_ENABLED(CONFIG_DRM_PANIC_SCREEN_QR_CODE)
+ 	case DRM_PANIC_TYPE_QR:
+-		draw_panic_screen_qr_code(sb);
++		ret = draw_panic_screen_qr_code(sb);
+ 		break;
+ #endif
+-
+ 	case DRM_PANIC_TYPE_USER:
+ 	default:
+-		draw_panic_screen_user(sb);
++		ret = draw_panic_screen_user(sb);
+ 	}
++
++	return ret;
+ }
+ 
+ static void drm_panic_set_description(const char *description)
+@@ -945,9 +954,15 @@ static void draw_panic_plane(struct drm_plane *plane, const char *description)
+ 
+ 	drm_panic_set_description(description);
+ 
+-	draw_panic_dispatch(&sb);
+-	if (plane->helper_private->panic_flush)
+-		plane->helper_private->panic_flush(plane);
++	ret = draw_panic_dispatch(&sb);
++	if (!ret) {
++		/*
++		 * Only flush if we have a panic screen to display. Otherwise
++		 * it's probably better to leave the display output as-is.
++		 */
++		if (plane->helper_private->panic_flush)
++			plane->helper_private->panic_flush(plane);
++	}
+ 
+ 	drm_panic_clear_description();
+ 
+diff --git a/drivers/gpu/drm/tests/drm_panic_test.c b/drivers/gpu/drm/tests/drm_panic_test.c
+index ad2f3a2f93b6..fdd77b0cc54c 100644
+--- a/drivers/gpu/drm/tests/drm_panic_test.c
++++ b/drivers/gpu/drm/tests/drm_panic_test.c
+@@ -30,7 +30,7 @@ struct drm_test_mode {
+ 	const int width;
+ 	const int height;
+ 	const u32 format;
+-	void (*draw_screen)(struct drm_scanout_buffer *sb);
++	int (*draw_screen)(struct drm_scanout_buffer *sb);
+ 	const char *fname;
+ };
+ 
+@@ -87,7 +87,7 @@ static void drm_test_panic_screen_user_map(struct kunit *test)
+ 	const struct drm_test_mode *params = test->param_value;
+ 	char *fb;
+ 	int fb_size;
+-	int i;
++	int i, ret;
+ 
+ 	sb->format = drm_format_info(params->format);
+ 	fb_size = params->width * params->height * sb->format->cpp[0];
+@@ -102,7 +102,8 @@ static void drm_test_panic_screen_user_map(struct kunit *test)
+ 	sb->height = params->height;
+ 	sb->pitch[0] = params->width * sb->format->cpp[0];
+ 
+-	params->draw_screen(sb);
++	ret = params->draw_screen(sb);
++	KUNIT_ASSERT_EQ(test, ret, 0);
+ 
+ 	for (i = 0; i < fb_size; i++)
+ 		drm_panic_check_color_byte(test, fb[i]);
+@@ -119,7 +120,7 @@ static void drm_test_panic_screen_user_page(struct kunit *test)
+ {
+ 	struct drm_scanout_buffer *sb = test->priv;
+ 	const struct drm_test_mode *params = test->param_value;
+-	int fb_size, p, i, npages;
++	int fb_size, p, i, npages, ret;
+ 	struct page **pages;
+ 	u8 *vaddr;
+ 
+@@ -146,7 +147,8 @@ static void drm_test_panic_screen_user_page(struct kunit *test)
+ 	sb->height = params->height;
+ 	sb->pitch[0] = params->width * sb->format->cpp[0];
+ 
+-	params->draw_screen(sb);
++	ret = params->draw_screen(sb);
++	KUNIT_ASSERT_EQ(test, ret, 0);
+ 
+ 	for (p = 0; p < npages; p++) {
+ 		int bytes_in_page = (p == npages - 1) ? fb_size - p * PAGE_SIZE : PAGE_SIZE;
+@@ -182,6 +184,7 @@ static void drm_test_panic_screen_user_set_pixel(struct kunit *test)
+ {
+ 	struct drm_scanout_buffer *sb = test->priv;
+ 	const struct drm_test_mode *params = test->param_value;
++	int ret;
+ 
+ 	sb->format = drm_format_info(params->format);
+ 	sb->set_pixel = drm_test_panic_set_pixel;
+@@ -189,7 +192,8 @@ static void drm_test_panic_screen_user_set_pixel(struct kunit *test)
+ 	sb->height = params->height;
+ 	sb->private = test;
+ 
+-	params->draw_screen(sb);
++	ret = params->draw_screen(sb);
++	KUNIT_ASSERT_EQ(test, ret, 0);
+ }
+ 
+ static void drm_test_panic_desc(const struct drm_test_mode *t, char *desc)
+-- 
+2.55.0
 
-This commit attempts to fix a potential use-after-free in the unbind path by
-explicitly disabling the I2C IRQ in xe_i2c_remove() before struct xe_i2c
-is freed. It resets the I2C interrupt and clears the xe->i2c pointer.
-
-> diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-> index d8fa68206f418..51ca9fb73b708 100644
-> --- a/drivers/gpu/drm/xe/xe_i2c.c
-> +++ b/drivers/gpu/drm/xe/xe_i2c.c
-> @@ -324,8 +324,10 @@ void xe_i2c_pm_resume(struct xe_device *xe, bool d3c=
-old)
->  static void xe_i2c_remove(void *data)
->  {
->  	struct xe_i2c *i2c =3D data;
-> +	struct xe_device *xe =3D tile_to_xe(i2c->mmio->tile);
->  	unsigned int i;
-> =20
-> +	xe_i2c_irq_reset(xe);
-
-[Severity: Medium]
-Does disabling I2C interrupts before flushing work or unregistering clients
-cause active I2C transfers to time out?
-
-If xe_amc_work() is currently running and attempting an i2c_master_send(),
-or if i2c_unregister_device() invokes client remove callbacks that perform
-I2C transfers, the underlying designware I2C driver will wait for an interr=
-upt
-that never arrives. This could delay unbind by timing out and potentially
-leave the hardware in an incorrect state.
-
->  	xe_amc_exit(i2c);
-
-[Severity: High]
-This is a pre-existing issue, but does xe_i2c_irq_reset() guarantee that an
-already-executing IRQ handler has finished?=20
-
-Without a synchronization barrier like synchronize_irq(), CPU0 could be
-handling an interrupt in xe_i2c_handle_smbus_alert(), while CPU1 executes
-xe_i2c_remove() and calls xe_amc_exit(i2c) to free i2c->amc.=20
-
-If CPU0 then proceeds to evaluate the freed i2c->amc pointer:
-
-xe_i2c_handle_smbus_alert(struct xe_i2c *i2c)
-{
-	...
-	if (stat & DW_IC_SMBUS_INTR_ALERT && i2c->amc)
-		xe_amc_handle_alert(i2c);
-}
-
-Could this still result in a use-after-free and memory corruption?
-
-> =20
->  	for (i =3D 0; i < XE_I2C_MAX_CLIENTS; i++) {
-> @@ -335,6 +337,7 @@ static void xe_i2c_remove(void *data)
-> =20
->  	bus_unregister_notifier(&i2c_bus_type, &i2c->bus_notifier);
->  	xe_i2c_unregister_adapter(i2c);
-> +	xe->i2c =3D NULL;
->  }
-
-[Severity: High]
-This isn't a bug introduced by this patch, but should there be a call to
-cancel_work_sync(&i2c->work) here to ensure any pending worker is stopped
-before the memory is freed?
-
-The notifier schedules i2c->work, but when xe_i2c_remove() unregisters
-the notifier, it doesn't flush pending work. Since i2c is managed by devres
-(devm_kzalloc), it will be freed shortly after xe_i2c_remove() returns. If
-xe_i2c_client_work() executes after this, it will access the freed i2c
-memory:
-
-xe_i2c_client_work() {
-	struct xe_i2c *i2c =3D container_of(work, struct xe_i2c, work);
-	...
-	i2c->client[XE_I2C_CLIENT_AMC] =3D i2c_new_client_device(...);
-}
-
-[Severity: High]
-This is also a pre-existing issue, but in xe_i2c_probe(), the xe->i2c point=
-er
-is assigned before initialization is complete:
-
-xe_i2c_probe() {
-	...
-	xe->i2c =3D i2c;
-	...
-	ret =3D xe_i2c_register_adapter(i2c);
-	if (ret) {
-		bus_unregister_notifier(&i2c_bus_type, &i2c->bus_notifier);
-		return ret;
-	}
-	...
-}
-
-If xe_i2c_register_adapter() fails, multiple error paths return without
-clearing xe->i2c. Since the IRQ handler is already active and the i2c memory
-is managed by devm and will be freed, could an incoming hardware interrupt
-trigger a use-after-free when xe_i2c_irq_handler() calls
-xe_i2c_handle_smbus_alert(xe->i2c)?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260911121547.2407=
-261-1-raag.jadav@intel.com?part=3D1
