@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD359C88E4D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1E6CC88E56
 	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 20:12:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4552E10E534;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7736310EAA6;
 	Fri, 11 Sep 2026 20:12:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JEHdRoak";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zzx/c+UD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38BA610EAA6
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 20:12:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D80689E33
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 20:12:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789157521; x=1820693521;
+ t=1789157520; x=1820693520;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=DBKLN8FmLqkvBBAF+LqMH6CGh96m/3rHcRJHazJBsRA=;
- b=JEHdRoakwJ0RmfayBZnwLeQ0KnlYzQeOvkXfTM+MVTIf5w1hHjKD47tN
- rIpaUjp2B6GWdBkj0lqsDvEewFnGyhQ1ddx8/pBR5Ww0cBcFEQw1ocFrs
- N1BDvsr/aT+nhH1xQBHxZjBIHAqqwdyV//511MlqCJKKmtarT2hyU3jKN
- JpTaDxLg5YXBRnkSpAyawrEvztCxw1WspAV3hCZkCX1VnWgooRcyronYp
- HGGUEMmBbKw/pm0yWgDqT3nLT4cqXBGtWILmiTuQcScgX//yfii8/3bBr
- SNN8R/X/9P2GKKHL7HzNqpAaNcxoKrEfZekB7RokHMg+WerFP3dkmjM2k Q==;
-X-CSE-ConnectionGUID: 440NlMaaQ1ORgTxbegHVEA==
-X-CSE-MsgGUID: oF2gQRYAREKROmSQzEdeUw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11902"; a="115162411"
-X-IronPort-AV: E=Sophos;i="6.27,97,1787036400"; d="scan'208";a="115162411"
+ bh=c13m+bMyzAXIiX7EPlEQon2O3s1IvHEEc2Fd25DUkh8=;
+ b=Zzx/c+UDqj2htuA94JGs6dujSEWtokMU+i6s/ukSXQVcnXCKWQO1kXZD
+ 7+DdOQ2wHtprJ///VAOoznaoQGn5N2H2fJlwSEl1JmCTEq+euAAqA5km5
+ WTtjjpZzFTJ5+++pbYKppkGum4Y/RPg8+aDYpZ6Q6Pog+04WVdiUXJ2n/
+ OousdGdkN+rhe9TzRzTXyZ8J/2qWHZjLChqkBTLCcuG4DIP6UOV6ZZpjV
+ 9g0lExzmHkn8zzhe9kTOQ4ddR1Nm2+y2FtXZo0Zm6fYYe4B7aYBOgxpoC
+ dzsn9GnjciG1o2nZ3IsE8y1DCVDw9hZV+S2fJtJxycvy7Yb2olNpMZxlV A==;
+X-CSE-ConnectionGUID: pjmbxJ96Rzu98dU5fITarA==
+X-CSE-MsgGUID: 5UftAq3HQqG58DNCCT6UNQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11902"; a="115162372"
+X-IronPort-AV: E=Sophos;i="6.27,97,1787036400"; d="scan'208";a="115162372"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Sep 2026 13:11:59 -0700
-X-CSE-ConnectionGUID: m4u4whtPSh+cbulg4D/r4w==
-X-CSE-MsgGUID: YsUzVbUoRemJfAdYbN5ORQ==
+X-CSE-ConnectionGUID: VZOg1YtTSkOy1AAfalE2hA==
+X-CSE-MsgGUID: MjRZ2JB/SQaZTLL74qprZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,97,1787036400"; d="scan'208";a="277272103"
+X-IronPort-AV: E=Sophos;i="6.27,97,1787036400"; d="scan'208";a="277272078"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Sep 2026 13:11:59 -0700
@@ -48,9 +48,9 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
-Subject: [PATCH v8 12/20] drm/xe/vsec: Update VSEC probe order
-Date: Fri, 11 Sep 2026 13:12:00 -0700
-Message-ID: <20260911201148.1610547-34-michael.j.ruhl@intel.com>
+Subject: [PATCH v8 04/20] platform/x86/intel/pmt: Add register access callbacks
+Date: Fri, 11 Sep 2026 13:11:52 -0700
+Message-ID: <20260911201148.1610547-26-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260911201148.1610547-22-michael.j.ruhl@intel.com>
 References: <20260911201148.1610547-22-michael.j.ruhl@intel.com>
@@ -70,42 +70,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Both debugfs and hwmon access the PMT data area before PMT is
-initialized.
+Some HW does not have direct MMIO access to PMT control and data
+features.
 
-Hardwired offset usage allows this to work by accident.
-Upcoming changes will break this usage.
-
-Re-order the probe steps to initialize VSEC before the other
-features are initialized.
+Augment the current callback infrastructure (data access) to allow
+a registered driver to customize read/write access to the control
+paths for PMT usage.
 
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/platform/x86/intel/pmt/crashlog.c | 46 +++++++++++++++++++++--
+ include/linux/intel_vsec.h                | 14 ++++++-
+ 2 files changed, 56 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 205cb4e7f9e8..3ec950606e67 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1053,6 +1053,8 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		goto err_unregister_display;
+diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
+index b6540f3a9a17..912b61c334a6 100644
+--- a/drivers/platform/x86/intel/pmt/crashlog.c
++++ b/drivers/platform/x86/intel/pmt/crashlog.c
+@@ -11,10 +11,12 @@
+ #include <linux/auxiliary_bus.h>
+ #include <linux/cleanup.h>
+ #include <linux/intel_vsec.h>
++#include <linux/io.h>
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/mutex.h>
+ #include <linux/pci.h>
++#include <linux/printk.h>
+ #include <linux/slab.h>
+ #include <linux/uaccess.h>
+ #include <linux/overflow.h>
+@@ -124,12 +126,36 @@ struct pmt_crashlog_priv {
+  * I/O
+  */
  
-+	xe_vsec_init(xe);
++static int pmt_crashlog_read_reg(struct intel_pmt_entry *entry, u32 *reg, u32 offset)
++{
++	int ret;
 +
- 	xe_debugfs_register(xe);
++	*reg = 0;
++
++	if (entry->cb && entry->cb->read_reg) {
++		ret = entry->cb->read_reg(entry->dev, entry->header.guid, reg, offset);
++		if (ret) {
++			pr_err_ratelimited("failed to read reg: %d\n", ret);
++			return ret;
++		}
++	} else {
++		*reg = readl(entry->disc_table + offset);
++	}
++
++	return 0;
++}
++
+ /* Read, modify, write the control register, setting or clearing @bit based on @set */
+ static int pmt_crashlog_rmw(struct crashlog_entry *crashlog, u32 bit, bool set)
+ {
+ 	const struct crashlog_control *control = &crashlog->info->control;
+ 	struct intel_pmt_entry *entry = &crashlog->entry;
+-	u32 reg = readl(entry->disc_table + control->offset);
++	u32 reg;
++	int ret;
++
++	ret = pmt_crashlog_read_reg(entry, &reg, control->offset);
++	if (ret)
++		return ret;
  
- 	err = xe_hwmon_register(xe);
-@@ -1066,8 +1068,6 @@ int xe_device_probe(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_sanitize_freq(gt);
+ 	reg &= ~control->trigger_mask;
  
--	xe_vsec_init(xe);
--
- 	err = xe_sriov_init_late(xe);
- 	if (err)
- 		goto err_unregister_display;
+@@ -138,7 +164,15 @@ static int pmt_crashlog_rmw(struct crashlog_entry *crashlog, u32 bit, bool set)
+ 	else
+ 		reg &= ~bit;
+ 
+-	writel(reg, entry->disc_table + control->offset);
++	if (entry->cb && entry->cb->write_reg) {
++		ret = entry->cb->write_reg(entry->dev, entry->header.guid, reg, control->offset);
++		if (ret) {
++			pr_err_ratelimited("failed to write reg: %d\n", ret);
++			return ret;
++		}
++	} else {
++		writel(reg, entry->disc_table + control->offset);
++	}
+ 
+ 	return 0;
+ }
+@@ -147,7 +181,13 @@ static int pmt_crashlog_rmw(struct crashlog_entry *crashlog, u32 bit, bool set)
+ static int pmt_crashlog_rc(struct crashlog_entry *crashlog, u32 bit, bool *state)
+ {
+ 	const struct crashlog_status *status = &crashlog->info->status;
+-	u32 reg = readl(crashlog->entry.disc_table + status->offset);
++	struct intel_pmt_entry *entry = &crashlog->entry;
++	u32 reg;
++	int ret;
++
++	ret = pmt_crashlog_read_reg(entry, &reg, status->offset);
++	if (ret)
++		return ret;
+ 
+ 	*state = !!(reg & bit);
+ 
+diff --git a/include/linux/intel_vsec.h b/include/linux/intel_vsec.h
+index 843cda8f8644..917d9397a993 100644
+--- a/include/linux/intel_vsec.h
++++ b/include/linux/intel_vsec.h
+@@ -90,13 +90,25 @@ enum intel_vsec_quirks {
+  * @read_telem: when specified, called by client driver to access PMT
+  * data (instead of direct copy).
+  * * dev:   device reference for the callback's use
+- * * guid:  ID of data to acccss
++ * * guid:  ID of data to access
+  * * data:  buffer for the data to be copied
+  * * off:   offset into the requested buffer
+  * * count: size of buffer
++ * @read_reg: when specified called by client driver to read PMT state
++ * * dev:      device reference for the callback's use
++ * * guid:     ID of data to access
++ * * reg_data: register data
++ * * offset:   offset of register to read
++ * @write_reg: when specified called by client driver to write PMT state
++ * * dev:      device reference for the callback's use
++ * * guid:     ID of data to access
++ * * reg_data: register data
++ * * offset:   offset of register to write
+  */
+ struct pmt_callbacks {
+ 	int (*read_telem)(struct device *dev, u32 guid, u64 *data, loff_t off, u32 count);
++	int (*read_reg)(struct device *dev, u32 guid, u32 *reg_data, u32 offset);
++	int (*write_reg)(struct device *dev, u32 guid, u32 reg_data, u32 offset);
+ };
+ 
+ struct vsec_feature_dependency {
 -- 
 2.43.0
 
