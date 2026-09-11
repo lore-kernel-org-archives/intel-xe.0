@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89DB5C88E4C
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 08:34:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2DF9C88E4C
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 09:06:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38B5410E012;
-	Fri, 11 Sep 2026 08:34:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="W9L8s+zd";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEDFE10E023;
- Fri, 11 Sep 2026 08:34:16 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id DC4AE601EF;
- Fri, 11 Sep 2026 08:34:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A3BF1F000FF;
- Fri, 11 Sep 2026 08:34:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789115655;
- bh=M1zrx3gALXxbYpDq7o+W+Op2uZubZ8TVp+8vM8sYWL0=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=W9L8s+zd1VTwK+JT/5kVW90J36WB3Ab9Uk5xAhohH+ySpC6CNCdzfrLgDkeflUwSW
- VxcrFWKSpU/g6/sRob5LlxM1fz5zYRUnJiQ/QFiB5jGf9GnfdNkgirgfMUgcYgLCsC
- aAX1o+OJ3Fhxp9lHwBbJ6xEj/eCFv2vyNsVZ79rzXJrZNIwAv8aA7kZScUK6ODTAMo
- 72pPslQcMT2bvABuEQiSCMNY5ccpxpXi0AQkI/cSfuJS8dLeuEHS2wSlOeCYBbDLIf
- WWChuZ+vnkswOnJhDtlLNwdDd50X5AeEkU69VMb9MiwMSiN2CxIMRn8HEmv3cWCpK0
- 38JL4RjCeUVJQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 10/10] drm/i915/hotplug: avoid HPD polling if the
- device is PME capable
-To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20260911080448.778316-11-vinod.govindapillai@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 749A410E0CA;
+	Fri, 11 Sep 2026 09:06:37 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7D4310E0CA;
+ Fri, 11 Sep 2026 09:06:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4563161912600297623=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_pm=5Fpme_support_on_display?=
+ =?utf-8?q?_hotplug_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 11 Sep 2026 09:06:35 -0000
+Message-ID: <178911759587.150688.992932103417086696@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260911080448.778316-1-vinod.govindapillai@intel.com>
- <20260911080448.778316-11-vinod.govindapillai@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 11 Sep 2026 08:34:14 +0000
-Message-Id: <20260911083415.5A3BF1F000FF@smtp.kernel.org>
+In-Reply-To: <20260911080448.778316-1-vinod.govindapillai@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,73 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] The patch fails to disable HPD polling for `xe` devices in D3col=
-d because it relies on a stateful flag that is bypassed in the `xe` D3cold =
-suspend path.
---
+--===============4563161912600297623==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit d64c6fbf549089ab8b3ecb3a04becd1d5a8da552
-Author: Vinod Govindapillai <vinod.govindapillai@intel.com>
+== Series Details ==
 
-drm/i915/hotplug: avoid HPD polling if the device is PME capable
+Series: pm_pme support on display hotplug (rev5)
+URL   : https://patchwork.freedesktop.org/series/172305/
+State : success
 
-This commit attempts to optimize power usage by disabling HPD polling on
-devices capable of generating PME wake events. It introduces a check in
-intel_hpd_poll_enable() to skip polling if the device supports PME.
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/d=
-rm/i915/display/intel_hotplug.c
-> index b24c9f360e241..8b7b9f47f049a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-> @@ -877,6 +877,11 @@ void intel_hpd_poll_enable(struct intel_display *dis=
-play)
->  	if (!HAS_DISPLAY(display) || !intel_display_device_enabled(display))
->  		return;
-> =20
-> +	if (intel_hpd_can_generate_pme(display)) {
-> +		drm_dbg_kms(display->drm, "PME wake capable device, skipping HPD polli=
-ng.\n");
-> +		return;
-> +	}
-> +
+CI Bug Log - changes from xe-5727-b6d5d3322d5aafa2fdfae5731c06336976099913_BAT -> xe-pw-172305v5_BAT
+====================================================
 
-[Severity: Medium]
-Will this check actually prevent HPD polling for xe devices entering D3cold?
+Summary
+-------
 
-When an xe device enters runtime suspend, xe_display_pm_runtime_suspend()
-bypasses intel_display_driver_pm_runtime_suspend() if D3cold is allowed:
+  **SUCCESS**
 
-drivers/gpu/drm/xe/display/xe_display.c:xe_display_pm_runtime_suspend() {
-	...
-	if (xe->d3cold.allowed) {
-		xe_display_enable_d3cold(xe);
-		return;
-	}
+  No regressions found.
 
-	intel_display_driver_pm_runtime_suspend(display);
-	...
-}
+  
 
-Because this bypasses intel_display_driver_pm_runtime_suspend(), the
-display->hotplug.can_generate_pme flag is never populated for the D3cold pa=
-th.
+Participating hosts (15 -> 15)
+------------------------------
 
-When xe_display_enable_d3cold() subsequently calls intel_hpd_poll_enable(),
-intel_hpd_can_generate_pme() will return false, and HPD polling will remain
-enabled, which appears to defeat the optimization this patch aims to achiev=
-e.
+  No changes in participating hosts
 
-Does this flag need to be populated in the D3cold path as well?
+Known issues
+------------
 
->  	WRITE_ONCE(display->hotplug.poll_enabled, true);
+  Here are the changes found in xe-pw-172305v5_BAT that come from known issues:
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260911080448.7783=
-16-1-vinod.govindapillai@intel.com?part=3D10
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-wcl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#9115])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5727-b6d5d3322d5aafa2fdfae5731c06336976099913/bat-wcl-1/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v5/bat-wcl-1/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
+
+
+Build changes
+-------------
+
+  * Linux: xe-5727-b6d5d3322d5aafa2fdfae5731c06336976099913 -> xe-pw-172305v5
+
+  IGT_9091: 9091
+  xe-5727-b6d5d3322d5aafa2fdfae5731c06336976099913: b6d5d3322d5aafa2fdfae5731c06336976099913
+  xe-pw-172305v5: 172305v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v5/index.html
+
+--===============4563161912600297623==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>pm_pme support on display hotplug (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172305/">https://patchwork.freedesktop.org/series/172305/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5727-b6d5d3322d5aafa2fdfae5731c06336976099913_BAT -&gt; xe-pw-172305v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-172305v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5727-b6d5d3322d5aafa2fdfae5731c06336976099913/bat-wcl-1/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172305v5/bat-wcl-1/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5727-b6d5d3322d5aafa2fdfae5731c06336976099913 -&gt; xe-pw-172305v5</li>
+</ul>
+<p>IGT_9091: 9091<br />
+  xe-5727-b6d5d3322d5aafa2fdfae5731c06336976099913: b6d5d3322d5aafa2fdfae5731c06336976099913<br />
+  xe-pw-172305v5: 172305v5</p>
+
+</body>
+</html>
+
+--===============4563161912600297623==--
