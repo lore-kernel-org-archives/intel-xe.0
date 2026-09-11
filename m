@@ -4,44 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93E8FC79FA1
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 04:30:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2B3BC88E41
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Sep 2026 04:40:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3593D10EA68;
-	Fri, 11 Sep 2026 04:30:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 937A610E01F;
+	Fri, 11 Sep 2026 04:40:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Keg28zsT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hrrgmxQl";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC1A010EA68;
- Fri, 11 Sep 2026 04:30:50 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id BA01B40329;
- Fri, 11 Sep 2026 04:30:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65A871F000FF;
- Fri, 11 Sep 2026 04:30:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789101050;
- bh=dfcBHbuSXwuehQ5PkBF9eL3tBCUCfD+ixqhHWVAe37w=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Keg28zsTpRxnkvMJVyzx49BMgw+pRKif4aceRy28ycVBkl+f+mstY52YreP2QH720
- YBYDe9UxMmDZW3dC3J9kb1dmUj8UYyd/gu4iqLCkjChpRxcUaaiKnB04sYspuW3Yv5
- Jr+B8dxQsU0s2qydhhrtKhNt8dLSikTjFVl5oeRkbWT+aVcLdgP/MBSoDSs2iyBGOw
- 3SQaSgNSFiqpHd7hhpxYVcTTz7hAvDiYqbo/3AC75qg7dwehGKAd/Mf+bSScROV9Rx
- ALGteSZ+ACP3uKNREo+XZsXin7MXej90VZmpBPljimx2A4lupgFkYboLZpemQRFw6g
- A/U/6l1XUoDDg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 08/10] drm/i915/display: Implement Wa_14021768792 for
- BMG DP for link_m/n ratio > 10
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20260911041449.3699400-9-suraj.kandpal@intel.com>
-References: <20260911041449.3699400-1-suraj.kandpal@intel.com>
- <20260911041449.3699400-9-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 11 Sep 2026 04:30:49 +0000
-Message-Id: <20260911043050.65A871F000FF@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA3E710E01F
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Sep 2026 04:40:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789101647; x=1820637647;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1Bpk7B8g5gjvhmfTvOQoptAm+itcWQre2LzwKyFD1aU=;
+ b=hrrgmxQlwu8mBOJG6bRJv6LxhYY9xNM2ZtUYktgPww9a1Rsib26sqE0R
+ ywNVBG3vv1gLZknwzsyQtKFtwMIqJfp7yRtlxmuKm29C1jhJu51J+RG9v
+ /reAs/3+jTIN90V+v7fZygguVtDlUcnBkdJVO1vhdERuj3f1w1x4pDegP
+ QYdyui2vfF6TKjFo8z0C8Xmo4bhh7u6x6PnLd1+6WSYyWgXHRZadUcqV5
+ eno7ElhrccYB7gx2kTS9wy2QCJ6gFf32MfP+vKD7qOKiikECmBnTBmy9B
+ Kuwq5haBiCAZHhIC0g7KX6kW4+2XZueZtLofWEbjD2j1K15RPzHLowlis g==;
+X-CSE-ConnectionGUID: 34CZzCEzQe+gpTX+LXxDbA==
+X-CSE-MsgGUID: jw+3yqjqQJaWKSvcYcKx0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11901"; a="99893798"
+X-IronPort-AV: E=Sophos;i="6.27,96,1787036400"; 
+   d="scan'208";a="99893798"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2026 21:40:46 -0700
+X-CSE-ConnectionGUID: z7UWCboXSGOV28Q7yVtspQ==
+X-CSE-MsgGUID: vROlSwjqQrqBA2/Qbf0/fA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,96,1787036400"; d="scan'208";a="271345495"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa008.jf.intel.com with ESMTP; 10 Sep 2026 21:40:45 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: heikki.krogerus@linux.intel.com, badal.nilawar@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v1] drm/xe/i2c: Disable IRQ on unbind
+Date: Fri, 11 Sep 2026 10:10:21 +0530
+Message-ID: <20260911044021.2393342-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,78 +62,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] The `bypass_m_n_ratio_limit` flag is not reset to `false` when rec=
-omputing M/N parameters, causing it to leak across atomic modesets and perm=
-anently disable DRRS and seamless M/N fastsets, while incorrectly programmi=
-ng hardware for subsequent modes.
---
+Currently, struct xe_i2c is freed before SGUnit IRQ is disabled, leaving
+a potential UAF in case the IRQ is hit in that small window. Explicitly
+disable I2C IRQ as part of xe_i2c_remove() and fix this.
 
-commit 1051e6f37ea4e4c3629ed1e93206c237d8286159
-Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-drm/i915/display: Implement Wa_14021768792 for BMG DP for link_m/n ratio > =
-10
+Fixes: 0bb78ce09926 ("drm/xe/i2c: Wire up reset/postinstall for I2C IRQ")
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_i2c.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-This commit implements the bypass logic for the M/N ratio limit for DP on=20
-128b/132b links. It calculates the M/N ratio, sets the appropriate flags fo=
-r=20
-the workaround, and disables DRRS and seamless M/N fastsets when active.
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 585762be07bb2..27ffd937c75f2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-[ ... ]
-> @@ -3385,10 +3389,21 @@ void intel_dp_check_m_n_ratio(struct intel_crtc_s=
-tate *crtc_state,
-> =20
->  	m_n_ratio =3D DIV_ROUND_UP(m_n->link_m, m_n->link_n);
-> =20
-> -	if (m_n_ratio > max_m_n_ratio)
-> -		drm_WARN(display->drm, 1,
-> -			 "Link M/N ratio (%d) exceeds max allowed (%d)\n",
-> -			 m_n_ratio, max_m_n_ratio);
-> +	if (m_n_ratio <=3D max_m_n_ratio)
-> +		return;
-
-[Severity: High]
-When returning early here, should we explicitly reset the
-bypass_m_n_ratio_limit flag to false?
-
-Because atomic modesets duplicate the CRTC state, if a user previously
-applied a high-bandwidth UHBR mode that set bypass_m_n_ratio_limit to true,
-changing to a lower-resolution mode would carry this true flag over into the
-new state.
-
-Neither intel_link_compute_m_n() nor the early return or fall-through paths
-in intel_dp_check_m_n_ratio() seem to clear this flag. Could this state leak
-permanently disable DRRS and seamless M/N updates for that connector, and
-potentially lead to incorrectly programming the hardware for non-UHBR modes?
-
-> +
-> +	if (intel_dp_is_uhbr(crtc_state) &&
-> +	    intel_display_can_bypass_m_n_limit(display, m_n_ratio, crtc->pipe))=
+diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
+index d8fa68206f41..82b22c5412ba 100644
+--- a/drivers/gpu/drm/xe/xe_i2c.c
++++ b/drivers/gpu/drm/xe/xe_i2c.c
+@@ -324,8 +324,10 @@ void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold)
+ static void xe_i2c_remove(void *data)
  {
-> +		m_n->bypass_m_n_ratio_limit =3D true;
-> +		drm_dbg_kms(display->drm,
-> +			    "Bypassing Link_m/Link_n ratio limit (ratio %d)\n",
-> +			    m_n_ratio);
-> +		return;
-> +	}
-> +
-> +	drm_WARN(display->drm, 1,
-> +		 "Link M/N ratio (%d) exceeds max allowed (%d)\n",
-> +		 m_n_ratio, max_m_n_ratio);
->  }
-> =20
->  static void
+ 	struct xe_i2c *i2c = data;
++	struct xe_device *xe = tile_to_xe(i2c->mmio->tile);
+ 	unsigned int i;
+ 
++	xe_i2c_irq_reset(xe);
+ 	xe_amc_exit(i2c);
+ 
+ 	for (i = 0; i < XE_I2C_MAX_CLIENTS; i++) {
+-- 
+2.43.0
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260911041449.3699=
-400-1-suraj.kandpal@intel.com?part=3D8
