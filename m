@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E3ABC88E65
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 868DEC88E5C
 	for <intel-xe@archiver.kernel.org>; Sun, 13 Sep 2026 15:13:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A330710E93D;
-	Sun, 13 Sep 2026 15:13:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20E4010E937;
+	Sun, 13 Sep 2026 15:13:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bvjz3a98";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CGVFPrXn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AEC110E937;
- Sun, 13 Sep 2026 15:13:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E93B010E936;
+ Sun, 13 Sep 2026 15:13:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789312403; x=1820848403;
+ t=1789312400; x=1820848400;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Sog9URae2iICLmihP+yAM7VRiydNnY07CHSAPduN3Z8=;
- b=bvjz3a98TZfry7gtavejizKYKq7mYvRb9Sy6G0EQ7ijsAF6kWiV/HVxZ
- KG925QS1IIGPO/HSbMcWhGV9AS5N53gbnwrwLa2sVm3QcWsxAyB5L+1G4
- 9Vsda5ikR98lYMGtjj5MNsdvHmG7hzCo6TvRan/3AlPNoT43bCIGrWzY6
- wbvUzlXyfQZTlcMGn73PslNDWtrChMeYjbgeBNmQCOZD9jigSS2hLR3HN
- Z7GzxhXtuYUM7vnEs1kxe0fjXnDlS24QGtz5dgZsYFEuyxcQ38cOhVQhc
- Q4oloyJOhglE8RZFPfDUH478jX4UFc6jJBtCjjqOpuPixBJF8EQ+5jCU8 w==;
-X-CSE-ConnectionGUID: YRQkjuZiQzuyNhYUA5tI6A==
-X-CSE-MsgGUID: yIfQcYDNTxuQqvRehdFOQw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11904"; a="93388740"
-X-IronPort-AV: E=Sophos;i="6.27,100,1787036400"; d="scan'208";a="93388740"
+ bh=Tnim1a/TuVL1PeT2LUN4jrlxcxfuupsofnvSG3n35p8=;
+ b=CGVFPrXnbw0NXiGYBPQr8F6gxpBgDyA8F8DRQ17K66tPQWSeIoh5yp+w
+ HyPmKEmIxgmNOQhmu9kbgy3wtc6voS+EXn54GUZ9pyMQ2E4JrvFFON00b
+ ORoSm9r4QHQ4zCv6uDzqUpBF2dQumpp9MkeDKVFMvgQ0ximYZn4loFzep
+ u1knl0opUuaHWXUQrMp424828RcU2cUc4aIpw8AxUl5KlqGKLkq4s7aea
+ KPSfFwugiGbafkIZxhf9dMaPtCl4g++LZ3ckm1XVvl2z8TKzBUi3ln5cy
+ tM/36zNeDvWhuJuBDKn1rXyAxWqRIInVEEvH/83LvZwUo79of8TMlOBao g==;
+X-CSE-ConnectionGUID: 8MlnUe4GQuuy6uGtV3PA/g==
+X-CSE-MsgGUID: YAttyRcGS+SBKCo3zjK7Lw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11904"; a="93388737"
+X-IronPort-AV: E=Sophos;i="6.27,100,1787036400"; d="scan'208";a="93388737"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2026 08:13:22 -0700
-X-CSE-ConnectionGUID: vqSEaGxhQlmreK3KhGSkaw==
-X-CSE-MsgGUID: dHlOIbrNQQOwlLuFUEfP4g==
+ 13 Sep 2026 08:13:20 -0700
+X-CSE-ConnectionGUID: U7h++tqCTGyfwlx3VT+M9Q==
+X-CSE-MsgGUID: EufdgNVPTpeAOmlLxpup/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,100,1787036400"; d="scan'208";a="310693971"
+X-IronPort-AV: E=Sophos;i="6.27,100,1787036400"; d="scan'208";a="310693928"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2026 08:13:21 -0700
+ 13 Sep 2026 08:13:18 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com,
  jani.nikula@linux.intel.com, suraj.kandpal@intel.com,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v6 02/13] drm/i915/vrr: Use the helper to write EMP_AS_SDP_TL
- register
-Date: Sun, 13 Sep 2026 20:26:37 +0530
-Message-ID: <20260913145649.3240904-3-ankit.k.nautiyal@intel.com>
+Subject: [PATCH v6 01/13] drm/i915/dip: Add new file to handle Data Island
+ Packet hardware
+Date: Sun, 13 Sep 2026 20:26:36 +0530
+Message-ID: <20260913145649.3240904-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260913145649.3240904-1-ankit.k.nautiyal@intel.com>
 References: <20260913145649.3240904-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,47 +71,197 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that intel_dip_write_emp_as_sdp_tl() exists, use it instead of
-the open-coded EMP_AS_SDP_TL programming sequence in
-intel_vrr_set_transcoder_timings().
+Add new files intel_dip.c, intel_dip.h, and intel_dip_regs.h to handle
+low level hardware programming related to Data Island Packets.
+
+Currently only programming of the Transmission Line for HDMI 2.1
+Extended Metadata Packet (EMP) and DP Adaptive-Sync Secondary Data
+Packet (SDP) is added (MMIO register EMP_AS_SDP_TL).
+
+This will serve as a common place for DIP related code, which is currently
+scattered across DP and HDMI files. A TODO has been added for extracting
+the remaining DIP helpers.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 13 ++-----------
- 1 file changed, 2 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/Makefile                 |  1 +
+ drivers/gpu/drm/i915/display/intel_dip.c      | 39 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dip.h      | 38 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dip_regs.h | 17 ++++++++
+ drivers/gpu/drm/i915/display/intel_vrr.c      |  1 +
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h |  6 ---
+ drivers/gpu/drm/xe/Makefile                   |  1 +
+ 7 files changed, 97 insertions(+), 6 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dip.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dip.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dip_regs.h
 
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index a83fa8be0aba..d4e7764621e1 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -349,6 +349,7 @@ i915-y += \
+ 	display/intel_cx0_phy.o \
+ 	display/intel_ddi.o \
+ 	display/intel_ddi_buf_trans.o \
++	display/intel_dip.o \
+ 	display/intel_display_device.o \
+ 	display/intel_display_trace.o \
+ 	display/intel_dkl_phy.o \
+diff --git a/drivers/gpu/drm/i915/display/intel_dip.c b/drivers/gpu/drm/i915/display/intel_dip.c
+new file mode 100644
+index 000000000000..2e2bdb2b199c
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_dip.c
+@@ -0,0 +1,39 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ *
++ */
++
++#include "intel_de.h"
++#include "intel_dip.h"
++#include "intel_dip_regs.h"
++#include "intel_display_types.h"
++
++u16 intel_dip_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
++	u32 val;
++
++	if (!HAS_EMP_AS_SDP_TL(display))
++		return 0;
++
++	val = intel_de_read(display, EMP_AS_SDP_TL(display, cpu_transcoder));
++	return REG_FIELD_GET(EMP_AS_SDP_DB_TL_MASK, val);
++}
++
++void intel_dip_write_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
++
++	if (!HAS_EMP_AS_SDP_TL(display))
++		return;
++	/*
++	 * Since currently we support VRR only for DP/eDP, so this is programmed
++	 * only for Adaptive Sync SDP to Vsync start.
++	 */
++	intel_de_write(display,
++		       EMP_AS_SDP_TL(display, cpu_transcoder),
++		       EMP_AS_SDP_DB_TL(crtc_state->vrr.vsync_start));
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_dip.h b/drivers/gpu/drm/i915/display/intel_dip.h
+new file mode 100644
+index 000000000000..25bae4a04d6b
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_dip.h
+@@ -0,0 +1,38 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef __INTEL_DIP_H__
++#define __INTEL_DIP_H__
++
++#include "intel_display_device.h"
++
++/*
++ * Video DIP (Data Island Packet) helpers.
++ *
++ * This file contains helpers for programming video DIP related hardware.
++ *
++ * TODO: Currently, this is only used for programming EMP_AS_SDP_TL i.e. to
++ * program Transmission Line for HDMI 2.1 Extended Metadata Packet (EMP) and
++ * DP Adaptive Sync (AS) Secondary Data Packet (SDP). However, all low level
++ * DIP buffer read/write and related helpers should be extracted here later.
++ */
++
++struct intel_crtc_state;
++
++/*
++ * EMP AS SDP TL: Extended Metadata Packet (EMP) Adaptive Sync (AS)
++ * Secondary Data Packet (SDP) Transmission Line (TL).
++ *
++ * Starting with BMG (display ver 14.01) and LNL+ (display ver 20+),
++ * the AS SDP transmission line is programmable via the EMP AS SDP TL
++ * register.
++ */
++#define HAS_EMP_AS_SDP_TL(__display)	(DISPLAY_VERx100(__display) == 1401 || \
++					 DISPLAY_VER(__display) >= 20)
++
++u16 intel_dip_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state);
++void intel_dip_write_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state);
++
++#endif /* __INTEL_DIP_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_dip_regs.h b/drivers/gpu/drm/i915/display/intel_dip_regs.h
+new file mode 100644
+index 000000000000..85dcbf42e77d
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_dip_regs.h
+@@ -0,0 +1,17 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef __INTEL_DIP_REGS_H__
++#define __INTEL_DIP_REGS_H__
++
++#include "intel_display_reg_defs.h"
++
++/* EMP (Extended Metadata Packet) AS (Adaptive Sync) SDP Transmission Line */
++#define _EMP_AS_SDP_TL_A			0x60204
++#define EMP_AS_SDP_TL(display, trans)		_MMIO_TRANS2((display), (trans), _EMP_AS_SDP_TL_A)
++#define   EMP_AS_SDP_DB_TL_MASK			REG_GENMASK(12, 0)
++#define   EMP_AS_SDP_DB_TL(db_transmit_line)	REG_FIELD_PREP(EMP_AS_SDP_DB_TL_MASK, (db_transmit_line))
++
++#endif /* __INTEL_DIP_REGS_H__ */
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index fd8b6f829cfe..a516ba34e0d0 100644
+index e36db1174440..fd8b6f829cfe 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
 @@ -17,6 +17,7 @@
  #include "intel_cmtg.h"
  #include "intel_crtc.h"
  #include "intel_de.h"
-+#include "intel_dip.h"
- #include "intel_dip_regs.h"
++#include "intel_dip_regs.h"
  #include "intel_display_limits.h"
  #include "intel_display_regs.h"
-@@ -711,17 +712,7 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
- 			       VRR_VSYNC_END(crtc_state->vrr.vsync_end) |
- 			       VRR_VSYNC_START(crtc_state->vrr.vsync_start));
+ #include "intel_display_types.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr_regs.h b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+index 9d4d6573a149..ba8631cbc672 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+@@ -174,12 +174,6 @@
+ #define   VRR_VSYNC_START_MASK			REG_GENMASK(12, 0)
+ #define   VRR_VSYNC_START(vsync_start)		REG_FIELD_PREP(VRR_VSYNC_START_MASK, (vsync_start))
  
--	/*
--	 * For BMG and LNL+ onwards the EMP_AS_SDP_TL is used for programming
--	 * double buffering point and transmission line for VRR packets for
--	 * HDMI2.1/DP/eDP/DP->HDMI2.1 PCON.
--	 * Since currently we support VRR only for DP/eDP, so this is programmed
--	 * to for Adaptive Sync SDP to Vsync start.
--	 */
--	if (DISPLAY_VERx100(display) == 1401 || DISPLAY_VER(display) >= 20)
--		intel_de_write(display,
--			       EMP_AS_SDP_TL(display, cpu_transcoder),
--			       EMP_AS_SDP_DB_TL(crtc_state->vrr.vsync_start));
-+	intel_dip_write_emp_as_sdp_tl(crtc_state);
- }
+-/* Common register for HDMI EMP and DP AS SDP */
+-#define _EMP_AS_SDP_TL_A			0x60204
+-#define EMP_AS_SDP_TL(display, trans)		_MMIO_TRANS2((display), (trans), _EMP_AS_SDP_TL_A)
+-#define   EMP_AS_SDP_DB_TL_MASK			REG_GENMASK(12, 0)
+-#define   EMP_AS_SDP_DB_TL(db_transmit_line)	REG_FIELD_PREP(EMP_AS_SDP_DB_TL_MASK, (db_transmit_line))
+-
+ #define _TRANS_CMRR_M_LO_A			0x604F0
+ #define TRANS_CMRR_M_LO(display, trans)		_MMIO_TRANS2((display), (trans), _TRANS_CMRR_M_LO_A)
  
- void
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 67b8b5477639..ba4404896f2f 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -259,6 +259,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	i915-display/intel_ddi.o \
+ 	i915-display/intel_ddi_buf_trans.o \
+ 	i915-display/intel_de.o \
++	i915-display/intel_dip.o \
+ 	i915-display/intel_display.o \
+ 	i915-display/intel_display_conversion.o \
+ 	i915-display/intel_display_device.o \
 -- 
 2.50.1
 
