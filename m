@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23597C88E65
-	for <intel-xe@archiver.kernel.org>; Sun, 13 Sep 2026 15:25:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F398C88E5C
+	for <intel-xe@archiver.kernel.org>; Sun, 13 Sep 2026 15:30:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90CF210E959;
-	Sun, 13 Sep 2026 15:25:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E84BC10E09B;
+	Sun, 13 Sep 2026 15:30:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="j9GI1FTi";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="iJfS+YWU";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C30F10E958;
- Sun, 13 Sep 2026 15:25:41 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24E8110E09B;
+ Sun, 13 Sep 2026 15:30:38 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 78F5B60E64;
- Sun, 13 Sep 2026 15:25:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04AF51F000FF;
- Sun, 13 Sep 2026 15:25:39 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id E624C43447;
+ Sun, 13 Sep 2026 15:30:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94E951F000FF;
+ Sun, 13 Sep 2026 15:30:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789313140;
- bh=ZdmxvZn3LjVqLOkORecGYCcf/68FP4Z9I53HBLH64L0=;
+ s=k20260515; t=1789313437;
+ bh=mJclRgtnE0rpm098qEiX5nArpY+PgT2Brnb8iMoz3KM=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=j9GI1FTii5Pqnz/OFzxAAd0K5OAk6Jt17QKq7AX4ZD7IPbBcYmYzACmLzs6lF4Gcw
- xv1FBaLT5DnpZiyZp97/yX9aDnY4pqeDvPov9ytymc8oycgedpmJblu1KbR7XcahEp
- AC6+j96Y/8VWylw88BHI9hA6UJf8Bni/6NQFCCGE18jsBUtBO0Ro+ba0zh3+awrcch
- geQdjlh9ExieWyiYGBWATbU0lzJ5hmcEhz6gFBEJQqLtgQgTk3EJ6uDWX08zf3ZnrM
- EryWVE8jFEQH7A0lvBQkum22x6fhFAsUDZHM3sq2clzpzntlnk4nnJSj78AnmNbqDM
- syWIp8zujngmQ==
+ b=iJfS+YWUGaUUHCVnDWp4LurZvcI6s28ylfZ9R0p3R+31dEKv96jLuP77a0kAuqZBV
+ eUtxwnwkxWFW96nsjLnegPE+0fOGIBJAqH2BM8Cdp/5X476sZ7/OWpuceee1aHGa2+
+ nzIYF0689Xf69Sne+zVGsFYW7Q4QtePyuPX+aDvTv7ynRL6D7s+ZKRZyeJ3caNV3WH
+ 1GOVV9Ujw4ijuDdxWWoK/LMkVKIgLS4DyVVxZ5wCQ/YmwKd6uncLn6zi1ufUYVzT/l
+ smK4FIh0pPs5lhkIaYt43kAQUGalc1r8TCD1l0wXTZHH3BajVPizQOeIi4VNrwnpob
+ E/0ymZUzwH5fQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 12/13] drm/i915/dp: Adjust SDP guardband requirement
- for CMN_SDP_TL
+Subject: Re: [PATCH v6 06/13] drm/i915/dip: Store and use AS SDP
+ transmission line from crtc state
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20260913145649.3240904-13-ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+In-Reply-To: <20260913145649.3240904-7-ankit.k.nautiyal@intel.com>
 References: <20260913145649.3240904-1-ankit.k.nautiyal@intel.com>
- <20260913145649.3240904-13-ankit.k.nautiyal@intel.com>
+ <20260913145649.3240904-7-ankit.k.nautiyal@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sun, 13 Sep 2026 15:25:39 +0000
-Message-Id: <20260913152540.04AF51F000FF@smtp.kernel.org>
+Date: Sun, 13 Sep 2026 15:30:37 +0000
+Message-Id: <20260913153037.94E951F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,140 +59,96 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-
-New issues:
-- [Medium] intel_dp_get_lines_for_cmn_sdp_tl() fails to handle DP_SDP_VSC, =
-returning 0 instead of the documented 3 setup lines.
-
-Pre-existing issues:
-- [High] intel_dp_sdp_min_guardband() fails to query guardband requirements=
- for DP_SDP_VSC and DP_SDP_VSC_EXT_VESA/CEA.
+- [Medium] Spurious state mismatch warning due to un-cleared EMP_AS_SDP_TL =
+register for non-VRR and HDMI modesets.
+- [Low] AS SDP transmission line is computed unconditionally for DP, contra=
+dicting the commit message claim.
 --
 
-commit 9c43291671903e078a3be3eca84c33bbdb51d4ac
+commit 058f1f7445f91002d16b429b35d8a7cd903b86af
 Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-    drm/i915/dp: Adjust SDP guardband requirement for CMN_SDP_TL
+drm/i915/dip: Store and use AS SDP transmission line from crtc state
 
-This commit adjusts the SDP guardband requirements when CMN_SDP_TL is enabl=
-ed.
-It introduces intel_dp_get_lines_for_cmn_sdp_tl() to anchor SDPs like GMP, =
-PPS,
-VSC, and VSC_EXT relative to CMN_SDP_TL instead of the old per-packet sizin=
-g.
+Computes and stores the Adaptive Sync SDP transmission line in the
+crtc state rather than computing it at programming time.
 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 9b3b526e5e55b..dacb4b7588a02 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+[ ... ]
+> @@ -4235,6 +4236,7 @@ static void intel_ddi_get_config(struct intel_encod=
+er *encoder,
+>  	intel_read_dp_sdp(encoder, pipe_config, HDMI_PACKET_TYPE_GAMUT_METADATA=
+);
+>  	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_VSC);
+>  	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_ADAPTIVE_SYNC);
+> +	intel_dip_sdp_transmission_line_get_config(pipe_config);
+
+[Severity: Medium]
+Will this lead to a state mismatch warning on non-VRR or HDMI modesets?
+
+When transitioning from a DP monitor with VRR enabled to an HDMI monitor or=
+ DP
+with VRR disabled, intel_vrr_possible() returns false. This causes
+intel_vrr_set_transcoder_timings() to return early without calling
+intel_dip_write_emp_as_sdp_tl():
+
+drivers/gpu/drm/i915/display/intel_vrr.c:intel_vrr_set_transcoder_timings()=
+ {
+	if (!intel_vrr_possible(crtc_state)) {
+		intel_de_write(display,
+			       TRANS_VRR_CTL(display, cpu_transcoder), 0);
+		return;
+	}
+	...
+	intel_dip_write_emp_as_sdp_tl(crtc_state);
+}
+
+Since intel_dip_write_emp_as_sdp_tl() is skipped, the EMP_AS_SDP_TL hardware
+register is left with a stale non-zero value.
+
+Will intel_pipe_config_compare() now throw a state mismatch error because t=
+he
+software state is computed as 0 for HDMI, but the hardware register retains
+the stale VRR value read here?
+
+> =20
+>  	intel_audio_codec_get_config(encoder, pipe_config);
+>  }
+[ ... ]
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
 15/display/intel_dp.c
-> index 8c3a324e164ec..02e73ae9e34a0 100644
+> index 0cd5e6b5034cf..8c3a324e164ec 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
 [ ... ]
-> @@ -7348,9 +7349,55 @@ int intel_dp_compute_config_late(struct intel_enco=
-der *encoder,
+> @@ -7324,6 +7325,8 @@ int intel_dp_sdp_compute_config_late(struct intel_c=
+rtc_state *crtc_state)
+>  		return -EINVAL;
+>  	}
+> =20
+> +	intel_dip_sdp_tl_compute_config_late(crtc_state);
+
+[Severity: Low]
+Does this execute unconditionally for DP, contradicting the commit message?
+
+The commit message states: "we must configure the AS SDP transmission line =
+at
+this point when AS SDP is enabled in crtc_state."
+
+However, this is called without checking if DP_SDP_ADAPTIVE_SYNC is actually
+present in crtc_state->infoframes.enable, which populates the software state
+variable with vsync_start even when AS SDP is not enabled. Should this have=
+ a
+conditional check?
+
+> +
 >  	return 0;
 >  }
-> =20
-> +static
-> +int intel_dp_get_lines_for_cmn_sdp_tl(u32 type)
-> +{
-> +	u32 stagger_val;
-> +
-> +	/*
-> +	 * Since we are using default stagger values similar to the case
-> +	 * where CMN SDP TL is not set, the different SDP transmission
-> +	 * lines are:
-> +	 * base : 2nd line of delayed vblank:
-> +	 * GMP : 2 + GMP_STAGGER
-> +	 * VSC_EXT: 2 + VSC_EXT_STAGGER
-> +	 * VSC : 2
-> +	 * PPS : 2 + PPS_STAGGER
-> +	 *
-> +	 * SDP Setup =3D 1 + MAX(GMP, VSC_EXT, VSC, PPS setup lines)
-> +	 *
-> +	 * For EMP_AS_SDP_TL guardband should be more than vrr.vsync_start.
-> +	 */
-> +
-> +	switch (type) {
-> +	case DP_SDP_VSC_EXT_VESA:
-> +	case DP_SDP_VSC_EXT_CEA:
-> +		stagger_val =3D VSC_EXT_STAGGER_DEFAULT;
-> +		break;
-> +	case HDMI_PACKET_TYPE_GAMUT_METADATA:
-> +		stagger_val =3D GMP_STAGGER_DEFAULT;
-> +		break;
-> +	case DP_SDP_PPS:
-> +		stagger_val =3D PPS_STAGGER_DEFAULT;
-> +		break;
-> +	default:
-> +		return 0;
-> +	}
-
-[Severity: Medium]
-Does this switch statement intentionally omit a case for DP_SDP_VSC?
-
-The comment block above explicitly lists VSC as requiring 2 lines, but
-because it is missing from the switch cases, this function falls through to
-the default case and returns 0. Returning 0 instead of the documented 3
-setup lines (1 + 2 + 0 stagger) for the DP_SDP_VSC guardband requirement
-leads to an incorrectly calculated guardband when VSC SDPs are evaluated,
-which could potentially cause missing SDPs or display corruption.
-
-> +
-> +	return 1 + 2 + stagger_val;
-> +}
-> +
->  static
->  int intel_dp_get_lines_for_sdp(const struct intel_crtc_state *crtc_state=
-, u32 type)
->  {
-> +	struct intel_display *display =3D to_intel_display(crtc_state);
-> +
-> +	if (type =3D=3D DP_SDP_ADAPTIVE_SYNC)
-> +		return crtc_state->vrr.vsync_start + 1;
-> +
-> +	if (HAS_COMMON_SDP_TL(display))
-> +		return intel_dp_get_lines_for_cmn_sdp_tl(type);
-> +
->  	switch (type) {
->  	case DP_SDP_VSC_EXT_VESA:
->  	case DP_SDP_VSC_EXT_CEA:
-> @@ -7359,8 +7406,6 @@ int intel_dp_get_lines_for_sdp(const struct intel_c=
-rtc_state *crtc_state, u32 ty
->  		return 8;
->  	case DP_SDP_PPS:
->  		return 7;
-
-[Severity: High]
-This is a pre-existing issue, but I noticed that intel_dp_sdp_min_guardband=
-()
-never actually queries DP_SDP_VSC or DP_SDP_VSC_EXT_VESA/CEA.
-
-While this patch explicitly adds logic to handle VSC_EXT and VSC sizes (both
-in the new CMN mode and legacy paths), intel_dp_sdp_min_guardband() only
-queries GMP, PPS, and AS SDPs when calculating the maximum guardband:
-
-drivers/gpu/drm/i915/display/intel_dp.c:intel_dp_sdp_min_guardband() {
-	...
-	if (assume_all_enabled ||
-	    crtc_state->infoframes.enable &
-	    intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA))
-		sdp_guardband =3D max(sdp_guardband,
-				    intel_dp_get_lines_for_sdp(crtc_state,
-							       HDMI_PACKET_TYPE_GAMUT_METADATA));
-
-	if (assume_all_enabled ||
-	    crtc_state->dsc.compression_enable)
-		sdp_guardband =3D max(sdp_guardband,
-				    intel_dp_get_lines_for_sdp(crtc_state, DP_SDP_PPS));
-	...
-}
-
-Does this leave the VSC_EXT switch cases in intel_dp_get_lines_for_sdp() and
-intel_dp_get_lines_for_cmn_sdp_tl() as dead code? Since the guardband
-calculation completely ignores the setup line requirements for VSC and
-VSC_EXT packets, could programming a guardband smaller than the required
-SDP transmission time lead to hardware failures or corrupted VBLANK timing?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260913145649.3240=
-904-1-ankit.k.nautiyal@intel.com?part=3D12
+904-1-ankit.k.nautiyal@intel.com?part=3D6
