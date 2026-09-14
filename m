@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A10B3C88E6F
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Sep 2026 19:48:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77813C88E6F
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Sep 2026 19:48:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D5AC10F17B;
-	Mon, 14 Sep 2026 19:48:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0E3510F1C3;
+	Mon, 14 Sep 2026 19:48:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bf0lM4Lg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eGkHeg+5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2408C10F17B;
- Mon, 14 Sep 2026 19:48:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1358210F1B8;
+ Mon, 14 Sep 2026 19:48:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789415289; x=1820951289;
+ t=1789415292; x=1820951292;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=T5UemxPIF+Ia4M6IDKZQLzbg5O+M1Y/u4VFo5kRUe9M=;
- b=Bf0lM4LgQccLOgoy1foJlIFceAp6qgFTer3jau90TyZfVdW/6H2G+Ezm
- QzQU3b9y9+YxArVLEfOe9ATKl19LVJgNyMZFWdxujx0cuq6nmf6Rnsnjb
- VFRxLYszpg3+6xLNeCfPROooe3BtEL7uIxAPpuCCnElcVeY/P8f3egqtR
- tVjgawquPeT6C4Y+VcGUx8KYj4FJn5yyPT9+2WQpQaJdaSFBuSsh2YbpK
- 9r+aCgRSZYGphiuiI8NG3T+SWrVcI07tmOry3NH0ajZj9r7mPYK4t2lxn
- Hw0He7O1Aw1fgv8tGc0ix82FoxqTn1zOTQf2eLIxJqdcWniEbxrriy0XH A==;
-X-CSE-ConnectionGUID: myuyb+qvRd2R+1e72fTdmQ==
-X-CSE-MsgGUID: uWkOrCb6RXabGkiiIRWzrQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="92284853"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="92284853"
+ bh=F1Jjc1H6lSCN6Defskc9Qtk8JbSr5ZdAl17rMvs7tBg=;
+ b=eGkHeg+5LD9a25wyNL0acRD6UCX6bf2TLENkqprKZpO1sp6BaNB3et7+
+ QnVzPiMAgY+O1lSRMZfgQQ8WZA+nToKiMmHYQVTV8YIW3PmS5iEQ/1h+c
+ 6kBZ0fj60b87QnZ/nBeAjwXEvC8aJ0IKjsxNkjEYyPkCKGwm8CWp9ZEuU
+ NXfhk4Q4ydgUcVg6Zt2bZ4oxoRsEJX16lLXQc1SoKOCrMxaeTrax2izNz
+ N4nbWIcY3QLs7BGXdt5H5MIX9g6ZMfdX3LXabonwUSNDAk9DiU+PCb6j1
+ DvW9w2reG0r3RePyiQOSVafZgx8Rfe4S70yWKeZ6G+CwwxCq3q13Tc1Tb A==;
+X-CSE-ConnectionGUID: M0U3rb/7SDC+LQ278EJbLg==
+X-CSE-MsgGUID: 8Sf6ELlDQYq/aml3pzSw3w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="92284855"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="92284855"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2026 12:48:09 -0700
-X-CSE-ConnectionGUID: 6lSuD3JMQCewjsdjMuoQGQ==
-X-CSE-MsgGUID: TYjMqkNXTI2qEGRRByrxEw==
+ 14 Sep 2026 12:48:12 -0700
+X-CSE-ConnectionGUID: +RBpgFpqS52IhhV/Z/32hw==
+X-CSE-MsgGUID: D3or/BSTR8y939gU97GOow==
 X-ExtLoop1: 1
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO
  vgovind2-mobl4.intel.com) ([10.245.251.20])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2026 12:48:07 -0700
+ 14 Sep 2026 12:48:10 -0700
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: jouni.hogander@intel.com
-Subject: [PATCH v6 6/7] drm/i915/irq: conditional HPD IRQ resets based on PME
- capability
-Date: Mon, 14 Sep 2026 22:47:36 +0300
-Message-ID: <20260914194737.272679-7-vinod.govindapillai@intel.com>
+Subject: [PATCH v6 7/7] drm/i915/hotplug: avoid HPD polling if the device is
+ PME capable
+Date: Mon, 14 Sep 2026 22:47:37 +0300
+Message-ID: <20260914194737.272679-8-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260914194737.272679-1-vinod.govindapillai@intel.com>
 References: <20260914194737.272679-1-vinod.govindapillai@intel.com>
@@ -70,70 +70,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If a device supports generating PME from HPDs, resetting HPD IRQs
-will be counter productive as HPDs itself will be lost. During
-suspend routines, all the IRQs are reset. So if the device is
-capable of generating PME rom HPDs, keep the HPD related IRQs from
-reset based on the PME capability of the device on a target power
-state. PME capability will be assessed and updated separately.
+In supported devices, HPDs can generate PME and which in turn
+can invoke runtime resume calls for xe. No need to keep the
+HPD polling in such PME capable devices.
 
-v2: change keep_hpd to reset_hpd
-
-v3: use intel_display_rpm_pme_enabled() directly (JaniN)
+v2: use intel_display_rpm_pme_enabled() directly (JaniN)
 
 Bspec: 52979, 52980, 68857, 68867, 68970
 Assisted-by: GitHub_Copilot:claude-opus-5
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_irq.c  | 19 ++++++++++++-------
- 1 file changed, 12 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hotplug.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index a59b75830bd1..7e71c96c663f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -22,6 +22,7 @@
- #include "intel_fdi_regs.h"
- #include "intel_fifo_underrun.h"
- #include "intel_gmbus.h"
-+#include "intel_hotplug.h"
- #include "intel_hotplug_irq.h"
- #include "intel_lpe_audio.h"
- #include "intel_parent.h"
-@@ -2217,8 +2218,10 @@ static void gen11_display_irq_reset(struct intel_display *display)
- 	enum pipe pipe;
- 	u32 trans_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
- 		BIT(TRANSCODER_C) | BIT(TRANSCODER_D);
-+	bool reset_hpd = !intel_display_rpm_pme_enabled(display);
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+index 970aa95ee344..d095eb13dc06 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug.c
++++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+@@ -867,6 +867,11 @@ void intel_hpd_poll_enable(struct intel_display *display)
+ 	if (!HAS_DISPLAY(display) || !intel_display_device_enabled(display))
+ 		return;
  
--	intel_de_write(display, GEN11_DISPLAY_INT_CTL, 0);
-+	if (reset_hpd)
-+		intel_de_write(display, GEN11_DISPLAY_INT_CTL, 0);
- 
- 	if (DISPLAY_VER(display) >= 12) {
- 		enum transcoder trans;
-@@ -2250,13 +2253,15 @@ static void gen11_display_irq_reset(struct intel_display *display)
- 	irq_reset(display, GEN8_DE_PORT_IRQ_REGS);
- 	irq_reset(display, GEN8_DE_MISC_IRQ_REGS);
- 
--	if (DISPLAY_VER(display) >= 14)
--		irq_reset(display, PICAINTERRUPT_IRQ_REGS);
--	else
--		irq_reset(display, GEN11_DE_HPD_IRQ_REGS);
-+	if (reset_hpd) {
-+		if (DISPLAY_VER(display) >= 14)
-+			irq_reset(display, PICAINTERRUPT_IRQ_REGS);
-+		else
-+			irq_reset(display, GEN11_DE_HPD_IRQ_REGS);
- 
--	if (INTEL_PCH_TYPE(display) >= PCH_ICP)
--		irq_reset(display, SDE_IRQ_REGS);
-+		if (INTEL_PCH_TYPE(display) >= PCH_ICP)
-+			irq_reset(display, SDE_IRQ_REGS);
++	if (intel_display_rpm_pme_enabled(display)) {
++		drm_dbg_kms(display->drm, "PME wake capable device, skipping HPD polling.\n");
++		return;
 +	}
- }
++
+ 	WRITE_ONCE(display->hotplug.poll_enabled, true);
  
- void gen8_irq_power_well_post_enable(struct intel_display *display,
+ 	/*
 -- 
 2.43.0
 
