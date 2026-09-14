@@ -4,161 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEA98C88E72
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Sep 2026 21:35:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A68E3C88E72
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Sep 2026 21:53:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7C8E10F2FE;
-	Mon, 14 Sep 2026 21:35:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41ABB10E581;
+	Mon, 14 Sep 2026 21:53:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GNXVdZsL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eh0bgvCT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01DDC10F3EB
- for <intel-xe@lists.freedesktop.org>; Mon, 14 Sep 2026 21:35:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7019310E581
+ for <intel-xe@lists.freedesktop.org>; Mon, 14 Sep 2026 21:53:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789421733; x=1820957733;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=dcy7NsQBy7XylKUcKSZM7msz+aaC5PAXbtvUW6y4zXc=;
- b=GNXVdZsLRbpuAhEHTknMGNawiVFFa9LIrgAzcLUC2au8h/J/gY86vs9W
- H/87LnVDk37RbBh7FaS0SGrGZ42oNxqRFNgk3W7OSZZizyUIRctVUee+3
- fnCOa0rxU2/RoXKC6xbV3QOtkifTlVXTIPaxLSw9w6p0i7iuqe+uN43f5
- Pd3g4dTGZOoCSJHWN4X7Y4Mq5Xc/W+wtH2jc4sWDmDHo4642fQy7enfoQ
- SZtwMi2RMi0p/edft/lRx6nqv8Z4luC6mgMi0nMzUQ0eTtDhwsrrQxzbh
- kAIvMEKv9neYtEC8JwnVhdIg9P+6pxHGg4eyQCvvD5Oh5PKLQXPJEPMFp g==;
-X-CSE-ConnectionGUID: c2abLu/bSm+APJ7tLNYZ6w==
-X-CSE-MsgGUID: 9t1vjwAXTzmcQ+Cf2CEQfw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89909141"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89909141"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2026 14:35:32 -0700
-X-CSE-ConnectionGUID: qwzC6FXPRX2EYOQN670+Nw==
-X-CSE-MsgGUID: cGLqzdCxRRqbxWlFP1CJ2A==
+ t=1789422815; x=1820958815;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=DL8f6s4dmeZeIe65Yg2tdQp0OkdVgpOC5BBKG8HSajg=;
+ b=eh0bgvCTmgI075Np1TkO2nMMjPzJDC4BoDHsWIX9CfpiaRxwJfuaxLuU
+ Z7XJJvKIbVGAsiS9Zi83NuPrDdsV+D40fiKPXt/TYXvLR/oZO+mwxHhbu
+ dhwzyTAGbkqcjJK2nnpnq8lp+G49MJ9EYvy0VQ92A5mP7tTF8xXbepTfE
+ qIeVrcB5xZVJsTABCAItslHQPX1KuFq4YkB+W30tvJM6mDEbVATWoxi6B
+ n+x+oDea99dZU5lR8ovVH2xGHwlvrqb6pqA8exuxo6hq3PN03VH+93DNt
+ +Ivns8ubnZTP7yl+aj5nxrJqbjVP3DHlNc6TbhLaVlIn8Qh36mSDr0iRB Q==;
+X-CSE-ConnectionGUID: dEjV++vKQQmysRcAt5SztQ==
+X-CSE-MsgGUID: nIBcgfNOSy2ZtEd3qDYlaQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="101128968"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="101128968"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2026 14:53:35 -0700
+X-CSE-ConnectionGUID: elNev7yhSG2Duc0nkmYeeQ==
+X-CSE-MsgGUID: NGN8r4+dSjmDvDiQpDQxyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="270938502"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2026 14:35:32 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 14 Sep 2026 14:35:32 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Mon, 14 Sep 2026 14:35:32 -0700
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.31) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 14 Sep 2026 14:35:31 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=L3wPrA3gkUPQPqdlkm4i3hhHgn/vUJ+bhcJ6bzKM6v0dsE15BHEVQVYDLKWStSqNyXnvZn+vMK5xgk7QZVigsOhT8GF68ndXMwH/G9+s675HRbGhQDmbDty+dC0fkluy1iXJr+gMU5/fTn0bnDLckYDSGMOJi/IKbd6yGu/iL/swgG/xoQwdvxuU2Nx9zBtww0dRou9q1332mQPX64kYJ4og3vyT2nyLEtPetSUWR1BcaFj899uF1DaQnhyvI9EQiSliq0BJlrktvHb+4XgOoNM2BW0h/seDdz8KFL45z0tYJPmtsSplUQQzPfXIgViq+ZY4a7pN2onUvryPlg2AtA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+vz5EiJ9eDQoQnKKiInrGO1Q6eBjt6yhdzG0O7sXRks=;
- b=tZ/C43eOU5lMw1Qnspem7duWzwAWnaL6d6iCXZCzPzDmbCbKZT6mYoQkpfSrTPI8h89uErN9SkjSZmV9qiWCZr0WysWKWseYAZvWKfPx2E0gPW+nfMCaZ+iZwp+VeFmhOIiaFpOdVqC08Fqcw2flQN7tSv+56wETaUHc1D3durMKz9TPHxrpi8RIgngtZU8xv7BiHKl0IS5gGt56BDzNDNp8neuHkPFSyrCbRBBrfZrVU60EBfgInuwu4uzQFiJiJnQ5Nk0A7ASGbGfzpIS8kx3pdp2Fq0OJdEzKPU+Lc6eDIhIupIZ25niRvGj0Xrl62pBd5+b51+ZHOAtybv3vxQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CH3PR11MB046149.namprd11.prod.outlook.com
- (2603:10b6:610:367::19) by CY8PR11MB7012.namprd11.prod.outlook.com
- (2603:10b6:930:54::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.11; Mon, 14 Sep
- 2026 21:35:29 +0000
-Received: from CH3PR11MB046149.namprd11.prod.outlook.com
- ([fe80::7c3f:5300:19c4:b823]) by CH3PR11MB046149.namprd11.prod.outlook.com
- ([fe80::7c3f:5300:19c4:b823%6]) with mapi id 15.21.0406.007; Mon, 14 Sep 2026
- 21:35:29 +0000
-From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-CC: "platform-driver-x86@vger.kernel.org"
- <platform-driver-x86@vger.kernel.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "hansg@kernel.org" <hansg@kernel.org>,
- "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>, "Brost,
- Matthew" <matthew.brost@intel.com>, "thomas.hellstrom@linux.intel.com"
- <thomas.hellstrom@linux.intel.com>, "airlied@gmail.com" <airlied@gmail.com>,
- "simona@ffwll.ch" <simona@ffwll.ch>, "david.e.box@linux.intel.com"
- <david.e.box@linux.intel.com>, "Vijay, Anoop C" <anoop.c.vijay@intel.com>,
- "Nilawar, Badal" <badal.nilawar@intel.com>, "Roper, Matthew D"
- <matthew.d.roper@intel.com>, "Ausmus, James" <james.ausmus@intel.com>,
- "Poosa, Karthik" <karthik.poosa@intel.com>
-Subject: RE: [PATCH v8 06/20] drm/xe/vsec: Do not register BMG PMT for VF
-Thread-Topic: [PATCH v8 06/20] drm/xe/vsec: Do not register BMG PMT for VF
-Thread-Index: AQHdQisuy/8SXnkrnUCAJmVKxLFaUbbOQeQAgABSmuCAAAOOAIAABSWA
-Date: Mon, 14 Sep 2026 21:35:28 +0000
-Message-ID: <CH3PR11MB04614905AE7D4C90CBC379E7D5C1BB2@CH3PR11MB046149.namprd11.prod.outlook.com>
-References: <20260911201148.1610547-22-michael.j.ruhl@intel.com>
- <20260911201148.1610547-28-michael.j.ruhl@intel.com>
- <aqgbtrG5Lv2-ixjS@intel.com>
- <CH3PR11MB04614967EBAC64BAD0D71DF544C1BB2@CH3PR11MB046149.namprd11.prod.outlook.com>
- <aqhj_PUWtei9g-Pq@intel.com>
-In-Reply-To: <aqhj_PUWtei9g-Pq@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH3PR11MB046149:EE_|CY8PR11MB7012:EE_
-x-ms-office365-filtering-correlation-id: 83d46e3f-cc70-49b0-dc0a-08df12a818d4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|23010399003|366016|1800799024|38070700021|4143699003|11063799006|56012099006|22082099003|18002099003|10067099003;
-x-microsoft-antispam-message-info: Lj8ohiSoyZSX8UMUpP/p9X9bsAQ8szpXsnWOmmxAMBarSBFfnyYoqksxb1S2YEgXu4D6+jY0/QH5R3DXqSSmtKRBqH9GPjg7F26ulSYH3ODzZ2H5J8AzTo0eoTAc1qj7I4lW0p5KQCh/twcK++NuRvi1AYvguqFmxtFvOZ7Dk8ow6eB/6UKAotINNpL1I7PpTcvcyC7fkh7pnem/6fy4hJXyxEmrSNmLLHmic3c4CNa0fQ92+elcBJElYDcDkBULHpLgBLRqMGPL66gA6RSbDz6sKzbS+gk6BpYrACS8mFmOYIxehcifHpbh7Un0Zy2oYNhlprp9toccUfMIgC3vkF0fHgNsENbvYnTf2E4FHJB5HoympgTWfzld198WBYkRJYoeCfIw2xq3Qfx5k6UVSpOoPU3Raab5gMR5Ofn+yqz9evMRIkFW5IsguiuZ07FPKf4HhsXO2SBd7MJr46iknCVpAUx4oRvHfhMZnoj6FVbw7SkG40kaGQ1gLlEIuS8iKQ42fAn9a3vq8hWsRUQzSelaXr+mZE+I7J2C7dBumTNXNxBBQYlKzJN76f5fBb/+sLE5YjQ97AvOviD5bZ3mQ7KdPw6vu0CtImfr645v9zfKnOeRCnzGAyTgJY4j9QyDEjrg7yx+944R/Jo62YwNkYJDMm+BB+eKIdliwl2qlcvh2Xs8qx9H2hFYy+c2U/FpoBEiqFjy3efGuivUVRHB/m6aKFgStTMabrNqxV7HIOA=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR11MB046149.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(366016)(1800799024)(38070700021)(4143699003)(11063799006)(56012099006)(22082099003)(18002099003)(10067099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?HThqOJkdxl9U6hqKm5JXvqbMa2xJgt5Z66l7kLoeCmqy5p83LkRO48/u3lOL?=
- =?us-ascii?Q?7eBZk+h37dyIQMPs97wAGhoRDlkGg9N01lss0Cl9yzC442zWCYbZSHNukpDT?=
- =?us-ascii?Q?A/W7t8ByvYslGXtxw7/71a+BvF9GkzJ18QqQHy+fux1Xmnl7xIe95W0UHn1e?=
- =?us-ascii?Q?3AA/az0O/NrtCBzlwb+auKQpQKoKTNHxVs5vIDy22qkygpLt+WK0JCiOw4Zy?=
- =?us-ascii?Q?1O2djctqFf2W6b6WYZrQh8UM4zcZ+pVtWdYYFNwHhgoaRB9l7ZMb8G/z4Yqf?=
- =?us-ascii?Q?xvX1FvEkZ3R64E8abnURpLkSclbQIbcvmcKtzpap47n1v0FlVgZ3ts8zNosi?=
- =?us-ascii?Q?GQJmdiYKGNEl8/U5lEl23izh+EJyh6vwMRAb7hJFFfq+N27G5gBXzRi9XDCh?=
- =?us-ascii?Q?eLUfHKIVpzeAREjVMiLLc5QaqMpeFG74j3d+AX6l6cymJxaVwPt+zjb+miZU?=
- =?us-ascii?Q?cKnfCes2O+J84bMOI5V2f6tBjcc2steY7/L04Id+GpqYeGo90wTBx8xa6vAg?=
- =?us-ascii?Q?lFVJgRXAFnevJiZGxNUnYTw4poQg70LTyKHtj/r0xLrKEnDy2sya0gSmD8y1?=
- =?us-ascii?Q?pGGGsnbv9B7MLv17vqmSg7gem2UFDFx75jhwh3ARgnzkEgB4hGqXvklFovv/?=
- =?us-ascii?Q?zN2EwO2rrqYdl5Cz0CH027ZS5HvfJlM3hfQzfevpHiE2jDR3OdfPBc5GKaUe?=
- =?us-ascii?Q?Pfkv7tVlnvD3uW3G3ZO9N1wvD8H7LYD0F/2MJ9Tpb3gSOvoBMlHoZGY2Owrn?=
- =?us-ascii?Q?h8QH9L3ES+JT1jGPhCcgkhvH3EyOvNrwCAHVCRDOnG1JXUaZoR3I/Z+XBhaw?=
- =?us-ascii?Q?bFsyFcAiFyR0TNMuVAeSTSIRK9xxG7m9EiUqpcAhcu0INW99OsAlARUE3wAJ?=
- =?us-ascii?Q?vlTx2mmr8wohxxRXfpIiTpDEVo/lW0B4q9n35iT8SUUIWTTztvdw+tvQRBCg?=
- =?us-ascii?Q?gGnnCYdkI3SkOT9+sGrMYxKR7pyr2QYjQa3taj0VXC/vui6RJk9/6Sf2A9Dn?=
- =?us-ascii?Q?cbojLuAvDyo4hmgIX6lyQI5IH4kCQ0t50MU0DcRYDMl+7ULGnnEXYCkrc1Gs?=
- =?us-ascii?Q?0r+xA2q3VJryIG4GPdmzghJqM2dPpsiruaJYXRvtZkR2da5/v2dAy2lJLT1j?=
- =?us-ascii?Q?PE2Ey6Z+uUGdHtvkaKnFO73ONVD8sAb3Wqr8qUK4yjvBfISk6jlpbAo5lZSI?=
- =?us-ascii?Q?uIK5SxJd3tBkkDZVwuyXUwvkcnd46To6nbSl5BJQmlrJn111/7qPbbq41nVx?=
- =?us-ascii?Q?X39IhXZGYvBxC06SgEz5s9cJm6yXmoMVsAPB5L1Drv+V5F//w2tWYIZYlg8Y?=
- =?us-ascii?Q?agmRtaPOi9NKUxOCsJAjlXX9699nldjZBT6e4ckCnA4pC3aU+V0iEY2wzSgO?=
- =?us-ascii?Q?NBda6spaG2Y5Fs6biy7D/9Kw9hz87DWeU73qHXmTx2ZunvHHWMwWdQupYO+W?=
- =?us-ascii?Q?43POb45b1LNxmvZQL8YFBYU9nFo2sZeszdjlOtSBCaPt+fOFD+3Sa8mMC18+?=
- =?us-ascii?Q?xwkVSwhVOSGprmiK059qT/E0nV9kKUMbQyQ3s/iCHF18ygvr5pyHyqOIUqzK?=
- =?us-ascii?Q?c2g5Z03e+c35gFOmbySGIuSfxPChKqA0q5/FZtLoZPUgxYC1pNtnSgysfTk3?=
- =?us-ascii?Q?6zw3QNnLs/jtslU0d4Dm01d/Yb4DKJWV3RGCaPKqs9tkUKzJfMcQGwlYn4zf?=
- =?us-ascii?Q?4113na+xcaAiR8QzwDzmLpozSwdV6UNwDKQ+0pow/QfGulwZDr/jRfr0sZIi?=
- =?us-ascii?Q?qgtugGgpOw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="273276419"
+Received: from osgcshtiger.sh.intel.com ([10.239.81.49])
+ by orviesa009.jf.intel.com with ESMTP; 14 Sep 2026 14:53:34 -0700
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>, Sk Anirban <sk.anirban@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v2] drm/xe/tlb_inval: Treat wedged-device invalidations as
+ complete
+Date: Mon, 14 Sep 2026 21:53:18 +0000
+Message-Id: <20260914215318.200603-1-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260910232734.93054-1-shuicheng.lin@intel.com>
+References: <20260910232734.93054-1-shuicheng.lin@intel.com>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: Md3pTGyxx6aVbAS6rMtkhMwNgtwKXcm26pfCiuWWMoRqnPj7Dz3v7ettkjlr4Cas6EQUErPMwKMt1uEQxCuyjiRg+C2UOSgrDq1nGKQp9QJ9ekxcUrEia4h215K0LaPEffL5imnU+ULSbSCS8b34gnCxykOJ4RQGvu7WBes+GYCTv0A59nc56PfcFgae/MQklaJZT5DhSn5l9QvcsPepk3AQa7lcce/gYhErOsBy/sdnT1utEfSsytGVeTD1hNIHAFPpiEPuKAiwh4dguKKr1CEpIlksFGs+8njIfiC/sDi/m/JEAJKXlFu2eIAs51kzeVnjn9F3K2jZ8beK/16J6A==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB046149.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 83d46e3f-cc70-49b0-dc0a-08df12a818d4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Sep 2026 21:35:28.9674 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tpCR3ClKgA6ninZ7GNddoB1/tsgXuQzcBilkM+ayGhzWdxl+nrjtPH63mqXJhEoDgWbiuaDDYm9eD8OxO3s5sGWEIPFFyoOul/ct/SmvHxY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7012
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,117 +67,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
->-----Original Message-----
->From: Vivi, Rodrigo <rodrigo.vivi@intel.com>
->Sent: Monday, September 14, 2026 5:16 PM
->To: Ruhl, Michael J <michael.j.ruhl@intel.com>
->Cc: platform-driver-x86@vger.kernel.org; intel-xe@lists.freedesktop.org;
->hansg@kernel.org; ilpo.jarvinen@linux.intel.com; Brost, Matthew
-><matthew.brost@intel.com>; thomas.hellstrom@linux.intel.com;
->airlied@gmail.com; simona@ffwll.ch; david.e.box@linux.intel.com; Vijay,
->Anoop C <anoop.c.vijay@intel.com>; Nilawar, Badal
-><badal.nilawar@intel.com>; Roper, Matthew D <matthew.d.roper@intel.com>;
->Ausmus, James <james.ausmus@intel.com>; Poosa, Karthik
-><karthik.poosa@intel.com>
->Subject: Re: [PATCH v8 06/20] drm/xe/vsec: Do not register BMG PMT for VF
->
->On Mon, Sep 14, 2026 at 05:04:31PM -0400, Ruhl, Michael J wrote:
->>
->>
->> >-----Original Message-----
->> >From: Vivi, Rodrigo <rodrigo.vivi@intel.com>
->> >Sent: Monday, September 14, 2026 12:07 PM
->> >To: Ruhl, Michael J <michael.j.ruhl@intel.com>
->> >Cc: platform-driver-x86@vger.kernel.org; intel-xe@lists.freedesktop.org=
-;
->> >hansg@kernel.org; ilpo.jarvinen@linux.intel.com; Brost, Matthew
->> ><matthew.brost@intel.com>; thomas.hellstrom@linux.intel.com;
->> >airlied@gmail.com; simona@ffwll.ch; david.e.box@linux.intel.com; Vijay,
->> >Anoop C <anoop.c.vijay@intel.com>; Nilawar, Badal
->> ><badal.nilawar@intel.com>; Roper, Matthew D
-><matthew.d.roper@intel.com>;
->> >Ausmus, James <james.ausmus@intel.com>; Poosa, Karthik
->> ><karthik.poosa@intel.com>
->> >Subject: Re: [PATCH v8 06/20] drm/xe/vsec: Do not register BMG PMT for
->VF
->> >
->> >On Fri, Sep 11, 2026 at 01:11:54PM -0700, Michael J. Ruhl wrote:
->> >> BMG PMT is not supported for VF nodes.
->> >>
->> >> If IS_SRIOV_VF() is true, do NOT register with PMT.
->> >>
->> >> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
->> >> ---
->> >>  drivers/gpu/drm/xe/xe_vsec.c | 8 +++++---
->> >>  1 file changed, 5 insertions(+), 3 deletions(-)
->> >>
->> >> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vse=
-c.c
->> >> index a9baf0bfe572..71bc359b2ad1 100644
->> >> --- a/drivers/gpu/drm/xe/xe_vsec.c
->> >> +++ b/drivers/gpu/drm/xe/xe_vsec.c
->> >> @@ -149,6 +149,9 @@ int xe_pmt_telem_read(struct device *dev, u32
->guid,
->> >u64 *data, loff_t user_offse
->> >>  	u32 offset;
->> >>  	int ret;
->> >>
->> >> +	if (IS_SRIOV_VF(xe))
->> >> +		return -EINVAL;
->> >> +
->> >
->> >I believe this second one here is redundant.
->> >We will never register the callback and never reach this place.
->>
->> This is called by xe_debugfs.c xe_pcode.c and xe_hwmon.c.
->>
->> They do "protect" against SRIOV usage, but I am paranoid...
->>
->> I can remove if you think those paths checks are sufficient...
->
->I think it could be removed as it is impossible to get here.
+A TLB invalidation issued on a wedged device fails with
+-ENOTRECOVERABLE. xe_tlb_inval_issue() squashes only -ECANCELED, so the
+error reaches callers that treat it as unexpected and WARN, tainting the
+kernel on a wedge that was deliberately caused:
 
-I think my  biggest concern is if someone else decides to use this.  I want=
- to be very clear
-on the requirements.
+  ggtt_invalidate_gt_tlb()     drivers/gpu/drm/xe/xe_ggtt.c
+  xe_svm_invalidate()          drivers/gpu/drm/xe/xe_svm.c
+  xe_bo_trigger_rebind()       drivers/gpu/drm/xe/xe_bo.c
+  xe_vma_userptr_do_inval()    drivers/gpu/drm/xe/xe_userptr.c
 
->But feel free to use either way:
->
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+igt@xe_exec_reset@gt-reset-fault-injection hits the GGTT one, turning an
+otherwise passing run into an abort:
 
-Thank you for the reviews!
+  *ERROR* SIGID=102 FATAL (-EIO) WEDGED: Device declared wedged!
+  Tile0: GT1: Failed to invalidate GGTT (-ENOTRECOVERABLE)
+  WARNING: drivers/gpu/drm/xe/xe_ggtt.c:588 at ggtt_invalidate_gt_tlb
+  Workqueue: xe-guc-destroy-wq __guc_exec_queue_destroy_async [xe]
+   ggtt_node_remove+0xe3/0x100 [xe]
+   xe_ggtt_remove_bo+0x89/0x2c0 [xe]
+   xe_ttm_bo_destroy+0xcb/0x330 [xe]
+   ...
+   xe_lrc_destroy+0x74/0x90 [xe]
+   xe_exec_queue_fini+0x2d/0x60 [xe]
 
-M
+-ECANCELED and -ENOTRECOVERABLE mean the same thing at this layer: the
+message was dropped rather than delivered, and the fence has already
+been signalled before the error is returned, so there is nothing left to
+wait for. Squash both.
 
->
->>
->> M
->>
->>
->> >>  	ret =3D xe_guid_decode(guid, &mem_region, &offset);
->> >>  	if (ret)
->> >>  		return ret;
->> >> @@ -157,9 +160,6 @@ int xe_pmt_telem_read(struct device *dev, u32
->guid,
->> >u64 *data, loff_t user_offse
->> >>
->> >>  	guard(mutex)(&xe->pmt.lock);
->> >>
->> >> -	if (!xe->soc_remapper.set_telem_region)
->> >> -		return -ENODEV;
->> >> -
->> >>  	/* indicate that we are not at an appropriate power level */
->> >>  	if (!xe_pm_runtime_get_if_active(xe))
->> >>  		return -ENODATA;
->> >> @@ -210,6 +210,8 @@ void xe_vsec_init(struct xe_device *xe)
->> >>
->> >>  	switch (platform) {
->> >>  	case XE_VSEC_BMG:
->> >> +		if (IS_SRIOV_VF(xe))
->> >> +			return;
->> >>  		info->priv_data =3D &xe_pmt_cb;
->> >>  		break;
->> >>  	default:
->> >> --
->> >> 2.43.0
->> >>
+A wedged device is only recovered by a fresh initialisation, so the
+error return in xe_bo_trigger_rebind() becomes unreachable by design.
+
+v2: fix all invalidation paths. (Sashiko)
+
+Fixes: 50fa9acac26f ("drm/xe/guc: distinguish wedged from recoverable cancellation")
+Assisted-by: Claude:claude-opus-5
+Cc: Sk Anirban <sk.anirban@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+ drivers/gpu/drm/xe/xe_tlb_inval.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
+index 7c3bf32d9258..dd1030de9ab6 100644
+--- a/drivers/gpu/drm/xe/xe_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
+@@ -280,7 +280,8 @@ static void xe_tlb_inval_fence_prep(struct xe_tlb_inval_fence *fence)
+ 		xe_tlb_inval_fence_signal_unlocked((__fence));	\
+ 	mutex_unlock(&(__tlb_inval)->seqno_lock);		\
+ 								\
+-	__ret == -ECANCELED ? 0 : __ret;			\
++	/* Undelivered: fence already signalled, report done */	\
++	(__ret == -ECANCELED || __ret == -ENOTRECOVERABLE) ? 0 : __ret;	\
+ })
+ 
+ /**
+-- 
+2.43.0
+
