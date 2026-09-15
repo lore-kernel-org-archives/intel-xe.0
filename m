@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B82BCC982C7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB2CBC982C5
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBE4F10E3CB;
-	Tue, 15 Sep 2026 14:13:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4397A10E60A;
+	Tue, 15 Sep 2026 14:13:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="NqnMc+KK";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="U8/5ugVP";
 	dkim-atps=neutral
 Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com
  [209.85.214.197])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E935A10FAF3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:19:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C059C10F34C
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:11 +0000 (UTC)
 Received: by mail-pl1-f197.google.com with SMTP id
- d9443c01a7336-2db8c152622so41653725ad.2
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:19:54 -0700 (PDT)
+ d9443c01a7336-2ce7dff6253so7706705ad.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460394; x=1790065194;
+ d=google.com; s=20251104; t=1789460411; x=1790065211;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=fp8wJxWuumatGVjI+YCt9Q6O6hUP8tXGtI5nMGsUbio=;
- b=NqnMc+KKgITaL8zPMYJ95uGqqyCQZI6WbqIGl0dN9Z+DNsPaFuaq2nkjDNUb2MYmRy
- hRLKXI3v7yIXlX5ZHblisMuEUlQu4gNZrBBI15PbjLxu9d54rGGewEGQV5mNG7e6Oh/w
- DjKP6iRWepvPIhNYmnOhUA74wvXm09bkzhYffyvB7cBMbDII6W8lLH2t5DDed1rfjYGa
- TnkIhLvf+sAzBPdS9GSSctHPOq/0Vv6G4JZi1pJg41skPiDke4bVg37a7tmkTORiXq2Y
- blkYXHI67a/Im7BqdoTATAtuRaASdP/606WX1pmLEtkJYvC13OUcwkABHEywZg24iuF2
- fh5g==
+ bh=TmKdBXO38kbe6W228p+vBZ76A7D+nQJddOBfd0uRZ54=;
+ b=U8/5ugVPW4aw6SVa8Ne+eFgFHlUDt3dWBS8iNIgEmBkuYIl7VQ1Lh/tLPzsqHp2ejt
+ xzusW+BaxaELqG+DsFcs+r+WqSMMbZuB7bTveMnxUUsFAiAMT7Ik2it+Lw9pfqpeROYT
+ qBivLcsX9sLM//wGu/bgRremDslWqVco/TSLVAN/jU3LgYarYtVC1j1ejAWfJakuERe7
+ mnsKj0VsGG+wqKc/VJEFdptk9yhPb2IHw73DJjbExeE3zRgFmxHZxYDd4vpoGtJA4Up4
+ 1vV+6ZDxzFuS2QZpaUt3ycfqZy2Fxjc5/XSmaNslAX+7tLbm19kBrmefwLtjQ2fa5/EF
+ ajrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460394; x=1790065194;
+ d=1e100.net; s=20260707; t=1789460411; x=1790065211;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=fp8wJxWuumatGVjI+YCt9Q6O6hUP8tXGtI5nMGsUbio=;
- b=HVu7ZbWHMDyoxHlr8CJnrXQNx17nSQvrKt/+8Nm/EeXyk1BWAbwn44+yhsSMXjuL7m
- mzSo60pXk5yba9saKfCp1WTCX6MGdI9hkuETGozjlzEKv+XG8f4aAY9PolvBtQlRI9Vx
- 5xQJZhOmKt+kwYdC5mbEg/ypNpa38r8mkQbst4+vRK5bKXJTY6bLuBJkannzUGnWbRnb
- ZIg/A1yMAf2jHLTcXtWHfe0oqc205lGIs0Ep01vVwTeF6h54xQIM1xG+ZqUUUBKUQqXs
- oONZZ1J3nAMPTk0LFbYOmDmxw9RDfXr8trzrpuNHuDrPpB2sb9MRBuco0JN+g+CXqnWH
- eIFw==
+ bh=TmKdBXO38kbe6W228p+vBZ76A7D+nQJddOBfd0uRZ54=;
+ b=HqXLQeBskxfvLTgrdpMj80glp6//9GRNo/XYn7YAQcybNttdxz8qDSppSMZUVfgI2X
+ 4oXfFG5DgtpfEyW4+Thr2Stjum78ffe9nVs6FnoLSIAoRPBv0FrS1jjtK64VVJxsCC0p
+ 46vVD9hRlhk1L93ebL0WszDIFRkd8MYnoZUXZWqcW5YUuCKefVKAXapdXbKIJGO6cHD/
+ EBonciIScN3i5FybpuVdDmshHoYnqRQApFdUC2GXbS1vSDR3Y1JgF9p5dFRQPF+dqIHj
+ mJV2Lh4RtVLO9FotZgLDAbKJoOI0DHBGokkRkg6C/gNSCLqk3Jl3kFQ2t4oy0mbM9p2r
+ +/dQ==
 X-Forwarded-Encrypted: i=1;
- AKwUvBxWw3Y2JFaL66sqWjE3Lbu/AN/h4cC3vdZTGg0JiBBc1j9iwYJEbrn3UgrD+0viDRigNzi0NGTW0Q==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++lplL5GrRvewMf4HVgkK+hLf8d7WnDDFDntBmTHH30uGeHQMr+c
- HuqX7yroiB2uCKTUvVZlN+f7g/vRcRGWsoZYcgGTQZ7iK9sjnKOgreDgQXz5LMhJhjw+poGOSeD
- V
-X-Received: from plbkw15.prod.google.com ([2002:a17:902:f90f:b0:2db:5cac:a627])
+ AKwUvBxFSST76LV3LoOhjMA980CmuHVnDo9weql/+WqJH/3t46CK6nacL1nebVgDxze/Y9o5KYQEJgh7ig==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++nk1ATb5Q9rwdvy8xj4gePtY12bHlQxAJA5KFjJYB9kbD/ZWHue
+ ul0PdA06/2ab76RdhCfT/kkGd5JWlrpB1cvmKpIMsBpjHszosbRa0nezRXKTlmhGDaYTAtOCId5
+ X
+X-Received: from plw16.prod.google.com ([2002:a17:903:45d0:b0:2dd:203e:7d7f])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:902:ffd0:b0:2bf:27b2:4b80
- with SMTP id d9443c01a7336-2dd8384ce53mr639785ad.14.1789460393875; Tue, 15
- Sep 2026 01:19:53 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:23 +0000
+ 2002:a17:902:e544:b0:2d8:d4cf:fe49
+ with SMTP id d9443c01a7336-2dd7654538dmr37587935ad.15.1789460410166; Tue, 15
+ Sep 2026 01:20:10 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:35 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-7-morbo@google.com>
-Subject: [PATCH 06/28] comedi: comedi_bond: Refactor strlcat() to seq_buf in
- do_dev_config()
+Message-ID: <20260915081910.4142719-19-morbo@google.com>
+Subject: [PATCH 18/28] LoongArch: Refactor bootcmdline_init() to use seq_buf
+ instead of strlcat()
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
 Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
@@ -155,19 +155,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-do_dev_config() builds a space-separated list of bonded devices in
-devpriv->name by formatting each "minor:subdev " pair into a temporary
-stack buffer with snprintf() and appending it with strlcat() in a loop.
+bootcmdline_init() uses multiple strlcat() calls to append
+init_command_line or CONFIG_CMDLINE to boot_command_line.
 
-In preparation for removing the deprecated strlcat() API[1], use struct
-seq_buf and seq_buf_printf() to format each entry directly into
-devpriv->name. This avoids repeated rescanning of devpriv->name and
-eliminates the temporary buffer.
+In preparation for removing the deprecated strlcat() API[1], initialize a
+struct seq_buf with the existing contents of boot_command_line and use
+seq_buf_puts() to append the command line fragments.
 
 Link: https://github.com/KSPP/linux/issues/370 [1]
 Cc: codemender-patching+linux@google.com
-Assisted-by: SecurityEngineerAgent:Gemini2.5 [editor_update_file, make_kern=
-el_build_single_file]
+Assisted-by: CoPilot:1.0 [shell_command_run, editor_update_file, make_kerne=
+l_build_single_file]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -281,65 +279,77 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- drivers/comedi/drivers/comedi_bond.c | 16 +++++++---------
- 1 file changed, 7 insertions(+), 9 deletions(-)
+ arch/loongarch/kernel/setup.c | 22 +++++++++++++++-------
+ 1 file changed, 15 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/comedi/drivers/comedi_bond.c b/drivers/comedi/drivers/=
-comedi_bond.c
-index 8e10ecab4f0d..a10cfbd04c72 100644
---- a/drivers/comedi/drivers/comedi_bond.c
-+++ b/drivers/comedi/drivers/comedi_bond.c
-@@ -39,6 +39,7 @@
-=20
- #include <linux/module.h>
- #include <linux/string.h>
+diff --git a/arch/loongarch/kernel/setup.c b/arch/loongarch/kernel/setup.c
+index 6fa4a22a58fd..826396f141b9 100644
+--- a/arch/loongarch/kernel/setup.c
++++ b/arch/loongarch/kernel/setup.c
+@@ -33,6 +33,7 @@
+ #include <linux/of_address.h>
+ #include <linux/suspend.h>
+ #include <linux/swiotlb.h>
 +#include <linux/seq_buf.h>
- #include <linux/slab.h>
- #include <linux/comedi.h>
- #include <linux/comedi/comedilib.h>
-@@ -170,10 +171,11 @@ static int do_dev_config(struct comedi_device *dev, s=
-truct comedi_devconfig *it)
+=20
+ #include <asm/addrspace.h>
+ #include <asm/alternative.h>
+@@ -305,6 +306,8 @@ static void __init fdt_setup(void)
+=20
+ static void __init bootcmdline_init(char **cmdline_p)
  {
- 	struct comedi_bond_private *devpriv =3D dev->private;
- 	DECLARE_BITMAP(devs_opened, COMEDI_NUM_BOARD_MINORS);
 +	struct seq_buf s;
- 	int i;
-=20
- 	memset(&devs_opened, 0, sizeof(devs_opened));
--	devpriv->name[0] =3D 0;
-+	seq_buf_init(&s, devpriv->name, sizeof(devpriv->name));
- 	/*
- 	 * Loop through all comedi devices specified on the command-line,
- 	 * building our device list.
-@@ -250,15 +252,9 @@ static int do_dev_config(struct comedi_device *dev, st=
-ruct comedi_devconfig *it)
- 			}
- 			devpriv->devs =3D devs;
- 			devpriv->devs[devpriv->ndevs++] =3D bdev;
--			{
--				/* Append dev:subdev to devpriv->name */
--				char buf[20];
-=20
--				snprintf(buf, sizeof(buf), "%u:%u ",
--					 bdev->minor, bdev->subdev);
--				strlcat(devpriv->name, buf,
--					sizeof(devpriv->name));
--			}
-+			/* Append dev:subdev to devpriv->name */
-+			seq_buf_printf(&s, "%u:%u ", bdev->minor, bdev->subdev);
- 		}
- 	}
-=20
-@@ -267,6 +263,8 @@ static int do_dev_config(struct comedi_device *dev, str=
-uct comedi_devconfig *it)
- 		return -EINVAL;
- 	}
-=20
-+	seq_buf_str(&s);
 +
- 	return 0;
- }
+ 	/*
+ 	 * If CONFIG_CMDLINE_FORCE is enabled then initializing the command line
+ 	 * is trivial - we simply use the built-in command line unconditionally &
+@@ -315,6 +318,11 @@ static void __init bootcmdline_init(char **cmdline_p)
+ 		goto out;
+ 	}
 =20
++	/* Initialize seq_buf pointing to boot_command_line */
++	s.buffer =3D boot_command_line;
++	s.size =3D COMMAND_LINE_SIZE;
++	s.len =3D strlen(boot_command_line);
++
+ #ifdef CONFIG_OF_FLATTREE
+ 	/*
+ 	 * If CONFIG_CMDLINE_BOOTLOADER is enabled and we are in FDT-based system=
+,
+@@ -323,11 +331,11 @@ static void __init bootcmdline_init(char **cmdline_p)
+ 	 * to boot_command_line.
+ 	 */
+ 	if (initial_boot_params) {
+-		if (boot_command_line[0])
+-			strlcat(boot_command_line, " ", COMMAND_LINE_SIZE);
++		if (s.len)
++			seq_buf_puts(&s, " ");
+=20
+-		if (!strstr(boot_command_line, init_command_line))
+-			strlcat(boot_command_line, init_command_line, COMMAND_LINE_SIZE);
++		if (!strstr(s.buffer, init_command_line))
++			seq_buf_puts(&s, init_command_line);
+=20
+ 		goto out;
+ 	}
+@@ -338,14 +346,14 @@ static void __init bootcmdline_init(char **cmdline_p)
+ 	 * CONFIG_CMDLINE_EXTEND is enabled.
+ 	 */
+ 	if (IS_ENABLED(CONFIG_CMDLINE_EXTEND) && CONFIG_CMDLINE[0]) {
+-		strlcat(boot_command_line, " ", COMMAND_LINE_SIZE);
+-		strlcat(boot_command_line, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
++		seq_buf_puts(&s, " ");
++		seq_buf_puts(&s, CONFIG_CMDLINE);
+ 	}
+=20
+ 	/*
+ 	 * Use built-in command line if the bootloader command line is empty.
+ 	 */
+-	if (IS_ENABLED(CONFIG_CMDLINE_BOOTLOADER) && !boot_command_line[0])
++	if (IS_ENABLED(CONFIG_CMDLINE_BOOTLOADER) && !s.len)
+ 		strscpy(boot_command_line, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
+=20
+ out:
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
