@@ -4,43 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2467AC88E7D
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 18:00:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A6C0C88E75
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 18:11:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF71C10E440;
-	Tue, 15 Sep 2026 18:00:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="irgpWzA3";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68D2610E440
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 18:00:28 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 0C6CA438BA;
- Tue, 15 Sep 2026 18:00:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C37081F000FF;
- Tue, 15 Sep 2026 18:00:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789495227;
- bh=nuSeET/u8GaT7MEbkhGRFrjSUb2wzaXwSRYmhZMWHG0=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=irgpWzA3UJEFMnGcxGgZC0DuQC/rML7LinV7oD1zhmrQMGwhsexxbKq5Wpbs361Nh
- q66yy/GNEz9V/e9EfW1F5HlINWCc0eQ94Sk8WyVrf2hfs1BT54OOe0uYil0CPuYaw6
- ZA8K3Npa5I9c6XlhvlAYhr16JpstmNACzcX/8vf2Endfe/M640TCcmuNzl/ML70Ogp
- F1isaNRMPGpun8/S2mgU05486DdZhBe2JP8fGmj35CxFsdCiszA2govY6CqRhnqwbu
- n7p0Nx2XBMwdh/CFmD1SIszaJ5KdA6Ii3+w8i1TTHDB6lfkAx1Pny7pDdOHP0Ws+Zr
- nZhhrtkLdt3Bw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v9 2/2] drm/xe/guc: Compress GuC log and CTB dump with zstd
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B71410EA63;
+	Tue, 15 Sep 2026 18:11:00 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B902610F05B;
+ Tue, 15 Sep 2026 18:10:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/guc=3A_Compress_Gu?=
+ =?utf-8?q?C_log_and_CTB_dump_with_zstd_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260915174840.531473-6-alan.previn.teres.alexis@intel.com>
+Date: Tue, 15 Sep 2026 18:10:58 -0000
+Message-ID: <178949585875.166934.9298222214479414035@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260915174840.531473-4-alan.previn.teres.alexis@intel.com>
- <20260915174840.531473-6-alan.previn.teres.alexis@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 15 Sep 2026 18:00:27 +0000
-Message-Id: <20260915180027.C37081F000FF@smtp.kernel.org>
+In-Reply-To: <20260915174840.531473-4-alan.previn.teres.alexis@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,108 +36,73 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] drm/xe: infinite loop in zstd_compress_stream if output buffer fil=
-ls
-- [Medium] drm/xe: KASAN out-of-bounds read in xe_print_blob_ascii85 due to=
- unaligned buffer size
---
+== Series Details ==
 
-commit c797cc861f3e71f2974f41eee132c8271bc241da
+Series: drm/xe/guc: Compress GuC log and CTB dump with zstd (rev5)
+URL   : https://patchwork.freedesktop.org/series/170589/
+State : warning
+
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d875049d2b299159a272bd5151994970cdcd1e31
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0abb804c22f997ef9709fe8b169670496886de13
 Author: Zhanjun Dong <zhanjun.dong@intel.com>
+Date:   Tue Sep 15 10:48:40 2026 -0700
 
-drm/xe/guc: Compress GuC log and CTB dump with zstd
+    drm/xe/guc: Compress GuC log and CTB dump with zstd
+    
+    With default settings, GuC log is 8MB in size and
+    dumping the log is time-consuming. In debugging scenarios,
+    dump-to-dmesg suffers truncation loss because CI's size limit is 2MB.
+    Additionally, if also forwarded to serial console, it takes several
+    minutes. In use-case of continuous error+log collection over extended
+    period, we pressure CI's allocated storage. Thus, compress the
+    GuC log data dump to address these issues and multiply any benefits
+    from a future upgrade in CI's size limits.
+    
+    Replace the raw ascii85 dumps of GuC log snapshots with a
+    zstd-compressed ascii85 stream and reuse the same helper for CTB
+    snapshot output.
+    
+    Use zstd streaming with the default compression level of 3 and an
+    estimated source size of 0 so the compression workspace stays bounded
+    even for multi-megabyte logs.
+    
+    Add a new Kconfig option DRM_XE_COMPRESS_DUMP to control whether
+    GuC log and CTB dumps are compressed with ZSTD. This allows users to
+    choose between reduced dump sizes and lower memory usage.
+    
+    Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+    Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+    Acked-by: José Roberto de Souza <jose.souza@intel.com>
+    Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8 drm-intel
+02613dd07e0d drm/xe: Remove extra newlines from LRC snapshot dump
+0abb804c22f9 drm/xe/guc: Compress GuC log and CTB dump with zstd
+-:207: CHECK:CAMELCASE: Avoid CamelCase: <cParams>
+#207: FILE: drivers/gpu/drm/xe/xe_guc_log.c:255:
++	wksp_size = zstd_cstream_workspace_bound(&params.cParams);
 
-This commit replaces the raw ascii85 dumps of GuC log and CTB snapshots with
-a zstd-compressed ascii85 stream. It adds the DRM_XE_COMPRESS_DUMP Kconfig
-option to control this behavior, aiming to significantly reduce the size of
-error dumps.
+-:234: CHECK:CAMELCASE: Avoid CamelCase: <ZSTD_isError>
+#234: FILE: drivers/gpu/drm/xe/xe_guc_log.c:282:
++			if (ZSTD_isError(ret)) {
 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_=
-log.c
-> index 538d4df0f7aa7..aaeb0f76af305 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_log.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_log.c
-[ ... ]
-> @@ -225,16 +228,148 @@ struct xe_guc_log_snapshot *xe_guc_log_snapshot_ca=
-pture(struct xe_guc_log *log,
->  	return snapshot;
->  }
-> =20
-> +#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-> +static void xe_guc_print_blob_compressed(struct xe_gt *gt, struct drm_pr=
-inter *p,
-> +					 const char *length_label, const char *data_label,
-> +					 void **chunks, int num_chunks,
-> +					 size_t chunk_size, size_t total_size)
-> +{
-[ ... ]
-> +	dst_size =3D zstd_compress_bound(total_size);
-> +	dst =3D kvzalloc(dst_size, GFP_KERNEL);
+-:236: CHECK:CAMELCASE: Avoid CamelCase: <ZSTD_getErrorName>
+#236: FILE: drivers/gpu/drm/xe/xe_guc_log.c:284:
++					  ZSTD_getErrorName(ret));
 
-[Severity: Medium]
-Will this allocate a buffer that is not 4-byte aligned? It appears dst_size
-is determined by zstd_compress_bound(total_size) which is not guaranteed to
-be a multiple of 4. When xe_print_blob_ascii85 is later called with a size
-rounded up to 4 bytes, this can cause a KASAN out-of-bounds read.
+total: 0 errors, 0 warnings, 3 checks, 321 lines checked
 
-> +	if (!dst)
-> +		goto err;
-[ ... ]
-> +	remain =3D total_size;
-> +	for (i =3D 0; i < num_chunks && remain; i++) {
-> +		size_t size =3D min(chunk_size, remain);
-> +		zstd_in_buffer inbuf =3D { .src =3D chunks[i], .size =3D size, .pos =
-=3D 0 };
-> +
-> +		while (inbuf.pos < inbuf.size) {
-> +			ret =3D zstd_compress_stream(cstream, &outbuf, &inbuf);
-> +			if (ZSTD_isError(ret)) {
 
-[Severity: High]
-Can this loop spin infinitely if the output buffer fills up? The while loop
-relies entirely on input consumption (inbuf.pos < inbuf.size) but lacks a
-bailout condition or error check for when the output buffer (outbuf) is
-full.=20
-
-ZSTD explicitly documents that zstd_compress_bound() is not guaranteed to be
-sufficient for streaming compression. If the output buffer fills and
-zstd_compress_stream() consumes no input, would this cause a hard lockup?
-
-> +				xe_gt_err(gt, "zstd_compress_stream failed: %s\n",
-> +					  ZSTD_getErrorName(ret));
-> +				goto err;
-> +			}
-> +		}
-> +		remain -=3D size;
-> +	}
-> +
-> +	do {
-> +		ret =3D zstd_end_stream(cstream, &outbuf);
-> +		if (ZSTD_isError(ret)) {
-> +			xe_gt_err(gt, "zstd_end_stream failed: %s\n",
-> +				  ZSTD_getErrorName(ret));
-> +			goto err;
-> +		}
-> +	} while (ret > 0 && outbuf.pos < outbuf.size);
-> +
-> +	drm_printf(p, "%s.length: 0x%zx -> 0x%zx Algo: ZSTD\n",
-> +		   length_label, total_size, outbuf.pos);
-> +	xe_print_blob_ascii85(p, data_label, '\n', dst, 0,
-> +			      DIV_ROUND_UP(outbuf.pos, sizeof(u32)) * sizeof(u32));
-
-[Severity: Medium]
-If outbuf.pos is close to dst_size and not a multiple of 4, will this
-rounded-up size cause xe_print_blob_ascii85 to read beyond the KASAN
-boundaries of the allocated buffer?
-
-> +	goto out;
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260915174840.5314=
-73-4-alan.previn.teres.alexis@intel.com?part=3D2
