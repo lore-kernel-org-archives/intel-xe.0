@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD340C88E75
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 12:09:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBA5FC88E75
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 12:13:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8802710F46B;
-	Tue, 15 Sep 2026 12:09:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hXk+AOy/";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C65110F464;
- Tue, 15 Sep 2026 12:09:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789474152; x=1821010152;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=/T8u8hKTs/j0PdFv6b3xSFXtf2muru+jhXup9L6X4tE=;
- b=hXk+AOy/4R7nP3HJ+lwgtsb0Y8IW+XjHufwZi08St/rgfXDVX3o+z3Aj
- qhVg7RJnsL7u5ut84nRq+UMUNtNkSJwTgomKbbLXKbzwQ185ap/t3Wvw6
- dauF4I1tHPPmT4Rbs+gIO6jSNbPZ9ZXbdQgYuYZGPC+JCLfS4qQgwMhn8
- P1YSgyqfNGI3n5BSeYz/19Q5Ed38D+CkhV9jDe74xTkXe1pU7cQBPnZz+
- z2vSGJqZ2pqcc7+WFaJK6YN5ILBqnS0/HvqS5ZbUGux1REGFT5R6ZGAVL
- c29bpHET2ZjIjzx5nH2u2Zod/NxTCe6a+aPK3cWC3WvH6wu45M6pvZkZI w==;
-X-CSE-ConnectionGUID: WieevR3ZRW6BgQLyIbajCA==
-X-CSE-MsgGUID: aUbHO2oaS+KaEMQJXJ9f/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="107206806"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="107206806"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 05:09:11 -0700
-X-CSE-ConnectionGUID: yrdWC/VpRI+BaBbNkj931w==
-X-CSE-MsgGUID: Qh7PZmJAQGisydrPbNS+Mg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="271565525"
-Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.243])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 05:09:09 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v4 1/2] drm/i915/display: add a way to restore only
- display/pch registers in clock_gating
-In-Reply-To: <20260908090924.52117-2-luciano.coelho@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260908090924.52117-1-luciano.coelho@intel.com>
- <20260908090924.52117-2-luciano.coelho@intel.com>
-Date: Tue, 15 Sep 2026 15:09:06 +0300
-Message-ID: <1c0acd579c58dcbe5197670cd3ecf00b6085a01c@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DDAC10E5E1;
+	Tue, 15 Sep 2026 12:13:51 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20FE810E5E1;
+ Tue, 15 Sep 2026 12:13:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1252804716975500785=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_wa=5F14025941?=
+ =?utf-8?q?587_to_xe2=2C_xe3_and_xe3p_platforms_=28rev10=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tangudu, Tilak Tirumalesh" <tilak.tirumalesh.tangudu@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 15 Sep 2026 12:13:50 -0000
+Message-ID: <178947443012.164377.6560220217907791393@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260915111314.564847-1-tilak.tirumalesh.tangudu@intel.com>
+In-Reply-To: <20260915111314.564847-1-tilak.tirumalesh.tangudu@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,299 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 08 Sep 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
-> Currently, hsw_disable_pc8() calls intel_clock_gating_init() to restore
-> clock gating after PC8+ exit.  This makes display call into core i915
-> initialization, which in turn calls back into display code.
->
-> Add intel_display_restore_clock_gating() to restore display and PCH
-> registers directly.  Split out the HSW/BDW GT/uncore programming and
-> restore it through the display parent interface, preserving the
-> existing workarounds without calling core clock gating initialization
-> from display.
->
-> Assisted-by: Copilot:claude-sonnet-5
-> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> ---
->  .../i915/display/intel_display_clock_gating.c |  7 ++++
->  .../i915/display/intel_display_clock_gating.h |  1 +
->  .../drm/i915/display/intel_display_power.c    |  7 +++-
->  drivers/gpu/drm/i915/display/intel_parent.c   |  9 +++++
->  drivers/gpu/drm/i915/display/intel_parent.h   |  3 ++
->  drivers/gpu/drm/i915/i915_driver.c            |  1 +
->  drivers/gpu/drm/i915/intel_clock_gating.c     | 37 ++++++++++++++++---
->  drivers/gpu/drm/i915/intel_clock_gating.h     |  2 +
->  drivers/gpu/drm/xe/Makefile                   |  1 +
->  include/drm/intel/display_parent_interface.h  |  7 ++++
->  10 files changed, 67 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> index ef1ee72494df..6716c377ef93 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> @@ -11,6 +11,7 @@
->  #include "intel_display_clock_gating.h"
->  #include "intel_display_core.h"
->  #include "intel_display_regs.h"
-> +#include "intel_pch.h"
->  
->  static void intel_display_gen9_init_clock_gating(struct intel_display *display)
->  {
-> @@ -305,3 +306,9 @@ void intel_display_init_clock_gating(struct intel_display *display)
->  	else if (display->platform.i965gm)
->  		intel_display_i965gm_init_clock_gating(display);
->  }
-> +
-> +void intel_display_restore_clock_gating(struct intel_display *display)
-> +{
-> +	intel_display_init_clock_gating(display);
-> +	intel_pch_init_clock_gating(display);
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> index dbfa5892cffe..074708a22436 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> @@ -9,5 +9,6 @@
->  struct intel_display;
->  
->  void intel_display_init_clock_gating(struct intel_display *display);
-> +void intel_display_restore_clock_gating(struct intel_display *display);
->  
->  #endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 0ebec6e0c240..6e38cabc5581 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -12,7 +12,7 @@
->  
->  #include "intel_backlight_regs.h"
->  #include "intel_cdclk.h"
-> -#include "intel_clock_gating.h"
-> +#include "intel_display_clock_gating.h"
->  #include "intel_combo_phy.h"
->  #include "intel_crtc.h"
->  #include "intel_de.h"
-> @@ -1588,7 +1588,10 @@ static void hsw_disable_pc8(struct intel_display *display)
->  	intel_init_pch_refclk(display);
->  
->  	/* Many display registers don't survive PC8+ */
-> -	intel_clock_gating_init(display->drm);
-> +	intel_display_restore_clock_gating(display);
-> +
-> +	/* Some GT/uncore clock gating workarounds don't survive PC8+ either */
-> +	intel_parent_clock_gating_restore_gt(display);
+--===============1252804716975500785==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah, but this should not be the display driver's responsibility.
+== Series Details ==
 
-Main goal, separate the clock gating paths between display and the rest
-at the *high* level. Display clock gating shouldn't call core driver
-stuff, core driver clock gating shouldn't call display stuff. There
-should be zero cross calls in the end.
+Series: drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p platforms (rev10)
+URL   : https://patchwork.freedesktop.org/series/167706/
+State : success
 
-We only ever end up in hsw_disable_pc8() through:
+== Summary ==
 
-intel_display_driver_pm_resume_early()
-  -> intel_display_power_resume_early()
-     -> hsw_disable_pc8()
+CI Bug Log - changes from xe-5751-885e7996176ebe07c2cc143c1ee067591e49fa66_BAT -> xe-pw-167706v10_BAT
+====================================================
 
-intel_display_driver_pm_runtime_resume_early()
-  -> intel_display_power_runtime_resume()
-     -> hsw_disable_pc8().
+Summary
+-------
 
-And (apart from the error paths) those have the intel_gt_resume_early(),
-intel_uncore_runtime_resume(), or intel_gt_runtime_resume() calls. Those
-are the ones that should be responsible for handling the GT/uncore
-stuff, not display.
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-167706v10_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [ABORT][1] ([Intel XE#8007]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5751-885e7996176ebe07c2cc143c1ee067591e49fa66/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v10/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
 
 
-BR,
-Jani.
+Build changes
+-------------
 
->  }
->  
->  static void intel_pch_reset_handshake(struct intel_display *display,
-> diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-> index 99cebb17763a..d8c38f138396 100644
-> --- a/drivers/gpu/drm/i915/display/intel_parent.c
-> +++ b/drivers/gpu/drm/i915/display/intel_parent.c
-> @@ -24,6 +24,15 @@
->  #include "intel_display_core.h"
->  #include "intel_parent.h"
->  
-> +/* clock_gating */
-> +void intel_parent_clock_gating_restore_gt(struct intel_display *display)
-> +{
-> +	if (drm_WARN_ON_ONCE(display->drm, !display->parent->clock_gating))
-> +		return;
-> +
-> +	display->parent->clock_gating->restore_gt(display->drm);
-> +}
-> +
->  /* dpt */
->  struct intel_dpt *intel_parent_dpt_create(struct intel_display *display,
->  					  struct drm_gem_object *obj, size_t size)
-> diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-> index cc4a58f63166..db2272ad9be3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_parent.h
-> +++ b/drivers/gpu/drm/i915/display/intel_parent.h
-> @@ -22,6 +22,9 @@ struct intel_panic;
->  struct intel_stolen_node;
->  struct iosys_map;
->  
-> +/* clock_gating */
-> +void intel_parent_clock_gating_restore_gt(struct intel_display *display);
-> +
->  /* dpt */
->  struct intel_dpt *intel_parent_dpt_create(struct intel_display *display,
->  					  struct drm_gem_object *obj, size_t size);
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index ce6d20958320..8da72cef63c9 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -745,6 +745,7 @@ static bool vgpu_active(struct drm_device *drm)
->  
->  static const struct intel_display_parent_interface parent = {
->  	.bo = &i915_display_bo_interface,
-> +	.clock_gating = &i915_display_clock_gating_interface,
->  	.dpt = &i915_display_dpt_interface,
->  	.dsb = &i915_display_dsb_interface,
->  	.fb_pin = &i915_display_fb_pin_interface,
-> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-> index c5c4441f3a61..180cb5862016 100644
-> --- a/drivers/gpu/drm/i915/intel_clock_gating.c
-> +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-> @@ -26,6 +26,7 @@
->   */
->  
->  #include <drm/drm_print.h>
-> +#include <drm/intel/display_parent_interface.h>
->  #include <drm/intel/intel_gmd_interrupt_regs.h>
->  #include <drm/intel/intel_gmd_misc_regs.h>
->  #include <drm/intel/mchbar_regs.h>
-> @@ -203,10 +204,8 @@ static void skl_init_clock_gating(struct drm_i915_private *i915)
->  	intel_display_init_clock_gating(i915->display);
->  }
->  
-> -static void bdw_init_clock_gating(struct drm_i915_private *i915)
-> +static void bdw_restore_gt_clock_gating(struct drm_i915_private *i915)
->  {
-> -	intel_display_init_clock_gating(i915->display);
-> -
->  	/* WaSwitchSolVfFArbitrationPriority:bdw */
->  	intel_uncore_rmw(&i915->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
->  
-> @@ -224,8 +223,6 @@ static void bdw_init_clock_gating(struct drm_i915_private *i915)
->  	/* WaProgramL3SqcReg1Default:bdw */
->  	gen8_set_l3sqc_credits(i915, 30, 2);
->  
-> -	intel_pch_init_clock_gating(i915->display);
-> -
->  	/* WaDisableDopClockGating:bdw
->  	 *
->  	 * Also see the CHICKEN2 write in bdw_init_workarounds() to disable DOP
-> @@ -234,16 +231,30 @@ static void bdw_init_clock_gating(struct drm_i915_private *i915)
->  	intel_uncore_rmw(&i915->uncore, GEN6_UCGCTL1, 0, GEN6_EU_TCUNIT_CLOCK_GATE_DISABLE);
->  }
->  
-> -static void hsw_init_clock_gating(struct drm_i915_private *i915)
-> +static void bdw_init_clock_gating(struct drm_i915_private *i915)
->  {
->  	intel_display_init_clock_gating(i915->display);
->  
-> +	bdw_restore_gt_clock_gating(i915);
-> +
-> +	intel_pch_init_clock_gating(i915->display);
-> +}
-> +
-> +static void hsw_restore_gt_clock_gating(struct drm_i915_private *i915)
-> +{
->  	/* This is required by WaCatErrorRejectionIssue:hsw */
->  	intel_uncore_rmw(&i915->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
->  			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
->  
->  	/* WaSwitchSolVfFArbitrationPriority:hsw */
->  	intel_uncore_rmw(&i915->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
-> +}
-> +
-> +static void hsw_init_clock_gating(struct drm_i915_private *i915)
-> +{
-> +	intel_display_init_clock_gating(i915->display);
-> +
-> +	hsw_restore_gt_clock_gating(i915);
->  
->  	intel_pch_init_clock_gating(i915->display);
->  }
-> @@ -448,6 +459,20 @@ void intel_clock_gating_init(struct drm_device *drm)
->  	i915->clock_gating_funcs->init_clock_gating(i915);
->  }
->  
-> +static void intel_clock_gating_restore_gt(struct drm_device *drm)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(drm);
-> +
-> +	if (IS_BROADWELL(i915))
-> +		bdw_restore_gt_clock_gating(i915);
-> +	else if (IS_HASWELL(i915))
-> +		hsw_restore_gt_clock_gating(i915);
-> +}
-> +
-> +const struct intel_display_clock_gating_interface i915_display_clock_gating_interface = {
-> +	.restore_gt = intel_clock_gating_restore_gt,
-> +};
-> +
->  static void nop_init_clock_gating(struct drm_i915_private *i915)
->  {
->  	drm_dbg_kms(&i915->drm,
-> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.h b/drivers/gpu/drm/i915/intel_clock_gating.h
-> index 3a4b443d9b8b..5c0f7c91c4f7 100644
-> --- a/drivers/gpu/drm/i915/intel_clock_gating.h
-> +++ b/drivers/gpu/drm/i915/intel_clock_gating.h
-> @@ -11,4 +11,6 @@ struct drm_device;
->  void intel_clock_gating_init(struct drm_device *drm);
->  void intel_clock_gating_hooks_init(struct drm_device *drm);
->  
-> +extern const struct intel_display_clock_gating_interface i915_display_clock_gating_interface;
-> +
->  #endif /* __INTEL_CLOCK_GATING_H__ */
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 67b8b5477639..7737fb27b259 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -260,6 +260,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
->  	i915-display/intel_ddi_buf_trans.o \
->  	i915-display/intel_de.o \
->  	i915-display/intel_display.o \
-> +	i915-display/intel_display_clock_gating.o \
->  	i915-display/intel_display_conversion.o \
->  	i915-display/intel_display_device.o \
->  	i915-display/intel_display_driver.o \
-> diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-> index 5e44c022d1ae..c6638c108009 100644
-> --- a/include/drm/intel/display_parent_interface.h
-> +++ b/include/drm/intel/display_parent_interface.h
-> @@ -65,6 +65,10 @@ struct intel_display_bo_interface {
->  #endif
->  };
->  
-> +struct intel_display_clock_gating_interface {
-> +	void (*restore_gt)(struct drm_device *drm);
-> +};
-> +
->  struct intel_display_dpt_interface {
->  	struct intel_dpt *(*create)(struct drm_gem_object *obj, size_t size);
->  	void (*destroy)(struct intel_dpt *dpt);
-> @@ -250,6 +254,9 @@ struct intel_display_parent_interface {
->  	/** @bo: BO interface */
->  	const struct intel_display_bo_interface *bo;
->  
-> +	/** @clock_gating: Clock gating interface. Optional. */
-> +	const struct intel_display_clock_gating_interface *clock_gating;
-> +
->  	/** @dpt: DPT interface. Optional. */
->  	const struct intel_display_dpt_interface *dpt;
+  * IGT: IGT_9095 -> IGT_9096
+  * Linux: xe-5751-885e7996176ebe07c2cc143c1ee067591e49fa66 -> xe-pw-167706v10
 
--- 
-Jani Nikula, Intel
+  IGT_9095: 9095
+  IGT_9096: 9096
+  xe-5751-885e7996176ebe07c2cc143c1ee067591e49fa66: 885e7996176ebe07c2cc143c1ee067591e49fa66
+  xe-pw-167706v10: 167706v10
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v10/index.html
+
+--===============1252804716975500785==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p platforms (rev10)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167706/">https://patchwork.freedesktop.org/series/167706/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v10/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v10/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5751-885e7996176ebe07c2cc143c1ee067591e49fa66_BAT -&gt; xe-pw-167706v10_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-167706v10_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5751-885e7996176ebe07c2cc143c1ee067591e49fa66/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v10/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9095 -&gt; IGT_9096</li>
+<li>Linux: xe-5751-885e7996176ebe07c2cc143c1ee067591e49fa66 -&gt; xe-pw-167706v10</li>
+</ul>
+<p>IGT_9095: 9095<br />
+  IGT_9096: 9096<br />
+  xe-5751-885e7996176ebe07c2cc143c1ee067591e49fa66: 885e7996176ebe07c2cc143c1ee067591e49fa66<br />
+  xe-pw-167706v10: 167706v10</p>
+
+</body>
+</html>
+
+--===============1252804716975500785==--
