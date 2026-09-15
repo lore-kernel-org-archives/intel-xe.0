@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4519AC88E7D
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 16:49:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05719C88E77
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 17:03:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E752010ECC8;
-	Tue, 15 Sep 2026 16:49:15 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A080310ECC8;
- Tue, 15 Sep 2026 16:49:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4780308047292609588=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C7BE10E211;
+	Tue, 15 Sep 2026 17:03:31 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CDNdCq2/";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D471010E211;
+ Tue, 15 Sep 2026 17:03:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789491810; x=1821027810;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fmONBvWpuhbeKJhsmYewgk9SshsIZkP9VQiBROl/rXM=;
+ b=CDNdCq2/jLyfXr/yEhAso4U5bPoLoay9yOFc1awxreOSy+QEcaFGgV7Y
+ 2tOxzhKefgYuyh0Zrc1NLlJZchnG+pEGaXsNhq5UzMCtHV10r4Zv8Lxw9
+ zdE3vs7c4N6UxGUzGUP4Jr/7VpK9jb40WOc5fW0g5o/uKQ7oCGhAg4Jsb
+ jyaV2NiuINlS7sF/F2dteaj+GMLQkgJ5cVTq9IpQiwdKUd8G9q7UMLd71
+ NXb95JzSDG1Vq/bvsFOeFqld2nspXCB242ahDvfVMI+qaSfuCZgi+cYW5
+ xajnoM3T38wGstbJUMTJOcGxfSv1BE/2JhXFQXTnOtVYjUq/z3M+PAId3 A==;
+X-CSE-ConnectionGUID: sBBc9EzmQS6p4c6lmkyNdA==
+X-CSE-MsgGUID: UNrC5rtKTIm5Ijj4u2M8LA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="371859"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
+   d="scan'208";a="371859"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa116.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 10:03:29 -0700
+X-CSE-ConnectionGUID: s1ij1KJvQDuM8OPLX0X6Xg==
+X-CSE-MsgGUID: Hwmcno6STPytJCgbiFMR5A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="270443870"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 10:03:26 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com,
+ jani.nikula@linux.intel.com, suraj.kandpal@intel.com,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH v7 00/14] Add support for Common SDP Transmission Line
+Date: Tue, 15 Sep 2026 22:16:41 +0530
+Message-ID: <20260915164657.3429075-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/kunit=3A_Skip_test_i?=
- =?utf-8?q?f_can=27t_find_=28sub=29platform?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 15 Sep 2026 16:49:14 -0000
-Message-ID: <178949095465.166934.9645171367974644285@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260915155753.472-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20260915155753.472-1-michal.wajdeczko@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +65,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4780308047292609588==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Xe3p_lpd introduces new register bits to program a common SDP
+Transmission line that will be used by the Hardware to position the
+SDPs. Along with this, another new register is also added to stagger
+the different SDPs.
 
-== Series Details ==
+This series adds support for programming the Common SDP Transmission Line
+(CMN_SDP_TL) and its stagger control registers.
 
-Series: drm/xe/kunit: Skip test if can't find (sub)platform
-URL   : https://patchwork.freedesktop.org/series/174182/
-State : success
+Rev2:
+ - Add tracking for AS SDP Transmission line first. Instead of directly
+   programming it in the register, compute the state during
+   compute_config_late() and write the value from crtc_state.
+   Readout from the register through a vrr helper, since the register is
+   defined in context of VRR and will be used for both DP and HDMI VRR
+   packets.
+ - Add support to track other SDP transmission lines, instead of stagger
+   values.
+ - Compute the transmission lines in compute_config_late path and add
+   readout.
+ - Always write the Common SDP Transmission line and other stagger
+   values, whether the packets are sent or not.
+ - Dump SDP transmission lines in crtc_state.
 
-== Summary ==
+Rev3:
+ - Introduce new files for handling the Data Island Packets (DIPs)
+   programming in one place. (Ville)
+ - Extract the Transmission Line programming for
+   HDMI Extended Metadata Packet (EMP) and Adaptive Sync SDP (AS SDP)
+   i.e. EMP_AS_SDP_TL in the new file.
+ - Add programming for Common Base SDP Transmission lines and other
+   stagger offsets in the new file.
+ - Add a #TODO to extract other helpers that deal with Data Island Packets
+   and VIDEO_DIP registers.
+ - Place the HAS_* Macros related to DIP in the intel_dip.h file
+   instead of intel_display_devices.h (Jani) 
+ - Make function names more descriptive and avoid overuse of multiple
+   acronyms. (Jani)
 
-CI Bug Log - changes from xe-5753-094c4642078b25417a4885f8631aa38c00e87206_BAT -> xe-pw-174182v1_BAT
-====================================================
+Note:
+ - Though I have fixed the naming as suggested in most places, I
+   have retained HAS_EMP_AS_SDP_TL for the following reasons:
+   1) Lack of an apt name that avoids the acronym for
+      'Extended Metadata Packet Adaptive Sync Secondary Packet Transmission
+      Line'.
+   2) Keeping this name makes it easier to find and map with the exact name
+      for such a complex register name.
 
-Summary
--------
+   However, I am open to suggestions for a better name.
 
-  **SUCCESS**
+Rev4:
+ - Drop the patch to check for DP encoder before writing EMP_AS_SDP_TL
+   register. Instead reset the register to 0 for non DP encoder case.
 
-  No regressions found.
+Rev5:
+ - Rebase
+ - Address review comments from Suraj:
+ - Drop some redundant checks, and fix few commit messages.
 
-  
+Rev6:
+ - Move the new struct in intel_display_types.h from intel_dip.h (Jani)
+ - Check for CMN_SDP_TL restriction and Warn if not followed. (Suraj)
+ - Use HAS_CMN_SDP_TL() instead of checking if cmn_sdp_tl is set or not.
+   (Sashiko)
+ - Make sure that the guardband is sufficient as per CMN_SDP_TL while
+   optiminzing the guardband.
 
-Participating hosts (15 -> 15)
-------------------------------
+Rev7:
+ - Account for VSC SDP's own minimum guardband requirement in
+   intel_dp_sdp_min_guardband(), for completeness. (Sashiko)
+ - Wrap two long line macro definitions in intel_dip_regs.h.
 
-  No changes in participating hosts
+Ankit Nautiyal (13):
+  drm/i915/dip: Add new file to handle Data Island Packet hardware
+  drm/i915/vrr: Use the helper to write EMP_AS_SDP_TL register
+  drm/i915/intel_dip: Add check for DP encoder
+  drm/i915/dip: Add helper to get AS SDP Transmission Line
+  drm/i915/display: Add crtc state for DIP transmission lines
+  drm/i915/dip: Store and use AS SDP transmission line from crtc state
+  drm/i915/dip: Add HAS_COMMON_SDP_TL macro
+  drm/i915/dip: Store SDP transmission lines in crtc_state
+  drm/i915/dp: Introduce helpers to enable/disable CMN SDP Transmission
+    line
+  drm/i915/dip: Enable Common SDP Transmission line
+  drm/i915/dp: Account VSC SDP in min guardband
+  drm/i915/dp: Adjust SDP guardband requirement for CMN_SDP_TL
+  drm/i915/display: Dump DIP Transmission lines
 
-Known issues
-------------
+Arun R Murthy (1):
+  drm/i915/dip_regs: Add register definitions for common SDP
+    Transmission Line
 
-  Here are the changes found in xe-pw-174182v1_BAT that come from known issues:
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ .../drm/i915/display/intel_crtc_state_dump.c  |   9 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   5 +
+ drivers/gpu/drm/i915/display/intel_dip.c      | 215 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dip.h      |  53 +++++
+ drivers/gpu/drm/i915/display/intel_dip_regs.h |  38 ++++
+ drivers/gpu/drm/i915/display/intel_display.c  |   6 +
+ .../drm/i915/display/intel_display_types.h    |  16 ++
+ drivers/gpu/drm/i915/display/intel_dp.c       |  62 ++++-
+ drivers/gpu/drm/i915/display/intel_vrr.c      |  14 +-
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h |   6 -
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ 12 files changed, 407 insertions(+), 19 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dip.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dip.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dip_regs.h
 
-### IGT changes ###
+-- 
+2.50.1
 
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [ABORT][1] ([Intel XE#8007]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5753-094c4642078b25417a4885f8631aa38c00e87206/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174182v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-
-
-Build changes
--------------
-
-  * Linux: xe-5753-094c4642078b25417a4885f8631aa38c00e87206 -> xe-pw-174182v1
-
-  IGT_9098: 9098
-  xe-5753-094c4642078b25417a4885f8631aa38c00e87206: 094c4642078b25417a4885f8631aa38c00e87206
-  xe-pw-174182v1: 174182v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174182v1/index.html
-
---===============4780308047292609588==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/kunit: Skip test if can&#x27;t find (sub)platform</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174182/">https://patchwork.freedesktop.org/series/174182/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174182v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174182v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5753-094c4642078b25417a4885f8631aa38c00e87206_BAT -&gt; xe-pw-174182v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-174182v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5753-094c4642078b25417a4885f8631aa38c00e87206/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174182v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5753-094c4642078b25417a4885f8631aa38c00e87206 -&gt; xe-pw-174182v1</li>
-</ul>
-<p>IGT_9098: 9098<br />
-  xe-5753-094c4642078b25417a4885f8631aa38c00e87206: 094c4642078b25417a4885f8631aa38c00e87206<br />
-  xe-pw-174182v1: 174182v1</p>
-
-</body>
-</html>
-
---===============4780308047292609588==--
