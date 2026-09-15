@@ -4,138 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72479C982CD
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 560A7C88E53
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08EA910EE39;
-	Tue, 15 Sep 2026 14:13:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C0DC10E971;
+	Tue, 15 Sep 2026 14:13:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="uBBYtunF";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="V1LNalmi";
 	dkim-atps=neutral
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com
- [209.85.215.198])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C88BB10FAF3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:19:50 +0000 (UTC)
-Received: by mail-pg1-f198.google.com with SMTP id
- 41be03b00d2f7-cc132709c76so5389177a12.3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:19:50 -0700 (PDT)
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
+ [209.85.216.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC9E510E254
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 06:42:30 +0000 (UTC)
+Received: by mail-pj1-f42.google.com with SMTP id
+ 98e67ed59e1d1-38a0c7e841fso6020713a91.2
+ for <intel-xe@lists.freedesktop.org>; Mon, 14 Sep 2026 23:42:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460390; x=1790065190;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:content-type:cc:to:from:subject
- :message-id:mime-version:date:from:to:cc:subject:date:message-id
- :reply-to:content-type;
- bh=cTJ+iDaVRz+oQczzBBEu9x7Pp5Lm2h3B0iGAZglcmy4=;
- b=uBBYtunF36eNPA7T+vEJGUBpte8YSOgOBhOFZHDVGG0IDYIypIZ6h97TYDNP+78GQ9
- yBeSyNuJoyo66vb7XPffdDO0ePG6d4KCJ0hBPpZ5zOmwYFITWhjm7X0338ZvomPcWiq+
- CvrwmZ3WHVX5nqAy/gOl+uTYoalDnbzCdE45e6I0X/iYzmlGPrrPsDazGd4e+9faCzcF
- cQWk9x6+23RXwIuN8bdI4smW+XEJbhe1FqSY7wV/5/sG6O61KSi6TF/b/GsepuSWnqRq
- sIpJes3lDRvQDvpCQf8IlSwlIun4E1oEWdbwDuajELzSbmNrs7bDpv+RZcLavN8rjfo9
- 5VEQ==
+ d=gmail.com; s=20251104; t=1789454550; x=1790059350; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=wCSTuPUQ/GLR9/B7uIQrcZbxwMxzx1bd+YZe2GK5X6k=;
+ b=V1LNalmipf2mXOoGVzaVUKYT0QltEBi+vXUsK0XY/FoqfLZh6YP7oNLn3p6mwj2/mn
+ lOaixee+XP6qMImSQIWSEdwNegB44iQAuIJY7AjEvJhXS1RgpuDPjdNifHL4/H3ElKgA
+ EpdRydNpzzyox4rzOSc0BrcMCSb5nIkDwhFL2Q8O7a3nroBrbvfyk6ABb1ONPGNrAloH
+ +e1ujlHSTvUwM3P6Kh2KilwLX5BemPTtf2VOlr7Eb17yASFIbVDwcifjuWzJadKXfck0
+ LWPsO9zJeSdszeawI8w+oVmccriQSoJYLOczmwkUchVV19rdKv/v3wEmqv6ZMOgLeh8a
+ 9NJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460390; x=1790065190;
- h=content-transfer-encoding:content-type:cc:to:from:subject
- :message-id:mime-version:date:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=cTJ+iDaVRz+oQczzBBEu9x7Pp5Lm2h3B0iGAZglcmy4=;
- b=a0H7r5gLUQbiDIP3h4D7/pisb3Y4NzXtJq+tyfStJoExbPnZ8TwVLUl6o4VfON2wc7
- No342SbKKFph9ValsAlvavGqxZlvyd9tYPnNvXMFCaIb7fYc9G4rKOMtPsUDRg+6KX6D
- iiwgxXhCrAw2q1i3A4uwuXxLMmahMbRb8JOiHyXGdEaYvFRbqf9P+nyv/8J+skr7HMWQ
- jUc0PonDcbW+qNg8Cbnma+eUl3YP5xX+57HUO7skJJjPOKDysWcF0IQfjfzm6sx+CIIY
- tfDng6Frv7fPYx4q8yDcEWNjCwsRppNLAnnC15daSl24hwxKFv7JcMKJCrF3PrazARUc
- LCMw==
-X-Forwarded-Encrypted: i=1;
- AKwUvBzkWMEW8IRBs86DHgrxyJ7Q8rV+GYSouBaQwwWE9TScKE2JhGMUDQ5h2kZ3KuaNGR+ysorIB07IAA==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++nzcMh0uuTIDHrWhg+a2wVHcQsN/+7f41w12Fko07+dfKPr5aON
- EqNB609PQuEMNACxUp2kMAEZGVubuU1XhwoXHSxtvJN9r0lXXr4YnwTQhbOxv2ZCrmfspjnNLqf
- m
-X-Received: from pgbo14.prod.google.com ([2002:a63:5a0e:0:b0:cc4:337f:e10f])
- (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6a20:7d9f:b0:3b4:61f:1fec
- with SMTP id adf61e73a8af0-3db4038ec7cmr15429477637.2.1789460388838; Tue, 15
- Sep 2026 01:19:48 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:17 +0000
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-1-morbo@google.com>
-Subject: [PATCH 00/28] Replace remaining strlcat() call sites with
- snprintf()/seq_buf()
-From: Bill Wendling <morbo@google.com>
-To: linux-kernel@vger.kernel.org
-Cc: Bill Wendling <morbo@google.com>, Russell King <linux@armlinux.org.uk>, 
- Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- Helge Deller <deller@gmx.de>, 
- Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, 
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
- "H. Peter Anvin" <hpa@zytor.com>, Ian Abbott <abbotti@mev.co.uk>, 
- H Hartley Sweeten <hsweeten@visionengravers.com>,
- Tony Luck <tony.luck@intel.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>, 
- "=?UTF-8?q?Thomas=20Hellstr=C3=B6m?=" <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Matthias Schwarzott <zzam@gentoo.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Tony Nguyen <anthony.l.nguyen@intel.com>, 
- Przemek Kitszel <przemyslaw.kitszel@intel.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Arend van Spriel <arend.vanspriel@broadcom.com>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Peter Griffin <peter.griffin@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Linus Walleij <linusw@kernel.org>, 
- Anil Gurumurthy <anil.gurumurthy@qlogic.com>, 
- Sudarsana Kalluru <sudarsana.kalluru@qlogic.com>,
- "Martin K. Petersen" <mkp@kernel.org>, 
- Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>, 
- Mike Marshall <hubcap@omnibond.com>, Martin Brandenburg <martin@omnibond.com>,
- Kees Cook <kees@kernel.org>, 
- Jiri Pirko <jiri@resnulli.us>, Simon Horman <horms@kernel.org>,
- Chuck Lever <cel@kernel.org>, 
- Jeff Layton <jlayton@kernel.org>, NeilBrown <neil@brown.name>, 
- Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
- Tom Talpey <tom@talpey.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Andrew Morton <akpm@linux-foundation.org>,
- "Mike Rapoport (Microsoft)" <rppt@kernel.org>, 
- Kanglong Wang <wangkanglong@loongson.cn>, Tiezhu Yang <yangtiezhu@loongson.cn>,
- Qiang Ma <maqianga@uniontech.com>, Randy Dunlap <rdunlap@infradead.org>, 
- Pengpeng Hou <pengpeng@iscas.ac.cn>, Ard Biesheuvel <ardb@kernel.org>,
- Breno Leitao <leitao@debian.org>, Thorsten Blum <blum@kernel.org>,
- Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Lyude Paul <lyude@redhat.com>,
- Ashutosh Desai <ashutoshdesai993@gmail.com>, Imre Deak <imre.deak@intel.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Johan Hovold <johan@kernel.org>, Johannes Berg <johannes.berg@intel.com>, 
- Miri Korenblit <miriam.rachel.korenblit@intel.com>, 
- Alexander Stein <alexander.stein@ew.tq-group.com>, 
- Cryolitia PukNgae <cryolitia@uniontech.com>,
- Jiaming Zhang <r772577952@gmail.com>, 
- Will Porter <mrwillporter@gmail.com>, Cen Zhang <zzzccc427@gmail.com>, 
- "=?UTF-8?q?C=C3=A1ssio=20Gabriel?=" <cassiogabrielcontato@gmail.com>,
- Rong Zhang <i@rong.moe>, 
- Arun Raghavan <arunr@valvesoftware.com>, linux-arm-kernel@lists.infradead.org, 
- loongarch@lists.linux.dev, linux-mips@vger.kernel.org, 
- linux-parisc@vger.kernel.org, linux-edac@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-input@vger.kernel.org, linux-media@vger.kernel.org, 
- intel-wired-lan@lists.osuosl.org, netdev@vger.kernel.org, 
- linux-wireless@vger.kernel.org, brcm80211@lists.linux.dev, 
- brcm80211-dev-list.pdl@broadcom.com, devicetree@vger.kernel.org, 
- linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org, 
- linux-scsi@vger.kernel.org, linux-nfs@vger.kernel.org, 
- devel@lists.orangefs.org, linux-hardening@vger.kernel.org, 
- linux-sound@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ d=1e100.net; s=20260707; t=1789454550; x=1790059350;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=wCSTuPUQ/GLR9/B7uIQrcZbxwMxzx1bd+YZe2GK5X6k=;
+ b=B9DQ9aFfTQ+6aioKnGQn+DQqDEqbMvOLnTdnZsH5VYolpFAITa8DrNkJtGDdNN2TlL
+ SGH4vRfK6s4JDguZ6cTeHwb1801kAszILlnqt5cjHLYC7YtTOLI2/XZxc/qJDbzmzVgt
+ HyHHPtS6fzMOGo1nI/K9N+hrNdLlRTCN0uyA8MgWT25aYKjUWj/Egd+hP1ZGJRONn0zh
+ 3sdvqf5r2Fkoap1rMsk0xdncRp+GS3Q+DwyQkjSW/GNj+1w3ptuYQTJhOj36O8/xs9UH
+ JdzGNCD6qTMHKUehPldJ7bzalVfuUrylbaeKN5CW2HM4LsyTT5WBeT8V4lTqVJ3zZrCS
+ hXYA==
+X-Gm-Message-State: AFuF++kmX/kdbeL99fGBHLGqt4Jh95AoO/ESjSzro4RFA1v/29OvWqh6
+ gYpXjWnegUu8UCRNxfuhpCLcs4ZPs5qy/JLb3PbNXM+fClXpXAtswHYN
+X-Gm-Gg: AYBFou13tapAY9+1JcEeQBaujDdtJiXSKN7MqJ3bIgrbJPF9+nAoL9UdxZkcb4AfZPA
+ MulVOQ3iApnwtdQwPfiLnZyv3wAVxP8HtqMIHbwirsHpMMUgNotXaXmR5GzwuHs1Dwe+kiVubmw
+ ZO3MBqc7+e/F1LW3ch5jpc+qBsGuvFdQPbWQNCMI4zz79L5xX0HBStqXqhn/EPIRFHa9IoeVPKe
+ fJChZVm4n7S/KNV8tUO3wqKotEAuWZKTC9nqLXGntF5wPmNct7DorsbvSGN0wLOKPq2D2l4OGjj
+ PZRp0fwZTV/WNeH6oScEQnaUFYOuhMosKsoxjcTX4/37pcP7nxmUzcd1w0oy0IlYgb72geg47vJ
+ 5UoIKm7StD9r8DpEIpN6xicJIvMjGiGbTjxV0+a1H/QG0BYJU0xjF7U3K6/iuBVmujJbD0ps8gj
+ ic3QEFUXgYh15apHUg4kpibvYeXXBrJKXKPK8PT1wCerCzxtbEryys0Muf6I2fg5lyYHuHOZIUZ
+ LNBTeAQq8mvzF9dFmRP+hk9+jrkyUaSeUZ9wCfrQmf5bFPvS+V2
+X-Received: by 2002:a17:90b:568b:b0:39e:d2a:e2dc with SMTP id
+ 98e67ed59e1d1-39e0d2aeeb9mr114032a91.12.1789454550214; 
+ Mon, 14 Sep 2026 23:42:30 -0700 (PDT)
+Received: from alpine.my.domain ([218.188.146.2])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-39dfdcb54d8sm3240016a91.6.2026.09.14.23.42.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 14 Sep 2026 23:42:29 -0700 (PDT)
+From: Andrew Zhou <zhoulol888@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Andrew Zhou <zhoulol888@gmail.com>
+Subject: [PATCH v2] drm/xe/display: Remove invalid initial plane PTE check for
+ iGPU
+Date: Tue, 15 Sep 2026 06:42:00 +0000
+Message-ID: <20260915064200.23171-1-zhoulol888@gmail.com>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260905142500.17666-1-zhoulol888@gmail.com>
+References: <20260905142500.17666-1-zhoulol888@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 15 Sep 2026 14:13:02 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -151,203 +92,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-strlcat() is deprecated: like strcat(), it requires re-scanning the
-destination string from the beginning on every call, which is O(n^2)
-when used to build up a string incrementally, and its truncation
-behavior is easy to get wrong. See:
+Pantherlake integrated graphics can have the XE_GGTT_PTEDM bit set in
+the BIOS-initialised framebuffer PTE. The validation rejects this and
+fails to create the initial framebuffer, resulting in static.
 
-  https://github.com/KSPP/linux/issues/370
+Remove the too-strict validation. Since this was the only caller of
+need_pte_local() outside the DGFX path, the helper is now
+unconditionally true there; fold the check and drop the dead
+need_pte_local() and has_lmembar() helpers.
 
-This series removes the remaining strlcat() call sites in the tree
-(plus the one inside fortify-string.h's strcat() implementation
-itself), replacing each with snprintf(), scnprintf(), or the seq_buf()
-API, whichever best fits the surrounding code.
-
-One unrelated fix is included. While auditing drivers/edac/thunderx_edac.c
-for its strlcat() conversion, "EDAC/thunderx: Fix stale error context in
-thunderx_l2c_threaded_isr()" addresses a pre-existing bug, present since
-the driver's original 2017 commit: thunderx_l2c_threaded_isr() computes
-its ring "tail"/"ctx" once before its drain loop and never recomputes
-them per iteration, unlike the analogous OCX handlers in the same file,
-so it re-reports the same ring entry for every queued error instead of
-draining the ring. It's split out as its own patch, ahead of the
-strlcat() conversion for that file, so it can be reviewed and
-backported independently of the rest of this series.
-
-Bill Wendling (28):
-  ALSA: ac97: Refactor snd_ac97_get_name() to use snprintf()
-  sunrpc: Refactor rpc_sockaddr2uaddr() to use snprintf() instead of
-    strlcat()
-  ARM: atags: Replace strlcat() with snprintf() for cmdline extend
-  scsi: bfa: Use snprintf() in bfa_fcs_fabric_nsymb_init()
-  ALSA: usb-audio: Refactor usb_audio_make_longname() to use seq_buf
-  comedi: comedi_bond: Refactor strlcat() to seq_buf in do_dev_config()
-  scsi: bfa: Use snprintf() in bfa_fcs_fabric_psymb_init()
-  devlink: Refactor strlcat() to seq_buf in
-    __devlink_compat_running_version()
-  drm/dp_mst: Refactor build_mst_prop_path() to use seq_buf
-  of/fdt: Replace strlcat() with snprintf() in
-    early_init_dt_scan_chosen()
-  wifi: brcmfmac: Replace strlcat() with snprintf() in
-    brcmf_fw_alloc_request()
-  fortify: Convert strlcat() to snprintf() in strcat()
-  i40e: Replace strlcat() with snprintf() in i40e_nvm_version_str()
-  ALSA: usb-audio: Refactor append_ctl_name() to use snprintf()
-  orangefs: Use seq_buf for debug help string generation
-  pinctrl: samsung: Use snprintf() to construct pin bank names
-  MIPS: cmdline: Refactor bootcmdline_append() to use snprintf()
-  LoongArch: Refactor bootcmdline_init() to use seq_buf instead of
-    strlcat()
-  x86/setup: Use snprintf() to concatenate builtin and boot command
-    lines
-  parisc: Refactor strlcat() to seq_buf in setup_cmdline()
-  NFS: nfsroot: Refactor root_nfs_cat() to use snprintf()
-  media: si2165: Use snprintf() to format frontend name
-  Input: synaptics_usb - use seq_buf and snprintf() for name and phys
-  EDAC/thunderx: Fix stale error context in thunderx_l2c_threaded_isr()
-  EDAC/thunderx: Replace strlcat() with seq_buf
-  wifi: wil6210: Refactor resume_triggers2string() to use seq_buf
-  drm/xe/pf: Convert strlcat() to seq_buf in control_read()
-  drm/xe/pf: Refactor strlcat() to seq_buf in sched_group_engines_read()
-
- arch/arm/kernel/atags_parse.c                 |  7 +-
- arch/loongarch/kernel/setup.c                 | 22 +++--
- arch/mips/kernel/setup.c                      | 21 ++++-
- arch/parisc/kernel/setup.c                    | 16 ++--
- arch/x86/kernel/setup.c                       |  8 +-
- drivers/comedi/drivers/comedi_bond.c          | 16 ++--
- drivers/edac/thunderx_edac.c                  | 67 ++++++++++------
- drivers/gpu/drm/display/drm_dp_mst_topology.c | 15 ++--
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   | 24 +++---
- drivers/input/mouse/synaptics_usb.c           | 29 ++++---
- drivers/media/dvb-frontends/si2165.c          | 17 ++--
- drivers/net/ethernet/intel/i40e/i40e.h        | 15 +++-
- drivers/net/wireless/ath/wil6210/wmi.c        | 38 +++++----
- .../broadcom/brcm80211/brcmfmac/firmware.c    | 21 ++---
- drivers/of/fdt.c                              | 11 ++-
- drivers/pinctrl/samsung/pinctrl-samsung.c     |  3 +-
- drivers/scsi/bfa/bfa_fcs.c                    | 80 +++++--------------
- fs/nfs/nfsroot.c                              | 11 ++-
- fs/orangefs/orangefs-debugfs.c                | 36 ++++-----
- include/linux/fortify-string.h                |  7 +-
- net/devlink/dev.c                             |  8 +-
- net/sunrpc/addr.c                             | 16 ++--
- sound/pci/ac97/ac97_codec.c                   |  9 ++-
- sound/usb/card.c                              | 58 +++++++++-----
- sound/usb/mixer.c                             |  8 +-
- 25 files changed, 309 insertions(+), 254 deletions(-)
+Signed-off-by: Andrew Zhou <zhoulol888@gmail.com>
+Tested-by: Andrew Zhou <zhoulol888@gmail.com>
+Tested-on: Intel Core Ultra X7 358H, integrated graphics, B0 stepping
 ---
-Cc: Russell King <linux@armlinux.org.uk>
-Cc: Huacai Chen <chenhuacai@kernel.org>
-Cc: WANG Xuerui <kernel@xen0n.name>
-Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>
-Cc: Helge Deller <deller@gmx.de>
-Cc: Thomas Gleixner <tglx@kernel.org>
-Cc: Ingo Molnar <mingo@redhat.com>
-Cc: Borislav Petkov <bp@alien8.de>
-Cc: Dave Hansen <dave.hansen@linux.intel.com>
-Cc: x86@kernel.org
-Cc: "H. Peter Anvin" <hpa@zytor.com>
-Cc: Ian Abbott <abbotti@mev.co.uk>
-Cc: H Hartley Sweeten <hsweeten@visionengravers.com>
-Cc: Tony Luck <tony.luck@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: "Thomas Hellstr=C3=B6m" <thomas.hellstrom@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Matthias Schwarzott <zzam@gentoo.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Tony Nguyen <anthony.l.nguyen@intel.com>
-Cc: Przemek Kitszel <przemyslaw.kitszel@intel.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>
-Cc: "David S. Miller" <davem@davemloft.net>
-Cc: Eric Dumazet <edumazet@google.com>
-Cc: Jakub Kicinski <kuba@kernel.org>
-Cc: Paolo Abeni <pabeni@redhat.com>
-Cc: Arend van Spriel <arend.vanspriel@broadcom.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Linus Walleij <linusw@kernel.org>
-Cc: Anil Gurumurthy <anil.gurumurthy@qlogic.com>
-Cc: Sudarsana Kalluru <sudarsana.kalluru@qlogic.com>
-Cc: "Martin K. Petersen" <mkp@kernel.org>
-Cc: Trond Myklebust <trondmy@kernel.org>
-Cc: Anna Schumaker <anna@kernel.org>
-Cc: Mike Marshall <hubcap@omnibond.com>
-Cc: Martin Brandenburg <martin@omnibond.com>
-Cc: Kees Cook <kees@kernel.org>
-Cc: Jiri Pirko <jiri@resnulli.us>
-Cc: Simon Horman <horms@kernel.org>
-Cc: Chuck Lever <cel@kernel.org>
-Cc: Jeff Layton <jlayton@kernel.org>
-Cc: NeilBrown <neil@brown.name>
-Cc: Olga Kornievskaia <okorniev@redhat.com>
-Cc: Dai Ngo <Dai.Ngo@oracle.com>
-Cc: Tom Talpey <tom@talpey.com>
-Cc: Jaroslav Kysela <perex@perex.cz>
-Cc: Takashi Iwai <tiwai@suse.com>
-Cc: Bill Wendling <morbo@google.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Cc: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
-Cc: Kanglong Wang <wangkanglong@loongson.cn>
-Cc: Tiezhu Yang <yangtiezhu@loongson.cn>
-Cc: Qiang Ma <maqianga@uniontech.com>
-Cc: Randy Dunlap <rdunlap@infradead.org>
-Cc: Pengpeng Hou <pengpeng@iscas.ac.cn>
-Cc: Ard Biesheuvel <ardb@kernel.org>
-Cc: Breno Leitao <leitao@debian.org>
-Cc: Thorsten Blum <blum@kernel.org>
-Cc: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Ashutosh Desai <ashutoshdesai993@gmail.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Johan Hovold <johan@kernel.org>
-Cc: Johannes Berg <johannes.berg@intel.com>
-Cc: Miri Korenblit <miriam.rachel.korenblit@intel.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Cryolitia PukNgae <cryolitia@uniontech.com>
-Cc: Jiaming Zhang <r772577952@gmail.com>
-Cc: Will Porter <mrwillporter@gmail.com>
-Cc: Cen Zhang <zzzccc427@gmail.com>
-Cc: "C=C3=A1ssio Gabriel" <cassiogabrielcontato@gmail.com>
-Cc: Rong Zhang <i@rong.moe>
-Cc: Arun Raghavan <arunr@valvesoftware.com>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-kernel@vger.kernel.org
-Cc: loongarch@lists.linux.dev
-Cc: linux-mips@vger.kernel.org
-Cc: linux-parisc@vger.kernel.org
-Cc: linux-edac@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Cc: linux-input@vger.kernel.org
-Cc: linux-media@vger.kernel.org
-Cc: intel-wired-lan@lists.osuosl.org
-Cc: netdev@vger.kernel.org
-Cc: linux-wireless@vger.kernel.org
-Cc: brcm80211@lists.linux.dev
-Cc: brcm80211-dev-list.pdl@broadcom.com
-Cc: devicetree@vger.kernel.org
-Cc: linux-samsung-soc@vger.kernel.org
-Cc: linux-gpio@vger.kernel.org
-Cc: linux-scsi@vger.kernel.org
-Cc: linux-nfs@vger.kernel.org
-Cc: devel@lists.orangefs.org
-Cc: linux-hardening@vger.kernel.org
-Cc: linux-sound@vger.kernel.org
+v1 -> v2:
+- Drop need_pte_local() and has_lmembar(), now dead after removing the
+  iGPU validation (sashiko)
+---
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 20 +------------------
+ 1 file changed, 1 insertion(+), 19 deletions(-)
 
---=20
-2.47.3
+diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+index 0f86b7303..3484b3033 100644
+--- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
++++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+@@ -27,16 +27,6 @@ static bool is_pte_local(u64 pte)
+ 	return pte & XE_GGTT_PTE_DM;
+ }
+ 
+-static bool has_lmembar(struct xe_device *xe)
+-{
+-	return GRAPHICS_VERx100(xe) >= 1270;
+-}
+-
+-static bool need_pte_local(struct xe_device *xe)
+-{
+-	return IS_DGFX(xe) || has_lmembar(xe);
+-}
+-
+ static struct xe_bo *
+ initial_plane_bo(struct xe_device *xe,
+ 		 struct intel_initial_plane_config *plane_config)
+@@ -60,7 +50,7 @@ initial_plane_bo(struct xe_device *xe,
+ 	if (IS_DGFX(xe)) {
+ 		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
+ 
+-		if (is_pte_local(pte) != need_pte_local(xe)) {
++		if (!is_pte_local(pte)) {
+ 			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
+ 			return NULL;
+ 		}
+@@ -85,7 +75,6 @@ initial_plane_bo(struct xe_device *xe,
+ 			    &phys_base);
+ 	} else {
+ 		struct ttm_resource_manager *stolen;
+-		u64 pte;
+ 
+ 		stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
+ 		if (!stolen) {
+@@ -93,13 +82,6 @@ initial_plane_bo(struct xe_device *xe,
+ 			return NULL;
+ 		}
+ 
+-		pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
+-
+-		if (is_pte_local(pte) != need_pte_local(xe)) {
+-			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
+-			return NULL;
+-		}
+-
+ 		phys_base = base;
+ 		flags |= XE_BO_FLAG_STOLEN;
+ 
+-- 
+2.54.0
 
