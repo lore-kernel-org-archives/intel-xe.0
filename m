@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9256C88E53
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 07:26:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7234CC88E53
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 07:27:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E8A910E260;
-	Tue, 15 Sep 2026 07:26:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2814D10F31A;
+	Tue, 15 Sep 2026 07:27:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KTWkgJel";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HfPizy/Z";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20C3010F312
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 07:26:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CE9910F31A
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 07:27:19 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 34D17600D1;
- Tue, 15 Sep 2026 07:26:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD2B31F000FF;
- Tue, 15 Sep 2026 07:26:46 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 3F5FA60267;
+ Tue, 15 Sep 2026 07:27:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 899C01F000FF;
+ Tue, 15 Sep 2026 07:27:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789457206;
- bh=eLznNrMDvN86yQi+NSB+7Z7hHy9NIYdmIjQDwxPEV5A=;
+ s=k20260515; t=1789457238;
+ bh=VGokVADtXRY8cjDRf4UVlICuQHI2H8lzeGSbHBOXHZ4=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=KTWkgJel1dw8rkrDNAXItufdv5X8RuOKX9495V0OqCJCUyDLa01dgC1A5G2p0d6AL
- wjxs/0Tp3Q8zDpGGXzSrMx0jDv8/d7O0vDScau3mC69dIGFfv8pG4WGmcCja8z4iGd
- NDRVFmJnBhq1CHTYC2duhux/5FKANxxrjYTiqoQvccBMMF04FdLuqWtBa+aw2Yx+Ik
- /u15VCysVRmO9UDKhzO+J0Yrr6Qx/PCdaK8mdQRSJP+y2UBBGbthTISjrxrJUeP6EM
- L3gx2+VDgKSxltBFJnmjxZzMFLbydcEoxS+exQmp39V6isLC78B3IpZREyqWzcYm1v
- qt/+hzVpAIyYQ==
+ b=HfPizy/Z7+hs1wcFsMDkRSeoVJNOIcRESdDFL+RwXhlgWGcCtlW9PjoUq4G3MLrqr
+ vHDxIK9OO/5dv1xTiFFV1ElHPjOwARKKMn0/8hkcXxbMRGjEyiwpcCyfyJdMWoJlyU
+ U4RUiFLrFZup40eWfeyEJeOJeoxQ1lhgQLbGGvxtmVXru77pP4HqipRC9DvE8fEOWB
+ BDfJev12y0FaPTiPG+zi9tiy6jg8eX87zZ59RO+RrpOJt+BxNUmbXWwl1YzZY5tdTW
+ /eY6MKPYz33cbxs5bkSgBAmoAr6w1CmGrnTV50cKtTlAAV7qBk0hfu5ED6YkkGOI6E
+ W6E85+RGxM+1g==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v8 06/10] drm/xe/vf: Add bounds checking for queried
- GGTT base and size
+Subject: Re: [PATCH v8 07/10] drm/xe/pf: Align VF GGTT allocations to PAGE_SIZE
 To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260915071159.51402-18-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20260915071159.51402-19-satyanarayana.k.v.p@intel.com>
 References: <20260915071159.51402-12-satyanarayana.k.v.p@intel.com>
- <20260915071159.51402-18-satyanarayana.k.v.p@intel.com>
+ <20260915071159.51402-19-satyanarayana.k.v.p@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 15 Sep 2026 07:26:46 +0000
-Message-Id: <20260915072646.BD2B31F000FF@smtp.kernel.org>
+Date: Tue, 15 Sep 2026 07:27:17 +0000
+Message-Id: <20260915072717.899C01F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,58 +58,69 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] drm/xe/vf: GGTT alignment uses CPU PAGE_SIZE breaking cross-page-s=
-ize VMs
+- [Critical] xe: SR-IOV GGTT alignment allows memory isolation bypass
 --
 
-commit 974f2713618cba9d92f6442eb0ec21fab7f11630
+commit b273b43c9c7b2ba3519285921560775aacbe0985
 Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 
-drm/xe/vf: Add bounds checking for queried GGTT base and size
+drm/xe/pf: Align VF GGTT allocations to PAGE_SIZE
 
-This commit adds explicit bounds checks for GGTT base and size queried from
-the PF. This is intended to detect and reject invalid configuration data to
-prevent protocol violations and protect VF initialization.
+This commit reduces the PF's alignment for VF GGTT partitions to the host
+CPU PAGE_SIZE (4K) to allow finer-grained partitioning.
 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_=
-gt_sriov_vf.c
-> index 81d68fe5ad7cd..53db4cf9d656b 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-[ ... ]
-> @@ -486,26 +487,62 @@ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt)
->  	return value;
->  }
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm=
+/xe/xe_gt_sriov_pf_config.c
+> index 6947aeed458ed..91ec8e898e3b5 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> @@ -441,9 +441,7 @@ static int pf_refresh_vf_cfg(struct xe_gt *gt, unsign=
+ed int vfid)
 > =20
-> +static u64 vf_get_ggtt_alignment(struct xe_gt *gt)
-> +{
+>  static u64 pf_get_ggtt_alignment(struct xe_gt *gt)
+>  {
+> -	struct xe_device *xe =3D gt_to_xe(gt);
+> -
+> -	return IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_=
+64K : SZ_4K;
 > +	return PAGE_SIZE;
 
-[Severity: High]
-Will this break initialization in cross-page-size virtualization environmen=
-ts
-(e.g., a 4KB host and 64KB guest, which is standard on ARM64 and PPC64)?
+[Severity: Critical]
+Does this regression allow a VF to bypass SR-IOV memory isolation?
 
-In such a configuration, the PF driver running on the host allocates a
-4KB-aligned GGTT partition. The VF driver running in the guest uses its own
-OS PAGE_SIZE (64KB) for alignment checks.
+By unconditionally returning PAGE_SIZE, the PF provisions the VF's GGTT
+partition with a base address (ggtt->start) that is only guaranteed to be
+4K-aligned.
 
-It receives the 4KB-aligned start_query from the PF, aligns it up to 64KB,
-and aligns the end down to 64KB. This artificially shrinks the GGTT window.
+In the VF, the local drm_mm allocator is initialized with a start offset of=
+ 0,
+meaning it aligns local offsets but not the absolute global GGTT address:
 
-If the allocated GGTT size is smaller than the alignment difference,
-end <=3D start evaluates to true, and the VF aborts initialization with
--ERANGE.
+drivers/gpu/drm/xe/xe_ggtt.c:__xe_ggtt_init_early()
+    drm_mm_init(&ggtt->mm, 0, size);
 
-Should this alignment check use the hardware page size (e.g., XE_PAGE_SIZE)
-instead of the CPU page size?
+When the VF maps a VRAM object, it requests a 64K-aligned local offset from
+drm_mm:
 
-> +}
-> +
->  static int vf_get_ggtt_info(struct xe_gt *gt)
->  {
-[ ... ]
+drivers/gpu/drm/xe/xe_ggtt.c:__xe_ggtt_insert_bo_at()
+    if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
+        alignment =3D SZ_64K;
+
+Because the global GGTT virtual address is local_offset + ggtt->start,
+a 4K-aligned partition base offset produces a globally misaligned hardware
+address.
+
+Since the GPU's TLB masks the lower 16 bits of the virtual address for 64K
+pages, will this misaligned absolute address cause the TLB entry to alias w=
+ith
+the preceding 4K-aligned memory range, potentially exposing another VF or P=
+F's
+memory?
+
+>  }
+> =20
+>  static u64 pf_get_min_spare_ggtt(struct xe_gt *gt)
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260915071159.5140=
-2-12-satyanarayana.k.v.p@intel.com?part=3D6
+2-12-satyanarayana.k.v.p@intel.com?part=3D7
