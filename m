@@ -4,82 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 877FEC88E75
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 12:08:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD340C88E75
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 12:09:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CFDB10FBE5;
-	Tue, 15 Sep 2026 12:08:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8802710F46B;
+	Tue, 15 Sep 2026 12:09:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wfk/ZGNc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hXk+AOy/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C44210FB8E;
- Tue, 15 Sep 2026 12:08:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C65110F464;
+ Tue, 15 Sep 2026 12:09:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789474119; x=1821010119;
- h=from:date:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=r4/etdnCcfrVsy/eyrNdRvVeg93egQng/TtPPPFnO+Q=;
- b=Wfk/ZGNcJbis3m2ZuXTctJHCS/PbXZr02GAytjun7DmH910QC2bPjhzq
- ALg5bEhULWNbmvvlALzU8a6BDWYp4u8wHi1vAjmoYBYopMTuDdm0RNleg
- cEYVNd6EKqrqalCBsCah94a1ILUrAiwDbQV9oBIsGYp+jEOh7KG/7YzMw
- UWzRwn16/pa0Z0HYbaLI9J7ewinsA6qOz933UjH6ii6/qq6Aky+1vpfDX
- H0Fd4Gf02p9BDTUxe9JclUq7PRIkN6RwhdHumLDOnDGLvwDTdx2qEPFZF
- f3CXbrKrJUFOPGCjhTFIqs0xBYaZWKgCa/fte65fk6iTJ3xHSFHFQRCBg w==;
-X-CSE-ConnectionGUID: gvzcw2v+Q8ewfWFOM58GEA==
-X-CSE-MsgGUID: s16AMrXrRme0cYAYh5CLHQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="112603686"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="112603686"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 05:08:38 -0700
-X-CSE-ConnectionGUID: yEXKeHT/S1eM9WiIW6824Q==
-X-CSE-MsgGUID: +eCt4baJQ1ehGF/VxF7LQg==
+ t=1789474152; x=1821010152;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=/T8u8hKTs/j0PdFv6b3xSFXtf2muru+jhXup9L6X4tE=;
+ b=hXk+AOy/4R7nP3HJ+lwgtsb0Y8IW+XjHufwZi08St/rgfXDVX3o+z3Aj
+ qhVg7RJnsL7u5ut84nRq+UMUNtNkSJwTgomKbbLXKbzwQ185ap/t3Wvw6
+ dauF4I1tHPPmT4Rbs+gIO6jSNbPZ9ZXbdQgYuYZGPC+JCLfS4qQgwMhn8
+ P1YSgyqfNGI3n5BSeYz/19Q5Ed38D+CkhV9jDe74xTkXe1pU7cQBPnZz+
+ z2vSGJqZ2pqcc7+WFaJK6YN5ILBqnS0/HvqS5ZbUGux1REGFT5R6ZGAVL
+ c29bpHET2ZjIjzx5nH2u2Zod/NxTCe6a+aPK3cWC3WvH6wu45M6pvZkZI w==;
+X-CSE-ConnectionGUID: WieevR3ZRW6BgQLyIbajCA==
+X-CSE-MsgGUID: aUbHO2oaS+KaEMQJXJ9f/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="107206806"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="107206806"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 05:09:11 -0700
+X-CSE-ConnectionGUID: yrdWC/VpRI+BaBbNkj931w==
+X-CSE-MsgGUID: Qh7PZmJAQGisydrPbNS+Mg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="276752589"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.24])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 05:08:30 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Tue, 15 Sep 2026 15:08:25 +0300 (EEST)
-To: Armin Wolf <W_Armin@gmx.de>
-cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, 
- "hansg@kernel.org" <hansg@kernel.org>, 
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>, 
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
- "linux@weissschuh.net" <linux@weissschuh.net>, 
- "rafael@kernel.org" <rafael@kernel.org>, 
- "lenb@kernel.org" <lenb@kernel.org>, 
- "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, 
- "Koenig, Christian" <Christian.Koenig@amd.com>, 
- "airlied@gmail.com" <airlied@gmail.com>, 
- "simona@ffwll.ch" <simona@ffwll.ch>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "patrik.r.jakobsson@gmail.com" <patrik.r.jakobsson@gmail.com>, 
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, 
- "mripard@kernel.org" <mripard@kernel.org>, 
- "tzimmermann@suse.de" <tzimmermann@suse.de>, 
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>, 
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>, 
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>, 
- "tursulin@ursulin.net" <tursulin@ursulin.net>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "matthew.brost@intel.com" <matthew.brost@intel.com>, 
- "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v3 2/3] ACPI: video: Remove CONFIG_X86 handling from
- nvidia_wmi_ec_supported()
-In-Reply-To: <86d0e015-a8f4-4e10-a9b6-a9714d3e0f07@gmx.de>
-Message-ID: <80c4bb47-936b-976b-6ba8-b366f7a455cf@linux.intel.com>
-References: <20260724025959.142826-1-W_Armin@gmx.de>
- <20260724025959.142826-3-W_Armin@gmx.de>
- <BN9PR12MB514668975E87D570F50B2D91F7A82@BN9PR12MB5146.namprd12.prod.outlook.com>
- <86d0e015-a8f4-4e10-a9b6-a9714d3e0f07@gmx.de>
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="271565525"
+Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.243])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 05:09:09 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v4 1/2] drm/i915/display: add a way to restore only
+ display/pch registers in clock_gating
+In-Reply-To: <20260908090924.52117-2-luciano.coelho@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260908090924.52117-1-luciano.coelho@intel.com>
+ <20260908090924.52117-2-luciano.coelho@intel.com>
+Date: Tue, 15 Sep 2026 15:09:06 +0300
+Message-ID: <1c0acd579c58dcbe5197670cd3ecf00b6085a01c@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,204 +70,296 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GPU people heads up!!
+On Tue, 08 Sep 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
+> Currently, hsw_disable_pc8() calls intel_clock_gating_init() to restore
+> clock gating after PC8+ exit.  This makes display call into core i915
+> initialization, which in turn calls back into display code.
+>
+> Add intel_display_restore_clock_gating() to restore display and PCH
+> registers directly.  Split out the HSW/BDW GT/uncore programming and
+> restore it through the display parent interface, preserving the
+> existing workarounds without calling core clock gating initialization
+> from display.
+>
+> Assisted-by: Copilot:claude-sonnet-5
+> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> ---
+>  .../i915/display/intel_display_clock_gating.c |  7 ++++
+>  .../i915/display/intel_display_clock_gating.h |  1 +
+>  .../drm/i915/display/intel_display_power.c    |  7 +++-
+>  drivers/gpu/drm/i915/display/intel_parent.c   |  9 +++++
+>  drivers/gpu/drm/i915/display/intel_parent.h   |  3 ++
+>  drivers/gpu/drm/i915/i915_driver.c            |  1 +
+>  drivers/gpu/drm/i915/intel_clock_gating.c     | 37 ++++++++++++++++---
+>  drivers/gpu/drm/i915/intel_clock_gating.h     |  2 +
+>  drivers/gpu/drm/xe/Makefile                   |  1 +
+>  include/drm/intel/display_parent_interface.h  |  7 ++++
+>  10 files changed, 67 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> index ef1ee72494df..6716c377ef93 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> @@ -11,6 +11,7 @@
+>  #include "intel_display_clock_gating.h"
+>  #include "intel_display_core.h"
+>  #include "intel_display_regs.h"
+> +#include "intel_pch.h"
+>  
+>  static void intel_display_gen9_init_clock_gating(struct intel_display *display)
+>  {
+> @@ -305,3 +306,9 @@ void intel_display_init_clock_gating(struct intel_display *display)
+>  	else if (display->platform.i965gm)
+>  		intel_display_i965gm_init_clock_gating(display);
+>  }
+> +
+> +void intel_display_restore_clock_gating(struct intel_display *display)
+> +{
+> +	intel_display_init_clock_gating(display);
+> +	intel_pch_init_clock_gating(display);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> index dbfa5892cffe..074708a22436 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> @@ -9,5 +9,6 @@
+>  struct intel_display;
+>  
+>  void intel_display_init_clock_gating(struct intel_display *display);
+> +void intel_display_restore_clock_gating(struct intel_display *display);
+>  
+>  #endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 0ebec6e0c240..6e38cabc5581 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -12,7 +12,7 @@
+>  
+>  #include "intel_backlight_regs.h"
+>  #include "intel_cdclk.h"
+> -#include "intel_clock_gating.h"
+> +#include "intel_display_clock_gating.h"
+>  #include "intel_combo_phy.h"
+>  #include "intel_crtc.h"
+>  #include "intel_de.h"
+> @@ -1588,7 +1588,10 @@ static void hsw_disable_pc8(struct intel_display *display)
+>  	intel_init_pch_refclk(display);
+>  
+>  	/* Many display registers don't survive PC8+ */
+> -	intel_clock_gating_init(display->drm);
+> +	intel_display_restore_clock_gating(display);
+> +
+> +	/* Some GT/uncore clock gating workarounds don't survive PC8+ either */
+> +	intel_parent_clock_gating_restore_gt(display);
 
-On Wed, 2 Sep 2026, Armin Wolf wrote:
+Yeah, but this should not be the display driver's responsibility.
 
-> Am 01.09.26 um 23:30 schrieb Deucher, Alexander:
-> 
-> > Public
-> > 
-> > > -----Original Message-----
-> > > From: Armin Wolf <W_Armin@gmx.de>
-> > > Sent: Thursday, July 23, 2026 11:00 PM
-> > > To: hansg@kernel.org; ilpo.jarvinen@linux.intel.com
-> > > Cc: platform-driver-x86@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > > linux@weissschuh.net; rafael@kernel.org; lenb@kernel.org; linux-
-> > > acpi@vger.kernel.org; Deucher, Alexander <Alexander.Deucher@amd.com>;
-> > > Koenig, Christian <Christian.Koenig@amd.com>; airlied@gmail.com;
-> > > simona@ffwll.ch; amd-gfx@lists.freedesktop.org; dri-
-> > > devel@lists.freedesktop.org; patrik.r.jakobsson@gmail.com;
-> > > maarten.lankhorst@linux.intel.com; mripard@kernel.org;
-> > > tzimmermann@suse.de; jani.nikula@linux.intel.com;
-> > > joonas.lahtinen@linux.intel.com; rodrigo.vivi@intel.com;
-> > > tursulin@ursulin.net; intel-gfx@lists.freedesktop.org;
-> > > matthew.brost@intel.com; thomas.hellstrom@linux.intel.com; intel-
-> > > xe@lists.freedesktop.org
-> > > Subject: [PATCH v3 2/3] ACPI: video: Remove CONFIG_X86 handling from
-> > > nvidia_wmi_ec_supported()
-> > > 
-> > > The WMI-ACPI driver now supports architectures other than x86.
-> > > Remove the CONFIG_X86 handling from video-detect and the associated
-> > > drivers to simplify the resulting code.
-> > > 
-> > > Acked-by: Rafael J. Wysocki (Intel) <rafael@kernel.org>
-> > > Signed-off-by: Armin Wolf <W_Armin@gmx.de>
-> > > ---
-> > >   drivers/acpi/Kconfig               | 2 +-
-> > >   drivers/acpi/video_detect.c        | 8 --------
-> > >   drivers/gpu/drm/amd/amdgpu/Kconfig | 4 +---
-> > >   drivers/gpu/drm/gma500/Kconfig     | 1 -
-> > >   drivers/gpu/drm/i915/Kconfig       | 1 -
-> > >   drivers/gpu/drm/radeon/Kconfig     | 4 +---
-> > >   drivers/gpu/drm/xe/Kconfig         | 5 ++---
-> > >   drivers/platform/loongarch/Kconfig | 1 +
-> > >   8 files changed, 6 insertions(+), 20 deletions(-)
-> > > 
-> > > diff --git a/drivers/acpi/Kconfig b/drivers/acpi/Kconfig index
-> > > f165d14cf61a..cc1e58fa664b 100644
-> > > --- a/drivers/acpi/Kconfig
-> > > +++ b/drivers/acpi/Kconfig
-> > > @@ -224,7 +224,7 @@ config ACPI_VIDEO
-> > >        tristate "Video"
-> > >        depends on BACKLIGHT_CLASS_DEVICE
-> > >        depends on INPUT
-> > > -     depends on ACPI_WMI || !X86
-> > > +     depends on ACPI_WMI
-> > >        select THERMAL
-> > >        help
-> > >          This driver implements the ACPI Extensions For Display Adapters
-> > > diff
-> > > --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c index
-> > > 458efa4fe9d4..af9280b244f1 100644
-> > > --- a/drivers/acpi/video_detect.c
-> > > +++ b/drivers/acpi/video_detect.c
-> > > @@ -82,8 +82,6 @@ find_video(acpi_handle handle, u32 lvl, void *context,
-> > > void **rv)
-> > >        return AE_OK;
-> > >   }
-> > > 
-> > > -/* This depends on ACPI_WMI which is X86 only */ -#ifdef CONFIG_X86
-> > > static bool nvidia_wmi_ec_supported(void)  {
-> > >        struct wmi_brightness_args args = {
-> > > @@ -105,12 +103,6 @@ static bool nvidia_wmi_ec_supported(void)
-> > >         */
-> > >        return args.ret == WMI_BRIGHTNESS_SOURCE_EC;  } -#else -static bool
-> > > nvidia_wmi_ec_supported(void) -{
-> > > -     return false;
-> > > -}
-> > > -#endif
-> > > 
-> > >   /* Force to use vendor driver when the ACPI device is known to be
-> > >    * buggy */
-> > > diff --git a/drivers/gpu/drm/amd/amdgpu/Kconfig
-> > > b/drivers/gpu/drm/amd/amdgpu/Kconfig
-> > > index 12e4a41bf1f0..50305630f533 100644
-> > > --- a/drivers/gpu/drm/amd/amdgpu/Kconfig
-> > > +++ b/drivers/gpu/drm/amd/amdgpu/Kconfig
-> > > @@ -30,9 +30,7 @@ config DRM_AMDGPU
-> > >        # ACPI_VIDEO's dependencies must also be selected.
-> > >        select INPUT if ACPI
-> > >        select ACPI_VIDEO if ACPI
-> > > -     # On x86 ACPI_VIDEO also needs ACPI_WMI
-> > > -     select X86_PLATFORM_DEVICES if ACPI && X86
-> > The change below makes sense, but this one looks like it should remain
-> > unless X86_PLATFORM_DEVICES is handled some other way?
-> > 
-> > Alex
-> 
-> AFAIK the dependency on X86_PLATFORM_DEVICES was only necessary because
-> ACPI-WMI depended on it in the past.
-> By now ACPI-WMI neither depends on X86_PLATFORM_DEVICES or X86 anymore.
+Main goal, separate the clock gating paths between display and the rest
+at the *high* level. Display clock gating shouldn't call core driver
+stuff, core driver clock gating shouldn't call display stuff. There
+should be zero cross calls in the end.
 
-Hi all,
+We only ever end up in hsw_disable_pc8() through:
 
-Could more GPU people besides Alex take a look on this. I'd want to make 
-progress with this series within this cycle but would prefer to have Acks 
-from GPU side.
+intel_display_driver_pm_resume_early()
+  -> intel_display_power_resume_early()
+     -> hsw_disable_pc8()
 
-> > > -     select ACPI_WMI if ACPI && X86
-> > > +     select ACPI_WMI if ACPI
-> > >        help
-> > >          Choose this option if you have a recent AMD Radeon graphics card.
-> > > 
-> > > diff --git a/drivers/gpu/drm/gma500/Kconfig
-> > > b/drivers/gpu/drm/gma500/Kconfig index a2acaa699dd5..dc4c56638819
-> > > 100644
-> > > --- a/drivers/gpu/drm/gma500/Kconfig
-> > > +++ b/drivers/gpu/drm/gma500/Kconfig
-> > > @@ -11,7 +11,6 @@ config DRM_GMA500
-> > >        select ACPI_VIDEO if ACPI
-> > >        select BACKLIGHT_CLASS_DEVICE if ACPI
-> > >        select INPUT if ACPI
-> > > -     select X86_PLATFORM_DEVICES if ACPI
-> > >        select ACPI_WMI if ACPI
-> > >        help
-> > >          Say yes for an experimental 2D KMS framebuffer driver for the
-> > > diff --
-> > > git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig index
-> > > 5e939004b646..71426b9c91f0 100644
-> > > --- a/drivers/gpu/drm/i915/Kconfig
-> > > +++ b/drivers/gpu/drm/i915/Kconfig
-> > > @@ -28,7 +28,6 @@ config DRM_I915
-> > >        # but for select to work, need to select ACPI_VIDEO's dependencies,
-> > > ick
-> > >        select BACKLIGHT_CLASS_DEVICE if ACPI
-> > >        select INPUT if ACPI
-> > > -     select X86_PLATFORM_DEVICES if ACPI
-> > >        select ACPI_WMI if ACPI
-> > >        select ACPI_VIDEO if ACPI
-> > >        select SYNC_FILE
-> > > diff --git a/drivers/gpu/drm/radeon/Kconfig
-> > > b/drivers/gpu/drm/radeon/Kconfig index c479f0c0dd5c..3cd70aef770e
-> > > 100644
-> > > --- a/drivers/gpu/drm/radeon/Kconfig
-> > > +++ b/drivers/gpu/drm/radeon/Kconfig
-> > > @@ -25,9 +25,7 @@ config DRM_RADEON
-> > >        # ACPI_VIDEO's dependencies must also be selected.
-> > >        select INPUT if ACPI
-> > >        select ACPI_VIDEO if ACPI
-> > > -     # On x86 ACPI_VIDEO also needs ACPI_WMI
-> > > -     select X86_PLATFORM_DEVICES if ACPI && X86
-> > > -     select ACPI_WMI if ACPI && X86
-> > > +     select ACPI_WMI if ACPI
-> > >        help
-> > >          Choose this option if you have an ATI Radeon graphics card.
-> > > There
-> > >          are both PCI and AGP versions.  You don't need to choose this to
-> > > diff -
-> > > -git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig index
-> > > 4d7dcaff2b91..502c7b3c1f16 100644
-> > > --- a/drivers/gpu/drm/xe/Kconfig
-> > > +++ b/drivers/gpu/drm/xe/Kconfig
-> > > @@ -4,7 +4,6 @@ config DRM_XE
-> > >        depends on DRM && PCI
-> > >        depends on KUNIT || !KUNIT
-> > >        depends on INTEL_VSEC || !INTEL_VSEC
-> > > -     depends on X86_PLATFORM_DEVICES || !(X86 && ACPI)
-> > >        depends on PAGE_SIZE_4KB || COMPILE_TEST || BROKEN
-> > >        select INTERVAL_TREE
-> > >        # we need shmfs for the swappable backing store, and in particular
-> > > @@ -29,8 +28,8 @@ config DRM_XE
-> > >        # but for select to work, need to select ACPI_VIDEO's dependencies,
-> > > ick
-> > >        select BACKLIGHT_CLASS_DEVICE if ACPI
-> > >        select INPUT if ACPI
-> > > -     select ACPI_VIDEO if X86 && ACPI
-> > > -     select ACPI_WMI if X86 && ACPI
-> > > +     select ACPI_VIDEO if ACPI
-> > > +     select ACPI_WMI if ACPI
-> > >        select SYNC_FILE
-> > >        select CRC32
-> > >        select SND_HDA_I915 if SND_HDA_CORE
-> > > diff --git a/drivers/platform/loongarch/Kconfig
-> > > b/drivers/platform/loongarch/Kconfig
-> > > index 447528797d07..db7833842142 100644
-> > > --- a/drivers/platform/loongarch/Kconfig
-> > > +++ b/drivers/platform/loongarch/Kconfig
-> > > @@ -23,6 +23,7 @@ config LOONGSON_LAPTOP
-> > >        depends on INPUT
-> > >        depends on MACH_LOONGSON64
-> > >        select ACPI_VIDEO
-> > > +     select ACPI_WMI
-> > >        select INPUT_SPARSEKMAP
-> > >        default y
-> > >        help
-> > > --
-> > > 2.39.5
-> > 
-> 
+intel_display_driver_pm_runtime_resume_early()
+  -> intel_display_power_runtime_resume()
+     -> hsw_disable_pc8().
+
+And (apart from the error paths) those have the intel_gt_resume_early(),
+intel_uncore_runtime_resume(), or intel_gt_runtime_resume() calls. Those
+are the ones that should be responsible for handling the GT/uncore
+stuff, not display.
+
+
+BR,
+Jani.
+
+>  }
+>  
+>  static void intel_pch_reset_handshake(struct intel_display *display,
+> diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
+> index 99cebb17763a..d8c38f138396 100644
+> --- a/drivers/gpu/drm/i915/display/intel_parent.c
+> +++ b/drivers/gpu/drm/i915/display/intel_parent.c
+> @@ -24,6 +24,15 @@
+>  #include "intel_display_core.h"
+>  #include "intel_parent.h"
+>  
+> +/* clock_gating */
+> +void intel_parent_clock_gating_restore_gt(struct intel_display *display)
+> +{
+> +	if (drm_WARN_ON_ONCE(display->drm, !display->parent->clock_gating))
+> +		return;
+> +
+> +	display->parent->clock_gating->restore_gt(display->drm);
+> +}
+> +
+>  /* dpt */
+>  struct intel_dpt *intel_parent_dpt_create(struct intel_display *display,
+>  					  struct drm_gem_object *obj, size_t size)
+> diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
+> index cc4a58f63166..db2272ad9be3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_parent.h
+> +++ b/drivers/gpu/drm/i915/display/intel_parent.h
+> @@ -22,6 +22,9 @@ struct intel_panic;
+>  struct intel_stolen_node;
+>  struct iosys_map;
+>  
+> +/* clock_gating */
+> +void intel_parent_clock_gating_restore_gt(struct intel_display *display);
+> +
+>  /* dpt */
+>  struct intel_dpt *intel_parent_dpt_create(struct intel_display *display,
+>  					  struct drm_gem_object *obj, size_t size);
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index ce6d20958320..8da72cef63c9 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -745,6 +745,7 @@ static bool vgpu_active(struct drm_device *drm)
+>  
+>  static const struct intel_display_parent_interface parent = {
+>  	.bo = &i915_display_bo_interface,
+> +	.clock_gating = &i915_display_clock_gating_interface,
+>  	.dpt = &i915_display_dpt_interface,
+>  	.dsb = &i915_display_dsb_interface,
+>  	.fb_pin = &i915_display_fb_pin_interface,
+> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
+> index c5c4441f3a61..180cb5862016 100644
+> --- a/drivers/gpu/drm/i915/intel_clock_gating.c
+> +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
+> @@ -26,6 +26,7 @@
+>   */
+>  
+>  #include <drm/drm_print.h>
+> +#include <drm/intel/display_parent_interface.h>
+>  #include <drm/intel/intel_gmd_interrupt_regs.h>
+>  #include <drm/intel/intel_gmd_misc_regs.h>
+>  #include <drm/intel/mchbar_regs.h>
+> @@ -203,10 +204,8 @@ static void skl_init_clock_gating(struct drm_i915_private *i915)
+>  	intel_display_init_clock_gating(i915->display);
+>  }
+>  
+> -static void bdw_init_clock_gating(struct drm_i915_private *i915)
+> +static void bdw_restore_gt_clock_gating(struct drm_i915_private *i915)
+>  {
+> -	intel_display_init_clock_gating(i915->display);
+> -
+>  	/* WaSwitchSolVfFArbitrationPriority:bdw */
+>  	intel_uncore_rmw(&i915->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
+>  
+> @@ -224,8 +223,6 @@ static void bdw_init_clock_gating(struct drm_i915_private *i915)
+>  	/* WaProgramL3SqcReg1Default:bdw */
+>  	gen8_set_l3sqc_credits(i915, 30, 2);
+>  
+> -	intel_pch_init_clock_gating(i915->display);
+> -
+>  	/* WaDisableDopClockGating:bdw
+>  	 *
+>  	 * Also see the CHICKEN2 write in bdw_init_workarounds() to disable DOP
+> @@ -234,16 +231,30 @@ static void bdw_init_clock_gating(struct drm_i915_private *i915)
+>  	intel_uncore_rmw(&i915->uncore, GEN6_UCGCTL1, 0, GEN6_EU_TCUNIT_CLOCK_GATE_DISABLE);
+>  }
+>  
+> -static void hsw_init_clock_gating(struct drm_i915_private *i915)
+> +static void bdw_init_clock_gating(struct drm_i915_private *i915)
+>  {
+>  	intel_display_init_clock_gating(i915->display);
+>  
+> +	bdw_restore_gt_clock_gating(i915);
+> +
+> +	intel_pch_init_clock_gating(i915->display);
+> +}
+> +
+> +static void hsw_restore_gt_clock_gating(struct drm_i915_private *i915)
+> +{
+>  	/* This is required by WaCatErrorRejectionIssue:hsw */
+>  	intel_uncore_rmw(&i915->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
+>  			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+>  
+>  	/* WaSwitchSolVfFArbitrationPriority:hsw */
+>  	intel_uncore_rmw(&i915->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
+> +}
+> +
+> +static void hsw_init_clock_gating(struct drm_i915_private *i915)
+> +{
+> +	intel_display_init_clock_gating(i915->display);
+> +
+> +	hsw_restore_gt_clock_gating(i915);
+>  
+>  	intel_pch_init_clock_gating(i915->display);
+>  }
+> @@ -448,6 +459,20 @@ void intel_clock_gating_init(struct drm_device *drm)
+>  	i915->clock_gating_funcs->init_clock_gating(i915);
+>  }
+>  
+> +static void intel_clock_gating_restore_gt(struct drm_device *drm)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(drm);
+> +
+> +	if (IS_BROADWELL(i915))
+> +		bdw_restore_gt_clock_gating(i915);
+> +	else if (IS_HASWELL(i915))
+> +		hsw_restore_gt_clock_gating(i915);
+> +}
+> +
+> +const struct intel_display_clock_gating_interface i915_display_clock_gating_interface = {
+> +	.restore_gt = intel_clock_gating_restore_gt,
+> +};
+> +
+>  static void nop_init_clock_gating(struct drm_i915_private *i915)
+>  {
+>  	drm_dbg_kms(&i915->drm,
+> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.h b/drivers/gpu/drm/i915/intel_clock_gating.h
+> index 3a4b443d9b8b..5c0f7c91c4f7 100644
+> --- a/drivers/gpu/drm/i915/intel_clock_gating.h
+> +++ b/drivers/gpu/drm/i915/intel_clock_gating.h
+> @@ -11,4 +11,6 @@ struct drm_device;
+>  void intel_clock_gating_init(struct drm_device *drm);
+>  void intel_clock_gating_hooks_init(struct drm_device *drm);
+>  
+> +extern const struct intel_display_clock_gating_interface i915_display_clock_gating_interface;
+> +
+>  #endif /* __INTEL_CLOCK_GATING_H__ */
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 67b8b5477639..7737fb27b259 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -260,6 +260,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>  	i915-display/intel_ddi_buf_trans.o \
+>  	i915-display/intel_de.o \
+>  	i915-display/intel_display.o \
+> +	i915-display/intel_display_clock_gating.o \
+>  	i915-display/intel_display_conversion.o \
+>  	i915-display/intel_display_device.o \
+>  	i915-display/intel_display_driver.o \
+> diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
+> index 5e44c022d1ae..c6638c108009 100644
+> --- a/include/drm/intel/display_parent_interface.h
+> +++ b/include/drm/intel/display_parent_interface.h
+> @@ -65,6 +65,10 @@ struct intel_display_bo_interface {
+>  #endif
+>  };
+>  
+> +struct intel_display_clock_gating_interface {
+> +	void (*restore_gt)(struct drm_device *drm);
+> +};
+> +
+>  struct intel_display_dpt_interface {
+>  	struct intel_dpt *(*create)(struct drm_gem_object *obj, size_t size);
+>  	void (*destroy)(struct intel_dpt *dpt);
+> @@ -250,6 +254,9 @@ struct intel_display_parent_interface {
+>  	/** @bo: BO interface */
+>  	const struct intel_display_bo_interface *bo;
+>  
+> +	/** @clock_gating: Clock gating interface. Optional. */
+> +	const struct intel_display_clock_gating_interface *clock_gating;
+> +
+>  	/** @dpt: DPT interface. Optional. */
+>  	const struct intel_display_dpt_interface *dpt;
 
 -- 
- i.
-
+Jani Nikula, Intel
