@@ -4,64 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E44B5C88E7F
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B9B1C982C4
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A78B310EE97;
-	Tue, 15 Sep 2026 14:13:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15BB410EF01;
+	Tue, 15 Sep 2026 14:13:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="AJhFvxYB";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="J9H41KXn";
 	dkim-atps=neutral
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com
- [209.85.214.199])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A429A10FAF3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:10 +0000 (UTC)
-Received: by mail-pl1-f199.google.com with SMTP id
- d9443c01a7336-2d6fb956002so52102775ad.1
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:10 -0700 (PDT)
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com
+ [209.85.215.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5587710FAF3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:19:51 +0000 (UTC)
+Received: by mail-pg1-f197.google.com with SMTP id
+ 41be03b00d2f7-cc1b8088203so4056726a12.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:19:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460410; x=1790065210;
+ d=google.com; s=20251104; t=1789460391; x=1790065191;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=eELVo8fI0ZjlHs2eEJ49S4+N/SPMib/OwBxEH2gJjRU=;
- b=AJhFvxYBwqGJAtc7dped4/aYubEbIe8YufAwltv4n+N2xZaSgO9TSMHgXSwxRDaypo
- lnDchmv68SRNFV7bENe0bP7/XjJc0LHE6vIbytmh/ZAfWXSZupYUyazaFwUyp53IpRyy
- RF39tsOOXvgJDQuUtFhEqdgqRl7sP4Bx4GJ9ZiAEbRqPeTcwRDdGt7Xvx+QhrJL2hUhQ
- GJkhYVwccCv9DOcskWMrQi1q9oDkZmbj6D4xTCDkt1PTl03NPWqH8miLoL/5meoevqdB
- EOYjkxO9SVkVdidt3cXGuZUq/Ag4MAgMnZKdoM6PvjqkQfXuw329IpRikOc69C1Ooyte
- uj6w==
+ bh=12RWpnF69Y0ZtQBdjS9tdwBwekyotqtFAvTiEZFvq+s=;
+ b=J9H41KXn8qHb1cKt845LczyZwRm6tIAcHFrEs3EL+paflbyU2FwTu25HSi5iX3uoEs
+ XGkKwnsqprsmBX1nK/3K4Wi/yYQLMsR1HFftHODcgBcy4GJRupEeDzdnKUIgwp93l1Pp
+ k0v36RpfNKZoNnd61vQc9v+R9tWfpEhkVpySzMx876pqrxUgLg+ma6jvzzp9MPeomITd
+ TB6cXHt48FFdtvyQ35phADalGYVFgnyJl02RAJSkc5tI4rLpWM84z0ZDd6CqLH7iL/AH
+ S5gSlPr73FMAEEK9FNoerRWakZHjoFPhHH8C6VPaBt08CPPlR29BVK2UGunnbMuhOpB1
+ siOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460410; x=1790065210;
+ d=1e100.net; s=20260707; t=1789460391; x=1790065191;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=eELVo8fI0ZjlHs2eEJ49S4+N/SPMib/OwBxEH2gJjRU=;
- b=pATGemLDLws/HvmZx87D/bRNi4ymiA/NRPzGh9ce5MxYDZ2IDHUugS7Fm7f1Ux0/JS
- uQE91U/uxMCE5A+iqPiDUhYNkfzizG4Hr2uJ+CUraFYjDj95/+A9+UGRjCbMOtlLyanB
- 8UWjA2L8yd0WuMlhA/anUgMhCw8EmcGGNZDZUGvwXjVgIx6qRnckjWFvvlkphAN0ZsHt
- 1GgRIWrtqRFU1IVTINrD73/lK0xkHmTehnpe3IUoL6dwWQ6QS9LSNp1wcVXCrZRJbO8T
- /JZTbHI3vChSZNrURm/uq8e0n8U2dH+rAucodgrT0zqObFw5KzPjyHynVcMWmgCJR77T
- exSw==
+ bh=12RWpnF69Y0ZtQBdjS9tdwBwekyotqtFAvTiEZFvq+s=;
+ b=QA1FKIsoM+Wr4Kfn5MQlFD+qUfMpGZRdNPeQKGIr3D21eyEmFsaz2zQWrw25Q1elOP
+ Z8oUfi5VlKr3F4roxGu8PT1A+nf35LboBiHwdWbGTL26iOqtSKIerYhWZLkrEyU0Zk/M
+ Ithify6WK5ElvVcz9sB6/yqLGRCXtWAdUVrILOJLjfzWvnVxVmkA0zndNoas6nxnNSRP
+ ij4XP0mZRciAU4QuU6COcZbKoCimDXCFvF6ztZD5Zqi1gQFtohnnZolT4s632wmcjfYc
+ iYFhjhy2eqFo/z+lxCWZuXhkZ9MMNXs1siAxg6Ta6DnP9DznN/5RrJilWYK/VvKFfZHB
+ x/7A==
 X-Forwarded-Encrypted: i=1;
- AKwUvBzGj5hFiEIbtinBA4YYwRqygh54f6ALItdNl0/dT3nMfVWX+NbPinHpiz8htRlQ3sTQJA5CsXXPiw==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++nt6raifWKkO3yqxhhzKToQ+nfF84U+sTtPBTa/9vxul9ezXZ7X
- J05onXpIO9WZ1e8JVh4M2oUCEz+PmQmb2NQIm7P1pW5DMWqUW/UhU4jIXp8qvc01qdVIvvl6HnF
- R
-X-Received: from plvv1.prod.google.com ([2002:a17:902:d081:b0:2ca:ceab:34a3])
+ AKwUvBxCcVCnmWLlNxTmkYvZTPVvSiauw1ZkR2XhnIh+5hVXbylBNYnD7jbw82ZrfIFaU/yP/4Xa2Z9jcA==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++ko7TAdxGea8po0SsrLe1Kk94WlMSZEGK7JgOlr+Wqzp3MwHov2
+ p+cAbyRBec09f+nZxBDMUjEfqKXgj+43D9t1oxblNFQ6vAc3ABRa9/ateV/cNBNhu40N85RDIvq
+ 2
+X-Received: from pgdo4-n2.prod.google.com
+ ([2002:a05:6a02:6204:20b0:cc4:31fa:cb70])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:902:f612:b0:2d8:d4dd:24c0
- with SMTP id d9443c01a7336-2dd6c7e1a9fmr128970685ad.21.1789460409250; Tue, 15
- Sep 2026 01:20:09 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:34 +0000
+ 2002:a05:6a20:2587:b0:3d1:c99f:efbf
+ with SMTP id adf61e73a8af0-3db405a991dmr13264267637.14.1789460389672; Tue, 15
+ Sep 2026 01:19:49 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:18 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-18-morbo@google.com>
-Subject: [PATCH 17/28] MIPS: cmdline: Refactor bootcmdline_append() to use
+Message-ID: <20260915081910.4142719-2-morbo@google.com>
+Subject: [PATCH 01/28] ALSA: ac97: Refactor snd_ac97_get_name() to use
  snprintf()
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
@@ -155,22 +156,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-bootcmdline_append() passes "max" (the maximum length of the source
-string "s") as the destination buffer size argument to strlcat(). Because
-strlcat() expects the total size of the destination buffer
-(COMMAND_LINE_SIZE), it fails to append anything whenever "max" is smaller
-than the current length of boot_command_line, and could overflow
-boot_command_line if "max" exceeds COMMAND_LINE_SIZE.
+snd_ac97_get_name() appends the codec name using two strlcat() calls and
+then appends the revision using an unbounded sprintf() at
+"name + strlen(name)", which could overflow the destination buffer.
 
 In preparation for removing the deprecated strlcat() API[1], replace the
-strlcat() calls with snprintf() using the "%.*s" precision specifier. This
-bounds the read from "s" to at most "max" bytes while properly respecting
-the remaining space in boot_command_line.
+strlcat() and sprintf() calls with a single snprintf() using the existing
+string length, matching the pattern already used in the "else" branch.
 
 Link: https://github.com/KSPP/linux/issues/370 [1]
 Cc: codemender-patching+linux@google.com
-Assisted-by: SecurityEngineer:Gemini2.5Pro [editor_update_file, shell_comma=
-nd_run, make_kernel_build_single_file, test_runner_run_kunit_test]
+Assisted-by: Claude-3-5-Sonnet:20241022 [editor_update_file, shell_command_=
+run]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -284,45 +281,40 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- arch/mips/kernel/setup.c | 21 ++++++++++++++++++---
- 1 file changed, 18 insertions(+), 3 deletions(-)
+ sound/pci/ac97/ac97_codec.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/arch/mips/kernel/setup.c b/arch/mips/kernel/setup.c
-index 1ae6d0c0e1d6..0d9c2137d675 100644
---- a/arch/mips/kernel/setup.c
-+++ b/arch/mips/kernel/setup.c
-@@ -518,13 +518,28 @@ static void __init check_kernel_sections_mem(void)
+diff --git a/sound/pci/ac97/ac97_codec.c b/sound/pci/ac97/ac97_codec.c
+index 0bb65be021d9..e145099ee02a 100644
+--- a/sound/pci/ac97/ac97_codec.c
++++ b/sound/pci/ac97/ac97_codec.c
+@@ -1850,10 +1850,12 @@ void snd_ac97_get_name(struct snd_ac97 *ac97, unsig=
+ned int id, char *name,
 =20
- static void __init bootcmdline_append(const char *s, size_t max)
- {
-+	size_t len;
-+	int prec;
+ 	pid =3D look_for_codec_id(snd_ac97_codec_ids, id);
+ 	if (pid) {
+-		strlcat(name, " ", maxlen);
+-		strlcat(name, pid->name, maxlen);
++		int l =3D strlen(name);
 +
- 	if (!s[0] || !max)
- 		return;
-=20
--	if (boot_command_line[0])
--		strlcat(boot_command_line, " ", COMMAND_LINE_SIZE);
-+	len =3D strlen(boot_command_line);
-+	if (len >=3D COMMAND_LINE_SIZE - 1)
-+		return;
-=20
--	strlcat(boot_command_line, s, max);
-+	if (len) {
-+		if (COMMAND_LINE_SIZE - len < 3)
-+			return;
+ 		if (pid->mask !=3D 0xffffffff)
+-			sprintf(name + strlen(name), " rev %u", id & ~pid->mask);
++			snprintf(name + l, maxlen - l, " %s rev %u", pid->name, id & ~pid->mask=
+);
++		else
++			snprintf(name + l, maxlen - l, " %s", pid->name);
+ 		if (ac97 && pid->patch) {
+ 			if ((modem && (pid->flags & AC97_MODEM_PATCH)) ||
+ 			    (! modem && ! (pid->flags & AC97_MODEM_PATCH)))
+@@ -1861,6 +1863,7 @@ void snd_ac97_get_name(struct snd_ac97 *ac97, unsigne=
+d int id, char *name,
+ 		}
+ 	} else {
+ 		int l =3D strlen(name);
 +
-+		prec =3D min_t(size_t, max, COMMAND_LINE_SIZE - len - 2);
-+		snprintf(boot_command_line + len, COMMAND_LINE_SIZE - len, " %.*s",
-+			 prec, s);
-+	} else {
-+		prec =3D min_t(size_t, max, COMMAND_LINE_SIZE - 1);
-+		snprintf(boot_command_line, COMMAND_LINE_SIZE, "%.*s",
-+			 prec, s);
-+	}
+ 		snprintf(name + l, maxlen - l, " id %x", id & 0xff);
+ 	}
  }
-=20
- #ifdef CONFIG_OF_EARLY_FLATTREE
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
