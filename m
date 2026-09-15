@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A27B5C982C3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A37E3C982C4
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB8CC10E3F9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECCE310E59B;
 	Tue, 15 Sep 2026 14:13:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="DpAJBPLo";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="vhcZ3E4p";
 	dkim-atps=neutral
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com
- [209.85.214.200])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2A7A10F34C
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:11 +0000 (UTC)
-Received: by mail-pl1-f200.google.com with SMTP id
- d9443c01a7336-2dc92350888so72282095ad.3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:11 -0700 (PDT)
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com
+ [209.85.214.198])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C243210FAF3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:19:51 +0000 (UTC)
+Received: by mail-pl1-f198.google.com with SMTP id
+ d9443c01a7336-2cec4226c70so55721805ad.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:19:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460411; x=1790065211;
+ d=google.com; s=20251104; t=1789460391; x=1790065191;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=tzVl62qjzRm92BALDDypl3TnCOJSNAaLaOJ/zmWRh10=;
- b=DpAJBPLoDcNIV8gze/2hIRz7ZSFVHegI8iB3UO1Fxv95msuWJumNjCOFW5/tbM9QU7
- yWDMWdyql1NGKqLZWIPN4dXMoLBPQ/GbILEaqXCwC/9bUHDl95qwLw1HRKLXLI72JGTK
- BK8IKh/BXeFlwHqL2XBtR+EMN2Ivv7gdu7f2PxPKk40D1HErQgG1kb3aWB+2jWrai7Z3
- FcenBcgjmPxoitEE9p4z6jlF0hY5H/R+pf6svNwRwuNbGFq8KjBnf115DU1aFr56X2EQ
- w/iNMaucvqyFJ2nSDiV3tHJJfOXZxCFe8BNfzDDSl0eMqKfuhpHZaSkSACteMghpilc+
- whcA==
+ bh=i189Z1372pvpafDRMVnLFn5IBf8O4Z3ONLFW1RCweBo=;
+ b=vhcZ3E4pQaVeDwuPewnPTF4pUXQfQVrHhI0WUYlCsJxrzpM37gHsbYkKTO6P5Ay3T6
+ fIyKt6hVLCCbZfvhjcsjBzQwsyyw2xbhhtQu7GIdaOnjy7Dy7AcQleI94Fy9EuTrO2kr
+ lCmLIkG4qS+zY+fSOXJzoYWzTiEuuA5vxgTW9oAOZyO4kIhWCe4nAh9jq0XSJ/nD9Ug6
+ Bf6M/pfn2HU4RhhW9AIXHw/7iTeRDU6Bw6sjkTfj5fQ4bY5uyZRGe9RowBIyrsifSrk0
+ tMV29xIyV29FsFIaIFt0ZuwC99Y6tEriAzPJH2hQU8kJbC3NN2AO/8ccHefR296Yb1ot
+ V3ZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460411; x=1790065211;
+ d=1e100.net; s=20260707; t=1789460391; x=1790065191;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=tzVl62qjzRm92BALDDypl3TnCOJSNAaLaOJ/zmWRh10=;
- b=zeBXxHqrLkWnrEKFHSBWaBygtwGsRVbf9IdWtR4AIpbrBgn+9BFvD6p9JVbLE+HiY2
- +gWEek76K8x3ZcfpYx45Hq1Evb3jD/R2Xn71fPqIHuZ239bG7uLuxetsct6hFNaSEdI6
- BI1p8gv1EeoaNOOHQTNdqwTEwGdS1vCwa35sxMR3mjSCg+MPwc40o2oW8qr5Pbh0qicg
- 66AIhr3eBfGciU/kw4LaRBUpoqkj7e2p3jhcs6sH6Z/PpAIp5sABqdp8lRVoP7cI3XJW
- 0jcwW/2/e5rUHV8Z0tl9717lexDbLWIIDnQRg76C+4e5zcGRlc+Bek4k8EyUWHVs8DQX
- kFvQ==
+ bh=i189Z1372pvpafDRMVnLFn5IBf8O4Z3ONLFW1RCweBo=;
+ b=d/uUIOe4GBZKD1jr70Qt4r5kuTLPMn0BSP72ZqUlgAuoIpuDB8og4jJMN9ft98efnM
+ Q/zsJxDVbfWFOM98dOzO2EQBaoziImmcFIQKLfXHXK+Sv0QxPK2hnnSJgJNnL6j8fvzZ
+ OgSxi1hCD/njYDXQJzrnRmu+lLQ0r4FcY3LOYgkACqGKEW5Tc4J7ickPMXjMFEcdS1jd
+ iOwRy4JYOsQMJNQXGYPF/+ecnqG+H91+FBtl4djKW87qpQ+tDgmODPSP96z4VPGs9bE+
+ kBjeGQ1XIo1QNHLv8PHBAjhkNUbmpT+HI8X+cFw6BTirGijL1eowz8F1LlWPut5aVWB4
+ Oz3A==
 X-Forwarded-Encrypted: i=1;
- AKwUvBz8jBlyY2WwTDKDNBWDLiz83X4m/XBlJkMzoipfSmN3oQvdz9OA/HxZcYryFVLezJzUNSIRWyicJw==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++k/SJacEnEFT+4FbHXlr1n2g642x3syoL5+kkJcmVB3RV/fexKs
- Z4VXLQpMcah6DUx4RRex9QkvqL4h0eynGbQBDWvc4qG9RJt/69q1Wot6jt+J3c++VdLlZgQ8JNx
- m
-X-Received: from plbjx4.prod.google.com ([2002:a17:903:1384:b0:2dd:1457:fac8])
+ AKwUvBxFZeDA/iNkI7a7kk+Y2wEs9na0cRsUypPn7yTctjSQqU1ZBFR56wm9YCAX9hmqDmeFz9EpYTJI8Q==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++lFgCuHNAMr37eWtnQOSD9PF9AVk4LR4XEHFEp+G4Do/y02iWhh
+ wbQdYlBUhHjAvJO3ykH/VENABg70uAlIEYSC5zaZiO8y6Oyz2A1ZW8v+QcUZpLN26XD78a2gVMu
+ +
+X-Received: from plrd12.prod.google.com ([2002:a17:902:aa8c:b0:2db:8b6a:31a7])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:903:190d:b0:2dd:4168:7bd3
- with SMTP id d9443c01a7336-2dd6c6c0cb1mr140747065ad.12.1789460411041; Tue, 15
- Sep 2026 01:20:11 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:36 +0000
+ 2002:a17:903:388d:b0:2dd:143:d5
+ with SMTP id d9443c01a7336-2dd6c75a396mr155065525ad.22.1789460390543; Tue, 15
+ Sep 2026 01:19:50 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:19 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-20-morbo@google.com>
-Subject: [PATCH 19/28] x86/setup: Use snprintf() to concatenate builtin and
- boot command lines
+Message-ID: <20260915081910.4142719-3-morbo@google.com>
+Subject: [PATCH 02/28] sunrpc: Refactor rpc_sockaddr2uaddr() to use snprintf()
+ instead of strlcat()
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
 Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
@@ -155,20 +155,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When CONFIG_CMDLINE_BOOL is enabled without CONFIG_CMDLINE_OVERRIDE,
-setup_arch() appends boot_command_line to builtin_cmdline using two
-strlcat() calls before copying the result back to boot_command_line.
+rpc_sockaddr2uaddr() formats the IP address into "addrbuf", formats the
+port into a temporary "portbuf" buffer with snprintf(), and then appends
+"portbuf" to "addrbuf" using strlcat().
 
-In preparation for removing the deprecated strlcat() API[1], format the
-combined command line into a temporary buffer using a single snprintf()
-call and copy the result to both builtin_cmdline and boot_command_line.
-Using a temporary buffer avoids undefined behavior from passing overlapping
-source and destination buffers to snprintf().
+In preparation for removing the deprecated strlcat() API[1], capture the
+length returned by rpc_ntop4() and rpc_ntop6_noscopeid() and format the
+port directly onto the end of "addrbuf" with snprintf(). This eliminates
+the strlcat() call and the temporary "portbuf" buffer.
 
 Link: https://github.com/KSPP/linux/issues/370 [1]
 Cc: codemender-patching+linux@google.com
-Assisted-by: Developer:Gemini_2.5_Pro [editor_update_file, make_kernel_buil=
-d_single_file, checkpatch_run]
+Assisted-by: CoPilot:3.5-sonnet [editor_update_file, shell_command_run]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -282,29 +280,58 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- arch/x86/kernel/setup.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ net/sunrpc/addr.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
-index cda6adb9f69c..c40e0edd7c13 100644
---- a/arch/x86/kernel/setup.c
-+++ b/arch/x86/kernel/setup.c
-@@ -916,9 +916,11 @@ void __init setup_arch(char **cmdline_p)
- #else
- 	if (builtin_cmdline[0]) {
- 		/* append boot loader cmdline to builtin */
--		strlcat(builtin_cmdline, " ", COMMAND_LINE_SIZE);
--		strlcat(builtin_cmdline, boot_command_line, COMMAND_LINE_SIZE);
--		strscpy(boot_command_line, builtin_cmdline, COMMAND_LINE_SIZE);
-+		char tmp[COMMAND_LINE_SIZE];
-+
-+		snprintf(tmp, COMMAND_LINE_SIZE, "%s %s", builtin_cmdline, boot_command_=
-line);
-+		strscpy(builtin_cmdline, tmp, COMMAND_LINE_SIZE);
-+		strscpy(boot_command_line, tmp, COMMAND_LINE_SIZE);
+diff --git a/net/sunrpc/addr.c b/net/sunrpc/addr.c
+index 97ff11973c49..a1e4173e5a53 100644
+--- a/net/sunrpc/addr.c
++++ b/net/sunrpc/addr.c
+@@ -264,18 +264,20 @@ EXPORT_SYMBOL_GPL(rpc_pton);
+  */
+ char *rpc_sockaddr2uaddr(const struct sockaddr *sap, gfp_t gfp_flags)
+ {
+-	char portbuf[RPCBIND_MAXUADDRPLEN];
+ 	char addrbuf[RPCBIND_MAXUADDRLEN];
+ 	unsigned short port;
++	size_t len;
+=20
+ 	switch (sap->sa_family) {
+ 	case AF_INET:
+-		if (rpc_ntop4(sap, addrbuf, sizeof(addrbuf)) =3D=3D 0)
++		len =3D rpc_ntop4(sap, addrbuf, sizeof(addrbuf));
++		if (len =3D=3D 0 || len >=3D sizeof(addrbuf))
+ 			return NULL;
+ 		port =3D ntohs(((struct sockaddr_in *)sap)->sin_port);
+ 		break;
+ 	case AF_INET6:
+-		if (rpc_ntop6_noscopeid(sap, addrbuf, sizeof(addrbuf)) =3D=3D 0)
++		len =3D rpc_ntop6_noscopeid(sap, addrbuf, sizeof(addrbuf));
++		if (len =3D=3D 0 || len >=3D sizeof(addrbuf))
+ 			return NULL;
+ 		port =3D ntohs(((struct sockaddr_in6 *)sap)->sin6_port);
+ 		break;
+@@ -283,11 +285,8 @@ char *rpc_sockaddr2uaddr(const struct sockaddr *sap, g=
+fp_t gfp_flags)
+ 		return NULL;
  	}
- #endif
- 	builtin_cmdline_added =3D true;
+=20
+-	if (snprintf(portbuf, sizeof(portbuf),
+-		     ".%u.%u", port >> 8, port & 0xff) >=3D (int)sizeof(portbuf))
+-		return NULL;
+-
+-	if (strlcat(addrbuf, portbuf, sizeof(addrbuf)) >=3D sizeof(addrbuf))
++	if (snprintf(addrbuf + len, sizeof(addrbuf) - len,
++		     ".%u.%u", port >> 8, port & 0xff) >=3D sizeof(addrbuf) - len)
+ 		return NULL;
+=20
+ 	return kstrdup(addrbuf, gfp_flags);
+@@ -352,3 +351,4 @@ size_t rpc_uaddr2sockaddr(struct net *net, const char *=
+uaddr,
+ 	return 0;
+ }
+ EXPORT_SYMBOL_GPL(rpc_uaddr2sockaddr);
++
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
