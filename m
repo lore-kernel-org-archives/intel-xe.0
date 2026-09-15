@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4976C982CA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCD49C982CE
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42C0710E609;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AFD610E61A;
 	Tue, 15 Sep 2026 14:13:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="nPoLHCMm";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="odL/Vk2/";
 	dkim-atps=neutral
 Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com
  [209.85.214.200])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1139D10F34C
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA32110F34C
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:18 +0000 (UTC)
 Received: by mail-pl1-f200.google.com with SMTP id
- d9443c01a7336-2db3d832827so52313775ad.2
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:08 -0700 (PDT)
+ d9443c01a7336-2d9057fab9eso68051605ad.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460407; x=1790065207;
+ d=google.com; s=20251104; t=1789460418; x=1790065218;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=y5tFxAHb/e8uKrTICVzoygvHAjZ6k748iiDqUmGJfRE=;
- b=nPoLHCMm3nPaOYLPS545GmYS/t4IFNd5kLMAPG6OCn8Oea3nFdeZKEb2kGakqq5Wnq
- 3vb5856Fjrhbyn0KKErzd9rHZK9MbX9i9oNBb1VHSPEKR8nmx0zpQ3z3VNSRCE2OuSZN
- CAczyTjXHgS8PYIL2oHJros6gIvEZ+B6dNiO2D9gEC+oEmzSV2fiEfNSzA+YGktM5FIj
- 65NXU1obg869yC0wYdmYjS6fVhBXwynzIAAgJb9oOnXxrGrhexBcWpSvluS+Evt5wY2s
- vZ8RdVJmdnP3I/5aBL1PxUygSJ1MWTunZo8tVxvcpEpR5fOG3o5kWoo+bY59uTNDynsq
- BsmQ==
+ bh=Yp7aMeBt5kbv9wDm9MP1w/VhRzf84I2dhiWVAxjsG5I=;
+ b=odL/Vk2/yKsGmWXLVH+rdgZAYEpaAB043Nhv6Lf6CJ4++vuruzx5mQDViaMMtpYaPm
+ JqEeE0h5OFHtGh6aAT8Y+cqIReK6ttSZ3yKzZ0oAq0BJqhWr19IoW61URG1+6i4NlcrS
+ 2omHaQf/A82LRxwMDh9e08FHfCX053Me0SOH846gkYhFcPD/23y3S8n6m92aipBhwU9b
+ Wpa2of9uLwHietzq9lHWkNZ0adjRtEz8MqC0nXAEq2ufCKvLLWvAq+ST/j5Eo3bW2alL
+ Sp1rS9uvQ6MUh7ZqQ/Rn3zjUPWooCLKpEX7iHI3NA0l1JGp9LsQbh/WLTxqQgv5TgMO6
+ MEcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460407; x=1790065207;
+ d=1e100.net; s=20260707; t=1789460418; x=1790065218;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=y5tFxAHb/e8uKrTICVzoygvHAjZ6k748iiDqUmGJfRE=;
- b=nkbtGBFuh+ONpLph429TNJoaZhX7XUzUtUNWotX+pqirBd1gO3tfBoOstwI44i0xj0
- A6QDL+BqWEnqkGCcnR0oK+vZwG3cN78XbljEkiUAZJxf+hm833j1NwPubaAlD4fNG5s5
- HrH1CCT229P8qoWVLGEJ5+R/0jHRWhZqnzKaRjvgu28CsdkXlq5jrVkxeMKrEGQWJBv7
- LfHCCO8iT4fS0f/DGrUxglDaHTufGVG124xOGJZRlmiT41XCOQXG6S4/Vy15GvGj1yyu
- MgpEdOG5siTBHngpYER/4FC4fcsIzYhlZE0FL1MSyn0RBlJ2zW7DjEfFt67SP7y/CqMG
- riqg==
+ bh=Yp7aMeBt5kbv9wDm9MP1w/VhRzf84I2dhiWVAxjsG5I=;
+ b=b+aGCk8bFRc6BbGcWYIMePkP8iTGKKqvGt/51Vmy6WfjTzpQsmQdl9i6b0GiGOCnjv
+ BFpiO61lcsoMGyn05KmVIr+l/hBs3aX55r53VmTIX0mFfmWPJ8VdYfVf/WNz78kp76G9
+ 9wgrcZXd4NXbzxhukVrqQ6eNrMtiZFfdZSPIW3Q1F2ArdbMvPErku3MPI4V0LaUAnT6K
+ 8P8JcrlSXDpcCRIzTO8yyfBVtyL8ZPKYhUKy0NmmYe8VjkQgmgr10MclygAsS04vJCei
+ U61xu7+yZiTiy032MG6YfEOVUAz+4y0o/V7X9ZLBVpW/hJBid9K5QGNRzPKWtzwAXnjf
+ Lxgw==
 X-Forwarded-Encrypted: i=1;
- AKwUvByzLMjiNt/mGyCsfFQ4EOUy7JQEU7PPH4AxH2AMp/2NR+w9ASPoXHlwzDFy8+LtZhSa5A8m7/ZG8g==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++mH3YSCkURB0i0jwA88IfMcHdto9KyARQzeJtUGpjlMNq9UOeiK
- bCUc0kmEyh1H+QH3Y8UdP0Sky8FamTT4QlDSDSuXj5DZA5naTRLGiLt+OaNs2bnPB6zP42wp4C3
- e
-X-Received: from plav12.prod.google.com ([2002:a17:902:f0cc:b0:2dd:3949:eb03])
+ AKwUvBx7ZRd45Xxs62cnUwAfM+f2l67HB42Vs8uPQOCs3KqeXnchZFS0OUkvtnkIqCEBjiLpiCf93hE0ig==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++nMdT7OL5bXf9UEWxr3nlUXosewCSYWLqECIowdIuLzOZrWUCgs
+ 7XrQ2bBal83QiioJqprhyvM6+2G9shefxiBtg+MCQxKIRyg0H8XeekTzubDds/WBXh+2rxmIGAq
+ i
+X-Received: from pltt2.prod.google.com ([2002:a17:902:d142:b0:2dd:5303:f006])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:902:c40d:b0:2db:5c0a:f184
- with SMTP id d9443c01a7336-2dd6c6fc4f3mr121827545ad.17.1789460406752; Tue, 15
- Sep 2026 01:20:06 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:31 +0000
+ 2002:a17:902:f64f:b0:2dd:278c:5eb
+ with SMTP id d9443c01a7336-2dd83851f4amr602125ad.14.1789460417430; Tue, 15
+ Sep 2026 01:20:17 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:43 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-15-morbo@google.com>
-Subject: [PATCH 14/28] ALSA: usb-audio: Refactor append_ctl_name() to use
- snprintf()
+Message-ID: <20260915081910.4142719-27-morbo@google.com>
+Subject: [PATCH 26/28] wifi: wil6210: Refactor resume_triggers2string() to use
+ seq_buf
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
 Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
@@ -155,18 +155,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In preparation for removing the deprecated strlcat() API[1], replace the
-strlcat() call in append_ctl_name() with strlen() and snprintf(),
-preserving its return value semantics (the total length of the string it
-attempted to create).
+resume_triggers2string() builds a space-separated string of active resume
+trigger names using a series of conditional strlcat() calls.
 
-Also replace an open-coded strlcat() call in build_connector_control()
-with append_ctl_name().
+In preparation for removing the deprecated strlcat() API[1], replace the
+strlcat() calls with struct seq_buf and seq_buf_puts().
 
 Link: https://github.com/KSPP/linux/issues/370 [1]
 Cc: codemender-patching+linux@google.com
-Assisted-by: CoPilot:Claude-3-5-Sonnet [editor_update_file, shell_command_r=
-un]
+Assisted-by: CoPilot:1.0 [editor_update_file, make_kernel_build_single_file=
+]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -280,38 +278,71 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- sound/usb/mixer.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/net/wireless/ath/wil6210/wmi.c | 38 ++++++++++++++------------
+ 1 file changed, 21 insertions(+), 17 deletions(-)
 
-diff --git a/sound/usb/mixer.c b/sound/usb/mixer.c
-index ecaa8bc08d7c..f64ecad4e77e 100644
---- a/sound/usb/mixer.c
-+++ b/sound/usb/mixer.c
-@@ -1722,7 +1722,11 @@ const struct snd_kcontrol_new *snd_usb_feature_unit_=
-ctl =3D &usb_feature_unit_ctl;
-  */
- static size_t append_ctl_name(struct snd_kcontrol *kctl, const char *str)
- {
--	return strlcat(kctl->id.name, str, sizeof(kctl->id.name));
-+	size_t len =3D strlen(kctl->id.name);
-+
-+	if (len >=3D sizeof(kctl->id.name))
-+		return len + strlen(str);
-+	return len + snprintf(kctl->id.name + len, sizeof(kctl->id.name) - len, "=
-%s", str);
- }
+diff --git a/drivers/net/wireless/ath/wil6210/wmi.c b/drivers/net/wireless/=
+ath/wil6210/wmi.c
+index 479b2418ca34..fcc9e9eb5732 100644
+--- a/drivers/net/wireless/ath/wil6210/wmi.c
++++ b/drivers/net/wireless/ath/wil6210/wmi.c
+@@ -7,6 +7,7 @@
+ #include <linux/moduleparam.h>
+ #include <linux/etherdevice.h>
+ #include <linux/if_arp.h>
++#include <linux/seq_buf.h>
 =20
- /*
-@@ -2090,7 +2094,7 @@ static void build_connector_control(struct usb_mixer_=
-interface *mixer,
+ #include "wil6210.h"
+ #include "txrx.h"
+@@ -3162,27 +3163,30 @@ int wmi_suspend(struct wil6210_priv *wil)
+=20
+ static void resume_triggers2string(u32 triggers, char *string, int str_siz=
+e)
+ {
+-	string[0] =3D '\0';
++	struct seq_buf s;
++
++	seq_buf_init(&s, string, str_size);
+=20
+ 	if (!triggers) {
+-		strlcat(string, " UNKNOWN", str_size);
+-		return;
++		seq_buf_puts(&s, " UNKNOWN");
++	} else {
++		if (triggers & WMI_RESUME_TRIGGER_HOST)
++			seq_buf_puts(&s, " HOST");
++
++		if (triggers & WMI_RESUME_TRIGGER_UCAST_RX)
++			seq_buf_puts(&s, " UCAST_RX");
++
++		if (triggers & WMI_RESUME_TRIGGER_BCAST_RX)
++			seq_buf_puts(&s, " BCAST_RX");
++
++		if (triggers & WMI_RESUME_TRIGGER_WMI_EVT)
++			seq_buf_puts(&s, " WMI_EVT");
++
++		if (triggers & WMI_RESUME_TRIGGER_DISCONNECT)
++			seq_buf_puts(&s, " DISCONNECT");
  	}
 =20
- 	if (check_mapped_name(map, kctl->id.name, sizeof(kctl->id.name)))
--		strlcat(kctl->id.name, " Jack", sizeof(kctl->id.name));
-+		append_ctl_name(kctl, " Jack");
- 	else
- 		get_connector_control_name(mixer, term, is_input, kctl->id.name,
- 					   sizeof(kctl->id.name));
+-	if (triggers & WMI_RESUME_TRIGGER_HOST)
+-		strlcat(string, " HOST", str_size);
+-
+-	if (triggers & WMI_RESUME_TRIGGER_UCAST_RX)
+-		strlcat(string, " UCAST_RX", str_size);
+-
+-	if (triggers & WMI_RESUME_TRIGGER_BCAST_RX)
+-		strlcat(string, " BCAST_RX", str_size);
+-
+-	if (triggers & WMI_RESUME_TRIGGER_WMI_EVT)
+-		strlcat(string, " WMI_EVT", str_size);
+-
+-	if (triggers & WMI_RESUME_TRIGGER_DISCONNECT)
+-		strlcat(string, " DISCONNECT", str_size);
++	seq_buf_str(&s);
+ }
+=20
+ int wmi_resume(struct wil6210_priv *wil)
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
