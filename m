@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B6A1C88E7D
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 20:16:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32779C88E7D
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 20:18:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 221AC10E33B;
-	Tue, 15 Sep 2026 20:16:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D85B410E086;
+	Tue, 15 Sep 2026 20:18:42 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F169F10E378;
- Tue, 15 Sep 2026 20:16:57 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE0E110E079;
+ Tue, 15 Sep 2026 20:18:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1110007855630159057=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/=7Bi915=2Cxe=7D=3A_us?=
- =?utf-8?q?e_a_shared_gtt=5Fview=5Ftypes=2Eh_header?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Do_not_attrib?=
+ =?utf-8?q?ute_a_TDR_disable_to_a_pending_suspend?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: "Jagmeet Randhawa" <jagmeet.randhawa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 15 Sep 2026 20:16:57 -0000
-Message-ID: <178950341798.167993.8387284638663205192@61270ab9df2a>
+Date: Tue, 15 Sep 2026 20:18:41 -0000
+Message-ID: <178950352196.167993.11766690339087152584@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <cover.1789502902.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1789502902.git.jani.nikula@intel.com>
+References: <20260915192119.51065-1-jagmeet.randhawa@intel.com>
+In-Reply-To: <20260915192119.51065-1-jagmeet.randhawa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,82 +40,121 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1110007855630159057==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/{i915,xe}: use a shared gtt_view_types.h header
-URL   : https://patchwork.freedesktop.org/series/174204/
-State : warning
+Series: drm/xe/guc: Do not attribute a TDR disable to a pending suspend
+URL   : https://patchwork.freedesktop.org/series/174199/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-d875049d2b299159a272bd5151994970cdcd1e31
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 1a37064aa27dea3bb74afd6013b85bb742569fb6
-Author: Jani Nikula <jani.nikula@intel.com>
-Date:   Tue Sep 15 23:09:21 2026 +0300
+CI Bug Log - changes from xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8_BAT -> xe-pw-174199v1_BAT
+====================================================
 
-    drm/intel: rename I915_GTT_VIEW_* enumerations to INTEL_GTT_VIEW_*
-    
-    Make the I915_GTT_VIEW_* enumerators less i915 specific, and rename them
-    INTEL_GTT_VIEW_*.
-    
-    $ sed -i 's/I915_GTT_VIEW_/INTEL_GTT_VIEW_/g' -- $(git grep -l I915_GTT_VIEW_)
-    
-    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-+ /mt/dim checkpatch 0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8 drm-intel
-c543cb2856df drm/intel: move i915_gtt_view_types.h to include/drm/intel
--:47: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#47: 
-deleted file mode 100644
+Summary
+-------
 
-total: 0 errors, 1 warnings, 0 checks, 50 lines checked
-6e2b20b359e0 drm/intel: rename i915_gtt_view_is_*() helpers to intel_gtt_view_is_*()
--:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#10: 
-$ sed -i 's/i915_gtt_view_is_/intel_gtt_view_is_/g' -- $(git grep -l i915_gtt_view_is_)
+  **SUCCESS**
 
-total: 0 errors, 1 warnings, 0 checks, 52 lines checked
-6f89f0f7b632 drm/intel: rename i915_gtt_view* struct/enum to intel_gtt_view*
-06bc3130c56e drm/intel: add intel_gtt_view_is_partial() for completeness
-c334ead6648d drm/xe/display: use intel_gtt_view_is_*() helpers more
-f254e2db3d5f drm/i915/gem: use intel_gtt_view_is_*() helpers more
-635085073251 drm/i915/vma: use intel_gtt_view_is_*() helpers more
--:71: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#71: FILE: drivers/gpu/drm/i915/i915_vma.c:1321:
-+		GEM_BUG_ON(!intel_gtt_view_is_normal(&vma->gtt_view));
+  No regressions found.
 
-total: 0 errors, 1 warnings, 0 checks, 58 lines checked
-c40cc71bdc20 drm/i915/selftests: use intel_gtt_view_is_*() helpers more
--:58: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
-#58: FILE: drivers/gpu/drm/i915/selftests/i915_vma.c:635:
-+					expected_pages = remapped_size(&view, &plane_info[0], &plane_info[1]);
+  
 
--:79: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
-#79: FILE: drivers/gpu/drm/i915/selftests/i915_vma.c:675:
-+						if (intel_gtt_view_is_rotated(&view))
+Participating hosts (15 -> 15)
+------------------------------
 
--:131: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#131: FILE: drivers/gpu/drm/i915/selftests/i915_vma.c:1060:
-+			GEM_BUG_ON(!intel_gtt_view_is_normal(&vma->gtt_view));
+  No changes in participating hosts
 
--:149: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
-#149: FILE: drivers/gpu/drm/i915/selftests/i915_vma.c:1084:
-+						       intel_gtt_view_is_rotated(&vma->gtt_view) ? "Rotated" : "Remapped",
+Known issues
+------------
 
-total: 0 errors, 4 warnings, 0 checks, 125 lines checked
-ccb2dd99d01f drm/i915/debugfs: use the intel_gtt_view_is_*() helpers more
-1a37064aa27d drm/intel: rename I915_GTT_VIEW_* enumerations to INTEL_GTT_VIEW_*
--:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#10: 
-$ sed -i 's/I915_GTT_VIEW_/INTEL_GTT_VIEW_/g' -- $(git grep -l I915_GTT_VIEW_)
+  Here are the changes found in xe-pw-174199v1_BAT that come from known issues:
 
-total: 0 errors, 1 warnings, 0 checks, 168 lines checked
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-ptl-2:          [PASS][1] -> [FAIL][2] ([Intel XE#9115])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8/bat-ptl-2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174199v1/bat-ptl-2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
 
 
+Build changes
+-------------
+
+  * Linux: xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8 -> xe-pw-174199v1
+
+  IGT_9098: 9098
+  xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8: 0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8
+  xe-pw-174199v1: 174199v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174199v1/index.html
+
+--===============1110007855630159057==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Do not attribute a TDR disable to a pending suspend</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174199/">https://patchwork.freedesktop.org/series/174199/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174199v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174199v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8_BAT -&gt; xe-pw-174199v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-174199v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174199v1/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8 -&gt; xe-pw-174199v1</li>
+</ul>
+<p>IGT_9098: 9098<br />
+  xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8: 0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8<br />
+  xe-pw-174199v1: 174199v1</p>
+
+</body>
+</html>
+
+--===============1110007855630159057==--
