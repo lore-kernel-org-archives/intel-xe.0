@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 460CEC88E77
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 17:34:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 957BEC88E7D
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 17:48:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E56F410F190;
-	Tue, 15 Sep 2026 17:34:55 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61DE610F06C;
- Tue, 15 Sep 2026 17:34:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2363221435066174822=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3293010E440;
+	Tue, 15 Sep 2026 17:48:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ktJfNKxG";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B57B310E440
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 17:48:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789494524; x=1821030524;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=JTiL6d2mBZ3qO1h1W2w2mz9BxDvhyMl0oFRkDUa2eqs=;
+ b=ktJfNKxGZFAu3zts3Wz3Un3QGVLlKTYUA/L7npq2QnuXnv2xF3Uq0Eiy
+ GKF85dW2qtX+5vpUXSGDHGvXbrYQCfgtfhnIkw2h2ADpVu704Oxzrc9Z+
+ kQZ0gofxPqWvHxG5UYtIvHdGE8tjq5uBgInigtxkz5ahbqQqUFiQhmXAc
+ sIB0oZ0uvx8oQ7id3ge/UeypcX9ZU8/VPNaQA5gxlCj37fy2i8WiIuLq0
+ 9fkNdkgKHRUkAK6FLr9e5vMokrNebGlmIYoDRIE9TA5QlK026/7fAQeB1
+ 1Xl15eBAtGrvQ4p5BOvIXhXSdT8VovfISDx6p4+h6rXu/OTkBEkz5v1Gg A==;
+X-CSE-ConnectionGUID: 6D0Z/0geQRuT01r5MSPY/A==
+X-CSE-MsgGUID: MrfG4GdNTh+IDIKRUn7DXw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="107378787"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="107378787"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 10:48:43 -0700
+X-CSE-ConnectionGUID: 5Ul0cGGlQL2O7hC1h4jnQw==
+X-CSE-MsgGUID: N0bXbfcJR9Wc25yY7UX7NQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="269814741"
+Received: from aalteres-desk1.fm.intel.com ([10.121.64.173])
+ by fmviesa007.fm.intel.com with ESMTP; 15 Sep 2026 10:48:43 -0700
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ julia.filipchuk@intel.com, matthew.brost@intel.com, rodrigo.vivi@intel.com,
+ Zhanjun Dong <zhanjun.dong@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Subject: [PATCH v9 1/2] drm/xe: Remove extra newlines from LRC snapshot dump
+Date: Tue, 15 Sep 2026 10:48:39 -0700
+Message-ID: <20260915174840.531473-5-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260915174840.531473-4-alan.previn.teres.alexis@intel.com>
+References: <20260915174840.531473-4-alan.previn.teres.alexis@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_use_EXPORT?=
- =?utf-8?q?=5FSYMBOL=5FIF=5FKUNIT=28=29_for_kunit_helpers?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 15 Sep 2026 17:34:55 -0000
-Message-ID: <178949369539.166934.8861773437075394885@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260915160620.779372-1-jani.nikula@intel.com>
-In-Reply-To: <20260915160620.779372-1-jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +65,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2363221435066174822==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Zhanjun Dong <zhanjun.dong@intel.com>
 
-== Series Details ==
+The LRC snapshot printer adds an extra newline before the replay
+offset and replay length lines. This leaves blank lines in the
+HWCTX section of the dump.
 
-Series: drm/i915/dp: use EXPORT_SYMBOL_IF_KUNIT() for kunit helpers
-URL   : https://patchwork.freedesktop.org/series/174183/
-State : success
+Remove the stray newlines so the snapshot output remains compact
+and consistently formatted.
 
-== Summary ==
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
+---
+ drivers/gpu/drm/xe/xe_lrc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-CI Bug Log - changes from xe-5753-094c4642078b25417a4885f8631aa38c00e87206_BAT -> xe-pw-174183v1_BAT
-====================================================
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index f1cf1463f1b2..a99c7e044c4a 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -2633,8 +2633,8 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
+ 	}
+ 
+ 	drm_printf(p, "\n\t[HWCTX].length: 0x%lx\n", snapshot->lrc_size - LRC_PPHWSP_SIZE);
+-	drm_printf(p, "\n\t[HWCTX].replay_offset: 0x%lx\n", snapshot->replay_offset);
+-	drm_printf(p, "\n\t[HWCTX].replay_length: 0x%lx\n", snapshot->replay_size);
++	drm_printf(p, "\t[HWCTX].replay_offset: 0x%lx\n", snapshot->replay_offset);
++	drm_printf(p, "\t[HWCTX].replay_length: 0x%lx\n", snapshot->replay_size);
+ 
+ 	drm_puts(p, "\t[HWCTX].data: ");
+ 	for (; i < snapshot->lrc_size; i += sizeof(u32)) {
+-- 
+2.43.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-174183v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [ABORT][1] ([Intel XE#8007]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5753-094c4642078b25417a4885f8631aa38c00e87206/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174183v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-
-
-Build changes
--------------
-
-  * Linux: xe-5753-094c4642078b25417a4885f8631aa38c00e87206 -> xe-pw-174183v1
-
-  IGT_9098: 9098
-  xe-5753-094c4642078b25417a4885f8631aa38c00e87206: 094c4642078b25417a4885f8631aa38c00e87206
-  xe-pw-174183v1: 174183v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174183v1/index.html
-
---===============2363221435066174822==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: use EXPORT_SYMBOL_IF_KUNIT() for kunit helpers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174183/">https://patchwork.freedesktop.org/series/174183/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174183v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174183v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5753-094c4642078b25417a4885f8631aa38c00e87206_BAT -&gt; xe-pw-174183v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-174183v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5753-094c4642078b25417a4885f8631aa38c00e87206/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174183v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5753-094c4642078b25417a4885f8631aa38c00e87206 -&gt; xe-pw-174183v1</li>
-</ul>
-<p>IGT_9098: 9098<br />
-  xe-5753-094c4642078b25417a4885f8631aa38c00e87206: 094c4642078b25417a4885f8631aa38c00e87206<br />
-  xe-pw-174183v1: 174183v1</p>
-
-</body>
-</html>
-
---===============2363221435066174822==--
