@@ -4,64 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDEDFC982CB
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE136C982CC
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A23210E5F9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4439E10E619;
 	Tue, 15 Sep 2026 14:13:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="GN/NloDh";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="kpOq4tCJ";
 	dkim-atps=neutral
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com
- [209.85.214.199])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C67DF10F34C
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:12 +0000 (UTC)
-Received: by mail-pl1-f199.google.com with SMTP id
- d9443c01a7336-2d959904658so74607715ad.2
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:12 -0700 (PDT)
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com
+ [209.85.214.200])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB3DF10FAF3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:09 +0000 (UTC)
+Received: by mail-pl1-f200.google.com with SMTP id
+ d9443c01a7336-2db3734d06dso80498895ad.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460412; x=1790065212;
+ d=google.com; s=20251104; t=1789460409; x=1790065209;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=XkXp/XZtfYpYjiXJEDXdoQGA1NlHq2kVyqBGidLpG58=;
- b=GN/NloDh94ffKcaFlI4OhmcwF8tBeQZjISr0PSmWJslg+6PxRX86ncQVG4SxEIVAG1
- cNcq73eL0TX5TAFvxvGmer7FhJsEV20X9/b1FVZNfnnp2JEEWWozE1+HkbE7a1DsZmLB
- cTGeUAaRujIHYLhE5tvt9IaxAIyskdtlqLGu7JKagW4OCq5Z5DoijstCVaYqNleQypl2
- y3OhxBzNxVYabnmLxzDYhEht9euZTUoLbYyrXFvEPj2bp68DC2DB85aTnheWPnvSXAUX
- bmpPqF6Dp1WFw+CeepXvNjKAQ3KmjJUSmy7CafK0kVA8E+OaulrxKTkCAxIngLfqqcyQ
- KrSA==
+ bh=jD1fGYdmSfmtHfbCTu69NC0iIcRgu3QWne7aaYuG46g=;
+ b=kpOq4tCJ3jSLgimO047tAfg3IhDz+jsnGKl3I+iMvVsETUvmnsKr97UN3d3XznVH3K
+ aq+zz/nGu7+UIS8GI3eRD2PL2qsRUDreIR0gpo0nGRwabj5nOq9GjrAmGzE4x/Gl9i2b
+ BM7H5fSZeEZiiP+3Y7y64uxfmvdugADuCWxm3SKKlIL+Svd7k7puSnk4bgM3ucyYkUXH
+ SCAmxzSxiZhuGV9jOag31ftfFT6vMcjaICvdS+VrtKP17eMu86LGZC1bZBwdYtHWYbkC
+ DH2DY2tRDI15HzPyj/8kKDdZ/EtvFV7hyAuALgVSA6qZFuU0BOz1hXqaXYaO+nDAEl/Q
+ Brbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460412; x=1790065212;
+ d=1e100.net; s=20260707; t=1789460409; x=1790065209;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=XkXp/XZtfYpYjiXJEDXdoQGA1NlHq2kVyqBGidLpG58=;
- b=OjOwhoN1dOt2XsA0Dj/7n0rRtwG+XPE0rj9mrT8smDFWaYAIHiju9nKTH4vVAUmhh5
- eJvr3jbHL4jG2Z9D+9kOOmJ84r/6Fxa/WosCjdu0KtvnRTjHnx3+RTUfDWy/X0uV1VBZ
- 8YW9bGmtonxhK8/ZK09VKRPAdlLfXL7rTHEm/csQFrbc25xhDg8+AHzcTnONd+G1WKmR
- t5IblaZHkdGcH1QdGqSleFbbuJdaMrsrqUbYLMs3PLYh6h0tAcywwrq5iIogKaAF0AQ9
- iKcSN2VvB1A7DZrogckv3NW2Datg3o2Qa/Z6EtMQ7Ut0QLsz3+crNRxCAuguvIvkoxml
- heUA==
+ bh=jD1fGYdmSfmtHfbCTu69NC0iIcRgu3QWne7aaYuG46g=;
+ b=NElM9ckuhm36JDVBHpCKfBkyCjfJAA3G9L4XELnMRAdJ743Gj3Q32f4qvNnQ0omEV4
+ E+MPvYPEpwXMEiIkXsSKxmlbINQozmoxvVxPF1pTCny7XpgC/Ws/O6MSMZKeAJEScMPd
+ ShycwjOkDsV/N/m+E6EYvieSFinrFY2uV8LMeZ2Wj+YFZz+CTIMg5PjUd5LocHtm+OR/
+ Tzq+xTiNWmvwo/l/bvXszvpNAQcby2TRuSpGl+ZL8lHF2kDGaO8feAglt/LZKI0rvPSu
+ bDZvsY3nCW0HU8fQYjVYYaO13uFiW3SerPG/pxg7jns+k8RWNSuCv8hHS3n5WgthHSQW
+ t1tg==
 X-Forwarded-Encrypted: i=1;
- AKwUvBxPBlIgw/Psen/0euwQFf4NHjlX94dxi1u68uJBHEd8tyg09as5TEL6tiSELn1EOMBbFjPp/MJZzA==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++nH6+a4tUSqgzbTZi9vMx6GK2XdVXlDm39O39D63F1qceIGOPGG
- smu2K320MjSSF2xbxM28a7GBBShlmvhGA1dy7fqsdbz+V5hfG6gk3TQ7/9YKwj5yiB3QF6HOPD2
- H
-X-Received: from plbkc7.prod.google.com ([2002:a17:903:33c7:b0:2dd:630:cea4])
+ AKwUvBxXdYw3wIU2NkzrBh1gIzclvzFVDvqE6TpK0cKmlx4/74Rax4V87TFkGUK6tY0isRZ1GMcdxobihg==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++n9jPWOWB+CLvuYVkWST7yLSFKfXsG9RxF/zHKf2Vuprmq0F77M
+ 8MU7qpI0mGlmtamyKYthGaNkLIrHz670GzAaQPqvpf1M6nogQseqOR/USgw0GRKS2R5BkF7CCvA
+ w
+X-Received: from plbkq15.prod.google.com ([2002:a17:903:284f:b0:2dd:1c44:fe2])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:903:1965:b0:2d3:716e:e2ae
- with SMTP id d9443c01a7336-2dd6c5ef019mr154580855ad.6.1789460411846; Tue, 15
- Sep 2026 01:20:11 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:37 +0000
+ 2002:a17:903:1a0c:b0:2d9:464f:d45f
+ with SMTP id d9443c01a7336-2dd6c5ba2f0mr129830935ad.5.1789460408347; Tue, 15
+ Sep 2026 01:20:08 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:33 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-21-morbo@google.com>
-Subject: [PATCH 20/28] parisc: Refactor strlcat() to seq_buf in setup_cmdline()
+Message-ID: <20260915081910.4142719-17-morbo@google.com>
+Subject: [PATCH 16/28] pinctrl: samsung: Use snprintf() to construct pin bank
+ names
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
 Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
@@ -154,16 +155,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-setup_cmdline() uses multiple strlcat() calls to conditionally append
-default console and earlycon parameters to boot_command_line.
+samsung_banks_node_get() constructs each pin bank node name by copying
+bank->name with strscpy() and appending the suffix with strlcat().
 
-In preparation for removing the deprecated strlcat() API[1], initialize a
-struct seq_buf with the existing boot_command_line contents and use
-seq_buf_printf() to append the console parameters.
+In preparation for removing the deprecated strlcat() API[1], format the
+node name in a single snprintf() call, which preserves the existing
+truncation check against sizeof(node_name).
 
 Link: https://github.com/KSPP/linux/issues/370 [1]
 Cc: codemender-patching+linux@google.com
-Assisted-by: CoPilot:Gemini-1.5-Pro [editor_update_file, shell_command_run]
+Assisted-by: Gemini:Pro [editor_update_file, make_kernel_build_single_file,=
+ checkpatch_run]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -277,57 +279,26 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- arch/parisc/kernel/setup.c | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+ drivers/pinctrl/samsung/pinctrl-samsung.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/arch/parisc/kernel/setup.c b/arch/parisc/kernel/setup.c
-index d3e17a7a8901..fa3efc82ad87 100644
---- a/arch/parisc/kernel/setup.c
-+++ b/arch/parisc/kernel/setup.c
-@@ -17,6 +17,7 @@
- #include <linux/init.h>
- #include <linux/console.h>
- #include <linux/seq_file.h>
-+#include <linux/seq_buf.h>
- #define PCI_DEBUG
- #include <linux/pci.h>
- #undef PCI_DEBUG
-@@ -42,6 +43,7 @@ static char __initdata command_line[COMMAND_LINE_SIZE];
- static void __init setup_cmdline(char **cmdline_p)
- {
- 	extern unsigned int boot_args[];
-+	struct seq_buf s;
- 	char *p;
+diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.c b/drivers/pinctrl/sa=
+msung/pinctrl-samsung.c
+index 5ecc9ed4c44d..0d639eec689c 100644
+--- a/drivers/pinctrl/samsung/pinctrl-samsung.c
++++ b/drivers/pinctrl/samsung/pinctrl-samsung.c
+@@ -1155,8 +1155,7 @@ static void samsung_banks_node_get(struct device *dev=
+, struct samsung_pinctrl_dr
 =20
- 	*cmdline_p =3D command_line;
-@@ -54,19 +56,21 @@ static void __init setup_cmdline(char **cmdline_p)
- 	strscpy(boot_command_line, (char *)__va(boot_args[1]),
- 		COMMAND_LINE_SIZE);
-=20
-+	s.buffer =3D boot_command_line;
-+	s.size =3D COMMAND_LINE_SIZE;
-+	s.len =3D strlen(boot_command_line);
-+
- 	/* autodetect console type (if not done by palo yet) */
- 	p =3D boot_command_line;
- 	if (!str_has_prefix(p, "console=3D") && !strstr(p, " console=3D")) {
--		strlcat(p, " console=3D", COMMAND_LINE_SIZE);
--		if (PAGE0->mem_cons.cl_class =3D=3D CL_DUPLEX)
--			strlcat(p, "ttyS0", COMMAND_LINE_SIZE);
--		else
--			strlcat(p, "tty0", COMMAND_LINE_SIZE);
-+		seq_buf_printf(&s, " console=3D%s",
-+			       PAGE0->mem_cons.cl_class =3D=3D CL_DUPLEX ?
-+			       "ttyS0" : "tty0");
- 	}
-=20
- 	/* default to use early console */
- 	if (!strstr(p, "earlycon"))
--		strlcat(p, " earlycon=3Dpdc", COMMAND_LINE_SIZE);
-+		seq_buf_printf(&s, " earlycon=3Dpdc");
-=20
- #ifdef CONFIG_BLK_DEV_INITRD
- 	/* did palo pass us a ramdisk? */
+ 	bank =3D d->pin_banks;
+ 	for (i =3D 0; i < d->nr_banks; ++i, ++bank) {
+-		strscpy(node_name, bank->name, sizeof(node_name));
+-		len =3D strlcat(node_name, suffix, sizeof(node_name));
++		len =3D snprintf(node_name, sizeof(node_name), "%s%s", bank->name, suffi=
+x);
+ 		if (len >=3D sizeof(node_name)) {
+ 			dev_err(dev, "Too long pin bank name '%s', ignoring\n",
+ 				bank->name);
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
