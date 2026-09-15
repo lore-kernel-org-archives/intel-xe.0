@@ -4,160 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84F70C88E53
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 12:27:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 660CEC88E53
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 12:31:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D6AB10E0A7;
-	Tue, 15 Sep 2026 12:27:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3C1610E36C;
+	Tue, 15 Sep 2026 12:31:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ESo9Sjib";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hJ+lJtZG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7CF210E0A7;
- Tue, 15 Sep 2026 12:27:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C8C710E0A7;
+ Tue, 15 Sep 2026 12:31:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789475237; x=1821011237;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-id:content-transfer-encoding:mime-version;
- bh=UBd9BfQJfeE1EgQES01tXziUH1AG2zqwW8VR/QOuwMg=;
- b=ESo9Sjib3WxkHCU+gyt5xdpcxEowAuzFZoHyv7z+UTPqkxjdClpnXhfw
- K9j+kfzXqWesFtaSX3tDS4bstl4TI4S4dFNM1MA6QdXI8dzWrK3keFTtu
- AjsCi/1CKn8MYyU/VaIUC9zdhkRNNtkxvUygKQcYyJm9t9/OWfsQQsjr/
- GyKAlaz41aIiNZSsZcpIUNnorfkxaUgfbnAHgD7Ff/9YqljKHzWUPk/sS
- YAmfZceAU0Kk73NYVaPZ1pNtiAc4bvv3UxrwtfBCwP279ctZZ/OftEiqL
- 5PKj6Q3/N6JeTo6n46CukZurXA1Swg7jFvpIaKRlYObXB0LDQDquYAnT7 g==;
-X-CSE-ConnectionGUID: CE43oZZZRcidQ2OPhvd/Kw==
-X-CSE-MsgGUID: Mb/0xm1MS32Bs4HZ9twykg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89678337"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89678337"
+ t=1789475499; x=1821011499;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=32KwHaouwkg2IFwHsP/xenwquCRjaCAgeCXIRNVazDA=;
+ b=hJ+lJtZGPKUSn/L2DsFexOyf2JqhQaDaOwVNlMmc9pU/uK+IrMD4mRQJ
+ d4+SSKP/HhuFeM7ZyTqq05YWWj35cGG1smah6h5RJQd8LLuX326RgujVE
+ 0YUIK/Og4VxzpZHyOITPsRAZ6ZZGlOfC0RDj/JPIrUapT8l5kLIeOoPbY
+ p8rpQx5InDr1kXNoUma9Gqa3kp6pz2NRT/Xf9WuzaQmMsT+dvrWitiIU9
+ 6TMLUZMYM7cMrOZAF74qCLRltYyLRUIdaUjXWYptXA8IWkUNqIwl7xSmv
+ W6FNaGRUuEhe0ZGe+UfLXE1NIdp85wFUXSqPm8409w93TxidMQQopCPnf Q==;
+X-CSE-ConnectionGUID: s6kvmaqqRaGhH3+BWfabPA==
+X-CSE-MsgGUID: itV0qUyGTai45pvZU3CK8A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89678870"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89678870"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 05:27:16 -0700
-X-CSE-ConnectionGUID: aJRVxufxQ2qpMUqMdj994Q==
-X-CSE-MsgGUID: WNYb15+hScWHUDqz5TBSNQ==
+ 15 Sep 2026 05:31:38 -0700
+X-CSE-ConnectionGUID: 5CzhA7o5R7Oo8KIgkAMvug==
+X-CSE-MsgGUID: JuygdXRlSY+0CJx23WbFTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="266784779"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 05:27:16 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 15 Sep 2026 05:27:15 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Tue, 15 Sep 2026 05:27:15 -0700
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.39)
- by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 15 Sep 2026 05:27:13 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=I0KOtXolWOzCWX9r4lc/tb+V+HVc3Na2NRmctCm75/lFhtd5bh8Vjaz5hFt3l+M4CD3O0KehAcsM0cpbPt4JDMgi/KDtp2V5IPouEWYYEOhvb+nk9WcjF77jRigAUN+WbYnNFuLmQpeHroAI5q+ISowag+6kC88PxS8AG0Asrek1zzRRhJUKJqyxmdUiLNohuUxESb4xPfCE45+on1K1Os9vQfrPeuPFjAgOJUnaMTgNkW8zgvF5t4NQlBZBYfATA6HpwDIcPUJcaDsZ1i7eCo38yPplhvaNJO26/o3icculWjDXDhhqfqnrNsGb2gfx63BMf7Z2aQhiS47JFl+6Pg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UBd9BfQJfeE1EgQES01tXziUH1AG2zqwW8VR/QOuwMg=;
- b=zSl+G3uzdrRr2BMMp28IEBhBNzwNmNZGzSzOoFY6hClPH6+DTa20+n++Yj4Ukyy33bbFuPcoxlqjEK7noETVU8DTfSybxlAYmSIXOn5gflt5OUKq5go2DSFd774KV03HnZzEMOJIj9sUkOwWuggSO5A/3G++/YzeRjHur5frvSGkLKSVoc1YGEm6wpwOgBZkNjYy7sA9r7bHWna18N/A9fIa/yeVGhaZAlMHCfZHySwa1Ofb1MjZ1us0dZi71uhYTFTgRj0F4YNtfQZspH6WCtzZwkJE5h87IAsP3HQt62n1zHz4zq+uHE5zf/+gUSYkbNjYcdBTmIsYM+uvv0GRVw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
- PH4PPFAC68B944F.namprd11.prod.outlook.com (2603:10b6:518:1::e6b) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.13; Tue, 15 Sep
- 2026 12:27:11 +0000
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::9086:5e0b:ad24:762]) by DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::9086:5e0b:ad24:762%6]) with mapi id 15.21.0406.007; Tue, 15 Sep 2026
- 12:27:11 +0000
-From: "Hogander, Jouni" <jouni.hogander@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-Subject: Re: [PATCH v8 1/5] drm/xe/pm: introduce PM PME support
-Thread-Topic: [PATCH v8 1/5] drm/xe/pm: introduce PM PME support
-Thread-Index: AQHdRPQ1cyJ8D1gZqkOKLYxhoTOrfLbPkSWA
-Date: Tue, 15 Sep 2026 12:27:11 +0000
-Message-ID: <7f970736cd33b3bf749f538a6da927613d918369.camel@intel.com>
-References: <20260915092518.639448-1-vinod.govindapillai@intel.com>
- <20260915092518.639448-2-vinod.govindapillai@intel.com>
-In-Reply-To: <20260915092518.639448-2-vinod.govindapillai@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|PH4PPFAC68B944F:EE_
-x-ms-office365-filtering-correlation-id: cf8af9f6-2771-4d9a-c674-08df1324aac6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|23010399003|6133799003|18002099003|22082099003|3023799007|38070700021|10067099003|4143699003|56012099006|5023799004|11063799006;
-x-microsoft-antispam-message-info: l3pbA2T1h+O7V2WH4E0gBNd9xWmfZt0c4oqeRSU7N02JySDy1xrUZ7pqV6RF+fdTljK4CvtXHF0QqH/xZnMF/P3bHTz/0qnSB5XCKj5TiRXu8u3hFaKoCn2BC1j6t8jGQtIk1Vz2hu626GIfgw4nfCngiAkEp40OW3bPz2X8sgh21ui7gw6S1cDUGlTpp0JPXUhn1grt6F3oj6vDnL1BLLP3SNgGhym8yP0rSiH9Y5FyO65iKJQPbJFUQV7S9th0CXJd9MSKuiV4VWSr6jSHpzKTv70jEPrdptBj1fmO30VP0i+igRODfMgA4qu20PkohEiqQG2lg7VjeB6buRSLDs8c0P3Hlv6DNV/LQAIWiqb7RUWWHVrI+HRlh2zNDRPAvORQ+NNCSDe7hMB5HBecpcXh5r9miV9MoubIu2SFkNlF+onmoq10ZEXiwARVjpxQaX9B/S1yc4bc5Wp1R8jbi1Oyc0UDAfnIl1iqEioHTmBps72RsQ8Z6fQATS0HVahccsw7qXsLsdudsLx4sj0Q2bGMw/JDXoJ3AwOaAd1zvT1/UT+2rgIhQMQ6Ynk1X5vtuFOPtAoaHb5x50/3aeCcLkzkufWmZfi6LvGGBHqLh6YfEjsy9lAOwIpeto8UAVpfNNhkt0UybuLXEW+zx7nu0YB3HCwPIMQoL/dbESsTDueV5+Lm1jKV8OUdWMUu4X5LkDkruuCjtOaWH/Wtfd2gNyiZXOF8H0ZQu1wz2nT4s3A=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(6133799003)(18002099003)(22082099003)(3023799007)(38070700021)(10067099003)(4143699003)(56012099006)(5023799004)(11063799006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TnA1T0tVS211OXh0VTNleW1OM1JBbFBVSWJmbkR2bGkrR1ozT2lvV3hUcEZE?=
- =?utf-8?B?ck1VeWxBcTZtTkxEU0JSZGdRUWEzNktERmV1RlNvVGlib2RDUzNxU25TTjQz?=
- =?utf-8?B?QUhXZ2tmdkNucWNjVUJ0eEtNN0h0Z2hkRGZYeGk0Y25RS2J0YjV1SkZiWVRs?=
- =?utf-8?B?YndSRWE3RGdvUUx3ekYydmRVMjMwZHFyLzZ4bWptTjBJMlIrNDBSSFE5dVBH?=
- =?utf-8?B?dU9DVlBESjNtNDdNa0VWaHJoTldPbkZvUlMzTWs3OHRYOVN0SG80QTlVMkVG?=
- =?utf-8?B?MVJjRkQrZDhQei9zUTFHSTJ2bHBTeWprK3d5M0ZuN003WVFjWXkwWUc5YkFa?=
- =?utf-8?B?eUk0VU9mTXQxMmEyR2lSUGVBcFEyclBBRG8vT0NKbjVDZ3dlcUJ6STdEczlL?=
- =?utf-8?B?MVF0aTFSZEswa0gwRmlXMysyYW9Fa3NFaWZqcHQvTlk0Uld1SFJ0TkFhS1Ra?=
- =?utf-8?B?T2NFWDRrVHpyQzNDU3Z2cWxmYzJHL1FORjZ1UXRJa2NCQXl4RjFRWDROYUI4?=
- =?utf-8?B?NXpXazhHa3o0SUl5Vyt1REJqZ05WVEpwT2Z5NjE1LzhjTk9neUpzZGVlVTFF?=
- =?utf-8?B?NUFnZ3NJd2ZpZFZBWWxxdmxTVjlMeC9WZGpjVlVHOXM3RnRyb3ZMTWRwbS9G?=
- =?utf-8?B?UXJzVEZIWWRJcG9HOWlUZFlkS2JJc2FhbHVKUkRxS1NJclFMN20zTFhENnpa?=
- =?utf-8?B?Q1dWQmtSa2cwT3FENUJCZzdYR1Nxb1dqMkh3YlBrV2toUzZGYmV0akZEd3lJ?=
- =?utf-8?B?ejVSWWYxNTRmRFd1R0RYSDlLZ3lXcjdLSVBHamRLTjNFeTFqNnRiTEgxY2lp?=
- =?utf-8?B?cTUwTjJmNU11OTAvUFg4SDVlaEh0ZitXWlJiSGt4dHltdTQ4OFZFNURLZjRE?=
- =?utf-8?B?ZVdmQ1ZObHhYTmh2VXZPOXRFUXdYK0VibVhOUmxUQjlzQmlhLzlmeE9nQTZt?=
- =?utf-8?B?NXZuUytxVDd5M25taTVraU5HcjBqeW9JV3Fic1RvMzZjb1loeVBHVDM5WmJi?=
- =?utf-8?B?aVVUcVZiZFNqNTJacWFYWGlqSlZ1RnJSK1BtODBQRHd0NFZXNDVPdWtOM3VV?=
- =?utf-8?B?TkkzUnBaTEw1WDEwdEtYeGR6VWd2N1ZOa0s4N3RNbzNwdStCU0tiZGZzd2Zm?=
- =?utf-8?B?SnNCMktaRFNrRnNrL1pxZGcrdlprSVdCSTdnUU9ZODU1b1I2Uy9nNFRzdERF?=
- =?utf-8?B?UWNJUWhFUWdQUGNMWHFFK00zZXZLQ2VINUxTT0J2MkVVRlloK21kUlhCcEg1?=
- =?utf-8?B?bE9CZjFmVHAwM0lSZmNmOTlPK2wrNGs1ZWlzcnp1d20xS2wvUlA5WUhPaGNS?=
- =?utf-8?B?QjhlSkRhOFBMdG9lVFVmVlpFQUk5RTFuVlMzUER0V2dOQzFMTzcxanNBd244?=
- =?utf-8?B?QjdrRjdPMlpRUXVOU2FBWi9WYWt0UXhVcHJvLzBrQ3QyRWZBVTFzMnMvaG5M?=
- =?utf-8?B?dFZPam9xU1crdnA0SWwyMHgwa2dOUGl5YUFzSXZKZlJOVnlYZjI0T3RObkxK?=
- =?utf-8?B?d0hLbjhGSXJUQWhTSmdwY3BDWS81UTUyMUhGQnZGT0czUVZWNnpEUkV3c05z?=
- =?utf-8?B?TVNRV2VOL2d1U04zcHZxOXFOOW54Yi95MjMrSzdnSGk5S1JyVmFQK2VuYllh?=
- =?utf-8?B?dnZvN01ZemhNMnZrWFdra2c5TEsxaDQza1FkeEFFMjM0MXMrZnF3NkE5RVJz?=
- =?utf-8?B?UHBraVl5OTllR1VPYzNGQ2ZBbHlWeU1YY0FyaVBaS0c0WEMrMzFHSXEwT0Nu?=
- =?utf-8?B?QkQ0STRsTVVudUhZdEk1RWoxYis5NmhwSCtuYS8vN2xYSDFhZXUyNmQ5ZERQ?=
- =?utf-8?B?VzRIN2xOaFpuR2Q5U09VcnF3Y0hNZDdMZFdYRVQwNTdPcGliYml5REI2N21q?=
- =?utf-8?B?eFNybmdCS3UranVzMUwveno0R2dZb2MrZGwyZXlTcEFzRnczSE9DeE9VYXN3?=
- =?utf-8?B?WE9XSWxjN2p4REJUdTMyNzFqTUhzdG82RkphSmpEMVNtRWJGY0kvcnpxMlZZ?=
- =?utf-8?B?NW1tdTVhdmZENVN1MWZWd2pob3lkQ3BBTEN3L3JSay9iT2plaTJqRWRicDhN?=
- =?utf-8?B?ZHQxM3orVTBoNHVNSnhyYmprUkhqMktkU1dPdjV0d1ZSZHBtV0c5WkJVNTlp?=
- =?utf-8?B?dVZ6OGt5YmhxUGhaN1BacEJZa3FuSE5FSkUva1AzY3A0L0F0a2JUbUlncHo1?=
- =?utf-8?B?Y3lyR3NrZGNvYXZDR0lkSkQwcXlrdTN1UXg3TkQ4YWVQaVEyc0FMT2ZVQitn?=
- =?utf-8?B?MW4rTWp2Vk5oVit2dVE3SFhzcmRIK2dyTS85dW5hcU54QVhMZTRxWVpVb055?=
- =?utf-8?B?Vlc0MWRPMldzSjBtbkhuaHVQeStFOS9aYjdCWTFCaWFHN045c2hLNFAwQXUv?=
- =?utf-8?Q?HYyBJ2PBb4GKzNnQ=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <98E081D126E9654E8C28AF4854E21830@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="266786085"
+Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.243])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 05:31:32 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ilpo =?utf-8?Q?J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, Armin
+ Wolf <W_Armin@gmx.de>
+Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>, "hansg@kernel.org"
+ <hansg@kernel.org>, "platform-driver-x86@vger.kernel.org"
+ <platform-driver-x86@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "linux@weissschuh.net"
+ <linux@weissschuh.net>, "rafael@kernel.org" <rafael@kernel.org>,
+ "lenb@kernel.org" <lenb@kernel.org>, "linux-acpi@vger.kernel.org"
+ <linux-acpi@vger.kernel.org>, "Koenig, Christian"
+ <Christian.Koenig@amd.com>, "airlied@gmail.com" <airlied@gmail.com>,
+ "simona@ffwll.ch" <simona@ffwll.ch>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "patrik.r.jakobsson@gmail.com"
+ <patrik.r.jakobsson@gmail.com>, "maarten.lankhorst@linux.intel.com"
+ <maarten.lankhorst@linux.intel.com>, "mripard@kernel.org"
+ <mripard@kernel.org>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>, "tursulin@ursulin.net"
+ <tursulin@ursulin.net>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "matthew.brost@intel.com"
+ <matthew.brost@intel.com>, "thomas.hellstrom@linux.intel.com"
+ <thomas.hellstrom@linux.intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v3 2/3] ACPI: video: Remove CONFIG_X86 handling from
+ nvidia_wmi_ec_supported()
+In-Reply-To: <80c4bb47-936b-976b-6ba8-b366f7a455cf@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260724025959.142826-1-W_Armin@gmx.de>
+ <20260724025959.142826-3-W_Armin@gmx.de>
+ <BN9PR12MB514668975E87D570F50B2D91F7A82@BN9PR12MB5146.namprd12.prod.outlook.com>
+ <86d0e015-a8f4-4e10-a9b6-a9714d3e0f07@gmx.de>
+ <80c4bb47-936b-976b-6ba8-b366f7a455cf@linux.intel.com>
+Date: Tue, 15 Sep 2026 15:31:29 +0300
+Message-ID: <11976ed3784675ad241646287a909286a42675a8@intel.com>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: EM1tFq+kyzrVlmGe5DS6PVc+xJsgaitPldjTMuog+bmUsaPk7qshF30+x/1x5r8HG78lTOsfxZYdlKKyRbEG3ORdTEoQNodkp64AqH2Goz0Jy0XkkC5ChbaX5pDoIR1sHfSWEKE6wgiSBfSeRPXFWz9pRGm7MpmQsa4j+NkqUWRPQMz76hbl6QXymv/APTKIxKAFl0wRlH6tXNozpjt9WkifT/fRTs/QpNYD+MsqoQjKWARhVfPhj5CtpEUHPsSk2UdbSzHg4RUl6sc+IbnsamnE/OXU3mpc2sqGO7C5D+6iyL0VddFrjXCzlLnXis4l7ytx3w/Ywze8Xpnu7KScPg==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf8af9f6-2771-4d9a-c674-08df1324aac6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Sep 2026 12:27:11.4608 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jSJS9EAAVovrPFVXMTsyva2t4OJJaqX+LOb5bFZ+AFhh+C7jIq+EI9O7Kb6g3Sq42qsRgX1aDyJGDzPeY25zd1IurenYIJagS59YYuCMM9Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH4PPFAC68B944F
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,134 +95,237 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDI2LTA5LTE1IGF0IDEyOjI1ICswMzAwLCBWaW5vZCBHb3ZpbmRhcGlsbGFpIHdy
-b3RlOg0KPiBJbnRyb2R1Y2UgUE1FIHN1cHBvcnQgZm9yIFBNRSBjYXBhYmxlIGRldmljZXMuIFdo
-ZXRoZXIgZGV2aWNlIGlzDQo+IFBNRSBjYXBhYmxlIGlzIGFzc2Vzc2VkIGR1cmluZyBQQ0kgcHJv
-YmUgcm91dGluZS4gQW5kIHRoZSB3aGV0aGVyDQo+IFBNRSBpcyBlbmFibGVkIGZvciBhIHNwZWNp
-ZmljIGNvbnRleHQgaXMgYXNzZXNzZWQgZHVyaW5nIHRoZSBQTQ0KPiBydW50aW1lIHN1c3BlbmQg
-Y2FsbCBpZiB0aGUgZGV2aWNlIGlzIFBNRSBjYXBhYmxlLg0KPiANCj4gSWYgdGhlIFBNRSBpcyBl
-bmFibGVkLCBIUERzIGNhbiBnZW5lcmF0ZSBQTUUgd2hpY2ggaW4gdHVybiBjYWxsDQo+IHRoZSBy
-dW50aW1lIHJlc3VtZSBjYWxsIGFuZCBkbyB0aGUgd2FrZXVwIHJvdXRpbmVzLiBUaWxsIG5vdw0K
-PiB0aGUgZHJpdmVyIHdhcyByZWx5aW5nIG9uIEhQRCBwb2xsaW5nIHRvIHdha2V1cCBpbiBjYXNl
-IG9mIGFueQ0KPiBIUERzLiBIUEQgcG9sbGluZyBjYW4gYmUgYXZvaWRlZCBpbiBwbGF0Zm9ybXMg
-d2l0aCBQTUUgc3VwcG9ydA0KPiBhbmQgaW5zdGVhZCByZWx5IG9uIHRoaXMgUENJIFBNRSBmb3Ig
-SFBEIGluZHVjZWQgd2FrZXVwLg0KPiANCj4gdjI6IGFjY2VzcyBmdW5jdGlvbnMgZm9yIHhlLnBt
-ZS5lbmFibGVkIHN0YXR1cyBhbmQgY2xlYXIgdGhlIHBtZS4NCj4gwqDCoMKgIGVuYWJsZWQgaW4g
-Y2FzZSBvZiBlcnJvciBpbiB4ZV9wbV9ydW50aW1lX3N1c3BlbmQoKQ0KPiANCj4gdjM6IHVzZSB0
-aGUgbG9jYWwgcG1lX2VuYWJsZWQgZmxhZyB0byBjbGVhciB0aGUgZGV2aWNlIHdha2V1cA0KPiDC
-oMKgwqAgaW5jYXNlIG9mIGVycm9yDQo+IA0KPiB2NDogY2FsbCB0aGUgZGV2bV9kZXZpY2VfaW5p
-dF93YWtldXAoKSBvbmx5IGlmIGRldmljZSBpcyBQTUUNCj4gwqDCoMKgIGNhcGFibGUgdG8gYXZv
-aWQgZmFsc2Ugd2FrZXVwIGNhcGFibGUgcmVwb3J0aW5nIGluIHBsYXRmb3Jtcw0KPiDCoMKgwqAg
-d2hlcmUgUE1FIGlzIG5vdCBzdXBwb3J0ZWQuDQo+IMKgwqDCoCBTcXVhc2ggdGhlIHBhdGNoIHdo
-aWNoIGhhbmRsZWQgdGhlIGxvY2tkZXAgZGVhZGxvY2sgaGFuZGxpbmcNCj4gDQo+IEJzcGVjOiA1
-Mjk3OSwgNTI5ODAsIDY4ODU3LCA2ODg2NywgNjg5NzANCj4gQXNzaXN0ZWQtYnk6IEdpdEh1Yl9D
-b3BpbG90OmNsYXVkZS1vcHVzLTUNCj4gU2lnbmVkLW9mZi1ieTogVmlub2QgR292aW5kYXBpbGxh
-aSA8dmlub2QuZ292aW5kYXBpbGxhaUBpbnRlbC5jb20+DQoNClJldmlld2VkLWJ5OiBKb3VuaSBI
-w7ZnYW5kZXIgPGpvdW5pLmhvZ2FuZGVyQGludGVsLmNvbT4NCj4gLS0tDQo+IMKgZHJpdmVycy9n
-cHUvZHJtL3hlL3hlX2RldmljZV90eXBlcy5oIHwgMTMgKysrKysrKysNCj4gwqBkcml2ZXJzL2dw
-dS9kcm0veGUveGVfcGNpLmPCoMKgwqDCoMKgwqDCoMKgwqAgfCAyMiArKysrKysrKysrKysrLQ0K
-PiDCoGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9wbS5jwqDCoMKgwqDCoMKgwqDCoMKgwqAgfCA0NQ0K
-PiArKysrKysrKysrKysrKysrKysrKysrKysrKysrDQo+IMKgZHJpdmVycy9ncHUvZHJtL3hlL3hl
-X3BtLmjCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgMiArKw0KPiDCoDQgZmlsZXMgY2hhbmdlZCwg
-ODEgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS94ZS94ZV9kZXZpY2VfdHlwZXMuaA0KPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94
-ZV9kZXZpY2VfdHlwZXMuaA0KPiBpbmRleCA0NjYxYmZjZTJmNGUuLmJiNDIzNGYwMDQ1MyAxMDA2
-NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2RldmljZV90eXBlcy5oDQo+ICsrKyBi
-L2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kZXZpY2VfdHlwZXMuaA0KPiBAQCAtNDYwLDYgKzQ2MCwx
-OSBAQCBzdHJ1Y3QgeGVfZGV2aWNlIHsNCj4gwqAJCXN0cnVjdCBtdXRleCBsb2NrOw0KPiDCoAl9
-IGQzY29sZDsNCj4gwqANCj4gKwkvKiogQHBtZTogRW5jYXBzdWxhdGUgcG1lIHJlbGF0ZWQgc3R1
-ZmYgKi8NCj4gKwlzdHJ1Y3Qgew0KPiArCQkvKiogQHBtZS5jYXBhYmxlOiBJbmRpY2F0ZXMgaWYg
-ZGV2aWNlIGlzIFBNRSBjYXBhYmxlDQo+ICovDQo+ICsJCWJvb2wgY2FwYWJsZTsNCj4gKw0KPiAr
-CQkvKiogQHBtZS5lbmFibGVkOg0KPiArCQkgKg0KPiArCQkgKiBJbmRpY2F0ZXMgaWYgUE1FIGlz
-IGVuYWJsZWQgLSBkZXBlbmRzIG9uIHVzZXINCj4gY29udHJvbGxhYmxlDQo+ICsJCSAqIHN5c2Zz
-IGludGVyZmFjZSBhcyB3ZWxsDQo+ICsJCSAqLw0KPiArCQlib29sIGVuYWJsZWQ7DQo+ICsJfSBw
-bWU7DQo+ICsNCj4gwqAJLyoqIEBwbV9ub3RpZmllcjogT3VyIFBNIG5vdGlmaWVyIHRvIHBlcmZv
-cm0gYWN0aW9ucyBpbg0KPiByZXNwb25zZSB0byB2YXJpb3VzIFBNIGV2ZW50cy4gKi8NCj4gwqAJ
-c3RydWN0IG5vdGlmaWVyX2Jsb2NrIHBtX25vdGlmaWVyOw0KPiDCoAkvKiogQHBtX2Jsb2NrOiBD
-b21wbGV0aW9uIHRvIGJsb2NrIHZhbGlkYXRpbmcgdGFza3Mgb24NCj4gc3VzcGVuZCAvIGhpYmVy
-bmF0ZSBwcmVwYXJlICovDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfcGNp
-LmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfcGNpLmMNCj4gaW5kZXggYzQwMWM4ODAzNzk2
-Li5kMTA2MzNmNzRhYTQgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9wY2ku
-Yw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfcGNpLmMNCj4gQEAgLTEzODAsNiArMTM4
-MCw4IEBAIHN0YXRpYyBpbnQgeGVfcGNpX3J1bnRpbWVfc3VzcGVuZChzdHJ1Y3QgZGV2aWNlDQo+
-ICpkZXYpDQo+IMKgew0KPiDCoAlzdHJ1Y3QgcGNpX2RldiAqcGRldiA9IHRvX3BjaV9kZXYoZGV2
-KTsNCj4gwqAJc3RydWN0IHhlX2RldmljZSAqeGUgPSBwZGV2X3RvX3hlX2RldmljZShwZGV2KTsN
-Cj4gKwl1bnNpZ25lZCBpbnQgZmxhZ3M7DQo+ICsJYm9vbCBwbWVfZW5hYmxlZDsNCj4gwqAJaW50
-IGVycjsNCj4gwqANCj4gwqAJLyoNCj4gQEAgLTEzOTEsOSArMTM5MywyNSBAQCBzdGF0aWMgaW50
-IHhlX3BjaV9ydW50aW1lX3N1c3BlbmQoc3RydWN0DQo+IGRldmljZSAqZGV2KQ0KPiDCoAl4ZV9h
-c3NlcnQoeGUsICFJU19TUklPVl9WRih4ZSkpOw0KPiDCoAl4ZV9hc3NlcnQoeGUsICFwY2lfbnVt
-X3ZmKHBkZXYpKTsNCj4gwqANCj4gKwlmbGFncyA9IG1lbWFsbG9jX25vcmVjbGFpbV9zYXZlKCk7
-DQo+ICsJcG1lX2VuYWJsZWQgPSB4ZS0+cG1lLmNhcGFibGUgJiYgIXhlLT5kM2NvbGQuYWxsb3dl
-ZCAmJg0KPiArCQnCoMKgwqDCoMKgIHBjaV9lbmFibGVfd2FrZShwZGV2LCBQQ0lfRDNob3QsIHRy
-dWUpID09IDA7DQo+ICsJbWVtYWxsb2Nfbm9yZWNsYWltX3Jlc3RvcmUoZmxhZ3MpOw0KPiArDQo+
-ICsJeGVfcG1fdXBkYXRlX3BtZV9lbmFibGVkKHhlLCBwbWVfZW5hYmxlZCk7DQo+ICsNCj4gwqAJ
-ZXJyID0geGVfcG1fcnVudGltZV9zdXNwZW5kKHhlKTsNCj4gLQlpZiAoZXJyKQ0KPiArCWlmIChl
-cnIpIHsNCj4gKwkJaWYgKHBtZV9lbmFibGVkKSB7DQo+ICsJCQlmbGFncyA9IG1lbWFsbG9jX25v
-cmVjbGFpbV9zYXZlKCk7DQo+ICsJCQlwY2lfZW5hYmxlX3dha2UocGRldiwgUENJX0QzaG90LCBm
-YWxzZSk7DQo+ICsJCQltZW1hbGxvY19ub3JlY2xhaW1fcmVzdG9yZShmbGFncyk7DQo+ICsNCj4g
-KwkJCXhlX3BtX3VwZGF0ZV9wbWVfZW5hYmxlZCh4ZSwgZmFsc2UpOw0KPiArCQl9DQo+ICsNCj4g
-wqAJCXJldHVybiBlcnI7DQo+ICsJfQ0KPiDCoA0KPiDCoAlwY2lfc2F2ZV9zdGF0ZShwZGV2KTsN
-Cj4gwqANCj4gQEAgLTE0MjIsNiArMTQ0MCw4IEBAIHN0YXRpYyBpbnQgeGVfcGNpX3J1bnRpbWVf
-cmVzdW1lKHN0cnVjdCBkZXZpY2UNCj4gKmRldikNCj4gwqANCj4gwqAJcGNpX3Jlc3RvcmVfc3Rh
-dGUocGRldik7DQo+IMKgDQo+ICsJeGVfcG1fdXBkYXRlX3BtZV9lbmFibGVkKHhlLCBmYWxzZSk7
-DQo+ICsNCj4gwqAJaWYgKHhlLT5kM2NvbGQuYWxsb3dlZCkgew0KPiDCoAkJZXJyID0gcGNpX2Vu
-YWJsZV9kZXZpY2UocGRldik7DQo+IMKgCQlpZiAoZXJyKQ0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL3hlL3hlX3BtLmMgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfcG0uYw0KPiBpbmRl
-eCBmNTE3YmY0NTNiNTQuLmU3MWJiOTBjOWI4MCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL3hlL3hlX3BtLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3BtLmMNCj4gQEAg
-LTc4LDYgKzc4LDggQEANCj4gwqAgKiBtYW5hZ2VtZW50IChSUFMpLg0KPiDCoCAqLw0KPiDCoA0K
-PiArI2RlZmluZSBIQVNfUE1fUE1FX1NVUFBPUlQoeGUpIChHUkFQSElDU19WRVJ4MTAwKHhlKSA+
-PSAzNTAwKQ0KPiArDQo+IMKgI2lmZGVmIENPTkZJR19MT0NLREVQDQo+IMKgc3RhdGljIHN0cnVj
-dCBsb2NrZGVwX21hcCB4ZV9wbV9ydW50aW1lX2QzY29sZF9tYXAgPSB7DQo+IMKgCS5uYW1lID0g
-InhlX3JwbV9kM2NvbGRfbWFwIg0KPiBAQCAtMzg0LDYgKzM4NiwxNCBAQCBpbnQgeGVfcG1faW5p
-dF9lYXJseShzdHJ1Y3QgeGVfZGV2aWNlICp4ZSkNCj4gwqB9DQo+IMKgQUxMT1dfRVJST1JfSU5K
-RUNUSU9OKHhlX3BtX2luaXRfZWFybHksIEVSUk5PKTsgLyogU2VlDQo+IHhlX3BjaV9wcm9iZSgp
-ICovDQo+IMKgDQo+ICtzdGF0aWMgYm9vbCB4ZV9wbV9wY2lfcG1lX2NhcGFibGUoc3RydWN0IHhl
-X2RldmljZSAqeGUpDQo+ICt7DQo+ICsJc3RydWN0IHBjaV9kZXYgKnBkZXYgPSB0b19wY2lfZGV2
-KHhlLT5kcm0uZGV2KTsNCj4gKw0KPiArCXJldHVybiBIQVNfUE1fUE1FX1NVUFBPUlQoeGUpID8N
-Cj4gKwkJcGNpX3BtZV9jYXBhYmxlKHBkZXYsIFBDSV9EM2hvdCkgOiBmYWxzZTsNCj4gK30NCj4g
-Kw0KPiDCoC8qKg0KPiDCoCAqIHhlX3BtX3Byb2JlKCkgLSBJbml0aWFsaXplIFhlIFBvd2VyIE1h
-bmFnZW1lbnQNCj4gwqAgKiBAeGU6IHRoZSAmeGVfZGV2aWNlIGluc3RhbmNlDQo+IEBAIC0zOTcs
-NiArNDA3LDE2IEBAIGludCB4ZV9wbV9wcm9iZShzdHJ1Y3QgeGVfZGV2aWNlICp4ZSkNCj4gwqAJ
-eGUtPmQzY29sZC5jYXBhYmxlID0geGVfcG1fcGNpX2QzY29sZF9jYXBhYmxlKHhlKTsNCj4gwqAJ
-eGVfZGJnKHhlLCAiZDNjb2xkOiBjYXBhYmxlPSVzXG4iLCBzdHJfeWVzX25vKHhlLQ0KPiA+ZDNj
-b2xkLmNhcGFibGUpKTsNCj4gwqANCj4gKwl4ZS0+cG1lLmNhcGFibGUgPSB4ZV9wbV9wY2lfcG1l
-X2NhcGFibGUoeGUpOw0KPiArCXhlX2RiZyh4ZSwgInBtZTogY2FwYWJsZT0lc1xuIiwgc3RyX3ll
-c19ubyh4ZS0NCj4gPnBtZS5jYXBhYmxlKSk7DQo+ICsNCj4gKwlpZiAoeGUtPnBtZS5jYXBhYmxl
-KSB7DQo+ICsJCWludCBlcnIgPSBkZXZtX2RldmljZV9pbml0X3dha2V1cCh4ZS0+ZHJtLmRldik7
-DQo+ICsNCj4gKwkJaWYgKGVycikNCj4gKwkJCXJldHVybiBlcnI7DQo+ICsJfQ0KPiArDQo+IMKg
-CXJldHVybiAwOw0KPiDCoH0NCj4gwqANCj4gQEAgLTY1MCw2ICs2NzAsNyBAQCBpbnQgeGVfcG1f
-cnVudGltZV9zdXNwZW5kKHN0cnVjdCB4ZV9kZXZpY2UgKnhlKQ0KPiDCoAlyZXR1cm4gMDsNCj4g
-wqANCj4gwqBvdXRfcmVzdW1lOg0KPiArCXhlX3BtX3VwZGF0ZV9wbWVfZW5hYmxlZCh4ZSwgZmFs
-c2UpOw0KPiDCoAl4ZV9kaXNwbGF5X3BtX3J1bnRpbWVfcmVzdW1lKHhlKTsNCj4gwqAJeGVfcHhw
-X3BtX3Jlc3VtZSh4ZS0+cHhwKTsNCj4gwqBvdXQ6DQo+IEBAIC05OTMsNiArMTAxNCwzMCBAQCBp
-bnQgeGVfcG1fc2V0X3ZyYW1fdGhyZXNob2xkKHN0cnVjdCB4ZV9kZXZpY2UNCj4gKnhlLCB1MzIg
-dGhyZXNob2xkKQ0KPiDCoAlyZXR1cm4gMDsNCj4gwqB9DQo+IMKgDQo+ICsvKioNCj4gKyAqIHhl
-X3BtX3BtZV9lbmFibGVkIC0gZ2V0IHRoZSBjdXJyZW50IHN0YXR1cyBvZiBQTUUgZW5hYmxlZA0K
-PiArICogQHhlOiB4ZSBkZXZpY2UgaW5zdGFuY2UNCj4gKyAqDQo+ICsgKiBSZXR1cm5zOiBUcnVl
-IGlmIFBNRSBpcyBlbmFibGVkLCBmYWxzZSBvdGhlcndpc2UuDQo+ICsgKi8NCj4gK2Jvb2wgeGVf
-cG1fcG1lX2VuYWJsZWQoc3RydWN0IHhlX2RldmljZSAqeGUpDQo+ICt7DQo+ICsJcmV0dXJuIHhl
-LT5wbWUuZW5hYmxlZDsNCj4gK30NCj4gKw0KPiArLyoqDQo+ICsgKiB4ZV9wbV91cGRhdGVfcG1l
-X2VuYWJsZWQgLSBVcGRhdGUgdGhlIFBNRSBlbmFibGVkIHN0YXRlDQo+ICsgKiBAeGU6IHhlIGRl
-dmljZSBpbnN0YW5jZQ0KPiArICogQHN0YXR1czogTmV3IFBNRSBlbmFibGVkIHN0YXR1cw0KPiAr
-ICoNCj4gKyAqIENhbGxlZCBkdXJpbmcgcnVudGltZSBzdXNwZW5kIC8gcmVzdW1lLiBTdGF0dXMg
-aXMgc2V0IHRvIFRydWUgaWYNCj4gUE1FIGlzDQo+ICsgKiBlbmFibGVkIGR1cmluZyBydW50aW1l
-X3N1c3BlbmQuIENsZWFyZWQgb24gcnVudGltZV9yZXN1bWUuDQo+ICsgKi8NCj4gK3ZvaWQgeGVf
-cG1fdXBkYXRlX3BtZV9lbmFibGVkKHN0cnVjdCB4ZV9kZXZpY2UgKnhlLCBib29sIHN0YXR1cykN
-Cj4gK3sNCj4gKwl4ZS0+cG1lLmVuYWJsZWQgPSBzdGF0dXM7DQo+ICt9DQo+ICsNCj4gwqAvKioN
-Cj4gwqAgKiB4ZV9wbV9kM2NvbGRfYWxsb3dlZF90b2dnbGUgLSBDaGVjayBjb25kaXRpb25zIHRv
-IHRvZ2dsZQ0KPiBkM2NvbGQuYWxsb3dlZA0KPiDCoCAqIEB4ZTogeGUgZGV2aWNlIGluc3RhbmNl
-DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfcG0uaCBiL2RyaXZlcnMvZ3B1
-L2RybS94ZS94ZV9wbS5oDQo+IGluZGV4IDZkNWFiMDljYjc2OS4uMDM3YzczZWE0MzQyIDEwMDY0
-NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfcG0uaA0KPiArKysgYi9kcml2ZXJzL2dw
-dS9kcm0veGUveGVfcG0uaA0KPiBAQCAtMzMsNiArMzMsOCBAQCBib29sIHhlX3BtX3J1bnRpbWVf
-cmVzdW1lX2FuZF9nZXQoc3RydWN0IHhlX2RldmljZQ0KPiAqeGUpOw0KPiDCoHZvaWQgeGVfcG1f
-YXNzZXJ0X3VuYm91bmRlZF9icmlkZ2Uoc3RydWN0IHhlX2RldmljZSAqeGUpOw0KPiDCoGludCB4
-ZV9wbV9zZXRfdnJhbV90aHJlc2hvbGQoc3RydWN0IHhlX2RldmljZSAqeGUsIHUzMiB0aHJlc2hv
-bGQpOw0KPiDCoHZvaWQgeGVfcG1fZDNjb2xkX2FsbG93ZWRfdG9nZ2xlKHN0cnVjdCB4ZV9kZXZp
-Y2UgKnhlKTsNCj4gK2Jvb2wgeGVfcG1fcG1lX2VuYWJsZWQoc3RydWN0IHhlX2RldmljZSAqeGUp
-Ow0KPiArdm9pZCB4ZV9wbV91cGRhdGVfcG1lX2VuYWJsZWQoc3RydWN0IHhlX2RldmljZSAqeGUs
-IGJvb2wgc3RhdHVzKTsNCj4gwqBib29sIHhlX3JwbV9yZWNsYWltX3NhZmUoY29uc3Qgc3RydWN0
-IHhlX2RldmljZSAqeGUpOw0KPiDCoHN0cnVjdCB0YXNrX3N0cnVjdCAqeGVfcG1fcmVhZF9jYWxs
-YmFja190YXNrKHN0cnVjdCB4ZV9kZXZpY2UgKnhlKTsNCj4gwqBpbnQgeGVfcG1fYmxvY2tfb25f
-c3VzcGVuZChzdHJ1Y3QgeGVfZGV2aWNlICp4ZSk7DQoNCg==
+On Tue, 15 Sep 2026, Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com> wro=
+te:
+> GPU people heads up!!
+>
+> On Wed, 2 Sep 2026, Armin Wolf wrote:
+>
+>> Am 01.09.26 um 23:30 schrieb Deucher, Alexander:
+>>=20
+>> > Public
+>> >=20
+>> > > -----Original Message-----
+>> > > From: Armin Wolf <W_Armin@gmx.de>
+>> > > Sent: Thursday, July 23, 2026 11:00 PM
+>> > > To: hansg@kernel.org; ilpo.jarvinen@linux.intel.com
+>> > > Cc: platform-driver-x86@vger.kernel.org; linux-kernel@vger.kernel.or=
+g;
+>> > > linux@weissschuh.net; rafael@kernel.org; lenb@kernel.org; linux-
+>> > > acpi@vger.kernel.org; Deucher, Alexander <Alexander.Deucher@amd.com>;
+>> > > Koenig, Christian <Christian.Koenig@amd.com>; airlied@gmail.com;
+>> > > simona@ffwll.ch; amd-gfx@lists.freedesktop.org; dri-
+>> > > devel@lists.freedesktop.org; patrik.r.jakobsson@gmail.com;
+>> > > maarten.lankhorst@linux.intel.com; mripard@kernel.org;
+>> > > tzimmermann@suse.de; jani.nikula@linux.intel.com;
+>> > > joonas.lahtinen@linux.intel.com; rodrigo.vivi@intel.com;
+>> > > tursulin@ursulin.net; intel-gfx@lists.freedesktop.org;
+>> > > matthew.brost@intel.com; thomas.hellstrom@linux.intel.com; intel-
+>> > > xe@lists.freedesktop.org
+>> > > Subject: [PATCH v3 2/3] ACPI: video: Remove CONFIG_X86 handling from
+>> > > nvidia_wmi_ec_supported()
+>> > >=20
+>> > > The WMI-ACPI driver now supports architectures other than x86.
+>> > > Remove the CONFIG_X86 handling from video-detect and the associated
+>> > > drivers to simplify the resulting code.
+>> > >=20
+>> > > Acked-by: Rafael J. Wysocki (Intel) <rafael@kernel.org>
+>> > > Signed-off-by: Armin Wolf <W_Armin@gmx.de>
+>> > > ---
+>> > >   drivers/acpi/Kconfig               | 2 +-
+>> > >   drivers/acpi/video_detect.c        | 8 --------
+>> > >   drivers/gpu/drm/amd/amdgpu/Kconfig | 4 +---
+>> > >   drivers/gpu/drm/gma500/Kconfig     | 1 -
+>> > >   drivers/gpu/drm/i915/Kconfig       | 1 -
+>> > >   drivers/gpu/drm/radeon/Kconfig     | 4 +---
+>> > >   drivers/gpu/drm/xe/Kconfig         | 5 ++---
+>> > >   drivers/platform/loongarch/Kconfig | 1 +
+>> > >   8 files changed, 6 insertions(+), 20 deletions(-)
+>> > >=20
+>> > > diff --git a/drivers/acpi/Kconfig b/drivers/acpi/Kconfig index
+>> > > f165d14cf61a..cc1e58fa664b 100644
+>> > > --- a/drivers/acpi/Kconfig
+>> > > +++ b/drivers/acpi/Kconfig
+>> > > @@ -224,7 +224,7 @@ config ACPI_VIDEO
+>> > >        tristate "Video"
+>> > >        depends on BACKLIGHT_CLASS_DEVICE
+>> > >        depends on INPUT
+>> > > -     depends on ACPI_WMI || !X86
+>> > > +     depends on ACPI_WMI
+>> > >        select THERMAL
+>> > >        help
+>> > >          This driver implements the ACPI Extensions For Display Adap=
+ters
+>> > > diff
+>> > > --git a/drivers/acpi/video_detect.c b/drivers/acpi/video_detect.c in=
+dex
+>> > > 458efa4fe9d4..af9280b244f1 100644
+>> > > --- a/drivers/acpi/video_detect.c
+>> > > +++ b/drivers/acpi/video_detect.c
+>> > > @@ -82,8 +82,6 @@ find_video(acpi_handle handle, u32 lvl, void *cont=
+ext,
+>> > > void **rv)
+>> > >        return AE_OK;
+>> > >   }
+>> > >=20
+>> > > -/* This depends on ACPI_WMI which is X86 only */ -#ifdef CONFIG_X86
+>> > > static bool nvidia_wmi_ec_supported(void)  {
+>> > >        struct wmi_brightness_args args =3D {
+>> > > @@ -105,12 +103,6 @@ static bool nvidia_wmi_ec_supported(void)
+>> > >         */
+>> > >        return args.ret =3D=3D WMI_BRIGHTNESS_SOURCE_EC;  } -#else -s=
+tatic bool
+>> > > nvidia_wmi_ec_supported(void) -{
+>> > > -     return false;
+>> > > -}
+>> > > -#endif
+>> > >=20
+>> > >   /* Force to use vendor driver when the ACPI device is known to be
+>> > >    * buggy */
+>> > > diff --git a/drivers/gpu/drm/amd/amdgpu/Kconfig
+>> > > b/drivers/gpu/drm/amd/amdgpu/Kconfig
+>> > > index 12e4a41bf1f0..50305630f533 100644
+>> > > --- a/drivers/gpu/drm/amd/amdgpu/Kconfig
+>> > > +++ b/drivers/gpu/drm/amd/amdgpu/Kconfig
+>> > > @@ -30,9 +30,7 @@ config DRM_AMDGPU
+>> > >        # ACPI_VIDEO's dependencies must also be selected.
+>> > >        select INPUT if ACPI
+>> > >        select ACPI_VIDEO if ACPI
+>> > > -     # On x86 ACPI_VIDEO also needs ACPI_WMI
+>> > > -     select X86_PLATFORM_DEVICES if ACPI && X86
+>> > The change below makes sense, but this one looks like it should remain
+>> > unless X86_PLATFORM_DEVICES is handled some other way?
+>> >=20
+>> > Alex
+>>=20
+>> AFAIK the dependency on X86_PLATFORM_DEVICES was only necessary because
+>> ACPI-WMI depended on it in the past.
+>> By now ACPI-WMI neither depends on X86_PLATFORM_DEVICES or X86 anymore.
+>
+> Hi all,
+>
+> Could more GPU people besides Alex take a look on this. I'd want to make=
+=20
+> progress with this series within this cycle but would prefer to have Acks=
+=20
+> from GPU side.
+
+I share the same concern with Alex. It seems to me we could now end up
+with x86 configurations without X86_PLATFORM_DEVICES, which handle
+e.g. backlight on a lot of platforms.
+
+I think the safer option might be to go for:
+
+	depends on X86_PLATFORM_DEVICES || !X86
+
+in all of the cases that select/depend on X86_PLATFORM_DEVICES in drm.
+
+The alternative is to find out, and handle the fallout, if any.
+
+
+BR,
+Jani.
+
+
+>
+>> > > -     select ACPI_WMI if ACPI && X86
+>> > > +     select ACPI_WMI if ACPI
+>> > >        help
+>> > >          Choose this option if you have a recent AMD Radeon graphics=
+ card.
+>> > >=20
+>> > > diff --git a/drivers/gpu/drm/gma500/Kconfig
+>> > > b/drivers/gpu/drm/gma500/Kconfig index a2acaa699dd5..dc4c56638819
+>> > > 100644
+>> > > --- a/drivers/gpu/drm/gma500/Kconfig
+>> > > +++ b/drivers/gpu/drm/gma500/Kconfig
+>> > > @@ -11,7 +11,6 @@ config DRM_GMA500
+>> > >        select ACPI_VIDEO if ACPI
+>> > >        select BACKLIGHT_CLASS_DEVICE if ACPI
+>> > >        select INPUT if ACPI
+>> > > -     select X86_PLATFORM_DEVICES if ACPI
+>> > >        select ACPI_WMI if ACPI
+>> > >        help
+>> > >          Say yes for an experimental 2D KMS framebuffer driver for t=
+he
+>> > > diff --
+>> > > git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig in=
+dex
+>> > > 5e939004b646..71426b9c91f0 100644
+>> > > --- a/drivers/gpu/drm/i915/Kconfig
+>> > > +++ b/drivers/gpu/drm/i915/Kconfig
+>> > > @@ -28,7 +28,6 @@ config DRM_I915
+>> > >        # but for select to work, need to select ACPI_VIDEO's depende=
+ncies,
+>> > > ick
+>> > >        select BACKLIGHT_CLASS_DEVICE if ACPI
+>> > >        select INPUT if ACPI
+>> > > -     select X86_PLATFORM_DEVICES if ACPI
+>> > >        select ACPI_WMI if ACPI
+>> > >        select ACPI_VIDEO if ACPI
+>> > >        select SYNC_FILE
+>> > > diff --git a/drivers/gpu/drm/radeon/Kconfig
+>> > > b/drivers/gpu/drm/radeon/Kconfig index c479f0c0dd5c..3cd70aef770e
+>> > > 100644
+>> > > --- a/drivers/gpu/drm/radeon/Kconfig
+>> > > +++ b/drivers/gpu/drm/radeon/Kconfig
+>> > > @@ -25,9 +25,7 @@ config DRM_RADEON
+>> > >        # ACPI_VIDEO's dependencies must also be selected.
+>> > >        select INPUT if ACPI
+>> > >        select ACPI_VIDEO if ACPI
+>> > > -     # On x86 ACPI_VIDEO also needs ACPI_WMI
+>> > > -     select X86_PLATFORM_DEVICES if ACPI && X86
+>> > > -     select ACPI_WMI if ACPI && X86
+>> > > +     select ACPI_WMI if ACPI
+>> > >        help
+>> > >          Choose this option if you have an ATI Radeon graphics card.
+>> > > There
+>> > >          are both PCI and AGP versions.  You don't need to choose th=
+is to
+>> > > diff -
+>> > > -git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig index
+>> > > 4d7dcaff2b91..502c7b3c1f16 100644
+>> > > --- a/drivers/gpu/drm/xe/Kconfig
+>> > > +++ b/drivers/gpu/drm/xe/Kconfig
+>> > > @@ -4,7 +4,6 @@ config DRM_XE
+>> > >        depends on DRM && PCI
+>> > >        depends on KUNIT || !KUNIT
+>> > >        depends on INTEL_VSEC || !INTEL_VSEC
+>> > > -     depends on X86_PLATFORM_DEVICES || !(X86 && ACPI)
+>> > >        depends on PAGE_SIZE_4KB || COMPILE_TEST || BROKEN
+>> > >        select INTERVAL_TREE
+>> > >        # we need shmfs for the swappable backing store, and in parti=
+cular
+>> > > @@ -29,8 +28,8 @@ config DRM_XE
+>> > >        # but for select to work, need to select ACPI_VIDEO's depende=
+ncies,
+>> > > ick
+>> > >        select BACKLIGHT_CLASS_DEVICE if ACPI
+>> > >        select INPUT if ACPI
+>> > > -     select ACPI_VIDEO if X86 && ACPI
+>> > > -     select ACPI_WMI if X86 && ACPI
+>> > > +     select ACPI_VIDEO if ACPI
+>> > > +     select ACPI_WMI if ACPI
+>> > >        select SYNC_FILE
+>> > >        select CRC32
+>> > >        select SND_HDA_I915 if SND_HDA_CORE
+>> > > diff --git a/drivers/platform/loongarch/Kconfig
+>> > > b/drivers/platform/loongarch/Kconfig
+>> > > index 447528797d07..db7833842142 100644
+>> > > --- a/drivers/platform/loongarch/Kconfig
+>> > > +++ b/drivers/platform/loongarch/Kconfig
+>> > > @@ -23,6 +23,7 @@ config LOONGSON_LAPTOP
+>> > >        depends on INPUT
+>> > >        depends on MACH_LOONGSON64
+>> > >        select ACPI_VIDEO
+>> > > +     select ACPI_WMI
+>> > >        select INPUT_SPARSEKMAP
+>> > >        default y
+>> > >        help
+>> > > --
+>> > > 2.39.5
+>> >=20
+>>=20
+
+--=20
+Jani Nikula, Intel
