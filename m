@@ -4,65 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1806C982C3
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93190C88E7B
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D18010EACB;
-	Tue, 15 Sep 2026 14:13:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31D6F10EC77;
+	Tue, 15 Sep 2026 14:13:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="CbOO6oc9";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="DzVjKMkA";
 	dkim-atps=neutral
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com
- [209.85.214.199])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 740BF10F34C
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:15 +0000 (UTC)
-Received: by mail-pl1-f199.google.com with SMTP id
- d9443c01a7336-2cfc52ddc55so61789005ad.3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:15 -0700 (PDT)
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com
+ [209.85.216.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBD6510F34C
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:14 +0000 (UTC)
+Received: by mail-pj1-f69.google.com with SMTP id
+ 98e67ed59e1d1-39deda201bcso2505207a91.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460415; x=1790065215;
+ d=google.com; s=20251104; t=1789460414; x=1790065214;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=aUeRHnlHuLyd8Os/OfUYHyanuI/6gSGpcAdXKzgjG1A=;
- b=CbOO6oc9YGMITsZHKrKLmZIW9qS8jE7z0ChJXMbzo2Z1P5OtkwPkPN6cMlqYJQk+1I
- lOeLytjY7lwD1B98J5EVbIbIZ4PlcJYQVCIjPcD8IQXOqERx5zjM/TYBHNn4iBFndMWY
- +3nmMmfYBhf2x2eKkVG9DPyeiNTeo2PiGB0974Ghv8mtSYrHEEzOXZQhyDlnnw+a9TGI
- 1WbOEXl8ijmHK2y5e9Wd73RmMAFbEftlUSYaUhU46+0tWT6AGFXaRB0vDjjBocco6O+8
- 6C0k5KpiUI3LXfESQ6oaC+j1xmOcNDkujtZSCgyvCHirVRdPAjouap3gZj6DQyB7nXOM
- 0j9Q==
+ bh=uYw3XH3TVDlWH5yZkMBbor+NJ9bN2wpB4N7ncSus1u4=;
+ b=DzVjKMkAAJDViBRKatN0xlFOxrKeg1EakD1u7FgfzzuejRWpDfLacNiszw5OV5olSM
+ wSvRaZFJfyPoAvnC4gAkM/pAoSs1sJTdR6NtYdXMQaZz7gq7NIeNTqQq0uzmE3N9mSTZ
+ XPEDXO6RZV5MKAOGMAs1opRq+tHXKmZuBCHO2+W/7X3dGBS6gKWEL4gLyptSeZZnp1sC
+ fJS5t9sDYj8hf3sCHpk3yhqiIEqTI8wlD2NJtItdwBlhhjxPWxRZTLAFN5/TYuNVVnyv
+ zISW5h8oUzizDCWFNKBU0KIuun7MFQU6MuMmZ6i3Ut2AGscTxtB7+djNtu54f4t7m6ef
+ vEcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460415; x=1790065215;
+ d=1e100.net; s=20260707; t=1789460414; x=1790065214;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=aUeRHnlHuLyd8Os/OfUYHyanuI/6gSGpcAdXKzgjG1A=;
- b=sTqnUfprBBjaBYaz3FG6cXxMYdoJll76wSPVnC+dgw5PrLaxh/vR5cTtJVbfHrOk00
- 1+3AxsF32soUHsHp8wKsFFlElHXIWkFEi/shRUiFRtUjYGepN9VOKYaDo4NLjL1fdrde
- tg7mucEiELXGXGMyhBx16O90cvdMScKMPhUnNdDhVcsca9r/F/DZrIhTUR8LlVoFywqL
- Ir6zmtj3SwSo5ePPS4vrgY1IZx+QgVbtQRlur3m1BFvlTXfYcEmCpLKoXpjtDNtyGOdl
- LUDIYVrSMM7CNaIRG3CDRhzuxMlxZiCFw6Ye2H9sD8BE20qevxrmEAfT/dYCPNlikOr2
- HBmw==
+ bh=uYw3XH3TVDlWH5yZkMBbor+NJ9bN2wpB4N7ncSus1u4=;
+ b=XmeNytgmyezRVir/cPUKLbvRi8qwVQcEA7QzKswJMyi4hf44aCrbM+DFnGFdKI6nPv
+ N2YMJDgRJ2YaoOMl0VZRakY06ITp/LPrPzMt0+RYRWIazZFwBmVviBWprKytcHxGoJxp
+ 0188s754er64d9zIaQABQoJRDLuuwNbGCJ8ksySm9jHcqs+JNwqe6RGMuajqlAI4jJVF
+ 9MKGcOwmHTMkY9sWlttGsjdddo0O4kzju381WboZtxdg8aIxtkJxDJz4WotP4B3NCQCX
+ UBmCkfAZjIM4HlboROj/JeCvGxNIQnpfT5aCXLkN6Y3RjAjFX3V21Qc0EhzvpVS+v4X4
+ R4Fg==
 X-Forwarded-Encrypted: i=1;
- AKwUvBwC6fe3IejOVfInhQvXjBORUR5Kr6ZdLGy7OFJyqz4a7PUJH5gFEhWfzvcZSFa6SwuL5wnHxuj+DQ==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++n31tfodLdg+NgFPufpFar2RlbFhFTH1YfL1JZtoqZvAmbHCPcm
- RcRh/MfuufGaZoeq3N63S+iEwllUgAkus+Ofx94VBoeGeoJpVua+i+R0uUCEnvW6cejqPL99xpQ
- C
-X-Received: from plbmz16.prod.google.com ([2002:a17:903:3510:b0:2dd:2adc:aa80])
+ AKwUvBx2cnB+X6XfnaELfAU4IeW8tKwcwYvAPVik+s0HYCSyYk8LzkVfoRLZ+7RansVu6jIKIJUanH961A==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++l8O0ct/Lg6/TCc4T6pLI/gh2H1wTdvBn9r9DuSkU4nuViTLbu0
+ obzDspsQ0M0MeQGoXD7A1FmWW+W+Q73xUCja2r37XjCEeCQ/tCvd7Kz5PL9/Cq9pfClzzNK/Nnt
+ X
+X-Received: from pgap5.prod.google.com ([2002:a63:4205:0:b0:cc4:33fd:a4f7])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:903:a8b:b0:2d9:26b3:547
- with SMTP id d9443c01a7336-2dd83882243mr420135ad.20.1789460414438; Tue, 15
- Sep 2026 01:20:14 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:40 +0000
+ 2002:a05:6a21:6d8a:b0:3db:3e1c:8585
+ with SMTP id adf61e73a8af0-3db4063b18fmr14587917637.27.1789460412692; Tue, 15
+ Sep 2026 01:20:12 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:38 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-24-morbo@google.com>
-Subject: [PATCH 23/28] Input: synaptics_usb - use seq_buf and snprintf() for
- name and phys
+Message-ID: <20260915081910.4142719-22-morbo@google.com>
+Subject: [PATCH 21/28] NFS: nfsroot: Refactor root_nfs_cat() to use snprintf()
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
 Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
@@ -155,17 +154,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-synusb_probe() constructs the device name and physical path using a mix of
-strscpy(), strlcat(), and snprintf().
+root_nfs_cat() computes the length of "dest" with strlen(), but then uses
+up to two strlcat() calls to append a comma separator and "src",
+rescanning "dest" each time.
 
-In preparation for removing the deprecated strlcat() API[1], use struct
-seq_buf to incrementally build synusb->name, and format synusb->phys with
-snprintf() after generating the USB path.
+In preparation for removing the deprecated strlcat() API[1], use the
+already-computed length and a single snprintf() call to append the
+optional comma and "src", returning -1 if the result is truncated.
 
 Link: https://github.com/KSPP/linux/issues/370 [1]
 Cc: codemender-patching+linux@google.com
-Assisted-by: Gemini:1.5-Pro-002 [editor_update_file, make_kernel_build_sing=
-le_file, test_runner_run_kunit_test]
+Assisted-by: CoPilot:Claude-3.5-Sonnet [editor_update_file, make_kernel_bui=
+ld_single_file]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -279,73 +279,34 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- drivers/input/mouse/synaptics_usb.c | 29 +++++++++++++++++------------
- 1 file changed, 17 insertions(+), 12 deletions(-)
+ fs/nfs/nfsroot.c | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/input/mouse/synaptics_usb.c b/drivers/input/mouse/syna=
-ptics_usb.c
-index 880a0c79148c..d13d2d6202ee 100644
---- a/drivers/input/mouse/synaptics_usb.c
-+++ b/drivers/input/mouse/synaptics_usb.c
-@@ -41,6 +41,7 @@
- #include <linux/usb.h>
- #include <linux/input.h>
- #include <linux/usb/input.h>
-+#include <linux/seq_buf.h>
+diff --git a/fs/nfs/nfsroot.c b/fs/nfs/nfsroot.c
+index 432612d22437..a28208414aec 100644
+--- a/fs/nfs/nfsroot.c
++++ b/fs/nfs/nfsroot.c
+@@ -173,12 +173,15 @@ static int __init root_nfs_cat(char *dest, const char=
+ *src,
+ 			       const size_t destlen)
+ {
+ 	size_t len =3D strlen(dest);
++	int ret;
 =20
- #define USB_VENDOR_ID_SYNAPTICS	0x06cb
- #define USB_DEVICE_ID_SYNAPTICS_TP	0x0001	/* Synaptics USB TouchPad */
-@@ -278,6 +279,8 @@ static int synusb_probe(struct usb_interface *intf,
- 	struct input_dev *input_dev;
- 	unsigned int intf_num =3D intf->cur_altsetting->desc.bInterfaceNumber;
- 	unsigned int altsetting =3D min(intf->num_altsetting, 1U);
-+	struct seq_buf s;
-+	char path[64];
- 	int error;
+-	if (len && dest[len - 1] !=3D ',')
+-		if (strlcat(dest, ",", destlen) >=3D destlen)
+-			return -1;
++	if (len >=3D destlen)
++		return -1;
 =20
- 	error =3D usb_set_interface(udev, intf_num, altsetting);
-@@ -334,27 +337,29 @@ static int synusb_probe(struct usb_interface *intf,
- 			 ep->bInterval);
- 	synusb->urb->transfer_flags |=3D URB_NO_TRANSFER_DMA_MAP;
-=20
-+	seq_buf_init(&s, synusb->name, sizeof(synusb->name));
+-	if (strlcat(dest, src, destlen) >=3D destlen)
++	ret =3D snprintf(dest + len, destlen - len, "%s%s",
++		       (len && dest[len - 1] !=3D ',') ? "," : "", src);
 +
- 	if (udev->manufacturer)
--		strscpy(synusb->name, udev->manufacturer,
--			sizeof(synusb->name));
-+		seq_buf_puts(&s, udev->manufacturer);
-=20
- 	if (udev->product) {
- 		if (udev->manufacturer)
--			strlcat(synusb->name, " ", sizeof(synusb->name));
--		strlcat(synusb->name, udev->product, sizeof(synusb->name));
-+			seq_buf_puts(&s, " ");
-+		seq_buf_puts(&s, udev->product);
- 	}
-=20
--	if (!strlen(synusb->name))
--		snprintf(synusb->name, sizeof(synusb->name),
--			 "USB Synaptics Device %04x:%04x",
--			 le16_to_cpu(udev->descriptor.idVendor),
--			 le16_to_cpu(udev->descriptor.idProduct));
-+	if (!seq_buf_used(&s))
-+		seq_buf_printf(&s, "USB Synaptics Device %04x:%04x",
-+			       le16_to_cpu(udev->descriptor.idVendor),
-+			       le16_to_cpu(udev->descriptor.idProduct));
-=20
- 	if (synusb->flags & SYNUSB_STICK)
--		strlcat(synusb->name, " (Stick)", sizeof(synusb->name));
-+		seq_buf_puts(&s, " (Stick)");
-=20
--	usb_make_path(udev, synusb->phys, sizeof(synusb->phys));
--	strlcat(synusb->phys, "/input0", sizeof(synusb->phys));
-+	seq_buf_str(&s);
-+
-+	usb_make_path(udev, path, sizeof(path));
-+	snprintf(synusb->phys, sizeof(synusb->phys), "%s/input0", path);
-=20
- 	input_dev->name =3D synusb->name;
- 	input_dev->phys =3D synusb->phys;
++	if (ret < 0 || ret >=3D destlen - len)
+ 		return -1;
+ 	return 0;
+ }
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
