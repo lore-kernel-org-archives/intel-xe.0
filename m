@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A37E3C982C4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FA48C88E7F
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECCE310E59B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1B3010E5BA;
 	Tue, 15 Sep 2026 14:13:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="vhcZ3E4p";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="QUXalycd";
 	dkim-atps=neutral
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com
- [209.85.214.198])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C243210FAF3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:19:51 +0000 (UTC)
-Received: by mail-pl1-f198.google.com with SMTP id
- d9443c01a7336-2cec4226c70so55721805ad.1
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:19:51 -0700 (PDT)
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com
+ [209.85.214.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D75810FAF3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:19:56 +0000 (UTC)
+Received: by mail-pl1-f197.google.com with SMTP id
+ d9443c01a7336-2d6f75c1219so88122935ad.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:19:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460391; x=1790065191;
+ d=google.com; s=20251104; t=1789460396; x=1790065196;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=i189Z1372pvpafDRMVnLFn5IBf8O4Z3ONLFW1RCweBo=;
- b=vhcZ3E4pQaVeDwuPewnPTF4pUXQfQVrHhI0WUYlCsJxrzpM37gHsbYkKTO6P5Ay3T6
- fIyKt6hVLCCbZfvhjcsjBzQwsyyw2xbhhtQu7GIdaOnjy7Dy7AcQleI94Fy9EuTrO2kr
- lCmLIkG4qS+zY+fSOXJzoYWzTiEuuA5vxgTW9oAOZyO4kIhWCe4nAh9jq0XSJ/nD9Ug6
- Bf6M/pfn2HU4RhhW9AIXHw/7iTeRDU6Bw6sjkTfj5fQ4bY5uyZRGe9RowBIyrsifSrk0
- tMV29xIyV29FsFIaIFt0ZuwC99Y6tEriAzPJH2hQU8kJbC3NN2AO/8ccHefR296Yb1ot
- V3ZQ==
+ bh=su2v7itwh4re1nYnX3JAIlBIidMghtZfDu1F4zgeEKU=;
+ b=QUXalycdKrMyfIhODTukXyUQDxTM6fqm1RcQUVQVU5mz30M1XTu2ICyyf//nvyVTZ3
+ 4P+ZzEJ0kd+3m/TLTqNkQFqyUq15r1PmHjDExrTI80bYIZ8R1qAHsl5vtEu8Cps9llXx
+ dtNA6MLRvUirNOgey5MCrDeDkiaZF2aFOc0N2WWlM0ZBFV2CjD6RH9qUGk2HBrCi/W1Q
+ /ya1a+FqF8D1oHdIDHRg+itv5ONrDcGRQk5ZYpirMAkAF1cb1zdErJaL75cEmN1IVUvR
+ LFLutjlbWBitWH3Sn/h+yvzE+qO1/US15St7JH+8lex4FYv9niyQ1wMZEKCvrQXP9bAE
+ l68Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460391; x=1790065191;
+ d=1e100.net; s=20260707; t=1789460396; x=1790065196;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=i189Z1372pvpafDRMVnLFn5IBf8O4Z3ONLFW1RCweBo=;
- b=d/uUIOe4GBZKD1jr70Qt4r5kuTLPMn0BSP72ZqUlgAuoIpuDB8og4jJMN9ft98efnM
- Q/zsJxDVbfWFOM98dOzO2EQBaoziImmcFIQKLfXHXK+Sv0QxPK2hnnSJgJNnL6j8fvzZ
- OgSxi1hCD/njYDXQJzrnRmu+lLQ0r4FcY3LOYgkACqGKEW5Tc4J7ickPMXjMFEcdS1jd
- iOwRy4JYOsQMJNQXGYPF/+ecnqG+H91+FBtl4djKW87qpQ+tDgmODPSP96z4VPGs9bE+
- kBjeGQ1XIo1QNHLv8PHBAjhkNUbmpT+HI8X+cFw6BTirGijL1eowz8F1LlWPut5aVWB4
- Oz3A==
+ bh=su2v7itwh4re1nYnX3JAIlBIidMghtZfDu1F4zgeEKU=;
+ b=dqbQ5uaIPxLLnS68ZHz6/dBzMbTOxdZ/XkcmDfIMnviYSImpCzMPLJ1QXiaGwJfdf1
+ Cv6NRpyplvfoGhscc90rWZLGPDDYlkBbcLhBlcWq4W1C1/oRe7c7L0M+VJVTj5lh94eH
+ /FA179XWwTA3GD/jGwnZHWJZxlMsMaVtiEjFKJ8Nuq+f8PdBjWAggmxGUqPxvBf7bh2T
+ Vagra/qIiuaQpKqDEvEI3jLO63YRJX5JUnWxwQBVWfwIwqQmbEeHzem+aKu5wx+m9mCI
+ zN5HgXZ6W/+9dxv7IQ8zSiE9RwCOH1HRuSznwVTwMFe1CtUUCIgVv4ZZdc7pClpw/GfA
+ JRrA==
 X-Forwarded-Encrypted: i=1;
- AKwUvBxFZeDA/iNkI7a7kk+Y2wEs9na0cRsUypPn7yTctjSQqU1ZBFR56wm9YCAX9hmqDmeFz9EpYTJI8Q==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++lFgCuHNAMr37eWtnQOSD9PF9AVk4LR4XEHFEp+G4Do/y02iWhh
- wbQdYlBUhHjAvJO3ykH/VENABg70uAlIEYSC5zaZiO8y6Oyz2A1ZW8v+QcUZpLN26XD78a2gVMu
- +
-X-Received: from plrd12.prod.google.com ([2002:a17:902:aa8c:b0:2db:8b6a:31a7])
+ AKwUvBxOzKxv0BWDPiCyucfERL8FUgLve4mziOo07h7hcqJFJJ3D53zNeOnG3nkvDfyD+ghPoZMPgKDrUw==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++mnHS0xNQb0vthA0ibVYlyR/59VjoO68ZgebAqupCP1CvtGssdv
+ /eneMPul1tM+ARX+1RqZCHkvSQR/4+PXumabNzqRCHHqOjAjqJUQ12r+1ddi9TKx+O1GhHUag9L
+ O
+X-Received: from plpo14.prod.google.com ([2002:a17:903:3e0e:b0:2cc:e407:8fef])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:903:388d:b0:2dd:143:d5
- with SMTP id d9443c01a7336-2dd6c75a396mr155065525ad.22.1789460390543; Tue, 15
- Sep 2026 01:19:50 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:19 +0000
+ 2002:a17:903:3508:b0:2dd:8b2:6e64
+ with SMTP id d9443c01a7336-2dd83851cd5mr695675ad.12.1789460395589; Tue, 15
+ Sep 2026 01:19:55 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:25 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-3-morbo@google.com>
-Subject: [PATCH 02/28] sunrpc: Refactor rpc_sockaddr2uaddr() to use snprintf()
- instead of strlcat()
+Message-ID: <20260915081910.4142719-9-morbo@google.com>
+Subject: [PATCH 08/28] devlink: Refactor strlcat() to seq_buf in
+ __devlink_compat_running_version()
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
 Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
@@ -155,18 +155,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-rpc_sockaddr2uaddr() formats the IP address into "addrbuf", formats the
-port into a temporary "portbuf" buffer with snprintf(), and then appends
-"portbuf" to "addrbuf" using strlcat().
+__devlink_compat_running_version() appends running firmware version
+strings and spaces to "buf" inside nested netlink attribute loops using
+strlcat(), rescanning "buf" on every iteration.
 
-In preparation for removing the deprecated strlcat() API[1], capture the
-length returned by rpc_ntop4() and rpc_ntop6_noscopeid() and format the
-port directly onto the end of "addrbuf" with snprintf(). This eliminates
-the strlcat() call and the temporary "portbuf" buffer.
+In preparation for removing the deprecated strlcat() API[1], use struct
+seq_buf anchored at the current length of "buf" and append each version
+entry with seq_buf_printf().
 
 Link: https://github.com/KSPP/linux/issues/370 [1]
 Cc: codemender-patching+linux@google.com
-Assisted-by: CoPilot:3.5-sonnet [editor_update_file, shell_command_run]
+Assisted-by: CoPilot:v1 [editor_update_file, shell_command_run]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -280,58 +279,52 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- net/sunrpc/addr.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ net/devlink/dev.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/net/sunrpc/addr.c b/net/sunrpc/addr.c
-index 97ff11973c49..a1e4173e5a53 100644
---- a/net/sunrpc/addr.c
-+++ b/net/sunrpc/addr.c
-@@ -264,18 +264,20 @@ EXPORT_SYMBOL_GPL(rpc_pton);
+diff --git a/net/devlink/dev.c b/net/devlink/dev.c
+index 55959b0ff5ab..987b071345c4 100644
+--- a/net/devlink/dev.c
++++ b/net/devlink/dev.c
+@@ -5,6 +5,7 @@
   */
- char *rpc_sockaddr2uaddr(const struct sockaddr *sap, gfp_t gfp_flags)
+=20
+ #include <linux/device.h>
++#include <linux/seq_buf.h>
+ #include <net/genetlink.h>
+ #include <net/sock.h>
+ #include "devl_internal.h"
+@@ -1190,6 +1191,7 @@ static void __devlink_compat_running_version(struct d=
+evlink *devlink,
  {
--	char portbuf[RPCBIND_MAXUADDRPLEN];
- 	char addrbuf[RPCBIND_MAXUADDRLEN];
- 	unsigned short port;
-+	size_t len;
+ 	struct devlink_info_req req =3D {};
+ 	const struct nlattr *nlattr;
++	struct seq_buf s;
+ 	struct sk_buff *msg;
+ 	int rem, err;
 =20
- 	switch (sap->sa_family) {
- 	case AF_INET:
--		if (rpc_ntop4(sap, addrbuf, sizeof(addrbuf)) =3D=3D 0)
-+		len =3D rpc_ntop4(sap, addrbuf, sizeof(addrbuf));
-+		if (len =3D=3D 0 || len >=3D sizeof(addrbuf))
- 			return NULL;
- 		port =3D ntohs(((struct sockaddr_in *)sap)->sin_port);
- 		break;
- 	case AF_INET6:
--		if (rpc_ntop6_noscopeid(sap, addrbuf, sizeof(addrbuf)) =3D=3D 0)
-+		len =3D rpc_ntop6_noscopeid(sap, addrbuf, sizeof(addrbuf));
-+		if (len =3D=3D 0 || len >=3D sizeof(addrbuf))
- 			return NULL;
- 		port =3D ntohs(((struct sockaddr_in6 *)sap)->sin6_port);
- 		break;
-@@ -283,11 +285,8 @@ char *rpc_sockaddr2uaddr(const struct sockaddr *sap, g=
-fp_t gfp_flags)
- 		return NULL;
- 	}
+@@ -1202,6 +1204,9 @@ static void __devlink_compat_running_version(struct d=
+evlink *devlink,
+ 	if (err)
+ 		goto free_msg;
 =20
--	if (snprintf(portbuf, sizeof(portbuf),
--		     ".%u.%u", port >> 8, port & 0xff) >=3D (int)sizeof(portbuf))
--		return NULL;
--
--	if (strlcat(addrbuf, portbuf, sizeof(addrbuf)) >=3D sizeof(addrbuf))
-+	if (snprintf(addrbuf + len, sizeof(addrbuf) - len,
-+		     ".%u.%u", port >> 8, port & 0xff) >=3D sizeof(addrbuf) - len)
- 		return NULL;
-=20
- 	return kstrdup(addrbuf, gfp_flags);
-@@ -352,3 +351,4 @@ size_t rpc_uaddr2sockaddr(struct net *net, const char *=
-uaddr,
- 	return 0;
- }
- EXPORT_SYMBOL_GPL(rpc_uaddr2sockaddr);
++	seq_buf_init(&s, buf, len);
++	s.len =3D strnlen(buf, len);
 +
+ 	nla_for_each_attr_type(nlattr, DEVLINK_ATTR_INFO_VERSION_RUNNING,
+ 			       (void *)msg->data, msg->len, rem) {
+ 		const struct nlattr *kv;
+@@ -1209,8 +1214,7 @@ static void __devlink_compat_running_version(struct d=
+evlink *devlink,
+=20
+ 		nla_for_each_nested_type(kv, DEVLINK_ATTR_INFO_VERSION_VALUE,
+ 					 nlattr, rem_kv) {
+-			strlcat(buf, nla_data(kv), len);
+-			strlcat(buf, " ", len);
++			seq_buf_printf(&s, "%s ", (const char *)nla_data(kv));
+ 		}
+ 	}
+ free_msg:
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
