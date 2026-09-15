@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BC4BC982C5
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 18:39:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56C2FC982C1
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 18:39:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDE0010E411;
-	Tue, 15 Sep 2026 18:39:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11E1210F206;
+	Tue, 15 Sep 2026 18:39:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k3DA4eu8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PS24Dpg+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B307910E411;
- Tue, 15 Sep 2026 18:39:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C11ED10E497;
+ Tue, 15 Sep 2026 18:39:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789497589; x=1821033589;
+ t=1789497592; x=1821033592;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Xc1y0j/KrAS+5KaTgkfLHpBXz0PfUzFAfcP+CfVH00E=;
- b=k3DA4eu8HrrzVD63f5jPYf0c5/SOSK7ShBhNyfLm2HkpNqL5bJPVxowQ
- EqT+/PLXC6RYe0PXV1vAH0Hy+swv0tRoNrkkH/0Bu8DQZ1CvYAlKYIPWm
- Fs16IAkgatIJ9o3fp70cxaA6TvYvvqrfqFQP9gCou+vHIqR2WfqkVpWUh
- OEiCIwgJm1IeIfEFhybBf9DFmoEu/6deyfczAyS56rSOwe26V6kWZ0iYC
- 1ji+0b6nKbn2z/eaOCwDK3Dwtz8+612APzayQRNouolN9mhVaqUVbFJEb
- L+2u1n0Nz5K/eTdIb48JQ3Q2ffzdJmeMe/X6Q7U59BpqHQUhxJhjX/R9x Q==;
-X-CSE-ConnectionGUID: yZNqFfOARMqswSyzWWkFaA==
-X-CSE-MsgGUID: V8KqM2F/R6a081c5COjWzQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="92380368"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="92380368"
+ bh=DtTTtoC+biWBZ3KhMdWpDIzntMl2HethLm0VKvpGP9E=;
+ b=PS24Dpg+SYCpIICrgJ7DoXDaV78/4SNvJN1N1HHtT4BotZZrqhWnsduI
+ OeWVv+RpYZj7NjJq8HuFxYEV6pWumqh/BMi88awxJi5PVJ7PN4IVwmz9w
+ 3UwXOefDsADMSxktOgjhrJrxg9ut3iUbRNyz40ri6L5ibeNf+UE0THrUJ
+ SMetqqRHthIfMj/qN5rcKJoGHjTyLt5dJlltkDHJCXkaagpQiBlx0UAri
+ YFCSmUE4q0g6hw8vEyYC26BoRA5I6Hshdy0ma/eSERZn9QCV9vqH2LJUA
+ xPg2G00aPxsYlWqF79piWUYWs5hmFJQVeZp5f384UYynxg7xi4CtXkO5X Q==;
+X-CSE-ConnectionGUID: /c/4+F3XRd2JO2ytUrrbMQ==
+X-CSE-MsgGUID: y2iyFoEkRuWlViB+i0wDeg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="92380373"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="92380373"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 11:39:48 -0700
-X-CSE-ConnectionGUID: cgqc4EH5RzKF74WRyKsDtQ==
-X-CSE-MsgGUID: T7aTO98cQFOFIwZFLc40EQ==
+ 15 Sep 2026 11:39:51 -0700
+X-CSE-ConnectionGUID: Irmi1QVcR4Cby2XcWe0f+w==
+X-CSE-MsgGUID: +UYF84jJT82aKvJH6ZlCnQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="298148599"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="298148621"
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.190.238.88])
- by fmviesa001.fm.intel.com with ESMTP; 15 Sep 2026 11:39:46 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 15 Sep 2026 11:39:49 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: jouni.hogander@intel.com, jani.nikula@intel.com, suraj.kandpal@intel.com,
  Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v6 17/18] drm/i915/alpm: Program zero-based LFPS half cycle
- duration
-Date: Tue, 15 Sep 2026 23:34:48 +0530
-Message-Id: <20260915180449.277933-18-animesh.manna@intel.com>
+Subject: [PATCH v6 18/18] drm/i915/alpm: Disallow ALPM for UHBR link rate
+Date: Tue, 15 Sep 2026 23:34:49 +0530
+Message-Id: <20260915180449.277933-19-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20260915180449.277933-1-animesh.manna@intel.com>
 References: <20260915180449.277933-1-animesh.manna@intel.com>
@@ -69,50 +68,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The LFPS Half Cycle Duration field, as well as the First and Last LFPS
-Half Cycle Duration fields, in PORT_ALPM_LFPS_CTL are zero-based: per
-Bspec the value programmed must be N_Symbol - 1. The number of symbols
-was programmed directly, making each half cycle one symbol clock too
-long.
+DP2.1 ALPM is not supported on UHBR (128b/132b) link rates on the NVL
+platform. Reject the ALPM parameter computation for external DP running
+at a UHBR rate on display version 35, so that ALPM (and the Panel Replay
+and LOBF features that rely on it) is not enabled in that case. eDP is
+excluded so eDP ALPM keeps working at any link rate.
 
-Subtract one in the PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION,
-PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION and
-PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION field macros so the
-programmed value matches the zero-based field encoding.
-
-Bspec: 71632
 Cc: Jouni Högander <jouni.hogander@intel.com>
-Assisted-by: Claude:claude-opus-4-8
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr_regs.h | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_alpm.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-index 8f60b671755a..387edf8df6e9 100644
---- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-@@ -339,11 +339,17 @@
- #define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN		7
- #define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT(val)		REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MASK, (val) - PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN)
- #define  PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_XE3LPD(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MASK_XE3LPD, (val) - PORT_ALPM_LFPS_CTL_LFPS_CYCLE_COUNT_MIN)
-+/*
-+ * The LFPS half cycle duration fields (including the first and last half
-+ * cycle) are zero-based, i.e. the value programmed is N_Symbol - 1.
-+ *
-+ * Bspec: 71632
-+ */
- #define  PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMASK(20, 16)
--#define  PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, val)
-+#define  PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LFPS_HALF_CYCLE_DURATION_MASK, (val) - 1)
- #define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMASK(12, 8)
--#define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION_MASK, val)
-+#define  PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_FIRST_LFPS_HALF_CYCLE_DURATION_MASK, (val) - 1)
- #define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMASK(4, 0)
--#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK, val)
-+#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD_PREP(PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK, (val) - 1)
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index 84777c8d31bb..51805a6bca86 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -453,6 +453,12 @@ bool intel_alpm_compute_params(struct intel_dp *intel_dp,
+ 	int precharge = intel_dp_aux_fw_sync_len(intel_dp) - preamble;
+ 	u8 max_wake_lines;
  
- #endif /* __INTEL_PSR_REGS_H__ */
++	/* DP2.1 ALPM is not supported on UHBR (128b/132b) link rates on NVL. */
++	if (DISPLAY_VER(display) == 35 &&
++	    !intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) &&
++	    intel_dp_is_uhbr(crtc_state))
++		return false;
++
+ 	io_wake_time = max(precharge, io_buffer_wake_time(crtc_state)) +
+ 		preamble + phy_wake + tfw_exit_latency;
+ 	fast_wake_time = precharge + preamble + phy_wake +
 -- 
 2.29.0
 
