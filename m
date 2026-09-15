@@ -4,43 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BF7DC88E75
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 17:29:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10953C88E75
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 17:31:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1573710E5FB;
-	Tue, 15 Sep 2026 17:29:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZggRxzNM";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F09B10E47F;
- Tue, 15 Sep 2026 17:28:58 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 3E6A041B41;
- Tue, 15 Sep 2026 17:28:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E03151F000FF;
- Tue, 15 Sep 2026 17:28:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789493338;
- bh=umy4wey/iVEqubDBUG2B9ILxwyvIu4jc6s7DAhErDrI=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=ZggRxzNMI1C/7lv8faAOiFqUCyXe7SMfvpzLQg065fgX+NtCQsFesvU0cC3QdUBnc
- 9rx5LiopXGijWNu7wn9gJw0PiozUi0LQADJ1nS44A/EqIxQ3sFNpxRsiPpqYCikoAB
- 6kXi4QHdQR/AGHAGp/e1UdtZhRqamciaiBS8xsDt2dV8/C+hQvLefGpUgaYtNJzv/i
- 5Cqrr7lYmd0SloEaNRtNbxDRHoQ7108gyOMnxbRKSbzG8yVDlU3XL5MjROUL+jfKIo
- LQjzMIzjikFHuuOc+cb++3OZg5jNEuuhGeZhTJ0X+tkGmt4rVaLKLXBNV+KuSoTalI
- P2cPaSnkkOGpw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 11/14] drm/i915/dip: Enable Common SDP Transmission line
+	by gabe.freedesktop.org (Postfix) with ESMTP id A40B110ED1B;
+	Tue, 15 Sep 2026 17:31:05 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FD7310E96B;
+ Tue, 15 Sep 2026 17:31:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_support_for_Common_SD?=
+ =?utf-8?q?P_Transmission_Line_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20260915164657.3429075-12-ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 15 Sep 2026 17:31:04 -0000
+Message-ID: <178949346425.166934.872521614793045651@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260915164657.3429075-1-ankit.k.nautiyal@intel.com>
- <20260915164657.3429075-12-ankit.k.nautiyal@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 15 Sep 2026 17:28:57 +0000
-Message-Id: <20260915172857.E03151F000FF@smtp.kernel.org>
+In-Reply-To: <20260915164657.3429075-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,79 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] drm/i915/dip: Missing CMN_SDP_TL programming for DP MST slave tr=
-anscoders
---
+== Series Details ==
 
-commit de3a67cbeba4a6e70cc767d1dce1950454f58dfa
+Series: Add support for Common SDP Transmission Line (rev7)
+URL   : https://patchwork.freedesktop.org/series/162623/
+State : warning
+
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d875049d2b299159a272bd5151994970cdcd1e31
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b91996d8ac496cca7bbe93b7f9305bf3614856cd
 Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Date:   Tue Sep 15 22:16:55 2026 +0530
 
-drm/i915/dip: Enable Common SDP Transmission line
+    drm/i915/display: Dump DIP Transmission lines
+    
+    Add DIP transmission lines to the CRTC state dump.
+    
+    Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+    Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch 0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8 drm-intel
+e9e21f968703 drm/i915/dip: Add new file to handle Data Island Packet hardware
+-:34: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#34: 
+new file mode 100644
 
-This commit enables programming of the common SDP transmission line on
-supported platforms. It computes and programs the base transmission line
-and stagger values during modeset. It also disables the feature on pipe
-disable.
+-:115: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#115: FILE: drivers/gpu/drm/i915/display/intel_dip.h:32:
++#define HAS_EMP_AS_SDP_TL(__display)	(DISPLAY_VERx100(__display) == 1401 || \
++					 DISPLAY_VER(__display) >= 20)
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index dacb4b7588a02..3cdb06e81130b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -2737,6 +2737,8 @@ static void mtl_ddi_pre_enable_dp(struct intel_atom=
-ic_state *state,
->  	/* 6.o Configure and enable FEC if needed */
->  	intel_ddi_enable_fec(encoder, crtc_state);
-> =20
-> +	intel_dip_cmn_sdp_transmission_line_enable(crtc_state);
-> +
+total: 0 errors, 1 warnings, 1 checks, 128 lines checked
+d74f316515fa drm/i915/vrr: Use the helper to write EMP_AS_SDP_TL register
+e9d5fcf6fb96 drm/i915/intel_dip: Add check for DP encoder
+031f4f54c5d5 drm/i915/dip: Add helper to get AS SDP Transmission Line
+5d797e1ce718 drm/i915/display: Add crtc state for DIP transmission lines
+b97913e0991e drm/i915/dip: Store and use AS SDP transmission line from crtc state
+9a1b18b08311 drm/i915/dip_regs: Add register definitions for common SDP Transmission Line
+58c41e3f3597 drm/i915/dip: Add HAS_COMMON_SDP_TL macro
+691b99257ac6 drm/i915/dip: Store SDP transmission lines in crtc_state
+686cae1e3b7a drm/i915/dp: Introduce helpers to enable/disable CMN SDP Transmission line
+9c8cc22e6d15 drm/i915/dip: Enable Common SDP Transmission line
+1de9816f582b drm/i915/dp: Account VSC SDP in min guardband
+a2077e42a734 drm/i915/dp: Adjust SDP guardband requirement for CMN_SDP_TL
+b91996d8ac49 drm/i915/display: Dump DIP Transmission lines
 
-[Severity: Medium]
-Will placing this transcoder-specific initialization in mtl_ddi_pre_enable_=
-dp()
-cause it to be skipped for subsequent MST streams?=20
 
-In DP MST configurations, mst_stream_pre_enable() invokes the primary encod=
-er's
-pre_enable hook (mtl_ddi_pre_enable_dp()) solely for the first active MST
-stream.
-
-Because intel_dip_cmn_sdp_transmission_line_enable() is called here, it
-appears it will be skipped for all subsequent streams. This would leave the
-CMN_SDP_TL registers uninitialized for slave transcoders, potentially causi=
-ng
-broken or mistimed SDP transmission on secondary MST monitors.
-
->  	/* 7.a 128b/132b SST. */
->  	if (!is_mst && intel_dp_is_uhbr(crtc_state)) {
->  		/* VCPID 1, start slot 0 for 128b/132b, tu slots */
-[ ... ]
-> @@ -3124,6 +3126,7 @@ static void intel_ddi_buf_disable(struct intel_enco=
-der *encoder,
->  			     DP_TP_CTL_ENABLE, 0);
->  	}
-> =20
-> +	intel_dip_cmn_sdp_transmission_line_disable(crtc_state);
-
-[Severity: Medium]
-Does placing this disable routine in intel_ddi_buf_disable() prevent it from
-executing for slave transcoders during MST teardown?=20
-
-Similar to the enable path, intel_ddi_buf_disable() is only called for the
-last active stream during teardown, which means the CMN_SDP_TL disable rout=
-ine
-would be skipped for slave streams.
-
->  	intel_ddi_disable_fec(encoder, crtc_state);
-> =20
->  	if (DISPLAY_VER(display) < 14)
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260915164657.3429=
-075-1-ankit.k.nautiyal@intel.com?part=3D11
