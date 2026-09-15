@@ -4,45 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4580C88E75
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 19:02:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9931BC88E75
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 19:07:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6099E10F2FB;
-	Tue, 15 Sep 2026 19:02:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZeBi/j/J";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B26110F1A0;
- Tue, 15 Sep 2026 19:02:09 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 7385D40111;
- Tue, 15 Sep 2026 19:02:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C052D1F000FF;
- Tue, 15 Sep 2026 19:02:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789498929;
- bh=+8W7F1Y/2cajORgTU9vgfRYRf/kry05aNfvo9UAp0X4=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=ZeBi/j/JxEwd1Kv1q+j5aHb/f9+U7U2zjhDTyh/vFerw/Bzso0rA17RWPBNC3hP1O
- bfSyHDqgSEfafcMMJq+oIluYewhABKJ/Matm82c+C30/1SK1VErMWficii9jXPRl0e
- x3a0QvgAK9ul5tLmv11tcRNNBX9yIXUDqNwP1wY1u9p2bIPEgqZRMphlsz8d2w5hl8
- FIrkNmtDQKVqt6Ll2bOapqfq4G1xnWq4LDUOc3e8GgrCCv2RfLZpdy1QF7jIhSYG/S
- gmMz0+7u7IaUINBw9S9kSP+wWRN7v5x7/7WX/qAFa/u6/du4nF1XO89p5XLJm3dH6H
- l23+26rTAChrg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 17/18] drm/i915/alpm: Program zero-based LFPS half
- cycle duration
-To: "Animesh Manna" <animesh.manna@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20260915180449.277933-18-animesh.manna@intel.com>
-References: <20260915180449.277933-1-animesh.manna@intel.com>
- <20260915180449.277933-18-animesh.manna@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 15 Sep 2026 19:02:07 +0000
-Message-Id: <20260915190208.C052D1F000FF@smtp.kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A35110E4CC;
+	Tue, 15 Sep 2026 19:07:53 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1400B10E4CC;
+ Tue, 15 Sep 2026 19:07:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7609326307121664408=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Compress_GuC_?=
+ =?utf-8?q?log_and_CTB_dump_with_zstd_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 15 Sep 2026 19:07:52 -0000
+Message-ID: <178949927207.166934.14078260431330186889@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260915174840.531473-4-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20260915174840.531473-4-alan.previn.teres.alexis@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,63 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] drm/i915/alpm: bounds check rejects max valid LFPS half cycle du=
-ration
---
+--===============7609326307121664408==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit df710743c62bb2cde8d5cec635597f5355e70e89
-Author: Animesh Manna <animesh.manna@intel.com>
-Subject: drm/i915/alpm: Program zero-based LFPS half cycle duration
+== Series Details ==
 
-The LFPS Half Cycle Duration field, as well as the First and Last LFPS
-Half Cycle Duration fields, in PORT_ALPM_LFPS_CTL are zero-based: per
-Bspec the value programmed must be N_Symbol - 1. The number of symbols
-was programmed directly, making each half cycle one symbol clock too
-long.
+Series: drm/xe/guc: Compress GuC log and CTB dump with zstd (rev5)
+URL   : https://patchwork.freedesktop.org/series/170589/
+State : success
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/=
-drm/i915/display/intel_psr_regs.h
-> index 8f60b671755aa..387edf8df6e98 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-> @@ -339,11 +339,17 @@
+== Summary ==
 
-[ ... ]
+CI Bug Log - changes from xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8_BAT -> xe-pw-170589v5_BAT
+====================================================
 
->  #define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK	REG_GENMA=
-SK(4, 0)
-> -#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD=
-_PREP(PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK, val)
-> +#define  PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION(val)	REG_FIELD=
-_PREP(PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK, (val) - 1)
+Summary
+-------
 
-[Severity: Medium]
-Since this macro now subtracts 1 for zero-based encoding, does the bounds
-check in _lnl_compute_aux_less_alpm_params() also need to be updated?
+  **SUCCESS**
 
-drivers/gpu/drm/i915/display/intel_alpm.c:_lnl_compute_aux_less_alpm_params=
-() {
-	...
-	if (aux_less_wake_lines > ALPM_CTL_AUX_LESS_WAKE_TIME_MASK ||
-	    silence_period > PORT_ALPM_CTL_SILENCE_PERIOD_MASK ||
-	    lfps_half_cycle > PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MAS=
-K)
-		return false;
-	...
-}
+  No regressions found.
 
-It looks like this check restricts the maximum allowed symbols to 31 (the
-mask value). With the new zero-based encoding, shouldn't a value of 32 be
-permitted? If lfps_half_cycle is 32, this bounds check will return false,
-which could artificially restrict the limit and reject valid hardware
-display configurations.
+  
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260915180449.2779=
-33-1-animesh.manna@intel.com?part=3D17
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8 -> xe-pw-170589v5
+
+  IGT_9098: 9098
+  xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8: 0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8
+  xe-pw-170589v5: 170589v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170589v5/index.html
+
+--===============7609326307121664408==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Compress GuC log and CTB dump with zstd (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170589/">https://patchwork.freedesktop.org/series/170589/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170589v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170589v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8_BAT -&gt; xe-pw-170589v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8 -&gt; xe-pw-170589v5</li>
+</ul>
+<p>IGT_9098: 9098<br />
+  xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8: 0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8<br />
+  xe-pw-170589v5: 170589v5</p>
+
+</body>
+</html>
+
+--===============7609326307121664408==--
