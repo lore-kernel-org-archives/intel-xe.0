@@ -4,161 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8429FC88E53
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 08:59:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FDF6C88E53
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 08:59:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 405F310E264;
-	Tue, 15 Sep 2026 08:59:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C50FE10E264;
+	Tue, 15 Sep 2026 08:59:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hyG7ImGw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TWss5aLX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A44D610E264
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:59:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D11710E264
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:59:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789462742; x=1820998742;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=UZEMQ/4jSAcnhi3VJgo109adhPz/qSRLDQygvh2xztg=;
- b=hyG7ImGwLI8HRngMu5afOFdMMrlQgqGq5eLDmiqDBELecCufhi4cVR06
- Mjs8t6Nm0itLvMtFgmqnA27RmRV0Z5SwHfEpGOIaBWzyJ4kMCb4nWjvLn
- hAcB846RWlu4nUvZtBU/vGrLq9sWj/hoR/iey/1bgBJFA5lVL7QNiKZnG
- NkBwOLxopBwDvPV+J5iiiZ2Ccxw1KSycmooK7wyQJ9Wr964+v5L3Hl+TB
- No3aiZEU+s251OCvwkqum9fIHlT3mrUTvBvJzXA/8mEwSv26B++SWS34A
- P3akLKUVefL1bbuBo5mS9EFyDNAskN0MJ9pNcAHDKKmjy/RJ/KcLLl0Xd Q==;
-X-CSE-ConnectionGUID: nWNEvTD5SxuHtlWNpTNn+A==
-X-CSE-MsgGUID: BgSt74tMS8yO8aqy0lZfGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="88955215"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="88955215"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 01:59:02 -0700
-X-CSE-ConnectionGUID: ut5MsU7QRWaUo4B3RaPpBw==
-X-CSE-MsgGUID: kECdLw5ARNCaiJ6susyMqQ==
+ t=1789462757; x=1820998757;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Izf9QNLjGOdk7WaIOLTAhdqZ4STHQIPm9A+Ur1s4mog=;
+ b=TWss5aLXirpvkOC8m0dhIIcTUgK6vmTkPjHUK61wDg2wFtv06WzYoFs2
+ /dJr6yr1bTo0w5JzuA9u7lopq58b7qdBzCA4tHS4iHzOVnXiiLSHu0pHa
+ MkPto1nQ3m4soogPYxSLVpHLR8WboGHYUgWGegZV/CIBuLijpDXYi3ngr
+ 4cik+xWaWERn8k0ZID7tw0+662oY1NeT7o/FsADkVcjwVBSYjqRWZGUcd
+ BWMBj3HoaR6dLUd+d29rXJ/WTCyeA6MMx1CSAnkWVfa6VfrZqBXAy2V8k
+ UX/fco9p9389625vPKR0k5ny+v/sULu9+tYLhvp5dW6Qg11SywPh3ItTi g==;
+X-CSE-ConnectionGUID: OryRzGTVRGCpNtiIHdM8Ug==
+X-CSE-MsgGUID: eJLEhtbjQ8KCzjfIhxhKpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="115355554"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="115355554"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 01:59:16 -0700
+X-CSE-ConnectionGUID: YzH2k9MaSnqw5Ta7h0mFqg==
+X-CSE-MsgGUID: SUDcCIJWSvmrRdEgzBm0kw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="268621773"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 01:59:02 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 15 Sep 2026 01:59:01 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Tue, 15 Sep 2026 01:59:01 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.47) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 15 Sep 2026 01:59:00 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Kwxx3YGJUvuqTGAHTAPt3X9BPDPTpV4fdOq3yetC6kbyZj6twuwL5CSXwxjRChhkaUi4fdVoyxncRYLxcPhBvIPRDR+q3adETrA0A2mQu/XCLyQzGXybAxN+B695NAdZcImnJMdITid+ckxLTLNc81iiqMgLFJ31YrtnUTT1qKxnUE4Se+lUafFYPWgoUjqbk3rD4rZCZKqtRumH3eOYWLJBaajfpx0rpc/rqSMjZGfGwgT14rt6RH9bj5NquojUq/ZHU3PDc4lk7kNdCuochpifcM4vcLr5iL3cYObLyv3wfteqT0Oqf8dPp7scHBzHaPKc/AUS2aD2r43/o16j1Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=36MdV0bIu2H0578PD+0BsXmhGmpUD/H2mP+R5oa9vbA=;
- b=e5kfsabEUgvRwNd56lpH9RS97iG5WJTRJRLuR/febFjdL2nH9VZYyo9x29xLMyP+rJ5jdQQGsyP6ulATEB8F5314U8cBFp7337fjbfkFKHZmwxTawoPMt5iWZDyUrB/DHqLiMDvCaAxlZjj0eIXLToTJk6zHENee3rgMK8PmhyL6xgg/wDhN+J0FkGwv7uhbYgK/0UdU+P49wQ9r/N8zqviMg3FEsnH1nnlJcBQFBEpOYK7RlAHEatKZQ8++dx0nMWf6VZYYZSlFsdEB3kmUeG3diS8jsVHYpEeE3w0PsQc0thqEzkAjzKHQDu9bGko8g8/q851mKL73uBX2JTpsCw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7551.namprd11.prod.outlook.com (2603:10b6:510:27c::12)
- by DS0PR11MB8163.namprd11.prod.outlook.com (2603:10b6:8:165::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.12; Tue, 15 Sep
- 2026 08:58:53 +0000
-Received: from PH7PR11MB7551.namprd11.prod.outlook.com
- ([fe80::5cbf:6b33:5f0c:88a0]) by PH7PR11MB7551.namprd11.prod.outlook.com
- ([fe80::5cbf:6b33:5f0c:88a0%4]) with mapi id 15.21.0406.007; Tue, 15 Sep 2026
- 08:58:53 +0000
-Message-ID: <cd1da898-c2ff-412c-8e87-5d7b59bd42a8@intel.com>
-Date: Tue, 15 Sep 2026 10:58:48 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] drm/xe/guc: Use different error codes for GuC load
- errors
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: <daniele.ceraolospurio@intel.com>, <aravind.iddamsetty@intel.com>,
- <mallesh.koujalagi@intel.com>, <alan.previn.teres.alexis@intel.com>,
- <julia.filipchuk@intel.com>
-References: <20260903233958.475162-7-umesh.nerlige.ramappa@intel.com>
- <20260903233958.475162-8-umesh.nerlige.ramappa@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20260903233958.475162-8-umesh.nerlige.ramappa@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: DU6P191CA0065.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:10:53e::27) To PH7PR11MB7551.namprd11.prod.outlook.com
- (2603:10b6:510:27c::12)
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="311184913"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 01:59:15 -0700
+Date: Tue, 15 Sep 2026 10:59:12 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Badal Nilawar <badal.nilawar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v4] drm/xe: Poll GT for C6 before D3
+Message-ID: <aqkI4JLyM-FS4s1i@black.igk.intel.com>
+References: <20260915071145.2866414-1-vinay.belgaumkar@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7551:EE_|DS0PR11MB8163:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1713ca5c-9485-4d74-ac05-08df1307910b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|366016|376014|22082099003|18002099003|4143699003|11063799006|56012099006|10067099003;
-X-Microsoft-Antispam-Message-Info: 8XscpX3MiDHKYi8UsaRSESv6FJjzFb0kalcquuOuVkHxULA7kCcDxSdxRQ6sTbuMrs84lLNZg5ulMdazgB8KOlYlW6cqgc4GrfLxn/DBHfA42PUDc0tZ2CcShR17NFSAuYEESWqqsX7rSULosEaXPyHadyiOmhxEmsCyKa1x9Azx4eOE73TxWepx8m79m2Aiu2uQNwGMqF/CAMsg6/w5xsWBKmWjhcd1nU3z2QPH+EXsmehs6NKnD1KMmUkTS2HSNSNAWQ/wQtSwfcPh8MCQx1RwWyjrqHOvfrxAXM0ZwxHg89HakHXwAtRXIMVILOVpoTDQvZDiCPzc1FyWpDWfFZdQ8TWcgbQYD1HJ0I8OfqHIfBay7FfukeeCXdqinQQfXnlkkPCABhyN42HRXuSpG91botJEkSj1FydPODg0HgNEp6ZB32rVX1LAOxJYN9jKJpdkLj1nNdyhMHiHcYJQXycV9rQSfo/dkAUIOhce+MzRQDvfShIYR4xmhurNyhyNyLrBAsLECA30XroHlYzi+meAfffz+xxNy2NEBltdk1eK6ggehCJ3c7lPr6NeWXGqgOM4O/lAmTqYKzxT4lHBiv8aoe4cRIe8j39IXVwui0P8IZhj6RMvqCkVdDLTfkGfY1i+tLuqjM++sBfjUrT8QBEgk28K9p6PodaAXhToSd4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7551.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(22082099003)(18002099003)(4143699003)(11063799006)(56012099006)(10067099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RHBHSUxobCtENGNFeUF4RHArNTJkSUs3cDM4QUpQWlpHamdWTVJrb3RIWHFs?=
- =?utf-8?B?ekVJTnpUbUQ2eEUwTTJyb0FHeTRpS2NUaEc4eGQzS2thallqTUNWQkIvaTJ5?=
- =?utf-8?B?clByZmFCQnhsOCtzUTRwakdWQ3F3SmRVMzdrck9vTVpmVFNVWnMzamgreWdr?=
- =?utf-8?B?MkVOSU1uUElTVUVpSkFiYTh4K04xcFhSYmQzVjZIbDhqc2p1UXFreE1hYlZN?=
- =?utf-8?B?UHZIZW4vL2oxcFQwWEx3dGFtOTRPam9CR2QzanMzOG1HTGxuV2cvSm9FRjV2?=
- =?utf-8?B?M2RuTU9DQUxjZXEzeGNiU1BUOU1vZG9FU2pnM29kdEZ0ZytxV1YzY292VjJi?=
- =?utf-8?B?bC9zUzJ0SDc3a2c1eGQwQmZZR2MrWTdkdktLNFhmMmJEME5ubVVuclZBN2lB?=
- =?utf-8?B?aC9nVmZLSjR3VDNENUdvSEwvcGt3ZStDUVpoY0dYeHpvSnhIUHRONDVncGU3?=
- =?utf-8?B?Vk94TnB1K0oxZmx4TXNYUlA5Z1hvUndsckc2OStMSHFsbTdnZG5kdmsvWDRy?=
- =?utf-8?B?K2tudkU3dHVnY3FLb2RwZDR0Z1VpS2tvb05YYWx0eHVBSGYxRjVuejlQcDZK?=
- =?utf-8?B?YWx5MXhnc2VjVzdnYzVnQUpvR1VYcXNzY29RTTFCNVI2NXFJRUFxTHdnd2Qv?=
- =?utf-8?B?UWw3ZWlORmxSc050b0pFRGk1US9DdWRmOWd6eWxaY0trOHpsQ2tyZVlPUW9k?=
- =?utf-8?B?aVdyWjhjakRGOW14Z0g3S1BsWURuMkNxSTRxUFJZa05aNXpHMGpkZ3J0YTY2?=
- =?utf-8?B?ZHk5WVY5KzBiSG5JVWsrLzhVaVJzN0ZUK2tJRUw5WUpzT083YjA3aUU3NU1k?=
- =?utf-8?B?eHdxSEJBUXhDQU1MTE9QTDk0WDJ2NTE3cGMrM2NSekFkOUdGZFdqYUc2cGF0?=
- =?utf-8?B?ZXU1RjZrYXdrWHA0cndXOVBuV1F1eWFtWXV3VFhtb0lrdGpDVnlweno3NFZ3?=
- =?utf-8?B?TFMrZ0FKWWZRVFdCdVNuS01GNUlIZEFYLzJySzZxeXdaZzB5Y1Fsemwzc2tp?=
- =?utf-8?B?eEZhT1p0OVpNL0dHYkk3T293dmZ4Y2hTcXZRd0t2MENqUkNJN21IOUtQTGpW?=
- =?utf-8?B?cWQ3eEJaSnh2YTM3dXNXbzg0WVVVbHFSeGtNMmVJcCtqblpTRkhDNDI0OTBQ?=
- =?utf-8?B?ZHo0YVF5OVpKNFF4czRSNWYrM1RhcUtNY0dMZ3NtMk9PMytGN3JTb3g2WkdO?=
- =?utf-8?B?allVOG1HdVVGZTkrYlU5UVV4WXA4aGROTlFtV2wvQVQxRW52cWZvZWQrUXFX?=
- =?utf-8?B?dUY2Sm9xK2xIVUdxWlFPdklhMWlZcG9DZ2ZyRzhCZnYrUnhjVERlNUd3b2VM?=
- =?utf-8?B?QXFDVmh0MTVBSkQxcjU1MTU0eFFsV21KemZ2TXZtS0J2YWZ6d2ZWdXF3VDA1?=
- =?utf-8?B?STEvNzQ2Tk40NEJ6WFBib1hPUUs5d0RuaCtJTlFYc3NRTVYrQzQ0WUludGVk?=
- =?utf-8?B?cFRjWmJNdzhHZmJ1QWlDdjBIR0RCQXhXdnhhQmNCT0dDQzg5ZUdoWXVzT210?=
- =?utf-8?B?U2hITW5JbGo2N3N0Smppc2crU09sRzdCd0JZNUxiak5WNzRYMDVUbVlTT20w?=
- =?utf-8?B?UjZnQkRnRUVmVFNxWGVzWVRGaC9QQ2ZQL213Z2VtM1RzNWt5dFppdHFkb2xN?=
- =?utf-8?B?UWwxL2QrL3FBemJrMnRrSzV2VG1DR0REcjljMjM3dUFMYTZRZUU4Si9pM0Iv?=
- =?utf-8?B?ZTRTV3JRZUpjWlkrYzJWbVp1cjhBeGFjM2pjY3REZFJ0TDlIbnVZZ0JlWUd1?=
- =?utf-8?B?Skgra29ZR3JMZVBtczN5Wk92R2ozd2puaDhKQTEvdmI0bmxlUDJQZ1pmU0lR?=
- =?utf-8?B?ejAra3JkK2lydVZyOHdUUmhicUJEZXFZUDNIQkwzOWtXcjd3V3d5K2JrNENN?=
- =?utf-8?B?OXptNThsOEdTRmZTTGRsczg5Ri8wKzg2TENxeEg4WDBvRmxSRUFIdTdybTlD?=
- =?utf-8?B?bERlMFpTYnhIdmhHa2paNTI1QjhVR3hRMVBmcXBRU25peGtMWnVSU2hjakY2?=
- =?utf-8?B?ODl5ZDdBODNzM1ZiSkpIRXVETXhuR0dmRVc3LzNDd05lZ0JGZGtydUR2MGdQ?=
- =?utf-8?B?THd0RXdyNVZURVJRWTIxWVBhclZZOG5lZDhLQTM1ZDQwdkxyamxDaXJIMUFR?=
- =?utf-8?B?eStzTXUzVm8wVjBockx6NEtjZEVpNlhPc2NLVC95ajd2d0hHZldXL2VnQmlp?=
- =?utf-8?B?TU9rUzFmL2R1VVgrMHpOTXcwdTdjRGVFSWhQbGlUanFneTE4SGVxemFoNFQw?=
- =?utf-8?B?cGdzODdpcktOdmlKKzA4MGlkRXFoVWoxRThvNU1HMUJEcGlzcmdXaGdOYXd3?=
- =?utf-8?B?R1VKb20yQUpOUmpGVy9HdERJS3U5ZTNJUURpMEQ0RVQ0RExtdGc1M2diSmw4?=
- =?utf-8?Q?urhV87GD3vpN8WwI=3D?=
-X-Exchange-RoutingPolicyChecked: bgFQYH6wCQomz0mbi/iqdwM4NsSdrS73vIAUPGPAEGbAQlBMELjvFLUBfsCPk/evkabkfGHI/+eD59X9Tc2nD+nH+I77H9VYusoRms+2J0i54EI9I5dNwgI9MS+XEtAWxdVUigfwp/m0B8fLXnB5xi0Q/n+z6rB252eJaGbeuzoY+2yShhNKy2DrnnHqk/OW0yHvhnJNhgA3qNotycAMm85ByP18AGPoEeNN91RBOct183jokMa818Jgmx3XelrKtJbxqm8omQZAFWQu6xRYhUzBvMThC3/LHNnvCJCQ3w2zzZM7tTkf0ob5u+taTnTHqemd/AXbOnJZ/WlbosH0qw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1713ca5c-9485-4d74-ac05-08df1307910b
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7551.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2026 08:58:53.0300 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qITcGpacYsDV77KLWmgznaqb80SfUHiV8ZwFFLIOWrnDRoXFK0fyqC99lAfkX0CXd7nH78Q9qjVJ4HuWUhCY8wM5V4bcG5j1Nh2uSRl3FRA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8163
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260915071145.2866414-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,119 +67,175 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 9/4/2026 1:40 AM, Umesh Nerlige Ramappa wrote:
-> From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+On Tue, Sep 15, 2026 at 12:11:45AM -0700, Vinay Belgaumkar wrote:
+> Ensure GT C6 state before D3 transition in runtime suspend flow.
+> This avoids the scenario where GT is being accessed after D3 state
+> is programmed. If the check for C6 fails, resume the device so it is
+> not stuck in an intermediate state.
 > 
-> Instead of always returning -EPROTO no matter what goes wrong, use
-> different error codes based on the error type.
+> v2: Force resume when we cancel suspend due to C6 check (Sashiko)
+> v3: Abort the suspend properly when idle check fails (Sashiko)
+> v4: Only check for C6 during suspend (Rodrigo). Have check in
+> xe_pci_runtime_suspend() instead of xe_pci_suspend().
 > 
-> v2: split to its own patch
-
-nit: you can keep change log under ---
-
-> 
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> Cc: Badal Nilawar <badal.nilawar@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_guc.c | 22 ++++++++++++----------
->  1 file changed, 12 insertions(+), 10 deletions(-)
+>  drivers/gpu/drm/xe/xe_gt_idle.c | 36 +++++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_gt_idle.h |  1 +
+>  drivers/gpu/drm/xe/xe_pci.c     | 13 +++++++++++-
+>  drivers/gpu/drm/xe/xe_pm.c      | 21 +++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_pm.h      |  1 +
+>  5 files changed, 71 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index c7f8bbd4cb92..5285d4cecbc8 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -1144,8 +1144,8 @@ static void print_load_status_err(struct xe_gt *gt, u32 status)
->   * Check GUC_STATUS looking for known terminal states (either completion or
->   * failure) of either the microkernel status field or the boot ROM status field.
->   *
-> - * Returns 1 for successful completion, -1 for failure and 0 for any
-> - * intermediate state.
-> + * Returns 0 for successful completion, -EBUSY for any intermediate state and
-> + * other errno values for failure cases.
->   */
->  static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
->  {
-> @@ -1157,20 +1157,22 @@ static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
+> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
+> index c208d7563e36..8242feede1dd 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_idle.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+> @@ -8,10 +8,12 @@
+>  #include <drm/drm_managed.h>
 >  
->  	switch (ukernel) {
->  	case XE_GUC_LOAD_STATUS_READY:
-> -		return 1;
+>  #include <generated/xe_wa_oob.h>
+> +#include <linux/iopoll.h>
+>  #include "xe_force_wake.h"
+>  #include "xe_device.h"
+>  #include "xe_gt.h"
+>  #include "xe_gt_idle.h"
+> +#include "xe_gt_printk.h"
+>  #include "xe_gt_sysfs.h"
+>  #include "xe_guc_pc.h"
+>  #include "regs/xe_gt_regs.h"
+> @@ -451,3 +453,37 @@ int xe_gt_idle_disable_c6(struct xe_gt *gt)
+>  
+>  	return 0;
+>  }
+> +
+> +static int wait_for_gt_c6_state(struct xe_gt *gt, u32 timeout_ms)
+> +{
+> +	struct xe_guc_pc *pc = &gt->uc.guc.pc;
+> +	enum xe_gt_idle_state state;
+> +
+> +	return poll_timeout_us(state = gt->gtidle.idle_status(pc),
+> +			       state == GT_IDLE_C6,
+> +			       20,
+> +			       timeout_ms * USEC_PER_MSEC,
+> +			       false);
+> +}
+> +
+> +/**
+> + * xe_gt_idle_wait_for_c6 - Poll for GT C6
+> + * @gt: GT object
+> + * @timeout_ms: wait time in ms
+> + *
+> + * This function waits for GT to enter C6.
+> + *
+> + * Return: 0 on success, -EAGAIN otherwise
+> + */
+> +int xe_gt_idle_wait_for_c6(struct xe_gt *gt, u32 timeout_ms)
+> +{
+> +	if (IS_SRIOV_VF(gt_to_xe(gt)))
 > +		return 0;
->  	case XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH:
->  	case XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH:
->  	case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
->  	case XE_GUC_LOAD_STATUS_HWCONFIG_ERROR:
->  	case XE_GUC_LOAD_STATUS_BOOTROM_VERSION_MISMATCH:
-> +		return -ENOEXEC;
->  	case XE_GUC_LOAD_STATUS_DPC_ERROR:
->  	case XE_GUC_LOAD_STATUS_EXCEPTION:
-> +		return -EIO;
->  	case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
->  	case XE_GUC_LOAD_STATUS_MPU_DATA_INVALID:
->  	case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
->  	case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
->  	case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
-> -		return -1;
-> +		return -EINVAL;
->  	}
+> +
+> +	if (wait_for_gt_c6_state(gt, timeout_ms)) {
+> +		xe_gt_dbg(gt, "GT is not in C6\n");
+> +		return -EAGAIN;
+> +	}
+> +
+> +	return 0;
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h b/drivers/gpu/drm/xe/xe_gt_idle.h
+> index 9c34a155e102..2c8e9adf4a68 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_idle.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_idle.h
+> @@ -18,5 +18,6 @@ void xe_gt_idle_enable_pg(struct xe_gt *gt);
+>  void xe_gt_idle_disable_pg(struct xe_gt *gt);
+>  int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p);
+>  u64 xe_gt_idle_residency_msec(struct xe_gt_idle *gtidle);
+> +int xe_gt_idle_wait_for_c6(struct xe_gt *gt, u32 timeout_ms);
 >  
->  	switch (bootrom) {
-> @@ -1184,7 +1186,7 @@ static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
->  	case XE_BOOTROM_STATUS_MPUMAP_INCORRECT:
->  	case XE_BOOTROM_STATUS_EXCEPTION:
+>  #endif /* _XE_GT_IDLE_H_ */
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index ab4da1d9a9f1..379795ac5e7b 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -1381,7 +1381,7 @@ static int xe_pci_runtime_suspend(struct device *dev)
+>  {
+>  	struct pci_dev *pdev = to_pci_dev(dev);
+>  	struct xe_device *xe = pdev_to_xe_device(pdev);
+> -	int err;
+> +	int err, ret;
+>  
+>  	/*
+>  	 * We hold an additional reference to the runtime PM to keep PF in D0
+> @@ -1396,6 +1396,17 @@ static int xe_pci_runtime_suspend(struct device *dev)
+>  	if (err)
+>  		return err;
+>  
+> +	err = xe_pm_check_device_idle(xe);
 
-nit: maybe -EIO to match exception from GUC_LOAD ?
+Considering driver has no control over C state here, is there a guarantee
+that GT will remain in C6 after this point?
 
->  	case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
-> -		return -1;
-> +		return -ENOEXEC;
->  	}
+Raag
+
+> +	if (err) {
+> +		drm_dbg(&xe->drm, "Resuming - Device idle check failed!");
+> +		ret = xe_pm_runtime_resume(xe);
+> +		if (ret) {
+> +			drm_err(&xe->drm, "Resume failed after suspend was canceled");
+> +			return ret;
+> +		}
+> +		return err;
+> +	}
+> +
+>  	pci_save_state(pdev);
 >  
->  	if (++*tries >= 100) {
-> @@ -1197,7 +1199,7 @@ static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
->  			  *status, ukernel, bootrom);
->  	}
->  
-> -	return 0;
-> +	return -EBUSY;
+>  	if (xe->d3cold.allowed) {
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index f517bf453b54..678afd7a1d08 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -1030,6 +1030,27 @@ void xe_pm_d3cold_allowed_toggle(struct xe_device *xe)
+>  	mutex_unlock(&xe->d3cold.lock);
 >  }
 >  
->  static int guc_wait_ucode(struct xe_guc *guc)
-> @@ -1213,21 +1215,21 @@ static int guc_wait_ucode(struct xe_guc *guc)
->  	before_freq = xe_guc_pc_get_act_freq(guc_pc);
->  	before = ktime_get();
+> +/**
+> + * xe_pm_check_device_idle() - Check if all GTs are idle.
+> + * @xe: xe device instance
+> + *
+> + * One of the ways to do this is to check for GT C6 state. This check
+> + * will fail if some component is holding a forcewake, for example.
+> + *
+> + * Return: 0 on success, -EAGAIN on failure
+> + */
+> +int xe_pm_check_device_idle(struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt;
+> +	u8 id;
+> +
+> +	for_each_gt(gt, xe, id)
+> +		if (xe_gt_idle_wait_for_c6(gt, 200))
+> +			return -EAGAIN;
+> +
+> +	return 0;
+> +}
+> +
+>  /**
+>   * xe_pm_module_init() - Perform xe_pm specific module initialization.
+>   *
+> diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
+> index 6d5ab09cb769..a4fdc9c5cb10 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.h
+> +++ b/drivers/gpu/drm/xe/xe_pm.h
+> @@ -36,6 +36,7 @@ void xe_pm_d3cold_allowed_toggle(struct xe_device *xe);
+>  bool xe_rpm_reclaim_safe(const struct xe_device *xe);
+>  struct task_struct *xe_pm_read_callback_task(struct xe_device *xe);
+>  int xe_pm_block_on_suspend(struct xe_device *xe);
+> +int xe_pm_check_device_idle(struct xe_device *xe);
+>  void xe_pm_might_block_on_suspend(void);
+>  int xe_pm_module_init(void);
 >  
-> -	ret = poll_timeout_us(load_result = guc_load_done(gt, &status, &tries), load_result,
-> -			      10 * USEC_PER_MSEC,
-> +	ret = poll_timeout_us(load_result = guc_load_done(gt, &status, &tries),
-> +			      load_result != -EBUSY, 10 * USEC_PER_MSEC,
-
-nit: I'm wondering if maybe this "10" could be somehow derived
-from the GUC_LOAD_TIMEOUT_SEC ?
-
->  			      GUC_LOAD_TIMEOUT_SEC * USEC_PER_SEC, false);
->  
->  	delta_ms = ktime_to_ms(ktime_sub(ktime_get(), before));
->  	act_freq = xe_guc_pc_get_act_freq(guc_pc);
->  	cur_freq = xe_guc_pc_get_cur_freq_fw(guc_pc);
->  
-> -	if (ret || load_result <= 0) {
-> +	if (ret || load_result) {
->  		xe_gt_err(gt, "load failed: status = 0x%08X, time = %lldms, freq = %dMHz (req %dMHz)\n",
->  			  status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
->  			  xe_guc_pc_get_cur_freq_fw(guc_pc));
->  		print_load_status_err(gt, status);
->  
-> -		return -EPROTO;
-> +		return ret ?: load_result;
->  	}
->  
->  	if (delta_ms > GUC_LOAD_TIME_WARN_MSEC) {
-
-just nits
-
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-
+> -- 
+> 2.38.1
+> 
