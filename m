@@ -4,27 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80C05C88E73
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 08:38:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E177C88E73
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 08:40:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 302D910F367;
-	Tue, 15 Sep 2026 08:38:47 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72BC610F367;
- Tue, 15 Sep 2026 08:38:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6306721180256176451=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EBDB10F378;
+	Tue, 15 Sep 2026 08:40:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K6jBLJcB";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8389910F36A;
+ Tue, 15 Sep 2026 08:40:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789461613; x=1820997613;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=jFjveW8PB+QZMNIKa9P54Bs9pN+9LGE8+b6VWPfMmqo=;
+ b=K6jBLJcBbco5kTw4XjNtNrthut4rE7i/l+lgX7ctrM4gyLKT/GZrbLd9
+ gZ5s+GrcMVLe3ZuN7PQ0TYbl24/jQxLwcvlwbcM7ImbxJYlbgnv3QYYdd
+ PQuc0LdV6ftFQ+BDu98J9AhQdlpp+7EQjR45nQW2L9Hlb29wQW0bLHXU+
+ OVTegrXROVnHEuTthPQ6wOAvYOH/JSWXH8Amf4tI3/1PCKWW8YhPMjMZF
+ tU1qKuG40xJw/ldG/9kAH/ix2iXq8F1Y9MAzEuqBst+k5F/HapFMD9HdM
+ aRKDBSUh4hn4G2SdGvKm+oL9pY1W4r5Qea4saqwi6tisGFAJcYbc5VNpR w==;
+X-CSE-ConnectionGUID: dJnAsFggRP6B7eYYuOquIg==
+X-CSE-MsgGUID: NRg2LzIyTz+4LNWl8lSumw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89832897"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89832897"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 01:40:13 -0700
+X-CSE-ConnectionGUID: ET3mCVQ4QXapkN+A4YO/IQ==
+X-CSE-MsgGUID: GaHvSp/KQeKSqK07P2kT6A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="274838912"
+Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.243])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 01:40:10 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Andrew Zhou <zhoulol888@gmail.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Matthew Brost <matthew.brost@intel.com>, Thomas
+ =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Andrew Zhou <zhoulol888@gmail.com>,
+ ville.syrjala@linux.intel.com, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Matthew Brost
+ <matthew.brost@intel.com>
+Subject: Re: [PATCH v2] drm/xe/display: Remove invalid initial plane PTE
+ check for iGPU
+In-Reply-To: <20260915064200.23171-1-zhoulol888@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260905142500.17666-1-zhoulol888@gmail.com>
+ <20260915064200.23171-1-zhoulol888@gmail.com>
+Date: Tue, 15 Sep 2026 11:40:08 +0300
+Message-ID: <69d0f3f3566521e516e439e818a619766561567c@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Poll_GT_for_C6_be?=
- =?utf-8?q?fore_D3?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 15 Sep 2026 08:38:45 -0000
-Message-ID: <178946152546.163643.9237321167170852544@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260915071145.2866414-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20260915071145.2866414-1-vinay.belgaumkar@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,268 +73,92 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6306721180256176451==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 15 Sep 2026, Andrew Zhou <zhoulol888@gmail.com> wrote:
+> Pantherlake integrated graphics can have the XE_GGTT_PTEDM bit set in
+> the BIOS-initialised framebuffer PTE. The validation rejects this and
+> fails to create the initial framebuffer, resulting in static.
+>
+> Remove the too-strict validation. Since this was the only caller of
+> need_pte_local() outside the DGFX path, the helper is now
+> unconditionally true there; fold the check and drop the dead
+> need_pte_local() and has_lmembar() helpers.
+>
+> Signed-off-by: Andrew Zhou <zhoulol888@gmail.com>
+> Tested-by: Andrew Zhou <zhoulol888@gmail.com>
+> Tested-on: Intel Core Ultra X7 358H, integrated graphics, B0 stepping
 
-== Series Details ==
+This is basically a revert of 0d5d5d0c2c72 ("drm/xe: Check the PTE local
+memory bit for initial FB in stolen"). You'd do well to dig a bit of git
+blame and see what changed, why, and by whom.
 
-Series: drm/xe: Poll GT for C6 before D3
-URL   : https://patchwork.freedesktop.org/series/174091/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-5749-ba8d5c199283dba7ce36bb78b53111b3e997f9c3_BAT -> xe-pw-174091v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-174091v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-lnl-1:          NOTRUN -> [SKIP][1] ([Intel XE#352]) +2 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-lnl-1:          NOTRUN -> [SKIP][2] ([Intel XE#1470] / [Intel XE#2853])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on:
-    - bat-lnl-1:          NOTRUN -> [SKIP][3] ([Intel XE#1091] / [Intel XE#2849]) +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
-
-  * igt@xe_evict@evict-beng-small-cm:
-    - bat-lnl-1:          NOTRUN -> [SKIP][4] ([Intel XE#6540] / [Intel XE#688]) +11 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_evict@evict-beng-small-cm.html
-
-  * igt@xe_exec_balancer@no-exec-parallel-basic:
-    - bat-lnl-1:          NOTRUN -> [SKIP][5] ([Intel XE#7482]) +17 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_exec_balancer@no-exec-parallel-basic.html
-
-  * igt@xe_exec_multi_queue@priority:
-    - bat-lnl-1:          NOTRUN -> [SKIP][6] ([Intel XE#8364]) +13 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_exec_multi_queue@priority.html
-
-  * igt@xe_live_ktest@xe_bo:
-    - bat-lnl-1:          NOTRUN -> [SKIP][7] ([Intel XE#2229]) +2 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_live_ktest@xe_bo.html
-
-  * igt@xe_mmap@vram:
-    - bat-lnl-1:          NOTRUN -> [SKIP][8] ([Intel XE#1416])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-lnl-1:          NOTRUN -> [SKIP][9] ([Intel XE#1420] / [Intel XE#2838] / [Intel XE#7590])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-lnl-1:          NOTRUN -> [SKIP][10] ([Intel XE#7590] / [Intel XE#977])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-lnl-1:          NOTRUN -> [SKIP][11] ([Intel XE#7590] / [Intel XE#979])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_pat@pat-index-xelpg.html
-
-  * igt@xe_sriov_flr@flr-vf1-clear:
-    - bat-lnl-1:          NOTRUN -> [SKIP][12] ([Intel XE#3342])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_sriov_flr@flr-vf1-clear.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-dpms@b-edp1:
-    - bat-lnl-1:          [ABORT][13] ([Intel XE#8007]) -> [PASS][14] +1 other test pass
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5749-ba8d5c199283dba7ce36bb78b53111b3e997f9c3/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html
-
-  
-  [Intel XE#1091]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091
-  [Intel XE#1416]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#1470]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
-  [Intel XE#2849]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849
-  [Intel XE#2853]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853
-  [Intel XE#3342]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342
-  [Intel XE#352]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/352
-  [Intel XE#6540]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6540
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
-  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
-  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+Cc: Ville, Maarten, Matthew
 
 
-Build changes
--------------
+BR,
+Jani.
 
-  * Linux: xe-5749-ba8d5c199283dba7ce36bb78b53111b3e997f9c3 -> xe-pw-174091v1
+> ---
+> v1 -> v2:
+> - Drop need_pte_local() and has_lmembar(), now dead after removing the
+>   iGPU validation (sashiko)
+> ---
+>  drivers/gpu/drm/xe/display/xe_initial_plane.c | 20 +------------------
+>  1 file changed, 1 insertion(+), 19 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+> index 0f86b7303..3484b3033 100644
+> --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
+> +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+> @@ -27,16 +27,6 @@ static bool is_pte_local(u64 pte)
+>  	return pte & XE_GGTT_PTE_DM;
+>  }
+>  
+> -static bool has_lmembar(struct xe_device *xe)
+> -{
+> -	return GRAPHICS_VERx100(xe) >= 1270;
+> -}
+> -
+> -static bool need_pte_local(struct xe_device *xe)
+> -{
+> -	return IS_DGFX(xe) || has_lmembar(xe);
+> -}
+> -
+>  static struct xe_bo *
+>  initial_plane_bo(struct xe_device *xe,
+>  		 struct intel_initial_plane_config *plane_config)
+> @@ -60,7 +50,7 @@ initial_plane_bo(struct xe_device *xe,
+>  	if (IS_DGFX(xe)) {
+>  		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
+>  
+> -		if (is_pte_local(pte) != need_pte_local(xe)) {
+> +		if (!is_pte_local(pte)) {
+>  			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
+>  			return NULL;
+>  		}
+> @@ -85,7 +75,6 @@ initial_plane_bo(struct xe_device *xe,
+>  			    &phys_base);
+>  	} else {
+>  		struct ttm_resource_manager *stolen;
+> -		u64 pte;
+>  
+>  		stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
+>  		if (!stolen) {
+> @@ -93,13 +82,6 @@ initial_plane_bo(struct xe_device *xe,
+>  			return NULL;
+>  		}
+>  
+> -		pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
+> -
+> -		if (is_pte_local(pte) != need_pte_local(xe)) {
+> -			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
+> -			return NULL;
+> -		}
+> -
+>  		phys_base = base;
+>  		flags |= XE_BO_FLAG_STOLEN;
 
-  IGT_9094: b72ca59712e9021e1a1a0a5a89ff5eb74982ad99 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5749-ba8d5c199283dba7ce36bb78b53111b3e997f9c3: ba8d5c199283dba7ce36bb78b53111b3e997f9c3
-  xe-pw-174091v1: 174091v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/index.html
-
---===============6306721180256176451==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Poll GT for C6 before D3</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174091/">https://patchwork.freedesktop.org/series/174091/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5749-ba8d5c199283dba7ce36bb78b53111b3e997f9c3_BAT -&gt; xe-pw-174091v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-174091v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@kms_force_connector_basic@force-connector-state.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/352">Intel XE#352</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1470">Intel XE#1470</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2853">Intel XE#2853</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1091">Intel XE#1091</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2849">Intel XE#2849</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-small-cm:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6540">Intel XE#6540</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +11 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_balancer@no-exec-parallel-basic:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_exec_balancer@no-exec-parallel-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@priority:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_exec_multi_queue@priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1416">Intel XE#1416</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_sriov_flr@flr-vf1-clear:</p>
-<ul>
-<li>bat-lnl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@xe_sriov_flr@flr-vf1-clear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3342">Intel XE#3342</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-dpms@b-edp1:<ul>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5749-ba8d5c199283dba7ce36bb78b53111b3e997f9c3/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v1/bat-lnl-1/igt@kms_flip@basic-flip-vs-dpms@b-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5749-ba8d5c199283dba7ce36bb78b53111b3e997f9c3 -&gt; xe-pw-174091v1</li>
-</ul>
-<p>IGT_9094: b72ca59712e9021e1a1a0a5a89ff5eb74982ad99 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5749-ba8d5c199283dba7ce36bb78b53111b3e997f9c3: ba8d5c199283dba7ce36bb78b53111b3e997f9c3<br />
-  xe-pw-174091v1: 174091v1</p>
-
-</body>
-</html>
-
---===============6306721180256176451==--
+-- 
+Jani Nikula, Intel
