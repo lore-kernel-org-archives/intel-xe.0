@@ -4,69 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93190C88E7B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E71AAC982C5
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31D6F10EC77;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A0D510E82E;
 	Tue, 15 Sep 2026 14:13:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="DzVjKMkA";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="vtv89KyQ";
 	dkim-atps=neutral
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com
- [209.85.216.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBD6510F34C
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:14 +0000 (UTC)
-Received: by mail-pj1-f69.google.com with SMTP id
- 98e67ed59e1d1-39deda201bcso2505207a91.2
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:14 -0700 (PDT)
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com
+ [209.85.214.199])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25B7310F34D
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:18 +0000 (UTC)
+Received: by mail-pl1-f199.google.com with SMTP id
+ d9443c01a7336-2d94a158dc8so62413805ad.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460414; x=1790065214;
+ d=google.com; s=20251104; t=1789460418; x=1790065218;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=uYw3XH3TVDlWH5yZkMBbor+NJ9bN2wpB4N7ncSus1u4=;
- b=DzVjKMkAAJDViBRKatN0xlFOxrKeg1EakD1u7FgfzzuejRWpDfLacNiszw5OV5olSM
- wSvRaZFJfyPoAvnC4gAkM/pAoSs1sJTdR6NtYdXMQaZz7gq7NIeNTqQq0uzmE3N9mSTZ
- XPEDXO6RZV5MKAOGMAs1opRq+tHXKmZuBCHO2+W/7X3dGBS6gKWEL4gLyptSeZZnp1sC
- fJS5t9sDYj8hf3sCHpk3yhqiIEqTI8wlD2NJtItdwBlhhjxPWxRZTLAFN5/TYuNVVnyv
- zISW5h8oUzizDCWFNKBU0KIuun7MFQU6MuMmZ6i3Ut2AGscTxtB7+djNtu54f4t7m6ef
- vEcA==
+ bh=LcsuffwFDxj4u6SThnIq1nFzZdsoWr9GB9tsbe2KVjo=;
+ b=vtv89KyQuHsi4YHxzMBpVqlGuNnqFH7dOLNQp6+v/6lHWd4SXJaAGQJf6yAKbAdlO7
+ deW/c9ij0GabYlkHwA1zHy1kndxkSvaw8R8gt4C0dSPNFiy9j4SeVNhT/q5ChzGJZpjA
+ lCnk+TLREjOUi9AkUTdUaLrprrg9o5CIaR6DBEIOJfYnjnah9tYfcVM/xrJtiYvOxyeg
+ EAzY69gKApiWI8D5R1ELz1t3RwuQKQaHlj9SvyM9VYnHzucRHa9amZ1ddD8N6ia3MWeZ
+ egKgEwQPVlnWcSvLqxCKMTXkE+cphltsY1VnzCJsLyMkc3ulJoJW0pZFmEQxaLZB3ZsH
+ 84Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460414; x=1790065214;
+ d=1e100.net; s=20260707; t=1789460418; x=1790065218;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=uYw3XH3TVDlWH5yZkMBbor+NJ9bN2wpB4N7ncSus1u4=;
- b=XmeNytgmyezRVir/cPUKLbvRi8qwVQcEA7QzKswJMyi4hf44aCrbM+DFnGFdKI6nPv
- N2YMJDgRJ2YaoOMl0VZRakY06ITp/LPrPzMt0+RYRWIazZFwBmVviBWprKytcHxGoJxp
- 0188s754er64d9zIaQABQoJRDLuuwNbGCJ8ksySm9jHcqs+JNwqe6RGMuajqlAI4jJVF
- 9MKGcOwmHTMkY9sWlttGsjdddo0O4kzju381WboZtxdg8aIxtkJxDJz4WotP4B3NCQCX
- UBmCkfAZjIM4HlboROj/JeCvGxNIQnpfT5aCXLkN6Y3RjAjFX3V21Qc0EhzvpVS+v4X4
- R4Fg==
+ bh=LcsuffwFDxj4u6SThnIq1nFzZdsoWr9GB9tsbe2KVjo=;
+ b=PQhT3yAhLkJ3BcIMCqRqv5DUOiefEewnR7rv5qhY7wPdDOSMhBDSONTCEnRSr6P688
+ 7RZwCC+g2U1AoINWETJn0hil0/Yd4gPxbRX5rsrABYKNQ4dcIcPuZ12GQk0nOwfCSJtP
+ +vO/xA5UKOaKYulGNK2+BPzH7BdLS9WjGi839/EUnu+y3ZWBhMuAbjoe+zK+TAE5Dcj+
+ V3XNmVOZpZ1TbmJCsGFihTE+ME4raM7RvIfU6Ju65hOyg9bB2xCrc1wcLs2y1bXwSWPe
+ EZVSxsXaN1T9YIlBCtUHgubymV5YXOhQfTR/9c610inQmAaa38nSp06PELmH6VaDj4uX
+ QOvA==
 X-Forwarded-Encrypted: i=1;
- AKwUvBx2cnB+X6XfnaELfAU4IeW8tKwcwYvAPVik+s0HYCSyYk8LzkVfoRLZ+7RansVu6jIKIJUanH961A==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++l8O0ct/Lg6/TCc4T6pLI/gh2H1wTdvBn9r9DuSkU4nuViTLbu0
- obzDspsQ0M0MeQGoXD7A1FmWW+W+Q73xUCja2r37XjCEeCQ/tCvd7Kz5PL9/Cq9pfClzzNK/Nnt
- X
-X-Received: from pgap5.prod.google.com ([2002:a63:4205:0:b0:cc4:33fd:a4f7])
+ AKwUvByn/CXSMlc9IyeT1sDIK0V38ahAeUfu+g/wAQ6ed2FkcSWzMmrj1kAAVvMNEV5EN6IqmFSE8nJOOQ==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++nGsVJllcyqCPqlB6lVQRA3pEF8RMB24lhzQux9FskAuN575b8b
+ tvEoAMI1qpeO/xqtl2erl+8cmGKtly0Ff+2lD7OpARdR3oBnYSdFQMhbnQc/H5tlwJNdS4c9GpV
+ E
+X-Received: from plxm10.prod.google.com ([2002:a17:902:db0a:b0:2d9:7bf:6891])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6a21:6d8a:b0:3db:3e1c:8585
- with SMTP id adf61e73a8af0-3db4063b18fmr14587917637.27.1789460412692; Tue, 15
- Sep 2026 01:20:12 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:38 +0000
+ 2002:a17:903:1b50:b0:2db:8ae7:a5d2
+ with SMTP id d9443c01a7336-2dd6c5f39camr129000865ad.9.1789460415373; Tue, 15
+ Sep 2026 01:20:15 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:41 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-22-morbo@google.com>
-Subject: [PATCH 21/28] NFS: nfsroot: Refactor root_nfs_cat() to use snprintf()
+Message-ID: <20260915081910.4142719-25-morbo@google.com>
+Subject: [PATCH 24/28] EDAC/thunderx: Fix stale error context in
+ thunderx_l2c_threaded_isr()
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
-Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
- Russell King <linux@armlinux.org.uk>, Huacai Chen <chenhuacai@kernel.org>, 
- WANG Xuerui <kernel@xen0n.name>,
+Cc: Bill Wendling <morbo@google.com>, Russell King <linux@armlinux.org.uk>, 
+ Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>, 
  Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
  "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
  Helge Deller <deller@gmx.de>, 
@@ -154,18 +154,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-root_nfs_cat() computes the length of "dest" with strlen(), but then uses
-up to two strlcat() calls to append a comma separator and "src",
-rescanning "dest" each time.
+thunderx_l2c_threaded_isr() computes "tail" and "ctx" once before entering
+the loop that drains the L2C error ring, and never updates them on
+subsequent iterations. When multiple errors are queued, every iteration
+reports the first ring entry rather than advancing through the ring,
+causing subsequent hardware errors in a batch to go unreported.
 
-In preparation for removing the deprecated strlcat() API[1], use the
-already-computed length and a single snprintf() call to append the
-optional comma and "src", returning -1 if the result is truncated.
+Recompute "tail" and "ctx" at the start of each loop iteration, matching
+the sibling thunderx_ocx_com_threaded_isr() and
+thunderx_ocx_lnk_threaded_isr() handlers.
 
-Link: https://github.com/KSPP/linux/issues/370 [1]
-Cc: codemender-patching+linux@google.com
-Assisted-by: CoPilot:Claude-3.5-Sonnet [editor_update_file, make_kernel_bui=
-ld_single_file]
+Fixes: 41003396f932 ("EDAC, thunderx: Add Cavium ThunderX EDAC driver")
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -279,34 +278,24 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- fs/nfs/nfsroot.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+ drivers/edac/thunderx_edac.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/fs/nfs/nfsroot.c b/fs/nfs/nfsroot.c
-index 432612d22437..a28208414aec 100644
---- a/fs/nfs/nfsroot.c
-+++ b/fs/nfs/nfsroot.c
-@@ -173,12 +173,15 @@ static int __init root_nfs_cat(char *dest, const char=
- *src,
- 			       const size_t destlen)
- {
- 	size_t len =3D strlen(dest);
-+	int ret;
+diff --git a/drivers/edac/thunderx_edac.c b/drivers/edac/thunderx_edac.c
+index 9c0a1e48f96f..e7c335ca0c36 100644
+--- a/drivers/edac/thunderx_edac.c
++++ b/drivers/edac/thunderx_edac.c
+@@ -1880,6 +1880,9 @@ static irqreturn_t thunderx_l2c_threaded_isr(int irq,=
+ void *irq_id)
 =20
--	if (len && dest[len - 1] !=3D ',')
--		if (strlcat(dest, ",", destlen) >=3D destlen)
--			return -1;
-+	if (len >=3D destlen)
-+		return -1;
-=20
--	if (strlcat(dest, src, destlen) >=3D destlen)
-+	ret =3D snprintf(dest + len, destlen - len, "%s%s",
-+		       (len && dest[len - 1] !=3D ',') ? "," : "", src);
+ 	while (CIRC_CNT(l2c->ring_head, l2c->ring_tail,
+ 			ARRAY_SIZE(l2c->err_ctx))) {
++		tail =3D ring_pos(l2c->ring_tail, ARRAY_SIZE(l2c->err_ctx));
++		ctx =3D &l2c->err_ctx[tail];
 +
-+	if (ret < 0 || ret >=3D destlen - len)
- 		return -1;
- 	return 0;
- }
+ 		snprintf(msg, L2C_MESSAGE_SIZE,
+ 			 "%s: %s: %016llx, %s: %016llx",
+ 			 l2c->edac_dev->ctl_name, reg_int_name, ctx->reg_int,
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
