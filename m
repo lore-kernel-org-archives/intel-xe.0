@@ -4,65 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B831DC982C9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDEDFC982CB
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBB7310E30B;
-	Tue, 15 Sep 2026 14:13:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A23210E5F9;
+	Tue, 15 Sep 2026 14:13:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="L9DSTVY7";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="GN/NloDh";
 	dkim-atps=neutral
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com
- [209.85.215.198])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 635E610F34C
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:19 +0000 (UTC)
-Received: by mail-pg1-f198.google.com with SMTP id
- 41be03b00d2f7-cc489e7a701so6024645a12.2
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:19 -0700 (PDT)
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com
+ [209.85.214.199])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C67DF10F34C
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:12 +0000 (UTC)
+Received: by mail-pl1-f199.google.com with SMTP id
+ d9443c01a7336-2d959904658so74607715ad.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460419; x=1790065219;
+ d=google.com; s=20251104; t=1789460412; x=1790065212;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=3R1bHblX/YSNAoDVuSots2jijK47BJf7ndWg1gXSC20=;
- b=L9DSTVY7N3KIKTl95TIlV6RkcZGqD/8vkF/ZcDe5N7zxR3IaNsa4anKO3C06faP8Iw
- gqW/9BwFP7uGw87XwB/NbLmD3+psIqps+Kq9seouVcYqslhScJxv9iqKOCFQMlm8KSfW
- 4se2jyTQS2png7o0e7BsrU2qwDAVm4rWzYrSH/q50NrYrn1CZHzP7C558NegntemBdZD
- 4kEr6wKZED+fV4vsRvTDLUbvKRBlVUh7+LRE0fsgC3FH4pQ8WifXAwOMdsqB/8PnlCya
- /DJ9sFpHbq7/gipCQgTptij0sqyct3JLP1lWY4W1v4wyDI3x4pXxlgxznag5yWNmWYo8
- tDtw==
+ bh=XkXp/XZtfYpYjiXJEDXdoQGA1NlHq2kVyqBGidLpG58=;
+ b=GN/NloDh94ffKcaFlI4OhmcwF8tBeQZjISr0PSmWJslg+6PxRX86ncQVG4SxEIVAG1
+ cNcq73eL0TX5TAFvxvGmer7FhJsEV20X9/b1FVZNfnnp2JEEWWozE1+HkbE7a1DsZmLB
+ cTGeUAaRujIHYLhE5tvt9IaxAIyskdtlqLGu7JKagW4OCq5Z5DoijstCVaYqNleQypl2
+ y3OhxBzNxVYabnmLxzDYhEht9euZTUoLbYyrXFvEPj2bp68DC2DB85aTnheWPnvSXAUX
+ bmpPqF6Dp1WFw+CeepXvNjKAQ3KmjJUSmy7CafK0kVA8E+OaulrxKTkCAxIngLfqqcyQ
+ KrSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460419; x=1790065219;
+ d=1e100.net; s=20260707; t=1789460412; x=1790065212;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=3R1bHblX/YSNAoDVuSots2jijK47BJf7ndWg1gXSC20=;
- b=IBJe3QCDGJ1eDl5hJTN69vzyDovxQaZPYkrUMUG1b67+RAs9WOluW+ZIqUZ0vxk7+x
- 5KZFaQX+a6A627Lv6MEGFVcfn/gFQt6wfIMJyuwWHjpB863dJ/2voAltScqEdUt/LyBD
- EmD6IWfB4Lo7tD/RYMHmHDV1KL70Cqk6N3p4R6huWpYDCSDfwf6b9pWJcberEiMFsODJ
- gBcqa/sTsswcVlEssTkAwYd9LPdHeZ96Wjc8X/TVuyEi/8yf5QC3Xr5TqtAcXsQUiG3C
- ynQfQ2+JuDTQld2+S9eolcOsvT7M9WQOqmvq9doxWYcbk7UV19VcmyjoofCdXpLfaGM/
- kW1g==
+ bh=XkXp/XZtfYpYjiXJEDXdoQGA1NlHq2kVyqBGidLpG58=;
+ b=OjOwhoN1dOt2XsA0Dj/7n0rRtwG+XPE0rj9mrT8smDFWaYAIHiju9nKTH4vVAUmhh5
+ eJvr3jbHL4jG2Z9D+9kOOmJ84r/6Fxa/WosCjdu0KtvnRTjHnx3+RTUfDWy/X0uV1VBZ
+ 8YW9bGmtonxhK8/ZK09VKRPAdlLfXL7rTHEm/csQFrbc25xhDg8+AHzcTnONd+G1WKmR
+ t5IblaZHkdGcH1QdGqSleFbbuJdaMrsrqUbYLMs3PLYh6h0tAcywwrq5iIogKaAF0AQ9
+ iKcSN2VvB1A7DZrogckv3NW2Datg3o2Qa/Z6EtMQ7Ut0QLsz3+crNRxCAuguvIvkoxml
+ heUA==
 X-Forwarded-Encrypted: i=1;
- AKwUvBwVYyFNZ3NWNxcrITCWXLhMe60AV7LWbTvTWbHzpjf8S3MfuIJCfrFKoFkDDvl+Oom/+OhGxoI5GA==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++mpT8Da+V1NFH6J99WNItiTtZqR4qnK9e5dOP0hUD4ii2B4nBwa
- Mni2Y6czHrpEwRYMU+Y3RaRSzM8NuSlbjLUhUmedqfPxo2r4XQBd18DyGtUR4ESuDB6wPM3sAIH
- D
-X-Received: from pghu21.prod.google.com ([2002:a63:ef15:0:b0:cc4:da05:ef4c])
+ AKwUvBxPBlIgw/Psen/0euwQFf4NHjlX94dxi1u68uJBHEd8tyg09as5TEL6tiSELn1EOMBbFjPp/MJZzA==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++nH6+a4tUSqgzbTZi9vMx6GK2XdVXlDm39O39D63F1qceIGOPGG
+ smu2K320MjSSF2xbxM28a7GBBShlmvhGA1dy7fqsdbz+V5hfG6gk3TQ7/9YKwj5yiB3QF6HOPD2
+ H
+X-Received: from plbkc7.prod.google.com ([2002:a17:903:33c7:b0:2dd:630:cea4])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6a21:3315:b0:3d3:aec2:4dcd
- with SMTP id adf61e73a8af0-3db40623e61mr13262094637.25.1789460418341; Tue, 15
- Sep 2026 01:20:18 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:44 +0000
+ 2002:a17:903:1965:b0:2d3:716e:e2ae
+ with SMTP id d9443c01a7336-2dd6c5ef019mr154580855ad.6.1789460411846; Tue, 15
+ Sep 2026 01:20:11 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:37 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-28-morbo@google.com>
-Subject: [PATCH 27/28] drm/xe/pf: Convert strlcat() to seq_buf in
- control_read()
+Message-ID: <20260915081910.4142719-21-morbo@google.com>
+Subject: [PATCH 20/28] parisc: Refactor strlcat() to seq_buf in setup_cmdline()
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
 Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
@@ -155,17 +154,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-control_read() builds a list of supported SR-IOV VF control commands in a
-stack buffer by calling strlcat() twice per command in a loop.
+setup_cmdline() uses multiple strlcat() calls to conditionally append
+default console and earlycon parameters to boot_command_line.
 
-In preparation for removing the deprecated strlcat() API[1], use struct
-seq_buf and seq_buf_printf() to format each command line and pass
-seq_buf_used() directly to simple_read_from_buffer().
+In preparation for removing the deprecated strlcat() API[1], initialize a
+struct seq_buf with the existing boot_command_line contents and use
+seq_buf_printf() to append the console parameters.
 
 Link: https://github.com/KSPP/linux/issues/370 [1]
 Cc: codemender-patching+linux@google.com
-Assisted-by: CoT-Agent:Gemini-2.0-Flash [editor_update_file, shell_command_=
-run]
+Assisted-by: CoPilot:Gemini-1.5-Pro [editor_update_file, shell_command_run]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -279,44 +277,57 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+ arch/parisc/kernel/setup.c | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/=
-xe/xe_gt_sriov_pf_debugfs.c
-index 0f242db775e1..5db7fc067c4d 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-@@ -4,6 +4,7 @@
-  */
-=20
- #include <linux/debugfs.h>
+diff --git a/arch/parisc/kernel/setup.c b/arch/parisc/kernel/setup.c
+index d3e17a7a8901..fa3efc82ad87 100644
+--- a/arch/parisc/kernel/setup.c
++++ b/arch/parisc/kernel/setup.c
+@@ -17,6 +17,7 @@
+ #include <linux/init.h>
+ #include <linux/console.h>
+ #include <linux/seq_file.h>
 +#include <linux/seq_buf.h>
-=20
- #include <drm/drm_print.h>
- #include <drm/drm_debugfs.h>
-@@ -663,15 +664,15 @@ static ssize_t control_write(struct file *file, const=
- char __user *buf, size_t c
- static ssize_t control_read(struct file *file, char __user *buf, size_t co=
-unt, loff_t *ppos)
+ #define PCI_DEBUG
+ #include <linux/pci.h>
+ #undef PCI_DEBUG
+@@ -42,6 +43,7 @@ static char __initdata command_line[COMMAND_LINE_SIZE];
+ static void __init setup_cmdline(char **cmdline_p)
  {
- 	char help[128];
+ 	extern unsigned int boot_args[];
 +	struct seq_buf s;
- 	size_t n;
+ 	char *p;
 =20
--	help[0] =3D '\0';
-+	seq_buf_init(&s, help, sizeof(help));
- 	for (n =3D 0; n < ARRAY_SIZE(control_cmds); n++) {
--		strlcat(help, control_cmds[n].cmd, sizeof(help));
--		strlcat(help, "\n", sizeof(help));
-+		seq_buf_printf(&s, "%s\n", control_cmds[n].cmd);
+ 	*cmdline_p =3D command_line;
+@@ -54,19 +56,21 @@ static void __init setup_cmdline(char **cmdline_p)
+ 	strscpy(boot_command_line, (char *)__va(boot_args[1]),
+ 		COMMAND_LINE_SIZE);
+=20
++	s.buffer =3D boot_command_line;
++	s.size =3D COMMAND_LINE_SIZE;
++	s.len =3D strlen(boot_command_line);
++
+ 	/* autodetect console type (if not done by palo yet) */
+ 	p =3D boot_command_line;
+ 	if (!str_has_prefix(p, "console=3D") && !strstr(p, " console=3D")) {
+-		strlcat(p, " console=3D", COMMAND_LINE_SIZE);
+-		if (PAGE0->mem_cons.cl_class =3D=3D CL_DUPLEX)
+-			strlcat(p, "ttyS0", COMMAND_LINE_SIZE);
+-		else
+-			strlcat(p, "tty0", COMMAND_LINE_SIZE);
++		seq_buf_printf(&s, " console=3D%s",
++			       PAGE0->mem_cons.cl_class =3D=3D CL_DUPLEX ?
++			       "ttyS0" : "tty0");
  	}
 =20
--	return simple_read_from_buffer(buf, count, ppos, help, strlen(help));
-+	return simple_read_from_buffer(buf, count, ppos, help, seq_buf_used(&s));
- }
+ 	/* default to use early console */
+ 	if (!strstr(p, "earlycon"))
+-		strlcat(p, " earlycon=3Dpdc", COMMAND_LINE_SIZE);
++		seq_buf_printf(&s, " earlycon=3Dpdc");
 =20
- static const struct file_operations control_ops =3D {
+ #ifdef CONFIG_BLK_DEV_INITRD
+ 	/* did palo pass us a ramdisk? */
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
