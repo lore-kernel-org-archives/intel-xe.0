@@ -4,65 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFF64C88E75
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08EBDC982C7
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34E3C10E74B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 952A010E8D5;
 	Tue, 15 Sep 2026 14:13:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="EfkQDuw/";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="I2A+ch81";
 	dkim-atps=neutral
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com
- [209.85.214.200])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB32010FAF3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:06 +0000 (UTC)
-Received: by mail-pl1-f200.google.com with SMTP id
- d9443c01a7336-2d6f75c1219so88124395ad.3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:06 -0700 (PDT)
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com
+ [209.85.216.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2106110FAF3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:00 +0000 (UTC)
+Received: by mail-pj1-f72.google.com with SMTP id
+ 98e67ed59e1d1-38dbf293831so9420543a91.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460406; x=1790065206;
+ d=google.com; s=20251104; t=1789460399; x=1790065199;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=YdNQWB21luiE9Gdv0Q1IFwuCzs7Lvdhhb2Hfuit5b6U=;
- b=EfkQDuw/anKJr9jQsrAkrgcWtIkX0qMmU8X8H8Nr3s0u+plTfQ7SFxAyUuAe/seEUZ
- ERY24KjRLdBVez60ZmFgOn3sWxKQDpYN5K2N3XLbxNLh55828SjbsPihXkHfbhnO4Sbe
- n3rbKVsHEnD6vqZ57Fx72WdDvSxgfvnflSQc/vm6iDlofwLjAXOCADmfLZO81sriFEZZ
- +ktbMPIqhO4wuZ3gRAizoR3vWBtasFkTrV0TUSDnc7Xdy28yGo1MU3VaU6IhjBwGgXOP
- ze0asolOQ8/cirDA53O4Tr8AHXW4mFCtu59FfN6zPuThvprhprXkSLDUvTwygMgI0iNo
- H+sw==
+ bh=ANECGYJQk2+Ya+FPrAm+IsCBeyM6Er0meffRIzFfkVU=;
+ b=I2A+ch81MqR4m1AnQjOmoSiAmukwsZizOEPnsYRei6DwWRoRYVNh/8WJgKYPqUmEOP
+ /d8QGbINkF8fxJAo+K+884K0mwkG/5KE1F6oOUVF7xE7GehSO9qQKnfltVkvF1Ax5Ave
+ wlOrai9WbjPeryhGuIpX+tQeWkLdDojtxIxtIN837xF9Muj4V49zWaPzF0C0eiAJMUll
+ yNI5t4J0qkbynelioPbac4kqkfXe9yq6LeAWbMLyOjBaEbuRDq3iU4x6O8wAxvt0ixm9
+ h/ol8g4QptUHaV8VL4M8lDDdCfgpNojVL6XpL3hcLot3DkOOeL1D8i1MFhQk6fl//G+3
+ iHzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460406; x=1790065206;
+ d=1e100.net; s=20260707; t=1789460399; x=1790065199;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=YdNQWB21luiE9Gdv0Q1IFwuCzs7Lvdhhb2Hfuit5b6U=;
- b=uDrtmDj3ounR14Hmnxjo0vBdnRRcDfq72sR8PrHh1P1k3sqv5agS1hZKbQKVzNGaDQ
- YMtgrrceXSiveEvmDo0x3mQ7lIaBV/BOkMLnChBz7EYLmxhL0/Z/2s+LdQA7dG/a7ZLf
- K5pFrnpFmddRuleHe7ugxfNv8eSgWJy9LAE2uoz35cBq/sZEDHMVTIKEjG3KPwVXx2Ja
- tPovri7EFdLGATUKRlpztwtOPZSUsEZwl21lsP5JyU4J2JZCMeaDdJtTwlurau+CM+ii
- WAPUNed89+6BCEWs6Ks/4fvJRoflzLeEOMMjXjH49/ulw2W/ZzS8QeiN5w3Xz5p6kHiT
- i6qg==
+ bh=ANECGYJQk2+Ya+FPrAm+IsCBeyM6Er0meffRIzFfkVU=;
+ b=TJvi6iJPUcMYiP7JxkG5djrOFxbgmcfJzBWOeS0DK41B7HHgl3+rqHgYNz0Oue3HCx
+ 1Py4vWNWvRw0W8G4zaiRXxAxlM7KRczJSYluz4NdCbJqKgvG5XvHWPe+izriuGUuivVI
+ FrJ5rKufzLsu+3zKUUK2/FoNdWGrMQ2ip4f+QNcEbD+K8rI8IwLy5Mhq6A7o3K+4gfXI
+ 6gD1v0eVwTNoqVAfCoFZid3T0K4FJbZUSvbfOP2o0fZMh47P9PSq5i3b2rhKSF7P6biF
+ c/RFPW9kqnKUYzVTFs3AF/koQGlPAWRa3QQ/B533B8qR5svnmzf5lEhXUchpjjCW7xRf
+ /n8A==
 X-Forwarded-Encrypted: i=1;
- AKwUvBz59VCvVFEJDShOe2AhNIjpHyLvsB+rjojHEilKAJ7WhtcAkQZqu8LIZlln9aLCG7M848b4qmzcFw==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++lpiyffTjAvVaMPNyucjPVvrgaOjmONDshydp6oYrY3hDdI9Rxf
- Xwg2apVSIdoio7XF0feZ95dYrwiVgrg+2C+EjoUQ6AhBNnqDIaIiTXkpDl9bzFyxCJsmpZObImr
- v
-X-Received: from plld7.prod.google.com ([2002:a17:902:7287:b0:2db:142b:72cc])
+ AKwUvBycc6UFSOpOVfW3DNt9Gdgd5E8gw+xNJO5yGLlLNW5gOJ12ouWNAI8OJanHkuMp/ZnahFID5WhhFg==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++m3rGY7nyD2w32OkywIW3xUjw8Xm8vtVXm8awkZm1rFNBxfAwJh
+ EnP/oiILOTyusF+cb0PPWkRy1B6lxq0xN99HaPTOOzfQ7Np++0tVpgZL3rNxpieAGbgSwmrsR5d
+ M
+X-Received: from pllj10.prod.google.com ([2002:a17:902:758a:b0:2dd:63c:daa3])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:903:238b:b0:2d8:d4cc:5bb1
- with SMTP id d9443c01a7336-2dd83867c8amr573655ad.17.1789460405925; Tue, 15
- Sep 2026 01:20:05 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:30 +0000
+ 2002:a17:902:ccd1:b0:2dd:40cb:a04c
+ with SMTP id d9443c01a7336-2dd8386925cmr476775ad.19.1789460398847; Tue, 15
+ Sep 2026 01:19:58 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:29 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-14-morbo@google.com>
-Subject: [PATCH 13/28] i40e: Replace strlcat() with snprintf() in
- i40e_nvm_version_str()
+Message-ID: <20260915081910.4142719-13-morbo@google.com>
+Subject: [PATCH 12/28] fortify: Convert strlcat() to snprintf() in strcat()
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
 Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
@@ -155,16 +154,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-i40e_nvm_version_str() uses strlcat() to optionally append the EETrackID
-and combo image version strings to the NVM version buffer.
+The fortified implementation of strcat() in include/linux/fortify-string.h
+currently relies on strlcat() to perform bounded concatenation and detect
+buffer overflows.
 
-In preparation for removing the deprecated strlcat() API[1], replace these
-strlcat() calls with bounded snprintf() calls at the current end of the
-buffer.
+In preparation for removing the deprecated strlcat() API[1], replace the
+strlcat() call in strcat(). When the destination buffer size is unknown
+(SIZE_MAX), call __underlying_strcat() directly. Otherwise, determine the
+destination length with __fortify_strlen() and append the source string
+using __builtin_snprintf(), preserving the existing fortify_panic() check
+on overflow.
 
 Link: https://github.com/KSPP/linux/issues/370 [1]
 Cc: codemender-patching+linux@google.com
-Assisted-by: CoPilot:r1-preview [editor_update_file, shell_command_run]
+Assisted-by: SecurityEngineer:Gemini1.5Pro [editor_update_file, shell_comma=
+nd_run, test_runner_run_kunit_test]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -278,46 +282,30 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- drivers/net/ethernet/intel/i40e/i40e.h | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+ include/linux/fortify-string.h | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/net/ethernet/intel/i40e/i40e.h b/drivers/net/ethernet/=
-intel/i40e/i40e.h
-index 1b6a8fbaa648..9f792128a0ef 100644
---- a/drivers/net/ethernet/intel/i40e/i40e.h
-+++ b/drivers/net/ethernet/intel/i40e/i40e.h
-@@ -1059,19 +1059,26 @@ static inline char *i40e_nvm_version_str(struct i40=
-e_hw *hw, char *buf,
- 					 size_t len)
+diff --git a/include/linux/fortify-string.h b/include/linux/fortify-string.=
+h
+index cf841dc71fef..0b489124bfcb 100644
+--- a/include/linux/fortify-string.h
++++ b/include/linux/fortify-string.h
+@@ -363,7 +363,12 @@ __FORTIFY_INLINE __diagnose_as(__builtin_strcat, 1, 2)
+ char *strcat(char * const POS p, const char *q)
  {
- 	char ver[16] =3D " ";
-+	size_t offset;
+ 	const size_t p_size =3D __member_size(p);
+-	const size_t wanted =3D strlcat(p, q, p_size);
++
++	if (p_size =3D=3D SIZE_MAX)
++		return __underlying_strcat(p, q);
++
++	const size_t p_len =3D __fortify_strlen(p);
++	const size_t wanted =3D p_len + __builtin_snprintf(p + p_len, p_size - p_=
+len, "%s", q);
 =20
- 	/* Get NVM version */
- 	i40e_info_nvm_ver(hw, buf, len);
-=20
- 	/* Append EETrackID if provided */
- 	i40e_info_eetrack(hw, &ver[1], sizeof(ver) - 1);
--	if (strlen(ver) > 1)
--		strlcat(buf, ver, len);
-+	if (strlen(ver) > 1) {
-+		offset =3D strlen(buf);
-+		if (offset < len)
-+			snprintf(buf + offset, len - offset, "%s", ver);
-+	}
-=20
- 	/* Append combo image version if provided */
- 	i40e_info_civd_ver(hw, &ver[1], sizeof(ver) - 1);
--	if (strlen(ver) > 1)
--		strlcat(buf, ver, len);
-+	if (strlen(ver) > 1) {
-+		offset =3D strlen(buf);
-+		if (offset < len)
-+			snprintf(buf + offset, len - offset, "%s", ver);
-+	}
-=20
- 	return buf;
- }
+ 	if (p_size <=3D wanted)
+ 		fortify_panic(FORTIFY_FUNC_strcat, FORTIFY_WRITE, p_size, wanted + 1, p)=
+;
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
