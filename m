@@ -4,90 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F579C88E53
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 12:56:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA2F5C88E75
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 13:14:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F81B10F493;
-	Tue, 15 Sep 2026 12:56:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C6EB10E20E;
+	Tue, 15 Sep 2026 13:14:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RNbsz+Mm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kIDcvVCm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D603C10F493;
- Tue, 15 Sep 2026 12:56:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28EC910E20E
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 13:14:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789476967; x=1821012967;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-id:content-transfer-encoding:mime-version;
- bh=REkxrjaHe2OMmDtY9m4YaOZM+jixuIaco1j52kXgHys=;
- b=RNbsz+MmjE9TjzIQ0dAguSdBhEewEu+FMoS8y9BAmLeofA/vpg8uM1+h
- CqeOEj/BRQkIhkwGDk+W/Y/VDRKihuuXkF/4a9dDfUy0eHqyrRLBtX5ma
- EfqOoEoCMbONW/PN2foNhk2TMKJmUMW3xT6Vfoe0GcjSPNJCeRxK0Q9Ga
- Lfyb/kLX6+iEL48hbutNRj8Q6hrTRsR88Ws0zAtl0sfbaQ62ieF5BCMz/
- slRU4M0AyP3d0TZ6OHFWrqQEMujfQO9C7X2tXwGfLJCPjoNZRNOZG4dIn
- QAEFTEHLWPQYKSD0Nnsidf5ZH016DyT4qYnRf97C6FRNeuA4WdX2CdH/U A==;
-X-CSE-ConnectionGUID: nqmcGk1CQ1O66pgneMU1tQ==
-X-CSE-MsgGUID: yCv7ZizBQFquRhveqWmKog==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="346780"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
-   d="scan'208";a="346780"
-Received: from fmviesa012.fm.intel.com ([10.60.135.152])
- by fmvoesa116.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 05:56:06 -0700
-X-CSE-ConnectionGUID: NoFzX+9XRvSWgBVXggCiZg==
-X-CSE-MsgGUID: jOvo29rGTMWBKmSQD8H1QQ==
+ t=1789478055; x=1821014055;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=83m1mFsyXo/Fb7vxCnGv9l5K19jxv1p8obZ7rl98lUQ=;
+ b=kIDcvVCmjYiSv8EEzYqxsWJgtaQ4HEMjg8Fpxpcar4mTl/mTwR7tSJSZ
+ 1cbmolVX9iE0u7jfsdsjCQNJX1Rjx7l7aKajn3HRwQoNf3I8ake7bqF37
+ LN8SHyPYVrltBxpFQzAUPUht0SAC4TiRI/SgmMlTuYx4qzEwwzHkzbs0y
+ I+ub7SQElYzctWKH5AteTi7+aMkzmwPztIwKt1A495lq2UoD0B7kvH2Td
+ TAztKG1XNE2HaO5ndc66KIbqE8CoAExLXwGnCpmfPZNBOBvIYXWqs+nkr
+ 2GjYnNe9R9OZw06jZ0I45Ydw+OSJTQImGZ3rDBI/SeOt53jSEg4g7bV8G A==;
+X-CSE-ConnectionGUID: x1f0hFATQ9a2pt6wWP2nZA==
+X-CSE-MsgGUID: VwOTAGHAT0qe1BuydekBNA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89710068"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89710068"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 06:14:14 -0700
+X-CSE-ConnectionGUID: E5JmDZ+ISDygVzxVANb9WA==
+X-CSE-MsgGUID: psNdW1vSQZGZeW5IK7JWRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
-   d="scan'208";a="1230611"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="276765799"
 Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa012.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 05:56:07 -0700
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 06:14:14 -0700
 Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
  fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 15 Sep 2026 05:56:06 -0700
+ 15.2.2562.46; Tue, 15 Sep 2026 06:14:13 -0700
 Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
  FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Tue, 15 Sep 2026 05:56:06 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.69) by
+ 15.2.2562.46 via Frontend Transport; Tue, 15 Sep 2026 06:14:13 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.1) by
  edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 15 Sep 2026 05:56:03 -0700
+ 15.2.2562.46; Tue, 15 Sep 2026 06:14:13 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YPlkCrEHNauDgpLLh8iIStRLhXBrh4lKpci+SRYrrgPe9mDRN8sk69KjwKcupPEiTMAIy3wlMZ1B7VXqX/zNFiuy11RJLZZ4f088UjQrdr40rzlplmrVU36qC8lL+6jOLAvooo0HrOuj+2EUg8t5aCPIrZ3fk+vhO7zqVuqowpouFZzf4XFvqHkEH8xtkmdfpOwwTOfyb/xQNp8c6DrAQWvmcXdo2h+ijdni29UGC5rxxmlPCwCcTZY+PrGPmgH8lyjcMjThzWIPoUhSnhqh9wCFQ3hYZAvCOPLqn1vPo4pGvVFAzMyOpekkiX0AQtme8B4GtUYOoTlvK53OxCGRCA==
+ b=WaN06KDqHCgLLnnP8We0rWfSiYAyNnS5IrRNH/nEf92xp4e8g7bb/NTY6gJlC0Wkf4cs5gJNBxVxGz/j62oYqMXOE3y4JReY9Wti9BO/1701mJZuAG8SMN7uQdReajlPfMHcqsPg0YF2+wvBQAgquesgBL/YMzy14Mlk2hLMkA9kZUV6oFXgKcSZPethGpZ/2REMPjXEapmE7E8r1MpnlfMquN29vobZdmXQGjFwXo+4iLT8ev8lYXoTNWjfHwHiOvK0Sx/KZOrEFzNbTBgzAaTX0ZXQfUlH7cqM7rbxXm2IM9WohT1owUi9aXz6P4KTluYCS9hvyxzi7TfvSeVagQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=REkxrjaHe2OMmDtY9m4YaOZM+jixuIaco1j52kXgHys=;
- b=nIXOkVOONSGUWSN+yj2L8TkOz87uH5zcP6rLzxxBXDia9/lmJrYaYLOAZAslnV5FHuGgv+QtofYPZSqiCxzPA+9NEDaw0Wg0AjAKBYsJv5YPcHceWYbvjSuY4/NmhAX/B90J/qaEydUxkrpcqDUFNttTStpYW8CuTRu0Yy3H5QY2QHPyiSU9Rsc3BErEzxtnujCf4AhfvuYYIgfsnf1c7aXU3g+HosFr9ZF9bC4Ghv39hkYl2nOOzwwuuk+BT5gBTo9ySLTfeiIVrGYISab7uy7ypzpm/ZubB5394BRhTmKyWaq9FV6M5Xm3/37H/fvGQN+YfndE2bqhoC+Z0irL7Q==
+ bh=dhfL8mkAKSO6k1BufmyZ/eN7pDcBqBflxSodwIV76OM=;
+ b=i480xEVgHM/coNtI0ZmgRX5oc25IXAArSNKN2b9qRYjKc+xOOPS2zI9F2tJjrHgfK5aRiTb8LV2VTrr6K8sC5/kCdNGVkaK/lywlCp2tkwQm2IqLx4LbkuhqvPQ2AkiFVT0xNQ2AafCRkLaldoh04kSiwcRmj0qOi/LTHyqclfFS3oLnRxlVdnpASNX/xRd2r+BnRmul328Oa//RKThOtxam+4DoLhhZCjhi4prTDsjuhl+QCHNfPMyrTVNz1cdKl8iZ5ciMMsR2Yl1wUEEvRb4AKQVFGINGCGTPSQwxQtMTEt9Bdhwvv7vZFzeIbdO6u1zvAXRY1bLB0nw5LySIKA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
- CH3PR11MB8701.namprd11.prod.outlook.com (2603:10b6:610:1c8::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.428.9; Tue, 15 Sep
- 2026 12:55:56 +0000
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::9086:5e0b:ad24:762]) by DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::9086:5e0b:ad24:762%6]) with mapi id 15.21.0406.007; Tue, 15 Sep 2026
- 12:55:56 +0000
-From: "Hogander, Jouni" <jouni.hogander@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-Subject: Re: [PATCH v8 5/5] drm/i915/hotplug: avoid HPD polling if the device
- is PME capable
-Thread-Topic: [PATCH v8 5/5] drm/i915/hotplug: avoid HPD polling if the device
- is PME capable
-Thread-Index: AQHdRPRCj/mdAllHA063I/6ptJ/ODLbPmS0A
-Date: Tue, 15 Sep 2026 12:55:55 +0000
-Message-ID: <def231e772cbe95b67aafe6b52ab8ac9787f25f3.camel@intel.com>
-References: <20260915092518.639448-1-vinod.govindapillai@intel.com>
- <20260915092518.639448-6-vinod.govindapillai@intel.com>
-In-Reply-To: <20260915092518.639448-6-vinod.govindapillai@intel.com>
+Received: from CH3PR11MB046149.namprd11.prod.outlook.com
+ (2603:10b6:610:367::19) by SN7PR11MB7066.namprd11.prod.outlook.com
+ (2603:10b6:806:299::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.12; Tue, 15 Sep
+ 2026 13:14:05 +0000
+Received: from CH3PR11MB046149.namprd11.prod.outlook.com
+ ([fe80::7c3f:5300:19c4:b823]) by CH3PR11MB046149.namprd11.prod.outlook.com
+ ([fe80::7c3f:5300:19c4:b823%6]) with mapi id 15.21.0428.008; Tue, 15 Sep 2026
+ 13:14:05 +0000
+From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+CC: "platform-driver-x86@vger.kernel.org"
+ <platform-driver-x86@vger.kernel.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "hansg@kernel.org" <hansg@kernel.org>,
+ "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>, "Brost,
+ Matthew" <matthew.brost@intel.com>, "thomas.hellstrom@linux.intel.com"
+ <thomas.hellstrom@linux.intel.com>, "airlied@gmail.com" <airlied@gmail.com>,
+ "simona@ffwll.ch" <simona@ffwll.ch>, "david.e.box@linux.intel.com"
+ <david.e.box@linux.intel.com>, "Vijay, Anoop C" <anoop.c.vijay@intel.com>,
+ "Nilawar, Badal" <badal.nilawar@intel.com>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>, "Ausmus, James" <james.ausmus@intel.com>,
+ "Poosa, Karthik" <karthik.poosa@intel.com>
+Subject: RE: [PATCH v8 17/20] drm/xe/vsec: Support late bind fw information
+Thread-Topic: [PATCH v8 17/20] drm/xe/vsec: Support late bind fw information
+Thread-Index: AQHdQingSrKxZlk3BUeBwfONh7HlLrbOP1aAgAFkFEA=
+Date: Tue, 15 Sep 2026 13:14:05 +0000
+Message-ID: <CH3PR11MB046149DD1D9B4D1FCF7D9B9E84C1BA2@CH3PR11MB046149.namprd11.prod.outlook.com>
+References: <20260911201148.1610547-22-michael.j.ruhl@intel.com>
+ <20260911201148.1610547-39-michael.j.ruhl@intel.com>
+ <aqgZj4S_meH4YbMa@intel.com>
+In-Reply-To: <aqgZj4S_meH4YbMa@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -95,72 +101,61 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|CH3PR11MB8701:EE_
-x-ms-office365-filtering-correlation-id: db84379b-8bd9-4518-186b-08df1328aeac
+x-ms-traffictypediagnostic: CH3PR11MB046149:EE_|SN7PR11MB7066:EE_
+x-ms-office365-filtering-correlation-id: d8adfe40-6891-48c1-950e-08df132b37d4
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|366016|23010399003|1800799024|38070700021|4143699003|5023799004|11063799006|56012099006|10067099003|22082099003|18002099003|6133799003;
-x-microsoft-antispam-message-info: LdhIdb/24OC2m44m5acg8Z9ME4w0XYT/96pECHBjGUtLpKg4QrPzalscWhh9DHtf+KhAa0JlREKn2pztMfdh9OfjD1TuaR7GwvLdVi9EqFuY4fCOyrvkV6JKyGeR520mCwnlgu8ValBxu9NJah3/DnVx0eYxdwQwGa0g1Wh+h3WH+ui+yWH6l+eZHhWjtd5KvSWPRuwkCo31WDLxMI9xVDAhIB7ExIt1fY01VsK6OWZhS0tWsD4TxqH+sryAyk06/yHMOStbAgJOLIOU+LfQ+fZpTAEblC3we5Hkukq4iEA8QRlA87GNVJFgMOMfXHp9xDcQwshTi+9yfDksdzwxCiS1/fi41whRFTdxRVjhQOfBUDh1152GZJobUi6B/calTVK3qVBGE4t2WzWE6RGKP6qfDszpp9kP1RbpCXjnQUVshRpEzDIfk7PZlPNmDdkfWn65tBlrAo+ocXgR0j/H4f/pmxqg4NaYX0H1AK1cS5fTrdPqICT4PxNoed3Q+ZzJGpCRPgIcdc5PzcWJ7dHJSDX2XeXnLLUgWGSKFz3TPx0a+eZfVXpijk+IpC3WT8xaC8Jdzc6XaNjxoCgwypZISmBzcgxV+Pgfi+0KhStbTImARYW2y8MFJnutCq+iJRsK6cKvr5FBK+tsqoypOae5JKOHTndNZxK+hs6UU971OZAhnqgXiZnO0iTdo/ZygV/CMGXIYnruPpgGvz9NI6YGAGmZz9C4HV6qZwW3jPz7QGI=
+ ARA:13230040|23010399003|366016|376014|1800799024|38070700021|4143699003|56012099006|11063799006|10067099003|22082099003|18002099003;
+x-microsoft-antispam-message-info: M9dFrcndO3g9P9IdH+ZBqsoUzUqf3X4nefq9tu1yBsDxoAgjSpqi4f5TiRjtHJa5b07nc1oByuZQXAFdtWOQbWeH24hGlV88FM1jcleeovUPzhcJPGBbTOFhBE+q0StsDtdbd4ARqAVrryGjEYi0/kzgL/JdNeR12mkOAkIAbjeDbBtUJp2b/SoQbw5qO4wQ1WbwH/exrZzgMUdAqBJNQMRrpoCuxbzFrh4a7fz4iVgHX9D5Ns4jGxwKCZDQi7hIR3zbv3byo4YcuZX67VF1uIhDJ4Uq2KTmexbtz+yryC1PZMF+GTvL/xoZraI6VhGtqSI3QteUXjva99jQ7AFsPrL/Eu70FvicQFvf1j5u989D3oekZ/G6StM68vujjeDOutjecVQq0Jrh/6PhQ+fZEtV+A9hZcLChui7q2gHLROWPTCNPDWSEzeOTGaZQyPG0np+h7k0aS4BZBqAYtRgWfvQYvyD/VQEe8HWSQUd1bHaPsBUFfqI37GgsSbLVY8KCDPWISUtcbeBIcfmbDfFttO+/qyIbAndiyQo9t9Rqswi7+SI+OA7gfwJ8EK05JjrLcs5q5v5ofPrtmuuBQlWaARADxODKH0ogq0XBL0lRvoniVIxZbhw+CoNxRV60R/f9r28kZGFsnNt7VQWQoL2FWoZibm5NyWTTsAFV64ojKR2U1lnp3B6WTGResCFxOYS7FwtZTACxtwXw3HPPmGa6JXYg1zc3+wmdXSu+7SnW2eQ=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(38070700021)(4143699003)(5023799004)(11063799006)(56012099006)(10067099003)(22082099003)(18002099003)(6133799003);
+ IPV:NLI; SFV:NSPM; H:CH3PR11MB046149.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(38070700021)(4143699003)(56012099006)(11063799006)(10067099003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RXNpREJpRDZSOVlBODFPL0FPME5QM1dmOWJKWVRLLzRiamQ4eXVIcDFseWd6?=
- =?utf-8?B?VFlkaGJjcHpZNjNpQnYzSEhWRTBYK2JHS08xU2ZaOWcreXRiRFZaZEZTOWpt?=
- =?utf-8?B?OW45ZXNaQTFWa3BzSHFFbm9xbmM3Zng5WlBMRE1wNkFZTC80VERVQ1lhS2hX?=
- =?utf-8?B?RGtoTVdMRU44WE1ZNDI2RmtHbHRXYTM1bm9CQ3NLRHFUNndVUXZWelV2RUZq?=
- =?utf-8?B?bnNIVHR6Uk8wa3VpQWFrSjVpd1B0WFpFWjRvUEczRkhySDNHc1FmNGoxNlNw?=
- =?utf-8?B?R004aE1vNUVTM3FKaEdQUjhQazAvMHhlemJ5eDJMZmFsWHM5T3RvQnl0ZWJt?=
- =?utf-8?B?c202ejZ1ekd0UkVBcFdkaGtqQ2hLaytOMURkdGpFWXdRbTI4REh1TzNENDF3?=
- =?utf-8?B?dHJVejJudktrTXF5all6cnRUNzl5VnRscVZrTkwwbHY0YUQ4LzVoVkx0R3hE?=
- =?utf-8?B?RFpxRy9FL3FLSXNtQzFJaVBQR0o0aHlFSGJuNFFERUFFUk1aR2RwYTN1RmdN?=
- =?utf-8?B?SU94b1NNOUJsWlUyM3pkalBwOXhpMy9Eb0F5d0tmTzhhRWl5NExXMTVjY2NL?=
- =?utf-8?B?V0dYa1FSWkljTHBYdFRZMkR5T1k4REJtVDgzbXNmSHlFYlFpWG1XT3NuWE04?=
- =?utf-8?B?UnJVZk9MTUx1QlF5bHFPeVh3c3hwTnNxcjdOMWV6SnJnWmxlemlTSkNFM0xm?=
- =?utf-8?B?Mk8vMC9mU3lRM1piS0c0RElSK3NuYlJ4YWRnbCtZaS9aRFY3M2ZoTjJGbUk4?=
- =?utf-8?B?ODJiL3JuQTBWRHRyNlRrZnB6RVYzT0RLc0l3ZnpqOEFIRm5tMTFrSHRmWXh0?=
- =?utf-8?B?dVk0THlVS0E5ZXZaMjF5WTgxemhZcUZ0MHVCSUhRTXpSUlNQWXdKSHJkWTZ1?=
- =?utf-8?B?Z3gvTS9rZjZkSVlEMnZNeExjYzcrdlpWeGY3SVFnc2Rtd2M5YkhDcFEybnZa?=
- =?utf-8?B?UDFJbGlVbEpETm9sMENKNlEvOWpjalliTkFvV0N6VnY5NjZxaUlPWVdhRHlQ?=
- =?utf-8?B?ZCsyVWxDSDAzb0hqUkxmQlg1UVNUM0hwZDErQ3BQakdOZTRxZHNaRS8wK09u?=
- =?utf-8?B?Qmg5VmNMRmIyS0Y5OXRSeWlwUkI3dUdHa2NQQ2xiS2J1WS82WW9pcGhta0th?=
- =?utf-8?B?QjFGUUVZNzU3K25FZzZZcVdMVVZiMEVaUUF6YnY1MHJydjZXeWpzajBTa1Bh?=
- =?utf-8?B?QlFjbkNDdWJIZkk0Rm1lSjUzOHAvbmIwR05sTExNWEpKbzN2T3dVVk1HSTRV?=
- =?utf-8?B?cGtRd2cxV00reUYzNGRBR0dPbml5UjdIa0RkOGJyOEVvWjUvNFVWREQ4SUxP?=
- =?utf-8?B?ZExXZGpJekFaNm9yMk9RUElUbGxuWTVqcXcvUWFscEdFZlh5UzUybkcvTTky?=
- =?utf-8?B?LytmWmtUSVBVc1BJQUx4aldkcDJVMjdNNDFhVXNOVFJCVUVFMU5uQmpTeW8w?=
- =?utf-8?B?NUJ1RGtHbHRYcnkvazJkdG50YXpYS2ZrektTbmhHbFF6VGRpN2dJUi81aytB?=
- =?utf-8?B?aVNBbUIreFVLM3hnUjRIeG5iOFhNblpaSlZDT1kvOTA2YzVtWWZBSXE2WDRM?=
- =?utf-8?B?YUhvU0duY2wrMHJZKzVMenZsMy9WaDF2dkhvMnJuOEl4dGI5dkdwRGU4NDhj?=
- =?utf-8?B?a1d1akdxWDFHbzNuSm92a2h1NEpiRUhpRnYxam1nNXZmN25lbGkyV3psQ3BB?=
- =?utf-8?B?WnNrRXc1bWRxTVFqZ2pIZXVhb2xNSmpWQ2QvQ0lsUm52ZjV0aW5CTVpPd2RV?=
- =?utf-8?B?OFVZTm43ZWRuREFqekxkZEl3bHRDZ1NWd21IbFNURzh0R0hTMzZ6OFZFT0wz?=
- =?utf-8?B?UFovdDZzOEEremxRcklBOHpEUGI0TnE4TUhLUncycjZlSUlBNGViK1phdnlB?=
- =?utf-8?B?dXJMTWU2L3B3STlJRndoZ1RRNFJidVE2TWJEckNZL1dPclNGZVNOeTVGZUMz?=
- =?utf-8?B?WnpPTHlCTDRxeFR1NW4yUVJQMG5DOUUwZVhKQmRaZkt6dUViZ3BkcGRQbU5V?=
- =?utf-8?B?VnRwWWhKTmxoTEUrVWVJWlNHcTNoMXlJNC80QWFoWHl4cVRZUkxiM0RoTytj?=
- =?utf-8?B?aURYQXRsaUVnd2tScFYxQTVGSXcralgyS2xxbFRCM0VGRG5hVUtjajJPeFNR?=
- =?utf-8?B?bDdxY0paZGVxU0dSY0FLNUR3NWJlLzI0SlFacjV3RlN3eHJ1UDZzQzlTdUxU?=
- =?utf-8?B?UUxyUzhTWlBUcTgvT0w1bHlmYWt0Q21aMXNta2NzUjRhanN4ajJkNm9rdDFm?=
- =?utf-8?B?b0JrNHVybjRDRi93ZmNhV3ZLbC9UMkJYbmhHOVMzclZPbndxK0FUZ21RV2NE?=
- =?utf-8?B?Zmh5Q1ZYcENGYWR5eHdnYmc1LytKTE9EU3NqYUJLVGdmUWxwTzJLRG5tdm8y?=
- =?utf-8?Q?0vHCe4mK1D8o0Aao=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <1CD6A2BD0A507E44AB923E5ED6C15A5A@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Q8pYhnvTfd5xQTLNAVJ16CHnQurX90jWrhhK/Z70bVtcVZq2MdU0Yp/sbE8/?=
+ =?us-ascii?Q?/qoQes3rQhh4xJAqvOzGLE1dB/0+lJje6obpRvp5Ds2c8y+b9HFr4c02C+vK?=
+ =?us-ascii?Q?QwcXNVD11lzYsIe9B6cPiUZdaUavics253z8GXQcoQWymhGQ4IUH8K5d87an?=
+ =?us-ascii?Q?048ihdrvuV9wU/9QVLc8QILJwpt6zi+YAwyImj+AISbu5lO3CSoVFpHzObHl?=
+ =?us-ascii?Q?anpcifxL7sfYF6h2jH2c0TcRLRfZd4JfyuhWjeUFIGdKzKCJP0yrIFxWgAW0?=
+ =?us-ascii?Q?uHmuWl8qzaJueuvAxTB8Q4vIGHgmathZWwC8tWX1VgJKGzKEiv1ibJiQ0vwn?=
+ =?us-ascii?Q?IAT9gL95cCiY85w3V6pJ+R4Mhrwm20JJLML+JaslTbZC8H7DLWAaYDcLpsm3?=
+ =?us-ascii?Q?VGsCkv58aKME+z13pfd9GTS9o6UDyjqtrcOnGqECOkJHaetaB6AcVawzcJMa?=
+ =?us-ascii?Q?dKOFEDQWugiNwArwYVQLHpXw2FpCcVSLONpFq0Vc0nZDi13OLk+aCkGY5Hft?=
+ =?us-ascii?Q?90BIAE+CJnlyy1HUmrJ4ITZ/w3Z5LpmJCQCzob9I38fjghZgLaDGK6pvzR44?=
+ =?us-ascii?Q?mgUztZqwB3gMKLEm/FGVT6evUKCA4gWsXhkWnZZmzBZ4zxeldppW8LWw/Vp6?=
+ =?us-ascii?Q?M7RHsADyMYnjFopTrJrjGlSXF4LfqGsIFfMvSULell2mxEg0CJmY71pt0ZEG?=
+ =?us-ascii?Q?jzOCi+T5fAm/BdMhAmq3Y4wRGKh1VLu4U060Qz4CfC6huvDZKbSCBJEv4YnA?=
+ =?us-ascii?Q?7k5UR3FygIhk/FGJ680BcrTFxu8elIRayDof1nY+nUESNQQTm3e+dFFC4AKH?=
+ =?us-ascii?Q?tZyfm6GxUA37OIKLIjXrzAuPdJZR8muYzA8QsD3T9UjyL1rWNQTybPWqj0FF?=
+ =?us-ascii?Q?FmIvMAoQsvPNx/0XrfKXJ4hcXGqo0KPuqWnU9VP62iS8cmR1dtKPWyfn1rpF?=
+ =?us-ascii?Q?eVD9ZftHZ/ddoBFy8lAvAYtj6TyEB/fWn5pTazwHmw9NylnEkXFVxru/fXMh?=
+ =?us-ascii?Q?RXM9hhtPPAj86TFKJ0ZXuvJTLsxWjmA9KO3Lpfo/c5RFcPGoq+ts/MtvqkRv?=
+ =?us-ascii?Q?qwzuLooY1qUEVCG5PwHLquIMOt6WriXj7i2iqxMIj/+47wcefDnxJI2MUM2T?=
+ =?us-ascii?Q?JYAGXI6qG867fSbLm+eLle3XeD9ZBaCDaBtLC+NaGswO+bTd0D1GK4jKFm13?=
+ =?us-ascii?Q?Yb43zZQ3lECKA2k7usGlJp/kMzxergquerUVZAYFtLF8ONRXMXty4KQRaDfQ?=
+ =?us-ascii?Q?clKi3A+9yYmAC1kwlONbMy2b98TU8RpApRlsxgrw82rC4Wlcr2Mw3LISO485?=
+ =?us-ascii?Q?Rlu73L9EKjDnNItnDomIUZ0kMx1HQ3+UZgSzFMpa0mJpb6YiJC+3QfilOCxE?=
+ =?us-ascii?Q?LZjEXAvlKYY5wImyoXGrboHgABVibtVE8f53q1GCtgR6mvqoFD6NGEeW1STj?=
+ =?us-ascii?Q?CZQLS7hrDEOXUeluP+0nje7qKwaJP4FTKqj6l+jbxCXp1AiOd5BYE/B8/Nrw?=
+ =?us-ascii?Q?2sUtL99ICJ+JpCxntoIxnozGIEIHkXMl7f6gHI7dn0Di+hZPnhgGhlOKrwd4?=
+ =?us-ascii?Q?UhCHcqYrUNdxs/m1OADZ3oIvco60xWUE736Qh+MpzWRJHgrjxQWV7ag1nHZu?=
+ =?us-ascii?Q?HJiy90ISfrDKxHTa5hJ0rzKFwIsyNX2NG1/uX/2CBlDC6TvyZ/hANZ+bZIly?=
+ =?us-ascii?Q?31eJWAbj6OJ2tg/eiSWZOQjfTAYl+DNHavC7kuR/wVKWqMetLr0w8tOVcoBF?=
+ =?us-ascii?Q?GFzBEay4kA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: aH/Zg/iwRXl9nvJDWD3CpcC6v9LN3LJGGem0jjG9iSzRlAr0+ds2TuzkO0HbqwHpItVIrjd11qSgDeCH7ZG8AGBebU8GgZJhGl0NhC2II/tvfBzzUsezNsoP390rbNMG2bCc0JaY7ZY1VjIgdire9AnSBw51qTsUxn6w30U5LYeoBJbMiUc+mb01pcvlNjGVcmFYW7pTx9c0PrZx35ADHxUNvIro+ob6aS26h6AmYi6VfN4A8fMkdszZIVObWhZzMJWNfRU1wxMQk7Qk8CqOTZTz9QsvTpMheJK3XjaVZveHuZuugoCOFssVmEnbf/saBRcTntZW+72x0BnWDTL/BA==
+X-Exchange-RoutingPolicyChecked: Lw6WPhYQf7Ko0DNJ56jUJgJPfGbnQ2HCs497igjE/q9KoguNRzv2nmFOkAti0HGU80WemSMuUHCtNfDXVpv2tPOsp8Xi1EHQzoKpTpp53cD44NVEaDSqaaNwGyh5+MaJsfUkLDlC69J4L62S2lLNPLPpXEEpgaJxaEJcUSekoVakeZqqDFWZIKwMhr4TCjC6i7hkzEq+aERm4mk+YYzNAkUKZWMmciylWrXz9vMbFX5ANJqbySx4PLIaBv38OB0ju9jn7MAut+aCuZIQbEJadYvR6vJi5HHMVxa9xqoW6PTzwZMDCamixX5aVjmWf9xGleRPBPWvRy31WE2v136+IA==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: db84379b-8bd9-4518-186b-08df1328aeac
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Sep 2026 12:55:55.9973 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB046149.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8adfe40-6891-48c1-950e-08df132b37d4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Sep 2026 13:14:05.0812 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0Q3LIrzKMrELNBn880YfdE1nEFlUt2TIq+sSGA7Ll6fXZDfnfiVi8hGCY+mv3pfmNLyggF/LI2KwCfsCREJoG9mJZ/D/DDRZ5pFq8NFLPu4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8701
+X-MS-Exchange-CrossTenant-userprincipalname: 4mV+k2w3qXKTWzMMlXq1hErTbTFxZVd8rj0vARGhRapB3sJe+acMsNAB6rKYDdOR4ph2no195TaGlgM7ITXbeV34eHD/t9ieaLUsT4dGRww=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7066
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -176,27 +171,391 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDI2LTA5LTE1IGF0IDEyOjI1ICswMzAwLCBWaW5vZCBHb3ZpbmRhcGlsbGFpIHdy
-b3RlOg0KPiBJbiBzdXBwb3J0ZWQgZGV2aWNlcywgSFBEcyBjYW4gZ2VuZXJhdGUgUE1FIGFuZCB3
-aGljaCBpbiB0dXJuDQo+IGNhbiBpbnZva2UgcnVudGltZSByZXN1bWUgY2FsbHMgZm9yIHhlLiBO
-byBuZWVkIHRvIGtlZXAgdGhlDQo+IEhQRCBwb2xsaW5nIGluIHN1Y2ggUE1FIGNhcGFibGUgZGV2
-aWNlcy4NCj4gDQo+IHYyOiB1c2UgaW50ZWxfZGlzcGxheV9ycG1fcG1lX2VuYWJsZWQoKSBkaXJl
-Y3RseSAoSmFuaU4pDQo+IA0KPiBCc3BlYzogNTI5NzksIDUyOTgwLCA2ODg1NywgNjg4NjcsIDY4
-OTcwDQo+IEFzc2lzdGVkLWJ5OiBHaXRIdWJfQ29waWxvdDpjbGF1ZGUtb3B1cy01DQo+IFNpZ25l
-ZC1vZmYtYnk6IFZpbm9kIEdvdmluZGFwaWxsYWkgPHZpbm9kLmdvdmluZGFwaWxsYWlAaW50ZWwu
-Y29tPg0KDQpSZXZpZXdlZC1ieTogSm91bmkgSMO2Z2FuZGVyIDxqb3VuaS5ob2dhbmRlckBpbnRl
-bC5jb20+DQo+IC0tLQ0KPiDCoGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaG90
-cGx1Zy5jIHwgNSArKysrKw0KPiDCoDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKykNCj4g
-DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hvdHBs
-dWcuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaG90cGx1Zy5jDQo+
-IGluZGV4IDk3MGFhOTVlZTM0NC4uZDA5NWViMTNkYzA2IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hvdHBsdWcuYw0KPiArKysgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hvdHBsdWcuYw0KPiBAQCAtODY3LDYgKzg2NywxMSBA
-QCB2b2lkIGludGVsX2hwZF9wb2xsX2VuYWJsZShzdHJ1Y3QgaW50ZWxfZGlzcGxheQ0KPiAqZGlz
-cGxheSkNCj4gwqAJaWYgKCFIQVNfRElTUExBWShkaXNwbGF5KSB8fA0KPiAhaW50ZWxfZGlzcGxh
-eV9kZXZpY2VfZW5hYmxlZChkaXNwbGF5KSkNCj4gwqAJCXJldHVybjsNCj4gwqANCj4gKwlpZiAo
-aW50ZWxfZGlzcGxheV9ycG1fcG1lX2VuYWJsZWQoZGlzcGxheSkpIHsNCj4gKwkJZHJtX2RiZ19r
-bXMoZGlzcGxheS0+ZHJtLCAiUE1FIHdha2UgY2FwYWJsZSBkZXZpY2UsDQo+IHNraXBwaW5nIEhQ
-RCBwb2xsaW5nLlxuIik7DQo+ICsJCXJldHVybjsNCj4gKwl9DQo+ICsNCj4gwqAJV1JJVEVfT05D
-RShkaXNwbGF5LT5ob3RwbHVnLnBvbGxfZW5hYmxlZCwgdHJ1ZSk7DQo+IMKgDQo+IMKgCS8qDQoN
-Cg==
+>-----Original Message-----
+>From: Vivi, Rodrigo <rodrigo.vivi@intel.com>
+>Sent: Monday, September 14, 2026 11:58 AM
+>To: Ruhl, Michael J <michael.j.ruhl@intel.com>
+>Cc: platform-driver-x86@vger.kernel.org; intel-xe@lists.freedesktop.org;
+>hansg@kernel.org; ilpo.jarvinen@linux.intel.com; Brost, Matthew
+><matthew.brost@intel.com>; thomas.hellstrom@linux.intel.com;
+>airlied@gmail.com; simona@ffwll.ch; david.e.box@linux.intel.com; Vijay,
+>Anoop C <anoop.c.vijay@intel.com>; Nilawar, Badal
+><badal.nilawar@intel.com>; Roper, Matthew D <matthew.d.roper@intel.com>;
+>Ausmus, James <james.ausmus@intel.com>; Poosa, Karthik
+><karthik.poosa@intel.com>
+>Subject: Re: [PATCH v8 17/20] drm/xe/vsec: Support late bind fw informatio=
+n
+>
+>On Fri, Sep 11, 2026 at 01:12:05PM -0700, Michael J. Ruhl wrote:
+>> CRI FW is loaded on power on.  Because of this, access to the FW cannot
+>> be done until it is running.
+>>
+>> Update the XE PMT probe and access to check for late bind devices,
+>> verify, and wait for the appropriate FW state before probe or access.
+>>
+>> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_device.c       |   4 +-
+>>  drivers/gpu/drm/xe/xe_device_types.h |   5 +
+>>  drivers/gpu/drm/xe/xe_vsec.c         | 134 +++++++++++++++++++++++++--
+>>  drivers/gpu/drm/xe/xe_vsec.h         |   2 +-
+>>  4 files changed, 137 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_device.c
+>b/drivers/gpu/drm/xe/xe_device.c
+>> index 3ec950606e67..a2c8c7909688 100644
+>> --- a/drivers/gpu/drm/xe/xe_device.c
+>> +++ b/drivers/gpu/drm/xe/xe_device.c
+>> @@ -1053,7 +1053,9 @@ int xe_device_probe(struct xe_device *xe)
+>>  	if (err)
+>>  		goto err_unregister_display;
+>>
+>> -	xe_vsec_init(xe);
+>> +	err =3D xe_vsec_init(xe);
+>> +	if (err)
+>> +		goto err_unregister_display;
+>>
+>>  	xe_debugfs_register(xe);
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h
+>b/drivers/gpu/drm/xe/xe_device_types.h
+>> index ebdc271ebeae..67dd786e202b 100644
+>> --- a/drivers/gpu/drm/xe/xe_device_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+>> @@ -7,6 +7,7 @@
+>>  #define _XE_DEVICE_TYPES_H_
+>>
+>>  #include <linux/pci.h>
+>> +#include <linux/workqueue.h>
+>>
+>>  #include <drm/drm_device.h>
+>>  #include <drm/drm_file.h>
+>> @@ -475,6 +476,10 @@ struct xe_device {
+>>  		struct mutex lock;
+>>  		/** @pmt.base_offset: device specific base offset */
+>>  		u64 base_offset;
+>> +		/** @pmt.work: support late-bind probe */
+>> +		struct delayed_work work;
+>> +		/** @pmt.retry_count: late-bind probe retry */
+>> +		u32 retry_count;
+>>  	} pmt;
+>>
+>>  	/** @soc_remapper: SoC remapper object */
+>> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+>> index cb3d9142346c..c2f527e7894a 100644
+>> --- a/drivers/gpu/drm/xe/xe_vsec.c
+>> +++ b/drivers/gpu/drm/xe/xe_vsec.c
+>> @@ -3,6 +3,7 @@
+>>  #include <linux/bitfield.h>
+>>  #include <linux/bits.h>
+>>  #include <linux/cleanup.h>
+>> +#include <linux/delay.h>
+>>  #include <linux/errno.h>
+>>  #include <linux/intel_vsec.h>
+>>  #include <linux/module.h>
+>> @@ -18,6 +19,7 @@
+>>  #include "xe_mmio.h"
+>>  #include "xe_platform_types.h"
+>>  #include "xe_pm.h"
+>> +#include "xe_sysctrl.h"
+>>  #include "xe_vsec.h"
+>>
+>>  #include "regs/xe_pmt.h"
+>> @@ -173,6 +175,14 @@ enum capability {
+>>  	WATCHER,
+>>  };
+>>
+>> +/*
+>> + * Late bind will delay 100msec for up to 20 seconds
+>> + */
+>> +#define VSEC_LATE_BIND_DELAY_MSEC	100
+>> +#define VSEC_LATE_BIND_RETRY		200
+>> +
+>> +static void cri_late_bind_probe(struct xe_device *xe);
+>> +
+>>  static int bmg_guid_decode(u32 guid, int *index, u32 *offset)
+>>  {
+>>  	u32 record_id =3D FIELD_GET(GUID_RECORD_ID, guid);
+>> @@ -281,6 +291,48 @@ static int xe_guid_decode(u32 guid, int *index, u32
+>*offset)
+>>  	return -ENODEV;
+>>  }
+>>
+>> +static void cri_late_bind_probe_work(struct work_struct *work)
+>> +{
+>> +	struct xe_device *xe =3D container_of(work, struct xe_device,
+>pmt.work.work);
+>> +
+>> +	if (xe_is_oobmsm_fw_ready(xe)) {
+>
+>ditto
+>
+>> +		cri_late_bind_probe(xe);
+>> +		xe_pm_runtime_put(xe);
+>> +		return;
+>> +	}
+>> +
+>> +	xe->pmt.retry_count++;
+>> +
+>> +	/* wait up to 20 seconds */
+>> +	if (xe->pmt.retry_count =3D=3D VSEC_LATE_BIND_RETRY) {
+>> +		drm_warn(&xe->drm, "PMT probe: Late Binding failed to
+>complete\n");
+>> +		xe_pm_runtime_put(xe);
+>> +		return;
+>> +	}
+>> +
+>> +	if (!schedule_delayed_work(&xe->pmt.work,
+>msecs_to_jiffies(VSEC_LATE_BIND_DELAY_MSEC)))
+>> +		xe_pm_runtime_put(xe);
+>> +}
+>> +
+>> +static bool wait_for_fw(struct xe_device *xe)
+>> +{
+>> +	int retries =3D VSEC_LATE_BIND_RETRY;  /* wait up to 20 secs */
+>> +
+>> +	if (xe->info.platform !=3D XE_CRESCENTISLAND)
+>> +		return true;
+>> +
+>> +	while (retries--) {
+>> +		if (xe_is_oobmsm_fw_ready(xe))
+>
+>ditto
+>
+>> +			return true;
+>> +
+>> +		msleep(VSEC_LATE_BIND_DELAY_MSEC);
+>> +	}
+>> +
+>> +	drm_warn(&xe->drm, "Late Binding failed to complete\n");
+>> +
+>> +	return false;
+>> +}
+>> +
+>>  /**
+>>   * xe_pmt_telem_read - Given a device and a PMT GUID, read data into a
+>buffer
+>>   * @dev: valid Xe device
+>> @@ -345,6 +397,11 @@ int xe_pmt_telem_read(struct device *dev, u32
+>guid, u64 *data, loff_t user_offse
+>>  		goto dev_exit;
+>>  	}
+>>
+>> +	if (!wait_for_fw(xe)) {
+>> +		ret =3D -ENODATA;
+>> +		goto runtime_exit;
+>> +	}
+>> +
+>>  	mutex_lock(&xe->pmt.lock);
+>>
+>>  	/* set SoC re-mapper index register based on GUID memory region */
+>> @@ -354,6 +411,7 @@ int xe_pmt_telem_read(struct device *dev, u32 guid,
+>u64 *data, loff_t user_offse
+>>
+>>  	mutex_unlock(&xe->pmt.lock);
+>>
+>> +runtime_exit:
+>>  	xe_pm_runtime_put(xe);
+>>
+>>  dev_exit:
+>> @@ -396,6 +454,10 @@ static int xe_pmt_read_reg(struct device *dev, u32
+>guid, u32 *reg, u32 offset)
+>>  	disc_addr +=3D inst + offset;
+>>
+>>  	xe_pm_runtime_get(xe);
+>> +	if (!wait_for_fw(xe)) {
+>> +		ret =3D -ENODATA;
+>> +		goto runtime_exit;
+>> +	}
+>>  	mutex_lock(&xe->pmt.lock);
+>>
+>>  	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+>> @@ -403,6 +465,8 @@ static int xe_pmt_read_reg(struct device *dev, u32
+>guid, u32 *reg, u32 offset)
+>>  	*reg =3D readl(disc_addr);
+>>
+>>  	mutex_unlock(&xe->pmt.lock);
+>> +
+>> +runtime_exit:
+>>  	xe_pm_runtime_put(xe);
+>>
+>>  dev_exit:
+>> @@ -433,6 +497,10 @@ static int xe_pmt_write_reg(struct device *dev, u32
+>guid, u32 reg, u32 offset)
+>>  	disc_addr +=3D inst + offset;
+>>
+>>  	xe_pm_runtime_get(xe);
+>> +	if (!wait_for_fw(xe)) {
+>> +		ret =3D -ENODATA;
+>> +		goto runtime_exit;
+>> +	}
+>>  	mutex_lock(&xe->pmt.lock);
+>>
+>>  	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+>> @@ -440,6 +508,8 @@ static int xe_pmt_write_reg(struct device *dev, u32
+>guid, u32 reg, u32 offset)
+>>  	writel(reg, disc_addr);
+>>
+>>  	mutex_unlock(&xe->pmt.lock);
+>> +
+>> +runtime_exit:
+>>  	xe_pm_runtime_put(xe);
+>>
+>>  dev_exit:
+>> @@ -471,12 +541,44 @@ static enum xe_vsec get_platform_info(struct
+>xe_device *xe)
+>>  	return vsec_platforms[xe->info.platform];
+>>  }
+>>
+>> +static void cri_late_bind_probe(struct xe_device *xe)
+>> +{
+>> +	struct intel_vsec_platform_info *info;
+>> +	struct device *dev =3D xe->drm.dev;
+>> +	enum xe_vsec platform;
+>> +
+>> +	platform =3D get_platform_info(xe);
+>> +	if (platform !=3D XE_VSEC_CRI)
+>> +		return;
+>> +
+>> +	info =3D &xe_vsec_info[platform];
+>> +	if (!info->headers)
+>> +		return;
+>> +
+>> +	info->priv_data =3D &xe_cri_pmt_cb;
+>> +	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+>
+>don't we need to wrap this around the xe->pmt.lock?
+>
+>> +
+>> +	intel_vsec_register(dev, info);
+>> +}
+>
+>yet on the probe, please address Sashiko's race.
+>
+>Although ulikely we should protect here...
+>probably adding a devmanaged removal with the work cancellation
+>
+>> +
+>> +static void vsec_disable_late_bind_work(void *arg)
+>> +{
+>> +	struct xe_device *xe =3D arg;
+>> +
+>> +	/*
+>> +	 * If the queued work is canceled, the runtime reference needs to be
+>> +	 * released here.
+>> +	 */
+>> +	if (disable_delayed_work_sync(&xe->pmt.work))
+>> +		xe_pm_runtime_put(xe);
+>> +}
+>> +
+>>  /**
+>>   * xe_vsec_init - Initialize resources and add intel_vsec auxiliary
+>>   * interface
+>>   * @xe: valid xe instance
+>>   */
+>> -void xe_vsec_init(struct xe_device *xe)
+>> +int xe_vsec_init(struct xe_device *xe)
+>>  {
+>>  	struct intel_vsec_platform_info *info;
+>>  	struct device *dev =3D xe->drm.dev;
+>> @@ -484,30 +586,45 @@ void xe_vsec_init(struct xe_device *xe)
+>>
+>>  	platform =3D get_platform_info(xe);
+>>  	if (platform =3D=3D XE_VSEC_UNKNOWN)
+>> -		return;
+>> +		return 0;
+>>
+>>  	info =3D &xe_vsec_info[platform];
+>>  	if (!info->headers)
+>> -		return;
+>> +		return 0;
+>>
+>>  	switch (platform) {
+>>  	case XE_VSEC_BMG:
+>>  		if (IS_SRIOV_VF(xe))
+>> -			return;
+>> +			return 0;
+>>  		xe->pmt.base_offset =3D BMG_TELEMETRY_OFFSET;
+>>  		info->priv_data =3D &xe_bmg_pmt_cb;
+>>  		break;
+>>
+>>  	case XE_VSEC_CRI:
+>>  		if (IS_SRIOV_VF(xe))
+>> -			return;
+>> +			return 0;
+>> +
+>>  		xe->pmt.base_offset =3D CRI_PMT_OFFSET;
+>> +
+>> +		xe->pmt.retry_count =3D 0;
+>> +		INIT_DELAYED_WORK(&xe->pmt.work,
+>cri_late_bind_probe_work);
+>> +
+>> +		xe_pm_runtime_get_noresume(xe);
+>
+>why get_noresume? I believe here we are in the outter bound callers, hence
+>the regular get seems better, no?!
+>
+>> +		if (!xe_is_oobmsm_fw_ready(xe)) {
+>
+>xe_sysctrl_is_oobmsm_fw_ready ?!
+>
+>Please ensure that all patches compile individually so don't break bisect =
+flows.
+
+
+Yup.  I missed that this had merged (name is slightly different.  This will=
+ be updated.
+
+Thanks!
+
+M
+
+>> +			schedule_delayed_work(&xe->pmt.work,
+>> +
+>msecs_to_jiffies(VSEC_LATE_BIND_DELAY_MSEC));
+>> +			return devm_add_action_or_reset(xe->drm.dev,
+>> +
+>	vsec_disable_late_bind_work,
+>> +							xe);
+>> +		}
+>> +
+>>  		info->priv_data =3D &xe_cri_pmt_cb;
+>>  		xe->soc_remapper.set_telem_region(xe,
+>CRI_IDX_TELEM_DISCOVERY);
+>>  		break;
+>>
+>>  	default:
+>> -		break;
+>> +		drm_err(&xe->drm, "Unsupported platform: %u\n", platform);
+>> +		return 0;
+>>  	}
+>>
+>>  	/*
+>> @@ -515,5 +632,10 @@ void xe_vsec_init(struct xe_device *xe)
+>>  	 * resources.
+>>  	 */
+>>  	intel_vsec_register(dev, info);
+>> +
+>> +	if (platform =3D=3D XE_VSEC_CRI)
+>> +		xe_pm_runtime_put(xe);
+>> +
+>> +	return 0;
+>>  }
+>>  MODULE_IMPORT_NS("INTEL_VSEC");
+>> diff --git a/drivers/gpu/drm/xe/xe_vsec.h b/drivers/gpu/drm/xe/xe_vsec.h
+>> index a25b4e6e681b..c4a1e2fc67d8 100644
+>> --- a/drivers/gpu/drm/xe/xe_vsec.h
+>> +++ b/drivers/gpu/drm/xe/xe_vsec.h
+>> @@ -9,7 +9,7 @@
+>>  struct device;
+>>  struct xe_device;
+>>
+>> -void xe_vsec_init(struct xe_device *xe);
+>> +int xe_vsec_init(struct xe_device *xe);
+>>  int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t
+>user_offset, u32 count);
+>>
+>>  #endif
+>> --
+>> 2.43.0
+>>
