@@ -4,158 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC38CC982CF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D293C982CE
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D37510EE95;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31A7810EE68;
 	Tue, 15 Sep 2026 14:13:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="FSRxqY26";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="aSsl2yJ1";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="fM3MazBW";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="mZlA7k8x";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="K/0YTwvX";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D97F10FB9C;
- Tue, 15 Sep 2026 11:24:59 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id D6D911FD70;
- Tue, 15 Sep 2026 11:24:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1789471494; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=psqF+EOKBnDir7oSpdYk0cv/7bWaGxT8GNrr5rPj7yg=;
- b=FSRxqY266D0vmKnF9nLIRDyWWQM9yhSRf7SWuTSbWdHKmTZfPMBWgLsJq7H8V56FVkky//
- 8MrE9PciUwBdoFcR4M6TLhf0Be1H7UyuT3X6eiMNzlMbbIthbvGQDSnAd0oqm56+IjjTWt
- ZfmEPFx5zXWF3FpvnKWoZi5XGYuzP5E=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1789471494;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=psqF+EOKBnDir7oSpdYk0cv/7bWaGxT8GNrr5rPj7yg=;
- b=aSsl2yJ1+boxtQdbyNVNOLHSB2zJu6wAGQi+9pbebbTp2ClXENyw6idF+ycsnZ57BL4LP5
- ZfcRP6lnX00QOOBw==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1789471489; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=psqF+EOKBnDir7oSpdYk0cv/7bWaGxT8GNrr5rPj7yg=;
- b=fM3MazBW+hs/hKtvuJpOhLlGSwWwaQ2djpqh86ob84pD05SZM2CRj5VxxQICSBHMVzGpmM
- q+b1hMqeOfBJ55X5lnPhdG5/NgEY6B1UbwH5ynoyuWcf7dFOEalvw2kJzBP8r3CSUcnebL
- CgYXNAhYVAwFaBsCwZ7WQRZMQk8ez5c=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1789471489;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=psqF+EOKBnDir7oSpdYk0cv/7bWaGxT8GNrr5rPj7yg=;
- b=mZlA7k8xRY7/6eU8iSFueII5CBhiyVG2bEJOGnMSAtyaRqGo3EYAuYa/xTgran4MSxXe1Y
- Y2dwysvA+85ERcBA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id E1B7713693;
- Tue, 15 Sep 2026 11:24:46 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 2riGLf4qqWqtagAAD6G6ig
- (envelope-from <tiwai@suse.de>); Tue, 15 Sep 2026 11:24:46 +0000
-Date: Tue, 15 Sep 2026 13:24:46 +0200
-Message-ID: <877bkmn4e9.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: Bill Wendling <morbo@google.com>
-Cc: linux-kernel@vger.kernel.org,	Russell King <linux@armlinux.org.uk>,
- Huacai Chen <chenhuacai@kernel.org>,	WANG Xuerui <kernel@xen0n.name>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,	"James E.J. Bottomley"
- <James.Bottomley@HansenPartnership.com>,	Helge Deller <deller@gmx.de>,
- Thomas Gleixner <tglx@kernel.org>,	Ingo Molnar <mingo@redhat.com>,	Borislav
- Petkov <bp@alien8.de>,	Dave Hansen <dave.hansen@linux.intel.com>,
- x86@kernel.org,	"H. Peter Anvin" <hpa@zytor.com>,	Ian Abbott
- <abbotti@mev.co.uk>,	H Hartley Sweeten <hsweeten@visionengravers.com>,	Tony
- Luck <tony.luck@intel.com>,	Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,	Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,	David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,	Matthew Brost <matthew.brost@intel.com>,
- =?ISO-8859-1?Q?=22Thomas_Hellstr=F6m=22?=
- <thomas.hellstrom@linux.intel.com>,	Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>,	Matthias Schwarzott
- <zzam@gentoo.org>,	Mauro Carvalho Chehab <mchehab@kernel.org>,	Tony Nguyen
- <anthony.l.nguyen@intel.com>,	Przemek Kitszel
- <przemyslaw.kitszel@intel.com>,	Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,	Eric Dumazet
- <edumazet@google.com>,	Jakub Kicinski <kuba@kernel.org>,	Paolo Abeni
- <pabeni@redhat.com>,	Arend van Spriel <arend.vanspriel@broadcom.com>,	Rob
- Herring <robh@kernel.org>,	Saravana Kannan <saravanak@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>,	Sylwester Nawrocki
- <s.nawrocki@samsung.com>,	Peter Griffin <peter.griffin@linaro.org>,	Alim
- Akhtar <alim.akhtar@samsung.com>,	Linus Walleij <linusw@kernel.org>,	Anil
- Gurumurthy <anil.gurumurthy@qlogic.com>,	Sudarsana Kalluru
- <sudarsana.kalluru@qlogic.com>,	"Martin K. Petersen" <mkp@kernel.org>,
- Trond Myklebust <trondmy@kernel.org>,	Anna Schumaker <anna@kernel.org>,
- Mike Marshall <hubcap@omnibond.com>,	Martin Brandenburg
- <martin@omnibond.com>,	Kees Cook <kees@kernel.org>,	Jiri Pirko
- <jiri@resnulli.us>,	Simon Horman <horms@kernel.org>,	Chuck Lever
- <cel@kernel.org>,	Jeff Layton <jlayton@kernel.org>,	NeilBrown
- <neil@brown.name>,	Olga Kornievskaia <okorniev@redhat.com>,	Dai Ngo
- <Dai.Ngo@oracle.com>,	Tom Talpey <tom@talpey.com>,	Jaroslav Kysela
- <perex@perex.cz>,	Takashi Iwai <tiwai@suse.com>,	Andrew Morton
- <akpm@linux-foundation.org>,	"Mike Rapoport (Microsoft)" <rppt@kernel.org>,
- Kanglong Wang <wangkanglong@loongson.cn>,	Tiezhu Yang
- <yangtiezhu@loongson.cn>,	Qiang Ma <maqianga@uniontech.com>,	Randy Dunlap
- <rdunlap@infradead.org>,	Pengpeng Hou <pengpeng@iscas.ac.cn>,	Ard
- Biesheuvel <ardb@kernel.org>,	Breno Leitao <leitao@debian.org>,	Thorsten
- Blum <blum@kernel.org>,	Harshit Mogalapalli
- <harshit.m.mogalapalli@oracle.com>,	Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>,	Lyude Paul <lyude@redhat.com>,	Ashutosh Desai
- <ashutoshdesai993@gmail.com>,	Imre Deak <imre.deak@intel.com>,	Dmitry
- Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,	Johan Hovold
- <johan@kernel.org>,	Johannes Berg <johannes.berg@intel.com>,	Miri Korenblit
- <miriam.rachel.korenblit@intel.com>,	Alexander Stein
- <alexander.stein@ew.tq-group.com>,	Cryolitia PukNgae
- <cryolitia@uniontech.com>,	Jiaming Zhang <r772577952@gmail.com>,	Will
- Porter <mrwillporter@gmail.com>,	Cen Zhang <zzzccc427@gmail.com>,
- =?ISO-8859-1?Q?=22C=E1ssio_Gabriel=22?= <cassiogabrielcontato@gmail.com>,
- Rong Zhang <i@rong.moe>,	Arun Raghavan <arunr@valvesoftware.com>,
- linux-arm-kernel@lists.infradead.org,	loongarch@lists.linux.dev,
- linux-mips@vger.kernel.org,	linux-parisc@vger.kernel.org,
- linux-edac@vger.kernel.org,	dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org,	linux-input@vger.kernel.org,
- linux-media@vger.kernel.org,	intel-wired-lan@lists.osuosl.org,
- netdev@vger.kernel.org,	linux-wireless@vger.kernel.org,
- brcm80211@lists.linux.dev,	brcm80211-dev-list.pdl@broadcom.com,
- devicetree@vger.kernel.org,	linux-samsung-soc@vger.kernel.org,
- linux-gpio@vger.kernel.org,	linux-scsi@vger.kernel.org,
- linux-nfs@vger.kernel.org,	devel@lists.orangefs.org,
- linux-hardening@vger.kernel.org,	linux-sound@vger.kernel.org
-Subject: Re: [PATCH 00/28] Replace remaining strlcat() call sites with
- snprintf()/seq_buf()
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com
+ [209.85.214.200])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDF1010F34C
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:14 +0000 (UTC)
+Received: by mail-pl1-f200.google.com with SMTP id
+ d9443c01a7336-2d001671a54so82268715ad.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20251104; t=1789460414; x=1790065214;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:content-type:cc:to:from:subject
+ :message-id:references:mime-version:in-reply-to:date:from:to:cc
+ :subject:date:message-id:reply-to:content-type;
+ bh=6A34g5ncwO0UUCNmS7GYn32h6CG74u/Wx3k3q5PSbh8=;
+ b=K/0YTwvXo/O6w1KtyD2B3enLQTuHdfdHDXg6W2XX0gKdMzHX/UyD31EOyj2qAb7n+R
+ 2xB8UHHCEaK4E83yCIHsqwNtUKD9tEFgb6dz87AUE/E7OUmq7ZtKbZRyIS7qzpwwdrDL
+ 2tnBGV9wdhFkRCm2ypOnyWg1rI0d1bAJD1cOESClBVZjIn67AsfAiOmGnBtl9R8iwyIv
+ rfNOB5/AmOrK7pGEwtD1SGwDix/87eW7y01K+GGBzepVNNpCWKa84h4smzU2uspRSfOa
+ 6Mpdql2ZgENI2Y6RlZyEe9otwAeRh9U2/O+8uOP9tHygD851GgySJwgOH3SEsU8lsxWN
+ Bm3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1789460414; x=1790065214;
+ h=content-transfer-encoding:content-type:cc:to:from:subject
+ :message-id:references:mime-version:in-reply-to:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=6A34g5ncwO0UUCNmS7GYn32h6CG74u/Wx3k3q5PSbh8=;
+ b=hTJBq715IpC7JOyD3J4aa3UdgYmWlh5y/VK92MwcsULtWnjSfCPguCBQ3QnuhTBWZc
+ 96imemmkrpCl5EvK9ZTveb8bUozDuBRt/Ch2ovVl4YJnxjtJxoUndnBkSXGzLmKkABLA
+ E/iFwou0LlW7+t/mfE91F+dvYkqT9JT7NRplqsc4JnEtCJ2L75pJOxRa1dOtDXKaTM12
+ jXiG/tbuJClSh3mZJWP9Qx+Dmk2WFFp1bHnd/vDQUeSw4+b/OuZRN1n72gbP5Xcoiv3I
+ fGb7tdaVL4LYhZliML71nqjrVvrRcbKY66xglZQNQAyVS6CpHiAwQM9WABGXyTZwaDKi
+ /T4Q==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBwvIKIYVyJMg10Epvxax3Ue58C1YFFWjUIaXWN1PzfPdllpuWiMBYXiCoaoIejWjozaROHPpncl5Q==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++nPLbloxbQfEC3t/TGnXBjPzMG+7vXNr/eRGRv9TPKPhBBD5TcV
+ 2C2oKFN4ZbKYnOmABSOA+RCnwumEoVG2kYNdK+BmO29PNjr/gdKEcwhR2Dt1r4LnMD1/nDim7k2
+ f
+X-Received: from plyw21.prod.google.com ([2002:a17:902:d715:b0:2db:8c06:4fa6])
+ (user=morbo job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a17:902:f712:b0:2db:20fa:9443
+ with SMTP id d9443c01a7336-2dd6c6db8c2mr126055895ad.13.1789460413607; Tue, 15
+ Sep 2026 01:20:13 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:39 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
+Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/30.2 Mule/6.0
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-Spamd-Result: default: False [0.20 / 50.00]; BAYES_HAM(-3.00)[99.99%];
- FORGED_RECIPIENTS(2.00)[m:morbo@google.com,m:linux@armlinux.org.uk,m:kernel@xen0n.name,m:tsbogend@alpha.franken.de,m:James.Bottomley@HansenPartnership.com,m:deller@gmx.de,m:bp@alien8.de,m:hpa@zytor.com,m:hsweeten@visionengravers.com,m:tony.luck@intel.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:matthew.brost@intel.com,m:rodrigo.vivi@intel.com,m:dmitry.torokhov@gmail.com,m:zzam@gentoo.org,m:anthony.l.nguyen@intel.com,m:przemyslaw.kitszel@intel.com,m:davem@davemloft.net,m:edumazet@google.com,m:arend.vanspriel@broadcom.com,m:neil@brown.name,m:rdunlap@infradead.org,m:pengpeng@iscas.ac.cn,m:leitao@debian.org,m:ashutoshdesai993@gmail.com,m:imre.deak@intel.com,m:johannes.berg@intel.com,m:miriam.rachel.korenblit@intel.com,m:alexander.stein@ew.tq-group.com,m:r772577952@gmail.com,m:mrwillporter@gmail.com,m:zzzccc427@gmail.com,m:cassiogabrielcontato@gmail.com,s:brcm80211@lists.linux.dev,s:devel@lists.orangefs.org];
- SUSPICIOUS_RECIPS(1.50)[]; MID_CONTAINS_FROM(1.00)[];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-0.998]; MIME_GOOD(-0.10)[text/plain];
- RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
- TO_DN_SOME(0.00)[]; TAGGED_RCPT(0.00)[netdev]; ARC_NA(0.00)[];
- RCVD_TLS_ALL(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_HAS_DN(0.00)[];
- FREEMAIL_CC(0.00)[vger.kernel.org,armlinux.org.uk,kernel.org,xen0n.name,alpha.franken.de,HansenPartnership.com,gmx.de,redhat.com,alien8.de,linux.intel.com,zytor.com,mev.co.uk,visionengravers.com,intel.com,suse.de,gmail.com,ffwll.ch,gentoo.org,lunn.ch,davemloft.net,google.com,broadcom.com,samsung.com,linaro.org,qlogic.com,omnibond.com,resnulli.us,brown.name,oracle.com,talpey.com,perex.cz,suse.com,linux-foundation.org,loongson.cn,uniontech.com,infradead.org,iscas.ac.cn,debian.org,linuxfoundation.org,oss.qualcomm.com,ew.tq-group.com,rong.moe,valvesoftware.com,lists.infradead.org,lists.linux.dev,lists.freedesktop.org,lists.osuosl.org,lists.orangefs.org];
- R_RATELIMIT(0.00)[to_ip_from(RL638gsp8obb334m9k7xcnfris)];
- FROM_EQ_ENVFROM(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_SOME(0.00)[]; RCPT_COUNT_GT_50(0.00)[110];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:mid]
+X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
+Message-ID: <20260915081910.4142719-23-morbo@google.com>
+Subject: [PATCH 22/28] media: si2165: Use snprintf() to format frontend name
+From: Bill Wendling <morbo@google.com>
+To: linux-kernel@vger.kernel.org
+Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
+ Russell King <linux@armlinux.org.uk>, Huacai Chen <chenhuacai@kernel.org>, 
+ WANG Xuerui <kernel@xen0n.name>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ Helge Deller <deller@gmx.de>, 
+ Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, 
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
+ "H. Peter Anvin" <hpa@zytor.com>, Ian Abbott <abbotti@mev.co.uk>, 
+ H Hartley Sweeten <hsweeten@visionengravers.com>,
+ Tony Luck <tony.luck@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>, 
+ "=?UTF-8?q?Thomas=20Hellstr=C3=B6m?=" <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Matthias Schwarzott <zzam@gentoo.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Tony Nguyen <anthony.l.nguyen@intel.com>, 
+ Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Arend van Spriel <arend.vanspriel@broadcom.com>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Linus Walleij <linusw@kernel.org>, 
+ Anil Gurumurthy <anil.gurumurthy@qlogic.com>, 
+ Sudarsana Kalluru <sudarsana.kalluru@qlogic.com>,
+ "Martin K. Petersen" <mkp@kernel.org>, 
+ Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>, 
+ Mike Marshall <hubcap@omnibond.com>, Martin Brandenburg <martin@omnibond.com>,
+ Kees Cook <kees@kernel.org>, 
+ Jiri Pirko <jiri@resnulli.us>, Simon Horman <horms@kernel.org>,
+ Chuck Lever <cel@kernel.org>, 
+ Jeff Layton <jlayton@kernel.org>, NeilBrown <neil@brown.name>, 
+ Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
+ Tom Talpey <tom@talpey.com>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Andrew Morton <akpm@linux-foundation.org>,
+ "Mike Rapoport (Microsoft)" <rppt@kernel.org>, 
+ Kanglong Wang <wangkanglong@loongson.cn>, Tiezhu Yang <yangtiezhu@loongson.cn>,
+ Qiang Ma <maqianga@uniontech.com>, Randy Dunlap <rdunlap@infradead.org>, 
+ Pengpeng Hou <pengpeng@iscas.ac.cn>, Ard Biesheuvel <ardb@kernel.org>,
+ Breno Leitao <leitao@debian.org>, Thorsten Blum <blum@kernel.org>,
+ Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Lyude Paul <lyude@redhat.com>,
+ Ashutosh Desai <ashutoshdesai993@gmail.com>, Imre Deak <imre.deak@intel.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Johan Hovold <johan@kernel.org>, Johannes Berg <johannes.berg@intel.com>, 
+ Miri Korenblit <miriam.rachel.korenblit@intel.com>, 
+ Alexander Stein <alexander.stein@ew.tq-group.com>, 
+ Cryolitia PukNgae <cryolitia@uniontech.com>,
+ Jiaming Zhang <r772577952@gmail.com>, 
+ Will Porter <mrwillporter@gmail.com>, Cen Zhang <zzzccc427@gmail.com>, 
+ "=?UTF-8?q?C=C3=A1ssio=20Gabriel?=" <cassiogabrielcontato@gmail.com>,
+ Rong Zhang <i@rong.moe>, 
+ Arun Raghavan <arunr@valvesoftware.com>, linux-arm-kernel@lists.infradead.org, 
+ loongarch@lists.linux.dev, linux-mips@vger.kernel.org, 
+ linux-parisc@vger.kernel.org, linux-edac@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-input@vger.kernel.org, linux-media@vger.kernel.org, 
+ intel-wired-lan@lists.osuosl.org, netdev@vger.kernel.org, 
+ linux-wireless@vger.kernel.org, brcm80211@lists.linux.dev, 
+ brcm80211-dev-list.pdl@broadcom.com, devicetree@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ linux-scsi@vger.kernel.org, linux-nfs@vger.kernel.org, 
+ devel@lists.orangefs.org, linux-hardening@vger.kernel.org, 
+ linux-sound@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 15 Sep 2026 14:13:02 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -171,27 +154,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 15 Sep 2026 10:18:17 +0200,
-Bill Wendling wrote:
-> 
-> strlcat() is deprecated: like strcat(), it requires re-scanning the
-> destination string from the beginning on every call, which is O(n^2)
-> when used to build up a string incrementally, and its truncation
-> behavior is easy to get wrong.
+si2165_probe() constructs the frontend name by appending the chip name and
+supported delivery system suffixes (" DVB-T", " DVB-C") to
+state->fe.ops.info.name using multiple strlcat() calls.
 
-... but what many of your patches do is to replace strlcat() with
-open-codes, which is more error-prone and easier to get wrong than
-a single strlcat() call.
+In preparation for removing the deprecated strlcat() API[1], format the
+complete frontend name in a single snprintf() call.
 
-> See:
-> 
->   https://github.com/KSPP/linux/issues/370
+Link: https://github.com/KSPP/linux/issues/370 [1]
+Cc: codemender-patching+linux@google.com
+Assisted-by: Developer:Gemini [editor_update_file, make_kernel_build_single=
+_file, shell_command_run]
+Signed-off-by: Bill Wendling <morbo@google.com>
+---
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: Huacai Chen <chenhuacai@kernel.org>
+Cc: WANG Xuerui <kernel@xen0n.name>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>
+Cc: Helge Deller <deller@gmx.de>
+Cc: Thomas Gleixner <tglx@kernel.org>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Borislav Petkov <bp@alien8.de>
+Cc: Dave Hansen <dave.hansen@linux.intel.com>
+Cc: x86@kernel.org
+Cc: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Ian Abbott <abbotti@mev.co.uk>
+Cc: H Hartley Sweeten <hsweeten@visionengravers.com>
+Cc: Tony Luck <tony.luck@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: "Thomas Hellstr=C3=B6m" <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Matthias Schwarzott <zzam@gentoo.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Tony Nguyen <anthony.l.nguyen@intel.com>
+Cc: Przemek Kitszel <przemyslaw.kitszel@intel.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Eric Dumazet <edumazet@google.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Arend van Spriel <arend.vanspriel@broadcom.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Linus Walleij <linusw@kernel.org>
+Cc: Anil Gurumurthy <anil.gurumurthy@qlogic.com>
+Cc: Sudarsana Kalluru <sudarsana.kalluru@qlogic.com>
+Cc: "Martin K. Petersen" <mkp@kernel.org>
+Cc: Trond Myklebust <trondmy@kernel.org>
+Cc: Anna Schumaker <anna@kernel.org>
+Cc: Mike Marshall <hubcap@omnibond.com>
+Cc: Martin Brandenburg <martin@omnibond.com>
+Cc: Kees Cook <kees@kernel.org>
+Cc: Jiri Pirko <jiri@resnulli.us>
+Cc: Simon Horman <horms@kernel.org>
+Cc: Chuck Lever <cel@kernel.org>
+Cc: Jeff Layton <jlayton@kernel.org>
+Cc: NeilBrown <neil@brown.name>
+Cc: Olga Kornievskaia <okorniev@redhat.com>
+Cc: Dai Ngo <Dai.Ngo@oracle.com>
+Cc: Tom Talpey <tom@talpey.com>
+Cc: Jaroslav Kysela <perex@perex.cz>
+Cc: Takashi Iwai <tiwai@suse.com>
+Cc: Bill Wendling <morbo@google.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+Cc: Kanglong Wang <wangkanglong@loongson.cn>
+Cc: Tiezhu Yang <yangtiezhu@loongson.cn>
+Cc: Qiang Ma <maqianga@uniontech.com>
+Cc: Randy Dunlap <rdunlap@infradead.org>
+Cc: Pengpeng Hou <pengpeng@iscas.ac.cn>
+Cc: Ard Biesheuvel <ardb@kernel.org>
+Cc: Breno Leitao <leitao@debian.org>
+Cc: Thorsten Blum <blum@kernel.org>
+Cc: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Ashutosh Desai <ashutoshdesai993@gmail.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Johan Hovold <johan@kernel.org>
+Cc: Johannes Berg <johannes.berg@intel.com>
+Cc: Miri Korenblit <miriam.rachel.korenblit@intel.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Cryolitia PukNgae <cryolitia@uniontech.com>
+Cc: Jiaming Zhang <r772577952@gmail.com>
+Cc: Will Porter <mrwillporter@gmail.com>
+Cc: Cen Zhang <zzzccc427@gmail.com>
+Cc: "C=C3=A1ssio Gabriel" <cassiogabrielcontato@gmail.com>
+Cc: Rong Zhang <i@rong.moe>
+Cc: Arun Raghavan <arunr@valvesoftware.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: loongarch@lists.linux.dev
+Cc: linux-mips@vger.kernel.org
+Cc: linux-parisc@vger.kernel.org
+Cc: linux-edac@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: linux-input@vger.kernel.org
+Cc: linux-media@vger.kernel.org
+Cc: intel-wired-lan@lists.osuosl.org
+Cc: netdev@vger.kernel.org
+Cc: linux-wireless@vger.kernel.org
+Cc: brcm80211@lists.linux.dev
+Cc: brcm80211-dev-list.pdl@broadcom.com
+Cc: devicetree@vger.kernel.org
+Cc: linux-samsung-soc@vger.kernel.org
+Cc: linux-gpio@vger.kernel.org
+Cc: linux-scsi@vger.kernel.org
+Cc: linux-nfs@vger.kernel.org
+Cc: devel@lists.orangefs.org
+Cc: linux-hardening@vger.kernel.org
+Cc: linux-sound@vger.kernel.org
+---
+ drivers/media/dvb-frontends/si2165.c | 17 +++++++----------
+ 1 file changed, 7 insertions(+), 10 deletions(-)
 
-It's clear that strlcat() isn't perfect and sometimes inefficient.
-But blindly deprecating without providing a good alternative doesn't
-sound like a right approach to me.
+diff --git a/drivers/media/dvb-frontends/si2165.c b/drivers/media/dvb-front=
+ends/si2165.c
+index f1241b63aa5c..bd15eb58fc84 100644
+--- a/drivers/media/dvb-frontends/si2165.c
++++ b/drivers/media/dvb-frontends/si2165.c
+@@ -1243,20 +1243,17 @@ static int si2165_probe(struct i2c_client *client)
+ 		chip_name, rev_char, state->chip_type,
+ 		state->chip_revcode);
+=20
+-	strlcat(state->fe.ops.info.name, chip_name,
+-		sizeof(state->fe.ops.info.name));
++	snprintf(state->fe.ops.info.name, sizeof(state->fe.ops.info.name),
++		 "Silicon Labs %s%s%s",
++		 chip_name,
++		 state->has_dvbt ? " DVB-T" : "",
++		 state->has_dvbc ? " DVB-C" : "");
+=20
+ 	n =3D 0;
+-	if (state->has_dvbt) {
++	if (state->has_dvbt)
+ 		state->fe.ops.delsys[n++] =3D SYS_DVBT;
+-		strlcat(state->fe.ops.info.name, " DVB-T",
+-			sizeof(state->fe.ops.info.name));
+-	}
+-	if (state->has_dvbc) {
++	if (state->has_dvbc)
+ 		state->fe.ops.delsys[n++] =3D SYS_DVBC_ANNEX_A;
+-		strlcat(state->fe.ops.info.name, " DVB-C",
+-			sizeof(state->fe.ops.info.name));
+-	}
+=20
+ 	/* return fe pointer */
+ 	*pdata->fe =3D &state->fe;
+--=20
+2.55.0.1032.g73a4cd73de-goog
 
-
-thanks,
-
-Takashi
