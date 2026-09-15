@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02522C88E75
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 21:03:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69D72C88E77
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 21:06:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6D7210E328;
-	Tue, 15 Sep 2026 21:03:02 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F22F310E328;
- Tue, 15 Sep 2026 21:03:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1480073066967567645=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 254CE10E262;
+	Tue, 15 Sep 2026 21:06:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PWkAgSq4";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E672710E262
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 21:06:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789506405; x=1821042405;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KmNcaOHaNDzBFfFsorsyx+M2Q/u4tUd5UVClCHeF6uA=;
+ b=PWkAgSq4src9ImXfInTvQgBE5QR+m/UTyUZ74MVDhnUTVWyzugKHCQ8H
+ dcJXI9jb3hSz6NQOjNb1yPNWQq1XpAPqPt+9vUfy07m7FMiCsT2iBYuv3
+ tFNkF3ZTFKbfcMpbtOSv3z0JmDDFL17Wq6PSRQsRJBgcmSo2p9gU6hpXy
+ 9aRHfm/pm6j/vtrHuCcAszmfb20GJ3ovanBNIvtbq9yan1nbNb12AvNZ8
+ 6K6r27m/UtyJRI2yj9j4vkWcnsSNrKj6HBOwoneyG3UyPzW9QAzTYRm1V
+ 8yKoFbVKKIPCas5CldTpeGwmZrJVD4S/QOLSll5irZMCQm1OxtDcY+0WC w==;
+X-CSE-ConnectionGUID: uE8hptJtQ/Gg63E07W6YfQ==
+X-CSE-MsgGUID: kk65U4SpTYqA5MKeLo+aOg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="77442438"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="77442438"
+Received: from fmviesa013.fm.intel.com ([10.60.135.153])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 14:06:44 -0700
+X-CSE-ConnectionGUID: 4BXKQv4SSDuzzA3EcWe7iQ==
+X-CSE-MsgGUID: tK4UiG8mTPCDwtjZcHSTUA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
+   d="scan'208";a="1533878"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.16])
+ by fmviesa013.fm.intel.com with ESMTP; 15 Sep 2026 14:06:45 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v5] drm/xe: Poll GT for C6 before D3
+Date: Tue, 15 Sep 2026 14:01:13 -0700
+Message-Id: <20260915210113.2915363-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2Cxe=7D=3A_use_?=
- =?utf-8?q?a_shared_gtt=5Fview=5Ftypes=2Eh_header?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 15 Sep 2026 21:03:00 -0000
-Message-ID: <178950618098.168006.16128224005406937040@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <cover.1789502902.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1789502902.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +63,176 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1480073066967567645==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Ensure GT C6 state before D3 transition in runtime suspend flow.
+This avoids the scenario where GT is being accessed after D3 state
+is programmed. If the check for C6 fails, resume the device so it is
+not stuck in an intermediate state.
 
-== Series Details ==
+v2: Force resume when we cancel suspend due to C6 check (Sashiko)
+v3: Abort the suspend properly when idle check fails (Sashiko)
+v4: Only check for C6 during suspend (Rodrigo). Have check in
+xe_pci_runtime_suspend() instead of xe_pci_suspend().
+v5: Don't checkfor PVC (Sashiko), rename function from_device_c6
+to _device_idle
 
-Series: drm/{i915,xe}: use a shared gtt_view_types.h header
-URL   : https://patchwork.freedesktop.org/series/174204/
-State : success
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_idle.c | 36 +++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_idle.h |  1 +
+ drivers/gpu/drm/xe/xe_pci.c     | 13 +++++++++++-
+ drivers/gpu/drm/xe/xe_pm.c      | 24 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pm.h      |  1 +
+ 5 files changed, 74 insertions(+), 1 deletion(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
+index c208d7563e36..8242feede1dd 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle.c
++++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+@@ -8,10 +8,12 @@
+ #include <drm/drm_managed.h>
+ 
+ #include <generated/xe_wa_oob.h>
++#include <linux/iopoll.h>
+ #include "xe_force_wake.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
+ #include "xe_gt_idle.h"
++#include "xe_gt_printk.h"
+ #include "xe_gt_sysfs.h"
+ #include "xe_guc_pc.h"
+ #include "regs/xe_gt_regs.h"
+@@ -451,3 +453,37 @@ int xe_gt_idle_disable_c6(struct xe_gt *gt)
+ 
+ 	return 0;
+ }
++
++static int wait_for_gt_c6_state(struct xe_gt *gt, u32 timeout_ms)
++{
++	struct xe_guc_pc *pc = &gt->uc.guc.pc;
++	enum xe_gt_idle_state state;
++
++	return poll_timeout_us(state = gt->gtidle.idle_status(pc),
++			       state == GT_IDLE_C6,
++			       20,
++			       timeout_ms * USEC_PER_MSEC,
++			       false);
++}
++
++/**
++ * xe_gt_idle_wait_for_c6 - Poll for GT C6
++ * @gt: GT object
++ * @timeout_ms: wait time in ms
++ *
++ * This function waits for GT to enter C6.
++ *
++ * Return: 0 on success, -EAGAIN otherwise
++ */
++int xe_gt_idle_wait_for_c6(struct xe_gt *gt, u32 timeout_ms)
++{
++	if (IS_SRIOV_VF(gt_to_xe(gt)))
++		return 0;
++
++	if (wait_for_gt_c6_state(gt, timeout_ms)) {
++		xe_gt_dbg(gt, "GT is not in C6\n");
++		return -EAGAIN;
++	}
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h b/drivers/gpu/drm/xe/xe_gt_idle.h
+index 9c34a155e102..2c8e9adf4a68 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle.h
++++ b/drivers/gpu/drm/xe/xe_gt_idle.h
+@@ -18,5 +18,6 @@ void xe_gt_idle_enable_pg(struct xe_gt *gt);
+ void xe_gt_idle_disable_pg(struct xe_gt *gt);
+ int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p);
+ u64 xe_gt_idle_residency_msec(struct xe_gt_idle *gtidle);
++int xe_gt_idle_wait_for_c6(struct xe_gt *gt, u32 timeout_ms);
+ 
+ #endif /* _XE_GT_IDLE_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index ab4da1d9a9f1..379795ac5e7b 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -1381,7 +1381,7 @@ static int xe_pci_runtime_suspend(struct device *dev)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(dev);
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
+-	int err;
++	int err, ret;
+ 
+ 	/*
+ 	 * We hold an additional reference to the runtime PM to keep PF in D0
+@@ -1396,6 +1396,17 @@ static int xe_pci_runtime_suspend(struct device *dev)
+ 	if (err)
+ 		return err;
+ 
++	err = xe_pm_check_device_idle(xe);
++	if (err) {
++		drm_dbg(&xe->drm, "Resuming - Device idle check failed!");
++		ret = xe_pm_runtime_resume(xe);
++		if (ret) {
++			drm_err(&xe->drm, "Resume failed after suspend was canceled");
++			return ret;
++		}
++		return err;
++	}
++
+ 	pci_save_state(pdev);
+ 
+ 	if (xe->d3cold.allowed) {
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index f517bf453b54..f03a463d2a05 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -1030,6 +1030,30 @@ void xe_pm_d3cold_allowed_toggle(struct xe_device *xe)
+ 	mutex_unlock(&xe->d3cold.lock);
+ }
+ 
++/**
++ * xe_pm_check_device_idle() - Check if all GTs are idle.
++ * @xe: xe device instance
++ *
++ * One of the ways to do this is to check for GT C6 state. This check
++ * will fail if some component is holding a forcewake, for example.
++ *
++ * Return: 0 on success, -EAGAIN on failure
++ */
++int xe_pm_check_device_idle(struct xe_device *xe)
++{
++	struct xe_gt *gt;
++	u8 id;
++
++	if (xe->info.platform == XE_PVC)
++		return 0;
++
++	for_each_gt(gt, xe, id)
++		if (xe_gt_idle_wait_for_c6(gt, 200))
++			return -EAGAIN;
++
++	return 0;
++}
++
+ /**
+  * xe_pm_module_init() - Perform xe_pm specific module initialization.
+  *
+diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
+index 6d5ab09cb769..a4fdc9c5cb10 100644
+--- a/drivers/gpu/drm/xe/xe_pm.h
++++ b/drivers/gpu/drm/xe/xe_pm.h
+@@ -36,6 +36,7 @@ void xe_pm_d3cold_allowed_toggle(struct xe_device *xe);
+ bool xe_rpm_reclaim_safe(const struct xe_device *xe);
+ struct task_struct *xe_pm_read_callback_task(struct xe_device *xe);
+ int xe_pm_block_on_suspend(struct xe_device *xe);
++int xe_pm_check_device_idle(struct xe_device *xe);
+ void xe_pm_might_block_on_suspend(void);
+ int xe_pm_module_init(void);
+ 
+-- 
+2.38.1
 
-CI Bug Log - changes from xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8_BAT -> xe-pw-174204v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-174204v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-wcl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#9115])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8/bat-wcl-1/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174204v1/bat-wcl-1/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
-
-
-Build changes
--------------
-
-  * Linux: xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8 -> xe-pw-174204v1
-
-  IGT_9098: 9098
-  xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8: 0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8
-  xe-pw-174204v1: 174204v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174204v1/index.html
-
---===============1480073066967567645==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/{i915,xe}: use a shared gtt_view_types.h header</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174204/">https://patchwork.freedesktop.org/series/174204/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174204v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174204v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8_BAT -&gt; xe-pw-174204v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-174204v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8/bat-wcl-1/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174204v1/bat-wcl-1/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8 -&gt; xe-pw-174204v1</li>
-</ul>
-<p>IGT_9098: 9098<br />
-  xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8: 0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8<br />
-  xe-pw-174204v1: 174204v1</p>
-
-</body>
-</html>
-
---===============1480073066967567645==--
