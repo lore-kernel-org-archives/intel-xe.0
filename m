@@ -4,34 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5308C982C4
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 12:48:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DC68C982C7
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 12:48:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A24A10EA36;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F295610EA74;
 	Wed, 16 Sep 2026 12:48:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="gf5L5wnm";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="L8f94G9m";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE10110FC1B;
- Tue, 15 Sep 2026 15:05:15 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84FEE10E157;
+ Tue, 15 Sep 2026 18:25:19 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 45559602C3;
- Tue, 15 Sep 2026 15:05:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 609DE1F00893;
- Tue, 15 Sep 2026 15:05:13 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 37E8543A1E;
+ Tue, 15 Sep 2026 18:25:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 146691F00898;
+ Tue, 15 Sep 2026 18:25:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789484714;
- bh=92Jyv3r5iRKPp9A+0MWzJBMIdxeAT/qbE/UD5yjhWE0=;
+ s=k20260515; t=1789496719;
+ bh=hTpYvUrNZYIcwT2p8Kp9xxQTu0Fq/HJPfq19mi+/XYs=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=gf5L5wnmtccLwoqcVRv226Jxh21B1B//39SXNk9kc4N8OS1FTlhq9PWO0oO0C2lV5
- /puLCofTcTcdOq9gexMECkzKA3ObUOxFvtdLZex77Bqia2hDmeu6n908Nd0hiX8iF9
- qTYQDbAMbNgjSO8+cNHSBskD1SEuiooBkMWuneDZS5c3lKtRyIRRattmm2nfwDtRhi
- /vDHelzWwxEEbNDJ6m9bDtWIf3Gi0xBkpoRi48jhIlvmxyg1p97zwYUvcCDIpP4GL2
- 89RyOdTBK97/VTtSVGn5HnnYF5QSg1YyyyGBUWH6C6xYN7eMiLrpeTG7VTkcG879bb
- BqI5RrgGxycEw==
-Date: Tue, 15 Sep 2026 10:05:11 -0500
-From: Rob Herring <robh@kernel.org>
+ b=L8f94G9mzSlNx9J6peH2jq3tNsTcUAybrSOzdJm5ksOR557E4eGHcMVdBvQoWXcMq
+ oYUWohx4rX6UR3J8jBc8XVQjQr+ber6bJ2vp50tNPAhHXUhxRHLXdtKpPq0X+kq2PU
+ gS7xFPkE8iTk1ZUf6F23/XNJ6TOWElkc+PU1etQ49xAX2Mcf5D6gOEjjFrhGeHYmwr
+ quZO6YQ0w3g8MteVh8aIX9AaqG/9TfYwvtfMkvsA6bgIrhU7eO551to4fm0v6bfd4/
+ BM4spkKqe45r4JjrhXiFS+HNsR69yIhfKoowbJLuXi0Q2cu8W8a4U8wu0elxPZcyTv
+ CP6MLWz/FZBtQ==
+Date: Tue, 15 Sep 2026 11:25:18 -0700
+From: Kees Cook <kees@kernel.org>
 To: Bill Wendling <morbo@google.com>
 Cc: linux-kernel@vger.kernel.org, codemender-patching+linux@google.com,
  Russell King <linux@armlinux.org.uk>, Huacai Chen <chenhuacai@kernel.org>,
@@ -61,7 +61,7 @@ Cc: linux-kernel@vger.kernel.org, codemender-patching+linux@google.com,
  Eric Dumazet <edumazet@google.com>,
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
  Arend van Spriel <arend.vanspriel@broadcom.com>,
- Saravana Kannan <saravanak@kernel.org>,
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>,
  Krzysztof Kozlowski <krzk@kernel.org>,
  Sylwester Nawrocki <s.nawrocki@samsung.com>,
  Peter Griffin <peter.griffin@linaro.org>,
@@ -72,10 +72,9 @@ Cc: linux-kernel@vger.kernel.org, codemender-patching+linux@google.com,
  Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>,
  Mike Marshall <hubcap@omnibond.com>,
  Martin Brandenburg <martin@omnibond.com>,
- Kees Cook <kees@kernel.org>, Jiri Pirko <jiri@resnulli.us>,
- Simon Horman <horms@kernel.org>, Chuck Lever <cel@kernel.org>,
- Jeff Layton <jlayton@kernel.org>, NeilBrown <neil@brown.name>,
- Olga Kornievskaia <okorniev@redhat.com>,
+ Jiri Pirko <jiri@resnulli.us>, Simon Horman <horms@kernel.org>,
+ Chuck Lever <cel@kernel.org>, Jeff Layton <jlayton@kernel.org>,
+ NeilBrown <neil@brown.name>, Olga Kornievskaia <okorniev@redhat.com>,
  Dai Ngo <Dai.Ngo@oracle.com>, Tom Talpey <tom@talpey.com>,
  Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
  Andrew Morton <akpm@linux-foundation.org>,
@@ -109,15 +108,15 @@ Cc: linux-kernel@vger.kernel.org, codemender-patching+linux@google.com,
  linux-gpio@vger.kernel.org, linux-scsi@vger.kernel.org,
  linux-nfs@vger.kernel.org, devel@lists.orangefs.org,
  linux-hardening@vger.kernel.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH 10/28] of/fdt: Replace strlcat() with snprintf() in
- early_init_dt_scan_chosen()
-Message-ID: <20260915150511.GB1926857-robh@kernel.org>
+Subject: Re: [PATCH 27/28] drm/xe/pf: Convert strlcat() to seq_buf in
+ control_read()
+Message-ID: <202609151115.33A35B7098@keescook>
 References: <20260915081910.4142719-1-morbo@google.com>
- <20260915081910.4142719-11-morbo@google.com>
+ <20260915081910.4142719-28-morbo@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260915081910.4142719-11-morbo@google.com>
+In-Reply-To: <20260915081910.4142719-28-morbo@google.com>
 X-Mailman-Approved-At: Wed, 16 Sep 2026 12:48:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -133,57 +132,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 15, 2026 at 08:18:27AM +0000, Bill Wendling wrote:
-> When CONFIG_CMDLINE_EXTEND is enabled, early_init_dt_scan_chosen() uses
-> two strlcat() calls to append a space and CONFIG_CMDLINE to the command
-> line buffer.
-> 
-> In preparation for removing the deprecated strlcat() API[1], replace the
-> strlcat() calls with a single snprintf() call using the existing string
-> length.
-> 
-> Additionally, check for a NULL initial_boot_params pointer and jump to
-> "handle_cmdline" so that CONFIG_CMDLINE handling still occurs without
-> dereferencing a NULL FDT pointer in fdt_path_offset().
-> 
-> Link: https://github.com/KSPP/linux/issues/370 [1]
-> Cc: codemender-patching+linux@google.com
-> Assisted-by: Assistant:Claude-3.5-Sonnet [editor_update_file, shell_command_run]
-> Signed-off-by: Bill Wendling <morbo@google.com>
-> ---
-
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index a64afc3ded3d..311021a83f03 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -1095,6 +1095,9 @@ int __init early_init_dt_scan_chosen(char *cmdline)
->  	const void *rng_seed;
->  	const void *fdt = initial_boot_params;
+On Tue, Sep 15, 2026 at 08:18:44AM +0000, Bill Wendling wrote:
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+> index 0f242db775e1..5db7fc067c4d 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
+> @@ -4,6 +4,7 @@
+>   */
 >  
-> +	if (!fdt)
-> +		goto handle_cmdline;
-> +
->  	node = fdt_path_offset(fdt, "/chosen");
->  	if (node < 0)
->  		node = fdt_path_offset(fdt, "/chosen@0");
-> @@ -1133,8 +1136,12 @@ int __init early_init_dt_scan_chosen(char *cmdline)
->  	 */
->  #ifdef CONFIG_CMDLINE
->  #if defined(CONFIG_CMDLINE_EXTEND)
-> -	strlcat(cmdline, " ", COMMAND_LINE_SIZE);
-> -	strlcat(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-> +	{
+>  #include <linux/debugfs.h>
+> +#include <linux/seq_buf.h>
+>  
+>  #include <drm/drm_print.h>
+>  #include <drm/drm_debugfs.h>
+> @@ -663,15 +664,15 @@ static ssize_t control_write(struct file *file, const char __user *buf, size_t c
+>  static ssize_t control_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
+>  {
+>  	char help[128];
+> +	struct seq_buf s;
+>  	size_t n;
+>  
+> -	help[0] = '\0';
+> +	seq_buf_init(&s, help, sizeof(help));
+>  	for (n = 0; n < ARRAY_SIZE(control_cmds); n++) {
+> -		strlcat(help, control_cmds[n].cmd, sizeof(help));
+> -		strlcat(help, "\n", sizeof(help));
+> +		seq_buf_printf(&s, "%s\n", control_cmds[n].cmd);
+>  	}
 
-No need for brackets.
+Yay seq_buf! I would tweak the 3 init stack variable lines into just
+using the single DECLARE_SEQ_BUF:
 
-> +		size_t len = strlen(cmdline);
-> +
-> +		if (len < COMMAND_LINE_SIZE)
-> +			snprintf(cmdline + len, COMMAND_LINE_SIZE - len, " %s", CONFIG_CMDLINE);
-> +	}
->  #elif defined(CONFIG_CMDLINE_FORCE)
->  	strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
->  #else
-> -- 
-> 2.55.0.1032.g73a4cd73de-goog
-> 
+DECLARE_SEQ_BUF(s, 128);
+
+>  
+> -	return simple_read_from_buffer(buf, count, ppos, help, strlen(help));
+> +	return simple_read_from_buffer(buf, count, ppos, help, seq_buf_used(&s));
+
+seq_buf_used() isn't correct in the case of full-buffer use. e.g. if
+the help buffer ends up filled with 127 chars and a NUL terminator,
+seq_buf_used() returns 128, but you want 127 here. Using strlen() ends up
+being redundant, though. I think we need to add seq_buf_strlen() which
+handles the same logic that seq_buf_str() does.
+
+-Kees
+
+-- 
+Kees Cook
