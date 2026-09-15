@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2857C88E75
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 07:17:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEADEC88E75
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 07:19:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E70B10E25C;
-	Tue, 15 Sep 2026 07:17:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B93RnRQF";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63CCE10E25C
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 07:17:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789456646; x=1820992646;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=YwG70pQeZCbqlXjQ9OK3Y8vY08wJHm64QhXna+vDL+w=;
- b=B93RnRQF26X++vZkFEqIcpcm+l4/M9avVI7HSAOF5sBeHYn6bHqHCUuA
- Cx68rio7ar5jOl9ENti9AKmvF8QFiFaa4Mi6juuSvLoECWXsVPTCrwssd
- yYfUKk8f8vEIb2f92jrQCL1u38py/vAI59D7oAhj1yUMUrBm13vGErJFs
- sZVYaIAtfDg1k5JTCZ7RmpkXGIVgRsMvNW/SPPKljADpl7aK87ZGYNPBJ
- YdEPEZxHWE0R/m2loWoIg5ansj1SDEHRz3N/LQyaTuDVXt4GkD1SdfZA6
- 2TBLhRFKfC+rloPGlKcZuyGBr0OmcCyq0TSL18yI5ykuPKJRrmQS13qhM w==;
-X-CSE-ConnectionGUID: qPUg9/99QqmlYU1n1FE/OA==
-X-CSE-MsgGUID: 4I+wLF9lTVScVgoxLclvFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="90017969"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="90017969"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 00:17:26 -0700
-X-CSE-ConnectionGUID: g1n1uYIWQ3mJP1hSev9ilQ==
-X-CSE-MsgGUID: +vhFEMXnQIW5jWnW3OPzow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
-   d="scan'208";a="1266117"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.16])
- by fmviesa013.fm.intel.com with ESMTP; 15 Sep 2026 00:17:25 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v4] drm/xe: Poll GT for C6 before D3
-Date: Tue, 15 Sep 2026 00:11:45 -0700
-Message-Id: <20260915071145.2866414-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62C9510E258;
+	Tue, 15 Sep 2026 07:19:26 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53D4B10E258;
+ Tue, 15 Sep 2026 07:19:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_KUnit_test_for_VF_provisi?=
+ =?utf-8?q?oning_error_handling_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 15 Sep 2026 07:19:25 -0000
+Message-ID: <178945676533.162878.5896982116285701695@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260915071159.51402-12-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20260915071159.51402-12-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,171 +36,113 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Ensure GT C6 state before D3 transition in runtime suspend flow.
-This avoids the scenario where GT is being accessed after D3 state
-is programmed. If the check for C6 fails, resume the device so it is
-not stuck in an intermediate state.
+== Series Details ==
 
-v2: Force resume when we cancel suspend due to C6 check (Sashiko)
-v3: Abort the suspend properly when idle check fails (Sashiko)
-v4: Only check for C6 during suspend (Rodrigo). Have check in
-xe_pci_runtime_suspend() instead of xe_pci_suspend().
+Series: KUnit test for VF provisioning error handling (rev8)
+URL   : https://patchwork.freedesktop.org/series/170198/
+State : warning
 
-Cc: Badal Nilawar <badal.nilawar@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_idle.c | 36 +++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_idle.h |  1 +
- drivers/gpu/drm/xe/xe_pci.c     | 13 +++++++++++-
- drivers/gpu/drm/xe/xe_pm.c      | 21 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_pm.h      |  1 +
- 5 files changed, 71 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
-index c208d7563e36..8242feede1dd 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle.c
-+++ b/drivers/gpu/drm/xe/xe_gt_idle.c
-@@ -8,10 +8,12 @@
- #include <drm/drm_managed.h>
- 
- #include <generated/xe_wa_oob.h>
-+#include <linux/iopoll.h>
- #include "xe_force_wake.h"
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_gt_idle.h"
-+#include "xe_gt_printk.h"
- #include "xe_gt_sysfs.h"
- #include "xe_guc_pc.h"
- #include "regs/xe_gt_regs.h"
-@@ -451,3 +453,37 @@ int xe_gt_idle_disable_c6(struct xe_gt *gt)
- 
- 	return 0;
- }
-+
-+static int wait_for_gt_c6_state(struct xe_gt *gt, u32 timeout_ms)
-+{
-+	struct xe_guc_pc *pc = &gt->uc.guc.pc;
-+	enum xe_gt_idle_state state;
-+
-+	return poll_timeout_us(state = gt->gtidle.idle_status(pc),
-+			       state == GT_IDLE_C6,
-+			       20,
-+			       timeout_ms * USEC_PER_MSEC,
-+			       false);
-+}
-+
-+/**
-+ * xe_gt_idle_wait_for_c6 - Poll for GT C6
-+ * @gt: GT object
-+ * @timeout_ms: wait time in ms
-+ *
-+ * This function waits for GT to enter C6.
-+ *
-+ * Return: 0 on success, -EAGAIN otherwise
-+ */
-+int xe_gt_idle_wait_for_c6(struct xe_gt *gt, u32 timeout_ms)
-+{
-+	if (IS_SRIOV_VF(gt_to_xe(gt)))
-+		return 0;
-+
-+	if (wait_for_gt_c6_state(gt, timeout_ms)) {
-+		xe_gt_dbg(gt, "GT is not in C6\n");
-+		return -EAGAIN;
-+	}
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h b/drivers/gpu/drm/xe/xe_gt_idle.h
-index 9c34a155e102..2c8e9adf4a68 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle.h
-+++ b/drivers/gpu/drm/xe/xe_gt_idle.h
-@@ -18,5 +18,6 @@ void xe_gt_idle_enable_pg(struct xe_gt *gt);
- void xe_gt_idle_disable_pg(struct xe_gt *gt);
- int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p);
- u64 xe_gt_idle_residency_msec(struct xe_gt_idle *gtidle);
-+int xe_gt_idle_wait_for_c6(struct xe_gt *gt, u32 timeout_ms);
- 
- #endif /* _XE_GT_IDLE_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index ab4da1d9a9f1..379795ac5e7b 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -1381,7 +1381,7 @@ static int xe_pci_runtime_suspend(struct device *dev)
- {
- 	struct pci_dev *pdev = to_pci_dev(dev);
- 	struct xe_device *xe = pdev_to_xe_device(pdev);
--	int err;
-+	int err, ret;
- 
- 	/*
- 	 * We hold an additional reference to the runtime PM to keep PF in D0
-@@ -1396,6 +1396,17 @@ static int xe_pci_runtime_suspend(struct device *dev)
- 	if (err)
- 		return err;
- 
-+	err = xe_pm_check_device_idle(xe);
-+	if (err) {
-+		drm_dbg(&xe->drm, "Resuming - Device idle check failed!");
-+		ret = xe_pm_runtime_resume(xe);
-+		if (ret) {
-+			drm_err(&xe->drm, "Resume failed after suspend was canceled");
-+			return ret;
-+		}
-+		return err;
-+	}
-+
- 	pci_save_state(pdev);
- 
- 	if (xe->d3cold.allowed) {
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index f517bf453b54..678afd7a1d08 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -1030,6 +1030,27 @@ void xe_pm_d3cold_allowed_toggle(struct xe_device *xe)
- 	mutex_unlock(&xe->d3cold.lock);
- }
- 
-+/**
-+ * xe_pm_check_device_idle() - Check if all GTs are idle.
-+ * @xe: xe device instance
-+ *
-+ * One of the ways to do this is to check for GT C6 state. This check
-+ * will fail if some component is holding a forcewake, for example.
-+ *
-+ * Return: 0 on success, -EAGAIN on failure
-+ */
-+int xe_pm_check_device_idle(struct xe_device *xe)
-+{
-+	struct xe_gt *gt;
-+	u8 id;
-+
-+	for_each_gt(gt, xe, id)
-+		if (xe_gt_idle_wait_for_c6(gt, 200))
-+			return -EAGAIN;
-+
-+	return 0;
-+}
-+
- /**
-  * xe_pm_module_init() - Perform xe_pm specific module initialization.
-  *
-diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
-index 6d5ab09cb769..a4fdc9c5cb10 100644
---- a/drivers/gpu/drm/xe/xe_pm.h
-+++ b/drivers/gpu/drm/xe/xe_pm.h
-@@ -36,6 +36,7 @@ void xe_pm_d3cold_allowed_toggle(struct xe_device *xe);
- bool xe_rpm_reclaim_safe(const struct xe_device *xe);
- struct task_struct *xe_pm_read_callback_task(struct xe_device *xe);
- int xe_pm_block_on_suspend(struct xe_device *xe);
-+int xe_pm_check_device_idle(struct xe_device *xe);
- void xe_pm_might_block_on_suspend(void);
- int xe_pm_module_init(void);
- 
--- 
-2.38.1
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d875049d2b299159a272bd5151994970cdcd1e31
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 68a46ccc3313b52cad7c786a89313e950a5272fa
+Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Date:   Tue Sep 15 12:42:07 2026 +0530
+
+    drm/xe/tests: Add KUnit tests for VF provisioning error handling
+    
+    VF relies on the PF to provide a valid hardware configuration via GuC
+    KLV responses. In the unlikely event of PF malfunction or
+    misconfiguration, a VF may receive incomplete, zero, or out-of-range
+    values for its submission contexts, doorbells, VRAM or GGTT assignment.
+    
+    Add KUnit test cases that use the xe_guc_mmio_send_recv() stub to inject
+    bad KLV responses and verify that VF can survive without crashing for
+    the invalid configuration data received.
+    
+    Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch 8e43a2d3ccfbde57dfcdfdfb5efd9bbbea8807ae drm-intel
+b7f07dbf25b2 drm/xe/guc: Allow to replace xe_guc_mmio_send_recv() with KUNIT stub
+2ed7e3b9b49d drm/xe/vf: Split submission config query helpers
+f9f1b7e48905 drm/xe/vf: Add bounds checking for queried context and doorbell counts
+506be0a3b5c9 drm/xe: Introduce helpers for VRAM alignment
+215554f576e8 drm/xe/ggtt: Avoid integer overflow when validating VF GGTT range
+ef733aae8bea drm/xe/vf: Add bounds checking for queried GGTT base and size
+a7cbed121f5d drm/xe/pf: Align VF GGTT allocations to PAGE_SIZE
+bcbd2209db62 drm/xe/vf: Add alignment check for queried VRAM size
+6330833ae88e drm/xe/ggtt: Add KUNIT stub for xe_ggtt_shift_nodes()
+68a46ccc3313 drm/xe/tests: Add KUnit tests for VF provisioning error handling
+-:20: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#20: 
+new file mode 100644
+
+-:47: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'test' - possible side-effects?
+#47: FILE: drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c:23:
++#define TEST_VALIDATE_IN_PARAMS(test, len, request, key)	\
++	do {	\
++		KUNIT_ASSERT_EQ(test, len, VF2GUC_QUERY_SINGLE_KLV_REQUEST_MSG_LEN);	\
++		KUNIT_ASSERT_EQ(test,	\
++				FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, request[0]),	\
++				GUC_ACTION_VF2GUC_QUERY_SINGLE_KLV);	\
++		KUNIT_ASSERT_EQ(test,	\
++				FIELD_GET(VF2GUC_QUERY_SINGLE_KLV_REQUEST_MSG_1_KEY, request[1]), \
++				key);	\
++	} while (0)
+
+-:47: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'request' - possible side-effects?
+#47: FILE: drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c:23:
++#define TEST_VALIDATE_IN_PARAMS(test, len, request, key)	\
++	do {	\
++		KUNIT_ASSERT_EQ(test, len, VF2GUC_QUERY_SINGLE_KLV_REQUEST_MSG_LEN);	\
++		KUNIT_ASSERT_EQ(test,	\
++				FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, request[0]),	\
++				GUC_ACTION_VF2GUC_QUERY_SINGLE_KLV);	\
++		KUNIT_ASSERT_EQ(test,	\
++				FIELD_GET(VF2GUC_QUERY_SINGLE_KLV_REQUEST_MSG_1_KEY, request[1]), \
++				key);	\
++	} while (0)
+
+-:58: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'resp' - possible side-effects?
+#58: FILE: drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c:34:
++#define TEST_FILL_RESP_BUFF(resp, c, type)	\
++	do {	\
++		if (type == sizeof(u32)) {	\
++			resp[0] = sizeof(u32) / sizeof(u32);	\
++			resp[1] = (c)->query;	\
++		} else if (type == sizeof(u64)) {	\
++			resp[0] = sizeof(u64) / sizeof(u32);	\
++			resp[1] = lower_32_bits((c)->query);	\
++			resp[2] = upper_32_bits((c)->query);	\
++		}	\
++	} while (0)
+
+-:58: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'c' - possible side-effects?
+#58: FILE: drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c:34:
++#define TEST_FILL_RESP_BUFF(resp, c, type)	\
++	do {	\
++		if (type == sizeof(u32)) {	\
++			resp[0] = sizeof(u32) / sizeof(u32);	\
++			resp[1] = (c)->query;	\
++		} else if (type == sizeof(u64)) {	\
++			resp[0] = sizeof(u64) / sizeof(u32);	\
++			resp[1] = lower_32_bits((c)->query);	\
++			resp[2] = upper_32_bits((c)->query);	\
++		}	\
++	} while (0)
+
+total: 0 errors, 1 warnings, 4 checks, 400 lines checked
+
 
