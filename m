@@ -4,98 +4,142 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5FA1C88E7B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B82BCC982C7
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C77C10E5C4;
-	Tue, 15 Sep 2026 14:13:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBE4F10E3CB;
+	Tue, 15 Sep 2026 14:13:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="pG52829U";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="NqnMc+KK";
 	dkim-atps=neutral
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com
- [209.85.219.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5AC210E2CC
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 13:59:18 +0000 (UTC)
-Received: by mail-qv1-f46.google.com with SMTP id
- 6a1803df08f44-90cc64570deso11346476d6.0
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 06:59:18 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1789480758; cv=none;
- d=google.com; s=arc-20260327;
- b=pq0SQroo3UCyRigFm77+YHP4f8JY0ANj9cSUThbevM6z6EGQ8+NRIsAIVIl3/csK4k
- QPbhld87qZm+9Uy2xFrGMIxxgJ4NpMyOJJ3mE4ccAcHrIoW+KM2Tsm7i541xaFE62AvD
- ptAIW6nigzVQXvcp1kpfr6R5EOQy5F/bE2gcgO+eQkTX2XOgLcZDR7awwSHxE4eIVyKi
- SIJptq2xNutaeg5mU/w/k9Q5vRGCX7W9EtMpL5HceVVmhZwDsnriOi14pI321DTZz+Gz
- VIu2epKGCoSU1mDRxOqTnwgjrQqv7s3W+T/gPvls45xLNT+fRFODSwTWNiDkDIvW0/O7
- ksrA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=qtYpuKUyAlpc4Ck0pC2uxBVaD63r9WyFlbfA/VDUwk0=;
- fh=uO3XaDVrPdwfTozRbsPHAyzmiaJgGvvwXl7tDZIWyKk=;
- b=OFhH25sUrurUgCvlIKBbXnWpS1WWZbBYn/S31WpTXWH5jLWzjlYhh9t5aLtiRogNgA
- Q6CHAycAZviiro45tvbBjQy9Ig04eQHgbKNQ4gV9NQjhDwt21AqWAwEckDo/N7gQDEEs
- ZrOeuKsHXT1yhR/NXigDhIAWCgsuhhjl19eE7Cv/+uLj9Nvcz93yaCdQ4E4PyxilHl6P
- B9STgsj+5Q14qmdMZsKiD646nPxh7qLDSVZ0klpPBfmSnCCyHwKjsXCwuJPfkiCI7VFs
- RW7al9wgvgfsBE3pWJ577fmloO1sGoRjeY0imG5bfhWU2KjJsxsDQjEydsh1wJKj6+oe
- i28w==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com
+ [209.85.214.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E935A10FAF3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:19:54 +0000 (UTC)
+Received: by mail-pl1-f197.google.com with SMTP id
+ d9443c01a7336-2db8c152622so41653725ad.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:19:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1789480758; x=1790085558; darn=lists.freedesktop.org;
- h=content-type:cc:to:subject:message-id:date:from:in-reply-to
- :references:mime-version:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=qtYpuKUyAlpc4Ck0pC2uxBVaD63r9WyFlbfA/VDUwk0=;
- b=pG52829Ut1IqxJphqI2yqA2U7m3G+wm9LAGwQdlZ2d3ZhfAzfpBIq2lk8kqxPDC9XX
- hrCYmPNjMmWD73xjV0Y/T1kVU5TzlIg61aSkM+nwgGLGyYplHakXKjZpTRe3p66r9/+a
- VD11Hvs0zAkC34hfVZTHljuq+T0vRn/RDQ2I+agE7q9FfZjtLq/a25k46NWy2VVyDini
- ILnHKh7gVXMpDTSGEwPdjnBeruvXK1I8SAmmy7nmxU/Nw+YfDxAM3NKw4VgnwRgR99x6
- GSt4KgegNr+Xk9ooGKCLmBdm6S4hmd0zOrdXwzaIyqfmAP7ub1UqnbIAWj6GyZs6udY4
- balw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789480758; x=1790085558;
- h=content-type:cc:to:subject:message-id:date:from:in-reply-to
- :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+ d=google.com; s=20251104; t=1789460394; x=1790065194;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:content-type:cc:to:from:subject
+ :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=qtYpuKUyAlpc4Ck0pC2uxBVaD63r9WyFlbfA/VDUwk0=;
- b=1z2Y7bhDFWorrC2vb9+Vqb7EI/n7xrqdaCEV0jGLFYgKBHqYEbDtvNlnoimefN3LkN
- bOyjg6fpprdLBiOXZG03AzjFCcSR2NXehvswaUJc1umKedPUkDUXI06xVPyNfq3MgV8n
- ECHBkQASNCurBCWCODwe3TDWHapcGhpNufqHjSL9+f9peTQ1INIyDhBMMmNJzlrihJwv
- XFtrgz/8R+CsWNN1qZ3uuX08gu97LfERX/7i+yYImbf/AvBtiOkWNL0GVn1WjINEI6cp
- JtKHfdyKCv5EAbO9Aqrpvt7ZhK9gY5kB45FUT8Yj5NNJUAxvs4aHOfJDM/D437ie8xV+
- 0wRg==
+ bh=fp8wJxWuumatGVjI+YCt9Q6O6hUP8tXGtI5nMGsUbio=;
+ b=NqnMc+KKgITaL8zPMYJ95uGqqyCQZI6WbqIGl0dN9Z+DNsPaFuaq2nkjDNUb2MYmRy
+ hRLKXI3v7yIXlX5ZHblisMuEUlQu4gNZrBBI15PbjLxu9d54rGGewEGQV5mNG7e6Oh/w
+ DjKP6iRWepvPIhNYmnOhUA74wvXm09bkzhYffyvB7cBMbDII6W8lLH2t5DDed1rfjYGa
+ TnkIhLvf+sAzBPdS9GSSctHPOq/0Vv6G4JZi1pJg41skPiDke4bVg37a7tmkTORiXq2Y
+ blkYXHI67a/Im7BqdoTATAtuRaASdP/606WX1pmLEtkJYvC13OUcwkABHEywZg24iuF2
+ fh5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1789460394; x=1790065194;
+ h=content-transfer-encoding:content-type:cc:to:from:subject
+ :message-id:references:mime-version:in-reply-to:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=fp8wJxWuumatGVjI+YCt9Q6O6hUP8tXGtI5nMGsUbio=;
+ b=HVu7ZbWHMDyoxHlr8CJnrXQNx17nSQvrKt/+8Nm/EeXyk1BWAbwn44+yhsSMXjuL7m
+ mzSo60pXk5yba9saKfCp1WTCX6MGdI9hkuETGozjlzEKv+XG8f4aAY9PolvBtQlRI9Vx
+ 5xQJZhOmKt+kwYdC5mbEg/ypNpa38r8mkQbst4+vRK5bKXJTY6bLuBJkannzUGnWbRnb
+ ZIg/A1yMAf2jHLTcXtWHfe0oqc205lGIs0Ep01vVwTeF6h54xQIM1xG+ZqUUUBKUQqXs
+ oONZZ1J3nAMPTk0LFbYOmDmxw9RDfXr8trzrpuNHuDrPpB2sb9MRBuco0JN+g+CXqnWH
+ eIFw==
 X-Forwarded-Encrypted: i=1;
- AKwUvBzpHpRwl+o8W2Snv8DlNif9SgU1k2K+O2kjo2ehfDHQslUlHYmWeszNrzO61WXohSMY0WQR6lJP3A==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++kXBP1QCKVQhwRr6m4xJSkYUJFL4sDAArFHJ91BuI8S0xwMd6tm
- kdueJQ8EGlvzJ9UNtvM8FBxZi8zBU9N5QdwVTfPU+I+GKfe6uZni0O40hRu179AqoQ6BqaODCR5
- ManfdnCrU/jZ0Ms6MHD+ZedA+bRu3nUk=
-X-Gm-Gg: AYBFou0MrRzQ6IHLrbFcl8MQkSK5smqXZfhefYyY63I0xuf8vmtCMHxwCv9IKoxh7xx
- mTLCIFuHkQ0P+wFRenOdbsIPpXdjRElUe8gngBKSSkk9AERQqz1bfCLPMD94Pm4Rmvf2yQchzB1
- 68f2K9uLjf0s+JDV6smvE0W8bDlCDZrTsmGy/Ai8vCkwMhzba3uF2XQW86DhjSZYyyywqcYWvhj
- njU+H0WZXHWe1bQunw2Sp2uunag1xZfuvP9IBPYIrwvTC4u1qy9joos0Ll490NSKp5/Ca0kAYPy
- 52qluWiOprxDTxrTiiuhzdktrM5RbEREWdbULsixGgk3Gaoe/EGXGhrK3f5WTVQEdKVadU38++k
- KrsIS1qpQyjJlTAym55g=
-X-Received: by 2002:a05:6214:428c:b0:910:6ca7:cad4 with SMTP id
- 6a1803df08f44-91234347c67mr48629936d6.5.1789480757416; Tue, 15 Sep 2026
- 06:59:17 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260905142500.17666-1-zhoulol888@gmail.com>
- <20260915064200.23171-1-zhoulol888@gmail.com>
- <69d0f3f3566521e516e439e818a619766561567c@intel.com>
-In-Reply-To: <69d0f3f3566521e516e439e818a619766561567c@intel.com>
-From: Activate Windows <zhoulol888@gmail.com>
-Date: Tue, 15 Sep 2026 21:59:06 +0800
-X-Gm-Features: AcwNN1V-PMybVCwMGP9Ri_2RLLkQkWkHW6MDdwoRi03kcrCMTtjQFFHabyW8iaM
-Message-ID: <CAEnyS7FrjPdkErjnNO5bOkEvrRdGfWYNB-GnhjpB2iKYFMJx5g@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/xe/display: Remove invalid initial plane PTE check
- for iGPU
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, ville.syrjala@linux.intel.com, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Content-Type: multipart/alternative; boundary="000000000000e0da58065b85f47d"
+ AKwUvBxWw3Y2JFaL66sqWjE3Lbu/AN/h4cC3vdZTGg0JiBBc1j9iwYJEbrn3UgrD+0viDRigNzi0NGTW0Q==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++lplL5GrRvewMf4HVgkK+hLf8d7WnDDFDntBmTHH30uGeHQMr+c
+ HuqX7yroiB2uCKTUvVZlN+f7g/vRcRGWsoZYcgGTQZ7iK9sjnKOgreDgQXz5LMhJhjw+poGOSeD
+ V
+X-Received: from plbkw15.prod.google.com ([2002:a17:902:f90f:b0:2db:5cac:a627])
+ (user=morbo job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a17:902:ffd0:b0:2bf:27b2:4b80
+ with SMTP id d9443c01a7336-2dd8384ce53mr639785ad.14.1789460393875; Tue, 15
+ Sep 2026 01:19:53 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:23 +0000
+In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
+Mime-Version: 1.0
+References: <20260915081910.4142719-1-morbo@google.com>
+X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
+Message-ID: <20260915081910.4142719-7-morbo@google.com>
+Subject: [PATCH 06/28] comedi: comedi_bond: Refactor strlcat() to seq_buf in
+ do_dev_config()
+From: Bill Wendling <morbo@google.com>
+To: linux-kernel@vger.kernel.org
+Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
+ Russell King <linux@armlinux.org.uk>, Huacai Chen <chenhuacai@kernel.org>, 
+ WANG Xuerui <kernel@xen0n.name>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ Helge Deller <deller@gmx.de>, 
+ Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, 
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
+ "H. Peter Anvin" <hpa@zytor.com>, Ian Abbott <abbotti@mev.co.uk>, 
+ H Hartley Sweeten <hsweeten@visionengravers.com>,
+ Tony Luck <tony.luck@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>, 
+ "=?UTF-8?q?Thomas=20Hellstr=C3=B6m?=" <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Matthias Schwarzott <zzam@gentoo.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Tony Nguyen <anthony.l.nguyen@intel.com>, 
+ Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Arend van Spriel <arend.vanspriel@broadcom.com>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Linus Walleij <linusw@kernel.org>, 
+ Anil Gurumurthy <anil.gurumurthy@qlogic.com>, 
+ Sudarsana Kalluru <sudarsana.kalluru@qlogic.com>,
+ "Martin K. Petersen" <mkp@kernel.org>, 
+ Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>, 
+ Mike Marshall <hubcap@omnibond.com>, Martin Brandenburg <martin@omnibond.com>,
+ Kees Cook <kees@kernel.org>, 
+ Jiri Pirko <jiri@resnulli.us>, Simon Horman <horms@kernel.org>,
+ Chuck Lever <cel@kernel.org>, 
+ Jeff Layton <jlayton@kernel.org>, NeilBrown <neil@brown.name>, 
+ Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
+ Tom Talpey <tom@talpey.com>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Andrew Morton <akpm@linux-foundation.org>,
+ "Mike Rapoport (Microsoft)" <rppt@kernel.org>, 
+ Kanglong Wang <wangkanglong@loongson.cn>, Tiezhu Yang <yangtiezhu@loongson.cn>,
+ Qiang Ma <maqianga@uniontech.com>, Randy Dunlap <rdunlap@infradead.org>, 
+ Pengpeng Hou <pengpeng@iscas.ac.cn>, Ard Biesheuvel <ardb@kernel.org>,
+ Breno Leitao <leitao@debian.org>, Thorsten Blum <blum@kernel.org>,
+ Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Lyude Paul <lyude@redhat.com>,
+ Ashutosh Desai <ashutoshdesai993@gmail.com>, Imre Deak <imre.deak@intel.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Johan Hovold <johan@kernel.org>, Johannes Berg <johannes.berg@intel.com>, 
+ Miri Korenblit <miriam.rachel.korenblit@intel.com>, 
+ Alexander Stein <alexander.stein@ew.tq-group.com>, 
+ Cryolitia PukNgae <cryolitia@uniontech.com>,
+ Jiaming Zhang <r772577952@gmail.com>, 
+ Will Porter <mrwillporter@gmail.com>, Cen Zhang <zzzccc427@gmail.com>, 
+ "=?UTF-8?q?C=C3=A1ssio=20Gabriel?=" <cassiogabrielcontato@gmail.com>,
+ Rong Zhang <i@rong.moe>, 
+ Arun Raghavan <arunr@valvesoftware.com>, linux-arm-kernel@lists.infradead.org, 
+ loongarch@lists.linux.dev, linux-mips@vger.kernel.org, 
+ linux-parisc@vger.kernel.org, linux-edac@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-input@vger.kernel.org, linux-media@vger.kernel.org, 
+ intel-wired-lan@lists.osuosl.org, netdev@vger.kernel.org, 
+ linux-wireless@vger.kernel.org, brcm80211@lists.linux.dev, 
+ brcm80211-dev-list.pdl@broadcom.com, devicetree@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ linux-scsi@vger.kernel.org, linux-nfs@vger.kernel.org, 
+ devel@lists.orangefs.org, linux-hardening@vger.kernel.org, 
+ linux-sound@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Tue, 15 Sep 2026 14:13:02 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -111,250 +155,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---000000000000e0da58065b85f47d
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+do_dev_config() builds a space-separated list of bonded devices in
+devpriv->name by formatting each "minor:subdev " pair into a temporary
+stack buffer with snprintf() and appending it with strlcat() in a loop.
 
-Thank you.
-Follow-up: reading 0d5d5d0c2c72, the check assumes GRAPHICS_VERx100(xe) >=
-=3D
-1270 stands in for "MTL+ with LMEMBAR". On the PTL I hit this on, the
-initial plane is rejected.
+In preparation for removing the deprecated strlcat() API[1], use struct
+seq_buf and seq_buf_printf() to format each entry directly into
+devpriv->name. This avoids repeated rescanning of devpriv->name and
+eliminates the temporary buffer.
 
-I'm working out whether the BIOS PTE actually lacks XE_GGTT_PTE_DM there --
-I'll follow up with a proper v2. I don't have the machine in front of me
-for a few days.
+Link: https://github.com/KSPP/linux/issues/370 [1]
+Cc: codemender-patching+linux@google.com
+Assisted-by: SecurityEngineerAgent:Gemini2.5 [editor_update_file, make_kern=
+el_build_single_file]
+Signed-off-by: Bill Wendling <morbo@google.com>
+---
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: Huacai Chen <chenhuacai@kernel.org>
+Cc: WANG Xuerui <kernel@xen0n.name>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>
+Cc: Helge Deller <deller@gmx.de>
+Cc: Thomas Gleixner <tglx@kernel.org>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Borislav Petkov <bp@alien8.de>
+Cc: Dave Hansen <dave.hansen@linux.intel.com>
+Cc: x86@kernel.org
+Cc: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Ian Abbott <abbotti@mev.co.uk>
+Cc: H Hartley Sweeten <hsweeten@visionengravers.com>
+Cc: Tony Luck <tony.luck@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: "Thomas Hellstr=C3=B6m" <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Matthias Schwarzott <zzam@gentoo.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Tony Nguyen <anthony.l.nguyen@intel.com>
+Cc: Przemek Kitszel <przemyslaw.kitszel@intel.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Eric Dumazet <edumazet@google.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Arend van Spriel <arend.vanspriel@broadcom.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Linus Walleij <linusw@kernel.org>
+Cc: Anil Gurumurthy <anil.gurumurthy@qlogic.com>
+Cc: Sudarsana Kalluru <sudarsana.kalluru@qlogic.com>
+Cc: "Martin K. Petersen" <mkp@kernel.org>
+Cc: Trond Myklebust <trondmy@kernel.org>
+Cc: Anna Schumaker <anna@kernel.org>
+Cc: Mike Marshall <hubcap@omnibond.com>
+Cc: Martin Brandenburg <martin@omnibond.com>
+Cc: Kees Cook <kees@kernel.org>
+Cc: Jiri Pirko <jiri@resnulli.us>
+Cc: Simon Horman <horms@kernel.org>
+Cc: Chuck Lever <cel@kernel.org>
+Cc: Jeff Layton <jlayton@kernel.org>
+Cc: NeilBrown <neil@brown.name>
+Cc: Olga Kornievskaia <okorniev@redhat.com>
+Cc: Dai Ngo <Dai.Ngo@oracle.com>
+Cc: Tom Talpey <tom@talpey.com>
+Cc: Jaroslav Kysela <perex@perex.cz>
+Cc: Takashi Iwai <tiwai@suse.com>
+Cc: Bill Wendling <morbo@google.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+Cc: Kanglong Wang <wangkanglong@loongson.cn>
+Cc: Tiezhu Yang <yangtiezhu@loongson.cn>
+Cc: Qiang Ma <maqianga@uniontech.com>
+Cc: Randy Dunlap <rdunlap@infradead.org>
+Cc: Pengpeng Hou <pengpeng@iscas.ac.cn>
+Cc: Ard Biesheuvel <ardb@kernel.org>
+Cc: Breno Leitao <leitao@debian.org>
+Cc: Thorsten Blum <blum@kernel.org>
+Cc: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Ashutosh Desai <ashutoshdesai993@gmail.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Johan Hovold <johan@kernel.org>
+Cc: Johannes Berg <johannes.berg@intel.com>
+Cc: Miri Korenblit <miriam.rachel.korenblit@intel.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Cryolitia PukNgae <cryolitia@uniontech.com>
+Cc: Jiaming Zhang <r772577952@gmail.com>
+Cc: Will Porter <mrwillporter@gmail.com>
+Cc: Cen Zhang <zzzccc427@gmail.com>
+Cc: "C=C3=A1ssio Gabriel" <cassiogabrielcontato@gmail.com>
+Cc: Rong Zhang <i@rong.moe>
+Cc: Arun Raghavan <arunr@valvesoftware.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: loongarch@lists.linux.dev
+Cc: linux-mips@vger.kernel.org
+Cc: linux-parisc@vger.kernel.org
+Cc: linux-edac@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: linux-input@vger.kernel.org
+Cc: linux-media@vger.kernel.org
+Cc: intel-wired-lan@lists.osuosl.org
+Cc: netdev@vger.kernel.org
+Cc: linux-wireless@vger.kernel.org
+Cc: brcm80211@lists.linux.dev
+Cc: brcm80211-dev-list.pdl@broadcom.com
+Cc: devicetree@vger.kernel.org
+Cc: linux-samsung-soc@vger.kernel.org
+Cc: linux-gpio@vger.kernel.org
+Cc: linux-scsi@vger.kernel.org
+Cc: linux-nfs@vger.kernel.org
+Cc: devel@lists.orangefs.org
+Cc: linux-hardening@vger.kernel.org
+Cc: linux-sound@vger.kernel.org
+---
+ drivers/comedi/drivers/comedi_bond.c | 16 +++++++---------
+ 1 file changed, 7 insertions(+), 9 deletions(-)
 
-On Tue, Sep 15, 2026 at 4:40=E2=80=AFPM Jani Nikula <jani.nikula@linux.inte=
-l.com>
-wrote:
+diff --git a/drivers/comedi/drivers/comedi_bond.c b/drivers/comedi/drivers/=
+comedi_bond.c
+index 8e10ecab4f0d..a10cfbd04c72 100644
+--- a/drivers/comedi/drivers/comedi_bond.c
++++ b/drivers/comedi/drivers/comedi_bond.c
+@@ -39,6 +39,7 @@
+=20
+ #include <linux/module.h>
+ #include <linux/string.h>
++#include <linux/seq_buf.h>
+ #include <linux/slab.h>
+ #include <linux/comedi.h>
+ #include <linux/comedi/comedilib.h>
+@@ -170,10 +171,11 @@ static int do_dev_config(struct comedi_device *dev, s=
+truct comedi_devconfig *it)
+ {
+ 	struct comedi_bond_private *devpriv =3D dev->private;
+ 	DECLARE_BITMAP(devs_opened, COMEDI_NUM_BOARD_MINORS);
++	struct seq_buf s;
+ 	int i;
+=20
+ 	memset(&devs_opened, 0, sizeof(devs_opened));
+-	devpriv->name[0] =3D 0;
++	seq_buf_init(&s, devpriv->name, sizeof(devpriv->name));
+ 	/*
+ 	 * Loop through all comedi devices specified on the command-line,
+ 	 * building our device list.
+@@ -250,15 +252,9 @@ static int do_dev_config(struct comedi_device *dev, st=
+ruct comedi_devconfig *it)
+ 			}
+ 			devpriv->devs =3D devs;
+ 			devpriv->devs[devpriv->ndevs++] =3D bdev;
+-			{
+-				/* Append dev:subdev to devpriv->name */
+-				char buf[20];
+=20
+-				snprintf(buf, sizeof(buf), "%u:%u ",
+-					 bdev->minor, bdev->subdev);
+-				strlcat(devpriv->name, buf,
+-					sizeof(devpriv->name));
+-			}
++			/* Append dev:subdev to devpriv->name */
++			seq_buf_printf(&s, "%u:%u ", bdev->minor, bdev->subdev);
+ 		}
+ 	}
+=20
+@@ -267,6 +263,8 @@ static int do_dev_config(struct comedi_device *dev, str=
+uct comedi_devconfig *it)
+ 		return -EINVAL;
+ 	}
+=20
++	seq_buf_str(&s);
++
+ 	return 0;
+ }
+=20
+--=20
+2.55.0.1032.g73a4cd73de-goog
 
-> On Tue, 15 Sep 2026, Andrew Zhou <zhoulol888@gmail.com> wrote:
-> > Pantherlake integrated graphics can have the XE_GGTT_PTEDM bit set in
-> > the BIOS-initialised framebuffer PTE. The validation rejects this and
-> > fails to create the initial framebuffer, resulting in static.
-> >
-> > Remove the too-strict validation. Since this was the only caller of
-> > need_pte_local() outside the DGFX path, the helper is now
-> > unconditionally true there; fold the check and drop the dead
-> > need_pte_local() and has_lmembar() helpers.
-> >
-> > Signed-off-by: Andrew Zhou <zhoulol888@gmail.com>
-> > Tested-by: Andrew Zhou <zhoulol888@gmail.com>
-> > Tested-on: Intel Core Ultra X7 358H, integrated graphics, B0 stepping
->
-> This is basically a revert of 0d5d5d0c2c72 ("drm/xe: Check the PTE local
-> memory bit for initial FB in stolen"). You'd do well to dig a bit of git
-> blame and see what changed, why, and by whom.
->
-> Cc: Ville, Maarten, Matthew
->
->
-> BR,
-> Jani.
->
-> > ---
-> > v1 -> v2:
-> > - Drop need_pte_local() and has_lmembar(), now dead after removing the
-> >   iGPU validation (sashiko)
-> > ---
-> >  drivers/gpu/drm/xe/display/xe_initial_plane.c | 20 +------------------
-> >  1 file changed, 1 insertion(+), 19 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> > index 0f86b7303..3484b3033 100644
-> > --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> > +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> > @@ -27,16 +27,6 @@ static bool is_pte_local(u64 pte)
-> >       return pte & XE_GGTT_PTE_DM;
-> >  }
-> >
-> > -static bool has_lmembar(struct xe_device *xe)
-> > -{
-> > -     return GRAPHICS_VERx100(xe) >=3D 1270;
-> > -}
-> > -
-> > -static bool need_pte_local(struct xe_device *xe)
-> > -{
-> > -     return IS_DGFX(xe) || has_lmembar(xe);
-> > -}
-> > -
-> >  static struct xe_bo *
-> >  initial_plane_bo(struct xe_device *xe,
-> >                struct intel_initial_plane_config *plane_config)
-> > @@ -60,7 +50,7 @@ initial_plane_bo(struct xe_device *xe,
-> >       if (IS_DGFX(xe)) {
-> >               u64 pte =3D xe_ggtt_read_pte(tile0->mem.ggtt, base);
-> >
-> > -             if (is_pte_local(pte) !=3D need_pte_local(xe)) {
-> > +             if (!is_pte_local(pte)) {
-> >                       drm_err(&xe->drm, "Initial plane PTE has bad loca=
-l
-> memory bit\n");
-> >                       return NULL;
-> >               }
-> > @@ -85,7 +75,6 @@ initial_plane_bo(struct xe_device *xe,
-> >                           &phys_base);
-> >       } else {
-> >               struct ttm_resource_manager *stolen;
-> > -             u64 pte;
-> >
-> >               stolen =3D ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
-> >               if (!stolen) {
-> > @@ -93,13 +82,6 @@ initial_plane_bo(struct xe_device *xe,
-> >                       return NULL;
-> >               }
-> >
-> > -             pte =3D xe_ggtt_read_pte(tile0->mem.ggtt, base);
-> > -
-> > -             if (is_pte_local(pte) !=3D need_pte_local(xe)) {
-> > -                     drm_err(&xe->drm, "Initial plane PTE has bad loca=
-l
-> memory bit\n");
-> > -                     return NULL;
-> > -             }
-> > -
-> >               phys_base =3D base;
-> >               flags |=3D XE_BO_FLAG_STOLEN;
->
-> --
-> Jani Nikula, Intel
->
-
---000000000000e0da58065b85f47d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">Thank you.<br><span class=3D"gmail-">Foll=
-ow-up: reading 0d5d5d0c2c72, the check assumes </span><code>GRAPHICS_VERx10=
-0(xe) &gt;=3D 1270</code><span class=3D"gmail-"> stands in for &quot;MTL+ w=
-ith LMEMBAR&quot;. On the PTL I hit this on, the initial plane is rejected.=
-=C2=A0<br><br>I&#39;m working out whether the BIOS PTE actually lacks XE_GG=
-TT_PTE_DM there -- I&#39;ll follow up with a proper v2. I don&#39;t have th=
-e machine in front of me for a few days.</span></div><br><div class=3D"gmai=
-l_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Tue=
-, Sep 15, 2026 at 4:40=E2=80=AFPM Jani Nikula &lt;<a href=3D"mailto:jani.ni=
-kula@linux.intel.com">jani.nikula@linux.intel.com</a>&gt; wrote:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex">On Tue, 15 Sep 2026, Andre=
-w Zhou &lt;<a href=3D"mailto:zhoulol888@gmail.com" target=3D"_blank">zhoulo=
-l888@gmail.com</a>&gt; wrote:<br>
-&gt; Pantherlake integrated graphics can have the XE_GGTT_PTEDM bit set in<=
-br>
-&gt; the BIOS-initialised framebuffer PTE. The validation rejects this and<=
-br>
-&gt; fails to create the initial framebuffer, resulting in static.<br>
-&gt;<br>
-&gt; Remove the too-strict validation. Since this was the only caller of<br=
->
-&gt; need_pte_local() outside the DGFX path, the helper is now<br>
-&gt; unconditionally true there; fold the check and drop the dead<br>
-&gt; need_pte_local() and has_lmembar() helpers.<br>
-&gt;<br>
-&gt; Signed-off-by: Andrew Zhou &lt;<a href=3D"mailto:zhoulol888@gmail.com"=
- target=3D"_blank">zhoulol888@gmail.com</a>&gt;<br>
-&gt; Tested-by: Andrew Zhou &lt;<a href=3D"mailto:zhoulol888@gmail.com" tar=
-get=3D"_blank">zhoulol888@gmail.com</a>&gt;<br>
-&gt; Tested-on: Intel Core Ultra X7 358H, integrated graphics, B0 stepping<=
-br>
-<br>
-This is basically a revert of 0d5d5d0c2c72 (&quot;drm/xe: Check the PTE loc=
-al<br>
-memory bit for initial FB in stolen&quot;). You&#39;d do well to dig a bit =
-of git<br>
-blame and see what changed, why, and by whom.<br>
-<br>
-Cc: Ville, Maarten, Matthew<br>
-<br>
-<br>
-BR,<br>
-Jani.<br>
-<br>
-&gt; ---<br>
-&gt; v1 -&gt; v2:<br>
-&gt; - Drop need_pte_local() and has_lmembar(), now dead after removing the=
-<br>
-&gt;=C2=A0 =C2=A0iGPU validation (sashiko)<br>
-&gt; ---<br>
-&gt;=C2=A0 drivers/gpu/drm/xe/display/xe_initial_plane.c | 20 +------------=
-------<br>
-&gt;=C2=A0 1 file changed, 1 insertion(+), 19 deletions(-)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/g=
-pu/drm/xe/display/xe_initial_plane.c<br>
-&gt; index 0f86b7303..3484b3033 100644<br>
-&gt; --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c<br>
-&gt; +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c<br>
-&gt; @@ -27,16 +27,6 @@ static bool is_pte_local(u64 pte)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0return pte &amp; XE_GGTT_PTE_DM;<br>
-&gt;=C2=A0 }<br>
-&gt;=C2=A0 <br>
-&gt; -static bool has_lmembar(struct xe_device *xe)<br>
-&gt; -{<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0return GRAPHICS_VERx100(xe) &gt;=3D 1270;<br>
-&gt; -}<br>
-&gt; -<br>
-&gt; -static bool need_pte_local(struct xe_device *xe)<br>
-&gt; -{<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0return IS_DGFX(xe) || has_lmembar(xe);<br>
-&gt; -}<br>
-&gt; -<br>
-&gt;=C2=A0 static struct xe_bo *<br>
-&gt;=C2=A0 initial_plane_bo(struct xe_device *xe,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 struct intel_in=
-itial_plane_config *plane_config)<br>
-&gt; @@ -60,7 +50,7 @@ initial_plane_bo(struct xe_device *xe,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (IS_DGFX(xe)) {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0u64 pte =3D xe_g=
-gtt_read_pte(tile0-&gt;mem.ggtt, base);<br>
-&gt;=C2=A0 <br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (is_pte_local(pte)=
- !=3D need_pte_local(xe)) {<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (!is_pte_local(pte=
-)) {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0drm_err(&amp;xe-&gt;drm, &quot;Initial plane PTE has bad local=
- memory bit\n&quot;);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0return NULL;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt; @@ -85,7 +75,6 @@ initial_plane_bo(struct xe_device *xe,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0&amp;phys_base);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0} else {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct ttm_resou=
-rce_manager *stolen;<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0u64 pte;<br>
-&gt;=C2=A0 <br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0stolen =3D ttm_m=
-anager_type(&amp;xe-&gt;ttm, XE_PL_STOLEN);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (!stolen) {<b=
-r>
-&gt; @@ -93,13 +82,6 @@ initial_plane_bo(struct xe_device *xe,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0return NULL;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt;=C2=A0 <br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0pte =3D xe_ggtt_read_=
-pte(tile0-&gt;mem.ggtt, base);<br>
-&gt; -<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (is_pte_local(pte)=
- !=3D need_pte_local(xe)) {<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0drm_err(&amp;xe-&gt;drm, &quot;Initial plane PTE has bad local memor=
-y bit\n&quot;);<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0return NULL;<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt; -<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0phys_base =3D ba=
-se;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0flags |=3D XE_BO=
-_FLAG_STOLEN;<br>
-<br>
--- <br>
-Jani Nikula, Intel<br>
-</blockquote></div></div>
-
---000000000000e0da58065b85f47d--
