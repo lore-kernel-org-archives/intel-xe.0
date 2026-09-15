@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3807C88E75
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 18:14:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91868C88E7D
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 18:38:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A952D10E652;
-	Tue, 15 Sep 2026 18:14:55 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B26FC10E652;
- Tue, 15 Sep 2026 18:14:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7876690831953555194=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5690F10E4C0;
+	Tue, 15 Sep 2026 18:38:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UcaHnmjj";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 206B010E4C0;
+ Tue, 15 Sep 2026 18:38:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789497538; x=1821033538;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=he/XPig/uPsUn21JLshRP4nbLaHW1ZtzvlAQ5TaIbRs=;
+ b=UcaHnmjjluFEYAJq4C1KQLJvXRbMCKjuJdBbkbdDZYOy5WBgzcCtQKGU
+ 0fPeltzWzupJuKLKZmXCqMjNZY4PeiT8TyjHCMXjFybTDXmr3s9IjvR1y
+ sUxKz9K2F9ZSK8DjCmcwyzOMtxTESYoxZbqGlSz983I1d3zbc6jFSTnKv
+ 0vqd9j4KXgd/fYkavErFy5rPFMgqL8mGgKs8BVIv7zJYPK64Xruly9OGy
+ kRI1hrMruqEDo4UiUOFK3fxRxPMJb9tLVuGmOQG2jg33TrD2pxDsatvla
+ 24g3GL8OnXzP208N3/kn332Ipgb0WJcXnsi58Jfl7pHSgtDAAmdAxU/5A w==;
+X-CSE-ConnectionGUID: mwFaa1+sQh2NXfgNQbEYbQ==
+X-CSE-MsgGUID: d8n/MYrYTf+UdxC2Azt2ZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="92380252"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="92380252"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 11:38:56 -0700
+X-CSE-ConnectionGUID: +9lQygFMROe4dNrCEm4+mw==
+X-CSE-MsgGUID: /RoUaHHtTEO3mH096GRd/w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="298148436"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.190.238.88])
+ by fmviesa001.fm.intel.com with ESMTP; 15 Sep 2026 11:38:54 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, jani.nikula@intel.com, suraj.kandpal@intel.com,
+ Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v6 00/18] Enable DP2.1 alpm
+Date: Tue, 15 Sep 2026 23:34:31 +0530
+Message-Id: <20260915180449.277933-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_support_for_Common_SDP_?=
- =?utf-8?q?Transmission_Line_=28rev7=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 15 Sep 2026 18:14:54 -0000
-Message-ID: <178949609472.166927.9929890409625096705@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260915164657.3429075-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260915164657.3429075-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,147 +63,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7876690831953555194==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+ALPM support added on DP2.1 and xe3p will support DP2.1 alpm.
+This patch series extending alpm supoort for DP2.1.
 
-== Series Details ==
+Cc: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 
-Series: Add support for Common SDP Transmission Line (rev7)
-URL   : https://patchwork.freedesktop.org/series/162623/
-State : success
+Animesh Manna (18):
+  drm/i915/alpm: Add DPCD definition for DP2.1 ALPM capability
+  drm/i915/alpm: Move alpm sink capability readout into a separate
+    function
+  drm/i915/alpm: alpm_init() for DP2.1
+  drm/i915/alpm: Enable debugfs for DP2.1
+  drm/i915/alpm: Refactor Auxless wake time calculation
+  drm/i915/alpm: Auxless wake time calculation for Xe3p
+  drm/i915/alpm: Modify AUX_LESS_WAKE_TIME bitfield for xe3lpd
+  drm/i915/alpm: table based establishment period
+  drm/i915/alpm: Half LFPS cycle calculation
+  drm/i915/alpm: Modify LFPS cycle count for DP ALPM
+  drm/i915/alpm: Modify LFPS_CYCLE_COUNT bitfield for xe3lpd
+  drm/i915/alpm: Program LTTPR count for DP 2.1 ALPM
+  drm/i915/alpm: Enable MAC Transmitting LFPS for LT PHY
+  drm/i915/alpm: Replace is_edp() with alpm_is_possible()
+  drm/i915/alpm: Introduce has_alpm to decouple from pr/psr2/lobf
+  drm/i915/alpm: Compute and program switch to active latency
+  drm/i915/alpm: Program zero-based LFPS half cycle duration
+  drm/i915/alpm: Disallow ALPM for UHBR link rate
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_alpm.c     | 359 +++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_alpm.h     |   7 +-
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |   6 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   5 +-
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  15 +-
+ .../drm/i915/display/intel_dp_link_training.c |  21 +
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   |  27 ++
+ drivers/gpu/drm/i915/display/intel_lt_phy.h   |   2 +
+ .../gpu/drm/i915/display/intel_lt_phy_regs.h  |   3 +
+ drivers/gpu/drm/i915/display/intel_psr.c      |  48 ++-
+ drivers/gpu/drm/i915/display/intel_psr.h      |   1 -
+ drivers/gpu/drm/i915/display/intel_psr_regs.h |  16 +-
+ include/drm/display/drm_dp.h                  |   4 +-
+ 14 files changed, 433 insertions(+), 83 deletions(-)
 
-CI Bug Log - changes from xe-5754-4fb02d7ad2f3a5c67d0b7a341c452a07b9a9eaf6_BAT -> xe-pw-162623v7_BAT
-====================================================
+-- 
+2.29.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-162623v7_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-ptl-2:          [PASS][1] -> [FAIL][2] ([Intel XE#9115])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5754-4fb02d7ad2f3a5c67d0b7a341c452a07b9a9eaf6/bat-ptl-2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v7/bat-ptl-2/igt@xe_waitfence@reltime.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [ABORT][3] ([Intel XE#8007]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5754-4fb02d7ad2f3a5c67d0b7a341c452a07b9a9eaf6/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v7/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-    - bat-nvls-1:         [DMESG-WARN][5] ([Intel XE#8762] / [Intel XE#9069]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5754-4fb02d7ad2f3a5c67d0b7a341c452a07b9a9eaf6/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v7/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-  [Intel XE#8762]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762
-  [Intel XE#9069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069
-  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
-
-
-Build changes
--------------
-
-  * Linux: xe-5754-4fb02d7ad2f3a5c67d0b7a341c452a07b9a9eaf6 -> xe-pw-162623v7
-
-  IGT_9098: 9098
-  xe-5754-4fb02d7ad2f3a5c67d0b7a341c452a07b9a9eaf6: 4fb02d7ad2f3a5c67d0b7a341c452a07b9a9eaf6
-  xe-pw-162623v7: 162623v7
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v7/index.html
-
---===============7876690831953555194==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add support for Common SDP Transmission Line (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162623/">https://patchwork.freedesktop.org/series/162623/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5754-4fb02d7ad2f3a5c67d0b7a341c452a07b9a9eaf6_BAT -&gt; xe-pw-162623v7_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-162623v7_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5754-4fb02d7ad2f3a5c67d0b7a341c452a07b9a9eaf6/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v7/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5754-4fb02d7ad2f3a5c67d0b7a341c452a07b9a9eaf6/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v7/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5754-4fb02d7ad2f3a5c67d0b7a341c452a07b9a9eaf6/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762">Intel XE#8762</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069">Intel XE#9069</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162623v7/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5754-4fb02d7ad2f3a5c67d0b7a341c452a07b9a9eaf6 -&gt; xe-pw-162623v7</li>
-</ul>
-<p>IGT_9098: 9098<br />
-  xe-5754-4fb02d7ad2f3a5c67d0b7a341c452a07b9a9eaf6: 4fb02d7ad2f3a5c67d0b7a341c452a07b9a9eaf6<br />
-  xe-pw-162623v7: 162623v7</p>
-
-</body>
-</html>
-
---===============7876690831953555194==--
