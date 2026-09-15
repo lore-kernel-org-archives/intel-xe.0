@@ -4,63 +4,142 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0BD2C88E53
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:10:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E022C88E53
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9996A10E071;
-	Tue, 15 Sep 2026 14:10:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBB3910E2E6;
+	Tue, 15 Sep 2026 14:13:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pyzat2xq";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="VvXExnxT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0632010E071;
- Tue, 15 Sep 2026 14:10:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789481456; x=1821017456;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Oxxao6blWXExFijm5Fok3ZVkCi9b1qDzUnzbmJN9OrY=;
- b=Pyzat2xqxenEOPdcBxn4kz5P6X98/50e9LjjxDhW2u6VpzTa9vahhg93
- hfniIvGnrO2dS2dPUo4lE0LiQ9hWOqXSSnuLG8gvyIW4lj6Q8dQINItA6
- MSmOed1qb0mfmvGdgQRlE4QNqVXTF30ikVm+gjuCFuckxgD4BHz8dn3su
- th+UR7CmXc6mCfNz/7jXG/SoGxOaekIuolKV3a6AeDM/b7L59YRtre55C
- xvX8VYeXliAkLo6an6vehevGp0Y/SpEX3+/g8rBN1b69pSm+wdo1xp4qI
- 6NIkbDaScS20XGpCmy3XXncO0DXWVY3AGmNDw523S6xtdwxHk9DET1nwv Q==;
-X-CSE-ConnectionGUID: Jz8iANY5Q+2/z/sJxCjGdQ==
-X-CSE-MsgGUID: 7TCiAOW6QQG1NZ8eE5RuTQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="77404370"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="77404370"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 07:10:55 -0700
-X-CSE-ConnectionGUID: YLPfbuBUTtOAfdrt260klg==
-X-CSE-MsgGUID: QkvsK42dSOCYYZM+mWL9+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="271206121"
-Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.243])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 07:10:52 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lalit Shankar Chowdhury <lalitshankarch@gmail.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, "open
- list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-gfx@lists.freedesktop.org>, "open list:INTEL DRM DISPLAY FOR XE AND
- I915 DRIVERS" <intel-xe@lists.freedesktop.org>, "open list:DRM DRIVERS"
- <dri-devel@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
-Cc: Lalit Shankar Chowdhury <lalitshankarch@gmail.com>
-Subject: Re: [PATCH] drm/i915/fb: replace kmalloc_array with kmalloc_objs
-In-Reply-To: <20260910155846.79513-1-lalitshankarch@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260910155846.79513-1-lalitshankarch@gmail.com>
-Date: Tue, 15 Sep 2026 17:10:50 +0300
-Message-ID: <c45b9b5e99c763e37aafdf0c8d794e2499543ceb@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com
+ [209.85.216.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A63210F34C
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:08 +0000 (UTC)
+Received: by mail-pj1-f71.google.com with SMTP id
+ 98e67ed59e1d1-3965ba1ba3eso5167822a91.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20251104; t=1789460408; x=1790065208;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:content-type:cc:to:from:subject
+ :message-id:references:mime-version:in-reply-to:date:from:to:cc
+ :subject:date:message-id:reply-to:content-type;
+ bh=jabuqrMs8PQTYoTuRH1Tce2jM5ZfyHhnXojFxmEofr0=;
+ b=VvXExnxTVlFg9Zt4PHa7nWDjvwAeUpHMPtYbicYcs2fsTX06OwJz2MZVTYT1QI2xnN
+ X7CE0/+gr4RQ/09LjjtDA/TLLq8OVJ5XH4U9Dd/u0eydjhzLaHZG6N4klx8mmvTxFBAg
+ hWEijeE6Ka6calN7KO0c9ygUf4VUvw57wOc6SDKjjjcjpxHqvcPa9W9xerzVaCeIj/hK
+ Ysp1fq35p/PCK58NNGAjg8KxSSswB6FIptD/mAR7R1zDGo3QBWlq+axJtyGDA3wyyAZI
+ 78tHIWSZcg6h40v+vIaY3DEiLyqSfZdRb+Oz5RU8NZb4UNtwBiFDKRDGsMQGLEgf1hej
+ WeaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1789460408; x=1790065208;
+ h=content-transfer-encoding:content-type:cc:to:from:subject
+ :message-id:references:mime-version:in-reply-to:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=jabuqrMs8PQTYoTuRH1Tce2jM5ZfyHhnXojFxmEofr0=;
+ b=V9ndtuc1Iaj0/ahsnq/AH8e90rVzfIG8eNhJRhVs7WoGz/yWMC0NOcxhbV3SGk/x+h
+ UE4GxgDp4b2ja0r31iwy3VCP/kk13f4RP/4DMeCcg4sL7M46sVQ4VRhrnhfS3W/mCtCB
+ vOizE5qBM9EaBJLfK5AUbyzxZEOgqPGWrv19Yn6t3Q2RJLB911bHIl+8SCeD/aESndmo
+ jPveL3Wpd5MxJEvOxfb4baqDjvwRJsWlZ86XtyRgaq6dTcami/k6hBAPcAiwhBjna8cx
+ LJscrhrc+BHtip59+EMNP+vtGx45XIlCAk6LayS7oTMF7TiLa05e5iES1gzXEZSxLyhA
+ QERg==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBwlsv4eErFvtdbTlZytKFjVvI2cQSvMD/dYEsqWFF4aZvScxIbAmDy/QSfIQ2RnkNJl2DXK+jhpng==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++mjEXP32B0kAc/LyFzJuAN3ymRNjmOuFEyF7ETLEnX13QvcCzJZ
+ 2Pczx5fV+20SxT5ymfos+60IzrvnvSAFr//VtzKdG0CWJLxt1m7xRRQIoJ0BQGArEzNoAGSYRUp
+ s
+X-Received: from plde9.prod.google.com ([2002:a17:902:d389:b0:2db:820a:9228])
+ (user=morbo job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a17:902:f786:b0:2dd:4070:8f5
+ with SMTP id d9443c01a7336-2dd6c758602mr148465515ad.21.1789460407562; Tue, 15
+ Sep 2026 01:20:07 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:32 +0000
+In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
+Mime-Version: 1.0
+References: <20260915081910.4142719-1-morbo@google.com>
+X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
+Message-ID: <20260915081910.4142719-16-morbo@google.com>
+Subject: [PATCH 15/28] orangefs: Use seq_buf for debug help string generation
+From: Bill Wendling <morbo@google.com>
+To: linux-kernel@vger.kernel.org
+Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
+ Russell King <linux@armlinux.org.uk>, Huacai Chen <chenhuacai@kernel.org>, 
+ WANG Xuerui <kernel@xen0n.name>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ Helge Deller <deller@gmx.de>, 
+ Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, 
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
+ "H. Peter Anvin" <hpa@zytor.com>, Ian Abbott <abbotti@mev.co.uk>, 
+ H Hartley Sweeten <hsweeten@visionengravers.com>,
+ Tony Luck <tony.luck@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>, 
+ "=?UTF-8?q?Thomas=20Hellstr=C3=B6m?=" <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Matthias Schwarzott <zzam@gentoo.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Tony Nguyen <anthony.l.nguyen@intel.com>, 
+ Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Arend van Spriel <arend.vanspriel@broadcom.com>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Linus Walleij <linusw@kernel.org>, 
+ Anil Gurumurthy <anil.gurumurthy@qlogic.com>, 
+ Sudarsana Kalluru <sudarsana.kalluru@qlogic.com>,
+ "Martin K. Petersen" <mkp@kernel.org>, 
+ Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>, 
+ Mike Marshall <hubcap@omnibond.com>, Martin Brandenburg <martin@omnibond.com>,
+ Kees Cook <kees@kernel.org>, 
+ Jiri Pirko <jiri@resnulli.us>, Simon Horman <horms@kernel.org>,
+ Chuck Lever <cel@kernel.org>, 
+ Jeff Layton <jlayton@kernel.org>, NeilBrown <neil@brown.name>, 
+ Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
+ Tom Talpey <tom@talpey.com>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Andrew Morton <akpm@linux-foundation.org>,
+ "Mike Rapoport (Microsoft)" <rppt@kernel.org>, 
+ Kanglong Wang <wangkanglong@loongson.cn>, Tiezhu Yang <yangtiezhu@loongson.cn>,
+ Qiang Ma <maqianga@uniontech.com>, Randy Dunlap <rdunlap@infradead.org>, 
+ Pengpeng Hou <pengpeng@iscas.ac.cn>, Ard Biesheuvel <ardb@kernel.org>,
+ Breno Leitao <leitao@debian.org>, Thorsten Blum <blum@kernel.org>,
+ Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Lyude Paul <lyude@redhat.com>,
+ Ashutosh Desai <ashutoshdesai993@gmail.com>, Imre Deak <imre.deak@intel.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Johan Hovold <johan@kernel.org>, Johannes Berg <johannes.berg@intel.com>, 
+ Miri Korenblit <miriam.rachel.korenblit@intel.com>, 
+ Alexander Stein <alexander.stein@ew.tq-group.com>, 
+ Cryolitia PukNgae <cryolitia@uniontech.com>,
+ Jiaming Zhang <r772577952@gmail.com>, 
+ Will Porter <mrwillporter@gmail.com>, Cen Zhang <zzzccc427@gmail.com>, 
+ "=?UTF-8?q?C=C3=A1ssio=20Gabriel?=" <cassiogabrielcontato@gmail.com>,
+ Rong Zhang <i@rong.moe>, 
+ Arun Raghavan <arunr@valvesoftware.com>, linux-arm-kernel@lists.infradead.org, 
+ loongarch@lists.linux.dev, linux-mips@vger.kernel.org, 
+ linux-parisc@vger.kernel.org, linux-edac@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-input@vger.kernel.org, linux-media@vger.kernel.org, 
+ intel-wired-lan@lists.osuosl.org, netdev@vger.kernel.org, 
+ linux-wireless@vger.kernel.org, brcm80211@lists.linux.dev, 
+ brcm80211-dev-list.pdl@broadcom.com, devicetree@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ linux-scsi@vger.kernel.org, linux-nfs@vger.kernel.org, 
+ devel@lists.orangefs.org, linux-hardening@vger.kernel.org, 
+ linux-sound@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 15 Sep 2026 14:13:02 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,32 +154,227 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 10 Sep 2026, Lalit Shankar Chowdhury <lalitshankarch@gmail.com> wrote:
-> Replace the remaining kmalloc_array instance with kmalloc_objs.
->
-> Signed-off-by: Lalit Shankar Chowdhury <lalitshankarch@gmail.com>
+orangefs_prepare_debugfs_help_string() constructs the debugfs help text in
+a dynamically allocated buffer using repeated strlcat() calls across
+keyword loops, rescanning the buffer on every append.
 
-Thanks, pushed to drm-intel-next.
+In preparation for removing the deprecated strlcat() API[1], use struct
+seq_buf to build the help string. This tracks the write position across
+the loops, allows formatting each keyword line with a single
+seq_buf_printf() call, and checks for truncation via
+seq_buf_has_overflowed().
 
-BR,
-Jani.
+Additionally, replace the final strlcat() call that copies the completed
+string into debug_help_string with strscpy().
 
-> ---
->  drivers/gpu/drm/i915/display/intel_fb.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index 1c0859d5f829..c3e4c3f6d8cf 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -596,7 +596,7 @@ u64 *intel_fb_plane_get_modifiers(struct intel_display *display,
->  			count++;
->  	}
->  
-> -	list = kmalloc_array(count, sizeof(*list), GFP_KERNEL);
-> +	list = kmalloc_objs(*list, count);
->  	if (drm_WARN_ON(display->drm, !list))
->  		return NULL;
+Link: https://github.com/KSPP/linux/issues/370 [1]
+Cc: codemender-patching+linux@google.com
+Assisted-by: Gemini:gemini-2.0-flash-exp [shell_command_run, editor_update_=
+file]
+Signed-off-by: Bill Wendling <morbo@google.com>
+---
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: Huacai Chen <chenhuacai@kernel.org>
+Cc: WANG Xuerui <kernel@xen0n.name>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>
+Cc: Helge Deller <deller@gmx.de>
+Cc: Thomas Gleixner <tglx@kernel.org>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Borislav Petkov <bp@alien8.de>
+Cc: Dave Hansen <dave.hansen@linux.intel.com>
+Cc: x86@kernel.org
+Cc: "H. Peter Anvin" <hpa@zytor.com>
+Cc: Ian Abbott <abbotti@mev.co.uk>
+Cc: H Hartley Sweeten <hsweeten@visionengravers.com>
+Cc: Tony Luck <tony.luck@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: "Thomas Hellstr=C3=B6m" <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Matthias Schwarzott <zzam@gentoo.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Tony Nguyen <anthony.l.nguyen@intel.com>
+Cc: Przemek Kitszel <przemyslaw.kitszel@intel.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Eric Dumazet <edumazet@google.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Arend van Spriel <arend.vanspriel@broadcom.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Linus Walleij <linusw@kernel.org>
+Cc: Anil Gurumurthy <anil.gurumurthy@qlogic.com>
+Cc: Sudarsana Kalluru <sudarsana.kalluru@qlogic.com>
+Cc: "Martin K. Petersen" <mkp@kernel.org>
+Cc: Trond Myklebust <trondmy@kernel.org>
+Cc: Anna Schumaker <anna@kernel.org>
+Cc: Mike Marshall <hubcap@omnibond.com>
+Cc: Martin Brandenburg <martin@omnibond.com>
+Cc: Kees Cook <kees@kernel.org>
+Cc: Jiri Pirko <jiri@resnulli.us>
+Cc: Simon Horman <horms@kernel.org>
+Cc: Chuck Lever <cel@kernel.org>
+Cc: Jeff Layton <jlayton@kernel.org>
+Cc: NeilBrown <neil@brown.name>
+Cc: Olga Kornievskaia <okorniev@redhat.com>
+Cc: Dai Ngo <Dai.Ngo@oracle.com>
+Cc: Tom Talpey <tom@talpey.com>
+Cc: Jaroslav Kysela <perex@perex.cz>
+Cc: Takashi Iwai <tiwai@suse.com>
+Cc: Bill Wendling <morbo@google.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
+Cc: Kanglong Wang <wangkanglong@loongson.cn>
+Cc: Tiezhu Yang <yangtiezhu@loongson.cn>
+Cc: Qiang Ma <maqianga@uniontech.com>
+Cc: Randy Dunlap <rdunlap@infradead.org>
+Cc: Pengpeng Hou <pengpeng@iscas.ac.cn>
+Cc: Ard Biesheuvel <ardb@kernel.org>
+Cc: Breno Leitao <leitao@debian.org>
+Cc: Thorsten Blum <blum@kernel.org>
+Cc: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Ashutosh Desai <ashutoshdesai993@gmail.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Johan Hovold <johan@kernel.org>
+Cc: Johannes Berg <johannes.berg@intel.com>
+Cc: Miri Korenblit <miriam.rachel.korenblit@intel.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Cryolitia PukNgae <cryolitia@uniontech.com>
+Cc: Jiaming Zhang <r772577952@gmail.com>
+Cc: Will Porter <mrwillporter@gmail.com>
+Cc: Cen Zhang <zzzccc427@gmail.com>
+Cc: "C=C3=A1ssio Gabriel" <cassiogabrielcontato@gmail.com>
+Cc: Rong Zhang <i@rong.moe>
+Cc: Arun Raghavan <arunr@valvesoftware.com>
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-kernel@vger.kernel.org
+Cc: loongarch@lists.linux.dev
+Cc: linux-mips@vger.kernel.org
+Cc: linux-parisc@vger.kernel.org
+Cc: linux-edac@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: linux-input@vger.kernel.org
+Cc: linux-media@vger.kernel.org
+Cc: intel-wired-lan@lists.osuosl.org
+Cc: netdev@vger.kernel.org
+Cc: linux-wireless@vger.kernel.org
+Cc: brcm80211@lists.linux.dev
+Cc: brcm80211-dev-list.pdl@broadcom.com
+Cc: devicetree@vger.kernel.org
+Cc: linux-samsung-soc@vger.kernel.org
+Cc: linux-gpio@vger.kernel.org
+Cc: linux-scsi@vger.kernel.org
+Cc: linux-nfs@vger.kernel.org
+Cc: devel@lists.orangefs.org
+Cc: linux-hardening@vger.kernel.org
+Cc: linux-sound@vger.kernel.org
+---
+ fs/orangefs/orangefs-debugfs.c | 36 +++++++++++++---------------------
+ 1 file changed, 14 insertions(+), 22 deletions(-)
 
--- 
-Jani Nikula, Intel
+diff --git a/fs/orangefs/orangefs-debugfs.c b/fs/orangefs/orangefs-debugfs.=
+c
+index 9f94919a6bc6..6e2f9887eab4 100644
+--- a/fs/orangefs/orangefs-debugfs.c
++++ b/fs/orangefs/orangefs-debugfs.c
+@@ -37,6 +37,7 @@
+  */
+ #include <linux/debugfs.h>
+ #include <linux/slab.h>
++#include <linux/seq_buf.h>
+=20
+ #include <linux/uaccess.h>
+=20
+@@ -623,10 +624,10 @@ int orangefs_prepare_debugfs_help_string(int at_boot)
+ 	char *client_title =3D "Client Debug Keywords:\n";
+ 	char *kernel_title =3D "Kernel Debug Keywords:\n";
+ 	size_t string_size =3D  DEBUG_HELP_STRING_SIZE;
+-	size_t result_size;
+ 	size_t i;
+ 	char *new;
+ 	int rc =3D -EINVAL;
++	struct seq_buf s;
+=20
+ 	gossip_debug(GOSSIP_UTILS_DEBUG, "%s: start\n", __func__);
+=20
+@@ -640,17 +641,14 @@ int orangefs_prepare_debugfs_help_string(int at_boot)
+ 		goto out;
+ 	}
+=20
++	seq_buf_init(&s, new, string_size);
++
+ 	/*
+-	 * strlcat(dst, src, size) will append at most
+-	 * "size - strlen(dst) - 1" bytes of src onto dst,
+-	 * null terminating the result, and return the total
+-	 * length of the string it tried to create.
+-	 *
+ 	 * We'll just plow through here building our new debug
+-	 * help string and let strlcat take care of assuring that
++	 * help string and let seq_buf take care of assuring that
+ 	 * dst doesn't overflow.
+ 	 */
+-	strlcat(new, client_title, string_size);
++	seq_buf_puts(&s, client_title);
+=20
+ 	if (!at_boot) {
+=20
+@@ -665,24 +663,18 @@ int orangefs_prepare_debugfs_help_string(int at_boot)
+ 			goto out;
+ 		}
+=20
+-		for (i =3D 0; i < cdm_element_count; i++) {
+-			strlcat(new, "\t", string_size);
+-			strlcat(new, cdm_array[i].keyword, string_size);
+-			strlcat(new, "\n", string_size);
+-		}
++		for (i =3D 0; i < cdm_element_count; i++)
++			seq_buf_printf(&s, "\t%s\n", cdm_array[i].keyword);
+ 	}
+=20
+-	strlcat(new, "\n", string_size);
+-	strlcat(new, kernel_title, string_size);
++	seq_buf_puts(&s, "\n");
++	seq_buf_puts(&s, kernel_title);
+=20
+-	for (i =3D 0; i < num_kmod_keyword_mask_map; i++) {
+-		strlcat(new, "\t", string_size);
+-		strlcat(new, s_kmod_keyword_mask_map[i].keyword, string_size);
+-		result_size =3D strlcat(new, "\n", string_size);
+-	}
++	for (i =3D 0; i < num_kmod_keyword_mask_map; i++)
++		seq_buf_printf(&s, "\t%s\n", s_kmod_keyword_mask_map[i].keyword);
+=20
+ 	/* See if we tried to put too many bytes into "new"... */
+-	if (result_size >=3D string_size) {
++	if (seq_buf_has_overflowed(&s)) {
+ 		kfree(new);
+ 		goto out;
+ 	}
+@@ -692,7 +684,7 @@ int orangefs_prepare_debugfs_help_string(int at_boot)
+ 	} else {
+ 		mutex_lock(&orangefs_help_file_lock);
+ 		memset(debug_help_string, 0, DEBUG_HELP_STRING_SIZE);
+-		strlcat(debug_help_string, new, string_size);
++		strscpy(debug_help_string, new, DEBUG_HELP_STRING_SIZE);
+ 		mutex_unlock(&orangefs_help_file_lock);
+ 		kfree(new);
+ 	}
+--=20
+2.55.0.1032.g73a4cd73de-goog
+
