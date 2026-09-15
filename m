@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62A89C982CC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18B6AC982C9
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F255110ECEA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7C1C10EBC2;
 	Tue, 15 Sep 2026 14:13:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="uy+5hXyh";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="cfm9BXl1";
 	dkim-atps=neutral
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com
- [209.85.214.197])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FE6E10F34C
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:19:52 +0000 (UTC)
-Received: by mail-pl1-f197.google.com with SMTP id
- d9443c01a7336-2d63bad3d09so67415005ad.3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:19:52 -0700 (PDT)
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com
+ [209.85.214.199])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B79D10FAF3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:19:57 +0000 (UTC)
+Received: by mail-pl1-f199.google.com with SMTP id
+ d9443c01a7336-2d001671a54so82263675ad.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:19:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460392; x=1790065192;
+ d=google.com; s=20251104; t=1789460397; x=1790065197;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=e1xTXUdJBJy44H7rwXmvsQjBVl/r1YS8CWHRr4HN54c=;
- b=uy+5hXyhZiLV4UvWpo7fdn1d46xWgRgtESN0sVHXh1vf7qb06Issn48Q8Yjkz2d+l3
- 3Bgn45aAPK+k6DwGgoMEmG1X1tHnQTxCoy7Cy11jtT5kqitPUlpcn81Z0wuPD2RR5e3G
- wMiDTWfGVDMQOEJhUUL/gxHCogD04OVecIfFvsJ7SaMfvx9maR7UfuqJzJ/EGT0GJID1
- sPH64zvLybmV6/ohTH/yKcFuJp0/j+1h1QRMNzqVL550TllpOyAQxT1sqH0XVbCWj6JD
- HFlsRQ3Smr/0BfKpcNxYjBZBIIIAp64fJuYeFH7dyI8k5hNiAA2sEBVmXUBVOmE02VVk
- hdVg==
+ bh=GTPji740I5eKt5N5xuOCbc+sv4InPenFdSBTJb2/BeU=;
+ b=cfm9BXl1y0SFCDKJ+zHlJ6VLoLPwQCpHehZXKYvm5R9ZhvC+2NH9pl1BoKgfVaRL4R
+ LjDe3k8Jhfdb3ZxO8IFaqX8RXa5K5ZnLEBmRhA3L4k1d6s/f2ETT0b8PxlekpHYbpP/J
+ hvserCgxJmo/Gjr2yTKBrHuY1Fftt6g2eQdhmvA2soFBR5PTIRRmUsLZX464MfrkJfPV
+ UFoMCxXT6orNFNFsEFtLGUxyx2d9t81UhTmtUkMI/TC8tWzHZKVrxt6oaG9K+IVjYnQr
+ /+5YFcvYdSqwD02Riy7hA6IOuOeGBbuInsAZ57UAaEOlvnAGMIipoGHnFKEXc7rDPv1d
+ hY/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460392; x=1790065192;
+ d=1e100.net; s=20260707; t=1789460397; x=1790065197;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=e1xTXUdJBJy44H7rwXmvsQjBVl/r1YS8CWHRr4HN54c=;
- b=Q448GzPgzNRvEl+6XelWbQBMy5XGbzMrCrbtsP2k4cTkmtbO1uvo+c+BBSehSn9A48
- j2YKRfS7cyMQpb6aqnv13dLrGUcMePzINN1jBee0H2cxVmWnTXSLTS0ZDKV42LIMJ9D8
- Eu7rNe3ifAQSvBqaG42dcGGoOaI3PM2bel76LzxZxVSRPkbhYX2M7Zc+7KCDEGfMUbGl
- Zgl0hAWup5YfyB8ODyhq2m13cs1z1ydQOZeGR4inmmcQ2XSnnviDSM4iENsth3kN4lUi
- A6rxP8v11IBKBB9Nclm9zQJXBVSw+Bxf3I70NJDQHuQ1IEWiBgLLXjUXw2QWM///3BTW
- VmGA==
+ bh=GTPji740I5eKt5N5xuOCbc+sv4InPenFdSBTJb2/BeU=;
+ b=Av55uBzpxxoKBdzDyu8rxJeSQTsamNiLsAtQRAVQHnA8YwUW4GkFgSZx1G8WDshr//
+ FN2iwAwuVnV5kruU4o9T9wAIOqkpdXZ7Qqj0zftKvhwAL2JhYFgb3fGOQQfY70c9ZBrN
+ YqFKd95kTvCfLw5trpUvn1KM41W7d5O93qlrx4oNjPpj/cQlkW8RJYu/tpDeCfNSNL3b
+ A+CkXscM276cHrv///MxeblL1GcpLmn4QT9nAC+BeJ9MR78UNb1KV4M0VWoaPp8MNmJ1
+ FzaR/OqeipJeKxTvC5N1A4v4vJDd7rkM7R3epv/YBhvNJ8huV65STh4aSr61XZMvS8Zg
+ RdUg==
 X-Forwarded-Encrypted: i=1;
- AKwUvBygagCHQx8VdhGvppvtymfOzZuiQEONiQxMLCtcQ7WYD7X4YocHC06wcJ77vvb+Ztvj+cgRZI7ORw==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++kKI2GZTkqxRPpFM1Gu27ltJDiLxkg100cA73du4TkH2IVHAXfM
- vVbIYY5RJMvEn7+Db1brWnaeOVyLTiKB1ixR/mfZJnkCv6ovznz/PcnxBHYjBAHzBUBAv40eOve
- t
-X-Received: from plty2.prod.google.com ([2002:a17:902:8642:b0:2d8:da84:22a9])
+ AKwUvBzfikJ2uGG+aSgOzxGy3A7g30+bmr0GXODQLClvyr6KelSstjd341ZS5s/uXSCWSpX680RPht18RQ==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++k/SOO9u1INgYtUjBGakk6+NSiIe75Uex7Oil4QlFUQE3sPZEMG
+ oi58BQkyPgSf0HAfU2foq2PBbfzNVycPZNdScNPDb6ePdLlL61HltHrOCzYjMW/nDDjMqF69Lbo
+ G
+X-Received: from pltt2.prod.google.com ([2002:a17:902:d142:b0:2dd:5303:f006])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:903:b8e:b0:2d8:d4d3:3fbb
- with SMTP id d9443c01a7336-2dd6c73445amr126364165ad.15.1789460391377; Tue, 15
- Sep 2026 01:19:51 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:20 +0000
+ 2002:a17:903:244d:b0:2c8:248a:5dbb
+ with SMTP id d9443c01a7336-2dd6c5eecb7mr124092305ad.7.1789460396342; Tue, 15
+ Sep 2026 01:19:56 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:26 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-4-morbo@google.com>
-Subject: [PATCH 03/28] ARM: atags: Replace strlcat() with snprintf() for
- cmdline extend
+Message-ID: <20260915081910.4142719-10-morbo@google.com>
+Subject: [PATCH 09/28] drm/dp_mst: Refactor build_mst_prop_path() to use
+ seq_buf
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
 Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
@@ -155,17 +155,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When CONFIG_CMDLINE_EXTEND is enabled, parse_tag_cmdline() uses two
-strlcat() calls to append a space and the bootloader tag command line to
-default_command_line.
+build_mst_prop_path() constructs an MST property path by formatting port
+numbers into a temporary buffer and appending them to "proppath" with
+strlcat() in a loop.
 
-In preparation for removing the deprecated strlcat() API[1], compute the
-length of default_command_line once and append the space and tag command
-line in a single snprintf() call.
+In preparation for removing the deprecated strlcat() API[1], use struct
+seq_buf and seq_buf_printf() to format the path components directly into
+"proppath", eliminating the temporary buffer and repeated string scans.
 
 Link: https://github.com/KSPP/linux/issues/370 [1]
 Cc: codemender-patching+linux@google.com
-Assisted-by: developer:gpt-4o [editor_update_file, shell_command_run]
+Assisted-by: Claude-3-5-Sonnet:20241022 [editor_update_file, make_kernel_bu=
+ild_single_file]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -279,28 +280,51 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- arch/arm/kernel/atags_parse.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm/kernel/atags_parse.c b/arch/arm/kernel/atags_parse.c
-index 4ec591bde3df..21140b44d96e 100644
---- a/arch/arm/kernel/atags_parse.c
-+++ b/arch/arm/kernel/atags_parse.c
-@@ -121,9 +121,10 @@ __tagtable(ATAG_REVISION, parse_tag_revision);
- static int __init parse_tag_cmdline(const struct tag *tag)
+diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/dr=
+m/display/drm_dp_mst_topology.c
+index 7ce9e212770a..229b5fec44bf 100644
+--- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+@@ -29,6 +29,7 @@
+ #include <linux/kernel.h>
+ #include <linux/random.h>
+ #include <linux/sched.h>
++#include <linux/seq_buf.h>
+ #include <linux/seq_file.h>
+=20
+ #if IS_ENABLED(CONFIG_DRM_DEBUG_DP_MST_TOPOLOGY_REFS)
+@@ -2216,19 +2217,21 @@ static void build_mst_prop_path(const struct drm_dp=
+_mst_branch *mstb,
+ 				char *proppath,
+ 				size_t proppath_size)
  {
- #if defined(CONFIG_CMDLINE_EXTEND)
--	strlcat(default_command_line, " ", COMMAND_LINE_SIZE);
--	strlcat(default_command_line, tag->u.cmdline.cmdline,
--		COMMAND_LINE_SIZE);
-+	size_t len =3D strlen(default_command_line);
++	struct seq_buf s;
+ 	int i;
+-	char temp[8];
+=20
+-	snprintf(proppath, proppath_size, "mst:%d", mstb->mgr->conn_base_id);
++	seq_buf_init(&s, proppath, proppath_size);
 +
-+	snprintf(default_command_line + len, COMMAND_LINE_SIZE - len,
-+		 " %s", tag->u.cmdline.cmdline);
- #elif defined(CONFIG_CMDLINE_FORCE)
- 	pr_warn("Ignoring tag cmdline (using the default kernel command line)\n")=
-;
- #else
++	seq_buf_printf(&s, "mst:%d", mstb->mgr->conn_base_id);
+ 	for (i =3D 0; i < (mstb->lct - 1); i++) {
+ 		int shift =3D (i % 2) ? 0 : 4;
+ 		int port_num =3D (mstb->rad[i / 2] >> shift) & 0xf;
+=20
+-		snprintf(temp, sizeof(temp), "-%d", port_num);
+-		strlcat(proppath, temp, proppath_size);
++		seq_buf_printf(&s, "-%d", port_num);
+ 	}
+-	snprintf(temp, sizeof(temp), "-%d", pnum);
+-	strlcat(proppath, temp, proppath_size);
++	seq_buf_printf(&s, "-%d", pnum);
++
++	seq_buf_str(&s);
+ }
+=20
+ /**
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
