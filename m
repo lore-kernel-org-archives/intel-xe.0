@@ -4,161 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9398C88E53
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 04:04:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C34FC88E53
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 04:06:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A8AE10F90D;
-	Tue, 15 Sep 2026 04:04:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8BBA10F912;
+	Tue, 15 Sep 2026 04:06:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WtltT9qv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HSb2jHsQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F113410F90D;
- Tue, 15 Sep 2026 04:04:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94A7D10F90D;
+ Tue, 15 Sep 2026 04:06:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789445098; x=1820981098;
- h=message-id:date:subject:to:cc:references:from:
+ t=1789445182; x=1820981182;
+ h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=FTV7Af81hHvQ6Ci4AC4sW0j5+G6NIHrge2bdjbr2qns=;
- b=WtltT9qvpzDID7kgYtI/ocXMizZLQMkY1V/w9gEz4aIQFZfjaA8xSRfJ
- VP/I1AoDxEzwTSdktOKEL2PrqHb1LE0Yha5G+KrstZUqZqMukzXQ0ma1z
- v0WycIRLmEejdxM2w+2awcN2z2LwiLnNVU1+PuEd97kvoxjefkZTepcS+
- hMoQ/zbnDtkt2Dw5d82rD4v49r92c18O5VPsHkBKB4pbQJi0Q1DnZp3pL
- l2L4vINw9umIjcbBLOLbT87p3vxD4tWOU1cGckGfk3Z9vb485vrxLCmbF
- MGDpHPQxbaBvR8dk69wR2VsfcDVSkAebjlHLs3v7m3A0b1cof4/+AELr/ A==;
-X-CSE-ConnectionGUID: tXLZr1AHRQyJ8iT4QGovNA==
-X-CSE-MsgGUID: PwJml+bOTwWVJRnaKKCDWA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89843099"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89843099"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2026 21:04:50 -0700
-X-CSE-ConnectionGUID: +7HS7IrvRHmoV/OBsaej2w==
-X-CSE-MsgGUID: e36caxKhRXiw8pZov/xpOw==
+ bh=yWsgRoGK2OETYJnDCTepZ8CGe2kS48zmZyRMPdFWrCo=;
+ b=HSb2jHsQR2z4f1tD0a/LO1nVSgIeuvcwUkRQ4/MLsrVqopPdIoznYqeb
+ ChCgiVhWggvg2ndJcTc2lh+Zi6uPrAjZLgv0sGNqCvAWl1riAwGsUXrsY
+ CzdMMrU7bWJEoWIsU1HWer5hmo5rrsZc3yu+NiNMVWYGjJ+dhC4KYWoFt
+ 2LCv0CM3EP10bHNMRKbWFTCFda7q+Rhzbdl+AaPnEcWr1+HaZRt7h/IpY
+ POITiKMBlUqKiEzeC2zuvdwSRQUH0rs/VAeuWzARDBCClNIIGXAAr66oe
+ TYPqjRUeJNKWOqC6FMIjRdnWFVIXANOxaPQKWm7JI/FjGVuR2y0qOioiP w==;
+X-CSE-ConnectionGUID: insOqHuvSm+978+R7Q8dHQ==
+X-CSE-MsgGUID: 78DL/aWJRGCTTL+FMv+DKQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89741109"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89741109"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2026 21:06:22 -0700
+X-CSE-ConnectionGUID: /5ENcfPAQ7iwQCgkIzXWqw==
+X-CSE-MsgGUID: yuurIcfsTuS6Ge7TPzpGYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="273352647"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2026 21:04:50 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
+   d="scan'208";a="1038106"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa011.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2026 21:06:21 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 14 Sep 2026 21:04:49 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.46; Mon, 14 Sep 2026 21:06:20 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Mon, 14 Sep 2026 21:04:49 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.41) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Mon, 14 Sep 2026 21:06:20 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.12) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 14 Sep 2026 21:04:47 -0700
+ 15.2.2562.46; Mon, 14 Sep 2026 21:06:19 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=P/SV3XjdIZcAim1RjoOU3oOQisLTva7P/Pb7hLhxATg0tFJlIFOxPPhPnoFATNQ3H6i2BGjgZrp0Kc044ccGDuRRK/jQW+LxtppEOq8KwNmz9vFqchbM5e3H9iwhzGphG8hfZs/5MVnuruZzgA9QIYvKAjD1PLm9mO24JM2qI0IBWeIT4QX2TN7lJqMhvsCQ9PaDIMTNerpSiBscLA5Qtclr3lmSvxMG/zta12X7sNqxvi48TOs0tB0Hct2PIJDeQacLNsFVb2/jok5jTYrXVUJOIq/fSORZX0KGfIBetsWYKq87MPT7JIFVnIVTREHkNQBpKUWGKyl4FohCRNO6nQ==
+ b=MOUI6avSJBmUQx0A8xEvQxtUJ3yv8adInq9Q8Uggnf5XHoRhZzE1V0jpa6S97uz1OV1ERv8VM3Fncrj0GoR3FJWLCIpHcUe5FITXUd8R4fXiS+fsh/06H/C4RbfkGixW2oV866dt/0COKLvyBE/HPSNOStX7PSHsZ7pP9URDaY+rMVs+ljg5zA/vK96Yk+Ea+iAKuRyMoXZlcrJ0vL5Y8T4BM7L7WQ5X8SBod3Zzg+kJejfSanqVISEHXOdtslUrMRWvqS3yz+6G/Lef2264B/alYrX9obFu8B82KB1zwsNOLxgZKo6VNn0uWk0kHc5eENMwvaTG94DdB0Nr5iYL7A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+iD93WDhh5WG0A6lOGbcj85yD1U44KgodqB1Ccf9y/c=;
- b=YJYKjyhuQeUO+nl4wxhzfd7+3Mr5hR7tVZhPhy0VvkJoLiUgYVeC1KMzfvYP6vmwbjyKUL0e3KhMNgPihtCe62SSCeNHA8dnSCbGQGClJ4sDcN2idg1Hxapstnnm92fdt4DqDbiV2riZl5rRI1/N/tkV8e1DQWBQJdkwZXaZLTad5qCcCZWHjdqhieZnUBgZ3Bf881mdzY4YOJJlv9XB5iHDVgs6nWhGSy4F/uheN+fvjsJtuAV5LpeteHENO0sqlPOIsoLMHIRWGJPciH8JbtY9cML/WZDoWhJjE6kq6MNNEQYeQBFrCAlCtc5/NApaSR6hWX6Q/01f/w3s05tb5Q==
+ bh=0YnR420A6mo1D1EqDsffRqUL3JlDcRybKEM6UQm4jos=;
+ b=wKGmpOEUbafLxs1ZUQDT0ClWQ96d8yDmelcr3tYYoH0mjKws+lQ1p5/fR2ik6QOXeoIbQBvREapxgn3YXgCY3LbXWPbu5Db/DBu/+baG1+oXHzDQzCFstizurNQs406gzhpb8U4CisDf1W1tJx3AuaJzEpvc8MCJq8bnts0kpI5V+UBCQCdp4gSDxNw8HZnNt0S+1SXIR3CAjRXlexPNw1FA1vYsBjSYOaPQhNE9Fa6wlAYzwjKk8N7aqTph4vQIDljPDaVeoNnOrxlqhHNhysfyDfJYoPH3wRX/B5N9U/nQyzWgNYRi1uf+tsnNPVW62CwGs2xJ4zmZLdeDOX1S8g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN0PR11MB5709.namprd11.prod.outlook.com (2603:10b6:408:148::6)
- by DS0PR11MB7444.namprd11.prod.outlook.com (2603:10b6:8:146::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.11; Tue, 15 Sep
- 2026 04:04:45 +0000
-Received: from BN0PR11MB5709.namprd11.prod.outlook.com
- ([fe80::ad31:3f30:20b8:26c]) by BN0PR11MB5709.namprd11.prod.outlook.com
- ([fe80::ad31:3f30:20b8:26c%4]) with mapi id 15.21.0406.007; Tue, 15 Sep 2026
- 04:04:45 +0000
-Message-ID: <6b104c92-d9c9-4b76-ba60-f3ced2cf7e6b@intel.com>
-Date: Tue, 15 Sep 2026 09:34:37 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/13] drm/xe: Drop queued page faults when device I/O is
- blocked
-To: Matthew Brost <matthew.brost@intel.com>
-CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, <intel-xe@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <himal.prasad.ghimiray@intel.com>,
- <thomas.hellstrom@linux.intel.com>
-References: <20260827101801.1247654-1-arvind.yadav@intel.com>
- <20260827101801.1247654-4-arvind.yadav@intel.com>
- <apXnb3_WmpYhPeUo@intel.com> <ec7667c6-edc8-497c-97f5-872ba5d63bc3@intel.com>
- <ape0gZng5JWbd+Sa@gsse-cloud1.jf.intel.com>
- <ape1I1UFDGD2r5Fv@gsse-cloud1.jf.intel.com>
+Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::5b) by IA1PR11MB7725.namprd11.prod.outlook.com
+ (2603:10b6:208:3fd::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.12; Tue, 15 Sep
+ 2026 04:06:12 +0000
+Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
+ ([fe80::5be7:2ceb:99ef:6334]) by DS4PPFE901A304F.namprd11.prod.outlook.com
+ ([fe80::5be7:2ceb:99ef:6334%8]) with mapi id 15.21.0428.008; Tue, 15 Sep 2026
+ 04:06:12 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Murthy, 
+ Arun R" <arun.r.murthy@intel.com>, "jani.nikula@linux.intel.com"
+ <jani.nikula@linux.intel.com>
+Subject: RE: [PATCH v6 12/13] drm/i915/dp: Adjust SDP guardband requirement
+ for CMN_SDP_TL
+Thread-Topic: [PATCH v6 12/13] drm/i915/dp: Adjust SDP guardband requirement
+ for CMN_SDP_TL
+Thread-Index: AQHdQ5J6YFQniGSO4EqhtMp5gsmJcLbPB7Tg
+Date: Tue, 15 Sep 2026 04:06:12 +0000
+Message-ID: <DS4PPFE901A304F8E5B6E1CAF206387B67EE3BA2@DS4PPFE901A304F.namprd11.prod.outlook.com>
+References: <20260913145649.3240904-1-ankit.k.nautiyal@intel.com>
+ <20260913145649.3240904-13-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260913145649.3240904-13-ankit.k.nautiyal@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: "Yadav, Arvind" <arvind.yadav@intel.com>
-In-Reply-To: <ape1I1UFDGD2r5Fv@gsse-cloud1.jf.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA0P287CA0009.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:d9::9) To BN0PR11MB5709.namprd11.prod.outlook.com
- (2603:10b6:408:148::6)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN0PR11MB5709:EE_|DS0PR11MB7444:EE_
-X-MS-Office365-Filtering-Correlation-Id: ad3702c5-fa4b-4b1a-eee4-08df12de7a3c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|366016|376014|4143699003|11063799006|56012099006|10067099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: OoDaOFVl4akIhapQl0fET1YcRCDw8s1CpZQ8wp3Hd0nBBPN9HzBxy5sBIzXPWDmi6CRUa0AFbTVPIsSBs4Zr1DxhOGbbtpZoPayzXgLrzjlXc0xi/pIHjTRVd+FcQd4NssHBmUxVABt+J32t/ZoHwZrdwI4XyVVOf8IIOIJ9uZWCIkc5hWrKG68D+o2k3Elzhe1lF0JRitf3zw+lVQs7xWErGkURmgbk/Y6XsTxaUK+51bC+qwsvHFKzPN9sr5PwoWDfbYICyt1/W1YydBVkvm/LJuCyyBNG+SZDYZLuQZ0MLhx3Og6L2wmpUPvgome17jcM3nMb+YmhLchApppuJcpiehoaC9Y2r0s67LKlLqBYKlTCPdF32nDdHyenzXwXFM7oWct1OwMidjRMMEdMo9meEw9DfDjoFt2gN21HaUlm7mhCuGdn5ACQuV7H4RjzYUOUgsQZkfss0e42FgR7RC6Gr2BNFhSUzOFpaO78JZpJRKIQgQfmMBc0E8MLdiJ67k1VLBoq2vpGU+Y76NlNpmGwK/I/afFfHfCOD6golqOyylIeUjAlqWa04MskBpKrxYtDY3nOF+Mt8qrXYRsk9xMQkqw4WGIHXBIO8barT1cRHprb3HIyOSYspDVVQ+jl7/mPv+jAdG8s217R8EffC8uV2k0okLdetG8FhAbsLqs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN0PR11MB5709.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(4143699003)(11063799006)(56012099006)(10067099003)(18002099003)(22082099003);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|IA1PR11MB7725:EE_
+x-ms-office365-filtering-correlation-id: 71a91bc7-116f-489a-ab72-08df12deae2c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|23010399003|376014|366016|1800799024|22082099003|18002099003|38070700021|4143699003|10067099003|11063799006|56012099006;
+x-microsoft-antispam-message-info: 4pBX7iIocBrTvSisQZK2gU9CztTzlWrFUHFDam1vxmI8hK86k2kGT00Toz0VTApu9cdidJQ5KqcJ/PtiOsoxuwR7R0vt/jyLOutbxIyVpQ8sjI3tJITeYgm9yc94896SJ7DfMpDZV9mL8BzjAX8znBOfb4s+gWMMPfnjCIS7QmQBSOneoqFOWF/jdhCHsNRxnyiRg2h0pCL7SFtLkRCAB6htXLAFOVhS5i3mbSwGtMLw/nybrbZsUu6E05p7RAGFeA2MyaHu5zsKnAOJis8lEGsvzsFk+P952HHnp7sLnGXOB4N9ZBblwNOn5g8EmyK0g77ya3ZsMI/n5LwxHEbN2St4V5qu/VQX0zTaDqoyTaOpmMHoZmQ//ECIiFhbgDUCfLMshsrtFUuG24nEN01AO2AjkCWxSHGFrVl7sdbSEErnAsmszGHhBfzRMp9RSOCvgjUwyY/3B5RNP8AVlUFGCEK2n/pRuFzMeqQYK4eH03/NbF5oZAQkKp4+b/y5Kn+WFTnNb13b7/batZIkJPYk173WBAdJ4fUZ1KvpqRUKrPWM7LYWpifHYeG49TI+7rmpLw3MeZIscll3W7Io+u2wOgHz7PI3CKTrehENl1Vd69vZLZFLe/D27/OzegmG1OCfHIuWU8Lq/BkEIpDelNXeB/kL2n9Om26YwjxnOrewj/WI1NS1rm0Y5Af1Xnmlm10f8+B0hODUCh/+si/yWp5yYQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPFE901A304F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(22082099003)(18002099003)(38070700021)(4143699003)(10067099003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RTdHUVMveVRyUXFKYWtqWW9LKy9EU2IxbVdCaDlFSjExYzlrQlRTUFA1ZUVD?=
- =?utf-8?B?aFBiTG1xNENwL0Mzb1RadEpHdTlmK094T3ZnbUY3ZGQ1Y3RISGVFbStycXFS?=
- =?utf-8?B?RjVNOElaQVJ6aTdwdytsNk1rd1pJMC9ZZ0JQTXRQcnoyVFMrSVVSTmtjcVJU?=
- =?utf-8?B?S2NaWTVQNGpFbmtRWTZhSWVrcFM1Tm1FNmNOc2JUSGRBL3VxRG1Da2FxOGJI?=
- =?utf-8?B?WWFhY21xRm5NM29Eb3QwTHNmb2w1VXE2UmlpcUJ2Nkw3MFNSYjZ3UHJ0Mk0v?=
- =?utf-8?B?S3JvNU1pQnludksydW45WE5aMkxieXh1NXNUMk5TdU9FNVpQUnpDQkl0Qm1z?=
- =?utf-8?B?NlFJRTBjejFLY2cvY0JXV25Yc29qWjdVUWw2V3FEa09RbWlqWmhXVFJBSU5v?=
- =?utf-8?B?YUxYbVQ0NFNEMU52VnhLUzBUVEM3WXJBcFlSWXJhRkE1cExMMFUyWnF1UUZM?=
- =?utf-8?B?SlNZVzM1Nkd2YnV0N0E4TTV6eitiMXREMm0vUGNrL3hRd2NDandDWEI4ck94?=
- =?utf-8?B?OGl4THlMd0l1YU9mUm0xUmdGeVVQWFVjZVBEMFlOajkvV3JsNXcvN2dUV3B6?=
- =?utf-8?B?SGF5V3JhVW5MSHpNdGxMUXpzazFUSUFwQVZWaHNjd1lUK0RHcjlhVG1XeHZy?=
- =?utf-8?B?c0dISkk4Y0VBeFV1QmFyOHd0bW81enRIU2p4dUZrcEJ2QkY1MnJBNUhNbmRm?=
- =?utf-8?B?eUVIaURrTFlFaTZFaG01WHpCRHRkOTFCZWJvcmFBUXhDTW5UMENXeFRBbGZB?=
- =?utf-8?B?anJORWJwUGFrREtSUVR5MUtWNW11QnY0VVpKcWM5TXVWRURCUjJkdmNHNUdv?=
- =?utf-8?B?Sk8rU3NJVHZySzNOTnlUcUVYdzJNbG5KbTVya1JQZTFDYzh2UlpvTmRLMWhm?=
- =?utf-8?B?MFZWWTh5Wk1nWkU0dEpQc3dUZCtRUENsZitDQnFVYnFiK2FtVFdCK2xUbG5I?=
- =?utf-8?B?dHJoVEVBcU43WFpiNDFtSUVVeHRMY1lSdExyai9seHV6bGMxRmIxb1VTOWUr?=
- =?utf-8?B?OUMyMDBVWUIrQ0JpWm1LRlJtWkNBTkllT3FvUDFLUjlEdUZZc3RUT1owSTNl?=
- =?utf-8?B?eDUva2lvdGZBYzIrQklQMGZ1Mm4yMEdacStSMlJVSlBDZ3FSanE5Y2hKNGdZ?=
- =?utf-8?B?a21FdFFnOWwvQll1cTVSREZWRVQ2bUtpL3J3LzFTdFNDUGdsU2ZKQTJTaHlo?=
- =?utf-8?B?VFhKRnoxbTRtZ3h0Nlo1SlVwMlNsMFNXRkYxam5pTjQ0Wmd0NUJVaytKeXNs?=
- =?utf-8?B?amEyZ0pBMWVCTnR5Q1k4U2EreEZWTityRklHdSt6K2FrY0VZT2plMWVJOGVP?=
- =?utf-8?B?ZFVQREJEV2RhL0wzbzYwdEtuNnJTL3l6UEk4UEU2R2tnSzE4MlRMbWFrK3Vp?=
- =?utf-8?B?bEpKVnBmOFRtc3NoRllPeTNSUC9sM2xmYisxNmNlUHROYXZUbml5MFdLaFRr?=
- =?utf-8?B?WmQrcXYwZkdWNVVnNWJxdC9mWVpwNGRTN2Q2OVF2L2UrL0Z6Wmt3eWJoNXJW?=
- =?utf-8?B?UFV0L0NmdGxaM3cxbHMybFBTV0pMVjBUaXJZQVBac2FJV1dtSEFIb09OMURr?=
- =?utf-8?B?QW1VUFllem5RUXdsWUZlSS82TjFIRGh6Y2FGMUhhSUx0dmxpV04xckpzdEE2?=
- =?utf-8?B?blowQ09HV3BpVXhGY3QzUXRNdzl6VXdLMC9WbFZYTXpqYTZVY3NoeDdncUpw?=
- =?utf-8?B?TkZGUllLUE5NTXNpQTE2WERuam85TGFKUlF5Z1RhZlF5Y0RVc3k0K1hTaW1l?=
- =?utf-8?B?Qnpvb2dPQWQyR2pGbHUrcnBRTnh0NmFSNXg4N0oyN0M4QVF3Zkx3MklIZExL?=
- =?utf-8?B?VDljemE2MTJMTnJjU3pqdERuSmNwbVFJTVV0UlM5Uy95c1luNU91blNiWldh?=
- =?utf-8?B?b2tRalR2eTRkOU5HNWhwM1hmVE5kTHZuWjE3SXFyVWdPbjY5YlpzYlJSVGdM?=
- =?utf-8?B?U1RkSnVGVnQ5Q0R1NUU4dFk1UUFGNjg4bkw2NXg4dklLU3dYeUVBSFI2U2hq?=
- =?utf-8?B?dzkwK296bklQdmRUSzBKOFdrd0p1YzI1SmVjL2VZNnJhZG1tYXlFSmlTeFFI?=
- =?utf-8?B?bVpiWWNaQUFockdCZktaaE94ZVBxc1I2c1YvWCtSd1dKVmRncXNVbFNFbEMz?=
- =?utf-8?B?SXZIcXlOazcwZTAvMlpjY251Q05LVHE5ME1ianhldHFRUDBRV2lSRTdTOW5I?=
- =?utf-8?B?Y09BVGQreWs0TDRqR3lpOHZidjgxRm9wOUlkSGRKcXE0RHBzMjIrOUloRy8v?=
- =?utf-8?B?VmhkS2FtbHlUKy9mbjZoTzAxb2Y4M1BmNndob0ZOSEVFUWNNK3ZmWXRBSER3?=
- =?utf-8?B?Vkt4ekVOWEU3NHprTzVaOFRWSWNkQWRhaCtyckZKRXp3a25xbmpaZz09?=
-X-Exchange-RoutingPolicyChecked: Zj0ffLbHbqcbdBwAYXIwRTNvFW9YwiRNWP4XWU51sobBNh9VkCTSb4pLWJqQTfkjRb0c5GAyQgkvpbW2xp0k697jzudk9eQSCV0tdk/hYX6OeQFvigS5+xaJ12qJFBi4nyV0z361oTRpDp8gZ+S7IRLZY5C5KyLLO3HDUdbFjR5vn4+Ev9UQmiiVKzMhcSivfYmsiJnxX42nEFDrn/rS6IPbl5AXoh2mnumMOSY9Z25C5tqSX8ajZEJMQ7wy24ndjkTBT0qV1tgim/+aAnITD7qSJ4NFKS6a2IFOXhJF2bqxbW1PRs0Wf55nwdxfJmEsJuoiOLB8Y7Q1+npndJJ2pg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad3702c5-fa4b-4b1a-eee4-08df12de7a3c
-X-MS-Exchange-CrossTenant-AuthSource: BN0PR11MB5709.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?M+wu7p/4GK3t2W+LjLYlxdozuSurLcQRPMM3LlNgJCfWLFO7nC/uiYwICZq9?=
+ =?us-ascii?Q?Mo2df6gUF9W05vWWtB9oWUe2geGcLL8bhhnwpIeLFyx8mjjbQwoo2oSGhfT6?=
+ =?us-ascii?Q?xh2zXxbmcjupKaaoVdEMx8JJnWnuKyxfXYrGNnhDXsgT0w1AqUyxEiddfjRZ?=
+ =?us-ascii?Q?qgVHFfpN0TJvlrg1A8+f8ICSWvxWq2nIqnwovn1B0CefG/O6B7aMwrOSooGR?=
+ =?us-ascii?Q?XPnDz91OAqmKMF5xOPfLg5mL2hxQwah0fVIshsty4MgSsy34F49tHPpsgr9o?=
+ =?us-ascii?Q?y4Gs2lQb5AFa7EyaNH1CGP0ZCFVL8yG7ZoVVvJ+zS1oABqNcqfJ2jYLFy3B3?=
+ =?us-ascii?Q?GowR14xA7C0LAiShtLLq5MD3N3+wNUp8jCZ5yqH9zvCLUvXmaUvzQO+We04Q?=
+ =?us-ascii?Q?Kmbac8kzK1cUKYXoyuJ7aTUcU4RqdW3O7GJU/vKZGcyhEW+2if4TP3XPTaEO?=
+ =?us-ascii?Q?PWIle1u6MCLLuShbOnVS3lZr56LCix0s17dz2IbiaQ5bQCi7FoPHBRttMcxs?=
+ =?us-ascii?Q?ZYORQzKttqayTkGvCc8ih3Hjk8evfSrVdrnDkDuaUl/PpMBDyVRq+onDQCls?=
+ =?us-ascii?Q?OLdc/LxKRddu5XUyiUycvCpbpwrhlAApZLqsjtipznkXWUKH8ruxTQsh2lNx?=
+ =?us-ascii?Q?+uoMNDH+PuNvA3cewigL8HHJrhooQZscnDkxnbjEjONGd+qehvi//Mh46R93?=
+ =?us-ascii?Q?vpfg9ZiNFBXYx9o9fx/dnyQv54M0vyY1E4PIjkb01IV/tk2lGFnmL9zgtb2N?=
+ =?us-ascii?Q?L1owHuZxFvqan/ugcP+ofQeWwxr7zU21GzmDq8Wf0Fe/YtfxAXquxnK9yWUK?=
+ =?us-ascii?Q?+qKPaTWdex8Y9sTRJwIUDs8IyXy2rBR/8jaMR2Tp9tdVE2bPJCFpcRVAiRrY?=
+ =?us-ascii?Q?nDe5i+FkPD98NXDORbsyAdLvfKzKZbcPpwSelQphy2A9rHXEv700/bUz33wN?=
+ =?us-ascii?Q?TpwtsdYgzuuR4iXUnbdLtQu65M4HTCyfVYB/vWR4ak9ZydcXg1R1RM4SlXq4?=
+ =?us-ascii?Q?23Oi+FyZ+DqAg/2CG3qMVCgStoqB7uI034wBEJQx6NLDNI6t36FvyHu+OA5F?=
+ =?us-ascii?Q?dTQQ8dso3gybjw5YipdtWvYY2Dl8SOyrmqJDoZnNL0bOuA6aePLh/u1DjcOU?=
+ =?us-ascii?Q?KfQNrFq+vYrJBhWr2ru51SNI3nKKymovJBbx7eCqC1k9weehvSdLtAtoy4Pd?=
+ =?us-ascii?Q?aeEIktJ1zoMDo0Rt3L3M5Hoep88D2Snj8vft7Phlq7uRTYc3NaSYXZwBM/jz?=
+ =?us-ascii?Q?Vt3RSYKyRC5pEtJzs5bhYr+YkQCSG0LWXAg1LuFqACL/VRGvp1+caeZxziVn?=
+ =?us-ascii?Q?XLDgOpMVdidY1nkH+fAC9UhHT9sVbbZFd2FKwF8m+npqeqivuiGX4SxveYa4?=
+ =?us-ascii?Q?ja0i13atEAFAoYNwjFc2ZhSugEnW2Ry+gC5tWEC4Ozp6Sl5nui+eBDGoSoXo?=
+ =?us-ascii?Q?S0dbdw2Y0fZyQJJWYBX+CFe/lxOPQSQpUQb8IFp/eBqi+I68ZIYHqURzA7ii?=
+ =?us-ascii?Q?zdpw9xJbi0UvQIzMoNh2HWCTeoTCrzFV1GwgIXKYQkUZ1ZJHtA4kujponAvR?=
+ =?us-ascii?Q?zqhp717ru2llsdsABoueI16BUiaBXTwc7iw0ETyU5/HmHGsOD8lgzuKjBcnA?=
+ =?us-ascii?Q?XwpJKlwCwN35fqk3PErrPHm0b5rNnbh5VaZgLtaMYNjrJd2PrZOJhO47cNt0?=
+ =?us-ascii?Q?g3OZEnj/Ss+9Kq3JU2yAtdoXFwVI6jOVlEBvOBbag2m9jj0HAUQidIx3+f5a?=
+ =?us-ascii?Q?bKBrbDAlFQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: AX81iKnad+aWMB9+pmxwl5qNdjh7VFrFMXopf404y/OtJN24a3IUqITqzAxvaVzQNNbxul06oI5ptrvY27LyPyOK1CUarslHSiFwyz0GuLNHueTDEIInk6AiDFHAsHBogTmn1QAThrmt3uQk7V26hBW9Txn0jcnIJSS7Kg/GhWMieXNJQtg5gicE42eWK0/iGwJfvZqTiR0PCFtmF/RgtEnOEUkWS8dLWGpGpZhW3OaaVj0cJJPcQXAKzAiFwTk0ERdasO9XIyahQy0Jcpa/Ur2R9R5NrXDy4HbN0EZ/Knv95ar8l32i1EtFYk7donvQ3F7sB+MgedsVeaKpZ5+a1w==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2026 04:04:45.6729 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LK7NO8Yoj+wYlbSomiVRxZSiFiWhwcFn3kVXU5xj5sZr0yliNI6M2OnuwCRGZ8nvtQuNa7ZjAUpDIOkZQnn7cw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7444
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPFE901A304F.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 71a91bc7-116f-489a-ab72-08df12deae2c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Sep 2026 04:06:12.3883 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XQk1X+sNN0lbojoP+dc4x8/sKNP8Y+lhp0MIyxcOSx60satfWogwSG52G2wFLeKdx+G/BR/bJJnBpznryhD2yw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7725
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -174,163 +167,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+> Subject: [PATCH v6 12/13] drm/i915/dp: Adjust SDP guardband requirement f=
+or
+> CMN_SDP_TL
+>=20
+> Once CMN_SDP_TL is enabled, GMP/PPS/VSC/VSC_EXT/AS SDPs are no longer
+> positioned relative to the guardband: they are anchored via
+> CMN_SDP_TL/CMN_SDP_TL_STGR_CTL instead. As per Bspec 68921, SDP Setup
+> is
+> 0 in this mode, so the old per-packet guardband sizing (based on GMP/PPS/=
+AS-
+> SDP being enabled) no longer applies for GMP/PPS/VSC/VSC_EXT.
+>=20
+> Since we are using the default stagger values for now, size the guardband=
+ such
+> that the max default transmission line can be supported, similar to when =
+CMN
+> SDP TL is not set:
+>=20
+> base   : 2nd line of delayed vblank
+> GMP    : 2 + GMP_STAGGER
+> VSC_EXT: 2 + VSC_EXT_STAGGER
+> VSC    : 2
+> PPS    : 2 + PPS_STAGGER
+>=20
+> SDP Setup =3D 1 + MAX(GMP, VSC_EXT, VSC, PPS setup lines)
+>=20
+> Add intel_dp_get_lines_for_cmn_sdp_tl() and route it via the existing
+> intel_dp_get_lines_for_sdp().
+>=20
+> The AS SDP check in intel_dp_sdp_min_guardband() still adds vrr.vsync_sta=
+rt +
+> 1 to the guardband, since AS SDP positioning is unaffected by CMN_SDP_TL.
+>=20
+> Bspec: 68921
+> Assisted-by: Copilot:claude-sonnet-4.5
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-On 02-09-2026 11:03, Matthew Brost wrote:
-> On Tue, Sep 01, 2026 at 10:30:41PM -0700, Matthew Brost wrote:
->> On Wed, Sep 02, 2026 at 10:19:22AM +0530, Yadav, Arvind wrote:
->>> On 01-09-2026 02:13, Rodrigo Vivi wrote:
->>>> On Thu, Aug 27, 2026 at 03:47:51PM +0530, Arvind Yadav wrote:
->>>>> Page-fault work may still be queued when PCI error recovery starts or
->>>>> the device becomes permanently wedged. Servicing these faults can migrate
->>>>> memory or update page tables after device I/O has been blocked.
->>>>>
->>>>> Check the device state before and after fault servicing to cover a reset
->>>>> racing with the worker. Drop the active fault and its chained faults
->>>>> without sending a hardware response, and invalidate the cached fault
->>>>> state.
->>>>>
->>>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>>> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->>>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>>> Assisted-by: Claude:claude-opus-4-8
->>>>> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
->>>>> ---
->>>>>    drivers/gpu/drm/xe/xe_pagefault.c | 40 +++++++++++++++++++++++++++++++
->>>>>    1 file changed, 40 insertions(+)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
->>>>> index 2e415995f067..f486165f2323 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_pagefault.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_pagefault.c
->>>>> @@ -592,6 +592,38 @@ static void xe_pagefault_save_to_vm(struct xe_device *xe, struct xe_pagefault *p
->>>>>    	xe_vm_put(vm);
->>>>>    }
->>>>> +static bool
->>>>> +xe_pagefault_drop_if_blocked(struct xe_pagefault_queue *pf_queue,
->>>>> +			     struct xe_pagefault_work *pf_work,
->>>>> +			     struct xe_pagefault *pf,
->>>>> +			     u64 *cache_start)
->>>>> +{
->>>>> +	struct xe_pagefault *next;
->>>>> +
->>>>> +	if (!xe_device_io_blocked(pf_work->xe))
->>>>> +		return false;
->>>>> +
->>>>> +	/*
->>>>> +	 * cache_start is private to this worker invocation. pf_work->cache is
->>>>> +	 * shared with fault producers and must be invalidated under the queue
->>>>> +	 * lock.
->>>>> +	 */
->>>>> +	xe_pagefault_cache_start_invalidate(*cache_start);
->>>>> +
->>>>> +	guard(spinlock_irq)(&pf_queue->lock);
->>>>> +
->>>>> +	xe_pagefault_cache_invalidate(pf_queue, pf_work);
->>>>> +
->>>>> +	while (pf) {
->>>>> +		next = pf->consumer.next;
->>>>> +		pf->consumer.next = NULL;
->>>>> +		pf->consumer.alloc_state = XE_PAGEFAULT_ALLOC_STATE_FREE;
->>>>> +		pf = next;
->>>> is there some helper we could re-use? I know we cannot use the pop directly,
->>>> because it would deadlock, but perhaps we can unify some code here...
->> Why would it deadlock... xe_device_io_blocked is just an couple of
->> atomics, right?
->>
->> So why wouldn't this work to squash all faults.
+LGTM,
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-You are right, this does not deadlock  as per you suggestion I will move 
-the check after the QUEUED state check.
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 49 ++++++++++++++++++++++++-
+>  1 file changed, 47 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 8c3a324e164e..02e73ae9e34a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -62,6 +62,7 @@
+>  #include "intel_ddi.h"
+>  #include "intel_de.h"
+>  #include "intel_dip.h"
+> +#include "intel_dip_regs.h"
+>  #include "intel_display_driver.h"
+>  #include "intel_display_jiffies.h"
+>  #include "intel_display_utils.h"
+> @@ -7348,9 +7349,55 @@ int intel_dp_compute_config_late(struct
+> intel_encoder *encoder,
+>  	return 0;
+>  }
+>=20
+> +static
+> +int intel_dp_get_lines_for_cmn_sdp_tl(u32 type) {
+> +	u32 stagger_val;
+> +
+> +	/*
+> +	 * Since we are using default stagger values similar to the case
+> +	 * where CMN SDP TL is not set, the different SDP transmission
+> +	 * lines are:
+> +	 * base : 2nd line of delayed vblank:
+> +	 * GMP : 2 + GMP_STAGGER
+> +	 * VSC_EXT: 2 + VSC_EXT_STAGGER
+> +	 * VSC : 2
+> +	 * PPS : 2 + PPS_STAGGER
+> +	 *
+> +	 * SDP Setup =3D 1 + MAX(GMP, VSC_EXT, VSC, PPS setup lines)
+> +	 *
+> +	 * For EMP_AS_SDP_TL guardband should be more than
+> vrr.vsync_start.
+> +	 */
+> +
+> +	switch (type) {
+> +	case DP_SDP_VSC_EXT_VESA:
+> +	case DP_SDP_VSC_EXT_CEA:
+> +		stagger_val =3D VSC_EXT_STAGGER_DEFAULT;
+> +		break;
+> +	case HDMI_PACKET_TYPE_GAMUT_METADATA:
+> +		stagger_val =3D GMP_STAGGER_DEFAULT;
+> +		break;
+> +	case DP_SDP_PPS:
+> +		stagger_val =3D PPS_STAGGER_DEFAULT;
+> +		break;
+> +	default:
+> +		return 0;
+> +	}
+> +
+> +	return 1 + 2 + stagger_val;
+> +}
+> +
+>  static
+>  int intel_dp_get_lines_for_sdp(const struct intel_crtc_state *crtc_state=
+, u32
+> type)  {
+> +	struct intel_display *display =3D to_intel_display(crtc_state);
+> +
+> +	if (type =3D=3D DP_SDP_ADAPTIVE_SYNC)
+> +		return crtc_state->vrr.vsync_start + 1;
+> +
+> +	if (HAS_COMMON_SDP_TL(display))
+> +		return intel_dp_get_lines_for_cmn_sdp_tl(type);
+> +
+>  	switch (type) {
+>  	case DP_SDP_VSC_EXT_VESA:
+>  	case DP_SDP_VSC_EXT_CEA:
+> @@ -7359,8 +7406,6 @@ int intel_dp_get_lines_for_sdp(const struct
+> intel_crtc_state *crtc_state, u32 ty
+>  		return 8;
+>  	case DP_SDP_PPS:
+>  		return 7;
+> -	case DP_SDP_ADAPTIVE_SYNC:
+> -		return crtc_state->vrr.vsync_start + 1;
+>  	default:
+>  		break;
+>  	}
+> --
+> 2.50.1
 
-
->> diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
->> index 2e415995f067..1c9e5539b90d 100644
->> --- a/drivers/gpu/drm/xe/xe_pagefault.c
->> +++ b/drivers/gpu/drm/xe/xe_pagefault.c
->> @@ -477,6 +477,12 @@ static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
->>                  lpf = xe_pagefault_queue_tail_fault(pf_queue);
->>                  xe_pagefault_queue_advance(pf_queue);
->>
->> +               if (xe_device_io_blocked(xe)) {
->> +                       lpf->consumer.alloc_state =
->> +                               XE_PAGEFAULT_ALLOC_STATE_FREE;
->> +                       continue;
->> +               }
->> +
-> ^^^ This should actually go after the XE_PAGEFAULT_ALLOC_STATE_QUEUED check.
-
-
-Noted,
-
-Arvind
-
->
-> Matt
->
->>                  if (lpf->consumer.alloc_state !=
->>                      XE_PAGEFAULT_ALLOC_STATE_QUEUED)
->>                          continue;
->>
->>
->>>
->>> Noted,
->>>
->>>>> +	}
->>>>> +
->>>>> +	return true;
->>>>> +}
->>>>> +
->>>>>    static void xe_pagefault_queue_work(struct work_struct *w)
->>>>>    {
->>>>>    	struct xe_pagefault_work *pf_work =
->>>>> @@ -615,6 +647,10 @@ static void xe_pagefault_queue_work(struct work_struct *w)
->>>>>    		int err = 0;
->>>>>    		bool invalidated = false;
->>>>> +		if (xe_pagefault_drop_if_blocked(pf_queue, pf_work, pf,
->>>>> +						 &cache_start))
->>>>> +			continue;
->>>> do we really need to loop inside the loop or only check and let this main loop goes?
->>>
->>> Yes, The inner walk is needed. Chained faults have already been removed from
->>> the queue and linked through consumer.next. The outer pop loop will not see
->>> them.
->>>
->>>>> +
->>>>>    		/* Last fault same address, ack immediately */
->>>>>    		if (xe_pagefault_match(pf, cache_start, cache_end, cache_asid)) {
->>>>>    			xe_gt_stats_incr(gt, XE_GT_STATS_ID_LAST_PAGEFAULT_COUNT, 1);
->>>>> @@ -623,6 +659,10 @@ static void xe_pagefault_queue_work(struct work_struct *w)
->>>>>    		err = xe_pagefault_service(pf);
->>>>> +		if (xe_pagefault_drop_if_blocked(pf_queue, pf_work, pf,
->>>>> +						 &cache_start))
->>>> do we really need to check after?
->>>
->>> Yes. The device can enter reset or become wedged while
->>> xe_pagefault_service() is running. The first check alone does not cover that
->>> race.
->>>
->> But this is still toctou - really everything in patch is as immediately
->> after either check the state can change. I can't say I'm a fan of any
->> weak checks in this code...
->>
->> But just for thought: after this point all we do is CT which should be
->> down and we'd drop it there before touching the hardware.
->>
->> Matt
->>
->>>>> +			continue;
->>>>> +
->>>>>    		if (err) {
->>>> now this err far from where it is collected is pretty bad...
->>>
->>> Agreed. i will keeps err next to its use.
->>>
->>> Thanks,
->>> Arvind
->>>
->>>>>    			if (!(pf->consumer.access_type & XE_PAGEFAULT_ACCESS_PREFETCH)) {
->>>>>    				xe_pagefault_save_to_vm(gt_to_xe(gt), pf);
->>>>> -- 
->>>>> 2.43.0
->>>>>
