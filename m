@@ -4,42 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D930C88E77
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 21:20:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32991C88E75
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 21:51:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0563910E8A2;
-	Tue, 15 Sep 2026 21:20:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Ni/iKqf2";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0683D10E8A2
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 21:20:51 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id CB6C64164F;
- Tue, 15 Sep 2026 21:20:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E5CB1F000FF;
- Tue, 15 Sep 2026 21:20:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789507250;
- bh=Tw/ovex2Ulsjxz5WV+SOrcGKlo40lOqrIxpkZg65vIM=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Ni/iKqf2h96244PY07hZRrEj5xA+csCKt5p1if6Vrtm2TMNSyp2pbyV3wOugKwCml
- MC6IkCfKTEjkBhpq71VFYWLGsxBgYT5/c4n8e9x5qyuqmCmHZOTAM9V+lmKq7uI0GN
- nY5Zw7pVjhdrX1PmF0DeaIdj3Y2uXjTPV6ySMdYekeO+O+8TLi5nxYA6cL9MfK2xBt
- 1agmVT9Y/XBIdTFe+YxuzRIR3uC/FwIE4K5bOmuv1X2554xk0cQALOK5qXd5h1db1X
- 9vFo8gIRx4t0NXR1o6RrWDOXhIaqROxBZzmjgUmQaoHCQHYYoTdJKT43K9dxeNSrHP
- jOaYMNEROp+9Q==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5] drm/xe: Poll GT for C6 before D3
+	by gabe.freedesktop.org (Postfix) with ESMTP id C990410E326;
+	Tue, 15 Sep 2026 21:51:56 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DFAD10E326;
+ Tue, 15 Sep 2026 21:51:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4596659856828484487=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Poll_GT_for_C6_be?=
+ =?utf-8?q?fore_D3_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260915210113.2915363-1-vinay.belgaumkar@intel.com>
+Date: Tue, 15 Sep 2026 21:51:55 -0000
+Message-ID: <178950911505.168006.5273502631791420867@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260915210113.2915363-1-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 15 Sep 2026 21:20:50 +0000
-Message-Id: <20260915212050.8E5CB1F000FF@smtp.kernel.org>
+In-Reply-To: <20260915210113.2915363-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,70 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] drm/xe: D3cold runtime suspend always fails due to C6 check afte=
-r GT PG disable
---
+--===============4596659856828484487==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 691645f0da262033183939383983163842757c50
-Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+== Series Details ==
 
-drm/xe: Poll GT for C6 before D3
+Series: drm/xe: Poll GT for C6 before D3 (rev2)
+URL   : https://patchwork.freedesktop.org/series/174091/
+State : success
 
-This commit adds a check for GT C6 state before the D3 transition in the
-runtime suspend flow, aborting and resuming if the check fails.
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 00b2b5dfb8f6c..488745ce0473f 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-[ ... ]
-> @@ -1394,6 +1394,17 @@ static int xe_pci_runtime_suspend(struct device *d=
-ev)
->  	if (err)
->  		return err;
-> =20
-> +	err =3D xe_pm_check_device_idle(xe);
-> +	if (err) {
-> +		drm_dbg(&xe->drm, "Resuming - Device idle check failed!");
-> +		ret =3D xe_pm_runtime_resume(xe);
+CI Bug Log - changes from xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8_BAT -> xe-pw-174091v2_BAT
+====================================================
 
-[Severity: Medium]
-Will this idle check always fail when D3cold is allowed?
+Summary
+-------
 
-Looking at the sequence, xe_pci_runtime_suspend() calls
-xe_pm_runtime_suspend() right before this check. When D3cold is allowed,
-xe_pm_runtime_suspend() executes xe_gt_suspend():
+  **SUCCESS**
 
-drivers/gpu/drm/xe/xe_pm.c:xe_pm_runtime_suspend() {
-...
-	for_each_gt(gt, xe, id) {
-		err =3D xe->d3cold.allowed ? xe_gt_suspend(gt) : xe_gt_runtime_suspend(gt=
-);
-...
-}
+  No regressions found.
 
-xe_gt_suspend() then prepares the GT for power removal by explicitly disabl=
-ing
-power gating:
+  
 
-drivers/gpu/drm/xe/xe_gt.c:xe_gt_suspend() {
-...
-	xe_gt_idle_disable_pg(gt);
-...
-}
+Participating hosts (15 -> 15)
+------------------------------
 
-Because xe_gt_idle_disable_pg() writes 0 to the POWERGATE_ENABLE register,
-the hardware is prevented from entering the C6 power gating state. Won't
-the subsequent poll for GT_IDLE_C6 in xe_pm_check_device_idle() always
-timeout and return -EAGAIN, causing the device to constantly abort suspend
-and immediately resume?
+  No changes in participating hosts
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260915210113.2915=
-363-1-vinay.belgaumkar@intel.com?part=3D1
+Known issues
+------------
+
+  Here are the changes found in xe-pw-174091v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#8007])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
+
+
+Build changes
+-------------
+
+  * Linux: xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8 -> xe-pw-174091v2
+
+  IGT_9098: 9098
+  xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8: 0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8
+  xe-pw-174091v2: 174091v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v2/index.html
+
+--===============4596659856828484487==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Poll GT for C6 before D3 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174091/">https://patchwork.freedesktop.org/series/174091/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8_BAT -&gt; xe-pw-174091v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-174091v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8 -&gt; xe-pw-174091v2</li>
+</ul>
+<p>IGT_9098: 9098<br />
+  xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8: 0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8<br />
+  xe-pw-174091v2: 174091v2</p>
+
+</body>
+</html>
+
+--===============4596659856828484487==--
