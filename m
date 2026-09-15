@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81B99C88E75
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 17:22:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BF7DC88E75
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 17:29:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06DA410F190;
-	Tue, 15 Sep 2026 17:22:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1573710E5FB;
+	Tue, 15 Sep 2026 17:29:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KRJxlgxy";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZggRxzNM";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E47C10E47F;
- Tue, 15 Sep 2026 17:22:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F09B10E47F;
+ Tue, 15 Sep 2026 17:28:58 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 3524D40F08;
- Tue, 15 Sep 2026 17:22:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0EBF1F000FF;
- Tue, 15 Sep 2026 17:22:18 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 3E6A041B41;
+ Tue, 15 Sep 2026 17:28:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E03151F000FF;
+ Tue, 15 Sep 2026 17:28:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789492939;
- bh=oWTtDaIZvqr28Nu2WzX3EpfvWoUVQLrGReQwnXUCuSc=;
+ s=k20260515; t=1789493338;
+ bh=umy4wey/iVEqubDBUG2B9ILxwyvIu4jc6s7DAhErDrI=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=KRJxlgxyk+/CwQyusicd4X198OG1Vym8ZKsCZ7g+ZO1euEIKSsmWKF33zElb5xxg+
- Tqab9buI9tlNJasJFDMkj+j6onsZ6xSZdRuSjhFpW2120RA13uBNAfHjaAJMXMhPPV
- D5N2VPM+JGX626dlkQRPwf7dIeQP61T3lhitXn3iLNxUovjyuHkwcpfm3XRiHvPgAt
- NyY1wKkrwK1d0m2WcwSNXezIVMV1CkDajh9YANnv6DpAlayAC3zrFDpR7UzaHTaKfq
- Peq9I18VJEDt8UeaYYqVy8Yu7db6qxFnFNAhW1u1SYZf2PvLmRnzurRBh4Dzupa1om
- MNowqU6wgc0Qg==
+ b=ZggRxzNMI1C/7lv8faAOiFqUCyXe7SMfvpzLQg065fgX+NtCQsFesvU0cC3QdUBnc
+ 9rx5LiopXGijWNu7wn9gJw0PiozUi0LQADJ1nS44A/EqIxQ3sFNpxRsiPpqYCikoAB
+ 6kXi4QHdQR/AGHAGp/e1UdtZhRqamciaiBS8xsDt2dV8/C+hQvLefGpUgaYtNJzv/i
+ 5Cqrr7lYmd0SloEaNRtNbxDRHoQ7108gyOMnxbRKSbzG8yVDlU3XL5MjROUL+jfKIo
+ LQjzMIzjikFHuuOc+cb++3OZg5jNEuuhGeZhTJ0X+tkGmt4rVaLKLXBNV+KuSoTalI
+ P2cPaSnkkOGpw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 06/14] drm/i915/dip: Store and use AS SDP
- transmission line from crtc state
+Subject: Re: [PATCH v7 11/14] drm/i915/dip: Enable Common SDP Transmission line
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20260915164657.3429075-7-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260915164657.3429075-12-ankit.k.nautiyal@intel.com>
 References: <20260915164657.3429075-1-ankit.k.nautiyal@intel.com>
- <20260915164657.3429075-7-ankit.k.nautiyal@intel.com>
+ <20260915164657.3429075-12-ankit.k.nautiyal@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 15 Sep 2026 17:22:18 +0000
-Message-Id: <20260915172218.D0EBF1F000FF@smtp.kernel.org>
+Date: Tue, 15 Sep 2026 17:28:57 +0000
+Message-Id: <20260915172857.E03151F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,69 +58,73 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] drm/i915/dip: Spurious state mismatch for EMP_AS_SDP_TL on HDMI =
-fastsets
+- [Medium] drm/i915/dip: Missing CMN_SDP_TL programming for DP MST slave tr=
+anscoders
 --
 
-commit 33aef03ce9383e1676d66a385c5b27a724956776
+commit de3a67cbeba4a6e70cc767d1dce1950454f58dfa
 Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: drm/i915/dip: Store and use AS SDP transmission line from crtc sta=
-te
 
-The driver computes and stores the Adaptive Sync SDP transmission line in t=
-he
-crtc state and uses it when programming the EMP_AS_SDP_TL register. This
-prepares the ground for supporting programmable transmission lines for
-additional DP SDPs.
+drm/i915/dip: Enable Common SDP Transmission line
+
+This commit enables programming of the common SDP transmission line on
+supported platforms. It computes and programs the base transmission line
+and stagger values during modeset. It also disables the feature on pipe
+disable.
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
 915/display/intel_ddi.c
-> index 9b3b526e5e55b..dacb4b7588a02 100644
+> index dacb4b7588a02..3cdb06e81130b 100644
 > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-[ ... ]
-> @@ -4235,6 +4236,7 @@ static void intel_ddi_get_config(struct intel_encod=
-er *encoder,
->  	intel_read_dp_sdp(encoder, pipe_config, HDMI_PACKET_TYPE_GAMUT_METADATA=
-);
->  	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_VSC);
->  	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_ADAPTIVE_SYNC);
-> +	intel_dip_sdp_transmission_line_get_config(pipe_config);
+> @@ -2737,6 +2737,8 @@ static void mtl_ddi_pre_enable_dp(struct intel_atom=
+ic_state *state,
+>  	/* 6.o Configure and enable FEC if needed */
+>  	intel_ddi_enable_fec(encoder, crtc_state);
+> =20
+> +	intel_dip_cmn_sdp_transmission_line_enable(crtc_state);
+> +
 
 [Severity: Medium]
-Will this trigger a spurious state mismatch for EMP_AS_SDP_TL on HDMI fasts=
-ets?
+Will placing this transcoder-specific initialization in mtl_ddi_pre_enable_=
+dp()
+cause it to be skipped for subsequent MST streams?=20
 
-If a non-DP (e.g., HDMI) connection inherits a non-zero EMP_AS_SDP_TL value
-from a BIOS handover or a previous DP VRR mode, the hardware state
-(hw_crtc_state) will reflect this non-zero value.
+In DP MST configurations, mst_stream_pre_enable() invokes the primary encod=
+er's
+pre_enable hook (mtl_ddi_pre_enable_dp()) solely for the first active MST
+stream.
 
-This happens because intel_dip_sdp_transmission_line_get_config()
-unconditionally reads the register here via intel_dip_read_emp_as_sdp_tl()
-without verifying if the encoder is DP:
+Because intel_dip_cmn_sdp_transmission_line_enable() is called here, it
+appears it will be skipped for all subsequent streams. This would leave the
+CMN_SDP_TL registers uninitialized for slave transcoders, potentially causi=
+ng
+broken or mistimed SDP transmission on secondary MST monitors.
 
-drivers/gpu/drm/i915/display/intel_dip.c:intel_dip_read_emp_as_sdp_tl() {
-    ...
-    val =3D intel_de_read(display, EMP_AS_SDP_TL(display, cpu_transcoder));
-    return REG_FIELD_GET(EMP_AS_SDP_DB_TL_MASK, val);
-}
+>  	/* 7.a 128b/132b SST. */
+>  	if (!is_mst && intel_dp_is_uhbr(crtc_state)) {
+>  		/* VCPID 1, start slot 0 for 128b/132b, tu slots */
+[ ... ]
+> @@ -3124,6 +3126,7 @@ static void intel_ddi_buf_disable(struct intel_enco=
+der *encoder,
+>  			     DP_TP_CTL_ENABLE, 0);
+>  	}
+> =20
+> +	intel_dip_cmn_sdp_transmission_line_disable(crtc_state);
 
-Meanwhile, the software state (sw_crtc_state) expects 0 for HDMI since
-intel_dip_sdp_tl_compute_config_late() is only called for DP.
+[Severity: Medium]
+Does placing this disable routine in intel_ddi_buf_disable() prevent it from
+executing for slave transcoders during MST teardown?=20
 
-Because the dip.emp_as_sdp_tl comparison is guarded by if (!fastset) in
-intel_pipe_config_compare(), the discrepancy is ignored during the fastset
-compatibility check, allowing a fastset to proceed.
+Similar to the enable path, intel_ddi_buf_disable() is only called for the
+last active stream during teardown, which means the CMN_SDP_TL disable rout=
+ine
+would be skipped for slave streams.
 
-The fastset skips reprogramming the VRR transcoder timings, leaving the
-hardware register at its stale non-zero value.
-
-During post-commit hardware verification in verify_crtc_state(),
-intel_pipe_config_compare() is called with fastset =3D false, which strictly
-checks the field. This causes a drm_WARN backtrace when comparing the expec=
-ted
-0 against the stale non-zero hardware value.
+>  	intel_ddi_disable_fec(encoder, crtc_state);
+> =20
+>  	if (DISPLAY_VER(display) < 14)
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260915164657.3429=
-075-1-ankit.k.nautiyal@intel.com?part=3D6
+075-1-ankit.k.nautiyal@intel.com?part=3D11
