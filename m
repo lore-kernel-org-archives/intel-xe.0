@@ -4,55 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05719C88E77
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 17:03:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50984C88E7D
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 17:03:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C7BE10E211;
-	Tue, 15 Sep 2026 17:03:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BCB610E4B6;
+	Tue, 15 Sep 2026 17:03:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CDNdCq2/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KQ+IhcOG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D471010E211;
- Tue, 15 Sep 2026 17:03:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C51410E211;
+ Tue, 15 Sep 2026 17:03:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789491810; x=1821027810;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=fmONBvWpuhbeKJhsmYewgk9SshsIZkP9VQiBROl/rXM=;
- b=CDNdCq2/jLyfXr/yEhAso4U5bPoLoay9yOFc1awxreOSy+QEcaFGgV7Y
- 2tOxzhKefgYuyh0Zrc1NLlJZchnG+pEGaXsNhq5UzMCtHV10r4Zv8Lxw9
- zdE3vs7c4N6UxGUzGUP4Jr/7VpK9jb40WOc5fW0g5o/uKQ7oCGhAg4Jsb
- jyaV2NiuINlS7sF/F2dteaj+GMLQkgJ5cVTq9IpQiwdKUd8G9q7UMLd71
- NXb95JzSDG1Vq/bvsFOeFqld2nspXCB242ahDvfVMI+qaSfuCZgi+cYW5
- xajnoM3T38wGstbJUMTJOcGxfSv1BE/2JhXFQXTnOtVYjUq/z3M+PAId3 A==;
-X-CSE-ConnectionGUID: sBBc9EzmQS6p4c6lmkyNdA==
-X-CSE-MsgGUID: UNrC5rtKTIm5Ijj4u2M8LA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="371859"
+ t=1789491811; x=1821027811;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=HtNgwv2z5fEndenM2KQ6Pi5PGIyCcXJX+z/pf5+z7JE=;
+ b=KQ+IhcOGO+biKVJt5/elV3lDgQbse6b0riPQ2iTHE+mMelJTgkhosn2Z
+ ABGF6PgcJ2Rgb/b+1UsRY8Mfv+mMytUcW64q48ebDXlrl+q0VfNFFr9IJ
+ 2CmCStICEkWAJ3TGMLYXCCWrYQRXm3ZOpkd0wVzH9mpd8EjsUT5amMC2g
+ NOMOHjX0OIEMEkXJMq5wFiRL4cJfalFPp9reKsFtVNaA2VO8cOh78gYU0
+ bDnr2MzPztYfsZeara67skWzqliDe0oSV8nYRyNzoDvrl5ibclgcKrwjA
+ fEYhKUSsrw4xe2b8wg9QuyXbfpu5D9nt4dKBXjqFCPN1uPS6d80AP+KVQ Q==;
+X-CSE-ConnectionGUID: EcyLVY4MT5O3Xss4cUyEmw==
+X-CSE-MsgGUID: GNKJ882ySMC+96actmYp1w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="371862"
 X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
-   d="scan'208";a="371859"
+   d="scan'208";a="371862"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa116.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 10:03:29 -0700
-X-CSE-ConnectionGUID: s1ij1KJvQDuM8OPLX0X6Xg==
-X-CSE-MsgGUID: Hwmcno6STPytJCgbiFMR5A==
+ 15 Sep 2026 10:03:31 -0700
+X-CSE-ConnectionGUID: 2xRjkYAHT4iU4oH7PFPc3w==
+X-CSE-MsgGUID: uvOmeGAPSNOapaXaMY1xFw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="270443870"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="270443877"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 10:03:26 -0700
+ 15 Sep 2026 10:03:29 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com,
  jani.nikula@linux.intel.com, suraj.kandpal@intel.com,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v7 00/14] Add support for Common SDP Transmission Line
-Date: Tue, 15 Sep 2026 22:16:41 +0530
-Message-ID: <20260915164657.3429075-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH v7 01/14] drm/i915/dip: Add new file to handle Data Island
+ Packet hardware
+Date: Tue, 15 Sep 2026 22:16:42 +0530
+Message-ID: <20260915164657.3429075-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20260915164657.3429075-1-ankit.k.nautiyal@intel.com>
+References: <20260915164657.3429075-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,114 +72,198 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Xe3p_lpd introduces new register bits to program a common SDP
-Transmission line that will be used by the Hardware to position the
-SDPs. Along with this, another new register is also added to stagger
-the different SDPs.
+Add new files intel_dip.c, intel_dip.h, and intel_dip_regs.h to handle
+low level hardware programming related to Data Island Packets.
 
-This series adds support for programming the Common SDP Transmission Line
-(CMN_SDP_TL) and its stagger control registers.
+Currently only programming of the Transmission Line for HDMI 2.1
+Extended Metadata Packet (EMP) and DP Adaptive-Sync Secondary Data
+Packet (SDP) is added (MMIO register EMP_AS_SDP_TL).
 
-Rev2:
- - Add tracking for AS SDP Transmission line first. Instead of directly
-   programming it in the register, compute the state during
-   compute_config_late() and write the value from crtc_state.
-   Readout from the register through a vrr helper, since the register is
-   defined in context of VRR and will be used for both DP and HDMI VRR
-   packets.
- - Add support to track other SDP transmission lines, instead of stagger
-   values.
- - Compute the transmission lines in compute_config_late path and add
-   readout.
- - Always write the Common SDP Transmission line and other stagger
-   values, whether the packets are sent or not.
- - Dump SDP transmission lines in crtc_state.
+This will serve as a common place for DIP related code, which is currently
+scattered across DP and HDMI files. A TODO has been added for extracting
+the remaining DIP helpers.
 
-Rev3:
- - Introduce new files for handling the Data Island Packets (DIPs)
-   programming in one place. (Ville)
- - Extract the Transmission Line programming for
-   HDMI Extended Metadata Packet (EMP) and Adaptive Sync SDP (AS SDP)
-   i.e. EMP_AS_SDP_TL in the new file.
- - Add programming for Common Base SDP Transmission lines and other
-   stagger offsets in the new file.
- - Add a #TODO to extract other helpers that deal with Data Island Packets
-   and VIDEO_DIP registers.
- - Place the HAS_* Macros related to DIP in the intel_dip.h file
-   instead of intel_display_devices.h (Jani) 
- - Make function names more descriptive and avoid overuse of multiple
-   acronyms. (Jani)
-
-Note:
- - Though I have fixed the naming as suggested in most places, I
-   have retained HAS_EMP_AS_SDP_TL for the following reasons:
-   1) Lack of an apt name that avoids the acronym for
-      'Extended Metadata Packet Adaptive Sync Secondary Packet Transmission
-      Line'.
-   2) Keeping this name makes it easier to find and map with the exact name
-      for such a complex register name.
-
-   However, I am open to suggestions for a better name.
-
-Rev4:
- - Drop the patch to check for DP encoder before writing EMP_AS_SDP_TL
-   register. Instead reset the register to 0 for non DP encoder case.
-
-Rev5:
- - Rebase
- - Address review comments from Suraj:
- - Drop some redundant checks, and fix few commit messages.
-
-Rev6:
- - Move the new struct in intel_display_types.h from intel_dip.h (Jani)
- - Check for CMN_SDP_TL restriction and Warn if not followed. (Suraj)
- - Use HAS_CMN_SDP_TL() instead of checking if cmn_sdp_tl is set or not.
-   (Sashiko)
- - Make sure that the guardband is sufficient as per CMN_SDP_TL while
-   optiminzing the guardband.
-
-Rev7:
- - Account for VSC SDP's own minimum guardband requirement in
-   intel_dp_sdp_min_guardband(), for completeness. (Sashiko)
- - Wrap two long line macro definitions in intel_dip_regs.h.
-
-Ankit Nautiyal (13):
-  drm/i915/dip: Add new file to handle Data Island Packet hardware
-  drm/i915/vrr: Use the helper to write EMP_AS_SDP_TL register
-  drm/i915/intel_dip: Add check for DP encoder
-  drm/i915/dip: Add helper to get AS SDP Transmission Line
-  drm/i915/display: Add crtc state for DIP transmission lines
-  drm/i915/dip: Store and use AS SDP transmission line from crtc state
-  drm/i915/dip: Add HAS_COMMON_SDP_TL macro
-  drm/i915/dip: Store SDP transmission lines in crtc_state
-  drm/i915/dp: Introduce helpers to enable/disable CMN SDP Transmission
-    line
-  drm/i915/dip: Enable Common SDP Transmission line
-  drm/i915/dp: Account VSC SDP in min guardband
-  drm/i915/dp: Adjust SDP guardband requirement for CMN_SDP_TL
-  drm/i915/display: Dump DIP Transmission lines
-
-Arun R Murthy (1):
-  drm/i915/dip_regs: Add register definitions for common SDP
-    Transmission Line
-
- drivers/gpu/drm/i915/Makefile                 |   1 +
- .../drm/i915/display/intel_crtc_state_dump.c  |   9 +
- drivers/gpu/drm/i915/display/intel_ddi.c      |   5 +
- drivers/gpu/drm/i915/display/intel_dip.c      | 215 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dip.h      |  53 +++++
- drivers/gpu/drm/i915/display/intel_dip_regs.h |  38 ++++
- drivers/gpu/drm/i915/display/intel_display.c  |   6 +
- .../drm/i915/display/intel_display_types.h    |  16 ++
- drivers/gpu/drm/i915/display/intel_dp.c       |  62 ++++-
- drivers/gpu/drm/i915/display/intel_vrr.c      |  14 +-
- drivers/gpu/drm/i915/display/intel_vrr_regs.h |   6 -
- drivers/gpu/drm/xe/Makefile                   |   1 +
- 12 files changed, 407 insertions(+), 19 deletions(-)
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/Makefile                 |  1 +
+ drivers/gpu/drm/i915/display/intel_dip.c      | 39 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dip.h      | 38 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dip_regs.h | 18 +++++++++
+ drivers/gpu/drm/i915/display/intel_vrr.c      |  1 +
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h |  6 ---
+ drivers/gpu/drm/xe/Makefile                   |  1 +
+ 7 files changed, 98 insertions(+), 6 deletions(-)
  create mode 100644 drivers/gpu/drm/i915/display/intel_dip.c
  create mode 100644 drivers/gpu/drm/i915/display/intel_dip.h
  create mode 100644 drivers/gpu/drm/i915/display/intel_dip_regs.h
 
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index a83fa8be0aba..d4e7764621e1 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -349,6 +349,7 @@ i915-y += \
+ 	display/intel_cx0_phy.o \
+ 	display/intel_ddi.o \
+ 	display/intel_ddi_buf_trans.o \
++	display/intel_dip.o \
+ 	display/intel_display_device.o \
+ 	display/intel_display_trace.o \
+ 	display/intel_dkl_phy.o \
+diff --git a/drivers/gpu/drm/i915/display/intel_dip.c b/drivers/gpu/drm/i915/display/intel_dip.c
+new file mode 100644
+index 000000000000..2e2bdb2b199c
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_dip.c
+@@ -0,0 +1,39 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ *
++ */
++
++#include "intel_de.h"
++#include "intel_dip.h"
++#include "intel_dip_regs.h"
++#include "intel_display_types.h"
++
++u16 intel_dip_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
++	u32 val;
++
++	if (!HAS_EMP_AS_SDP_TL(display))
++		return 0;
++
++	val = intel_de_read(display, EMP_AS_SDP_TL(display, cpu_transcoder));
++	return REG_FIELD_GET(EMP_AS_SDP_DB_TL_MASK, val);
++}
++
++void intel_dip_write_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
++
++	if (!HAS_EMP_AS_SDP_TL(display))
++		return;
++	/*
++	 * Since currently we support VRR only for DP/eDP, so this is programmed
++	 * only for Adaptive Sync SDP to Vsync start.
++	 */
++	intel_de_write(display,
++		       EMP_AS_SDP_TL(display, cpu_transcoder),
++		       EMP_AS_SDP_DB_TL(crtc_state->vrr.vsync_start));
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_dip.h b/drivers/gpu/drm/i915/display/intel_dip.h
+new file mode 100644
+index 000000000000..25bae4a04d6b
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_dip.h
+@@ -0,0 +1,38 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef __INTEL_DIP_H__
++#define __INTEL_DIP_H__
++
++#include "intel_display_device.h"
++
++/*
++ * Video DIP (Data Island Packet) helpers.
++ *
++ * This file contains helpers for programming video DIP related hardware.
++ *
++ * TODO: Currently, this is only used for programming EMP_AS_SDP_TL i.e. to
++ * program Transmission Line for HDMI 2.1 Extended Metadata Packet (EMP) and
++ * DP Adaptive Sync (AS) Secondary Data Packet (SDP). However, all low level
++ * DIP buffer read/write and related helpers should be extracted here later.
++ */
++
++struct intel_crtc_state;
++
++/*
++ * EMP AS SDP TL: Extended Metadata Packet (EMP) Adaptive Sync (AS)
++ * Secondary Data Packet (SDP) Transmission Line (TL).
++ *
++ * Starting with BMG (display ver 14.01) and LNL+ (display ver 20+),
++ * the AS SDP transmission line is programmable via the EMP AS SDP TL
++ * register.
++ */
++#define HAS_EMP_AS_SDP_TL(__display)	(DISPLAY_VERx100(__display) == 1401 || \
++					 DISPLAY_VER(__display) >= 20)
++
++u16 intel_dip_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state);
++void intel_dip_write_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state);
++
++#endif /* __INTEL_DIP_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_dip_regs.h b/drivers/gpu/drm/i915/display/intel_dip_regs.h
+new file mode 100644
+index 000000000000..c4e1dab1ea46
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_dip_regs.h
+@@ -0,0 +1,18 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef __INTEL_DIP_REGS_H__
++#define __INTEL_DIP_REGS_H__
++
++#include "intel_display_reg_defs.h"
++
++/* EMP (Extended Metadata Packet) AS (Adaptive Sync) SDP Transmission Line */
++#define _EMP_AS_SDP_TL_A			0x60204
++#define EMP_AS_SDP_TL(display, trans)		_MMIO_TRANS2((display), (trans), _EMP_AS_SDP_TL_A)
++#define   EMP_AS_SDP_DB_TL_MASK			REG_GENMASK(12, 0)
++#define   EMP_AS_SDP_DB_TL(db_transmit_line)	REG_FIELD_PREP(EMP_AS_SDP_DB_TL_MASK, \
++							       (db_transmit_line))
++
++#endif /* __INTEL_DIP_REGS_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index e36db1174440..fd8b6f829cfe 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -17,6 +17,7 @@
+ #include "intel_cmtg.h"
+ #include "intel_crtc.h"
+ #include "intel_de.h"
++#include "intel_dip_regs.h"
+ #include "intel_display_limits.h"
+ #include "intel_display_regs.h"
+ #include "intel_display_types.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr_regs.h b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+index 9d4d6573a149..ba8631cbc672 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+@@ -174,12 +174,6 @@
+ #define   VRR_VSYNC_START_MASK			REG_GENMASK(12, 0)
+ #define   VRR_VSYNC_START(vsync_start)		REG_FIELD_PREP(VRR_VSYNC_START_MASK, (vsync_start))
+ 
+-/* Common register for HDMI EMP and DP AS SDP */
+-#define _EMP_AS_SDP_TL_A			0x60204
+-#define EMP_AS_SDP_TL(display, trans)		_MMIO_TRANS2((display), (trans), _EMP_AS_SDP_TL_A)
+-#define   EMP_AS_SDP_DB_TL_MASK			REG_GENMASK(12, 0)
+-#define   EMP_AS_SDP_DB_TL(db_transmit_line)	REG_FIELD_PREP(EMP_AS_SDP_DB_TL_MASK, (db_transmit_line))
+-
+ #define _TRANS_CMRR_M_LO_A			0x604F0
+ #define TRANS_CMRR_M_LO(display, trans)		_MMIO_TRANS2((display), (trans), _TRANS_CMRR_M_LO_A)
+ 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 67b8b5477639..ba4404896f2f 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -259,6 +259,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	i915-display/intel_ddi.o \
+ 	i915-display/intel_ddi_buf_trans.o \
+ 	i915-display/intel_de.o \
++	i915-display/intel_dip.o \
+ 	i915-display/intel_display.o \
+ 	i915-display/intel_display_conversion.o \
+ 	i915-display/intel_display_device.o \
 -- 
 2.50.1
 
