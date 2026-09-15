@@ -4,43 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7234CC88E53
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 07:27:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADBA0C88E53
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 07:31:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2814D10F31A;
-	Tue, 15 Sep 2026 07:27:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 691EC10F302;
+	Tue, 15 Sep 2026 07:31:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HfPizy/Z";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="n2rvA3e+";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CE9910F31A
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 07:27:19 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AE4710F302
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 07:31:31 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 3F5FA60267;
- Tue, 15 Sep 2026 07:27:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 899C01F000FF;
- Tue, 15 Sep 2026 07:27:17 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id B310040F4B;
+ Tue, 15 Sep 2026 07:31:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67A171F000FF;
+ Tue, 15 Sep 2026 07:31:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789457238;
- bh=VGokVADtXRY8cjDRf4UVlICuQHI2H8lzeGSbHBOXHZ4=;
+ s=k20260515; t=1789457490;
+ bh=QX53KlwXnDJ4pGDGX5qHNwBEJoIKzwHXBd/kz8X2R7I=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=HfPizy/Z7+hs1wcFsMDkRSeoVJNOIcRESdDFL+RwXhlgWGcCtlW9PjoUq4G3MLrqr
- vHDxIK9OO/5dv1xTiFFV1ElHPjOwARKKMn0/8hkcXxbMRGjEyiwpcCyfyJdMWoJlyU
- U4RUiFLrFZup40eWfeyEJeOJeoxQ1lhgQLbGGvxtmVXru77pP4HqipRC9DvE8fEOWB
- BDfJev12y0FaPTiPG+zi9tiy6jg8eX87zZ59RO+RrpOJt+BxNUmbXWwl1YzZY5tdTW
- /eY6MKPYz33cbxs5bkSgBAmoAr6w1CmGrnTV50cKtTlAAV7qBk0hfu5ED6YkkGOI6E
- W6E85+RGxM+1g==
+ b=n2rvA3e+JqxTrUjp+dd6aZGky8W+rkmnMfSP4Q+HHIY/OM2xDSfTkFi2mPxLHFRY2
+ YOop/sp8qqpTZloqHs6r8k0DIn8YQlo1We90D2ZJ2Y6+58ZpploKSifSOTGgmZO/eC
+ 9l/2uR5VeCSvJBf5E8N78VnYKQJtJ5XuNZuDMIq1es3WrLuwbLHhj0K0Qf0Tht22Lx
+ vkngZYPxzTaDdc2KPjgeitcA3tBquVZ3uFVkwAvHeSAQli4qzIKs6Kkk8n1FQBA63a
+ nxD2vv15yJS/+pki4rcvUvLsyWztpvOuf2x3zujJxphlndONA92JNNPfb8vKhNRhpq
+ DhtMCZEI+2uZQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v8 07/10] drm/xe/pf: Align VF GGTT allocations to PAGE_SIZE
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Subject: Re: [PATCH v4] drm/xe: Poll GT for C6 before D3
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260915071159.51402-19-satyanarayana.k.v.p@intel.com>
-References: <20260915071159.51402-12-satyanarayana.k.v.p@intel.com>
- <20260915071159.51402-19-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20260915071145.2866414-1-vinay.belgaumkar@intel.com>
+References: <20260915071145.2866414-1-vinay.belgaumkar@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 15 Sep 2026 07:27:17 +0000
-Message-Id: <20260915072717.899C01F000FF@smtp.kernel.org>
+Date: Tue, 15 Sep 2026 07:31:29 +0000
+Message-Id: <20260915073130.67A171F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,69 +57,88 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Critical] xe: SR-IOV GGTT alignment allows memory isolation bypass
+- [High] drm/xe: unconditional GT C6 polling breaks runtime PM on platforms=
+ without C6
 --
 
-commit b273b43c9c7b2ba3519285921560775aacbe0985
-Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+commit d22fb27a8cdb2d7146e1b7f558dcb233890faf71
+Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-drm/xe/pf: Align VF GGTT allocations to PAGE_SIZE
+drm/xe: Poll GT for C6 before D3
 
-This commit reduces the PF's alignment for VF GGTT partitions to the host
-CPU PAGE_SIZE (4K) to allow finer-grained partitioning.
+This commit ensures the GT is in the C6 state before transitioning to D3
+during runtime suspend. It polls the GT idle status and forces a resume
+if the C6 check fails, preventing the device from being stuck in an
+intermediate state.
 
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm=
-/xe/xe_gt_sriov_pf_config.c
-> index 6947aeed458ed..91ec8e898e3b5 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-> @@ -441,9 +441,7 @@ static int pf_refresh_vf_cfg(struct xe_gt *gt, unsign=
-ed int vfid)
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+[ ... ]
+> @@ -1394,6 +1394,17 @@ static int xe_pci_runtime_suspend(struct device *d=
+ev)
+>  	if (err)
+>  		return err;
 > =20
->  static u64 pf_get_ggtt_alignment(struct xe_gt *gt)
->  {
-> -	struct xe_device *xe =3D gt_to_xe(gt);
-> -
-> -	return IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_=
-64K : SZ_4K;
-> +	return PAGE_SIZE;
+> +	err =3D xe_pm_check_device_idle(xe);
+> +	if (err) {
+> +		drm_dbg(&xe->drm, "Resuming - Device idle check failed!");
+> +		ret =3D xe_pm_runtime_resume(xe);
+> +		if (ret) {
+> +			drm_err(&xe->drm, "Resume failed after suspend was canceled");
+> +			return ret;
+> +		}
+> +		return err;
+> +	}
+> +
 
-[Severity: Critical]
-Does this regression allow a VF to bypass SR-IOV memory isolation?
-
-By unconditionally returning PAGE_SIZE, the PF provisions the VF's GGTT
-partition with a base address (ggtt->start) that is only guaranteed to be
-4K-aligned.
-
-In the VF, the local drm_mm allocator is initialized with a start offset of=
- 0,
-meaning it aligns local offsets but not the absolute global GGTT address:
-
-drivers/gpu/drm/xe/xe_ggtt.c:__xe_ggtt_init_early()
-    drm_mm_init(&ggtt->mm, 0, size);
-
-When the VF maps a VRAM object, it requests a 64K-aligned local offset from
-drm_mm:
-
-drivers/gpu/drm/xe/xe_ggtt.c:__xe_ggtt_insert_bo_at()
-    if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
-        alignment =3D SZ_64K;
-
-Because the global GGTT virtual address is local_offset + ggtt->start,
-a 4K-aligned partition base offset produces a globally misaligned hardware
-address.
-
-Since the GPU's TLB masks the lower 16 bits of the virtual address for 64K
-pages, will this misaligned absolute address cause the TLB entry to alias w=
-ith
-the preceding 4K-aligned memory range, potentially exposing another VF or P=
-F's
-memory?
-
+[ ... ]
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+[ ... ]
+> @@ -1030,6 +1030,27 @@ void xe_pm_d3cold_allowed_toggle(struct xe_device =
+*xe)
+>  	mutex_unlock(&xe->d3cold.lock);
 >  }
 > =20
->  static u64 pf_get_min_spare_ggtt(struct xe_gt *gt)
+> +/**
+> + * xe_pm_check_device_idle() - Check if all GTs are idle.
+> + * @xe: xe device instance
+> + *
+> + * One of the ways to do this is to check for GT C6 state. This check
+> + * will fail if some component is holding a forcewake, for example.
+> + *
+> + * Return: 0 on success, -EAGAIN on failure
+> + */
+> +int xe_pm_check_device_idle(struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt;
+> +	u8 id;
+> +
+> +	for_each_gt(gt, xe, id)
+> +		if (xe_gt_idle_wait_for_c6(gt, 200))
+> +			return -EAGAIN;
+
+[Severity: High]
+Does this unconditional polling for C6 break runtime PM on platforms
+that don't support GT C6 (like PVC)?
+
+If a platform disables or does not support C6, xe_gt_idle_wait_for_c6()
+will unconditionally time out after 200ms. Since this function is called=20
+by xe_pci_runtime_suspend() during the idle transition, the device will=20
+repeatedly abort the suspend sequence.
+
+Because the runtime autosuspend timer usually fires every second, would
+this waste 200ms out of every second busy-waiting for a hardware state=20
+that can never be reached, leading to a CPU hog and preventing the device
+from ever suspending?
+
+> +
+> +	return 0;
+> +}
+> +
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260915071159.5140=
-2-12-satyanarayana.k.v.p@intel.com?part=3D7
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260915071145.2866=
+414-1-vinay.belgaumkar@intel.com?part=3D1
