@@ -4,84 +4,118 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D51F7C982CC
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 12:48:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03F29C982CD
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 12:48:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CC0A10EA77;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A2AA10EA85;
 	Wed, 16 Sep 2026 12:48:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=invisiblethingslab.com header.i=@invisiblethingslab.com header.b="hRpLQ70o";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="uwcN4+Ps";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="k7PBojoR";
 	dkim-atps=neutral
-Received: from fhigh-a2-smtp.messagingengine.com
- (fhigh-a2-smtp.messagingengine.com [103.168.172.153])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D2D610E8C0;
- Wed, 16 Sep 2026 08:22:37 +0000 (UTC)
-Received: from phl-compute-08.internal (phl-compute-08.internal [10.202.2.48])
- by mailfhigh.phl.internal (Postfix) with ESMTP id 70FD514001FE;
- Wed, 16 Sep 2026 04:22:36 -0400 (EDT)
-Received: from phl-frontend-03 ([10.202.2.162])
- by phl-compute-08.internal (MEProxy); Wed, 16 Sep 2026 04:22:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- invisiblethingslab.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:subject:subject:to
- :to; s=fm1; t=1789546956; x=1789633356; bh=RjjXMwO3RBHhN10FlHwFS
- JNkrOjydygpbSv33I0kjNg=; b=hRpLQ70oc3RG9dD0nXCXmAEiDbJhGfJYT46oz
- MX5gtetl0J1wtwOeCaUGgtqL9dVqntxYNEVRnUdP4cVxvvfYvdOMd5hoAEYDKmcR
- lus2bh9/CCqbMF/aP1msNoh3VCE3b78DzuEIk0cgnP76LBYJkGsXRI7Uyf6DCc9h
- 19pQCpgRwhtZrwgj0aPVAOX3bvjcsDILVBfLP6McetE4EwNgGW2lH+u8VQQbOViv
- 1jarod7ODO0ZT+rmQjbxwssTQUTCgDGuPkAojUEjyWUsx4i1KcG3kFMhxRvkrHbc
- ynBQOZO65UhCyZPQhvuei5J+L5C8UfXuAXXfQT7AEjSqGHlLw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm1; t=1789546956; x=1789633356; bh=R
- jjXMwO3RBHhN10FlHwFSJNkrOjydygpbSv33I0kjNg=; b=uwcN4+PsaRMWo8t2Z
- O70Mjgh2qaXZUiybtF0blAVa8KIINka9xa0ejJUhGiw3oFCP3eVxZJr78qx/0sS6
- DkAAeesMIAnex1U0cn6UiNCNvmc9v2aglaOIPEESQoXGf3fYaxQynG0ZsogXOJQ2
- tu3ztAaqWj0vq0cTmvHX9dmqD8lFF4T2JP+mATnhL+JFULagW6nOZtOuktChvIyG
- IF3oO7FcjTCdO+8e/XuaIE0Uu81MlSf7bvsNBTIleLeTsj4GFHuaQoaN/tfvE4Af
- LQUwZcOUK323mvn+tmBex/eZerBlqRz3tCmZ+dhOkPuofviCe3zRyDvyq1CsoRc2
- cJD+A==
-X-ME-Sender: <xms:zFGqamj3l-85ka1StKLz9Wg9kYHaC4CmPjSZmts4vqkwcYp53J4hHQ>
- <xme:zFGqapmnjwJxbzBmX_hBFILiVtmclH0JE45jjVOn3A395JQnF1C19_BVTrNOR8cNR
- mLj1WHnFVqt3R5G5CNV5DjmkIeBtXXRHmpSsg2zWv3bvKk7gkE>
-X-ME-Received: <xmr:zFGqahun590ZEzDD7fSCs58lj4KxfPJVWyQ2j5RYntCnxQVDUihMPdNrk4uvFkhRu5DWLDWGxEZu>
-X-ME-Proxy-Cause: dmFkZTFjALIVprZhtt7ZqpzfHXxszJynVq6cy3cumQYNy92JwiWl76o59hd46DRSJCK7bs
- fDy7agiGOpVisM7lAwV7WTJtVJ776e1E9d/3WI0PxwufSF+YSQrjB/Jqtq5DbSwa/nWkf3
- xnUMgCvJMBfyp7auhPYv97TsOsT6SXZcrNrXuS/nhfU/8Q4674cUiHvsu+v2s1SqPNRdyw
- xytLlIZufebWPN0F+nkTz9U3xB+zVYB0b1k61J//8NoC5yfkEiH6pQEQWQayBb2MpohjRE
- t5ZmWM7pbfV55pXX0I8Q+s8COmIvcH7koD7eaYedl9dFhW9fatu1xmO5QpYUI7++r4jReK
- 8ut51Bj0QpuuOHQryLvRxPfW4/Kk7+JtySRT9UbeNiOS57Z4YHO+XccTjRgaVWM1oSV30v
- EkBzPrIcMcP88qeMXH0DOuhye16V4onZLqJQ3VZopA9XYPyK9pELgyr01IwQ+DAnTCxZ41
- JOmoEf2xnrE9lLmfYwgTyudoBcc8HbN3sXeasUMe7vInrstrfBoN7OMHGxDnJpYLxUlGPF
- bo2LX5krukBngQ9BIqdpBJSV2yG7IJtjjOJNTKy+hAc0qqDtOXzACmtnroEzALSou9g2ao
- QZJewunSl1ucy3nBlK1jRdufSfjTYGdv+CASmdzLL3YpfhK4zseIWyW3bWcQ
-X-ME-Proxy: <xmx:zFGqavYdNSCXeJNvejqXD6joi-tQjBUPI2NlXsfC7qc6YVlRcCMBrw>
- <xmx:zFGqapD10ONosXyv7OdVuf80fQ4X0mAGl8PKkHTYu_u7ZMFKSzuSYg>
- <xmx:zFGqan-k-Q42LqM8F7xMxQSe0AV_Bm5nxJ3rUAc-h6ubJvSKvewhPw>
- <xmx:zFGqalQgMDoOIilOzaEBnRAW-p83GciKDuQ_mHRCcOuHjfPkIatr9w>
- <xmx:zFGqapUv7mNnHXl29R3cT22Nx5-dM8nDNyRvWCxwQeDIVDb1GYwgHc6Y>
-Feedback-ID: i792e4853:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 16 Sep 2026 04:22:32 -0400 (EDT)
-From: =?UTF-8?q?Szymon=20Aceda=C5=84ski?= <accek@invisiblethingslab.com>
-To: intel-xe@lists.freedesktop.org
-Cc: lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, matthew.brost@intel.com,
- maarten.lankhorst@linux.intel.com, marmarek@invisiblethingslab.com,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH] drm/xe: Limit sg segment size to PAGE_SIZE on Xen PV
-Date: Wed, 16 Sep 2026 10:22:22 +0200
-Message-ID: <20260916082222.2650308-1-accek@invisiblethingslab.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260820101212.1608543-1-accek@invisiblethingslab.com>
-References: <20260820101212.1608543-1-accek@invisiblethingslab.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CF9D10E1D5;
+ Tue, 15 Sep 2026 20:00:02 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 2077F43B37;
+ Tue, 15 Sep 2026 20:00:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 069581F000FF;
+ Tue, 15 Sep 2026 20:00:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1789502402;
+ bh=060FvzlSY1s+NjIuTsRc9Ny+zBNXkBYeefHqKI9hLNs=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=k7PBojoRGnlYP+7hm1RNQd5WiXBzFE9G/TC6RDJLFlkIfILpDtK/GBadjjEtwmvkI
+ VltqHkns7rFQJUs7zOmt6Aou56t41/k1s3vtqxmfTJXB2iTYaoQOZMoaAQLEbiBATM
+ QliN/deaZlJIoWJkLmj+D4VvTn5Jx146y3TPh/vvsa/DnZhr9eIjruGktKRmZd1F8W
+ d/n8s23s+ioe/dcLrN5uPZzQxe+1Zt37jah6tmmp47xTq2Q8c6opmO/Bh9z6yBVHOy
+ 7ebwggwCD440EEMlDbbPNOt17kbvHZ9ZDz+ruV708XKWcQk5yesfJHNbhyUtEGTA1U
+ d3OVGyDuwb7RA==
+Date: Tue, 15 Sep 2026 13:00:00 -0700
+From: Kees Cook <kees@kernel.org>
+To: Bill Wendling <morbo@google.com>
+Cc: linux-kernel@vger.kernel.org, codemender-patching+linux@google.com,
+ Russell King <linux@armlinux.org.uk>, Huacai Chen <chenhuacai@kernel.org>,
+ WANG Xuerui <kernel@xen0n.name>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+ Helge Deller <deller@gmx.de>, Thomas Gleixner <tglx@kernel.org>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+ "H. Peter Anvin" <hpa@zytor.com>, Ian Abbott <abbotti@mev.co.uk>,
+ H Hartley Sweeten <hsweeten@visionengravers.com>,
+ Tony Luck <tony.luck@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Matthias Schwarzott <zzam@gentoo.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Tony Nguyen <anthony.l.nguyen@intel.com>,
+ Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Arend van Spriel <arend.vanspriel@broadcom.com>,
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Linus Walleij <linusw@kernel.org>,
+ Anil Gurumurthy <anil.gurumurthy@qlogic.com>,
+ Sudarsana Kalluru <sudarsana.kalluru@qlogic.com>,
+ "Martin K. Petersen" <mkp@kernel.org>,
+ Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>,
+ Mike Marshall <hubcap@omnibond.com>,
+ Martin Brandenburg <martin@omnibond.com>,
+ Jiri Pirko <jiri@resnulli.us>, Simon Horman <horms@kernel.org>,
+ Chuck Lever <cel@kernel.org>, Jeff Layton <jlayton@kernel.org>,
+ NeilBrown <neil@brown.name>, Olga Kornievskaia <okorniev@redhat.com>,
+ Dai Ngo <Dai.Ngo@oracle.com>, Tom Talpey <tom@talpey.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "Mike Rapoport (Microsoft)" <rppt@kernel.org>,
+ Kanglong Wang <wangkanglong@loongson.cn>,
+ Tiezhu Yang <yangtiezhu@loongson.cn>, Qiang Ma <maqianga@uniontech.com>,
+ Randy Dunlap <rdunlap@infradead.org>, Pengpeng Hou <pengpeng@iscas.ac.cn>,
+ Ard Biesheuvel <ardb@kernel.org>, Breno Leitao <leitao@debian.org>,
+ Thorsten Blum <blum@kernel.org>,
+ Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Lyude Paul <lyude@redhat.com>, Ashutosh Desai <ashutoshdesai993@gmail.com>,
+ Imre Deak <imre.deak@intel.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Johan Hovold <johan@kernel.org>, Johannes Berg <johannes.berg@intel.com>,
+ Miri Korenblit <miriam.rachel.korenblit@intel.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Cryolitia PukNgae <cryolitia@uniontech.com>,
+ Jiaming Zhang <r772577952@gmail.com>, Will Porter <mrwillporter@gmail.com>,
+ Cen Zhang <zzzccc427@gmail.com>,
+ =?iso-8859-1?Q?C=E1ssio?= Gabriel <cassiogabrielcontato@gmail.com>,
+ Rong Zhang <i@rong.moe>, Arun Raghavan <arunr@valvesoftware.com>,
+ linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
+ linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org,
+ linux-edac@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-input@vger.kernel.org,
+ linux-media@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
+ netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
+ brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com,
+ devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-nfs@vger.kernel.org, devel@lists.orangefs.org,
+ linux-hardening@vger.kernel.org, linux-sound@vger.kernel.org
+Subject: Re: [PATCH 25/28] EDAC/thunderx: Replace strlcat() with seq_buf
+Message-ID: <202609151258.5FC01072@keescook>
+References: <20260915081910.4142719-1-morbo@google.com>
+ <20260915081910.4142719-26-morbo@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260915081910.4142719-26-morbo@google.com>
 X-Mailman-Approved-At: Wed, 16 Sep 2026 12:48:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -97,21 +131,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Gentle ping.
+On Tue, Sep 15, 2026 at 08:18:42AM +0000, Bill Wendling wrote:
+> index e7c335ca0c36..4e3781815b6d 100644
+> --- a/drivers/edac/thunderx_edac.c
+> +++ b/drivers/edac/thunderx_edac.c
+> @@ -20,6 +20,7 @@
+>  #include <linux/atomic.h>
+>  #include <linux/bitfield.h>
+>  #include <linux/circ_buf.h>
+> +#include <linux/seq_buf.h>
+>  
+>  #include <asm/page.h>
+>  
+> @@ -47,12 +48,17 @@ static void decode_register(char *str, size_t size,
+>  {
+>  	int ret = 0;
+>  
+> +	if (size > 0)
+> +		str[0] = '\0';
+> +
+>  	while (descr->type && descr->mask && descr->descr) {
+>  		if (reg & descr->mask) {
+>  			ret = snprintf(str, size, "\n\t%s, %s",
+>  				       descr->type == ERR_CORRECTED ?
+>  					 "Corrected" : "Uncorrected",
+>  				       descr->descr);
+> +			if (ret < 0 || ret >= size)
+> +				break;
+>  			str += ret;
+>  			size -= ret;
+>  		}
 
-Maybe this was missed, because it's my first patch here and
-patchwork reports that I'm not in the allowlist for CI.
+Seems like seq_buf would be better her? But yes, at the very least, this
+needs to be scnprintf, not snprintf (or add the checks as you have
+here).
 
-  https://patchwork.freedesktop.org/series/172525/
+The rest of the seq_buf conversions look right.
 
-Could someone trigger a retest (and ideally add accek@invisiblethingslab.com
-to the allowlist)? Happy to resend or rebase if preferred.
-
-This fixes xe being unusable as a Xen PV dom0 GPU driver (display
-corruption, GuC job timeouts and eventual swiotlb exhaustion) --
-https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8382.
-
-It's the Qubes OS on Lunar Lake issue Maarten was looking into in June.
-
-Thanks,
-Szymon
+-- 
+Kees Cook
