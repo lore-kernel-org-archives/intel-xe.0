@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C81B5C982C4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1806C982C3
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C94B10E6D4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D18010EACB;
 	Tue, 15 Sep 2026 14:13:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="RuJQN4hX";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="CbOO6oc9";
 	dkim-atps=neutral
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com
- [209.85.214.198])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FC8210FAF3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:19:58 +0000 (UTC)
-Received: by mail-pl1-f198.google.com with SMTP id
- d9443c01a7336-2cfc52ddc55so61784095ad.3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:19:58 -0700 (PDT)
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com
+ [209.85.214.199])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 740BF10F34C
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:15 +0000 (UTC)
+Received: by mail-pl1-f199.google.com with SMTP id
+ d9443c01a7336-2cfc52ddc55so61789005ad.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460398; x=1790065198;
+ d=google.com; s=20251104; t=1789460415; x=1790065215;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=q9qHU7CDEu6zWWmniYe9q2ucwWYfoa3UieeTJM1aJto=;
- b=RuJQN4hXZqNXPfSGTwPU2xCABeOGB9RyqPbdtx+FxddqhYfg1SY9EAk02q9r4PTcqq
- c7k99EBdQXLQzt1jXvhYf/KWF/ckvUtEyNkszlV3HaDr914kKMQBT63MX0UNU4v2PpyF
- aVemfCVexAGJj7kkkHgZw7HFYqWFmkNaUjANXV3e6qmkadIJcIjttg3Ka+33BJgBz7hU
- a0hXf7FQU5YSIPCHQcFLtw69O4fb/y6YWNp3TwBRT+FGhvvIO48JvXqeI+upBiqaQEGV
- lDmTXUfczYmnAi1Btn4bI6J0j26U+tNURvECGb6IfjNA8CmDqNQDCFWKVobyOKtXhjLy
- ZTxA==
+ bh=aUeRHnlHuLyd8Os/OfUYHyanuI/6gSGpcAdXKzgjG1A=;
+ b=CbOO6oc9YGMITsZHKrKLmZIW9qS8jE7z0ChJXMbzo2Z1P5OtkwPkPN6cMlqYJQk+1I
+ lOeLytjY7lwD1B98J5EVbIbIZ4PlcJYQVCIjPcD8IQXOqERx5zjM/TYBHNn4iBFndMWY
+ +3nmMmfYBhf2x2eKkVG9DPyeiNTeo2PiGB0974Ghv8mtSYrHEEzOXZQhyDlnnw+a9TGI
+ 1WbOEXl8ijmHK2y5e9Wd73RmMAFbEftlUSYaUhU46+0tWT6AGFXaRB0vDjjBocco6O+8
+ 6C0k5KpiUI3LXfESQ6oaC+j1xmOcNDkujtZSCgyvCHirVRdPAjouap3gZj6DQyB7nXOM
+ 0j9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460398; x=1790065198;
+ d=1e100.net; s=20260707; t=1789460415; x=1790065215;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=q9qHU7CDEu6zWWmniYe9q2ucwWYfoa3UieeTJM1aJto=;
- b=yxRbhvYngA2695HGdR0gQA79h5i90ihZTdZdWcuX2yKvAHuHTirRYTZNnCnl8PuwHh
- qsUNtlo26xCBvwFdFUW1+SNoi06OABkhhVbdsX8ZG+TEik8zupJBK8f73G1GZUigfdL8
- 9Z7yZOJSFPoZ6fjcdBFTMmX9svdS1+g9h2Ry8P+BUWlUtpUEeC5ODpPCwQbbAANmhHEv
- UPHfCGlV+Tcs9Htbpr01UumTDb2CAwjd9t6XMl0JWbOstNownNmR5Q7SWIWnpl3yQCK6
- aZKnenmmbxvJJNDXnGaX8KDJjEgK9hDmZuQ2v2WpQTB+iT6Pz8RKes0IUgxcFpbWkDYN
- 5aXw==
+ bh=aUeRHnlHuLyd8Os/OfUYHyanuI/6gSGpcAdXKzgjG1A=;
+ b=sTqnUfprBBjaBYaz3FG6cXxMYdoJll76wSPVnC+dgw5PrLaxh/vR5cTtJVbfHrOk00
+ 1+3AxsF32soUHsHp8wKsFFlElHXIWkFEi/shRUiFRtUjYGepN9VOKYaDo4NLjL1fdrde
+ tg7mucEiELXGXGMyhBx16O90cvdMScKMPhUnNdDhVcsca9r/F/DZrIhTUR8LlVoFywqL
+ Ir6zmtj3SwSo5ePPS4vrgY1IZx+QgVbtQRlur3m1BFvlTXfYcEmCpLKoXpjtDNtyGOdl
+ LUDIYVrSMM7CNaIRG3CDRhzuxMlxZiCFw6Ye2H9sD8BE20qevxrmEAfT/dYCPNlikOr2
+ HBmw==
 X-Forwarded-Encrypted: i=1;
- AKwUvBzYKdhZ+Uh21Rltb8+ZDUeD/W/ald5BqsihqPA6ZqnYAHd37KffD3dwWJHKj2hUU1mZl3FaqaaH7w==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++lWbrSzhwgIoQDF7Z1eXqZcpIANVXCRgEirDxxaSXtVrlCiM2Cs
- 2vdyfdMIECeoM6dJluEJSX9wl3QZlEuy8CehE4u+FhC2fFriJf83r9KdD2g727UVc5uDH7QPo4E
- 8
-X-Received: from plhc17.prod.google.com ([2002:a17:903:2351:b0:2cf:ca4d:25e3])
+ AKwUvBwC6fe3IejOVfInhQvXjBORUR5Kr6ZdLGy7OFJyqz4a7PUJH5gFEhWfzvcZSFa6SwuL5wnHxuj+DQ==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++n31tfodLdg+NgFPufpFar2RlbFhFTH1YfL1JZtoqZvAmbHCPcm
+ RcRh/MfuufGaZoeq3N63S+iEwllUgAkus+Ofx94VBoeGeoJpVua+i+R0uUCEnvW6cejqPL99xpQ
+ C
+X-Received: from plbmz16.prod.google.com ([2002:a17:903:3510:b0:2dd:2adc:aa80])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:903:2408:b0:2d8:d4ce:9f32
- with SMTP id d9443c01a7336-2dd83869ae3mr512075ad.16.1789460397125; Tue, 15
- Sep 2026 01:19:57 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:27 +0000
+ 2002:a17:903:a8b:b0:2d9:26b3:547
+ with SMTP id d9443c01a7336-2dd83882243mr420135ad.20.1789460414438; Tue, 15
+ Sep 2026 01:20:14 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:40 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-11-morbo@google.com>
-Subject: [PATCH 10/28] of/fdt: Replace strlcat() with snprintf() in
- early_init_dt_scan_chosen()
+Message-ID: <20260915081910.4142719-24-morbo@google.com>
+Subject: [PATCH 23/28] Input: synaptics_usb - use seq_buf and snprintf() for
+ name and phys
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
 Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
@@ -155,22 +155,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When CONFIG_CMDLINE_EXTEND is enabled, early_init_dt_scan_chosen() uses
-two strlcat() calls to append a space and CONFIG_CMDLINE to the command
-line buffer.
+synusb_probe() constructs the device name and physical path using a mix of
+strscpy(), strlcat(), and snprintf().
 
-In preparation for removing the deprecated strlcat() API[1], replace the
-strlcat() calls with a single snprintf() call using the existing string
-length.
-
-Additionally, check for a NULL initial_boot_params pointer and jump to
-"handle_cmdline" so that CONFIG_CMDLINE handling still occurs without
-dereferencing a NULL FDT pointer in fdt_path_offset().
+In preparation for removing the deprecated strlcat() API[1], use struct
+seq_buf to incrementally build synusb->name, and format synusb->phys with
+snprintf() after generating the USB path.
 
 Link: https://github.com/KSPP/linux/issues/370 [1]
 Cc: codemender-patching+linux@google.com
-Assisted-by: Assistant:Claude-3.5-Sonnet [editor_update_file, shell_command=
-_run]
+Assisted-by: Gemini:1.5-Pro-002 [editor_update_file, make_kernel_build_sing=
+le_file, test_runner_run_kunit_test]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -284,39 +279,73 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- drivers/of/fdt.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ drivers/input/mouse/synaptics_usb.c | 29 +++++++++++++++++------------
+ 1 file changed, 17 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index a64afc3ded3d..311021a83f03 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -1095,6 +1095,9 @@ int __init early_init_dt_scan_chosen(char *cmdline)
- 	const void *rng_seed;
- 	const void *fdt =3D initial_boot_params;
+diff --git a/drivers/input/mouse/synaptics_usb.c b/drivers/input/mouse/syna=
+ptics_usb.c
+index 880a0c79148c..d13d2d6202ee 100644
+--- a/drivers/input/mouse/synaptics_usb.c
++++ b/drivers/input/mouse/synaptics_usb.c
+@@ -41,6 +41,7 @@
+ #include <linux/usb.h>
+ #include <linux/input.h>
+ #include <linux/usb/input.h>
++#include <linux/seq_buf.h>
 =20
-+	if (!fdt)
-+		goto handle_cmdline;
+ #define USB_VENDOR_ID_SYNAPTICS	0x06cb
+ #define USB_DEVICE_ID_SYNAPTICS_TP	0x0001	/* Synaptics USB TouchPad */
+@@ -278,6 +279,8 @@ static int synusb_probe(struct usb_interface *intf,
+ 	struct input_dev *input_dev;
+ 	unsigned int intf_num =3D intf->cur_altsetting->desc.bInterfaceNumber;
+ 	unsigned int altsetting =3D min(intf->num_altsetting, 1U);
++	struct seq_buf s;
++	char path[64];
+ 	int error;
+=20
+ 	error =3D usb_set_interface(udev, intf_num, altsetting);
+@@ -334,27 +337,29 @@ static int synusb_probe(struct usb_interface *intf,
+ 			 ep->bInterval);
+ 	synusb->urb->transfer_flags |=3D URB_NO_TRANSFER_DMA_MAP;
+=20
++	seq_buf_init(&s, synusb->name, sizeof(synusb->name));
 +
- 	node =3D fdt_path_offset(fdt, "/chosen");
- 	if (node < 0)
- 		node =3D fdt_path_offset(fdt, "/chosen@0");
-@@ -1133,8 +1136,12 @@ int __init early_init_dt_scan_chosen(char *cmdline)
- 	 */
- #ifdef CONFIG_CMDLINE
- #if defined(CONFIG_CMDLINE_EXTEND)
--	strlcat(cmdline, " ", COMMAND_LINE_SIZE);
--	strlcat(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
-+	{
-+		size_t len =3D strlen(cmdline);
+ 	if (udev->manufacturer)
+-		strscpy(synusb->name, udev->manufacturer,
+-			sizeof(synusb->name));
++		seq_buf_puts(&s, udev->manufacturer);
+=20
+ 	if (udev->product) {
+ 		if (udev->manufacturer)
+-			strlcat(synusb->name, " ", sizeof(synusb->name));
+-		strlcat(synusb->name, udev->product, sizeof(synusb->name));
++			seq_buf_puts(&s, " ");
++		seq_buf_puts(&s, udev->product);
+ 	}
+=20
+-	if (!strlen(synusb->name))
+-		snprintf(synusb->name, sizeof(synusb->name),
+-			 "USB Synaptics Device %04x:%04x",
+-			 le16_to_cpu(udev->descriptor.idVendor),
+-			 le16_to_cpu(udev->descriptor.idProduct));
++	if (!seq_buf_used(&s))
++		seq_buf_printf(&s, "USB Synaptics Device %04x:%04x",
++			       le16_to_cpu(udev->descriptor.idVendor),
++			       le16_to_cpu(udev->descriptor.idProduct));
+=20
+ 	if (synusb->flags & SYNUSB_STICK)
+-		strlcat(synusb->name, " (Stick)", sizeof(synusb->name));
++		seq_buf_puts(&s, " (Stick)");
+=20
+-	usb_make_path(udev, synusb->phys, sizeof(synusb->phys));
+-	strlcat(synusb->phys, "/input0", sizeof(synusb->phys));
++	seq_buf_str(&s);
 +
-+		if (len < COMMAND_LINE_SIZE)
-+			snprintf(cmdline + len, COMMAND_LINE_SIZE - len, " %s", CONFIG_CMDLINE)=
-;
-+	}
- #elif defined(CONFIG_CMDLINE_FORCE)
- 	strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
- #else
++	usb_make_path(udev, path, sizeof(path));
++	snprintf(synusb->phys, sizeof(synusb->phys), "%s/input0", path);
+=20
+ 	input_dev->name =3D synusb->name;
+ 	input_dev->phys =3D synusb->phys;
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
