@@ -4,64 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92342C88E7B
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 520CEC982C3
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 573C410EB25;
-	Tue, 15 Sep 2026 14:13:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09D1F10EED0;
+	Tue, 15 Sep 2026 14:13:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="i4zhrVpr";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="FSSKG05a";
 	dkim-atps=neutral
 Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com
  [209.85.214.199])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C126B10F34C
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:19:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFC6C10F34C
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:19:53 +0000 (UTC)
 Received: by mail-pl1-f199.google.com with SMTP id
- d9443c01a7336-2d6f80c76e6so78367285ad.3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:19:55 -0700 (PDT)
+ d9443c01a7336-2db8e9fe9c7so60578875ad.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:19:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460395; x=1790065195;
+ d=google.com; s=20251104; t=1789460393; x=1790065193;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=GmOofVahuDrknmhehkkjM5BCV+g3cc9ELbAHUqasD2M=;
- b=i4zhrVprqdMgYB+IkkF9wzZKHfytdt30KNC6HoNiRbNW/Q6ddBxBfJU7ZBOBko1PFG
- khoNDwq811ECRjJOsp1OSDQt9EJFn78W6yoQpfSeGLPNIGFzEObYEmXx9xFAvzr6BMev
- VqDCtodLFDC0LN9pI+X/hMmzZXHKdVaG9MDpDigJpb0Z85ciX0hRji83zOwhmeIFeq0t
- dtbABN+amEdBhwkmAIxcfbjPvJosLsxhN3lEkOlIBFjugBbcewDXet/uYxcgsLWqgfoz
- EqB0tZ2zSyt1+td43Q+oFYuyBRHavUKMoH8JZigQY8mJPneKmqDP6etTv6bvj6U5nzwV
- gX2w==
+ bh=zWD4hm0/QtNssxCPHbfwVqSd2Rh5fwz1bRTM/8vetN0=;
+ b=FSSKG05aaHRfRLOtySzohdUeKXh4OXV7KPWOS3T+L5qxqHGv9Ts2H8wNgsnjuwzUy6
+ pAFThFX1p2nnYPWJyLwVxdoHcEajF7TekCu+uKJ1fUPfhaRAjDQlEPeQyMUh3RnrlWZE
+ slMSeUUfUefLKndhLBNIjjOruoz/CWUtCZHYaY5j/y1Br3XnHF92E1WjhvplMRBJAjLQ
+ ViLNJRQ6GOTcbjQtkKqm5Jok5fDWxeQhIJ9fStLq1+jzPG9TlWjCTcif93pl23ZLdeZ+
+ xL6Sb1gdxblvYEeK8nks6kHN9yzD+FUVgIXR4X5M4Z+uk4DB82v9PiKRZrjM1x1JJm9T
+ ar7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460395; x=1790065195;
+ d=1e100.net; s=20260707; t=1789460393; x=1790065193;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=GmOofVahuDrknmhehkkjM5BCV+g3cc9ELbAHUqasD2M=;
- b=QTiv03IZpCcNOXbU2QkXSQxpX5vsioTS3N5pYEJ4cmZ3RSHCaaWrH9vRMqdFdaEEx3
- KhkDk8wlFiHNYBaaTA+ywk4iIEBpEsac8AMi6lqrKyGohEfY8CPru722d9/IPHtia1p4
- /a2J1fRXiMBRcoMcAUxAqw+v77hwdo5XinSNe2oTxv5izWmK4IwYcFgTz0QW2TZOiW0M
- 04GCOcyRo4dbzc26VKS04BDaLoj6cUyjY0F3addvKLi55MOY/mqHPMY5oQrT6axjuKsv
- mOCOOiRUZMHGP1lV7Ma7tbYmv1yI+g32CClgmgdOuo4XZT7koJqjInE53PZmxGDxY/v1
- MGsA==
+ bh=zWD4hm0/QtNssxCPHbfwVqSd2Rh5fwz1bRTM/8vetN0=;
+ b=wVEVWpd47fuBbINJeN1GAZ8TIt0ghdNJ8jusAuOD//cxvAe+iISqNmkbmZ69jhJWWs
+ 5kfSTl5nxdWTmNLvCavspn/nBntWTkdhQ8d30G6yLfkW/utliQIJxCOOm/3tm5/oK1t1
+ fMkR7VgpZZ7v4kKexC1Z8LobrOSOI7/MthggQmM6xgwkPW4632DpuY4No4LxKxkBclw1
+ 3CroeRcnFoVtdzjbZLhxflhXKC4ZOiZtG9Fg6gjP1DKSu88Zqb7ed1QniPASLK0i2QtZ
+ 5osDOxEe8H3+rt2zvaLWrAioO/1dlWAuG4isUorEiYDiNcsJ7V54yYd6I69CWrHJj5yc
+ j/Cw==
 X-Forwarded-Encrypted: i=1;
- AKwUvBxJaOA0Em0dIBFciR7uqPPL7TsP0mn92VGyxMtzzkkIxfwz+7obQHwOYPBZQcx0fXyr7kTMEf540A==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++mLREZSk8ETdaLGfxNCj5g7R+YYkACjvwiKn6NLU1Sw36kW9IoU
- NYrRDq9Ci3c+dynD6tzqSDcDcCf8g9Mf719wvzeYZqPWueB8ZgdL5u9ysB4mceb1S+VBX0duMAM
- Z
-X-Received: from plrq10.prod.google.com ([2002:a17:902:b10a:b0:2dc:ff56:3f4c])
+ AKwUvBzThBLzWPWrxopfOdy5dCzdFi9y8BMpjm2I3+wn/gbrr/3Va/xH/WB2sZAVT8NAaxZDZcBUXAIWVw==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++n3T1KfkvJSTXUemGrw/AedYol7jMMy+CTI9RQOUMIqdom/5aGM
+ jz9HzPAd4RzyZCmE/HooMLAOTGyow3ulqKkq3dbXD3bCKf1qxVImPpjS0okd5dMYuwfaSVb03Ey
+ L
+X-Received: from plot14.prod.google.com ([2002:a17:902:8c8e:b0:2dd:4712:5539])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:902:db0e:b0:2d9:520c:38e7
- with SMTP id d9443c01a7336-2dd6c5c1330mr107218395ad.1.1789460394736; Tue, 15
- Sep 2026 01:19:54 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:24 +0000
+ 2002:a17:902:f541:b0:2dd:1701:3b6e
+ with SMTP id d9443c01a7336-2dd6c73381dmr119309875ad.16.1789460392218; Tue, 15
+ Sep 2026 01:19:52 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:21 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-8-morbo@google.com>
-Subject: [PATCH 07/28] scsi: bfa: Use snprintf() in bfa_fcs_fabric_psymb_init()
+Message-ID: <20260915081910.4142719-5-morbo@google.com>
+Subject: [PATCH 04/28] scsi: bfa: Use snprintf() in bfa_fcs_fabric_nsymb_init()
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
 Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
@@ -154,17 +154,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Similar to bfa_fcs_fabric_nsymb_init(), bfa_fcs_fabric_psymb_init()
-builds the port symbolic name using strscpy() and a chain of seven or
-eight strlcat() calls.
+bfa_fcs_fabric_nsymb_init() constructs the node symbolic name using
+strscpy() followed by five strlcat() calls and explicit NUL-termination.
 
 In preparation for removing the deprecated strlcat() API[1], replace the
-chained strscpy() and strlcat() calls with a single snprintf() call.
+chained string copies with a single snprintf() call.
 
 Link: https://github.com/KSPP/linux/issues/370 [1]
 Cc: codemender-patching+linux@google.com
-Assisted-by: Gemini-3.5-Pro:20241215 [editor_update_file, make_kernel_build=
-_single_file]
+Assisted-by: Gemini-2.5-Pro:2.5 [shell_command_run, editor_update_file]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -278,77 +276,52 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- drivers/scsi/bfa/bfa_fcs.c | 49 ++++++++++----------------------------
- 1 file changed, 13 insertions(+), 36 deletions(-)
+ drivers/scsi/bfa/bfa_fcs.c | 31 +++++++------------------------
+ 1 file changed, 7 insertions(+), 24 deletions(-)
 
 diff --git a/drivers/scsi/bfa/bfa_fcs.c b/drivers/scsi/bfa/bfa_fcs.c
-index 7a4e0e8c7182..9fe0343c0b32 100644
+index 9b57312f43f5..7a4e0e8c7182 100644
 --- a/drivers/scsi/bfa/bfa_fcs.c
 +++ b/drivers/scsi/bfa/bfa_fcs.c
-@@ -760,49 +760,26 @@ bfa_fcs_fabric_psymb_init(struct bfa_fcs_fabric_s *fa=
+@@ -821,30 +821,13 @@ bfa_fcs_fabric_nsymb_init(struct bfa_fcs_fabric_s *fa=
 bric)
 =20
  	bfa_ioc_get_adapter_model(&fabric->fcs->bfa->ioc, model);
 =20
 -	/* Model name/number */
--	strscpy(port_cfg->sym_name.symname, model,
+-	strscpy(port_cfg->node_sym_name.symname, model,
 -		BFA_SYMNAME_MAXLEN);
--	strlcat(port_cfg->sym_name.symname, BFA_FCS_PORT_SYMBNAME_SEPARATOR,
--		BFA_SYMNAME_MAXLEN);
+-	strlcat(port_cfg->node_sym_name.symname,
+-			BFA_FCS_PORT_SYMBNAME_SEPARATOR,
+-			BFA_SYMNAME_MAXLEN);
 -
 -	/* Driver Version */
--	strlcat(port_cfg->sym_name.symname, driver_info->version,
+-	strlcat(port_cfg->node_sym_name.symname, (char *)driver_info->version,
 -		BFA_SYMNAME_MAXLEN);
--	strlcat(port_cfg->sym_name.symname, BFA_FCS_PORT_SYMBNAME_SEPARATOR,
--		BFA_SYMNAME_MAXLEN);
+-	strlcat(port_cfg->node_sym_name.symname,
+-			BFA_FCS_PORT_SYMBNAME_SEPARATOR,
+-			BFA_SYMNAME_MAXLEN);
 -
 -	/* Host machine name */
--	strlcat(port_cfg->sym_name.symname,
+-	strlcat(port_cfg->node_sym_name.symname,
 -		driver_info->host_machine_name,
 -		BFA_SYMNAME_MAXLEN);
--	strlcat(port_cfg->sym_name.symname, BFA_FCS_PORT_SYMBNAME_SEPARATOR,
--		BFA_SYMNAME_MAXLEN);
--
- 	/*
- 	 * Host OS Info :
- 	 * If OS Patch Info is not there, do not truncate any bytes from the
- 	 * OS name string and instead copy the entire OS info string (64 bytes).
- 	 */
- 	if (driver_info->host_os_patch[0] =3D=3D '\0') {
--		strlcat(port_cfg->sym_name.symname,
--			driver_info->host_os_name,
--			BFA_SYMNAME_MAXLEN);
--		strlcat(port_cfg->sym_name.symname,
--			BFA_FCS_PORT_SYMBNAME_SEPARATOR,
--			BFA_SYMNAME_MAXLEN);
-+		snprintf(port_cfg->sym_name.symname, BFA_SYMNAME_MAXLEN,
-+			 "%s%s%s%s%s%s%s%s",
-+			 model, BFA_FCS_PORT_SYMBNAME_SEPARATOR,
-+			 driver_info->version, BFA_FCS_PORT_SYMBNAME_SEPARATOR,
-+			 driver_info->host_machine_name, BFA_FCS_PORT_SYMBNAME_SEPARATOR,
-+			 driver_info->host_os_name, BFA_FCS_PORT_SYMBNAME_SEPARATOR);
- 	} else {
--		strlcat(port_cfg->sym_name.symname,
--			driver_info->host_os_name,
--			BFA_SYMNAME_MAXLEN);
--		strlcat(port_cfg->sym_name.symname,
+-	strlcat(port_cfg->node_sym_name.symname,
 -			BFA_FCS_PORT_SYMBNAME_SEPARATOR,
 -			BFA_SYMNAME_MAXLEN);
 -
--		/* Append host OS Patch Info */
--		strlcat(port_cfg->sym_name.symname,
--			driver_info->host_os_patch,
--			BFA_SYMNAME_MAXLEN);
-+		snprintf(port_cfg->sym_name.symname, BFA_SYMNAME_MAXLEN,
-+			 "%s%s%s%s%s%s%s%s%s",
-+			 model, BFA_FCS_PORT_SYMBNAME_SEPARATOR,
-+			 driver_info->version, BFA_FCS_PORT_SYMBNAME_SEPARATOR,
-+			 driver_info->host_machine_name, BFA_FCS_PORT_SYMBNAME_SEPARATOR,
-+			 driver_info->host_os_name, BFA_FCS_PORT_SYMBNAME_SEPARATOR,
-+			 driver_info->host_os_patch);
- 	}
+-	/* null terminate */
+-	port_cfg->node_sym_name.symname[BFA_SYMNAME_MAXLEN - 1] =3D 0;
++	/* Model name/number, Driver Version, Host machine name */
++	snprintf(port_cfg->node_sym_name.symname, BFA_SYMNAME_MAXLEN,
++		 "%s" BFA_FCS_PORT_SYMBNAME_SEPARATOR
++		 "%s" BFA_FCS_PORT_SYMBNAME_SEPARATOR
++		 "%s" BFA_FCS_PORT_SYMBNAME_SEPARATOR,
++		 model, (char *)driver_info->version,
++		 driver_info->host_machine_name);
+ }
 =20
- 	/* null terminate */
+ /*
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
