@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 027ADC88E7F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C81B5C982C4
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB55510E9B4;
-	Tue, 15 Sep 2026 14:13:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C94B10E6D4;
+	Tue, 15 Sep 2026 14:13:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="KUIk71Ar";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="RuJQN4hX";
 	dkim-atps=neutral
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com
- [209.85.214.199])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AE4C10F34C
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:00 +0000 (UTC)
-Received: by mail-pl1-f199.google.com with SMTP id
- d9443c01a7336-2dc92350888so72279545ad.3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:00 -0700 (PDT)
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com
+ [209.85.214.198])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FC8210FAF3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:19:58 +0000 (UTC)
+Received: by mail-pl1-f198.google.com with SMTP id
+ d9443c01a7336-2cfc52ddc55so61784095ad.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:19:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460400; x=1790065200;
+ d=google.com; s=20251104; t=1789460398; x=1790065198;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=EgFMWIs3mUJyaWhldMFLFql9frpSc6deV3MqyJ0yzUw=;
- b=KUIk71ArR0jyiqrJR/MxV22mWo7tbZz5PCY5gd+4wHIjrKQ6s2VgXsW9FPbSRouHE4
- nLe3HuWWgvontvhTDY1XL69nY5/FR/PJjhUYmQFdOQsURdeE4fYs34Dcgi0CgrGcgWoy
- jUakH54l5V3z+V00KQvUYqXoEAEN8XDhUWib1WpTefqvdAfWlgW0sKKZgP5Zin6DxhWk
- c4oVGEknt4KDHzi1ccZk6/K6KjYCTzRtvpwOMs8sFTcala73vB7z5KAfC3hCjpgz9zgQ
- PYVIVvZLS3YvZ+6rTPDkHYj7jh8816SyHxjZXKebxrYuLz7dJ17J0uDkqz1CSYbbK3fv
- Z2hg==
+ bh=q9qHU7CDEu6zWWmniYe9q2ucwWYfoa3UieeTJM1aJto=;
+ b=RuJQN4hXZqNXPfSGTwPU2xCABeOGB9RyqPbdtx+FxddqhYfg1SY9EAk02q9r4PTcqq
+ c7k99EBdQXLQzt1jXvhYf/KWF/ckvUtEyNkszlV3HaDr914kKMQBT63MX0UNU4v2PpyF
+ aVemfCVexAGJj7kkkHgZw7HFYqWFmkNaUjANXV3e6qmkadIJcIjttg3Ka+33BJgBz7hU
+ a0hXf7FQU5YSIPCHQcFLtw69O4fb/y6YWNp3TwBRT+FGhvvIO48JvXqeI+upBiqaQEGV
+ lDmTXUfczYmnAi1Btn4bI6J0j26U+tNURvECGb6IfjNA8CmDqNQDCFWKVobyOKtXhjLy
+ ZTxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460400; x=1790065200;
+ d=1e100.net; s=20260707; t=1789460398; x=1790065198;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=EgFMWIs3mUJyaWhldMFLFql9frpSc6deV3MqyJ0yzUw=;
- b=mcBaIK3/2sM4SuUROUSnfgefq7QVvbPywiVqEZ296JegjbrA9TcKX56+mWWTf6RECt
- emaHJxNtKNpBh8gnqY8xYSfPp0DQiAwLG7pT6Jdu5J7iRQp8Eq2jXAY3Xpho0Q+r9CCV
- w+lFy/B4iozZwNoa8qfYBU+7SOHgYZF/Wc8cK5qmV1AnrmUUHXzw7BKLkhCRSHDAtvem
- sM8uvAQPK6i2pRispflqPxO+1e0FCS8vjmzS9RbawNgZjdA8Dz2Q2gqJvvp9g/gf4VhZ
- SkYY5V9xNlw9M7lGhzVETQCrJRIaiPPdY/1h+36WUE30TenFGx7MGiXZDwPFFlhXDWj0
- bY4g==
+ bh=q9qHU7CDEu6zWWmniYe9q2ucwWYfoa3UieeTJM1aJto=;
+ b=yxRbhvYngA2695HGdR0gQA79h5i90ihZTdZdWcuX2yKvAHuHTirRYTZNnCnl8PuwHh
+ qsUNtlo26xCBvwFdFUW1+SNoi06OABkhhVbdsX8ZG+TEik8zupJBK8f73G1GZUigfdL8
+ 9Z7yZOJSFPoZ6fjcdBFTMmX9svdS1+g9h2Ry8P+BUWlUtpUEeC5ODpPCwQbbAANmhHEv
+ UPHfCGlV+Tcs9Htbpr01UumTDb2CAwjd9t6XMl0JWbOstNownNmR5Q7SWIWnpl3yQCK6
+ aZKnenmmbxvJJNDXnGaX8KDJjEgK9hDmZuQ2v2WpQTB+iT6Pz8RKes0IUgxcFpbWkDYN
+ 5aXw==
 X-Forwarded-Encrypted: i=1;
- AKwUvBwg5V64L05M98N/S89fsbi07zKYPE4Z4Y+Raa5CdoOJEOK/14632epwQtABSQTgnDyGqAE/+dtvmA==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++kDotpPS4IlDK9ecJXf28Hp2C1j68WkqP9YiblEdBTYvrMg4zHU
- 7qaiaQIer3N65hF0aqiXoAtQ3YkQgaU+DHgybQgvhj+uYXsaUbmJkfYnNj5j9sO5o8bmclNl6J9
- y
-X-Received: from plrf13.prod.google.com ([2002:a17:902:ab8d:b0:2d9:21a2:1910])
+ AKwUvBzYKdhZ+Uh21Rltb8+ZDUeD/W/ald5BqsihqPA6ZqnYAHd37KffD3dwWJHKj2hUU1mZl3FaqaaH7w==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++lWbrSzhwgIoQDF7Z1eXqZcpIANVXCRgEirDxxaSXtVrlCiM2Cs
+ 2vdyfdMIECeoM6dJluEJSX9wl3QZlEuy8CehE4u+FhC2fFriJf83r9KdD2g727UVc5uDH7QPo4E
+ 8
+X-Received: from plhc17.prod.google.com ([2002:a17:903:2351:b0:2cf:ca4d:25e3])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:903:32cc:b0:2db:3d84:effc
- with SMTP id d9443c01a7336-2dd6c5d600fmr121011565ad.6.1789460398023; Tue, 15
- Sep 2026 01:19:58 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:28 +0000
+ 2002:a17:903:2408:b0:2d8:d4ce:9f32
+ with SMTP id d9443c01a7336-2dd83869ae3mr512075ad.16.1789460397125; Tue, 15
+ Sep 2026 01:19:57 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:27 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-12-morbo@google.com>
-Subject: [PATCH 11/28] wifi: brcmfmac: Replace strlcat() with snprintf() in
- brcmf_fw_alloc_request()
+Message-ID: <20260915081910.4142719-11-morbo@google.com>
+Subject: [PATCH 10/28] of/fdt: Replace strlcat() with snprintf() in
+ early_init_dt_scan_chosen()
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
 Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
@@ -155,17 +155,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-brcmf_fw_alloc_request() constructs firmware file paths by chaining
-strscpy() and multiple strlcat() calls for the module parameter path,
-separator, base name, and extension.
+When CONFIG_CMDLINE_EXTEND is enabled, early_init_dt_scan_chosen() uses
+two strlcat() calls to append a space and CONFIG_CMDLINE to the command
+line buffer.
 
-In preparation for removing the deprecated strlcat() API[1], format the
-complete firmware path in a single snprintf() call.
+In preparation for removing the deprecated strlcat() API[1], replace the
+strlcat() calls with a single snprintf() call using the existing string
+length.
+
+Additionally, check for a NULL initial_boot_params pointer and jump to
+"handle_cmdline" so that CONFIG_CMDLINE handling still occurs without
+dereferencing a NULL FDT pointer in fdt_path_offset().
 
 Link: https://github.com/KSPP/linux/issues/370 [1]
 Cc: codemender-patching+linux@google.com
-Assisted-by: SecurityEngineer:GPT-4o [editor_update_file, make_kernel_build=
-_single_file, shell_command_run]
+Assisted-by: Assistant:Claude-3.5-Sonnet [editor_update_file, shell_command=
+_run]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -279,45 +284,39 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- .../broadcom/brcm80211/brcmfmac/firmware.c    | 21 +++++++------------
- 1 file changed, 8 insertions(+), 13 deletions(-)
+ drivers/of/fdt.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c b/=
-drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
-index 22ff326f1924..2f74a952599e 100644
---- a/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
-+++ b/drivers/net/wireless/broadcom/brcm80211/brcmfmac/firmware.c
-@@ -845,22 +845,17 @@ brcmf_fw_alloc_request(u32 chip, u32 chiprev,
- 	fwreq->n_items =3D n_fwnames;
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index a64afc3ded3d..311021a83f03 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -1095,6 +1095,9 @@ int __init early_init_dt_scan_chosen(char *cmdline)
+ 	const void *rng_seed;
+ 	const void *fdt =3D initial_boot_params;
 =20
- 	for (j =3D 0; j < n_fwnames; j++) {
--		fwreq->items[j].path =3D fwnames[j].path;
--		fwnames[j].path[0] =3D '\0';
- 		/* check if firmware path is provided by module parameter */
- 		if (brcmf_mp_global.firmware_path[0] !=3D '\0') {
--			strscpy(fwnames[j].path, mp_path,
--				BRCMF_FW_NAME_LEN);
--
--			if (end !=3D '/') {
--				strlcat(fwnames[j].path, "/",
--					BRCMF_FW_NAME_LEN);
--			}
-+			snprintf(fwnames[j].path, BRCMF_FW_NAME_LEN, "%s%s%s%s",
-+				 mp_path, (end =3D=3D '/') ? "" : "/",
-+				 mapping_table[i].fw_base,
-+				 fwnames[j].extension);
-+		} else {
-+			snprintf(fwnames[j].path, BRCMF_FW_NAME_LEN, "%s%s",
-+				 mapping_table[i].fw_base,
-+				 fwnames[j].extension);
- 		}
--		strlcat(fwnames[j].path, mapping_table[i].fw_base,
--			BRCMF_FW_NAME_LEN);
--		strlcat(fwnames[j].path, fwnames[j].extension,
--			BRCMF_FW_NAME_LEN);
- 		fwreq->items[j].path =3D fwnames[j].path;
- 	}
-=20
++	if (!fdt)
++		goto handle_cmdline;
++
+ 	node =3D fdt_path_offset(fdt, "/chosen");
+ 	if (node < 0)
+ 		node =3D fdt_path_offset(fdt, "/chosen@0");
+@@ -1133,8 +1136,12 @@ int __init early_init_dt_scan_chosen(char *cmdline)
+ 	 */
+ #ifdef CONFIG_CMDLINE
+ #if defined(CONFIG_CMDLINE_EXTEND)
+-	strlcat(cmdline, " ", COMMAND_LINE_SIZE);
+-	strlcat(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
++	{
++		size_t len =3D strlen(cmdline);
++
++		if (len < COMMAND_LINE_SIZE)
++			snprintf(cmdline + len, COMMAND_LINE_SIZE - len, " %s", CONFIG_CMDLINE)=
+;
++	}
+ #elif defined(CONFIG_CMDLINE_FORCE)
+ 	strscpy(cmdline, CONFIG_CMDLINE, COMMAND_LINE_SIZE);
+ #else
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
