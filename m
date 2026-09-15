@@ -4,69 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E71AAC982C5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFF64C88E75
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A0D510E82E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34E3C10E74B;
 	Tue, 15 Sep 2026 14:13:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="vtv89KyQ";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="EfkQDuw/";
 	dkim-atps=neutral
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com
- [209.85.214.199])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25B7310F34D
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:18 +0000 (UTC)
-Received: by mail-pl1-f199.google.com with SMTP id
- d9443c01a7336-2d94a158dc8so62413805ad.2
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:18 -0700 (PDT)
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com
+ [209.85.214.200])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB32010FAF3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:06 +0000 (UTC)
+Received: by mail-pl1-f200.google.com with SMTP id
+ d9443c01a7336-2d6f75c1219so88124395ad.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460418; x=1790065218;
+ d=google.com; s=20251104; t=1789460406; x=1790065206;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=LcsuffwFDxj4u6SThnIq1nFzZdsoWr9GB9tsbe2KVjo=;
- b=vtv89KyQuHsi4YHxzMBpVqlGuNnqFH7dOLNQp6+v/6lHWd4SXJaAGQJf6yAKbAdlO7
- deW/c9ij0GabYlkHwA1zHy1kndxkSvaw8R8gt4C0dSPNFiy9j4SeVNhT/q5ChzGJZpjA
- lCnk+TLREjOUi9AkUTdUaLrprrg9o5CIaR6DBEIOJfYnjnah9tYfcVM/xrJtiYvOxyeg
- EAzY69gKApiWI8D5R1ELz1t3RwuQKQaHlj9SvyM9VYnHzucRHa9amZ1ddD8N6ia3MWeZ
- egKgEwQPVlnWcSvLqxCKMTXkE+cphltsY1VnzCJsLyMkc3ulJoJW0pZFmEQxaLZB3ZsH
- 84Kw==
+ bh=YdNQWB21luiE9Gdv0Q1IFwuCzs7Lvdhhb2Hfuit5b6U=;
+ b=EfkQDuw/anKJr9jQsrAkrgcWtIkX0qMmU8X8H8Nr3s0u+plTfQ7SFxAyUuAe/seEUZ
+ ERY24KjRLdBVez60ZmFgOn3sWxKQDpYN5K2N3XLbxNLh55828SjbsPihXkHfbhnO4Sbe
+ n3rbKVsHEnD6vqZ57Fx72WdDvSxgfvnflSQc/vm6iDlofwLjAXOCADmfLZO81sriFEZZ
+ +ktbMPIqhO4wuZ3gRAizoR3vWBtasFkTrV0TUSDnc7Xdy28yGo1MU3VaU6IhjBwGgXOP
+ ze0asolOQ8/cirDA53O4Tr8AHXW4mFCtu59FfN6zPuThvprhprXkSLDUvTwygMgI0iNo
+ H+sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460418; x=1790065218;
+ d=1e100.net; s=20260707; t=1789460406; x=1790065206;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=LcsuffwFDxj4u6SThnIq1nFzZdsoWr9GB9tsbe2KVjo=;
- b=PQhT3yAhLkJ3BcIMCqRqv5DUOiefEewnR7rv5qhY7wPdDOSMhBDSONTCEnRSr6P688
- 7RZwCC+g2U1AoINWETJn0hil0/Yd4gPxbRX5rsrABYKNQ4dcIcPuZ12GQk0nOwfCSJtP
- +vO/xA5UKOaKYulGNK2+BPzH7BdLS9WjGi839/EUnu+y3ZWBhMuAbjoe+zK+TAE5Dcj+
- V3XNmVOZpZ1TbmJCsGFihTE+ME4raM7RvIfU6Ju65hOyg9bB2xCrc1wcLs2y1bXwSWPe
- EZVSxsXaN1T9YIlBCtUHgubymV5YXOhQfTR/9c610inQmAaa38nSp06PELmH6VaDj4uX
- QOvA==
+ bh=YdNQWB21luiE9Gdv0Q1IFwuCzs7Lvdhhb2Hfuit5b6U=;
+ b=uDrtmDj3ounR14Hmnxjo0vBdnRRcDfq72sR8PrHh1P1k3sqv5agS1hZKbQKVzNGaDQ
+ YMtgrrceXSiveEvmDo0x3mQ7lIaBV/BOkMLnChBz7EYLmxhL0/Z/2s+LdQA7dG/a7ZLf
+ K5pFrnpFmddRuleHe7ugxfNv8eSgWJy9LAE2uoz35cBq/sZEDHMVTIKEjG3KPwVXx2Ja
+ tPovri7EFdLGATUKRlpztwtOPZSUsEZwl21lsP5JyU4J2JZCMeaDdJtTwlurau+CM+ii
+ WAPUNed89+6BCEWs6Ks/4fvJRoflzLeEOMMjXjH49/ulw2W/ZzS8QeiN5w3Xz5p6kHiT
+ i6qg==
 X-Forwarded-Encrypted: i=1;
- AKwUvByn/CXSMlc9IyeT1sDIK0V38ahAeUfu+g/wAQ6ed2FkcSWzMmrj1kAAVvMNEV5EN6IqmFSE8nJOOQ==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++nGsVJllcyqCPqlB6lVQRA3pEF8RMB24lhzQux9FskAuN575b8b
- tvEoAMI1qpeO/xqtl2erl+8cmGKtly0Ff+2lD7OpARdR3oBnYSdFQMhbnQc/H5tlwJNdS4c9GpV
- E
-X-Received: from plxm10.prod.google.com ([2002:a17:902:db0a:b0:2d9:7bf:6891])
+ AKwUvBz59VCvVFEJDShOe2AhNIjpHyLvsB+rjojHEilKAJ7WhtcAkQZqu8LIZlln9aLCG7M848b4qmzcFw==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++lpiyffTjAvVaMPNyucjPVvrgaOjmONDshydp6oYrY3hDdI9Rxf
+ Xwg2apVSIdoio7XF0feZ95dYrwiVgrg+2C+EjoUQ6AhBNnqDIaIiTXkpDl9bzFyxCJsmpZObImr
+ v
+X-Received: from plld7.prod.google.com ([2002:a17:902:7287:b0:2db:142b:72cc])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:903:1b50:b0:2db:8ae7:a5d2
- with SMTP id d9443c01a7336-2dd6c5f39camr129000865ad.9.1789460415373; Tue, 15
- Sep 2026 01:20:15 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:41 +0000
+ 2002:a17:903:238b:b0:2d8:d4cc:5bb1
+ with SMTP id d9443c01a7336-2dd83867c8amr573655ad.17.1789460405925; Tue, 15
+ Sep 2026 01:20:05 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:30 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-25-morbo@google.com>
-Subject: [PATCH 24/28] EDAC/thunderx: Fix stale error context in
- thunderx_l2c_threaded_isr()
+Message-ID: <20260915081910.4142719-14-morbo@google.com>
+Subject: [PATCH 13/28] i40e: Replace strlcat() with snprintf() in
+ i40e_nvm_version_str()
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
-Cc: Bill Wendling <morbo@google.com>, Russell King <linux@armlinux.org.uk>, 
- Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>, 
+Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
+ Russell King <linux@armlinux.org.uk>, Huacai Chen <chenhuacai@kernel.org>, 
+ WANG Xuerui <kernel@xen0n.name>,
  Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
  "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
  Helge Deller <deller@gmx.de>, 
@@ -154,17 +155,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-thunderx_l2c_threaded_isr() computes "tail" and "ctx" once before entering
-the loop that drains the L2C error ring, and never updates them on
-subsequent iterations. When multiple errors are queued, every iteration
-reports the first ring entry rather than advancing through the ring,
-causing subsequent hardware errors in a batch to go unreported.
+i40e_nvm_version_str() uses strlcat() to optionally append the EETrackID
+and combo image version strings to the NVM version buffer.
 
-Recompute "tail" and "ctx" at the start of each loop iteration, matching
-the sibling thunderx_ocx_com_threaded_isr() and
-thunderx_ocx_lnk_threaded_isr() handlers.
+In preparation for removing the deprecated strlcat() API[1], replace these
+strlcat() calls with bounded snprintf() calls at the current end of the
+buffer.
 
-Fixes: 41003396f932 ("EDAC, thunderx: Add Cavium ThunderX EDAC driver")
+Link: https://github.com/KSPP/linux/issues/370 [1]
+Cc: codemender-patching+linux@google.com
+Assisted-by: CoPilot:r1-preview [editor_update_file, shell_command_run]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -278,24 +278,46 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- drivers/edac/thunderx_edac.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/net/ethernet/intel/i40e/i40e.h | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/edac/thunderx_edac.c b/drivers/edac/thunderx_edac.c
-index 9c0a1e48f96f..e7c335ca0c36 100644
---- a/drivers/edac/thunderx_edac.c
-+++ b/drivers/edac/thunderx_edac.c
-@@ -1880,6 +1880,9 @@ static irqreturn_t thunderx_l2c_threaded_isr(int irq,=
- void *irq_id)
+diff --git a/drivers/net/ethernet/intel/i40e/i40e.h b/drivers/net/ethernet/=
+intel/i40e/i40e.h
+index 1b6a8fbaa648..9f792128a0ef 100644
+--- a/drivers/net/ethernet/intel/i40e/i40e.h
++++ b/drivers/net/ethernet/intel/i40e/i40e.h
+@@ -1059,19 +1059,26 @@ static inline char *i40e_nvm_version_str(struct i40=
+e_hw *hw, char *buf,
+ 					 size_t len)
+ {
+ 	char ver[16] =3D " ";
++	size_t offset;
 =20
- 	while (CIRC_CNT(l2c->ring_head, l2c->ring_tail,
- 			ARRAY_SIZE(l2c->err_ctx))) {
-+		tail =3D ring_pos(l2c->ring_tail, ARRAY_SIZE(l2c->err_ctx));
-+		ctx =3D &l2c->err_ctx[tail];
-+
- 		snprintf(msg, L2C_MESSAGE_SIZE,
- 			 "%s: %s: %016llx, %s: %016llx",
- 			 l2c->edac_dev->ctl_name, reg_int_name, ctx->reg_int,
+ 	/* Get NVM version */
+ 	i40e_info_nvm_ver(hw, buf, len);
+=20
+ 	/* Append EETrackID if provided */
+ 	i40e_info_eetrack(hw, &ver[1], sizeof(ver) - 1);
+-	if (strlen(ver) > 1)
+-		strlcat(buf, ver, len);
++	if (strlen(ver) > 1) {
++		offset =3D strlen(buf);
++		if (offset < len)
++			snprintf(buf + offset, len - offset, "%s", ver);
++	}
+=20
+ 	/* Append combo image version if provided */
+ 	i40e_info_civd_ver(hw, &ver[1], sizeof(ver) - 1);
+-	if (strlen(ver) > 1)
+-		strlcat(buf, ver, len);
++	if (strlen(ver) > 1) {
++		offset =3D strlen(buf);
++		if (offset < len)
++			snprintf(buf + offset, len - offset, "%s", ver);
++	}
+=20
+ 	return buf;
+ }
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
