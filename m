@@ -4,59 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99168C88E53
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 07:34:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22183C88E53
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 07:43:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B14710FA66;
-	Tue, 15 Sep 2026 07:34:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C781010FAAE;
+	Tue, 15 Sep 2026 07:43:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hr2Ogphm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XVBC3gd1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A45C010FA64;
- Tue, 15 Sep 2026 07:34:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A65DE10FAAD;
+ Tue, 15 Sep 2026 07:43:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789457691; x=1820993691;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=kAwlmvVtuXEZRdeycMssBwHiAkoZ4fW5Lq5Wy8kdbXk=;
- b=Hr2Ogphmysc+eiw+KYDTE1eTT8l6Wrqg7lX49yqmI4e6GTqdAHqRTJFx
- zedMQmlCdKKNuwXkUH6jAtv15ytqMNovt+oSdAin7LuQAPz1UVxv0Mliw
- bYVTQzQfP1Btx3vQk4/UUThu31iF/+Qb1/sIunMR0O2ISN2zjgK7QA6m/
- ZlsW3O66cFQoHJK7LHBJQdMCi+GACPj0yxeaeYAE93+2Q2sR7Psik/hd/
- VZJcEgjQ7DPNnwbouWBMEnp1NhYgRfuqgCb41aZX/COkkWNa/boYekQnD
- oGh38gNHEjP+Y2ekkbaqtz/H+wBDWb4y6G6soMQ4nnMq7Q4PPmbQc0IMP Q==;
-X-CSE-ConnectionGUID: BfBiiUJ9QQur9qo/PDIUBA==
-X-CSE-MsgGUID: ApWmsfiOR8WDOcVf6lezmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="93682656"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="93682656"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 00:34:51 -0700
-X-CSE-ConnectionGUID: e2CD1t2PTneI7JoPi1z1JA==
-X-CSE-MsgGUID: vBGWQumIQMOwmIHiMPaRQw==
+ t=1789458193; x=1820994193;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=igs3QBGhGBrMy22ozYcuBOuK4W1daD7Ckjvvva2z7Dk=;
+ b=XVBC3gd1n20iHzD77g9MTtk+DpZbz/i7mPB6BmAwH9Q6A9eNH19HKM8c
+ +ipuxR48W5Qazfm6t3HHchC/ZZPXBdaZjif94BnEVlm++hotbRz5b/P3r
+ gRXPFtLfZh/xUBdJi4G6aKAiWLQqsjVo14Z69lWBITyx46/I3UUIiR4tL
+ BWP53C0Rta2t3VMTQMBZFokdYbr5yO+jW/1N8fzcVFLsaCnkjvXwJZrMl
+ IQZYBStySsoFXGA1sMv3FtLYUxJA9P9h8iZsdEa973ZHsqrnH5oivIMVj
+ gyU5Ev6RtMk6M+JfyzhnosQ1HIvx8VHy2eLZX7o4fhy83CRuZj8fNMfSv g==;
+X-CSE-ConnectionGUID: HIMFRbdFTTyYIY4QbAyKFg==
+X-CSE-MsgGUID: ECgLa1wJQA2WxD7b8Yxyzw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89945620"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89945620"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 00:43:12 -0700
+X-CSE-ConnectionGUID: vtGsUCK2QAqQdq4r5LAeAQ==
+X-CSE-MsgGUID: lwYBJ9RfQJq19Kl/2OOjWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="271457164"
-Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.243])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 00:34:50 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Alan Previn <alan.previn.teres.alexis@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- dri-devel@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
-Subject: Re: [PATCH] drm/xe/mmio: Fix xe_mmio_wait32() to honor delay/sleep
- maximums
-In-Reply-To: <20260914215746.272721-2-alan.previn.teres.alexis@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260914215746.272721-2-alan.previn.teres.alexis@intel.com>
-Date: Tue, 15 Sep 2026 10:34:46 +0300
-Message-ID: <683c9836e408389852f6e6e956cc6862b1429b2a@intel.com>
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="297897673"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 00:43:11 -0700
+Date: Tue, 15 Sep 2026 09:43:08 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ jouni.hogander@intel.com
+Subject: Re: [PATCH v7 2/7] drm/xe/pm: introduce PM PME support
+Message-ID: <aqj3DN5CzZVOCByy@black.igk.intel.com>
+References: <20260914204034.309566-1-vinod.govindapillai@intel.com>
+ <20260914204034.309566-3-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260914204034.309566-3-vinod.govindapillai@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,520 +68,198 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 14 Sep 2026, Alan Previn <alan.previn.teres.alexis@intel.com> wrote:
-> Check for overflow in udelay/usleep_range use in __xe_mmio_wait32
-> and pick the correct helper according to the wait time and atomic.
-> Implement a similar helper to replace DIV_ROUND_UP for 32-bit CPUs.
-> Avoid growing delays becoming intollerably large by capping the
-> in-loop wait time.
->
-> v4: - Simplify using poll_timeout_us and poll_timeout_us_atopmic and
->       update all callstack to never use a param for atomic (Jani)
-> v3: - Use div64_s64 kernel API for 32-bit vs 64-bit division.
-> v2: - Fixed checkpatch failure.
->     - Added helper for 64-bit DIV_ROUND_UP on 32-bit CPU (Shasiko
->       review). Fixed bug max range in usleep_range(Shasiko review)
->
-> Fixes: 5c09bd6ccd41 ("drm/xe/mmio: Move xe_mmio_wait32() to xe_mmio.c")
-> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-> Assisted-by: Github-Copilot:Claude-Sonnet-5-0
+On Mon, Sep 14, 2026 at 11:40:29PM +0300, Vinod Govindapillai wrote:
+> Introduce PME support for PME capable devices. Whether device is
+> PME capable is assessed during PCI probe routine. And the whether
+> PME is enabled for a specific context is assessed during the PM
+> runtime suspend call if the device is PME capable.
+> 
+> If the PME is enabled, HPDs can generate PME which in turn call
+> the runtime resume call and do the wakeup routines. Till now
+> the driver was relying on HPD polling to wakeup in case of any
+> HPDs. HPD polling can be avoided in platforms with PME support
+> and instead rely on this PCI PME for HPD induced wakeup.
+> 
+> v2: access functions for xe.pme.enabled status and clear the pme.
+>     enabled in case of error in xe_pm_runtime_suspend()
+> 
+> v3: use the local pme_enabled flag to clear the device wakeup
+>     incase of error
+> 
+> Bspec: 52979, 52980, 68857, 68867, 68970
+> Assisted-by: GitHub_Copilot:claude-opus-5
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_device.c          |  10 +-
->  drivers/gpu/drm/xe/xe_eu_stall.c        |   4 +-
->  drivers/gpu/drm/xe/xe_force_wake.c      |   7 +-
->  drivers/gpu/drm/xe/xe_gsc.c             |   2 +-
->  drivers/gpu/drm/xe/xe_gsc_proxy.c       |   2 +-
->  drivers/gpu/drm/xe/xe_gt.c              |   2 +-
->  drivers/gpu/drm/xe/xe_gt_mcr.c          |   4 +-
->  drivers/gpu/drm/xe/xe_guc.c             |  10 +-
->  drivers/gpu/drm/xe/xe_huc.c             |   2 +-
->  drivers/gpu/drm/xe/xe_mmio.c            | 118 ++++++++++--------------
->  drivers/gpu/drm/xe/xe_mmio.h            |   8 +-
->  drivers/gpu/drm/xe/xe_oa.c              |   4 +-
->  drivers/gpu/drm/xe/xe_pcode.c           |   8 +-
->  drivers/gpu/drm/xe/xe_pxp.c             |   2 +-
->  drivers/gpu/drm/xe/xe_sysctrl_mailbox.c |   4 +-
->  drivers/gpu/drm/xe/xe_uc_fw.c           |   3 +-
->  16 files changed, 90 insertions(+), 100 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 205cb4e7f9e8..8fb044331e62 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -573,7 +573,7 @@ static void __xe_driver_flr(struct xe_device *xe)
->  	 * is still pending (unless the HW is totally dead), but better to be
->  	 * safe in case something unexpected happens
->  	 */
-> -	ret = xe_mmio_wait32(mmio, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL, false);
-> +	ret = xe_mmio_wait32(mmio, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL);
->  	if (ret) {
->  		drm_err(&xe->drm, "Driver-FLR-prepare wait for ready failed! %d\n", ret);
->  		return;
-> @@ -584,7 +584,7 @@ static void __xe_driver_flr(struct xe_device *xe)
->  	xe_mmio_rmw32(mmio, GU_CNTL, 0, DRIVERFLR);
+>  drivers/gpu/drm/xe/xe_device_types.h | 13 ++++++++++
+>  drivers/gpu/drm/xe/xe_pci.c          | 16 +++++++++++-
+>  drivers/gpu/drm/xe/xe_pm.c           | 39 ++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_pm.h           |  2 ++
+>  4 files changed, 69 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 4661bfce2f4e..bb4234f00453 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -460,6 +460,19 @@ struct xe_device {
+>  		struct mutex lock;
+>  	} d3cold;
 >  
->  	/* Wait for hardware teardown to complete */
-> -	ret = xe_mmio_wait32(mmio, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL, false);
-> +	ret = xe_mmio_wait32(mmio, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL);
->  	if (ret) {
->  		drm_err(&xe->drm, "Driver-FLR-teardown wait completion failed! %d\n", ret);
->  		return;
-> @@ -592,7 +592,7 @@ static void __xe_driver_flr(struct xe_device *xe)
->  
->  	/* Wait for hardware/firmware re-init to complete */
->  	ret = xe_mmio_wait32(mmio, GU_DEBUG, DRIVERFLR_STATUS, DRIVERFLR_STATUS,
-> -			     flr_timeout, NULL, false);
-> +			     flr_timeout, NULL);
->  	if (ret) {
->  		drm_err(&xe->drm, "Driver-FLR-reinit wait completion failed! %d\n", ret);
->  		return;
-> @@ -1168,7 +1168,7 @@ static void tdf_request_sync(struct xe_device *xe)
->  		 * transient and need to be flushed..
->  		 */
->  		if (xe_mmio_wait32(&gt->mmio, XE2_TDF_CTRL, TRANSIENT_FLUSH_REQUEST, 0,
-> -				   300, NULL, false))
-> +					    300, NULL))
->  			xe_gt_err_once(gt, "TD flush timeout\n");
->  	}
->  }
-> @@ -1214,7 +1214,7 @@ void xe_device_l2_flush(struct xe_device *xe, bool force)
->  	spin_lock(&gt->global_invl_lock);
->  
->  	xe_mmio_write32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1);
-> -	if (xe_mmio_wait32(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 1000, NULL, true))
-> +	if (xe_mmio_wait32_atomic(&gt->mmio, XE2_GLOBAL_INVAL, 0x1, 0x0, 1000, NULL))
->  		xe_gt_err_once(gt, "Global invalidation timeout\n");
->  
->  	spin_unlock(&gt->global_invl_lock);
-> diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-> index 8a7c1b5d5ab9..865e08b75c29 100644
-> --- a/drivers/gpu/drm/xe/xe_eu_stall.c
-> +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-> @@ -707,7 +707,7 @@ static int xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
->  		/* Request the firmware to apply the workaround and wait for an ACK */
->  		xe_mmio_write32(&gt->mmio, SWF_SCRATCHPAD(0), REQ_EUSTALL_ENABLE);
->  		ret = xe_mmio_wait32(&gt->mmio, SWF_SCRATCHPAD(0), SWF_EUSTALL_MASK,
-> -				     ACK_EUSTALL_ENABLE, FW_WA_WAIT_TIMEOUT_US, NULL, false);
-> +					     ACK_EUSTALL_ENABLE, FW_WA_WAIT_TIMEOUT_US, NULL);
->  		if (ret) {
->  			xe_gt_err(gt, "Timeout polling for EU stall enable ACK from firmware\n");
->  			xe_force_wake_put(gt_to_fw(gt), stream->fw_ref);
-> @@ -880,7 +880,7 @@ static int xe_eu_stall_disable_locked(struct xe_eu_stall_data_stream *stream)
->  		/* Request the firmware to revert the workaround and wait for an ACK */
->  		xe_mmio_write32(&gt->mmio, SWF_SCRATCHPAD(0), REQ_EUSTALL_DISABLE);
->  		ret = xe_mmio_wait32(&gt->mmio, SWF_SCRATCHPAD(0), SWF_EUSTALL_MASK,
-> -				     ACK_EUSTALL_DISABLE, FW_WA_WAIT_TIMEOUT_US, NULL, false);
-> +					     ACK_EUSTALL_DISABLE, FW_WA_WAIT_TIMEOUT_US, NULL);
->  		if (ret)
->  			xe_gt_err(gt, "Timeout polling for EU stall disable ACK from firmware\n");
->  	}
-> diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
-> index 197e2197bd0a..12ab0304509c 100644
-> --- a/drivers/gpu/drm/xe/xe_force_wake.c
-> +++ b/drivers/gpu/drm/xe/xe_force_wake.c
-> @@ -109,9 +109,10 @@ static int __domain_wait(struct xe_gt *gt, struct xe_force_wake_domain *domain,
->  	if (IS_SRIOV_VF(gt_to_xe(gt)))
->  		return 0;
->  
-> -	ret = xe_mmio_wait32(&gt->mmio, domain->reg_ack, domain->val, wake ? domain->val : 0,
-> -			     XE_FORCE_WAKE_ACK_TIMEOUT_MS * USEC_PER_MSEC,
-> -			     &value, true);
-> +	ret = xe_mmio_wait32_atomic(&gt->mmio, domain->reg_ack, domain->val,
-> +				    wake ? domain->val : 0,
-> +				    XE_FORCE_WAKE_ACK_TIMEOUT_MS * USEC_PER_MSEC,
-> +				    &value);
->  	if (ret)
->  		xe_gt_err(gt, "Force wake domain %d failed to ack %s (%pe) reg[%#x] = %#x\n",
->  			  domain->id, str_wake_sleep(wake), ERR_PTR(ret),
-> diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
-> index 524ac56bdcc7..a43d3739d213 100644
-> --- a/drivers/gpu/drm/xe/xe_gsc.c
-> +++ b/drivers/gpu/drm/xe/xe_gsc.c
-> @@ -196,7 +196,7 @@ static int gsc_fw_wait(struct xe_gt *gt)
->  	return xe_mmio_wait32(&gt->mmio, HECI_FWSTS1(MTL_GSC_HECI1_BASE),
->  			      HECI1_FWSTS1_INIT_COMPLETE,
->  			      HECI1_FWSTS1_INIT_COMPLETE,
-> -			      500 * USEC_PER_MSEC, NULL, false);
-> +			   500 * USEC_PER_MSEC, NULL);
->  }
->  
->  static int gsc_upload(struct xe_gsc *gsc)
-> diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.c b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-> index 707db650a2ae..63f72ca28ed4 100644
-> --- a/drivers/gpu/drm/xe/xe_gsc_proxy.c
-> +++ b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-> @@ -80,7 +80,7 @@ int xe_gsc_wait_for_proxy_init_done(struct xe_gsc *gsc)
->  	return xe_mmio_wait32(&gt->mmio, HECI_FWSTS1(MTL_GSC_HECI1_BASE),
->  			      HECI1_FWSTS1_CURRENT_STATE,
->  			      HECI1_FWSTS1_PROXY_STATE_NORMAL,
-> -			      USEC_PER_SEC, NULL, false);
-> +			   USEC_PER_SEC, NULL);
->  }
->  
->  static void __gsc_proxy_irq_rmw(struct xe_gsc *gsc, u32 clr, u32 set)
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 775c826b68b4..9edcc54ad4bf 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -832,7 +832,7 @@ static int do_gt_reset(struct xe_gt *gt)
->  	xe_mmio_write32(&gt->mmio, GDRST, GRDOM_FULL);
->  	err = xe_mmio_wait32(&gt->mmio, GDRST, GRDOM_FULL, 0,
->  			     GRDOM_RESET_TIMEOUT_MS * USEC_PER_MSEC,
-> -			     NULL, false);
-> +			   NULL);
->  	if (err)
->  		xe_log_err(gt, GT, err,
->  			   "full graphics reset not completed in %u ms\n",
-> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-> index 1949bf7d370a..a08585f082d3 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-> @@ -711,8 +711,8 @@ static void mcr_lock(struct xe_gt *gt) __acquires(&gt->mcr_lock)
->  	 * when a read to the relevant register returns 1.
->  	 */
->  	if (GRAPHICS_VERx100(xe) >= 1270)
-> -		ret = xe_mmio_wait32(&gt->mmio, STEER_SEMAPHORE, 0x1, 0x1, 10, NULL,
-> -				     true);
-> +		ret = xe_mmio_wait32_atomic(&gt->mmio, STEER_SEMAPHORE, 0x1, 0x1, 10,
-> +					    NULL);
->  
->  	xe_gt_WARN_ON_ONCE(gt, ret == -ETIMEDOUT);
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index c7f8bbd4cb92..670140e1aa36 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -967,13 +967,13 @@ static void guc_prevent_fw_dma_failure_on_reset(struct xe_guc *guc)
->  
->  	ret = xe_mmio_wait32(&gt->mmio, GUC_STATUS, GS_UKERNEL_MASK,
->  			     FIELD_PREP(GS_UKERNEL_MASK, XE_GUC_LOAD_STATUS_READY),
-> -			     100000, &guc_status, false);
-> +				      100000, &guc_status);
->  	if (ret)
->  		xe_gt_warn(gt, "GuC not ready after disabling idle flow (GUC_STATUS: 0x%x)\n",
->  			   guc_status);
->  
->  	ret = xe_mmio_wait32(&gt->mmio, GUC_SRAM_STATUS, GUC_SRAM_HANDLING_MASK,
-> -			     0, 5000, &sram_status, false);
-> +				      0, 5000, &sram_status);
->  	if (ret)
->  		xe_gt_warn(gt, "SRAM handling not complete (GUC_SRAM_STATUS: 0x%x)\n",
->  			   sram_status);
-> @@ -996,7 +996,7 @@ int xe_guc_reset(struct xe_guc *guc)
->  
->  	xe_mmio_write32(mmio, GDRST, GRDOM_GUC);
->  
-> -	ret = xe_mmio_wait32(mmio, GDRST, GRDOM_GUC, 0, 5000, &gdrst, false);
-> +	ret = xe_mmio_wait32(mmio, GDRST, GRDOM_GUC, 0, 5000, &gdrst);
->  	if (ret) {
->  		xe_gt_err(gt, "GuC reset timed out, GDRST=%#x\n", gdrst);
->  		goto err_out;
-> @@ -1538,7 +1538,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
->  
->  	ret = xe_mmio_wait32(mmio, reply_reg, GUC_HXG_MSG_0_ORIGIN,
->  			     FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_GUC),
-> -			     50000, &header, false);
-> +				     50000, &header);
->  	if (ret) {
->  		/* scratch registers might be cleared during FLR, try once more */
->  		if (!header) {
-> @@ -1574,7 +1574,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
->  		BUILD_BUG_ON((GUC_HXG_TYPE_RESPONSE_SUCCESS ^ GUC_HXG_TYPE_RESPONSE_FAILURE) != 1);
->  
->  		ret = xe_mmio_wait32(mmio, reply_reg, resp_mask, resp_mask,
-> -				     2000000, &header, false);
-> +					     2000000, &header);
->  
->  		if (unlikely(FIELD_GET(GUC_HXG_MSG_0_ORIGIN, header) !=
->  			     GUC_HXG_ORIGIN_GUC))
-> diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
-> index 57afe21444b1..3517bba09399 100644
-> --- a/drivers/gpu/drm/xe/xe_huc.c
-> +++ b/drivers/gpu/drm/xe/xe_huc.c
-> @@ -272,7 +272,7 @@ int xe_huc_auth(struct xe_huc *huc, enum xe_huc_auth_types type)
->  	}
->  
->  	ret = xe_mmio_wait32(&gt->mmio, huc_auth_modes[type].reg, huc_auth_modes[type].val,
-> -			     huc_auth_modes[type].val, 100000, NULL, false);
-> +			     huc_auth_modes[type].val, 100000, NULL);
->  	if (ret) {
->  		xe_gt_err(gt, "HuC: firmware not verified: %pe\n", ERR_PTR(ret));
->  		goto fail;
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> index 7fa18dfcb5a2..fc0509aa384b 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.c
-> +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> @@ -5,8 +5,8 @@
->  
->  #include "xe_mmio.h"
->  
-> -#include <linux/delay.h>
->  #include <linux/io-64-nonatomic-lo-hi.h>
-> +#include <linux/iopoll.h>
->  #include <linux/minmax.h>
->  #include <linux/pci.h>
->  
-> @@ -320,82 +320,44 @@ u64 xe_mmio_read64_2x32(struct xe_mmio *mmio, struct xe_reg reg)
->  	return (u64)udw << 32 | ldw;
->  }
->  
-> -static int __xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val,
-> -			    u32 timeout_us, u32 *out_val, bool atomic, bool expect_match)
-> -{
-> -	ktime_t cur = ktime_get_raw();
-> -	const ktime_t end = ktime_add_us(cur, timeout_us);
-> -	int ret = -ETIMEDOUT;
-> -	s64 wait = 10;
-> -	u32 read;
-> -	bool check;
-> -
-> -	for (;;) {
-> -		read = xe_mmio_read32(mmio, reg);
-> -
-> -		check = (read & mask) == val;
-> -		if (!expect_match)
-> -			check = !check;
-> -
-> -		if (check) {
-> -			ret = 0;
-> -			break;
-> -		}
-> -
-> -		cur = ktime_get_raw();
-> -		if (!ktime_before(cur, end))
-> -			break;
-> -
-> -		if (ktime_after(ktime_add_us(cur, wait), end))
-> -			wait = ktime_us_delta(end, cur);
-> -
-> -		if (atomic)
-> -			udelay(wait);
-> -		else
-> -			usleep_range(wait, wait << 1);
-> -		wait <<= 1;
-> -	}
-> -
-> -	if (ret != 0) {
-> -		read = xe_mmio_read32(mmio, reg);
-> -
-> -		check = (read & mask) == val;
-> -		if (!expect_match)
-> -			check = !check;
-> -
-> -		if (check)
-> -			ret = 0;
-> -	}
-> -
-> -	if (out_val)
-> -		*out_val = read;
-> -
-> -	return ret;
-> -}
-> -
->  /**
->   * xe_mmio_wait32() - Wait for a register to match the desired masked value
->   * @mmio: MMIO target
->   * @reg: register to read value from
->   * @mask: mask to be applied to the value read from the register
->   * @val: desired value after applying the mask
-> - * @timeout_us: time out after this period of time. Wait logic tries to be
-> - * smart, applying an exponential backoff until @timeout_us is reached.
-> + * @timeout_us: time out after this period of time
->   * @out_val: if not NULL, points where to store the last unmasked value
-> - * @atomic: needs to be true if calling from an atomic context
->   *
->   * This function polls for the desired masked value and returns zero on success
->   * or -ETIMEDOUT if timed out.
-> - *
-> - * Note that @timeout_us represents the minimum amount of time to wait before
-> - * giving up. The actual time taken by this function can be a little more than
-> - * @timeout_us for different reasons, specially in non-atomic contexts. Thus,
-> - * it is possible that this function succeeds even after @timeout_us has passed.
->   */
->  int xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
-> -		   u32 *out_val, bool atomic)
-> +		   u32 *out_val)
->  {
-> -	return __xe_mmio_wait32(mmio, reg, mask, val, timeout_us, out_val, atomic, true);
-> +	u32 read;
-> +	int ret;
+> +	/** @pme: Encapsulate pme related stuff */
+> +	struct {
+> +		/** @pme.capable: Indicates if device is PME capable */
+> +		bool capable;
 > +
-> +	ret = poll_timeout_us(read = xe_mmio_read32(mmio, reg), (read & mask) == val,
-> +			      10, timeout_us, false);
+> +		/** @pme.enabled:
+> +		 *
+> +		 * Indicates if PME is enabled - depends on user controllable
+> +		 * sysfs interface as well
+> +		 */
+> +		bool enabled;
+> +	} pme;
+> +
+>  	/** @pm_notifier: Our PM notifier to perform actions in response to various PM events. */
+>  	struct notifier_block pm_notifier;
+>  	/** @pm_block: Completion to block validating tasks on suspend / hibernate prepare */
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index 30c81042145f..3e7ee67c46f9 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -1384,8 +1384,14 @@ static int xe_pci_runtime_suspend(struct device *dev)
+>  {
+>  	struct pci_dev *pdev = to_pci_dev(dev);
+>  	struct xe_device *xe = pdev_to_xe_device(pdev);
+> +	bool pme_enabled;
+>  	int err;
+>  
+> +	pme_enabled = xe->pme.capable && !xe->d3cold.allowed &&
+> +		      pci_enable_wake(pdev, PCI_D3hot, true) == 0;
 
-You probably do need to let the callers pass in the wait too. 10 us wait
-with a long timeout is going to be pretty bad.
+Can't all this debt be avoided by simply letting the PCI PM take care
+of it?
 
-> +	if (out_val)
-> +		*out_val = read;
+Raag
+
+> +	xe_pm_update_pme_enabled(xe, pme_enabled);
 > +
-> +	return ret;
-> +}
-> +
-> +int xe_mmio_wait32_atomic(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val,
-> +			  u32 timeout_us, u32 *out_val)
-> +{
-> +	u32 read;
-> +	int ret;
-> +
-> +	ret = poll_timeout_us_atomic(read = xe_mmio_read32(mmio, reg), (read & mask) == val,
-> +				     10, timeout_us, false);
-> +	if (out_val)
-> +		*out_val = read;
-> +
-> +	return ret;
->  }
+>  	/*
+>  	 * We hold an additional reference to the runtime PM to keep PF in D0
+>  	 * during VFs lifetime, as our VFs do not implement the PM capability.
+> @@ -1396,8 +1402,14 @@ static int xe_pci_runtime_suspend(struct device *dev)
+>  	xe_assert(xe, !pci_num_vf(pdev));
 >  
->  /**
-> @@ -406,15 +368,35 @@ int xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val, u
->   * @val: value not to be matched after applying the mask
->   * @timeout_us: time out after this period of time
->   * @out_val: if not NULL, points where to store the last unmasked value
-> - * @atomic: needs to be true if calling from an atomic context
-> - *
->   * This function works exactly like xe_mmio_wait32() with the exception that
->   * @val is expected not to be matched.
->   */
->  int xe_mmio_wait32_not(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val, u32 timeout_us,
-> -		       u32 *out_val, bool atomic)
-> +		       u32 *out_val)
->  {
-> -	return __xe_mmio_wait32(mmio, reg, mask, val, timeout_us, out_val, atomic, false);
-> +	u32 read;
-> +	int ret;
+>  	err = xe_pm_runtime_suspend(xe);
+> -	if (err)
+> +	if (err) {
+> +		if (pme_enabled) {
+> +			pci_enable_wake(pdev, PCI_D3hot, false);
+> +			xe_pm_update_pme_enabled(xe, false);
+> +		}
 > +
-> +	ret = poll_timeout_us(read = xe_mmio_read32(mmio, reg), (read & mask) != val,
-> +			      10, timeout_us, false);
-> +	if (out_val)
-> +		*out_val = read;
-> +
-> +	return ret;
-> +}
-> +
-> +int xe_mmio_wait32_not_atomic(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val,
-> +			      u32 timeout_us, u32 *out_val)
-> +{
-> +	u32 read;
-> +	int ret;
-> +
-> +	ret = poll_timeout_us_atomic(read = xe_mmio_read32(mmio, reg), (read & mask) != val,
-> +				     10, timeout_us, false);
-> +	if (out_val)
-> +		*out_val = read;
-> +
-> +	return ret;
->  }
->  
->  #ifdef CONFIG_PCI_IOV
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-> index befe021f2215..6391f0fd6507 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.h
-> +++ b/drivers/gpu/drm/xe/xe_mmio.h
-> @@ -27,9 +27,13 @@ bool xe_mmio_in_range(const struct xe_mmio *mmio, const struct xe_mmio_range *ra
->  
->  u64 xe_mmio_read64_2x32(struct xe_mmio *mmio, struct xe_reg reg);
->  int xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val,
-> -		   u32 timeout_us, u32 *out_val, bool atomic);
-> +		   u32 timeout_us, u32 *out_val);
-> +int xe_mmio_wait32_atomic(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u32 val,
-> +			  u32 timeout_us, u32 *out_val);
->  int xe_mmio_wait32_not(struct xe_mmio *mmio, struct xe_reg reg, u32 mask,
-> -		       u32 val, u32 timeout_us, u32 *out_val, bool atomic);
-> +		       u32 val, u32 timeout_us, u32 *out_val);
-> +int xe_mmio_wait32_not_atomic(struct xe_mmio *mmio, struct xe_reg reg, u32 mask,
-> +			      u32 val, u32 timeout_us, u32 *out_val);
->  
->  static inline u32 xe_mmio_adjusted_addr(const struct xe_mmio *mmio, u32 addr)
->  {
-> diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-> index a3484e943c55..98a6f57701e4 100644
-> --- a/drivers/gpu/drm/xe/xe_oa.c
-> +++ b/drivers/gpu/drm/xe/xe_oa.c
-> @@ -513,14 +513,14 @@ static void xe_oa_disable(struct xe_oa_stream *stream)
->  
->  	xe_mmio_rmw32(mmio, __oa_regs(stream)->oa_ctrl, __oactrl_used_bits(stream), 0);
->  	if (xe_mmio_wait32(mmio, __oa_regs(stream)->oa_ctrl,
-> -			   OAG_OACONTROL_OA_COUNTER_ENABLE, 0, 50000, NULL, false))
-> +			   OAG_OACONTROL_OA_COUNTER_ENABLE, 0, 50000, NULL))
->  		drm_err(&stream->oa->xe->drm,
->  			"wait for OA to be disabled timed out\n");
->  
->  	if (GRAPHICS_VERx100(stream->oa->xe) <= 1270 && GRAPHICS_VERx100(stream->oa->xe) != 1260) {
->  		/* <= XE_METEORLAKE except XE_PVC */
->  		xe_mmio_write32(mmio, OA_TLB_INV_CR, 1);
-> -		if (xe_mmio_wait32(mmio, OA_TLB_INV_CR, 1, 0, 50000, NULL, false))
-> +		if (xe_mmio_wait32(mmio, OA_TLB_INV_CR, 1, 0, 50000, NULL))
->  			drm_err(&stream->oa->xe->drm,
->  				"wait for OA tlb invalidate timed out\n");
->  	}
-> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-> index 266deecbb100..9b3487c8b07a 100644
-> --- a/drivers/gpu/drm/xe/xe_pcode.c
-> +++ b/drivers/gpu/drm/xe/xe_pcode.c
-> @@ -87,8 +87,12 @@ static int __pcode_mailbox_rw(struct xe_tile *tile, u32 mbox, u32 *data0, u32 *d
->  	xe_mmio_write32(mmio, PCODE_DATA1, data1 ? *data1 : 0);
->  	xe_mmio_write32(mmio, PCODE_MAILBOX, PCODE_READY | mbox);
->  
-> -	err = xe_mmio_wait32(mmio, PCODE_MAILBOX, PCODE_READY, 0,
-> -			     timeout_ms * USEC_PER_MSEC, NULL, atomic);
-> +	if (atomic)
-> +		err = xe_mmio_wait32_atomic(mmio, PCODE_MAILBOX, PCODE_READY, 0,
-> +					    timeout_ms * USEC_PER_MSEC, NULL);
-> +	else
-> +		err = xe_mmio_wait32(mmio, PCODE_MAILBOX, PCODE_READY, 0,
-> +				     timeout_ms * USEC_PER_MSEC, NULL);
->  	if (err)
 >  		return err;
+> +	}
 >  
-> diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
-> index 2fef274a585e..d6b820c47c09 100644
-> --- a/drivers/gpu/drm/xe/xe_pxp.c
-> +++ b/drivers/gpu/drm/xe/xe_pxp.c
-> @@ -136,7 +136,7 @@ static int pxp_wait_for_session_state(struct xe_pxp *pxp, u32 id, bool in_play)
->  	u32 mask = BIT(id);
+>  	pci_save_state(pdev);
 >  
->  	return xe_mmio_wait32(&gt->mmio, KCR_SIP, mask, in_play ? mask : 0,
-> -			      250, NULL, false);
-> +			   250, NULL);
+> @@ -1426,6 +1438,8 @@ static int xe_pci_runtime_resume(struct device *dev)
+>  
+>  	pci_restore_state(pdev);
+>  
+> +	xe_pm_update_pme_enabled(xe, false);
+> +
+>  	if (xe->d3cold.allowed) {
+>  		err = pci_enable_device(pdev);
+>  		if (err)
+> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> index f517bf453b54..ca5665d015e9 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.c
+> +++ b/drivers/gpu/drm/xe/xe_pm.c
+> @@ -78,6 +78,8 @@
+>   * management (RPS).
+>   */
+>  
+> +#define HAS_PM_PME_SUPPORT(xe) (GRAPHICS_VERx100(xe) >= 3500)
+> +
+>  #ifdef CONFIG_LOCKDEP
+>  static struct lockdep_map xe_pm_runtime_d3cold_map = {
+>  	.name = "xe_rpm_d3cold_map"
+> @@ -384,6 +386,14 @@ int xe_pm_init_early(struct xe_device *xe)
+>  }
+>  ALLOW_ERROR_INJECTION(xe_pm_init_early, ERRNO); /* See xe_pci_probe() */
+>  
+> +static bool xe_pm_pci_pme_capable(struct xe_device *xe)
+> +{
+> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> +
+> +	return HAS_PM_PME_SUPPORT(xe) ?
+> +		pci_pme_capable(pdev, PCI_D3hot) : false;
+> +}
+> +
+>  /**
+>   * xe_pm_probe() - Initialize Xe Power Management
+>   * @xe: the &xe_device instance
+> @@ -397,6 +407,9 @@ int xe_pm_probe(struct xe_device *xe)
+>  	xe->d3cold.capable = xe_pm_pci_d3cold_capable(xe);
+>  	xe_dbg(xe, "d3cold: capable=%s\n", str_yes_no(xe->d3cold.capable));
+>  
+> +	xe->pme.capable = xe_pm_pci_pme_capable(xe);
+> +	xe_dbg(xe, "pme: capable=%s\n", str_yes_no(xe->pme.capable));
+> +
+>  	return 0;
 >  }
 >  
->  static void pxp_invalidate_queues(struct xe_pxp *pxp);
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-> index 72baf1aa4b3a..269ec70aa22a 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-> @@ -40,7 +40,7 @@ static bool sysctrl_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
->  	int ret;
+> @@ -650,6 +663,7 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+>  	return 0;
 >  
->  	ret = xe_mmio_wait32_not(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
-> -				 timeout_ms * 1000, NULL, false);
-> +				   timeout_ms * 1000, NULL);
->  
->  	return ret == 0;
+>  out_resume:
+> +	xe_pm_update_pme_enabled(xe, false);
+>  	xe_display_pm_runtime_resume(xe);
+>  	xe_pxp_pm_resume(xe->pxp);
+>  out:
+> @@ -993,6 +1007,31 @@ int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold)
+>  	return 0;
 >  }
-> @@ -51,7 +51,7 @@ static bool sysctrl_wait_bit_set(struct xe_sysctrl *sc, u32 bit_mask,
->  	int ret;
 >  
->  	ret = xe_mmio_wait32(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
-> -			     timeout_ms * 1000, NULL, false);
-> +			     timeout_ms * 1000, NULL);
->  
->  	return ret == 0;
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-> index e29878b255ba..8fa8a02f73bc 100644
-> --- a/drivers/gpu/drm/xe/xe_uc_fw.c
-> +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-> @@ -899,8 +899,7 @@ static int uc_fw_xfer(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
->  			REG_MASKED_FIELD_ENABLE(dma_flags | START_DMA));
->  
->  	/* Wait for DMA to finish */
-> -	ret = xe_mmio_wait32(mmio, DMA_CTRL, START_DMA, 0, 100000, &dma_ctrl,
-> -			     false);
-> +	ret = xe_mmio_wait32(mmio, DMA_CTRL, START_DMA, 0, 100000, &dma_ctrl);
->  	if (ret)
->  		drm_err(&xe->drm, "DMA for %s fw failed, DMA_CTRL=%u\n",
->  			xe_uc_fw_type_repr(uc_fw->type), dma_ctrl);
-
--- 
-Jani Nikula, Intel
+> +/**
+> + * xe_pm_pme_enabled - get the current state of PME enabled status
+> + * @xe: xe device instance
+> + *
+> + * Return:
+> + * * True if PME is enabled, false otherwise.
+> + */
+> +bool xe_pm_pme_enabled(struct xe_device *xe)
+> +{
+> +	return xe->pme.enabled;
+> +}
+> +
+> +/**
+> + * xe_pm_update_pme_enabled - Update the PME enabled state
+> + * @xe: xe device instance
+> + * @status: New PME enabled status
+> + *
+> + * Called during runtime suspend / resume with status set to True if PME is
+> + * enabled during runtime_suspend. Cleared on runtime_resume.
+> + */
+> +void xe_pm_update_pme_enabled(struct xe_device *xe, bool status)
+> +{
+> +	xe->pme.enabled = status;
+> +}
+> +
+>  /**
+>   * xe_pm_d3cold_allowed_toggle - Check conditions to toggle d3cold.allowed
+>   * @xe: xe device instance
+> diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
+> index 6d5ab09cb769..037c73ea4342 100644
+> --- a/drivers/gpu/drm/xe/xe_pm.h
+> +++ b/drivers/gpu/drm/xe/xe_pm.h
+> @@ -33,6 +33,8 @@ bool xe_pm_runtime_resume_and_get(struct xe_device *xe);
+>  void xe_pm_assert_unbounded_bridge(struct xe_device *xe);
+>  int xe_pm_set_vram_threshold(struct xe_device *xe, u32 threshold);
+>  void xe_pm_d3cold_allowed_toggle(struct xe_device *xe);
+> +bool xe_pm_pme_enabled(struct xe_device *xe);
+> +void xe_pm_update_pme_enabled(struct xe_device *xe, bool status);
+>  bool xe_rpm_reclaim_safe(const struct xe_device *xe);
+>  struct task_struct *xe_pm_read_callback_task(struct xe_device *xe);
+>  int xe_pm_block_on_suspend(struct xe_device *xe);
+> -- 
+> 2.43.0
+> 
