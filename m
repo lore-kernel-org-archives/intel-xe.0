@@ -4,64 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08EBDC982C7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62A89C982CC
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 952A010E8D5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F255110ECEA;
 	Tue, 15 Sep 2026 14:13:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="I2A+ch81";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="uy+5hXyh";
 	dkim-atps=neutral
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com
- [209.85.216.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2106110FAF3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:00 +0000 (UTC)
-Received: by mail-pj1-f72.google.com with SMTP id
- 98e67ed59e1d1-38dbf293831so9420543a91.3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:00 -0700 (PDT)
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com
+ [209.85.214.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FE6E10F34C
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:19:52 +0000 (UTC)
+Received: by mail-pl1-f197.google.com with SMTP id
+ d9443c01a7336-2d63bad3d09so67415005ad.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:19:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460399; x=1790065199;
+ d=google.com; s=20251104; t=1789460392; x=1790065192;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=ANECGYJQk2+Ya+FPrAm+IsCBeyM6Er0meffRIzFfkVU=;
- b=I2A+ch81MqR4m1AnQjOmoSiAmukwsZizOEPnsYRei6DwWRoRYVNh/8WJgKYPqUmEOP
- /d8QGbINkF8fxJAo+K+884K0mwkG/5KE1F6oOUVF7xE7GehSO9qQKnfltVkvF1Ax5Ave
- wlOrai9WbjPeryhGuIpX+tQeWkLdDojtxIxtIN837xF9Muj4V49zWaPzF0C0eiAJMUll
- yNI5t4J0qkbynelioPbac4kqkfXe9yq6LeAWbMLyOjBaEbuRDq3iU4x6O8wAxvt0ixm9
- h/ol8g4QptUHaV8VL4M8lDDdCfgpNojVL6XpL3hcLot3DkOOeL1D8i1MFhQk6fl//G+3
- iHzw==
+ bh=e1xTXUdJBJy44H7rwXmvsQjBVl/r1YS8CWHRr4HN54c=;
+ b=uy+5hXyhZiLV4UvWpo7fdn1d46xWgRgtESN0sVHXh1vf7qb06Issn48Q8Yjkz2d+l3
+ 3Bgn45aAPK+k6DwGgoMEmG1X1tHnQTxCoy7Cy11jtT5kqitPUlpcn81Z0wuPD2RR5e3G
+ wMiDTWfGVDMQOEJhUUL/gxHCogD04OVecIfFvsJ7SaMfvx9maR7UfuqJzJ/EGT0GJID1
+ sPH64zvLybmV6/ohTH/yKcFuJp0/j+1h1QRMNzqVL550TllpOyAQxT1sqH0XVbCWj6JD
+ HFlsRQ3Smr/0BfKpcNxYjBZBIIIAp64fJuYeFH7dyI8k5hNiAA2sEBVmXUBVOmE02VVk
+ hdVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460399; x=1790065199;
+ d=1e100.net; s=20260707; t=1789460392; x=1790065192;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=ANECGYJQk2+Ya+FPrAm+IsCBeyM6Er0meffRIzFfkVU=;
- b=TJvi6iJPUcMYiP7JxkG5djrOFxbgmcfJzBWOeS0DK41B7HHgl3+rqHgYNz0Oue3HCx
- 1Py4vWNWvRw0W8G4zaiRXxAxlM7KRczJSYluz4NdCbJqKgvG5XvHWPe+izriuGUuivVI
- FrJ5rKufzLsu+3zKUUK2/FoNdWGrMQ2ip4f+QNcEbD+K8rI8IwLy5Mhq6A7o3K+4gfXI
- 6gD1v0eVwTNoqVAfCoFZid3T0K4FJbZUSvbfOP2o0fZMh47P9PSq5i3b2rhKSF7P6biF
- c/RFPW9kqnKUYzVTFs3AF/koQGlPAWRa3QQ/B533B8qR5svnmzf5lEhXUchpjjCW7xRf
- /n8A==
+ bh=e1xTXUdJBJy44H7rwXmvsQjBVl/r1YS8CWHRr4HN54c=;
+ b=Q448GzPgzNRvEl+6XelWbQBMy5XGbzMrCrbtsP2k4cTkmtbO1uvo+c+BBSehSn9A48
+ j2YKRfS7cyMQpb6aqnv13dLrGUcMePzINN1jBee0H2cxVmWnTXSLTS0ZDKV42LIMJ9D8
+ Eu7rNe3ifAQSvBqaG42dcGGoOaI3PM2bel76LzxZxVSRPkbhYX2M7Zc+7KCDEGfMUbGl
+ Zgl0hAWup5YfyB8ODyhq2m13cs1z1ydQOZeGR4inmmcQ2XSnnviDSM4iENsth3kN4lUi
+ A6rxP8v11IBKBB9Nclm9zQJXBVSw+Bxf3I70NJDQHuQ1IEWiBgLLXjUXw2QWM///3BTW
+ VmGA==
 X-Forwarded-Encrypted: i=1;
- AKwUvBycc6UFSOpOVfW3DNt9Gdgd5E8gw+xNJO5yGLlLNW5gOJ12ouWNAI8OJanHkuMp/ZnahFID5WhhFg==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++m3rGY7nyD2w32OkywIW3xUjw8Xm8vtVXm8awkZm1rFNBxfAwJh
- EnP/oiILOTyusF+cb0PPWkRy1B6lxq0xN99HaPTOOzfQ7Np++0tVpgZL3rNxpieAGbgSwmrsR5d
- M
-X-Received: from pllj10.prod.google.com ([2002:a17:902:758a:b0:2dd:63c:daa3])
+ AKwUvBygagCHQx8VdhGvppvtymfOzZuiQEONiQxMLCtcQ7WYD7X4YocHC06wcJ77vvb+Ztvj+cgRZI7ORw==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++kKI2GZTkqxRPpFM1Gu27ltJDiLxkg100cA73du4TkH2IVHAXfM
+ vVbIYY5RJMvEn7+Db1brWnaeOVyLTiKB1ixR/mfZJnkCv6ovznz/PcnxBHYjBAHzBUBAv40eOve
+ t
+X-Received: from plty2.prod.google.com ([2002:a17:902:8642:b0:2d8:da84:22a9])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:902:ccd1:b0:2dd:40cb:a04c
- with SMTP id d9443c01a7336-2dd8386925cmr476775ad.19.1789460398847; Tue, 15
- Sep 2026 01:19:58 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:29 +0000
+ 2002:a17:903:b8e:b0:2d8:d4d3:3fbb
+ with SMTP id d9443c01a7336-2dd6c73445amr126364165ad.15.1789460391377; Tue, 15
+ Sep 2026 01:19:51 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:20 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-13-morbo@google.com>
-Subject: [PATCH 12/28] fortify: Convert strlcat() to snprintf() in strcat()
+Message-ID: <20260915081910.4142719-4-morbo@google.com>
+Subject: [PATCH 03/28] ARM: atags: Replace strlcat() with snprintf() for
+ cmdline extend
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
 Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
@@ -154,21 +155,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The fortified implementation of strcat() in include/linux/fortify-string.h
-currently relies on strlcat() to perform bounded concatenation and detect
-buffer overflows.
+When CONFIG_CMDLINE_EXTEND is enabled, parse_tag_cmdline() uses two
+strlcat() calls to append a space and the bootloader tag command line to
+default_command_line.
 
-In preparation for removing the deprecated strlcat() API[1], replace the
-strlcat() call in strcat(). When the destination buffer size is unknown
-(SIZE_MAX), call __underlying_strcat() directly. Otherwise, determine the
-destination length with __fortify_strlen() and append the source string
-using __builtin_snprintf(), preserving the existing fortify_panic() check
-on overflow.
+In preparation for removing the deprecated strlcat() API[1], compute the
+length of default_command_line once and append the space and tag command
+line in a single snprintf() call.
 
 Link: https://github.com/KSPP/linux/issues/370 [1]
 Cc: codemender-patching+linux@google.com
-Assisted-by: SecurityEngineer:Gemini1.5Pro [editor_update_file, shell_comma=
-nd_run, test_runner_run_kunit_test]
+Assisted-by: developer:gpt-4o [editor_update_file, shell_command_run]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -282,30 +279,28 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- include/linux/fortify-string.h | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ arch/arm/kernel/atags_parse.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/include/linux/fortify-string.h b/include/linux/fortify-string.=
-h
-index cf841dc71fef..0b489124bfcb 100644
---- a/include/linux/fortify-string.h
-+++ b/include/linux/fortify-string.h
-@@ -363,7 +363,12 @@ __FORTIFY_INLINE __diagnose_as(__builtin_strcat, 1, 2)
- char *strcat(char * const POS p, const char *q)
+diff --git a/arch/arm/kernel/atags_parse.c b/arch/arm/kernel/atags_parse.c
+index 4ec591bde3df..21140b44d96e 100644
+--- a/arch/arm/kernel/atags_parse.c
++++ b/arch/arm/kernel/atags_parse.c
+@@ -121,9 +121,10 @@ __tagtable(ATAG_REVISION, parse_tag_revision);
+ static int __init parse_tag_cmdline(const struct tag *tag)
  {
- 	const size_t p_size =3D __member_size(p);
--	const size_t wanted =3D strlcat(p, q, p_size);
+ #if defined(CONFIG_CMDLINE_EXTEND)
+-	strlcat(default_command_line, " ", COMMAND_LINE_SIZE);
+-	strlcat(default_command_line, tag->u.cmdline.cmdline,
+-		COMMAND_LINE_SIZE);
++	size_t len =3D strlen(default_command_line);
 +
-+	if (p_size =3D=3D SIZE_MAX)
-+		return __underlying_strcat(p, q);
-+
-+	const size_t p_len =3D __fortify_strlen(p);
-+	const size_t wanted =3D p_len + __builtin_snprintf(p + p_len, p_size - p_=
-len, "%s", q);
-=20
- 	if (p_size <=3D wanted)
- 		fortify_panic(FORTIFY_FUNC_strcat, FORTIFY_WRITE, p_size, wanted + 1, p)=
++	snprintf(default_command_line + len, COMMAND_LINE_SIZE - len,
++		 " %s", tag->u.cmdline.cmdline);
+ #elif defined(CONFIG_CMDLINE_FORCE)
+ 	pr_warn("Ignoring tag cmdline (using the default kernel command line)\n")=
 ;
+ #else
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
