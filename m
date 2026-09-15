@@ -4,65 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE136C982CC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4976C982CA
 	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 14:13:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4439E10E619;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42C0710E609;
 	Tue, 15 Sep 2026 14:13:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="kpOq4tCJ";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="nPoLHCMm";
 	dkim-atps=neutral
 Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com
  [209.85.214.200])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB3DF10FAF3
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1139D10F34C
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 08:20:08 +0000 (UTC)
 Received: by mail-pl1-f200.google.com with SMTP id
- d9443c01a7336-2db3734d06dso80498895ad.0
- for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:09 -0700 (PDT)
+ d9443c01a7336-2db3d832827so52313775ad.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 15 Sep 2026 01:20:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1789460409; x=1790065209;
+ d=google.com; s=20251104; t=1789460407; x=1790065207;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=jD1fGYdmSfmtHfbCTu69NC0iIcRgu3QWne7aaYuG46g=;
- b=kpOq4tCJ3jSLgimO047tAfg3IhDz+jsnGKl3I+iMvVsETUvmnsKr97UN3d3XznVH3K
- aq+zz/nGu7+UIS8GI3eRD2PL2qsRUDreIR0gpo0nGRwabj5nOq9GjrAmGzE4x/Gl9i2b
- BM7H5fSZeEZiiP+3Y7y64uxfmvdugADuCWxm3SKKlIL+Svd7k7puSnk4bgM3ucyYkUXH
- SCAmxzSxiZhuGV9jOag31ftfFT6vMcjaICvdS+VrtKP17eMu86LGZC1bZBwdYtHWYbkC
- DH2DY2tRDI15HzPyj/8kKDdZ/EtvFV7hyAuALgVSA6qZFuU0BOz1hXqaXYaO+nDAEl/Q
- Brbg==
+ bh=y5tFxAHb/e8uKrTICVzoygvHAjZ6k748iiDqUmGJfRE=;
+ b=nPoLHCMm3nPaOYLPS545GmYS/t4IFNd5kLMAPG6OCn8Oea3nFdeZKEb2kGakqq5Wnq
+ 3vb5856Fjrhbyn0KKErzd9rHZK9MbX9i9oNBb1VHSPEKR8nmx0zpQ3z3VNSRCE2OuSZN
+ CAczyTjXHgS8PYIL2oHJros6gIvEZ+B6dNiO2D9gEC+oEmzSV2fiEfNSzA+YGktM5FIj
+ 65NXU1obg869yC0wYdmYjS6fVhBXwynzIAAgJb9oOnXxrGrhexBcWpSvluS+Evt5wY2s
+ vZ8RdVJmdnP3I/5aBL1PxUygSJ1MWTunZo8tVxvcpEpR5fOG3o5kWoo+bY59uTNDynsq
+ BsmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789460409; x=1790065209;
+ d=1e100.net; s=20260707; t=1789460407; x=1790065207;
  h=content-transfer-encoding:content-type:cc:to:from:subject
  :message-id:references:mime-version:in-reply-to:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=jD1fGYdmSfmtHfbCTu69NC0iIcRgu3QWne7aaYuG46g=;
- b=NElM9ckuhm36JDVBHpCKfBkyCjfJAA3G9L4XELnMRAdJ743Gj3Q32f4qvNnQ0omEV4
- E+MPvYPEpwXMEiIkXsSKxmlbINQozmoxvVxPF1pTCny7XpgC/Ws/O6MSMZKeAJEScMPd
- ShycwjOkDsV/N/m+E6EYvieSFinrFY2uV8LMeZ2Wj+YFZz+CTIMg5PjUd5LocHtm+OR/
- Tzq+xTiNWmvwo/l/bvXszvpNAQcby2TRuSpGl+ZL8lHF2kDGaO8feAglt/LZKI0rvPSu
- bDZvsY3nCW0HU8fQYjVYYaO13uFiW3SerPG/pxg7jns+k8RWNSuCv8hHS3n5WgthHSQW
- t1tg==
+ bh=y5tFxAHb/e8uKrTICVzoygvHAjZ6k748iiDqUmGJfRE=;
+ b=nkbtGBFuh+ONpLph429TNJoaZhX7XUzUtUNWotX+pqirBd1gO3tfBoOstwI44i0xj0
+ A6QDL+BqWEnqkGCcnR0oK+vZwG3cN78XbljEkiUAZJxf+hm833j1NwPubaAlD4fNG5s5
+ HrH1CCT229P8qoWVLGEJ5+R/0jHRWhZqnzKaRjvgu28CsdkXlq5jrVkxeMKrEGQWJBv7
+ LfHCCO8iT4fS0f/DGrUxglDaHTufGVG124xOGJZRlmiT41XCOQXG6S4/Vy15GvGj1yyu
+ MgpEdOG5siTBHngpYER/4FC4fcsIzYhlZE0FL1MSyn0RBlJ2zW7DjEfFt67SP7y/CqMG
+ riqg==
 X-Forwarded-Encrypted: i=1;
- AKwUvBxXdYw3wIU2NkzrBh1gIzclvzFVDvqE6TpK0cKmlx4/74Rax4V87TFkGUK6tY0isRZ1GMcdxobihg==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++n9jPWOWB+CLvuYVkWST7yLSFKfXsG9RxF/zHKf2Vuprmq0F77M
- 8MU7qpI0mGlmtamyKYthGaNkLIrHz670GzAaQPqvpf1M6nogQseqOR/USgw0GRKS2R5BkF7CCvA
- w
-X-Received: from plbkq15.prod.google.com ([2002:a17:903:284f:b0:2dd:1c44:fe2])
+ AKwUvByzLMjiNt/mGyCsfFQ4EOUy7JQEU7PPH4AxH2AMp/2NR+w9ASPoXHlwzDFy8+LtZhSa5A8m7/ZG8g==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++mH3YSCkURB0i0jwA88IfMcHdto9KyARQzeJtUGpjlMNq9UOeiK
+ bCUc0kmEyh1H+QH3Y8UdP0Sky8FamTT4QlDSDSuXj5DZA5naTRLGiLt+OaNs2bnPB6zP42wp4C3
+ e
+X-Received: from plav12.prod.google.com ([2002:a17:902:f0cc:b0:2dd:3949:eb03])
  (user=morbo job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:903:1a0c:b0:2d9:464f:d45f
- with SMTP id d9443c01a7336-2dd6c5ba2f0mr129830935ad.5.1789460408347; Tue, 15
- Sep 2026 01:20:08 -0700 (PDT)
-Date: Tue, 15 Sep 2026 08:18:33 +0000
+ 2002:a17:902:c40d:b0:2db:5c0a:f184
+ with SMTP id d9443c01a7336-2dd6c6fc4f3mr121827545ad.17.1789460406752; Tue, 15
+ Sep 2026 01:20:06 -0700 (PDT)
+Date: Tue, 15 Sep 2026 08:18:31 +0000
 In-Reply-To: <20260915081910.4142719-1-morbo@google.com>
 Mime-Version: 1.0
 References: <20260915081910.4142719-1-morbo@google.com>
 X-Mailer: git-send-email 2.55.0.1032.g73a4cd73de-goog
-Message-ID: <20260915081910.4142719-17-morbo@google.com>
-Subject: [PATCH 16/28] pinctrl: samsung: Use snprintf() to construct pin bank
- names
+Message-ID: <20260915081910.4142719-15-morbo@google.com>
+Subject: [PATCH 14/28] ALSA: usb-audio: Refactor append_ctl_name() to use
+ snprintf()
 From: Bill Wendling <morbo@google.com>
 To: linux-kernel@vger.kernel.org
 Cc: Bill Wendling <morbo@google.com>, codemender-patching+linux@google.com, 
@@ -155,17 +155,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-samsung_banks_node_get() constructs each pin bank node name by copying
-bank->name with strscpy() and appending the suffix with strlcat().
+In preparation for removing the deprecated strlcat() API[1], replace the
+strlcat() call in append_ctl_name() with strlen() and snprintf(),
+preserving its return value semantics (the total length of the string it
+attempted to create).
 
-In preparation for removing the deprecated strlcat() API[1], format the
-node name in a single snprintf() call, which preserves the existing
-truncation check against sizeof(node_name).
+Also replace an open-coded strlcat() call in build_connector_control()
+with append_ctl_name().
 
 Link: https://github.com/KSPP/linux/issues/370 [1]
 Cc: codemender-patching+linux@google.com
-Assisted-by: Gemini:Pro [editor_update_file, make_kernel_build_single_file,=
- checkpatch_run]
+Assisted-by: CoPilot:Claude-3-5-Sonnet [editor_update_file, shell_command_r=
+un]
 Signed-off-by: Bill Wendling <morbo@google.com>
 ---
 Cc: Russell King <linux@armlinux.org.uk>
@@ -279,26 +280,38 @@ Cc: devel@lists.orangefs.org
 Cc: linux-hardening@vger.kernel.org
 Cc: linux-sound@vger.kernel.org
 ---
- drivers/pinctrl/samsung/pinctrl-samsung.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ sound/usb/mixer.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/pinctrl/samsung/pinctrl-samsung.c b/drivers/pinctrl/sa=
-msung/pinctrl-samsung.c
-index 5ecc9ed4c44d..0d639eec689c 100644
---- a/drivers/pinctrl/samsung/pinctrl-samsung.c
-+++ b/drivers/pinctrl/samsung/pinctrl-samsung.c
-@@ -1155,8 +1155,7 @@ static void samsung_banks_node_get(struct device *dev=
-, struct samsung_pinctrl_dr
+diff --git a/sound/usb/mixer.c b/sound/usb/mixer.c
+index ecaa8bc08d7c..f64ecad4e77e 100644
+--- a/sound/usb/mixer.c
++++ b/sound/usb/mixer.c
+@@ -1722,7 +1722,11 @@ const struct snd_kcontrol_new *snd_usb_feature_unit_=
+ctl =3D &usb_feature_unit_ctl;
+  */
+ static size_t append_ctl_name(struct snd_kcontrol *kctl, const char *str)
+ {
+-	return strlcat(kctl->id.name, str, sizeof(kctl->id.name));
++	size_t len =3D strlen(kctl->id.name);
++
++	if (len >=3D sizeof(kctl->id.name))
++		return len + strlen(str);
++	return len + snprintf(kctl->id.name + len, sizeof(kctl->id.name) - len, "=
+%s", str);
+ }
 =20
- 	bank =3D d->pin_banks;
- 	for (i =3D 0; i < d->nr_banks; ++i, ++bank) {
--		strscpy(node_name, bank->name, sizeof(node_name));
--		len =3D strlcat(node_name, suffix, sizeof(node_name));
-+		len =3D snprintf(node_name, sizeof(node_name), "%s%s", bank->name, suffi=
-x);
- 		if (len >=3D sizeof(node_name)) {
- 			dev_err(dev, "Too long pin bank name '%s', ignoring\n",
- 				bank->name);
+ /*
+@@ -2090,7 +2094,7 @@ static void build_connector_control(struct usb_mixer_=
+interface *mixer,
+ 	}
+=20
+ 	if (check_mapped_name(map, kctl->id.name, sizeof(kctl->id.name)))
+-		strlcat(kctl->id.name, " Jack", sizeof(kctl->id.name));
++		append_ctl_name(kctl, " Jack");
+ 	else
+ 		get_connector_control_name(mixer, term, is_input, kctl->id.name,
+ 					   sizeof(kctl->id.name));
 --=20
 2.55.0.1032.g73a4cd73de-goog
 
