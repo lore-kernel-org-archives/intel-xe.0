@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C7A7C88E7D
-	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 20:09:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 476AFC88E77
+	for <intel-xe@archiver.kernel.org>; Tue, 15 Sep 2026 20:09:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA5A710E2CE;
-	Tue, 15 Sep 2026 20:09:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0F4210E2CD;
+	Tue, 15 Sep 2026 20:09:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mLICYgMz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P0iSYkgB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E97610E2FC;
- Tue, 15 Sep 2026 20:09:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB49110E2E1;
+ Tue, 15 Sep 2026 20:09:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789502985; x=1821038985;
+ t=1789502989; x=1821038989;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2ymeHKuWNN0J+r3JW9LLTALQL98YlvOh8oz7TMhptI4=;
- b=mLICYgMzwPddP3rab1kiDzdYk28EypCowwJ39P9jYQSBDJfEPbZJsRTW
- 8iajhHQMtQSIKglkfD+651IfwzvdtETWA8zZUesiQNdFQBuCA+ORZu7Lu
- QhEUxFsTrxoGUkFSQi6cN5FXbg8dAeTFomM6PwQoRNN4xwIjooxKglfZx
- +gw+dXfDDvL4SQf3OVxn8ZAvZygsyeXZX45VSxU64UDQZK44RXDSMw8be
- SJwelGj98hBV/Ns3c0QfZCxyobfNOR1+VRigldVdFOVdf384jwhikwnGN
- ED89TI0z01Cuuq4ZjWwuBST01DVdBKQ62XHEnm0tpVy+W+pPgytzaF+Ef w==;
-X-CSE-ConnectionGUID: JMWEbvURQeGCOtISL+Fw/Q==
-X-CSE-MsgGUID: EXkuLnOnRW66MOc6G46cNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89015005"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89015005"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 13:09:44 -0700
-X-CSE-ConnectionGUID: 5sM7Ye/dQ8eB4rbkUS6ppA==
-X-CSE-MsgGUID: ogpKPzB7RqeHcg4r+a9Arw==
+ bh=WIyeNowj5nch7NC5RC1ugT9D5GlnRGMiGkir18JVmTQ=;
+ b=P0iSYkgBMHUqegE0mDz0xLYBwEjl5GxavQAVfxy4dU6Dua939MhnySBK
+ LiKvjyIcwyhiJQk3Xenfd7B1bi+tuqvoNIwcKygLfA6ouPq6Xk2JPgSw4
+ 4nhFQPpc4Zrt92/kqiwrg9990mDn2vsEQ3OwIjevY3OyUj9xMMlUnKmma
+ JRcOsmGUmdW95u5n4pLE5/WopbBk/yCJdITq2j8q5vbmTaYrfUAL13Fvw
+ oYiS7Nd4tIeZkn5v7iBJm6BSaRJkZvh6U9wIRx9MH6F7/Gmbe3fxr89V7
+ 7ZysWS89KT7gRu0b3nMfn/bII/3ssHFHhPyEYGhEVjoDG+dp6C6xPKKwr Q==;
+X-CSE-ConnectionGUID: yt2uPeqjRaauGwwSjVAKUg==
+X-CSE-MsgGUID: DK3ISGtJSCiGX2F42owYog==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89750687"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89750687"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 13:09:48 -0700
+X-CSE-ConnectionGUID: dkKMtbyhSEKDgcdpjoIn8A==
+X-CSE-MsgGUID: XVEkfkjtSSCh7u2LGjcqSA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="272644406"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="270490545"
 Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.243])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 13:09:43 -0700
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2026 13:09:47 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 04/10] drm/intel: add intel_gtt_view_is_partial() for
- completeness
-Date: Tue, 15 Sep 2026 23:09:15 +0300
-Message-ID: <4f277bb8560090abc588e3a440e2d6467515e71b.1789502902.git.jani.nikula@intel.com>
+Subject: [PATCH 05/10] drm/xe/display: use intel_gtt_view_is_*() helpers more
+Date: Tue, 15 Sep 2026 23:09:16 +0300
+Message-ID: <0a0ef74db9228dd3723d2dda704a3d544f131d6d.1789502902.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1789502902.git.jani.nikula@intel.com>
 References: <cover.1789502902.git.jani.nikula@intel.com>
@@ -71,28 +70,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There's a helper for all other view types, add one for
-intel_gtt_view_is_partial() too.
+Prefer using the intel_gtt_view_is_*() helpers instead of comparing the
+view type directly.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- include/drm/intel/gtt_view_types.h | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/include/drm/intel/gtt_view_types.h b/include/drm/intel/gtt_view_types.h
-index 2f1793a31b1a..d235a3ad50c3 100644
---- a/include/drm/intel/gtt_view_types.h
-+++ b/include/drm/intel/gtt_view_types.h
-@@ -71,4 +71,9 @@ static inline bool intel_gtt_view_is_rotated(const struct intel_gtt_view *view)
- 	return view->type == I915_GTT_VIEW_ROTATED;
- }
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 1402e76102fa..15fbd3fe6cbb 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -152,9 +152,9 @@ static int __xe_pin_fb_vma_dpt(struct drm_gem_object *obj,
+ 	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt;
+ 	u32 dpt_size, size = bo->ttm.base.size;
  
-+static inline bool intel_gtt_view_is_partial(const struct intel_gtt_view *view)
-+{
-+	return view->type == I915_GTT_VIEW_PARTIAL;
-+}
-+
- #endif
+-	if (view->type == I915_GTT_VIEW_NORMAL)
++	if (intel_gtt_view_is_normal(view))
+ 		dpt_size = ALIGN(size / XE_PAGE_SIZE * 8, XE_PAGE_SIZE);
+-	else if (view->type == I915_GTT_VIEW_REMAPPED)
++	else if (intel_gtt_view_is_remapped(view))
+ 		dpt_size = ALIGN(intel_remapped_info_size(&view->remapped) * 8,
+ 				 XE_PAGE_SIZE);
+ 	else
+@@ -173,7 +173,7 @@ static int __xe_pin_fb_vma_dpt(struct drm_gem_object *obj,
+ 	if (IS_ERR(dpt))
+ 		return PTR_ERR(dpt);
+ 
+-	if (view->type == I915_GTT_VIEW_NORMAL) {
++	if (intel_gtt_view_is_normal(view)) {
+ 		u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo, xe_cache_pat_idx(xe, XE_CACHE_NONE));
+ 		u32 x;
+ 
+@@ -182,7 +182,7 @@ static int __xe_pin_fb_vma_dpt(struct drm_gem_object *obj,
+ 
+ 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte | addr);
+ 		}
+-	} else if (view->type == I915_GTT_VIEW_REMAPPED) {
++	} else if (intel_gtt_view_is_remapped(view)) {
+ 		write_dpt_remapped(bo, &view->remapped, &dpt->vmap);
+ 	} else {
+ 		const struct intel_rotation_info *rot_info = &view->rotated;
+@@ -275,7 +275,7 @@ static int __xe_pin_fb_vma_ggtt(struct drm_gem_object *obj,
+ 		align = max(align, SZ_64K);
+ 
+ 	/* Fast case, preallocated GGTT view? */
+-	if (bo->ggtt_node[tile0->id] && view->type == I915_GTT_VIEW_NORMAL) {
++	if (bo->ggtt_node[tile0->id] && intel_gtt_view_is_normal(view)) {
+ 		vma->node = bo->ggtt_node[tile0->id];
+ 		return 0;
+ 	}
+@@ -283,7 +283,7 @@ static int __xe_pin_fb_vma_ggtt(struct drm_gem_object *obj,
+ 	/* TODO: Consider sharing framebuffer mapping?
+ 	 * embed i915_vma inside intel_framebuffer
+ 	 */
+-	if (view->type == I915_GTT_VIEW_NORMAL)
++	if (intel_gtt_view_is_normal(view))
+ 		size = xe_bo_size(bo);
+ 	else
+ 		/* display uses tiles instead of bytes here, so convert it back.. */
+@@ -292,7 +292,7 @@ static int __xe_pin_fb_vma_ggtt(struct drm_gem_object *obj,
+ 	pte = xe_ggtt_encode_pte_flags(ggtt, bo, xe_cache_pat_idx(xe, XE_CACHE_NONE));
+ 	vma->node = xe_ggtt_insert_node_transform(ggtt, bo, pte,
+ 						  ALIGN(size, align), align,
+-						  view->type == I915_GTT_VIEW_NORMAL ?
++						  intel_gtt_view_is_normal(view) ?
+ 						  NULL : write_ggtt_rotated_node,
+ 						  &(struct fb_rotate_args){view, bo});
+ 	if (IS_ERR(vma->node))
 -- 
 2.47.3
 
