@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2BEAC88E5C
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 05:28:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFCD8C88E77
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 05:29:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9887410E296;
-	Wed, 16 Sep 2026 05:28:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8840010E277;
+	Wed, 16 Sep 2026 05:29:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e7TW9Nfh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R3yfOMpS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C875510E37A
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 05:28:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C14310E277
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 05:28:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789536536; x=1821072536;
+ t=1789536539; x=1821072539;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dV5mscHKjg5vCX27KFzT7LK5opmLgEiPXFGlQidlrF4=;
- b=e7TW9NfhrdbPExb4OiRZJMPb4XSHaQe3r+HF4Dx0DMg2y3VX7es8pz3y
- 4BP+cFQZT+fgOLlhiR0v52HGn84Lf6kQTLtBvseMxqdkqBGWRG0guWqhY
- Hjb7we/yCaHHZ4BaeKpwjHBs45ws8rZBBUMwCLu+pMIO5lWleXVi4aF5S
- hCtW463NYedHzevln5W4PIiQLJU7x18aU33yU4kyV5vq9aYWeTJUuC6Pp
- sJ5R3Ozujl2NBCgCt7+3Jez/zgUW9qwsqj/DVfqbsiDZ8gldPmRlBSwyS
- j4QuCD678+FFLpYDz5GEmj5SrC7ZqZUWmcWajwE9IDwVg7Rr0u1UaCUNw A==;
-X-CSE-ConnectionGUID: JScYq3BeRRKIsUhz5nB6Zg==
-X-CSE-MsgGUID: 0zre/rD5RJCepnIXNWJllg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="77469958"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="77469958"
+ bh=BbSO0qok4TZggIXgRZ1/DOGVqK+xyrIvV+CZCkAEMH8=;
+ b=R3yfOMpSGUT6eIu3fGFqrHSk62GUQLiCG0pVEiqAAeXrw17KY2+TDxL9
+ 51puJ+O1/VlstiQLmBACHg1Kz7gBdhNkpZhwmQ5d8BM8eaaB2mdWyQpa0
+ ygQ9eEKVbHwscVtWNH4btPuBE21QlJVdyjPV0VBR3Cc61YF+UA3fLUd/c
+ s45kfcpwIXPeZI195rU/76rJD3oCaopC9HK08yik/D3hJSrM7GPMjdC1L
+ +1iuoUKdzhfL6A0iS+V4tOLr4nzXv0xne04VkZBF+hW+svP9aD7GDY4tw
+ caz5ADfpuGcldSmeVQ/pdEGM6AV2FU+aMVLRgmkR60MinbJo6G6Tlx3Q5 A==;
+X-CSE-ConnectionGUID: lVe2xfIwRn6fkMkWWTJovQ==
+X-CSE-MsgGUID: g59M9mJGRhab3Fe+coiNAg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="77469961"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="77469961"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 22:28:56 -0700
-X-CSE-ConnectionGUID: DgWaoAzgSTmGSrtLcV4IBQ==
-X-CSE-MsgGUID: HnhjzPNLSgeXl6pnyBvXmA==
+ 15 Sep 2026 22:28:59 -0700
+X-CSE-ConnectionGUID: /ALUEoxiTgKs65VTnmCO3Q==
+X-CSE-MsgGUID: oFf05tdjSVi8Zpz8lUDmLw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="275190118"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="275190126"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2026 22:28:53 -0700
+ 15 Sep 2026 22:28:56 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com
-Subject: [PATCH v2 1/2] drm/xe/xe_ras: Add support for handling Fabric errors
-Date: Wed, 16 Sep 2026 10:58:38 +0530
-Message-ID: <20260916052836.2953509-5-riana.tauro@intel.com>
+Subject: [PATCH v2 2/2] drm/xe/xe_ras: Add support for PCIe error component
+ handling
+Date: Wed, 16 Sep 2026 10:58:39 +0530
+Message-ID: <20260916052836.2953509-6-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260916052836.2953509-4-riana.tauro@intel.com>
 References: <20260916052836.2953509-4-riana.tauro@intel.com>
@@ -69,97 +70,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support for handling fabric errors. For System Agent Fabric errors
-caused by data payload parity, log the error and return. For all other
-errors or causes, request a Seconday Bus Reset(SBR).
+Add support for handling PCIe subsystem errors. PCIe subsystem power
+management errors require a Seconday bus reset(SBR) for recovery. Treat all
+others as recovered and take no further action.
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
 v2: add mapping to cper severity (Badal, Rodrigo)
     add abbreviations
-    add new line in header (Raag)
+    fix punctuations (Raag)
 ---
- drivers/gpu/drm/xe/xe_ras.c       | 35 +++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ras_types.h |  6 ++++++
- 2 files changed, 41 insertions(+)
+ drivers/gpu/drm/xe/xe_ras.c       | 19 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras_types.h |  1 +
+ 2 files changed, 20 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 7a85735c57d5..c1939fd71f2d 100644
+index c1939fd71f2d..83adcd211864 100644
 --- a/drivers/gpu/drm/xe/xe_ras.c
 +++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -185,6 +185,20 @@ static int ras_status_to_errno(u32 status)
- 	}
- }
- 
-+static u8 ras_sev_to_cper_sev(u8 sev)
-+{
-+	switch (sev) {
-+	case XE_RAS_SEV_CORRECTABLE:
-+		return CPER_SEV_CORRECTED;
-+	case XE_RAS_SEV_UNCORRECTABLE:
-+		return CPER_SEV_RECOVERABLE;
-+	case XE_RAS_SEV_INFORMATIONAL:
-+		return CPER_SEV_INFORMATIONAL;
-+	default:
-+		return CPER_SEV_RECOVERABLE;
-+	}
-+}
-+
- static inline const char *sev_to_str(u8 severity)
- {
- 	if (severity >= XE_RAS_SEV_MAX)
-@@ -395,6 +409,24 @@ static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_
+@@ -409,6 +409,22 @@ static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_
  	return XE_RAS_RECOVERY_ACTION_RECOVERED;
  }
  
-+static u8 handle_fabric_errors(struct xe_device *xe, struct xe_ras_error_array *arr)
++static u8 handle_pcie_errors(struct xe_device *xe, struct xe_ras_error_array *arr)
 +{
-+	struct xe_ras_error_product *product = &arr->counter.product;
 +	struct xe_ras_ieh_error *info = (void *)arr->details;
 +	u8 severity = arr->counter.common.severity;
 +
-+	if ((info->global_error_status & XE_RAS_FAB_IEH_SAF_MHB) &&
-+	    product->cause.cause == XE_RAS_FAB_CAUSE_PAYLOAD) {
-+		xe_log_comp(xe, ras_sev_to_cper_sev(severity), FABRIC, &arr->counter,
-+			    sizeof(arr->counter), "SAF MHB error detected\n");
-+		return XE_RAS_RECOVERY_ACTION_RECOVERED;
++	if (info->global_error_status & XE_RAS_PCIE_IEH_GPMA) {
++		xe_log_comp(xe, ras_sev_to_cper_sev(severity), PCIE, &arr->counter,
++			    sizeof(arr->counter), "GPMA error detected\n");
++		return XE_RAS_RECOVERY_ACTION_RESET;
 +	}
 +
-+	xe_log_comp(xe, ras_sev_to_cper_sev(severity), FABRIC, &arr->counter,
++	xe_log_comp(xe, ras_sev_to_cper_sev(arr->counter.common.severity), PCIE, &arr->counter,
 +		    sizeof(arr->counter), "Errors detected\n");
-+	return XE_RAS_RECOVERY_ACTION_RESET;
++	return XE_RAS_RECOVERY_ACTION_RECOVERED;
 +}
 +
- void xe_ras_counter_threshold_crossed(struct xe_device *xe,
- 				      struct xe_sysctrl_event_response *response)
+ static u8 handle_fabric_errors(struct xe_device *xe, struct xe_ras_error_array *arr)
  {
-@@ -556,6 +588,9 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
+ 	struct xe_ras_error_product *product = &arr->counter.product;
+@@ -588,6 +604,9 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
  			case XE_RAS_COMP_DEVICE_MEMORY:
  				action = handle_device_memory_errors(xe, arr);
  				break;
-+			case XE_RAS_COMP_FABRIC:
-+				action = handle_fabric_errors(xe, arr);
++			case XE_RAS_COMP_PCIE:
++				action = handle_pcie_errors(xe, arr);
 +				break;
- 			default:
- 				/* For any other component, reset */
- 				action = XE_RAS_RECOVERY_ACTION_RESET;
+ 			case XE_RAS_COMP_FABRIC:
+ 				action = handle_fabric_errors(xe, arr);
+ 				break;
 diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-index fe6f3658a2a4..4a8cd6fc5ba2 100644
+index 4a8cd6fc5ba2..324e9754742b 100644
 --- a/drivers/gpu/drm/xe/xe_ras_types.h
 +++ b/drivers/gpu/drm/xe/xe_ras_types.h
-@@ -12,6 +12,12 @@
+@@ -12,6 +12,7 @@
  #define XE_RAS_NUM_ERROR_ARR			3
  /* Error bits in IEH global error status register */
  #define XE_RAS_SOC_IEH_PUNIT			BIT(1)
-+/* Bits 16-31 represent individual SAF MHB unit */
-+#define XE_RAS_FAB_IEH_SAF_MHB			GENMASK(31, 16)
-+
-+/* Fabric Data payload parity errors */
-+#define XE_RAS_FAB_CAUSE_PAYLOAD		BIT(2)
-+
- /* Device memory error categories */
- #define XE_RAS_MEMORY_DB_ECC			BIT(1)
- #define XE_RAS_MEMORY_POISON			BIT(2)
++#define XE_RAS_PCIE_IEH_GPMA			BIT(5)
+ /* Bits 16-31 represent individual SAF MHB unit */
+ #define XE_RAS_FAB_IEH_SAF_MHB			GENMASK(31, 16)
+ 
 -- 
 2.47.1
 
