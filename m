@@ -4,43 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99298C982C9
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 20:12:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31135C982C1
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 20:12:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E4F510E114;
-	Wed, 16 Sep 2026 20:12:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D860710E1A1;
+	Wed, 16 Sep 2026 20:12:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IuJajhSy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a7z+INYj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E346D10E4AD
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 20:12:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 586C610E114
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 20:11:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789589521; x=1821125521;
+ t=1789589519; x=1821125519;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=LPGG504LJ3vrcENFvlBo/VSFE0LKRYZg7u6iUu7Y6Hs=;
- b=IuJajhSy4x+RIHlIJRmXXYbPQcj/hCq1XwsbBorCWMwdUmMrVc8VATln
- ODFpZUelVo3joO5sWXRlOfc0vyMoyIUhYoUOz8hXrNd6Nx7jJ9w0ZnZdj
- VaAOJ5xY5n09wX85vzuM2rJXrbxkofPThrbg43PJZISL4R9JFd6H8zs8Y
- KUMPEOxV9jULbz+3FJ1O9OmLT1/6p6NiCJWhYdDKqVWUNTZS7WAn8DLX8
- BeHJxEdyIndwPZZYOlPFi25PtCZlYnENCECGLROfeioRvMzCGPh6YJoIZ
- tA3VuKhyOlI04poYQJl3WOFREpUC9hBMKndkXoNvkz360Rt0hCyIXeE/+ w==;
-X-CSE-ConnectionGUID: 7W7DmkaSQ7ObFWtFN7SoAw==
-X-CSE-MsgGUID: TE2H64DRSTeGgH1zK/cXJA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="100296192"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="100296192"
+ bh=zGpE73V/hkrWMc8qKCQ3sV0WJK524j/nIBbGfm+6rec=;
+ b=a7z+INYjDGiqqWAQkZJOHkeABEavqZFbHUNSNswJJ+s2dq7HPJum7uQv
+ Qi5HxZiodrzZawFxiBsmGrCUzHikXj0pz9tDofQ/Zol0oTNcOskYyY4fB
+ a3r7OMzaKJyGX+y4kufcbg+/gwpBs/+CySVQfu4nXarYkh3G/QcziK5su
+ ik2VhqyRQR/x2IMR5EqbLramCdjFly47P+7OqTKtEXJOMx7m39Aob+iH0
+ t6gv4eOupoIVZQssmapqwueRlcPywg3kN/1ompf231dTl0oi75Qfxg3cV
+ r8IGtKL1psiuoCgG9jHqscgovsc/dPaF9aAc1od7B55tIG66hIMoK9UQL g==;
+X-CSE-ConnectionGUID: ROFehe5hRHCQZrhqUj15xQ==
+X-CSE-MsgGUID: 7vtkHqcWSpWWoC7LQyGbyA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="100296161"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
+ d="scan'208,146";a="100296161"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2026 13:12:00 -0700
-X-CSE-ConnectionGUID: 2jCsxDgfRZue+3H8vBWdVw==
-X-CSE-MsgGUID: 1UdyYYipTC29cLtkiHMxPQ==
+ 16 Sep 2026 13:11:59 -0700
+X-CSE-ConnectionGUID: qRy7JUPcSzmE8bzoT43qiw==
+X-CSE-MsgGUID: e5yuqIN8S+C47jHdB608pg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="277574031"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
+ d="scan'208,146";a="277574006"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2026 13:12:01 -0700
+ 16 Sep 2026 13:12:00 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
@@ -48,9 +50,9 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
-Subject: [PATCH v9 12/20] drm/xe/vsec: Update VSEC probe order
-Date: Wed, 16 Sep 2026 13:11:50 -0700
-Message-ID: <20260916201139.2374531-34-michael.j.ruhl@intel.com>
+Subject: [PATCH v9 06/20] drm/xe/vsec: Do not register BMG PMT for VF
+Date: Wed, 16 Sep 2026 13:11:44 -0700
+Message-ID: <20260916201139.2374531-28-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260916201139.2374531-22-michael.j.ruhl@intel.com>
 References: <20260916201139.2374531-22-michael.j.ruhl@intel.com>
@@ -70,43 +72,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Both debugfs and hwmon access the PMT data area before PMT is
-initialized.
+BMG PMT is not supported for VF nodes.
 
-Hardwired offset usage allows this to work by accident.
-Upcoming changes will break this usage.
+If IS_SRIOV_VF() is true, do NOT register with PMT.
 
-Re-order the probe steps to initialize VSEC before the other
-features are initialized.
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_vsec.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 205cb4e7f9e8..3ec950606e67 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1053,6 +1053,8 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		goto err_unregister_display;
+diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+index a9baf0bfe572..481bcbcc6372 100644
+--- a/drivers/gpu/drm/xe/xe_vsec.c
++++ b/drivers/gpu/drm/xe/xe_vsec.c
+@@ -149,6 +149,8 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ 	u32 offset;
+ 	int ret;
  
-+	xe_vsec_init(xe);
++	xe_assert(xe, !IS_SRIOV_VF(xe));
 +
- 	xe_debugfs_register(xe);
+ 	ret = xe_guid_decode(guid, &mem_region, &offset);
+ 	if (ret)
+ 		return ret;
+@@ -157,9 +159,6 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
  
- 	err = xe_hwmon_register(xe);
-@@ -1066,8 +1068,6 @@ int xe_device_probe(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_sanitize_freq(gt);
+ 	guard(mutex)(&xe->pmt.lock);
  
--	xe_vsec_init(xe);
+-	if (!xe->soc_remapper.set_telem_region)
+-		return -ENODEV;
 -
- 	err = xe_sriov_init_late(xe);
- 	if (err)
- 		goto err_unregister_display;
+ 	/* indicate that we are not at an appropriate power level */
+ 	if (!xe_pm_runtime_get_if_active(xe))
+ 		return -ENODATA;
+@@ -186,6 +185,9 @@ static enum xe_vsec get_platform_info(struct xe_device *xe)
+ 	if (xe->info.platform > XE_BATTLEMAGE)
+ 		return XE_VSEC_UNKNOWN;
+ 
++	if (IS_SRIOV_VF(xe) && (xe->info.platform == XE_BATTLEMAGE))
++		return XE_VSEC_UNKNOWN;
++
+ 	return vsec_platforms[xe->info.platform];
+ }
+ 
 -- 
 2.43.0
 
