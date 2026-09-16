@@ -4,84 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94D1CC982D1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAAD8C982CF
 	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 12:15:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01EDB10EE66;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CD9B10EE67;
 	Thu, 17 Sep 2026 12:15:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=invisiblethingslab.com header.i=@invisiblethingslab.com header.b="W8z3cBvm";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="TFZUoj1s";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="DqqdrmP9";
 	dkim-atps=neutral
-Received: from fhigh-a3-smtp.messagingengine.com
- (fhigh-a3-smtp.messagingengine.com [103.168.172.154])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0D0C10E392;
- Wed, 16 Sep 2026 17:30:41 +0000 (UTC)
-Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
- by mailfhigh.phl.internal (Postfix) with ESMTP id 2ADD614000F4;
- Wed, 16 Sep 2026 13:30:41 -0400 (EDT)
-Received: from phl-frontend-04 ([10.202.2.163])
- by phl-compute-06.internal (MEProxy); Wed, 16 Sep 2026 13:30:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- invisiblethingslab.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:from:from:in-reply-to
- :message-id:mime-version:reply-to:subject:subject:to:to; s=fm1;
- t=1789579841; x=1789666241; bh=sEzC4k5CJmAV6EJO1XhWjipY2iPMC41J
- 5KqRauPMcFs=; b=W8z3cBvmX93Pzsm5bNCRiY139GXpeJe1v3Xkn22MstaPsHgy
- qP3GyTYl3P4a67pLjO1PGEb1dFV1DfPLDykR4z/854lyE6SMAtsArI+Gg3QGFr1n
- 22KxTFVF9xgnaXFSKcdskfp+stDb1Pu+bcwUl6yYWwE7HdqikOZmXN7S2PksSAiz
- sgsf43bs4CbOHMqYYAtbePUcusunHBJd3lidU1ECQdq27jC6XHpJWeRCKR2HI0SI
- 54cDKJ3qD8gY/Pp6ysmC2UYSxTKrj+SIgbfvcG/60mX9CYFf9Ad0K/j/m2WjSNhF
- kvv8ksUz7PGSeUJLLSMNF+khLrS/fwOUBVeUOA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:message-id:mime-version:reply-to:subject
- :subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; t=1789579841; x=1789666241; bh=sEzC4k5CJmAV6EJO1XhWjipY2iPM
- C41J5KqRauPMcFs=; b=TFZUoj1sd5wzq6V92J/uxsf3SSM2ifhX4DsjAgUNlWhU
- 6eAsn61pwSeiVLgGV7jvmCKRWbXQ6CLYgzqEyQyv759H6AiJGx9yCW0EZQGvSqZA
- tdLRY4dnewtM5NFNa99MZxpUr+OwHRfifJ+FXNEbp/VePCF8odEsQ7SJjMpAePN6
- yl8MXZQOR9wortnzRLC5Cv8WCPbUmDe+qwK+357xalVj0aNXRwvbTbZPLtQprqPe
- 8fnjP8Nhh2NWHHZ+WzFzG5iiuhGyDesYUDsQAReRN+nca32x16AxG+UqKvyJLZwb
- e07DMW/szM+5nAcoTmduXKQo+NQgCo0s6D5w4prHYA==
-X-ME-Sender: <xms:QNKqar4EE9LI-Ci45nMVNqyof-kwidRJpl306loLxgGmy3IwfVmqSA>
- <xme:QNKqatkELrkNM8W2gVc3-2rio61NawOH3E1ezo3jDG4WzJ49qn8VIWzz2PCaNrSer
- cPQwbP557BE_fZbGQ3OAJ3MR-A2hCQ4qFF21tn4dWpHAU8Cgt0>
-X-ME-Received: <xmr:QNKqamXp7FAlrkBIVB8SzSqRW9nEiS28hNCrLWexN4SBh6xYgoJGqbppGv9TzE1xFJc0rmwbSvQi>
-X-ME-Proxy-Cause: dmFkZTFRR2SdzYysCnDldAnwcUjqwv+J1OcwrzewRKc+tpczioQYwLmLsiqEXhmQdC2nje
- 56bGrrx9GV0swaDUdEK3vzaaVqY+M/XwqVdnxH+XYP25yLI5dgcMCMyHp1UAKHpzlMM6Pa
- NfKIQqGtUlBxkueH0hJjWk2FklFgBKXLz2xRvyNL8MinjeW04yJe6UQoDcfj7Fm7GkQqjv
- hWMDmiLq+BTLEM4gbkW/awJ3xlxmRvUzWx2Z1pfR7j7X/jzaQ8xRnBoS7gvzb3G9bG0ct3
- i24Lbjgm0XtyjqxFcsT4bz5ya9cZ4U8Y9gRKqIKKaOSFKm85ALGxH1ylfLgRm2aN/+3adN
- cUBVfKKQWHA2itOHpXXPGf2EhOirzoD+YJUN8W2J8btmtWKsDaOFNp10yxo1cjCNfqFLCA
- eetNRPqBIDmnhflwbewQqA80/IE9YIqIzcnlCVJFyqgi/DPFkMyhrMlFDOWWfHiQjIeh9G
- 89n9QqLFXfGqXXqk99gbjnMCdgUUBVwfGw6Qv0Oj/Sv5b8KJP0y9gIov6j06UeHeBXiu58
- ngIpfuaFxt/OlglSkpwlIdfm8koIBhdly2sJuzoiRSESBrEf2tn7hwG3rFYegHCYuFa04F
- L7fp6z+VojadVcqdg1VI+iW4SHrDfKfNnDMGMAOf0fHuPfqzSNP33fuzmKRg
-X-ME-Proxy: <xmx:QNKqamQRcqvlLVMy3OsQDxJ-Pj62_oGYUfuHRu2Y5BOtNr-7ukxvxg>
- <xmx:QNKqajCN2AJCPPGKq58J4g9L4vvSXTYb25eOUnyQ7d--iuJtUJD3Mg>
- <xmx:QNKqauuEzb0d10ZGzyknk3K36HIWDjgTpWiMYIC8Ck0U3NuKpU4EOw>
- <xmx:QNKqah9C--fGdirKD9LXW3LiBUUq7NtHJYplpvh9CAou0G6ozyA7Qw>
- <xmx:QdKqaoNidy3xp9Bfq4NoR1cy-a8FbyWcN-DtMO5vSOMoLGcheiud6Y02>
-Feedback-ID: i792e4853:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 16 Sep 2026 13:30:37 -0400 (EDT)
-From: =?UTF-8?q?Szymon=20Aceda=C5=84ski?= <accek@invisiblethingslab.com>
-To: intel-xe@lists.freedesktop.org
-Cc: thomas.hellstrom@linux.intel.com, matthew.brost@intel.com,
- rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com, hch@lst.de,
- bob.beckett@collabora.com, dri-devel@lists.freedesktop.org,
- marmarek@invisiblethingslab.com, xen-devel@lists.xenproject.org,
- =?UTF-8?q?Szymon=20Aceda=C5=84ski?= <accek@invisiblethingslab.com>,
- stable@vger.kernel.org
-Subject: [PATCH v2] drm/xe: Limit sg segment size to PAGE_SIZE on Xen PV
-Date: Wed, 16 Sep 2026 19:30:30 +0200
-Message-ID: <20260916173030.3223833-1-accek@invisiblethingslab.com>
-X-Mailer: git-send-email 2.53.0
+Received: from mail-ua2-f29.google.com (mail-ua2-f29.google.com
+ [74.125.226.221])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F0D610E09F
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 21:44:18 +0000 (UTC)
+Received: by mail-ua2-f29.google.com with SMTP id
+ a1e0cc1a2514c-97e80579b7dso49671241.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 14:44:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789595057; cv=none;
+ d=google.com; s=arc-20260327;
+ b=IHpSUwDKLNLLsu9yTYN1auOHNRCVWISdQlPuezElqr2QbESskchQzS0OimZ86lYHpS
+ G9u25kJi7bqpcbyJFVAIzgRxUOjWIIEtfW77nm+NI4oOng+io1cv+5E5dIfuq7wBsvgJ
+ 3pYnuyhJ3TuP30mEwFDYrJthzXebIfCOdJ3Q1gNXXRrlSn/CJVCVODc0v/Z91Zc8FG7g
+ BrK+HQk/AvIcnXYlff5vZoWiyTahvSf7cyLi3/Acx/H6kjmnoouXV6wAcZLeuGy3jXuw
+ Ycg7bo/cwe1cIfgcrYPzVGhe5we+/8ou1Ymvnlr1hRiDcffZqKcJVBoR0ZQGbBAYtpgj
+ 0WIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=+TMWi8xF1c/GpLGSJWBDMGttEHh102/5Ofx0+5TAWdU=;
+ fh=c2eAtzgbR452HYwZyVRONxLWXFQI/RKI2lfhkBqVV44=;
+ b=ROqfq9oJngpKSsMoTMQT6I/3aCZzHQrJCk9tirVtxj0+sl2Gv7Vmz6JWOlepp4N7Dy
+ QSOLcvluc+xd6JtlEElGLejV7lQxEj0bezUfWjCg80hr87LMlJB4EAtCBIask1TvZy2Q
+ 6pNbf1lXG5GYY+2h3h3D9jWXLVeGMRAc4LfB7dC1QBtrD+th7RZ7/zMIWgGt03pNSYSd
+ p/Sq48MJmLXPVo6OXd+w6OOio8vdx3mhh8L3+jIEAa6zNZ0fs9xDOWyV1MU79PkHuoZw
+ b4IoHae175qkiEy/n870w5t4eGs1lJQXuHGtVwXARe9AnsqkuKPAv5UX/2TInJKQS0hY
+ aoxw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20251104; t=1789595057; x=1790199857;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=+TMWi8xF1c/GpLGSJWBDMGttEHh102/5Ofx0+5TAWdU=;
+ b=DqqdrmP9gAmiAVvj2NjHTFHVeBcv8CgrTKqE41p4bZ+yUh1SYNTSduUS4eFKYqYlo7
+ BDZccIOIgMw4lNV9VE9nfY2zcdz4+Dddn5e/oSmEgm9BrIIDZ0F1gvpDlfayToI69mAg
+ ACb42Ce49NiWW0GlXxgObfd4k6QPriivgrxUH6EFU7Hmt6uneTa3eTHMlv6SzLecOUDX
+ rhBXSD2EW+g1lN0rkbaUQi0ywxlcYfKSAUlHZ+h3LCxFM4ExdcVqhHo5EeRDnIGfIWnI
+ UNeXi6XeW0gcQZyyc9YRsZWK001ZIRsRRGmI7t4J0wGoH/uUUjs9Bu/iCyQKf2JWeNZD
+ s9vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1789595057; x=1790199857;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=+TMWi8xF1c/GpLGSJWBDMGttEHh102/5Ofx0+5TAWdU=;
+ b=FvgkP3kbxzB5S6fE3T+B/90QOYOURRdrfldcGo9Q7iSuoPJXwUx7QdG+C3RSFnCR4N
+ ++2BA4dCN6TApXvtKpOfIORX+QSmSW9a/AfvbTbM6RUeWnGKTlo2TGkML0ODj28LIFxc
+ MoY5Q+ba5rT6j+Lv7AMreZByRDufeM+LV7Yf4az/sD6B/pEwLxMSGPVLawctHKWPMUzW
+ jjaS81jmmTpT1uL6eEwji+KuQjXVey/V/VsYN3Lm1Ny4FqBfAlhm4ebFi/DnKiNGI1jB
+ zHW74NWHwsDHQTaZqJdkckhP3AJOPtSS5rxZ9byueVGYnZvnSRR/h7KVDPo1/N8iAyQx
+ iweQ==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBxjsuOkAAN/h+LLnL7njTynBFvedxmnFpODEXvtmeLuiwK0jDROROw0SUDxvGxLP/Tfc7HqBsSA+Q==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++nLXTeRh5ROTDSmRJbLOVRed0BHj9IoQTgBJR861us4J+JA/4jx
+ MgsgS7KlysrR962D8MKoINF5Hu+8gDBGkB8r6EJzYBF+9NR8t0SZX0O60Z0w1x79n+N4xDi7JvG
+ RqRqHisy4iiAXPnS615pJnqT9+ZsJ+zwtjj4KZK0=
+X-Gm-Gg: AYBFou2sHoyYK3V0V1iUMlimcSTjaPehNtYaaExNmvFnJr2CyUVrL4+f6/zHkIJU3EI
+ NOlELnOx/EqsfAl6etK9btwO1XkoGW9Af8UNymmAAOtQRDkEvHr/ixiT/D+Jjstgoo+dWkuKxYN
+ +J2tgIskyEi9xDbx4nByWEsDsksBrbTUyi40YyRXd2PqFjo4SapkH0vkOO6POk1KpZ5I8ZTsnq8
+ Dat3G21eJ3UWVzNm+gu6ichwVrdi8sM3T2FlsOKAI9R7y73haEwHK85YYicn+W2SPfrRAVHzK2n
+ lTWHpL+oPc/ofBAMQHSRn06hNInKPBx5v3jwrQWJ27HCjvTO0UM6J77oCkwRgDK5EPwyxe0g8Aj
+ 3T7P9/jlderLXhuYMtTt+
+X-Received: by 2002:a05:6102:a85:b0:7a2:2a6b:e7b4 with SMTP id
+ ada2fe7eead31-7a22a6be8efmr62586137.2.1789595055938; Wed, 16 Sep 2026
+ 14:44:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20260915081910.4142719-1-morbo@google.com>
+ <20260915081910.4142719-26-morbo@google.com>
+ <202609151258.5FC01072@keescook>
+ <20260916010945.GEaqnsWSZ-DTMyTO25@fat_crate.local>
+In-Reply-To: <20260916010945.GEaqnsWSZ-DTMyTO25@fat_crate.local>
+From: Bill Wendling <morbo@google.com>
+Date: Wed, 16 Sep 2026 14:43:59 -0700
+X-Gm-Features: AcwNN1XbboPOY3deKY79Gty15vkSErYIT9HTgeQdVXaDzFhBvm8_kiOA449bIqU
+Message-ID: <CAGG=3QVZRCJ94+DOfSsSDhsrXVYf-ec01NZBy299nYiCAYfXKg@mail.gmail.com>
+Subject: Re: [PATCH 25/28] EDAC/thunderx: Replace strlcat() with seq_buf
+To: Borislav Petkov <bp@alien8.de>
+Cc: Kees Cook <kees@kernel.org>, linux-kernel@vger.kernel.org, 
+ codemender-patching+linux@google.com, Russell King <linux@armlinux.org.uk>, 
+ Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+ Helge Deller <deller@gmx.de>, 
+ Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>, 
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
+ "H. Peter Anvin" <hpa@zytor.com>, Ian Abbott <abbotti@mev.co.uk>, 
+ H Hartley Sweeten <hsweeten@visionengravers.com>,
+ Tony Luck <tony.luck@intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Matthias Schwarzott <zzam@gentoo.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Tony Nguyen <anthony.l.nguyen@intel.com>,
+ Przemek Kitszel <przemyslaw.kitszel@intel.com>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, 
+ Arend van Spriel <arend.vanspriel@broadcom.com>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Linus Walleij <linusw@kernel.org>, 
+ Anil Gurumurthy <anil.gurumurthy@qlogic.com>, 
+ Sudarsana Kalluru <sudarsana.kalluru@qlogic.com>,
+ "Martin K. Petersen" <mkp@kernel.org>, 
+ Trond Myklebust <trondmy@kernel.org>, Anna Schumaker <anna@kernel.org>, 
+ Mike Marshall <hubcap@omnibond.com>, Martin Brandenburg <martin@omnibond.com>,
+ Jiri Pirko <jiri@resnulli.us>, 
+ Simon Horman <horms@kernel.org>, Chuck Lever <cel@kernel.org>,
+ Jeff Layton <jlayton@kernel.org>, 
+ NeilBrown <neil@brown.name>, Olga Kornievskaia <okorniev@redhat.com>,
+ Dai Ngo <Dai.Ngo@oracle.com>, 
+ Tom Talpey <tom@talpey.com>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Andrew Morton <akpm@linux-foundation.org>,
+ "Mike Rapoport (Microsoft)" <rppt@kernel.org>, 
+ Kanglong Wang <wangkanglong@loongson.cn>, Tiezhu Yang <yangtiezhu@loongson.cn>,
+ Qiang Ma <maqianga@uniontech.com>, Randy Dunlap <rdunlap@infradead.org>, 
+ Pengpeng Hou <pengpeng@iscas.ac.cn>, Ard Biesheuvel <ardb@kernel.org>,
+ Breno Leitao <leitao@debian.org>, Thorsten Blum <blum@kernel.org>,
+ Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Lyude Paul <lyude@redhat.com>,
+ Ashutosh Desai <ashutoshdesai993@gmail.com>, Imre Deak <imre.deak@intel.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Johan Hovold <johan@kernel.org>, Johannes Berg <johannes.berg@intel.com>, 
+ Miri Korenblit <miriam.rachel.korenblit@intel.com>, 
+ Alexander Stein <alexander.stein@ew.tq-group.com>, 
+ Cryolitia PukNgae <cryolitia@uniontech.com>,
+ Jiaming Zhang <r772577952@gmail.com>, 
+ Will Porter <mrwillporter@gmail.com>, Cen Zhang <zzzccc427@gmail.com>, 
+ =?UTF-8?Q?C=C3=A1ssio_Gabriel?= <cassiogabrielcontato@gmail.com>, 
+ Rong Zhang <i@rong.moe>, Arun Raghavan <arunr@valvesoftware.com>, 
+ linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev, 
+ linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org, 
+ linux-edac@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-input@vger.kernel.org, 
+ linux-media@vger.kernel.org, intel-wired-lan@lists.osuosl.org, 
+ netdev@vger.kernel.org, linux-wireless@vger.kernel.org, 
+ brcm80211@lists.linux.dev, brcm80211-dev-list.pdl@broadcom.com, 
+ devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, linux-scsi@vger.kernel.org, 
+ linux-nfs@vger.kernel.org, devel@lists.orangefs.org, 
+ linux-hardening@vger.kernel.org, linux-sound@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 17 Sep 2026 12:15:25 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -97,69 +179,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix display corruption on Xen PV dom0, where DMA buffers are not
-guaranteed machine-contiguous, in which case bounce buffering kicks
-in, breaking xe's memory coherency assumptions.
+On Tue, Sep 15, 2026 at 6:11=E2=80=AFPM Borislav Petkov <bp@alien8.de> wrot=
+e:
+>
+> On Tue, Sep 15, 2026 at 01:00:00PM -0700, Kees Cook wrote:
+> > Seems like seq_buf would be better her? But yes, at the very least, thi=
+s
+> > needs to be scnprintf, not snprintf (or add the checks as you have
+> > here).
+> >
+> > The rest of the seq_buf conversions look right.
+>
+> This driver has been an orphan for a while now (we just made it official)=
+ so
+> I'd prefer it if we don't do anything here.
+>
+I'll remove those changes from future emails.
 
-Apply the same workaround i915 carries in i915_sg_segment_size() since
-commit 78a07fe777c4 ("drm/i915: stop abusing swiotlb_max_segment").
+> And yes, that mega CC list is just gross.
+>
+Apologies. :-(
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Reported-by: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8382
-Link: https://lore.kernel.org/xen-devel/aYtznP_tT6xNPwf-@mail-itl/
-Link: https://lore.kernel.org/all/20221020110308.1582518-1-hch@lst.de/ # i915 counterpart
-Cc: Christoph Hellwig <hch@lst.de>
-Cc: Robert Beckett <bob.beckett@collabora.com>
-Cc: stable@vger.kernel.org # v6.8+
-Signed-off-by: Szymon Acedański <accek@invisiblethingslab.com>
----
-v2:
- - Imperative language in the commit message (Thomas Hellström)
- - CC the authors of the original i915 workaround (Thomas Hellström)
-
- drivers/gpu/drm/xe/xe_bo.h | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 290ca62..341fa93 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -9,6 +9,8 @@
- #include <drm/drm_prime.h>
- #include <drm/ttm/ttm_tt.h>
- 
-+#include <xen/xen.h>
-+
- #include "xe_bo_types.h"
- #include "xe_ggtt.h"
- #include "xe_macros.h"
-@@ -574,6 +576,23 @@ static inline unsigned int xe_sg_segment_size(struct device *dev)
- 	struct scatterlist __maybe_unused sg;
- 	size_t max = BIT_ULL(sizeof(sg.length) * 8) - 1;
- 
-+	/*
-+	 * For Xen PV guests pages aren't contiguous in DMA (machine) address
-+	 * space.  The DMA API takes care of that both in dma_alloc_* (by
-+	 * calling into the hypervisor to make the pages contiguous) and in
-+	 * dma_map_* (by bounce buffering).  But xe (like i915, see commit
-+	 * 78a07fe777c4) ignores the coherency aspects of the DMA API and thus
-+	 * can't cope with bounce buffering actually happening, so add a hack
-+	 * here to force small allocations and mappings when running in PV
-+	 * mode on Xen.
-+	 *
-+	 * Note this will still break if bounce buffering is required for other
-+	 * reasons, like confidential computing hypervisors or PCIe root ports
-+	 * with addressing limitations.
-+	 */
-+	if (xen_pv_domain())
-+		return PAGE_SIZE;
-+
- 	max = min_t(size_t, max, dma_max_mapping_size(dev));
- 
- 	/*
-
-base-commit: baafc300cd079a5210c1e70e5ea3d93518e40b38
--- 
-2.53.0
-
+-bw
