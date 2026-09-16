@@ -4,43 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DEF1C982C9
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 22:05:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51CD8C982C9
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 22:14:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7EEF10E218;
-	Wed, 16 Sep 2026 22:04:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="E/2Kr8tQ";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A8CC10E218
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 22:04:58 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id D87E543B7D;
- Wed, 16 Sep 2026 22:04:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A81F71F000FF;
- Wed, 16 Sep 2026 22:04:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789596297;
- bh=1jrYSv6t0ubk2rmL+BhRs+QZci39kt83Kc/O6Tss1ws=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=E/2Kr8tQ/umftnbD3bFjaCTxCyy44a01hUMD3VMXtv9UZMymNZ7N7iVd83bKiruj9
- NBQlhEy5Ag2bZBAMqkmeNZpoIAUGdn2GzRTMskRk6dH32xZjf3RuZm74y1LDQRa90U
- W0yrkmEpnAzZoxl56x+nOt/fLICywCog7yYRWArY7cpsO1baPBqxAnefP++7fVpzG9
- u/HcKaMWwyQcBHtLNVXpWHpNMPZ5iaTF+dKo7ekbZh1Xm+HK5Urpsn6DS9x70IMWVe
- rXtIGzXgQHuWz4mI05a3Pu+9XzT6rZIdYCuwMFuHhi3l5ns8bc9tc6qJ4xh//nxyQV
- b/qQZexRkCm/w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/3] drm/xe/guc: Add simple KLV decoder helpers
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3FD010E28A;
+	Wed, 16 Sep 2026 22:14:30 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61DC410E28A;
+ Wed, 16 Sep 2026 22:14:30 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8877017742058474003=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Poll_GT_for_C6_be?=
+ =?utf-8?q?fore_D3_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260916215827.13488-2-michal.wajdeczko@intel.com>
-References: <20260916215827.13488-1-michal.wajdeczko@intel.com>
- <20260916215827.13488-2-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 16 Sep 2026 22:04:57 +0000
-Message-Id: <20260916220457.A81F71F000FF@smtp.kernel.org>
+Date: Wed, 16 Sep 2026 22:14:30 -0000
+Message-ID: <178959687039.175180.8910674908207920237@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260916205901.3260270-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20260916205901.3260270-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,55 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] doc: mismatched kernel-doc parameters for xe_guc_klv_decode_string()
---
+--===============8877017742058474003==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 00a2cb03138e3f97464e63d20cf077884ec27126
-Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+== Series Details ==
 
-drm/xe/guc: Add simple KLV decoder helpers
+Series: drm/xe: Poll GT for C6 before D3 (rev4)
+URL   : https://patchwork.freedesktop.org/series/174091/
+State : success
 
-This commit adds simple helpers to decode data from KLV dwords instead of
-retrieving them manually, along with sanity checks.
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe=
-/xe_guc_klv_helpers.c
-> index dc8612d761e3c..5c40ee44d9a56 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-[ ... ]
-> @@ -372,6 +372,85 @@ int xe_guc_klv_parser(const u32 *klvs, u32 num_dword=
-s, void *obj,
-[ ... ]
-> +/**
-> + * xe_guc_klv_decode_string() - Decode string data from KLV.
-> + * @key: the key
-> + * @len: number of dwords in @value
-> + * @value: array of dwords
-> + * @data: pointer where to store the data
-> + *
-> + * Note: caller must use kfree() to release decoded string.
-> + *
-> + * Return: 0 on success or a negative error code on failure.
-> + */
-> +int xe_guc_klv_decode_string(const u32 *value, u16 len, char **data)
+CI Bug Log - changes from xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5_BAT -> xe-pw-174091v4_BAT
+====================================================
 
-[Severity: Low]
-This isn't a bug, but there is a mismatch in the kernel-doc for
-xe_guc_klv_decode_string().
+Summary
+-------
 
-The @key parameter is documented but does not exist in the function
-signature. Additionally, the order of @len and @value in the comment differs
-from the signature.
+  **SUCCESS**
 
-Could this be updated to match the signature and avoid W=3D1 build warnings?
+  No regressions found.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260916215827.1348=
-8-1-michal.wajdeczko@intel.com?part=3D1
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5 -> xe-pw-174091v4
+
+  IGT_9099: 9099
+  xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5: bb38af66c2f21340a7c081afbb7ace249357fbb5
+  xe-pw-174091v4: 174091v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v4/index.html
+
+--===============8877017742058474003==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Poll GT for C6 before D3 (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174091/">https://patchwork.freedesktop.org/series/174091/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174091v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5_BAT -&gt; xe-pw-174091v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5 -&gt; xe-pw-174091v4</li>
+</ul>
+<p>IGT_9099: 9099<br />
+  xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5: bb38af66c2f21340a7c081afbb7ace249357fbb5<br />
+  xe-pw-174091v4: 174091v4</p>
+
+</body>
+</html>
+
+--===============8877017742058474003==--
