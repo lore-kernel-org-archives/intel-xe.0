@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D00DAC982C1
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 21:58:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A707C982D1
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 21:58:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B18F10E335;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6CB310E367;
 	Wed, 16 Sep 2026 21:58:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lu5LfxDk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dmcJgOGS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5673F10E2E5
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 21:58:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9032810E2E5
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 21:58:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789595927; x=1821131927;
+ t=1789595929; x=1821131929;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ezm1YwjlMkFXQZKotxcApbKIdhg7R6dbP3MnLItXeUc=;
- b=lu5LfxDk3F7HCG+WdmDLGzvrevFqtvRAGIXWMG7S78cW6VH2OtOxOM+X
- tlVZ5ZS/pl9e/A5v0/4DXidYoaRwFvabQJ6h6m8zLlcdQSj0XX398aSXq
- mvFhgs1aQOi32c3pbwgnwoTKgru7lARKWHPWaVdq72Nt+vdgtqce52/r/
- QZBKwAKVf15MIFzwEB6G0zZM77NUz1blijeW0IOv1WAB9Sb1n4Nqq6Hxl
- gl0btPV9VE5xwluLFTfHenhTW3BY3nw+MAWf8iC7Aw9oy7TAGI9DOUbvG
- QL5tdkyOxvr+fDPYp5+/Zl3iSjwrdBYzW/TiUX4lmgZmylJLpbj4bATFH A==;
-X-CSE-ConnectionGUID: o8BQiMIoTqCkPLoAc9X78g==
-X-CSE-MsgGUID: WTVmeV8ASSaStxHVzoSKtA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="101325123"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="101325123"
+ bh=rcdvg4Xr9Iw4DWJ6a06iFb/j8j2gfTtGY2/0RxnX76o=;
+ b=dmcJgOGSF98p09z1FTloJyto0QZVq+bcKUW0nfCRZrcdvWKrhLj2QvRT
+ 5WAfklCuQEY9QU3oI3F9VL/zZLRlL93Jpqs2TIFWsv6zQDWOYktWmlgl5
+ 7JIl6udvqILbLywrc4HIXZeCkGQSIfnJsKs4UTe9Vq2EZbN0Q9DPDaCVK
+ rbZq7DS3ITJbx3X6UBYyINLLb/5jk45K0dMRJr7yN67dMvjiCGYkIn6nb
+ BMzigcGB7b/WjXiySHO+ztRSpCfwpWq1/dykydq+90lLISsGKTxkHNaw5
+ SW+31E9bh1L8wvfz7bGJIoiJaG3mK40yXfgD6NzjI60yk9kxJuoTTIejE g==;
+X-CSE-ConnectionGUID: pNaPOwR4RXGxN4wWgQVDvw==
+X-CSE-MsgGUID: mKGGSGyMSkGV4I17BoYFhg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="101325130"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="101325130"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2026 14:58:46 -0700
-X-CSE-ConnectionGUID: Wpo9PiaVTfiCeOjlUw3rBw==
-X-CSE-MsgGUID: QGJGG+ufQia/VQzCg2novg==
+ 16 Sep 2026 14:58:49 -0700
+X-CSE-ConnectionGUID: nIbj6r6dSvmTCBUvg9Iiwg==
+X-CSE-MsgGUID: b8TAPnYOS9WhY/QJG6CY6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="267247867"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="267247880"
 Received: from awalabdu-mobl.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.64.211])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2026 14:58:45 -0700
+ 16 Sep 2026 14:58:47 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 1/3] drm/xe/guc: Add simple KLV decoder helpers
-Date: Wed, 16 Sep 2026 23:58:25 +0200
-Message-ID: <20260916215827.13488-2-michal.wajdeczko@intel.com>
+Subject: [PATCH 3/3] drm/xe/pf: Use KLV decode helpers to parse migration
+ packet
+Date: Wed, 16 Sep 2026 23:58:27 +0200
+Message-ID: <20260916215827.13488-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260916215827.13488-1-michal.wajdeczko@intel.com>
 References: <20260916215827.13488-1-michal.wajdeczko@intel.com>
@@ -67,121 +68,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of retrieving data from the KLV dwords manually, add
-simple helpers that will do that together with sanity checks.
+Start using recently added KLV helpers for parsing migration
+packet to properly detect any malformed KLV formats.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_klv_helpers.c | 79 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_klv_helpers.h |  5 ++
- 2 files changed, 84 insertions(+)
+ drivers/gpu/drm/xe/xe_sriov_packet.c | 31 ++++++++++++++++++++++------
+ 1 file changed, 25 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-index dc8612d761e3..5c40ee44d9a5 100644
---- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-+++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.c
-@@ -372,6 +372,85 @@ int xe_guc_klv_parser(const u32 *klvs, u32 num_dwords, void *obj,
- 	return total;
- }
- 
-+/**
-+ * xe_guc_klv_decode_u16() - Decode u16 data from KLV.
-+ * @value: array of dwords
-+ * @len: number of dwords in @value
-+ * @data: pointer where to store the data
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_guc_klv_decode_u16(const u32 *value, u16 len, u16 *data)
-+{
-+	u32 tmp;
+diff --git a/drivers/gpu/drm/xe/xe_sriov_packet.c b/drivers/gpu/drm/xe/xe_sriov_packet.c
+index e9ae9c9744ea..f50dc4e3a611 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_packet.c
++++ b/drivers/gpu/drm/xe/xe_sriov_packet.c
+@@ -394,24 +394,43 @@ static int pf_descriptor_init(struct xe_device *xe, unsigned int vfid)
+ static int descriptor_decoder(void *arg, u16 key, u16 len, const u32 *value)
+ {
+ 	struct xe_device *xe = arg;
 +	int err;
-+
-+	err = xe_guc_klv_decode_u32(value, len, &tmp);
-+	if (err)
-+		return err;
-+	if (upper_16_bits(tmp))
-+		return -EOVERFLOW;
-+	*data = lower_16_bits(tmp);
-+	return 0;
-+}
-+
-+/**
-+ * xe_guc_klv_decode_u32() - Decode u32 data from KLV.
-+ * @value: array of dwords
-+ * @len: number of dwords in @value
-+ * @data: pointer where to store the data
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_guc_klv_decode_u32(const u32 *value, u16 len, u32 *data)
-+{
-+	if (len < to_num_dwords(sizeof(u32)))
-+		return -ENODATA;
-+	if (len > to_num_dwords(sizeof(u32)))
-+		return -ENOMSG;
-+	*data = *value;
-+	return 0;
-+}
-+
-+/**
-+ * xe_guc_klv_decode_u64() - Decode u64 data from KLV.
-+ * @value: array of dwords
-+ * @len: number of dwords in @value
-+ * @data: pointer where to store the data
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_guc_klv_decode_u64(const u32 *value, u16 len, u64 *data)
-+{
-+	if (len < to_num_dwords(sizeof(u64)))
-+		return -ENODATA;
-+	if (len != to_num_dwords(sizeof(u64)))
-+		return -ENOMSG;
-+	*data = make_u64(value[1], value[0]);
-+	return 0;
-+}
-+
-+/**
-+ * xe_guc_klv_decode_string() - Decode string data from KLV.
-+ * @key: the key
-+ * @len: number of dwords in @value
-+ * @value: array of dwords
-+ * @data: pointer where to store the data
-+ *
-+ * Note: caller must use kfree() to release decoded string.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_guc_klv_decode_string(const u32 *value, u16 len, char **data)
-+{
-+	const char *src = (const void *)value;
-+
-+	if (!len)
-+		return -ENOMSG;
-+	*data = kstrndup(src, to_num_bytes(len), GFP_KERNEL);
-+	return *data ? 0 : -ENOMEM;
-+}
-+
- #if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
- #include "tests/xe_guc_klv_helpers_kunit.c"
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_klv_helpers.h b/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
-index cf3b29adc9d6..10af545a0f79 100644
---- a/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
-+++ b/drivers/gpu/drm/xe/xe_guc_klv_helpers.h
-@@ -26,6 +26,11 @@ u32 *xe_guc_klv_encode_object(u32 *klvs, u32 avail, u16 key, const void *obj,
- int xe_guc_klv_parser(const u32 *klvs, u32 num_dwords, void *obj,
- 		      int (*decoder)(void *obj, u16 key, u16 len, const u32 *value));
  
-+int xe_guc_klv_decode_u16(const u32 *value, u16 len, u16 *data);
-+int xe_guc_klv_decode_u32(const u32 *value, u16 len, u32 *data);
-+int xe_guc_klv_decode_u64(const u32 *value, u16 len, u64 *data);
-+int xe_guc_klv_decode_string(const u32 *value, u16 len, char **data);
+ 	xe_sriov_dbg_verbose(xe, "found KLV %#x %s\n", key, xe_guc_klv_key_to_string(key));
+ 
+ 	switch (key) {
+-	case MIGRATION_KLV_DEVICE_DEVID_KEY:
+-		if (*value != xe->info.devid) {
++	case MIGRATION_KLV_DEVICE_DEVID_KEY: {
++		u16 devid;
 +
- /**
-  * PREP_GUC_KLV - Prepare KLV header value based on provided key and len.
-  * @key: KLV key
++		err = xe_guc_klv_decode_u16(value, len, &devid);
++		if (err) {
++			xe_sriov_warn(xe, "Aborting migration, corrupted key %#x (%pe)\n",
++				      key, ERR_PTR(err));
++			return err;
++		}
++		if (devid != xe->info.devid) {
+ 			xe_sriov_warn(xe, "Aborting migration, devid mismatch %#06x!=%#06x\n",
+-				      *value, xe->info.devid);
++				      devid, xe->info.devid);
+ 			return -ENODEV;
+ 		}
+ 		break;
+-	case MIGRATION_KLV_DEVICE_REVID_KEY:
+-		if (*value != xe->info.revid) {
++	}
++	case MIGRATION_KLV_DEVICE_REVID_KEY: {
++		u16 revid;
++
++		err = xe_guc_klv_decode_u16(value, len, &revid);
++		if (err) {
++			xe_sriov_warn(xe, "Aborting migration, corrupted key %#x (%pe)\n",
++				      key, ERR_PTR(err));
++			return err;
++		}
++		if (revid != xe->info.revid) {
+ 			xe_sriov_warn(xe, "Aborting migration, revid mismatch %#06x!=%#06x\n",
+-				      *value, xe->info.revid);
++				      revid, xe->info.revid);
+ 			return -ENODEV;
+ 		}
+ 		break;
++	}
+ 	default:
+ 		if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
+ 			struct drm_printer p = xe_dbg_printer(xe);
 -- 
 2.47.1
 
