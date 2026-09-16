@@ -4,42 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DC68C982C7
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 12:48:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE68FC88E77
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 12:48:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F295610EA74;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D39310E992;
 	Wed, 16 Sep 2026 12:48:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="L8f94G9m";
+	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="hnodkwuX";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84FEE10E157;
- Tue, 15 Sep 2026 18:25:19 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 37E8543A1E;
- Tue, 15 Sep 2026 18:25:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 146691F00898;
- Tue, 15 Sep 2026 18:25:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789496719;
- bh=hTpYvUrNZYIcwT2p8Kp9xxQTu0Fq/HJPfq19mi+/XYs=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=L8f94G9mzSlNx9J6peH2jq3tNsTcUAybrSOzdJm5ksOR557E4eGHcMVdBvQoWXcMq
- oYUWohx4rX6UR3J8jBc8XVQjQr+ber6bJ2vp50tNPAhHXUhxRHLXdtKpPq0X+kq2PU
- gS7xFPkE8iTk1ZUf6F23/XNJ6TOWElkc+PU1etQ49xAX2Mcf5D6gOEjjFrhGeHYmwr
- quZO6YQ0w3g8MteVh8aIX9AaqG/9TfYwvtfMkvsA6bgIrhU7eO551to4fm0v6bfd4/
- BM4spkKqe45r4JjrhXiFS+HNsR69yIhfKoowbJLuXi0Q2cu8W8a4U8wu0elxPZcyTv
- CP6MLWz/FZBtQ==
-Date: Tue, 15 Sep 2026 11:25:18 -0700
-From: Kees Cook <kees@kernel.org>
-To: Bill Wendling <morbo@google.com>
-Cc: linux-kernel@vger.kernel.org, codemender-patching+linux@google.com,
- Russell King <linux@armlinux.org.uk>, Huacai Chen <chenhuacai@kernel.org>,
- WANG Xuerui <kernel@xen0n.name>,
+X-Greylist: delayed 547 seconds by postgrey-1.36 at gabe;
+ Wed, 16 Sep 2026 01:20:58 UTC
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A205510E058;
+ Wed, 16 Sep 2026 01:20:58 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id E139440E01F9; 
+ Wed, 16 Sep 2026 01:11:47 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+ by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id Via_o3Lf8krk; Wed, 16 Sep 2026 01:11:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+ t=1789521101; bh=3ZSg2A9Jc3tPW66xvM7m3+dRrVCDgCi9cK4YxnfVb38=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=hnodkwuXLSWfi6qopViNWmJ1DPlBw5Qh3eySg1tCSS2QD436Qt0nPX6UFExBzVDyC
+ 7SyGGcsWnxzv7hOn9TLSBnJ4ro6jptALPeAa4mABB02U8A8kyDVYgQcRGWluq/fx/T
+ EMGtgYR0BJRN0noLxTL7Cqn0kUZN/e7hpblUXONwx5NZPJTHRigWmkF7fbX5MiTlCA
+ Ug3X16M/GCzJ2EvHdJ5Au6IDIT+Teyvf2UrAOoXUtxWbGbeGeSpEE7gTOLS6aVWh3O
+ QVHdu8R2pS0Kic8RVQoKePhKFLfyptiUBo3kdERUO2eAyR7oGf6dcBxiUoTp1pRM8k
+ m/r9x41iu9V1E1kuNZgnm55bT9n6FqBusi5N/v4THEAMC+1O/CgmoqbgmjA7wOtzc6
+ W7ZqppfDVVsuffyZT3M74O0p3N7ChLh7uahpi/aocg/EFvFx64JaafjbILfpcHrftc
+ VeSWvKyuAw8fZobdLPp2FioEpzYkD4+kshFyvw+tvXaJdvVomypIlYIV9a17prjpSB
+ JHHcRnkltsxttm2SQz3HffWQnaJXpVgSEO454rAL+eZ3iP64nohKluW8bKWtFst3Yl
+ /vVNOphRdFEgFwxGUoFDnKGfTct3/OisLyDq0AYpAEsYHVrTzhg/UGC8HQSC4ByBBB
+ u7UrMRdF4GDpZnl/0v0mduZE=
+Received: from stx.tnic (unknown [IPv6:2600:1700:38ca:c00::e])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
+ SHA256) (No client certificate requested)
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id D932740E00B9;
+ Wed, 16 Sep 2026 01:09:49 +0000 (UTC)
+Date: Tue, 15 Sep 2026 18:09:45 -0700
+From: Borislav Petkov <bp@alien8.de>
+To: Kees Cook <kees@kernel.org>
+Cc: Bill Wendling <morbo@google.com>, linux-kernel@vger.kernel.org,
+ codemender-patching+linux@google.com, Russell King <linux@armlinux.org.uk>,
+ Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>,
  Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
  "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
  Helge Deller <deller@gmx.de>, Thomas Gleixner <tglx@kernel.org>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Ingo Molnar <mingo@redhat.com>,
  Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
  "H. Peter Anvin" <hpa@zytor.com>, Ian Abbott <abbotti@mev.co.uk>,
  H Hartley Sweeten <hsweeten@visionengravers.com>,
@@ -49,7 +63,7 @@ Cc: linux-kernel@vger.kernel.org, codemender-patching+linux@google.com,
  Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Dmitry Torokhov <dmitry.torokhov@gmail.com>,
  Matthias Schwarzott <zzam@gentoo.org>,
@@ -95,7 +109,7 @@ Cc: linux-kernel@vger.kernel.org, codemender-patching+linux@google.com,
  Cryolitia PukNgae <cryolitia@uniontech.com>,
  Jiaming Zhang <r772577952@gmail.com>, Will Porter <mrwillporter@gmail.com>,
  Cen Zhang <zzzccc427@gmail.com>,
- =?iso-8859-1?Q?C=E1ssio?= Gabriel <cassiogabrielcontato@gmail.com>,
+ =?utf-8?Q?C=C3=A1ssio?= Gabriel <cassiogabrielcontato@gmail.com>,
  Rong Zhang <i@rong.moe>, Arun Raghavan <arunr@valvesoftware.com>,
  linux-arm-kernel@lists.infradead.org, loongarch@lists.linux.dev,
  linux-mips@vger.kernel.org, linux-parisc@vger.kernel.org,
@@ -108,15 +122,15 @@ Cc: linux-kernel@vger.kernel.org, codemender-patching+linux@google.com,
  linux-gpio@vger.kernel.org, linux-scsi@vger.kernel.org,
  linux-nfs@vger.kernel.org, devel@lists.orangefs.org,
  linux-hardening@vger.kernel.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH 27/28] drm/xe/pf: Convert strlcat() to seq_buf in
- control_read()
-Message-ID: <202609151115.33A35B7098@keescook>
+Subject: Re: [PATCH 25/28] EDAC/thunderx: Replace strlcat() with seq_buf
+Message-ID: <20260916010945.GEaqnsWSZ-DTMyTO25@fat_crate.local>
 References: <20260915081910.4142719-1-morbo@google.com>
- <20260915081910.4142719-28-morbo@google.com>
+ <20260915081910.4142719-26-morbo@google.com>
+ <202609151258.5FC01072@keescook>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260915081910.4142719-28-morbo@google.com>
+In-Reply-To: <202609151258.5FC01072@keescook>
 X-Mailman-Approved-At: Wed, 16 Sep 2026 12:48:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -132,50 +146,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 15, 2026 at 08:18:44AM +0000, Bill Wendling wrote:
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-> index 0f242db775e1..5db7fc067c4d 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-> @@ -4,6 +4,7 @@
->   */
->  
->  #include <linux/debugfs.h>
-> +#include <linux/seq_buf.h>
->  
->  #include <drm/drm_print.h>
->  #include <drm/drm_debugfs.h>
-> @@ -663,15 +664,15 @@ static ssize_t control_write(struct file *file, const char __user *buf, size_t c
->  static ssize_t control_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
->  {
->  	char help[128];
-> +	struct seq_buf s;
->  	size_t n;
->  
-> -	help[0] = '\0';
-> +	seq_buf_init(&s, help, sizeof(help));
->  	for (n = 0; n < ARRAY_SIZE(control_cmds); n++) {
-> -		strlcat(help, control_cmds[n].cmd, sizeof(help));
-> -		strlcat(help, "\n", sizeof(help));
-> +		seq_buf_printf(&s, "%s\n", control_cmds[n].cmd);
->  	}
+On Tue, Sep 15, 2026 at 01:00:00PM -0700, Kees Cook wrote:
+> Seems like seq_buf would be better her? But yes, at the very least, this
+> needs to be scnprintf, not snprintf (or add the checks as you have
+> here).
+> 
+> The rest of the seq_buf conversions look right.
 
-Yay seq_buf! I would tweak the 3 init stack variable lines into just
-using the single DECLARE_SEQ_BUF:
+This driver has been an orphan for a while now (we just made it official) so
+I'd prefer it if we don't do anything here.
 
-DECLARE_SEQ_BUF(s, 128);
-
->  
-> -	return simple_read_from_buffer(buf, count, ppos, help, strlen(help));
-> +	return simple_read_from_buffer(buf, count, ppos, help, seq_buf_used(&s));
-
-seq_buf_used() isn't correct in the case of full-buffer use. e.g. if
-the help buffer ends up filled with 127 chars and a NUL terminator,
-seq_buf_used() returns 128, but you want 127 here. Using strlen() ends up
-being redundant, though. I think we need to add seq_buf_strlen() which
-handles the same logic that seq_buf_str() does.
-
--Kees
+And yes, that mega CC list is just gross.
 
 -- 
-Kees Cook
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
