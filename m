@@ -4,148 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 107BCC982C9
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 15:39:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 027A5C982CC
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 15:44:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC02910E3DA;
-	Wed, 16 Sep 2026 15:39:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC60010EC7D;
+	Wed, 16 Sep 2026 15:44:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jgcH2fUj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R9JWG01j";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64A7910E3DA
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 15:39:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7B9910EC6C
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 15:44:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789573145; x=1821109145;
+ t=1789573489; x=1821109489;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=Yyka80948fM5am8iFUX6MXbLtCyaRpHew03pjx/VaWM=;
- b=jgcH2fUjt7oZ8q5hHn5ans+myP0GgxBccfSHMf+kVUixcopwviegxQGk
- 3jeoBCxKsXbCfVor5oHKUoCM0GxsQaNIJWJ49S9CX4dpqxclUYOx1m8h7
- cefhGltonNAFcZTL/1CVgcglL+xLLiK9vXpKTfCH8f4187Yjd/6SFQs+y
- Y/+PQ+hmzfdJ+f0ooBoTHqYeNna0eq7rk62t5NdhAOYfHVARGpVNRcBBt
- M07bFFABupS66bF2jE+Egfy2z0dCdhVT/Y3uO/ECQHoBcwY3a3liJb1jv
- l4Yxer0/A17ahIE4nDWzvuv412iOf/TgG1vaDoxPvsvm991KufJIfdi+V A==;
-X-CSE-ConnectionGUID: C5z3uCWNS/eiVU10q0sAlA==
-X-CSE-MsgGUID: ltijgt3HQ8usejOiLN0oOg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89709420"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89709420"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2026 08:39:05 -0700
-X-CSE-ConnectionGUID: zoVwb+neRSazroSVAGN3YA==
-X-CSE-MsgGUID: KWcsqy7DQK6RPNaITGDBCA==
+ in-reply-to:mime-version;
+ bh=SqMXiLWcwm2Aqvdybq8j1R7xMpOuS75bX6Y98tV6Hh4=;
+ b=R9JWG01jHwDNp9v26CImyqRMQBOI+KNSRHvE1f1PFkrqwAOcdEzm187e
+ kgXQcr6qgDg67gtVhgx4PF71QTv/sZ2tojpIPKAfiqu5XFm9h8/ojlVxM
+ DSuAhaMAe9ssVbR1kACcUFOc2/Wuh1aru4YvFVfYuoc5+R8gD90kwR5ov
+ zLTJIjtoMGMUtL61yXlZeBoOftSWKPjhgDqCAO3JJiw6v++2ghpciOZm5
+ TqbsfntRrTruNGgD/eo+Zxf3hNBYxXWFrr96OMDWKHaRbvMckv3e9hoHQ
+ rA/nK7nRpk7ljqXtg0MhyceZXE+tnrB18BpuyWdHLUSyrFd8DlP+VhGLC g==;
+X-CSE-ConnectionGUID: GA+/IRYySBCjjlgrGkUTZw==
+X-CSE-MsgGUID: emw8adrjRnqQc9FmdZTaNQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="115489833"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="115489833"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2026 08:44:48 -0700
+X-CSE-ConnectionGUID: Ix6jIQo9SBSN61Uix6GiqA==
+X-CSE-MsgGUID: WLRcTPkdR1uErKN1Bhu4wA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="271594199"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2026 08:39:04 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2026 08:44:48 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 16 Sep 2026 08:39:03 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.46; Wed, 16 Sep 2026 08:44:47 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Wed, 16 Sep 2026 08:39:03 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.3) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Wed, 16 Sep 2026 08:44:47 -0700
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.27) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 16 Sep 2026 08:39:02 -0700
+ 15.2.2562.46; Wed, 16 Sep 2026 08:44:46 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FESkEgCCttlAvCfhX3slsoCxVQCQcTf9JFPFjdwOl2pYmT0e2XOA+G07OyWWU/GfSkbhfHpZ14wPuk7q9xmDOHWy7kCwryYePOODwD8iSrcCWKDqvLSix6mC3N4IscEulMMWoYolc4iqySfiXoHyN5m3d8o/bwTip64zMGkZ5BKspkYToBaGoMmq2GDLqc76ZgkXicUF5JueEFOI5wg/TwLB4spasU0SZfOf8ev7ebgEtldkNL/5hRaMehgc5jA6n2Z8dqZjh0bBPVsCndOUijc1hjSX43bnsctyK8h0PRHJnc33BFTwxuCEokmNa3T6jJa8xEtIUTCQICEeG/FQ9g==
+ b=KBgPBaEnCtxhgylJeml7vExeeoOhwdx8OuvqZ3Ar0jrO2orPWtDqhkBlj2CgvWL0iK+He5mpm46K7C8h8n6P29OAJskyn+YYfzcl6fw1ifejciQLGwjWlaYPB4pmliN5lbzVdI0KVJQig2bzNBCIvYtoQpnzAAfpDvMUsEjwXQ3XJJP6K81SADDmzobDLc9tgshvH3pp5ZUIl9aIFFVF9rveXXkHDz2YIcZOla8R/jlpAw537xum0dqBUADzc26WgE+y0Q+Wdl6qfuzxBe8rNRPD68HMg7dYo3a6C7wQS1PlXfBY65nwZE+HXqnkbTM9D3NhdaqIUg73VfBDDJZWeA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7gxjQT8yviHxdDmVLMZM+/zeeHXUV2QaPLluIOALNpM=;
- b=k3xJpmlQ4tshu3X5WAQL9o33T36QDrDTLHIX8ESu+yhPp3oew/n/egb47YqonWAtgR9x+xIoQmf9zlYTCrlQe9Qj9ucv9DuI3CspwALcdUOynw4aMXNmhMZEf68PEFlPjCMPP/iWgwnRXGqBCnqMhL6QrhQdLcpHJ/SLVQnfsR/+znaPZPSxvMk7EIsIotsWqlZNiksKFmh8irxtKvHP7UAeMMsdTMFFJJHKnDh9qSY5VVXTtug1pF6JDNAPKkiagz3+hPJhO/UkVvA7spWiGUyAbeIzCCNQ3NtRu6faJ9MHxdd1w3CpNB0vkGe21UAkE0RtaEpOO57OIUp78O+BKg==
+ bh=WZ+51t2JSXiH+5AygBeLcoxC26yXF4GoslkypcpWVx0=;
+ b=r1kbltw1XCXRjTqdktyIHsPnZAONeXo7WOUM9pvVyZTRuTdMnUrP5xmfuUeH1Es54A3kH4N71dErqioKxabunyk8P0qraR19fBQyIXdfcDjXUMkWfaZz2SuzWFrd+DEeF7TOC3+dPC4rQixQpKGK8nhKRu6HmMsA+rLKKdjqiKVXMYwEnNbYGkEvo5v36XNBmHAFiK5HYOL6G4HuY6bi+gzQZMVo47McKs3Glg/EymtMhjprMq9ztfw0YoMiuosyaqkmQ1rmBqSZG7YPNXThGtfq2c31ynMWOSARvpQhXh4wgCN9b9wVs2ZmfdLwLlIoSparYuEz4QWj4hdM1x9kgg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from IA0PR11MB7187.namprd11.prod.outlook.com (2603:10b6:208:441::12)
- by SJ0PR11MB5867.namprd11.prod.outlook.com (2603:10b6:a03:42a::13)
+ by MW4PR11MB7103.namprd11.prod.outlook.com (2603:10b6:303:225::8)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.12; Wed, 16 Sep
- 2026 15:38:51 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.8; Wed, 16 Sep
+ 2026 15:44:35 +0000
 Received: from IA0PR11MB7187.namprd11.prod.outlook.com
  ([fe80::be96:3f58:953d:6565]) by IA0PR11MB7187.namprd11.prod.outlook.com
  ([fe80::be96:3f58:953d:6565%4]) with mapi id 15.21.0406.007; Wed, 16 Sep 2026
- 15:38:50 +0000
-Date: Wed, 16 Sep 2026 11:38:47 -0400
+ 15:44:35 +0000
+Date: Wed, 16 Sep 2026 11:44:31 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Alan Previn <alan.previn.teres.alexis@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <julia.filipchuk@intel.com>,
- <matthew.brost@intel.com>, Zhanjun Dong <zhanjun.dong@intel.com>,
- =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Subject: Re: [PATCH v9 2/2] drm/xe/guc: Compress GuC log and CTB dump with zstd
-Message-ID: <aqq4B1mQGJxFxeJI@intel.com>
-References: <20260915174840.531473-4-alan.previn.teres.alexis@intel.com>
- <20260915174840.531473-6-alan.previn.teres.alexis@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Badal Nilawar <badal.nilawar@intel.com>
+Subject: Re: [PATCH v5] drm/xe: Poll GT for C6 before D3
+Message-ID: <aqq5X5O_OXqN-TXC@intel.com>
+References: <20260915210113.2915363-1-vinay.belgaumkar@intel.com>
+ <aqqJXsFuaAo0rGq5@intel.com>
+ <b324f768-478e-40dc-b752-e0db1fca2e8b@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260915174840.531473-6-alan.previn.teres.alexis@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0198.namprd13.prod.outlook.com
- (2603:10b6:a03:2c3::23) To IA0PR11MB7187.namprd11.prod.outlook.com
+In-Reply-To: <b324f768-478e-40dc-b752-e0db1fca2e8b@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0223.namprd03.prod.outlook.com
+ (2603:10b6:a03:39f::18) To IA0PR11MB7187.namprd11.prod.outlook.com
  (2603:10b6:208:441::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|SJ0PR11MB5867:EE_
-X-MS-Office365-Filtering-Correlation-Id: 40d211bf-9466-432e-8dba-08df14089b32
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|MW4PR11MB7103:EE_
+X-MS-Office365-Filtering-Correlation-Id: 164b0b06-a98f-4c59-e1fb-08df1409687d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|1800799024|376014|3023799007|6133799003|56012099006|11063799006|4143699003|18002099003|22082099003|10067099003;
-X-Microsoft-Antispam-Message-Info: FPCmuPvubhCIVFJekL79pOloM4bnAwLXnpxoQYmLEtC8Cy1bvTinkPW8eDeshgvJhYX34+Vsk9htoWtstFTcmXdcWVFn15uKLtGNKFaejIk3yIcp6NQJfpDmiG5tpsHIvd4KBZJfnqd2NsSpvpQYyiY94df4pwx+h7h3ggA+pwkP3lyzIgynsdCqRBNaNk9JHy2CB8QmObbGjmHkEDSWyUgzcgzDCMC9WHk0eXsQcBG4ZDqR2NCtpA2mAC450Y0z5QpDq/QZk7EtuvhdUMfmpJA9wyWr4guVfvRnZBIIl6EH9E1hVpXuGlyafKLbtYmkowN5fyTi0PklSuQ1y/xleBMMjshuMIsXLgMpxvt+ZFwn8A701aObkzno4PXIUWck30E7pzz883hzIti+shVzMa1iC4ZSu85rdkd/gAtI41T4oC+p5OwmFLERoK5tYvVyNuFy3PgCA7I+vlMSBL/qwN4ZS73pP8L7YJoa6pW3o5R0N4yHCdB7JL8SMxqd3oRl+oaD3t5DBePBrXljC6Rp1cqwDZ3afSdzrg52/Co5sywNH5LyOxMQU7tLb0e5Vru/cJDTkj3CMQmWMd/UImTTc/qv5i+Bc0gsTHtyRxRP4giUdzbE0MgusbTmb4DEYX9gkooONKunQ/kjpPZnd1jLQ6u0QrbNeHKS9iZud4U9phk=
+ ARA:13230040|1800799024|23010399003|376014|366016|6133799003|4143699003|10067099003|11063799006|56012099006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 7k28Qbvi7OM6uYhaKzVj8QIesGdi9i8BrxtrVBVcAZXwMJxZjKToW2pMfJozp3Zai0DaannD7ei4p6IEHDtSLyNirwu7GHpbUT5R1ZM9mFjg3RsjPFWiOdylY7dSZmT7gaYl05kp9HxsRt3f6S9GOZzI4yxBKM1WlfUkZeIN9xvBQy1PpST0wUIu/K1wZixzxvHIo976dMEjLFkMqy+hzmH2YZynlkeLbS5NGrf6sdo4ESK4kpmOVBs9EWbwMi43IENmaZjN+ub2T0UrZCaQ+PXrIxvC9XtKm/Zrmajlkj28rgdzLIjobSJrPYSMpHxepsVyFOCm0zUwk8dqUV0UxBXRyZHqLBpQvm1V4vHTyL1DV9vhH4U2VmMU3KlIz/iZrL9MqkDRFB4yo9D5pKEIjfCE+LiT87NJ0tskIflEQlRcNF0aapxIEbZ43KGVwqqlAT6I0ZhdhJ5E+G0TQsmAL8zpUsoDfWuI6H9e1F/RhgnBw9dpH5vfLhaIDEHglkHnpm4gQDsX2fRvCr8uhzwGmmrRcLqoeuDzqeNGg7cczTWITwwcWrlrPjw/gLoNbt+heiPRBbA1BVCMu3H0MEvOmtazy8o7n6ncBd7KWQtXtnmp/Bq2A/e/71g8n2OXSicRIR1GU8dVckCUSjdu4MRFXOVEJfFaoraJ9+qbIpRb4hg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA0PR11MB7187.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(3023799007)(6133799003)(56012099006)(11063799006)(4143699003)(18002099003)(22082099003)(10067099003);
+ SFS:(13230040)(1800799024)(23010399003)(376014)(366016)(6133799003)(4143699003)(10067099003)(11063799006)(56012099006)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?OLq0mNpM/vhcE2C8eeuWghRcWznml8Bgqmj+iVVXzXha47OEyRiOjVN4Na?=
- =?iso-8859-1?Q?4UzwTsgt4Fyxf3UGCHOgrbY4GgJQy5STfpzr3ut9Uj+TRXvs3y0rfwuRS5?=
- =?iso-8859-1?Q?GNxRbBXPaOmU4vVKbickLFu/X6FIvscXz6GMy/4oLVBPa6bd+E1mJeA+q6?=
- =?iso-8859-1?Q?sx0jhl4/KDHIBNn7lMLjZaE7PEcBF2monOcQ9l0z8qEUHMB7nvRjxPx9In?=
- =?iso-8859-1?Q?SfEGMjktghjfIj/51m72RJZNS4NH6P1XwSgtsmrVQllqtIG2T7irJUWwCN?=
- =?iso-8859-1?Q?vNPwMNRnsoIYVds/IsGqlrdFBzrq40njX2XZgzlRbgqYnOUzwCTZECCGsd?=
- =?iso-8859-1?Q?um8us/AQTxGMNEWNHf2TAtmniCCnm6GBKEAQtwxPoRQqnNVz/4rh9yiQN0?=
- =?iso-8859-1?Q?X+9Fy3Y4TNEQxVxpZLTDSWil/VHextZPlDqOT+pVpljCn0Kiv/k3zO8lZN?=
- =?iso-8859-1?Q?ZOhy0wvSDdtuSzJ2oHe2KILSq7yAKFZhyc1uMiqjDb03xfMWBR0qb1Tzjy?=
- =?iso-8859-1?Q?byg6Y9BtvjY29gz9T3Xanmr99eKssP1O/Lrxkl5Smbwgn+EUt3VeAlRI8F?=
- =?iso-8859-1?Q?SfJVwMK9Kzr3Oz5Ds0wALZOBIJLs4lofX+kLdNou04/nwV3E1PJdtkrGqZ?=
- =?iso-8859-1?Q?17fPX5l7wn+fMNDToUpS0MMfGSXAXzN8HiUIruy4BEi/Ae5odJnUa8n+zW?=
- =?iso-8859-1?Q?+wfGPGs/sLZJFg5FKsCqDGlWAfxAqYyYhNqACbCZgyytGwoAvDLWeVFrQd?=
- =?iso-8859-1?Q?eXtbijQvrdq2VGedsgIdxXFFtfDWDhcpsSe1WyIXglXS0JssGiHf7uWbvN?=
- =?iso-8859-1?Q?AZVxkvfVRj5miDxAIUHbBZti1ubRtK+3RWkp4rq7IpONXDk9nc4zZTiTDB?=
- =?iso-8859-1?Q?cXldJpko1OJwoYs/tXmKqDVHTefjtqYNs4OOPf8mQn9snoyoXTVyhMKB0F?=
- =?iso-8859-1?Q?tLh2W5/0YVQOp7G23OZ3X5UzsAGb8s4Bcr7t0u2tBQ3ZAyaUGh6/yR1bq2?=
- =?iso-8859-1?Q?p3CnEgiMHzlNQ5LTeZSIPUyynZe4vVQhoGgu5RVZ7a32z37T+YsVJEJ2Ua?=
- =?iso-8859-1?Q?3zwjjSI1YvDKO8ttRnydiFs6Wydt1KwLsgXWvl+FFaPBmdCpJYLSLOYvd4?=
- =?iso-8859-1?Q?uiJ1s94745HWtjzdsUFEhi9Jc4JMwYpmo5/6P80PIJ+jFQhfe0/3v9eh/u?=
- =?iso-8859-1?Q?g8HMiaJlhBJNOPlmlVHa4l1rZt0ZpclsNI7lPDxQCqBYdHlo0yFbeyeXBM?=
- =?iso-8859-1?Q?KPLqJP0FZOzfNz/1FLGpVT41kuDTpSoi8HP6vyrGbe+BD7djrVUhFCeI/R?=
- =?iso-8859-1?Q?XETtbHqbBHOFuH+2bsnXjiofroWqYpPoQi2paZUdkuM7jpmcWwgbxVJEkl?=
- =?iso-8859-1?Q?n7nW5gQMls04uzcMX1M2+CEyxzFBsKFEWLUHbuCbtJqbnCDQ8OJQ05k3JI?=
- =?iso-8859-1?Q?NLXWc6kVmHFNl6eclCQRK37/4ePzFn3SzeBxEilkYTQgFnhWNh80MbiTC5?=
- =?iso-8859-1?Q?KYT71FXZffc/0nk3SlYZlFuBNtgtv1DjftjutDN6si4VVmaz4WNBv+NWYK?=
- =?iso-8859-1?Q?FhV2B3cW6y3KgNSR9uOvKw3xRB1M/2pG/nEwij4Hsgy+gOpYWYTEjYAy+D?=
- =?iso-8859-1?Q?SjNpFmOXbAyTxH+ZG56cUH3uzhF/4HR1pypyWX+14uSLVSBZS2Yunf3xVJ?=
- =?iso-8859-1?Q?E/e+43Y1L+HY4mfPCoYHNM3cB7ehP2VTAn1f7r0TadY3DLHLgeFbRRztSE?=
- =?iso-8859-1?Q?vUxGW9X9s7FQ/SU9AnXMwV0Ib8djBDCXvtUqleAPNSptxvsU3UxgsHDrfn?=
- =?iso-8859-1?Q?C+AHEHM7BQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: BD9aCFLL9uVqDbTSBr/fM5bHNBAK2M0lniBG/gK4tGunqr8pcOLeMw1y8A4QsiinxgyMJk7Uwz6yUpCc01kU9JcERUyNpcinvLmDP/Kwt+sh/0Nk+3S8r9HeB3sHbP5eZrpBARlcUrGCbIcJut4TQ6/s/50wIcOIOBAnEjaU4Znro88J4Lm/uXn7QTxcLWThSG+8YOu1jbLW1GhAFSGUhtcKgoRqMjDydoByWQZ4C/+7xZyf/p7rejbu+RAZ4oDvNx+yZaLD7bMFwVyLHT/WqNyCc2ALMO+8soH0PK/sUsp4xEExz4mW2QXPjXZnQ1mX+k2DtgpMlKEjqOqonjoXiQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40d211bf-9466-432e-8dba-08df14089b32
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+2bKflNHXBCzfLlAZ6oVHGEetCwrjFL3w5a7gVSvruElF8V7EtkNKRW70E8l?=
+ =?us-ascii?Q?+7E7U6PH/ycsv9DS2cn9sZr7yla3QlwoMP0PMco+w/e30dlSjYVLCu/yvFN+?=
+ =?us-ascii?Q?E9ppJcv94WgcKMaFl+GliNeGrbXxyAwpbCtfsSl95dmrLs5JF/lgiVGn+D6D?=
+ =?us-ascii?Q?aXMtjj+sYaWcUlWR/V7AouZPS3cQBCUn5I4VqjOnlKZ4lva2R2c+rdWJSaAD?=
+ =?us-ascii?Q?h5dwLbwy0YpZa0YA71qxB2hxUkJ34VCENgw1oJbhut62o+UzhSk+GnGMDakk?=
+ =?us-ascii?Q?eUNBf8MyG7NFdrlBfNWUivX++pZ5gA1b9T68rrGHFfAf96fLsVJv62OUFMoc?=
+ =?us-ascii?Q?/okV4MspqTmG8rPqt2SqxgY/UVUyP0tyhJ1eVE+Ui1LS3oNNWonzRm0lvSAU?=
+ =?us-ascii?Q?NoMJK5OqLw1j7Lf8LL8gz+7+qUjdQPGCkqwpYpsEx9Wz05RNL5q4q1LCTNq2?=
+ =?us-ascii?Q?Y9iq5mLWpwuwYLHZwmxHQwkXEyt3bSg3XVHsRPI4RZDb6IhoCHlAaN9r2N5q?=
+ =?us-ascii?Q?uNjd+i7/BeLgbi/9agKSDZPKLhrTAReXB/N5EuSLhPEpf7o+EO+SWDgzYK9g?=
+ =?us-ascii?Q?bpJtwEntzQLVbmqAxGeCkr5tqfEmYGkjHdlKax9AD0aCeZXRIjCNEx+LMipA?=
+ =?us-ascii?Q?sN2YPxP7nS6NeIo0ImamQBf/AHpXzNZalo6LHqaXNJg3DRu5pYmhGCmIJm5X?=
+ =?us-ascii?Q?HN6DU2IZTQkZrR5cjrhyrnmdIDcPbSeUbrT9CiDD38b2NGZhk4ko232Lm3eL?=
+ =?us-ascii?Q?gaLVk4jgKyUnYRpIP1YWyLQC6sHGWC7WLE3aedoM8Taoy3t33tFsyye/ERfN?=
+ =?us-ascii?Q?hkEO9zcYFymZwz0hQJ4VzyOyJQ36TmaRvxfrAB0yQSn6vpMDqUMvMunghVIz?=
+ =?us-ascii?Q?ibv9HXMcac8nuwGXvzcmngZxaI4idA/sTV1zlDCuXTM1Xj8hwyf047UPEbYk?=
+ =?us-ascii?Q?iNJmePJ0SfZePYKQRK0DVqFFZvycY5zXhlZPIuqvLhLQ40CQoEkATWslu55S?=
+ =?us-ascii?Q?8TmH8YMiEmiNcBCvlhVhPZbED4Phk25/Zs3wMMCCWK7EpVHGUPUTnf6RuRYR?=
+ =?us-ascii?Q?p+c+1923pm7C6SFtjioESDWD+25fJDwX70XdPsqzLIlzRiMlKAOodUYKaD6G?=
+ =?us-ascii?Q?CFzT5PUmOAAhdi2HtoreoKnxrOMvExLvRumduICgU85JJA5D8bvi63bZVNz9?=
+ =?us-ascii?Q?t75vcrMGQO4hAK/GASlJUv4YSi396pRdDH+9/PhQDZyyZxpw+Sl7xvtFxbvX?=
+ =?us-ascii?Q?4H4fAiBRaJEEU6WfHkYVbAz0spAaOsQHxWM52So78mWGz6IQp7VrVgBprHKA?=
+ =?us-ascii?Q?33Zill71J7uOLzW1N00YRrIS7MLq31ZKrLbPxHvys3l7YdtQyw267X5Z28pw?=
+ =?us-ascii?Q?8u3KdiYy++BGXO04tmNwNqmt8HojjrZGjSiITMNPdFiizPX+a6UXTjmdFtR3?=
+ =?us-ascii?Q?wZSqRH6/wRx9IenKd7JvgYEIlC+uI8JXfDAe6vIk9x0+zP+fnVkpBwdyILiA?=
+ =?us-ascii?Q?cainWputqS7Qr+jwphuKxZ2xtzzcgSp2vi2XH8QP/gRii5wbRKx9y70hLOJI?=
+ =?us-ascii?Q?6eUJDIbbQMoqXwEP7GDQv0UBrqfsDCgPGaFbrNKs8ronuM1aDCn4V/8pcNk/?=
+ =?us-ascii?Q?G34BU0KhlraGFDj3IqonUrf8NaLpEtXIpo3+7nio4RZGbn9sPtRJ6Jighgme?=
+ =?us-ascii?Q?sBD51jBdeOnnoeuaGieMT/9JtIqSOo8S096rFmFMeOJXtKB74wQpAW6G8pRL?=
+ =?us-ascii?Q?rBeCZg9kTw=3D=3D?=
+X-Exchange-RoutingPolicyChecked: XeQmrP4IHUPisQfddJrd/AM2AZiRRegICncRBJjcgBKS+k7vP36nTOK02aHCAfDxJn4CUn1kR2CKNVjncUV+GtJ2fwXhzDmcAuMf/975eIemmGqazGOvISkAuhkSO/oHxossyfUG/pUzMAIcfZw0Lwle/0XeM2mOjHVV0JaK44nhp0HrmEZt8EY/nT4fV37WtEoe7vyQfRdEcxmdKvXDidJ2bBpZvfI4pZpJw6o9IHJWnjmu1vRP0bHG4LMZU2KGvmFikOEkLWMb18YU9FdZE6KHYgTaI9R0voWG0hzd/LTrO9boilbQmEVtERglw3q5ygD4fCGtBJMEJ9OjK7zkdg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 164b0b06-a98f-4c59-e1fb-08df1409687d
 X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7187.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2026 15:38:50.8738 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2026 15:44:35.3142 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QsfRtty7rI2fkf2XY0czL01CM/5KDf1r+nF8tr+orfFreHXWJQ3tkb+O+byNTk4p6g67S10R4dLp2q69x/F1dA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5867
+X-MS-Exchange-CrossTenant-UserPrincipalName: RsCHSmmJ2ksn73/6/0PqlagWFcRAvqjn2tRjLtm3+kFw/l+Nxn8Xf+FjufX0R9zuGdIfcpxTQBgaSFiwSybaIA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7103
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -161,455 +157,207 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 15, 2026 at 10:48:40AM -0700, Alan Previn wrote:
-> From: Zhanjun Dong <zhanjun.dong@intel.com>
+On Wed, Sep 16, 2026 at 08:05:56AM -0700, Belgaumkar, Vinay wrote:
 > 
-> With default settings, GuC log is 8MB in size and
-> dumping the log is time-consuming. In debugging scenarios,
-> dump-to-dmesg suffers truncation loss because CI's size limit is 2MB.
-> Additionally, if also forwarded to serial console, it takes several
-> minutes. In use-case of continuous error+log collection over extended
-> period, we pressure CI's allocated storage. Thus, compress the
-> GuC log data dump to address these issues and multiply any benefits
-> from a future upgrade in CI's size limits.
+> On 9/16/2026 5:19 AM, Rodrigo Vivi wrote:
+> > On Tue, Sep 15, 2026 at 02:01:13PM -0700, Vinay Belgaumkar wrote:
+> > > Ensure GT C6 state before D3 transition in runtime suspend flow.
+> > > This avoids the scenario where GT is being accessed after D3 state
+> > > is programmed. If the check for C6 fails, resume the device so it is
+> > > not stuck in an intermediate state.
+> > > 
+> > > v2: Force resume when we cancel suspend due to C6 check (Sashiko)
+> > > v3: Abort the suspend properly when idle check fails (Sashiko)
+> > > v4: Only check for C6 during suspend (Rodrigo). Have check in
+> > > xe_pci_runtime_suspend() instead of xe_pci_suspend().
+> > > v5: Don't checkfor PVC (Sashiko), rename function from_device_c6
+> > > to _device_idle
+> > > 
+> > > Cc: Badal Nilawar <badal.nilawar@intel.com>
+> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> > > ---
+> > >   drivers/gpu/drm/xe/xe_gt_idle.c | 36 +++++++++++++++++++++++++++++++++
+> > >   drivers/gpu/drm/xe/xe_gt_idle.h |  1 +
+> > >   drivers/gpu/drm/xe/xe_pci.c     | 13 +++++++++++-
+> > >   drivers/gpu/drm/xe/xe_pm.c      | 24 ++++++++++++++++++++++
+> > >   drivers/gpu/drm/xe/xe_pm.h      |  1 +
+> > >   5 files changed, 74 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
+> > > index c208d7563e36..8242feede1dd 100644
+> > > --- a/drivers/gpu/drm/xe/xe_gt_idle.c
+> > > +++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+> > > @@ -8,10 +8,12 @@
+> > >   #include <drm/drm_managed.h>
+> > >   #include <generated/xe_wa_oob.h>
+> > > +#include <linux/iopoll.h>
+> > >   #include "xe_force_wake.h"
+> > >   #include "xe_device.h"
+> > >   #include "xe_gt.h"
+> > >   #include "xe_gt_idle.h"
+> > > +#include "xe_gt_printk.h"
+> > >   #include "xe_gt_sysfs.h"
+> > >   #include "xe_guc_pc.h"
+> > >   #include "regs/xe_gt_regs.h"
+> > > @@ -451,3 +453,37 @@ int xe_gt_idle_disable_c6(struct xe_gt *gt)
+> > >   	return 0;
+> > >   }
+> > > +
+> > > +static int wait_for_gt_c6_state(struct xe_gt *gt, u32 timeout_ms)
+> > > +{
+> > > +	struct xe_guc_pc *pc = &gt->uc.guc.pc;
+> > > +	enum xe_gt_idle_state state;
+> > > +
+> > > +	return poll_timeout_us(state = gt->gtidle.idle_status(pc),
+> > > +			       state == GT_IDLE_C6,
+> > > +			       20,
+> > > +			       timeout_ms * USEC_PER_MSEC,
+> > > +			       false);
+> > > +}
+> > > +
+> > > +/**
+> > > + * xe_gt_idle_wait_for_c6 - Poll for GT C6
+> > > + * @gt: GT object
+> > > + * @timeout_ms: wait time in ms
+> > > + *
+> > > + * This function waits for GT to enter C6.
+> > > + *
+> > > + * Return: 0 on success, -EAGAIN otherwise
+> > > + */
+> > > +int xe_gt_idle_wait_for_c6(struct xe_gt *gt, u32 timeout_ms)
+> > > +{
+> > > +	if (IS_SRIOV_VF(gt_to_xe(gt)))
+> > > +		return 0;
+> > Why?
+> We skip GuC RC init for VFs, so cannot check for it.
+
+Fair enough. To keep consistency.
+In my view you wouldn't get here on rpm flow, but you are right,
+since it is a different scope on this component itself, let's keep it.
+
+> > 
+> > And why not the PVC check right in here?
+> > 
+> > > +
+> > > +	if (wait_for_gt_c6_state(gt, timeout_ms)) {
+> > > +		xe_gt_dbg(gt, "GT is not in C6\n");
+> > > +		return -EAGAIN;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h b/drivers/gpu/drm/xe/xe_gt_idle.h
+> > > index 9c34a155e102..2c8e9adf4a68 100644
+> > > --- a/drivers/gpu/drm/xe/xe_gt_idle.h
+> > > +++ b/drivers/gpu/drm/xe/xe_gt_idle.h
+> > > @@ -18,5 +18,6 @@ void xe_gt_idle_enable_pg(struct xe_gt *gt);
+> > >   void xe_gt_idle_disable_pg(struct xe_gt *gt);
+> > >   int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p);
+> > >   u64 xe_gt_idle_residency_msec(struct xe_gt_idle *gtidle);
+> > > +int xe_gt_idle_wait_for_c6(struct xe_gt *gt, u32 timeout_ms);
+> > >   #endif /* _XE_GT_IDLE_H_ */
+> > > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> > > index ab4da1d9a9f1..379795ac5e7b 100644
+> > > --- a/drivers/gpu/drm/xe/xe_pci.c
+> > > +++ b/drivers/gpu/drm/xe/xe_pci.c
+> > > @@ -1381,7 +1381,7 @@ static int xe_pci_runtime_suspend(struct device *dev)
+> > >   {
+> > >   	struct pci_dev *pdev = to_pci_dev(dev);
+> > >   	struct xe_device *xe = pdev_to_xe_device(pdev);
+> > > -	int err;
+> > > +	int err, ret;
+> > >   	/*
+> > >   	 * We hold an additional reference to the runtime PM to keep PF in D0
+> > > @@ -1396,6 +1396,17 @@ static int xe_pci_runtime_suspend(struct device *dev)
+> > >   	if (err)
+> > >   		return err;
+> > > +	err = xe_pm_check_device_idle(xe);
+> > I still don't like _idle prefix in here...
+> I initially had it as _check_device_c6, then realized it is a misleading
+> term.
+
+I know the pain... I'm bad with naming myself.
+But idleness is not what we are actually checking and _idle is already
+a rpm sufix that has a different meaning in the flow and might be confusing...
+
+> > 
+> > > +	if (err) {
+> > > +		drm_dbg(&xe->drm, "Resuming - Device idle check failed!");
+> > > +		ret = xe_pm_runtime_resume(xe);
+> > > +		if (ret) {
+> > > +			drm_err(&xe->drm, "Resume failed after suspend was canceled");
+> > > +			return ret;
+> > > +		}
+> > > +		return err;
+> > > +	}
+> > > +
+> > >   	pci_save_state(pdev);
+> > >   	if (xe->d3cold.allowed) {
+> > > diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+> > > index f517bf453b54..f03a463d2a05 100644
+> > > --- a/drivers/gpu/drm/xe/xe_pm.c
+> > > +++ b/drivers/gpu/drm/xe/xe_pm.c
+> > > @@ -1030,6 +1030,30 @@ void xe_pm_d3cold_allowed_toggle(struct xe_device *xe)
+> > >   	mutex_unlock(&xe->d3cold.lock);
+> > >   }
+> > > +/**
+> > > + * xe_pm_check_device_idle() - Check if all GTs are idle.
+> > > + * @xe: xe device instance
+> > > + *
+> > > + * One of the ways to do this is to check for GT C6 state. This check
+> > > + * will fail if some component is holding a forcewake, for example.
+> > > + *
+> > > + * Return: 0 on success, -EAGAIN on failure
+> > > + */
+> > > +int xe_pm_check_device_idle(struct xe_device *xe)
+> > > +{
+> > > +	struct xe_gt *gt;
+> > > +	u8 id;
+> > > +
+> > > +	if (xe->info.platform == XE_PVC)
+> > > +		return 0;
+> > PVC check belongs inside the gt_idle component,
+> > where the RC xe decisions are made
+> Sure, I added it there since it is a device level flag.
+> > 
+> > > +
+> > > +	for_each_gt(gt, xe, id)
+> > > +		if (xe_gt_idle_wait_for_c6(gt, 200))
+> > > +			return -EAGAIN;
+> > > +
+> > > +	return 0;
+> > > +}
+> > But anyway, why this indirection through xe_pm? Why can't the xe_pci call
+> > directly the gt_idle waiting for c6 inside the runtime_suspend function?
 > 
-> Replace the raw ascii85 dumps of GuC log snapshots with a
-> zstd-compressed ascii85 stream and reuse the same helper for CTB
-> snapshot output.
+> The only reason was that all gt_idle functions take GT as param, not Xe. In
+> that case, I would have had the for_all_gts loop in xe_pci, which I was
+> trying to avoid.
+
+it makes sense. Just rename to xe_pm_wait_all_c6 or something like that...
+
 > 
-> Use zstd streaming with the default compression level of 3 and an
-> estimated source size of 0 so the compression workspace stays bounded
-> even for multi-megabyte logs.
+> Thanks,
 > 
-> Add a new Kconfig option DRM_XE_COMPRESS_DUMP to control whether
-> GuC log and CTB dumps are compressed with ZSTD. This allows users to
-> choose between reduced dump sizes and lower memory usage.
+> Vinay.
 > 
-> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-> Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-> Acked-by: José Roberto de Souza <jose.souza@intel.com>
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-Since no one had the willigness to actually review this yet, I asked AI some help
-
-> ---
->  drivers/gpu/drm/xe/Kconfig          |  15 +++
->  drivers/gpu/drm/xe/xe_devcoredump.c |   4 +-
->  drivers/gpu/drm/xe/xe_guc_ct.c      |  19 ++--
->  drivers/gpu/drm/xe/xe_guc_ct.h      |   4 +-
->  drivers/gpu/drm/xe/xe_guc_log.c     | 161 +++++++++++++++++++++++++---
->  drivers/gpu/drm/xe/xe_guc_log.h     |   9 +-
->  6 files changed, 183 insertions(+), 29 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-> index 4d7dcaff2b91..18a682a44b31 100644
-> --- a/drivers/gpu/drm/xe/Kconfig
-> +++ b/drivers/gpu/drm/xe/Kconfig
-> @@ -33,6 +33,7 @@ config DRM_XE
->  	select ACPI_WMI if X86 && ACPI
->  	select SYNC_FILE
->  	select CRC32
-> +	select ZSTD_COMPRESS if DRM_XE_COMPRESS_DUMP
-
-There's a circular/reverse dependency here.
-
-Please move the select ZSTD_COMPRESS into DRM_XE_COMPRESS_DUMP
-like DRM_XE_GPUSVM selects DRM_GPUSVM...
-
->  	select SND_HDA_I915 if SND_HDA_CORE
->  	select CEC_CORE if CEC_NOTIFIER
->  	select VMAP_PFN
-> @@ -101,6 +102,20 @@ config DRM_XE_PAGEMAP
->  
->  	  If in doubt say "Y".
->  
-> +config DRM_XE_COMPRESS_DUMP
-> +	bool "Enable ZSTD compression for error dumps"
-> +	depends on DRM_XE
-> +	default y
-> +	help
-> +	  Enable this option to compress GuC log and CTB dumps with ZSTD
-> +	  compression. This can significantly reduce the size of error dumps
-> +	  but requires additional memory for compression workspace.
-> +
-> +	  Disable this option if you want to save memory or prefer uncompressed
-> +	  error dumps for debugging.
-> +
-> +	  If in doubt say "Y".
-> +
->  config DRM_XE_FORCE_PROBE
->  	string "Force probe xe for selected Intel hardware IDs"
->  	depends on DRM_XE
-> diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-> index 5f2b90b18f97..27473c25aad2 100644
-> --- a/drivers/gpu/drm/xe/xe_devcoredump.c
-> +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-> @@ -115,9 +115,9 @@ static ssize_t __xe_devcoredump_read(char *buffer, ssize_t count,
->  	drm_printf(&p, "\tTile: %d\n", ss->gt->tile->id);
->  
->  	drm_puts(&p, "\n**** GuC Log ****\n");
-> -	xe_guc_log_snapshot_print(ss->guc.log, &p);
-> +	xe_guc_log_snapshot_print(ss->guc.log, &p, ss->gt);
->  	drm_puts(&p, "\n**** GuC CT ****\n");
-> -	xe_guc_ct_snapshot_print(ss->guc.ct, &p);
-> +	xe_guc_ct_snapshot_print(ss->guc.ct, &p, ss->gt);
->  
->  	drm_puts(&p, "\n**** Contexts ****\n");
->  	xe_guc_exec_queue_snapshot_print(ss->ge, &p);
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index 5c4733da385c..10a8cf327036 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -2186,11 +2186,12 @@ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct)
->   * xe_guc_ct_snapshot_print - Print out a given GuC CT snapshot.
->   * @snapshot: GuC CT snapshot object.
->   * @p: drm_printer where it will be printed out.
-> + * @gt: GT structure for error reporting
->   *
->   * This function prints out a given GuC CT snapshot object.
->   */
->  void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
-> -			      struct drm_printer *p)
-> +			      struct drm_printer *p, struct xe_gt *gt)
->  {
->  	if (!snapshot)
->  		return;
-> @@ -2204,11 +2205,10 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
->  		drm_printf(p, "\tg2h outstanding: %d\n",
->  			   snapshot->g2h_outstanding);
->  
-> -		if (snapshot->ctb) {
-> -			drm_printf(p, "[CTB].length: 0x%zx\n", snapshot->ctb_size);
-> -			xe_print_blob_ascii85(p, "[CTB].data", '\n',
-> -					      snapshot->ctb, 0, snapshot->ctb_size);
-> -		}
-> +		if (snapshot->ctb)
-> +			xe_guc_print_blob(gt, p, "[CTB]", "[CTB].data",
-> +					  &snapshot->ctb, 1,
-> +					  snapshot->ctb_size, snapshot->ctb_size);
->  	} else {
->  		drm_puts(p, "CT disabled\n");
->  	}
-> @@ -2242,9 +2242,10 @@ void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot)
->  void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb)
->  {
->  	struct xe_guc_ct_snapshot *snapshot;
-> +	struct xe_gt *gt = ct_to_gt(ct);
->  
->  	snapshot = guc_ct_snapshot_capture(ct, false, want_ctb);
-> -	xe_guc_ct_snapshot_print(snapshot, p);
-> +	xe_guc_ct_snapshot_print(snapshot, p, gt);
->  	xe_guc_ct_snapshot_free(snapshot);
->  }
->  
-> @@ -2342,10 +2343,10 @@ static void ct_dead_print(struct xe_dead_ct *dead)
->  	drm_printf(&lp, "\tTile: %d\n", gt->tile->id);
->  
->  	drm_puts(&lp, "**** GuC Log ****\n");
-> -	xe_guc_log_snapshot_print(dead->snapshot_log, &lp);
-> +	xe_guc_log_snapshot_print(dead->snapshot_log, &lp, gt);
->  
->  	drm_puts(&lp, "**** GuC CT ****\n");
-> -	xe_guc_ct_snapshot_print(dead->snapshot_ct, &lp);
-> +	xe_guc_ct_snapshot_print(dead->snapshot_ct, &lp, gt);
->  
->  	drm_puts(&lp, "Done.\n");
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-> index 3ddc665ab84a..f950d68a060a 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-> @@ -12,6 +12,7 @@
->  
->  struct drm_printer;
->  struct xe_device;
-> +struct xe_gt;
->  
->  int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct);
->  int xe_guc_ct_init(struct xe_guc_ct *ct);
-> @@ -26,7 +27,8 @@ void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
->  void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
->  
->  struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct);
-> -void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_printer *p);
-> +void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_printer *p,
-> +			      struct xe_gt *gt);
->  void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
->  void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-> index 538d4df0f7aa..aaeb0f76af30 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_log.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_log.c
-> @@ -6,6 +6,9 @@
->  #include "xe_guc_log.h"
->  
->  #include <linux/fault-inject.h>
-> +#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-> +#include <linux/zstd.h>
-> +#endif
->  
->  #include <linux/utsname.h>
->  #include <drm/drm_managed.h>
-> @@ -225,16 +228,148 @@ struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log,
->  	return snapshot;
->  }
->  
-> +#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-> +static void xe_guc_print_blob_compressed(struct xe_gt *gt, struct drm_printer *p,
-> +					 const char *length_label, const char *data_label,
-> +					 void **chunks, int num_chunks,
-> +					 size_t chunk_size, size_t total_size)
-> +{
-> +	zstd_parameters params;
-> +	zstd_cstream *cstream;
-> +	zstd_out_buffer outbuf;
-> +	size_t wksp_size, dst_size;
-> +	size_t remain, ret;
-> +	void *wksp = NULL;
-> +	char *dst = NULL;
-> +	int i;
-> +
-> +	/*
-> +	 * Pass 0 as estimated_src_size to use zstd level-3 defaults
-> +	 * (windowLog=18, 256KB window). Passing the full total_size would
-> +	 * cause zstd to inflate windowLog proportionally (e.g. windowLog=24
-> +	 * for a 19MB log), making the workspace tens of MB.  With 0, the
-> +	 * workspace stays ~1.5MB, well within kmalloc limits.
-> +	 */
-> +	params = zstd_get_params(3, 0);
-> +
-> +	wksp_size = zstd_cstream_workspace_bound(&params.cParams);
-> +	wksp = kvzalloc(wksp_size, GFP_KERNEL);
-> +	if (!wksp)
-> +		goto err;
-> +
-> +	dst_size = zstd_compress_bound(total_size);
-> +	dst = kvzalloc(dst_size, GFP_KERNEL);
-> +	if (!dst)
-> +		goto err;
-> +
-> +	cstream = zstd_init_cstream(&params, 0, wksp, wksp_size);
-> +	if (!cstream) {
-> +		xe_gt_err(gt, "failed to init zstd cstream\n");
-> +		goto err;
-> +	}
-> +
-> +	outbuf.dst = dst;
-> +	outbuf.size = dst_size;
-> +	outbuf.pos = 0;
-> +
-> +	remain = total_size;
-> +	for (i = 0; i < num_chunks && remain; i++) {
-> +		size_t size = min(chunk_size, remain);
-> +		zstd_in_buffer inbuf = { .src = chunks[i], .size = size, .pos = 0 };
-> +
-> +		while (inbuf.pos < inbuf.size) {
-
-LLM:
-unbounded loop - the Sashiko finding is real
-"
-include/linux/zstd.h:504 - "Guaranteed to make some forward progress if `input`
-and `output` are not empty." Once outbuf.pos == outbuf.size, forward progress is
-explicitly NOT guaranteed and this spins forever. zstd_compress_bound() should
-prevent output exhaustion here (single frame, no intermediate flushes), so it is
-unreachable in practice - but a hard lockup in an error-dump path is bad enough
-that a `if (outbuf.pos == outbuf.size) goto err;` guard is worth the one line.
-"
-
-> +			ret = zstd_compress_stream(cstream, &outbuf, &inbuf);
-> +			if (ZSTD_isError(ret)) {
-> +				xe_gt_err(gt, "zstd_compress_stream failed: %s\n",
-> +					  ZSTD_getErrorName(ret));
-> +				goto err;
-> +			}
-> +		}
-> +		remain -= size;
-> +	}
-> +
-> +	do {
-> +		ret = zstd_end_stream(cstream, &outbuf);
-> +		if (ZSTD_isError(ret)) {
-> +			xe_gt_err(gt, "zstd_end_stream failed: %s\n",
-> +				  ZSTD_getErrorName(ret));
-> +			goto err;
-> +		}
-> +	} while (ret > 0 && outbuf.pos < outbuf.size);
-
-LLM:
-"
-include/linux/zstd.h:535 - "zstd_end_stream() must be called until it returns
-0, meaning all the data has been flushed and the frame epilogue has been
-written." The outbuf.pos < outbuf.size term lets the loop exit with ret > 0,
-emitting a frame with no epilogue, and the code then prints "Algo: ZSTD" as if
-it succeeded. Either loop until 0, or treat "output full before 0" as an error.
-"
-
-> +
-> +	drm_printf(p, "%s.length: 0x%zx -> 0x%zx Algo: ZSTD\n",
-> +		   length_label, total_size, outbuf.pos);
-> +	xe_print_blob_ascii85(p, data_label, '\n', dst, 0,
-> +			      DIV_ROUND_UP(outbuf.pos, sizeof(u32)) * sizeof(u32));
-
-LLM:
-"DIV_ROUND_UP(outbuf.pos, sizeof(u32)) * sizeof(u32) can read up to 3 bytes past
-dst if outbuf.pos == dst_size and dst_size is not 4-aligned. In practice it is
-unreachable: snapshot->size is xe_bo_size() (page-aligned) and ctb_size is a sum
-of bo sizes, so compress_bound(size) = size + size/256 stays 4-aligned. But
-don't rely on that - kvzalloc(round_up(dst_size, sizeof(u32))) settles it
-permanently."
-
-> +	goto out;
-> +
-> +err:
-> +	drm_printf(p, "%s.length: 0x%zx Algo: ERROR (compression failed)\n",
-> +		   length_label, total_size);
-
-__xe_devcoredump_read() is called twice, once to get the size and the second time
-to print the output in a given buffer.
-If the compression fails in the first pass, the size will be different and not
-enough.
-
-And worse part it seems that in this case of failure we now lose the guc log.
-So in the actual/real second pass we will not get the right log anyway.
-
-The AI suggestion is to cache the compressed guc log. But of course, if we
-cache we need to be careful to ensure it is accurate/valid.
-
-> +out:
-> +	kvfree(dst);
-> +	kvfree(wksp);
-> +}
-> +#endif
-> +
->  /**
-> - * xe_guc_log_snapshot_print - dump a previously saved copy of the GuC log to some useful location
-> - * @snapshot: a snapshot of the GuC log
-> - * @p: the printer object to output to
-> + * xe_guc_print_blob - Print binary data (compressed or uncompressed) as ascii85
-> + * @gt: GT structure for error reporting
-> + * @p: drm_printer for output
-> + * @length_label: label prefix for the length/metadata line (e.g. "[LOG]" or "[CTB]")
-> + * @data_label: label for the ascii85 blob (e.g. "[LOG].data" or "[CTB].data")
-> + * @chunks: array of pointers to source data chunks
-> + * @num_chunks: number of elements in @chunks
-> + * @chunk_size: nominal size of each chunk; the last chunk may hold fewer valid bytes
-> + * @total_size: total uncompressed byte count across all chunks
-> + *
-> + * If CONFIG_DRM_XE_COMPRESS_DUMP is enabled, compresses @total_size bytes using
-> + * zstd level-3 streaming compression and prints the result via @p using ascii85
-> + * encoding. Otherwise, directly prints the uncompressed data.
-> + * On failure the function returns without printing the data blob.
->   */
-> -void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p)
-> +void xe_guc_print_blob(struct xe_gt *gt __maybe_unused, struct drm_printer *p,
-> +		       const char *length_label, const char *data_label,
-> +		       void **chunks, int num_chunks,
-> +		       size_t chunk_size, size_t total_size)
->  {
-> +#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-> +	xe_guc_print_blob_compressed(gt, p, length_label, data_label,
-> +				     chunks, num_chunks, chunk_size, total_size);
-> +#else
->  	size_t remain;
->  	int i;
->  
-> +	drm_printf(p, "%s.length: 0x%zx Algo: RAW\n", length_label, total_size);
-> +
-> +	/*
-> +	 * Print each chunk directly without merging into a single buffer.
-> +	 * xe_print_blob_ascii85() supports multiple calls - use suffix=0
-> +	 * for all but the last chunk to omit the newline between chunks.
-> +	 */
-> +	remain = total_size;
-> +	for (i = 0; i < num_chunks && remain; i++) {
-> +		size_t size = min(chunk_size, remain);
-> +		const char *prefix = i ? NULL : data_label;
-> +		/* Add suffix only on the last chunk */
-> +		char suffix = (remain == size) ? '\n' : 0;
-> +
-> +		xe_print_blob_ascii85(p, prefix, suffix, chunks[i], 0,
-> +				      DIV_ROUND_UP(size, sizeof(u32)) * sizeof(u32));
-> +		remain -= size;
-> +	}
-> +#endif
-> +}
-> +
-> +/**
-> + * xe_guc_log_snapshot_print - dump a previously saved copy of the GuC log to some useful location
-> + * @snapshot: a snapshot of the GuC log
-> + * @p: the printer object to output to
-> + * @gt: GT structure of the GuC log
-> + */
-> +void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p,
-> +			       struct xe_gt *gt)
-> +{
->  	if (!snapshot) {
->  		drm_printf(p, "GuC log snapshot not allocated!\n");
->  		return;
-> @@ -248,16 +383,9 @@ void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_
->  	drm_printf(p, "GuC timestamp: 0x%08llX [%llu]\n", snapshot->stamp, snapshot->stamp);
->  	drm_printf(p, "Log level: %u\n", snapshot->level);
->  
-> -	drm_printf(p, "[LOG].length: 0x%zx\n", snapshot->size);
-> -	remain = snapshot->size;
-> -	for (i = 0; i < snapshot->num_chunks; i++) {
-> -		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
-> -		const char *prefix = i ? NULL : "[LOG].data";
-> -		char suffix = i == snapshot->num_chunks - 1 ? '\n' : 0;
-> -
-> -		xe_print_blob_ascii85(p, prefix, suffix, snapshot->copy[i], 0, size);
-> -		remain -= size;
-> -	}
-> +	xe_guc_print_blob(gt, p, "[LOG]", "[LOG].data",
-> +			  snapshot->copy, snapshot->num_chunks,
-> +			  GUC_LOG_CHUNK_SIZE, snapshot->size);
->  }
->  
->  static inline void lfd_output_binary(struct drm_printer *p, char *buf, int buf_size)
-> @@ -598,12 +726,13 @@ void xe_guc_log_print_dmesg(struct xe_guc_log *log)
->  void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
->  {
->  	struct xe_guc_log_snapshot *snapshot;
-> +	struct xe_gt *gt = log_to_gt(log);
->  
->  	drm_printf(p, "**** GuC Log ****\n");
->  
->  	snapshot = xe_guc_log_snapshot_capture(log, false);
-> -	drm_printf(p, "CS reference clock: %u\n", log_to_gt(log)->info.reference_clock);
-> -	xe_guc_log_snapshot_print(snapshot, p);
-> +	drm_printf(p, "CS reference clock: %u\n", gt->info.reference_clock);
-> +	xe_guc_log_snapshot_print(snapshot, p, gt);
->  	xe_guc_log_snapshot_free(snapshot);
->  }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
-> index 4649a260755e..3e97647ee8b5 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_log.h
-> +++ b/drivers/gpu/drm/xe/xe_guc_log.h
-> @@ -11,6 +11,7 @@
->  
->  struct drm_printer;
->  struct xe_device;
-> +struct xe_gt;
->  
->  #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_GUC)
->  #define XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE	SZ_16M
-> @@ -59,7 +60,13 @@ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p);
->  void xe_guc_log_print_lfd(struct xe_guc_log *log, struct drm_printer *p);
->  void xe_guc_log_print_dmesg(struct xe_guc_log *log);
->  struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic);
-> -void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p);
-> +
-> +void xe_guc_print_blob(struct xe_gt *gt, struct drm_printer *p, const char *length_label,
-> +		       const char *data_label, void **chunks, int num_chunks,
-> +		       size_t chunk_size, size_t total_size);
-> +
-> +void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p,
-> +			       struct xe_gt *gt);
->  void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot);
->  
->  static inline u32
-> -- 
-> 2.43.0
-> 
+> > 
+> > > +
+> > >   /**
+> > >    * xe_pm_module_init() - Perform xe_pm specific module initialization.
+> > >    *
+> > > diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
+> > > index 6d5ab09cb769..a4fdc9c5cb10 100644
+> > > --- a/drivers/gpu/drm/xe/xe_pm.h
+> > > +++ b/drivers/gpu/drm/xe/xe_pm.h
+> > > @@ -36,6 +36,7 @@ void xe_pm_d3cold_allowed_toggle(struct xe_device *xe);
+> > >   bool xe_rpm_reclaim_safe(const struct xe_device *xe);
+> > >   struct task_struct *xe_pm_read_callback_task(struct xe_device *xe);
+> > >   int xe_pm_block_on_suspend(struct xe_device *xe);
+> > > +int xe_pm_check_device_idle(struct xe_device *xe);
+> > >   void xe_pm_might_block_on_suspend(void);
+> > >   int xe_pm_module_init(void);
+> > > -- 
+> > > 2.38.1
+> > > 
