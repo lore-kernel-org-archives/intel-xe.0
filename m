@@ -4,40 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2599DC88E72
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94D1CC982D1
 	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 12:15:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA72D10EE64;
-	Thu, 17 Sep 2026 12:15:25 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E07D10EE1E;
- Thu, 17 Sep 2026 11:55:19 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id DE62541680;
- Thu, 17 Sep 2026 11:55:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40CAD1F0089E;
- Thu, 17 Sep 2026 11:55:18 +0000 (UTC)
-Date: Thu, 17 Sep 2026 13:55:14 +0200
-From: Maxime Ripard <self@mripard.dev>
-To: Dave Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Matthew Brost <matthew.brost@intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <aqvVENQ4ksJEIcdb@houat>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01EDB10EE66;
+	Thu, 17 Sep 2026 12:15:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=invisiblethingslab.com header.i=@invisiblethingslab.com header.b="W8z3cBvm";
+	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="TFZUoj1s";
+	dkim-atps=neutral
+Received: from fhigh-a3-smtp.messagingengine.com
+ (fhigh-a3-smtp.messagingengine.com [103.168.172.154])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0D0C10E392;
+ Wed, 16 Sep 2026 17:30:41 +0000 (UTC)
+Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
+ by mailfhigh.phl.internal (Postfix) with ESMTP id 2ADD614000F4;
+ Wed, 16 Sep 2026 13:30:41 -0400 (EDT)
+Received: from phl-frontend-04 ([10.202.2.163])
+ by phl-compute-06.internal (MEProxy); Wed, 16 Sep 2026 13:30:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ invisiblethingslab.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:from:from:in-reply-to
+ :message-id:mime-version:reply-to:subject:subject:to:to; s=fm1;
+ t=1789579841; x=1789666241; bh=sEzC4k5CJmAV6EJO1XhWjipY2iPMC41J
+ 5KqRauPMcFs=; b=W8z3cBvmX93Pzsm5bNCRiY139GXpeJe1v3Xkn22MstaPsHgy
+ qP3GyTYl3P4a67pLjO1PGEb1dFV1DfPLDykR4z/854lyE6SMAtsArI+Gg3QGFr1n
+ 22KxTFVF9xgnaXFSKcdskfp+stDb1Pu+bcwUl6yYWwE7HdqikOZmXN7S2PksSAiz
+ sgsf43bs4CbOHMqYYAtbePUcusunHBJd3lidU1ECQdq27jC6XHpJWeRCKR2HI0SI
+ 54cDKJ3qD8gY/Pp6ysmC2UYSxTKrj+SIgbfvcG/60mX9CYFf9Ad0K/j/m2WjSNhF
+ kvv8ksUz7PGSeUJLLSMNF+khLrS/fwOUBVeUOA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:message-id:mime-version:reply-to:subject
+ :subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm1; t=1789579841; x=1789666241; bh=sEzC4k5CJmAV6EJO1XhWjipY2iPM
+ C41J5KqRauPMcFs=; b=TFZUoj1sd5wzq6V92J/uxsf3SSM2ifhX4DsjAgUNlWhU
+ 6eAsn61pwSeiVLgGV7jvmCKRWbXQ6CLYgzqEyQyv759H6AiJGx9yCW0EZQGvSqZA
+ tdLRY4dnewtM5NFNa99MZxpUr+OwHRfifJ+FXNEbp/VePCF8odEsQ7SJjMpAePN6
+ yl8MXZQOR9wortnzRLC5Cv8WCPbUmDe+qwK+357xalVj0aNXRwvbTbZPLtQprqPe
+ 8fnjP8Nhh2NWHHZ+WzFzG5iiuhGyDesYUDsQAReRN+nca32x16AxG+UqKvyJLZwb
+ e07DMW/szM+5nAcoTmduXKQo+NQgCo0s6D5w4prHYA==
+X-ME-Sender: <xms:QNKqar4EE9LI-Ci45nMVNqyof-kwidRJpl306loLxgGmy3IwfVmqSA>
+ <xme:QNKqatkELrkNM8W2gVc3-2rio61NawOH3E1ezo3jDG4WzJ49qn8VIWzz2PCaNrSer
+ cPQwbP557BE_fZbGQ3OAJ3MR-A2hCQ4qFF21tn4dWpHAU8Cgt0>
+X-ME-Received: <xmr:QNKqamXp7FAlrkBIVB8SzSqRW9nEiS28hNCrLWexN4SBh6xYgoJGqbppGv9TzE1xFJc0rmwbSvQi>
+X-ME-Proxy-Cause: dmFkZTFRR2SdzYysCnDldAnwcUjqwv+J1OcwrzewRKc+tpczioQYwLmLsiqEXhmQdC2nje
+ 56bGrrx9GV0swaDUdEK3vzaaVqY+M/XwqVdnxH+XYP25yLI5dgcMCMyHp1UAKHpzlMM6Pa
+ NfKIQqGtUlBxkueH0hJjWk2FklFgBKXLz2xRvyNL8MinjeW04yJe6UQoDcfj7Fm7GkQqjv
+ hWMDmiLq+BTLEM4gbkW/awJ3xlxmRvUzWx2Z1pfR7j7X/jzaQ8xRnBoS7gvzb3G9bG0ct3
+ i24Lbjgm0XtyjqxFcsT4bz5ya9cZ4U8Y9gRKqIKKaOSFKm85ALGxH1ylfLgRm2aN/+3adN
+ cUBVfKKQWHA2itOHpXXPGf2EhOirzoD+YJUN8W2J8btmtWKsDaOFNp10yxo1cjCNfqFLCA
+ eetNRPqBIDmnhflwbewQqA80/IE9YIqIzcnlCVJFyqgi/DPFkMyhrMlFDOWWfHiQjIeh9G
+ 89n9QqLFXfGqXXqk99gbjnMCdgUUBVwfGw6Qv0Oj/Sv5b8KJP0y9gIov6j06UeHeBXiu58
+ ngIpfuaFxt/OlglSkpwlIdfm8koIBhdly2sJuzoiRSESBrEf2tn7hwG3rFYegHCYuFa04F
+ L7fp6z+VojadVcqdg1VI+iW4SHrDfKfNnDMGMAOf0fHuPfqzSNP33fuzmKRg
+X-ME-Proxy: <xmx:QNKqamQRcqvlLVMy3OsQDxJ-Pj62_oGYUfuHRu2Y5BOtNr-7ukxvxg>
+ <xmx:QNKqajCN2AJCPPGKq58J4g9L4vvSXTYb25eOUnyQ7d--iuJtUJD3Mg>
+ <xmx:QNKqauuEzb0d10ZGzyknk3K36HIWDjgTpWiMYIC8Ck0U3NuKpU4EOw>
+ <xmx:QNKqah9C--fGdirKD9LXW3LiBUUq7NtHJYplpvh9CAou0G6ozyA7Qw>
+ <xmx:QdKqaoNidy3xp9Bfq4NoR1cy-a8FbyWcN-DtMO5vSOMoLGcheiud6Y02>
+Feedback-ID: i792e4853:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 16 Sep 2026 13:30:37 -0400 (EDT)
+From: =?UTF-8?q?Szymon=20Aceda=C5=84ski?= <accek@invisiblethingslab.com>
+To: intel-xe@lists.freedesktop.org
+Cc: thomas.hellstrom@linux.intel.com, matthew.brost@intel.com,
+ rodrigo.vivi@intel.com, maarten.lankhorst@linux.intel.com, hch@lst.de,
+ bob.beckett@collabora.com, dri-devel@lists.freedesktop.org,
+ marmarek@invisiblethingslab.com, xen-devel@lists.xenproject.org,
+ =?UTF-8?q?Szymon=20Aceda=C5=84ski?= <accek@invisiblethingslab.com>,
+ stable@vger.kernel.org
+Subject: [PATCH v2] drm/xe: Limit sg segment size to PAGE_SIZE on Xen PV
+Date: Wed, 16 Sep 2026 19:30:30 +0200
+Message-ID: <20260916173030.3223833-1-accek@invisiblethingslab.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="l556737gsdzolcq4"
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 17 Sep 2026 12:15:25 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -53,129 +97,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Fix display corruption on Xen PV dom0, where DMA buffers are not
+guaranteed machine-contiguous, in which case bounce buffering kicks
+in, breaking xe's memory coherency assumptions.
 
---l556737gsdzolcq4
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: [PULL] drm-misc-fixes
-MIME-Version: 1.0
+Apply the same workaround i915 carries in i915_sg_segment_size() since
+commit 78a07fe777c4 ("drm/i915: stop abusing swiotlb_max_segment").
 
-Hi,
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Reported-by: Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8382
+Link: https://lore.kernel.org/xen-devel/aYtznP_tT6xNPwf-@mail-itl/
+Link: https://lore.kernel.org/all/20221020110308.1582518-1-hch@lst.de/ # i915 counterpart
+Cc: Christoph Hellwig <hch@lst.de>
+Cc: Robert Beckett <bob.beckett@collabora.com>
+Cc: stable@vger.kernel.org # v6.8+
+Signed-off-by: Szymon Acedański <accek@invisiblethingslab.com>
+---
+v2:
+ - Imperative language in the commit message (Thomas Hellström)
+ - CC the authors of the original i915 workaround (Thomas Hellström)
 
-Here's this week drm-misc-fixes PR
+ drivers/gpu/drm/xe/xe_bo.h | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-Maxime
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 290ca62..341fa93 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -9,6 +9,8 @@
+ #include <drm/drm_prime.h>
+ #include <drm/ttm/ttm_tt.h>
+ 
++#include <xen/xen.h>
++
+ #include "xe_bo_types.h"
+ #include "xe_ggtt.h"
+ #include "xe_macros.h"
+@@ -574,6 +576,23 @@ static inline unsigned int xe_sg_segment_size(struct device *dev)
+ 	struct scatterlist __maybe_unused sg;
+ 	size_t max = BIT_ULL(sizeof(sg.length) * 8) - 1;
+ 
++	/*
++	 * For Xen PV guests pages aren't contiguous in DMA (machine) address
++	 * space.  The DMA API takes care of that both in dma_alloc_* (by
++	 * calling into the hypervisor to make the pages contiguous) and in
++	 * dma_map_* (by bounce buffering).  But xe (like i915, see commit
++	 * 78a07fe777c4) ignores the coherency aspects of the DMA API and thus
++	 * can't cope with bounce buffering actually happening, so add a hack
++	 * here to force small allocations and mappings when running in PV
++	 * mode on Xen.
++	 *
++	 * Note this will still break if bounce buffering is required for other
++	 * reasons, like confidential computing hypervisors or PCIe root ports
++	 * with addressing limitations.
++	 */
++	if (xen_pv_domain())
++		return PAGE_SIZE;
++
+ 	max = min_t(size_t, max, dma_max_mapping_size(dev));
+ 
+ 	/*
 
-drm-misc-fixes-2026-09-17:
-Two ttm fixes for ttm_tt_swapout(), one page-alignment and one overflow
-fix for dma-buf, a drm_pending_vblank_event leak fix for drm,
-suspend/resume fixes for nouveau, one out-of-bounds access fix for gud,
-a use-after-free fix for vc4, a fence signaling fix, a race condition
-fix for sched, planes formats fixes for verisilicon, and add the blend
-mode property for loongson
-The following changes since commit fd73f4a6659897191fa0d40695fe370925dd3780:
+base-commit: baafc300cd079a5210c1e70e5ea3d93518e40b38
+-- 
+2.53.0
 
-  Linux 7.3-rc3 (2026-09-13 14:38:02 -0700)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-20=
-26-09-17
-
-for you to fetch changes up to 5535d5e61a77ad79118ea7665ce1c14f857f0f12:
-
-  drm/loongson: Create blend mode property for cursor plane (2026-09-17 15:=
-12:26 +0800)
-
-----------------------------------------------------------------
-Two ttm fixes for ttm_tt_swapout(), one page-alignment and one overflow
-fix for dma-buf, a drm_pending_vblank_event leak fix for drm,
-suspend/resume fixes for nouveau, one out-of-bounds access fix for gud,
-a use-after-free fix for vc4, a fence signaling fix, a race condition
-fix for sched, planes formats fixes for verisilicon, and add the blend
-mode property for loongson
-
-----------------------------------------------------------------
-Christian K=F6nig (1):
-      dma-buf/dma-fence: fix checking signaling bit for timeline and driver=
- name v3
-
-David Hu (2):
-      dma-buf: Fix silent overflow for phys vec to sgt
-      dma-buf: Split sgl by largest page-aligned chunk
-
-Huacai Chen (1):
-      drm/loongson: Create blend mode property for cursor plane
-
-Icenowy Zheng (3):
-      drm/verisilicon: set blend mode for the cursor plane
-      drm/verisilicon: add primary modifier for format tables
-      drm/verisilicon: remove ARGB formats from primary plane
-
-Karl Mehltretter (2):
-      dma-buf: Make DMABUF_DEBUG default to y on DEBUG_KERNEL kernels
-      drm/vc4: Use managed KMS polling to fix UAF on unbind
-
-Lyude Paul (4):
-      Revert "nouveau/gsp: fix suspend/resume regression on r570 firmware"
-      drm/nouveau/gsp/r570: Set GcOff =3D 0 in fbsr
-      drm/nouveau/gsp/r570: Enable S/R Display workaround in GSP
-      drm/nouveau/gsp: Increase delay for magic sleep in r535_gsp_fini()
-
-Maxime Ripard (1):
-      Merge fdo/drm/drm-fixes into drm-misc-fixes
-
-Sajal Gupta (1):
-      drm/gud: fix out-of-bounds write in gud_plane_atomic_check()
-
-Sophie D (1):
-      drm/gud: Ignore damage clips in full update mode
-
-Thadeu Lima de Souza Cascardo (1):
-      drm: Fix drm_pending_vblank_event leak in error path for out_fence_ptr
-
-Tvrtko Ursulin (1):
-      drm/sched: Fix virtual runtime race
-
-Vadim Nikitushkin (2):
-      drm/ttm: fix swapped-out resources never leaving their bulk_move range
-      drm/ttm: apply the swapout bulk_move fix to the intended condition
-
- drivers/dma-buf/Kconfig                            |  2 +-
- drivers/dma-buf/dma-buf-mapping.c                  | 31 ++++++++++-----
- drivers/dma-buf/dma-fence.c                        | 14 ++++++-
- drivers/gpu/drm/drm_atomic_uapi.c                  | 13 +++++--
- drivers/gpu/drm/gud/gud_pipe.c                     |  7 +++-
- drivers/gpu/drm/loongson/lsdc_plane.c              |  5 ++-
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fbsr.c |  2 +-
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c  |  8 +++-
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/fbsr.c |  8 ++--
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c  |  3 +-
- .../drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/gsp.h |  8 ++++
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h    |  2 +-
- drivers/gpu/drm/scheduler/sched_entity.c           |  8 +++-
- drivers/gpu/drm/scheduler/sched_rq.c               | 20 +++++-----
- drivers/gpu/drm/ttm/ttm_bo.c                       |  2 +-
- drivers/gpu/drm/vc4/vc4_kms.c                      |  2 +-
- drivers/gpu/drm/verisilicon/vs_cursor_plane.c      |  2 +
- drivers/gpu/drm/verisilicon/vs_hwdb.c              | 44 +++---------------=
-----
- drivers/gpu/drm/verisilicon/vs_hwdb.h              |  4 +-
- drivers/gpu/drm/verisilicon/vs_primary_plane.c     |  4 +-
- include/linux/dma-fence.h                          |  6 +++
- 21 files changed, 110 insertions(+), 85 deletions(-)
-
---l556737gsdzolcq4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaqvVIgAKCRAnX84Zoj2+
-dnEgAX90JkLYTLQJyOLedTAfWZ0aj+eK0/GHmdeNjE6Yll62wrc99KZD73sbpsYo
-Uqc+sPsBfRnlxKgUOk/tEuobnk5PHyPjqkZLl6sM1U06wFVjDyXJFWb8/sg1Y1At
-lGFQIlLWoA==
-=zb9x
------END PGP SIGNATURE-----
-
---l556737gsdzolcq4--
