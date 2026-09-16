@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6860BC982C1
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 20:21:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FA7CC982C1
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 20:29:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20EF610E061;
-	Wed, 16 Sep 2026 20:21:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AAF210E3C2;
+	Wed, 16 Sep 2026 20:29:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="mS6JS53d";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JI20gfj0";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E549E10E061
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 20:21:31 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F9FF10E3C2
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 20:29:03 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id EB874601EF;
- Wed, 16 Sep 2026 20:21:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7842A1F000FF;
- Wed, 16 Sep 2026 20:21:30 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id F2F124149E;
+ Wed, 16 Sep 2026 20:29:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABAA31F000FF;
+ Wed, 16 Sep 2026 20:29:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789590090;
- bh=bqnFd2N+GIGbB6aeCp6WS67ccUbLtsJ12FpCloxf0jY=;
+ s=k20260515; t=1789590542;
+ bh=qDq94V803suwwhyftfwPnqRT659S4pIeCWASrBA8TrA=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=mS6JS53dB2EvAoqkwAhxieJ7vKjvS5wRQwxNir/2ydYfAv5FeWefeacDbvIXoTSR0
- CuDYyWuAPHbNt1au9GjbHB4oeUmfPcXeGiovktPSbbTjx8BpRVDCGAuY8YIlILAN29
- tq7EHl50mbWKoW9sjs7b1VYc9Q4yc4SBmJUeLmz50BWrxMQQAgrXco1T49Ulm78q6n
- EZt0hUCnVI4jzFCIOL0+m3DY5nxuwFbiDU9MIaz4H5EVed9gz0JCQAz44F32IdiF+s
- w8L76HujPqRQfzBQkUgkR+rq1401i86vw26Hclh5R4xDF+ReztRGns20UTeumlJB1+
- tPmP+myuzb/Ig==
+ b=JI20gfj03bHHTpMjVBGnW/g6arD47qM9BjmGfcixD+4SOoNy+tDjGjrDE6QEccCrl
+ DK7eGDoLc97o2CpHvJGG3iCGJxYgtGUZxA7lZZFtC86rTqLCx/liTR19VpqC6wCE7/
+ hvA5uV5V2dL7lrQmeaheZeLjbofYJcQzKQXLskPwmg+eI3DvFmqs+YKjrOTdZLnjzA
+ 0e5/6yELsQGrfpYNIzFqj126a1yFVbgJ31tdU/l5xhU/O8v1R5OHHVXx9DfsccXdnz
+ XWfe2h+WOt4nmeRaY846dZGH/u1QJkwiGazK8vitT356eKMJfMJiyRe2GoLTt9iShN
+ sr1urTkqA/x7w==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v9 10/20] drm/xe/vsec: Support possible hotplug exit
+Subject: Re: [PATCH v9 17/20] drm/xe/vsec: Support late bind fw information
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260916201139.2374531-32-michael.j.ruhl@intel.com>
+In-Reply-To: <20260916201139.2374531-39-michael.j.ruhl@intel.com>
 References: <20260916201139.2374531-22-michael.j.ruhl@intel.com>
- <20260916201139.2374531-32-michael.j.ruhl@intel.com>
+ <20260916201139.2374531-39-michael.j.ruhl@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 16 Sep 2026 20:21:30 +0000
-Message-Id: <20260916202130.7842A1F000FF@smtp.kernel.org>
+Date: Wed, 16 Sep 2026 20:29:02 +0000
+Message-Id: <20260916202902.ABAA31F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,91 +56,184 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 4 potential issue(=
 s) to consider:
-- [Low] cleanup: mix of goto and scoped_guard() in xe_pmt_telem_read()
+- [High] devres: memory leak and dangling devices due to worker racing with=
+ devres_release_all
+- [High] pm: non-freezable delayed work accesses MMIO during system suspend
+- [Medium] pm: asynchronous pm_runtime_put() during device removal causes i=
+ncorrect power state
+- [Medium] pm: uninterruptible msleep in wait_for_fw() blocks task freezer =
+and system suspend
 --
 
-commit 5940c0b6f7d9cab3fae443cef41e2d74cd3f39e9
+commit 2311d189c57553ad608d675783c5e664a010f6ef
 Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-drm/xe/vsec: Support possible hotplug exit
+drm/xe/vsec: Support late bind fw information
 
-This commit introduces DRM hotplug verification to the VSEC callback API.
-It verifies that the device is valid using drm_dev_enter() and handles
-cleanup on exit with drm_dev_exit().
+CRI FW is loaded on power on.  Because of this, access to the FW cannot
+be done until it is running.
+
+Update the XE PMT probe and access to check for late bind devices,
+verify, and wait for the appropriate FW state before probe or access.
 
 > diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-> index ca5d02dce8189..c20cad9a4f1f2 100644
+> index d1427ec507285..f905ef51df656 100644
 > --- a/drivers/gpu/drm/xe/xe_vsec.c
 > +++ b/drivers/gpu/drm/xe/xe_vsec.c
+
 [ ... ]
-> @@ -171,13 +178,17 @@ int xe_pmt_telem_read(struct device *dev, u32 guid,=
- u64 *data, loff_t user_offse
->  	u32 cap_type =3D FIELD_GET(GUID_CAP_TYPE, guid);
->  	u32 mem_region;
->  	u32 offset;
-> -	int ret;
-> +	int ret =3D 0;
-> +	int idx;
-> =20
->  	xe_assert(xe, !IS_SRIOV_VF(xe));
-> =20
-> +	if (!drm_dev_enter(&xe->drm, &idx))
-> +		return -ENODEV;
-> +
->  	ret =3D xe_guid_decode(guid, &mem_region, &offset);
->  	if (ret)
-> -		return ret;
-> +		goto dev_exit;
-> =20
->  	telem_addr +=3D offset + user_offset;
-> =20
-> @@ -187,11 +198,14 @@ int xe_pmt_telem_read(struct device *dev, u32 guid,=
- u64 *data, loff_t user_offse
->  		xe_pm_runtime_get(xe);
->  		break;
->  	case TELEMETRY:
-> -		if (!xe_pm_runtime_get_if_active(xe))
-> -			return -ENODATA;
-> +		if (!xe_pm_runtime_get_if_active(xe)) {
-> +			ret =3D -ENODATA;
-> +			goto dev_exit;
-> +		}
->  		break;
->  	case WATCHER:
-> -		return -EINVAL;
-> +		ret =3D -EINVAL;
-> +		goto dev_exit;
->  	}
-> =20
->  	scoped_guard(mutex, &xe->pmt.lock) {
 
-[Severity: Low]
-Does mixing goto-based error handling and scoped_guard() in the same
-function create an issue with the cleanup guidelines?
-
-According to include/linux/cleanup.h, the expectation is that usage of
-goto and cleanup helpers should never be mixed in the same function, as it
-creates confusing ownership semantics.=20
-
-Since xe_pmt_telem_read() now uses both a dev_exit goto label and
-scoped_guard() for mutex management, could the drm_dev_exit() sequence be=20
-converted to use a scope-based cleanup instead, or could the locking avoid
-using scoped_guard() to keep the paradigms consistent?
-
-> @@ -203,7 +217,10 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, =
-u64 *data, loff_t user_offse
-> =20
->  	xe_pm_runtime_put(xe);
-> =20
-> -	return count;
-> +dev_exit:
-> +	drm_dev_exit(idx);
-> +
-> +	return ret =3D=3D 0 ? count : ret;
+> @@ -281,6 +291,48 @@ static int xe_guid_decode(u32 guid, int *index, u32 =
+*offset)
+>  	return -ENODEV;
 >  }
+> =20
+> +static void cri_late_bind_probe_work(struct work_struct *work)
+> +{
+> +	struct xe_device *xe =3D container_of(work, struct xe_device, pmt.work.=
+work);
+> +
+> +	if (xe_sysctrl_is_oobmsm_fw_ready(xe)) {
+> +		cri_late_bind_probe(xe);
+> +		xe_pm_runtime_put(xe);
+> +		return;
+> +	}
+> +
+> +	xe->pmt.retry_count++;
+> +
+> +	/* wait up to 20 seconds */
+> +	if (xe->pmt.retry_count =3D=3D VSEC_LATE_BIND_RETRY) {
+> +		drm_warn(&xe->drm, "PMT probe: Late Binding failed to complete\n");
+> +		xe_pm_runtime_put(xe);
+> +		return;
+> +	}
+> +
+> +	if (!schedule_delayed_work(&xe->pmt.work, msecs_to_jiffies(VSEC_LATE_BI=
+ND_DELAY_MSEC)))
+> +		xe_pm_runtime_put(xe);
+> +}
+
+[Severity: High]
+Does scheduling this delayed work on the default non-freezable workqueue ri=
+sk
+MMIO access during system suspend?
+
+If the system enters suspend (S3) while the worker is in its polling loop,
+the PCI device is put into the D3 state. Because the worker is on a
+non-freezable workqueue, it continues running and calls
+xe_sysctrl_is_oobmsm_fw_ready(), which performs MMIO reads on powered-down
+hardware.
+
+> +
+> +static bool wait_for_fw(struct xe_device *xe)
+> +{
+> +	int retries =3D VSEC_LATE_BIND_RETRY;  /* wait up to 20 secs */
+> +
+> +	if (xe->info.platform !=3D XE_CRESCENTISLAND)
+> +		return true;
+> +
+> +	while (retries--) {
+> +		if (xe_sysctrl_is_oobmsm_fw_ready(xe))
+> +			return true;
+> +
+> +		msleep(VSEC_LATE_BIND_DELAY_MSEC);
+> +	}
+
+[Severity: Medium]
+Could this uninterruptible sleep delay task freezing for up to 20 seconds
+during system suspend?
+
+If userspace initiates a read on the PMT telemetry sysfs file, calling
+xe_pmt_telem_read(), it enters this wait_for_fw() loop. If a system suspend=
+ is
+triggered concurrently, the uninterruptible msleep() loop prevents the task
+from handling the freeze signal before the 20-second freezer timeout expire=
+s.
+
+[ ... ]
+
+> @@ -476,12 +544,46 @@ static enum xe_vsec get_platform_info(struct xe_dev=
+ice *xe)
+>  	return vsec_platforms[xe->info.platform];
+>  }
+> =20
+> +static void cri_late_bind_probe(struct xe_device *xe)
+> +{
+> +	struct intel_vsec_platform_info *info;
+> +	struct device *dev =3D xe->drm.dev;
+> +	enum xe_vsec platform;
+> +
+> +	platform =3D get_platform_info(xe);
+> +	if (platform !=3D XE_VSEC_CRI)
+> +		return;
+> +
+> +	info =3D &xe_vsec_info[platform];
+> +	if (!info->headers)
+> +		return;
+> +
+> +	guard(mutex)(&xe->pmt.lock);
+> +
+> +	info->priv_data =3D &xe_cri_pmt_cb;
+> +	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+> +
+> +	intel_vsec_register(dev, info);
+> +}
+> +
+> +static void vsec_disable_late_bind_work(void *arg)
+> +{
+> +	struct xe_device *xe =3D arg;
+> +
+> +	/*
+> +	 * If the queued work is canceled, the runtime reference needs to be
+> +	 * released here.
+> +	 */
+> +	if (disable_delayed_work_sync(&xe->pmt.work))
+> +		xe_pm_runtime_put(xe);
+> +}
+
+[Severity: Medium]
+Is it safe to use an asynchronous runtime put here during the device removal
+path?
+
+When device removal triggers this function via devres cleanup, the pending
+async idle/suspend work can be cancelled by pm_runtime_disable(), leaving
+the hardware in an active power state indefinitely. Should this be a
+synchronous put (xe_pm_runtime_put_sync()) instead?
+
+[ ... ]
+
+> @@ -489,11 +591,11 @@ void xe_vsec_init(struct xe_device *xe)
+[ ... ]
+>  	case XE_VSEC_CRI:
+>  		xe->pmt.base_offset =3D CRI_PMT_OFFSET;
+> +
+> +		xe->pmt.retry_count =3D 0;
+> +		INIT_DELAYED_WORK(&xe->pmt.work, cri_late_bind_probe_work);
+> +
+> +		xe_pm_runtime_get_noresume(xe);
+> +		if (!xe_sysctrl_is_oobmsm_fw_ready(xe)) {
+> +			schedule_delayed_work(&xe->pmt.work,
+> +					      msecs_to_jiffies(VSEC_LATE_BIND_DELAY_MSEC));
+> +			return devm_add_action_or_reset(xe->drm.dev,
+> +							vsec_disable_late_bind_work,
+> +							xe);
+> +		}
+> +
+
+[Severity: High]
+Can this worker thread race with devres_release_all() during device unbind?
+
+If the driver is unbound while the worker is in its polling loop,
+devres_release_all() splices the devres list and executes
+vsec_disable_late_bind_work(), which waits for the worker to finish.
+
+However, the worker calls intel_vsec_register() in cri_late_bind_probe(),
+which adds new devres items to the device. Since devres_release_all() only
+splices the list once before executing it, any devres items added by the
+worker are permanently leaked.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260916201139.2374=
-531-22-michael.j.ruhl@intel.com?part=3D10
+531-22-michael.j.ruhl@intel.com?part=3D17
