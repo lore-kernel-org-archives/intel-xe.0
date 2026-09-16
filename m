@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3CCDC982C1
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 08:30:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0EDAC982C4
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 08:30:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7339F10E8A0;
-	Wed, 16 Sep 2026 08:30:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96C1610E846;
+	Wed, 16 Sep 2026 08:30:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nzE4FxEE";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cVnsl6Le";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B14FE10E881;
- Wed, 16 Sep 2026 08:30:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C9E710E8A2;
+ Wed, 16 Sep 2026 08:30:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789547412; x=1821083412;
+ t=1789547415; x=1821083415;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QBY3LSCP3BVM7S/tEozFSKGHkfLVdTf3CrQJdweiKKs=;
- b=nzE4FxEErGxdAAG3Vn+cXgGWmLW/YhwXkhU+eF9g338w1aILVhTmRcbx
- sp9aUiiZcuWBClalXdXAfRaZQX4NlzUslx4hoNC9iPtjscsmV4di6nAWA
- tYuveL1E1lASJfI1SeyPd5xLu12PqqAWHT/5KJXByJnMpckbUcbxn8+cB
- 4vwg/cel0UhcIyti2Ysgjc0xPk7XomH9ZqOQ3d9sYM5sfifRVFdJkf7Ta
- W3N6F9XtlN8dumSq7I7EolfoRV5+rvNOEKniGs/8kCMbOtP4ZNkTYBq46
- MTrkuACCZyDYDYM0PH9tvQiwID2VwNEbBqBNqCBhEsln/pMvzy/kbtMHy g==;
-X-CSE-ConnectionGUID: BIM0zIJTSGe8Jh4zyWPISA==
-X-CSE-MsgGUID: 5lPFr+VZQRuzHFXlAL6hLA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="429630"
+ bh=GBnJS8wvXbbPZ+eBMYEPg/fRRY68hpkU4tEGWlYQ4IA=;
+ b=cVnsl6LeqiFpaQzG7tW7HKohjjMi5hri/mQOS+e0STGMlhuWna57lV8K
+ x+l8vs0/nGFgrafnq+yRFtmDn773zweMws7dvWIbym0VJlfOmuj+J4N8o
+ /7agXxKeO2oxaNTLrVNRwu6P8gF7wKw+1o+poxytPJ13j/3ZTEX4erm0D
+ fZ7G6sNMRSbAT9Pm1QI2zcIkztlT4/itdpdqGJUizbtrQG06B1/eymuQ8
+ TPXa9phsFe0yLQJ3Z14J8URoyh8/mMgldrEn3NrAQwTvPAVjwxNmrIuSp
+ Bs3tFoAQ/FvRbmcXU/QzdJVXu/62qv5LSb9osWf0/JX61S5KBGLzZQwGU w==;
+X-CSE-ConnectionGUID: j34jqWPuSdWDHVEVEJMRbA==
+X-CSE-MsgGUID: ub+TdXv0RtCSAuxp09M+8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="429635"
 X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
-   d="scan'208";a="429630"
+   d="scan'208";a="429635"
 Received: from fmviesa012.fm.intel.com ([10.60.135.152])
  by fmvoesa115.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2026 01:30:11 -0700
-X-CSE-ConnectionGUID: NH4xn1NKTcGjvgn5m+fQwg==
-X-CSE-MsgGUID: GwmtedQ9RS22fpVIe3zKWw==
+ 16 Sep 2026 01:30:15 -0700
+X-CSE-ConnectionGUID: ioohG9g5TrCC2wauR37IGw==
+X-CSE-MsgGUID: Nfibf1onTzeUHpQ01yePYw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
-   d="scan'208";a="1496732"
+   d="scan'208";a="1496864"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.147])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2026 01:30:10 -0700
+ 16 Sep 2026 01:30:14 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 06/11] drm/i915/dp: switch to drm_dp_dpcd_{read_byte, read_data,
- write_byte, write_data}
-Date: Wed, 16 Sep 2026 11:29:37 +0300
-Message-ID: <ad0a642c726436b5d41f2315e1c431d65fe2ea24.1789547331.git.jani.nikula@intel.com>
+Subject: [PATCH 07/11] drm/i915/hdcp: switch to drm_dp_dpcd_{read_byte,
+ read_data, write_data}()
+Date: Wed, 16 Sep 2026 11:29:38 +0300
+Message-ID: <e168dad72f78fdb74419da94b0a38d732159fc82.1789547331.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1789547331.git.jani.nikula@intel.com>
 References: <cover.1789547331.git.jani.nikula@intel.com>
@@ -76,422 +76,349 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 Switch to the modern DPCD access functions that return negative error
 codes on errors, -EIO for incomplete access, and 0 on success.
 
-Use local ret variables for the return value instead of checking inline,
-where sensible. Rename local int err to ret for clarity and consistency.
+This simplifies error handling all over the place. Convert the error
+logging to use %pe and ERR_PTR() while at it.
+
+Add comments to the read/write places that depend on the functions that
+return the number of bytes read/written for incomplete access.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 142 +++++++++++++++---------
- 1 file changed, 88 insertions(+), 54 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 173 +++++++++----------
+ 1 file changed, 86 insertions(+), 87 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 0cd5e6b5034c..6a8cf3987aa5 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3734,19 +3734,19 @@ static bool downstream_hpd_needs_d0(struct intel_dp *intel_dp)
- static int
- write_dsc_decompression_flag(struct drm_dp_aux *aux, u8 flag, bool set)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+index 14ed0ea22dd3..5e23be05cb51 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+@@ -60,16 +60,15 @@ int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *dig_port,
  {
--	int err;
+ 	struct intel_display *display = to_intel_display(dig_port);
+ 	u8 aksv[DRM_HDCP_KSV_LEN] = {};
+-	ssize_t dpcd_ret;
 +	int ret;
- 	u8 val;
  
--	err = drm_dp_dpcd_readb(aux, DP_DSC_ENABLE, &val);
--	if (err < 0)
--		return err;
-+	ret = drm_dp_dpcd_read_byte(aux, DP_DSC_ENABLE, &val);
+ 	/* Output An first, that's easy */
+-	dpcd_ret = drm_dp_dpcd_write(&dig_port->dp.aux, DP_AUX_HDCP_AN,
++	ret = drm_dp_dpcd_write_data(&dig_port->dp.aux, DP_AUX_HDCP_AN,
+ 				     an, DRM_HDCP_AN_LEN);
+-	if (dpcd_ret != DRM_HDCP_AN_LEN) {
++	if (ret < 0) {
+ 		drm_dbg_kms(display->drm,
+-			    "Failed to write An over DP/AUX (%zd)\n",
+-			    dpcd_ret);
+-		return dpcd_ret >= 0 ? -EIO : dpcd_ret;
++			    "Failed to write An over DP/AUX (%pe)\n", ERR_PTR(ret));
++		return ret;
+ 	}
+ 
+ 	/*
+@@ -79,14 +78,14 @@ int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *dig_port,
+ 	 * the destination address which will tickle the hardware to output the
+ 	 * Aksv on our behalf after the header is sent.
+ 	 */
+-	dpcd_ret = drm_dp_dpcd_write(&dig_port->dp.aux, DP_AUX_HDCP_AKSV,
++	ret = drm_dp_dpcd_write_data(&dig_port->dp.aux, DP_AUX_HDCP_AKSV,
+ 				     aksv, DRM_HDCP_KSV_LEN);
+-	if (dpcd_ret != DRM_HDCP_KSV_LEN) {
++	if (ret < 0) {
+ 		drm_dbg_kms(display->drm,
+-			    "Failed to write Aksv over DP/AUX (%zd)\n",
+-			    dpcd_ret);
+-		return dpcd_ret >= 0 ? -EIO : dpcd_ret;
++			    "Failed to write Aksv over DP/AUX (%pe)\n", ERR_PTR(ret));
++		return ret;
+ 	}
++
+ 	return 0;
+ }
+ 
+@@ -94,15 +93,16 @@ static int intel_dp_hdcp_read_bksv(struct intel_digital_port *dig_port,
+ 				   u8 *bksv)
+ {
+ 	struct intel_display *display = to_intel_display(dig_port);
+-	ssize_t ret;
++	int ret;
+ 
+-	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BKSV, bksv,
+-			       DRM_HDCP_KSV_LEN);
+-	if (ret != DRM_HDCP_KSV_LEN) {
++	ret = drm_dp_dpcd_read_data(&dig_port->dp.aux, DP_AUX_HDCP_BKSV, bksv,
++				    DRM_HDCP_KSV_LEN);
++	if (ret < 0) {
+ 		drm_dbg_kms(display->drm,
+-			    "Read Bksv from DP/AUX failed (%zd)\n", ret);
+-		return ret >= 0 ? -EIO : ret;
++			    "Read Bksv from DP/AUX failed (%pe)\n", ERR_PTR(ret));
++		return ret;
+ 	}
++
+ 	return 0;
+ }
+ 
+@@ -110,20 +110,21 @@ static int intel_dp_hdcp_read_bstatus(struct intel_digital_port *dig_port,
+ 				      u8 *bstatus)
+ {
+ 	struct intel_display *display = to_intel_display(dig_port);
+-	ssize_t ret;
++	int ret;
+ 
+ 	/*
+ 	 * For some reason the HDMI and DP HDCP specs call this register
+ 	 * definition by different names. In the HDMI spec, it's called BSTATUS,
+ 	 * but in DP it's called BINFO.
+ 	 */
+-	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BINFO,
+-			       bstatus, DRM_HDCP_BSTATUS_LEN);
+-	if (ret != DRM_HDCP_BSTATUS_LEN) {
++	ret = drm_dp_dpcd_read_data(&dig_port->dp.aux, DP_AUX_HDCP_BINFO,
++				    bstatus, DRM_HDCP_BSTATUS_LEN);
++	if (ret < 0) {
+ 		drm_dbg_kms(display->drm,
+-			    "Read bstatus from DP/AUX failed (%zd)\n", ret);
+-		return ret >= 0 ? -EIO : ret;
++			    "Read bstatus from DP/AUX failed (%pe)\n", ERR_PTR(ret));
++		return ret;
+ 	}
++
+ 	return 0;
+ }
+ 
+@@ -132,14 +133,13 @@ int intel_dp_hdcp_read_bcaps(struct drm_dp_aux *aux,
+ 			     struct intel_display *display,
+ 			     u8 *bcaps)
+ {
+-	ssize_t ret;
++	int ret;
+ 
+-	ret = drm_dp_dpcd_read(aux, DP_AUX_HDCP_BCAPS,
+-			       bcaps, 1);
+-	if (ret != 1) {
++	ret = drm_dp_dpcd_read_byte(aux, DP_AUX_HDCP_BCAPS, bcaps);
++	if (ret < 0) {
+ 		drm_dbg_kms(display->drm,
+-			    "Read bcaps from DP/AUX failed (%zd)\n", ret);
+-		return ret >= 0 ? -EIO : ret;
++			    "Read bcaps from DP/AUX failed (%pe)\n", ERR_PTR(ret));
++		return ret;
+ 	}
+ 
+ 	return 0;
+@@ -166,16 +166,16 @@ int intel_dp_hdcp_read_ri_prime(struct intel_digital_port *dig_port,
+ 				u8 *ri_prime)
+ {
+ 	struct intel_display *display = to_intel_display(dig_port);
+-	ssize_t ret;
++	int ret;
+ 
+-	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_RI_PRIME,
+-			       ri_prime, DRM_HDCP_RI_LEN);
+-	if (ret != DRM_HDCP_RI_LEN) {
++	ret = drm_dp_dpcd_read_data(&dig_port->dp.aux, DP_AUX_HDCP_RI_PRIME,
++				    ri_prime, DRM_HDCP_RI_LEN);
++	if (ret < 0) {
+ 		drm_dbg_kms(display->drm,
+-			    "Read Ri' from DP/AUX failed (%zd)\n",
+-			    ret);
+-		return ret >= 0 ? -EIO : ret;
++			    "Read Ri' from DP/AUX failed (%pe)\n", ERR_PTR(ret));
++		return ret;
+ 	}
++
+ 	return 0;
+ }
+ 
+@@ -184,17 +184,18 @@ int intel_dp_hdcp_read_ksv_ready(struct intel_digital_port *dig_port,
+ 				 bool *ksv_ready)
+ {
+ 	struct intel_display *display = to_intel_display(dig_port);
+-	ssize_t ret;
+ 	u8 bstatus;
++	int ret;
+ 
+-	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BSTATUS,
+-			       &bstatus, 1);
+-	if (ret != 1) {
++	ret = drm_dp_dpcd_read_byte(&dig_port->dp.aux, DP_AUX_HDCP_BSTATUS,
++				    &bstatus);
++	if (ret < 0) {
+ 		drm_dbg_kms(display->drm,
+-			    "Read bstatus from DP/AUX failed (%zd)\n", ret);
+-		return ret >= 0 ? -EIO : ret;
++			    "Read bstatus from DP/AUX failed (%pe)\n", ERR_PTR(ret));
++		return ret;
+ 	}
+ 	*ksv_ready = bstatus & DP_BSTATUS_READY;
++
+ 	return 0;
+ }
+ 
+@@ -203,23 +204,24 @@ int intel_dp_hdcp_read_ksv_fifo(struct intel_digital_port *dig_port,
+ 				int num_downstream, u8 *ksv_fifo)
+ {
+ 	struct intel_display *display = to_intel_display(dig_port);
+-	ssize_t ret;
++	int ret;
+ 	int i;
+ 
+ 	/* KSV list is read via 15 byte window (3 entries @ 5 bytes each) */
+ 	for (i = 0; i < num_downstream; i += 3) {
+ 		size_t len = min(num_downstream - i, 3) * DRM_HDCP_KSV_LEN;
+-		ret = drm_dp_dpcd_read(&dig_port->dp.aux,
+-				       DP_AUX_HDCP_KSV_FIFO,
+-				       ksv_fifo + i * DRM_HDCP_KSV_LEN,
+-				       len);
+-		if (ret != len) {
++		ret = drm_dp_dpcd_read_data(&dig_port->dp.aux,
++					    DP_AUX_HDCP_KSV_FIFO,
++					    ksv_fifo + i * DRM_HDCP_KSV_LEN,
++					    len);
++		if (ret < 0) {
+ 			drm_dbg_kms(display->drm,
+-				    "Read ksv[%d] from DP/AUX failed (%zd)\n",
+-				    i, ret);
+-			return ret >= 0 ? -EIO : ret;
++				    "Read ksv[%d] from DP/AUX failed (%pe)\n",
++				    i, ERR_PTR(ret));
++			return ret;
+ 		}
+ 	}
++
+ 	return 0;
+ }
+ 
+@@ -228,19 +230,19 @@ int intel_dp_hdcp_read_v_prime_part(struct intel_digital_port *dig_port,
+ 				    int i, u32 *part)
+ {
+ 	struct intel_display *display = to_intel_display(dig_port);
+-	ssize_t ret;
++	int ret;
+ 
+ 	if (i >= DRM_HDCP_V_PRIME_NUM_PARTS)
+ 		return -EINVAL;
+ 
+-	ret = drm_dp_dpcd_read(&dig_port->dp.aux,
+-			       DP_AUX_HDCP_V_PRIME(i), part,
+-			       DRM_HDCP_V_PRIME_PART_LEN);
+-	if (ret != DRM_HDCP_V_PRIME_PART_LEN) {
++	ret = drm_dp_dpcd_read_data(&dig_port->dp.aux, DP_AUX_HDCP_V_PRIME(i), part,
++				    DRM_HDCP_V_PRIME_PART_LEN);
++	if (ret < 0) {
+ 		drm_dbg_kms(display->drm,
+-			    "Read v'[%d] from DP/AUX failed (%zd)\n", i, ret);
+-		return ret >= 0 ? -EIO : ret;
++			    "Read v'[%d] from DP/AUX failed (%pe)\n", i, ERR_PTR(ret));
++		return ret;
+ 	}
++
+ 	return 0;
+ }
+ 
+@@ -258,14 +260,13 @@ bool intel_dp_hdcp_check_link(struct intel_digital_port *dig_port,
+ 			      struct intel_connector *connector)
+ {
+ 	struct intel_display *display = to_intel_display(dig_port);
+-	ssize_t ret;
+ 	u8 bstatus;
++	int ret;
+ 
+-	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BSTATUS,
+-			       &bstatus, 1);
+-	if (ret != 1) {
++	ret = drm_dp_dpcd_read_byte(&dig_port->dp.aux, DP_AUX_HDCP_BSTATUS, &bstatus);
++	if (ret < 0) {
+ 		drm_dbg_kms(display->drm,
+-			    "Read bstatus from DP/AUX failed (%zd)\n", ret);
++			    "Read bstatus from DP/AUX failed (%pe)\n", ERR_PTR(ret));
+ 		return false;
+ 	}
+ 
+@@ -346,15 +347,14 @@ intel_dp_hdcp2_read_rx_status(struct intel_connector *connector,
+ 	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+ 	struct drm_dp_aux *aux = &dig_port->dp.aux;
+-	ssize_t ret;
++	int ret;
+ 
+-	ret = drm_dp_dpcd_read(aux,
+-			       DP_HDCP_2_2_REG_RXSTATUS_OFFSET, rx_status,
+-			       HDCP_2_2_DP_RXSTATUS_LEN);
+-	if (ret != HDCP_2_2_DP_RXSTATUS_LEN) {
++	ret = drm_dp_dpcd_read_data(aux, DP_HDCP_2_2_REG_RXSTATUS_OFFSET, rx_status,
++				    HDCP_2_2_DP_RXSTATUS_LEN);
++	if (ret < 0) {
+ 		drm_dbg_kms(display->drm,
+-			    "Read bstatus from DP/AUX failed (%zd)\n", ret);
+-		return ret >= 0 ? -EIO : ret;
++			    "Read bstatus from DP/AUX failed (%pe)\n", ERR_PTR(ret));
++		return ret;
+ 	}
+ 
+ 	return 0;
+@@ -474,8 +474,8 @@ int intel_dp_hdcp2_write_msg(struct intel_connector *connector,
+ 		len = bytes_to_write > DP_AUX_MAX_PAYLOAD_BYTES ?
+ 				DP_AUX_MAX_PAYLOAD_BYTES : bytes_to_write;
+ 
+-		ret = drm_dp_dpcd_write(aux,
+-					offset, (void *)byte, len);
++		/* Note: This may return < len for partial writes. */
++		ret = drm_dp_dpcd_write(aux, offset, byte, len);
+ 		if (ret < 0)
+ 			return ret;
+ 
+@@ -493,14 +493,13 @@ ssize_t get_receiver_id_list_rx_info(struct intel_connector *connector,
+ {
+ 	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
+ 	struct drm_dp_aux *aux = &dig_port->dp.aux;
+-	ssize_t ret;
+ 	u8 *rx_info = byte;
++	int ret;
+ 
+-	ret = drm_dp_dpcd_read(aux,
+-			       DP_HDCP_2_2_REG_RXINFO_OFFSET,
+-			       (void *)rx_info, HDCP_2_2_RXINFO_LEN);
+-	if (ret != HDCP_2_2_RXINFO_LEN)
+-		return ret >= 0 ? -EIO : ret;
++	ret = drm_dp_dpcd_read_data(aux, DP_HDCP_2_2_REG_RXINFO_OFFSET,
++				    rx_info, HDCP_2_2_RXINFO_LEN);
 +	if (ret < 0)
 +		return ret;
  
- 	if (set)
- 		val |= flag;
- 	else
- 		val &= ~flag;
- 
--	return drm_dp_dpcd_writeb(aux, DP_DSC_ENABLE, val);
-+	return drm_dp_dpcd_write_byte(aux, DP_DSC_ENABLE, val);
- }
- 
- static void
-@@ -3910,6 +3910,7 @@ intel_dp_init_source_oui(struct intel_dp *intel_dp)
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	u8 oui[] = { 0x00, 0xaa, 0x01 };
- 	u8 buf[3] = {};
-+	int ret;
- 
- 	if (READ_ONCE(intel_dp->oui_valid))
- 		return;
-@@ -3920,7 +3921,8 @@ intel_dp_init_source_oui(struct intel_dp *intel_dp)
- 	 * During driver init, we want to be careful and avoid changing the source OUI if it's
- 	 * already set to what we want, so as to avoid clearing any state by accident
- 	 */
--	if (drm_dp_dpcd_read(&intel_dp->aux, DP_SOURCE_OUI, buf, sizeof(buf)) < 0)
-+	ret = drm_dp_dpcd_read_data(&intel_dp->aux, DP_SOURCE_OUI, buf, sizeof(buf));
-+	if (ret < 0)
- 		drm_dbg_kms(display->drm, "Failed to read source OUI\n");
- 
- 	if (memcmp(oui, buf, sizeof(oui)) == 0) {
-@@ -3929,7 +3931,8 @@ intel_dp_init_source_oui(struct intel_dp *intel_dp)
- 		return;
- 	}
- 
--	if (drm_dp_dpcd_write(&intel_dp->aux, DP_SOURCE_OUI, oui, sizeof(oui)) < 0) {
-+	ret = drm_dp_dpcd_write_data(&intel_dp->aux, DP_SOURCE_OUI, oui, sizeof(oui));
-+	if (ret < 0) {
- 		drm_dbg_kms(display->drm, "Failed to write source OUI\n");
- 		WRITE_ONCE(intel_dp->oui_valid, false);
- 	}
-@@ -3971,7 +3974,7 @@ void intel_dp_set_power(struct intel_dp *intel_dp, u8 mode)
- 		if (downstream_hpd_needs_d0(intel_dp))
- 			return;
- 
--		ret = drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER, mode);
-+		ret = drm_dp_dpcd_write_byte(&intel_dp->aux, DP_SET_POWER, mode);
- 	} else {
- 		struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 
-@@ -3985,17 +3988,17 @@ void intel_dp_set_power(struct intel_dp *intel_dp, u8 mode)
- 		 * time to wake up.
- 		 */
- 		for (i = 0; i < 3; i++) {
--			ret = drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER, mode);
--			if (ret == 1)
-+			ret = drm_dp_dpcd_write_byte(&intel_dp->aux, DP_SET_POWER, mode);
-+			if (!ret)
- 				break;
- 			msleep(1);
+ 	*dev_cnt = (HDCP_2_2_DEV_COUNT_HI(rx_info[0]) << 4 |
+ 		   HDCP_2_2_DEV_COUNT_LO(rx_info[1]));
+@@ -566,11 +565,11 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *connector,
+ 					       hdcp2_msg_data->msg_read_timeout);
  		}
  
--		if (ret == 1 && intel_lspcon_active(dig_port))
-+		if (!ret && intel_lspcon_active(dig_port))
- 			intel_lspcon_wait_pcon_mode(dig_port);
- 	}
+-		ret = drm_dp_dpcd_read(aux, offset,
+-				       (void *)byte, len);
++		/* Note: This may return < len for partial reads. */
++		ret = drm_dp_dpcd_read(aux, offset, byte, len);
+ 		if (ret < 0) {
+-			drm_dbg_kms(display->drm, "msg_id %d, ret %zd\n",
+-				    msg_id, ret);
++			drm_dbg_kms(display->drm, "msg_id %d, ret %pe\n",
++				    msg_id, ERR_PTR(ret));
+ 			return ret;
+ 		}
  
--	if (ret != 1)
-+	if (ret < 0)
- 		drm_dbg_kms(display->drm,
- 			    "[ENCODER:%d:%s] Set power to %s failed\n",
- 			    encoder->base.base.id, encoder->base.name,
-@@ -4086,6 +4089,7 @@ bool intel_dp_initial_fastset_check(struct intel_encoder *encoder,
- static void intel_dp_get_pcon_dsc_cap(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-+	int ret;
- 
- 	/* Clear the cached register set to avoid using stale values */
- 
-@@ -4094,9 +4098,10 @@ static void intel_dp_get_pcon_dsc_cap(struct intel_dp *intel_dp)
- 	if (!drm_dp_is_branch(intel_dp->dpcd))
- 		return;
- 
--	if (drm_dp_dpcd_read(&intel_dp->aux, DP_PCON_DSC_ENCODER,
--			     intel_dp->pcon_dsc_dpcd,
--			     sizeof(intel_dp->pcon_dsc_dpcd)) < 0)
-+	ret = drm_dp_dpcd_read_data(&intel_dp->aux, DP_PCON_DSC_ENCODER,
-+				    intel_dp->pcon_dsc_dpcd,
-+				    sizeof(intel_dp->pcon_dsc_dpcd));
-+	if (ret < 0)
- 		drm_err(display->drm, "Failed to read DPCD register 0x%x\n",
- 			DP_PCON_DSC_ENCODER);
- 
-@@ -4255,13 +4260,13 @@ int intel_dp_pcon_set_tmds_mode(struct intel_dp *intel_dp)
- 	/* Set PCON source control mode */
- 	buf |= DP_PCON_ENABLE_SOURCE_CTL_MODE;
- 
--	ret = drm_dp_dpcd_writeb(&intel_dp->aux, DP_PCON_HDMI_LINK_CONFIG_1, buf);
-+	ret = drm_dp_dpcd_write_byte(&intel_dp->aux, DP_PCON_HDMI_LINK_CONFIG_1, buf);
- 	if (ret < 0)
- 		return ret;
- 
- 	/* Set HDMI LINK ENABLE */
- 	buf |= DP_PCON_ENABLE_HDMI_LINK;
--	ret = drm_dp_dpcd_writeb(&intel_dp->aux, DP_PCON_HDMI_LINK_CONFIG_1, buf);
-+	ret = drm_dp_dpcd_write_byte(&intel_dp->aux, DP_PCON_HDMI_LINK_CONFIG_1, buf);
- 	if (ret < 0)
- 		return ret;
- 
-@@ -4407,6 +4412,7 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 	bool ycbcr444_to_420 = false;
- 	bool rgb_to_ycbcr = false;
- 	u8 tmp;
-+	int ret;
- 
- 	if (intel_dp->dpcd[DP_DPCD_REV] < 0x13)
- 		return;
-@@ -4416,8 +4422,9 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 
- 	tmp = intel_dp_has_hdmi_sink(intel_dp) ? DP_HDMI_DVI_OUTPUT_CONFIG : 0;
- 
--	if (drm_dp_dpcd_writeb(&intel_dp->aux,
--			       DP_PROTOCOL_CONVERTER_CONTROL_0, tmp) != 1)
-+	ret = drm_dp_dpcd_write_byte(&intel_dp->aux,
-+				     DP_PROTOCOL_CONVERTER_CONTROL_0, tmp);
-+	if (ret < 0)
- 		drm_dbg_kms(display->drm,
- 			    "Failed to %s protocol converter HDMI mode\n",
- 			    str_enable_disable(intel_dp_has_hdmi_sink(intel_dp)));
-@@ -4452,15 +4459,17 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 
- 	tmp = ycbcr444_to_420 ? DP_CONVERSION_TO_YCBCR420_ENABLE : 0;
- 
--	if (drm_dp_dpcd_writeb(&intel_dp->aux,
--			       DP_PROTOCOL_CONVERTER_CONTROL_1, tmp) != 1)
-+	ret = drm_dp_dpcd_write_byte(&intel_dp->aux,
-+				     DP_PROTOCOL_CONVERTER_CONTROL_1, tmp);
-+	if (ret < 0)
- 		drm_dbg_kms(display->drm,
- 			    "Failed to %s protocol converter YCbCr 4:2:0 conversion mode\n",
- 			    str_enable_disable(intel_dp->dfp.ycbcr_444_to_420));
- 
- 	tmp = rgb_to_ycbcr ? DP_CONVERSION_BT709_RGB_YCBCR_ENABLE : 0;
- 
--	if (drm_dp_pcon_convert_rgb_to_ycbcr(&intel_dp->aux, tmp) < 0)
-+	ret = drm_dp_pcon_convert_rgb_to_ycbcr(&intel_dp->aux, tmp);
-+	if (ret < 0)
- 		drm_dbg_kms(display->drm,
- 			    "Failed to %s protocol converter RGB->YCbCr conversion mode\n",
- 			    str_enable_disable(tmp));
-@@ -4470,8 +4479,8 @@ static u8 intel_dp_read_dprx_feature_enum(struct intel_dp *intel_dp)
- {
- 	u8 dprx = 0;
- 
--	drm_dp_dpcd_read_data(&intel_dp->aux, DP_DPRX_FEATURE_ENUMERATION_LIST,
--			      &dprx, sizeof(dprx));
-+	drm_dp_dpcd_read_byte(&intel_dp->aux, DP_DPRX_FEATURE_ENUMERATION_LIST, &dprx);
-+
- 	return dprx;
- }
- 
-@@ -4490,9 +4499,8 @@ static int intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
- {
- 	int ret;
- 
--	ret = drm_dp_dpcd_read_data(aux, DP_DSC_SUPPORT, dsc_dpcd,
--				    DP_DSC_RECEIVER_CAP_SIZE);
--	if (ret) {
-+	ret = drm_dp_dpcd_read_data(aux, DP_DSC_SUPPORT, dsc_dpcd, DP_DSC_RECEIVER_CAP_SIZE);
-+	if (ret < 0) {
- 		drm_dbg_kms(aux->drm_dev,
- 			    "Could not read DSC DPCD register 0x%x Error: %pe\n",
- 			    DP_DSC_SUPPORT, ERR_PTR(ret));
-@@ -4508,7 +4516,7 @@ static int intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
- static void init_dsc_overall_throughput_limits(struct intel_connector *connector, bool is_branch)
- {
- 	u8 branch_caps[DP_DSC_BRANCH_CAP_SIZE];
--	int line_width;
-+	int line_width, ret;
- 
- 	connector->dp.dsc_branch_caps.overall_throughput.rgb_yuv444 = INT_MAX;
- 	connector->dp.dsc_branch_caps.overall_throughput.yuv422_420 = INT_MAX;
-@@ -4517,9 +4525,10 @@ static void init_dsc_overall_throughput_limits(struct intel_connector *connector
- 	if (!is_branch)
- 		return;
- 
--	if (drm_dp_dpcd_read_data(connector->dp.dsc_decompression_aux,
--				  DP_DSC_BRANCH_OVERALL_THROUGHPUT_0, branch_caps,
--				  sizeof(branch_caps)) != 0)
-+	ret = drm_dp_dpcd_read_data(connector->dp.dsc_decompression_aux,
-+				    DP_DSC_BRANCH_OVERALL_THROUGHPUT_0, branch_caps,
-+				    sizeof(branch_caps));
-+	if (ret < 0)
- 		return;
- 
- 	connector->dp.dsc_branch_caps.overall_throughput.rgb_yuv444 =
-@@ -4537,6 +4546,7 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
- 			       struct intel_connector *connector)
- {
- 	struct intel_display *display = to_intel_display(connector);
-+	int ret;
- 
- 	/*
- 	 * Clear the cached register set to avoid using stale values
-@@ -4553,12 +4563,14 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
- 	if (dpcd_rev < DP_DPCD_REV_14)
- 		return;
- 
--	if (intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux,
--				   connector->dp.dsc_dpcd) < 0)
-+	ret = intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux,
-+				     connector->dp.dsc_dpcd);
-+	if (ret < 0)
- 		return;
- 
--	if (drm_dp_dpcd_readb(connector->dp.dsc_decompression_aux, DP_FEC_CAPABILITY,
--			      &connector->dp.fec_capability) < 0) {
-+	ret = drm_dp_dpcd_read_byte(connector->dp.dsc_decompression_aux, DP_FEC_CAPABILITY,
-+				    &connector->dp.fec_capability);
-+	if (ret < 0) {
- 		drm_dbg_kms(display->drm, "Could not read FEC DPCD register\n");
- 		return;
- 	}
-@@ -4668,12 +4680,14 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_connector *connector = intel_dp->attached_connector;
- 	struct drm_display_info *info = &connector->base.display_info;
-+	int ret;
- 	u8 mso;
- 
- 	if (intel_dp->edp_dpcd[0] < DP_EDP_14)
- 		return;
- 
--	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_EDP_MSO_LINK_CAPABILITIES, &mso) != 1) {
-+	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_EDP_MSO_LINK_CAPABILITIES, &mso);
-+	if (ret < 0) {
- 		drm_err(display->drm, "Failed to read MSO cap\n");
- 		return;
- 	}
-@@ -4813,9 +4827,9 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
- 	 * method). The display control registers should read zero if they're
- 	 * not supported anyway.
+@@ -660,11 +659,11 @@ int _intel_dp_hdcp2_get_capability(struct drm_dp_aux *aux,
+ 	 * declare a monitor not capable of HDCP 2.2.
  	 */
--	if (drm_dp_dpcd_read(&intel_dp->aux, DP_EDP_DPCD_REV,
--			     intel_dp->edp_dpcd, sizeof(intel_dp->edp_dpcd)) ==
--			     sizeof(intel_dp->edp_dpcd)) {
-+	ret = drm_dp_dpcd_read_data(&intel_dp->aux, DP_EDP_DPCD_REV,
-+				    intel_dp->edp_dpcd, sizeof(intel_dp->edp_dpcd));
-+	if (!ret) {
- 		drm_dbg_kms(display->drm, "eDP DPCD: %*ph\n",
- 			    (int)sizeof(intel_dp->edp_dpcd),
- 			    intel_dp->edp_dpcd);
-@@ -5044,6 +5058,7 @@ static bool
- intel_dp_get_sink_irq_esi(struct intel_dp *intel_dp, u8 *esi)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-+	int ret;
- 
- 	/*
- 	 * Display WA for HSD #13013007775: mtl/arl/lnl
-@@ -5052,24 +5067,30 @@ intel_dp_get_sink_irq_esi(struct intel_dp *intel_dp, u8 *esi)
- 	 * inadvertently.
- 	 */
- 	if (IS_DISPLAY_VER(display, 14, 20) && !display->platform.battlemage) {
--		if (drm_dp_dpcd_read(&intel_dp->aux, DP_SINK_COUNT_ESI, esi, 3) != 3)
-+		ret = drm_dp_dpcd_read_data(&intel_dp->aux, DP_SINK_COUNT_ESI, esi, 3);
+ 	for (i = 0; i < 3; i++) {
+-		ret = drm_dp_dpcd_read(aux,
+-				       DP_HDCP_2_2_REG_RX_CAPS_OFFSET,
+-				       rx_caps, HDCP_2_2_RXCAPS_LEN);
+-		if (ret != HDCP_2_2_RXCAPS_LEN)
+-			return ret >= 0 ? -EIO : ret;
++		ret = drm_dp_dpcd_read_data(aux,
++					    DP_HDCP_2_2_REG_RX_CAPS_OFFSET,
++					    rx_caps, HDCP_2_2_RXCAPS_LEN);
 +		if (ret < 0)
- 			return false;
++			return ret;
  
- 		/* DP_SINK_COUNT_ESI + 3 == DP_LINK_SERVICE_IRQ_VECTOR_ESI0 */
--		return drm_dp_dpcd_readb(&intel_dp->aux, DP_LINK_SERVICE_IRQ_VECTOR_ESI0,
--					 &esi[3]) == 1;
-+		ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_LINK_SERVICE_IRQ_VECTOR_ESI0,
-+					    &esi[3]);
-+		return ret == 0;
- 	}
- 
--	return drm_dp_dpcd_read(&intel_dp->aux, DP_SINK_COUNT_ESI, esi, 4) == 4;
-+	ret = drm_dp_dpcd_read_data(&intel_dp->aux, DP_SINK_COUNT_ESI, esi, 4);
-+
-+	return ret == 0;
- }
- 
- static bool intel_dp_ack_sink_irq_esi(struct intel_dp *intel_dp, u8 esi[4])
- {
- 	int retry;
-+	int ret;
- 
- 	for (retry = 0; retry < 3; retry++) {
--		if (drm_dp_dpcd_write(&intel_dp->aux, DP_SINK_COUNT_ESI + 1,
--				      &esi[1], 3) == 3)
-+		ret = drm_dp_dpcd_write_data(&intel_dp->aux, DP_SINK_COUNT_ESI + 1,
-+					     &esi[1], 3);
-+		if (!ret)
- 			return true;
- 	}
- 
-@@ -5079,20 +5100,24 @@ static bool intel_dp_ack_sink_irq_esi(struct intel_dp *intel_dp, u8 esi[4])
- /* Return %true if reading the ESI vector succeeded, %false otherwise. */
- static bool intel_dp_get_sink_irq_esi_sst(struct intel_dp *intel_dp, u8 esi[4])
- {
-+	int ret;
-+
- 	memset(esi, 0, 4);
- 
- 	/*
- 	 * TODO: For DP_DPCD_REV >= 0x12 read
- 	 * DP_SINK_COUNT_ESI and DP_DEVICE_SERVICE_IRQ_VECTOR_ESI0.
- 	 */
--	if (drm_dp_dpcd_read_data(&intel_dp->aux, DP_SINK_COUNT, esi, 2) != 0)
-+	ret = drm_dp_dpcd_read_data(&intel_dp->aux, DP_SINK_COUNT, esi, 2);
-+	if (ret < 0)
- 		return false;
- 
- 	if (intel_dp->dpcd[DP_DPCD_REV] < DP_DPCD_REV_12)
- 		return true;
- 
- 	/* TODO: Read DP_DEVICE_SERVICE_IRQ_VECTOR_ESI1 as well */
--	if (drm_dp_dpcd_read_byte(&intel_dp->aux, DP_LINK_SERVICE_IRQ_VECTOR_ESI0, &esi[3]) != 0)
-+	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_LINK_SERVICE_IRQ_VECTOR_ESI0, &esi[3]);
-+	if (ret < 0)
- 		return false;
- 
- 	return true;
-@@ -5101,18 +5126,22 @@ static bool intel_dp_get_sink_irq_esi_sst(struct intel_dp *intel_dp, u8 esi[4])
- /* Return %true if acking the ESI vector IRQ events succeeded, %false otherwise. */
- static bool intel_dp_ack_sink_irq_esi_sst(struct intel_dp *intel_dp, u8 esi[4])
- {
-+	int ret;
-+
- 	/*
- 	 * TODO: For DP_DPCD_REV >= 0x12 write
- 	 * DP_DEVICE_SERVICE_IRQ_VECTOR_ESI0
- 	 */
--	if (drm_dp_dpcd_write_byte(&intel_dp->aux, DP_DEVICE_SERVICE_IRQ_VECTOR, esi[1]) != 0)
-+	ret = drm_dp_dpcd_write_byte(&intel_dp->aux, DP_DEVICE_SERVICE_IRQ_VECTOR, esi[1]);
-+	if (ret < 0)
- 		return false;
- 
- 	if (intel_dp->dpcd[DP_DPCD_REV] < DP_DPCD_REV_12)
- 		return true;
- 
- 	/* TODO: Read DP_DEVICE_SERVICE_IRQ_VECTOR_ESI1 as well */
--	if (drm_dp_dpcd_write_byte(&intel_dp->aux, DP_LINK_SERVICE_IRQ_VECTOR_ESI0, esi[3]) != 0)
-+	ret = drm_dp_dpcd_write_byte(&intel_dp->aux, DP_LINK_SERVICE_IRQ_VECTOR_ESI0, esi[3]);
-+	if (ret < 0)
- 		return false;
- 
- 	return true;
-@@ -5706,14 +5735,17 @@ intel_dp_handle_hdmi_link_status_change(struct intel_dp *intel_dp)
- {
- 	bool is_active;
- 	u8 buf = 0;
-+	int ret;
- 
- 	is_active = drm_dp_pcon_hdmi_link_active(&intel_dp->aux);
- 	if (intel_dp->frl.is_trained && !is_active) {
--		if (drm_dp_dpcd_readb(&intel_dp->aux, DP_PCON_HDMI_LINK_CONFIG_1, &buf) < 0)
-+		ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_PCON_HDMI_LINK_CONFIG_1, &buf);
-+		if (ret < 0)
- 			return;
- 
- 		buf &=  ~DP_PCON_ENABLE_HDMI_LINK;
--		if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_PCON_HDMI_LINK_CONFIG_1, buf) < 0)
-+		ret = drm_dp_dpcd_write_byte(&intel_dp->aux, DP_PCON_HDMI_LINK_CONFIG_1, buf);
-+		if (ret < 0)
- 			return;
- 
- 		drm_dp_pcon_hdmi_frl_link_error_count(&intel_dp->aux, &intel_dp->attached_connector->base);
-@@ -6218,6 +6250,7 @@ static bool
- intel_dp_sink_supports_as_sdp_v2(struct intel_dp *intel_dp)
- {
- 	u8 rx_features;
-+	int ret;
- 
- 	/*
- 	 * The DP spec does not explicitly provide the AS SDP v2 capability.
-@@ -6240,9 +6273,10 @@ intel_dp_sink_supports_as_sdp_v2(struct intel_dp *intel_dp)
- 	 * support from Display ID.
- 	 */
- 
--	if (drm_dp_dpcd_read_byte(&intel_dp->aux,
--				  DP_DPRX_FEATURE_ENUMERATION_LIST_CONT_1,
--				  &rx_features) == 1) {
-+	ret = drm_dp_dpcd_read_byte(&intel_dp->aux,
-+				    DP_DPRX_FEATURE_ENUMERATION_LIST_CONT_1,
-+				    &rx_features);
-+	if (!ret) {
- 		if (rx_features & DP_AS_SDP_FAVT_PAYLOAD_FIELDS_PARSING_SUPPORTED)
- 			return true;
- 	}
+ 		if (rx_caps[0] == HDCP_2_2_RX_CAPS_VERSION_VAL &&
+ 		    HDCP_2_2_DP_HDCP_CAPABLE(rx_caps[2])) {
 -- 
 2.47.3
 
