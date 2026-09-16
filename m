@@ -4,27 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EFE2C982C1
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 23:38:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E39EBC982CC
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 23:42:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 743B110E13A;
-	Wed, 16 Sep 2026 23:38:35 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A957D10E13A;
- Wed, 16 Sep 2026 23:38:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7505609238618485492=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D57110E124;
+	Wed, 16 Sep 2026 23:42:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TEq5yEf9";
+	dkim-atps=neutral
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2DD910E124
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 23:42:55 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 10991601EF;
+ Wed, 16 Sep 2026 23:42:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB0A11F000FF;
+ Wed, 16 Sep 2026 23:42:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1789602174;
+ bh=Z9yDXwI5ydmA4ym/FNCfbHBqqJDUDy+4c2vPOdnkJGE=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=TEq5yEf9TqA23knNC7EEgxgTlpv+F2vnidd9P2gEJbDBk/Ea2luw2Im8jb7nlH8wT
+ 7GPECumOi2qlkI5mWtmA65nyiJFwoOre8GGGG1iPXaZVkGVuzOG57dOr6/fjkbdlR0
+ d0POt0+T/j9tGLKn2qdoDf60KYz6T0aL2PWfnMtppzUf7i1xbxDSNfNshmNeNF5f3g
+ EN3B02ghl4AxGU/OsIwazxKa0ftZhmujR1rqtr5H1UvfqF/f8xF94tuZBtmK6BoehY
+ cDyqjN5ZyI4G4suvN5d6yAcyAUAaSbtbdplIGwQedLKRseJZggPR2mHR/RK4vk+EYy
+ GPV+K4Cg16zLA==
+From: Sasha Levin <sashal@kernel.org>
+To: stable@vger.kernel.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 6.12.y] drm/xe: Flush LSC untyped L1 dataport cache after
+ rcs/ccs batches
+Date: Wed, 16 Sep 2026 19:42:52 -0400
+Message-ID: <20260916234252.3300600-1-sashal@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <2026091604-exterior-freestyle-24d9@gregkh>
+References: <2026091604-exterior-freestyle-24d9@gregkh>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Add_simple_KL?=
- =?utf-8?q?V_decoder_helpers?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 16 Sep 2026 23:38:33 -0000
-Message-ID: <178960191368.175372.7848381312864864542@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260916215827.13488-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20260916215827.13488-1-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +58,121 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7505609238618485492==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-== Series Details ==
+[ Upstream commit f5fcf7e638b904397ec0f66d3ea6766ef0cfe25b ]
 
-Series: drm/xe/guc: Add simple KLV decoder helpers
-URL   : https://patchwork.freedesktop.org/series/174370/
-State : success
+emit_render_cache_flush() sets PIPE_CONTROL0_HDC_PIPELINE_FLUSH to
+flush the L2/HDC data cache before fence signalling, but it never
+requests a flush of the LSC untyped L1 data cache via the 'Untyped
+Data-Port Cache Flush Enable' bit in PIPE_CONTROL DWord0[11].
 
-== Summary ==
+Per the Bspec, in 3D pipeline mode HDC Pipeline Flush is documented to
+also flush/invalidate the untyped L1 cache, but only depending on how
+HDC_CHICKEN0[13:11] is programmed. Starting with MTL, this coupling
+between HDC Pipeline Flush and the untyped L1 cache flush no longer
+holds in practice, regardless of how HDC_CHICKEN0 is programmed, so
+relying on it is not safe on newer platforms such as BMG. Mesa's Vulkan
+driver (anv) has been assuming the kernel flushes both caches between
+submissions, and hit user-visible corruption in apps such as Llama.cpp
+because of this gap; it now works around it by flushing both caches
+again from userspace at the end of every command buffer.
 
-CI Bug Log - changes from xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5_BAT -> xe-pw-174370v1_BAT
-====================================================
+Correctness between submissions on the same queue is userspace's
+responsibility and belongs in Mesa, not the kernel. However, for
+security we must ensure stale data can't leak through the untyped L1
+dataport cache once memory is reclaimed or evicted, which requires the
+KMD to flush it before releasing memory for reuse.
 
-Summary
--------
+Prior to MTL, HDC_CHICKEN0 could be programmed (as already done for
+DG2 via Wa_22010960976/Wa_14013347512) to reliably keep HDC Pipeline
+Flush coupled to the untyped L1 cache flush, so those platforms are
+unaffected. Mesa's own anv driver found that on MTL the HW
+disconnected the two independently of how HDC_CHICKEN0 is programmed,
+and could not bring the old behavior back even by writing the register
+by hand; see Mesa commit 7c2ff46a4fc3 ("anv: don't prevent L1 untyped
+cache flush in 3D mode"). The kernel can't reliably request the flush
+from the CS on MTL either, so restrict the new PIPE_CONTROL bit to
+GRAPHICS_VERx100 >= 2000 (Xe2 and later), where it can be relied on.
 
-  **SUCCESS**
+Explicitly set PIPE_CONTROL0_UNTYPED_DATAPORT_CACHE_FLUSH together
+with PIPE_CONTROL0_HDC_PIPELINE_FLUSH in emit_render_cache_flush() on
+Xe2 and later, so the L1 data cache is known clean before memory is
+released for reuse, without depending on undocumented
+platform-specific HDC_CHICKEN0 behavior.
 
-  No regressions found.
+Bspec: 56551
+Link: https://gitlab.freedesktop.org/mesa/mesa/-/commit/7c2ff46a4fc3e537573ac9503057e0cd29b6fff3
+Fixes: 9f8f93bee3ef ("drm/xe: Emit a render cache flush after each rcs/ccs batch")
+Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/8909
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v6.8+
+Assisted-by: GitHub_Copilot:claude-sonnet-5
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Link: https://patch.msgid.link/20260903114552.48634-1-thomas.hellstrom@linux.intel.com
+(cherry picked from commit 434514b6fe731e873808297c268fc52cdf4a1ce6)
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+[ replaced the inline HDC flush argument to emit_pipe_control() with a new flags0 variable. ]
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ .../gpu/drm/xe/instructions/xe_gpu_commands.h    |  1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c                 | 16 ++++++++++++++--
+ 2 files changed, 15 insertions(+), 2 deletions(-)
 
-  
+diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+index a255946b6f77e..b4fe9aa4e2347 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+@@ -41,6 +41,7 @@
+ 
+ #define GFX_OP_PIPE_CONTROL(len)	((0x3<<29)|(0x3<<27)|(0x2<<24)|((len)-2))
+ 
++#define	  PIPE_CONTROL0_UNTYPED_DATAPORT_CACHE_FLUSH	BIT(11)	/* gen12 */
+ #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
+ 
+ #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index c9e8969f99fc7..50ab1e97ca262 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -174,9 +174,21 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
+ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
+ {
+ 	struct xe_gt *gt = job->q->gt;
++	struct xe_device *xe = gt_to_xe(gt);
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+-	u32 flags;
++	u32 flags0, flags;
+ 
++	flags0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
++	/*
++	 * Prior to MTL, HDC Pipeline Flush reliably also flushes the LSC
++	 * untyped L1 dataport cache, provided HDC_CHICKEN0 is programmed
++	 * correctly. Starting with MTL that coupling no longer holds
++	 * regardless of how HDC_CHICKEN0 is programmed, but explicitly
++	 * requesting the flush via PIPE_CONTROL is itself only reliable
++	 * from Xe2 onward, so only gate it in on Xe2+.
++	 */
++	if (GRAPHICS_VERx100(xe) >= 2000)
++		flags0 |= PIPE_CONTROL0_UNTYPED_DATAPORT_CACHE_FLUSH;
+ 	flags = (PIPE_CONTROL_CS_STALL |
+ 		 PIPE_CONTROL_TILE_CACHE_FLUSH |
+ 		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+@@ -192,7 +204,7 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
+ 	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
+ 		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
+ 
+-	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
++	return emit_pipe_control(dw, i, flags0, flags, 0, 0);
+ }
+ 
+ static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
+-- 
+2.53.0
 
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-174370v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-ptl-2:          [PASS][1] -> [FAIL][2] ([Intel XE#9115])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5/bat-ptl-2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174370v1/bat-ptl-2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
-
-
-Build changes
--------------
-
-  * Linux: xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5 -> xe-pw-174370v1
-
-  IGT_9099: 9099
-  xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5: bb38af66c2f21340a7c081afbb7ace249357fbb5
-  xe-pw-174370v1: 174370v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174370v1/index.html
-
---===============7505609238618485492==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Add simple KLV decoder helpers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174370/">https://patchwork.freedesktop.org/series/174370/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174370v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174370v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5_BAT -&gt; xe-pw-174370v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-174370v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174370v1/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5 -&gt; xe-pw-174370v1</li>
-</ul>
-<p>IGT_9099: 9099<br />
-  xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5: bb38af66c2f21340a7c081afbb7ace249357fbb5<br />
-  xe-pw-174370v1: 174370v1</p>
-
-</body>
-</html>
-
---===============7505609238618485492==--
