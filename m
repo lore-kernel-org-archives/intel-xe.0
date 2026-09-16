@@ -4,51 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73C74C88E5C
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 07:26:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1C8FC88E77
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 07:26:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 059B310E490;
-	Wed, 16 Sep 2026 07:26:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 737EC10E48F;
+	Wed, 16 Sep 2026 07:26:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kait2en.org header.i=@kait2en.org header.b="f7Q+BZjk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kjCUc+sk";
 	dkim-atps=neutral
-Received: from sirius.syn-flut.de (sirius.syn-flut.de [94.125.25.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D07FD10E2A3;
- Wed, 16 Sep 2026 07:26:06 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 267B01404C8; Wed, 16 Sep 2026 09:26:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kait2en.org; s=dkim;
- t=1789543564; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:in-reply-to:references;
- bh=EsAqUXY4tMhppdKKUvubXsCsphTk/cJ4fbpDm8hcivg=;
- b=f7Q+BZjk0up4XFHiC2rxjW0G8xgr6+qgQLxwKA9Uz9EaPnX0VivPC9tqwPTYDNUkGCg10r
- mx+TR7/MPwDvOrL2/UwtFl8WUyNYWSAJEdIoXoZjLXfgQhhVD2PNCpHoSWIp5Mm9G6ZoV4
- Qg/fbsYHFRTWUAKFO1k1e2lWdwZT0/b0Xh544jHH+3NQZUBvpUp9F2lqF2oYlb2r9A/5sR
- I4G2ACp2MBfPLGmn9PxL735e+czu7DyBqgW+vy2cLyhXp0wfJxJcIHm2ydWX1NIvDxNjEX
- UQQhjsJLiY/5h1U/LkBsc6Ws9kUVl5/oWxvcQkl0cs96a2csjFtUproSB3KZVA==
-From: Alexander Fischer <alexander.fischer@kait2en.org>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Lukas Wunner <lukas@wunner.de>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- =?UTF-8?q?Andr=C3=A9=20Eikmeyer?= <andre.eikmeyer@kait2en.org>,
- Yossef Osman <yossef.osman@proton.me>,
- Alexander Fischer <alexander.fischer@kait2en.org>
-Subject: [PATCH v3] drm/i915/psr: enable PSR on Apple T2 eDP panels
-Date: Wed, 16 Sep 2026 09:25:58 +0200
-Message-ID: <20260916072558.147343-1-alexander.fischer@kait2en.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260907083753.41393-1-alexander.fischer@kait2en.org>
-References: <20260907083753.41393-1-alexander.fischer@kait2en.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 115C010E48F;
+ Wed, 16 Sep 2026 07:26:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789543585; x=1821079585;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=kC65slVluORbV0jyQyp6DxGmvA1yF90ZT7xXWIZ7QWo=;
+ b=kjCUc+skq6u95oCzsDmXz1+ulvhh7N9FlV60mXMpOrXWWo8T8tugAyGi
+ cXGI67AnvQKmryx7ChQWu3fwYRAQ4aur8Fsd+ODYr+n1wbL529np+xzGy
+ z2D2tdY5xSKoQdtRP1JdWQchpGZHsK3ydMLNLir8SDY3FPVrYXdGWtNH4
+ +gnwhLCXs1KJVwpa3XZo0/VOy5dr5hMa/8V7QZo0u6eMz1R/PzE/K2Sx/
+ PANGxfDjCvVIl+4XbTmTdTEYPdGZRY7/mkBIWmECgWAbYHsfCvxuv88nn
+ UkXTx7n4+rJndvsLeJL78f+R9sjfqpHlCqeI7UfyKM9Un5j2n1hjpKPDu w==;
+X-CSE-ConnectionGUID: eOt3FyoMSyy24VQQF3JlNw==
+X-CSE-MsgGUID: UmfoYPyVRPOqTkbzjj09QA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="93786408"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="93786408"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2026 00:26:24 -0700
+X-CSE-ConnectionGUID: 6eSLNF8iQImz925g4LXZZg==
+X-CSE-MsgGUID: 9Gm+npnsQcqYHR0U72wM8g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="303143486"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.147])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2026 00:26:22 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, ankit.k.nautiyal@intel.com
+Subject: Re: [PATCH v2] drm/i915/display: Add command line param for DC balance
+In-Reply-To: <20260915040015.2451786-1-mitulkumar.ajitkumar.golani@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260915040015.2451786-1-mitulkumar.ajitkumar.golani@intel.com>
+Date: Wed, 16 Sep 2026 10:26:20 +0300
+Message-ID: <cc91cacab48c7134647a12da0bfb8c3832e2fc5b@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,197 +69,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Commit 1035f4a65f58 ("drm/i915: Disable PSR in Apple panels")
-disabled PSR on all Apple sinks until i915 gained the required panel
-handling.
+On Tue, 15 Sep 2026, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> wrote:
+> Add an 'enable_dc_balance' display module parameter, disabled by
+> default, so the feature can be explicitly opted in at driver
+> initialization on configurations where it is known to be beneficial,
+> while preserving existing behaviour everywhere else.
+> intel_vrr_dc_balance_compute_config() honours the parameter, so no
+> recompilation is needed to try the feature.
 
-An AUX trace on a MacBookPro16,2 running macOS 15.7.7 shows the
-following writes when the panel is powered on:
+How does this preserve existing behaviour? This disables DC balance by
+default. Why?
 
-  DPCD 0x321 = 0x3c
-  DPCD 0x4d2 = 0x01
-  DPCD 0x4d1 = 0x03
-  DPCD 0x170 = 0x01 (DP_PSR_ENABLE without CRC verification)
+What are you trying to do? What is the goal?
 
-Five seconds later, a write of 0x01 to DPCD 0x4d4 occurs between the
-BanksiaTcon FIFOEnter() and SRDEnter() events. This register is the
-vendor trigger for entering self refresh.
+We shouldn't be adding module parameters to begin with, and the *only*
+reason for adding them is *debugging* only. Nothing else.
 
-With the three setup writes, CRC verification disabled, and the 0x4d4
-trigger added to i915's existing PSR enable sequence, the tested panels
-enter PSR1.
+"feature can be explicitly opted in" is *not* what we use module
+parameters for at all.
 
-Implement this handling as an i915 DPCD quirk. Match the Apple PCI
-subsystem vendor in the quirk table, and limit the quirk to Apple-OUI
-eDP sinks on systems containing an Apple T2. All other Apple sinks
-retain the existing NO_PSR quirk. Override the VBT PSR flag for
-matching panels because Apple leaves it clear.
 
-The same sink-side protocol may also be present on T1 and Apple silicon
-systems, but leave those systems unchanged until it has been tested
-with their display drivers.
+BR,
+Jani.
 
-Tested on MacBookPro15,1, MacBookPro15,2, MacBookPro16,1,
-MacBookPro16,2 and MacBookAir9,1, covering four panel device IDs. All
-five enter PSR1 after boot and across suspend/resume, report
-DP_PSR_SINK_ACTIVE_SINK_SYNCED, and show no sink errors.
 
-Tested-by: André Eikmeyer <andre.eikmeyer@kait2en.org>
-Tested-by: Yossef Osman <yossef.osman@proton.me>
-Signed-off-by: Alexander Fischer <alexander.fischer@kait2en.org>
----
-Changes in v3:
-- Match the Apple PCI subsystem vendor in the DPCD quirk table
-  (Lukas Wunner)
+>
+> --v2:
+> - Make enable_dc_balance a bool and keep it disabled by default; fix the
+>   parameter type/value mismatch and correct the description (Chaitanya
+>   Kumar Borah, Jani Nikula)
+> - Explain in the commit message why the feature is gated and why a
+>   module parameter is used (Jani Nikula)
+>
+> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_params.c | 4 ++++
+>  drivers/gpu/drm/i915/display/intel_display_params.h | 1 +
+>  drivers/gpu/drm/i915/display/intel_vrr.c            | 4 +++-
+>  3 files changed, 8 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
+> index 2aed110c5b090..ca0ef466bb103 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
+> @@ -120,6 +120,10 @@ intel_display_param_named_unsafe(enable_psr, int, 0400,
+>  	"(0=disabled, 1=enable up to PSR1, 2=enable up to PSR2) "
+>  	"Default: -1 (use per-chip default)");
+>  
+> +intel_display_param_named_unsafe(enable_dc_balance, bool, 0400,
+> +	"Enable VRR DC balance (0=disabled, 1=enabled). "
+> +	"Default: 0 (disabled)");
+> +
+>  intel_display_param_named_unsafe(enable_panel_replay, int, 0400,
+>  	"Enable Panel Replay (0=disabled, 1=enabled). Default: -1 (use per-chip default)");
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
+> index ba01aeaf89440..5c5a1a1358c32 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
+> @@ -46,6 +46,7 @@ struct drm_printer;
+>  	param(bool, enable_dp_mst, true, 0600) \
+>  	param(int, enable_fbc, -1, 0600) \
+>  	param(int, enable_psr, -1, 0600) \
+> +	param(bool, enable_dc_balance, false, 0600) \
+>  	param(int, enable_panel_replay, -1, 0600) \
+>  	param(bool, psr_safest_params, false, 0400) \
+>  	param(bool, enable_psr2_sel_fetch, true, 0400) \
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index e36db11744405..1698c54e258b4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -439,10 +439,12 @@ static bool intel_vrr_dc_balance_possible(const struct intel_crtc_state *crtc_st
+>  static void
+>  intel_vrr_dc_balance_compute_config(struct intel_crtc_state *crtc_state)
+>  {
+> +	struct intel_display *display = to_intel_display(crtc_state);
+>  	int guardband_usec, adjustment_usec;
+>  	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+>  
+> -	if (!intel_vrr_dc_balance_possible(crtc_state) || !crtc_state->vrr.enable)
+> +	if (!intel_vrr_dc_balance_possible(crtc_state) ||
+> +	    !crtc_state->vrr.enable || !display->params.enable_dc_balance)
+>  		return;
+>  
+>  	crtc_state->vrr.dc_balance.vmax = crtc_state->vrr.vmax;
 
-Changes in v2:
-- Use pci_dev_present() instead of pci_get_device()/pci_dev_put(),
-  which also drops the local PCI_DEVICE_ID define (Lukas Wunner)
----
- drivers/gpu/drm/i915/display/intel_psr.c    | 28 +++++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_quirks.c | 28 +++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
- 3 files changed, 55 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index f490beb66..4e902aa76 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -228,6 +228,9 @@ static bool psr_global_enabled(struct intel_dp *intel_dp)
- 
- 	switch (intel_dp->psr.debug & I915_PSR_DEBUG_MODE_MASK) {
- 	case I915_PSR_DEBUG_DEFAULT:
-+		if (intel_has_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE))
-+			return true;
-+
- 		return intel_dp_is_edp(intel_dp) ?
- 			connector->panel.vbt.psr.enable : true;
- 	case I915_PSR_DEBUG_DISABLE:
-@@ -663,7 +666,8 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *co
- 	drm_dbg_kms(display->drm, "eDP panel supports PSR version %x\n",
- 		    connector->dp.psr_caps.dpcd[0]);
- 
--	if (drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_NO_PSR)) {
-+	if (drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_NO_PSR) &&
-+	    !intel_has_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE)) {
- 		drm_dbg_kms(display->drm,
- 			    "PSR support not currently available for this panel\n");
- 		return;
-@@ -803,19 +807,36 @@ static void _panel_replay_enable_sink(struct intel_dp *intel_dp,
- 	drm_dp_dpcd_writeb(&intel_dp->aux, PANEL_REPLAY_CONFIG3, panel_replay_config_3);
- }
- 
-+/* Undocumented Apple eDP sink registers */
-+#define APPLE_PSR_SETUP_1	0x321
-+#define APPLE_PSR_SETUP_2	0x4d2
-+#define APPLE_PSR_SETUP_3	0x4d1
-+#define APPLE_PSR_TRIGGER	0x4d4
-+
-+static void psr_apple_prepare_sink(struct intel_dp *intel_dp)
-+{
-+	drm_dp_dpcd_writeb(&intel_dp->aux, APPLE_PSR_SETUP_1, 0x3c);
-+	drm_dp_dpcd_writeb(&intel_dp->aux, APPLE_PSR_SETUP_2, 0x01);
-+	drm_dp_dpcd_writeb(&intel_dp->aux, APPLE_PSR_SETUP_3, 0x03);
-+}
-+
- static void _psr_enable_sink(struct intel_dp *intel_dp,
- 			     const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-+	bool apple_psr = intel_has_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE);
- 	u8 val = 0;
- 
-+	if (apple_psr)
-+		psr_apple_prepare_sink(intel_dp);
-+
- 	if (crtc_state->has_sel_update) {
- 		val |= DP_PSR_ENABLE_PSR2 | DP_PSR_IRQ_HPD_WITH_CRC_ERRORS;
- 	} else {
- 		if (intel_dp->psr.link_standby)
- 			val |= DP_PSR_MAIN_LINK_ACTIVE;
- 
--		if (DISPLAY_VER(display) >= 8)
-+		if (DISPLAY_VER(display) >= 8 && !apple_psr)
- 			val |= DP_PSR_CRC_VERIFICATION;
- 	}
- 
-@@ -831,6 +852,9 @@ static void _psr_enable_sink(struct intel_dp *intel_dp,
- 
- 	val |= DP_PSR_ENABLE;
- 	drm_dp_dpcd_writeb(&intel_dp->aux, DP_PSR_EN_CFG, val);
-+
-+	if (apple_psr)
-+		drm_dp_dpcd_writeb(&intel_dp->aux, APPLE_PSR_TRIGGER, 0x01);
- }
- 
- static void intel_psr_enable_sink(struct intel_dp *intel_dp,
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index 33245f44c..69127f41b 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -9,6 +9,7 @@
- 
- #include "intel_display_core.h"
- #include "intel_display_types.h"
-+#include "intel_dp.h"
- #include "intel_quirks.h"
- 
- static void intel_set_quirk(struct intel_display *display, enum intel_quirk_id quirk)
-@@ -100,6 +101,25 @@ static void quirk_disable_psr2(struct intel_display *display)
- 	drm_info(display->drm, "PSR2 support not currently available for this setup, applying disable PSR2 quirk\n");
- }
- 
-+static void quirk_apple_psr_handshake(struct intel_dp *intel_dp)
-+{
-+	static const struct pci_device_id t2_ids[] = {
-+		/* Apple T2 */
-+		{PCI_DEVICE(PCI_VENDOR_ID_APPLE, 0x1801)},
-+		{}
-+	};
-+	struct intel_display *display = to_intel_display(intel_dp);
-+
-+	if (!intel_dp_is_edp(intel_dp))
-+		return;
-+
-+	if (!pci_dev_present(t2_ids))
-+		return;
-+
-+	intel_set_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE);
-+	drm_info(display->drm, "Applying Apple PSR handshake quirk\n");
-+}
-+
- struct intel_quirk {
- 	int device;
- 	int subsystem_vendor;
-@@ -286,6 +306,14 @@ static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
- 		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
- 		.hook = quirk_disable_edp_panel_replay,
- 	},
-+	/* Apple T2 eDP panels */
-+	{
-+		.device = DEVICE_ID_ANY,
-+		.subsystem_vendor = PCI_VENDOR_ID_APPLE,
-+		.subsystem_device = PCI_ANY_ID,
-+		.sink_oui = SINK_OUI(0x00, 0x10, 0xfa),
-+		.hook = quirk_apple_psr_handshake,
-+	},
- };
- 
- void intel_init_quirks(struct intel_display *display)
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
-index 970a4fe52..7b863d408 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.h
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-@@ -23,6 +23,7 @@ enum intel_quirk_id {
- 	QUIRK_EDP_LIMIT_RATE_HBR2,
- 	QUIRK_DISABLE_EDP_PANEL_REPLAY,
- 	QUIRK_DISABLE_PSR2,
-+	QUIRK_APPLE_PSR_HANDSHAKE,
- };
- 
- void intel_init_quirks(struct intel_display *display);
-
-base-commit: 496ff8213a2d2e1e5b1c8efe8b55e1dcdc3e3f8f
 -- 
-2.55.0
-
+Jani Nikula, Intel
