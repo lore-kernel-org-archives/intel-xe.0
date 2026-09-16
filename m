@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A707C982D1
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 21:58:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69A69C982C9
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 22:00:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6CB310E367;
-	Wed, 16 Sep 2026 21:58:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dmcJgOGS";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9032810E2E5
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 21:58:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789595929; x=1821131929;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rcdvg4Xr9Iw4DWJ6a06iFb/j8j2gfTtGY2/0RxnX76o=;
- b=dmcJgOGSF98p09z1FTloJyto0QZVq+bcKUW0nfCRZrcdvWKrhLj2QvRT
- 5WAfklCuQEY9QU3oI3F9VL/zZLRlL93Jpqs2TIFWsv6zQDWOYktWmlgl5
- 7JIl6udvqILbLywrc4HIXZeCkGQSIfnJsKs4UTe9Vq2EZbN0Q9DPDaCVK
- rbZq7DS3ITJbx3X6UBYyINLLb/5jk45K0dMRJr7yN67dMvjiCGYkIn6nb
- BMzigcGB7b/WjXiySHO+ztRSpCfwpWq1/dykydq+90lLISsGKTxkHNaw5
- SW+31E9bh1L8wvfz7bGJIoiJaG3mK40yXfgD6NzjI60yk9kxJuoTTIejE g==;
-X-CSE-ConnectionGUID: pNaPOwR4RXGxN4wWgQVDvw==
-X-CSE-MsgGUID: mKGGSGyMSkGV4I17BoYFhg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="101325130"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="101325130"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2026 14:58:49 -0700
-X-CSE-ConnectionGUID: nIbj6r6dSvmTCBUvg9Iiwg==
-X-CSE-MsgGUID: b8TAPnYOS9WhY/QJG6CY6A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="267247880"
-Received: from awalabdu-mobl.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.245.64.211])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2026 14:58:47 -0700
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 3/3] drm/xe/pf: Use KLV decode helpers to parse migration
- packet
-Date: Wed, 16 Sep 2026 23:58:27 +0200
-Message-ID: <20260916215827.13488-4-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260916215827.13488-1-michal.wajdeczko@intel.com>
-References: <20260916215827.13488-1-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B6BC10E335;
+	Wed, 16 Sep 2026 22:00:37 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5932610E28A;
+ Wed, 16 Sep 2026 22:00:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4284449153637532843=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Crescent_Island_PMT_support?=
+ =?utf-8?q?_=28rev11=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 16 Sep 2026 22:00:35 -0000
+Message-ID: <178959603535.175180.17875466157756149149@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260916201139.2374531-22-michael.j.ruhl@intel.com>
+In-Reply-To: <20260916201139.2374531-22-michael.j.ruhl@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,71 +36,159 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Start using recently added KLV helpers for parsing migration
-packet to properly detect any malformed KLV formats.
+--===============4284449153637532843==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_sriov_packet.c | 31 ++++++++++++++++++++++------
- 1 file changed, 25 insertions(+), 6 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_packet.c b/drivers/gpu/drm/xe/xe_sriov_packet.c
-index e9ae9c9744ea..f50dc4e3a611 100644
---- a/drivers/gpu/drm/xe/xe_sriov_packet.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_packet.c
-@@ -394,24 +394,43 @@ static int pf_descriptor_init(struct xe_device *xe, unsigned int vfid)
- static int descriptor_decoder(void *arg, u16 key, u16 len, const u32 *value)
- {
- 	struct xe_device *xe = arg;
-+	int err;
- 
- 	xe_sriov_dbg_verbose(xe, "found KLV %#x %s\n", key, xe_guc_klv_key_to_string(key));
- 
- 	switch (key) {
--	case MIGRATION_KLV_DEVICE_DEVID_KEY:
--		if (*value != xe->info.devid) {
-+	case MIGRATION_KLV_DEVICE_DEVID_KEY: {
-+		u16 devid;
-+
-+		err = xe_guc_klv_decode_u16(value, len, &devid);
-+		if (err) {
-+			xe_sriov_warn(xe, "Aborting migration, corrupted key %#x (%pe)\n",
-+				      key, ERR_PTR(err));
-+			return err;
-+		}
-+		if (devid != xe->info.devid) {
- 			xe_sriov_warn(xe, "Aborting migration, devid mismatch %#06x!=%#06x\n",
--				      *value, xe->info.devid);
-+				      devid, xe->info.devid);
- 			return -ENODEV;
- 		}
- 		break;
--	case MIGRATION_KLV_DEVICE_REVID_KEY:
--		if (*value != xe->info.revid) {
-+	}
-+	case MIGRATION_KLV_DEVICE_REVID_KEY: {
-+		u16 revid;
-+
-+		err = xe_guc_klv_decode_u16(value, len, &revid);
-+		if (err) {
-+			xe_sriov_warn(xe, "Aborting migration, corrupted key %#x (%pe)\n",
-+				      key, ERR_PTR(err));
-+			return err;
-+		}
-+		if (revid != xe->info.revid) {
- 			xe_sriov_warn(xe, "Aborting migration, revid mismatch %#06x!=%#06x\n",
--				      *value, xe->info.revid);
-+				      revid, xe->info.revid);
- 			return -ENODEV;
- 		}
- 		break;
-+	}
- 	default:
- 		if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
- 			struct drm_printer p = xe_dbg_printer(xe);
--- 
-2.47.1
+Series: Crescent Island PMT support (rev11)
+URL   : https://patchwork.freedesktop.org/series/160717/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5_BAT -> xe-pw-160717v11_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-160717v11_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-160717v11_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-160717v11_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_query@multigpu-query-cs-cycles:
+    - bat-bmg-3:          [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5/bat-bmg-3/igt@xe_query@multigpu-query-cs-cycles.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160717v11/bat-bmg-3/igt@xe_query@multigpu-query-cs-cycles.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-160717v11_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@engine:
+    - bat-wcl-2:          [PASS][3] -> [FAIL][4] ([Intel XE#9103])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5/bat-wcl-2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160717v11/bat-wcl-2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#9103]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9103
+
+
+Build changes
+-------------
+
+  * Linux: xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5 -> xe-pw-160717v11
+
+  IGT_9099: 9099
+  xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5: bb38af66c2f21340a7c081afbb7ace249357fbb5
+  xe-pw-160717v11: 160717v11
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160717v11/index.html
+
+--===============4284449153637532843==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Crescent Island PMT support (rev11)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160717/">https://patchwork.freedesktop.org/series/160717/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160717v11/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160717v11/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5_BAT -&gt; xe-pw-160717v11_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-160717v11_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-160717v11_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-160717v11_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_query@multigpu-query-cs-cycles:<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5/bat-bmg-3/igt@xe_query@multigpu-query-cs-cycles.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160717v11/bat-bmg-3/igt@xe_query@multigpu-query-cs-cycles.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-160717v11_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5/bat-wcl-2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160717v11/bat-wcl-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9103">Intel XE#9103</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5 -&gt; xe-pw-160717v11</li>
+</ul>
+<p>IGT_9099: 9099<br />
+  xe-5759-bb38af66c2f21340a7c081afbb7ace249357fbb5: bb38af66c2f21340a7c081afbb7ace249357fbb5<br />
+  xe-pw-160717v11: 160717v11</p>
+
+</body>
+</html>
+
+--===============4284449153637532843==--
