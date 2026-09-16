@@ -4,42 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2713C88E7F
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 19:24:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6255C982C1
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 19:56:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 729CC10E164;
-	Wed, 16 Sep 2026 19:24:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B2FE10E1A1;
+	Wed, 16 Sep 2026 19:56:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="QnG9AkPV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F2+g2N0j";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4AFF10E164
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 19:24:04 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id C38026022B;
- Wed, 16 Sep 2026 19:24:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50EEE1F000FF;
- Wed, 16 Sep 2026 19:24:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789586643;
- bh=m9CUOVvSJjJlCiX1FX2CZLal1WU0kSRC8eUDQWn8A04=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=QnG9AkPV7fnmNHqx+75kTpZjryB9uGKXVS6psBsEUhl1k1nzo6+9J/OE3NLOvKveX
- kir1c7g3vVVSIdfi9ET7c+qSW7b9MI6e2p3Zf3Aa6K4q5vEXZjwlmlhDDZfvFawxGP
- U97zWG+dBsBQ+YWAnTZZLIStNiJyFMTe7FCaCHvJsUfRv5hUNf4Fc+vIw0z6djC02h
- k84IUbq2lilSnorr+xcGaXUhuFNEbE5jTqOVxYvzpBqvzDZ70dLpaD9J9KFsdes3eu
- t60Ee3NI0qZfzDm+MWek0Ocr2+Hp0A9eDh41xqaZmO9HdN5lVuzq8ReRQFYFCWG6rs
- QFYgJLtqziGJA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6] drm/xe: Poll GT for C6 before D3
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260916190614.3047807-1-vinay.belgaumkar@intel.com>
-References: <20260916190614.3047807-1-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 16 Sep 2026 19:24:02 +0000
-Message-Id: <20260916192403.50EEE1F000FF@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51B0E10E1A1;
+ Wed, 16 Sep 2026 19:56:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789588583; x=1821124583;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TgrCqqq59XWye+6Tt8w3ltDzujxorAMPOkoP/8AhOmM=;
+ b=F2+g2N0jM7Ymawem6RSpo1NH+NTIX8PUkFU1Q/ZptP/sS/C1u78obwdg
+ QOajfDvEE+dGciMXMP4S13xxtsNKXd5jtKo0wDbkm9CXYEZgEZoigO0Pi
+ Vpm13VbobuBsvrpTIYXhdeLX3lGSs+RH+2KWuPu/+kVnPsbJObe6ouaFQ
+ U8tOUgcNMDdBOJ5VM8SVDAlaZXzekaNDMumB5PBMObs41CNTdmixQ7mqI
+ TB43bLvPwFrrJa4/zYL94dPPaCazXaKS5GSECFMv14+Ir8v+38lz9MVA2
+ 0b/wojgePAiEJG8Z5uAXHE2wPhSGVHbC/remxrr39ORmOdtsrWf2rpm7N w==;
+X-CSE-ConnectionGUID: Jm9qWkcdQkmBRwwNC+FrrA==
+X-CSE-MsgGUID: KvK5+PyCTzypJQkkXmb0sg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="112743765"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="112743765"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2026 12:56:22 -0700
+X-CSE-ConnectionGUID: k4/PFWpqRWS0PrmcvBhCaA==
+X-CSE-MsgGUID: eJgWv+rVQHWqkyzpfCuFVg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="270805709"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO
+ vgovind2-mobl4.intel.com) ([10.245.251.38])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2026 12:56:21 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com
+Subject: [RESEND PATCH] drm/i915/fbc: remove uint16 from supported fbc formats
+ in xe3plpd
+Date: Wed, 16 Sep 2026 22:56:02 +0300
+Message-ID: <20260916195602.939242-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,71 +66,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] drm/xe: C6 poll after xe_pm_runtime_suspend() always fails breakin=
-g D3
-- [Medium] pm: device stuck in RPM_ACTIVE when C6 check fails
---
+As UINT16 pixel formats are not listed as supported formats in any
+of the display versions so far, there is no point is having these
+formats listed as supported for FBC. So remove the UINT16 formats
+from the supported formats for FBC.
 
-commit d48ea91e20a44679b212e2b189bddfe7fa5220c9
-Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+v2: removed an unused variable
 
-drm/xe: Poll GT for C6 before D3
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fbc.c | 12 +-----------
+ 1 file changed, 1 insertion(+), 11 deletions(-)
 
-This commit ensures the GT is in C6 before transitioning to D3 during
-runtime suspend, avoiding scenarios where GT is accessed after D3 is
-programmed. It aborts the suspend by returning an error if the GT
-fails to enter C6.
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index f61b4a218d6e..5694d20773f8 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -1196,23 +1196,13 @@ xe3p_lpd_fbc_fp16_format_is_valid(const struct intel_plane_state *plane_state)
+ 
+ static bool xe3p_lpd_fbc_pixel_format_is_valid(const struct intel_plane_state *plane_state)
+ {
+-	const struct drm_framebuffer *fb = plane_state->hw.fb;
+-
+ 	if (lnl_fbc_pixel_format_is_valid(plane_state))
+ 		return true;
+ 
+ 	if (xe3p_lpd_fbc_fp16_format_is_valid(plane_state))
+ 		return true;
+ 
+-	switch (fb->format->format) {
+-	case DRM_FORMAT_XRGB16161616:
+-	case DRM_FORMAT_XBGR16161616:
+-	case DRM_FORMAT_ARGB16161616:
+-	case DRM_FORMAT_ABGR16161616:
+-		return true;
+-	default:
+-		return false;
+-	}
++	return false;
+ }
+ 
+ bool intel_fbc_need_pixel_normalizer(const struct intel_plane_state *plane_state)
+-- 
+2.43.0
 
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 00b2b5dfb8f6c..d66d5a0339ae3 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-
-[ ... ]
-
-> @@ -1394,6 +1394,17 @@ static int xe_pci_runtime_suspend(struct device *d=
-ev)
->  	if (err)
->  		return err;
-> =20
-> +	err =3D xe_pm_wait_all_c6(xe);
-
-[Severity: High]
-Since this check happens after xe_pm_runtime_suspend(), which already
-called xe_gt_suspend() and explicitly disabled power gating (RC6), isn't
-this guaranteed to fail and cause 200ms timeouts on every suspend attempt?
-
-When the system attempts to enter D3cold runtime suspend, GuC is already
-reset and power gating is disabled by the time we reach this check, so
-the GT cannot enter C6 autonomously.
-
-> +	if (err) {
-> +		drm_dbg(&xe->drm, "Resuming - GT C6 check failed!");
-> +		ret =3D xe_pm_runtime_resume(xe);
-> +		if (ret) {
-> +			drm_err(&xe->drm, "Resume failed after suspend was canceled");
-> +			return ret;
-> +		}
-> +		return err;
-
-[Severity: Medium]
-When we return -EAGAIN to the PM core here to abort the suspend, shouldn't
-we first update the last_busy timestamp by calling
-pm_runtime_mark_last_busy(dev)?
-
-Without it, the PM core's rpm_suspend() handles -EAGAIN by aborting suspend
-but only re-arms the autosuspend timer if last_busy was updated. This causes
-the autosuspend expiration time to evaluate to the past, preventing the tim=
-er
-from being re-armed and leaving the device awake indefinitely in RPM_ACTIVE
-until another explicit PM cycle occurs.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260916190614.3047=
-807-1-vinay.belgaumkar@intel.com?part=3D1
