@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF0DDC88E77
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 09:23:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DCB3C88E5C
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 09:25:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89A5B10E0C1;
-	Wed, 16 Sep 2026 09:23:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C54110E0C1;
+	Wed, 16 Sep 2026 09:25:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EPP1bG0r";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="QZF7ZKVM";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48F5710E0C1;
- Wed, 16 Sep 2026 09:23:47 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2DB610E0C1;
+ Wed, 16 Sep 2026 09:25:23 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 178DC416F9;
- Wed, 16 Sep 2026 09:23:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8E081F00893;
- Wed, 16 Sep 2026 09:23:46 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 1FD9560A54;
+ Wed, 16 Sep 2026 09:25:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9546E1F000FF;
+ Wed, 16 Sep 2026 09:25:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789550627;
- bh=tX6y98+sbWcczxrWAeAh6CUdyAcFQQGoYSudnIn0p/g=;
+ s=k20260515; t=1789550722;
+ bh=hfIg4kxvlf3WneDuqn+WHC6Dq+QziC7tYU/8ibWKDfE=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=EPP1bG0r/SGiOaFRX/9O85psZ3Gy/XOJtK2tmbugOtFQWtT3h5KgbGmeGXdkePQXt
- vz0O99I03EzTQtDgGBHnBJDqtHWRASZIzsmZNNHbgtIu4F21006HhHVfUGSEvPQTmZ
- SaAb5g10GhGSvkANkHgHP78lgGdi2Wg0Zmef7E5Bd3S18drICHviemRMBcgenKdGqB
- BnrZoxQnmfeJDO4e1Sy5TTOTUpBA6nW4oezGLCFxyrTjqc/25f+StjigpDGgQEKsE1
- xVV5xtoYXqf91759kvu++FzSjdoWZQwAT/hg1WjvsngEddi0IAHglxgpnsX3t33tqv
- W65/DhEUN7XGw==
+ b=QZF7ZKVMHaoolndy4s1FmGO+4GSAbZHq78XteBjAilrv/gMLNIvHA5lsdxwwGN/xc
+ n561/p9jXQMEpmg0plbnP4D/JeoZi8XGndksEcX7vOwABeH668jukdmopwyZ3s+0MK
+ Ch2clD/R/vedIVNM2r+tre7L7xramcXHF2OuF3Mt8qaRGJTmjJnRGTccFaihJhHFEf
+ KKxbYAB8zm6sM02oYvLkqGOjWDN32ER8VFtmZE3Bw6F+SiMOL+LbADLPLQxSH3k0tJ
+ N0dNJ0igKJXn/wvu0Z8iA1PG5x9NXXZKdqcks4vAekNwTMN5hcbLy5s0IrfxrStk8Z
+ A2uwnDTZU0kXg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 07/10] drm/i915/display: Add bits for Wa_14021768792
- for linkm/n ratio > 10
+Subject: Re: [PATCH v3 02/10] drm/i915/dp: Limit M/N ratio for DP SST
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20260916090946.677564-8-suraj.kandpal@intel.com>
+In-Reply-To: <20260916090946.677564-3-suraj.kandpal@intel.com>
 References: <20260916090946.677564-1-suraj.kandpal@intel.com>
- <20260916090946.677564-8-suraj.kandpal@intel.com>
+ <20260916090946.677564-3-suraj.kandpal@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 16 Sep 2026 09:23:46 +0000
-Message-Id: <20260916092346.B8E081F00893@smtp.kernel.org>
+Date: Wed, 16 Sep 2026 09:25:22 +0000
+Message-Id: <20260916092522.9546E1F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,177 +56,83 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] drm/i915: CHICKEN_TRANS modified during fastset violates HW sequen=
-ce
-- [Medium] drm/i915: TGDDA bypass readout masks invalid hardware state
+- [Medium] drm/i915/dp: mode_valid allows modes that will fail atomic_check=
+ due to decoupled M/N and bandwidth checks
 --
 
-commit 0462c93350e8b8ead0d7c6de9d75c2b9a0868707
-Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: drm/i915/display: Add bits for Wa_14021768792 for linkm/n ratio > =
-10
+commit 0616c11329b8f8c5ca25700eb71cd2152a14fe54
+Author: Suraj Kandpal <suraj.kandpal@intel.com>
+Date:   Wed Sep 16 09:09:38 2026 +0000
 
-To support a Link M/N ratio between 10.0 and 15.0, for some BMG
-ultrajoiner cases we need Wa_14021768792. This commit programs the LINKM and
-LINKN registers, along with relevant bits in HDMI_EMP_DATA and CHICKEN_TRAN=
-S,
-to bypass the hardware limitation within the Timing Generator DDA (TGDDA).
+    drm/i915/dp: Limit M/N ratio for DP SST
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 6d2025e109956..2b226620de0fd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-[ ... ]
-> @@ -2738,6 +2749,26 @@ bool intel_cpu_transcoder_has_m2_n2(struct intel_d=
-isplay *display,
->  	return IS_DISPLAY_VER(display, 5, 7) || display->platform.cherryview;
->  }
-> =20
-> +static void bmg_enhanced_tgdda_write(struct intel_crtc *crtc,
-> +				     enum transcoder transcoder,
-> +				     const struct intel_link_m_n *m_n)
-> +{
-> +	struct intel_display *display =3D to_intel_display(crtc);
-> +	bool enable =3D m_n->bypass_m_n_ratio_limit && m_n->link_n;
-> +	u32 link_m_frac =3D enable ? m_n->link_m % m_n->link_n : 0;
-> +
-> +	if (!intel_display_wa(display, INTEL_DISPLAY_WA_14021768792))
-> +		return;
-> +
-> +	intel_de_rmw(display, HDMI_EMP_DATA(display, transcoder),
-> +		     HDMI_EMP_DATA_LINK_M_FRAC_MASK,
-> +		     REG_FIELD_PREP(HDMI_EMP_DATA_LINK_M_FRAC_MASK, link_m_frac));
-> +
-> +	intel_de_rmw(display, CHICKEN_TRANS(display, transcoder),
-> +		     DP_ENHANCED_TGDDA_ENABLE,
-> +		     enable ? DP_ENHANCED_TGDDA_ENABLE : 0);
-
-[Severity: High]
-When reached via intel_update_crtc() during a fastset, can these
-non-double-buffered registers be modified while the transcoder is already
-enabled?
-
-If userspace requests a modeset that lowers the pixel clock on an eDP panel
-(which supports seamless M/N updates) such that the M/N ratio drops below t=
+This commit restricts DisplayPort link configurations to those satisfying t=
 he
-workaround threshold, the new state will have bypass_m_n_ratio_limit =3D fa=
-lse.
+hardware limitation for the Link M/Link N ratio limit in the transcoder's
+timing generator DDA. The constraint is checked during link rate configurat=
+ion
+and modes failing this check are pruned in mode_valid.
 
-Because the M/N struct check is skipped when update_m_n is true:
-
-drivers/gpu/drm/i915/display/intel_display.c:intel_pipe_config_compare() {
-    ...
-		if (!fastset || !pipe_config->update_m_n)
-			PIPE_CONF_CHECK_M_N(dp_m_n);
-    ...
-}
-
-And because intel_crtc_check_fastset() leaves update_m_n true despite the
-bypass_m_n_ratio_limit mismatch:
-
-drivers/gpu/drm/i915/display/intel_display.c:intel_crtc_check_fastset() {
-    ...
-	if (intel_compare_link_m_n(&old_crtc_state->dp_m_n,
-				   &new_crtc_state->dp_m_n))
-		new_crtc_state->update_m_n =3D false;
-    ...
-}
-
-This authorizes a fastset. During the fastset, bmg_enhanced_tgdda_write() w=
-ill
-then clear the workaround bits in the live transcoder. Modifying CHICKEN_TR=
-ANS
-and HDMI_EMP_DATA while the transcoder is active violates the explicit hard=
-ware
-programming sequence. This can lead to transcoder hangs, blank screens, or
-display corruption, and is reachable by a local unprivileged user requesting
-specific modes/refresh rates on supported eDP displays.
-
-> +}
-> +
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 0cd5e6b5034cf..f6a2152c4432a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
 [ ... ]
-> @@ -3495,6 +3528,49 @@ void intel_get_m_n(struct intel_display *display,
->  	m_n->tu =3D REG_FIELD_GET(TU_SIZE_MASK, intel_de_read(display, data_m_r=
-eg)) + 1;
+> @@ -1300,6 +1329,31 @@ bool intel_dp_dotclk_valid(struct intel_display *d=
+isplay,
+>  	return target_clock <=3D effective_dotclk_limit;
 >  }
 > =20
-> +bool intel_display_can_bypass_m_n_limit(struct intel_display *display,
-> +					int m_n_ratio,
-> +					enum pipe pipe)
+> +bool intel_dp_mode_valid_m_n(struct intel_dp *intel_dp, int pixel_clock)
 > +{
-> +	if (!intel_display_wa(display, INTEL_DISPLAY_WA_14021768792))
-> +		return false;
+> +	struct intel_display *display =3D to_intel_display(intel_dp);
+> +	struct intel_dp_link_caps_order order =3D {
+> +		.key =3D INTEL_DP_LINK_CAPS_ORDER_KEY_RATE_LANE,
+> +		.dir =3D INTEL_DP_LINK_CAPS_ORDER_DIR_DESC,
+> +	};
+> +	struct intel_dp_link_config link_config;
+> +	struct intel_dp_link_caps_iter iter;
+> +	bool found =3D false;
 > +
-> +	if (m_n_ratio > 15)
-> +		return false;
+> +	intel_dp_link_caps_iter_start(&iter, intel_dp->link.caps, order,
+> +				      INTEL_DP_LINK_CAPS_FILTER_ALL);
+> +	for_each_dp_link_config(&iter, &link_config) {
+> +		if (intel_dp_can_support_m_n(display, pixel_clock, link_config.rate)) {
+> +			found =3D true;
 > +
-> +	if (pipe !=3D PIPE_A)
-> +		return false;
+> +			break;
+> +		}
+> +	}
+> +	intel_dp_link_caps_iter_end(&iter);
 > +
-> +	return true;
+> +	return found;
 > +}
-> +
-> +static void bmg_enhanced_tgdda_read(struct intel_crtc *crtc,
-> +				    enum transcoder transcoder,
-> +				    struct intel_link_m_n *m_n)
-> +{
-> +	struct intel_display *display =3D to_intel_display(crtc);
-> +	u32 link_m_frac;
-> +	int m_n_ratio;
-> +
-> +	if (!m_n->link_n)
-> +		return;
-> +
-> +	m_n_ratio =3D DIV_ROUND_UP(m_n->link_m, m_n->link_n);
-> +
-> +	if (!intel_display_can_bypass_m_n_limit(display, m_n_ratio, crtc->pipe))
-> +		return;
 
 [Severity: Medium]
-Does this early return apply software policy during hardware readout, maski=
-ng
-the fact that the hardware workaround is physically enabled on a disallowed
-pipe?
+Will this loop cause modes to falsely pass mode_valid checks but later fail
+during atomic_check?
 
-If DP_ENHANCED_TGDDA_ENABLE is erroneously left enabled on an invalid pipe
-(e.g., PIPE B) or with a corrupted fractional value, bmg_enhanced_tgdda_rea=
-d()
-returns early. The state checker compares this readout (false) against the
-computed software state (false) and incorrectly declares a match, blinding =
-the
-state checker to the actual hardware configuration. If the hardware is
-misprogrammed (e.g., by BIOS), it will not be detected and healed, potentia=
-lly
-causing display corruption or blank screens.
+Because HBR3 uses 8b/10b encoding, it has a higher symbol clock (810 MHz) t=
+han
+UHBR20 (625 MHz, 128b/132b). This means HBR3 can satisfy the M/N ratio limit
+for a higher pixel clock than UHBR20.
 
-> +
-> +	if (!(intel_de_read(display, CHICKEN_TRANS(display, transcoder)) &
-> +	      DP_ENHANCED_TGDDA_ENABLE))
-> +		return;
-> +
-> +	link_m_frac =3D REG_FIELD_GET(HDMI_EMP_DATA_LINK_M_FRAC_MASK,
-> +				    intel_de_read(display, HDMI_EMP_DATA(display, transcoder)));
-> +
-> +	if (link_m_frac =3D=3D m_n->link_m % m_n->link_n)
-> +		m_n->bypass_m_n_ratio_limit =3D true;
+If a high-resolution mode (e.g., 3.0 GHz pixel clock needing 40 Gbps) is te=
+sted,
+this function passes because HBR3 satisfies the M/N ratio. Subsequently,
+intel_dp_mode_valid_format() passes because it independently checks bandwid=
+th
+against the absolute max link rate (UHBR20).
 
-[Severity: Medium]
-Does requiring a perfect fractional match to report the enable bit mask cas=
-es
-where the workaround is enabled but incorrectly configured?
-
-If the fractional value is corrupted, bmg_enhanced_tgdda_read() refuses to =
-set
-bypass_m_n_ratio_limit =3D true, causing the same state checker mismatch is=
-sue
-described above.
-
-> +}
-> +
+However, during atomic_check, UHBR20 gets filtered out due to the M/N ratio
+limit, and HBR3 gets rejected for lacking bandwidth, causing the modeset to
+fail. Does mode_valid need to verify that the specific link rate satisfying=
+ the
+M/N ratio also provides enough bandwidth for the mode?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260916090946.6775=
-64-1-suraj.kandpal@intel.com?part=3D7
+64-1-suraj.kandpal@intel.com?part=3D2
