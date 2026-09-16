@@ -4,43 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56126C88E5C
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 11:33:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEFA9C88E77
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 11:36:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B4D210E011;
-	Wed, 16 Sep 2026 11:33:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BnsNTJVx";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C981410E011
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 11:33:02 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id CA01560234;
- Wed, 16 Sep 2026 11:33:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B98D1F000FF;
- Wed, 16 Sep 2026 11:33:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789558381;
- bh=UD6OufiDuUyaM4Kgl/tG9k8PcCG850liwQvpi6I+mg8=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=BnsNTJVxMov4VeirrrBwq11tMhRNRKsUYOj5e8yWZJn5PFXMPjN8vhpV/bTfMG+oU
- 7iTMJbREtZz/NtjCIdfmPInJJxLV1W3se0LSR8SkU+PyKE3W4qpt8ihqmM5FnrFW3m
- Lz9bBhXTPqq2x/c9xgsfFjA/PngKqT1iXInrIqpC8elA4YZA5SUNETRF5125tLGBJB
- zgZExEz82iqrjfoyyRuspfHXOZ8lH+jnqkwZR7MbjVQh27d8BfFNEYID7LAvQPzsef
- 5Eay0DPQjvtQP7/FBHbn2bYBRQXjMDRz8PsffSf5kTtiObRjYJoL2KAxWWCxdQE334
- m4gysQhYCej7Q==
-From: sashiko-bot@kernel.org
-Subject: Re: [RFC 4/4] drm/xe: Bump prefetch BO LRU for already-valid ranges
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6787410E011;
+	Wed, 16 Sep 2026 11:36:27 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2861910E011;
+ Wed, 16 Sep 2026 11:36:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8113847928111209450=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_wa=5F14025941?=
+ =?utf-8?q?587_to_xe2=2C_xe3_and_xe3p_platforms_=28rev11=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: tilak.tirumalesh.tangudu@intel.com
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260916112828.2528881-10-himal.prasad.ghimiray@intel.com>
-References: <20260916112828.2528881-6-himal.prasad.ghimiray@intel.com>
- <20260916112828.2528881-10-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 16 Sep 2026 11:33:01 +0000
-Message-Id: <20260916113301.6B98D1F000FF@smtp.kernel.org>
+Date: Wed, 16 Sep 2026 11:36:26 -0000
+Message-ID: <178955858614.171064.8336646940317880112@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260916100545.779894-1-tilak.tirumalesh.tangudu@intel.com>
+In-Reply-To: <20260916100545.779894-1-tilak.tirumalesh.tangudu@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,65 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] drm/xe: memory leak of svm_range on prefetch_lru_bump failure
---
+--===============8113847928111209450==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 09ec19c469b99c340c07a04780a85f997af72901
-Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+== Series Details ==
 
-drm/xe: Bump prefetch BO LRU for already-valid ranges
+Series: drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p platforms (rev11)
+URL   : https://patchwork.freedesktop.org/series/167706/
+State : success
 
-This commit introduces xe_svm_range_prefetch_lru_bump to re-fault CPU pages
-without touching DMA mappings and move backing BOs to the LRU tail for
-already-valid prefetch ranges.
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index fe9ccaa129122..948060a702470 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
+CI Bug Log - changes from xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8_BAT -> xe-pw-167706v11_BAT
+====================================================
 
-[ ... ]
+Summary
+-------
 
-> @@ -2583,6 +2583,15 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct =
-xe_vma_ops *vops,
->  						  dpagemap, &valid_pages)) {
->  				xe_svm_range_debug(svm_range, "PREFETCH - RANGE IS VALID");
->  				xe_assert(vm->xe, valid_pages);
-> +
-> +				if (dpagemap) {
-> +					err =3D xe_svm_range_prefetch_lru_bump(vm, vma,
-> +									     svm_range,
-> +									     dpagemap);
-> +					if (err)
-> +						goto unwind_prefetch_ops;
+  **SUCCESS**
 
-[Severity: Medium]
-Does this code leak the svm_range?
+  No regressions found.
 
-During a VM_BIND ioctl with prefetch, xe_svm_range_find_or_insert() returns
-an svm_range with an incremented reference count. If=20
-xe_svm_range_prefetch_lru_bump() fails here, we jump to unwind_prefetch_ops.
+  
 
-Because this error path is taken before the svm_range is tracked in the
-op->prefetch_range.range xarray, the cleanup routine
-xe_svm_prefetch_gpuva_ops_fini() will not know about it and will not free i=
-t.
+Participating hosts (15 -> 15)
+------------------------------
 
-Should this error path call xe_svm_range_put(svm_range) before jumping to
-unwind_prefetch_ops to avoid leaking the reference?
+  No changes in participating hosts
 
-> +				}
-> +
->  				need_put =3D true;
->  				goto check_next_range;
->  			}
+Known issues
+------------
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260916112828.2528=
-881-6-himal.prasad.ghimiray@intel.com?part=3D4
+  Here are the changes found in xe-pw-167706v11_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#8007])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v11/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9098 -> IGT_9099
+  * Linux: xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8 -> xe-pw-167706v11
+
+  IGT_9098: 9098
+  IGT_9099: 9099
+  xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8: 0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8
+  xe-pw-167706v11: 167706v11
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v11/index.html
+
+--===============8113847928111209450==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p platforms (rev11)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167706/">https://patchwork.freedesktop.org/series/167706/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v11/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v11/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8_BAT -&gt; xe-pw-167706v11_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-167706v11_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-167706v11/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9098 -&gt; IGT_9099</li>
+<li>Linux: xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8 -&gt; xe-pw-167706v11</li>
+</ul>
+<p>IGT_9098: 9098<br />
+  IGT_9099: 9099<br />
+  xe-5755-0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8: 0fb8d1900f1a6b9d21aadbfa5f784979b950bcf8<br />
+  xe-pw-167706v11: 167706v11</p>
+
+</body>
+</html>
+
+--===============8113847928111209450==--
