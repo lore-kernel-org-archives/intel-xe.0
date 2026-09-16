@@ -4,157 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8103C982C1
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 21:03:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AB1EC982C9
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 21:04:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E94D10E010;
-	Wed, 16 Sep 2026 21:03:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CCBE10E110;
+	Wed, 16 Sep 2026 21:04:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JdoqidGl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YBV/ESQK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A45A610E010
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 21:03:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E2BC10E110
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 21:04:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789592621; x=1821128621;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=lVVGSJlTMzOJBuEF47+mQU0nOo4cZEWubwOxk5Qq8P0=;
- b=JdoqidGlwhdcJTJalqssSNmPsSxh0ts18j5IniCuscWxSMDgJ31JGGIE
- QEVg2yg1muza4jcSkXdA9IskS8NmU8yHsiG7bTMD7WMsUL6/5khddvGP7
- UIPW/jAQiFobihZwIVX1XQQgUR/Fdxq8/7b/e8Dd+QEBlsF8oSqK7rdyE
- cnX/kaE9A8xSzXESyqdEVcd5nGGzTXzPN7Hyh022A3/ZllT1l6/XAV3px
- 0uZXCNVK9Kie3RZaE+SN0WwX5+MsUNsy4TViKpq+oNw2peDsuBC16SbiU
- CQF2vCBRUJYZdxdeRRNGZ8eC4G66nlU9xjtOXmpDig8ftrxTsfhGUXQfu w==;
-X-CSE-ConnectionGUID: ZQPCr420TbqHIgtHlKf3gQ==
-X-CSE-MsgGUID: an3OxrdXQaWJc405X3qDvQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="93853923"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="93853923"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2026 14:03:40 -0700
-X-CSE-ConnectionGUID: mRL+mZAwRfKs2wZ475ODKA==
-X-CSE-MsgGUID: mO8o2PWEQka1GMV3qvbMHQ==
+ t=1789592669; x=1821128669;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MjNrIBegQzPO+zZH9k4CpQoIECbI2K4ox0txWVNIjeA=;
+ b=YBV/ESQKCUzQIOhsbNmGNvwYHMqFNZGxwmk+4s81DODd4vJmpCxZSVxa
+ pzHNFBr8bJ9qJqwwBxYeG/iMw1l4aoKVYE8RHwWKDlTCeQbyjiNy/O/u6
+ EIR3LFD96HGorzGEKJdHWFMNK5J0Jt+oebYeFS8B0C1YZs2vi9hKJF6O+
+ vC6B8eoJZ8TeeWCwTWubgd/ztAT5WKosHVqLsRCZ4nR3CoDop4iJGRcar
+ MJPFm3nEgaqTRbD6X6OhtBvyNcaRNrPOBTBrqedSetOsfHpq2DTZ7F5ZE
+ uZ6teKWlPhJqBrFTV75mKJTnLnEUUj7Dnjc1HwepNW3xbqC8rT/jhS4SF g==;
+X-CSE-ConnectionGUID: t6Ahh/zDQTaYG55ufesXuA==
+X-CSE-MsgGUID: VAEd8DRtQFColUYumFDOGA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="88913062"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="88913062"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2026 14:04:29 -0700
+X-CSE-ConnectionGUID: 4ZQ5RyLQTdO3F4QHeLxJMg==
+X-CSE-MsgGUID: imIpX1MITymTRHjPLyvq/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="270167548"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Sep 2026 14:03:40 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 16 Sep 2026 14:03:39 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Wed, 16 Sep 2026 14:03:39 -0700
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.53)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 16 Sep 2026 14:03:36 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=C94gZRS++guaHcUsc9xu6pjISmOmhMoCHwagtC2hhl6nUDicua+MxXb+ygL+ChSJvbHL5m//W29j1gfqq/c+nXBgCM0HzIlyazRZTZnPGauB5mL4B3lYnHHVSzndwfplBFB8HFLgDdoifXG+hl4n1Dzup/v5Hx0VSsqbpctnqEaJtWX/FkXkKFw+na3976I9S+mEF0nItaATsZZmMuWSSJ2TsoBP82uKtKKbBYnHdnPYYiArELRAzwcu79MaImW4411PPsCgVWW1SeM7U9ug63gdKoJaqdsQBmcCqM34FvDh1P+6PWYEjikukwKhUn/OS+F2CtJ3kNnz2bKUufJ2jg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FtabTcTDrf9jhVWmGK6e9Dvd6DlFgCoRh+CJkAIvbz4=;
- b=i30IRELvUhffh/KNbMtzJmNx8HX6b3rkKN4oHm6Zmi6L5jJQWYUdoZP8CjrSYps/4dzrKaLTcwdaR16bb50S33VVoPNEcWjTO0EJk5H6yu8HKfpdKz+WqTx/rG7xitw8xwAX0xkzCDCBmvuX3ppgvm2bir67iESfI4JAZMOGxuUYBewiHIEBvprHlsWU4pv1APAHb6+OJt+EwXDXcQP2PEz5lCPcAYHBtK2fqhVFLhWhetJjPv+q5vuhOHWmVESFJeU8CZ+iSdwUxgWrMfJFNRKNgHZ8nveyHRDErAb+MqWX3Yiz9N3INAJagGQgAlGD4EXQjC1QeTv4Ixi2nH0nSA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB7757.namprd11.prod.outlook.com (2603:10b6:8:103::22)
- by SA1PR11MB8544.namprd11.prod.outlook.com (2603:10b6:806:3a3::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.12; Wed, 16 Sep
- 2026 21:03:33 +0000
-Received: from DM4PR11MB7757.namprd11.prod.outlook.com
- ([fe80::f3ff:11d0:7a52:db0c]) by DM4PR11MB7757.namprd11.prod.outlook.com
- ([fe80::f3ff:11d0:7a52:db0c%5]) with mapi id 15.21.0406.007; Wed, 16 Sep 2026
- 21:03:33 +0000
-Message-ID: <ae41d737-d4d5-4bef-8312-0fce12d9d124@intel.com>
-Date: Wed, 16 Sep 2026 14:03:32 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6] drm/xe: Poll GT for C6 before D3
-To: <sashiko-reviews@lists.linux.dev>
-CC: <intel-xe@lists.freedesktop.org>
-References: <20260916190614.3047807-1-vinay.belgaumkar@intel.com>
- <20260916192403.50EEE1F000FF@smtp.kernel.org>
-Content-Language: en-US
-From: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
-In-Reply-To: <20260916192403.50EEE1F000FF@smtp.kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BY5PR04CA0025.namprd04.prod.outlook.com
- (2603:10b6:a03:1d0::35) To DM4PR11MB7757.namprd11.prod.outlook.com
- (2603:10b6:8:103::22)
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="269744708"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.16])
+ by fmviesa010.fm.intel.com with ESMTP; 16 Sep 2026 14:04:29 -0700
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Badal Nilawar <badal.nilawar@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v6] drm/xe: Poll GT for C6 before D3
+Date: Wed, 16 Sep 2026 13:59:01 -0700
+Message-Id: <20260916205901.3260270-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB7757:EE_|SA1PR11MB8544:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7d2d8c76-a017-4730-5d94-08df1435f7eb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|376014|366016|6133799003|18002099003|22082099003|4143699003|10067099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: VT0rswW9Tq3DUU95uJ7srrD8dWYfL97Js/bVkK+JeJs/XKqAZzlbLSGcpor3cRw2iy4FKPJR0zhxTneeLarZxptyg3TmI6Li/n0zmvcFFyFABOxzBj9S+WFX+v3Ob+G9m8l2qoXJOwJMMM6cATmDMm0WaKykJv9L0OOeNTj5rCjqZiCo+MVcnA4A4+1M+MLITkPbiIg7Wc52Dqb3dLj6AWIbihmr6NxcxFwE3c/3/5+8kIZAmp+hDZlxz42j6xIAI5+YsJp5WeCbxIuDl4y5DNDwalGAock2bvowcX/HErhbI40QkZ3vUwkjUand2v6tMFJ2hiUL+84RTC6ZfmQgES+6Xq6ZLfsIR+Klk6W32B02G+priyrQor5F6/TcvLOLK6ppJbepMB5p/f0GkTh89XDZMrkmqZUFX1quEg0qrIeBoYx5gAGCxZVOxtzxQwA8Y2KnevOHfnxpg4CIxqM8JjMmSMkK4H/sVs1cY5MDBP++0zjchI1j/0lyQ5iqbrXS3kU4bM8dalHt6pFV/LjVfcF/dteyXaZ92MK974jnAG1m5SYZtMnH+fD6CbbaVOu5wGiyGe+1KDW/xugZt0CnDNGwgsrvEQlc8g+zHeEGP9pJrhPjQ0TD+EKMWuxFWHbh8YWhp6TU4F0Kh+sDZ0IwAEvGU2jH19IjULcqDwYWUrk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB7757.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(376014)(366016)(6133799003)(18002099003)(22082099003)(4143699003)(10067099003)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VytKMk9WTEszU21Ma0x4MTJvUkNjTFBFcEZieFgyMnh0Z2s2UUs2cXhyRXF2?=
- =?utf-8?B?MDlRUkRxV0RXZ3pBVU5rUHNJbWlZbTRwNzR3UVJFSGo2aGlCMndYQlArc0ds?=
- =?utf-8?B?amxIc01Dc2lkME1xUlcrc3ZsMFkxQVlPdFBWbTR3cXBUS1dMWkQrc3p6WFln?=
- =?utf-8?B?dGtHNUN3alE4ZEpESzJieTZJalVCNUtHa0RzRWZwZkpuZXZxU0RtUis5VzJr?=
- =?utf-8?B?Z2hoaUk1T0pUM29xVml5eXYyOWxGVWlSbWVjTXpVQ0IxMEdzbXNnMW1UWVRr?=
- =?utf-8?B?NmJKSldHT1N3cDV4UGxDYzcxd01CcTl6c2xaU0FGcWdNSDhGNjE1UTVJOFRy?=
- =?utf-8?B?SjRWbjFONXlPWjV4TjA3L2UzTUwvZHFDOEdoUmh4QWJRNEJKeXp1UUtDOXlW?=
- =?utf-8?B?MzhzU0w5L2RJVzJwak9OMDlEc2VmTXgrQ3ZNMzJsRUhXeFI4UDdMZnVEeDBI?=
- =?utf-8?B?WWhMcnd1WGhma2hCd0pnQWx2akZFeVRhdzVSK3FOdHgzNnJPRTh4SXZURmhY?=
- =?utf-8?B?c0RKaXRPc29pc1dOemk1QXNFQnUyUldCN3d3WTFjOTBJbUt6cHB5Y2lmOHU0?=
- =?utf-8?B?aEk3TW1EUHd5WGt4dlhEUVR4TXNvYnZtN2p4S3RHWkpteFN4cm1ycUkzMU01?=
- =?utf-8?B?eElSbmpWT3FvMmhXWHB3Rm9MT2FiZGNkOVpKWlc1MUNGS0hkR1BUdmtMMlB3?=
- =?utf-8?B?S0hoZGpNb21NdmR6TnVQaUJkTnJJWHJTcnpzaE5RUXNuVXdIdEpWWUp4TUlC?=
- =?utf-8?B?bWRISm5LcmJ4djNLU2ROdlBPdGFFZ1lUSDVneEpBYlRJVkRwTG1UaGFBeHZs?=
- =?utf-8?B?bXA0OHliYldnb2N1cXM4L1lhZDhVS1I3WEtPMjN5Z3lGelhHbXQ0WklibnB0?=
- =?utf-8?B?MXQ4UnNtaTZITGkxNU9HR3RIVExJV0psNXRIYmEyN1FnY2FlZlU1elJtVnI0?=
- =?utf-8?B?Sm5Wd2hyZjd4T00rb0VOeW1KT0pkK2k0K29vSllJOW5ObjdyNnpEK3ZiYTRw?=
- =?utf-8?B?dnVTZ3hiUnFueFAxT1ExSE9wek9LU1hRWFNyS0ozMkUwVERGY3ZsTGRUeFln?=
- =?utf-8?B?MGhQcDM2V2ZodGs5SkVnUm1GOURXZTNsZ1ZyMTMzQTduT01PcGF1cTVCVi9s?=
- =?utf-8?B?d0NFYkNheVAwMWdCc29GdnBNYjdKazI4NjI2WGdIK0RlNUpnK3VydjJ6Y0ZR?=
- =?utf-8?B?YUZlV21iNWJEVlRSUXplU2xtejlsdUFhRlJtTm9MQksrNklqUzBXMjRLVlB0?=
- =?utf-8?B?RksycTdpQ0hUaHlVV28wbGtYemtYbEN6eXYvdVhYZG9YMjBVMktyQXFJb1Z3?=
- =?utf-8?B?Q1JCNWNVWUJoY1ZsdTVaUHZzRU5xL2FlYlJRdjFiY3hJZTFWUVRSOFZUYnBy?=
- =?utf-8?B?VFBmMHNFbzFkazhhOUwyeGl2UzE0d1VtTGpaNUovUzhWemlvZGtWOTdENzN4?=
- =?utf-8?B?aHJxdHVNbmpjNjV1SEk5aFRJeEs1blVhajI1c0xucEJCVGNZdE5yZ3c1Z0Fm?=
- =?utf-8?B?UVcrOERYS05tTmwzWnFvNHJabWh6QVV0bWZCV0Z3NWMxMlliSUVLajkwWFlB?=
- =?utf-8?B?SEt4V3lETlgxNXg5VjZ5WVo3RGI1UDR4RThNR29naEtjcERRK2FtcnNjaG0z?=
- =?utf-8?B?TDFnWHZxb1d4cU1ZdFhKZWRJVS9PK0dQazVTLzNPQ3VEUGpXN3UxeWNiQ0I3?=
- =?utf-8?B?VUxCS0dFaG5ITzgxbHR1QU5PRElOejdhMXBpODdEZzhicWEyVmErSXBsYWlV?=
- =?utf-8?B?a2cxR3FoVldURy9IQklYU0dPbi91YXdkR29QWWIxM2svdE5hL21Rdlc0ZVA0?=
- =?utf-8?B?a3B5MG9OTmROQzVUa0d3RStxSUx0cHZoSTIzcG8xUXNROGFzWWVKV0hxSjB4?=
- =?utf-8?B?eXBhTkZqc0lvNDg2SzRsa3g3SHNzRWVMVUlGK09XaXVMWEMyS2FHU2FpUXl6?=
- =?utf-8?B?SkpLRGM1aU9lNi9UY0NJQUxxVk56NGJac3hXYnpSd3lPbUVIUElONjRpSlEz?=
- =?utf-8?B?anhUSkZUd2VLMW1rRXZrMk9NQlVabUE1M0ZHa3YweHhMZFBrSUxYcUtHblJu?=
- =?utf-8?B?WXBDQVFjZGVLMGNpVWIxdXRsMmpuYzZjT1RUTjY2TnJ3SWRoMDhmRUZOdmZE?=
- =?utf-8?B?QWtlcy9aQUFtd2FxUGN4empTM2o0QS9XZVpJbzhaYWV2UjdqWFFWbmI1cVI5?=
- =?utf-8?B?NGQ3a2tXZkRQK2drbGJsS1FGL1kxREx4QU5uOWJLZ1NPRDV1WFpOT2VsREhM?=
- =?utf-8?B?L3RtcmlqaWNTaSsyWVdFRExEcUdKRXJDdHpjbHVRZ2ZZSjdJeVN5dFdWSmg2?=
- =?utf-8?B?MVFzbkNRS3dTck1xTHVLa0dhUS93ck93ZmJiQ1N2NlpLVHFZNFZCYXRrOG1K?=
- =?utf-8?Q?nJ3Gf6KPblsWA3W4=3D?=
-X-Exchange-RoutingPolicyChecked: U0GZSkQfHovh7UhJKwoHJlzqmDiTF/K3slF0Ct5RDcRRuQ/rl7z88LDadIExy2F0uybVB1x59gSndLu9xzkT/+sBKgyv1nU/kWtUJD1F98CEAwVV4Y5NKanY8s8muSnsDiGv2GvCdWLpJJ2KxE8Kr3vXSscOe77yb1IMwKcEVEB03/TaqbymdkTV92IL4COtPj005udPIKmzmtwvFDvCOebybf+WlW3yOFDNIg7p5LTjEtIvoIRAGysP/MGlND/87Z1PAP+O1awZdrSvk9QPTLIuedKnDZDfLeaEHvbyGmdivafahAw22dxrr+BasbeszR93F1ZOIGaaaApUpgnq1w==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d2d8c76-a017-4730-5d94-08df1435f7eb
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7757.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2026 21:03:33.6959 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: x40hoBCgSKTsiXwD4sRbySroY+ZIdiOBZ3SxjZwBJXCTeWt7yh2vPGd+x0PMPVf0ur0NX0VaHAaIwPvAt3D9HfPMjyhQpULACPnpgfC1XkY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8544
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,62 +65,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Ensure GT C6 state before D3 transition in runtime suspend flow.
+This avoids the scenario where GT is being accessed after D3 state
+is programmed. If the check for C6 fails, resume the device so it is
+not stuck in an intermediate state.
 
-On 9/16/2026 12:24 PM, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
-> - [High] drm/xe: C6 poll after xe_pm_runtime_suspend() always fails breaking D3
-> - [Medium] pm: device stuck in RPM_ACTIVE when C6 check fails
-> --
->
-> commit d48ea91e20a44679b212e2b189bddfe7fa5220c9
-> Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
->
-> drm/xe: Poll GT for C6 before D3
->
-> This commit ensures the GT is in C6 before transitioning to D3 during
-> runtime suspend, avoiding scenarios where GT is accessed after D3 is
-> programmed. It aborts the suspend by returning an error if the GT
-> fails to enter C6.
->
->> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->> index 00b2b5dfb8f6c..d66d5a0339ae3 100644
->> --- a/drivers/gpu/drm/xe/xe_pci.c
->> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> [ ... ]
->
->> @@ -1394,6 +1394,17 @@ static int xe_pci_runtime_suspend(struct device *dev)
->>   	if (err)
->>   		return err;
->>   
->> +	err = xe_pm_wait_all_c6(xe);
-> [Severity: High]
-> Since this check happens after xe_pm_runtime_suspend(), which already
-> called xe_gt_suspend() and explicitly disabled power gating (RC6), isn't
-> this guaranteed to fail and cause 200ms timeouts on every suspend attempt?
->
-> When the system attempts to enter D3cold runtime suspend, GuC is already
-> reset and power gating is disabled by the time we reach this check, so
-> the GT cannot enter C6 autonomously.
-Disabling power gating has no impact on C6. GT can enter C6 in spite of it.
->
->> +	if (err) {
->> +		drm_dbg(&xe->drm, "Resuming - GT C6 check failed!");
->> +		ret = xe_pm_runtime_resume(xe);
->> +		if (ret) {
->> +			drm_err(&xe->drm, "Resume failed after suspend was canceled");
->> +			return ret;
->> +		}
->> +		return err;
-> [Severity: Medium]
-> When we return -EAGAIN to the PM core here to abort the suspend, shouldn't
-> we first update the last_busy timestamp by calling
-> pm_runtime_mark_last_busy(dev)?
->
-> Without it, the PM core's rpm_suspend() handles -EAGAIN by aborting suspend
-> but only re-arms the autosuspend timer if last_busy was updated. This causes
-> the autosuspend expiration time to evaluate to the past, preventing the timer
-> from being re-armed and leaving the device awake indefinitely in RPM_ACTIVE
-> until another explicit PM cycle occurs.
-This has been discussed previously. The next pm ref get/put should 
-re-arm and trigger the auto suspend timer.
->
+v2: Force resume when we cancel suspend due to C6 check (Sashiko)
+v3: Abort the suspend properly when idle check fails (Sashiko)
+v4: Only check for C6 during suspend (Rodrigo). Have check in
+xe_pci_runtime_suspend() instead of xe_pci_suspend().
+v5: Don't checkfor PVC (Sashiko), rename function from_device_c6
+to _device_idle
+v6: Rename to _wait_all_c6 and move PVC check to gt_idle (Rodrigo).
+Also, rebase.
+
+Cc: Badal Nilawar <badal.nilawar@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_idle.c | 39 +++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_idle.h |  1 +
+ drivers/gpu/drm/xe/xe_pci.c     | 13 ++++++++++-
+ drivers/gpu/drm/xe/xe_pm.c      | 18 +++++++++++++++
+ drivers/gpu/drm/xe/xe_pm.h      |  1 +
+ 5 files changed, 71 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
+index c208d7563e36..2eefd62f8d59 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle.c
++++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+@@ -8,10 +8,12 @@
+ #include <drm/drm_managed.h>
+ 
+ #include <generated/xe_wa_oob.h>
++#include <linux/iopoll.h>
+ #include "xe_force_wake.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
+ #include "xe_gt_idle.h"
++#include "xe_gt_printk.h"
+ #include "xe_gt_sysfs.h"
+ #include "xe_guc_pc.h"
+ #include "regs/xe_gt_regs.h"
+@@ -451,3 +453,40 @@ int xe_gt_idle_disable_c6(struct xe_gt *gt)
+ 
+ 	return 0;
+ }
++
++static int wait_for_gt_c6_state(struct xe_gt *gt, u32 timeout_ms)
++{
++	struct xe_guc_pc *pc = &gt->uc.guc.pc;
++	enum xe_gt_idle_state state;
++
++	return poll_timeout_us(state = gt->gtidle.idle_status(pc),
++			       state == GT_IDLE_C6,
++			       20,
++			       timeout_ms * USEC_PER_MSEC,
++			       false);
++}
++
++/**
++ * xe_gt_idle_wait_for_c6 - Poll for GT C6
++ * @gt: GT object
++ * @timeout_ms: wait time in ms
++ *
++ * This function waits for GT to enter C6.
++ *
++ * Return: 0 on success, -EAGAIN otherwise
++ */
++int xe_gt_idle_wait_for_c6(struct xe_gt *gt, u32 timeout_ms)
++{
++	if (IS_SRIOV_VF(gt_to_xe(gt)))
++		return 0;
++
++	if (gt_to_xe(gt)->info.platform == XE_PVC)
++		return 0;
++
++	if (wait_for_gt_c6_state(gt, timeout_ms)) {
++		xe_gt_dbg(gt, "GT is not in C6\n");
++		return -EAGAIN;
++	}
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h b/drivers/gpu/drm/xe/xe_gt_idle.h
+index 9c34a155e102..2c8e9adf4a68 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle.h
++++ b/drivers/gpu/drm/xe/xe_gt_idle.h
+@@ -18,5 +18,6 @@ void xe_gt_idle_enable_pg(struct xe_gt *gt);
+ void xe_gt_idle_disable_pg(struct xe_gt *gt);
+ int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p);
+ u64 xe_gt_idle_residency_msec(struct xe_gt_idle *gtidle);
++int xe_gt_idle_wait_for_c6(struct xe_gt *gt, u32 timeout_ms);
+ 
+ #endif /* _XE_GT_IDLE_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index d10633f74aa4..d64e873d9e71 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -1382,7 +1382,7 @@ static int xe_pci_runtime_suspend(struct device *dev)
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
+ 	unsigned int flags;
+ 	bool pme_enabled;
+-	int err;
++	int err, ret;
+ 
+ 	/*
+ 	 * We hold an additional reference to the runtime PM to keep PF in D0
+@@ -1413,6 +1413,17 @@ static int xe_pci_runtime_suspend(struct device *dev)
+ 		return err;
+ 	}
+ 
++	err = xe_pm_wait_all_c6(xe);
++	if (err) {
++		drm_dbg(&xe->drm, "Resuming - GT C6 check failed!");
++		ret = xe_pm_runtime_resume(xe);
++		if (ret) {
++			drm_err(&xe->drm, "Resume failed after suspend was canceled");
++			return ret;
++		}
++		return err;
++	}
++
+ 	pci_save_state(pdev);
+ 
+ 	if (xe->d3cold.allowed) {
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index e71bb90c9b80..daa7ba2df317 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -1075,6 +1075,24 @@ void xe_pm_d3cold_allowed_toggle(struct xe_device *xe)
+ 	mutex_unlock(&xe->d3cold.lock);
+ }
+ 
++/**
++ * xe_pm_wait_all_c6() - Wait for all GTs to enter C6.
++ * @xe: xe device instance
++ *
++ * Return: 0 on success, -EAGAIN on failure
++ */
++int xe_pm_wait_all_c6(struct xe_device *xe)
++{
++	struct xe_gt *gt;
++	u8 id;
++
++	for_each_gt(gt, xe, id)
++		if (xe_gt_idle_wait_for_c6(gt, 200))
++			return -EAGAIN;
++
++	return 0;
++}
++
+ /**
+  * xe_pm_module_init() - Perform xe_pm specific module initialization.
+  *
+diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
+index 037c73ea4342..16d4e6c629f1 100644
+--- a/drivers/gpu/drm/xe/xe_pm.h
++++ b/drivers/gpu/drm/xe/xe_pm.h
+@@ -38,6 +38,7 @@ void xe_pm_update_pme_enabled(struct xe_device *xe, bool status);
+ bool xe_rpm_reclaim_safe(const struct xe_device *xe);
+ struct task_struct *xe_pm_read_callback_task(struct xe_device *xe);
+ int xe_pm_block_on_suspend(struct xe_device *xe);
++int xe_pm_wait_all_c6(struct xe_device *xe);
+ void xe_pm_might_block_on_suspend(void);
+ int xe_pm_module_init(void);
+ 
+-- 
+2.38.1
+
