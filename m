@@ -4,61 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51533C88E72
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 15:31:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E530FC982D6
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 15:53:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A11010E6F8;
-	Thu, 17 Sep 2026 15:31:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A208010EF91;
+	Thu, 17 Sep 2026 15:53:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jX+xyBE4";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="AvfiJOwL";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9253510E6F8;
- Thu, 17 Sep 2026 15:31:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789659068; x=1821195068;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=JpUGe5ukOdB9ZBNA+LfJl4n35Yn/oR8+pm4oOBdCcLw=;
- b=jX+xyBE45OKYniZ1TyiWq70vbr8Fpak+0Hxet4Fk+dvtTSCBBXYaD3lH
- G0lkJ7eU0qgBvErjXK6lojlag6jv0Kd8OTPke/PbMN25kwx3MLay5tAg3
- C3lyMK3ENWRqfne4WBONACc02gX4aXcck4MCk7ruiKzAk6eG+7QgJwLq7
- tNSfHHmPxeJqRQ7l7SqxiWdyUkIpnOPBQp9bPDH7lj+2ASf7FFZ7PxymP
- KIK7K5suizt183Ad1L/hG6Apu0EbIKJ1Uv1thtKGmiZcxcEoc2z1jOGSJ
- dpQIUmAEm0Ag2qZx7wHxGJCqImBcpsfD42OU0qTifvcxFncIDEFVWee4P w==;
-X-CSE-ConnectionGUID: VJNuSfL1TxGzt2sksPt92w==
-X-CSE-MsgGUID: hrW13iZwSgGZzHtpLtqAFg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="90225932"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="90225932"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 08:31:07 -0700
-X-CSE-ConnectionGUID: rTo1/vyXQhSX1QgBeMLl2g==
-X-CSE-MsgGUID: bmpvS5/NS5uPVl7Q4OFv3g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="267634704"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.121])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 08:31:03 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Date: Thu, 17 Sep 2026 18:30:59 +0300
-Message-ID: <3f86e0ede95fb3d52053934ac43c5271812428f5@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13DEF10EF9D
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 15:53:28 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 15E00601F1;
+ Thu, 17 Sep 2026 15:53:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A0EF1F000FF;
+ Thu, 17 Sep 2026 15:53:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
+ s=korg; t=1789660407;
+ bh=wzk0B2nvxNQohYHq85q0GjOjXI16TZ60WhISLUsdM7w=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=AvfiJOwLHF0b9BuIPw4p9jo7n7Df6LZojHytyNJcv0GFZ+1tkgpYSq2uHJXFz2A2/
+ 84QgxpELX4bi5Qv/ti+ymWKgndLba8jueqjFgWMoYh5mykx/voi7aSVxMd3OBtaQv/
+ zjpl7Q7uKmzwwh8EXhcGdsccDSC0pp9hNtTaXJsw=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ intel-xe@lists.freedesktop.org,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH 7.2 534/733] drm/xe: Flush LSC untyped L1 dataport cache after
+ rcs/ccs batches
+Date: Thu, 17 Sep 2026 16:14:02 +0100
+Message-ID: <20260917151405.512070398@linuxfoundation.org>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260917151350.597953846@linuxfoundation.org>
+References: <20260917151350.597953846@linuxfoundation.org>
+User-Agent: quilt/0.69
+X-stable: review
+X-Patchwork-Hint: ignore
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,47 +63,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+7.2-stable review patch.  If anyone has any objections, please let me know.
 
-Hi Dave & Sima -
+------------------
 
-Couple of i915 display fixes for v7.3-rc4.
+From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-drm-intel-fixes-2026-09-17:
-drm/i915 fixes for 7.3-rc4:
-- Revert a commit touching registers that don't necessarily exist
-- Check for negative numbers before passing to BIT()
+commit f5fcf7e638b904397ec0f66d3ea6766ef0cfe25b upstream.
 
-BR,
-Jani.
+emit_render_cache_flush() sets PIPE_CONTROL0_HDC_PIPELINE_FLUSH to
+flush the L2/HDC data cache before fence signalling, but it never
+requests a flush of the LSC untyped L1 data cache via the 'Untyped
+Data-Port Cache Flush Enable' bit in PIPE_CONTROL DWord0[11].
 
-The following changes since commit fd73f4a6659897191fa0d40695fe370925dd3780:
+Per the Bspec, in 3D pipeline mode HDC Pipeline Flush is documented to
+also flush/invalidate the untyped L1 cache, but only depending on how
+HDC_CHICKEN0[13:11] is programmed. Starting with MTL, this coupling
+between HDC Pipeline Flush and the untyped L1 cache flush no longer
+holds in practice, regardless of how HDC_CHICKEN0 is programmed, so
+relying on it is not safe on newer platforms such as BMG. Mesa's Vulkan
+driver (anv) has been assuming the kernel flushes both caches between
+submissions, and hit user-visible corruption in apps such as Llama.cpp
+because of this gap; it now works around it by flushing both caches
+again from userspace at the end of every command buffer.
 
-  Linux 7.3-rc3 (2026-09-13 14:38:02 -0700)
+Correctness between submissions on the same queue is userspace's
+responsibility and belongs in Mesa, not the kernel. However, for
+security we must ensure stale data can't leak through the untyped L1
+dataport cache once memory is reclaimed or evicted, which requires the
+KMD to flush it before releasing memory for reuse.
 
-are available in the Git repository at:
+Prior to MTL, HDC_CHICKEN0 could be programmed (as already done for
+DG2 via Wa_22010960976/Wa_14013347512) to reliably keep HDC Pipeline
+Flush coupled to the untyped L1 cache flush, so those platforms are
+unaffected. Mesa's own anv driver found that on MTL the HW
+disconnected the two independently of how HDC_CHICKEN0 is programmed,
+and could not bring the old behavior back even by writing the register
+by hand; see Mesa commit 7c2ff46a4fc3 ("anv: don't prevent L1 untyped
+cache flush in 3D mode"). The kernel can't reliably request the flush
+from the CS on MTL either, so restrict the new PIPE_CONTROL bit to
+GRAPHICS_VERx100 >= 2000 (Xe2 and later), where it can be relied on.
 
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2026-09-17
+Explicitly set PIPE_CONTROL0_UNTYPED_DATAPORT_CACHE_FLUSH together
+with PIPE_CONTROL0_HDC_PIPELINE_FLUSH in emit_render_cache_flush() on
+Xe2 and later, so the L1 data cache is known clean before memory is
+released for reuse, without depending on undocumented
+platform-specific HDC_CHICKEN0 behavior.
 
-for you to fetch changes up to a26204be587c57bd5c54fa513be26c4fd7bf252d:
+Bspec: 56551
+Link: https://gitlab.freedesktop.org/mesa/mesa/-/commit/7c2ff46a4fc3e537573ac9503057e0cd29b6fff3
+Fixes: 9f8f93bee3ef ("drm/xe: Emit a render cache flush after each rcs/ccs batch")
+Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/8909
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v6.8+
+Assisted-by: GitHub_Copilot:claude-sonnet-5
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Link: https://patch.msgid.link/20260903114552.48634-1-thomas.hellstrom@linux.intel.com
+(cherry picked from commit 434514b6fe731e873808297c268fc52cdf4a1ce6)
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/gpu/drm/xe/instructions/xe_gpu_commands.h |    1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c                  |   11 +++++++++++
+ 2 files changed, 12 insertions(+)
 
-  Revert "drm/i915/display: Clear SEL_FETCH_PLANE_CTL on plane disable" (2026-09-16 12:55:22 +0300)
+--- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
+@@ -46,6 +46,7 @@
+ #define GFX_OP_PIPE_CONTROL(len)	((0x3<<29)|(0x3<<27)|(0x2<<24)|((len)-2))
+ 
+ #define   PIPE_CONTROL0_QUEUE_DRAIN_MODE		BIT(12)
++#define	  PIPE_CONTROL0_UNTYPED_DATAPORT_CACHE_FLUSH	BIT(11)	/* gen12 */
+ #define	  PIPE_CONTROL0_L3_READ_ONLY_CACHE_INVALIDATE	BIT(10)	/* gen12 */
+ #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
+ 
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -212,6 +212,7 @@ static int emit_render_cache_flush(struc
+ {
+ 	struct xe_exec_queue *q = job->q;
+ 	struct xe_gt *gt = q->gt;
++	struct xe_device *xe = gt_to_xe(gt);
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+ 	u32 flags0, flags1;
+ 
+@@ -220,6 +221,16 @@ static int emit_render_cache_flush(struc
+ 				      LRC_PPHWSP_FLUSH_INVAL_SCRATCH_ADDR, 0);
+ 
+ 	flags0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
++	/*
++	 * Prior to MTL, HDC Pipeline Flush reliably also flushes the LSC
++	 * untyped L1 dataport cache, provided HDC_CHICKEN0 is programmed
++	 * correctly. Starting with MTL that coupling no longer holds
++	 * regardless of how HDC_CHICKEN0 is programmed, but explicitly
++	 * requesting the flush via PIPE_CONTROL is itself only reliable
++	 * from Xe2 onward, so only gate it in on Xe2+.
++	 */
++	if (GRAPHICS_VERx100(xe) >= 2000)
++		flags0 |= PIPE_CONTROL0_UNTYPED_DATAPORT_CACHE_FLUSH;
+ 	flags1 = (PIPE_CONTROL_TILE_CACHE_FLUSH |
+ 		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
+ 		 PIPE_CONTROL_DEPTH_CACHE_FLUSH |
 
-----------------------------------------------------------------
-drm/i915 fixes for 7.3-rc4:
-- Revert a commit touching registers that don't necessarily exist
-- Check for negative numbers before passing to BIT()
 
-----------------------------------------------------------------
-Luca Coelho (1):
-      drm/i915/display: check configuration index before shifting
-
-Nemesa Garg (1):
-      Revert "drm/i915/display: Clear SEL_FETCH_PLANE_CTL on plane disable"
-
- drivers/gpu/drm/i915/display/intel_cursor.c        | 15 +++++----------
- drivers/gpu/drm/i915/display/intel_dp_link_caps.c  |  9 ++++++++-
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 15 +++++----------
- 3 files changed, 18 insertions(+), 21 deletions(-)
-
--- 
-Jani Nikula, Intel
