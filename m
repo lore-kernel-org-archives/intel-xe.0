@@ -4,45 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B83CFC88E72
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 09:56:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D1BBC982D0
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 09:57:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B48E10E47C;
-	Thu, 17 Sep 2026 09:56:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DC5A10E6AE;
+	Thu, 17 Sep 2026 09:57:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SACdOh7g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EGaj6PDb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81DC510E47C
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 09:56:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2403B10E6B1
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 09:57:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789638980; x=1821174980;
+ t=1789639067; x=1821175067;
  h=from:date:to:cc:subject:in-reply-to:message-id:
  references:mime-version;
- bh=XHthUUBv8aC4b/pOgdLB0Pd5CfyRHYHmbdtCdn80mHo=;
- b=SACdOh7gWYUBxuVlwfu0tPRXBqdckotqWmgjwohj4nSyCOlWhIy92g4H
- js7NAmXpoJy4KN4x6isgcq4gDXfjHWypKOYk7Yck/scsozLeFJ20pJnes
- q6Mx1peWOexmbbcEbq452FfJdXFDYniWApKphzzEKINoMbDzk7JkP+UYh
- EiKM7joKBxoKtFsC0ktUcuSIA/W80woErL8oeRLEHrCGnBU1rkgxnzHMI
- KzfS89jnGsVRwey6rXAz+2zoBVvD+2NIH6qGk0nbpqYUxS+Yv2CD0q6GJ
- qd5IzW7bxfSgJwNBob51iyeBeCHIbcCi90FT4yZR2v4rRK6sMySUWlGX1 g==;
-X-CSE-ConnectionGUID: VoxwWJBCSjOCWETYdIzIWw==
-X-CSE-MsgGUID: bHpNL02DSkuP5yxAPhaMOg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="100641919"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="100641919"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 02:56:19 -0700
-X-CSE-ConnectionGUID: OzEt0MIyRt+NVButa3HVuQ==
-X-CSE-MsgGUID: mEDQHYl5RMezoZMlXQgllQ==
+ bh=704lDvwiUJAT+9HP13Bp5IbIzhw2Gq/3QRfkri9KUI4=;
+ b=EGaj6PDb/NbwshGMB7sNsApgsEhPkAuKtV+qdqasYNW5OT5Rj2zcXqQb
+ E0ySHdXRIGBvZ/2VtZ6+H0WqzbYluSshd+wowhXEpM3DDcarD4OqVjeik
+ KH0BBugehtq0IQ2U7N+OTvV4f7rhWelpmewVTrJZd+g9MX1rnNQiWmelv
+ kdwtWL7xoGRMplpM58KSqu4pQpCalYPFNnYPqU35rVUxPE9PhK5AnC/U1
+ mCUcn08Url2T3n5w1G17CU2IX92vNQddA2plSYUFG9suqssl3V94Ba4ux
+ AfnrkYsETjN9ZtdB5Yq0y0VRNmgmyy/K6teGnKy9BXgb3q9SPDKPV+75K w==;
+X-CSE-ConnectionGUID: vb1CiyJrTd2YR2gsBU6qZg==
+X-CSE-MsgGUID: Rl6sAZaKSk2oBt78OpRhyA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="115581595"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="115581595"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2026 02:57:46 -0700
+X-CSE-ConnectionGUID: 3ALJsjb8Tr2Nu75qa9Pcug==
+X-CSE-MsgGUID: lGZcJOQlQzC0KhgwLVaKOw==
 X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="275641091"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.62])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 02:56:14 -0700
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2026 02:57:42 -0700
 From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Thu, 17 Sep 2026 12:56:09 +0300 (EEST)
+Date: Thu, 17 Sep 2026 12:57:38 +0300 (EEST)
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 cc: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org, 
  Hans de Goede <hansg@kernel.org>, matthew.brost@intel.com, 
@@ -52,7 +53,7 @@ cc: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
 Subject: Re: [PATCH v9 09/20] drm/xe/vsec: Add DOC text for VSEC
 In-Reply-To: <20260916201139.2374531-31-michael.j.ruhl@intel.com>
-Message-ID: <9f6b61e5-a100-a27d-d8e8-b7327608721f@linux.intel.com>
+Message-ID: <054c50bc-7fc7-c5f1-e650-5233048b9188@linux.intel.com>
 References: <20260916201139.2374531-22-michael.j.ruhl@intel.com>
  <20260916201139.2374531-31-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
@@ -129,11 +130,6 @@ On Wed, 16 Sep 2026, Michael J. Ruhl wrote:
 > + *
 > + * PMT is usually accessed through a PCI function.  However, that is not always
 > + * available, so the PMT intel_vsec_register() function can be used to setup up
-
-Wrong grammar: "setup up"
-
-(Found by sashiko.)
-
 > + * PMT usage.
 > + */
 > +
@@ -155,11 +151,8 @@ Wrong grammar: "setup up"
 > + * Return:
 > + * * -EINVAL for VF and PMT WATCHER requests
 > + * * count   number of bytes read on success
-> + */
->  int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offset,
->  		      u32 count)
->  {
-> 
+
+Please also check sashiko's comment on the set of return values.
 
 -- 
  i.
