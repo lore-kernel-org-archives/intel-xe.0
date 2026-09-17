@@ -4,48 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E39EBC982CC
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Sep 2026 23:42:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B1DEC982C1
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 00:07:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D57110E124;
-	Wed, 16 Sep 2026 23:42:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F1F310E363;
+	Thu, 17 Sep 2026 00:07:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TEq5yEf9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WrWJdKgp";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2DD910E124
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Sep 2026 23:42:55 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 10991601EF;
- Wed, 16 Sep 2026 23:42:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB0A11F000FF;
- Wed, 16 Sep 2026 23:42:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789602174;
- bh=Z9yDXwI5ydmA4ym/FNCfbHBqqJDUDy+4c2vPOdnkJGE=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=TEq5yEf9TqA23knNC7EEgxgTlpv+F2vnidd9P2gEJbDBk/Ea2luw2Im8jb7nlH8wT
- 7GPECumOi2qlkI5mWtmA65nyiJFwoOre8GGGG1iPXaZVkGVuzOG57dOr6/fjkbdlR0
- d0POt0+T/j9tGLKn2qdoDf60KYz6T0aL2PWfnMtppzUf7i1xbxDSNfNshmNeNF5f3g
- EN3B02ghl4AxGU/OsIwazxKa0ftZhmujR1rqtr5H1UvfqF/f8xF94tuZBtmK6BoehY
- cDyqjN5ZyI4G4suvN5d6yAcyAUAaSbtbdplIGwQedLKRseJZggPR2mHR/RK4vk+EYy
- GPV+K4Cg16zLA==
-From: Sasha Levin <sashal@kernel.org>
-To: stable@vger.kernel.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sasha Levin <sashal@kernel.org>
-Subject: [PATCH 6.12.y] drm/xe: Flush LSC untyped L1 dataport cache after
- rcs/ccs batches
-Date: Wed, 16 Sep 2026 19:42:52 -0400
-Message-ID: <20260916234252.3300600-1-sashal@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <2026091604-exterior-freestyle-24d9@gregkh>
-References: <2026091604-exterior-freestyle-24d9@gregkh>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3002610E363
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 00:07:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789603624; x=1821139624;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=G+G7NevN8Q5sujbG7adMvdaKMOD3QN6OgTx+/8FhDYI=;
+ b=WrWJdKgphPhqcos04Mq6KN7sKLLuII2q6HBxr+RELnhX+yrqKAqWON6s
+ dYIlRzvGN1yqAvR/eKz9I4wK50yfJrz2dW2GH8eLNt25+vW7mtAIzJdls
+ qsk2+TxNVLK3d6KDa3zsYW8O4FL5xmWiWTFvu5pKspWrMtVQ023KqI9tT
+ GVmaZ722noOVPzV75gRPXtBnG+gAzHAYOvzgTuv9y/FwjkTx0RXOFm5us
+ jvaDJ9eFbAfxL2LdjAQ6mlrk6AK73MM3Ylxn1h2ofkMRlKROHtw8e2Bky
+ 35nj/cUNrjhofDa7TI01Ig6Qk77i3dA3dXnnZ7+ovsKNrcsBihz6cFHom g==;
+X-CSE-ConnectionGUID: WU10Gcd0QrK7GdDQ+Nrxpw==
+X-CSE-MsgGUID: Cfx9WT1ySo+N/Sx4/VwQEA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="101143919"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="101143919"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2026 17:07:04 -0700
+X-CSE-ConnectionGUID: fDtzjgAgTcSE9rGbt0NZqQ==
+X-CSE-MsgGUID: Nv1yviEjTLOh91ejwu9Vbg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="267280394"
+Received: from dut4072bmgfrd.fm.intel.com ([10.105.8.119])
+ by fmviesa009.fm.intel.com with ESMTP; 16 Sep 2026 17:07:03 -0700
+From: Zongyao Bai <zongyao.bai@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: jia.yao@intel.com,
+	Zongyao Bai <zongyao.bai@intel.com>
+Subject: [PATCH v6 0/4] drm/xe/forcewake: add delayed release and lifecycle
+ handling
+Date: Thu, 17 Sep 2026 00:06:57 +0000
+Message-ID: <20260917000701.1751733-1-zongyao.bai@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260720221306.1173028-1-zongyao.bai@intel.com>
+References: <20260720221306.1173028-1-zongyao.bai@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,118 +67,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Engine-cycle queries used by profiling tools such as VTune and PTI can
+arrive in bursts. Releasing forcewake immediately after every query makes
+the next query issue another wake request and wait for its ACK.
 
-[ Upstream commit f5fcf7e638b904397ec0f66d3ea6766ef0cfe25b ]
+Add an opt-in delayed-release path with a bind-time configurable hold
+interval, defaulting to 100 us. When the final overlapping forcewake
+reference is dropped after a delayed-release request, keep the domain awake
+for that interval. A get for the same domain before expiry cancels the
+pending release and reuses the awake domain without another wake request or
+ACK wait.
 
-emit_render_cache_flush() sets PIPE_CONTROL0_HDC_PIPELINE_FLUSH to
-flush the L2/HDC data cache before fence signalling, but it never
-requests a flush of the LSC untyped L1 data cache via the 'Untyped
-Data-Port Cache Flush Enable' bit in PIPE_CONTROL DWord0[11].
+Only engine-cycle queries request delayed release. Existing callers
+continue to use the immediate-release API. Delayed-release state is per
+domain, so a put that drops the final overlapping reference honors any
+recorded delayed-release request.
 
-Per the Bspec, in 3D pipeline mode HDC Pipeline Flush is documented to
-also flush/invalidate the untyped L1 cache, but only depending on how
-HDC_CHICKEN0[13:11] is programmed. Starting with MTL, this coupling
-between HDC Pipeline Flush and the untyped L1 cache flush no longer
-holds in practice, regardless of how HDC_CHICKEN0 is programmed, so
-relying on it is not safe on newer platforms such as BMG. Mesa's Vulkan
-driver (anv) has been assuming the kernel flushes both caches between
-submissions, and hit user-visible corruption in apps such as Llama.cpp
-because of this gap; it now works around it by flushing both caches
-again from userspace at the end of every command buffer.
+Protect engine-cycle MMIO access with drm_dev_enter()/drm_dev_exit() so
+drm_dev_unplug() waits for admitted queries to drop their forcewake
+references before teardown. For system and runtime suspend, synchronously
+drain delayed state while keeping delayed release available after resume.
 
-Correctness between submissions on the same queue is userspace's
-responsibility and belongs in Mesa, not the kernel. However, for
-security we must ensure stale data can't leak through the untyped L1
-dataport cache once memory is reclaimed or evicted, which requires the
-KMD to flush it before releasing memory for reuse.
+For shutdown, removal, post-registration probe unwind, and devres teardown,
+permanently disable new delayed releases and settle pending state with
+xe_force_wake_stop(). Register the device-wide stop action after the
+Driver-FLR action so reverse devres ordering settles delayed forcewake
+state before Driver-FLR while MMIO is still valid. Keep the per-GT cleanup
+as an idempotent fallback for earlier probe failures.
 
-Prior to MTL, HDC_CHICKEN0 could be programmed (as already done for
-DG2 via Wa_22010960976/Wa_14013347512) to reliably keep HDC Pipeline
-Flush coupled to the untyped L1 cache flush, so those platforms are
-unaffected. Mesa's own anv driver found that on MTL the HW
-disconnected the two independently of how HDC_CHICKEN0 is programmed,
-and could not bring the old behavior back even by writing the register
-by hand; see Mesa commit 7c2ff46a4fc3 ("anv: don't prevent L1 untyped
-cache flush in 3D mode"). The kernel can't reliably request the flush
-from the CS on MTL either, so restrict the new PIPE_CONTROL bit to
-GRAPHICS_VERx100 >= 2000 (Xe2 and later), where it can be relied on.
+For PCI error recovery, use xe_force_wake_stop_nosettle() before
+pci_disable_device() on reset and on paths returning
+PCI_ERS_RESULT_DISCONNECT. It disables delayed release, cancels timers, and
+discards delayed-release bookkeeping without accessing MMIO.
 
-Explicitly set PIPE_CONTROL0_UNTYPED_DATAPORT_CACHE_FLUSH together
-with PIPE_CONTROL0_HDC_PIPELINE_FLUSH in emit_render_cache_flush() on
-Xe2 and later, so the L1 data cache is known clean before memory is
-released for reuse, without depending on undocumented
-platform-specific HDC_CHICKEN0 behavior.
+v6:
+ - Add a permanent delayed-release disable state and clear stale recorded
+   requests on the immediate-release path.
+ - Keep flush for system/runtime suspend and use terminal stop for
+   shutdown, remove, probe unwind, and devres teardown.
+ - Order the device-wide stop before Driver-FLR while retaining per-GT
+   cleanup for earlier probe failures.
+ - Add a no-MMIO stop for PCI reset and disconnect handling.
+ - Use the configfs group lock when reading the hold interval.
+ - Document the per-domain drain and discard state transitions.
 
-Bspec: 56551
-Link: https://gitlab.freedesktop.org/mesa/mesa/-/commit/7c2ff46a4fc3e537573ac9503057e0cd29b6fff3
-Fixes: 9f8f93bee3ef ("drm/xe: Emit a render cache flush after each rcs/ccs batch")
-Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/8909
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v6.8+
-Assisted-by: GitHub_Copilot:claude-sonnet-5
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-Link: https://patch.msgid.link/20260903114552.48634-1-thomas.hellstrom@linux.intel.com
-(cherry picked from commit 434514b6fe731e873808297c268fc52cdf4a1ce6)
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-[ replaced the inline HDC flush argument to emit_pipe_control() with a new flags0 variable. ]
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- .../gpu/drm/xe/instructions/xe_gpu_commands.h    |  1 +
- drivers/gpu/drm/xe/xe_ring_ops.c                 | 16 ++++++++++++++--
- 2 files changed, 15 insertions(+), 2 deletions(-)
+v5:
+ - Split the original patch into four patches: unplug synchronization,
+   delayed-release infrastructure, power-boundary flushing, and opt-in
+   enablement/configuration.
+ - Preserve a newer hold interval when an older timer callback is running,
+   and settle an outstanding sleep ACK before waking a domain again.
+   (Sashiko, Matt)
+ - Synchronously cancel delayed-release timers during forcewake cleanup.
+   (Sashiko, Matt)
+ - Flush delayed releases during shutdown, device removal, and
+   post-registration probe unwind in addition to system/runtime suspend.
+   (Matt)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-index a255946b6f77e..b4fe9aa4e2347 100644
---- a/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_gpu_commands.h
-@@ -41,6 +41,7 @@
- 
- #define GFX_OP_PIPE_CONTROL(len)	((0x3<<29)|(0x3<<27)|(0x2<<24)|((len)-2))
- 
-+#define	  PIPE_CONTROL0_UNTYPED_DATAPORT_CACHE_FLUSH	BIT(11)	/* gen12 */
- #define	  PIPE_CONTROL0_HDC_PIPELINE_FLUSH		BIT(9)	/* gen12 */
- 
- #define   PIPE_CONTROL_COMMAND_CACHE_INVALIDATE		(1<<29)
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index c9e8969f99fc7..50ab1e97ca262 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -174,9 +174,21 @@ static int emit_store_imm_ppgtt_posted(u64 addr, u64 value,
- static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- {
- 	struct xe_gt *gt = job->q->gt;
-+	struct xe_device *xe = gt_to_xe(gt);
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
--	u32 flags;
-+	u32 flags0, flags;
- 
-+	flags0 = PIPE_CONTROL0_HDC_PIPELINE_FLUSH;
-+	/*
-+	 * Prior to MTL, HDC Pipeline Flush reliably also flushes the LSC
-+	 * untyped L1 dataport cache, provided HDC_CHICKEN0 is programmed
-+	 * correctly. Starting with MTL that coupling no longer holds
-+	 * regardless of how HDC_CHICKEN0 is programmed, but explicitly
-+	 * requesting the flush via PIPE_CONTROL is itself only reliable
-+	 * from Xe2 onward, so only gate it in on Xe2+.
-+	 */
-+	if (GRAPHICS_VERx100(xe) >= 2000)
-+		flags0 |= PIPE_CONTROL0_UNTYPED_DATAPORT_CACHE_FLUSH;
- 	flags = (PIPE_CONTROL_CS_STALL |
- 		 PIPE_CONTROL_TILE_CACHE_FLUSH |
- 		 PIPE_CONTROL_RENDER_TARGET_CACHE_FLUSH |
-@@ -192,7 +204,7 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- 	else if (job->q->class == XE_ENGINE_CLASS_COMPUTE)
- 		flags &= ~PIPE_CONTROL_3D_ENGINE_FLAGS;
- 
--	return emit_pipe_control(dw, i, PIPE_CONTROL0_HDC_PIPELINE_FLUSH, flags, 0, 0);
-+	return emit_pipe_control(dw, i, flags0, flags, 0, 0);
- }
- 
- static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
+Zongyao Bai (4):
+  drm/xe/forcewake: synchronize engine-cycle access with unplug
+  drm/xe/forcewake: add delayed-release state machine
+  drm/xe/forcewake: quiesce delayed release across PM and teardown
+  drm/xe/forcewake: enable configurable delayed forcewake release
+
+ drivers/gpu/drm/xe/xe_configfs.c         |  78 ++++++
+ drivers/gpu/drm/xe/xe_configfs.h         |   5 +
+ drivers/gpu/drm/xe/xe_defaults.h         |   1 +
+ drivers/gpu/drm/xe/xe_device.c           |  33 ++-
+ drivers/gpu/drm/xe/xe_device.h           |   1 +
+ drivers/gpu/drm/xe/xe_device_types.h     |   3 +
+ drivers/gpu/drm/xe/xe_force_wake.c       | 337 +++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_force_wake.h       |  48 +++-
+ drivers/gpu/drm/xe/xe_force_wake_types.h | 123 +++++++++
+ drivers/gpu/drm/xe/xe_gt.c               |  18 +-
+ drivers/gpu/drm/xe/xe_pci_error.c        |  23 +-
+ drivers/gpu/drm/xe/xe_query.c            |  81 ++++--
+ 12 files changed, 696 insertions(+), 55 deletions(-)
+
 -- 
-2.53.0
-
+2.43.0
