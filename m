@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9AE9C982DA
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 23:59:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28600C982DB
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 23:59:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 764F310E6DF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 928FD10E7AC;
 	Thu, 17 Sep 2026 23:59:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nHTAOwZX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OhVcGsjq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB1ED10E00B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93B1B10E51E
  for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 23:59:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789689573; x=1821225573;
+ t=1789689572; x=1821225572;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Hot+iwMYRZfF8rYMdZ0MYynmtQaK6ltKZG4iAv2vjcI=;
- b=nHTAOwZXrDSglhEIRsrJUy6NOtL5t1OrVLpjLG8B0JZzHP2PB+rASA5w
- m7tbWH4mNFj+nDt/ytc3WYtaWJ2JLSGu2G17FoYm8oG88jYXQ6Qh55mAy
- iG8u5lWnOVCkYe3DGr+v96Rwq4UoIOxfBoVmWZJANlu2Y3VUz96VvKBY7
- K0/jCDhSdWMC8af+J3l7laHBGry71+Ab/OmCx7DAkuaL5Ft9fChlXdXM0
- VvR437SDAa2Gk4V8/ZXjMiVuzueZxPm3B16mJrL7eqWD9+HI7vuwukS9H
- ZDIlMYRS0prgbCqGMRs5qWWUuA8A+rQUvTb+7ECXTna9og+GYjSWYQqld Q==;
-X-CSE-ConnectionGUID: q8HCucIDS1urVxZC3ueAjA==
-X-CSE-MsgGUID: lPDPXf8NRSeMxmBVV7bvrw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="77727915"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="77727915"
+ bh=ZhTJt9Dilvf/A91Z32IOxibJ6/ErmcNrfaWkyzL60Jc=;
+ b=OhVcGsjqJPlSO92C+IcDtJcjSy7FuoJyhRz2Ho5kq5bNnZF+JXPJk7B9
+ uEv0o8/jmKalk02ppTItAUbBU2Z3Pyjee9hj14SgfLYg9raiUsPIfr6Sl
+ yXq+FGVdLe1BTJKMbhglqLxuqpn+sPPeGpCefDA9CmFYYEtT1Ol6HbJK7
+ uTbibCYVYVywOQ8LfpPn4wCPRTgvw62ygHNb+9nPylYx/moSo8hz897Tt
+ aJX/+DnvRUterINX5LJ+ecO62k371Y8qsLB6J4J48oFAgYsI76+JoKTni
+ 6hloUJejEW/S9JzvrJ3EM0uK5C83j8DUC6G9Xh48jzRJsRrKx0RrMX6Bm Q==;
+X-CSE-ConnectionGUID: uThJI7L/Qxy0J/ib8OVx7w==
+X-CSE-MsgGUID: W5XizAhMTo6jFVPfKHy4Ow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="77727912"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="77727912"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 16:59:32 -0700
-X-CSE-ConnectionGUID: FibqihmcR2OpkZGnXnZUJA==
-X-CSE-MsgGUID: hwh/jNnqS1mCPViavV7nLQ==
+ 17 Sep 2026 16:59:31 -0700
+X-CSE-ConnectionGUID: F+qwygP5Rle0mKIyDC1nIw==
+X-CSE-MsgGUID: gF4ISPD+RX+FtdJiCXFWfw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="270788221"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="270788210"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 16:59:32 -0700
+ 17 Sep 2026 16:59:31 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com, michal.wajdeczko@intel.com,
  aravind.iddamsetty@intel.com, mallesh.koujalagi@intel.com,
  alan.previn.teres.alexis@intel.com, julia.filipchuk@intel.com
-Subject: [PATCH v4 6/7] drm/xe/guc: Report major GuC failures using SIGID
-Date: Thu, 17 Sep 2026 16:59:30 -0700
-Message-ID: <20260917235923.1521112-15-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v4 3/7] drm/xe/guc: Make ct_dead_capture available on
+ non-debug config
+Date: Thu, 17 Sep 2026 16:59:27 -0700
+Message-ID: <20260917235923.1521112-12-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260917235923.1521112-9-umesh.nerlige.ramappa@intel.com>
 References: <20260917235923.1521112-9-umesh.nerlige.ramappa@intel.com>
@@ -68,92 +69,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Define ct_dead_capture for non-debug as well to simplify future
+refactor.
 
-Convert errors during critical GuC flows (init, load, reset, suspend)
-to use the xe_log_err() helper.
-While at it, simplify the error log for the GuC load failure to use the
-cached frequency values instead of fetching them again.
-
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
-v2: split guc_load_done changes to their own patch, use available ret
-value for reset errors (Michal)
-v3: Remove 'GuC' string from logs and cleanup logs (Michal)
-v4: (Michal)
-- Add s-o-b
-- Differentiate Early vs later initialization messages
-- Use %u for frequencies
-- Remove unnecessary newline
----
- drivers/gpu/drm/xe/xe_guc.c | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 19 +++++++++----------
+ 1 file changed, 9 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 5285d4cecbc8..3bb4aea30a5c 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -777,7 +777,7 @@ int xe_guc_init_noalloc(struct xe_guc *guc)
- 	return 0;
- 
- out:
--	xe_gt_err(gt, "GuC init failed with %pe\n", ERR_PTR(ret));
-+	xe_log_err(gt, GUC, ret, "Early initialization error\n");
- 	return ret;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index b3a6aa37808b..3353515aa874 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -59,6 +59,9 @@ static struct xe_device *ct_to_xe(struct xe_guc_ct *ct)
+ 	return gt_to_xe(ct_to_gt(ct));
  }
  
-@@ -845,7 +845,7 @@ int xe_guc_init(struct xe_guc *guc)
- 	return 0;
- 
- out:
--	xe_gt_err(gt, "GuC init failed with %pe\n", ERR_PTR(ret));
-+	xe_log_err(gt, GUC, ret, "Initialization error\n");
- 	return ret;
++#define ct_id(reason_code)  CT_DEAD_##reason_code
++#define CT_DEAD(ct, ctb, reason_code)	ct_dead_capture((ct), (ctb), ct_id(reason_code))
++
+ #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+ enum {
+ 	/* Internal states, not error conditions */
+@@ -162,9 +165,6 @@ static void fast_req_track(struct xe_guc_ct *ct, u16 fence, u16 action)
+ 	ct->fast_req[slot].fence = fence;
+ 	ct->fast_req[slot].action = action;
  }
+-
+-#define CT_DEAD(ct, ctb, reason_code)	ct_dead_capture((ct), (ctb), CT_DEAD_##reason_code)
+-
+ #else
  
-@@ -998,15 +998,15 @@ int xe_guc_reset(struct xe_guc *guc)
+ static void ct_dead_fini(struct xe_guc_ct *ct) { }
+@@ -173,13 +173,6 @@ static void ct_dead_init(struct xe_guc_ct *ct) { }
+ static void fast_req_report(struct xe_guc_ct *ct, u16 fence) { }
+ static void fast_req_track(struct xe_guc_ct *ct, u16 fence, u16 action) { }
  
- 	ret = xe_mmio_wait32(mmio, GDRST, GRDOM_GUC, 0, 5000, &gdrst, false);
- 	if (ret) {
--		xe_gt_err(gt, "GuC reset timed out, GDRST=%#x\n", gdrst);
-+		xe_log_err(gt, GUC, ret, "Reset timeout, GDRST=%#x\n", gdrst);
- 		goto err_out;
- 	}
+-#define CT_DEAD(ct, ctb, reason)			\
+-	do {						\
+-		struct guc_ctb *_ctb = (ctb);		\
+-		if (_ctb)				\
+-			_ctb->info.broken = true;	\
+-	} while (0)
+-
+ #endif
  
- 	guc_status = xe_mmio_read32(mmio, GUC_STATUS);
- 	if (!(guc_status & GS_MIA_IN_RESET)) {
--		xe_gt_err(gt, "GuC status: %#x, MIA core expected to be in reset\n",
--			  guc_status);
- 		ret = -EIO;
-+		xe_log_err(gt, GUC, ret, "MIA core not in reset, GUC_STATUS=%#x\n",
-+			   guc_status);
- 		goto err_out;
- 	}
+ /* Used when a CT send wants to block and / or receive data */
+@@ -2376,4 +2369,10 @@ static void ct_dead_worker_func(struct work_struct *w)
  
-@@ -1224,9 +1224,9 @@ static int guc_wait_ucode(struct xe_guc *guc)
- 	cur_freq = xe_guc_pc_get_cur_freq_fw(guc_pc);
- 
- 	if (ret || load_result) {
--		xe_gt_err(gt, "load failed: status = 0x%08X, time = %lldms, freq = %dMHz (req %dMHz)\n",
--			  status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
--			  xe_guc_pc_get_cur_freq_fw(guc_pc));
-+		xe_log_err(gt, GUC, ret ?: load_result,
-+			   "Load failed, GUC_STATUS=%#x, time = %lldms, freq = %uMHz (req %uMHz)\n",
-+			   status, delta_ms, act_freq, cur_freq);
- 		print_load_status_err(gt, status);
- 
- 		return ret ?: load_result;
-@@ -1463,7 +1463,7 @@ int xe_guc_suspend(struct xe_guc *guc)
- 
- 	ret = xe_guc_softreset(guc);
- 	if (ret) {
--		xe_gt_err(gt, "GuC suspend failed: %pe\n", ERR_PTR(ret));
-+		xe_log_err(gt, GUC, ret, "Suspend aborted\n");
- 		return ret;
- 	}
- 
+ 	spin_unlock_irq(&ct->dead.lock);
+ }
++#else
++static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code)
++{
++	if (ctb)
++		ctb->info.broken = true;
++}
+ #endif
 -- 
 2.55.0
 
