@@ -4,60 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28417C88E72
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 12:03:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2599DC88E72
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 12:15:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B55A910E3F8;
-	Thu, 17 Sep 2026 12:03:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AbFFK2MS";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 010B910E1BE;
- Thu, 17 Sep 2026 12:03:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789646606; x=1821182606;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=g4jdFHISCtDOIdNBw5lr8+m+ZK3sORRcp9x6MCFVSU8=;
- b=AbFFK2MSDVkjo7vkji8kUH/3NP2auF1lWrbkpFvujF+NxbdppIcZuHx0
- UJuXXaAHNOI4e1drd8DxW94ajFhm7XDpHFfaIxaTitVINbls56px0HQdz
- sIKx9oDNYtm8g7r69v34QZhI4DILhp9g7uS8JKcJH8s6RhMB/EJVDCJx2
- jwNbw5fJrjyBwI+RGFXF/P41+vg+cYFDKjyZmu3aVXATDmlYglGaK6TmJ
- ial6kRS+zmdAbZX+5IQl7bZqn62dnEgIckDSNhsJvc670nMd7w3yQYmWw
- 01ZmsKBKAjpmmQXczM4DbNhBRlrtKPi9Bx0bETaeb3Hc8FWxVXrusOsaH Q==;
-X-CSE-ConnectionGUID: iH+8PEyyTHWZ/I6wWnTmOg==
-X-CSE-MsgGUID: 5iYDIi5WTVCjXc+l7RjWkw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89925594"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89925594"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 05:03:25 -0700
-X-CSE-ConnectionGUID: GkxMiZ9YSPqzUk0EKPspiw==
-X-CSE-MsgGUID: 27I8YLU3QlmtAmG5OydedA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
-   d="scan'208";a="2144795"
-Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.245.90])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 05:03:25 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH 02/11] drm/i915/lspcon: switch to
- drm_dp_dpcd_{read_byte, write_byte, write_data}
-In-Reply-To: <DS4PPFE901A304F3439245166797C8A3327E3B92@DS4PPFE901A304F.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <cover.1789547331.git.jani.nikula@intel.com>
- <a890746215c6c7a1e36a6bc880ae644dd06f1956.1789547331.git.jani.nikula@intel.com>
- <DS4PPFE901A304F3439245166797C8A3327E3B92@DS4PPFE901A304F.namprd11.prod.outlook.com>
-Date: Thu, 17 Sep 2026 15:03:21 +0300
-Message-ID: <e732c3adab756452aeaa5107489e91d0a9c10d7c@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA72D10EE64;
+	Thu, 17 Sep 2026 12:15:25 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E07D10EE1E;
+ Thu, 17 Sep 2026 11:55:19 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id DE62541680;
+ Thu, 17 Sep 2026 11:55:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40CAD1F0089E;
+ Thu, 17 Sep 2026 11:55:18 +0000 (UTC)
+Date: Thu, 17 Sep 2026 13:55:14 +0200
+From: Maxime Ripard <self@mripard.dev>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <aqvVENQ4ksJEIcdb@houat>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="l556737gsdzolcq4"
+Content-Disposition: inline
+X-Mailman-Approved-At: Thu, 17 Sep 2026 12:15:25 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,183 +53,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 16 Sep 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> Subject: [PATCH 02/11] drm/i915/lspcon: switch to drm_dp_dpcd_{read_byte,
->> write_byte, write_data}
->> 
->> Switch to the modern DPCD access functions that return negative error codes
->> on errors, -EIO for incomplete access, and 0 on success.
->> 
->> Use 1-byte accessors where sensible. Use local ret variables for the return value
->> instead of checking inline.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_lspcon.c | 34 +++++++++------------
->>  1 file changed, 15 insertions(+), 19 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c
->> b/drivers/gpu/drm/i915/display/intel_lspcon.c
->> index b306bf5f6130..07b5a9d010ff 100644
->> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
->> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
->> @@ -137,9 +137,7 @@ bool intel_lspcon_detect_hdr_capability(struct
->> intel_digital_port *dig_port)
->>  	u8 hdr_caps;
->>  	int ret;
->> 
->> -	ret = drm_dp_dpcd_read(&intel_dp->aux, get_hdr_status_reg(lspcon),
->> -			       &hdr_caps, 1);
->> -
->> +	ret = drm_dp_dpcd_read_byte(&intel_dp->aux,
->> +get_hdr_status_reg(lspcon), &hdr_caps);
->>  	if (ret < 0) {
->>  		drm_dbg_kms(display->drm, "HDR capability detection
->> failed\n");
->>  		lspcon->hdr_supported = false;
->> @@ -244,10 +242,11 @@ static bool lspcon_wake_native_aux_ch(struct
->> intel_lspcon *lspcon)  {
->>  	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
->>  	struct intel_display *display = to_intel_display(intel_dp);
->> +	int ret;
->>  	u8 rev;
->> 
->> -	if (drm_dp_dpcd_readb(&lspcon_to_intel_dp(lspcon)->aux,
->> DP_DPCD_REV,
->> -			      &rev) != 1) {
->> +	ret = drm_dp_dpcd_read_byte(&lspcon_to_intel_dp(lspcon)->aux,
->> DP_DPCD_REV, &rev);
->> +	if (ret < 0) {
->>  		drm_dbg_kms(display->drm, "Native AUX CH down\n");
->
-> I was wondering now that we have ret should we add it in the debug message using ERR_PTR()
-> Same for all the changes done below ?
 
-Feels like the changes are pretty heavy already, maybe that should be
-another series on top.
+--l556737gsdzolcq4
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: [PULL] drm-misc-fixes
+MIME-Version: 1.0
 
-BR,
-Jani.
+Hi,
 
->
-> Regards,
-> Suraj Kandpal
->
->>  		return false;
->>  	}
->> @@ -331,15 +330,14 @@ static bool lspcon_parade_fw_ready(struct
->> drm_dp_aux *aux)  {
->>  	u8 avi_if_ctrl;
->>  	u8 retry;
->> -	ssize_t ret;
->> +	int ret;
->> 
->>  	/* Check if LSPCON FW is ready for data */
->>  	for (retry = 0; retry < 5; retry++) {
->>  		if (retry)
->>  			usleep_range(200, 300);
->> 
->> -		ret = drm_dp_dpcd_read(aux, LSPCON_PARADE_AVI_IF_CTRL,
->> -				       &avi_if_ctrl, 1);
->> +		ret = drm_dp_dpcd_read_byte(aux,
->> LSPCON_PARADE_AVI_IF_CTRL,
->> +&avi_if_ctrl);
->>  		if (ret < 0) {
->>  			drm_err(aux->drm_dev, "Failed to read AVI IF
->> control\n");
->>  			return false;
->> @@ -371,7 +369,7 @@ static bool
->> _lspcon_parade_write_infoframe_blocks(struct drm_dp_aux *aux,
->> 
->>  		reg = LSPCON_PARADE_AVI_IF_WRITE_OFFSET;
->>  		data = avi_buf + block_count * 8;
->> -		ret = drm_dp_dpcd_write(aux, reg, data, 8);
->> +		ret = drm_dp_dpcd_write_data(aux, reg, data, 8);
->>  		if (ret < 0) {
->>  			drm_err(aux->drm_dev, "Failed to write AVI IF block
->> %d\n",
->>  				block_count);
->> @@ -386,7 +384,7 @@ static bool
->> _lspcon_parade_write_infoframe_blocks(struct drm_dp_aux *aux,
->>  		 */
->>  		reg = LSPCON_PARADE_AVI_IF_CTRL;
->>  		avi_if_ctrl = LSPCON_PARADE_AVI_IF_KICKOFF | block_count;
->> -		ret = drm_dp_dpcd_write(aux, reg, &avi_if_ctrl, 1);
->> +		ret = drm_dp_dpcd_write_byte(aux, reg, avi_if_ctrl);
->>  		if (ret < 0) {
->>  			drm_err(aux->drm_dev, "Failed to update (0x%x),
->> block %d\n",
->>  				reg, block_count);
->> @@ -445,8 +443,8 @@ static bool _lspcon_write_avi_infoframe_mca(struct
->> drm_dp_aux *aux,
->>  	while (written < len) {
->>  		/* DPCD write for AVI IF can fail on a slow FW day, so retry */
->>  		for (retry = 0; retry < 5; retry++) {
->> -			ret = drm_dp_dpcd_write(aux, reg, (void *)data, 1);
->> -			if (ret == 1) {
->> +			ret = drm_dp_dpcd_write_byte(aux, reg, *data);
->> +			if (!ret) {
->>  				break;
->>  			} else if (retry < 4) {
->>  				mdelay(50);
->> @@ -461,9 +459,8 @@ static bool _lspcon_write_avi_infoframe_mca(struct
->> drm_dp_aux *aux,
->>  		data++;
->>  	}
->> 
->> -	val = 0;
->>  	reg = LSPCON_MCA_AVI_IF_CTRL;
->> -	ret = drm_dp_dpcd_read(aux, reg, &val, 1);
->> +	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
->>  	if (ret < 0) {
->>  		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n",
->> reg);
->>  		return false;
->> @@ -473,14 +470,13 @@ static bool _lspcon_write_avi_infoframe_mca(struct
->> drm_dp_aux *aux,
->>  	val &= ~LSPCON_MCA_AVI_IF_HANDLED;
->>  	val |= LSPCON_MCA_AVI_IF_KICKOFF;
->> 
->> -	ret = drm_dp_dpcd_write(aux, reg, &val, 1);
->> +	ret = drm_dp_dpcd_write_byte(aux, reg, val);
->>  	if (ret < 0) {
->>  		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n",
->> reg);
->>  		return false;
->>  	}
->> 
->> -	val = 0;
->> -	ret = drm_dp_dpcd_read(aux, reg, &val, 1);
->> +	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
->>  	if (ret < 0) {
->>  		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n",
->> reg);
->>  		return false;
->> @@ -617,7 +613,7 @@ static bool
->> _lspcon_read_avi_infoframe_enabled_mca(struct drm_dp_aux *aux)
->>  	u16 reg = LSPCON_MCA_AVI_IF_CTRL;
->>  	u8 val;
->> 
->> -	ret = drm_dp_dpcd_read(aux, reg, &val, 1);
->> +	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
->>  	if (ret < 0) {
->>  		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n",
->> reg);
->>  		return false;
->> @@ -632,7 +628,7 @@ static bool
->> _lspcon_read_avi_infoframe_enabled_parade(struct drm_dp_aux *aux)
->>  	u16 reg = LSPCON_PARADE_AVI_IF_CTRL;
->>  	u8 val;
->> 
->> -	ret = drm_dp_dpcd_read(aux, reg, &val, 1);
->> +	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
->>  	if (ret < 0) {
->>  		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n",
->> reg);
->>  		return false;
->> --
->> 2.47.3
->
+Here's this week drm-misc-fixes PR
 
--- 
-Jani Nikula, Intel
+Maxime
+
+drm-misc-fixes-2026-09-17:
+Two ttm fixes for ttm_tt_swapout(), one page-alignment and one overflow
+fix for dma-buf, a drm_pending_vblank_event leak fix for drm,
+suspend/resume fixes for nouveau, one out-of-bounds access fix for gud,
+a use-after-free fix for vc4, a fence signaling fix, a race condition
+fix for sched, planes formats fixes for verisilicon, and add the blend
+mode property for loongson
+The following changes since commit fd73f4a6659897191fa0d40695fe370925dd3780:
+
+  Linux 7.3-rc3 (2026-09-13 14:38:02 -0700)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-20=
+26-09-17
+
+for you to fetch changes up to 5535d5e61a77ad79118ea7665ce1c14f857f0f12:
+
+  drm/loongson: Create blend mode property for cursor plane (2026-09-17 15:=
+12:26 +0800)
+
+----------------------------------------------------------------
+Two ttm fixes for ttm_tt_swapout(), one page-alignment and one overflow
+fix for dma-buf, a drm_pending_vblank_event leak fix for drm,
+suspend/resume fixes for nouveau, one out-of-bounds access fix for gud,
+a use-after-free fix for vc4, a fence signaling fix, a race condition
+fix for sched, planes formats fixes for verisilicon, and add the blend
+mode property for loongson
+
+----------------------------------------------------------------
+Christian K=F6nig (1):
+      dma-buf/dma-fence: fix checking signaling bit for timeline and driver=
+ name v3
+
+David Hu (2):
+      dma-buf: Fix silent overflow for phys vec to sgt
+      dma-buf: Split sgl by largest page-aligned chunk
+
+Huacai Chen (1):
+      drm/loongson: Create blend mode property for cursor plane
+
+Icenowy Zheng (3):
+      drm/verisilicon: set blend mode for the cursor plane
+      drm/verisilicon: add primary modifier for format tables
+      drm/verisilicon: remove ARGB formats from primary plane
+
+Karl Mehltretter (2):
+      dma-buf: Make DMABUF_DEBUG default to y on DEBUG_KERNEL kernels
+      drm/vc4: Use managed KMS polling to fix UAF on unbind
+
+Lyude Paul (4):
+      Revert "nouveau/gsp: fix suspend/resume regression on r570 firmware"
+      drm/nouveau/gsp/r570: Set GcOff =3D 0 in fbsr
+      drm/nouveau/gsp/r570: Enable S/R Display workaround in GSP
+      drm/nouveau/gsp: Increase delay for magic sleep in r535_gsp_fini()
+
+Maxime Ripard (1):
+      Merge fdo/drm/drm-fixes into drm-misc-fixes
+
+Sajal Gupta (1):
+      drm/gud: fix out-of-bounds write in gud_plane_atomic_check()
+
+Sophie D (1):
+      drm/gud: Ignore damage clips in full update mode
+
+Thadeu Lima de Souza Cascardo (1):
+      drm: Fix drm_pending_vblank_event leak in error path for out_fence_ptr
+
+Tvrtko Ursulin (1):
+      drm/sched: Fix virtual runtime race
+
+Vadim Nikitushkin (2):
+      drm/ttm: fix swapped-out resources never leaving their bulk_move range
+      drm/ttm: apply the swapout bulk_move fix to the intended condition
+
+ drivers/dma-buf/Kconfig                            |  2 +-
+ drivers/dma-buf/dma-buf-mapping.c                  | 31 ++++++++++-----
+ drivers/dma-buf/dma-fence.c                        | 14 ++++++-
+ drivers/gpu/drm/drm_atomic_uapi.c                  | 13 +++++--
+ drivers/gpu/drm/gud/gud_pipe.c                     |  7 +++-
+ drivers/gpu/drm/loongson/lsdc_plane.c              |  5 ++-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fbsr.c |  2 +-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c  |  8 +++-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/fbsr.c |  8 ++--
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c  |  3 +-
+ .../drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/gsp.h |  8 ++++
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h    |  2 +-
+ drivers/gpu/drm/scheduler/sched_entity.c           |  8 +++-
+ drivers/gpu/drm/scheduler/sched_rq.c               | 20 +++++-----
+ drivers/gpu/drm/ttm/ttm_bo.c                       |  2 +-
+ drivers/gpu/drm/vc4/vc4_kms.c                      |  2 +-
+ drivers/gpu/drm/verisilicon/vs_cursor_plane.c      |  2 +
+ drivers/gpu/drm/verisilicon/vs_hwdb.c              | 44 +++---------------=
+----
+ drivers/gpu/drm/verisilicon/vs_hwdb.h              |  4 +-
+ drivers/gpu/drm/verisilicon/vs_primary_plane.c     |  4 +-
+ include/linux/dma-fence.h                          |  6 +++
+ 21 files changed, 110 insertions(+), 85 deletions(-)
+
+--l556737gsdzolcq4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaqvVIgAKCRAnX84Zoj2+
+dnEgAX90JkLYTLQJyOLedTAfWZ0aj+eK0/GHmdeNjE6Yll62wrc99KZD73sbpsYo
+Uqc+sPsBfRnlxKgUOk/tEuobnk5PHyPjqkZLl6sM1U06wFVjDyXJFWb8/sg1Y1At
+lGFQIlLWoA==
+=zb9x
+-----END PGP SIGNATURE-----
+
+--l556737gsdzolcq4--
