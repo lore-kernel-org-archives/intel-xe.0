@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D44A7C982D0
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 20:32:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA16AC88E72
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 20:32:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91B5810F08F;
-	Thu, 17 Sep 2026 20:32:01 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 408AD10F08F;
- Thu, 17 Sep 2026 20:32:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2487045811704077874=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D80610F0AB;
+	Thu, 17 Sep 2026 20:32:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tvay5gjd";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76C2710F0AB
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 20:32:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789677127; x=1821213127;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Q72J2znbfuacFkTKeVhV5vggXUIH5p8bQ3Mz8EZ0q40=;
+ b=Tvay5gjdHEC/hYNj7zgQxUtlIHgfvtwCOw8SCE6QsXVj27LoOqlksqDy
+ N3102e40Sxu6+QPtc2GjASGBah1CSb/Wxm36yU8HUetJgCaZgxEnDAukU
+ PDl3RLdez9ZaKpZqcEUnPlueUWwtEY9NVN66YFfbdJnogSb/kZ29tn0Eo
+ xjUZzj3rSxbWw5eXoDFNZ+bDufG6WJK5Ee/TTe3weOiskosVKewxPHWzU
+ 88ze4vFVbkEwbKiDd+bH3nyiIs/XAKTGyVMBMu6vG6TU31qrglM6D0I9p
+ 8iybu/MRuZfsXMOOo7OuQlLoWY6BGhqCFXkJBmMsY8tBo0jaro8fk+bYF w==;
+X-CSE-ConnectionGUID: 7lBzLEFzQCmqCeT/1kEXNg==
+X-CSE-MsgGUID: WKK+HkFzRT2fpmAx0kfFag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89076950"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89076950"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2026 13:32:06 -0700
+X-CSE-ConnectionGUID: +RsW0BTfRie1TzjBCKnmlg==
+X-CSE-MsgGUID: eHvFhu0qTd+pgypL9/7MQQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="275975377"
+Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2026 13:32:04 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: stable@vger.kernel.org
+Subject: [PATCH v2] drm/xe: Keep walking on SVM eviction failure
+Date: Thu, 17 Sep 2026 13:31:58 -0700
+Message-Id: <20260917203158.292823-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_mnemonic_erro?=
- =?utf-8?q?r_reason_to_page_fault_diagnostics?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 17 Sep 2026 20:32:00 -0000
-Message-ID: <178967712025.178464.9163798038697213736@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260917191456.204204-1-matthew.brost@intel.com>
-In-Reply-To: <20260917191456.204204-1-matthew.brost@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,141 +61,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2487045811704077874==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The desired behavior for SVM eviction failures, which can occur due to
+various uncontrollable races, is for TTM to continue walking the LRU
+list and look for another eviction candidate. This is expressed by
+returning -ENOSPC from the ->move() callback.
 
-== Series Details ==
+Adjust the SVM eviction failure path because of races in ->move() to
+return -ENOSPC so that TTM continues searching for another buffer to
+evict.
 
-Series: drm/xe: Add mnemonic error reason to page fault diagnostics
-URL   : https://patchwork.freedesktop.org/series/174450/
-State : success
+Fixes: 3ca608dc7561 ("drm/xe: Basic SVM BO eviction")
+Cc: stable@vger.kernel.org
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-== Summary ==
+---
+v2:
+ - Only convert -EBUSY (races) to -ENOSPC
+---
+ drivers/gpu/drm/xe/xe_bo.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-CI Bug Log - changes from xe-5767-ff3a0609f8e49ff49a9cda23d1631155085cd537_BAT -> xe-pw-174450v1_BAT
-====================================================
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 9f3f0cb95afa..f2ab9bf43a86 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1044,6 +1044,13 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		} else {
+ 			drm_dbg(&xe->drm, "Evict system allocator BO failed=%pe\n",
+ 				ERR_PTR(ret));
++			/*
++			 * The semantic we want upon SVM eviction failure
++			 * because of racing access is keep walking for
++			 * eviction, which is -ENOSPC.
++			 */
++			if (ret == -EBUSY)
++				ret = -ENOSPC;
+ 		}
+ 
+ 		goto out;
+-- 
+2.34.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-174450v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-wcl-1:          [PASS][1] -> [FAIL][2] ([Intel XE#9115])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5767-ff3a0609f8e49ff49a9cda23d1631155085cd537/bat-wcl-1/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v1/bat-wcl-1/igt@xe_waitfence@reltime.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [ABORT][3] ([Intel XE#8007]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5767-ff3a0609f8e49ff49a9cda23d1631155085cd537/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
-
-
-Build changes
--------------
-
-  * Linux: xe-5767-ff3a0609f8e49ff49a9cda23d1631155085cd537 -> xe-pw-174450v1
-
-  IGT_9099: 9099
-  xe-5767-ff3a0609f8e49ff49a9cda23d1631155085cd537: ff3a0609f8e49ff49a9cda23d1631155085cd537
-  xe-pw-174450v1: 174450v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v1/index.html
-
---===============2487045811704077874==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add mnemonic error reason to page fault diagnostics</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174450/">https://patchwork.freedesktop.org/series/174450/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5767-ff3a0609f8e49ff49a9cda23d1631155085cd537_BAT -&gt; xe-pw-174450v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-174450v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5767-ff3a0609f8e49ff49a9cda23d1631155085cd537/bat-wcl-1/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v1/bat-wcl-1/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5767-ff3a0609f8e49ff49a9cda23d1631155085cd537/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5767-ff3a0609f8e49ff49a9cda23d1631155085cd537 -&gt; xe-pw-174450v1</li>
-</ul>
-<p>IGT_9099: 9099<br />
-  xe-5767-ff3a0609f8e49ff49a9cda23d1631155085cd537: ff3a0609f8e49ff49a9cda23d1631155085cd537<br />
-  xe-pw-174450v1: 174450v1</p>
-
-</body>
-</html>
-
---===============2487045811704077874==--
