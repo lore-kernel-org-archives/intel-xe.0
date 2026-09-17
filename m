@@ -4,46 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54D26C982D2
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 09:55:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B83CFC88E72
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 09:56:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AC7A10E47C;
-	Thu, 17 Sep 2026 09:55:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B48E10E47C;
+	Thu, 17 Sep 2026 09:56:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QpHv4gTl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SACdOh7g";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2051F10E47C
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 09:55:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81DC510E47C
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 09:56:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789638916; x=1821174916;
+ t=1789638980; x=1821174980;
  h=from:date:to:cc:subject:in-reply-to:message-id:
  references:mime-version;
- bh=GmIhGUIbp4hhVMAyPIxmUS4gllPo9slVR3Wxb4ovvbE=;
- b=QpHv4gTlV9OVM7y1m/AahWK3vS8fawFG6jLlmI1BRIdlAn/jg3t04un/
- iBJyp5h++FRmDieVjNw19a1l+TKqjvXFjxqHoZxwyA+pEwsDihhw1QXdL
- ltzbChuKMaNEd4Ji4ttPxzZuvtlLlfvUDxPbhHY8Hdw6xOrg9Ir+EGO1k
- gauWxgBqh5UuhfJzF/0u81zuZSoS0rcTxveQiaclqwQTGYdh2x6fUgIUL
- R4f7vvDDIVh1TmzDTT57LFPWWn8jARyo5l5z6FDqqbHYqo6rt95NzrGFu
- l2207wkjpIGqErCS9nw3s4HulppJ1KfNlUulEnxyeO3Knodtgy3ObDngF A==;
-X-CSE-ConnectionGUID: dEyY83dmQDaTwT2QsWBY3A==
-X-CSE-MsgGUID: O4WiuhGVQsKaR+0DNQRn4w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="115581174"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="115581174"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 02:55:15 -0700
-X-CSE-ConnectionGUID: TcJcPbTsRSyRzyW4l+xnrA==
-X-CSE-MsgGUID: njtQzaIeR+eX1NGiw9ZkJg==
+ bh=XHthUUBv8aC4b/pOgdLB0Pd5CfyRHYHmbdtCdn80mHo=;
+ b=SACdOh7gWYUBxuVlwfu0tPRXBqdckotqWmgjwohj4nSyCOlWhIy92g4H
+ js7NAmXpoJy4KN4x6isgcq4gDXfjHWypKOYk7Yck/scsozLeFJ20pJnes
+ q6Mx1peWOexmbbcEbq452FfJdXFDYniWApKphzzEKINoMbDzk7JkP+UYh
+ EiKM7joKBxoKtFsC0ktUcuSIA/W80woErL8oeRLEHrCGnBU1rkgxnzHMI
+ KzfS89jnGsVRwey6rXAz+2zoBVvD+2NIH6qGk0nbpqYUxS+Yv2CD0q6GJ
+ qd5IzW7bxfSgJwNBob51iyeBeCHIbcCi90FT4yZR2v4rRK6sMySUWlGX1 g==;
+X-CSE-ConnectionGUID: VoxwWJBCSjOCWETYdIzIWw==
+X-CSE-MsgGUID: bHpNL02DSkuP5yxAPhaMOg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="100641919"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="100641919"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2026 02:56:19 -0700
+X-CSE-ConnectionGUID: OzEt0MIyRt+NVButa3HVuQ==
+X-CSE-MsgGUID: mEDQHYl5RMezoZMlXQgllQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="275640284"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.62])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 02:55:11 -0700
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2026 02:56:14 -0700
 From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Thu, 17 Sep 2026 12:55:06 +0300 (EEST)
+Date: Thu, 17 Sep 2026 12:56:09 +0300 (EEST)
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 cc: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org, 
  Hans de Goede <hansg@kernel.org>, matthew.brost@intel.com, 
@@ -51,12 +50,11 @@ cc: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com, 
  anoop.c.vijay@intel.com, badal.nilawar@intel.com, 
  matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
-Subject: Re: [PATCH v9 03/20] platform/x86/intel/pmt: refactor rc with a
- return value
-In-Reply-To: <20260916201139.2374531-25-michael.j.ruhl@intel.com>
-Message-ID: <b5c31da5-99f4-1474-53e0-46359fbcdcd8@linux.intel.com>
+Subject: Re: [PATCH v9 09/20] drm/xe/vsec: Add DOC text for VSEC
+In-Reply-To: <20260916201139.2374531-31-michael.j.ruhl@intel.com>
+Message-ID: <9f6b61e5-a100-a27d-d8e8-b7327608721f@linux.intel.com>
 References: <20260916201139.2374531-22-michael.j.ruhl@intel.com>
- <20260916201139.2374531-25-michael.j.ruhl@intel.com>
+ <20260916201139.2374531-31-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -75,65 +73,93 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Wed, 16 Sep 2026, Michael J. Ruhl wrote:
 
-> Upcoming changes will include possible failures from HW accesses.
-> 
-> Refactor pmt_crashlog_rw() with a return value.
-> 
-> Update all necessary usage to use the return code.
+> Add the necessary files and text to use the DOC system.
 > 
 > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 > ---
->  drivers/platform/x86/intel/pmt/crashlog.c | 101 ++++++++++++++++------
->  1 file changed, 74 insertions(+), 27 deletions(-)
+>  Documentation/gpu/xe/index.rst   |  1 +
+>  Documentation/gpu/xe/xe_vsec.rst | 14 ++++++++++++++
+>  drivers/gpu/drm/xe/xe_vsec.c     | 23 +++++++++++++++++++++++
+>  3 files changed, 38 insertions(+)
+>  create mode 100644 Documentation/gpu/xe/xe_vsec.rst
 > 
-> diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
-> index 831cff743803..b6540f3a9a17 100644
-> --- a/drivers/platform/x86/intel/pmt/crashlog.c
-> +++ b/drivers/platform/x86/intel/pmt/crashlog.c
-> @@ -144,27 +144,29 @@ static int pmt_crashlog_rmw(struct crashlog_entry *crashlog, u32 bit, bool set)
->  }
->  
->  /* Read the status register and see if the specified @bit is set */
-> -static bool pmt_crashlog_rc(struct crashlog_entry *crashlog, u32 bit)
-> +static int pmt_crashlog_rc(struct crashlog_entry *crashlog, u32 bit, bool *state)
->  {
->  	const struct crashlog_status *status = &crashlog->info->status;
->  	u32 reg = readl(crashlog->entry.disc_table + status->offset);
->  
-> -	return !!(reg & bit);
-> +	*state = !!(reg & bit);
+> diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
+> index 0247a255f7e6..89f013418cf5 100644
+> --- a/Documentation/gpu/xe/index.rst
+> +++ b/Documentation/gpu/xe/index.rst
+> @@ -36,3 +36,4 @@ The display, or :ref:`drm-kms`, support for drm/xe is provided by
+>     xe_configfs
+>     xe_gt_stats
+>     xe_sigid
+> +   xe_vsec
+> diff --git a/Documentation/gpu/xe/xe_vsec.rst b/Documentation/gpu/xe/xe_vsec.rst
+> new file mode 100644
+> index 000000000000..1a87548489ea
+> --- /dev/null
+> +++ b/Documentation/gpu/xe/xe_vsec.rst
+> @@ -0,0 +1,14 @@
+> +.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 > +
-> +	return 0;
->  }
+> +=====
+> +VSEC
+> +=====
+> +
+> +.. kernel-doc:: drivers/gpu/drm/xe/xe_vsec.c
+> +   :doc: VSEC
+> +
+> +Internal API
+> +============
+> +
+> +.. kernel-doc:: drivers/gpu/drm/xe/xe_vsec.c
+> +   :internal:
+> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+> index 1cb9a78ee0ef..ca5d02dce818 100644
+> --- a/drivers/gpu/drm/xe/xe_vsec.c
+> +++ b/drivers/gpu/drm/xe/xe_vsec.c
+> @@ -19,6 +19,17 @@
 >  
-> -static bool pmt_crashlog_complete(struct crashlog_entry *crashlog)
-> +static int pmt_crashlog_complete(struct crashlog_entry *crashlog, bool *state)
->  {
->  	/* return current value of the crashlog complete flag */
-> -	return pmt_crashlog_rc(crashlog, crashlog->info->status.complete);
-> +	return pmt_crashlog_rc(crashlog, crashlog->info->status.complete, state);
->  }
+>  #include "regs/xe_pmt.h"
 >  
-> -static bool pmt_crashlog_disabled(struct crashlog_entry *crashlog)
-> +static int pmt_crashlog_disabled(struct crashlog_entry *crashlog, bool *state)
->  {
->  	/* return current value of the crashlog disabled flag */
-> -	return pmt_crashlog_rc(crashlog, crashlog->info->status.disabled);
-> +	return pmt_crashlog_rc(crashlog, crashlog->info->status.disabled, state);
->  }
->  
-> -static bool pmt_crashlog_supported(struct intel_pmt_entry *entry, u32 *crash_type, u32 *version)
-> +static int pmt_crashlog_supported(struct intel_pmt_entry *entry, u32 *crash_type, u32 *version)
->  {
->  	u32 discovery_header = readl(entry->disc_table + CONTROL_OFFSET);
->  
+> +/**
+> + * DOC: VSEC
+> + *
+> + * Some GPUs support the PMT feature.  For those that do, this API provides
+> + * probe, discovery and usage (control and access) for GPUs that have PMT.
+> + *
+> + * PMT is usually accessed through a PCI function.  However, that is not always
+> + * available, so the PMT intel_vsec_register() function can be used to setup up
 
-This function still contains return true and false within even if you 
-changed the return type (and it "works" because of implicit conversions 
-but better to correct that inconsistency).
+Wrong grammar: "setup up"
 
 (Found by sashiko.)
+
+> + * PMT usage.
+> + */
+> +
+>  /* PMT GUID value for BMG devices.  NOTE: this is NOT a PCI id */
+>  #define BMG_DEVICE_ID 0xE2F8
+>  
+> @@ -140,6 +151,18 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
+>  	return 0;
+>  }
+>  
+> +/**
+> + * xe_pmt_telem_read - Given a device and a PMT GUID, read data into a buffer
+> + * @dev: valid Xe device
+> + * @guid: PMT GUID (from the PMT discovery struct)
+> + * @data: buffer to place data in
+> + * @user_offset: a user offset relative to the beginning of the data to read
+> + * @count: bytes to read
+> + *
+> + * Return:
+> + * * -EINVAL for VF and PMT WATCHER requests
+> + * * count   number of bytes read on success
+> + */
+>  int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offset,
+>  		      u32 count)
+>  {
+> 
 
 -- 
  i.
