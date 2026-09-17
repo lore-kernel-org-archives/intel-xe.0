@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BEC4C88E72
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 19:39:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 446D2C88E72
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 19:49:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B75510F05F;
-	Thu, 17 Sep 2026 19:39:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAEA510E785;
+	Thu, 17 Sep 2026 19:49:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fz3IAmQR";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IIJp9Djj";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC74310F05F
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 19:39:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69FD310E785
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 19:48:59 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id F3BE1601EF;
- Thu, 17 Sep 2026 19:39:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ED321F000FF;
- Thu, 17 Sep 2026 19:39:42 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 8ACED601EF;
+ Thu, 17 Sep 2026 19:48:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1958F1F000FF;
+ Thu, 17 Sep 2026 19:48:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789673982;
- bh=DbdfUXUgjuRvEBaMknXBqvlpFRISNbP3ljZOQuoDqvk=;
+ s=k20260515; t=1789674538;
+ bh=DXgpdCkBImJZqm9R76DSDyYlQAQI/s/AEClKo8w1DxQ=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=fz3IAmQR1r58gETqLmF+NcankE6M9cXeJJnasfARIlbkkApNVP7iFsOgvkWUuXDkj
- 643DU7FHd5FKYs7M1L0MXFDX2aoMt9SGN/oRN/+U7GTQaTFKZA7610pbHrp3pa5XWZ
- sTqKcKmUIk0xP2/4Kkraw2j8Yw7qWfoz6S0unvnjfdtXc59vxxlIQQaqYpL5pt7H1l
- vWm39aH8P3ZWTX0zRYZMrXvxp1hoiFQFQ/WZYdf4BMyCmCCWw3HV7bc54e/UKyqEBt
- ql4MzltCC/LMc8DFmBx0D7HsXD/2ecMDzC8WC6XBP70X9Z9mC5LqZaS5i/L5yk+hQb
- 6qZplyX4CRxJA==
+ b=IIJp9Djj9cZE5+asUtqcJmny+pQVqt4rH82KnRfA+Yw1S2t6/mFr7laI1JZzkYzi8
+ NEAvhGAa1uACgAncyZjVE670dhzEhmbrTL/t/xjWHTHZHAGtA7CUtEGjkhiz4AbDCw
+ bMTEynMIVlktkg9nPL9yeSGE6/+l8kRvGIE2LzHYy8YT2wAOHZGslFYacD2qokhg+k
+ 12N7QsNGnyJ/hS79o4rsYGhu6Wm+xHZCtoTnu/x5/POD1lCILKDZ+wGKGEVBd5fxpX
+ UP5w5fY7w3c0hLe3PtHk9vnNeFt4bO7aPwY8AfwtnaM42/OcMda6tRg67X/2GCCWZp
+ 1Ok31+4OvqDAg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 2/3] drm/xe/sysctrl: Add RAS error injection debugfs
- interface
-To: =?utf-8?b?QW5vb3AsIFZpamF5?= <anoop.c.vijay@intel.com>
+Subject: Re: [PATCH v2] drm/xe: Add mnemonic error reason to page fault
+ diagnostics
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260917193026.3234636-7-anoop.c.vijay@intel.com>
-References: <20260917193026.3234636-5-anoop.c.vijay@intel.com>
- <20260917193026.3234636-7-anoop.c.vijay@intel.com>
+In-Reply-To: <20260917193815.209362-1-matthew.brost@intel.com>
+References: <20260917193815.209362-1-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 17 Sep 2026 19:39:42 +0000
-Message-Id: <20260917193942.8ED321F000FF@smtp.kernel.org>
+Date: Thu, 17 Sep 2026 19:48:57 +0000
+Message-Id: <20260917194858.1958F1F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,119 +58,87 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] xe: missing little-endian conversion for RAS error injection pay=
-load
+- [Medium] drm/xe: stale pagefault error codes mask true failure reasons on=
+ retries
 --
 
-commit 7903eaec1791648b7046d617e95443efac765053
-Author: Anoop Vijay <anoop.c.vijay@intel.com>
+commit 316fc8037f7fbbec7bf65ce4fb4107de7eac1d79
+Author: Matthew Brost <matthew.brost@intel.com>
+drm/xe: Add mnemonic error reason to page fault diagnostics
 
-    drm/xe/sysctrl: Add RAS error injection debugfs interface
-   =20
-    Add debugfs interface for exercising System Controller's RAS error
-    injection command, used to validate RAS error detection and recovery
-    paths.
+This patch adds enum xe_pagefault_error to encode failure reasons into the
+reserved low bits of the page address. This allows xe_pagefault_print to
+report a mnemonic failure reason.
 
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c b/drivers/gpu/drm/xe=
-/xe_sysctrl_debugfs.c
-> index 6e96b1190e268..272e51f24f7bc 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
+> diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pa=
+gefault.c
+> --- a/drivers/gpu/drm/xe/xe_pagefault.c
+> +++ b/drivers/gpu/drm/xe/xe_pagefault.c
 
 [ ... ]
 
-> +static int sysctrl_parse_ras_error_inject(struct xe_device *xe, char *tm=
-p,
-> +					  struct xe_sysctrl_diag_ras_err_inj_req *req)
-> +{
-> +	unsigned int nfields =3D 0;
-> +	char *token;
-> +	unsigned long val;
-> +
-> +	while ((token =3D strsep(&tmp, " \t\n")) !=3D NULL) {
-> +		if (*token =3D=3D '\0')
-> +			continue;
-> +
-> +		if (kstrtoul(token, 0, &val))
-> +			goto inval;
-> +
-> +		switch (nfields) {
-> +		case 0:
-> +			if (val > U16_MAX)
-> +				goto inval;
-> +			req->ras_block_id =3D val;
-> +			break;
-> +		case 1:
-> +			if (val > U16_MAX)
-> +				goto inval;
-> +			req->ras_sub_block_id =3D val;
-> +			break;
-> +		case 2:
-> +			if (val > U16_MAX)
-> +				goto inval;
-> +			req->err_type =3D val;
-> +			break;
-> +		case 3:
-> +			if (val > U32_MAX)
-> +				goto inval;
-> +			req->params =3D val;
-> +			break;
+> @@ -195,8 +203,10 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt,=
+ struct xe_vma *vma,
+>  						 needs_vram =3D=3D 1);
+>  			drm_exec_retry_on_contention(&exec);
+>  			xe_validation_retry_on_oom(&ctx, &err);
+> -			if (err)
+> +			if (err) {
+> +				xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_VMA_VALIDATE);
+>  				break;
+> +			}
 
 [Severity: Medium]
-Do these assignments need cpu_to_le16() and cpu_to_le32() conversions?
+Does this leak the error state into subsequent retries if the failure is a
+transient -EAGAIN?
 
-In sysctrl_parse_ras_error_inject(), host-native values are assigned
-directly to the payload struct. When writing to the ras_error_inject
-debugfs file on big-endian architectures, the RAS error injection payload
-is sent to the firmware with swapped bytes. This would cause the firmware
-to receive incorrect block IDs and parameters.
+If a transient failure occurs, xe_pagefault_set_error sets
+XE_PAGEFAULT_ERROR_VMA_VALIDATE. When the outer loop retries, this error co=
+de
+remains attached to pf. If a later retry fails for a different reason, the
+stale error code might mask the true failure reason.
 
-> +		default:
-> +			xe_err(xe, "sysctrl: too many ras_error_inject arguments\n");
-> +			return -EINVAL;
+[ ... ]
+
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+
+[ ... ]
+
+> @@ -1480,11 +1488,15 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, str=
+uct xe_vma *vma,
+>  		 * may have been split by xe_svm_range_set_default_attr.
+>  		 */
+>  		vma =3D xe_vm_find_vma_by_addr(vm, fault_addr);
+> -		if (!vma)
+> +		if (!vma) {
+> +			xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_SVM_VMA_NOT_FOUND);
+>  			return -EINVAL;
 > +		}
-> +		nfields++;
-> +	}
-
-[ ... ]
-
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/=
-drm/xe/xe_sysctrl_mailbox_types.h
-> index 691a699667788..f658c9c54b49f 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-
-[ ... ]
-
-> +/**
-> + * struct xe_sysctrl_diag_ras_err_inj_req - DIAG_RAS_ERR_INJECT request =
-payload
-> + *
-> + * Request payload for XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT. The mailbox l=
-ayer
-> + * prepends the application message header before sending.
-> + *
-> + * @ras_block_id: RAS block (subsystem) to inject the error into
-> + * @ras_sub_block_id: RAS sub-block (IP) within @ras_block_id
-> + * @err_type: Type of test error to inject
-> + * @reserved: Must be zero
-> + * @params: Optional injection parameters (default 0)
-> + */
-> +struct xe_sysctrl_diag_ras_err_inj_req {
-> +	u16 ras_block_id;
-> +	u16 ras_sub_block_id;
-> +	u16 err_type;
-> +	u16 reserved;
-> +	u32 params;
-> +} __packed;
+> =20
+>  		goto retry;
+>  	}
+> +	if (ret && xe_pagefault_get_error(pf) =3D=3D XE_PAGEFAULT_ERROR_NONE)
+> +		xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_SVM_SERVICE_FAILED);
+>  	return ret;
+>  }
 
 [Severity: Medium]
-Should these fields use __le16 and __le32 instead of u16 and u32?
+Can a previous transient error mask the true failure reason here?
 
-The sysctrl mailbox interface expects little-endian data, but these hardware
-payload fields are declared with host-native types in
-struct xe_sysctrl_diag_ras_err_inj_req.
+For example, if __xe_svm_handle_pagefault encounters a transient -EAGAIN
+failure during xe_svm_garbage_collector, it sets
+XE_PAGEFAULT_ERROR_SVM_GARBAGE_COLLECTOR.
+
+When the retry happens, if it subsequently fails at a different point (such
+as getting pages) that relies on this fallback error assignment, the
+condition evaluates to false because the error state is no longer
+XE_PAGEFAULT_ERROR_NONE.
+
+Would it be safer to clear the error state before retrying, or
+unconditionally overwrite the fallback error here?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260917193026.3234=
-636-5-anoop.c.vijay@intel.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260917193815.2093=
+62-1-matthew.brost@intel.com?part=3D1
