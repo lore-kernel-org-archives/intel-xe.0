@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E035C982D6
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 16:36:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AFADC982D6
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 16:36:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCF4610E4A5;
-	Thu, 17 Sep 2026 16:36:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34DA710E0AE;
+	Thu, 17 Sep 2026 16:36:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="p2SoVuPi";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cT5Z4YbF";
 	dkim-atps=neutral
-Received: from mail-vs2-f41.google.com (mail-vs2-f41.google.com
- [74.125.227.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF6FB10E4A5
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 16:36:10 +0000 (UTC)
-Received: by mail-vs2-f41.google.com with SMTP id
- 71dfb90a1353d-5c9031e714dso351613e0c.3
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 09:36:10 -0700 (PDT)
+Received: from mail-vs2-f20.google.com (mail-vs2-f20.google.com
+ [74.125.227.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBB7C10E63F
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 16:36:14 +0000 (UTC)
+Received: by mail-vs2-f20.google.com with SMTP id
+ 71dfb90a1353d-5c67e4fff62so314020e0c.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 09:36:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1789662969; x=1790267769; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1789662974; x=1790267774; darn=lists.freedesktop.org;
  h=content-transfer-encoding:content-type:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
  :date:message-id:reply-to:content-type;
- bh=22vAnO/NdhoyxOh5BfKieSuetSOebs9QwAExSEe28JI=;
- b=p2SoVuPibIJsq3Ddpd0WQ0cUNUEnqJa8VZumJLVqQ/dIC8ai1IvBk0b1wZ9xu42Lcu
- zz/cSDGBPGG/2zqynFg2w1D8DCjNPIvMpjRz6Y9CXZ5SuyEbS2+Dv81EV/MsO9RWa5n/
- +3IdMMpOIHASGdTHJnOc8vEnIMxqPnhZvxNesy6TraldxuhUrJzaehBjXnpN2lp8kzPG
- zSMgdHmZ5BZuyVMD4zRGzpN3yqyZw7hb+FWJc67/26vnRIvREzQ8Js59fnmweCHScQpJ
- Qn1DjJQ9cfEEC0h6FKMdbtx2cKm68JJu/jNs90z4xpfVGX5ZrfGxtRjazjXoLfpjBvZW
- xj2g==
+ bh=pFCvkrGHeoh04W9xHjBBzfI8dcLvWE3494aYsAJUFFo=;
+ b=cT5Z4YbF7PQ47hYBM1w+ecnJ3SJryB6lrEu6aJ9wRsLCuJzKhHhMfflx8MJBBAUk8A
+ Kg51y9iOloAdzQmmCj8PzmUTpE9IuQYvYRELI7rrweJ14HcpSOO4SzXCfsQeFpAXcyCh
+ sPmxPon0zdtqKyC/fmeW4zWmHvrw9sWv693EU7zzBO8a5SQyXCpRZ2Ug50JRWdyvRW5A
+ t3APbR6vR8snXpxaMdcr+TSicQB6TmtIIvi1OMABQUJ5K6ffqN2OoXVJ5z6DD22WIC2Y
+ uBEJs5B5hmBM5zUKb8R2sDYcVXTamnocJRJAjnm7XB68NL771eH2DwNzzXcKq9znWHys
+ RVgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789662969; x=1790267769;
+ d=1e100.net; s=20260707; t=1789662974; x=1790267774;
  h=content-transfer-encoding:content-type:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=22vAnO/NdhoyxOh5BfKieSuetSOebs9QwAExSEe28JI=;
- b=lBlK5XEGa6KuPQgdmQZDFCnwjypBIqjkWBaqez+D91z+hyNgArQ0J2OT3W2XDgD1B4
- aTOGf1nst6EhRXOwbDbPWZSKq4poitQC2HMUfmxH7QiJkoDK34VkAkfCtlXwMZEhUz4o
- 6uiEPNpsZh332exnFhI8kcuauXE5cZ24glPFcy1BsVmPkmTYBzLj3gCLHvCMvQzngeCj
- Ce6xtZeooiGnRQiNMwb5ZdR40KMcNX8SVKKa11+FzQ3fCJ8fuvpr3r7ndGN8jKNj0qgz
- f4jN5h1J9Su4vJz/G2XtJVh1UM9pgod77z1Kq9Qx7ciGO5IQhpjkhcrxh7RznQE5EdQG
- bbOg==
-X-Gm-Message-State: AFuF++ksDatK4lJZRClPvQ48uMkbZwWaOvblEN0lw8NOGChenCu0XQQ5
- RpZu5B4kYQDfJCLSvCykGcJKeFXRrbwrLVRJHlLAUB6qpGoFdxEYQTgcqfIy8OzI
-X-Gm-Gg: AYBFou36U8C/FJEfRVCm/ktnBp5zEbwLJcp0mLG/c8ama+H/MopvtoBKue/SLFiGqNf
- qtoo4p03XMP6LUA+5BK/TC20Es/PteOfXC3Q0rtST81kuSGkuXnxMW35elgeT21GuGooUdbIM6p
- RKHZ9WzjiwbvKxy9aUj2SUIyjpLC9ptt1spvjzB3ZWvY7L/WGOvn5mzAWNfuw7jr94g47RuQXli
- rzxcqIde0gIhu0kZ4MLcEOISY+dv9VQT7mD5j6Z28tfTQXPTyYx/SXvRWajrvND0bNfWAQStIt4
- T9J1MJb6yw9lfa3hoEtrHlf7bDN0eGORUcsNRf6hVbuktdw2EjUxbDgYbxnB1PpvdCsyFGrN9cX
- s2ThttSvQxb+JXy4rWcbd3ijyy3lby+Fckbs/AXkucVB/2J4MUVXYASbno0s1fT7UQ5nFKDXnWs
- Pg+eguLZBKb3mfpRvzwHN2iDbkxpJ0Tiu5a7e8ga61jd3oTQ1F/th+nbFEiDIMip9D68YJZcwD/
- QkvPYqhmPCxggkFOpaqM2Q1Qeu7KVku5CuZTMuFE6xWC/K2JnN2G4v1sQ==
-X-Received: by 2002:a05:6122:1806:b0:5c9:a60d:327a with SMTP id
- 71dfb90a1353d-5c9a60d39bemr2393082e0c.14.1789662969650; 
- Thu, 17 Sep 2026 09:36:09 -0700 (PDT)
+ bh=pFCvkrGHeoh04W9xHjBBzfI8dcLvWE3494aYsAJUFFo=;
+ b=Y5UMDe5llqrfjX9ppFZ6lXeGB2hoPG9EMz3aQiZet1W+PAMbC5Yi/sJd4y/wV32YME
+ Xiq096QcibI9DVNNS2xd5AussQf/6GJeZb593DaLUXxIJD8m3kj0t6jwZpbSAU4Omm/V
+ XCBKHVlu2PtrL1GERsrRBUYVE0vvSY34IhtzAJEFVopcL7G7R2TkpSFDLjUq3nby3aYT
+ EqtV1hTYmm0tnpITsbHBAelxKj2j2wUTtX3756uuUylzM17oHSKFSH/CFgTPF95XGTyy
+ VGelOSqfpHG5OunuUmuE3zYzEdiJjJeztfU/VQekXz4sdqcndpyY3e3qJbUY0FJTjtSq
+ WHZg==
+X-Gm-Message-State: AFuF++nZUNXBcCbVSvJRPgUpt6KrfxRW6SnEvdpdajCnkugP3mRjmKNN
+ o0J85qPwo7Pqf/qUZaLY7FBaBDr1Sg3PzSNwUMP+U+yED2n2fNgF49ujCDbOOG1+
+X-Gm-Gg: AYBFou1N7hiCTfZemhltOpeQphE9h2cxnZN99FfhJx6EK3Hjv9D5hLB/ArgFRgZpm70
+ B84EUca7kDUI4lgwG7tWuK2lc7NnGbFtRM7j1PPU7WfYkE2xhTe8lXwKy80kMyAzVEfd7F389z5
+ eBzCvpD1DiTpysPEMA4tfdGCEv/QTp3GNJqrkN+Ex753fsm+d+rLforQxN2/JOOKg0cR0Pa8Asf
+ l2p1upRwQOkPGtDqeMU89fIKDOfT3HIGbPOvVfh1YkKbyphnQgMIu3cr+vvMGg4NHoi5J3GffNW
+ 6oPOcd26lX5ut0Jqti2uWGE6c34g+1LTiragZmoMFNf9vrlWmcxH69OtDVngan6WLW7azMp0bAO
+ H9v3oKH5mdLg0a9tMlvxGO6EK7jj0BiCm6cJGajGgQJFhqNdwfiIijKSigsyPQN44A+TZ1OeeE7
+ OuH9TzbX8+F3eWqi8qSubtEe9NlehZTsY00xa73JTFFr37G3CW2WLUfRdXCwUL0zUSH8XUJvZSh
+ xKOLa9vUBrZlWq0k0WH/nTBtopcBkQs1+JRiExv1/Q7QSY=
+X-Received: by 2002:a05:6122:3129:b0:5c9:a60b:e5ba with SMTP id
+ 71dfb90a1353d-5c9a60be90cmr2013450e0c.10.1789662973593; 
+ Thu, 17 Sep 2026 09:36:13 -0700 (PDT)
 Received: from lord ([170.246.209.50]) by smtp.gmail.com with ESMTPSA id
- 71dfb90a1353d-5c9a53b2ba1sm3065363e0c.8.2026.09.17.09.36.06
+ 71dfb90a1353d-5c9a53b2ba1sm3065363e0c.8.2026.09.17.09.36.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 17 Sep 2026 09:36:09 -0700 (PDT)
+ Thu, 17 Sep 2026 09:36:13 -0700 (PDT)
 From: =?UTF-8?q?Tales=20A=2E=20Mendon=C3=A7a?= <talesam@gmail.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, daniele.ceraolospurio@intel.com,
@@ -69,10 +69,9 @@ Cc: matthew.brost@intel.com, daniele.ceraolospurio@intel.com,
  jani.nikula@intel.com, navonjohnlukose@gmail.com,
  dri-devel@lists.freedesktop.org,
  =?UTF-8?q?Tales=20A=2E=20Mendon=C3=A7a?= <talesam@gmail.com>
-Subject: [PATCH v4 2/3] drm/xe: Log when a timed out TLB invalidation ack
- finally arrives
-Date: Thu, 17 Sep 2026 13:35:52 -0300
-Message-ID: <20260917163553.1742580-3-talesam@gmail.com>
+Subject: [PATCH v4 3/3] drm/xe: Implement Wa_22016122933
+Date: Thu, 17 Sep 2026 13:35:53 -0300
+Message-ID: <20260917163553.1742580-4-talesam@gmail.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260917163553.1742580-1-talesam@gmail.com>
 References: <20260917163553.1742580-1-talesam@gmail.com>
@@ -93,109 +92,251 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When a TLB invalidation fence times out we log the timeout, but if the
-ack for that seqno later shows up there is no record of it, making it
-impossible to tell from logs whether the ack was lost forever or merely
-(very) late.
+On platforms with a standalone media GT and media version 13.00
+(MTL/ARL), memory shared between the CPU and the media GT's GuC must
+not be mapped cached on the CPU side: the CPU can otherwise read stale
+cache lines for data the GuC has already written.
 
-Track the most recent timed out seqno and log how late its ack arrives,
-relative to both the original request and the moment the fence was
-signaled with -ETIME.
+i915 implements this as Wa_22016122933 (see
+intel_gt_needs_wa_22016122933(), used by intel_guc_allocate_vma() and
+intel_gt_coherent_map_type()); xe never inherited it.
 
-On ARL with GuC 70.53.0 this shows the acks are never lost: they
-consistently arrive ~2.3s after the request, tens of milliseconds after
-the TDR has already signaled the fence:
+The visible symptom on ARL is TLB invalidation acks stalling for a
+near-constant ~2.3s: the GuC writes the G2H ack in time, but the CPU
+keeps reading a stale (empty) view of the G2H CTB until the line is
+naturally evicted, so the fence timeout at 2.25s fires first. GuC log
+decode confirmed all invalidations were handled promptly by the
+firmware, and only the media GT was affected. See Link for the full
+investigation (three machines affected: 7d51, 7dd1, Arc Pro 130T).
 
-  TLB invalidation fence timeout, seqno=10992 recv=10991
-  TLB invalidation late ack: seqno=10992 recv=10992,
-    request-to-ack=2314ms, timeout-to-ack=45ms
+Making the mapping coherent instead of uncached does not help: with a
+GGTT PAT entry repurposed to WB|COH_2WAY the driver comes up and the
+media GT GuC runs, but the stalls remain (request-to-ack 2290ms).
+Uncached really is required here. Note that 2-way coherency is not
+normally reachable from a GGTT PTE (only 2 PAT bits), so that
+experiment needed a modified PAT table and may not reflect a supported
+configuration.
+
+Add the OOB workaround scoped like i915 (media version 13.00, media GT
+only - MEDIA_VERSION() OOB rules only match the media GT on standalone
+media platforms) and apply XE_BO_FLAG_NEEDS_UC to the GuC-shared
+allocations the CPU reads from: the CTBs, the GuC log, ADS, the SLPC
+shared data and the engine activity buffers. hwconfig and the G2G
+buffer are allocated on the primary GT only, where the workaround does
+not apply.
+
+Note that XE_BO_FLAG_NEEDS_UC drives both the CPU mapping (uncached)
+and the GGTT cache mode (XE_CACHE_NONE instead of XE_CACHE_WB), which is
+stricter than i915: i915 documents the workaround as WC on the CPU side
+and UC on the GPU side. A CPU-WC variant with the GGTT side kept at
+XE_CACHE_NONE was measured to be equally effective, but expressing it
+would require either a new BO flag or decoupling the GGTT cache-mode
+selection from XE_BO_FLAG_NEEDS_UC - simply swapping in
+XE_BO_FLAG_FORCE_WC silently relaxes the GPU side back to WB and the
+stalls return. The stricter mapping is kept here since it is the tested
+configuration and no throughput difference between the two was
+measurable; the extra plumbing can be added later if parity with i915 is
+preferred.
+
+Scope is limited to the GuC-shared allocations, which is where the
+failures were observed. i915 additionally covers media-GT LRC/ring
+state; extending xe to match can be done as a follow-up if wanted.
+
+Validation on two ARL machines (7d51 and 7dd1): before, 20-60 TLB
+invalidation ack stalls per day, every day, for weeks, on every kernel
+and on two GuC firmware versions (70.53.0 and 70.72.1). After: zero
+stalls in six weeks of combined runtime, over 10M TLB invalidations
+processed under the same workloads, across kernels 7.1.6, 7.1.8 and
+7.2. The 7dd1 machine, which could not survive a day of media
+workloads on xe without a platform freeze, has been running xe full
+time since 11 August, including days with heavy video transcoding,
+with zero stalls and zero freezes.
+
+The coherency experiment, the CPU-WC measurements and the engine
+activity coverage gap were found by Navon John Lukose while A/B
+testing v2 on an ARL 7d51.
 
 Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8678
+Suggested-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Signed-off-by: Tales A. Mendonça <talesam@gmail.com>
+Tested-by: Navon John Lukose <navonjohnlukose@gmail.com>
 ---
- drivers/gpu/drm/xe/xe_tlb_inval.c       | 19 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_tlb_inval_types.h | 17 +++++++++++++++++
- 2 files changed, 36 insertions(+)
+ drivers/gpu/drm/xe/xe_guc.c                 | 16 ++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc.h                 |  2 ++
+ drivers/gpu/drm/xe/xe_guc_ads.c             |  3 ++-
+ drivers/gpu/drm/xe/xe_guc_ct.c              |  6 ++++--
+ drivers/gpu/drm/xe/xe_guc_engine_activity.c |  6 ++++--
+ drivers/gpu/drm/xe/xe_guc_log.c             |  7 +++++--
+ drivers/gpu/drm/xe/xe_guc_pc.c              |  3 ++-
+ drivers/gpu/drm/xe/xe_wa_oob.rules          |  1 +
+ 8 files changed, 36 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
-index 7a0c04fac60..7047a347551 100644
---- a/drivers/gpu/drm/xe/xe_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
-@@ -14,6 +14,7 @@
- #include "xe_guc_tlb_inval.h"
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index c7f8bbd4cb9..3ab4cb9e496 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1469,6 +1469,22 @@ int xe_guc_suspend(struct xe_guc *guc)
+ 	return 0;
+ }
+ 
++/**
++ * xe_guc_bo_wa_flags - Extra BO flags for memory shared with the GuC
++ * @gt: the &xe_gt whose GuC the buffer will be shared with
++ *
++ * Wa_22016122933: on the standalone media GT, memory shared between the
++ * CPU and the GuC must not be mapped cached on the CPU side, otherwise
++ * the CPU can read stale data written by the GuC (e.g. G2H CTB writes)
++ * for multiple seconds.
++ *
++ * Return: additional XE_BO_FLAG_* to use when allocating GuC-shared memory
++ */
++u32 xe_guc_bo_wa_flags(struct xe_gt *gt)
++{
++	return XE_GT_WA(gt, 22016122933) ? XE_BO_FLAG_NEEDS_UC : 0;
++}
++
+ void xe_guc_notify(struct xe_guc *guc)
+ {
+ 	struct xe_gt *gt = guc_to_gt(guc);
+diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+index 61e3ee19a59..c4eca40d69c 100644
+--- a/drivers/gpu/drm/xe/xe_guc.h
++++ b/drivers/gpu/drm/xe/xe_guc.h
+@@ -30,6 +30,7 @@
+ 	xe_guc_fw_version_at_least((guc), MAKE_GUC_VER_ARGS(ver))
+ 
+ struct drm_printer;
++struct xe_gt;
+ 
+ void xe_guc_comm_init_early(struct xe_guc *guc);
+ int xe_guc_init_noalloc(struct xe_guc *guc);
+@@ -45,6 +46,7 @@ void xe_guc_runtime_suspend(struct xe_guc *guc);
+ void xe_guc_runtime_resume(struct xe_guc *guc);
+ int xe_guc_suspend(struct xe_guc *guc);
+ int xe_guc_softreset(struct xe_guc *guc);
++u32 xe_guc_bo_wa_flags(struct xe_gt *gt);
+ void xe_guc_notify(struct xe_guc *guc);
+ int xe_guc_auth_huc(struct xe_guc *guc, u32 rsa_addr);
+ int xe_guc_mmio_send(struct xe_guc *guc, const u32 *request, u32 len);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index ff8eee3831a..abc7266fc6f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -435,7 +435,8 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
+ 					  XE_BO_FLAG_SYSTEM |
+ 					  XE_BO_FLAG_GGTT |
+ 					  XE_BO_FLAG_GGTT_INVALIDATE |
+-					  XE_BO_FLAG_PINNED_NORESTORE);
++					  XE_BO_FLAG_PINNED_NORESTORE |
++					  xe_guc_bo_wa_flags(gt));
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 5c4733da385..5c393aa29de 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -376,7 +376,8 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 					  XE_BO_FLAG_SYSTEM |
+ 					  XE_BO_FLAG_GGTT |
+ 					  XE_BO_FLAG_GGTT_INVALIDATE |
+-					  XE_BO_FLAG_PINNED_NORESTORE);
++					  XE_BO_FLAG_PINNED_NORESTORE |
++					  xe_guc_bo_wa_flags(gt));
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
+@@ -386,7 +387,8 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 					  XE_BO_FLAG_SYSTEM |
+ 					  XE_BO_FLAG_GGTT |
+ 					  XE_BO_FLAG_GGTT_INVALIDATE |
+-					  XE_BO_FLAG_PINNED_NORESTORE);
++					  XE_BO_FLAG_PINNED_NORESTORE |
++					  xe_guc_bo_wa_flags(gt));
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_engine_activity.c b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
+index a782be57caa..729ce8ac140 100644
+--- a/drivers/gpu/drm/xe/xe_guc_engine_activity.c
++++ b/drivers/gpu/drm/xe/xe_guc_engine_activity.c
+@@ -97,7 +97,8 @@ static int allocate_engine_activity_buffers(struct xe_guc *guc,
+ 
+ 	metadata_bo = xe_bo_create_pin_map_novm(gt_to_xe(gt), tile, PAGE_ALIGN(metadata_size),
+ 						ttm_bo_type_kernel, XE_BO_FLAG_SYSTEM |
+-						XE_BO_FLAG_GGTT | XE_BO_FLAG_GGTT_INVALIDATE,
++						XE_BO_FLAG_GGTT | XE_BO_FLAG_GGTT_INVALIDATE |
++						xe_guc_bo_wa_flags(gt),
+ 						false);
+ 
+ 	if (IS_ERR(metadata_bo))
+@@ -105,7 +106,8 @@ static int allocate_engine_activity_buffers(struct xe_guc *guc,
+ 
+ 	bo = xe_bo_create_pin_map_novm(gt_to_xe(gt), tile, PAGE_ALIGN(size),
+ 				       ttm_bo_type_kernel, XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+-				       XE_BO_FLAG_GGTT | XE_BO_FLAG_GGTT_INVALIDATE, false);
++				       XE_BO_FLAG_GGTT | XE_BO_FLAG_GGTT_INVALIDATE |
++				       xe_guc_bo_wa_flags(gt), false);
+ 
+ 	if (IS_ERR(bo)) {
+ 		xe_bo_unpin_map_no_vm(metadata_bo);
+diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+index 538d4df0f7a..7d006268ce9 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log.c
++++ b/drivers/gpu/drm/xe/xe_guc_log.c
+@@ -17,6 +17,7 @@
+ #include "xe_force_wake.h"
+ #include "xe_gt_printk.h"
+ #include "xe_gt_types.h"
++#include "xe_guc.h"
+ #include "xe_map.h"
  #include "xe_mmio.h"
- #include "xe_pm.h"
-+#include "xe_printk.h"
- #include "xe_tlb_inval.h"
- #include "xe_trace.h"
+ #include "xe_module.h"
+@@ -624,14 +625,16 @@ void xe_guc_log_print_lfd(struct xe_guc_log *log, struct drm_printer *p)
+ int xe_guc_log_init(struct xe_guc_log *log)
+ {
+ 	struct xe_device *xe = log_to_xe(log);
+-	struct xe_tile *tile = gt_to_tile(log_to_gt(log));
++	struct xe_gt *gt = log_to_gt(log);
++	struct xe_tile *tile = gt_to_tile(gt);
+ 	struct xe_bo *bo;
  
-@@ -99,6 +100,11 @@ static void xe_tlb_inval_fence_timeout(struct work_struct *work)
- 			fence->seqno, tlb_inval->seqno_recv);
+ 	bo = xe_managed_bo_create_pin_map(xe, tile, GUC_LOG_SIZE,
+ 					  XE_BO_FLAG_SYSTEM |
+ 					  XE_BO_FLAG_GGTT |
+ 					  XE_BO_FLAG_GGTT_INVALIDATE |
+-					  XE_BO_FLAG_PINNED_NORESTORE);
++					  XE_BO_FLAG_PINNED_NORESTORE |
++					  xe_guc_bo_wa_flags(gt));
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
  
- 		timedout_seqno = fence->seqno;
-+		if (!tlb_inval->timedout_seqno) {
-+			tlb_inval->timedout_seqno = fence->seqno;
-+			tlb_inval->timedout_inval_time = fence->inval_time;
-+			tlb_inval->timedout_time = ktime_get();
-+		}
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 097b075bd89..e0105222a2c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -1391,7 +1391,8 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
+ 					  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
+ 					  XE_BO_FLAG_GGTT |
+ 					  XE_BO_FLAG_GGTT_INVALIDATE |
+-					  XE_BO_FLAG_PINNED_NORESTORE);
++					  XE_BO_FLAG_PINNED_NORESTORE |
++					  xe_guc_bo_wa_flags(gt));
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
  
- 		fence->base.error = -ETIME;
- 		xe_tlb_inval_fence_signal(fence);
-@@ -227,6 +233,7 @@ void xe_tlb_inval_reset(struct xe_tlb_inval *tlb_inval)
- 	else
- 		pending_seqno = tlb_inval->seqno - 1;
- 	WRITE_ONCE(tlb_inval->seqno_recv, pending_seqno);
-+	tlb_inval->timedout_seqno = 0;
- 
- 	list_for_each_entry_safe(fence, next,
- 				 &tlb_inval->pending_fences, link)
-@@ -454,6 +461,18 @@ void xe_tlb_inval_done_handler(struct xe_tlb_inval *tlb_inval, int seqno)
- 
- 	WRITE_ONCE(tlb_inval->seqno_recv, seqno);
- 
-+	if (tlb_inval->timedout_seqno &&
-+	    xe_tlb_inval_seqno_past(tlb_inval, tlb_inval->timedout_seqno)) {
-+		ktime_t now = ktime_get();
-+
-+		xe_warn(xe,
-+			"TLB invalidation late ack: seqno=%d recv=%d, request-to-ack=%lldms, timeout-to-ack=%lldms",
-+			tlb_inval->timedout_seqno, seqno,
-+			ktime_ms_delta(now, tlb_inval->timedout_inval_time),
-+			ktime_ms_delta(now, tlb_inval->timedout_time));
-+		tlb_inval->timedout_seqno = 0;
-+	}
-+
- 	list_for_each_entry_safe(fence, next,
- 				 &tlb_inval->pending_fences, link) {
- 		trace_xe_tlb_inval_fence_recv(xe, fence);
-diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_types.h b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
-index d77be1aedc9..80d2019fa20 100644
---- a/drivers/gpu/drm/xe/xe_tlb_inval_types.h
-+++ b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
-@@ -112,6 +112,23 @@ struct xe_tlb_inval {
- 	 * @pending_lock: protects @pending_fences and updating @seqno_recv.
- 	 */
- 	spinlock_t pending_lock;
-+	/**
-+	 * @timedout_seqno: seqno of the most recent timed out TLB
-+	 * invalidation, 0 if none. Used to measure how late the ack for a
-+	 * timed out invalidation actually arrives. Protected by
-+	 * @pending_lock.
-+	 */
-+	int timedout_seqno;
-+	/**
-+	 * @timedout_inval_time: request time of @timedout_seqno. Protected by
-+	 * @pending_lock.
-+	 */
-+	ktime_t timedout_inval_time;
-+	/**
-+	 * @timedout_time: time @timedout_seqno was signaled with -ETIME.
-+	 * Protected by @pending_lock.
-+	 */
-+	ktime_t timedout_time;
- 	/**
- 	 * @fence_tdr: schedules a delayed call to xe_tlb_fence_timeout after
- 	 * the timeout interval is over.
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index dd69ad07f7a..30958b26a1d 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -14,6 +14,7 @@
+ 16017236439	PLATFORM(PVC)
+ 14019821291	MEDIA_VERSION_RANGE(1300, 2000)
+ 14015076503	MEDIA_VERSION(1300)
++22016122933	MEDIA_VERSION(1300)
+ 14018913170	GRAPHICS_VERSION_RANGE(1270, 1274)
+ 		MEDIA_VERSION(1300)
+ 		PLATFORM(DG2)
 -- 
 2.55.0
 
