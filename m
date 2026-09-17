@@ -4,58 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 346EFC88E72
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 12:46:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92153C88E72
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 12:55:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D688410EEB0;
-	Thu, 17 Sep 2026 12:46:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A2F310EEC4;
+	Thu, 17 Sep 2026 12:55:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ch/sueME";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TQKZtmDT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E12E10EEB0;
- Thu, 17 Sep 2026 12:46:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DE2210EEB8
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 12:55:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789649192; x=1821185192;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=qOOhgVVoPkRxMPW8XJPQBswAwBSN0D789OQcJOTa+Y4=;
- b=ch/sueMEoU8e7Lde5yLUE9Wsj++ClWCJLknsgATLz5ebbooHAJo3mBf6
- 3nywm7eOrpbvzQK+/qVd+qzjwdJzDOiirUj/wtC4ukx3rzUOwRfy2eL33
- SeLc2bJR6ZE3WDceQ8kX9lfFEQvaj7iLaj/LmhbTkNlJEzU+ftR9duWxV
- W7aiW52c2Ka6ZnR8KF6aIagqwW0IFBIiRKx0cPc8Scb2ADSSmzIFKCZxI
- lVind/gCYHQAA/qq7twalWqMvHD7GEaQFm9MGvXLtoE0WK+WJM/N+yVgG
- PMl9eKamdC1x3g+wm+0i2uHfz429kEFC74gwLSNHaotYppM7TYkcZXfLN A==;
-X-CSE-ConnectionGUID: +/Lp9h7yRlu0MgWLfSPXjA==
-X-CSE-MsgGUID: ly6EsdWdQZeitvPxBZPEPQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="90198648"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="90198648"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 05:46:32 -0700
-X-CSE-ConnectionGUID: ejZc73hdSxWhw9uUO1IKVg==
-X-CSE-MsgGUID: JR/6Qbe+TSGShUuQJC0InA==
+ t=1789649719; x=1821185719;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=FMBYxHsXshheyhB3cAahyI17DQ13rKbabxb0tKXK/uY=;
+ b=TQKZtmDTnMyKAmc+fLTMUJZ29dSqJp9DYaEflUyYuVtHL/M9a+BH99p0
+ d8J2PMqH+60XTTaBAHSR2awt/bP4uivU2b3DK+tzDYMZHOF3UZ8wlBvp7
+ EHnZA8gSzXEwkJg9dTFl9kx9u3fSndfhqbOU+I9AeEbi2us7BiKrazmHQ
+ OjVNk/5U1bEcdFq5jcma4+r3o15wOUbJQyyFEUjbeyUiI+wBh8HTHE84j
+ JjeC3Ndux2gq6/ZDU7IhycbEBv0x2VJjRXkoomKTgibd8UfTZfcsejhVu
+ w0FVxPAxyRZJQ7DiHUQHHHf+zDCZqTpQy+RsOsRoWMdnv6LceBIYle5qs g==;
+X-CSE-ConnectionGUID: 3Wvw4o1UQ1ukQAxVo5x+og==
+X-CSE-MsgGUID: AJ8dpybiTuqwHUiazu07bg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="77632617"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="77632617"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2026 05:55:18 -0700
+X-CSE-ConnectionGUID: EOgTqgbIT8SWGejFmlgtJA==
+X-CSE-MsgGUID: CtVsie0sQzyQziaTys2xMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="269492794"
-Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.245.90])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 05:46:30 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, maarten.lankhorst@linux.intel.com, Suraj
- Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 0/4] drm/i915/display: stop using the configurable fence
- timeout, cleanups
-In-Reply-To: <cover.1789069102.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <cover.1789069102.git.jani.nikula@intel.com>
-Date: Thu, 17 Sep 2026 15:46:27 +0300
-Message-ID: <2a6bcbed728a686b31da650614e395144901b630@intel.com>
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2026 05:55:18 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Thu, 17 Sep 2026 05:55:18 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Thu, 17 Sep 2026 05:55:18 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.38) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Thu, 17 Sep 2026 05:55:17 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DTMi4HxzLRGcmmezy8SLl05d0Dnd+Uey/8El8B3updjslvEhu897nffpVTPjeMftlvA0wxBUbGZbSrio/fQ4f/V9fh7i75enSwrcnm108hSEaJUEcsO0I5hnglYlTZ7pqGvsY+g/piQGAyauKoIk/tpr4MoxQvnkcjTlt9TetresxhHWYRgjLbxSdOX3FYBrGIUVS0/dL0PlWcdH/0gIPGEkajRZ0SDd9PSdM0hdqnHs7BV/dhB952JB7qYoHkJP5tTaDETjltPjoUIRCGdqPcOmWcRwJq/g1LU4yUxX/e5+KPYq983qNRL/SDo9ChVywiRkhG8coz7QVAeSocSlWg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xfEm96vfvOOuAV5/Ak6v9CDGqH9vkZEzzfyrwb2UlYo=;
+ b=bKbKrvBhULRuro6DSxepMc/U+WKhdVrlHfLDA9fhfKPuK0QcZBeEf5G9G94GMJ0ZXyHzy2cVQhj+vjME8nmzpCDl5sqVdHyYyhac1X0k8m8PzXhFpE+4KQ6xfe9VafdnL6IyYbyVSYUCYYjaTjSWJEzPPXfoW14vIIXDfxs3FoIEuEziBGOr7VDma+VTgoEOaEmtlIGYvAIIiaKsDdeKwq+2PbAC7WlPZXgm2JkgynGPt3681jsMogFjc31FtyRFF13qisBH0zMv8NLb7R1Ry0O/esBA/aPJhBMnf2dtt+skDPJzmqY7BrZsg7wFnEVSw6YEZXNzZ2Eb82xGmk18SQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CH3PR11MB046149.namprd11.prod.outlook.com
+ (2603:10b6:610:367::19) by PH0PR11MB7634.namprd11.prod.outlook.com
+ (2603:10b6:510:28d::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.12; Thu, 17 Sep
+ 2026 12:55:14 +0000
+Received: from CH3PR11MB046149.namprd11.prod.outlook.com
+ ([fe80::7c3f:5300:19c4:b823]) by CH3PR11MB046149.namprd11.prod.outlook.com
+ ([fe80::7c3f:5300:19c4:b823%6]) with mapi id 15.21.0428.011; Thu, 17 Sep 2026
+ 12:55:13 +0000
+From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+To: =?iso-8859-1?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+CC: "platform-driver-x86@vger.kernel.org"
+ <platform-driver-x86@vger.kernel.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, Hans de Goede <hansg@kernel.org>, "Brost,
+ Matthew" <matthew.brost@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, 
+ "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>,
+ "airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch" <simona@ffwll.ch>, 
+ "david.e.box@linux.intel.com" <david.e.box@linux.intel.com>, "Vijay, Anoop C"
+ <anoop.c.vijay@intel.com>, "Nilawar, Badal" <badal.nilawar@intel.com>,
+ "Roper, Matthew D" <matthew.d.roper@intel.com>, "Ausmus, James"
+ <james.ausmus@intel.com>, "Poosa, Karthik" <karthik.poosa@intel.com>
+Subject: RE: [PATCH v9 09/20] drm/xe/vsec: Add DOC text for VSEC
+Thread-Topic: [PATCH v9 09/20] drm/xe/vsec: Add DOC text for VSEC
+Thread-Index: AQHdRhe+/rwzmr3xE0iBusYR8jkhMrbSicEAgAAw62A=
+Date: Thu, 17 Sep 2026 12:55:13 +0000
+Message-ID: <CH3PR11MB04614971E2CE95C3E8DA7A9E5AC1B82@CH3PR11MB046149.namprd11.prod.outlook.com>
+References: <20260916201139.2374531-22-michael.j.ruhl@intel.com>
+ <20260916201139.2374531-31-michael.j.ruhl@intel.com>
+ <054c50bc-7fc7-c5f1-e650-5233048b9188@linux.intel.com>
+In-Reply-To: <054c50bc-7fc7-c5f1-e650-5233048b9188@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH3PR11MB046149:EE_|PH0PR11MB7634:EE_
+x-ms-office365-filtering-correlation-id: 131143e9-9522-434a-03c4-08df14baea64
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|23010399003|376014|1800799024|366016|56012099006|18002099003|22082099003|38070700021|4143699003|11063799006|10067099003;
+x-microsoft-antispam-message-info: dKpS7+MjLlDOl/dI/wDrkJfwCXJ5z//CiRnVECNZzWHwXD8bD5KV1+BOdvROhgpIMpF1uPrDV7m6S/WT9DoLQlGo/1S/gvRLQ3ODHRdeqV2lkSTBH/E01odwab65k+YETBHGJ40dmAaaOd7xiizDqO7xOtuDds5aPtc/wieeZG+AxFmgU0pa/qfBbojfrexPL2bKjcIPDYyvJJpwvD8dz1sHxDXRxdRpGHZnT1+VDC2gWgD3YN61iUmPHTS4ED6x7kKLezzkB87hYCZVtN8nriT+MV2dWz4kNcGMlWPYBgebb8BoxRG630HmXDEILZQIJb1W9vfx5Pmc7uZYz7n1ZttqVxj0xKoDBNDYgyTIjRgm75g9OEYYIzH1Hp3z4UG04nHP7iwh3emWfhuRd0ryG+CY414zKU5FEewrbxLqrS3PwSCtcWjrPA+pbfrM7s+yGexEEz1a993DFIzebeBs/kE5x+HbEtT8TMMsDNWuXMlUFOnWAet4OEPmwpRJECrltqgeWEl6Nqzx8X1JcS9F/7NHFTmn0/3Y/AO/0LGdSGHM20qKZj52XtgNMc1kQiuwCBNHrCulWwguZpdDa5JsJEHi0WZt++r2J43q66umAa2ruFpcLlfbV17GokHsnfYAEdvB7JiCTRvUSrgde802pEWYRbQ2qvHFm6c+rGQ9nM95ADdznShHMFbWUhXOGlttQs5j3a0AeVsDRW8P0Jr09P5wF07c1+CgdHUoZFLZ3d8=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH3PR11MB046149.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(56012099006)(18002099003)(22082099003)(38070700021)(4143699003)(11063799006)(10067099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?VRKD3HCKYaNN2IFDLT4wwv0DZyi8tk0Y4KvLnCObwFZ0O3XUdmQ6TZjh7f?=
+ =?iso-8859-1?Q?ff+YIqNqmH+Jm0tODL9BQDO1k0MuVYZ3qLHU5z0I0lvv7mqV2lYiXxCrHS?=
+ =?iso-8859-1?Q?G/Fih/OhJ4AlSQ2ylsKPL9ggOkXtDm33rhatI+3sKHQ715m1pVEMF/inOa?=
+ =?iso-8859-1?Q?zfC9UPIoWF6rr6qd0WJCTrzcF6LkwRsPTfv7pxxTDHSc2gH+XvE0GIaQ6m?=
+ =?iso-8859-1?Q?j9pUKQYR1ZPqEHmL1AxPfEXfDSnM+FSgP9pUD/aEPfcITou5U2JRQ2UTBN?=
+ =?iso-8859-1?Q?0Xsyk5obwRwynpPeiPQMcbHU54i8kNk7LBq0NRMEhMMW+ZFaY9zixDkTzy?=
+ =?iso-8859-1?Q?67cmY3cfh9KVfHDownhHWiPLmwJS+bYTudBRz9uD37KTdQNVDZPXUMoFn1?=
+ =?iso-8859-1?Q?WMRogivn8Fp0Epb/XJWjOIVJBRlflhblFU1fASGa94JA49Dhd6CljhSHfg?=
+ =?iso-8859-1?Q?wU1AzFsBobTQF4iDJIsm+s3SHXY8q7k69/hCuPBUHcnV7ZCkSZIKaRHl00?=
+ =?iso-8859-1?Q?6qfngMVRtfe03wD21Inq8R3O0sxyWSJs6MaZ4+YDd1jfN14y12gYzK9JGI?=
+ =?iso-8859-1?Q?KyXieb4c4CDbpPGQUJORzCaSPjGe0S0qikjK6jFhilfcEq3sjE4/8m8mxv?=
+ =?iso-8859-1?Q?nmDGO+YT+DTuxUo3I+ybb09u3iTIjKq8nQVSW3cfVo8wWte9c+m84n3rtj?=
+ =?iso-8859-1?Q?vzy6V8nGhgEFmcDSAnvRp72FxjDsZO8+aCw/YYliYA3kDssoHspa816rhW?=
+ =?iso-8859-1?Q?2/71jSOsT8+HWF2LN7gCiCD7sAXpyHuIKpTVIQ/dVHJvL+42w124rBHgZR?=
+ =?iso-8859-1?Q?/kgHhr+Jzc6PcsLTkeDztNE514JQx+GvfsZNc9i3Kxq9pLW+4iNmp9+IeT?=
+ =?iso-8859-1?Q?ruJ0yA8lZEhbm31pGVUrAm7Xm0w3sTJUamuLXTfNLiMUMjHwiY2jZGmiIp?=
+ =?iso-8859-1?Q?h+AqqILQfcXDuVTz6VPzrBY2MXcLSD+cow/wrZTnRlBFplHpYWbUYGm8nR?=
+ =?iso-8859-1?Q?qQWA8qsCbs2fkLBFjUdNvS951AkszvYr7xCGaeI34apVmAKEIAVRTI67/g?=
+ =?iso-8859-1?Q?rfj2MNmOb9jYWfY/x7In/YKNPzuDDdRSZPAz2q62/o9Mtdf6Bo3WsaxKW0?=
+ =?iso-8859-1?Q?hnuiAIFZfYdOhQJ9FEywZq0EvQTtZwLEjAAKMZ4CKNa1f0Q1ZuFh13PvYj?=
+ =?iso-8859-1?Q?OroAewLZGhRsEtQaIXjES1RyNf6AoqsdqSd1UXJEi1p4pPirQzX9bitAC5?=
+ =?iso-8859-1?Q?X8lT+oJBs/EbfjFFsxBjS2DWOZ+uQ5ftITkXypB9XxzplWka66VsvUX9h2?=
+ =?iso-8859-1?Q?Yj/+z+mM/QqT09JmiSy6bkjpBZ4QK10lLJLd1KiQAjB59/51epEW+ycput?=
+ =?iso-8859-1?Q?PswoeQbqTbiHHO4gWOPZXVSY4CLsElI9Ks8M12X4JmlIynHrL6Tdbk3JTH?=
+ =?iso-8859-1?Q?wuMDfO1Z/p5wCzSARp7gkLC+OusQCT5nw93F+ycg5N2uPKEvo3eiBPjo9Y?=
+ =?iso-8859-1?Q?MoVUOXq/bfUMcCIox9Avkv+N0ImjJppPPUNicaXnubczBhSYMwBeYehCpH?=
+ =?iso-8859-1?Q?3jPIhF1fIilk+oT7FRVuoBZqqOh+Pyazu4YHkESLpwmeVIHqVmyplNzxJT?=
+ =?iso-8859-1?Q?As4z21zqU14MUZkW+I8fe61tEV1gosPbbgk57963wQdTJvP4u/R+TYeAVu?=
+ =?iso-8859-1?Q?CKiiVpIvIeLXi4Q6gDotQgj0MGCacus4IcsgTXTurcKt+Ohyeg+VNg3BwW?=
+ =?iso-8859-1?Q?sFsAHHMCTMLGY8qbO1DP6/AoXrIRTEB9leVeD02uOUdtg1y0B6agGVX8+t?=
+ =?iso-8859-1?Q?tM1wfD7E5g=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
+X-Exchange-RoutingPolicyChecked: gSi95AuWyjxABRxIPW0S2xEUUVzOtf/PON9/t/0wtT6cp6AuSGdrWqzx7+jaOauoGj3uDdTZWi8WTqajVQy83MbQYn9W6FxzZxJHwaVwpuTdZV+CLPORkIOyCgJWbquWU2FM8XoAgqXoIYIxVHdvtNysZAlTwwTofppY1yaaoNH0QtdgyKiQYu1gzZqKZVdEVIW1Y9DEcyNd/2uCh4Z6YnDsVIqzTSr2/C3OUiTOm1n9TiUltfJebxL4a27pHa6NpeW3CDxkI+w6S6fJQFnYczsEW93VVgEnZf06+97Swt29C0yy5IuPL+BRCw6tPg0taskwkTkUPrQ9DAaVHU78gg==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB046149.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 131143e9-9522-434a-03c4-08df14baea64
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Sep 2026 12:55:13.8774 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: QNxDmldr4UzkZZ/OQiFHrBVRlWPI7QNWnkMdAJjlUfE/CzhnlX0Vi9/dJfexNrCaMuDytdxlTd+1Xt48griX/AzjabizMKsThSQc1uiL75g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7634
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,38 +170,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 10 Sep 2026, Jani Nikula <jani.nikula@intel.com> wrote:
-> This is a combination and rebase and rehash of a number of patches from
-> before, and I've lost count. So no series version number...
+>-----Original Message-----
+>From: Ilpo J=E4rvinen <ilpo.jarvinen@linux.intel.com>
+>Sent: Thursday, September 17, 2026 5:58 AM
+>To: Ruhl, Michael J <michael.j.ruhl@intel.com>
+>Cc: platform-driver-x86@vger.kernel.org; intel-xe@lists.freedesktop.org; H=
+ans
+>de Goede <hansg@kernel.org>; Brost, Matthew <matthew.brost@intel.com>;
+>Vivi, Rodrigo <rodrigo.vivi@intel.com>; thomas.hellstrom@linux.intel.com;
+>airlied@gmail.com; simona@ffwll.ch; david.e.box@linux.intel.com; Vijay,
+>Anoop C <anoop.c.vijay@intel.com>; Nilawar, Badal
+><badal.nilawar@intel.com>; Roper, Matthew D <matthew.d.roper@intel.com>;
+>Ausmus, James <james.ausmus@intel.com>; Poosa, Karthik
+><karthik.poosa@intel.com>
+>Subject: Re: [PATCH v9 09/20] drm/xe/vsec: Add DOC text for VSEC
 >
-> Patch 1 is the same as [1], but it should work now that we do full wedge
-> on display reset.
+>On Wed, 16 Sep 2026, Michael J. Ruhl wrote:
 >
-> Patches 2-4 are from [2] and [3].
+>> Add the necessary files and text to use the DOC system.
+>>
+>> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+>> ---
+>>  Documentation/gpu/xe/index.rst   |  1 +
+>>  Documentation/gpu/xe/xe_vsec.rst | 14 ++++++++++++++
+>>  drivers/gpu/drm/xe/xe_vsec.c     | 23 +++++++++++++++++++++++
+>>  3 files changed, 38 insertions(+)
+>>  create mode 100644 Documentation/gpu/xe/xe_vsec.rst
+>>
+>> diff --git a/Documentation/gpu/xe/index.rst
+>b/Documentation/gpu/xe/index.rst
+>> index 0247a255f7e6..89f013418cf5 100644
+>> --- a/Documentation/gpu/xe/index.rst
+>> +++ b/Documentation/gpu/xe/index.rst
+>> @@ -36,3 +36,4 @@ The display, or :ref:`drm-kms`, support for drm/xe is
+>provided by
+>>     xe_configfs
+>>     xe_gt_stats
+>>     xe_sigid
+>> +   xe_vsec
+>> diff --git a/Documentation/gpu/xe/xe_vsec.rst
+>b/Documentation/gpu/xe/xe_vsec.rst
+>> new file mode 100644
+>> index 000000000000..1a87548489ea
+>> --- /dev/null
+>> +++ b/Documentation/gpu/xe/xe_vsec.rst
+>> @@ -0,0 +1,14 @@
+>> +.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +
+>> +=3D=3D=3D=3D=3D
+>> +VSEC
+>> +=3D=3D=3D=3D=3D
+>> +
+>> +.. kernel-doc:: drivers/gpu/drm/xe/xe_vsec.c
+>> +   :doc: VSEC
+>> +
+>> +Internal API
+>> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> +
+>> +.. kernel-doc:: drivers/gpu/drm/xe/xe_vsec.c
+>> +   :internal:
+>> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+>> index 1cb9a78ee0ef..ca5d02dce818 100644
+>> --- a/drivers/gpu/drm/xe/xe_vsec.c
+>> +++ b/drivers/gpu/drm/xe/xe_vsec.c
+>> @@ -19,6 +19,17 @@
+>>
+>>  #include "regs/xe_pmt.h"
+>>
+>> +/**
+>> + * DOC: VSEC
+>> + *
+>> + * Some GPUs support the PMT feature.  For those that do, this API prov=
+ides
+>> + * probe, discovery and usage (control and access) for GPUs that have P=
+MT.
+>> + *
+>> + * PMT is usually accessed through a PCI function.  However, that is no=
+t
+>always
+>> + * available, so the PMT intel_vsec_register() function can be used to =
+setup
+>up
+>> + * PMT usage.
+>> + */
+>> +
+>>  /* PMT GUID value for BMG devices.  NOTE: this is NOT a PCI id */
+>>  #define BMG_DEVICE_ID 0xE2F8
+>>
+>> @@ -140,6 +151,18 @@ static int xe_guid_decode(u32 guid, int *index, u32
+>*offset)
+>>  	return 0;
+>>  }
+>>
+>> +/**
+>> + * xe_pmt_telem_read - Given a device and a PMT GUID, read data into a
+>buffer
+>> + * @dev: valid Xe device
+>> + * @guid: PMT GUID (from the PMT discovery struct)
+>> + * @data: buffer to place data in
+>> + * @user_offset: a user offset relative to the beginning of the data to=
+ read
+>> + * @count: bytes to read
+>> + *
+>> + * Return:
+>> + * * -EINVAL for VF and PMT WATCHER requests
+>> + * * count   number of bytes read on success
 >
-> Fingers crossed.
+>Please also check sashiko's comment on the set of return values.
 
-Thanks for the reviews, pushed to din.
+I have addressed invalid return code usage (reverted function to bool) and =
+fixed
+the text in my local repo.
 
-BR,
-Jani.
+Will push an update soon.
 
->
->
-> [1] https://lore.kernel.org/r/20251113155332.789554-1-jani.nikula@intel.com
-> [2] https://lore.kernel.org/r/cover.1787148235.git.jani.nikula@intel.com
-> [3] https://lore.kernel.org/r/cover.1787833879.git.jani.nikula@intel.com
->
-> Jani Nikula (4):
->   drm/i915/display: stop using the configurable fence timeout
->   drm/i915/display: use struct intel_atomic_state *state variable naming
->   drm/i915/display: reduce indent in intel_atomic_commit_fence_wait()
->   drm/i915/display: debug log about fence wait errors
->
->  drivers/gpu/drm/i915/display/intel_display.c  | 23 +++++++++++--------
->  .../drm/xe/compat-i915-headers/i915_config.h  | 16 -------------
->  2 files changed, 13 insertions(+), 26 deletions(-)
->  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
+Thanks!
 
--- 
-Jani Nikula, Intel
+M
+
+>--
+> i.
+
