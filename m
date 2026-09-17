@@ -4,57 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67CC4C88E72
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 19:30:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 557C5C88E72
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 19:38:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E8DE10F0AD;
-	Thu, 17 Sep 2026 19:30:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC26110E779;
+	Thu, 17 Sep 2026 19:38:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AraXei/m";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GE2ho6U/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBC5410F0AD
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 19:30:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B9D410E779
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 19:38:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789673445; x=1821209445;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=R6eJ7JXRwWxlcw8+Bdp43MFgs+ml2rp5MbwGcRLKxsk=;
- b=AraXei/mZbkX2iI2uMN1/JjS9SJzbUhfdOgUvpGKGc/RLBCyoTQakZri
- VMbhGb2aw3AlNKEZFMgdu7HfZKYV3LbS6b6gIzIJ3KG+C73w2Ksy/zFTw
- R1LTTULjGKud/u8Qer7DKzMxSW5uuNrV4ERfUxhenGBfdRQz/pNQKUBju
- lGx4ylMVx/xpTIR40TmkjSHHn8BvUDVEWI6q6mZagEIXHJf0HUm+Qcoux
- OBDO+1ZrICm4noK/yXhFIFITPHUOP4p69dprwGzF5T6FxlBmy+YnAYhIP
- 4cOsHc31SxyVTFSprqmbK/HJwxwQ68TAaYj8tZmZH0pYGdnsyfh5rlV4X Q==;
-X-CSE-ConnectionGUID: 3AlTETUGQAmKzuKpAf5Qng==
-X-CSE-MsgGUID: fiiXsGgDT3+Hl9GbsIDMdQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="77697630"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="77697630"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 12:30:45 -0700
-X-CSE-ConnectionGUID: ruXxuOeMTwCeN5LSvxQo2Q==
-X-CSE-MsgGUID: QjqxaxU5SeSGiGkeDKM+2A==
+ t=1789673900; x=1821209900;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Hg30aGSTocHFLObb/a6+hEHIYqfcAVF/mzELZ2pLPp4=;
+ b=GE2ho6U/lz82zzSJBwUPaXC2jZ05mxSY7smA1HTfX4TGdmir1TgX0+PU
+ LFx1dzma+ICgWPQtE2NRd1fiQTKByiXJicTClyiGLbboSDWc4QrVSaHbI
+ IOQwWGHZoKl3LhrAAypUy11a8he0e+bhiYrssomH3Kf7wI0yV9lSIQq96
+ Os0rSeT2PPxVLojS/pKKADhh7MwCCWAEpHqUPlZnlnYClhyyG7RVH/CVj
+ 0TodvJQWY7cpZdbUZ1P8BeJq0IBH3cFG+JUAvJFv7MKEKZRdvKb6GPsD4
+ MNzfc3+UuetrBAP9+3bVdC9gR17aE01Q1Wp1sa+9BzT+7GISldV4qsmJs A==;
+X-CSE-ConnectionGUID: JoOfEU0MQpSRJPDW4zztjw==
+X-CSE-MsgGUID: JjBni173QxyMcaoGFdqG5w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89070425"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89070425"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2026 12:38:20 -0700
+X-CSE-ConnectionGUID: 6BulQ2c4QSa1851p0CATWQ==
+X-CSE-MsgGUID: z37g7c8XRxKRO9t0j0ZQjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="271327330"
-Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 12:30:41 -0700
-From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
+Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2026 12:38:20 -0700
+From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
- rodrigo.vivi@intel.com, aravind.iddamsetty@intel.com,
- riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
- michael.j.ruhl@intel.com, paul.e.luse@intel.com,
- mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v6 3/3] drm/xe/sysctrl: Add generic mailbox passthrough
- debugfs entry
-Date: Thu, 17 Sep 2026 12:30:29 -0700
-Message-ID: <20260917193026.3234636-8-anoop.c.vijay@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260917193026.3234636-5-anoop.c.vijay@intel.com>
-References: <20260917193026.3234636-5-anoop.c.vijay@intel.com>
+Subject: [PATCH v2] drm/xe: Add mnemonic error reason to page fault diagnostics
+Date: Thu, 17 Sep 2026 12:38:15 -0700
+Message-Id: <20260917193815.209362-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -71,200 +62,554 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Anoop Vijay <anoop.c.vijay@intel.com>
+xe_pagefault_print() was firing without indicating why servicing of a
+fault failed, making it hard to distinguish benign races (e.g. a VM's
+file descriptor closing mid-fault) from real bugs.
 
-Add a "mailbox" debugfs entry that allows any System Controller
-mailbox command to be issued for bring-up and debug. group and
-command are supplied by the caller as the first two tokens of every
-write:
+Add enum xe_pagefault_error, uniquely identifying the high-level point
+at which xe_pagefault_service(), xe_pagefault_handle_vma(), and
+xe_svm_handle_pagefault() fail. Since consumer.page_addr is always
+page (4K) aligned, steal the reserved low byte to carry this code
+without growing struct xe_pagefault. Add xe_pagefault_set_error() /
+xe_pagefault_get_error() to encode/decode it, and xe_pagefault_addr()
+as the single accessor for the real (masked) faulted address; update
+all real address consumers (xe_pagefault_match(), cache alignment,
+xe_vm_add_fault_entry_pf()) to go through it instead of reading
+consumer.page_addr directly. xe_pagefault_set_start_addr() now
+preserves any already-recorded error bits rather than clobbering them.
 
-- Usage: echo "<group> <command> [byte0 byte1 ...]" \
-             > /sys/kernel/debug/dri/0/sc/mailbox
-         cat /sys/kernel/debug/dri/0/sc/mailbox
+xe_pagefault_print() decodes the error via a new
+xe_pagefault_error_to_str() and reports it in an added "Error:" line.
 
-Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
+xe_pagefault_asid_to_vm() now distinguishes an ASID with no VM at all
+(XE_PAGEFAULT_ERROR_VM_NOT_FOUND, e.g. the owning file descriptor was
+already closed) from a VM found but not in fault mode
+(XE_PAGEFAULT_ERROR_VM_NOT_IN_FAULT_MODE).
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Assisted-by: GitHub_Copilot:claude-sonnet-5
+
 ---
-v6 (Rodrigo):
-- Reject non-zero offset writes for mailbox entry
-- Account for mailbox header size when validating input payload length
-
-v5:
-- Add per-entry locking for debugfs accesses
-- Skip empty mailbox group/command tokens
-
-v4:
-- Added a generic mailbox debugfs entry
+v2:
+ - Add more XE_PAGEFAULT_ERROR_* types for SVM
 ---
- drivers/gpu/drm/xe/xe_sysctrl_debugfs.c | 136 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl_types.h   |   3 +
- 2 files changed, 139 insertions(+)
+ drivers/gpu/drm/xe/xe_pagefault.c       | 101 +++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_pagefault.h       |  67 +++++++++++++++-
+ drivers/gpu/drm/xe/xe_pagefault_types.h |  82 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_svm.c             |  20 ++++-
+ drivers/gpu/drm/xe/xe_vm.c              |   3 +-
+ 5 files changed, 248 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-index 272e51f24f7b..f0d94840b9d6 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-@@ -299,6 +299,139 @@ static void xe_sysctrl_register_entry(struct dentry *root, struct xe_sysctrl_deb
- 	debugfs_create_file(name, 0644, root, entry, fops);
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+index aeb56ff5d58e..c3c58be40b73 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_pagefault.c
+@@ -158,8 +158,14 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
+ 	lockdep_assert_held(&vm->lock);
+ 
+ 	needs_vram = xe_vma_need_vram_for_atomic(vm->xe, vma, atomic);
+-	if (needs_vram < 0 || (needs_vram && xe_vma_is_userptr(vma)))
+-		return needs_vram < 0 ? needs_vram : -EACCES;
++	if (needs_vram < 0) {
++		xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_VMA_NEEDS_VRAM_CHECK);
++		return needs_vram;
++	}
++	if (needs_vram && xe_vma_is_userptr(vma)) {
++		xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_VMA_ATOMIC_USERPTR);
++		return -EACCES;
++	}
+ 
+ 	xe_gt_stats_incr(gt, XE_GT_STATS_ID_VMA_PAGEFAULT_COUNT, 1);
+ 	xe_gt_stats_incr(gt, XE_GT_STATS_ID_VMA_PAGEFAULT_KB,
+@@ -183,8 +189,10 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
+ 			struct xe_userptr_vma *uvma = to_userptr_vma(vma);
+ 
+ 			err = xe_vma_userptr_pin_pages(uvma);
+-			if (err)
++			if (err) {
++				xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_VMA_USERPTR_PIN);
+ 				return err;
++			}
+ 		}
+ 
+ 		/* Lock VM and BOs dma-resv */
+@@ -195,8 +203,10 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
+ 						 needs_vram == 1);
+ 			drm_exec_retry_on_contention(&exec);
+ 			xe_validation_retry_on_oom(&ctx, &err);
+-			if (err)
++			if (err) {
++				xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_VMA_VALIDATE);
+ 				break;
++			}
+ 
+ 			/* Bind VMA only to the GT that has faulted */
+ 			trace_xe_vma_pf_bind(vma);
+@@ -206,6 +216,8 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
+ 			if (IS_ERR(fence)) {
+ 				err = PTR_ERR(fence);
+ 				xe_validation_retry_on_oom(&ctx, &err);
++				if (err != -EAGAIN)
++					xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_VMA_REBIND);
+ 				break;
+ 			}
+ 		}
+@@ -230,16 +242,22 @@ xe_pagefault_access_is_atomic(enum xe_pagefault_access_type access_type)
+ 	return (access_type & XE_PAGEFAULT_ACCESS_TYPE_MASK) == XE_PAGEFAULT_ACCESS_TYPE_ATOMIC;
  }
  
-+static ssize_t xe_sysctrl_mailbox_write(struct file *file, const char __user *ubuf,
-+					size_t len, loff_t *offp)
+-static struct xe_vm *xe_pagefault_asid_to_vm(struct xe_device *xe, u32 asid)
++static struct xe_vm *xe_pagefault_asid_to_vm(struct xe_pagefault *pf, u32 asid)
+ {
++	struct xe_device *xe = gt_to_xe(pf->gt);
+ 	struct xe_vm *vm;
+ 
+ 	down_read(&xe->usm.lock);
+ 	vm = xa_load(&xe->usm.asid_to_vm, asid);
+-	if (vm && xe_vm_in_fault_mode(vm))
+-		xe_vm_get(vm);
+-	else
++	if (!vm) {
++		xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_VM_NOT_FOUND);
++		vm = ERR_PTR(-EINVAL);
++	} else if (!xe_vm_in_fault_mode(vm)) {
++		xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_VM_NOT_IN_FAULT_MODE);
+ 		vm = ERR_PTR(-EINVAL);
++	} else {
++		xe_vm_get(vm);
++	}
+ 	up_read(&xe->usm.lock);
+ 
+ 	return vm;
+@@ -248,7 +266,6 @@ static struct xe_vm *xe_pagefault_asid_to_vm(struct xe_device *xe, u32 asid)
+ static int xe_pagefault_service(struct xe_pagefault *pf)
+ {
+ 	struct xe_gt *gt = pf->gt;
+-	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_vm *vm;
+ 	struct xe_vma *vma = NULL;
+ 	int err;
+@@ -259,7 +276,7 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
+ 	if (pf->consumer.fault_type_level == XE_PAGEFAULT_TYPE_LEVEL_NACK)
+ 		return -EFAULT;
+ 
+-	vm = xe_pagefault_asid_to_vm(xe, asid);
++	vm = xe_pagefault_asid_to_vm(pf, asid);
+ 	if (IS_ERR(vm))
+ 		return PTR_ERR(vm);
+ 
+@@ -267,18 +284,21 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
+ 
+ 	if (xe_vm_is_closed(vm)) {
+ 		err = -ENOENT;
++		xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_VM_CLOSED);
+ 		goto unlock_vm;
+ 	}
+ 
+-	vma = xe_vm_find_vma_by_addr(vm, pf->consumer.page_addr);
++	vma = xe_vm_find_vma_by_addr(vm, xe_pagefault_addr(pf));
+ 	if (!vma) {
+ 		err = -EINVAL;
++		xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_VMA_NOT_FOUND);
+ 		goto unlock_vm;
+ 	}
+ 
+ 	if (xe_vma_read_only(vma) &&
+ 	    pf->consumer.access_type != XE_PAGEFAULT_ACCESS_TYPE_READ) {
+ 		err = -EPERM;
++		xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_READ_ONLY_VIOLATION);
+ 		goto unlock_vm;
+ 	}
+ 
+@@ -286,7 +306,7 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
+ 
+ 	if (xe_vma_is_cpu_addr_mirror(vma))
+ 		err = xe_svm_handle_pagefault(vm, vma, pf, gt,
+-					      pf->consumer.page_addr, atomic);
++					      xe_pagefault_addr(pf), atomic);
+ 	else
+ 		err = xe_pagefault_handle_vma(gt, vma, pf, atomic);
+ 
+@@ -375,7 +395,7 @@ static bool xe_pagefault_match(struct xe_pagefault *pf, u64 start,
+ 			       u64 end, u64 cache_asid)
+ {
+ 	struct xe_device *xe = gt_to_xe(pf->gt);
+-	u64 page_addr = pf->consumer.page_addr;
++	u64 page_addr = xe_pagefault_addr(pf);
+ 	u32 pf_asid = FIELD_GET(XE_PAGEFAULT_ASID_MASK, pf->consumer.id);
+ 
+ 	xe_assert(xe, pf->consumer.alloc_state !=
+@@ -499,7 +519,7 @@ static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
+ 	if (FIELD_GET(XE_PAGEFAULT_REQUEUE_MASK,
+ 		      lpf->consumer.fault_type_level))
+ 		align = SZ_4K;
+-	pf_work->cache.start = ALIGN_DOWN(lpf->consumer.page_addr, align);
++	pf_work->cache.start = ALIGN_DOWN(xe_pagefault_addr(lpf), align);
+ 	pf_work->cache.end = pf_work->cache.start + align;
+ 	pf_work->cache.asid = FIELD_GET(XE_PAGEFAULT_ASID_MASK, lpf->consumer.id);
+ 	pf_work->cache.pf = lpf;
+@@ -542,10 +562,53 @@ static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
+ 	return true;
+ }
+ 
++static const char *xe_pagefault_error_to_str(enum xe_pagefault_error error)
 +{
-+	char *kbuf __free(kfree) = NULL;
-+	u8 *input __free(kfree) = NULL;
-+	struct seq_file *m = file->private_data;
-+	struct xe_sysctrl_debugfs_entry *entry = m->private;
-+	struct xe_device *xe = sc_to_xe(entry->sc);
-+	struct xe_sysctrl_mailbox_command cmd = {};
-+	char *token, *tmp;
-+	unsigned long val;
-+	size_t input_len = 0;
-+	size_t max_input;
-+	size_t out_len = 0;
-+	u8 group, command;
-+	int status;
-+
-+	if (*offp)
-+		return -ESPIPE;
-+
-+	if (len == 0 || len >= PAGE_SIZE)
-+		return -EINVAL;
-+
-+	kbuf = kmalloc(len + 1, GFP_KERNEL);
-+	if (!kbuf)
-+		return -ENOMEM;
-+
-+	max_input = min_t(size_t, len, XE_SYSCTRL_MB_MAX_DATA_SIZE);
-+	input = kmalloc(max_input, GFP_KERNEL);
-+	if (!input)
-+		return -ENOMEM;
-+
-+	if (copy_from_user(kbuf, ubuf, len))
-+		return -EFAULT;
-+	kbuf[len] = '\0';
-+
-+	tmp = kbuf;
-+
-+	do {
-+		token = strsep(&tmp, " \t\n");
-+	} while (token && *token == '\0');
-+	if (!token || kstrtoul(token, 0, &val) || val > 0xFF) {
-+		xe_err(xe, "sysctrl: invalid mailbox group id\n");
-+		return -EINVAL;
++	switch (error) {
++	case XE_PAGEFAULT_ERROR_NONE:
++		return "NONE";
++	case XE_PAGEFAULT_ERROR_VM_NOT_FOUND:
++		return "VM_NOT_FOUND";
++	case XE_PAGEFAULT_ERROR_VM_NOT_IN_FAULT_MODE:
++		return "VM_NOT_IN_FAULT_MODE";
++	case XE_PAGEFAULT_ERROR_VM_CLOSED:
++		return "VM_CLOSED";
++	case XE_PAGEFAULT_ERROR_VMA_NOT_FOUND:
++		return "VMA_NOT_FOUND";
++	case XE_PAGEFAULT_ERROR_READ_ONLY_VIOLATION:
++		return "READ_ONLY_VIOLATION";
++	case XE_PAGEFAULT_ERROR_VMA_NEEDS_VRAM_CHECK:
++		return "VMA_NEEDS_VRAM_CHECK";
++	case XE_PAGEFAULT_ERROR_VMA_ATOMIC_USERPTR:
++		return "VMA_ATOMIC_USERPTR";
++	case XE_PAGEFAULT_ERROR_VMA_USERPTR_PIN:
++		return "VMA_USERPTR_PIN";
++	case XE_PAGEFAULT_ERROR_VMA_VALIDATE:
++		return "VMA_VALIDATE";
++	case XE_PAGEFAULT_ERROR_VMA_REBIND:
++		return "VMA_REBIND";
++	case XE_PAGEFAULT_ERROR_SVM_GARBAGE_COLLECTOR:
++		return "SVM_GARBAGE_COLLECTOR";
++	case XE_PAGEFAULT_ERROR_SVM_RANGE_NOT_FOUND:
++		return "SVM_RANGE_NOT_FOUND";
++	case XE_PAGEFAULT_ERROR_SVM_REBIND:
++		return "SVM_REBIND";
++	case XE_PAGEFAULT_ERROR_SVM_NEEDS_VRAM_CHECK:
++		return "SVM_NEEDS_VRAM_CHECK";
++	case XE_PAGEFAULT_ERROR_SVM_VMA_NOT_FOUND:
++		return "SVM_VMA_NOT_FOUND";
++	case XE_PAGEFAULT_ERROR_SVM_SERVICE_FAILED:
++		return "SVM_SERVICE_FAILED";
++	default:
++		return "UNKNOWN";
 +	}
-+	group = (u8)val;
-+
-+	do {
-+		token = strsep(&tmp, " \t\n");
-+	} while (token && *token == '\0');
-+	if (!token || kstrtoul(token, 0, &val) || val > SYSCTRL_HDR_COMMAND_MAX) {
-+		xe_err(xe, "sysctrl: invalid mailbox command id (max 0x%x)\n",
-+		       SYSCTRL_HDR_COMMAND_MAX);
-+		return -EINVAL;
-+	}
-+	command = (u8)val;
-+
-+	while ((token = strsep(&tmp, " \t\n")) != NULL) {
-+		if (*token == '\0')
-+			continue;
-+
-+		if (input_len >= max_input) {
-+			xe_err(xe, "sysctrl: mailbox payload too large (max %zu bytes)\n",
-+			       max_input);
-+			return -EINVAL;
-+		}
-+
-+		if (kstrtoul(token, 0, &val) || val > 0xFF) {
-+			xe_err(xe, "sysctrl: invalid mailbox payload byte '%s'\n", token);
-+			return -EINVAL;
-+		}
-+
-+		input[input_len++] = (u8)val;
-+	}
-+
-+	scoped_guard(mutex, &entry->lock) {
-+		entry->group = group;
-+		entry->command = command;
-+
-+		xe_sysctrl_create_command(&cmd, group, command, input_len ? input : NULL, input_len,
-+					  entry->response_buf, XE_SYSCTRL_MB_MAX_MESSAGE_SIZE);
-+
-+		guard(xe_pm_runtime)(xe);
-+		status = xe_sysctrl_send_command(entry->sc, &cmd, &out_len);
-+		entry->status = status;
-+		entry->response_len = status ? 0 : out_len;
-+	}
-+
-+	return status ? status : len;
 +}
 +
-+static int xe_sysctrl_mailbox_show(struct seq_file *m, void *data)
+ static void xe_pagefault_print(struct xe_pagefault *pf)
+ {
+ 	u8 engine_class = FIELD_GET(XE_PAGEFAULT_ENGINE_CLASS_MASK,
+ 				    pf->consumer.engine_class_instance);
++	u64 addr = xe_pagefault_addr(pf);
+ 
+ 	xe_gt_info(pf->gt, "\n\tASID: %lu\n"
+ 		   "\tFaulted Address: 0x%08x%08x\n"
+@@ -554,11 +617,12 @@ static void xe_pagefault_print(struct xe_pagefault *pf)
+ 		   "\tFaultLevel: %lu\n"
+ 		   "\tEngineClass: %d %s\n"
+ 		   "\tEngineInstance: %lu\n"
+-		   "\tSRCID: 0x%02lx\n",
++		   "\tSRCID: 0x%02lx\n"
++		   "\tError: %s\n",
+ 		   FIELD_GET(XE_PAGEFAULT_ASID_MASK,
+ 			     pf->consumer.id),
+-		   upper_32_bits(pf->consumer.page_addr),
+-		   lower_32_bits(pf->consumer.page_addr),
++		   upper_32_bits(addr),
++		   lower_32_bits(addr),
+ 		   FIELD_GET(XE_PAGEFAULT_TYPE_MASK,
+ 			     pf->consumer.fault_type_level),
+ 		   FIELD_GET(XE_PAGEFAULT_ACCESS_TYPE_MASK,
+@@ -570,7 +634,8 @@ static void xe_pagefault_print(struct xe_pagefault *pf)
+ 		   FIELD_GET(XE_PAGEFAULT_ENGINE_INSTANCE_MASK,
+ 			     pf->consumer.engine_class_instance),
+ 		   FIELD_GET(XE_PAGEFAULT_SRCID_MASK,
+-			     pf->consumer.id));
++			     pf->consumer.id),
++		   xe_pagefault_error_to_str(xe_pagefault_get_error(pf)));
+ }
+ 
+ static void xe_pagefault_save_to_vm(struct xe_device *xe, struct xe_pagefault *pf)
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.h b/drivers/gpu/drm/xe/xe_pagefault.h
+index e9c5d1f03760..799c984dee84 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.h
++++ b/drivers/gpu/drm/xe/xe_pagefault.h
+@@ -6,6 +6,8 @@
+ #ifndef _XE_PAGEFAULT_H_
+ #define _XE_PAGEFAULT_H_
+ 
++#include <linux/bitfield.h>
++
+ #include "xe_pagefault_types.h"
+ 
+ struct drm_printer;
+@@ -21,6 +23,61 @@ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf);
+ 
+ void xe_pagefault_print_info(struct xe_device *xe, struct drm_printer *p);
+ 
++/*
++ * consumer.page_addr is always page (4K) aligned, so the low bits are
++ * reserved and unused by the real address. Steal a byte of those bits to
++ * record an &enum xe_pagefault_error describing the high-level point at
++ * which servicing of the fault failed, so it can be reported by
++ * xe_pagefault_print(). All real address consumers of page_addr must go
++ * through xe_pagefault_addr() to mask off these reserved bits.
++ */
++#define XE_PAGEFAULT_ERROR_MASK		GENMASK_ULL(7, 0)
++
++/**
++ * xe_pagefault_set_error() - record the failure reason for a pagefault
++ * @pf: Pagefault entry
++ * @error: Failure reason
++ *
++ * Encodes @error into the reserved low bits of consumer.page_addr. Should be
++ * called at the high-level point a pagefault fails to service so
++ * xe_pagefault_print() can later report a mnemonic failure reason.
++ */
++static inline void
++xe_pagefault_set_error(struct xe_pagefault *pf, enum xe_pagefault_error error)
 +{
-+	struct xe_sysctrl_debugfs_entry *entry = m->private;
-+	size_t i;
-+
-+	guard(mutex)(&entry->lock);
-+
-+	seq_printf(m, "Command: group=0x%02x cmd=0x%02x\n", entry->group, entry->command);
-+	seq_printf(m, "Status: %d (%s)\n", entry->status, entry->status ? "FAILED" : "SUCCESS");
-+	seq_printf(m, "Response: %zu bytes\n", entry->response_len);
-+
-+	if (entry->response_len) {
-+		seq_puts(m, "Response data:\n");
-+		for (i = 0; i < entry->response_len; i++) {
-+			if (i && (i % 16) == 0)
-+				seq_putc(m, '\n');
-+			seq_printf(m, "%02x ", entry->response_buf[i]);
-+		}
-+		seq_putc(m, '\n');
-+	}
-+
-+	seq_puts(m, "\nUsage:\n");
-+	seq_puts(m, "  echo \"<group> <command> [byte0 byte1 ...]\" > mailbox\n");
-+	seq_puts(m, "  cat mailbox\n");
-+
-+	return 0;
++	pf->consumer.page_addr &= ~XE_PAGEFAULT_ERROR_MASK;
++	pf->consumer.page_addr |= FIELD_PREP(XE_PAGEFAULT_ERROR_MASK, error);
 +}
 +
-+static int xe_sysctrl_mailbox_open(struct inode *inode, struct file *file)
++/**
++ * xe_pagefault_get_error() - read the failure reason for a pagefault
++ * @pf: Pagefault entry
++ *
++ * Return: The &enum xe_pagefault_error previously recorded via
++ * xe_pagefault_set_error(), or %XE_PAGEFAULT_ERROR_NONE if none was recorded.
++ */
++static inline enum xe_pagefault_error
++xe_pagefault_get_error(struct xe_pagefault *pf)
 +{
-+	return single_open(file, xe_sysctrl_mailbox_show, inode->i_private);
++	return FIELD_GET(XE_PAGEFAULT_ERROR_MASK, pf->consumer.page_addr);
 +}
 +
-+static const struct file_operations xe_sysctrl_mailbox_fops = {
-+	.owner = THIS_MODULE,
-+	.open = xe_sysctrl_mailbox_open,
-+	.read = seq_read,
-+	.write = xe_sysctrl_mailbox_write,
-+	.llseek = seq_lseek,
-+	.release = single_release,
-+};
++/**
++ * xe_pagefault_addr() - read the real faulted address for a pagefault
++ * @pf: Pagefault entry
++ *
++ * consumer.page_addr may have failure reason bits encoded into its reserved
++ * low bits by xe_pagefault_set_error(). This masks those bits off, returning
++ * the real page address. All accesses to the faulted address must go through
++ * this helper rather than reading consumer.page_addr directly.
++ *
++ * Return: The real (page aligned) faulted address.
++ */
++static inline u64 xe_pagefault_addr(struct xe_pagefault *pf)
++{
++	return pf->consumer.page_addr & ~XE_PAGEFAULT_ERROR_MASK;
++}
 +
+ #define XE_PAGEFAULT_END_ADDR_MASK	(~0xfffull)
+ 
  /**
-  * xe_sysctrl_debugfs_register - Register debugfs entries for System Controller
-  * @sc: xe_sysctrl instance
-@@ -321,4 +454,7 @@ void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent)
- 	xe_sysctrl_register_entry(root, &sc->debugfs.ras_error_inject, sc, "ras_error_inject",
- 				  XE_SYSCTRL_GROUP_DIAG, XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT,
- 				  &xe_sysctrl_ras_error_inject_fops);
-+
-+	xe_sysctrl_register_entry(root, &sc->debugfs.mailbox, sc, "mailbox", 0, 0,
-+				  &xe_sysctrl_mailbox_fops);
+@@ -69,11 +126,17 @@ static inline u64 xe_pagefault_end_addr(struct xe_pagefault *pf)
+  * The pagefault consumer stores the resolved fault range so subsequent faults
+  * hitting the same range can be immediately acknowledged without re-running
+  * the full fault handling path.
++ *
++ * The start address shares storage with the failure reason recorded by
++ * xe_pagefault_set_error() and therefore must be masked with
++ * %XE_PAGEFAULT_ERROR_MASK before storing so any previously recorded error is
++ * preserved.
+  */
+ static inline void
+ xe_pagefault_set_start_addr(struct xe_pagefault *pf, u64 start_addr)
+ {
+-	pf->consumer.page_addr = start_addr;
++	pf->consumer.page_addr &= XE_PAGEFAULT_ERROR_MASK;
++	pf->consumer.page_addr |= (start_addr & ~XE_PAGEFAULT_ERROR_MASK);
  }
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-index 8ea6e1f29ddd..77cbd7403d1a 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_types.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-@@ -71,6 +71,9 @@ struct xe_sysctrl {
  
- 		/** @debugfs.ras_error_inject: RAS error injection test entry */
- 		struct xe_sysctrl_debugfs_entry ras_error_inject;
-+
-+		/** @debugfs.mailbox: Generic, user-parameterized mailbox entry */
-+		struct xe_sysctrl_debugfs_entry mailbox;
- 	} debugfs;
+ /**
+@@ -87,7 +150,7 @@ xe_pagefault_set_start_addr(struct xe_pagefault *pf, u64 start_addr)
+  */
+ static inline u64 xe_pagefault_start_addr(struct xe_pagefault *pf)
+ {
+-	return pf->consumer.page_addr;
++	return xe_pagefault_addr(pf);
+ }
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h b/drivers/gpu/drm/xe/xe_pagefault_types.h
+index 907189b73286..8ae6b9848bdc 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault_types.h
++++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
+@@ -32,6 +32,88 @@ enum xe_pagefault_type {
+ 	XE_PAGEFAULT_TYPE_ATOMIC_ACCESS_VIOLATION	= 2,
  };
  
++/**
++ * enum xe_pagefault_error - Xe page fault servicing error
++ *
++ * Uniquely identifies the high-level point at which servicing of a page
++ * fault failed. Encoded into the reserved low bits of
++ * &xe_pagefault.consumer.page_addr (which is always page aligned) so the
++ * failure reason can be threaded back up to xe_pagefault_print() without
++ * growing the size of struct xe_pagefault. See xe_pagefault_set_error() and
++ * xe_pagefault_error_to_str().
++ */
++enum xe_pagefault_error {
++	/** @XE_PAGEFAULT_ERROR_NONE: No error recorded */
++	XE_PAGEFAULT_ERROR_NONE = 0,
++	/**
++	 * @XE_PAGEFAULT_ERROR_VM_NOT_FOUND: VM lookup by ASID failed, e.g.
++	 * the VM's file descriptor was already closed and the ASID has been
++	 * torn down
++	 */
++	XE_PAGEFAULT_ERROR_VM_NOT_FOUND,
++	/**
++	 * @XE_PAGEFAULT_ERROR_VM_NOT_IN_FAULT_MODE: VM found by ASID lookup
++	 * but is not in fault mode
++	 */
++	XE_PAGEFAULT_ERROR_VM_NOT_IN_FAULT_MODE,
++	/** @XE_PAGEFAULT_ERROR_VM_CLOSED: VM found but already closed */
++	XE_PAGEFAULT_ERROR_VM_CLOSED,
++	/** @XE_PAGEFAULT_ERROR_VMA_NOT_FOUND: No VMA covers the faulted address */
++	XE_PAGEFAULT_ERROR_VMA_NOT_FOUND,
++	/**
++	 * @XE_PAGEFAULT_ERROR_READ_ONLY_VIOLATION: Write/atomic fault on a
++	 * read-only VMA
++	 */
++	XE_PAGEFAULT_ERROR_READ_ONLY_VIOLATION,
++	/**
++	 * @XE_PAGEFAULT_ERROR_VMA_NEEDS_VRAM_CHECK: Failed determining if VMA
++	 * requires VRAM for an atomic access
++	 */
++	XE_PAGEFAULT_ERROR_VMA_NEEDS_VRAM_CHECK,
++	/**
++	 * @XE_PAGEFAULT_ERROR_VMA_ATOMIC_USERPTR: Atomic access requires VRAM
++	 * but VMA is a userptr, which is unsupported
++	 */
++	XE_PAGEFAULT_ERROR_VMA_ATOMIC_USERPTR,
++	/** @XE_PAGEFAULT_ERROR_VMA_USERPTR_PIN: Userptr page pin/repin failed */
++	XE_PAGEFAULT_ERROR_VMA_USERPTR_PIN,
++	/**
++	 * @XE_PAGEFAULT_ERROR_VMA_VALIDATE: Failed to lock/validate VMA's BO
++	 * or migrate it to VRAM
++	 */
++	XE_PAGEFAULT_ERROR_VMA_VALIDATE,
++	/** @XE_PAGEFAULT_ERROR_VMA_REBIND: Failed to rebind VMA into page tables */
++	XE_PAGEFAULT_ERROR_VMA_REBIND,
++	/**
++	 * @XE_PAGEFAULT_ERROR_SVM_GARBAGE_COLLECTOR: Failed processing
++	 * pending SVM garbage collection (unmaps) prior to servicing the
++	 * fault
++	 */
++	XE_PAGEFAULT_ERROR_SVM_GARBAGE_COLLECTOR,
++	/**
++	 * @XE_PAGEFAULT_ERROR_SVM_RANGE_NOT_FOUND: Failed to find or insert
++	 * an SVM range covering the faulted address
++	 */
++	XE_PAGEFAULT_ERROR_SVM_RANGE_NOT_FOUND,
++	/** @XE_PAGEFAULT_ERROR_SVM_REBIND: Failed to rebind an SVM range into page tables */
++	XE_PAGEFAULT_ERROR_SVM_REBIND,
++	/**
++	 * @XE_PAGEFAULT_ERROR_SVM_NEEDS_VRAM_CHECK: Failed determining if SVM
++	 * VMA requires VRAM for an atomic access
++	 */
++	XE_PAGEFAULT_ERROR_SVM_NEEDS_VRAM_CHECK,
++	/**
++	 * @XE_PAGEFAULT_ERROR_SVM_VMA_NOT_FOUND: SVM VMA re-lookup after a
++	 * range split failed to find a covering VMA
++	 */
++	XE_PAGEFAULT_ERROR_SVM_VMA_NOT_FOUND,
++	/**
++	 * @XE_PAGEFAULT_ERROR_SVM_SERVICE_FAILED: SVM range population,
++	 * migration, or bind failed
++	 */
++	XE_PAGEFAULT_ERROR_SVM_SERVICE_FAILED,
++};
++
+ /** struct xe_pagefault_ops - Xe pagefault ops (producer) */
+ struct xe_pagefault_ops {
+ 	/**
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 6c3033fc4db7..89a0fbe0e8ea 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -1304,16 +1304,20 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 
+ 	/* Always process UNMAPs first so view SVM ranges is current */
+ 	err = xe_svm_garbage_collector(vm);
+-	if (err)
++	if (err) {
++		xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_SVM_GARBAGE_COLLECTOR);
+ 		return err;
++	}
+ 
+ 	dpagemap = ctx.devmem_only ? xe_tile_local_pagemap(tile) :
+ 		xe_vma_resolve_pagemap(vma, tile);
+ 	ctx.device_private_page_owner = xe_svm_private_page_owner(vm, !dpagemap);
+ 	range = xe_svm_range_find_or_insert(vm, fault_addr, vma, &ctx);
+ 
+-	if (IS_ERR(range))
++	if (IS_ERR(range)) {
++		xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_SVM_RANGE_NOT_FOUND);
+ 		return PTR_ERR(range);
++	}
+ 
+ 	xe_svm_range_fault_count_stats_incr(gt, range);
+ 
+@@ -1415,6 +1419,8 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 			err = PTR_ERR(fence);
+ 			xe_validation_retry_on_oom(&vctx, &err);
+ 			xe_svm_range_bind_us_stats_incr(gt, range, bind_start);
++			if (err != -EAGAIN)
++				xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_SVM_REBIND);
+ 			break;
+ 		}
+ 	}
+@@ -1469,8 +1475,10 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 	int need_vram, ret;
+ retry:
+ 	need_vram = xe_vma_need_vram_for_atomic(vm->xe, vma, atomic);
+-	if (need_vram < 0)
++	if (need_vram < 0) {
++		xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_SVM_NEEDS_VRAM_CHECK);
+ 		return need_vram;
++	}
+ 
+ 	ret =  __xe_svm_handle_pagefault(vm, vma, pf, gt, fault_addr,
+ 					 need_vram ? true : false);
+@@ -1480,11 +1488,15 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+ 		 * may have been split by xe_svm_range_set_default_attr.
+ 		 */
+ 		vma = xe_vm_find_vma_by_addr(vm, fault_addr);
+-		if (!vma)
++		if (!vma) {
++			xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_SVM_VMA_NOT_FOUND);
+ 			return -EINVAL;
++		}
+ 
+ 		goto retry;
+ 	}
++	if (ret && xe_pagefault_get_error(pf) == XE_PAGEFAULT_ERROR_NONE)
++		xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_SVM_SERVICE_FAILED);
+ 	return ret;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index efa5ff6cc823..17dc4debe7c1 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -29,6 +29,7 @@
+ #include "xe_exec_queue.h"
+ #include "xe_gt.h"
+ #include "xe_migrate.h"
++#include "xe_pagefault.h"
+ #include "xe_pat.h"
+ #include "xe_pm.h"
+ #include "xe_preempt_fence.h"
+@@ -643,7 +644,7 @@ void xe_vm_add_fault_entry_pf(struct xe_vm *vm, struct xe_pagefault *pf)
+ 		return;
+ 	}
+ 
+-	e->address = pf->consumer.page_addr;
++	e->address = xe_pagefault_addr(pf);
+ 	/*
+ 	 * TODO:
+ 	 * Address precision is currently always SZ_4K, but this may change
 -- 
-2.43.0
+2.34.1
 
