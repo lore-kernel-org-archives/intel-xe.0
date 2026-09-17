@@ -4,157 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5841C982CF
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 11:10:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28417C88E72
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 12:03:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4948F10E6C6;
-	Thu, 17 Sep 2026 11:10:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B55A910E3F8;
+	Thu, 17 Sep 2026 12:03:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dLfzCEUH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AbFFK2MS";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA16110E6C6
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 11:10:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 010B910E1BE;
+ Thu, 17 Sep 2026 12:03:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789643422; x=1821179422;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=R4RPsugD0GxMkHPKMfv98Gu/jJros/ZHO0hT043naxQ=;
- b=dLfzCEUH8XdYU6600yijMPFfpOkXKoeENBV2+dlM7szsS3jzWsIy0bdN
- D1JEysoq2vCTcdZi5DefCdqnmbi8VrniwzRtp1iPMmH3INmRbJ5QyGMxR
- mNqVzXNIIO0aeDhPhoFvG14zgjz8527bPbc7MVeq/dKs6FPyIoowgvTrX
- pyScp/sgizAoRs8mU1ZwoVV+xppaF8pn4R9OgX4p0Fuqpe/v/DKHTWgxq
- EHNxafEXaqCLO3rcutebnRW2LzI+J7v6D1PDPvMFMR9kMqOH+1/2MMWKR
- AeFWqRJnEYcIapPfWrcFhSIj0YwQv6V5DamfmiOQMf3HKdlybWytTpSib w==;
-X-CSE-ConnectionGUID: +2wwy/02Q9C0NeRrtnotCw==
-X-CSE-MsgGUID: Jm1vA39fSiuvNn5yCc/ZlA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="90070043"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="90070043"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 04:10:21 -0700
-X-CSE-ConnectionGUID: +419hxc4TWqxQdTxP2o+WQ==
-X-CSE-MsgGUID: VT3q1EWSSdih6BlLxAm8qQ==
+ t=1789646606; x=1821182606;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=g4jdFHISCtDOIdNBw5lr8+m+ZK3sORRcp9x6MCFVSU8=;
+ b=AbFFK2MSDVkjo7vkji8kUH/3NP2auF1lWrbkpFvujF+NxbdppIcZuHx0
+ UJuXXaAHNOI4e1drd8DxW94ajFhm7XDpHFfaIxaTitVINbls56px0HQdz
+ sIKx9oDNYtm8g7r69v34QZhI4DILhp9g7uS8JKcJH8s6RhMB/EJVDCJx2
+ jwNbw5fJrjyBwI+RGFXF/P41+vg+cYFDKjyZmu3aVXATDmlYglGaK6TmJ
+ ial6kRS+zmdAbZX+5IQl7bZqn62dnEgIckDSNhsJvc670nMd7w3yQYmWw
+ 01ZmsKBKAjpmmQXczM4DbNhBRlrtKPi9Bx0bETaeb3Hc8FWxVXrusOsaH Q==;
+X-CSE-ConnectionGUID: iH+8PEyyTHWZ/I6wWnTmOg==
+X-CSE-MsgGUID: 5iYDIi5WTVCjXc+l7RjWkw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89925594"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89925594"
+Received: from fmviesa013.fm.intel.com ([10.60.135.153])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2026 05:03:25 -0700
+X-CSE-ConnectionGUID: GkxMiZ9YSPqzUk0EKPspiw==
+X-CSE-MsgGUID: 27I8YLU3QlmtAmG5OydedA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="275672639"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 04:10:20 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 17 Sep 2026 04:10:20 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Thu, 17 Sep 2026 04:10:20 -0700
-Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.60) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 17 Sep 2026 04:10:20 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=l8vveSs5c00lumHQ4vnNZ3Nw2UD2m48BF3ddUTwTA+B7uGcjXiB4B3FYKhNGjNgcbuR0SVMvq8o0/V2d/6pvPz6ebLYuRe9pmZsXXRQ5VTZi+DPARXZ6oM9rlTbx63+aIOZMJk3ql3nPWgmcH+m8tFLqH0xO5uzEtIdOH7n+8B4GfV5jr85+Mt3wrILltxVIOl1GTisxOxfvptP8jwSXvIQI1l47Yo+wPIzDtIED9UHozgxV+umz59ecksIzRGMFORomAfJaXj0gwOFHVl3TVlbniecVNQiREXOWH8GfLtGR026N4si+H07sGLB3OMlVwbIvQt/4oKF2khSSOY4RYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1HTKYCL58VfIrBXR2+xIJmEQOeda30UQ3dqHX9t6w74=;
- b=yEM+xjblkE3koGg6VbydYbgUH/ZnGNB+0NvHFr1ql1jh3YXm4Br6+oAikCYsHVpkQA+9RaXsVLcEs4qu6LHq7hed6GX+xbifKRjLGoOsdMmCcaVz0OeiN+AyEncB7h2nJuNLLP9AiofcvHvux6neLRpXdg+qCpAydnpnIgcMz0ejvyyDXZBTTEZlX60//Dj+Ie/v/21VWn+W3jQNtdZnJfoNJwjXnIaVSYfGOXNzbU5oBrh12X9gxWg2folFYSfsC5fKlPGgxBxKPconDq+8JAiMIc4e2hCk74wNDoWT8vCI0i8EfqACXbIXL4H1AvVhL3xAQlMO8YnLhMhHpbZFTQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::2a) by DM3PPFEF920636F.namprd11.prod.outlook.com
- (2603:10b6:f:fc00::f5d) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.428.12; Thu, 17 Sep
- 2026 11:10:18 +0000
-Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
- ([fe80::5a5c:9c7a:cd1d:d687]) by DS4PPF691668CDD.namprd11.prod.outlook.com
- ([fe80::5a5c:9c7a:cd1d:d687%6]) with mapi id 15.21.0428.011; Thu, 17 Sep 2026
- 11:10:18 +0000
-Message-ID: <e0c13150-696d-43ed-aecd-3fb09c4a0a0d@intel.com>
-Date: Thu, 17 Sep 2026 16:40:04 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/guc: Demote uncorrectable local error log to info
-To: Varun Gupta <varun.gupta@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <zhanjun.dong@intel.com>, <daniele.ceraolospurio@intel.com>,
- <michal.wajdeczko@intel.com>
-References: <20260910045919.2280655-2-varun.gupta@intel.com>
-Content-Language: en-US
-From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20260910045919.2280655-2-varun.gupta@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0100.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1d1::8) To DS4PPF691668CDD.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::2a)
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
+   d="scan'208";a="2144795"
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.90])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2026 05:03:25 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH 02/11] drm/i915/lspcon: switch to
+ drm_dp_dpcd_{read_byte, write_byte, write_data}
+In-Reply-To: <DS4PPFE901A304F3439245166797C8A3327E3B92@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <cover.1789547331.git.jani.nikula@intel.com>
+ <a890746215c6c7a1e36a6bc880ae644dd06f1956.1789547331.git.jani.nikula@intel.com>
+ <DS4PPFE901A304F3439245166797C8A3327E3B92@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Date: Thu, 17 Sep 2026 15:03:21 +0300
+Message-ID: <e732c3adab756452aeaa5107489e91d0a9c10d7c@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|DM3PPFEF920636F:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6b69e033-0840-47c9-2ea2-08df14ac4193
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|366016|1800799024|6133799003|10067099003|56012099006|11063799006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: qdx40mGBY0WhSZa5jcsSKvLhrRzzQYCX4WHpfWO6VLHU7CuLs/fllq8euAfLWzfDybFBSte+TLOq1bQge5vZn9ea71frwty9mr0368+D1B2i7bYQSg4G/6/aJnFfqGBIJfNE5a0/jBq/snsTdrfz0bFSwpHJOfWozOJMa3w0BYZBJh5MERuJ/6VMrRQ2HhY3EQ5nM7TUueDk1tVKGsl48egOvZAq0VRF2D3ixb+sOU52muM3MZqb0P/TvPyAmCfjCIBFJ8zHn/8+hMaZIUIZUrGuC8gxMK/UFhJRsjQY+6+yzITKtb6iYwol7G9fPHLbLFTfSQIQQAUgENbFfOT+7sLzLG9hqucsdTTqAEhXmRIs2O16bTlVJRP/Po+lPo1SgouDBDAoxM12zCgDEMtDQPLPvucxflrhzFsQrk26+L3Q8ugIBHRF+qDpMlWgoO3BmZm7lZBAd349bVCTsTCQiZ3C0/IxyZs0D1UK/TH8dHrpqnw1Flk1x/jXjoWQ4sCalOMu2RCtnL/kryPd+hJ9JROD1QhVj3zRK/mMvI7+cp5jb3cQNMWELcK/qGxfrGwIdjNiuM8UNGDe8K7VbiMNqOm91/pV2FYu0RHkwUgagbJn+nT5C6zMO6DXv5xZihgyX3Q5BbiE6V5UgI+oP5wX2ZYg0S3smmZEzSsB4Thca7Q=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS4PPF691668CDD.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(6133799003)(10067099003)(56012099006)(11063799006)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R0Y4YXF0Z0ZIZkNpRHE3ZVpPN1AzWkxKT1pCbXJ3dkpNRlhaMDJOVzJsUVpH?=
- =?utf-8?B?WWhzMTdtTnJGM1RqeDk4dXUzTHJ6c2FrQXhjZFZLMVJseDljS3BNNEF2ODJW?=
- =?utf-8?B?MndSemV6WG5NT1JzWkJ4UUJCaFhCSngwME90bXlEZGlyVytrdENuNlk1YTk2?=
- =?utf-8?B?VDdPRzN3U1FRT3BROXRWaWxGUHNLWmMybFY0aUdDeU9DQ1cwakJ4V29PU3lw?=
- =?utf-8?B?UGZlMC9ueXY2N25xZ1JaejN6ejVweC9CUDZaN3YwR2R5LzgxOU9rdHVJWUkv?=
- =?utf-8?B?Y2RqU1lYVTZzeTZycDVZRUN1Nmx1akRVcW9IVlBKZmxZUzFQbjBVenVSMjh4?=
- =?utf-8?B?WENUTTEzNHRQZnAvdTQycm9pUWtOY3dsS3dFTHBHdlZ6a2V6TFRnck5CWjVo?=
- =?utf-8?B?aDNHdDQ5UXkzbHJZQ2tNNEdQMXpBdXV1U1lIOWpSOUZnbFI5Qmhad05OK1dJ?=
- =?utf-8?B?SXZUOEh6ak5zQjlPL2licEhjdlRZekZDdHljRUFUSnJNV3U4ZmxuOUlsSUFX?=
- =?utf-8?B?MXM1WG9jRnQ3cGhhRnA5dTh2UEJUekZiSTg4YmZySExnbTJDU2dhSTZremZz?=
- =?utf-8?B?S21mcDQzTGx0ZGRzaUR4YS9tMGwyTm8xKy9obUdZZzFIQzV2UXNkdlVLRGQ5?=
- =?utf-8?B?a3d0Y3B5TlZTb2ppMVlzVFBHN1VLSWRNTTdFQjNVRWp6ZElzbExhSWVUTmdP?=
- =?utf-8?B?UnhwMnZNNVZ6QVJUVUZXb1ZsVWxrQzA1QlZIWDZMNnlzajBsaVNJdkoyV0xN?=
- =?utf-8?B?ZW5wRGlHY1YxVzJnQ2J1SmdqZVBNanZqZHF5c281bjZRdlphMTdTS2RRRXJH?=
- =?utf-8?B?N3dic2VKclZFbFU1dnBXNGUwZW9Kc3BIaW5oMVNrNDZXUnJJZFNoQ2d6Yy9P?=
- =?utf-8?B?eEdRcll1WGZtMlRQbUpKejllY2ozZlUwRlUvR0N2Z2Q5dkt6RGtYVndXZ1hH?=
- =?utf-8?B?RENwRHgwVW1Nanp5czhvQncwekZ1SjRDcFdhYzRwWmhvN3Y3Ri85WGZ4cHpq?=
- =?utf-8?B?S1drZVVMbm1pSkNZMkJtWU1ib3cwc2FIRmRLbkFPdlRTTW1hRjBWcEdZNUxC?=
- =?utf-8?B?RmJyS2tOaWc3TTAxV0VPSnpwMFRtS21BbVBQTDhMYzRuT292SU53TlVSZ0NL?=
- =?utf-8?B?WGZxRUMvdnZ1SHhvQm1KVFhwTE1JY0J2bjdjclRDbEV2d0ZqOVE5eTcxWitQ?=
- =?utf-8?B?MmRWTG5OSm9oVStWWDIzVGtocjZld1FnS3ZTeHc1QmJNd1l0RTJiL3ZlaXcy?=
- =?utf-8?B?UHZlOVI1NDBYVlFxZ2F4Zm9nZkZIVGV3RTZJTnI4aVJXdWNDcTNOTkdSKzRp?=
- =?utf-8?B?N1hvTzg1WnQ2dzVGbkF6b3ViVUZLMHBXRE5pMUdzL01ZRDFzR1BBRWVjdGtL?=
- =?utf-8?B?Y05Hd296UDRHTWxjOVhuVmVydy9tLzFVTUMrMFlQeEYyNmtMR3lFdGZkR1dM?=
- =?utf-8?B?NG9WZzRieFptL2NxR21KQTBObVNLTmhNMlNXaWZ3MWl5b0xwRFRzQkVEM2dy?=
- =?utf-8?B?bEV6aFIwOHZaZjE0ZEdaNkJ1R2JBUi85eTY3Z0VsUXppY25EaUoxYlp5SXhZ?=
- =?utf-8?B?UWZoVjUvUGFFWGtqTlZudHNsMDVzYXF3T3FjaFcxb0tneVZTYkFOa3E0V0Zw?=
- =?utf-8?B?WGVOMVRUMXZ3ZHh0UG95eWxESEtRalRNSU9hWmhMWXhXb252amRHRHRRSW5E?=
- =?utf-8?B?eXZwUmpNeVdwM1ZwdnNZejVLUWVnZ2ZrTEZneGZweWNiLzZlV29TYUdiWHVY?=
- =?utf-8?B?MWF4b3hiWEpMRytEYmJBdm96T09YZTdvaEwxMTV4SEEvalg4UEYyZisrRzA1?=
- =?utf-8?B?R2FCMVU4cm1hVTkzT2w5SE1sbUVDUENweFg0VEV2ckx5MDd3bFZkRlI5aE1p?=
- =?utf-8?B?djNvQkRTZ1Y2ck9vZy9SS1pIZ2ViV2FjNDNnQ1dEcDJWcGt6N1ZOZWlpamdK?=
- =?utf-8?B?Mmx6N21tUlo0cGwxTndDcytBUytrbnpXQ0NjTHI4UXRDNElhMEpTNisyeXJ0?=
- =?utf-8?B?dTM0K3QycHIrMHk5U1A3b1k5czdFYm1QcmcxSWxqYkRibjNaN1IyVGR5WkZY?=
- =?utf-8?B?aHdoMGlCOE1tMWZweTdjemFUMngrT3VZcnZ5bHV6T2MvaDRMM2VYS0NSQlRC?=
- =?utf-8?B?d3RGc0ZRMkpOditGamIxMjFFeXgyU09DbmJHYU10R21iS2FtMG9GUTFkSUgr?=
- =?utf-8?B?VExYWUt1akNuUVcvdW15OFk5dVdGYys3ODV2SnYwNDM4bW9aUjk3UHJZNVNO?=
- =?utf-8?B?WVowWFl2SnhEUkV4YlpGaXZMTkRPaU4yN0I5RzVORVZManJRUW5LQVNrUnRk?=
- =?utf-8?B?NThIMXFJTFNXMUc1Tlp1K1hkUHhTYjYxL3JDeFFmUTNKOWhBQmpTKzVjMnI4?=
- =?utf-8?Q?IBpT0IV6MOmFgXoE=3D?=
-X-Exchange-RoutingPolicyChecked: hzaMXB0i1m4gXIJkO5Y0wJK/UH64JKLJ8ZwXhMS/decNtVMZKawIv9iwmuAq+zSQyh19z9vmxOceT5onKpU1oAYwCj/ZgaEl7xSkOf7RPIouaxMBz8p1yqPX5e9BQOTouZqPnJH3ir0usut0NtonYa3NyHw4AKvF/hoEqipo4wewpspNCcmogoRYNuXZRInLFI3327YYUiCKqiaUnPXdICIAd5t0PQJqfVtHezgxpdfQ++7UhHLzXGY5lY8xYnVcSmlnH2CO7q9suEFVyazHYJ/Rb1fRnUfRu+kmEmCbLuVUN6Nnq/m1ihkVoWYVgAZmN3Xiqsv6ZooDvTqyP4OQ+A==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b69e033-0840-47c9-2ea2-08df14ac4193
-X-MS-Exchange-CrossTenant-AuthSource: DS4PPF691668CDD.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Sep 2026 11:10:17.8963 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QqL6Y3J6i5PIVP1ecBFyNxLeWqqa+IV+6blxikXm2qIMJ7k9vhbEq3/40mVy1KEpFMf74viu/N17UMf2HhIflCe6btCCcKAq3C64HR0sBBU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPFEF920636F
-X-OriginatorOrg: intel.com
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,47 +72,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, 16 Sep 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> Subject: [PATCH 02/11] drm/i915/lspcon: switch to drm_dp_dpcd_{read_byte,
+>> write_byte, write_data}
+>> 
+>> Switch to the modern DPCD access functions that return negative error codes
+>> on errors, -EIO for incomplete access, and 0 on success.
+>> 
+>> Use 1-byte accessors where sensible. Use local ret variables for the return value
+>> instead of checking inline.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_lspcon.c | 34 +++++++++------------
+>>  1 file changed, 15 insertions(+), 19 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c
+>> b/drivers/gpu/drm/i915/display/intel_lspcon.c
+>> index b306bf5f6130..07b5a9d010ff 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+>> @@ -137,9 +137,7 @@ bool intel_lspcon_detect_hdr_capability(struct
+>> intel_digital_port *dig_port)
+>>  	u8 hdr_caps;
+>>  	int ret;
+>> 
+>> -	ret = drm_dp_dpcd_read(&intel_dp->aux, get_hdr_status_reg(lspcon),
+>> -			       &hdr_caps, 1);
+>> -
+>> +	ret = drm_dp_dpcd_read_byte(&intel_dp->aux,
+>> +get_hdr_status_reg(lspcon), &hdr_caps);
+>>  	if (ret < 0) {
+>>  		drm_dbg_kms(display->drm, "HDR capability detection
+>> failed\n");
+>>  		lspcon->hdr_supported = false;
+>> @@ -244,10 +242,11 @@ static bool lspcon_wake_native_aux_ch(struct
+>> intel_lspcon *lspcon)  {
+>>  	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
+>>  	struct intel_display *display = to_intel_display(intel_dp);
+>> +	int ret;
+>>  	u8 rev;
+>> 
+>> -	if (drm_dp_dpcd_readb(&lspcon_to_intel_dp(lspcon)->aux,
+>> DP_DPCD_REV,
+>> -			      &rev) != 1) {
+>> +	ret = drm_dp_dpcd_read_byte(&lspcon_to_intel_dp(lspcon)->aux,
+>> DP_DPCD_REV, &rev);
+>> +	if (ret < 0) {
+>>  		drm_dbg_kms(display->drm, "Native AUX CH down\n");
+>
+> I was wondering now that we have ret should we add it in the debug message using ERR_PTR()
+> Same for all the changes done below ?
 
+Feels like the changes are pretty heavy already, maybe that should be
+another series on top.
 
-On 10-09-2026 10:29, Varun Gupta wrote:
-> The UNCORRECTABLE_LOCAL_ERROR notification sent by the GuC indicates a
-> local, queue-level context termination rather than a global device or
-> driver failure. This can be triggered as part of expected recovery flows,
-> including intentional fault-injection tests.
-> 
-> Printing this at ERROR level is too noisy and causes false-positive
-> dmesg-warn failures in CI. Switch the log level to INFO, matching the
-> adjacent CAT error handler.
-> 
-> Fixes: 4e57574fa3a3 ("drm/xe/guc: Handle GuC local uncorrectable error notifications")
-> Signed-off-by: Varun Gupta <varun.gupta@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_guc_submit.c | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index f3ba8abfc228..e0662bd9154b 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -3495,9 +3495,9 @@ int xe_guc_uncorrectable_error_handler(struct xe_guc *guc, u32 *msg, u32 len)
->   	if (unlikely(!q))
->   		return -EPROTO;
->   
-> -	xe_gt_err(gt,
-> -		  "GuC: Uncorrectable local error! guc_id=%d class=%s, logical_mask=0x%x",
-> -		  guc_id, xe_hw_engine_class_to_str(q->class), q->logical_mask);
-> +	xe_gt_info(gt,
-> +		   "GuC: Uncorrectable local error! guc_id=%d class=%s, logical_mask=0x%x",
-> +		   guc_id, xe_hw_engine_class_to_str(q->class), q->logical_mask);
+BR,
+Jani.
 
-Sounds sane and matches the CAT error handler.
+>
+> Regards,
+> Suraj Kandpal
+>
+>>  		return false;
+>>  	}
+>> @@ -331,15 +330,14 @@ static bool lspcon_parade_fw_ready(struct
+>> drm_dp_aux *aux)  {
+>>  	u8 avi_if_ctrl;
+>>  	u8 retry;
+>> -	ssize_t ret;
+>> +	int ret;
+>> 
+>>  	/* Check if LSPCON FW is ready for data */
+>>  	for (retry = 0; retry < 5; retry++) {
+>>  		if (retry)
+>>  			usleep_range(200, 300);
+>> 
+>> -		ret = drm_dp_dpcd_read(aux, LSPCON_PARADE_AVI_IF_CTRL,
+>> -				       &avi_if_ctrl, 1);
+>> +		ret = drm_dp_dpcd_read_byte(aux,
+>> LSPCON_PARADE_AVI_IF_CTRL,
+>> +&avi_if_ctrl);
+>>  		if (ret < 0) {
+>>  			drm_err(aux->drm_dev, "Failed to read AVI IF
+>> control\n");
+>>  			return false;
+>> @@ -371,7 +369,7 @@ static bool
+>> _lspcon_parade_write_infoframe_blocks(struct drm_dp_aux *aux,
+>> 
+>>  		reg = LSPCON_PARADE_AVI_IF_WRITE_OFFSET;
+>>  		data = avi_buf + block_count * 8;
+>> -		ret = drm_dp_dpcd_write(aux, reg, data, 8);
+>> +		ret = drm_dp_dpcd_write_data(aux, reg, data, 8);
+>>  		if (ret < 0) {
+>>  			drm_err(aux->drm_dev, "Failed to write AVI IF block
+>> %d\n",
+>>  				block_count);
+>> @@ -386,7 +384,7 @@ static bool
+>> _lspcon_parade_write_infoframe_blocks(struct drm_dp_aux *aux,
+>>  		 */
+>>  		reg = LSPCON_PARADE_AVI_IF_CTRL;
+>>  		avi_if_ctrl = LSPCON_PARADE_AVI_IF_KICKOFF | block_count;
+>> -		ret = drm_dp_dpcd_write(aux, reg, &avi_if_ctrl, 1);
+>> +		ret = drm_dp_dpcd_write_byte(aux, reg, avi_if_ctrl);
+>>  		if (ret < 0) {
+>>  			drm_err(aux->drm_dev, "Failed to update (0x%x),
+>> block %d\n",
+>>  				reg, block_count);
+>> @@ -445,8 +443,8 @@ static bool _lspcon_write_avi_infoframe_mca(struct
+>> drm_dp_aux *aux,
+>>  	while (written < len) {
+>>  		/* DPCD write for AVI IF can fail on a slow FW day, so retry */
+>>  		for (retry = 0; retry < 5; retry++) {
+>> -			ret = drm_dp_dpcd_write(aux, reg, (void *)data, 1);
+>> -			if (ret == 1) {
+>> +			ret = drm_dp_dpcd_write_byte(aux, reg, *data);
+>> +			if (!ret) {
+>>  				break;
+>>  			} else if (retry < 4) {
+>>  				mdelay(50);
+>> @@ -461,9 +459,8 @@ static bool _lspcon_write_avi_infoframe_mca(struct
+>> drm_dp_aux *aux,
+>>  		data++;
+>>  	}
+>> 
+>> -	val = 0;
+>>  	reg = LSPCON_MCA_AVI_IF_CTRL;
+>> -	ret = drm_dp_dpcd_read(aux, reg, &val, 1);
+>> +	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
+>>  	if (ret < 0) {
+>>  		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n",
+>> reg);
+>>  		return false;
+>> @@ -473,14 +470,13 @@ static bool _lspcon_write_avi_infoframe_mca(struct
+>> drm_dp_aux *aux,
+>>  	val &= ~LSPCON_MCA_AVI_IF_HANDLED;
+>>  	val |= LSPCON_MCA_AVI_IF_KICKOFF;
+>> 
+>> -	ret = drm_dp_dpcd_write(aux, reg, &val, 1);
+>> +	ret = drm_dp_dpcd_write_byte(aux, reg, val);
+>>  	if (ret < 0) {
+>>  		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n",
+>> reg);
+>>  		return false;
+>>  	}
+>> 
+>> -	val = 0;
+>> -	ret = drm_dp_dpcd_read(aux, reg, &val, 1);
+>> +	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
+>>  	if (ret < 0) {
+>>  		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n",
+>> reg);
+>>  		return false;
+>> @@ -617,7 +613,7 @@ static bool
+>> _lspcon_read_avi_infoframe_enabled_mca(struct drm_dp_aux *aux)
+>>  	u16 reg = LSPCON_MCA_AVI_IF_CTRL;
+>>  	u8 val;
+>> 
+>> -	ret = drm_dp_dpcd_read(aux, reg, &val, 1);
+>> +	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
+>>  	if (ret < 0) {
+>>  		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n",
+>> reg);
+>>  		return false;
+>> @@ -632,7 +628,7 @@ static bool
+>> _lspcon_read_avi_infoframe_enabled_parade(struct drm_dp_aux *aux)
+>>  	u16 reg = LSPCON_PARADE_AVI_IF_CTRL;
+>>  	u8 val;
+>> 
+>> -	ret = drm_dp_dpcd_read(aux, reg, &val, 1);
+>> +	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
+>>  	if (ret < 0) {
+>>  		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n",
+>> reg);
+>>  		return false;
+>> --
+>> 2.47.3
+>
 
-Could we ratelimit the GUC_ID_UNKNOWN branch too? keeping both paths 
-consistent with the CAT handler.
-
-
-
->   
->   	trace_xe_guc_uncorrectable_error(q);
->   
-
+-- 
+Jani Nikula, Intel
