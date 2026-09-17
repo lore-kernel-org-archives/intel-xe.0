@@ -4,99 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB7D0C982DF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4EDFC982E0
 	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 15:27:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DE6710F0C3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A142410F1E3;
 	Fri, 18 Sep 2026 15:27:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ViZbifj8";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="T3n8vnGk";
 	dkim-atps=neutral
-Received: from mail-qv2-f12.google.com (mail-qv2-f12.google.com
- [74.125.230.140])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C302210F39A
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 13:54:39 +0000 (UTC)
-Received: by mail-qv2-f12.google.com with SMTP id
- 6a1803df08f44-91058dd77a2so8793876d6.3
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 06:54:39 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1789739679; cv=none;
+Received: from mail-ej2-f12.google.com (mail-ej2-f12.google.com
+ [74.125.228.140])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38CC910F066
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 18:51:09 +0000 (UTC)
+Received: by mail-ej2-f12.google.com with SMTP id
+ a640c23a62f3a-c294af0caa8so197740766b.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 11:51:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789671067; cv=none;
  d=google.com; s=arc-20260327;
- b=ogmowHY85ESTP3lZw8p22VDq5Ryda8FBQeNBwUxkTPhWa/4FyF8S3Kerpyjshw/MB9
- qwejXmP/4O4jcuYvI/prmLHPBhxyxQOBO/9bw/QhY769O5Qto4GhWn/pZaCk+QTjWwMT
- DYZ9Qoog2H19XvRiDI6TTwgqmZUd0GRdNItSQ6Ao1WJt7yEjFICWHD/XfVsMWoCh8VZO
- YMDy9CMgG8pIzeXKabI23s0yz3LwTxuvcyxZltkF8cs+5VEiDa1IljS2cjwecSfValPB
- a/ecwpIArMVlNvnDK6e+s2ikYirXtuQCRWS6zpLBNCgpDEnj5HjBGTOi9knVepw5L5BL
- qLzA==
+ b=CAUgvPWCfoyXbQNPmBMBhX37gVaJtU6mOLosuWug1n51Mcnw0qk4mukwmIOBzjWgsU
+ dX2toQ6BMKabRRePSVuwbdO7yW6kPGDWZGYTxXHEW6yawlZawYshQDa54pPF2IyeG0Il
+ +1kxcdkJ2KQp56aGypBZDCCuWseOZCazlP1YhQeepFNIeJPjVjARgT5nfVJatg/CQYM3
+ F2T3fBGGxygEMrbrSTVc1bgKX5HYXzlWVz+LgZ2EU5ANDY3OMtEJJBW6HkC9TECEgqrY
+ FtP3gcva1lR8ZXTkwbN+I76JzXAFx9wo6mZBLTR2KMNNeAuGrkT6wMVM/pPaU2E85NcU
+ Jhiw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20260327; 
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:dkim-signature;
- bh=S9k8FKG4j03MJBTpWsc8b7htP2TIjKMqy+TI/78aQ4Q=;
- fh=ctjCSeoMG0Qxvz67WH+dh/jlO8V8TL6cQpglm/9dyB4=;
- b=OGoDF3grmnXs4nYG9jyV4LyayLxI1wEd1MAyTH/eFhbDOLypLhr1OxqfuVulJTJ2Xq
- gQC0CNmhQ8/Rb2czc0WSIhnVbAqluVjaSYVTfPL7D040bOiH2PZcLrzRNeL3T5jkE/WA
- GuF0aQBQjuVLLJb1EPCkQ70LgU+G57DuS0crKPsBsWWWiLDFav+ZE302GoxDL8GilVTu
- psFvCBsAu8lVLCFMxPEQgtEYtxa5y15eQi1Gic/h19RvkCQPtXxykcSl44D4vEN/tZy3
- vfEqxMftdLp/wqU2dNnDw7DW0EXDfMYx2FET77HD7pkxFuluw/bSSrlJ4ZWgI/1DvgLm
- wemw==; darn=lists.freedesktop.org
+ bh=9kVz82MAvAbBww+/Fr0+me1zCzCm1neo4UwNfXq+b7A=;
+ fh=DYFHwHuYVJxQ2SbT/gaYXBOlnK5C40gb4KOUIl/PAlQ=;
+ b=ULGcGftCtu59B7sS62/eVw0vHzxywQS+mVz2ZjLnvLa8dXdMCQ461CRla/tUhGUB2l
+ 6lXN69IYTbU0l/PMD8hReexqLhSwgE1oPK84cR8TvmEXNK23iUAO5husq4q3NbMSkGaO
+ R0HSWtjuy4OABoCR8X8sAoOqlnazl/920dfeew99+8wCPlnH3sfvjgI6HTToOpGb46tv
+ /cFc/um8dBHNYQFKrUhdvgXLEaF49QIxwAo7VY8UQSWZywrc6QEcbFYeomCGblZuXX8A
+ qlEHl1cQ9aBvFxeIf1QimhtrYcxOrZPBCmz7nkW3pH0N6/xHrqL0rrGcYEhatN18Wf5C
+ hhBA==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1789739679; x=1790344479; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1789671067; x=1790275867; darn=lists.freedesktop.org;
  h=content-type:cc:to:subject:message-id:date:from:in-reply-to
  :references:mime-version:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=S9k8FKG4j03MJBTpWsc8b7htP2TIjKMqy+TI/78aQ4Q=;
- b=ViZbifj8LsRotP3z7bXZ6zsLT3ZnYn/CmIL+O0SqEKpLqnL1C9CWIhQAGh3oIbhpCZ
- 0BpAN/ao9s6f/WAmdekCTSwpOx+z3Fm+2dgLfx/MH3k5d7/PDJ2O08kz2mSSgktsAu5t
- F7GLU/fBs81VjPvfJTq6xuwhXYPj+qw+9kgP5SikZUZHan8emynkVSmrYVj6eWLqaFC2
- HPn+5Y+i74x05524BFriAZFdP4Rzq2L7wbg01nWxRKuOhPGVz/Ps15Ym+n1hcMq66Lqs
- ZVRGjLby2WtAYi5DtK6iVee/N6CkCVhm3dQZBVzhzuuut4A/xti7OCucsJWcABzA35Fh
- Ep3g==
+ :content-type; bh=9kVz82MAvAbBww+/Fr0+me1zCzCm1neo4UwNfXq+b7A=;
+ b=T3n8vnGkciLzjDfHJITqjQfo7Few/yb7PqqlQ40h6DjOBNhJlKSrClL9YwRSzmR6Qt
+ AjuPbmtl28QET5+6EM2A7/VYeqdrZmAbEDwtfAxeoZfBzrnjo9bRM4ifYR6uz2iPPGVF
+ 7lOfHdESiWP88+EXgD7tUvWFsepSjH5lIKCDeWQq6bFtkt00+UkjXUlTbH7WNNXZaV6x
+ AIk0Q4STZi4KIbuqQ9y2ER2NTnGqYyTs6x+Lnx4Z3BrR+yWhvlV1+3VMOHBn5cOJ6Wnu
+ oQDHce+aYoAS37iZ7dld7YKyNQN3tzD43/TozcjCWn4Q/THbki7CqdeL2lBeGsDZqfmI
+ J7Ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1789739679; x=1790344479;
+ d=1e100.net; s=20260707; t=1789671067; x=1790275867;
  h=content-type:cc:to:subject:message-id:date:from:in-reply-to
  :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to:content-type;
- bh=S9k8FKG4j03MJBTpWsc8b7htP2TIjKMqy+TI/78aQ4Q=;
- b=reonyc9zdk2OyS7qA3u+IcVHxYk+VbTk5aqMlUz35GSSP0a9idSJ/lidI1bPCqx/qq
- Oc9Ibk5umzX7GhAMfeAslIzdToun3Aov1Z9i902nq1i422JYaZePLjbF8nDQ1Cn3U+6n
- BNs1Y3fwvaj8iRPPhNT8ezqu6ynvuQv1YxalN2gNIqLmGZWlMtjvRzNDiR8SGuHicmsg
- O1NqOCEQU6tWXOxB1WNPIgVqJAh7bis3xTTkx/sLLpQEfs98AlzA2Z9uUGPr/quNUOxy
- 7kpsgQzUKDpfCqNHYo9iHByUe0evXbiqnJuiWxz+C9QSIhXy0EVshbhpKsrCz8oZcVk2
- YfDg==
+ bh=9kVz82MAvAbBww+/Fr0+me1zCzCm1neo4UwNfXq+b7A=;
+ b=GIk6udoPYh2NSWEEFFElOzpLpJKyuo8CsfDvV8KPAwvrRz/glrE3kRUa21VyOQkVDY
+ Cm6072Crcs2OBO7Y56I2RZOAaYleAbpUqkOF/6QgSiU/kc78yPzv7vwuDkVvp0AGJ1eK
+ DAVN4Tb2WXb7Si5HO/T6TrKhlZJZKwFVlezYC9oDx+wf3eozNW7XCkm36voyHrEmWrsG
+ asQRATsoBXaQjf4zsW6bvhwu49CSYIVHgHLQzes8zzwQRVwmiqRnmJujyhCLaGpD+Uhj
+ aumWFRB+D158T2t3leNTV7fUH7j5MQpaL738hHVRRabkyyVj9OyeOGopPU8bPMoqnXEs
+ gs6A==
 X-Forwarded-Encrypted: i=1;
- AKwUvByhJIk18/TMiVX2QHDjP+uKr+6wYAH4Q31cJkH569GcxCLGQZuc+UcaxbgwVsWzR+af4NCRNAZ3KQ==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++k4vT2fCNwYLrt50C7zF2jE/MCwi9BlGiUdZ6x5CNSkSQBZw46m
- SyjSzix88LOzyvEg/7GXUuuPGZVrmjgd6zVJ77rNV/IFPWIn7tiMcV6Py8nl5oB0chPQooVlIJt
- gxgiOD+tlH10zFDlD1jU9HqNAwRwtBvM=
-X-Gm-Gg: AYBFou1CkEYbps9h1E57pS/a511qKJOuF1/PFTROVHEhigB2WBlVjQFEenrBZwyz7l0
- +ypoYn7f3+Kc4wP+K3OJWb1eob9fGhSXjLTWDzIxVIte9ZZ6RkGOZUPzTejKetKZg2QZZWnHODl
- FYVHPkV1fvmMEhLJgaICZ9JpdlaEuTEuKL7BGR9iDF6QvcWBOj3rrbd/gwTa6u+qc0IpkGPLhbo
- jXRKmegIh5jSErB5fVAlJuNANIkGLUGIdYdvZWBqw7b0Yt3Gr89ulU1Vp3X7rbzK+yPqkav7s4x
- VQI1Iq9xqAFPPRsK53PCM/+4k63l8uCxQicAz/J4KHUSH99ZJo6GLUCQ1v5UCLF688gmnGOWvma
- Hzsgpz1PIMbOYoDl+qg==
-X-Received: by 2002:ad4:5c69:0:b0:912:517b:918 with SMTP id
- 6a1803df08f44-91254cf9991mr42645216d6.55.1789739676490; Fri, 18 Sep 2026
- 06:54:36 -0700 (PDT)
+ AKwUvBxdO2X+lzFNsHC4GA6Wtrptp2iLY4jFvE8j8P1juy6pqLAY4RXYBZVjJI3X3wGunWwHuFMHEer0pg==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++nErpt3elABOdiY401QqfvZQFCXsKKAovp7yze6dYnJsFtt6y3J
+ dwnPWYiMss6ywzgEHOvGaNtzyJ+2OkYT5VTK5S/UFh6LezRhBUgDJRgnjAT/o8IMGaGWkGRcOFQ
+ tawL1xRrLY5PzmUT7YhkxTJUtYCrZhEQRyqD01dEN+A==
+X-Gm-Gg: AYBFou2r5DIvcJg63GU2qEIjNlpb7/xYBk3zc9QJLKHEzrAAJcwLUgyeM5J3aPKS0YF
+ bp6FZRupEC12NQj7JztiU0hXouAkGF0CUZCSSOwsWgT8KThjjI0j8iohVF/3X0lrnb/YYSTlmwL
+ fNv7BwlGHSSX1xnNnVhs+Omm1ZXFREGTQcJYl472Mu0+4OT2syykIzUi9WLmT9WuSadWzfgfGVj
+ Yl3/KRT/Qk81BacLnRPmxyqT+lk3n2sffef078qI486ZWafNIBna2+ghszWfs8jKw5pxftRaPjW
+ /iGmKq8gc0l7d1mFnNR5AtpPz+Oj25KVSy94IerW6RGmV2DlNMsk0g==
+X-Received: by 2002:a17:907:6d06:b0:c29:3a1b:ec8e with SMTP id
+ a640c23a62f3a-c2a1569b034mr13494966b.3.1789671067393; Thu, 17 Sep 2026
+ 11:51:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <20260905142500.17666-1-zhoulol888@gmail.com>
- <20260915064200.23171-1-zhoulol888@gmail.com>
- <69d0f3f3566521e516e439e818a619766561567c@intel.com>
- <CAEnyS7FrjPdkErjnNO5bOkEvrRdGfWYNB-GnhjpB2iKYFMJx5g@mail.gmail.com>
-In-Reply-To: <CAEnyS7FrjPdkErjnNO5bOkEvrRdGfWYNB-GnhjpB2iKYFMJx5g@mail.gmail.com>
-From: Activate Windows <zhoulol888@gmail.com>
-Date: Fri, 18 Sep 2026 21:54:24 +0800
-X-Gm-Features: AcwNN1WIs6CkWfPv2-lF5nz3B4wj_E4yv2c-VP8ml3oZP8t0e1qvS-gWSEP-GOc
-Message-ID: <CAEnyS7GUNiOCReMzVrOqutxbpaOPX+AxJ5AueTvQbgODyVweWA@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/xe/display: Remove invalid initial plane PTE check
- for iGPU
+References: <20260912091805.531666-1-andersen.theo@gmail.com>
+ <c7215b173c533cd697d8eb37b56c2a1890ea7c41@intel.com>
+In-Reply-To: <c7215b173c533cd697d8eb37b56c2a1890ea7c41@intel.com>
+From: Theo Andersen Carton <andersen.theo@gmail.com>
+Date: Thu, 17 Sep 2026 20:50:56 +0200
+X-Gm-Features: AcwNN1WHuc8o-nFGlfzO4INLAjuamK1x7axEj4QEzHLMTpq90hpTZl6XJiyGKjA
+Message-ID: <CANFnrsrR-benwg2i=mGs1RywuwcxkFE9Pzw8O7kGRQnNyit-tw@mail.gmail.com>
+Subject: Re: [PATCH] drm/i915/ddi: add DDI A force 4 lanes quirk for Apple
+ MacBookPro11, 5
 To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, ville.syrjala@linux.intel.com, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Content-Type: multipart/alternative; boundary="000000000000a85d1e065bc23d7f"
+Cc: rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com, 
+ tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Fri, 18 Sep 2026 15:27:49 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -112,265 +107,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---000000000000a85d1e065bc23d7f
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+> I'm guessing this is v2 of [1], but I shouldn't have to guess.
 
-Please drop this. Removing the check changes nothing, so the PTE check
-isn't the cause. Sorry for the noise.
+You're right, it is effectively v2 of [1] -- same patch, no functional
+change. Sorry for not labelling it.
 
-On Tue, Sep 15, 2026 at 9:59=E2=80=AFPM Activate Windows <zhoulol888@gmail.=
-com>
-wrote:
+[1] was pasted into a mail client by hand, which hard-wrapped the
+"diff --git" lines and turned the leading tabs into spaces. It did reach
+the lists, but not as an applicable patch, so I resent it with
+git send-email and didn't think of it as a revision. I'll use proper vN
+and changelogs from here on.
 
-> Thank you.
-> Follow-up: reading 0d5d5d0c2c72, the check assumes GRAPHICS_VERx100(xe)
-> >=3D 1270 stands in for "MTL+ with LMEMBAR". On the PTL I hit this on, th=
-e
-> initial plane is rejected.
->
-> I'm working out whether the BIOS PTE actually lacks XE_GGTT_PTE_DM there
-> -- I'll follow up with a proper v2. I don't have the machine in front of =
-me
-> for a few days.
->
-> On Tue, Sep 15, 2026 at 4:40=E2=80=AFPM Jani Nikula <jani.nikula@linux.in=
-tel.com>
-> wrote:
->
->> On Tue, 15 Sep 2026, Andrew Zhou <zhoulol888@gmail.com> wrote:
->> > Pantherlake integrated graphics can have the XE_GGTT_PTEDM bit set in
->> > the BIOS-initialised framebuffer PTE. The validation rejects this and
->> > fails to create the initial framebuffer, resulting in static.
->> >
->> > Remove the too-strict validation. Since this was the only caller of
->> > need_pte_local() outside the DGFX path, the helper is now
->> > unconditionally true there; fold the check and drop the dead
->> > need_pte_local() and has_lmembar() helpers.
->> >
->> > Signed-off-by: Andrew Zhou <zhoulol888@gmail.com>
->> > Tested-by: Andrew Zhou <zhoulol888@gmail.com>
->> > Tested-on: Intel Core Ultra X7 358H, integrated graphics, B0 stepping
->>
->> This is basically a revert of 0d5d5d0c2c72 ("drm/xe: Check the PTE local
->> memory bit for initial FB in stolen"). You'd do well to dig a bit of git
->> blame and see what changed, why, and by whom.
->>
->> Cc: Ville, Maarten, Matthew
->>
->>
->> BR,
->> Jani.
->>
->> > ---
->> > v1 -> v2:
->> > - Drop need_pte_local() and has_lmembar(), now dead after removing the
->> >   iGPU validation (sashiko)
->> > ---
->> >  drivers/gpu/drm/xe/display/xe_initial_plane.c | 20 +-----------------=
--
->> >  1 file changed, 1 insertion(+), 19 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c
->> b/drivers/gpu/drm/xe/display/xe_initial_plane.c
->> > index 0f86b7303..3484b3033 100644
->> > --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
->> > +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
->> > @@ -27,16 +27,6 @@ static bool is_pte_local(u64 pte)
->> >       return pte & XE_GGTT_PTE_DM;
->> >  }
->> >
->> > -static bool has_lmembar(struct xe_device *xe)
->> > -{
->> > -     return GRAPHICS_VERx100(xe) >=3D 1270;
->> > -}
->> > -
->> > -static bool need_pte_local(struct xe_device *xe)
->> > -{
->> > -     return IS_DGFX(xe) || has_lmembar(xe);
->> > -}
->> > -
->> >  static struct xe_bo *
->> >  initial_plane_bo(struct xe_device *xe,
->> >                struct intel_initial_plane_config *plane_config)
->> > @@ -60,7 +50,7 @@ initial_plane_bo(struct xe_device *xe,
->> >       if (IS_DGFX(xe)) {
->> >               u64 pte =3D xe_ggtt_read_pte(tile0->mem.ggtt, base);
->> >
->> > -             if (is_pte_local(pte) !=3D need_pte_local(xe)) {
->> > +             if (!is_pte_local(pte)) {
->> >                       drm_err(&xe->drm, "Initial plane PTE has bad
->> local memory bit\n");
->> >                       return NULL;
->> >               }
->> > @@ -85,7 +75,6 @@ initial_plane_bo(struct xe_device *xe,
->> >                           &phys_base);
->> >       } else {
->> >               struct ttm_resource_manager *stolen;
->> > -             u64 pte;
->> >
->> >               stolen =3D ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
->> >               if (!stolen) {
->> > @@ -93,13 +82,6 @@ initial_plane_bo(struct xe_device *xe,
->> >                       return NULL;
->> >               }
->> >
->> > -             pte =3D xe_ggtt_read_pte(tile0->mem.ggtt, base);
->> > -
->> > -             if (is_pte_local(pte) !=3D need_pte_local(xe)) {
->> > -                     drm_err(&xe->drm, "Initial plane PTE has bad
->> local memory bit\n");
->> > -                     return NULL;
->> > -             }
->> > -
->> >               phys_base =3D base;
->> >               flags |=3D XE_BO_FLAG_STOLEN;
->>
->> --
->> Jani Nikula, Intel
->>
->
+> Is there a bug report about this? Would be nice to see the logs in the
+> failing case. See [2].
 
---000000000000a85d1e065bc23d7f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+There wasn't one -- I went straight to the list. Filed now:
 
-<div dir=3D"ltr">Please drop this. Removing the check changes nothing, so t=
-he PTE check isn&#39;t the cause. Sorry for the noise.</div><br><div class=
-=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr=
-">On Tue, Sep 15, 2026 at 9:59=E2=80=AFPM Activate Windows &lt;<a href=3D"m=
-ailto:zhoulol888@gmail.com">zhoulol888@gmail.com</a>&gt; wrote:<br></div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=
-=3D"ltr">Thank you.<br><span>Follow-up: reading 0d5d5d0c2c72, the check ass=
-umes </span><code>GRAPHICS_VERx100(xe) &gt;=3D 1270</code><span> stands in =
-for &quot;MTL+ with LMEMBAR&quot;. On the PTL I hit this on, the initial pl=
-ane is rejected.=C2=A0<br><br>I&#39;m working out whether the BIOS PTE actu=
-ally lacks XE_GGTT_PTE_DM there -- I&#39;ll follow up with a proper v2. I d=
-on&#39;t have the machine in front of me for a few days.</span></div><br><d=
-iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep =
-15, 2026 at 4:40=E2=80=AFPM Jani Nikula &lt;<a href=3D"mailto:jani.nikula@l=
-inux.intel.com" target=3D"_blank">jani.nikula@linux.intel.com</a>&gt; wrote=
-:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
-8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Tue, 15 Sep=
- 2026, Andrew Zhou &lt;<a href=3D"mailto:zhoulol888@gmail.com" target=3D"_b=
-lank">zhoulol888@gmail.com</a>&gt; wrote:<br>
-&gt; Pantherlake integrated graphics can have the XE_GGTT_PTEDM bit set in<=
-br>
-&gt; the BIOS-initialised framebuffer PTE. The validation rejects this and<=
-br>
-&gt; fails to create the initial framebuffer, resulting in static.<br>
-&gt;<br>
-&gt; Remove the too-strict validation. Since this was the only caller of<br=
->
-&gt; need_pte_local() outside the DGFX path, the helper is now<br>
-&gt; unconditionally true there; fold the check and drop the dead<br>
-&gt; need_pte_local() and has_lmembar() helpers.<br>
-&gt;<br>
-&gt; Signed-off-by: Andrew Zhou &lt;<a href=3D"mailto:zhoulol888@gmail.com"=
- target=3D"_blank">zhoulol888@gmail.com</a>&gt;<br>
-&gt; Tested-by: Andrew Zhou &lt;<a href=3D"mailto:zhoulol888@gmail.com" tar=
-get=3D"_blank">zhoulol888@gmail.com</a>&gt;<br>
-&gt; Tested-on: Intel Core Ultra X7 358H, integrated graphics, B0 stepping<=
-br>
-<br>
-This is basically a revert of 0d5d5d0c2c72 (&quot;drm/xe: Check the PTE loc=
-al<br>
-memory bit for initial FB in stolen&quot;). You&#39;d do well to dig a bit =
-of git<br>
-blame and see what changed, why, and by whom.<br>
-<br>
-Cc: Ville, Maarten, Matthew<br>
-<br>
-<br>
-BR,<br>
-Jani.<br>
-<br>
-&gt; ---<br>
-&gt; v1 -&gt; v2:<br>
-&gt; - Drop need_pte_local() and has_lmembar(), now dead after removing the=
-<br>
-&gt;=C2=A0 =C2=A0iGPU validation (sashiko)<br>
-&gt; ---<br>
-&gt;=C2=A0 drivers/gpu/drm/xe/display/xe_initial_plane.c | 20 +------------=
-------<br>
-&gt;=C2=A0 1 file changed, 1 insertion(+), 19 deletions(-)<br>
-&gt;<br>
-&gt; diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/g=
-pu/drm/xe/display/xe_initial_plane.c<br>
-&gt; index 0f86b7303..3484b3033 100644<br>
-&gt; --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c<br>
-&gt; +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c<br>
-&gt; @@ -27,16 +27,6 @@ static bool is_pte_local(u64 pte)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0return pte &amp; XE_GGTT_PTE_DM;<br>
-&gt;=C2=A0 }<br>
-&gt;=C2=A0 <br>
-&gt; -static bool has_lmembar(struct xe_device *xe)<br>
-&gt; -{<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0return GRAPHICS_VERx100(xe) &gt;=3D 1270;<br>
-&gt; -}<br>
-&gt; -<br>
-&gt; -static bool need_pte_local(struct xe_device *xe)<br>
-&gt; -{<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0return IS_DGFX(xe) || has_lmembar(xe);<br>
-&gt; -}<br>
-&gt; -<br>
-&gt;=C2=A0 static struct xe_bo *<br>
-&gt;=C2=A0 initial_plane_bo(struct xe_device *xe,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 struct intel_in=
-itial_plane_config *plane_config)<br>
-&gt; @@ -60,7 +50,7 @@ initial_plane_bo(struct xe_device *xe,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (IS_DGFX(xe)) {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0u64 pte =3D xe_g=
-gtt_read_pte(tile0-&gt;mem.ggtt, base);<br>
-&gt;=C2=A0 <br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (is_pte_local(pte)=
- !=3D need_pte_local(xe)) {<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (!is_pte_local(pte=
-)) {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0drm_err(&amp;xe-&gt;drm, &quot;Initial plane PTE has bad local=
- memory bit\n&quot;);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0return NULL;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt; @@ -85,7 +75,6 @@ initial_plane_bo(struct xe_device *xe,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0&amp;phys_base);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0} else {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct ttm_resou=
-rce_manager *stolen;<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0u64 pte;<br>
-&gt;=C2=A0 <br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0stolen =3D ttm_m=
-anager_type(&amp;xe-&gt;ttm, XE_PL_STOLEN);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (!stolen) {<b=
-r>
-&gt; @@ -93,13 +82,6 @@ initial_plane_bo(struct xe_device *xe,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0return NULL;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt;=C2=A0 <br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0pte =3D xe_ggtt_read_=
-pte(tile0-&gt;mem.ggtt, base);<br>
-&gt; -<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (is_pte_local(pte)=
- !=3D need_pte_local(xe)) {<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0drm_err(&amp;xe-&gt;drm, &quot;Initial plane PTE has bad local memor=
-y bit\n&quot;);<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0return NULL;<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt; -<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0phys_base =3D ba=
-se;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0flags |=3D XE_BO=
-_FLAG_STOLEN;<br>
-<br>
--- <br>
-Jani Nikula, Intel<br>
-</blockquote></div></div>
-</blockquote></div>
+  https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/17087
 
---000000000000a85d1e065bc23d7f--
+It has the full failing-case log with drm debug enabled, on an unpatched
+i915 with the panel muxed to the iGPU. AUX and EDID are fine, and then the
+panel's only mode is pruned:
+
+  [drm:intel_dp_print_rates] sink rates: 162000, 270000
+  [drm:update_display_info] [CONNECTOR:93:eDP-1] Assigning EDID-1.4
+digital sink color depth as 8 bpc.
+  [drm:drm_mode_prune_invalid] Rejected mode: "2880x1800": 60 337750
+2880 2928 2960 3040 1800 1803 1809 1852 0x48 0x9 (CLOCK_HIGH)
+
+because intel_ddi_max_lanes() reports a source maximum of 2 for port A.
+The matching log with the quirk applied is attached too, where the same
+link trains at lane count 4.
+
+> i915_vbt from debugfs would also be interesting.
+
+Attached to the bug as i915_vbt.bin, 6144 bytes -- a $VBT HASWELL block,
+BIOS build 1215 dated 12/13/2012, on Apple firmware 427.140.8.0.0. Say the
+word if you'd rather have a specific block dumped inline.
+
+> The patch itself looks sane.
+
+Thanks. One thing I got wrong in the commit message, which v3 fixes: I
+wrote Broadwell, but the machine is Haswell Crystal Well -- i7-4980HQ,
+8086:0d26, $VBT HASWELL, and i915 logs "Found haswell". Apple's ACPI DMAR
+OEM string says BDW, which is what misled me. No code change; the quirk
+matches on DMI model either way.
+
+I'll send it as v3 rather than v2, to match the numbering you used
+above -- neither earlier posting was labelled, and renumbering them now
+would just recreate the ambiguity. It has that fix, a Closes: tag for the
+bug, and a changelog spelling out what v1 and v2 were.
+
+BR,
+Theo
