@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E64BEC982D7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2FCCC982D9
 	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 23:59:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 928DD10E7A0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65CF310E6DC;
 	Thu, 17 Sep 2026 23:59:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aFrlzWu9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dn6+M3V9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6DB210E51E
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ABFF10E00B
  for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 23:59:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789689573; x=1821225573;
+ t=1789689572; x=1821225572;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PciEdkeqd/5kKev26DQEmVrUMuzdSN99tnqWKI3DNw4=;
- b=aFrlzWu9v9K8ZG3f1B4IkCfJuC4jkZIRoZjL+DgJo39lMAyIkAD7AA5h
- l2jP6mp2CaPCM7O6KdGbQag+tzuP1q2wGvrGbJhBVwvA8NxjaMaAXnDN6
- gMKtcs0UhT+V9PChZAyD3eMq/nM08d3yyjRBvMqwfva818/9uNZ1J3OkM
- 5Bsaw9LfThpvkpdinHERjLXIsHgJ8SCv+qIczbagrodAV2ugcboXQ3m1O
- yNfna0fF/HhsEoYyrd2WOik4NnhTOmXOROm7K1r5KtD/AyTU8ux1DS1E1
- RTYjIGjX3rC9+ovsibFFlNMFu0W4/fIkSfwczx878gbVUqENfHvBBULTy A==;
-X-CSE-ConnectionGUID: b0PiQy5bQcyWGMcjzswRag==
-X-CSE-MsgGUID: fNA+ZU13RqO6iNRFAznXUQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="77727914"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="77727914"
+ bh=3auI+zG1R+LG8zawIiW9/3UF+D6xbwFYebALeyQ4b2I=;
+ b=dn6+M3V9Xn/tBdETUnpBoSrTa+jK01CqpDKGlp4JkmpLrlnrmymD79Lg
+ MCGYYixQftGSvkJUC45TjjhdAPB5LlUXBGT0Lg7c85uP6PiDTytNVQVXn
+ 3jOwTyEcNUN/P2kMzf3VQmGj2d1wxKd6jkTQgno/9cOWPmD9eNyJjIKj6
+ Y4boS+HzsdkvHzvGg1NHuH107gUJKBvuoldt2O2NWjOu1YY7vfLN1JtBi
+ zI7ebE1868lYbNizh3JSG+JYM1wsRzuAxKDg/TwQGFZsA1daGk4DhmKuW
+ KTSPyFNOtWihxC4eeV2TEfHc3GiT9WmZNbje1QTz5JerXgjHcRQHRQqb7 A==;
+X-CSE-ConnectionGUID: HAsP9kUDRHyFdObeZvOqrA==
+X-CSE-MsgGUID: QK6IGe/AR063xaM154K5hA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="77727911"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="77727911"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 16:59:32 -0700
-X-CSE-ConnectionGUID: Ovs4X2O1SoKWXatI/QJF2Q==
-X-CSE-MsgGUID: Io/B/c1IS+u8fRaP/W4cRg==
+ 17 Sep 2026 16:59:31 -0700
+X-CSE-ConnectionGUID: YZUrTvAoS72S0EofC3Ed4A==
+X-CSE-MsgGUID: b9ajuBrrSy+Pctp2VXXzgg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="270788218"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="270788206"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 16:59:32 -0700
+ 17 Sep 2026 16:59:31 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com, michal.wajdeczko@intel.com,
  aravind.iddamsetty@intel.com, mallesh.koujalagi@intel.com,
  alan.previn.teres.alexis@intel.com, julia.filipchuk@intel.com
-Subject: [PATCH v4 5/7] drm/xe/uc: Report DMA failure using SIGID
-Date: Thu, 17 Sep 2026 16:59:29 -0700
-Message-ID: <20260917235923.1521112-14-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v4 2/7] drm/xe/guc: Handle CRASH and EXCEPTION G2H with
+ separate helpers
+Date: Thu, 17 Sep 2026 16:59:26 -0700
+Message-ID: <20260917235923.1521112-11-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260917235923.1521112-9-umesh.nerlige.ramappa@intel.com>
 References: <20260917235923.1521112-9-umesh.nerlige.ramappa@intel.com>
@@ -68,58 +69,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Refactor to handle the CRASH and EXCEPTION G2H separately. In the
+process drop the else case that existed earlier but was unreachable
+code.
 
-Convert the uC DMA failure error to use the xe_log_err() helper.
-
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
-v2: add assert and simplify if/else
----
- drivers/gpu/drm/xe/xe_uc_fw.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 24 +++++++++++++-----------
+ 1 file changed, 13 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index e29878b255ba..ada39c1266a8 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -18,6 +18,7 @@
- #include "xe_gt_sriov_vf.h"
- #include "xe_gt_types.h"
- #include "xe_guc.h"
-+#include "xe_log.h"
- #include "xe_map.h"
- #include "xe_mmio.h"
- #include "xe_module.h"
-@@ -914,8 +915,12 @@ static int uc_fw_xfer(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
- int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
- {
- 	struct xe_device *xe = uc_fw_to_xe(uc_fw);
-+	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
- 	int err;
- 
-+	xe_gt_assert(gt, uc_fw->type == XE_UC_FW_TYPE_GUC ||
-+		     uc_fw->type == XE_UC_FW_TYPE_HUC);
-+
- 	/* make sure the status was cleared the last time we reset the uc */
- 	xe_assert(xe, !xe_uc_fw_is_loaded(uc_fw));
- 
-@@ -931,9 +936,11 @@ int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 5c4733da385c..b3a6aa37808b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1553,22 +1553,22 @@ static int parse_g2h_event(struct xe_guc_ct *ct, u32 *msg, u32 len)
  	return 0;
- 
- fail:
--	drm_err(&xe->drm, "Failed to load %s firmware %s (%d)\n",
--		xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
--		err);
-+	if (uc_fw->type == XE_UC_FW_TYPE_GUC)
-+		xe_log_err(gt, GUC, err, "Failed to load firmware %s\n", uc_fw->path);
-+	else
-+		xe_log_err(gt, HUC, err, "Failed to load firmware %s\n", uc_fw->path);
-+
- 	xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_LOAD_FAIL);
- 	return err;
  }
+ 
+-static int guc_crash_process_msg(struct xe_guc_ct *ct, u32 action)
++static int guc_handle_crash_dump_msg(struct xe_guc_ct *ct, u32 action)
+ {
+-	struct xe_gt *gt = ct_to_gt(ct);
++	xe_gt_err(ct_to_gt(ct), "GuC Crash dump notification\n");
++	CT_DEAD(ct, NULL, CRASH);
++	kick_reset(ct);
+ 
+-	if (action == XE_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED)
+-		xe_gt_err(gt, "GuC Crash dump notification\n");
+-	else if (action == XE_GUC_ACTION_NOTIFY_EXCEPTION)
+-		xe_gt_err(gt, "GuC Exception notification\n");
+-	else
+-		xe_gt_err(gt, "Unknown GuC crash notification: 0x%04X\n", action);
++	return -EHOSTDOWN;
++}
+ 
++static int guc_handle_exception_msg(struct xe_guc_ct *ct, u32 action)
++{
++	xe_gt_err(ct_to_gt(ct), "GuC Exception notification\n");
+ 	CT_DEAD(ct, NULL, CRASH);
+-
+ 	kick_reset(ct);
+ 
+-	return 0;
++	return -EHOSTDOWN;
+ }
+ 
+ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+@@ -1772,8 +1772,10 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		ret = xe_gt_sriov_pf_monitor_process_guc2pf(gt, hxg, hxg_len);
+ 		break;
+ 	case XE_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED:
++		ret = guc_handle_crash_dump_msg(ct, action);
++		break;
+ 	case XE_GUC_ACTION_NOTIFY_EXCEPTION:
+-		ret = guc_crash_process_msg(ct, action);
++		ret = guc_handle_exception_msg(ct, action);
+ 		break;
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ 	case XE_GUC_ACTION_TEST_G2G_RECV:
 -- 
 2.55.0
 
