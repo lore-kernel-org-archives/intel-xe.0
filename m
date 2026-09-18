@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 957E0C982DA
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 10:01:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDBCAC982DA
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 10:05:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4048A10E0C8;
-	Fri, 18 Sep 2026 10:01:31 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31D5B10E87E;
- Fri, 18 Sep 2026 10:01:30 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2620058817228291561=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 857A510F2AA;
+	Fri, 18 Sep 2026 10:05:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ed4utLsU";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA91B10F2AA
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 10:05:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789725942; x=1821261942;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/SbUbzPp6r316yk7hgtQYxAJ5iUjYltKri8JDT8n6ic=;
+ b=Ed4utLsUXqpFs8GolYYxUs+MU07JYLcUZEIIjl7oWqiNIbs0rUI18CJm
+ feudztsM/o4psbS8e685Pwzp9sOc42XHgl9oeLJKgcEXt5WmFikmaC1Tb
+ 3GiPhMSb2mlUDmar+p525sIrEmi68xNF3f0B6xcW3hnUEi8DhRdx/NyyH
+ NdZJ09vj9IFbAxN7pAwFRnyt6lSYUg1F4rAfeosV5Sc0aSN6BIUO9njxW
+ HJUiFP319NbNVCmf9Lr+Krc7EM8+mVClobSwegI6r3wOGtUymG7a9c1vB
+ U105isMspa7DE/bR3RUJyTh0e9WcokGZt0PHNZu/+5/vrP1OszVT6xO10 A==;
+X-CSE-ConnectionGUID: HVbdmx9QRkO69NYf9H/95A==
+X-CSE-MsgGUID: gSKF0xgdR3SjeOGnfuRtGA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="737204"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
+   d="scan'208";a="737204"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa116.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2026 03:05:42 -0700
+X-CSE-ConnectionGUID: AdEsMVRQTKG43jru5kP52Q==
+X-CSE-MsgGUID: mmOvLYVnRrSmDjo3X8G7vw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="271003528"
+Received: from ksatya-dev.iind.intel.com ([10.190.229.72])
+ by fmviesa007.fm.intel.com with ESMTP; 18 Sep 2026 03:05:40 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v9 00/10] KUnit test for VF provisioning error handling
+Date: Fri, 18 Sep 2026 15:35:24 +0530
+Message-ID: <20260918100533.567225-12-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/dp/mst=3A_skip_connecto?=
- =?utf-8?q?r_creation_for_unplugged_downstream_ports?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Xiao Lu" <xiaolu.xie@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 18 Sep 2026 10:01:30 -0000
-Message-ID: <178972569019.181278.11476499965781618379@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260917080126.1729898-1-xiaolu.xie@intel.com>
-In-Reply-To: <20260917080126.1729898-1-xiaolu.xie@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,139 +62,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2620058817228291561==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This patchset adds infrastructure and tests to verify that a VF
+properly handles malformed or invalid device configuration
+responses from the PF.
 
-== Series Details ==
+A VF relies on the PF to provide valid hardware configuration through GuC
+KLV responses during initialization. If the PF is misconfigured or
+malfunctioning, a VF may receive zero, incomplete, or out-of-range
+values for critical resources like GGTT, VRAM, Contexts or Doorbells.
 
-Series: drm/dp/mst: skip connector creation for unplugged downstream ports
-URL   : https://patchwork.freedesktop.org/series/174498/
-State : success
+Add KUnit test cases that use the xe_guc_mmio_send_recv() stub to inject
+bad KLV responses and verify that VF can survive without crashing for
+the invalid configuration data received.
 
-== Summary ==
+While adding this kunit test, found some missing error handling in the VF
+code path for invalid doorbell,  GGTT and VRAM configurations. This
+patchset also adds the missing error handling to the VF code path.
 
-CI Bug Log - changes from xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05_BAT -> xe-pw-174498v1_BAT
-====================================================
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-Summary
--------
+Satyanarayana K V P (10):
+  drm/xe/guc: Allow to replace xe_guc_mmio_send_recv() with KUNIT stub
+  drm/xe/vf: Split submission config query helpers
+  drm/xe/vf: Add bounds checking for queried context and doorbell counts
+  drm/xe: Introduce helpers for VRAM alignment
+  drm/xe/ggtt: Avoid integer overflow when validating VF GGTT range
+  drm/xe/vf: Add bounds checking for queried GGTT base and size
+  drm/xe/pf: Align VF GGTT allocations to PAGE_SIZE
+  drm/xe/vf: Add alignment check for queried VRAM size
+  drm/xe/ggtt: Add KUNIT stub for xe_ggtt_shift_nodes()
+  drm/xe/tests: Add KUnit tests for VF provisioning error handling
 
-  **SUCCESS**
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |   2 +-
+ drivers/gpu/drm/xe/display/xe_initial_plane.c |   2 +-
+ drivers/gpu/drm/xe/tests/xe_bo.c              |   2 +-
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c         |   2 +-
+ .../gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c   | 666 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_bo.c                    |   6 +-
+ drivers/gpu/drm/xe/xe_device.h                |  10 +
+ drivers/gpu/drm/xe/xe_ggtt.c                  |  25 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |   4 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c           | 114 ++-
+ drivers/gpu/drm/xe/xe_guc.c                   |   5 +
+ drivers/gpu/drm/xe/xe_query.c                 |   2 +-
+ drivers/gpu/drm/xe/xe_svm.c                   |   2 +-
+ drivers/gpu/drm/xe/xe_vm.c                    |   4 +-
+ 14 files changed, 812 insertions(+), 34 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c
 
-  No regressions found.
+-- 
+2.53.0
 
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-174498v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-ptl-2:          [FAIL][1] ([Intel XE#9109]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174498v1/bat-ptl-2/igt@xe_waitfence@engine.html
-
-  * igt@xe_waitfence@reltime:
-    - bat-ptl-2:          [FAIL][3] ([Intel XE#9115]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@reltime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174498v1/bat-ptl-2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#9109]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109
-  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
-
-
-Build changes
--------------
-
-  * Linux: xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05 -> xe-pw-174498v1
-
-  IGT_9100: 80e998fdbe300b1ca29901099f35316bd83781e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05: 15f7465765dc45d58738fc05a1c11a785e709c05
-  xe-pw-174498v1: 174498v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174498v1/index.html
-
---===============2620058817228291561==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/dp/mst: skip connector creation for unplugged downstream ports</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174498/">https://patchwork.freedesktop.org/series/174498/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174498v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174498v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05_BAT -&gt; xe-pw-174498v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-174498v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109">Intel XE#9109</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174498v1/bat-ptl-2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174498v1/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05 -&gt; xe-pw-174498v1</li>
-</ul>
-<p>IGT_9100: 80e998fdbe300b1ca29901099f35316bd83781e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05: 15f7465765dc45d58738fc05a1c11a785e709c05<br />
-  xe-pw-174498v1: 174498v1</p>
-
-</body>
-</html>
-
---===============2620058817228291561==--
