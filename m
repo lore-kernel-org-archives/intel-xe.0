@@ -4,145 +4,127 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C324C982D8
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 12:54:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 697A8C982D8
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 13:04:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E60E010E0E4;
-	Fri, 18 Sep 2026 12:54:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16A2910E8CA;
+	Fri, 18 Sep 2026 13:04:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M37Mz7/N";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZIInfBv1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89C1610E0E4
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 12:54:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789736068; x=1821272068;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=JtwGH6cOnQ9ELl7TQxVxR//7Q3hPTx1WEIRh106o3oA=;
- b=M37Mz7/NEwbfZk9yfJ9wbbVhkHHWHWRq7PVz78HoiLbwfWkqMrjIXJgD
- Hy/jnwg7gFQLpELQvNLaIaFGVAP2B8npBUxiOhJ71TrhyWqsiibE/sbpf
- /uPH1qvSByQTwArpT03Gil9wt3dU5YsTdVl5xv5dvEP+ZZPSu5xwQnaqk
- XZFEtL2YG33o7tVLT4MJKEFWZ4ilO0wGGNE1BP+h9DFCYcboCBlUNUzJ7
- YJXdjdHGDX1dOaVTBxcDnImA0r6w+EpG2FMHakoxakT0baep9jJ9UeDqP
- ksaXOVZV9RmkycYM3Nnj0zed4He/q7MzYS32fFKowb1itMD/JNb0yvOKN g==;
-X-CSE-ConnectionGUID: GBKTaH6eQwWacBNEuMYm8Q==
-X-CSE-MsgGUID: PgKHoQowQ/yHleGZeBXPUA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11908"; a="100835582"
-X-IronPort-AV: E=Sophos;i="6.27,108,1787036400"; d="scan'208";a="100835582"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2026 05:54:27 -0700
-X-CSE-ConnectionGUID: D3kRXZNfQL+7RXVfoPepBA==
-X-CSE-MsgGUID: OouRBUF4RtWsIvKa7+1M+Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,108,1787036400"; d="scan'208";a="270702511"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2026 05:54:27 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 18 Sep 2026 05:54:26 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Fri, 18 Sep 2026 05:54:26 -0700
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.38) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 18 Sep 2026 05:54:26 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Iva57/erT74SUtuP2m0VlcpIkWgmO5ApdWFrDdDzEqqUHmgKaC9qr3VOGAlZfQzLZsJSCqiYYd2ZszolK37CSZb66EtPvGehryppgaI9QQs+/4txA6ru/gRsaEBwVT7y31/eRLFH6LN/pEtbkWLULLnXw/cMGupLDrTLe8msUQXTNCAOx7LF+vtsW8Rodex6PdVapHUvrbA3bOt8KY92orfTzdMMdw98S2GhbGXB/eYaOGe0dDo42md1byhlo7z1lYor+M8FX6DAyTFVYWnvnT/OOmQ/9TNzjw1UGOJYJMuc0RMxmzi8eOTbLd3WU3iREybYOOJsE/wi0J75JG0MbQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=H1+iFTf3FtH/cr91YB+rr7v+GBKCHfOanhCJ6RPecEw=;
- b=QhlZ8tT2PpiQDlDLCITjIO3Sk9VElzVskYCifU6QJ1AANJYuhw/G8gP8+Y2y1DEUTuRCvBYmVtHO7WH9hPm18giL5YkxLbg8vmOprBJ8tB38uKz/T9/eA/VX0raJrlK7N8WoAMkhVjy4HI4xbtPB4Wf43fj81cZnwv2wEVC9ScAyeKonLNiBBZ5Jg9Zl7GXX5qn3O+R2fWbpgAe1AutvVzUI0bIjQk373ccbvbwlJFt4OJoCQiaq7PoQE6R0yNGOBj2ZGPu2m3zsWLzlnaPsLbrlb1HeKzowyjkR8uJOvQkj0VIx4Dt6LSrvbyPrgtsRZij4cGNuOk0RQbxDNkKXug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA0PR11MB7187.namprd11.prod.outlook.com (2603:10b6:208:441::12)
- by SN7PR11MB7420.namprd11.prod.outlook.com (2603:10b6:806:328::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.428.13; Fri, 18 Sep
- 2026 12:54:06 +0000
-Received: from IA0PR11MB7187.namprd11.prod.outlook.com
- ([fe80::be96:3f58:953d:6565]) by IA0PR11MB7187.namprd11.prod.outlook.com
- ([fe80::be96:3f58:953d:6565%4]) with mapi id 15.21.0428.011; Fri, 18 Sep 2026
- 12:54:06 +0000
-Date: Fri, 18 Sep 2026 08:53:52 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Varun Gupta <varun.gupta@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <zhanjun.dong@intel.com>,
- <daniele.ceraolospurio@intel.com>, <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH] drm/xe/guc: Demote uncorrectable local error log to info
-Message-ID: <aq00YEXsjHSSU3Gh@intel.com>
-References: <20260917135121.3590045-2-varun.gupta@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260917135121.3590045-2-varun.gupta@intel.com>
-X-ClientProxiedBy: SI3PR01CA0011.apcprd01.prod.exchangelabs.com
- (2603:1096:4:296::6) To IA0PR11MB7187.namprd11.prod.outlook.com
- (2603:10b6:208:441::12)
+Received: from mail-vs2-f37.google.com (mail-vs2-f37.google.com
+ [74.125.227.37])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C86C10F34E
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 13:04:09 +0000 (UTC)
+Received: by mail-vs2-f37.google.com with SMTP id
+ 71dfb90a1353d-5c7e0766671so26214e0c.1
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 06:04:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1789736648; cv=none;
+ d=google.com; s=arc-20260327;
+ b=MyK8dDMYM568vQ9EMAivvB//kHAq6GgyEp8z6UqCHtVaBC5YBlhNRdXGLYnd1lpv5m
+ G6lmIr1QqOYsn1Z73hCRqVyExqm5Ie8FD1PBC75ud868vaqexOgYtldsMknLK3e076+L
+ 8SlkRTZv5Wlgxjd/CAlk2qEhjHfynrk0SNqil3Z9neXJMVYmzyc6y06S0hBFMWkCdQnd
+ OmdybxV4enEPtEZ++5Gy3j36ftNBdmt3lyWx22vVXDhh3Z5vyM0xYTFXdMj7cT/qZz3d
+ lGyzs7K2OXHLE16vRWnYM9f6PAmHN9cZZ35QXBHT2Njwlx0uCGf5Qtob8PuR5/7ao1gt
+ SPJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=yCLjcMw1rcuu9wX+kCk+ppzWj5O7P6M4vBYFfJC61a8=;
+ fh=b8QOZW1mdbsQLppAoZX+cMjo+mxeHiKyUZLqvlZp62g=;
+ b=OgMMdrfz7XD44oYD/aHMZjwRpKIM+gsqScpVwfdGV3g7XeJcLnUypsRG1W7+457IBm
+ lp+UfCF6tyGNSaGtgqfpg15nEiLLf0D9d8fpBpgS999KspPBbVSapnB0Y8yaQ5Uz/0+a
+ iyHMbJE8xR0OcZtUW4ZElGuAn3fEk1dzIwWWH8I30urNarV/pGl0K6nCWosboO36t3pP
+ wca3H40bASvra+88U6P03jexY1g44yGFZvkBWs2mjeokL4cFJ83vU+CVVD35Qrb9BiKV
+ DEvjB+tB3eS2yxaQVX4ezIUEzQMUNga6RTbrATGtuDFK5kQWh8ZxpcLDh4PJR0k3qamR
+ jofA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1789736648; x=1790341448; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=yCLjcMw1rcuu9wX+kCk+ppzWj5O7P6M4vBYFfJC61a8=;
+ b=ZIInfBv1jN5x8ITR+uHtKhmyw8qa4JsGLOtkNj9p/Xwl+CQyV+ONuZEufHBF9OezOu
+ ffV8dpQhiwyBjdz6KZpwu3Qq0rrm4IaeiWK7jXMRIZspFjisfhdyCIpAScN92HegTLRL
+ e4nt7uc4K/hn0w83K2hy324OUkY8HBCfVJUxZVKdUfTlydfl+vTLDP1TCk8wUb5EVX3s
+ aFnd2CyI9mLd+BToeW9/7nYBToThm/nr5KB/zWa/bAY/Iq3anmp/Xl4aPGlhjJlNdR4W
+ wpwOhR8qnU7kT1l1EYgPUxxZR6MvTb5o9GTu0H6PyhMCqWAbncQ2vOTgDUDQpnQIySMJ
+ 6cvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1789736648; x=1790341448;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=yCLjcMw1rcuu9wX+kCk+ppzWj5O7P6M4vBYFfJC61a8=;
+ b=ZMcZfcZNAqnUc9R96w+L4OlxKtyzJEuCx6yq3TlFQjN76uRA+2FhNNq6E7FtdnxK/j
+ CZc1PjiInwfgAlA3k1m6PMuchFUNYtjHDWsdopI9EGqwlAkGje6D7/g4t6UZjchv0fQ5
+ F3DAb5JwYXsWRnp5q8F4iS3PpyNkSIx1tADhn7qtvYEGtODVkg2gqur3/ny/H3EIucYk
+ 0jyRL/VkhkVK53usQfrG2ZOwsTuBAlXCs0bcU/A+xqtZnnOTHbXOZ78NvO16ELElShz2
+ FUCGPEpBXRtQLCRxSGcb2CtCpwrIGL7vmN+5jrt8u6TqDjzzPSQv6yAGLyF9CydkXYOr
+ toVA==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBxcAHztFsK8yvlomWvX+jGXhOVPW5YNE6SH1t8deDqs732wl6YZcF+BgQOxFTzcwbntWrso9lxPmA==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++k5/TJkJsRb1AtbZ2XEMEBh4MGJ4IgcoWi1DJFY1kjjOJxBHTud
+ Cy9wqvsehlDi4lMyUTIpWmr2AlFSIuvnCf9ADkTWaRxrnOXYw2LbS2qyxHZSlFCmVnM/vTAveQt
+ ZFgD4QGlSIZ+HArozFhIazubpPK6iznc=
+X-Gm-Gg: AYBFou1k/7p6Pcm5H4NQaGtE/DUlyVyIeJwadjuk+p90LHz28JIaGK/yCG8VvbiOYI5
+ uYcvRIhQ36i9zkWThd9eW2gNWjqTYFR+JeoIu3uIBqKat3qQMp1nxvzfPjB9b1yeEqWg6Bczsps
+ Qceg4JH3DOZICKkF/zb5OKozP6hR0cvLHxMLsAYkltEAWvhuMG3pf2ABm/oMIIG3CAQubheWaou
+ cK+9cwju9uy6U3tkffOwA3lwyiAT+xMIoaCxAukIIvOCebfPduweZo1FEqv61koi3XrK8gt0bcT
+ dkBNo5nk95CVUpRJYVZLHamUkV2arjJgrMfXbiaHz8rif25Qbu7Mg883nvYkglc34bezINHUQB5
+ EckOkX7VTqs7ql2k8vzkN+dVTU70tyFKiKQF14ZFNpbk=
+X-Received: by 2002:a05:6102:5e8b:b0:7a3:2e52:114b with SMTP id
+ ada2fe7eead31-7a59dd5f437mr474902137.2.1789736648001; Fri, 18 Sep 2026
+ 06:04:08 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|SN7PR11MB7420:EE_
-X-MS-Office365-Filtering-Correlation-Id: 04ab3d68-00eb-4ae7-dae2-08df1583ec36
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|376014|1800799024|56012099006|10067099003|6133799003|11063799006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 4YI1PByGaoNAsqnk8KeL8ZVHObT4cQt02al9RESbVhEq5Cp4UHji97nhQp3vDeJ+kYyXkPJHgrVcOnBtz1ozQ7OKjwUd/ta15NEon4oYcQzDw0Un64+c3Znd1FjwQ3a1R71M1aktUCoJ1Yuhnxph5dvjLtB9p3HpC8sMbmMQFbnvNtlO2Rt1FpgV6rFQHBtBsYCoPmgoeQFvgSKqpbafwsKiw7P4MpaAdIRqPxCOGGuiQ5z4noB3llcoNzL3HDowBKUul6aX1j6n7Fl6/aSgC8BTUHrbUDfieffvMuWigkCWXRf3um8509LMrffoCJNhEifQGpV/d7y/315dkebsbN21yfCD4ErEhBoZSvK+OpVCRrmhZqv/2ymZAQitOAVq74+LpnL/StgyEYXD7jgWjYNZs6/VPjxyjoIF8prL8oe+u9+rmnrDdeUSbqGFklBgSErjzjAAW/M7CV1PuEtqZdxM935PaiSLQoVgdNATK3l0gLfGDgxrAd8ZOssw7VFgOSSEEThkJgOdqd7KobtnVh+24aO8lI4ogBTCACLkevdtJlgwe8G5HVfSlI1QPMLD3sMSQJhFwdeioFzdSC9JUX9JH8xxr3ddvrE3i4H+wL4VY3cpnUJKM3L43JhGTCsn4Brov1u0ZiEEup2Wf3DTzXuwpj0I3S4IdmU1KJkxxV8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7187.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(56012099006)(10067099003)(6133799003)(11063799006)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sw+vCEptbnlC/xgRSHmytSCYWg72XSkcot1rsnzreYAlCs6gqWOGXuBMa6OY?=
- =?us-ascii?Q?u2BHwy1O7syoDB2j/hW9xAGLOz6BqgiibZ8fu6agXBFT6miwTBvLc3EWMcHp?=
- =?us-ascii?Q?q0rn+/UH00SYaSoN8BqWL6L/4W0PZkjYZb54nzYTFBhYgmL19+vS8cHCdxsY?=
- =?us-ascii?Q?KQjwGv7Ht+Ang/PZbElMShRek95G1sO2P4NxeKZzHR4PVBf04jNuy1aqk3/0?=
- =?us-ascii?Q?6Z9+k7et2amiT2hJZ1gD75Zyg/ppB2bwAnYl3KIYYbjiFwRsP9Ole8EjjvQ0?=
- =?us-ascii?Q?TGNBPimdqs3SBaWS5Mw5E4kpgJ1oc8AV6xe04BZ+B9w+0V8wSq+2PyJYZ4OW?=
- =?us-ascii?Q?qBEYeYAu1gFJ4fJTH82F1X3gBuoAKrMBi7pmShRq8bQpupIvWTvR80SGSHEr?=
- =?us-ascii?Q?V7BzfBAs9Z1OjkFEpgToyetKl3Z9p5YQv+Axg/cuMddvgzIOjcq+PS7XuuFW?=
- =?us-ascii?Q?c6S0Aa6j5mW+OlxrG2dymHfFl34KwTVfD8iF3/cYMDTKj0jK84jit9p5yw/E?=
- =?us-ascii?Q?k2oaDlvgbT7nDOmOIDyuDQu04xvv7WS0AnQiYMCSRH7LLhLzh6rGMJurbXE7?=
- =?us-ascii?Q?Z/EcU+rwpOtLeYBXjHqLuoWv0v99HqhZWMtn4kBl6mQlA0VvAInqyMa8dCRX?=
- =?us-ascii?Q?+o+/ooCbn4pHJNewDGmdDbCYV8BEOugQyHbNhm1v+3VLU9eFXil+KJWvAWoI?=
- =?us-ascii?Q?qiBCuuEyiZuYsXcRdMAQxox9wTZ5I/WQ6LJ6nbHJOj9rIPjreoyVMk94tTTO?=
- =?us-ascii?Q?npvFJ3/hFy1cofzqV5CCf34Q9+jZHC+gDD7j0nTGF0Ai/qCK8uA02SOOtfuV?=
- =?us-ascii?Q?roTm3AanT7SUUny+GwWAw/gXvqB/5jdAIu6kc8BAMdghiQYBUez5DkXAIwns?=
- =?us-ascii?Q?iPC3+0byv6NvkQOjOwa9Br3EGwt0Px0ttcL3lR0dm+gZl3qlI0e0fwByg/Ve?=
- =?us-ascii?Q?t4YwH8k9Y31OKK6A6L7MppEgfEpUGQAJchwuuQ1IMMGQ7tozlIimDyGMil2S?=
- =?us-ascii?Q?iQlpkhSU0lgL46aYsUxiYnCF4JH7+JFRVXaDM0HRLJMeaE7AB4H+n5DaU+tn?=
- =?us-ascii?Q?lNhntTKYxqiW6+xvJO0eGCcsDNigEffsQonIBoHImgdIh7QpekI2QZ7DRfPC?=
- =?us-ascii?Q?0RmzOik+ewaFFMkuKocd0PtBLdoKs56qI8Wd2xoYFlDiHnroTpFL5xZ5YrFJ?=
- =?us-ascii?Q?ynI8fBSabZ9IIyFETC/slf3wVZByur2b13DRJLYbrHm0TFoIHAFvztcEtQ50?=
- =?us-ascii?Q?ClOyi1rJPUV7z1g62YEmTJrNKqhNCArp2hgD4G0C2/yvaKYpZY8szN5zZtms?=
- =?us-ascii?Q?VUfIMVnlSHwajJ+t2+4uY6F2EX+aIuZOz2QoO8c4tGUUb1LTKrqAYr7x5pPc?=
- =?us-ascii?Q?2qC0soLIGfifHTXR37MXar2jf6ORWNCDeWJ4ORM7gefPxmhjLeYbJo4caw4i?=
- =?us-ascii?Q?xhVJMYPbshxPk215Jpy6fS4qLJSNvegjc/5KncvjG1NQJlFzFUNg8UEAJLZ3?=
- =?us-ascii?Q?NnTwunyyo5u4wMU6Yifb5QYJLu3maldX/J5De3NieY3SVYQ7Oofn6Rh3pa+J?=
- =?us-ascii?Q?mw6gAYynCY+Mzf/pswy4iq2oLQQ1+xDh8aMGlT/AGzesO4rkizFBeGEAfwyE?=
- =?us-ascii?Q?bvlEVBbozz/crUAklo8L7ns+VTop4nglxKK4X9CEWvkyBfVm4+lVRavGw1Jz?=
- =?us-ascii?Q?fyO2MuCYE0rIZarAow5kFXA030ASZRta27jyRO3/tRt5ch/EPsZu9z0A7+EU?=
- =?us-ascii?Q?HqOpzITIyw=3D=3D?=
-X-Exchange-RoutingPolicyChecked: UgYwYjwze/33vfQW/kqL7QpgwCAngI+tK3i9PUPfdkqQbt7PNDpsFEq3s+g2PiDEDXRiKHtTqGD7KmWA++yFVWjAFouHNScm0kyiO19AQegRtKqdXuH7QpYC6FO1k/cHCLMc8FTrrKPuoehAJB27FBwTN0GRM3A9GiK+dOrnVn0q1YKnfWKy2fJV8n4+Z8Htg53NF2e6Nc8M+3coMUi40zJk3tUFKrb1pHs1KuWjK6vHLLjh2K5RveJkl/2/XPPJM5jpf2zz4daLkQdMIOLzr4nREWIWSlMrCJg5RKWYVbllKa6xpM/EpYUmDC/MRcrrrdY9cspyD2s5R8ReWqkYrQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 04ab3d68-00eb-4ae7-dae2-08df1583ec36
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7187.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2026 12:54:06.3315 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZpiTtEtve+4ZxZ+J7Y0HNOrQVaQCXSDPlj5gPT+nZ++n1kwAeCetOmdd4d2S+0sqj6YaY6L0Cov+KsAObqdLzQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7420
-X-OriginatorOrg: intel.com
+References: <20260724025959.142826-1-W_Armin@gmx.de>
+ <20260724025959.142826-3-W_Armin@gmx.de>
+ <BN9PR12MB514668975E87D570F50B2D91F7A82@BN9PR12MB5146.namprd12.prod.outlook.com>
+ <86d0e015-a8f4-4e10-a9b6-a9714d3e0f07@gmx.de>
+ <80c4bb47-936b-976b-6ba8-b366f7a455cf@linux.intel.com>
+ <11976ed3784675ad241646287a909286a42675a8@intel.com>
+ <3ef68773-e07e-437a-98fb-a3c5fc08539c@gmx.de>
+ <62d7da838e7042df8456e76190db792093065b57@intel.com>
+ <06550473-63c2-4a3e-a5ad-7e23d7b6b050@kernel.org>
+ <d696d85c44930d2124054ce11a06d3096c0db04a@intel.com>
+In-Reply-To: <d696d85c44930d2124054ce11a06d3096c0db04a@intel.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Fri, 18 Sep 2026 09:03:54 -0400
+X-Gm-Features: AcwNN1XHNFQcATzjGyaYhKX2aDW9koV5gKbX6KpcatyNovdS0W4jwqBJ2n5fxn8
+Message-ID: <CADnq5_PT7s6ixTqDSwe9ai9tUQa04z7UnwhMn7bo7CcsH5Qf0w@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] ACPI: video: Remove CONFIG_X86 handling from
+ nvidia_wmi_ec_supported()
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Hans de Goede <hansg@kernel.org>, Armin Wolf <W_Armin@gmx.de>, 
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>, 
+ "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>, 
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+ "linux@weissschuh.net" <linux@weissschuh.net>,
+ "rafael@kernel.org" <rafael@kernel.org>, 
+ "lenb@kernel.org" <lenb@kernel.org>,
+ "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, 
+ "Koenig, Christian" <Christian.Koenig@amd.com>,
+ "airlied@gmail.com" <airlied@gmail.com>, 
+ "simona@ffwll.ch" <simona@ffwll.ch>, 
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+ "patrik.r.jakobsson@gmail.com" <patrik.r.jakobsson@gmail.com>, 
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, 
+ "mripard@kernel.org" <mripard@kernel.org>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>, 
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>, 
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ "tursulin@ursulin.net" <tursulin@ursulin.net>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "matthew.brost@intel.com" <matthew.brost@intel.com>, 
+ "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,41 +139,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Sep 17, 2026 at 07:21:22PM +0530, Varun Gupta wrote:
-> The UNCORRECTABLE_LOCAL_ERROR notification sent by the GuC indicates a
-> local, queue-level context termination rather than a global device or
-> driver failure. This can be triggered as part of expected recovery flows,
-> including intentional fault-injection tests.
-> 
-> Printing this at ERROR level is too noisy and causes false-positive
-> dmesg-warn failures in CI. Switch the log level to INFO, matching the
-> adjacent CAT error handler.
+On Fri, Sep 18, 2026 at 7:01=E2=80=AFAM Jani Nikula <jani.nikula@linux.inte=
+l.com> wrote:
+>
+> On Fri, 18 Sep 2026, Hans de Goede <hansg@kernel.org> wrote:
+> > Hi,
+> >
+> > On 16-Sep-26 09:16, Jani Nikula wrote:
+> >> On Wed, 16 Sep 2026, Armin Wolf <W_Armin@gmx.de> wrote:
+> >>> Am 15.09.26 um 14:31 schrieb Jani Nikula:
+> >>>
+> >>>> On Tue, 15 Sep 2026, Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.c=
+om> wrote:
+> >>>>> GPU people heads up!!
+> >>>>>
+> >>>>> On Wed, 2 Sep 2026, Armin Wolf wrote:
+> >>>>>
+> >>>>>> Am 01.09.26 um 23:30 schrieb Deucher, Alexander:
+> >>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/Kconfig
+> >>>>>>>> b/drivers/gpu/drm/amd/amdgpu/Kconfig
+> >>>>>>>> index 12e4a41bf1f0..50305630f533 100644
+> >>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/Kconfig
+> >>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/Kconfig
+> >>>>>>>> @@ -30,9 +30,7 @@ config DRM_AMDGPU
+> >>>>>>>>         # ACPI_VIDEO's dependencies must also be selected.
+> >>>>>>>>         select INPUT if ACPI
+> >>>>>>>>         select ACPI_VIDEO if ACPI
+> >>>>>>>> -     # On x86 ACPI_VIDEO also needs ACPI_WMI
+> >>>>>>>> -     select X86_PLATFORM_DEVICES if ACPI && X86
+> >>>>>>> The change below makes sense, but this one looks like it should r=
+emain
+> >>>>>>> unless X86_PLATFORM_DEVICES is handled some other way?
+> >>>>>>>
+> >>>>>>> Alex
+> >>>>>> AFAIK the dependency on X86_PLATFORM_DEVICES was only necessary be=
+cause
+> >>>>>> ACPI-WMI depended on it in the past.
+> >>>>>> By now ACPI-WMI neither depends on X86_PLATFORM_DEVICES or X86 any=
+more.
+> >>>>> Hi all,
+> >>>>>
+> >>>>> Could more GPU people besides Alex take a look on this. I'd want to=
+ make
+> >>>>> progress with this series within this cycle but would prefer to hav=
+e Acks
+> >>>>> from GPU side.
+> >>>> I share the same concern with Alex. It seems to me we could now end =
+up
+> >>>> with x86 configurations without X86_PLATFORM_DEVICES, which handle
+> >>>> e.g. backlight on a lot of platforms.
+> >>>>
+> >>>> I think the safer option might be to go for:
+> >>>>
+> >>>>    depends on X86_PLATFORM_DEVICES || !X86
+> >>>>
+> >>>> in all of the cases that select/depend on X86_PLATFORM_DEVICES in dr=
+m.
+> >>>>
+> >>>> The alternative is to find out, and handle the fallout, if any.
+> >>>>
+> >>>>
+> >>>> BR,
+> >>>> Jani.
+> >>>
+> >>> Alright, should i leave the original "select X86_PLATFORM_DEVICES if =
+..." statements
+> >>> as-is or should is change them to "depends on X86_PLATFORM_DEVICES ||=
+ !X86" everywhere?
+> >>
+> >> There are some places that depends on X86_PLATFORM_DEVICES. I think it=
+'s
+> >> almost always a mistake to have some places select and some places
+> >> depends on, and select should anyway be used with care. I'd go for
+> >> depends on.
+> >
+> > I'm a bit late to the party here, sorry.
+> >
+> > Note that X86_PLATFORM_DEVICES is an option which enables / disables
+> > a menu and does nothing more.
+> >
+> > Enabling it or depending on it by itself does nothing.
+> >
+> > The select used to be there since it must be selected to be able
+> > to select ACPI_WMI (which is no longer the case after this series).
+> >
+> > To depends on in XE was probably copy pasted from the existing
+> > select-s and then changed to a depends and already was a completely
+> > no-op since depending on ACPI_WMI was enough as that itself
+> > dependend on ACPI_WMI.
+> >
+> > As for X86_PLATFORM_DEVICES being needed for some backlight
+> > interfaces, depending on it by itself does not result in those
+> > interfaces being there. That requires enabling the actual drivers
+> > providing those interfaces.
+> >
+> > And I don't think that the GPU drivers should start depending
+> > on those since that will become very unyielding.
+> >
+> > TL;DR: I believe Armin's original patch is fine and this is
+> > a welcome cleanup / simplification of the DRM drivers Kconfig
+> > bits.
+>
+> Your explanation makes sense, thanks.
 
-wait what?!
+Yeah, sounds good.  Thanks!
 
-If it is fault injection case it is an actual error.
-Add instrumentation in the test tool or CI to deal with it.
+Alex
 
-> 
-> Fixes: 4e57574fa3a3 ("drm/xe/guc: Handle GuC local uncorrectable error notifications")
-> Signed-off-by: Varun Gupta <varun.gupta@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc_submit.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index f3ba8abfc228..23ccec0adc8c 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -3495,7 +3495,7 @@ int xe_guc_uncorrectable_error_handler(struct xe_guc *guc, u32 *msg, u32 len)
->  	if (unlikely(!q))
->  		return -EPROTO;
->  
-> -	xe_gt_err(gt,
-> +	xe_gt_info(gt,
-> 		   "GuC: Uncorrectable local error! guc_id=%d class=%s, logical_mask=0x%x",
-> 		   guc_id, xe_hw_engine_class_to_str(q->class), q->logical_mask);
->  
-> -- 
-> 2.43.0
-> 
+>
+> BR,
+> Jani.
+>
+>
+> --
+> Jani Nikula, Intel
