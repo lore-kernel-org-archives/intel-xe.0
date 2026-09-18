@@ -4,151 +4,160 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30ABCC982DD
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 19:45:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01DA8C982DD
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 20:29:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C707110F4EA;
-	Fri, 18 Sep 2026 19:45:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 696CA10E11F;
+	Fri, 18 Sep 2026 20:29:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bghfmRgJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YTrq4762";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3C5210E99D;
- Fri, 18 Sep 2026 19:45:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5179110E11F
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 20:29:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789760724; x=1821296724;
- h=date:from:to:cc:subject:message-id:
- content-transfer-encoding:mime-version;
- bh=hE5YH7TbqrvgLQTv5OdzqswHVsFeZp2ht9HHBZGCeKs=;
- b=bghfmRgJS2xn2pHjYLqc29LsZmSwMN7kHLjGv4jV4Gx8mEkHYvls2SwY
- EQXgSRp5XtdgDvJlMKNFleJV/JffIYj8OwLJoHfz9P6e5rIJSLcM9WoL4
- N4VQRujQEO3nYdtl+NYHMbLxV6ST93QjX7C23Sy6b7xqchH4mulsI3Ypr
- C1ZKnNClgz5gX7p4oMmlQWZuLtoqEfwiinB1VqlC/Syv4DXhzLiOaObIx
- 9cs5EHuc7+DUhx6/dq9s3x92QkrR3fb9A2vK4oPJI7arCe/7FxP3E3rDK
- jHIQTaCtbOZcwy4TtuL6FRY+Eyd0cQC0p5jGE5SQ6EpLAeQVGUBU/3XMf Q==;
-X-CSE-ConnectionGUID: EunMDbGuS7uAFlcrFFhtVw==
-X-CSE-MsgGUID: ayHMnk4NQM2jERtnvHj3Ug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11909"; a="100889616"
-X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; d="scan'208";a="100889616"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2026 12:45:23 -0700
-X-CSE-ConnectionGUID: OtP3uYWWT5ifvCONSU/7Sw==
-X-CSE-MsgGUID: Jqd/dXq7SUeqs1bamB1Tyw==
+ t=1789763343; x=1821299343;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=MR1f/r4oJklFB50GVQiXn7oC9q+bKBKTT3ziYZZy4ys=;
+ b=YTrq4762C5ks0zLXb0J7z4Sf/5WFWAaWghdas5H6yJerXkIj5vBYSwJv
+ tmJraJFybkFUmnium+LXBcTZ9bRHN5ChBkUweZ6P5Rz4rWZJOpGUhAA82
+ 88G8VnXBFxBkdP6V8x6CGQjDbMAcT/SVrTZjkTd/PlMrBd+tyjJwU3JQu
+ 05MiJxEqa3PxnM6/n7NUMsey9dxwEqS04wPX50fa+PnvgEuh8TLmQSQVH
+ zRfV3czPBppHmJX7Zk5UIWjl2Y2epc67GPakBCvUCosQZ4iUqo43Ih4xk
+ k/s14PN+tDLqSNP91VJ1yaLTmI5Tpb+Fxx3yEa0K1W3rz+V65O/maxzbp Q==;
+X-CSE-ConnectionGUID: zf3+wu31RmSZdT/ZGcbvpw==
+X-CSE-MsgGUID: QzYF5macTp++ECfOihTZNw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11909"; a="795033"
+X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; 
+   d="scan'208";a="795033"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa115.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2026 13:28:50 -0700
+X-CSE-ConnectionGUID: ESKAe0kYSYe8waqI+2TZmw==
+X-CSE-MsgGUID: iU5Sv6qgRDaTaXd+Joo7UA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; d="scan'208";a="271896257"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2026 12:45:23 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; d="scan'208";a="299677184"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2026 13:28:50 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 18 Sep 2026 12:45:22 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.46; Fri, 18 Sep 2026 13:28:49 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Fri, 18 Sep 2026 12:45:22 -0700
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.8) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Fri, 18 Sep 2026 13:28:49 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.24)
+ by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 18 Sep 2026 12:45:22 -0700
+ 15.2.2562.46; Fri, 18 Sep 2026 13:28:44 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=X/xa6U8pOIsg+r5TvvO8ASLYsulhtYiDGIJLamqmLQMqzbS6ZfaUzFZrsJDf/A71pogZfBUmU01qataCLweMG9SLnxEne/L2s6D9i3xilJ6wUMPXwZ2QBUyxXQ1t/Y7RTH5Jcbpmk6QedClwxevyssCz9X0Zg4zZY79JRBzN1GM1B3NT6VHLex2v+jDPEeOi/E6Dkc3qYVnYHcS9cNi2TUbXI4uHhPiL4k5TkW9QnaAOOj1C7ucFJST7MYoYeNh8N2qTLgUXpR7hWrHXWns1izZVjq0s3CbLEgjT4anoQUa7gqH8JqcQe7LQneUM8boJf3IWiJjeQip/tChmZuX95A==
+ b=qQPwfgfGrAKKSj6aJc4rl0at8vYmor43lpk0elqfQfkv13/uf938m2/Re/t4bpgiIt60uHVvjm1kNloaVvjBq2hjuWXmkuYLy29tvkW13fwkqHQ48YRkHFkT4QtzbjfyHOfmGYv9xxs3yx5VlFbJn7m7nRzPwcOYM+RAfmq1rTi4ALFwZ5x7wfJqzI/zek1GVBnaD0EyzgmNyoJY/37Y3T1VLuoYbnbPOgRu2vwIdQl47DTYNCW4+aXC2v83VkUUzv0kOcaIT77oB/v6039uEfH3xi9xyTnjnvJP/qH/fyVwLIB+7SUzSnOe/dCIbxCbklEOcMr0QRt3AbIzBQJsSw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EHZyrVhDuGphtoMwvzv+XyW2gPXFmBmiVIa6q7NAWLE=;
- b=tz+6daFMmIt2v4DwOfZe9TskJ3Lq4fGT03dz2WfVxduQJAntvSxOUwxJCG00Ypp2f3rcxx5nx6UJdaB1edmUrQ+U3TP3aMHu7V20zmvR+aPAKos1TC3HLAxbirm8DrrxGIcKXNgeAy9tIh4m76sWT4mkyVXdHuzD2dpgx+JQyyb8W9TvDQy6nhJBvHxt2aY3oH4N2P3g7ChziFHfdeI5C0fXdN8md2r0PevRAtNKJQdmRQbLUepH/mk6oDnwieDwo+Ddx3xMEiW9cpv3s7v+hyqgpVCJvRVq/yDtTUxkpr2114JdceCmiubXJw8SN6Etmyaj/3YqUdMteRl+zBauSw==
+ bh=ykEBT3zjNXvvG0OyflMsGZRkJXG/U9JAnpiWLi0lcME=;
+ b=GK3ar6wlBPEqFvdb/UakvKjsbeUf/BuL9Hk9GEDfu29rejNyLShK8qFGcYB2BZn69MnepIU+xqyiGOdYkTWzfP63qqhjxGiMCsg4jkgLCuVfT3ww5wrxicF9sd5klG030YFiis3sxphdxwPNj7GV+Z7EZHyFBwN7fPonZkXZqJz+h+z0JKZQLyB/Efbb7+xGdaSd2I9Gm1xBI/VbAh2D6yozSLsojE8H4OPNHvYwzc/yN17RcrshvpoUE9Z+LVxaoLbOI7GpXrDeC0XZvr+eiSjhiEvuKQV1/Db6nhiWnd14HVMuF9926iAn89AcSmfh/C9ph67wXTtjix+303x1Gw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
- by DS6PR11MB647574.namprd11.prod.outlook.com (2603:10b6:8:410::24)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by IA1PR11MB6393.namprd11.prod.outlook.com (2603:10b6:208:3ae::7) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.428.13; Fri, 18 Sep
- 2026 19:45:20 +0000
-Received: from CO1PR11MB4787.namprd11.prod.outlook.com
- ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
- ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0428.011; Fri, 18 Sep 2026
- 19:45:20 +0000
-Date: Fri, 18 Sep 2026 12:45:17 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, "Oded
- Gabbay" <ogabbay@kernel.org>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <dim-tools@lists.freedesktop.org>
-Subject: [PULL] drm-xe-next
-Message-ID: <aq2UzTdN95ZpzKGz@gsse-cloud1.jf.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ 2026 20:28:39 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::53aa:3f7a:59cd:e057]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::53aa:3f7a:59cd:e057%6]) with mapi id 15.21.0428.011; Fri, 18 Sep 2026
+ 20:28:38 +0000
+Date: Fri, 18 Sep 2026 13:28:36 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <daniele.ceraolospurio@intel.com>,
+ <aravind.iddamsetty@intel.com>, <mallesh.koujalagi@intel.com>,
+ <alan.previn.teres.alexis@intel.com>, <julia.filipchuk@intel.com>
+Subject: Re: [PATCH v3 2/5] drm/xe/guc: Use different error codes for CT errors
+Message-ID: <aq2e9I+uUeUJlkpA@soc-5CG1426VCC.clients.intel.com>
+References: <20260903233958.475162-7-umesh.nerlige.ramappa@intel.com>
+ <20260903233958.475162-9-umesh.nerlige.ramappa@intel.com>
+ <088c7152-3776-4670-b939-c1fe558e0381@intel.com>
+ <aqnNykdW8AeYUzpG@soc-5CG1426VCC.clients.intel.com>
+ <aqnQckN7OUBIcnT7@soc-5CG1426VCC.clients.intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BY3PR03CA0003.namprd03.prod.outlook.com
- (2603:10b6:a03:39a::8) To CO1PR11MB4787.namprd11.prod.outlook.com
- (2603:10b6:303:95::23)
+In-Reply-To: <aqnQckN7OUBIcnT7@soc-5CG1426VCC.clients.intel.com>
+X-ClientProxiedBy: MW4P220CA0002.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:303:115::7) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|DS6PR11MB647574:EE_
-X-MS-Office365-Filtering-Correlation-Id: cd18fc30-73e2-4707-5686-08df15bd5f62
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|IA1PR11MB6393:EE_
+X-MS-Office365-Filtering-Correlation-Id: d83398b9-1305-4682-66c8-08df15c36c0a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|7416014|376014|366016|10067099003|6133799003|3023799007|18002099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: RESIyD7F22j1ELh70ZrSZMrj2H0zehkflnklAgn2ffDO6OozgZwQUwhCKmXi+VuV5BG8H5fRfHjueSKOKTWWth0XPZiK5MCxEzLVilu1N39eqKg21dhm4H9y1gZ926eDa0gnq4Lm97mBquXdpHCmf2WOAHpJ9TQAGK63sJENXUtjpAXBMyp22OF+uhok5EIW8CNseFl7CEhtDYsM5EEs2k5gGOH8iBlmuMxLUfAdXUmHttc0hu/63Qg5cIKBIOeXqWVVjBUaSVBG80hKHKAsb1OPhwRZimCbDGvIPekTq5fMuh4Iebsl2zoqTWvb+tsbhMmlR/TACnBQvrtbN4oOXrUqHejUuOOmyqfFeTqe0dtubMeC7H9tLYgDUR4zVUSvqtyrf/Y9K7tZ/ln/frz5AmEfThAAMVEO6N4/MpLWEm8W/Pm3nmAiApiwsp9V3reDDplgnCC7gyRPpf9zgMtJNHvjMP9xrJ7mEhK2H+1vA5V+88FgnCAiFFaPVy+8K0M6vA4Es/9gJ2KoWUrgJRl69wLwlCEjlCR7bV6WM3n3+o6xbBuBClX5fG7FKIk9RS/N1LzMal8KH9vZpPm4aMvhMrYjL30PeZ8VruWror5ymif/Y8Jl78JZe87kIDjIEFDn
+ ARA:13230040|366016|23010399003|1800799024|376014|6133799003|3023799007|10067099003|4143699003|11063799006|56012099006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: bREpG2rHintvRbZsjylJjxQEEtECKAxXRlH/D0PcJXVS2+q6s80LSQDQlj2HQxYBuM1D55vvxbg81ZiHAvaZBRbeZi8H41dx+tS0tjEKHwI7sDKOjFj4KWu81lW3EAJBVEhQdItkHIZbVVTBwT8xWQA9f7g+eQlp86QUOzJE/Lx4YtugONKbzYYpbiilXfcXcNxZmhvBsbuxE7nuXe1mPnMPkqXR6gTovyQHaOx7im9iHsTJnTwZxgHZ1eZzblQBE8Yg5VlPh7WNudyByTb6OhOWIWI5LrYBgvkofRP0UZc7pXfvZmhnsvtlzt8a9vEmkXuQsZZ4G1aMsefZMlO34cQQ9fXRryKh7BtZOIco3Nsdm3eePcg38hGDwWqjcJ/bsBvNZGEpO81xFw6kX+AY8kbKwFsw72B+N2f9TJanNowmhgVBNAf8q+E9lCSePZpUSZUuO6JqgYTw0hgICgDz6YFexht04PDY2YAUT4BhWqy7b5WWmRo1WV/DLHDOOlcE74Iv4wGtJsU8AESULEy27xqPL2HuEOGQNxHVgHEnLTQuRnjDzgJl+yupbUFiupcedyB68azLT62QHjCuzdX1jsK82h9ULvrQxf6OREOhfQrzHFx1XSNd/6AVbX6D7+mYzVYz13g+ClhH39qWiwiyJ6Ix/xiOxyHjD80EtQLAHrU=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(7416014)(376014)(366016)(10067099003)(6133799003)(3023799007)(18002099003)(11063799006)(56012099006);
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(6133799003)(3023799007)(10067099003)(4143699003)(11063799006)(56012099006)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?UfkKTQk8y+rIl9vL3MEHmI+v0aOZ1aU88oTw8RzKSfhbETqrTr2zn9cL82?=
- =?iso-8859-1?Q?KHQXGm91BrtMFuM3a04UhJb45imRY8MO3OxZhPc9sQK1gvFJYgTMGktIJz?=
- =?iso-8859-1?Q?i2bMlycbhzRG1ZZ1n/CL0s9Aj4kNrXoxLz2zqYDdlVg8fxRzfTqpQjDukY?=
- =?iso-8859-1?Q?oOjIIQP7VgQJpPj1BDrPC97DU60Kfq3+URe9YA/8xA1yl7qy08hC9xI0I4?=
- =?iso-8859-1?Q?6K5p6VWocKTWATWXN7NGQ4TCV4FECs4yq7THZFr6rTts0PtspdUOAB1a5K?=
- =?iso-8859-1?Q?v6xzJIk28duoLsi+DapFnLqIymWk7sQDEGcHxhuOrwN1QBz3LcgSUjOpQD?=
- =?iso-8859-1?Q?+WAAMGW3XWIz0aLLdoYUti4NSwBeN5uC6qpC+oiHKdzDl9wTD8MJRxfUG1?=
- =?iso-8859-1?Q?doJqx7jX9k1RRwqgcuu6UuQ8A5Si6Das2HzwUer3Z1XOkpYGpDVX+KkEwW?=
- =?iso-8859-1?Q?0QtIX2cnZKvxF4DBJfUeaQHF0BoTLRzFAnOzgZC0PoeGFQdKOUoHtC2ecA?=
- =?iso-8859-1?Q?v9tBixUv/ZCCPt9O/y0FQH1cJ+MhqagRV356c+2QkYtncLf1pfn9guo2vg?=
- =?iso-8859-1?Q?1XZQr0gHWgaS7JOgl9cVohLvc579x1JfHi5a4mmvnsP+jW9TaEc/1fevma?=
- =?iso-8859-1?Q?/o26f+727TZIET1i6IstN/xRWmLRqcZmgkVxXaZWtiPRHoq2KVvwEA8GNM?=
- =?iso-8859-1?Q?r4/rl+Jhfe33eQB4fX4ojah2KJEyLfV+1YdNMek0kxSS+GUDeOdXMXsvtw?=
- =?iso-8859-1?Q?O/Fg8eO+PQh3RkaE/Z2vVe5NAwbPwkQbIC1pLKYqTPYrJmhkHkWCOr6L07?=
- =?iso-8859-1?Q?Y5u8vdaQVRMZamqciRzitRNjyOO6rqkdmJHshajAb1RAmZ2IPdIDvJOWzx?=
- =?iso-8859-1?Q?4cAdm9PqS3c8wR8BBLYEGYs8EzS/sQAUBZ4SAL8ZPo8vz+XaGOOpxGsa+r?=
- =?iso-8859-1?Q?FOpJXrDJ9a6RfWdzZF6D47vdhtH0FhQuO9KU3yn7HuTx07w2dHH1qUxgdU?=
- =?iso-8859-1?Q?3Ns/2IeKszSZ6+1wYSkDm0va9DJV+EMZc0Wr0ZloEIESf2bBsd3G2yQcXw?=
- =?iso-8859-1?Q?rvt1/pq5SjywNUObHCwnfRPcea/xXSiyXjc0qki1IuWPiUlszDWIeUQIkT?=
- =?iso-8859-1?Q?W5hSY4orrLeTsTLu0uPwpOZOuGUt0/HiAieGnQHHVZEykK68CN1bxBLkaA?=
- =?iso-8859-1?Q?NLVLrmQaozNhhDpaj9XiVEWTH579YtQ35aepq6hzkT/mwcLYTO8YlUPBvY?=
- =?iso-8859-1?Q?yO32RI80qbD0B7psqIldz2cK3Kh6TY54ciSmdFG7QWbv7FWmdgp75EQnoy?=
- =?iso-8859-1?Q?VMpATN5ZqlK9BdyRMCKEffhZcjxZPw1wCu0k346Pb86H9Y/jKoUEJSIczQ?=
- =?iso-8859-1?Q?AoaAx46HRRc9TO1EWef6BvXhn3ERcwp3CMfG4yIj63eK8zFD4XkP9J0B0N?=
- =?iso-8859-1?Q?M8Wj4vK1tpdyxkuY1/oActWYxje1Z6AOLWMpnz9Xv1Mc3gHe3HfhpANhgF?=
- =?iso-8859-1?Q?jYse4Y868aWFI3Pj4WL3wO0CkKlQ4MA5x+x4RvGY9hzzFwBDFzlf+FItpD?=
- =?iso-8859-1?Q?Z6BY3pKgzxBOoAqI6GA0ngzYCQLJzOLA+Zx5mE6K0Lr3ChWM12mf0tLbrx?=
- =?iso-8859-1?Q?oR3IXdobIJnFIT4+emYTSzf4G0xpSQJACmhuW9jOJZdHseYsTeIrti2J+X?=
- =?iso-8859-1?Q?ZpAS6Gd0JAJeL+Lbd+joY9DLmro+Z+jAfTAg0GTBrLtSWqc4/+bIVwcXkO?=
- =?iso-8859-1?Q?liEvzPXP6YjwtdTxLOUwKbHQ2Bj6lmg9JOU6xxntc8X0biBkBpYP8nsVnh?=
- =?iso-8859-1?Q?++VRT1Dkip9s5q6nF8oGnheB3bILJbs=3D?=
-X-Exchange-RoutingPolicyChecked: VchcVUe1RM3diHvyoGQWcuhwNQv6I/ndOALOYc1jC9rWtF9Vrnrqd8c9O1xOZhUuJ18dfAYx0dRJ2UPEshy6pCBMib5/7N5GjC4QNykejX2vKPBSeYJU8Lca4mnjI0IlWX6XJTstrknL+tHGi2glkeIjcgGqB3c+OXk9EwwlXD1YLUyNzZ351Jzck9UgypUD0z005BgJgoME59DWO9r8F4HU4g87PgHim0sSaI9jprS+J1i1oTvjslUkuf/Wa3TCAgSReMu0fBzhocFZb/DeuzPcMWfybq4xJ2xUWSEUme5C1GKNze2muS2mS9C46llEp//3CAT7HerJMUZ5Nj/+Mw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd18fc30-73e2-4707-5686-08df15bd5f62
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SmtFUmZsNHg5T0lLdUtBNE1qT0VpWmN4ZzFNNlNuOVFsMTVEWGNZSVFUN096?=
+ =?utf-8?B?eGcydWhtY2ZTM3ZqdmxGZnY1SjVoTUsrSzBYdWV0ekwwTXlpOElrMkdpRmZQ?=
+ =?utf-8?B?OVRBamliR1lPSnZQQ29MdTZLNTlBN3NELzVRb21NcFNTR0VyNDhwUFFpSE16?=
+ =?utf-8?B?VHJjMnNoV001T1BrVUc5b1VGaXl3VEh6dFdsZHVVUTlJOVBBZnN1L3RDMVR5?=
+ =?utf-8?B?OUtMVzZndzY0R0VTSyt1WjZwZmcvYTBLdFIxeVpDL0RLbDdxSmZ3OWNnQXZl?=
+ =?utf-8?B?UE4zYUxLYVdDLzJydzZ4RkprQkZTZDRobGlkL2VXY01xWHAxcUxRaWcra0ww?=
+ =?utf-8?B?YW82Y1ZCNVcxenNBMFFiaE5SUUtscnladUY2a2NCRHRiazg3OHlVcDlxY0VO?=
+ =?utf-8?B?c2d4aE9wbHVkRUQ0RlNva2xTOTZwSzNndjNGS0E3cnJCMzd5cHRyVzBUL1NT?=
+ =?utf-8?B?bkxoK0ZxWjVIY0NOVFlzYnVmYVlwQnp2dkZoSEtvUWU0V3RpWjFjcTh3UlFX?=
+ =?utf-8?B?cEh0SkVBK2xzakZ1cHpSTVk1NHRlODhrbXgrMitzUXZSbDBLUjQvRVRjYkxh?=
+ =?utf-8?B?d2N6NTQ5a0thWDgxT2l4bHNodzJ2dkFZd2RsRktUNW90RTZrVUIvbmRoS3pz?=
+ =?utf-8?B?R0gxUmtURDJSbi95NFpKaDZKSHZSY3lnOHM0Vzh2bmxycGdhcXdONUM2c09K?=
+ =?utf-8?B?THNHNkZwV3NOemZ3TGtROXh4alNmNUQzazlqYlhtREpMdXl2Y0hlMVJ2TW8w?=
+ =?utf-8?B?K3V1OXdiNm1SU01DNWRrVUd1K2lvd2laaE8wV3N3ejFPcFlFUGJVSmdmWHU5?=
+ =?utf-8?B?YXExckozZlVEV2ZETERBTit5QXhVVnZzR0kwRE1xUWdsSXZSRXp4U3BJZHlM?=
+ =?utf-8?B?NVFWeU5ZSnNlTDVmekw4TzdFM01LMXpnUmMrbXV6Y3ZwODJnaE9lTks1RzJn?=
+ =?utf-8?B?aVV4TVpWOXlDSWtvTWNybkJKMGJiMlBkRDVTcVBiTkhFSGVxbXVvRk5QWGVs?=
+ =?utf-8?B?RUFRbG93U0lMb0NWdkhJWUJzZ20yYzRraGpDNlNNcHlSTXllcHVrdStNczZj?=
+ =?utf-8?B?SDg2cHZuTmZKMW1sT2RibnJNLzc3ZVAyRkNabFJpVGZVbTVQMVZISFVYeTd5?=
+ =?utf-8?B?empSeEd5cWFMaE5pYTBzZmJWY1pJakJhZXFLT3BUV25xYkFuNXRLSXFFN25n?=
+ =?utf-8?B?S2c0TkkwcEZ5a3JvTHFxb0NBNzNHc2JXNVVsT01Db1RoTFdXd1RQR1FSdXEr?=
+ =?utf-8?B?N29DN29CMTNVLzduTlRhR1doZUlzeFFpTUtmVm5jL2FMVk5PTitVeUdXcVBm?=
+ =?utf-8?B?d1YwNUk3bFRGV2ZvTlhrSnR0RzNpOHhGTEUvUmxqTnI5bzA1eERuVU9iQml0?=
+ =?utf-8?B?Tm0rRmVWRFpMc1lyVWRaK2U1RVhUQ1gyOUpubit3T0xDeisxUEFHa0RERU1V?=
+ =?utf-8?B?cVFhbFhhTG55NWpoN3A3ZDhhT1UrTVJmNUdEbjNMd2ZOTXVad2xyUlgvLzB2?=
+ =?utf-8?B?QnhkNVRxclJqcVp5aHVKaUowRDB5Qlk4d3JsME1UTTBJdDF0MjJhVHlzZXIz?=
+ =?utf-8?B?YzE2a1V1NEEzclFLcldyR1N3S3AyT1liN2c4T3l5VzBVVURiM1BmT0l3OHVz?=
+ =?utf-8?B?SUM4amhpaVJ4d1JjcjdpMHFGVXhlMU1iOWpkRkZrMzJaamRId1Zoc1VNM1RG?=
+ =?utf-8?B?SmxocUp5dEw0ZExQQ3pUbittTzNvMCtXajVqQU1OM3RqTXJEbDFxTEdhWldK?=
+ =?utf-8?B?UVkycHFWOVRES2p3M0MwRW5IYXl0ZnlETm1Nc3hhSDhwVHVIazJVZkRhNGZs?=
+ =?utf-8?B?Mmd0ZEE2S1krWmpaZVpjd09RU2kvZWhwOUwycUtDcFlzWm5rZkxoNnlvVVJC?=
+ =?utf-8?B?b203clgrOHV5L01hZFdTa0dMcVpEQURiU2s3MzVCMkFXQ04raDJHc2F4bzBD?=
+ =?utf-8?B?OHlhTEZ1ZjQyNzdFVmVsbXJKOVB4Z2hIem16RHRyVVNKZTlYOU1Fc2NtaG9D?=
+ =?utf-8?B?UTFLM2pTb2FrVmsraWVZaWc4ZldrU1dzRWhFY2tweFA0bTRwVUNjNDVac003?=
+ =?utf-8?B?RlpTc01QSGljY0gzMllIY0NpYUEyaDhKRVByRUF1NFlOdDJZM2pySVhLQzFo?=
+ =?utf-8?B?U2lQSjdVTmFMOHdaanNkeXVYaWN4WlRYcHlnTzNlTHRSVUtqWHEvd3JUaGRp?=
+ =?utf-8?B?VGJLekw5QmhPSHZQZitPZ3Y0WDdQZ2xKRFhrS01ORHV1Ui9BQlpYT3hCRXc5?=
+ =?utf-8?B?NTd3aTRVQytLSUlQRUY2MHBVbTVyUXFUaFV0c1VGZTFGaDR3RUMyWEYwUndv?=
+ =?utf-8?B?dEx5RndQUFgvR2ZyNEJvZHcyS1ZXOHUrWGtGSUNwM2VYdjZCa1NVQVJpemRp?=
+ =?utf-8?Q?eLv04k1/jFNbh7Ts=3D?=
+X-Exchange-RoutingPolicyChecked: Nc+Rv9Mv4ZDJEQyg2221tvtYeMqOSYWnPb0OiTarqMNw0xrlJG5G2IU9rvFCj7K63AIHhyjQ/ZBqABK4H+qlsyiaR+c3lvEHdHzZ+IDeBWTozj83WoHdwgAPJCojG7m1LMVwJdTZyd4jTvyPhgXCOB0ze4B3fzYQzX2F6Aiig+seGdkVrUSgbmiEoFTux9zibmCpEEsNrnqzOEU8ht3p8lssQK2v2lT9XrwdBvcVrzFy51UNqslLdujN7SC0KSBwIz1DNxHHTkW3l1z8V/ggHegyTDnfZ1jhg3mlLJJKNHAe/oPY57eaJG+nTf4wg0O80SFh9OnwA1bHFLiP/agZqA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: d83398b9-1305-4682-66c8-08df15c36c0a
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2026 19:45:20.4486 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2026 20:28:38.7189 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ml4ZPwUpVf2ol8GH4SgThhyepJPjygByqihPxZvTIfokYAIU1SGzp1LywboFs+1Er+LvyDZ+dbt7k+BDjUQ7iQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS6PR11MB647574
+X-MS-Exchange-CrossTenant-UserPrincipalName: FqCrrr3a4MZxO+EaxEvlAQ4I7JYZ368xyroIvyfa+5c4zBQEVz9XB3nTyJjZ94JNQm5SZqmccxprj97rxSnftV1YZnrL7ZND7VKOxZgWeSA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6393
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -164,292 +173,303 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave and Sima,
+On Tue, Sep 15, 2026 at 04:10:42PM -0700, Umesh Nerlige Ramappa wrote:
+>On Tue, Sep 15, 2026 at 03:59:22PM -0700, Umesh Nerlige Ramappa wrote:
+>>On Tue, Sep 15, 2026 at 11:49:43AM +0200, Michal Wajdeczko wrote:
+>>>
+>>>
+>>>On 9/4/2026 1:40 AM, Umesh Nerlige Ramappa wrote:
+>>>>Instead of always returning -EPROTO for most errors, use different error
+>>>>codes based on the error type. -EPROTO is retained for the cases that
+>>>>are genuine protocol violations by the GuC.  The remaining cases now
+>>>>report what actually went wrong.
+>>>>
+>>>>receive_g2h() used to escalate to CT_DEAD + kick_reset() by matching the
+>>>>two error codes that dequeue_one_g2h() could return on a fatal error.
+>>>>Invert the check to simplify reset handling.
+>>>>
+>>>>v2: (Michal)
+>>>>- Sync order of errors in g2h_read and __guc_ct_send_locked
+>>>>- For CT errors use EPIPE and for HXG errors use EPROTO
+>>>>- Convert the non-fatal EPIPE to EPERM in the helper
+>>>
+>>>nit: move change log under --- line
+>>>
+>>>>
+>>>>Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>>>>Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>>>Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>>>Assisted-by: Claude:claude-opus-5
+>>>>---
+>>>>drivers/gpu/drm/xe/xe_guc_ct.c | 51 +++++++++++++++++++++++++++-------
+>>>>1 file changed, 41 insertions(+), 10 deletions(-)
+>>>>
+>>>>diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+>>>>index 5c4733da385c..c5a417fef913 100644
+>>>>--- a/drivers/gpu/drm/xe/xe_guc_ct.c
+>>>>+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+>>>>@@ -947,6 +947,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>>>>	u32 cmd[H2G_CT_HEADERS];
+>>>>	u32 tail = h2g->info.tail;
+>>>>	u32 full_len;
+>>>>+	int err;
+>>>>	struct iosys_map map = IOSYS_MAP_INIT_OFFSET(&h2g->cmds,
+>>>>							 tail * sizeof(u32));
+>>>>
+>>>>@@ -961,12 +962,14 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>>>>
+>>>>		desc_status = desc_read(xe, h2g, status);
+>>>>		if (desc_status) {
+>>>>+			err = -EPIPE;
+>>>>			xe_gt_err(gt, "CT write: non-zero status: %u\n", desc_status);
+>>>>			goto corrupted;
+>>>
+>>>I'm wondering if maybe we should introduce helper:
+>>>
+>>>	int ct_corrupted(ct, const char *msg, ...)
+>>>	{
+>>>		va_start()
+>>>		xe_gt_err(gt, "GUC: CT: %pV", vaf);
+>>>		va_end()
+>>>		CT_DEAD()
+>>>		ct_stop() 	// ?
+>>>		kick_reset()	// ?
+>>>		return -EPIPE;
+>>>	}
+>>>
+>>>and just call it instead using goto?
+>>>
+>>>this helper can be later reused by g2h_read
+>>
+>>kick_reset is not called in the send path for -EPIPE (like you 
+>>mention below), so not a whole lot of reuse we can do with the 
+>>helper.
+>
+>Maybe I can use the helper without the ct_stop and kick_reset...
 
-Here goes our second drm-xe-next pull towards 7.4.
+Hmm, I posted these changes in v4. I am not happy with the changes and 
+am thinking of backing it off. CT_DEAD implementation is not the same 
+for debug/non-debug code and I am not seeing much ROI on the change.  
+Maybe we can think of it as a follow up rather than this series. Let me 
+know what you think.
 
-Big things we have are: VRAM health check + CCS fix (test for a bug
-Linus root caused), GPUSVM supporting multiple dma-mappings for a
-get_pages() call + inline mappings, memory page offlining, and continued
-SIGID logging work.
+Thanks,
+Umesh
 
-Matt
-
-
-drm-xe-next-2026-09-18:
-UAPI Changes:
-- Add SRCID to pagefault reporting (Jonathan)
-
-Cross-subsystem Changes:
-- gpusvm: share one HMM fault and keep single mappings inline (Honglei)
-- pagemap: Prevent CPU stalls during unbounded pagemap teardown (Varun)
-
-Driver Changes:
-- VRAM health check + CCS fix (Auld)
-- Add memory page offlining support (Tejas)
-- Report GT TDR and VM rebind faults using SIGID (Arvind)
-- Flush LSC untyped L1 dataport cache after rcs/ccs batches (Thomas)
-- Add multi_queue_active_lrca debugfs (Varun)
-- mmio_gem: fix fault handler and destroy path (Auld, Ilia, Shuicheng)
-- sysctrl: Add helper to query application status (Anoop)
-- shrinker: Runtime PM reference for non-system memory (Shuicheng)
-- pcode: Increase default mailbox timeout (Karthik)
-- Skip clearing purged page-table BOs (Tejas)
-- tests: Fix subplatform selection (Wajdeczko)
-- log: Relax location ID recognition (Wajdeczko)
-- i2c: Disable IRQ on unbind (Raag)
-- Refactor VF LMEM BAR resize helper function (Wajdeczko)
-- pf: Add _locked variant of config functions (Wajdeczko)
-- nvm: add system controller region (Alexander)
-- guc: Add simple KLV decoder helpers (Wajdeczko)
-- debugfs: Expose per-engine idle status (Anirban)
-- gt_throttle: Report power brake as a throttle reason on CRI (Anirban)
-- tlb_inval: Treat wedged-device invalidations as complete (Shuicheng)
-- Add mnemonic error reason to page fault diagnostics (Brost)
-- Keep walking on SVM eviction failure (Brost)
-- Make p2pdma distance check verbose via dynamic debug (Thomas)
-- Consolidate semaphore instruction definitions (Roper)
-- Poll GT for C6 before D3 (Vinay)
-The following changes since commit cc467969646b9778c947bec1383fb3cdaada14d5:
-
-  Merge drm/drm-next into drm-xe-next (2026-08-31 15:42:28 -0700)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-2026-09-18
-
-for you to fetch changes up to 320662381ca243a3364663e917a7447afaf618fa:
-
-  drm/xe: Poll GT for C6 before D3 (2026-09-18 11:52:56 -0400)
-
-----------------------------------------------------------------
-UAPI Changes:
-- Add SRCID to pagefault reporting (Jonathan)
-
-Cross-subsystem Changes:
-- gpusvm: share one HMM fault and keep single mappings inline (Honglei)
-- pagemap: Prevent CPU stalls during unbounded pagemap teardown (Varun)
-
-Driver Changes:
-- VRAM health check + CCS fix (Auld)
-- Add memory page offlining support (Tejas)
-- Report GT TDR and VM rebind faults using SIGID (Arvind)
-- Flush LSC untyped L1 dataport cache after rcs/ccs batches (Thomas)
-- Add multi_queue_active_lrca debugfs (Varun)
-- mmio_gem: fix fault handler and destroy path (Auld, Ilia, Shuicheng)
-- sysctrl: Add helper to query application status (Anoop)
-- shrinker: Runtime PM reference for non-system memory (Shuicheng)
-- pcode: Increase default mailbox timeout (Karthik)
-- Skip clearing purged page-table BOs (Tejas)
-- tests: Fix subplatform selection (Wajdeczko)
-- log: Relax location ID recognition (Wajdeczko)
-- i2c: Disable IRQ on unbind (Raag)
-- Refactor VF LMEM BAR resize helper function (Wajdeczko)
-- pf: Add _locked variant of config functions (Wajdeczko)
-- nvm: add system controller region (Alexander)
-- guc: Add simple KLV decoder helpers (Wajdeczko)
-- debugfs: Expose per-engine idle status (Anirban)
-- gt_throttle: Report power brake as a throttle reason on CRI (Anirban)
-- tlb_inval: Treat wedged-device invalidations as complete (Shuicheng)
-- Add mnemonic error reason to page fault diagnostics (Brost)
-- Keep walking on SVM eviction failure (Brost)
-- Make p2pdma distance check verbose via dynamic debug (Thomas)
-- Consolidate semaphore instruction definitions (Roper)
-- Poll GT for C6 before D3 (Vinay)
-
-----------------------------------------------------------------
-Alexander Usyskin (1):
-      drm/xe/nvm: add system controller region
-
-Anoop Vijay (2):
-      drm/xe/sysctrl: Add helper to query application status
-      drm/xe/sysctrl: Add helper to check oCode firmware readiness
-
-Arvind Yadav (4):
-      drm/xe/log: Add GUCSUBMIT component
-      drm/xe/guc: Report reset failure using SIGID
-      drm/xe/svm: Report terminal page-fault failures using SIGID
-      drm/xe/gt: Report GT reset failure using SIGID
-
-Honglei Huang (6):
-      drm/gpusvm: move dma_addr allocation before the notifier lock
-      drm/gpusvm: extract drm_gpusvm_dma_map_pages() helper
-      drm/gpusvm: let drm_gpusvm_get_pages() map an array of pages
-      drm/gpusvm: make the DMA mapping step in get_pages() optional
-      drm/gpusvm: keep a single DMA mapping inline for THP
-      drm/gpusvm: keep an IOVA mapped range dma address inline
-
-Ilia Levi (5):
-      drm/xe/mmio_gem: forbid VMA split
-      drm/xe/mmio_gem: use write-back mapping for dummy page
-      drm/xe/mmio_gem: simplify fault handler loop
-      drm/xe/mmio_gem: cache the dummy page per object
-      drm/xe/mmio_gem: fix destroy flow
-
-Jonathan Cavitt (2):
-      drm/xe/pagefault: Add SRCID to pagefault struct
-      drm/xe/vm: Add srcid to xe_vm_get_property_ioctl fault report
-
-Karthik Poosa (2):
-      drm/xe/pcode: Increase default pcode mailbox timeout to 10ms
-      drm/xe/hwmon: Use shared pcode default timeout for power limit write
-
-Matt Roper (1):
-      drm/xe: Consolidate semaphore instruction definitions
-
-Matthew Auld (7):
-      drm/xe/migrate: support 4K PTEs for identity map
-      drm/xe/vram: report FLAT_CCS base misalignment
-      drm/xe/vram: revamp CPU VRAM mapping
-      drm/xe: add force option for global invalidation
-      drm/xe/vram: add early VRAM health check
-      drm/xe/mmio_gem: reject VM_EXEC and drop VM_DONTCOPY
-      drm/xe: convert PCI barrier mmap to use xe_mmio_gem
-
-Matthew Brost (2):
-      drm/xe: Add mnemonic error reason to page fault diagnostics
-      drm/xe: Keep walking on SVM eviction failure
-
-Michal Wajdeczko (15):
-      drm/xe/tests: Fix default subplatform selection
-      drm/xe/tests: Fix subplatform selection
-      drm/xe: Drop unused parameter from xe_info_init
-      drm/xe: Keep reference to device descriptor
-      drm/xe: Drop redundant parameters from xe_info_init_early
-      drm/xe: Drop redundant parameter from xe_probe_info_early
-      drm/xe: Drop redundant parameter from xe_probe_info and friends
-      drm/xe/log: Relax location ID recognition
-      drm/xe/pf: Refactor VF LMEM BAR resize helper function
-      drm/xe/pf: Add _locked variant of the priority config function
-      drm/xe/pf: Add _locked variant of the release config function
-      drm/xe/pf: Add _locked variant of the fair sched config function
-      drm/xe/guc: Add simple KLV decoder helpers
-      drm/xe/tests: Add kunit tests for KLV decoders
-      drm/xe/pf: Use KLV decode helpers to parse migration packet
-
-Raag Jadav (1):
-      drm/xe/i2c: Disable IRQ on unbind
-
-Shuicheng Lin (4):
-      drm/xe/mmio_gem: Revoke drm_vma_node on xe_mmio_gem destroy
-      drm/xe/shrinker: Return the freed page count through a parameter
-      drm/xe/shrinker: Take a runtime PM ref before shrinking non-system memory
-      drm/xe/tlb_inval: Treat wedged-device invalidations as complete
-
-Sk Anirban (2):
-      drm/xe/debugfs: Expose per-engine idle status
-      drm/xe/gt_throttle: Report power brake as a throttle reason on CRI
-
-Tejas Upadhyay (16):
-      drm/xe: Link VRAM resource allocation with gpu buddy
-      drm/xe: Link LRC BO and its execution queue with safe lifetime rules
-      drm/xe: Export xe_ttm_bo_purge()
-      drm/xe: Handle NULL resource and allow purging of VRAM pages
-      drm/xe/bo: Make xe_bo_is_user() public
-      drm/xe: Guard teardown paths against purged BOs
-      drm/xe/vram: Extract buddy allocation and free helpers
-      drm/xe/vram: Add page offline data structures and lifecycle
-      drm/xe/vram: Add VRAM page offline fault handler
-      drm/xe/configfs: Add disable_vram_page_offline attribute
-      drm/xe/ras: Cache disable_vram_page_offline policy at init
-      drm/xe/vram: Check disable_vram_page_offline policy in fault handler
-      drm/xe: Expose bad VRAM pages via debugfs
-      drm/xe/uapi: Expose ban reason in EXEC_QUEUE_GET_PROPERTY_BAN
-      drm/xe: Add fault-inject based VRAM page offline injection
-      drm/xe: Skip clearing purged page-table BOs
-
-Thomas Hellström (2):
-      drm/xe: Flush LSC untyped L1 dataport cache after rcs/ccs batches
-      drm/xe: Make p2pdma distance check verbose via dynamic debug
-
-Varun Gupta (3):
-      drm/xe: Guard page-fault worker with runtime PM check
-      drm/xe: Add multi_queue_active_lrca debugfs
-      drm/pagemap: Prevent CPU stalls during unbounded pagemap teardown
-
-Vinay Belgaumkar (1):
-      drm/xe: Poll GT for C6 before D3
-
- drivers/gpu/drm/drm_gpusvm.c                       | 410 ++++++++++----
- drivers/gpu/drm/drm_pagemap.c                      |   5 +-
- drivers/gpu/drm/xe/abi/xe_log_abi.h                |   1 +
- drivers/gpu/drm/xe/display/xe_dsb_buffer.c         |   2 +-
- drivers/gpu/drm/xe/display/xe_fb_pin.c             |   2 +-
- drivers/gpu/drm/xe/display/xe_panic.c              |   3 +-
- drivers/gpu/drm/xe/instructions/xe_gpu_commands.h  |   1 +
- drivers/gpu/drm/xe/instructions/xe_mi_commands.h   |   7 +-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h               |  28 +
- .../gpu/drm/xe/tests/xe_guc_klv_helpers_kunit.c    | 303 +++++++++++
- drivers/gpu/drm/xe/tests/xe_pci.c                  |  25 +-
- drivers/gpu/drm/xe/xe_bo.c                         |  83 ++-
- drivers/gpu/drm/xe/xe_bo.h                         |   3 +-
- drivers/gpu/drm/xe/xe_bo_types.h                   |   8 +
- drivers/gpu/drm/xe/xe_configfs.c                   |  72 ++-
- drivers/gpu/drm/xe/xe_configfs.h                   |   2 +
- drivers/gpu/drm/xe/xe_debugfs.c                    |  51 ++
- drivers/gpu/drm/xe/xe_debugfs.h                    |   2 +
- drivers/gpu/drm/xe/xe_devcoredump.c                |   4 +-
- drivers/gpu/drm/xe/xe_device.c                     | 120 +----
- drivers/gpu/drm/xe/xe_device.h                     |   2 +-
- drivers/gpu/drm/xe/xe_device_types.h               |  19 +
- drivers/gpu/drm/xe/xe_dma_buf.c                    |  22 +-
- drivers/gpu/drm/xe/xe_drm_ras_types.h              |   3 +
- drivers/gpu/drm/xe/xe_exec_queue.c                 |  72 ++-
- drivers/gpu/drm/xe/xe_exec_queue_types.h           |   7 +-
- drivers/gpu/drm/xe/xe_execlist.c                   |   4 +-
- drivers/gpu/drm/xe/xe_gt.c                         |  11 +-
- drivers/gpu/drm/xe/xe_gt_debugfs.c                 | 106 +++-
- drivers/gpu/drm/xe/xe_gt_idle.c                    |  39 ++
- drivers/gpu/drm/xe/xe_gt_idle.h                    |   1 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c         | 108 +++-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h         |   4 +
- drivers/gpu/drm/xe/xe_gt_throttle.c                |   5 +-
- drivers/gpu/drm/xe/xe_guc_capture.c                |   2 -
- drivers/gpu/drm/xe/xe_guc_klv_helpers.c            |  78 +++
- drivers/gpu/drm/xe/xe_guc_klv_helpers.h            |   5 +
- drivers/gpu/drm/xe/xe_guc_pagefault.c              |   8 +-
- drivers/gpu/drm/xe/xe_guc_submit.c                 | 115 +++-
- drivers/gpu/drm/xe/xe_guc_submit.h                 |   5 +
- drivers/gpu/drm/xe/xe_hwmon.c                      |   7 +-
- drivers/gpu/drm/xe/xe_i2c.c                        |   3 +
- drivers/gpu/drm/xe/xe_log.c                        |  42 +-
- drivers/gpu/drm/xe/xe_lrc.c                        |   6 +-
- drivers/gpu/drm/xe/xe_lrc.h                        |   1 +
- drivers/gpu/drm/xe/xe_migrate.c                    | 121 ++++-
- drivers/gpu/drm/xe/xe_migrate.h                    |   6 +
- drivers/gpu/drm/xe/xe_mmio_gem.c                   | 115 ++--
- drivers/gpu/drm/xe/xe_mmio_gem.h                   |   2 +-
- drivers/gpu/drm/xe/xe_nvm.c                        |   1 +
- drivers/gpu/drm/xe/xe_pagefault.c                  | 128 ++++-
- drivers/gpu/drm/xe/xe_pagefault.h                  |  67 ++-
- drivers/gpu/drm/xe/xe_pagefault_types.h            |  91 +++-
- drivers/gpu/drm/xe/xe_pci.c                        |  42 +-
- drivers/gpu/drm/xe/xe_pci_sriov.c                  |  27 +-
- drivers/gpu/drm/xe/xe_pcode.c                      |   2 +-
- drivers/gpu/drm/xe/xe_pcode.h                      |   4 +-
- drivers/gpu/drm/xe/xe_pm.c                         |  18 +
- drivers/gpu/drm/xe/xe_pm.h                         |   1 +
- drivers/gpu/drm/xe/xe_pt.c                         |  28 +-
- drivers/gpu/drm/xe/xe_ras.c                        |   9 +
- drivers/gpu/drm/xe/xe_res_cursor.h                 |   5 +-
- drivers/gpu/drm/xe/xe_ring_ops.c                   |  15 +-
- drivers/gpu/drm/xe/xe_shrinker.c                   | 124 +++--
- drivers/gpu/drm/xe/xe_sriov_packet.c               |  31 +-
- drivers/gpu/drm/xe/xe_svm.c                        |  36 +-
- drivers/gpu/drm/xe/xe_svm.h                        |  20 +
- drivers/gpu/drm/xe/xe_sysctrl.c                    |  92 ++++
- drivers/gpu/drm/xe/xe_sysctrl.h                    |   2 +
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h      |  45 ++
- drivers/gpu/drm/xe/xe_tile_types.h                 |   4 +
- drivers/gpu/drm/xe/xe_tlb_inval.c                  |   3 +-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c               | 600 ++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.h               |   3 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h         |  40 ++
- drivers/gpu/drm/xe/xe_userptr.c                    |   2 +-
- drivers/gpu/drm/xe/xe_vm.c                         |  15 +-
- drivers/gpu/drm/xe/xe_vm_types.h                   |   2 +
- drivers/gpu/drm/xe/xe_vram.c                       | 258 ++++++++-
- drivers/gpu/drm/xe/xe_vram.h                       |  10 +
- include/drm/drm_gpusvm.h                           |  71 ++-
- include/uapi/drm/xe_drm.h                          |  22 +-
- 82 files changed, 3301 insertions(+), 568 deletions(-)
+>
+>Umesh
+>>
+>>>
+>>>>		}
+>>>>
+>>>>		if (tail > h2g->info.size) {
+>>>>			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+>>>>+			err = -EPIPE;
+>>>>			xe_gt_err(gt, "CT write: tail out of range: %u vs %u\n",
+>>>>				  tail, h2g->info.size);
+>>>>			goto corrupted;
+>>>>@@ -974,6 +977,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>>>>
+>>>>		if (desc_head >= h2g->info.size) {
+>>>>			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+>>>>+			err = -EPIPE;
+>>>>			xe_gt_err(gt, "CT write: invalid head offset %u >= %u)\n",
+>>>>				  desc_head, h2g->info.size);
+>>>>			goto corrupted;
+>>>>@@ -1044,7 +1048,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>>>>
+>>>>corrupted:
+>>>>	CT_DEAD(ct, &ct->ctbs.h2g, H2G_WRITE);
+>>>>-	return -EPIPE;
+>>>>+	return err;
+>>>>}
+>>>>
+>>>>static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+>>>>@@ -1067,11 +1071,6 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+>>>>		goto out;
+>>>>	}
+>>>>
+>>>>-	if (unlikely(ct->ctbs.h2g.info.broken)) {
+>>>>-		ret = -EPIPE;
+>>>>-		goto out;
+>>>>-	}
+>>>>-
+>>>>	if (ct->state == XE_GUC_CT_STATE_DISABLED) {
+>>>>		ret = -ENODEV;
+>>>>		goto out;
+>>>>@@ -1082,6 +1081,11 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+>>>>		goto out;
+>>>>	}
+>>>>
+>>>>+	if (unlikely(ct->ctbs.h2g.info.broken)) {
+>>>>+		ret = -EPIPE;
+>>>>+		goto out;
+>>>
+>>>to be fixed with -EPERM/-EUCLEAN, or ...
+>>
+>>I changed this to EPERM
+>>
+>>>
+>>>... maybe this should be just xe_gt_assert()?
+>>>
+>>>IMO we should immediately STOP the CTB once we detect that CTB channel
+>>>is broken so we should look for STOPPED status rather than info.broken
+>>
+>>Maybe, but we don't do that right now. Probably a future improvement.
+>>
+>>>
+>>>>+	}
+>>>>+
+>>>>	xe_gt_assert(gt, xe_guc_ct_enabled(ct));
+>>>>
+>>>>	if (g2h_fence) {
+>>>>@@ -1809,10 +1813,12 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+>>>>	s32 avail;
+>>>>	u32 action;
+>>>>	u32 *hxg;
+>>>>+	int err;
+>>>>
+>>>>	xe_gt_assert(gt, xe_guc_ct_initialized(ct));
+>>>>	lockdep_assert_held(&ct->fast_lock);
+>>>>
+>>>>+	/* Keep in sync with g2h_err_is_fatal() */
+>>>>	if (xe_device_wedged(xe))
+>>>>		return -ENOTRECOVERABLE;
+>>>>
+>>>>@@ -1823,7 +1829,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+>>>>		return -ECANCELED;
+>>>>
+>>>>	if (g2h->info.broken)
+>>>>-		return -EPIPE;
+>>>>+		return -EPERM;
+>>>>
+>>>>	xe_gt_assert(gt, xe_guc_ct_enabled(ct));
+>>>>
+>>>>@@ -1840,6 +1846,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+>>>>		}
+>>>>
+>>>>		if (desc_status) {
+>>>>+			err = -EPIPE;
+>>>>			xe_gt_err(gt, "CT read: non-zero status: %u\n", desc_status);
+>>>>			goto corrupted;
+>>>>		}
+>>>>@@ -1871,6 +1878,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+>>>>
+>>>>		if (g2h->info.head > g2h->info.size) {
+>>>>			desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+>>>>+			err = -EPIPE;
+>>>>			xe_gt_err(gt, "CT read: head out of range: %u vs %u\n",
+>>>>				  g2h->info.head, g2h->info.size);
+>>>>			goto corrupted;
+>>>>@@ -1878,6 +1886,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+>>>>
+>>>>		if (desc_tail >= g2h->info.size) {
+>>>>			desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+>>>>+			err = -EPIPE;
+>>>>			xe_gt_err(gt, "CT read: invalid tail offset %u >= %u)\n",
+>>>>				  desc_tail, g2h->info.size);
+>>>>			goto corrupted;
+>>>>@@ -1898,6 +1907,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+>>>>			   sizeof(u32));
+>>>>	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
+>>>>	if (len > avail) {
+>>>>+		err = -EPIPE;
+>>>>		xe_gt_err(gt, "G2H channel broken on read, avail=%d, len=%d, reset required\n",
+>>>>			  avail, len);
+>>>>		goto corrupted;
+>>>>@@ -1950,7 +1960,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+>>>>
+>>>>corrupted:
+>>>>	CT_DEAD(ct, &ct->ctbs.g2h, G2H_READ);
+>>>>-	return -EPROTO;
+>>>>+	return err;
+>>>>}
+>>>>
+>>>>static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>>>>@@ -2042,6 +2052,27 @@ static int dequeue_one_g2h(struct xe_guc_ct *ct)
+>>>>	return 1;
+>>>>}
+>>>>
+>>>>+/*
+>>>>+ * Errors reported by dequeue_one_g2h() come in two flavours: either the channel
+>>>>+ * is simply not available right now, which is expected and handled gracefully,
+>>>>+ * or the channel state or the message itself is inconsistent, in which case the
+>>>>+ * only way forward is to declare the CT dead and reset the GuC. Since the
+>>>>+ * former is a short and well known list, check against that and treat anything
+>>>>+ * else as fatal, so that new error codes don't silently escape the escalation.
+>>>>+ */
+>>>>+static bool g2h_err_is_fatal(int err)
+>>>>+{
+>>>>+	switch (err) {
+>>>>+	case -ENOTRECOVERABLE:	/* device wedged */
+>>>>+	case -ENODEV:		/* CT disabled */
+>>>>+	case -ECANCELED:	/* CT stopped */
+>>>>+	case -EPERM:		/* CT already declared broken */
+>>>>+		return false;
+>>>>+	default:
+>>>>+		return true;
+>>>
+>>>shouldn't this be other way around?
+>>>IMO original fatal errors are:
+>>>
+>>>	-EPIPE
+>>>	-EPROTO
+>>>	-EDEADLK
+>>>
+>>>as once we hit them, we should trigger a RESET (which will then
+>>>result in cancelling all pending H2G with -ECANCELED, turning off
+>>>the CTB), so any new CTB request will get either
+>>>
+>>>	-EPERM - already stopped
+>>>	-ENOTRECOVERABLE - if recovery fails
+>>>
+>>>>+	}
+>>
+>>Correct, the default case is fatal above and returns true, so it 
+>>matches what you are saying.
+>>
+>>>>+}
+>>>
+>>>maybe we should document in a separate DOC section all error codes used by the CTB?
+>>>
+>>>	-ENODEV = CTB disabled
+>>>	-ENOTRECOVERABLE = device wedged
+>>>	-EDEADLK = CTB deadlocked ==> RESET/STOP
+>>>	-EPIPE = detected problems with CTB descriptor/channel ==> RESET/STOP
+>>>	-EPROTO = detected problem with CTB message ==> RESET/STOP
+>>>	-ECANCELED = pending H2G cancelled due to a RESET
+>>>	-EPERM = CTB already stopped
+>>>	-EUCLEAN = CTB already broken
+>>>		btw, should we ever reach ctb.broken?
+>>>		shouldn't we move the CTB to STOPPED state before?
+>>>	...
+>>
+>>I will put it in comments in the beginning of this file.
+>>
+>>>
+>>>>+
+>>>>static void receive_g2h(struct xe_guc_ct *ct)
+>>>>{
+>>>>	bool ongoing;
+>>>>@@ -2079,8 +2110,8 @@ static void receive_g2h(struct xe_guc_ct *ct)
+>>>>		ret = dequeue_one_g2h(ct);
+>>>>		mutex_unlock(&ct->lock);
+>>>>
+>>>>-		if (unlikely(ret == -EPROTO || ret == -EOPNOTSUPP)) {
+>>>>-			xe_gt_err(ct_to_gt(ct), "CT dequeue failed: %d\n", ret);
+>>>>+		if (unlikely(ret < 0 && g2h_err_is_fatal(ret))) {
+>>>>+			xe_gt_err(ct_to_gt(ct), "CT dequeue failed (%pe)\n", ERR_PTR(ret));
+>>>>			CT_DEAD(ct, NULL, G2H_RECV);
+>>>>			kick_reset(ct);
+>>>
+>>>hmm, it looks that during send() we kick_reset() only for EDEADLK
+>>>error, even if we detect broken channel (EPIPE), right?
+>>
+>>Right. That's the current behavior
+>>
+>>Thanks,
+>>Umesh
+>>>
+>>>
+>>>>		}
+>>>
