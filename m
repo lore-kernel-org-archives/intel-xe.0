@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDBCAC982DA
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 10:05:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05D35C982DA
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 10:05:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 857A510F2AA;
-	Fri, 18 Sep 2026 10:05:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A74CD10F2AD;
+	Fri, 18 Sep 2026 10:05:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ed4utLsU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T2y7Lxh+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA91B10F2AA
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 10:05:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C74210F2A2
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 10:05:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789725942; x=1821261942;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=/SbUbzPp6r316yk7hgtQYxAJ5iUjYltKri8JDT8n6ic=;
- b=Ed4utLsUXqpFs8GolYYxUs+MU07JYLcUZEIIjl7oWqiNIbs0rUI18CJm
- feudztsM/o4psbS8e685Pwzp9sOc42XHgl9oeLJKgcEXt5WmFikmaC1Tb
- 3GiPhMSb2mlUDmar+p525sIrEmi68xNF3f0B6xcW3hnUEi8DhRdx/NyyH
- NdZJ09vj9IFbAxN7pAwFRnyt6lSYUg1F4rAfeosV5Sc0aSN6BIUO9njxW
- HJUiFP319NbNVCmf9Lr+Krc7EM8+mVClobSwegI6r3wOGtUymG7a9c1vB
- U105isMspa7DE/bR3RUJyTh0e9WcokGZt0PHNZu/+5/vrP1OszVT6xO10 A==;
-X-CSE-ConnectionGUID: HVbdmx9QRkO69NYf9H/95A==
-X-CSE-MsgGUID: gSKF0xgdR3SjeOGnfuRtGA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="737204"
+ t=1789725945; x=1821261945;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=46dN85KpmRQWhp5q7j97pDZ/ItFsC+C+96ls9z/Y94A=;
+ b=T2y7Lxh+AXlCFM4J9iBUz3uekoe2jn5+mOWprGWmPMFS9Xbz5x3t8nnJ
+ efHtkk7YxWEvz75dKIBM6V0TF/RCu0FmPyajhybqa16soI+QXdIC8wtOR
+ NKn/0ihfuPaLtDo/2g3Bn8er5w/T57EWOZymbYHd14O7SRwqyE7m97sDv
+ kCbGTKg4el5G+KuPm8AS4DKdg60IKxGR6Ha0zRMsq9rQe9yOpvC7jJ0Sj
+ GjKC9qHwLAI/ZkBh4RUWBmxEvk5COr2AySCNLYNKl7BuqVuktf3a9d6xQ
+ z1kjOoqjUsvyH26oS/IGxL5+lWLJyWGRiYKKln2oqQ8ccDFUcSsfiN/Um A==;
+X-CSE-ConnectionGUID: jwStVPQJTSqW+oOs0TOeyA==
+X-CSE-MsgGUID: rXQcRx73Qn2UM5+s2sfTYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="737213"
 X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
-   d="scan'208";a="737204"
+   d="scan'208";a="737213"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa116.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2026 03:05:42 -0700
-X-CSE-ConnectionGUID: AdEsMVRQTKG43jru5kP52Q==
-X-CSE-MsgGUID: mmOvLYVnRrSmDjo3X8G7vw==
+ 18 Sep 2026 03:05:45 -0700
+X-CSE-ConnectionGUID: Pd2LbW4+TLWpC68p9somZw==
+X-CSE-MsgGUID: G6otUq1qTe6md0apNsxWIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="271003528"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="271003542"
 Received: from ksatya-dev.iind.intel.com ([10.190.229.72])
- by fmviesa007.fm.intel.com with ESMTP; 18 Sep 2026 03:05:40 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 18 Sep 2026 03:05:43 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v9 00/10] KUnit test for VF provisioning error handling
-Date: Fri, 18 Sep 2026 15:35:24 +0530
-Message-ID: <20260918100533.567225-12-satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v9 02/10] drm/xe/vf: Split submission config query helpers
+Date: Fri, 18 Sep 2026 15:35:26 +0530
+Message-ID: <20260918100533.567225-14-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260918100533.567225-12-satyanarayana.k.v.p@intel.com>
+References: <20260918100533.567225-12-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,55 +67,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patchset adds infrastructure and tests to verify that a VF
-properly handles malformed or invalid device configuration
-responses from the PF.
-
-A VF relies on the PF to provide valid hardware configuration through GuC
-KLV responses during initialization. If the PF is misconfigured or
-malfunctioning, a VF may receive zero, incomplete, or out-of-range
-values for critical resources like GGTT, VRAM, Contexts or Doorbells.
-
-Add KUnit test cases that use the xe_guc_mmio_send_recv() stub to inject
-bad KLV responses and verify that VF can survive without crashing for
-the invalid configuration data received.
-
-While adding this kunit test, found some missing error handling in the VF
-code path for invalid doorbell,  GGTT and VRAM configurations. This
-patchset also adds the missing error handling to the VF code path.
+Refactor vf_get_submission_cfg() into separate vf_get_ctxs_cfg()
+and vf_get_dbs_cfg() functions which allows independent error
+handling and validation for each resource, and improves testability.
 
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 49 +++++++++++++++++++++++------
+ 1 file changed, 40 insertions(+), 9 deletions(-)
 
-Satyanarayana K V P (10):
-  drm/xe/guc: Allow to replace xe_guc_mmio_send_recv() with KUNIT stub
-  drm/xe/vf: Split submission config query helpers
-  drm/xe/vf: Add bounds checking for queried context and doorbell counts
-  drm/xe: Introduce helpers for VRAM alignment
-  drm/xe/ggtt: Avoid integer overflow when validating VF GGTT range
-  drm/xe/vf: Add bounds checking for queried GGTT base and size
-  drm/xe/pf: Align VF GGTT allocations to PAGE_SIZE
-  drm/xe/vf: Add alignment check for queried VRAM size
-  drm/xe/ggtt: Add KUNIT stub for xe_ggtt_shift_nodes()
-  drm/xe/tests: Add KUnit tests for VF provisioning error handling
-
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |   2 +-
- drivers/gpu/drm/xe/display/xe_initial_plane.c |   2 +-
- drivers/gpu/drm/xe/tests/xe_bo.c              |   2 +-
- drivers/gpu/drm/xe/tests/xe_dma_buf.c         |   2 +-
- .../gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c   | 666 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_bo.c                    |   6 +-
- drivers/gpu/drm/xe/xe_device.h                |  10 +
- drivers/gpu/drm/xe/xe_ggtt.c                  |  25 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |   4 +-
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c           | 114 ++-
- drivers/gpu/drm/xe/xe_guc.c                   |   5 +
- drivers/gpu/drm/xe/xe_query.c                 |   2 +-
- drivers/gpu/drm/xe/xe_svm.c                   |   2 +-
- drivers/gpu/drm/xe/xe_vm.c                    |   4 +-
- 14 files changed, 812 insertions(+), 34 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 37899fcf5b22..339ea0d3344c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -568,11 +568,11 @@ static int vf_get_lmem_info(struct xe_gt *gt)
+ 	return size ? 0 : -ENODATA;
+ }
+ 
+-static int vf_get_submission_cfg(struct xe_gt *gt)
++static int vf_get_ctxs_cfg(struct xe_gt *gt)
+ {
+ 	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
+ 	struct xe_guc *guc = &gt->uc.guc;
+-	u32 num_ctxs, num_dbs;
++	u32 num_ctxs;
+ 	int err;
+ 
+ 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+@@ -581,27 +581,58 @@ static int vf_get_submission_cfg(struct xe_gt *gt)
+ 	if (unlikely(err))
+ 		return err;
+ 
+-	err = guc_action_query_single_klv32(guc, GUC_KLV_VF_CFG_NUM_DOORBELLS_KEY, &num_dbs);
+-	if (unlikely(err))
+-		return err;
+-
+ 	if (config->num_ctxs && config->num_ctxs != num_ctxs) {
+ 		xe_gt_sriov_err(gt, "Unexpected CTXs reassignment: %u != %u\n",
+ 				num_ctxs, config->num_ctxs);
+ 		return -EREMCHG;
+ 	}
++
++	xe_gt_sriov_dbg_verbose(gt, "CTXs %u\n", num_ctxs);
++
++	config->num_ctxs = num_ctxs;
++
++	return config->num_ctxs ? 0 : -ENODATA;
++}
++
++static int vf_get_dbs_cfg(struct xe_gt *gt)
++{
++	struct xe_gt_sriov_vf_selfconfig *config = &gt->sriov.vf.self_config;
++	struct xe_guc *guc = &gt->uc.guc;
++	u32 num_dbs;
++	int err;
++
++	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
++
++	err = guc_action_query_single_klv32(guc, GUC_KLV_VF_CFG_NUM_DOORBELLS_KEY, &num_dbs);
++	if (unlikely(err))
++		return err;
++
+ 	if (config->num_dbs && config->num_dbs != num_dbs) {
+ 		xe_gt_sriov_err(gt, "Unexpected DBs reassignment: %u != %u\n",
+ 				num_dbs, config->num_dbs);
+ 		return -EREMCHG;
+ 	}
+ 
+-	xe_gt_sriov_dbg_verbose(gt, "CTXs %u DBs %u\n", num_ctxs, num_dbs);
++	xe_gt_sriov_dbg_verbose(gt, "DBs %u\n", num_dbs);
+ 
+-	config->num_ctxs = num_ctxs;
+ 	config->num_dbs = num_dbs;
+ 
+-	return config->num_ctxs ? 0 : -ENODATA;
++	return 0;
++}
++
++static int vf_get_submission_cfg(struct xe_gt *gt)
++{
++	int err;
++
++	err = vf_get_ctxs_cfg(gt);
++	if (unlikely(err))
++		return err;
++
++	err = vf_get_dbs_cfg(gt);
++	if (unlikely(err))
++		return err;
++
++	return 0;
+ }
+ 
+ static void vf_cache_gmdid(struct xe_gt *gt)
 -- 
 2.53.0
 
