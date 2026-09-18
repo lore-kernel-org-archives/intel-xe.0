@@ -4,57 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD6C8C982E0
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 10:06:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16763C982DA
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 10:08:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AE9C10F2C0;
-	Fri, 18 Sep 2026 10:06:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6B7F10F2E4;
+	Fri, 18 Sep 2026 10:08:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VmHEwfxj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vjl0vNmR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F93410F2B7
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 10:05:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE37110F2C1;
+ Fri, 18 Sep 2026 10:08:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789725958; x=1821261958;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=oLU/Vbbe473ja+NOfyu3SbhuBUVJ5GehWVusIKm2hQU=;
- b=VmHEwfxj04u97Oq3ah+Y5og30GhUVWKZCD9o9E+RDPAyG6znkQDzH7ux
- 4rjnrwMIQV43ViGiOXYPZMg9QvVslIpZjD37f+OhDMUM2f/E0gDPDvxZR
- tpQcnA5JIfkqfsDsVCtpUDbiDFN1v+y/AL/YwM93Pa7MU6l2diQTtOxVr
- IduGhu+UpohF0IyGwTEogoxEtxf1sffJUOi4BGOIC43WRRtJ5iH5HwQe/
- 9k0UopYAYFPMvNC6+kewVRYrc7OvtXWb5GWnoFLrIPK+XCZ/EST8XU76Y
- OA4+gkCDhOrLm2NxDm0uaJ+u77ZVMnOKrMVhW6781ojP53dyIEibagxJc Q==;
-X-CSE-ConnectionGUID: Rj3DORZyRLW1vSQ0tNyCPA==
-X-CSE-MsgGUID: dWCIkIx/RkSU/GxHXxkKgg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="737241"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
-   d="scan'208";a="737241"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa116.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2026 03:05:58 -0700
-X-CSE-ConnectionGUID: CcGykmA+QxCuQ1d3apX8bg==
-X-CSE-MsgGUID: kMJICwqkQe6X+MSUIZ1/gw==
+ t=1789726116; x=1821262116;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=4caR/YRJfQ9hZuxvoEXZ0uKGtIOxawTP6tzRZ2JNq14=;
+ b=Vjl0vNmR12fZWGNDShLxmUK+m62UKZdROJ+XoH9GVZdLOZUydpAUaUc+
+ awiC2hnO/w7E96enuZKjsLMF7vUUvevGYInxE7x8jW4FVdCD9+9CCZVWq
+ 3L3LVc7NKGbBJJEdLCx1F3rRvo0LhRcSylapj8b8dP3FuwYIFSJnavekg
+ xCsoogC0Scucv63bCxnheoxLCK/RxedbMUcvjxs0+wdZ53IH7MroazaWW
+ ZQojnUpAA05BinMhZQHuRnpONBiGQkLo1hVf0uMjbGR9q8cEyTdtv+keL
+ ifLSXEYpJ4xmuigzevAQW0JzjVz6cToVG7qAyaARQb3ELsjalPbr5eSyu A==;
+X-CSE-ConnectionGUID: Qsh5u0EzTgm4ogBxffHIBg==
+X-CSE-MsgGUID: FryG/0FAQ+ysjUQLHoT9Yg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="90353245"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="90353245"
+Received: from fmviesa013.fm.intel.com ([10.60.135.153])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2026 03:08:35 -0700
+X-CSE-ConnectionGUID: U3LuIJBnQV6kEcNXcoi/1g==
+X-CSE-MsgGUID: mdSFEWjaRWqoJsS6sDG3dw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="271003599"
-Received: from ksatya-dev.iind.intel.com ([10.190.229.72])
- by fmviesa007.fm.intel.com with ESMTP; 18 Sep 2026 03:05:56 -0700
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v9 10/10] drm/xe/tests: Add KUnit tests for VF provisioning
- error handling
-Date: Fri, 18 Sep 2026 15:35:34 +0530
-Message-ID: <20260918100533.567225-22-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260918100533.567225-12-satyanarayana.k.v.p@intel.com>
-References: <20260918100533.567225-12-satyanarayana.k.v.p@intel.com>
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
+   d="scan'208";a="2745244"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.216])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2026 03:08:33 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
+ uma.shankar@intel.com, swati2.sharma@intel.com, Suraj Kandpal
+ <suraj.kandpal@intel.com>, Ramanaidu Naladala
+ <ramanaidu.naladala@intel.com>
+Subject: Re: [PATCH v2] drm/i915/dp: Disable DC5/6 before AUX programming
+In-Reply-To: <20260918063829.1321703-1-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260918060426.1162123-1-suraj.kandpal@intel.com>
+ <20260918063829.1321703-1-suraj.kandpal@intel.com>
+Date: Fri, 18 Sep 2026 13:08:30 +0300
+Message-ID: <990495a5048d910d16fbd0452db5fbc21cd65701@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,738 +74,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-VF relies on the PF to provide a valid hardware configuration via GuC
-KLV responses. In the unlikely event of PF malfunction or
-misconfiguration, a VF may receive incomplete, zero, or out-of-range
-values for its submission contexts, doorbells, VRAM or GGTT assignment.
+On Fri, 18 Sep 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> From Xe2Lpd we removed the step to disable DC5/6 because as per Bspec
+> for SNPS PHY Aux will be always up. But from Xe3p LT PHY was introduced
+> which powers down the PHY. Which means we need to make sure
+> "Disable DC5/6" of AUX Programming sequence is honored.
+> Disable Dc5/6 when programming AUX.
+>
+> Bspec: 68851, 68967
+> Co-developed-by: Ramanaidu Naladala <ramanaidu.naladala@intel.com>
 
-Add KUnit test cases that use the xe_guc_mmio_send_recv() stub to inject
-bad KLV responses and verify that VF can survive without crashing for
-the invalid configuration data received.
+Per submitting-patches.rst, "Since Co-developed-by: denotes authorship,
+every Co-developed-by: must be immediately followed by a Signed-off-by:
+of the associated co-author."
 
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
-V8 -> V9:
-- Fixed review comments (Michal W).
-- Updated test_guc_mmio (Michal W).
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+> v1 -> v2:
+> -Fix commit message (Arun)
+> -Fix the if typo (Arun, Sashiko)
+>
+>  drivers/gpu/drm/i915/display/intel_dp_aux.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> index 3cb07b0a901c..879b203f9258 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> @@ -260,6 +260,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>  	u32 aux_clock_divider;
+>  	enum intel_display_power_domain aux_domain;
+>  	struct ref_tracker *aux_wakeref;
+> +	struct ref_tracker *dc_off_wakeref = NULL;
+>  	struct ref_tracker *pps_wakeref = NULL;
+>  	int i, ret, recv_bytes;
+>  	int try, clock = 0;
+> @@ -286,6 +287,9 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>  
+>  	aux_wakeref = intel_display_power_get(display, aux_domain);
+>  
+> +	if (HAS_LT_PHY(display))
+> +		dc_off_wakeref = intel_display_power_get(display, POWER_DOMAIN_DC_OFF);
+> +
+>  	/*
+>  	 * The PPS state needs to be locked for:
+>  	 * - eDP on all platforms, since AUX transfers on eDP need VDD power
+> @@ -459,6 +463,9 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+>  	if (pps_wakeref)
+>  		intel_pps_unlock(intel_dp, pps_wakeref);
+>  
+> +	if (dc_off_wakeref)
+> +		intel_display_power_put(display, POWER_DOMAIN_DC_OFF, dc_off_wakeref);
+> +
+>  	intel_display_power_put_async(display, aux_domain, aux_wakeref);
+>  out_unlock:
+>  	intel_digital_port_unlock(encoder);
 
-V7 -> V8:
-- Updated kunit test as per changed from other patches.
-
-V6 -> V7:
-- Fixed review comments (Sashiko, Michal W).
-
-V5 -> V6:
-- Fixed review comments (Michal W).
-
-V4 -> V5:
-- Added alignment tests for vram, GGTT base and size (Michal W).
-- Separated stubs for ctx, db, vram and GGTT (Michal W).
-- Added new test cases for xe_guc_mmio_send_recv() (Michal W).
-
-V3 -> V4:
-- Changed stub function from guc_action_query_single_klv32() and
-guc_action_query_single_klv64() to xe_guc_mmio_send_recv() (Michal W).
-- Fixed review comments (Michal W).
-
-V2 -> V3:
-- Renamed the test names. (Michal W).
-- Fixed review comments (Michal W).
-
-V1 -> V2:
-- Renamed the test file (Michal W).
-- Fixed review comments (Michal W).
----
- .../gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c   | 666 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c           |   4 +
- 2 files changed, 670 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c
-
-diff --git a/drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c b/drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c
-new file mode 100644
-index 000000000000..5202ef804240
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_gt_sriov_vf_kunit.c
-@@ -0,0 +1,666 @@
-+// SPDX-License-Identifier: GPL-2.0 AND MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include <kunit/static_stub.h>
-+#include <kunit/test.h>
-+
-+#include "regs/xe_guc_regs.h"
-+#include "xe_device.h"
-+#include "xe_ggtt.h"
-+#include "xe_guc.h"
-+#include "xe_kunit_helpers.h"
-+#include "xe_pci_test.h"
-+
-+#define TEST_VRAM			SZ_8G
-+#define TEST_GGTT_SIZE			SZ_2G
-+#define TEST_GGTT_SIZE_OUT_OF_BOUNDS	0xfffffffffffff000ull
-+#define TEST_CTXS			1024
-+#define TEST_DBS			128
-+#define TEST_GGTT_START			0xa0a000ull
-+
-+static inline void assert_valid_query_klv_msg(struct kunit *test, u32 len,
-+					      const u32 *request, u32 key)
-+{
-+	KUNIT_ASSERT_EQ(test, len, VF2GUC_QUERY_SINGLE_KLV_REQUEST_MSG_LEN);
-+	KUNIT_ASSERT_EQ(test,
-+			FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, request[0]),
-+			GUC_ACTION_VF2GUC_QUERY_SINGLE_KLV);
-+	KUNIT_ASSERT_EQ(test,
-+			FIELD_GET(VF2GUC_QUERY_SINGLE_KLV_REQUEST_MSG_1_KEY, request[1]),
-+			key);
-+}
-+
-+static inline void fill_resp_buff(u32 *response, u64 query, size_t type)
-+{
-+	if (type == sizeof(u32)) {
-+		response[0] = sizeof(u32) / sizeof(u32);
-+		response[1] = query;
-+	} else if (type == sizeof(u64)) {
-+		response[0] = sizeof(u64) / sizeof(u32);
-+		response[1] = lower_32_bits(query);
-+		response[2] = upper_32_bits(query);
-+	}
-+}
-+
-+struct config {
-+	u32 orig;
-+	u32 query;
-+	int expected_ret;
-+	int ret;
-+	const char *name;
-+};
-+
-+static const struct config vf_ctx_testcase[] = {
-+	{
-+		.orig = TEST_CTXS,
-+		.query = TEST_CTXS,
-+		.expected_ret = 0,
-+		.name = "same",
-+	},
-+	{
-+		.orig = 0,
-+		.query = 0,
-+		.expected_ret = -ENODATA,
-+		.name = "none",
-+	},
-+	{
-+		.orig = 0,
-+		.query = GUC_ID_MAX + 1,
-+		.expected_ret = -ERANGE,
-+		.name = "overflow",
-+	},
-+	{
-+		.orig = TEST_CTXS,
-+		.query = 0,
-+		.expected_ret = -EREMCHG,
-+		.name =	"lost",
-+	},
-+	{
-+		.orig = TEST_CTXS,
-+		.query = TEST_CTXS / 2,
-+		.expected_ret = -EREMCHG,
-+		.name = "reduced",
-+	},
-+	{
-+		.orig = TEST_CTXS,
-+		.query = TEST_CTXS * 2,
-+		.expected_ret = -EREMCHG,
-+		.name = "increased",
-+	},
-+	{
-+		.orig = 0,
-+		.query = 0,
-+		.expected_ret = -EPROTO,
-+		.ret = -EPROTO,
-+		.name = "proto_error",
-+	},
-+	{
-+		.orig = 0,
-+		.query = 0,
-+		.expected_ret = -EIO,
-+		.ret = -EIO,
-+		.name =	"IO_error",
-+	},
-+};
-+
-+KUNIT_ARRAY_PARAM_DESC(ctx_testcase, vf_ctx_testcase, name);
-+
-+static const struct config vf_db_testcase[] = {
-+	{
-+		.orig = TEST_DBS,
-+		.query = TEST_DBS,
-+		.expected_ret = 0,
-+		.name = "same",
-+	},
-+	{
-+		.orig = 0,
-+		.query = 0,
-+		.expected_ret = 0,
-+		.name = "none",
-+	},
-+	{
-+		.orig = TEST_DBS,
-+		.query = GUC_NUM_DOORBELLS + 1,
-+		.expected_ret = -ERANGE,
-+		.name = "overflow",
-+	},
-+	{
-+		.orig = TEST_DBS,
-+		.query = 0,
-+		.expected_ret = -EREMCHG,
-+		.name = "lost",
-+	},
-+	{
-+		.orig = TEST_DBS,
-+		.query = TEST_DBS / 2,
-+		.expected_ret = -EREMCHG,
-+		.name = "reduced",
-+	},
-+	{
-+		.orig = TEST_DBS,
-+		.query = GUC_NUM_DOORBELLS - 1,
-+		.expected_ret = -EREMCHG,
-+		.name = "increased",
-+	},
-+	{
-+		.orig = 0,
-+		.query = 0,
-+		.expected_ret = -EPROTO,
-+		.ret = -EPROTO,
-+		.name = "proto_error",
-+	},
-+	{
-+		.orig = 0,
-+		.query = 0,
-+		.expected_ret = -EIO,
-+		.ret = -EIO,
-+		.name =	"IO_error",
-+	},
-+};
-+
-+KUNIT_ARRAY_PARAM_DESC(db_testcase, vf_db_testcase, name);
-+
-+static int xe_guc_mmio_send_recv_stub_ctx(struct xe_guc *guc, const u32 *request,
-+					  u32 len, u32 *response_buf)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	const struct config *c = test->param_value;
-+
-+	if (c->ret)
-+		return c->ret;
-+
-+	assert_valid_query_klv_msg(test, len, request,
-+				   GUC_KLV_VF_CFG_NUM_CONTEXTS_KEY);
-+	fill_resp_buff(response_buf, c->query, sizeof(u32));
-+
-+	return 0;
-+}
-+
-+static void test_ctxs(struct kunit *test)
-+{
-+	struct xe_gt *gt = test->priv;
-+	const struct config *c = test->param_value;
-+
-+	gt->sriov.vf.self_config.num_ctxs = c->orig;
-+	kunit_activate_static_stub(test, xe_guc_mmio_send_recv,
-+				   xe_guc_mmio_send_recv_stub_ctx);
-+	KUNIT_EXPECT_EQ(test, vf_get_ctxs_cfg(gt), c->expected_ret);
-+}
-+
-+static int xe_guc_mmio_send_recv_stub_db(struct xe_guc *guc, const u32 *request,
-+					 u32 len, u32 *response_buf)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	const struct config *c = test->param_value;
-+
-+	if (c->ret)
-+		return c->ret;
-+
-+	assert_valid_query_klv_msg(test, len, request,
-+				   GUC_KLV_VF_CFG_NUM_DOORBELLS_KEY);
-+	fill_resp_buff(response_buf, c->query, sizeof(u32));
-+
-+	return 0;
-+}
-+
-+static void test_dbs(struct kunit *test)
-+{
-+	struct xe_gt *gt = test->priv;
-+	const struct config *c = test->param_value;
-+
-+	gt->sriov.vf.self_config.num_dbs = c->orig;
-+	kunit_activate_static_stub(test, xe_guc_mmio_send_recv,
-+				   xe_guc_mmio_send_recv_stub_db);
-+	KUNIT_EXPECT_EQ(test, vf_get_dbs_cfg(gt), c->expected_ret);
-+}
-+
-+struct config_vram {
-+	u64 orig;
-+	u64 query;
-+	int expected_ret;
-+	int ret;
-+	const char *name;
-+};
-+
-+static const struct config_vram vf_vram_testcase[] = {
-+	{
-+		.orig = TEST_VRAM,
-+		.query = TEST_VRAM,
-+		.expected_ret = 0,
-+		.name = "same",
-+	},
-+	{
-+		.orig = 0,
-+		.query = 0,
-+		.expected_ret = -ENODATA,
-+		.name = "none",
-+	},
-+	{
-+		.orig = TEST_VRAM / 2,
-+		.query = TEST_VRAM + SZ_1G,
-+		.expected_ret = -EREMCHG,
-+		.name = "increased",
-+	},
-+	{
-+		.orig = TEST_VRAM / 2,
-+		.query = 0,
-+		.expected_ret = -EREMCHG,
-+		.name = "lost",
-+	},
-+	{
-+		.orig = TEST_VRAM / 2,
-+		.query = TEST_VRAM / 4,
-+		.expected_ret = -EREMCHG,
-+		.name = "reduced",
-+	},
-+	{
-+		.orig = 0,
-+		.query = 0,
-+		.expected_ret = -EPROTO,
-+		.ret = -EPROTO,
-+		.name = "proto_error",
-+	},
-+	{
-+		.orig = 0,
-+		.query = 0,
-+		.expected_ret = -EIO,
-+		.ret = -EIO,
-+		.name =	"IO_error",
-+	},
-+};
-+
-+KUNIT_ARRAY_PARAM_DESC(vram_testcase, vf_vram_testcase, name);
-+
-+static int xe_guc_mmio_send_recv_stub_vram(struct xe_guc *guc, const u32 *request,
-+					   u32 len, u32 *response_buf)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	const struct config_vram *c = test->param_value;
-+
-+	if (c->ret)
-+		return c->ret;
-+
-+	assert_valid_query_klv_msg(test, len, request,
-+				   GUC_KLV_VF_CFG_LMEM_SIZE_KEY);
-+	fill_resp_buff(response_buf, c->query, sizeof(u64));
-+
-+	return 0;
-+}
-+
-+static void test_vram(struct kunit *test)
-+{
-+	struct xe_gt *gt = test->priv;
-+	const struct config_vram *c = test->param_value;
-+
-+	gt->tile->sriov.vf.self_config.lmem_size = c->orig;
-+	kunit_activate_static_stub(test, xe_guc_mmio_send_recv,
-+				   xe_guc_mmio_send_recv_stub_vram);
-+	KUNIT_EXPECT_EQ(test, vf_get_lmem_info(gt), c->expected_ret);
-+}
-+
-+struct config_ggtt {
-+	struct {
-+		u64 start;
-+		u64 size;
-+	} orig, query;
-+	int expected_ret;
-+	int ret;
-+	const char *name;
-+};
-+
-+static const struct config_ggtt vf_ggtt_testcase[] = {
-+	{
-+		.orig =  { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE },
-+		.query = { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE },
-+		.name = "same",
-+		.expected_ret = 0,
-+	},
-+	{
-+		.orig =  { .start = 0, .size = 0 },
-+		.query = { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE },
-+		.expected_ret = 0,
-+		.name = "query_on_init",
-+	},
-+	{
-+		.orig =  { .start = 0, .size = 0 },
-+		.query = { .start = 0, .size = 0 },
-+		.expected_ret = -ENODATA,
-+		.name = "none",
-+	},
-+	{
-+		.orig =  { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE },
-+		.query = { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE + SZ_4G },
-+		.expected_ret = -ERANGE,
-+		.name = "overflow",
-+	},
-+	{
-+		.orig =  { .start = 0, .size = 0 },
-+		.query = { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE + SZ_4G },
-+		.expected_ret = -ERANGE,
-+		.name =	"overflow_query_on_init",
-+	},
-+	{
-+		.orig =  { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE },
-+		.query = { .start = TEST_GGTT_START, .size = 0 },
-+		.expected_ret = -ENODATA,
-+		.name = "lost",
-+	},
-+	{
-+		.orig =  { .start = 0, .size = 0 },
-+		.query = { .start = TEST_GGTT_START, .size = 0 },
-+		.expected_ret = -ENODATA,
-+		.name = "lost_on_init",
-+	},
-+	{
-+		.orig =  { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE },
-+		.query = { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE - SZ_1M },
-+		.expected_ret = -EREMCHG,
-+		.name = "reduced",
-+	},
-+	{
-+		.orig =  { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE },
-+		.query = { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE + SZ_1M },
-+		.expected_ret = -EREMCHG,
-+		.name = "increased",
-+	},
-+	{
-+		.orig =  { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE - SZ_4K },
-+		.query = { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE - SZ_2K },
-+		.expected_ret = 0,
-+		.name = "unaligned_size_4K",
-+	},
-+	{
-+		.orig =  { .start = 0, .size = 0 },
-+		.query = { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE - SZ_2K },
-+		.expected_ret = 0,
-+		.name =	"unaligned_size_4K_on_init",
-+	},
-+	{
-+		.orig =  { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE },
-+		.query = { .start = TEST_GGTT_START - SZ_2K, .size = TEST_GGTT_SIZE },
-+		.expected_ret = -EREMCHG,
-+		.name = "unaligned_base_4K",
-+	},
-+	{
-+		.orig =  { .start = 0, .size = 0 },
-+		.query = { .start = TEST_GGTT_START - SZ_2K, .size = TEST_GGTT_SIZE },
-+		.expected_ret = 0,
-+		.name = "unaligned_base_4K_on_init",
-+	},
-+	{
-+		.orig =  { .start = 0, .size = 0 },
-+		.query = { .start = 0, .size = 0 },
-+		.expected_ret = -EPROTO,
-+		.ret = -EPROTO,
-+		.name = "proto_error",
-+	},
-+	{
-+		.orig =  { .start = 0, .size = 0 },
-+		.query = { .start = 0, .size = 0 },
-+		.expected_ret = -EIO,
-+		.ret = -EIO,
-+		.name = "IO_error",
-+	},
-+	{
-+		.orig =  { .start = 0, .size = 0 },
-+		.query = { .start = TEST_GGTT_START, .size = TEST_GGTT_SIZE_OUT_OF_BOUNDS },
-+		.expected_ret = -ERANGE,
-+		.name = "out_of_bounds_size_on_init",
-+	},
-+};
-+
-+KUNIT_ARRAY_PARAM_DESC(ggtt_testcase, vf_ggtt_testcase, name);
-+
-+static int xe_guc_mmio_send_recv_stub_ggtt(struct xe_guc *guc, const u32 *request,
-+					   u32 len, u32 *response_buf)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	const struct config_ggtt *c = test->param_value;
-+	u32 key;
-+
-+	if (c->ret)
-+		return c->ret;
-+
-+	KUNIT_ASSERT_EQ(test, FIELD_GET(GUC_HXG_REQUEST_MSG_0_ACTION, request[0]),
-+			GUC_ACTION_VF2GUC_QUERY_SINGLE_KLV);
-+	KUNIT_ASSERT_EQ(test, len, VF2GUC_QUERY_SINGLE_KLV_REQUEST_MSG_LEN);
-+	key = FIELD_GET(VF2GUC_QUERY_SINGLE_KLV_REQUEST_MSG_1_KEY, request[1]);
-+	KUNIT_ASSERT_TRUE(test,
-+			  key == GUC_KLV_VF_CFG_GGTT_START_KEY ||
-+			  key == GUC_KLV_VF_CFG_GGTT_SIZE_KEY);
-+
-+	response_buf[0] = FIELD_PREP(GUC_HXG_RESPONSE_MSG_0_DATA0,
-+				     sizeof(u64) / sizeof(u32));
-+	if (key == GUC_KLV_VF_CFG_GGTT_START_KEY) {
-+		response_buf[1] = lower_32_bits(c->query.start);
-+		response_buf[2] = upper_32_bits(c->query.start);
-+	} else if (key == GUC_KLV_VF_CFG_GGTT_SIZE_KEY) {
-+		response_buf[1] = lower_32_bits(c->query.size);
-+		response_buf[2] = upper_32_bits(c->query.size);
-+	}
-+
-+	return 0;
-+}
-+
-+static void xe_ggtt_shift_nodes_stub(struct xe_ggtt *ggtt, u64 new_start)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	const struct config_ggtt *c = test->param_value;
-+	struct xe_gt *gt = test->priv;
-+	u64 expected_start = ALIGN(c->query.start, vf_get_ggtt_alignment(gt));
-+
-+	KUNIT_EXPECT_EQ(test, new_start, expected_start);
-+}
-+
-+static void test_ggtt(struct kunit *test)
-+{
-+	const struct config_ggtt *c = test->param_value;
-+	struct xe_gt *gt = test->priv;
-+
-+	gt->tile->sriov.vf.self_config.ggtt_base = c->orig.start;
-+	gt->tile->sriov.vf.self_config.ggtt_size = c->orig.size;
-+
-+	kunit_activate_static_stub(test, xe_guc_mmio_send_recv,
-+				   xe_guc_mmio_send_recv_stub_ggtt);
-+	kunit_activate_static_stub(test, xe_ggtt_shift_nodes,
-+				   xe_ggtt_shift_nodes_stub);
-+	KUNIT_EXPECT_EQ(test, vf_get_ggtt_info(gt), c->expected_ret);
-+}
-+
-+struct config_mmio {
-+	struct {
-+		u32 length;
-+		u32 mbz;
-+		u32 data0;
-+		u32 data1;
-+	} response;
-+	u64 value;
-+	u64 value_len;
-+	u32 key;
-+	int expected_ret;
-+	int ret;
-+	const char *name;
-+};
-+
-+static const struct config_mmio guc_mmio_resp_testcase[] = {
-+	{
-+		.key = GUC_KLV_VF_CFG_NUM_CONTEXTS_KEY,
-+		.value = TEST_CTXS,
-+		.value_len = hxg_sizeof(u32),
-+		.response = {
-+			.length = hxg_sizeof(u32),
-+			.mbz = 0,
-+			.data0 = TEST_CTXS,
-+			.data1 = 0,
-+		},
-+		.expected_ret = 0,
-+		.name = "klv32_successful"
-+	},
-+	{
-+		.key = GUC_KLV_VF_CFG_NUM_CONTEXTS_KEY,
-+		.value = TEST_CTXS,
-+		.value_len = hxg_sizeof(u32),
-+		.response = {
-+			.length = hxg_sizeof(u32),
-+			.mbz = hxg_sizeof(u32),
-+			.data0 = TEST_CTXS,
-+			.data1 = 0,
-+		},
-+		.expected_ret = -EPROTO,
-+		.name = "klv32_proto_error"
-+	},
-+	{
-+		.key = GUC_KLV_VF_CFG_NUM_CONTEXTS_KEY,
-+		.value = TEST_CTXS,
-+		.value_len = hxg_sizeof(u32),
-+		.response = {
-+			.length = hxg_sizeof(u64),
-+			.mbz = 0,
-+			.data0 = TEST_CTXS,
-+			.data1 = 0,
-+		},
-+		.expected_ret = -EOVERFLOW,
-+		.name = "klv32_overflow"
-+	},
-+	{
-+		.key = GUC_KLV_VF_CFG_NUM_CONTEXTS_KEY,
-+		.value = TEST_CTXS,
-+		.value_len = hxg_sizeof(u32),
-+		.response = {
-+			.length = 0,
-+			.mbz = 0,
-+			.data0 = TEST_CTXS,
-+			.data1 = 0,
-+		},
-+		.expected_ret = -ENODATA,
-+		.name = "klv32_underflow"
-+	},
-+	{
-+		.key = GUC_KLV_VF_CFG_LMEM_SIZE_KEY,
-+		.value = TEST_VRAM,
-+		.value_len = hxg_sizeof(u64),
-+		.response = {
-+			.length = hxg_sizeof(u64),
-+			.mbz = 0,
-+			.data0 = lower_32_bits(TEST_VRAM),
-+			.data1 = upper_32_bits(TEST_VRAM),
-+		},
-+		.expected_ret = 0,
-+		.name = "klv64_successful"
-+	},
-+	{
-+		.key = GUC_KLV_VF_CFG_LMEM_SIZE_KEY,
-+		.value = TEST_VRAM,
-+		.value_len = hxg_sizeof(u64),
-+		.response = {
-+			.length = hxg_sizeof(u64),
-+			.mbz = hxg_sizeof(u32),
-+			.data0 = lower_32_bits(TEST_VRAM),
-+			.data1 = upper_32_bits(TEST_VRAM),
-+		},
-+		.expected_ret = -EPROTO,
-+		.name = "klv64_proto_error"
-+	},
-+	{
-+		.key = GUC_KLV_VF_CFG_LMEM_SIZE_KEY,
-+		.value = TEST_VRAM,
-+		.value_len = hxg_sizeof(u64),
-+		.response = {
-+			.length = hxg_sizeof(u128),
-+			.mbz = 0,
-+			.data0 = lower_32_bits(TEST_VRAM),
-+			.data1 = upper_32_bits(TEST_VRAM),
-+		},
-+		.expected_ret = -EOVERFLOW,
-+		.name = "klv64_overflow"
-+	},
-+	{
-+		.key = GUC_KLV_VF_CFG_LMEM_SIZE_KEY,
-+		.value = TEST_VRAM,
-+		.value_len = hxg_sizeof(u64),
-+		.response = {
-+			.length = 1,
-+			.mbz = 0,
-+			.data0 = lower_32_bits(TEST_VRAM),
-+			.data1 = upper_32_bits(TEST_VRAM),
-+		},
-+		.expected_ret = -ENODATA,
-+		.name = "klv64_underflow"
-+	},
-+};
-+
-+KUNIT_ARRAY_PARAM_DESC(guc_mmio_resp, guc_mmio_resp_testcase, name);
-+
-+static int xe_guc_mmio_send_recv_stub(struct xe_guc *guc, const u32 *request,
-+				      u32 len, u32 *response_buf)
-+{
-+	struct kunit *test = kunit_get_current_test();
-+	const struct config_mmio *c = test->param_value;
-+
-+	response_buf[0] =
-+		FIELD_PREP(VF2GUC_QUERY_SINGLE_KLV_RESPONSE_MSG_0_LENGTH, c->response.length) |
-+		FIELD_PREP(VF2GUC_QUERY_SINGLE_KLV_RESPONSE_MSG_0_MBZ, c->response.mbz);
-+	response_buf[1] = c->response.data0;
-+	response_buf[2] = c->response.data1;
-+
-+	return 0;
-+}
-+
-+static void test_guc_mmio(struct kunit *test)
-+{
-+	const struct config_mmio *c = test->param_value;
-+	struct xe_gt *gt = test->priv;
-+	struct xe_guc *guc = &gt->uc.guc;
-+	u32 value[2];
-+
-+	gt->sriov.vf.self_config.num_ctxs = TEST_CTXS;
-+	kunit_activate_static_stub(test, xe_guc_mmio_send_recv,
-+				   xe_guc_mmio_send_recv_stub);
-+	KUNIT_EXPECT_EQ(test,
-+			guc_action_query_single_klv(guc, c->key, value, c->value_len),
-+			c->expected_ret);
-+}
-+
-+static int vf_gt_config_test_init(struct kunit *test)
-+{
-+	struct xe_pci_fake_data fake = {
-+		.sriov_mode = XE_SRIOV_MODE_VF,
-+		.platform = XE_BATTLEMAGE, /* any random DGFX platform with SR-IOV */
-+		.subplatform = XE_SUBPLATFORM_NONE,
-+		.graphics_verx100 = 2001,
-+	};
-+	struct xe_device *xe;
-+	struct xe_gt *gt;
-+
-+	test->priv = &fake;
-+	xe_kunit_helper_xe_device_test_init(test);
-+
-+	xe = test->priv;
-+	KUNIT_ASSERT_TRUE(test, IS_SRIOV_VF(xe));
-+	KUNIT_ASSERT_TRUE(test, IS_DGFX(xe));
-+
-+	gt = xe_root_mmio_gt(xe);
-+	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, gt);
-+	test->priv = gt;
-+
-+	return 0;
-+}
-+
-+static struct kunit_case vf_gt_config_test_cases[] = {
-+	KUNIT_CASE_PARAM(test_ctxs, ctx_testcase_gen_params),
-+	KUNIT_CASE_PARAM(test_dbs, db_testcase_gen_params),
-+	KUNIT_CASE_PARAM(test_vram, vram_testcase_gen_params),
-+	KUNIT_CASE_PARAM(test_ggtt, ggtt_testcase_gen_params),
-+	KUNIT_CASE_PARAM(test_guc_mmio, guc_mmio_resp_gen_params),
-+	{}
-+};
-+
-+static struct kunit_suite vf_gt_config_suite = {
-+	.name = "vf_gt_config",
-+	.test_cases = vf_gt_config_test_cases,
-+	.init = vf_gt_config_test_init,
-+};
-+
-+kunit_test_suite(vf_gt_config_suite);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 08ed6ebcaa43..32160610d774 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -1709,3 +1709,7 @@ int xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt)
- 
- 	return atomic_read(&gt->sriov.vf.migration.fixups_complete_count);
- }
-+
-+#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
-+#include "tests/xe_gt_sriov_vf_kunit.c"
-+#endif
 -- 
-2.53.0
-
+Jani Nikula, Intel
