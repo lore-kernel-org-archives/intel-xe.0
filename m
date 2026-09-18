@@ -4,27 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE11DC982D2
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 06:10:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39D11C88E75
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 06:10:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFDBF10F188;
-	Fri, 18 Sep 2026 06:10:39 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E689C10F188;
- Fri, 18 Sep 2026 06:10:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/dp=3A_Disable_DC?=
- =?utf-8?q?5/6_before_AUX_programming?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id F338010F18F;
+	Fri, 18 Sep 2026 06:10:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YCIBr5hb";
+	dkim-atps=neutral
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B30F110F188;
+ Fri, 18 Sep 2026 06:10:57 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id E1687601EF;
+ Fri, 18 Sep 2026 06:10:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F3841F000FF;
+ Fri, 18 Sep 2026 06:10:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1789711856;
+ bh=9FUEUMacvov3pu6zhmq9Ryh4lb5uAtPwv0202Jv1LP0=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=YCIBr5hb6LVt34ymagthuIRlxQfHMkP9cBA6nQf019cnfUVPbOGihV457FRJdSZYV
+ eYmF7mVmNF8jRMSdOyI6zkNLBN/Zsuhxt08vHTLtC7LrpzqQqjJEOD8s2IjopP41D/
+ 8U3g2ijvPvh6mwF0klXfJBuHwIMqghMoUmEEgQ/ygtjipEPKBH4hNzRYmnMwkCcs89
+ jgClv3Z5nnlVrZoGr9PLy7SmUBtdDh9ujL/bEhukup6vwxxiRs9uqcgGQlfzZ2QGwT
+ m6D8zXyaFG7fMpzdGIN5KTWyYT4C2uF7m2/COQqe8yvyGfBJDDbVsWss8SeYTWhENu
+ CtGB+1MgQ2N9g==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] drm/i915/dp: Disable DC5/6 before AUX programming
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 18 Sep 2026 06:10:38 -0000
-Message-ID: <178971183893.180302.10062519737928038785@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260918060426.1162123-1-suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 In-Reply-To: <20260918060426.1162123-1-suraj.kandpal@intel.com>
+References: <20260918060426.1162123-1-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 18 Sep 2026 06:10:55 +0000
+Message-Id: <20260918061056.6F3841F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,49 +51,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] drm/i915/dp: missing 'if' keyword before HAS_LT_PHY() causing build=
+ error
+--
 
-Series: drm/i915/dp: Disable DC5/6 before AUX programming
-URL   : https://patchwork.freedesktop.org/series/174474/
-State : warning
-
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-d875049d2b299159a272bd5151994970cdcd1e31
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 50140f34665a7148847f7a63c553bed9e5ec0dde
+commit 50d9f2e05d7a2031877229580c7c2591f8281933
 Author: Suraj Kandpal <suraj.kandpal@intel.com>
-Date:   Fri Sep 18 11:34:26 2026 +0530
 
-    drm/i915/dp: Disable DC5/6 before AUX programming
-    
-    From Xe2Lpd we removed the step to disable DC5/6 because as per Bspec
-    for SNPS PHY Aux will be always up. But from Xe3p LT PHY was introduced
-    which powers down the PHY. Which means we need to make sure Step 4
-    of AUX Programming sequence is honored.
-    Disable Dc5/6 when programming AUX.
-    
-    Bspec: 68851, 68967
-    Co-developed-by: Ramanaidu Naladala <ramanaidu.naladala@intel.com>
-    Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-+ /mt/dim checkpatch 15f7465765dc45d58738fc05a1c11a785e709c05 drm-intel
-50140f34665a drm/i915/dp: Disable DC5/6 before AUX programming
--:13: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match
-#13: 
-Co-developed-by: Ramanaidu Naladala <ramanaidu.naladala@intel.com>
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+drm/i915/dp: Disable DC5/6 before AUX programming
 
-total: 0 errors, 1 warnings, 0 checks, 25 lines checked
+This commit disables DC5/6 before AUX programming for platforms with LT PHY.
+It ensures that step 4 of the AUX programming sequence is honored since the
+LT PHY powers down the PHY.
 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/dr=
+m/i915/display/intel_dp_aux.c
+> index 3cb07b0a901cf..350dac72c9961 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> @@ -286,6 +287,9 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+> =20
+>  	aux_wakeref =3D intel_display_power_get(display, aux_domain);
+> =20
+> +	(HAS_LT_PHY(display))
+> +		dc_off_wakeref =3D intel_display_power_get(display, POWER_DOMAIN_DC_OF=
+F);
+> +
 
+[Severity: Low]
+Is there a missing 'if' keyword here in intel_dp_aux_xfer()? This appears to
+introduce a syntax error by having the expression (HAS_LT_PHY(display))
+adjacent to the assignment without a control flow statement, which will cau=
+se
+a build failure.
+
+>  	/*
+>  	 * The PPS state needs to be locked for:
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260918060426.1162=
+123-1-suraj.kandpal@intel.com?part=3D1
