@@ -4,150 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15100C982D7
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 21:28:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 414C7C982D8
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 21:53:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E76A10E177;
-	Fri, 18 Sep 2026 21:28:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E0EE10E22B;
+	Fri, 18 Sep 2026 21:53:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U0II4Dmt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VU2ZKgJk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41D8610E177
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 21:28:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CA4310E22B
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 21:53:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789766911; x=1821302911;
+ t=1789768435; x=1821304435;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=4OsI6RzKpMr5p9v71Fr7Ic+7jhKbHD2lOMKVRGI8pR8=;
- b=U0II4Dmt0Hg+M95FZcZ4qTRH0d5f/dAEsQ2NUUdDsp4FUvb+1he/iwZO
- QsEtgzbeovfkkJCP2Mt12twDIv3ICaQIJPPz/gNKOHaMV7JKOeRWyK2Z9
- xDyQzEzY8HIYV0xQsytqbEQu2Zz/Fg1Nf0X9CNs9o3kUhKqBaNFmJMM47
- GFocSXzqhSt4z9L2wufFuOp1bdzYyQ1YDOhDKZGdY+F8tDti+ASV2R1RO
- aVYboEF7v4biSCWB/pa4qPRcxLdlqBH8MHQjJp2Qbi5Qt/WC8CWPprFjt
- FsYVtzX/ld0YhzeFneQsI2FZhSKXktoD8E7p6nZt8bDoRhacak3WN2xh3 A==;
-X-CSE-ConnectionGUID: fq5HYPNKRI+Va38Tjq5K8A==
-X-CSE-MsgGUID: lsiHByk0SOiZIBwIghI6aw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11909"; a="810750"
-X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; 
-   d="scan'208";a="810750"
+ bh=U9C4XFFTg9RzeNaaBmXCkra9HzjHMUq71BkKSudzMqY=;
+ b=VU2ZKgJk8OGr5cl/6L9tA04/ymVXTMfCm2Mg0/wY7XNWRs42LzbFBXRU
+ z8jyz0If34+jWWycTg6J1kQCbjl52dWM/MmlpIPYThgr3CprpapovXDLg
+ 4ZQ9ir/njRIgJg2UmvlRi/7gVxwlCcPZJtNjvccAppKD5lvEOA416vTnV
+ DRpY+dANSECVKKZZdpQ1JUGqlvsppLxNgSgcMGwNPOZjX9Ox4zwOqaGDQ
+ xfxB3E59OX8S2/VZ2ZCwF+VoJTDmLrntPcoIoh/vbb/0TdSmAmJAaZtof
+ t9Gsp9O38f4PECF2xWjnNh9WEor/bFLqoNimnNxaE+QLBGpIlLL1vwPcW g==;
+X-CSE-ConnectionGUID: wIAMTuNIRFyAUcGwNgxJJw==
+X-CSE-MsgGUID: VZozA1QQTminS8L7PMKJug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11909"; a="115835825"
+X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; d="scan'208";a="115835825"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by fmvoesa114.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2026 14:28:31 -0700
-X-CSE-ConnectionGUID: 3SDzTM8QREmMiXTBwYz0cQ==
-X-CSE-MsgGUID: TFEZRECBT7SHyg8OUzuBuA==
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2026 14:53:55 -0700
+X-CSE-ConnectionGUID: 7zFKjvGkSuaeIzfp8mvgyg==
+X-CSE-MsgGUID: jn+4mXRJTa2Ka9yaRmyBCg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; 
-   d="scan'208";a="3058413"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+   d="scan'208";a="3065600"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
  by fmviesa013.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2026 14:28:30 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 18 Sep 2026 14:53:55 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 18 Sep 2026 14:28:30 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.46; Fri, 18 Sep 2026 14:53:54 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Fri, 18 Sep 2026 14:28:30 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.20) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Fri, 18 Sep 2026 14:53:54 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.66)
+ by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 18 Sep 2026 14:28:30 -0700
+ 15.2.2562.46; Fri, 18 Sep 2026 14:53:54 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BoVuFlkZNzRpFSgtLY+1XKqT7kCirEh6uF05sW/xjF5YhTPR0M0y0BI8p2kw/muair6XmF+3srtt/7LZYVxNoHj979jKPCwhtLPnhPmzuZ4BxU86HqouvvZ4jKiiOFVJ5hJXwbONLvHMCQyiJnEYH589IgmE7bXGo3857nJcHYMNodVhR9SSX9r7iAC3xYaFnHIfpvARTcsWPifx8DM2uJha0NnQzvLuayTHqi98QJBCndUOucioZwFXSHC0wGaS4iTimgpHzSxUOYQSw6hdxst88PibX3oUG2J3uscvjxUd7x1pyktW9+eBK41Iab1/JorgbEqYhRI1TVVByQ+0ZQ==
+ b=VxowU4bAP64flf+DjCPHeqcEe4l1H0XtE/PJH15VqKRRpBW9gm2MOb7y6nrXOXRg10F7D+et5Pzw/e+KbbHFHCm38HcU/abUjKU2rkKBzX2hWhDgeIdSGaTFL1pAzprHs4uES0qNqNqE3ZcN/MDUqNQCIX4Yre794u/zSyFX0qOqzmwD3VslA283KgGEOZXYk5Zd84qLPlr4uBL6NH6XcSd8X5tHl0pZ2tmNtFDHjwjUciAZ7FJcRmHGLcczvzUbeDpf1BPnwy4mA//ZHl4t7hpK0kTnQ/BE7KyCARBV9ux44L8wMXeb/LuIYTDWHtvJTDUNqVZ2ucN9X+FUit9PUw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MKrLp9RCjv5XhKy67aTHNylLkF6A0qeMXCLgr/xPVsc=;
- b=LSW1r68IgGlRCVcR/CeAzX4ZLFLwsy/huW11KnUuJXhEoilwFQ+Wo6DX9sdrrB+ui4DRcCIJ+I90/asKLEnZ3HxVAyQgIkzrnIE2GPjbJx3m1FPMzELqbCkg0E/Hh20SxqxKv3Vrywy2i/1ER6kOKQG4RmrZI259ys/1sg9H1OUm9cQ9IsnxQIPyjWyV79s6vSDWV7Vp9STnQAEbUi+zfzQe5VQRzABSlRz8dG78zLIJKJ1H0Z7QZZO4+8Wycswmw2trWQQv0b2tv37GJ5GJm0cZ8tmJ3ml66sjM0vkGp19vVGlPtGgU6rQd8gPSc6QK4LImsL5WwTN+cqNxJxMkng==
+ bh=bjxXYqOG0TA3A6WAEGUsEayuIAYbsAyshfkFHwVsAUo=;
+ b=odEEATtBeDK+Fro3l6rcedoN4fNtNujAWIe+CA2CnIavs45L57rkxw4qE1pFdpGBmzZKWQXPB4Yz6KR3yAj/y/oUFCHis6pp8Uir82oSbkUWwQzvrAihQHJ+xQYkRpZtLtMGgQEw5SpobhZLTzfwENsYRgI/3tOxYCqT6EqlQVpjFeNxJ1y/wbkO+UV+gv5U4/zgYN/QlK55pB+9iI5odNPuERVkMSr+Z/fUORLlsnMGSM1FTG1NLwqxMiXQENHBAgDtwkriCIU6NDKPL0TNr38CixE0YWTC60CmIvnFU7vPW2hm12I10n0dIktak2OiDhIvxj+r/IoCG1dZZm73dw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
- by IA4PR11MB8892.namprd11.prod.outlook.com (2603:10b6:208:55c::10)
+ by SN7PR11MB8264.namprd11.prod.outlook.com (2603:10b6:806:26c::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.428.13; Fri, 18 Sep
- 2026 21:28:23 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.428.11; Fri, 18 Sep
+ 2026 21:53:50 +0000
 Received: from CO1PR11MB4787.namprd11.prod.outlook.com
  ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
  ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0428.011; Fri, 18 Sep 2026
- 21:28:21 +0000
-Date: Fri, 18 Sep 2026 14:28:19 -0700
+ 21:53:50 +0000
+Date: Fri, 18 Sep 2026 14:53:48 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: <sashiko-reviews@lists.linux.dev>
-CC: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- <intel-xe@lists.freedesktop.org>
-Subject: Re: [RFC 4/4] drm/xe: Bump prefetch BO LRU for already-valid ranges
-Message-ID: <aq2s87pHUQarNmFa@gsse-cloud1.jf.intel.com>
-References: <20260916112828.2528881-6-himal.prasad.ghimiray@intel.com>
- <20260916112828.2528881-10-himal.prasad.ghimiray@intel.com>
- <20260916113301.6B98D1F000FF@smtp.kernel.org>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>,
+ <stable@vger.kernel.org>
+Subject: Re: [PATCH] drm/xe/vm: nuke PTs only after unlinking contested VMAs
+Message-ID: <aq2y7LEdPDqFWTql@gsse-cloud1.jf.intel.com>
+References: <20260918131034.598078-2-matthew.auld@intel.com>
+ <8c1744e4012ab5b30d1f26f8129d4944da1dcfa3.camel@linux.intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260916113301.6B98D1F000FF@smtp.kernel.org>
-X-ClientProxiedBy: SJ0PR13CA0066.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::11) To CO1PR11MB4787.namprd11.prod.outlook.com
+In-Reply-To: <8c1744e4012ab5b30d1f26f8129d4944da1dcfa3.camel@linux.intel.com>
+X-ClientProxiedBy: SJ0PR03CA0260.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a0::25) To CO1PR11MB4787.namprd11.prod.outlook.com
  (2603:10b6:303:95::23)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|IA4PR11MB8892:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1ccd688b-a839-496a-5e10-08df15cbc383
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|SN7PR11MB8264:EE_
+X-MS-Office365-Filtering-Correlation-Id: 24ce6c69-34d8-432d-34e1-08df15cf52ae
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|23010399003|11063799006|18002099003|22082099003|10067099003|56012099006|4143699003;
-X-Microsoft-Antispam-Message-Info: OoiXaiY3G7di5MHuShW2P3ZT4Td1Mr26lctIZfiK0H25rl8AqglwcwYzYBoJH5nGoGaL4dcs9O6cqYt+yRT5bULoJLCcAYkF3ywAVf86sIObDQjxu7c81jY5oF+ilKwq3MuVGLy+D1aw3fRtZknWNEuditT2ySOU4eQw1not6Ok4NJCi/wkMFzPL4lMQ0l8pmtceBaonEu7kVeERVSnsraf80iTPSMCm9q/GtquxGV/vWthvzlWq4AUbRVu2/hgiI63kM3it90Qr7pBrdnHAzbEDbJ/+7VK96J4f0lABBwMs4rX3bG+F2aNXgNvxQlLfhLIn4U+GOMVLFOM0NCuhtR/yC56dJILX1TsgYBsN8PHe8viyupBmiPnfaD0VuGFqPYA8sJNcLTX6s+BuxwxN2kaGlPviyDkjwpD3ZlT//zaWNNTWbbETem7fFB+vq97n8DPizt2gDu9oZhUJguXAHVGwW6r8F01xDj4/QirO90wyBsPk7fn2Vz0eTeGf9nElkwoWwdUeJQChkIrghrCQh4Icerq4aXjhIglbQyIc1R+liL2gHIteiS0w2y54bCTXGeKSVpfkFIvkn3VWzd8s1mOFkfPiHFN3oHdTb8ryGxw=
+ ARA:13230040|376014|366016|23010399003|1800799024|10067099003|6133799003|22082099003|18002099003|11063799006|5023799004|56012099006|4143699003;
+X-Microsoft-Antispam-Message-Info: usGBnN0pDFsfZRChLnUrquyQicUdWFaXiF16gjo51mIn14KrxYA00Q0UYKMbtTXm59K9RZnH1vQRhs7HVuk4RVICis+CAzc4hg5YJjvIRdGCJsq8EXlVMWIKp6CCzD2G5ae7Yf1WiHjTyZaOdAkr79+kQiAn3P8yEo7rWCi7XbJziXiiVAZLXpE6x801wKqRUdXTRtHnXFqLY7vjsX6WDsZz/+3ArdLSt2FS85KN6gP0l5J3CuvA75Wg7SzvFTulJJvIoPM3S8iDPWIqw/DLTECL9FkAbgid9DV1ZbCRHyCudmq01e62NazsxiIt2R6dI80sXT9RYmfqyAK5/dQ8NZiDI/+ciCuzXlqgl2ATZzOZeJ7Y+C2lMqwwxFRKWrPVA1wBfTnHTrGSTROR0olPVleFAl0z6vqDeTB/jSBZ06hl1uKRujNgWgcv14esDKF2xLOeldOPbZ/WJiDSHqm6WjYWFGc9wgdjIBjp6iWCmdnjuBwY+4LxMa13atHLdF+oNAixAOs8IM/7/Hr+Ey+6rarK5rEDTEP8IGw3uSHBTWoCY7WGkHneB/cxavrSBRxnoy9dKYEpUWSK/tYQJNKuA0VcMf3xZRVwQk+CPP/3TRuNJSrjJpIlMtseDj1iDUXZ
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(23010399003)(11063799006)(18002099003)(22082099003)(10067099003)(56012099006)(4143699003);
+ SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(10067099003)(6133799003)(22082099003)(18002099003)(11063799006)(5023799004)(56012099006)(4143699003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?aiS3iAGeht9O194fmH3+fDUOyTS5RKOX+jncjGcsU3Xa5DvDZRc9RRMWQ9?=
- =?iso-8859-1?Q?mT8GBU5/PMdMpdSbA9n8xFsaqy5oIGnL1eitU0g8zYJliqVGXCFkMdOwuK?=
- =?iso-8859-1?Q?Gtoqrcw9U5JGRb5Aav+XPhhdAS8XKDHjAjsGgyAUA+2dB4YGdo47WxmbyY?=
- =?iso-8859-1?Q?TFd7RHAU2lhQXfOD65sl1rZNguBzqPRJ64WZZkqwITk5WN4Qfw8U39cKXh?=
- =?iso-8859-1?Q?wJRF23oZDm0E15IxHjg0yKv9QXkU54n2lbgCym1S7maPUHUNVQIdpjCabj?=
- =?iso-8859-1?Q?SJYB1tKmQ15GQeyVsopa0/ob67K0qC4vUukCTpX4jS7+tPNit9/JufAxu6?=
- =?iso-8859-1?Q?XNDkGld464sSEz72pgXvSPhUDMYnampqJ6YdPT18hnhrzYK3cS+8ZCFfxq?=
- =?iso-8859-1?Q?dJuLNzTY83f6SZYinhJCYTH0a9uat4WIQps8ET3uhNI4XdpkxuRjXIqY15?=
- =?iso-8859-1?Q?1iXLA9miIVo98qT6JBVXniwT+zTGhH2v7MoPlBKuI+kjRZ9XKgND+PSvee?=
- =?iso-8859-1?Q?0ZtBDb+sfTur/K3kXHUyRE2ffHDSeT7oeHVwY4o7P2ucdcnl1H33YY/nLA?=
- =?iso-8859-1?Q?NNIXUEhy9r6X8qpr0J25xAo6I6rb8h3xu4krqRDx28VUyy8hJDHl3DTr6h?=
- =?iso-8859-1?Q?1nmFPG4G3iMZQ6rkyabPWyyP+tYmph6CpzxwhnRFhaM1AuPnOP6M73sFrY?=
- =?iso-8859-1?Q?E/kXJoD0yTQjjH861McL5NyT0SLDaEvVYD3EaR/ynDvuLIOqZcitrrFOnO?=
- =?iso-8859-1?Q?FtQ0/d82Z85Ca5XtTtwh/0D/j8YHr13w1ayYT/BmptEbj3tNgw2r9Tn9p7?=
- =?iso-8859-1?Q?pX2ESBbvH17/amPcAzBYmYSHuN4vdj/GyU5cU55DggTrw/2rCvVpuylJlb?=
- =?iso-8859-1?Q?QI8+R6AD5oFBB0jHs4fMivnLsnjESyKQHI669aVKm1aRiUl3E6vtRgWQ0D?=
- =?iso-8859-1?Q?DWWjQpDvP4dJohGP1cfcjPeTY+esnIAP947zHc3Y3eUMB9M76tVl3CnV+0?=
- =?iso-8859-1?Q?MK36z/BgBBUOYhhJ7igGXDQBR5Ss3RIm+4PJDKdubdd3u3P6OwRuNM3znG?=
- =?iso-8859-1?Q?9kIAQJDMYtZxyVz0x/99JzN1gZA+Pk1ypJhcuwW4yN8p+50GA8iLF9ErLQ?=
- =?iso-8859-1?Q?uoPrI7RJ+ku7AQ0ZkgcjhC4vpZ/CznDtiD+MJ79/lRus0EvSmFZ5WEg613?=
- =?iso-8859-1?Q?lrStlbjbpi2ACQawU+zuZGAPWm5Vb6EoRqScNqEnpbAhpLmqFXyy/9L/2C?=
- =?iso-8859-1?Q?dptWZtZHX/YUIS/wB0aeFDH2pHfToqX89C94tAIskCiqBQ56Uv0HzJktqp?=
- =?iso-8859-1?Q?4qAvlT0RZWLRzi0QofbMccVMs2aVtYgT2k8ReKPohDQwsi9Sn+vz++pyQf?=
- =?iso-8859-1?Q?gtIDmstc6AfYvZbe0e3VSh2SQQVY0boHiu3vlmmaNBoVL0AroSKFw676VQ?=
- =?iso-8859-1?Q?aIUkb1+z4A7zLCak1zFICCaN7aWyUpm/KOzMYbMAKsbI39Lf1BFSRTYtby?=
- =?iso-8859-1?Q?lCxtomVD1g7iMNqhid/4UHXWJGKxzs8JPfMcvEFJgdWzfTG5Rib8GpUDsQ?=
- =?iso-8859-1?Q?cEOhqyn4rZ/J0rLk9QD5p/fgMmMnuxCk0xtQjNy1oH4CLMtNHcaZb6G4A5?=
- =?iso-8859-1?Q?ukJ+z8/D8wk/dDT8LmZKGB722A8/ctd4WvmbLf/W4poipGIycjH7Jb2BxW?=
- =?iso-8859-1?Q?VOWkjB0GjmmsVgwKc5IoEFN2YjgYVbMqjTJucndy3nNpNig2STlkKhSDd+?=
- =?iso-8859-1?Q?Ql9n1K1IXEhmwRwd0o8lBnDMYwKDF9FUfxVrTOVZst+rkwirZlPELeA5wX?=
- =?iso-8859-1?Q?PJM7aXfpQA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: l/o/03SGELW/+8gINQB9v8fC/RNp3DlAqxkNE3UGS2i3NhlF5eK5I/eyrm3flGSgoM6QpeLDkQLn9dZqrwIDiFfHHtN+2lfReciuk7tdyzEfPbuIR095r/GTG2ZXbyqCvk4Wag4SIz5SrJJXHus8/xx8MWDF+oN1ozWotP0BlbCg3yOmbrfgA18IzWaKQIcSchRi+tNO2j889UfotTAEqILJ7EWUrzLNqj4S9iC8m00zkI30QJKMyDHXqWACFrp2rrJPlTbK0Nmab6BMd+c/M+WAjv1uBJOytmfffS8huvI2qGwfYdLpAgSoIz2WhtQC9lR0D7Ot8udmwVamLGNEXA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ccd688b-a839-496a-5e10-08df15cbc383
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?XzNS45SGlT4cojIR3MBI8AMWvl4RnliLBD7Ktdf2D9ZOWIHuB+cS+3+5jX?=
+ =?iso-8859-1?Q?DQJqUR/tpqLeArftCIKeViUQrNhNjiwge2xAUw95EiX9lLZxTfjBwgytCs?=
+ =?iso-8859-1?Q?pMwkW8KhIpNM4aC1EcjWeYcoUF++HycsptkPItHlqhBsqlmZRvyfW/nzUI?=
+ =?iso-8859-1?Q?j7gbI7va39c21H/fhYe7oWLIIWPO/a9MGOcnthXouIIQoR5L1awwNVmL7f?=
+ =?iso-8859-1?Q?NUrn7+FvUkwBVuOfT+PxjmI/5kYIifT3+T98dk32F7pMw2Jp0zwTDqkaET?=
+ =?iso-8859-1?Q?zFX1X3bDUzlr9o2bfvcKtKHSnZzoJqYP5slQTXK9HaEdT0TUYW3OWyQJkr?=
+ =?iso-8859-1?Q?Efe+EEHM+WktBDAGKFAvTYkcTonEy7n3aXTOa8iddW5/FWqivHrXFjE5lb?=
+ =?iso-8859-1?Q?RiKqITv/sgrEg1ldk1GRHkod38hAtA1SQvYVwIDXY21g4Lm3nlyoswtG4u?=
+ =?iso-8859-1?Q?5kWckbOohHYmg2oDZXVRBXw+FDj+eNu1ChWMle8A33d24cEtsUQtbLfmjq?=
+ =?iso-8859-1?Q?xeRVESsxAM3P8uxEA97pKlVPqQAHY/wWdtsHVZDZkxYgUwm8B0hA46bQ0U?=
+ =?iso-8859-1?Q?SsGX5GaAWXECHMmJj+LNzvfaPV6dN7a67xY3I0fiv1pPhSMOOGdtXleoLp?=
+ =?iso-8859-1?Q?iv5vkiRH6e5LQcnh6ra4okEYWZQdlG5+UflByM8QKBobST4gc8kyUYG6bT?=
+ =?iso-8859-1?Q?c3yrqEWqGBQPijW15DBS/x3Q5OFvi3YLvJB6ZYx+d6Q0jaarN6eB0ghzYv?=
+ =?iso-8859-1?Q?9fupdF4Vntjlx0u7lGkHzkmi59+hw25SoV4uxSOzksdMYVZb1urVdNQbwm?=
+ =?iso-8859-1?Q?CxKFZlWSWegwQEchz1ZjnRUsN7Nkz5cTfentIEjg/9IXKHTZCiCXx8kiQN?=
+ =?iso-8859-1?Q?hbI6j+qmZUsKpN/32NIxdHqvXlNelw6GTF/T/bNCNCmUGbjb/MvZ7C81Ip?=
+ =?iso-8859-1?Q?sYyJtrm5z3ctFmg0c3ugOTO7ElDcEF8Jn5G/Vy08vjX9T9Fa6v5yGXkZ+g?=
+ =?iso-8859-1?Q?5RY4Mhr23ghvyqEWFU7WVjbTcqNaNK6dY1n8CBOB4BmTo1wUVKXFJPpubU?=
+ =?iso-8859-1?Q?SEaeiNIh9rZZRvf7bwwW+i71ZyJYZlglVR1nH6j/AgFbb5K5Bw2pwCH/1l?=
+ =?iso-8859-1?Q?QysmeTWzBUF9Ozqcv8a+j73JVms89FxrQ4V+6oLAXaczaX3oGsnAXUpq3G?=
+ =?iso-8859-1?Q?EivQyGrLMwcpZzHFjXSV4tI8lpmPabNuAvQL29vobXcgOCZitCBNG6Wg31?=
+ =?iso-8859-1?Q?N6EpglyVBDSMb0wbJ2+OUfrCOfEfbiMTp44w6rI5B4U7Zv/xPJzywh8Qqe?=
+ =?iso-8859-1?Q?hmvAhlGf5TclzYyFj/shFXKdOIlw6qNsTVNu+ntkpMT5gqIcunnteapVEX?=
+ =?iso-8859-1?Q?dpxKHnxAb7ZmCKO5U0ZhOcpRTSJVQ7xHkrpwHAnAbHTtDHbI0cpgtSWTfr?=
+ =?iso-8859-1?Q?g93LPbiGIH7PEAKAZ7vCAQimPcL3qcSGxD2WcOgF9f3Iz6Z8mAPms2vGmw?=
+ =?iso-8859-1?Q?8wvGxTc4bByUtovD0AXAR37eUNkAx7H84GQvBVEDNJ7rl1McCGVE3zLD1K?=
+ =?iso-8859-1?Q?Ol//KvQHLI+nCFg/cf/xXT8TAui8/eXhqEDbw9r5Wja0a/WTGsseGtHcUo?=
+ =?iso-8859-1?Q?scGCiv/FjDAh5uR6X3CNmvPkJwBP5qSu1sCXQh5Dq7obiNOAntb3Ef9MvU?=
+ =?iso-8859-1?Q?+qKASVlYNrdUs90rlrUAi2WziNFostwXNz6jvWIbqdk5ceqxOPfht4M6gq?=
+ =?iso-8859-1?Q?wuBiFnxI28ID/07Z4fHfjzVWhWsP6uVlzCAXghkVRk0fsSC0O1ZU/a3j3c?=
+ =?iso-8859-1?Q?SWSN32cxFw=3D=3D?=
+X-Exchange-RoutingPolicyChecked: ds/RtCORXeLpfFMYZK4kiuduVYGFLDzj8HRM/A8dAJpc1y30L6EsMTyo4ruHMFAnqCX1tcxNnsKZjgzsPykcUYdVZacBpkU8whBenT4esPSw0GENvDfWuvVPVhw4zFIAooM1g6owREjMZJoUC5pHhaML++B4wUOqxSvCqr33DrKTUANY76Ml7xhxtEHmHG/fp7RGFODbnMKklZ1PAboW7JlaPJ3ux/M7v+RnDkV2EZsQgxEFU3HFri8GzdH+VLoEuNO2krrspgXtoEAkqMCON0CE3GORgwTRNZj1pZdr93NZDAWK9sjY4bJaFSRO3qAVCXnp8G4q6tfspV2U2SXV4w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24ce6c69-34d8-432d-34e1-08df15cf52ae
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2026 21:28:21.4071 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2026 21:53:50.1286 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RH85iNwNxASmMa2G4lcEz+BA1CwrHjGSI3H/4iXuS0Pitvl9boxs0otNLGxf1ypCY4RyAxbIkI2RirtuVroLjQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB8892
+X-MS-Exchange-CrossTenant-UserPrincipalName: azLbZdYZkoEOTR4hB4/EPt2/gvelZNLFe9lT2OOuw8svyIuYxacFTTFZzYTK8j03E7VxumaGF2TQ3bffzyyHbA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB8264
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -163,66 +161,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 16, 2026 at 11:33:01AM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] drm/xe: memory leak of svm_range on prefetch_lru_bump failure
-> --
+On Fri, Sep 18, 2026 at 04:35:43PM +0200, Thomas Hellström wrote:
+> On Fri, 2026-09-18 at 14:10 +0100, Matthew Auld wrote:
+> > In xe_vm_close_and_put(), external-BO VMAs are queued on the
+> > contested
+> > list for deferred destruction via xe_vma_destroy_unlocked(). However,
+> > xe_vm_pt_destroy() was previously invoked before processing contested
+> > VMAs, destroying vm->pt_root while those VMAs were still linked to
+> > their
+> > respective buffer objects (vm_bo->list.gpuva).
+> > 
+> > If a concurrent thread evicts one of those shared buffer objects,
+> > xe_bo_trigger_rebind() holding only bo->resv walks the BO's VMAs and,
+> > in
+> > fault mode, calls xe_vm_invalidate_vma() -> xe_pt_zap_ptes(). Because
+> > vm->pt_root[tile->id] is already NULL, dereferencing pt->level causes
+> > a
+> > NULL ptr deref.
+> > 
+> > Fix this by deferring xe_vm_free_scratch() and xe_vm_pt_destroy()
+> > until
+> > after all contested VMAs have been unlinked and destroyed.
+> > 
+> > User is reporting hitting a NULL ptr deref in xe_pt_zap_ptes(), which
+> > could be explained by this race.
+> > 
+> > Assisted-by: LLM
+> > Fixes: b06d47be7c83 ("drm/xe: Port Xe to GPUVA")
+> > Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9290
+> > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > Cc: Matthew Brost <matthew.brost@intel.com>
+> > Cc: <stable@vger.kernel.org> # v6.12+
 > 
-> commit 09ec19c469b99c340c07a04780a85f997af72901
-> Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 > 
-> drm/xe: Bump prefetch BO LRU for already-valid ranges
+
+I actually had a similar fix here [1] but I believe I missed the scratch
+part.
+
+Glad to see this fix getting in:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+[1] https://patchwork.freedesktop.org/patch/738642/?series=170045&rev=1
+
 > 
-> This commit introduces xe_svm_range_prefetch_lru_bump to re-fault CPU pages
-> without touching DMA mappings and move backing BOs to the LRU tail for
-> already-valid prefetch ranges.
-> 
+> > ---
+> >  drivers/gpu/drm/xe/xe_vm.c | 21 +++++++++------------
+> >  1 file changed, 9 insertions(+), 12 deletions(-)
+> > 
 > > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> > index fe9ccaa129122..948060a702470 100644
+> > index 17dc4debe7c1..390da884c727 100644
 > > --- a/drivers/gpu/drm/xe/xe_vm.c
 > > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> 
-> [ ... ]
-> 
-> > @@ -2583,6 +2583,15 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
-> >  						  dpagemap, &valid_pages)) {
-> >  				xe_svm_range_debug(svm_range, "PREFETCH - RANGE IS VALID");
-> >  				xe_assert(vm->xe, valid_pages);
+> > @@ -1979,21 +1979,13 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+> >  		vma->gpuva.flags |= XE_VMA_DESTROYED;
+> >  	}
+> >  
+> > -	/*
+> > -	 * All vm operations will add shared fences to resv.
+> > -	 * The only exception is eviction for a shared object,
+> > -	 * but even so, the unbind when evicted would still
+> > -	 * install a fence to resv. Hence it's safe to
+> > -	 * destroy the pagetables immediately.
+> > -	 */
+> > -	xe_vm_free_scratch(vm);
+> > -	xe_vm_pt_destroy(vm);
+> >  	xe_vm_unlock(vm);
+> >  
+> >  	/*
+> > -	 * VM is now dead, cannot re-add nodes to vm->vmas if it's
+> > NULL
+> > -	 * Since we hold a refcount to the bo, we can remove and
+> > free
+> > -	 * the members safely without locking.
+> > +	 * Unlink and destroy all contested external-BO VMAs before
+> > destroying
+> > +	 * the page tables. Otherwise, concurrent eviction holding
+> > only bo->resv
+> > +	 * can walk the BO's VMAs and attempt to invalidate/zap page
+> > tables that
+> > +	 * have already been freed.
+> >  	 */
+> >  	list_for_each_entry_safe(vma, next_vma, &contested,
+> >  				 combined_links.destroy) {
+> > @@ -2001,6 +1993,11 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+> >  		xe_vma_destroy_unlocked(vma);
+> >  	}
+> >  
+> > +	xe_vm_lock(vm, false);
+> > +	xe_vm_free_scratch(vm);
+> > +	xe_vm_pt_destroy(vm);
+> > +	xe_vm_unlock(vm);
 > > +
-> > +				if (dpagemap) {
-> > +					err = xe_svm_range_prefetch_lru_bump(vm, vma,
-> > +									     svm_range,
-
-How about we just make xe_svm_range_prefetch_lru_bump non-failable? All
-prefetching is fundamentally an eager optimization: we hope it succeeds,
-but if it races, oh well, a fault will fix it. I think the LRU bump fits
-that mindset as well.
-
-Matt
-
-> > +									     dpagemap);
-> > +					if (err)
-> > +						goto unwind_prefetch_ops;
-> 
-> [Severity: Medium]
-> Does this code leak the svm_range?
-> 
-> During a VM_BIND ioctl with prefetch, xe_svm_range_find_or_insert() returns
-> an svm_range with an incremented reference count. If 
-> xe_svm_range_prefetch_lru_bump() fails here, we jump to unwind_prefetch_ops.
-> 
-> Because this error path is taken before the svm_range is tracked in the
-> op->prefetch_range.range xarray, the cleanup routine
-> xe_svm_prefetch_gpuva_ops_fini() will not know about it and will not free it.
-> 
-> Should this error path call xe_svm_range_put(svm_range) before jumping to
-> unwind_prefetch_ops to avoid leaking the reference?
-> 
-> > +				}
-> > +
-> >  				need_put = true;
-> >  				goto check_next_range;
-> >  			}
-> 
-> -- 
-> Sashiko AI review · https://sashiko.dev/#/patchset/20260916112828.2528881-6-himal.prasad.ghimiray@intel.com?part=4
+> >  	xe_svm_fini(vm);
+> >  
+> >  	up_write(&vm->lock);
