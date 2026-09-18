@@ -4,43 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6DEDC982D8
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 13:41:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D7F3C982D8
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 13:58:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98BB210E8C9;
-	Fri, 18 Sep 2026 13:41:15 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LFkID4O+";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01C9810E8C9
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 13:41:13 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 3A692601EF;
- Fri, 18 Sep 2026 13:41:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAEFC1F000FF;
- Fri, 18 Sep 2026 13:41:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789738872;
- bh=pqHaC7Nn5GDiY6xlvevtxRnv2t2YuJr5PGeIntFRxYg=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=LFkID4O+D1qPs41qzgExcMi+GbKEmC3hDOJ+/sujHOVKUamChf8FnyBYU78kzJ3BO
- 0Rx16uM6mTSb402fW3ec9REqLGlPXjcD9lIUrTwzIKnWeAYuVJtUjAX5Av2vJlYATh
- Ys0Wm82abGfH2CzAJ5pl3yj4EhowubbHg0Vng/7h1yMhpQzT78CYg47YWWqz6smt0d
- c7gFkPsC+ySouutq+POBfO2+Ynt17qIEYPKeLitaM0MJbLUGFc46fVXzUNjl/ACnv4
- oP0dXym9Do4/6gkNuJnB98WEWVOQKpS/tADRjmRtkpZf7FscelHiTUfLDzApQex8Xk
- retUo5pNAFiZQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 17/20] drm/xe/vsec: Support late bind fw information
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE19D10F371;
+	Fri, 18 Sep 2026 13:58:16 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75E4B10F371;
+ Fri, 18 Sep 2026 13:58:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Crescent_Island_PMT_suppo?=
+ =?utf-8?q?rt_=28rev12=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260918131751.2408883-39-michael.j.ruhl@intel.com>
+Date: Fri, 18 Sep 2026 13:58:15 -0000
+Message-ID: <178973989547.182123.14271252057194843080@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260918131751.2408883-22-michael.j.ruhl@intel.com>
- <20260918131751.2408883-39-michael.j.ruhl@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 18 Sep 2026 13:41:12 +0000
-Message-Id: <20260918134112.BAEFC1F000FF@smtp.kernel.org>
+In-Reply-To: <20260918131751.2408883-22-michael.j.ruhl@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,185 +36,70 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] core: async devm registration during unbind causes resource leak a=
-nd UAF
-- [Low] style: mixing goto-based cleanup labels with scoped_guard in same f=
-unction
---
+== Series Details ==
 
-commit 07a655e6731c9aa568ad5d0e90b50bcc5c2bdb0a
+Series: Crescent Island PMT support (rev12)
+URL   : https://patchwork.freedesktop.org/series/160717/
+State : warning
+
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+d875049d2b299159a272bd5151994970cdcd1e31
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 811e7ba8cdf2a42ecfd7d845f16fe51b15be2613
 Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
+Date:   Fri Sep 18 06:18:11 2026 -0700
 
-    drm/xe/vsec: Support late bind fw information
-   =20
-    CRI FW is loaded on power on.  Because of this, access to the FW cannot
-    be done until it is running.
-   =20
-    Update the XE PMT probe and access to check for late bind devices,
-    verify, and wait for the appropriate FW state before probe or access.
+    drm/xe/vsec: Refactor platform check
+    
+    For debugfs, residencies and pcode_info are available on the BMG and
+    CRI (!SRIOV_VF) platforms.
+    
+    Refactor to have one code path for adding the debugfs entries.
+    
+    Reviewed-by: Karthik Poosa <karthik.poosa@intel.com>
+    Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
++ /mt/dim checkpatch 6228f5616bb6fcd1cbf9fabf7d6123b1f69aced0 drm-intel
+306d6ee3b8c3 platform/x86/intel/pmt: complete pcidev to device update
+f6559b05504d platform/x86/intel/pmt: refactor rmw with a return value
+94db25301612 platform/x86/intel/pmt: refactor rc with a return value
+84f6583b5b84 platform/x86/intel/pmt: Add register access callbacks
+5172581ed617 platform/x86/intel/pmt: Do not remap when using callbacks
+f751b835d004 drm/xe/vsec: Do not register BMG PMT for VF
+-:39: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'xe->info.platform == XE_BATTLEMAGE'
+#39: FILE: drivers/gpu/drm/xe/xe_vsec.c:188:
++	if (IS_SRIOV_VF(xe) && (xe->info.platform == XE_BATTLEMAGE))
 
-> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-> index 0f6e3be520c09..5384fef5e5ac5 100644
-> --- a/drivers/gpu/drm/xe/xe_vsec.c
-> +++ b/drivers/gpu/drm/xe/xe_vsec.c
-> @@ -343,6 +395,11 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, =
-u64 *data, loff_t user_offse
->  		goto dev_exit;
->  	}
-> =20
-> +	if (!wait_for_fw(xe)) {
-> +		ret =3D -ENODATA;
-> +		goto runtime_exit;
-> +	}
-> +
->  	scoped_guard(mutex, &xe->pmt.lock) {
->  		/* set SoC re-mapper index register based on GUID memory region */
->  		xe->soc_remapper.set_telem_region(xe, mem_region);
-> @@ -350,6 +407,7 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u=
-64 *data, loff_t user_offse
->  		memcpy_fromio(data, telem_addr, count);
->  	}
-> =20
-> +runtime_exit:
->  	xe_pm_runtime_put(xe);
-> =20
->  dev_exit:
+total: 0 errors, 0 warnings, 1 checks, 26 lines checked
+40db29fbab96 drm/xe/vsec: Correct locking order
+8dc07351408f drm/xe/vsec: Use correct pm state get
+2f22b9aa7390 drm/xe/vsec: Add DOC text for VSEC
+-:21: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#21: 
+new file mode 100644
 
-[Severity: Low]
-Does this code mix goto-based cleanup labels with scoped_guard in the same
-function?
+total: 0 errors, 1 warnings, 0 checks, 54 lines checked
+8ffd280a6270 drm/xe/vsec: Support possible hotplug exit
+e2a11fbb2874 drm/xe/vsec: Refactor BattleMage PMT defines
+abeaf1ffb05e drm/xe/vsec: Update VSEC probe order
+fc7fd30a0b61 drm/xe/vsec: Add base_offset to allow for more flexibilty
+d1794848114c drm/xe/vsec: Support Crescent Island PMT
+beee303c0ac4 drm/xe/vsec: Crescent Island PMT decode
+6df4f4f222df drm/xe/vsec: Crescent Island PMT callbacks
+53e0d3764cc6 drm/xe/vsec: Support late bind fw information
+399ec0b6b27d drm/xe/vsec: Add PMT GUID internal access
+eddb818a05d4 drm/xe/vsec: Update PMT internal access
+811e7ba8cdf2 drm/xe/vsec: Refactor platform check
 
-The cleanup subsystem guidelines explicitly state that functions should not
-mix goto-based cleanup labels with scope-based cleanup declarations like
-scoped_guard.
 
-> @@ -397,6 +455,10 @@ static int xe_pmt_read_reg(struct device *dev, u32 g=
-uid, u32 *reg, u32 offset)
->  	disc_addr +=3D inst + offset;
-> =20
->  	xe_pm_runtime_get(xe);
-> +	if (!wait_for_fw(xe)) {
-> +		ret =3D -ENODATA;
-> +		goto runtime_exit;
-> +	}
-> =20
->  	scoped_guard(mutex, &xe->pmt.lock) {
->  		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-> @@ -404,6 +466,7 @@ static int xe_pmt_read_reg(struct device *dev, u32 gu=
-id, u32 *reg, u32 offset)
->  		*reg =3D readl(disc_addr);
->  	}
-> =20
-> +runtime_exit:
->  	xe_pm_runtime_put(xe);
-> =20
->  dev_exit:
-
-[Severity: Low]
-Is it intentional to mix goto labels and scoped_guard here as well?
-
-Using goto-based cleanup labels together with scoped_guard in the same
-function is discouraged by the cleanup subsystem guidelines.
-
-> @@ -434,6 +497,10 @@ static int xe_pmt_write_reg(struct device *dev, u32 =
-guid, u32 reg, u32 offset)
->  	disc_addr +=3D inst + offset;
-> =20
->  	xe_pm_runtime_get(xe);
-> +	if (!wait_for_fw(xe)) {
-> +		ret =3D -ENODATA;
-> +		goto runtime_exit;
-> +	}
-> =20
->  	scoped_guard(mutex, &xe->pmt.lock) {
->  		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-> @@ -441,6 +508,7 @@ static int xe_pmt_write_reg(struct device *dev, u32 g=
-uid, u32 reg, u32 offset)
->  		writel(reg, disc_addr);
->  	}
-> =20
-> +runtime_exit:
->  	xe_pm_runtime_put(xe);
-> =20
->  dev_exit:
-
-[Severity: Low]
-Does this function also mix goto-based cleanup labels with scoped_guard?
-
-The same cleanup subsystem guidelines apply here, which advise against mixi=
-ng
-goto-based cleanup labels and scope-based cleanups in a single function.
-
-> @@ -477,12 +545,46 @@ static enum xe_vsec get_platform_info(struct xe_dev=
-ice *xe)
->  	return vsec_platforms[xe->info.platform];
->  }
-> =20
-> +static void cri_late_bind_probe(struct xe_device *xe)
-> +{
-> +	struct intel_vsec_platform_info *info;
-> +	struct device *dev =3D xe->drm.dev;
-> +	enum xe_vsec platform;
-> +
-> +	platform =3D get_platform_info(xe);
-> +	if (platform !=3D XE_VSEC_CRI)
-> +		return;
-> +
-> +	info =3D &xe_vsec_info[platform];
-> +	if (!info->headers)
-> +		return;
-> +
-> +	guard(mutex)(&xe->pmt.lock);
-> +
-> +	info->priv_data =3D &xe_cri_pmt_cb;
-> +	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-> +
-> +	intel_vsec_register(dev, info);
-> +}
-
-[ ... ]
-
-> @@ -504,12 +606,26 @@ void xe_vsec_init(struct xe_device *xe)
-> =20
->  	case XE_VSEC_CRI:
->  		xe->pmt.base_offset =3D CRI_PMT_OFFSET;
-> +
-> +		xe->pmt.retry_count =3D 0;
-> +		INIT_DELAYED_WORK(&xe->pmt.work, cri_late_bind_probe_work);
-> +
-> +		xe_pm_runtime_get_noresume(xe);
-> +		if (!xe_sysctrl_is_oobmsm_fw_ready(xe)) {
-> +			schedule_delayed_work(&xe->pmt.work,
-> +					      msecs_to_jiffies(VSEC_LATE_BIND_DELAY_MSEC));
-> +			return devm_add_action_or_reset(xe->drm.dev,
-> +							vsec_disable_late_bind_work,
-> +							xe);
-> +		}
-> +
-
-[Severity: High]
-Does this setup cause an async devm registration during unbind, leading to a
-resource leak and Use-After-Free?
-
-During driver unbind, devres_release_all() splices the dev->devres_head list
-to a local todo list. It then executes vsec_disable_late_bind_work(), which
-waits for the cri_late_bind_probe_work() thread to complete.
-
-Concurrently, that worker thread calls cri_late_bind_probe(), which calls
-intel_vsec_register(), adding a new devm action to the now-empty
-dev->devres_head list.
-
-Once the worker completes, vsec_disable_late_bind_work() unblocks and
-devres_release_all() finishes its local list. The newly added devm action on
-dev->devres_head is never checked or executed, leaving the auxiliary device
-leaked and its sysfs nodes pointing to a freed parent.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260918131751.2408=
-883-22-michael.j.ruhl@intel.com?part=3D17
