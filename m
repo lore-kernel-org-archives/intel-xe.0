@@ -4,75 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 948DCC982D7
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 07:49:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37176C88E75
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 07:51:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A5F810F24E;
-	Fri, 18 Sep 2026 07:49:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6DAD10F250;
+	Fri, 18 Sep 2026 07:51:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nDRgRPlt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aNixRF1f";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D5C310F245;
- Fri, 18 Sep 2026 07:49:08 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 2394C41318;
- Fri, 18 Sep 2026 07:49:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41E541F000FF;
- Fri, 18 Sep 2026 07:49:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789717748;
- bh=vJKvMLbmElK8KttkMQ8hkz5u79hzTkh0lL7FQh+PFqI=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To;
- b=nDRgRPltaEljYrKy94fX1kR91hzN+MpRB9MPYQ1+4X04V6e9jP3UfdRBCwxDx9K5k
- HXbmXYGRYtQCwaFnLwhM994HkXABJDE1B7q288wgf2cSwxgOV0X+nst+TUVfWYtSZV
- nbSiMiW0yIZ1cYuVI9XNOBUIv7iAr3VnyAaxvUeKTQTQH4RcNVgcALNTYovLq/EN9a
- Q1whWRiOGgumpL4WL/RbxPaThWEKILE9Un6A3b/6x6Fho1G8BwsQfgIpsV1ilZZX+8
- Uyt2Gb849GzU3liO1eddWwgQAd5v1SYlhj/O25klzrxqM2SI7i35i+7BFnqaob9Lhv
- jWTT3uwM5QgwQ==
-Message-ID: <06550473-63c2-4a3e-a5ad-7e23d7b6b050@kernel.org>
-Date: Fri, 18 Sep 2026 09:49:01 +0200
-MIME-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A0C710F24E
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 07:51:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789717867; x=1821253867;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=yWi5RRvNaXJdOn0UylLWNtiTCzLOGJby/W9LJbF4a8E=;
+ b=aNixRF1f/epkoPqcRQtMwiriRWafLIXZ6RnLCErbeps5BYB+9Gv2XQx5
+ GbjII02P/HBGMzn68Y1miWHE0lMGZ7zJaAVkX6ad5V0nXgZLzJtk5lrrs
+ tN0rVk6XbfjpqEjtPUARYIoDrojIPcwhMyruQhrwVeRujDjqNkOMm/v/F
+ rCMSoRC2Xa/gLeer/BQS5Yob0J/OMb7BTABmBY6gUIgyyl/AgbckRhLTF
+ TP8Qv2yFUiFB9xe5qFFaGrrBCuncT6KV04AHg/Bgle98o2GpVrsGl+3os
+ e1Lqn0ipTZ65zKCuClRKbSyDc7E1EOCtKLwBb7FFvKnCMjqhZwE6fKCIg A==;
+X-CSE-ConnectionGUID: nrc03VETRueSK6Z64n+GIw==
+X-CSE-MsgGUID: aN3cjMLdSR+clyHxieb8JQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="89341625"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="89341625"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2026 00:51:06 -0700
+X-CSE-ConnectionGUID: Qs5wZcO5SjGoMmZZPlefeA==
+X-CSE-MsgGUID: Xuz9XBkPSoOuROw82v2LCQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="297735120"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2026 00:51:06 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Fri, 18 Sep 2026 00:51:06 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Fri, 18 Sep 2026 00:51:06 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.28) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Fri, 18 Sep 2026 00:50:55 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OKj2gqiHcb8t2tL2uHJj3ErLvg2QzflEGfl7RMMKwt8Kh7uqFLgWfo0lpFEI+KT5GXzuJl0oySOeZC2b9GWj+nlc7/e0+bi2B9xyN/ShO4ZxS1tJg/NPL/KQ75aFzz8FEFgfzaocCX7Lt/pXAi57ojJvB3Urmew1JIDKGwtxdwxP0Ld/1CmL1uziulrhZQK/AnxniUY8FBdBA6GNOF5mZUEwXgO4Hg9BApPSoZz8itZugEZ10eIMn7eOh95YaFQd9UqO9ZnFjz1YkntOro2Rw2rnRzyk4hTu+mYOEGIFJG6IzcgGO96xWeJTwOywzF9OlFwmesAQpP0PCGWghoxvUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qo11kiMp2+rLbqelvYQxNnN4GCkYOewXlLKwLDrat04=;
+ b=KdnuC9UlHJ0FLcmbxPeWFGYFi3os/2fS4Jj7G5wSmcd8BmntF3Tae0renq9EpOMYDVzD23loyb2dlrATQBEwW+xpCx1Oh7TsVgqoLJTyUNtBxW2Zxuq1HQT+SDU38znouS0xjYuZcAS1UqDw2aFnZq0s0s7UP1dz4iSuTrVu9tawxZN2KUq/mfku9SZ2HtUiMEHZ7TJNQftxGrqqFvYXccsO+5utcdJbRJ+kN2z7k9fqioi6AQD81/JaxVs9uCwABYX8sZaZBlq7zRSOMu2GVetDTLyhRAbgu3kKMYfXEsxiC+MzuF3R7Iyt8SgBPQpvrkMiImPYug/HZ2qRcyFedA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB7551.namprd11.prod.outlook.com (2603:10b6:510:27c::12)
+ by BL3PR11MB6314.namprd11.prod.outlook.com (2603:10b6:208:3b1::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.12; Fri, 18 Sep
+ 2026 07:50:52 +0000
+Received: from PH7PR11MB7551.namprd11.prod.outlook.com
+ ([fe80::5cbf:6b33:5f0c:88a0]) by PH7PR11MB7551.namprd11.prod.outlook.com
+ ([fe80::5cbf:6b33:5f0c:88a0%4]) with mapi id 15.21.0428.009; Fri, 18 Sep 2026
+ 07:50:52 +0000
+Message-ID: <f49686d7-826d-4715-b04f-8818d6efc8d9@intel.com>
+Date: Fri, 18 Sep 2026 09:50:48 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] ACPI: video: Remove CONFIG_X86 handling from
- nvidia_wmi_ec_supported()
-To: Jani Nikula <jani.nikula@linux.intel.com>, Armin Wolf <W_Armin@gmx.de>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: "Deucher, Alexander" <Alexander.Deucher@amd.com>,
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux@weissschuh.net" <linux@weissschuh.net>,
- "rafael@kernel.org" <rafael@kernel.org>, "lenb@kernel.org"
- <lenb@kernel.org>, "linux-acpi@vger.kernel.org"
- <linux-acpi@vger.kernel.org>, "Koenig, Christian"
- <Christian.Koenig@amd.com>, "airlied@gmail.com" <airlied@gmail.com>,
- "simona@ffwll.ch" <simona@ffwll.ch>,
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "patrik.r.jakobsson@gmail.com" <patrik.r.jakobsson@gmail.com>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "mripard@kernel.org" <mripard@kernel.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
- "tursulin@ursulin.net" <tursulin@ursulin.net>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "matthew.brost@intel.com" <matthew.brost@intel.com>,
- "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <20260724025959.142826-1-W_Armin@gmx.de>
- <20260724025959.142826-3-W_Armin@gmx.de>
- <BN9PR12MB514668975E87D570F50B2D91F7A82@BN9PR12MB5146.namprd12.prod.outlook.com>
- <86d0e015-a8f4-4e10-a9b6-a9714d3e0f07@gmx.de>
- <80c4bb47-936b-976b-6ba8-b366f7a455cf@linux.intel.com>
- <11976ed3784675ad241646287a909286a42675a8@intel.com>
- <3ef68773-e07e-437a-98fb-a3c5fc08539c@gmx.de>
- <62d7da838e7042df8456e76190db792093065b57@intel.com>
-From: Hans de Goede <hansg@kernel.org>
-Content-Language: en-US, nl
-In-Reply-To: <62d7da838e7042df8456e76190db792093065b57@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2] drm/xe/guc: Demote uncorrectable local error log to
+ info
+To: Varun Gupta <varun.gupta@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: <zhanjun.dong@intel.com>, <daniele.ceraolospurio@intel.com>,
+ <himal.prasad.ghimiray@intel.com>
+References: <20260917135310.3590412-2-varun.gupta@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20260917135310.3590412-2-varun.gupta@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM9P195CA0004.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:20b:21f::9) To PH7PR11MB7551.namprd11.prod.outlook.com
+ (2603:10b6:510:27c::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7551:EE_|BL3PR11MB6314:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1c54d45e-c3a1-4bc3-effe-08df1559901e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|23010399003|366016|376014|10067099003|6133799003|18002099003|22082099003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: lP5qxRKykrQqRkdH/DIsTQXqmbUgCnOv8sR+oATLvj54GGRWLdypbAlq5L2WY8HQKIIpILN/9iZRsvp1TCJv203HDvXRx/yKnlbHbset0pK38gj2iLg92hvCtf3PNmr1I3IhNAFzHuBkTFgvAR7U7jV6pkreW5Y4kvMJD/6PVwTJUNWUoICqJ7wgTMzSNxDUVo1mbcbxP5zDlF7iMHgNhhWty7ccnJ/Lg/evFORUWSlOJXSsuMrEPEYKK+3W5vMogrlVVIApLV81tG4M11Y1aqboEvaZcjoyX/9aMg3NjoFAmAhiv9eTtsyTNWyZSAKpZbdKHn7aXQW7WR6AMyqjDzLZjsm2F7LalXszi0kNkJkKod7bx0vVkVkrz4av545HkxHCS1XmXMbePggr5BimOwVEW9WeGR/I+Iz97tZyjTPtAAVHHwUly1VrTNZ4oTkMXvbCvmjHFnJdUs1p3NF4EHBPuz86Lcvz6O+wDc+lo0i1qAPkdCy3aQqccKdYVwLk8DqlaY0Tjt+J9b3cahq6PkDNmt+ziyqqvzHrv85Wxxa6+6hCTpoZuBsvvVQpw7CSvZk8XX3OHgK58nh93gyA+jDeND3/XYePjOwyf2mmUQOereOiY8aFKbeWeCOK1UEtfySi9ml/pM5Jjb3TTFqCkoRieyegjsso9GrJlisbMRc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB7551.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(23010399003)(366016)(376014)(10067099003)(6133799003)(18002099003)(22082099003)(56012099006)(11063799006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dEhnNll5K1VNVjJDSUxQQjY3Ump3d3FrcU85WWdnUkhnQmsrTEdBblBVUytS?=
+ =?utf-8?B?ZjM3cml6QnhpTklZcDF5QTlVSkhpMlBYS1ovbWtuME83Z25lR3ZVYlhWMDZP?=
+ =?utf-8?B?N01va2FRVXdpcGZOWStLM1A1TFlMZjNBVFo2dSt3eUxnTDZHQWIwRko5Z0o0?=
+ =?utf-8?B?Rnd6NkY3K1VOSnRPMDlYZXk3bzdROGtQSldGc0xlZlp3dHg5djd1cWFoZjZN?=
+ =?utf-8?B?QitaalU0ZzRSM2p4OG1nVUFvU0p1UHpxbmVzNW1tL1l0WlNOWUZpa3RXQ0JL?=
+ =?utf-8?B?UW5QWVh0MTJ5R01heFAyZlNIeEw5YXhWdGNxL1lBcWM4bHViWDZ6MFZBUG93?=
+ =?utf-8?B?SWFLWHRUQ2JGL3N0VjdyU0VYOCtTbjJYOXMyRDJpalJzU3RlT2FRemRiUW91?=
+ =?utf-8?B?dFpVc0c4cVZvOStDbVBCMUFxemRrK0paNU1zaURTaGNQNW9PTll1bWR5S3l1?=
+ =?utf-8?B?L0MwNU94L2pIMVpIeDV3NUVRK1lldUp4RCsxc0F4bW5uTlY3QWM2Y2ZhbHgz?=
+ =?utf-8?B?aDZVcmZic09mRUEzcGNIVWRpQVoxOE1PSDA5MEJCRjRUZW9GSFhFVURDNjhk?=
+ =?utf-8?B?c3ZPSVhGVVdKVy9IZGFJekt0bDFwNWhjNk1ldnMyeWVIbVRJanEvWS9WMS9F?=
+ =?utf-8?B?L2VEWEZjdU01dXpGOEYvL1kzWHUxNS9qV3NqNWFvWWE4aXNKOGExU1dkQzhh?=
+ =?utf-8?B?ZmhoR0p3NllSeHdhSzE4ckwzQi9oVmdXQ1ZHOWtXclhrWEx1U0o0eHN1bS9p?=
+ =?utf-8?B?MjU2L0NLbkZubkM5UUVJNmtkTHE3YlF6TW1LSzBiWXRCUTcvUUpyN3I2MUZz?=
+ =?utf-8?B?ZTFZVUFUM2xCZk5neWZERlpXZGVwK0pCdG5GTkFNcWdyN25oeER0TkdiZitZ?=
+ =?utf-8?B?aHZqWlZGZldxb3VXZ0plNDFxRDhFc0sxdnBuVTh5TXl3V20zZG1KRkNLS2pJ?=
+ =?utf-8?B?S3dVMTViWHBpcURtMm5pVmlMZ24xU1lNcVpKVitscU9vaWZwVUhkbnJ2NXdF?=
+ =?utf-8?B?NjR3NjFuYXdMNHFESmpGeURCTjM5T1BuS3loS0FpNHV0V3BYd2R4dTlQUVFw?=
+ =?utf-8?B?cWVEdjJTaEhscnNiZHE5MkVTcW5TdFlwTmVTMmh3YzRtRDJPcSt1dzN6c3BV?=
+ =?utf-8?B?Z0hlUlBxbmV5Sjk2NWtRTEVWZnp5cThGUVI4QUxUMXBRYWFFSFZTVE1zWVc1?=
+ =?utf-8?B?Q1hWOTBFUk1UaFJxY1djQm90TGVVS0cxZVZJZDlSNDBGMFFXU2tURXE4amNo?=
+ =?utf-8?B?WjNJVDI3eW5FcmtvR3ErR05laGF5UVRTeDlhVHd5Mm1OK3IyeG00S2p2UUpN?=
+ =?utf-8?B?bTJEWVh6WkFtaGhRc01LcCtyekRkVmhyTUk1REVPU2laVXdRRDJuWFYyK2Ra?=
+ =?utf-8?B?ajVKWE02YkNvQks5ZFpRSGhnK2pKVHRLTkRyZzl1MTNkYVdBdmtmRWZyaHVv?=
+ =?utf-8?B?aDFHbDBDY1pqK0NHd1lST0NrSkE0WkxicTJwbDVRbFJWVVdxZFphZk42cVJZ?=
+ =?utf-8?B?bW0vMlJSaERkcEthbmRhWWxjaDhTYXh3YXNReG11SjhWalVlMzRvRWp2amZt?=
+ =?utf-8?B?a1VBRVEvZDk2NlFFRGcvcUZvQmlnVzRmUk1CNEY1ZnJiVnJJaVVqZ2d1aWZm?=
+ =?utf-8?B?S0V0cjhXTnBsTVc5RFlmTk1DQnhwTHdBSjBVcUVTVjhIaHRGbFluVWRpdmpK?=
+ =?utf-8?B?TWhlNXArOE9KT2t3RnJGN21PUnNyMGpjS1ZpOWw1bVJsWTR0SlQxSWF3eXpl?=
+ =?utf-8?B?aS8weE5NLzlrb1g4WGI3bmFoOUlBVFJWNFA3S3paYWZKaGlLSHNYYldaU0Fw?=
+ =?utf-8?B?K0dWY2t1VDRkRUdMeVVCRlZ4Snl1VHJsbC9DK29LYXlOa0gzU09HSy90UStL?=
+ =?utf-8?B?aWpVWjJiS3hDRFRKbWZPM1VFZ3BxTmtjeGd4blRwa2lhT0VUc1BCMEhtcHEv?=
+ =?utf-8?B?QWpRcW4zMVlGY0xuRkwzNHJSdjE4STh4L3VldXJpVmUxUTZseG91bHpwYUFJ?=
+ =?utf-8?B?N3NuK1ZyNHZUWWV4cEx0cU53MTltSCtwUnk0MVJOMzhhdE5uUUJKR1Zzcjhv?=
+ =?utf-8?B?WkhRTDV4WUxTaGdWL1pHb1gvYkRJeDkwYkU0T0U2aTM1cTdBVnVPRDg2VGpt?=
+ =?utf-8?B?NWdSTWFMRE9BUVBoZURwOWsvcS8vQzRDandyZVBrdVZlRVBWK1p2alRReXZO?=
+ =?utf-8?B?bmRNK2hPbks5YUN3Z0EwQjZ4VWN2QWVtaUJ4eHFuMmNLUG1PSEloRjE2VUhR?=
+ =?utf-8?B?UE5jU2xTSURXU1VXWEpZaEhIYnJsbmk3d3RyWVJiMFFxNWN4ZlRWcm04Mjh3?=
+ =?utf-8?B?TDhFMVBDdTByZ0t0Ti94cnZGeGNXaHVTZWhEazMrT2VoWExZcHpJZ3VGcXRi?=
+ =?utf-8?Q?smBJQjeHwW2iNGGc=3D?=
+X-Exchange-RoutingPolicyChecked: 1vefNDwXklb7k77Me9fG0kC/m0/dhWlDdEKudklusTCTLGQ8tKpZULAfZf9B8rCiypK4KsjDX744ubMn3ve3sv+8S+z4DFmtHK55m59K05oPkRfvMYxIeE7SMd5qUKiMLA5IU5UYL9Ohwrn1Um9GRYa6fBe9CD/hZ/v6xjB4W6nYfxccAklYxrqIc6SABMsTu+6UvUFqMx5k2a9aIgRra1aAAL29UlWIzMWCD4B/W6SuLCl9SQOwv3JgKgHBCsWvhAA7xpxtWJzxu/ev4XwqSpJ9yOxl++ELfRXzLrtv4xs0wsUgGjiRCDpcdMJ25vNLSm36YSSnxHmPcI7g3t7yTw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c54d45e-c3a1-4bc3-effe-08df1559901e
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7551.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2026 07:50:52.4983 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WGpR8m5DjAGO0RMrAwzOPg9+BKZe/GI4jljVLm9Kt3Rhvrw2My+N3zwakx1cxjDie24fBe/DTHkFqif4yoSa3A2jE9SVB+OhIROgDO8aeok=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6314
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,94 +170,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
 
-On 16-Sep-26 09:16, Jani Nikula wrote:
-> On Wed, 16 Sep 2026, Armin Wolf <W_Armin@gmx.de> wrote:
->> Am 15.09.26 um 14:31 schrieb Jani Nikula:
->>
->>> On Tue, 15 Sep 2026, Ilpo Järvinen <ilpo.jarvinen@linux.intel.com> wrote:
->>>> GPU people heads up!!
->>>>
->>>> On Wed, 2 Sep 2026, Armin Wolf wrote:
->>>>
->>>>> Am 01.09.26 um 23:30 schrieb Deucher, Alexander:
->>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/Kconfig
->>>>>>> b/drivers/gpu/drm/amd/amdgpu/Kconfig
->>>>>>> index 12e4a41bf1f0..50305630f533 100644
->>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/Kconfig
->>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/Kconfig
->>>>>>> @@ -30,9 +30,7 @@ config DRM_AMDGPU
->>>>>>>         # ACPI_VIDEO's dependencies must also be selected.
->>>>>>>         select INPUT if ACPI
->>>>>>>         select ACPI_VIDEO if ACPI
->>>>>>> -     # On x86 ACPI_VIDEO also needs ACPI_WMI
->>>>>>> -     select X86_PLATFORM_DEVICES if ACPI && X86
->>>>>> The change below makes sense, but this one looks like it should remain
->>>>>> unless X86_PLATFORM_DEVICES is handled some other way?
->>>>>>
->>>>>> Alex
->>>>> AFAIK the dependency on X86_PLATFORM_DEVICES was only necessary because
->>>>> ACPI-WMI depended on it in the past.
->>>>> By now ACPI-WMI neither depends on X86_PLATFORM_DEVICES or X86 anymore.
->>>> Hi all,
->>>>
->>>> Could more GPU people besides Alex take a look on this. I'd want to make
->>>> progress with this series within this cycle but would prefer to have Acks
->>>> from GPU side.
->>> I share the same concern with Alex. It seems to me we could now end up
->>> with x86 configurations without X86_PLATFORM_DEVICES, which handle
->>> e.g. backlight on a lot of platforms.
->>>
->>> I think the safer option might be to go for:
->>>
->>> 	depends on X86_PLATFORM_DEVICES || !X86
->>>
->>> in all of the cases that select/depend on X86_PLATFORM_DEVICES in drm.
->>>
->>> The alternative is to find out, and handle the fallout, if any.
->>>
->>>
->>> BR,
->>> Jani.
->>
->> Alright, should i leave the original "select X86_PLATFORM_DEVICES if ..." statements
->> as-is or should is change them to "depends on X86_PLATFORM_DEVICES || !X86" everywhere?
+
+On 9/17/2026 3:53 PM, Varun Gupta wrote:
+> The UNCORRECTABLE_LOCAL_ERROR notification sent by the GuC indicates a
+> local, queue-level context termination rather than a global device or
+> driver failure. This can be triggered as part of expected recovery flows,
+> including intentional fault-injection tests.
 > 
-> There are some places that depends on X86_PLATFORM_DEVICES. I think it's
-> almost always a mistake to have some places select and some places
-> depends on, and select should anyway be used with care. I'd go for
-> depends on.
+> Printing this at ERROR level is too noisy and causes false-positive
+> dmesg-warn failures in CI. Switch the log level to INFO, matching the
+> adjacent CAT error handler.
+> 
+> v2:
+>   - Also ratelimit the GUC_ID_UNKNOWN to match the CAT error handler.
+>     (Himal)
+> 
+> Fixes: 4e57574fa3a3 ("drm/xe/guc: Handle GuC local uncorrectable error notifications")
+> Signed-off-by: Varun Gupta <varun.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_guc_submit.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index f3ba8abfc228..6144a1767f10 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -3487,7 +3487,7 @@ int xe_guc_uncorrectable_error_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>  	guc_id = msg[0];
+>  
+>  	if (guc_id == GUC_ID_UNKNOWN) {
 
-I'm a bit late to the party here, sorry.
+btw, shouldn't we check for guc_id >= GUC_ID_UNKNOWN?
 
-Note that X86_PLATFORM_DEVICES is an option which enables / disables
-a menu and does nothing more.
+> -		xe_gt_err(gt, "GuC: Uncorrectable local error with unknown GuC id\n");
+> +		xe_gt_err_ratelimited(gt, "GuC: Uncorrectable local error with unknown GuC id\n");
+>  		return 0;
 
-Enabling it or depending on it by itself does nothing.
+if GuC shouldn't ever pass invalid guc-id here, as spec says this action is for:
 
-The select used to be there since it must be selected to be able
-to select ACPI_WMI (which is no longer the case after this series).
+	"Notify the context which caused an uncorrectable local error to KMD"
 
-To depends on in XE was probably copy pasted from the existing
-select-s and then changed to a depends and already was a completely
-no-op since depending on ACPI_WMI was enough as that itself
-dependend on ACPI_WMI.
+then IMO instead of ratelimiting this error, we should rather escalate this
+to -EPROTO to force the error dump and reset from the CTB layer, no? 
 
-As for X86_PLATFORM_DEVICES being needed for some backlight
-interfaces, depending on it by itself does not result in those
-interfaces being there. That requires enabling the actual drivers
-providing those interfaces.
-
-And I don't think that the GPU drivers should start depending
-on those since that will become very unyielding.
-
-TL;DR: I believe Armin's original patch is fine and this is
-a welcome cleanup / simplification of the DRM drivers Kconfig
-bits.
-
-Regards,
-
-Hans
-
+>  	}
+>  
+> @@ -3495,9 +3495,9 @@ int xe_guc_uncorrectable_error_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>  	if (unlikely(!q))
+>  		return -EPROTO;
+>  
+> -	xe_gt_err(gt,
+> -		  "GuC: Uncorrectable local error! guc_id=%d class=%s, logical_mask=0x%x",
+> -		  guc_id, xe_hw_engine_class_to_str(q->class), q->logical_mask);
+> +	xe_gt_info(gt,
+> +		   "GuC: Uncorrectable local error! guc_id=%d class=%s, logical_mask=0x%x",
+> +		   guc_id, xe_hw_engine_class_to_str(q->class), q->logical_mask);
+>  
+>  	trace_xe_guc_uncorrectable_error(q);
+>  
 
