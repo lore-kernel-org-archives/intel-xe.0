@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0B55C982DA
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 14:36:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6018DC982D8
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 14:50:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E62510F16F;
-	Fri, 18 Sep 2026 14:36:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NN/9C4+5";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1424310F16F
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 14:36:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789742161; x=1821278161;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=ot8Tb7RYx08WMlEjevn1gXX3bL83Futgu6go/Jy1K9Y=;
- b=NN/9C4+5lLcahKlpmjr0yGWxoWu/QbQJIKZ8jkLrRL0P32DZYtSiYfLo
- E+ufJ+IxSOM553KJCf4vNigF3KFGHrBAMmhnSkjP3MdBRfz4nWumGTmwq
- GutwxEOQ9Lf1u5Ykx1c2Hdn6gfyRKwuawSMS4YpmvlWTiGrei8t7W8gx7
- TRWJJ6aG31+kaXQK43oTJZNBGvDqt3FafB7SWBblnTxKDdat+W7zu2lDu
- SnF9U5vD8ahiJvWLPazHLVN5iBp3U2qdYju1789K3Vlkv7oJJlydXd3fk
- QZGO5TFf0oDfZjzmEPU76zgWGWmlkw1lDEghFjmt2MZ2tgPAb4aVQjdCy w==;
-X-CSE-ConnectionGUID: 9ui+Zzq6SVu431RTwe/WgQ==
-X-CSE-MsgGUID: X7aT/Mh5T3WKxukEVmYKuA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11909"; a="90118802"
-X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; d="scan'208";a="90118802"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2026 07:35:52 -0700
-X-CSE-ConnectionGUID: PHLgrIX/Tg6mbuMPSHlzfg==
-X-CSE-MsgGUID: A4g0KCaLQX61zwumOOUU2Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; d="scan'208";a="270131837"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO [10.245.245.247])
- ([10.245.245.247])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2026 07:35:50 -0700
-Message-ID: <8c1744e4012ab5b30d1f26f8129d4944da1dcfa3.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe/vm: nuke PTs only after unlinking contested VMAs
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org
-Date: Fri, 18 Sep 2026 16:35:43 +0200
-In-Reply-To: <20260918131034.598078-2-matthew.auld@intel.com>
-References: <20260918131034.598078-2-matthew.auld@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A1C210F3E7;
+	Fri, 18 Sep 2026 14:50:27 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C874A10F3F3;
+ Fri, 18 Sep 2026 14:50:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4678005702007714175=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/vm=3A_nuke_PTs_only_?=
+ =?utf-8?q?after_unlinking_contested_VMAs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 18 Sep 2026 14:50:25 -0000
+Message-ID: <178974302581.182123.18435184090413657957@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260918131034.598078-2-matthew.auld@intel.com>
+In-Reply-To: <20260918131034.598078-2-matthew.auld@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,92 +36,228 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2026-09-18 at 14:10 +0100, Matthew Auld wrote:
-> In xe_vm_close_and_put(), external-BO VMAs are queued on the
-> contested
-> list for deferred destruction via xe_vma_destroy_unlocked(). However,
-> xe_vm_pt_destroy() was previously invoked before processing contested
-> VMAs, destroying vm->pt_root while those VMAs were still linked to
-> their
-> respective buffer objects (vm_bo->list.gpuva).
->=20
-> If a concurrent thread evicts one of those shared buffer objects,
-> xe_bo_trigger_rebind() holding only bo->resv walks the BO's VMAs and,
-> in
-> fault mode, calls xe_vm_invalidate_vma() -> xe_pt_zap_ptes(). Because
-> vm->pt_root[tile->id] is already NULL, dereferencing pt->level causes
-> a
-> NULL ptr deref.
->=20
-> Fix this by deferring xe_vm_free_scratch() and xe_vm_pt_destroy()
-> until
-> after all contested VMAs have been unlinked and destroyed.
->=20
-> User is reporting hitting a NULL ptr deref in xe_pt_zap_ptes(), which
-> could be explained by this race.
->=20
-> Assisted-by: LLM
-> Fixes: b06d47be7c83 ("drm/xe: Port Xe to GPUVA")
-> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9290
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: <stable@vger.kernel.org> # v6.12+
+--===============4678005702007714175==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+== Series Details ==
+
+Series: drm/xe/vm: nuke PTs only after unlinking contested VMAs
+URL   : https://patchwork.freedesktop.org/series/174512/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05_BAT -> xe-pw-174512v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-174512v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-174512v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-174512v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_exec_fault_mode@twice-basic:
+    - bat-bmg-2:          [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-bmg-2/igt@xe_exec_fault_mode@twice-basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/bat-bmg-2/igt@xe_exec_fault_mode@twice-basic.html
+
+  * igt@xe_exec_system_allocator@many-execqueues-free:
+    - bat-bmg-vm:         [PASS][3] -> [DMESG-WARN][4] +1 other test dmesg-warn
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html
+
+  * igt@xe_exec_system_allocator@threads-shared-vm-many-malloc:
+    - bat-bmg-1:          [PASS][5] -> [DMESG-WARN][6] +2 other tests dmesg-warn
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html
+
+  * igt@xe_multigpu_svm@mgpu-pagefault-basic:
+    - bat-bmg-3:          [PASS][7] -> [DMESG-WARN][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-174512v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [PASS][9] -> [ABORT][10] ([Intel XE#8007])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-ptl-2:          [FAIL][11] ([Intel XE#9109]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@engine.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/bat-ptl-2/igt@xe_waitfence@engine.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-ptl-2:          [FAIL][13] ([Intel XE#9115]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@reltime.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/bat-ptl-2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
+  [Intel XE#9109]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109
+  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
 
 
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_vm.c | 21 +++++++++------------
-> =C2=A01 file changed, 9 insertions(+), 12 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 17dc4debe7c1..390da884c727 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -1979,21 +1979,13 @@ void xe_vm_close_and_put(struct xe_vm *vm)
-> =C2=A0		vma->gpuva.flags |=3D XE_VMA_DESTROYED;
-> =C2=A0	}
-> =C2=A0
-> -	/*
-> -	 * All vm operations will add shared fences to resv.
-> -	 * The only exception is eviction for a shared object,
-> -	 * but even so, the unbind when evicted would still
-> -	 * install a fence to resv. Hence it's safe to
-> -	 * destroy the pagetables immediately.
-> -	 */
-> -	xe_vm_free_scratch(vm);
-> -	xe_vm_pt_destroy(vm);
-> =C2=A0	xe_vm_unlock(vm);
-> =C2=A0
-> =C2=A0	/*
-> -	 * VM is now dead, cannot re-add nodes to vm->vmas if it's
-> NULL
-> -	 * Since we hold a refcount to the bo, we can remove and
-> free
-> -	 * the members safely without locking.
-> +	 * Unlink and destroy all contested external-BO VMAs before
-> destroying
-> +	 * the page tables. Otherwise, concurrent eviction holding
-> only bo->resv
-> +	 * can walk the BO's VMAs and attempt to invalidate/zap page
-> tables that
-> +	 * have already been freed.
-> =C2=A0	 */
-> =C2=A0	list_for_each_entry_safe(vma, next_vma, &contested,
-> =C2=A0				 combined_links.destroy) {
-> @@ -2001,6 +1993,11 @@ void xe_vm_close_and_put(struct xe_vm *vm)
-> =C2=A0		xe_vma_destroy_unlocked(vma);
-> =C2=A0	}
-> =C2=A0
-> +	xe_vm_lock(vm, false);
-> +	xe_vm_free_scratch(vm);
-> +	xe_vm_pt_destroy(vm);
-> +	xe_vm_unlock(vm);
-> +
-> =C2=A0	xe_svm_fini(vm);
-> =C2=A0
-> =C2=A0	up_write(&vm->lock);
+Build changes
+-------------
+
+  * IGT: IGT_9100 -> IGT_9101
+  * Linux: xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05 -> xe-pw-174512v1
+
+  IGT_9100: 80e998fdbe300b1ca29901099f35316bd83781e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_9101: 16e3ae670fa6c3ee97f113c688a172bb0f6034e7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05: 15f7465765dc45d58738fc05a1c11a785e709c05
+  xe-pw-174512v1: 174512v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/index.html
+
+--===============4678005702007714175==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/vm: nuke PTs only after unlinking contested VMAs</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174512/">https://patchwork.freedesktop.org/series/174512/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05_BAT -&gt; xe-pw-174512v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-174512v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-174512v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-174512v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_exec_fault_mode@twice-basic:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-bmg-2/igt@xe_exec_fault_mode@twice-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/bat-bmg-2/igt@xe_exec_fault_mode@twice-basic.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_system_allocator@many-execqueues-free:</p>
+<ul>
+<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_system_allocator@threads-shared-vm-many-malloc:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html">DMESG-WARN</a> +2 other tests dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_multigpu_svm@mgpu-pagefault-basic:</p>
+<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-174512v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109">Intel XE#9109</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/bat-ptl-2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174512v1/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9100 -&gt; IGT_9101</li>
+<li>Linux: xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05 -&gt; xe-pw-174512v1</li>
+</ul>
+<p>IGT_9100: 80e998fdbe300b1ca29901099f35316bd83781e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_9101: 16e3ae670fa6c3ee97f113c688a172bb0f6034e7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05: 15f7465765dc45d58738fc05a1c11a785e709c05<br />
+  xe-pw-174512v1: 174512v1</p>
+
+</body>
+</html>
+
+--===============4678005702007714175==--
