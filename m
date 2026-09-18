@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC824C982D0
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Sep 2026 23:59:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C744C88E72
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 00:02:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80B6810E00B;
-	Thu, 17 Sep 2026 23:59:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T/2gfTsQ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A3E810E51E
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Sep 2026 23:59:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789689573; x=1821225573;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DkmI8qbt6sOisE7Qo8Uoc7pvac22/GPF2m2DK3ocj/w=;
- b=T/2gfTsQs3JLop1t4K7T8byT5eiGdkfTpmTqX/BBDSNjWaJSjjFxx/Jl
- DhfDJcNH4dE60fvTepklN/g2PEYozYhGfVrVFvYctt6P2xmUBHsDXcRMV
- Rf+YRNhNROg+pQKxVFuJq4OUkbvtdyyre/YRvNCDpLIuge5gy3ul90h43
- ygmSis5iSz0ZXnJ5tHJTzW9K5kodxNziBQxNpMODJps6kVFZCzKVF7Mwk
- E4+hwEocFuWj2zBsUSXQqOjohy7Si4hnHffi+e4TohmhyJSeY6/re5r7F
- oCJys7KsUjgAEqOOgs3GlwJkwp2hDUJh8TikHETBeW1ayUWOc/AdRRadv A==;
-X-CSE-ConnectionGUID: WbqgVDGxTpKMudUGLg6M4Q==
-X-CSE-MsgGUID: DJFNPS1vSqCwcB330yLiKQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="77727916"
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="77727916"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 16:59:32 -0700
-X-CSE-ConnectionGUID: z+IxQNA9S12TpTno55wioA==
-X-CSE-MsgGUID: uzakGYr2RQ+y+aL/mKRTyw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="270788225"
-Received: from orsosgc001.jf.intel.com ([10.54.56.63])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2026 16:59:32 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: daniele.ceraolospurio@intel.com, michal.wajdeczko@intel.com,
- aravind.iddamsetty@intel.com, mallesh.koujalagi@intel.com,
- alan.previn.teres.alexis@intel.com, julia.filipchuk@intel.com
-Subject: [PATCH v4 7/7] drm/xe/guc: Report errors that cause a CT shutdown
- using SIGID
-Date: Thu, 17 Sep 2026 16:59:31 -0700
-Message-ID: <20260917235923.1521112-16-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260917235923.1521112-9-umesh.nerlige.ramappa@intel.com>
-References: <20260917235923.1521112-9-umesh.nerlige.ramappa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2804D10E51E;
+	Fri, 18 Sep 2026 00:02:50 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0285910E51E;
+ Fri, 18 Sep 2026 00:02:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6724156639162691788=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_mnemonic_erro?=
+ =?utf-8?q?r_reason_to_page_fault_diagnostics_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 18 Sep 2026 00:02:49 -0000
+Message-ID: <178968976900.177999.15019042184857628606@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260917203850.321385-1-matthew.brost@intel.com>
+In-Reply-To: <20260917203850.321385-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,175 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+--===============6724156639162691788==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Convert any errors that can cause the CT to be declared as dead to
-use the xe_log_err() helper. Errors that are escalated to the callers
-are left for the caller to report with SIGID if needed.
-While at it, update some of the error messages to make what went wrong
-clearer.
+== Series Details ==
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Assisted-by: Claude:claude-opus-5
----
-v2:
-- use different error codes and better messages (Michal)
-v3:
-- Drop GuC from log messages (Michal)
-- Clean up log messages
-v4: (Michal)
-- Add s-o-b and move revision history to end
-- s/EPROTO/EINVAL/ or FAST_REQ H2G fence failure
----
- drivers/gpu/drm/xe/xe_guc_ct.c | 53 ++++++++++++++++++----------------
- 1 file changed, 28 insertions(+), 25 deletions(-)
+Series: drm/xe: Add mnemonic error reason to page fault diagnostics (rev3)
+URL   : https://patchwork.freedesktop.org/series/174450/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 31ecddab3057..63d79987c5d2 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -30,6 +30,7 @@
- #include "xe_guc_relay.h"
- #include "xe_guc_submit.h"
- #include "xe_guc_tlb_inval.h"
-+#include "xe_log.h"
- #include "xe_map.h"
- #include "xe_page_reclaim.h"
- #include "xe_pm.h"
-@@ -737,7 +738,7 @@ static int __xe_guc_ct_start(struct xe_guc_ct *ct, bool needs_register)
- 	return 0;
- 
- err_out:
--	xe_gt_err(gt, "Failed to enable GuC CT (%pe)\n", ERR_PTR(err));
-+	xe_log_err(gt, GUC, err, "CT: Failed to enable\n");
- 	CT_DEAD(ct, NULL, SETUP);
- 
- 	return err;
-@@ -861,8 +862,9 @@ static bool h2g_has_room(struct xe_guc_ct *ct, u32 cmd_len)
- 
- 			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
- 
--			xe_gt_err(ct_to_gt(ct), "CT: invalid head offset %u >= %u)\n",
--				  h2g->info.head, h2g->info.size);
-+			xe_log_err(ct_to_gt(ct), GUC, -EPIPE,
-+				   "CT: invalid head offset %u >= %u)\n",
-+				   h2g->info.head, h2g->info.size);
- 			CT_DEAD(ct, h2g, H2G_HAS_ROOM);
- 			return false;
- 		}
-@@ -931,12 +933,13 @@ static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
- 	bad |= !ct->g2h_outstanding;
- 
- 	if (bad) {
--		xe_gt_err(ct_to_gt(ct), "Invalid G2H release: %d + %d vs %d - %d -> %d vs %d, outstanding = %d!\n",
--			  ct->ctbs.g2h.info.space, g2h_len,
--			  ct->ctbs.g2h.info.size, ct->ctbs.g2h.info.resv_space,
--			  ct->ctbs.g2h.info.space + g2h_len,
--			  ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space,
--			  ct->g2h_outstanding);
-+		xe_log_err(ct_to_gt(ct), GUC, -ETOOMANYREFS,
-+			   "CT: Invalid G2H release: %d + %d vs %d - %d -> %d vs %d, outstanding = %d!\n",
-+			   ct->ctbs.g2h.info.space, g2h_len,
-+			   ct->ctbs.g2h.info.size, ct->ctbs.g2h.info.resv_space,
-+			   ct->ctbs.g2h.info.space + g2h_len,
-+			   ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space,
-+			   ct->g2h_outstanding);
- 		CT_DEAD(ct, &ct->ctbs.g2h, G2H_RELEASE);
- 		return;
- 	}
-@@ -1004,7 +1007,7 @@ static int ct_corrupted(struct xe_guc_ct *ct, struct guc_ctb *ctb,
- 	va_start(va_args, msg);
- 	vaf.fmt = msg;
- 	vaf.va  = &va_args;
--	xe_gt_err(ct_to_gt(ct), "GUC: CT: %pV", &vaf);
-+	xe_log_err(ct_to_gt(ct), GUC, err, "CT: %pV", &vaf);
- 	va_end(va_args);
- 
- 	ct_dead_capture(ct, ctb, reason_code);
-@@ -1290,7 +1293,7 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	return ret;
- 
- broken:
--	xe_gt_err(gt, "No forward progress on H2G\n");
-+	xe_log_err(gt, GUC, -EDEADLK, "CT: No forward progress on H2G\n");
- 	CT_DEAD(ct, &ct->ctbs.h2g, DEADLOCK);
- 
- 	return -EDEADLK;
-@@ -1662,13 +1665,15 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 	 */
- 	if (fence & CT_SEQNO_UNTRACKED) {
- 		if (type == GUC_HXG_TYPE_RESPONSE_FAILURE)
--			xe_gt_err(gt, "FAST_REQ H2G fence 0x%x failed! e=0x%x, h=%u\n",
--				  fence,
--				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, hxg[0]),
--				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, hxg[0]));
-+			xe_log_err(gt, GUC, -EINVAL,
-+				   "CT: FAST_REQ H2G fence 0x%x failed! e=0x%x, h=%u\n",
-+				   fence,
-+				   FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, hxg[0]),
-+				   FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, hxg[0]));
- 		else
--			xe_gt_err(gt, "unexpected response %u for FAST_REQ H2G fence 0x%x!\n",
--				  type, fence);
-+			xe_log_err(gt, GUC, -EPROTO,
-+				   "CT: unexpected response %u for FAST_REQ H2G fence 0x%x!\n",
-+				    type, fence);
- 
- 		fast_req_report(ct, fence);
- 
-@@ -1744,7 +1749,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 
- 	origin = FIELD_GET(GUC_HXG_MSG_0_ORIGIN, hxg[0]);
- 	if (unlikely(origin != GUC_HXG_ORIGIN_GUC)) {
--		xe_gt_err(gt, "Invalid G2H origin=%u\n", origin);
-+		xe_log_err(gt, GUC, -EBADMSG, "CT: Invalid G2H origin=%u\n", origin);
- 		CT_DEAD(ct, &ct->ctbs.g2h, PARSE_G2H_ORIGIN);
- 
- 		return -EPROTO;
-@@ -1762,7 +1767,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 		ret = parse_g2h_response(ct, msg, len);
- 		break;
- 	default:
--		xe_gt_err(gt, "Unexpected G2H message type=%u\n", type);
-+		xe_log_err(gt, GUC, -EOPNOTSUPP, "CT: Unexpected G2H message type %u\n", type);
- 		CT_DEAD(ct, &ct->ctbs.g2h, PARSE_G2H_TYPE);
- 
- 		ret = -EOPNOTSUPP;
-@@ -1862,8 +1867,8 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 	}
- 
- 	if (ret) {
--		xe_gt_err(gt, "G2H action %#04x failed (%pe) len %u msg %*ph\n",
--			  action, ERR_PTR(ret), hxg_len, (int)sizeof(u32) * hxg_len, hxg);
-+		xe_log_err(gt, GUC, ret, "CT: G2H action %#04x failed len %u msg %*ph\n",
-+			   action, hxg_len, (int)sizeof(u32) * hxg_len, hxg);
- 		CT_DEAD(ct, NULL, PROCESS_FAILED);
- 	}
- 
-@@ -2046,8 +2051,7 @@ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 	}
- 
- 	if (ret) {
--		xe_gt_err(gt, "G2H action 0x%04x failed (%pe)\n",
--			  action, ERR_PTR(ret));
-+		xe_log_err(gt, GUC, ret, "CT: G2H action 0x%04x failed\n", action);
- 		CT_DEAD(ct, NULL, FAST_G2H);
- 	}
- }
-@@ -2166,8 +2170,7 @@ static void receive_g2h(struct xe_guc_ct *ct)
- 		mutex_unlock(&ct->lock);
- 
- 		if (unlikely(ret < 0 && g2h_err_is_fatal(ret))) {
--			xe_gt_err(ct_to_gt(ct), "CT dequeue failed, forcing GT reset(%pe)\n",
--				  ERR_PTR(ret));
-+			xe_log_err(ct_to_gt(ct), GUC, ret, "CT: dequeue failed, forcing GT reset\n");
- 			CT_DEAD(ct, NULL, G2H_RECV);
- 			kick_reset(ct);
- 		}
--- 
-2.55.0
+== Summary ==
 
+CI Bug Log - changes from xe-5771-3b9b6ac28583437aa238be799a31245509220dad_BAT -> xe-pw-174450v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-174450v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-wcl-2:          [FAIL][1] ([Intel XE#9103]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5771-3b9b6ac28583437aa238be799a31245509220dad/bat-wcl-2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v3/bat-wcl-2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#9103]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9103
+
+
+Build changes
+-------------
+
+  * Linux: xe-5771-3b9b6ac28583437aa238be799a31245509220dad -> xe-pw-174450v3
+
+  IGT_9099: 9099
+  xe-5771-3b9b6ac28583437aa238be799a31245509220dad: 3b9b6ac28583437aa238be799a31245509220dad
+  xe-pw-174450v3: 174450v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v3/index.html
+
+--===============6724156639162691788==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add mnemonic error reason to page fault diagnostics (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174450/">https://patchwork.freedesktop.org/series/174450/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5771-3b9b6ac28583437aa238be799a31245509220dad_BAT -&gt; xe-pw-174450v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-174450v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5771-3b9b6ac28583437aa238be799a31245509220dad/bat-wcl-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9103">Intel XE#9103</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v3/bat-wcl-2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5771-3b9b6ac28583437aa238be799a31245509220dad -&gt; xe-pw-174450v3</li>
+</ul>
+<p>IGT_9099: 9099<br />
+  xe-5771-3b9b6ac28583437aa238be799a31245509220dad: 3b9b6ac28583437aa238be799a31245509220dad<br />
+  xe-pw-174450v3: 174450v3</p>
+
+</body>
+</html>
+
+--===============6724156639162691788==--
