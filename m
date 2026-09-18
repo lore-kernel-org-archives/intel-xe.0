@@ -4,27 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C744C88E72
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 00:02:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A91C2C982D0
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 00:06:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2804D10E51E;
-	Fri, 18 Sep 2026 00:02:50 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0285910E51E;
- Fri, 18 Sep 2026 00:02:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6724156639162691788=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_mnemonic_erro?=
- =?utf-8?q?r_reason_to_page_fault_diagnostics_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6345610E51E;
+	Fri, 18 Sep 2026 00:06:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="G+x7joIq";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3047610E51E
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 00:06:17 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id E871E413E9;
+ Fri, 18 Sep 2026 00:06:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AACED1F000FF;
+ Fri, 18 Sep 2026 00:06:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1789689976;
+ bh=ovQYRUHTVJkz0owTPm/sbtmkonS+s31rVmPnBL/BhP4=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=G+x7joIqK6CB+/CnzGbhKfus2M0ZLtlknY0euPMY11EPXreBf9JP65uUmI3a6jWId
+ 83+lg7DkfFqhLvgJvpQR3gK4wm1ny8GA17EDtaKFOa+/AUvjQYh/uJ0uIda6UBQLFX
+ c3Nc4fT9D1BsC6GIUYE1Ue6aFLqksQSxF4ZTedTCF/LJ3jLHLBWNMPtGKcUjQwwePp
+ PPOZTTWZTfPOGEv6aQsMK/3c6Em0FFuykBi7nLDBtSpucYZyLRAhCJmSXEwMtldjDv
+ cYBu8SHNM2iQdwoc5bUQN9aJma+RHqKvN8ebeJ9aYAilP5zfMLZE9yyC9tMuDjHF3t
+ /O+xYM6chsE9A==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 3/7] drm/xe/guc: Make ct_dead_capture available on
+ non-debug config
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 18 Sep 2026 00:02:49 -0000
-Message-ID: <178968976900.177999.15019042184857628606@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260917203850.321385-1-matthew.brost@intel.com>
-In-Reply-To: <20260917203850.321385-1-matthew.brost@intel.com>
+In-Reply-To: <20260917235923.1521112-12-umesh.nerlige.ramappa@intel.com>
+References: <20260917235923.1521112-9-umesh.nerlige.ramappa@intel.com>
+ <20260917235923.1521112-12-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 18 Sep 2026 00:06:16 +0000
+Message-Id: <20260918000616.AACED1F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +53,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6724156639162691788==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] build: xe_guc_ct compile error on !CONFIG_DRM_XE_DEBUG
+--
 
-== Series Details ==
+commit 1f4499efdc2f257f0698c2212dc79db666b74590
+Author: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-Series: drm/xe: Add mnemonic error reason to page fault diagnostics (rev3)
-URL   : https://patchwork.freedesktop.org/series/174450/
-State : success
+drm/xe/guc: Make ct_dead_capture available on non-debug config
 
-== Summary ==
+Define ct_dead_capture for non-debug as well to simplify future
+refactor.
 
-CI Bug Log - changes from xe-5771-3b9b6ac28583437aa238be799a31245509220dad_BAT -> xe-pw-174450v3_BAT
-====================================================
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_c=
+t.c
+> index b3a6aa37808b4..3353515aa8747 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -59,6 +59,9 @@ static struct xe_device *ct_to_xe(struct xe_guc_ct *ct)
+>  	return gt_to_xe(ct_to_gt(ct));
+>  }
+> =20
+> +#define ct_id(reason_code)  CT_DEAD_##reason_code
+> +#define CT_DEAD(ct, ctb, reason_code)	ct_dead_capture((ct), (ctb), ct_id=
+(reason_code))
+> +
+>  #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+>  enum {
+>  	/* Internal states, not error conditions */
 
-Summary
--------
+[Severity: Low]
+Will this break compilation for non-debug builds?
 
-  **SUCCESS**
+The macro CT_DEAD now unconditionally references CT_DEAD_##reason_code, but
+the enumeration defining these reason codes remains strictly guarded by
+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG) just below.
 
-  No regressions found.
+Any invocation of CT_DEAD in common code could cause an undeclared identifi=
+er
+error when CONFIG_DRM_XE_DEBUG is disabled.
 
-  
+[ ... ]
 
-Participating hosts (15 -> 15)
-------------------------------
+> @@ -2376,4 +2369,10 @@ static void ct_dead_worker_func(struct work_struct=
+ *w)
+> =20
+>  	spin_unlock_irq(&ct->dead.lock);
+>  }
+> +#else
+> +static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u=
+32 reason_code)
+> +{
+> +	if (ctb)
+> +		ctb->info.broken =3D true;
+> +}
+>  #endif
 
-  No changes in participating hosts
+[Severity: Low]
+Does ct_dead_capture() also need a forward declaration for the non-debug
+path?
 
-Known issues
-------------
+Since this non-debug implementation is defined at the end of the file with
+no preceding forward declaration, calling CT_DEAD() earlier in the file may
+result in an implicit function declaration error.
 
-  Here are the changes found in xe-pw-174450v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-wcl-2:          [FAIL][1] ([Intel XE#9103]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5771-3b9b6ac28583437aa238be799a31245509220dad/bat-wcl-2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v3/bat-wcl-2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#9103]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9103
-
-
-Build changes
--------------
-
-  * Linux: xe-5771-3b9b6ac28583437aa238be799a31245509220dad -> xe-pw-174450v3
-
-  IGT_9099: 9099
-  xe-5771-3b9b6ac28583437aa238be799a31245509220dad: 3b9b6ac28583437aa238be799a31245509220dad
-  xe-pw-174450v3: 174450v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v3/index.html
-
---===============6724156639162691788==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add mnemonic error reason to page fault diagnostics (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174450/">https://patchwork.freedesktop.org/series/174450/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5771-3b9b6ac28583437aa238be799a31245509220dad_BAT -&gt; xe-pw-174450v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-174450v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5771-3b9b6ac28583437aa238be799a31245509220dad/bat-wcl-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9103">Intel XE#9103</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174450v3/bat-wcl-2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5771-3b9b6ac28583437aa238be799a31245509220dad -&gt; xe-pw-174450v3</li>
-</ul>
-<p>IGT_9099: 9099<br />
-  xe-5771-3b9b6ac28583437aa238be799a31245509220dad: 3b9b6ac28583437aa238be799a31245509220dad<br />
-  xe-pw-174450v3: 174450v3</p>
-
-</body>
-</html>
-
---===============6724156639162691788==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260917235923.1521=
+112-9-umesh.nerlige.ramappa@intel.com?part=3D3
