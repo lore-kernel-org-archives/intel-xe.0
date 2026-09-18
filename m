@@ -4,27 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A045C982DA
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 15:28:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33274C982DA
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 15:29:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B868910EB0B;
-	Fri, 18 Sep 2026 15:28:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3FDB10EB0B;
+	Fri, 18 Sep 2026 15:29:23 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBCA410EB0B;
- Fri, 18 Sep 2026 15:28:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B03D10EB0B;
+ Fri, 18 Sep 2026 15:29:23 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915=3A_use?=
- =?utf-8?q?_string_choice_helpers?=
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915/ddi=3A?=
+ =?utf-8?q?_add_DDI_A_force_4_lanes_quirk_for_Apple_MacBookPro11=2C_5_=28rev?=
+ =?utf-8?q?3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lalit Shankar Chowdhury" <lalitshankarch@gmail.com>
+To: "Theo Andersen Carton" <andersen.theo@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 18 Sep 2026 15:28:20 -0000
-Message-ID: <178974530095.182123.1062167843623962369@61270ab9df2a>
+Date: Fri, 18 Sep 2026 15:29:23 -0000
+Message-ID: <178974536316.181279.1183098718855923750@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260918042325.17700-1-lalitshankarch@gmail.com>
-In-Reply-To: <20260918042325.17700-1-lalitshankarch@gmail.com>
+References: <20260917185235.23792-1-andersen.theo@gmail.com>
+In-Reply-To: <20260917185235.23792-1-andersen.theo@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,15 +43,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: use string choice helpers
-URL   : https://patchwork.freedesktop.org/series/174521/
+Series: drm/i915/ddi: add DDI A force 4 lanes quirk for Apple MacBookPro11, 5 (rev3)
+URL   : https://patchwork.freedesktop.org/series/173998/
 State : failure
 
 == Summary ==
 
-Series author address 'lalitshankarch@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
+Series author address 'andersen.theo@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
 If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
 Exception occurred during validation, bailing out!
-Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1284207/ (on master)
+Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1284208/ (on master)
 
 
