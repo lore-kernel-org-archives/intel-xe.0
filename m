@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E5F6C982DA
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 12:19:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F0A2C982DC
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 12:26:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFD5210F34F;
-	Fri, 18 Sep 2026 12:19:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="FdDUPc/z";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D68710F348;
- Fri, 18 Sep 2026 12:19:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Subject:To:From:Date:From:Reply-To;
- bh=Iee394mqfwxTLAURR3viKDxcnu4q6zhVi5eyIe3N21c=; b=FdDUPc/zzW65vpaDzCpjBnqML5
- KEbB7hwa7u7J3ZfzpZ+lDCzyvh3theIkuEFGvobwknEqBtic2Ojg6R4oZFs3jeLvIMStRYneffdXz
- /jQMbqVuB2BJD2RRe3oem0hLPZ1Il7Mg7kUaWv9jI3rOBOFwlt1h+gT6SwodJ27wf+mxNl86HO2V/
- u+uIRw1YodmhzvD3tYRD6QlB37XnI8JIinM9LA4F1WRHRVvKtXwEhSRsUaaqFXnORvIjRKiStQ/G7
- Ap6s5w1bccFtVra+g474npXLfv08ggt07AZjUFHeSyF+59E3s9E3lO2Q7g8/orjdHCAoX/9dx12CF
- Z0STIGVQ==;
-Received: from 179-125-70-185-dinamico.pombonet.net.br ([179.125.70.185]
- helo=quatroqueijos.cascardo.eti.br)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1x7XZ2-003vjO-IC; Fri, 18 Sep 2026 14:19:36 +0200
-Date: Fri, 18 Sep 2026 09:19:29 -0300
-From: Thadeu Lima de Souza Cascardo <cascardo@igalia.com>
-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org, siqueira@igalia.com,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org,
- Christian Koenig <christian.koenig@amd.com>,
- maarten.lankhorst@linux.intel.com,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Vitaly Prosyak <vitaly.prosyak@amd.com>,
- Natalie Vock <natalie.vock@gmx.de>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, kernel-dev@igalia.com
-Subject: Re: [PATCH i-g-t v6 2/9] tests/cgroup_dmem: add dmem cgroup
- controller test
-Message-ID: <aq0sUV6Lfb8lVs4N@quatroqueijos.cascardo.eti.br>
-References: <20260903-dmem_max-v6-0-61dc62970fae@igalia.com>
- <20260903-dmem_max-v6-2-61dc62970fae@igalia.com>
- <20260917094559.3mgy6enka2dfeuq6@kamilkon-DESK.igk.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E31EE10E0D6;
+	Fri, 18 Sep 2026 12:26:52 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A68010F345;
+ Fri, 18 Sep 2026 12:26:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3144751333878098573=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260917094559.3mgy6enka2dfeuq6@kamilkon-DESK.igk.intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Keep_VF_LMEM_B?=
+ =?utf-8?q?AR_size_low_if_no_VFs_enabled_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Marcin Bernatowicz" <marcin.bernatowicz@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 18 Sep 2026 12:26:51 -0000
+Message-ID: <178973441162.181279.13750762874010806492@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260918110130.700332-1-marcin.bernatowicz@linux.intel.com>
+In-Reply-To: <20260918110130.700332-1-marcin.bernatowicz@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,156 +36,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Sep 17, 2026 at 11:45:59AM +0200, Kamil Konieczny wrote:
-> Hi Thadeu,
-> On 2026-09-03 at 19:00:24 -0300, Thadeu Lima de Souza Cascardo wrote:
-> > From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > 
-> > Add a test that exercises the cgroup v2 dmem controller interface using
-> > the new igt_cgroup library.
-> > 
-> > The test uses igt_simple_main and:
-> >   - Skips if no dmem regions are registered (no cgroup v2 or no
-> >    dmem-capable device).
-> >   - Creates a sub-cgroup and moves the test process into it.
-> >   - Enumerates all registered device memory regions and prints their
-> >    capacity, system-wide current usage, per-cgroup current usage, and
-> >    configured min, low and max limits.
-> >   - Destroys the cgroup on completion.
-> > 
-> > Assisted-by: GitHub Copilot:claude-sonnet-4.6
-> > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > ---
-> >  tests/cgroup_dmem.c | 92 +++++++++++++++++++++++++++++++++++++++++++++++++++++
-> >  tests/meson.build   |  1 +
-> >  2 files changed, 93 insertions(+)
-> > 
-> > diff --git a/tests/cgroup_dmem.c b/tests/cgroup_dmem.c
-> > new file mode 100644
-> > index 000000000000..442c965f9bbf
-> > --- /dev/null
-> > +++ b/tests/cgroup_dmem.c
-> > @@ -0,0 +1,92 @@
-> > +// SPDX-License-Identifier: MIT
-> > +/*
-> > + * Copyright © 2025 Intel Corporation
-> > + */
-> > +
-> > +/**
-> > + * TEST: cgroup dmem
-> > + * Description: Exercises the cgroup v2 dmem controller interface.  Creates a
-> > + *              cgroup, moves the process into it, enumerates all dmem regions,
-> > + *              prints their capacity, system-wide current usage, per-cgroup
-> > + *              current usage and configured limits, then destroys the cgroup.
-> > + * Category: Core
-> > + * Mega feature: General Core features
-> > + * Sub-category: uapi
-> > + * Functionality: cgroup
-> > + * Feature: dmem
-> > + * Test category: uapi
-> > + */
-> > +
-> > +#include <inttypes.h>
-> > +
-> > +#include "igt.h"
-> > +#include "igt_cgroup.h"
-> > +
-> > +IGT_TEST_DESCRIPTION("Exercises the cgroup v2 dmem controller interface.");
-> > +
-> > +static void fmt_bytes(uint64_t v, char *buf, size_t len)
-> > +{
-> > +	if (v == IGT_CGROUP_DMEM_MAX)
-> > +		snprintf(buf, len, "max");
-> > +	else
-> > +		snprintf(buf, len, "%" PRIu64, v);
-> > +}
-> > +
-> > +int igt_simple_main()
-> 
-> Can it be igt_main() with igt_fixture for require and a basic
-> subtest? It is not blocker, it could be converted later.
-> 
-> Regards,
-> Kamil
-> 
+--===============3144751333878098573==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I do change it to igt_main() in a later patch. So, it is converted later. I
-will it as is, then.
+== Series Details ==
 
-Thanks.
-Cascardo.
+Series: drm/xe/pf: Keep VF LMEM BAR size low if no VFs enabled (rev4)
+URL   : https://patchwork.freedesktop.org/series/154724/
+State : success
 
-> > +{
-> > +	struct igt_cgroup *cg;
-> > +	const char *region;
-> > +	char **regions;
-> > +	uint64_t capacity, sys_current, cg_current, min, low, max;
-> > +	char cap_s[32], sys_s[32], cg_s[32];
-> > +	char min_s[32], low_s[32], max_s[32];
-> > +	int i;
-> > +
-> > +	igt_require_f(igt_cgroup_dmem_available(),
-> > +		      "No dmem regions found; is cgroup v2 with the "
-> > +		      "dmem controller available?\n");
-> > +
-> > +	cg = igt_cgroup_new("igt-cgroup-dmem-test");
-> > +	igt_assert_f(cg, "Failed to create cgroup\n");
-> > +
-> > +	igt_cgroup_move_current(cg);
-> > +
-> > +	regions = igt_cgroup_dmem_regions();
-> > +	igt_assert_f(regions, "Failed to enumerate dmem regions\n");
-> > +
-> > +	igt_info("%-40s %16s %16s %16s %16s %16s %16s\n",
-> > +		 "region", "capacity", "system-current",
-> > +		 "cgroup-current", "min", "low", "max");
-> > +	igt_info("%-40s %16s %16s %16s %16s %16s %16s\n",
-> > +		 "------", "--------", "--------------",
-> > +		 "--------------", "---", "---", "---");
-> > +
-> > +	for (i = 0; regions[i]; i++) {
-> > +		region = regions[i];
-> > +
-> > +		igt_cgroup_dmem_get_capacity(region, &capacity);
-> > +		fmt_bytes(capacity, cap_s, sizeof(cap_s));
-> > +
-> > +		igt_cgroup_dmem_get_system_current(region, &sys_current);
-> > +		fmt_bytes(sys_current, sys_s, sizeof(sys_s));
-> > +
-> > +		igt_cgroup_dmem_get_current(cg, region, &cg_current);
-> > +		fmt_bytes(cg_current, cg_s, sizeof(cg_s));
-> > +
-> > +		igt_cgroup_dmem_get_min(cg, region, &min);
-> > +		fmt_bytes(min, min_s, sizeof(min_s));
-> > +
-> > +		igt_cgroup_dmem_get_low(cg, region, &low);
-> > +		fmt_bytes(low, low_s, sizeof(low_s));
-> > +
-> > +		igt_cgroup_dmem_get_max(cg, region, &max);
-> > +		fmt_bytes(max, max_s, sizeof(max_s));
-> > +
-> > +		igt_info("%-40s %16s %16s %16s %16s %16s %16s\n",
-> > +			 region, cap_s, sys_s, cg_s,
-> > +			 min_s, low_s, max_s);
-> > +	}
-> > +
-> > +	igt_cgroup_dmem_regions_free(regions);
-> > +	igt_cgroup_free(cg);
-> > +}
-> > diff --git a/tests/meson.build b/tests/meson.build
-> > index 1ac89bab7e15..c362d42888ba 100644
-> > --- a/tests/meson.build
-> > +++ b/tests/meson.build
-> > @@ -1,4 +1,5 @@
-> >  test_progs = [
-> > +	'cgroup_dmem',
-> >  	'core_auth',
-> >  	'core_debugfs',
-> >  	'core_getclient',
-> > 
-> > -- 
-> > 2.47.3
-> > 
+== Summary ==
+
+CI Bug Log - changes from xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05_BAT -> xe-pw-154724v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-154724v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-ptl-2:          [FAIL][1] ([Intel XE#9109]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v4/bat-ptl-2/igt@xe_waitfence@engine.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-ptl-2:          [FAIL][3] ([Intel XE#9115]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@reltime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v4/bat-ptl-2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#9109]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109
+  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
+
+
+Build changes
+-------------
+
+  * Linux: xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05 -> xe-pw-154724v4
+
+  IGT_9100: 80e998fdbe300b1ca29901099f35316bd83781e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05: 15f7465765dc45d58738fc05a1c11a785e709c05
+  xe-pw-154724v4: 154724v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v4/index.html
+
+--===============3144751333878098573==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pf: Keep VF LMEM BAR size low if no VFs enabled (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/154724/">https://patchwork.freedesktop.org/series/154724/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05_BAT -&gt; xe-pw-154724v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-154724v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109">Intel XE#9109</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v4/bat-ptl-2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-154724v4/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05 -&gt; xe-pw-154724v4</li>
+</ul>
+<p>IGT_9100: 80e998fdbe300b1ca29901099f35316bd83781e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05: 15f7465765dc45d58738fc05a1c11a785e709c05<br />
+  xe-pw-154724v4: 154724v4</p>
+
+</body>
+</html>
+
+--===============3144751333878098573==--
