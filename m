@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ADBCC982D6
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 10:53:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C2E1C982D6
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 11:02:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FFC910E71D;
-	Fri, 18 Sep 2026 10:53:47 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69E8910E71D;
- Fri, 18 Sep 2026 10:53:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4513891422653946841=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2D1A10E51D;
+	Fri, 18 Sep 2026 11:02:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HFDqBC4y";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76EFD10E51D
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Sep 2026 11:02:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789729340; x=1821265340;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yWdX6tTwgnfCqMFO60qJdJkCIwBQYz3dxpLh41ciJM4=;
+ b=HFDqBC4yOdFtaaNn7b+GH9SHwKkaUTpsVFBTnGv/MvayLtkjnZ6ERkXo
+ QyoAaN0+tV3VdCDVIbH5UkwoCjBHC7njr2RWthyLEXti11TwrJETzrgz3
+ W83aiogkaYt/BQX9WDjywh6/iYw0HOhTWoSX/64sghV5LIbUfEovfjnfN
+ MyDZ7KWXCBAm31WQ+1fv237D23czsbr/q5zKsmSTSaqqGEY3TzwM0LnuD
+ C2SM5BiKSKVbfgefExvsMQxY5xhQbCVWSeJU9oXxr/8JnqBGZR28mwPU4
+ +MINvlugjCRXOqL4oqVTrMPOPdX4ak+jpfCwYKV7LEtgY/coJ3NssmKsm g==;
+X-CSE-ConnectionGUID: HO/gJfviSqqmPPbkXvH7Yg==
+X-CSE-MsgGUID: 5Tk7OHmbTtGyvtcqE/CpIw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="90094335"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="90094335"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2026 04:02:19 -0700
+X-CSE-ConnectionGUID: p1tgaatHRqaFrpz5TE7piA==
+X-CSE-MsgGUID: 6bs2VE3RTnGviKC2/0Wr4w==
+X-ExtLoop1: 1
+Received: from pchelmix-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.245.119.200])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2026 04:02:17 -0700
+From: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
+Subject: [PATCH] drm/xe/pf: Keep VF LMEM BAR size low if no VFs enabled
+Date: Fri, 18 Sep 2026 13:01:30 +0200
+Message-ID: <20260918110130.700332-1-marcin.bernatowicz@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_KUnit_test_for_VF_provision?=
- =?utf-8?q?ing_error_handling_=28rev9=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 18 Sep 2026 10:53:45 -0000
-Message-ID: <178972882542.181278.17099689144389632722@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260918100533.567225-12-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20260918100533.567225-12-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,139 +64,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4513891422653946841==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+When VFs are enabled on dGFX the driver resizes the PF VF_LMEM_BAR to
+fit the requested layout. After VFs are disabled the PF VF BAR
+size is left as-is. On platforms with tight MMIO apertures a
+subsequent unplug/rescan followed by another enable may fail with:
 
-== Series Details ==
+  "VF BAR …: can't assign; no space"
 
-Series: KUnit test for VF provisioning error handling (rev9)
-URL   : https://patchwork.freedesktop.org/series/170198/
-State : success
+because the PCI core reserves address space based on the (now large) VF
+template, often multiplied by totalvfs.
 
-== Summary ==
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5937
+Fixes: 94eae6ee4c2d ("drm/xe/pf: Set VF LMEM BAR size")
+Signed-off-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
+Cc: Michał Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michał Winiarski <michal.winiarski@intel.com>
+---
+v4:
+ - use directly pf_resize_vf_vram_bar helper with device_total_vfs value.
+v3:
+ - rebased to resolve conflicts, no other functional changes were done
+v2:
+ - Rename helper to restore_vf_vram_bar_size() (Michal)
+ - Use xe->sriov.pf.device_total_vfs instead of pci_sriov_get_totalvfs(),
+   which may be capped (Michal)
+ - Switch logging to %pe (Michal)
+ - Call restore unconditionally on enable-fail path (Michal)
+   (drop vf_vram_bar_resized flag)
+---
+---
+ drivers/gpu/drm/xe/xe_pci_sriov.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-CI Bug Log - changes from xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05_BAT -> xe-pw-170198v9_BAT
-====================================================
+diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
+index c023a2a1fc17..31abcee55211 100644
+--- a/drivers/gpu/drm/xe/xe_pci_sriov.c
++++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+@@ -177,6 +177,7 @@ static int pf_enable_vfs(struct xe_device *xe, int num_vfs)
+ 	return num_vfs;
+ 
+ failed:
++	pf_resize_vf_vram_bar(xe, xe->sriov.pf.device_total_vfs);
+ 	xe_sriov_pf_unprovision_vfs(xe, num_vfs);
+ 	xe_pm_runtime_put(xe);
+ 	pf_finish_vfs_enabling(xe);
+@@ -204,6 +205,8 @@ static int pf_disable_vfs(struct xe_device *xe)
+ 
+ 	pci_disable_sriov(pdev);
+ 
++	pf_resize_vf_vram_bar(xe, xe->sriov.pf.device_total_vfs);
++
+ 	xe_sriov_pf_reprovision_default(xe);
+ 
+ 	pf_reset_vfs(xe, num_vfs);
+-- 
+2.43.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-170198v9_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-ptl-2:          [FAIL][1] ([Intel XE#9109]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170198v9/bat-ptl-2/igt@xe_waitfence@engine.html
-
-  * igt@xe_waitfence@reltime:
-    - bat-ptl-2:          [FAIL][3] ([Intel XE#9115]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@reltime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170198v9/bat-ptl-2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#9109]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109
-  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
-
-
-Build changes
--------------
-
-  * Linux: xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05 -> xe-pw-170198v9
-
-  IGT_9100: 80e998fdbe300b1ca29901099f35316bd83781e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05: 15f7465765dc45d58738fc05a1c11a785e709c05
-  xe-pw-170198v9: 170198v9
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170198v9/index.html
-
---===============4513891422653946841==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>KUnit test for VF provisioning error handling (rev9)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170198/">https://patchwork.freedesktop.org/series/170198/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170198v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170198v9/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05_BAT -&gt; xe-pw-170198v9_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-170198v9_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109">Intel XE#9109</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170198v9/bat-ptl-2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170198v9/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05 -&gt; xe-pw-170198v9</li>
-</ul>
-<p>IGT_9100: 80e998fdbe300b1ca29901099f35316bd83781e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5778-15f7465765dc45d58738fc05a1c11a785e709c05: 15f7465765dc45d58738fc05a1c11a785e709c05<br />
-  xe-pw-170198v9: 170198v9</p>
-
-</body>
-</html>
-
---===============4513891422653946841==--
