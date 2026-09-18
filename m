@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28EF3C982D2
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 00:58:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 201ABC982D0
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 01:51:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A52E110E7A1;
-	Fri, 18 Sep 2026 00:58:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA6C810E509;
+	Fri, 18 Sep 2026 01:51:32 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EC5F10E7A0;
- Fri, 18 Sep 2026 00:58:42 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47D3410E509;
+ Fri, 18 Sep 2026 01:51:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5653370136120928604=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Use_SIG=5FID_logs_for_GuC_comp?=
- =?utf-8?q?onent_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Consolidate_semap?=
+ =?utf-8?q?hore_instruction_definitions?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+To: "Matt Roper" <matthew.d.roper@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 18 Sep 2026 00:58:42 -0000
-Message-ID: <178969312251.177999.3266670319964218281@61270ab9df2a>
+Date: Fri, 18 Sep 2026 01:51:31 -0000
+Message-ID: <178969629128.178464.5080648633017377970@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260917235923.1521112-9-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20260917235923.1521112-9-umesh.nerlige.ramappa@intel.com>
+References: <20260917-semaphore_inst-v1-1-61e49405f71d@intel.com>
+In-Reply-To: <20260917-semaphore_inst-v1-1-61e49405f71d@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,247 +40,106 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============5653370136120928604==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: Use SIG_ID logs for GuC component (rev3)
-URL   : https://patchwork.freedesktop.org/series/173177/
-State : failure
+Series: drm/xe: Consolidate semaphore instruction definitions
+URL   : https://patchwork.freedesktop.org/series/174461/
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ kunitconfigs=('/kernel/drivers/gpu/tests/.kunitconfig' '/kernel/drivers/gpu/drm/xe/.kunitconfig' '/kernel/drivers/gpu/drm/tests/.kunitconfig' '/kernel/drivers/gpu/drm/ttm/tests/.kunitconfig' '/kernel/drivers/dma-buf/.kunitconfig')
-+ for kcfg in "${kunitconfigs[@]}"
-+ [[ ! -f /kernel/drivers/gpu/tests/.kunitconfig ]]
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/tests/.kunitconfig
-[00:57:41] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[00:57:46] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-[00:58:06] Starting KUnit Kernel (1/1)...
-[00:58:06] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[00:58:06] ============= refcount_interrupt (4 subtests) ==============
-[00:58:06] [PASSED] test_single_irq_change
-[00:58:06] [PASSED] test_nested_irq_change
-[00:58:06] [PASSED] test_multiple_irq_change
-[00:58:06] [PASSED] test_irq_save
-[00:58:06] =============== [PASSED] refcount_interrupt ================
-[00:58:06] ================= gpu_buddy (14 subtests) ==================
-[00:58:06] [PASSED] gpu_test_buddy_alloc_limit
-[00:58:06] [PASSED] gpu_test_buddy_alloc_optimistic
-[00:58:06] [PASSED] gpu_test_buddy_alloc_pessimistic
-[00:58:06] [PASSED] gpu_test_buddy_alloc_pathological
-[00:58:06] [PASSED] gpu_test_buddy_alloc_contiguous
-[00:58:06] [PASSED] gpu_test_buddy_alloc_clear
-[00:58:06] [PASSED] gpu_test_buddy_alloc_range
-[00:58:07] [PASSED] gpu_test_buddy_alloc_range_bias
-[00:58:08] [PASSED] gpu_test_buddy_fragmentation_performance
-[00:58:08] [PASSED] gpu_test_buddy_dirty_tracker_performance
-[00:58:08] [PASSED] gpu_test_buddy_alloc_exceeds_max_order
-[00:58:08] [PASSED] gpu_test_buddy_offset_aligned_allocation
-[00:58:08] [PASSED] gpu_test_buddy_subtree_offset_alignment_stress
-[00:58:08] [PASSED] gpu_test_buddy_addr_to_block
-[00:58:08] ==================== [PASSED] gpu_buddy ====================
-[00:58:08] ============================================================
-[00:58:08] Testing complete. Ran 18 tests: passed: 18
-[00:58:08] Elapsed time: 26.713s total, 4.453s configuring, 20.342s building, 1.868s running
+CI Bug Log - changes from xe-5772-1687195a722fb2a8bfa0af9b739a0485034fefcb_BAT -> xe-pw-174461v1_BAT
+====================================================
 
-+ for kcfg in "${kunitconfigs[@]}"
-+ [[ ! -f /kernel/drivers/gpu/drm/xe/.kunitconfig ]]
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[00:58:08] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[00:58:10] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-ERROR:root:../drivers/gpu/drm/xe/xe_guc_ct.c: In function ‘__xe_guc_ct_start’:
-../drivers/gpu/drm/xe/xe_guc_ct.c:129:41: error: implicit declaration of function ‘ct_dead_capture’ [-Werror=implicit-function-declaration]
-  129 | #define CT_DEAD(ct, ctb, reason_code)   ct_dead_capture((ct), (ctb), ct_id(reason_code))
-      |                                         ^~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:742:9: note: in expansion of macro ‘CT_DEAD’
-  742 |         CT_DEAD(ct, NULL, SETUP);
-      |         ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:128:29: error: ‘CT_DEAD_SETUP’ undeclared (first use in this function)
-  128 | #define ct_id(reason_code)  CT_DEAD_##reason_code
-      |                             ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:129:70: note: in expansion of macro ‘ct_id’
-  129 | #define CT_DEAD(ct, ctb, reason_code)   ct_dead_capture((ct), (ctb), ct_id(reason_code))
-      |                                                                      ^~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:742:9: note: in expansion of macro ‘CT_DEAD’
-  742 |         CT_DEAD(ct, NULL, SETUP);
-      |         ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:128:29: note: each undeclared identifier is reported only once for each function it appears in
-  128 | #define ct_id(reason_code)  CT_DEAD_##reason_code
-      |                             ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:129:70: note: in expansion of macro ‘ct_id’
-  129 | #define CT_DEAD(ct, ctb, reason_code)   ct_dead_capture((ct), (ctb), ct_id(reason_code))
-      |                                                                      ^~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:742:9: note: in expansion of macro ‘CT_DEAD’
-  742 |         CT_DEAD(ct, NULL, SETUP);
-      |         ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c: In function ‘h2g_has_room’:
-../drivers/gpu/drm/xe/xe_guc_ct.c:128:29: error: ‘CT_DEAD_H2G_HAS_ROOM’ undeclared (first use in this function)
-  128 | #define ct_id(reason_code)  CT_DEAD_##reason_code
-      |                             ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:129:70: note: in expansion of macro ‘ct_id’
-  129 | #define CT_DEAD(ct, ctb, reason_code)   ct_dead_capture((ct), (ctb), ct_id(reason_code))
-      |                                                                      ^~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:868:25: note: in expansion of macro ‘CT_DEAD’
-  868 |                         CT_DEAD(ct, h2g, H2G_HAS_ROOM);
-      |                         ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c: In function ‘__g2h_release_space’:
-../drivers/gpu/drm/xe/xe_guc_ct.c:128:29: error: ‘CT_DEAD_G2H_RELEASE’ undeclared (first use in this function)
-  128 | #define ct_id(reason_code)  CT_DEAD_##reason_code
-      |                             ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:129:70: note: in expansion of macro ‘ct_id’
-  129 | #define CT_DEAD(ct, ctb, reason_code)   ct_dead_capture((ct), (ctb), ct_id(reason_code))
-      |                                                                      ^~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:943:17: note: in expansion of macro ‘CT_DEAD’
-  943 |                 CT_DEAD(ct, &ct->ctbs.g2h, G2H_RELEASE);
-      |                 ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c: In function ‘h2g_write’:
-../drivers/gpu/drm/xe/xe_guc_ct.c:128:29: error: ‘CT_DEAD_H2G_WRITE’ undeclared (first use in this function)
-  128 | #define ct_id(reason_code)  CT_DEAD_##reason_code
-      |                             ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:1042:65: note: in expansion of macro ‘ct_id’
- 1042 |                         return ct_corrupted(ct,  &ct->ctbs.h2g, ct_id(H2G_WRITE),
-      |                                                                 ^~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c: In function ‘guc_ct_send_locked’:
-../drivers/gpu/drm/xe/xe_guc_ct.c:128:29: error: ‘CT_DEAD_DEADLOCK’ undeclared (first use in this function)
-  128 | #define ct_id(reason_code)  CT_DEAD_##reason_code
-      |                             ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:129:70: note: in expansion of macro ‘ct_id’
-  129 | #define CT_DEAD(ct, ctb, reason_code)   ct_dead_capture((ct), (ctb), ct_id(reason_code))
-      |                                                                      ^~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:1297:9: note: in expansion of macro ‘CT_DEAD’
- 1297 |         CT_DEAD(ct, &ct->ctbs.h2g, DEADLOCK);
-      |         ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c: In function ‘guc_handle_crash_dump_msg’:
-../drivers/gpu/drm/xe/xe_guc_ct.c:128:29: error: ‘CT_DEAD_CRASH’ undeclared (first use in this function)
-  128 | #define ct_id(reason_code)  CT_DEAD_##reason_code
-      |                             ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:129:70: note: in expansion of macro ‘ct_id’
-  129 | #define CT_DEAD(ct, ctb, reason_code)   ct_dead_capture((ct), (ctb), ct_id(reason_code))
-      |                                                                      ^~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:1632:9: note: in expansion of macro ‘CT_DEAD’
- 1632 |         CT_DEAD(ct, NULL, CRASH);
-      |         ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c: In function ‘guc_handle_exception_msg’:
-../drivers/gpu/drm/xe/xe_guc_ct.c:128:29: error: ‘CT_DEAD_CRASH’ undeclared (first use in this function)
-  128 | #define ct_id(reason_code)  CT_DEAD_##reason_code
-      |                             ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:129:70: note: in expansion of macro ‘ct_id’
-  129 | #define CT_DEAD(ct, ctb, reason_code)   ct_dead_capture((ct), (ctb), ct_id(reason_code))
-      |                                                                      ^~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:1641:9: note: in expansion of macro ‘CT_DEAD’
- 1641 |         CT_DEAD(ct, NULL, CRASH);
-      |         ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c: In function ‘parse_g2h_response’:
-../drivers/gpu/drm/xe/xe_guc_ct.c:128:29: error: ‘CT_DEAD_PARSE_G2H_RESPONSE’ undeclared (first use in this function)
-  128 | #define ct_id(reason_code)  CT_DEAD_##reason_code
-      |                             ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:129:70: note: in expansion of macro ‘ct_id’
-  129 | #define CT_DEAD(ct, ctb, reason_code)   ct_dead_capture((ct), (ctb), ct_id(reason_code))
-      |                                                                      ^~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:1684:17: note: in expansion of macro ‘CT_DEAD’
- 1684 |                 CT_DEAD(ct, NULL, PARSE_G2H_RESPONSE);
-      |                 ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c: In function ‘parse_g2h_msg’:
-../drivers/gpu/drm/xe/xe_guc_ct.c:128:29: error: ‘CT_DEAD_PARSE_G2H_ORIGIN’ undeclared (first use in this function)
-  128 | #define ct_id(reason_code)  CT_DEAD_##reason_code
-      |                             ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:129:70: note: in expansion of macro ‘ct_id’
-  129 | #define CT_DEAD(ct, ctb, reason_code)   ct_dead_capture((ct), (ctb), ct_id(reason_code))
-      |                                                                      ^~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:1753:17: note: in expansion of macro ‘CT_DEAD’
- 1753 |                 CT_DEAD(ct, &ct->ctbs.g2h, PARSE_G2H_ORIGIN);
-      |                 ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:128:29: error: ‘CT_DEAD_PARSE_G2H_TYPE’ undeclared (first use in this function)
-  128 | #define ct_id(reason_code)  CT_DEAD_##reason_code
-      |                             ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:129:70: note: in expansion of macro ‘ct_id’
-  129 | #define CT_DEAD(ct, ctb, reason_code)   ct_dead_capture((ct), (ctb), ct_id(reason_code))
-      |                                                                      ^~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:1771:17: note: in expansion of macro ‘CT_DEAD’
- 1771 |                 CT_DEAD(ct, &ct->ctbs.g2h, PARSE_G2H_TYPE);
-      |                 ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c: In function ‘process_g2h_msg’:
-../drivers/gpu/drm/xe/xe_guc_ct.c:128:29: error: ‘CT_DEAD_PROCESS_FAILED’ undeclared (first use in this function)
-  128 | #define ct_id(reason_code)  CT_DEAD_##reason_code
-      |                             ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:129:70: note: in expansion of macro ‘ct_id’
-  129 | #define CT_DEAD(ct, ctb, reason_code)   ct_dead_capture((ct), (ctb), ct_id(reason_code))
-      |                                                                      ^~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:1872:17: note: in expansion of macro ‘CT_DEAD’
- 1872 |                 CT_DEAD(ct, NULL, PROCESS_FAILED);
-      |                 ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c: In function ‘g2h_read’:
-../drivers/gpu/drm/xe/xe_guc_ct.c:128:29: error: ‘CT_DEAD_G2H_READ’ undeclared (first use in this function)
-  128 | #define ct_id(reason_code)  CT_DEAD_##reason_code
-      |                             ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:1919:65: note: in expansion of macro ‘ct_id’
- 1919 |                         return ct_corrupted(ct,  &ct->ctbs.g2h, ct_id(G2H_READ),
-      |                                                                 ^~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c: In function ‘g2h_fast_path’:
-../drivers/gpu/drm/xe/xe_guc_ct.c:128:29: error: ‘CT_DEAD_FAST_G2H’ undeclared (first use in this function)
-  128 | #define ct_id(reason_code)  CT_DEAD_##reason_code
-      |                             ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:129:70: note: in expansion of macro ‘ct_id’
-  129 | #define CT_DEAD(ct, ctb, reason_code)   ct_dead_capture((ct), (ctb), ct_id(reason_code))
-      |                                                                      ^~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:2055:17: note: in expansion of macro ‘CT_DEAD’
- 2055 |                 CT_DEAD(ct, NULL, FAST_G2H);
-      |                 ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c: In function ‘receive_g2h’:
-../drivers/gpu/drm/xe/xe_guc_ct.c:128:29: error: ‘CT_DEAD_G2H_RECV’ undeclared (first use in this function)
-  128 | #define ct_id(reason_code)  CT_DEAD_##reason_code
-      |                             ^~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:129:70: note: in expansion of macro ‘ct_id’
-  129 | #define CT_DEAD(ct, ctb, reason_code)   ct_dead_capture((ct), (ctb), ct_id(reason_code))
-      |                                                                      ^~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:2174:25: note: in expansion of macro ‘CT_DEAD’
- 2174 |                         CT_DEAD(ct, NULL, G2H_RECV);
-      |                         ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c: At top level:
-../drivers/gpu/drm/xe/xe_guc_ct.c:2468:13: warning: conflicting types for ‘ct_dead_capture’; have ‘void(struct xe_guc_ct *, struct guc_ctb *, u32)’ {aka ‘void(struct xe_guc_ct *, struct guc_ctb *, unsigned int)’}
- 2468 | static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code)
-      |             ^~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:2468:13: error: static declaration of ‘ct_dead_capture’ follows non-static declaration
-../drivers/gpu/drm/xe/xe_guc_ct.c:129:41: note: previous implicit declaration of ‘ct_dead_capture’ with type ‘void(struct xe_guc_ct *, struct guc_ctb *, u32)’ {aka ‘void(struct xe_guc_ct *, struct guc_ctb *, unsigned int)’}
-  129 | #define CT_DEAD(ct, ctb, reason_code)   ct_dead_capture((ct), (ctb), ct_id(reason_code))
-      |                                         ^~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:742:9: note: in expansion of macro ‘CT_DEAD’
-  742 |         CT_DEAD(ct, NULL, SETUP);
-      |         ^~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ct.c:2468:13: warning: ‘ct_dead_capture’ defined but not used [-Wunused-function]
- 2468 | static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code)
-      |             ^~~~~~~~~~~~~~~
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:290: drivers/gpu/drm/xe/xe_guc_ct.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:551: drivers/gpu/drm/xe] Error 2
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:551: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:551: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:551: drivers] Error 2
-make[3]: *** Waiting for unfinished jobs....
-make[2]: *** [/kernel/Makefile:2229: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+Summary
+-------
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 14)
+------------------------------
+
+  Missing    (1): bat-bmg-2 
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9099 -> IGT_9100
+  * Linux: xe-5772-1687195a722fb2a8bfa0af9b739a0485034fefcb -> xe-pw-174461v1
+
+  IGT_9099: 9099
+  IGT_9100: 80e998fdbe300b1ca29901099f35316bd83781e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5772-1687195a722fb2a8bfa0af9b739a0485034fefcb: 1687195a722fb2a8bfa0af9b739a0485034fefcb
+  xe-pw-174461v1: 174461v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174461v1/index.html
+
+--===============5653370136120928604==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Consolidate semaphore instruction definitions</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174461/">https://patchwork.freedesktop.org/series/174461/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174461v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174461v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5772-1687195a722fb2a8bfa0af9b739a0485034fefcb_BAT -&gt; xe-pw-174461v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 14)</h2>
+<p>Missing    (1): bat-bmg-2 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9099 -&gt; IGT_9100</li>
+<li>Linux: xe-5772-1687195a722fb2a8bfa0af9b739a0485034fefcb -&gt; xe-pw-174461v1</li>
+</ul>
+<p>IGT_9099: 9099<br />
+  IGT_9100: 80e998fdbe300b1ca29901099f35316bd83781e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5772-1687195a722fb2a8bfa0af9b739a0485034fefcb: 1687195a722fb2a8bfa0af9b739a0485034fefcb<br />
+  xe-pw-174461v1: 174461v1</p>
+
+</body>
+</html>
+
+--===============5653370136120928604==--
