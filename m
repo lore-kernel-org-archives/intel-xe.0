@@ -4,27 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8CA9C88E75
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 08:01:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16653C88E75
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Sep 2026 08:07:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A74A10F250;
-	Fri, 18 Sep 2026 08:01:52 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51C4710F250;
- Fri, 18 Sep 2026 08:01:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5937292298933564058=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCA3410E4FC;
+	Fri, 18 Sep 2026 08:07:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EWz6X/fC";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88FC110E4FC;
+ Fri, 18 Sep 2026 08:07:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789718848; x=1821254848;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=zkCVM8vtfz9mwZhx1cFKKSSSnqLv9yu5+oUbCaj5ejc=;
+ b=EWz6X/fC76sV5QrQn5UZaolpi2p4M8czLSGfRDih+PvMepU21iz3sA+6
+ cr45MLPs247jkSTQjPk3M83AR/wyPYxBDqXZhwfOMA5GbJ6FogcnZYcBJ
+ mj3u0Q3slgfVLoQe2Ac4KWQmXvm1FggJ3he1RkaNvx0xKUSMEPKC0zOge
+ GjOv31hqiljjh9dRZRDKldZdrqT3YH0wQjbyNOmvwFaBHZ0+2Hr+7rPLe
+ WUKVJ1SJ1xFBwX4q2mi6Hi+nwGLJIYhXMaUdYsBpzMDw2bx4GpKHaznku
+ eu6nOUfW30oDHKMCYxKGqpGQyshrpAmPZQTjTdXi5TediE+SGczd5Mj5v A==;
+X-CSE-ConnectionGUID: xEHKhhpxSl2QlOlsanPoow==
+X-CSE-MsgGUID: 58V1NLJyTkmUkJLU9bcCpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="100805400"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; d="scan'208";a="100805400"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2026 01:07:27 -0700
+X-CSE-ConnectionGUID: 6VOz6MEcROaJ6nxBvGvFIg==
+X-CSE-MsgGUID: NjIiFybCR7mbJujaf/1hcA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
+   d="scan'208";a="2506439"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.216])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2026 01:07:24 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Lalit Shankar Chowdhury <lalitshankarch@gmail.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Zhenyu
+ Wang <zhenyuw.linux@gmail.com>, Zhi Wang <zhi.wang.linux@gmail.com>, "open
+ list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, "open list:INTEL DRM DISPLAY FOR XE AND
+ I915 DRIVERS" <intel-xe@lists.freedesktop.org>, "open list:DRM DRIVERS"
+ <dri-devel@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
+Cc: Lalit Shankar Chowdhury <lalitshankarch@gmail.com>
+Subject: Re: [PATCH] drm/i915: use string choice helpers
+In-Reply-To: <20260918042325.17700-1-lalitshankarch@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260918042325.17700-1-lalitshankarch@gmail.com>
+Date: Fri, 18 Sep 2026 11:07:21 +0300
+Message-ID: <b5576d0e503315036500145888d712e75df42f7e@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Disable_DC5/?=
- =?utf-8?q?6_before_AUX_programming_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 18 Sep 2026 08:01:51 -0000
-Message-ID: <178971851132.180302.1586941868869556639@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260918060426.1162123-1-suraj.kandpal@intel.com>
-In-Reply-To: <20260918060426.1162123-1-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +75,120 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5937292298933564058==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 18 Sep 2026, Lalit Shankar Chowdhury <lalitshankarch@gmail.com> wro=
+te:
+> Prefer the str_high_low() and str_read_write() helper functions
+> over ternary operators with hardcoded strings.
+>
+> No functional changes.
+>
+> Signed-off-by: Lalit Shankar Chowdhury <lalitshankarch@gmail.com>
 
-== Series Details ==
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: drm/i915/dp: Disable DC5/6 before AUX programming (rev2)
-URL   : https://patchwork.freedesktop.org/series/174474/
-State : success
+> ---
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 5 +++--
+>  drivers/gpu/drm/i915/gvt/aperture_gm.c       | 4 +++-
+>  drivers/gpu/drm/i915/vlv_iosf_sb.c           | 6 ++++--
+>  3 files changed, 10 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/d=
+rm/i915/display/intel_cx0_phy.c
+> index dbebd7210848..b83f0afaa9b5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -5,6 +5,7 @@
+>=20=20
+>  #include <linux/log2.h>
+>  #include <linux/math64.h>
+> +#include <linux/string_choices.h>
+>=20=20
+>  #include <drm/drm_print.h>
+>=20=20
+> @@ -189,7 +190,7 @@ int intel_cx0_wait_for_ack(struct intel_encoder *enco=
+der,
+>  		drm_dbg_kms(display->drm,
+>  			    "PHY %c Error occurred during %s command. Status: 0x%x\n",
+>  			    phy_name(phy),
+> -			    command =3D=3D XELPDP_PORT_P2M_COMMAND_READ_ACK ? "read" : "write=
+", *val);
+> +			    str_read_write(command =3D=3D XELPDP_PORT_P2M_COMMAND_READ_ACK), =
+*val);
+>  		intel_cx0_bus_reset(encoder, lane);
+>  		return -EINVAL;
+>  	}
+> @@ -198,7 +199,7 @@ int intel_cx0_wait_for_ack(struct intel_encoder *enco=
+der,
+>  		drm_dbg_kms(display->drm,
+>  			    "PHY %c Not a %s response. MSGBUS Status: 0x%x.\n",
+>  			    phy_name(phy),
+> -			    command =3D=3D XELPDP_PORT_P2M_COMMAND_READ_ACK ? "read" : "write=
+", *val);
+> +			    str_read_write(command =3D=3D XELPDP_PORT_P2M_COMMAND_READ_ACK), =
+*val);
+>  		intel_cx0_bus_reset(encoder, lane);
+>  		return -EINVAL;
+>  	}
+> diff --git a/drivers/gpu/drm/i915/gvt/aperture_gm.c b/drivers/gpu/drm/i91=
+5/gvt/aperture_gm.c
+> index 253b41789be9..794fb50e48dd 100644
+> --- a/drivers/gpu/drm/i915/gvt/aperture_gm.c
+> +++ b/drivers/gpu/drm/i915/gvt/aperture_gm.c
+> @@ -34,6 +34,8 @@
+>   *
+>   */
+>=20=20
+> +#include <linux/string_choices.h>
+> +
+>  #include <drm/drm_print.h>
+>=20=20
+>  #include "gt/intel_ggtt_fencing.h"
+> @@ -76,7 +78,7 @@ static int alloc_gm(struct intel_vgpu *vgpu, bool high_=
+gm)
+>  	mutex_unlock(&gt->ggtt->vm.mutex);
+>  	if (ret)
+>  		gvt_err("fail to alloc %s gm space from host\n",
+> -			high_gm ? "high" : "low");
+> +			str_high_low(high_gm));
+>=20=20
+>  	return ret;
+>  }
+> diff --git a/drivers/gpu/drm/i915/vlv_iosf_sb.c b/drivers/gpu/drm/i915/vl=
+v_iosf_sb.c
+> index 1f0332b4ad0d..fede1735bc08 100644
+> --- a/drivers/gpu/drm/i915/vlv_iosf_sb.c
+> +++ b/drivers/gpu/drm/i915/vlv_iosf_sb.c
+> @@ -3,6 +3,8 @@
+>   * Copyright =C2=A9 2013-2021 Intel Corporation
+>   */
+>=20=20
+> +#include <linux/string_choices.h>
+> +
+>  #include <drm/drm_print.h>
+>  #include <drm/intel/display_parent_interface.h>
+>=20=20
+> @@ -101,7 +103,7 @@ static int vlv_sideband_rw(struct drm_i915_private *i=
+915,
+>  				    VLV_IOSF_DOORBELL_REQ, IOSF_SB_BUSY, 0,
+>  				    5)) {
+>  		drm_dbg(&i915->drm, "IOSF sideband idle wait (%s) timed out\n",
+> -			is_read ? "read" : "write");
+> +			str_read_write(is_read));
+>  		return -EAGAIN;
+>  	}
+>=20=20
+> @@ -125,7 +127,7 @@ static int vlv_sideband_rw(struct drm_i915_private *i=
+915,
+>  		err =3D 0;
+>  	} else {
+>  		drm_dbg(&i915->drm, "IOSF sideband finish wait (%s) timed out\n",
+> -			is_read ? "read" : "write");
+> +			str_read_write(is_read));
+>  		err =3D -ETIMEDOUT;
+>  	}
 
-== Summary ==
-
-CI Bug Log - changes from xe-5777-3b7fea9ecf24e8f782e83a358da79a7501709310_BAT -> xe-pw-174474v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-174474v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-wcl-1:          [FAIL][1] ([Intel XE#9115]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5777-3b7fea9ecf24e8f782e83a358da79a7501709310/bat-wcl-1/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174474v2/bat-wcl-1/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
-
-
-Build changes
--------------
-
-  * Linux: xe-5777-3b7fea9ecf24e8f782e83a358da79a7501709310 -> xe-pw-174474v2
-
-  IGT_9100: 80e998fdbe300b1ca29901099f35316bd83781e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5777-3b7fea9ecf24e8f782e83a358da79a7501709310: 3b7fea9ecf24e8f782e83a358da79a7501709310
-  xe-pw-174474v2: 174474v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174474v2/index.html
-
---===============5937292298933564058==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Disable DC5/6 before AUX programming (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174474/">https://patchwork.freedesktop.org/series/174474/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174474v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174474v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5777-3b7fea9ecf24e8f782e83a358da79a7501709310_BAT -&gt; xe-pw-174474v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-174474v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5777-3b7fea9ecf24e8f782e83a358da79a7501709310/bat-wcl-1/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174474v2/bat-wcl-1/igt@xe_waitfence@reltime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5777-3b7fea9ecf24e8f782e83a358da79a7501709310 -&gt; xe-pw-174474v2</li>
-</ul>
-<p>IGT_9100: 80e998fdbe300b1ca29901099f35316bd83781e4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5777-3b7fea9ecf24e8f782e83a358da79a7501709310: 3b7fea9ecf24e8f782e83a358da79a7501709310<br />
-  xe-pw-174474v2: 174474v2</p>
-
-</body>
-</html>
-
---===============5937292298933564058==--
+--=20
+Jani Nikula, Intel
