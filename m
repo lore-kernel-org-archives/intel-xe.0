@@ -4,90 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 764B7C982DE
-	for <intel-xe@archiver.kernel.org>; Sat, 19 Sep 2026 02:13:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A34EC982DE
+	for <intel-xe@archiver.kernel.org>; Sat, 19 Sep 2026 03:06:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECC0A10E0E7;
-	Sat, 19 Sep 2026 02:13:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26CD610E4BC;
+	Sat, 19 Sep 2026 03:06:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R13AyDVy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OUBeij1d";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57B7E10E059
- for <intel-xe@lists.freedesktop.org>; Sat, 19 Sep 2026 02:13:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C95E10E04B
+ for <intel-xe@lists.freedesktop.org>; Sat, 19 Sep 2026 03:06:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789784034; x=1821320034;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=eWdzZVnZiD49PcUO4puHQLLdS6oITlGeOF6VybDa8Nc=;
- b=R13AyDVytIk408G/Ur6w4ZH4ijtrqB28KVnWQOBUJNJscxvNxj3BkRK3
- NZLNA81hre48Sn6GeUM9CjG03v1Wh9Uj35NfYJPqtvOJ5fsDbiK73HN13
- YV1uXlbRh9byvZbcOAI7sBmLonC9HRr4IZxsCA3izjs0IOxczzFzDVlo+
- JOAPmsekq1x1ZVOGfHvMwyljGFld6jxjriTQDcvbBaFncu1JzYbwroS04
- 2fkpTWgkchmEwpSzJ7A8naITEj6a64Fdi3Oda4XYZR+XaetapRflL1P36
- 4Fx3PtjwvGfMF78OGoseYud+16VSR8atCnVdFPRskSoC5n2OeVsZpNQ4w g==;
-X-CSE-ConnectionGUID: diks2gkkQ8+zf1Oi6Pwu+w==
-X-CSE-MsgGUID: MfnrSYi2QFmDhbwWm7G5Jg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11909"; a="90338272"
-X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; d="scan'208";a="90338272"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2026 19:13:53 -0700
-X-CSE-ConnectionGUID: 1/oN+ZJHThegOiNRsN5uHA==
-X-CSE-MsgGUID: NKH02jPCR7OQHYtdEeACZg==
+ t=1789787177; x=1821323177;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=TEWAOuQDt3tFIgS5x/0Mvadf3euLlYYbCdn9HhKyUbk=;
+ b=OUBeij1dFZKZnzA6k3Xz5QKMnJdtDlLLrfZlTZK8SSYVQm8+h0YpCC0Z
+ XI6dHQhsfhm93N3ZccG7Ujla/zOI+ftfleUaXHLy30wPL0N0Jg99QMIKm
+ kHWL1V5OmEVd3jBRmdoTRqlGeUfJEUDAAIHhoz624Zc47W2B0YhMiNTFM
+ Me3rJa0yLXycwq6g60xLmV70AF2QDvE1e3Io3n6GsOcb7HL7EvaH3G+Gi
+ gAkk1W+K2r0OgDdh6T0Nmc7e61VAmeNi2HeWkwhrYWh9JogR4Lub21DRu
+ 2ZBs9XjQWs/w/LZHRLkj7eTmXlq5KwtzX21JSOVMx2ojRDlqS5zYq4ho7 w==;
+X-CSE-ConnectionGUID: 2KQL44GhTwunrUS3bUsp5Q==
+X-CSE-MsgGUID: 7ETRgGAWTtKn+ZK7vA8IHA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11909"; a="824005"
+X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; 
+   d="scan'208";a="824005"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa115.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2026 20:06:17 -0700
+X-CSE-ConnectionGUID: Bi8WhUxzSHq4tTsr/SxBgA==
+X-CSE-MsgGUID: TdjKCJOQTfGIYo5ipcubUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; d="scan'208";a="268373326"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2026 19:13:53 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; d="scan'208";a="299769395"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2026 20:06:16 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 18 Sep 2026 19:13:53 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.46; Fri, 18 Sep 2026 20:06:15 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Fri, 18 Sep 2026 19:13:53 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.60) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Fri, 18 Sep 2026 20:06:15 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.28) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 18 Sep 2026 19:13:52 -0700
+ 15.2.2562.46; Fri, 18 Sep 2026 20:06:15 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lzhUFdT+lWSQH5DTJ11o8Pqu1ulZJLvno/1MUKjXCEJ8Hs/auAUv26lZQhi8e3ws1nAgUoczS1jg/f+43VXzLj9s8J35nq2HWizLm1DzYzsJCAStWxUaYaWUFX0ozVuGaToVBkYg17x/bgTnQLcSyi8Qm1yzwLGITVJh4Lq59RheiVRvwi29P06Hep7DgP5PyskRotRFLo6BVhU9jnu8OOvxWD60sEIQobLDKsXNtGq/ClCUP6lT8YRedF8DGgYHFwQsfJCYY8Uvai9m6/N7OSbxTt/6dlM3xllIbcJYpX9Eq+uHD9ffNAOWUMcqa+6L31j8bT9DH0+4+l8PqXR3sw==
+ b=cQEomX94T9/0L3iqgTxbJTapZgF+Zc4EwKqGmuBoDzQFN4yToygi8/XrbuMkXQXYmdKjKn0OkJwywGdOcZjE4IEI59Sci53Awtz+N0H8tIRH/8L/mULEvLZ4Zgl+BwGF/Y4hTCX83Autj42KeNlbR6dou3x9+apvNvvdxqvY4FmgTKaygAHTBhEC2I1dT2bO1C823hT8NR6BwWl59csKZa9hcuqlMGyGki2SfZpxlKXBNbtvV9lBF+/tWfWejOTWILAf77PX7dwWjgFqvLfG0Er1STO06X1Av5K1loOo4VJvMVekmOg+gpbx/iYDuUhAuaBnU6KHvdDT/vCLgSICew==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f0pmOPG4S8H7cmHIgTOhnuxRrTi69+6EkwzQm06hZmQ=;
- b=u9zElk0VraE7ETUmnUbwbVeBAbHmtpZ/A5ABdw4l4UWyBzg5joKiFDHPU8u2So+1/ixB+i1VLj829xV3w4F579LXGH5xEoGyBULInoVzfBSAzN+Wv+WM+dkvGRPq02wHcVxyk/zMpl2S8DlZgF5YFw6fop69qn746cibgwUFtI8N50rKlkZ1KcIAbq6yiUNagLbhqdRubZkiEeVLZsQGnv8LQ7PWUModCQdkESMUgcuvpuDP5aIyIw2KN0LbKbbx7OH6nqwYlFF0W/s2QohrN0V5DGC1SNNMzkkAQ1i+mD0g0Ja1A/1rEq73/2mGd1XtbtICbBnHPSJwdcWczVdViQ==
+ bh=X5KS8NkEaMCHIC+3uhWgXXaOuHEeI6MelVvkW9q97Dg=;
+ b=o5kvYSzNVtcy1bRG4fx0cssVDjvm6FXaOa7iRLGACFm6NgQBmbNravWCVWnx/IhjtuFZmZddK8oQQmNxHXkJsTHxGhfxdxQmKEtp9KCMX709VMPMPobSmh/tRBx6amfNnSCYmzZpm0n+Q7GSwGZBF2GBW+RFqulWAZQ8qKtL6oOYWI3+Cx1NHvtJxNUTuPRdlRON7+xjITUp85E5G1aN3ZURwVnJF/qhAeXZFdnyeFqHitizFng7JOx0m11rAHK2uzbmXQflbQxRy/oGDCSqtGRi1lsvYFqAdiPBqXXl4MjL4D7aKL1LUHBwzJD3ohjZE8JRCVbSRcmciISp+WYtRg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from DM4PR11MB5456.namprd11.prod.outlook.com (2603:10b6:5:39c::14)
- by MW5PR11MB5810.namprd11.prod.outlook.com (2603:10b6:303:192::22) with
+ by PH7PR11MB5768.namprd11.prod.outlook.com (2603:10b6:510:131::21) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.16; Sat, 19 Sep
- 2026 02:13:50 +0000
+ 2026 03:06:13 +0000
 Received: from DM4PR11MB5456.namprd11.prod.outlook.com
  ([fe80::62e5:4a7c:f965:9082]) by DM4PR11MB5456.namprd11.prod.outlook.com
  ([fe80::62e5:4a7c:f965:9082%3]) with mapi id 15.21.0428.011; Sat, 19 Sep 2026
- 02:13:49 +0000
+ 03:06:12 +0000
 From: "Lin, Shuicheng" <shuicheng.lin@intel.com>
 To: "Brost, Matthew" <matthew.brost@intel.com>,
- =?iso-8859-1?Q?Thomas_Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH v6 23/24] drm/xe: Add modparam to enable / disable ULLS on
- migrate queue
-Thread-Topic: [PATCH v6 23/24] drm/xe: Add modparam to enable / disable ULLS
- on migrate queue
-Thread-Index: AQHdPLK3jO4uWN3ATkSMrSrfK4I1wrbF6gMAgACqAICADqhY8A==
-Date: Sat, 19 Sep 2026 02:13:48 +0000
-Message-ID: <DM4PR11MB545647D3E160C98BC68452A3EA862@DM4PR11MB5456.namprd11.prod.outlook.com>
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH v6 15/24] drm/xe: Make bind queues operate cross-tile
+Thread-Topic: [PATCH v6 15/24] drm/xe: Make bind queues operate cross-tile
+Thread-Index: AQHdPLKxW9KWvwVmMkOd+tvpYsYYlbbVRCOg
+Date: Sat, 19 Sep 2026 03:06:12 +0000
+Message-ID: <DM4PR11MB54566E02AE16942DC9484989EA862@DM4PR11MB5456.namprd11.prod.outlook.com>
 References: <20260904211613.3934307-1-matthew.brost@intel.com>
- <20260904211613.3934307-24-matthew.brost@intel.com>
- <ede219e02fab3c78c66edfb9cabd0e029de318e6.camel@linux.intel.com>
- <aqGhb9k93U7PoJ1L@gsse-cloud1.jf.intel.com>
-In-Reply-To: <aqGhb9k93U7PoJ1L@gsse-cloud1.jf.intel.com>
+ <20260904211613.3934307-16-matthew.brost@intel.com>
+In-Reply-To: <20260904211613.3934307-16-matthew.brost@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -95,64 +91,62 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB5456:EE_|MW5PR11MB5810:EE_
-x-ms-office365-filtering-correlation-id: ded45ca0-0cb9-4791-61d3-08df15f3a474
+x-ms-traffictypediagnostic: DM4PR11MB5456:EE_|PH7PR11MB5768:EE_
+x-ms-office365-filtering-correlation-id: 117db997-3f9a-478c-2de5-08df15faf645
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|23010399003|10070799003|38070700021|10067099003|11063799006|4143699003|56012099006|18002099003|22082099003;
-x-microsoft-antispam-message-info: EaMRVZLhbUQl84U5awTil3WzJfWfzKVfpxjo4y4vZrl8KEbR15pqpgd8De4g9aB8zo9zcCPUb0qvaJtwnDwYHmCXHUGayqm0BeBBAIvG3szJ2AkdYVqRp3EVmhXfBEFI7dICRMBoCtDf32HtMc67KhdgQXWQrNIneoUNy4AVZbfGvhCTdKKPx9YifPvKpLGI21KueTIAgLEBHa6DopUWYcOPCD/N2jAB8SSZ/QIK6DwnGwnhl5fbBkZjVZs8/9Oiu+kXxDTaZVlQdU8xkVWm4/+2uRNXgcus2ZFv/CVYztFjt/D3cIpl9ejOxHizogYtlMnLyxx6nQMtMuJpGjIJAu6yZjPpCbGAR/tGKf5P66y8i+YV3IK9aZp1Y6qkTBb1tLuWmodQD7MtUVO6hmdWMZ/3bNVxTQwa1HgkuQeI2hBv4tRC21j6aPyCB4XxUA0XiPBDF+Zm72LNiDFyY6okOzgKZQNXaoaOyNmL8tZ7z9QxE19eIwN2Nlzf9YEJysE8nE00z8ZuGFBZ3o1rPdr1F0fuzObzh4/Odzdt8hBmQGUPwhJW8QKbTRpQJW7GfS9ryi4N4FPcjFFO1fAGP7G5lqHc5epfALsroWZpsj0FmNmS1MxudSyXmclof0wFfgI5t/BYY5MPAfaFLhQ+4FqZhHOxuh3qLYQkAWtGODTkVMQ=
+ ARA:13230040|10070799003|366016|376014|1800799024|23010399003|38070700021|56012099006|6133799003|10067099003|11063799006|4143699003|22082099003|18002099003;
+x-microsoft-antispam-message-info: AwpVJ9sngnVBuTMBdXv3/bBjX342nEBNlXMYrvk6ZNIwmqt4pFtJaKlhH24YjT9+WWiMSEiudJ8Ar8XKTpnoaophhtv7fMMUR8d6pKpf25VYvvVb5QKE45wZ7PQUFceT1UNKQfctkWdv/Y7f2i7AuDLgFqN7wOsiyoTANdVK1F1fgapeXeKwEW9HVQ58pm1gzHr9FRVT7uw2IqoE62Ycz62Qc+YMpa/jGp2OsPO9Q/9valXY4e8S5qKW3P1yVxnTS3/dPmxLpf1L33ZLZmR+6lFvZtqEXyOPq/nIjZ9D+xaitEVXeOcLItj8+Xy4EWJB+hNCNdOq0SYJjM1wUTjMuWIDV2rW8sY/0inTqaKlY00Lr/czcia3vueGQPLKDYg5j2p6BJCumfyQv+UGpmvmfFqlnmHH/4pfbMoU6wMXw4AHz1/+TZhuEVErFjkCKXG5bv9oz4uyhIG/dBfmKFY2WKcqzr9TPCfAbWHRCnink1vVbn7a6LHKqxxvrfSi9W5CeNinaHPYs6iCyTSryGp47nzOmfKgW2bvaF5NSmJZs/pSrAaL8tApGT01SPwJ611Ct5XNioZaUmD+pRSzSCm3quBB/UxUHLfD8Y4q4d5Q3EdIHqYpExE884SRt7m0DwFcHHyGYswCIwbKdyDTEyl2UVRZ6DZVeRqBSEuEthyubUo=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5456.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(23010399003)(10070799003)(38070700021)(10067099003)(11063799006)(4143699003)(56012099006)(18002099003)(22082099003);
+ SFS:(13230040)(10070799003)(366016)(376014)(1800799024)(23010399003)(38070700021)(56012099006)(6133799003)(10067099003)(11063799006)(4143699003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?+GDNz8zFLjS37tGztmQgQlW2ae1p7568gBnjPu+rZf9EZOklNDauJLS6il?=
- =?iso-8859-1?Q?LqIdau1itmjDMxrYB1aiJK2JR4mgD9MdFe6q0yX4SQzx9jwh8gD+txVMc5?=
- =?iso-8859-1?Q?dE6ccAIi0xqaiiAWzj3zzPWjFPZRLv9T3a4csgIOWNanbPSOE+PzXGWHpe?=
- =?iso-8859-1?Q?0RyEObd6tpO/0QpZgZAfzeFaL/cvja1scPezdPuf4hB172FhlnYBI2MAuu?=
- =?iso-8859-1?Q?+9fNpNgNbyipuVG6mWA3oUhrMOiejLhu4SAczfV97XIqjcOul9oD437oyF?=
- =?iso-8859-1?Q?0qiF66+T/zf82siDC5ZfSdQLvEbopA3Au2nRRgZUmnfYmhJFccIkuXX/Ew?=
- =?iso-8859-1?Q?mIKG2CtpsoxuRnpd69obSYXxQ/yyRcFiUfbci7pVK6a2BDJOpRlLerE73r?=
- =?iso-8859-1?Q?h4mVnWESATj/Bc8v8Inh3Bj1KGs42RJRYltcK4ocE19pya1k2ITyfUqC7H?=
- =?iso-8859-1?Q?MV/S+oduT1TJKKxJEjTo6u+pOd0Nom9Vl7wQXJKK6MCTWdZaW9BP9JtyA7?=
- =?iso-8859-1?Q?erKTNumJLp4Mqjv/oNnEth9aAz7MRJ/L4prPYeyaDpoPQfTKwik4Jjcgkt?=
- =?iso-8859-1?Q?jJcbJafLAWSsQQDhl/bczpWeyrbVQKZgFLvpUqjUT6x+Zc49HIhHHZp/1j?=
- =?iso-8859-1?Q?g2vyXvcfhcWyFl3LOWTnWoUQvaEBPGBy1thxFMSkpg615fo9uU41nY1Rid?=
- =?iso-8859-1?Q?IVlqTO71ivZ1NqMCG7jTt0WU/TKCkFzfFuvarDhU2qDyhfXZFQybwexpea?=
- =?iso-8859-1?Q?QMd54wE1fHT/JTlgFgYasBmigPH+AsSXySFEDDtR+WYFOhYNlGgnf0advM?=
- =?iso-8859-1?Q?dpsxNMrwZ7EjRKBJwMhqdQt/47wndmXsXs1meuerh/quUlFjDjElE9kfTQ?=
- =?iso-8859-1?Q?kOoANd5lhSSFzqDWt76GMDSjncGxbDAG++2bFidIkoR1r40scjqiJkHsuf?=
- =?iso-8859-1?Q?ZOr6RQclWn20CKj/sxKTLjiG75eY3CDH0O5BHqMICXxjtv81DdMLhOS+xR?=
- =?iso-8859-1?Q?t+tyujCI5PkQXiMzzCKhZ0K4EtGxjpitzumuWn+/Icz7IlOxRaRZxE8+FV?=
- =?iso-8859-1?Q?+aKLnF+3mjBa+KX/mfqFX3Bqc3lZKWY7QJ40HaqOxg3U/XG42NYJLU3K4Y?=
- =?iso-8859-1?Q?BCgaJqcgHHyWLZSKOOk9q2IbQOHavD699997pEDDAnX6V2AKKeRaXGuY1w?=
- =?iso-8859-1?Q?ZdBOAAaIsP2e4GpGJJBTbs3agFjEr8wzq0hqDonEMriV2b7Hx6HATkQWbU?=
- =?iso-8859-1?Q?Lq6oepGWSh/QPQUXMMl5rzUfDLiGNfO8kWTM1GbM50ulvBnHcJX5I9vQuG?=
- =?iso-8859-1?Q?f9EhXWkGbGOeX6z1Q1P/JSv2RkT+WnzFDh6pga/KahxB53QW/XK7+ZUvv2?=
- =?iso-8859-1?Q?qmoIrrFhnFLQ+MjZbyfL+wKAamOIs87sqOA5exvZET8kCTH4fMFuDQGgqu?=
- =?iso-8859-1?Q?DRInuUvlHXiXYy/S0HW93qi69SNzAaHyouf6h/G0tU4aCZ11oqe9vUAHiM?=
- =?iso-8859-1?Q?Wq/tOLEzk1o90xhcSvCAteRK3lMBGGV+kVSXkD6ZMQK31YQcsimn3nhadR?=
- =?iso-8859-1?Q?AG+gc0N8AOv+L2UQCw7d6jNofo24u1uBmaL7kLwzM9UPBk2zdV/NbxOe/d?=
- =?iso-8859-1?Q?QcruPOmuZloDkbJjiIjEioHnQDxDnFSJmEZWdAFyWP4BOfkSHxubpVMRfG?=
- =?iso-8859-1?Q?FlCmq8yGG8PxwSzBeVHThhmutN9LL+ASrj8FO5hR4OOrOTKivCXurBVXiH?=
- =?iso-8859-1?Q?Fjn/8OipFrWFxWrE2ISlgBBjOFdLcTF1/QqVY/ipjQAuuPxmQVSGrrKqau?=
- =?iso-8859-1?Q?JDaDEDljpytEBiL4mlbRvCF4+ggeRbg/WZzAeBkJbCV3uEEdiLzRuVnYNw?=
- =?iso-8859-1?Q?mX?=
-x-ms-exchange-antispam-messagedata-1: Koty9Ij2hHWikA==
-Content-Type: text/plain; charset="iso-8859-1"
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?d8ReoEc+Pjy9MqlXgXxy0o/bZwp/oLwtb6+3+pQlEpN5+NHhT4+PZuKpFRC+?=
+ =?us-ascii?Q?Zog52OCl4tGWxlp5qeACVC+g6dfzSxke9FbavGLwwVD9xJ/u6fi85g12b1xJ?=
+ =?us-ascii?Q?N7MYQyViduFcDN8pS25ykjksNoqyAOBCLeGVAmSKGzHf+ZyP7C3b8IeSoc+T?=
+ =?us-ascii?Q?KTTZG2PYKoabgwsH3Red7yhTAhqauZcAG8WnbjjSV9LqVv1u7fjL8525Cqk2?=
+ =?us-ascii?Q?xI7dypzu1rh/U25dZ16zbjwRK9mmFtC8ycyWfH+F1sm21BOzkBOLf5Y5azGc?=
+ =?us-ascii?Q?/wWflIkHPY3CvP48i285if8o75uf+TBpByhVFIQ8lajTAFjUaRwRG7YB2nPc?=
+ =?us-ascii?Q?alfE7OLPmJFe0hH9irvsNm1s0tiXn1PS9qoPQK5fbCaElL0JIv1r5FN9Pg7b?=
+ =?us-ascii?Q?c0Iclmz5RunWVmbSIvohPO18xUVlACGRDvx3qp0USVrlrLr8Ip46MywDHUZd?=
+ =?us-ascii?Q?HRGM00UlpLcTq6dr6bPI3/OKwpfAlhbkUiMQYcT9cw2wyIzbzou3rexf+jI/?=
+ =?us-ascii?Q?wNTxJFgYUjUiFhvRGArM1K6n1R8SosBWJ6uSr41TELsfs4tNw73WpX4pSjA8?=
+ =?us-ascii?Q?1SaKer5n4uF6puZrDzjWbEDM9QyblfxwCD2DT6COdkYFJCVJmBZ2/qUqIWOp?=
+ =?us-ascii?Q?XudUlHdFtSPJN6FhE2g0guOJsHnNozqLws02wPB2HzcAbCQA1VtY1ZbXSGm9?=
+ =?us-ascii?Q?T3nGzaFjKDvXfd80GrToAJAlCY2x+NLWVDacbfQZPQAXkezLDDioiEtEFewp?=
+ =?us-ascii?Q?7DTx9hgvjwrRdlCTxg7ciVrFGD6DcxyRheRsmpicbaisvq4gWAy5owL6MGKY?=
+ =?us-ascii?Q?/amJuDPxrnQYcH/T40h0HsNfPO+xXPTgQQQQi74cZn4tmTdP5zQaC2hOcNA2?=
+ =?us-ascii?Q?HOtBSJ6qRxPJcO+WqZIGih3EheJT0xOAE5IsK/BAnE9Wi03lPZ/Gck3LYSXF?=
+ =?us-ascii?Q?UObY+6ryjkOBokfZ+IGrg+ZgKkE2erQy0p1dw3jGJDyDTbtvzIjlQaLflhb7?=
+ =?us-ascii?Q?vkwqUiCp9vBGoDb3qqfSPKih6NfAUhKCHO+F64uhgl5lxjTQcYA1fcxDFMD2?=
+ =?us-ascii?Q?H2HAvhbyiGo8N4NtgkL/gnQVTRzldlkRoIyiBIABpEGqLSdfJoLJpHDfSTnR?=
+ =?us-ascii?Q?yEjRJCTKQSncQAnX2tLlyu5CCBcNlKVnJkidgEeAtGJpoxHKyAjG0IlaJksi?=
+ =?us-ascii?Q?A0urzpUT9gXCQFj86Ff8NR2DjMQgPZgLLVwozwN9kI6Vpo986cg3sVi9WZ/p?=
+ =?us-ascii?Q?6AbU3REJ7woEi+AWDm6v2VhHwdPq0z7h46rSX3Lu4DrGGzTvIVJxum/h/V6x?=
+ =?us-ascii?Q?qw47sRRLrFRLocJuYI8isTAOHcdcsPqjmgUPVxZgIshGhQ5mmgBFlCroH25r?=
+ =?us-ascii?Q?2dkHxm6ZXtwhsh5GCiJgIBVlxUmo7C6yAmKlbZeY/e5dcplN2kt3KiUX4rp9?=
+ =?us-ascii?Q?t+G4IYTZjk97W0q1r2TZIuqdsc3lmIA3EcwKo8az8AEDK4qlqrjHnlbkM/Nz?=
+ =?us-ascii?Q?IZOK/O8bkfI4M/Sct1JyuheJi3cwC/57Aby9xsRtNqQt/xbThJrARAmV+ZbS?=
+ =?us-ascii?Q?7jYEeKBtpJEv7r2XQ9HwQHB6c9I+g7oAJiUOCWZ76MaJ7POEpurAcB4CjD0C?=
+ =?us-ascii?Q?QOsP43sEBOCYCOhd8DC7l6CIP5lQNyzt1bQDvZI7QBNFFAmZKpE/6bJJ1t3x?=
+ =?us-ascii?Q?7AaC14NUb28HmxH1pf/BLQULNbBwoGyFHJrxlZvKKe9FvnSW8fDMcHrD6mYa?=
+ =?us-ascii?Q?6TyIIvHKGpSvfb8yjekIrNKfHPm4s5YRk5jMgtk09T+EDhGYgb1bxSpyeV7n?=
+x-ms-exchange-antispam-messagedata-1: xxGYCcWzVqgJ1w==
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: H9BZOZ0PnC4JTi1xD1kH7oXl+8eYRz6KpjAK6hzW0fz1TQIo5tlP2S7Cnl890v6qnw3W8k+qQh8XG88wEa9iGD6xspmNFPq3MaO0629Wn2X4Wmn6xBy+VRM8jkbIgFYM6RLyZl8y7PoTOMSunPsBbM/fOzaAlvpeHcgmbZxCSmC+RI66p4ZixMQMO0unugytBEtiWXL41M4pkSmCdI8c+VlfNL4WGqjA8GxJGt4IpvWXujts8G3VZi2ZttqvbvFnd4PFDtH0noVjAPXQsuQiuxtCbGC4WyVAyVB/KTKgBHaU/qlqgZWAiB3XIHQPRUTuKZMqsHkArquCaeU3vyu8uw==
+X-Exchange-RoutingPolicyChecked: GEe3RONA8ivqW7aU0/s36rho4DJ4T8u5Bk9+JDvFwj0i0qVU97/4qjwGTpi3hf8O7KslEpg/qLn5OUq2545PV/weLb6QWwWpWHPTbM4gfRUT17OpaCV1va74eUK6mYExJYuWrqdzUbtYLKDFAxCGPB73CEQWPQTLHjXpk/xcB+HLFj9UYo0jneqYitrrSaNAJf6Sl+MLX0bZVaqWUSJn8IDmWwyAElP9s72I9hIkd5c7rPC2rhDPTWIPh3u9mo17qI5PuX67/Cz5hGWHeMaX/HSdo2+Sxmx+a0p4AByqIGppbFvttcGbEJuTF/zAIV5RjVkxwyVq2sODJWuytsOZpA==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5456.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ded45ca0-0cb9-4791-61d3-08df15f3a474
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Sep 2026 02:13:49.0064 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 117db997-3f9a-478c-2de5-08df15faf645
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Sep 2026 03:06:12.7441 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tHpKYuf8QW27zc8/qOwTJXq44NtcqCxEkGj1wQqO3hiuV15bxJZ2JWeYv1X0sr4roCqB3m5h25NJ4/HFwNyA7g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5810
+X-MS-Exchange-CrossTenant-userprincipalname: rtmzd04FP/yKKSZpuFqIZjs96Kxq+NRWti7oVZ67qTQZ7TdLWENv8KI/llYY9tq+8RATrrfyou8SkzNCnl1qtw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5768
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -168,195 +162,818 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 9, 2026 11:12 AM Matthew Brost wrote:
-> On Wed, Sep 09, 2026 at 10:03:32AM +0200, Thomas Hellstr=F6m wrote:
-> > On Fri, 2026-09-04 at 14:16 -0700, Matthew Brost wrote:
-> > > Having modparam to enable / disable ULLS on migrate queue will help
-> > > with quick experiments.
-
-Should we move it to configfs instead of modparam?
-configfs setting is per device.
-
-
-> > >
-> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > Link:
-> > > https://patch.msgid.link/20260228013501.106680-26-
-> matthew.brost@inte
-> > > l.com
-> > > Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-> > > ---
-> > > =A0drivers/gpu/drm/xe/xe_debugfs.c=A0=A0=A0=A0=A0 | 1 +
-> > > =A0drivers/gpu/drm/xe/xe_defaults.h=A0=A0=A0=A0 | 1 +
-> > > =A0drivers/gpu/drm/xe/xe_device.c=A0=A0=A0=A0=A0=A0 | 1 +
-> > > =A0drivers/gpu/drm/xe/xe_device_types.h | 5 +++++
-> > > =A0drivers/gpu/drm/xe/xe_migrate.c=A0=A0=A0=A0=A0 | 2 +-
-> > > =A0drivers/gpu/drm/xe/xe_module.c=A0=A0=A0=A0=A0=A0 | 4 ++++
-> > > =A0drivers/gpu/drm/xe/xe_module.h=A0=A0=A0=A0=A0=A0 | 1 +
-> > > =A07 files changed, 14 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/xe/xe_debugfs.c
-> > > b/drivers/gpu/drm/xe/xe_debugfs.c index 80f62634fae5..f3f37d116d62
-> > > 100644
-> > > --- a/drivers/gpu/drm/xe/xe_debugfs.c
-> > > +++ b/drivers/gpu/drm/xe/xe_debugfs.c
-> > > @@ -222,6 +222,7 @@ static int info(struct seq_file *m, void *data)
-> > > =A0	drm_printf(&p, "revid %d\n", xe->info.revid);
-> > > =A0	drm_printf(&p, "tile_count %d\n", xe->info.tile_count);
-> > > =A0	drm_printf(&p, "vm_max_level %d\n", xe->info.vm_max_level);
-> > > +	drm_printf(&p, "ulls_enable %s\n", str_yes_no(xe-
-> > > >info.ulls_enable));
-> > > =A0	drm_printf(&p, "has_flat_ccs %s\n", str_yes_no(xe-
-> > > >info.has_flat_ccs));
-> > > =A0	drm_printf(&p, "has_usm %s\n", str_yes_no(xe-
-> > > >info.has_usm));
-> > > =A0	drm_printf(&p, "skip_guc_pc %s\n", str_yes_no(xe-
-> > > >info.skip_guc_pc));
-> > > diff --git a/drivers/gpu/drm/xe/xe_defaults.h
-> > > b/drivers/gpu/drm/xe/xe_defaults.h
-> > > index 0884224ef7c7..9c7e89a169c5 100644
-> > > --- a/drivers/gpu/drm/xe/xe_defaults.h
-> > > +++ b/drivers/gpu/drm/xe/xe_defaults.h
-> > > @@ -14,6 +14,7 @@
-> > > =A0#endif
-> > >
-> > > =A0#define
-> > > XE_DEFAULT_PROBE_DISPLAY
-> 	IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-> > > +#define XE_DEFAULT_ULLS_ENABLE			true
-> > > =A0#define XE_DEFAULT_VRAM_BAR_SIZE		0
-> > > =A0#define
-> > > XE_DEFAULT_FORCE_PROBE
-> 	CONFIG_DRM_XE_FORCE_PROBE
-> > > =A0#define XE_DEFAULT_MAX_VFS			~0
-> > > diff --git a/drivers/gpu/drm/xe/xe_device.c
-> > > b/drivers/gpu/drm/xe/xe_device.c index ade971de1652..9b81759af28a
-> > > 100644
-> > > --- a/drivers/gpu/drm/xe/xe_device.c
-> > > +++ b/drivers/gpu/drm/xe/xe_device.c
-> > > @@ -520,6 +520,7 @@ static void xe_device_parse_modparam(struct
-> > > xe_device *xe)
-> > > =A0	xe->atomic_svm_timeslice_ms =3D 5;
-> > > =A0	xe->min_run_period_lr_ms =3D 5;
-> > > =A0	xe->info.num_pf_work =3D xe_modparam.num_pf_work;
-> > > +	xe->info.ulls_enable =3D xe_modparam.ulls_enable;
-> >
-> > migrate_ulls_enable?
-
-For me, disable_migrate_ulls is more straightforward, as it can be used to =
-do disabling only, not enabling.
-But as we already have "enable_multi_queue" in the configfs, which is used =
-to disable multi queue only.
-I am OK with "migrate_ulls_enable" also.
-
-Shuicheng
-
-> >
-> > > =A0	if (xe->info.num_pf_work < 1)
-> > > =A0		xe->info.num_pf_work =3D 1;
-> > > =A0	else if (xe->info.num_pf_work > XE_PAGEFAULT_WORK_MAX) diff --git
-> > > a/drivers/gpu/drm/xe/xe_device_types.h
-> > > b/drivers/gpu/drm/xe/xe_device_types.h
-> > > index 997ac82fd571..fd4560378f5b 100644
-> > > --- a/drivers/gpu/drm/xe/xe_device_types.h
-> > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> > > @@ -245,6 +245,11 @@ struct xe_device {
-> > > =A0		u8 skip_pcode:1;
-> > > =A0		/** @info.needs_shared_vf_gt_wq: needs shared GT WQ on
-> VF */
-> > > =A0		u8 needs_shared_vf_gt_wq:1;
-> > > +		/**
-> > > +		 * @info.ulls_enable: Enable ULLS on migration queue
-> > > in LR VM
-> > > +		 * open
-> > > +		 */
-> > > +		u8 ulls_enable:1;
-> > > =A0	} info;
-> > >
-> > > =A0	/** @wa_active: keep track of active workarounds */ diff --git
-> > > a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> > > index 3e59aeeca614..3bc78f761f23 100644
-> > > --- a/drivers/gpu/drm/xe/xe_migrate.c
-> > > +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> > > @@ -523,7 +523,7 @@ void xe_migrate_ulls_enter(struct xe_migrate *m)
-> > >
-> > > =A0	xe_assert(xe, xe->info.has_usm);
-> > >
-> > > -	if (!IS_DGFX(xe))
-> > > +	if (!IS_DGFX(xe) || !xe->info.ulls_enable)
-> > > =A0		return;
-> > >
-> > > =A0job_alloc:
-> > > diff --git a/drivers/gpu/drm/xe/xe_module.c
-> > > b/drivers/gpu/drm/xe/xe_module.c index 4bc28dfc1992..a8b546550ead
-> > > 100644
-> > > --- a/drivers/gpu/drm/xe/xe_module.c
-> > > +++ b/drivers/gpu/drm/xe/xe_module.c
-> > > @@ -23,6 +23,7 @@
-> > >
-> > > =A0struct xe_modparam xe_modparam =3D {
-> > > =A0	.probe_display =3D	XE_DEFAULT_PROBE_DISPLAY,
-> > > +	.ulls_enable =3D		XE_DEFAULT_ULLS_ENABLE,
-> > > =A0	.guc_log_level =3D	XE_DEFAULT_GUC_LOG_LEVEL,
-> > > =A0	.force_probe =3D		XE_DEFAULT_FORCE_PROBE,
-> > > =A0#ifdef CONFIG_PCI_IOV
-> > > @@ -44,6 +45,9 @@ MODULE_PARM_DESC(probe_display, "Probe
-> display HW,
-> > > otherwise it's left untouched
-> > > =A0		 "[default=3D" __stringify(XE_DEFAULT_PROBE_DISPLAY)
-> > > "])");
-> > > =A0#endif
-> > >
-> > > +module_param_named(ulls_enable, xe_modparam.ulls_enable, bool,
-> > > 0444);
-> > > +MODULE_PARM_DESC(ulls_enable, "Enable ULLS on migration queue if LR
-> > > VM open (default: true)");
-> > > +
-> > > =A0module_param_named(vram_bar_size,
-> xe_modparam.force_vram_bar_size,
-> > > int, 0600);
-> > > =A0MODULE_PARM_DESC(vram_bar_size, "Set the vram bar size in MiB
-> > > (<0=3Ddisable-resize, 0=3Dmax-needed-size, >0=3Dforce-size "
-> > > =A0		 "[default=3D" __stringify(XE_DEFAULT_VRAM_BAR_SIZE)
-> > > "])");
-> > > diff --git a/drivers/gpu/drm/xe/xe_module.h
-> > > b/drivers/gpu/drm/xe/xe_module.h index
-> 6272d9e41207..5d88448c298a
-> > > 100644
-> > > --- a/drivers/gpu/drm/xe/xe_module.h
-> > > +++ b/drivers/gpu/drm/xe/xe_module.h
-> > > @@ -13,6 +13,7 @@ struct work_struct;
-> > > =A0/* Module modprobe variables */
-> > > =A0struct xe_modparam {
-> > > =A0	bool probe_display;
-> > > +	bool ulls_enable;
-> >
-> > Shouldn't this be per device rather than per driver? So sysfs knob,
-> > perhaps with a modparam default?
-> >
+On Fri, Sep 4, 2026 2:16 PM Matthew Brost wrote:
+> Since bind jobs execute on the CPU rather than the GPU, maintaining a per=
+-tile
+> bind queue no longer provides value. Convert the driver to use a single b=
+ind
+> queue shared across tiles. The primary change is routing all GT TLB
+> invalidations through this unified bind queue.
 >=20
-> I didn't really want to add a userspace ABI, such as a sysfs interface, a=
-t this
-> point, so I went with a module parameter instead. It also seems a bit odd=
- to
-> enable this on some devices but not others.
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Link: https://patch.msgid.link/20260228013501.106680-16-
+> matthew.brost@intel.com
+> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> ---
+>  drivers/gpu/drm/xe/xe_exec_queue.c       | 142 +++++++++--------------
+>  drivers/gpu/drm/xe/xe_exec_queue.h       |  14 +--
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h |  20 +---
+>  drivers/gpu/drm/xe/xe_pt.c               |  22 ++--
+>  drivers/gpu/drm/xe/xe_sync.c             |  20 +---
+>  drivers/gpu/drm/xe/xe_tlb_inval_job.c    |  15 ++-
+>  drivers/gpu/drm/xe/xe_tlb_inval_job.h    |   2 +-
+>  drivers/gpu/drm/xe/xe_vm.c               |  65 +++++------
+>  drivers/gpu/drm/xe/xe_vm_types.h         |   2 +-
+>  9 files changed, 125 insertions(+), 177 deletions(-)
 >=20
-> The main reason for having this at all is to allow quick performance
-> comparisons and, of course, to give us an easy way to disable it and rete=
-st if
-> we encounter workloads where kernel jobs appear to hang.
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c
+> b/drivers/gpu/drm/xe/xe_exec_queue.c
+> index 7bbb31431900..d4c1d0de07b9 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> @@ -142,9 +142,8 @@ static void __xe_exec_queue_free(struct
+> xe_exec_queue *q)  {
+>  	int i;
 >=20
-> I'm open to changing this as the series receives more review and we get c=
-loser
-> to merging.
+> -	for (i =3D 0; i < XE_EXEC_QUEUE_TLB_INVAL_COUNT; ++i)
+> -		if (q->tlb_inval[i].dep_scheduler)
+> -			xe_dep_scheduler_fini(q->tlb_inval[i].dep_scheduler);
+> +	for_each_tlb_inval(q, i)
+> +		xe_dep_scheduler_fini(q->tlb_inval[i].dep_scheduler);
 >=20
-> Matt
+>  	if (xe_exec_queue_uses_pxp(q))
+>  		xe_pxp_exec_queue_remove(gt_to_xe(q->gt)->pxp, q); @@ -
+> 166,31 +165,34 @@ static void __xe_exec_queue_free(struct xe_exec_queue
+> *q)
 >=20
-> > Thanks,
-> > Thomas
-> >
-> >
-> >
-> > > =A0	int force_vram_bar_size;
-> > > =A0	int guc_log_level;
-> > > =A0	char *guc_firmware_path;
+>  static int alloc_dep_schedulers(struct xe_device *xe, struct xe_exec_que=
+ue *q)
+> {
+> -	struct xe_tile *tile =3D gt_to_tile(q->gt);
+> -	int i;
+> +	struct xe_tile *tile;
+> +	int i =3D 0, j;
+> +	u8 id;
+>=20
+> -	for (i =3D 0; i < XE_EXEC_QUEUE_TLB_INVAL_COUNT; ++i) {
+> -		struct xe_dep_scheduler *dep_scheduler;
+> -		struct xe_gt *gt;
+> -		struct workqueue_struct *wq;
+> +	for_each_tile(tile, xe, id) {
+> +		for (j =3D 0; j < (XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT + 1);
+> ++j, ++i) {
+> +			struct xe_dep_scheduler *dep_scheduler;
+> +			struct xe_gt *gt;
+> +			struct workqueue_struct *wq;
+>=20
+> -		if (i =3D=3D XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT)
+> -			gt =3D tile->primary_gt;
+> -		else
+> -			gt =3D tile->media_gt;
+> +			if (j =3D=3D XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT)
+> +				gt =3D tile->primary_gt;
+> +			else
+> +				gt =3D tile->media_gt;
+>=20
+> -		if (!gt)
+> -			continue;
+> +			if (!gt)
+> +				continue;
+>=20
+> -		wq =3D gt->tlb_inval.job_wq;
+> +			wq =3D gt->tlb_inval.job_wq;
+>=20
+>  #define MAX_TLB_INVAL_JOBS	16	/* Picking a reasonable value */
+> -		dep_scheduler =3D xe_dep_scheduler_create(xe, wq, q->name,
+> -
+> 	MAX_TLB_INVAL_JOBS);
+> -		if (IS_ERR(dep_scheduler))
+> -			return PTR_ERR(dep_scheduler);
+> +			dep_scheduler =3D xe_dep_scheduler_create(xe, wq, q-
+> >name,
+> +
+> 	MAX_TLB_INVAL_JOBS);
+> +			if (IS_ERR(dep_scheduler))
+> +				return PTR_ERR(dep_scheduler);
+>=20
+> -		q->tlb_inval[i].dep_scheduler =3D dep_scheduler;
+> +			q->tlb_inval[i].dep_scheduler =3D dep_scheduler;
+> +		}
+>  	}
+>  #undef MAX_TLB_INVAL_JOBS
+>=20
+> @@ -224,7 +226,6 @@ static struct xe_exec_queue
+> *__xe_exec_queue_alloc(struct xe_device *xe,
+>  	q->ops =3D gt->exec_queue_ops;
+>  	INIT_LIST_HEAD(&q->lr.link);
+>  	INIT_LIST_HEAD(&q->vm_exec_queue_link);
+> -	INIT_LIST_HEAD(&q->multi_gt_link);
+>  	INIT_LIST_HEAD(&q->hw_engine_group_link);
+>  	INIT_LIST_HEAD(&q->pxp.link);
+>  	spin_lock_init(&q->multi_queue.lock);
+> @@ -636,7 +637,6 @@
+> ALLOW_ERROR_INJECTION(xe_exec_queue_create_bind, ERRNO);  void
+> xe_exec_queue_destroy(struct kref *ref)  {
+>  	struct xe_exec_queue *q =3D container_of(ref, struct xe_exec_queue,
+> refcount);
+> -	struct xe_exec_queue *eq, *next;
+>  	int i;
+>=20
+>  	xe_assert(gt_to_xe(q->gt), atomic_read(&q->job_cnt) =3D=3D 0); @@ -
+> 648,15 +648,9 @@ void xe_exec_queue_destroy(struct kref *ref)
+>  		xe_pxp_exec_queue_remove(gt_to_xe(q->gt)->pxp, q);
+>=20
+>  	xe_exec_queue_last_fence_put_unlocked(q);
+> -	for_each_tlb_inval(i)
+> +	for_each_tlb_inval(q, i)
+>  		xe_exec_queue_tlb_inval_last_fence_put_unlocked(q, i);
+>=20
+> -	if (!(q->flags & EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD)) {
+> -		list_for_each_entry_safe(eq, next, &q->multi_gt_list,
+> -					 multi_gt_link)
+> -			xe_exec_queue_put(eq);
+> -	}
+> -
+>  	if (q->user_vm) {
+>  		xe_vm_put(q->user_vm);
+>  		q->user_vm =3D NULL;
+> @@ -1343,7 +1337,6 @@ int xe_exec_queue_create_ioctl(struct drm_device
+> *dev, void *data,
+>  		u64_to_user_ptr(args->instances);
+>  	struct xe_hw_engine *hwe;
+>  	struct xe_vm *vm;
+> -	struct xe_tile *tile;
+>  	struct xe_exec_queue *q =3D NULL;
+>  	u32 logical_mask;
+>  	u32 flags =3D 0;
+> @@ -1392,31 +1385,16 @@ int xe_exec_queue_create_ioctl(struct
+> drm_device *dev, void *data,
+>  			return -ENOENT;
+>  		}
+>=20
+> -		for_each_tile(tile, xe, id) {
+> -			struct xe_exec_queue *new;
+> -
+> -			flags |=3D EXEC_QUEUE_FLAG_VM;
+> -			if (id)
+> -				flags |=3D
+> EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD;
+> -
+> -			new =3D xe_exec_queue_create_bind(xe, tile, vm, flags,
+> -							args->extensions);
+> -			if (IS_ERR(new)) {
+> -				up_read(&vm->lock);
+> -				xe_vm_put(vm);
+> -				err =3D PTR_ERR(new);
+> -				if (q)
+> -					goto put_exec_queue;
+> -				return err;
+> -			}
+> -			if (id =3D=3D 0)
+> -				q =3D new;
+> -			else
+> -				list_add_tail(&new->multi_gt_list,
+> -					      &q->multi_gt_link);
+> -		}
+> +		flags |=3D EXEC_QUEUE_FLAG_VM;
+> +
+> +		q =3D xe_exec_queue_create_bind(xe,
+> xe_device_get_root_tile(xe),
+> +					      vm, flags, args->extensions);
+>  		up_read(&vm->lock);
+>  		xe_vm_put(vm);
+> +		if (IS_ERR(q)) {
+> +			err =3D PTR_ERR(q);
+> +			return err;
+
+nit: return PTR_ERR(q);
+
+> +		}
+>  	} else {
+>  		logical_mask =3D calc_validate_logical_mask(xe, eci,
+>  							  args->width,
+> @@ -1638,14 +1616,6 @@ void xe_exec_queue_update_run_ticks(struct
+> xe_exec_queue *q)
+>   */
+>  void xe_exec_queue_kill(struct xe_exec_queue *q)  {
+> -	struct xe_exec_queue *eq =3D q, *next;
+> -
+> -	list_for_each_entry_safe(eq, next, &eq->multi_gt_list,
+> -				 multi_gt_link) {
+> -		q->ops->kill(eq);
+> -		xe_vm_remove_compute_exec_queue(q->vm, eq);
+> -	}
+> -
+>  	q->ops->kill(q);
+>  	xe_vm_remove_compute_exec_queue(q->vm, q);  } @@ -1806,42
+> +1776,40 @@ void xe_exec_queue_last_fence_set(struct xe_exec_queue *q,
+> struct xe_vm *vm,
+>   * xe_exec_queue_tlb_inval_last_fence_put() - Drop ref to last TLB inval=
+idation
+> fence
+>   * @q: The exec queue
+>   * @vm: The VM the engine does a bind for
+> - * @type: Either primary or media GT
+> + * @idx: Index of tlb invalidation
+>   */
+>  void xe_exec_queue_tlb_inval_last_fence_put(struct xe_exec_queue *q,
+>  					    struct xe_vm *vm,
+> -					    unsigned int type)
+> +					    unsigned int idx)
+>  {
+>  	xe_exec_queue_last_fence_lockdep_assert(q, vm);
+> -	xe_assert(vm->xe, type =3D=3D XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT
+> ||
+> -		  type =3D=3D XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
+> +	xe_assert(vm->xe, idx < XE_EXEC_QUEUE_TLB_INVAL_COUNT);
+>=20
+> -	xe_exec_queue_tlb_inval_last_fence_put_unlocked(q, type);
+> +	xe_exec_queue_tlb_inval_last_fence_put_unlocked(q, idx);
+>  }
+>=20
+>  /**
+>   * xe_exec_queue_tlb_inval_last_fence_put_unlocked() - Drop ref to last =
+TLB
+>   * invalidation fence unlocked
+>   * @q: The exec queue
+> - * @type: Either primary or media GT
+> + * @idx: Index of tlb invalidation
+>   *
+>   * Only safe to be called from xe_exec_queue_destroy().
+>   */
+>  void xe_exec_queue_tlb_inval_last_fence_put_unlocked(struct
+> xe_exec_queue *q,
+> -						     unsigned int type)
+> +						     unsigned int idx)
+>  {
+> -	xe_assert(gt_to_xe(q->gt), type =3D=3D
+> XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT ||
+> -		  type =3D=3D XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
+> +	xe_assert(q->vm->xe, idx < XE_EXEC_QUEUE_TLB_INVAL_COUNT);
+
+"gt_to_xe(q->gt)" is better than "q->vm->xe", as vm might be NULL.
+
+
+>=20
+> -	dma_fence_put(q->tlb_inval[type].last_fence);
+> -	q->tlb_inval[type].last_fence =3D NULL;
+> +	dma_fence_put(q->tlb_inval[idx].last_fence);
+> +	q->tlb_inval[idx].last_fence =3D NULL;
+>  }
+>=20
+>  /**
+>   * xe_exec_queue_tlb_inval_last_fence_get() - Get last fence for TLB
+> invalidation
+>   * @q: The exec queue
+>   * @vm: The VM the engine does a bind for
+> - * @type: Either primary or media GT
+> + * @idx: Index of tlb invalidation
+>   *
+>   * Get last fence, takes a ref
+>   *
+> @@ -1849,22 +1817,21 @@ void
+> xe_exec_queue_tlb_inval_last_fence_put_unlocked(struct xe_exec_queue *q,
+>   */
+>  struct dma_fence *xe_exec_queue_tlb_inval_last_fence_get(struct
+> xe_exec_queue *q,
+>  							 struct xe_vm *vm,
+> -							 unsigned int type)
+> +							 unsigned int idx)
+>  {
+>  	struct dma_fence *fence;
+>=20
+>  	xe_exec_queue_last_fence_lockdep_assert(q, vm);
+> -	xe_assert(vm->xe, type =3D=3D XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT
+> ||
+> -		  type =3D=3D XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
+> +	xe_assert(vm->xe, idx < XE_EXEC_QUEUE_TLB_INVAL_COUNT);
+>  	xe_assert(vm->xe, q->flags & (EXEC_QUEUE_FLAG_VM |
+>  				      EXEC_QUEUE_FLAG_MIGRATE));
+>=20
+> -	if (q->tlb_inval[type].last_fence &&
+> +	if (q->tlb_inval[idx].last_fence &&
+>  	    test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
+> -		     &q->tlb_inval[type].last_fence->flags))
+> -		xe_exec_queue_tlb_inval_last_fence_put(q, vm, type);
+> +		     &q->tlb_inval[idx].last_fence->flags))
+> +		xe_exec_queue_tlb_inval_last_fence_put(q, vm, idx);
+>=20
+> -	fence =3D q->tlb_inval[type].last_fence ?: dma_fence_get_stub();
+> +	fence =3D q->tlb_inval[idx].last_fence ?: dma_fence_get_stub();
+>  	dma_fence_get(fence);
+>  	return fence;
+>  }
+> @@ -1874,26 +1841,25 @@ struct dma_fence
+> *xe_exec_queue_tlb_inval_last_fence_get(struct xe_exec_queue *q
+>   * @q: The exec queue
+>   * @vm: The VM the engine does a bind for
+>   * @fence: The fence
+> - * @type: Either primary or media GT
+> + * @idx: Index of tlb invalidation
+>   *
+> - * Set the last fence for the tlb invalidation type on the queue. Increa=
+ses
+> + * Set the last fence for the tlb invalidation client on the queue.
+> + Increases
+>   * reference count for fence, when closing queue
+>   * xe_exec_queue_tlb_inval_last_fence_put should be called.
+>   */
+>  void xe_exec_queue_tlb_inval_last_fence_set(struct xe_exec_queue *q,
+>  					    struct xe_vm *vm,
+>  					    struct dma_fence *fence,
+> -					    unsigned int type)
+> +					    unsigned int idx)
+>  {
+>  	xe_exec_queue_last_fence_lockdep_assert(q, vm);
+> -	xe_assert(vm->xe, type =3D=3D XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT
+> ||
+> -		  type =3D=3D XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
+> +	xe_assert(vm->xe, idx < XE_EXEC_QUEUE_TLB_INVAL_COUNT);
+>  	xe_assert(vm->xe, q->flags & (EXEC_QUEUE_FLAG_VM |
+>  				      EXEC_QUEUE_FLAG_MIGRATE));
+>  	xe_assert(vm->xe, !dma_fence_is_container(fence));
+>=20
+> -	xe_exec_queue_tlb_inval_last_fence_put(q, vm, type);
+> -	q->tlb_inval[type].last_fence =3D dma_fence_get(fence);
+> +	xe_exec_queue_tlb_inval_last_fence_put(q, vm, idx);
+> +	q->tlb_inval[idx].last_fence =3D dma_fence_get(fence);
+>  }
+>=20
+>  /**
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h
+> b/drivers/gpu/drm/xe/xe_exec_queue.h
+> index 0225426c57b0..b02a390ba989 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+> @@ -14,9 +14,9 @@ struct drm_file;
+>  struct xe_device;
+>  struct xe_file;
+>=20
+> -#define for_each_tlb_inval(__i)	\
+> -	for (__i =3D XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT; \
+> -	     __i <=3D XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT; ++__i)
+> +#define for_each_tlb_inval(__q, __i)	\
+> +	for (__i =3D 0; __i < XE_EXEC_QUEUE_TLB_INVAL_COUNT; ++__i)	\
+> +		for_each_if((__q)->tlb_inval[__i].dep_scheduler)
+>=20
+>  struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct
+> xe_vm *vm,
+>  					   u32 logical_mask, u16 width,
+> @@ -141,19 +141,19 @@ void xe_exec_queue_last_fence_set(struct
+> xe_exec_queue *e, struct xe_vm *vm,
+>=20
+>  void xe_exec_queue_tlb_inval_last_fence_put(struct xe_exec_queue *q,
+>  					    struct xe_vm *vm,
+> -					    unsigned int type);
+> +					    unsigned int idx);
+>=20
+>  void xe_exec_queue_tlb_inval_last_fence_put_unlocked(struct
+> xe_exec_queue *q,
+> -						     unsigned int type);
+> +						     unsigned int idx);
+>=20
+>  struct dma_fence *xe_exec_queue_tlb_inval_last_fence_get(struct
+> xe_exec_queue *q,
+>  							 struct xe_vm *vm,
+> -							 unsigned int type);
+> +							 unsigned int idx);
+>=20
+>  void xe_exec_queue_tlb_inval_last_fence_set(struct xe_exec_queue *q,
+>  					    struct xe_vm *vm,
+>  					    struct dma_fence *fence,
+> -					    unsigned int type);
+> +					    unsigned int idx);
+>=20
+>  void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> index 836f88fc0faa..48c05398b016 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> @@ -137,16 +137,14 @@ struct xe_exec_queue {
+>  #define EXEC_QUEUE_FLAG_KERNEL			BIT(0)
+>  /* for VM jobs. Caller needs to hold rpm ref when creating queue with th=
+is
+> flag */
+>  #define EXEC_QUEUE_FLAG_VM			BIT(1)
+> -/* child of VM queue for multi-tile VM jobs */
+> -#define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(2)
+>  /* kernel exec_queue only, set priority to highest level */
+> -#define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(3)
+> +#define EXEC_QUEUE_FLAG_HIGH_PRIORITY		BIT(2)
+>  /* flag to indicate low latency hint to guc */
+> -#define EXEC_QUEUE_FLAG_LOW_LATENCY		BIT(4)
+> +#define EXEC_QUEUE_FLAG_LOW_LATENCY		BIT(3)
+>  /* for migration (kernel copy, clear, bind) jobs */
+> -#define EXEC_QUEUE_FLAG_MIGRATE			BIT(5)
+> +#define EXEC_QUEUE_FLAG_MIGRATE			BIT(4)
+>  /* for programming COMMON_SLICE_CHICKEN3 on first submission */
+> -#define EXEC_QUEUE_FLAG_DISABLE_STATE_CACHE_PERF_FIX	BIT(6)
+> +#define EXEC_QUEUE_FLAG_DISABLE_STATE_CACHE_PERF_FIX	BIT(5)
+>=20
+>  	/**
+>  	 * @flags: flags for this exec queue, should statically setup aside fro=
+m
+> ban @@ -157,13 +155,6 @@ struct xe_exec_queue {
+>  	/** @ban_reason: Bitmask of ban reasons
+> (DRM_XE_EXEC_QUEUE_BAN_REASON_*) */
+>  	atomic_t ban_reason;
+>=20
+> -	union {
+> -		/** @multi_gt_list: list head for VM bind engines if multi-GT */
+> -		struct list_head multi_gt_list;
+> -		/** @multi_gt_link: link for VM bind engines if multi-GT */
+> -		struct list_head multi_gt_link;
+> -	};
+> -
+>  	union {
+>  		/** @execlist: execlist backend specific state for exec queue */
+>  		struct xe_execlist_exec_queue *execlist; @@ -230,7 +221,8
+> @@ struct xe_exec_queue {
+>=20
+>  #define XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT	0
+>  #define XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT	1
+> -#define XE_EXEC_QUEUE_TLB_INVAL_COUNT
+> 	(XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT  + 1)
+> +#define XE_EXEC_QUEUE_TLB_INVAL_COUNT	\
+> +	((XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT + 1) * 2)
+>=20
+>  	/** @tlb_inval: TLB invalidations exec queue state */
+>  	struct {
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c inde=
+x
+> c17d5f96f00a..bdeffd6f1828 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -2710,12 +2710,18 @@ static const struct xe_migrate_pt_update_ops
+> svm_userptr_migrate_ops;  #endif
+>=20
+>  static struct xe_dep_scheduler *to_dep_scheduler(struct xe_exec_queue *q=
+,
+> -						 struct xe_gt *gt)
+> +						 struct xe_tile *tile,
+> +						 struct xe_gt *gt,
+> +						 unsigned int *type)
+
+@tile looks redundant since it could get from gt_to_tile().
+As this function is removed in later patch, so feel free to ignore it.
+
+With upper 2 fixed:
+Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
+
+>  {
+> +	int tile_ofs =3D tile->id * (XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT + 1);
+> +
+>  	if (xe_gt_is_media_type(gt))
+> -		return q-
+> >tlb_inval[XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT].dep_scheduler;
+> +		*type =3D tile_ofs + XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT;
+> +	else
+> +		*type =3D tile_ofs + XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT;
+>=20
+> -	return q-
+> >tlb_inval[XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT].dep_scheduler;
+> +	return q->tlb_inval[*type].dep_scheduler;
+>  }
+>=20
+>  /**
+> @@ -2740,6 +2746,7 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct
+> xe_vma_ops *vops)
+>  	struct xe_tlb_inval_job *ijob =3D NULL, *mjob =3D NULL;
+>  	struct xe_range_fence *rfence;
+>  	struct xe_vma_op *op;
+> +	unsigned int type;
+>  	int err =3D 0, i;
+>  	struct xe_migrate_pt_update update =3D {
+>  		.ops =3D pt_update_ops->needs_svm_lock ?
+> @@ -2766,13 +2773,13 @@ xe_pt_update_ops_run(struct xe_tile *tile,
+> struct xe_vma_ops *vops)
+>=20
+>  	if (pt_update_ops->needs_invalidation) {
+>  		struct xe_dep_scheduler *dep_scheduler =3D
+> -			to_dep_scheduler(q, tile->primary_gt);
+> +			to_dep_scheduler(q, tile, tile->primary_gt, &type);
+>=20
+>  		ijob =3D xe_tlb_inval_job_create(q, &tile->primary_gt->tlb_inval,
+>  					       dep_scheduler, vm,
+>  					       pt_update_ops->start,
+>  					       pt_update_ops->last,
+> -
+> XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
+> +					       type);
+>  		if (IS_ERR(ijob)) {
+>  			err =3D PTR_ERR(ijob);
+>  			goto kill_vm_tile1;
+> @@ -2791,14 +2798,15 @@ xe_pt_update_ops_run(struct xe_tile *tile,
+> struct xe_vma_ops *vops)
+>  		}
+>=20
+>  		if (tile->media_gt) {
+> -			dep_scheduler =3D to_dep_scheduler(q, tile->media_gt);
+> +			dep_scheduler =3D to_dep_scheduler(q, tile,
+> +							 tile->media_gt,
+> &type);
+>=20
+>  			mjob =3D xe_tlb_inval_job_create(q,
+>  						       &tile->media_gt-
+> >tlb_inval,
+>  						       dep_scheduler, vm,
+>  						       pt_update_ops->start,
+>  						       pt_update_ops->last,
+> -
+> XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT);
+> +						       type);
+>  			if (IS_ERR(mjob)) {
+>  				err =3D PTR_ERR(mjob);
+>  				goto free_ijob;
+> diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+> index 37866768d64c..06b1c913588a 100644
+> --- a/drivers/gpu/drm/xe/xe_sync.c
+> +++ b/drivers/gpu/drm/xe/xe_sync.c
+> @@ -345,15 +345,9 @@ xe_sync_in_fence_get(struct xe_sync_entry *sync,
+> int num_sync,
+>  			return ERR_PTR(-EOPNOTSUPP);
+>=20
+>  	if (q->flags & EXEC_QUEUE_FLAG_VM) {
+> -		struct xe_exec_queue *__q;
+> -		struct xe_tile *tile;
+> -		u8 id;
+> -
+> -		for_each_tile(tile, vm->xe, id) {
+> +		num_fence++;
+> +		for_each_tlb_inval(q, i)
+>  			num_fence++;
+> -			for_each_tlb_inval(i)
+> -				num_fence++;
+> -		}
+>=20
+>  		fences =3D kmalloc_objs(*fences, num_fence);
+>  		if (!fences)
+> @@ -361,17 +355,9 @@ xe_sync_in_fence_get(struct xe_sync_entry *sync,
+> int num_sync,
+>=20
+>  		fences[current_fence++] =3D
+>  			xe_exec_queue_last_fence_get(q, vm);
+> -		for_each_tlb_inval(i)
+> +		for_each_tlb_inval(q, i)
+>  			fences[current_fence++] =3D
+>  				xe_exec_queue_tlb_inval_last_fence_get(q,
+> vm, i);
+> -		list_for_each_entry(__q, &q->multi_gt_list,
+> -				    multi_gt_link) {
+> -			fences[current_fence++] =3D
+> -				xe_exec_queue_last_fence_get(__q, vm);
+> -			for_each_tlb_inval(i)
+> -				fences[current_fence++] =3D
+> -
+> 	xe_exec_queue_tlb_inval_last_fence_get(__q, vm, i);
+> -		}
+>=20
+>  		xe_assert(vm->xe, current_fence =3D=3D num_fence);
+>  		cf =3D dma_fence_array_create(num_fence, fences, diff --git
+> a/drivers/gpu/drm/xe/xe_tlb_inval_job.c
+> b/drivers/gpu/drm/xe/xe_tlb_inval_job.c
+> index 04d21015cd5d..81f560068d3c 100644
+> --- a/drivers/gpu/drm/xe/xe_tlb_inval_job.c
+> +++ b/drivers/gpu/drm/xe/xe_tlb_inval_job.c
+> @@ -39,8 +39,8 @@ struct xe_tlb_inval_job {
+>  	u64 start;
+>  	/** @end: End address to invalidate */
+>  	u64 end;
+> -	/** @type: GT type */
+> -	int type;
+> +	/** @idx: Index of tlb invalidation */
+> +	int idx;
+>  	/** @fence_armed: Fence has been armed */
+>  	bool fence_armed;
+>  };
+> @@ -87,7 +87,7 @@ static const struct xe_dep_job_ops dep_job_ops =3D {
+>   * @vm: VM which TLB invalidation is being issued for
+>   * @start: Start address to invalidate
+>   * @end: End address to invalidate
+> - * @type: GT type
+> + * @idx: Index of tlb invalidation
+>   *
+>   * Create a TLB invalidation job and initialize internal fields. The cal=
+ler is
+>   * responsible for releasing the creation reference.
+> @@ -97,7 +97,7 @@ static const struct xe_dep_job_ops dep_job_ops =3D
+> {  struct xe_tlb_inval_job *  xe_tlb_inval_job_create(struct xe_exec_queu=
+e *q,
+> struct xe_tlb_inval *tlb_inval,
+>  			struct xe_dep_scheduler *dep_scheduler,
+> -			struct xe_vm *vm, u64 start, u64 end, int type)
+> +			struct xe_vm *vm, u64 start, u64 end, int idx)
+>  {
+>  	struct xe_tlb_inval_job *job;
+>  	struct drm_sched_entity *entity =3D
+> @@ -105,8 +105,7 @@ xe_tlb_inval_job_create(struct xe_exec_queue *q,
+> struct xe_tlb_inval *tlb_inval,
+>  	struct xe_tlb_inval_fence *ifence;
+>  	int err;
+>=20
+> -	xe_assert(vm->xe, type =3D=3D XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT
+> ||
+> -		  type =3D=3D XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
+> +	xe_assert(vm->xe, idx < XE_EXEC_QUEUE_TLB_INVAL_COUNT);
+>=20
+>  	job =3D kmalloc_obj(*job);
+>  	if (!job)
+> @@ -120,7 +119,7 @@ xe_tlb_inval_job_create(struct xe_exec_queue *q,
+> struct xe_tlb_inval *tlb_inval,
+>  	job->fence_armed =3D false;
+>  	xe_page_reclaim_list_init(&job->prl);
+>  	job->dep.ops =3D &dep_job_ops;
+> -	job->type =3D type;
+> +	job->idx =3D idx;
+>  	kref_init(&job->refcount);
+>  	xe_exec_queue_get(q);	/* Pairs with put in xe_tlb_inval_job_destroy
+> */
+>  	xe_vm_get(vm);		/* Pairs with put in
+> xe_tlb_inval_job_destroy */
+> @@ -280,7 +279,7 @@ struct dma_fence *xe_tlb_inval_job_push(struct
+> xe_tlb_inval_job *job,
+>  	/* Let the upper layers fish this out */
+>  	xe_exec_queue_tlb_inval_last_fence_set(job->q, job->vm,
+>  					       &job->dep.drm.s_fence->finished,
+> -					       job->type);
+> +					       job->idx);
+>=20
+>  	xe_migrate_job_unlock(m, job->q);
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_job.h
+> b/drivers/gpu/drm/xe/xe_tlb_inval_job.h
+> index 03d6e21cd611..2a4478f529e6 100644
+> --- a/drivers/gpu/drm/xe/xe_tlb_inval_job.h
+> +++ b/drivers/gpu/drm/xe/xe_tlb_inval_job.h
+> @@ -20,7 +20,7 @@ struct xe_vm;
+>  struct xe_tlb_inval_job *
+>  xe_tlb_inval_job_create(struct xe_exec_queue *q, struct xe_tlb_inval
+> *tlb_inval,
+>  			struct xe_dep_scheduler *dep_scheduler,
+> -			struct xe_vm *vm, u64 start, u64 end, int type);
+> +			struct xe_vm *vm, u64 start, u64 end, int idx);
+>=20
+>  void xe_tlb_inval_job_add_page_reclaim(struct xe_tlb_inval_job *job,
+>  				       struct xe_page_reclaim_list *prl); diff --git
+> a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c index
+> 13e984ac4e4f..433a0a681556 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -1815,7 +1815,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe,
+> u32 flags, struct xe_file *xef)
+>  			struct xe_exec_queue *q;
+>  			u32 create_flags =3D EXEC_QUEUE_FLAG_VM;
+>=20
+> -			if (!vm->pt_root[id])
+> +			if (!vm->pt_root[id] || vm->q)
+>  				continue;
+>=20
+>  			if (!xef) /* Not from userspace */
+> @@ -1826,7 +1826,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe,
+> u32 flags, struct xe_file *xef)
+>  				err =3D PTR_ERR(q);
+>  				goto err_close;
+>  			}
+> -			vm->q[id] =3D q;
+> +			vm->q =3D q;
+>  		}
+>  	}
+>=20
+> @@ -1933,24 +1933,18 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+>  	if (xe_vm_in_fault_mode(vm))
+>  		xe_svm_close(vm);
+>=20
+> -	down_write(&vm->lock);
+> -	for_each_tile(tile, xe, id) {
+> -		if (vm->q[id]) {
+> -			int i;
+> +	if (vm->q) {
+> +		int i;
+>=20
+> -			xe_exec_queue_last_fence_put(vm->q[id], vm);
+> -			for_each_tlb_inval(i)
+> -				xe_exec_queue_tlb_inval_last_fence_put(vm-
+> >q[id], vm, i);
+> -		}
+> -	}
+> -	up_write(&vm->lock);
+> +		down_write(&vm->lock);
+> +		xe_exec_queue_last_fence_put(vm->q, vm);
+> +		for_each_tlb_inval(vm->q, i)
+> +			xe_exec_queue_tlb_inval_last_fence_put(vm->q, vm,
+> i);
+> +		up_write(&vm->lock);
+>=20
+> -	for_each_tile(tile, xe, id) {
+> -		if (vm->q[id]) {
+> -			xe_exec_queue_kill(vm->q[id]);
+> -			xe_exec_queue_put(vm->q[id]);
+> -			vm->q[id] =3D NULL;
+> -		}
+> +		xe_exec_queue_kill(vm->q);
+> +		xe_exec_queue_put(vm->q);
+> +		vm->q =3D NULL;
+>  	}
+>=20
+>  	down_write(&vm->lock);
+> @@ -2084,7 +2078,7 @@ u64 xe_vm_pdp4_descriptor(struct xe_vm *vm,
+> struct xe_tile *tile)  static struct xe_exec_queue *  to_wait_exec_queue(=
+struct
+> xe_vm *vm, struct xe_exec_queue *q)  {
+> -	return q ? q : vm->q[0];
+> +	return q ? q : vm->q;
+>  }
+>=20
+>  static struct xe_user_fence *
+> @@ -3527,13 +3521,10 @@ static int vm_ops_setup_tile_args(struct xe_vm
+> *vm, struct xe_vma_ops *vops)
+>  		if (vops->pt_update_ops[id].q)
+>  			continue;
+>=20
+> -		if (q) {
+> +		if (q)
+>  			vops->pt_update_ops[id].q =3D q;
+> -			if (vm->pt_root[id] && !list_empty(&q-
+> >multi_gt_list))
+> -				q =3D list_next_entry(q, multi_gt_list);
+> -		} else {
+> -			vops->pt_update_ops[id].q =3D vm->q[id];
+> -		}
+> +		else
+> +			vops->pt_update_ops[id].q =3D vm->q;
+>  	}
+>=20
+>  	return number_tiles;
+> @@ -3553,15 +3544,15 @@ static struct dma_fence *ops_execute(struct
+> xe_vm *vm,
+>  	if (number_tiles =3D=3D 0)
+>  		return ERR_PTR(-ENODATA);
+>=20
+> -	for_each_tile(tile, vm->xe, id) {
+> +	for_each_tile(tile, vm->xe, id)
+>  		++n_fence;
+>=20
+> -		if (!(vops->flags & XE_VMA_OPS_FLAG_SKIP_TLB_WAIT))
+> -			for_each_tlb_inval(i)
+> -				++n_fence;
+> +	if (!(vops->flags & XE_VMA_OPS_FLAG_SKIP_TLB_WAIT)) {
+> +		for_each_tlb_inval(vops->pt_update_ops[0].q, i)
+> +			++n_fence;
+>  	}
+>=20
+> -	fences =3D kmalloc_objs(*fences, n_fence);
+> +	fences =3D kcalloc(n_fence, sizeof(*fences), GFP_KERNEL);
+>  	if (!fences) {
+>  		fence =3D ERR_PTR(-ENOMEM);
+>  		goto err_trace;
+> @@ -3603,9 +3594,15 @@ static struct dma_fence *ops_execute(struct
+> xe_vm *vm,
+>  			continue;
+>=20
+>  		xe_migrate_job_lock(tile->migrate, q);
+> -		for_each_tlb_inval(i)
+> -			fences[current_fence++] =3D
+> -				xe_exec_queue_tlb_inval_last_fence_get(q,
+> vm, i);
+> +		for_each_tlb_inval(q, i) {
+> +			if (i >=3D (tile->id + 1) * XE_MAX_GT_PER_TILE ||
+> +			    i < tile->id * XE_MAX_GT_PER_TILE)
+> +				continue;
+> +
+> +			fences[current_fence++] =3D fence ?
+> +				xe_exec_queue_tlb_inval_last_fence_get(q,
+> vm, i) :
+> +				dma_fence_get_stub();
+> +		}
+>  		xe_migrate_job_unlock(tile->migrate, q);
+>  	}
+>=20
+> @@ -4135,7 +4132,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void
+> *data, struct drm_file *file)
+>=20
+>  	syncs_user =3D u64_to_user_ptr(args->syncs);
+>  	for (num_syncs =3D 0; num_syncs < args->num_syncs; num_syncs++) {
+> -		struct xe_exec_queue *__q =3D q ?: vm->q[0];
+> +		struct xe_exec_queue *__q =3D q ?: vm->q;
+>=20
+>  		err =3D xe_sync_entry_parse(xe, xef, &syncs[num_syncs],
+>  					  &syncs_user[num_syncs],
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
+> b/drivers/gpu/drm/xe/xe_vm_types.h
+> index 648031e64145..c91cb13fc4f1 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -262,7 +262,7 @@ struct xe_vm {
+>  	struct xe_device *xe;
+>=20
+>  	/* exec queue used for (un)binding vma's */
+> -	struct xe_exec_queue *q[XE_MAX_TILES_PER_DEVICE];
+> +	struct xe_exec_queue *q;
+>=20
+>  	/** @lru_bulk_move: Bulk LRU move list for this VM's BOs */
+>  	struct ttm_lru_bulk_move lru_bulk_move;
+> --
+> 2.34.1
+
