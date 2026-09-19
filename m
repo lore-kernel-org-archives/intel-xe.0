@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D41F8C982E0
-	for <intel-xe@archiver.kernel.org>; Sat, 19 Sep 2026 05:01:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EE00C982E3
+	for <intel-xe@archiver.kernel.org>; Sat, 19 Sep 2026 05:01:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7233410E702;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F96F10E65B;
 	Sat, 19 Sep 2026 05:01:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bsd3E/Ou";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iC+hTsVP";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AD8210E642
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DC6B10E642
  for <intel-xe@lists.freedesktop.org>; Sat, 19 Sep 2026 05:01:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1789794064; x=1821330064;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PciEdkeqd/5kKev26DQEmVrUMuzdSN99tnqWKI3DNw4=;
- b=Bsd3E/OutHuKjS0dhR90/3VFEVtMzmHwI339NBPr30sxWKvd2iIVa8Gk
- 3JjSxSRib3/7IC/pBXHfIy7OzG8f3sUFLrVhuiaj6X9OzvhK4FWdCynCt
- hNlXowM4Fd4I2lVxaDYVYtDfr363XhNPYpO56G+cFXZL2sGDWEbFwAGeP
- ycr3WrgYa4GlKvzGdI96B2g2Zo2u0vEMMrjv+faARK8+6rRfjt8HUK8oS
- X8vRMhJiUOsXMd9xat4Onh2Kkp77cfXNfnqYok6DOgP+3zc+pG4g1WxTS
- bqlN7YnCLZjYpXnR7y/3ElHPYx6pS9OxNipRFGW2PCfpJq84FFKmHOnA8 A==;
-X-CSE-ConnectionGUID: UxcWm2xKQo6KaESS9igSag==
-X-CSE-MsgGUID: HTEkC5Q/RGGZCMbY/VShEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11909"; a="89463552"
-X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; d="scan'208";a="89463552"
+ bh=5z4VYv6JC6kcr0rHZPC8y867mYHvVHYmoYFsAhFskTc=;
+ b=iC+hTsVPJh1fJX/bGWzYtUy813yA7Q7do9TyNCTfpE34x58vP0jD1bc5
+ NEm49mrYyND1GCWEwz/TAxewF2onNk1d6G1gylAOCmFJWVb+Grou2knAO
+ WAlZG6PZs06jzo9tPBe88d0kTarYL6ZMBsPaxeAQpfeAOoGq9mkM59Xen
+ rHsRgRi95QM6g5dedKGTSFcm1oC7TDcp7wHvxhfv2yEPU87xg4EjHAIA/
+ JxwTzPM/fhqyVXr0H60jswxcdLqR+FbRiaBCYeBQzLflNuAN8VHMRl/7L
+ H8Q1CH7d5J3gFVmWf4A6siNLw6UgopmXE3lB2bBqPCBglpNMNaQL7SeUD g==;
+X-CSE-ConnectionGUID: Tme4r9YsRuW5MwjTQfuaPQ==
+X-CSE-MsgGUID: 27H0ZXbkS4yo5PzUCrx8hg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11909"; a="89463550"
+X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; d="scan'208";a="89463550"
 Received: from fmviesa011.fm.intel.com ([10.60.135.151])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2026 22:01:04 -0700
-X-CSE-ConnectionGUID: 6STx8gnCRN61EtVT77XOTA==
-X-CSE-MsgGUID: 1WT4YHAtRSKlt0dcFeL9OQ==
+ 18 Sep 2026 22:01:03 -0700
+X-CSE-ConnectionGUID: aNAGetM8TgSbMG9D3tx+/w==
+X-CSE-MsgGUID: uT26FLj0RWeCH6NnVcVW9Q==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,109,1787036400"; 
-   d="scan'208";a="2926712"
+   d="scan'208";a="2926706"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Sep 2026 22:01:04 -0700
@@ -47,9 +47,10 @@ To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com, michal.wajdeczko@intel.com,
  aravind.iddamsetty@intel.com, mallesh.koujalagi@intel.com,
  alan.previn.teres.alexis@intel.com, julia.filipchuk@intel.com
-Subject: [PATCH v5 5/7] drm/xe/uc: Report DMA failure using SIGID
-Date: Fri, 18 Sep 2026 22:01:01 -0700
-Message-ID: <20260919050055.2092579-14-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v5 3/7] drm/xe/guc: Make ct_dead_capture available on
+ non-debug config
+Date: Fri, 18 Sep 2026 22:00:59 -0700
+Message-ID: <20260919050055.2092579-12-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260919050055.2092579-9-umesh.nerlige.ramappa@intel.com>
 References: <20260919050055.2092579-9-umesh.nerlige.ramappa@intel.com>
@@ -69,58 +70,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Define ct_dead_capture for non-debug as well to simplify future
+refactor.
 
-Convert the uC DMA failure error to use the xe_log_err() helper.
-
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
-v2: add assert and simplify if/else
+v2: Fix CI build failure
 ---
- drivers/gpu/drm/xe/xe_uc_fw.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 23 +++++++++++------------
+ 1 file changed, 11 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index e29878b255ba..ada39c1266a8 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -18,6 +18,7 @@
- #include "xe_gt_sriov_vf.h"
- #include "xe_gt_types.h"
- #include "xe_guc.h"
-+#include "xe_log.h"
- #include "xe_map.h"
- #include "xe_mmio.h"
- #include "xe_module.h"
-@@ -914,8 +915,12 @@ static int uc_fw_xfer(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
- int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
- {
- 	struct xe_device *xe = uc_fw_to_xe(uc_fw);
-+	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
- 	int err;
- 
-+	xe_gt_assert(gt, uc_fw->type == XE_UC_FW_TYPE_GUC ||
-+		     uc_fw->type == XE_UC_FW_TYPE_HUC);
-+
- 	/* make sure the status was cleared the last time we reset the uc */
- 	xe_assert(xe, !xe_uc_fw_is_loaded(uc_fw));
- 
-@@ -931,9 +936,11 @@ int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
- 	return 0;
- 
- fail:
--	drm_err(&xe->drm, "Failed to load %s firmware %s (%d)\n",
--		xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
--		err);
-+	if (uc_fw->type == XE_UC_FW_TYPE_GUC)
-+		xe_log_err(gt, GUC, err, "Failed to load firmware %s\n", uc_fw->path);
-+	else
-+		xe_log_err(gt, HUC, err, "Failed to load firmware %s\n", uc_fw->path);
-+
- 	xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_LOAD_FAIL);
- 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index b3a6aa37808b..5dbda0fe20f3 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -59,7 +59,10 @@ static struct xe_device *ct_to_xe(struct xe_guc_ct *ct)
+ 	return gt_to_xe(ct_to_gt(ct));
  }
+ 
+-#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
++#define ct_id(reason_code)  CT_DEAD_##reason_code
++#define CT_DEAD(ct, ctb, reason_code)	ct_dead_capture((ct), (ctb), ct_id(reason_code))
++static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code);
++
+ enum {
+ 	/* Internal states, not error conditions */
+ 	CT_DEAD_STATE_REARM,			/* 0x0001 */
+@@ -82,8 +85,8 @@ enum {
+ 	CT_DEAD_CRASH,				/* 0x8000 */
+ };
+ 
++#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+ static void ct_dead_worker_func(struct work_struct *w);
+-static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code);
+ 
+ static void ct_dead_fini(struct xe_guc_ct *ct)
+ {
+@@ -162,9 +165,6 @@ static void fast_req_track(struct xe_guc_ct *ct, u16 fence, u16 action)
+ 	ct->fast_req[slot].fence = fence;
+ 	ct->fast_req[slot].action = action;
+ }
+-
+-#define CT_DEAD(ct, ctb, reason_code)	ct_dead_capture((ct), (ctb), CT_DEAD_##reason_code)
+-
+ #else
+ 
+ static void ct_dead_fini(struct xe_guc_ct *ct) { }
+@@ -173,13 +173,6 @@ static void ct_dead_init(struct xe_guc_ct *ct) { }
+ static void fast_req_report(struct xe_guc_ct *ct, u16 fence) { }
+ static void fast_req_track(struct xe_guc_ct *ct, u16 fence, u16 action) { }
+ 
+-#define CT_DEAD(ct, ctb, reason)			\
+-	do {						\
+-		struct guc_ctb *_ctb = (ctb);		\
+-		if (_ctb)				\
+-			_ctb->info.broken = true;	\
+-	} while (0)
+-
+ #endif
+ 
+ /* Used when a CT send wants to block and / or receive data */
+@@ -2376,4 +2369,10 @@ static void ct_dead_worker_func(struct work_struct *w)
+ 
+ 	spin_unlock_irq(&ct->dead.lock);
+ }
++#else
++static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code)
++{
++	if (ctb)
++		ctb->info.broken = true;
++}
+ #endif
 -- 
 2.55.0
 
