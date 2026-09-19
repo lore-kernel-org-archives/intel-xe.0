@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A52D8C982D8
-	for <intel-xe@archiver.kernel.org>; Sat, 19 Sep 2026 05:14:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A21FCC982D8
+	for <intel-xe@archiver.kernel.org>; Sat, 19 Sep 2026 05:48:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BF6C10E0B1;
-	Sat, 19 Sep 2026 05:14:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bJfFGP7v";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7FA1A10E0B1
- for <intel-xe@lists.freedesktop.org>; Sat, 19 Sep 2026 05:14:45 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 50E1A40809;
- Sat, 19 Sep 2026 05:14:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1418A1F000FF;
- Sat, 19 Sep 2026 05:14:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789794885;
- bh=VjjWQz06lo+sitV9BBNRtmIms5ZKKx3xiwtNUgdaWsI=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=bJfFGP7vkL2SZYmfREU+l/hN6MbIwplp/q87a8vaK45B3Ga8I98TqXgV8YGS+aDKn
- /GDNLuixyHz9QvnB8R18CkpQYqmS+O4py4ATBHR3cc3bvwHNssJ/8yA6KQsm5y1QXj
- 5BCXwbLZOmxSLml3++zF6urDeiNEBa/MHpIRsXa5kdc02xCuHFfiHyojsRDZOf6yjR
- TCD8kEDQfyfCh0AADo8txlxZ+/bdkiAVyLt+HcAB4/bpxj0C1+MC8BaVXD2+TthfpK
- CVK45qO0XAzt8vSvtHNGJjxxAenaWw+y0eH8FfV5tP54Po157b+AUWye5Nq9ONg522
- 0R+bKXrdnalug==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 4/7] drm/xe/guc: Cleanup error codes and handling for
- CT errors
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D10110E07F;
+	Sat, 19 Sep 2026 05:48:07 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F380710E07F;
+ Sat, 19 Sep 2026 05:48:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4614498597743045602=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Use_SIG=5FID_logs_for_GuC_c?=
+ =?utf-8?q?omponent_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260919050055.2092579-13-umesh.nerlige.ramappa@intel.com>
+Date: Sat, 19 Sep 2026 05:48:05 -0000
+Message-ID: <178979688598.183950.11045658133827987682@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260919050055.2092579-9-umesh.nerlige.ramappa@intel.com>
- <20260919050055.2092579-13-umesh.nerlige.ramappa@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sat, 19 Sep 2026 05:14:44 +0000
-Message-Id: <20260919051445.1418A1F000FF@smtp.kernel.org>
+In-Reply-To: <20260919050055.2092579-9-umesh.nerlige.ramappa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,132 +36,171 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] xe_guc_ct: immediate failure on H2G corruption due to mismatched=
- error code
---
+--===============4614498597743045602==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 81ff170e2ca7e241924429f71845781f7d3f0d95
-Author: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+== Series Details ==
 
-drm/xe/guc: Cleanup error codes and handling for CT errors
+Series: Use SIG_ID logs for GuC component (rev4)
+URL   : https://patchwork.freedesktop.org/series/173177/
+State : failure
 
-This commit updates the GuC CT error handling to return more specific error
-codes based on the error type rather than defaulting to -EPROTO. It also
-inverts the error check in receive_g2h() to simplify reset handling.
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_c=
-t.c
-> index 5dbda0fe20f37..572a52773c56a 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+CI Bug Log - changes from xe-5786-e56378c725f82208a52da0a3b5eecd67ddcbf750_BAT -> xe-pw-173177v4_BAT
+====================================================
 
-[ ... ]
+Summary
+-------
 
-> @@ -1358,7 +1435,7 @@ int xe_guc_ct_send_g2h_handler(struct xe_guc_ct *ct=
-, const u32 *action, u32 len)
->   */
->  static bool retry_failure(struct xe_guc_ct *ct, int ret)
->  {
-> -	if (!(ret =3D=3D -EDEADLK || ret =3D=3D -EPIPE || ret =3D=3D -ENODEV))
-> +	if (!(ret =3D=3D -EDEADLK || ret =3D=3D -EPERM || ret =3D=3D -ENODEV))
->  		return false;
+  **FAILURE**
 
-[Severity: Medium]
-When h2g_write() discovers descriptor corruption, it calls ct_corrupted() a=
-nd
-returns -EPIPE. Since this patch removes -EPIPE from the whitelist here in
-favor of -EPERM, retry_failure() will return false and abort the send
-instantly.
+  Serious unknown changes coming with xe-pw-173177v4_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-173177v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-Does this deny the thread that discovers the corruption a chance to recover
-if a GT reset occurs?
+  
 
-Later threads calling __guc_ct_send_locked() will observe the newly broken
-state, return -EPERM, and correctly block waiting for recovery. Should the
-initial -EPIPE error also be permitted to retry, or be escalated directly
-to a reset?
+Participating hosts (15 -> 15)
+------------------------------
 
-[ ... ]
+  No changes in participating hosts
 
-> @@ -2037,6 +2107,27 @@ static int dequeue_one_g2h(struct xe_guc_ct *ct)
->  	return 1;
->  }
-> =20
-> +/*
-> + * Errors reported by dequeue_one_g2h() come in two flavours: either the=
- channel
-> + * is simply not available right now, which is expected and handled grac=
-efully,
-> + * or the channel state or the message itself is inconsistent, in which =
-case the
-> + * only way forward is to declare the CT dead and reset the GuC. Since t=
-he
-> + * former is a short and well known list, check against that and treat a=
-nything
-> + * else as fatal, so that new error codes don't silently escape the esca=
-lation.
-> + */
-> +static bool g2h_err_is_fatal(int err)
-> +{
-> +	switch (err) {
-> +	case -ENOTRECOVERABLE:	/* device wedged */
-> +	case -ENODEV:		/* CT disabled */
-> +	case -ECANCELED:	/* CT stopped */
-> +	case -EPERM:		/* CT already declared broken */
-> +		return false;
-> +	default:
-> +		return true;
-> +	}
-> +}
-> +
+Possible new issues
+-------------------
 
-[ ... ]
+  Here are the unknown changes that may have been introduced in xe-pw-173177v4_BAT:
 
-> @@ -2074,8 +2165,9 @@ static void receive_g2h(struct xe_guc_ct *ct)
->  		ret =3D dequeue_one_g2h(ct);
->  		mutex_unlock(&ct->lock);
-> =20
-> -		if (unlikely(ret =3D=3D -EPROTO || ret =3D=3D -EOPNOTSUPP)) {
-> -			xe_gt_err(ct_to_gt(ct), "CT dequeue failed: %d\n", ret);
-> +		if (unlikely(ret < 0 && g2h_err_is_fatal(ret))) {
-> +			xe_gt_err(ct_to_gt(ct), "CT dequeue failed, forcing GT reset(%pe)\n",
-> +				  ERR_PTR(ret));
->  			CT_DEAD(ct, NULL, G2H_RECV);
->  			kick_reset(ct);
->  		}
+### IGT changes ###
 
-[Severity: High]
-This is a pre-existing issue, but this change to how errors are filtered
-seems to leave a gap where a corrupted G2H channel silently escapes a GT
-reset.
+#### Possible regressions ####
 
-If corruption is detected during xe_guc_ct_fast_path(), g2h_read() calls
-ct_corrupted(), marks the channel broken, and returns -EPIPE. The fast path
-loop drops the negative length without resetting.
+  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
+    - bat-bmg-1:          [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5786-e56378c725f82208a52da0a3b5eecd67ddcbf750/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173177v4/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
 
-When the background worker later executes receive_g2h(), it sees the broken
-channel and g2h_read() returns -EPERM. Because g2h_err_is_fatal(-EPERM)
-explicitly returns false here, receive_g2h() ignores the error:
+  
+Known issues
+------------
 
-receive_g2h() {
-    ...
-    if (unlikely(ret < 0 && g2h_err_is_fatal(ret))) {
-        // GT reset skipped
-    }
-}
+  Here are the changes found in xe-pw-173177v4_BAT that come from known issues:
 
-Is there a mechanism that will trigger a recovery for the broken G2H channe=
-l,
-or will it stay permanently wedged since neither path kicks a reset? Before
-this patch, the fast path ignored -EPROTO and the worker ignored -EPIPE, so
-the new error filtering inherits this behavior.
+### IGT changes ###
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260919050055.2092=
-579-9-umesh.nerlige.ramappa@intel.com?part=3D4
+#### Possible fixes ####
+
+  * igt@xe_exec_fault_mode@twice-rebind-prefetch:
+    - bat-bmg-1:          [DMESG-WARN][3] -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5786-e56378c725f82208a52da0a3b5eecd67ddcbf750/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173177v4/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html
+
+  * igt@xe_exec_system_allocator@many-execqueues-malloc:
+    - bat-bmg-vm:         [DMESG-WARN][5] -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5786-e56378c725f82208a52da0a3b5eecd67ddcbf750/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173177v4/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-5786-e56378c725f82208a52da0a3b5eecd67ddcbf750 -> xe-pw-173177v4
+
+  IGT_9103: f307fd753abbe6c03d0a6e1c769fc6020ebd5d86 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5786-e56378c725f82208a52da0a3b5eecd67ddcbf750: e56378c725f82208a52da0a3b5eecd67ddcbf750
+  xe-pw-173177v4: 173177v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173177v4/index.html
+
+--===============4614498597743045602==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Use SIG_ID logs for GuC component (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173177/">https://patchwork.freedesktop.org/series/173177/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173177v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173177v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5786-e56378c725f82208a52da0a3b5eecd67ddcbf750_BAT -&gt; xe-pw-173177v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-173177v4_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-173177v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-173177v4_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5786-e56378c725f82208a52da0a3b5eecd67ddcbf750/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173177v4/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-173177v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_exec_fault_mode@twice-rebind-prefetch:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5786-e56378c725f82208a52da0a3b5eecd67ddcbf750/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173177v4/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_system_allocator@many-execqueues-malloc:</p>
+<ul>
+<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5786-e56378c725f82208a52da0a3b5eecd67ddcbf750/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173177v4/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5786-e56378c725f82208a52da0a3b5eecd67ddcbf750 -&gt; xe-pw-173177v4</li>
+</ul>
+<p>IGT_9103: f307fd753abbe6c03d0a6e1c769fc6020ebd5d86 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5786-e56378c725f82208a52da0a3b5eecd67ddcbf750: e56378c725f82208a52da0a3b5eecd67ddcbf750<br />
+  xe-pw-173177v4: 173177v4</p>
+
+</body>
+</html>
+
+--===============4614498597743045602==--
