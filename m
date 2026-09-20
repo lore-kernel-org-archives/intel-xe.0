@@ -4,27 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4B11C982D8
-	for <intel-xe@archiver.kernel.org>; Sun, 20 Sep 2026 15:09:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BACC3C982DA
+	for <intel-xe@archiver.kernel.org>; Sun, 20 Sep 2026 15:10:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B9D110E2AA;
-	Sun, 20 Sep 2026 15:09:04 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08AFB10E0F8;
- Sun, 20 Sep 2026 15:09:03 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm=3A_handle_IRQ=5FHPD_e?=
- =?utf-8?q?vents_correctly_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5256510E2AA;
+	Sun, 20 Sep 2026 15:10:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KJJW3bWg";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8F5F10E0F8;
+ Sun, 20 Sep 2026 15:10:46 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 51A8141143;
+ Sun, 20 Sep 2026 15:10:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3BBC1F000FF;
+ Sun, 20 Sep 2026 15:10:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1789917046;
+ bh=QtVbNLcDa/iTthid63Qll4pVWqWerOdn9F8dCJT8zFQ=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=KJJW3bWgPDuZAwPSJ7XyIWvS0BkVW/i8vaxBzw4+cgFgzL/44Zh80gZ6ZvsobC6Am
+ B0dw8zAuVNHfwyo7J+XoSS3DIn9oCwQjsx2D2+sP3i7YrwvjT5jdezdeSxeuhRjhRF
+ +o4b2GoKmpz8lyQO7F4D4buNRRHoKNWdTnxnRIx5jeL3yYqJLQknAsbWZPx8FNCKWD
+ uGXQHK5wbPviq4gw3v+8/n2IvfAHBg6jSueibA2COtUYc+mbPGLOg6A0y/ZnRM53Ry
+ qXtKu6QGyPXMYetdNkDaOxgyt4knpin69l4/ab1qGO7381XrkcSZMVFFCrkcfRVJ6Q
+ Nq4jA5Un1MZHA==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 5/8] drm/bridge: pass down IRQ_HPD to the drivers
 To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sun, 20 Sep 2026 15:09:03 -0000
-Message-ID: <178991694302.184334.9372679477065616336@61270ab9df2a>
-X-Patchwork-Hint: ignore
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ neil.armstrong@linaro.org
+In-Reply-To: <20260920-hpd-irq-events-v5-5-ff1de0090c72@oss.qualcomm.com>
 References: <20260920-hpd-irq-events-v5-0-ff1de0090c72@oss.qualcomm.com>
-In-Reply-To: <20260920-hpd-irq-events-v5-0-ff1de0090c72@oss.qualcomm.com>
+ <20260920-hpd-irq-events-v5-5-ff1de0090c72@oss.qualcomm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sun, 20 Sep 2026 15:10:45 +0000
+Message-Id: <20260920151045.D3BBC1F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,72 +54,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] drm/omapdrm: hdmi5_bridge_hpd_notify signature mismatch causes buil=
+d failure
+--
 
-Series: drm: handle IRQ_HPD events correctly (rev6)
-URL   : https://patchwork.freedesktop.org/series/164955/
-State : warning
-
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit a3ef28af43f1c0d596c4d43965f0c1bfd034e9db
+commit c12a9be57208a1450c89b7b186ca8f9ff6848995
 Author: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date:   Sun Sep 20 18:01:33 2026 +0300
 
-    usb: typec: ucsi: huawei-gaokun: pass down HPD_IRQ events
-    
-    The DisplayPort standard defines a special kind of HPD events called
-    IRQ_HPD. These events are used to notify DP Source about the events on
-    the Sink side.
-    
-    Pass IRQ_HPD events from the EC to the HPD bridge, letting those
-    to be delivered to the DisplayPort driver.
-    
-    Reviewed-by: Pengyu Luo <mitltlatltl@gmail.com>
-    Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-    Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-+ /mt/dim checkpatch e56378c725f82208a52da0a3b5eecd67ddcbf750 drm-intel
-45bfca58ecf7 drm/connector: report out-of-band IRQ_HPD events
--:76: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#76: FILE: drivers/usb/typec/altmodes/displayport.c:191:
-+		drm_connector_dp_oob_status(dp->connector_fwnode,
- 						hpd ? connector_status_connected :
+drm/bridge: pass down IRQ_HPD to the drivers
 
--:91: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#91: FILE: drivers/usb/typec/altmodes/displayport.c:217:
-+		drm_connector_dp_oob_status(dp->connector_fwnode,
-+						connector_status_connected,
+The DisplayPort standard defines a special kind of HPD events called
+IRQ_HPD. These events are used to notify DP Source about the events on
+the Sink side. Pass down the extra status to the bridge drivers via the
+hpd_notify() callback, letting DP bridges to act accordingly.
 
--:105: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#105: FILE: drivers/usb/typec/altmodes/displayport.c:405:
-+				drm_connector_dp_oob_status(dp->connector_fwnode,
-+								connector_status_disconnected,
+> diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
+> index ed9f77a2597a1..2b3cad4bedde9 100644
+> --- a/include/drm/drm_bridge.h
+> +++ b/include/drm/drm_bridge.h
+> @@ -509,7 +509,8 @@ struct drm_bridge_funcs {
+>  	 */
+>  	void (*hpd_notify)(struct drm_bridge *bridge,
+>  			   struct drm_connector *connector,
+> -			   enum drm_connector_status status);
+> +			   enum drm_connector_status status,
+> +			   enum drm_connector_dp_event event);
+> =20
+>  	/**
+>  	 * @hpd_enable:
 
--:117: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#117: FILE: drivers/usb/typec/altmodes/displayport.c:854:
-+		drm_connector_dp_oob_status(dp->connector_fwnode,
-+						connector_status_disconnected,
+[Severity: Low]
+Could this cause a build regression by missing an update in
+drivers/gpu/drm/omapdrm/dss/hdmi5.c?
 
-total: 0 errors, 0 warnings, 4 checks, 120 lines checked
-9707879bd546 drm/connector: pass down IRQ_HPD to the drivers
-7a2ffaa2de1e drm/bridge: aux-hpd: let drivers pass IRQ_HPD events
-07bc8de0c800 drm/bridge: pass extra events to the HPD callback
-ab907adb335f drm/bridge: pass down IRQ_HPD to the drivers
-c43e89478b2e drm/msm: dp: handle the IRQ_HPD events reported by USB-C
-efdd1bae1b8c soc: qcom: pmic-glink-altmode: pass down HPD_IRQ events
-a3ef28af43f1 usb: typec: ucsi: huawei-gaokun: pass down HPD_IRQ events
+While hdmi4_bridge_hpd_notify() was updated in this patch,
+hdmi5_bridge_hpd_notify() in hdmi5.c still retains the old 3-argument
+signature. Assigning this incorrectly-typed function pointer to
+hdmi5_bridge_funcs.hpd_notify will result in an incompatible pointer type
+compiler error when building with CONFIG_DRM_OMAP enabled:
 
+drivers/gpu/drm/omapdrm/dss/hdmi5.c:
+static void hdmi5_bridge_hpd_notify(struct drm_bridge *bridge,
+                                    struct drm_connector *connector,
+                                    enum drm_connector_status status)
+{
+...
+static const struct drm_bridge_funcs hdmi5_bridge_funcs =3D {
+...
+        .hpd_notify =3D hdmi5_bridge_hpd_notify,
+...
+};
 
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260920-hpd-irq-ev=
+ents-v5-0-ff1de0090c72@oss.qualcomm.com?part=3D5
