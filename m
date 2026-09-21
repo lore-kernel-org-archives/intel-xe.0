@@ -4,62 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E033C982ED
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 18:21:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69FF8C982F7
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 18:21:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17DC210E8CF;
-	Mon, 21 Sep 2026 18:21:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0645210E90A;
+	Mon, 21 Sep 2026 18:21:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BG4OkUzR";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VGdFarol";
 	dkim-atps=neutral
 Received: from mail-pj2-f13.google.com (mail-pj2-f13.google.com
  [74.125.227.141])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69E1D10E8E9
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 18:21:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A005510E8E9
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 18:21:34 +0000 (UTC)
 Received: by mail-pj2-f13.google.com with SMTP id
- d9443c01a7336-2dd53691be5so31048995ad.1
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 11:21:31 -0700 (PDT)
+ 98e67ed59e1d1-39b5b07ec78so2299533a91.3
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 11:21:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1790014891; x=1790619691; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:mime-version:message-id:date
- :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=ei5giWzghMksrMNaXLe7L4JTxplKdbY9ZlauLOVvWzo=;
- b=BG4OkUzRTEslKAt/PhQEiO5he9DYmYO2vWsEnJ3Oy74O6XDf78g2AhCpi4IWeaa7YE
- IJoC2q6ZyfIVVgHe+XNpr9e2AkbBuSCuW3kXZSmY0Bqgh6pXBVkz0AyydSkQV+mj4jRA
- nZE8TdipOLNq76z8fK9UnMx8+ht0Iip3HFhaZ9vjkcrS1myn0W9xuGKrNa7JDJP7Y9/R
- kw3O6qOyHSaioRxfWOxh2ojdK1wJk+MIcgiXRcRt1m6X6vije9/u6gL8Mz+9nSgrVoF/
- 3NuFUjfpAtfQLp49Vp83pnGpl5l4vBP297SXT8qYkpJz01AlxThgURm6x1H8K0VIseFT
- RHuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1790014891; x=1790619691;
- h=content-transfer-encoding:content-type:mime-version:message-id:date
- :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ d=gmail.com; s=20251104; t=1790014894; x=1790619694; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:mime-version:references
+ :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
  :date:message-id:reply-to:content-type;
- bh=ei5giWzghMksrMNaXLe7L4JTxplKdbY9ZlauLOVvWzo=;
- b=UmmTm/Ftq+hAWwsXL0+Amu3TJhYa9ZBtqQvF0bUNbLbT8wl1KrS5HLbsyUYi8Cr5EO
- ZfH31Si1GzPUgRiD11WOYxZkUel5TZ5ccewce/DeN7sjxKM/GNhc/HZ+QZIlWTvw+MqG
- qOB4z4fDZnh7yc+73u2CUqfBrQPrMeeZUBXeubfqSWPR3IcsEebhUB2Lt1f/trfwF7Y6
- Y98QkGWH15Ps6W8jU1jROc5sR/0mFfMGeH98zKdsZkLvZJh8llZdW3okYYW73dBaeWx2
- uDFw5/fCykJQuw7jSHZ074w3EZYNZphzi5h/w1dVSoKTElu1MkAACZvPSW9LhF43FomU
- QwPg==
-X-Gm-Message-State: AFuF++lUkLKBitheGUs1+lzPakD7tYejsbagWjju0oXldbptw0aTtu4l
- QK4hoD9GLbfbuhOJOA+xp/ZHzC5c4o7vFpze9+D6k1Qu26EBEY/qzCs0q72fJxGRz7w=
-X-Gm-Gg: AYBFou3QFevCbnx4a5Uu8zj30keCGbr0qKDiXnn6Wj583259Ggar1NTk7T+xPUD248q
- No/D89fbtC7/l4vEeZB3XVxgo2sMLFXfVlmYV6iTSCMizqAAaq8Ye+8JNWJ5PAxlkU8EF6FKvsV
- lL+gw0/KRuCSrqYyhwuoczE7QdwqzGG4BLHK1n2lJz5duhMWT9bSm5ZEK6U1ULkVm6HMN59iA1J
- j24W6ZWnWHgdDm9bEpDvaNnqF3faMZs5LBJjkbwJtAthpA6/1kNb6lq1O1WH2aR7oixuSVGMYJb
- MrQkKlR3qYpUfzqoFT6wWekRWWeFfXfVMV7tlvlDlSNJm9hgppSCZ+JmU/gpplb9KBaKQNXyZBP
- wzQ4mU2ZfiVDlfcwR/illUHGWUIfBPbPQEdnUVJqHpBTy8EsKyHiP8WgxMle5ZQI0WvJ/0K8JoM
- aXYofFtOowFDO94qMldisIi41Ez0hBjbhRVihzy/4PWsDXTbZQobJllwx0Ey5U55IIqgxmsAJFd
- wuXRZBjWJ0wSwZzPQI6a79Z7zWUZrNLcEHreHM2eTvz//vFMWX4kwpOhKEwlc3t
-X-Received: by 2002:a17:90b:4b03:b0:38e:bfe:81e9 with SMTP id
- 98e67ed59e1d1-3a0645d08ccmr999705a91.1.1790014890734; 
- Mon, 21 Sep 2026 11:21:30 -0700 (PDT)
+ bh=nC+YS3LHi85Pt/yzB7ALyVEGNtIwJIkF9YRMLJPv+Go=;
+ b=VGdFarolWPLfcx3Bw7iPSmzKnJjEZJTM/rrdBj47H1w7EgwWvNXJqcducJfiS/z0m5
+ GtRIxoqH0l9HcLbBzDeylclDGlFZFDGigIEaltgCnpiVvlZ2NzJQgqFfLcwtUcoMXSRs
+ IDD76qcTC7bwGmHA6vzp9e2PMYZid0dg0lTweRVTzXR4gNMDwC2UkSPHIPiJPhXCeWyR
+ JJVIYoCPoU18hvzXGwbEb7SC5tSFJZvPWF/WEj4hWslpucSG8Waq9SWZUXo7ihi08q8R
+ fWOoHDqZ3Uv2G8V5DzgQp2UOFcgnKwHZU3yjKNKQafSLutNIEFiPwRkUEdn/rH7a9Tph
+ tf7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1790014894; x=1790619694;
+ h=content-transfer-encoding:content-type:mime-version:references
+ :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=nC+YS3LHi85Pt/yzB7ALyVEGNtIwJIkF9YRMLJPv+Go=;
+ b=CnGjIiIQBn7jZkXkUskC7wJV6rCJskJl3v1NyZ6vH8njeBGtRsvrtE0mhYd++ZYqZQ
+ y+PEpNHKlgaOWz2aR0VEeRoVebGt/9W/SyrKM+sRS4uJ3GEOH1xc+YUs57BGZtawIGjA
+ QgVMda1SG3jQY7JoPKJIKM8svArH9ZWaAE7GEJWXSVVXQk3W+7BpENoKuQZEIoTDP2jM
+ 2SpmqeuDV92wfBJBjOnaiaevGVfidbWXoqh+P/5STLfApoYZwsAoChFG4EwvqVbfxe8S
+ hFqXX8aZB3XVeAWQXcn98CKFeJZHcy/8xJu8aaH+r7hMVRROo7ZWSnERoE1p1ctgm4z2
+ PCkQ==
+X-Gm-Message-State: AFuF++nmP/xzTSNMrL/vnFo5f4cNF3PpyXiZlw98k7ZlNLKY6SNnrkee
+ ch+eG0274C42iaZbcZDBuUFflooaPdnuRroWa7XhcsAxSRb5wJSCZTEAfQD4makX
+X-Gm-Gg: AYBFou2gdxTNH4f67WnBORlChhdYQxpgeZgjZwDcE4znAAqC711QM8Ok62Qj9JtUyc9
+ I8iQ4fU6irctp/ouOIl2LeHCF+PD/STaLYfaxL5aAjKAfhuuTlMGufOkPy65ZrOsVA6kSpPnmVZ
+ LO1sUb3qCd3JUdKgQ0qwNfQ7QxCcZiF4MarT6iRUSKAB3l7CGHqkYjYRDbIAl+mzgsrcMLmr7rB
+ DZ5jy3TRtOaRXD2TRqWt6E9GnT8MNdvPkGkIGO1f4LUpV65gG2smh102YSrHxhjpVZv1cCbp6mm
+ f/rV6lx4yhATLGyz0/t9go/YBfa6Z5VvHr5Iq5RAL2nTmmSUFMeGgapp7ZrX+aOSJWa5zGaFnIB
+ hXHv4KwUSoru96LwEIGYaoc3Y5e/Kstq+h5VU5E7RExrjkD77Oi2GzvGPsx7RQbJxBIPtMXsVPj
+ uPjSW9F9sSnPINzkmrDqn/OZt9pYepRLtF52Kk3Kq/NfLYT4c8aTdR9akVANCtRKPTtzhvyRMfJ
+ INhPR6M90UhbOg3uWCRpM+L87JnT/IvYEIZkgyoUSczQOu6DgD4FIF1VFc6E26gF6ccUgCrXZI=
+X-Received: by 2002:a17:90b:5408:b0:39e:6a80:dd9c with SMTP id
+ 98e67ed59e1d1-39e6a810c1fmr11303462a91.35.1790014893994; 
+ Mon, 21 Sep 2026 11:21:33 -0700 (PDT)
 Received: from lord.bigscale.net ([170.246.211.25])
  by smtp.gmail.com with ESMTPSA id
- a92af1059eb24-144d55e8954sm38587021c88.14.2026.09.21.11.21.27
+ a92af1059eb24-144d55e8954sm38587021c88.14.2026.09.21.11.21.31
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 21 Sep 2026 11:21:30 -0700 (PDT)
+ Mon, 21 Sep 2026 11:21:33 -0700 (PDT)
 From: =?UTF-8?q?Tales=20A=2E=20Mendon=C3=A7a?= <talesam@gmail.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, daniele.ceraolospurio@intel.com,
@@ -68,11 +70,12 @@ Cc: matthew.brost@intel.com, daniele.ceraolospurio@intel.com,
  jani.nikula@intel.com, navonjohnlukose@gmail.com,
  dri-devel@lists.freedesktop.org,
  =?UTF-8?q?Tales=20A=2E=20Mendon=C3=A7a?= <talesam@gmail.com>
-Subject: [PATCH v5 0/3] drm/xe: fix GuC TLB invalidation ack stalls on ARL
- (Wa_22016122933)
-Date: Mon, 21 Sep 2026 15:21:18 -0300
-Message-ID: <20260921182121.308217-1-talesam@gmail.com>
+Subject: [PATCH v5 1/3] drm/xe: Capture devcoredump on TLB invalidation timeout
+Date: Mon, 21 Sep 2026 15:21:19 -0300
+Message-ID: <20260921182121.308217-2-talesam@gmail.com>
 X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260921182121.308217-1-talesam@gmail.com>
+References: <20260921182121.308217-1-talesam@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -90,86 +93,240 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+TLB invalidation timeouts currently leave no record of the firmware
+state behind: there is no exec queue or job to blame, so nothing calls
+xe_devcoredump() and the GuC log content at the time of the hang is
+lost.
 
-v5 of the TLB invalidation ack stall fix for ARL. Tracked in:
+Add xe_devcoredump_gt(), a variant of xe_devcoredump() for hangs that
+are not tied to an exec queue or job. It captures the GuC log and CT
+state of the affected GT, reusing the existing snapshot machinery and
+the "only first snapshot" policy, and hook it up to the TLB invalidation
+timeout path.
 
-  https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8678
+This was instrumental in diagnosing GuC TLB invalidation ack stalls on
+ARL (see Link), where the invalidation request is consumed from the H2G
+CTB immediately but the ack G2H only arrives ~2.3s later, after the
+timeout has already fired.
 
-Recap: on the standalone media GT of MTL/ARL the CPU reads stale cache
-lines for data the GuC has already written. The visible symptom is TLB
-invalidation acks appearing to stall for a near-constant ~2.3s. i915
-works around this as Wa_22016122933; xe never inherited it. Patch 3
-implements it, scoped like i915.
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8678
+Signed-off-by: Tales A. Mendonça <talesam@gmail.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_devcoredump.c | 46 ++++++++++++++++-------------
+ drivers/gpu/drm/xe/xe_devcoredump.h | 15 +++++++---
+ drivers/gpu/drm/xe/xe_tlb_inval.c   | 22 ++++++++++++++
+ 3 files changed, 58 insertions(+), 25 deletions(-)
 
-Patches 1 and 2 picked up Matthew Brost's Reviewed-by - thank you. On
-patch 2 we agreed the SIGID conversion of the TLB logging is a follow-up
-on top of this series, to be done by the people working on SIGID; there
-is no TLB component in DEFINE_XE_LOG_COMPONENTS() yet. Happy to rebase
-on top of that work once it lands.
-
-Patch 3 is unchanged since v4 and is still the one without review. It is
-also the one that actually stops the stalls: it applies
-XE_BO_FLAG_NEEDS_UC to the GuC-shared allocations (CTBs, log, ADS, SLPC,
-engine activity) on the standalone media GT, scoped by a new OOB rule
-(22016122933 MEDIA_VERSION(1300)). The approach was suggested by
-Daniele. Daniele, Stuart, would one of you be able to take a look?
-
-Validation of patch 3 is now six weeks on two ARL machines (7d51 and
-7dd1), across kernels 7.1.6, 7.1.8 and 7.2, with over 10M TLB
-invalidations processed and zero ack stalls. Before the fix both
-machines reproduced 20-60 stalls/day, every day, on two GuC firmware
-versions. The 7dd1 machine, which could not survive a day of media
-workloads on xe without a platform freeze, has been running xe full
-time since 11 August with zero incidents.
-
-Two notes carried over from v4, still open to either answer:
-
- 1. CPU mapping: keeping XE_BO_FLAG_NEEDS_UC (uncached on both sides).
-    It is the tested configuration and no throughput difference against
-    the CPU-WC variant was measurable. Matching i915's exact CPU-WC +
-    GGTT-UC combination needs either a new BO flag or decoupling the
-    GGTT cache-mode selection from XE_BO_FLAG_NEEDS_UC; happy to add
-    that plumbing if parity is preferred.
-
- 2. Fixes:/Cc: stable are left out, since MTL/ARL is require_force_probe
-    in xe. Also happy to add them.
-
-checkpatch is clean, except for one --strict CHECK about macro argument
-reuse in the xe_devcoredump() wrapper in patch 1, which is intentional:
-the macro only exists to forward (_q)->gt alongside _q.
-
-v4 -> v5:
-- Rebased on today's drm-tip; builds clean, no conflicts.
-- Patch 1: fix a data race reported by Sashiko - seqno_recv was read
-  outside pending_lock in the timeout path. It is now sampled while the
-  lock is still held and passed to xe_devcoredump_gt() by value, so the
-  capture itself still runs outside the lock.
-- Patches 1-2: collected Reviewed-by from Matthew Brost.
-- Patch 3: unchanged.
-
-Thanks,
-Tales
-
-Tales A. Mendonça (3):
-  drm/xe: Capture devcoredump on TLB invalidation timeout
-  drm/xe: Log when a timed out TLB invalidation ack finally arrives
-  drm/xe: Implement Wa_22016122933
-
- drivers/gpu/drm/xe/xe_devcoredump.c         | 46 +++++++++++----------
- drivers/gpu/drm/xe/xe_devcoredump.h         | 15 +++++--
- drivers/gpu/drm/xe/xe_guc.c                 | 16 +++++++
- drivers/gpu/drm/xe/xe_guc.h                 |  2 +
- drivers/gpu/drm/xe/xe_guc_ads.c             |  3 +-
- drivers/gpu/drm/xe/xe_guc_ct.c              |  6 ++-
- drivers/gpu/drm/xe/xe_guc_engine_activity.c |  6 ++-
- drivers/gpu/drm/xe/xe_guc_log.c             |  7 +++-
- drivers/gpu/drm/xe/xe_guc_pc.c              |  3 +-
- drivers/gpu/drm/xe/xe_tlb_inval.c           | 41 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_tlb_inval_types.h     | 17 ++++++++
- drivers/gpu/drm/xe/xe_wa_oob.rules          |  1 +
- 12 files changed, 130 insertions(+), 33 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
+index b918f046ae1..ab681b14886 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.c
++++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+@@ -74,11 +74,6 @@ static struct xe_device *coredump_to_xe(const struct xe_devcoredump *coredump)
+ 	return container_of(coredump, struct xe_device, devcoredump);
+ }
+ 
+-static struct xe_guc *exec_queue_to_guc(struct xe_exec_queue *q)
+-{
+-	return &q->gt->uc.guc;
+-}
+-
+ static ssize_t __xe_devcoredump_read(char *buffer, ssize_t count,
+ 				     ssize_t start,
+ 				     struct xe_devcoredump *coredump)
+@@ -325,40 +320,44 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
+ }
+ 
+ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
++				 struct xe_gt *gt,
+ 				 struct xe_exec_queue *q,
+ 				 struct xe_sched_job *job)
+ {
+ 	struct xe_devcoredump_snapshot *ss = &coredump->snapshot;
+-	struct xe_guc *guc = exec_queue_to_guc(q);
++	struct xe_guc *guc = &gt->uc.guc;
+ 	const char *process_name = "no process";
+ 	bool cookie;
+ 
+ 	ss->snapshot_time = ktime_get_real();
+ 	ss->boot_time = ktime_get_boottime();
+ 
+-	if (q->vm && q->vm->xef) {
++	if (q && q->vm && q->vm->xef) {
+ 		process_name = q->vm->xef->process_name;
+ 		ss->pid = q->vm->xef->pid;
+ 	}
+ 
+ 	strscpy(ss->process_name, process_name);
+ 
+-	ss->gt = q->gt;
++	ss->gt = gt;
+ 	INIT_WORK(&ss->work, xe_devcoredump_deferred_snap_work);
+ 
+ 	/* keep going if fw fails as we still want to save the memory and SW data */
+-	CLASS(xe_force_wake, fw_ref)(gt_to_fw(q->gt), XE_FORCEWAKE_ALL);
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+ 
+ 	cookie = dma_fence_begin_signalling();
+ 
+ 	ss->guc.log = xe_guc_log_snapshot_capture(&guc->log, true);
+ 	ss->guc.ct = xe_guc_ct_snapshot_capture(&guc->ct);
+-	ss->ge = xe_guc_exec_queue_snapshot_capture(q);
+-	if (job)
+-		ss->job = xe_sched_job_snapshot_capture(job);
+-	ss->vm = xe_vm_snapshot_capture(q->vm);
+ 
+-	xe_engine_snapshot_capture_for_queue(q);
++	if (q) {
++		ss->ge = xe_guc_exec_queue_snapshot_capture(q);
++		if (job)
++			ss->job = xe_sched_job_snapshot_capture(job);
++		ss->vm = xe_vm_snapshot_capture(q->vm);
++
++		xe_engine_snapshot_capture_for_queue(q);
++	}
+ 
+ 	queue_work(system_dfl_wq, &ss->work);
+ 
+@@ -366,19 +365,24 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ }
+ 
+ /**
+- * xe_devcoredump - Take the required snapshots and initialize coredump device.
+- * @q: The faulty xe_exec_queue, where the issue was detected.
+- * @job: The faulty xe_sched_job, where the issue was detected.
++ * __xe_devcoredump - Take the required snapshots and initialize coredump device.
++ * @gt: The GT where the issue was detected.
++ * @q: The faulty xe_exec_queue, where the issue was detected, may be NULL for
++ *     hangs that are not tied to an exec queue (e.g. TLB invalidation
++ *     timeouts); in that case only the GT-level state (GuC log and CT state)
++ *     is captured.
++ * @job: The faulty xe_sched_job, where the issue was detected, may be NULL.
+  * @fmt: Printf format + args to describe the reason for the core dump
+  *
+  * This function should be called at the crash time within the serialized
+  * gt_reset. It is skipped if we still have the core dump device available
+  * with the information of the 'first' snapshot.
+  */
+-__printf(3, 4)
+-void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job, const char *fmt, ...)
++__printf(4, 5)
++void __xe_devcoredump(struct xe_gt *gt, struct xe_exec_queue *q,
++		      struct xe_sched_job *job, const char *fmt, ...)
+ {
+-	struct xe_device *xe = gt_to_xe(q->gt);
++	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_devcoredump *coredump = &xe->devcoredump;
+ 	va_list varg;
+ 
+@@ -396,7 +400,7 @@ void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job, const cha
+ 	coredump->snapshot.reason = kvasprintf(GFP_ATOMIC, fmt, varg);
+ 	va_end(varg);
+ 
+-	devcoredump_snapshot(coredump, q, job);
++	devcoredump_snapshot(coredump, gt, q, job);
+ 
+ 	drm_info(&xe->drm, "Xe device coredump has been created\n");
+ 	drm_info(&xe->drm, "Check your /sys/class/drm/card%d/device/devcoredump/data\n",
+diff --git a/drivers/gpu/drm/xe/xe_devcoredump.h b/drivers/gpu/drm/xe/xe_devcoredump.h
+index 5391a80a4d1..bc4800b3a3f 100644
+--- a/drivers/gpu/drm/xe/xe_devcoredump.h
++++ b/drivers/gpu/drm/xe/xe_devcoredump.h
+@@ -11,15 +11,17 @@
+ struct drm_printer;
+ struct xe_device;
+ struct xe_exec_queue;
++struct xe_gt;
+ struct xe_sched_job;
+ 
+ #ifdef CONFIG_DEV_COREDUMP
+-void xe_devcoredump(struct xe_exec_queue *q, struct xe_sched_job *job, const char *fmt, ...);
++void __xe_devcoredump(struct xe_gt *gt, struct xe_exec_queue *q,
++		      struct xe_sched_job *job, const char *fmt, ...);
+ int xe_devcoredump_init(struct xe_device *xe);
+ #else
+-static inline void xe_devcoredump(struct xe_exec_queue *q,
+-				  struct xe_sched_job *job,
+-				  const char *fmt, ...)
++static inline void __xe_devcoredump(struct xe_gt *gt, struct xe_exec_queue *q,
++				    struct xe_sched_job *job,
++				    const char *fmt, ...)
+ {
+ }
+ 
+@@ -29,6 +31,11 @@ static inline int xe_devcoredump_init(struct xe_device *xe)
+ }
+ #endif
+ 
++#define xe_devcoredump(_q, _job, _fmt, ...) \
++	__xe_devcoredump((_q)->gt, _q, _job, _fmt, ##__VA_ARGS__)
++#define xe_devcoredump_gt(_gt, _fmt, ...) \
++	__xe_devcoredump(_gt, NULL, NULL, _fmt, ##__VA_ARGS__)
++
+ void xe_print_blob_ascii85(struct drm_printer *p, const char *prefix, char suffix,
+ 			   const void *blob, size_t offset, size_t size);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
+index dd1030de9ab..737cff3664f 100644
+--- a/drivers/gpu/drm/xe/xe_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
+@@ -5,6 +5,7 @@
+ 
+ #include <drm/drm_managed.h>
+ 
++#include "xe_devcoredump.h"
+ #include "xe_device_types.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt_stats.h"
+@@ -29,6 +30,12 @@
+ 
+ #define FENCE_STACK_BIT		DMA_FENCE_FLAG_USER_BITS
+ 
++/* The frontend is only ever embedded in a GT */
++static struct xe_gt *tlb_inval_to_gt(struct xe_tlb_inval *tlb_inval)
++{
++	return container_of(tlb_inval, struct xe_gt, tlb_inval);
++}
++
+ static void xe_tlb_inval_fence_fini(struct xe_tlb_inval_fence *fence)
+ {
+ 	if (WARN_ON_ONCE(!fence->tlb_inval))
+@@ -73,6 +80,7 @@ static void xe_tlb_inval_fence_timeout(struct work_struct *work)
+ 	struct xe_device *xe = tlb_inval->xe;
+ 	struct xe_tlb_inval_fence *fence, *next;
+ 	long timeout_delay = tlb_inval->ops->timeout_delay(tlb_inval);
++	int timedout_seqno = 0, seqno_recv = 0;
+ 
+ 	tlb_inval->ops->flush(tlb_inval);
+ 
+@@ -90,13 +98,27 @@ static void xe_tlb_inval_fence_timeout(struct work_struct *work)
+ 			"TLB invalidation fence timeout, seqno=%d recv=%d",
+ 			fence->seqno, tlb_inval->seqno_recv);
+ 
++		timedout_seqno = fence->seqno;
++
+ 		fence->base.error = -ETIME;
+ 		xe_tlb_inval_fence_signal(fence);
+ 	}
+ 	if (!list_empty(&tlb_inval->pending_fences))
+ 		queue_delayed_work(tlb_inval->timeout_wq, &tlb_inval->fence_tdr,
+ 				   timeout_delay);
++	seqno_recv = tlb_inval->seqno_recv;
+ 	spin_unlock_irq(&tlb_inval->pending_lock);
++
++	/*
++	 * Capture the GuC log and CT state so the firmware side of the hang
++	 * can be inspected; there is no queue or job to blame here. Must be
++	 * outside pending_lock as the capture takes sleeping locks, hence
++	 * @seqno_recv is sampled above while the lock is still held.
++	 */
++	if (timedout_seqno)
++		xe_devcoredump_gt(tlb_inval_to_gt(tlb_inval),
++				  "TLB invalidation fence timeout, seqno=%d recv=%d",
++				  timedout_seqno, seqno_recv);
+ }
+ 
+ /**
 -- 
 2.55.0
 
