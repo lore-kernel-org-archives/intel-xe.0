@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE136C982F7
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 13:40:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76F43C982ED
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 13:40:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6658910E79A;
-	Mon, 21 Sep 2026 13:40:15 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5155F10E7C1;
- Mon, 21 Sep 2026 13:40:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5987991864295496375=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A3C210E78F;
+	Mon, 21 Sep 2026 13:40:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ezxgz9O7";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFD1A10E7C1
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 13:40:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1789998019; x=1821534019;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=bAxXYD2YtzjsSWW70k9zkVWpsFjhEW3av6E8Knrfmhs=;
+ b=Ezxgz9O7T5Z02UIrS5t7LEpujvo/sQiiiFpLyaFKgTe9gpfioq0kc6Wv
+ dr8Z2tcadPuvEu8j1WiuP1YMNdOoT00CaIB8lFcLGUy9H6jk99wei0eIU
+ gWz1o1hECRfus5DcnpBxVd+5weOz6Z50eLlaHcQJaIlV7APR1Z7aanJ63
+ ymJFcPc4yyFFhMPzPPLiijJyILRLRbpxL938G2Fb+M1RdE+P1D1EPjsUx
+ fYn0RWCYxMqm4+gx+oaJcZDi68m7fB50HurKplf7kwA4Ccmj3zvyi/39c
+ b/BRJzTowXMkKu+Pg6EwNMlzBvon6+vAtm/gU92v+TgProa4CLdPgBMiW w==;
+X-CSE-ConnectionGUID: A6pvNuSPQNapcfMMXYu/4Q==
+X-CSE-MsgGUID: 9nSCZ8eWT4WatnyzlmeLuA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11911"; a="116036309"
+X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="116036309"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2026 06:40:19 -0700
+X-CSE-ConnectionGUID: YovSpE1WQEqYBPGJ5gl5Mg==
+X-CSE-MsgGUID: WvqrakluT66CjJOYfrpyHA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="298899613"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa002.fm.intel.com with ESMTP; 21 Sep 2026 06:40:13 -0700
+From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ matthew.brost@intel.com
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ vinay.belgaumkar@intel.com, riana.tauro@intel.com, karthik.poosa@intel.com,
+ sk.anirban@intel.com, raag.jadav@intel.com, michal.wajdeczko@intel.com,
+ aravind.iddamsetty@linux.intel.com, umesh.nerlige.ramappa@intel.com,
+ dnyaneshwar.bhadane@intel.com, anoop.c.vijay@intel.com,
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v8 07/10] drm/xe/sysctrl: Replace FIELD_GET() with
+ REG_FIELD_GET()
+Date: Mon, 21 Sep 2026 19:09:34 +0530
+Message-ID: <20260921133927.128281-19-mallesh.koujalagi@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260921133927.128281-12-mallesh.koujalagi@intel.com>
+References: <20260921133927.128281-12-mallesh.koujalagi@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/sysctrl=3A_Fix_byte-?=
- =?utf-8?q?order_reversal_in_mailbox_frame_transport?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 21 Sep 2026 13:40:14 -0000
-Message-ID: <178999801432.186928.13510863810037992252@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260921113030.4075591-2-anoop.c.vijay@intel.com>
-In-Reply-To: <20260921113030.4075591-2-anoop.c.vijay@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,301 +69,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5987991864295496375==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Use REG_FIELD_GET() and REG_FIELD_PREP() when working with fields
+from SysCtrl and application headers. This better reflects that
+the masks represent register-style bitfields and improves consistency.
 
-== Series Details ==
+Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+---
+v7:
+- Update FIELD_PREP to REG_FIELD_PREP. (Sashiko)
+- Update FIELD_GET to REG_FIELD_GET.
 
-Series: drm/xe/sysctrl: Fix byte-order reversal in mailbox frame transport
-URL   : https://patchwork.freedesktop.org/series/174615/
-State : failure
+v8:
+- Rephrase commit message. (Michal)
+---
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 20 ++++++++++----------
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.h |  6 +++---
+ 2 files changed, 13 insertions(+), 13 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+index 750178a0974b..d36bfa4167c7 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
++++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+@@ -24,16 +24,16 @@ struct xe_sysctrl_mailbox_msg_hdr {
+ } __packed;
+ 
+ #define XE_SYSCTRL_HDR_GROUP_ID(hdr) \
+-	FIELD_GET(SYSCTRL_HDR_GROUP_ID_MASK, (hdr)->data)
++	REG_FIELD_GET(SYSCTRL_HDR_GROUP_ID_MASK, (hdr)->data)
+ 
+ #define XE_SYSCTRL_HDR_COMMAND(hdr) \
+-	FIELD_GET(SYSCTRL_HDR_COMMAND_MASK, (hdr)->data)
++	REG_FIELD_GET(SYSCTRL_HDR_COMMAND_MASK, (hdr)->data)
+ 
+ #define XE_SYSCTRL_HDR_IS_RESPONSE(hdr) \
+-	FIELD_GET(SYSCTRL_HDR_IS_RESPONSE, (hdr)->data)
++	REG_FIELD_GET(SYSCTRL_HDR_IS_RESPONSE, (hdr)->data)
+ 
+ #define XE_SYSCTRL_HDR_RESULT(hdr) \
+-	FIELD_GET(SYSCTRL_HDR_RESULT_MASK, (hdr)->data)
++	REG_FIELD_GET(SYSCTRL_HDR_RESULT_MASK, (hdr)->data)
+ 
+ static int sysctrl_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
+ 				  unsigned int timeout_ms)
+@@ -112,8 +112,8 @@ static int sysctrl_prepare_command(struct xe_device *xe,
+ 		return -ENOMEM;
+ 
+ 	hdr = (struct xe_sysctrl_mailbox_msg_hdr *)buffer;
+-	hdr->data = FIELD_PREP(SYSCTRL_HDR_GROUP_ID_MASK, group_id) |
+-		    FIELD_PREP(SYSCTRL_HDR_COMMAND_MASK, command);
++	hdr->data = REG_FIELD_PREP(SYSCTRL_HDR_GROUP_ID_MASK, group_id) |
++		    REG_FIELD_PREP(SYSCTRL_HDR_COMMAND_MASK, command);
+ 
+ 	if (data_in && data_in_len)
+ 		memcpy(buffer + sizeof(*hdr), data_in, data_in_len);
+@@ -186,8 +186,8 @@ static int sysctrl_process_frame(struct xe_sysctrl *sc, void *out,
+ 	}
+ 
+ 	ctrl_reg = xe_mmio_read32(sc->mmio, SYSCTRL_MB_CTRL);
+-	total_frames = FIELD_GET(SYSCTRL_FRAME_TOTAL_MASK, ctrl_reg);
+-	curr_frame = FIELD_GET(SYSCTRL_FRAME_CURRENT_MASK, ctrl_reg);
++	total_frames = REG_FIELD_GET(SYSCTRL_FRAME_TOTAL_MASK, ctrl_reg);
++	curr_frame = REG_FIELD_GET(SYSCTRL_FRAME_CURRENT_MASK, ctrl_reg);
+ 
+ 	sysctrl_read_frame(sc, out, frame_size);
+ 	sysctrl_clear_response(sc);
+@@ -295,8 +295,8 @@ void xe_sysctrl_create_command(struct xe_sysctrl_mailbox_command *command, u8 gr
+ {
+ 	struct xe_sysctrl_app_msg_hdr header = {0};
+ 
+-	header.data = FIELD_PREP(APP_HDR_GROUP_ID_MASK, group_id) |
+-		      FIELD_PREP(APP_HDR_COMMAND_MASK, cmd_id);
++	header.data = REG_FIELD_PREP(APP_HDR_GROUP_ID_MASK, group_id) |
++		      REG_FIELD_PREP(APP_HDR_COMMAND_MASK, cmd_id);
+ 
+ 	command->header = header;
+ 	command->data_in = request;
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
+index f0d5e3d7f5e3..5a3dd14e3a11 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
+@@ -15,13 +15,13 @@ struct xe_sysctrl;
+ struct xe_sysctrl_mailbox_command;
+ 
+ #define XE_SYSCTRL_APP_HDR_GROUP_ID(hdr) \
+-	FIELD_GET(APP_HDR_GROUP_ID_MASK, (hdr)->data)
++	REG_FIELD_GET(APP_HDR_GROUP_ID_MASK, (hdr)->data)
+ 
+ #define XE_SYSCTRL_APP_HDR_COMMAND(hdr) \
+-	FIELD_GET(APP_HDR_COMMAND_MASK, (hdr)->data)
++	REG_FIELD_GET(APP_HDR_COMMAND_MASK, (hdr)->data)
+ 
+ #define XE_SYSCTRL_APP_HDR_VERSION(hdr) \
+-	FIELD_GET(APP_HDR_VERSION_MASK, (hdr)->data)
++	REG_FIELD_GET(APP_HDR_VERSION_MASK, (hdr)->data)
+ 
+ void xe_sysctrl_create_command(struct xe_sysctrl_mailbox_command *command, u8 group_id, u8 cmd_id,
+ 			       void *request, size_t request_len, void *response,
+-- 
+2.48.1
 
-CI Bug Log - changes from xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe_BAT -> xe-pw-174615v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-174615v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-174615v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (14 -> 15)
-------------------------------
-
-  Additional (1): bat-ptl-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-174615v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_exec_system_allocator@many-execqueues-free:
-    - bat-bmg-vm:         [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html
-
-  * igt@xe_exec_system_allocator@twice-free:
-    - bat-bmg-1:          [PASS][3] -> [DMESG-WARN][4] +1 other test dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe/bat-bmg-1/igt@xe_exec_system_allocator@twice-free.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-bmg-1/igt@xe_exec_system_allocator@twice-free.html
-
-  * igt@xe_multigpu_svm@mgpu-pagefault-basic:
-    - bat-bmg-3:          [PASS][5] -> [DMESG-WARN][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-174615v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_evict@evict-beng-small-cm:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][7] ([Intel XE#5764]) +11 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html
-
-  * igt@xe_exec_balancer@no-exec-cm-virtual-basic:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][8] ([Intel XE#7482]) +17 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html
-
-  * igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][9] ([Intel XE#8364]) +13 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][10] ([Intel XE#5775]) +2 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-
-  * igt@xe_mmap@vram:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][11] ([Intel XE#5776])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][12] ([Intel XE#5777] / [Intel XE#7590])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][13] ([Intel XE#5771] / [Intel XE#7590])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][14] ([Intel XE#5780] / [Intel XE#7590])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_system_allocator@many-execqueues-malloc:
-    - bat-bmg-vm:         [DMESG-WARN][15] -> [PASS][16] +1 other test pass
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html
-
-  * igt@xe_exec_system_allocator@threads-shared-vm-many-malloc:
-    - bat-bmg-1:          [DMESG-WARN][17] -> [PASS][18] +1 other test pass
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html
-
-  * igt@xe_multigpu_svm@mgpu-latency-copy-prefetch:
-    - bat-bmg-3:          [DMESG-WARN][19] -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html
-
-  
-  [Intel XE#5764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764
-  [Intel XE#5771]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771
-  [Intel XE#5775]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775
-  [Intel XE#5776]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776
-  [Intel XE#5777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777
-  [Intel XE#5780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780
-  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
-
-
-Build changes
--------------
-
-  * Linux: xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe -> xe-pw-174615v1
-
-  IGT_9103: f307fd753abbe6c03d0a6e1c769fc6020ebd5d86 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe: 1a3cf4b9d76455bd9de175ca12736eff1ec60fbe
-  xe-pw-174615v1: 174615v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/index.html
-
---===============5987991864295496375==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/sysctrl: Fix byte-order reversal in mailbox frame transport</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174615/">https://patchwork.freedesktop.org/series/174615/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe_BAT -&gt; xe-pw-174615v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-174615v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-174615v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (14 -&gt; 15)</h2>
-<p>Additional (1): bat-ptl-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-174615v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@xe_exec_system_allocator@many-execqueues-free:</p>
-<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@twice-free:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe/bat-bmg-1/igt@xe_exec_system_allocator@twice-free.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-bmg-1/igt@xe_exec_system_allocator@twice-free.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_multigpu_svm@mgpu-pagefault-basic:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-174615v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-small-cm:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764">Intel XE#5764</a>) +11 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_balancer@no-exec-cm-virtual-basic:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775">Intel XE#5775</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776">Intel XE#5776</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777">Intel XE#5777</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771">Intel XE#5771</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780">Intel XE#5780</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_exec_system_allocator@many-execqueues-malloc:</p>
-<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@threads-shared-vm-many-malloc:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_multigpu_svm@mgpu-latency-copy-prefetch:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174615v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe -&gt; xe-pw-174615v1</li>
-</ul>
-<p>IGT_9103: f307fd753abbe6c03d0a6e1c769fc6020ebd5d86 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5793-1a3cf4b9d76455bd9de175ca12736eff1ec60fbe: 1a3cf4b9d76455bd9de175ca12736eff1ec60fbe<br />
-  xe-pw-174615v1: 174615v1</p>
-
-</body>
-</html>
-
---===============5987991864295496375==--
