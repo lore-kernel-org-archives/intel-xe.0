@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F086C982EF
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 05:37:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88C79C982DE
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 05:37:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19D1110E21E;
-	Mon, 21 Sep 2026 05:37:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D80D10E232;
+	Mon, 21 Sep 2026 05:37:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yzu/Mdm0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JNS85qlp";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 851AC10E03E;
- Mon, 21 Sep 2026 05:37:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97CCC10E229;
+ Mon, 21 Sep 2026 05:37:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789969036; x=1821505036;
+ t=1789969040; x=1821505040;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cxINEWDRk/f0G6vZ8yjIs1s8k+Bx6ucO3Z/RxBmXtdw=;
- b=Yzu/Mdm0h44idaCrsLLEzcgLmETRZ67ukya7+FrCEEF4EI6thsUE4zUb
- 9u7vw/bri3y3W7xFc1fmpyS8ELy1gQa7Fr9mVnahE9S9YNkq4x3Yo5qCa
- uR4q1bVcwWRq9EhNi0n3u7t3pZajY+T2eTVSoQwEhH7XIPATZFiZocB/z
- iOT61xFUne+lKf5tb0g8YbFXlwQVxnmNoFRXcem/wRoN4dn9Yzhcl5tjv
- t44dgD+wFVvQoDxxSagn6dO6cdKLkhcP8Znhk/YTN9NzL2YZfANzwIrIQ
- oEhT3mt3nLQCHjlmBCFwz74EVQuDanlHjbY/1PmZ4P0zXUIIiA7MkOXzA w==;
-X-CSE-ConnectionGUID: ajy3yKJqRHS6fTHJ5lsM7g==
-X-CSE-MsgGUID: eQTCgnbPScyTFsLqF05tOA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11911"; a="966583"
+ bh=OhG5NcdTd+A/yhLNgLkMRsQkOYezCdRRFyZGOL1C2zA=;
+ b=JNS85qlpz0Cbxa5KhslElGqtfOx3e2nrmWuXxzEuO8HQQiSKPJZFlm7N
+ i3DBFBX9SrjkcPtCevkdufF+pSvk6k+cmhZ9UhlP/yXNZ3DIxpqja+7KS
+ M46T2doRgm4mwuKbSi/nYMsl+RlVQMUGyKMpP+JgI8JzQX8z2ScRLCXEd
+ nNgUwu7YQEE8Zeh8OQJwzOhsy8GcqJsrkPFIoN5M5SXpFWSyvuQlX91u3
+ EC6IDvh7p0RelzKIRQ7T28D7WIZGjbiOAaljGEK55tA4fJXp4HUrSCS7R
+ Kn1/N0ivOxiTmynalX9RhzQj0wESqcRf0ebbYo4eE4EWYLk31fExhhKuf A==;
+X-CSE-ConnectionGUID: X8JbeAGGQgGHS5d0ZyQHpA==
+X-CSE-MsgGUID: UGByPrLnSiyNSYZUxe5HsQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11911"; a="966608"
 X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; 
-   d="scan'208";a="966583"
+   d="scan'208";a="966608"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa115.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2026 22:37:16 -0700
-X-CSE-ConnectionGUID: SC2sDjEVQsKnPydxFCQY5w==
-X-CSE-MsgGUID: fk4Rg4xURNinUN0yQOWKEQ==
+ 20 Sep 2026 22:37:19 -0700
+X-CSE-ConnectionGUID: s3zjVE60QBafx9LmJGwk5A==
+X-CSE-MsgGUID: gXe54+/8QoykWhf/Wxk7lA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="300444451"
+X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="300444470"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa001.fm.intel.com with ESMTP; 20 Sep 2026 22:37:15 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 20 Sep 2026 22:37:18 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 1/8] drm/i915/lspcon: log DPCD access errors
-Date: Mon, 21 Sep 2026 11:07:03 +0530
-Message-Id: <20260921053710.1586776-2-suraj.kandpal@intel.com>
+Subject: [PATCH 3/8] drm/i915/ddi: log DPCD access errors
+Date: Mon, 21 Sep 2026 11:07:05 +0530
+Message-Id: <20260921053710.1586776-4-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260921053710.1586776-1-suraj.kandpal@intel.com>
 References: <20260921053710.1586776-1-suraj.kandpal@intel.com>
@@ -72,124 +72,53 @@ Now that the DPCD accessors return a proper error code, include it in
 the error messages using %pe and ERR_PTR(), instead of just stating
 that the access failed.
 
+Store the FEC_STATUS write result in ret as well, so that it can be
+logged the same way.
+
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lspcon.c | 34 +++++++++++++--------
- 1 file changed, 21 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-index 07b5a9d010ff..82b40033728f 100644
---- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-+++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-@@ -139,7 +139,8 @@ bool intel_lspcon_detect_hdr_capability(struct intel_digital_port *dig_port)
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 7efd4c4d4994..a46ab5d3d70f 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2341,8 +2341,8 @@ static void intel_dp_sink_set_msa_timing_par_ignore_state(struct intel_dp *intel
+ 				     enable ? DP_MSA_TIMING_PAR_IGNORE_EN : 0);
+ 	if (ret < 0)
+ 		drm_dbg_kms(display->drm,
+-			    "Failed to %s MSA_TIMING_PAR_IGNORE in the sink\n",
+-			    str_enable_disable(enable));
++			    "Failed to %s MSA_TIMING_PAR_IGNORE in the sink (%pe)\n",
++			    str_enable_disable(enable), ERR_PTR(ret));
+ }
  
- 	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, get_hdr_status_reg(lspcon), &hdr_caps);
- 	if (ret < 0) {
--		drm_dbg_kms(display->drm, "HDR capability detection failed\n");
-+		drm_dbg_kms(display->drm, "HDR capability detection failed (%pe)\n",
-+			    ERR_PTR(ret));
- 		lspcon->hdr_supported = false;
- 	} else if (hdr_caps & 0x1) {
- 		drm_dbg_kms(display->drm, "LSPCON capable of HDR\n");
-@@ -247,7 +248,7 @@ static bool lspcon_wake_native_aux_ch(struct intel_lspcon *lspcon)
+ static void intel_dp_sink_set_fec_ready(struct intel_dp *intel_dp,
+@@ -2358,13 +2358,17 @@ static void intel_dp_sink_set_fec_ready(struct intel_dp *intel_dp,
+ 	ret = drm_dp_dpcd_write_byte(&intel_dp->aux, DP_FEC_CONFIGURATION,
+ 				     enable ? DP_FEC_READY : 0);
+ 	if (ret < 0)
+-		drm_dbg_kms(display->drm, "Failed to set FEC_READY to %s in the sink\n",
+-			    str_enabled_disabled(enable));
++		drm_dbg_kms(display->drm, "Failed to set FEC_READY to %s in the sink (%pe)\n",
++			    str_enabled_disabled(enable), ERR_PTR(ret));
  
- 	ret = drm_dp_dpcd_read_byte(&lspcon_to_intel_dp(lspcon)->aux, DP_DPCD_REV, &rev);
- 	if (ret < 0) {
--		drm_dbg_kms(display->drm, "Native AUX CH down\n");
-+		drm_dbg_kms(display->drm, "Native AUX CH down (%pe)\n", ERR_PTR(ret));
- 		return false;
- 	}
+-	if (enable &&
+-	    drm_dp_dpcd_write_byte(&intel_dp->aux, DP_FEC_STATUS,
+-				   DP_FEC_DECODE_EN_DETECTED | DP_FEC_DECODE_DIS_DETECTED) < 0)
+-		drm_dbg_kms(display->drm, "Failed to clear FEC detected flags\n");
++	if (enable) {
++		ret = drm_dp_dpcd_write_byte(&intel_dp->aux, DP_FEC_STATUS,
++					     DP_FEC_DECODE_EN_DETECTED |
++					     DP_FEC_DECODE_DIS_DETECTED);
++		if (ret < 0)
++			drm_dbg_kms(display->drm, "Failed to clear FEC detected flags (%pe)\n",
++				    ERR_PTR(ret));
++	}
+ }
  
-@@ -339,7 +340,8 @@ static bool lspcon_parade_fw_ready(struct drm_dp_aux *aux)
- 
- 		ret = drm_dp_dpcd_read_byte(aux, LSPCON_PARADE_AVI_IF_CTRL, &avi_if_ctrl);
- 		if (ret < 0) {
--			drm_err(aux->drm_dev, "Failed to read AVI IF control\n");
-+			drm_err(aux->drm_dev, "Failed to read AVI IF control (%pe)\n",
-+				ERR_PTR(ret));
- 			return false;
- 		}
- 
-@@ -371,8 +373,8 @@ static bool _lspcon_parade_write_infoframe_blocks(struct drm_dp_aux *aux,
- 		data = avi_buf + block_count * 8;
- 		ret = drm_dp_dpcd_write_data(aux, reg, data, 8);
- 		if (ret < 0) {
--			drm_err(aux->drm_dev, "Failed to write AVI IF block %d\n",
--				block_count);
-+			drm_err(aux->drm_dev, "Failed to write AVI IF block %d (%pe)\n",
-+				block_count, ERR_PTR(ret));
- 			return false;
- 		}
- 
-@@ -386,8 +388,8 @@ static bool _lspcon_parade_write_infoframe_blocks(struct drm_dp_aux *aux,
- 		avi_if_ctrl = LSPCON_PARADE_AVI_IF_KICKOFF | block_count;
- 		ret = drm_dp_dpcd_write_byte(aux, reg, avi_if_ctrl);
- 		if (ret < 0) {
--			drm_err(aux->drm_dev, "Failed to update (0x%x), block %d\n",
--				reg, block_count);
-+			drm_err(aux->drm_dev, "Failed to update (0x%x), block %d (%pe)\n",
-+				reg, block_count, ERR_PTR(ret));
- 			return false;
- 		}
- 
-@@ -450,7 +452,8 @@ static bool _lspcon_write_avi_infoframe_mca(struct drm_dp_aux *aux,
- 				mdelay(50);
- 				continue;
- 			} else {
--				drm_err(aux->drm_dev, "DPCD write failed at:0x%x\n", reg);
-+				drm_err(aux->drm_dev, "DPCD write failed at:0x%x (%pe)\n",
-+					reg, ERR_PTR(ret));
- 				return false;
- 			}
- 		}
-@@ -462,7 +465,8 @@ static bool _lspcon_write_avi_infoframe_mca(struct drm_dp_aux *aux,
- 	reg = LSPCON_MCA_AVI_IF_CTRL;
- 	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
- 	if (ret < 0) {
--		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n", reg);
-+		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x (%pe)\n",
-+			reg, ERR_PTR(ret));
- 		return false;
- 	}
- 
-@@ -472,13 +476,15 @@ static bool _lspcon_write_avi_infoframe_mca(struct drm_dp_aux *aux,
- 
- 	ret = drm_dp_dpcd_write_byte(aux, reg, val);
- 	if (ret < 0) {
--		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n", reg);
-+		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x (%pe)\n",
-+			reg, ERR_PTR(ret));
- 		return false;
- 	}
- 
- 	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
- 	if (ret < 0) {
--		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n", reg);
-+		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x (%pe)\n",
-+			reg, ERR_PTR(ret));
- 		return false;
- 	}
- 
-@@ -615,7 +621,8 @@ static bool _lspcon_read_avi_infoframe_enabled_mca(struct drm_dp_aux *aux)
- 
- 	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
- 	if (ret < 0) {
--		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n", reg);
-+		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x (%pe)\n",
-+			reg, ERR_PTR(ret));
- 		return false;
- 	}
- 
-@@ -630,7 +637,8 @@ static bool _lspcon_read_avi_infoframe_enabled_parade(struct drm_dp_aux *aux)
- 
- 	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
- 	if (ret < 0) {
--		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n", reg);
-+		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x (%pe)\n",
-+			reg, ERR_PTR(ret));
- 		return false;
- 	}
- 
+ static int wait_for_fec_detected(struct drm_dp_aux *aux, bool enabled)
 -- 
 2.34.1
 
