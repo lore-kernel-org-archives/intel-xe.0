@@ -4,97 +4,159 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95CFCC982ED
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 20:28:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6ABAC982ED
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 22:53:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 299C610E549;
-	Mon, 21 Sep 2026 20:28:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2722010E564;
+	Mon, 21 Sep 2026 22:53:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="REzEIPp0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="byU/s0Ku";
 	dkim-atps=neutral
-Received: from mail-yx2-f43.google.com (mail-yx2-f43.google.com
- [74.125.224.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1104310E549
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 20:28:35 +0000 (UTC)
-Received: by mail-yx2-f43.google.com with SMTP id
- 956f58d0204a3-66e4aae314aso2678692d50.3
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 13:28:35 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1790022514; cv=none;
- d=google.com; s=arc-20260327;
- b=I1fESr/Fv/cMidnTOVxs/O/VPmFxza6S5cLFLv27KOrUNw7Rrk2tlJXzRz5hW8gaIc
- NWrqyXJF7heal5dQzKdX+IGYZ8ZB4aQM7yUWxklYAkXkOs/eZ7Nr1faRbyY4s5nVi77y
- MmWueSux5o+WN9u6CkQS/cqe7Y4GOSXcA+PiwHp6sILeTx9hxUX12VRw+7IUiTe6mUNC
- 912nwKcBO67I8Topq9ZK+3NclD2bFim+YPs/l/zHkc3t43wuTqeCS0aF6cVuyUhTEuoe
- W7dvrg8YRg9kh0thv9AtfqdKvdJMw+PyYfCkK/u2gcjSlOPesBhEQEaUcnclLsdWQFfD
- nodg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=6elqDrf3QFm09b3Lgqg9C9aUdeLszZ6hCtMVrCJuCT8=;
- fh=jgIjS8fixSJbzlluhU6mPizGivzQ96b2mZ6hsbRFP/8=;
- b=o0FPFknsg5NIEOluW98ftW+2LOvbo/frI53ABg6RIIwH61Ly4zVA0tZpsXOdRnTTRg
- YFNLzLrcrDIPNtNXbqf9JdYNdimwZLT8UdBIb7hdJM7xkLfct4EpEJOzvDKXS0wCBFk/
- Rl7D63k5A3f/6XLRoPxvSSpRGUzs0gFs2133SG3XGjPXK8CUGSLLdybf8624crhjSx0N
- uZ60pQu38J87RkSUt/SQgLZoqN2wNhLyDISBr6z2xU/ndWIb3SBxb806papk6Zvswttg
- AnFiLNcUVpewAGsbBMtcE3JpHLMUcFEdUmxG09Hm3eJM/hpazMnS2zMpFxx8mOzzmYtZ
- +y9w==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1790022514; x=1790627314; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=6elqDrf3QFm09b3Lgqg9C9aUdeLszZ6hCtMVrCJuCT8=;
- b=REzEIPp0PrfLRjOkhZL2Vhbpa8zGKz3vAwrAHDmPBTUIV9aaBKS49lcicB0MEm3OJa
- 5njq3vaA7y8HXah3Bh7DOseRYDBMYFGvRRHuGRjPUL6MVDsgZAN2b2qSWRW7yEH0hzH5
- IihpeBqEzMgKqaJYfhzVyVADjnGm7jlwCAqGhgELx/qqGykMhs8dcVKnJ6DHZ8984BnP
- 1Xx0RycgOWbmBG9ih8nVQvsl3PH0OkweNXbHm+7uVN5nGZ1Yq764nxvMc/bdYo11GvQn
- cob8te+kmSWTKn9Joan+6yN7MLPaKjfQchGUFWy4B2ihNVcizgNOnosy+DMRJVlhldPu
- gqrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1790022514; x=1790627314;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=6elqDrf3QFm09b3Lgqg9C9aUdeLszZ6hCtMVrCJuCT8=;
- b=T1xFppdqXdQdilyP2Al+0EXiBJPOVw9FJZqKmt8sNAE+BDf6QvDVZQC6zOU/AtRcSt
- cQlYOXR7jW5C8bxGYitnjdl9ukTRrCIOyWFjyliBbY4KvpFblj0ooRPtW0oTrje0NlmT
- W+gUxjMQqYkfSPPJKA9/obqRw0/Zc1tOxjfmf5TNqT0ug5b9wb6hDaG8JRQxVtw59j/S
- xIwUQnVLeqz2eXIhse9Q9atnC10otPjiYMJDVFHqkgTFHvKoz2arts5Df2kg2HBLDUlD
- 44EFWLTeRWHcjpmvWxM3dY4uL+/kIafeV1zbicZkfFrad0gkf6GvFvgJqvouuCW1T7No
- zopg==
-X-Forwarded-Encrypted: i=1;
- AKwUvBx/JGmzCxEha4FRTIXciLYtOflejihQeW9ZQfEOb/TMNQqMpZ4qmvOt/f+IpO7bc8fVUnAKTxnu0g==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++nUxFbJ5a8nReKDxnoXtLGygyoKvIhzXzJNxKmom0QxSZ1NwFWF
- b5S0mA3P9sMMbSpgryRps6uCV7mHZaDOOkJpVoY69PEmr+4p7oNhetfiUgD4G8BkIA4Pz3Eoq9C
- 8IDsAD64dKUeonJnjZIzXsu8Q7ysBTk4=
-X-Gm-Gg: AYBFou0q491T94FCQ35Bxw6MMdCj9AXHMXKxwxsMTs4cWeankoWA8YCaQqL5ee0nOFv
- avYynNaUwnhPjMZG2ea1E6CLPkVJJOhqFfvZzxgKMB4a5u/WpZWB8u+hnSVON+O0Q7C87OeBkBI
- 2u6CEqk1xnMrCLfcGTRvNW3KQWvIsufk1nOvad/I2OJAOTtwpfBVqSdJfXxa/66aM8lQKOvWiyi
- avYHBgpxMdRqzEz48NNKNGS1Kkg1a51Df2TSmmuNkm69mYAlZabIs6RS0xzzuqAkfySHmiGntDN
- 175m+7c/LkZmqN2183Qln8ljF2HZsCFYOnLRBGIyi4wGi3iOd9hTfj6W5zY+S+rx69iYmsii9RR
- tPspRiKShn5pTMtKuvwGZc/3Pch7wU1O1cZV+TpgZ4g==
-X-Received: by 2002:a05:690e:d58:b0:671:70d1:d6cb with SMTP id
- 956f58d0204a3-6717fdfbb04mr3479210d50.61.1790022513841; Mon, 21 Sep 2026
- 13:28:33 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A798910E564
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 22:53:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790031181; x=1821567181;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=0ofW0BdI35R8NUG36wjdf6alJeb49/Lp3as1xIkqMmI=;
+ b=byU/s0KutPtlfV97BUOpM+QmAS+SwizVKfr0Rrqux0lyNRBjkR3z47co
+ HDq51v4cX7sBBMS66EaG4oWdD8kyGo+9Cmsey2Kpb+AGleJ2wmA7dL8Qq
+ mwlzq4LknFTQXBEnFZtaw7WZHZZPzpu9IHVs/Q0i7dxSUVFdXhu1izSva
+ iFZy8T7NdvGlnpM8ZODSv5qd15Qtq2ruI1GpmDuPAcsnF3IRDzwzbnSF8
+ P6/8/TmDbvTAslWQBB/aqn745FqQdKaaCgPlWJ9zGx5pIF5/AiH78pS06
+ rUK6N5pek2pAzKUrN+y9fzc/LRpkCUXDwxc50c9x6sIt35QeOhhBXPbTh w==;
+X-CSE-ConnectionGUID: GPZCg2d8SceAYYgub8gqug==
+X-CSE-MsgGUID: 9e6KC9OuSDGF5b4yqnMCFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11912"; a="1090843"
+X-IronPort-AV: E=Sophos;i="6.27,115,1787036400"; 
+   d="scan'208";a="1090843"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa115.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2026 15:53:00 -0700
+X-CSE-ConnectionGUID: gj61oMDPSfiP9bFcs4VwYg==
+X-CSE-MsgGUID: yJeCl+N6SyKxvGRqGKRQCw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,115,1787036400"; d="scan'208";a="271387470"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2026 15:52:59 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Mon, 21 Sep 2026 15:52:59 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Mon, 21 Sep 2026 15:52:58 -0700
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.44) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Mon, 21 Sep 2026 15:52:59 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=U7kNJFtvA/G92zz57QkgkdMxnhhGFTWAFTUBsLj7hH301j1rZXsKQDF196jff6s3VRC0OxAvyPAQfNs2HbAbCdvoiGqt9Fis+F6tElHn1OaCLsYqONLt8s4/P40SXSA/vgRkZ8OtdQuBivSdZyDnZaGT4rp8OaXnCkRHpPt7pjs43l/udViRIFSo59f0D6248PpWC97m85IVWLGp5hKXokOnFD8JxQqXw7gE7E+4LVvJUv7E1ZhPDAJNKYeEbAKPx8m9GvK6FXripYsQKE6UI1o1ncThfndXw05dKTD1u1vPN5qUeI7N6014Hlft+yDcVjp8dhbTW5aRSm9zmLUFYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HwfzvXHWTQFw/6t/4BnVJSSDs1hJ3+KHogRrH+gcRyM=;
+ b=G2hmWpXPUJHVtbEc6Ltm36r+T/+jhSGG74jm24kICoFyMsLm8IkY9w94PCN/3JtSXNi3Ts7dNg6+kTVv3mUk0uD1vP273Ss+InSpd9m5MElJiKfN9RMvY3DamXipvsv+yCaF5HwGtB9dYQBS7n3R30APsB+fWHmtF/Xqw1lwhDo2/0gdZg8VmoHV+zJO8pS/9hLdBXJ5UqDqktvHrLVd9yX6mkeVBCk/LOofJWxKvUaA0DAs/OYcrWG4yN++TZWZ77dFMOEU7JF4zqdYo/2nCnIIGvvRBNWx+MxsYytGQwlXvdnxJotzZWEqHzjtZMLnE/LcYQbjYjh1lPB8siTK6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB7757.namprd11.prod.outlook.com (2603:10b6:8:103::22)
+ by MW4PR11MB8268.namprd11.prod.outlook.com (2603:10b6:303:1ef::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.428.16; Mon, 21 Sep
+ 2026 22:52:55 +0000
+Received: from DM4PR11MB7757.namprd11.prod.outlook.com
+ ([fe80::f3ff:11d0:7a52:db0c]) by DM4PR11MB7757.namprd11.prod.outlook.com
+ ([fe80::f3ff:11d0:7a52:db0c%5]) with mapi id 15.21.0428.015; Mon, 21 Sep 2026
+ 22:52:55 +0000
+Message-ID: <f0606c25-251d-478e-b138-5462b2cad381@intel.com>
+Date: Mon, 21 Sep 2026 15:52:52 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm/xe: harden adjust_idledly() against
+ divide-by-zero and overflow
+To: <tilak.tirumalesh.tangudu@intel.com>, <shuicheng.lin@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+References: <20260916100545.779894-1-tilak.tirumalesh.tangudu@intel.com>
+ <20260916100545.779894-2-tilak.tirumalesh.tangudu@intel.com>
+Content-Language: en-US
+From: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
+In-Reply-To: <20260916100545.779894-2-tilak.tirumalesh.tangudu@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BY3PR03CA0021.namprd03.prod.outlook.com
+ (2603:10b6:a03:39a::26) To DM4PR11MB7757.namprd11.prod.outlook.com
+ (2603:10b6:8:103::22)
 MIME-Version: 1.0
-References: <20260921182121.308217-1-talesam@gmail.com>
- <20260921182121.308217-2-talesam@gmail.com>
- <20260921183324.0DDD11F000FF@smtp.kernel.org>
-In-Reply-To: <20260921183324.0DDD11F000FF@smtp.kernel.org>
-From: =?UTF-8?B?VGFsZXMgQS4gTWVuZG9uw6dh?= <talesam@gmail.com>
-Date: Mon, 21 Sep 2026 17:28:22 -0300
-X-Gm-Features: AcwNN1V18IxPBVX3MzwrIoIOApanVqkrrqNT5qAIi1tEp5iC7OalFNrUEHsOrIk
-Message-ID: <CAHBRX4GqGrA-JhPct0K1GO+fO-uwPm+jJDiQcAQ9FBvBENcOjw@mail.gmail.com>
-Subject: Re: [PATCH v5 1/3] drm/xe: Capture devcoredump on TLB invalidation
- timeout
-To: sashiko-reviews@lists.linux.dev
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Matthew Brost <matthew.brost@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB7757:EE_|MW4PR11MB8268:EE_
+X-MS-Office365-Filtering-Correlation-Id: ae435d03-ee49-4c6e-e530-08df183312c9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|376014|1800799024|366016|18002099003|22082099003|56012099006|11063799006|4143699003|10067099003;
+X-Microsoft-Antispam-Message-Info: 3Vf6cfK7J8oqKp2Y/QHJrfWO/KAtEwyQZg3iEPZonqhqV/O1c3qlYFfUrciwvokeSMsxNK2/c/JWkywRXUh+v/6iHyZMeXQlOAtw3pO9x4ZLOP89JSqJ7RKK/koNpormulmRLgAJT7L8q/kCIAXxGGvL0v07oEHNOYw3Re0S0i7YhcL7fBDM4tzzQWpHWYgvDkrq47lRHvOLuLcjZiHGLFdy5+j1o5LLGU/OGjWlASymXlBOLeIR1VeGVjMOrUgFO7OU9M41veiHuFFLMNQUy6B7pH7GTdUTGqVuCVH+BJN053rhU9ZnM96gm4X3Oxp7pJyKheodoahU9em49/UN8335XkQudE3apbBqttuvGuFwhKcYwIQdYJPZvShUOaJK9LEmCT6WPTDZ6izaSWJruNvZRnNqLhPY6N7rB1Y5b8jf1dCASoTvMvMnuxAiV778+KlntnQ2j1qme9x2osEqXhPQ7tvqgXtQ0lb8ytnsxZqRGCJ9P3IID6R5nNucQzuzepFSct44pLAj5wnF0DDOJzahCNqh59Gy5N8k6Ff+2ywc17b7+rQiYCvd0x223x68RgloDmWVzhQPaAckorGPTC6X4OPZIaeYecrinKMBIVEvHzbvkgaEZltQDiP/Qagfx9oJTyEFCYHQpXK+i0nZ/NFHfgWOP14U6D+sLv7aYS4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB7757.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(18002099003)(22082099003)(56012099006)(11063799006)(4143699003)(10067099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VnVIbm9KSmdLWVlVYlpwVDAwNk1uSm8wVlhjTlhzbE1OclpPNVBKaTNydXc3?=
+ =?utf-8?B?ZHppL3YzLzArbjZHMDQ3Z0ZiakJZVDRKczlmT1pEWmdVSXVZUHB5WmlNOGl6?=
+ =?utf-8?B?d3I1WmliSUpsZVFjaXBmbG9lbmJXU0J0RTZmTitLVG1VbWp1a0NRcUIxZVNV?=
+ =?utf-8?B?N0JMWlZmS1pmUHJBWmN0YzdEdktveUZMZzROUDRTQ2hPdUJaWFhxemNmeG5L?=
+ =?utf-8?B?cEpHVzdsUFgyWlFUZ1piVGp2dWVlVGRQWDRETkdWU1MwSWg5SHh5VExPeU1u?=
+ =?utf-8?B?bHo2QWJocCtpcGJjQUthSHpYd1J6T1V5VUFralNSS0JJWGc3OUp5Z0ZoTmhY?=
+ =?utf-8?B?LzFnSkx6UVZ2SmQ2TWttK0JCNFNObENITXMxV3UvWU5xNTlocVFyVVFhL3RM?=
+ =?utf-8?B?cDRpV1ZCbzZ6VW9tM2xZcUJJNmM4T2RINWpaQ1U3ck5yYWdSODlhak51NURG?=
+ =?utf-8?B?RUhzSmJ5R1R6TlhzMG9WVFF3L01oYkZodTNBdDZaQlNPQlk5a1NVcTFwOXdW?=
+ =?utf-8?B?VjU1SnI3WHVZd1JQS1BLWk0vUG1BbndGdEg5UVpFRjZYemVkR256UXErdm5p?=
+ =?utf-8?B?M0tjRmNEQk5NYzB0bDByTExJTktKciszNmRxV3dGSFNzRStHUlJoR3lkbWVl?=
+ =?utf-8?B?Z2huSUIzbE5NTHJ3QVo5UEFMSnpOODI3eHpnRDRwZnhZSFhPS3psNnRuY3Qx?=
+ =?utf-8?B?bnBxTkhqWGltMEJLMDhNYmNxWmZ4V2FzVk9OeG5sY1pibDlJR0ErK0tuYkM5?=
+ =?utf-8?B?M0pPQUlxdXlUV2lFWENnSjl0dVV2ZlhheUtpV1A0N1VrNEsxV1pSbGdaR1dC?=
+ =?utf-8?B?dmFrRkZsV1JjSDJoaVZ6blduUW1qcEkvYnJ2TzlpRmFZNUYvSG82SzV2U3B5?=
+ =?utf-8?B?ZVh0N1ZCOHA3dGw3UzZON2hKR3p6Zk5OWXQ2SFVCRTBzd2paa2Vud01lQmlJ?=
+ =?utf-8?B?S2pRRi8yUGVXdDdWMFlxaFZhZmN1dEx5ellNNTJkY3FRRmJSaDRLWHB4NnNj?=
+ =?utf-8?B?bDB1NXVnQWE0YXVxZjA2TEF1V3NnS3k5bVM2TDkzOGJaQ09OeERLcy91UWY5?=
+ =?utf-8?B?L1M5Q2ZRYU1UT1RvY2RrT0RValNZM1lQRnVXU092TUhpVkNtNjVQUktybG5t?=
+ =?utf-8?B?Rkg0a2hrREpaUm5RU2s5Um5IRndnWkpYY1dvYlZoSEdmZ2JmVy9CWGpYOU9C?=
+ =?utf-8?B?Yzc0MlVyNzhjOG5GcFJhck94eG1DSEtZUGtCNjBPTFgyd0JZeTB5aUowU2JR?=
+ =?utf-8?B?MEJWNUh3Q05pODFoeEEvbGFndExOQWdwYUZMMXpaMWpFWkxNajdPa1RZZ052?=
+ =?utf-8?B?d2pCZC91OWRFRzVUaW04QVgzdmNsODVxOTV2RGF1WHpPRThxa2daamFyZ3dG?=
+ =?utf-8?B?V3g4b25walVNeUVYam5oZ2ptYmdkeGVRZE1UcWc1cnpQdnQ1KzBSRG5MMHBj?=
+ =?utf-8?B?bnFleXNhMVZRZjlOV2lkR2FTRDU2VGtsOHVKM0hnZWtQYTJmaE93ZXhaalVZ?=
+ =?utf-8?B?bTkxQlZmcWx1RVRhc3lPMnBvcVR1SlVBUEQwSy9pLzFvd01HWWZhbTd0MjdP?=
+ =?utf-8?B?em5wVnIxbWJlU0tkSVU2Q094VFVzM1FJYWFSZ0FrT3NXV3hibERub252Nm43?=
+ =?utf-8?B?NmlPcnRvaVN1cWt5dHdPQWpKenpXdmg3ck5UVEVDUGs3QUptSFdZa1BRYVY2?=
+ =?utf-8?B?UHpIOTlwZi96TSszZWpYYS8xWXhHSDRySlRIckczemc5dUFBMGtidVBWcURS?=
+ =?utf-8?B?bjRtRW81eEYrbTFmbWtKTGpFQUZTTkJiY21ZOU54eDN1cU1nVDNjTkNhMXFi?=
+ =?utf-8?B?YzF5QktaMkJSZkNMbHpYZzhkVXQ4bExNSjJzQjUzTWJoc2cxQU9jYUhZZUhQ?=
+ =?utf-8?B?RXVSL0I1clIzVlUrU2xETVR4WFAyc2k4R3ltVDVHNFdzL0VVMThJRXpCSUIw?=
+ =?utf-8?B?VkUweUErQmtvcVlDcTVyRkxBZjU3ZzliTVZBU3BUZFY3MURENnRRMEU3dUpZ?=
+ =?utf-8?B?Y1VSbGNhYWp1WFBtT0c3a1BLNVRWN2NhZWtpdVdCWGlyWjJYbTV3THpsOThX?=
+ =?utf-8?B?R2UxSjVHZDU1L254Q003dTZUWURQR29OVk9iVG5RV0RBaklJRk5ZRTZTa2tk?=
+ =?utf-8?B?aTZRY0ZqK2lDNzRqblBMMG9vVlhRdlEzNDliaEN4czVlclFzeUIrM1J0eUhW?=
+ =?utf-8?B?cSszdmthY2lYb1FoZXdjWmVCeUNLZVR3K1VtZmZJUUhaSjJLamxNQ1d1L1BU?=
+ =?utf-8?B?YWs2M0djTUJrL3h1TmdDUTlqSFVGS28xS1J4aG9Da0dDOTdObTdGN2JCUEhR?=
+ =?utf-8?B?bjB6RmRVUlZCU1l4bW1vY0xUWlNJdDd6M0YzWFZHV1AzREt6cCt5djczY2l6?=
+ =?utf-8?Q?JcZ2yVIW6B+7yijM=3D?=
+X-Exchange-RoutingPolicyChecked: 3PzOd+dNLd+kxHDdjVkMLxRWlo7j+mLS6xh6GbpFUnnKtPrpRva2XBAMItTXFzx+v6rl0FOeE5nFM6ZwevRAH6moLCQTjg8VTTn7KybR46KghYcUQczlbnVRVD9ISpUzNN9tUeiUStRnWqgb2GGUTXkdJpo922dqkupd/SJxRBIHHYI0fUvX/Wvd+nRkX4/xH5AVbRoStRr1vNq+bMAu7469wWLJ2TnW0evBSAB3UWBeCnJ3j0ejc9kkzB5P2gUUwJcoxm+pMcaGLP2wZNjJp6hhMX+LfeVHxDPlaKdSKB/vUXs/7EXDbEiwDmG+Hq9PtGqGE1kphcsyNlWuG+D4PQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae435d03-ee49-4c6e-e530-08df183312c9
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7757.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2026 22:52:54.9281 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rhYCjdDiQQ7AI5hv/X9LFean6iCE4h5Ez1uxJgKQZIlpkfrZpy2hqMCzUkSnauxCD7UrraI3drrnPszCcv1Nima6Z8ZhIqE1pWeUV7TMv7E=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB8268
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,161 +171,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 21, 2026 at 03:33:00PM -0300, sashiko-bot@kernel.org wrote:
-> [High] drm/xe: MMIO access without PM reference in devcoredump on TLB tim=
-eout
 
-Correct on both counts, and it is my patch that introduces it.
+On 9/16/2026 3:05 AM, tilak.tirumalesh.tangudu@intel.com wrote:
+> From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+>
+> adjust_idledly() has several corner-case issues flagged during review:
+>
+>    1. If xe_gt_clock_init() failed to recognise the crystal clock,
+>       gt->info.timestamp_base is 0, which makes idledly_units_ps also 0.
+>       The subsequent DIV_ROUND_CLOSEST(..., idledly_units_ps) is then a
+>       divide-by-zero and panics the kernel.
+>
+>    2. The tick-to-ns conversions are done in u32:
+>          idledly * idledly_units_ps, (maxcnt - 1) * 1000
+>       Both overflow u32 before DIV_ROUND_CLOSEST() sees them.
+>
+>    3. If IDLE_WAIT_TIME reads back as 0, maxcnt evaluates to 0 and
+>       the maxcnt - 1 clamp wraps to 0xFFFFFFFF in u32.
+>
+>    4. The register only stores whole ticks, so the clamped ns value has
+>       to be converted to ticks and back. DIV_ROUND_CLOSEST() can round
+>       that conversion up past maxcnt:
+>
+>         maxcnt = 640 ns, one tick = 666664 ps
+>
+>         clamp:        maxcnt - 1        = 639 ns
+>         ns -> ticks:  639000 / 666664   = 0.958 -> rounds to 1 tick
+>         tick -> ns:    1 * 666664 / 1000 = 667 ns
+>
+>       667 ns is programmed into RING_IDLEDLY, but 667 >= maxcnt (640),
+>       so xe_gt_WARN_ON() fires again on every subsequent init.
 
-Tracing it: every pending invalidation fence holds a runtime PM
-reference, taken by xe_pm_runtime_get_noresume() in
-xe_tlb_inval_fence_init(). xe_tlb_inval_fence_signal() calls
-xe_tlb_inval_fence_fini(), which drops it. The timeout loop signals all
-the expired fences and only then, after dropping pending_lock, calls
-xe_devcoredump_gt(). devcoredump_snapshot() acquires forcewake without
-taking a PM reference of its own - it has always relied on the caller
-holding one, which the existing job-timeout caller does. The new
-GT-level caller may have just released the last one, so the device can
-begin autosuspending before the snapshot touches the hardware.
+LGTM,
 
-Fixed for v6 by holding a reference across the capture, taken while the
-pending fences still guarantee the device is awake:
+Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-      if (!timedout_seqno) {
-              /*
-               * Hold a PM reference across the capture below. Every
-               * pending fence holds one, so the device is awake
-               * here, but signalling them may drop the last
-               * reference and let it autosuspend before the
-               * snapshot touches the hardware.
-               */
-              xe_pm_runtime_get_noresume(xe);
-      }
-
-and released after xe_devcoredump_gt() returns.
-
-Taking it inside pending_lock is safe: xe_pm_runtime_get_noresume() goes
-through pm_runtime_get_if_in_use(), and its "Missing outer runtime PM
-protection" warning cannot fire here, because the fence reference is
-still held at that point.
-
-Tales
-
-Em seg., 21 de set. de 2026 =C3=A0s 15:33, <sashiko-bot@kernel.org> escreve=
-u:
 >
-> Thank you for your contribution! Sashiko AI review found 1 potential issu=
-e(s) to consider:
-> - [High] drm/xe: MMIO access without PM reference in devcoredump on TLB t=
-imeout
-> --
+> Return early if timestamp_base is 0 (the unknown-crystal path).
+> Do the conversions in u64 via the *_ULL() helpers so they cannot wrap.
+> Clamp with a floor (DIV_ROUND_DOWN_ULL) so the programmed delay stays
+> strictly below maxcnt, and guard the maxcnt == 0 case with a zero delay
+> while still writing RING_IDLEDLY so INHIBIT_SWITCH_UNTIL_PREEMPTED is
+> cleared.
 >
-> commit a463de937c804fe9be7ed86bfbfa297e4f35c466
-> Author: Tales A. Mendon=C3=A7a <talesam@gmail.com>
+> v2: Drop the redundant warn on the timestamp_base == 0 path;
+>      xe_gt_clock_init() already warns on an unrecognised crystal clock.
+>      Keep the early return to avoid the divide-by-zero. - Vinay
 >
-> drm/xe: Capture devcoredump on TLB invalidation timeout
+> v3: Field-mask the RING_IDLEDLY write with REG_FIELD_PREP(IDLE_DELAY, ...)
+>      instead of writing the raw tick count, which could clobber
+>      INHIBIT_SWITCH_UNTIL_PREEMPTED and reserved bits. Split the
+>      inhibit-switch clear from the maxcnt clamp so a set inhibit bit no
+>      longer forces a needless delay overwrite when the delay itself is
+>      already valid. Use gt_to_xe(gt) instead of gt_to_xe(hwe->gt).
 >
-> This commit adds xe_devcoredump_gt() to capture the GuC log and CT state
-> for GT-level hangs that are not tied to a specific queue or job. It then
-> hooks this capture mechanism into the TLB invalidation timeout path. This
-> helps in diagnosing firmware stalls where the invalidation request was
-> consumed but the ack was delayed.
+> Fixes: d2de4410a88f ("drm/xe: Apply Wa_16023105232")
+> Cc: stable@vger.kernel.org
+> Assisted-by: GitHub_Copilot:claude-opus-4.8
+> Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_hw_engine.c | 27 +++++++++++++++++++++------
+>   1 file changed, 21 insertions(+), 6 deletions(-)
 >
-> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8678
->
-> > diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/x=
-e_devcoredump.c
-> > --- a/drivers/gpu/drm/xe/xe_devcoredump.c
-> > +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-> [ ... ]
-> > @@ -323,40 +318,44 @@ static void devcoredump_snapshot(struct xe_devcor=
-edump *coredump,
-> >                                struct xe_gt *gt,
-> >                                struct xe_exec_queue *q,
-> >                                struct xe_sched_job *job)
-> >  {
-> [ ... ]
-> >       /* keep going if fw fails as we still want to save the memory and=
- SW data */
-> > -     CLASS(xe_force_wake, fw_ref)(gt_to_fw(q->gt), XE_FORCEWAKE_ALL);
-> > +     CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
->
-> [Severity: High]
-> If this capture path is reached without holding a PM runtime reference, d=
-oes
-> acquiring the forcewake here attempt MMIO accesses while the device is in=
- a
-> low-power state? Accessing MMIO registers when the device has entered
-> autosuspend (D3cold) typically causes unhandled PCIe errors or system
-> crashes.
->
-> [ ... ]
-> > diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_=
-tlb_inval.c
-> > --- a/drivers/gpu/drm/xe/xe_tlb_inval.c
-> > +++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
-> [ ... ]
-> > @@ -90,13 +98,27 @@ static void xe_tlb_inval_fence_timeout(struct work_=
-struct *work)
-> >                       "TLB invalidation fence timeout, seqno=3D%d recv=
-=3D%d",
-> >                       fence->seqno, tlb_inval->seqno_recv);
-> >
-> > +             timedout_seqno =3D fence->seqno;
-> > +
-> >               fence->base.error =3D -ETIME;
-> >               xe_tlb_inval_fence_signal(fence);
->
-> [Severity: High]
-> Can this sequence drop the last PM runtime reference before the devcoredu=
-mp
-> is captured?
->
-> Looking at xe_tlb_inval_fence_signal(), it calls xe_tlb_inval_fence_fini(=
-)
-> which drops the PM runtime reference (xe_pm_runtime_put). If this was the
-> last active reference, the device could begin autosuspending.
->
-> >       }
-> >       if (!list_empty(&tlb_inval->pending_fences))
-> >               queue_delayed_work(tlb_inval->timeout_wq, &tlb_inval->fen=
-ce_tdr,
-> >                                  timeout_delay);
-> > +     seqno_recv =3D tlb_inval->seqno_recv;
-> >       spin_unlock_irq(&tlb_inval->pending_lock);
-> > +
-> > +     /*
-> > +      * Capture the GuC log and CT state so the firmware side of the h=
-ang
-> > +      * can be inspected; there is no queue or job to blame here. Must=
- be
-> > +      * outside pending_lock as the capture takes sleeping locks, henc=
-e
-> > +      * @seqno_recv is sampled above while the lock is still held.
-> > +      */
-> > +     if (timedout_seqno)
-> > +             xe_devcoredump_gt(tlb_inval_to_gt(tlb_inval),
-> > +                               "TLB invalidation fence timeout, seqno=
-=3D%d recv=3D%d",
-> > +                               timedout_seqno, seqno_recv);
->
-> Since the PM reference was dropped earlier in the loop, would this call t=
-o
-> xe_devcoredump_gt() proceed without holding one? If the thread gets
-> preempted long enough for the autosuspend delay to expire, the forcewake
-> operation inside devcoredump_snapshot() might hit the hardware while it i=
-s
-> unpowered.
->
-> --
-> Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260921182121.30=
-8217-1-talesam@gmail.com?part=3D1
-
-
-
---=20
-Com os cumprimentos,
-
-Tales A. Mendon=C3=A7a
-talesam.org
-communitybig.org
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+> index 010499766fce..d868af8e3301 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> @@ -592,22 +592,37 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
+>   	u32 idledly_units_ps = 8 * gt->info.timestamp_base;
+>   	u32 maxcnt_units_ns = 640;
+>   	bool inhibit_switch = 0;
+> +	bool wa_applied = false;
+> +
+> +	if (!IS_SRIOV_VF(gt_to_xe(gt)) && XE_GT_WA(gt, 16023105232)) {
+> +		/* xe_gt_clock_init() warns and zeroes timestamp_base on unknown crystal clock. */
+> +		if (!idledly_units_ps)
+> +			return;
+>   
+> -	if (!IS_SRIOV_VF(gt_to_xe(hwe->gt)) && XE_GT_WA(gt, 16023105232)) {
+>   		idledly = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
+>   		maxcnt = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
+>   
+>   		inhibit_switch = idledly & INHIBIT_SWITCH_UNTIL_PREEMPTED;
+>   		idledly = REG_FIELD_GET(IDLE_DELAY, idledly);
+> -		idledly = DIV_ROUND_CLOSEST(idledly * idledly_units_ps, 1000);
+> +		idledly = DIV_ROUND_CLOSEST_ULL((u64)idledly * idledly_units_ps, 1000);
+>   		maxcnt = REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt);
+>   		maxcnt *= maxcnt_units_ns;
+>   
+> -		if (xe_gt_WARN_ON(gt, idledly >= maxcnt || inhibit_switch)) {
+> -			idledly = DIV_ROUND_CLOSEST(((maxcnt - 1) * 1000),
+> -						    idledly_units_ps);
+> -			xe_mmio_write32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base), idledly);
+> +		/* Clear the inhibit switch without disturbing a valid delay. */
+> +		if (inhibit_switch)
+> +			wa_applied = true;
+> +
+> +		if (xe_gt_WARN_ON(gt, idledly >= maxcnt)) {
+> +			/* Floor below maxcnt; write 0 to still clear the inhibit bit. */
+> +			idledly = maxcnt ?
+> +				DIV_ROUND_DOWN_ULL((u64)(maxcnt - 1) * 1000,
+> +						   idledly_units_ps) : 0;
+> +			wa_applied = true;
+>   		}
+> +
+> +		if (wa_applied)
+> +			xe_mmio_write32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base),
+> +					REG_FIELD_PREP(IDLE_DELAY, idledly));
+>   	}
+>   }
+>   
