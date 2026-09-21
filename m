@@ -4,56 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5661DC982E1
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 06:27:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B9EDC982DE
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 06:33:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 073B010E1E0;
-	Mon, 21 Sep 2026 06:27:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A10F10E14B;
+	Mon, 21 Sep 2026 06:33:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n6upNVUF";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Ro57mYWB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2695A10E1E0;
- Mon, 21 Sep 2026 06:26:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789972019; x=1821508019;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=BJTnmC4Gd1e7Sw+tnQjF3fv620BOspyBN81V6ldZZk0=;
- b=n6upNVUFdyRGcth2ZKiMBbBNG+c382Qe/wrVmPRNcnqT2Cws+QxSiEZ5
- s0OF8WZ6Qyz4uBTrkhB9gpIBCfvLNzVoO0vA0Emkg4Ab3LGq0sfeGOXVE
- yO8Wd/DAHUVJopj3oH/Gze/j5jmE6v95YY9djs8LtBIqhcSdqkNTL0a1Y
- yPZOSw7ijkeCp+C3mxTssZGsotH6YL4P6zjycywSdV0QTWtxZz1BJlKwZ
- jDr79ZqpqUknToU/4AV7/dDoR3+rcM8sBabAlRnhTATXfFh6RJimhA4Vb
- 361M2QLEnTyQyCE0Us9YUJ+6/BLGQCCxbXBiPA5UINLXJqu1LPmRR/gK1 g==;
-X-CSE-ConnectionGUID: pV3/hmFZQ0y1IMpplrd6tQ==
-X-CSE-MsgGUID: roMpaI3hQCiOl+HnvS+eeA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11911"; a="90590101"
-X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="90590101"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2026 23:26:59 -0700
-X-CSE-ConnectionGUID: IPE2FfKSSp2yQzKpZMubzA==
-X-CSE-MsgGUID: zwaGsapkQiyPIk+PPyJgvA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; 
-   d="scan'208";a="3823095"
-Received: from varungup-desk.iind.intel.com ([10.190.238.71])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2026 23:26:56 -0700
-From: Varun Gupta <varun.gupta@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, arvind.yadav@intel.com,
- himal.prasad.ghimiray@intel.com
-Subject: [PATCH] drm/pagemap: Drop ratelimiting from dev_unhold_work debug
- trace
-Date: Mon, 21 Sep 2026 11:56:49 +0530
-Message-ID: <20260921062648.1166903-2-varun.gupta@intel.com>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1957C10E14B;
+ Mon, 21 Sep 2026 06:33:12 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 085A060142;
+ Mon, 21 Sep 2026 06:33:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89D4D1F000FF;
+ Mon, 21 Sep 2026 06:33:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1789972390;
+ bh=Gs0ogbLjaOerJvtQD6LY+dIL5ZerBmaywmvWiFZF2Z8=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=Ro57mYWBluUBZyPaNmyl9rd9UwkRmwER4XJlHmQdQ5F7KwVPA31xAEsS+AxvzFHD5
+ 0DpFtjoVp9Tjh/PLjHCOUycBGaQY8ndnWtMEskYw8CGuwg6V8FrW2+wXfxh/GcUUct
+ wJ8pqu0m/KGv5ybRwmHT/MRQotvJJ4zvgtZ/XJiDiAISqtD6rFI4OqMehP9DqJP0UV
+ 2oDbXnkwDtfclck89TwDDT4GkKZTiMZm5fS3abExakPXv44hCB2B/P/iJS526wO81L
+ 45UNASOvssR0YT+C0USgxxXvgeEmGrxtGRFbh+9mSkqAmVz+DxEXnUqj4Jy82MiQvr
+ bljce+yCs1Xrg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] drm/pagemap: Drop ratelimiting from dev_unhold_work
+ debug trace
+To: "Varun Gupta" <varun.gupta@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20260921062648.1166903-2-varun.gupta@intel.com>
+References: <20260921062648.1166903-2-varun.gupta@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 21 Sep 2026 06:33:09 +0000
+Message-Id: <20260921063310.89D4D1F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,35 +52,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reference-drop trace in drm_pagemap_dev_unhold_work() was changed
-from drm_dbg() to drm_dbg_ratelimited() to reduce serial console
-bottlenecks.
-However, when the ratelimit kicks in, the kernel's ratelimiting subsystem
-logs a "callbacks suppressed" notification at the KERN_WARNING level.
-Revert the trace macro back to drm_dbg()
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] drm/pagemap: CPU stall re-introduced by unbounded drm_dbg() loop
+--
 
-Fixes: b66b036c959f ("drm/pagemap: Prevent CPU stalls during unbounded pagemap teardown")
-Signed-off-by: Varun Gupta <varun.gupta@intel.com>
----
- drivers/gpu/drm/drm_pagemap.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+commit ea1ff5e58f9772cc1eaec3db21133d24e24bd4f0
+Author: Varun Gupta <varun.gupta@intel.com>
 
-diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index 0867bfbde5c5..ba97daedcd49 100644
---- a/drivers/gpu/drm/drm_pagemap.c
-+++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -1009,7 +1009,7 @@ static void drm_pagemap_dev_unhold_work(struct work_struct *work)
- 		struct drm_device *drm = dev_hold->drm;
- 		struct module *module = drm->driver->fops->owner;
- 
--		drm_dbg_ratelimited(drm, "Releasing reference on provider device and module.\n");
-+		drm_dbg(drm, "Releasing reference on provider device and module.\n");
- 		drm_dev_put(drm);
- 		module_put(module);
- 		kfree(dev_hold);
--- 
-2.43.0
+drm/pagemap: Drop ratelimiting from dev_unhold_work debug trace
 
+This commit reverts the use of drm_dbg_ratelimited back to drm_dbg in
+drm_pagemap_dev_unhold_work to avoid "callbacks suppressed" notifications
+from the kernel's ratelimiting subsystem.
+
+> diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
+> index c66c58f85c345..743988036a5f8 100644
+> --- a/drivers/gpu/drm/drm_pagemap.c
+> +++ b/drivers/gpu/drm/drm_pagemap.c
+> @@ -1102,7 +1102,7 @@ static void drm_pagemap_dev_unhold_work(struct work=
+_struct *work)
+>  		struct drm_device *drm =3D dev_hold->drm;
+>  		struct module *module =3D drm->driver->fops->owner;
+> =20
+> -		drm_dbg_ratelimited(drm, "Releasing reference on provider device and m=
+odule.\n");
+> +		drm_dbg(drm, "Releasing reference on provider device and module.\n");
+
+[Severity: Medium]
+Does this code re-introduce a serial console bottleneck and potential CPU s=
+tall
+during teardown?
+
+When tearing down an unbounded number of DRM pagemaps,
+drm_pagemap_dev_unhold_work() iterates over the entire
+drm_pagemap_unhold_list. If DRM debugging is enabled, drm_dbg() is now
+called for every single entry unconditionally.
+
+If the goal is to prevent the "callbacks suppressed" warning from the
+ratelimiting subsystem, would it be better to drop the repetitive log
+entirely, or perhaps log once outside the loop, rather than reverting
+the CPU stall fix?
+
+>  		drm_dev_put(drm);
+>  		module_put(module);
+>  		kfree(dev_hold);
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260921062648.1166=
+903-2-varun.gupta@intel.com?part=3D1
