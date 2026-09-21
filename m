@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC176C982EE
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 09:21:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4268C982ED
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 09:21:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27B4110E5B9;
-	Mon, 21 Sep 2026 09:21:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E98710E579;
+	Mon, 21 Sep 2026 09:21:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jgaH+LR1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CGojWn5Q";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3568D10E5C1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 127ED10E5B9
  for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 09:21:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1789982478; x=1821518478;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lmXoz1CERlijjUYppGAUBzo/2PWDHU8R3R7ocjzIArI=;
- b=jgaH+LR1+/kgX5AsEiQfWUChSBuJsNkIl742llBTA+Rfh8gyvNm2umM3
- 3o4m36pz9dCe+xuzGa9/SsNA8LT5rmocsOp9ZVA+pdxAfpAIPxO/LFH8E
- bh1TiJvUpLxiW68ano07zHZV9Z5vAleIAEaNFesKC39mV4oPIr/QFUqFq
- 2OlzCp5LMFWZDUQnw1wxymeC6nviIsppKkjjbW6q1BU/8aqm0CN6wJdS8
- 4GxaMMNyMqOvODda7HbkQ0ETNgSyWv7s1oYvhtb9MqPWXnSM0amEyxOI5
- sw8fUU5mk45nqARdaf2yU9DFYX6PGnXmlmAZgOX+6ArpbSl37/WsN3gK+ w==;
-X-CSE-ConnectionGUID: Vwe9VhUhQROast0s0neKyg==
-X-CSE-MsgGUID: Rq3d9bIyTWSFDV5s1SbMww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11911"; a="90606610"
-X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="90606610"
+ bh=r2pljAsIHrRkJ2F1raqd81g3zhLUkNlbANQyg/zTAlw=;
+ b=CGojWn5QSqkpxFiM5W6dTZU8K+0NfGFoOTk9YpjybPWSzpjUqfWXTzCd
+ w7V3C1qgoHLRNIqj3WR+0mlmygee6ADXQjT+BE2fiE8aK6FiTuE3bGGBf
+ Glw9vH6YXBlAi6NlkCz569V/uJAczpL6amGTKJZH7sw3hp+eQ1eLv6z8U
+ HSZdOWDgvA4NPKhBeHTtGzOURZxUDwC/SggC7VEVPNKtvif6v4Kq4qSU4
+ VGKbtMyk9BwfK9Y2o+YKiQryHj4RHvvrWiR2Ph7IGkT/O200rx+iswzZ0
+ TikKrPDWpRcn+lcH2BgtxpcMweQw3BHx7keZwz3Dw0Kjb2KnyTWIcTo2M w==;
+X-CSE-ConnectionGUID: 5iXJxBpdRquZ8jx989kRlw==
+X-CSE-MsgGUID: 0OU86HN2T62fyrw638wIrw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11911"; a="90606609"
+X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="90606609"
 Received: from fmviesa012.fm.intel.com ([10.60.135.152])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Sep 2026 02:21:18 -0700
-X-CSE-ConnectionGUID: /IU4cNrtRcS3yi+j2O5JNw==
-X-CSE-MsgGUID: yIOP4iooR9y3p96xzdhO2w==
+X-CSE-ConnectionGUID: PtAYAoo9QvOHA5602mRPBw==
+X-CSE-MsgGUID: gfkuTrtySfWH3wK/Zu+u8g==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; 
-   d="scan'208";a="3578410"
+   d="scan'208";a="3578406"
 Received: from ksatya-dev.iind.intel.com ([10.190.229.72])
- by fmviesa012.fm.intel.com with ESMTP; 21 Sep 2026 02:21:16 -0700
+ by fmviesa012.fm.intel.com with ESMTP; 21 Sep 2026 02:21:12 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v10 04/10] drm/xe: Introduce helpers for VRAM alignment
-Date: Mon, 21 Sep 2026 14:51:03 +0530
-Message-ID: <20260921092101.1243989-16-satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v10 03/10] drm/xe/vf: Add bounds checking for queried context
+ and doorbell counts
+Date: Mon, 21 Sep 2026 14:51:02 +0530
+Message-ID: <20260921092101.1243989-15-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260921092101.1243989-12-satyanarayana.k.v.p@intel.com>
 References: <20260921092101.1243989-12-satyanarayana.k.v.p@intel.com>
@@ -67,190 +68,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add new xe_vram_alignment() and xe_vram_needs_64k() helpers to get the
-VRAM minimum alignment (4K vs 64K).
+Add explicit bounds checks for context and doorbells which can detect
+and reject invalid configuration data from a misconfigured or
+malfunctioning PF, preventing protocol violations and protecting VF
+initialization.
 
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |  2 +-
- drivers/gpu/drm/xe/display/xe_initial_plane.c |  2 +-
- drivers/gpu/drm/xe/tests/xe_bo.c              |  2 +-
- drivers/gpu/drm/xe/tests/xe_dma_buf.c         |  2 +-
- drivers/gpu/drm/xe/xe_bo.c                    |  7 +++----
- drivers/gpu/drm/xe/xe_device.h                | 10 ++++++++++
- drivers/gpu/drm/xe/xe_ggtt.c                  |  2 +-
- drivers/gpu/drm/xe/xe_query.c                 |  2 +-
- drivers/gpu/drm/xe/xe_svm.c                   |  2 +-
- drivers/gpu/drm/xe/xe_vm.c                    |  4 ++--
- 10 files changed, 22 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index b46a2c32ac07..ad4f3ce774ec 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -273,7 +273,7 @@ static int __xe_pin_fb_vma_ggtt(struct drm_gem_object *obj,
- 	guard(xe_pm_runtime_noresume)(xe);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+index 339ea0d3344c..715dfb04a1f3 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+@@ -15,6 +15,7 @@
+ #include "abi/guc_klvs_abi.h"
+ #include "abi/guc_relay_actions_abi.h"
+ #include "regs/xe_gt_regs.h"
++#include "regs/xe_guc_regs.h"
  
- 	align = max(XE_PAGE_SIZE, pin_params->alignment);
--	if (xe_bo_is_vram(bo) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
-+	if (xe_bo_is_vram(bo) && xe_vram_needs_64k(xe))
- 		align = max(align, SZ_64K);
+ #include "xe_assert.h"
+ #include "xe_device.h"
+@@ -581,6 +582,11 @@ static int vf_get_ctxs_cfg(struct xe_gt *gt)
+ 	if (unlikely(err))
+ 		return err;
  
- 	/* Fast case, preallocated GGTT view? */
-diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index 0f86b73036d0..b2c8a22485a3 100644
---- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-+++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -45,7 +45,7 @@ initial_plane_bo(struct xe_device *xe,
- 	struct xe_bo *bo;
- 	resource_size_t phys_base;
- 	u32 base, size, flags;
--	u64 page_size = xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
-+	u64 page_size = xe_vram_alignment(xe);
- 
- 	if (plane_config->size == 0)
- 		return NULL;
-diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-index 6a17e13d58cf..ade31e274db9 100644
---- a/drivers/gpu/drm/xe/tests/xe_bo.c
-+++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-@@ -210,7 +210,7 @@ static void xe_bo_page_size_alloc_mixed_bos(struct kunit *test)
- 		 */
- 		if (flags == 0) {
- 			expected_align = SZ_4K;
--			if (xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
-+			if (xe_vram_needs_64k(xe))
- 				expected_align = SZ_64K;
- 		} else if (flags == XE_BO_FLAG_NEEDS_64K) {
- 			expected_align = SZ_64K;
-diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-index 0be8440b3976..31bc218b2446 100644
---- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-@@ -122,7 +122,7 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
- 
- 	size = PAGE_SIZE;
- 	if ((params->mem_mask & XE_BO_FLAG_VRAM0) &&
--	    xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
-+	    xe_vram_needs_64k(xe))
- 		size = SZ_64K;
- 
- 	kunit_info(test, "running %s\n", __func__);
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index f2ab9bf43a86..0a965d1b9925 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -2365,7 +2365,7 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
- 
- 	if (flags & (XE_BO_FLAG_VRAM_MASK | XE_BO_FLAG_STOLEN) &&
- 	    !(flags & XE_BO_FLAG_IGNORE_MIN_PAGE_SIZE) &&
--	    ((xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) ||
-+	    (xe_vram_needs_64k(xe) ||
- 	     (flags & (XE_BO_FLAG_NEEDS_64K | XE_BO_FLAG_NEEDS_2M |
- 		       XE_BO_FLAG_NEEDS_1G)))) {
- 		size_t align;
-@@ -3592,7 +3592,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- 	/* CCS formats need physical placement at a 64K alignment in VRAM. */
- 	if ((bo_flags & XE_BO_FLAG_VRAM_MASK) &&
- 	    (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT) &&
--	    !(xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) &&
-+	    !xe_vram_needs_64k(xe) &&
- 	    IS_ALIGNED(args->size, SZ_64K))
- 		bo_flags |= XE_BO_FLAG_NEEDS_64K;
- 
-@@ -4091,8 +4091,7 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
- 	struct xe_bo *bo;
- 	uint32_t handle;
- 	int err;
--	u32 page_size = max_t(u32, PAGE_SIZE,
--		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K);
-+	u32 page_size = max_t(u32, PAGE_SIZE, xe_vram_alignment(xe));
- 
- 	err = drm_mode_size_dumb(dev, args, SZ_64, page_size);
- 	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 6d3d6d5eba29..49fb8e046e94 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -283,6 +283,16 @@ static inline bool xe_device_is_admin_only(const struct xe_device *xe)
- }
- #endif
- 
-+static inline bool xe_vram_needs_64k(const struct xe_device *xe)
-+{
-+	return IS_DGFX(xe) && (xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K);
-+}
++	if (num_ctxs > GUC_ID_MAX) {
++		xe_gt_sriov_err(gt, "Out of bound CTXs %u received\n", num_ctxs);
++		return -ERANGE;
++	}
 +
-+static inline u64 xe_vram_alignment(const struct xe_device *xe)
-+{
-+	return xe_vram_needs_64k(xe) ? SZ_64K : SZ_4K;
-+}
+ 	if (config->num_ctxs && config->num_ctxs != num_ctxs) {
+ 		xe_gt_sriov_err(gt, "Unexpected CTXs reassignment: %u != %u\n",
+ 				num_ctxs, config->num_ctxs);
+@@ -607,6 +613,11 @@ static int vf_get_dbs_cfg(struct xe_gt *gt)
+ 	if (unlikely(err))
+ 		return err;
+ 
++	if (num_dbs > GUC_NUM_DOORBELLS) {
++		xe_gt_sriov_err(gt, "Out of bound DBs %u received\n", num_dbs);
++		return -ERANGE;
++	}
 +
- /*
-  * Occasionally it is seen that the G2H worker starts running after a delay of more than
-  * a second even after being queued and activated by the Linux workqueue subsystem. This
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 63e8bf193605..7cac01cef1ee 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -421,7 +421,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- 	}
- 
- 	ggtt->gsm = ggtt->tile->mmio.regs + SZ_8M;
--	if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
-+	if (xe_vram_needs_64k(xe))
- 		ggtt->flags |= XE_GGTT_FLAGS_64K;
- 
- 	if (ggtt_size + ggtt_start > GUC_GGTT_TOP)
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index dc975f595368..e2b35f1164d8 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -355,7 +355,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
- 		DRM_XE_QUERY_CONFIG_FLAG_HAS_PURGING_SUPPORT;
- 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
--		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
-+		xe_vram_alignment(xe);
- 	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
- 	config->info[DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY] =
- 		xe_exec_queue_device_get_max_priority(xe);
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index f39e647512ad..5000e1bba3b9 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -1174,7 +1174,7 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
- 
- static bool supports_4K_migration(struct xe_device *xe)
- {
--	if (xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
-+	if (xe_vram_needs_64k(xe))
- 		return false;
- 
- 	return true;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 17dc4debe7c1..4bffe4ad6bb7 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1752,7 +1752,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
- 		err = xe_vm_drm_exec_lock(vm, &exec);
- 		drm_exec_retry_on_contention(&exec);
- 
--		if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
-+		if (xe_vram_needs_64k(xe))
- 			vm->flags |= XE_VM_FLAG_64K;
- 
- 		for_each_tile(tile, xe, id) {
-@@ -3971,7 +3971,7 @@ static int xe_vm_bind_ioctl_validate_bo(struct xe_device *xe, struct xe_bo *bo,
- 	 * there for the former case.
- 	 */
- 	if ((bo->flags & XE_BO_FLAG_INTERNAL_64K) &&
--	    (xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)) {
-+	    xe_vram_needs_64k(xe)) {
- 		if (XE_IOCTL_DBG(xe, obj_offset &
- 				 XE_64K_PAGE_MASK) ||
- 		    XE_IOCTL_DBG(xe, addr & XE_64K_PAGE_MASK) ||
+ 	if (config->num_dbs && config->num_dbs != num_dbs) {
+ 		xe_gt_sriov_err(gt, "Unexpected DBs reassignment: %u != %u\n",
+ 				num_dbs, config->num_dbs);
 -- 
 2.53.0
 
