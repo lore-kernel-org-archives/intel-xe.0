@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29C4FC982ED
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 13:40:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EEB7C982ED
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 13:40:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D75E810E7EA;
-	Mon, 21 Sep 2026 13:40:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1307810E7F5;
+	Mon, 21 Sep 2026 13:40:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XHj7Kq6T";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pd4TQMAd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FDB010E7E0
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 13:40:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB6A310E7F0
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 13:40:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789998025; x=1821534025;
+ t=1789998029; x=1821534029;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UVCk6fHwbwx9FqPJ5f8QjuxB/hsKYnFsCVbjJ+LvZi8=;
- b=XHj7Kq6TtSpobHVgUjDtYA7ScvBSTmTOOjecA6FKuOe4oqk1WolpTPhJ
- Mk2eKMVwqFdnbNglw5z0Uox7GcBJdv9MNnMAoJu+5zGnp4b8PhlNv4gmG
- zXNHNrNmpBaItRS4fTdlwcrVTMyct8PBW5eGpZm5PuY2g9qfxVBwyBfiC
- EDKcFG3k9nn52OENFGKC3Ab9o1NiYSTcsxBa8ue4UOno0cYp5Ac/jYk1X
- 1FlasIFdtX0/2VXiUdHQZ9Dj4e9hz/gAxr8JQWOgArJAj2QJWMqzSyRem
- L6kuXRmZZkv+MeP1T+z6SD61LFp140GGsJHW5LTLQPqktKx5/XlwQH1Ep A==;
-X-CSE-ConnectionGUID: A462iy9QS+quOiLEUr+ofA==
-X-CSE-MsgGUID: 7SvlSu6CS4qV3dIrCXyWlA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11911"; a="116036316"
-X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="116036316"
+ bh=xrPc8cDa9QjY+mX8n8kjHznd39Y5aCazvMMjoyK2HhU=;
+ b=Pd4TQMAdFoB2Z11AEks3XR0QKs6aKFBgI/8c8wPUJHxG+ZhYeZG3SV7k
+ ysRiSbZ6wfF7fYO4m9E0dXLku+az6FM4JHLNWEuOXrgGcFNi6q6KZQ8SB
+ evoJyWAje6kzX/UqR0gxG4jczTj3OOz+QC91AxxOP2BLna0lmEzJVTHa/
+ BtHatPrm+PKcdfkJp0y6OX6WIX+X+O7c2z/YepANrzbhVr5PsuagWuSB6
+ 77ZnxrzMlLcsJCkQdBmmAw4WuxRyWOeLGxYoJ/X0G99zrtYYP9GSHLfYt
+ P18OkaHP0p848uQcBigqC7gDV3ryElJ3u0EnHpvXfWvjzJT8/wNuDfSXj A==;
+X-CSE-ConnectionGUID: ZvQ4SHhPRAShKSqSb3ItvA==
+X-CSE-MsgGUID: rbJP3J4BTne7el3xoYKmPg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11911"; a="116036325"
+X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="116036325"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2026 06:40:24 -0700
-X-CSE-ConnectionGUID: yD9vR+jySfyDrDjB5CkByQ==
-X-CSE-MsgGUID: PDbeZsenSX+MD5FyMoYsQw==
+ 21 Sep 2026 06:40:29 -0700
+X-CSE-ConnectionGUID: YePNv7vVTQWeR7/sPJ8vFA==
+X-CSE-MsgGUID: NEfvFoK0RsWwiWjBRObxcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="298899885"
+X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="298900000"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa002.fm.intel.com with ESMTP; 21 Sep 2026 06:40:19 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 21 Sep 2026 06:40:24 -0700
 From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  matthew.brost@intel.com
@@ -49,10 +49,10 @@ Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
  aravind.iddamsetty@linux.intel.com, umesh.nerlige.ramappa@intel.com,
  dnyaneshwar.bhadane@intel.com, anoop.c.vijay@intel.com,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v8 08/10] drm/xe/sysctrl: Improve firmware response error
- logging
-Date: Mon, 21 Sep 2026 19:09:35 +0530
-Message-ID: <20260921133927.128281-20-mallesh.koujalagi@intel.com>
+Subject: [PATCH v8 09/10] drm/xe/sysctrl: Log group and command ID on mailbox
+ failure
+Date: Mon, 21 Sep 2026 19:09:36 +0530
+Message-ID: <20260921133927.128281-21-mallesh.koujalagi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260921133927.128281-12-mallesh.koujalagi@intel.com>
 References: <20260921133927.128281-12-mallesh.koujalagi@intel.com>
@@ -72,48 +72,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use xe_log_err() helper and include additional details when a
-response header mismatch occurs.
+Include the mailbox group ID and command code in error logs
+for command preparation and execution failures.
 
-Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
 v5:
-- Use %#x after REG_FIELD_GET change. (Michal)
+- Use REG_FIELD_GET instead of FIELD_GET. (Michal)
+- Modify logging message.
 
 v6:
-- Move REG_FIELD_GET to different patch. (Michal)
-- Update response message.
-
-v7:
-- Remove le32_to_cpu. (Michal)
+- Move all REG_FIELD_GET to single patch.
+- Update log message. (Michal)
 ---
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-index d36bfa4167c7..4a4deac0dd31 100644
+index 4a4deac0dd31..3acad770395d 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-@@ -233,13 +233,15 @@ static int sysctrl_receive_frames(struct xe_sysctrl *sc,
- 	if (!XE_SYSCTRL_HDR_IS_RESPONSE(hdr) ||
- 	    XE_SYSCTRL_HDR_GROUP_ID(hdr) != XE_SYSCTRL_HDR_GROUP_ID(req) ||
- 	    XE_SYSCTRL_HDR_COMMAND(hdr) != XE_SYSCTRL_HDR_COMMAND(req)) {
--		xe_err(xe, "sysctrl: Response header mismatch\n");
-+		xe_log_err(xe, SYSCTRL, -EPROTO,
-+			   "Response header mismatch: %#x != %#x\n",
-+			   hdr->data, req->data);
- 		return -EPROTO;
+@@ -353,7 +353,8 @@ int xe_sysctrl_send_command(struct xe_sysctrl *sc,
+ 				      cmd->data_in, cmd->data_in_len,
+ 				      &mbox_cmd, &cmd_size);
+ 	if (ret) {
+-		xe_err(xe, "sysctrl: Failed to prepare command: %pe\n", ERR_PTR(ret));
++		xe_log_err(xe, SYSCTRL, ret, "Failed to prepare command %#x.%#x\n",
++			   group_id, command_code);
+ 		return ret;
  	}
  
- 	if (XE_SYSCTRL_HDR_RESULT(hdr) != 0) {
--		xe_err(xe, "sysctrl: Firmware error: 0x%02lx\n",
--		       XE_SYSCTRL_HDR_RESULT(hdr));
-+		xe_log_err(xe, SYSCTRL, -EIO, "Firmware error: %#04x\n",
-+			   XE_SYSCTRL_HDR_RESULT(hdr));
- 		return -EIO;
- 	}
+@@ -363,7 +364,8 @@ int xe_sysctrl_send_command(struct xe_sysctrl *sc,
+ 				   cmd->data_out, cmd->data_out_len, rdata_len,
+ 				   XE_SYSCTRL_MB_DEFAULT_TIMEOUT_MS);
+ 	if (ret)
+-		xe_err(xe, "sysctrl: Mailbox command failed: %pe\n", ERR_PTR(ret));
++		xe_log_err(xe, SYSCTRL, ret, "Mailbox command failed to send %#x.%#x\n",
++			   group_id, command_code);
+ 
+ 	kfree(mbox_cmd);
  
 -- 
 2.48.1
