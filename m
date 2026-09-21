@@ -4,98 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30E5BC982E6
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 14:31:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47008C982ED
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 14:36:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C29B810E79C;
-	Mon, 21 Sep 2026 14:31:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03D1210E85C;
+	Mon, 21 Sep 2026 14:36:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="CPuzR1aY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GzfNjaDD";
 	dkim-atps=neutral
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
- [209.85.214.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77AEB10E79C
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 14:31:48 +0000 (UTC)
-Received: by mail-pl1-f175.google.com with SMTP id
- d9443c01a7336-2d8facae850so158675ad.0
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 07:31:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1790001108; cv=none;
- d=google.com; s=arc-20260327;
- b=Rg8uyLqyqBrR9FHRhjyIl0GhdINOxb4ZsaJmCvrpEYdTlbK2PrYGFFLBaV4n+Jc55q
- ysCQb0xP6e4xrZz89fegmENkykyi7DC9bFtqoexwS5kkpD7Y/l7DbBSK96DWExsktR3d
- kMdj0WDRxjJjLHtiUwzi6vyNWnLRy/58tHqHPJDLfE06A7oBTD1/cTStXWK1sAyGfrvg
- cBtG6jo2bGbRJp3BuDmeCXm4zlPlIU7JtvjWDY0jV0i+P/6pDPtVl11iDMWgeRw4ifo6
- E5nuJn/oKaGSFI8fs+e3J6NdmBfMea4/pGYqMPdbrjy0Gdw2hpiULe5nBQAHsJGv0s2D
- Sjlg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=/jne4rJNrIV3zuB5XDfQAq/6mlVqaFg6phL0RhLyZig=;
- fh=OU8LJJoNaE6FRjp5gEW6RihE78BzSZkYoTHgJ4OFPmg=;
- b=L+NgTWPGQ69TuXlxAeNFarN7aic56szoOZoB7Z0ajmld6+z7r4O/EBQVIeqhhVKpgi
- 0+QDwkCjOacaF+1OxWJCGTqCwN3JioQmcs5ppcAXlMGTenFQZRt7fN4/IXgJ0Xg9xdOR
- F6CirL4UZInU2sMiG/QALGCxucWMCyKl6hDnxxfCCd1giG/QdhBFGMQzI39UWzuXklTX
- ma0h+3nEpdijaMWaNKUhO6emtLwz0MUKRqSVrnoHZb5noiplAWM8cYFY6IeimW5+sM9Q
- cOv7diP71Gh7YrVPNn8tVNqFf2wW3GKkZjBIZaSmUNLs1GrtoRaOd2n/mrlRNt9Zcpcw
- Dy4g==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1790001108; x=1790605908;
- darn=lists.freedesktop.org; 
- h=content-type:cc:to:subject:message-id:date:from:in-reply-to
- :references:mime-version:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=/jne4rJNrIV3zuB5XDfQAq/6mlVqaFg6phL0RhLyZig=;
- b=CPuzR1aYaT8QEBf8L8KWkP75y5IdtMLOGteDaqMr1XQuDM+nw+5dF/DNOZLL2FWBJ6
- QUoRAlQiiSANNUhqKcEALPqvfwwbEdtyllQNHfxTn7RsyIfRIXBetsDo2Xsulsnmo5yf
- wfnxyTnVwFtkUDY5eWBFeBacbr9ZtxRrOpTUUAljIbeHBBlnJl0pGLlzc17325rb6yyM
- p0eYx84cQ3So62JRfVXj3/WCWrmVlNp+EHh3VbUats0KLCVK4hheM42JUYXYqtJD0fgk
- BLMnWO+S3hSAnaR/BpfoneZAhV6mEk/h1VCJ8BkOQwPQFQy9waccQ3uVR3kziu3czRTP
- kbDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1790001108; x=1790605908;
- h=content-type:cc:to:subject:message-id:date:from:in-reply-to
- :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to:content-type;
- bh=/jne4rJNrIV3zuB5XDfQAq/6mlVqaFg6phL0RhLyZig=;
- b=VHhpcTCfZiyrOamTIM9RqNbfKf97MpwxtGD/13PY/e5s4pQr997Op1uylALu8awoFw
- 5g1ka2vnMTBmipaAd+3IO+DSTuLo1oomdQo7ytiJ32y43DxmGAHSA0BshowAolCVoEG2
- BQz2mwni2UW2MWVlphDhGpZ54Lb6/aESmbZUGTMuOgTwOPc8sCkBxSKPTkaycPXGh9UQ
- 8IrCpmuY6S8b7ksQo7XNkerX3pdkdDQnfMsqg0wkT8f4dMsEKy4/AIjD8YT6FY2PRVr9
- fapq1YjyQ1jkvuK+3xnrU2ItaWFvhRBuN412oatend6Hq/uln45b1AWvVqZfsO39TfO+
- 8TzQ==
-X-Forwarded-Encrypted: i=1;
- AKwUvBw722vxvVygNWjdu+VKAlAVAUpuyONdSHHCqlITcF+aR+7WO9YVhzSN1tQsl2p2btNmbyPe/i87HQ==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++lWKfOJtCUUXPF4VErsQfl0WfGwJEGpjYML9X102MIcMwOymcKd
- BFJl/WKIypnjvTLjPknE03HtmTFf4V1WGw6jbpz8NOukddxarOcSS91M/bfjy1FtC3emeseSS5g
- aEpvpaqfqhHeDacfpKDsPBva8XAyJ0B4AOOdVWc6V
-X-Gm-Gg: AYBFou0hOcMdP8KKz+/5abgzHJuWjVTLxxssVGzIfeeKwhyqbOAXudl7MxbaXXs0QCy
- giX/iRXg0N5MuGW+PzfAKVKVhkGqUGfsylETu3q4m4TFHzEw/rdINLLAPwPawrlAWP1145ShPmQ
- JYpKK59gFRLsb4ZA8iN61xyGk7PRJYWEQ4PsWdqKIki3gODVUjjRlcz4SarrgnspTYqNccjxXe0
- F3+JUk/v5ldfWeEXUnxT716e5leDSIPNhDEuKofR3RgipZl8tRLvMcIlh/DVnGHs+bTHzn2ln+O
- dhpQx+TeJyhTXIIllR/MBE6eoJWA8StGWSs4HjaHKjXRutWvvIsOKTnt5tE6Q/+96h7lx2Jt9Sh
- JcQd+B1uLgA==
-X-Received: by 2002:a17:903:94d:b0:2dd:53ce:f2bc with SMTP id
- d9443c01a7336-2dea2e93febmr10006575ad.3.1790001107248; Mon, 21 Sep 2026
- 07:31:47 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 257F610E49F
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 14:36:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790001417; x=1821537417;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=Ww/vpPUjNLOsH3PtHbBKHKc9uDeiJPUbPaQtQaKwJrg=;
+ b=GzfNjaDD85YzahrBQtpiOWl8LIh+u/N3D+vD9ywT7sHdYWvGaj5onq6y
+ +/YccX3fq7YKFLBcguGNmkrxmuzKSsQgjA/7D70UDsfYQl9NwQRadWbsR
+ empQlXl2pXrdmvUkXD5K1+knWrOukOfM6LdKgjL48TFVzV4F1bIOfWt5Z
+ BXpPo7iSLcNvMMfrRl2rHaQ04AUMXncKv0LFdEq4pgNSTSSuLI/xOZa95
+ eNoaIWE+acYQg+Y9g7bDPjt/nc5z6p8W5xUK0vcFn5r8NrvIQMts4wSrD
+ kmfDIX5RpPVNQ1GPjZRfUM6ajExUxVpwNoAtw7Zad9FZv34gL8EEo+4Oi g==;
+X-CSE-ConnectionGUID: FDiH16wiThOzYrXwjK/M0g==
+X-CSE-MsgGUID: xI8Y8tW3SUuPHJKbDVQ3Pg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11912"; a="89651988"
+X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="89651988"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2026 07:36:57 -0700
+X-CSE-ConnectionGUID: fwD1ERBNQqSCLq5jxQGuwA==
+X-CSE-MsgGUID: f7yNNlNHQWiYs2BJ5e8J4A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="271858082"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2026 07:36:56 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Mon, 21 Sep 2026 07:36:56 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Mon, 21 Sep 2026 07:36:56 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.37) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Mon, 21 Sep 2026 07:36:56 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CTTCIPFv326yD+3YD7SO8YrLZ+Ln6xuSpj83vv4Bmak7mTDGS1yIV7YLBhRF1RzE1w60G2cN6ovO1Vp7sDjm1RO64sxxdnCYwWEi801ylmXiUndQ+m6Ahzp5CW99XCivTayBhs8cLKlkC+g0nA7ufMycj8Jy82lGZasgtDVEhfhOKv0n7Fl0SvghCDMx/oJNwVuV/jJ5c7D9aC9lHnOcQkDrxZUQqDmp3glD5H0V6AF6h0cuOd9kpkRMfdsJOiAsKAdWFKHFr18bj8MkTwvXR0T+4njlen6RPLs1iLriaLvN3PY5bTUHXU6OHc4YgYcUUECjkhOABZMEBStJ/GWq1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DwqluFcxDPa9W3DlubJikUv0V26wRVlhi0a+vkBVpJM=;
+ b=HJkA3i2RW8H8hX3orKJUGi08WdRrqdMRukhuhD/qjlK8+XseLjTm3CB8AuPvXDj5anaXvWjg6Z2ms+0FnXYU+Wrb2WsaV3iiYtLs6Mhvzu9bAgKPtzkL9Dhg4Z4hL3pZjFJWkim83A3GlgJe/sUbOOOhJgO3zkhUDETh2Fr7lrDsPRNKRgDohZc42OdZs5UI0KTg5f+T/kaKpnjbGu4KcfSKCyWNDDC77uKz3OgvYatgSTJsrVE0hT/MWq5xnXspLrlf/woGFbObbv1KeQVaNKHVKAMC52p7Xqx+tG3EWnK3FkQ8a5/QlsFp3qLSzQFVC9KJtHM6m4TERhNftmXLtw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB7551.namprd11.prod.outlook.com (2603:10b6:510:27c::12)
+ by MN0PR11MB5964.namprd11.prod.outlook.com (2603:10b6:208:373::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.428.16; Mon, 21 Sep
+ 2026 14:36:53 +0000
+Received: from PH7PR11MB7551.namprd11.prod.outlook.com
+ ([fe80::5cbf:6b33:5f0c:88a0]) by PH7PR11MB7551.namprd11.prod.outlook.com
+ ([fe80::5cbf:6b33:5f0c:88a0%4]) with mapi id 15.21.0428.009; Mon, 21 Sep 2026
+ 14:36:53 +0000
+Message-ID: <a4ccbd29-56bb-4a5e-b4d1-83137298d6ac@intel.com>
+Date: Mon, 21 Sep 2026 16:36:47 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 07/10] drm/xe/vf: Add bounds checking for queried GGTT
+ base and size
+To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+References: <20260921092101.1243989-12-satyanarayana.k.v.p@intel.com>
+ <20260921092101.1243989-19-satyanarayana.k.v.p@intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20260921092101.1243989-19-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR04CA0077.eurprd04.prod.outlook.com
+ (2603:10a6:802:2::48) To PH7PR11MB7551.namprd11.prod.outlook.com
+ (2603:10b6:510:27c::12)
 MIME-Version: 1.0
-References: <20260601212613.3682640-1-jdsultan@google.com>
- <20260602205422.1792007-1-jdsultan@google.com>
- <68143a59-ca3f-4e57-997a-8342021ffd53@intel.com>
- <CA++eeRM5PbFq79Yw9xECRaat_Ju759Xrc_7=F-R1viCsLFREfg@mail.gmail.com>
- <1e2f1d5d-2b67-4fc0-8db2-e68a36989b19@intel.com>
-In-Reply-To: <1e2f1d5d-2b67-4fc0-8db2-e68a36989b19@intel.com>
-From: Gil Dekel <gildekel@google.com>
-Date: Mon, 21 Sep 2026 10:31:35 -0400
-X-Gm-Features: AcwNN1WOE9WUClNMUHksPvMJ09wHqrUecUP91wL6FHmJAYe9KB1mjNX1C4AFuCs
-Message-ID: <CA++eeRMz3eA+c1Wu6OkpRGFD0yqz1aJ2TgO6MibhA35mf5vCwg@mail.gmail.com>
-Subject: Re: [PATCH v3] drm/i915/dp: Handle VSC SDP revision 7 in unpack
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- Juasheem Sultan <jdsultan@google.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Jani Nikula <jani.nikula@linux.intel.com>
-Content-Type: multipart/alternative; boundary="0000000000002693ba065bff1c41"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7551:EE_|MN0PR11MB5964:EE_
+X-MS-Office365-Filtering-Correlation-Id: c28f706d-b548-4d5f-d9fa-08df17edc75e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|23010399003|3023799007|6133799003|56012099006|11063799006|4143699003|18002099003|22082099003|10067099003;
+X-Microsoft-Antispam-Message-Info: y1eO8C7hmPmcI1fTZhP1zOCHYkd7IDVvIe6xnXw1LKCS+7jtFn3vfgwIpwIsf/G+8gh1jfNkqdNCxPwjwi7zlLOHr0S3VY7k1vZJCX/TtpYS4XZvRWX8ZdlG9m95ypsGc8J2DAxzk+zCElBapQWIZxRMpkg5TLAxty6/gek5m3BabuSiwatA93FJ/UYaFVX+tqefhTJUdy/Vi1cz7gB7XLQmhGb94RoNmb7CFPB8oTCuPhRiugTQ5TvQR8COQne4TvGdEU8VbagGRoO56xbbJyWj2roBxviCeNAKbr8xxMJ7zRvw6bevl0e2x8IwVRUREd9nfdPWoXnx67Sp1ub+lAi3gNJOgpFPo09fxQRmOBt59y7yFHKOk3bXgH3R5nggUkeI7FWLwFPt2EvosIydCErl9pCCdahEFUXc+2SxTvnUBaGiMWs3caDbFERu6hRF4FJ5UIH6kdH7FGTxtCiPKwmnTiF+5UkoHnes5AWDJ7We1WXYXurAclfzmGSmNRwTB4Mx2aEJhx2zgeQWv7oEoWYA0rDm/O719Tej1vUyYq0gny1OOECV8J+0if/SaVmAOl/8pn0CzfRl2auXzIxX9lUxjLp1ON1GoelqbyapnTFUe9thZCTLsx8lT+gHyY41
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB7551.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(3023799007)(6133799003)(56012099006)(11063799006)(4143699003)(18002099003)(22082099003)(10067099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RlYrUG9majR0WVkyUFIrY2h1anZ4L1k1QVpHTzhheFZwU1EzRXc0TzlxRUo0?=
+ =?utf-8?B?N2R4VERkNTE5UEh5TnIwRkxkWllBWGdacW9GN01kU2tBem1aZG14SC8xdWxU?=
+ =?utf-8?B?YVlCeGozV0tKNUJIVXBIS0xWZ2U3eWgyMHJ2QnNoTXVLcTlMall6blVQQWdw?=
+ =?utf-8?B?Z2hLTHJTWFpFNVBBUHM4TGRCT0FORExBZ1g2Y1VLUXZ4ZFhHOHFYOTh2SVB4?=
+ =?utf-8?B?cCtjU1cxSHozZ3JnMnFSNUw0ZUdRQUFVR2RTeUpGRi9aU2FYQWlwaGp4UGJ2?=
+ =?utf-8?B?aG9DRkdjWk9IdXRPRlNvM09JaTVuL3FweG5iT08wM2lsRVhLYkdXeksxTk5R?=
+ =?utf-8?B?bloxM0p0S0lmUzNPYWREV2E1TTZMY1NmdVQxTUIrekJZVDlLaW40R0J0dkU0?=
+ =?utf-8?B?d0xpVnlPbXFWK2IwTlkyQjJ0V2p3T0ZPWnhnWk9WZURqT0NKNjQybFhabHJz?=
+ =?utf-8?B?QjNiOFdRU3RHL2E5WWJVMmlsU3ZqbDRiWE8xdVM5QmlQTUNhUmZIVy9xTlRx?=
+ =?utf-8?B?bDdBTmppTXJrbTBiaHhnQ2daaHFuc0dlNGV2T2h2bURCckp5VjhOcVR3RCsy?=
+ =?utf-8?B?NXpUekNXWmJzWk9OaVgyUFRzODJnWm50S0VXQzFTUzREbUhLVEJ6K1htaTA5?=
+ =?utf-8?B?UVhacVBzU2Z1ek5Ic0dCdGZmWGdTS05uR01WeUl4aE51aUs0ZTF4anRvWldj?=
+ =?utf-8?B?VUozMmhMQ2pyUnB1c3I5U1c0N0hzQ2tmK2RXRUtldWhBblREWmg4QzBZdHVT?=
+ =?utf-8?B?N3dubldPTVFzcnRLYVhYM0hneUxzVzM2UitFajJqakNXZlh2SHpUNjBsVCt0?=
+ =?utf-8?B?UEpobWdwY1BiV0pKNi91T1Jib1NMZzdoZ0RIWS8wSjQxZndaeEhWSit1ZWYz?=
+ =?utf-8?B?bWJNMDU2czNiUStCdUhvZ1BBRkRUTEx0M2M2VmlTL21rQklDUzlhNzVKdzVm?=
+ =?utf-8?B?aVZKbEVXUy8wOVlvWmUvOUwySGdXTGpkbkdSc1BqMjlLUXVoVi90TWZCRVh3?=
+ =?utf-8?B?bkYxS2F0bFptc0NlTFkvcWVBVUE0UjRNM01xckpXaTAzeGdjczU2aHM0Sklt?=
+ =?utf-8?B?blZkRTBZaEduOUwzL1cvWit6alp1d0llaFppaUhqTWljMTgzQ3lkZERpaktp?=
+ =?utf-8?B?bldmb3RxNERkRGxKVGNEeGF0SEg5eC85ZmZKZEs3eWFTZVpYUHFQOFgzYm8x?=
+ =?utf-8?B?Y3pSazU0YXlJcXVuTVZ2a0RoTkVjWHZibW11M2FUck0zbkR6V3BLODFUK3pp?=
+ =?utf-8?B?VmdUTTRtRWhvWnd2UHFrQUt4dmVuM2tSeUF2a2xZNitJbUpldWhBTXpnNGtF?=
+ =?utf-8?B?U05pKzBqS0ZwMW5NaFlhMzBleFFkaUltYUlVS3JNekZ1UUludFBkSWdGZVZh?=
+ =?utf-8?B?V05jZENid3piS215OUtIMmFFT2tjMzdJVi9MNk9hck9UcW1pM2NlMkRFVHpy?=
+ =?utf-8?B?eDhXZFRDY3EyWEJkVEczQ3c4S2V4TFJmeEIycnoySHRvS1IyKzdUWVJOQU1S?=
+ =?utf-8?B?blVjck40OGZ3WXhnS0lmVHd4Nnh3OFQ5THd3VXc1L1Z1Mncwbnl6dW85WWNI?=
+ =?utf-8?B?Q0JFT05NOE5mZjdFSHlWbTcrV0hPU0RZQy9RQStnYmdZc0hhT2tMVFZOb3NL?=
+ =?utf-8?B?ZC9jUlpJY3hIY1hEK1ZxUEtQSXFrRnZVUldKVktEZGx2R21BTHNwR1luOXRL?=
+ =?utf-8?B?MTRWckYrbXh5Q0RmYXRrelAwOGkzK3RsR2dPamJZSFJRbW5panJRTTJwZTBZ?=
+ =?utf-8?B?WTk4YW1IajhQdjBjaGgweFhkVFpqYTJyTEdTTTFBd0JMVFZ3Q0FDNDg4OFdV?=
+ =?utf-8?B?Mm84M3VPMk4rdXdvdTM0Y1V3Rk1Nc01LSUE2VWJvVWEzTWJJUXE3ZE9iRzdq?=
+ =?utf-8?B?Ym9lNGxtNFZTNmVoQkdpV04yL0JUTUhWSExtbTVJbzNuek9jQmtvU0pYdWYw?=
+ =?utf-8?B?NVFURnRjVi9lRnBNZVdvcGI4L2ZPK29KY3Ard3grbWh0cDlzTmlKaWUrSFZL?=
+ =?utf-8?B?azlMRnVkbHl3SitTWDNFTEJTUVpLK1EvaVd3VTVRZTQxTjBZSnJacm5JL1B3?=
+ =?utf-8?B?Wm5XSUhkUnpoYUhoZVhMbWVUU2lWaUFkQ1d4UTFlVEw1VkkwQXlrRWpaRGhE?=
+ =?utf-8?B?WGVtSDdXQmVRd2F5QmhlMk95VjJmWmViODAxR1EzdjVBdm1Vc2J6YmY3SVZk?=
+ =?utf-8?B?bldlTWNXZ3hZZE50ZXBjTGt1bFlMUW14Y0RFRll5QUJCcER2b0o3ZjdjT1p3?=
+ =?utf-8?B?Vm4wRU5KSHcxUlprODZObVc3bkI1VW9vd1JGUHY0b3orNmk4NGQxTmxJbEh0?=
+ =?utf-8?B?Tlo1SE1Yb2xUdEFoRmJDa2tTT1U3NnB0eXhDdWNkZjFrMDBtSHlaMndWa0NR?=
+ =?utf-8?Q?8E1DuXFRb64ZtKac=3D?=
+X-Exchange-RoutingPolicyChecked: dEp3zuBvZmIgntMxFT0DqrAW0IoC7HjxYMZ6HoqR62xrsxWwhNF+fhX3jSrltVR/QpsQPnwBYCx7C2lczJBbCm9ciF61A8wBUWY1KWEqMAUjg3sBZu1Lz8kPoIroNSG7It58OJ69rCfUa+nzCthYKrqUWRYuqJB7coAbip01EFWIYdSyORMmy7rUdJ4q03ywMuF89lmTl5B1gBEAnMjDX+927yvIquNX9ytcPtBsha1Wm0yz7IVW+xydXMKkfJxUo6F4VZcL0jT1BqMLcmao8+nEvp/A6xLFQL1LveBAihEi2A+ZrCZz/lH5Ijr8xF+G99nECKClOvROmZUhN8Qopw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c28f706d-b548-4d5f-d9fa-08df17edc75e
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7551.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2026 14:36:53.1250 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mmh773nBgENjLyu54bqAQVNWupqAxMMwwlAfPE8E/koxD/q7OjNCAP22Wzt3XIn6+oDOLAs8i5y0N6I7XSwqtjcNpBgaZ5pLFEsYSBtrSns=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB5964
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,304 +170,156 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---0000000000002693ba065bff1c41
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Thank you kindly!
-
-On Mon, Sep 21, 2026 at 9:03=E2=80=AFAM Nautiyal, Ankit K <
-ankit.k.nautiyal@intel.com> wrote:
-
->
-> On 9/19/2026 1:07 AM, Gil Dekel wrote:
-> > Hi all,
-> > If I'm reading this correctly, it seems like this patch was LGTMd but
-> > hasn't been merged yet.
-> > We would really like to pull this patch into our kernels as it is the
-> > source of a lot of log spam around seamless modesets.
-> >
-> > Is there a reason this hasn't been merged yet?
-> > Thank you in advance.
->
->
-> Thanks for the patch and the reviews. Pushed to drm-intel-next.
->
-> Regards,
->
-> Ankit
->
->
-> >
-> > Sincerely,
-> >
-> > On Wed, Jun 3, 2026 at 7:40=E2=80=AFAM Borah, Chaitanya Kumar
-> > <chaitanya.kumar.borah@intel.com> wrote:
-> >
-> >     On 6/3/2026 2:24 AM, Juasheem Sultan wrote:
-> >     > VSC SDP revision 7 (Panel Replay + Pixel Encoding/Colorimetry
-> >     Format)
-> >     > unpacking is missing in intel_dp_vsc_sdp_unpack(). This causes pi=
-pe
-> >     > state mismatches during state readout because the VSC SDP state
-> >     is not
-> >     > properly recovered when Panel Replay is active with colorimetry.
-> >     >
-> >     > Add the missing case for revision 7 to intel_dp_vsc_sdp_unpack()
-> >     > so that the state is correctly recovered.
-> >     >
-> >     > v2: Rebase onto latest upstream
-> >     > v3: Fix git commit description
-> >     >
-> >
-> >     LGTM.
-> >     Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com=
->
-> >
-> >     > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> >     > Cc: Chaitanya Borah <chaitanya.kumar.borah@intel.com>
-> >     > Cc: Gil Dekel <gildekel@google.com>
-> >     > Signed-off-by: Juasheem Sultan <jdsultan@google.com>
-> >     > ---
-> >     >   drivers/gpu/drm/i915/display/intel_dp.c | 6 +++++-
-> >     >   1 file changed, 5 insertions(+), 1 deletion(-)
-> >     >
-> >     > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> >     b/drivers/gpu/drm/i915/display/intel_dp.c
-> >     > index 6ef2a0043cda..b8746dab051c 100644
-> >     > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> >     > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> >     > @@ -5343,11 +5343,15 @@ static int
-> >     intel_dp_vsc_sdp_unpack(struct drm_dp_vsc_sdp *vsc,
-> >     >                *   VSC SDP supporting 3D stereo + Panel Replay.
-> >     >                */
-> >     >               return 0;
-> >     > -     } else if (sdp->sdp_header.HB2 =3D=3D 0x5 &&
-> >     sdp->sdp_header.HB3 =3D=3D 0x13) {
-> >     > +     } else if ((sdp->sdp_header.HB2 =3D=3D 0x5 ||
-> >     sdp->sdp_header.HB2 =3D=3D 0x7) &&
-> >     > +                     sdp->sdp_header.HB3 =3D=3D 0x13) {
-> >     >               /*
-> >     >                * - HB2 =3D 0x5, HB3 =3D 0x13
-> >     >                *   VSC SDP supporting 3D stereo + PSR2 + Pixel
-> >     Encoding/Colorimetry
-> >     >                *   Format.
-> >     > +              * - HB2 =3D 0x7, HB3 =3D 0x13
-> >     > +              *   VSC SDP supporting 3D stereo + Panel Replay +
-> >     Pixel Encoding/Colorimetry
-> >     > +              *   Format.
-> >     >                */
-> >     >               vsc->pixelformat =3D (sdp->db[16] >> 4) & 0xf;
-> >     >               vsc->colorimetry =3D sdp->db[16] & 0xf;
-> >
-> >
-> >
-> > --
-> >
-> >
-> >
-> > Gil Dekel
-> > *AluminiumOS*
-> > Desktop Experience
-> > Laptop & Tablets Display
-> >
-> > Software Engineer
-> > gildekel@google.com
-> > +1 (650) 861-2933 <(650)%20861-2933>
-> >
->
 
 
---=20
+On 9/21/2026 11:21 AM, Satyanarayana K V P wrote:
+> Add explicit bounds checks for GGTT base and size which can detect
+> and reject invalid configuration data from a misconfigured or
+> malfunctioning PF, preventing protocol violations and protecting VF
+> initialization.
+> 
+> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> ---
+> V9 -> V10:
+> - Updated vf_get_ggtt_alignment() function (Sashiko).
+> 
+> V8 -> V9:
+> - Align GGTT base and size to XE_PAGE_SIZE (Sashiko).
+> 
+> V7 -> V8:
+> - Align GGTT base and size to PAGE_SIZE (Michal W).
+> 
+> V6 -> V7:
+> - Added new helper to get ggtt alignment.
+> - Rearranged the base and sizes checks (Sashiko, Michal W).
+> 
+> V5 -> V6:
+> - Updated error codes for unaligned GGTT base and size (Michal W).
+> - Fixed review comments (Michal W).
+> 
+> V4 -> V5:
+> - New commit.
+> ---
+>  drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 45 ++++++++++++++++++++++++++---
+>  1 file changed, 41 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> index 715dfb04a1f3..1d79bde2ad73 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+> @@ -15,6 +15,7 @@
+>  #include "abi/guc_klvs_abi.h"
+>  #include "abi/guc_relay_actions_abi.h"
+>  #include "regs/xe_gt_regs.h"
+> +#include "regs/xe_gtt_defs.h"
+>  #include "regs/xe_guc_regs.h"
+>  
+>  #include "xe_assert.h"
+> @@ -486,26 +487,62 @@ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt)
+>  	return value;
+>  }
+>  
+> +static u64 vf_get_ggtt_alignment(struct xe_gt *gt)
+> +{
+> +	return xe_sriov_ggtt_alignment(gt_to_xe(gt));
+> +}
+> +
+>  static int vf_get_ggtt_info(struct xe_gt *gt)
+>  {
+> +	u64 alignment = vf_get_ggtt_alignment(gt);
+>  	struct xe_tile *tile = gt_to_tile(gt);
+>  	struct xe_guc *guc = &gt->uc.guc;
+> -	u64 start, size, ggtt_size;
+> +	u64 start, size, ggtt_size, end;
+> +	u64 start_query, size_query;
+>  	int err;
+>  
+>  	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+>  
+> -	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_START_KEY, &start);
+> +	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_START_KEY, &start_query);
 
-Gil Dekel
-*AluminiumOS*
-Desktop Experience
-Laptop & Tablets Display
+do we really need/want to rename existing vars?
 
-Software Engineer
-gildekel@google.com
-+1 (650) 861-2933
+>  	if (unlikely(err))
+>  		return err;
 
---0000000000002693ba065bff1c41
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+shouldn't we immediately check here for 4K misalignment?
+it is a clear VF provisioning violation, see [1]:
 
-<div dir=3D"ltr">Thank you kindly!</div><br><div class=3D"gmail_quote gmail=
-_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 21, 202=
-6 at 9:03=E2=80=AFAM Nautiyal, Ankit K &lt;<a href=3D"mailto:ankit.k.nautiy=
-al@intel.com">ankit.k.nautiyal@intel.com</a>&gt; wrote:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex"><br>
-On 9/19/2026 1:07 AM, Gil Dekel wrote:<br>
-&gt; Hi all,<br>
-&gt; If I&#39;m reading this correctly, it seems like this patch was LGTMd =
-but <br>
-&gt; hasn&#39;t been merged yet.<br>
-&gt; We would really like to pull this patch into our kernels as it is the =
-<br>
-&gt; source of a lot of log spam around seamless modesets.<br>
-&gt;<br>
-&gt; Is there a reason this hasn&#39;t been merged yet?<br>
-&gt; Thank you in advance.<br>
-<br>
-<br>
-Thanks for the patch and the reviews. Pushed to drm-intel-next.<br>
-<br>
-Regards,<br>
-<br>
-Ankit<br>
-<br>
-<br>
-&gt;<br>
-&gt; Sincerely,<br>
-&gt;<br>
-&gt; On Wed, Jun 3, 2026 at 7:40=E2=80=AFAM Borah, Chaitanya Kumar <br>
-&gt; &lt;<a href=3D"mailto:chaitanya.kumar.borah@intel.com" target=3D"_blan=
-k">chaitanya.kumar.borah@intel.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0On 6/3/2026 2:24 AM, Juasheem Sultan wrote:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; VSC SDP revision 7 (Panel Replay + Pixel Encod=
-ing/Colorimetry<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Format)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; unpacking is missing in intel_dp_vsc_sdp_unpac=
-k(). This causes pipe<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; state mismatches during state readout because =
-the VSC SDP state<br>
-&gt;=C2=A0 =C2=A0 =C2=A0is not<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; properly recovered when Panel Replay is active=
- with colorimetry.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; Add the missing case for revision 7 to intel_d=
-p_vsc_sdp_unpack()<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; so that the state is correctly recovered.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; v2: Rebase onto latest upstream<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; v3: Fix git commit description<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0LGTM.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Reviewed-by: Chaitanya Kumar Borah &lt;<a href=3D"m=
-ailto:chaitanya.kumar.borah@intel.com" target=3D"_blank">chaitanya.kumar.bo=
-rah@intel.com</a>&gt;<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; Cc: Jani Nikula &lt;<a href=3D"mailto:jani.nik=
-ula@linux.intel.com" target=3D"_blank">jani.nikula@linux.intel.com</a>&gt;<=
-br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; Cc: Chaitanya Borah &lt;<a href=3D"mailto:chai=
-tanya.kumar.borah@intel.com" target=3D"_blank">chaitanya.kumar.borah@intel.=
-com</a>&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; Cc: Gil Dekel &lt;<a href=3D"mailto:gildekel@g=
-oogle.com" target=3D"_blank">gildekel@google.com</a>&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; Signed-off-by: Juasheem Sultan &lt;<a href=3D"=
-mailto:jdsultan@google.com" target=3D"_blank">jdsultan@google.com</a>&gt;<b=
-r>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; ---<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0drivers/gpu/drm/i915/display/intel=
-_dp.c | 6 +++++-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A01 file changed, 5 insertions(+), 1=
- deletion(-)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; diff --git a/drivers/gpu/drm/i915/display/inte=
-l_dp.c<br>
-&gt;=C2=A0 =C2=A0 =C2=A0b/drivers/gpu/drm/i915/display/intel_dp.c<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; index 6ef2a0043cda..b8746dab051c 100644<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; --- a/drivers/gpu/drm/i915/display/intel_dp.c<=
-br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; +++ b/drivers/gpu/drm/i915/display/intel_dp.c<=
-br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; @@ -5343,11 +5343,15 @@ static int<br>
-&gt;=C2=A0 =C2=A0 =C2=A0intel_dp_vsc_sdp_unpack(struct drm_dp_vsc_sdp *vsc,=
-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 *=C2=A0 =C2=A0VSC SDP supporting 3D stereo + Panel Replay.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 */<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0return 0;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; -=C2=A0 =C2=A0 =C2=A0} else if (sdp-&gt;sdp_he=
-ader.HB2 =3D=3D 0x5 &amp;&amp;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0sdp-&gt;sdp_header.HB3 =3D=3D 0x13) {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0} else if ((sdp-&gt;sdp_h=
-eader.HB2 =3D=3D 0x5 ||<br>
-&gt;=C2=A0 =C2=A0 =C2=A0sdp-&gt;sdp_header.HB2 =3D=3D 0x7) &amp;&amp;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0sdp-&gt;sdp_header.HB3 =3D=3D 0x13) {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0/*<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 * - HB2 =3D 0x5, HB3 =3D 0x13<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 *=C2=A0 =C2=A0VSC SDP supporting 3D stereo + PSR2 + Pixel<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Encoding/Colorimetry<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 *=C2=A0 =C2=A0Format.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 * - HB2 =3D 0x7, HB3 =3D 0x13<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 *=C2=A0 =C2=A0VSC SDP supporting 3D stereo + Panel Replay +<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Pixel Encoding/Colorimetry<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 *=C2=A0 =C2=A0Format.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 */<br>
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0vsc-&gt;pixelformat =3D (sdp-&gt;db[16] &gt;&gt; 4) &amp; 0xf;<br=
->
-&gt;=C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0vsc-&gt;colorimetry =3D sdp-&gt;db[16] &amp; 0xf;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; -- <br>
-&gt;<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
-&gt; Gil Dekel<br>
-&gt; *AluminiumOS*<br>
-&gt; Desktop Experience<br>
-&gt; Laptop &amp; Tablets Display<br>
-&gt;<br>
-&gt; Software Engineer<br>
-&gt; <a href=3D"mailto:gildekel@google.com" target=3D"_blank">gildekel@goog=
-le.com</a><br>
-&gt; <a href=3D"tel:(650)%20861-2933" value=3D"+16508612933" target=3D"_bla=
-nk">+1 (650) 861-2933</a><br>
-&gt;<br>
-</blockquote></div><div><br clear=3D"all"></div><div><br></div><span class=
-=3D"gmail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_s=
-ignature"><div dir=3D"ltr"><table width=3D"90%" border=3D"0" cellspacing=3D=
-"0" cellpadding=3D"0" style=3D"margin:0px;padding:0px;max-width:348px"><tbo=
-dy style=3D"margin:0px;padding:0px"><tr style=3D"margin:0px;padding:0px"><t=
-d style=3D"padding:0px 0px 5px;font-family:Arial,Helvetica,Verdana,sans-ser=
-if;font-size:13px;line-height:15px;color:rgb(153,153,153)"></td></tr><tr st=
-yle=3D"margin:0px;padding:0px"><td style=3D"padding:0px"><table border=3D"0=
-" cellspacing=3D"0" cellpadding=3D"0" style=3D"margin:0px;padding:20px 0px =
-0px"><tbody style=3D"margin:0px;padding:0px"><tr style=3D"margin:0px;paddin=
-g:0px"><td valign=3D"top" style=3D"padding:0px 20px 0px 0px;vertical-align:=
-top;border-right:1px solid rgb(213,213,213)"><img src=3D"https://www.google=
-.com/logos/doodles/2015/inge-lehmanns-127th-birthday-5712482031108096.2-hp2=
-x.gif" width=3D"200" height=3D"87"><br></td><td style=3D"padding:0px 0px 0p=
-x 20px"><table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"ma=
-rgin:0px;padding:0px"><tbody style=3D"margin:0px;padding:0px"><tr style=3D"=
-margin:0px;padding:0px"><td colspan=3D"2" style=3D"padding:1px 0px 5px;font=
--family:Arial,Helvetica,Verdana,sans-serif;font-size:13px;line-height:13px;=
-color:rgb(56,58,53);font-weight:700">Gil Dekel<br></td></tr><tr style=3D"ma=
-rgin:0px;padding:0px"><td colspan=3D"2" style=3D"padding:0px 0px 5px;line-h=
-eight:13px"><font style=3D"font-family:Arial,Helvetica,Verdana,sans-serif;f=
-ont-size:11px"><font color=3D"#666666"><b>AluminiumOS</b></font><br><font c=
-olor=3D"#383a35">Desktop Experience</font><br><font color=3D"#383a35">Lapto=
-p &amp; Tablets Display</font><br></font><font face=3D"Arial, Helvetica, Ve=
-rdana, sans-serif"><span style=3D"font-size:11px">=C2=A0</span></font><br><=
-font color=3D"#999999" style=3D"font-family:Arial,Helvetica,Verdana,sans-se=
-rif;font-size:11px">Software Engineer</font></td></tr><tr style=3D"margin:0=
-px;padding:0px"><td colspan=3D"2" style=3D"padding:0px 0px 5px;font-family:=
-Arial,Helvetica,Verdana,sans-serif;font-size:11px;line-height:13px;color:rg=
-b(56,58,53)"><a href=3D"mailto:gildekel@google.com" target=3D"_blank">gilde=
-kel@google.com</a></td></tr><tr style=3D"margin:0px;padding:0px"><td colspa=
-n=3D"2" style=3D"padding:0px 0px 3px;font-family:Arial,Helvetica,Verdana,sa=
-ns-serif;font-size:11px;line-height:13px;color:rgb(3,112,248)">+1 (650) 861=
--2933</td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody>=
-</table></div></div>
+	if (!IS_ALIGNED(start, XE_PAGE_SIZE))
+		return -EINVAL; // or -EUCLEAN or -EDOM or -ERANGE
 
---0000000000002693ba065bff1c41--
+[1] https://elixir.bootlin.com/linux/v7.3-rc3/source/drivers/gpu/drm/xe/abi/guc_klvs_abi.h#L280
+
+>  
+> -	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_SIZE_KEY, &size);
+> +	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_SIZE_KEY, &size_query);
+>  	if (unlikely(err))
+>  		return err;
+
+ditto
+
+>  
+> -	if (!size)
+> +	if (!size_query)
+>  		return -ENODATA;
+>  
+> +	start = ALIGN(start_query, alignment);
+
+not needed, as it looks any 64K alignment is handled on the per-object basis
+by the xe_ggtt layer
+
+> +	if (check_add_overflow(start_query, size_query, &end)) {
+> +		xe_gt_sriov_err(gt, "GGTT range overflow: base %#llx, size %#llx\n",
+> +				start_query, size_query);
+
+we are not so verbose for other error cases,
+maybe demote to dbg/dbg_verbose or drop completely?
+
+> +		return -ERANGE;
+> +	}
+> +
+> +	end = ALIGN_DOWN(end, alignment);
+
+not needed, see above
+
+> +	if (end <= start) {
+
+impossible now, as at this point:
+ both start & size should be already 4K aligned
+ end = start + size
+ and size can't be 0
+
+> +		xe_gt_sriov_err(gt, "GGTT range too small: base %#llx, size %#llx\n",
+> +				start_query, size_query);
+> +		return -ERANGE;
+> +	}
+> +
+> +	size = end - start;
+> +
+> +	if (start != start_query)
+> +		xe_gt_sriov_notice(gt, "Unaligned GGTT base %#llx aligned to %#llx\n",
+> +				   start_query, start);
+> +	if (size != size_query)
+> +		xe_gt_sriov_notice(gt, "Unaligned GGTT size %#llx aligned to %#llx\n",
+> +				   size_query, size);
+
+will not be needed after adding above checks for 4K alignment right after query
+
+> +
+> +	if (start < xe_wopcm_size(gt_to_xe(gt)) || end > GUC_GGTT_TOP) {
+
+nit: we can check "start < wopcm" right after query
+nit: we can check "end > GUC_TOP" right after query
+
+> +		xe_gt_sriov_err(gt, "Out of bounds GGTT configuration: base %#llx, size %#llx\n",
+> +				start, size);
+> +		return -ERANGE;
+> +	}
+> +
+>  	xe_tile_sriov_vf_ggtt_base_store(tile, start);
+>  	ggtt_size = xe_tile_sriov_vf_ggtt(tile);
+>  	if (!ggtt_size) {
+
