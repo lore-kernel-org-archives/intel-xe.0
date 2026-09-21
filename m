@@ -4,43 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1B30C982ED
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 11:41:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19144C982E1
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 11:47:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD1C310E479;
-	Mon, 21 Sep 2026 11:41:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kjgXHNkO";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A00B10E479
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 11:41:11 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 3B29C600C8;
- Mon, 21 Sep 2026 11:41:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD4301F000FF;
- Mon, 21 Sep 2026 11:41:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1789990869;
- bh=iOM1sdEhQp6n/TrPdP8QZMHbn8j3NVVYys2iH6YFwcE=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=kjgXHNkOrgxPL7W0mWyKiQrUt68FHx4GhCs8mHNxcmAlvCiWtcKpavvlpH22wIdLY
- NSH2xJuy1y5J5xs6qP8lbP71G8QWORVXTU6lF57cXHKfOPr2F+UPI4L0ZeFxx2yKa/
- qQd84URJUf1EdG8hNy1uKIa3JUFgApGoCRhMv3B61v1kndP8zQ8JZvBgX+cIsOBIYo
- menkYmGN4bygwGvWDpIosDQwXX+u7SzkP1lRcg2GWJyRwv4txtN9E8h+FXx6hSKdBu
- E8LxtnPSHNHwF+i/P2TedBfoZ2IkowrTrGPwNptGE/V/eJZwYUCTZ8LSIXPTdj6yQ6
- Ou6oYTGUmejGg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v1] drm/xe/sysctrl: Fix byte-order reversal in mailbox
- frame transport
-To: =?utf-8?b?QW5vb3AsIFZpamF5?= <anoop.c.vijay@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4C1D89ABE;
+	Mon, 21 Sep 2026 11:47:29 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A53789ABE;
+ Mon, 21 Sep 2026 11:47:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8205203725357544299=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Refresh_TTM_LRU_on_SVM_pref?=
+ =?utf-8?q?etch_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260921113030.4075591-2-anoop.c.vijay@intel.com>
-References: <20260921113030.4075591-2-anoop.c.vijay@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 21 Sep 2026 11:41:09 +0000
-Message-Id: <20260921114109.BD4301F000FF@smtp.kernel.org>
+Date: Mon, 21 Sep 2026 11:47:28 -0000
+Message-ID: <178999124849.186928.5444038185741877262@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260921093651.2995928-6-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20260921093651.2995928-6-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,87 +36,205 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] drm/xe/sysctrl: transport fix breaks host-endian payload parsing o=
-n BE systems
---
+--===============8205203725357544299==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 017fa1e0d0cfc7a44d6ea80c21fb3e61c82f81e1
-Author: Anoop Vijay <anoop.c.vijay@intel.com>
-drm/xe/sysctrl: Fix byte-order reversal in mailbox frame transport
+== Series Details ==
 
-This commit fixes byte-swapping in the mailbox frame transport on
-big-endian systems by using get_unaligned_le32() and put_unaligned_le32().
-This preserves the little-endian wire format instead of treating the byte
-stream as host-endian u32 values.
+Series: Refresh TTM LRU on SVM prefetch (rev2)
+URL   : https://patchwork.freedesktop.org/series/174276/
+State : failure
 
-Link: https://patchwork.freedesktop.org/patch/751309/?series=3D172513&rev=
-=3D5
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe=
-/xe_sysctrl_mailbox.c
-> index 72baf1aa4b3ad..d5a34a24a0d60 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+CI Bug Log - changes from xe-5792-dc206980a7161808eb0216a277afadc04244e091_BAT -> xe-pw-174276v2_BAT
+====================================================
 
-[ ... ]
+Summary
+-------
 
-> @@ -84,16 +85,16 @@ static int sysctrl_read_frame(struct xe_sysctrl *sc, =
-void *frame,
->  		SYSCTRL_MB_DATA0, SYSCTRL_MB_DATA1, SYSCTRL_MB_DATA2, SYSCTRL_MB_DATA3
->  	};
->  	struct xe_device *xe =3D sc_to_xe(sc);
-> -	u32 val[XE_SYSCTRL_MB_FRAME_SIZE / sizeof(u32)] =3D {0};
-> +	u8 buf[XE_SYSCTRL_MB_FRAME_SIZE] =3D {};
->  	u32 dw =3D DIV_ROUND_UP(len, sizeof(u32));
->  	u32 i;
-> =20
->  	xe_assert(xe, len > 0 && len <=3D XE_SYSCTRL_MB_FRAME_SIZE);
-> =20
->  	for (i =3D 0; i < dw; i++)
-> -		val[i] =3D xe_mmio_read32(sc->mmio, regs[i]);
-> +		put_unaligned_le32(xe_mmio_read32(sc->mmio, regs[i]), buf + i * sizeof=
-(u32));
+  **FAILURE**
 
-[Severity: High]
-Does this correctly enforce a strict little-endian byte stream in the
-buffer, but inadvertently break host-endian payload parsing on big-endian
-systems?
+  Serious unknown changes coming with xe-pw-174276v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-174276v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-While this fixes the transport byte-order, application payload structures
-like xe_sysctrl_app_status_resp and xe_ras_get_counter_response define
-their fields as native host-endian u32 and u64. Because they are natively
-accessed by callers, they will read byte-swapped, corrupted data on
-big-endian architectures.
+  
 
-For example, in drivers/gpu/drm/xe/xe_sysctrl.c:xe_sysctrl_check_app_status=
-():
-    flags =3D resp.flags;
+Participating hosts (14 -> 14)
+------------------------------
 
-And in drivers/gpu/drm/xe/xe_ras.c:get_counter():
-    *value =3D response.value;
+  No changes in participating hosts
 
-Prior to this patch, readl()/writel() accidentally byte-swapped the entire
-payload word-by-word on big-endian systems, which masked the fact that
-payload struct fields weren't using __le32/__le64.
+Possible new issues
+-------------------
 
-With this transport fix, will all sysctrl payload structs need to be updated
-to use __le32/__le64 with explicit endianness conversions to prevent sysctrl
-status checks and RAS counters from failing or reporting incorrect health
-data?
+  Here are the unknown changes that may have been introduced in xe-pw-174276v2_BAT:
 
-> =20
-> -	memcpy(frame, val, len);
-> +	memcpy(frame, buf, len);
-> =20
->  	return 0;
->  }
+### IGT changes ###
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260921113030.4075=
-591-2-anoop.c.vijay@intel.com?part=3D1
+#### Possible regressions ####
+
+  * igt@runner@aborted:
+    - bat-ptl-2:          NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v2/bat-ptl-2/igt@runner@aborted.html
+
+  * igt@xe_exec_system_allocator@many-execqueues-malloc:
+    - bat-bmg-vm:         [PASS][2] -> [DMESG-WARN][3] +1 other test dmesg-warn
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5792-dc206980a7161808eb0216a277afadc04244e091/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v2/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html
+
+  * igt@xe_exec_system_allocator@twice-free:
+    - bat-bmg-1:          [PASS][4] -> [DMESG-WARN][5] +1 other test dmesg-warn
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5792-dc206980a7161808eb0216a277afadc04244e091/bat-bmg-1/igt@xe_exec_system_allocator@twice-free.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v2/bat-bmg-1/igt@xe_exec_system_allocator@twice-free.html
+
+  * igt@xe_multigpu_svm@mgpu-atomic-op-prefetch:
+    - bat-bmg-3:          [PASS][6] -> [ABORT][7]
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5792-dc206980a7161808eb0216a277afadc04244e091/bat-bmg-3/igt@xe_multigpu_svm@mgpu-atomic-op-prefetch.html
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v2/bat-bmg-3/igt@xe_multigpu_svm@mgpu-atomic-op-prefetch.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-174276v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_exec_system_allocator@many-execqueues-free:
+    - bat-bmg-vm:         [DMESG-WARN][8] -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5792-dc206980a7161808eb0216a277afadc04244e091/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v2/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html
+
+  * igt@xe_exec_system_allocator@threads-shared-vm-many-malloc:
+    - bat-bmg-1:          [DMESG-WARN][10] -> [PASS][11] +1 other test pass
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5792-dc206980a7161808eb0216a277afadc04244e091/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v2/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-5792-dc206980a7161808eb0216a277afadc04244e091 -> xe-pw-174276v2
+
+  IGT_9103: f307fd753abbe6c03d0a6e1c769fc6020ebd5d86 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5792-dc206980a7161808eb0216a277afadc04244e091: dc206980a7161808eb0216a277afadc04244e091
+  xe-pw-174276v2: 174276v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v2/index.html
+
+--===============8205203725357544299==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Refresh TTM LRU on SVM prefetch (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174276/">https://patchwork.freedesktop.org/series/174276/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5792-dc206980a7161808eb0216a277afadc04244e091_BAT -&gt; xe-pw-174276v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-174276v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-174276v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-174276v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>bat-ptl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v2/bat-ptl-2/igt@runner@aborted.html">FAIL</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_system_allocator@many-execqueues-malloc:</p>
+<ul>
+<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5792-dc206980a7161808eb0216a277afadc04244e091/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v2/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_system_allocator@twice-free:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5792-dc206980a7161808eb0216a277afadc04244e091/bat-bmg-1/igt@xe_exec_system_allocator@twice-free.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v2/bat-bmg-1/igt@xe_exec_system_allocator@twice-free.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_multigpu_svm@mgpu-atomic-op-prefetch:</p>
+<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5792-dc206980a7161808eb0216a277afadc04244e091/bat-bmg-3/igt@xe_multigpu_svm@mgpu-atomic-op-prefetch.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v2/bat-bmg-3/igt@xe_multigpu_svm@mgpu-atomic-op-prefetch.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-174276v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_exec_system_allocator@many-execqueues-free:</p>
+<ul>
+<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5792-dc206980a7161808eb0216a277afadc04244e091/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v2/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_system_allocator@threads-shared-vm-many-malloc:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5792-dc206980a7161808eb0216a277afadc04244e091/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v2/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5792-dc206980a7161808eb0216a277afadc04244e091 -&gt; xe-pw-174276v2</li>
+</ul>
+<p>IGT_9103: f307fd753abbe6c03d0a6e1c769fc6020ebd5d86 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5792-dc206980a7161808eb0216a277afadc04244e091: dc206980a7161808eb0216a277afadc04244e091<br />
+  xe-pw-174276v2: 174276v2</p>
+
+</body>
+</html>
+
+--===============8205203725357544299==--
