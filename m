@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7901C982EE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E76BCC982E1
 	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 09:21:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70AB410E5CF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9944010E602;
 	Mon, 21 Sep 2026 09:21:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LylhbzyI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G+ctn94r";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AEEC10E579
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 09:21:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB4C610E59E
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 09:21:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789982483; x=1821518483;
+ t=1789982485; x=1821518485;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4/okpgSqDzfuQspm1WDZ3XLd6esy5JhZxBknIS+4KtE=;
- b=LylhbzyIg2uI9jNxgaPTAzqkm3sTSnPplm59gNWTyim4bALJJHwruy6a
- Mg0kGUmcDJZ+Ty2bkziFbBp7/N5rDL2K6UJXwZG+ML/YfEFBIBH/9bXBc
- AOCHJSWezhJMOMJfHtA/AbXGGYzUhyTUzk+BAg0qiOBC1RKaEX10TdKFW
- LhGwdNlpmyav/ufnw2bu4Ru0B/ZlitWNLVHv8wTrkFFCbD2jmHazcSrLX
- QMNv4GGOJ7CjNjlx5HI5zWii5AWM6GGnAcEHNI+zQnwSCbAm69ykN2cSo
- rb7DpwIkSRrSyWNpS2zIiAcLYTjpjbY+sdsfxdO2dNhOarZtwAbimKR+P Q==;
-X-CSE-ConnectionGUID: tpu7VLWaT7SUeUxLTomtuw==
-X-CSE-MsgGUID: 4K7LfdoXTAWhgOZG/j2pmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11911"; a="90606619"
-X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="90606619"
+ bh=/BMr5QWbRjNvoKxN9IZqV+TgEQE04Iq0C0qsHIGTZL8=;
+ b=G+ctn94rBZUlg8yr0kWcYIB0EiHlRVin3nogTko3QZIcPIKxo3AYhWQL
+ C4QKPwjBusuf0BosGA8nE8u4Vd+/a0ndoVCplgTuQYIZWa04jDHLrPFyE
+ dTPx7vJtua6YldxCo4YPB6Yu2Q5vztu3UiOzrGDCNqLMRQorQqlGOUzfY
+ 3aODFLnVzajltKlCsCRyNI2R9lVD+5rb1PR5O7MdyLyeIUsbWf0ndtPmr
+ nFPxo8G6RfmJuAxAogIXBtlxeu08TnHdcQhl+9/+rqgoA5jct87v3BdP5
+ uYvlP8x/xDgEg11+610VNm0xg5QX4xB4T03wvdEdWmcXEjBBOoTJVSpLE g==;
+X-CSE-ConnectionGUID: ys4W4jMJQ5mi6pLMwIBZgA==
+X-CSE-MsgGUID: 9P2DGiyuTZSFo3kVxmJnDw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11911"; a="90606624"
+X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="90606624"
 Received: from fmviesa012.fm.intel.com ([10.60.135.152])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2026 02:21:23 -0700
-X-CSE-ConnectionGUID: r9xvM9UKRSm6/6Uqz8UjFQ==
-X-CSE-MsgGUID: DlY93JetTCGr9ZxfPXNVFg==
+ 21 Sep 2026 02:21:25 -0700
+X-CSE-ConnectionGUID: fjSLUc5LT4O9e/DxcaWHUA==
+X-CSE-MsgGUID: jfbXmbtdRl6mm81OuiOXsw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; 
-   d="scan'208";a="3578435"
+   d="scan'208";a="3578444"
 Received: from ksatya-dev.iind.intel.com ([10.190.229.72])
- by fmviesa012.fm.intel.com with ESMTP; 21 Sep 2026 02:21:23 -0700
+ by fmviesa012.fm.intel.com with ESMTP; 21 Sep 2026 02:21:24 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v10 08/10] drm/xe/vf: Add alignment check for queried VRAM size
-Date: Mon, 21 Sep 2026 14:51:07 +0530
-Message-ID: <20260921092101.1243989-20-satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v10 09/10] drm/xe/ggtt: Add KUnit stub for
+ xe_ggtt_shift_nodes()
+Date: Mon, 21 Sep 2026 14:51:08 +0530
+Message-ID: <20260921092101.1243989-21-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260921092101.1243989-12-satyanarayana.k.v.p@intel.com>
 References: <20260921092101.1243989-12-satyanarayana.k.v.p@intel.com>
@@ -67,34 +68,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add explicit alignment check for VRAM size which can detect and reject
-invalid configuration data from a misconfigured or malfunctioning PF,
-preventing protocol violations and protecting VF initialization.
+Allow to replace xe_ggtt_shift_nodes() with a stub so that VF GGTT
+provisioning can be exercised on the fake xe device, which has no real
+struct xe_ggtt instance.
 
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/xe/xe_ggtt.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 1d79bde2ad73..37baeb1058b2 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -598,6 +598,12 @@ static int vf_get_lmem_info(struct xe_gt *gt)
- 		return -EREMCHG;
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 2557e51bb7cc..082a6bbef01c 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -5,6 +5,7 @@
  
-+	if (!IS_ALIGNED(size, SZ_2M)) {
-+		xe_gt_sriov_err(gt, "Unaligned LMEM size %llu, expected %llu\n",
-+				size, ALIGN(size, SZ_2M));
-+		return -EINVAL;
-+	}
+ #include "xe_ggtt.h"
+ 
++#include <kunit/static_stub.h>
+ #include <kunit/visibility.h>
+ #include <linux/fault-inject.h>
+ #include <linux/io-64-nonatomic-lo-hi.h>
+@@ -654,6 +655,8 @@ static void xe_ggtt_invalidate_engine(struct xe_ggtt *ggtt)
+  */
+ void xe_ggtt_shift_nodes(struct xe_ggtt *ggtt, u64 new_start)
+ {
++	KUNIT_STATIC_STUB_REDIRECT(xe_ggtt_shift_nodes, ggtt, new_start);
 +
- 	string_get_size(size, 1, STRING_UNITS_2, size_str, sizeof(size_str));
- 	xe_gt_sriov_dbg_verbose(gt, "LMEM %lluM %s\n", size / SZ_1M, size_str);
+ 	guard(mutex)(&ggtt->lock);
  
+ 	xe_tile_assert(ggtt->tile, new_start >= xe_wopcm_size(tile_to_xe(ggtt->tile)));
 -- 
 2.53.0
 
