@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B1DFC982DE
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 09:21:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6251CC982DE
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 09:21:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ECED10E5C2;
-	Mon, 21 Sep 2026 09:21:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11FE410E59E;
+	Mon, 21 Sep 2026 09:21:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jt3RD6W9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VKy/woH7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1666310E5C2
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 09:21:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8038F10E5C2
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Sep 2026 09:21:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789982482; x=1821518482;
+ t=1789982481; x=1821518481;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=92ujABEU/3wutm2xkhvB2KZp+tS7zdl5pSp0aroXPMc=;
- b=Jt3RD6W9YB3hbJkgLkE49iiye+ZdlIRoi0sQ4FJWeQmpvh3ltU2qFa6B
- Tbx/+neKj6jLCWEI3vH7fwCt7QRCCpZCvl60FZ4b1cMJe1IShq1pg2l3X
- l9Y9defAdYpGHYn0k6nHYohgErNBGNj42GTFGCZPD+hw+Ri8TP7/8sRJf
- xgCgAWvU/wBxfz8o/55r1NVj3fhThRk7hZfmL0KHkxHA3uWusO6k4hYK1
- OyizIoanUPetSlXojYsjd5aDHRVHYUL/gFjxENvelD63SjN+ryL/idsim
- /xiqJDg9puICdHCz8thn1ghBGMvy4WuLJuuA30tanXpyYkEJ6FBbF6hmE g==;
-X-CSE-ConnectionGUID: mFwuA2ViQfaaJFr/c6d9Hw==
-X-CSE-MsgGUID: Vk6zIT+pTnSTy2D0koTOFg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11911"; a="90606618"
-X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="90606618"
+ bh=IpnDKYh0L1pcQot4p+KEiXU7qRIdXgOJnBd90NcAfnQ=;
+ b=VKy/woH7/NNMJEr/owJssNo6wrjiOv6KyYZleDv9+35zSIRNFmSO61gp
+ WwulMxP1aV7sjsKzg7+IIhBZznAGyjVTqvtJHbNXFHPochWMKCRa//QuL
+ DGJU8WQ6iD/rYcNz46Ym3vd1D0yC4RTbZ1ztLkJRSoTJ98E4kQoxSciXZ
+ 1JHGC7Z0ym+9WrAUhBzPsR60Tol6xuyrNYCRL4YPFv3yFcPqOZxbsHmvK
+ tf+8ZwLf3M6iCEY0Nn8zByQm3RewEq9qHrmtGYcQOMMHrhNZeXuwhWHI/
+ i3GyUFqQGPy/VvvByAvaZFQQGrhzb/FuhBywqkyL0wKGe2cqwJiycKFRE A==;
+X-CSE-ConnectionGUID: W9HGQDFZRJ2ob4JkDx0QVg==
+X-CSE-MsgGUID: ARkDFcnURNmlWF+pRHPGKQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11911"; a="90606616"
+X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="90606616"
 Received: from fmviesa012.fm.intel.com ([10.60.135.152])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2026 02:21:22 -0700
-X-CSE-ConnectionGUID: NpltMdFtQeaz4UmiTBWQ3w==
-X-CSE-MsgGUID: fIUYbMZCSrub2vsbHkNjiw==
+ 21 Sep 2026 02:21:20 -0700
+X-CSE-ConnectionGUID: KeHEBIDHTdelZ79/pX54Pg==
+X-CSE-MsgGUID: Gd4yeiqcTl6BzBdl1EtMOA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; 
-   d="scan'208";a="3578425"
+   d="scan'208";a="3578420"
 Received: from ksatya-dev.iind.intel.com ([10.190.229.72])
- by fmviesa012.fm.intel.com with ESMTP; 21 Sep 2026 02:21:21 -0700
+ by fmviesa012.fm.intel.com with ESMTP; 21 Sep 2026 02:21:20 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v10 07/10] drm/xe/vf: Add bounds checking for queried GGTT
- base and size
-Date: Mon, 21 Sep 2026 14:51:06 +0530
-Message-ID: <20260921092101.1243989-19-satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v10 06/10] drm/xe/sriov: Add helper for VF GGTT provisioning
+ alignment
+Date: Mon, 21 Sep 2026 14:51:05 +0530
+Message-ID: <20260921092101.1243989-18-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260921092101.1243989-12-satyanarayana.k.v.p@intel.com>
 References: <20260921092101.1243989-12-satyanarayana.k.v.p@intel.com>
@@ -68,116 +68,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add explicit bounds checks for GGTT base and size which can detect
-and reject invalid configuration data from a misconfigured or
-malfunctioning PF, preventing protocol violations and protecting VF
-initialization.
+The alignment of a GGTT range provisioned to a VF is part of the PF/VF
+contract: the PF must allocate the range with it, and the VF must be
+able to verify that the range it was assigned respects it. Since PF and
+VF run on the same hardware, both can derive the value independently.
+
+Move it to xe_sriov_ggtt_alignment() so both sides share a single
+definition.
 
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
 V9 -> V10:
-- Updated vf_get_ggtt_alignment() function (Sashiko).
+- Created a new helper to get the GGTT allocation (Sashiko).
 
 V8 -> V9:
-- Align GGTT base and size to XE_PAGE_SIZE (Sashiko).
-
-V7 -> V8:
-- Align GGTT base and size to PAGE_SIZE (Michal W).
-
-V6 -> V7:
-- Added new helper to get ggtt alignment.
-- Rearranged the base and sizes checks (Sashiko, Michal W).
-
-V5 -> V6:
-- Updated error codes for unaligned GGTT base and size (Michal W).
-- Fixed review comments (Michal W).
-
-V4 -> V5:
-- New commit.
+- Update PF GGTT alignment to XE_PAGE_SIZE (Sashiko).
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c | 45 ++++++++++++++++++++++++++---
- 1 file changed, 41 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c |  4 +---
+ drivers/gpu/drm/xe/xe_sriov.c              | 11 +++++++++++
+ drivers/gpu/drm/xe/xe_sriov.h              |  1 +
+ 3 files changed, 13 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 715dfb04a1f3..1d79bde2ad73 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -15,6 +15,7 @@
- #include "abi/guc_klvs_abi.h"
- #include "abi/guc_relay_actions_abi.h"
- #include "regs/xe_gt_regs.h"
-+#include "regs/xe_gtt_defs.h"
- #include "regs/xe_guc_regs.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index 6947aeed458e..04ee0fc08804 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -441,9 +441,7 @@ static int pf_refresh_vf_cfg(struct xe_gt *gt, unsigned int vfid)
  
- #include "xe_assert.h"
-@@ -486,26 +487,62 @@ u32 xe_gt_sriov_vf_gmdid(struct xe_gt *gt)
- 	return value;
+ static u64 pf_get_ggtt_alignment(struct xe_gt *gt)
+ {
+-	struct xe_device *xe = gt_to_xe(gt);
+-
+-	return IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
++	return xe_sriov_ggtt_alignment(gt_to_xe(gt));
  }
  
-+static u64 vf_get_ggtt_alignment(struct xe_gt *gt)
+ static u64 pf_get_min_spare_ggtt(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+index f3835867fce5..d7704d226554 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.c
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -174,3 +174,14 @@ int xe_sriov_init_late(struct xe_device *xe)
+ 
+ 	return 0;
+ }
++
++/**
++ * xe_sriov_ggtt_alignment() - Alignment of the GGTT range provisioned to a VF.
++ * @xe: the &xe_device
++ *
++ * Return: Alignment in bytes.
++ */
++u64 xe_sriov_ggtt_alignment(struct xe_device *xe)
 +{
-+	return xe_sriov_ggtt_alignment(gt_to_xe(gt));
++	return xe_vram_alignment(xe);
 +}
-+
- static int vf_get_ggtt_info(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
+index 72e55543c30e..ee770afca00b 100644
+--- a/drivers/gpu/drm/xe/xe_sriov.h
++++ b/drivers/gpu/drm/xe/xe_sriov.h
+@@ -19,6 +19,7 @@ void xe_sriov_probe_early(struct xe_device *xe);
+ void xe_sriov_print_info(struct xe_device *xe, struct drm_printer *p);
+ int xe_sriov_init(struct xe_device *xe);
+ int xe_sriov_init_late(struct xe_device *xe);
++u64 xe_sriov_ggtt_alignment(struct xe_device *xe);
+ 
+ static inline enum xe_sriov_mode xe_device_sriov_mode(const struct xe_device *xe)
  {
-+	u64 alignment = vf_get_ggtt_alignment(gt);
- 	struct xe_tile *tile = gt_to_tile(gt);
- 	struct xe_guc *guc = &gt->uc.guc;
--	u64 start, size, ggtt_size;
-+	u64 start, size, ggtt_size, end;
-+	u64 start_query, size_query;
- 	int err;
- 
- 	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
- 
--	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_START_KEY, &start);
-+	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_START_KEY, &start_query);
- 	if (unlikely(err))
- 		return err;
- 
--	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_SIZE_KEY, &size);
-+	err = guc_action_query_single_klv64(guc, GUC_KLV_VF_CFG_GGTT_SIZE_KEY, &size_query);
- 	if (unlikely(err))
- 		return err;
- 
--	if (!size)
-+	if (!size_query)
- 		return -ENODATA;
- 
-+	start = ALIGN(start_query, alignment);
-+	if (check_add_overflow(start_query, size_query, &end)) {
-+		xe_gt_sriov_err(gt, "GGTT range overflow: base %#llx, size %#llx\n",
-+				start_query, size_query);
-+		return -ERANGE;
-+	}
-+
-+	end = ALIGN_DOWN(end, alignment);
-+	if (end <= start) {
-+		xe_gt_sriov_err(gt, "GGTT range too small: base %#llx, size %#llx\n",
-+				start_query, size_query);
-+		return -ERANGE;
-+	}
-+
-+	size = end - start;
-+
-+	if (start != start_query)
-+		xe_gt_sriov_notice(gt, "Unaligned GGTT base %#llx aligned to %#llx\n",
-+				   start_query, start);
-+	if (size != size_query)
-+		xe_gt_sriov_notice(gt, "Unaligned GGTT size %#llx aligned to %#llx\n",
-+				   size_query, size);
-+
-+	if (start < xe_wopcm_size(gt_to_xe(gt)) || end > GUC_GGTT_TOP) {
-+		xe_gt_sriov_err(gt, "Out of bounds GGTT configuration: base %#llx, size %#llx\n",
-+				start, size);
-+		return -ERANGE;
-+	}
-+
- 	xe_tile_sriov_vf_ggtt_base_store(tile, start);
- 	ggtt_size = xe_tile_sriov_vf_ggtt(tile);
- 	if (!ggtt_size) {
 -- 
 2.53.0
 
