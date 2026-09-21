@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78239C982DA
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 05:37:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BB2CC982E1
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Sep 2026 05:37:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A26F10E2EE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2A1110E03E;
 	Mon, 21 Sep 2026 05:37:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kZgKNJzA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UJdhJChR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13B3410E2BA;
- Mon, 21 Sep 2026 05:37:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 749D410E2BA;
+ Mon, 21 Sep 2026 05:37:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1789969048; x=1821505048;
+ t=1789969046; x=1821505046;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VCuBY5u7jwcg0bvj98jg9sq085cIlH03NIDDOnOt8AE=;
- b=kZgKNJzAtKLGEYYNJn7jg4EjwIkOhTP3aK0yQBpnjR+kQx/iW3nOr7L8
- 7QZXAg47Z5xSK2I54hLgekN7wYWuUHF472ATn1Y/vqUI7coTsPLLNujzH
- L7x7uPvuOr7qhQ8nrPV4ev/HyAR09RHYw73NKcaaR5OXBPxpwYdQCOvbv
- wM6d+iC6bTOa60z3BhwYyL91XWlrEgEL3HlDftoKDb31ga5ZAvkpzM7wc
- N/2W/bngR+UsK7PZ4MFAJRz0o8f0HUD8WKueUrzrP2kaYC/B2WnqojWg5
- JY/N3neE7LRVOr2hCk9Mqh3wiatn5kCxuHY4snwtIuvZQndJiXDI8keNt g==;
-X-CSE-ConnectionGUID: REykk+zTTqqJntT/VqMiKw==
-X-CSE-MsgGUID: KeNPSp7cTUGwOaWDFRTMlQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11911"; a="966631"
+ bh=R6BAo/VGb0CryeuG1g+fXGbWYPOhelKGOOUrsYzbm5o=;
+ b=UJdhJChRNaDK+dtaJ6nY/O/Y3QE5g9NFTZxWByL/UlcusrcnOZiHAWgX
+ QY0xJdfPqZO17DPHcsEo++P8Ykk7sqrRcfdM9GnfVY2ayVwAqwfh2JZWa
+ T6etPr5uggSczqJ3PAsKUJz8KgZ4KioEnh846lOLThSv+BMznvgov+RCq
+ xYJ0E8izNcuJLW4XhNiHsHyVe7cQrCllf3aWHqyb3EuaU2eoD9ZCkdRyl
+ kkDOjIjkkHDrEJ4LRTjSnlfAjw1Wxqz6clMzePO6DE/BvK+JnXtxgjnqN
+ pE8gR6X3z+KAfSJjdruxYywALpWkkDDC/5DsFPNC2b4HcEYfzvIJOieUs g==;
+X-CSE-ConnectionGUID: y/rzcNRPTQav/3mgPeCvqw==
+X-CSE-MsgGUID: IbqIeOqOSLyE6hlncHiGjQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11911"; a="966630"
 X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; 
-   d="scan'208";a="966631"
+   d="scan'208";a="966630"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa115.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2026 22:37:28 -0700
-X-CSE-ConnectionGUID: m1+qfL5jSNK6HifLJEJouA==
-X-CSE-MsgGUID: GLsRfoKjTVyp3zYRGiDlAA==
+ 20 Sep 2026 22:37:26 -0700
+X-CSE-ConnectionGUID: AeMR06cXTXiLBBe0zINZHQ==
+X-CSE-MsgGUID: IdVC8uGWTvq5BKHrwxB8nQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="300444504"
+X-IronPort-AV: E=Sophos;i="6.27,114,1787036400"; d="scan'208";a="300444498"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa001.fm.intel.com with ESMTP; 20 Sep 2026 22:37:27 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 20 Sep 2026 22:37:25 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 8/8] drm/i915/psr: log DPCD access errors
-Date: Mon, 21 Sep 2026 11:07:10 +0530
-Message-Id: <20260921053710.1586776-9-suraj.kandpal@intel.com>
+Subject: [PATCH 7/8] drm/i915/dptest: log DPCD access errors
+Date: Mon, 21 Sep 2026 11:07:09 +0530
+Message-Id: <20260921053710.1586776-8-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260921053710.1586776-1-suraj.kandpal@intel.com>
 References: <20260921053710.1586776-1-suraj.kandpal@intel.com>
@@ -72,54 +72,110 @@ Now that the DPCD accessors return a proper error code, include it in
 the error messages using %pe and ERR_PTR(), instead of just stating
 that the access failed.
 
+Store the EDID checksum write result in ret as well, so that it can be
+logged the same way.
+
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_test.c | 24 +++++++++++---------
+ 1 file changed, 13 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index f1d48b69a18f..00d0146b2600 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -478,7 +478,8 @@ static u8 intel_dp_get_sink_sync_latency(struct intel_dp *intel_dp)
- 		val &= DP_MAX_RESYNC_FRAME_COUNT_MASK;
- 	else
- 		drm_dbg_kms(display->drm,
--			    "Unable to get sink synchronization latency, assuming 8 frames\n");
-+			    "Unable to get sink synchronization latency, assuming 8 frames (%pe)\n",
-+			    ERR_PTR(ret));
- 	return val;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_test.c b/drivers/gpu/drm/i915/display/intel_dp_test.c
+index 424183a65155..17cf27273124 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_test.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_test.c
+@@ -157,7 +157,7 @@ static u8 intel_dp_autotest_link_training(struct intel_dp *intel_dp)
+ 	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_TEST_LANE_COUNT,
+ 				    &test_lane_count);
+ 	if (ret < 0) {
+-		drm_dbg_kms(display->drm, "Lane count read failed\n");
++		drm_dbg_kms(display->drm, "Lane count read failed (%pe)\n", ERR_PTR(ret));
+ 		return DP_TEST_NAK;
+ 	}
+ 	test_lane_count &= DP_MAX_LANE_COUNT_MASK;
+@@ -165,7 +165,7 @@ static u8 intel_dp_autotest_link_training(struct intel_dp *intel_dp)
+ 	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_TEST_LINK_RATE,
+ 				    &test_link_bw);
+ 	if (ret < 0) {
+-		drm_dbg_kms(display->drm, "Link Rate read failed\n");
++		drm_dbg_kms(display->drm, "Link Rate read failed (%pe)\n", ERR_PTR(ret));
+ 		return DP_TEST_NAK;
+ 	}
+ 	test_link_rate = drm_dp_bw_code_to_link_rate(test_link_bw);
+@@ -193,7 +193,7 @@ static u8 intel_dp_autotest_video_pattern(struct intel_dp *intel_dp)
+ 	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_TEST_PATTERN,
+ 				    &test_pattern);
+ 	if (ret < 0) {
+-		drm_dbg_kms(display->drm, "Test pattern read failed\n");
++		drm_dbg_kms(display->drm, "Test pattern read failed (%pe)\n", ERR_PTR(ret));
+ 		return DP_TEST_NAK;
+ 	}
+ 	if (test_pattern != DP_COLOR_RAMP)
+@@ -201,20 +201,20 @@ static u8 intel_dp_autotest_video_pattern(struct intel_dp *intel_dp)
  
-@@ -504,7 +505,8 @@ static void _psr_compute_su_granularity(struct intel_dp *intel_dp,
- 	ret = drm_dp_dpcd_read_data(&intel_dp->aux, DP_PSR2_SU_X_GRANULARITY, &w, sizeof(w));
+ 	ret = drm_dp_dpcd_read_data(&intel_dp->aux, DP_TEST_H_WIDTH_HI, &h_width, 2);
+ 	if (ret < 0) {
+-		drm_dbg_kms(display->drm, "H Width read failed\n");
++		drm_dbg_kms(display->drm, "H Width read failed (%pe)\n", ERR_PTR(ret));
+ 		return DP_TEST_NAK;
+ 	}
+ 
+ 	ret = drm_dp_dpcd_read_data(&intel_dp->aux, DP_TEST_V_HEIGHT_HI,
+ 				    &v_height, 2);
+ 	if (ret < 0) {
+-		drm_dbg_kms(display->drm, "V Height read failed\n");
++		drm_dbg_kms(display->drm, "V Height read failed (%pe)\n", ERR_PTR(ret));
+ 		return DP_TEST_NAK;
+ 	}
+ 
+ 	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_TEST_MISC0, &test_misc);
+ 	if (ret < 0) {
+-		drm_dbg_kms(display->drm, "TEST MISC read failed\n");
++		drm_dbg_kms(display->drm, "TEST MISC read failed (%pe)\n", ERR_PTR(ret));
+ 		return DP_TEST_NAK;
+ 	}
+ 	if ((test_misc & DP_TEST_COLOR_FORMAT_MASK) != DP_COLOR_FORMAT_RGB)
+@@ -247,6 +247,7 @@ static u8 intel_dp_autotest_edid(struct intel_dp *intel_dp)
+ 	u8 test_result = DP_TEST_ACK;
+ 	struct intel_connector *intel_connector = intel_dp->attached_connector;
+ 	struct drm_connector *connector = &intel_connector->base;
++	int ret;
+ 
+ 	if (!intel_connector->detect_edid || connector->edid_corrupt ||
+ 	    intel_dp->aux.i2c_defer_count > 6) {
+@@ -271,10 +272,11 @@ static u8 intel_dp_autotest_edid(struct intel_dp *intel_dp)
+ 		/* We have to write the checksum of the last block read */
+ 		block += block->extensions;
+ 
+-		if (drm_dp_dpcd_write_byte(&intel_dp->aux, DP_TEST_EDID_CHECKSUM,
+-					   block->checksum) < 0)
++		ret = drm_dp_dpcd_write_byte(&intel_dp->aux, DP_TEST_EDID_CHECKSUM,
++					     block->checksum);
++		if (ret < 0)
+ 			drm_dbg_kms(display->drm,
+-				    "Failed to write EDID checksum\n");
++				    "Failed to write EDID checksum (%pe)\n", ERR_PTR(ret));
+ 
+ 		test_result = DP_TEST_ACK | DP_TEST_EDID_CHECKSUM_WRITE;
+ 		intel_dp->compliance.test_data.edid = INTEL_DP_RESOLUTION_PREFERRED;
+@@ -429,7 +431,7 @@ void intel_dp_test_request(struct intel_dp *intel_dp)
+ 	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_TEST_REQUEST, &request);
+ 	if (ret < 0) {
+ 		drm_dbg_kms(display->drm,
+-			    "Could not read test request from sink\n");
++			    "Could not read test request from sink (%pe)\n", ERR_PTR(ret));
+ 		goto update_status;
+ 	}
+ 
+@@ -463,7 +465,7 @@ void intel_dp_test_request(struct intel_dp *intel_dp)
+ 	ret = drm_dp_dpcd_write_byte(&intel_dp->aux, DP_TEST_RESPONSE, response);
  	if (ret < 0)
  		drm_dbg_kms(display->drm,
--			    "Unable to read selective update x granularity\n");
-+			    "Unable to read selective update x granularity (%pe)\n",
-+			    ERR_PTR(ret));
- 	/*
- 	 * Spec says that if the value read is 0 the default granularity should
- 	 * be used instead.
-@@ -515,7 +517,8 @@ static void _psr_compute_su_granularity(struct intel_dp *intel_dp,
- 	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_PSR2_SU_Y_GRANULARITY, &y);
- 	if (ret < 0) {
- 		drm_dbg_kms(display->drm,
--			    "Unable to read selective update y granularity\n");
-+			    "Unable to read selective update y granularity (%pe)\n",
-+			    ERR_PTR(ret));
- 		y = 4;
- 	}
- 	if (y == 0)
-@@ -3835,7 +3838,7 @@ static void psr_capability_changed_check(struct intel_dp *intel_dp)
+-			    "Could not write test response to sink\n");
++			    "Could not write test response to sink (%pe)\n", ERR_PTR(ret));
+ }
  
- 	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_PSR_ESI, &val);
- 	if (ret < 0) {
--		drm_err(display->drm, "Error reading DP_PSR_ESI\n");
-+		drm_err(display->drm, "Error reading DP_PSR_ESI (%pe)\n", ERR_PTR(ret));
- 		return;
- 	}
- 
+ /* phy test */
 -- 
 2.34.1
 
