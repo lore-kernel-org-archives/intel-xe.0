@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A65AC982FF
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 12:13:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D5FCC982FF
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 12:16:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FBC010E20C;
-	Tue, 22 Sep 2026 12:13:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A20C510EC85;
+	Tue, 22 Sep 2026 12:16:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KT/nCnOA";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="J9BrPANg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD83E10E20C;
- Tue, 22 Sep 2026 12:13:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790079201; x=1821615201;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=FxbY/O+PMPQR/spEz3n18Hp+Ppof6bg/RdB8xxELgwg=;
- b=KT/nCnOAGXsJ7OdaIVwlWoCbYyJenMC8FTrGJEUNkoFf7b3UmPxVink2
- vpGXsMik2ne3Zwm/JFVflilJBQNAzV48Bt4GDSgSw7MYROSPS/OaY4NB3
- QC90F3c5wdirbsLIuzN7PENpZI688ZHSA7C2rzsBHcXepUyWCKL74xb5r
- UFOTDc2UcDlGpMANy1pjJ975SyXiSR7ebYFOFUylxST3Px1RgRAeG+lkj
- wHFTVMx4UH40vJwFL5KuB/ZGMeNF3EH9vroaAkKxmIrbO/FnJN6Mv5bVJ
- QG8aZadossA21avfI/gAy0cKbQECX6k16Ic8OC/Eeuohw1eMPSe7z1DNi Q==;
-X-CSE-ConnectionGUID: cD83I/WqSnG6xt1bWiDaOw==
-X-CSE-MsgGUID: 0hyCx2hvRgmgMN5ytSIAeA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11912"; a="102026137"
-X-IronPort-AV: E=Sophos;i="6.27,116,1787036400"; d="scan'208";a="102026137"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2026 05:13:21 -0700
-X-CSE-ConnectionGUID: cGtcKfrHROODXfQy0g4NXg==
-X-CSE-MsgGUID: Q8QG9fVGRtCWWmOPd3STAA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,116,1787036400"; 
-   d="scan'208";a="4406202"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa013.fm.intel.com with ESMTP; 22 Sep 2026 05:13:20 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, nemesa.garg@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 1/8] drm/i915/lspcon: log DPCD access errors
-Date: Tue, 22 Sep 2026 17:43:16 +0530
-Message-Id: <20260922121316.1768918-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260921053710.1586776-2-suraj.kandpal@intel.com>
-References: <20260921053710.1586776-2-suraj.kandpal@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C46310EC82;
+ Tue, 22 Sep 2026 12:16:33 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 0C95B60DF7;
+ Tue, 22 Sep 2026 12:16:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 344941F000FF;
+ Tue, 22 Sep 2026 12:16:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1790079391;
+ bh=wFKgmThc37/WLmBFYUHY1bxEhAWR1QO0X6AW0mvtgCc=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=J9BrPANgAu6ASZVesjOJ5VaN1CVDXPa9HlhArGOgPlNcLAag3UxS7c1BzG5UA4WsY
+ wcI1ONC2lSsrTkDMHceGaAyeaFQYwEgBjCI+r+wNW9gMowsJjmQIuG68uZlaRY6HKN
+ MdNBy9+u7r9vaLoAw9Kc8uaRbmWVc3K16Qd4F/qMr6LibbZmNAshU6/V9HvtfsCtlM
+ uuDNeOg/c8zyww1RsTshpCjIMSomLfqok84f6Q085BlD/dSlXFUhU3eRKqMRc9hBv3
+ N5u3lB3MccftgwHBjmpI97PGfywJUn4Kipcwag2Mibrt78dYgpMSlf/YTJIJNfk+FX
+ b6KzJqzYbijbA==
+Date: Tue, 22 Sep 2026 14:16:28 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Mario Limonciello <mario.limonciello@amd.com>
+Cc: Javier Martinez Canillas <javierm@redhat.com>, 
+ dri-devel@lists.freedesktop.org, harry.wentland@amd.com,
+ Simona Vetter <simona@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Xaver Hugl <xaver.hugl@gmail.com>, amd-gfx@lists.freedesktop.org, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, Hans de Goede <hansg@kernel.org>
+Subject: Re: [PATCH v8 00/14] Add support for a DRM backlight capability
+Message-ID: <arJwOSq6-oSywTK6@houat>
+References: <20260908044035.62093-1-mario.limonciello@amd.com>
+ <CAFOAJEfgXY7cfLvizuxbS75CJd7mF5tewxp+PH=EhTtpy+aZXg@mail.gmail.com>
+ <32f96551-358b-4874-8fd1-a685b02853e1@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="5lb7fldev2bfc7fs"
+Content-Disposition: inline
+In-Reply-To: <32f96551-358b-4874-8fd1-a685b02853e1@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,134 +67,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that the DPCD accessors return a proper error code, include it in
-the error messages using %pe and ERR_PTR(), instead of just stating
-that the access failed.
 
-While at it, fix the AVI IF control write error message, which
-incorrectly reported a failed read.
+--5lb7fldev2bfc7fs
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v8 00/14] Add support for a DRM backlight capability
+MIME-Version: 1.0
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
-v1 -> v2:
--Fix debug log (Nemesa)
+On Tue, Sep 22, 2026 at 06:41:32AM -0500, Mario Limonciello wrote:
+>=20
+>=20
+> On 9/22/26 03:33, Javier Martinez Canillas wrote:
+> > Hello Mario,
+> >=20
+> > On Tue, Sep 8, 2026 at 6:41=E2=80=AFAM Mario Limonciello
+> > <mario.limonciello@amd.com> wrote:
+> > >=20
+> > > At Display Next Hackfest 2026 we reviewed progress moving brightness
+> > > control into the DRM connector properties.
+> > >=20
+> > > There is a range LUMINANCE property that will default to 0->0.
+> > > Once a driver attaches a backlight it will be updated to 1->max.
+> > > If the panel supports the minimum backlight turning off the display
+> > > the range can later be updated to 0->max instead of 1->max.
+> > >=20
+> > > The legacy sysfs interface is synchronized with the DRM connector.
+> > > When a compositor using this feature is loaded, sysfs writes are disa=
+bled
+> > > to prevent legacy tools from going out of sync with the compositor.
+> > >=20
+> >=20
+> > I don't think I agree with the direction of this series. The main
+> > issue for me is that if the sysfs interface is disabled, then I don't
+> > understand the value of doing all the hops between the DRM and
+> > backlight subsystems...
+>=20
+> The reason for all the hops is that users can switch between compositors
+> that support this and don't.  If you're in a compositor that supports it
+> that compositor will want to affirm it's in control.  If you're in a
+> compositor without support then you should still have a way to change
+> things, and that's what the sysfs interface exists for.
 
- drivers/gpu/drm/i915/display/intel_lspcon.c | 34 +++++++++++++--------
- 1 file changed, 21 insertions(+), 13 deletions(-)
+Couldn't we make a sysfs write trigger an atomic commit then? That way,
+it would always go through the atomic commit path, no matter whether
+you're on a "legacy" compositor or not.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-index 07b5a9d010ff..a61224523318 100644
---- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-+++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-@@ -139,7 +139,8 @@ bool intel_lspcon_detect_hdr_capability(struct intel_digital_port *dig_port)
- 
- 	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, get_hdr_status_reg(lspcon), &hdr_caps);
- 	if (ret < 0) {
--		drm_dbg_kms(display->drm, "HDR capability detection failed\n");
-+		drm_dbg_kms(display->drm, "HDR capability detection failed (%pe)\n",
-+			    ERR_PTR(ret));
- 		lspcon->hdr_supported = false;
- 	} else if (hdr_caps & 0x1) {
- 		drm_dbg_kms(display->drm, "LSPCON capable of HDR\n");
-@@ -247,7 +248,7 @@ static bool lspcon_wake_native_aux_ch(struct intel_lspcon *lspcon)
- 
- 	ret = drm_dp_dpcd_read_byte(&lspcon_to_intel_dp(lspcon)->aux, DP_DPCD_REV, &rev);
- 	if (ret < 0) {
--		drm_dbg_kms(display->drm, "Native AUX CH down\n");
-+		drm_dbg_kms(display->drm, "Native AUX CH down (%pe)\n", ERR_PTR(ret));
- 		return false;
- 	}
- 
-@@ -339,7 +340,8 @@ static bool lspcon_parade_fw_ready(struct drm_dp_aux *aux)
- 
- 		ret = drm_dp_dpcd_read_byte(aux, LSPCON_PARADE_AVI_IF_CTRL, &avi_if_ctrl);
- 		if (ret < 0) {
--			drm_err(aux->drm_dev, "Failed to read AVI IF control\n");
-+			drm_err(aux->drm_dev, "Failed to read AVI IF control (%pe)\n",
-+				ERR_PTR(ret));
- 			return false;
- 		}
- 
-@@ -371,8 +373,8 @@ static bool _lspcon_parade_write_infoframe_blocks(struct drm_dp_aux *aux,
- 		data = avi_buf + block_count * 8;
- 		ret = drm_dp_dpcd_write_data(aux, reg, data, 8);
- 		if (ret < 0) {
--			drm_err(aux->drm_dev, "Failed to write AVI IF block %d\n",
--				block_count);
-+			drm_err(aux->drm_dev, "Failed to write AVI IF block %d (%pe)\n",
-+				block_count, ERR_PTR(ret));
- 			return false;
- 		}
- 
-@@ -386,8 +388,8 @@ static bool _lspcon_parade_write_infoframe_blocks(struct drm_dp_aux *aux,
- 		avi_if_ctrl = LSPCON_PARADE_AVI_IF_KICKOFF | block_count;
- 		ret = drm_dp_dpcd_write_byte(aux, reg, avi_if_ctrl);
- 		if (ret < 0) {
--			drm_err(aux->drm_dev, "Failed to update (0x%x), block %d\n",
--				reg, block_count);
-+			drm_err(aux->drm_dev, "Failed to update (0x%x), block %d (%pe)\n",
-+				reg, block_count, ERR_PTR(ret));
- 			return false;
- 		}
- 
-@@ -450,7 +452,8 @@ static bool _lspcon_write_avi_infoframe_mca(struct drm_dp_aux *aux,
- 				mdelay(50);
- 				continue;
- 			} else {
--				drm_err(aux->drm_dev, "DPCD write failed at:0x%x\n", reg);
-+				drm_err(aux->drm_dev, "DPCD write failed at:0x%x (%pe)\n",
-+					reg, ERR_PTR(ret));
- 				return false;
- 			}
- 		}
-@@ -462,7 +465,8 @@ static bool _lspcon_write_avi_infoframe_mca(struct drm_dp_aux *aux,
- 	reg = LSPCON_MCA_AVI_IF_CTRL;
- 	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
- 	if (ret < 0) {
--		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n", reg);
-+		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x (%pe)\n",
-+			reg, ERR_PTR(ret));
- 		return false;
- 	}
- 
-@@ -472,13 +476,15 @@ static bool _lspcon_write_avi_infoframe_mca(struct drm_dp_aux *aux,
- 
- 	ret = drm_dp_dpcd_write_byte(aux, reg, val);
- 	if (ret < 0) {
--		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n", reg);
-+		drm_err(aux->drm_dev, "DPCD write failed at:0x%x (%pe)\n",
-+			reg, ERR_PTR(ret));
- 		return false;
- 	}
- 
- 	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
- 	if (ret < 0) {
--		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n", reg);
-+		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x (%pe)\n",
-+			reg, ERR_PTR(ret));
- 		return false;
- 	}
- 
-@@ -615,7 +621,8 @@ static bool _lspcon_read_avi_infoframe_enabled_mca(struct drm_dp_aux *aux)
- 
- 	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
- 	if (ret < 0) {
--		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n", reg);
-+		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x (%pe)\n",
-+			reg, ERR_PTR(ret));
- 		return false;
- 	}
- 
-@@ -630,7 +637,8 @@ static bool _lspcon_read_avi_infoframe_enabled_parade(struct drm_dp_aux *aux)
- 
- 	ret = drm_dp_dpcd_read_byte(aux, reg, &val);
- 	if (ret < 0) {
--		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n", reg);
-+		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x (%pe)\n",
-+			reg, ERR_PTR(ret));
- 		return false;
- 	}
- 
--- 
-2.34.1
+It would also somewhat untangle the uapi from the backlight subsystem,
+because it's only really relevant for panels. For all the other use
+cases, you might want to control the brightness but you have no matching
+backlight device.
 
+> > IMO when a driver sets the DRIVER_CONNECTOR_LUMINANCE feature and the
+> > client advertise the DRM_CLIENT_CAP_LUMINANCE capability, then the DRM
+> > driver should be in full control of the brightness control and not go
+> > through the backlight subsystem at all.
+>=20
+> OK but so let's say I start at 100% brightness.  I open up Kwin, I change
+> the luminance property to 0%.  Let's pretend that backlight subsystem
+> doesn't get updated.
+>=20
+> Then I log into Xorg + Xfce.  The luminance property should be left at 0%,
+> the brightness subsystem is 100%.
+
+Make backlight read the current property then.
+
+The way I see it, you're trying to untangle multiple issues at once, and
+I'm not sure it's the best strategy here. I'd start with the luminance
+property itself that wouldn't involve the backlight framework itself
+(DDC/CI or MIPI-DCS sound like obvious candidates here), and once it's
+in, I would figure out the relationship between backlight and that property.
+
+Maxime
+
+--5lb7fldev2bfc7fs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCarJxlAAKCRAnX84Zoj2+
+dh71AX9ZyMKS8LP70Gd+k878qeHmm87a9k0p0dEK3+a8XsSKPZyhRXAiyejTfFXW
+Pq0xG20BgLZA9iv4OGIoi7s8LDC++1HLpxyy3hnYKIkAxXp7k6BYRkT5to4Mnwtp
+aKlGsYwXwA==
+=ZtaM
+-----END PGP SIGNATURE-----
+
+--5lb7fldev2bfc7fs--
