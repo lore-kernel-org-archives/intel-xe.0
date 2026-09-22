@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FFFFC98306
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 12:26:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 156ADC98306
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 12:26:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3E5D10E483;
-	Tue, 22 Sep 2026 12:26:29 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AC0E10E483;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B09E510ECA1;
+	Tue, 22 Sep 2026 12:26:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="oOP4PATQ";
+	dkim-atps=neutral
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08C3910EC9E;
+ Tue, 22 Sep 2026 12:26:31 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 3A63960E01;
+ Tue, 22 Sep 2026 12:26:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D5FF1F00893;
  Tue, 22 Sep 2026 12:26:29 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1423377090521904238=="
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1790079989;
+ bh=w4aB76axzrssB4npu/BeQaYm/BiVjUcaP5/wHU05wIU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=oOP4PATQtOWLwfCRcNrV+ErBdPhCe0qOiUsaZ74yWQ5QyQirZR3g1WaQVlOsVKub3
+ 87fdI3cbBIr5jTuTOgNgYI6PU15TyWiZxB6fS67QJQxIQzP88UAoZKb34cVxlFt2sh
+ rynm1VjwmLyJXKSjzxQQuQiiYHJ18DPjYJFAeWZYklsh9879Vp+LUE2a8Fi5mhCh9I
+ 3yFkTGLvdtRs8havX9NUbr3sq78a3GQKfq+Xlhd+jv9Eh4PPg1FR/gptquI4Y6bZUj
+ EEOSIhRudxNGZ3zwZfOzyaIquxdkYsAyjyzwj+UDCmQIsBQBAzAtaJOv81YalH9V2C
+ SF6e0tiUjLXVQ==
+Date: Tue, 22 Sep 2026 14:26:26 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Mario Limonciello <mario.limonciello@amd.com>
+Cc: Javier Martinez Canillas <javierm@redhat.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
+ harry.wentland@amd.com, 
+ Simona Vetter <simona@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, 
+ Xaver Hugl <xaver.hugl@gmail.com>, amd-gfx@lists.freedesktop.org, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, Hans de Goede <hansg@kernel.org>, 
+ David Herrmann <dh.herrmann@gmail.com>,
+ Marta Lofstedt <marta.lofstedt@intel.com>, 
+ Mario Limonciello <superm1@kernel.org>
+Subject: Re: [PATCH v8 02/14] backlight: add kernel-internal backlight API
+Message-ID: <arJzqMwgppZBSUNY@houat>
+References: <20260908044035.62093-1-mario.limonciello@amd.com>
+ <20260908044035.62093-3-mario.limonciello@amd.com>
+ <0fb724cc-ac12-4502-b338-1c4f310f043a@suse.de>
+ <CAFOAJEdFPrwHZV5y1E_u_Wd6oE_viPsPztxYW6PRZHJ-zdPFMQ@mail.gmail.com>
+ <ff86caeb-4388-4660-b3c0-ddc42bc274e3@amd.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Isolate_wedged_de?=
- =?utf-8?q?vices_from_hardware_access_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arvind Yadav" <arvind.yadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 22 Sep 2026 12:26:29 -0000
-Message-ID: <179007998916.192893.1772650689325185316@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260922101721.1583542-1-arvind.yadav@intel.com>
-In-Reply-To: <20260922101721.1583542-1-arvind.yadav@intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="bdt3dgaj2va4yx7w"
+Content-Disposition: inline
+In-Reply-To: <ff86caeb-4388-4660-b3c0-ddc42bc274e3@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,265 +70,116 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1423377090521904238==
-Content-Type: text/plain; charset="utf-8"
+
+--bdt3dgaj2va4yx7w
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v8 02/14] backlight: add kernel-internal backlight API
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On Tue, Sep 22, 2026 at 06:34:51AM -0500, Mario Limonciello wrote:
+>=20
+>=20
+> On 9/22/26 03:49, Javier Martinez Canillas wrote:
+> > On Tue, Sep 22, 2026 at 10:24=E2=80=AFAM Thomas Zimmermann <tzimmermann=
+@suse.de> wrote:
+> > >=20
+> > > Hi Mario
+> > >=20
+> > > Am 08.09.26 um 06:40 schrieb Mario Limonciello:
+> > > > So far backlights have only been controlled via sysfs. However, sys=
+fs is
+> > > > not a proper user-space API for runtime modifications, and never was
+> > > > intended to provide such. The DRM drivers are now prepared to provi=
+de
+> > > > such a backlight link so user-space can control backlight via DRM
+> > > > connector properties. This allows us to employ the same access-mana=
+gement
+> > > > we use for mode-setting.
+> > > >=20
+> > > > This patch adds a few kernel-internal backlight helpers so we can m=
+odify
+> > > > backlights from within DRM, a brightness-changed notification, and a
+> > > > per-device takeover count so that legacy sysfs writes can be inhibi=
+ted
+> > > > (-EBUSY) while a luminance-aware DRM client is in control.
+> > > >=20
+> > > > Signed-off-by: David Herrmann <dh.herrmann@gmail.com>
+> > > >=20
+> >=20
+> > [...]
+> >=20
+> > > > @@ -150,6 +153,13 @@ static ssize_t bl_power_store(struct device *d=
+ev, struct device_attribute *attr,
+> > > >        struct backlight_device *bd =3D to_backlight_device(dev);
+> > > >        unsigned long power, old_power;
+> > > >=20
+> > > > +     /* A luminance-aware DRM client has taken over this backlight=
+; the
+> > > > +      * legacy sysfs interface is disabled until the last such cli=
+ent
+> > > > +      * goes away.
+> > > > +      */
+> > > > +     if (atomic_read(&bd->drm_takeover) > 0)
+> > > > +             return -EBUSY;
+> > > > +
+> > > >        rc =3D kstrtoul(buf, 0, &power);
+> > > >        if (rc)
+> > > >                return rc;
+> > > > @@ -214,6 +224,13 @@ static ssize_t brightness_store(struct device =
+*dev,
+> > > >        struct backlight_device *bd =3D to_backlight_device(dev);
+> > > >        unsigned long brightness;
+> > > >=20
+> > > > +     /* A luminance-aware DRM client has taken over this backlight=
+; the
+> > > > +      * legacy sysfs interface is disabled until the last such cli=
+ent
+> > > > +      * goes away.
+> > > > +      */
+> > > > +     if (atomic_read(&bd->drm_takeover) > 0)
+> > > > +             return -EBUSY;
+> > >=20
+> > > Can you really do that?  AFAIU sysfs is now a de-facto uapi for backl=
+ights.
+> >=20
+> > And regardless if this can be done or not, I belive that would be
+> > better if this is something that drivers decide to do and just return
+> > -EBUSY from their struct backlight_ops..update_status.
+> >=20
+> > Ideally the sysfs interface should continue to be work as Thomas said
+> > and a write could trigger a mode set for example, but I don't know if
+> > that is feasible to do due locking.
+> >=20
+>=20
+> Well the problem ends up being that something can change brightness behind
+> the compositor's back if you leave sysfs available.
+>=20
+> The whole design here is to put the compositor in control.  For example if
+> compositor wants to enforce brightness to be a certain value when certain
+> content is being displayed.
 
-Series: drm/xe: Isolate wedged devices from hardware access (rev2)
-URL   : https://patchwork.freedesktop.org/series/172860/
-State : failure
+I don't see how you can solve this. The sysfs interface already shows
+this behaviour, so it's not a regression or anything. That being said,
+one way to mitigate this would be to consider the sysfs backlight
+interface as legacy and disable it by default.
 
-== Summary ==
+Maxime
 
-CI Bug Log - changes from xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d_BAT -> xe-pw-172860v2_BAT
-====================================================
+--bdt3dgaj2va4yx7w
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Summary
--------
+-----BEGIN PGP SIGNATURE-----
 
-  **FAILURE**
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCarJz8QAKCRAnX84Zoj2+
+dkofAX4jmz48Pf2VeV3XBte3Y5RIW41vw7fQ5QCOGbuxcy7REtrl9RTPaghzVMPI
+/hzLeKsBfjjWyB3buiex+nTYyGhTk3eQPnlKaHo96IMb38tNqHa0QE65EB0dH+g7
+3l2ltyf1uA==
+=i0A9
+-----END PGP SIGNATURE-----
 
-  Serious unknown changes coming with xe-pw-172860v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-172860v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-172860v2_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
-    - bat-ptl-2:          [PASS][3] -> [DMESG-WARN][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html
-    - bat-bmg-2:          [PASS][5] -> [DMESG-WARN][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-    - bat-bmg-1:          [PASS][7] -> [DMESG-WARN][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-    - bat-lnl-2:          [PASS][9] -> [DMESG-WARN][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html
-    - bat-atsm-2:         [PASS][11] -> [DMESG-WARN][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
-    - bat-wcl-1:          [PASS][13] -> [DMESG-WARN][14]
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-wcl-1/igt@core_hotunplug@unbind-rebind.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-wcl-1/igt@core_hotunplug@unbind-rebind.html
-    - bat-ptl-1:          [PASS][15] -> [DMESG-WARN][16]
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-ptl-1/igt@core_hotunplug@unbind-rebind.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-ptl-1/igt@core_hotunplug@unbind-rebind.html
-    - bat-wcl-2:          [PASS][17] -> [DMESG-WARN][18]
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-wcl-2/igt@core_hotunplug@unbind-rebind.html
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-wcl-2/igt@core_hotunplug@unbind-rebind.html
-    - bat-lnl-1:          [PASS][19] -> [DMESG-WARN][20]
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-172860v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-nvls-1:         [PASS][21] -> [DMESG-WARN][22] ([Intel XE#8762] / [Intel XE#9069])
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
-    - bat-nvls-2:         [PASS][23] -> [DMESG-WARN][24] ([Intel XE#8762] / [Intel XE#9069])
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-nvls-2/igt@core_hotunplug@unbind-rebind.html
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-nvls-2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@xe_exec_system_allocator@many-execqueues-malloc:
-    - bat-bmg-vm:         [PASS][25] -> [DMESG-WARN][26] ([Intel XE#9331]) +1 other test dmesg-warn
-   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html
-   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html
-
-  * igt@xe_exec_system_allocator@twice-free:
-    - bat-bmg-1:          [PASS][27] -> [DMESG-WARN][28] ([Intel XE#9331])
-   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-1/igt@xe_exec_system_allocator@twice-free.html
-   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-bmg-1/igt@xe_exec_system_allocator@twice-free.html
-
-  * igt@xe_waitfence@engine:
-    - bat-ptl-2:          [PASS][29] -> [FAIL][30] ([Intel XE#9109])
-   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-ptl-2/igt@xe_waitfence@engine.html
-   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-ptl-2/igt@xe_waitfence@engine.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_system_allocator@many-execqueues-free:
-    - bat-bmg-vm:         [DMESG-WARN][31] ([Intel XE#9331]) -> [PASS][32]
-   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html
-   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html
-
-  * igt@xe_exec_system_allocator@threads-shared-vm-many-malloc:
-    - bat-bmg-1:          [DMESG-WARN][33] ([Intel XE#9331]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html
-   [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html
-
-  
-  [Intel XE#8762]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762
-  [Intel XE#9069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069
-  [Intel XE#9109]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109
-  [Intel XE#9331]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331
-
-
-Build changes
--------------
-
-  * Linux: xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d -> xe-pw-172860v2
-
-  IGT_9107: bba540a799a5f1a3c7ddc3a2b864678241377773 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d: 0433becdcbca8f779a8d32040a26718f2442e62d
-  xe-pw-172860v2: 172860v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/index.html
-
---===============1423377090521904238==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Isolate wedged devices from hardware access (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172860/">https://patchwork.freedesktop.org/series/172860/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d_BAT -&gt; xe-pw-172860v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-172860v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-172860v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-172860v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-wcl-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-wcl-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-ptl-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-ptl-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-wcl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-wcl-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-172860v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762">Intel XE#8762</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069">Intel XE#9069</a>)</li>
-<li>bat-nvls-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-nvls-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-nvls-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762">Intel XE#8762</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069">Intel XE#9069</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@many-execqueues-malloc:</p>
-<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-malloc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@twice-free:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-1/igt@xe_exec_system_allocator@twice-free.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-bmg-1/igt@xe_exec_system_allocator@twice-free.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-ptl-2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-ptl-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109">Intel XE#9109</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_exec_system_allocator@many-execqueues-free:</p>
-<ul>
-<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@threads-shared-vm-many-malloc:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172860v2/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d -&gt; xe-pw-172860v2</li>
-</ul>
-<p>IGT_9107: bba540a799a5f1a3c7ddc3a2b864678241377773 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d: 0433becdcbca8f779a8d32040a26718f2442e62d<br />
-  xe-pw-172860v2: 172860v2</p>
-
-</body>
-</html>
-
---===============1423377090521904238==--
+--bdt3dgaj2va4yx7w--
