@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CFEFC982F1
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 05:58:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CAC0C982FE
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 06:00:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 388D710E6C3;
-	Tue, 22 Sep 2026 05:58:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="epXPUqMY";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E911110E608;
- Tue, 22 Sep 2026 05:58:51 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id B91204385A;
- Tue, 22 Sep 2026 05:58:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65A981F000FF;
- Tue, 22 Sep 2026 05:58:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790056731;
- bh=9+LAkdE5O2aghGHVUZJr165EbuGT1ov9K+bm2/ZEW50=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=epXPUqMY0W4c5Zd6lejW/hIwH8C5xFSDB3cCYJ/7pTfuwG9vGv8d93XctsyfBMZ+r
- th3SCeowxb0opfcGQRLCJHe4a6oSZQ6esY+/qx+dosnJyhEcOHgbsbHtTvBNKBxhk+
- /NG9zplRdxgBbZUsmOAd9zLVXuBeZN/LCy9D4JeLOj4v26KxA5XJeWnQZHWCMUWXmg
- 4AQl2zksK9ApMGtp7CZvhUdSdOOhaqujXTrI4l6fDfBoYqIR/X5+DyfQKXD7N5u1+G
- 2W9gXuyKrhdxsNW/lu12RQI1y971gPBVlx0g4Hl73ewuh4yf948Lr5Bq9Cyj6t8h+J
- Ax9GgHDGv81IQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v14 10/12] mm: enable device page migration from HMM
- pagewalk
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF17310EB85;
+	Tue, 22 Sep 2026 06:00:25 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3929C10EB82;
+ Tue, 22 Sep 2026 06:00:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Migrate_on_fault_for_dev?=
+ =?utf-8?q?ice_pages_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: mpenttil@redhat.com
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20260922053421.4092027-11-mpenttil@redhat.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 22 Sep 2026 06:00:24 -0000
+Message-ID: <179005682422.190466.16177382146963091881@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260922053421.4092027-1-mpenttil@redhat.com>
- <20260922053421.4092027-11-mpenttil@redhat.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 22 Sep 2026 05:58:50 +0000
-Message-Id: <20260922055851.65A981F000FF@smtp.kernel.org>
+In-Reply-To: <20260922053421.4092027-1-mpenttil@redhat.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,94 +36,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] mm: unbalanced mmu_notifier in hmm_range_fault during migration
---
+== Series Details ==
 
-commit 3e05399d761177583ed386d43f42e228c070f447
-Author: Mika Penttil=C3=A4 <mpenttil@redhat.com>
+Series: Migrate on fault for device pages (rev6)
+URL   : https://patchwork.freedesktop.org/series/165953/
+State : warning
 
-mm: enable device page migration from HMM pagewalk
+== Summary ==
 
-This patch integrates HMM pagewalk machinery into the first phase of device
-page migration by enabling migration in hmm_range_fault(). It updates
-migrate_vma_setup() to use the HMM pagewalk path and removes the older
-migrate_vma_collect() paths. Two new flags, MIGRATE_VMA_FAULT and
-MIGRATE_VMA_WRITE, are introduced for faulting missing pages and requesting
-write access.
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
++/kernel/Makefile:1300: C=1 specified, but sparse is not available or not up to date
 
-> diff --git a/mm/migrate_device.c b/mm/migrate_device.c
-> index 43e571e82ccad..1e1a592e12672 100644
-> --- a/mm/migrate_device.c
-> +++ b/mm/migrate_device.c
-[ ... ]
-> @@ -739,10 +241,20 @@ static void migrate_vma_unmap(struct migrate_vma *m=
-igrate)
->   */
->  int migrate_vma_setup(struct migrate_vma *args)
->  {
-> +	int ret;
->  	long nr_pages =3D (args->end - args->start) >> PAGE_SHIFT;
-> +	struct hmm_range range =3D {
-> +		.notifier =3D NULL,
-> +		.hmm_pfns =3D args->src,
-> +		.dev_private_owner =3D args->pgmap_owner,
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
-[Severity: High]
-Does this code cause a permanent MMU notifier imbalance when args->pgmap_ow=
-ner
-is NULL?
 
-If a caller invokes migrate_vma_setup() with args->pgmap_owner set to NULL
-(which is standard for migrations not involving device-private memory, such=
- as
-PowerPC KVM secure guest page-in), range.dev_private_owner is also NULL.
-
-In mm/hmm.c:hmm_vma_capture_migrate_range(), the code checks:
-
-	if (!hmm_vma_walk->mmu_range.owner) {
-		mmu_notifier_range_init_owner(&hmm_vma_walk->mmu_range, MMU_NOTIFY_MIGRAT=
-E, 0,
-					      walk->vma->vm_mm, start, end,
-					      range->dev_private_owner);
-		mmu_notifier_invalidate_range_start(&hmm_vma_walk->mmu_range);
-	}
-
-Because mmu_range is zero-initialized, this condition is true. It calls
-mmu_notifier_range_init_owner(), which assigns the NULL dev_private_owner
-to hmm_vma_walk->mmu_range.owner. mmu_notifier_invalidate_range_start() is
-then called.
-
-Additionally, if the range spans multiple VMAs, invalidate_range_start is
-called multiple times because the sentinel remains NULL.
-
-Later, in mm/hmm.c:hmm_vma_post_range_fault():
-
-	if (hmm_select_migrate(range) &&
-	    hmm_vma_walk->mmu_range.owner) {
-		mmu_notifier_invalidate_range_end(&hmm_vma_walk->mmu_range);
-	}
-
-Because mmu_range.owner remains NULL, this condition evaluates to false,
-completely skipping the required mmu_notifier_invalidate_range_end() call.
-
-A skipped invalidate_range_end() leaves the invalidation count permanently
-elevated, causing any subsequent operation on that memory range requiring
-mmu_interval_read_retry() or VMA teardown to block indefinitely.
-
-> +		.migrate =3D args,
-> +		.default_flags =3D HMM_PFN_REQ_MIGRATE
-> +	};
-> =20
->  	args->start &=3D PAGE_MASK;
->  	args->end &=3D PAGE_MASK;
-[ ... ]
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260922053421.4092=
-027-1-mpenttil@redhat.com?part=3D10
