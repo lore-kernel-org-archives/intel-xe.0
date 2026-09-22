@@ -4,27 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F949C98302
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 11:42:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06484C982FF
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 11:42:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F31E610EC84;
-	Tue, 22 Sep 2026 11:42:24 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC37710EC77;
- Tue, 22 Sep 2026 11:42:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0166557106425494159=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB28310E6BD;
+	Tue, 22 Sep 2026 11:42:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="FgqlLnq2";
+	dkim-atps=neutral
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E38FA10EC8E
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Sep 2026 11:42:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1790077347;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=mdUWuoo29vP9GEST/2B25eDJsnzmLxEZrtfuekwV2RY=;
+ b=FgqlLnq2XKGqgF9mS03pcUkkmKSwv3bRpWqFzRIclI85/wi0+FM8+vs9VS+EGPea+Id7qx
+ dOkQfvlIi7uFpi2GSBmOAt7wlmfkw/JQ8OXBaECeWDdOsq6qEOBJZqGB+w2WYQiVxmEjie
+ UUMmWt5dhqvpB57TBrAYAhurYF2Djro=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-298-LTh9wIfPMy6m3bjc8SWQ6A-1; Tue, 22 Sep 2026 07:42:25 -0400
+X-MC-Unique: LTh9wIfPMy6m3bjc8SWQ6A-1
+X-Mimecast-MFC-AGG-ID: LTh9wIfPMy6m3bjc8SWQ6A_1790077345
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-4994d67d0e3so31567575e9.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Sep 2026 04:42:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1790077344; x=1790682144;
+ h=content-type:mime-version:message-id:date:references:in-reply-to
+ :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=mdUWuoo29vP9GEST/2B25eDJsnzmLxEZrtfuekwV2RY=;
+ b=fk12EYe61dZXa0iV/x19hOsIaoIQMMIEVYztPBViKUowIEFNR0Go+R4lX8W/msHiKk
+ rsySBG/CnsTdS5LfxqOLWfETgJU0H9EtrtPK5c1VK4aOWm/EDnzXJJ/suB5TOqenDwSv
+ 3SSR0VPE5qK0iEiwSa9GDIFbiElyUeAeN8CEPeuiCjDTI8lmISoZYwWahyLg+sPmPfi2
+ CK4BXuSv+CFqt9JlrDov2kOPhn+B9NWvr1+0ukegtppBzVJz2Mgp/rG7Em1v83sZVfdq
+ 8YWITvn27fHCUUmYu6nz/Kgfx6jyf0ITD/nA/tKriexlYFJUWRNuk1s+w5kgSwyYu3rB
+ VvsQ==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBxDZrBk2ItOWvqYKJoyMpMG204Q63Ut4n/55g6dl3eF/3ewmz4jho9qyqJwEulxddFTkeaAxpDjxA==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++mm3SeuSU2dSAv4pyNd6UDosaMjMoBLjoHLfoX3q7lVRiE5fuQ6
+ mOmQL0/jU51Pu613t3IMjiE8hoZS872UNDHvIMwthUPCDWbEzjPpyecHPiBdyVNVPIg1F3AIE4t
+ vw+Doh0BqlJTUDV3dkMWo1jTtnKLbiPPRglcIayxpXoMe7uI5g3+F5Yh0LPYDMvyf3m5S
+X-Gm-Gg: AYBFou2hSl29t06oj9vXbBqJxDRJxI5ftGqPemAof2bfemmGKjMHy3GsGv0rv7XF2NY
+ 9TN5Ald4S+NCOrdX6rzaENjlxCC5SUwURt9IgUfliF5OP6tOWaOLf/K2tX2s8DgVEg9hGqpMF31
+ WcaJZUuH0JUHL54Fa47gPKdD5gH9gb30VjZZNtdefhNqsATT0Lkv8Hr4JlyMkqyMz8fMX0HGaad
+ QHwwZ75RsGezkJwRs8UvOOTm+iFnJnS2jFqrEaWeUJdvkwiLAXrfvjn9M8/Qd0T6WyK2/aBzEwW
+ cBjIr7l5DpMTUabulFuwZr1zEmbUdpwIf7TEThVHXkm7TxLed/bUuYJNDKH5/8AdCsvd5QW/Bck
+ Eysbx+oUdhiLGCSD+k9CVB+F1pRb4fmjxTdo=
+X-Received: by 2002:a05:600c:3593:b0:49f:dd6d:79a1 with SMTP id
+ 5b1f17b1804b1-49fdd6d79c2mr4158635e9.26.1790077344622; 
+ Tue, 22 Sep 2026 04:42:24 -0700 (PDT)
+X-Received: by 2002:a05:600c:3593:b0:49f:dd6d:79a1 with SMTP id
+ 5b1f17b1804b1-49fdd6d79c2mr4158065e9.26.1790077344206; 
+ Tue, 22 Sep 2026 04:42:24 -0700 (PDT)
+Received: from localhost ([90.167.86.28]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-49fdad40c03sm52647185e9.11.2026.09.22.04.42.23
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 22 Sep 2026 04:42:23 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ dri-devel@lists.freedesktop.org, harry.wentland@amd.com, Simona Vetter
+ <simona@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David
+ Airlie <airlied@gmail.com>
+Cc: Xaver Hugl <xaver.hugl@gmail.com>, amd-gfx@lists.freedesktop.org, "open
+ list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, "open list:INTEL DRM DISPLAY FOR XE AND
+ I915 DRIVERS" <intel-xe@lists.freedesktop.org>, Hans de Goede
+ <hansg@kernel.org>, Mario Limonciello <mario.limonciello@amd.com>, David
+ Herrmann <dh.herrmann@gmail.com>, Mario Limonciello <superm1@kernel.org>
+Subject: Re: [PATCH v8 04/14] drm: add connector backlight (LUMINANCE)
+ infrastructure
+In-Reply-To: <20260908044035.62093-5-mario.limonciello@amd.com>
+References: <20260908044035.62093-1-mario.limonciello@amd.com>
+ <20260908044035.62093-5-mario.limonciello@amd.com>
+Date: Tue, 22 Sep 2026 13:42:22 +0200
+Message-ID: <xlv1ecelecm9.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/dp/mst=3A_fix_MST_paylo?=
- =?utf-8?q?ad_PBN_accounting?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Xiao Lu" <xiaolu.xie@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 22 Sep 2026 11:42:23 -0000
-Message-ID: <179007734389.192682.6606009893599977771@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260922092647.2263962-1-xiaolu.xie@intel.com>
-In-Reply-To: <20260922092647.2263962-1-xiaolu.xie@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: HKqpaqznV-fTGQxA2LDiP8nVdNbX57m6DXTCZRmo2wM_1790077345
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,166 +103,76 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0166557106425494159==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Mario Limonciello <mario.limonciello@amd.com> writes:
 
-== Series Details ==
+> Backlight brightness is a property of a display, and thus of a DRM
+> connector, yet it has historically only been controllable through the
+> separate backlight sysfs interface. Add a generic, backend-agnostic
+> per-connector LUMINANCE range property so brightness can be driven
+> through the atomic modeset path like any other connector state.
+>
+> A struct drm_backlight is embedded in every connector and initialized by
+> the core; drivers do not allocate it. A driver links a backend (today a
+> backlight_device, in the future DDC/CI, MIPI-DCS, ...) with
+> drm_backlight_link(), which creates the connector's LUMINANCE property
 
-Series: drm/dp/mst: fix MST payload PBN accounting
-URL   : https://patchwork.freedesktop.org/series/174698/
-State : success
+The infrastructure is meant to be backend-agnostic but drm_backlight_link()
+which creates the connector's LUMINANCE property is backend specific. Maybe
+would be better to not call drm_backlight to the DRM core helpers since it
+conflates the backlight subsystem specific helpers, and the ones that are
+supposed to be backend-agnostic.
 
-== Summary ==
+Maybe drm_brightness or drm_luminance would be more suitable? That way would
+be clear what is generic infra to handle the LUMINANCE property and what is
+specific to drivers using a backlight device.
 
-CI Bug Log - changes from xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d_BAT -> xe-pw-174698v1_BAT
-====================================================
+In fact, I think that would be better if you split this patch in the DRM core
+helpers and another patch that adds the backlight specific helpers on top. It
+would also be useful to have an example of a "native" backend, for drivers that
+have a trivial brightness management.
 
-Summary
--------
+For example, many small I2C or SPI display panels just send a few commands over 
+the bus to change the backlight brightness. Those may have their own get/set
+luminance callbacks and register their own struct drm_backlight_funcs.
 
-  **SUCCESS**
+Because right now seems to me that this drm_backlight infrastructure is mixing
+the two layers and we have a leaky abstraction.
 
-  No regressions found.
+> with the backend's range. The property value is staged into the atomic
+> connector state and only pushed to the hardware from the commit/enable
+> path, via a workqueue so that slow backends never stall a commit. DPMS
+> off drives the backlight to 0 and DPMS on restores the committed value.
+>
+> The property range is per-connector (created from the backend's
+> max_brightness), so multiple panels no longer share and corrupt a single
+> device-wide range. drm_backlight_link() also carries the legacy-sysfs
+> takeover accounting used by the client capability added in a later patch.
+>
+> The whole feature is guarded by CONFIG_DRM_BACKLIGHT (which depends on,
+> rather than selects, BACKLIGHT_CLASS_DEVICE) so DRM does not pull the
+> backlight subsystem into the kernel when it is not wanted.
+>
 
-  
+If we had a good separation between the drm_backlight core helpers and the
+backlight subsystem then this dependency wouldn't be needed. Drivers would
+use depend on CONFIG_DRM_BACKLIGHT to use the drm_backlight helpers and use
+BACKLIGHT_CLASS_DEVICE dependent helpers, to be used as set/get callbacks.
 
-Participating hosts (15 -> 15)
-------------------------------
+Since DRM drivers that register a backlight device already depend on this
+Kconfig symbol, no additional dependencies will be needed. And drivers that
+only use the CONFIG_DRM_BACKLIGHT (with a different backend), won't need to
+depend on CONFIG_DRM_BACKLIGHT.
 
-  No changes in participating hosts
+In general, I think is preferable to have good helper functions that could
+be reused by drivers, instead of having mid-layers such as drm_backlight_link().
 
-Known issues
-------------
+-- 
+Best regards,
 
-  Here are the changes found in xe-pw-174698v1_BAT that come from known issues:
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_fault_mode@twice-rebind-prefetch:
-    - bat-bmg-1:          [PASS][1] -> [DMESG-WARN][2] ([Intel XE#9331])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174698v1/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html
-
-  * igt@xe_multigpu_svm@mgpu-pagefault-basic:
-    - bat-bmg-3:          [PASS][3] -> [DMESG-WARN][4] ([Intel XE#9331])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174698v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch:
-    - bat-bmg-1:          [DMESG-WARN][5] ([Intel XE#9331]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174698v1/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch.html
-
-  * igt@xe_multigpu_svm@mgpu-latency-copy-prefetch:
-    - bat-bmg-3:          [DMESG-WARN][7] ([Intel XE#9331]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174698v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html
-
-  
-  [Intel XE#9331]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331
-
-
-Build changes
--------------
-
-  * Linux: xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d -> xe-pw-174698v1
-
-  IGT_9107: bba540a799a5f1a3c7ddc3a2b864678241377773 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d: 0433becdcbca8f779a8d32040a26718f2442e62d
-  xe-pw-174698v1: 174698v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174698v1/index.html
-
---===============0166557106425494159==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/dp/mst: fix MST payload PBN accounting</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174698/">https://patchwork.freedesktop.org/series/174698/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174698v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174698v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d_BAT -&gt; xe-pw-174698v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-174698v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_exec_fault_mode@twice-rebind-prefetch:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174698v1/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_multigpu_svm@mgpu-pagefault-basic:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174698v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174698v1/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_multigpu_svm@mgpu-latency-copy-prefetch:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174698v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d -&gt; xe-pw-174698v1</li>
-</ul>
-<p>IGT_9107: bba540a799a5f1a3c7ddc3a2b864678241377773 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5802-0433becdcbca8f779a8d32040a26718f2442e62d: 0433becdcbca8f779a8d32040a26718f2442e62d<br />
-  xe-pw-174698v1: 174698v1</p>
-
-</body>
-</html>
-
---===============0166557106425494159==--
