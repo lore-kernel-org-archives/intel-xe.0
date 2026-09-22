@@ -4,27 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21EADC98302
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 15:14:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE7A1C982FA
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 15:16:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D657A10ED84;
-	Tue, 22 Sep 2026 15:14:44 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F0C710ED78;
- Tue, 22 Sep 2026 15:14:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_fix_GuC_TLB_inv?=
- =?utf-8?q?alidation_ack_stalls_on_ARL_=28Wa=5F22016122933=29_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Tales_A=2E_Mendon=C3=A7a?= <talesam@gmail.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 22 Sep 2026 15:14:39 -0000
-Message-ID: <179009007918.193811.8128872114187140377@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260922144634.55130-1-talesam@gmail.com>
-In-Reply-To: <20260922144634.55130-1-talesam@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA80710E696;
+	Tue, 22 Sep 2026 15:16:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="g2Gq2D7p";
+	dkim-atps=neutral
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A234810E4D0;
+ Tue, 22 Sep 2026 15:16:36 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id C6D2B60204;
+ Tue, 22 Sep 2026 15:16:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5013C1F000FF;
+ Tue, 22 Sep 2026 15:16:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1790090195;
+ bh=G//VzGJ2nQRmfUKZCQ1JtVPVbNs9yJ5lWvSn8+Sjqh0=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=g2Gq2D7p/m1Y5oDjjjO3FnB2tGxeFNbDJoJr5P/9Jy0+tsIOzbul14X3aYzSvt6Bv
+ SsUMcGb1k/KtQiN2on+fws6/fOfWBF8X1qJK7sG8Mb/kH6TOwPUijELH7TlgzGPSoj
+ ZcSmWilbDTOsK9iPr4e1GpicXffXJlxwG6ecBYxMdjT7FvwpJZNOsuN+uRg7Rst31N
+ qfHeXLkgC0W8x/kd1K9P40DAPL4CNjHtMEAZRZX3x2wVLa8rYK9+9vvVzf442HnKyN
+ gi2NTKorZU5XaL+oB0yOhWmUE7Ub3qh1INAFuleexJI47/vx3V88NYNzVxUk0bdX44
+ Y4CKX6l3/FGnQ==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/4] drm/{i915, xe}: move intel_opregion_suspend() to
+ intel_display_driver_pm_suspend_late()
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+In-Reply-To: <050b935fa3fd85101ea0241b60a2e7893d3ad546.1790089118.git.jani.nikula@intel.com>
+References: <cover.1790089118.git.jani.nikula@intel.com>
+ <050b935fa3fd85101ea0241b60a2e7893d3ad546.1790089118.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 22 Sep 2026 15:16:34 +0000
+Message-Id: <20260922151635.5013C1F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,111 +53,132 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [High] drm/i915: Use-after-suspend of asle_work due to late intel_opregio=
+n_suspend()
+- [High] drm/i915: Hard system hang risk from late ACPI SMI notification
+- [High] drm/xe: ACPI state corruption via double intel_opregion_suspend()
+--
 
-Series: drm/xe: fix GuC TLB invalidation ack stalls on ARL (Wa_22016122933) (rev5)
-URL   : https://patchwork.freedesktop.org/series/172110/
-State : warning
+commit fc3c0277d6ab46a7da2ef12128f2682dd8013140
+Author: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
+drm/{i915, xe}: move intel_opregion_suspend() to intel_display_driver_pm_su=
+spend_late()
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 64d345120cb895cc7cdcfafc4f03dd5a73cf53e5
-Author: Tales A. Mendonça <talesam@gmail.com>
-Date:   Tue Sep 22 11:46:34 2026 -0300
+Try to unify the suspend paths and behaviour by moving the
+intel_opregion_suspend() calls to
+intel_display_driver_pm_suspend_late().
 
-    drm/xe: Implement Wa_22016122933
-    
-    On platforms with a standalone media GT and media version 13.00
-    (MTL/ARL), memory shared between the CPU and the media GT's GuC must
-    not be mapped cached on the CPU side: the CPU can otherwise read stale
-    cache lines for data the GuC has already written.
-    
-    i915 implements this as Wa_22016122933 (see
-    intel_gt_needs_wa_22016122933(), used by intel_guc_allocate_vma() and
-    intel_gt_coherent_map_type()); xe never inherited it.
-    
-    The visible symptom on ARL is TLB invalidation acks stalling for a
-    near-constant ~2.3s: the GuC writes the G2H ack in time, but the CPU
-    keeps reading a stale (empty) view of the G2H CTB until the line is
-    naturally evicted, so the fence timeout at 2.25s fires first. GuC log
-    decode confirmed all invalidations were handled promptly by the
-    firmware, and only the media GT was affected. See Link for the full
-    investigation (three machines affected: 7d51, 7dd1, Arc Pro 130T).
-    
-    Making the mapping coherent instead of uncached does not help: with a
-    GGTT PAT entry repurposed to WB|COH_2WAY the driver comes up and the
-    media GT GuC runs, but the stalls remain (request-to-ack 2290ms).
-    Uncached really is required here. Note that 2-way coherency is not
-    normally reachable from a GGTT PTE (only 2 PAT bits), so that
-    experiment needed a modified PAT table and may not reflect a supported
-    configuration.
-    
-    Add the OOB workaround scoped like i915 (media version 13.00, media GT
-    only - MEDIA_VERSION() OOB rules only match the media GT on standalone
-    media platforms) and apply XE_BO_FLAG_NEEDS_UC to the GuC-shared
-    allocations the CPU reads from: the CTBs, the GuC log, ADS, the SLPC
-    shared data and the engine activity buffers. hwconfig and the G2G
-    buffer are allocated on the primary GT only, where the workaround does
-    not apply.
-    
-    Note that XE_BO_FLAG_NEEDS_UC drives both the CPU mapping (uncached)
-    and the GGTT cache mode (XE_CACHE_NONE instead of XE_CACHE_WB), which is
-    stricter than i915: i915 documents the workaround as WC on the CPU side
-    and UC on the GPU side. A CPU-WC variant with the GGTT side kept at
-    XE_CACHE_NONE was measured to be equally effective, but expressing it
-    would require either a new BO flag or decoupling the GGTT cache-mode
-    selection from XE_BO_FLAG_NEEDS_UC - simply swapping in
-    XE_BO_FLAG_FORCE_WC silently relaxes the GPU side back to WB and the
-    stalls return. The stricter mapping is kept here since it is the tested
-    configuration and no throughput difference between the two was
-    measurable; the extra plumbing can be added later if parity with i915 is
-    preferred.
-    
-    Scope is limited to the GuC-shared allocations, which is where the
-    failures were observed. i915 additionally covers media-GT LRC/ring
-    state; extending xe to match can be done as a follow-up if wanted.
-    
-    Validation on two ARL machines (7d51 and 7dd1): before, 20-60 TLB
-    invalidation ack stalls per day, every day, for weeks, on every kernel
-    and on two GuC firmware versions (70.53.0 and 70.72.1). After: zero
-    stalls in six weeks of combined runtime, over 10M TLB invalidations
-    processed under the same workloads, across kernels 7.1.6, 7.1.8 and
-    7.2. The 7dd1 machine, which could not survive a day of media
-    workloads on xe without a platform freeze, has been running xe full
-    time since 11 August, including days with heavy video transcoding,
-    with zero stalls and zero freezes.
-    
-    The coherency experiment, the CPU-WC measurements and the engine
-    activity coverage gap were found by Navon John Lukose while A/B
-    testing v2 on an ARL 7d51.
-    
-    Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8678
-    Suggested-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-    Signed-off-by: Tales A. Mendonça <talesam@gmail.com>
-    Tested-by: Navon John Lukose <navonjohnlukose@gmail.com>
-    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-+ /mt/dim checkpatch f71789a4c481a854047206bb0529ecb707b67bc5 drm-intel
-c39e533b2c61 drm/xe: Capture devcoredump on TLB invalidation timeout
--:169: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_q' - possible side-effects?
-#169: FILE: drivers/gpu/drm/xe/xe_devcoredump.h:34:
-+#define xe_devcoredump(_q, _job, _fmt, ...) \
-+	__xe_devcoredump((_q)->gt, _q, _job, _fmt, ##__VA_ARGS__)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/driver=
+s/gpu/drm/i915/display/intel_display_driver.c
+> index 77009dca7d0d9..abab457bce3a3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -783,6 +783,8 @@ void intel_display_driver_pm_suspend_late(struct inte=
+l_display *display, bool s2
+>  	if (!HAS_DISPLAY(display))
+>  		return;
+> =20
+> +	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
+> +
+>  	intel_display_power_suspend_late(display, s2idle);
+>  }
 
-total: 0 errors, 0 warnings, 1 checks, 200 lines checked
-c806dc8c5572 drm/xe: Log when a timed out TLB invalidation ack finally arrives
-64d345120cb8 drm/xe: Implement Wa_22016122933
+[Severity: High]
+Does moving intel_opregion_suspend() here cause it to execute too late in t=
+he
+suspend sequence?
 
+In i915_drm_suspend_late(), the GTs and uncore are suspended before calling
+intel_display_driver_pm_suspend_late():
 
+drivers/gpu/drm/i915/i915_driver.c:i915_drm_suspend_late() {
+	...
+	for_each_gt(gt, dev_priv, i)
+		intel_uncore_suspend(gt->uncore);
+
+	intel_display_driver_pm_suspend_late(display, s2idle);
+	...
+}
+
+Because intel_opregion_suspend() calls cancel_work_sync(&opregion->asle_wor=
+k),
+delaying this sync until after intel_uncore_suspend() could allow asle_work
+to execute concurrently with or after uncore suspension, risking MMIO acces=
+ses
+on suspended hardware.
+
+Additionally, could triggering a System Management Interrupt (SMI) via
+intel_opregion_notify_adapter() while the GT/uncore is already suspended ca=
+use
+the BIOS to access powered-down GPU registers and result in a hard system h=
+ang?
+
+[ ... ]
+
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe=
+/display/xe_display.c
+> index 184a5a2378805..b013ec00b75da 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -246,14 +246,11 @@ static bool suspend_to_idle(void)
+>  void xe_display_pm_suspend(struct xe_device *xe)
+>  {
+>  	struct intel_display *display =3D xe->display;
+> -	bool s2idle =3D suspend_to_idle();
+> =20
+>  	if (!xe->info.probe_display)
+>  		return;
+> =20
+>  	intel_display_driver_pm_suspend(display);
+> -
+> -	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
+>  }
+
+[Severity: High]
+Will this lead to a double intel_opregion_suspend() and ACPI state corrupti=
+on
+during runtime suspend?
+
+When xe->d3cold.allowed is true, xe_display_pm_runtime_suspend() calls
+xe_display_enable_d3cold() which explicitly suspends the OpRegion to PCI_D3=
+cold:
+
+drivers/gpu/drm/xe/display/xe_display.c:xe_display_enable_d3cold() {
+	...
+	intel_opregion_suspend(display, PCI_D3cold);
+	...
+}
+
+Then xe_display_pm_runtime_suspend_late() calls xe_display_pm_suspend_late(=
+):
+
+drivers/gpu/drm/xe/display/xe_display.c:xe_display_pm_runtime_suspend_late(=
+) {
+	...
+	if (xe->d3cold.allowed) {
+		xe_display_pm_suspend_late(xe);
+	...
+}
+
+Since xe_display_pm_suspend_late() calls intel_display_driver_pm_suspend_la=
+te(),
+which now includes the new intel_opregion_suspend() call, it will be execut=
+ed a
+second time. Because suspend_to_idle() evaluates to true during runtime sus=
+pend
+(S0), it will be called with PCI_D1 instead of PCI_D3cold.
+
+Will this overwrite the ACPI power state from PCI_D3cold to PCI_D1 and corr=
+upt
+the BIOS state?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1790089118.gi=
+t.jani.nikula@intel.com?part=3D2
