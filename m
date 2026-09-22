@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A747EC98302
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 17:01:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F424C98302
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 17:19:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6066D89FA5;
-	Tue, 22 Sep 2026 17:01:37 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F8DD89FA5;
- Tue, 22 Sep 2026 17:01:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0493277186017632677=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D37410E740;
+	Tue, 22 Sep 2026 17:19:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="STGikWeb";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7471210E63F
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Sep 2026 17:19:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790097565; x=1821633565;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1vDrj/xiELL7hN/nx/JdinckAG7w3j1e8D2j03dgOm8=;
+ b=STGikWebHMGfpnf73CFVfu7OwGM+PRMvWpUQEhiZPxMbHjT2WYt8Yo0n
+ MIC8jJyhuskmUZajtoebB0KWbbTz1K1MhI/wY1qOTDqK3eWZc1iTvNadQ
+ Hilr4EMmxFdlARBziz0kbN5FR+OixN8Rt202utqZ/ya+vPzH/JdUXkJpt
+ A4U+tKu/HCKjrs5xjQUzEU5FltiY4WP4FSh1TcIJ0I7BFhdgUtbGZRTNi
+ JCaC1vQzPs9K64D0QjTLJlAldTuNcDQMoqjCceI+F0HAQYWpsdbswgSC3
+ SUA15T+iJCsD7M8AkAkA0Z0OfP7OhQT18gdgmbrpkPLBufoalvDqLRYu9 Q==;
+X-CSE-ConnectionGUID: Xmg1BYa2ST+QAUcByHe/3w==
+X-CSE-MsgGUID: eGTX9VtBRg682NQMULbXkQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11913"; a="1226503"
+X-IronPort-AV: E=Sophos;i="6.27,116,1787036400"; 
+   d="scan'208";a="1226503"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa115.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2026 10:19:25 -0700
+X-CSE-ConnectionGUID: Q6fnbTMqQQWmUbWWsbKr2w==
+X-CSE-MsgGUID: I6LQuFy2TwyrxgSeSMWl3Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,116,1787036400"; d="scan'208";a="277985277"
+Received: from yshashi-mobl1.ger.corp.intel.com (HELO
+ mwajdecz-hp.clients.intel.com) ([10.245.113.202])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2026 10:19:23 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Tales=20A=20=2E=20Mendon=C3=A7a?= <talesam@gmail.com>
+Subject: [PATCH] drm/xe: Add and use TLBINVAL component
+Date: Tue, 22 Sep 2026 19:19:11 +0200
+Message-ID: <20260922171911.500-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_fix_GuC_TLB_inval?=
- =?utf-8?q?idation_ack_stalls_on_ARL_=28Wa=5F22016122933=29_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Tales_A=2E_Mendon=C3=A7a?= <talesam@gmail.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 22 Sep 2026 17:01:36 -0000
-Message-ID: <179009649631.194205.5316940183765464502@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260922144634.55130-1-talesam@gmail.com>
-In-Reply-To: <20260922144634.55130-1-talesam@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,190 +67,59 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0493277186017632677==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Replace the existing TLB invalidation error message with a new one
+based on the xe_log_err() macro and use the dedicated TLBINVAL log
+component.
 
-== Series Details ==
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Tales A. Mendonça <talesam@gmail.com>
+---
+ drivers/gpu/drm/xe/abi/xe_log_abi.h | 1 +
+ drivers/gpu/drm/xe/xe_tlb_inval.c   | 6 +++---
+ 2 files changed, 4 insertions(+), 3 deletions(-)
 
-Series: drm/xe: fix GuC TLB invalidation ack stalls on ARL (Wa_22016122933) (rev5)
-URL   : https://patchwork.freedesktop.org/series/172110/
-State : success
+diff --git a/drivers/gpu/drm/xe/abi/xe_log_abi.h b/drivers/gpu/drm/xe/abi/xe_log_abi.h
+index 526aadf85fe9..adb3c2128251 100644
+--- a/drivers/gpu/drm/xe/abi/xe_log_abi.h
++++ b/drivers/gpu/drm/xe/abi/xe_log_abi.h
+@@ -145,6 +145,7 @@ enum xe_log_location_bits {
+ 	define(DRIVER, 5, WA, SW, "Workarounds")				\
+ 	define(DRIVER, 6, PAGEFAULT, MEM_FAULT, "Page Fault")			\
+ 	define(DRIVER, 7, GUCSUBMIT, GT_TDR, "GuC Submission")			\
++	define(DRIVER, 8, TLBINVAL, GT_TDR, "TLB Invalidation")			\
+ 	/* */									\
+ 	define(DRIVER_HARDWARE, 1, REGS, IO_BUS, "Registers")			\
+ 	define(DRIVER_HARDWARE, 2, GGTT, IO_BUS, "Global GTT")			\
+diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
+index dd1030de9ab6..da629d410829 100644
+--- a/drivers/gpu/drm/xe/xe_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
+@@ -11,6 +11,7 @@
+ #include "xe_gt_types.h"
+ #include "xe_guc_ct.h"
+ #include "xe_guc_tlb_inval.h"
++#include "xe_log.h"
+ #include "xe_mmio.h"
+ #include "xe_pm.h"
+ #include "xe_tlb_inval.h"
+@@ -86,9 +87,8 @@ static void xe_tlb_inval_fence_timeout(struct work_struct *work)
+ 			break;
+ 
+ 		trace_xe_tlb_inval_fence_timeout(xe, fence);
+-		drm_err(&xe->drm,
+-			"TLB invalidation fence timeout, seqno=%d recv=%d",
+-			fence->seqno, tlb_inval->seqno_recv);
++		xe_log_err(xe, TLBINVAL, -ETIME, "fence timeout, seqno=%d recv=%d",
++			   fence->seqno, tlb_inval->seqno_recv);
+ 
+ 		fence->base.error = -ETIME;
+ 		xe_tlb_inval_fence_signal(fence);
+-- 
+2.47.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa_BAT -> xe-pw-172110v5_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-172110v5_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#8007])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172110v5/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@xe_exec_fault_mode@twice-rebind-prefetch:
-    - bat-bmg-1:          [PASS][3] -> [DMESG-WARN][4] ([Intel XE#9331])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172110v5/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html
-
-  * igt@xe_multigpu_svm@mgpu-latency-copy-prefetch:
-    - bat-bmg-3:          [PASS][5] -> [DMESG-WARN][6] ([Intel XE#9331])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172110v5/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch:
-    - bat-bmg-1:          [DMESG-WARN][7] ([Intel XE#9331]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172110v5/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch.html
-
-  * igt@xe_multigpu_svm@mgpu-pagefault-basic:
-    - bat-bmg-3:          [DMESG-WARN][9] ([Intel XE#9331]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172110v5/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html
-
-  * igt@xe_waitfence@engine:
-    - bat-wcl-2:          [FAIL][11] ([Intel XE#9103]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa/bat-wcl-2/igt@xe_waitfence@engine.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172110v5/bat-wcl-2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-  [Intel XE#9103]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9103
-  [Intel XE#9331]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331
-
-
-Build changes
--------------
-
-  * Linux: xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa -> xe-pw-172110v5
-
-  IGT_9108: 6e7f99cc82296e74e3986a4515506a7a8cea33df @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa: 196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa
-  xe-pw-172110v5: 172110v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172110v5/index.html
-
---===============0493277186017632677==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: fix GuC TLB invalidation ack stalls on ARL (Wa_22016122933) (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172110/">https://patchwork.freedesktop.org/series/172110/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172110v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172110v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa_BAT -&gt; xe-pw-172110v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-172110v5_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172110v5/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-rebind-prefetch:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172110v5/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_multigpu_svm@mgpu-latency-copy-prefetch:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172110v5/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172110v5/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_multigpu_svm@mgpu-pagefault-basic:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172110v5/bat-bmg-3/igt@xe_multigpu_svm@mgpu-pagefault-basic.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa/bat-wcl-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9103">Intel XE#9103</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172110v5/bat-wcl-2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa -&gt; xe-pw-172110v5</li>
-</ul>
-<p>IGT_9108: 6e7f99cc82296e74e3986a4515506a7a8cea33df @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5804-196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa: 196d5ab3fd597b37efa6d28fd8d9010eb6db5bfa<br />
-  xe-pw-172110v5: 172110v5</p>
-
-</body>
-</html>
-
---===============0493277186017632677==--
