@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27AA3C982F1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E7B0C982FE
 	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 04:34:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8CE810E5A8;
-	Tue, 22 Sep 2026 04:34:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BB9C10E5BC;
+	Tue, 22 Sep 2026 04:34:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JxNquCk6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hN1dt73F";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 440B210EB12
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Sep 2026 04:34:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2A8A10EB31
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Sep 2026 04:34:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790051672; x=1821587672;
+ t=1790051674; x=1821587674;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=g9uygdHxUNadxv5RSSkOc0HQG/O95OfhdJsqTEwjGEA=;
- b=JxNquCk6xeE3moz62VIualTVIE4LrCj5CpGAhZDmfoy7sazwnDEECvjw
- ISV8y4D2OiIov9MhDtphNWVU7ZDbZPKNMMEc35DrrFesa0ih93QTjbIHB
- BIkl//4D7NdmFqUR9V3rkxZCPbHUIJZEUXhRJ9ol5EYxwuHwTRT0FFBWA
- /PwLVszGNzgCE0HvnDefq89zJ527mpXjXbjnqgoGE7vfTJcUTzCwYaq2q
- 2b5XWpKRRbBCnwfoM/VyfngPSzCq7cxbQTZmuMQgCdbPzuf3Hhr+XE3WB
- 6N2Nrm2/x1sy6ZItPy+yAN4Wkle2MruTDZpls9IXDvBDjkD4L6PN4Hjdr Q==;
-X-CSE-ConnectionGUID: OcTudCGlTZi2EGKqKEpfWQ==
-X-CSE-MsgGUID: bNcFX0I6QnGOS84i58RwfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11912"; a="78175377"
-X-IronPort-AV: E=Sophos;i="6.27,115,1787036400"; d="scan'208";a="78175377"
+ bh=KG6SB44N9+XNf1LEjaaUqsPQjGd6Xj0yfgsfB6TgpJE=;
+ b=hN1dt73FoV3uF01W4DTACVCf8NEmzAwvQo4A8VYQs7DB0KhopUjdRTY2
+ HSTVog1lLCu/rnnYEBB0KFoI21H3ldEi1Yn2dX2F56PWqVvFLfkvn3qCR
+ F94Hx1/+aU7CAk1OTpz+ySpea9R4DUYqDeyN/aQ10feU5e9IUv4h/0GDj
+ MWf1v+RUu+Jd0qu5dy9xHmGQSllXSe6GDGpEz++pNdzVdnGnBhbLlal+N
+ LL1RtO0Vfnimnl/YCd0groYik3sSjSKBb2upBDDY9oqKhg2F4FhS9r5C/
+ hppkNLO2/F1Xh+IHpmUo3CZBEuktr0lUV4cHPGpNQfrs5vuIVxettBG9m A==;
+X-CSE-ConnectionGUID: JiUflM4TTXO0LUSVYWj9AA==
+X-CSE-MsgGUID: g539tpx8RF6tXH4FyOpoEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11912"; a="78175381"
+X-IronPort-AV: E=Sophos;i="6.27,115,1787036400"; d="scan'208";a="78175381"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2026 21:34:32 -0700
-X-CSE-ConnectionGUID: ZkQ66Q5ZQ/OZbY7ibrZ3ZQ==
-X-CSE-MsgGUID: YxqC9UXuTGiIYHbPbsZFKA==
+ 21 Sep 2026 21:34:34 -0700
+X-CSE-ConnectionGUID: bsaif4HIRk26Oj6BZAAWbw==
+X-CSE-MsgGUID: cBmCEukvRI69ScDXNqgR4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,115,1787036400"; d="scan'208";a="269489208"
+X-IronPort-AV: E=Sophos;i="6.27,115,1787036400"; d="scan'208";a="269489215"
 Received: from hghimira.iind.intel.com ([10.190.239.34])
- by fmviesa009.fm.intel.com with ESMTP; 21 Sep 2026 21:34:31 -0700
+ by fmviesa009.fm.intel.com with ESMTP; 21 Sep 2026 21:34:32 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v3 1/4] drm/pagemap: Add helper to access backing devmem
- allocation
-Date: Tue, 22 Sep 2026 10:08:01 +0530
-Message-ID: <20260922043759.3057442-7-himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v3 2/4] drm/gpusvm: Add devmem callback to get_pages
+Date: Tue, 22 Sep 2026 10:08:02 +0530
+Message-ID: <20260922043759.3057442-8-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260922043759.3057442-6-himal.prasad.ghimiray@intel.com>
 References: <20260922043759.3057442-6-himal.prasad.ghimiray@intel.com>
@@ -67,69 +66,193 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-drm_pagemap_zdd is private, so add drm_pagemap_page_to_devmem() to let
-callers get the drm_pagemap_devmem backing a device-private/coherent
-page. Add a NULL stub for !CONFIG_ZONE_DEVICE.
+Add an optional drm_gpusvm_ctx.devmem_fn, invoked for each device-memory
+allocation backing the range's faulted pages. It runs under the notifier
+lock and independently of the DMA map, so it also fires with no_dma_map.
+Adjacent pages of one allocation are coalesced, so the callback must be
+idempotent.
 
-Cc: Matthew Brost <matthew.brost@intel.com>
+v2
+Reset last to NULL for non-devmem pages(Sashiko/Matt)
+
+v3
+Run drm_gpusvm_pages_valid_unlocked() on the map_dma path even when
+devmem_fn is set, so an invalidated range's stale inline mapping is
+reset.
+
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/drm_pagemap.c | 15 +++++++++++++++
- include/drm/drm_pagemap.h     |  7 +++++++
- 2 files changed, 22 insertions(+)
+ drivers/gpu/drm/drm_gpusvm.c | 105 ++++++++++++++++++++++++++---------
+ include/drm/drm_gpusvm.h     |   6 ++
+ 2 files changed, 86 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index 0867bfbde5c5..ee4c6448499e 100644
---- a/drivers/gpu/drm/drm_pagemap.c
-+++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -1433,6 +1433,21 @@ struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page *page)
+diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+index b6c9d3a07dc8..a37b26881b73 100644
+--- a/drivers/gpu/drm/drm_gpusvm.c
++++ b/drivers/gpu/drm/drm_gpusvm.c
+@@ -1528,7 +1528,49 @@ static bool drm_gpusvm_pages_inlinable(struct drm_gpusvm_pages *svm_pages,
  }
- EXPORT_SYMBOL_GPL(drm_pagemap_page_to_dpagemap);
  
-+/**
-+ * drm_pagemap_page_to_devmem() - Return the devmem allocation backing a page
-+ * @page: The struct page.
-+ *
-+ * Return: The &drm_pagemap_devmem backing @page. Undefined if @page was not
-+ * populated from a &drm_pagemap.
-+ */
-+struct drm_pagemap_devmem *drm_pagemap_page_to_devmem(struct page *page)
-+{
-+	struct drm_pagemap_zdd *zdd = drm_pagemap_page_zone_device_data(page);
-+
-+	return zdd->devmem_allocation;
-+}
-+EXPORT_SYMBOL_GPL(drm_pagemap_page_to_devmem);
-+
  /**
-  * drm_pagemap_populate_mm() - Populate a virtual range with device memory pages
-  * @dpagemap: Pointer to the drm_pagemap managing the device memory
-diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
-index 95eb4b66b057..376d7d400c8e 100644
---- a/include/drm/drm_pagemap.h
-+++ b/include/drm/drm_pagemap.h
-@@ -257,6 +257,8 @@ struct drm_pagemap *drm_pagemap_create(struct drm_device *drm,
- 
- struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page *page);
- 
-+struct drm_pagemap_devmem *drm_pagemap_page_to_devmem(struct page *page);
-+
- void drm_pagemap_put(struct drm_pagemap *dpagemap);
- 
- #else
-@@ -266,6 +268,11 @@ static inline struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page *page
- 	return NULL;
- }
- 
-+static inline struct drm_pagemap_devmem *drm_pagemap_page_to_devmem(struct page *page)
+- * drm_gpusvm_dma_map_pages() - DMA map one drm_gpusvm_pages instance
++ * drm_gpusvm_walk_devmem() - Invoke the devmem callback across faulted pages
++ * @gpusvm: Pointer to the GPU SVM structure
++ * @pfns: The already-faulted pfn array (size @npages)
++ * @npages: Number of pages in the CPU range
++ * @ctx: GPU SVM context, with a non-NULL &drm_gpusvm_ctx.devmem_fn
++ *
++ * Invoke &drm_gpusvm_ctx.devmem_fn once per contiguous run of @pfns backed by
++ * the same device-memory allocation. Must be called under the notifier lock.
++ */
++static void drm_gpusvm_walk_devmem(struct drm_gpusvm *gpusvm,
++				   unsigned long *pfns,
++				   unsigned long npages,
++				   const struct drm_gpusvm_ctx *ctx)
 +{
-+	return NULL;
++	struct drm_pagemap_devmem *last = NULL;
++	unsigned int order = 0;
++	unsigned long i;
++
++	lockdep_assert_held(&gpusvm->notifier_lock);
++
++	for (i = 0; i < npages; i += 1 << order) {
++		struct page *page = hmm_pfn_to_page(pfns[i]);
++		struct drm_pagemap_devmem *devmem;
++
++		order = drm_gpusvm_hmm_pfn_to_order(pfns[i], i, npages);
++
++		if (!is_device_private_page(page) &&
++		    !is_device_coherent_page(page)) {
++			last = NULL;
++			continue;
++		}
++
++		devmem = drm_pagemap_page_to_devmem(page);
++		if (devmem == last)
++			continue;
++
++		last = devmem;
++		ctx->devmem_fn(devmem);
++	}
 +}
 +
- static inline void drm_pagemap_put(struct drm_pagemap *dpagemap)
- {
- }
++/**
++ * drm_gpusvm_dma_map_pages() - Walk and DMA map one drm_gpusvm_pages instance
+  * @gpusvm: Pointer to the GPU SVM structure
+  * @svm_pages: The SVM pages instance to populate with dma-addresses
+  * @pfns: The already-faulted pfn array (size @npages)
+@@ -1536,10 +1578,10 @@ static bool drm_gpusvm_pages_inlinable(struct drm_gpusvm_pages *svm_pages,
+  * @ctx: GPU SVM context
+  * @dma_dir: DMA data direction for the mappings
+  *
+- * Map the faulted @pfns into @svm_pages for DMA access through its owning
+- * drm_device. Must be called under the notifier lock and only for an instance
+- * without a live mapping. On failure this unwinds the partial mapping of this
+- * instance before returning.
++ * Walk the faulted @pfns and map them into @svm_pages for DMA access through
++ * its owning drm_device. Must be called under the notifier lock and only for
++ * an instance without a live mapping. On failure this unwinds the partial
++ * mapping of this instance before returning.
+  *
+  * Return: 0 on success, negative error code on failure.
+  */
+@@ -1774,9 +1816,20 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+ 
+ 	hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
+ 
+-	if (map_dma &&
+-	    drm_gpusvm_pages_valid_unlocked(gpusvm, svm_pages, num_pages))
+-		goto set_seqno;
++	/*
++	 * drm_gpusvm_pages_valid_unlocked() also resets any instance whose
++	 * mapping was invalidated, so it must run on the map_dma path even when
++	 * devmem_fn suppresses the fast path; otherwise a stale inline mapping
++	 * is later mistaken for a dma_addr array by drm_gpusvm_dma_map_pages().
++	 */
++	if (map_dma) {
++		bool pages_valid = drm_gpusvm_pages_valid_unlocked(gpusvm,
++								   svm_pages,
++								   num_pages);
++
++		if (!ctx->devmem_fn && pages_valid)
++			goto set_seqno;
++	}
+ 
+ 	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
+ 	if (!pfns)
+@@ -1829,28 +1882,30 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+ 		goto retry;
+ 	}
+ 
+-	if (!map_dma)
+-		goto done_mapping;
++	if (ctx->devmem_fn)
++		drm_gpusvm_walk_devmem(gpusvm, pfns, npages, ctx);
+ 
+-	for (p = 0; p < num_pages; ++p) {
+-		if (drm_gpusvm_pages_valid(gpusvm, &svm_pages[p]))
+-			continue;
++	if (map_dma) {
++		for (p = 0; p < num_pages; ++p) {
++			if (drm_gpusvm_pages_valid(gpusvm, &svm_pages[p]))
++				continue;
+ 
+-		err = drm_gpusvm_dma_map_pages(gpusvm, &svm_pages[p], pfns,
+-					       npages, ctx, dma_dir);
+-		if (err) {
+-			/*
+-			 * The failing instance was unwound by the helper. Keep
+-			 * the ones mapped earlier: the -EAGAIN retry reuses
+-			 * them, and the driver unmaps every instance with the
+-			 * range on the other error paths.
+-			 */
+-			drm_gpusvm_notifier_unlock(gpusvm);
+-			goto err_free;
++			err = drm_gpusvm_dma_map_pages(gpusvm, &svm_pages[p], pfns,
++						       npages, ctx, dma_dir);
++			if (err) {
++				/*
++				 * The failing instance was unwound by the
++				 * helper. Keep the ones mapped earlier: the
++				 * -EAGAIN retry reuses them, and the driver
++				 * unmaps every instance with the range on the
++				 * other error paths.
++				 */
++				drm_gpusvm_notifier_unlock(gpusvm);
++				goto err_free;
++			}
+ 		}
+ 	}
+ 
+-done_mapping:
+ 	drm_gpusvm_notifier_unlock(gpusvm);
+ 	kvfree(pfns);
+ set_seqno:
+diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+index 9e35584812fd..4d31c6bba745 100644
+--- a/include/drm/drm_gpusvm.h
++++ b/include/drm/drm_gpusvm.h
+@@ -274,6 +274,11 @@ struct drm_gpusvm {
+  *              pages as valid; the caller revalidates the snapshot itself, see
+  *              drm_gpusvm_get_pages(). @devmem_only is rejected and no page
+  *              type check is performed, so @allow_mixed has no effect.
++ * @devmem_fn: Optional callback invoked under the notifier lock, once per
++ *             contiguous run of pages backed by the same &drm_pagemap_devmem.
++ *             Must not sleep and must be idempotent, as a non-contiguous
++ *             allocation is reported more than once. Fires even with
++ *             @no_dma_map. May be NULL.
+  *
+  * Context that is DRM GPUSVM is operating in (i.e. user arguments).
+  */
+@@ -281,6 +286,7 @@ struct drm_gpusvm_ctx {
+ 	void *device_private_page_owner;
+ 	unsigned long check_pages_threshold;
+ 	unsigned long timeslice_ms;
++	void (*devmem_fn)(struct drm_pagemap_devmem *devmem);
+ 	unsigned int in_notifier :1;
+ 	unsigned int read_only :1;
+ 	unsigned int devmem_possible :1;
 -- 
 2.43.0
 
