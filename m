@@ -4,158 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7BF4C982FF
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 12:34:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 134E2C982FF
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 12:35:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3A4E10ECA8;
-	Tue, 22 Sep 2026 12:34:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA12910ECA4;
+	Tue, 22 Sep 2026 12:35:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jS091ptc";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="he9VcILG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 417F210ECA2;
- Tue, 22 Sep 2026 12:34:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790080454; x=1821616454;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=c5gQrebTXEBevifiyuJR+hf/KMDnwG/q32/DNrxe4xU=;
- b=jS091ptcRsTHuDJhauBIyXUXlwrd6/lGzAvfq8TtJw9FBS5xQBbK65yd
- g3PXkJYaV5t3c96Sua5SuhOyPVo79LdKIlLpSA1boZZP/HvFKb23peR6Y
- gRlghGlrRgnKdybZvQG/7FIyk6+wF92pbzI/Mz5mLjYCbt5EkJ3ES9hC0
- Zp+qEFdPpvNrgfo3Icxqve7GMshtUpYr/Tnqw+iyLTvtIC+it1lpJxt0K
- VbPf3aDzSSh76f/FbMTacdJM2P4Je7ryJh0hPWpMlqImSnNgRncHnTFjc
- lNMAEOrLep0MPY8UM0FjEEnh4gzFD2a/u+UJlLujWDkK0UpHLmqhKhRt7 g==;
-X-CSE-ConnectionGUID: g+nHiucFS6aRFIV7IRQleQ==
-X-CSE-MsgGUID: FgZmFZWaTGq2GlfkbhgK3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11912"; a="90795246"
-X-IronPort-AV: E=Sophos;i="6.27,116,1787036400"; d="scan'208";a="90795246"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2026 05:34:14 -0700
-X-CSE-ConnectionGUID: n81KunzKSRC5eZT3wAdxSA==
-X-CSE-MsgGUID: HA9CxVhUToKcTmTPlfI0rA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,116,1787036400"; d="scan'208";a="301035810"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2026 05:34:14 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 22 Sep 2026 05:34:13 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Tue, 22 Sep 2026 05:34:13 -0700
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.24) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 22 Sep 2026 05:34:13 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d9XGKH8Pxu21AOjUJQwRWT18uKSKAZL+odoev4IMbywP2wE7Q00u5eIQkwEFuXuZTt1Z215NkPneMtlZ7J0VH2sDaGvb6uC+RVqUMi095ZMR3vpIyDnRZT/49xE2LbZEIsw/U3WBGJCTIdG1eA1CRSn/tIVKC+VZICTyQ7Oa6ImiIfXmCJSwmLeFqux4YIWOtAxdQjTxuXUT1wVlde+49/HBcC90LU3YoCoC3PtuT3C8lk/EeKXC6zH+0WRKBsLok2BP8viNHorGFmCtA0veoBkBLiofCs+F4MyxdGFsIRU7JhcWx/g2Y+YJTwQKlaUQg5PMQ3OQHFvp8un16aJOiQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=R+CLp1hZZvVp3/K5y+BkB9JCNyO3rC3+9SetuJD4kU4=;
- b=vsz+EY1MZIftqiuQ52gN7JYmJe7HWQMKf/4JtkcBmRoHB3Os3Y9BnPp5Aks2n07kOyK5RVmlCuJfv74gXZppFQMB1trOFgA2h1tdNR1pZW7InHt4DnpTgBBp6cEmrWyxBDAXJMedKXtSMYVUjCRP9WuTWrye+HUbHmZEpwe90D6vy0g6WrUxgshTpd8x3/uz0hsarFWn86qndMD6+eYA3f9MdD4cd8JKU59HhU9CxXv+eF6hHuc4bH/oJddxkAUAedHHimOFsVfRTmadtmPt4bufhUwx77WyPpkvv63N6WpnYykIslnCJ1iHQ5xk4MG6FV1vvQnflpznzRE++q2M7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from LV2PR11MB148960.namprd11.prod.outlook.com
- (2603:10b6:408:40f::21) by CO1PR11MB4851.namprd11.prod.outlook.com
- (2603:10b6:303:9b::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.13; Tue, 22 Sep
- 2026 12:34:11 +0000
-Received: from LV2PR11MB148960.namprd11.prod.outlook.com
- ([fe80::9761:b20d:6f27:5460]) by LV2PR11MB148960.namprd11.prod.outlook.com
- ([fe80::9761:b20d:6f27:5460%5]) with mapi id 15.21.0428.015; Tue, 22 Sep 2026
- 12:34:11 +0000
-Message-ID: <853d6b79-6644-4e62-8bd6-585050f7fd48@intel.com>
-Date: Tue, 22 Sep 2026 18:04:03 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm/i915/vrr: Disable DC balance by default
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-CC: <intel-xe@lists.freedesktop.org>, <jani.nikula@linux.intel.com>,
- <chaitanya.kumar.borah@intel.com>, <stable@vger.kernel.org>
-References: <20260917074322.2606738-1-mitulkumar.ajitkumar.golani@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260917074322.2606738-1-mitulkumar.ajitkumar.golani@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0011.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:80::9) To LV2PR11MB148960.namprd11.prod.outlook.com
- (2603:10b6:408:40f::21)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1483F10ECA4;
+ Tue, 22 Sep 2026 12:35:33 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id A42A940D65;
+ Tue, 22 Sep 2026 12:35:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01B331F000FF;
+ Tue, 22 Sep 2026 12:35:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1790080532;
+ bh=S3cL58T1PySwvHM7yYfD83o55hu0YlN8sd9oqJkR+5Y=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=he9VcILGtw4iCvSgoGjWy3p9ij5THpqbhsGJlx5Ev+Ex/LIy4og0X5LW0/Ndp4VBt
+ zipxsKj2H01rYy86e1iXaFp8Q/S1ObdVDP4Z+jybXTQVibldGwLphK7aZZ5Y6RDWLc
+ CGeGUljpY7VEVZ/gx0ml4hGizDFq0BNHHffWKFCkj3YCzPjZsRTRBT8MXJdOcUz4a6
+ XErVTPeMOaPSkZAOjVd8Ai2TJ8mV10rFRfJDLvKS9YbZPHJPf/bQR3YWMVS4OjcQB9
+ NNqYjm1hy9HqtiWzUCV+8WmrbEcB0UFFPDWRSy7ALbN8rr2pSgwrn6ogAiifp5uipj
+ V0f+Vt6euk/qg==
+Date: Tue, 22 Sep 2026 14:35:28 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Mario Limonciello <mario.limonciello@amd.com>, 
+ Javier Martinez Canillas <javierm@redhat.com>, dri-devel@lists.freedesktop.org,
+ harry.wentland@amd.com, 
+ Simona Vetter <simona@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, 
+ Xaver Hugl <xaver.hugl@gmail.com>, amd-gfx@lists.freedesktop.org, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, Hans de Goede <hansg@kernel.org>
+Subject: Re: [PATCH v8 00/14] Add support for a DRM backlight capability
+Message-ID: <arJ0huW356NjqpGR@houat>
+References: <20260908044035.62093-1-mario.limonciello@amd.com>
+ <CAFOAJEfgXY7cfLvizuxbS75CJd7mF5tewxp+PH=EhTtpy+aZXg@mail.gmail.com>
+ <32f96551-358b-4874-8fd1-a685b02853e1@amd.com>
+ <arJwOSq6-oSywTK6@houat>
+ <08e47991-0d72-471f-9955-0b4ebbcffcdf@suse.de>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR11MB148960:EE_|CO1PR11MB4851:EE_
-X-MS-Office365-Filtering-Correlation-Id: 661dcd3c-f250-41df-7e57-08df18a5cdeb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|23010399003|10067099003|56012099006|11063799006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: AwlFA4kW4YjEpD0nzH30YYZQQRKW0pHrFYg1IwKM056AoZbGb2ZOrZlOCYqjY2hYJADp6WKHqrAwEAn/n5VJ4L2UIS5Ary0rllOTckKrGPBW2y682g+M5MNb2jFNHsjjdztMtBcMhT9CTsrfxMzTKZOu8ImaUCRiRUliJ+EOWKBFRQMCMQ/eDGXbFFIY+Vwtcrs7qqV2/43UIRkPT2XOMrBoMqyJpY3mmveUCSOGdmnA3GbN6f5z4cZxvLgFDo+MOaI3hz3qpSiQnyJKdUz7IYE4VgjO1djtKk8y2Pwm09x/x3gONchDoh78ab/Vp+uWKjUiJwzjXclYdb38+H2SBIufKxbFp5xBZeWcYSx13PbaPvhUJpGp7l1x1LcMf1qD5M7WLDud0acDdN5d1SyRhyLrqzS9edZ6IKlVvnAh1JW4fwYdwwMly13ugh5uGZPS8ae+6keS7B0BzGlzF83pLAte6SU4443CwmYXA9S/zugyQpF/31kYiHh/ZnZIr6QWbIAbwmIp8jSKHFepB6so14QrRJQeL1Dqww+2INPW9knaSDNj1/wjckb+LLQdo1i8jie8Ya/ergzLFoNFxH5VgMN2lgdc3MA5PZKy3maiIMpTlFzWdfnQsxyU+uXGOZ+MiF+794ff0R58tLx6TJJEtB453VcwYbHCo/CbQ/b/PPQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR11MB148960.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(23010399003)(10067099003)(56012099006)(11063799006)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QXcrTk9OK25zVGMzY25sVkxkbXJnNXNyZnlrODNMN1AxTENvL1l1b01SUXRa?=
- =?utf-8?B?S3c1SmJIUDNWQlJUUC9TUGJFa2gvWE01bTVqY1FneWhWdlREY1VOOG03RDdj?=
- =?utf-8?B?Z3U4RUpkVnQzT2wrUTBValJORVVZRnJ5Z1V3MHZPSnhacGNTTkxiTFAzMHpw?=
- =?utf-8?B?UHMzSEVRaVFaME5ER25IOEltN3Y2THlyZmFHSElVdWJjaWRlYld6ZGg2bEZw?=
- =?utf-8?B?eVo5N2VNZ09WWVUwNStqZ0dXdkl0UnBvU29wbUtoRUhFamV1VGx1M1FrNE8z?=
- =?utf-8?B?NTl0bjF2ZzJsU3JZTzNqRGhNRmI0Ymwyb3F2Uk5qZWxlbVNBcjlEVjhmaE9W?=
- =?utf-8?B?Q2dRcDEyWlZ6eUZuajJWWVVDRmhsMW4xREdwUlRtMU1SZmRzVkdtSEhUM3Jt?=
- =?utf-8?B?MmtEU3B0WlY3N2ZFYWhFN0N6aUFaQkZRT3NaZTVCaWljS1RGR2VhMW90LzI5?=
- =?utf-8?B?cUtncXZRVHg5N1NsTVI4bzJxcDJ3Q0htbTh5dmhDZEhlVWNrZlI4ZWZwVGQr?=
- =?utf-8?B?KzZObXlEUU84L3hnbnpabms4SDV4bm1BeGZjbHRhRU91eWRnaFY5dXN1dm1Z?=
- =?utf-8?B?OWV0dCtsMWpXZFNTa3hZb0VCZnhNL00yRmJzQzArWFpiaXRtaXJIckV5bDQz?=
- =?utf-8?B?MEprSUVsczQrS1pNeVpnTFE3QXJjVVJHUEg3Y1BwK29jSmh3aGI1MXRmam9M?=
- =?utf-8?B?U1llclY2SkkrRFZYRW14MWhUWTZQMDREOWFFejJManEwelFWanZLRDhaSHpO?=
- =?utf-8?B?WGFZNFUvTXJwREtDRDdJU2ViUUJhU2kzem82Ti9VdkRTMmRIZFYzOUlTdUQr?=
- =?utf-8?B?V2tCczd4RFlrYXRWVjZSSURzZ0NFTnpoZE5wOFlocWNCWjFpK0FjMDlCV1po?=
- =?utf-8?B?MUU3NjhVSFZJSTMyUnFRNnBKa1l5aC8xUHkwcXlPL25QUkloOXJ3TlhpZWpm?=
- =?utf-8?B?VmExbEQ0RXY3eHI1ZHBlRHBqWThCTHIvQ01LOGpsL2tPUnh6elhXQ0trMTls?=
- =?utf-8?B?cTh0L2dpdEJNTGg3VkJGUms2V3NJMnA2dE5GTklzZ3NlblpiMzdlTUh5VmpT?=
- =?utf-8?B?YVpjR3pvRG16QzQ5SklaMit3dEUwMHdGbE82Q1YxV1psbVB6VUtmSVpiVUc3?=
- =?utf-8?B?YXRUekdRK2p5YzFQSHh2YWdRT0JWWTJOTnkrK3I2ckl0TDZkUmNZc2tLYWlW?=
- =?utf-8?B?YmF6akRWcTYzZVpHNHVRZGJxWTBmK0ZyU3VMQzVKS1g0a3B2dzYwRjlkcEdj?=
- =?utf-8?B?Q1A4amdIV2d3ajBKM1Y1MUxITWpQVk1xWjVBK0YyMUhyVVVDRTNlaTl1WTlR?=
- =?utf-8?B?V0hpYjk4QkpxcUxMNDVtdkZjcUUwSy9aMGkvejdXemRXcFFXbjVlaWswelVr?=
- =?utf-8?B?RGRWMVFXaklUQXoxNHBzSElzeE91ZUZvUytWd2Q3OHkxM3ZjUW9qTEV6d1pl?=
- =?utf-8?B?VWlsUnBmb1RNWmNwNUNwU1pvTk5VUFh2MjF3S0Zadm9OT3VIZmxQY0F1ZzNk?=
- =?utf-8?B?bUd4TzdMQXVRRFpJSTNqa1lCV3M3TnREOE1TVlZhSDhQTzhRd3JNMWdtNi9n?=
- =?utf-8?B?ekVnRHRYQXo1ZUxvNVFoQm9OMmQyck9MTCtDTlpXdHl5WXZ4SkpWQVlRWStH?=
- =?utf-8?B?T2M4NTRETEdPcldvb0o5bHFmWUU1RzhzSmV1bDZVQ1gwTS9oRHNSMFliNnI3?=
- =?utf-8?B?dzBvZW1wTFZaN1JqNE02emZIdTlwVld5L2pxQi9JbVNwaHFYTERyM3B2QXp3?=
- =?utf-8?B?WEZQOUkzSDl0c3hYNWpLR3dTdG80am0rY0NhUTk3ZUFwdVNuRkVtSDZtMWZ0?=
- =?utf-8?B?Uk1vbHEvcnhobUxDOTViZmRTczdzcmdwMUJmcXJLaXB3SzBaMEtoOW44V3h2?=
- =?utf-8?B?Zmt4S0o2azVaYytlWkFwN2diWk5nd2hpbCtLQVAvNmVMTmdxNWxJcG50VStn?=
- =?utf-8?B?VkxKdzk5OTdmR0xDdmJaUnYyRXpFeUZmSW1XOGttTFhpbDdRTENzUG15REpY?=
- =?utf-8?B?Zk5SRUozaFRUUjBsWWIxQTBIbXZJOUZIcGs0OUZwVjBJTEcxWnJLUUN3V1RV?=
- =?utf-8?B?eDRKSFg4RTF2cDBCdkwxZFNtaWQwQy94cHF3SHRhYlNKdDErS1Q4WTkvSytL?=
- =?utf-8?B?akFpRTZzSjFiMFV5c25nNHR3VVNRT3lnNG5WZnVSYVhuQXViU24xNm9pZUpU?=
- =?utf-8?B?T05nRlBwcloyWW5MbkhzcmkyWFRWNlF4M1A5ODRLZ3RaSDd6TWM1bmRHZW1V?=
- =?utf-8?B?aUgybkFhamtXS0FVc1ViK3ozOTc3WEJUQm05aitpcjVsMzJKaXAyUktYdVJ0?=
- =?utf-8?B?UWxKZzBFOTA5UUV5U2J1ZXdCZUNadzkrbWRIZkZUSm9QYXh3a2U1TjJLc1hk?=
- =?utf-8?Q?xdoUSSj2a150PHJY=3D?=
-X-Exchange-RoutingPolicyChecked: njLCRb+GSbZiA8gilKer4/oBsLFYLMhu5RziqLRhhNWexNg3T/jQNmxYA0Btaz+MMKWUwStLaEHkV9WTL7cMv3GTeJ+zcKJCQ7/etIbjvCrRdP5WeTfymn7bIFRwmOjGjPYcDk1m38PssNylj+qwH6w/cp3uHFnCjHAFPQvtxMnax4VdE08nXDs+8L2jnOOS2CV6crABePE9IbAq33LQF5yPBf/Zf4q1ySNi+KBslDQIPzdqMZ7FdE209MsF1qUd+oCMQVdkCcw+tu0n8XWaFQPbs/8a+atgy0qLBjtPX58p9jlz5gbCG+WVmmF0QfTlGGGaziKTXq1FuErnYaJ/qQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 661dcd3c-f250-41df-7e57-08df18a5cdeb
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR11MB148960.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2026 12:34:11.6609 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7fxzWwLkkrn68IjNeUrzrHpo7DwcYbxfPjdCMfIbNEtEfSPNK1CMxWBBvIu/ke5E6qbc8h+Ye8NbLA7cWiElLBZWDrf4xOzkNr5+UmjuTvI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4851
-X-OriginatorOrg: intel.com
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="aphxvy3mdbvxymga"
+Content-Disposition: inline
+In-Reply-To: <08e47991-0d72-471f-9955-0b4ebbcffcdf@suse.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,84 +71,98 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 9/17/2026 1:13 PM, Mitul Golani wrote:
-> Disable VRR DC balance by default due to timing issues observed on some
-> panel/TCON combinations.
->
-> Keep the module parameter to enable DC balance during debugging and to
-> isolate DC balance effects from underlying VRR/display timing issues.
->
-> --v2:
-> - Make enable_dc_balance a bool and keep it disabled by default; fix the
->    parameter type/value mismatch and correct the description (Chaitanya
->    Kumar Borah, Jani Nikula)
-> - Explain in the commit message why the feature is gated and why a
->    module parameter is used (Jani Nikula)
->
-> --v3:
-> - Commit message update (Jani Nikula)
->
-> Fixes: 555819270707 ("drm/i915/vrr: Enable DC Balance")
-> Cc: <stable@vger.kernel.org> # v7.0+
-> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_display_params.c | 4 ++++
->   drivers/gpu/drm/i915/display/intel_display_params.h | 1 +
->   drivers/gpu/drm/i915/display/intel_vrr.c            | 4 +++-
->   3 files changed, 8 insertions(+), 1 deletion(-)
+--aphxvy3mdbvxymga
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v8 00/14] Add support for a DRM backlight capability
+MIME-Version: 1.0
 
+On Tue, Sep 22, 2026 at 02:23:17PM +0200, Thomas Zimmermann wrote:
+> Hi
+>=20
+> Am 22.09.26 um 14:16 schrieb Maxime Ripard:
+> > On Tue, Sep 22, 2026 at 06:41:32AM -0500, Mario Limonciello wrote:
+> > >=20
+> > > On 9/22/26 03:33, Javier Martinez Canillas wrote:
+> > > > Hello Mario,
+> > > >=20
+> > > > On Tue, Sep 8, 2026 at 6:41=E2=80=AFAM Mario Limonciello
+> > > > <mario.limonciello@amd.com> wrote:
+> > > > > At Display Next Hackfest 2026 we reviewed progress moving brightn=
+ess
+> > > > > control into the DRM connector properties.
+> > > > >=20
+> > > > > There is a range LUMINANCE property that will default to 0->0.
+> > > > > Once a driver attaches a backlight it will be updated to 1->max.
+> > > > > If the panel supports the minimum backlight turning off the displ=
+ay
+> > > > > the range can later be updated to 0->max instead of 1->max.
+> > > > >=20
+> > > > > The legacy sysfs interface is synchronized with the DRM connector.
+> > > > > When a compositor using this feature is loaded, sysfs writes are =
+disabled
+> > > > > to prevent legacy tools from going out of sync with the composito=
+r.
+> > > > >=20
+> > > > I don't think I agree with the direction of this series. The main
+> > > > issue for me is that if the sysfs interface is disabled, then I don=
+'t
+> > > > understand the value of doing all the hops between the DRM and
+> > > > backlight subsystems...
+> > > The reason for all the hops is that users can switch between composit=
+ors
+> > > that support this and don't.  If you're in a compositor that supports=
+ it
+> > > that compositor will want to affirm it's in control.  If you're in a
+> > > compositor without support then you should still have a way to change
+> > > things, and that's what the sysfs interface exists for.
+> > Couldn't we make a sysfs write trigger an atomic commit then? That way,
+> > it would always go through the atomic commit path, no matter whether
+> > you're on a "legacy" compositor or not.
+> >=20
+> > It would also somewhat untangle the uapi from the backlight subsystem,
+> > because it's only really relevant for panels. For all the other use
+> > cases, you might want to control the brightness but you have no matching
+> > backlight device.
+>=20
+> I suggested to treat these backlight changes like display-hotplug events.
+> When it happens, we'd send a uevent to user space, so it can update its
+> internal state.=C2=A0 Such an event could then come from any source besid=
+es
+> backlight's sysfs.=C2=A0 =C2=A0Compositors could also implement policies =
+that are
+> currently implicit in this series, such as brightness of 0 means "display
+> off".=C2=A0 This is likely something a compositor should track.
+>=20
+> Would that work?
 
-Thanks for the patch, pushed to drm-intel-next.
+It probably would, but it would create a precedent I'm not really
+familiar with. Hotplug events are kind of separate because it really is
+a hardware event most of the time: you get an interrupt, and report it
+to userspace. And it's largely outside of the properties space (except
+maybe for things like edid).
 
+If we start having the argument that a property changing must trigger a
+uevent, then it means that we can expect *any* property to do so, and
+"the compositor needs to be in control of it" can apply to many, like
+color formats, positions, tiling, etc.
 
-Regards,
+It would be a much saner design to put it behind DRM_MASTER, and
+deprecate the sysfs interface entirely.
 
-Ankit
+Maxime
 
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
-> index 2aed110c5b090..ca0ef466bb103 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-> @@ -120,6 +120,10 @@ intel_display_param_named_unsafe(enable_psr, int, 0400,
->   	"(0=disabled, 1=enable up to PSR1, 2=enable up to PSR2) "
->   	"Default: -1 (use per-chip default)");
->   
-> +intel_display_param_named_unsafe(enable_dc_balance, bool, 0400,
-> +	"Enable VRR DC balance (0=disabled, 1=enabled). "
-> +	"Default: 0 (disabled)");
-> +
->   intel_display_param_named_unsafe(enable_panel_replay, int, 0400,
->   	"Enable Panel Replay (0=disabled, 1=enabled). Default: -1 (use per-chip default)");
->   
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
-> index ba01aeaf89440..5c5a1a1358c32 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-> @@ -46,6 +46,7 @@ struct drm_printer;
->   	param(bool, enable_dp_mst, true, 0600) \
->   	param(int, enable_fbc, -1, 0600) \
->   	param(int, enable_psr, -1, 0600) \
-> +	param(bool, enable_dc_balance, false, 0600) \
->   	param(int, enable_panel_replay, -1, 0600) \
->   	param(bool, psr_safest_params, false, 0400) \
->   	param(bool, enable_psr2_sel_fetch, true, 0400) \
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index e36db11744405..1698c54e258b4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -439,10 +439,12 @@ static bool intel_vrr_dc_balance_possible(const struct intel_crtc_state *crtc_st
->   static void
->   intel_vrr_dc_balance_compute_config(struct intel_crtc_state *crtc_state)
->   {
-> +	struct intel_display *display = to_intel_display(crtc_state);
->   	int guardband_usec, adjustment_usec;
->   	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
->   
-> -	if (!intel_vrr_dc_balance_possible(crtc_state) || !crtc_state->vrr.enable)
-> +	if (!intel_vrr_dc_balance_possible(crtc_state) ||
-> +	    !crtc_state->vrr.enable || !display->params.enable_dc_balance)
->   		return;
->   
->   	crtc_state->vrr.dc_balance.vmax = crtc_state->vrr.vmax;
+--aphxvy3mdbvxymga
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCarJ2DwAKCRAnX84Zoj2+
+dmeOAX4rOUubD98Ry5IKU/TpA134hAFav7UZzPVSp35hLz9sC3+xpRafxbKuTWcr
+R37oo2cBfiUHt8bOOeHaOxxd/E9WM5PjM/+QhvfRqb/T72CoZjfPCN1zhYZEDNfx
+Tu7d8Iqs1w==
+=5sv1
+-----END PGP SIGNATURE-----
+
+--aphxvy3mdbvxymga--
