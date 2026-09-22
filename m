@@ -4,151 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23720C982F1
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 08:50:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FC5BC98302
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 08:53:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D529910EBFD;
-	Tue, 22 Sep 2026 08:50:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1949C10EB4B;
+	Tue, 22 Sep 2026 08:53:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J0hW+H57";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KPaK86WZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 207EB10EBFD;
- Tue, 22 Sep 2026 08:50:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20FED10E673;
+ Tue, 22 Sep 2026 08:53:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790067055; x=1821603055;
- h=from:to:cc:subject:date:message-id:references:
+ t=1790067221; x=1821603221;
+ h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=siG7dhkaYoTGef5ftfrSkjeQh5N1uNDhY5OFcq770K8=;
- b=J0hW+H57qa1WbmdiDvjjmrsZaXNZIgzn5GXLYg5RqfmBCIHuLyIK4KnD
- I1GCF5j1YFtSFZsw51jqXdPA5g9Dz5VJ9BV5OLMC/Zg/HYD+7eZHZNyG2
- lE0Oioensm9E8XryZZaMNpSKtiGQoemplIlP1VBUh5EHojFJ/xlOr7QOt
- XMgFYNr9BF5Ifr9LcmdtUqvI8MStgb5ve6YPRz+raVPzou2Btgku/KoFO
- U8K/X1x2nc7po51RgGv5xUim4fNfP03kYpvfpXzjtZOcQMYxy1dshYrXK
- Cla7ZuL1nLGlHzYykBs4grFInLB86h99UtpvvgS5ppS0sT8IFhK14YIGt Q==;
-X-CSE-ConnectionGUID: 8rkFhT0zR++nmRHiiBfdmQ==
-X-CSE-MsgGUID: 1KT0leGrQBmWTE2R5dyy6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11912"; a="90518901"
-X-IronPort-AV: E=Sophos;i="6.27,116,1787036400"; d="scan'208";a="90518901"
-Received: from fmviesa012.fm.intel.com ([10.60.135.152])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2026 01:50:54 -0700
-X-CSE-ConnectionGUID: L8YZY45eRyWoVd0cUuHTRw==
-X-CSE-MsgGUID: dY8lrEQPRHy+lc6WOGVAIA==
+ bh=QudNPdpTFAFVzZqVY3tQMOFtvsLOH2A6+4eWJfdUnJg=;
+ b=KPaK86WZnBKpu/jfULZZw7RRlJbmpQYXi4IGgJnQFdHVFfeRtQOMLzid
+ VVA9OEhs08j/renRMgBbh1814L0VO3DkVSHUa2qjr+akKaql/1tJrXgKA
+ mgnE2pMw4oKt8CHaplBo9jmnZHTmfsSLOF5KgtrLLeuktbM8vAjg5SGnL
+ bi/KwwRgjSDawzkebqTdSmGHVvq5CCQAE93Uk1tnYUH/XaaGcIFrvESSM
+ C/Jdzwad+aW6wzj1mm+3Mum5w1aNnKp8yU0l2c9h6+HzNq7/FJ9O1xxwC
+ 5faJA082YU/8s6fNjDciPIKC9UmNheX8wRq/CGiZKNPcS6gq/Dh7gakrh Q==;
+X-CSE-ConnectionGUID: lXRnPsPIRHuJr7wgFtTBkA==
+X-CSE-MsgGUID: XboE2E0xQQqyBxc5mHM2lg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11912"; a="78205160"
+X-IronPort-AV: E=Sophos;i="6.27,116,1787036400"; d="scan'208";a="78205160"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2026 01:53:41 -0700
+X-CSE-ConnectionGUID: RgB9ZvG5SDi7CUBgt9cG2g==
+X-CSE-MsgGUID: d7lM/Mf7TNOG7kwpQ6qJYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,116,1787036400"; 
-   d="scan'208";a="4026689"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa012.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2026 01:50:55 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2026 01:53:41 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 22 Sep 2026 01:50:54 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.46; Tue, 22 Sep 2026 01:53:40 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Tue, 22 Sep 2026 01:50:54 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.49) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Tue, 22 Sep 2026 01:53:40 -0700
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.70) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 22 Sep 2026 01:50:53 -0700
+ 15.2.2562.46; Tue, 22 Sep 2026 01:53:40 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JuZ05Atj7HL8qbt5dXXW4kQF66otwg1a57tAJ8UvA5Wtk2xEYYoDHsSrg7/sXeKEXiZz8y/uiE+eJ/W75shfW8IFbDaaCFvLr1Dcy3xWWk5R0iao6rTkPyUpLPQaruZ2FF513IqvT8D7yB9jt5T9oVm3unkTmXnMVsUGHMfXDlVtGa1HL9vq6Extt1GQ+oX1nfido3/DnGY9MS0KET4BOKApIdd4zLe8NlPL7aUWX6V0VyvaBA2UNyvJiO4F6keNmdbRGFNXhHkX88pD0yLn/F9MeKGik6Vy7F2UEDpbQk49thzvPNGqqcIXYKX79oiYHOE+khEwScUFDf+FikJpcw==
+ b=IFcSivGP9vInppIldFQ9y9qDjHtkxzftspr7PCzx4mwYRaItSZheNPFOKOWPO8rOL6/yGkCjZnhm7qIS9Be2eHNX50BmT4eKr+fA4tQ4vHTtBljH8lQo15Sz6tRMHj+DaPiPJa580Ao4nueDmUayhbQSA38Dyn9Ko9CpQFqLLVVMtMDxmNeTKEDqR8CapIS0UaGkN3vy73IrDTm6GN63wJGi2f3iQ5DjT8WqAGGMaYsztPK9iV9fQV9xlYjS6ortoff4wnrAXl7G5E74naITJzurpKwJQE4CryXsrQI0PTStw3vwC27XyByuakj1oCxefI6BlrRL6exE9gf5T25vjA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lXdsNoZFtIpSExmYXRGZbOH7OixqvCbeVC9bi8G4xnA=;
- b=o8Yd3V0sitw3E9cdnMFG2IKTwPR1M4HRKn7yOpfLqya5LjODDkKCSRVgO4fgJU8dK9yAtgbmDUpHmmtZXc/qhQ3YPzB6Lu9GETQ8ePvGD+UvVrH9VR1w47LfpdS0ldTvEtxVKRd2cnng/stY0P+fiq40hpRakcRda3nvh2ajbjemvZRuwz0QBrumBA/O7M/fCHfvmWJ0IdUMC8uRMsxvineOhyc5ewWevxkadYGA+Nnlnc7D7G+3FZnsyviF1k2o+IFVhGOhjMA+N1ddOGNPkLQr6e8X6LtJQvaNPZEhcMlmxA94FcwnFfk8atu29wAKydNa9wvkCCnCBrC8L57R4w==
+ bh=t3yQR6QepYpgBwv3AAIze+dnWsh8CfAdcy4D06tAtNE=;
+ b=wdeqUPgZHmXbfDO04OVWoIgmR52mQhxK2R5uT6kyoDmC4aClVn0I4QjDJ3oxqmApM8T5+Ol6XbEKvQocAV4XY44PFZGimmTM2L1R1ChQ/Vj9tVCF5w+tOAfZbnauBwN98nNJOm1XRwvW9nLDDpgSwEKyFi6QXSlZs0pZ5PYNl/lBhmrIElSuqTQM+RkMrTC33hFIhWEcKRkP7DRGp8S4WpgkK+iDDRzR9Am9OXYwTW/ynIJWuLw1KxANFzkqH0BhJSley9o9lEjWjXxF+N6FDUyXpiQrDy5A0Ud9n2ff/AUSSFIAYBAJzi7LAwTrpxygEg/zuLiNkbMnRcfET07bDw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from MW4PR11MB6887.namprd11.prod.outlook.com (2603:10b6:303:225::16)
- by PH7PR11MB7549.namprd11.prod.outlook.com (2603:10b6:510:27b::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.428.13; Tue, 22 Sep
- 2026 08:50:46 +0000
-Received: from MW4PR11MB6887.namprd11.prod.outlook.com
- ([fe80::91f5:637d:7c4a:6494]) by MW4PR11MB6887.namprd11.prod.outlook.com
- ([fe80::91f5:637d:7c4a:6494%5]) with mapi id 15.21.0428.015; Tue, 22 Sep 2026
- 08:50:45 +0000
-From: "Garg, Nemesa" <nemesa.garg@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
+ by IA3PR11MB9328.namprd11.prod.outlook.com (2603:10b6:208:579::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.428.16; Tue, 22 Sep
+ 2026 08:53:37 +0000
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1%4]) with mapi id 15.21.0428.015; Tue, 22 Sep 2026
+ 08:53:37 +0000
+Message-ID: <e6727396-791b-4509-863b-9fa9e1347839@intel.com>
+Date: Tue, 22 Sep 2026 14:23:29 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] drm/i915/dmc: Add sanity check for DMC load address
+To: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
  "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Nikula, Jani" <jani.nikula@intel.com>, "Kandpal, Suraj"
- <suraj.kandpal@intel.com>
-Subject: RE: [PATCH 1/8] drm/i915/lspcon: log DPCD access errors
-Thread-Topic: [PATCH 1/8] drm/i915/lspcon: log DPCD access errors
-Thread-Index: AQHdSYtSPWvrwR6JREmtm3895FBTyrbaSyLg
-Date: Tue, 22 Sep 2026 08:50:45 +0000
-Message-ID: <MW4PR11MB688749142C46E4F6396AA9FFE3832@MW4PR11MB6887.namprd11.prod.outlook.com>
-References: <20260921053710.1586776-1-suraj.kandpal@intel.com>
- <20260921053710.1586776-2-suraj.kandpal@intel.com>
-In-Reply-To: <20260921053710.1586776-2-suraj.kandpal@intel.com>
-Accept-Language: en-US
+CC: "Nikula, Jani" <jani.nikula@intel.com>
+References: <20260907171856.1484854-4-dibin.moolakadan.subrahmanian@intel.com>
+ <20260907171856.1484854-5-dibin.moolakadan.subrahmanian@intel.com>
+ <IA1PR11MB63481933CAA623068BDE2B54B2B82@IA1PR11MB6348.namprd11.prod.outlook.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MW4PR11MB6887:EE_|PH7PR11MB7549:EE_
-x-ms-office365-filtering-correlation-id: 46e71315-abdf-4c6c-4648-08df1886979e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|366016|376014|10067099003|56012099006|18002099003|22082099003|5023799004|4143699003|11063799006|38070700021;
-x-microsoft-antispam-message-info: Iq60fA9tjR3wRUs8eKy7AtwXdFColPhSuuDwA7XWUOg/v0BG+dK9tjqpeSKQpML3gU6q9n4TovOSeEIW4KNCI6yC0+OyJDuVudtvxvkYTtFeR0RtEAEuCq6JB9FQvMdRKybnFZmE5A2QS/DdINazD4fAuoIL1zOlOgQdv3zQplVjxgGGm2xIKD6ADJsTapBOKMsXHAgvt0NfYHgenYp79Nw59W52jJH8Dc16jWIkLDr5A52U9y540e5JlVpOF0Wzo3uauJ4YBZ7z6Wa2iF5RpxMZuZp8PqhuM3w+K459+1LW0D20A/42AbwLRV2ovFAKEDc7WAZNHhAI1ZAVBrozdX7nd1VjrGYNVo7gIOHIj8u38z3PxMEQrt+tH1eG5WPQO0rwei59WBNCMsfNqz7zjtTuyc4V1IqCpReCqT5mpkuLsu8lgzzcLh4FBwnSTPsPYXwSJUeIkVGdfPDXmVNiPIOH70hXv0JkkBSWI/cf4/zRprCIAOR1RCtwmvRiAf44PkjvGCEbTeA9Ehrb2KICQEYp8e6hbbEme9HFbIMU1Qzsq9kKW1or0WdGWT7Mo/uYKvXmPv1CY53JyJyN9H+pUc/tpqAf4zINXmrC3j0i+WUvnmy7XNSywD2xNFNrKj8pOd8stSY150KTcTPJPX7MtMOkB2akph1jCh8zlAdi001hFkfm3BRU9MTV7SRo08J7vvvXoeU2oVyFEqomnf1tysNB2fv9mQxW09IuyqHh8HQ=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB6887.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(10067099003)(56012099006)(18002099003)(22082099003)(5023799004)(4143699003)(11063799006)(38070700021);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?yYUNZ8SqYVNyYJWkOpogTV3UBilkTNAGijwR+8ucxbT4mzL+DyoZ8RqpPlJp?=
- =?us-ascii?Q?US92p6EZwYV0Ga4iK4PeJ853ToveWMmMoastWfHTMWQ9KOtKCInGUbyGT4JF?=
- =?us-ascii?Q?YqCLKbyak5JV2pkoUcJ77ZQlv+8A0Mbrs6Da4b0K7m0D89VObNUBKhcyxm//?=
- =?us-ascii?Q?w521sou0ddnEVfC81iyPsP7K0qpei7n1UayQXk7VLoGIxsR7osGAUlpMiAzk?=
- =?us-ascii?Q?sk4SUFmJLdZxlb4ViwdrBfAz1RHcu5dwv2kQkxUXeIIRzbD0eRHtqQ6/KOZ9?=
- =?us-ascii?Q?SfkS6lix3UZdB9SmJxG0KlA0rZ9WtTcax73vgNKVrvLA3plxGAI7I1XwYmtW?=
- =?us-ascii?Q?lhXGSIXn+6rKbfq4TEtQwDcUNb5E30VsTPZnzXuxyxC9NHCjuouwV0Q299fG?=
- =?us-ascii?Q?hwQAeFSFmKRFx1mH1yAP5885+KhqkIUi1BHv50EYH7ymG/qumRMqaDLbMk5E?=
- =?us-ascii?Q?mBSfym3PEuWzPTNhnPDOJhPPCvVJvDM31Rr4VBzcao9sLBt6teNRrLIpypmS?=
- =?us-ascii?Q?yc74Q5HNCXxM0AefxzMEiQ4vxUjwzCNikh+zfZDSxIDJiE6S/ZJbwTYv497s?=
- =?us-ascii?Q?mozZ0kbetf5DBrcP6ejQetQz1t8xCfokq6kz8Ax18Wu2rremBrtat8MAPkXH?=
- =?us-ascii?Q?0FvrdIR1YmENeZAtbphweSxaOg2KFhXTJ06OhmhIFKcXD4fMPuNGzFsy0f1c?=
- =?us-ascii?Q?Yn4U9MPWr4GQV6Qf+ExqXg44SKUD/mse/wVSpDilpVvGxMnjtRejCMClzfc8?=
- =?us-ascii?Q?TX2F5TfNQSN+ZV0cqQ20icauOJNCy4rALY06qvvfS8xmpev79XGXiK61UFBD?=
- =?us-ascii?Q?Kfv4+X5SjI3VQJC4x/fuMnlYUV/bVns3984p24KWh7ltXsYaHUyLEQLdfbzE?=
- =?us-ascii?Q?7aRn78mmpJj9u04ckdYl+LREFFtt6GUONqMDyk/D10beveiH1vTyrZNsCtx/?=
- =?us-ascii?Q?Le/0NoUMZywP2RhRKyGH+CQovHVn8ltn8rTC48bYpML7qNzhJdjxdo7UuPht?=
- =?us-ascii?Q?npXp0sSYzgafShalKxvmcYOZ2SLQfpJ4mHfdcODav7D1q7/OeiH2jHcJGft5?=
- =?us-ascii?Q?nHJa5PnPZVy/B6kAd3AZQNI64qVtyFj5MvwjWRwwna864GamzLa/S+UPQ+56?=
- =?us-ascii?Q?fxWfBzDaKjGxQkTLFOdq7WNQRY4rnlIZkYJ7iNuogXRCnk1jYH6ebrMKEWDs?=
- =?us-ascii?Q?vFDqlgFD4dAOB6xV7ffkXbhkU8MT0lYpQ/XA+Hk907Gps5+ezCFTalsIorSd?=
- =?us-ascii?Q?s304VKhCuBw7Wyd94baSTVf9wyQmlaKvSApcQrjyHqH6STIHn/EwGgOIFjCV?=
- =?us-ascii?Q?qN0ErfvTQX/MMKgrGjGnHXY3+sCYAQ4ragJg3doje0C/GPvy5eaB2lH+zLZY?=
- =?us-ascii?Q?8LejBO5eOblej+p3fm4p06SfWYyTwvWTuJ1LWybA5u8HVHNtyKbcGtJjQLJ4?=
- =?us-ascii?Q?2wHe2zPcC9//RBzLSR9XquS4xJ4qo1ZdczNiK27ZHg0PHPFGmH33ZvllsM3c?=
- =?us-ascii?Q?7Llm05sB/nS5h4/vM+LUDKag7RHBjHj/wdIemTIoQnDzcyFTYCOYz5HuBBTY?=
- =?us-ascii?Q?vQ1KGbYCy5zhpMx9VhBxYRoViZb4xekk1b7Rykh9OyJG9FSmVqLusWgJVHGD?=
- =?us-ascii?Q?EV1/ZoQ84zqCaM7Go0Iqz2dohfs9EI5bji42BT85bna7ttAH/e1cbmIFTj0g?=
- =?us-ascii?Q?5n15AKuaQQQwHWcnc/qJrSnTsNPRN5NFN2mv19EY9ryjY4enqSk9QlREu6vS?=
- =?us-ascii?Q?KcckZQKFWQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <IA1PR11MB63481933CAA623068BDE2B54B2B82@IA1PR11MB6348.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0065.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b3::7) To DM4PR11MB7183.namprd11.prod.outlook.com
+ (2603:10b6:8:111::10)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: TGcdJrBwDv+JeXCttCAT1ZBBUGJKnmdiwmvmcgWanJa2GzBFW1wJrvmWhfcBh7WVFY/pLLxK+vFqm6kDrsGmWqpjVHX5KvR8BlEKfWcUTzJEKcfMSBcnlSTXqyo+MeXAYbwGG1KcH4UmGX7Fh29q3RBEk3BXcR3OWeye6r9x9MF7OgVycxvvJwV5SpgmLlluDhO9Xx1KFbCGMj8CXZhAVNwXLQAMIBZi72Q1Liwtg2LUqJOrXzP429x2MoIHh0krHw09TEQOaVQISBcUyY21w27k+wgahqIuy+ULJ/+ljCjYBv/2RMS+af0b8y6qf4iimh7aCOukz92keTUt+ekA+Q==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|IA3PR11MB9328:EE_
+X-MS-Office365-Filtering-Correlation-Id: bbcadb5b-1bb8-41f3-633f-08df1886fdc8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|23010399003|11063799006|56012099006|4143699003|10067099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: dScyzpP7HTzkV9NEQ12Son6AtawQbepuEf0aqLbfE/bdJwzc4VkNZDpuyZW5uS7wl7elhHk2gMKL8dfvzTSXNbWFh18imJSzTPThWvEfzrhbQ8PSfqNAKUNX5HHgMGsR9Ev8La4ml9Ew0x9224oiPIR00STCo8xRz3e674AFu7Akj0jAWHXGaB1UCUp1bi2kYD1QZM/MbkU/iSF8sHWh9BWISHyaNvF/Z0kN5IGPoFHbr/5k31lbqu8Ww1icOslkfpvu4J6GP+tlicaSjRgryRV0rl0IQqR9aylkM6uBHrZtydGUfRZpOA2ZKWKyHvUdnFQROXZsFlOJp1cTJIumxnbnM9/7t/tQfa4Yrtg4HkzHCiKZGEmle3W7n+0/e+770J1NrjT0HEaZSX4tSXhEjGvuff1m7YG1LjLQj7DMf3L/cVoXhJU2OYWb00tXAibUtQVkbaFmumEaMJxd9K4ZsIBNgCBjNoX8/IjWlK52leUkdg3jrwJvK+wicF1VD5aAf4P7jb/05hG9aQ2EY1YxozrU+JsnxA+9c0VEkac5ahWcHUsZ+6A85bL92gxfYuUAmb9gz8bJgoQAwNAw6N0Tx3N7Pjl6S1odwizjpxPB+KaeDxEMV8rBwjMEegTn+p13SUyIS/RdFBu4v7GpbqVF4FPzHKU1cJFY+06BR5fzOck=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(11063799006)(56012099006)(4143699003)(10067099003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M3FsYjg3MzlXQVFpSEdXVDdHaFh1d2ZXUjFiUDB1T2hQZU5aWVF1cnBaNEtZ?=
+ =?utf-8?B?T0I1OEhURGpqS3YvdGZMOEgrTnlEaEFhNE1XWmlUOFhmQXVuNGZvMVhpMFU3?=
+ =?utf-8?B?RWFVRldZQ2Z6Vm1QeUJjWFk1bW1JMTROTFY5cnhPamRKamFRRHowSTJCMjRk?=
+ =?utf-8?B?a1RBQ1RoY3EvQVVBOGZhbWRqQTc1bFpvZXRDRklVYUhSaWN2TndTMkY4Ym03?=
+ =?utf-8?B?bjZjTnEvNk9YQnNraDRjKy92TGtTRFZJbGViTWpkRW1oK2NJODdlZUlsU1Nl?=
+ =?utf-8?B?QzErbU1uOG80T0pHMUNwTUp6dXNYUDRKeThxeFVnMEFRNFM1ZGZCaVpyckZl?=
+ =?utf-8?B?U3ZjckdaSkRpUXQ5OFpNRkhDblhmUnhyUm5DUDRKdTh4T3cvRXdkTnZXUzhX?=
+ =?utf-8?B?djc4L1R5all4dmpNZ3lweVRRMUlVdmVBR1hPVXVRYTFQamthUzFqNE9mUytI?=
+ =?utf-8?B?MGhONmhDODNJLzRwdDFxQTJmZERwd0p6SkRnUlNCNExkWm1wZ1VnVDdtdEZG?=
+ =?utf-8?B?TkUxZlBRL0cwVHJnRmJPZUV3SHJoNkM1RHkxWkhIRXNqcGxxU1R3YytDcVpv?=
+ =?utf-8?B?Umo5enlJQzJrRDBaMnhCakRNY3poWkMzb2xESnl1YUlRaUZGVE5EeXBLbDFu?=
+ =?utf-8?B?K3Q1TExEUU5KeXoybE9ZTHMzd0ZsWmpQanJXSkVwWGNJNjFzUU50dTBrNFpL?=
+ =?utf-8?B?VW9Pek42UTZDU1BaRVV2elpOVWRFSnJ6NnBZNEhoV2dVVDBIZW9VejhYUUdX?=
+ =?utf-8?B?YjVJVFEwalEvNnVWT2h1b3RmdTlndzJ5cnFLQ1AwRkdQQnkzbjRTbDRLS1ZV?=
+ =?utf-8?B?SmhNbzZZS1RvQkVydWM5V25SVlhsbmVUN2w5dHU3K3dUY1BuWW4vMW1NOFdU?=
+ =?utf-8?B?ODR5amFHTEdsTVFmZGJpMWxETHJpdDNxcHRzMUhLUkNTYzdwd3kyL3AxYzgx?=
+ =?utf-8?B?b1Q0V1VPUkIrS1hNYVgzNkNOODkwY1d6UnZRaUtNV2JSSlR2ZlQwZWpUNjMv?=
+ =?utf-8?B?YWxpbFFjK3cvV0orR21Od2NodE8rYkNRbzk2eHRoeW1NUDJLWC9XV09EOXpD?=
+ =?utf-8?B?TGkxOElPeXhLTGthNHNBR0wwbGFSWllZYXFpd2dnMnpzZTliemFQWmFHcTdu?=
+ =?utf-8?B?TW5ETkt4VDFCVXFiN2F1Wks0ODRZWVU2T0kxd2pDcnMvQnpsMGttNlZ1VFVy?=
+ =?utf-8?B?T09xTkpuMWQ4YXN4Q1NscWh5ckNjVzh3MmpRRDF2LzJ4aXpaM3FsRklGN04z?=
+ =?utf-8?B?dGR3SmxuNVg0MTcybDlTUmVUcERpWGtKQU9nRWp5Vm92cVZkSWs3dWZHeHZ4?=
+ =?utf-8?B?bno4UzlyUFUzaGlVRWRSMVIzbkNocVYrNTlCdDZxUVFBUy9OdW4vZEVoY2NL?=
+ =?utf-8?B?R20rTGE3N3lBaDBnV21HSERQemM0bXYrNEh1QzUzUEpzd2NqakhVSy9xQ1No?=
+ =?utf-8?B?MmpRdVR6bkhtRE1QYkZhaFlLTFR4SDJ1VGJVOWQrMXhIUXRERDlPK3lTMFhz?=
+ =?utf-8?B?Qk9LalF2Y1BmZ0tLREU1RndpNkMxREhnTEV2VHNsT1JyRm5zU1MvK2RndnQ2?=
+ =?utf-8?B?WlRFUFVNaXQ3SGcvUWdQdjY0TGNGMHNhdi9kK1I1Yi9UTE4zL2xmRDMwUkdE?=
+ =?utf-8?B?V1J5OUxMVjQxMDBCMFVkZlNzcFkyUWZqVm1XU09GbXVtSENSWmZUUVhBbkli?=
+ =?utf-8?B?VWVMQTN0bzFsYm9YV2FFdUVaNjBGaEZ4Rm12U2pHNmxTdzFPY0tuWHBRYi9V?=
+ =?utf-8?B?WHdtNGlmWlU0Zk00bVN3d3FxOG90SXdZWGE2WG5TTGxHd2RBbkNlVm9kLzg5?=
+ =?utf-8?B?OHlwak5qVEgxaDJJdEI0YzkvSEhFbjNmUFZZbDYwZE82cHIyUXdTVlVUZUox?=
+ =?utf-8?B?UHFvZW92ZG50MGpkUnROZEcxdVdwRlpDNWNiZVVRRDRDYVdrOU8xaTNTN2FN?=
+ =?utf-8?B?ZUxwcGhYVCs2WHVJVnBrS0krd1hMOXBQSFRPTzFpZkNwN3RXZXYrY09ZZ1gv?=
+ =?utf-8?B?cS94eWtrb08vTVFFWG04M21pc3pmWTIyeEtNQ1FHNGwrdFd4L1FtRDBHOUw0?=
+ =?utf-8?B?TGIrVHFLbE5wbTFiOHZxVGtTQ0p6UnlTam8rc2ZxUnlWZENWaG5LeTdRNzM5?=
+ =?utf-8?B?eFQ0eFN6eGUyVFY3ZTZDR3RIL0RnMGltcWVOT1NYNnZRWlBVdXdkenJHb2J4?=
+ =?utf-8?B?dFBiZmcrU1BHRlFnRWFPb0tBdEU1QkJHMG9IMWoxSzlNTERCRGNLY3ZCVnpV?=
+ =?utf-8?B?d0ZLUTNiYmVkUUd6OWVuUEdsb2hXTllodUFaL3pBU29yRkhLSTZQdzVJZlZQ?=
+ =?utf-8?B?NkplZ1RXVnQ4cnVmZytXZ1l6VEFZSUZCdFpsYTJ5TlRsY0xyTTZ4RFQ4MzNq?=
+ =?utf-8?Q?yDv1Nnc/lSnCQ+Ss7MyRCMESEgAg+Cx8EyL4o?=
+X-Exchange-RoutingPolicyChecked: pmdrOZDpUR3ChNyg4CAGpJL4HYrL3hsaj66ozImGpeNAAWfaCGGLnNo5QaQ9PTAHx6ICAo1L/WfrwDdLOStnPJ5KbSEEteqfiH+DkuGXCl85li1M0Le/8u3lqfsz599ZytXdTC1L2CJzuXtEKYZQFMCsYCHJme9O+s+CVj1LlOIL+60ab7TI3cA51GRUrhj6JW5UwUPOkCAqnJcA2twULAjCKFud+OPOtaBKaY3VbLHFVUZdwCMzfXd4rcVLjeyJwBn/ijo+0Nfhh4kSyJ9aDUEYTE+cJ0oRPqpsglDQBAOitvTLqplUkD22MCqZAjB/VGbrME9FHYCoghtoW/y/YA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: bbcadb5b-1bb8-41f3-633f-08df1886fdc8
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6887.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46e71315-abdf-4c6c-4648-08df1886979e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Sep 2026 08:50:45.7959 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YeWXw/8J6oo5q0NpYFNvIqOb7ws8SSuTTDPd1NvWTPkAn0cPVyLv/8RHwBa1dsz2KMv3JFGK7a49beSyL3aXDQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7549
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2026 08:53:37.5927 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: U3SYw9NQdAeeeVF/yQISWWoM0jgDPDijJ86SWfwj0iXAdZLzrAdg71SZWMOzS5RqsMcFQVJW5r1LWoh8ggNs/WNt9RUeZSEXYAigeiTG4u/x/LC6BEyUAAhdXqVjgKgd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9328
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -164,180 +171,188 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 9/18/2026 12:12 AM, Golani, Mitulkumar Ajitkumar wrote:
+>
+>> -----Original Message-----
+>> From: Dibin Moolakadan Subrahmanian
+>> <dibin.moolakadan.subrahmanian@intel.com>
+>> Sent: 07 September 2026 22:49
+>> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+>> Cc: Golani, Mitulkumar Ajitkumar <mitulkumar.ajitkumar.golani@intel.com>;
+>> Nikula, Jani <jani.nikula@intel.com>
+>> Subject: [PATCH v4 1/2] drm/i915/dmc: Add sanity check for DMC load address
+>>
+>> For DMC firmware header version 3, the firmware load address is stored in
+>> dmc_info->start_mmioaddr and later used by dmc_load_program().
+>>
+>> Unlike the MMIO address table, the firmware load address is not validated. Add
+>> a sanity check to ensure it is within the valid range.
+>>
+>> BSpec: 69671, 68378
+>> Fixes: 3d5928a168a9 ("drm/i915/xelpd: Pipe A DMC plugging")
+> if available, please add Closes: <url> (with Reported-by:) to link it.
 
+Thanks for the review.
+Reported by internal tool , Closes not available.
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Su=
-raj
-> Kandpal
-> Sent: Monday, September 21, 2026 11:07 AM
-> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Nikula, Jani <jani.nikula@intel.com>; Kandpal, Suraj
-> <suraj.kandpal@intel.com>
-> Subject: [PATCH 1/8] drm/i915/lspcon: log DPCD access errors
->=20
-> Now that the DPCD accessors return a proper error code, include it in the
-> error messages using %pe and ERR_PTR(), instead of just stating that the
-> access failed.
->=20
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_lspcon.c | 34 +++++++++++++--------
->  1 file changed, 21 insertions(+), 13 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> index 07b5a9d010ff..82b40033728f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-> @@ -139,7 +139,8 @@ bool intel_lspcon_detect_hdr_capability(struct
-> intel_digital_port *dig_port)
->=20
->  	ret =3D drm_dp_dpcd_read_byte(&intel_dp->aux,
-> get_hdr_status_reg(lspcon), &hdr_caps);
->  	if (ret < 0) {
-> -		drm_dbg_kms(display->drm, "HDR capability detection
-> failed\n");
-> +		drm_dbg_kms(display->drm, "HDR capability detection failed
-> (%pe)\n",
-> +			    ERR_PTR(ret));
->  		lspcon->hdr_supported =3D false;
->  	} else if (hdr_caps & 0x1) {
->  		drm_dbg_kms(display->drm, "LSPCON capable of HDR\n");
-> @@ -247,7 +248,7 @@ static bool lspcon_wake_native_aux_ch(struct
-> intel_lspcon *lspcon)
->=20
->  	ret =3D drm_dp_dpcd_read_byte(&lspcon_to_intel_dp(lspcon)->aux,
-> DP_DPCD_REV, &rev);
->  	if (ret < 0) {
-> -		drm_dbg_kms(display->drm, "Native AUX CH down\n");
-> +		drm_dbg_kms(display->drm, "Native AUX CH down (%pe)\n",
-> +ERR_PTR(ret));
->  		return false;
->  	}
->=20
-> @@ -339,7 +340,8 @@ static bool lspcon_parade_fw_ready(struct
-> drm_dp_aux *aux)
->=20
->  		ret =3D drm_dp_dpcd_read_byte(aux,
-> LSPCON_PARADE_AVI_IF_CTRL, &avi_if_ctrl);
->  		if (ret < 0) {
-> -			drm_err(aux->drm_dev, "Failed to read AVI IF
-> control\n");
-> +			drm_err(aux->drm_dev, "Failed to read AVI IF control
-> (%pe)\n",
-> +				ERR_PTR(ret));
->  			return false;
->  		}
->=20
-> @@ -371,8 +373,8 @@ static bool
-> _lspcon_parade_write_infoframe_blocks(struct drm_dp_aux *aux,
->  		data =3D avi_buf + block_count * 8;
->  		ret =3D drm_dp_dpcd_write_data(aux, reg, data, 8);
->  		if (ret < 0) {
-> -			drm_err(aux->drm_dev, "Failed to write AVI IF block
-> %d\n",
-> -				block_count);
-> +			drm_err(aux->drm_dev, "Failed to write AVI IF block
-> %d (%pe)\n",
-> +				block_count, ERR_PTR(ret));
->  			return false;
->  		}
->=20
-> @@ -386,8 +388,8 @@ static bool
-> _lspcon_parade_write_infoframe_blocks(struct drm_dp_aux *aux,
->  		avi_if_ctrl =3D LSPCON_PARADE_AVI_IF_KICKOFF | block_count;
->  		ret =3D drm_dp_dpcd_write_byte(aux, reg, avi_if_ctrl);
->  		if (ret < 0) {
-> -			drm_err(aux->drm_dev, "Failed to update (0x%x),
-> block %d\n",
-> -				reg, block_count);
-> +			drm_err(aux->drm_dev, "Failed to update (0x%x),
-> block %d (%pe)\n",
-> +				reg, block_count, ERR_PTR(ret));
->  			return false;
->  		}
->=20
-> @@ -450,7 +452,8 @@ static bool _lspcon_write_avi_infoframe_mca(struct
-> drm_dp_aux *aux,
->  				mdelay(50);
->  				continue;
->  			} else {
-> -				drm_err(aux->drm_dev, "DPCD write failed
-> at:0x%x\n", reg);
-> +				drm_err(aux->drm_dev, "DPCD write failed
-> at:0x%x (%pe)\n",
-> +					reg, ERR_PTR(ret));
->  				return false;
->  			}
->  		}
-> @@ -462,7 +465,8 @@ static bool _lspcon_write_avi_infoframe_mca(struct
-> drm_dp_aux *aux,
->  	reg =3D LSPCON_MCA_AVI_IF_CTRL;
->  	ret =3D drm_dp_dpcd_read_byte(aux, reg, &val);
->  	if (ret < 0) {
-> -		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n",
-> reg);
-> +		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x
-> (%pe)\n",
-> +			reg, ERR_PTR(ret));
->  		return false;
->  	}
->=20
-> @@ -472,13 +476,15 @@ static bool _lspcon_write_avi_infoframe_mca(struct
-> drm_dp_aux *aux,
->=20
->  	ret =3D drm_dp_dpcd_write_byte(aux, reg, val);
->  	if (ret < 0) {
-> -		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n",
-> reg);
-> +		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x
-> (%pe)\n",
-> +			reg, ERR_PTR(ret));
+>
+>> Cc: stable@vger.kernel.org
+>> Assisted-by: Claude-Code:Sonnet-5
+>> Signed-off-by: Dibin Moolakadan Subrahmanian
+>> <dibin.moolakadan.subrahmanian@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_dmc.c      | 79 ++++++++++++++++---
+>>   drivers/gpu/drm/i915/display/intel_dmc_regs.h | 12 +++
+>>   2 files changed, 80 insertions(+), 11 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c
+>> b/drivers/gpu/drm/i915/display/intel_dmc.c
+>> index a191eee240d9..051b721a0895 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+>> @@ -1023,6 +1023,56 @@ static void dmc_set_fw_offset(struct intel_dmc
+>> *dmc,
+>>   	}
+>>   }
+>>
+>> +/*
+>> + * Check if the load address is within the valid range for the given DMC ID.
+>> + */
+>> +static bool dmc_load_addr_sanity_check(struct intel_dmc *dmc,
+>> +				       u32 start_addr, u32 payload_size,
+>> +				       int header_ver, enum intel_dmc_id
+>> dmc_id) {
+>> +	struct intel_display *display = dmc->display;
+>> +	u32 start_range, end_range, end_addr;
+>> +
+>> +	if (header_ver != 3)
+>> +		return true;
+>> +
+>> +	switch (dmc_id) {
+>> +	case DMC_FW_MAIN:
+>> +		start_range = DMC_MAIN_PROGRAM_BASE_START;
+>> +		end_range = DMC_MAIN_PROGRAM_BASE_END;
+>> +		break;
+>> +	case DMC_FW_PIPEA:
+>> +		start_range = DMC_PIPEA_PROGRAM_BASE_START;
+>> +		end_range = DMC_PIPEA_PROGRAM_BASE_END;
+>> +		break;
+>> +	case DMC_FW_PIPEB:
+>> +		start_range = DMC_PIPEB_PROGRAM_BASE_START;
+>> +		end_range = DMC_PIPEB_PROGRAM_BASE_END;
+>> +		break;
+>> +	case DMC_FW_PIPEC:
+>> +		start_range = DMC_PIPEC_PROGRAM_BASE_START;
+>> +		end_range = DMC_PIPEC_PROGRAM_BASE_END;
+>> +		break;
+>> +	case DMC_FW_PIPED:
+>> +		start_range = DMC_PIPED_PROGRAM_BASE_START;
+>> +		end_range = DMC_PIPED_PROGRAM_BASE_END;
+>> +		break;
+>> +	default:
+>> +		drm_warn(display->drm, "Unknown dmc_id %d for load
+>> address sanity check\n", dmc_id);
+>> +		return false;
+> (nit) The switch already covers all five valid enum intel_dmc_id values, and callers only pass validated ids. The default is dead defensive code; returning false is safe but If the goal is to force a compile-time reminder, consider using "MISSING_CASE(dmc_id)" for consistency.
 
-Instead of , "DPCD read failed " it can be "DPCD write failed at".
+Will useMISSING_CASE(dmc_id)in next version.
 
-Thanks,
-Nemesa
->  		return false;
->  	}
->=20
->  	ret =3D drm_dp_dpcd_read_byte(aux, reg, &val);
->  	if (ret < 0) {
-> -		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n",
-> reg);
-> +		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x
-> (%pe)\n",
-> +			reg, ERR_PTR(ret));
->  		return false;
->  	}
->=20
-> @@ -615,7 +621,8 @@ static bool
-> _lspcon_read_avi_infoframe_enabled_mca(struct drm_dp_aux *aux)
->=20
->  	ret =3D drm_dp_dpcd_read_byte(aux, reg, &val);
->  	if (ret < 0) {
-> -		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n",
-> reg);
-> +		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x
-> (%pe)\n",
-> +			reg, ERR_PTR(ret));
->  		return false;
->  	}
->=20
-> @@ -630,7 +637,8 @@ static bool
-> _lspcon_read_avi_infoframe_enabled_parade(struct drm_dp_aux *aux)
->=20
->  	ret =3D drm_dp_dpcd_read_byte(aux, reg, &val);
->  	if (ret < 0) {
-> -		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x\n",
-> reg);
-> +		drm_err(aux->drm_dev, "DPCD read failed, address 0x%x
-> (%pe)\n",
-> +			reg, ERR_PTR(ret));
->  		return false;
->  	}
->=20
-> --
-> 2.34.1
+>
+>> +	}
+>> +
+>> +	if (payload_size == 0)
+>> +		end_addr = start_addr;
+> Bounds are computed on payload_size = fw_size * 4, which is 32-bit and can wrap. For fw_size >= 0x40000000, payload_size wraps small/zero, so both the max_fw_size cap and dmc_load_addr_sanity_check pass, while dmc_load_program still loops the raw dmc_fw_size and defeating the new check and causing OOB reads. Please validate fw_size (reject 0 and oversized) before the multiply.
+
+Will fix the 32-bit wrap in next version.
+
+>> +	else if (check_add_overflow(start_addr, payload_size - 1, &end_addr))
+>> +		return false;
+>> +
+>> +	if (start_addr < start_range || end_addr > end_range)
+>> +		return false;
+>> +
+>> +	return true;
+>> +}
+>> +
+>>   static bool dmc_mmio_addr_sanity_check(struct intel_dmc *dmc,
+>>   				       const u32 *mmioaddr, u32 mmio_count,
+>>   				       int header_ver, enum intel_dmc_id
+>> dmc_id) @@ -1125,6 +1175,24 @@ static u32 parse_dmc_fw_header(struct
+>> intel_dmc *dmc,
+>>   		return 0;
+>>   	}
+>>
+>> +	rem_size -= header_len_bytes;
+>> +
+>> +	/* fw_size is in dwords, so multiplied by 4 to convert into bytes. */
+>> +	payload_size = dmc_header->fw_size * 4;
+>> +	if (rem_size < payload_size)
+>> +		goto error_truncated;
+>> +
+>> +	if (payload_size > dmc->max_fw_size) {
+>> +		drm_err(display->drm, "DMC FW too big (%u bytes)\n",
+>> payload_size);
+>> +		return 0;
+>> +	}
+>> +
+>> +	if (!dmc_load_addr_sanity_check(dmc, start_mmioaddr, payload_size,
+>> +					dmc_header->header_ver, dmc_id)) {
+>> +		drm_err(display->drm, "DMC %d: firmware has wrong load
+>> address\n", dmc_id);
+>> +		return 0;
+>> +	}
+>> +
+>>   	if (!dmc_mmio_addr_sanity_check(dmc, mmioaddr, mmio_count,
+>>   					dmc_header->header_ver, dmc_id)) {
+>>   		drm_err(display->drm, "DMC firmware has Wrong MMIO
+>> Addresses\n"); @@ -1169,17 +1237,6 @@ static u32
+>> parse_dmc_fw_header(struct intel_dmc *dmc,
+>>   	dmc_info->mmio_count = mmio_count;
+>>   	dmc_info->start_mmioaddr = start_mmioaddr;
+>>
+>> -	rem_size -= header_len_bytes;
+>> -
+>> -	/* fw_size is in dwords, so multiplied by 4 to convert into bytes. */
+>> -	payload_size = dmc_header->fw_size * 4;
+>> -	if (rem_size < payload_size)
+>> -		goto error_truncated;
+>> -
+>> -	if (payload_size > dmc->max_fw_size) {
+>> -		drm_err(display->drm, "DMC FW too big (%u bytes)\n",
+>> payload_size);
+>> -		return 0;
+>> -	}
+> (nit) Mention the code motion in the commit message. A single line "move payload_size computation earlier so the load-address check can use it" would save the next reviewer the diff archaeology.
+>
+>>   	dmc_info->dmc_fw_size = dmc_header->fw_size;
+>>
+>>   	dmc_info->payload = kmalloc(payload_size, GFP_KERNEL); diff --git
+>> a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+>> b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+>> index 6b7978fb8986..324320afad58 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+>> @@ -521,6 +521,18 @@ enum pipedmc_event_id {
+>>   #define TGL_PIPE_MMIO_END(dmc_id)	_PICK_EVEN(((dmc_id) - 1),
+>> _TGL_PIPEA_MMIO_END,\
+>>   					      _TGL_PIPEB_MMIO_END)
+>>
+>> +/* For DMC header version v3*/
+>> +#define DMC_MAIN_PROGRAM_BASE_START	0x80000
+>> +#define DMC_MAIN_PROGRAM_BASE_END	0x86fff
+>> +#define DMC_PIPEA_PROGRAM_BASE_START	0x90000
+>> +#define DMC_PIPEA_PROGRAM_BASE_END	0x96fff
+>> +#define DMC_PIPEB_PROGRAM_BASE_START	0x98000
+>> +#define DMC_PIPEB_PROGRAM_BASE_END	0x9efff
+>> +#define DMC_PIPEC_PROGRAM_BASE_START	0x52000
+>> +#define DMC_PIPEC_PROGRAM_BASE_END	0x53fff
+>> +#define DMC_PIPED_PROGRAM_BASE_START	0x59000
+>> +#define DMC_PIPED_PROGRAM_BASE_END	0x5afff
+>> +
+>>   #define SKL_DMC_DC3_DC5_COUNT	_MMIO(0x80030)
+>>   #define SKL_DMC_DC5_DC6_COUNT	_MMIO(0x8002C)
+>>   #define BXT_DMC_DC3_DC5_COUNT	_MMIO(0x80038)
+>> --
+>> 2.43.0
 
