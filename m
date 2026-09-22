@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E343CC982FE
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 05:39:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 371E1C982F1
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 05:41:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96CCF10E3CA;
-	Tue, 22 Sep 2026 05:39:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD28210E428;
+	Tue, 22 Sep 2026 05:41:41 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D25F10E3CA;
- Tue, 22 Sep 2026 05:39:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9110266770009689638=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E86610E41B;
+ Tue, 22 Sep 2026 05:41:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Refresh_TTM_LRU_on_SVM_pref?=
- =?utf-8?q?etch_=28rev3=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Migrate_on_fault_for_devi?=
+ =?utf-8?q?ce_pages_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+To: mpenttil@redhat.com
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 22 Sep 2026 05:39:27 -0000
-Message-ID: <179005556717.190466.2924804795130605357@61270ab9df2a>
+Date: Tue, 22 Sep 2026 05:41:40 -0000
+Message-ID: <179005570031.190466.3102048051544073234@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260922043759.3057442-6-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20260922043759.3057442-6-himal.prasad.ghimiray@intel.com>
+References: <20260922053421.4092027-1-mpenttil@redhat.com>
+In-Reply-To: <20260922053421.4092027-1-mpenttil@redhat.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,154 +40,134 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9110266770009689638==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Refresh TTM LRU on SVM prefetch (rev3)
-URL   : https://patchwork.freedesktop.org/series/174276/
-State : failure
+Series: Migrate on fault for device pages (rev6)
+URL   : https://patchwork.freedesktop.org/series/165953/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04_BAT -> xe-pw-174276v3_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 37abc623899e8e6a1e29c95a9c55281edc979e35
+Author: Mika Penttilä <mpenttil@redhat.com>
+Date:   Tue Sep 22 08:34:21 2026 +0300
 
-Summary
--------
+    Documentation/mm/hmm: document migration through hmm_range_fault()
+    
+    Describe the two new MIGRATE_VMA_FAULT / MIGRATE_VMA_WRITE flags of
+    migrate_vma_setup(), and add a section on driving the migration
+    collection phase directly from hmm_range_fault() via HMM_PFN_REQ_MIGRATE
+    and migrate_hmm_range_setup().
+    
+    Signed-off-by: Mika Penttilä <mpenttil@redhat.com>
++ /mt/dim checkpatch dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04 drm-intel
+2549541686b9 mm/Kconfig: changes for migrate on fault for device pages
+9d869e31097c mm: add helper to convert HMM pfn to migrate pfn
+-:179: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#179: FILE: mm/migrate_device.c:1584:
++
++}
 
-  **FAILURE**
+total: 0 errors, 0 warnings, 1 checks, 138 lines checked
+56ef952d875a mm/hmm: preparations for HMM to participate in migration
+-:189: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'hmm_vma_walk->vma != walk->vma'
+#189: FILE: mm/hmm.c:420:
++	if (hmm_vma_walk->vma && (hmm_vma_walk->vma != walk->vma))
 
-  Serious unknown changes coming with xe-pw-174276v3_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-174276v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:211: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#211: FILE: mm/hmm.c:442:
++{
++
 
-  
+total: 0 errors, 0 warnings, 2 checks, 258 lines checked
+babdfdf65f17 mm/hmm: do the plumbing for HMM to participate in migration
+-:47: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#47: FILE: mm/hmm.c:52:
++	spinlock_t			*ptl;
 
-Participating hosts (15 -> 15)
-------------------------------
+-:55: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'locked' may be better as '(locked)' to avoid precedence issues
+#55: FILE: mm/hmm.c:74:
++#define HMM_ASSERT_PTE_LOCKED(hmm_vma_walk, locked)		\
++	WARN_ON_ONCE((hmm_vma_walk)->ptelocked != locked)
 
-  No changes in participating hosts
+-:58: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'locked' may be better as '(locked)' to avoid precedence issues
+#58: FILE: mm/hmm.c:77:
++#define HMM_ASSERT_PMD_LOCKED(hmm_vma_walk, locked)		\
++	WARN_ON_ONCE((hmm_vma_walk)->pmdlocked != locked)
 
-Possible new issues
--------------------
+-:61: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'hmm_vma_walk' - possible side-effects?
+#61: FILE: mm/hmm.c:80:
++#define HMM_ASSERT_UNLOCKED(hmm_vma_walk)			\
++	WARN_ON_ONCE((hmm_vma_walk)->ptelocked ||		\
++		     (hmm_vma_walk)->pmdlocked)
 
-  Here are the unknown changes that may have been introduced in xe-pw-174276v3_BAT:
+-:92: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#92: FILE: mm/hmm.c:116:
++		end-addr == HPAGE_PMD_SIZE) {
+ 		   ^
 
-### IGT changes ###
+-:216: CHECK:BRACES: braces {} should be used on all arms of this statement
+#216: FILE: mm/hmm.c:464:
++		if (softleaf_is_device_private(entry)) {
+[...]
+ 		else
+[...]
 
-#### Possible regressions ####
+-:334: CHECK:BRACES: braces {} should be used on all arms of this statement
+#334: FILE: mm/hmm.c:625:
++	if (minfo) {
+[...]
++	} else
+[...]
 
-  * igt@xe_exec_fault_mode@twice-rebind-prefetch:
-    - bat-bmg-1:          [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v3/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html
+-:338: CHECK:BRACES: Unbalanced braces around else statement
+#338: FILE: mm/hmm.c:629:
++	} else
 
-  
-Known issues
-------------
+-:455: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#455: FILE: mm/hmm.c:724:
++
++	}
 
-  Here are the changes found in xe-pw-174276v3_BAT that come from known issues:
+total: 0 errors, 0 warnings, 9 checks, 494 lines checked
+bd8b1d36eec5 mm/hmm: implement folio split for migrate needs in HMM pagewalk
+-:39: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#39: FILE: mm/hmm.c:521:
++	spinlock_t *ptl;
 
-### IGT changes ###
+total: 0 errors, 0 warnings, 1 checks, 54 lines checked
+473aa0c03ac2 mm/hmm: migrate collection in HMM pagewalk - pte level
+7d91037a5f88 mm/hmm: migrate collection in HMM pagewalk - pmd level
+781c02917e09 mm/hmm: add lazy MMU mode support for migration in HMM pagewalk
+3064a5a59e73 mm/hmm: implement rollback for device page migration in HMM pagewalk
+-:163: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#163: FILE: mm/hmm.c:606:
++
++		}
 
-#### Possible fixes ####
+total: 0 errors, 0 warnings, 1 checks, 164 lines checked
+f26a7a295a3b mm: enable device page migration from HMM pagewalk
+15198e9f4a06 lib/test_hmm: add a new testcase for the migrate on fault
+-:176: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#176: FILE: lib/test_hmm.c:1491:
++
++
 
-  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
-    - bat-bmg-1:          [DMESG-WARN][3] -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v3/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+-:251: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#251: FILE: tools/testing/selftests/mm/hmm-tests.c:948:
+ 
++
 
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04 -> xe-pw-174276v3
-
-  IGT_9105: 9105
-  xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04: dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04
-  xe-pw-174276v3: 174276v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v3/index.html
-
---===============9110266770009689638==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Refresh TTM LRU on SVM prefetch (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174276/">https://patchwork.freedesktop.org/series/174276/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v3/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 0 warnings, 2 checks, 259 lines checked
+37abc623899e Documentation/mm/hmm: document migration through hmm_range_fault()
 
 
-    <h1>CI Bug Log - changes from xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04_BAT -&gt; xe-pw-174276v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-174276v3_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-174276v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-174276v3_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_exec_fault_mode@twice-rebind-prefetch:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v3/bat-bmg-1/igt@xe_exec_fault_mode@twice-rebind-prefetch.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-174276v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174276v3/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04 -&gt; xe-pw-174276v3</li>
-</ul>
-<p>IGT_9105: 9105<br />
-  xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04: dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04<br />
-  xe-pw-174276v3: 174276v3</p>
-
-</body>
-</html>
-
---===============9110266770009689638==--
