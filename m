@@ -4,48 +4,179 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BE5BC98302
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0078C98311
 	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 14:17:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39C4310F0A5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7423010F09D;
 	Wed, 23 Sep 2026 14:17:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="kOBmIAdi";
+	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=w_armin@gmx.de header.b="Q3nH38P7";
 	dkim-atps=neutral
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27B3110EEA9;
- Wed, 23 Sep 2026 05:34:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=6z
- WbfjpldiZxBL0YQHqBVtVULlH+Wk1oV9YZGupl4Us=; b=kOBmIAdiRmfP6VO/yO
- g1NftJZlHX4h0XnjqT+YHcwwJz6g1FXBydKdMXWBCXiTwOszP/WMXY0JV8ND/hyj
- MrjHqKy3F4xD8qHoieR5mGoudY623tcSnzHFkNeHxD6RFjGN+WisrdA1rVFpNM8o
- BB5r9DzOzj/g+hP2rpFic156I=
-Received: from fedora (unknown [])
- by gzga-smtp-mtada-g1-2 (Coremail) with SMTP id
- _____wDXn7xHZLNqxW8YAQ--.56158S2; 
- Wed, 23 Sep 2026 13:31:52 +0800 (CST)
-From: Xizhe Tang <xizheTang2005@163.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Xizhe Tang <xizheTang2005@163.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, stable@vger.kernel.org
-Subject: [PATCH] drm/i915/dp: Only send AS SDP when VRR is enabled or PR !async
-Date: Wed, 23 Sep 2026 13:29:37 +0800
-Message-ID: <20260923052937.22817-1-xizheTang2005@163.com>
-X-Mailer: git-send-email 2.55.0
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87CFB10EE51;
+ Tue, 22 Sep 2026 19:57:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+ s=s31663417; t=1790107042; x=1790711842; i=w_armin@gmx.de;
+ bh=lUdjrgZaJzfqhGj+CZN4gVxm1gbrnsp7WHgXh1rIN7c=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+ References:From:In-Reply-To:Content-Type:
+ Content-Transfer-Encoding:cc:content-transfer-encoding:
+ content-type:date:from:message-id:mime-version:reply-to:subject:
+ to;
+ b=Q3nH38P7FiqPSIwijIqpJl4qV/w8EGNAi7QaGskWYTaZ/95LruwLqxCd78yBTMKQ
+ moghfXNreGJiicMMCIeYg2qMpKg3GdbTA4mNes9B1RKHZ7ktZMke3y1Flt+OKAhSH
+ ItVQCa1txDmEAiUjQZYL4NBOzezgzfbms79zkIyC6z40o0yYbACeCI1xIdkZ7vXOR
+ 478n9IGSWR54cHZ3iGQY3Oik+9+fJ8LWknH8f3SHvtGjIet4EySSJOQdjOXn+ZLqw
+ wJKHpYci6wXMFj3I1GFrsx5XsouSiO+V1UG+qbv7Ysy4yU3DPPaHRb4MNnjg2Il3k
+ pMJQqt3QE3ia+ooZkQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from client.hidden.invalid by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N0G1d-1wnhmo2wGV-00vygm; Tue, 22
+ Sep 2026 21:57:21 +0200
+Message-ID: <154fc984-5c29-4a23-ab8b-736471f419a1@gmx.de>
+Date: Tue, 22 Sep 2026 21:57:19 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wDXn7xHZLNqxW8YAQ--.56158S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW3tr1rGF18ZFWDKFyfuryDZFb_yoWkKw13pF
- WxWasYyr4kJFyS9397ZF4IvFyrurs3J3y5GFn5K3y3Z3Z8Aw1ftrWfKFyj9FW7Crs3X3W0
- vrZ0gr90kw4DtaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pRVOJUUUUUU=
-X-Originating-IP: [2001:250:20f:1:a533:cf01:13a0:45f8]
-X-CM-SenderInfo: x0l2xvpwdqwjqqqvqiywtou0bp/xtbCwgiyCmqzZEgWuwAA3q
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] ACPI: video: Remove CONFIG_X86 handling from
+ nvidia_wmi_ec_supported()
+To: Alex Deucher <alexdeucher@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Hans de Goede <hansg@kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ "Deucher, Alexander" <Alexander.Deucher@amd.com>,
+ "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux@weissschuh.net" <linux@weissschuh.net>,
+ "rafael@kernel.org" <rafael@kernel.org>, "lenb@kernel.org"
+ <lenb@kernel.org>, "linux-acpi@vger.kernel.org"
+ <linux-acpi@vger.kernel.org>, "Koenig, Christian"
+ <Christian.Koenig@amd.com>, "airlied@gmail.com" <airlied@gmail.com>,
+ "simona@ffwll.ch" <simona@ffwll.ch>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "patrik.r.jakobsson@gmail.com" <patrik.r.jakobsson@gmail.com>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "mripard@kernel.org" <mripard@kernel.org>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ "tursulin@ursulin.net" <tursulin@ursulin.net>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "matthew.brost@intel.com" <matthew.brost@intel.com>,
+ "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+References: <20260724025959.142826-1-W_Armin@gmx.de>
+ <20260724025959.142826-3-W_Armin@gmx.de>
+ <BN9PR12MB514668975E87D570F50B2D91F7A82@BN9PR12MB5146.namprd12.prod.outlook.com>
+ <86d0e015-a8f4-4e10-a9b6-a9714d3e0f07@gmx.de>
+ <80c4bb47-936b-976b-6ba8-b366f7a455cf@linux.intel.com>
+ <11976ed3784675ad241646287a909286a42675a8@intel.com>
+ <3ef68773-e07e-437a-98fb-a3c5fc08539c@gmx.de>
+ <62d7da838e7042df8456e76190db792093065b57@intel.com>
+ <06550473-63c2-4a3e-a5ad-7e23d7b6b050@kernel.org>
+ <d696d85c44930d2124054ce11a06d3096c0db04a@intel.com>
+ <CADnq5_PT7s6ixTqDSwe9ai9tUQa04z7UnwhMn7bo7CcsH5Qf0w@mail.gmail.com>
+Content-Language: en-US
+From: Armin Wolf <W_Armin@gmx.de>
+In-Reply-To: <CADnq5_PT7s6ixTqDSwe9ai9tUQa04z7UnwhMn7bo7CcsH5Qf0w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:DJjjhzJDv8/qqyn2q0PQQ9fzXlULLkpabRwG4Kn6xVvc3cn4W3q
+ hmebeIApgD0nPHvWojpnL7UFoLBMPvZH9ZiOecw3l02nvRrbaumPLA1OvGcQ6HYytx7gWUj
+ DCQbHO7maI36AgrTuWNqOy9O1xPBGF8EMdN1c2eYkELsibI1tl1xTZ1+DNPSyxWxUBE9HUA
+ gf95mrxJ41oQmG5m1a4Og==
+UI-OutboundReport: notjunk:1;M01:P0:fy0f+RFzDeo=;9Ghb8np9aCDwxhlLmFb+4wWbpFS
+ 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
+ zrU+bcacErcutgVuQ==
 X-Mailman-Approved-At: Wed, 23 Sep 2026 14:17:53 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,220 +192,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Panther Lake eDP panels that advertise VRR in their EDID but run at a fixed
-refresh rate start receiving an Adaptive-Sync SDP since commit 6a1712052859
-("drm/i915/dp: Enable AS SDP whenever VRR is possible or PR !async"), and at
-least one such panel renders a vertically streaked image from the very first
-modeset at boot.
+Am 18.09.26 um 15:03 schrieb Alex Deucher:
 
-intel_vrr_possible() only tests crtc_state->vrr.flipline, and flipline is
-programmed for fixed refresh rate too:
+> On Fri, Sep 18, 2026 at 7:01=E2=80=AFAM Jani Nikula <jani.nikula@linux.i=
+ntel.com> wrote:
+>> On Fri, 18 Sep 2026, Hans de Goede <hansg@kernel.org> wrote:
+>>> Hi,
+>>>
+>>> On 16-Sep-26 09:16, Jani Nikula wrote:
+>>>> On Wed, 16 Sep 2026, Armin Wolf <W_Armin@gmx.de> wrote:
+>>>>> Am 15.09.26 um 14:31 schrieb Jani Nikula:
+>>>>>
+>>>>>> On Tue, 15 Sep 2026, Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.=
+com> wrote:
+>>>>>>> GPU people heads up!!
+>>>>>>>
+>>>>>>> On Wed, 2 Sep 2026, Armin Wolf wrote:
+>>>>>>>
+>>>>>>>> Am 01.09.26 um 23:30 schrieb Deucher, Alexander:
+>>>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/Kconfig
+>>>>>>>>>> b/drivers/gpu/drm/amd/amdgpu/Kconfig
+>>>>>>>>>> index 12e4a41bf1f0..50305630f533 100644
+>>>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/Kconfig
+>>>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/Kconfig
+>>>>>>>>>> @@ -30,9 +30,7 @@ config DRM_AMDGPU
+>>>>>>>>>>          # ACPI_VIDEO's dependencies must also be selected.
+>>>>>>>>>>          select INPUT if ACPI
+>>>>>>>>>>          select ACPI_VIDEO if ACPI
+>>>>>>>>>> -     # On x86 ACPI_VIDEO also needs ACPI_WMI
+>>>>>>>>>> -     select X86_PLATFORM_DEVICES if ACPI && X86
+>>>>>>>>> The change below makes sense, but this one looks like it should =
+remain
+>>>>>>>>> unless X86_PLATFORM_DEVICES is handled some other way?
+>>>>>>>>>
+>>>>>>>>> Alex
+>>>>>>>> AFAIK the dependency on X86_PLATFORM_DEVICES was only necessary b=
+ecause
+>>>>>>>> ACPI-WMI depended on it in the past.
+>>>>>>>> By now ACPI-WMI neither depends on X86_PLATFORM_DEVICES or X86 an=
+ymore.
+>>>>>>> Hi all,
+>>>>>>>
+>>>>>>> Could more GPU people besides Alex take a look on this. I'd want t=
+o make
+>>>>>>> progress with this series within this cycle but would prefer to ha=
+ve Acks
+>>>>>>> from GPU side.
+>>>>>> I share the same concern with Alex. It seems to me we could now end=
+ up
+>>>>>> with x86 configurations without X86_PLATFORM_DEVICES, which handle
+>>>>>> e.g. backlight on a lot of platforms.
+>>>>>>
+>>>>>> I think the safer option might be to go for:
+>>>>>>
+>>>>>>     depends on X86_PLATFORM_DEVICES || !X86
+>>>>>>
+>>>>>> in all of the cases that select/depend on X86_PLATFORM_DEVICES in d=
+rm.
+>>>>>>
+>>>>>> The alternative is to find out, and handle the fallout, if any.
+>>>>>>
+>>>>>>
+>>>>>> BR,
+>>>>>> Jani.
+>>>>> Alright, should i leave the original "select X86_PLATFORM_DEVICES if=
+ ..." statements
+>>>>> as-is or should is change them to "depends on X86_PLATFORM_DEVICES |=
+| !X86" everywhere?
+>>>> There are some places that depends on X86_PLATFORM_DEVICES. I think i=
+t's
+>>>> almost always a mistake to have some places select and some places
+>>>> depends on, and select should anyway be used with care. I'd go for
+>>>> depends on.
+>>> I'm a bit late to the party here, sorry.
+>>>
+>>> Note that X86_PLATFORM_DEVICES is an option which enables / disables
+>>> a menu and does nothing more.
+>>>
+>>> Enabling it or depending on it by itself does nothing.
+>>>
+>>> The select used to be there since it must be selected to be able
+>>> to select ACPI_WMI (which is no longer the case after this series).
+>>>
+>>> To depends on in XE was probably copy pasted from the existing
+>>> select-s and then changed to a depends and already was a completely
+>>> no-op since depending on ACPI_WMI was enough as that itself
+>>> dependend on ACPI_WMI.
+>>>
+>>> As for X86_PLATFORM_DEVICES being needed for some backlight
+>>> interfaces, depending on it by itself does not result in those
+>>> interfaces being there. That requires enabling the actual drivers
+>>> providing those interfaces.
+>>>
+>>> And I don't think that the GPU drivers should start depending
+>>> on those since that will become very unyielding.
+>>>
+>>> TL;DR: I believe Armin's original patch is fine and this is
+>>> a welcome cleanup / simplification of the DRM drivers Kconfig
+>>> bits.
+>> Your explanation makes sense, thanks.
+> Yeah, sounds good.  Thanks!
+>
+> Alex
 
-	intel_vrr_compute_fixed_rr_timings():
-		/* For fixed rr,  vmin = vmax = flipline */
-		crtc_state->vrr.flipline = crtc_state->vrr.vmin;
+Nice, i suppose we can apply this series as-is then?
 
-That fallback is unconditional, which is the part that worries me:
-intel_vrr_compute_config() calls intel_vrr_compute_fixed_rr_timings() for every
-non-interlaced mode as soon as uapi.vrr_enabled is false, and on display version
->= 30 intel_vrr_always_use_vrr_tg() is true, so crtc_state->vrr.flipline ends up
-non-zero for every pipe on every PTL machine, whether or not the sink can do VRR
-at all. intel_vrr_possible() is thus neither a capability check nor a "does this
-link need the SDP" check; in practice it degenerates into a platform check.
+Thanks,
+Armin Wolf
 
-So on a fixed-rr link that merely *could* do VRR, intel_dp_needs_as_sdp() now
-returns true, and intel_dp_compute_as_sdp() takes the "else" branch and programs
-the SDP in DP_AS_SDP_AVT_FIXED_VTOTAL mode (`operation mode: 1` in the state
-dump) while the link is not running variable refresh at all. The state dump says
-`vrr: no, fixed rr: yes` on both kernels and `crtc_state->vrr.enable` is false on
-both, so the AS SDP is being sent on a link that cannot use what it carries.
-
-On this machine that leaves no upside to weigh against the corruption: the
-compositor runs this panel at a fixed refresh rate, and no refresh-rate option
-I can select in Plasma 6.7.5 makes the AS SDP useful here. The panel renders it
-as a corrupted image instead.
-
-Restore vrr.enable as the terminal condition, but keep the Panel Replay part of
-the commit: the aux-less-ALPM branch added by the same commit is the one that
-genuinely needs an AS SDP on a non-VRR link, so it is left untouched.
-
-Note that the VRR half of the commit's rationale - "if a feature enabling AS SDP
-gets turned on later (after modeset), the guardband might not be sufficient and
-may need to increase, triggering a full modeset" - does not seem to require this:
-toggling VRR from userspace already forces a full modeset through
-
-	intel_vrr_check_modeset():
-		if (new_crtc_state->uapi.vrr_enabled != old_crtc_state->uapi.vrr_enabled)
-			new_crtc_state->uapi.mode_changed = true;
-
-so intel_dp_compute_as_sdp() will run again at that point either way. If the
-intent was instead to avoid that modeset for the optimized guardband, would it
-make sense to gate on the state that actually needs it (PSR / panel replay /
-LOBF) rather than on "VRR possible", which is true for every fixed-refresh eDP
-panel with a VRR-capable EDID?
-
-Note the scope of this change, because it is narrower than it may look: on a
-fixed refresh rate it restores the gate, but while VRR is actually active it is
-a no-op. intel_vrr_possible() is only `crtc_state->vrr.flipline != 0`, and
-flipline is assigned by all three timing branches - intel_vrr_compute_vrr_timings()
-and intel_vrr_compute_cmrr_timings() set it to vmin,
-intel_vrr_compute_fixed_rr_timings() to crtc_vtotal - so with Adaptive Sync =
-"Always" the first branch runs and crtc_state->vrr.enable is already true.
-Swapping the predicate therefore cannot change anything on that path, and that is
-exactly the setting under which this machine corrupts.
-The other case this hunk cannot fix is the non-atomic update window in
-the #FIXME.
-
-I measured the control on this machine: with Adaptive Sync = "Always" on 7.1.13,
-VRR is genuinely active (`vrr: yes, fixed rr: no, vmin: 2016, vmax: 8064`), the
-mask is `0xe`, the AS SDP is transmitted, and the panel is clean. On 7.2.x that same
-setting corrupts - though not on every attempt: it has produced clean, self-healing and
-permanently streaked wakes here, in no fixed order.
-
-On that path the two kernels should put the same bytes on the wire: both set
-HB2 = 0x02 (7.1 hardcodes it, 7.2 has `as_sdp->revision = 0x2`), both set
-db[0] = DYNAMIC_VTOTAL, and 7.2's extra db[7..8] carry `coasting_vtotal`, which
-is 0 here because this sink does not advertise PR async video timing (the dump
-says `coasting vtotal: 0`, and panel replay is disabled on every modeset). The
-state dumps do not agree textually - 7.1's printer says "AS_SDP, revision 0" and
-7.2's says "Adaptive-Sync, revision 2" - but that is the printer plus a struct
-field 7.1 never assigns, not a difference in the packet.
-
-So this looks like a second regression outside the payload, and it behaves like an
-ordering problem rather than a wrong value: on this machine the same kernel and the
-same Adaptive Sync setting have produced a corrupted wake and a clean wake whose DRM
-core state, read back from debugfs, is identical line for line. The 7.2 code itself
-names the candidate - the new cdclk->tc clock crossing, which the #FIXME above
-intel_dp_compute_as_sdp() says can transiently send a corrupted packet because the
-update is not atomic.
-
-This patch does not fix that and does not claim to. What it does is take the AS SDP
-away from the fixed-refresh link, and with it the one thing a non-atomic update can
-corrupt there. The update stays non-atomic, and on a link that genuinely runs VRR -
-where crtc_state->vrr.enable is already true, so the predicate is untouched - this
-hunk changes nothing at all. That configuration is the linked report's open
-question, not something this patch settles.
-
-I have since built and tested this hunk. On v7.2.6-200.fc44.x86_64 I rebuilt
-only xe.ko from the 7.2.6 tree with this single-line change, signed it, and
-loaded it in place of the distribution module. The kernel, firmware, compositor
-and panel are identical to the failing case - the module is the only variable -
-so this is a same-kernel A/B rather than a kernel-version comparison. With the
-stock module the first modeset at boot streaks the panel; with this hunk the first
-modeset is clean. Six further suspend/resume cycles on the same kernel, under the same
-test, did not reproduce it either. The loaded module is identified by build-id rather
-than assumed, because vermagic matches for any build of the same kernel.
-
-Mechanically confirmed on the same machine: with this hunk
-intel_dp_needs_as_sdp() is false at a fixed refresh rate, so
-intel_dp_compute_as_sdp() returns before
-infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC), and the
-AS SDP disappears from the state dump.
-
-Scope, stated plainly because the hunk is deliberately narrow: while VRR is
-actually active crtc_state->vrr.enable is already true, so this change is a
-no-op on that path. It removes the fixed-refresh trigger only. I have not yet
-re-tested the Always case under this hunk, and since the hunk cannot affect it I
-would rather leave that to its own bisect than fold it in here. The non-atomic
-window in the #FIXME above intel_dp_compute_as_sdp() is likewise untouched; the
-AS SDP payload and revision are identical between the good 7.1.13 and the bad
-7.2.x here, so whatever else is wrong on that path is not the predicate.
-
-Regression evidence (identical hardware, identical firmware, identical
-compositor - only the kernel differs):
-
-  hardware
-    LENOVO 21VG, BIOS SWCN20WW 2026-04-01
-    00:02.0 Intel Panther Lake [Arc B390] 8086:b080 rev 04, subsystem 17aa:8099
-    integrated display version 30.00 stepping B0, driver: xe 1.1.0 (in-tree)
-    DMC i915/xe3lpd_dmc.bin v2.36, GuC 70.72.1 (identical on both kernels)
-    treated as VRR-capable by the driver: the EDID range-limits descriptor says
-    30..120 Hz, and the log prints "VRR capable: yes" for eDP-1. That is what
-    makes the terminal condition below true.
-    Fedora 44, Plasma 6.7.5 / kwin 6.7.5 (Wayland). The comparison below uses
-    Adaptive Sync = "Never", which is why `drm.debug=0xe` prints `vrr: no, fixed
-    rr: yes` for every modeset of those two boots. The third capture is 7.1.13
-    with Adaptive Sync = "Always", where the link really is variable: `vrr: yes,
-    fixed rr: no, vmin: 2016, vmax: 8064`.
-
-  7.1.13 (clean) vs 7.2.4 (streaked), full drm.debug=0xe state dump, first
-  modeset at [3.62] / [3.71] respectively. The only difference in the entire
-  dump is the infoframe enable mask:
-
-    good:  audio: 0, infoframes: 0, infoframes enabled: 0x4   (VSC only)
-    bad:   audio: 0, infoframes: 0, infoframes enabled: 0xc   (VSC + AS SDP)
-
-
-  and the corresponding programmed SDP (bad kernel only, present in all five of
-  its modesets; zero occurrences on the good kernel at this setting):
-
-    bad:   DP SDP: Adaptive-Sync, revision 2, length 9
-             vtotal: 2016
-             target rr: 0
-             duration increase ms: 0
-             duration decrease ms: 0
-             operation mode: 1        (= DP_AS_SDP_AVT_FIXED_VTOTAL)
-             target rr divider: 1.000
-             coasting vtotal: 0
-
-  The mask difference is one single bit in every state dump of both boots, not
-  just the first modeset:
-
-    good:  infoframes enabled: 0x0 (1x), 0x4 (1x), 0x6 (4x)
-    bad:   infoframes enabled: 0x0 (1x), 0xc (1x), 0xe (4x)
-    -> bad == good | 0x8 in every non-zero case, and 0x8 = BIT(3) =
-       DP_SDP_ADAPTIVE_SYNC
-
-  Nothing else in the state dump differs where the link is concerned: linetime 67
-  (60 Hz) / linetime 34 (120 Hz), ips linetime 0, joiner no, splitter disabled,
-  fec disabled, enhanced framing enabled, sdp split disabled, DSC off (the log
-  says "DP link limits: pixel clock 390950 kHz DSC off" and "DSC-support: no";
-  "has_dsc: yes" is only a capability line), dp m_n (lanes 4; data_m 7117029,
-  data_n 8388608, link_m 474468, link_n 524288, tu 64, identical on both
-  kernels), port clock 432000, pipe src 3072x1920+0+0, pixel rate 390950,
-  framestart delay 1, MSA timing delay 0, set context latency 0, vtotal 2016,
-  vsync start 90, vsync end 84. vmin 2016, vmax 2016, flipline 2016 and
-  guardband 91 are identical in the 60 Hz modeset of both kernels, so none of
-  the VRR timing fields can account for the difference either.
-
-  The two captured boots contain no error at all: no FIFO underrun, no
-  pipe/atomic update *ERROR*, no PSR or DSB timeouts. Across the 64 boots
-  retained in the journal there is exactly one FIFO underrun (a late one in a
-  single 7.2.5 boot) and no DSB/PSR-idle errors. The pixels arrive intact and the
-  image is readable, which is consistent with line timing being disturbed rather
-  than the scanout source being wrong.
-
-  Things already ruled out on this machine:
-    - xe.enable_psr=0, xe.enable_psr=1, xe.enable_psr2_sel_fetch=0, xe.enable_dc=0,
-      xe.enable_panel_replay=0 all still corrupt (one boot each)
-    - no out-of-tree/akmod/dkms driver involved, firmware identical
-    - not the #9097/#9012 signature (those run 2-3 FIFO underruns per boot)
-    - still present in v7.2.5, v7.2.6 and current mainline: both
-      intel_dp_needs_as_sdp() and intel_vrr_possible() are unchanged, so stable
-      point releases are not expected to fix this on their own.
-
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9252
-Fixes: 6a1712052859 ("drm/i915/dp: Enable AS SDP whenever VRR is possible or PR !async")
-Cc: stable@vger.kernel.org # 7.2.x
-Signed-off-by: Xizhe Tang <xizheTang2005@163.com>
-Tested-by: Xizhe Tang <xizheTang2005@163.com> # v7.2.6, PTL eDP, fixed refresh rate
----
- drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3115,8 +3115,8 @@ static bool intel_dp_needs_as_sdp(struct intel_dp *intel_dp,
- 	if (intel_psr_needs_alpm_aux_less(intel_dp, crtc_state) &&
- 	    !intel_psr_pr_async_video_timing_supported(intel_dp))
- 		return true;
- 
--	return intel_vrr_possible(crtc_state);
-+	return crtc_state->vrr.enable;
- }
- 
- static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
---
-2.47.0
-
+>> BR,
+>> Jani.
+>>
+>>
+>> --
+>> Jani Nikula, Intel
