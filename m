@@ -4,151 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1AF7C982FA
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 14:38:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB3F8C982FE
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 14:46:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF70110E407;
-	Tue, 22 Sep 2026 14:38:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 614E588C3D;
+	Tue, 22 Sep 2026 14:46:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Faxy3lzE";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MB7zTjp6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B011A10E407;
- Tue, 22 Sep 2026 14:38:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790087891; x=1821623891;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=pTY2H6KDb9ZNF5tm9gnNnTVzTEeEQg2E0AKZaJ9XVdk=;
- b=Faxy3lzEJKdq0AqiWVV7whyYruapQ9e4dYY7rtDodGtOEcg4RgdCShRn
- XcNPPHJ9uy91QAcY4vs26Phl207bV3pLc0BKX1puCODJrnGjefBndLoPT
- SqzP6NLl1hZnHNyp7TdqJAXS12yVVqSOqRkbgaRVWz36gyn43GYt53CIc
- LCiBVsRYZYFkQ44qn8GRlfc2ys8DVxh2ugI/7FPukE7tCidrvqspUmWMT
- yfwDRgyGmzY5Ox8t37o663HqAwPQ12hQTGNaAsdcFudGNRclqWjBRD2qc
- CPsIgraCMACHMU7Ub/OoyGa0Jrxi/WjZAV1sVDIYic4t1MESn3Bg2QwGI Q==;
-X-CSE-ConnectionGUID: WAYMFqwBTGSBnIdvGdT/hA==
-X-CSE-MsgGUID: Jv4NC2FRQI6b83murQdkCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11913"; a="94525247"
-X-IronPort-AV: E=Sophos;i="6.27,116,1787036400"; d="scan'208";a="94525247"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2026 07:38:10 -0700
-X-CSE-ConnectionGUID: h9Z+oCwBRw6AY2h2RTiy/A==
-X-CSE-MsgGUID: jZIHoDJ1SN+jgqIz3tPE1Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,116,1787036400"; d="scan'208";a="272361201"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2026 07:38:10 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 22 Sep 2026 07:38:10 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Tue, 22 Sep 2026 07:38:10 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.7) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 22 Sep 2026 07:38:09 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JH8XTMcgo8NfZb/y7xXYeQoR5i8yHXkVLLm5AzEgG2fVHBsOwkJJQKJvzlr+fFin5+Qm3kqbGE5waVoq1jI/qbvN6GdjuZhqQJvHmuUiCG1tuTw/vreWT5gh4rAkc2nqocdRiDiWT+F0BbtW2NLBfFboyhhj/+KJ7YnuboMo2oiYCcPh3yvVzRVnUDxZr1WdVB4TKCPbERgT/zn4eZqemcfCa0EpT+CRKkkyKkGssBg9ucIlRHNuk7ELmM0Ve+achZrZvhznHMMpCw/06NjfLfsm0cOCJrGDNH4DWefNFtZBAL5PMJkFBehNF37VZ+6J3Jh+SJGRM4fxTQPS/ncptw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kjMCiL45/7jrBP0UVoPsM5qKg4e0r8TNsH608kPlo8o=;
- b=R9+skaf15yVJR0maOsGJV5jikFtUv+WQMs++Ja+q9imYFl8grAciJ8TOSvHP3xPfBRYxM/BaZ68KXuVPf2nvcO2jRK+mVfDXUNQXDyAxvUUSLjUhJJ3KbnVK1dqeBBrWOXDipioIAk0haqXVCjsXyqdWOnP/spKfSCeYHhhDbfjGAoQqichRtnwm5AMlHggPlF84QVfduTt64q32I0vLX1OPv6Kh8y1k6XzCszWDGYAfEBCliltAxd2yoFX2Zp0TpJcGkcI945tGRUTxBSpZqpi0aPxuv9cMGT9k0+zIVmipH9Xz1Uje6mTSHOj2SFpDA8G1/QZnZDd/Uj+fCtP55Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from MW4PR11MB6887.namprd11.prod.outlook.com (2603:10b6:303:225::16)
- by SA1PR11MB8489.namprd11.prod.outlook.com (2603:10b6:806:3a9::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.14; Tue, 22 Sep
- 2026 14:38:04 +0000
-Received: from MW4PR11MB6887.namprd11.prod.outlook.com
- ([fe80::91f5:637d:7c4a:6494]) by MW4PR11MB6887.namprd11.prod.outlook.com
- ([fe80::91f5:637d:7c4a:6494%5]) with mapi id 15.21.0451.014; Tue, 22 Sep 2026
- 14:38:04 +0000
-From: "Garg, Nemesa" <nemesa.garg@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Nikula, Jani" <jani.nikula@intel.com>, "Kandpal, Suraj"
- <suraj.kandpal@intel.com>
-Subject: RE: [PATCH 5/8] drm/i915/dp: log DPCD access errors
-Thread-Topic: [PATCH 5/8] drm/i915/dp: log DPCD access errors
-Thread-Index: AQHdSYyZUwjuocfgy02V2yOFJ+rZbbbarMSA
-Date: Tue, 22 Sep 2026 14:38:04 +0000
-Message-ID: <MW4PR11MB688717C740DD1B0432FBCD69E3832@MW4PR11MB6887.namprd11.prod.outlook.com>
-References: <20260921053710.1586776-1-suraj.kandpal@intel.com>
- <20260921053710.1586776-6-suraj.kandpal@intel.com>
-In-Reply-To: <20260921053710.1586776-6-suraj.kandpal@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MW4PR11MB6887:EE_|SA1PR11MB8489:EE_
-x-ms-office365-filtering-correlation-id: 140dc1e8-06b8-49c9-9038-08df18b71ca4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|376014|23010399003|1800799024|38070700021|6133799003|3023799007|10067099003|11063799006|4143699003|56012099006|18002099003|22082099003;
-x-microsoft-antispam-message-info: jbcSUhSO+NUENkDw4/Y7/G0aHdcsx4OeROKIkUCt+J5sQ8V3gvucUMFYDirV0BSrHxMW4BfcLiKTdpj/HyXKjfSMJduSPNXlEMlvD1Rui07WNaKD+l0Kl4+gfdxomNBvPgW0/y3QgIqempxrJwRVcJKoZ/SngAYcVY4aFTax0HVXD/E7+fs3V4D0bSzw9U26esPMVcYtsAvjCTVQVOk5CnPyLCUIj94okQNWWjQUzhAw8YTazjE2xArq5UT0HGeCKrEYguDVPjYShLhgTxOEcM61pHBQL/8xACv8S5Dsg9uuOHvRKHY4eCJcfAsLNHpfT+fan+tSAtbjx5qPgBL6bl0sn29CZ66iMdUvi/9qe22vNN4ibUAl+hxBIhzmX+JUK7cbYvXfnBMLJBAcRbMlGTJylFIq0DeDxe+GqQwoQ0xqdosVv5tgUhsqFTvqii+PyWcVm0wwMJpJ+8KpzlLcz5ufpX5l9BbgNqUsVQwFSC3tMNGsYAHjYduTLpNloySxZhX5DbD6RWKOfQnpL2CJ1qSUm+KmyGIYucAYY3VQimk2+hQPxvmfnsQT3Nxykq38PUr6Jj72Kcm4ui/bwbNVpLwg0khe+SjAonQBZdizLZIG0AxosSyxXZp9rQ3m6q8bjD1J2rRMkC3Rp0zKTbigGjwmgw173mUKP3bJYShHMCW7fKgA0Mk6Ecz6BjWoUlXhREU1DavdjoyGn3lT9y4ssjo3KuqmBAtR9vyFO0O88Xs=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB6887.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(23010399003)(1800799024)(38070700021)(6133799003)(3023799007)(10067099003)(11063799006)(4143699003)(56012099006)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?GXt5d4+AhZGdgrh4frTMyYt/Gu+492AISqMV5w71A05HpWDFq4GYRhdgQbaB?=
- =?us-ascii?Q?7hON34iAwOTeWuz9C04N4gc8GKYBikkIS0e6KtdgUgZdmEMzQzWLADsxTKYM?=
- =?us-ascii?Q?Mcpvaze4vVrsjBj8zRvcCzbqjBsCuZBI243vwLGpm8JBrUn35t9fuqdy2uFW?=
- =?us-ascii?Q?AyALkCuBkg2vvn038GIrYZKTdIA3j5Y9z0+OUmx9oZhHVDZmGcjIHZ0bC6tk?=
- =?us-ascii?Q?2+2aaAmUL4rpUYBAL5NcnRmlhLeMXL2MX1rv3aFxYkjApw12Etwvw4pdOs1T?=
- =?us-ascii?Q?77sJAq3qdG3YoBaV/7Sp7cuUBL+z8/3IyB1mL03VHCxKKZd7azBpRzAAWi+V?=
- =?us-ascii?Q?b/7WIwWcPRii2o8VdOqOeBlwm1w1a7q0x+IHRjdfh6a8v7Kwbyp1jnWTr0iu?=
- =?us-ascii?Q?T9sYCOOM3VYsOqUytwj69DzsybmhOpPtgv9feiCEQJj1wOCfKcAQ68y0uYH3?=
- =?us-ascii?Q?YKGpVlNC6cD+GvgRhTxCzI7UVM+nDulYLAPwznCfq44iA9rOdEscZS0LF6ao?=
- =?us-ascii?Q?3rmbG6GvTDrbBoN+4V3/nV9uvVicfpekxiW7som6UFxGiNPbZCkP8BHU71CE?=
- =?us-ascii?Q?Zk6Bp+ehlZ/cNHLdFIyC+7B2YxOAXCZSb7IncJlgem6o/SYSNMAYRPRaqwDV?=
- =?us-ascii?Q?BFriMk6X0BGnd/nDwgy8VeFKbjGIOotNV+IRF1c77fK6SG3mR4GPGu1TX+e+?=
- =?us-ascii?Q?gDZALSiUxt5mk2yO1Zk+6zRctEaPDZwzFeW7oRjf5PLO6uAkpi5Dge0ilxoh?=
- =?us-ascii?Q?+hgogeyQ8BuWVyH+IAkcqWG5eZwoQjiOfkQYSxRtX0X73yZZKW69i6ip4KgL?=
- =?us-ascii?Q?q5+Fkkf8+5gZx2IQex7Tnux3WCAQhxApVdQR8xzC1CQuf1v7Y/UdpgmyeQOW?=
- =?us-ascii?Q?tRYwhahwqv+mBwOfQMzY6XyVkHY2qIFJ9cQqbGlJVYybLXm3ph6Y7rm0jLef?=
- =?us-ascii?Q?25IkiKKojeM2A5tPKWxJ1zDJhrp0etc/OWDmxvG3IoX9ZKDPiQVjZj/VW2wo?=
- =?us-ascii?Q?CsAlZ/nLndSddoBsIFLoYKLCdVOHwWpw1OYVL5WGE9LP7sBHN4XnVAxpLIWy?=
- =?us-ascii?Q?/gw6Fst6bqH6Ts7/BuYO1+LV8a/Z0FhQfGRcIKytWxVrkvvGF0G2vjUgcZiw?=
- =?us-ascii?Q?+e25M+NTz9O9rtXcKnGKLvXCt+cF/oM1pC/pbQ0w6zHj/xMr4Kxc+0OwhpBu?=
- =?us-ascii?Q?MWllF2lDcuf2bbv/DeSvHcMIkq7MB1BRPvaV6t+KOWNH/jU2sWhBXuOvhopX?=
- =?us-ascii?Q?bWpMvxDv7I+O+McwEVsammdNhKhKaio4Pw6HfkTO53L/gcDHJi6iG7LsSrVL?=
- =?us-ascii?Q?zKEHPku12w71BqH26mpSHabRpscIsZTddhfGDk2bH6hC24Pj3CrulJ4zN3Hk?=
- =?us-ascii?Q?AAoAXyFbKplQYGVJgEg9r9UEj1hR4uFHXH2/w3OK1CJUpi1od3xpoAiEiW6q?=
- =?us-ascii?Q?4eakN1W/pOVbCjl+k/eobmJBWfcZE5kDYu/3hWSZmN+kYRbnHEe738eA5CIz?=
- =?us-ascii?Q?2i/TSeJ3LDBi0ukQlrGs7ekZJRyOmPbikpn95ZWJaZFSwbaZPQrsa6ZCA6rc?=
- =?us-ascii?Q?y6tIliLPmoH5Wc4C8nuKyIMHJa/fZfLu1h30CNj5VrkqBjCizqsNCH+1aOAw?=
- =?us-ascii?Q?UNae4wy2p23DJ+34sIc2FvdK7ezVRGVeFeeeBQ3WtQZ2KG0TDmyPWdUGYIIk?=
- =?us-ascii?Q?msAqh6Zxp7VOd5fxlj0uriiiKwhu5eOERS0lH46ATkSJctyQWHBVgovcMMbs?=
- =?us-ascii?Q?8/+auHG7Wg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-vs2-f15.google.com (mail-vs2-f15.google.com
+ [74.125.227.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A86588EBA
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Sep 2026 14:46:45 +0000 (UTC)
+Received: by mail-vs2-f15.google.com with SMTP id
+ 71dfb90a1353d-5c981b0d59cso2674570e0c.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Sep 2026 07:46:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1790088404; x=1790693204; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:mime-version:message-id:date
+ :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=pQEnr/EicmnE9fouwie8yhLYFu1eRPi4qy1fbPXbXw0=;
+ b=MB7zTjp6xi0En0kuvBEdh30jzURHq+XvThR0S2hOyKtwMemsuCjMZQxg5y89gQKCrz
+ rG3mKIroLu9h7AhlyTqd4XA3NvP0bj7XWfUTRk4GoVRLCCMvlAxlXsxjrqp2C8L4sans
+ cLIeD/uOErt4iVlbVhUsf84ttihFW783ypkw1IGQm4uWbxtBD0YAt0T5wNWvP+371Fzj
+ JkA0myqvJ/Wpw9HIa8A/MwhYHoCqlRH7z0m0WrariKbzy2k1ZWk4PO/YdS5zM/Fjudz8
+ ICgQgq1W1XEzrtVKpX7USiClhxpyN0sYOVsIP8VzvMYatXylcWWW8xmZeQ5JbhUUgfhs
+ oafw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1790088404; x=1790693204;
+ h=content-transfer-encoding:content-type:mime-version:message-id:date
+ :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=pQEnr/EicmnE9fouwie8yhLYFu1eRPi4qy1fbPXbXw0=;
+ b=2jZgBbzW6oUnqCm9CPBhbeTMCEU37HjLJbVVCLi/oL+fxct5f7mz3va9ZQYZA524HL
+ C6iqpc5U0BnvNxfB/0Y4XGXal0MyNENhR5q8d5c4ZDcthDs7TB86d+S9lHYgQRCkybsr
+ mk9NqqQDKb0Tr82Wj7SfvR/OU4xqAxcIopOUzhea0zBYLQDIrYWn6X2Pa6YV87XHrkoc
+ N3OcDR1m22kgGdrgB/OVpsRzw1HnxNBoR6HTnagpN1Y/PnOo7HJ1neSByMDZCer4tt/T
+ lT2zb1Io7QBXf6Yks1fxtMMPhp/IsT3MBZIX8Obogq1kexlo5P9wwh9Q7smRPINas5PE
+ YYrA==
+X-Gm-Message-State: AFuF++litL/l9gBRszKUCrQJxMLwCyYSk3yjj4tm2iFAsFgbiAOkSghV
+ C+UnR6ncBDqU0Wvms4IuHxFbuHP1hh7wpFPdRMdaKlu97G23LlJjAuFXqOQjBs/H
+X-Gm-Gg: AYBFou1+EtwTTBMfxmkY3wUHaNIbZh+EG/sdorsUPSkhNn2K9xi8bHtdfr6aWsDQBgL
+ 9dUFn/aMHpqCxD2/ZI7Z2E8yGaglxPaZtSCtrsB04/3wpaWqEnzvYdNigW8wwWY1EECkZPP6TbX
+ 0Ghi22L0TGlZGiq6nsqXHpq+sbcA1ZdyHsmAWui5kKp1AGY0DrviVcKijwSOsSxp2S2tjhm6Nu8
+ Hs5m9c4BhFUnUL1xXwB/LF9jqz6LVLt2f2Pa25Cv8Bj2/F94mwGAhtAeUWhPVv8mqqN0scbc72M
+ Qny21BWiNA7IDx6Hbpr/mmuI2nbSivTP6P7Wg+li13svbef7Teca05idDqDEO5VY5PIT+l0IaJF
+ bDyto+vwd8orx20XMM7RejBgqj/JTZ+1j3PuFtl/CqOZWWgFV2nuC3lsbEjBpfeLKU5g4+sUcU6
+ DY//N10X0nXL05XzrmoQPbApd9weFuD0Am3Slfiqt0t8wV73cgbdcu1sewI9zM793sUYA+IzIfB
+ RKfI7P6QEhtQThgYpnNqcwYDmz2jNWQQr1Bh6PuAUtP+F/agLt057GCUud2FhQ=
+X-Received: by 2002:a05:6122:1b8c:b0:5c9:a60b:e5b8 with SMTP id
+ 71dfb90a1353d-5c9b599c8c3mr9484721e0c.17.1790088403930; 
+ Tue, 22 Sep 2026 07:46:43 -0700 (PDT)
+Received: from lord.bigscale.net ([170.246.210.5])
+ by smtp.gmail.com with ESMTPSA id
+ a1e0cc1a2514c-9850d661d77sm2017067241.7.2026.09.22.07.46.39
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 22 Sep 2026 07:46:42 -0700 (PDT)
+From: =?UTF-8?q?Tales=20A=2E=20Mendon=C3=A7a?= <talesam@gmail.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, daniele.ceraolospurio@intel.com,
+ stuart.summers@intel.com, julia.filipchuk@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@intel.com, navonjohnlukose@gmail.com,
+ dri-devel@lists.freedesktop.org,
+ =?UTF-8?q?Tales=20A=2E=20Mendon=C3=A7a?= <talesam@gmail.com>
+Subject: [PATCH v6 0/3] drm/xe: fix GuC TLB invalidation ack stalls on ARL
+ (Wa_22016122933)
+Date: Tue, 22 Sep 2026 11:46:31 -0300
+Message-ID: <20260922144634.55130-1-talesam@gmail.com>
+X-Mailer: git-send-email 2.55.0
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: 2ydNsaKuGLEPIymVs3eBjxR6L4qaTbWPEQSiLDV4BK74974hq6+ZrcxaIQ/cL7bdZuUCpq8aLfcXm1mHt5s0HA6HDYA79gqbDRqYLPSDiCnN28X1HNk9WwvwYHO0ZBTvvrBSo9VPW68LAKgb99eBOEppX3QnRHKTQjdX38c97Tr6aghznPD5xYoukKA4XFzyPyVqnlaqbbBdvRArVzMSoYxLBc2jbpOuCIcN7MGcoa4P1GntL2cPOH6Omc1719TbLz4u3xduekKC96xxHjwqFy371l/BtrrDxyu5MrH4RI9mC2X4VfY2yiUWNErVriXhJh6e2PaBMDJz1hZDSlMnSQ==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6887.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 140dc1e8-06b8-49c9-9038-08df18b71ca4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Sep 2026 14:38:04.7957 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zb7qgFzs/oirPsmPXGRdLAZq70qp56uPqAxouTdop5JaC5Wyzfstsn2nKM3bB991vuyyI/w/Rajn1amW5ujLPQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8489
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,160 +90,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi,
 
+v6 of the TLB invalidation ack stall fix for ARL. Tracked in:
 
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Sura=
-j
-> Kandpal
-> Sent: Monday, September 21, 2026 11:07 AM
-> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> Cc: Nikula, Jani <jani.nikula@intel.com>; Kandpal, Suraj
-> <suraj.kandpal@intel.com>
-> Subject: [PATCH 5/8] drm/i915/dp: log DPCD access errors
->=20
-> Now that the DPCD accessors return a proper error code, include it in the
-> error messages using %pe and ERR_PTR(), instead of just stating that the
-> access failed.
->=20
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 31 ++++++++++++++-----------
->  1 file changed, 17 insertions(+), 14 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 89ce6ac7f396..b6982618fcda 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3925,7 +3925,7 @@ intel_dp_init_source_oui(struct intel_dp *intel_dp)
->  	 */
->  	ret =3D drm_dp_dpcd_read_data(&intel_dp->aux, DP_SOURCE_OUI,
-> buf, sizeof(buf));
->  	if (ret < 0)
-> -		drm_dbg_kms(display->drm, "Failed to read source OUI\n");
-> +		drm_dbg_kms(display->drm, "Failed to read source OUI
-> (%pe)\n",
-> +ERR_PTR(ret));
->=20
->  	if (memcmp(oui, buf, sizeof(oui)) =3D=3D 0) {
->  		/* Assume the OUI was written now. */ @@ -3935,7 +3935,7
-> @@ intel_dp_init_source_oui(struct intel_dp *intel_dp)
->=20
->  	ret =3D drm_dp_dpcd_write_data(&intel_dp->aux, DP_SOURCE_OUI,
-> oui, sizeof(oui));
->  	if (ret < 0) {
-> -		drm_dbg_kms(display->drm, "Failed to write source OUI\n");
-> +		drm_dbg_kms(display->drm, "Failed to write source OUI
-> (%pe)\n",
-> +ERR_PTR(ret));
->  		WRITE_ONCE(intel_dp->oui_valid, false);
->  	}
->=20
-> @@ -4002,9 +4002,9 @@ void intel_dp_set_power(struct intel_dp *intel_dp,
-> u8 mode)
->=20
->  	if (ret < 0)
->  		drm_dbg_kms(display->drm,
-> -			    "[ENCODER:%d:%s] Set power to %s failed\n",
-> +			    "[ENCODER:%d:%s] Set power to %s failed
-> (%pe)\n",
->  			    encoder->base.base.id, encoder->base.name,
-> -			    mode =3D=3D DP_SET_POWER_D0 ? "D0" : "D3");
-> +			    mode =3D=3D DP_SET_POWER_D0 ? "D0" : "D3",
-> ERR_PTR(ret));
->  }
->=20
->  static bool
-> @@ -4104,8 +4104,8 @@ static void intel_dp_get_pcon_dsc_cap(struct
-> intel_dp *intel_dp)
->  				    intel_dp->pcon_dsc_dpcd,
->  				    sizeof(intel_dp->pcon_dsc_dpcd));
->  	if (ret < 0)
-> -		drm_err(display->drm, "Failed to read DPCD register 0x%x\n",
-> -			DP_PCON_DSC_ENCODER);
-> +		drm_err(display->drm, "Failed to read DPCD register 0x%x
-> (%pe)\n",
-> +			DP_PCON_DSC_ENCODER, ERR_PTR(ret));
->=20
->  	drm_dbg_kms(display->drm, "PCON ENCODER DSC DPCD: %*ph\n",
->  		    (int)sizeof(intel_dp->pcon_dsc_dpcd), intel_dp-
-> >pcon_dsc_dpcd); @@ -4428,8 +4428,9 @@ void
-> intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
->  				     DP_PROTOCOL_CONVERTER_CONTROL_0,
-> tmp);
->  	if (ret < 0)
->  		drm_dbg_kms(display->drm,
-> -			    "Failed to %s protocol converter HDMI mode\n",
-> -
-> str_enable_disable(intel_dp_has_hdmi_sink(intel_dp)));
-> +			    "Failed to %s protocol converter HDMI mode
-> (%pe)\n",
-> +
-> str_enable_disable(intel_dp_has_hdmi_sink(intel_dp)),
-> +			    ERR_PTR(ret));
->=20
->  	if (crtc_state->sink_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420) {
->  		switch (crtc_state->output_format) {
-> @@ -4465,16 +4466,17 @@ void
-> intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
->  				     DP_PROTOCOL_CONVERTER_CONTROL_1,
-> tmp);
->  	if (ret < 0)
->  		drm_dbg_kms(display->drm,
-> -			    "Failed to %s protocol converter YCbCr 4:2:0
-> conversion mode\n",
-> -			    str_enable_disable(intel_dp-
-> >dfp.ycbcr_444_to_420));
-> +			    "Failed to %s protocol converter YCbCr 4:2:0
-> conversion mode (%pe)\n",
-> +			    str_enable_disable(intel_dp-
-> >dfp.ycbcr_444_to_420),
-> +			    ERR_PTR(ret));
->=20
->  	tmp =3D rgb_to_ycbcr ? DP_CONVERSION_BT709_RGB_YCBCR_ENABLE :
-> 0;
->=20
->  	ret =3D drm_dp_pcon_convert_rgb_to_ycbcr(&intel_dp->aux, tmp);
->  	if (ret < 0)
->  		drm_dbg_kms(display->drm,
-> -			    "Failed to %s protocol converter RGB->YCbCr
-> conversion mode\n",
-> -			    str_enable_disable(tmp));
-> +			    "Failed to %s protocol converter RGB->YCbCr
-> conversion mode (%pe)\n",
-> +			    str_enable_disable(tmp), ERR_PTR(ret));
->  }
->=20
->  static u8 intel_dp_read_dprx_feature_enum(struct intel_dp *intel_dp) @@ =
--
-> 4573,7 +4575,8 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
->  	ret =3D drm_dp_dpcd_read_byte(connector-
-> >dp.dsc_decompression_aux, DP_FEC_CAPABILITY,
->  				    &connector->dp.fec_capability);
->  	if (ret < 0) {
-> -		drm_dbg_kms(display->drm, "Could not read FEC DPCD
-> register\n");
-> +		drm_dbg_kms(display->drm, "Could not read FEC DPCD
-> register (%pe)\n",
-> +			    ERR_PTR(ret));
->  		return;
->  	}
->=20
-> @@ -4690,7 +4693,7 @@ static void intel_edp_mso_init(struct intel_dp
-> *intel_dp)
->=20
->  	ret =3D drm_dp_dpcd_read_byte(&intel_dp->aux,
-> DP_EDP_MSO_LINK_CAPABILITIES, &mso);
->  	if (ret < 0) {
-> -		drm_err(display->drm, "Failed to read MSO cap\n");
-> +		drm_err(display->drm, "Failed to read MSO cap (%pe)\n",
-> +ERR_PTR(ret));
->  		return;
->  	}
->=20
-LGTM,
-Reviewed-by: Nemesa Garg <nemesa.garg@intel.com>
-> --
-> 2.34.1
+  https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8678
+
+The whole series now carries Matthew Brost's Reviewed-by - thank you for
+working through it, including cross-checking patch 3 against the i915
+implementation.
+
+Recap: on the standalone media GT of MTL/ARL the CPU reads stale cache
+lines for data the GuC has already written. The visible symptom is TLB
+invalidation acks appearing to stall for a near-constant ~2.3s. i915
+works around this as Wa_22016122933; xe never inherited it. Patch 3
+implements it, applying XE_BO_FLAG_NEEDS_UC to the GuC-shared
+allocations (CTBs, log, ADS, SLPC, engine activity) on the standalone
+media GT, scoped by a new OOB rule (22016122933 MEDIA_VERSION(1300)).
+
+The one code change since v5 is in patch 1, from a second issue Sashiko
+raised: the capture could run without a runtime PM reference. Every
+pending invalidation fence holds one, taken in
+xe_tlb_inval_fence_init(), and xe_tlb_inval_fence_signal() drops it via
+xe_tlb_inval_fence_fini(). The timeout loop signals the expired fences
+and only then calls xe_devcoredump_gt(), whose forcewake acquisition has
+always relied on the caller holding a PM reference. If those were the
+last references the device could begin autosuspending before the
+snapshot touched the hardware. v6 takes a reference while the pending
+fences still guarantee the device is awake, and releases it after the
+capture. Matt confirmed the analysis and the fix on the list.
+
+I am carrying Matt's tag on patch 1 across that change since he reviewed
+the fix itself, but flagging it here so it is not silently inherited.
+
+Two open points from earlier revisions, both now settled:
+
+ - LRC coverage: i915 also marks the LRC UC on non-dGPU
+   (__lrc_alloc_state()). That does not match the erratum's direction -
+   LRC writes come from hardware context save and the GuC reads it -
+   and Matt's guidance was to leave i915 alone and treat it as out of
+   scope for xe.
+
+ - SIGID: the TLB logging in patch 2 will be converted once a TLB
+   component exists in DEFINE_XE_LOG_COMPONENTS(); a colleague of
+   Matt's volunteered to do that as a follow-up on top of this series.
+
+Two notes carried over, still open to either answer:
+
+ 1. CPU mapping: keeping XE_BO_FLAG_NEEDS_UC (uncached on both sides).
+    It is the tested configuration and no throughput difference against
+    the CPU-WC variant was measurable. Matching i915's exact CPU-WC +
+    GGTT-UC combination needs either a new BO flag or decoupling the
+    GGTT cache-mode selection from XE_BO_FLAG_NEEDS_UC; happy to add
+    that plumbing if parity is preferred.
+
+ 2. Fixes:/Cc: stable are left out, since MTL/ARL is require_force_probe
+    in xe. Also happy to add them.
+
+Validation of patch 3 is six weeks on two ARL machines (7d51 and 7dd1),
+across kernels 7.1.6, 7.1.8 and 7.2, with over 10M TLB invalidations
+processed and zero ack stalls. Before the fix both machines reproduced
+20-60 stalls/day, every day, on two GuC firmware versions. The 7dd1
+machine, which could not survive a day of media workloads on xe without
+a platform freeze, has been running xe full time since 11 August with
+zero incidents.
+
+checkpatch is clean, except for one --strict CHECK about macro argument
+reuse in the xe_devcoredump() wrapper in patch 1, which is intentional:
+the macro only exists to forward (_q)->gt alongside _q.
+
+v5 -> v6:
+- Rebased on today's drm-tip; builds clean, no conflicts.
+- Patch 1: hold a runtime PM reference across the devcoredump capture
+  (second issue reported by Sashiko, confirmed by Matt).
+- Patches 1-3: collected Reviewed-by from Matthew Brost.
+- Patches 2-3: otherwise unchanged.
+
+Thanks,
+Tales
+
+Tales A. Mendonça (3):
+  drm/xe: Capture devcoredump on TLB invalidation timeout
+  drm/xe: Log when a timed out TLB invalidation ack finally arrives
+  drm/xe: Implement Wa_22016122933
+
+ drivers/gpu/drm/xe/xe_devcoredump.c         | 46 ++++++++++--------
+ drivers/gpu/drm/xe/xe_devcoredump.h         | 15 ++++--
+ drivers/gpu/drm/xe/xe_guc.c                 | 16 ++++++
+ drivers/gpu/drm/xe/xe_guc.h                 |  2 +
+ drivers/gpu/drm/xe/xe_guc_ads.c             |  3 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c              |  6 ++-
+ drivers/gpu/drm/xe/xe_guc_engine_activity.c |  6 ++-
+ drivers/gpu/drm/xe/xe_guc_log.c             |  7 ++-
+ drivers/gpu/drm/xe/xe_guc_pc.c              |  3 +-
+ drivers/gpu/drm/xe/xe_tlb_inval.c           | 54 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_tlb_inval_types.h     | 17 +++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules          |  1 +
+ 12 files changed, 143 insertions(+), 33 deletions(-)
+
+-- 
+2.55.0
 
