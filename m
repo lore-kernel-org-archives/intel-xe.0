@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 198CBC982F1
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 06:09:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BD87C982F1
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 07:08:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDF8010E73F;
-	Tue, 22 Sep 2026 06:09:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Y+5spUnM";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E063D10E73F;
- Tue, 22 Sep 2026 06:09:38 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 7E3B941FA7;
- Tue, 22 Sep 2026 06:09:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B9771F000FF;
- Tue, 22 Sep 2026 06:09:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790057378;
- bh=oOBGis0SBghtHwpG23pIumyQMyfBIbbwM40vF06zwBg=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Y+5spUnMpxluPet75ChP+a6xHbyEvTeu0d8XlVB4l38BxoIwW1pkmo0o6GlQNqheK
- gwc8F5qN6POUsWKd3wvZcwy8zNOZAbRI+M5XtM4sUko9AwHh2p/TVvuKF8d9F/cJkA
- nS98eLAdhXXdAtnLrf/QlRka7Z2fZurJe9us+c8EEvUQNHxbEKghec6ymN/kddSle5
- XZc+K7IVJYs7sumpAZfmr7aKYjA8DUowflAJlN0Ejn6/MHrP8mFrqXyArbLv5tH3tF
- EtySiJqcNFyvp9H/QLwEY5zW64syrzThy9dbL5a1kGQjRRxR9lDsBxqfPxcyAwk+A7
- E//LI1mCya1CQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v14 11/12] lib/test_hmm: add a new testcase for the
- migrate on fault
+	by gabe.freedesktop.org (Postfix) with ESMTP id A335310E52B;
+	Tue, 22 Sep 2026 07:08:47 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 752EA10E308;
+ Tue, 22 Sep 2026 07:08:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0028127009140318501=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Migrate_on_fault_for_device?=
+ =?utf-8?q?_pages_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: mpenttil@redhat.com
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20260922053421.4092027-12-mpenttil@redhat.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 22 Sep 2026 07:08:46 -0000
+Message-ID: <179006092647.190466.11956959115109914790@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260922053421.4092027-1-mpenttil@redhat.com>
- <20260922053421.4092027-12-mpenttil@redhat.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 22 Sep 2026 06:09:37 +0000
-Message-Id: <20260922060938.2B9771F000FF@smtp.kernel.org>
+In-Reply-To: <20260922053421.4092027-1-mpenttil@redhat.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,100 +36,153 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] mm: test_hmm: UAF due to concurrent unmaps during migration
---
+--===============0028127009140318501==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 561fbddf4a910a84fca4e2648f745dbccb247398
-Author: Mika Penttil=C3=A4 <mpenttil@redhat.com>
+== Series Details ==
 
-lib/test_hmm: add a new testcase for the migrate on fault
+Series: Migrate on fault for device pages (rev6)
+URL   : https://patchwork.freedesktop.org/series/165953/
+State : success
 
-This commit enhances the hmm test driver (lib/test_hmm) with a new test
-case for migrate on fault. It adds a new ioctl and test code to fault and
-migrate anonymous memory to device private memory.
+== Summary ==
 
-> diff --git a/lib/test_hmm.c b/lib/test_hmm.c
-> index cd88e8177d0ab..b39522c05d832 100644
-> --- a/lib/test_hmm.c
-> +++ b/lib/test_hmm.c
-[ ... ]
-> @@ -382,7 +390,9 @@ static int dmirror_range_fault(struct dmirror *dmirro=
-r,
->  		break;
->  	}
-> =20
-> -	ret =3D dmirror_do_fault(dmirror, range);
-> +	/* update device page table after migration */
-> +	if (!migrate)
-> +		ret =3D dmirror_do_fault(dmirror, range);
-> =20
->  	mutex_unlock(&dmirror->mutex);
->  out:
+CI Bug Log - changes from xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04_BAT -> xe-pw-165953v6_BAT
+====================================================
 
-[Severity: High]
-Does skipping the page table update here leave us vulnerable to concurrent
-unmaps during migration?
+Summary
+-------
 
-When migrate is true, the dmirror->mutex is dropped here without verifying
-the final sequence or updating the device page table. This opens a race
-window.
+  **SUCCESS**
 
-[ ... ]
-> @@ -1377,6 +1387,114 @@ static int dmirror_migrate_to_device(struct dmirr=
-or *dmirror,
->  	return ret;
->  }
-> =20
-> +static int do_fault_and_migrate(struct dmirror *dmirror, struct hmm_rang=
-e *range)
-> +{
-> +	struct migrate_vma *migrate =3D range->migrate;
-> +	int ret;
-> +
-> +	mmap_read_lock(dmirror->notifier.mm);
-> +
-> +	/* Fault-in pages for migration */
-> +	ret =3D dmirror_range_fault(dmirror, range);
-[ ... ]
-> +	pr_debug("Migrating from sys mem to device mem\n");
-> +
-> +	dmirror_migrate_alloc_and_copy(migrate, dmirror);
-> +	migrate_vma_pages(migrate);
-> +	dmirror_migrate_finalize_and_map(migrate, dmirror);
-> +	migrate_vma_finalize(migrate);
+  No regressions found.
 
-[Severity: High]
-Can this sequence lead to a use-after-free of device pages if a concurrent
-unmap occurs after we dropped the mutex in dmirror_range_fault()?
+  
 
-While mmap_read_lock() is held here, a concurrent madvise(MADV_DONTNEED)
-could still execute (since it only requires the read lock or per-VMA lock)
-and clear the newly installed migration PTEs, triggering the MMU interval
-notifier.
+Participating hosts (15 -> 14)
+------------------------------
 
-Since the interval notifier invalidation would see an empty dmirror->pt (as
-we haven't mapped the pages yet), it would take no action.=20
+  Missing    (1): bat-adlp-7 
 
-Then, dmirror_migrate_finalize_and_map() inserts the newly allocated device
-pages into dmirror->pt blindly, without re-checking
-mmu_interval_read_retry().=20
+Known issues
+------------
 
-When migrate_vma_finalize() runs, it would fail to map the device page into
-the CPU page table because the migration PTE is gone, dropping the final
-reference and freeing the page while it is still mapped in the device
-page table.
+  Here are the changes found in xe-pw-165953v6_BAT that come from known issues:
 
-> +out:
-> +	mmap_read_unlock(dmirror->notifier.mm);
-> +	return ret;
-> +}
+### IGT changes ###
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260922053421.4092=
-027-1-mpenttil@redhat.com?part=3D11
+#### Issues hit ####
+
+  * igt@runner@aborted:
+    - bat-wcl-1:          NOTRUN -> [FAIL][1] ([Intel XE#9062])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165953v6/bat-wcl-1/igt@runner@aborted.html
+
+  * igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch:
+    - bat-bmg-1:          [PASS][2] -> [DMESG-WARN][3] ([Intel XE#9331])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165953v6/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
+    - bat-bmg-1:          [DMESG-WARN][4] ([Intel XE#9331]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165953v6/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+
+  
+  [Intel XE#9062]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9062
+  [Intel XE#9331]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331
+
+
+Build changes
+-------------
+
+  * Linux: xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04 -> xe-pw-165953v6
+
+  IGT_9105: 9105
+  xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04: dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04
+  xe-pw-165953v6: 165953v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165953v6/index.html
+
+--===============0028127009140318501==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Migrate on fault for device pages (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165953/">https://patchwork.freedesktop.org/series/165953/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165953v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165953v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04_BAT -&gt; xe-pw-165953v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 14)</h2>
+<p>Missing    (1): bat-adlp-7 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-165953v6_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@runner@aborted:</p>
+<ul>
+<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165953v6/bat-wcl-1/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9062">Intel XE#9062</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165953v6/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-rebind-prefetch.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-165953v6/bat-bmg-1/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04 -&gt; xe-pw-165953v6</li>
+</ul>
+<p>IGT_9105: 9105<br />
+  xe-5801-dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04: dfe5a8188de9aaddd4e46b0f2410d0bccd5c1c04<br />
+  xe-pw-165953v6: 165953v6</p>
+
+</body>
+</html>
+
+--===============0028127009140318501==--
