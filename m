@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFFCAC982FA
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 10:17:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB0F8C982FF
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Sep 2026 10:17:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75C1510E6AE;
-	Tue, 22 Sep 2026 10:17:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 993B010E6C1;
+	Tue, 22 Sep 2026 10:17:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GydHJtsA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KkTj0Krj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8637C10E47C;
- Tue, 22 Sep 2026 10:17:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8AA110E6BE;
+ Tue, 22 Sep 2026 10:17:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790072271; x=1821608271;
+ t=1790072277; x=1821608277;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QhOew8Rpn6+bCVCk0NHh1xLTmtn4gWTmtrQ7K4yP998=;
- b=GydHJtsAIKXv6eZf+k1+HUeN6o6mm9/dj+JMveB2CAZdqLOMfH3A1jsG
- fpFo1cGni4urkQxCpMm5B4usrt8RpWU+3P24PCj3x1h9BkVfigw/MZ5em
- c9Smb+N2ra0a5stPSBeShLFQaoHHxlmzhP/DJptDAfDRpg4CrOqJibMif
- SO7sAebSHD4tNjsa7nKIlkTnmWMhA1dmEXEKxO8VZmwXUHS8mU0abJgIF
- lrlKmqzL8mA0VeoeKlhmzIRdS/nLaZMvU395gAvxSkoHD/3KGLtzl+dmc
- 3MeSKNkpYasBIr6Jh1bJU7/CirQuhsgJdHafbAw++boUrz9DQrdNLzFz0 Q==;
-X-CSE-ConnectionGUID: oTeKszjJQNWJcpmUcAJ7Bg==
-X-CSE-MsgGUID: czJlBgvqQA2QQj27K5DgNQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11912"; a="101322811"
-X-IronPort-AV: E=Sophos;i="6.27,116,1787036400"; d="scan'208";a="101322811"
+ bh=lZhZny7rdxbZ0GGPcq3bSzykZU2dcwmwDaB6gOsav4A=;
+ b=KkTj0KrjFpQdomrPpywNM8r8ZwFFbT1fiSV6BrMJ1ZtXo8cKMfPHpD5Q
+ 2E3bH/NEf0QJF0rEVWtuuLgG2h9rlpRe51Xp8hFdUPrgLaCEBMEC6F7kO
+ LjoFTx8waxL5ZF8KlvDKsv+6ZDI19uFw3Tr4MDF/7whidJ92wkUE4tqNP
+ S+YzgaguYQnQ5zPzNXoT2lkIj5JiJXrr99ZqFiyv1f3oiqMASvpRjdg2F
+ L++MaDK1W2Iq3qxQ2kE+F3SrHKi5KhNMRqDtAVX5RaBhS70bPwKuATJ5e
+ mcUGu0iqI8gVZJ1r5SoE8uMoPFx1yuMrWWKeYy/umb/1P6oY8jn8ORcRA Q==;
+X-CSE-ConnectionGUID: jBsFmx9XTD2rHLD/VETX5g==
+X-CSE-MsgGUID: tGFA09btQ7mU1yuYpHV+Tg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11912"; a="101322836"
+X-IronPort-AV: E=Sophos;i="6.27,116,1787036400"; d="scan'208";a="101322836"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2026 03:17:50 -0700
-X-CSE-ConnectionGUID: D8iXfOG8R2+8Dl+z9/eGcw==
-X-CSE-MsgGUID: a0DvETp9RYa08G1TgIWRSg==
+ 22 Sep 2026 03:17:56 -0700
+X-CSE-ConnectionGUID: jUI1xrCRSzeh0hEG4Me7mg==
+X-CSE-MsgGUID: RwgS2lQzTDGwhITJyrIlEw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,116,1787036400"; d="scan'208";a="299307822"
+X-IronPort-AV: E=Sophos;i="6.27,116,1787036400"; d="scan'208";a="299307900"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2026 03:17:48 -0700
+ 22 Sep 2026 03:17:54 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
  thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com
-Subject: [PATCH v2 07/15] drm/xe: Send wedged notification from a worker
-Date: Tue, 22 Sep 2026 15:46:52 +0530
-Message-ID: <20260922101721.1583542-8-arvind.yadav@intel.com>
+Subject: [PATCH v2 10/15] drm/xe/irq: Protect IRQ state during wedge isolation
+Date: Tue, 22 Sep 2026 15:46:55 +0530
+Message-ID: <20260922101721.1583542-11-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260922101721.1583542-1-arvind.yadav@intel.com>
 References: <20260922101721.1583542-1-arvind.yadav@intel.com>
@@ -69,27 +69,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move the wedged event to a device worker. This provides a sleepable
-context for later isolation work and allows it to complete before
-userspace is notified.
+Wedge isolation can disable interrupts from a worker while PM resume
+enables them. If both state changes overlap, resume can leave interrupts
+enabled after the device is wedged.
 
-Keep one-time wedge bookkeeping on the first transition, but rescan the
-GT state on later declarations because the recovery method may change.
-For example, survivability handling can add VENDOR recovery after an
-earlier REBIND notification.
-
-Track the last reported method and resample it after each event so an
-update is not lost when the worker is already running.
-
-Drain the worker before probe cleanup, remove, shutdown and IRQ teardown
-to prevent it from racing device teardown.
+Add a mutex to protect updates to `irq.enabled` and the related hardware
+programming. Check the wedged state while holding the same lock so the
+final IRQ state remains disabled.
 
 v2:
- - Update reported_method only when drm_dev_wedged_event() succeeds.
-   (Andi)
- - Requeue only if the recovery method changed, avoiding repeated
-   retries when notification fails.
- - Make wedge worker shutdown one-shot.
+ - Rename pm_lock to state_lock and document the IRQ state it protects.
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
@@ -98,200 +87,97 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Assisted-by: Claude:claude-opus-4-8
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c       | 83 +++++++++++++++++++++++-----
- drivers/gpu/drm/xe/xe_device_types.h |  6 ++
- 2 files changed, 75 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h |  4 ++++
+ drivers/gpu/drm/xe/xe_irq.c          | 23 ++++++++++++++++++++---
+ 2 files changed, 24 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 9a940ba8dc1c..045b5844e5c3 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -84,6 +84,8 @@
- #include <generated/xe_device_wa_oob.h>
- #include <generated/xe_wa_oob.h>
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index df4e274bc719..f89d539df010 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -6,6 +6,7 @@
+ #ifndef _XE_DEVICE_TYPES_H_
+ #define _XE_DEVICE_TYPES_H_
  
-+static void xe_device_wedged_work(struct work_struct *work);
++#include <linux/mutex.h>
+ #include <linux/pci.h>
+ 
+ #include <drm/drm_device.h>
+@@ -272,6 +273,9 @@ struct xe_device {
+ 		/** @irq.lock: lock for processing irq's on this device */
+ 		spinlock_t lock;
+ 
++		/** @irq.state_lock: Protects suspend and resume IRQ state updates */
++		struct mutex state_lock;
 +
- static int xe_file_open(struct drm_device *dev, struct drm_file *file)
- {
- 	struct xe_device *xe = to_xe_device(dev);
-@@ -466,6 +468,9 @@ int xe_device_init_early(struct xe_device *xe)
- {
- 	int err;
+ 		/** @irq.enabled: interrupts enabled on this device */
+ 		atomic_t enabled;
  
-+	INIT_WORK(&xe->wedged.work, xe_device_wedged_work);
-+	xe->wedged.reported_method = ~0UL;
-+
- 	err = ttm_device_init(&xe->ttm, &xe_ttm_funcs, xe->drm.dev,
- 			      xe->drm.anon_inode->i_mapping,
- 			      xe->drm.vma_offset_manager,
-@@ -884,6 +889,40 @@ static int xe_debug_page_size_alloc_ctrl_init(struct xe_device *xe)
- }
- #endif
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index d314993b14a1..f7ff3fe5b843 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -797,8 +797,14 @@ static void irq_uninstall(void *arg)
  
-+static void xe_device_wedged_work(struct work_struct *work)
-+{
-+	struct xe_device *xe =
-+			container_of(work, struct xe_device, wedged.work);
-+	unsigned long method;
+ int xe_irq_init(struct xe_device *xe)
+ {
 +	int err;
 +
-+	/* Report at most one recovery method per worker invocation. */
-+	method = READ_ONCE(xe->wedged.method);
-+	if (method != READ_ONCE(xe->wedged.reported_method)) {
-+		err = drm_dev_wedged_event(&xe->drm, method, NULL);
-+		if (!err)
-+			WRITE_ONCE(xe->wedged.reported_method, method);
-+	}
-+
-+	/*
-+	 * Queue another pass if the method changed while the event was sent.
-+	 * This preserves the update without keeping this worker in a loop.
-+	 */
-+	if (!atomic_read(&xe->wedged.stopping) &&
-+	    READ_ONCE(xe->wedged.method) != method)
-+		queue_work(xe->unordered_wq, &xe->wedged.work);
-+}
-+
-+static void xe_device_wedged_disable(void *arg)
-+{
-+	struct xe_device *xe = arg;
-+
-+	if (atomic_xchg(&xe->wedged.stopping, 1))
-+		return;
-+
-+	disable_work_sync(&xe->wedged.work);
-+}
-+
- int xe_device_probe(struct xe_device *xe)
- {
- 	struct xe_tile *tile;
-@@ -996,6 +1035,12 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		return err;
+ 	spin_lock_init(&xe->irq.lock);
  
-+	/* Drain wedge work before irq_uninstall() during devres unwind. */
-+	err = devm_add_action_or_reset(xe->drm.dev,
-+				       xe_device_wedged_disable, xe);
++	err = drmm_mutex_init(&xe->drm, &xe->irq.state_lock);
 +	if (err)
 +		return err;
 +
- 	for_each_gt(gt, xe, id) {
- 		err = xe_gt_init(gt);
- 		if (err)
-@@ -1105,6 +1150,7 @@ int xe_device_probe(struct xe_device *xe)
- 	return 0;
- 
- err_unregister_display:
-+	xe_device_wedged_disable(xe);
- 	xe_display_unregister(xe);
- 	drm_dev_unregister(&xe->drm);
- 
-@@ -1113,6 +1159,8 @@ int xe_device_probe(struct xe_device *xe)
- 
- void xe_device_remove(struct xe_device *xe)
- {
-+	xe_device_wedged_disable(xe);
-+
- 	xe_display_unregister(xe);
- 
- 	drm_dev_unplug(&xe->drm);
-@@ -1127,6 +1175,8 @@ void xe_device_shutdown(struct xe_device *xe)
- 
- 	drm_dbg(&xe->drm, "Shutting down device\n");
- 
-+	xe_device_wedged_disable(xe);
-+
- 	xe_display_shutdown(xe);
- 
- 	xe_irq_suspend(xe);
-@@ -1379,7 +1429,7 @@ u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address)
-  */
- void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method)
- {
--	xe->wedged.method = method;
-+	WRITE_ONCE(xe->wedged.method, method);
+ 	return xe_irq_msix_init(xe);
  }
  
- #define WEDGED_URL	"https://docs.kernel.org/gpu/drm-uapi.html#device-wedging"
-@@ -1406,6 +1456,7 @@ void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method)
- void xe_device_declare_wedged(struct xe_device *xe)
+@@ -843,6 +849,8 @@ static void xe_irq_msi_synchronize_irq(struct xe_device *xe)
+ 
+ void xe_irq_suspend(struct xe_device *xe)
  {
++	mutex_lock(&xe->irq.state_lock);
++
+ 	atomic_set(&xe->irq.enabled, 0); /* no new irqs */
+ 
+ 	/* flush irqs */
+@@ -851,6 +859,8 @@ void xe_irq_suspend(struct xe_device *xe)
+ 	else
+ 		xe_irq_msi_synchronize_irq(xe);
+ 	xe_irq_reset(xe); /* turn irqs off */
++
++	mutex_unlock(&xe->irq.state_lock);
+ }
+ 
+ void xe_irq_resume(struct xe_device *xe)
+@@ -858,10 +868,14 @@ void xe_irq_resume(struct xe_device *xe)
  	struct xe_gt *gt;
-+	bool first;
- 	u8 id;
+ 	int id;
  
- 	if (xe->wedged.mode == XE_WEDGED_MODE_NEVER) {
-@@ -1413,7 +1464,8 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 		return;
- 	}
- 
--	if (!atomic_xchg(&xe->wedged.flag, 1)) {
-+	first = !atomic_xchg(&xe->wedged.flag, 1);
-+	if (first) {
- 		xe->needs_flr_on_fini = true;
- 		xe_pm_runtime_get_noresume(xe);
- 
-@@ -1422,12 +1474,7 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 			    "For recovery procedure, refer to %s\n"
- 			    "Please file a _new_ bug report at %s\n",
- 			    WEDGED_URL, XE_BUG_URL);
--	}
--
--	for_each_gt(gt, xe, id)
--		xe_gt_declare_wedged(gt);
- 
--	if (xe_device_wedged(xe)) {
- 		/*
- 		 * XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is intended for debugging
- 		 * hangs, so wedge the device with 'none' recovery method and have
-@@ -1435,14 +1482,22 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 		 */
- 		if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
- 			xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_NONE);
--		/* If no wedge recovery method is set, use default */
--		else if (!xe->wedged.method)
--			xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_REBIND |
--						    DRM_WEDGE_RECOVERY_BUS_RESET);
--
--		/* Notify userspace of wedged device */
--		drm_dev_wedged_event(&xe->drm, xe->wedged.method, NULL);
- 	}
++	mutex_lock(&xe->irq.state_lock);
 +
-+	/* Re-scan GT submission state on every declaration. */
-+	for_each_gt(gt, xe, id)
-+		xe_gt_declare_wedged(gt);
++	if (xe_device_wedged(xe))
++		goto out_unlock;
 +
-+	/* If no wedge recovery method is set, use default */
-+	if (!READ_ONCE(xe->wedged.method))
-+		xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_REBIND |
-+					    DRM_WEDGE_RECOVERY_BUS_RESET);
+ 	/*
+-	 * lock not needed:
+-	 * 1. no irq will arrive before the postinstall
+-	 * 2. display is not yet resumed
++	 * irq.lock is not needed because no IRQ can arrive before
++	 * postinstall and the display has not been resumed yet.
+ 	 */
+ 	atomic_set(&xe->irq.enabled, 1);
+ 	xe_irq_reset(xe);
+@@ -869,6 +883,9 @@ void xe_irq_resume(struct xe_device *xe)
+ 
+ 	for_each_gt(gt, xe, id)
+ 		xe_irq_enable_hwe(gt);
 +
-+	if (!atomic_read(&xe->wedged.stopping) &&
-+	    (first ||
-+	     READ_ONCE(xe->wedged.method) !=
-+	     READ_ONCE(xe->wedged.reported_method)))
-+		queue_work(xe->unordered_wq, &xe->wedged.work);
++out_unlock:
++	mutex_unlock(&xe->irq.state_lock);
  }
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index bb4234f00453..df4e274bc719 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -554,6 +554,12 @@ struct xe_device {
- 		unsigned long method;
- 		/** @wedged.inconsistent_reset: Inconsistent reset policy state between GTs */
- 		bool inconsistent_reset;
-+		/** @wedged.work: Runs sleepable wedge handling */
-+		struct work_struct work;
-+		/** @wedged.stopping: Blocks worker requeue and repeated disable */
-+		atomic_t stopping;
-+		/** @wedged.reported_method: Last recovery method reported to userspace */
-+		unsigned long reported_method;
- 	} wedged;
- 
- 	/** @devres_group: devres group */
+ /* MSI-X related definitions and functions below. */
 -- 
 2.43.0
 
