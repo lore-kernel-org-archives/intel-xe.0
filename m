@@ -4,51 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11D93C98304
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 21:19:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8081C9830D
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 21:39:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77AEB10E17B;
-	Wed, 23 Sep 2026 21:19:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="Dj3qaJ8v";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DB4B10E173;
- Wed, 23 Sep 2026 21:19:38 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id A284D4197A;
- Wed, 23 Sep 2026 21:19:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC6FB1F000FF;
- Wed, 23 Sep 2026 21:19:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=korg; t=1790198377;
- bh=ph4sZt22ESkzgUHNQP4jcUPEFYrI06GxwSPvp+2Uv18=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References;
- b=Dj3qaJ8vVz3tbYuKzWpNoKIDnMaryNKKSoxyHIsS+W+h6TIcoEjSKJRD3V8y/Eqmn
- XhYpVjFwx40Qe9lJPvahTeuWdHm1VYb/4OMV3V5P56yKoK+vCq0OakJjRxkmE+/bNm
- CqBNsU46UizbrfNkUde86RE2+JrUxrlUX0foREb0=
-Date: Wed, 23 Sep 2026 14:19:36 -0700
-From: Andrew Morton <akpm@linux-foundation.org>
-To: Mika =?ISO-8859-1?Q?Penttil=E4?= <mpenttil@redhat.com>
-Cc: linux-mm@kvack.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org, David
- Hildenbrand <david@kernel.org>, Jason Gunthorpe <jgg@nvidia.com>, Leon
- Romanovsky <leonro@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, Zi Yan <ziy@nvidia.com>, Matthew Brost
- <matthew.brost@intel.com>, Lorenzo Stoakes <ljs@kernel.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
- <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan
- <surenb@google.com>, Michal Hocko <mhocko@suse.com>
-Subject: Re: [PATCH 00/12] [PATCH v14 00/12] migrate on fault for device pages
-Message-Id: <20260923141936.d1f9e5b85355f0bdc6a6ecd2@linux-foundation.org>
-In-Reply-To: <5b1d0fa6-d183-446e-bc52-56e0afd3f398@redhat.com>
-References: <20260922053421.4092027-1-mpenttil@redhat.com>
- <20260922192726.90dec3c4c77b8c9063dbf218@linux-foundation.org>
- <5b1d0fa6-d183-446e-bc52-56e0afd3f398@redhat.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8648710F1DE;
+	Wed, 23 Sep 2026 21:39:05 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8CBD10F1DE;
+ Wed, 23 Sep 2026 21:39:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7512016002880833490=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Enable_GSC_loading_and_PXP_?=
+ =?utf-8?q?for_NVL-S?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 23 Sep 2026 21:39:04 -0000
+Message-ID: <179019954474.196549.6335854741736535947@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260923183600.1186943-4-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20260923183600.1186943-4-alan.previn.teres.alexis@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,48 +36,124 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 23 Sep 2026 08:29:34 +0300 Mika Penttil=E4 <mpenttil@redhat.com> wr=
-ote:
+--===============7512016002880833490==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
->=20
-> >> migration). It is also tricky to code correctly. One page table walk
-> >> could costs over 1000 cpu cycles on X86-64, which is a significant hit.
-> >>
-> >> We should be able to walk the page table once, faulting
-> >> pages in as required and replacing them with migration entries if
-> >> requested.
-> > Sounds sensible.
-> >
-> >> Tested in X86-64 VM with HMM test device, passing the selftests.
-> >> For performance, the migrate throughput tests from the selftests
-> >> show similar numbers (within error margin) as unmodified kernel.
-> > But no performance benefits are demonstrated?
->=20
-> There are no performance regressions for current tests.
-> Real benefits come if want to do migrate on fault.
-> For migrate on fault today missing pages are collected as not-present and
-> the caller has to fault them and re-run migrate_vma_setup(); folding=20
-> HMM_PFN_REQ_FAULT into the collecting walk removes that extra
-> fault+retry round-trip, dropping two page table walks. Page table walks
-> are not cheap. Not to mention simplified implementation for driver.
-> Also, the vma looked up as part of the walk is readily available for
-> migration, eliminating the need for explicit vma lookup - one more
-> performance benefit. Net effect two saved page table walks and
-> one vma lookup.
+== Series Details ==
 
-It certainly sounds that this series will result in performance
-improvements, but have those improvements been quantified?
+Series: Enable GSC loading and PXP for NVL-S
+URL   : https://patchwork.freedesktop.org/series/174837/
+State : success
 
-> This series also addresses the vanished/reborn page table while
-> collecting problem which can crash current implementation.
+== Summary ==
 
-Oh.  I didn't get that message from the v14 changelogs, and crashes in
-the current implementation are not what we want.  In fact, addressing
-those is more important than speeding things up.
+CI Bug Log - changes from xe-5815-703cd271db3a35088460ab3fec0a96bd48e7fe04_BAT -> xe-pw-174837v1_BAT
+====================================================
 
-Under what circumstances to these crashes occur?  Can/should we we fix
-those in a minimal -stable backportable fashion before moving on to speedup=
-s?
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-174837v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-nvls-2:         [TIMEOUT][1] -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5815-703cd271db3a35088460ab3fec0a96bd48e7fe04/bat-nvls-2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174837v1/bat-nvls-2/igt@xe_waitfence@abstime.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-5815-703cd271db3a35088460ab3fec0a96bd48e7fe04 -> xe-pw-174837v1
+
+  IGT_9110: 9110
+  xe-5815-703cd271db3a35088460ab3fec0a96bd48e7fe04: 703cd271db3a35088460ab3fec0a96bd48e7fe04
+  xe-pw-174837v1: 174837v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174837v1/index.html
+
+--===============7512016002880833490==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable GSC loading and PXP for NVL-S</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174837/">https://patchwork.freedesktop.org/series/174837/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174837v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174837v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5815-703cd271db3a35088460ab3fec0a96bd48e7fe04_BAT -&gt; xe-pw-174837v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-174837v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-nvls-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5815-703cd271db3a35088460ab3fec0a96bd48e7fe04/bat-nvls-2/igt@xe_waitfence@abstime.html">TIMEOUT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174837v1/bat-nvls-2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5815-703cd271db3a35088460ab3fec0a96bd48e7fe04 -&gt; xe-pw-174837v1</li>
+</ul>
+<p>IGT_9110: 9110<br />
+  xe-5815-703cd271db3a35088460ab3fec0a96bd48e7fe04: 703cd271db3a35088460ab3fec0a96bd48e7fe04<br />
+  xe-pw-174837v1: 174837v1</p>
+
+</body>
+</html>
+
+--===============7512016002880833490==--
