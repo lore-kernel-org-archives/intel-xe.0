@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DC2FC98304
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 18:20:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A157FC9830B
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 18:21:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2506810E15E;
-	Wed, 23 Sep 2026 18:20:34 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00C3C10E15E;
- Wed, 23 Sep 2026 18:20:33 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DE7E10E15E;
+	Wed, 23 Sep 2026 18:21:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EQ7JhzpP";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E869A10E15E
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 18:21:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790187665; x=1821723665;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=OCuQpbjho+jiFq5nqLO8FnGwiF1zW5JL9bHxcQwHz6Y=;
+ b=EQ7JhzpPBG0YJxtI/3gtEoJFz0xFTH4cHlXvgLg324x2QGU1m5Rlk44n
+ +x1VUVgjqZWwKD1w2X8FV8nIAKdOFgfnYrCCiZ32wnsxgHsyDVWHHIc2N
+ q/63PI53A2mtRQRjeEqg9DO65DMrXQL/SQK7fLyiejZRoxBoD6yaqAyjL
+ i1EMXJAkz+xQHQQfOjH40nwmPj+euJJKXHRZ7qnMNa//zUPAL6thotMgu
+ AX6La/n88EATxoWLQbkwiAbWREuVqIFbxtSnmhRMM9DZ1MCKMqC9xZaYX
+ XLg2pKLixubzSmNm14TSnd5cowCDi1PPJSjmjIQ42/n/L2Qs70uWRgYk0 Q==;
+X-CSE-ConnectionGUID: 3AogBAiMRZudkL0sn9BN/w==
+X-CSE-MsgGUID: smWjAWTlRRCAZHiXS/aQMg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11914"; a="90783959"
+X-IronPort-AV: E=Sophos;i="6.27,119,1787036400"; d="scan'208";a="90783959"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2026 11:21:05 -0700
+X-CSE-ConnectionGUID: M8ewi28TRr6beAoD9wWvnw==
+X-CSE-MsgGUID: oIbIXWtJSxSOk3iu3oHSVw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,119,1787036400"; d="scan'208";a="272911924"
+Received: from osgcshtiger.sh.intel.com ([10.239.81.49])
+ by fmviesa010.fm.intel.com with ESMTP; 23 Sep 2026 11:21:03 -0700
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH] drm/xe: Skip empty preparser window in video ring ops
+Date: Wed, 23 Sep 2026 18:20:01 +0000
+Message-Id: <20260923182001.669076-1-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Crescent_Island_PMT_suppo?=
- =?utf-8?q?rt_=28rev13=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 23 Sep 2026 18:20:32 -0000
-Message-ID: <179018763299.198725.10843947495714742922@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260923181115.2514193-22-michael.j.ruhl@intel.com>
-In-Reply-To: <20260923181115.2514193-22-michael.j.ruhl@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,65 +63,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+__emit_job_gen12_video() brackets the aux table invalidation and the
+optional TLB flush with a preparser disable/enable pair. On platforms
+without AuxCCS emit_aux_table_inv() emits nothing, so a job that does
+not need a TLB flush wraps an empty region and burns two dwords of
+ring space on every submission.
 
-Series: Crescent Island PMT support (rev13)
-URL   : https://patchwork.freedesktop.org/series/160717/
-State : warning
+Add has_aux_table_inv() to expose the condition emit_aux_table_inv()
+already tests internally, and enter the preparser window only when
+something will be emitted inside it. The command stream is unchanged
+whenever the window is non-empty.
 
-== Summary ==
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Assisted-by: LLM
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+has_aux_table_inv(job->q->hwe) is equivalent to has_aux_ccs(xe) here:
+emit_job_gen12_video() is only installed on the VIDEO_DECODE/VIDEO_ENHANCE
+ring ops, and emit_aux_table_inv is only set on the auxccs_* variants,
+which xe_ring_ops_get() picks based on has_aux_ccs() alone.
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit db6523d0ae7a82255c99b1d996b5770451652b41
-Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
-Date:   Wed Sep 23 11:11:35 2026 -0700
+I went with the former because it tests exactly what emit_aux_table_inv()
+tests, so the window cannot go unbalanced if a hook is ever added for some
+other reason. Happy to switch to has_aux_ccs(xe) if consistency with
+__emit_job_gen12_render_compute() is preferred.
+---
 
-    drm/xe/vsec: Refactor platform check
-    
-    For debugfs, residencies and pcode_info are available on the BMG and
-    CRI (!SRIOV_VF) platforms.
-    
-    Refactor to have one code path for adding the debugfs entries.
-    
-    Reviewed-by: Karthik Poosa <karthik.poosa@intel.com>
-    Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
-+ /mt/dim checkpatch 703cd271db3a35088460ab3fec0a96bd48e7fe04 drm-intel
-5c4cc9c8fb17 platform/x86/intel/pmt: complete pcidev to device update
-6914c3d40545 platform/x86/intel/pmt: refactor rmw with a return value
-b9d69c1e68b2 platform/x86/intel/pmt: refactor rc with a return value
-b4ecaa456ac1 platform/x86/intel/pmt: Add register access callbacks
-8e0c49b1801e platform/x86/intel/pmt: Do not remap when using callbacks
-e2ba7e9022d7 drm/xe/vsec: Do not register BMG PMT for VF
-de3a858d22bc drm/xe/vsec: Correct locking order
-8a4fa2432426 drm/xe/vsec: Use correct pm state get
-9468ca905b05 drm/xe/vsec: Add DOC text for VSEC
--:21: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#21: 
-new file mode 100644
+ drivers/gpu/drm/xe/xe_ring_ops.c | 21 ++++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
 
-total: 0 errors, 1 warnings, 0 checks, 54 lines checked
-c78a65ba344a drm/xe/vsec: Support possible hotplug exit
-cc1fa83c4adb drm/xe/vsec: Refactor BattleMage PMT defines
-c251c2caf10d drm/xe/vsec: Update VSEC probe order
-114c121f6142 drm/xe/vsec: Add base_offset to allow for more flexibilty
-a60f36a4ba92 drm/xe/vsec: Support Crescent Island PMT
-cdffd7cd03b8 drm/xe/vsec: Crescent Island PMT decode
-779603f917b2 drm/xe/vsec: Crescent Island PMT callbacks
-0d3ae332f324 drm/xe/vsec: Support late bind fw information
-89f077c98d17 drm/xe/vsec: Add PMT GUID internal access
-8fc1da9b91b9 drm/xe/vsec: Update PMT internal access
-db6523d0ae7a drm/xe/vsec: Refactor platform check
-
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 3dd8cf4e2131..f1260fb6e894 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -80,6 +80,11 @@ static u32 *emit_aux_table_inv_video_enhance(struct xe_gt *gt, u32 *cmd)
+ 	return __emit_aux_table_inv(cmd, VE0_AUX_INV, gt->mmio.adj_offset);
+ }
+ 
++static bool has_aux_table_inv(struct xe_hw_engine *hwe)
++{
++	return hwe->gt->ring_ops[hwe->class]->emit_aux_table_inv;
++}
++
+ static int emit_aux_table_inv(struct xe_hw_engine *hwe, u32 *dw, int i)
+ {
+ 	struct xe_gt *gt = hwe->gt;
+@@ -404,16 +409,18 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 
+ 	i = emit_copy_timestamp(xe, lrc, dw, i);
+ 
+-	dw[i++] = preparser_disable(true);
++	if (has_aux_table_inv(job->q->hwe) || job->ring_ops_flush_tlb) {
++		dw[i++] = preparser_disable(true);
+ 
+-	/* hsdes: 1809175790 */
+-	i = emit_aux_table_inv(job->q->hwe, dw, i);
++		/* hsdes: 1809175790 */
++		i = emit_aux_table_inv(job->q->hwe, dw, i);
+ 
+-	if (job->ring_ops_flush_tlb)
+-		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-					seqno, MI_INVALIDATE_TLB, dw, i);
++		if (job->ring_ops_flush_tlb)
++			i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
++						seqno, MI_INVALIDATE_TLB, dw, i);
+ 
+-	dw[i++] = preparser_disable(false);
++		dw[i++] = preparser_disable(false);
++	}
+ 
+ 	if (!job->ring_ops_flush_tlb)
+ 		i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
+-- 
+2.43.0
 
