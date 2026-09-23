@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4ECDCC98307
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 08:47:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA7F3C982EA
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 08:50:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09D2D10E2FC;
-	Wed, 23 Sep 2026 08:47:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 761F510E878;
+	Wed, 23 Sep 2026 08:50:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QaeohO+W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j/PKruQI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D020710E2FC
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 08:47:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 788DD10E878
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 08:50:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790153261; x=1821689261;
+ t=1790153453; x=1821689453;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=T6TmvrgcIJBv6XxFSbOL6c2BjWtPdORQmhq0TUZDzQ4=;
- b=QaeohO+WNw0ERXmbecmvGlN8AlzadhLZHPki0mur/M4RKAuQO5pKUJCH
- NKoF8daL3jsbV2h6Xxulce/wFjlcTvaMuWCkwQIlkHuf2e/fDrizQuuHC
- ttvM6o4TztlHrQVz8xdE9swkRphWV4wZ3F61fWlVGAnx9EkGSsilbgUaj
- UDDLLvEiHu6GVtWSPXpcbDoCajCHJ4xXPuSTqT9EnmOVzLsFvTTW+uRgD
- qgG24wHlkgWD1dfteF/Au873pdcnrwHw+CwLpAZf/Gb7pInGwp7IK+MVf
- cAIpthIwRTJ6Rc5ayb47M8wsEgOJQEar0q6K0+QYGP6pXjFhdnKYg185p A==;
-X-CSE-ConnectionGUID: JhGNjwQIQdCLk26lZ0naYw==
-X-CSE-MsgGUID: 8OaFZiiuQHu8TbvV9NWvjg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11913"; a="89744090"
-X-IronPort-AV: E=Sophos;i="6.27,118,1787036400"; d="scan'208";a="89744090"
-Received: from fmviesa011.fm.intel.com ([10.60.135.151])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2026 01:47:41 -0700
-X-CSE-ConnectionGUID: RmTzmAlCTUmHZD8njopP+w==
-X-CSE-MsgGUID: GrjyBivXQq6oYnpf/6qOTA==
+ bh=3BYAkwWXjMIGp4m/kfhrH4Zq5/MkTIdGAQ318MC8rz0=;
+ b=j/PKruQISK1AJiQn4djYo5YjLALwrLRAfTfC0bcD+Zfaf5x8gzNPPPDP
+ QC7Jahz0tNxaqLSSIRQIqTMD7S1NZgwtjD5BEb+sZU5CTIMoT4GArX4ZJ
+ 14qdbaNDgV+oVwqhr/gH6VwxIarho18f0Lb9azSxmR2jEgYBqg1RyVUnN
+ wj4HxaKUCL3kIG2+BdMcLGbuujeJLe+orNwdL4e5E9vZTNV8M5i9Mc6Sj
+ rrumxxsOBVOWfPza1n5Z/tq7TvZC8tL+dSEOgSW9IrPs246kzJr8iu09T
+ HrinVpcESTYtzLGOL8yVlP5F2RxBij8jt2UnvXh2qvyXrKIAVlNdpyRbc Q==;
+X-CSE-ConnectionGUID: wIOGXgWcSh+Q0FXeS5qH9A==
+X-CSE-MsgGUID: MRfe3Oz3R7qNp6HjrNDiXg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11913"; a="94646993"
+X-IronPort-AV: E=Sophos;i="6.27,118,1787036400"; d="scan'208";a="94646993"
+Received: from fmviesa012.fm.intel.com ([10.60.135.152])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2026 01:50:02 -0700
+X-CSE-ConnectionGUID: HyqW6FFrTiqrF3ZGw6Clww==
+X-CSE-MsgGUID: GKLybyI+SUq5SDaW9pgLCA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,118,1787036400"; 
-   d="scan'208";a="4594062"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa011.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2026 01:47:40 -0700
+   d="scan'208";a="4576383"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa012.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2026 01:50:02 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 23 Sep 2026 01:47:39 -0700
+ 15.2.2562.46; Wed, 23 Sep 2026 01:50:01 -0700
 Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Wed, 23 Sep 2026 01:47:39 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.3) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Wed, 23 Sep 2026 01:50:01 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.52)
+ by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Wed, 23 Sep 2026 01:47:39 -0700
+ 15.2.2562.46; Wed, 23 Sep 2026 01:49:32 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PvSa7BxaW6h2eUFVqyK9+vnO1irdwvQZxfq78vZZP/qnqeUnc1adMYNsQJCvLtQTKo7RouBK6cLISC3EUh5UFi2+5prx95uBeZIri6cWXtIpWtDiRh7l1oTer5xGK8dY1CBzMP6AZ6moPIyUOy2bRJ5bSOcCm7nMaEvqN6GOzKljAufFMAtL8J2a2Wv+SzJh2EnQc6SOJGCnWhPTcu588kBN7k/UBkGULIa6mOLaWp0Nedo+0BIyQNW/FR3m4sj2pCxNSr7ihhlhH/wWEYTgSmJqFok1Kuz/5yR8Ldzc05CLMVR7fFQfv2ZksLGfvvcqIQHwuMQ/TP/UPmkV2Zyo+g==
+ b=UNBH/jowf/z7CHdEOXsmki18cQI0l0E+wjyS91FoeZ9l03IVsPSrZIa0bEjEiCYFGCIT6znhU1KL3TeN1I2GI9BnNxIHZSrSD0kW2UsN7dQC4JlgvyKTJpcZ1G3Q1dnR4zRrm7+BqW9VATvcpdCxf557MK75TfX3/Qn/FZd1+2Bdf5Rw+BHKZAmbmzk4iuMweRJjsjlMMSJMmszctg0x16TfTH4yHWDWY9if+fdwx8iZVS8Atbt0kNmeZkgoXv+ztveIcyQ6RazDpSMeRU7/9O2KQH37Oau9pnTWYgqfL8pPixJNzQhfFaTp3bkf9IQ3BCkT5J/QvQw3y7uIzIGrnA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kL/uJaNlbvS7fdGsVoXCSxY8hj6slN2MEPxsXabogMs=;
- b=ibZ/wWsp4CdI8povZn7cJ6J3V0Ydu7WFiFUJBicNZRDcbTbcy4phAVfMEwVmL7V1hx1xHNvq1RT79FZ5ojsRca04K5DFYjM3w/Fyuijn15x0WE1PYepH493vnjOQqnYcAZy7GrYX3GyeH0UKymboIX2BuVGsWfZg3MTzJ0Z4kYcyMvpLR1K0FN1XCg0hzvcJTfSHpTOgkbsEXlpOQPqOs3lbndQ+Nzu2femkDyeJC44LuqkwlD8ZIlrVlC84Sqc12x3QtKfi8OEWlKB0Rb1yqCneDM5ZDFTxR59G1qWOnj44UFIYXH+lRjNzBscq2EjtTZlgwqkpCB6A4M/zdsgnzQ==
+ bh=8Bn5GkA1mVCKzp0AGkCSfNcU+6ir2R9nfRHA1w4SqSI=;
+ b=WPCEHtjHdjeYKzBymxGHw6QQyYRdDT5/Y8BXHRPB3wHttbv5av9XxmzM1CfTEs6BSHaxQDaK3xtsggdFZK8XbPRfGvnrCC829D4JzjDSl+56iT3d3wHtwQc49U9loaYRbKHUZwAc7PE3G0I/qDYRVP6rv+du3bkRAcAfPp/Ba0UCGrIdG/QmUHIPx3HclM9lQMkNXQ3iaodJyFaaCtIRzsYiwzTuEPcIiqZRkyK1ZzbyJ3D2kxbgGDMLgWHsrpVAzxvbjoBwy1VALWWDzaGQ5U4Lz3eKiRgPwXU0PWtNNmbILkoTsM3GG0Gymf5M29f6A3dTd0jnimZUaiB1nzPt6A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -70,90 +70,90 @@ Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
  (2603:10b6:f:fc02::2a) by DS4PPFE901A304F.namprd11.prod.outlook.com
  (2603:10b6:f:fc02::5b) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.16; Wed, 23 Sep
- 2026 08:47:36 +0000
+ 2026 08:49:30 +0000
 Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
  ([fe80::5a5c:9c7a:cd1d:d687]) by DS4PPF691668CDD.namprd11.prod.outlook.com
  ([fe80::5a5c:9c7a:cd1d:d687%6]) with mapi id 15.21.0451.014; Wed, 23 Sep 2026
- 08:47:36 +0000
-Message-ID: <00df2a6d-65d7-4274-885f-7e845c94d7fd@intel.com>
-Date: Wed, 23 Sep 2026 14:17:29 +0530
+ 08:49:30 +0000
+Message-ID: <4b712e60-ed9a-4137-b0f1-4cd92dcf9c24@intel.com>
+Date: Wed, 23 Sep 2026 14:19:24 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 20/24] drm/xe: Add ULLS migration job support to ring
- ops
+Subject: Re: [PATCH v6 21/24] drm/xe: Add ULLS migration job support to GuC
+ submission
 To: Matthew Brost <matthew.brost@intel.com>, <intel-xe@lists.freedesktop.org>
 References: <20260904211613.3934307-1-matthew.brost@intel.com>
- <20260904211613.3934307-21-matthew.brost@intel.com>
+ <20260904211613.3934307-22-matthew.brost@intel.com>
 Content-Language: en-US
 From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20260904211613.3934307-21-matthew.brost@intel.com>
+In-Reply-To: <20260904211613.3934307-22-matthew.brost@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0059.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d3::10) To DS4PPF691668CDD.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA5P287CA0049.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d3::12) To DS4PPF691668CDD.namprd11.prod.outlook.com
  (2603:10b6:f:fc02::2a)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|DS4PPFE901A304F:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9e4b2e79-6877-486a-5f71-08df194f50ce
+X-MS-Office365-Filtering-Correlation-Id: 953e513f-536d-4e21-f53d-08df194f94ec
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|23010399003|11063799006|3023799007|6133799003|10067099003|5023799004|56012099006|4143699003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: AplUjQLJMMzVDApLOlXi8TKBXWVZWC6EEMP6OuH9Oi/Ow9LdNevaoGUUVYdCOLmRfXV3Ehea1pe3zTjNde4r/MYiwbb0DRmzkOhA0sZykMI9VlIa7/68PvV08GQgd86rMT3AW+tQA2doUU7mNCTQBML177n2022Sj32R6/U8lH+cd9uU78ERFuT92uEiHk0fnowlOtZ3etEqnUVRsOjTdyysjpjMeMNHS3QCj2ibBfvU2nL0mKNmoDP5ew5O36BBROoOa9uJkkP0JjYVrH+8fmEtIXjjU1XH7wHqpuzW9YnpBlDBOi+GxW2kJX/lZiQuJcbImFWwp3v9lvDoIE82JBlBrh2MF7pzvYDCYt8NtDmodr5X0fsmru2Z+i63HbRYgLxBj346BGzVivV8zAJsErqAr8XysuwhlIwuJatFA4oB5CPCGDi0NZDSwXtNCJJS9LBmse97DT+Y1Fv4ZtTTu4qZYdMPn990lDBYJlG25H55XyB29iHdYBoCn1L+fDdlxSsphaFVRhs6dkKtSbEth3JSHtBTPp7SVbwtl9b9QReew2kcUndpdx6XPSL/lLM5E1vEkz09dQFkigPKMhkx8/3qsyG+dp6FJ1ervuucpPSX4gTweAtbVrxEPo+j0VRU
+ ARA:13230040|376014|1800799024|366016|23010399003|11063799006|10067099003|56012099006|4143699003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: qoCqUUXc6+3oA8IE+dmuXVWuF3FU5BpStOh1eLs5p886sBXaXp1T8R6rB77Hbn+YuloO/XoiNlxeFOr7rwAjyGr1p0yKgSmU8UHsZbXlQ8JSkEtUR3saOnkVCsW21lgzN7zIBXHzZ3eknQ+m5o2rE3h+kMzTpwulMnFqlE6yRnVHPMeXoZ1+/rwZ5HF3V1gZH0Cc/+9jzIFqfLsvGjj1mbEVeIkqB4pyYuG1latsY4FqGN+/7Gs2t0RlqZ87HKqAwP+L94nIsuEGspbkZOl7tCf4aOYZ5AA4nNAwbuVfabeHS3h1tQBtFYZm9jYm08Rh/FfxC0u/OPR7G8FIVPRppcL7+u/0hgEUVFLxqXdA4jOth7sHgn9ewLqEHVCpxOcTJPw8cHSIba1iheK4Bp7yvdeI5B0oNrgks2CZobZHSteaF/E3u4tGy+Fn/56qR0bN+BSgxyENUyjp2hrH+OxtUCO+PR8yDCqMPMxVQqMFgqVTr22vGg8jrfeFqUHRzEqXRgznFbIojRCnKEgcIrEqmyW4n20zoBvzWM6t2R2C36cd4PLCswGZIVqn740fdXiwjxjLyiF2NNZPrDCC7dXeYvh85SPnWtHlfHl04CDKt+4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS4PPF691668CDD.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(23010399003)(11063799006)(3023799007)(6133799003)(10067099003)(5023799004)(56012099006)(4143699003)(22082099003)(18002099003);
+ SFS:(13230040)(376014)(1800799024)(366016)(23010399003)(11063799006)(10067099003)(56012099006)(4143699003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a2FDcmNhdElJZlhBWVQ2RFhBNHF2UEViKzB1UlJNamZwQzEvS1hYWmhBSU5H?=
- =?utf-8?B?dlJ3NU9xajNRMlRIb1ZKcFRSemlERWNtMndwQ1ZjWVkrNFVicSt2WVk3Zjhq?=
- =?utf-8?B?OVhiVy9uWk0zVFpRTVV0OFhXZ1pCTDZPakphdDl1V2I3TWxaYitaaklPWkZ6?=
- =?utf-8?B?eGJld253UlJMSUk2YlZkcE96VjU1aytaRVBSaDQybk4zZ2s0YkhyMmxiTnJY?=
- =?utf-8?B?TmJ1NFhKalJsa1dpZkNYMUhvejZKbFNEVU9vVWNFMW5pdlZwYjkxNlRyUlk4?=
- =?utf-8?B?aVRtdGkwWHlJdzM0SXNLOVdSV2pMT1QyL2gxa0RMcEF4SzlTRlF0eHlLbVhQ?=
- =?utf-8?B?Y2pSY3dxa2FCTWhBNnhGQTZSWXhzQlZrbzZGZERnQ1R5VzRhZ3NUOC80OGhs?=
- =?utf-8?B?amhEQ2NiRlRtNU5zUC9hSUppMGZmZ2JqZjhiTXpnbDAvbWx5bG5OdDI1VEV2?=
- =?utf-8?B?bSs0RXIzNFAzUnBjeFVyU2NacjA5UENSVDhqbTNGLzNSSU43Rit5aGxERXlh?=
- =?utf-8?B?QmRzbHYvYTlwQUtzYTIvdnpsVWJqa1BMMDVsNURaaFJZeWJ3ME41eWtLM3Qr?=
- =?utf-8?B?dGNCT1pURDNiVjZNVzBJUnpvZEd4bW0zL09JSXRiR20vaVhKMlZaNkNJaFcr?=
- =?utf-8?B?S21IVVBMZVNheFd2Q2Nmc093SGM4TVJ3V2RUN0dMVVFJZHdmQmRNR3ZGQ3p6?=
- =?utf-8?B?WjllK2hMa01URG02MHB2VVBjZTdzekRhYktnOW82MUxOKzk5K2M1bkpDMHQ2?=
- =?utf-8?B?VUE4ZUpVNThGYXdkMVdKRGdkeC9LQS9pclp0TjNiOXdpMHlxbXNaK2RPSWxt?=
- =?utf-8?B?eVpneEZSYnNhdUF1cXBMbFVBWXpSQW9GYUN4SVJzVTRGb0ZzTkVxbEphblZn?=
- =?utf-8?B?c1ZyRWd6Z2JGN0c5ZVlzSzNNM2V5MjVxWFRoRm9sWXFwdWZ1R2ZmQ0JXMEt4?=
- =?utf-8?B?SjlUMmRZeFZwVXA2SDVueW9YNWRMeENyK0Q0QnovNVpTbWVmQ2x6YjlITjhP?=
- =?utf-8?B?d29oTUFoY0dCWnVXVDJhbGx3MUo2VUswSnJGZ2huVklsbStTQU1sWmdlcElB?=
- =?utf-8?B?VjhueEw1cVRwaGNXbkFUdDVMZzBKWmJJSitBVTd1c2xRYkxPTElDYkpBcXNa?=
- =?utf-8?B?eEJWalp2NE16SmlBZVRCY2dleFVOZ3J1SXljemQ3KytBaVp5NS8zWW1OTDBZ?=
- =?utf-8?B?ZkhjbCtGMCs5N3R4a2hxcjlteGM5TEZjSXE4NHVJbjByejJCaGtIZVVqVG1N?=
- =?utf-8?B?aEZwbDN4WjcySTNLVFI4Rjh3WDExMVF5cUxsazJpZmJLR2dDNEJRcmxVRlpS?=
- =?utf-8?B?YzVlaFMrN0l4a1VUQlJleU1uVTlkOXpDNFY4Z2ZuWi9MR3FVTFpWN04zQ29i?=
- =?utf-8?B?dFFRSW9URXIzbzkyQ3ZqeHQveTUvWHNBZ1p5L1FwY0podkdlSlBhVTRiMnpV?=
- =?utf-8?B?Nkh1NGYzZkxwWVhuTkN2SWZWN1o3YkhIYUo0YzcxcEFYWFdzcmtST0ZFZTM5?=
- =?utf-8?B?K000UVE3cDZKUTJjdXVTWFJZSG5oYzdkc2g1SGx0MERvbWpnNzBQaTJCWG4z?=
- =?utf-8?B?dHZpS3MvVDcrdXlBSzNRc21tZ1kwUkI4RkprNm84RDRobDJqcnFRSHlqNm5w?=
- =?utf-8?B?UjhsUWdlTkVXOE9OMXloekkvVnlOMGh5T28xL1lIM05Cb3RRem9YRWlKS09l?=
- =?utf-8?B?WWliQTVyZmFDNnpEWVRNeU9FckxnMEdYNUIvQm9oWkRWR1luQ1h1M3k5UDY4?=
- =?utf-8?B?Z2RjUC9LQkcvYlhnK0tyTitXZFpOZ1hHZ1BFMTJ1QjRGeWhySnZXYTBUb091?=
- =?utf-8?B?M2l1QmJFYkkrZlZDYTNYclhxakQraW11eXU1ME4wMVdNZmhxODNaRHhiekZr?=
- =?utf-8?B?ZDVuTnIzNFlTdXhZS3RiMkFSVE5LdkNXRGNOVzlnWDlxZ3dVQ3lhblNLYU1Y?=
- =?utf-8?B?UWVBU3NTaDlqcEwxL1hyOTZKWTY5dEErbnhOR010bjlya1VFTzVURXR6SFN6?=
- =?utf-8?B?eXEvL2xNNm5WeFpxUHdoTjJmRVBpQlhtb1IwbGxtMjJyaE9LQ0ZwakthaFFZ?=
- =?utf-8?B?RUh5R2kwT3plTDdIcXdiUzJiRXpUeU96Mng3UEZSVTUvZklWTTUrS1dQYXg1?=
- =?utf-8?B?KzRHWE90bmYwWXJyMldOLzNvM0RzbHpibEpXZUx3NnhHNGVHTDk2aTZqVnIr?=
- =?utf-8?B?SUNMbjhsTWxXa3VoQ3V5QVJxN3B0OVQ1aVo4YkVGcFQ3MkVkMkFBVU53Qzlq?=
- =?utf-8?B?UzZ2ZVdlUHNVQ0g0bE5kazlWR1F5WkkvUXVwa0xPNVdjR2dqdjVtU3k1d2FM?=
- =?utf-8?B?L3FVbXFrQThZTjNlVzlzZVpidEZCSnZ5MDVUNytwc0YwbEh6STkvRjVFV25a?=
- =?utf-8?Q?onpAAb8+mZCwybDE=3D?=
-X-Exchange-RoutingPolicyChecked: RQd2HQx93GgKpEbjm5RkDoH5OYg9IgQ1TNVjoPQIFvusft6t44bOONYClVC6xD/Lf6I19nM5/OiTPnTqN9rQcJJzIWNgLZtZx4N/yoaV8Z5qOlkJ3ZDu588UmAhNlHHaxfcBSOIhuRBks9nomCSnyBhXlZ1GQbuDZCW6E+dwQ1Fc3iuSIr4xbjjWAM2yHJ6Jfny0rzfhcfs5T2J/J64Q5I7WrZ1b0szNzUbpW5c8BfIgSg5WPIRTnDK7f0Jz53sCBbXjPRheqsAK0g2o3IIRx1yGor4+JFEzWVS7TAPOol55i72G3W19kLIprUlga+BtGTp/qO0J0aOBpDCuFn0rZg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e4b2e79-6877-486a-5f71-08df194f50ce
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TlU1OXowTnl6TXF4T29hQmFVcUVwT01GY0sxSXpHQnFtNjJkMTRuNGkwcXAw?=
+ =?utf-8?B?ODhRK25VRHNMdEpacEFQMTVaYkVkK2pqamJIbHErTWhGeE1tR1dzMlZMR3N6?=
+ =?utf-8?B?Z2ZQSG9mM2xIM0hVRXRPcE5nRnFrZjE5ZFViVThlY2VoQTZZNVgrTFJNQ1F3?=
+ =?utf-8?B?cG45QjdTVXlBM001OXFpL0RCVUc2Sks4RW1zK2hTcUIveTdJSDVvSWZLYkFI?=
+ =?utf-8?B?ejUxaGg1UGxUSTJkZXVjbVdVVlZRZGF5QWNERENRN1pyZkZnZXpjSDZMVEJQ?=
+ =?utf-8?B?K0xyeStpOU5ObE1XUlg2MGh3NS9nQ2I3ZXIvVjZmR1dXNi9GRjhPZlhobGtE?=
+ =?utf-8?B?c0pWK3AzcTdsSm9vTW5NNlhpZkZHNHJhellJaFhVWDg1Nmc1emdNcTlpcjI5?=
+ =?utf-8?B?ckcreG10UFhXU2tVVHVsRWlTVnBDZUFvb29idXd0Skc3bE84dEVzR24vVnQ3?=
+ =?utf-8?B?czY5Uno5YzB6YzV1SWFyV1VHaFVlUjlHSFZ0c3JhK1A5TndRZFV6QUVVcXZn?=
+ =?utf-8?B?c3M3UjQ2U3lKWmVCVUdwT0pMSFFsNGpsREhlckJkekpJTGpwTWNPSFJuMnEz?=
+ =?utf-8?B?MXFKWkxHbXBubzU1YVlhcDBFRTVrd1FTZmd0QlRyRUNGVDZvbWNoWEYyaFV1?=
+ =?utf-8?B?cFdmcjBjcERpbFo5VG5RSlNJbjQzTTJXNFRWWFBhdHBtVlNsVWJZMFNzNmxV?=
+ =?utf-8?B?bW81ekN3c3ptT3pmd0RqOTRTNnNyK0ZYbEpqTk5Qa1pvajQraXFrbTkvTEpw?=
+ =?utf-8?B?ZXIxOEtMSHhxQVZmT3Rkb1dBdi9tY3N6cXd5WFJmL3lDRzFCbWlPLzVTei9y?=
+ =?utf-8?B?NUIvZFRobnlFMGtkUktUc0Y1YkpmK3VXN2hiTWFRTklpKzVPckZIQXdLTm9O?=
+ =?utf-8?B?cGY0Mlo3MDdIT1JiR1o2cms0SDBSOU9LTkI0UmhCc1Vyc3RaWjloZjNkaHZM?=
+ =?utf-8?B?ZXJZbHVXNGwrRVU2L2YzSDZYNDNRWXgrWkFEcFdLV1RmWTFFL1VmYjBoTVFP?=
+ =?utf-8?B?OEl6NFdjSXJYeXZWaGRQWkVXN2VudkF6NGdPOUtSTCtDY25ndDZ0Y2hadUlR?=
+ =?utf-8?B?WURReTdsWlZRSHlSQ212R0QyTlN0UTFhSDhnWmJmTXdpOUMwdGpwTHpIWUE3?=
+ =?utf-8?B?aWJzR1M5MVQwRzVOYWJMeGFWWEFKTFJ5azErUWkwdFFoQllvY3BCcHU0UjN1?=
+ =?utf-8?B?YjROaEVGRGRMbXA3YUJCL0Z0M0VQSDlwekJFMXd2VVNoMEYySFlsUXlqcEFP?=
+ =?utf-8?B?NEp6a2w4MEVLQjcweGJDQTRwcThqMzZtRjNQRkwvb0gvdEpQVWVuTnVIRTdB?=
+ =?utf-8?B?UXFqT3lJeURXWW1TK25wUGRld0FOcHZ4TkJoK3h1N0FQRzJEVmlwZCt1aldl?=
+ =?utf-8?B?OFpydTVhbG4yWUFtUzVsdytPeXZmSTN4MjVTYnN3NTl5akJIcjd6VHovUndx?=
+ =?utf-8?B?TFhrVGFTeGh0bjZSeFJ3MXljSWRjK0dpSGt2MkpsNXFnYmtaazFXY29FVHF6?=
+ =?utf-8?B?Wm9PUVd5S0hKbDVzZlVRZkhndFQ0bTVNQ1p4Vm4rV1IrYTNHM2ZOUDh6Z2Jk?=
+ =?utf-8?B?dDYxY2xFdytCNFpRMWtBd3BKRGs4dloyK1A5RXRDaXRXdkV1ZU5PTXZHRzF3?=
+ =?utf-8?B?R3VFREJ5SHYyODdMN0xzSXpLRlBBNXpza0VrRXdMTWtoVERHNkhjY2NNV2xi?=
+ =?utf-8?B?THhXVHp5cFFaazN2bTR5Rk1yS2NQbHRuZ09xQ05mQ2tsdjk0TmgvVmNaS1N5?=
+ =?utf-8?B?UmthYjVSblVrRSt0T2V2Ny8wUFlyTFkrZWtoUkVlZjRvUGhqbVFsVDRIV0pE?=
+ =?utf-8?B?YkZiZXY2ZFVyS1VTeDRSRURGa0J4TjV3Tnc2RFJHN1llUEJWa2U5STZyeXpq?=
+ =?utf-8?B?dkR0YTQvaFR3VmdyWm1vY2VmQngveXVGYmYzN3pRdjJEdjhLUElVYVU2Z1ow?=
+ =?utf-8?B?RC9pWmNXSlV2aGdaMXlDSGk3YUpnU1JsdFZTVWpYakNoc2FCaC94dGtXc1VU?=
+ =?utf-8?B?aUU1T1VVYmpIUjNsN2l6eWE4VUtVK2pXUktacTVsZFhFcHJBWW1wV2NGamg0?=
+ =?utf-8?B?WnAxQXVhN1ZRWEI0Y1JOaUhFVjR2UlQ5ZldJcFBicWVwYk1DMStBS1JmR2Fo?=
+ =?utf-8?B?S3JmMzhUYmo1UWwzckp0MkZ4QXFNT3lYd0RKMHpjYkVENHptemp0Y2pFUE5X?=
+ =?utf-8?B?enNHOUMwT2hnc1hWR2NDV3JwTkNMd0ZUc2tScXV4U1hsSy91L0JoNmVCR0Ns?=
+ =?utf-8?B?MmtVb25BK3QwLzMvcXdNV2NNMEFvb25BN0VMV3pmWnhIWXlwamUya3Zwcjg1?=
+ =?utf-8?B?dGc3Y0xlaSt5SWR5L1Z0VC90WnR6OUFUZ2MrVEZVM3g5cUpCRk1MQkhYUDZR?=
+ =?utf-8?Q?uJFk1+vcm1UCausI=3D?=
+X-Exchange-RoutingPolicyChecked: PTkd4XnWNHRtpq2vkGyHiet0y2miotKpf12DKs49+zazphoEezg1jio/1cBugrgaiWWVSYLhlviAVuZ5MkNJRZTnRNFma7tvb92NG3Gw+Xr2wXsSd737wvdGDXiV2Nwbf0CsP3VxmV3rDcJvLeaCHhq5Wr2llwCtpuynk9fkyPIlvfh5A8PTYNhECSzNgZJlKIlYpD/D05uGI3XdMHGrC1cygLcnMfdDKezvI6Hd5oUl8LLsZ6+EnJJqy87rW9FtPnz1UygT631G8HjuGS0iENHwBXmVA+szTIqi9a0fhdGsDd89/9gN0DwXELd7yqx6FRcoJi3mAxRgQHinyy7KBw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 953e513f-536d-4e21-f53d-08df194f94ec
 X-MS-Exchange-CrossTenant-AuthSource: DS4PPF691668CDD.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2026 08:47:36.3579 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2026 08:49:30.5440 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7MrS5rZ7P66p/zsKgyXN1yRtDYVUpNEsxi6kQQhMAlglt5i6moODoXlWupA3C0pYgiDmrKHUCQtXLPPIxT50hFndk/qzR/gqxPOhtL2qS7o=
+X-MS-Exchange-CrossTenant-UserPrincipalName: fgeDISg6WJXZf6+ZbDNeVgBG9Aoe9UZC9yEZjhfvEULIQz/maiTa2kJryNywrjl3FivmAW5xfZXB6tHYc7SGXDWJnKNlozaN2pO/UhIyTAA=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPFE901A304F
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -173,195 +173,90 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 05-09-2026 02:46, Matthew Brost wrote:
-> Add preamble and postamble for ULLS migrations jobs. Preamble clears
-> current semaphore for reuse. Postamble waits on next semaphore which is
-> set upon next job submission, then advances the ring tail over that job
-> with an LRI to RING_TAIL, so submitting it costs the CPU nothing beyond
-> signalling the semaphore.
+> Add ULLS migration job support to GuC submission backend.
 > 
-> A job updates the tail on behalf of a successor which has not been
-> emitted yet, so it cannot know how much ring that successor will occupy.
-> Pad every ULLS job out to a fixed ULLS_JOB_SIZE_BYTES, which makes the
-> next tail derivable from where the current job starts. The pad also
-> supplies the NOPs which must follow an in-ring tail update.
-> 
-> The last ULLS migration job skips BB submission, the postamble and the
-> tail update (clear current semaphore, write seqno, exit ULLS), padding
-> the difference so that it still fills a job slot.
+> Changes required:
+> - On migration queue, reduce max jobs to the number of ULLS semaphores
+>    minus one
+> - Skip writing the saved ring tail for ULLS jobs except for the first
+>    ULLS job - the ring updates both the saved tail and the tail register
+>    itself
+> - Set ULLS sempahore for current job releasing last job except for first
+>    ULLS job
+> - Suppress submit H2G for ULLS except for first ULLS job
 > 
 > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Link: https://patch.msgid.link/20260228013501.106680-23-matthew.brost@intel.com
+> Link: https://patch.msgid.link/20260228013501.106680-24-matthew.brost@intel.com
 > Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 > ---
->   drivers/gpu/drm/xe/xe_ring_ops.c       | 86 ++++++++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_ring_ops_types.h | 24 +++++++
->   2 files changed, 110 insertions(+)
+>   drivers/gpu/drm/xe/xe_guc_submit.c | 17 +++++++++++++----
+>   1 file changed, 13 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-> index 39a670e91ba7..f05b4276c8d1 100644
-> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
-> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-> @@ -494,6 +494,79 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
->   	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
->   }
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index 5e3e911a397b..a83360fcbbf3 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -1189,9 +1189,10 @@ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
+>   	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
 >   
-> +static int emit_ulls_preamble(struct xe_lrc *lrc, u32 *dw, int i, u32 seqno)
-> +{
-> +	u32 addr = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno);
-> +
-> +	return emit_store_imm_ggtt(addr, LRC_MIGRATION_ULLS_SEMAPHORE_CLEAR,
-> +				   dw, i);
-> +}
-> +
-> +/*
-> + * Advance the ring tail from within the ring, so submitting the next ULLS job
-> + * needs nothing from the CPU beyond signalling the semaphore. All ULLS jobs
-> + * occupy exactly ULLS_JOB_SIZE_BYTES, so the tail the next job ends at is two
-> + * job slots on from where this job started, even though that job has not been
-> + * emitted yet.
-> + *
-> + * The saved tail is written before the tail register so that a context save
-> + * racing the pair can only restore a tail behind the register, never ahead of
-> + * it. The register write is deliberately not MI_LRI_FORCE_POSTED: posted, the
-> + * new tail can land after the command streamer has already drained this job,
-> + * at which point it sees an empty ring, parks, and can be taken off the
-> + * hardware with no H2G left to bring it back.
-> + *
-> + * The tail is published before the semaphore wait rather than after it, so
-> + * that the non-posted write drains while the engine is parked anyway instead
-> + * of adding a register round trip after the semaphore is signalled.
-> + */
-> +static int emit_ulls_ring_tail(struct xe_gt *gt, struct xe_lrc *lrc, u32 *dw,
-> +			       int i, u32 head)
-> +{
-> +	u32 next_tail = (head + 2 * ULLS_JOB_SIZE_BYTES) & (lrc->ring.size - 1);
-> +
-> +	xe_gt_assert(gt, IS_ALIGNED(next_tail, 8));
-> +
-> +	i = emit_store_imm_ggtt(xe_lrc_ring_tail_ggtt_addr(lrc), next_tail,
-> +				dw, i);
-> +
-> +	dw[i++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) |
-> +		MI_LRI_LRM_CS_MMIO;
-> +	dw[i++] = RING_TAIL(0).addr;
-> +	dw[i++] = next_tail;
-> +
-> +	return i;
-> +}
-> +
-> +/* Publish the next job's tail, then park the engine on its semaphore */
-> +static int emit_ulls_postamble(struct xe_gt *gt, struct xe_lrc *lrc, u32 *dw,
-> +			       int i, u32 seqno, u32 head)
-> +{
-> +	i = emit_ulls_ring_tail(gt, lrc, dw, i, head);
-> +
-> +	dw[i++] = MI_SEMAPHORE_WAIT |
-> +		MI_SEMW_GGTT |
-> +		MI_SEMW_POLL |
-> +		MI_SEMW_COMPARE(SAD_EQ_SDD);
-> +	dw[i++] = LRC_MIGRATION_ULLS_SEMAPHORE_SIGNAL;
-> +	dw[i++] = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno + 1);
-> +	dw[i++] = 0;
-> +	dw[i++] = 0;
-> +
-> +	return i;
-> +}
-> +
-> +/* Pad out to the fixed ULLS job size */
-> +static int emit_ulls_pad(struct xe_gt *gt, u32 *dw, int i)
-> +{
-> +	xe_gt_assert(gt, i <= ULLS_JOB_SIZE_DW);
-> +
-> +	while (i < ULLS_JOB_SIZE_DW)
-> +		dw[i++] = MI_NOOP;
-> +
-> +	return i;
-> +}
-> +
->   static void emit_migration_job_gen12(struct xe_sched_job *job,
->   				     struct xe_lrc *lrc, u32 *head,
->   				     u32 seqno)
-> @@ -507,10 +580,16 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
+>   	if (!job->restore_replay || job->last_replay) {
+> +		/* A ULLS job past the first publishes its own ring tail */
+>   		if (xe_exec_queue_is_parallel(q))
+>   			wq_item_append(q);
+> -		else
+> +		else if (!xe_sched_job_ulls_is_chained(job))
+>   			xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
+>   		job->last_replay = false;
+>   	}
+> @@ -1208,6 +1209,9 @@ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
+>   	if (exec_queue_suspended(q))
+>   		return;
 >   
->   	xe_gt_assert(gt, !job->ring_ops_force_reset);
->   
-> +	if (xe_sched_job_is_ulls(job))
-> +		i = emit_ulls_preamble(lrc, dw, i, seqno);
+> +	if (xe_sched_job_ulls_is_chained(job))
+> +		xe_lrc_set_ulls_semaphore(lrc, xe_sched_job_lrc_seqno(job));
 > +
->   	i = emit_copy_timestamp(xe, lrc, dw, i);
+>   	if (!exec_queue_enabled(q)) {
+>   		action[len++] = XE_GUC_ACTION_SCHED_CONTEXT_MODE_SET;
+>   		action[len++] = q->guc->id;
+> @@ -1221,13 +1225,14 @@ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
+>   		set_exec_queue_pending_enable(q);
+>   		set_exec_queue_enabled(q);
+>   		trace_xe_exec_queue_scheduling_enable(q);
+> -	} else {
+> +	} else if (!xe_sched_job_ulls_is_chained(job)) {
+>   		action[len++] = XE_GUC_ACTION_SCHED_CONTEXT;
+>   		action[len++] = q->guc->id;
+>   		trace_xe_exec_queue_submit(q);
+>   	}
 >   
->   	i = emit_store_imm_ggtt(saddr, seqno, dw, i);
+> -	xe_guc_ct_send(&guc->ct, action, len, g2h_len, num_g2h);
+> +	if (!xe_sched_job_ulls_is_chained(job) || num_g2h)
+> +		xe_guc_ct_send(&guc->ct, action, len, g2h_len, num_g2h);
 >   
-> +	if (!xe_sched_job_ulls_has_batch(job))
-> +		goto seqno_write;
-> +
->   	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE; /* Enabled again below */
+>   	if (extra_submit) {
+>   		len = 0;
+> @@ -2098,6 +2103,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+>   	struct xe_guc_exec_queue *ge;
+>   	long timeout;
+>   	int err, i;
+> +	int max_jobs = (xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES);
 >   
->   	i = emit_bb_start(job->ptrs[0].batch_addr, BIT(8), dw, i);
-> @@ -521,12 +600,19 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
+>   	xe_gt_assert(guc_to_gt(guc), xe_device_uc_enabled(guc_to_xe(guc)));
 >   
->   	i = emit_bb_start(job->ptrs[1].batch_addr, BIT(8), dw, i);
+> @@ -2137,8 +2143,11 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+>   		submit_wq = primary->guc->sched.base.submit_wq;
+>   	}
 >   
-> +seqno_write:
->   	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno,
->   				job->migrate_flush_flags,
->   				dw, i);
->   
->   	i = emit_user_interrupt(dw, i);
->   
-> +	if (xe_sched_job_ulls_parks(job))
-> +		i = emit_ulls_postamble(gt, lrc, dw, i, seqno, *head);
-> +
-> +	if (xe_sched_job_is_ulls(job))
-> +		i = emit_ulls_pad(gt, dw, i);
-> +
->   	xe_gt_assert(job->q->gt, i <= MAX_JOB_SIZE_DW);
->   
->   	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
-> diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-> index 52ff96bc4100..ea4af321dd7c 100644
-> --- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
-> +++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-> @@ -6,6 +6,7 @@
->   #ifndef _XE_RING_OPS_TYPES_H_
->   #define _XE_RING_OPS_TYPES_H_
->   
-> +#include <linux/build_bug.h>
->   #include <linux/types.h>
->   
->   struct xe_gt;
-> @@ -14,6 +15,29 @@ struct xe_sched_job;
->   #define MAX_JOB_SIZE_DW 74
->   #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
->   
-> +/*
-> + * ULLS migration jobs advance the ring tail from within the ring itself, so a
-> + * job has to know where its successor will end before that successor has been
-> + * emitted. Every ULLS job is therefore padded to a fixed size, letting the
-> + * next tail be derived arithmetically.
-> + *
-> + * Sized for the largest such job, emitted by emit_migration_job_gen12():
-> + * preamble (4), copy timestamp (8, its size on an SRIOV VF), start seqno
-> + * store (4), arbitration off (1), batch buffer starts (2 * 3), pre-parser
-> + * bracketed flush invalidate (6), seqno flush (4), user interrupt (3) and
-> + * postamble (7 + 5).
-> + */
-> +#define ULLS_JOB_SIZE_DW 48
-> +#define ULLS_JOB_SIZE_BYTES (ULLS_JOB_SIZE_DW * 4)
-> +
-> +/*
-> + * RING_TAIL only encodes a qword aligned offset, and xe_lrc_write_ring()
-> + * appends a NOP to anything shorter, either of which would desynchronise the
-> + * ring from the tail a job predicts for its successor.
-> + */
-> +static_assert(ULLS_JOB_SIZE_BYTES % 8 == 0);
-> +static_assert(ULLS_JOB_SIZE_DW <= MAX_JOB_SIZE_DW);
+> +	if (q->vm && q->vm->flags & XE_VM_FLAG_MIGRATION)
+> +		max_jobs = min(max_jobs, LRC_MIGRATION_ULLS_SEMAPHORE_COUNT - 1);
 > +
 
-LGTM
 Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
->   /**
->    * struct xe_ring_ops - Ring operations
->    */
+>   	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
+> -			    submit_wq, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
+> +			    submit_wq, max_jobs, 64,
+>   			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
+>   			    ge->name, gt_to_xe(q->gt)->drm.dev);
+>   	if (err)
 
