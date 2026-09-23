@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E883C98311
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24274C9830E
 	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 18:11:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CEAD10F133;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CEE110F135;
 	Wed, 23 Sep 2026 18:11:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lMxmoDcl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iMXN7UJJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 717D510E961
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 18:11:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0613510E961
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 18:11:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1790187087; x=1821723087;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=BYqECncW8GGFE2F7j//XTfz72kcIkkJufmtnGaIhg1w=;
- b=lMxmoDclBPT8XNStY3lGZdUBI1UF3zVpDynLWgfB0rJ6p2thbVLxgahg
- /djx4HrdOhGFYEcj+a4rx0kWt0B5ti5MyijkyD1vSUZJNnILAlmBFEN4A
- flGYrf7E55edW6I2OnXyo6LJXtpM7zrg128tX9HElgD8OowCN5SO8Sp5z
- XCtbw8vMtIAqz8kbA2fwxq2EntXOSfj6SSQ8WMdQZveanjsd7GYGwScEM
- 9cZ80k8Hs5Bqc7QEjz/JA8ArdI8D8hMz/bxvoEBK9NkvDN7OovAFlEjse
- nNhuh/97Vx2V5Rbclp8O60ftCxrSgQWpKza7L184Afzjrpmpv6BAslCHO g==;
-X-CSE-ConnectionGUID: UUItu4m8Sw2/+v4NTRPULQ==
-X-CSE-MsgGUID: 0i9kFglLRvqBA4UmCdhtsQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11914"; a="93416054"
-X-IronPort-AV: E=Sophos;i="6.27,119,1787036400"; d="scan'208";a="93416054"
+ bh=aSExY6XUYC0oEPjDcj/taKCl3VRcUT5EAxgzrFJNEf4=;
+ b=iMXN7UJJxulZd341UIurdtf2nq4nDxOTttr/rkP2jw1SPWXUj7yILmMk
+ TqqQzHVI2V8DZQg28/PKfhcA1yMXGixalMz98hf2TW2RXcMOsyZute74G
+ ownONdK+hDiUneA7oPf9M4htwl83bnI+upHUrg0DyBvsBzpadxstrPcRP
+ lLQCfaNc++X7kD0yQpQ52S2dOy5xS2FQUgPYYH6vTbl+/Sw7xh6zU2oyL
+ 6TbUH5XK2/W3596RXREw17BUWmwqN1dNx5gBcvMWJPk7N+0vkllHaaIhT
+ JABU/fQFc7/qUQoHdy5bfVrLQWVTs1kmUKWlqR8JQISQYGCew6yBkd73G Q==;
+X-CSE-ConnectionGUID: FqCu0BL8Teem9aLpUw3kbQ==
+X-CSE-MsgGUID: 1RecCkaxSxGUcfSXAlSMag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11914"; a="93416025"
+X-IronPort-AV: E=Sophos;i="6.27,119,1787036400"; d="scan'208";a="93416025"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Sep 2026 11:11:25 -0700
-X-CSE-ConnectionGUID: 1guU5liFTw2K+zoskYTqLw==
-X-CSE-MsgGUID: qMnp/OzzQSCW6SC/oxkNew==
+X-CSE-ConnectionGUID: ULuSguwFTBqqRs3rDVESeg==
+X-CSE-MsgGUID: F64Y/MY3ST+uuREbM9yTjw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,119,1787036400"; 
-   d="scan'208";a="4980723"
+   d="scan'208";a="4980704"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2026 11:11:26 -0700
+ 23 Sep 2026 11:11:25 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
@@ -49,9 +49,9 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
-Subject: [PATCH v11 16/20] drm/xe/vsec: Crescent Island PMT callbacks
-Date: Wed, 23 Sep 2026 11:11:31 -0700
-Message-ID: <20260923181115.2514193-38-michael.j.ruhl@intel.com>
+Subject: [PATCH v11 10/20] drm/xe/vsec: Support possible hotplug exit
+Date: Wed, 23 Sep 2026 11:11:25 -0700
+Message-ID: <20260923181115.2514193-32-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260923181115.2514193-22-michael.j.ruhl@intel.com>
 References: <20260923181115.2514193-22-michael.j.ruhl@intel.com>
@@ -71,166 +71,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-CRI PMT support requires callbacks to access the discovery status and
-control areas. Access is a common MMIO area that requires an index to
-be set before access is allowed.
+DRM has an API that will verify that a device is valid in the hotplug
+context.
 
-Introduce the necessary callbacks to get the status and control
-information for CRI PMT usage.
-
-Add the glue logic to register the CRI PMT functionality.
+Verify device is valid before access in the VSEC callback API.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vsec.c | 115 +++++++++++++++++++++++++++++++++--
- 1 file changed, 111 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_vsec.c | 29 +++++++++++++++++++++++------
+ 1 file changed, 23 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index a814d7151eea..0f6e3be520c0 100644
+index 082b25b017db..c0e06b2aeca6 100644
 --- a/drivers/gpu/drm/xe/xe_vsec.c
 +++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -358,20 +358,120 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
- 	return ret == 0 ? count : ret;
+@@ -10,6 +10,8 @@
+ #include <linux/pci.h>
+ #include <linux/types.h>
+ 
++#include <drm/drm_drv.h>
++
+ #include "xe_device.h"
+ #include "xe_device_types.h"
+ #include "xe_mmio.h"
+@@ -159,7 +161,12 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
+  * @user_offset: a user offset relative to the beginning of the data to read
+  * @count: bytes to read
+  *
++ * This is a callback API.  I.e this can be accessed external to the XE driver
++ * (PMT driver scope).  Because of this, DRM hotplug needs to be verified
++ * (drm_dev_enter()).
++ *
+  * Return:
++ * * -ENODEV device is not available (hotplug)
+  * * -ENODATA for incorrect power state
+  * * -EINVAL for unsupported PMT feature
+  * * count   number of bytes read on success
+@@ -172,13 +179,17 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ 	u32 cap_type = FIELD_GET(GUID_CAP_TYPE, guid);
+ 	u32 mem_region;
+ 	u32 offset;
+-	int ret;
++	int ret = 0;
++	int idx;
+ 
+ 	xe_assert(xe, !IS_SRIOV_VF(xe));
+ 
++	if (!drm_dev_enter(&xe->drm, &idx))
++		return -ENODEV;
++
+ 	ret = xe_guid_decode(guid, &mem_region, &offset);
+ 	if (ret)
+-		return ret;
++		goto dev_exit;
+ 
+ 	telem_addr += offset + user_offset;
+ 
+@@ -188,11 +199,14 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ 		xe_pm_runtime_get(xe);
+ 		break;
+ 	case TELEMETRY:
+-		if (!xe_pm_runtime_get_if_active(xe))
+-			return -ENODATA;
++		if (!xe_pm_runtime_get_if_active(xe)) {
++			ret = -ENODATA;
++			goto dev_exit;
++		}
+ 		break;
+ 	case WATCHER:
+-		return -EINVAL;
++		ret = -EINVAL;
++		goto dev_exit;
+ 	}
+ 
+ 	scoped_guard(mutex, &xe->pmt.lock) {
+@@ -204,7 +218,10 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ 
+ 	xe_pm_runtime_put(xe);
+ 
+-	return count;
++dev_exit:
++	drm_dev_exit(idx);
++
++	return ret == 0 ? count : ret;
  }
  
--static struct pmt_callbacks xe_pmt_cb = {
-+/**
-+ * xe_pmt_read_reg() - read a crashlog register
-+ * @dev: the xe device that registered the callback
-+ * @guid: PMT guid of the crashlog instance
-+ * @reg: data read from the PMT data structure
-+ * @offset: which data to read from the PMT data structure
-+ *
-+ * Read the requested PMT register based on the pcie device and guid.  The
-+ * supported struct is the Crashlog Type1 Version2.
-+ *
-+ * Currently this is for CRI only.
-+ *
-+ * Return:
-+ * * -ENODEV device is not available (hotplug)
-+ * * -EINVAL invalid guid
-+ * * 0       success
-+ */
-+static int xe_pmt_read_reg(struct device *dev, u32 guid, u32 *reg, u32 offset)
-+{
-+	struct xe_device *xe = kdev_to_xe_device(dev);
-+	void __iomem *disc_addr = xe->mmio.regs + xe->pmt.base_offset;
-+	int ret = 0;
-+	u32 inst;
-+	int idx;
-+
-+	if (!drm_dev_enter(&xe->drm, &idx))
-+		return -ENODEV;
-+
-+	if (FIELD_GET(GUID_DEVICE_ID, guid) != CRI_DEVICE_ID ||
-+	    FIELD_GET(GUID_CAP_TYPE, guid) != CRASHLOG) {
-+		ret = -EINVAL;
-+		goto dev_exit;
-+	}
-+
-+	inst = FIELD_GET(GUID_RECORD_ID, guid) == PUNIT ?
-+		CRI_CRASHLOG_PUNIT_DISC_OFFSET : CRI_CRASHLOG_OOBMSM_DISC_OFFSET;
-+	disc_addr += inst + offset;
-+
-+	xe_pm_runtime_get(xe);
-+
-+	scoped_guard(mutex, &xe->pmt.lock) {
-+		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-+
-+		*reg = readl(disc_addr);
-+	}
-+
-+	xe_pm_runtime_put(xe);
-+
-+dev_exit:
-+	drm_dev_exit(idx);
-+
-+	return ret;
-+}
-+
-+static int xe_pmt_write_reg(struct device *dev, u32 guid, u32 reg, u32 offset)
-+{
-+	struct xe_device *xe = kdev_to_xe_device(dev);
-+	void __iomem *disc_addr = xe->mmio.regs + xe->pmt.base_offset;
-+	int ret = 0;
-+	u32 inst;
-+	int idx;
-+
-+	if (!drm_dev_enter(&xe->drm, &idx))
-+		return -ENODEV;
-+
-+	if (FIELD_GET(GUID_DEVICE_ID, guid) != CRI_DEVICE_ID ||
-+	    FIELD_GET(GUID_CAP_TYPE, guid) != CRASHLOG) {
-+		ret = -EINVAL;
-+		goto dev_exit;
-+	}
-+
-+	inst = FIELD_GET(GUID_RECORD_ID, guid) == PUNIT ?
-+		CRI_CRASHLOG_PUNIT_DISC_OFFSET : CRI_CRASHLOG_OOBMSM_DISC_OFFSET;
-+	disc_addr += inst + offset;
-+
-+	xe_pm_runtime_get(xe);
-+
-+	scoped_guard(mutex, &xe->pmt.lock) {
-+		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-+
-+		writel(reg, disc_addr);
-+	}
-+
-+	xe_pm_runtime_put(xe);
-+
-+dev_exit:
-+	drm_dev_exit(idx);
-+
-+	return ret;
-+}
-+
-+static struct pmt_callbacks xe_bmg_pmt_cb = {
-+	.read_telem = xe_pmt_telem_read,
-+};
-+
-+static struct pmt_callbacks xe_cri_pmt_cb = {
- 	.read_telem = xe_pmt_telem_read,
-+	.read_reg = xe_pmt_read_reg,
-+	.write_reg = xe_pmt_write_reg,
- };
- 
- static const int vsec_platforms[] = {
- 	[XE_BATTLEMAGE] = XE_VSEC_BMG,
-+	[XE_CRESCENTISLAND] = XE_VSEC_CRI,
- };
- 
- static enum xe_vsec get_platform_info(struct xe_device *xe)
- {
--	if (xe->info.platform > XE_BATTLEMAGE)
-+	if (xe->info.platform > XE_CRESCENTISLAND)
- 		return XE_VSEC_UNKNOWN;
- 
--	if (IS_SRIOV_VF(xe) && xe->info.platform == XE_BATTLEMAGE)
-+	if (IS_SRIOV_VF(xe) &&
-+	    (xe->info.platform == XE_BATTLEMAGE ||
-+	     xe->info.platform == XE_CRESCENTISLAND))
- 		return XE_VSEC_UNKNOWN;
- 
- 	return vsec_platforms[xe->info.platform];
-@@ -399,8 +499,15 @@ void xe_vsec_init(struct xe_device *xe)
- 	switch (platform) {
- 	case XE_VSEC_BMG:
- 		xe->pmt.base_offset = BMG_TELEMETRY_OFFSET;
--		info->priv_data = &xe_pmt_cb;
-+		info->priv_data = &xe_bmg_pmt_cb;
- 		break;
-+
-+	case XE_VSEC_CRI:
-+		xe->pmt.base_offset = CRI_PMT_OFFSET;
-+		info->priv_data = &xe_cri_pmt_cb;
-+		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-+		break;
-+
- 	default:
- 		break;
- 	}
+ static struct pmt_callbacks xe_pmt_cb = {
 -- 
 2.43.0
 
