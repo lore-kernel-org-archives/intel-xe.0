@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A791C9830E
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 18:29:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07877C98304
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 18:31:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0149310E13F;
-	Wed, 23 Sep 2026 18:29:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACF2010E15E;
+	Wed, 23 Sep 2026 18:31:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dxuoxyXu";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Wskjf1DB";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DFC610E13F
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 18:29:46 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 498A410E15E
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 18:31:31 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 1E59A418FE;
- Wed, 23 Sep 2026 18:29:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB55D1F0089E;
- Wed, 23 Sep 2026 18:29:45 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 8F923600AA;
+ Wed, 23 Sep 2026 18:31:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2503E1F00893;
+ Wed, 23 Sep 2026 18:31:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790188186;
- bh=+fYNVCNG/Qu28sg9rG3Sd18Ij+4+nQXpU/m0jlewaUs=;
+ s=k20260515; t=1790188290;
+ bh=PsCX+aspObmDk7zsw+XSl/R8wrwfl7TzcvdvYzpCOMY=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=dxuoxyXujkq+g/uEZbb3akvb4G9Q31kLfHnRhntHnXhJD3sPtyHhnL31hCfms81q4
- lNvQEv7hJlSYPIPXyR2pBu2xIY5JSRZrOG8+XDWLV6MCZq9AtrQ20D+5kezkhZmkkp
- p2DXjGM29dS5cV4soGkgdHtg9GA+czQQy64mq9Nypr0wuQGAsWOaiuinztC8kIMgPk
- WQBxXOgkOHR/ctrjHZLLBBu6BuR7tbdJ7S9Rycjx1BiIspd4xgmf+BQJqIUQnJaCVv
- wSF7OYw2Hq5O0SVClQRox1EWeljalvrReCg9lwArTQr2rwZ3g96wPeAfqv8kSLiluw
- NPdUWzeyR289A==
+ b=Wskjf1DBDFDeNH6ezpQyT/6K0wh2cU81Oudn69sk9BEHQ8BsT48CxPYQbg0ORZEX1
+ GMMkomMFJeVFex1QMlaFwpqXdwQV99/aTtKR+wod7eqNJ1uInw+wvNQe2vjyMOrQ8d
+ F/20ZwIqom0NkTKXiPWd9xfILLCIAgBRLjxf3TSmEsEceY5uly2FlZXO3buteBzehj
+ Va/HLJj7Obpl4EdJDPGB30UNnwUHkFGJpvtegd0hlMMm3Wp9NLEp5/HpBl5JDnLVAp
+ Ietv/3JD7hsM2AGo8IHgFTsa8lMo9wzxWLg17LhdN8BJZW/DPBBKB63imqQQEmYPSd
+ rVYusPb3zUOyg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v11 05/20] platform/x86/intel/pmt: Do not remap when
- using callbacks
+Subject: Re: [PATCH v11 17/20] drm/xe/vsec: Support late bind fw information
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260923181115.2514193-27-michael.j.ruhl@intel.com>
+In-Reply-To: <20260923181115.2514193-39-michael.j.ruhl@intel.com>
 References: <20260923181115.2514193-22-michael.j.ruhl@intel.com>
- <20260923181115.2514193-27-michael.j.ruhl@intel.com>
+ <20260923181115.2514193-39-michael.j.ruhl@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 23 Sep 2026 18:29:45 +0000
-Message-Id: <20260923182945.CB55D1F0089E@smtp.kernel.org>
+Date: Wed, 23 Sep 2026 18:31:29 +0000
+Message-Id: <20260923183130.2503E1F00893@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,95 +56,207 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
 s) to consider:
-- [Medium] intel_aet: silent telemetry read failure for PMT devices using c=
-allbacks
+- [High] core: devres leak and UAF due to concurrent delayed work
+- [High] pm: invalid hardware access during suspend from non-freezable work=
+queue
+- [Medium] locking: SRCU read lock held across 20s msleep blocks hotunplug
+- [Medium] locking: lock inversion between pmt.lock and device core locks
+- [Medium] task: 20s uninterruptible msleep enables local DoS
 --
 
-commit 43eab3aee86b2e3202e1e7b01c4ce97411570441
+commit 0381c7581cc6bd07b52526c81bae84b56ea49be4
 Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
-Subject: platform/x86/intel/pmt: Do not remap when using callbacks
 
-A callback indicates that the parent driver is responsible for accessing
-the data area. Creating a PMT memory remap is redundant. If a read_telem
-callback has been provided, do not create a remap.
+drm/xe/vsec: Support late bind fw information
 
-> diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x8=
-6/intel/pmt/class.c
-> index 402d51df834a6..1c7a372b4fc42 100644
-> --- a/drivers/platform/x86/intel/pmt/class.c
-> +++ b/drivers/platform/x86/intel/pmt/class.c
+CRI FW is loaded on power on.  Because of this, access to the FW cannot
+be done until it is running. This commit updates the XE PMT probe and
+access to check for late bind devices, verify, and wait for the
+appropriate FW state before probe or access.
+
+> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+> index 0f6e3be520c09..5384fef5e5ac5 100644
+> --- a/drivers/gpu/drm/xe/xe_vsec.c
+> +++ b/drivers/gpu/drm/xe/xe_vsec.c
 [ ... ]
-> @@ -403,14 +403,19 @@ static int intel_pmt_dev_register(struct intel_pmt_=
-entry *entry,
->  	if (!entry->size)
->  		return 0;
+> @@ -281,6 +291,48 @@ static int xe_guid_decode(u32 guid, int *index, u32 =
+*offset)
+>  	return -ENODEV;
+>  }
 > =20
-> -	res.start =3D entry->base_addr;
-> -	res.end =3D res.start + entry->size - 1;
-> -	res.flags =3D IORESOURCE_MEM;
-> +	/*
-> +	 * The read_telem callback is responsible for this mapping, and may have
-> +	 * different requirements for use. If the callback is present do not
-> +	 * create the map.
-> +	 */
-> +	if (!(entry->cb && entry->cb->read_telem)) {
-> +		struct resource res =3D DEFINE_RES_MEM(entry->base_addr, entry->size);
-> =20
-> -	entry->base =3D devm_ioremap_resource(dev, &res);
-> -	if (IS_ERR(entry->base)) {
-> -		ret =3D PTR_ERR(entry->base);
-> -		goto fail_ioremap;
-> +		entry->base =3D devm_ioremap_resource(dev, &res);
-> +		if (IS_ERR(entry->base)) {
-> +			ret =3D PTR_ERR(entry->base);
-> +			goto fail_ioremap;
-> +		}
->  	}
-> =20
+> +static void cri_late_bind_probe_work(struct work_struct *work)
+> +{
+> +	struct xe_device *xe =3D container_of(work, struct xe_device, pmt.work.=
+work);
+> +
+> +	if (xe_sysctrl_is_oobmsm_fw_ready(xe)) {
+
+[Severity: High]
+Can this result in hardware hangs or master aborts during system suspend?
+
+This delayed work is queued on system_wq, which lacks the WQ_FREEZABLE flag.
+Because the driver's system suspend path does not cancel or flush this work,
+the worker thread could wake up during or after suspend.
+
+If that happens, xe_sysctrl_is_oobmsm_fw_ready() will attempt to read MMIO
+registers while the PCI device is powered down in D3cold.
+
+> +		cri_late_bind_probe(xe);
+> +		xe_pm_runtime_put(xe);
+> +		return;
+> +	}
+> +
+> +	xe->pmt.retry_count++;
+> +
+> +	/* wait up to 20 seconds */
+> +	if (xe->pmt.retry_count =3D=3D VSEC_LATE_BIND_RETRY) {
+> +		drm_warn(&xe->drm, "PMT probe: Late Binding failed to complete\n");
+> +		xe_pm_runtime_put(xe);
+> +		return;
+> +	}
+> +
+> +	if (!schedule_delayed_work(&xe->pmt.work, msecs_to_jiffies(VSEC_LATE_BI=
+ND_DELAY_MSEC)))
+> +		xe_pm_runtime_put(xe);
+> +}
+> +
+> +static bool wait_for_fw(struct xe_device *xe)
+> +{
+> +	int retries =3D VSEC_LATE_BIND_RETRY;  /* wait up to 20 secs */
+> +
+> +	if (xe->info.platform !=3D XE_CRESCENTISLAND)
+> +		return true;
+> +
+> +	while (retries--) {
+> +		if (xe_sysctrl_is_oobmsm_fw_ready(xe))
+> +			return true;
+> +
+> +		msleep(VSEC_LATE_BIND_DELAY_MSEC);
 
 [Severity: Medium]
-When a read_telem callback is provided, entry->base remains NULL.
-Could this silently break telemetry reads for Intel AET?
+Could this uninterruptible sleep cause localized task lockups?
 
-If entry->base is NULL, it propagates to the telemetry endpoint:
+If user-space initiates a read on PMT telemetry and the firmware never
+completes, this will loop on msleep() for up to 20 seconds. The thread
+will be blocked in uninterruptible sleep (TASK_UNINTERRUPTIBLE) and will
+ignore all signals, including SIGKILL, until the timeout expires.
 
-drivers/platform/x86/intel/pmt/telemetry.c:pmt_telem_add_endpoint() {
-    ...
-    ep->base =3D entry->base;
-    ...
-}
+Could this be exploited by a local user to intentionally block multiple
+threads, leading to inflated load averages or resource exhaustion?
 
-Then pmt_copy_region() populates the telemetry region with this NULL addres=
-s:
+> +	}
+> +
+> +	drm_warn(&xe->drm, "Late Binding failed to complete\n");
+> +
+> +	return false;
+> +}
+> +
+>  /**
+>   * xe_pmt_telem_read - Given a device and a PMT GUID, read data into a b=
+uffer
+>   * @dev: valid Xe device
+[ ... ]
+> @@ -343,6 +395,11 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, =
+u64 *data, loff_t user_offse
+>  		goto dev_exit;
+>  	}
+> =20
+> +	if (!wait_for_fw(xe)) {
 
-drivers/platform/x86/intel/pmt/telemetry.c:pmt_copy_region() {
-    ...
-    region->addr =3D entry->ep->base;
-    ...
-}
+[Severity: Medium]
+Does holding the DRM SRCU read lock across this 20-second wait block
+device hot-unplug?
 
-Finally, in intel_aet_read_event(), the region is skipped because the addre=
-ss is
-NULL:
+User-space reads to PMT telemetry enter xe_pmt_telem_read(), which calls
+drm_dev_enter() and acquires the SRCU read lock before reaching here.
 
-arch/x86/kernel/cpu/resctrl/intel_aet.c:intel_aet_read_event() {
-    ...
-    for (int i =3D 0; i < e->pfg->count; i++) {
-        if (!e->pfg->regions[i].addr)
-            continue;
-    ...
-}
+If a device hot-unplug occurs while wait_for_fw() is sleeping for 20
+seconds, drm_dev_unplug() will call synchronize_srcu(). This will block
+the unplug process and critical kernel teardown paths until the timeout
+expires and the SRCU reader exits.
 
-Because Intel AET strictly requires direct MMIO, it cannot support abstract=
-ed
-callbacks. This results in a silent failure to collect telemetry data from
-AET-monitored devices that use callbacks, since intel_aet_read_event() will
-skip the region and return -EINVAL on every read request.
+> +		ret =3D -ENODATA;
+> +		goto runtime_exit;
+> +	}
+> +
+>  	scoped_guard(mutex, &xe->pmt.lock) {
+>  		/* set SoC re-mapper index register based on GUID memory region */
+>  		xe->soc_remapper.set_telem_region(xe, mem_region);
+[ ... ]
+> @@ -477,12 +545,46 @@ static enum xe_vsec get_platform_info(struct xe_dev=
+ice *xe)
+>  	return vsec_platforms[xe->info.platform];
+>  }
+> =20
+> +static void cri_late_bind_probe(struct xe_device *xe)
+> +{
+> +	struct intel_vsec_platform_info *info;
+> +	struct device *dev =3D xe->drm.dev;
+> +	enum xe_vsec platform;
+> +
+> +	platform =3D get_platform_info(xe);
+> +	if (platform !=3D XE_VSEC_CRI)
+> +		return;
+> +
+> +	info =3D &xe_vsec_info[platform];
+> +	if (!info->headers)
+> +		return;
+> +
+> +	guard(mutex)(&xe->pmt.lock);
+> +
+> +	info->priv_data =3D &xe_cri_pmt_cb;
+> +	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+> +
+> +	intel_vsec_register(dev, info);
 
->  	sysfs_bin_attr_init(&entry->pmt_bin_attr);
+[Severity: Medium]
+Is there a lock inversion here between pmt.lock and the driver core locks?
+
+This function acquires xe->pmt.lock via guard(mutex) and then calls
+intel_vsec_register(), which interacts with the driver core to add
+devices and trigger probes, acquiring driver core locks like device_lock.
+
+When user-space accesses PMT sysfs files, the driver core acquires its
+locks first (e.g., kernfs and device_lock), and then calls
+xe_pmt_telem_read(), which acquires pmt.lock.
+
+This circular dependency could lead to a lockdep splat or an AB-BA
+self-deadlock.
+
+> +}
+> +
+> +static void vsec_disable_late_bind_work(void *arg)
+> +{
+> +	struct xe_device *xe =3D arg;
+> +
+> +	/*
+> +	 * If the queued work is canceled, the runtime reference needs to be
+> +	 * released here.
+> +	 */
+> +	if (disable_delayed_work_sync(&xe->pmt.work))
+
+[Severity: High]
+Can this concurrent delayed work cause a devres leak and a Use-After-Free
+of the parent device?
+
+During device unbind, devres_release_all() splices the devres_head list
+and iterates over it. It calls this devm action, which blocks here on
+disable_delayed_work_sync().
+
+Meanwhile, the delayed work can call cri_late_bind_probe(), which calls
+intel_vsec_register(). This dynamically allocates and appends new devm
+resources to the now-empty devres_head.
+
+When the work finishes, devres_release_all() returns without checking
+devres_head again. The new resources are permanently leaked. Also, because
+the parent device is freed, the orphaned auxiliary devices will hold
+dangling pointers to it.
+
+> +		xe_pm_runtime_put(xe);
+> +}
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260923181115.2514=
-193-22-michael.j.ruhl@intel.com?part=3D5
+193-22-michael.j.ruhl@intel.com?part=3D17
