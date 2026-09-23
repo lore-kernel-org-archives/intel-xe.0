@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43BFCC98302
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 14:27:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A7AEC9830E
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 14:27:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04EE810F0D0;
-	Wed, 23 Sep 2026 14:27:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49E1810F0D6;
+	Wed, 23 Sep 2026 14:27:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="gEehRBHT";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ahSVsNsK";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7657A10F0D0;
- Wed, 23 Sep 2026 14:27:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C28810F0D6;
+ Wed, 23 Sep 2026 14:27:22 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 5FB3B407A0;
- Wed, 23 Sep 2026 14:27:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 183E61F000FF;
+ by sea.source.kernel.org (Postfix) with ESMTP id 34EBF401D5;
+ Wed, 23 Sep 2026 14:27:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D56F11F00893;
  Wed, 23 Sep 2026 14:27:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790173641;
- bh=vga9v/QyLK4GbDSVHsHxoBkyma312ueia/NHZLlnbjY=;
+ s=k20260515; t=1790173642;
+ bh=xo37cdmnh+svtcxNkd5zKazT/OKpa6V/sR3x6PQMQC8=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=gEehRBHTO6mZJ85H8z20CRRkBo4WgY1vdZWpxbqroP2X0eRBt4yvB9JLu4Dd7kt+k
- zKRNXAqzSSHJHJNbF2LD71QQ4MgE8l3AxIr59HHqqvfVu2hrbyxtDAeFSdKq5OSrC9
- +ACUJ7mIEkpH2aw6a3ejVe6PI9EgwRaZRqrthkuVJZAKEbiDnW6w/oV8WaNmihrQFz
- Tic6tjM/Wuj3gOe5rQcLYxA58qJBzVev/wyWHSKS2zJT/l+c5UpcHuTiJLz5tKF2BH
- PJhULiiRGe2hf/m0m9HDYut3jbWbgJvsCYJkD1M1wv5iAVLY4yYfvVFVf4egPZ7Y5/
- Iw71fUVQx6Qyg==
+ b=ahSVsNsK0t4OhaxqU3UAxp4Kk63mjC304tOhgP+F9OjMH4UXQiHJYJYxB2XnKatbz
+ O6UuIypRVixa2nF6IqMZlG/+Va+/zO24O5ZGr30O5N779SJe/MCpjaXx0mPRlpuYfr
+ ijvCsTzVATTNR+BtDCQ/FuOUjm2o//9C9fGhc2q5qzOTQH2GNMkJsjk1BiNh81UPkq
+ B+4YXKzc7ldvv5dpFYKwo59ntO37l9xKXOcSogBjix0lO9A0yDDkMh6QJEs3qq2KUM
+ p/KAwPKcE4Q05wMmMnflaF4JPxvina+g0IaYkNXYJbrX8i6iRwfiKlp0NuxGu101zW
+ Njl0rUeBR31OA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] drm/i915/dp: Don't promise AS SDPs in PR Active when
- they are disabled
-To: "Jake Steinman" <j@metarealtyinc.ca>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20260923041342.2146450-1-j@metarealtyinc.ca>
-References: <20260923041342.2146450-1-j@metarealtyinc.ca>
+Subject: Re: [PATCH v2] drm/i915/dp: Only send AS SDP when VRR/CMRR is
+ enabled or PR !async
+To: "Xizhe Tang" <xizheTang2005@163.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20260923195200.21362-1-xizheTang2005@163.com>
+References: <20260923195200.21362-1-xizheTang2005@163.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 23 Sep 2026 14:27:20 +0000
-Message-Id: <20260923142721.183E61F000FF@smtp.kernel.org>
+Date: Wed, 23 Sep 2026 14:27:21 +0000
+Message-Id: <20260923142721.D56F11F00893@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,99 +59,62 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Low] drm/i915: build failure due to undefined intel_alpm_pr_as_sdp_skip_=
-frames_enabled()
+- [Low] drm/i915: build failure due to missing vrr qualifier for cmrr
 --
 
-commit b6467ba689abbe92a2f289d4eb766436f8714a78
-Author: Jake Steinman <j@metarealtyinc.ca>
+commit 040a3a223ae954dab43478f6da5edfc88f5ff693
+Author: Xizhe Tang <xizheTang2005@163.com>
 
-drm/i915/dp: Don't promise AS SDPs in PR Active when they are disabled
+drm/i915/dp: Only send AS SDP when VRR/CMRR is enabled or PR !async
 
-This commit conditionally disables DP_FIXED_VTOTAL_AS_SDP_EN_IN_PR_ACTIVE
-during link training if AS SDP skip frames are not in use. It also attempts
-to clarify documentation about when PR_ALPM_CTL[AS SDP Transmission in
-Active Disable] is programmed.
+This commit alters the condition for sending the Adaptive-Sync SDP by check=
+ing
+explicitly for VRR or CMRR enablement in the CRTC state. This prevents vert=
+ical
+streaking on eDP panels that advertise VRR but run at fixed refresh rates.
 
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/9119
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9252
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
 15/display/intel_dp.c
-> index 0cd5e6b5034cf..217795e155607 100644
+> index 0cd5e6b5034cf..612bc2846475b 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3154,11 +3154,12 @@ static void intel_dp_compute_as_sdp(struct intel_=
-dp *intel_dp,
+> @@ -3111,7 +3111,8 @@ static bool intel_dp_needs_as_sdp(struct intel_dp *=
+intel_dp,
+>  	    !intel_psr_pr_async_video_timing_supported(intel_dp))
+>  		return true;
 > =20
->  	/*
->  	 * For Panel Replay with Async Video Timing support, the source can
-> -	 * disable sending the AS SDP during PR Active state. In that case,
-> -	 * the sink needs the coasting vtotal value to maintain the refresh
-> -	 * rate. The HW only samples this on PR_ALPM_CTL[AS SDP Transmission
-> -	 * in Active Disable], which we never program, so providing the value
-> -	 * unconditionally when the sink advertises the capability is safe.
-> +	 * stop sending the AS SDP during PR Active (PR_ALPM_CTL[AS SDP
-> +	 * Transmission in Active Disable], see intel_alpm_configure_pr_as_sdp(=
-))
+> -	return intel_vrr_possible(crtc_state);
+> +	return crtc_state->vrr.enable ||
+> +	       crtc_state->cmrr.enable;
 
 [Severity: Low]
-Does the referenced intel_alpm_configure_pr_as_sdp() function exist in the
-codebase? A tree-wide search doesn't show it being defined here or in any
-subsequent patches. Was this perhaps renamed to lnl_alpm_configure(), or
-is there a missing patch dependency?
+Does this cause a compilation error in intel_dp_needs_as_sdp()?=20
 
-> +	 * and the sink then keeps the refresh rate using the coasting vtotal of
-> +	 * the last AS SDP it received. The coasting vtotal bytes are fully
-> +	 * under driver control, so fill them in whenever the sink advertises
-> +	 * the capability.
->  	 *
->  	 * #TODO:
->  	 * If we ever advertise support for coasting at other refresh targets,
+Looking at the definition of intel_crtc_state in
+drivers/gpu/drm/i915/display/intel_display_types.h, cmrr is nested inside v=
+rr:
 
-[ ... ]
+    struct intel_crtc_state {
+        ...
+        struct {
+            ...
+            /* Content Match Refresh Rate state */
+            struct {
+                bool enable;
+                u64 cmrr_n, cmrr_m;
+            } cmrr;
+        } vrr;
+        ...
+    };
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
-ers/gpu/drm/i915/display/intel_dp_link_training.c
-> index cb92cff906146..5729ecaba1499 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -1122,7 +1123,17 @@ static bool
->  intel_dp_pr_with_as_sdp_enabled(struct intel_dp *intel_dp,
->  				const struct intel_crtc_state *crtc_state)
->  {
-> +	/*
-> +	 * DP_FIXED_VTOTAL_AS_SDP_EN_IN_PR_ACTIVE tells the sink that the AS SDP
-> +	 * keeps coming during PR Active. With disable_as_sdp_when_pr_active,
-> +	 * intel_alpm_configure_pr_as_sdp() sets PR_ALPM_CTL[AS SDP Transmission
-> +	 * in Active Disable] and the source stops sending it for as long as PR
-> +	 * is active, unless AS SDP skip frames is used. The sink then keeps
-> +	 * the refresh rate using the coasting vtotal of the last AS SDP.
-> +	 */
->  	return intel_psr_needs_alpm_aux_less(intel_dp, crtc_state) &&
-> +		(!crtc_state->disable_as_sdp_when_pr_active ||
-> +		 intel_alpm_pr_as_sdp_skip_frames_enabled(intel_dp, crtc_state)) &&
-
-[Severity: Low]
-Is intel_alpm_pr_as_sdp_skip_frames_enabled() defined anywhere in this tree?
-This causes a build failure due to an implicit declaration and undefined
-reference.
-
-Additionally, the commit message states that when AS SDP skip frames are in
-use, it clears the PR_ALPM_CTL bit and keeps a periodic AS SDP going.
-However, looking at lnl_alpm_configure() in intel_alpm.c, the bit seems to
-be programmed without a skip frames check:
-
-	if (crtc_state->disable_as_sdp_when_pr_active)
-		pr_alpm_ctl |=3D PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
-
-Are we missing the patch that introduces both these missing functions and t=
-he
-updated PR_ALPM_CTL programming logic?
-
->  		(crtc_state->infoframes.enable &
->  		 intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC));
->  }
+Because cmrr is nested, accessing it directly via crtc_state->cmrr.enable w=
+ill
+fail to compile. Should this be accessed as crtc_state->vrr.cmrr.enable
+instead, similar to how it is checked in intel_dp_compute_as_sdp() further
+down in this same file?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260923041342.2146=
-450-1-j@metarealtyinc.ca?part=3D1
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260923195200.2136=
+2-1-xizheTang2005@163.com?part=3D1
