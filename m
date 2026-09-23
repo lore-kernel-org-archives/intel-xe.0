@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2848C9831B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15FF5C9831C
 	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 18:11:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4021210F14C;
-	Wed, 23 Sep 2026 18:11:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E749610F14A;
+	Wed, 23 Sep 2026 18:11:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h7j/r0on";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FE39w/QB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7690910E961
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 18:11:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91B7C10F133
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 18:11:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790187086; x=1821723086;
+ t=1790187087; x=1821723087;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=SlxVH0UGU4ZV7SIFZac3uz0RReQW3WCUCJlL7yXCJaw=;
- b=h7j/r0onWw1rYm4FpriDFZp2zDU9dFVQRKF+5hYYg6+T6lMHGzxkq5zN
- c+iK/tZB9uztZ/GYhQw/UvX9TrUWFgc7pdZ5S4cCPN+333EJfziQBpEiv
- dcv+X4k3oCbpMvfTZ4AyHFg7SRtv531gdaOfbaOVK7zzAAXBspNR8jsCB
- 3r9jDAvo5Ox9X1D1DXd6kpjIRqC/tPYd1fqW28yCfOr0SZTjP5hAKvEv7
- UyLfMdpsMPr5K8qyNCyNNUeL4U1QTYl9oQquGqzFKHZFWd8JDlqUvUTdx
- h1WFoCQl+p4K+Rt8sdkHuIp1QsZiFF8czFXqPrY+1jyfTKOgya5hy9HGj g==;
-X-CSE-ConnectionGUID: Vi1KiAuMSDOBcxNbX/bjiw==
-X-CSE-MsgGUID: VwduFrCORN+Uapp+hVOe4w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11914"; a="93415999"
-X-IronPort-AV: E=Sophos;i="6.27,119,1787036400"; d="scan'208";a="93415999"
+ bh=yFc5pwFHvElzTLAMMbHvxa26C+uq8vM1k/lb9THxGBU=;
+ b=FE39w/QBMkwk6QFqdBECRcOj9F+jME3YnqK0qNOSfROKTs3SunX243+N
+ fx2udRZBp9qC2UicziELexOjECTUS/zJD+kOT678lHzp72VCnROWi3MsM
+ pKq4UxXkhWRp3aWRePWp6BtowM19zv1b3NNZzDK2jvxFKyv/jpMpWweA2
+ zZoihbwulfbP+BUU9bPrOdk/zcDqbEz3H3OvGlbZoViCt9cHCVDRzOl94
+ /stMTA6ux8Sdw1PBit6daxgLqy40psvHhgvs3LzsEL33BoXlkGxCjPozj
+ Tf2wz5LTafA8V26JhyrZc8qJXgE0QwyvjCjpcdG76yikwyo/UCOjIuGJQ w==;
+X-CSE-ConnectionGUID: BVFCeCO6Rum5n9GGvcLjCg==
+X-CSE-MsgGUID: FrPY8QC7QSOBtKnPvcGDZg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11914"; a="93416068"
+X-IronPort-AV: E=Sophos;i="6.27,119,1787036400"; d="scan'208";a="93416068"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Sep 2026 11:11:25 -0700
-X-CSE-ConnectionGUID: Bs87vOr3QeqtitobPZ/agg==
-X-CSE-MsgGUID: HFZ3M2W9TFOfH+BpFjNRoA==
+X-CSE-ConnectionGUID: g0jeqYEpRD6MzSFnNudS5A==
+X-CSE-MsgGUID: Mj+fKfPXScuEEw8lYoBxIQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,119,1787036400"; 
-   d="scan'208";a="4980686"
+   d="scan'208";a="4980733"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2026 11:11:25 -0700
+ 23 Sep 2026 11:11:26 -0700
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
@@ -49,10 +49,9 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
-Subject: [PATCH v11 05/20] platform/x86/intel/pmt: Do not remap when using
- callbacks
-Date: Wed, 23 Sep 2026 11:11:20 -0700
-Message-ID: <20260923181115.2514193-27-michael.j.ruhl@intel.com>
+Subject: [PATCH v11 19/20] drm/xe/vsec: Update PMT internal access
+Date: Wed, 23 Sep 2026 11:11:34 -0700
+Message-ID: <20260923181115.2514193-41-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260923181115.2514193-22-michael.j.ruhl@intel.com>
 References: <20260923181115.2514193-22-michael.j.ruhl@intel.com>
@@ -72,96 +71,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A callback indicates that the parent driver is responsible for accessing
-the data area.  Creating a PMT memory remap is redundant.
+Current PMT internal access assumes BMG devices.
 
-If a read_telem callback has been provided, do not create a remap.
+Use the new PMT GUID API to read the device specific guid.
 
-Enforce API usage where necessary.
+Minor cleanup for a newly unused parameter (mmio).
 
-Clean up open coded resource usage.
-
+Reviewed-by: Karthik Poosa <karthik.poosa@intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/platform/x86/intel/pmt/class.c     | 21 +++++++++++++--------
- drivers/platform/x86/intel/pmt/class.h     |  2 +-
- drivers/platform/x86/intel/pmt/telemetry.c |  3 +++
- 3 files changed, 17 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_debugfs.c | 26 ++++++++++++++------------
+ drivers/gpu/drm/xe/xe_hwmon.c   | 10 ++++++++--
+ drivers/gpu/drm/xe/xe_pcode.c   | 10 ++++++++--
+ 3 files changed, 30 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
-index 402d51df834a..1c7a372b4fc4 100644
---- a/drivers/platform/x86/intel/pmt/class.c
-+++ b/drivers/platform/x86/intel/pmt/class.c
-@@ -12,6 +12,7 @@
- #include <linux/log2.h>
- #include <linux/intel_vsec.h>
- #include <linux/io-64-nonatomic-lo-hi.h>
-+#include <linux/ioport.h>
- #include <linux/minmax.h>
- #include <linux/module.h>
- #include <linux/mm.h>
-@@ -373,7 +374,6 @@ static int intel_pmt_dev_register(struct intel_pmt_entry *entry,
- 				  struct device *parent)
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 958fb717640a..c56f0e4a9b90 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -5,6 +5,7 @@
+ 
+ #include "xe_debugfs.h"
+ 
++#include <linux/array_size.h>
+ #include <linux/bits.h>
+ #include <linux/debugfs.h>
+ #include <linux/fault-inject.h>
+@@ -21,7 +22,6 @@
+ #include "xe_gt_printk.h"
+ #include "xe_guc_ads.h"
+ #include "xe_hw_engine.h"
+-#include "xe_mmio.h"
+ #include "xe_pagefault.h"
+ #include "xe_pcode.h"
+ #include "xe_pm.h"
+@@ -146,15 +146,20 @@ static void xe_fault_inject_debugfs_register(struct xe_device *xe,
+ 	}
+ }
+ 
+-static void read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
+-				   u32 offset, const char *name, struct drm_printer *p)
++static void read_residency_counter(struct xe_device *xe, u32 offset, const char *name,
++				   struct drm_printer *p)
  {
- 	struct intel_vsec_device *ivdev = dev_to_ivdev(parent);
--	struct resource res = {0};
- 	struct device *dev;
+ 	u64 residency = 0;
++	u32 guid;
  	int ret;
  
-@@ -403,14 +403,19 @@ static int intel_pmt_dev_register(struct intel_pmt_entry *entry,
- 	if (!entry->size)
- 		return 0;
- 
--	res.start = entry->base_addr;
--	res.end = res.start + entry->size - 1;
--	res.flags = IORESOURCE_MEM;
-+	/*
-+	 * The read_telem callback is responsible for this mapping, and may have
-+	 * different requirements for use. If the callback is present do not
-+	 * create the map.
-+	 */
-+	if (!(entry->cb && entry->cb->read_telem)) {
-+		struct resource res = DEFINE_RES_MEM(entry->base_addr, entry->size);
- 
--	entry->base = devm_ioremap_resource(dev, &res);
--	if (IS_ERR(entry->base)) {
--		ret = PTR_ERR(entry->base);
--		goto fail_ioremap;
-+		entry->base = devm_ioremap_resource(dev, &res);
-+		if (IS_ERR(entry->base)) {
-+			ret = PTR_ERR(entry->base);
-+			goto fail_ioremap;
-+		}
- 	}
- 
- 	sysfs_bin_attr_init(&entry->pmt_bin_attr);
-diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
-index 258cb460e61c..aeb04afb67cf 100644
---- a/drivers/platform/x86/intel/pmt/class.h
-+++ b/drivers/platform/x86/intel/pmt/class.h
-@@ -48,7 +48,7 @@ struct intel_pmt_entry {
- 	const struct attribute_group *attr_grp;
- 	struct kobject		*kobj;
- 	void __iomem		*disc_table;
--	void __iomem		*base;
-+	void __iomem		*base;  /* unused if cb->read_telem is in use */
- 	struct pmt_callbacks	*cb;
- 	unsigned long		base_addr;
- 	size_t			size;
-diff --git a/drivers/platform/x86/intel/pmt/telemetry.c b/drivers/platform/x86/intel/pmt/telemetry.c
-index 953f35b6daec..5423a4dfce08 100644
---- a/drivers/platform/x86/intel/pmt/telemetry.c
-+++ b/drivers/platform/x86/intel/pmt/telemetry.c
-@@ -329,6 +329,9 @@ int pmt_telem_read32(struct telem_endpoint *ep, u32 id, u32 *data, u32 count)
- 	if (!ep->present)
- 		return -ENODEV;
- 
-+	if (!ep->base)
-+		return -EIO;
+-	ret = xe_pmt_telem_read(xe->drm.dev,
+-				xe_mmio_read32(mmio, BMG_PUNIT_TELEMETRY_GUID),
+-				&residency, offset, sizeof(residency));
++	ret = xe_vsec_get_guid(xe, &guid);
++	if (ret) {
++		drm_warn(&xe->drm, "PMT device is not available: %d\n", ret);
++		return;
++	}
 +
- 	offset = SAMPLE_ID_OFFSET32(id);
- 	size = ep->header.size;
++	ret = xe_pmt_telem_read(xe->drm.dev, guid, &residency, offset, sizeof(residency));
+ 	if (ret != sizeof(residency)) {
+ 		drm_warn(&xe->drm, "%s counter failed to read, ret %d\n", name, ret);
+ 		return;
+@@ -293,13 +298,12 @@ static int pcode_info(struct seq_file *m, void *data)
+ static int dgfx_pkg_residencies_show(struct seq_file *m, void *data)
+ {
+ 	struct xe_device *xe;
+-	struct xe_mmio *mmio;
+ 	struct drm_printer p;
  
+ 	xe = node_to_xe(m->private);
+ 	p = drm_seq_file_printer(m);
+ 	guard(xe_pm_runtime)(xe);
+-	mmio = xe_root_tile_mmio(xe);
++
+ 	static const struct {
+ 		u32 offset;
+ 		const char *name;
+@@ -313,7 +317,7 @@ static int dgfx_pkg_residencies_show(struct seq_file *m, void *data)
+ 	};
+ 
+ 	for (int i = 0; i < ARRAY_SIZE(residencies); i++)
+-		read_residency_counter(xe, mmio, residencies[i].offset, residencies[i].name, &p);
++		read_residency_counter(xe, residencies[i].offset, residencies[i].name, &p);
+ 
+ 	return 0;
+ }
+@@ -321,13 +325,11 @@ static int dgfx_pkg_residencies_show(struct seq_file *m, void *data)
+ static int dgfx_pcie_link_residencies_show(struct seq_file *m, void *data)
+ {
+ 	struct xe_device *xe;
+-	struct xe_mmio *mmio;
+ 	struct drm_printer p;
+ 
+ 	xe = node_to_xe(m->private);
+ 	p = drm_seq_file_printer(m);
+ 	guard(xe_pm_runtime)(xe);
+-	mmio = xe_root_tile_mmio(xe);
+ 
+ 	static const struct {
+ 		u32 offset;
+@@ -339,7 +341,7 @@ static int dgfx_pcie_link_residencies_show(struct seq_file *m, void *data)
+ 	};
+ 
+ 	for (int i = 0; i < ARRAY_SIZE(residencies); i++)
+-		read_residency_counter(xe, mmio, residencies[i].offset, residencies[i].name, &p);
++		read_residency_counter(xe, residencies[i].offset, residencies[i].name, &p);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index 2032066d5f49..57b2fbefa4c3 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -512,9 +512,15 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
+ 
+ 	if (hwmon->xe->info.platform == XE_BATTLEMAGE) {
+ 		u64 pmt_val;
++		u32 guid;
+ 
+-		ret = xe_pmt_telem_read(hwmon->xe->drm.dev,
+-					xe_mmio_read32(mmio, BMG_PUNIT_TELEMETRY_GUID),
++		ret = xe_vsec_get_guid(hwmon->xe, &guid);
++		if (ret) {
++			drm_warn(&hwmon->xe->drm, "PMT device is not available: %d\n", ret);
++			*energy = 0;
++			return;
++		}
++		ret = xe_pmt_telem_read(hwmon->xe->drm.dev, guid,
+ 					&pmt_val, BMG_ENERGY_STATUS_PMT_OFFSET,	sizeof(pmt_val));
+ 		if (ret != sizeof(pmt_val)) {
+ 			drm_warn(&hwmon->xe->drm, "energy read from pmt failed, ret %d\n", ret);
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index 8c901e54f384..fa9f45d565cb 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -365,11 +365,17 @@ ALLOW_ERROR_INJECTION(xe_pcode_probe_early, ERRNO); /* See xe_pci_probe */
+ int xe_get_pcode_version(struct xe_device *xe, struct xe_pcode_version *version)
+ {
+ 	int ret = 0;
++	u32 guid;
+ 
+ 	guard(xe_pm_runtime)(xe);
+ 
+-	ret = xe_pmt_telem_read(xe->drm.dev,
+-				xe_mmio_read32(xe_root_tile_mmio(xe), BMG_PUNIT_TELEMETRY_GUID),
++	ret = xe_vsec_get_guid(xe, &guid);
++	if (ret) {
++		xe_warn(xe, "PMT device is not available: %d\n", ret);
++		return ret;
++	}
++
++	ret = xe_pmt_telem_read(xe->drm.dev, guid,
+ 				(u64 *)version, PUNIT_VERSION_OFFSET, sizeof(*version));
+ 	if (ret != sizeof(*version)) {
+ 		xe_warn(xe, "pcode version read from PMT failed, ret %pe\n", ERR_PTR(ret));
 -- 
 2.43.0
 
