@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFF7CC98302
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 17:15:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C67CC9830B
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 17:29:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94D5A10ED47;
-	Wed, 23 Sep 2026 17:15:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A21510E961;
+	Wed, 23 Sep 2026 17:29:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fj1UaLex";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RsVSZivz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68E3810ED47
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 17:15:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 563AF10E961;
+ Wed, 23 Sep 2026 17:29:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790183740; x=1821719740;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=o1I+WQf5+ZwiKMnw6KwoS/xr2JNuTHmSqQYHD8eprJE=;
- b=fj1UaLex1QnJry8Q/52+Z2DbQaTxyOQVuiyLCNA04DvKRjhXesttvKP5
- 0zWvjkh2S8xHbNmMzEVO29y1OuuFVMGHiWiLuew9VJ4+cTuTs1vWE7c5E
- gIqvc2sCGfSReMOs3M2TORjFSi4hFRJQNAis8P9sa3Cjz3zIS9e+Pz5HD
- MgzKWpNqwnDzQfG2AO2l7iWbGDMpX901nxThXwMKJy9cPWYcpzhz+OXZd
- lk96DOKoUuksR5cuAqjw6R7QjxlXL2uhIHXB8HEMU/S+mtxpT0WQIx8St
- PlqQ5Iy2kbCN8oRnawzu+I9bLql8mVIukQUrR0HNgDKZ8qJq2HMUbPEPJ g==;
-X-CSE-ConnectionGUID: PH9CzgtPRiGXQM7oqODhCg==
-X-CSE-MsgGUID: 0kMBeF3ATaKgqo9DW0YjkA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11914"; a="93406230"
-X-IronPort-AV: E=Sophos;i="6.27,118,1787036400"; d="scan'208";a="93406230"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2026 10:15:40 -0700
-X-CSE-ConnectionGUID: hOJcooUrTPqdr1G1xEJdAw==
-X-CSE-MsgGUID: 5FqNZtx6TgGWJ9GeGeAFng==
+ t=1790184571; x=1821720571;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=be16lI0gA8G4nTUz6A7dRLwgy6A7vuuQbPGdNato1Nc=;
+ b=RsVSZivzouVSZNY4u3zBIlQ9Ca71piAOTUwAKte0adb/stNtMwX1CBbC
+ Tb2PnHmTuMonHfsQLokX9/vqYfKw5vFnVzFx+HsGr+/KE2EY8j8KTQ79h
+ svUsYBh+7XijJHAjhvYkHVSWcL7tUBBQ2atwnxvhPkXaVyEIGmlisYxBt
+ wAy/KyH6gnmtYsCpoxAkv4DW8N9UM/xiCGS+CGjAoIguvGDt9lhfGP/bJ
+ qtv/sGqf5sN6TiIuwA8huO/BS0NTFNE4P82xbeny3MqzDyP/Rd5v9FYUc
+ oEFf2FD/kXfBSafHvV1MXjh1OY9R4wTgAAcz0MkbLO162LUKHNOc0CLmr A==;
+X-CSE-ConnectionGUID: Ib9RSqSIRc+lnHA5RJ90pA==
+X-CSE-MsgGUID: WtdimIkGS8qRSi6WeSiStw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11914"; a="91019970"
+X-IronPort-AV: E=Sophos;i="6.27,119,1787036400"; d="scan'208";a="91019970"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2026 10:29:30 -0700
+X-CSE-ConnectionGUID: fQ3nG6jbQS+gCvaLyJhjZQ==
+X-CSE-MsgGUID: O3Tb6d4aSIG/92ndPGrLOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,118,1787036400"; d="scan'208";a="273171216"
-Received: from osgcshtiger.sh.intel.com ([10.239.81.49])
- by fmviesa007.fm.intel.com with ESMTP; 23 Sep 2026 10:15:38 -0700
-From: Shuicheng Lin <shuicheng.lin@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH] drm/xe: Remove no-op ternary in emit_flush_invalidate()
-Date: Wed, 23 Sep 2026 17:15:27 +0000
-Message-Id: <20260923171527.663537-1-shuicheng.lin@intel.com>
+Received: from chu13-desk.fm.intel.com ([10.80.209.189])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2026 10:29:30 -0700
+From: Austin Hu <austin.hu@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, maarten.lankhorst@linux.intel.com,
+ vinod.govindapillai@intel.com, huchao426@gmail.com
+Subject: [PATCH v3 0/3] drm/i915/fbc: Dirty rectangle bounding and CFB
+Date: Wed, 23 Sep 2026 10:28:00 -0700
+Message-Id: <20260923172803.1011636-1-austin.hu@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260812215350.3753102-1-austin.hu@intel.com>
+References: <20260812215350.3753102-1-austin.hu@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,40 +67,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-'|' binds tighter than the conditional operator, so the trailing
-"?: 0" tests the whole OR expression instead of just the TLB flag.
-MI_FLUSH_DW is non-zero, so the condition is always true and the
-expression evaluates to itself.
+This series updates Intel FBC dirty rectangle handling and refactors plane
+update checks:
 
-Drop the ternary. The mask already yields 0 when MI_INVALIDATE_TLB
-is not set.
+1. Moves intel_fbc_can_flip_nuke() higher up in intel_fbc.c to avoid a
+   forward declaration in subsequent FBC checks. (No functional change)
+2. Clamps FBC dirty rectangle bounds to valid surface limits [y_offset,
+   y_end] and adds logging for out-of-bounds coordinates, including
+   handling for 180-degree plane rotation.
+3. Tracks plane state attribute changes during atomic commits. When FBC
+   Dirty Rectangle mode is active, partial updates only apply to surface
+   address changes (PLANE_SURF). Modifications to any other plane state
+   parameters require fetching full-plane pixel data from memory to
+   re-compress and update the entire CFB in stolen memory. Once fully
+   re-compressed, subsequent atomic commits can resume selective dirty
+   rectangle updates.
 
-No functional change.
+v2 -> v3 changes:
+  - Split function reordering into a separate standalone commit (v3 1/3) to
+    avoid mixing movement and functional changes, per maintainer feedback.
+  - Rebased onto latest drm-tip.
 
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Assisted-by: LLM
-Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
----
- drivers/gpu/drm/xe/xe_ring_ops.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+v1 -> v2 changes:
+  - Reused intel_fbc_can_flip_nuke() for plane update state checks as
+    suggested.
+  - Added plane Y-coordinate plane view checking (color_plane[0].y)
+    alongside X.
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 46ab1f0f3564..3dd8cf4e2131 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -143,9 +143,8 @@ static int emit_bb_start(u64 batch_addr, u32 ppgtt_flag, u32 *dw, int i)
- 
- static int emit_flush_invalidate(u32 addr, u32 val, u32 flush_flags, u32 *dw, int i)
- {
--	dw[i++] = MI_FLUSH_DW | MI_FLUSH_DW_OP_STOREDW |
--		  MI_FLUSH_IMM_DW | (flush_flags & MI_INVALIDATE_TLB) ?: 0;
--
-+	dw[i++] = MI_FLUSH_DW | MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW |
-+		  (flush_flags & MI_INVALIDATE_TLB);
- 	dw[i++] = addr | MI_FLUSH_DW_USE_GTT;
- 	dw[i++] = 0;
- 	dw[i++] = val;
+Austin Hu (2):
+  drm/i915/display/fbc: Move intel_fbc_can_flip_nuke() higher up
+  drm/i915/fbc: nuke CFB if Plane setting (except for surf addr) changes
+
+Charlton Lin (1):
+  drm/i915/fbc: fbc_dirty_rect restrictions and logging
+
+ drivers/gpu/drm/i915/display/intel_fbc.c | 192 +++++++++++++++++------
+ 1 file changed, 141 insertions(+), 51 deletions(-)
+
 -- 
-2.43.0
+2.34.1
 
