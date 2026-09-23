@@ -4,129 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1E0EC982EA
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 05:01:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FD64C98302
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 05:29:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FE9910EEA9;
-	Wed, 23 Sep 2026 05:01:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DCD410EEA9;
+	Wed, 23 Sep 2026 05:29:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="pVHTWgKy";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="e+1vUWUJ";
 	dkim-atps=neutral
-Received: from mail-oi2-f12.google.com (mail-oi2-f12.google.com
- [74.125.231.204])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F5CD10EEF8
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 05:01:20 +0000 (UTC)
-Received: by mail-oi2-f12.google.com with SMTP id
- 46e09a7af769-80a6fbf797dso168098a34.0
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Sep 2026 22:01:20 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1790139679; cv=none;
- d=google.com; s=arc-20260327;
- b=OgWspMxtpuHzgPB+rcfrxaQv8WMn1aiM9fMQ9INKMoSbP8vVeJsuaJYTi7jQHDu+Tt
- f6izbdKc8WmII7BdJAJsAdeJqzohDpWhqh8eKtwwu9omm/bs4kUz7uLRGdTJpDrSy3MU
- YpK7Lk5qW51VJ+1gLP6T++1eQMs9gSLLCmxZRNWSctybRdkOljQc7Vlhm3OgyZ7qzEro
- b420t1QjtCnCuL7BdHDh0v9glusdcZOos75N7eMM/MeLO3BEW3hfOoK6lZDSxOZyTGbq
- TFAdlangRryjczGFFGGvUWitWYEch2xcvsM9+pcjre1e9PFF7LPFhmdNIyfMzT8/rTlk
- A5gA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=s9t+pGf5Jdws57vhvMQ8eJxDP4MEnxA9XvPVPFGvtB4=;
- fh=Yo69mAbjapVN4GuQ2F1Qg4DDYtJXJihjP7R40uGsh9k=;
- b=LqgMnUUM3Th2N0NffBu5QYz5Ttz1ab3sMtKEM3pS+qF6E599T6ko94PM7qTZvqCMmB
- 1eGXTqFsU+AV9sJym1dy8VG2MwwdHHHoX1GuCRASlhNPDixrKGZsMoR4qQDZXGyz0S+a
- BsC+QynGzwXMgR/VApUJa7KBuPrDHJueecvGArTzb7EgwAp7A7sH2xa5XCqEuY4wMqLD
- 1GV6kJRwoU+hRhtmslfVeuzGLB7MiI+XAcQSBu0gwrHV2Au1Rr4gPKfOEgU7z64Mr2K2
- LI53zzcoNQ5l07ihuqOw5Hut5yb2HFWo1yqVYVrYurAOFYREKUlP0NAahkuD7xp36LyZ
- tAfQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1790139679; x=1790744479; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=s9t+pGf5Jdws57vhvMQ8eJxDP4MEnxA9XvPVPFGvtB4=;
- b=pVHTWgKyb9M5s4+3AHQyBwFFysdLqfpwoWdBbq3XQq0PxGXBzOjavotffHXV3UVWbp
- A8plUjqyV/H3chcgZJdrgDYCK9ntcIRKTh+l5YksSHhExoJvje8toN/zBakclWRB3utL
- EpihgPQiNtFIS5jAp9PsNFUZr58c3K+OpHhUFG42Y1QP1DrGBHccDGVqeuF4zWYuPytA
- h7B9UpPgtaXO89lLNzH58ouC5NzzrKGxf6CUGqQf4R2CM+DD17UxmypF7I1+Mr8qq0YI
- 65QhIi7w0PEHeHDR7BYmbrkMfwEGAqaUcUGUAdgeb65eXP17SYc+757+TZJtHNUWXGD1
- HgOQ==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18E5E10E7F2
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 05:29:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1790141390;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=w2vrYuRJ8qL5kWsy9Tz/qOHqUgXc8+IhHfJ0Nm3O5oI=;
+ b=e+1vUWUJzuXaZZOaj+ck6I4B8IkNdBLNwCKHCyuuWSQwx/OMMf790TE1UmDH+sawY1ciBO
+ 1Kk4cpwnBmL56dfJQdFv/xGXbKCrLyIMkNPsLo5rgxDJe651N4hj32KgQk+BF4GlH4nf66
+ GEFnOE8Mp24Bhy5DYU7yrXZwrAlgw5w=
+Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com
+ [209.85.208.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-612-W7bUDJYLMICkROBmhzmDyQ-1; Wed, 23 Sep 2026 01:29:38 -0400
+X-MC-Unique: W7bUDJYLMICkROBmhzmDyQ-1
+X-Mimecast-MFC-AGG-ID: W7bUDJYLMICkROBmhzmDyQ_1790141377
+Received: by mail-lj1-f198.google.com with SMTP id
+ 38308e7fff4ca-3a5a3189b6fso2129661fa.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Sep 2026 22:29:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1790139679; x=1790744479;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=s9t+pGf5Jdws57vhvMQ8eJxDP4MEnxA9XvPVPFGvtB4=;
- b=T0oZbILdJPgmJEGrg5AnAG4KPb7I2xlpSzMrr3uUFwBsHcXxeiXmIb2zSG5bXG0e8P
- DLRpLZ6v27AroPpIhZc/Oo7bhUobmLJu/zVrsSTrprIEpDT7QbdWLob7wKipbDSCvd2t
- Iwfap+5ewrnDAPSWm8MknYmJb8UmJ+J5BdoPmQgu4PgmJcuuc9Y0u3oHP1ffvNBeFa1T
- llUrwikVAlX9WhN1+FW6AC1wA/8OKIh52sULB3fgb9rE9iFhe3clR+b9z0QqZq5wxMvl
- i5qglBYFLvuMpxiodxBHcyQUsfHtsqdls3oW6OZR8ORbaJ1CfX0uZK3lJUxnQr96bY6H
- tf0A==
+ d=1e100.net; s=20260707; t=1790141377; x=1790746177;
+ h=content-transfer-encoding:content-type:in-reply-to:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=w2vrYuRJ8qL5kWsy9Tz/qOHqUgXc8+IhHfJ0Nm3O5oI=;
+ b=caSxFGe7eObUxVwS7p6RfJyqkTihXFeFbcTDG89qKFJEdLkvLMNchGiGd8z+MnslT/
+ CAhxJVyEV6Vu+yPn9PwEUjlE/DRMdWnBwwYKCERtL2xzs63FQQfrI6MtU9uBg92+IPaL
+ 9HeNarTxwNGWlgi1MrIQqRVkPDG6VnTQC0UJMZ1fJOpk+r9GDLHdYrsPVgJJRTCP3ItI
+ qYjX68BIfH13DOIx/JEiTvxRwEmL34+uLKLd5Rte2UyRwOEBfU/o4gS7eZ4AgzgikNmg
+ daybJk2T69V9wDoFFBunw7zSVxqc8KHe7R6TzaJIy2PXyb0Lmgp6x4F4p3Juo6TWnqFq
+ 0SHw==
 X-Forwarded-Encrypted: i=1;
- AKwUvBwftfaFujOpv9vSHDSu/B3L3GrBEaEDaaXyleW0lcji3OZv1Cit0Bf0HMF883fZjCf4XUMpTlOyxw==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++lzYC5jxM4RmTbeIgvLdzwdkgiJ2MjXeWGzi/VZsRrPwAVJA0U6
- uPhVVYaBQCLIjfStIEOpPhluExTFgRtA4iDKePuaVIpwTkhUlxT3pPrPBMY3RQt2HKshTYw/Kt1
- oYZycuVRg+juiOeoYnXXYW3DurBsa8jw=
-X-Gm-Gg: AYBFou3LLjydNdgAa4TIovIyKAPneknYzKNSwNwmhakA9IKgSmV+kn5lAgqVM7Seja4
- ncls4CJPGmF59F+dbhkAJN0Bd4E8eOvjpgOAhoecwovj9xp0XdQQT7FdmTbhSTwyOrf7QpgrxMy
- VcagC3Gz58oqglPfmPmo5XYVI1ZOT3Gp94Smo2H8hK6iowqYvvs+nL5HB3U7An/5J+ojfeFH11D
- FeWWmU0tcUxd7BQQhquNcnSGq1Y2sxXDyVzS4wd34XkFnUsGDq/HbNWpAx9lORJ1Rpkon1JtPB/
- YNUGB1JEE4XXNc4uVLqWUt55+d9qgyNWdzJhYX3lwHaNz+hheCCp5P1Fw5WC+HHQ2w==
-X-Received: by 2002:a05:6830:2105:b0:814:fd96:b005 with SMTP id
- 46e09a7af769-815fa7a3aa8mr1368055a34.10.1790139679573; Tue, 22 Sep 2026
- 22:01:19 -0700 (PDT)
+ AKwUvBw5lhT3THQDGAhegeb7EdcCruT7HoaTiQE9EIr5bQS1lho/yK9lwv8hUPIQ7TNU0nipYYRJ+rCBdA==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++nvf4dzFdtPfDNU3Fj8kZYkI/3i9NOALGYWnWZol5mtqKzP3bnu
+ HCh7OLurkSUSdi5lfysRWKkWvLieFoMscLZmrIIBPWC6M2ukbwhW1xNaHGR9zzvq65wXZuEEacD
+ yJyjXKx/cDiaM30o8MpAt/vJEejiMlUoML71UURNNFpaLB51wsmSF0xCANbmvBopZLCQ=
+X-Gm-Gg: AYBFou0hP3frzp93h9EuctVR6ulA4s59fimw65kM3wE+QO/i6r/y6cwmnIOacyfWCoC
+ PcDzpIPBQP/FPhkGU7G9sL80RvBbkhrjn9NCs0b+Gs4EJ6/PYt/e8YGZh87hRzVaB3rkAFdMTvz
+ 2c7pKqP9/DZctA25K22HdlIYPvXCPTao0A05F9xKyCiwirR2paP/Cstw5C1pWZC9pCVuDpXCVZx
+ zkoJQWGJanNZUGXjI22ZP5F1ufSSL7iNWx0aHHuKIWhfJvUgR91Fs6i3/8SV4f0d4V0IBTwF+ZB
+ jj7Myl70LqIZDafEH0N+SYXluUyGg2ZhzhTbCTFNIzSF1qi/BN67Pltl4r4PPNFtdWbdsDSLrTq
+ WwG+IjwqUCYi+BSr1Pzynsdju++ZMu6w=
+X-Received: by 2002:a05:651c:2119:b0:3a1:980f:5907 with SMTP id
+ 38308e7fff4ca-3a63062bc97mr2957761fa.8.1790141376708; 
+ Tue, 22 Sep 2026 22:29:36 -0700 (PDT)
+X-Received: by 2002:a05:651c:2119:b0:3a1:980f:5907 with SMTP id
+ 38308e7fff4ca-3a63062bc97mr2957691fa.8.1790141376203; 
+ Tue, 22 Sep 2026 22:29:36 -0700 (PDT)
+Received: from [192.168.1.86] (89-27-86-246.bb.dnainternet.fi. [89.27.86.246])
+ by smtp.gmail.com with ESMTPSA id
+ 38308e7fff4ca-3a62f507e7bsm3916101fa.22.2026.09.22.22.29.35
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 22 Sep 2026 22:29:35 -0700 (PDT)
+Message-ID: <5b1d0fa6-d183-446e-bc52-56e0afd3f398@redhat.com>
+Date: Wed, 23 Sep 2026 08:29:34 +0300
 MIME-Version: 1.0
-References: <20260724025959.142826-1-W_Armin@gmx.de>
- <20260724025959.142826-3-W_Armin@gmx.de>
- <BN9PR12MB514668975E87D570F50B2D91F7A82@BN9PR12MB5146.namprd12.prod.outlook.com>
- <86d0e015-a8f4-4e10-a9b6-a9714d3e0f07@gmx.de>
- <80c4bb47-936b-976b-6ba8-b366f7a455cf@linux.intel.com>
- <11976ed3784675ad241646287a909286a42675a8@intel.com>
- <3ef68773-e07e-437a-98fb-a3c5fc08539c@gmx.de>
- <62d7da838e7042df8456e76190db792093065b57@intel.com>
- <06550473-63c2-4a3e-a5ad-7e23d7b6b050@kernel.org>
- <d696d85c44930d2124054ce11a06d3096c0db04a@intel.com>
- <CADnq5_PT7s6ixTqDSwe9ai9tUQa04z7UnwhMn7bo7CcsH5Qf0w@mail.gmail.com>
- <154fc984-5c29-4a23-ab8b-736471f419a1@gmx.de>
-In-Reply-To: <154fc984-5c29-4a23-ab8b-736471f419a1@gmx.de>
-From: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-Date: Wed, 23 Sep 2026 07:01:07 +0200
-X-Gm-Features: AclHuK9iIINoALCOYPcubT5-e7bSzbMlB0XgN7hLaVHol59ylJMeoZCRLCs4o-M
-Message-ID: <CAMeQTsZw8P+__EXsUSW8G6LONN85HPwmG1+zQXwpmHEC=npWyw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] ACPI: video: Remove CONFIG_X86 handling from
- nvidia_wmi_ec_supported()
-To: Armin Wolf <W_Armin@gmx.de>
-Cc: Alex Deucher <alexdeucher@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Hans de Goede <hansg@kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- "Deucher, Alexander" <Alexander.Deucher@amd.com>, 
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>, 
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
- "linux@weissschuh.net" <linux@weissschuh.net>,
- "rafael@kernel.org" <rafael@kernel.org>, 
- "lenb@kernel.org" <lenb@kernel.org>,
- "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>, 
- "Koenig, Christian" <Christian.Koenig@amd.com>,
- "airlied@gmail.com" <airlied@gmail.com>, 
- "simona@ffwll.ch" <simona@ffwll.ch>, 
- "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, 
- "mripard@kernel.org" <mripard@kernel.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>, 
- "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>, 
- "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
- "tursulin@ursulin.net" <tursulin@ursulin.net>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "matthew.brost@intel.com" <matthew.brost@intel.com>, 
- "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/12] [PATCH v14 00/12] migrate on fault for device pages
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: linux-mm@kvack.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ David Hildenbrand <david@kernel.org>, Jason Gunthorpe <jgg@nvidia.com>,
+ Leon Romanovsky <leonro@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ Balbir Singh <balbirs@nvidia.com>, Zi Yan <ziy@nvidia.com>,
+ Matthew Brost <matthew.brost@intel.com>, Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
+ <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>
+References: <20260922053421.4092027-1-mpenttil@redhat.com>
+ <20260922192726.90dec3c4c77b8c9063dbf218@linux-foundation.org>
+From: =?UTF-8?Q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>
+In-Reply-To: <20260922192726.90dec3c4c77b8c9063dbf218@linux-foundation.org>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: DZ_iYV5iIK9xqrCJOM-WPcBe_4tGTyot1mUFFNYTBTo_1790141377
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -141,123 +109,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 22, 2026 at 9:57=E2=80=AFPM Armin Wolf <W_Armin@gmx.de> wrote:
->
-> Am 18.09.26 um 15:03 schrieb Alex Deucher:
->
-> > On Fri, Sep 18, 2026 at 7:01=E2=80=AFAM Jani Nikula <jani.nikula@linux.=
-intel.com> wrote:
-> >> On Fri, 18 Sep 2026, Hans de Goede <hansg@kernel.org> wrote:
-> >>> Hi,
-> >>>
-> >>> On 16-Sep-26 09:16, Jani Nikula wrote:
-> >>>> On Wed, 16 Sep 2026, Armin Wolf <W_Armin@gmx.de> wrote:
-> >>>>> Am 15.09.26 um 14:31 schrieb Jani Nikula:
-> >>>>>
-> >>>>>> On Tue, 15 Sep 2026, Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel=
-.com> wrote:
-> >>>>>>> GPU people heads up!!
-> >>>>>>>
-> >>>>>>> On Wed, 2 Sep 2026, Armin Wolf wrote:
-> >>>>>>>
-> >>>>>>>> Am 01.09.26 um 23:30 schrieb Deucher, Alexander:
-> >>>>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/Kconfig
-> >>>>>>>>>> b/drivers/gpu/drm/amd/amdgpu/Kconfig
-> >>>>>>>>>> index 12e4a41bf1f0..50305630f533 100644
-> >>>>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/Kconfig
-> >>>>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/Kconfig
-> >>>>>>>>>> @@ -30,9 +30,7 @@ config DRM_AMDGPU
-> >>>>>>>>>>          # ACPI_VIDEO's dependencies must also be selected.
-> >>>>>>>>>>          select INPUT if ACPI
-> >>>>>>>>>>          select ACPI_VIDEO if ACPI
-> >>>>>>>>>> -     # On x86 ACPI_VIDEO also needs ACPI_WMI
-> >>>>>>>>>> -     select X86_PLATFORM_DEVICES if ACPI && X86
-> >>>>>>>>> The change below makes sense, but this one looks like it should=
- remain
-> >>>>>>>>> unless X86_PLATFORM_DEVICES is handled some other way?
-> >>>>>>>>>
-> >>>>>>>>> Alex
-> >>>>>>>> AFAIK the dependency on X86_PLATFORM_DEVICES was only necessary =
-because
-> >>>>>>>> ACPI-WMI depended on it in the past.
-> >>>>>>>> By now ACPI-WMI neither depends on X86_PLATFORM_DEVICES or X86 a=
-nymore.
-> >>>>>>> Hi all,
-> >>>>>>>
-> >>>>>>> Could more GPU people besides Alex take a look on this. I'd want =
-to make
-> >>>>>>> progress with this series within this cycle but would prefer to h=
-ave Acks
-> >>>>>>> from GPU side.
-> >>>>>> I share the same concern with Alex. It seems to me we could now en=
-d up
-> >>>>>> with x86 configurations without X86_PLATFORM_DEVICES, which handle
-> >>>>>> e.g. backlight on a lot of platforms.
-> >>>>>>
-> >>>>>> I think the safer option might be to go for:
-> >>>>>>
-> >>>>>>     depends on X86_PLATFORM_DEVICES || !X86
-> >>>>>>
-> >>>>>> in all of the cases that select/depend on X86_PLATFORM_DEVICES in =
-drm.
-> >>>>>>
-> >>>>>> The alternative is to find out, and handle the fallout, if any.
-> >>>>>>
-> >>>>>>
-> >>>>>> BR,
-> >>>>>> Jani.
-> >>>>> Alright, should i leave the original "select X86_PLATFORM_DEVICES i=
-f ..." statements
-> >>>>> as-is or should is change them to "depends on X86_PLATFORM_DEVICES =
-|| !X86" everywhere?
-> >>>> There are some places that depends on X86_PLATFORM_DEVICES. I think =
-it's
-> >>>> almost always a mistake to have some places select and some places
-> >>>> depends on, and select should anyway be used with care. I'd go for
-> >>>> depends on.
-> >>> I'm a bit late to the party here, sorry.
-> >>>
-> >>> Note that X86_PLATFORM_DEVICES is an option which enables / disables
-> >>> a menu and does nothing more.
-> >>>
-> >>> Enabling it or depending on it by itself does nothing.
-> >>>
-> >>> The select used to be there since it must be selected to be able
-> >>> to select ACPI_WMI (which is no longer the case after this series).
-> >>>
-> >>> To depends on in XE was probably copy pasted from the existing
-> >>> select-s and then changed to a depends and already was a completely
-> >>> no-op since depending on ACPI_WMI was enough as that itself
-> >>> dependend on ACPI_WMI.
-> >>>
-> >>> As for X86_PLATFORM_DEVICES being needed for some backlight
-> >>> interfaces, depending on it by itself does not result in those
-> >>> interfaces being there. That requires enabling the actual drivers
-> >>> providing those interfaces.
-> >>>
-> >>> And I don't think that the GPU drivers should start depending
-> >>> on those since that will become very unyielding.
-> >>>
-> >>> TL;DR: I believe Armin's original patch is fine and this is
-> >>> a welcome cleanup / simplification of the DRM drivers Kconfig
-> >>> bits.
-> >> Your explanation makes sense, thanks.
-> > Yeah, sounds good.  Thanks!
-> >
-> > Alex
->
-> Nice, i suppose we can apply this series as-is then?
 
-Sorry I'm a bit late here, but for the gma500 part:
-Acked-by: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
+On 9/23/26 05:27, Andrew Morton wrote:
 
+> On Tue, 22 Sep 2026 08:34:09 +0300 mpenttil@redhat.com wrote:
 >
-> Thanks,
-> Armin Wolf
+>> From: Mika Penttilä <mpenttil@redhat.com>
+>>
+>> Currently, the way device page faulting and migration works
+>> is not optimal, if you want to do both fault handling and
+>> migration at once.
+>>
+>> Being able to migrate not present pages (or pages mapped with incorrect
+>> permissions, eg. COW) to the GPU requires doing either of the
+>> following sequences:
+>>
+>> 1. hmm_range_fault() - fault in non-present pages with correct permissions, etc.
+>> 2. migrate_vma_*() - migrate the pages
+>>
+>> Or:
+>>
+>> 1. migrate_vma_*() - migrate present pages
+>> 2. If non-present pages detected by migrate_vma_*():
+>>    a) call hmm_range_fault() to fault pages in
+>>    b) call migrate_vma_*() again to migrate now present pages
+>>
+>> The problem with the first sequence is that you always have to do two
+>> page walks even when most of the time the pages are present or zero page
+>> mappings so the common case takes a performance hit.
+>>
+>> The second sequence is better for the common case, but far worse if
+>> pages aren't present because now you have to walk the page tables three
+>> times (once to find the page is not present, once so hmm_range_fault()
+>> can find a non-present page to fault in and once again to setup the
+>> migration). It is also tricky to code correctly. One page table walk
+>> could costs over 1000 cpu cycles on X86-64, which is a significant hit.
+>>
+>> We should be able to walk the page table once, faulting
+>> pages in as required and replacing them with migration entries if
+>> requested.
+> Sounds sensible.
 >
-> >> BR,
-> >> Jani.
-> >>
-> >>
-> >> --
-> >> Jani Nikula, Intel
+>> Tested in X86-64 VM with HMM test device, passing the selftests.
+>> For performance, the migrate throughput tests from the selftests
+>> show similar numbers (within error margin) as unmodified kernel.
+> But no performance benefits are demonstrated?
+
+There are no performance regressions for current tests.
+Real benefits come if want to do migrate on fault.
+For migrate on fault today missing pages are collected as not-present and
+the caller has to fault them and re-run migrate_vma_setup(); folding 
+HMM_PFN_REQ_FAULT into the collecting walk removes that extra
+fault+retry round-trip, dropping two page table walks. Page table walks
+are not cheap. Not to mention simplified implementation for driver.
+Also, the vma looked up as part of the walk is readily available for
+migration, eliminating the need for explicit vma lookup - one more
+performance benefit. Net effect two saved page table walks and
+one vma lookup.
+This series also addresses the vanished/reborn page table while
+collecting problem which can crash current implementation.
+
+--Mika
+
