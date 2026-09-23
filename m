@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 996FDC9830B
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 16:01:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CF57C98304
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 16:06:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 394BB10F129;
-	Wed, 23 Sep 2026 16:01:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="URL+HT8P";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01B8710F129
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 16:01:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790179287; x=1821715287;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Kp2/4Ad5F1XiVbIHO7wSK4Be2DhgK8cIO9F4HjRfHUw=;
- b=URL+HT8PpSl5Xg8rnshD7r3QXdasLIvsh9ju5AJpfbBPvvErkG9t71cw
- 8TeJAFL7Ys3shwpF4K7/lr1cUlaMVz5H4ew+ueNp122BnlOGALAAUZv4A
- WuL42wZryhk458Ii0sbl9EKX8VztSEw2QgXQRY/zoOj3+a99bpfkSVbcl
- LHIJcbKXFONMj8rB7gC+mAnQvnwCnPRGd4HEPd/IXm7tteMiilrxoIB7q
- Ix+59DE+lPQpOhRlnn6Rj6aKGhr5P+TJX2syIJgp3d/wIiYQf9adS84bv
- UIknt8epi0bQ/ovw0qG0MAh0N2n22T0N31upf/u8oBi4VnCaab7uKSdjJ g==;
-X-CSE-ConnectionGUID: eLpku6NIQX6b3xxKj801RQ==
-X-CSE-MsgGUID: v7MpsCeyRueD69CT07OBYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11914"; a="102251464"
-X-IronPort-AV: E=Sophos;i="6.27,118,1787036400"; d="scan'208";a="102251464"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2026 09:01:25 -0700
-X-CSE-ConnectionGUID: By+1JBTLSIaKAnl/U4+w5w==
-X-CSE-MsgGUID: jzXoPVvlQZ+YYVAnoZlTaA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,118,1787036400"; d="scan'208";a="272854373"
-Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.245.253])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2026 09:01:24 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/xe/display: reduce includes in xe_display.c
-In-Reply-To: <sb4ohi5vcesorj3ilyybodexjxoiu37hlwjmcukahtevt4fcck@4m3eg66hc3bw>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260922151721.1483978-1-jani.nikula@intel.com>
- <sb4ohi5vcesorj3ilyybodexjxoiu37hlwjmcukahtevt4fcck@4m3eg66hc3bw>
-Date: Wed, 23 Sep 2026 19:01:21 +0300
-Message-ID: <9a916635a5589b45d89425ade99d0edf613f04f5@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A65410EEB0;
+	Wed, 23 Sep 2026 16:06:31 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C0A810F0D8;
+ Wed, 23 Sep 2026 16:06:30 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7851482397504189047=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm=2C_drm/xe=3A_Protect_ag?=
+ =?utf-8?q?ainst_premature_module_unloads?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 23 Sep 2026 16:06:30 -0000
+Message-ID: <179017959043.196549.9548669364704655102@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260923140844.390822-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260923140844.390822-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,73 +36,172 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 22 Sep 2026, Micha=C5=82 Grzelak <michal.grzelak@linux.intel.com> w=
-rote:
-> On Tue, Sep 22, 2026 at 06:17:21PM GMT, Jani Nikula wrote:
->> xe_display.c has a bunch of extra leftover includes. Remove and
->> simplify.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Micha=C5=82 Grzelak <michal.grzelak@linux.intel.com>
+--===============7851482397504189047==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks, pushed to drm-intel-next.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm, drm/xe: Protect against premature module unloads
+URL   : https://patchwork.freedesktop.org/series/174805/
+State : success
 
->
-> BR,
-> Micha=C5=82
->
->> ---
->>  drivers/gpu/drm/xe/display/xe_display.c | 10 +---------
->>  1 file changed, 1 insertion(+), 9 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/x=
-e/display/xe_display.c
->> index 7b25c0814674..506f26e9c59a 100644
->> --- a/drivers/gpu/drm/xe/display/xe_display.c
->> +++ b/drivers/gpu/drm/xe/display/xe_display.c
->> @@ -6,31 +6,23 @@
->>  #include "xe_display.h"
->>  #include "regs/xe_irq_regs.h"
->>=20=20
->> -#include <linux/fb.h>
->> +#include <linux/acpi.h>
->>=20=20
->> -#include <drm/drm_client.h>
->> -#include <drm/drm_client_event.h>
->>  #include <drm/drm_drv.h>
->>  #include <drm/drm_managed.h>
->> -#include <drm/drm_probe_helper.h>
->>  #include <drm/intel/display_member.h>
->>  #include <drm/intel/display_parent_interface.h>
->> -#include <uapi/drm/xe_drm.h>
->>=20=20
->> -#include "intel_acpi.h"
->>  #include "intel_display.h"
->>  #include "intel_display_core.h"
->>  #include "intel_display_device.h"
->>  #include "intel_display_driver.h"
->>  #include "intel_display_irq.h"
->> -#include "intel_display_types.h"
->>  #include "intel_dmc.h"
->>  #include "intel_dmc_wl.h"
->> -#include "intel_dp.h"
->>  #include "intel_fbdev.h"
->>  #include "intel_hotplug.h"
->>  #include "intel_opregion.h"
->> -#include "skl_watermark.h"
->>  #include "xe_device.h"
->>  #include "xe_display_bo.h"
->>  #include "xe_display_pcode.h"
->> --=20
->> 2.47.3
->>=20
+== Summary ==
 
---=20
-Jani Nikula, Intel
+CI Bug Log - changes from xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4_BAT -> xe-pw-174805v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-174805v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [ABORT][1] ([Intel XE#8007]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174805v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@xe_exec_fault_mode@twice-basic:
+    - bat-bmg-2:          [DMESG-WARN][3] ([Intel XE#9331]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4/bat-bmg-2/igt@xe_exec_fault_mode@twice-basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174805v1/bat-bmg-2/igt@xe_exec_fault_mode@twice-basic.html
+
+  * igt@xe_exec_system_allocator@many-execqueues-free:
+    - bat-bmg-vm:         [DMESG-WARN][5] ([Intel XE#9331]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174805v1/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html
+
+  * igt@xe_exec_system_allocator@threads-shared-vm-many-malloc:
+    - bat-bmg-1:          [DMESG-WARN][7] ([Intel XE#9331]) -> [PASS][8] +2 other tests pass
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174805v1/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html
+
+  * igt@xe_multigpu_svm@mgpu-latency-copy-prefetch:
+    - bat-bmg-3:          [DMESG-WARN][9] ([Intel XE#9331]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174805v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html
+
+  
+  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
+  [Intel XE#9331]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331
+
+
+Build changes
+-------------
+
+  * Linux: xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4 -> xe-pw-174805v1
+
+  IGT_9110: 9110
+  xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4: 890d1157247d8ad65d9a2d44c065accd550b61f4
+  xe-pw-174805v1: 174805v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174805v1/index.html
+
+--===============7851482397504189047==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm, drm/xe: Protect against premature module unloads</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174805/">https://patchwork.freedesktop.org/series/174805/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174805v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174805v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4_BAT -&gt; xe-pw-174805v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-174805v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174805v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-basic:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4/bat-bmg-2/igt@xe_exec_fault_mode@twice-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174805v1/bat-bmg-2/igt@xe_exec_fault_mode@twice-basic.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_system_allocator@many-execqueues-free:</p>
+<ul>
+<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174805v1/bat-bmg-vm/igt@xe_exec_system_allocator@many-execqueues-free.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_system_allocator@threads-shared-vm-many-malloc:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174805v1/bat-bmg-1/igt@xe_exec_system_allocator@threads-shared-vm-many-malloc.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_multigpu_svm@mgpu-latency-copy-prefetch:</p>
+<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9331">Intel XE#9331</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174805v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-latency-copy-prefetch.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4 -&gt; xe-pw-174805v1</li>
+</ul>
+<p>IGT_9110: 9110<br />
+  xe-5812-890d1157247d8ad65d9a2d44c065accd550b61f4: 890d1157247d8ad65d9a2d44c065accd550b61f4<br />
+  xe-pw-174805v1: 174805v1</p>
+
+</body>
+</html>
+
+--===============7851482397504189047==--
