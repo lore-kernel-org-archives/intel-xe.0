@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0DD6C98302
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 15:09:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58C64C98302
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 15:10:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F18D10E15A;
-	Wed, 23 Sep 2026 15:09:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06DEB10E0CB;
+	Wed, 23 Sep 2026 15:10:24 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54D4210E0CB;
- Wed, 23 Sep 2026 15:09:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FBD110E0CB;
+ Wed, 23 Sep 2026 15:10:23 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915/dp=3A_?=
- =?utf-8?q?Only_send_AS_SDP_when_VRR_is_enabled_or_PR_!async?=
+ =?utf-8?q?Don=27t_promise_AS_SDPs_in_PR_Active_when_they_are_disabled?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Xizhe Tang" <xizhetang2005@163.com>
+To: "Jake Steinman" <j@metarealtyinc.ca>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 23 Sep 2026 15:09:22 -0000
-Message-ID: <179017616234.197850.9316545551492192423@61270ab9df2a>
+Date: Wed, 23 Sep 2026 15:10:23 -0000
+Message-ID: <179017622312.197850.3881674733402248168@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260923052937.22817-1-xizheTang2005@163.com>
-In-Reply-To: <20260923052937.22817-1-xizheTang2005@163.com>
+References: <20260923041342.2146450-1-j@metarealtyinc.ca>
+In-Reply-To: <20260923041342.2146450-1-j@metarealtyinc.ca>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,15 +42,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/dp: Only send AS SDP when VRR is enabled or PR !async
-URL   : https://patchwork.freedesktop.org/series/174812/
+Series: drm/i915/dp: Don't promise AS SDPs in PR Active when they are disabled
+URL   : https://patchwork.freedesktop.org/series/174814/
 State : failure
 
 == Summary ==
 
-Series author address 'xizhetang2005@163.com' is not on the allowlist, which prevents CI from being automatically triggered.
+Series author address 'j@metarealtyinc.ca' is not on the allowlist, which prevents CI from being automatically triggered.
 If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
 Exception occurred during validation, bailing out!
-Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1289882/ (on master)
+Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1289883/ (on master)
 
 
