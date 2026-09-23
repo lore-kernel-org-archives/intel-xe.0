@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04E32C9830B
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 18:28:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A791C9830E
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 18:29:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE5A510E13F;
-	Wed, 23 Sep 2026 18:28:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0149310E13F;
+	Wed, 23 Sep 2026 18:29:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IeG6bBZ0";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dxuoxyXu";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D849810E13F
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 18:28:35 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DFC610E13F
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 18:29:46 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 12833600AA;
- Wed, 23 Sep 2026 18:28:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8C601F00893;
- Wed, 23 Sep 2026 18:28:34 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 1E59A418FE;
+ Wed, 23 Sep 2026 18:29:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB55D1F0089E;
+ Wed, 23 Sep 2026 18:29:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790188114;
- bh=6h9LeYmW7iNKoFtdjeR76GEVP1lv/6pEhuVNhm70X+w=;
+ s=k20260515; t=1790188186;
+ bh=+fYNVCNG/Qu28sg9rG3Sd18Ij+4+nQXpU/m0jlewaUs=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=IeG6bBZ05BMYptIca41JEB5OOcd8fKncUnXpbvBq4aru08RKCtxuEvtItW/VmLBS1
- jJ/jL6GgPsnNHX9bjIFE588eIrkiyc3WW8whBuV0jhRuD/GeZZqW7BA+Wjgg/amICb
- +fmgDMFrL/OEuNQBOpESWi8ApdlofAh+Bh1XYhryzh+0FZy78zHLC7GwR8VRRrH+LE
- kF/5M8gWqZWZFTRbxp2aC9/8qTQK2vMl+4hR3nDnxLCRVNBkif8hi0NsGRyxk/kylL
- 2MJIf/IeWzdyWFmIf9opU/W+7EIpmUx6R32JWhYj2sMoiMquC4QayyDYVol6uDfAbX
- yvWPuFYKcVSgA==
+ b=dxuoxyXujkq+g/uEZbb3akvb4G9Q31kLfHnRhntHnXhJD3sPtyHhnL31hCfms81q4
+ lNvQEv7hJlSYPIPXyR2pBu2xIY5JSRZrOG8+XDWLV6MCZq9AtrQ20D+5kezkhZmkkp
+ p2DXjGM29dS5cV4soGkgdHtg9GA+czQQy64mq9Nypr0wuQGAsWOaiuinztC8kIMgPk
+ WQBxXOgkOHR/ctrjHZLLBBu6BuR7tbdJ7S9Rycjx1BiIspd4xgmf+BQJqIUQnJaCVv
+ wSF7OYw2Hq5O0SVClQRox1EWeljalvrReCg9lwArTQr2rwZ3g96wPeAfqv8kSLiluw
+ NPdUWzeyR289A==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v11 16/20] drm/xe/vsec: Crescent Island PMT callbacks
+Subject: Re: [PATCH v11 05/20] platform/x86/intel/pmt: Do not remap when
+ using callbacks
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260923181115.2514193-38-michael.j.ruhl@intel.com>
+In-Reply-To: <20260923181115.2514193-27-michael.j.ruhl@intel.com>
 References: <20260923181115.2514193-22-michael.j.ruhl@intel.com>
- <20260923181115.2514193-38-michael.j.ruhl@intel.com>
+ <20260923181115.2514193-27-michael.j.ruhl@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 23 Sep 2026 18:28:34 +0000
-Message-Id: <20260923182834.A8C601F00893@smtp.kernel.org>
+Date: Wed, 23 Sep 2026 18:29:45 +0000
+Message-Id: <20260923182945.CB55D1F0089E@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,124 +59,93 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Low] goto mixing: goto-based error handling mixed with scoped_guard()
+- [Medium] intel_aet: silent telemetry read failure for PMT devices using c=
+allbacks
 --
 
-commit e14ac202349f1aadb0ba7078894729003942c9fe
+commit 43eab3aee86b2e3202e1e7b01c4ce97411570441
 Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
+Subject: platform/x86/intel/pmt: Do not remap when using callbacks
 
-drm/xe/vsec: Crescent Island PMT callbacks
+A callback indicates that the parent driver is responsible for accessing
+the data area. Creating a PMT memory remap is redundant. If a read_telem
+callback has been provided, do not create a remap.
 
-This commit introduces the necessary callbacks to get the status and control
-information for Crescent Island (CRI) PMT usage. It adds xe_pmt_read_reg() =
-and
-xe_pmt_write_reg() to access the discovery status and control areas, and
-registers the CRI PMT functionality.
-
-diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index a814d7151eeae..0f6e3be520c09 100644
---- a/drivers/gpu/drm/xe/xe_vsec.c
-+++ b/drivers/gpu/drm/xe/xe_vsec.c
+> diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x8=
+6/intel/pmt/class.c
+> index 402d51df834a6..1c7a372b4fc42 100644
+> --- a/drivers/platform/x86/intel/pmt/class.c
+> +++ b/drivers/platform/x86/intel/pmt/class.c
 [ ... ]
-> +static int xe_pmt_read_reg(struct device *dev, u32 guid, u32 *reg, u32 o=
-ffset)
-> +{
-> +	struct xe_device *xe =3D kdev_to_xe_device(dev);
-> +	void __iomem *disc_addr =3D xe->mmio.regs + xe->pmt.base_offset;
-> +	int ret =3D 0;
-> +	u32 inst;
-> +	int idx;
-> +
-> +	if (!drm_dev_enter(&xe->drm, &idx))
-> +		return -ENODEV;
-> +
-> +	if (FIELD_GET(GUID_DEVICE_ID, guid) !=3D CRI_DEVICE_ID ||
-> +	    FIELD_GET(GUID_CAP_TYPE, guid) !=3D CRASHLOG) {
-> +		ret =3D -EINVAL;
-> +		goto dev_exit;
-> +	}
-> +
-> +	inst =3D FIELD_GET(GUID_RECORD_ID, guid) =3D=3D PUNIT ?
-> +		CRI_CRASHLOG_PUNIT_DISC_OFFSET : CRI_CRASHLOG_OOBMSM_DISC_OFFSET;
-> +	disc_addr +=3D inst + offset;
-> +
-> +	xe_pm_runtime_get(xe);
-> +
-> +	scoped_guard(mutex, &xe->pmt.lock) {
-> +		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-> +
-> +		*reg =3D readl(disc_addr);
-> +	}
-> +
-> +	xe_pm_runtime_put(xe);
-> +
-> +dev_exit:
-> +	drm_dev_exit(idx);
-> +
-> +	return ret;
-> +}
+> @@ -403,14 +403,19 @@ static int intel_pmt_dev_register(struct intel_pmt_=
+entry *entry,
+>  	if (!entry->size)
+>  		return 0;
+> =20
+> -	res.start =3D entry->base_addr;
+> -	res.end =3D res.start + entry->size - 1;
+> -	res.flags =3D IORESOURCE_MEM;
+> +	/*
+> +	 * The read_telem callback is responsible for this mapping, and may have
+> +	 * different requirements for use. If the callback is present do not
+> +	 * create the map.
+> +	 */
+> +	if (!(entry->cb && entry->cb->read_telem)) {
+> +		struct resource res =3D DEFINE_RES_MEM(entry->base_addr, entry->size);
+> =20
+> -	entry->base =3D devm_ioremap_resource(dev, &res);
+> -	if (IS_ERR(entry->base)) {
+> -		ret =3D PTR_ERR(entry->base);
+> -		goto fail_ioremap;
+> +		entry->base =3D devm_ioremap_resource(dev, &res);
+> +		if (IS_ERR(entry->base)) {
+> +			ret =3D PTR_ERR(entry->base);
+> +			goto fail_ioremap;
+> +		}
+>  	}
+> =20
 
-[Severity: Low]
-Does this violate the cleanup API contract by mixing manual goto-based clea=
-nup
-in xe_pmt_read_reg() with scope-based cleanup via scoped_guard()?
+[Severity: Medium]
+When a read_telem callback is provided, entry->base remains NULL.
+Could this silently break telemetry reads for Intel AET?
 
-According to the subsystem guidelines in include/linux/cleanup.h, we should
-either convert all resources that need a goto cleanup to scope-based cleanu=
-p,
-or convert none of them. While this specific code path in
-drivers/gpu/drm/xe/xe_vsec.c avoids immediate resource leaks because the
-scope exits cleanly before the goto labels are reached, this architectural
-pattern creates confusing ownership semantics and increases the risk of
-double-free or resource leaks during future refactoring.
+If entry->base is NULL, it propagates to the telemetry endpoint:
 
-> +
-> +static int xe_pmt_write_reg(struct device *dev, u32 guid, u32 reg, u32 o=
-ffset)
-> +{
-> +	struct xe_device *xe =3D kdev_to_xe_device(dev);
-> +	void __iomem *disc_addr =3D xe->mmio.regs + xe->pmt.base_offset;
-> +	int ret =3D 0;
-> +	u32 inst;
-> +	int idx;
-> +
-> +	if (!drm_dev_enter(&xe->drm, &idx))
-> +		return -ENODEV;
-> +
-> +	if (FIELD_GET(GUID_DEVICE_ID, guid) !=3D CRI_DEVICE_ID ||
-> +	    FIELD_GET(GUID_CAP_TYPE, guid) !=3D CRASHLOG) {
-> +		ret =3D -EINVAL;
-> +		goto dev_exit;
-> +	}
-> +
-> +	inst =3D FIELD_GET(GUID_RECORD_ID, guid) =3D=3D PUNIT ?
-> +		CRI_CRASHLOG_PUNIT_DISC_OFFSET : CRI_CRASHLOG_OOBMSM_DISC_OFFSET;
-> +	disc_addr +=3D inst + offset;
-> +
-> +	xe_pm_runtime_get(xe);
-> +
-> +	scoped_guard(mutex, &xe->pmt.lock) {
-> +		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-> +
-> +		writel(reg, disc_addr);
-> +	}
-> +
-> +	xe_pm_runtime_put(xe);
-> +
-> +dev_exit:
-> +	drm_dev_exit(idx);
-> +
-> +	return ret;
-> +}
+drivers/platform/x86/intel/pmt/telemetry.c:pmt_telem_add_endpoint() {
+    ...
+    ep->base =3D entry->base;
+    ...
+}
 
-[Severity: Low]
-Similarly here in xe_pmt_write_reg(), is it appropriate to mix the goto dev=
-_exit
-error handling with the scoped_guard() block?
+Then pmt_copy_region() populates the telemetry region with this NULL addres=
+s:
 
-As noted above, mixing these two cleanup styles in the same function is
-discouraged to prevent confusing semantics in the execution paths.
+drivers/platform/x86/intel/pmt/telemetry.c:pmt_copy_region() {
+    ...
+    region->addr =3D entry->ep->base;
+    ...
+}
+
+Finally, in intel_aet_read_event(), the region is skipped because the addre=
+ss is
+NULL:
+
+arch/x86/kernel/cpu/resctrl/intel_aet.c:intel_aet_read_event() {
+    ...
+    for (int i =3D 0; i < e->pfg->count; i++) {
+        if (!e->pfg->regions[i].addr)
+            continue;
+    ...
+}
+
+Because Intel AET strictly requires direct MMIO, it cannot support abstract=
+ed
+callbacks. This results in a silent failure to collect telemetry data from
+AET-monitored devices that use callbacks, since intel_aet_read_event() will
+skip the region and return -EINVAL on every read request.
+
+>  	sysfs_bin_attr_init(&entry->pmt_bin_attr);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260923181115.2514=
-193-22-michael.j.ruhl@intel.com?part=3D16
+193-22-michael.j.ruhl@intel.com?part=3D5
