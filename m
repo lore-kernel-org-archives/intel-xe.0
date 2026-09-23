@@ -4,42 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3A63C98302
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 14:00:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3285AC98302
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 14:09:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83B9910F07B;
-	Wed, 23 Sep 2026 14:00:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E169D10F07D;
+	Wed, 23 Sep 2026 14:09:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UBSgrKQg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YU0rgcFE";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F06E610F073;
- Wed, 23 Sep 2026 14:00:50 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 2325F601FB;
- Wed, 23 Sep 2026 14:00:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B35151F000FF;
- Wed, 23 Sep 2026 14:00:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790172049;
- bh=XvxyEFyoChu1F3k7Sb1iEgshJdY6HiIn9V80Br1EJVM=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=UBSgrKQgTagCG6bKoHA8E2kTaWi2bE/gZJBcSpwsv0/YMVYpHsQEnSHlOfb/LoUSi
- RlwLqGJR9jmAajyR427wlBr+ZOA8DpFR/ofzr+AB8nLaqHffCANTqvFmzfzGPo3dMn
- Ppf/HtqhzWT6YmiVpqs6GnTJIa1lwdvnjtDSRwzdlW68z0i/04CVTz3n2xwUO0Dtqe
- tl45p7ZyywrVyuqYjJbJehvSaStVFab2+OtYCrAlsFnmpFB3KK/ChQWykrhh63xiP/
- DSWEMwYIzv+mA3IxkYYGIKoWgfHsxkSipUPV10S8SLqt165Ot/UMJ6M5XPavm5jIox
- x6SWO+AREV9rw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] drm/i915/display: Update the CMN_SDP_TL in fastset path
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20260923133307.323439-1-ankit.k.nautiyal@intel.com>
-References: <20260923133307.323439-1-ankit.k.nautiyal@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 23 Sep 2026 14:00:49 +0000
-Message-Id: <20260923140049.B35151F000FF@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A34B610F07D;
+ Wed, 23 Sep 2026 14:09:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790172564; x=1821708564;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Q1S7+cKk4ECChJe3nTyndKkZQa5GysPZqvRokpkUitE=;
+ b=YU0rgcFE8W/WiW5/mYYx0VE56Lj99peSpUoGcOPdyBQb9D+N3PkhHe4Q
+ q5YnVsx8sMerwZy1JRegPy1Zi+Li9I0RqjtHMCEFJbVlprwRISkPjVfm8
+ bmJWlsmbUI+p877o6UjNJsjC5sc7a64hm+sYfWvIEcyqYxgo/SU3wPGhA
+ I2KnQ+7PrmIE8NMQChwjGiUs4OtX2ynG5peTtjGPUs3rNqK3C2+jhPKOT
+ ZdSvYREduTwc1j6djeeyH3yxPsf5FyI/rzOG+EeXs6eOLMsMAYbu/sGev
+ bkWhg94A2NOcpI8EqkmX//hALb4h1YSrU9ISOUoxp5Vzs58YLp/M4yzIf A==;
+X-CSE-ConnectionGUID: EP+kvzO8S66ASvBj2DxF2g==
+X-CSE-MsgGUID: zrfI4HRRSb+Ii3cPhCAjsQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11913"; a="101535306"
+X-IronPort-AV: E=Sophos;i="6.27,118,1787036400"; d="scan'208";a="101535306"
+Received: from fmviesa013.fm.intel.com ([10.60.135.153])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2026 07:09:23 -0700
+X-CSE-ConnectionGUID: k7k8Mx06STSrGawUxikrfw==
+X-CSE-MsgGUID: dkomU1arQ3KUce5S47p1SA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,118,1787036400"; 
+   d="scan'208";a="4885810"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO fedora)
+ ([10.245.245.245])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2026 07:09:21 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, dri-devel@lists.freedesktop.org,
+ Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: [PATCH 0/3] drm, drm/xe: Protect against premature module unloads
+Date: Wed, 23 Sep 2026 16:08:41 +0200
+Message-ID: <20260923140844.390822-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.55.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,65 +70,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] drm/i915: missing stagger values in cmn_sdp_changed() during fas=
-tset
---
+Driver and shared DRM helper code is increasingly relying on bare
+drm_device references (drm_dev_get()/drm_dev_put()) to keep a device's
+software state around, without also pairing that with a reference on
+the owning kernel module. Xe itself does this in several places, and
+so does drm_gpuvm for the lifetime of a GPU VM. None of these
+references currently prevent the owning module from being unloaded
+while they, or the teardown work they can still trigger, are
+outstanding, meaning driver code can end up executing after its own
+module's text has already been freed.
 
-commit ff9e34489c7caadda60fd7bbc48f29b27fcbfe10
-Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+This series closes that gap for xe:
 
-drm/i915/display: Update the CMN_SDP_TL in fastset path
+- Patch 1 adds core DRM infrastructure allowing a driver to wait for
+  its outstanding device-release callbacks to finish before
+  proceeding with module unload.
 
-Commit bfa597238073 ("drm/i915/dip: Enable Common SDP Transmission line")
-enabled the CMN_SDP_TL for the modeset path, but missed to add it to the
-fastset path. This commit updates the CMN_SDP_TL register during fastsets
-if it has changed, similar to EMP_AS_SDP_TL.
+- Patch 2 makes xe use this infrastructure to hold up module unload
+  until every xe_device instance has actually been released, rather
+  than only until the module's own refcount happens to reach zero,
+  with a diagnostic if this ends up taking an unexpectedly long time.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index e3e0d2f8faefd..01604c4e8615c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-[ ... ]
-> @@ -999,6 +1000,12 @@ static bool cmrr_params_changed(const struct intel_=
-crtc_state *old_crtc_state,
->  		old_crtc_state->vrr.cmrr.cmrr_n !=3D new_crtc_state->vrr.cmrr.cmrr_n;
->  }
-> =20
-> +static bool cmn_sdp_changed(const struct intel_crtc_state *old_crtc_stat=
-e,
-> +			    const struct intel_crtc_state *new_crtc_state)
-> +{
-> +	return old_crtc_state->dip.cmn_sdp_tl !=3D new_crtc_state->dip.cmn_sdp_=
-tl;
-> +}
-> +
+- Patch 3 fixes a related, previously unprotected case where the
+  teardown of a GPU VM or its address space mappings can be deferred
+  to run at an arbitrary later time, including after module unload has
+  already completed.
 
-[Severity: Medium]
-Should cmn_sdp_changed() in drivers/gpu/drm/i915/display/intel_display.c al=
-so
-check other transmission line fields like gmp_sdp_tl, pps_sdp_tl, and
-vsc_ext_sdp_tl?
+Together, these changes ensure `rmmod xe` cannot free the module's
+memory while any of its devices, or asynchronous work stemming from
+them, might still be executing.
 
-intel_dip_cmn_sdp_transmission_line_enable() programs the CMN_SDP_TL_STGR_C=
-TL
-register using these stagger values. During a fastset taking over from BIOS,
-if the BIOS programmed non-default stagger values but left the base cmn_sdp=
-_tl
-identical to the driver's default, cmn_sdp_changed() will return false.
+Thomas Hellström (3):
+  drm: Provide a drm_dev_release_barrier() function to wait for device
+    release callbacks
+  drm/xe: Don't unload the driver until all drm devices are freed
+  drm/xe: Route deferred xe_vma/xe_vm teardown off system_dfl_wq
 
-Since intel_pipe_config_compare() ignores differences in these stagger fiel=
-ds,
-intel_dip_cmn_sdp_transmission_line_enable() would never be called to update
-CMN_SDP_TL_STGR_CTL, leaving the hardware operating with the inherited BIOS
-values.
+ drivers/gpu/drm/drm_drv.c      | 56 ++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_device.c | 42 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_device.h |  2 ++
+ drivers/gpu/drm/xe/xe_module.c | 24 +++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.c     |  5 +--
+ include/drm/drm_drv.h          | 24 +++++++++++++++
+ 6 files changed, 148 insertions(+), 5 deletions(-)
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260923133307.3234=
-39-1-ankit.k.nautiyal@intel.com?part=3D1
+-- 
+2.55.0
+
