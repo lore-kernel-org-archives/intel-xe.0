@@ -4,60 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50542C982FA
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 12:35:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 954FEC9830B
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Sep 2026 12:53:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD83C10EFF7;
-	Wed, 23 Sep 2026 12:35:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02BC610E8C8;
+	Wed, 23 Sep 2026 12:53:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bftMW/+h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h2nPO4rY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 697BE10F000;
- Wed, 23 Sep 2026 12:35:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B596F10E8C8;
+ Wed, 23 Sep 2026 12:53:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790166921; x=1821702921;
+ t=1790168035; x=1821704035;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=NUst59Nj86ONo8O+t+3UCjdvz8gS3JO/OxFem3r1dlM=;
- b=bftMW/+hLYTjj3tn+tMWMaDJvy5pxd/xxCHfAmq0PVkF8OSGtEhozClS
- ANQvuUY5dyG44cG8Q6aTDoFGc3w4dyW60hUU2Ej/Mwd3GhT1mkDVSaR+J
- Jnb6nYuTCeRSPSak53IkGmgI4/F6RbjQ9ZpP53Q8XYZq8NqesP+JEClfx
- 3BJOMRn6Sgm/Kc/tsMiuUhPDMovzS2NLF9WX/s70vwTRCGwuzZChb5w/b
- s2e6+fFJWE0KwyOZUathwpZhE4E3Y2JL+4wLEN4iFPnIKqevkbPQ7OciG
- Fin7X7SKfD4eRPZ4xgBM1/X+QEwa6HdvGvukquZ1b+Hf660NvJ6Q7o4YU g==;
-X-CSE-ConnectionGUID: 1wsv1qXASt+DXceuJJlpQA==
-X-CSE-MsgGUID: x3GJdX8RQMKscsdGW0wVbw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11913"; a="101444993"
-X-IronPort-AV: E=Sophos;i="6.27,118,1787036400"; d="scan'208";a="101444993"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2026 05:35:05 -0700
-X-CSE-ConnectionGUID: mUSEFwBUQyGvdI447caV8A==
-X-CSE-MsgGUID: QaEsu21YSmSrACMamdgJEQ==
-X-ExtLoop1: 1
+ bh=/jE7BUfpMBQttipzqBDLcpmemFm4Qibh8pmc+cjyIoI=;
+ b=h2nPO4rYeWZRfOq+1J8Q2oF4DpcueeAVme5DgS6pxQo+9EeCzGgjCObM
+ YE2TxSWwiFb6N30/LwT50pYEKAzrbcfh7e81/7ny/7pXRlkbzh5M7Cf/i
+ 6iEluvzsuVIgQVPtY0FUDKt9LKAdsH+EoFI65SXlRTxA5SuIH3W9Zrz9r
+ CF2T10AGDXu06tH9s+MOF00YDZvpBcDllETou1AnuCbVnPhjf8JmukgCp
+ x+/5+DtAyuubVeyWCzDFAIg7fGYwAfrb8jmFjGXVyFaZJ/LI6oNcgg5gb
+ oBPwx6FcZYlQh3xZjLBNqIQdjAgJmfjMyIIulvrYa9Hx3k6lO8GPWkEz7 Q==;
+X-CSE-ConnectionGUID: uf92w7F/TvCeT9UJihCy6A==
+X-CSE-MsgGUID: PHgqBuI3Rd++IVEoYIusZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11913"; a="1375812"
 X-IronPort-AV: E=Sophos;i="6.27,118,1787036400"; 
-   d="scan'208";a="4855983"
+   d="scan'208";a="1375812"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa114.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2026 05:53:55 -0700
+X-CSE-ConnectionGUID: DJXdHyqrQRWyJLP1/vdMwg==
+X-CSE-MsgGUID: 14cE6eQqRROfhtsnXiX5zw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,118,1787036400"; d="scan'208";a="270112980"
 Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.245.253])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2026 05:35:02 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Xizhe Tang <xizheTang2005@163.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: Xizhe Tang <xizheTang2005@163.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- stable@vger.kernel.org
-Subject: Re: [PATCH v2] drm/i915/dp: Only send AS SDP when VRR/CMRR is
- enabled or PR !async
-In-Reply-To: <20260923195200.21362-1-xizheTang2005@163.com>
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2026 05:53:53 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ ville.syrjala@linux.intel.com
+Subject: Re: [PATCH 2/4] drm/{i915,xe}: move intel_opregion_suspend() to
+ intel_display_driver_pm_suspend_late()
+In-Reply-To: <arO17C67JhscLp1j@ideak-desk.lan>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260923195200.21362-1-xizheTang2005@163.com>
-Date: Wed, 23 Sep 2026 15:34:59 +0300
-Message-ID: <45cd4f2b396b208b976bd946ae0efe45a1c0c09c@intel.com>
+References: <cover.1790089118.git.jani.nikula@intel.com>
+ <050b935fa3fd85101ea0241b60a2e7893d3ad546.1790089118.git.jani.nikula@intel.com>
+ <arO17C67JhscLp1j@ideak-desk.lan>
+Date: Wed, 23 Sep 2026 15:53:50 +0300
+Message-ID: <1906729d97e71a4604ffe765ad9db0e4bba4930b@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -74,108 +73,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 24 Sep 2026, Xizhe Tang <xizheTang2005@163.com> wrote:
-> A Panther Lake eDP panel that advertises VRR in EDID but runs at a fixed
-> refresh rate has received an Adaptive-Sync SDP since commit 6a1712052859
-> ("drm/i915/dp: Enable AS SDP whenever VRR is possible or PR !async").
-> On this panel the first modeset at boot is vertically streaked.
+On Wed, 23 Sep 2026, Imre Deak <imre.deak@intel.com> wrote:
+> On Tue, Sep 22, 2026 at 06:00:50PM +0300, Jani Nikula wrote:
+>> Try to unify the suspend paths and behaviour by moving the
+>> intel_opregion_suspend() calls to
+>> intel_display_driver_pm_suspend_late().
+>> 
+>> This is a change in the suspend sequences. The idea behind adding this
+>> to intel_display_driver_pm_suspend_late() is primarily based on not
+>> having to pass the s2idle parameter to more functions than that.
 >
-> intel_vrr_possible() is only crtc_state->vrr.flipline != 0. Fixed-refresh
-> timings program flipline too:
+> Imo the main reason is that it should be called with interrupts
+> disabled. At least not sure how cancel_work_sync(asle_work) could work
+> otherwise.
 >
-> 	intel_vrr_compute_fixed_rr_timings():
-> 		/* For fixed rr,  vmin = vmax = flipline */
-> 		crtc_state->vrr.flipline = crtc_state->vrr.vmin;
+>> This also changes behaviour for i915 hibernation, going for PCI_D3cold
+>> instead of PCI_D1 on hibernate. It's probably the correct thing to do
+>> anyway, I don't think it should matter all that much, but fingers
+>> crossed.
 >
-> intel_vrr_compute_config() takes that path when VRR is not actually
-> enabled (uapi.vrr_enabled is false, or vmin == vmax). Then
-> intel_dp_needs_as_sdp() is true with `vrr: no, fixed rr: yes`, and
-> intel_dp_compute_as_sdp() programs DP_AS_SDP_AVT_FIXED_VTOTAL.
->
-> Gate the terminal condition on the states that consume the SDP:
-> crtc_state->vrr.enable (VRR) or crtc_state->cmrr.enable (CMRR / FAVT).
-> Leave the Panel Replay aux-less-ALPM early-return from the same commit
-> unchanged.
->
-> CMRR is still hard-disabled (is_cmrr_frac_required() has "|| true"), so
-> cmrr.enable stays false today and the OR is a no-op versus v1 at fixed
-> refresh. intel_vrr_compute_cmrr_timings() sets cmrr.enable without
-> vrr.enable; the OR keeps the FAVT branch reachable when CMRR is re-enabled.
->
-> This is a no-op while VRR is actually active. It does not fix Adaptive
-> Sync = Always corruption, nor the non-atomic SDP update named by the
-> #FIXME above intel_dp_compute_as_sdp(). Trailer is Link:, not Closes:.
->
-> Tested on LENOVO 21VG (PTL eDP, 8086:b080), v7.2.6-200.fc44.x86_64,
-> rebuilding only xe.ko with this hunk:
->
->   Adaptive Sync = Never (Tested-by): vrr: no, fixed rr: yes,
->   infoframes enabled: 0x6 (no BIT(3)), zero Adaptive-Sync SDP, panel
->   clean. This boot: six s2idle suspend/resume cycles, all clean.
->
->   Adaptive Sync = Always (not Tested-by): vrr: yes, vmin 2016 / vmax 8064,
->   infoframes enabled: 0xe, Adaptive-Sync SDP still sent. Panel
->   appearance on Always is not claimed.
->
->   CMRR / FAVT: not tested.
->
-> On the same panel, Adaptive Sync = Never, first modeset, drm.debug=0xe:
->
->   7.1.13 (clean):     infoframes enabled: 0x4  (VSC only)
->   7.2.4  (streaked):  infoframes enabled: 0xc  (VSC + AS SDP,
->                       operation mode 1 = DP_AS_SDP_AVT_FIXED_VTOTAL)
->
->   Later dumps of those boots are 0x6 vs 0xe; each non-zero bad mask is
->   good | BIT(3).
->
-> Changes in v2:
-> - OR crtc_state->cmrr.enable so CMRR still gets AS SDP (v1 review).
->   At fixed refresh v2 matches v1.
->   v1: https://lore.kernel.org/r/20260923052937.22817-1-xizheTang2005@163.com
+> I think it is PCI_D3cold for i915 already before this patch, since
+> acpi_target_system_state() is ACPI_STATE_S4 in that case. If so, the
+> hibernation param from i915_drm_suspend_late() could be also removed.
+> But need to check this more to be sure.
 
-I've received a bug report, patch v1, and four (!) copies of patch v2
-within just hours.
-
-Please have more patience.
-
-The commit message appears to be a long-winded description of *what* the
-code does, which is mostly uninteresting and frankly difficult to
-understand, and lacks proper rationale of *why* the change is being made
-and why it might help with the issue.
-
-
-BR,
-Jani.
-
-
+I think Ville mentioned something similar in the past, but when I tried
+to track this in the source I just couldn't be certain at all. :/
 
 >
-> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9252
-> Fixes: 6a1712052859 ("drm/i915/dp: Enable AS SDP whenever VRR is possible or PR !async")
-> Cc: stable@vger.kernel.org # 7.2.x
-> Signed-off-by: Xizhe Tang <xizheTang2005@163.com>
-> Tested-by: Xizhe Tang <xizheTang2005@163.com> # v7.2.6, PTL eDP, Adaptive Sync=Never
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_display_driver.c | 2 ++
+>>  drivers/gpu/drm/i915/i915_driver.c                  | 4 ----
+>>  drivers/gpu/drm/xe/display/xe_display.c             | 3 ---
+>>  3 files changed, 2 insertions(+), 7 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+>> index 77009dca7d0d..abab457bce3a 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+>> @@ -783,6 +783,8 @@ void intel_display_driver_pm_suspend_late(struct intel_display *display, bool s2
+>>  	if (!HAS_DISPLAY(display))
+>>  		return;
+>>  
+>> +	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3115,8 +3115,9 @@ static bool intel_dp_needs_as_sdp(struct intel_dp *intel_dp,
->  	if (intel_psr_needs_alpm_aux_less(intel_dp, crtc_state) &&
->  	    !intel_psr_pr_async_video_timing_supported(intel_dp))
->  		return true;
->  
-> -	return intel_vrr_possible(crtc_state);
-> +	return crtc_state->vrr.enable ||
-> +	       crtc_state->cmrr.enable;
->  }
->  
->  static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
-> --
-> 2.47.0
+> This leaves intel_opregion_resume() called from
+> intel_display_driver_pm_resume() in an assymetric way, but I suppose
+> that could be addressed later:
 >
+> Reviewed-by: Imre Deak <imre.deak@intel.com>
+>
+>> +
+>>  	intel_display_power_suspend_late(display, s2idle);
+>>  }
+>>  
+>> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+>> index 9e047c27a153..293099fe6639 100644
+>> --- a/drivers/gpu/drm/i915/i915_driver.c
+>> +++ b/drivers/gpu/drm/i915/i915_driver.c
+>> @@ -1075,7 +1075,6 @@ static int i915_drm_suspend(struct drm_device *dev)
+>>  {
+>>  	struct drm_i915_private *dev_priv = to_i915(dev);
+>>  	struct intel_display *display = dev_priv->display;
+>> -	pci_power_t opregion_target_state;
+>>  
+>>  	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+>>  
+>> @@ -1089,9 +1088,6 @@ static int i915_drm_suspend(struct drm_device *dev)
+>>  
+>>  	i9xx_display_sr_save(display);
+>>  
+>> -	opregion_target_state = suspend_to_idle(dev_priv) ? PCI_D1 : PCI_D3cold;
+>> -	intel_opregion_suspend(display, opregion_target_state);
+>> -
+>>  	dev_priv->suspend_count++;
+>>  
+>>  	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+>> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+>> index 184a5a237880..b013ec00b75d 100644
+>> --- a/drivers/gpu/drm/xe/display/xe_display.c
+>> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+>> @@ -246,14 +246,11 @@ static bool suspend_to_idle(void)
+>>  void xe_display_pm_suspend(struct xe_device *xe)
+>>  {
+>>  	struct intel_display *display = xe->display;
+>> -	bool s2idle = suspend_to_idle();
+>>  
+>>  	if (!xe->info.probe_display)
+>>  		return;
+>>  
+>>  	intel_display_driver_pm_suspend(display);
+>> -
+>> -	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
+>>  }
+>>  
+>>  void xe_display_pm_suspend_late(struct xe_device *xe)
+>> -- 
+>> 2.47.3
+>> 
 
 -- 
 Jani Nikula, Intel
