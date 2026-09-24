@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CB93C9831A
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 11:13:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79D47C9830E
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 11:13:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E07F10F480;
-	Thu, 24 Sep 2026 11:13:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3350610E6E1;
+	Thu, 24 Sep 2026 11:13:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q14/dcqP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QlSFJCqZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B51F710F47D
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 11:13:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B97FA10E6E1
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 11:13:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790248392; x=1821784392;
+ t=1790248398; x=1821784398;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Mv9if2+7aHAfPeXYZjX3pc33fnFOcUT97f85Y0Gr4MM=;
- b=Q14/dcqPU/bAEZIUkWrJUZ0EcZR4QkqVtLBc5bhl4kqA1Fd6R5CFhblZ
- 9pyglK9RvEu6Wx943Lu8nMQgyVfs7F/TmS5/CLaQe+aTkLCT3TrInX5mG
- bNTC7xYs4ZK6IAVLFowOYZqRcmzYnpHV76B0e6Fq27CePQBIUZ/t76Vo3
- iqUdSNnc7CgBYzP7WpQkDk8n6XBvygkcC7CMCNbdrfEolvwmx852KJiMA
- b8AVsIqLtx/aFrcSihMgW/9u3Gbml3r8H3pzoFT1E1w6TrOGooQw/KR9j
- sP2CpluXguwqQKk85cKRnsu7KjOZqdJ3UEo1iDVsA7kf7VYUXLuz350Id Q==;
-X-CSE-ConnectionGUID: 41snKJzCSoydwoAfQd72qQ==
-X-CSE-MsgGUID: d38E1r98Qr+L1PbbDsWUAw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11914"; a="101187733"
-X-IronPort-AV: E=Sophos;i="6.27,120,1787036400"; d="scan'208";a="101187733"
+ bh=uqiglvjjwKPv7lK6k+Fyr1NzkwkAzvA/arVdKw8g5qU=;
+ b=QlSFJCqZgkmJXB/rvyoEBm+n5p5Qkm3g/MMLOZZOn7l+t8kMWzZNqUvg
+ ccPonFHEvG5pMVGne1rEUO9QOlRdEC2v+vSce6aFwOjYW/hyjp155TdUU
+ vDWOkCEeEyY5+ToLk3yvyLehrC1nDzbilNZrdYtV3ldLlY2i8ygRWffak
+ Fe1OPXhOGlhGYoVTl0gZTFKgkgMsXDhGGdE5ke7GSeUzhqdI6BX59gbD9
+ 4Wpb04syyLZBRFR890RNpuK4AZyRRsbNyPWhso6EHu3zJ+UY8Dnzjbkgh
+ zldrsUirB7EkuvD+mcWQPKGfiJp+zOojo3BI5GzEza36y8F1DdRgmHlgg Q==;
+X-CSE-ConnectionGUID: I+PPVoxrQY2oHfeXD2YdfA==
+X-CSE-MsgGUID: ydGhlUW+TPW4TxnEcmElHA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11914"; a="101187741"
+X-IronPort-AV: E=Sophos;i="6.27,120,1787036400"; d="scan'208";a="101187741"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2026 04:13:12 -0700
-X-CSE-ConnectionGUID: yDc66OAbSmS/MWlip6mcuQ==
-X-CSE-MsgGUID: G3HzPtvGTY6NV0Cc09OH2w==
+ 24 Sep 2026 04:13:18 -0700
+X-CSE-ConnectionGUID: 70rLxCcVS5+D4ld4hBngnw==
+X-CSE-MsgGUID: k09Y8+CvQFOgpY2QyX4/0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,120,1787036400"; d="scan'208";a="277394785"
+X-IronPort-AV: E=Sophos;i="6.27,120,1787036400"; d="scan'208";a="277394811"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2026 04:13:09 -0700
+ 24 Sep 2026 04:13:15 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v5 08/13] drm/xe/hwmon: Cache temperature availability to
- reduce probe time
-Date: Thu, 24 Sep 2026 16:41:51 +0530
-Message-Id: <20260924111156.2628915-9-karthik.poosa@intel.com>
+Subject: [PATCH v5 10/13] drm/xe/hwmon: use CRI-specific package and VRAM
+ temperature registers
+Date: Thu, 24 Sep 2026 16:41:53 +0530
+Message-Id: <20260924111156.2628915-11-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260924111156.2628915-1-karthik.poosa@intel.com>
 References: <20260924111156.2628915-1-karthik.poosa@intel.com>
@@ -70,132 +70,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Avoid probing temperature sensor availability from the hwmon is_visible()
-callback. For MCTRL and PCIe channels, that path can trigger repeated
-blocking mailbox reads while sysfs attributes are being created, increasing
-probe time and making attribute creation sensitive to transient failures.
-
-Probe temperature availability once during preregistration and cache the
-result for subsequent visibility checks.
+Crescent Island uses different MMIO offsets for package and VRAM
+temperature than Battlemage. Add CRI-specific register definitions
+and select them in xe_hwmon_get_reg() for REG_TEMP handling.
 
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-Assisted-by: LLM
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 39 +++++++++++++++++++++++------------
- 1 file changed, 26 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_pcode_regs.h |  4 +++-
+ drivers/gpu/drm/xe/xe_hwmon.c           | 10 +++++++++-
+ 2 files changed, 12 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+index 11916b4f7cfc..a6f13d7c3989 100644
+--- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
+@@ -28,7 +28,9 @@
+ #define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
+ 
+ #define CRI_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
+-#define CRI_PLATFORM_ENERGY_STATUS		XE_REG(0x138458)
+ #define CRI_MSU_VRAM_ENABLE             XE_REG(0x138340)
++#define CRI_PACKAGE_TEMPERATURE			XE_REG(0x138344)
++#define CRI_VRAM_TEMPERATURE			XE_REG(0x138348)
++#define CRI_PLATFORM_ENERGY_STATUS		XE_REG(0x138458)
+ 
+ #endif /* _XE_PCODE_REGS_H_ */
 diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index d62f95a1912f..cf5d51c68536 100644
+index 1b587bd9487e..e1cff5700e7f 100644
 --- a/drivers/gpu/drm/xe/xe_hwmon.c
 +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -146,6 +146,8 @@ struct xe_hwmon_thermal_info {
- 	};
- 	/** @count: no of temperature sensors available for the platform */
- 	u8 count;
-+	/** @available: temperature sensor availability cached at registration */
-+	bool available[CHANNEL_MAX];
- 	union {
- 		/** @vavlue: per-sensor raw mailbox temperature; bit7=sign, bits6:0=magnitude */
- 		u8 value[U8_MAX + 1];
-@@ -1002,7 +1004,7 @@ static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, int channel, long *valu
- 	*value = DIV_ROUND_CLOSEST(REG_FIELD_GET(VOLTAGE_MASK, reg_val) * 2500, SF_VOLTAGE);
- }
+@@ -293,7 +293,15 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
  
--static bool is_temp_available(struct xe_hwmon *hwmon, int channel)
-+static bool xe_hwmon_temp_probe(struct xe_hwmon *hwmon, int channel)
- {
- 	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
- 	struct xe_reg reg;
-@@ -1023,10 +1025,6 @@ static bool is_temp_available(struct xe_hwmon *hwmon, int channel)
- 			return false;
- 		}
- 
--		if (channel >= CHANNEL_VRAM_N)
--			sprintf(hwmon->temp.vram_label[channel - CHANNEL_VRAM_N],
--				"vram_ch_%d", channel - CHANNEL_VRAM_N);
--
- 		return true;
- 	case CHANNEL_MCTRL:
- 		return hwmon->temp.count && !get_mc_temp(hwmon, NULL);
-@@ -1037,6 +1035,22 @@ static bool is_temp_available(struct xe_hwmon *hwmon, int channel)
- 	}
- }
- 
-+static void xe_hwmon_init_temp_info(struct xe_hwmon *hwmon)
-+{
-+	int channel;
-+
-+	if (hwmon->xe->info.has_mbx_thermal_info && xe_hwmon_pcode_read_thermal_info(hwmon))
-+		drm_warn(&hwmon->xe->drm, "Thermal mailbox not supported by card firmware\n");
-+
-+	for (channel = 0; channel < CHANNEL_MAX; channel++) {
-+		hwmon->temp.available[channel] = xe_hwmon_temp_probe(hwmon, channel);
-+		if (hwmon->temp.available[channel] &&
-+		    in_range(channel, CHANNEL_VRAM_N, MAX_VRAM_CHANNELS))
-+			snprintf(hwmon->temp.vram_label[channel - CHANNEL_VRAM_N], MAX_LABEL_SIZE,
-+				 "vram_ch_%d", channel - CHANNEL_VRAM_N);
-+	}
-+}
-+
- static umode_t
- xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- {
-@@ -1046,11 +1060,11 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 		case CHANNEL_PKG:
- 		case CHANNEL_MCTRL:
- 		case CHANNEL_PCIE:
--			return (is_temp_available(hwmon, channel) &&
-+			return (hwmon->temp.available[channel] &&
- 				hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN]) ? 0444 : 0;
- 		case CHANNEL_VRAM:
- 		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
--			return (is_temp_available(hwmon, channel) &&
-+			return (hwmon->temp.available[channel] &&
- 				hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN]) ? 0444 : 0;
- 		default:
- 			return 0;
-@@ -1060,11 +1074,11 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 		case CHANNEL_PKG:
- 		case CHANNEL_MCTRL:
- 		case CHANNEL_PCIE:
--			return (is_temp_available(hwmon, channel) &&
-+			return (hwmon->temp.available[channel] &&
- 				hwmon->temp.limit[TEMP_LIMIT_PKG_CRIT]) ? 0444 : 0;
- 		case CHANNEL_VRAM:
- 		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
--			return (is_temp_available(hwmon, channel) &&
-+			return (hwmon->temp.available[channel] &&
- 				hwmon->temp.limit[TEMP_LIMIT_MEM_CRIT]) ? 0444 : 0;
- 		default:
- 			return 0;
-@@ -1072,7 +1086,7 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 	case hwmon_temp_max:
- 		switch (channel) {
- 		case CHANNEL_PKG:
--			return (is_temp_available(hwmon, channel) &&
-+			return (hwmon->temp.available[channel] &&
- 				hwmon->temp.limit[TEMP_LIMIT_PKG_MAX]) ? 0444 : 0;
- 		default:
- 			return 0;
-@@ -1085,7 +1099,7 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 		case CHANNEL_MCTRL:
- 		case CHANNEL_PCIE:
- 		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
--			return is_temp_available(hwmon, channel) ? 0444 : 0;
-+			return hwmon->temp.available[channel] ? 0444 : 0;
- 		default:
- 			return 0;
- 		}
-@@ -1627,8 +1641,7 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
- 		if (xe_hwmon_is_visible(hwmon, hwmon_fan, hwmon_fan_input, channel))
- 			xe_hwmon_fan_input_read(hwmon, channel, &fan_speed);
- 
--	if (hwmon->xe->info.has_mbx_thermal_info && xe_hwmon_pcode_read_thermal_info(hwmon))
--		drm_warn(&hwmon->xe->drm, "Thermal mailbox not supported by card firmware\n");
-+	xe_hwmon_init_temp_info(hwmon);
- }
- 
- int xe_hwmon_register(struct xe_device *xe)
+ 	switch (hwmon_reg) {
+ 	case REG_TEMP:
+-		if (xe->info.platform == XE_BATTLEMAGE || xe->info.platform == XE_CRESCENTISLAND) {
++		if (xe->info.platform == XE_CRESCENTISLAND) {
++			if (channel == CHANNEL_PKG)
++				return CRI_PACKAGE_TEMPERATURE;
++			else if (channel == CHANNEL_VRAM)
++				return CRI_VRAM_TEMPERATURE;
++			else if (in_range(channel, CHANNEL_VRAM_N, hwmon->temp.vram_count) &&
++				 xe_hwmon_vram_channel_enabled(hwmon, channel - CHANNEL_VRAM_N))
++				return BMG_VRAM_TEMPERATURE_N(channel - CHANNEL_VRAM_N);
++		} else if (xe->info.platform == XE_BATTLEMAGE) {
+ 			if (channel == CHANNEL_PKG)
+ 				return BMG_PACKAGE_TEMPERATURE;
+ 			else if (channel == CHANNEL_VRAM)
 -- 
 2.25.1
 
