@@ -4,48 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FC4BC9830E
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 16:44:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E819C9830E
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 16:55:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1ACF610E18B;
-	Thu, 24 Sep 2026 16:44:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Xn+Gumji";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64C6A10E55A
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 16:44:07 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 4B23D401F2;
- Thu, 24 Sep 2026 16:44:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7A151F000FF;
- Thu, 24 Sep 2026 16:44:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790268247;
- bh=TTeN3d4CFaPrQNo2R9gxfHf6c99d6TAVrA/sBkk6KjM=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Xn+GumjiV+szrSaOrHsFMO8e25nKEnKaQTcHZk6cy2g1fmRraZnNVMVRl6bq8ci0h
- QTRdlXBChl/dPPDKNCEjSZuYToqAZwJUOZP5M5bl5AMA6ouUo21dyg1XDAqPMwE9nx
- ve/lKSgWVl8Bw9SvGGhKioRaHgs5bLjU3TDJRdDzlpXphSQN9gLjhaFNusVJRfFROD
- Z9qFtw8CE1QagvhBImjvKvJsPrSGM4GFZkLfhxoSB6VD97eTNmLblutYyOebzOufUs
- yXSfPQzMvVjdMpg4Jm785qxtEMnAimsVCO15tarUcTXRYN00XdQH+4s+6A1eTwRlRA
- MLYat8moZTI+w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v15 5/5] s390/pci: Fix circular/recursive deadlocks in
- PCI-bus and -device release
-To: "Benjamin Block" <bblock@linux.ibm.com>
-Cc: linux-s390@vger.kernel.org, "Heiko Carstens" <hca@linux.ibm.com>, "Vasily
- Gorbik" <gor@linux.ibm.com>, "Alexander Gordeev" <agordeev@linux.ibm.com>,
- "Christian
- Borntraeger" <borntraeger@linux.ibm.com>, intel-xe@lists.freedesktop.org,
- linux-pci@vger.kernel.org
-In-Reply-To: <845f3fd0e94294765ea10454823c21e464d2f4bd.1790267348.git.bblock@linux.ibm.com>
-References: <cover.1790267348.git.bblock@linux.ibm.com>
- <845f3fd0e94294765ea10454823c21e464d2f4bd.1790267348.git.bblock@linux.ibm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 24 Sep 2026 16:44:06 +0000
-Message-Id: <20260924164406.B7A151F000FF@smtp.kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C59910E649;
+	Thu, 24 Sep 2026 16:55:27 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B734D10E649;
+ Thu, 24 Sep 2026 16:55:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7936049041573598547=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/gmbus=3A_Add_bit-b?=
+ =?utf-8?q?anging_debugfs_control?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Naladala Ramanaidu" <ramanaidu.naladala@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 24 Sep 2026 16:55:25 -0000
+Message-ID: <179026892574.204166.744780644583019695@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260924152812.439986-1-ramanaidu.naladala@intel.com>
+In-Reply-To: <20260924152812.439986-1-ramanaidu.naladala@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,75 +36,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] pci: mixing goto and cleanup helpers in __zpci_event_error and p=
-ci_base_init
---
+--===============7936049041573598547==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 703530c4b98b53581e1625ffc110fa9701e163ee
-Author: Benjamin Block <bblock@linux.ibm.com>
+== Series Details ==
 
-s390/pci: Fix circular/recursive deadlocks in PCI-bus and -device release
+Series: drm/i915/gmbus: Add bit-banging debugfs control
+URL   : https://patchwork.freedesktop.org/series/174932/
+State : success
 
-When removing PCI device or PCI bus objects there are a couple of
-call-chains where it is possible that the kernel runs into a circular
-deadlock involving the central pci_rescan_remove_lock.
+== Summary ==
 
-> diff --git a/arch/s390/pci/pci.c b/arch/s390/pci/pci.c
-> index d64c544b32b0c..4fc3e3dc87ad1 100644
-> --- a/arch/s390/pci/pci.c
-> +++ b/arch/s390/pci/pci.c
-[ ... ]
-> @@ -1208,7 +1212,8 @@ static int __init pci_base_init(void)
->  	if (rc)
->  		goto out_irq;
-> =20
-> -	rc =3D zpci_scan_devices();
-> +	scoped_guard(pci_rescan_remove)
-> +		rc =3D zpci_scan_devices();
->  	if (rc)
->  		goto out_find;
-> =20
+CI Bug Log - changes from xe-5820-4a7b4cecc6fc51a721d725795abf429f7a44ccfc_BAT -> xe-pw-174932v1_BAT
+====================================================
 
-[Severity: Medium]
-Is it intentional to mix goto-based error handling with scope-based cleanup
-helpers here?
+Summary
+-------
 
-The pci_base_init() function contains multiple goto statements for error
-handling, and this patch introduces a scoped_guard() into the same routine.
-The cleanup.h guidelines state that usage of goto and cleanup helpers should
-never be mixed in the same function.
+  **SUCCESS**
 
-[ ... ]
-> diff --git a/arch/s390/pci/pci_event.c b/arch/s390/pci/pci_event.c
-> index f317a1465dad8..268f435677ae3 100644
-> --- a/arch/s390/pci/pci_event.c
-> +++ b/arch/s390/pci/pci_event.c
-[ ... ]
-> @@ -382,6 +382,7 @@ static void __zpci_event_error(struct zpci_ccdf_err *=
-ccdf)
->  	pci_dev_put(pdev);
->  no_pdev:
->  	mutex_unlock(&zdev->state_lock);
-> +	guard(pci_rescan_remove)();
->  	zpci_zdev_put(zdev);
->  }
-> =20
+  No regressions found.
 
-[Severity: Medium]
-Can this introduction of guard() into __zpci_event_error() also cause issues
-with mixed cleanup paradigms?
+  
 
-In __zpci_event_error(), there are goto statements used for error handling,
-and this patch introduces a guard() right at the cleanup label. Mixing goto
-with cleanup.h helpers in the same function goes against the subsystem
-guidelines.
+Participating hosts (15 -> 15)
+------------------------------
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1790267348.gi=
-t.bblock@linux.ibm.com?part=3D5
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-174932v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [ABORT][1] ([Intel XE#8007]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5820-4a7b4cecc6fc51a721d725795abf429f7a44ccfc/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174932v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@xe_waitfence@engine:
+    - bat-ptl-2:          [FAIL][3] ([Intel XE#9109]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5820-4a7b4cecc6fc51a721d725795abf429f7a44ccfc/bat-ptl-2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174932v1/bat-ptl-2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
+  [Intel XE#9109]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109
+
+
+Build changes
+-------------
+
+  * Linux: xe-5820-4a7b4cecc6fc51a721d725795abf429f7a44ccfc -> xe-pw-174932v1
+
+  IGT_9112: 8d3284b5ae16ca1aef353dfaffb6c0896ceacc19 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5820-4a7b4cecc6fc51a721d725795abf429f7a44ccfc: 4a7b4cecc6fc51a721d725795abf429f7a44ccfc
+  xe-pw-174932v1: 174932v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174932v1/index.html
+
+--===============7936049041573598547==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gmbus: Add bit-banging debugfs control</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174932/">https://patchwork.freedesktop.org/series/174932/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174932v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174932v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5820-4a7b4cecc6fc51a721d725795abf429f7a44ccfc_BAT -&gt; xe-pw-174932v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-174932v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5820-4a7b4cecc6fc51a721d725795abf429f7a44ccfc/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174932v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5820-4a7b4cecc6fc51a721d725795abf429f7a44ccfc/bat-ptl-2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9109">Intel XE#9109</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174932v1/bat-ptl-2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5820-4a7b4cecc6fc51a721d725795abf429f7a44ccfc -&gt; xe-pw-174932v1</li>
+</ul>
+<p>IGT_9112: 8d3284b5ae16ca1aef353dfaffb6c0896ceacc19 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5820-4a7b4cecc6fc51a721d725795abf429f7a44ccfc: 4a7b4cecc6fc51a721d725795abf429f7a44ccfc<br />
+  xe-pw-174932v1: 174932v1</p>
+
+</body>
+</html>
+
+--===============7936049041573598547==--
