@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1F88C9830E
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 12:13:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83820C9830E
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 12:56:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6899010F4C9;
-	Thu, 24 Sep 2026 12:13:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39DDF10F51F;
+	Thu, 24 Sep 2026 12:56:10 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6164910F4C9;
- Thu, 24 Sep 2026 12:13:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4049F10F51F;
+ Thu, 24 Sep 2026 12:56:09 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============6883273006229841850=="
+ boundary="===============7523440571559283052=="
 MIME-Version: 1.0
 Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/hwmon=3A_Update_hwmo?=
- =?utf-8?q?n_thermal_mailbox?=
+ =?utf-8?q?n_thermal_mailbox_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Karthik Poosa" <karthik.poosa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 24 Sep 2026 12:13:23 -0000
-Message-ID: <179025200339.202893.4486070854246854434@61270ab9df2a>
+Date: Thu, 24 Sep 2026 12:56:09 -0000
+Message-ID: <179025456925.202880.5376445824060785620@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260924105000.2627929-1-karthik.poosa@intel.com>
-In-Reply-To: <20260924105000.2627929-1-karthik.poosa@intel.com>
+References: <20260924111156.2628915-1-karthik.poosa@intel.com>
+In-Reply-To: <20260924111156.2628915-1-karthik.poosa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,20 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6883273006229841850==
+--===============7523440571559283052==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe/hwmon: Update hwmon thermal mailbox
+Series: drm/xe/hwmon: Update hwmon thermal mailbox (rev2)
 URL   : https://patchwork.freedesktop.org/series/174898/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227_BAT -> xe-pw-174898v1_BAT
+CI Bug Log - changes from xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227_BAT -> xe-pw-174898v2_BAT
 ====================================================
 
 Summary
@@ -73,16 +73,16 @@ Participating hosts (15 -> 15)
 Known issues
 ------------
 
-  Here are the changes found in xe-pw-174898v1_BAT that come from known issues:
+  Here are the changes found in xe-pw-174898v2_BAT that come from known issues:
 
 ### IGT changes ###
 
 #### Issues hit ####
 
   * igt@xe_waitfence@reltime:
-    - bat-bmg-2:          [PASS][1] -> [FAIL][2] ([Intel XE#9115])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227/bat-bmg-2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174898v1/bat-bmg-2/igt@xe_waitfence@reltime.html
+    - bat-ptl-2:          [PASS][1] -> [FAIL][2] ([Intel XE#9115])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227/bat-ptl-2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174898v2/bat-ptl-2/igt@xe_waitfence@reltime.html
 
   
 #### Possible fixes ####
@@ -90,7 +90,7 @@ Known issues
   * igt@xe_waitfence@reltime:
     - bat-wcl-1:          [FAIL][3] ([Intel XE#9115]) -> [PASS][4]
    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227/bat-wcl-1/igt@xe_waitfence@reltime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174898v1/bat-wcl-1/igt@xe_waitfence@reltime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174898v2/bat-wcl-1/igt@xe_waitfence@reltime.html
 
   
   [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
@@ -99,17 +99,17 @@ Known issues
 Build changes
 -------------
 
-  * Linux: xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227 -> xe-pw-174898v1
+  * Linux: xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227 -> xe-pw-174898v2
 
   IGT_9111: 4aeabf104b136437d0ccc57caf32a752587d595c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
   xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227: a61293e633b18c618fd2f7d508cf558db0f42227
-  xe-pw-174898v1: 174898v1
+  xe-pw-174898v2: 174898v2
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174898v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174898v2/index.html
 
---===============6883273006229841850==
+--===============7523440571559283052==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -129,47 +129,47 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Update hwmon thermal mailbox</td></tr>
+<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Update hwmon thermal mailbox (rev2)</td></tr>
 <tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174898/">https://patchwork.freedesktop.org/series/174898/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174898v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174898v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174898v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174898v2/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227_BAT -&gt; xe-pw-174898v1_BAT</h1>
+    <h1>CI Bug Log - changes from xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227_BAT -&gt; xe-pw-174898v2_BAT</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
 <h2>Participating hosts (15 -&gt; 15)</h2>
 <p>No changes in participating hosts</p>
 <h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-174898v1_BAT that come from known issues:</p>
+<p>Here are the changes found in xe-pw-174898v2_BAT that come from known issues:</p>
 <h3>IGT changes</h3>
 <h4>Issues hit</h4>
 <ul>
 <li>igt@xe_waitfence@reltime:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227/bat-bmg-2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174898v1/bat-bmg-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>)</li>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174898v2/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>)</li>
 </ul>
 </li>
 </ul>
 <h4>Possible fixes</h4>
 <ul>
 <li>igt@xe_waitfence@reltime:<ul>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227/bat-wcl-1/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174898v1/bat-wcl-1/igt@xe_waitfence@reltime.html">PASS</a></li>
+<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227/bat-wcl-1/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174898v2/bat-wcl-1/igt@xe_waitfence@reltime.html">PASS</a></li>
 </ul>
 </li>
 </ul>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227 -&gt; xe-pw-174898v1</li>
+<li>Linux: xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227 -&gt; xe-pw-174898v2</li>
 </ul>
 <p>IGT_9111: 4aeabf104b136437d0ccc57caf32a752587d595c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
   xe-5819-a61293e633b18c618fd2f7d508cf558db0f42227: a61293e633b18c618fd2f7d508cf558db0f42227<br />
-  xe-pw-174898v1: 174898v1</p>
+  xe-pw-174898v2: 174898v2</p>
 
 </body>
 </html>
 
---===============6883273006229841850==--
+--===============7523440571559283052==--
