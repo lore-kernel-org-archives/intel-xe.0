@@ -4,158 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B250BC9830E
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 14:26:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9942C98315
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 14:43:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E6E410F5F4;
-	Thu, 24 Sep 2026 14:26:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OvKLY4jh";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6754D10F5F4
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 14:26:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790259977; x=1821795977;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=wJ2SVf1upl/bvdBCrXT9aJ73r7h45KC3gaWfSjUp5vc=;
- b=OvKLY4jhZC19iS1CM+HtXNuQFSHebVvIGNyjfLqdhhskO/LPFgSXVG8o
- 0aV0IA580WXRZscTfbnPjiXbDUmcAHcoGWkt3X7xWvM6jNqzgFwymm0hI
- ZoNNSR3cAAJ2R2dyr7OK6w4gtPOEB6e0UoYgiWci4727yoj1gEwObHdNj
- am6WCpWadz3boKvr208gTLgM71gh5ldSn3yQ7FU9Zjn2UzSEOPXqUaxtb
- E6PLSURTqvIQeJtbsI4YiOCI55twcha3X2aj0S2Cn655lrdYsUivdxiLK
- xzqEKvfNSraxXaDSw+jAzGVkU8q9wa3HwbH35S9PFOm/EOHP70QfO1HV7 w==;
-X-CSE-ConnectionGUID: CUm25tF4T325pjU3IhfQbQ==
-X-CSE-MsgGUID: hSygXl+kTUSQa1WERbMDJg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="89989333"
-X-IronPort-AV: E=Sophos;i="6.27,120,1787036400"; d="scan'208";a="89989333"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2026 07:26:17 -0700
-X-CSE-ConnectionGUID: 0fpDUKU2RBixPmo/aOFf5g==
-X-CSE-MsgGUID: q532xN2kSpSmHvW+dPzexA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,120,1787036400"; d="scan'208";a="277798994"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2026 07:26:16 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 24 Sep 2026 07:26:15 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Thu, 24 Sep 2026 07:26:15 -0700
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.52) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Thu, 24 Sep 2026 07:26:15 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lpJzD1+VmhJeXcfHSQdwOVW4e48m0IQ6RZBJQDfXwBfoT5783e8gI9uLbZnn7b61H72w9QeMGBQCWBre1FBRYXS4llLrgsh+GLNVGLRrrYV863oNeDwEzgQ+v+qCr44pStAfSUx91hCtJYlB4LNd/RedqhrZhPXLqybkdTAzp9UIIiBLsvap0N8T2AwkqUU0qawja/NTrAPtIC7Iva1gJt6/Ac6jEEynOKz6v/UbRRM86lxrKxiZctXEmxZIV2WNFlgB873jMZf2DfwT3aTV9xbYQhiCVmCL2nHB0KRp4Yznd/HNrqIe3uE/Ndkly05Msx1nQWCQdgJo2jzxQK6wNQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fFSTs/mICINFNdmhYfNl+ML5kjNsLuSUJlzT+9FKLrU=;
- b=ar5rw0TWODpqSAsvoJfoNSroZ1bN6mP9JxcHUOoTGwCEQ3ZfW+00Np+KofrHepvEq8wMB0ngEzMey3F4gw7NPWk3YaKq43cUX9jSS6Hk3Rzt9KxU18enA5MJdGep9TbYHdSAH9hIE3ctnATSNpf3UJKxT5limAmCQjpvrr2okZdKAM5MeYr8kTTGUpbmEIQ427mZU6rX+AwCrhrUPv4Akn4gBsAZWT0QfiNBAcp+itpUUbPcG47rrAiXwez6pawutgejUvN1dUpcPpd97GY6iFCtSsV5hJevll/xuTgkEoczsuj2AJxA++YCFTPMfaHifjq3Ilm8ehcgjyd63XTMLQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH0PR11MB5249.namprd11.prod.outlook.com (2603:10b6:610:e0::17)
- by LV2PR11MB573934.namprd11.prod.outlook.com (2603:10b6:408:412::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.18; Thu, 24 Sep
- 2026 14:26:11 +0000
-Received: from CH0PR11MB5249.namprd11.prod.outlook.com
- ([fe80::a665:5444:d558:23c3]) by CH0PR11MB5249.namprd11.prod.outlook.com
- ([fe80::a665:5444:d558:23c3%6]) with mapi id 15.21.0451.014; Thu, 24 Sep 2026
- 14:26:11 +0000
-Message-ID: <e17cf560-9107-49f2-9d3d-2fee9db7edb2@intel.com>
-Date: Thu, 24 Sep 2026 19:56:04 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/13] drm/xe/hwmon: Handle pcode read failures of
- xe_hwmon_pcode_rmw_power_limit
-To: <sashiko-reviews@lists.linux.dev>
-CC: <intel-xe@lists.freedesktop.org>
-References: <20260924111156.2628915-1-karthik.poosa@intel.com>
- <20260924111156.2628915-2-karthik.poosa@intel.com>
- <20260924112332.E27421F000FF@smtp.kernel.org>
-Content-Language: en-US
-From: "Poosa, Karthik" <karthik.poosa@intel.com>
-In-Reply-To: <20260924112332.E27421F000FF@smtp.kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0293.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:21b::17) To CH0PR11MB5249.namprd11.prod.outlook.com
- (2603:10b6:610:e0::17)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 475D010E18D;
+	Thu, 24 Sep 2026 14:43:07 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2107B10F602;
+ Thu, 24 Sep 2026 14:43:06 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id C109F40A8A;
+ Thu, 24 Sep 2026 14:43:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 291F41F000FF;
+ Thu, 24 Sep 2026 14:43:04 +0000 (UTC)
+Date: Thu, 24 Sep 2026 16:43:01 +0200
+From: Maxime Ripard <self@mripard.dev>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <arU22zzqUGDEco1y@houat>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH0PR11MB5249:EE_|LV2PR11MB573934:EE_
-X-MS-Office365-Filtering-Correlation-Id: f1c1a87a-b359-4246-847e-08df1a47c815
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|23010399003|376014|4143699003|10067099003|11063799006|56012099006|18002099003|22082099003|6133799003;
-X-Microsoft-Antispam-Message-Info: 9kz7BknJltezKkbkDci6ts8TMrS8m96M5m7nH5jdsZsftwrQcR06T6Ts0R1cUBA5YgIRsFrNEV/Mtlc8rzzpDZcMXCAo/vFSRHGGojhD94qVjqcULRnrnTPAtOQNJzATlVdfBcZF7MML6IQAFajSBukLzdDBO6XXUOCVchXuV5/PzZIEwRqkXA+swmy+eaWsymA3RvNA2DPJFc0/DJT18IQCNHH67CALDQ6gaRtrH7rrtxU/5ZNPOI4dRymjG64x3an2nre79XTaRpqTNcBEGSF21zsG52xuGnbarjKDVHk+MxdmOCUwjMtCQvyBqOssSY16xCybDbgJbRPULwSwN0AGz++/csLB+8hV3n2mnnHthip/j78aJoOa8kUWkZOCgUD74nftnT2X2MdpvcObTUG+79c+JMQAFux2hZhBxVAFfxxYh2NLo3P5WbUwQ0nrEzcLW8a3VPdLyKDuw68lgZUgOEDvE3VKs8qt+fANRnbv+niZ6QqgdT3xiBCBGEQTx0jmjHBCTPcsXydj6Zw+ERAXfUkUOpnVDbKHbbT9asem0RGX3lKkZfbdS1HXDhmud+It8jz8ZlpDwpHepVOOJ9I52PsKJ3zlDlvznc8QEBTIGNw3fIEQsqWJziJWqan08LVI1fHKbgvJp++D2at9+BZs+wTi9cihFT2n65krc98=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5249.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(4143699003)(10067099003)(11063799006)(56012099006)(18002099003)(22082099003)(6133799003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q3RjUWpWb1BCYU1JOVZOdzBuVGptRGFLKzFPL1JneCtWWTVkRWc5T1kxaGI3?=
- =?utf-8?B?SkplV05ITDd5ZUt6UUxrUGVPOWxaZ2NtNHFtK3Y2TXZUYUtjQW9VaW1mZDIy?=
- =?utf-8?B?WVlsTlkvWVpOcGpiYjZML0todUYwc0ljODJXek4wS3lncUppb1NJVURxYmU5?=
- =?utf-8?B?SzUvZ0g0V1hpa1RnZXhOdGh2emRwNmhrQVNVYi83SkxQMWI3T255Y0I2ZVFC?=
- =?utf-8?B?alFUc05wQ1VTdjRQMHo2RG1ONHU2T2tpMlArdURNbzNTTGNsaGxJbGNtZ1JF?=
- =?utf-8?B?Mmw3RjMvc2dFUGtCc0dWMlliZWMwVHFRNFVsVXRGWGJkMkI3cGMrVHMwV3Iy?=
- =?utf-8?B?cm5pY01nNHhMdlROWDNGdGVhcytZc3RpOUd3T1ZSMnZDYlk1Uy8zYVVHeU5Q?=
- =?utf-8?B?ZW52VUl5SDZXc00veENnQzVZbVBSODlvNnJYcXB1RDN5WHloMGh4UkhRb3hM?=
- =?utf-8?B?OE0yQXFhTVBBSE5VMDlEY2ZhWkdsU1dSa3dIa3BJbk1HcTJQY3kwUVl5V2th?=
- =?utf-8?B?MDUxL3YvWlRMMVBDeFY0ejF1cnhCbWxNNnd6QTlrbU5DcVZVeVFSZzZBTkVJ?=
- =?utf-8?B?cGN3ais1YktSREp3MVdIcU9IZXpZR1JNeWxkdWtHREVIK2M5U3pZanllQlFr?=
- =?utf-8?B?eUZsQ1dUL2kxVk5mMDVKeUs2SmRJZS9SeVJkeW1DOXNRS3cvM2FIdWdoTENk?=
- =?utf-8?B?aW9NNk5wVkNISnhBWmRGa0cyalNhVjNyd1lNZmFEakNUeUhnc2gwa1BtS1pL?=
- =?utf-8?B?dTVsbVpFNHBGTWh4NGJ3elhUK2w5dVEzWkthWGFoQTV3T0xxOFZySWJrbVdB?=
- =?utf-8?B?ZkxYaUwrNnJpVUh6R0pCNHJvYk1veTR0Q0lveGpGY3J4OW5hNUlBaUMwRlAx?=
- =?utf-8?B?OHZSbVlXMGJlV3pOV0xmTy9XMW1SNVFva0VyMVZ1aWxpbFhWKzVieHNwY2lh?=
- =?utf-8?B?OTNEY3NTbXNHZUhMeXZpT1pEWXdKT2JmaG5tV0R4a2MzcmxheHdiNTh0VHdi?=
- =?utf-8?B?MkhiTDFPdjM3SXlwRWZqSGQyUVNlTTNYcGlwOHp0NnBKTXF4S0hIRmt6QlBq?=
- =?utf-8?B?dVl0bVdnVXFQR1BIYWhrYlRXdkdFVVJEVlFWMWRvWnlBbVplcGpYVC9XeG5R?=
- =?utf-8?B?S1E4NGRlSmgyNnN3TGdrbks4Y0R2L2R6VFFDVFlsRU5XSmtLZ3hBTWxHdVNS?=
- =?utf-8?B?UnhxVVBtT3B2UnVLOXB4Z0ZTcjh3ZG9KbkxnVzlvS2ZHR2VTQlVhYUQ0TkIx?=
- =?utf-8?B?c1UzUmpyMnNwQzVlK0pCYkl1ampaUW1jWm5GY0t4VlZrL1o3TDlNOTR3ZHk5?=
- =?utf-8?B?ZEpYTHpZelltSXcxK1RGMXhqUGRHMjJGbExMQWxyL0tKVGIwWnE0NC8zSE9N?=
- =?utf-8?B?akY3K0hQeFBuakJGSUkwN1NWRDNLVnZnd1hHU1hIajR3TkdjbjlveXh0OWVP?=
- =?utf-8?B?Q1BVSGluRUs0NGVBeDV1ZEM1STRIN2I1Z1JENXF0UTlybmtFWk1wVW1qRTBq?=
- =?utf-8?B?ZUltdXRRL2k4UjI2NngzaGdNQ2JiRlhKYVgyRWJRa2J2RldKYi8rcUxjeEtK?=
- =?utf-8?B?K0tTVGZSajNGSVBodzhnWk53UWU2a0JuVytzZGZVcWMzYk9QWVlOaXJzQkNv?=
- =?utf-8?B?VlBhSHE5TGlMQTQ1REcxeXlQZlFlWGtUREZmb0tROHc5YmYvVllmWXF4SWxn?=
- =?utf-8?B?V3lVV1JOZDFsMXFlb0ZGRFdPcVNzd0h1Z2F6ZTZSSzVmdE9aOVkwK2NOUkU3?=
- =?utf-8?B?WDRWZnZsZHhiUEU4QmF4Rk9TVGd4NklLNTd3WmQzWC96MmFUSnBMazFtZXBu?=
- =?utf-8?B?VzYzeEd5S01SYXpTbllSRGhhSFdiZ2djTDBwT1NXZ3Fwb2pwaGtlTGFFMnVQ?=
- =?utf-8?B?UUtnN09Kc2k3M09YVlhlWGllcGMyS1ExbWYwNjNjbHRZWGVPTU80TDd1MFJJ?=
- =?utf-8?B?ZEFHQ0hxellwK2hwa2tqQWlnUUhxdm1UVmlZZUpiOTh5NHZPc1FZM2U3K0hU?=
- =?utf-8?B?SjJWQjJBWlVkL25ZUHRMMVBUQmg4VGIxTmJ4NlBrTFBhaFJhYy9QWW9uYTFm?=
- =?utf-8?B?VWJRWE9sK2dMV3VuSFQ4Z3JYWnZvN2VrNzVhZ0tiSzlQL2pVVGhQVWxCbWk1?=
- =?utf-8?B?S0VWYWNyQlZOc0l5ZzZEY1BVWWQ3OUtPWkVlQmdza2paQTJ4RmsyU3ZPSUMv?=
- =?utf-8?B?TENjVkMyKzRCR0VOd3lTVUtkcHJrWnYxWmcvNkt4TmZoOHU1WFdzangzZWJP?=
- =?utf-8?B?QjF4dmtobXhHU1UxS05vMFdZVDNsNzg1T0VZYWcxbGJ5WjhqV1BQclVVY2pX?=
- =?utf-8?B?cGwxeE1kNzU1aHA1WW5hQWRKMVNwMTdjVzZEK3QyMlR2TnlRcDM3QT09?=
-X-Exchange-RoutingPolicyChecked: OllScExqTCG4mVXQMOHT56Hjo6gv9M2D3WlpDo2uMyQ9hoUt9PJ5x19x1K57mHL4+Mn3KzoFy92U9nhIKL4NegGtvl1yr50xAc6kyH73Q+aepwlEfgf62WPUb33yUikTjQJdQJ4u51+KJ5ZvD6zi3Zp2w8VB87uWmOglvgrfAHNUj39pj35ZJXyoK+DZksLcGOLdEuLlSbMQyXvZcl8AJz5Df5hkEXJVskb2t0BJMLNcDKT+dS2f/LvpTcmtDISzvIXCirg3HpffXaGpvBV/tn4nM0IhDHAT4wi2ZlUMCfa9pWocoYU/ADSz+MZZpkzocaoVjLJSBGE+JNojbE0kAw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1c1a87a-b359-4246-847e-08df1a47c815
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5249.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2026 14:26:11.5455 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4h3I/BbGsDBLEz14ahS43Vx7unqvZk3yCJ2TyZLo+tjnh5xO4r2PpmoTH8rlAjK8lsri9LCwVaWm9OGLkYUHsA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB573934
-X-OriginatorOrg: intel.com
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="7xeej45t6wsocj7w"
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,54 +53,180 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 24-09-2026 16:53, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] sysfs: returning 0 on error in store callback causes userspace infinite loop
-> --
->
-> commit fdbe8069cbe324980fc35768d7993da6a046117b
-> Author: Karthik Poosa <karthik.poosa@intel.com>
-> drm/xe/hwmon: Handle pcode read failures of xe_hwmon_pcode_rmw_power_limit
->
-> This commit adds error handling for pcode read failures in
-> xe_hwmon_pcode_rmw_power_limit() and checks the returned error in callers
-> to prevent updating power limit settings with invalid data.
->
->> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
->> --- a/drivers/gpu/drm/xe/xe_hwmon.c
->> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> [ ... ]
->> @@ -679,11 +683,13 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
->>   
->>   	mutex_lock(&hwmon->hwmon_lock);
->>   
->> -	if (hwmon->xe->info.has_mbx_power_limits)
->> -		xe_hwmon_pcode_rmw_power_limit(hwmon, power_attr, channel, PWR_LIM_TIME, rxy);
->> -	else
->> +	if (hwmon->xe->info.has_mbx_power_limits) {
->> +		if (xe_hwmon_pcode_rmw_power_limit(hwmon, power_attr, channel, PWR_LIM_TIME, rxy))
->> +			count = 0;
-> [Severity: Medium]
-> In xe_hwmon_power_max_interval_store() within drivers/gpu/drm/xe/xe_hwmon.c,
-> will setting count to 0 here cause userspace tools to enter an infinite loop?
->
-> When a sysfs store callback returns 0 instead of a negative error code, it
-> indicates to the virtual file system that 0 bytes were written and swallows
-> the error. Standard userspace utilities (like echo or dd) often treat a
-> 0-byte write as a short write and retry infinitely.
->
-> If an administrative user or script writes to the sysfs attribute and the
-> underlying pcode mailbox operation fails, could this cause an infinite loop
-> that consumes maximum processor time while simultaneously flooding the kernel
-> log with error messages?
->
-> Should this return the negative error code from
-> xe_hwmon_pcode_rmw_power_limit() instead of setting count to 0?
-I shall return -EIO instead of 0 here in next revision.
->
->> +	} else {
->>   		r = xe_mmio_rmw32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel),
->>   				  PWR_LIM_TIME, rxy);
->> +	}
->>   
->>   	mutex_unlock(&hwmon->hwmon_lock);
+--7xeej45t6wsocj7w
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: [PULL] drm-misc-fixes
+MIME-Version: 1.0
+
+Hi Dave, Sima,
+
+Here's this week drm-misc-fixes PR
+
+Maxime
+
+drm-misc-fixes-2026-09-24:
+A number of fixes:
+  - bridge:
+    - samsung-dsim: fix GPIO lifetime
+  - client: Null pointer dereference fix
+  - imagination: error handling fix, page handling fix
+  - nouveau: fix reference leaks, double-frees, out-of-bounds accesses,
+    use-after-frees, don't reject config without SCDC,  a number of
+    workarounds
+  - virtio: fix memory leak, reference leaks, null pointer dereference,
+    add pixel blend mode, cache coherency fix
+The following changes since commit 5535d5e61a77ad79118ea7665ce1c14f857f0f12:
+
+  drm/loongson: Create blend mode property for cursor plane (2026-09-17 15:12:26 +0800)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-09-24
+
+for you to fetch changes up to 45585c3aa285854face65293acc95eff73063d6d:
+
+  drm/imagination: clamp freelist reconstruction requests (2026-09-24 14:59:22 +0530)
+
+----------------------------------------------------------------
+A number of fixes:
+  - bridge:
+    - samsung-dsim: fix GPIO lifetime
+  - client: Null pointer dereference fix
+  - imagination: error handling fix, page handling fix
+  - nouveau: fix reference leaks, double-frees, out-of-bounds accesses,
+    use-after-frees, don't reject config without SCDC,  a number of
+    workarounds
+  - virtio: fix memory leak, reference leaks, null pointer dereference,
+    add pixel blend mode, cache coherency fix
+
+----------------------------------------------------------------
+Benjamin Leggett (1):
+      drm/virtio: sync shmem backing on guest-bound transfers
+
+Brajesh Gupta (2):
+      drm/imagination: Propagate map failures correctly from pvr_mmu_map_sgl()
+      drm/imagination: Fix page count for page table for map() interface
+
+Dan Carpenter (1):
+      drm/nouveau/clk: fix list cursor use after loop in nvkm_clk_ustate_update
+
+Dmitry Osipenko (1):
+      Revert "drm/virtio: Allow importing prime buffers when 3D is enabled"
+
+Francesco Magazzu (3):
+      drm/nouveau/clk: don't use the pstate cursor after the loop
+      drm/nouveau/device: don't use the pstate cursor after the loop
+      drm/nouveau/clk: don't clobber reclock status when restoring volt/fan
+
+Giuseppe Ranieri (1):
+      drm/nouveau/disp: don't reject HDMI config on cards without SCDC
+
+Guangshuo Li (1):
+      drm/nouveau: fix autosuspend cleanup during teardown
+
+Jakub Pawlak (1):
+      accel/ivpu: Use separate flag for job timeout
+
+Jonghyuk Kim(MalHyuk) (1):
+      drm/nouveau: RCU-free the scheduler-containing nouveau_sched
+
+Junrui Luo (5):
+      drm/nouveau/dmem: pin VRAM for the whole registered range
+      drm/virtio: fix object leak when drm_gem_handle_create() fails
+      drm/virtio: fix object leak in virtio_gpu_resource_create_ioctl()
+      drm/virtio: fix object leaks in virtio_gpu_resource_create_blob_ioctl()
+      drm/virtio: release the GEM object on virtio_gpu_vram_create() errors
+
+Li Youhong (1):
+      drm/bridge: samsung-dsim: fix TE GPIO lifetime for host attach
+
+Lyude Paul (5):
+      drm/nouveau/gsp/r570: Add support for INTERNAL_GCX_ENTRY_PREREQUISITE
+      drm/nouveau/gsp/r535: Add support for MEMSYS_GET_STATIC_CONFIG
+      drm/nouveau/gsp/r570: Add comp mode workaround from issue #3172217
+      drm/nouveau/gsp/r570: Start saving comptag backing stores
+      drm/nouveau/gsp/r570: Enable Gcoff in fbsr again
+
+Peiyang He (5):
+      drm/nouveau: fix double-free in nvif_vmm_dtor
+      drm/nouveau/uvmm: fix UAF in nouveau_uvmm_sm when BO is in TTM_PL_SYSTEM
+      drm/nouveau: don't bump pin count on failed re-pin in nouveau_bo_pin_locked()
+      drm/virtio: fix memory leak of fence event on execbuffer failure
+      drm/virtio: fix NULL pointer dereference on fence allocation failure
+
+Pengpeng Hou (1):
+      drm/imagination: clamp freelist reconstruction requests
+
+Shixiong Ou (1):
+      drm/virtio: Add pixel blend mode property to cursor plane
+
+Wentao Liang (3):
+      drm/nouveau: Fix bridge reference leak in nv1a_ram_new()
+      drm/nouveau: Fix gem reference leak in validate_init()
+      drm/nouveau: Fix runtime PM leak in nouveau_connector_detect()
+
+shechenglong (1):
+      drm/client: fix restore of partially initialized client
+
+ drivers/accel/ivpu/ivpu_drv.c                      |  3 +-
+ drivers/accel/ivpu/ivpu_drv.h                      |  2 +-
+ drivers/accel/ivpu/ivpu_job.c                      |  7 +-
+ drivers/accel/ivpu/ivpu_mmu.c                      |  1 -
+ drivers/accel/ivpu/ivpu_pm.c                       |  1 +
+ drivers/gpu/drm/bridge/samsung-dsim.c              |  2 +-
+ drivers/gpu/drm/clients/drm_fbdev_client.c         |  8 +++
+ drivers/gpu/drm/imagination/pvr_free_list.c        | 15 ++++-
+ drivers/gpu/drm/imagination/pvr_mmu.c              | 19 ++++--
+ drivers/gpu/drm/imagination/pvr_mmu.h              |  2 +-
+ drivers/gpu/drm/imagination/pvr_vm.c               |  4 +-
+ drivers/gpu/drm/nouveau/include/nvif/cl0080.h      | 10 +++
+ drivers/gpu/drm/nouveau/include/nvif/device.h      |  1 +
+ drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h  |  6 ++
+ drivers/gpu/drm/nouveau/nouveau_bo.c               |  3 +-
+ drivers/gpu/drm/nouveau/nouveau_connector.c        |  5 +-
+ drivers/gpu/drm/nouveau/nouveau_dmem.c             |  4 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c              | 18 ++++-
+ drivers/gpu/drm/nouveau/nouveau_gem.c              |  2 +
+ drivers/gpu/drm/nouveau/nouveau_sched.c            |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_sched.h            |  1 +
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c             | 13 +++-
+ drivers/gpu/drm/nouveau/nvif/device.c              | 13 ++++
+ drivers/gpu/drm/nouveau/nvif/vmm.c                 |  1 +
+ drivers/gpu/drm/nouveau/nvkm/engine/device/ctrl.c  |  8 ++-
+ drivers/gpu/drm/nouveau/nvkm/engine/device/user.c  | 35 ++++++++++
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c   |  3 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/clk/base.c     | 31 ++++++---
+ drivers/gpu/drm/nouveau/nvkm/subdev/fb/ramnv1a.c   |  2 +
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c     | 10 +++
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/priv.h     |  1 +
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c  | 17 +++++
+ .../drm/nouveau/nvkm/subdev/gsp/rm/r535/nvrm/gsp.h | 45 +++++++++++++
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/fbsr.c | 77 +++++++++++++++++++++-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gsp.c  | 36 ++++++++++
+ .../nouveau/nvkm/subdev/gsp/rm/r570/nvrm/fbsr.h    | 29 ++++++++
+ .../drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/gsp.h |  7 ++
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h    |  3 +
+ drivers/gpu/drm/virtio/virtgpu_drv.h               |  5 ++
+ drivers/gpu/drm/virtio/virtgpu_gem.c               |  2 +-
+ drivers/gpu/drm/virtio/virtgpu_ioctl.c             | 49 +++++++++++++-
+ drivers/gpu/drm/virtio/virtgpu_plane.c             | 13 ++++
+ drivers/gpu/drm/virtio/virtgpu_prime.c             |  2 +-
+ drivers/gpu/drm/virtio/virtgpu_submit.c            | 11 +++-
+ drivers/gpu/drm/virtio/virtgpu_vq.c                | 46 +++++++++++++
+ drivers/gpu/drm/virtio/virtgpu_vram.c              | 17 ++---
+ 46 files changed, 531 insertions(+), 61 deletions(-)
+
+--7xeej45t6wsocj7w
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCarU29QAKCRAnX84Zoj2+
+dsciAYCgVQRAgfrIkT1CXZY6X9UyVBjOE8sJWpbKykkrOml4OXLw8B1cXhP/0Bb+
+bEfGWgwBegLIz7FMhRo9pbwMDM8SINw+OOlGhiFVnxw498nHGOcyglEu8g0Ww1SE
+LWDNQn2OYw==
+=PGv/
+-----END PGP SIGNATURE-----
+
+--7xeej45t6wsocj7w--
