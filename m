@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38EB3C98314
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 07:28:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4747EC98314
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 07:28:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E36C810F34E;
-	Thu, 24 Sep 2026 07:28:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="SG2HZhLd";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80C6710E65B;
- Thu, 24 Sep 2026 07:27:58 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 3344542DDC;
- Thu, 24 Sep 2026 07:27:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D48111F000FF;
- Thu, 24 Sep 2026 07:27:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790234878;
- bh=7UEtoNIuvdVZfmT865eJ9fFM038Y9KSgZquCugzORHA=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=SG2HZhLdLpH5TI3yZYsCxYxXrdreuVMDSS5zjTN8jXNg+O/me6234tfJQO/xwHyld
- AfnPWxw3Fzky6Wdi1/RCNnj7wnUbukPyeOVzqTg9vAS1WPD4zm4Bpngiq0ZQcpDRmf
- CSVPhsIjh/M9kK2ZDjFzpGnkXbxkLExAYY2xyJ/ujaQ7Rp4d+5mSyP24IOJ56DfcGa
- 007o8OSDv6kFBbEUCFfb/eQTBXt7MHTpk3NJtO4idpJIl+aCUKHsDMPPMU1uNFqL5h
- tbhMzA6Df7Q443m73E52lgG+8tCScwQ/kHVjk+JQ6fVJo8c8uRuVeES9rry9LzNbTS
- kUniNyZkQxYjg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v15 10/11] lib/test_hmm: add a new testcase for the
- migrate on fault
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00E5310F353;
+	Thu, 24 Sep 2026 07:28:09 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9ABB010F353;
+ Thu, 24 Sep 2026 07:28:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Migrate_on_fault_for_devi?=
+ =?utf-8?q?ce_pages_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: mpenttil@redhat.com
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20260924065313.899730-11-mpenttil@redhat.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 24 Sep 2026 07:28:06 -0000
+Message-ID: <179023488662.201188.15792260951026821205@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20260924065313.899730-1-mpenttil@redhat.com>
- <20260924065313.899730-11-mpenttil@redhat.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 24 Sep 2026 07:27:57 +0000
-Message-Id: <20260924072757.D48111F000FF@smtp.kernel.org>
+In-Reply-To: <20260924065313.899730-1-mpenttil@redhat.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,71 +36,132 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] test_hmm: device page table desync on concurrent MMU invalidation
---
+== Series Details ==
 
-commit fba7f5abd6e7b21ba16a0224adb82cc24650eb6e
-Author: Mika Penttil=C3=A4 <mpenttil@redhat.com>
+Series: Migrate on fault for device pages (rev7)
+URL   : https://patchwork.freedesktop.org/series/165953/
+State : warning
 
-lib/test_hmm: add a new testcase for the migrate on fault
+== Summary ==
 
-This commit enhances the hmm test driver (lib/test_hmm) by adding a new=20
-testcase for the migrate on fault scenario.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f40ee1d9d3eca569bc0c7ce5ab4f021878d5a37c
+Author: Mika Penttilä <mpenttil@redhat.com>
+Date:   Thu Sep 24 09:53:13 2026 +0300
 
-> diff --git a/lib/test_hmm.c b/lib/test_hmm.c
-> index cd88e8177d0ab..31608b6998bb2 100644
-> --- a/lib/test_hmm.c
-> +++ b/lib/test_hmm.c
-[ ... ]
-> @@ -1377,6 +1398,127 @@ static int dmirror_migrate_to_device(struct dmirr=
-or *dmirror,
-[ ... ]
-> +static int do_fault_and_migrate(struct dmirror *dmirror, struct hmm_rang=
-e *range)
-> +{
-[ ... ]
-> +		dmirror_migrate_alloc_and_copy(migrate, dmirror);
-> +		migrate_vma_pages(migrate);
-> +
-> +		mutex_lock(&dmirror->mutex);
-> +		if (mmu_interval_read_retry(&dmirror->notifier,
-> +					    range->notifier_seq))
-> +			ret =3D -EBUSY;
-> +		else
-> +			ret =3D __dmirror_migrate_map_locked(migrate, dmirror);
-> +		mutex_unlock(&dmirror->mutex);
-> +
-> +		migrate_vma_finalize(migrate);
+    Documentation/mm/hmm: document migration through hmm_range_fault()
+    
+    Describe the two new MIGRATE_VMA_FAULT / MIGRATE_VMA_WRITE flags of
+    migrate_vma_setup(), and add a section on driving the migration
+    collection phase directly from hmm_range_fault() via HMM_PFN_REQ_MIGRATE
+    and migrate_hmm_range_setup().
+    
+    Signed-off-by: Mika Penttilä <mpenttil@redhat.com>
++ /mt/dim checkpatch 1a702d79afe36153e37dd9784fde95f9f86ea03f drm-intel
+6af278ad99a7 mm/Kconfig: changes for migrate on fault for device pages
+007b00d9e503 mm: add helper to convert HMM pfn to migrate pfn
+-:179: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#179: FILE: mm/migrate_device.c:1584:
++
++}
 
-[Severity: Medium]
-Will skipping the device page table update here create an inconsistent state
-that migrate_vma_finalize() permanently commits?
+total: 0 errors, 0 warnings, 1 checks, 138 lines checked
+232b61ad1b9c mm/hmm: preparations for HMM to participate in migration
+-:191: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'hmm_vma_walk->vma != walk->vma'
+#191: FILE: mm/hmm.c:422:
++	if (hmm_vma_walk->vma && (hmm_vma_walk->vma != walk->vma))
 
-In do_fault_and_migrate() in lib/test_hmm.c, if a concurrent page unmap (li=
-ke
-page reclaim) invalidates the MMU notifier interval between=20
-mmu_interval_read_begin() and mmu_interval_read_retry(), the retry check
-fails and ret is set to -EBUSY.
+-:214: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#214: FILE: mm/hmm.c:445:
++{
++
 
-However, migrate_vma_pages() has already executed and populated the CPU page
-tables. By skipping __dmirror_migrate_map_locked() on retry, the device page
-table is left desynchronized. When migrate_vma_finalize() is subsequently
-called, the CPU page tables irreversibly commit the migration to device
-private memory without the new device mappings.
+total: 0 errors, 0 warnings, 2 checks, 261 lines checked
+73b7a99a0e4b mm/hmm: do the plumbing for HMM to participate in migration
+-:47: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#47: FILE: mm/hmm.c:54:
++	spinlock_t			*ptl;
 
-Could this cause a wasteful ping-pong migration on the subsequent retry loo=
-p,
-where hmm_range_fault() triggers a fault on these device-private pages, cal=
-ls
-the device's migrate_to_ram handler to bounce the pages back to system RAM,
-only to migrate them to the device again?
+-:55: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'locked' may be better as '(locked)' to avoid precedence issues
+#55: FILE: mm/hmm.c:76:
++#define HMM_ASSERT_PTE_LOCKED(hmm_vma_walk, locked)		\
++	WARN_ON_ONCE((hmm_vma_walk)->ptelocked != locked)
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260924065313.8997=
-30-1-mpenttil@redhat.com?part=3D10
+-:58: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'locked' may be better as '(locked)' to avoid precedence issues
+#58: FILE: mm/hmm.c:79:
++#define HMM_ASSERT_PMD_LOCKED(hmm_vma_walk, locked)		\
++	WARN_ON_ONCE((hmm_vma_walk)->pmdlocked != locked)
+
+-:61: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'hmm_vma_walk' - possible side-effects?
+#61: FILE: mm/hmm.c:82:
++#define HMM_ASSERT_UNLOCKED(hmm_vma_walk)			\
++	WARN_ON_ONCE((hmm_vma_walk)->ptelocked ||		\
++		     (hmm_vma_walk)->pmdlocked)
+
+-:92: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
+#92: FILE: mm/hmm.c:118:
++		end-addr == HPAGE_PMD_SIZE) {
+ 		   ^
+
+-:216: CHECK:BRACES: braces {} should be used on all arms of this statement
+#216: FILE: mm/hmm.c:466:
++		if (softleaf_is_device_private(entry)) {
+[...]
+ 		else
+[...]
+
+-:320: CHECK:BRACES: braces {} should be used on all arms of this statement
+#320: FILE: mm/hmm.c:614:
++	if (minfo) {
+[...]
++	} else
+[...]
+
+-:324: CHECK:BRACES: Unbalanced braces around else statement
+#324: FILE: mm/hmm.c:618:
++	} else
+
+-:430: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#430: FILE: mm/hmm.c:702:
++
++	}
+
+total: 0 errors, 0 warnings, 9 checks, 483 lines checked
+202ddf1d60dc mm/hmm: migrate collection in HMM pagewalk - pte level
+de9005d71aaa mm/hmm: migrate collection in HMM pagewalk - pmd level
+43288536a090 mm/hmm: add lazy MMU mode support for migration in HMM pagewalk
+7626c9123cf3 mm/hmm: implement rollback for device page migration in HMM pagewalk
+-:163: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#163: FILE: mm/hmm.c:624:
++
++		}
+
+total: 0 errors, 0 warnings, 1 checks, 164 lines checked
+1a74dce20970 mm: enable device page migration from HMM pagewalk
+4b3f93e8f377 lib/test_hmm: add a new testcase for the migrate on fault
+-:246: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#246: FILE: lib/test_hmm.c:1515:
++
++
+
+-:321: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#321: FILE: tools/testing/selftests/mm/hmm-tests.c:948:
+ 
++
+
+total: 0 errors, 0 warnings, 2 checks, 326 lines checked
+f40ee1d9d3ec Documentation/mm/hmm: document migration through hmm_range_fault()
+
+
