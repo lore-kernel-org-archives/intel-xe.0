@@ -4,48 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49B00C98318
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 16:35:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32D40C9830E
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 16:35:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AD2C10E18B;
-	Thu, 24 Sep 2026 16:35:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nR1k39bq";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E745410E18B
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 16:35:41 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id CB20C40229;
- Thu, 24 Sep 2026 16:35:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AC151F000FF;
- Thu, 24 Sep 2026 16:35:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790267741;
- bh=ZocbSG0ys8khPCLcy7evQ1A6ZUGNquc9YZcxBEUBv1c=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=nR1k39bqTXHR6SDlPA9ZjF8bgICpNt+jJ756WzIyOSdSC4MF51bFLC7POhVkF22wS
- DJDPcPK8yOo6W2FksbFSZ364tAxgBnUvMu4/0S4yRtllg3pLEhu8LxNUD49VHTGkOA
- 1+6/i8vyvsX15E2C4BIVl+e+7qN5BAebKFrtdiABEzNcRq5VlYmjku3i3GsqnMS3nj
- BKe3T1jc3Y/ddG3SvdMYvjZ1R4hue+938QiIBN6JcrBndL+xhgTvSvEE5XMiNY95zu
- 4jgRZ4/cUJ6MtlTydIqWOAThf3SzzYJowDvsUAZSa48QmDUMJwRKHwzduqRdw3Ibkm
- mA6dLtkec3NRQ==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v15 3/5] PCI: Move declaration of pci_rescan_remove_lock
- into public pci.h
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB44C10F69F;
+	Thu, 24 Sep 2026 16:35:52 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F44310E55A;
+ Thu, 24 Sep 2026 16:35:52 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_PCI/IOV=3A_Fix_SR-IOV_loc?=
+ =?utf-8?q?king_races_and_AB-BA_deadlocks?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Benjamin Block" <bblock@linux.ibm.com>
-Cc: "Vasily Gorbik" <gor@linux.ibm.com>,
- "Alexander Gordeev" <agordeev@linux.ibm.com>, linux-pci@vger.kernel.org,
- linux-s390@vger.kernel.org, "Heiko
- Carstens" <hca@linux.ibm.com>, intel-xe@lists.freedesktop.org, "Christian
- Borntraeger" <borntraeger@linux.ibm.com>
-In-Reply-To: <d15370f96120f007db5717839a313f1a7bbfe010.1790267348.git.bblock@linux.ibm.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 24 Sep 2026 16:35:52 -0000
+Message-ID: <179026775205.204166.2378062527414544706@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <cover.1790267348.git.bblock@linux.ibm.com>
- <d15370f96120f007db5717839a313f1a7bbfe010.1790267348.git.bblock@linux.ibm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 24 Sep 2026 16:35:40 +0000
-Message-Id: <20260924163541.4AC151F000FF@smtp.kernel.org>
+In-Reply-To: <cover.1790267348.git.bblock@linux.ibm.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,30 +36,122 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> So far it is possible to use and call the functions
-> pci_lock_rescan_remove() and pci_unlock_rescan_remove() from any PCI
-> code, including modules and architecture code; but the lock variable
-> `pci_rescan_remove_lock` itself is private to objects residing in
-> `drivers/pci/` via the header `drivers/pci/pci.h`.
->=20
-> This makes it possible to use the lock - lock it, unlock it - from
-> anywhere, but it is not possible to use lockdep annotations such as
-> lockdep_assert_held(), or sparse annotations such as __must_hold() in
-> modules or architecture code for PCI to make the usage more safe.
->=20
-> Since it is useful for `pci_rescan_remove_lock` to have such
-> annotations, move the variable declaration into `include/linux/pci.h`.
->=20
-> Reviewed-by: Niklas Schnelle <schnelle@linux.ibm.com>
-> Signed-off-by: Benjamin Block <bblock@linux.ibm.com>
+== Series Details ==
 
-Sashiko has reviewed this patch and found no issues. It looks great!
+Series: PCI/IOV: Fix SR-IOV locking races and AB-BA deadlocks
+URL   : https://patchwork.freedesktop.org/series/174935/
+State : warning
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/cover.1790267348.gi=
-t.bblock@linux.ibm.com?part=3D3
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d265885e770258981ee9ddb75613d66449f0616f
+Author: Benjamin Block <bblock@linux.ibm.com>
+Date:   Thu Sep 24 18:29:31 2026 +0200
+
+    s390/pci: Fix circular/recursive deadlocks in PCI-bus and -device release
+    
+    When removing PCI device or PCI bus objects there are a couple of
+    call-chains where it is possible that the kernel runs into a circular
+    deadlock involving the central `pci_rescan_remove_lock`.
+    
+    Two examples:
+    
+    (A) Thread α receives a PCI event notifying the kernel that a PCI
+    virtual function has been moved into Reserved state, and so the PCI
+    subsystem will try to remove that PCI function. The call-chain for that
+    looks like this:
+      __zpci_event_availability()
+        -> zpci_zdev_put()              # will   lock(zpci_add_remove_lock),
+                                        # and    lock(zpci_list_lock)
+        -> zpci_release_device()        # will unlock(zpci_list_lock)
+        -> zpci_cleanup_bus_resources() # will   lock(pci_rescan_remove_lock)
+    
+    Thread β is triggered by userspace writing 0 into the SysFS attribute
+    `sriov_numvfs` of the parent PCI physical function of the same function
+    we just try to remove. This will also try to release the PCI virtual
+    function; but this time the call-chain looks like this:
+      sriov_numvfs_store()
+        -> ... (device driver dependent)
+        -> sriov_disable()
+        -> sriov_del_vfs()              # will   lock(pci_rescan_remove_lock)
+        -> ... (deep chain)
+        -> pci_release_dev()
+        -> pcibios_release_device()
+        -> zpci_zdev_put()              # will   lock(zpci_add_remove_lock)
+    
+    If thread α and β coincide, this will result in a cyclic deadlock.
+    
+    (B) Thread γ receives a PCI event notifying the kernel that one or more
+    PCI functions got hot plugged, and need to be configured. A possible
+    call-chain that might happen while the PCI subsystem is trying to add
+    those new function looks like this:
+      __zpci_event_availability()
+        -> ... (multiple ways in which a device gets added)
+        -> zpci_add_device()            # will   lock(zpci_add_remove_lock)
+        -> zpci_bus_device_register()
+        -> zpci_bus_put()               # will   lock(zbus_list_lock)
+        -> zpci_bus_release()           # will unlock(zbus_list_lock)
+                                        # will   lock(pci_rescan_remove_lock)
+    
+    Now the same thread β as above in (A) might coincide, and again could
+    result in a cyclic deadlock.
+    
+    `pci_rescan_remove_lock` has to be and is taken at a "high level" in
+    most call-chains since it is intended to protect/mutual exclude all
+    rescan and/or removal actions taken in the PCI subsystem. So to prevent
+    the outlined deadlock scenarios above remove it instead from the "low
+    level" release functions for both the PCI device and PCI bus objects.
+    
+    Instead, lock `pci_rescan_remove_lock` in all call-chains leading to
+    those release functions:
+      * initialization of the PCI subsystem;
+      * processing of availability events (CRWs) for PCI functions;
+      * processing of error events (CRWs) for PCI functions;
+      * architecture specific release PCI device implementation.
+    
+    Additionally, remove `pci_rescan_remove_lock` from zpci_bus_scan_bus()
+    since its only caller zpci_scan_devices() is now always called with
+    `pci_rescan_remove_lock` already held.
+    
+    Lastly, document the new locking expectations after these changes. Add
+    sparse and lockdep annotations to functions that previously locked
+    `pci_rescan_remove_lock` explicitly, making sure the lock is now
+    already held when called. Additionally also add the annotations to
+    zpci_zdev_put() and zpci_bus_put() to make sure that every function that
+    potentially drops the last reference already holds the lock to prevent
+    surprises.
+    
+    Fixes: 05bc1be6db4b2 ("s390/pci: create zPCI bus")
+    Fixes: ab909509850b2 ("PCI: s390: Fix use-after-free of PCI resources with per-function hotplug")
+    Cc: stable@vger.kernel.org
+    Signed-off-by: Benjamin Block <bblock@linux.ibm.com>
++ /mt/dim checkpatch 2ac16c180109b3f1ed00e7a2c4459eaacfc80371 drm-intel
+6d47e9d18426 PCI/IOV: Make pci_lock_rescan_remove() reentrant and protect sriov_add_vfs/sriov_del_vfs
+abeeb3329037 PCI: Fix AB-BA deadlock between device_lock and pci_rescan_remove_lock in remove_store
+30e2aa543b9d PCI: Move declaration of pci_rescan_remove_lock into public pci.h
+d6dd37ae15c8 PCI: Provide lock guard for pci_rescan_remove_lock
+d265885e7702 s390/pci: Fix circular/recursive deadlocks in PCI-bus and -device release
+-:329: WARNING:TABSTOP: Statements should start on a tabstop
+#329: FILE: arch/s390/pci/pci_sysfs.c:81:
++	     if (_T) sysfs_unbreak_active_protection(_T),
+
+-:329: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
+#329: FILE: arch/s390/pci/pci_sysfs.c:81:
++	     if (_T) sysfs_unbreak_active_protection(_T),
+
+total: 1 errors, 1 warnings, 0 checks, 255 lines checked
+
 
