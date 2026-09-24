@@ -4,27 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 494D1C9831A
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 11:26:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0803FC9830E
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 11:27:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A43F10E8A6;
-	Thu, 24 Sep 2026 11:26:44 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57F8F10E152;
- Thu, 24 Sep 2026 11:26:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4713159478642356867=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/fbdev=3A_Move_helpers_t?=
- =?utf-8?q?o_clients/_subdirectory_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Thomas Zimmermann" <tzimmermann@suse.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B66110E152;
+	Thu, 24 Sep 2026 11:27:36 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ftHfhfLt";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3784210E152
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 11:27:35 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id F3D814109C;
+ Thu, 24 Sep 2026 11:27:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACC9F1F000FF;
+ Thu, 24 Sep 2026 11:27:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1790249254;
+ bh=gLmLTGupKZrn1HgoHfzlMSge5asRTvH6cE12Cw1fGCA=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=ftHfhfLtDv+YmqDl7vvYllpUANkZptATkHtdsdauWtLfCA36hMUEpJabROsRZ5t3B
+ i2NvuIlk8I3pyojXqGToYamz4MPtIO9GBmmUZuQjA1VuFqdFPWtHW10334pFhhYEoR
+ HgzFsOq8jLAxabrW/QefB0AtmQ/ENnI6qXT6Kf7W8ea4WxRQHCZ2uI4BcPDpJW448/
+ PBd5Y740sc4evU0d8PjOG5iUnHFOMEEsgk4bFHsnwqT3ybonmGoBHkLI2gGLENOj7h
+ p6WRPs6nCkjTPb8wVYvq8XE7aE3LJgmI+Nvzi/wNviwmlc8ylxhOaV82N8CB3Nvoh4
+ abHqUUs7TcLtw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 11/13] drm/xe/hwmon: Decode CRI temperature registers
+ as IEEE-754
+To: "Karthik Poosa" <karthik.poosa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 24 Sep 2026 11:26:43 -0000
-Message-ID: <179024920335.202880.9480868544240172696@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260924093036.82356-1-tzimmermann@suse.de>
-In-Reply-To: <20260924093036.82356-1-tzimmermann@suse.de>
+In-Reply-To: <20260924111156.2628915-12-karthik.poosa@intel.com>
+References: <20260924111156.2628915-1-karthik.poosa@intel.com>
+ <20260924111156.2628915-12-karthik.poosa@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 24 Sep 2026 11:27:34 +0000
+Message-Id: <20260924112734.ACC9F1F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,139 +53,101 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4713159478642356867==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] hwmon: xe: incorrect IEEE-754 decoding applied to VRAM_N on Cres=
+cent Island
+--
 
-== Series Details ==
+commit 8039331718fb03f6dfcbe8bbe7a3375383a0c5d2
+Author: Karthik Poosa <karthik.poosa@intel.com>
 
-Series: drm/fbdev: Move helpers to clients/ subdirectory (rev2)
-URL   : https://patchwork.freedesktop.org/series/174787/
-State : success
+drm/xe/hwmon: Decode CRI temperature registers as IEEE-754
 
-== Summary ==
+This commit decodes the package and VRAM temperatures on Crescent Island
+from an IEEE-754 floating-point format to integer millidegrees.
 
-CI Bug Log - changes from xe-5818-1a702d79afe36153e37dd9784fde95f9f86ea03f_BAT -> xe-pw-174787v2_BAT
-====================================================
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index e1cff5700e7f9..c411cd375aa1b 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
 
-Summary
--------
+[ ... ]
 
-  **SUCCESS**
+> @@ -1249,26 +1312,27 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 at=
+tr, int channel, long *val)
+>  	switch (attr) {
+>  	case hwmon_temp_input:
+>  		switch (channel) {
+> -		case CHANNEL_PKG:
+> -		case CHANNEL_VRAM:
+> -			reg_val =3D xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, ch=
+annel));
+> -
+> -			/* HW register value is in degrees Celsius, convert to millidegrees. =
+*/
+> -			*val =3D REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
+> -			return 0;
+>  		case CHANNEL_MCTRL:
+>  			return get_mc_temp(hwmon, val);
+>  		case CHANNEL_PCIE:
+>  			return get_pcie_temp(hwmon, val);
+> +		case CHANNEL_PKG:
+> +		case CHANNEL_VRAM:
+>  		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+>  			reg_val =3D xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, ch=
+annel));
+> -			/*
+> -			 * This temperature format is 24 bit [31:8] signed integer and 8 bit
+> -			 * [7:0] fraction.
+> -			 */
+> -			*val =3D (s32)(REG_FIELD_GET(TEMP_MASK_VRAM_N, reg_val)) *
+> -				(REG_FIELD_GET(TEMP_SIGN_MASK, reg_val) ? -1 : 1) *
+> -				 MILLIDEGREE_PER_DEGREE;
+> +			if (hwmon->xe->info.platform >=3D XE_CRESCENTISLAND) {
+> +				return xe_hwmon_temperature_decode((u32)reg_val, val);
 
-  No regressions found.
+[Severity: Medium]
+Will this indiscriminately apply IEEE-754 decoding to all VRAM channels on
+Crescent Island, including CHANNEL_VRAM_N?
 
-  
+Looking at xe_hwmon_get_reg(), VRAM_N on XE_CRESCENTISLAND still uses
+the legacy BMG_VRAM_TEMPERATURE_N registers:
 
-Participating hosts (15 -> 15)
-------------------------------
+	case REG_TEMP:
+		if (xe->info.platform =3D=3D XE_CRESCENTISLAND) {
+			if (channel =3D=3D CHANNEL_PKG)
+				...
+			else if (in_range(channel, CHANNEL_VRAM_N, hwmon->temp.vram_count) &&
+				 xe_hwmon_vram_channel_enabled(hwmon, channel - CHANNEL_VRAM_N))
+				return BMG_VRAM_TEMPERATURE_N(channel - CHANNEL_VRAM_N);
 
-  No changes in participating hosts
+Since BMG_VRAM_TEMPERATURE_N registers encode temperatures in a 24.8
+fixed-point format, parsing them as IEEE-754 floating-point values will
+result in incorrectly reporting sensor values when reading tempN_input via
+sysfs.
 
-Known issues
-------------
+Could this condition be narrowed to exclude CHANNEL_VRAM_N?
 
-  Here are the changes found in xe-pw-174787v2_BAT that come from known issues:
+> +			} else if (channel >=3D CHANNEL_VRAM_N) {
+> +				/*
+> +				 * This temperature format is 24 bit [31:8] signed integer and 8 bit
+> +				 * [7:0] fraction for platforms before CRI.
+> +				 */
+> +				*val =3D (s32)REG_FIELD_GET(TEMP_MASK_VRAM_N, reg_val) *
+> +					(REG_FIELD_GET(TEMP_SIGN_MASK, reg_val) ? -1 : 1) *
+> +					MILLIDEGREE_PER_DEGREE;
+> +			} else {
+> +				*val =3D REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
+> +			}
+>  			return 0;
+>  		default:
+>  			return -EOPNOTSUPP;
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#8007])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5818-1a702d79afe36153e37dd9784fde95f9f86ea03f/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174787v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@xe_waitfence@reltime:
-    - bat-ptl-2:          [PASS][3] -> [FAIL][4] ([Intel XE#9115])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5818-1a702d79afe36153e37dd9784fde95f9f86ea03f/bat-ptl-2/igt@xe_waitfence@reltime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174787v2/bat-ptl-2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#8007]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007
-  [Intel XE#9115]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115
-
-
-Build changes
--------------
-
-  * Linux: xe-5818-1a702d79afe36153e37dd9784fde95f9f86ea03f -> xe-pw-174787v2
-
-  IGT_9111: 4aeabf104b136437d0ccc57caf32a752587d595c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5818-1a702d79afe36153e37dd9784fde95f9f86ea03f: 1a702d79afe36153e37dd9784fde95f9f86ea03f
-  xe-pw-174787v2: 174787v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174787v2/index.html
-
---===============4713159478642356867==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/fbdev: Move helpers to clients/ subdirectory (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174787/">https://patchwork.freedesktop.org/series/174787/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174787v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174787v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5818-1a702d79afe36153e37dd9784fde95f9f86ea03f_BAT -&gt; xe-pw-174787v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-174787v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5818-1a702d79afe36153e37dd9784fde95f9f86ea03f/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174787v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8007">Intel XE#8007</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5818-1a702d79afe36153e37dd9784fde95f9f86ea03f/bat-ptl-2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174787v2/bat-ptl-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9115">Intel XE#9115</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5818-1a702d79afe36153e37dd9784fde95f9f86ea03f -&gt; xe-pw-174787v2</li>
-</ul>
-<p>IGT_9111: 4aeabf104b136437d0ccc57caf32a752587d595c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5818-1a702d79afe36153e37dd9784fde95f9f86ea03f: 1a702d79afe36153e37dd9784fde95f9f86ea03f<br />
-  xe-pw-174787v2: 174787v2</p>
-
-</body>
-</html>
-
---===============4713159478642356867==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260924111156.2628=
+915-1-karthik.poosa@intel.com?part=3D11
