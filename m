@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BE97C9830E
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 09:51:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7052CC9830E
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 09:58:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B05310E4BE;
-	Thu, 24 Sep 2026 09:51:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34FC710F408;
+	Thu, 24 Sep 2026 09:58:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Airun0+2";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="QjSloAa4";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CABAB10E4BE;
- Thu, 24 Sep 2026 09:51:34 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1323610F406;
+ Thu, 24 Sep 2026 09:57:59 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id E2800601DE;
- Thu, 24 Sep 2026 09:51:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5939E1F000FF;
- Thu, 24 Sep 2026 09:51:33 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id AE158406C2;
+ Thu, 24 Sep 2026 09:57:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50C261F000FF;
+ Thu, 24 Sep 2026 09:57:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790243493;
- bh=f3kwJnZglNAqTQJboG+Lpx0UMTRXfk6mZVk6/Cb5wVs=;
+ s=k20260515; t=1790243878;
+ bh=bZz8JRI65c5HlFEfDtjm2kJXKznzd91PmpGvaasxK6s=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Airun0+2Cw8OJG8hxxO3vwTV7Re1tc5GWw1Ts77Tpd2jkN1W93VKn+OEllrIxz3EP
- dM/M90w0yhmjSIqwJTltQ6ojHbKjnq0sQwSlYBolV9yh6ofqctmxpsJKpLu5LEuxuY
- X+X0kI//kGTkLz+AC8XNX1bzqgh1Urzh6X3Z9EVggRrPoTiTNEDdPGFW3Mz5qHQ7KK
- /21+7SjiIrTiYCf76fhdEm8XlU5CEgH75m1aCSbt7UkIhr4BzeBv1v3EX/d2IZBxM3
- gjraGSFM1URkssWoCHqeUAKg27QsGoTyma9QUvzBGgjZGgJLOhIwlO1jLJuuxVtWFN
- eNDy4k2A5U2Gw==
+ b=QjSloAa4axeUj8DJ9FXHtmOpUiC4Yy924v7cFHxOiw4HWwpySBz3Z3cQPtece3/Lb
+ 0yhuDIKnaOYbqKj6oh3dp2pAzwt5bmWt6E7LVMnuWe1orhLxOTZ7OMcP3NqMgW4Dbs
+ St/mWseplxwdqIu30ueWWnDbZ5Oe4aKUDhchVQ0rtNS2ELF/9mB5LmpyBcuLKYAP+e
+ C0gdH+s3sMuePJgySas327uedsMrWPgebkuHx+02WYKgpjn03jH67uurBeQGM3of+O
+ rTQ1n7IcEOeFWmeY6K2XwLPHsHh81cO6lxvsFbR2ZMUOfsIUx3CUkDzUCKP0JeZa3j
+ zxvANeesqCM3w==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 1/2] drm/i915/dp: fix PBN in ALLOCATE_PAYLOAD request
- to use actual video bandwidth
+Subject: Re: [PATCH v3 2/2] drm/dp_mst: Track allocated_pbn from
+ ALLOCATE_PAYLOAD down-reply
 To: "Xiao Lu" <xiaolu.xie@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
-In-Reply-To: <20260924094316.822211-2-xiaolu.xie@intel.com>
+In-Reply-To: <20260924094316.822211-3-xiaolu.xie@intel.com>
 References: <20260922092647.2263962-1-xiaolu.xie@intel.com>
  <20260924094316.822211-1-xiaolu.xie@intel.com>
- <20260924094316.822211-2-xiaolu.xie@intel.com>
+ <20260924094316.822211-3-xiaolu.xie@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 24 Sep 2026 09:51:32 +0000
-Message-Id: <20260924095133.5939E1F000FF@smtp.kernel.org>
+Date: Thu, 24 Sep 2026 09:57:57 +0000
+Message-Id: <20260924095758.50C261F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,89 +59,94 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] drm/i915/dp: DP MST VCPI timeslot mismatch and WARN_ON trigger
+- [High] drm/dp_mst: data race on allocated_pbn can bypass bandwidth limits
+- [Medium] drm/dp_mst: bandwidth check fails on shrinking payloads due to s=
+tale allocated_pbn
 --
 
-commit 2b87b995c0537aad3132b5f2622d64dea6c8fb7c
+commit d52065aed1fa389dfd394c9d3cae48a882973e04
 Author: Xiao Lu <xiaolu.xie@intel.com>
 
-drm/i915/dp: fix PBN in ALLOCATE_PAYLOAD request to use actual video bandwi=
-dth
-   =20
-This commit updates intel_dp_mtp_tu_compute_config() to separate the raw
-video bandwidth PBN from the aligned hardware TU PBN. The raw PBN is now
-passed to drm_dp_atomic_find_time_slots() to fix payload allocation
-rejections.
+drm/dp_mst: Track allocated_pbn from ALLOCATE_PAYLOAD down-reply
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index 6a869d0f6ffc0..4d088282df781 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+This commit stores the reported PBN from an ALLOCATE_PAYLOAD reply. It uses
+the larger of the requested and allocated PBN for bandwidth checks to accou=
+nt
+for constraints applied by intermediate branches along the path.
+
+> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/=
+drm/display/drm_dp_mst_topology.c
+> index 7ce9e212770ad..86a42c5e2debb 100644
+> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
 
 [ ... ]
 
-> @@ -397,7 +398,21 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *=
-intel_dp,
-> =20
->  			slots =3D drm_dp_atomic_find_time_slots(state, &intel_dp->mst.mgr,
->  							      connector->mst.port,
-> -							      dfixed_trunc(pbn));
-> +							      raw_pbn);
+> @@ -3166,10 +3167,14 @@ static int drm_dp_payload_send_msg(struct drm_dp_=
+mst_topology_mgr *mgr,
+>  	 */
+>  	ret =3D drm_dp_mst_wait_tx_reply(mstb, txmsg);
+>  	if (ret > 0) {
+> -		if (txmsg->reply.reply_type =3D=3D DP_SIDEBAND_REPLY_NAK)
+> +		if (txmsg->reply.reply_type =3D=3D DP_SIDEBAND_REPLY_NAK) {
+>  			ret =3D -EINVAL;
+> -		else
+> +		} else {
+> +			if (payload)
+> +				payload->allocated_pbn =3D
+> +					txmsg->reply.u.allocate_payload.allocated_pbn;
 
 [Severity: High]
-Does this cause a mismatch in the programmed VCPI payload size?
+Can this lockless write to payload->allocated_pbn race with an atomic check?
 
-By passing the unaligned raw_pbn here, the DRM core calculates an unaligned
-VCPI timeslot allocation that is programmed into the downstream branch
-device.=20
+If a non-blocking atomic commit is executing asynchronously, it receives the
+ALLOCATE_PAYLOAD reply and drm_dp_payload_send_msg() updates allocated_pbn
+without locks. Concurrently, if userspace initiates a new atomic check,
+drm_dp_mst_duplicate_state() will copy the payload struct via kmemdup().
 
-Since the i915 hardware transmitter still expects the lane-count aligned
-remote_tu, the source hardware and branch device will now have mismatched
-payload sizes. Can this mismatch break DP MST frame synchronization and
-cause data drops or display corruption?
+Could this result in the atomic check reading a torn or stale value when
+evaluating max(payload->pbn, payload->allocated_pbn) in
+drm_dp_mst_atomic_check_port_bw_limit(), potentially bypassing bandwidth
+constraints?
 
-Additionally, this mismatch appears to deterministically trigger an existing
-validation warning later in intel_dp_mtp_tu_compute_config():
+>  			ret =3D 0;
+> +		}
+>  	}
+>  	kfree(txmsg);
+>  fail_put:
 
-	if (slots >=3D 0) {
-		drm_WARN_ON(display->drm, slots !=3D crtc_state->dp_m_n.tu);
-		break;
-	}
+[ ... ]
 
-Will this unconditionally fire during modesets where the required timeslots
-are not a multiple of the lane count?
+> @@ -4575,6 +4580,7 @@ int drm_dp_atomic_release_time_slots(struct drm_ato=
+mic_commit *state,
+>  	drm_dbg_atomic(mgr->dev, "[MST PORT:%p] TU %d -> 0\n", port, payload->t=
+ime_slots);
+>  	if (!payload->delete) {
+>  		payload->pbn =3D 0;
+> +		payload->allocated_pbn =3D 0;
 
-> +
-> +			drm_dbg_kms(display->drm,
-> +				    "MST TU %s pipe %c: clock=3D%d lanes=3D%d bpp=3D%d link_bpp=3D%d=
- fec=3D%d\n",
-> +				    connector->base.name,
-> +				    pipe_name(to_intel_crtc(crtc_state->uapi.crtc)->pipe),
-> +				    crtc_state->port_clock, crtc_state->lane_count,
-> +				    fxp_q4_to_int(bpp_x16), fxp_q4_to_int(link_bpp_x16),
-> +				    crtc_state->fec_enable);
-> +			drm_dbg_kms(display->drm,
-> +				    "MST TU %s: overhead=3D%d raw_pbn=3D%d pbn=3D%d pbn_div=3D%d tu=
-=3D%d slots=3D%d full_pbn=3D%d\n",
-> +				    connector->base.name,
-> +				    remote_bw_overhead, raw_pbn,
-> +				    dfixed_trunc(pbn), dfixed_trunc(mst_state->pbn_div),
-> +				    remote_tu, slots, connector->mst.port->full_pbn);
-> =20
->  			/* TODO: Check this already in drm_dp_atomic_find_time_slots(). */
->  			if (slots > mst_state->total_avail_slots)
+[Severity: Medium]
+Does this properly handle payloads that shrink in size?
 
-[Severity: High]
-Does this limit check accurately reflect the required slots?
+Since payload->allocated_pbn is only cleared here when releasing the payload
+entirely (during a full deletion), what happens if a commit simply shrinks =
+an
+existing payload (for example, switching to a smaller display mode on the
+same CRTC)?
 
-This check now validates the unaligned slots. Because the source hardware
-uses remote_tu (which is aligned and thus potentially larger), could the
-hardware's aligned timeslots exceed the physical 64-slot limit even if
-the unaligned slots pass this check?
+In that scenario, drm_dp_atomic_release_time_slots() skips active CRTCs,
+meaning allocated_pbn remains at its old, larger value. When the new
+bandwidth is checked, max(payload->pbn, payload->allocated_pbn) in
+drm_dp_mst_atomic_check_port_bw_limit() would yield the old larger value,
+which could falsely prevent the freed bandwidth from being reallocated to
+other displays.
+
+>  		payload->delete =3D true;
+>  		if (payload->vcpi > 0)
+>  			topology_state->payload_mask &=3D ~BIT(payload->vcpi - 1);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260924094316.8222=
-11-1-xiaolu.xie@intel.com?part=3D1
+11-1-xiaolu.xie@intel.com?part=3D2
