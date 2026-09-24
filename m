@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BA33C98327
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34077C98326
 	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 23:01:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7395710F7E3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AE3B10E796;
 	Thu, 24 Sep 2026 23:01:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hdbDZGEG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D6zrGdoO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65E2810E767
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 23:01:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C19310E767
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 23:01:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1790290883; x=1821826883;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TCD+PRq6odGSwKQbowl7EGHkVogieKD4iMy0ADlscMU=;
- b=hdbDZGEGgbthd6JZrRk7sJCwHaGrg4U6XxFB0MkMsDm51H9aEqee8OvM
- SU4rIy6nXlWU6ywCeBEVM2mql7dkM3pjbROqoSxwYLGUCoIT6wavzdWJ4
- /4MU5uwUr/2qJI1t0DElDlL87GtlkXjHwq4q6rOBCDiyrC167Eu3p3ScI
- nGH0SseG8qUk1jp8U9E0D+MTTa2u4RZ1NxAsW3lcLoQB7NhSoWZ3FGGr6
- usxqKIB5IOx5inoLdx+DtsOOYTMFDA7pBKpvUrXmW5L2xu5+YcnxQ3Kzi
- ULPrOPbNKPGE+rTslEaS+JyhoMBXYLLk1gTXm/Jn0pFvLBezzo0Bd2EKW A==;
-X-CSE-ConnectionGUID: aT4FL5u1TqqhEJ5FrkA0pA==
-X-CSE-MsgGUID: LwG5z3l9QH2Law9t7Q2wxA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="90120168"
-X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="90120168"
+ bh=vxxpDg9Qp32TghnSo9GvalE29OWBJ1nhC9mOvmEjTiY=;
+ b=D6zrGdoOC2+4Rw3CpeaMsjphkhQYNSEWx/YCHxAaLVHMz6uj44kfmb1E
+ 54CDbcjAB2BjJUk1HUL0d1dIHrQZEW5IJ2D1AAwK5HsrAtLSum67req7L
+ uG9IdCwNRAlP3tbVmbn7IrEwHeAewG09/vjKsyqg5AW93SGCkmY0qnanT
+ AY3tANeD8uEZdUO5lpfvk0B6L+MKTdT+n97uBhtSTvI1Wes2E1myI2vc6
+ 5vSlCwA1UxiSBlLyGd/WfXCEwNGOH2qlV7Dod5LNgbdH2wtQS3faqAV1u
+ RXeEM8qIOkTnzHMGJiMr4dXKwjvYjl1pEb9dW6ZTHdukY27BDYZEFGZTP A==;
+X-CSE-ConnectionGUID: 0CEM5S8XQP+K6mGyKPBJHw==
+X-CSE-MsgGUID: //4LgpT4QAeFZoJtXjk8GQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="90120172"
+X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="90120172"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Sep 2026 16:01:22 -0700
-X-CSE-ConnectionGUID: vNgC3vnTTqGT9d5iqoc9Ww==
-X-CSE-MsgGUID: 9Y9fMk0wTaqcMDAEZ+Uh0A==
+X-CSE-ConnectionGUID: C8NvIvpaSau1orMKRWWFcQ==
+X-CSE-MsgGUID: 7Po3iI1jR4Ci9Re7uSdflw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="270651589"
+X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="270651602"
 Received: from dut4435arlh.fm.intel.com ([10.105.8.61])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2026 16:01:21 -0700
+ 24 Sep 2026 16:01:22 -0700
 From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
@@ -48,13 +48,14 @@ Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  gustavo.sousa@intel.com, matthew.d.roper@intel.com,
  daniele.ceraolospurio@intel.com, shuicheng.lin@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 01/16] drm/xe: Guard configfs attribute reads in getters
-Date: Thu, 24 Sep 2026 23:01:20 +0000
-Message-ID: <20260924230120.389685-19-stuart.summers@intel.com>
+Subject: [PATCH 05/16] drm/xe: Invert vram_page_offline configfs attribute
+Date: Thu, 24 Sep 2026 23:01:24 +0000
+Message-ID: <20260924230120.389685-23-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260924230120.389685-18-stuart.summers@intel.com>
 References: <20260924230120.389685-18-stuart.summers@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,112 +71,233 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The configfs getters read dev->config members without holding dev->lock,
-so a concurrent store can tear the value being returned. The store paths
-and a few of the getters already take the lock; make it consistent by
-wrapping every read of dev->config in the getters with a scoped_guard(),
-covering the surrounding checks that consume those values as well.
+Rename disable_vram_page_offline to enable_vram_page_offline The default
+is now true, matching the previous default of offlining being active.
+
+Negative-logic flags are error prone once they get combined with other
+conditions, so carry the positive sense all the way down to the RAS
+consumer rather than inverting at the configfs boundary. The internal
+xe->ras field is explicitly initialized for every platform since a
+zeroed struct no longer means "offlining enabled".
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 Assisted-by: Copilot:claude-opus-5
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_configfs.c | 32 +++++++++++++++++++++-----------
- 1 file changed, 21 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_configfs.c      | 44 +++++++++++++--------------
+ drivers/gpu/drm/xe/xe_configfs.h      |  2 +-
+ drivers/gpu/drm/xe/xe_drm_ras_types.h |  4 +--
+ drivers/gpu/drm/xe/xe_ras.c           |  8 +++--
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c  |  2 +-
+ 5 files changed, 31 insertions(+), 29 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index f5c828cf7e8f..9ff39ec8c07d 100644
+index 50bfc357ce4e..28a3b3761c91 100644
 --- a/drivers/gpu/drm/xe/xe_configfs.c
 +++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -1235,7 +1235,8 @@ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
- 	if (!dev)
- 		return device_defaults.survivability_mode;
+@@ -62,7 +62,7 @@
+  *	    ├── gt_types_allowed
+  *	    ├── engines_allowed
+  *	    ├── enable_psmi
+- *	    └── disable_vram_page_offline
++ *	    └── enable_vram_page_offline
+  *
+  * After configuring the attributes as per next section, the device can be
+  * probed with::
+@@ -160,15 +160,15 @@
+  *
+  * This attribute can only be set before binding to the device.
+  *
+- * Disable VRAM page offline:
+- * ----------------------------
++ * Enable VRAM page offline:
++ * -------------------------
+  *
+- *  0, n, N, false - Do not disable (Offlining is active - default)
+- *  1, y, Y, true  - Disable vram page offline (Logging only)
++ *  0, n, N, false - Disable vram page offline (Logging only)
++ *  1, y, Y, true  - Enable vram page offline (Offlining is active - default)
+  *
+  *  Example to disable VRAM offline::
+  *
+- *      # echo 1 > /sys/kernel/config/xe/0000:03:00.0/disable_vram_page_offline
++ *      # echo 0 > /sys/kernel/config/xe/0000:03:00.0/enable_vram_page_offline
+  *
+  * This attribute can only be set on CRI before binding to the device.
+  *
+@@ -288,7 +288,7 @@ struct xe_config_group_device {
+ 		bool survivability_mode;
+ 		bool enable_psmi;
+ 		bool enable_multi_queue;
+-		bool disable_vram_page_offline;
++		bool enable_vram_page_offline;
+ 		struct {
+ 			unsigned int max_vfs;
+ 			bool admin_only_pf;
+@@ -309,7 +309,7 @@ static const struct xe_config_device device_defaults = {
+ 	.survivability_mode = false,
+ 	.enable_psmi = false,
+ 	.enable_multi_queue = true,
+-	.disable_vram_page_offline = false,
++	.enable_vram_page_offline = true,
+ 	.sriov = {
+ 		.max_vfs = XE_DEFAULT_MAX_VFS,
+ 		.admin_only_pf = XE_DEFAULT_ADMIN_ONLY_PF,
+@@ -631,15 +631,15 @@ static ssize_t enable_multi_queue_store(struct config_item *item, const char *pa
+ 	return len;
+ }
  
--	mode = dev->config.survivability_mode;
-+	scoped_guard(mutex, &dev->lock)
-+		mode = dev->config.survivability_mode;
- 	config_group_put(&dev->group);
+-static ssize_t disable_vram_page_offline_show(struct config_item *item, char *page)
++static ssize_t enable_vram_page_offline_show(struct config_item *item, char *page)
+ {
+ 	struct xe_config_device *dev = to_xe_config_device(item);
  
- 	return mode;
-@@ -1249,7 +1250,8 @@ static u64 get_gt_types_allowed(struct pci_dev *pdev)
- 	if (!dev)
- 		return device_defaults.gt_types_allowed;
+-	return sprintf(page, "%s\n", str_yes_no(dev->disable_vram_page_offline));
++	return sprintf(page, "%s\n", str_yes_no(dev->enable_vram_page_offline));
+ }
  
--	mask = dev->config.gt_types_allowed;
-+	scoped_guard(mutex, &dev->lock)
-+		mask = dev->config.gt_types_allowed;
- 	config_group_put(&dev->group);
+-static ssize_t disable_vram_page_offline_store(struct config_item *item,
+-					       const char *page, size_t len)
++static ssize_t enable_vram_page_offline_store(struct config_item *item,
++					      const char *page, size_t len)
+ {
+ 	struct xe_config_group_device *dev = to_xe_config_group_device(item);
+ 	bool val;
+@@ -653,7 +653,7 @@ static ssize_t disable_vram_page_offline_store(struct config_item *item,
+ 	if (is_bound(dev))
+ 		return -EBUSY;
  
- 	return mask;
-@@ -1293,7 +1295,8 @@ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev)
- 	if (!dev)
- 		return device_defaults.engines_allowed;
- 
--	engines_allowed = dev->config.engines_allowed;
-+	scoped_guard(mutex, &dev->lock)
-+		engines_allowed = dev->config.engines_allowed;
- 	config_group_put(&dev->group);
- 
- 	return engines_allowed;
-@@ -1313,7 +1316,8 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
- 	if (!dev)
- 		return false;
- 
--	ret = dev->config.enable_psmi;
-+	scoped_guard(mutex, &dev->lock)
-+		ret = dev->config.enable_psmi;
- 	config_group_put(&dev->group);
- 
- 	return ret;
-@@ -1334,7 +1338,8 @@ bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev)
- 	if (!dev)
- 		return true;
- 
--	ret = dev->config.enable_multi_queue;
-+	scoped_guard(mutex, &dev->lock)
-+		ret = dev->config.enable_multi_queue;
- 	config_group_put(&dev->group);
- 
- 	return ret;
-@@ -1354,7 +1359,8 @@ bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev)
- 	if (!dev)
- 		return device_defaults.disable_vram_page_offline;
- 
--	ret = dev->config.disable_vram_page_offline;
-+	scoped_guard(mutex, &dev->lock)
-+		ret = dev->config.disable_vram_page_offline;
- 	config_group_put(&dev->group);
- 
- 	return ret;
-@@ -1378,10 +1384,12 @@ u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
- 	if (!dev)
- 		return 0;
- 
--	if (cs)
--		*cs = dev->config.ctx_restore_mid_bb[class].cs;
-+	scoped_guard(mutex, &dev->lock) {
-+		if (cs)
-+			*cs = dev->config.ctx_restore_mid_bb[class].cs;
- 
--	len = dev->config.ctx_restore_mid_bb[class].len;
-+		len = dev->config.ctx_restore_mid_bb[class].len;
-+	}
- 	config_group_put(&dev->group);
+-	dev->config.disable_vram_page_offline = val;
++	dev->config.enable_vram_page_offline = val;
  
  	return len;
-@@ -1405,8 +1413,10 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
- 	if (!dev)
- 		return 0;
+ }
+@@ -901,7 +901,7 @@ CONFIGFS_ATTR(, ctx_restore_mid_bb);
+ CONFIGFS_ATTR(, ctx_restore_post_bb);
+ CONFIGFS_ATTR(, enable_multi_queue);
+ CONFIGFS_ATTR(, enable_psmi);
+-CONFIGFS_ATTR(, disable_vram_page_offline);
++CONFIGFS_ATTR(, enable_vram_page_offline);
+ CONFIGFS_ATTR(, engines_allowed);
+ CONFIGFS_ATTR(, gt_types_allowed);
+ CONFIGFS_ATTR(, survivability_mode);
+@@ -911,7 +911,7 @@ static struct configfs_attribute *xe_config_device_attrs[] = {
+ 	&attr_ctx_restore_post_bb,
+ 	&attr_enable_multi_queue,
+ 	&attr_enable_psmi,
+-	&attr_disable_vram_page_offline,
++	&attr_enable_vram_page_offline,
+ 	&attr_engines_allowed,
+ 	&attr_gt_types_allowed,
+ 	&attr_survivability_mode,
+@@ -943,7 +943,7 @@ static bool xe_config_device_is_visible(struct config_item *item,
+ 			return false;
+ 	}
  
--	*cs = dev->config.ctx_restore_post_bb[class].cs;
--	len = dev->config.ctx_restore_post_bb[class].len;
-+	scoped_guard(mutex, &dev->lock) {
-+		*cs = dev->config.ctx_restore_post_bb[class].cs;
-+		len = dev->config.ctx_restore_post_bb[class].len;
-+	}
+-	if (attr == &attr_disable_vram_page_offline) {
++	if (attr == &attr_enable_vram_page_offline) {
+ 		if (!dev->desc->is_dgfx || dev->desc->platform != XE_CRESCENTISLAND)
+ 			return false;
+ 	}
+@@ -1195,7 +1195,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
+ 	PRI_CUSTOM_ATTR("%llx", engines_allowed);
+ 	PRI_CUSTOM_ATTR("%d", enable_multi_queue);
+ 	PRI_CUSTOM_ATTR("%d", enable_psmi);
+-	PRI_CUSTOM_ATTR("%d", disable_vram_page_offline);
++	PRI_CUSTOM_ATTR("%d", enable_vram_page_offline);
+ 	PRI_CUSTOM_ATTR("%d", survivability_mode);
+ 	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
+ 
+@@ -1350,21 +1350,21 @@ bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev)
+ }
+ 
+ /**
+- * xe_configfs_get_disable_vram_page_offline - get configfs disable_vram_page_offline setting
++ * xe_configfs_get_enable_vram_page_offline - get configfs enable_vram_page_offline setting
+  * @pdev: pci device
+  *
+- * Return: disable_vram_page_offline setting in configfs
++ * Return: enable_vram_page_offline setting in configfs
+  */
+-bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev)
++bool xe_configfs_get_enable_vram_page_offline(struct pci_dev *pdev)
+ {
+ 	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
+ 	bool ret;
+ 
+ 	if (!dev)
+-		return device_defaults.disable_vram_page_offline;
++		return device_defaults.enable_vram_page_offline;
+ 
+ 	scoped_guard(mutex, &dev->lock)
+-		ret = dev->config.disable_vram_page_offline;
++		ret = dev->config.enable_vram_page_offline;
  	config_group_put(&dev->group);
  
- 	return len;
+ 	return ret;
+diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+index ff902d7488ca..28ff1381382d 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.h
++++ b/drivers/gpu/drm/xe/xe_configfs.h
+@@ -20,7 +20,7 @@ bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
+ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
+ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
+ bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
+-bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev);
++bool xe_configfs_get_enable_vram_page_offline(struct pci_dev *pdev);
+ ssize_t xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+ 					   enum xe_engine_class class,
+ 					   u32 *cs, size_t max_len);
+diff --git a/drivers/gpu/drm/xe/xe_drm_ras_types.h b/drivers/gpu/drm/xe/xe_drm_ras_types.h
+index 0be218ba2db7..60cbc35a6b35 100644
+--- a/drivers/gpu/drm/xe/xe_drm_ras_types.h
++++ b/drivers/gpu/drm/xe/xe_drm_ras_types.h
+@@ -44,8 +44,8 @@ struct xe_drm_ras {
+ 	/** @info: info array for all types of errors */
+ 	struct xe_drm_ras_counter *info[DRM_XE_RAS_ERR_SEV_MAX];
+ 
+-	/** @disable_vram_page_offline: cached configfs policy, immutable after init */
+-	bool disable_vram_page_offline;
++	/** @enable_vram_page_offline: cached configfs policy, immutable after init */
++	bool enable_vram_page_offline;
+ };
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index 7a85735c57d5..ce9b57b3eede 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -916,13 +916,15 @@ void xe_ras_init(struct xe_device *xe)
+ {
+ 	int ret;
+ 
++	xe->ras.enable_vram_page_offline = true;
++
+ 	/*
+-	 * TODO: Replace platform check with xe->info.has_disable_vram_page_offline
++	 * TODO: Replace platform check with xe->info.has_vram_page_offline
+ 	 * once the feature flag is plumbed through device info.
+ 	 */
+ 	if (xe->info.platform == XE_CRESCENTISLAND)
+-		xe->ras.disable_vram_page_offline =
+-			xe_configfs_get_disable_vram_page_offline(to_pci_dev(xe->drm.dev));
++		xe->ras.enable_vram_page_offline =
++			xe_configfs_get_enable_vram_page_offline(to_pci_dev(xe->drm.dev));
+ 
+ 	xe_drm_ras_init(xe);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 9a514d983e90..1dad94a153b7 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -933,7 +933,7 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr)
+ 	vram_mgr = &vr->ttm;
+ 	mm = &vram_mgr->mm;
+ 
+-	if (xe->ras.disable_vram_page_offline) {
++	if (!xe->ras.enable_vram_page_offline) {
+ 		xe_err(xe, "0x%llx is reported as corrupted address by HW\n",
+ 		       addr);
+ 		return -EOPNOTSUPP;
 -- 
 2.43.0
 
