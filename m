@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF48DC98317
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 11:02:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06B65C9830E
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 11:03:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BB9910E0F6;
-	Thu, 24 Sep 2026 11:02:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88B9B10E6CD;
+	Thu, 24 Sep 2026 11:03:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lfDFISak";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CduDFYBQ";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1091B10E0F6
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 11:02:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6AA310E6CD
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 11:03:40 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id A304D40592;
- Thu, 24 Sep 2026 11:02:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7292A1F000FF;
- Thu, 24 Sep 2026 11:02:23 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 8F531410C8;
+ Thu, 24 Sep 2026 11:03:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47A371F000FF;
+ Thu, 24 Sep 2026 11:03:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790247743;
- bh=SILVaRcNilYdLX9pNvZv88K+QS0vHotxt28wlKC9iQ4=;
+ s=k20260515; t=1790247820;
+ bh=BKuxcr5FbJ/1c6VoOSgp4XqNtStJs4WbLNA2F5pzsB0=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=lfDFISakWXpSctSyutUUokJAO8fyLRJLAOpmkrXQhuS/E0K+nUUNkcxAG/L5qjPyZ
- XGmuccLYgtvxeDWWtmeGFAh0bBK5aLaJvyT+mPTmqlcue5SUk43liYVLSGX6/oBN7f
- Y5paWrI+ufBUG6k1t/4FWDsRHqU9EZalsFhK2RMRdalyvmWR74+Ppqrh5/NKlAfMV1
- XvQpySkod6egejdEXHd49ZnPodIWqk+AY6Mpegv7+3aHfVxEWP55GES/60A9qbLyWq
- Q+/YrQlo30s4WBKIweCtM869XvkSCJywLMFeaDb2FrU1KjKaerOwRKrfAzIqqXZ1Aa
- v2Bh/+CF6RLfA==
+ b=CduDFYBQ1gOk4ftVEofTOSdcwcnoBYBDbQUtFNs3IyB6GdBgHsKxetTQBtm+tyZVW
+ EUouDikmyLYFaiimGXkqrgzEZWjR1XdYZV1DiQ0NxX5bcNIk2JBIihuymtX3RzxWsS
+ rfbNAM+bGaELky+06CbG26WqEh7H/OzQcf4ZjVK6Xk0yqWAZFu67rJ46hZffSkCqlc
+ ZXT2LZ3xfE64qN3g+SXPs8wbeQd4K/LXVYnJIe1GhvAM5Pz5JLEcofsbVMgRpKGptw
+ LE+s3v2ndFlGQybDDAPIw3o38H0GSAv3nlPf+sa24VFFWGSjBhwA3A0SbTZOOthFcq
+ 9nmVKbFAenGkw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH i-g-t v4 03/13] drm/xe/hwmon: Fix memory controller
- thermal data handling
+Subject: Re: [PATCH i-g-t v4 01/13] drm/xe/hwmon: Handle pcode read failures
+ of xe_hwmon_pcode_rmw_power_limit
 To: "Karthik Poosa" <karthik.poosa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260924105000.2627929-4-karthik.poosa@intel.com>
+In-Reply-To: <20260924105000.2627929-2-karthik.poosa@intel.com>
 References: <20260924105000.2627929-1-karthik.poosa@intel.com>
- <20260924105000.2627929-4-karthik.poosa@intel.com>
+ <20260924105000.2627929-2-karthik.poosa@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 24 Sep 2026 11:02:23 +0000
-Message-Id: <20260924110223.7292A1F000FF@smtp.kernel.org>
+Date: Thu, 24 Sep 2026 11:03:39 +0000
+Message-Id: <20260924110340.47A371F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,47 +59,69 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Low] doc: typo in struct xe_hwmon_thermal_info kernel-doc causes warning
+- [Medium] sysfs: returning 0 on error in xe_hwmon_power_max_interval_store=
+() causes infinite userspace loops
 --
 
-commit 871f56e42943cda8c6cef9e6c91e26476b403061
+commit 719c9331149239878e8f9d385268d89b8d17624f
 Author: Karthik Poosa <karthik.poosa@intel.com>
 
-drm/xe/hwmon: Fix memory controller thermal data handling
+drm/xe/hwmon: Handle pcode read failures of xe_hwmon_pcode_rmw_power_limit
 
-This commit updates get_mc_temp() to read all required thermal groups and
-introduces an aligned u32 buffer for PCODE accesses. This avoids unaligned
-memory accesses and ensures accurate MC temperature reporting.
+This patch handles pcode read failures in xe_hwmon_pcode_rmw_power_limit() =
+by returning early and checking the error in callers. This prevents power l=
+imit settings from being updated with invalid data when the hardware read f=
+ails.
 
 > diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index d82da9be9e5b1..658b6902af7f8 100644
+> index 5edeac961ec33..514573f172ebb 100644
 > --- a/drivers/gpu/drm/xe/xe_hwmon.c
 > +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -143,8 +143,12 @@ struct xe_hwmon_thermal_info {
->  	};
->  	/** @count: no of temperature sensors available for the platform */
->  	u8 count;
-> -	/** @value: per-sensor raw mailbox temperature; bit7=3Dsign, bits6:0=3D=
-magnitude */
-> -	u8 value[U8_MAX];
-> +	union {
-> +		/** @vavlue: per-sensor raw mailbox temperature; bit7=3Dsign, bits6:0=
-=3Dmagnitude */
 
-[Severity: Low]
-This isn't a bug, but there is a typo in the struct member documentation
-(vavlue instead of value) for xe_hwmon_thermal_info. This mismatch will
-cause documentation generation tools like scripts/kernel-doc to emit warnin=
-gs.
+[ ... ]
 
-> +		u8 value[U8_MAX + 1];
-> +		/** @dword: sensor values as dwords, u32-aligned for pcode reads */
-> +		u32 dword[DIV_ROUND_UP(U8_MAX + 1, sizeof(u32))];
-> +	};
->  	/** @vram_label: vram label names */
->  	char vram_label[MAX_VRAM_CHANNELS][MAX_LABEL_SIZE];
->  };
+> @@ -679,11 +683,13 @@ xe_hwmon_power_max_interval_store(struct device *de=
+v, struct device_attribute *a
+> =20
+>  	mutex_lock(&hwmon->hwmon_lock);
+> =20
+> -	if (hwmon->xe->info.has_mbx_power_limits)
+> -		xe_hwmon_pcode_rmw_power_limit(hwmon, power_attr, channel, PWR_LIM_TIM=
+E, rxy);
+> -	else
+> +	if (hwmon->xe->info.has_mbx_power_limits) {
+> +		if (xe_hwmon_pcode_rmw_power_limit(hwmon, power_attr, channel, PWR_LIM=
+_TIME, rxy))
+> +			count =3D 0;
+
+[Severity: Medium]
+Could setting count to 0 here instead of returning a negative error code=20
+cause an infinite loop in userspace tools?
+
+Returning 0 from a sysfs store callback like=20
+xe_hwmon_power_max_interval_store() tells the VFS that 0 bytes were written=
+.=20
+Many userspace writers, including bash loops and standard library buffered=
+=20
+writers, will interpret a 0-byte write as a signal to retry the write=20
+indefinitely.=20
+
+If the underlying pcode mailbox hardware operation fails, would it be bette=
+r=20
+to propagate the negative error code (such as the return value of=20
+xe_hwmon_pcode_rmw_power_limit()) so the userspace write operation properly=
+=20
+fails?
+
+> +	} else {
+>  		r =3D xe_mmio_rmw32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, =
+channel),
+>  				  PWR_LIM_TIME, rxy);
+> +	}
+> =20
+>  	mutex_unlock(&hwmon->hwmon_lock);
+>
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260924105000.2627=
-929-1-karthik.poosa@intel.com?part=3D3
+929-1-karthik.poosa@intel.com?part=3D1
