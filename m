@@ -4,44 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 566E5C98317
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 11:25:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4733C9830E
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 11:25:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1027510E0EC;
-	Thu, 24 Sep 2026 11:25:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D1F810E7D2;
+	Thu, 24 Sep 2026 11:25:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="FPtDpm/p";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Thyn+NCn";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 227EF10E0EC
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 11:25:12 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 062BF432C8;
- Thu, 24 Sep 2026 11:25:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B17E51F00893;
- Thu, 24 Sep 2026 11:25:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790249111;
- bh=4dZ0QCggqmIgQfr7GcmF6ZwwwWzsr5Y1p1l5rxNazEE=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=FPtDpm/pm1ObtctkotGF6zNOVYD2wpKWHMSUS6SThtie8dbeCuMdHis+p2szXsvVo
- xWlmZNKnwvWH1SImJHSD3VTSC+iAWgEY4AEg7EfMQOw0G0hciHzcqNuJUfWIHqNZcq
- 25Kc+arjr0afeKI6jqnCt3WvT2XjrbKNqFshr4+L8zyyB6gNxGgVjOxRMQQ7iWQJFn
- Yf5wn2wUnmPhAHRipi/lmb/H6rMA/LUQ9kenA7RW5FuJvj8om+j8aU69AOylZ9of/n
- C30J5qoMIneNiMaMGWHlA8nDzrn/lkgLAHUsV9Fj/f5pY43wiRf0OUBRAS68O4Df2v
- J96We2UgT7REg==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH i-g-t v4 10/13] drm/xe/hwmon: use CRI-specific package
- and VRAM temperature registers
-To: "Karthik Poosa" <karthik.poosa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260924105000.2627929-11-karthik.poosa@intel.com>
-References: <20260924105000.2627929-1-karthik.poosa@intel.com>
- <20260924105000.2627929-11-karthik.poosa@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 24 Sep 2026 11:25:11 +0000
-Message-Id: <20260924112511.B17E51F00893@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7977C10E6E1;
+ Thu, 24 Sep 2026 11:25:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790249137; x=1821785137;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=O6HZdosrQTOF5lqcMLrwQDRupfKSEH8wI+trQTPPV1E=;
+ b=Thyn+NCnegeQqMj46iK+kVZN3u8UGF/EWC+qlSYRXpHKg1rZe8ihcVwf
+ 6ffn+PseWWIFaj4+Fot+yXSpLXceOUTapk/CTikSNXckC5UtqK0ikrECJ
+ QzFB6ZTE3nLVcSaJ4f9ZsFzZFbMkmQ0+fIktWq6xlQP1m/jewaFScAbFD
+ 1+Ng/ieN6tu/bIH43MuwSCpjjfykuQM41SKJp8HHA47fxCm493o40D+fI
+ DH6SbyPXmvP4BBdMNy0UZwsO43/TONSttNnTmsquXsGgwrBWGoRInWhVu
+ b2XP7/Ziu2ycgReFrpez+udvqSOme7ug1U8sxQOQBYGeVBsiHIYeB1fyF g==;
+X-CSE-ConnectionGUID: owSaiOLCQ5+Tf1nap+vyHw==
+X-CSE-MsgGUID: cKaswu3FSuaaCtPA1tnWSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11914"; a="90057149"
+X-IronPort-AV: E=Sophos;i="6.27,120,1787036400"; d="scan'208";a="90057149"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2026 04:25:37 -0700
+X-CSE-ConnectionGUID: W3Jna5a4S+qX7/0+kb1R+A==
+X-CSE-MsgGUID: 3+qoV1nTSdG+x7cz84ExNA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,120,1787036400"; d="scan'208";a="273204164"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.192])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2026 04:25:34 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Austin Hu <austin.hu@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, maarten.lankhorst@linux.intel.com,
+ vinod.govindapillai@intel.com, huchao426@gmail.com
+Subject: Re: [PATCH v3 0/3] drm/i915/fbc: Dirty rectangle bounding and CFB
+In-Reply-To: <20260923172803.1011636-1-austin.hu@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260812215350.3753102-1-austin.hu@intel.com>
+ <20260923172803.1011636-1-austin.hu@intel.com>
+Date: Thu, 24 Sep 2026 14:25:30 +0300
+Message-ID: <4c41153d0be6d50515eceaf25618ec82643c65c2@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,76 +68,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] xe_hwmon: VRAM temperature register offset collision on Crescent I=
-sland
---
+On Wed, 23 Sep 2026, Austin Hu <austin.hu@intel.com> wrote:
+> This series updates Intel FBC dirty rectangle handling and refactors plane
+> update checks:
 
-commit fd97330baada16c38f4cebd065bec94e97f517b7
-Author: Karthik Poosa <karthik.poosa@intel.com>
+Please base your work on drm-tip and send new versions of the series as
+standalone threads instead of in-reply-to previous versions.
 
-drm/xe/hwmon: use CRI-specific package and VRAM temperature registers
+BR,
+Jani.
 
-Crescent Island uses different MMIO offsets for package and VRAM temperature
-than Battlemage. Add CRI-specific register definitions and select them in
-xe_hwmon_get_reg() for REG_TEMP handling.
 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe=
-/regs/xe_pcode_regs.h
-> index 11916b4f7cfc0..a6f13d7c39894 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-[ ... ]
->  #define CRI_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
-> -#define CRI_PLATFORM_ENERGY_STATUS		XE_REG(0x138458)
->  #define CRI_MSU_VRAM_ENABLE             XE_REG(0x138340)
-> +#define CRI_PACKAGE_TEMPERATURE			XE_REG(0x138344)
-> +#define CRI_VRAM_TEMPERATURE			XE_REG(0x138348)
-> +#define CRI_PLATFORM_ENERGY_STATUS		XE_REG(0x138458)
-> =20
->  #endif /* _XE_PCODE_REGS_H_ */
+>
+> 1. Moves intel_fbc_can_flip_nuke() higher up in intel_fbc.c to avoid a
+>    forward declaration in subsequent FBC checks. (No functional change)
+> 2. Clamps FBC dirty rectangle bounds to valid surface limits [y_offset,
+>    y_end] and adds logging for out-of-bounds coordinates, including
+>    handling for 180-degree plane rotation.
+> 3. Tracks plane state attribute changes during atomic commits. When FBC
+>    Dirty Rectangle mode is active, partial updates only apply to surface
+>    address changes (PLANE_SURF). Modifications to any other plane state
+>    parameters require fetching full-plane pixel data from memory to
+>    re-compress and update the entire CFB in stolen memory. Once fully
+>    re-compressed, subsequent atomic commits can resume selective dirty
+>    rectangle updates.
+>
+> v2 -> v3 changes:
+>   - Split function reordering into a separate standalone commit (v3 1/3) to
+>     avoid mixing movement and functional changes, per maintainer feedback.
+>   - Rebased onto latest drm-tip.
+>
+> v1 -> v2 changes:
+>   - Reused intel_fbc_can_flip_nuke() for plane update state checks as
+>     suggested.
+>   - Added plane Y-coordinate plane view checking (color_plane[0].y)
+>     alongside X.
+>
+> Austin Hu (2):
+>   drm/i915/display/fbc: Move intel_fbc_can_flip_nuke() higher up
+>   drm/i915/fbc: nuke CFB if Plane setting (except for surf addr) changes
+>
+> Charlton Lin (1):
+>   drm/i915/fbc: fbc_dirty_rect restrictions and logging
+>
+>  drivers/gpu/drm/i915/display/intel_fbc.c | 192 +++++++++++++++++------
+>  1 file changed, 141 insertions(+), 51 deletions(-)
 
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index 1b587bd9487e1..e1cff5700e7f9 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -293,7 +293,15 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmo=
-n *hwmon, enum xe_hwmon_reg
-> =20
->  	switch (hwmon_reg) {
->  	case REG_TEMP:
-> -		if (xe->info.platform =3D=3D XE_BATTLEMAGE || xe->info.platform =3D=3D=
- XE_CRESCENTISLAND) {
-> +		if (xe->info.platform =3D=3D XE_CRESCENTISLAND) {
-> +			if (channel =3D=3D CHANNEL_PKG)
-> +				return CRI_PACKAGE_TEMPERATURE;
-> +			else if (channel =3D=3D CHANNEL_VRAM)
-> +				return CRI_VRAM_TEMPERATURE;
-> +			else if (in_range(channel, CHANNEL_VRAM_N, hwmon->temp.vram_count) &&
-> +				 xe_hwmon_vram_channel_enabled(hwmon, channel - CHANNEL_VRAM_N))
-> +				return BMG_VRAM_TEMPERATURE_N(channel - CHANNEL_VRAM_N);
-
-[Severity: High]
-Will using the BMG_VRAM_TEMPERATURE_N() macro for Crescent Island cause
-register offset collisions for higher VRAM channels?
-
-The BMG_VRAM_TEMPERATURE_N(n) macro computes offsets as 0x138260 + (n * 4).
-When n >=3D 56, the resulting offsets overlap with the newly added CRI
-registers:
-
-- n =3D 56 gives 0x138340 (collides with CRI_MSU_VRAM_ENABLE)
-- n =3D 57 gives 0x138344 (collides with CRI_PACKAGE_TEMPERATURE)
-- n =3D 58 gives 0x138348 (collides with CRI_VRAM_TEMPERATURE)
-
-Since Crescent Island allows up to 80 VRAM channels, reading the sysfs
-hwmon tempX_input attributes for channels 56 and above would return
-data from these unrelated registers instead of VRAM temperature telemetry.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260924105000.2627=
-929-1-karthik.poosa@intel.com?part=3D10
+-- 
+Jani Nikula, Intel
