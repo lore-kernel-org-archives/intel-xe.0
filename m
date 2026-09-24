@@ -4,46 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7052CC9830E
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 09:58:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F277C9830E
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 10:06:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34FC710F408;
-	Thu, 24 Sep 2026 09:58:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 474C610F41E;
+	Thu, 24 Sep 2026 10:06:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="QjSloAa4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iqD+eH7G";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1323610F406;
- Thu, 24 Sep 2026 09:57:59 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id AE158406C2;
- Thu, 24 Sep 2026 09:57:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50C261F000FF;
- Thu, 24 Sep 2026 09:57:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790243878;
- bh=bZz8JRI65c5HlFEfDtjm2kJXKznzd91PmpGvaasxK6s=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=QjSloAa4axeUj8DJ9FXHtmOpUiC4Yy924v7cFHxOiw4HWwpySBz3Z3cQPtece3/Lb
- 0yhuDIKnaOYbqKj6oh3dp2pAzwt5bmWt6E7LVMnuWe1orhLxOTZ7OMcP3NqMgW4Dbs
- St/mWseplxwdqIu30ueWWnDbZ5Oe4aKUDhchVQ0rtNS2ELF/9mB5LmpyBcuLKYAP+e
- C0gdH+s3sMuePJgySas327uedsMrWPgebkuHx+02WYKgpjn03jH67uurBeQGM3of+O
- rTQ1n7IcEOeFWmeY6K2XwLPHsHh81cO6lxvsFbR2ZMUOfsIUx3CUkDzUCKP0JeZa3j
- zxvANeesqCM3w==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 2/2] drm/dp_mst: Track allocated_pbn from
- ALLOCATE_PAYLOAD down-reply
-To: "Xiao Lu" <xiaolu.xie@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20260924094316.822211-3-xiaolu.xie@intel.com>
-References: <20260922092647.2263962-1-xiaolu.xie@intel.com>
- <20260924094316.822211-1-xiaolu.xie@intel.com>
- <20260924094316.822211-3-xiaolu.xie@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 24 Sep 2026 09:57:57 +0000
-Message-Id: <20260924095758.50C261F000FF@smtp.kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB11F10F41E;
+ Thu, 24 Sep 2026 10:06:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790244397; x=1821780397;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=kFkevQsMz2heXC6zJ+CGqEGWFn3qpN2Y0mX1Y3z1SW8=;
+ b=iqD+eH7GA4n6dldlsyLbQycUF+TnL+LaLqbV+2vHsaALIXiJFa5G++Qu
+ KxINvLb/OuK0SnR05kPONG9cPhJeTJTXb4fJnHt3M+B9kLZeByifeoJwp
+ rK/Yl4LyOg/R+S5wsp7tIot9JTWYUxzGksOhMaM2YvVaNCBek7+9DASkP
+ x3THqgw1tPTzqBGk8L+Q1Ij7cyyC3ukTcyZd+4QT2D4RFpK/p955PzOTp
+ dGmmrkYDs7DRnsktxB2iZXnzcoCQzDGgKqxKAkG6t08IlrH5W2Gjpmubn
+ 3zN9YET6VCGusnoy+pQxeZfDbRxHdWu5ZRyVC4xtJEqdghy39CH60UKdl w==;
+X-CSE-ConnectionGUID: YdtQAjo6TwSFC1rGh14ZAA==
+X-CSE-MsgGUID: 2h/64r2lQNKDzQz2ps7ZVg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11914"; a="90132686"
+X-IronPort-AV: E=Sophos;i="6.27,120,1787036400"; d="scan'208";a="90132686"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2026 03:06:36 -0700
+X-CSE-ConnectionGUID: lJPNDhdJQXSPeBud+VMLAw==
+X-CSE-MsgGUID: 7DQJXT/TRJ+MRGM3qeApTg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,120,1787036400"; d="scan'208";a="272571957"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2026 03:06:37 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Thu, 24 Sep 2026 03:06:36 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Thu, 24 Sep 2026 03:06:36 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.30) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Thu, 24 Sep 2026 03:06:36 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xc0fTKuaTPz9ptz/wa7wzm0DMOR2sV0HpbAbGe3gTs+p1uQgl0QoKrrH7ija5oWK+OuYl5mpT20laDjLHz56ENOjjA6/fZHADqTgsSHoNZRsCzUBto1eVgHGmrTzKelckFlroS8xqSJ85CPMUTD9wQHi7HXn+vAeqAiVA54lacgwGBPlF7fIv4L58tPjhX5FshMT+e2atNQ/oP0NojVW/4sRsEDaSTVAdN7n4lKGImwgqlZxV4GdjtYUuPlRoF45D1CKcvqkzymfkp+AA7kDfCsW8R8iabQnCHlb+vyoyCG2zZ0fTPJllSu0s8r3/aORpnkr+pXJ5YOUTFk8axwK5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+PGBuHFDtc1vB0nl5FZWsNw0i1lszD0FAWup7ewt/0Q=;
+ b=eem2z5Bmj2m/LawGoU5O+vMDdRpisbVCLJwJt2kRppQfQ91q9z88MBqz+AbWlCbUQPEx3izVHRkF6SJVMK51ydPMlABZocCGB+26JAIeL89FFjn79C8iLXOFW/AsbrU7GQRd9PXvcs+tDAcrUago0vSo3ERp5TzkTFNCCpl4ZOCJymAy6LPeF+Y+9Br7z3WcZEjt+Yqg4rQucTTz7FjE71LfNq0G6sC25RwNfFwE1Rk0HbyzdwdlPYhkA7FTD0BvdorayNNoDH+Wp0mzM2OxI4hDQQXjO3vsAIPV7Vm2QuauFyUH8MS1zVOSUskb3wVvkUycoFN48F6BvouIvavIUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BN0PR11MB5709.namprd11.prod.outlook.com (2603:10b6:408:148::6)
+ by PH4PPF722C57DB3.namprd11.prod.outlook.com (2603:10b6:518:1::e68)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.18; Thu, 24 Sep
+ 2026 10:06:34 +0000
+Received: from BN0PR11MB5709.namprd11.prod.outlook.com
+ ([fe80::ad31:3f30:20b8:26c]) by BN0PR11MB5709.namprd11.prod.outlook.com
+ ([fe80::ad31:3f30:20b8:26c%4]) with mapi id 15.21.0451.014; Thu, 24 Sep 2026
+ 10:06:33 +0000
+Message-ID: <841ed3ad-f8fc-4d70-832d-a1129ba1dd11@intel.com>
+Date: Thu, 24 Sep 2026 15:36:23 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/5] drm/xe: Fix VM teardown and migration queue recovery
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <rodrigo.vivi@intel.com>, <himal.prasad.ghimiray@intel.com>,
+ <thomas.hellstrom@linux.intel.com>
+References: <20260916095337.3104891-1-arvind.yadav@intel.com>
+ <aq270L/+biIRJHkX@gsse-cloud1.jf.intel.com>
+Content-Language: en-US
+From: "Yadav, Arvind" <arvind.yadav@intel.com>
+In-Reply-To: <aq270L/+biIRJHkX@gsse-cloud1.jf.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0307.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:21e::10) To BN0PR11MB5709.namprd11.prod.outlook.com
+ (2603:10b6:408:148::6)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN0PR11MB5709:EE_|PH4PPF722C57DB3:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc543c91-ef17-4b23-d4d3-08df1a23825f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|1800799024|376014|366016|10067099003|11063799006|18002099003|22082099003|4143699003|56012099006;
+X-Microsoft-Antispam-Message-Info: kFbhSmeHkREDg9ianVzIRvElaiU5vn2HQVNrCIve8IKj4cTk7r1JLjDmJ55rVLgYBQs1OZLvg3q5bTpWp8ZVgDb5AiRvaYTmwb/RVo54muijdV6ORY1ggqAZELJSFyqxs/o7X15W7uA875mLTvLKeagmWwAPRLFlGDpor3y57CtesH0RSuNuZMqXz746pCGqs5vxk1J540fhDtidfTOPQP9/QXDhirE5So3am9jon5mrqFvHO3ZHMKwd775etkOnRLyi35ykwZyKcVtxOIte2oXrPH36ggWe0ALsB5VP28NMmZ0qpicvlfmvZEx8reWJ05NgRRjEeteqjyrazU0i2I0r96YilsKxGDSuDlmyE52fGPlCm1qORPl4BSH/AFIuM+F5jDekbgruU9OMrTOlrO0bn89BWLt2xyU/g54yDjWzDIHfwqu5LFfWWo1k7qsDWtMzaRUOkmqvRgvHllLUce9BAPARIHUdREUZZ7o8FKoMOy/dg1a5yFmR8qT2CGuGbw72BZtOE0cnsdHDTjdc/b9CoVzxxHNlVkz5R4W4D710tkmqHikuWCFReGYw4cymanvUbmXkyBS97og3ZaHvfh3I/WjiNiKKqD1D02QTbWwWphwZMFa8toYhmpCo8Z4W
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN0PR11MB5709.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(10067099003)(11063799006)(18002099003)(22082099003)(4143699003)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c1dRd29kdC9vT3Y3MDU4OVF0SS90Sy9BUG51QUZtWlJlZXhoRlRVZ2lwdy9R?=
+ =?utf-8?B?MFlZMkMyeE13SGkxWGsyWHAxa0NiakVhemRqUFNJM3NhVi9lbXlWSDZRaFF1?=
+ =?utf-8?B?bjBWZ01lMForaDV0QW1LNkdBNnRwcFlvNjBDekhpbjRSM3BGRy9MUFVJMm1w?=
+ =?utf-8?B?WHFQaTVMUUZXOTlwWTNYOXIycjB1ZzBUZXRhQ25SaldBSUNwNmlicWtsdnYw?=
+ =?utf-8?B?WGxHMTEwRFhrdGdDRzN3aU5VaHFJa25GVDROQ2k2UThPWVEvZisrNEhDYXpq?=
+ =?utf-8?B?SE5LRHZIZkppeW51S0VuMTdKa1dRdVNCN2xWa09vSk9WWFhPQWpRUHlUTzlL?=
+ =?utf-8?B?Z1o2RHY2VVRRUUx6TFYwdXhtcll5YnR1NVQ2WlhJN056YWluYXlXKzdrbFFq?=
+ =?utf-8?B?TXh3K2FVZk9ZTXBuUFYvL05EMUxkZGRwREFpOHFrTEV4UTJ6QmhoTzRJc0dn?=
+ =?utf-8?B?SWZBV0hKUExvYWRsUEZSU25lSTVWeG9sUjduYWsvem9OYUh4UnBiMktsN3BS?=
+ =?utf-8?B?c0x4ajZYRms4TTQyQWV3Qlk3cThDNzJJYzEvcXZwL29ObXpzenFoZ0Jza2g2?=
+ =?utf-8?B?ODlPa0RndXhOU3ZacGczVmhEVmVpY1pTK0ZaelNpV01HVFllQUNSSmE0d1lC?=
+ =?utf-8?B?dkc0Z2YySHdYcjJOOWNFYjZBTnBvVlhMbkxjQll6RWZ5RVhRVG1ubnBUS2py?=
+ =?utf-8?B?NUFVSFd4ZmxWajhEc0VNYS9KVFdnTWpMeWhtVjhyZTVFREhHdW0ycDBmWUg1?=
+ =?utf-8?B?UzNsUXd5dUJZN3BWbGcvenB4UG5Ic3JMODhsdTlEdTBMblQyOC84MDF1Q1VL?=
+ =?utf-8?B?S05lVTh6end4aTVBQU9HYUc1RFYrcWUwZ1dQbDRuVmp5TUV4blVPRWVWcFVE?=
+ =?utf-8?B?VE5nQ3NvQzZkOGw3MkNKblNjQjFBZldRYUEwRVVHcUw4TTczTEk3NDFHYXlG?=
+ =?utf-8?B?bjlSdVFRQW5rL0NHL3FCbjVQVERmRTRjRHM0ajRVNTlLNEJFVDAvZFNpeEtY?=
+ =?utf-8?B?dmJNeWNGODI0aHFWS1ZlQVlOOTBSNlYyUGpaOGlOYnVZK3oyVkVFY0RLRWVo?=
+ =?utf-8?B?L01DL0VuOFAvb1hNclRpdyszak9CZElSNkZrcHVUVFZXMGhBWHpuMWZjRmVT?=
+ =?utf-8?B?eDNpOGxFWVpkN2ZFNk5sZ0JqeWpyZ2QrMlBpTExDVHpEckpVbUFtRVJCazE5?=
+ =?utf-8?B?RHFwaDEwaFQ2TDc0MDZJaHJWRm91MWQ0QXFUTFlMcVZybzB2ejJYNE1LM3Zx?=
+ =?utf-8?B?Smx1SFVWT0JBWkRVUHh0My9XM0dDQmdtWVRPUFpVTXlEblFlOXpjNTEzcENn?=
+ =?utf-8?B?Vm9tcWk0ZDlRa3AvZW1lTDY3cnBldGtCa2g4MjdKNlZDajBDSWgrMCtBaGht?=
+ =?utf-8?B?UkRWZEM1YUJWR0lWSVlCTEdvY3VLTGpmODlPd2txOXZDYnl0c2g5MUQ4NGZu?=
+ =?utf-8?B?a2d0akNlR1hUY2dxOTlBNWdZbU9mWi9lWEhXSEhPMEZpL1ZoTDh3UlFWRlBZ?=
+ =?utf-8?B?TXQ4MnUzTGJMYWtVYTdvUnJyL0szb2Q3UnZ3OXJEU1JuTWMwbnJWVmpsUENk?=
+ =?utf-8?B?SnVpbStXSXcrTEt2QzY5K2ZxNTN4eHpDSkg1bGR2bE84MkRzS1JhWlJXZ25t?=
+ =?utf-8?B?UFZ0YmlKNFBKUG9WNm9CSmRhU3kvUzUxQWdxS3pYK1NBWHVSTVhIazI4RFg2?=
+ =?utf-8?B?ZTZGajhEdjdoWnlnN2dXQkpBUk1majliNnF2TzI3am9wZlNNMHBBMnkyWHBV?=
+ =?utf-8?B?V3R3dHZRQ2xjZ0lDczBXaUtuemZGMTFYbWdLdHkvVjJuRkd2enhxZXlQYzVM?=
+ =?utf-8?B?Z0t1aGtpRlJ4aXQyNFZJT3VqMEIzZCttZ3EveFEzRllWYzE4a1p2ZkJ0ZE9z?=
+ =?utf-8?B?SUlzbnVZbTFyT0FoWmVObnEyVW9vekZvS3g1YzlLam1ucUk0Yk9XUW9JSXhS?=
+ =?utf-8?B?MEN2MU1SM1BrWnBqTUtnU0tPQ2hIMUp5M1RuUTVnT0ZJR3N3VjVvQkJpMU8r?=
+ =?utf-8?B?MWtNRVg3OTdWZkoxYzV2SWRMT0hxUVdNbGxVOXAyc00xaW9LRTFCUk5id1ND?=
+ =?utf-8?B?OE05UHNlSTZDekhmK1R3Wm80d0gzb01ZTm81V1U3RzV1NGo0MURNa2UxUkRN?=
+ =?utf-8?B?cmpwbHRrUm1tc2xWcEtyeWNXME5hUnpuemZpQnA0cGZqUWJGNWZWakdjZFJD?=
+ =?utf-8?B?eGIvTnRjaE5yNzcyY0UydXNsbWxZNWRvVkhhYlN1Mno3SFdtTThySnZZL2Nz?=
+ =?utf-8?B?V2JaaElvVDdKMmFiY2dnWThLeUhrdFE5Z3RlNXdkQUVua25LcVgrMmRZaWcv?=
+ =?utf-8?B?U0lPRmxxRUEwZDZYWFRQenV5VWhzbkhBb1NPc1FlS0FCTWdmSUE2dz09?=
+X-Exchange-RoutingPolicyChecked: sRWaemQFCLhY/zL208lmmvK7INQQ2T4Ljb9k2Rf4OVzUKAPY4hCTwCkOcL0tQ8KdLmPVF3+MPsiNrEVAxaD+UA/Fiz1NWkUdnUot1V5JOOA5dL2RzQQHmXF0m4aj/QpdOWxA6Yjr7BGbxyXicC1q86HTNxyKr63vBTSlN9V9ZIJUevXBggMjsiUQuWHJ3Xt/CXMot5rdaXzpVjkhN/S0Jhy5KLHdcc9MXIS+77ctNgSFusOYcGz60hy3AtJwb1q3sr7HF4P4fzt39HIgfcDeKkGxdtRLBs7LbSm95c2FOdDm96kzJuvb6FjNoEnigfdt6i6VB4haCS4FKSgnsRuN4g==
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc543c91-ef17-4b23-d4d3-08df1a23825f
+X-MS-Exchange-CrossTenant-AuthSource: BN0PR11MB5709.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2026 10:06:33.6318 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Rphmob3sykxjloABHy8DInMZUuItn9tEFbz+nRb3NFAOU5HRBVqUuSTDc3Wj6gMWFXzg/3LI5NjfBhOVMNuUGw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH4PPF722C57DB3
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,98 +167,103 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] drm/dp_mst: data race on allocated_pbn can bypass bandwidth limits
-- [Medium] drm/dp_mst: bandwidth check fails on shrinking payloads due to s=
-tale allocated_pbn
---
 
-commit d52065aed1fa389dfd394c9d3cae48a882973e04
-Author: Xiao Lu <xiaolu.xie@intel.com>
+On 19-09-2026 04:01, Matthew Brost wrote:
+> On Wed, Sep 16, 2026 at 03:23:32PM +0530, Arvind Yadav wrote:
+>> On BMG, terminating a process with Ctrl+C while GPU work is running under
+>> VRAM pressure can cause an RCS page fault followed by a migration queue
+>> timeout on BCS8 (guc_id 0). The driver resets the GT, but the pending
+>> migration job can time out again and eventually wedge the device.
+>>
+> If we can just avoid faults on ctrl-c or segfault will this series be
+> needed (or at least only a subset of this series)?
+>
+> I suggested a way to kill the exec queue first + sync wait on those here
+> [1] before clobbering the GPU page tables? I don't really care who works
+> on [1].
 
-drm/dp_mst: Track allocated_pbn from ALLOCATE_PAYLOAD down-reply
 
-This commit stores the reported PBN from an ALLOCATE_PAYLOAD reply. It uses
-the larger of the requested and allocated PBN for bandwidth checks to accou=
-nt
-for constraints applied by intermediate branches along the path.
+Thankyou Matt for you review comments and suggestions.
 
-> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/=
-drm/display/drm_dp_mst_topology.c
-> index 7ce9e212770ad..86a42c5e2debb 100644
-> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+My series waits for final queue cleanup before removing the VM mappings. 
+Your suggestion is to disable all queues first, then wait for them to 
+stop before calling xe_vm_close().
+I will build on your v6 patch and add the synchronous wait from the 
+earlier discussion. I will test that approach and check which parts of 
+my series are still needed.
 
-[ ... ]
+>
+> We still need root cause why a RCS fault affects the BCS engine - it
+> shouldn't and need investigation.
 
-> @@ -3166,10 +3167,14 @@ static int drm_dp_payload_send_msg(struct drm_dp_=
-mst_topology_mgr *mgr,
->  	 */
->  	ret =3D drm_dp_mst_wait_tx_reply(mstb, txmsg);
->  	if (ret > 0) {
-> -		if (txmsg->reply.reply_type =3D=3D DP_SIDEBAND_REPLY_NAK)
-> +		if (txmsg->reply.reply_type =3D=3D DP_SIDEBAND_REPLY_NAK) {
->  			ret =3D -EINVAL;
-> -		else
-> +		} else {
-> +			if (payload)
-> +				payload->allocated_pbn =3D
-> +					txmsg->reply.u.allocate_payload.allocated_pbn;
 
-[Severity: High]
-Can this lockless write to payload->allocated_pbn race with an atomic check?
+I will also continue the GuC investigation into the first BCS8 failure. 
+Avoiding the teardown fault may prevent this reproducer, but it does not 
+explain why the RCS fault affects BCS8.
+I am discussing this issue with the GuC team, and once we identify the 
+root cause, I will provide an update.
 
-If a non-blocking atomic commit is executing asynchronously, it receives the
-ALLOCATE_PAYLOAD reply and drm_dp_payload_send_msg() updates allocated_pbn
-without locks. Concurrently, if userspace initiates a new atomic check,
-drm_dp_mst_duplicate_state() will copy the payload struct via kmemdup().
+Thanks,
+Arvind
 
-Could this result in the atomic check reading a torn or stale value when
-evaluating max(payload->pbn, payload->allocated_pbn) in
-drm_dp_mst_atomic_check_port_bw_limit(), potentially bypassing bandwidth
-constraints?
-
->  			ret =3D 0;
-> +		}
->  	}
->  	kfree(txmsg);
->  fail_put:
-
-[ ... ]
-
-> @@ -4575,6 +4580,7 @@ int drm_dp_atomic_release_time_slots(struct drm_ato=
-mic_commit *state,
->  	drm_dbg_atomic(mgr->dev, "[MST PORT:%p] TU %d -> 0\n", port, payload->t=
-ime_slots);
->  	if (!payload->delete) {
->  		payload->pbn =3D 0;
-> +		payload->allocated_pbn =3D 0;
-
-[Severity: Medium]
-Does this properly handle payloads that shrink in size?
-
-Since payload->allocated_pbn is only cleared here when releasing the payload
-entirely (during a full deletion), what happens if a commit simply shrinks =
-an
-existing payload (for example, switching to a smaller display mode on the
-same CRTC)?
-
-In that scenario, drm_dp_atomic_release_time_slots() skips active CRTCs,
-meaning allocated_pbn remains at its old, larger value. When the new
-bandwidth is checked, max(payload->pbn, payload->allocated_pbn) in
-drm_dp_mst_atomic_check_port_bw_limit() would yield the old larger value,
-which could falsely prevent the freed bandwidth from being reallocated to
-other displays.
-
->  		payload->delete =3D true;
->  		if (payload->vcpi > 0)
->  			topology_state->payload_mask &=3D ~BIT(payload->vcpi - 1);
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260924094316.8222=
-11-1-xiaolu.xie@intel.com?part=3D2
+>
+> Matt
+>
+> [1] https://patchwork.freedesktop.org/patch/752845/?series=173889&rev=1#comment_1391707
+>
+>> BCS8 is reserved for paging and runs migration and VM bind work.
+>> The exact hardware link between the RCS fault and the BCS8 stall
+>> is still under investigation. This series addresses the teardown
+>> and recovery problems found while debugging this failure.
+>>
+>> During file close, exec queue cleanup starts asynchronously, but the VM
+>> mappings can be removed before that cleanup finishes. A missed wakeup in
+>> the GuC disable-completion handler can also turn a completed operation
+>> into a five-second timeout and an unnecessary GT reset.
+>>
+>> The reset replay path rewinds the software ring tail to the oldest pending
+>> job, but leaves the LRC head at its saved position. This leaves different
+>> starting positions for replay.
+>>
+>> The four patches address these paths:
+>> 1. Clear pending-disable state before waking waiters, so a completed disable
+>> does not appear to time out.
+>>
+>> 2. Mark VMs as closing before queue cleanup. Reject new work and page faults
+>> on closing VMs, while allowing existing SVM invalidation to drain mappings.
+>>
+>> 3. Keep VM mappings alive until queue cleanup completes. File close uses one
+>> five-second queue-wait budget across all VMs, then defers any remaining teardown.
+>> VM destroy defers without waiting. Device references protect deferred close and
+>> final VM destruction on the module-lifetime destroy workqueue.
+>>
+>> 4. Set the software tail and LRC head and tail to the oldest pending job before
+>> resubmitting jobs after a GT reset.
+>>
+>> The five-second budget applies only to the new queue-cleanup wait.
+>> Existing teardown waits are unchanged.
+>>
+>> Arvind Yadav (5):
+>>    drm/xe: Hold a device reference across deferred VM destruction
+>>    drm/xe/guc: Wake disable waiters after clearing pending state
+>>    drm/xe: Mark VMs as closing before queue cleanup
+>>    drm/xe: Defer VM teardown until exec queue cleanup completes
+>>    drm/xe/guc: Reset LRC ring pointers before replay
+>>
+>>   drivers/gpu/drm/xe/xe_device.c     |  25 +++-
+>>   drivers/gpu/drm/xe/xe_exec_queue.c |  22 +++-
+>>   drivers/gpu/drm/xe/xe_guc_submit.c |  60 +++++----
+>>   drivers/gpu/drm/xe/xe_module.c     |   6 +-
+>>   drivers/gpu/drm/xe/xe_pagefault.c  |   2 +-
+>>   drivers/gpu/drm/xe/xe_svm.c        |   3 +-
+>>   drivers/gpu/drm/xe/xe_vm.c         | 205 +++++++++++++++++++++++++----
+>>   drivers/gpu/drm/xe/xe_vm.h         |  14 +-
+>>   drivers/gpu/drm/xe/xe_vm_types.h   |  16 +++
+>>   9 files changed, 289 insertions(+), 64 deletions(-)
+>>
+>> -- 
+>> 2.43.0
+>>
