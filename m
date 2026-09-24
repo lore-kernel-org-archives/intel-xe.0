@@ -4,99 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47F72C98314
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 06:54:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9F68C98310
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 06:54:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 048C010F32A;
-	Thu, 24 Sep 2026 06:54:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B5CB10F33A;
+	Thu, 24 Sep 2026 06:54:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="csuWkobV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FI5rLm39";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6E4910F334
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 06:54:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1790232855;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=xEEzUKmwPcuLDb8KHUBfxekosp3Yw5qO1BP0yTFVDsQ=;
- b=csuWkobV7AR0/0ikrVcxv1tIMzYCRSkqqESrCJEmsRoxJ1vunVQys8AsTV58pjQO3TcisE
- 7PWhTT4tJmsYsueovM36/Riy7vijN8F+NH+BTtF3QOYLOdvNN4kdR8uk1kZCm4mut/7u3v
- juCzlBSW55JL61VAvjFDnrgeSufmd1s=
-Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com
- [209.85.208.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-83-f72uFntWM8eRzRroVyyWBg-1; Thu, 24 Sep 2026 02:54:13 -0400
-X-MC-Unique: f72uFntWM8eRzRroVyyWBg-1
-X-Mimecast-MFC-AGG-ID: f72uFntWM8eRzRroVyyWBg_1790232852
-Received: by mail-lj1-f200.google.com with SMTP id
- 38308e7fff4ca-3a58fef21b3so6899331fa.0
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Sep 2026 23:54:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1790232852; x=1790837652;
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=xEEzUKmwPcuLDb8KHUBfxekosp3Yw5qO1BP0yTFVDsQ=;
- b=DSUo/L7WZL695Qi6BukRBXA2XtdlALpm2B1aygbIlkUAD5WwBsr4N+ZD1KLHqaGItz
- wDdwF0y6rVVPsJUeUwpaNnFdgD0nM+mLNnGfRMP9ICKCzxOU2fjpTcNLqDsgyDpvFPPP
- /Y8cxaQBYCL6R54zvJwzJgS+zaiiNsoptwiU4lcEN0gVDEo9uS+HdE0pNU8Up3SYgC8M
- H5k3wCtFDzmczvzxf/hsZ8ozXMK4R+F34NVltKwmoCmLFDuq7XIxKqrCn0nzZKYswlqk
- E2tkh6ac1nP/i7ZU2wnWxZEHVGiTov7QiKuqBYThtUehh05w8LxzHJJ/3vo2VDaiyCYj
- SICw==
-X-Forwarded-Encrypted: i=1;
- AKwUvBwASkSFGvXX2tweBavMZkxe3yxdjeQTguWStEE+kp7YmL0Bwd5UzmlxR4RUYIUOeSLSDQx3bgR+/Q==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++lQv3PRjoqopObfJy00sOaU/4HWDySkmLxJ/vtWhZCFgO2C5dz4
- 8drvoxeIHd+TkwUoqRtrn0UR/Jj89Wzp3H74bCYQuuC5YobAckgfnNJ9/YC5aKaFk1ypnh18qHB
- c5h286LkV9KTZ1JqApxlbLQo4etRFXIp8YcmT29DoDTMX802xN5mkQgoeyNnh5qlRTlo=
-X-Gm-Gg: AYBFou1jmJxvXo8O5Vgbu1Rcn+ieDi2Ew4ewYWDaKeDOtsmQaz7k0t0a1vik5GnV9vW
- GhgxaK151A936mKTVb0DzySdmJGqfJLu8e+W/vVKANo7m+dnfeny4o5M84/w0enfXrS6AbmGHj/
- Obk33Zg1fV//tPA4Fg8Me+rPioJ3NoZvKVgkxWHjKHJdKUJhfwDYpwTGH6O3SVRI4u5//aWsUuj
- xPqi1QmAHo63qkqtd6WHvYv+31NltwRLwBDHBW00wAehqo4k2lfAxW2vdeDD+LNtGpt14ordURV
- e/4hQJ6IQB3xOvi2cZoJuXlqI6KmKNIrEdlPNIQQzlkOnj70PoVbV1EyZOpXKvv6Up0u+OH1ykY
- xNmwCspO7t7J0Tr0w/ej7
-X-Received: by 2002:a2e:b893:0:b0:3a2:f233:5c6e with SMTP id
- 38308e7fff4ca-3a63bf652b3mr3928341fa.6.1790232852070; 
- Wed, 23 Sep 2026 23:54:12 -0700 (PDT)
-X-Received: by 2002:a2e:b893:0:b0:3a2:f233:5c6e with SMTP id
- 38308e7fff4ca-3a63bf652b3mr3928141fa.6.1790232851558; 
- Wed, 23 Sep 2026 23:54:11 -0700 (PDT)
-Received: from fedora (89-27-86-246.bb.dnainternet.fi. [89.27.86.246])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-3a63bf57909sm4803141fa.29.2026.09.23.23.54.08
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 23 Sep 2026 23:54:08 -0700 (PDT)
-From: mpenttil@redhat.com
-To: linux-mm@kvack.org
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org,
- =?UTF-8?q?Mika=20Penttil=C3=A4?= <mpenttil@redhat.com>,
- David Hildenbrand <david@kernel.org>, Jason Gunthorpe <jgg@nvidia.com>,
- Leon Romanovsky <leonro@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, Zi Yan <ziy@nvidia.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Lorenzo Stoakes <ljs@kernel.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>
-Subject: [PATCH v15 11/11] Documentation/mm/hmm: document migration through
- hmm_range_fault()
-Date: Thu, 24 Sep 2026 09:53:13 +0300
-Message-ID: <20260924065313.899730-12-mpenttil@redhat.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260924065313.899730-1-mpenttil@redhat.com>
-References: <20260924065313.899730-1-mpenttil@redhat.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9630A10F339
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 06:54:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790232876; x=1821768876;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=kakVUZ4s8jpXioGzJzuy71XKhmVQughWzUNy81Ehe0c=;
+ b=FI5rLm39IZrws4ldciuD9N5Z5upuicjltWll0JTGCNsQYLpwa9b4cG92
+ aav6J7AEvWVCIPVxdGDK8z75XXkrQfhZslsO7k8fDFXacSf8vawZ9AE/D
+ sUvxF5Laaf+56ckmHDwBz21B0qjTswsn04JHvLW0X3CajU0V4wz1fUMnh
+ i5cN1XQ45prsOviIrFSstnQoD8Q2h+0WeVssnhCRe0pwfmnrlOr6At1T3
+ feEG582hTsPKiRlSnjB+CPV/rzjnaAMNyie9VkAI9csAleI+oaT4HMSHk
+ UfDlzf3CWkLuv0cwS49l+Vxb6m4BliFpkM7iUEX0P0mK+Ls5pjxdCNrUE A==;
+X-CSE-ConnectionGUID: GHdBw8FxQ6q0ZdMd4ZKqBg==
+X-CSE-MsgGUID: 2+f4yAtxR/y+OWVqoprm/A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11914"; a="1488559"
+X-IronPort-AV: E=Sophos;i="6.27,120,1787036400"; 
+   d="scan'208";a="1488559"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa115.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2026 23:54:36 -0700
+X-CSE-ConnectionGUID: MT+cARq7T56KjbuJ9b+2eA==
+X-CSE-MsgGUID: 0iaC8BttTJel7f8uGDRUuA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,120,1787036400"; d="scan'208";a="272530635"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2026 23:54:35 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Wed, 23 Sep 2026 23:54:34 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Wed, 23 Sep 2026 23:54:34 -0700
+Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.43) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Wed, 23 Sep 2026 23:54:33 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SrVqPDt9f5699Z06Ef3O6jNRlJEjs/Q2nrThOPUDYCcdzaPK05XV/SeB4blxehe0wlCfNtVscNa4au54x4l1y6B46bIzsEXKGStSVt1lX1DwFMIBeVKgVXJyjNXiTSVAQ8NXSNxQlPoUEC4DyB2iYf6md0rZJXjFSvQCDE7NXqzLrG3DnS8iynULvPcKa4raVKrECl9WX+5sI77s2M/Z4P59hgMFQyqkJrzAdRfAMR05zSOAc2ZlPPvIrx37JuEe5j5W9c4OBEtjuIcNr1OW8Rx9YfWM6tkKNU7LPCRrN2AjB3kkUXeFZzxudKbQ3BftXlge7ADXNuJ1PoAjmo5GZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aPCoZVoHsoWJgbOYJ+V+IohZrfhSN6QwvZZjZkcKxCc=;
+ b=SJuj0TQZZL/ENodNEBg5DhYxR3w8rENoWsupiovrkqVnp0hBktCdYNImWgEpnuUCK1BEnPwTGitFeimvxg/0oZwjq4OVlAz0c1aW7n3M36lF4fK3HlTc6TlZAbi+hnh9sgBWwr4Ub1SpsIly/d0Dq6SZG+45JMRrQZCboX9qeezG5yjCi4yFQQSssgFg5GCxbqbhTUYeOwf7hLhAVJdNWV1zsH6vfgGORc3A79TDMgQHomhgRhODmHTe1cdodG26ysQG+AmKYPOjghHFeoiz8dHNQbONjhLGH9t+xRGG0hqLFhFZQ53ffXxCiz699o7lJt3GmEB13CpTswTaRESjxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CH0PR11MB5249.namprd11.prod.outlook.com (2603:10b6:610:e0::17)
+ by SAWPR11MB9921.namprd11.prod.outlook.com (2603:10b6:806:54a::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.18; Thu, 24 Sep
+ 2026 06:54:14 +0000
+Received: from CH0PR11MB5249.namprd11.prod.outlook.com
+ ([fe80::a665:5444:d558:23c3]) by CH0PR11MB5249.namprd11.prod.outlook.com
+ ([fe80::a665:5444:d558:23c3%6]) with mapi id 15.21.0451.014; Thu, 24 Sep 2026
+ 06:54:12 +0000
+Message-ID: <92ab8d6d-7460-43f4-8c04-925689f9e598@intel.com>
+Date: Thu, 24 Sep 2026 12:24:02 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/5] drm/xe/hwmon: Decode CRI temperature registers as
+ IEEE-754
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <badal.nilawar@intel.com>, <raag.jadav@intel.com>, <riana.tauro@intel.com>,
+ <sk.anirban@intel.com>, <mallesh.koujalagi@intel.com>,
+ <soham.purkait@intel.com>
+References: <20260910182756.638830-1-karthik.poosa@intel.com>
+ <20260910182756.638830-5-karthik.poosa@intel.com>
+ <aq0Ot9mwpR9LgUzs@intel.com>
+Content-Language: en-US
+From: "Poosa, Karthik" <karthik.poosa@intel.com>
+In-Reply-To: <aq0Ot9mwpR9LgUzs@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0323.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:222::13) To CH0PR11MB5249.namprd11.prod.outlook.com
+ (2603:10b6:610:e0::17)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 9lgulQYLWge2kUxSpCKtlAZNCeBLeRvJDn6S-Cd7voU_1790232852
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH0PR11MB5249:EE_|SAWPR11MB9921:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2bce0712-64be-4dcd-f7ed-08df1a08a40a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|376014|366016|1800799024|10067099003|56012099006|11063799006|4143699003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: g/YxLNBtEgt2K4eHZ4egPLO7PJS3fChdMQYwrqef4t1c3GFD06TM1cUYNdsA/uru+HSjPvyXcIbOGOJ5MX0MCv128asgmI2Y2kF08REtO0BqMM0WbLTg1IZS45GnbLqvddvm9EutgbbdugXcIqPyWMzWd3nCvjkpMxXmtSEEkfMKzpVKnlZ3ZXddM5rMJM2mJjWAHRv5Qjqlzr5vLRyOJUyikKyAf43gVSl+etvmtA8tvQ3KdtpTZqBMI96cued4MO1o0vvypkxPxSFJHlZ3eLB5ZeHKswUpLcRcXVWuPDMDbRFJ+HwLZrCoNDCfJcxmBWE/pRzll/U/7mMmEEgHQXdkiCTXCB88cVMY9iu0QUAIWkXFH5OTKP9K4nQO1SWsxJxBLtNlS0R0/JPbTld3ASdWjWEuq/E3O1U2iZi6OQ0c7OE3I7AuY9EREdbvVYK4DU/NnCxBLn/5Q/TonhdKRehdAw8o7aSnpifzmgMwuv2mztHzJe7HcC2fsTLs4EnY/hxOl8YFBXcXaRcC1H3gO2793OneCY5DAKXuE/gkbZrgrco+NdMWRoj+3JI9TCw3/V0hcdhDVlE+Nk955F8sMETP25lJgc+3/0HYEIqdIi+1fBRO805FshEyPYB4zvJPe6EOC0/aReZJZlx7JYydqE3sWkkVj3fv+po6gvGL5oo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5249.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(10067099003)(56012099006)(11063799006)(4143699003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K3lhU1hCcnU2djUwdk90TkJ2azFYZ2JoNndVemJhbk1GRTBFcll3cW5jeUJW?=
+ =?utf-8?B?TmdxbERxRm9KczVhVUx5R055OE1YVmh0dTQweVBZSmprc0V2Q3p4TU0vbHN5?=
+ =?utf-8?B?SExOaUJNTkdxY3pTeTRSKzYvRDdaNWRTTENwUTd3ckpKcEFOZjYzMkNlVHpM?=
+ =?utf-8?B?TU5iMkZGU0hCbndJZGx2Q1RqMU44REkrb1BwSlRXbTNBK0ZaMGpBN2EyZ1hq?=
+ =?utf-8?B?d0o0UUg4Y29aTWw4WjRud2NJcTVnRjFpbithZmVLVUxtdzIwVGFBS2xsZS9Q?=
+ =?utf-8?B?STE5d0NSbUZaMlA2bEliWjl2YWdCWkVnT2t0QVg0cWxnb1ZrQ29BRUxHRUY2?=
+ =?utf-8?B?LzBpZ1dtQlI5emMxbzFJUittY2I4RHF6QWdDb0taQ1QxM2FyU2xielA4aVd1?=
+ =?utf-8?B?Y0VNY2IrVFljbTJQeDFYcndPekdpaExlVUU3alFCNUlRWDFBTDV6U25kM2Zl?=
+ =?utf-8?B?TFRjaXl1dDdoTHRTWGdFaUJUQ0dKeDNjNHJUMXNQVGoxaWsvbTkyZXhNTUFq?=
+ =?utf-8?B?djYrTjdEcTNZMW1ZbUl6TFJQVkRsNm9wRVVNb01rWUlqb0haM3VSd0IvWk5R?=
+ =?utf-8?B?bUdJdk9jZzQvTU5YNk11aWU4clQwYjVpQ1hWdjV5WEpwYnl3djdLL1ZQUGNM?=
+ =?utf-8?B?VE8vblZ4eG5yMUF4anFVaExmMWZMSUt3alg1bVhkYnJZbWdrNzlCV2NYNXIv?=
+ =?utf-8?B?YjBVWHNVV3JHSk84L1NtajRxOHpDenFGVVRPT3FNRnZ3a3V3dG5sSjZiV1Z4?=
+ =?utf-8?B?UTVSZkNXZDlVS0VBdjRKcVlLZmJnbFlrMjhUVFVOcmVHK2hJbHZNY1BLUTFm?=
+ =?utf-8?B?bXlMU212VWFORHVYUTVpR3R3aWUzRkZ1bXVZOEQ2ZnYrVHJoKzkzZGdhQTZw?=
+ =?utf-8?B?c0psV2tRK1duaG1raTF0ZTFHQUJzQldZditzNVNDcFJ5K3F6d0Y1U2hJY0dF?=
+ =?utf-8?B?MGRoaWhXbFNaYnNiY2Vqbkd1b0dPWXVYYy8xSHNhOUs0eUFadmN2VGhTVktr?=
+ =?utf-8?B?YzV0clJkR2xRZ3F3Tlg1cnZJY05SeU9ZT29CcmZ6TFR5blpmYWlZSkpQUHB4?=
+ =?utf-8?B?SHpUS3FVazIrdHpkOHhOVEwzNDF4SkY4ZDg1SEo4bFFyMEZFbmEwbnAyaDN3?=
+ =?utf-8?B?cXF2d05wZjVObGllTllCSmx2NmNjdTFlQ0M3dVk1ZUg4bTAwdG1vWjFWeW0r?=
+ =?utf-8?B?QmZhRTlyc1JTdDA4MHRjQ3FsVjBQdU8wZisyR01WNEdtV0FqTEV4TzJEV1I1?=
+ =?utf-8?B?SmUraUNsczZobnRVY05MZ0FadEl5VE83Y2hMQmQrMS91NTF0UlR1US9xeFFo?=
+ =?utf-8?B?Q0w2bHlzL2pJWUVQRHhLdWdWNVl0VTVCTWp4T2o2a09MWDhGLzBUMUxOOHow?=
+ =?utf-8?B?ZGZWY2JFdmFNTm5FZnhBZi9ZYmRNWStBclVheG5lcVlmM2NLNnpOSUtha3J2?=
+ =?utf-8?B?dkxrNGZKMTJIcUJINC9PbDV4N2psVi9CWklMSjd5MmJTK0N6ZWZZcHJxTlND?=
+ =?utf-8?B?Y0Y1VE1JYU5pNHFmVlNBQ1kyMnIwWjRSbHBvQ044MEZkMnlrV0Q1dEcvNGt1?=
+ =?utf-8?B?VkIzRU1DVzBLcU5PbVViRS9kdzBCRG9QeENaZzJPcFgxNWs0ZFpKUDFyaERF?=
+ =?utf-8?B?UVN3c2N1REI3SkNJSjlUQlZjdG4ycnpkRGxOcXFJRGpta1ZQNnRmY2R2KzNK?=
+ =?utf-8?B?WDlwcDdFZlZTaHU1emt5ZkVhQ3FoNWNuVWZRMXBoQi94VVRybnFyckJiUlB2?=
+ =?utf-8?B?RnlpZ0pPbDhkVGZYOEhXTlRIQWlFaCtOSVMxa3ZxOW41dnpCd05GSFNpQ3cy?=
+ =?utf-8?B?RkhZMW10cmhmaVl4ZTh4REZsaWg2VENiOFA0eW1PYnF6OGxuYWJER1NSSWpl?=
+ =?utf-8?B?c2YwdWtaVnM4NDlwOEd0MHNIYVpZSDhrMndRZWk3VmlkN3A3V0JLSnMvK2I1?=
+ =?utf-8?B?TjhpVkpOQlJqOWtrSUR2VWJGNHVHcktWQWNJRFhMRGFBMmt1dTJwRzYzSHNs?=
+ =?utf-8?B?NE5Cai94SjloUEhjWGl1MkFWZXV5bkxSUFFYWkord3dndEtQdjBPeFZ6SGVL?=
+ =?utf-8?B?NHlwQ0prSlJzeEpJWUVRV0NNRUdDQmFiY2J3VzYwdmxyZlVmU01yZE9ETVAx?=
+ =?utf-8?B?VmFqRjFZZnhBTytHRGdVbWtyamgrZDB0MWRyWWx6dGZWbU41RCtubVNKcjd3?=
+ =?utf-8?B?V1JWUFVPc0xLbmgxdFRCOG16OHlaVHc4QnplL3NuN0plMU0rS1ZaZ2QycUFm?=
+ =?utf-8?B?QmY2M3VOQ0c4cHVLUUVhV1hycndIR1BJaEtJK0FpdGEzYVYyOG9odno0UzZi?=
+ =?utf-8?B?Mml6aFBRVDdOTS9UcG1NNHRyem5iMjNNdWluZzBzVTNMZDM5d05Mdz09?=
+X-Exchange-RoutingPolicyChecked: yXKlwlv+gWMtOJthdE+c46D6A6Wi390uHdjHWgElM505UIbETb3WCJmyrfJpnZlyHaWwpV1oyKwqbTW/bRK0vFJwTFSzFlo7+2ZUS7CUfX6wZ9VgfNKpNunMReex7leqIab0N0tKSxCYzEQVeJYwWe4sfQI2+TRjhRu/2ZF8gnl80W7iHdP24HZhY4+rIzSanUKIlpqNT39Efzt4ej1XTDlQHdcF37VVkZdr/VxkvcuxXujtrCwaNpJN/J0Qm3zvs/L7mvLFoY7T2DRbziD1QBbxQw/B+KaeTfoDd+GRIEsmfYPPgJ+2vYXWSJTFQXfGzd+rq9UJeg04OemVtQFBmA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2bce0712-64be-4dcd-f7ed-08df1a08a40a
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5249.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2026 06:54:12.5875 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ik1gtTaIlhYq7FcKtDJt79Quv4Hk1vtRYllSWsE0tIbjd4Lrt7H2ve6alaw09iGVYhyeIzzn0mShXRiAETpnQQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SAWPR11MB9921
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,75 +174,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mika Penttilä <mpenttil@redhat.com>
 
-Describe the two new MIGRATE_VMA_FAULT / MIGRATE_VMA_WRITE flags of
-migrate_vma_setup(), and add a section on driving the migration
-collection phase directly from hmm_range_fault() via HMM_PFN_REQ_MIGRATE
-and migrate_hmm_range_setup().
-
-Signed-off-by: Mika Penttilä <mpenttil@redhat.com>
----
- Documentation/mm/hmm.rst | 39 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
-
-diff --git a/Documentation/mm/hmm.rst b/Documentation/mm/hmm.rst
-index fc1b8dc19825..58424e5f5873 100644
---- a/Documentation/mm/hmm.rst
-+++ b/Documentation/mm/hmm.rst
-@@ -348,6 +348,13 @@ between device driver specific code and shared common code:
-    Currently only anonymous private VMA ranges can be migrated to or from
-    system memory and device private memory.
- 
-+   By default only pages already present are collected. Two additional flags
-+   ask migrate_vma_setup() to fault in missing pages first:
-+
-+   * ``MIGRATE_VMA_FAULT`` faults in missing pages with read access.
-+   * ``MIGRATE_VMA_WRITE`` faults in missing pages with write access
-+     (implies faulting).
-+
-    One of the first steps migrate_vma_setup() does is to invalidate other
-    device's MMUs with the ``mmu_notifier_invalidate_range_start()`` and
-    ``mmu_notifier_invalidate_range_end()`` calls around the page table
-@@ -427,6 +434,38 @@ between device driver specific code and shared common code:
- 
-    The lock can now be released.
- 
-+Migration collection through hmm_range_fault()
-+==============================================
-+
-+The collection phase of migration (steps 1 and 2 above) can also be driven by
-+hmm_range_fault() directly, sharing its page table walk. This lets a driver
-+fault in and collect a range for migration in one walk, which is useful for
-+migrate on fault.
-+
-+To do so, the driver sets ``HMM_PFN_REQ_MIGRATE`` in ``range->default_flags``
-+and points ``range->migrate`` at a ``struct migrate_vma`` it has filled in
-+(``flags``, ``src``, ``dst``, ``pgmap_owner``). Usually ``HMM_PFN_REQ_FAULT``
-+(and ``HMM_PFN_REQ_WRITE``) is set as well, so missing pages are faulted in
-+before being collected. The mmap_read_lock() has to be held for the whole
-+migration, since the vma must stay stable.
-+
-+hmm_range_fault() collects the entries the same way migrate_vma_setup() does,
-+taking a folio reference, locking it and installing a migration PTE. Collected
-+entries are marked with ``HMM_PFN_VALID | HMM_PFN_MIGRATE`` in
-+``range->hmm_pfns``. If the page tables change while locks are dropped the
-+partially collected entries are rolled back automatically.
-+
-+After hmm_range_fault() returns, the driver calls::
-+
-+    void migrate_hmm_range_setup(struct hmm_range *range);
-+
-+to translate ``range->hmm_pfns`` into ``migrate->src[]`` (``migrate->dst[]`` is
-+zeroed) and initialize ``migrate->cpages`` and ``migrate->npages``. From here on
-+the ``range->migrate`` struct is ready for the rest of the flow (steps 3
-+onwards), i.e. migrate_vma_pages() and migrate_vma_finalize(). This should be
-+called even on error, since hmm_range_fault() may have collected part of the
-+range before failing.
-+
- Exclusive access memory
- =======================
- 
--- 
-2.55.0
-
+On 18-09-2026 15:43, Rodrigo Vivi wrote:
+> On Thu, Sep 10, 2026 at 11:57:55PM +0530, Karthik Poosa wrote:
+>> CRI temperature registers encode package and VRAM temperatures as
+>> IEEE-754 floating-point values. Decode these values before exposing
+>> them through hwmon.
+>>   
+>> Use integer-based IEEE-754 decoding since kernel code does not use
+>> floating-point operations and hwmon reports integer temperatures.
+>>
+>> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+>> Assisted-by: GitHub Copilot; Model: MAI-Code-1.1-Flash
+> nowadays 'Assisted-by: LLM' should be enough.
+> And this one here was not the previous style anyway.
+>
+>> ---
+>>
+>> v2: Reject temperatures that overflow long on 32-bit (Sashiko).
+>>
+>>   drivers/gpu/drm/xe/xe_hwmon.c | 85 +++++++++++++++++++++++++++++------
+>>   1 file changed, 71 insertions(+), 14 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+>> index c682c5a33650..e4a210916df2 100644
+>> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+>> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+>> @@ -1159,6 +1159,62 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>>   	}
+>>   }
+>>   
+>> +/**
+>> + * xe_hwmon_temperature_decode - Decode an IEEE-754 temperature register value
+>> + * @reg_val: The raw register value to decode
+>> + *
+>> + * IEEE-754 single-precision format:
+>> + *
+>> + *  31 30                         23 22                         0
+>> + * +--+-----------------------------+----------------------------+
+>> + * | S|          exponent           |          fraction          |
+>> + * +--+-----------------------------+----------------------------+
+>> + *
+>> + * value = (-1)^S * 1.fraction * 2^(exponent - 127)
+>> + *
+>> + * Return: 0 on success or an error if @reg_val is non-finite or cannot be
+>> + * represented in millidegrees Celsius.
+>> + */
+>> +static int xe_hwmon_temperature_decode(u32 reg_val, long *temperature)
+>> +{
+>> +	u32 exponent = (reg_val >> 23) & 0xff;
+>> +	u32 mantissa = reg_val & 0x7fffff;
+> Perhaps all of these deserves some define somewhere?!
+I shall define here itself, as it not used anywhere else.
+>
+> Perhaps something like LLM suggested:
+>
+>          #define IEEE754_SIGN            BIT(31)
+>          #define IEEE754_EXP_MASK        GENMASK(30, 23)
+>          #define IEEE754_MANTISSA_MASK   GENMASK(22, 0)
+>          #define IEEE754_EXP_BIAS        127
+>          #define IEEE754_MANTISSA_BITS   23
+>          #define IEEE754_EXP_SPECIAL     0xff    /* Inf / NaN */
+>
+> and use FIELD_GET() for the extraction
+>
+>> +	s64 value;
+>> +	int shift;
+>> +
+>> +	/* Exponent 0xff encodes infinity or NaN. */
+>> +	if (exponent == 0xff)
+>> +		return -EINVAL;
+>> +
+>> +	/* Subnormal values are smaller than one millidegree Celsius. */
+>> +	if (!exponent) {
+>> +		*temperature = 0;
+>> +		return 0;
+>> +	}
+>> +
+>> +	value = (s64)(mantissa | BIT(23)) * MILLIDEGREE_PER_DEGREE;
+>> +	shift = exponent - 150;
+>> +	if (shift >= 0) {
+>> +		if (shift >= BITS_PER_LONG || value > (LONG_MAX >> shift))
+>> +			return -ERANGE;
+>> +		value <<= shift;
+>> +	} else if (shift > -64) {
+>> +		value >>= -shift;
+>> +	} else {
+>> +		value = 0;
+>> +	}
+>> +
+>> +	/* Ensure the magnitude fits in long, which is 32-bit on some arches. */
+>> +	if (value > LONG_MAX)
+>> +		return -ERANGE;
+>> +
+>> +	if (reg_val & BIT(31))
+>> +		value = -value;
+>> +
+>> +	*temperature = value;
+>> +	return 0;
+>> +}
+>> +
+>>   static int
+>>   xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+>>   {
+>> @@ -1168,26 +1224,27 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+>>   	switch (attr) {
+>>   	case hwmon_temp_input:
+>>   		switch (channel) {
+>> -		case CHANNEL_PKG:
+>> -		case CHANNEL_VRAM:
+>> -			reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, channel));
+>> -
+>> -			/* HW register value is in degrees Celsius, convert to millidegrees. */
+>> -			*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
+>> -			return 0;
+>>   		case CHANNEL_MCTRL:
+>>   			return get_mc_temp(hwmon, val);
+>>   		case CHANNEL_PCIE:
+>>   			return get_pcie_temp(hwmon, val);
+>> +		case CHANNEL_PKG:
+>> +		case CHANNEL_VRAM:
+>>   		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+>>   			reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, channel));
+>> -			/*
+>> -			 * This temperature format is 24 bit [31:8] signed integer and 8 bit
+>> -			 * [7:0] fraction.
+>> -			 */
+>> -			*val = (s32)(REG_FIELD_GET(TEMP_MASK_VRAM_N, reg_val)) *
+>> -				(REG_FIELD_GET(TEMP_SIGN_MASK, reg_val) ? -1 : 1) *
+>> -				 MILLIDEGREE_PER_DEGREE;
+>> +			if (hwmon->xe->info.platform >= XE_CRESCENTISLAND) {
+>> +				return xe_hwmon_temperature_decode((u32)reg_val, val);
+>> +			} else if (channel >= CHANNEL_VRAM_N) {
+>> +				/*
+>> +				 * This temperature format is 24 bit [31:8] signed integer and 8 bit
+>> +				 * [7:0] fraction for platforms before CRI.
+>> +				 */
+>> +				*val = (s32)REG_FIELD_GET(TEMP_MASK_VRAM_N, reg_val) *
+>> +					(REG_FIELD_GET(TEMP_SIGN_MASK, reg_val) ? -1 : 1) *
+>> +					MILLIDEGREE_PER_DEGREE;
+>> +			} else {
+>> +				*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
+>> +			}
+>>   			return 0;
+>>   		default:
+>>   			return -EOPNOTSUPP;
+>> -- 
+>> 2.25.1
+>>
