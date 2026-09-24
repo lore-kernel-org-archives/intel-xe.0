@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3936C98317
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 11:24:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0704BC98317
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Sep 2026 11:24:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DEF010F463;
-	Thu, 24 Sep 2026 11:24:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD0A110E6E1;
+	Thu, 24 Sep 2026 11:24:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XWtJ8v0G";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hVnOg7LY";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF5E710F48D
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 11:24:09 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEEA810E0EC
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 11:24:35 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 96FE240D6F;
- Thu, 24 Sep 2026 11:24:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 662051F000FF;
- Thu, 24 Sep 2026 11:24:09 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 56706601DE;
+ Thu, 24 Sep 2026 11:24:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E374A1F000FF;
+ Thu, 24 Sep 2026 11:24:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790249049;
- bh=b+yVoGZdSdiuOqXePWOu/nOS3nWDpwEqsteq8B7BE7w=;
+ s=k20260515; t=1790249075;
+ bh=QB89cEY2RmfJtMUEOdnUSbRyaSUvP8VqKTDOjhtHHSs=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=XWtJ8v0GbIuPsHchWaBDR+4gwF67/OOs8dkRxNGLzyl+yPkVEyfwmqRHjtP18jcrO
- FSadslde8fcqDW9g0qFHBBbIDqFi/scNquEtQyVxx96SVho9nN5TEejCK2PxXRZGzp
- Fmc0WZ1Jv1LQMDRo1cZ8ajX+ECleFAzKpgjPsv8TUPI5zGWuHRB56VPWcBarFXTjYJ
- esDxtg+Z3bUhh4UkB6ceppWTZFTeBAojJG4aojLIY+efnby3ksWc4HX3VhRRix416A
- 8/oTpx9V4wPnjh7EueJgtWnIEzoOFxlqjHupLlKa7MWSaxycRfTyaZ2Lw2xJFrvKl9
- Bu0r0gNo1d6Cg==
+ b=hVnOg7LYK9hj2rfhW5WrQgwW0PbxaGPIqaJVrL4E0FalZETVeHjOMr4HvhFm/fe6f
+ yw6ACD364WCFlXgAUoHDzvWQ5ZWEh4aTH1b+HJHJpZRCpDnpXzmsy7V4yHW+YQAuxc
+ Y9wtOMexLXrkOB2OnKxBoVY8G9BcYQRqxvWEVMRPHV0abfz+GJWqbe/RTuyG5cFWAv
+ 50f5lwqW1zX5BjRx1igRunQIt6PK0vOUdJkRIPiO5JAsBz3cWOj10omj5rSg/OvQ9h
+ UqrD9jHrmt1T4wTCqsZuo0Laq8YsDzwi1SCMQ5LPWoF9SRlCchpOWeWZJ+4cq7TzJH
+ roqnbiL8MWi4Q==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 09/13] drm/xe/hwmon: Add platform-aware VRAM thermal
- channel support
+Subject: Re: [PATCH v5 07/13] drm/xe/hwmon: Consolidate temperature sensor
+ availability checks
 To: "Karthik Poosa" <karthik.poosa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260924111156.2628915-10-karthik.poosa@intel.com>
+In-Reply-To: <20260924111156.2628915-8-karthik.poosa@intel.com>
 References: <20260924111156.2628915-1-karthik.poosa@intel.com>
- <20260924111156.2628915-10-karthik.poosa@intel.com>
+ <20260924111156.2628915-8-karthik.poosa@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 24 Sep 2026 11:24:09 +0000
-Message-Id: <20260924112409.662051F000FF@smtp.kernel.org>
+Date: Thu, 24 Sep 2026 11:24:34 +0000
+Message-Id: <20260924112434.E374A1F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,116 +57,97 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] hwmon: VRAM temperature array overlaps with CRI control registers
-- [Medium] hwmon: VRAM temperature channels truncated for sparse MSU masks
+- [Medium] hwmon: initialization race causes permanent attribute loss on sl=
+ow sensors
 --
 
-commit e9469679c20c906facf743cdf68972d046f4524d
+commit c02db655e6dabb60e61a8acbe0daf64a353e248d
 Author: Karthik Poosa <karthik.poosa@intel.com>
+Subject: drm/xe/hwmon: Consolidate temperature sensor availability checks
 
-drm/xe/hwmon: Add platform-aware VRAM thermal channel support
+This commit replaces is_vram_ch_available() with a generalized=20
+is_temp_available() to validate multiple sensor types. It uses this new=20
+helper during hwmon registration to prevent exposing sysfs attributes for=20
+sensors that are not present.
 
-On CRI, derive the number of available VRAM temperature channels from the
-CRI_MSU_VRAM_ENABLE register, where each enabled MSU contributes
-VRAM_CHANNELS_PER_MSU channels.
-=20
-Increase the maximum supported VRAM channel count to 80 and use the
-derived count to control VRAM sensor enumeration, channel access, and
-VRAM label allocation. Add a has_fixed_vram_channels platform flag to
-preserve the existing fixed-channel behavior on non-CRI platforms.
-
-> diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe=
-/regs/xe_pcode_regs.h
-> index c63b409d7a821..11916b4f7cfc0 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-> @@ -29,5 +29,6 @@
-> =20
->  #define CRI_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
->  #define CRI_PLATFORM_ENERGY_STATUS		XE_REG(0x138458)
-> +#define CRI_MSU_VRAM_ENABLE             XE_REG(0x138340)
-> =20
->  #endif /* _XE_PCODE_REGS_H_ */
 > diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index cf5d51c685360..1b587bd9487e1 100644
+> index 7bb7a5f402d1e..d62f95a1912f3 100644
 > --- a/drivers/gpu/drm/xe/xe_hwmon.c
 > +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -39,7 +39,11 @@ enum xe_hwmon_reg_operation {
->  	REG_READ64,
->  };
-> =20
-> -#define MAX_VRAM_CHANNELS      (16)
-> +#define MAX_VRAM_CHANNELS	80
-
-[Severity: High]
-Does the VRAM temperature array overlap with the newly added CRI control
-registers?
-
-The BMG_VRAM_TEMPERATURE_N(n) macro calculates the register address as
-0x138260 + (n * 4). By increasing MAX_VRAM_CHANNELS to 80, this expands the
-temperature array significantly.
-
-For channel 56, the address evaluates to 0x138260 + 0xE0 =3D 0x138340, which
-overlaps with the newly added CRI_MSU_VRAM_ENABLE. Channel 57 overlaps with
-CRI_PACKAGE_TEMPERATURE (0x138344), and channel 58 overlaps with
-CRI_VRAM_TEMPERATURE (0x138348).
-
-Reading VRAM temperature channels >=3D 56 will read unrelated control or
-status registers. This regression can lead to bogus temperature reporting or
-potential hardware side-effects on platforms that enable them.
-
-> +#define FIXED_VRAM_CHANNELS	16
-> +
-> +/* Each MSU enable bit maps to one VRAM subsystem of 4 channels. */
-> +#define VRAM_CHANNELS_PER_MSU	4
-> =20
->  enum xe_hwmon_channel {
 [ ... ]
-> @@ -805,15 +887,38 @@ static const struct hwmon_channel_info * const hwmo=
-n_info[] =3D {
->  static int xe_hwmon_pcode_read_thermal_info(struct xe_hwmon *hwmon)
+> -static inline bool is_vram_ch_available(struct xe_hwmon *hwmon, int chan=
+nel)
+> +static bool is_temp_available(struct xe_hwmon *hwmon, int channel)
 >  {
->  	struct xe_tile *root_tile =3D xe_device_get_root_tile(hwmon->xe);
-> +	struct xe_mmio *mmio =3D xe_root_tile_mmio(hwmon->xe);
->  	u32 config =3D 0;
->  	int ret;
+>  	struct xe_mmio *mmio =3D xe_root_tile_mmio(hwmon->xe);
+> -	int vram_id =3D channel - CHANNEL_VRAM_N;
+> -	struct xe_reg vram_reg;
+> +	struct xe_reg reg;
+> +	u32 reg_val;
 > =20
-> +	/*
-> +	 * Only CRI reports dynamic VRAM channel state. Fixed-channel platforms
-> +	 * set the count up front so those sensors stay visible even if the the=
-rmal
-> +	 * mailbox reads below fail.
-> +	 */
-> +	if (hwmon->xe->info.has_fixed_vram_channels)
-> +		hwmon->temp.vram_count =3D FIXED_VRAM_CHANNELS;
+> -	vram_reg =3D xe_hwmon_get_reg(hwmon, REG_TEMP, channel);
+> -	if (!xe_reg_is_valid(vram_reg) || !xe_mmio_read32(mmio, vram_reg))
+> -		return false;
+> +	switch (channel) {
+> +	case CHANNEL_PKG:
+> +	case CHANNEL_VRAM:
+> +	case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+> +		reg =3D xe_hwmon_get_reg(hwmon, REG_TEMP, channel);
+> +		if (!xe_reg_is_valid(reg))
+> +			return false;
 > +
-> +	if (hwmon->xe->info.platform =3D=3D XE_CRESCENTISLAND) {
-> +		hwmon->temp.msu_mask =3D xe_mmio_read32(mmio, CRI_MSU_VRAM_ENABLE);
-> +		/* Each enabled MSU bit maps to VRAM_CHANNELS_PER_MSU channels. */
-> +		hwmon->temp.vram_count =3D hweight32(hwmon->temp.msu_mask) * VRAM_CHAN=
-NELS_PER_MSU;
+> +		reg_val =3D xe_mmio_read32(mmio, reg);
+> +		if (!mmio_temp_valid(hwmon, reg_val)) {
+> +			drm_dbg(&hwmon->xe->drm,
+> +				"channel %d temperature unavailable, val 0x%x\n", channel, reg_val);
+> +			return false;
+> +		}
 
 [Severity: Medium]
-Does this calculate the upper bound as the population count rather than the
-maximum active index?
+Could this cause functional sensors to be permanently hidden if the firmware
+is slow to initialize them?
 
-If the msu_mask is sparse (e.g., bit 0 and bit 4 enabled, yielding 8 total
-channels), vram_count will evaluate to 8.
+During hwmon registration, is_temp_available() performs a live MMIO read to
+determine attribute visibility. If the firmware hasn't populated a valid
+temperature yet at the exact moment of device probe (for instance, returning
+0 or U32_MAX), mmio_temp_valid() will return false.
 
-Later in xe_hwmon_get_reg(), this vram_count is used as an upper bound:
-in_range(channel, CHANNEL_VRAM_N, hwmon->temp.vram_count)
+Since this determines sysfs attribute visibility, doesn't this create a
+silent failure where perfectly functional PKG sensors disappear intermitten=
+tly
+depending on boot timing?
 
-When iterating, channels 16-19 (corresponding to bit 4) will fail the
-in_range(..., 8) check because their relative index (16) is >=3D 8. This
-regression causes valid hardware sensors for higher-indexed MSUs to be
-silently skipped and not exported to userspace.
+> +
+> +		if (channel >=3D CHANNEL_VRAM_N)
+> +			sprintf(hwmon->temp.vram_label[channel - CHANNEL_VRAM_N],
+> +				"vram_ch_%d", channel - CHANNEL_VRAM_N);
+> =20
+> -	/* Create label only for available vram channel */
+> -	sprintf(hwmon->temp.vram_label[vram_id], "vram_ch_%d", vram_id);
+> -	return true;
+> +		return true;
+> +	case CHANNEL_MCTRL:
+> +		return hwmon->temp.count && !get_mc_temp(hwmon, NULL);
+> +	case CHANNEL_PCIE:
+> +		return hwmon->temp.count && !get_pcie_temp(hwmon, NULL);
 
-> +		drm_dbg(&hwmon->xe->drm, "MSU VRAM enable mask 0x%x, VRAM channel coun=
-t %d\n",
-> +			hwmon->temp.msu_mask, hwmon->temp.vram_count);
+[Severity: Medium]
+Similarly, does this live PCODE mailbox polling risk permanently hiding the
+Memory Controller and PCIe temperature sensors?
+
+If PCODE is slow to respond during device probe, get_mc_temp() and
+get_pcie_temp() might fail or return invalid data. Because this check
+replaces static capability checks (such as hwmon->temp.count) with live
+sensor data, it seems to introduce a race condition where a temporary
+initialization delay results in permanent attribute loss.
+
+> +	default:
+> +		return false;
+> +	}
+>  }
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260924111156.2628=
-915-1-karthik.poosa@intel.com?part=3D9
+915-1-karthik.poosa@intel.com?part=3D7
