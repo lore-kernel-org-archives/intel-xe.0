@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 997BDC98321
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 13:55:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3B18C9830D
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 13:55:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4481910FAC8;
-	Fri, 25 Sep 2026 13:55:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC0410FAD7;
+	Fri, 25 Sep 2026 13:55:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JFnWDC8C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SJZ+feHA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD24310FAC8
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 13:55:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 172C310FAC9
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 13:55:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790344548; x=1821880548;
+ t=1790344552; x=1821880552;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4Yn1+cLl3lGM7Q7mDKDRWwR0ooARiGgCKqSn1OD/DWA=;
- b=JFnWDC8C38kAQxqRicpqvx7QklJVASBG+XiW5vxRr298tunscK2eUWzM
- +2Ls6CxkMDEUiolZGXWOesyAiIO/0OftFXjCE9irLZf/N9aubqGH98yMY
- mPxIMMWBJoiOB0QWKktZ4RYSJBCMgCFjNxbiRgPsnM2PJHZUbvPES9bAG
- N/cSjcx+lyyTrBxLTM+pkNc4R6+y8vE6kPtV1lrDzTZZlEUFFxyxCwfIm
- 6Jc59Ik8Qw2ejFTQhTZmNDtxpfbI+OAVOskC1AU/FcATy8SX9lrLDN8Ca
- t2SQLzsDD2/2Xe3aa/PeBo1gpoM4PlQ0Qgl9MWH1d0LfvwDMDibFMxxec Q==;
-X-CSE-ConnectionGUID: 3u7EPl+cTC2ZpfHDMCHDKw==
-X-CSE-MsgGUID: UTcy9WZUR7+VJPuvdWfzVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="90993031"
-X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="90993031"
+ bh=zyOvt+iOUiiI8+J0H3Hp724cCAnuLJTid3pararCP9U=;
+ b=SJZ+feHAPQndDRVWqCPqWEoyQvx8PrzmRKe+ysBxoN2UC+tPAPsWP387
+ eJUUZvjINYZsXUtKNXBWA8elykUtxWxThZ9UC8nHP7AHE6j8nI60hsAJg
+ b1a5ci/41AeOzkVDveylIhv6Xik+T96NoCs6Uoxbin6LdYCkrygwAK/mB
+ he93pbgl4HfCj6VtFlDiZSbByQ0AId55BNt+3AoMah4UfIBViysfXcIVW
+ mqzoZT02OQnJ3sLx4loxc7MmwaFfptmNwlTcZ4BpABuVu5AHl5j4o8/fh
+ a/rSFNVsYZ31RmDQXRY2fQm7ucHz8btXcth3tgBp2waRsh4OcCIJxJmMZ Q==;
+X-CSE-ConnectionGUID: oj0JPYoDTVKNRIDVXRzPIw==
+X-CSE-MsgGUID: 4HoiW4JwQ46ZuZ9j6IvMIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="90993037"
+X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="90993037"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2026 06:55:47 -0700
-X-CSE-ConnectionGUID: 3AgQum0ATn+WvGj42BroJQ==
-X-CSE-MsgGUID: IOjUWWAQTZSyEiCIa+5Y5A==
+ 25 Sep 2026 06:55:52 -0700
+X-CSE-ConnectionGUID: 9zJFvt57QrS9mcQFpHjd7A==
+X-CSE-MsgGUID: YQhsaC+JRjmclUb/fJCdyg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="272914947"
+X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="272914962"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2026 06:55:43 -0700
+ 25 Sep 2026 06:55:48 -0700
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -50,10 +50,10 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  michal.wajdeczko@intel.com, michael.j.ruhl@intel.com,
  paul.e.luse@intel.com, mohamed.mansoor.v@intel.com, kam.nasim@intel.com,
  anoop.c.vijay@intel.com
-Subject: [PATCH v7 2/3] drm/xe/sysctrl: Add RAS error injection debugfs
- interface
-Date: Fri, 25 Sep 2026 06:55:22 -0700
-Message-ID: <20260925135521.1804299-7-anoop.c.vijay@intel.com>
+Subject: [PATCH v7 3/3] drm/xe/sysctrl: Add generic mailbox passthrough
+ debugfs entry
+Date: Fri, 25 Sep 2026 06:55:23 -0700
+Message-ID: <20260925135521.1804299-8-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260925135521.1804299-5-anoop.c.vijay@intel.com>
 References: <20260925135521.1804299-5-anoop.c.vijay@intel.com>
@@ -75,126 +75,68 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Add debugfs interface for exercising System Controller's RAS error
-injection command, used to validate RAS error detection and recovery
-paths.
+Add a "mailbox" debugfs entry that allows any System Controller
+mailbox command to be issued for bring-up and debug. group and
+command are supplied by the caller as the first two tokens of every
+write, followed by optional per-command response timeout and
+response-length overrides and the payload bytes:
 
-Command details:
-- Group ID: 0x02 (diag group)
-- Command ID: 0x7E (XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT)
-- Usage: echo "<ras_block_id> <ras_sub_block_id> <err_type> [params]" \
-             > /sys/kernel/debug/dri/0/sc/ras_error_inject
-         cat /sys/kernel/debug/dri/0/sc/ras_error_inject
-
-This command requires the diag application to have completed firmware
-boot and initialization (late-bind loaded). Both cat and echo are
-rejected with -ENODEV until xe_sysctrl_is_diag_fw_ready() reports the
-diag firmware as ready: the readiness check is done in .open(), so the
-file stays visible under sc/ but is inaccessible for both read and
-write until the diag firmware becomes ready.
+- Usage: echo "<group> <command> [timeout=<ms>] [resplen=<N>] [byte0 byte1 ...]" \
+             > /sys/kernel/debug/dri/0/sc/mailbox
+         cat /sys/kernel/debug/dri/0/sc/mailbox
 
 Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 ---
+v7:
+- Add per-command timeout override to mailbox debugfs
+- Add per-command response-length override to mailbox debugfs
+
 v6 (Rodrigo):
-- Reject non-zero offset writes for ras_error_inject entry
+- Reject non-zero offset writes for mailbox entry
 - Account for mailbox header size when validating input payload length
-- Refactor token parsing to simplify cleanup and error handling
 
 v5:
 - Add per-entry locking for debugfs accesses
-- Add xe_pm_runtime guards for ras_error_inject readiness checks
-- Simplify ras_error_inject write-path flow
+- Skip empty mailbox group/command tokens
 
-v4 (Rodrigo, Anshuman):
-- Gated ras_error_inject on diag firmware readiness in .open()
+v4:
+- Added a generic mailbox debugfs entry
 ---
- drivers/gpu/drm/xe/xe_sysctrl_debugfs.c       | 152 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  31 ++++
- drivers/gpu/drm/xe/xe_sysctrl_types.h         |   3 +
- 3 files changed, 186 insertions(+)
+ drivers/gpu/drm/xe/xe_sysctrl_debugfs.c       | 172 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   1 +
+ drivers/gpu/drm/xe/xe_sysctrl_types.h         |   6 +
+ 3 files changed, 179 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-index dfd614e7e54b..10675cd774ee 100644
+index 10675cd774ee..ba904cb24512 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-@@ -10,6 +10,7 @@
- #include <linux/seq_file.h>
- #include <linux/slab.h>
- #include <linux/string.h>
-+#include <linux/string_choices.h>
- #include <linux/uaccess.h>
+@@ -299,10 +299,179 @@ static void xe_sysctrl_register_entry(struct dentry *root, struct xe_sysctrl_deb
+ 	entry->command = command;
+ 	entry->response_len = 0;
+ 	entry->status = 0;
++	entry->timeout_ms = 0;
  
- #include "xe_pm.h"
-@@ -134,6 +135,153 @@ static const struct file_operations xe_sysctrl_loopback_fops = {
- 	.release = single_release,
- };
+ 	debugfs_create_file(name, 0644, root, entry, fops);
+ }
  
-+static int sysctrl_parse_ras_error_inject(struct xe_device *xe, char *tmp,
-+					  struct xe_sysctrl_diag_ras_err_inj_req *req)
-+{
-+	unsigned int nfields = 0;
-+	char *token;
-+	unsigned long val;
-+
-+	while ((token = strsep(&tmp, " \t\n")) != NULL) {
-+		if (*token == '\0')
-+			continue;
-+
-+		if (kstrtoul(token, 0, &val))
-+			goto inval;
-+
-+		switch (nfields) {
-+		case 0:
-+			if (val > U16_MAX)
-+				goto inval;
-+			req->ras_block_id = val;
-+			break;
-+		case 1:
-+			if (val > U16_MAX)
-+				goto inval;
-+			req->ras_sub_block_id = val;
-+			break;
-+		case 2:
-+			if (val > U16_MAX)
-+				goto inval;
-+			req->err_type = val;
-+			break;
-+		case 3:
-+			if (val > U32_MAX)
-+				goto inval;
-+			req->params = val;
-+			break;
-+		default:
-+			xe_err(xe, "sysctrl: too many ras_error_inject arguments\n");
-+			return -EINVAL;
-+		}
-+		nfields++;
-+	}
-+
-+	if (nfields < 3) {
-+		xe_err(xe,
-+		       "sysctrl: usage: <ras_block_id> <ras_sub_block_id> <err_type> [params]\n");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+
-+inval:
-+	xe_err(xe, "sysctrl: invalid ras_error_inject token '%s'\n", token);
-+	return -EINVAL;
-+}
-+
-+static ssize_t xe_sysctrl_ras_error_inject_write(struct file *file, const char __user *ubuf,
-+						 size_t len, loff_t *offp)
++static ssize_t xe_sysctrl_mailbox_write(struct file *file, const char __user *ubuf,
++					size_t len, loff_t *offp)
 +{
 +	char *kbuf __free(kfree) = NULL;
++	u8 *input __free(kfree) = NULL;
 +	struct seq_file *m = file->private_data;
 +	struct xe_sysctrl_debugfs_entry *entry = m->private;
 +	struct xe_device *xe = sc_to_xe(entry->sc);
-+	struct xe_sysctrl_diag_ras_err_inj_req req = {};
 +	struct xe_sysctrl_mailbox_command cmd = {};
-+	u8 resp_hdr_only[sizeof(u32)];
++	char *token, *tmp;
++	unsigned long val;
++	unsigned int timeout_ms = 0;
++	size_t input_len = 0;
++	size_t max_input;
 +	size_t out_len = 0;
++	size_t resp_len = XE_SYSCTRL_MB_MAX_DATA_SIZE;
++	u8 group, command;
 +	int status;
 +
 +	if (*offp)
@@ -207,151 +149,188 @@ index dfd614e7e54b..10675cd774ee 100644
 +	if (!kbuf)
 +		return -ENOMEM;
 +
++	max_input = min_t(size_t, len, XE_SYSCTRL_MB_MAX_DATA_SIZE);
++	input = kmalloc(max_input, GFP_KERNEL);
++	if (!input)
++		return -ENOMEM;
++
 +	if (copy_from_user(kbuf, ubuf, len))
 +		return -EFAULT;
 +	kbuf[len] = '\0';
 +
-+	status = sysctrl_parse_ras_error_inject(xe, kbuf, &req);
-+	if (status)
-+		return status;
++	tmp = kbuf;
 +
-+	xe_sysctrl_create_command(&cmd, entry->group, entry->command,
-+				  &req, sizeof(req), resp_hdr_only,
-+				  sizeof(resp_hdr_only));
++	do {
++		token = strsep(&tmp, " \t\n");
++	} while (token && *token == '\0');
++	if (!token || kstrtoul(token, 0, &val) || val > 0xFF) {
++		xe_err(xe, "sysctrl: invalid mailbox group id\n");
++		return -EINVAL;
++	}
++	group = (u8)val;
++
++	do {
++		token = strsep(&tmp, " \t\n");
++	} while (token && *token == '\0');
++	if (!token || kstrtoul(token, 0, &val) || val > SYSCTRL_HDR_COMMAND_MAX) {
++		xe_err(xe, "sysctrl: invalid mailbox command id (max 0x%x)\n",
++		       SYSCTRL_HDR_COMMAND_MAX);
++		return -EINVAL;
++	}
++	command = (u8)val;
++
++	do {
++		token = strsep(&tmp, " \t\n");
++	} while (token && *token == '\0');
++	if (token && strstarts(token, "timeout=")) {
++		if (kstrtouint(token + strlen("timeout="), 0, &timeout_ms) ||
++		    timeout_ms > XE_SYSCTRL_MB_MAX_TIMEOUT_MS) {
++			xe_err(xe, "sysctrl: invalid mailbox timeout (max %u ms)\n",
++			       XE_SYSCTRL_MB_MAX_TIMEOUT_MS);
++			return -EINVAL;
++		}
++		token = strsep(&tmp, " \t\n");
++	}
++
++	if (token && strstarts(token, "resplen=")) {
++		unsigned int resplen;
++
++		if (kstrtouint(token + strlen("resplen="), 0, &resplen) ||
++		    resplen > XE_SYSCTRL_MB_MAX_DATA_SIZE) {
++			xe_err(xe, "sysctrl: invalid mailbox resplen (max %zu bytes)\n",
++			       (size_t)XE_SYSCTRL_MB_MAX_DATA_SIZE);
++			return -EINVAL;
++		}
++		resp_len = resplen;
++		token = strsep(&tmp, " \t\n");
++	}
++
++	while (token) {
++		if (*token == '\0') {
++			token = strsep(&tmp, " \t\n");
++			continue;
++		}
++
++		if (input_len >= max_input) {
++			xe_err(xe, "sysctrl: mailbox payload too large (max %zu bytes)\n",
++			       max_input);
++			return -EINVAL;
++		}
++
++		if (kstrtoul(token, 0, &val) || val > 0xFF) {
++			xe_err(xe, "sysctrl: invalid mailbox payload byte '%s'\n", token);
++			return -EINVAL;
++		}
++
++		input[input_len++] = (u8)val;
++		token = strsep(&tmp, " \t\n");
++	}
 +
 +	scoped_guard(mutex, &entry->lock) {
++		entry->group = group;
++		entry->command = command;
++		entry->timeout_ms = timeout_ms;
++
++		xe_sysctrl_create_command(&cmd, group, command, input_len ? input : NULL, input_len,
++					  entry->response_buf, resp_len);
++		cmd.timeout_ms = timeout_ms;
++
 +		guard(xe_pm_runtime)(xe);
 +		status = xe_sysctrl_send_command(entry->sc, &cmd, &out_len);
 +		entry->status = status;
++		entry->response_len = status ? 0 : out_len;
 +	}
 +
 +	return status ? status : len;
 +}
 +
-+static int xe_sysctrl_ras_error_inject_show(struct seq_file *m, void *data)
++static int xe_sysctrl_mailbox_show(struct seq_file *m, void *data)
 +{
 +	struct xe_sysctrl_debugfs_entry *entry = m->private;
-+	struct xe_device *xe = sc_to_xe(entry->sc);
-+	bool fw_ready;
-+
-+	scoped_guard(xe_pm_runtime, xe)
-+		fw_ready = xe_sysctrl_is_diag_fw_ready(xe);
++	size_t i;
 +
 +	guard(mutex)(&entry->lock);
 +
 +	seq_printf(m, "Command: group=0x%02x cmd=0x%02x\n", entry->group, entry->command);
-+	seq_printf(m, "Diag firmware ready: %s\n", str_yes_no(fw_ready));
++	seq_printf(m, "Timeout: %u ms%s\n", entry->timeout_ms ?: XE_SYSCTRL_MB_DEFAULT_TIMEOUT_MS,
++		   entry->timeout_ms ? "" : " (default)");
 +	seq_printf(m, "Status: %d (%s)\n", entry->status, entry->status ? "FAILED" : "SUCCESS");
++	seq_printf(m, "Response: %zu bytes\n", entry->response_len);
++
++	if (entry->response_len) {
++		seq_puts(m, "Response data:\n");
++		for (i = 0; i < entry->response_len; i++) {
++			if (i && (i % 16) == 0)
++				seq_putc(m, '\n');
++			seq_printf(m, "%02x ", entry->response_buf[i]);
++		}
++		seq_putc(m, '\n');
++	}
 +
 +	seq_puts(m, "\nUsage:\n");
-+	seq_puts(m, "  echo \"<ras_block_id> <ras_sub_block_id> <err_type> [params]\" > ras_error_inject\n");
-+	seq_puts(m, "  cat ras_error_inject\n");
++	seq_puts(m, "  echo \"<group> <command> [timeout=<ms>] [resplen=<N>] [byte0 byte1 ...]\" > mailbox\n");
++	seq_puts(m, "  cat mailbox\n");
 +
 +	return 0;
 +}
 +
-+static int xe_sysctrl_ras_error_inject_open(struct inode *inode, struct file *file)
++static int xe_sysctrl_mailbox_open(struct inode *inode, struct file *file)
 +{
-+	struct xe_sysctrl_debugfs_entry *entry = inode->i_private;
-+	struct xe_device *xe = sc_to_xe(entry->sc);
-+	bool fw_ready;
-+
-+	scoped_guard(xe_pm_runtime, xe)
-+		fw_ready = xe_sysctrl_is_diag_fw_ready(xe);
-+
-+	if (!fw_ready) {
-+		xe_err(xe, "sysctrl: diag firmware not ready, ras_error_inject unavailable\n");
-+		return -ENODEV;
-+	}
-+
-+	return single_open(file, xe_sysctrl_ras_error_inject_show, inode->i_private);
++	return single_open(file, xe_sysctrl_mailbox_show, inode->i_private);
 +}
 +
-+static const struct file_operations xe_sysctrl_ras_error_inject_fops = {
++static const struct file_operations xe_sysctrl_mailbox_fops = {
 +	.owner = THIS_MODULE,
-+	.open = xe_sysctrl_ras_error_inject_open,
++	.open = xe_sysctrl_mailbox_open,
 +	.read = seq_read,
-+	.write = xe_sysctrl_ras_error_inject_write,
++	.write = xe_sysctrl_mailbox_write,
 +	.llseek = seq_lseek,
 +	.release = single_release,
 +};
 +
- static void xe_sysctrl_register_entry(struct dentry *root, struct xe_sysctrl_debugfs_entry *entry,
- 				      struct xe_sysctrl *sc, const char *name,
- 				      u8 group, u8 command,
-@@ -173,4 +321,8 @@ void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent)
- 	xe_sysctrl_register_entry(root, &sc->debugfs.loopback, sc, "loopback",
- 				  XE_SYSCTRL_GROUP_CORE, XE_SYSCTRL_CMD_LOOPBACK,
- 				  &xe_sysctrl_loopback_fops);
+ /**
+  * xe_sysctrl_debugfs_register - Register debugfs entries for System Controller
+  * @sc: xe_sysctrl instance
+@@ -325,4 +494,7 @@ void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent)
+ 	xe_sysctrl_register_entry(root, &sc->debugfs.ras_error_inject, sc, "ras_error_inject",
+ 				  XE_SYSCTRL_GROUP_DIAG, XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT,
+ 				  &xe_sysctrl_ras_error_inject_fops);
 +
-+	xe_sysctrl_register_entry(root, &sc->debugfs.ras_error_inject, sc, "ras_error_inject",
-+				  XE_SYSCTRL_GROUP_DIAG, XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT,
-+				  &xe_sysctrl_ras_error_inject_fops);
++	xe_sysctrl_register_entry(root, &sc->debugfs.mailbox, sc, "mailbox", 0, 0,
++				  &xe_sysctrl_mailbox_fops);
  }
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index 6a8284a424c3..2554848e7484 100644
+index 2554848e7484..a0628eb47bff 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -14,10 +14,12 @@
-  * enum xe_sysctrl_group - System Controller command groups
-  *
-  * @XE_SYSCTRL_GROUP_GFSP: GFSP group
-+ * @XE_SYSCTRL_GROUP_DIAG: Diag group
-  * @XE_SYSCTRL_GROUP_CORE: Core group
-  */
- enum xe_sysctrl_group {
- 	XE_SYSCTRL_GROUP_GFSP			= 0x01,
-+	XE_SYSCTRL_GROUP_DIAG			= 0x02,
- 	XE_SYSCTRL_GROUP_CORE			= 0xFF,
- };
+@@ -155,5 +155,6 @@ struct xe_sysctrl_mailbox_command {
+ 	(XE_SYSCTRL_MB_MAX_MESSAGE_SIZE - sizeof(u32))
  
-@@ -55,6 +57,35 @@ enum xe_sysctrl_core_cmd {
- 	XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID		= 0x05,
- };
+ #define XE_SYSCTRL_MB_DEFAULT_TIMEOUT_MS	500
++#define XE_SYSCTRL_MB_MAX_TIMEOUT_MS		60000
  
-+/**
-+ * enum xe_sysctrl_diag_cmd - Commands supported by Diag group
-+ *
-+ * @XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT: RAS error injection
-+ */
-+enum xe_sysctrl_diag_cmd {
-+	XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT		= 0x7E,
-+};
-+
-+/**
-+ * struct xe_sysctrl_diag_ras_err_inj_req - DIAG_RAS_ERR_INJECT request payload
-+ *
-+ * Request payload for XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT. The mailbox layer
-+ * prepends the application message header before sending.
-+ *
-+ * @ras_block_id: RAS block (subsystem) to inject the error into
-+ * @ras_sub_block_id: RAS sub-block (IP) within @ras_block_id
-+ * @err_type: Type of test error to inject
-+ * @reserved: Must be zero
-+ * @params: Optional injection parameters (default 0)
-+ */
-+struct xe_sysctrl_diag_ras_err_inj_req {
-+	u16 ras_block_id;
-+	u16 ras_sub_block_id;
-+	u16 err_type;
-+	u16 reserved;
-+	u32 params;
-+} __packed;
-+
- /**
-  * struct xe_sysctrl_app_status_req - Get application status request
-  *
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-index 9ad3c40de97a..8ea6e1f29ddd 100644
+index 8ea6e1f29ddd..f12455f2886d 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_types.h
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-@@ -68,6 +68,9 @@ struct xe_sysctrl {
+@@ -39,6 +39,9 @@ struct xe_sysctrl_debugfs_entry {
  
- 		/** @debugfs.loopback: Loopback test entry */
- 		struct xe_sysctrl_debugfs_entry loopback;
+ 	/** @status: Last command result */
+ 	int status;
 +
-+		/** @debugfs.ras_error_inject: RAS error injection test entry */
-+		struct xe_sysctrl_debugfs_entry ras_error_inject;
++	/** @timeout_ms: Last mailbox response timeout used (0 for default) */
++	unsigned int timeout_ms;
+ };
+ 
+ /**
+@@ -71,6 +74,9 @@ struct xe_sysctrl {
+ 
+ 		/** @debugfs.ras_error_inject: RAS error injection test entry */
+ 		struct xe_sysctrl_debugfs_entry ras_error_inject;
++
++		/** @debugfs.mailbox: Generic, user-parameterized mailbox entry */
++		struct xe_sysctrl_debugfs_entry mailbox;
  	} debugfs;
  };
  
