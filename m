@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F9A1C98321
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 04:53:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8018AC9830D
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 04:53:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43D5310E44C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5713B10F855;
 	Fri, 25 Sep 2026 04:53:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nwrl6x0r";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bfcb2mbE";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5453510E44C
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 04:53:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1D9B10F827
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 04:53:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1790312012; x=1821848012;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QvLptk3bb4UDr5ANNke88eqjl3wWzdlqflieAoibeSM=;
- b=nwrl6x0r1OcsBPQU7nV9i2QWu+qXm7jycybRTflrKCXNz2EZU8XIfpmt
- FMZQY5A1vrLKdgSRtnnztOKZhgrpUe8vJ5N12Iqmd/sAp2BwBKpDnl1Rf
- sJqSDZCCTK0YOrN8cHt731J8cckZntmwlPDl8AhYzI7xIepbUqTKPsfDc
- J57ZvJ7fIo1ASHcQUAiO5NVFB1aj9pQKgS+XOmyAm/g92OLKjhMXaRMUG
- vxXXl2r199R4wVKIiPzvzt7mirUiXWIHo42cFHPXnLkFAWV4GwTn46Wfa
- LevVKWud3RrA3bAUL+wVI61fCG/xj/uIAmuxNkt9r24eyg67U9oyTUgj0 w==;
-X-CSE-ConnectionGUID: IFd6tS6ZTRiaeprkzNY2Kw==
-X-CSE-MsgGUID: ppbFXo6hTBGjLHorafaSpQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="90156219"
-X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="90156219"
+ bh=9DXBU/tbtWXLbiuFZ932sY4RYc3MzIoSwfUJqvvSR88=;
+ b=bfcb2mbEh+EIoHEWIr9Y9Hsbxcq6D6CcOa1HuRDbIJiN+zS+pgv7s1wK
+ n3MEIi6FXI0SVfqPtIrRuF471cdfy98beY3YxLPDKXiGXF2iOJY2kZZy5
+ L4cYzPbplzWIFZmhRh6wQ1s0P7YuPZyJkbOIbyr18XCrCgO51YGT9yf27
+ L+8YulyG5doDd0CbB179eu5KgV36c/Jq8Fp/PHJRyDp06QP/q8Al3XH/Y
+ jvJL7j259hFcSCQuV4Oj928w+62Rb9dqR+F1DZCorsrW5JBUzKuSYA3cx
+ wIPOdw8+R13ZQti2Zcank5GwNZ+bKzspgeqC6qbstZRz7mrQ0b8yx2WBs g==;
+X-CSE-ConnectionGUID: djrkOC38RMCGUAJ5+Y4+fQ==
+X-CSE-MsgGUID: 3rTVRxoAQHGnP82K6hkwGA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="90156224"
+X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="90156224"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Sep 2026 21:53:27 -0700
-X-CSE-ConnectionGUID: F/Jg7jAeRbGwHtM5tLpkPg==
-X-CSE-MsgGUID: T2OztUFWRWSl1tS1J4RDJw==
+X-CSE-ConnectionGUID: zyr6bS0mRB2Nn8tJleI5Yg==
+X-CSE-MsgGUID: v1TNrcvGTsiRrIxDkIG3og==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="312155512"
+X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="312155523"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Sep 2026 21:53:26 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Francois Dugast <francois.dugast@intel.com>
-Subject: [PATCH v7 06/24] drm/xe: Update xe_bo_put_deferred arguments to
- include writeback flag
-Date: Thu, 24 Sep 2026 21:53:02 -0700
-Message-Id: <20260925045320.1325860-7-matthew.brost@intel.com>
+Cc: Stuart Summers <stuart.summers@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH v7 11/24] drm/xe: Store level in struct xe_vm_pgtable_update
+Date: Thu, 24 Sep 2026 21:53:07 -0700
+Message-Id: <20260925045320.1325860-12-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260925045320.1325860-1-matthew.brost@intel.com>
 References: <20260925045320.1325860-1-matthew.brost@intel.com>
@@ -67,87 +67,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update the xe_bo_put_deferred arguments to include a writeback flag,
-which indicates whether the BO was added to the deferred list. This is
-useful when the caller needs to take additional actions after the BO has
-been queued for deferred release.
+The level was previously extracted from struct xe_pt inside
+xe_vm_pgtable_update during CPU binds, which always occurred during the
+bind IOCTL. With CPU binds now supported in bind jobs, struct xe_pt may
+no longer be valid in memory at that point. To address this, store the
+level directly in struct xe_vm_pgtable_update.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.h         | 10 ++++++++--
- drivers/gpu/drm/xe/xe_drm_client.c |  2 +-
- drivers/gpu/drm/xe/xe_pt.c         |  2 +-
- 3 files changed, 10 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c       | 3 ++-
+ drivers/gpu/drm/xe/xe_pt_types.h | 8 +++++++-
+ 2 files changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 341fa93a71e4..861b1be231de 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -496,6 +496,8 @@ void __xe_bo_release_dummy(struct kref *kref);
-  * @bo: The bo to put.
-  * @deferred: List to which to add the buffer object if we cannot put, or
-  * NULL if the function is to put unconditionally.
-+ * @added: BO was added to deferred list, written back to caller, can be NULL if
-+ * writeback is not needed. Only set to true when added, never set to false.
-  *
-  * Since the final freeing of an object includes both sleeping and (!)
-  * memory allocation in the dma_resv individualization, it's not ok
-@@ -515,7 +517,8 @@ void __xe_bo_release_dummy(struct kref *kref);
-  * false otherwise.
-  */
- static inline bool
--xe_bo_put_deferred(struct xe_bo *bo, struct llist_head *deferred)
-+xe_bo_put_deferred(struct xe_bo *bo, struct llist_head *deferred,
-+		   bool *added)
- {
- 	if (!deferred) {
- 		xe_bo_put(bo);
-@@ -525,6 +528,9 @@ xe_bo_put_deferred(struct xe_bo *bo, struct llist_head *deferred)
- 	if (!kref_put(&bo->ttm.base.refcount, __xe_bo_release_dummy))
- 		return false;
- 
-+	if (added)
-+		*added = true;
-+
- 	return llist_add(&bo->freed, deferred);
- }
- 
-@@ -541,7 +547,7 @@ xe_bo_put_async(struct xe_bo *bo)
- {
- 	struct xe_bo_dev *bo_device = &xe_bo_device(bo)->bo_device;
- 
--	if (xe_bo_put_deferred(bo, &bo_device->async_list))
-+	if (xe_bo_put_deferred(bo, &bo_device->async_list, NULL))
- 		schedule_work(&bo_device->async_free);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index e116fb562c4c..4c424d1c6721 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.c
-+++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -256,7 +256,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
- 			xe_assert(xef->xe, !list_empty(&bo->client_link));
- 		}
- 
--		xe_bo_put_deferred(bo, &deferred);
-+		xe_bo_put_deferred(bo, &deferred, NULL);
- 	}
- 	spin_unlock(&client->bos_lock);
- 
 diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index dd007e3bc40e..42a37e40a6c0 100644
+index c004ce449b69..a483158f94d4 100644
 --- a/drivers/gpu/drm/xe/xe_pt.c
 +++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -213,7 +213,7 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
+@@ -380,6 +380,7 @@ xe_pt_new_shared(struct xe_walk_update *wupd, struct xe_pt *parent,
+ 	entry->flags = 0;
+ 	entry->qwords = 0;
+ 	entry->pt_bo->update_index = -1;
++	entry->level = parent->level;
  
- 	XE_WARN_ON(!list_empty(&pt->bo->ttm.base.gpuva.list));
- 	xe_bo_unpin(pt->bo);
--	xe_bo_put_deferred(pt->bo, deferred);
-+	xe_bo_put_deferred(pt->bo, deferred, NULL);
+ 	if (alloc_entries) {
+ 		entry->pt_entries = kmalloc_objs(*entry->pt_entries, XE_PDES);
+@@ -2025,7 +2026,7 @@ xe_migrate_clear_pgtable_callback(struct xe_vm *vm, struct xe_tile *tile,
+ 				  u32 qword_ofs, u32 num_qwords,
+ 				  const struct xe_vm_pgtable_update *update)
+ {
+-	u64 empty = __xe_pt_empty_pte(tile, vm, update->pt->level);
++	u64 empty = __xe_pt_empty_pte(tile, vm, update->level);
+ 	int i;
  
- 	if (pt->level > 0 && pt->num_live) {
- 		struct xe_pt_dir *pt_dir = as_xe_pt_dir(pt);
+ 	if (map && map->is_iomem)
+diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
+index 39c5b89ce9b7..ccab6613385f 100644
+--- a/drivers/gpu/drm/xe/xe_pt_types.h
++++ b/drivers/gpu/drm/xe/xe_pt_types.h
+@@ -65,12 +65,18 @@ struct xe_vm_pgtable_update {
+ 	/** @qwords: number of PTE's to write */
+ 	u32 qwords;
+ 
+-	/** @pt: opaque pointer useful for the caller of xe_migrate_update_pgtables */
++	/**
++	 * @pt: opaque pointer useful for PT building in the bind IOCTL. Only
++	 * safe to touch during the bind IOCTL (i.e., not in bind jobs).
++	 */
+ 	struct xe_pt *pt;
+ 
+ 	/** @pt_entries: Newly added pagetable entries */
+ 	struct xe_pt_entry *pt_entries;
+ 
++	/** @level: level of update */
++	unsigned int level;
++
+ 	/** @flags: Target flags */
+ 	u32 flags;
+ };
 -- 
 2.34.1
 
