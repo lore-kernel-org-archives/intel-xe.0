@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05CAAC98321
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 20:39:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2EF7C9830E
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 20:41:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8D3D10FC6E;
-	Fri, 25 Sep 2026 20:39:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8305710FCA2;
+	Fri, 25 Sep 2026 20:41:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LCyBih5v";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VqkZ2hTv";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06A9210FC6E
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 20:39:33 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E981F10FCA6
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 20:41:39 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id E0252406E1;
- Fri, 25 Sep 2026 20:39:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 999EA1F000FF;
- Fri, 25 Sep 2026 20:39:32 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id E032460136;
+ Fri, 25 Sep 2026 20:41:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C9181F000FF;
+ Fri, 25 Sep 2026 20:41:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790368772;
- bh=+GIfR2kskWMk4U7uyB8NtEfLGh3ZK0VeMwg1MFTsS/I=;
+ s=k20260515; t=1790368898;
+ bh=xUjCUp/TeF8dC5SEuB93viGfuXBIvHaby/5H4jPB5AY=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=LCyBih5vF374CwzYMu6r43JqxwoZs5pc5KHT2YEMOQgbfJrFVpKvyrP1j70FbgNk8
- bh4Qee3DQAdw46Z1lsdK8e6CYVscOP3Y8zWj+l9hXuE+mCO1YVrMGYdsZrSnnVnznG
- akv3uzPbSWNf6VIo53bOvj/iqRPyep94/mU+tD6nxj03E7orhSDVPF1xl1xZAQ4P8F
- eujq7I9Oy8zsNeFq2fYqtFh58xufaB3iEddL8LwmVX+votyClSTXjqrpnw4nLjK5XX
- rdfTWEsALl41ZzXrNiTpgZ4ELXMv+SV/DtS19dHEtp73Z7B8AXAIB5ZZJCItoUmIlL
- IVHS+Rbc8zYmA==
+ b=VqkZ2hTvkM2k1dl2SI3AbJP32RJUtUOcu5yXJgXzF6Ni0Aze7Ig4dAemkFsQzTgSl
+ LKOllmwh6ee45YCOecst/R4qHXw7m0FLTXMn/r3T2hFk4YqCFxJYRXxhKUOx15sS5Y
+ dmvbMsO73BkCSXk+0jBHuENuBbd55Q0Wekc7M/ZSUmKec+Nn6UbbV4q3JMRZD3gJmI
+ x99xhhtjoyHsGteVFdN2aypaJIJUbc4mI+XASEfmzvHA41yaR5CoWYiZ87bmhRDALF
+ nDu9SEaKUhqC+3xkOy+/PPx9RWJZ4VeUf/4JyNnarvEDfV4Dnl6S0pZ/zqnnJjJWSs
+ fRbxwKzqTanlA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v8 13/24] drm/xe: Enable CPU binds for jobs
+Subject: Re: [PATCH v8 19/24] drm/xe: Add ULLS migration job support to
+ migration layer
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260925201526.1355279-14-matthew.brost@intel.com>
+In-Reply-To: <20260925201526.1355279-20-matthew.brost@intel.com>
 References: <20260925201526.1355279-1-matthew.brost@intel.com>
- <20260925201526.1355279-14-matthew.brost@intel.com>
+ <20260925201526.1355279-20-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 25 Sep 2026 20:39:32 +0000
-Message-Id: <20260925203932.999EA1F000FF@smtp.kernel.org>
+Date: Fri, 25 Sep 2026 20:41:37 +0000
+Message-Id: <20260925204138.6C9181F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,82 +59,99 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] drm/xe: xe_execlist submission backend crashes on CPU-bound PT jobs
-- [Medium] drm/xe: memory leak of xe_pt_job_ops on canceled PT jobs
+- [Critical] drm/xe/migrate: ULLS exit worker fires during system suspend c=
+ausing fatal hardware access
+- [High] drm/xe/migrate: ULLS state not cleared on GT reset causes migratio=
+n engine hang
 --
 
-commit 9de8f05bf053b28de6fdac64d9ee437e1c0df6f7
+commit ffd4d32bbca19023aed05a8d61a40704a5e6e6a4
 Author: Matthew Brost <matthew.brost@intel.com>
-Subject: drm/xe: Enable CPU binds for jobs
 
-This commit transitions the driver to formulating PT jobs that issue CPU
-binds in the submission backend instead of using the GPU. This approach
-aims to lower latency and avoid migration PTE exhaustion for large arrays
-of binds.
+drm/xe: Add ULLS migration job support to migration layer
 
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
-ate.c
+This commit adds a function to enter Ultra Low Latency Submission (ULLS)
+mode for migration jobs, and a delayed worker to exit it for power savings.
+It introduces several ULLS state flags and related job submission triggers.
+
 > --- a/drivers/gpu/drm/xe/xe_migrate.c
 > +++ b/drivers/gpu/drm/xe/xe_migrate.c
 
 [ ... ]
 
-> @@ -1937,162 +1866,18 @@ __xe_migrate_update_pgtables(struct xe_migrate *=
-m,
->  {
-
-[ ... ]
-
-> -	job =3D xe_bb_create_migration_job(pt_update_ops->q, bb,
-> -					 xe_migrate_batch_base(m, usm),
-> -					 update_idx);
-> +	job =3D xe_sched_job_create(pt_update_ops->q, NULL);
->  	if (IS_ERR(job)) {
->  		err =3D PTR_ERR(job);
-> -		goto err_sa;
-> +		goto err_out;
->  	}
-> =20
-> -	xe_sched_job_add_migrate_flush(job, MI_INVALIDATE_TLB);
-> +	xe_tile_assert(tile, job->is_pt_job);
+> +static struct dma_fence *xe_migrate_job_push(struct xe_migrate *m,
+> +					     struct xe_sched_job *job)
+> +{
+> +	enum xe_ulls_state ulls =3D ULLS_NONE;
+> +
+> +	lockdep_assert_held(&m->job_mutex);
+> +
+> +	if (xe_migrate_ulls_enabled(m)) {
+> +		ulls =3D ULLS_ACTIVE;
 
 [Severity: High]
-Does this cause a crash or hang when the driver operates in execlist mode
-(e.g., when GuC is disabled)? In drivers/gpu/drm/xe/xe_execlist.c, the
-execlist_run_job() function unconditionally emits the job to the GPU
-ringbuffer without checking if is_pt_job is true. Because the job uses a
-union for ptrs and pt_update, the backend reads the newly populated
-job->pt_update as a batch address, emitting garbage into the hardware ring.
+Does the software state stay out of sync if a GT reset occurs while ULLS is
+active?
 
-> =20
->  	if (ops->pre_commit) {
->  		pt_update->job =3D job;
+If m->ulls.enabled is never cleared by a GT reset hook, the next migration
+job submitted post-reset will see ulls.enabled as true. It will then submit
+as a chained job (ULLS_ACTIVE), bypassing the GuC doorbell (H2G
+XE_GUC_ACTION_SCHED_CONTEXT).
+
+Since the hardware was reset, the context needs a schedule doorbell to pick
+up the new tail, potentially causing the migration engine to hang permanent=
+ly.
+
+> +		mod_delayed_work(system_percpu_wq, &m->ulls.exit_work,
+> +				 ULLS_EXIT_JIFFIES);
+> +	}
+> +
+> +	return __xe_migrate_job_push(m, job, ulls);
+> +}
 
 [ ... ]
 
-> @@ -2103,6 +1888,12 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
->  	if (is_migrate)
->  		mutex_lock(&m->job_mutex);
-> =20
-> +	job->pt_update[0].vm =3D pt_update->vops->vm;
-> +	job->pt_update[0].tile =3D tile;
-> +	job->pt_update[0].ops =3D ops;
-> +	job->pt_update[0].pt_job_ops =3D
-> +		xe_pt_job_ops_get(pt_update_ops->pt_job_ops);
+> +static void xe_migrate_ulls_exit(struct work_struct *work)
+> +{
+> +	struct xe_migrate *m =3D container_of(work, struct xe_migrate,
+> +					    ulls.exit_work.work);
+> +	struct xe_device *xe =3D tile_to_xe(m->tile);
+> +	struct xe_sched_job *job =3D NULL;
+> +	struct dma_fence *fence =3D NULL;
+> +	u64 batch_addr[2] =3D { 0, 0 };
+> +	int idx;
 > +
+> +	xe_assert(xe, m->ulls.enabled);
+> +
+> +	if (!drm_dev_enter(&xe->drm, &idx))
+> +		return;
+> +
+> +	/*
+> +	 * Must be done outside job_mutex as that lock is tainted with
+> +	 * reclaim and must be done holding a pm ref.
+> +	 */
+> +	job =3D xe_sched_job_create(m->q, batch_addr);
 
-[Severity: Medium]
-Does this leak the dynamically allocated xe_pt_job_ops structure if the PT
-job is canceled or dropped before execution? The scheduler directly invokes
-the free_job callback when a process is killed and jobs are aborted, which
-calls xe_sched_job_destroy() in drivers/gpu/drm/xe/xe_sched_job.c. Since
-xe_sched_job_destroy() does not check for job->is_pt_job, the reference
-acquired here is never released.
+[Severity: Critical]
+Could this worker fire during system suspend and attempt invalid hardware
+access?
 
->  	xe_sched_job_arm(job);
->  	fence =3D dma_fence_get(&job->drm.s_fence->finished);
->  	xe_sched_job_push(job);
+The system suspend path (xe_pm_suspend) does not appear to call
+cancel_delayed_work_sync(&m->ulls.exit_work).
+
+If ULLS is entered right before suspend (e.g., from an eviction page fault),
+this exit worker might execute after the device has entered D3Cold. This
+would lead to a machine check, PCI abort, or kernel panic when
+xe_sched_job_create() pushes the job and the scheduler writes to GuC MMIO
+or the GGTT ring buffer on a powered-down device.
+
+> +	if (WARN_ON_ONCE(IS_ERR(job))) {
+> +		drm_dev_exit(idx);
+> +		mod_delayed_work(system_percpu_wq, &m->ulls.exit_work,
+> +				 ULLS_EXIT_JIFFIES);
+> +		return;		/* Not fatal */
+> +	}
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260925201526.1355=
-279-1-matthew.brost@intel.com?part=3D13
+279-1-matthew.brost@intel.com?part=3D19
