@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF507C9833B
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 20:16:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E282C9833A
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 20:16:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D44910FC7A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D254510FC75;
 	Fri, 25 Sep 2026 20:16:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mr1k8DRz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JK/etNkF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8429810FC5F
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 20:15:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78BA810FC46
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 20:15:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790367334; x=1821903334;
+ t=1790367333; x=1821903333;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=e07eJxMmsOS4rhutNgKWKvNpg6jDuTCAVJ6iyrSrhzw=;
- b=mr1k8DRzOzB35b6k6I9VkLMagukESDjS94NwkgILc/XfLHyBCOZSLaMB
- 1INl7EO5gcRz/sI4BYFSrC0i/i0jfXZq8juiO6hwia2uQidodgkYYqEPs
- V56tiyyI053FA/iOM/+8lgjCo7zomGAJ3ii7Jv4OI3u5uE9utyO9bV++c
- CIEu0K4ZZs4tGB+AWexzv43S5mESRIHDFSFrO7Yg/aSx1W16myffrPtw3
- SooXxCZoznit8TD3h8u/AgA57feQUvnX0opyesKeKSs+F3JCD7u+bjGwt
- 4xqc/2XJ4OmSdtTvt/HRVNHEp734/Nk3vx+S4pigGrmz0y2cnlnIJtgnu Q==;
-X-CSE-ConnectionGUID: YWlHB/bSQ02zAMLBqftDUg==
-X-CSE-MsgGUID: PysShB6TQ9C5jIX4JhNuIg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11916"; a="90377980"
-X-IronPort-AV: E=Sophos;i="6.27,123,1787036400"; d="scan'208";a="90377980"
+ bh=swL0yOPuyYXZV5teSLQlNDO9KF4hCMxgr6e6xbE10ac=;
+ b=JK/etNkF7pXL3OugovoeshLi43yEMAaSam/hbbLu1ZOkYLs40rB88EfW
+ bU4poC+sgmCoNV8sCU45VhZCJapseDEdl3BMo3tN3Z+LfxHZRcJ/+kFkz
+ od2y5icdOIsSO/0EBuCmQkYeW9aLVlZ21eDkXjYNze6R2W1rTWdfbq3i4
+ XFD7L1LVwfZIfG3sN8Z8/crE8CgdjcntWWRsc6TvqvNA7GFoyid7szO3P
+ yg0Rc9cXgfQGu34DImYT8rZhOn+GGwrmwRnIzzgwsCLLzQMla7m6ORdjO
+ bYV1Sf72k7x6xV95TFzUd2GHCkK3Sl8cRr6CcRk6vE63lWpWwkpf7FETl g==;
+X-CSE-ConnectionGUID: Mamy7YyMSTSkWpYRH9NC4Q==
+X-CSE-MsgGUID: 3Fbcu/wLTEeeQphDCSI3eQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11916"; a="90377948"
+X-IronPort-AV: E=Sophos;i="6.27,123,1787036400"; d="scan'208";a="90377948"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Sep 2026 13:15:32 -0700
-X-CSE-ConnectionGUID: xC0RMTxARA2c6fSdEjs2nw==
-X-CSE-MsgGUID: CXZRoUlrRSekNHFipxzEKQ==
+X-CSE-ConnectionGUID: gQHRlMnNSAqvD20hEi5mnA==
+X-CSE-MsgGUID: CxLCVjdES1KI5ZRK2JdQUQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,123,1787036400"; d="scan'208";a="274509904"
+X-IronPort-AV: E=Sophos;i="6.27,123,1787036400"; d="scan'208";a="274509861"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2026 13:15:32 -0700
+ 25 Sep 2026 13:15:31 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v8 24/24] drm/xe: Document ULLS for migration jobs
-Date: Fri, 25 Sep 2026 13:15:26 -0700
-Message-Id: <20260925201526.1355279-25-matthew.brost@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v8 08/24] drm/xe: Add helpers to access PT ops
+Date: Fri, 25 Sep 2026 13:15:10 -0700
+Message-Id: <20260925201526.1355279-9-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260925201526.1355279-1-matthew.brost@intel.com>
 References: <20260925201526.1355279-1-matthew.brost@intel.com>
@@ -66,199 +67,182 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a kernel-doc DOC section at the top of xe_migrate.c describing the
-Ultra Low Latency Submission (ULLS) scheme used for migration jobs.
-
-Cover the motivation (removing the H2G / GuC / context switch latency
-from the page fault and SVM prefetch critical paths), the platform
-requirements, the LRC PPHWSP semaphore layout and its relationship to
-the migration queue job count, the fixed ULLS job size and why it is
-needed, the ring preamble / postamble emitted by the ring ops including
-the in-ring tail update, the semaphore-only submission fast path in the
-GuC backend, and the enter / delayed exit flow along with the ULLS job
-flags.
-
-Hook the new section into Documentation/gpu/xe/xe_migrate.rst.
+Add helpers to access PT ops, making it easier to shuffle the location of
+the ops structures without requiring widespread code changes.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Assisted-by: Github-Copilot:Claude-opus-5
+Reviewed-by: Francois Dugast <francois.dugast@intel.com>
 Reviewed-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- Documentation/gpu/xe/xe_migrate.rst |   3 +
- drivers/gpu/drm/xe/xe_migrate.c     | 149 ++++++++++++++++++++++++++++
- 2 files changed, 152 insertions(+)
+ drivers/gpu/drm/xe/xe_pt.c | 65 ++++++++++++++++++++++++++------------
+ 1 file changed, 45 insertions(+), 20 deletions(-)
 
-diff --git a/Documentation/gpu/xe/xe_migrate.rst b/Documentation/gpu/xe/xe_migrate.rst
-index f92faec0ac94..d297ee53a582 100644
---- a/Documentation/gpu/xe/xe_migrate.rst
-+++ b/Documentation/gpu/xe/xe_migrate.rst
-@@ -6,3 +6,6 @@ Migrate Layer
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 42a37e40a6c0..2cdfb577e941 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -2088,13 +2088,37 @@ xe_pt_commit_prepare_unbind(struct xe_vma *vma,
+ 	}
+ }
  
- .. kernel-doc:: drivers/gpu/drm/xe/xe_migrate_doc.h
-    :doc: Migrate Layer
++static struct xe_vm_pgtable_update_op *
++to_pt_op(struct xe_vm_pgtable_update_ops *pt_update_ops, u32 op_idx)
++{
++	return &pt_update_ops->ops[op_idx];
++}
 +
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_migrate.c
-+   :doc: ULLS (Ultra Low Latency Submission) for migration jobs
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index c643177ff2d0..0dfc54ba3b8f 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -48,6 +48,155 @@
- #include "xe_vm.h"
- #include "xe_vram.h"
++static u32
++get_current_op(struct xe_vm_pgtable_update_ops *pt_update_ops)
++{
++	return pt_update_ops->current_op;
++}
++
++static struct xe_vm_pgtable_update_op *
++to_current_pt_op(struct xe_vm_pgtable_update_ops *pt_update_ops)
++{
++	return to_pt_op(pt_update_ops, get_current_op(pt_update_ops));
++}
++
++static void
++incr_current_op(struct xe_vm_pgtable_update_ops *pt_update_ops)
++{
++	++pt_update_ops->current_op;
++}
++
+ static void
+ xe_pt_update_ops_rfence_interval(struct xe_vm_pgtable_update_ops *pt_update_ops,
+ 				 u64 start, u64 end)
+ {
+ 	u64 last;
+-	u32 current_op = pt_update_ops->current_op;
+-	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
++	struct xe_vm_pgtable_update_op *pt_op =
++		to_current_pt_op(pt_update_ops);
+ 	int i, level = 0;
  
-+/**
-+ * DOC: ULLS (Ultra Low Latency Submission) for migration jobs
-+ *
-+ * Migration jobs issued on behalf of GPU page faults and SVM prefetches sit
-+ * directly in the critical path of a stalled GPU workload. The dominant cost
-+ * of such a job is not the copy or clear itself but the submission latency:
-+ * the H2G round trip to GuC, the GuC scheduling decision, and the hardware
-+ * context switch required to place the migration LRC on an engine.
-+ *
-+ * ULLS removes that cost by keeping the migration context resident and
-+ * *running* on the hardware engine across jobs. Instead of the ring going
-+ * empty and the context being switched out between jobs, the tail of every
-+ * ULLS job parks the engine on a semaphore wait for the *next* job's
-+ * semaphore, and then advances the ring tail itself. Submitting the next job
-+ * therefore costs the CPU a single write to signal that semaphore - no H2G,
-+ * no GuC round trip, no context switch, no MMIO.
-+ *
-+ * Requirements
-+ * ------------
-+ *
-+ * ULLS is only used on dGFX platforms with USM support, where a hardware
-+ * engine is reserved exclusively for migration jobs. Because the engine
-+ * spins on a semaphore while ULLS is active, it cannot be shared with
-+ * user submissions.
-+ *
-+ * ULLS can be disabled by setting the ``migrate_ulls_period_ms`` configfs
-+ * attribute to 0. Otherwise, the same attribute controls how long ULLS
-+ * remains active before exiting, in milliseconds.
-+ *
-+ * Fixed size jobs
-+ * ---------------
-+ *
-+ * A job updates the ring tail to cover its successor, but it is emitted long
-+ * before that successor exists, so it can not know how much ring the
-+ * successor will occupy. Every ULLS job is therefore padded out to exactly
-+ * ULLS_JOB_SIZE_BYTES, which lets the next tail be computed arithmetically
-+ * from where the current job started.
-+ *
-+ * This is why the shorter jobs still have to reach the same size: the "last"
-+ * job skips the batch buffers and the postamble, and pads the difference with
-+ * MI_NOOP. The "first" job is not covered by any predecessor's tail update
-+ * and so is unconstrained, but is padded anyway to keep the arithmetic
-+ * uniform.
-+ *
-+ * Leaving ULLS mode always goes through a "last" job, which emits no tail
-+ * update, so an ordinary variable length migration job never follows a
-+ * prediction.
-+ *
-+ * Semaphores
-+ * ----------
-+ *
-+ * The semaphores live in the driver-defined portion of the migration LRC's
-+ * PPHWSP (see LRC_ULLS_PPHWSP_OFFSET, mutually exclusive with the parallel
-+ * submission area). There are LRC_MIGRATION_ULLS_SEMAPHORE_COUNT of them and
-+ * a job's semaphore is selected by ``seqno % COUNT``, so the semaphore ring
-+ * wraps with the job seqnos. To guarantee a job can never overwrite the
-+ * semaphore of a job still in flight, the GuC backend caps the migration
-+ * queue's scheduler job count at LRC_MIGRATION_ULLS_SEMAPHORE_COUNT - 1.
-+ *
-+ * Ring layout of a ULLS job
-+ * -------------------------
-+ *
-+ * Emitted by emit_migration_job_gen12() in xe_ring_ops.c::
-+ *
-+ *	preamble:	clear semaphore[seqno]	(reuse for a later wrap)
-+ *	<copy timestamp, start seqno store>
-+ *	<batch buffer start(s)>			(skipped on first/last job)
-+ *	<seqno write + user interrupt>
-+ *	postamble:	SDI saved ring tail = end of next job
-+ *			LRI RING_TAIL = end of next job
-+ *			wait on semaphore[seqno + 1]
-+ *						(skipped on the last job)
-+ *	pad:		MI_NOOP up to ULLS_JOB_SIZE_DW
-+ *
-+ * The preamble clears the current job's semaphore so it can be reused once
-+ * the seqno space wraps. The postamble is what keeps the engine busy: it
-+ * advances the ring tail over the next job and then blocks on that job's
-+ * semaphore, which is only signaled when the job is actually submitted. It
-+ * advances the saved tail as well as the tail register, keeping the two in
-+ * step without any help from the CPU, so a context save and restore can not
-+ * rewind the tail behind work which has already been published.
-+ *
-+ * The tail register write must be non-posted, i.e. it must not carry
-+ * MI_LRI_FORCE_POSTED. Posted, the new tail is free to land after the command
-+ * streamer has already drained the rest of the job, at which point the command
-+ * streamer sees head == the old tail and parks as though the ring were empty.
-+ * A parked context can be switched off the hardware, and the fast path below
-+ * has no H2G with which to ask GuC to bring it back.
-+ *
-+ * The tail is published ahead of the semaphore wait rather than after it so
-+ * that the non-posted write drains while the engine is parked anyway, keeping
-+ * a register round trip off the path between the semaphore being signaled and
-+ * the next job running.
-+ *
-+ * Submission fast path
-+ * --------------------
-+ *
-+ * In submit_exec_queue() (xe_guc_submit.c), a ULLS job that is not the first
-+ * one reduces to::
-+ *
-+ *	xe_lrc_set_ulls_semaphore(lrc, seqno);		release previous job
-+ *
-+ * The XE_GUC_ACTION_SCHED_CONTEXT H2G is suppressed, and so is the write of
-+ * the saved ring tail: the previous job's postamble has already published
-+ * this job's tail both in the tail register and in the context image, so the
-+ * semaphore signal is all that is left. The previous job's semaphore wait is
-+ * satisfied and the engine walks straight into this job.
-+ *
-+ * This does assume the context stays resident for as long as ULLS mode is
-+ * active. Nothing else is scheduled on the reserved engine, so the only ways
-+ * off the hardware are the "last" job below, or a reset - and a migration job
-+ * failing already wedges the device.
-+ *
-+ * Enter / exit
-+ * ------------
-+ *
-+ * xe_migrate_ulls_enter() is called from the page fault handler and from the
-+ * SVM prefetch path, i.e. exactly where low latency migration matters. It
-+ * takes a PM runtime reference (the device must not suspend while the engine
-+ * spins), then submits a "first" ULLS job. That first job carries no batch
-+ * buffer; it exists only to get the context onto the hardware through the
-+ * normal GuC path and to leave the engine waiting on the next semaphore,
-+ * pipelining the GuC/HW context switch out of the critical path.
-+ *
-+ * No forcewake reference is required. Nothing in the fast path touches MMIO,
-+ * and the engine keeps itself awake for as long as it is executing the ring.
-+ * Not needing host MMIO access is also what lets ULLS run on SRIOV VFs.
-+ *
-+ * Keeping an engine spinning costs power, so ULLS is not left enabled
-+ * indefinitely. Every enter and every ULLS job submission re-arms
-+ * @xe_migrate.ulls.exit_work with a ULLS_EXIT_JIFFIES delay. When it fires
-+ * with the queue idle, it submits a "last" ULLS job - again with no batch
-+ * buffer and, crucially, with no postamble semaphore wait or tail update -
-+ * which lets the ring drain so the context can be switched off the hardware.
-+ * The PM reference is then dropped. If the queue was not idle, the worker
-+ * simply re-arms itself.
-+ *
-+ * Job state
-+ * ---------
-+ *
-+ * The state above is communicated to the ring ops and GuC backend via
-+ * @xe_sched_job.ulls, set under @xe_migrate.job_mutex:
-+ *
-+ * - %ULLS_NONE: job submitted outside of ULLS mode
-+ * - %ULLS_ENTER: job that enters ULLS mode
-+ * - %ULLS_ACTIVE: job submitted while in ULLS mode
-+ * - %ULLS_EXIT: job that exits ULLS mode
-+ */
-+
- /**
-  * struct xe_migrate - migrate context.
-  */
+ 	for (i = 0; i < pt_op->num_entries; i++) {
+@@ -2129,8 +2153,8 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ 			   struct xe_vm_pgtable_update_ops *pt_update_ops,
+ 			   struct xe_vma *vma, bool invalidate_on_bind)
+ {
+-	u32 current_op = pt_update_ops->current_op;
+-	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
++	struct xe_vm_pgtable_update_op *pt_op =
++		to_current_pt_op(pt_update_ops);
+ 	int err;
+ 
+ 	xe_tile_assert(tile, !xe_vma_is_cpu_addr_mirror(vma));
+@@ -2159,7 +2183,7 @@ static int bind_op_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ 		xe_pt_update_ops_rfence_interval(pt_update_ops,
+ 						 xe_vma_start(vma),
+ 						 xe_vma_end(vma));
+-		++pt_update_ops->current_op;
++		incr_current_op(pt_update_ops);
+ 		pt_update_ops->needs_svm_lock |= xe_vma_is_userptr(vma);
+ 
+ 		/*
+@@ -2202,8 +2226,8 @@ static int bind_range_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ 			      struct xe_vm_pgtable_update_ops *pt_update_ops,
+ 			      struct xe_vma *vma, struct xe_svm_range *range)
+ {
+-	u32 current_op = pt_update_ops->current_op;
+-	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
++	struct xe_vm_pgtable_update_op *pt_op =
++		to_current_pt_op(pt_update_ops);
+ 	int err;
+ 
+ 	xe_tile_assert(tile, xe_vma_is_cpu_addr_mirror(vma));
+@@ -2227,7 +2251,7 @@ static int bind_range_prepare(struct xe_vm *vm, struct xe_tile *tile,
+ 		xe_pt_update_ops_rfence_interval(pt_update_ops,
+ 						 xe_svm_range_start(range),
+ 						 xe_svm_range_end(range));
+-		++pt_update_ops->current_op;
++		incr_current_op(pt_update_ops);
+ 		pt_update_ops->needs_svm_lock = true;
+ 
+ 		pt_op->vma = vma;
+@@ -2245,8 +2269,8 @@ static int unbind_op_prepare(struct xe_tile *tile,
+ 			     struct xe_vma *vma)
+ {
+ 	struct xe_device *xe = tile_to_xe(tile);
+-	u32 current_op = pt_update_ops->current_op;
+-	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
++	struct xe_vm_pgtable_update_op *pt_op =
++		to_current_pt_op(pt_update_ops);
+ 	int err;
+ 
+ 	if (!((vma->tile_present | vma->tile_staged) & BIT(tile->id)))
+@@ -2285,7 +2309,7 @@ static int unbind_op_prepare(struct xe_tile *tile,
+ 				pt_op->num_entries, false);
+ 	xe_pt_update_ops_rfence_interval(pt_update_ops, xe_vma_start(vma),
+ 					 xe_vma_end(vma));
+-	++pt_update_ops->current_op;
++	incr_current_op(pt_update_ops);
+ 	pt_update_ops->needs_svm_lock |= xe_vma_is_userptr(vma);
+ 	pt_update_ops->needs_invalidation = true;
+ 
+@@ -2325,8 +2349,8 @@ static int unbind_range_prepare(struct xe_vm *vm,
+ 				struct xe_vm_pgtable_update_ops *pt_update_ops,
+ 				struct xe_svm_range *range)
+ {
+-	u32 current_op = pt_update_ops->current_op;
+-	struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[current_op];
++	struct xe_vm_pgtable_update_op *pt_op =
++		to_current_pt_op(pt_update_ops);
+ 
+ 	if (!(range->tile_present & BIT(tile->id)))
+ 		return 0;
+@@ -2347,7 +2371,7 @@ static int unbind_range_prepare(struct xe_vm *vm,
+ 				pt_op->num_entries, false);
+ 	xe_pt_update_ops_rfence_interval(pt_update_ops, xe_svm_range_start(range),
+ 					 xe_svm_range_end(range));
+-	++pt_update_ops->current_op;
++	incr_current_op(pt_update_ops);
+ 	pt_update_ops->needs_svm_lock = true;
+ 	pt_update_ops->needs_invalidation |= xe_vm_has_scratch(vm) ||
+ 		xe_vm_has_valid_gpu_mapping(tile, range->tile_present,
+@@ -2504,7 +2528,7 @@ int xe_pt_update_ops_prepare(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 			return err;
+ 	}
+ 
+-	xe_tile_assert(tile, pt_update_ops->current_op <=
++	xe_tile_assert(tile, get_current_op(pt_update_ops) <=
+ 		       pt_update_ops->num_ops);
+ 
+ #ifdef TEST_VM_OPS_ERROR
+@@ -2737,7 +2761,7 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 	lockdep_assert_held(&vm->lock);
+ 	xe_vm_assert_held(vm);
+ 
+-	if (!pt_update_ops->current_op) {
++	if (!get_current_op(pt_update_ops)) {
+ 		xe_tile_assert(tile, xe_vm_in_fault_mode(vm));
+ 
+ 		return dma_fence_get_stub();
+@@ -2805,8 +2829,9 @@ xe_pt_update_ops_run(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 	}
+ 
+ 	/* Point of no return - VM killed if failure after this */
+-	for (i = 0; i < pt_update_ops->current_op; ++i) {
+-		struct xe_vm_pgtable_update_op *pt_op = &pt_update_ops->ops[i];
++	for (i = 0; i < get_current_op(pt_update_ops); ++i) {
++		struct xe_vm_pgtable_update_op *pt_op =
++			to_pt_op(pt_update_ops, i);
+ 
+ 		xe_pt_commit(pt_op->vma, pt_op->entries,
+ 			     pt_op->num_entries, &pt_update_ops->deferred);
+@@ -2930,9 +2955,9 @@ void xe_pt_update_ops_abort(struct xe_tile *tile, struct xe_vma_ops *vops)
+ 
+ 	for (i = pt_update_ops->num_ops - 1; i >= 0; --i) {
+ 		struct xe_vm_pgtable_update_op *pt_op =
+-			&pt_update_ops->ops[i];
++			to_pt_op(pt_update_ops, i);
+ 
+-		if (!pt_op->vma || i >= pt_update_ops->current_op)
++		if (!pt_op->vma || i >= get_current_op(pt_update_ops))
+ 			continue;
+ 
+ 		if (pt_op->bind)
 -- 
 2.34.1
 
