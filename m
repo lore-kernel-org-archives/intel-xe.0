@@ -4,97 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97130C9831E
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 01:06:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 731A1C9831E
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 03:11:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9D7410E216;
-	Fri, 25 Sep 2026 01:06:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8352B10E70C;
+	Fri, 25 Sep 2026 03:11:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZsbR5AWy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UTqr/JY4";
 	dkim-atps=neutral
-Received: from mail-yx2-f41.google.com (mail-yx2-f41.google.com
- [74.125.224.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAE2810E9D1
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 01:06:42 +0000 (UTC)
-Received: by mail-yx2-f41.google.com with SMTP id
- 00721157ae682-8a860e532bbso3366597b3.1
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 18:06:42 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1790298401; cv=none;
- d=google.com; s=arc-20260327;
- b=dJsFcdbFthK7EqykUcNb8aIutfC20SU8aztTNKjWJ/QsAfb5W/vrtSfY8UrtAeh20d
- +q89V+WXrJ8kHFK0q2tZc1vS2/BgZAcNsIvsMY0YPuMFo1aBI8VyJ0W+68j6/95k5qzM
- 8iUXrgRZlTUW+UawS/iBOHSpBuAGu32enhnRou46lco6bQhCxuHYfFySqwxzXTkx7mI+
- UIay8mikW1z6Clh5B0bsjGULrLzhO9VYSid+y1+H3q3H0m1Z+dbs2d45Vh+mXi+ltyQ+
- SydiF+cbsxvd51PRLWSiMQKHhwMFaW9vWnl3+Z8/FWD+dsWKrqvMwYpvrmCE87mQ4QJI
- cP+g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=0UWWegM3zaySSImGAmVuG25fiwQNAAHUhoXGTbOrN78=;
- fh=/oe6XVzzJWJTH1XBcpaK4Yrtk3Moj7rEq3xAprf0tR0=;
- b=cvQOjeB4zNHtanIhq0Y828Nybr4q226BrGIg73G7SY9Ld3T3fe/u4FK5owCoOSzTVX
- qI3dE2VhMonCq73cAb3qUKcafJ5HKaV++DOxnptNWX+szJdDixy9sZ7LesYd5r5UXwic
- WnWfoHuaN2n4ryajq7JtQeg02jnFpR3l7ualB6GGNAptoAKC35O0kxgB1+Efs43CLQlG
- iG9tzHUDG8ZAhpHsE+Iy6xflj9k7UkrsBWSSZO1WMS5ie/T/T0JO8sPtWBnjUxQVQoxL
- 1t4BsQxk37s1Iz7FJoGCmnn+lurJdRnhIV1HyjRsXh/Jel3Xi51Ii387GLt1RazdiYDl
- +T6g==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1790298401; x=1790903201; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=0UWWegM3zaySSImGAmVuG25fiwQNAAHUhoXGTbOrN78=;
- b=ZsbR5AWygCEQGHUEa6qAtQM1Nj+Ihv0dvo5lgZOLp8KqY+v4HQEdyY/dMN1tuYOyf+
- D5EIKU6M6v+SRw9MMPfTmx0HZ6/mx2d0tvs0OYAEasg95DLIRyurVhQnlPV9FaLiJk6i
- OIUK7WH8LKC3tlOrZmET/95gb/FNsEOmSoyTMdvKvX6BsQUY3PrP3svcb8c9aUMtjkEq
- AgbuOeH3+aPnUo7FQbLjMJqQX+ywGBcsA6QJjT6bEodNTjNEGu4s7yN1KNK3+6WYPcBA
- j5af4634hyBgG+4Qf7m5whRT7Fa1t6+vMxz3+K+ZTHaHW7IyN3qSy8SYAsLpxD8XAdC+
- zymQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1790298401; x=1790903201;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=0UWWegM3zaySSImGAmVuG25fiwQNAAHUhoXGTbOrN78=;
- b=Qzn4wdhhlAMffjUlICK9EplDZA3cVPQoEnp+IvVDZSTnS7Wz9t68Klmj9j5D9Uu02d
- jKWG2XgMd+lU339DtGVxIXoMDTHDohw82X/6s/nrGI0FmMHg814v3pSrpR11QgiGZ+wb
- +VQJQC4kJfUMu4q3omKvVXAnD/DUn19WlUrUSjpQ7goVhu7DBCxPyi3cnj9XDvqVSJmM
- KtAYx8TCbStHBRQG9keB9XvuyLXI+7QgZZhw1yyrSTZX6vs1SSGwXQbT+w6am3Ru5NDv
- vatE7aciabJ08TXkgVMTOoZvcKNCaGUekYSMKjEfx40MwG+oa9TzSuXr5P6K8O5PICQe
- IuIw==
-X-Gm-Message-State: AFuF++mOgh2Yylsfas4y0D7WbR2uxmsThmjWe2E1DkFad8VuEg6y9VaX
- UPXE2hdw7aBjmMwZ0Yi6eA2n3f+bzZEpdHC85J5LZzdDDyBmmyWazhVd2zZiSFN37csaC7ij4UC
- E/IUYmK2QEJruP25vQJ6W5ChLLZJBr88=
-X-Gm-Gg: AYBFou1e1pkVzry4hgvu6AfACrLCHETLPSrvFpztKQoZf+RrRcZkyjInukdnVAzjBTe
- jZT7e8NFdJ6FE7DNqs5zHjmdrWSBiFJVyUgUmTvTNioPkXqNY7zu3x3y9XKSSdVUzlCrZA1/wWE
- TtxaMLDjOEKO9Kd13sq7ilhLlvr4r37Rlj4/KxlN3xv+kL86ymjFseC/Uq6UqoHaNfkKp6B/E5+
- inA8dvv/H0o+jD5gCFGBTzLLgPLIU7ANo46Il0gVeoVEAwIBNXdW4LOgkmW8q5TRu8Ap0E+QAPE
- KS5hsv9KSrVFgyhzifahB9VVKVKXpObZT/1OKe2+MLJ9xe6w0YXfhXFR9k7wtOWWjkFFoIqBQda
- VrAFPDwfFEc+I+h9wIgFNMajd+0dLdmeEFgIsGTAOEKc=
-X-Received: by 2002:a05:690e:1343:b0:672:99e1:11f4 with SMTP id
- 956f58d0204a3-672ed523ab0mr1807170d50.145.1790298401392; Thu, 24 Sep 2026
- 18:06:41 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A50110E70C
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 03:11:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790305890; x=1821841890;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=o+Ve1yTP/8fspjvQyMHKKTSECLzsQwOTCZ8lwi7DXzY=;
+ b=UTqr/JY4mkstx4vQek8Uvu5h1IzASYUbH4Wg4J+lpsV87T1Ls0XqPWKX
+ lhm7L/LA1J63wWtYTzQCPXQmdH/KGjY8Iz58PfSc8KxJd3Xgkz52BDA8g
+ jBQjocMuZ98XR1ScG7qF3l5Iv0nCUS0AUo0/24RyoVQwRVL9yzt1dLgZ/
+ ZB9baE1zGwJPYJMPLBjMPsvVxQ2teOhywJ06f1LKVnZtCgZKsH1BduDPP
+ NOKbnwhwcgiUsPkqp4wvTuC2PEcCFL7VjHvfHt6KG8ZexMXjXlU6rcHB5
+ kbth/sS4gN9OL5u46Q0l1IcnPTxaUM+u/r3S6HfizEZHgepew8N7ieU+c w==;
+X-CSE-ConnectionGUID: 4aBhXjiNSheGlTSLXEIuFw==
+X-CSE-MsgGUID: yYUhfn+dQcyliBwLS2CqAA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="101617038"
+X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="101617038"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2026 20:11:29 -0700
+X-CSE-ConnectionGUID: Lxs6ot6dRsG19Hv/7dWk6g==
+X-CSE-MsgGUID: dYXGw/JFT+2YvwzyKuXS2A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="277606252"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2026 20:11:29 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Thu, 24 Sep 2026 20:11:28 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Thu, 24 Sep 2026 20:11:28 -0700
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.34) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Thu, 24 Sep 2026 20:11:27 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=WMEUhyVGTMeW2VyNfj5A5GrhkW4w4nYBUgiGKQzqesPMadZCll0kqyuNAWJjHCJXFJ1NCvCFbbQS8RiGjgtFTv8coEfFV46hOOo9S2NmJK5ZVmlg+wJvPxgEGg1PvaLDMHLZ7ynkdjRO/GCRT118Syu+vzqTDpg5GzVGFBx9l2Cpgpm3I0HDilj+N7NgOEY9kJtqdFcW4srzAFZOqOR1y/C2ybUQuZPl7Euqwa7kmRJXT9ROmOzWAVQeW6UVOp3q3d9wcB+yI8uXL6Q3x3eJ/WJ6xRm4w2fgCOihqmyahk0Lu3ItR6BybjO8nAAfO4VyBocz0U2PDFrSBDCuxvDgCA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fNzJ1G22o8JjjWaa/ZchG8AH29TmG+2FbJqfIfMPZI8=;
+ b=SiyDAivF0hKEuiknHW9bNlmLVmCJsDsoPzYN2m959UnL7fcuJ89Gq2Ytr0iSugXXKrXxG9RMD6CKt+CY7dCn4fVK/vXzQAPOnBNZv+1dukNbktDMBS/OkvBb067fD9CTOb+lS3N8KNwafqVjqqSIKGoGdO002IR3n6RoSPDEzckThOMX0tGdJ8NrrjnvlsJtvdlGPIrAFvwm1qb050UCDgppju6wRn7jv11hBS4Pa1t/0Yo8wAHy5iNnsHOMmUYTHucXfqw4+S73kTGeTDNQ4xLF/+eAjBslFyuBqDARWI4pQwU976tq+5dKDeipyiAJ3MmRoriSOZzb6NKc8JNI3Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
+ by SA3PR11MB169024.namprd11.prod.outlook.com (2603:10b6:806:588::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.18; Fri, 25 Sep
+ 2026 03:11:20 +0000
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0451.014; Fri, 25 Sep 2026
+ 03:11:20 +0000
+Date: Thu, 24 Sep 2026 20:11:18 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+CC: <sashiko-reviews@lists.linux.dev>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v6 17/24] drm/xe: Add device flag to enable PT mirroring
+ across tiles
+Message-ID: <arXmVtIOiBcP6ePh@gsse-cloud1.jf.intel.com>
+References: <20260904211613.3934307-1-matthew.brost@intel.com>
+ <20260904211613.3934307-18-matthew.brost@intel.com>
+ <20260904214039.938631F00A3D@smtp.kernel.org>
+ <0cf55a0a-4bfb-46c5-8718-410ecc860e96@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <0cf55a0a-4bfb-46c5-8718-410ecc860e96@intel.com>
+X-ClientProxiedBy: BYAPR21CA0017.namprd21.prod.outlook.com
+ (2603:10b6:a03:114::27) To CO1PR11MB4787.namprd11.prod.outlook.com
+ (2603:10b6:303:95::23)
 MIME-Version: 1.0
-References: <20260922144634.55130-1-talesam@gmail.com>
- <arWenmbBkCZ4m7I8@gsse-cloud1.jf.intel.com>
-In-Reply-To: <arWenmbBkCZ4m7I8@gsse-cloud1.jf.intel.com>
-From: =?UTF-8?B?VGFsZXMgQS4gTWVuZG9uw6dh?= <talesam@gmail.com>
-Date: Thu, 24 Sep 2026 22:06:30 -0300
-X-Gm-Features: AclHuK-r4LLIiBiR1RGrRY3Sys7ZN1PZp4qyLo2evLQzPzAw5UlLUytrsT3CmrE
-Message-ID: <CAHBRX4EnQ2W1XxzZjnqZfQS0cG7V4PNB_47s5dHnX6T8N5CiCA@mail.gmail.com>
-Subject: Re: [PATCH v6 0/3] drm/xe: fix GuC TLB invalidation ack stalls on ARL
- (Wa_22016122933)
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, daniele.ceraolospurio@intel.com, 
- stuart.summers@intel.com, julia.filipchuk@intel.com, 
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com, 
- jani.nikula@intel.com, navonjohnlukose@gmail.com, 
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|SA3PR11MB169024:EE_
+X-MS-Office365-Filtering-Correlation-Id: 275ff7ed-9098-4a75-e6cd-08df1ab2abfb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|23010399003|10067099003|18002099003|56012099006|22082099003|4143699003|11063799006;
+X-Microsoft-Antispam-Message-Info: H+9DnL2fhqbqCXEQD5PmlgPKFXgYNmpDBPRU5OLIpwwZ5o+842MdtNFKSDngNuaOepzPRnBa+fjJ/UvaAOtN4lfoEa039zkAdvz8rFTR/eA4i2rWFt5YfFKAzlF3uch0EhOs141pKloku7YLZdUGO4OhZA4NtCDKfLZzqjfglOC5CHqilqFZyFD+44fdOS3MDROfw/L2K0BfdGRPPV2L+leFpOciAnfSUpiuPUfjCGqXMPu435t22Z8Fcb6sfidrW+mBsZUj2BrBNsXnPrjW7x73YDVP69jDjNYnSpeLN/HtOIYOjyS4gEVlRgKSyp+GRt0gBoAPjv0BBxi6fAxjWehXesDobLmZS7rFX6fjoF/Aim0L9F9wVl9btXvEjjNU+7w8gXQjjnXpfYj+4nSzd0QbxXANKf3GJ5dS78nyEXn2vqMyF3AAKIFuqO6DUdr5YuMP0pH5hVS9G0LoZzmvdPL3ks7i+k04xNui9IPEQsLt2wKLQJo6+F6gDEnfuMnJPuKqWXoY8Rtwg7UxiJBa2XGkfNfGOwgB/hLMwpqwAQYs0ZAJ4GuaHrq7548q4N3OUdWk59Od3XaKmgDQ+wjoRSoiLqYsvDsrIOZ3ipUxHBs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(10067099003)(18002099003)(56012099006)(22082099003)(4143699003)(11063799006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PkLOHn7ljW9c3pWSrsmjRwOCsYSEx4dj3BDdYvSBbQ9W1aRBxNo5EoZJ9Bhg?=
+ =?us-ascii?Q?VtYHM/kkrpqCgdt2vZqI0EfpO2H90E93gJCf5doIQmm8PDnu7Cm5tbBWQ5M8?=
+ =?us-ascii?Q?j5dAaihTdiIq9d9jDZVrvevCNCeepnKHPrUNPg7g3njdY8R39uWobzmTm91x?=
+ =?us-ascii?Q?J8VKjnZatxD4933rO0s9qeY0HJmWZe+y8TSTAkZ8/yvdS05vy0U+0MgZKxS0?=
+ =?us-ascii?Q?WFzyoYF9NdDbO2jXJWRGuMBY1LpaRNbPrK78HPaFiTlL0mVBGUsmmKw98bhF?=
+ =?us-ascii?Q?cECvMfxRJSMTwrtVCy/AYDy8wMOZfNLoF7nsxGXtXhpErmcTGbcvMcUNl47z?=
+ =?us-ascii?Q?U6VYjt7P/GrV354x4kfinG4m7HaXnnTQGhmjqVDG/Yex5NWykfQawh3ac4q2?=
+ =?us-ascii?Q?lehkTznOxTCPEzYVDmI6D3rNPz0IoZE6uEZFfp2K8RVY2n8ZH1kOcN/iXVlY?=
+ =?us-ascii?Q?pZ4rSagwoRrKULiKWo0lUC95Jkhzsq+uaxev9RkV9NAIjBemLGYtLVI43nWR?=
+ =?us-ascii?Q?sZPijZMEfJPvOvPBvZPdYA7G1UDNlN65/boJxbEA4OEC+QIjxiZVIeUeTLDx?=
+ =?us-ascii?Q?NgEMfggAOlaeufViWFYOfR8SrKPk/YYm61jUxsojojlInTLd7UHkmUw7iKJV?=
+ =?us-ascii?Q?8qkFpbpo592u+h8znpypSnRMNGY1hVl3ALGmT6W6jZtyeu7Af1nk4MLcEfj8?=
+ =?us-ascii?Q?qeWzkVdssy3bk0o4ff4La4iy8pM0vHqCgaxDTNX/LnkQ0XkyT7ZUtnvh+aRq?=
+ =?us-ascii?Q?mbGqcN8eR7EfQ3S0tosM/B/sfWDYaD3pQeiRkl4V7TDd/dhlaC+LygFj8v2c?=
+ =?us-ascii?Q?blxksqwOw0qXeqthTh4bKDDAGZbYtRDOWVn8X1mmhzNte26HksdRmJMo6Cut?=
+ =?us-ascii?Q?CfA7e5cK1pFJeARYQTU02AOAi6ctTbfFjzWsaMj4IMjxi41ZTeQuqKTTZiR2?=
+ =?us-ascii?Q?n0fEEaGXsVaFoXm+TwGOxfpT/EjbD0X7MrEeyIF/TUpUTjCDxKcaTFeDpgZt?=
+ =?us-ascii?Q?dxd9Vm4Wkr4bi5ZAeVao3NhCac+P3GBhgrscLU2AKGfgYkreVSpqCIm01iRB?=
+ =?us-ascii?Q?eAYpTB/oaqSClLrZxEkGpq847hbbivqZPuj6EdP7Ekii1Ronzk2rhSuTXtx+?=
+ =?us-ascii?Q?3YmvkqYZKKRBVQeXK6E4NK9niaYl5QYriEmShXYVhYgWu5pvTIDMzjB9zh9M?=
+ =?us-ascii?Q?6OBbzCmLhVggD5GGZ0x1zRT6X0xfYaYDCdS6C2tEwVOSVK5QPzd9BRXEXa4E?=
+ =?us-ascii?Q?RjXYnH3S8eeT/9Zpii1jJfVXzMRJdPLbtCYFB3rJy2DZ51YWUdArOv6ZV1xW?=
+ =?us-ascii?Q?oYrRc7CymEiOXsu0Q7TKLkVBPGqof8wNRtZgJT5XQtF/cA24oKlZfW/ixZpT?=
+ =?us-ascii?Q?3ygzOOhLbsZ6nDolJ9St+iT4xLIZx3VXxLgTs9HdLnuiqNYDXFHAuJGEgsxK?=
+ =?us-ascii?Q?gMu+p6QDXxrX+z0XT1uS0DCXTSHzrAhZwB6f7WcFAesF7Mbc+A4ony9tKKFS?=
+ =?us-ascii?Q?s1DZ1vKObO0brM/imB/J6NaZeLyruzLtFFKC0p1X3gR5KdIpydQUzZtHw6mn?=
+ =?us-ascii?Q?d0hfqKj4roEANyuTy5bTSQmv22BCuOC+CIESWrbgsUHDDQvl8Jl+9TwNosDk?=
+ =?us-ascii?Q?020FagjNp50Tw/BFA5x/rC+fHZZEcMGdiBWYigf5SWqmcjohR55QmTWQ8+j/?=
+ =?us-ascii?Q?syGsk9SUy5gJe+wHR2uhHCwNLexJ+z+U4kAa0GVx1iod+gDHg94xq8zMbd4H?=
+ =?us-ascii?Q?HyUodd5fHw=3D=3D?=
+X-Exchange-RoutingPolicyChecked: t90DhSCAqkPiXOol66G6RS+hnI5KTuxXpbAT3Dv7NoRMR6ctwXMF3ZBRIreXglAd9aAspdjlNGpy2ZBLtTnJcoh9gDh69d9GN9Rt+xc3IyljOgJ35HHCmtBCBXiJQaXnRokp9wYfQ8WAXGo2JtL72hXzGzXj/QzX/TSFTxPuysQjdMJmhYuMOK7GvmB32c24II1xz+rpvHFK4v4d6WmANcFgLZjXeu0vfoHfLqS4+PiDlPN7j0mnrvrW948/9Y8OQ+dxXmDB0a8I0FwDfSMjnSc4+AbgDWJckFJ5odGK4EJUL1CuANz8pAPyuZMvWW7C/PHyCx7U90S7VAlf6tf2HQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 275ff7ed-9098-4a75-e6cd-08df1ab2abfb
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2026 03:11:20.4433 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Tb0Mr7xogUNyFdAqHIqX/ZfiSk7iXJdhmr1W6GOF5vFYe6LvGxegLSMbuQe8xmUx5L1F1bJ5WmeIsgsztX5ohA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB169024
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,10 +160,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thanks Matt, and thanks everyone for the reviews and the testing.
+On Mon, Sep 21, 2026 at 10:33:42PM +0530, Ghimiray, Himal Prasad wrote:
+> 
+> 
+> On 05-09-2026 03:10, sashiko-bot@kernel.org wrote:
+> > Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> > - [Medium] Unnecessary allocation of page table roots and scratch structures for secondary tiles when PT mirroring is disabled.
+> 
+> Looks valid.
+> 
 
-Tales
+I'd didn't really want to over engineer this one and this wastes 4k of memory.
 
---=20
-Tales A. Mendon=C3=A7a
-talesam.org | communitybig.org
+Matt
+
+> > --
+> > 
+> > commit 34b539e899a7643dc15dedad6a3cd229e0c0f4d5
+> > Author: Matthew Brost <matthew.brost@intel.com>
+> > 
+> > drm/xe: Add device flag to enable PT mirroring across tiles
+> > 
+> > This commit introduces a device flag to toggle page-table mirroring across
+> > tiles for memory bandwidth considerations. It updates the VM creation,
+> > rebind, and page table update paths to check this flag and fall back to the
+> > primary tile's root page table when mirroring is disabled.
+> > 
+> > Link: https://patch.msgid.link/20260228013501.106680-18-matthew.brost@intel.com
+> > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> > > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > 
+> > [ ... ]
+> > 
+> > > @@ -1738,7 +1748,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
+> > >   		for_each_tile(tile, xe, id) {
+> > >   			if (flags & XE_VM_FLAG_MIGRATION &&
+> > > -			    tile->id != XE_VM_FLAG_TILE_ID(flags))
+> > > +			    tile->id != XE_VM_FLAG_TILE_ID(flags) &&
+> > > +			    (vm->xe->info.has_pt_mirror || id))
+> > >   				continue;
+> > >   			vm->pt_root[id] = xe_pt_create(vm, tile, xe->info.vm_max_level,
+> > 
+> > [Severity: Medium]
+> > Does this code unnecessarily allocate page table roots and scratch structures
+> > for secondary tiles when PT mirroring is disabled?
+> > 
+> > For standard user VMs, XE_VM_FLAG_MIGRATION is unset, meaning this if
+> > condition evaluates to false and we proceed to allocate pt_root[id] for all
+> > tiles.
+> > 
+> > However, when vm->xe->info.has_pt_mirror is false, xe_vm_pt_root()
+> > unconditionally returns pt_root[0]. This means the allocated pt_root[id]
+> > (and associated scratch page tables up to vm_max_level) for id > 0 will never
+> > be used, permanently wasting VRAM for the lifetime of every VM.
+> > 
+> > Should there be an explicit check to skip secondary tile allocations when
+> > has_pt_mirror is false, regardless of whether it is a migration VM?
+> > 
+> 
