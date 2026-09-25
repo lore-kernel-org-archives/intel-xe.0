@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFD9DC98332
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2BD6C98331
 	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 20:16:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66DCC10FC6E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 882D410FC72;
 	Fri, 25 Sep 2026 20:16:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P82pef2e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VWzAYFaR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB23C10FC46
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 20:15:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 660CE10FC46
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 20:15:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790367333; x=1821903333;
+ t=1790367334; x=1821903334;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SXNBCX8OG27yGU7fMB2mblb4mJsY1OC0x8CP5s9H/dY=;
- b=P82pef2e+1kfIn6Iwckt6iXrRyVVtH52rizfWVc6PZx1XvDRmiMy1oWb
- tt6VV28RzMpgPZOFBarnyWtjbRC2flYEzXmzHsNgi19eTzVRiwkt+A7M6
- eKdTPayzjGWgRVTIL0sRFrNQH7V17kLBJ3tQrFwF8tSEy1wZjnq/q5RY0
- zZGPD4/5/bCxDdKH9yXG2r5RBWlwrgmn9J6wVS+BVhRPH30lstyUm2zj5
- n25JbuuFdDeFowlsVDZOvGdmFDCyg4MhkBPVoiTw73+yqBeeJiX9nJA9B
- IY6t/usbJeXdwlxOAX5PtHc+qBoO+AebavZMNUOdA9qn1VDzQhldfCJxg Q==;
-X-CSE-ConnectionGUID: LCPV1jdzRUK0qdrCi3KTnw==
-X-CSE-MsgGUID: DpyfpA4CQLesKqSnUKbQWw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11916"; a="90377960"
-X-IronPort-AV: E=Sophos;i="6.27,123,1787036400"; d="scan'208";a="90377960"
+ bh=XXKtGnaif4UK2iRLTrusuD9PRINbt5JnYbkOXxQYy5M=;
+ b=VWzAYFaRYfznF1f/04Q7hFo3Qpd9Uypk1EiB2+KiD4ZvaG90bsXaMxsG
+ izln39bcj4U+J+y3xVrfdkDo7TDfLU+wjBVQB/qrZZz0BU5N2lHuEYo3B
+ RGHrahc/nOOMf4Rt66WbUEM9+B8pDcC8A9RRFoF3Ee03xvqeA1UlBxrEP
+ tnPXDqUu3TBNTHqFVrsLz2hc3FrAyLpDAeY1wk6DArRSn+ED5V4kY0myB
+ 0YUJgEzOls2tQ0KcTERuUxzbPWfDOTmdLcgMsKorFiTJE8ynH50QuLdRR
+ cm1uJcv1a0ux8mz/Kgm/MiS9yGRuB9WQrOw2xsodfdAqZ53hViboRupTK Q==;
+X-CSE-ConnectionGUID: 5QU3PqwMSYmnM+LZyzVb5A==
+X-CSE-MsgGUID: q+pmRQyuSm+QyDQX3DUYiw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11916"; a="90377972"
+X-IronPort-AV: E=Sophos;i="6.27,123,1787036400"; d="scan'208";a="90377972"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Sep 2026 13:15:32 -0700
-X-CSE-ConnectionGUID: zI7rr20MTfedHawlWJ3WOA==
-X-CSE-MsgGUID: CYo/fTUZTZWQixR1sxl9KA==
+X-CSE-ConnectionGUID: FA0WMYZnQx6kojmzs5sduA==
+X-CSE-MsgGUID: dC1PR949QsaMlg5MbveGTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,123,1787036400"; d="scan'208";a="274509879"
+X-IronPort-AV: E=Sophos;i="6.27,123,1787036400"; d="scan'208";a="274509896"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Sep 2026 13:15:32 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v8 14/24] drm/xe: Remove unused arguments from
- xe_migrate_pt_update_ops
-Date: Fri, 25 Sep 2026 13:15:16 -0700
-Message-Id: <20260925201526.1355279-15-matthew.brost@intel.com>
+Subject: [PATCH v8 20/24] drm/xe: Add ULLS migration job support to ring ops
+Date: Fri, 25 Sep 2026 13:15:22 -0700
+Message-Id: <20260925201526.1355279-21-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260925201526.1355279-1-matthew.brost@intel.com>
 References: <20260925201526.1355279-1-matthew.brost@intel.com>
@@ -68,147 +68,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Both populate and clear have unused void* ptr arguments, remove these.
-Also consolidate ofs, num_qwords in update argument.
+Add preamble and postamble for ULLS migrations jobs. Preamble clears
+current semaphore for reuse. Postamble waits on next semaphore which is
+set upon next job submission, then advances the ring tail over that job
+with an LRI to RING_TAIL, so submitting it costs the CPU nothing beyond
+signalling the semaphore.
+
+A job updates the tail on behalf of a successor which has not been
+emitted yet, so it cannot know how much ring that successor will occupy.
+Pad every ULLS job out to a fixed ULLS_JOB_SIZE_BYTES, which makes the
+next tail derivable from where the current job starts. The pad also
+supplies the NOPs which must follow an in-ring tail update.
+
+The last ULLS migration job skips BB submission, the postamble and the
+tail update (clear current semaphore, write seqno, exit ULLS), padding
+the difference so that it still fills a job slot.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Reviewed-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_migrate.c |  2 --
- drivers/gpu/drm/xe/xe_migrate.h | 10 +-------
- drivers/gpu/drm/xe/xe_pt.c      | 41 +++++++++++----------------------
- 3 files changed, 15 insertions(+), 38 deletions(-)
+ drivers/gpu/drm/xe/xe_ring_ops.c       | 75 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ring_ops_types.h | 24 +++++++++
+ 2 files changed, 99 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 1fabc160b7d8..1c16d31f0d10 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -1811,11 +1811,9 @@ xe_migrate_update_pgtables_cpu_execute(struct xe_vm *vm, struct xe_tile *tile,
- 
- 			if (pt_op->bind && !force_clear)
- 				ops->populate(tile, &update->pt_bo->vmap,
--					      NULL, update->ofs, update->qwords,
- 					      update);
- 			else
- 				ops->clear(vm, tile, &update->pt_bo->vmap,
--					   NULL, update->ofs, update->qwords,
- 					   update);
- 		}
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index e6b7070134e1..94b8d8d63720 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -43,9 +43,6 @@ struct xe_migrate_pt_update_ops {
- 	 * @populate: Populate a command buffer or page-table with ptes.
- 	 * @tile: The tile for the current operation.
- 	 * @map: struct iosys_map into the memory to be populated.
--	 * @pos: If @map is NULL, map into the memory to be populated.
--	 * @ofs: qword offset into @map, unused if @map is NULL.
--	 * @num_qwords: Number of qwords to write.
- 	 * @update: Information about the PTEs to be inserted.
- 	 *
- 	 * This interface is intended to be used as a callback into the
-@@ -53,16 +50,12 @@ struct xe_migrate_pt_update_ops {
- 	 * page-tables with PTEs.
- 	 */
- 	void (*populate)(struct xe_tile *tile, struct iosys_map *map,
--			 void *pos, u32 ofs, u32 num_qwords,
- 			 const struct xe_vm_pgtable_update *update);
- 	/**
- 	 * @clear: Clear a command buffer or page-table with ptes.
- 	 * @vm: VM being updated
- 	 * @tile: The tile for the current operation.
- 	 * @map: struct iosys_map into the memory to be populated.
--	 * @pos: If @map is NULL, map into the memory to be populated.
--	 * @ofs: qword offset into @map, unused if @map is NULL.
--	 * @num_qwords: Number of qwords to write.
- 	 * @update: Information about the PTEs to be inserted.
- 	 *
- 	 * This interface is intended to be used as a callback into the
-@@ -70,8 +63,7 @@ struct xe_migrate_pt_update_ops {
- 	 * page-tables with PTEs.
- 	 */
- 	void (*clear)(struct xe_vm *vm, struct xe_tile *tile,
--		      struct iosys_map *map, void *pos, u32 ofs,
--		      u32 num_qwords,
-+		      struct iosys_map *map,
- 		      const struct xe_vm_pgtable_update *update);
- 
- 	/**
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 666097d68563..102f40c966f1 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1106,30 +1106,17 @@ bool xe_pt_zap_ptes_range(struct xe_tile *tile, struct xe_vm *vm,
- 
- static void
- xe_vm_populate_pgtable(struct xe_tile *tile, struct iosys_map *map,
--		       void *data, u32 qword_ofs, u32 num_qwords,
- 		       const struct xe_vm_pgtable_update *update)
- {
- 	struct xe_pt_entry *ptes = update->pt_entries;
--	u64 *ptr = data;
- 	u32 i;
- 
--	/*
--	 * @qword_ofs is the absolute entry offset within the page table, while
--	 * @ptes is indexed relative to @update->ofs (its first entry). The GPU
--	 * path (write_pgtable) splits a single update into MAX_PTE_PER_SDI-sized
--	 * chunks, calling this with an advancing @qword_ofs but a fresh @data
--	 * pointer per chunk, so translate back into a @ptes index rather than
--	 * assuming the chunk starts at ptes[0].
--	 */
--	for (i = 0; i < num_qwords; i++) {
--		u32 idx = qword_ofs - update->ofs + i;
-+	xe_assert(tile_to_xe(tile), map);
-+	xe_assert(tile_to_xe(tile), !iosys_map_is_null(map));
- 
--		if (map)
--			xe_map_wr(tile_to_xe(tile), map, (qword_ofs + i) *
--				  sizeof(u64), u64, ptes[idx].pte);
--		else
--			ptr[i] = ptes[idx].pte;
--	}
-+	for (i = 0; i < update->qwords; i++)
-+		xe_map_wr(tile_to_xe(tile), map, (update->ofs + i) *
-+			  sizeof(u64), u64, ptes[i].pte);
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 3dd8cf4e2131..bc4dea606b38 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -504,6 +504,68 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
  }
  
- static void xe_pt_cancel_bind(struct xe_vma *vma,
-@@ -2021,22 +2008,22 @@ static unsigned int xe_pt_stage_unbind(struct xe_tile *tile,
- 
- static void
- xe_migrate_clear_pgtable_callback(struct xe_vm *vm, struct xe_tile *tile,
--				  struct iosys_map *map, void *ptr,
--				  u32 qword_ofs, u32 num_qwords,
-+				  struct iosys_map *map,
- 				  const struct xe_vm_pgtable_update *update)
- {
- 	u64 empty = __xe_pt_empty_pte(tile, vm, update->level);
- 	int i;
- 
--	if (map && map->is_iomem)
--		for (i = 0; i < num_qwords; ++i)
--			xe_map_wr(tile_to_xe(tile), map, (qword_ofs + i) *
-+	xe_assert(vm->xe, map);
-+	xe_assert(vm->xe, !iosys_map_is_null(map));
++static int emit_ulls_preamble(struct xe_lrc *lrc, u32 *dw, int i, u32 seqno)
++{
++	u32 addr = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno);
 +
-+	if (map->is_iomem)
-+		for (i = 0; i < update->qwords; ++i)
-+			xe_map_wr(tile_to_xe(tile), map, (update->ofs + i) *
- 				  sizeof(u64), u64, empty);
--	else if (map)
--		memset64(map->vaddr + qword_ofs * sizeof(u64), empty,
--			 num_qwords);
- 	else
--		memset64(ptr, empty, num_qwords);
-+		memset64(map->vaddr + update->ofs * sizeof(u64), empty,
-+			 update->qwords);
- }
++	return emit_store_imm_ggtt(addr, LRC_MIGRATION_ULLS_SEMAPHORE_CLEAR,
++				   dw, i);
++}
++
++/*
++ * Advance the ring tail from within the ring, so submitting the next ULLS job
++ * needs nothing from the CPU beyond signalling the semaphore. All ULLS jobs
++ * occupy exactly ULLS_JOB_SIZE_BYTES, so the tail the next job ends at is two
++ * job slots on from where this job started, even though that job has not been
++ * emitted yet. Both LRC and MMIO ring tail advanced in step.
++ */
++static int emit_ulls_ring_tail(struct xe_gt *gt, struct xe_lrc *lrc, u32 *dw,
++			       int i, u32 head)
++{
++	u32 next_tail = (head + 2 * ULLS_JOB_SIZE_BYTES) & (lrc->ring.size - 1);
++
++	xe_gt_assert(gt, IS_ALIGNED(next_tail, 8));
++
++	i = emit_store_imm_ggtt(xe_lrc_ring_tail_ggtt_addr(lrc), next_tail,
++				dw, i);
++
++	dw[i++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) |
++		MI_LRI_LRM_CS_MMIO;
++	dw[i++] = RING_TAIL(0).addr;
++	dw[i++] = next_tail;
++
++	return i;
++}
++
++/* Publish the next job's tail, then park the engine on its semaphore */
++static int emit_ulls_postamble(struct xe_gt *gt, struct xe_lrc *lrc, u32 *dw,
++			       int i, u32 seqno, u32 head)
++{
++	i = emit_ulls_ring_tail(gt, lrc, dw, i, head);
++
++	dw[i++] = MI_SEMAPHORE_WAIT |
++		MI_SEMW_GGTT |
++		MI_SEMW_POLL |
++		MI_SEMW_COMPARE(SAD_EQ_SDD);
++	dw[i++] = LRC_MIGRATION_ULLS_SEMAPHORE_SIGNAL;
++	dw[i++] = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno + 1);
++	dw[i++] = 0;
++	dw[i++] = 0;
++
++	return i;
++}
++
++/* Pad out to the fixed ULLS job size */
++static int emit_ulls_pad(struct xe_gt *gt, u32 *dw, int i)
++{
++	xe_gt_assert(gt, i <= ULLS_JOB_SIZE_DW);
++
++	while (i < ULLS_JOB_SIZE_DW)
++		dw[i++] = MI_NOOP;
++
++	return i;
++}
++
+ static void emit_migration_job_gen12(struct xe_sched_job *job,
+ 				     struct xe_lrc *lrc, u32 *head,
+ 				     u32 seqno)
+@@ -517,10 +579,16 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
  
- static void xe_pt_abort_unbind(struct xe_vma *vma,
+ 	xe_gt_assert(gt, !job->ring_ops_force_reset);
+ 
++	if (xe_sched_job_is_ulls(job))
++		i = emit_ulls_preamble(lrc, dw, i, seqno);
++
+ 	i = emit_copy_timestamp(xe, lrc, dw, i);
+ 
+ 	i = emit_store_imm_ggtt(saddr, seqno, dw, i);
+ 
++	if (!xe_sched_job_ulls_has_batch(job))
++		goto seqno_write;
++
+ 	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE; /* Enabled again below */
+ 
+ 	i = emit_bb_start(job->ptrs[0].batch_addr, BIT(8), dw, i);
+@@ -531,12 +599,19 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
+ 
+ 	i = emit_bb_start(job->ptrs[1].batch_addr, BIT(8), dw, i);
+ 
++seqno_write:
+ 	i = emit_flush_imm_ggtt(xe_lrc_seqno_ggtt_addr(lrc), seqno,
+ 				job->migrate_flush_flags,
+ 				dw, i);
+ 
+ 	i = emit_user_interrupt(dw, i);
+ 
++	if (xe_sched_job_ulls_parks(job))
++		i = emit_ulls_postamble(gt, lrc, dw, i, seqno, *head);
++
++	if (xe_sched_job_is_ulls(job))
++		i = emit_ulls_pad(gt, dw, i);
++
+ 	xe_gt_assert(job->q->gt, i <= MAX_JOB_SIZE_DW);
+ 
+ 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+index 52ff96bc4100..ea4af321dd7c 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
++++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+@@ -6,6 +6,7 @@
+ #ifndef _XE_RING_OPS_TYPES_H_
+ #define _XE_RING_OPS_TYPES_H_
+ 
++#include <linux/build_bug.h>
+ #include <linux/types.h>
+ 
+ struct xe_gt;
+@@ -14,6 +15,29 @@ struct xe_sched_job;
+ #define MAX_JOB_SIZE_DW 74
+ #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
+ 
++/*
++ * ULLS migration jobs advance the ring tail from within the ring itself, so a
++ * job has to know where its successor will end before that successor has been
++ * emitted. Every ULLS job is therefore padded to a fixed size, letting the
++ * next tail be derived arithmetically.
++ *
++ * Sized for the largest such job, emitted by emit_migration_job_gen12():
++ * preamble (4), copy timestamp (8, its size on an SRIOV VF), start seqno
++ * store (4), arbitration off (1), batch buffer starts (2 * 3), pre-parser
++ * bracketed flush invalidate (6), seqno flush (4), user interrupt (3) and
++ * postamble (7 + 5).
++ */
++#define ULLS_JOB_SIZE_DW 48
++#define ULLS_JOB_SIZE_BYTES (ULLS_JOB_SIZE_DW * 4)
++
++/*
++ * RING_TAIL only encodes a qword aligned offset, and xe_lrc_write_ring()
++ * appends a NOP to anything shorter, either of which would desynchronise the
++ * ring from the tail a job predicts for its successor.
++ */
++static_assert(ULLS_JOB_SIZE_BYTES % 8 == 0);
++static_assert(ULLS_JOB_SIZE_DW <= MAX_JOB_SIZE_DW);
++
+ /**
+  * struct xe_ring_ops - Ring operations
+  */
 -- 
 2.34.1
 
