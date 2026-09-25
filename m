@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C833C9830D
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 06:38:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75402C98306
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 06:49:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F40810F864;
-	Fri, 25 Sep 2026 06:38:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF30810E586;
+	Fri, 25 Sep 2026 06:48:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RFTfcxyV";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="B/IqIn1c";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C559810F864
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 06:38:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EDCB10E586
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 06:48:58 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id C133E6022E;
- Fri, 25 Sep 2026 06:38:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5830C1F000FF;
- Fri, 25 Sep 2026 06:38:45 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id F30EB60230;
+ Fri, 25 Sep 2026 06:48:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FE391F000FF;
+ Fri, 25 Sep 2026 06:48:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790318325;
- bh=DzaQnl3r5DBQJuwlFltB/rGMTEMF3GSYIkYjC+Egv1I=;
+ s=k20260515; t=1790318937;
+ bh=64HJBS41Dlo0RADxNbqkGT/hUd7kLgg27JGOK+ldVj4=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=RFTfcxyVIUJHDJgovkMVt2nUV6MOEJKJdvBYkE6+w1M7pF5musGAyJoUxSCYHXTNA
- 46oVREWs65Xdx7JfgbUTT64Tu0MesXkzDzjuOGixvgPrBbj0T7b3uw5Y96uFO3ZftA
- Rs6u1B00SPV5Do5fnrABOeYaUInKj5GWIbBFFD8Psvuohp3fr9TxtrQrH+mCSCIp5n
- 1twknEaFtoxB6VLbyaVho6O8wmXyO0OT3fiebzYA23arFX3MoUJvGYcEDdHmN4IGXo
- +2nfDdKvYbHlKjHWblQ7sXfDQHlmW72rSCOCzCZQk/QTDTXyPY/g+nv+M6lM/J3Axf
- fqGydyw84rsYg==
+ b=B/IqIn1cZ1sJCsQa1yfkrFFBX6JmIOstjmfF8YK1ycbfZwDDHsRSYUlxAvgs2IV9J
+ tfedAZXpC5QupVGZhCUGfJ8pchD2GJSypSK338lS1FKSodrO2CRDkThnV/Z2aziaiC
+ y+Kydz2YMv+SQK9PB7paT1P7tr5VUSuYxwsn53lNyg7ljebnKXZkGG3GiqSJYzgEzQ
+ A5B2C/Hj4kGdNkUEn9GBTuQtG2VXnN7OA3kXH4xsI0oztUsr2iR2L/b9l2mfdJOCx4
+ mA8luBwX1khRrSb7qUOYnu8UXigO0T0vV1UHKqxzngdCui5ezJ+lJ/2xD6rs4YiR8/
+ A3u0bWVS3VI/w==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 20/24] drm/xe: Add ULLS migration job support to ring
- ops
+Subject: Re: [PATCH v7 21/24] drm/xe: Add ULLS migration job support to GuC
+ submission
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260925045320.1325860-21-matthew.brost@intel.com>
+In-Reply-To: <20260925045320.1325860-22-matthew.brost@intel.com>
 References: <20260925045320.1325860-1-matthew.brost@intel.com>
- <20260925045320.1325860-21-matthew.brost@intel.com>
+ <20260925045320.1325860-22-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 25 Sep 2026 06:38:44 +0000
-Message-Id: <20260925063845.5830C1F000FF@smtp.kernel.org>
+Date: Fri, 25 Sep 2026 06:48:57 +0000
+Message-Id: <20260925064857.7FE391F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,101 +59,69 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] drm/xe: GPU hang from CS prefetching uninitialized ULLS jobs
+- [High] drm/xe: TOCTOU race in ULLS migration job prefetching leads to sta=
+le command execution
 --
 
-commit ca5d0374fab1065ae65164d64f6d5510acadd964
+commit 231db353d11582f236795322ee38df1ad9cad0d1
 Author: Matthew Brost <matthew.brost@intel.com>
+drm/xe: Add ULLS migration job support to GuC submission
 
-drm/xe: Add ULLS migration job support to ring ops
+This commit adds Ultra Low Latency Submission (ULLS) migration job support =
+to
+the GuC submission backend. It introduces optimizations for chained ULLS jo=
+bs
+by having the GPU publish its own ring tail and suppressing the CPU's RING_=
+TAIL
+MMIO updates.
 
-Add preamble and postamble for ULLS migrations jobs. Preamble clears
-current semaphore for reuse. Postamble waits on next semaphore which is
-set upon next job submission, then advances the ring tail over that job
-with an LRI to RING_TAIL, so submitting it costs the CPU nothing beyond
-signalling the semaphore.
-
-> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_rin=
-g_ops.c
-> index 46ab1f0f35648..9f462bfecb831 100644
-> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
-> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-[ ... ]
-> +/* Publish the next job's tail, then park the engine on its semaphore */
-> +static int emit_ulls_postamble(struct xe_gt *gt, struct xe_lrc *lrc, u32=
- *dw,
-> +			       int i, u32 seqno, u32 head)
-> +{
-> +	i =3D emit_ulls_ring_tail(gt, lrc, dw, i, head);
-> +
-> +	dw[i++] =3D MI_SEMAPHORE_WAIT |
-> +		MI_SEMW_GGTT |
-> +		MI_SEMW_POLL |
-> +		MI_SEMW_COMPARE(SAD_EQ_SDD);
-> +	dw[i++] =3D LRC_MIGRATION_ULLS_SEMAPHORE_SIGNAL;
-
-[Severity: High]
-Does updating the ring tail to the next job's boundary before blocking on
-the semaphore open a window where the Command Streamer (CS) prefetcher can
-fetch uninitialized memory into its instruction cache?
-
-When the CPU later writes the next job and signals the semaphore, the
-absence of an MMIO tail update means the CS cache might not be invalidated.
-Could this cause the CS to execute stale data and hang the GPU?
-
-[ ... ]
-> +/* Pad out to the fixed ULLS job size */
-> +static int emit_ulls_pad(struct xe_gt *gt, u32 *dw, int i)
-> +{
-> +	xe_gt_assert(gt, i <=3D ULLS_JOB_SIZE_DW);
-> +
-> +	while (i < ULLS_JOB_SIZE_DW)
-> +		dw[i++] =3D MI_NOOP;
-> +
-> +	return i;
-> +}
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
+uc_submit.c
+> index a2784763e72ba..cd9bb9f9e28c8 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -1190,9 +1190,10 @@ static void submit_exec_queue(struct xe_exec_queue=
+ *q, struct xe_sched_job *job)
+>  	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
+> =20
+>  	if (!job->restore_replay || job->last_replay) {
+> +		/* A ULLS job past the first publishes its own ring tail */
+>  		if (xe_exec_queue_is_parallel(q))
+>  			wq_item_append(q);
+> -		else
+> +		else if (!xe_sched_job_ulls_is_chained(job))
+>  			xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
 
 [Severity: High]
-If a ULLS job reaches the maximum size of ULLS_JOB_SIZE_DW (which is 48),
-this loop will provide 0 NOOPs of padding.
+Does skipping the RING_TAIL MMIO write here expose a race condition where t=
+he
+GPU could execute stale ring buffer memory?
 
-Will this fail to buffer the prefetcher from the next job's uninitialized
-memory, exacerbating the prefetching issue mentioned above?
+For ULLS chained jobs, the GPU advances the tail via MI_LRI prior to execut=
+ing
+MI_SEMAPHORE_WAIT, which happens in emit_ulls_postamble():
+
+drivers/gpu/drm/xe/xe_ring_ops.c:emit_ulls_postamble()
+	i =3D emit_ulls_ring_tail(gt, lrc, dw, i, head);
+	dw[i++] =3D MI_SEMAPHORE_WAIT | ...
+
+Because the CPU intentionally skips the xe_lrc_set_ring_tail() MMIO write f=
+or
+these chained jobs, the hardware mechanism that normally invalidates the GP=
+U's
+instruction cache is bypassed.=20
+
+Could the Command Streamer fetch unit see the advanced RING_TAIL and prefet=
+ch
+memory for the next job before the CPU has actually written it to the ring
+buffer? If the CPU hasn't populated the commands yet, when the CPU finally
+writes the next job and signals the semaphore, it appears the GPU might wak=
+e up
+and execute the stale prefetched instructions from its internal cache rather
+than the newly written migration commands.
 
 [ ... ]
-> diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/=
-xe_ring_ops_types.h
-> index 52ff96bc41004..ea4af321dd7c4 100644
-> --- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
-> +++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-[ ... ]
-> +/*
-> + * ULLS migration jobs advance the ring tail from within the ring itself=
-, so a
-> + * job has to know where its successor will end before that successor ha=
-s been
-> + * emitted. Every ULLS job is therefore padded to a fixed size, letting =
-the
-> + * next tail be derived arithmetically.
-> + *
-> + * Sized for the largest such job, emitted by emit_migration_job_gen12():
-> + * preamble (4), copy timestamp (8, its size on an SRIOV VF), start seqno
-> + * store (4), arbitration off (1), batch buffer starts (2 * 3), pre-pars=
-er
-> + * bracketed flush invalidate (6), seqno flush (4), user interrupt (3) a=
-nd
-> + * postamble (7 + 5).
-> + */
-> +#define ULLS_JOB_SIZE_DW 48
-> +#define ULLS_JOB_SIZE_BYTES (ULLS_JOB_SIZE_DW * 4)
-
-[Severity: High]
-Since this maximum size is exactly equal to the maximal job length, it
-guarantees no NOOP padding is appended for the largest jobs.=20
-
-Should this maximum size account for additional NOOPs to safely pad the
-CS prefetch window?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260925045320.1325=
-860-1-matthew.brost@intel.com?part=3D20
+860-1-matthew.brost@intel.com?part=3D21
