@@ -4,44 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B186C98321
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 17:55:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B57CC98321
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 18:08:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3417410FBCD;
-	Fri, 25 Sep 2026 17:55:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42B9710FBD5;
+	Fri, 25 Sep 2026 18:08:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="W5WZpOTi";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="HMD3YJu+";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD41D10FBC4;
- Fri, 25 Sep 2026 17:55:54 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 21BF86025F;
- Fri, 25 Sep 2026 17:55:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9ED1A1F000FF;
- Fri, 25 Sep 2026 17:55:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790358953;
- bh=Nq738Gvptmwj0ks0Rk/AewJIA7BF8GMAxOiETsIb0e4=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=W5WZpOTiPhlmISAfzpM3uvfw6FvzVAlFGh6gnoygn7yLngCpySZ/QpZlbLQRumZ3D
- W3VVPct06t87Q0wdwpLzis3jb/tIPs0Bag6wb0caL3rbb/Z9kazfBRoO8X6WDVMulo
- cekzrhrAN3yQSqOI0wode4lzthrjfjo4uCFLsfygQp77mc0Q5p/qQlB6cOo+oXlBFT
- P5HyqZtVa+O1k3yR2KG1g8BC5X7IIKlLFY2jh21b7uSGkaxltKR4j/fIclXQJH8kM2
- 6rQ2ZN/NLVL0v5h0sKGI4zjTyGdxItNKpeZeRoC7je3hswzykWwaIA4XpjV4VAel/K
- OLGsCYbJxkpsw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 3/3] drm/i915/fbc: nuke CFB if Plane setting (except
- for surf addr) changes
-To: "Austin Hu" <austin.hu@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20260925173658.1042048-4-austin.hu@intel.com>
-References: <20260925173658.1042048-1-austin.hu@intel.com>
- <20260925173658.1042048-4-austin.hu@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 25 Sep 2026 17:55:53 +0000
-Message-Id: <20260925175553.9ED1A1F000FF@smtp.kernel.org>
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DA9410FBD5
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 18:08:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1790359721;
+ bh=DuNlCAAnkqvDlufujXXs6Sqdm/AUyp2yVzSBZC/C5oY=;
+ h=Date:Subject:To:References:From:In-Reply-To:From;
+ b=HMD3YJu+mMcTHUlOig6VjrVw+JrFh2UGRmVqGFSx6iQhVKqegx0v9yyt1XFQIRb0D
+ FMFyMLzcm8VqUALX9bsGGb480jy4VotcC3FOHuA1TQAg9R1/gmsuN/DVZELwB1ZLpQ
+ u9M1Lyy9SA7cXlKE7q+hix/ScSfQ6JJKU9Hl+5M4wDJLp1ubXTkh8meT173y0hOeeB
+ Ahqb/tmd0IyKbGgQHeuWTMXIL84jps56U1i/013Urmo4XGOCcxlAXRBVA2/B3mt1A5
+ 3/QdU1sGC7VYU0H5Ww69VyVBZw+bvLSjYfU2J/O0CgCXKsS2iH0lGmfyPviXe9M4yo
+ bBAvRn0zA9eGg==
+Message-ID: <f8917e0b-35e7-4462-8742-b0face89a7e6@lankhorst.se>
+Date: Fri, 25 Sep 2026 20:08:51 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 00/24] CPU binds and ULLS on migration queue
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+References: <20260925045320.1325860-1-matthew.brost@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20260925045320.1325860-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,122 +48,148 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] drm/i915/fbc: Severe performance regression due to overloaded FBC =
-nuke checks
-- [High] drm/i915/fbc: Missing state checks cause visual corruption with FB=
-C dirty rect
---
+I've run with a previous version of this series in my local tree for quite some time.
 
-commit 224f5233b9e570c9b8787cab16713f38059127bf
-Author: Austin Hu <austin.hu@intel.com>
+Hoping this finally gets merged!
 
-drm/i915/fbc: nuke CFB if Plane setting (except for surf addr) changes
+Reviewed-by: Maarten Lankhorst <dev@lankhorst.se> for the whole series.
 
-When FBC Dirty Rectangle mode is enabled, any non-PLANE_SURF register update
-requires fetching the full plane frame buffer from memory to re-compress and
-update the CFB in stolen memory. This commit checks plane state attributes
-during atomic commits and forces a full CFB nuke if any setting other than
-the surface address changes.
+On 9/25/26 06:52, Matthew Brost wrote:
+> We now have data demonstrating the need for CPU binds and ULLS on the
+> migration queue, based on results generated from [1].
+>
+> On BMG, measurements show that when the GPU is continuously processing
+> faults, copy jobs run approximately 30–40µs faster (depending on the
+> test case) with ULLS compared to traditional GuC submission with SLPC
+> enabled on the migration queue. Startup from a cold GPU shows an even
+> larger speedup. Given the critical nature of fault performance, ULLS
+> appears to be a worthwhile feature.
+>
+> In addition to driver telemetry, UMD compute benchmarks consistently
+> show multiple GB/s improvement in pagefault benchmarks with ULLS enabled.
+>
+> ULLS will consume more power (not yet measured) due to a continuously
+> running batch on the paging engine. However, compute UMDs already do
+> this on engines exposed to users, so this seems like a worthwhile
+> tradeoff. To mitigate power concerns, ULLS will exit after a period of
+> time in which no faults have been processed.
+>
+> CPU binds are required for ULLS to function, as the migration queue
+> needs exclusive access to the paging hardware engine. Thus, CPU binds
+> are included here.
+>
+> Beyond being a requirement for ULLS, CPU binds should also reduce
+> VM-bind latency, provide clearer multi-tile and TLB-invalidation
+> layering, reduce pressure on GuC during fault storms as it is bypassed,
+> and decouple kernel binds from unrelated copy/clear jobs—especially
+> beneficial when faults are serviced in parallel. In a parallel-faulting
+> test case, average bind time was reduced by approximately 15µs. In the
+> worst case, 2MB copy time (~60–140µs) × (number of pagefault threads −
+> 1) of latency would otherwise be added to a single fault. Reducing this
+> latency increases overall throughput of the fault handler.
+>
+> This series can be merged in phases:
+>
+> Phase 1: CPU binds (patches 1–13)
+> Phase 2: CPU-bind components and multi-tile relayers (patches 14–17)
+> Phase 3: ULLS on the migration execution queue (patches 18–24)
+>
+> v2:
+>  - Use delayed worker to exit ULLS mode in an effort to save on power
+>  - Various other cleanups
+> v3:
+>  - CPU bind component, multi-tile relayer
+>  - Split CPU bind patches in many small patches
+> v4:
+>  - Rebase, address feedback, add ULLS doc patch
+> v5:
+>  - Address Sashiko feedback, fix checkpatch issues
+> v6:
+>  - Reworked ULLS to drop KMD MMIO ring tail write, move this to ring
+>    instruction(s)
+>  - Several other small cleanups based on Sashiko feedback
+> v7:
+>  - Drop XE_BO_FLAG_PUT_VM_ASYNC in favor PT BOs holding a VM ref
+>  - configfs to ULLS enable and period
+>  - Migrate ULLS implementation style cleanups
+>  - Address various feedback
+>
+> Matt
+>
+> [1] https://patchwork.freedesktop.org/series/149811/
+>
+> Matthew Brost (24):
+>   drm/xe: reference VM from PT BOs
+>   drm/xe: Drop struct xe_migrate_pt_update argument from populate/clear
+>     vfuns
+>   drm/xe: Add xe_migrate_update_pgtables_cpu_execute helper
+>   drm/xe: Decouple exec queue idle check from LRC
+>   drm/xe: Add job count to GuC exec queue snapshot
+>   drm/xe: Update xe_bo_put_deferred arguments to include writeback flag
+>   drm/xe: Update scheduler job layer to support PT jobs
+>   drm/xe: Add helpers to access PT ops
+>   drm/xe: Add struct xe_pt_job_ops
+>   drm/xe: Update GuC submission backend to run PT jobs
+>   drm/xe: Store level in struct xe_vm_pgtable_update
+>   drm/xe: Don't use migrate exec queue for page fault binds
+>   drm/xe: Enable CPU binds for jobs
+>   drm/xe: Remove unused arguments from xe_migrate_pt_update_ops
+>   drm/xe: Make bind queues operate cross-tile
+>   drm/xe: Add CPU bind layer
+>   drm/xe: Add device flag to enable PT mirroring across tiles
+>   drm/xe: Add ULLS support to LRC
+>   drm/xe: Add ULLS migration job support to migration layer
+>   drm/xe: Add ULLS migration job support to ring ops
+>   drm/xe: Add ULLS migration job support to GuC submission
+>   drm/xe: Enter ULLS for migration jobs upon page fault or SVM prefetch
+>   drm/xe: add migrate ULLS period configfs attribute
+>   drm/xe: Document ULLS for migration jobs
+>
+>  Documentation/gpu/xe/xe_migrate.rst      |   3 +
+>  drivers/gpu/drm/xe/Makefile              |   1 +
+>  drivers/gpu/drm/xe/xe_bo.c               |   4 +-
+>  drivers/gpu/drm/xe/xe_bo.h               |  10 +-
+>  drivers/gpu/drm/xe/xe_bo_types.h         |   2 -
+>  drivers/gpu/drm/xe/xe_configfs.c         |  67 ++
+>  drivers/gpu/drm/xe/xe_configfs.h         |   2 +
+>  drivers/gpu/drm/xe/xe_cpu_bind.c         | 296 +++++++++
+>  drivers/gpu/drm/xe/xe_cpu_bind.h         | 111 ++++
+>  drivers/gpu/drm/xe/xe_device.c           |   5 +
+>  drivers/gpu/drm/xe/xe_device_types.h     |   6 +
+>  drivers/gpu/drm/xe/xe_drm_client.c       |   2 +-
+>  drivers/gpu/drm/xe/xe_exec_queue.c       | 163 ++---
+>  drivers/gpu/drm/xe/xe_exec_queue.h       |  16 +-
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h |  20 +-
+>  drivers/gpu/drm/xe/xe_guc_submit.c       |  76 ++-
+>  drivers/gpu/drm/xe/xe_guc_submit_types.h |   2 +
+>  drivers/gpu/drm/xe/xe_lrc.c              |  73 +++
+>  drivers/gpu/drm/xe/xe_lrc.h              |   4 +
+>  drivers/gpu/drm/xe/xe_lrc_types.h        |   4 +
+>  drivers/gpu/drm/xe/xe_migrate.c          | 769 ++++++++++------------
+>  drivers/gpu/drm/xe/xe_migrate.h          |  95 +--
+>  drivers/gpu/drm/xe/xe_pagefault.c        |   3 +
+>  drivers/gpu/drm/xe/xe_pci.c              |   2 +
+>  drivers/gpu/drm/xe/xe_pci_types.h        |   3 +-
+>  drivers/gpu/drm/xe/xe_pt.c               | 781 ++++++++++++++---------
+>  drivers/gpu/drm/xe/xe_pt.h               |  12 +-
+>  drivers/gpu/drm/xe/xe_pt_types.h         |  49 +-
+>  drivers/gpu/drm/xe/xe_ring_ops.c         |  75 +++
+>  drivers/gpu/drm/xe/xe_ring_ops_types.h   |  24 +
+>  drivers/gpu/drm/xe/xe_sched_job.c        | 103 ++-
+>  drivers/gpu/drm/xe/xe_sched_job.h        |  56 ++
+>  drivers/gpu/drm/xe/xe_sched_job_types.h  |  49 +-
+>  drivers/gpu/drm/xe/xe_sync.c             |  20 +-
+>  drivers/gpu/drm/xe/xe_tlb_inval_job.c    |  28 +-
+>  drivers/gpu/drm/xe/xe_tlb_inval_job.h    |   4 +-
+>  drivers/gpu/drm/xe/xe_trace.h            |   2 +-
+>  drivers/gpu/drm/xe/xe_vm.c               | 242 +++----
+>  drivers/gpu/drm/xe/xe_vm.h               |   3 +
+>  drivers/gpu/drm/xe/xe_vm_types.h         |  12 +-
+>  40 files changed, 1988 insertions(+), 1211 deletions(-)
+>  create mode 100644 drivers/gpu/drm/xe/xe_cpu_bind.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_cpu_bind.h
+>
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
-915/display/intel_fbc.c
-> index 3915dea9edb1e..0d3b25e7a9fc1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-[ ... ]
-> @@ -1548,14 +1549,63 @@ static bool intel_fbc_can_flip_nuke(struct intel_=
-atomic_state *state,
->  	    intel_fbc_override_cfb_stride(new_plane_state))
->  		return false;
-> =20
-> +	if (!HAS_FBC_DIRTY_RECT(display))
-> +		return true;
-> +
-> +	/*
-> +	 * From BSpec about "FBC Dirty Rectangle", when Dirty Rectangle mode is
-> +	 * active, partial updates only apply to surface address changes. Any o=
-ther
-> +	 * plane state modification requires Plane to fetch full-plane pixel da=
-ta
-> +	 * from memory to re-compress and update the entire CFB in stolen memor=
-y.
-> +	 * Once fully re-compressed, subsequent atomic commits go ahead with FBC
-> +	 * dirty rectangle updates for smooth visual updates.
-> +	 *
-> +	 * So check other Plane attribute changed except for its surface addres=
-s by
-> +	 * referring to intel_async_flip_check_hw() which also checks async fli=
-p.
-> +	 */
-> +
-> +	/* Includes pixel_blend_mode, color_encoding & color_range checking. */
-> +	if (old_plane_state->color_ctl !=3D new_plane_state->color_ctl)
-> +		return false;
-
-[Severity: High]
-Does this code miss checks for other plane properties, potentially causing
-visual corruption?
-
-The commit dictates that any non-PLANE_SURF register update requires a full=
- CFB
-nuke in FBC Dirty Rectangle mode. However, intel_fbc_can_flip_nuke() misses
-checks for plane_state->ccval (Clear Color Value), plane_state->ctl (Plane
-Control), and plane_state->scaler_id.
-
-If an unprivileged DRM client updates these properties (e.g., changing the
-clear color via fast clear), the function returns true, skipping the full
-dirty rect expansion. The hardware would then fail to re-compress the new
-pixel data, leaving artifacts on the display.
-
-> +
-> +	if (!drm_rect_equals(&old_plane_state->uapi.src,
-> +			     &new_plane_state->uapi.src) ||
-> +	    !drm_rect_equals(&old_plane_state->uapi.dst,
-> +			     &new_plane_state->uapi.dst))
-> +		return false;
-[ ... ]
-> @@ -1573,7 +1623,15 @@ __intel_fbc_prepare_dirty_rect(const struct intel_=
-plane_state *plane_state,
->  		return;
->  	}
-> =20
-> -	if (drm_rect_visible(damage)) {
-> +	if (!intel_fbc_can_flip_nuke(state, crtc, plane)) {
-> +		if (HAS_FBC_DIRTY_RECT(display))
-> +			drm_dbg_kms(display->drm,
-> +				    "[PLANE:%d:%s] Non surf addr changed for FBC DIRTY RECT\n",
-> +				    plane->base.base.id, plane->base.name);
-> +
-> +		/* compress the entire region due to non PLANE_SURF updating. */
-> +		*fbc_dirty_rect =3D DRM_RECT_INIT(0, y_offset, width, height);
-> +	} else if (drm_rect_visible(damage)) {
-
-[Severity: High]
-Could reusing intel_fbc_can_flip_nuke() here cause a severe performance
-degradation due to unnecessary vblank stalls during atomic plane updates?
-
-When FBC Dirty Rect mode is enabled (Display Version 30+), changing plane
-properties (like moving a window, modifying alpha, or color bounds) causes
-intel_fbc_can_flip_nuke() to return false.
-
-This will cause intel_fbc_deactivate() to be triggered in
-__intel_fbc_pre_update() (which checks intel_fbc_can_flip_nuke()), which se=
-ts
-need_vblank_wait =3D true.=20
-
-It seems the dirty rect expansion is inadvertently coupled with the FBC
-deactivation logic. This is reachable by any userspace application performi=
-ng
-non-surface address plane updates (like window dragging), leading to consta=
-nt
-vblank stalls and visual stuttering.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260925173658.1042=
-048-1-austin.hu@intel.com?part=3D3
