@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C45D9C98306
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 06:25:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D043C98306
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 06:34:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76CE710E4E3;
-	Fri, 25 Sep 2026 06:25:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 428AC10EA01;
+	Fri, 25 Sep 2026 06:34:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="X5wXt8eU";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dgHMoQbn";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F086B10E4E3
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 06:25:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D934E10EA01
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 06:34:12 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 91ED641B31;
- Fri, 25 Sep 2026 06:25:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B67A1F000FF;
- Fri, 25 Sep 2026 06:25:11 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id A8F06415C8;
+ Fri, 25 Sep 2026 06:34:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61D2D1F000FF;
+ Fri, 25 Sep 2026 06:34:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790317511;
- bh=isEy2WG4pe6qeVcGsuFGNCySYKuxdcWzma4apmswois=;
+ s=k20260515; t=1790318052;
+ bh=RIWyrutDcsmTnqulGi7F4O3U1nbxuz4bKghnFLSOsWg=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=X5wXt8eUHd2eH7zdEC+vMB6tKJyyqV2rdskiBJkafwwarRo1ToisDZP7SbAfJpmmP
- hbi+rKSkbMck+nLy11R/fUidyeOL6QcvMVePLKyBO2yEb7H5ht4bXVkOgcySBhvynd
- 5QRRu74wgUAq9shfkLfH5sZxvSOlwL27nCwk9/2yWDiYauWfYiBqiI3d0hUcH4DS+L
- 6ji2SkCWw/zzraqkWztob5w8+esHPqBLq/B7RQL5kr8eCn4IWmfptuAffFOSnJbnea
- 98Xo97vdzbh2ybpEKV1qxphLFSkTfIMnIb+ji5JZDNMoCDlex8eqFB7ygGBN9qp+Ci
- T7A2PgRRmb8bg==
+ b=dgHMoQbnvhjMS+CyvrBOeqrqg/cHvo2nQLIKFlScVYaF8a/vMDLjSWAebc883IAA2
+ Uh13WcqmXPFWRLfq+tscHwJH+X8OWDGpk+Vz9y5P9fVozUPMHZGwlRJCu7CSo1C63r
+ PeyH63rf4x5EDoOo0u+A1NRYdB83mZI6/MotULLryUlynxaRc/ZnxLdcPfRP5mgNL8
+ WBVhveGH0NfT/mcGJZm754PuWtwQ9wURqaB3tuHFbW+JTb+thIoK/VXm1ruN8+9C5W
+ 4tsCLtmxnTCxS3dpPtQJ7BZZg2AxSbgBUGM/Xvx/MQCaykyppIPQuXFFaNL26wdTOB
+ ywOGVWLPhpZLA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 17/24] drm/xe: Add device flag to enable PT mirroring
- across tiles
+Subject: Re: [PATCH v7 19/24] drm/xe: Add ULLS migration job support to
+ migration layer
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260925045320.1325860-18-matthew.brost@intel.com>
+In-Reply-To: <20260925045320.1325860-20-matthew.brost@intel.com>
 References: <20260925045320.1325860-1-matthew.brost@intel.com>
- <20260925045320.1325860-18-matthew.brost@intel.com>
+ <20260925045320.1325860-20-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 25 Sep 2026 06:25:10 +0000
-Message-Id: <20260925062511.4B67A1F000FF@smtp.kernel.org>
+Date: Fri, 25 Sep 2026 06:34:11 +0000
+Message-Id: <20260925063412.61D2D1F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,89 +59,77 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] xe: wasted VRAM and forced cross-tile PT access for migration VM=
-s when PT mirroring is disabled
+- [High] drm/xe: Missing ULLS_EXIT in teardown leaves hardware parked on fr=
+eed memory
 --
 
-commit ec37bcd236de3cdab70b39d0f31888be55640311
+commit 81f7dc64bc0d604133ac8c3a1f3ec0fd0a9dd8a1
 Author: Matthew Brost <matthew.brost@intel.com>
 
-drm/xe: Add device flag to enable PT mirroring across tiles
+drm/xe: Add ULLS migration job support to migration layer
 
-This commit introduces a device flag to enable or disable page-table
-mirroring across tiles. It defaults to enabled for PVC, aiming to allow
-flexibility based on memory bandwidth needs.
+Add function to enter ULLS mode for migration job and delayed worker to
+exit (power saving). ULLS mode expected to entered upon page fault or
+SVM prefetch. ULLS mode exit delay is currently set to 5ms.
 
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 0f542f47b9a84..f450e1c6f7500 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
+ate.c
+> index 471ae5741836e..d7d13a25cdb91 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
 [ ... ]
-> @@ -1739,7 +1749,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u3=
-2 flags, struct xe_file *xef)
+> @@ -95,9 +105,30 @@ struct xe_migrate {
+>   */
+>  #define MAX_PTE_PER_SDI 0x1FEU
 > =20
->  		for_each_tile(tile, xe, id) {
->  			if (flags & XE_VM_FLAG_MIGRATION &&
-> -			    tile->id !=3D XE_VM_FLAG_TILE_ID(flags))
-> +			    tile->id !=3D XE_VM_FLAG_TILE_ID(flags) &&
-> +			    (vm->xe->info.has_pt_mirror || id))
->  				continue;
-> =20
->  			vm->pt_root[id] =3D xe_pt_create(vm, tile, xe->info.vm_max_level,
-
-[Severity: Medium]
-When has_pt_mirror is false, does this logic in xe_vm_create() allocate
-page tables that will never be used?
-
-For normal VMs (where flags & XE_VM_FLAG_MIGRATION is false), the condition
-fails and we allocate pt_root[id] for all tiles. However, xe_vm_pt_root()
-will unconditionally return pt_root[0] when has_pt_mirror is false, leaving
-pt_root[1..N] unused and wasting VRAM.
-
-Additionally, for a migration VM targeting a secondary tile (e.g., tile 1),
-the condition tile->id !=3D 1 && (has_pt_mirror || 0) evaluates to false wh=
-en
-id =3D=3D 0, causing it to allocate both pt_root[0] and pt_root[1].
-
-[ ... ]
-> @@ -5074,3 +5085,21 @@ void xe_vm_remove_exec_queue(struct xe_vm *vm, str=
-uct xe_exec_queue *q)
->  	}
->  	up_write(&vm->exec_queues.lock);
->  }
-> +
-> +/**
-> + * xe_vm_pt_root() - Retrieve VM page-table root
-> + * @vm: The VM.
-> + * @tile_id: Tile ID
-> + *
-> + * Retrieve VM page-table root for a tile ID, used to abstract if PT mir=
-roring is
-> + * enabled across tiles.
-> + *
-> + * Return: VM page-table root for a tile ID
-> + */
-> +struct xe_pt *xe_vm_pt_root(struct xe_vm *vm, u8 tile_id)
+> +static bool xe_migrate_ulls_enabled(struct xe_migrate *m)
 > +{
-> +	if (vm->xe->info.has_pt_mirror)
-> +		return vm->pt_root[tile_id];
-> +
-> +	return vm->pt_root[0];
+> +	lockdep_assert_held(&m->job_mutex);
+> +	return m->ulls.enabled;
 > +}
+> +
+> +static void xe_migrate_ulls_toggle_enable(struct xe_migrate *m, bool ena=
+bled)
+> +{
+> +	lockdep_assert_held(&m->job_mutex);
+> +	m->ulls.enabled =3D enabled;
+> +}
+> +
+>  static void xe_migrate_fini(void *arg)
+>  {
+>  	struct xe_migrate *m =3D arg;
+> +	struct xe_device *xe =3D tile_to_xe(m->tile);
+> +
+> +	disable_delayed_work_sync(&m->ulls.exit_work);
+> +	scoped_guard(mutex, &m->job_mutex) {
+> +		if (xe_migrate_ulls_enabled(m)) {
+> +			xe_pm_runtime_put(xe);
+> +			xe_migrate_ulls_toggle_enable(m, false);
 
-[Severity: Medium]
-Does returning vm->pt_root[0] here in xe_vm_pt_root() when has_pt_mirror
-is false force cross-tile VRAM access for migration VMs on secondary tiles?
+[Severity: High]
+Does this missing ULLS_EXIT in the teardown sequence leave the hardware
+parked on freed memory?
 
-As noted above, a migration VM targeting a secondary tile will have its page
-tables allocated in pt_root[1]. But since xe_vm_pt_root(vm, 1) will return
-pt_root[0], the migration engine on tile 1 will be forced to walk page
-tables physically located in tile 0's VRAM.
+During driver unbind or probe failure in xe_migrate_fini(), if ULLS mode is
+currently active (for example, within 5ms of a recent migration job), the
+reserved hardware engine is actively spinning in a MI_SEMAPHORE_WAIT loop.
 
-Can this cause a performance regression for migration operations on seconda=
-ry
-tiles?
+This teardown path cancels exit_work and clears the ULLS enabled flag, but
+fails to push the ULLS_EXIT job or explicitly kill the queue. It then
+proceeds to call xe_exec_queue_put() and free the page tables. Because
+xe_exec_queue_kill() is never called, GuC is never instructed to preempt
+and deregister the context.
+
+Can this regression leave the hardware engine actively executing from the
+ring buffer memory while the host frees it, potentially leading to IOMMU CAT
+faults, GPU hangs, or host memory corruption?
+
+> +		}
+> +	}
+> =20
+>  	xe_vm_lock(m->q->vm, false);
+>  	xe_bo_unpin(m->pt_bo);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260925045320.1325=
-860-1-matthew.brost@intel.com?part=3D17
+860-1-matthew.brost@intel.com?part=3D19
