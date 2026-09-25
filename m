@@ -4,36 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73EE6C98321
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 17:27:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D9A8C9830E
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 17:28:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3093710E5E7;
-	Fri, 25 Sep 2026 17:27:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37FC110E1F6;
+	Fri, 25 Sep 2026 17:28:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="YNK9sMY5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m+mlwFbz";
 	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E0A110FBAF
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 17:27:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1790357231;
- bh=PkRWqf1tdOxn1KWUdOwV2CrkIOjYHUxp/phjGKrNxSg=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=YNK9sMY5yTN6swvpUKvyNQZZgJlGQrAnm0gq/mQcoqBN+EAVfpnLog4IgSHqr1OvM
- bXKyFrki/bpRH0HR9TfCfdE2Udp7V4Eg8SSQZzPPLOpinwZVYQRBgnNlXVRFWu+qEl
- oSjzevBH/z/wDP4JCXHheevZvaP7dW6acHrErdS1TGxFCdJ030S3iVRKNFepOcCHIF
- 8kLFgNT+7wTbrXK5S0dOCXR/g1domzCSh6sf7IBt/qEHjcfVkX85/LWNJzzswzMYTX
- ZFTwrAuUX/odo/hxsVp1VsWLI2ZP+i33R8qld9fi1sSWo0as99/Vr42Efe5kXx1PxX
- 4fOHQuG4j2Z6Q==
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 2/2] drm/xe: Set job credits based on LRC size
-Date: Fri, 25 Sep 2026 19:26:06 +0200
-Message-ID: <20260925172603.302050-6-dev@lankhorst.se>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260925172603.302050-4-dev@lankhorst.se>
-References: <20260925172603.302050-4-dev@lankhorst.se>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF2310E1F6
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 17:28:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790357333; x=1821893333;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KsakEZMWf2dLvfSEEyr9SUl53LwzA7Y3i6NEiBRCLes=;
+ b=m+mlwFbzMCk1ypSu6TtLBKvPeurD9zHzAnqt5YJuGNt0KRn8QZzUq/mt
+ dY09urgEiWb2qzqMJEoLHOMBrSrmFivEXLME1a6eW/7VXshUWqd6/0w6K
+ j2jDb9vvnOFUkFNiwdJF3UJ+kY3ndruqnyR8RtBCebtYnNuMIFLkq5KnE
+ +sYZSXw4VXPbxaWOl6nygD50WOpR5lILFZi4knsNLL1unDcVpWZ5kljbA
+ /JBhhiNqV3gOEqvVlO5IOeMCll6M1gUefzps29wI7J68ng9wbTc+qjBFh
+ G61eNVCQAQRYKafq+I2qAMPX7OoK2AcvqY8Nnl+FeGBhl3FVaw6Pwlu19 Q==;
+X-CSE-ConnectionGUID: 3cpL4RJyRHqHCOXgibj/zw==
+X-CSE-MsgGUID: tLJENLCjSPqVThufmBqRGw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11916"; a="90104928"
+X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="90104928"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2026 10:28:53 -0700
+X-CSE-ConnectionGUID: PQeTHexTQXC92EtQAqAPpQ==
+X-CSE-MsgGUID: gziT7cmATtGGzKa1njzu+g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="274548748"
+Received: from tilak-z690i-a-ultra-plus.iind.intel.com ([10.190.239.38])
+ by fmviesa008.fm.intel.com with ESMTP; 25 Sep 2026 10:28:50 -0700
+From: tilak.tirumalesh.tangudu@intel.com
+To: tilak.tirumalesh.tangudu@intel.com, intel-xe@lists.freedesktop.org,
+ shuicheng.lin@intel.com
+Subject: [PATCH] drm/xe/xe3p_lpg: Add support for Wa_16030224309
+Date: Fri, 25 Sep 2026 22:57:22 +0530
+Message-ID: <20260925172722.238924-1-tilak.tirumalesh.tangudu@intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -50,80 +63,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This allows to fill the entire LRC and increase
-to a higher limit of outstanding jobs without throttling.
+From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 
-Set maximum fill level to lrc_size - 4, to avoid wraparound
-and ensure the job is 8 byte aligned, since we insert a MI_NOOP
-in xe_lrc_write_ring() that needs to be accounted for.
+Opt in to the GuC workaround, to ignore context completion status
+with preemption or preemption-to-idle in the CSB when the multi-queue
+feature is enabled, which is supported on Graphics Version 35.10.
+This WA is supported starting from GuC 70.73.
 
-Changes since previous version:
-- Prevent filling LRC to max.
-- Reserve space for MI_NOOP.
+Apply Wa_16030224309 to Graphics Version 35.10.
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+v2: Place this code near to KLV WAs. -Lin Shuicheng
+
+Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
 ---
- drivers/gpu/drm/xe/xe_execlist.c   |  2 +-
- drivers/gpu/drm/xe/xe_guc_submit.c |  2 +-
- drivers/gpu/drm/xe/xe_sched_job.c  | 10 +++++++---
- 3 files changed, 9 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h | 1 +
+ drivers/gpu/drm/xe/xe_guc_ads.c       | 6 ++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules    | 1 +
+ 3 files changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index a36db39dcda8a..24469990ece97 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -329,7 +329,7 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
- 	const struct drm_sched_init_args args = {
- 		.ops = &drm_sched_ops,
- 		.num_rqs = 1,
--		.credit_limit = xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES,
-+		.credit_limit = xe_lrc_ring_size() - 4,
- 		.hang_limit = XE_SCHED_HANG_LIMIT,
- 		.timeout = XE_SCHED_JOB_TIMEOUT,
- 		.name = q->hwe->name,
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index f3ba8abfc228e..264e961fd7d71 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2089,7 +2089,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 	}
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index 685c4ef17b73..4bcdc1a96785 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -525,6 +525,7 @@ enum xe_guc_klv_ids {
+ 	GUC_WA_KLV_CLR_CS_INDIRECT_RING_STATE_IF_IDLE_AT_CTX_REG			= 0x900e,
+ 	GUC_WA_KLV_REMAP_RANGED_TLB_INV							= 0x900f,
+ 	GUC_WA_KLV_IGNORE_MMIO_READ_SEM_TOKEN_64					= 0x9010,
++	GUC_WA_KLV_IGNORE_MULTIQ_CTX_COMPLETE_WITH_PREEMPT_IN_CSB			= 0x9011,
+ };
  
- 	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops,
--			    submit_wq, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES, 64,
-+			    submit_wq, xe_lrc_ring_size() - 4, 64,
- 			    timeout, guc_to_gt(guc)->ordered_wq, NULL,
- 			    ge->name, gt_to_xe(q->gt)->drm.dev);
- 	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-index 57ed6734d31d5..6e6345ee0977f 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.c
-+++ b/drivers/gpu/drm/xe/xe_sched_job.c
-@@ -114,8 +114,8 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 	kref_init(&job->refcount);
- 	xe_exec_queue_get(job->q);
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 9ceb662ca40e..43a2951a66d6 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -383,6 +383,12 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
+ 		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
+ 				 GUC_WA_KLV_IGNORE_MMIO_READ_SEM_TOKEN_64);
  
--	err = drm_sched_job_init(&job->drm, q->entity, 1, NULL,
--				 q->xef ? q->xef->drm->client_id : 0);
-+	err = drm_sched_job_init(&job->drm, q->entity, MAX_JOB_SIZE_BYTES,
-+				 NULL, q->xef ? q->xef->drm->client_id : 0);
- 	if (err)
- 		goto err_free;
- 
-@@ -295,9 +295,13 @@ void xe_sched_job_push(struct xe_sched_job *job)
- 	xe_sched_job_get(job);
- 	trace_xe_sched_job_exec(job);
- 
--	if (!job->restore_replay)
-+	if (!job->restore_replay) {
- 		job->q->ring_ops->prepare_job(job);
- 
-+		/* A MI_NOOP is inserted if job size is not aligned to 8 */
-+		job->drm.credits = ALIGN(job->ptrs[0].job_size, 8);
-+	}
++	/* GuC only applies this WA for scheduled MultiQ contexts; no KMD-side gating needed. */
++	if (XE_GT_WA(gt, 16030224309) &&
++	    GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 73))
++		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
++				 GUC_WA_KLV_IGNORE_MULTIQ_CTX_COMPLETE_WITH_PREEMPT_IN_CSB);
 +
- 	drm_sched_entity_push_job(&job->drm);
- 	xe_sched_job_put(job);
- }
+ 	/*
+ 	 * On GuC firmware 70.66 and above, use the Feature KLV (shared with the
+ 	 * WA KLV buffer); older firmware uses GUC_CTL_DISABLE_MULTI_QUEUE in
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 6662987effd7..f35181fc4e49 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -75,3 +75,4 @@
+ 14027054324	GRAPHICS_VERSION(3511)
+ 14025941587	GRAPHICS_VERSION_RANGE(2001, 3511), FUNC(xe_rtp_match_not_sriov_vf)
+ 		MEDIA_VERSION_RANGE(1301, 3503), FUNC(xe_rtp_match_not_sriov_vf)
++16030224309	GRAPHICS_VERSION(3510)
 -- 
-2.55.0
+2.46.0
 
