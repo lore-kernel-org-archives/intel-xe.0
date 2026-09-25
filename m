@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC064C9830E
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 20:38:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05CAAC98321
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 20:39:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 908BA10FC6E;
-	Fri, 25 Sep 2026 20:38:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8D3D10FC6E;
+	Fri, 25 Sep 2026 20:39:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RlZcwd+u";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LCyBih5v";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7240B10FC6E
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 20:38:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06A9210FC6E
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 20:39:33 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 295804375A;
- Fri, 25 Sep 2026 20:38:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D655B1F000FF;
- Fri, 25 Sep 2026 20:38:51 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id E0252406E1;
+ Fri, 25 Sep 2026 20:39:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 999EA1F000FF;
+ Fri, 25 Sep 2026 20:39:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790368732;
- bh=FJgItG+/NRC3qCcZOIY1kFvP34Q1QXkzJS8MFp33rl0=;
+ s=k20260515; t=1790368772;
+ bh=+GIfR2kskWMk4U7uyB8NtEfLGh3ZK0VeMwg1MFTsS/I=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=RlZcwd+uSe6iw5QEhZrpNVPQGxYNjbjHbmhdmIcfkvoD+5jxvpVBq3676KVKl/n1g
- l3XLJk+ebQ+H53qVuZOIVi1eW4a1qBrSyvDRjEvC056fvl9OWVxBvH3LQt2B0egqjX
- P6dawHhxp+fw7KIZ7339A91rRlTHoPL7+0opZftRt/qvpNtYSzDgPtmbT2FlhMZFCp
- WHbTf+8jpzTP7GUw8Aw4vfE5C2AnSdx1wL8iFVRk1iRO6zSrosP08ebMptyKNtd0r+
- h5QkRybtz58kY2S9qofXIMBSsqBsuMKDehIafOJFybOneoXGm6o2XmyFxUJQSihmr4
- FgG9WwnHNAwaQ==
+ b=LCyBih5vF374CwzYMu6r43JqxwoZs5pc5KHT2YEMOQgbfJrFVpKvyrP1j70FbgNk8
+ bh4Qee3DQAdw46Z1lsdK8e6CYVscOP3Y8zWj+l9hXuE+mCO1YVrMGYdsZrSnnVnznG
+ akv3uzPbSWNf6VIo53bOvj/iqRPyep94/mU+tD6nxj03E7orhSDVPF1xl1xZAQ4P8F
+ eujq7I9Oy8zsNeFq2fYqtFh58xufaB3iEddL8LwmVX+votyClSTXjqrpnw4nLjK5XX
+ rdfTWEsALl41ZzXrNiTpgZ4ELXMv+SV/DtS19dHEtp73Z7B8AXAIB5ZZJCItoUmIlL
+ IVHS+Rbc8zYmA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v8 10/24] drm/xe: Update GuC submission backend to run
- PT jobs
+Subject: Re: [PATCH v8 13/24] drm/xe: Enable CPU binds for jobs
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260925201526.1355279-11-matthew.brost@intel.com>
+In-Reply-To: <20260925201526.1355279-14-matthew.brost@intel.com>
 References: <20260925201526.1355279-1-matthew.brost@intel.com>
- <20260925201526.1355279-11-matthew.brost@intel.com>
+ <20260925201526.1355279-14-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 25 Sep 2026 20:38:51 +0000
-Message-Id: <20260925203851.D655B1F000FF@smtp.kernel.org>
+Date: Fri, 25 Sep 2026 20:39:32 +0000
+Message-Id: <20260925203932.999EA1F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,81 +58,82 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] drm/xe: Memory leak of pt_job_ops and fence refs on aborted PT jobs
-- [High] drm/xe: guc_exec_queue_run_job() drops error status for aborted PT=
- jobs
+- [High] drm/xe: xe_execlist submission backend crashes on CPU-bound PT jobs
+- [Medium] drm/xe: memory leak of xe_pt_job_ops on canceled PT jobs
 --
 
-commit 9cf187bc8ca7b690be92bb4415979a7f9395643d
+commit 9de8f05bf053b28de6fdac64d9ee437e1c0df6f7
 Author: Matthew Brost <matthew.brost@intel.com>
-Date:   Fri Sep 25 20:15:12 2026 +0000
+Subject: drm/xe: Enable CPU binds for jobs
 
-drm/xe: Update GuC submission backend to run PT jobs
+This commit transitions the driver to formulating PT jobs that issue CPU
+binds in the submission backend instead of using the GPU. This approach
+aims to lower latency and avoid migration PTE exhaustion for large arrays
+of binds.
 
-PT jobs bypass GPU execution for the final step of a bind job, using the
-CPU to program the required page tables. Teach the GuC submission backend
-how to execute these jobs.
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
+ate.c
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
-uc_submit.c
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
 [ ... ]
->  static struct dma_fence *
->  guc_exec_queue_run_job(struct drm_sched_job *drm_job)
+
+> @@ -1937,162 +1866,18 @@ __xe_migrate_update_pgtables(struct xe_migrate *=
+m,
 >  {
->  	struct xe_sched_job *job =3D to_xe_sched_job(drm_job);
->  	struct xe_exec_queue *q =3D job->q;
->  	struct xe_guc *guc =3D exec_queue_to_guc(q);
-> -	bool killed_or_banned_or_wedged =3D
-> -		exec_queue_killed_or_banned_or_wedged(q);
-> +	bool killed_or_banned_or_wedged_or_error  =3D
-> +		exec_queue_killed_or_banned_or_wedged(q) ||
-> +		xe_sched_job_is_error(job);
+
+[ ... ]
+
+> -	job =3D xe_bb_create_migration_job(pt_update_ops->q, bb,
+> -					 xe_migrate_batch_base(m, usm),
+> -					 update_idx);
+> +	job =3D xe_sched_job_create(pt_update_ops->q, NULL);
+>  	if (IS_ERR(job)) {
+>  		err =3D PTR_ERR(job);
+> -		goto err_sa;
+> +		goto err_out;
+>  	}
 > =20
->  	xe_gt_assert(guc_to_gt(guc), !(exec_queue_destroyed(q) || exec_queue_pe=
-nding_disable(q)) ||
->  		     exec_queue_banned(q) || exec_queue_suspended(q));
-> =20
->  	trace_xe_sched_job_run(job);
-> =20
-> -	if (!killed_or_banned_or_wedged && !xe_sched_job_is_error(job)) {
-> +	if (is_pt_job(job)) {
-> +		xe_gt_assert(guc_to_gt(guc), !exec_queue_registered(q));
-> +		run_pt_job(job, killed_or_banned_or_wedged_or_error);
-> +		xe_pt_job_ops_put(job->pt_update[0].pt_job_ops);
-> +		dma_fence_put(job->fence);	/* Drop ref from xe_sched_job_arm */
+> -	xe_sched_job_add_migrate_flush(job, MI_INVALIDATE_TLB);
+> +	xe_tile_assert(tile, job->is_pt_job);
 
 [Severity: High]
-If a PT job is aborted by the DRM scheduler before guc_exec_queue_run_job()
-is called, do these references get properly released?
+Does this cause a crash or hang when the driver operates in execlist mode
+(e.g., when GuC is disabled)? In drivers/gpu/drm/xe/xe_execlist.c, the
+execlist_run_job() function unconditionally emits the job to the GPU
+ringbuffer without checking if is_pt_job is true. Because the job uses a
+union for ptrs and pt_update, the backend reads the newly populated
+job->pt_update as a batch address, emitting garbage into the hardware ring.
 
-When jobs are aborted (e.g., due to failing dependencies or context
-teardown), the cleanup path typically goes through xe_sched_job_destroy().
+> =20
+>  	if (ops->pre_commit) {
+>  		pt_update->job =3D job;
 
-Since these references are dropped exclusively on this execution path, it
-seems they might permanently leak xe_pt_job_ops and dma_fence_stub if the
-job never makes it here.
+[ ... ]
 
+> @@ -2103,6 +1888,12 @@ __xe_migrate_update_pgtables(struct xe_migrate *m,
+>  	if (is_migrate)
+>  		mutex_lock(&m->job_mutex);
+> =20
+> +	job->pt_update[0].vm =3D pt_update->vops->vm;
+> +	job->pt_update[0].tile =3D tile;
+> +	job->pt_update[0].ops =3D ops;
+> +	job->pt_update[0].pt_job_ops =3D
+> +		xe_pt_job_ops_get(pt_update_ops->pt_job_ops);
 > +
-> +		return NULL;
 
-[Severity: High]
-Could unconditionally returning NULL here hide error states from the DRM
-scheduler?
+[Severity: Medium]
+Does this leak the dynamically allocated xe_pt_job_ops structure if the PT
+job is canceled or dropped before execution? The scheduler directly invokes
+the free_job callback when a process is killed and jobs are aborted, which
+calls xe_sched_job_destroy() in drivers/gpu/drm/xe/xe_sched_job.c. Since
+xe_sched_job_destroy() does not check for job->is_pt_job, the reference
+acquired here is never released.
 
-When killed_or_banned_or_wedged_or_error is true, run_pt_job() is passed
-true for force_clear, which correctly clears the page tables.=20
-
-However, returning NULL tells the DRM scheduler that the job completed
-successfully without error.
-
-This false success signal might cause dependent jobs on other queues to
-execute on unbound memory and trigger GPU page faults.
-
-> +	} else if (!killed_or_banned_or_wedged_or_error) {
->  		if (xe_exec_queue_is_multi_queue_secondary(q)) {
+>  	xe_sched_job_arm(job);
+>  	fence =3D dma_fence_get(&job->drm.s_fence->finished);
+>  	xe_sched_job_push(job);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260925201526.1355=
-279-1-matthew.brost@intel.com?part=3D10
+279-1-matthew.brost@intel.com?part=3D13
