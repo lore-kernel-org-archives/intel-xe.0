@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A73FC98328
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 04:54:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BB68C98321
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 04:54:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 954CB10F863;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80DA410F862;
 	Fri, 25 Sep 2026 04:54:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JKpONJDY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gb5SWd03";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 839B410F827
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FABB10F855
  for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 04:53:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1790312013; x=1821848013;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XyAkwj//3vjk9bG4+qO8DqRpKn95QufCPyiSEmkwuFU=;
- b=JKpONJDYhf7I1cLk0Be3mArpVR7x+4WrgQUrHWEKW4TdiHEtNl6Vm1Ip
- rsIV5lCC9jGBuFN3WlhreZxYue0QQSV8HDO8AGbNwpdnFb3zagZBEIL6K
- ibYJ7M6rqMwAi5taRJG0aeUPJgk6PMueRDPO/Wr30uxmSZUSEinXpBWto
- owqFqaHYT+zINX1l+9QVviWeBj+iznZLHb+OPBXP0PnR5u2D82Bv3Kqvf
- /t5hdoJMe7I7A3AkM0dYnYrLaEmaTOVhO3DzJJVjXJCnkRb7O+RTRY2Nw
- wyBZphRkcH7TD7ScB78zuObw7ntkAgQXBLXsdhyoZGQXDPGI6qQgijqOk g==;
-X-CSE-ConnectionGUID: pkFEGyOaTYqbZfCwSspd5g==
-X-CSE-MsgGUID: T69cr9rgQeCF5NC3yRsqLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="90156232"
-X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="90156232"
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=im60LNNj9hoZewXKdQ+REZphY509jV9MtHDmNI2QXbM=;
+ b=gb5SWd03sYaQZZ37SxY8B0UA2mOTSHIl+aOaLebcrVJqtP0OdL95u6lP
+ nDkapK6AZd95EWPILJnyDAZagr/9T4UNnyk3KJqU0T0JqNduoXM+FRsOF
+ wokccfim/rNbSnRaCewRKMvfSmgcNxz3rjvvYymNxVX2SpeV/aDxE+7cY
+ ixYL1ehVQIm4E3ynBbILy5l0KeUT2dvz5UiaCvnxVQa8sxS9XGEauH25z
+ cdtiI9nO3y4aOarmAsfuJ1HTYAsimWBOYZSAxZTF/VF51NZUlT4QaEVbW
+ YhG0Bg7d4Vo+zKRAhPT7meXNcuBwNL5UaNXceNIT53YDu0cbDrzL0TdTr g==;
+X-CSE-ConnectionGUID: H2eLtBFKTaa2Y0UCuIy3uQ==
+X-CSE-MsgGUID: yNiM9+G1Qd2Ft5EUX2F2Kg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="90156237"
+X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="90156237"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Sep 2026 21:53:28 -0700
-X-CSE-ConnectionGUID: P4LIUBwSSWm7G7CoZjH9dw==
-X-CSE-MsgGUID: o0NjytVzQvuC/Km8r0Lemg==
+X-CSE-ConnectionGUID: m02hwbu5SqqlXqFovx9xQw==
+X-CSE-MsgGUID: qwlsa/7YTFGXWnFNxK0DHQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="312155542"
+X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="312155553"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Sep 2026 21:53:27 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v7 18/24] drm/xe: Add ULLS support to LRC
-Date: Thu, 24 Sep 2026 21:53:14 -0700
-Message-Id: <20260925045320.1325860-19-matthew.brost@intel.com>
+Subject: [PATCH v7 23/24] drm/xe: add migrate ULLS period configfs attribute
+Date: Thu, 24 Sep 2026 21:53:19 -0700
+Message-Id: <20260925045320.1325860-24-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260925045320.1325860-1-matthew.brost@intel.com>
 References: <20260925045320.1325860-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,167 +66,267 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Define memory layout for ULLS semaphores stored in LRC memory. Add
-support functions to return GGTT address and set semaphore based on a
-job's seqno.
+Add a configfs attribute to control the migrate ULLS period.
+ 
+The migrate ULLS period specifies how long, in milliseconds, migrate
+ULLS remains active before exiting. Migrate ULLS is currently used by
+page-fault handling and SVM prefetch operations to process migration
+work through a continuously running batch.
+ 
+The attribute defaults to 5 ms. Setting the value to 0 disables ULLS.
+ 
+This knob is primarily intended for performance tuning and evaluation,
+allowing experimentation with the trade-off between reducing ULLS
+startup/teardown overhead and limiting the time spent in a continuously
+running migration workload.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c       | 73 +++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.h       |  4 ++
- drivers/gpu/drm/xe/xe_lrc_types.h |  4 ++
- 3 files changed, 81 insertions(+)
+ drivers/gpu/drm/xe/xe_configfs.c | 67 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_configfs.h |  2 +
+ drivers/gpu/drm/xe/xe_migrate.c  | 19 ++++++---
+ 3 files changed, 82 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index f1cf1463f1b2..bf5c2351aed3 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -706,6 +706,7 @@ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc)
- #define LRC_CTX_JOB_TIMESTAMP_OFFSET 512
- #define LRC_ENGINE_ID_PPHWSP_OFFSET 1024
- #define LRC_PARALLEL_PPHWSP_OFFSET 2048
-+#define LRC_ULLS_PPHWSP_OFFSET 2048	/* Mutually exclusive with parallel */
- 
- #define LRC_SEQNO_OFFSET 0
- #define LRC_START_SEQNO_OFFSET (LRC_SEQNO_OFFSET + 8)
-@@ -768,6 +769,12 @@ static inline u32 __xe_lrc_engine_id_offset(struct xe_lrc *lrc)
- 	return xe_lrc_pphwsp_offset(lrc) + LRC_ENGINE_ID_PPHWSP_OFFSET;
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index f5c828cf7e8f..f23761f2eb11 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -61,6 +61,7 @@
+  *	    ├── survivability_mode
+  *	    ├── gt_types_allowed
+  *	    ├── engines_allowed
++ *	    ├── migrate_ulls_period_ms
+  *	    ├── enable_psmi
+  *	    └── disable_vram_page_offline
+  *
+@@ -262,6 +263,20 @@
+  *
+  * This attribute can only be set before binding to the device.
+  *
++ * Migrate ULLS Period (ms)
++ * ------------------------
++ *
++ * Migrate ULLS period, in milliseconds. This is the delay between entering
++ * migrate ULLS (a continuously running batch) and exiting it. Migrate ULLS is
++ * currently entered during page faults and SVM prefetch operations. Default 5,
++ * zero indicates ULLS is disabled.
++ *
++ * How to disable migration ULLS:
++ *
++ *	# echo 0 > /sys/kernel/config/xe/0000:03:00.0/migrate_ulls_period_ms
++ *
++ * This attribute can only be set before binding to the device.
++ *
+  * Remove devices
+  * ==============
+  *
+@@ -283,6 +298,7 @@ struct xe_config_group_device {
+ 	struct xe_config_device {
+ 		u64 gt_types_allowed;
+ 		u64 engines_allowed;
++		u32 migrate_ulls_period_ms;
+ 		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
+ 		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
+ 		bool survivability_mode;
+@@ -306,6 +322,7 @@ struct xe_config_group_device {
+ static const struct xe_config_device device_defaults = {
+ 	.gt_types_allowed = U64_MAX,
+ 	.engines_allowed = U64_MAX,
++	.migrate_ulls_period_ms = 5,
+ 	.survivability_mode = false,
+ 	.enable_psmi = false,
+ 	.enable_multi_queue = true,
+@@ -631,6 +648,33 @@ static ssize_t enable_multi_queue_store(struct config_item *item, const char *pa
+ 	return len;
  }
  
-+static u32 __xe_lrc_ulls_offset(struct xe_lrc *lrc)
++static ssize_t migrate_ulls_period_ms_show(struct config_item *item, char *page)
 +{
-+	/* The ulls is stored in the driver-defined portion of PPHWSP */
-+	return xe_lrc_pphwsp_offset(lrc) + LRC_ULLS_PPHWSP_OFFSET;
++	struct xe_config_device *dev = to_xe_config_device(item);
++
++	return sprintf(page, "%d\n", dev->migrate_ulls_period_ms);
 +}
 +
- static u32 __xe_lrc_ctx_timestamp_offset(struct xe_lrc *lrc)
++static ssize_t migrate_ulls_period_ms_store(struct config_item *item,
++					    const char *page, size_t len)
++{
++	struct xe_config_group_device *dev = to_xe_config_group_device(item);
++	u32 val;
++	int ret;
++
++	ret = kstrtou32(page, 0, &val);
++	if (ret)
++		return ret;
++
++	guard(mutex)(&dev->lock);
++	if (is_bound(dev))
++		return -EBUSY;
++
++	dev->config.migrate_ulls_period_ms = val;
++
++	return len;
++}
++
+ static ssize_t disable_vram_page_offline_show(struct config_item *item, char *page)
  {
- 	return __xe_lrc_regs_offset(lrc) + CTX_TIMESTAMP * sizeof(u32);
-@@ -835,6 +842,7 @@ DECL_MAP_ADDR_HELPERS(ctx_job_timestamp, lrc->bo)
- DECL_MAP_ADDR_HELPERS(ctx_timestamp, lrc->bo)
- DECL_MAP_ADDR_HELPERS(ctx_timestamp_udw, lrc->bo)
- DECL_MAP_ADDR_HELPERS(parallel, lrc->bo)
-+DECL_MAP_ADDR_HELPERS(ulls, lrc->bo)
- DECL_MAP_ADDR_HELPERS(indirect_ring, lrc->bo)
- DECL_MAP_ADDR_HELPERS(engine_id, lrc->bo)
- DECL_MAP_ADDR_HELPERS(queue_timestamp, lrc->bo)
-@@ -1805,6 +1813,26 @@ void xe_lrc_set_ring_tail(struct xe_lrc *lrc, u32 tail)
- 		xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, tail);
+ 	struct xe_config_device *dev = to_xe_config_device(item);
+@@ -896,6 +940,7 @@ static ssize_t ctx_restore_post_bb_store(struct config_item *item,
+ CONFIGFS_ATTR(, ctx_restore_mid_bb);
+ CONFIGFS_ATTR(, ctx_restore_post_bb);
+ CONFIGFS_ATTR(, enable_multi_queue);
++CONFIGFS_ATTR(, migrate_ulls_period_ms);
+ CONFIGFS_ATTR(, enable_psmi);
+ CONFIGFS_ATTR(, disable_vram_page_offline);
+ CONFIGFS_ATTR(, engines_allowed);
+@@ -906,6 +951,7 @@ static struct configfs_attribute *xe_config_device_attrs[] = {
+ 	&attr_ctx_restore_mid_bb,
+ 	&attr_ctx_restore_post_bb,
+ 	&attr_enable_multi_queue,
++	&attr_migrate_ulls_period_ms,
+ 	&attr_enable_psmi,
+ 	&attr_disable_vram_page_offline,
+ 	&attr_engines_allowed,
+@@ -1189,6 +1235,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
+ 
+ 	PRI_CUSTOM_ATTR("%llx", gt_types_allowed);
+ 	PRI_CUSTOM_ATTR("%llx", engines_allowed);
++	PRI_CUSTOM_ATTR("%u", migrate_ulls_period_ms);
+ 	PRI_CUSTOM_ATTR("%d", enable_multi_queue);
+ 	PRI_CUSTOM_ATTR("%d", enable_psmi);
+ 	PRI_CUSTOM_ATTR("%d", disable_vram_page_offline);
+@@ -1340,6 +1387,26 @@ bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev)
+ 	return ret;
  }
  
 +/**
-+ * xe_lrc_ring_tail_ggtt_addr() - Saved ring tail GGTT address
-+ * @lrc: Pointer to the lrc.
++ * xe_configfs_get_migrate_ulls_period_ms - get configfs migrate_ulls_period_ms setting
++ * @pdev: pci device
 + *
-+ * GGTT address of the ring tail as saved for this context - in the indirect
-+ * ring state on platforms which have it, otherwise in the context image.
-+ * This is what a context restore loads the tail register from, so a ring
-+ * which advances the tail register itself must keep this in sync.
-+ *
-+ * Returns: saved ring tail GGTT address
++ * Return: Migrate ULLS period in milliseconds (zero is disabled).
 + */
-+u32 xe_lrc_ring_tail_ggtt_addr(struct xe_lrc *lrc)
++u32 xe_configfs_get_migrate_ulls_period_ms(struct pci_dev *pdev)
 +{
-+	if (xe_lrc_has_indirect_ring_state(lrc))
-+		return __xe_lrc_indirect_ring_ggtt_addr(lrc) +
-+			INDIRECT_CTX_RING_TAIL * sizeof(u32);
++	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
++	u32 ret;
 +
-+	return __xe_lrc_regs_ggtt_addr(lrc) + CTX_RING_TAIL * sizeof(u32);
++	if (!dev)
++		return device_defaults.migrate_ulls_period_ms;
++
++	ret = dev->config.migrate_ulls_period_ms;
++	config_group_put(&dev->group);
++
++	return ret;
 +}
-+
- u32 xe_lrc_ring_tail(struct xe_lrc *lrc)
- {
- 	if (xe_lrc_has_indirect_ring_state(lrc))
-@@ -1984,6 +2012,51 @@ static u32 xe_lrc_engine_id(struct xe_lrc *lrc)
- 	return xe_map_read32(xe, &map);
- }
- 
-+#define semaphore_offset(seqno) \
-+	(sizeof(u32) * ((seqno) % LRC_MIGRATION_ULLS_SEMAPHORE_COUNT))
-+
-+/**
-+ * xe_lrc_ulls_semaphore_ggtt_addr() - ULLS semaphore GGTT address
-+ * @lrc: Pointer to the lrc.
-+ * @seqno: seqno of current job.
-+ *
-+ * Calculate ULLS semaphore GGTT address based on input seqno
-+ *
-+ * Returns: ULLS semaphore GGTT address
-+ */
-+u32 xe_lrc_ulls_semaphore_ggtt_addr(struct xe_lrc *lrc, u32 seqno)
-+{
-+	xe_assert(lrc_to_xe(lrc), semaphore_offset(seqno) <
-+		  LRC_PPHWSP_SIZE - LRC_ULLS_PPHWSP_OFFSET);
-+
-+	return __xe_lrc_ulls_ggtt_addr(lrc) + semaphore_offset(seqno);
-+}
-+
-+/**
-+ * xe_lrc_set_ulls_semaphore() - Set ULLS semaphore
-+ * @lrc: Pointer to the lrc.
-+ * @seqno: seqno of current job.
-+ *
-+ * Set ULLS semaphore based on input seqno
-+ */
-+void xe_lrc_set_ulls_semaphore(struct xe_lrc *lrc, u32 seqno)
-+{
-+	struct xe_device *xe = lrc_to_xe(lrc);
-+	struct iosys_map map = __xe_lrc_ulls_map(lrc);
-+
-+	xe_assert(xe, semaphore_offset(seqno) <
-+		  LRC_PPHWSP_SIZE - LRC_ULLS_PPHWSP_OFFSET);
-+
-+	/*
-+	 * The ring contents this semaphore releases are ordered by the
-+	 * xe_device_wmb() at the end of xe_lrc_write_ring().
-+	 */
-+	iosys_map_incr(&map, semaphore_offset(seqno));
-+	xe_map_write32(xe, &map, LRC_MIGRATION_ULLS_SEMAPHORE_SIGNAL);
-+
-+	xe_device_wmb(xe);	/* Flush write to hardware */
-+}
-+
- static int instr_dw(u32 cmd_header)
- {
- 	/* GFXPIPE "SINGLE_DW" opcodes are a single dword */
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index a8ff4e59a1f4..f2e829e62168 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -112,6 +112,7 @@ u32 xe_lrc_regs_offset(struct xe_lrc *lrc);
- 
- void xe_lrc_set_ring_tail(struct xe_lrc *lrc, u32 tail);
- u32 xe_lrc_ring_tail(struct xe_lrc *lrc);
-+u32 xe_lrc_ring_tail_ggtt_addr(struct xe_lrc *lrc);
- void xe_lrc_set_ring_head(struct xe_lrc *lrc, u32 head);
- u32 xe_lrc_ring_head(struct xe_lrc *lrc);
- u32 xe_lrc_ring_space(struct xe_lrc *lrc);
-@@ -127,6 +128,9 @@ void xe_default_lrc_update_memirq_regs_with_address(struct xe_hw_engine *hwe);
- void xe_lrc_update_memirq_regs_with_address(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 					    u32 *regs);
- 
-+u32 xe_lrc_ulls_semaphore_ggtt_addr(struct xe_lrc *lrc, u32 seqno);
-+void xe_lrc_set_ulls_semaphore(struct xe_lrc *lrc, u32 seqno);
-+
- u32 xe_lrc_read_ctx_reg(struct xe_lrc *lrc, int reg_nr);
- void xe_lrc_write_ctx_reg(struct xe_lrc *lrc, int reg_nr, u32 val);
- 
-diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h b/drivers/gpu/drm/xe/xe_lrc_types.h
-index 53ef48feebfc..b18daf1092e6 100644
---- a/drivers/gpu/drm/xe/xe_lrc_types.h
-+++ b/drivers/gpu/drm/xe/xe_lrc_types.h
-@@ -12,6 +12,10 @@
- 
- struct xe_bo;
- 
-+#define LRC_MIGRATION_ULLS_SEMAPHORE_COUNT	64	/* Must be pow2 */
-+#define LRC_MIGRATION_ULLS_SEMAPHORE_CLEAR	0
-+#define LRC_MIGRATION_ULLS_SEMAPHORE_SIGNAL	1
 +
  /**
-  * struct xe_lrc - Logical ring context (LRC) and submission ring object
-  */
+  * xe_configfs_get_disable_vram_page_offline - get configfs disable_vram_page_offline setting
+  * @pdev: pci device
+diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+index 42cd1a491d01..10a00d6bbf8f 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.h
++++ b/drivers/gpu/drm/xe/xe_configfs.h
+@@ -24,6 +24,7 @@ bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
+ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
+ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
+ bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
++u32 xe_configfs_get_migrate_ulls_period_ms(struct pci_dev *pdev);
+ bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev);
+ u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+ 				       enum xe_engine_class class,
+@@ -45,6 +46,7 @@ static inline bool xe_configfs_media_gt_allowed(struct pci_dev *pdev) { return t
+ static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
+ static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
+ static inline bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev) { return true; }
++static inline u32 xe_configfs_get_migrate_ulls_period_ms(struct pci_dev *pdev) { return 5; }
+ static inline bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev) { return false; }
+ static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+ 						     enum xe_engine_class class,
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index d7d13a25cdb9..c643177ff2d0 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -23,6 +23,7 @@
+ #include "xe_assert.h"
+ #include "xe_bb.h"
+ #include "xe_bo.h"
++#include "xe_configfs.h"
+ #include "xe_exec_queue.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
+@@ -81,14 +82,17 @@ struct xe_migrate {
+ 	u64 min_chunk_size;
+ 	/** @ulls: ULLS support */
+ 	struct {
++		/** @ulls.exit_ms: ULLS exit period milliseconds */
++		u32 exit_ms;
+ 		/** @ulls.enabled: ULLS is enabled, protected by job_mutex */
+ 		bool enabled;
+-#define ULLS_EXIT_JIFFIES	msecs_to_jiffies(5)
+ 		/** @ulls.exit_work: ULLS exit worker */
+ 		struct delayed_work exit_work;
+ 	} ulls;
+ };
+ 
++#define ULLS_EXIT_JIFFIES(_m)	msecs_to_jiffies((_m)->ulls.exit_ms)
++
+ #define MAX_PREEMPTDISABLE_TRANSFER SZ_8M /* Around 1ms. */
+ #define MAX_CCS_LIMITED_TRANSFER SZ_4M /* XE_PAGE_SIZE * (FIELD_MAX(XE2_CCS_SIZE_MASK) + 1) */
+ #define NUM_PT_SLOTS 48
+@@ -512,7 +516,7 @@ static struct dma_fence *xe_migrate_job_push(struct xe_migrate *m,
+ 	if (xe_migrate_ulls_enabled(m)) {
+ 		ulls = ULLS_ACTIVE;
+ 		mod_delayed_work(system_percpu_wq, &m->ulls.exit_work,
+-				 ULLS_EXIT_JIFFIES);
++				 ULLS_EXIT_JIFFIES(m));
+ 	}
+ 
+ 	return __xe_migrate_job_push(m, job, ulls);
+@@ -534,7 +538,7 @@ void xe_migrate_ulls_enter(struct xe_migrate *m)
+ 
+ 	xe_assert(xe, xe->info.has_usm);
+ 
+-	if (!IS_DGFX(xe))
++	if (!IS_DGFX(xe) || !m->ulls.exit_ms)
+ 		return;
+ 
+ job_alloc:
+@@ -572,7 +576,7 @@ void xe_migrate_ulls_enter(struct xe_migrate *m)
+ 		xe_sched_job_put(job);
+ 	if (xe_migrate_ulls_enabled(m))
+ 		mod_delayed_work(system_percpu_wq, &m->ulls.exit_work,
+-				 ULLS_EXIT_JIFFIES);
++				 ULLS_EXIT_JIFFIES(m));
+ 	mutex_unlock(&m->job_mutex);
+ }
+ 
+@@ -599,7 +603,7 @@ static void xe_migrate_ulls_exit(struct work_struct *work)
+ 	if (WARN_ON_ONCE(IS_ERR(job))) {
+ 		drm_dev_exit(idx);
+ 		mod_delayed_work(system_percpu_wq, &m->ulls.exit_work,
+-				 ULLS_EXIT_JIFFIES);
++				 ULLS_EXIT_JIFFIES(m));
+ 		return;		/* Not fatal */
+ 	}
+ 
+@@ -616,7 +620,7 @@ static void xe_migrate_ulls_exit(struct work_struct *work)
+ 		} else {
+ 			xe_sched_job_put(job);
+ 			mod_delayed_work(system_percpu_wq, &m->ulls.exit_work,
+-					 ULLS_EXIT_JIFFIES);
++					 ULLS_EXIT_JIFFIES(m));
+ 		}
+ 	}
+ 
+@@ -700,6 +704,9 @@ int xe_migrate_init(struct xe_migrate *m)
+ 			(unsigned long long)m->min_chunk_size);
+ 	}
+ 
++	m->ulls.exit_ms =
++		xe_configfs_get_migrate_ulls_period_ms(to_pci_dev(xe->drm.dev));
++
+ 	return err;
+ 
+ err_out:
 -- 
 2.34.1
 
