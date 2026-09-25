@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75402C98306
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 06:49:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39BC9C9830D
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 06:51:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF30810E586;
-	Fri, 25 Sep 2026 06:48:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA2A210E586;
+	Fri, 25 Sep 2026 06:51:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="B/IqIn1c";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EoH9+86K";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EDCB10E586
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 06:48:58 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1CBC10E586
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 06:51:56 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id F30EB60230;
- Fri, 25 Sep 2026 06:48:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FE391F000FF;
- Fri, 25 Sep 2026 06:48:57 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 5B3224087E;
+ Fri, 25 Sep 2026 06:51:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EA091F000FF;
+ Fri, 25 Sep 2026 06:51:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790318937;
- bh=64HJBS41Dlo0RADxNbqkGT/hUd7kLgg27JGOK+ldVj4=;
+ s=k20260515; t=1790319116;
+ bh=N33u774Ho5vfiGqNU4WFGnlxnG5c3P8N1lqqR5pNHsg=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=B/IqIn1cZ1sJCsQa1yfkrFFBX6JmIOstjmfF8YK1ycbfZwDDHsRSYUlxAvgs2IV9J
- tfedAZXpC5QupVGZhCUGfJ8pchD2GJSypSK338lS1FKSodrO2CRDkThnV/Z2aziaiC
- y+Kydz2YMv+SQK9PB7paT1P7tr5VUSuYxwsn53lNyg7ljebnKXZkGG3GiqSJYzgEzQ
- A5B2C/Hj4kGdNkUEn9GBTuQtG2VXnN7OA3kXH4xsI0oztUsr2iR2L/b9l2mfdJOCx4
- mA8luBwX1khRrSb7qUOYnu8UXigO0T0vV1UHKqxzngdCui5ezJ+lJ/2xD6rs4YiR8/
- A3u0bWVS3VI/w==
+ b=EoH9+86KA9pIaOfImBSUTZ3Tu12PXME+gsr8LmXdS0xUjH7uEMcMX5Z9VcNLAE+HY
+ B0Yrd7SkrStcmJ/Vre2gvlWFkYtLU/uZMBrm942yYqHzraS8ylb8I0HfK8Ag2pS43I
+ WD2uxIPt/V9+MFuW/y0P81nDjCda+Io62vIGYKkxe2HVFGsuGCBbZwSgoM828rdH1F
+ uHwntC9zuUrc4qg+Y0aY8IVYZFem+pIDHUBRMY1pcSACWECML+/PxmnNtfz6ZDqNyn
+ kT//OHIBzoBMzJDRRekVbwIykhtIdIbmfBxZAcsCxnrakWA6Dt4b1umhjOuT79Ls0w
+ Ksd5eh/ok1UbQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 21/24] drm/xe: Add ULLS migration job support to GuC
- submission
+Subject: Re: [PATCH v7 23/24] drm/xe: add migrate ULLS period configfs
+ attribute
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260925045320.1325860-22-matthew.brost@intel.com>
+In-Reply-To: <20260925045320.1325860-24-matthew.brost@intel.com>
 References: <20260925045320.1325860-1-matthew.brost@intel.com>
- <20260925045320.1325860-22-matthew.brost@intel.com>
+ <20260925045320.1325860-24-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 25 Sep 2026 06:48:57 +0000
-Message-Id: <20260925064857.7FE391F000FF@smtp.kernel.org>
+Date: Fri, 25 Sep 2026 06:51:54 +0000
+Message-Id: <20260925065156.1EA091F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,69 +59,47 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] drm/xe: TOCTOU race in ULLS migration job prefetching leads to sta=
-le command execution
+- [Low] xe: format string mismatch for u32 configfs attribute
 --
 
-commit 231db353d11582f236795322ee38df1ad9cad0d1
+commit 11e688bb0c4319099fe2944add90b93a411505ab
 Author: Matthew Brost <matthew.brost@intel.com>
-drm/xe: Add ULLS migration job support to GuC submission
 
-This commit adds Ultra Low Latency Submission (ULLS) migration job support =
-to
-the GuC submission backend. It introduces optimizations for chained ULLS jo=
-bs
-by having the GPU publish its own ring tail and suppressing the CPU's RING_=
-TAIL
-MMIO updates.
+drm/xe: add migrate ULLS period configfs attribute
 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
-uc_submit.c
-> index a2784763e72ba..cd9bb9f9e28c8 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -1190,9 +1190,10 @@ static void submit_exec_queue(struct xe_exec_queue=
- *q, struct xe_sched_job *job)
->  	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
+This commit adds a configfs attribute to control the migrate ULLS period.
+The period specifies how long in milliseconds migrate ULLS remains active
+before exiting, primarily intended for performance tuning.
+
+> diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_con=
+figfs.c
+> index f1555a9d31170..3f09dd17f80e0 100644
+> --- a/drivers/gpu/drm/xe/xe_configfs.c
+> +++ b/drivers/gpu/drm/xe/xe_configfs.c
+[ ... ]
+> @@ -631,6 +648,33 @@ static ssize_t enable_multi_queue_store(struct confi=
+g_item *item, const char *pa
+>  	return len;
+>  }
 > =20
->  	if (!job->restore_replay || job->last_replay) {
-> +		/* A ULLS job past the first publishes its own ring tail */
->  		if (xe_exec_queue_is_parallel(q))
->  			wq_item_append(q);
-> -		else
-> +		else if (!xe_sched_job_ulls_is_chained(job))
->  			xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
+> +static ssize_t migrate_ulls_period_ms_show(struct config_item *item, cha=
+r *page)
+> +{
+> +	struct xe_config_device *dev =3D to_xe_config_device(item);
+> +
+> +	return sprintf(page, "%d\n", dev->migrate_ulls_period_ms);
 
-[Severity: High]
-Does skipping the RING_TAIL MMIO write here expose a race condition where t=
-he
-GPU could execute stale ring buffer memory?
+[Severity: Low]
+Since dev->migrate_ulls_period_ms is an unsigned 32-bit integer (u32),
+could writing a value greater than INT_MAX via configfs cause it to be read
+back as a negative number due to the "%d" format string?
 
-For ULLS chained jobs, the GPU advances the tail via MI_LRI prior to execut=
-ing
-MI_SEMAPHORE_WAIT, which happens in emit_ulls_postamble():
+Would "%u" be more appropriate here to preserve the read/write round-trip
+property for userspace?
 
-drivers/gpu/drm/xe/xe_ring_ops.c:emit_ulls_postamble()
-	i =3D emit_ulls_ring_tail(gt, lrc, dw, i, head);
-	dw[i++] =3D MI_SEMAPHORE_WAIT | ...
-
-Because the CPU intentionally skips the xe_lrc_set_ring_tail() MMIO write f=
-or
-these chained jobs, the hardware mechanism that normally invalidates the GP=
-U's
-instruction cache is bypassed.=20
-
-Could the Command Streamer fetch unit see the advanced RING_TAIL and prefet=
-ch
-memory for the next job before the CPU has actually written it to the ring
-buffer? If the CPU hasn't populated the commands yet, when the CPU finally
-writes the next job and signals the semaphore, it appears the GPU might wak=
-e up
-and execute the stale prefetched instructions from its internal cache rather
-than the newly written migration commands.
-
+> +}
 [ ... ]
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260925045320.1325=
-860-1-matthew.brost@intel.com?part=3D21
+860-1-matthew.brost@intel.com?part=3D23
