@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE39AC98324
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 11:55:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC897C9830D
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 11:56:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D75C10E9F0;
-	Fri, 25 Sep 2026 11:55:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3E3610F9FD;
+	Fri, 25 Sep 2026 11:56:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H7RJBwVV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gD5tr7yf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8CA710E9F0
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 11:55:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1179A10E7CE
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 11:56:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790337338; x=1821873338;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=45kP56I0F08Bgl3Y0qoEIiGcrkw4ODZpQUV8FQ6gfjo=;
- b=H7RJBwVVxFFE9cAdfL4zn/qsncvmJ/DETxWTIFcYeKtpZ2mk0CQLEBUc
- XiM1QH6JPobWTgTJgi8obeLut8RY1lBAcQN/TxoUhKCo/wjxEr28S0jwC
- MvPuNpPmxyBC7smt+EDp9KGpOSVLPLwaZW0B2f8hFxBrLwcZ+pO7T9WbY
- uTlNcrqypnIwwIt9TPosSypzw1Jl9dIdQY8VuGR2zIqFVGR6RSr+Eszlw
- ZHn3XtLnlIBmpTYc/D2Nxfu6F/qV8Yn523ZqQpMqwqOZmn5FF/r6kjreY
- 4FW+MzJxCyobUnmmO0zLtXA0etct7vkm/AnoTeVh6F6Z77hnh14awwnag Q==;
-X-CSE-ConnectionGUID: 1u/Pf96UQLC6rC4234Ih7w==
-X-CSE-MsgGUID: SK3wb0B8RnefltoQ6UBvog==
-X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="94939358"
-X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="94939358"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2026 04:55:38 -0700
-X-CSE-ConnectionGUID: 1+VVTHe2TsSLRx2tuu49+g==
-X-CSE-MsgGUID: IfvamcvFQ9yMUnU8OYNK1g==
+ t=1790337413; x=1821873413;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=ugNtD46mYv2gGawvXmhBGkMNXoEelqzB+w1qfBVYazU=;
+ b=gD5tr7yf3k6xvOQgDiUtq4A7Pj9/3w7aoU7SK3rogpCEwpFbKhsAyty+
+ RpaCmpUaROq05hk0oKZORPf6RjSgMpQRe5IckZBIc7kzaTO6jeyC5tBVc
+ sPkg8IICYNhR8NuHkql8bpWAsyR+hF7w2TqEV4wBnfFFWkbxs0UIbx8/D
+ 5ua4kJ0amYVEk2UnMYf+8iPH586K7RLovkACPKszh67l7YEdAR4O1yM8Y
+ SP8kU7o20woz5OHjW6/ok8oojo6W48d1alSQ+nmTHlFWrGHFRZy3vunEJ
+ 2lr3RKDERdCk6sd0B6rB3CTTrGOXotrNuUKGYYQZXFsxlPyo8+IJl+yCH g==;
+X-CSE-ConnectionGUID: vU22UdvjTHazd2A/BP6UpQ==
+X-CSE-MsgGUID: 3IAHfKIZRHeHZtXuYTslhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="90248100"
+X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="90248100"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2026 04:56:52 -0700
+X-CSE-ConnectionGUID: yTh8upriRPyRGYSQcy1o+g==
+X-CSE-MsgGUID: iZuHpMP8TJii9YMAjp9xaw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="278089213"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="273871353"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.107])
  ([10.245.245.107])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2026 04:55:37 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH 2/2] drm/xe/shrinker: hold a stable RPM ref across scan
-Date: Fri, 25 Sep 2026 12:55:23 +0100
-Message-ID: <20260925115521.1018940-4-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260925115521.1018940-3-matthew.auld@intel.com>
-References: <20260925115521.1018940-3-matthew.auld@intel.com>
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2026 04:56:51 -0700
+Message-ID: <6948ebd4-a039-4b58-9106-1b3685655311@intel.com>
+Date: Fri, 25 Sep 2026 12:56:49 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Remove no-op ternary in emit_flush_invalidate()
+To: Shuicheng Lin <shuicheng.lin@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>
+References: <20260923171527.663537-1-shuicheng.lin@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260923171527.663537-1-shuicheng.lin@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,107 +69,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we use async RPM get, with the custom worker gone, we can
-eliminate the get/put dance and just always hold a stable ref over the
-entire scan, and just have the inner layer ping the async status with
-if_active(), if required. If it's still not awake we skip just like
-before, but when it does wake up we now don't need to worry about races
-where the device potentially goes back to sleep, since at no point do we
-drop the outer ref.
+On 23/09/2026 18:15, Shuicheng Lin wrote:
+> '|' binds tighter than the conditional operator, so the trailing
+> "?: 0" tests the whole OR expression instead of just the TLB flag.
+> MI_FLUSH_DW is non-zero, so the condition is always true and the
+> expression evaluates to itself.
+> 
+> Drop the ternary. The mask already yields 0 when MI_INVALIDATE_TLB
+> is not set.
+> 
+> No functional change.
+> 
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Assisted-by: LLM
+> Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
 
-Assisted-by: LLM
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_shrinker.c | 44 +++++++++++++++-----------------
- 1 file changed, 21 insertions(+), 23 deletions(-)
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shrinker.c
-index 518f77acf1dd..267b0290be8e 100644
---- a/drivers/gpu/drm/xe/xe_shrinker.c
-+++ b/drivers/gpu/drm/xe/xe_shrinker.c
-@@ -52,24 +52,6 @@ xe_shrinker_mod_pages(struct xe_shrinker *shrinker, long shrinkable, long purgea
- 	write_unlock(&shrinker->lock);
- }
- 
--static bool __xe_shrinker_runtime_pm_get(struct xe_shrinker *shrinker)
--{
--	struct xe_device *xe = shrinker->xe;
--
--	if (xe_pm_runtime_get_if_active(xe))
--		return true;
--
--	if (xe_rpm_reclaim_safe(xe) && !ttm_bo_shrink_avoid_wait()) {
--		xe_pm_runtime_get(xe);
--		return true;
--	}
--
--	xe_pm_runtime_get_async(xe);
--	xe_pm_runtime_put(xe);
--
--	return false;
--}
--
- static void xe_shrinker_runtime_pm_put(struct xe_shrinker *shrinker, bool runtime_pm)
- {
- 	if (runtime_pm)
-@@ -102,7 +84,7 @@ static int __xe_shrinker_walk(struct xe_shrinker *shrinker,
- 
- 		if (mem_type != XE_PL_SYSTEM && !rpm &&
- 		    xe_device_is_l2_flush_optimized(xe)) {
--			if (!__xe_shrinker_runtime_pm_get(shrinker))
-+			if (!xe_pm_runtime_get_if_active(xe))
- 				break;
- 			rpm = true;
- 		}
-@@ -190,6 +172,13 @@ xe_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
- 	return num_pages ? num_pages : SHRINK_EMPTY;
- }
- 
-+static bool xe_shrinker_needs_rpm(struct xe_device *xe)
-+{
-+	return (!IS_DGFX(xe) && xe_device_has_flat_ccs(xe) &&
-+		ttm_backup_bytes_avail()) ||
-+		xe_device_is_l2_flush_optimized(xe);
-+}
-+
- /*
-  * Check if we need runtime pm, and if so try to grab a reference if
-  * already active. If sync RPM get fails, queue an async RPM get that
-@@ -202,19 +191,28 @@ static bool xe_shrinker_runtime_pm_get(struct xe_shrinker *shrinker, bool force,
- {
- 	struct xe_device *xe = shrinker->xe;
- 
--	if (IS_DGFX(xe) || !xe_device_has_flat_ccs(xe) ||
--	    !ttm_backup_bytes_avail())
-+	if (!xe_shrinker_needs_rpm(xe))
- 		return false;
- 
- 	if (!force) {
- 		read_lock(&shrinker->lock);
--		force = (nr_to_scan > shrinker->purgeable_pages && can_backup);
-+		if (xe_device_is_l2_flush_optimized(xe))
-+			force = shrinker->purgeable_pages || can_backup;
-+		else
-+			force = nr_to_scan > shrinker->purgeable_pages && can_backup;
- 		read_unlock(&shrinker->lock);
- 		if (!force)
- 			return false;
- 	}
- 
--	return __xe_shrinker_runtime_pm_get(shrinker);
-+	if (!xe_pm_runtime_get_if_active(xe)) {
-+		if (xe_rpm_reclaim_safe(xe) && !ttm_bo_shrink_avoid_wait())
-+			xe_pm_runtime_get(xe);
-+		else
-+			xe_pm_runtime_get_async(xe);
-+	}
-+
-+	return true;
- }
- 
- static unsigned long xe_shrinker_scan(struct shrinker *shrink, struct shrink_control *sc)
--- 
-2.55.0
+> ---
+>   drivers/gpu/drm/xe/xe_ring_ops.c | 5 ++---
+>   1 file changed, 2 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+> index 46ab1f0f3564..3dd8cf4e2131 100644
+> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
+> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+> @@ -143,9 +143,8 @@ static int emit_bb_start(u64 batch_addr, u32 ppgtt_flag, u32 *dw, int i)
+>   
+>   static int emit_flush_invalidate(u32 addr, u32 val, u32 flush_flags, u32 *dw, int i)
+>   {
+> -	dw[i++] = MI_FLUSH_DW | MI_FLUSH_DW_OP_STOREDW |
+> -		  MI_FLUSH_IMM_DW | (flush_flags & MI_INVALIDATE_TLB) ?: 0;
+> -
+> +	dw[i++] = MI_FLUSH_DW | MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW |
+> +		  (flush_flags & MI_INVALIDATE_TLB);
+>   	dw[i++] = addr | MI_FLUSH_DW_USE_GTT;
+>   	dw[i++] = 0;
+>   	dw[i++] = val;
 
