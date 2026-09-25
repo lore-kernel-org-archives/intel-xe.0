@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BFABC98327
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10065C98328
 	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 04:53:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5164710F827;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56D5A10F83E;
 	Fri, 25 Sep 2026 04:53:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JG53Whkd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dLMvDgMg";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9155410E594
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 04:53:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 919B810F859
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 04:53:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790312012; x=1821848012;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Ob0EmP4OrRH5KFWhpPHeTmqLor/9vy6V4jQCNini1q4=;
- b=JG53WhkdZ+1FokuPRwp0S4UkjfE44/ZqEmL4IypmOFoKriC34DpLZKSt
- MeqgWCjF4dxJ902/HxS+IIs8sg3riCr/2CnSvtByKT4vYNjOCMQvZCYAi
- 5QndUJKFWl4OrgjOylzDQFUWBEiyhwD0ELMvneAEYWXboY7kj0L4A43VA
- DwScQ5dAwlhkXmo2tzIPf+8DqdGQo/FyRnEUk0MMtWcQtoeJRF26bQsxM
- vbrzo0ccylD+ZVW44Y5ImC1g3ZJZfkGVwHU+hmQoPEddmMj09YcD7c3v9
- 5DOTZ16ZtSDhQVoSi886778JZe3KOKJg6Eepb4ApTxooNmYerp8NmbeM/ Q==;
-X-CSE-ConnectionGUID: 2XZGSUFjRvu/jTKp43VdbQ==
-X-CSE-MsgGUID: UBT+nkoyTpuYCOwU5UbF4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="90156213"
-X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="90156213"
+ t=1790312013; x=1821848013;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=vlqTHrf4q67Xh3bIAWznvylv7wrAjI0FHN7NdsWCH8c=;
+ b=dLMvDgMg6jAcV0VSQeLAubodqmuBQ6+/yeQn7zeR0GrWcW4j/Z2hcZ78
+ /J6xgYzPTaFKEMOWMRwaywj5oAjdMc/wFcxCct6hwqqTiMK/Ad1sbb7Qm
+ XxCfAy4znZ7cJGBsAPO3vBXwzJD69wX1M/dr5iX0TkKHnbf9ZZJ0/+sPl
+ icwQNr2a8rmyA37gYstdi5xPloYNQ+nDl1sEobOFa9fr1mLnOAlERCq4t
+ Ug4TW6j2iq80sn/oWqGlNkR+RE2f2Bce5ZxyyitUEtkvVu5pIr9WCsBic
+ 1NwTacTh09jT9SpMiZpxI67Xp91T1DRrCEqH6Eq7zsMdLEr72Ab974FDj w==;
+X-CSE-ConnectionGUID: N9pS7uQCQdqa4wMV98oKbg==
+X-CSE-MsgGUID: fI564RQSSfWCdxL7wFSPlg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="90156220"
+X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="90156220"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Sep 2026 21:53:27 -0700
-X-CSE-ConnectionGUID: 4hEWw5m5QA2mvoVUzAPj8w==
-X-CSE-MsgGUID: Xyt82s75TiWZnpgNBmG4+Q==
+X-CSE-ConnectionGUID: smFRIXEpRQWJ1JfZAaoG1w==
+X-CSE-MsgGUID: mF4BMkufSomymhf9wEpylw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="312155495"
+X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="312155513"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Sep 2026 21:53:26 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v7 00/24] CPU binds and ULLS on migration queue
-Date: Thu, 24 Sep 2026 21:52:56 -0700
-Message-Id: <20260925045320.1325860-1-matthew.brost@intel.com>
+Subject: [PATCH v7 07/24] drm/xe: Update scheduler job layer to support PT jobs
+Date: Thu, 24 Sep 2026 21:53:03 -0700
+Message-Id: <20260925045320.1325860-8-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260925045320.1325860-1-matthew.brost@intel.com>
+References: <20260925045320.1325860-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -64,140 +66,265 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We now have data demonstrating the need for CPU binds and ULLS on the
-migration queue, based on results generated from [1].
+Update the scheduler job layer to support PT jobs. PT jobs are executed
+entirely on the CPU and do not require LRC fences or a batch address.
+Repurpose the LRC fence storage to hold PT‑job arguments and update the
+scheduler job layer to distinguish between PT jobs and jobs that require
+an LRC.
 
-On BMG, measurements show that when the GPU is continuously processing
-faults, copy jobs run approximately 30–40µs faster (depending on the
-test case) with ULLS compared to traditional GuC submission with SLPC
-enabled on the migration queue. Startup from a cold GPU shows an even
-larger speedup. Given the critical nature of fault performance, ULLS
-appears to be a worthwhile feature.
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-In addition to driver telemetry, UMD compute benchmarks consistently
-show multiple GB/s improvement in pagefault benchmarks with ULLS enabled.
-
-ULLS will consume more power (not yet measured) due to a continuously
-running batch on the paging engine. However, compute UMDs already do
-this on engines exposed to users, so this seems like a worthwhile
-tradeoff. To mitigate power concerns, ULLS will exit after a period of
-time in which no faults have been processed.
-
-CPU binds are required for ULLS to function, as the migration queue
-needs exclusive access to the paging hardware engine. Thus, CPU binds
-are included here.
-
-Beyond being a requirement for ULLS, CPU binds should also reduce
-VM-bind latency, provide clearer multi-tile and TLB-invalidation
-layering, reduce pressure on GuC during fault storms as it is bypassed,
-and decouple kernel binds from unrelated copy/clear jobs—especially
-beneficial when faults are serviced in parallel. In a parallel-faulting
-test case, average bind time was reduced by approximately 15µs. In the
-worst case, 2MB copy time (~60–140µs) × (number of pagefault threads −
-1) of latency would otherwise be added to a single fault. Reducing this
-latency increases overall throughput of the fault handler.
-
-This series can be merged in phases:
-
-Phase 1: CPU binds (patches 1–13)
-Phase 2: CPU-bind components and multi-tile relayers (patches 14–17)
-Phase 3: ULLS on the migration execution queue (patches 18–24)
-
-v2:
- - Use delayed worker to exit ULLS mode in an effort to save on power
- - Various other cleanups
-v3:
- - CPU bind component, multi-tile relayer
- - Split CPU bind patches in many small patches
-v4:
- - Rebase, address feedback, add ULLS doc patch
-v5:
- - Address Sashiko feedback, fix checkpatch issues
-v6:
- - Reworked ULLS to drop KMD MMIO ring tail write, move this to ring
-   instruction(s)
- - Several other small cleanups based on Sashiko feedback
+---
 v7:
- - Drop XE_BO_FLAG_PUT_VM_ASYNC in favor PT BOs holding a VM ref
- - configfs to ULLS enable and period
- - Migrate ULLS implementation style cleanups
- - Address various feedback
+ - Move is_pt_job goto above seqno/tlb flush code (Sashiko, Francois)
+---
+ drivers/gpu/drm/xe/xe_sched_job.c       | 95 ++++++++++++++++---------
+ drivers/gpu/drm/xe/xe_sched_job_types.h | 31 +++++++-
+ drivers/gpu/drm/xe/xe_trace.h           |  2 +-
+ 3 files changed, 92 insertions(+), 36 deletions(-)
 
-Matt
-
-[1] https://patchwork.freedesktop.org/series/149811/
-
-Matthew Brost (24):
-  drm/xe: reference VM from PT BOs
-  drm/xe: Drop struct xe_migrate_pt_update argument from populate/clear
-    vfuns
-  drm/xe: Add xe_migrate_update_pgtables_cpu_execute helper
-  drm/xe: Decouple exec queue idle check from LRC
-  drm/xe: Add job count to GuC exec queue snapshot
-  drm/xe: Update xe_bo_put_deferred arguments to include writeback flag
-  drm/xe: Update scheduler job layer to support PT jobs
-  drm/xe: Add helpers to access PT ops
-  drm/xe: Add struct xe_pt_job_ops
-  drm/xe: Update GuC submission backend to run PT jobs
-  drm/xe: Store level in struct xe_vm_pgtable_update
-  drm/xe: Don't use migrate exec queue for page fault binds
-  drm/xe: Enable CPU binds for jobs
-  drm/xe: Remove unused arguments from xe_migrate_pt_update_ops
-  drm/xe: Make bind queues operate cross-tile
-  drm/xe: Add CPU bind layer
-  drm/xe: Add device flag to enable PT mirroring across tiles
-  drm/xe: Add ULLS support to LRC
-  drm/xe: Add ULLS migration job support to migration layer
-  drm/xe: Add ULLS migration job support to ring ops
-  drm/xe: Add ULLS migration job support to GuC submission
-  drm/xe: Enter ULLS for migration jobs upon page fault or SVM prefetch
-  drm/xe: add migrate ULLS period configfs attribute
-  drm/xe: Document ULLS for migration jobs
-
- Documentation/gpu/xe/xe_migrate.rst      |   3 +
- drivers/gpu/drm/xe/Makefile              |   1 +
- drivers/gpu/drm/xe/xe_bo.c               |   4 +-
- drivers/gpu/drm/xe/xe_bo.h               |  10 +-
- drivers/gpu/drm/xe/xe_bo_types.h         |   2 -
- drivers/gpu/drm/xe/xe_configfs.c         |  67 ++
- drivers/gpu/drm/xe/xe_configfs.h         |   2 +
- drivers/gpu/drm/xe/xe_cpu_bind.c         | 296 +++++++++
- drivers/gpu/drm/xe/xe_cpu_bind.h         | 111 ++++
- drivers/gpu/drm/xe/xe_device.c           |   5 +
- drivers/gpu/drm/xe/xe_device_types.h     |   6 +
- drivers/gpu/drm/xe/xe_drm_client.c       |   2 +-
- drivers/gpu/drm/xe/xe_exec_queue.c       | 163 ++---
- drivers/gpu/drm/xe/xe_exec_queue.h       |  16 +-
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  20 +-
- drivers/gpu/drm/xe/xe_guc_submit.c       |  76 ++-
- drivers/gpu/drm/xe/xe_guc_submit_types.h |   2 +
- drivers/gpu/drm/xe/xe_lrc.c              |  73 +++
- drivers/gpu/drm/xe/xe_lrc.h              |   4 +
- drivers/gpu/drm/xe/xe_lrc_types.h        |   4 +
- drivers/gpu/drm/xe/xe_migrate.c          | 769 ++++++++++------------
- drivers/gpu/drm/xe/xe_migrate.h          |  95 +--
- drivers/gpu/drm/xe/xe_pagefault.c        |   3 +
- drivers/gpu/drm/xe/xe_pci.c              |   2 +
- drivers/gpu/drm/xe/xe_pci_types.h        |   3 +-
- drivers/gpu/drm/xe/xe_pt.c               | 781 ++++++++++++++---------
- drivers/gpu/drm/xe/xe_pt.h               |  12 +-
- drivers/gpu/drm/xe/xe_pt_types.h         |  49 +-
- drivers/gpu/drm/xe/xe_ring_ops.c         |  75 +++
- drivers/gpu/drm/xe/xe_ring_ops_types.h   |  24 +
- drivers/gpu/drm/xe/xe_sched_job.c        | 103 ++-
- drivers/gpu/drm/xe/xe_sched_job.h        |  56 ++
- drivers/gpu/drm/xe/xe_sched_job_types.h  |  49 +-
- drivers/gpu/drm/xe/xe_sync.c             |  20 +-
- drivers/gpu/drm/xe/xe_tlb_inval_job.c    |  28 +-
- drivers/gpu/drm/xe/xe_tlb_inval_job.h    |   4 +-
- drivers/gpu/drm/xe/xe_trace.h            |   2 +-
- drivers/gpu/drm/xe/xe_vm.c               | 242 +++----
- drivers/gpu/drm/xe/xe_vm.h               |   3 +
- drivers/gpu/drm/xe/xe_vm_types.h         |  12 +-
- 40 files changed, 1988 insertions(+), 1211 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_cpu_bind.c
- create mode 100644 drivers/gpu/drm/xe/xe_cpu_bind.h
-
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+index a4fa00632a30..20992ea816e6 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.c
++++ b/drivers/gpu/drm/xe/xe_sched_job.c
+@@ -26,19 +26,22 @@ static struct kmem_cache *xe_sched_job_parallel_slab;
+ 
+ int __init xe_sched_job_module_init(void)
+ {
++	struct xe_sched_job *job;
++	size_t size;
++
++	size = struct_size(job, ptrs, 1);
+ 	xe_sched_job_slab =
+-		kmem_cache_create("xe_sched_job",
+-				  sizeof(struct xe_sched_job) +
+-				  sizeof(struct xe_job_ptrs), 0,
++		kmem_cache_create("xe_sched_job", size, 0,
+ 				  SLAB_HWCACHE_ALIGN, NULL);
+ 	if (!xe_sched_job_slab)
+ 		return -ENOMEM;
+ 
++	size = max_t(size_t,
++		     struct_size(job, ptrs,
++				 XE_HW_ENGINE_MAX_INSTANCE),
++		     struct_size(job, pt_update, 1));
+ 	xe_sched_job_parallel_slab =
+-		kmem_cache_create("xe_sched_job_parallel",
+-				  sizeof(struct xe_sched_job) +
+-				  sizeof(struct xe_job_ptrs) *
+-				  XE_HW_ENGINE_MAX_INSTANCE, 0,
++		kmem_cache_create("xe_sched_job_parallel", size, 0,
+ 				  SLAB_HWCACHE_ALIGN, NULL);
+ 	if (!xe_sched_job_parallel_slab) {
+ 		kmem_cache_destroy(xe_sched_job_slab);
+@@ -84,6 +87,9 @@ static void xe_sched_job_free_fences(struct xe_sched_job *job)
+ {
+ 	int i;
+ 
++	if (job->is_pt_job)
++		return;
++
+ 	for (i = 0; i < job->q->width; ++i) {
+ 		struct xe_job_ptrs *ptrs = &job->ptrs[i];
+ 
+@@ -93,10 +99,23 @@ static void xe_sched_job_free_fences(struct xe_sched_job *job)
+ 	}
+ }
+ 
++/**
++ * xe_sched_job_create() - Create a scheduler job
++ * @q: exec queue to create the scheduler job for
++ * @batch_addr: array of batch addresses for the job; must match the width of
++ * @q, or NULL to indicate a PT job that does not require a batch address
++ *
++ * Create a scheduler job for submission.
++ *
++ * Context: Reclaim
++ *
++ * Return: a &xe_sched_job object on success, or an ERR_PTR on failure.
++ */
+ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
+ 					 u64 *batch_addr)
+ {
+ 	bool is_migration = xe_sched_job_is_migration(q);
++	struct xe_device *xe = gt_to_xe(q->gt);
+ 	struct xe_sched_job *job;
+ 	int err;
+ 	int i;
+@@ -105,6 +124,9 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
+ 	/* only a kernel context can submit a vm-less job */
+ 	XE_WARN_ON(!q->vm && !(q->flags & EXEC_QUEUE_FLAG_KERNEL));
+ 
++	xe_assert(xe, batch_addr ||
++		  q->flags & (EXEC_QUEUE_FLAG_VM | EXEC_QUEUE_FLAG_MIGRATE));
++
+ 	job = job_alloc(xe_exec_queue_is_parallel(q) || is_migration);
+ 	if (!job)
+ 		return ERR_PTR(-ENOMEM);
+@@ -119,34 +141,39 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
+ 	if (err)
+ 		goto err_free;
+ 
+-	for (i = 0; i < q->width; ++i) {
+-		struct dma_fence *fence = xe_lrc_alloc_seqno_fence();
+-		struct dma_fence_chain *chain;
+-
+-		if (IS_ERR(fence)) {
+-			err = PTR_ERR(fence);
+-			goto err_sched_job;
++	if (!batch_addr) {
++		job->fence = dma_fence_get_stub();
++		job->is_pt_job = true;
++	} else {
++		for (i = 0; i < q->width; ++i) {
++			struct dma_fence *fence = xe_lrc_alloc_seqno_fence();
++			struct dma_fence_chain *chain;
++
++			if (IS_ERR(fence)) {
++				err = PTR_ERR(fence);
++				goto err_sched_job;
++			}
++			job->ptrs[i].lrc_fence = fence;
++
++			if (i + 1 == q->width)
++				continue;
++
++			chain = dma_fence_chain_alloc();
++			if (!chain) {
++				err = -ENOMEM;
++				goto err_sched_job;
++			}
++			job->ptrs[i].chain_fence = chain;
+ 		}
+-		job->ptrs[i].lrc_fence = fence;
+ 
+-		if (i + 1 == q->width)
+-			continue;
++		width = q->width;
++		if (is_migration)
++			width = 2;
+ 
+-		chain = dma_fence_chain_alloc();
+-		if (!chain) {
+-			err = -ENOMEM;
+-			goto err_sched_job;
+-		}
+-		job->ptrs[i].chain_fence = chain;
++		for (i = 0; i < width; ++i)
++			job->ptrs[i].batch_addr = batch_addr[i];
+ 	}
+ 
+-	width = q->width;
+-	if (is_migration)
+-		width = 2;
+-
+-	for (i = 0; i < width; ++i)
+-		job->ptrs[i].batch_addr = batch_addr[i];
+-
+ 	atomic_inc(&q->job_cnt);
+ 	xe_pm_runtime_get_noresume(job_to_xe(job));
+ 	trace_xe_sched_job_create(job);
+@@ -246,7 +273,7 @@ bool xe_sched_job_completed(struct xe_sched_job *job)
+ void xe_sched_job_arm(struct xe_sched_job *job)
+ {
+ 	struct xe_exec_queue *q = job->q;
+-	struct dma_fence *fence, *prev;
++	struct dma_fence *fence = job->fence, *prev;
+ 	struct xe_vm *vm = q->vm;
+ 	u64 seqno = 0;
+ 	int i;
+@@ -259,6 +286,9 @@ void xe_sched_job_arm(struct xe_sched_job *job)
+ 			xe_vm_assert_held(q->vm);
+ 	}
+ 
++	if (job->is_pt_job)
++		goto arm;
++
+ 	if (vm && !xe_sched_job_is_migration(q) && !xe_vm_in_lr_mode(vm) &&
+ 	    (vm->batch_invalidate_tlb || vm->tlb_flush_seqno != q->tlb_flush_seqno)) {
+ 		xe_vm_assert_held(vm);
+@@ -286,6 +316,7 @@ void xe_sched_job_arm(struct xe_sched_job *job)
+ 		fence = &chain->base;
+ 	}
+ 
++arm:
+ 	job->fence = dma_fence_get(fence);	/* Pairs with put in scheduler */
+ 	drm_sched_job_arm(&job->drm);
+ }
+@@ -329,7 +360,7 @@ xe_sched_job_snapshot_capture(struct xe_sched_job *job)
+ 
+ 	snapshot->batch_addr_len = q->width;
+ 	for (i = 0; i < q->width; i++)
+-		snapshot->batch_addr[i] =
++		snapshot->batch_addr[i] = job->is_pt_job ? 0 :
+ 			xe_device_uncanonicalize_addr(xe, job->ptrs[i].batch_addr);
+ 
+ 	return snapshot;
+diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
+index 0490b1247a6e..5e1824c36c74 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job_types.h
++++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
+@@ -10,10 +10,29 @@
+ 
+ #include <drm/gpu_scheduler.h>
+ 
+-struct xe_exec_queue;
+ struct dma_fence;
+ struct dma_fence_chain;
+ 
++struct xe_exec_queue;
++struct xe_migrate_pt_update_ops;
++struct xe_pt_job_ops;
++struct xe_tile;
++struct xe_vm;
++
++/**
++ * struct xe_pt_update_args - PT update arguments
++ */
++struct xe_pt_update_args {
++	/** @vm: VM which is being bound */
++	struct xe_vm *vm;
++	/** @tile: Tile which page tables belong to */
++	struct xe_tile *tile;
++	/** @ops: Migrate PT update ops */
++	const struct xe_migrate_pt_update_ops *ops;
++	/** @pt_job_ops: PT job ops state */
++	struct xe_pt_job_ops *pt_job_ops;
++};
++
+ /**
+  * struct xe_job_ptrs - Per hw engine instance data
+  */
+@@ -71,8 +90,14 @@ struct xe_sched_job {
+ 	bool restore_replay;
+ 	/** @last_replay: last job being replayed */
+ 	bool last_replay;
+-	/** @ptrs: per instance pointers. */
+-	struct xe_job_ptrs ptrs[];
++	/** @is_pt_job: is a PT job */
++	bool is_pt_job;
++	union {
++		/** @ptrs: per instance pointers. */
++		DECLARE_FLEX_ARRAY(struct xe_job_ptrs, ptrs);
++		/** @pt_update: PT update arguments */
++		DECLARE_FLEX_ARRAY(struct xe_pt_update_args, pt_update);
++	};
+ };
+ 
+ struct xe_sched_job_snapshot {
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index 2fe8f89a1e34..d4e9d91f6f7f 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -261,7 +261,7 @@ DECLARE_EVENT_CLASS(xe_sched_job,
+ 			   __entry->flags = job->q->flags;
+ 			   __entry->error = job->fence ? job->fence->error : 0;
+ 			   __entry->fence = job->fence;
+-			   __entry->batch_addr = (u64)job->ptrs[0].batch_addr;
++			   __entry->batch_addr = job->is_pt_job ? 0 : (u64)job->ptrs[0].batch_addr;
+ 			   ),
+ 
+ 		    TP_printk("dev=%s, fence=%p, seqno=%u, lrc_seqno=%u, gt=%u, guc_id=%d, batch_addr=0x%012llx, guc_state=0x%x, flags=0x%x, error=%d",
 -- 
 2.34.1
 
