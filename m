@@ -4,63 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB831C98321
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 12:48:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26DA1C9830E
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 12:54:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F2A310FA3E;
-	Fri, 25 Sep 2026 12:48:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D844F10FA48;
+	Fri, 25 Sep 2026 12:54:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J6yKYr+C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hcm2Luw1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ABBC10E281;
- Fri, 25 Sep 2026 12:48:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47D9710FA48;
+ Fri, 25 Sep 2026 12:53:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790340534; x=1821876534;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=keLjwrDnaX1oNrwQa0KCt9pvuS+VJLQJ2PEo4P6RmXU=;
- b=J6yKYr+Cxd5vV6pMektP+6FooqmBCBCJ4nI5pdjqwMitt7J2zZK6C3NY
- +MzEDK7mIGLrabsaWCaKFgfJkt7VwdGrpQQKcVcMpUpoMF992FO5HSZfO
- YzWFZkwQ5f+/UfVILGdt2gJZx9/4BW0qELUw3Jz3q+XB6btX2ibRk1xf7
- N6+EKysZMitBf9wfbBZNSVfNp9oESCIUfOXIxlJJ+9Gpa88nQYveKHIje
- GUJUANKuZUmFktLuZbai8e5BZUWqEmLvO1BLa0U7D3YdOEKVTpZNq0hFa
- JXINsa17dy5JRB3Ky1dcTfPIbRXTOigeLm26ayLj3fC5t0d3nHg3HmMQc A==;
-X-CSE-ConnectionGUID: Z2Vs4T0ATBik5ep7vVf30g==
-X-CSE-MsgGUID: hlKVH0RJTKGar540YVwo7A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="89892461"
-X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="89892461"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2026 05:48:54 -0700
-X-CSE-ConnectionGUID: SO2hFo73QoixFnmSHsjGhg==
-X-CSE-MsgGUID: 63gI6Dn/QPmBXq5kxfrvAQ==
+ t=1790340839; x=1821876839;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=7QFQaHhQHwO4JjYiWqEtP4ey1qTU6R5eBhvbiXj4+cY=;
+ b=Hcm2Luw1xj9bra6dRe3ht0f765OCx3i3n12xKvFsZz6Js2WBW/PYkH9d
+ fSpq1Mzz3RdQRPpDLKTCYKi33f3de3B2i8gAkJSRoxrlucAQ0o1P/gbt0
+ 9oZjBGRaC+FsioGPEaOIM8QqkUrBBOGR+Tm0+q3pxfXHcsBmEqMz17QHo
+ MVtQzpuca8B1XlDU+O39lu/EF9u3puVQP6bMNotqSetNLubvtSU8DzU0j
+ dsARlKbsHz848zVQ6PRfG5RDOIIs3RZdL/8amQVs/M3XEbLTk+kSvRX7k
+ +yxeEQDLaiWLW/CD2pYv+w71CuZZgiIvIBuCisR0XWKgVitPLc8V1bsAA Q==;
+X-CSE-ConnectionGUID: No43p0f5THa1sxO3RYac8w==
+X-CSE-MsgGUID: MnmjtVbxQWORYIZiMSxomw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="102486242"
+X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="102486242"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2026 05:53:59 -0700
+X-CSE-ConnectionGUID: 4PIYZybqQxehFdbSfdSDZw==
+X-CSE-MsgGUID: bpl31Ej6T1GrkfDHe8iYYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="272136683"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.90])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2026 05:48:50 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Marcel Hamer <marcel@solidxs.se>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>, Vinod
- Govindapillai <vinod.govindapillai@intel.com>
-Cc: Marcel Hamer <marcel@solidxs.se>, stable@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/irq: crtc guard inside interrupt handlers
-In-Reply-To: <20260925115511.1655213-1-marcel@solidxs.se>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260925115511.1655213-1-marcel@solidxs.se>
-Date: Fri, 25 Sep 2026 15:48:48 +0300
-Message-ID: <5bd47464aaf0f7eeb6b993ca1124d2f2858ee857@intel.com>
+X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="274497205"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.27])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2026 05:53:54 -0700
+Date: Fri, 25 Sep 2026 15:53:51 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Aniket Limaye <a-limaye@ti.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Nirujogi Pratap <pratap.nirujogi@amd.com>, Bin Du <bin.du@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, vigneshr@ti.com, nm@ti.com,
+ u-kumar1@ti.com, lianfeng.ouyang@starfivetech.com,
+ Ritwick.Sharma@arm.com, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v3 0/3] i2c: designware: Add TI TDA54 I2C support
+Message-ID: <arZu33UFU2b7kVRR@ashevche-desk.local>
+References: <20260925-tda54-upstream-i2c-v3-0-544d74e992ff@ti.com>
+ <arZB2s3HOBgSRuE4@ashevche-desk.local>
+ <e0f113ea-92cc-4e82-85ae-f61814c230c7@ti.com>
+ <arZIqk6wgV_LF0rg@ashevche-desk.local>
+ <386f23e4-d573-45f7-9e2f-fe47015a4761@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <386f23e4-d573-45f7-9e2f-fe47015a4761@ti.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,113 +87,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 25 Sep 2026, Marcel Hamer <marcel@solidxs.se> wrote:
-> Interrupts are enabled before the crtc datastructures are initialized.
-> As intel_crtc_for_pipe() is called inside interrupt handlers and can
-> return a NULL value, this can in rare cases lead to the following NULL
-> pointer dereference and panic:
->
-> RIP: 0010:handle_plane_fault+0x19/0xc0 [i915]
-> Code: 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f
-> 1f 44 00 00 55 48 89 e5 41 55 41 54 49 89 fc 53 48 83 ec 18 <48> 8b 1f
-> 65 4c 8b 2d 24 90 31 ef 4c 89 6d e0 41 89 f5 48 85 db 74
-> RSP:
-> 0018:ffff92b180003e50 EFLAGS: 00010086
-> RAX: ffffffffc0911fc0 RBX: ffffffffc06e0b90 RCX: 0000000000000005
-> RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
-> RBP: ffff92b180003e80 R08: 0000000000000005 R09: 000000010517d5f6
-> R10: 0000008000000041 R11: 000000010517d5f6 R12: 0000000000000000
-> R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
-> FS:  00007f72f5b72780(0000) GS:ffff8bbdcbfe9000(0000) knlGS:0000000000000000
-> CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> CR2: 0000000000000000 CR3: 0000000102f2c000 CR4: 00000000003506f0
-> Kernel panic - not syncing: Fatal exception in interrupt
-> Kernel Offset: 0x2c800000 from 0xffffffff81000000 (relocation range:
-> 0xffffffff80000000-0xffffffffbfffffff)
-> Call Trace:
->  <IRQ>
->  intel_pipe_fault_irq_handler+0x42/0xc0 [i915]
->  gen8_de_irq_handler+0x1ed/0xdf0 [i915]
->  gen8_irq_handler+0xb5/0xd0 [i915]
->  __handle_irq_event_percpu+0x6e/0x230
->  handle_irq_event+0x3a/0x90
->  handle_edge_irq+0xd1/0x1a0
->  __common_interrupt+0x48/0xe0
->  ? generic_smp_call_function_single_interrupt+0x17/0x20
->  common_interrupt+0x84/0xa0
->
-> Fixes: f13011a79999 ("drm/i915: Pimp display fault reporting")
-> Fixes: 138d2bda4eaf ("drm/i915/display: pass display to intel_crtc_for_pipe()")
-> Cc: stable@vger.kernel.org # 6.18.x
-> Signed-off-by: Marcel Hamer <marcel@solidxs.se>
+On Fri, Sep 25, 2026 at 04:46:39PM +0530, Aniket Limaye wrote:
+> On 25/09/26 15:40, Andy Shevchenko wrote:
+> > On Fri, Sep 25, 2026 at 03:29:27PM +0530, Aniket Limaye wrote:
+> > > On 25/09/26 15:11, Andy Shevchenko wrote:
+> > > > On Fri, Sep 25, 2026 at 12:26:27PM +0530, Aniket Limaye wrote:
 
-Please file a bug as described at [1], attaching full dmesg reproducing
-the problem. I don't think we're seeing this in our CI, so would be good
-to understand the root cause better.
+...
 
-BR,
-Jani.
+> > > > Still doesn't look good. The current register layout may be left as is. What
+> > > > you need is translate it in the respective regmap callbacks in case we are
+> > > > enumerated on the different IP. Also possible to have a different regmap
+> > > > config for the different HW where you translate them only in one place.
+> > > Is it confusing to keep using existing offsets in regmap_read/write() call
+> > > sites for TDA54, and let the regmap silently handle the translation?
+> > > 
+> > > Given that we do *not* have any new registers in use on the tda54 version
+> > > that were not there in the original one, I guess it works... will send a v4
+> > > as per your suggestion.
+> > Depends on the mapping. Your series also forgot to provide the differences
+> > Check this as an example: e539f435cb9c ("spi: dw: Add support for DesignWare DWC_ssi").
+> > 
+> Ahh sorry about that, will remember to add a clean mapping in cover letter
+> of next version.
+> 
+> For now here are the structural differences:
+> 
+> 1.  Reg offsets  Existing        New TDA54
+> 
+>     [DW_IC_CON]                     0x00           0x2c
+>     [DW_IC_TAR]                     0x04            0x30
+>     [DW_IC_SAR]                     0x08            0x34
+>     [DW_IC_DATA_CMD]                0x10            0x80
+>     [DW_IC_SS_SCL_HCNT]             0x14            0x4c
+>     [DW_IC_SS_SCL_LCNT]             0x18            0x50
+>     [DW_IC_FS_SCL_HCNT]             0x1c            0x4c  /* same as SS */
+>     [DW_IC_FS_SCL_LCNT]             0x20            0x50  /* same as SS */
+>     [DW_IC_HS_SCL_HCNT]             0x24         0x54
+>     [DW_IC_HS_SCL_LCNT]             0x28            0x58
+>     [DW_IC_INTR_STAT]               0x2c            0xc0
+>     [DW_IC_INTR_MASK]               0x30            0xc4
+>     [DW_IC_RAW_INTR_STAT]           0x34            0xc8
+>     [DW_IC_RX_TL]                   0x38            0x84
+>     [DW_IC_TX_TL]                   0x3c            0x88
+>     [DW_IC_CLR_INTR]                0x40            0xcc
+>     [DW_IC_CLR_RX_UNDER]            0x44            NA
+>     [DW_IC_CLR_RX_OVER]             0x48            NA
+>     [DW_IC_CLR_TX_OVER]             0x4c            NA
+>     [DW_IC_CLR_RD_REQ]              0x50            NA
+>     [DW_IC_CLR_TX_ABRT]             0x54            NA
+>     [DW_IC_CLR_RX_DONE]             0x58            NA
+>     [DW_IC_CLR_ACTIVITY]            0x5c            NA
+>     [DW_IC_CLR_STOP_DET]            0x60            NA
+>     [DW_IC_CLR_START_DET]           0x64            NA
+>     [DW_IC_CLR_GEN_CALL]            0x68            NA
+>     [DW_IC_ENABLE]                  0x6c            0x04
+>     [DW_IC_STATUS]                  0x70            0xd8
+>     [DW_IC_TXFLR]                   0x74            0xdc
+>     [DW_IC_RXFLR]                   0x78            0xe0
+>     [DW_IC_SDA_HOLD]                0x7c            0x5c
+>     [DW_IC_TX_ABRT_SOURCE]          0x80            0xd4
+>     [DW_IC_ENABLE_STATUS]           0x9c            0xd0
+>     [DW_IC_CLR_RESTART_DET]         0xa8            NA
+>     [DW_IC_SMBUS_INTR_STAT]         0xc8            NA
+>     [DW_IC_SMBUS_INTR_MASK]         0xcc            NA
+>     [DW_IC_CLR_SMBUS_INTR]          0xd4            NA
+>     [DW_IC_COMP_PARAM_1]            0xf4            NA
+>     [DW_IC_COMP_VERSION]            0xf8            0x100
+>     [DW_IC_COMP_TYPE]               0xfc            0x104
+> 
+> 2. DW_IC_CON bitfields:
+> 
+>     DW_IC_CON_MASTER BIT(0)                  BIT(0)
+>     DW_IC_CON_SPEED_STD                 (1 << 1)       (1 << 4)
+>     DW_IC_CON_SPEED_FAST                (2 << 1)       (2 << 4)
+>     DW_IC_CON_SPEED_HIGH                (3 << 1)       (3 << 4)
+>     DW_IC_CON_SPEED_MASK                GENMASK(2, 1)  GENMASK(5, 4)
+>     DW_IC_CON_10BITADDR_SLAVE           BIT(3) BIT(8)
+>     DW_IC_CON_10BITADDR_MASTER          BIT(4) BIT(9)
+>     DW_IC_CON_RESTART_EN                BIT(5) NA
+>     DW_IC_CON_SLAVE_DISABLE             BIT(6) NA
+>     DW_IC_CON_STOP_DET_IFADDRESSED      BIT(7) BIT(10)
+>     DW_IC_CON_TX_EMPTY_CTRL             BIT(8) BIT(11)
+>     DW_IC_CON_RX_FIFO_FULL_HLD_CTRL     BIT(9) BIT(12)
+>     DW_IC_CON_BUS_CLEAR_CTRL            BIT(11)  BIT(14)
 
+Thanks for providing this mapping!
 
-[1] https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+> 3. To clear INTR,  Read DW_IC_CLR_* reg    Write bit to DW_IC_CLR_INTR
+> 
+> As you can see, it's an entirely different mapping, which is why I had 2
+> independent enum -> reg offset maps instead of offset -> offset translation.
+> Similarly, selecting a CON register bitfield layout too.
+> 
+> Let me know what you would prefer based on this...
 
+This clears a bit the whole picture and what I would like to say is that better
+to have the separate driver for it. On top of completely reworked RTL I believe
+you won't need tons of hacks and workarounds that are applied during all these
+years against the old IP.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display_irq.c | 16 ++++++++++++++--
->  1 file changed, 14 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index a59b75830bd1..4ffc8789c9f3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -131,6 +131,9 @@ static void intel_pipe_fault_irq_handler(struct intel_display *display,
->  	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
->  	const struct pipe_fault_handler *handler;
->  
-> +	if (!crtc)
-> +		return;
-> +
->  	for (handler = handlers; handler && handler->fault; handler++) {
->  		if ((fault_errors & handler->fault) == 0)
->  			continue;
-> @@ -148,7 +151,8 @@ intel_handle_vblank(struct intel_display *display, enum pipe pipe)
->  {
->  	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
->  
-> -	drm_crtc_handle_vblank(&crtc->base);
-> +	if (crtc)
-> +		drm_crtc_handle_vblank(&crtc->base);
->  }
->  
->  /**
-> @@ -425,9 +429,14 @@ static void display_pipe_crc_irq_handler(struct intel_display *display,
->  					 u32 crc4)
->  {
->  	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
-> -	struct intel_pipe_crc *pipe_crc = &crtc->pipe_crc;
-> +	struct intel_pipe_crc *pipe_crc;
->  	u32 crcs[5] = { crc0, crc1, crc2, crc3, crc4 };
->  
-> +	if (!crtc)
-> +		return;
-> +
-> +	pipe_crc = &crtc->pipe_crc;
-> +
->  	trace_intel_pipe_crc(crtc, crcs);
->  
->  	spin_lock(&pipe_crc->lock);
-> @@ -465,6 +474,9 @@ static void flip_done_handler(struct intel_display *display,
->  {
->  	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
->  
-> +	if (!crtc)
-> +		return;
-> +
->  	spin_lock(&display->drm->event_lock);
->  
->  	if (crtc->flip_done_event) {
->
-> base-commit: f49a343b305c0b6c19a3b50c0bbf10bcd0e2e8fd
+TL;DR: Make a new clean and simple driver, which is hack-less and done properly
+(using the all modern APIs and frameworks in the kernel).
 
 -- 
-Jani Nikula, Intel
+With Best Regards,
+Andy Shevchenko
+
+
