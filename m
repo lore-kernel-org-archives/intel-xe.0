@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D043C98306
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 06:34:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C833C9830D
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 06:38:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 428AC10EA01;
-	Fri, 25 Sep 2026 06:34:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F40810F864;
+	Fri, 25 Sep 2026 06:38:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dgHMoQbn";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RFTfcxyV";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D934E10EA01
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 06:34:12 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C559810F864
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 06:38:46 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id A8F06415C8;
- Fri, 25 Sep 2026 06:34:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61D2D1F000FF;
- Fri, 25 Sep 2026 06:34:12 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id C133E6022E;
+ Fri, 25 Sep 2026 06:38:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5830C1F000FF;
+ Fri, 25 Sep 2026 06:38:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790318052;
- bh=RIWyrutDcsmTnqulGi7F4O3U1nbxuz4bKghnFLSOsWg=;
+ s=k20260515; t=1790318325;
+ bh=DzaQnl3r5DBQJuwlFltB/rGMTEMF3GSYIkYjC+Egv1I=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=dgHMoQbnvhjMS+CyvrBOeqrqg/cHvo2nQLIKFlScVYaF8a/vMDLjSWAebc883IAA2
- Uh13WcqmXPFWRLfq+tscHwJH+X8OWDGpk+Vz9y5P9fVozUPMHZGwlRJCu7CSo1C63r
- PeyH63rf4x5EDoOo0u+A1NRYdB83mZI6/MotULLryUlynxaRc/ZnxLdcPfRP5mgNL8
- WBVhveGH0NfT/mcGJZm754PuWtwQ9wURqaB3tuHFbW+JTb+thIoK/VXm1ruN8+9C5W
- 4tsCLtmxnTCxS3dpPtQJ7BZZg2AxSbgBUGM/Xvx/MQCaykyppIPQuXFFaNL26wdTOB
- ywOGVWLPhpZLA==
+ b=RFTfcxyVIUJHDJgovkMVt2nUV6MOEJKJdvBYkE6+w1M7pF5musGAyJoUxSCYHXTNA
+ 46oVREWs65Xdx7JfgbUTT64Tu0MesXkzDzjuOGixvgPrBbj0T7b3uw5Y96uFO3ZftA
+ Rs6u1B00SPV5Do5fnrABOeYaUInKj5GWIbBFFD8Psvuohp3fr9TxtrQrH+mCSCIp5n
+ 1twknEaFtoxB6VLbyaVho6O8wmXyO0OT3fiebzYA23arFX3MoUJvGYcEDdHmN4IGXo
+ +2nfDdKvYbHlKjHWblQ7sXfDQHlmW72rSCOCzCZQk/QTDTXyPY/g+nv+M6lM/J3Axf
+ fqGydyw84rsYg==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 19/24] drm/xe: Add ULLS migration job support to
- migration layer
+Subject: Re: [PATCH v7 20/24] drm/xe: Add ULLS migration job support to ring
+ ops
 To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260925045320.1325860-20-matthew.brost@intel.com>
+In-Reply-To: <20260925045320.1325860-21-matthew.brost@intel.com>
 References: <20260925045320.1325860-1-matthew.brost@intel.com>
- <20260925045320.1325860-20-matthew.brost@intel.com>
+ <20260925045320.1325860-21-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 25 Sep 2026 06:34:11 +0000
-Message-Id: <20260925063412.61D2D1F000FF@smtp.kernel.org>
+Date: Fri, 25 Sep 2026 06:38:44 +0000
+Message-Id: <20260925063845.5830C1F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,77 +59,101 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] drm/xe: Missing ULLS_EXIT in teardown leaves hardware parked on fr=
-eed memory
+- [High] drm/xe: GPU hang from CS prefetching uninitialized ULLS jobs
 --
 
-commit 81f7dc64bc0d604133ac8c3a1f3ec0fd0a9dd8a1
+commit ca5d0374fab1065ae65164d64f6d5510acadd964
 Author: Matthew Brost <matthew.brost@intel.com>
 
-drm/xe: Add ULLS migration job support to migration layer
+drm/xe: Add ULLS migration job support to ring ops
 
-Add function to enter ULLS mode for migration job and delayed worker to
-exit (power saving). ULLS mode expected to entered upon page fault or
-SVM prefetch. ULLS mode exit delay is currently set to 5ms.
+Add preamble and postamble for ULLS migrations jobs. Preamble clears
+current semaphore for reuse. Postamble waits on next semaphore which is
+set upon next job submission, then advances the ring tail over that job
+with an LRI to RING_TAIL, so submitting it costs the CPU nothing beyond
+signalling the semaphore.
 
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
-ate.c
-> index 471ae5741836e..d7d13a25cdb91 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_rin=
+g_ops.c
+> index 46ab1f0f35648..9f462bfecb831 100644
+> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
+> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
 [ ... ]
-> @@ -95,9 +105,30 @@ struct xe_migrate {
->   */
->  #define MAX_PTE_PER_SDI 0x1FEU
-> =20
-> +static bool xe_migrate_ulls_enabled(struct xe_migrate *m)
+> +/* Publish the next job's tail, then park the engine on its semaphore */
+> +static int emit_ulls_postamble(struct xe_gt *gt, struct xe_lrc *lrc, u32=
+ *dw,
+> +			       int i, u32 seqno, u32 head)
 > +{
-> +	lockdep_assert_held(&m->job_mutex);
-> +	return m->ulls.enabled;
-> +}
+> +	i =3D emit_ulls_ring_tail(gt, lrc, dw, i, head);
 > +
-> +static void xe_migrate_ulls_toggle_enable(struct xe_migrate *m, bool ena=
-bled)
-> +{
-> +	lockdep_assert_held(&m->job_mutex);
-> +	m->ulls.enabled =3D enabled;
-> +}
-> +
->  static void xe_migrate_fini(void *arg)
->  {
->  	struct xe_migrate *m =3D arg;
-> +	struct xe_device *xe =3D tile_to_xe(m->tile);
-> +
-> +	disable_delayed_work_sync(&m->ulls.exit_work);
-> +	scoped_guard(mutex, &m->job_mutex) {
-> +		if (xe_migrate_ulls_enabled(m)) {
-> +			xe_pm_runtime_put(xe);
-> +			xe_migrate_ulls_toggle_enable(m, false);
+> +	dw[i++] =3D MI_SEMAPHORE_WAIT |
+> +		MI_SEMW_GGTT |
+> +		MI_SEMW_POLL |
+> +		MI_SEMW_COMPARE(SAD_EQ_SDD);
+> +	dw[i++] =3D LRC_MIGRATION_ULLS_SEMAPHORE_SIGNAL;
 
 [Severity: High]
-Does this missing ULLS_EXIT in the teardown sequence leave the hardware
-parked on freed memory?
+Does updating the ring tail to the next job's boundary before blocking on
+the semaphore open a window where the Command Streamer (CS) prefetcher can
+fetch uninitialized memory into its instruction cache?
 
-During driver unbind or probe failure in xe_migrate_fini(), if ULLS mode is
-currently active (for example, within 5ms of a recent migration job), the
-reserved hardware engine is actively spinning in a MI_SEMAPHORE_WAIT loop.
+When the CPU later writes the next job and signals the semaphore, the
+absence of an MMIO tail update means the CS cache might not be invalidated.
+Could this cause the CS to execute stale data and hang the GPU?
 
-This teardown path cancels exit_work and clears the ULLS enabled flag, but
-fails to push the ULLS_EXIT job or explicitly kill the queue. It then
-proceeds to call xe_exec_queue_put() and free the page tables. Because
-xe_exec_queue_kill() is never called, GuC is never instructed to preempt
-and deregister the context.
+[ ... ]
+> +/* Pad out to the fixed ULLS job size */
+> +static int emit_ulls_pad(struct xe_gt *gt, u32 *dw, int i)
+> +{
+> +	xe_gt_assert(gt, i <=3D ULLS_JOB_SIZE_DW);
+> +
+> +	while (i < ULLS_JOB_SIZE_DW)
+> +		dw[i++] =3D MI_NOOP;
+> +
+> +	return i;
+> +}
 
-Can this regression leave the hardware engine actively executing from the
-ring buffer memory while the host frees it, potentially leading to IOMMU CAT
-faults, GPU hangs, or host memory corruption?
+[Severity: High]
+If a ULLS job reaches the maximum size of ULLS_JOB_SIZE_DW (which is 48),
+this loop will provide 0 NOOPs of padding.
 
-> +		}
-> +	}
-> =20
->  	xe_vm_lock(m->q->vm, false);
->  	xe_bo_unpin(m->pt_bo);
+Will this fail to buffer the prefetcher from the next job's uninitialized
+memory, exacerbating the prefetching issue mentioned above?
+
+[ ... ]
+> diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/=
+xe_ring_ops_types.h
+> index 52ff96bc41004..ea4af321dd7c4 100644
+> --- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
+> +++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+[ ... ]
+> +/*
+> + * ULLS migration jobs advance the ring tail from within the ring itself=
+, so a
+> + * job has to know where its successor will end before that successor ha=
+s been
+> + * emitted. Every ULLS job is therefore padded to a fixed size, letting =
+the
+> + * next tail be derived arithmetically.
+> + *
+> + * Sized for the largest such job, emitted by emit_migration_job_gen12():
+> + * preamble (4), copy timestamp (8, its size on an SRIOV VF), start seqno
+> + * store (4), arbitration off (1), batch buffer starts (2 * 3), pre-pars=
+er
+> + * bracketed flush invalidate (6), seqno flush (4), user interrupt (3) a=
+nd
+> + * postamble (7 + 5).
+> + */
+> +#define ULLS_JOB_SIZE_DW 48
+> +#define ULLS_JOB_SIZE_BYTES (ULLS_JOB_SIZE_DW * 4)
+
+[Severity: High]
+Since this maximum size is exactly equal to the maximal job length, it
+guarantees no NOOP padding is appended for the largest jobs.=20
+
+Should this maximum size account for additional NOOPs to safely pad the
+CS prefetch window?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260925045320.1325=
-860-1-matthew.brost@intel.com?part=3D19
+860-1-matthew.brost@intel.com?part=3D20
