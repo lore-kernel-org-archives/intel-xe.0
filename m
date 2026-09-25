@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F76CC9830D
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 04:53:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C08DC98306
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 04:53:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6575510F825;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AB4310E594;
 	Fri, 25 Sep 2026 04:53:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qw6sZOt6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mn5bysl3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1D4D10E44C
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 04:53:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76BA410F825
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 04:53:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1790312011; x=1821848011;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=px6ynpPMjNT0y5VOHVUdEiPj/pGJ5jNbWRhXzl0G4PA=;
- b=Qw6sZOt6S/CfS34KSSezjGgG6PfCFZOKMuzjSI73dJ2z7wbJiQ/bbc7a
- x+D5SSMNqECbjrYpkmQ1IvfByFq96/oFbuy7HmUOmL0/vNWC8CJt0DKKD
- ktVjh/PfM2KvPgRyeRdy2toS03Wsfpj9hjQ1TDY4YYFA6Wb0NV7WIpeNc
- R7nZpyyFbmWMnyMzRHxlGB9yzcWD2sf4UvAWgVjhHjeWU7jRioJHPl4CR
- n1FCNDL3QtKObmYpEDYm1ofgRwvYaA/PKTb+YkKEoU4+CZA7UgJoYJDTm
- HMmo3vv7JCmhxQdKhaTBbONFBoxLGYjF62j1nn6qvB5fxsCZFmlRp5rjb w==;
-X-CSE-ConnectionGUID: B+ly9ppzSOmZTJucqRaRlw==
-X-CSE-MsgGUID: 0jIUVdZ+TKSX5iv+QvEv2w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="90156217"
-X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="90156217"
+ bh=t0CgUBmt2iU9OYboLf+JZR4pGOi+drGSPW/VN/syDZU=;
+ b=mn5bysl3S1elshsOIoel/nACLC40CvkazWd9OcvOg1+6Ie7VsVBK00lf
+ lps6ojPQp2vl+kkwU8J5oX/qpFJTClJb6330VlfZZsDkVEr8wjIkxzzat
+ AInrHubQ0/SsHXeLCKSitZjn83u5JhhH9llLdWB7dzudQLXyINJATxSlD
+ wyysKxUNwevxe/PMMQCIvXcA8pieC1G3Ptkj33A6WCm/YmnIal/+cw7Dw
+ JtUsis5/m1jLDTBmYzdtMEGLIPmPfpHtAFdYVFd/sB12ZSOomeyp1Rwac
+ UMMMYT+IvF5IIMAbssYMKUM5euu0YzdIPPSk9oaN4LGttoDLoIYbCE8RM Q==;
+X-CSE-ConnectionGUID: MI8Q59xcTi64PiW6K+rkUQ==
+X-CSE-MsgGUID: 7uCsPrFeREicb+Tzi87t4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11915"; a="90156218"
+X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="90156218"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Sep 2026 21:53:27 -0700
-X-CSE-ConnectionGUID: gmCzx2NbTju+zv81AUA0Ig==
-X-CSE-MsgGUID: MG4lmc6fQLevSxEbp3pZUQ==
+X-CSE-ConnectionGUID: dmQ7RCTsQnSRrTi6YZkwhg==
+X-CSE-MsgGUID: Ea3HK0f9ToOtU1bjrRF+qw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="312155505"
+X-IronPort-AV: E=Sophos;i="6.27,121,1787036400"; d="scan'208";a="312155509"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Sep 2026 21:53:26 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH v7 04/24] drm/xe: Decouple exec queue idle check from LRC
-Date: Thu, 24 Sep 2026 21:53:00 -0700
-Message-Id: <20260925045320.1325860-5-matthew.brost@intel.com>
+Subject: [PATCH v7 05/24] drm/xe: Add job count to GuC exec queue snapshot
+Date: Thu, 24 Sep 2026 21:53:01 -0700
+Message-Id: <20260925045320.1325860-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260925045320.1325860-1-matthew.brost@intel.com>
 References: <20260925045320.1325860-1-matthew.brost@intel.com>
@@ -66,43 +66,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already maintain a job count for each exec queue, so simplify the idle
-check to rely on the job count rather than the LRC state. This decouples
-exec queues from LRC-based backends and avoids unnecessarily coupling idle
-detection to backend-specific implementation details.
+Add the job count to the GuC exec queue snapshot, as this is useful
+debug information.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Stuart Summers <stuart.summers@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c | 15 +--------------
- 1 file changed, 1 insertion(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index e63559a2f582..7bbb31431900 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -1580,20 +1580,7 @@ bool xe_exec_queue_is_lr(struct xe_exec_queue *q)
-  */
- bool xe_exec_queue_is_idle(struct xe_exec_queue *q)
- {
--	if (xe_exec_queue_is_parallel(q)) {
--		int i;
--
--		for (i = 0; i < q->width; ++i) {
--			if (xe_lrc_seqno(q->lrc[i]) !=
--			    q->lrc[i]->fence_ctx.next_seqno - 1)
--				return false;
--		}
--
--		return true;
--	}
--
--	return xe_lrc_seqno(q->lrc[0]) ==
--		q->lrc[0]->fence_ctx.next_seqno - 1;
-+	return !atomic_read(&q->job_cnt);
- }
- 
- /**
+---
+v7:
+ - s/%d/%u (Sashiko)
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 2 ++
+ drivers/gpu/drm/xe/xe_guc_submit_types.h | 2 ++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index f3ba8abfc228..4bd1ead57efa 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -3686,6 +3686,7 @@ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q)
+ 	snapshot->logical_mask = q->logical_mask;
+ 	snapshot->width = q->width;
+ 	snapshot->refcount = kref_read(&q->refcount);
++	snapshot->jobcount = atomic_read(&q->job_cnt);
+ 	snapshot->sched_timeout = sched->base.timeout;
+ 	snapshot->sched_props.timeslice_us = q->sched_props.timeslice_us;
+ 	snapshot->sched_props.preempt_timeout_us =
+@@ -3758,6 +3759,7 @@ xe_guc_exec_queue_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
+ 	drm_printf(p, "\tLogical mask: 0x%x\n", snapshot->logical_mask);
+ 	drm_printf(p, "\tWidth: %d\n", snapshot->width);
+ 	drm_printf(p, "\tRef: %d\n", snapshot->refcount);
++	drm_printf(p, "\tJob count: %u\n", snapshot->jobcount);
+ 	drm_printf(p, "\tTimeout: %ld (ms)\n", snapshot->sched_timeout);
+ 	drm_printf(p, "\tTimeslice: %u (us)\n",
+ 		   snapshot->sched_props.timeslice_us);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit_types.h b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+index 7824f61b1290..8271702e692e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit_types.h
+@@ -77,6 +77,8 @@ struct xe_guc_submit_exec_queue_snapshot {
+ 	u16 width;
+ 	/** @refcount: ref count of this exec queue */
+ 	u32 refcount;
++	/** @jobcount: job count of this exec queue */
++	u32 jobcount;
+ 	/**
+ 	 * @sched_timeout: the time after which a job is removed from the
+ 	 * scheduler.
 -- 
 2.34.1
 
