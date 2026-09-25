@@ -4,55 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B55CCC98321
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 17:38:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 848CDC98321
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 17:42:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77DAE10FBC4;
-	Fri, 25 Sep 2026 17:38:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FEEF10E0CD;
+	Fri, 25 Sep 2026 17:42:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZEaGtu0j";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="N/Ef3Ev7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDDF210FBE1;
- Fri, 25 Sep 2026 17:38:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790357906; x=1821893906;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=THhOtz9FxqmQWS1aQMYVlQBce7fjVJgBWokld1ecJ1U=;
- b=ZEaGtu0jqt/nEb4QqlZZs1H2vl1Byfm0NMJNeM1bsvTkyc9nzXPKIhPx
- NYdtvX0QTO4b+tMh7iw/yY0eB++9UhRVn3OCI5tZCQ1J7VywnCOuGfFnC
- P5g9qqBN7k9sXqNDLv+7Bb2IusyOpb3tsQpSuvINrrX6UxOqZcTGvWydy
- YFnXG/zq36QPf/QWKjcJccnSWwL2t0oDOyXNi1VBB3ehdrLBZuPGTalmq
- pcMMSABXdcIKl5LrzTb+E+zyD7t6TAHkqs1icWRslKN1sTTux1aPyhjMh
- Z/V9b0ufRbrL5tYElF9OonpjV71psizOCMqjiT3jCX6ZFLWj8gRAZBzK3 w==;
-X-CSE-ConnectionGUID: 6MLbaqXORX2UazdAw6Msrg==
-X-CSE-MsgGUID: Y5kGOm7NSOmBfRA+kBKURQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11916"; a="116677975"
-X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="116677975"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2026 10:38:26 -0700
-X-CSE-ConnectionGUID: 4VEdwJSWSGqHZdbr6HK1eQ==
-X-CSE-MsgGUID: 8/5rllqQR/ib6nqoenKc5Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,122,1787036400"; d="scan'208";a="270874902"
-Received: from chu13-desk.fm.intel.com ([10.80.209.189])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2026 10:38:25 -0700
-From: Austin Hu <austin.hu@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, maarten.lankhorst@linux.intel.com,
- vinod.govindapillai@intel.com, huchao426@gmail.com
-Subject: [PATCH v4 3/3] drm/i915/fbc: nuke CFB if Plane setting (except for
- surf addr) changes
-Date: Fri, 25 Sep 2026 10:36:58 -0700
-Message-Id: <20260925173658.1042048-4-austin.hu@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260925173658.1042048-1-austin.hu@intel.com>
-References: <20260925173658.1042048-1-austin.hu@intel.com>
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47C4710E0CD
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 17:42:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1790358123;
+ bh=vaL5BOGSj7gB9N7R1lZNUEU/6urjULbFubi5fjMUIRc=;
+ h=From:To:Cc:Subject:Date:From;
+ b=N/Ef3Ev7CmTe8TQvu1OJGXaQt0uIz1t/RG25cCJSmWq5kYZgQWNo0AsM4SU7s3wzC
+ lluyD2MqJX3v+YjKQzv6mswV6aHGk2pApsQ6wqb286o7u6nlFuY5vp0z7KDRUOuBcm
+ d7yus7QTVAXgK1iqsR8XQWuog+12ZgIYlvfkql9zdlozxynnIBqw/SCZaShBrnf2tj
+ 5J6be1AQHNDFXbMMXlsSj3mu3ZQ6dVgG72b51WpAoAb7kk5ejpQIIw3GeYct861g7+
+ R5Z9OWZL4Bd0iAvcCNshcA+S1zXVDGod1wmR4/mcUiw8cRYo/1yBujL3qdhFQDxW+O
+ PDKvK76lOt2Mw==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <dev@lankhorst.se>
+Subject: [CI ONLY] drm/xe: Convert job preparation in 2 stages
+Date: Fri, 25 Sep 2026 19:42:11 +0200
+Message-ID: <20260925174210.323471-2-dev@lankhorst.se>
+X-Mailer: git-send-email 2.55.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,127 +48,345 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When FBC Dirty Rectangle mode is enabled, any non-PLANE_SURF register
-update requires fetching the full plane frame buffer from memory to
-re-compress and update the CFB in stolen memory.
+Instead of writing the entire job at the time of emission, prepare it in
+advance.
 
-Check plane state attributes during atomic commits and force a full
-CFB nuke if any setting other than the surface address changes.
+This allows us to calculate the size before we submit, in preparation of
+allowing more jobs to run simultaneously.
 
-v2: Address reviewer feedback to reuse intel_fbc_can_flip_nuke().
-
-v3: Address reviewer feedback not to combine intel_fbc_can_flip_nuke()
-    movement and changes.
-
-Signed-off-by: Austin Hu <austin.hu@intel.com>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 65 ++++++++++++++++++++++--
- 1 file changed, 61 insertions(+), 4 deletions(-)
+DO NOT REVIEW, this is sent as a patch in a 2-part series, but I'm testing
+in advance if test failures still occur, whether they originate from this
+patch the second patch.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 3915dea9edb1..0d3b25e7a9fc 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1510,6 +1510,7 @@ static bool intel_fbc_can_flip_nuke(struct intel_atomic_state *state,
- 				    struct intel_crtc *crtc,
- 				    struct intel_plane *plane)
- {
-+	struct intel_display *display = to_intel_display(state);
- 	const struct intel_crtc_state *new_crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	const struct intel_plane_state *old_plane_state =
-@@ -1548,14 +1549,63 @@ static bool intel_fbc_can_flip_nuke(struct intel_atomic_state *state,
- 	    intel_fbc_override_cfb_stride(new_plane_state))
- 		return false;
- 
-+	if (!HAS_FBC_DIRTY_RECT(display))
-+		return true;
-+
-+	/*
-+	 * From BSpec about "FBC Dirty Rectangle", when Dirty Rectangle mode is
-+	 * active, partial updates only apply to surface address changes. Any other
-+	 * plane state modification requires Plane to fetch full-plane pixel data
-+	 * from memory to re-compress and update the entire CFB in stolen memory.
-+	 * Once fully re-compressed, subsequent atomic commits go ahead with FBC
-+	 * dirty rectangle updates for smooth visual updates.
-+	 *
-+	 * So check other Plane attribute changed except for its surface address by
-+	 * referring to intel_async_flip_check_hw() which also checks async flip.
-+	 */
-+
-+	/* Includes pixel_blend_mode, color_encoding & color_range checking. */
-+	if (old_plane_state->color_ctl != new_plane_state->color_ctl)
-+		return false;
-+
-+	if (!drm_rect_equals(&old_plane_state->uapi.src,
-+			     &new_plane_state->uapi.src) ||
-+	    !drm_rect_equals(&old_plane_state->uapi.dst,
-+			     &new_plane_state->uapi.dst))
-+		return false;
-+
-+	if (old_plane_state->view.color_plane[0].x !=
-+	    new_plane_state->view.color_plane[0].x ||
-+	    old_plane_state->view.color_plane[0].y !=
-+	    new_plane_state->view.color_plane[0].y)
-+		return false;
-+
-+	if (old_plane_state->hw.rotation != new_plane_state->hw.rotation)
-+		return false;
-+
-+	if (old_plane_state->hw.alpha != new_plane_state->hw.alpha)
-+		return false;
-+
-+	if (skl_plane_aux_dist(old_plane_state, 0) !=
-+	    skl_plane_aux_dist(new_plane_state, 0))
-+		return false;
-+
-+	if (old_plane_state->decrypt != new_plane_state->decrypt)
-+		return false;
-+
-+	if (old_plane_state->cus_ctl != new_plane_state->cus_ctl)
-+		return false;
-+
- 	return true;
+drivers/gpu/drm/xe/xe_ring_ops.c        | 150 ++++++++++++++----------
+ drivers/gpu/drm/xe/xe_ring_ops_types.h  |   3 +
+ drivers/gpu/drm/xe/xe_sched_job.c       |   4 +
+ drivers/gpu/drm/xe/xe_sched_job_types.h |   5 +
+ 4 files changed, 97 insertions(+), 65 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 3dd8cf4e21316..0b9f7018fabd2 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -330,15 +330,12 @@ static int emit_fake_watchdog(struct xe_lrc *lrc, u32 *dw, int i)
  }
  
- static void
--__intel_fbc_prepare_dirty_rect(const struct intel_plane_state *plane_state,
-+__intel_fbc_prepare_dirty_rect(struct intel_atomic_state *state,
-+			       const struct intel_plane_state *plane_state,
- 			       const struct intel_crtc_state *crtc_state)
+ /* for engines that don't require any special HW handling (no EUs, no aux inval, etc) */
+-static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				    u64 batch_addr, u32 *head, u32 seqno)
++static u32 __prepare_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc,
++				      u32 *dw, u64 batch_addr, u32 seqno)
  {
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct intel_display *display = to_intel_display(plane_state);
- 	struct intel_fbc *fbc = plane->fbc;
- 	struct drm_rect *fbc_dirty_rect = &fbc->state.dirty_rect;
-@@ -1573,7 +1623,15 @@ __intel_fbc_prepare_dirty_rect(const struct intel_plane_state *plane_state,
+-	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+-	u32 ppgtt_flag = get_ppgtt_flag(job);
++	u32 i = 0, ppgtt_flag = get_ppgtt_flag(job);
+ 	struct xe_gt *gt = job->q->gt;
+ 
+-	*head = lrc->ring.tail;
+-
+ 	if (job->ring_ops_force_reset)
+ 		i = emit_fake_watchdog(lrc, dw, i);
+ 
+@@ -372,7 +369,7 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
+ 
+ 	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
+ 
+-	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
++	return i * sizeof(*dw);
+ }
+ 
+ static bool has_aux_ccs(struct xe_device *xe)
+@@ -389,16 +386,13 @@ static bool has_aux_ccs(struct xe_device *xe)
+ 	return !xe->info.has_flat_ccs;
+ }
+ 
+-static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+-				   u64 batch_addr, u32 *head, u32 seqno)
++static u32 __prepare_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
++				   u32 *dw, u64 batch_addr, u32 seqno)
+ {
+-	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+-	u32 ppgtt_flag = get_ppgtt_flag(job);
++	u32 i = 0, ppgtt_flag = get_ppgtt_flag(job);
+ 	struct xe_gt *gt = job->q->gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 
+-	*head = lrc->ring.tail;
+-
+ 	if (job->ring_ops_force_reset)
+ 		i = emit_fake_watchdog(lrc, dw, i);
+ 
+@@ -437,23 +431,20 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 
+ 	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
+ 
+-	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
++	return i * sizeof(*dw);
+ }
+ 
+-static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+-					    struct xe_lrc *lrc,
+-					    u64 batch_addr, u32 *head,
+-					    u32 seqno)
++static u32 __prepare_job_gen12_render_compute(struct xe_sched_job *job,
++					      struct xe_lrc *lrc,
++					      u32 *dw, u64 batch_addr,
++					      u32 seqno)
+ {
+-	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+-	u32 ppgtt_flag = get_ppgtt_flag(job);
++	u32 i = 0, ppgtt_flag = get_ppgtt_flag(job);
+ 	struct xe_gt *gt = job->q->gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+ 	u32 mask_flags = 0;
+ 
+-	*head = lrc->ring.tail;
+-
+ 	if (job->ring_ops_force_reset)
+ 		i = emit_fake_watchdog(lrc, dw, i);
+ 
+@@ -501,19 +492,17 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 
+ 	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
+ 
+-	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
++	return i * sizeof(*dw);
+ }
+ 
+-static void emit_migration_job_gen12(struct xe_sched_job *job,
+-				     struct xe_lrc *lrc, u32 *head,
+-				     u32 seqno)
++static u32 prepare_migration_job_gen12(struct xe_sched_job *job,
++				       struct xe_lrc *lrc, u32 *dw,
++				       u32 seqno)
+ {
+ 	struct xe_gt *gt = job->q->gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	u32 saddr = xe_lrc_start_seqno_ggtt_addr(lrc);
+-	u32 dw[MAX_JOB_SIZE_DW], i = 0;
+-
+-	*head = lrc->ring.tail;
++	u32 i = 0;
+ 
+ 	xe_gt_assert(gt, !job->ring_ops_force_reset);
+ 
+@@ -539,94 +528,125 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
+ 
+ 	xe_gt_assert(job->q->gt, i <= MAX_JOB_SIZE_DW);
+ 
+-	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
++	return i * sizeof(*dw);
+ }
+ 
+-static void emit_job_gen12_gsc(struct xe_sched_job *job)
++static void prepare_job_gen12_gsc(struct xe_sched_job *job)
+ {
+ 	struct xe_gt *gt = job->q->gt;
+ 
+-	xe_gt_assert(gt, job->q->width <= 1); /* no parallel submission for GSCCS */
++	xe_gt_assert(gt, job->q->width == 1); /* no parallel submission for GSCCS */
+ 
+-	__emit_job_gen12_simple(job, job->q->lrc[0],
+-				job->ptrs[0].batch_addr,
+-				&job->ptrs[0].head,
+-				xe_sched_job_lrc_seqno(job));
++	job->ptrs[0].job_size =
++		__prepare_job_gen12_simple(job, job->q->lrc[0],
++					   job->ptrs[0].dw,
++					   job->ptrs[0].batch_addr,
++					   xe_sched_job_lrc_seqno(job));
+ }
+ 
+-static void emit_job_gen12_copy(struct xe_sched_job *job)
++static void prepare_job_gen12_copy(struct xe_sched_job *job)
+ {
+ 	int i;
+ 
+ 	if (xe_sched_job_is_migration(job->q)) {
+-		emit_migration_job_gen12(job, job->q->lrc[0],
+-					 &job->ptrs[0].head,
+-					 xe_sched_job_lrc_seqno(job));
++		xe_gt_assert(job->q->gt, job->q->width == 1);
++
++		job->ptrs[0].job_size =
++			prepare_migration_job_gen12(job, job->q->lrc[0],
++						    job->ptrs[0].dw,
++						    xe_sched_job_lrc_seqno(job));
  		return;
  	}
  
--	if (drm_rect_visible(damage)) {
-+	if (!intel_fbc_can_flip_nuke(state, crtc, plane)) {
-+		if (HAS_FBC_DIRTY_RECT(display))
-+			drm_dbg_kms(display->drm,
-+				    "[PLANE:%d:%s] Non surf addr changed for FBC DIRTY RECT\n",
-+				    plane->base.base.id, plane->base.name);
+-	for (i = 0; i < job->q->width; ++i)
+-		__emit_job_gen12_simple(job, job->q->lrc[i],
+-					job->ptrs[i].batch_addr,
+-					&job->ptrs[i].head,
+-					xe_sched_job_lrc_seqno(job));
++	for (i = 0; i < job->q->width; ++i) {
++		job->ptrs[i].job_size =
++			__prepare_job_gen12_simple(job, job->q->lrc[i],
++						   job->ptrs[i].dw,
++						   job->ptrs[i].batch_addr,
++						   xe_sched_job_lrc_seqno(job));
++		xe_gt_assert(job->q->gt, job->ptrs[i].job_size == job->ptrs[0].job_size);
++	}
+ }
+ 
+-static void emit_job_gen12_video(struct xe_sched_job *job)
++static void prepare_job_gen12_video(struct xe_sched_job *job)
+ {
+ 	int i;
+ 
+ 	/* FIXME: Not doing parallel handshake for now */
+-	for (i = 0; i < job->q->width; ++i)
+-		__emit_job_gen12_video(job, job->q->lrc[i],
+-				       job->ptrs[i].batch_addr,
+-				       &job->ptrs[i].head,
+-				       xe_sched_job_lrc_seqno(job));
++	for (i = 0; i < job->q->width; ++i) {
++		job->ptrs[i].job_size =
++			__prepare_job_gen12_video(job, job->q->lrc[i],
++						  job->ptrs[i].dw,
++						  job->ptrs[i].batch_addr,
++						  xe_sched_job_lrc_seqno(job));
++		xe_gt_assert(job->q->gt, job->ptrs[i].job_size == job->ptrs[0].job_size);
++	}
+ }
+ 
+-static void emit_job_gen12_render_compute(struct xe_sched_job *job)
++static void prepare_job_gen12_render_compute(struct xe_sched_job *job)
+ {
+ 	int i;
+ 
+-	for (i = 0; i < job->q->width; ++i)
+-		__emit_job_gen12_render_compute(job, job->q->lrc[i],
+-						job->ptrs[i].batch_addr,
+-						&job->ptrs[i].head,
+-						xe_sched_job_lrc_seqno(job));
++	for (i = 0; i < job->q->width; ++i) {
++		job->ptrs[i].job_size =
++			__prepare_job_gen12_render_compute(job, job->q->lrc[i],
++							   job->ptrs[i].dw,
++							   job->ptrs[i].batch_addr,
++							   xe_sched_job_lrc_seqno(job));
++		xe_gt_assert(job->q->gt, job->ptrs[i].job_size == job->ptrs[0].job_size);
++	}
++}
 +
-+		/* compress the entire region due to non PLANE_SURF updating. */
-+		*fbc_dirty_rect = DRM_RECT_INIT(0, y_offset, width, height);
-+	} else if (drm_rect_visible(damage)) {
- 		int y1, y2;
++static void emit_prepared_job(struct xe_sched_job *job)
++{
++	for (u32 i = 0; i < job->q->width; ++i) {
++		struct xe_lrc *lrc = job->q->lrc[i];
++
++		job->ptrs[i].head = lrc->ring.tail;
++		xe_lrc_write_ring(lrc, job->ptrs[i].dw, job->ptrs[i].job_size);
++	}
+ }
  
- 		if (plane_state->hw.rotation & DRM_MODE_ROTATE_180) {
-@@ -1633,8 +1691,7 @@ intel_fbc_prepare_dirty_rect(struct intel_atomic_state *state,
- 		mutex_lock(&fbc->lock);
+ static const struct xe_ring_ops ring_ops_gen12_gsc = {
+-	.emit_job = emit_job_gen12_gsc,
++	.prepare_job = prepare_job_gen12_gsc,
++	.emit_job = emit_prepared_job,
+ };
  
- 		if (fbc->state.plane == plane)
--			__intel_fbc_prepare_dirty_rect(plane_state,
--						       crtc_state);
-+			__intel_fbc_prepare_dirty_rect(state, plane_state, crtc_state);
+ static const struct xe_ring_ops ring_ops_gen12_copy = {
+-	.emit_job = emit_job_gen12_copy,
++	.prepare_job = prepare_job_gen12_copy,
++	.emit_job = emit_prepared_job,
+ };
  
- 		mutex_unlock(&fbc->lock);
- 	}
+ static const struct xe_ring_ops ring_ops_gen12_video_decode = {
+-	.emit_job = emit_job_gen12_video,
++	.prepare_job = prepare_job_gen12_video,
++	.emit_job = emit_prepared_job,
+ };
+ 
+ static const struct xe_ring_ops ring_ops_gen12_video_enhance = {
+-	.emit_job = emit_job_gen12_video,
++	.prepare_job = prepare_job_gen12_video,
++	.emit_job = emit_prepared_job,
+ };
+ 
+ static const struct xe_ring_ops ring_ops_gen12_render_compute = {
+-	.emit_job = emit_job_gen12_render_compute,
++	.prepare_job = prepare_job_gen12_render_compute,
++	.emit_job = emit_prepared_job,
+ };
+ 
+ static const struct xe_ring_ops auxccs_ring_ops_gen12_video_decode = {
+-	.emit_job = emit_job_gen12_video,
++	.prepare_job = prepare_job_gen12_video,
++	.emit_job = emit_prepared_job,
+ 	.emit_aux_table_inv = emit_aux_table_inv_video_decode,
+ };
+ 
+ static const struct xe_ring_ops auxccs_ring_ops_gen12_video_enhance = {
+-	.emit_job = emit_job_gen12_video,
++	.prepare_job = prepare_job_gen12_video,
++	.emit_job = emit_prepared_job,
+ 	.emit_aux_table_inv = emit_aux_table_inv_video_enhance,
+ };
+ 
+ static const struct xe_ring_ops auxccs_ring_ops_gen12_render_compute = {
+-	.emit_job = emit_job_gen12_render_compute,
++	.prepare_job = prepare_job_gen12_render_compute,
++	.emit_job = emit_prepared_job,
+ 	.emit_aux_table_inv = emit_aux_table_inv_render_compute,
+ };
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+index 52ff96bc41004..5774ef6f3a265 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
++++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+@@ -18,6 +18,9 @@ struct xe_sched_job;
+  * struct xe_ring_ops - Ring operations
+  */
+ struct xe_ring_ops {
++	/** @prepare_job: Write job to @job struct */
++	void (*prepare_job)(struct xe_sched_job *job);
++
+ 	/** @emit_job: Write job to ring */
+ 	void (*emit_job)(struct xe_sched_job *job);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+index a4fa00632a303..57ed6734d31d5 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.c
++++ b/drivers/gpu/drm/xe/xe_sched_job.c
+@@ -294,6 +294,10 @@ void xe_sched_job_push(struct xe_sched_job *job)
+ {
+ 	xe_sched_job_get(job);
+ 	trace_xe_sched_job_exec(job);
++
++	if (!job->restore_replay)
++		job->q->ring_ops->prepare_job(job);
++
+ 	drm_sched_entity_push_job(&job->drm);
+ 	xe_sched_job_put(job);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
+index 0490b1247a6e9..5d4ea9dd09912 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job_types.h
++++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
+@@ -9,6 +9,7 @@
+ #include <linux/kref.h>
+ 
+ #include <drm/gpu_scheduler.h>
++#include "xe_ring_ops_types.h"
+ 
+ struct xe_exec_queue;
+ struct dma_fence;
+@@ -29,6 +30,10 @@ struct xe_job_ptrs {
+ 	 * job was submitted
+ 	 */
+ 	u32 head;
++	/** @job_size: size of job in bytes */
++	u32 job_size;
++	/** @dw: the raw bytes to be added to lrc */
++	u32 dw[MAX_JOB_SIZE_DW];
+ };
+ 
+ /**
 -- 
-2.34.1
+2.55.0
 
