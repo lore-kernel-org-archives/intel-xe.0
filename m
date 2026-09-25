@@ -4,81 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2792C98333
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 19:10:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 775B4C9833A
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Sep 2026 19:10:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 455A710FC1E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EC4910FC24;
 	Fri, 25 Sep 2026 19:10:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CLKQ73CZ";
+	dkim=pass (2048-bit key; secure) header.d=solidxs.se header.i=@solidxs.se header.b="JSmaowXt";
 	dkim-atps=neutral
-Received: from mail-wm2-f12.google.com (mail-wm2-f12.google.com
- [74.125.225.140])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89A6610E649
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 16:50:01 +0000 (UTC)
-Received: by mail-wm2-f12.google.com with SMTP id
- 5b1f17b1804b1-49ccead2aecso341925e9.0
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Sep 2026 09:50:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1790268600; x=1790873400; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=G2IDmw9bTisJaYAh4s7sCq1aRiBz5dcPpXhx059abuQ=;
- b=CLKQ73CZiweMFfKrW9BooR36QwT4AI9J9tSTDodBtoIR2ECiTvkNpc4vm6CIctHhuD
- rQhzm7wJRxEcOFKyP4NPATl9U+RfWlQiGstjBA6XgrePoBsqngMLax6JlO3b83sTww1O
- 3chmoNsuiFvJcuvA57hyudCGxMH55yzovaaIkz/Sz3BDrrcyiEquavxhmmcpOqfei47b
- HmauFCj6xHIe4AadGEh4cf6yXwUKVlKBFW7Z+yS0FcbUy9IN1MUysficNyQfI0fb6uRS
- 2sII8eKILBKC/JiZaowRoWqrS4/iaL40pnC1wiTPGl0lhO05FnEq0RdwdnxDjuXI+cgL
- uUPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1790268600; x=1790873400;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to:content-type;
- bh=G2IDmw9bTisJaYAh4s7sCq1aRiBz5dcPpXhx059abuQ=;
- b=KO+/3mjUb4orEiz2klGrSBIgk8Z9PblhP0lA3siwDBKUCj6NTu7HUM03ImDKw+xoIi
- GKJUTBPGyKi7pLspIM1o9S6eJTGGjM53jsY0cytPqc2f11hWP7Z3OIIRY3B7LhDKbbGj
- b3R6fjR1Rb9DvYPr9Ph2q4khqU+DLYSd8kehoJeeRO3WD+SHEMvYM7IbdzAWpxwbKyit
- b4LuKp/5QyYOnERSI0FLhImjv7iu/xa2K4lCme2oM6KzmNjztA2jGi+mbHRpNr4f3DDJ
- 6d3mfi/JvkfmN7HVWcpxI9gUGbOAFaBHh2EKl/A9kdCdgXHSuTRLIrZXi6J18bAT0ukB
- Apvw==
-X-Forwarded-Encrypted: i=1;
- AKwUvBzmEw17UA6DE5M5sa96+UG+GBjCJATFEF52VyWrQBQWYcpcZMnHgBCBptgvNHW4HCTa9o70OqgKjg==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++kRUWE/ujH4VcpzWWHt0zhM7uFBwNPh5djI/bNth3AUENJObItA
- J1wAtXqsmRTCclbRvwgXZwUSv1zxqCVusgvRgKlazEif1jMKH+NsWZoC
-X-Gm-Gg: AYBFou2yp2WUlj/qayATmuY/7J6liw5+S/efCQ1PxnU2e6KjKfwM0ZTh6lpwOaZ2tf8
- umC4onH/RBWy5KkuMbwsnW4fi9bs8hVx77ecZ2/HaaLtPh8R1aGzOvzLfoicbBd8HxSeMF27odC
- 0tLkKsycUqADvZ7xhC2dm7C6Rgr0O+5rBrF90CZiq2kJLG+th7VGO0U5ltyCjo1whFq4U+10aYG
- Feb126YvdMeSQ6oL2G5OhJOyRNzbZZ/uAMDZ2czFf7xVeXnxndUn65INCoraxU9sWCP8z2wL8xK
- 57/gTlrbfNvsOqdtC+8Vh9IvNLGgAGxnjIaN1iYHC/oUx4Rrri2Jk0DEI4VHZLFsT6t9e0qqjXr
- LCf4FpX0zCT070n2VmxosUDOe7lxmNgNvJOKULfXwVTALC44E4dBbWGJKdit3lkxk4vPlc0FerT
- 717Uij9+PbHbCad0CbcAAMQNAfGTpShPQ2JHlh/nrcSFxx904tq803lX72wbRGmESTKKiDPXoIK
- peXsoHV
-X-Received: by 2002:a05:600c:4e86:b0:49c:ffe3:2b3f with SMTP id
- 5b1f17b1804b1-49fe66c8e13mr51367875e9.3.1790268599645; 
- Thu, 24 Sep 2026 09:49:59 -0700 (PDT)
-Received: from fedora ([2a02:587:200f:d100:bf67:f785:caad:e278])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-49fee6ced69sm1219015e9.0.2026.09.24.09.49.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 24 Sep 2026 09:49:59 -0700 (PDT)
-From: George Karagounis <taterraster@gmail.com>
-X-Google-Original-From: George Karagounis <mail@taterr.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+X-Greylist: delayed 348 seconds by postgrey-1.36 at gabe;
+ Fri, 25 Sep 2026 12:01:08 UTC
+Received: from mail.solidxs.nl (mail.solidxs.nl [135.181.160.165])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E56E310EA09;
+ Fri, 25 Sep 2026 12:01:08 +0000 (UTC)
+Received: from localhost.localdomain (unknown
+ [IPv6:2001:2042:bc22:2b00:665f:5046:e84a:28d])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mail.solidxs.nl (Postfix) with ESMTPSA id 5A7692DA0053;
+ Fri, 25 Sep 2026 13:55:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=solidxs.se; s=2026a;
+ t=1790337316;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=mPFXHOweYUJn5VvQHi3d8rLLCyBG+oOdevRP/Ld5GzU=;
+ b=JSmaowXt/5pxfwqPdHN9sOD6PiU53SFgjBK97jRl9fR+34RUyW9/UAGQO4mvE6OeWy4qWM
+ LKpp6NYTXJeiyn24jgdHTmnetQzlTwObYIb9hK3YHkpYexhKx/U++VAGw6n0v7pOz5jypy
+ oWO2ZFuZDGRXl1tkQc5Yz/Da22Ve94Uctr8ZTz1qXzY0wJ7wJIsQpnP9n8beQanGbkBMvi
+ axOhITogzJddTFZ+ef01veUAqTD1HUGkw7f81/iFarhmhCWLM1yqGdoh3tgmzPExlXqHXM
+ oSwcPJ5bXHk6vLAngTPUnhmbG4JwtsrSosMzawHSP5eO22rBZQgxtxAC9mj26A==
+From: Marcel Hamer <marcel@solidxs.se>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, mail@taterr.org
-Subject: [PATCH v2] drm/i915/display: Replace bw_constrained with
- max_link_bpp_x16
-Date: Thu, 24 Sep 2026 19:49:53 +0300
-Message-ID: <20260924164953.28066-1-mail@taterr.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260919161927.98829-1-mail@taterr.org>
-References: <20260919161927.98829-1-mail@taterr.org>
+ Simona Vetter <simona@ffwll.ch>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Vinod Govindapillai <vinod.govindapillai@intel.com>
+Cc: Marcel Hamer <marcel@solidxs.se>, stable@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/i915/irq: crtc guard inside interrupt handlers
+Date: Fri, 25 Sep 2026 13:55:10 +0200
+Message-ID: <20260925115511.1655213-1-marcel@solidxs.se>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 25 Sep 2026 19:10:48 +0000
@@ -96,85 +67,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In intel_crt.c (VGA displays) and intel_lvds.c (old laptop displays),
+Interrupts are enabled before the crtc datastructures are initialized.
+As intel_crtc_for_pipe() is called inside interrupt handlers and can
+return a NULL value, this can in rare cases lead to the following NULL
+pointer dereference and panic:
 
-both files were using a legacy boolean flag crtc_state->bw_constrained
+RIP: 0010:handle_plane_fault+0x19/0xc0 [i915]
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f
+1f 44 00 00 55 48 89 e5 41 55 41 54 49 89 fc 53 48 83 ec 18 <48> 8b 1f
+65 4c 8b 2d 24 90 31 ef 4c 89 6d e0 41 89 f5 48 85 db 74
+RSP:
+0018:ffff92b180003e50 EFLAGS: 00010086
+RAX: ffffffffc0911fc0 RBX: ffffffffc06e0b90 RCX: 0000000000000005
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+RBP: ffff92b180003e80 R08: 0000000000000005 R09: 000000010517d5f6
+R10: 0000008000000041 R11: 000000010517d5f6 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+FS:  00007f72f5b72780(0000) GS:ffff8bbdcbfe9000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 0000000102f2c000 CR4: 00000000003506f0
+Kernel panic - not syncing: Fatal exception in interrupt
+Kernel Offset: 0x2c800000 from 0xffffffff81000000 (relocation range:
+0xffffffff80000000-0xffffffffbfffffff)
+Call Trace:
+ <IRQ>
+ intel_pipe_fault_irq_handler+0x42/0xc0 [i915]
+ gen8_de_irq_handler+0x1ed/0xdf0 [i915]
+ gen8_irq_handler+0xb5/0xd0 [i915]
+ __handle_irq_event_percpu+0x6e/0x230
+ handle_irq_event+0x3a/0x90
+ handle_edge_irq+0xd1/0x1a0
+ __common_interrupt+0x48/0xe0
+ ? generic_smp_call_function_single_interrupt+0x17/0x20
+ common_interrupt+0x84/0xa0
 
-to guess if the display link was bandwidth limited.
-
-To fix this, replaced the bw_constrained boolean checks with direct
-
-comparisons against the max_link_bpp_x16 fixed-point API.
-
-Signed-off-by: George Karagounis <mail@taterr.org>
+Fixes: f13011a79999 ("drm/i915: Pimp display fault reporting")
+Fixes: 138d2bda4eaf ("drm/i915/display: pass display to intel_crtc_for_pipe()")
+Cc: stable@vger.kernel.org # 6.18.x
+Signed-off-by: Marcel Hamer <marcel@solidxs.se>
 ---
-v2: Remove the dead bw_constrained flag definition and writer entirely,
-    as pointed out by the sashiko bot reviewer
- drivers/gpu/drm/i915/display/intel_crt.c           | 5 ++---
- drivers/gpu/drm/i915/display/intel_display.c       | 1 -
- drivers/gpu/drm/i915/display/intel_display_types.h | 1 -
- drivers/gpu/drm/i915/display/intel_lvds.c          | 6 +++---
- 4 files changed, 5 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_irq.c | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index 5b8968197fbc..3da9547f2c6e 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -459,10 +459,9 @@ static int hsw_crt_compute_config(struct intel_atomic_state *state,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index a59b75830bd1..4ffc8789c9f3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -131,6 +131,9 @@ static void intel_pipe_fault_irq_handler(struct intel_display *display,
+ 	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
+ 	const struct pipe_fault_handler *handler;
  
- 	/* LPT FDI RX only supports 8bpc. */
- 	if (HAS_PCH_LPT(display)) {
--		/* TODO: Check crtc_state->max_link_bpp_x16 instead of bw_constrained */
--		if (crtc_state->bw_constrained && crtc_state->pipe_bpp < 24) {
-+		if (crtc_state->max_link_bpp_x16 < fxp_q4_from_int(24)) {
- 			drm_dbg_kms(display->drm,
--				    "LPT only supports 24bpp\n");
-+				   "LPT only supports 24bpp\n");
- 			return -EINVAL;
- 		}
++	if (!crtc)
++		return;
++
+ 	for (handler = handlers; handler && handler->fault; handler++) {
+ 		if ((fault_errors & handler->fault) == 0)
+ 			continue;
+@@ -148,7 +151,8 @@ intel_handle_vblank(struct intel_display *display, enum pipe pipe)
+ {
+ 	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
  
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 9dfd095f325f..fa6b11c4df47 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4767,7 +4767,6 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
- 			    "[CRTC:%d:%s] Link bpp limited to " FXP_Q4_FMT "\n",
- 			    crtc->base.base.id, crtc->base.name,
- 			    FXP_Q4_ARGS(crtc_state->max_link_bpp_x16));
--		crtc_state->bw_constrained = true;
- 	}
+-	drm_crtc_handle_vblank(&crtc->base);
++	if (crtc)
++		drm_crtc_handle_vblank(&crtc->base);
+ }
  
- 	base_bpp = crtc_state->pipe_bpp;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 43d53a98dae7..2166c84596c6 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1146,7 +1146,6 @@ struct intel_crtc_state {
- 	 * required. This is set in the 2nd loop of calling encoder's
- 	 * ->compute_config if the first pick doesn't work out.
- 	 */
--	bool bw_constrained;
+ /**
+@@ -425,9 +429,14 @@ static void display_pipe_crc_irq_handler(struct intel_display *display,
+ 					 u32 crc4)
+ {
+ 	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
+-	struct intel_pipe_crc *pipe_crc = &crtc->pipe_crc;
++	struct intel_pipe_crc *pipe_crc;
+ 	u32 crcs[5] = { crc0, crc1, crc2, crc3, crc4 };
  
- 	/* Settings for the intel dpll used on pretty much everything but
- 	 * haswell. */
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 872753478cf2..6bbd13ab5da7 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -443,10 +443,10 @@ static int intel_lvds_compute_config(struct intel_atomic_state *state,
- 	else
- 		lvds_bpp = 6*3;
++	if (!crtc)
++		return;
++
++	pipe_crc = &crtc->pipe_crc;
++
+ 	trace_intel_pipe_crc(crtc, crcs);
  
--	/* TODO: Check crtc_state->max_link_bpp_x16 instead of bw_constrained */
--	if (lvds_bpp != crtc_state->pipe_bpp && !crtc_state->bw_constrained) {
-+	if (lvds_bpp != crtc_state->pipe_bpp &&
-+	    crtc_state->max_link_bpp_x16 >= fxp_q4_from_int(lvds_bpp)) {
- 		drm_dbg_kms(display->drm,
--			    "forcing display bpp (was %d) to LVDS (%d)\n",
-+			   "forcing display bpp (was %d) to LVDS (%d)\n",
- 			    crtc_state->pipe_bpp, lvds_bpp);
- 		crtc_state->pipe_bpp = lvds_bpp;
- 	}
+ 	spin_lock(&pipe_crc->lock);
+@@ -465,6 +474,9 @@ static void flip_done_handler(struct intel_display *display,
+ {
+ 	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
+ 
++	if (!crtc)
++		return;
++
+ 	spin_lock(&display->drm->event_lock);
+ 
+ 	if (crtc->flip_done_event) {
+
+base-commit: f49a343b305c0b6c19a3b50c0bbf10bcd0e2e8fd
 -- 
-2.55.0
+2.47.3
 
