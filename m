@@ -4,61 +4,122 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BCB3C98332
-	for <intel-xe@archiver.kernel.org>; Sat, 26 Sep 2026 15:11:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E015C98338
+	for <intel-xe@archiver.kernel.org>; Sat, 26 Sep 2026 15:11:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC39710E082;
-	Sat, 26 Sep 2026 15:11:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13FC210E0FA;
+	Sat, 26 Sep 2026 15:11:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="mBsgow0W";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="N3I9yZPo";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E9E610E063
- for <intel-xe@lists.freedesktop.org>; Sat, 26 Sep 2026 10:27:03 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 1050543702;
- Sat, 26 Sep 2026 10:27:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E5CEEC2BCB8;
- Sat, 26 Sep 2026 10:27:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1790418422;
- bh=g4fjj7Rwq1gzi78cVt0wUi0Hx8ZkRaKg3zStSx/p4Zk=;
- h=From:Date:Subject:To:Cc:Reply-To:From;
- b=mBsgow0WqWV6KCNjT/0rYHUjB2nUduamKWaJDrI5nF6wDWQsp5XLnILOYj7r2MCF7
- N5rnCD/YPdHZadstThKjM/lqc3003vxnAfqvnbFV1Jmi+kIb2z89G+/IqU5j9GzqPr
- EYr7ei6D035SYtfX15JND5bwtQWVOkbNWyXENFfE4YhnPoJRKYn6+10jWoUcoNPHXK
- +hm2g9/778BEJ/gpcmff7Vyud3HpcwfXxkzfDh+hPsJe9Kb4LFDecOfgUfdKfNR0g1
- CDCTfX5ItD57vdwI50yXH3B2luAelx7kGw0vOg08uXlm255WDo2gvaoL5fOrBwmTtW
- WvJknFGccjU6g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id BFDF4C98332;
- Sat, 26 Sep 2026 10:27:02 +0000 (UTC)
-From: =?utf-8?q?Bata_Roland_Kriszti=C3=A1n_via_B4_Relay?=
- <devnull+batarolandkrisztian.gmail.com@kernel.org>
-Date: Sat, 26 Sep 2026 12:21:55 +0200
-Subject: [PATCH RFC] drm/xe/hwmon: refresh B70 temperature inputs after GT idle
+Received: from mail-dl2-f42.google.com (mail-dl2-f42.google.com
+ [74.125.229.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 344BA10E1B9
+ for <intel-xe@lists.freedesktop.org>; Sat, 26 Sep 2026 04:55:46 +0000 (UTC)
+Received: by mail-dl2-f42.google.com with SMTP id
+ a92af1059eb24-144ee9debe9so1419713c88.0
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Sep 2026 21:55:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1790398545; x=1791003345; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=1QrDNlRHDnJW88MEgYmatBBXse3s6mLcGunE+f0rQjE=;
+ b=N3I9yZPoxkSrgUUtrHGTmR20TxK24dIwHY9E3nr6TU6P2+oDH8aTUiY0Ppn0mVhvIN
+ SmDcL3mdW8rGXhEN/jy6fFHUdI5eHrVDTSjuCRsbe5YeDIC9Q+sKBfCcnPE2p4xueSoN
+ z6nvP1Cew2Up8LPmEOdnAICyBu9ZdxLMSmajcSsVd7G15D8LhdBcuYy2gA4Xw130dl+J
+ +l9TKXozTWxR7E4IUPs9nyldLxPjSXbQGVzG9jwEbQFPNfblEbQ/7um3FTqkHMMADrqA
+ FyZDPLdyTq4etG4115fFWbOAJyn98FkNYpTbvZOcLB+WxmR4jKzdG1+54DQbxwhAW+W9
+ kN9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1790398545; x=1791003345;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=1QrDNlRHDnJW88MEgYmatBBXse3s6mLcGunE+f0rQjE=;
+ b=KvtfnowRWiS4bNZfgObF5lflTd/69QLvrijc6oBomxCbVMCocDiwWd7N2gOu1VxZwS
+ 2BU8XEfS1Sg2/qdxXl9i3QE7XM20qp5hoV8YQ7TZ9oSivQ+mmpLxR0eorRq6LoYR56N3
+ AW1WCde9r2eQWziPw7GYso6rYMNwGQ8jqLM7U38T1RQOyrawnzhAQd7jik9CUk/WNHXt
+ rimEqLg+04ClrNFTljpafBVMrI42xSeDDU0L2JmaohPOSr4ynAOMg/K2IH2iDGc+CBR0
+ 0hjd8KWCuhXNE6kSm0PszzRyDyFq8iwTchGtZjEqtBAz+ycVkmPDj6rDUVcqzuJzeFqg
+ O+6w==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBz4K7slAq1FfVDthVGqovPl33D/P9ZyC+yLkSJ49xPtu0MPlF/Im5fZII2J20Sxh5NX9aFKvHcybg==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++mmyNPBgu+ljxlsQrNHMx016/kpYr94PjVIBkuc/yfmHXqUU9o6
+ 9KNZmrS9mVpQF3y2zDcEezg7Bs18EDQ4mXkv7JHvC41VeZ8I4lwS5vWJ
+X-Gm-Gg: AYBFou3gpnaeKpikfLjYVz5+0LXUkOJXlB0f3sNpc+tNUegayFSgmPW2UddGA+nhEWn
+ IdnwkBxn6O028jBzIiuW4BqzI0Q5nSE8cn1BahsA2gl5zcNn+JYsUUJRWUSrrdxoBy7ViT1nNcm
+ hioo5rfRaUIFggAlX9pmUnxgi/fErBMCR1Dnfit2Vtf6VHE6uw13RqnCP1m2XIbVbx7OCRFW+ix
+ KSTbVn7OASoT4nks7wsfBmQ7ZkIYbI8jQvWvKmlwJsSkXY2u7H4bRnvSZfMT8iixg463aFHJAWF
+ HBGD2JHq9y1jXTA7qOXFjRBmB94T2SVSjzuHm5PT6Ku9YI9X7I2bsVtUTZaMsEgG6MxtjO1hYQa
+ iTwLldDXlvVJmtvu2nlg4IA710CNc/sV/8i0J+YyGdnlF0UyHG87kgEahiO9BnY5+U5CRXE8Ahg
+ SC4P2sKWgT0wohnc2glz9BQDbSYhKqRHsNF/UyR3ZENjnyaNt66ojs3Bp1/BYU3QRgY+/GI8g1u
+ ShQvAuWCa9NpKp6FfGlNjsMJX4es/8THNtfcswPDnuObtsoiGONTBSJHnTA/AA5j2f4OFKY3b+H
+ IEXM2/boBbzQnPueds1rsb1fmvG2TDYC09xOqHMf03JqH/X6qcEjLvyiv+Q=
+X-Received: by 2002:a05:7022:28a:b0:144:c12b:dfc7 with SMTP id
+ a92af1059eb24-146d077b855mr2090121c88.45.1790398544724; 
+ Fri, 25 Sep 2026 21:55:44 -0700 (PDT)
+Received: from spider.bream-herring.ts.net ([103.6.151.236])
+ by smtp.gmail.com with ESMTPSA id
+ a92af1059eb24-145adcc5b00sm9334211c88.15.2026.09.25.21.55.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 25 Sep 2026 21:55:44 -0700 (PDT)
+From: Matthias Goergens <matthias.goergens@gmail.com>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: Matthias Goergens <matthias.goergens@gmail.com>,
+ David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <liam@infradead.org>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+ Randy Dunlap <rdunlap@infradead.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Chris Li <chrisl@kernel.org>, Kairui Song <kasong@tencent.com>,
+ Kemeng Shi <shikemeng@huaweicloud.com>, Nhat Pham <nphamcs@gmail.com>,
+ Baoquan He <baoquan.he@linux.dev>, Barry Song <baohua@kernel.org>,
+ Youngjun Park <youngjun.park@lge.com>,
+ Johannes Weiner <hannes@cmpxchg.org>,
+ Roman Gushchin <roman.gushchin@linux.dev>,
+ Shakeel Butt <shakeel.butt@linux.dev>, Muchun Song <muchun.song@linux.dev>,
+ Qi Zheng <qi.zheng@linux.dev>, Axel Rasmussen <axelrasmussen@google.com>,
+ Yuanchu Xie <yuanchu@google.com>, Wei Xu <weixugc@google.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>, linux-mm@kvack.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, cgroups@vger.kernel.org,
+ linux-api@vger.kernel.org, linux-man@vger.kernel.org,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Pavel Machek <pavel@kernel.org>,
+ linux-pm@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ Yosry Ahmed <yosry@kernel.org>, Chengming Zhou <chengming.zhou@linux.dev>,
+ Ryan Roberts <ryan.roberts@arm.com>, Alejandro Colomar <alx@kernel.org>,
+ Karel Zak <kzak@redhat.com>, util-linux@vger.kernel.org
+Subject: [RFC PATCH v2 2/4] mm: restrict offload-only swap to proactive reclaim
+Date: Sat, 26 Sep 2026 12:55:15 +0800
+Message-ID: <20260926045517.3458413-3-matthias.goergens@gmail.com>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260926045517.3458413-1-matthias.goergens@gmail.com>
+References: <20260926045517.3458413-1-matthias.goergens@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="utf-8"
-To: intel-xe@lists.freedesktop.org
-Cc: batarolandkrisztian@gmail.com, karthik.poosa@intel.com, 
- matthew.brost@intel.com, raag.jadav@intel.com, rodrigo.vivi@intel.com, 
- thomas.hellstrom@linux.intel.com
-Message-ID: <179041811564.526373.13204522833274380927.b70-hwmon-rfc@gmail.com>
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1790418421; l=13182;
- i=batarolandkrisztian@gmail.com; s=b70-rfc-20260926;
- h=from:subject:message-id;
- bh=WjRW74hKdBPifqcI8jX/D0MkFd8adpAMbufnBmow6s0=;
- b=mLnhI1rQ0q2iT5/g9iVuRSL5BnvBe+koA/YQBdkrv7lUtUPbxJ+IjQYYPQpugG6EniVpRVF4J
- s1PVBySdSayDxax+m4C8hmi183c5T/b17pujyBsev/2EvRk971DouuP
-X-Developer-Key: i=batarolandkrisztian@gmail.com; a=ed25519;
- pk=7yRw67BwHv8okGRYJIehsbjtaknESDTkZbyNra2ZCY4=
-X-Endpoint-Received: by B4 Relay for
- batarolandkrisztian@gmail.com/b70-rfc-20260926 with auth_id=1065
-X-Original-From: =?utf-8?q?Bata_Roland_Kriszti=C3=A1n?=
- <batarolandkrisztian@gmail.com>
 X-Mailman-Approved-At: Sat, 26 Sep 2026 15:11:38 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,312 +132,909 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: batarolandkrisztian@gmail.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Bata Roland Krisztián <batarolandkrisztian@gmail.com>
+Some swap backends need memory to accept writes, making them useful for
+deliberate cold-page offload but unsuitable dependencies for reclaim under
+acute memory pressure.
 
-Two Arc Pro B70 devices (8086:e223) retain their package temperature
-after compute workloads despite both GTs returning to C6. A device
-runtime PM reference does not refresh the sample while power/control
-is already on.
+Add SWAP_FLAG_OFFLOAD_ONLY to reserve a swap area for explicitly admitted
+reclaim. Cgroup v2 memory.reclaim, per-node reclaim and manual MGLRU
+eviction establish admission; ordinary reclaim cannot initiate new,
+non-zero backend writes to the area.
 
-With GuC 70.72.1 on Fedora kernel 7.1.10, a 60-second OpenCL workload
-followed by 45 seconds of idle left package temperature at 55 C on both
-cards. Acquiring all GT forcewake references still returned 55 C in
-the first read, about 57 us after open completed. At about 1053 us the
-reported value became 34 C on both cards. A brief GT-only pulse from
-reading cur_freq did not refresh the package value.
+Track admission separately from scan_control.proactive and propagate it
+through reclaim_state. The MGLRU debugfs interface is not stable ABI.
 
-As an RFC, acquire forcewake references for the temperature input read,
-allow time for a new sample, then release the references on both the
-success and partial-acquisition failure paths. Limit the experiment to
-the measured PCI ID and leave labels, limits and other hwmon types on
-their existing paths.
+Filter swap allocation and reclaim capacity by eligibility, including
+cached clusters and recovery of unused conventional swap-cache entries.
+Preserve physical free-space reporting and workingset accounting.
 
-The 2 ms interval and use of all domains are empirical, not a hardware
-specification guarantee. This needs review of the sensor conversion
-time, minimum wake domains and alternatives such as a PCODE refresh or
-readiness indication before it can become a production fix.
+Allocation filtering alone is insufficient: a partially swapped-in large
+folio can retain its swap entry and reach writeout without allocating a
+new slot. Refuse such ordinary-reclaim writes by redirtying and activating
+the folio. Preserve architecture metadata before refusal, since sibling
+faults can restore swap-indexed tags into the resident folio.
 
-Compile-tested xe_hwmon.o on current drm-tip with W=1 and Xe display both
-disabled and enabled. The wake/wait/read sequence was measured through
-debugfs on two B70s; the modified kernel has not been boot-tested.
+Bypass zswap and reject asynchronous page-cluster discard so later writes
+cannot escape the admitting context. Exclude marked areas from hibernation
+selection. Reads, swapoff and queued or in-flight I/O remain unaffected.
 
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7805
-Assisted-by: OpenAI:gpt-6-astra
-Signed-off-by: Bata Roland Krisztián <batarolandkrisztian@gmail.com>
+Refusing retained-entry writes can cause repeated reclaim or OOM; moving
+these entries to conventional swap would require swap-entry migration.
+
+Signed-off-by: Matthias Goergens <matthias.goergens@gmail.com>
 ---
-RFC: proposed direction for issue 7805, not a claim of a production-ready fix.
+ Documentation/mm/swap.rst                     | 105 +++++++++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c  |   2 +-
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   |   6 +-
+ drivers/gpu/drm/msm/msm_gem_shrinker.c        |   2 +-
+ drivers/gpu/drm/panthor/panthor_gem.c         |   2 +-
+ drivers/gpu/drm/ttm/ttm_backup.c              |   2 +-
+ drivers/gpu/drm/xe/tests/xe_bo.c              |   2 +-
+ include/linux/swap.h                          |  29 ++++-
+ include/linux/vm_event_item.h                 |   1 +
+ mm/memcontrol.c                               |  20 ++-
+ mm/page_io.c                                  |  24 +++-
+ mm/swapfile.c                                 | 123 ++++++++++++++++--
+ mm/vmscan.c                                   |  31 +++--
+ mm/vmstat.c                                   |   1 +
+ 14 files changed, 312 insertions(+), 38 deletions(-)
 
-Hi Xe maintainers,
-
-I am following up on my B70 stale-temperature report with a smaller
-reproduction, timing measurements, and a prototype read-side change.
-
-Questions before turning this into v1:
-
-1. Is there a PCODE operation or freshness/conversion-ready indication that
-   should be used instead of a fixed settling interval? The first MMIO read
-   after successful forcewake still returned the old temperature.
-2. Which wake domains are actually required? A GT0 hw_engines read, which
-   holds all domains for that GT while dumping registers, also refreshed
-   package/mctrl/PCIe readings. The conservative prototype mirrors the
-   device forcewake_all sequence used for the controlled timing experiment.
-3. Should a refresh cover/cache several temperature channels together? The
-   prototype wakes per input read. The power measurements below are for one
-   batch per device every two seconds, not for reading every hwmon channel
-   at high frequency and not measurements of this compiled patch.
-4. Is this a known firmware issue with a preferred fix? Should the eventual
-   driver handling apply to other Battlemage IDs? This RFC only opts in the
-   tested 8086:e223 devices.
-
-Hardware and reproduction
--------------------------
-Two Intel Arc Pro B70s, PCI ID 8086:e223, on an ASRock X870E Taichi / Ryzen
-5 9600X. Fedora CoreOS 44.20260829.3.1, kernel 7.1.10-200.fc44.x86_64,
-GuC 70.72.1, HuC 8.2.10. power/control=on was kept throughout; it is an
-existing workaround for noisy PCI runtime suspend/resume cycling.
-
-A bounded 60-second OpenCL workload used a private 1 MiB output buffer per
-device, followed by 45 seconds without GPU submissions. Both GTs reached
-C6, actual frequency was zero, and idle residency continued advancing.
-Package readings stayed at 55 C on both cards. A short GT0 cur_freq read
-(itself a GT-only forcewake pulse) did not correct the package reading.
-
-Opening forcewake_all, then reading temperatures while holding the fd:
-
-                    B70 A                  B70 B
-before              55 C                   55 C
-first read          55 C at 57.769 us       55 C at 56.119 us
-first correction    34 C at 1053.529 us     34 C at 1053.039 us
-
-Times are measured from completion of open, not the initial wake request.
-The 2, 5, 10 ms and later samples were also refreshed. These two observations
-are not a guaranteed maximum sensor-conversion latency.
-
-In a separate 30-second observation / short-pulse / observation sequence,
-16 two-millisecond holds at two-second intervals returned approximately
-24 C and 22-23 C. The complete open/wait/read/close scope was about 3.06 ms
-and 3.07 ms median. GT idle residency during the pulse phase exceeded 99.7%.
-
-Energy-counter-derived card power, W:
-                    before       pulses       after
-B70 A               5.30         5.51         4.87
-B70 B               4.31         4.48         4.39
-
-These are short observations with normal background system activity; they
-are not a general power-regression benchmark. Holding all domains for two
-seconds during the timing experiment cost about 81 W per card at the
-retained 2800 MHz request and caused self-heating. A permanent forcewake is
-therefore unsuitable. References were released and both GTs returned to C6
-after every completed experiment. No reset, rebind or PM-policy change was
-used for these measurements.
-
-Source/build checks
--------------------
-The BMG temperature read path is unchanged between v7.1.10, v7.2.5 and the
-current drm-tip version examined here. The newer Fedora 20260910 firmware
-collection contains byte-identical BMG GuC/HuC files to 20260810.
-
-Base: drm-tip 666d2f09d9045fc8f72cc1f71528a04acbaf5229
-      2026-09-26 04:44:20 UTC integration manifest
-Checked: checkpatch --strict, zero errors/warnings/checks for the patch;
-         xe_hwmon.o compile with W=1, Xe display disabled and enabled.
-Not yet tested: booted patched kernel, IGT/CI, suspend/resume, hardware
-               acquisition-error paths, other GPU variants, high-rate
-               multi-channel reads.
-
-The attached change is deliberately an RFC. I would appreciate guidance on
-the correct hardware handshake and domain scope, and can test a revised
-approach on these two cards.
-
-A later smoke test of the standalone reproducer below also changed a
-previously low reading upward (26 to 44 C on one card). I therefore do not
-use an unchanged/high-value heuristic to declare a value stale, or replace
-readings with an inferred idle temperature. The observations concern the
-reported values; independent physical thermometry was not performed.
-
-Standalone reproduction aid
----------------------------
-After a GPU workload and idle interval, save this as repro.py and run:
-  sudo python3 repro.py 0000:03:00.0 0000:08:00.0
-Use your cards' PCI addresses. This script itself starts no workload.
-
-#!/usr/bin/env python3
-# SPDX-License-Identifier: MIT
-"""Measure B70 temperature refresh after forcewake; run after workload/idle.
-
-No workload, PM-policy/frequency write, reset or driver rebind is performed.
-Only the requested 8086:e223 Xe devices are read. Each wake lasts about 10 ms;
-readings are printed after the descriptor has been closed.
-"""
-import argparse
-import json
-import os
-from pathlib import Path
-import re
-import signal
-import time
-
-
-def text(path):
-    return path.read_text().strip()
-
-
-def card(bdf, debugfs):
-    if not re.fullmatch(r"[0-9a-f]{4}:[0-9a-f]{2}:[0-9a-f]{2}\.[0-7]", bdf):
-        raise ValueError("Expected a full lowercase PCI address")
-    pci = Path("/sys/bus/pci/devices") / bdf
-    if (text(pci / "vendor"), text(pci / "device")) != ("0x8086", "0xe223"):
-        raise ValueError(f"Not the tested B70 PCI ID: {bdf}")
-    if (pci / "driver").resolve() != Path("/sys/bus/pci/drivers/xe"):
-        raise ValueError(f"Not bound to xe: {bdf}")
-    hw = list((pci / "hwmon").glob("hwmon*"))
-    if len(hw) != 1 or text(hw[0] / "name") != "xe":
-        raise ValueError(f"Ambiguous hwmon: {bdf}")
-    labels = {text(p): p.with_name(p.name.replace("_label", "_input"))
-              for p in hw[0].glob("temp*_label")}
-    if "pkg" not in labels:
-        raise ValueError(f"Missing package sensor: {bdf}")
-    paths = {label: labels[label] for label in ("pkg", "vram", "mctrl", "pcie")
-             if label in labels}
-    return bdf, pci, paths, debugfs / bdf / "forcewake_all"
-
-
-def snapshot(pci, paths):
-    start = time.monotonic_ns()
-    values = {label: int(text(path)) for label, path in paths.items()}
-    return {"temp_read_start_ns": start, "temp_read_end_ns": time.monotonic_ns(),
-            "millidegrees": values,
-            "gt_idle": [text(pci / "tile0" / f"gt{n}" / "gtidle/idle_status")
-                        for n in (0, 1)]}
-
-
-def interrupted(signum, _frame):
-    raise SystemExit(f"Interrupted by signal {signum}; descriptors will close")
-
-
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--debugfs-root", type=Path, default=Path("/sys/kernel/debug/dri"))
-    parser.add_argument("devices", nargs="+")
-    args = parser.parse_args()
-    if os.geteuid() != 0:
-        parser.error("Run with sudo for debugfs access")
-    if len(args.devices) > 8 or len(set(args.devices)) != len(args.devices):
-        parser.error("Select at most eight distinct devices")
-    cards = [card(bdf, args.debugfs_root) for bdf in args.devices]
-    signal.signal(signal.SIGTERM, interrupted)
-    signal.signal(signal.SIGALRM, interrupted)
-    signal.alarm(30)
-    for bdf, pci, paths, wake in cards:
-        before = snapshot(pci, paths)
-        if before["gt_idle"] != ["gt-c6", "gt-c6"]:
-            print(json.dumps({"bdf": bdf, "skipped": "GT is active", "before": before}))
-            continue
-        samples = []
-        opened_at = time.monotonic_ns()
-        with wake.open("rb"):
-            open_returned_at = time.monotonic_ns()
-            for target_us in (0, 1000, 2000, 5000, 10000):
-                remaining_ns = open_returned_at + target_us * 1000 - time.monotonic_ns()
-                if remaining_ns > 0:
-                    time.sleep(remaining_ns / 1e9)
-                value = snapshot(pci, paths)
-                samples.append({"target_us": target_us,
-                                "since_open_us": (value["temp_read_start_ns"] - open_returned_at) / 1000,
-                                **value})
-        closed_at = time.monotonic_ns()
-        time.sleep(1)
-        print(json.dumps({"bdf": bdf, "kernel": os.uname().release,
-                          "power_control": text(pci / "power/control"),
-                          "before": before, "samples": samples,
-                          "open_us": (open_returned_at - opened_at) / 1000,
-                          "total_scope_us": (closed_at - opened_at) / 1000,
-                          "after_close": snapshot(pci, paths)}), flush=True)
-
-
-if __name__ == "__main__":
-    main()
-
- drivers/gpu/drm/xe/xe_hwmon.c | 38 +++++++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 5edeac96..2bb5bca2 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -3,6 +3,7 @@
-  * Copyright © 2023 Intel Corporation
-  */
+diff --git a/Documentation/mm/swap.rst b/Documentation/mm/swap.rst
+index 78819bd4d745..9acad2c5834f 100644
+--- a/Documentation/mm/swap.rst
++++ b/Documentation/mm/swap.rst
+@@ -3,3 +3,108 @@
+ ====
+ Swap
+ ====
++
++Offload-only swap areas
++-----------------------
++
++Passing ``SWAP_FLAG_OFFLOAD_ONLY`` in the flags argument to ``swapon()``
++marks a swap area as eligible for explicit userspace proactive reclaim.
++The stable qualifying interfaces are cgroup v2
++``memory.reclaim`` and ``/sys/devices/system/node/nodeX/reclaim``.  The swap
++allocator excludes such an area from kswapd, direct reclaim, and other
++pressure-driven swap allocation.  Normal swap priority ordering still applies
++among the areas eligible for the current reclaim context.  Proactive reclaim
++can use both conventional and offload-only areas; the flag does not force it
++to choose an offload-only area or reserve conventional capacity exclusively
++for pressure reclaim.
++
++The MGLRU debugfs eviction interface currently establishes the same internal
++proactive-reclaim provenance and can therefore use an offload-only area.
++Debugfs is not a stable userspace ABI, however, so that behaviour is not part
++of this interface's permanent contract.
++
++This permits a system to combine a small conventional swap area, which is
++engineered for forward progress in emergency reclaim, with a larger or more
++complex area used for ordinary cold-page offload.  For example, the latter may
++be RAM-compressed or may use a filesystem with compression, checksums, or
++redundancy.  Making every such write path safe in direct reclaim can require
++backend-specific reserves, preallocation, non-blocking allocation, and
++recursion rules.  The flag restricts when writes may be initiated; backends
++still need to handle reads and complete previously admitted writes under
++memory pressure.
++
++For a RAM-compressed area such as zram, unused logical slots also do not imply
++that enough physical memory remains to store their future contents.  Static
++swap priority cannot express that distinction or provide late fallback after a
++selected area's write fails.
++
++The policy is attached to an activated swap area, not to its underlying
++physical storage.  A raw swap partition and a filesystem swapfile on the same
++device are separate areas and may use different policies.  The kernel does not
++infer this policy from the block driver, filesystem, or swap priority.
++Changing an active area's policy requires swapoff followed by reactivation.
++
++``/proc/swaps`` does not expose the policy.  Reported swap totals and free
++space include offload-only areas, so free swap space does not necessarily
++mean that pressure reclaim can allocate from it.
++
++This is a reclaim-provenance policy, not a measurement of current memory
++headroom.  Userspace should only request proactive offload while its own
++watermark or PSI policy considers memory pressure low.  Since
++``memory.reclaim`` can be delegated, that policy must also account for
++requests from delegated cgroups.
++
++DAMON reclaim and ``MADV_PAGEOUT`` do not currently establish the proactive
++reclaim context, so they cannot allocate slots from an offload-only area.
++Offload-only areas are also ineligible for hibernation image allocation.
++
++Offload-only areas bypass zswap stores.  Zswap writeback may run after the
++proactive context which selected the slot has ended, so admitting the folio to
++zswap would otherwise defer the backend write beyond that context.  The
++hierarchical cgroup v2 ``memory.zswap.writeback=0`` policy remains
++authoritative: when zswap is enabled, it also refuses direct proactive writes
++to an offload-only area.  Marking an area offload-only does not override a
++cgroup policy which disables all swapping attempts to devices.
++
++The flag controls both allocation of new swap slots and newly initiated
++non-zero backend writes.  A folio can retain its swap entry after swapin.  If
++ordinary reclaim later tries to rewrite such an offload-only entry, the VM
++redirties and activates the folio instead; proactive reclaim may retry the
++write.  Zero-filled folios may still update the in-memory swap zeromap without
++backend I/O.
++
++The flag does not prevent reads, swapoff, or writes which are already queued or
++in flight.  It therefore does not by itself provide a forward progress
++guarantee for an I/O path which allocates memory: earlier writes must still be
++able to complete, and reads must remain reclaim-safe.  Repeatedly refusing
++retained-entry writes can also reduce reclaim efficiency and lead to OOM while
++the dirty folios remain resident.
++
++Page-cluster discard is incompatible with an offload-only area because its
++work item can run after the context which freed the entries has ended.  Swapon
++therefore rejects a resolved page-cluster discard policy combined with
++``SWAP_FLAG_OFFLOAD_ONLY``.  Swapon-time discard is permitted because it
++completes synchronously during activation.  The existing discard precedence
++still applies: requesting both discard-once and discard-pages selects
++discard-once.  The bare ``SWAP_FLAG_DISCARD`` request enables page-cluster
++discard and is therefore rejected on a discard-capable offload-only area;
++add ``SWAP_FLAG_DISCARD_ONCE`` to ``SWAP_FLAG_DISCARD`` for synchronous
++activation-time discard.
++Discard requests which the swap area does not support remain ignored.
++
++Architecture-specific swap metadata preparation still runs before a retained
++write is refused, so that metadata remains coherent with the dirty resident
++folio.  This policy controls swap-backend I/O; it does not promise that core VM
++or architecture preparation performs no allocation.
++
++With ``CONFIG_VM_EVENT_COUNTERS``, ``/proc/vmstat`` reports
++``swpout_offload_refused`` in base pages.  The counter advances when ordinary
++reclaim refuses a newly initiated write through a retained offload-only
++entry.  Repeated refusals of the same folio are counted again.  It is not a
++count of skipped areas during new-slot allocation.
++
++An offload-only area should therefore be configured with a reclaim-safe swap
++area as fallback for new swap allocations.  This does not migrate retained
++offload-only entries or retry a failed backend write on another area.  If no
++eligible swap space remains, swap allocation fails and the existing reclaim
++and OOM policy applies.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+index e0d1f369a163..b58e61f15ab1 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+@@ -21,7 +21,7 @@
  
-+#include <linux/delay.h>
- #include <linux/hwmon-sysfs.h>
- #include <linux/hwmon.h>
- #include <linux/jiffies.h>
-@@ -14,6 +15,8 @@
- #include "regs/xe_mchbar_regs.h"
- #include "regs/xe_pcode_regs.h"
- #include "xe_device.h"
-+#include "xe_force_wake.h"
-+#include "xe_gt.h"
- #include "xe_hwmon.h"
- #include "xe_mmio.h"
- #include "xe_pcode.h"
-@@ -1096,6 +1099,35 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
- 	}
+ static bool swap_available(void)
+ {
+-	return get_nr_swap_pages() > 0;
++	return get_nr_swap_pages_eligible() > 0;
  }
  
-+static int xe_hwmon_b70_temp_read(struct xe_hwmon *hwmon, u32 attr,
-+				  int channel, long *val)
+ static bool can_release_pages(struct drm_i915_gem_object *obj)
+diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+index 44718e728291..73b62b065510 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
++++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+@@ -1895,8 +1895,8 @@ static int igt_shrink_thp(void *arg)
+ 	i915_gem_context_unlock_engines(ctx);
+ 	/*
+ 	 * Nuke everything *before* we unpin the pages so we can be reasonably
+-	 * sure that when later checking get_nr_swap_pages() that some random
+-	 * leftover object doesn't steal the remaining swap space.
++	 * sure that when later checking get_nr_swap_pages_eligible() that some
++	 * random leftover object doesn't steal the remaining swap space.
+ 	 */
+ 	i915_gem_shrink(NULL, i915, -1UL, NULL,
+ 			I915_SHRINK_BOUND |
+@@ -1910,7 +1910,7 @@ static int igt_shrink_thp(void *arg)
+ 	 * Now that the pages are *unpinned* shrinking should invoke
+ 	 * shmem to truncate our pages, if we have available swap.
+ 	 */
+-	should_swap = get_nr_swap_pages() > 0;
++	should_swap = get_nr_swap_pages_eligible() > 0;
+ 	i915_gem_shrink(NULL, i915, -1UL, NULL,
+ 			I915_SHRINK_BOUND |
+ 			I915_SHRINK_UNBOUND |
+diff --git a/drivers/gpu/drm/msm/msm_gem_shrinker.c b/drivers/gpu/drm/msm/msm_gem_shrinker.c
+index 9d2788f79ace..da6a66b747b0 100644
+--- a/drivers/gpu/drm/msm/msm_gem_shrinker.c
++++ b/drivers/gpu/drm/msm/msm_gem_shrinker.c
+@@ -21,7 +21,7 @@ module_param(enable_eviction, bool, 0600);
+ 
+ static bool can_swap(void)
+ {
+-	return enable_eviction && get_nr_swap_pages() > 0;
++	return enable_eviction && get_nr_swap_pages_eligible() > 0;
+ }
+ 
+ static bool can_block(struct shrink_control *sc)
+diff --git a/drivers/gpu/drm/panthor/panthor_gem.c b/drivers/gpu/drm/panthor/panthor_gem.c
+index 72908be5e144..23488f417cf7 100644
+--- a/drivers/gpu/drm/panthor/panthor_gem.c
++++ b/drivers/gpu/drm/panthor/panthor_gem.c
+@@ -1371,7 +1371,7 @@ panthor_dummy_bo_create(struct panthor_device *ptdev)
+ 
+ static bool can_swap(void)
+ {
+-	return get_nr_swap_pages() > 0;
++	return get_nr_swap_pages_eligible() > 0;
+ }
+ 
+ static bool can_block(struct shrink_control *sc)
+diff --git a/drivers/gpu/drm/ttm/ttm_backup.c b/drivers/gpu/drm/ttm/ttm_backup.c
+index 0c2d53a13b2a..bf9d41bdf652 100644
+--- a/drivers/gpu/drm/ttm/ttm_backup.c
++++ b/drivers/gpu/drm/ttm/ttm_backup.c
+@@ -206,7 +206,7 @@ u64 ttm_backup_bytes_avail(void)
+ 	 * number also depends on shmem actually swapping out backed-up
+ 	 * shmem objects without too much buffering.
+ 	 */
+-	return (u64)get_nr_swap_pages() << PAGE_SHIFT;
++	return (u64)get_nr_swap_pages_eligible() << PAGE_SHIFT;
+ }
+ EXPORT_SYMBOL_GPL(ttm_backup_bytes_avail);
+ 
+diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+index 6a17e13d58cf..14d6bb8e41c9 100644
+--- a/drivers/gpu/drm/xe/tests/xe_bo.c
++++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+@@ -695,7 +695,7 @@ static int shrink_test_run_device(struct xe_device *xe)
+ 	}
+ 	to_alloc = ram * 2;
+ 
+-	ram_and_swap = ram + get_nr_swap_pages() * PAGE_SIZE;
++	ram_and_swap = ram + get_nr_swap_pages_eligible() * PAGE_SIZE;
+ 	if (to_alloc > ram_and_swap)
+ 		purgeable = to_alloc - ram_and_swap;
+ 	purgeable += div64_u64(purgeable, 5);
+diff --git a/include/linux/swap.h b/include/linux/swap.h
+index 78974da6810e..75350c450c47 100644
+--- a/include/linux/swap.h
++++ b/include/linux/swap.h
+@@ -21,10 +21,11 @@
+ #define SWAP_FLAG_DISCARD	0x10000 /* enable discard for swap */
+ #define SWAP_FLAG_DISCARD_ONCE	0x20000 /* discard swap area at swapon-time */
+ #define SWAP_FLAG_DISCARD_PAGES 0x40000 /* discard page-clusters after use */
++#define SWAP_FLAG_OFFLOAD_ONLY  0x80000 /* only use for proactive reclaim */
+ 
+ #define SWAP_FLAGS_VALID	(SWAP_FLAG_PRIO_MASK | SWAP_FLAG_PREFER | \
+ 				 SWAP_FLAG_DISCARD | SWAP_FLAG_DISCARD_ONCE | \
+-				 SWAP_FLAG_DISCARD_PAGES)
++				 SWAP_FLAG_DISCARD_PAGES | SWAP_FLAG_OFFLOAD_ONLY)
+ /*
+  * MAX_SWAPFILES defines the maximum number of swaptypes: things which can
+  * be swapped to.  The swap type and the offset into that swap type are
+@@ -140,12 +141,20 @@ union swap_header {
+ struct reclaim_state {
+ 	/* pages reclaimed outside of LRU-based reclaim */
+ 	unsigned long reclaimed;
++	/* this reclaim context may use offload-only swap */
++	bool allow_offload_swap;
+ #ifdef CONFIG_LRU_GEN
+ 	/* per-thread mm walk data */
+ 	struct lru_gen_mm_walk *mm_walk;
+ #endif
+ };
+ 
++static inline bool current_reclaim_allows_offload_swap(void)
 +{
-+	unsigned int refs[XE_MAX_TILES_PER_DEVICE * XE_MAX_GT_PER_TILE] = {};
-+	struct xe_device *xe = hwmon->xe;
-+	struct xe_gt *gt;
-+	int ret = -ETIMEDOUT;
-+	u8 id;
-+
-+	for_each_gt(gt, xe, id) {
-+		refs[id] = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+		if (!xe_force_wake_ref_has_domain(refs[id], XE_FORCEWAKE_ALL))
-+			goto out;
-+	}
-+
-+	/*
-+	 * A forcewake acknowledgment does not imply a fresh thermal sample.
-+	 * RFC: this interval is empirical on 8086:e223; the conversion time
-+	 * and minimum required wake domains need hardware-spec confirmation.
-+	 */
-+	usleep_range(2000, 2500);
-+	ret = xe_hwmon_temp_read(hwmon, attr, channel, val);
-+out:
-+	for_each_gt(gt, xe, id)
-+		xe_force_wake_put(gt_to_fw(gt), refs[id]);
-+
-+	return ret;
++	return current->reclaim_state &&
++	       current->reclaim_state->allow_offload_swap;
 +}
 +
- static umode_t
- xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- {
-@@ -1408,6 +1440,12 @@ xe_hwmon_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
+ /*
+  * mm_account_reclaimed_pages(): account reclaimed pages outside of LRU-based
+  * reclaim
+@@ -201,6 +210,7 @@ enum {
+ 	SWP_STABLE_WRITES = (1 << 11),	/* no overwrite PG_writeback pages */
+ 	SWP_SYNCHRONOUS_IO = (1 << 12),	/* synchronous IO is efficient */
+ 	SWP_HIBERNATION = (1 << 13),	/* pinned for hibernation */
++	SWP_OFFLOAD_ONLY = (1 << 14),	/* proactive-reclaim swap only */
+ 					/* add others here before... */
+ };
  
- 	switch (type) {
- 	case hwmon_temp:
-+		/* Limit the RFC workaround to the PCI ID measured in issue 7805. */
-+		if (attr == hwmon_temp_input &&
-+		    hwmon->xe->info.platform == XE_BATTLEMAGE &&
-+		    hwmon->xe->info.devid == 0xe223)
-+			return xe_hwmon_b70_temp_read(hwmon, attr, channel, val);
+@@ -389,6 +399,9 @@ static inline long get_nr_swap_pages(void)
+ 	return atomic_long_read(&nr_swap_pages);
+ }
+ 
++long get_nr_swap_pages_eligible(void);
++bool folio_swap_full(struct folio *folio);
 +
- 		return xe_hwmon_temp_read(hwmon, attr, channel, val);
- 	case hwmon_power:
- 		return xe_hwmon_power_read(hwmon, attr, channel, val);
-
-base-commit: 666d2f09d9045fc8f72cc1f71528a04acbaf5229
+ extern void si_swapinfo(struct sysinfo *);
+ extern int pin_hibernation_swap_type(dev_t device, sector_t offset);
+ extern void unpin_hibernation_swap_type(int type);
+@@ -443,10 +456,16 @@ static inline void put_swap_device(struct swap_info_struct *si)
+ }
+ 
+ #define get_nr_swap_pages()			0L
++#define get_nr_swap_pages_eligible()		0L
+ #define total_swap_pages			0L
+ #define total_swapcache_pages()			0UL
+ #define vm_swap_full()				0
+ 
++static inline bool folio_swap_full(struct folio *folio)
++{
++	return false;
++}
++
+ #define si_swapinfo(val) \
+ 	do { (val)->freeswap = (val)->totalswap = 0; } while (0)
+ #define free_folio_and_swap_cache(folio) \
+@@ -531,6 +550,7 @@ static inline void mem_cgroup_uncharge_swap(unsigned short id, unsigned int nr_p
+ 
+ long mem_cgroup_get_folio_swap_margin(struct folio *folio);
+ extern long mem_cgroup_get_nr_swap_pages(struct mem_cgroup *memcg);
++long mem_cgroup_get_nr_swap_pages_eligible(struct mem_cgroup *memcg);
+ extern bool mem_cgroup_swap_full(struct folio *folio);
+ #else
+ static inline int mem_cgroup_try_charge_swap(struct folio *folio)
+@@ -553,9 +573,14 @@ static inline long mem_cgroup_get_nr_swap_pages(struct mem_cgroup *memcg)
+ 	return get_nr_swap_pages();
+ }
+ 
++static inline long mem_cgroup_get_nr_swap_pages_eligible(struct mem_cgroup *memcg)
++{
++	return get_nr_swap_pages_eligible();
++}
++
+ static inline bool mem_cgroup_swap_full(struct folio *folio)
+ {
+-	return vm_swap_full();
++	return folio_swap_full(folio);
+ }
+ #endif
+ 
+diff --git a/include/linux/vm_event_item.h b/include/linux/vm_event_item.h
+index 2628ccda076a..fc8458b314a5 100644
+--- a/include/linux/vm_event_item.h
++++ b/include/linux/vm_event_item.h
+@@ -32,6 +32,7 @@
+ 	HIGHMEM_ZONE(xx) xx##_MOVABLE, DEVICE_ZONE(xx)
+ 
+ enum vm_event_item { PGPGIN, PGPGOUT, PSWPIN, PSWPOUT,
++		SWPOUT_OFFLOAD_REFUSED,
+ 		FOR_ALL_ZONES(PGALLOC)
+ 		FOR_ALL_ZONES(ALLOCSTALL)
+ 		FOR_ALL_ZONES(PGSCAN_SKIP)
+diff --git a/mm/memcontrol.c b/mm/memcontrol.c
+index 1460cba53588..1412084d2f43 100644
+--- a/mm/memcontrol.c
++++ b/mm/memcontrol.c
+@@ -6002,16 +6002,28 @@ void __mem_cgroup_uncharge_swap(unsigned short id, unsigned int nr_pages)
+ 	rcu_read_unlock();
+ }
+ 
+-long mem_cgroup_get_nr_swap_pages(struct mem_cgroup *memcg)
++static long
++mem_cgroup_get_nr_swap_pages_with_limit(struct mem_cgroup *memcg,
++					long nr_swap_pages)
+ {
+-	long nr_swap_pages = get_nr_swap_pages();
+-
+ 	if (!mem_cgroup_disabled() && !do_memsw_account())
+ 		nr_swap_pages = min(nr_swap_pages, page_counter_margin(&memcg->swap));
+ 
+ 	return nr_swap_pages;
+ }
+ 
++long mem_cgroup_get_nr_swap_pages(struct mem_cgroup *memcg)
++{
++	return mem_cgroup_get_nr_swap_pages_with_limit(memcg,
++			get_nr_swap_pages());
++}
++
++long mem_cgroup_get_nr_swap_pages_eligible(struct mem_cgroup *memcg)
++{
++	return mem_cgroup_get_nr_swap_pages_with_limit(memcg,
++			get_nr_swap_pages_eligible());
++}
++
+ /**
+  * mem_cgroup_get_folio_swap_margin - get a folio's memcg swap margin
+  * @folio: folio whose memcg margin is queried
+@@ -6042,7 +6054,7 @@ bool mem_cgroup_swap_full(struct folio *folio)
+ 
+ 	VM_BUG_ON_FOLIO(!folio_test_locked(folio), folio);
+ 
+-	if (vm_swap_full())
++	if (folio_swap_full(folio))
+ 		return true;
+ 	if (do_memsw_account() || !folio_memcg_charged(folio))
+ 		return ret;
+diff --git a/mm/page_io.c b/mm/page_io.c
+index 1da4ff484f09..1b281a1d6df0 100644
+--- a/mm/page_io.c
++++ b/mm/page_io.c
+@@ -203,6 +203,7 @@ static void swap_zeromap_folio_clear(struct folio *folio)
+  */
+ int swap_writeout(struct swap_io_ctx *ctx, struct folio *folio)
+ {
++	struct swap_info_struct *sis = __swap_entry_to_info(folio->swap);
+ 	int ret = 0;
+ 
+ 	if (folio_free_swap(folio))
+@@ -210,7 +211,9 @@ int swap_writeout(struct swap_io_ctx *ctx, struct folio *folio)
+ 
+ 	/*
+ 	 * Arch code may have to preserve more data than just the folio
+-	 * contents, e.g. memory tags.
++	 * contents, e.g. memory tags.  Do this before refusing a retained
++	 * offload-only entry below: a later sibling swap-PTE fault can restore
++	 * swap-indexed metadata into this resident folio.
+ 	 */
+ 	ret = arch_prepare_to_swap(folio);
+ 	if (ret) {
+@@ -228,6 +231,18 @@ int swap_writeout(struct swap_io_ctx *ctx, struct folio *folio)
+ 		goto out_unlock;
+ 	}
+ 
++	/*
++	 * A folio can retain an existing swap entry after swapin.  Do not let
++	 * ordinary reclaim use an offload-only entry through that path.
++	 */
++	if ((READ_ONCE(sis->flags) & SWP_OFFLOAD_ONLY) &&
++	    !current_reclaim_allows_offload_swap()) {
++		count_vm_events(SWPOUT_OFFLOAD_REFUSED,
++				folio_nr_pages(folio));
++		folio_mark_dirty(folio);
++		return AOP_WRITEPAGE_ACTIVATE;
++	}
++
+ 	/*
+ 	 * Clear bits this folio occupies in the zeromap to prevent zero data
+ 	 * being read in from any previous zero writes that occupied the same
+@@ -235,7 +250,12 @@ int swap_writeout(struct swap_io_ctx *ctx, struct folio *folio)
+ 	 */
+ 	swap_zeromap_folio_clear(folio);
+ 
+-	if (zswap_store(folio)) {
++	/*
++	 * Zswap writeback can happen much later from pressure reclaim or its
++	 * shrinker workqueue.  Do not let it defer an offload-only backend write
++	 * beyond the proactive reclaim context which admitted the swap slot.
++	 */
++	if (!(READ_ONCE(sis->flags) & SWP_OFFLOAD_ONLY) && zswap_store(folio)) {
+ 		count_mthp_stat(folio_order(folio), MTHP_STAT_ZSWPOUT);
+ 		goto out_unlock;
+ 	}
+diff --git a/mm/swapfile.c b/mm/swapfile.c
+index 280dd906eb18..b72d598a9973 100644
+--- a/mm/swapfile.c
++++ b/mm/swapfile.c
+@@ -65,13 +65,17 @@ static void move_cluster(struct swap_info_struct *si,
+  */
+ static DEFINE_SPINLOCK(swap_lock);
+ static unsigned int nr_swapfiles;
+-atomic_long_t nr_swap_pages;
+ /*
+  * Some modules use swappable objects and may try to swap them out under
+  * memory pressure (via the shrinker). Before doing so, they may wish to
+  * check to see if any swap space is available.
++ *
++ * This remains the raw free-space counter for accounting users. Reclaim
++ * decisions subtract nr_swap_pages_offload_only below when necessary.
+  */
++atomic_long_t nr_swap_pages;
+ EXPORT_SYMBOL_GPL(nr_swap_pages);
++static atomic_long_t nr_swap_pages_offload_only;
+ /* protected with swap_lock. reading in vm_swap_full() doesn't need lock */
+ long total_swap_pages;
+ #define DEF_SWAP_PRIO  -1
+@@ -120,6 +124,7 @@ atomic_t nr_rotate_swap = ATOMIC_INIT(0);
+ struct percpu_swap_cluster {
+ 	struct swap_info_struct *si[SWAP_NR_ORDERS];
+ 	unsigned long offset[SWAP_NR_ORDERS];
++	bool allow_offload_swap[SWAP_NR_ORDERS];
+ 	local_lock_t lock;
+ };
+ 
+@@ -163,6 +168,31 @@ static long swap_usage_in_pages(struct swap_info_struct *si)
+ 	return atomic_long_read(&si->inuse_pages) & SWAP_USAGE_COUNTER_MASK;
+ }
+ 
++static bool swap_area_needs_reclaim(struct swap_info_struct *si)
++{
++	if (vm_swap_full())
++		return true;
++
++	/*
++	 * Free offload-only slots must not keep a full conventional area
++	 * pinned in swapcache.  Recover that area's unused cache entries
++	 * even when the raw pool is not full.  This is independent of the
++	 * current task: proactive reclaim can fill the conventional area too.
++	 */
++	return !(READ_ONCE(si->flags) & SWP_OFFLOAD_ONLY) &&
++		atomic_long_read(&nr_swap_pages_offload_only) > 0 &&
++		swap_usage_in_pages(si) == si->pages;
++}
++
++/* The caller must hold the lock on a folio in swapcache. */
++bool folio_swap_full(struct folio *folio)
++{
++	VM_WARN_ON_FOLIO(!folio_test_locked(folio), folio);
++	VM_WARN_ON_FOLIO(!folio_test_swapcache(folio), folio);
++
++	return swap_area_needs_reclaim(__swap_entry_to_info(folio->swap));
++}
++
+ /* Reclaim the swap entry anyway if possible */
+ #define TTRS_ANYWAY		0x1
+ /*
+@@ -903,7 +933,7 @@ static bool cluster_scan_range(struct swap_info_struct *si,
+ 		if (swp_tb_is_null(swp_tb))
+ 			continue;
+ 		if (swp_tb_is_folio(swp_tb) && !__swp_tb_get_count(swp_tb)) {
+-			if (!vm_swap_full())
++			if (!swap_area_needs_reclaim(si))
+ 				return false;
+ 			*need_reclaim = true;
+ 			continue;
+@@ -1014,6 +1044,8 @@ static unsigned int alloc_swap_scan_cluster(struct swap_info_struct *si,
+ 	if (si->flags & SWP_SOLIDSTATE) {
+ 		this_cpu_write(percpu_swap_cluster.offset[order], next);
+ 		this_cpu_write(percpu_swap_cluster.si[order], si);
++		this_cpu_write(percpu_swap_cluster.allow_offload_swap[order],
++			       current_reclaim_allows_offload_swap());
+ 	} else {
+ 		si->global_cluster->next[order] = next;
+ 	}
+@@ -1161,7 +1193,7 @@ static unsigned long cluster_alloc_swap_entry(struct swap_info_struct *si,
+ 	}
+ 
+ 	/* Try reclaim full clusters if free and nonfull lists are drained */
+-	if (vm_swap_full())
++	if (swap_area_needs_reclaim(si))
+ 		swap_reclaim_full_clusters(si, false);
+ 
+ 	if (order < PMD_ORDER) {
+@@ -1315,9 +1347,11 @@ static void swap_range_alloc(struct swap_info_struct *si,
+ 			     unsigned int nr_entries)
+ {
+ 	if (swap_usage_add(si, nr_entries)) {
+-		if (vm_swap_full())
++		if (swap_area_needs_reclaim(si))
+ 			schedule_work(&si->reclaim_work);
+ 	}
++	if (si->flags & SWP_OFFLOAD_ONLY)
++		atomic_long_sub(nr_entries, &nr_swap_pages_offload_only);
+ 	atomic_long_sub(nr_entries, &nr_swap_pages);
+ }
+ 
+@@ -1346,6 +1380,8 @@ static void swap_range_free(struct swap_info_struct *si, unsigned long offset,
+ 	 * only after the above cleanups are done.
+ 	 */
+ 	smp_wmb();
++	if (si->flags & SWP_OFFLOAD_ONLY)
++		atomic_long_add(nr_entries, &nr_swap_pages_offload_only);
+ 	atomic_long_add(nr_entries, &nr_swap_pages);
+ 	swap_usage_sub(si, nr_entries);
+ }
+@@ -1366,6 +1402,31 @@ static bool get_swap_device_info(struct swap_info_struct *si)
+ 	return true;
+ }
+ 
++static bool swap_area_eligible(struct swap_info_struct *si)
++{
++	if (!(READ_ONCE(si->flags) & SWP_OFFLOAD_ONLY))
++		return true;
++
++	return current_reclaim_allows_offload_swap();
++}
++
++long get_nr_swap_pages_eligible(void)
++{
++	long nr_pages;
++
++	if (current_reclaim_allows_offload_swap())
++		return get_nr_swap_pages();
++
++	/*
++	 * The reads are intentionally unpaired.  This is a capacity hint; the
++	 * allocator enforces eligibility.  Clamp a transient negative result.
++	 */
++	nr_pages = get_nr_swap_pages() -
++		   atomic_long_read(&nr_swap_pages_offload_only);
++	return max(nr_pages, 0L);
++}
++EXPORT_SYMBOL_GPL(get_nr_swap_pages_eligible);
++
+ /*
+  * Fast path try to get swap entries with specified order from current
+  * CPU's swap entry pool (a cluster).
+@@ -1385,6 +1446,20 @@ static bool swap_alloc_fast(struct folio *folio)
+ 	offset = this_cpu_read(percpu_swap_cluster.offset[order]);
+ 	if (!si || !offset || !get_swap_device_info(si))
+ 		return false;
++	if (!swap_area_eligible(si)) {
++		put_swap_device(si);
++		return false;
++	}
++	/*
++	 * Pressure reclaim may cache a lower-priority conventional area while
++	 * an offload-only area is ineligible.  Drop that cache on a context
++	 * change so proactive reclaim returns to the normal priority search.
++	 */
++	if (this_cpu_read(percpu_swap_cluster.allow_offload_swap[order]) !=
++	    current_reclaim_allows_offload_swap()) {
++		put_swap_device(si);
++		return false;
++	}
+ 
+ 	ci = swap_cluster_lock(si, offset);
+ 	if (cluster_is_usable(ci, order)) {
+@@ -1407,6 +1482,9 @@ static void swap_alloc_slow(struct folio *folio)
+ 	spin_lock(&swap_avail_lock);
+ start_over:
+ 	plist_for_each_entry_safe(si, next, &swap_avail_head, avail_list) {
++		if (!swap_area_eligible(si))
++			continue;
++
+ 		/* Rotate the device and switch to a new cluster */
+ 		plist_requeue(&si->avail_list, &swap_avail_head);
+ 		spin_unlock(&swap_avail_lock);
+@@ -1738,8 +1816,8 @@ static int swap_dup_entries_cluster(struct swap_info_struct *si,
+  *
+  * Context: Caller needs to hold the folio lock.
+  * Return: %0 on success, %-E2BIG if splitting the folio might allow swapout,
+- * %-ENOSPC if no global swap space is available, or %-ENOMEM if splitting
+- * would not help.
++ * %-ENOSPC if no global swap space is eligible for the caller, or %-ENOMEM
++ * if splitting would not help.
+  */
+ int folio_alloc_swap(struct folio *folio)
+ {
+@@ -1790,7 +1868,7 @@ int folio_alloc_swap(struct folio *folio)
+ 	return 0;
+ 
+ failed:
+-	if (get_nr_swap_pages() <= 0)
++	if (get_nr_swap_pages_eligible() <= 0)
+ 		return -ENOSPC;
+ 	if (mem_cgroup_get_folio_swap_margin(folio) <= 0)
+ 		return -ENOMEM;
+@@ -2180,7 +2258,7 @@ swp_entry_t swap_alloc_hibernation_slot(int type)
+ 	struct swap_cluster_info *ci;
+ 	swp_entry_t entry = {0};
+ 
+-	if (!si)
++	if (!si || (si->flags & SWP_OFFLOAD_ONLY))
+ 		goto fail;
+ 
+ 	/*
+@@ -2247,7 +2325,8 @@ static int __find_hibernation_swap_type(dev_t device, sector_t offset)
+ 	for (type = 0; type < nr_swapfiles; type++) {
+ 		struct swap_info_struct *sis = swap_info[type];
+ 
+-		if (!(sis->flags & SWP_WRITEOK))
++		if (!(sis->flags & SWP_WRITEOK) ||
++		    (sis->flags & SWP_OFFLOAD_ONLY))
+ 			continue;
+ 
+ 		if (device == sis->bdev->bd_dev) {
+@@ -2434,7 +2513,8 @@ int find_first_swap(dev_t *device)
+ 	for (type = 0; type < nr_swapfiles; type++) {
+ 		struct swap_info_struct *sis = swap_info[type];
+ 
+-		if (!(sis->flags & SWP_WRITEOK))
++		if (!(sis->flags & SWP_WRITEOK) ||
++		    (sis->flags & SWP_OFFLOAD_ONLY))
+ 			continue;
+ 		*device = sis->bdev->bd_dev;
+ 		spin_unlock(&swap_lock);
+@@ -2474,7 +2554,8 @@ unsigned int count_swap_pages(int type, int free)
+ 		struct swap_info_struct *sis = swap_info[type];
+ 
+ 		spin_lock(&sis->lock);
+-		if (sis->flags & SWP_WRITEOK) {
++		if ((sis->flags & SWP_WRITEOK) &&
++		    !(sis->flags & SWP_OFFLOAD_ONLY)) {
+ 			n = sis->pages;
+ 			if (free)
+ 				n -= swap_usage_in_pages(sis);
+@@ -3083,6 +3164,8 @@ static int setup_swap_extents(struct swap_info_struct *sis,
+ 
+ static void _enable_swap_info(struct swap_info_struct *si)
+ {
++	if (si->flags & SWP_OFFLOAD_ONLY)
++		atomic_long_add(si->pages, &nr_swap_pages_offload_only);
+ 	atomic_long_add(si->pages, &nr_swap_pages);
+ 	total_swap_pages += si->pages;
+ 
+@@ -3231,6 +3314,8 @@ SYSCALL_DEFINE1(swapoff, const char __user *, specialfile)
+ 	spin_lock(&p->lock);
+ 	del_from_avail_list(p, true);
+ 	plist_del(&p->list, &swap_active_head);
++	if (p->flags & SWP_OFFLOAD_ONLY)
++		atomic_long_sub(p->pages, &nr_swap_pages_offload_only);
+ 	atomic_long_sub(p->pages, &nr_swap_pages);
+ 	total_swap_pages -= p->pages;
+ 	spin_unlock(&p->lock);
+@@ -3727,7 +3812,6 @@ SYSCALL_DEFINE2(swapon, const char __user *, specialfile, int, swap_flags)
+ 
+ 	if (swap_flags & ~SWAP_FLAGS_VALID)
+ 		return -EINVAL;
+-
+ 	if (!capable(CAP_SYS_ADMIN))
+ 		return -EPERM;
+ 
+@@ -3841,6 +3925,9 @@ SYSCALL_DEFINE2(swapon, const char __user *, specialfile, int, swap_flags)
+ 	if (error)
+ 		goto bad_swap_unlock_inode;
+ 
++	if (swap_flags & SWAP_FLAG_OFFLOAD_ONLY)
++		si->flags |= SWP_OFFLOAD_ONLY;
++
+ 	if ((swap_flags & SWAP_FLAG_DISCARD) &&
+ 	    si->bdev && bdev_max_discard_sectors(si->bdev)) {
+ 		/*
+@@ -3863,6 +3950,18 @@ SYSCALL_DEFINE2(swapon, const char __user *, specialfile, int, swap_flags)
+ 		else if (swap_flags & SWAP_FLAG_DISCARD_PAGES)
+ 			si->flags &= ~SWP_AREA_DISCARD;
+ 
++		/*
++		 * Cluster discard can run later from discard_work, after the
++		 * context which freed the entries has ended.  Swapon-time discard
++		 * is explicit and synchronous, but page discard cannot honour
++		 * offload provenance.
++		 */
++		if ((si->flags & SWP_OFFLOAD_ONLY) &&
++		    (si->flags & SWP_PAGE_DISCARD)) {
++			error = -EINVAL;
++			goto bad_swap_unlock_inode;
++		}
++
+ 		/* issue a swapon-time discard if it's still required */
+ 		if (si->flags & SWP_AREA_DISCARD) {
+ 			int err = discard_swap(si);
+diff --git a/mm/vmscan.c b/mm/vmscan.c
+index aaceed4759ee..0633feb5d88b 100644
+--- a/mm/vmscan.c
++++ b/mm/vmscan.c
+@@ -123,6 +123,9 @@ struct scan_control {
+ 	/* Proactive reclaim invoked by userspace */
+ 	unsigned int proactive:1;
+ 
++	/* This reclaim context may use offload-only swap */
++	unsigned int allow_offload_swap:1;
++
+ 	/*
+ 	 * Cgroup memory below memory.low is protected as long as we
+ 	 * don't threaten to OOM. If any cgroup is reclaimed at
+@@ -291,14 +294,18 @@ static inline bool is_exec_file_folio(const struct folio *folio,
+ }
+ 
+ static void set_task_reclaim_state(struct task_struct *task,
+-				   struct reclaim_state *rs)
++				   struct scan_control *sc)
+ {
++	struct reclaim_state *rs = sc ? &sc->reclaim_state : NULL;
++
+ 	/* Check for an overwrite */
+ 	WARN_ON_ONCE(rs && task->reclaim_state);
+ 
+ 	/* Check for the nulling of an already-nulled member */
+ 	WARN_ON_ONCE(!rs && !task->reclaim_state);
+ 
++	if (rs)
++		rs->allow_offload_swap = sc->allow_offload_swap;
+ 	task->reclaim_state = rs;
+ }
+ 
+@@ -418,7 +425,7 @@ static inline bool can_reclaim_anon_pages(struct mem_cgroup *memcg,
+ 		 * And under GFP_NOIO, is there enough swapcached anon to make
+ 		 * scanning anon worthwhile?
+ 		 */
+-		if (get_nr_swap_pages() > 0 &&
++		if (get_nr_swap_pages_eligible() > 0 &&
+ 		    !reclaimable_anon_is_low(memcg, nid, sc))
+ 			return true;
+ 	} else {
+@@ -426,7 +433,7 @@ static inline bool can_reclaim_anon_pages(struct mem_cgroup *memcg,
+ 		 * Is the memcg below its swap limit, and under GFP_NOIO does
+ 		 * it have enough swapcached anon to make scanning worthwhile?
+ 		 */
+-		if (mem_cgroup_get_nr_swap_pages(memcg) > 0 &&
++		if (mem_cgroup_get_nr_swap_pages_eligible(memcg) > 0 &&
+ 		    !reclaimable_anon_is_low(memcg, nid, sc))
+ 			return true;
+ 	}
+@@ -2853,7 +2860,7 @@ static int get_swappiness(struct lruvec *lruvec, struct scan_control *sc)
+ 		return 0;
+ 
+ 	if (!can_demote(pgdat->node_id, sc, memcg) &&
+-	    mem_cgroup_get_nr_swap_pages(memcg) < MIN_LRU_BATCH)
++	    mem_cgroup_get_nr_swap_pages_eligible(memcg) < MIN_LRU_BATCH)
+ 		return 0;
+ 
+ 	return swappiness;
+@@ -5926,6 +5933,7 @@ static ssize_t lru_gen_seq_write(struct file *file, const char __user *src,
+ 		.reclaim_idx = MAX_NR_ZONES - 1,
+ 		.gfp_mask = GFP_KERNEL,
+ 		.proactive = true,
++		.allow_offload_swap = true,
+ 	};
+ 
+ 	buf = kvmalloc(len + 1, GFP_KERNEL);
+@@ -5937,7 +5945,7 @@ static ssize_t lru_gen_seq_write(struct file *file, const char __user *src,
+ 		return -EFAULT;
+ 	}
+ 
+-	set_task_reclaim_state(current, &sc.reclaim_state);
++	set_task_reclaim_state(current, &sc);
+ 	flags = memalloc_noreclaim_save();
+ 	blk_start_plug(&plug);
+ 	if (!set_mm_walk(NULL, true)) {
+@@ -6941,7 +6949,7 @@ unsigned long try_to_free_pages(struct zonelist *zonelist, int order,
+ 	if (throttle_direct_reclaim(sc.gfp_mask, zonelist, nodemask))
+ 		return 1;
+ 
+-	set_task_reclaim_state(current, &sc.reclaim_state);
++	set_task_reclaim_state(current, &sc);
+ 	trace_mm_vmscan_direct_reclaim_begin(sc.gfp_mask, order, NULL);
+ 
+ 	nr_reclaimed = do_try_to_free_pages(zonelist, &sc);
+@@ -6974,6 +6982,8 @@ unsigned long try_to_free_mem_cgroup_pages(struct mem_cgroup *memcg,
+ 		.may_unmap = 1,
+ 		.may_swap = !!(reclaim_options & MEMCG_RECLAIM_MAY_SWAP),
+ 		.proactive = !!(reclaim_options & MEMCG_RECLAIM_PROACTIVE),
++		.allow_offload_swap =
++			!!(reclaim_options & MEMCG_RECLAIM_PROACTIVE),
+ 	};
+ 	/*
+ 	 * Traverse the ZONELIST_FALLBACK zonelist of the current node to put
+@@ -6982,7 +6992,7 @@ unsigned long try_to_free_mem_cgroup_pages(struct mem_cgroup *memcg,
+ 	 */
+ 	struct zonelist *zonelist = node_zonelist(numa_node_id(), sc.gfp_mask);
+ 
+-	set_task_reclaim_state(current, &sc.reclaim_state);
++	set_task_reclaim_state(current, &sc);
+ 	trace_mm_vmscan_memcg_reclaim_begin(sc.gfp_mask, 0, memcg);
+ 	noreclaim_flag = memalloc_noreclaim_save();
+ 
+@@ -7272,7 +7282,7 @@ static int balance_pgdat(pg_data_t *pgdat, int order, int highest_zoneidx)
+ 
+ 	trace_mm_vmscan_balance_pgdat_begin(pgdat->node_id, order,
+ 					    highest_zoneidx);
+-	set_task_reclaim_state(current, &sc.reclaim_state);
++	set_task_reclaim_state(current, &sc);
+ 	psi_memstall_enter(&pflags);
+ 	__fs_reclaim_acquire(_THIS_IP_);
+ 
+@@ -7769,7 +7779,7 @@ unsigned long shrink_all_memory(unsigned long nr_to_reclaim)
+ 
+ 	fs_reclaim_acquire(sc.gfp_mask);
+ 	noreclaim_flag = memalloc_noreclaim_save();
+-	set_task_reclaim_state(current, &sc.reclaim_state);
++	set_task_reclaim_state(current, &sc);
+ 
+ 	nr_reclaimed = do_try_to_free_pages(zonelist, &sc);
+ 
+@@ -7950,7 +7960,7 @@ static unsigned long __node_reclaim(struct pglist_data *pgdat,
+ 	 * We need to be able to allocate from the reserves for RECLAIM_UNMAP
+ 	 */
+ 	noreclaim_flag = memalloc_noreclaim_save();
+-	set_task_reclaim_state(p, &sc->reclaim_state);
++	set_task_reclaim_state(p, sc);
+ 
+ 	do {
+ 		shrink_node(pgdat, sc);
+@@ -8136,6 +8146,7 @@ int user_proactive_reclaim(char *buf,
+ 				.may_unmap = 1,
+ 				.may_swap = 1,
+ 				.proactive = 1,
++				.allow_offload_swap = 1,
+ 			};
+ 
+ 			if (test_and_set_bit_lock(PGDAT_RECLAIM_LOCKED,
+diff --git a/mm/vmstat.c b/mm/vmstat.c
+index a3e809c57f29..b924c715886e 100644
+--- a/mm/vmstat.c
++++ b/mm/vmstat.c
+@@ -1331,6 +1331,7 @@ const char * const vmstat_text[] = {
+ 	[I(PGPGOUT)]				= "pgpgout",
+ 	[I(PSWPIN)]				= "pswpin",
+ 	[I(PSWPOUT)]				= "pswpout",
++	[I(SWPOUT_OFFLOAD_REFUSED)]		= "swpout_offload_refused",
+ 
+ #define OFF (NR_VM_ZONE_STAT_ITEMS + NR_VM_NUMA_EVENT_ITEMS + \
+ 	     NR_VM_NODE_STAT_ITEMS + NR_VM_STAT_ITEMS)
 -- 
 2.55.0
-
 
