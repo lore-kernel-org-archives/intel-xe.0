@@ -4,144 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A78F3C9832A
-	for <intel-xe@archiver.kernel.org>; Sat, 26 Sep 2026 01:06:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36D0BC9830E
+	for <intel-xe@archiver.kernel.org>; Sat, 26 Sep 2026 01:42:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F228E10E2E8;
-	Sat, 26 Sep 2026 01:06:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA68510FD1C;
+	Sat, 26 Sep 2026 01:42:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jy3oRzii";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h4IwcjPC";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0621B882B5
- for <intel-xe@lists.freedesktop.org>; Sat, 26 Sep 2026 01:06:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F0CB10FD1C
+ for <intel-xe@lists.freedesktop.org>; Sat, 26 Sep 2026 01:42:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790384790; x=1821920790;
+ t=1790386966; x=1821922966;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=rXwLzjnHSJ2ztN4+huUUNKors36QVb3q1zEd4g32NVs=;
- b=jy3oRziirmfkhe0+a/YXrRpCtVB5g9kjcUng/WvE5TCoU3zJYttcS+2q
- 0ML89m7jvHSKGSoc+mc998LauV7UJqnM/aSDnaSr91TFFqlipjJXoMiHF
- PjZPHjgfYFAsOSOt9SB+6npUJNg6QXKh7BiTQZtyE2LHvoILWXwUUkRVk
- 6n7KZCaIvudUR3HoTqAuXFioeLxj49TNKej9vISn78/d97S2Cg2ZeWsM+
- 1d9pN0eCfT9UHvn9wFBKfybYKdSI3LhfdEDFzOsKpoP3jd+MmFkt6zjHb
- ixv7vf5MDhWxJlcQML+bKGGTLUiOUZbCh1zzVO5FvpMZfjMDFEjwmaBMj A==;
-X-CSE-ConnectionGUID: RDOzXeN2Q6iIQgsZJFSq2g==
-X-CSE-MsgGUID: QmNgS53ARWCsI2xLEqu6lw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11916"; a="90299565"
-X-IronPort-AV: E=Sophos;i="6.27,123,1787036400"; d="scan'208";a="90299565"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2026 18:06:29 -0700
-X-CSE-ConnectionGUID: j8MUaPMYTLaQsNZ+0Eidmg==
-X-CSE-MsgGUID: ymifrRCST6m1RyGc/+fV0g==
+ bh=XPw23aBxldvVlGSZeJO1sSpTrritErAxqrzlG3iwJTs=;
+ b=h4IwcjPCQI4CpQoPEEVAvLlQtjlv7vogUYraLSrncMkVUWSGjjbeDJND
+ sDZalZOmdLFw73sckUEhsYUXtPi02uNv6GdtpVc5e6zz1iGNFSxqiCu8T
+ oeqM+M+KDXXfswBz6rV9jImfU5rzcCa9JMZJN/1sTFmbtmE3cLehK6Kqc
+ xU5AIXP8PWNid/dIf1H8hotVISMa5zeFof6ro6EWRzY4yxX+KWajZxl/Z
+ CodGz/sPFcrG9JTGD+L6Lhh1eKrnzwDZEXdEy5drZlkNW+heqsOKivCnu
+ yZia9wmh4/m00rlHxJPZ7PqPWCybdE2jirMSLztrKr8G182/aM9urUFOL Q==;
+X-CSE-ConnectionGUID: jTtexkstTeS94fogDv77gA==
+X-CSE-MsgGUID: 4hO1yzgjSQ6bBrDuAUSd/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11916"; a="90236278"
+X-IronPort-AV: E=Sophos;i="6.27,123,1787036400"; d="scan'208";a="90236278"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2026 18:42:46 -0700
+X-CSE-ConnectionGUID: t2cRPJI9TA6L8n1rdK7lxw==
+X-CSE-MsgGUID: T9I2aVeHS2+cXDUSPyCNmw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,123,1787036400"; d="scan'208";a="272630763"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2026 18:06:30 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,123,1787036400"; d="scan'208";a="274560794"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2026 18:42:46 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 25 Sep 2026 18:06:29 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.46; Fri, 25 Sep 2026 18:42:45 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Fri, 25 Sep 2026 18:06:29 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.25) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Fri, 25 Sep 2026 18:42:45 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.63) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 25 Sep 2026 18:06:28 -0700
+ 15.2.2562.46; Fri, 25 Sep 2026 18:42:45 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DsvsJDbztcWx2SnVILHoJAqehqhY2wpndAgcSUwdfnQaBYUS8DmrlvURP8koFnCIE9OPmbKF5i8xijx28MJhC7V6PPX+I/CBUxoYvAuqq+d39FGmlb0XLMkIg9bXqmBA60F23GFhFjNpylkJ0YMktW5sVD+gzng/a4fYrbdhJ3v5xvrvT0xT4IIm1AwCK4EQFGGVl48/0nQHZjIa7iKqF+pbqpjddLPcPbv41cDv4TZZ98HkXN2/n90mRMpeBDrHr5TxuNYd7TBC7DeecMnixiHnQX1gxwxQVzY5gd/kPDwZiSTZORXjbe7lz3sLU13uK3c5ZKSDJMxiIjqfheUTtg==
+ b=l8Pr8l5LraL0nB0oPCPx/ygHtNeWYFOPCMBbnOWApvceOnSkvFrTGxiGKtgbS7cb2SNeNwr6jb+PqrntRV6p3DgNcDxdfVGlpHRuisfw1E4XWK+fKHgFuiONF1RNK9NSPJVeKCV3sJkPMH4CSyGP9lg8Gy+U3zzIyBzhSO2+mNbckkEzfYfDdLT25/utKez9GoRTEQux1DhEaHM/pT+Gjgmn3BRzPP3E+odY93af+j30JBP2hsbZgbIuquK+Z73egZDBDtRlGLFSZ9FtDx7GE5Tu6QOOYsCCsTPgbxNq6LXwIawXhNDKjOHcK5vJ5V7873ANh1DLanBbM9PqAsizAQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CwVJKzSg+DWbHm0j2+9yUS3G630s0Oy63zsFEysdCbQ=;
- b=Eo3RjSQlGCzv282wAnb9dtN3/a0tHfV6IwJpgRMc6dasSs6QlmisxhcyEmpLf8SOhTxjtwQd6i0hcoEZApww8kUObK1M+yDYQXbVJW08ahLvyNct8X6Kd+LDstgWLlJpWb7DNxRP5BDbNmVPbYyCGrSL2wHEARh3X5PubIj+voQaLRGOlvhqcsvly0g0+mXGn1baKHoRE8uhVB3BO3huW7xADJmqKGEPIwnXd35ykZZ5XHqAK5sqLD64xCl6OY1Bon9WVZzC4i3QwZ75uUM/BGZM3IBOR+RGOwF/K3qp0sT0leXS4lXa2LQkv+V0ro8Zf8jIGHQsCbvEGH6vFJrYXw==
+ bh=empRr6BTjgUdTRwImY1nTKAo+g/AH4how5oeevOLOJA=;
+ b=QQpuTVmAKekCQBbS03u9cCTcCDg5wj6VHWnRaQxt6tyNnkIrTb1t18xwEltlRciP+k6lLvHzjbD1e3Wi30imdl1gkpg5oN6BqFeIqQ0vhf7hPC1VaDhtI+51zll3UzgrHnDkMkLL3udVm4wWe9HTmoTyVptv1kqLik/H8PFsPZ+8oyTGWGfX5hXcNErlSROmBsWvdpfxC5CDiaGEWKXuYGnRMm7jYiyRazIPXnjpgL6i2hDTiXKGrcy2kMJvGSvY39GMA5HT7Y17Np7mcZzcGAiTytZYozrYybPaRXrAcgJ5TnZ7oGvBM+qu1PDsQFUZKMSvR2kcLgdH1xBu7fjs3w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA0PR11MB7187.namprd11.prod.outlook.com (2603:10b6:208:441::12)
- by SJ0PR11MB4976.namprd11.prod.outlook.com (2603:10b6:a03:2d7::5)
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
+ by PH8PR11MB7143.namprd11.prod.outlook.com (2603:10b6:510:22d::11)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.18; Sat, 26 Sep
- 2026 01:06:26 +0000
-Received: from IA0PR11MB7187.namprd11.prod.outlook.com
- ([fe80::be96:3f58:953d:6565]) by IA0PR11MB7187.namprd11.prod.outlook.com
- ([fe80::be96:3f58:953d:6565%4]) with mapi id 15.21.0451.014; Sat, 26 Sep 2026
- 01:06:26 +0000
-Date: Fri, 25 Sep 2026 21:06:14 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Violet Monti <violet.monti@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Matt Atwood <matthew.s.atwood@intel.com>
-Subject: Re: [PATCH] drm/xe/ptl: Add a new PTL PCI ID
-Message-ID: <arcahvIqBmCytAmw@intel.com>
-References: <20260922165607.129560-2-violet.monti@intel.com>
- <arL_YfVMnFsqzzjm@intel.com> <arQIKbgr4QbAJ-Lj@vmonti-desk>
+ 2026 01:42:37 +0000
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0451.014; Sat, 26 Sep 2026
+ 01:42:37 +0000
+Date: Fri, 25 Sep 2026 18:42:35 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v3 2/4] drm/gpusvm: Add devmem callback to get_pages
+Message-ID: <arcjC0+EQj+Iiu+Z@gsse-cloud1.jf.intel.com>
+References: <20260922043759.3057442-6-himal.prasad.ghimiray@intel.com>
+ <20260922043759.3057442-8-himal.prasad.ghimiray@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <arQIKbgr4QbAJ-Lj@vmonti-desk>
-X-ClientProxiedBy: SI1PR02CA0010.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::17) To IA0PR11MB7187.namprd11.prod.outlook.com
- (2603:10b6:208:441::12)
+In-Reply-To: <20260922043759.3057442-8-himal.prasad.ghimiray@intel.com>
+X-ClientProxiedBy: MW4PR03CA0307.namprd03.prod.outlook.com
+ (2603:10b6:303:dd::12) To CO1PR11MB4787.namprd11.prod.outlook.com
+ (2603:10b6:303:95::23)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|SJ0PR11MB4976:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6fd2b601-ef6d-491a-4b66-08df1b6a6359
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|PH8PR11MB7143:EE_
+X-MS-Office365-Filtering-Correlation-Id: bb5eb810-bae4-4c37-993b-08df1b6f7199
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|376014|1800799024|10067099003|56012099006|22082099003|18002099003|4143699003|11063799006;
-X-Microsoft-Antispam-Message-Info: 50l19b9TrJwMRyhDrRr4QAuXSgFhDDf8wdIeEb5r8c0XCcOYSDQqIS0/YG5Ikbr8cromLMNkLlDAgsKGZJjaXW2qODNhMF7dQ02xVo50f9tPqMGn7tDw9zcL+qUVp6WflGsnI8SuiZ1XEoYegqgdOwcS43elZrBcNMYki+EbpmIAYXPEk78/w2GW5TNsgr+lgHL0n+QQzEN2mpAIsyCaZIBcmIKIbBJFmg1gpWwQRt1BQxWueaV0eJd9/r2HhMZvOzr8rM7LEF4YBjrbqsThhzMXyynsYOJkg1rX4hNkQsRxd78ZethbtQwUYQwVKUQ8+H05aWv4S3fbma7nxQJGQ/2nZRkCe5jq4FFkjMQ7B8WJSvYzY7kZA7o85yL2ZA2clQh89AN/z571x0BXw+LmhKnZcjxqY+DWMNQHFtX7Lt2b1AU+grmNknYJAetJHtWf4X5FHPuwhH9+px5xMB1MCLSAbQZzC3s1US5fnrPS8hLdp3gv3lJkXXM5kll/H0WPL+y2ISMpWX0HQWchb1SrxrP2ngDtFPUGloxX7IXMG1JtolQfq2Y9BhAWhJnR08f8unTtTdjBtIe8ELRb8bheeLMXQtzJHyQEMzZE36VJ8O7ECcGcdz+rFzatC5bB/dNENcObOpym059zaEbRdPSQN8Bir/Rs/kUK1mioVjXeGYg=
+ ARA:13230040|376014|1800799024|366016|23010399003|6133799003|22082099003|18002099003|56012099006|5023799004|10067099003|11063799006|4143699003;
+X-Microsoft-Antispam-Message-Info: f+b76QsRBcnDwdM4KFKimtHFCXWDDB+3LIGAvWhScsxVlVbfT488ALHS+d8McMAlPzUnuqxbTgvr4zcFNi6uHcifP2KSI3msF1sNVgQ8n9JvMG4b3EQs0T29yqL11slMqKhpqFojXabYWDVLpsuRk8k3cZmnZ5Sb1vY2Awx0WlR+g734Qbo0Q4lVSgJZUUgygZXVDqmCTWA4s08R2sTFTrHC20BjgaNboFMbi7a7C34oAmfY3/3BWszk03w+Rf6CPV1+rkh9U9qjlkMdbzFrzl+OfQuenqa0cFxdeQbQU6QUie6qtk/szzcjFmx7xM89E1Jmni8iKSmaMBP3MefWC29wH2WB+4YzR9VV4NM9bLJB03aUrdXbJM61B0qoQ3tEs7USBjJCfrdK0vr7oqfYNJVR9t2HmSGwL6Su5f0IoTqagO+KTCIxfkdwa1+4uK/WqFcByzpbc7QmkeU+wToUSdn/m1Vh1BGZDZLW/CnCkSgMsu1MTPtFFuSfX0PTuAjwx6qnNEHekgX2tmtOleRUXksh+7VC0dcuptAemDG7/o+15jPPrX9IoXxSKKVRaaLy+w9fHBI1Z3Ll+fa9gwttYv+QU6iUQj5sy5QKzfoOlmaaup1gX6EZ2dpRZN/MXrDNrPHJQbjjtTa7M3so0SnB5b5HS0MZegkcsXSJsTe6XAM=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7187.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(10067099003)(56012099006)(22082099003)(18002099003)(4143699003)(11063799006);
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(23010399003)(6133799003)(22082099003)(18002099003)(56012099006)(5023799004)(10067099003)(11063799006)(4143699003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YAuU/R/ko7jBsvudI0XBTseP5+EPRcJ9sPwodppgpT3pYNIpH9xDALxIJ3cr?=
- =?us-ascii?Q?joipAANwcdf9Msf5067eI7xh0DI6B7aVYDmQGCmkRJBNv0sCHu1h0IiCHhAj?=
- =?us-ascii?Q?rS6TaHdKVwP5aua+SfzeEEYrKxp6Q0cSQucer3g9dEYn7umMC78qZr2MLOUw?=
- =?us-ascii?Q?DPogY3LJoUlVeuwv4RfpAgz70hgdvD3s0qImEBUh5TWt6qUkrQhrjvgUg/Qb?=
- =?us-ascii?Q?A60wtECEoHicL20rpqOFJKzlp/P5dSUmratQe2p/LdPtyYuk3nRinC3a5C2T?=
- =?us-ascii?Q?FYug4GnDJkYUQhSh/CMDTGwt9/WaN46v169YrqCf/OsBKr85GyApsSu5IzoR?=
- =?us-ascii?Q?DZ1wlEN/P33ybErQ0gkqblqYXXLivMoqdUUzh7L5m/fodYECiNNm1hKPLGga?=
- =?us-ascii?Q?AZLHDUeUdYK95XLJcAgFMpHhMB5G+7oF1wmYsAv/Q2wQ8eADfBbQM4Fyaagw?=
- =?us-ascii?Q?cIJ1TvQBXXo8lhwoRrgFU0DATn0XE4KxYFN91nwDNMyDv6swXw8ud4SOOOVa?=
- =?us-ascii?Q?Tu4mOLZ+G33oVz1Lza5ySLRfpDpGa7502c5GT/jWt0OWSyMb1e4x1Eb5k8IC?=
- =?us-ascii?Q?neQQNBYmfrRZz9bJQ9f58Ae/hIcN1eYrBDMFwWbkoy+imsrWfDl4MkyXZ8mu?=
- =?us-ascii?Q?lPlWAu7H7IRxVUrOmIsWBoSRYGROXe9HI/WMVU2xArl54SZSV1LpadmrqM1+?=
- =?us-ascii?Q?Ia93ArxuGkRdLEy6dn/6DWWWMm/Brh5f2yatiCiOFP8RNInna4VfJT8vVQHe?=
- =?us-ascii?Q?16k60U/CINWR+sJGXl/zMpGj+/TsgpOqCtqg1ik7aANdSZBlQHGJJoYwWgvQ?=
- =?us-ascii?Q?TFOWCXkgUPyLAdGyPFSFy0rPh0VTLQ332CT1PVn47l65sIyV1fSPvcVAgcIB?=
- =?us-ascii?Q?BJwIuL7gEKbVTlks3cZPbjmgTsVCKbgFRrfbFaBKD4kcMxLdi+F3elMmr1Uq?=
- =?us-ascii?Q?uK4UhzWANZ65GNe/y6x/oe0HA0UHVP+uugRZp8wOqjGnOwHmSW2Nc1MaD1Ik?=
- =?us-ascii?Q?1akoL6ELXnVfju6OBu9xbdHe5T/9egaMrbk+32dAYdm+82AR3qdWu/haXyYY?=
- =?us-ascii?Q?cwoXM3hS3m/z8HU/HNnFZxZ6CYoaAw3UP31qagiUqNrMHGXOut44FkgDiO5o?=
- =?us-ascii?Q?ELtrUjUiyRdkSaGilENS8SHAfnm+GZpuZeB9D5XjF5Twh8MUDTlbOAcTrNgs?=
- =?us-ascii?Q?M6Se+2gPf3TCk88rYZ7Ioywv+TfqqSvARn87dBUCXx9/iPvb6m+lMLVckgnz?=
- =?us-ascii?Q?26TiPvIlK4UQqWNlYAtEaZNKTaAVBD/OMZwVglThYE19LIjfjuDnA9Rt/lJJ?=
- =?us-ascii?Q?lU3TG60/8hrhI71OtfBwNLPk5W4WDWYqtQWWM76u0PyQwSLBJArYt+H7wCob?=
- =?us-ascii?Q?03A/ST8b/5xUiGkGiU7rvaGF374OEJJP1AOLrDQUWx7sYFg7x+QjJRrCLheO?=
- =?us-ascii?Q?NxSifIU5xrOUi/sPP4e3M5pjO7a9Wly1UDhih3G5uQ59v8lJI+ybK7b//Ih8?=
- =?us-ascii?Q?Qn3rYcJyXccHEH+cQrsXeysahgpnM1pyOxBR3GuUEkwB0MN+aWibDH1BvBaw?=
- =?us-ascii?Q?LT4z6JWyXY5ATUtim6AE7xaRqT4Gm67AVBtW/8b/K0Dl+CJTUu3Oo9QTg8xA?=
- =?us-ascii?Q?8q/NKik7Ywo8B1cE3GahnKculVHbvWUBjef9XjsunbvP0d3OVdp5cSEl+PHr?=
- =?us-ascii?Q?Itsn5pUrOW+KHU6tJpMB1OMVr4Dw2DBkz+Az5AY7ofUvjhBnKYJkMuvUUBMn?=
- =?us-ascii?Q?Bynbc/72fIaIuEW11d8C6708a/vEwwQ=3D?=
-X-Exchange-RoutingPolicyChecked: HuW0ReJce7YEKTbkBjlWwV96udfo/60n5FTUQLKXS9Uxron6k1XU4LDXobXk+pisfhdzkFZrXLE1pZPvuhcXxtFAzmC/4SKVlsQVXUoRkAI3m4s8KsTv+9/5NW5jfgn2EoPeJbRe1FHg8ZG+IN6jYIXkbXX5JUM+d3xAAGTR2gIz09T3+iC+HzXfqXesQisMXjvm3eZy1R0+oFWlv5ISBwx6OOL0LSVSjM4+A93G2I4EpeKHEbDPWuL0AourSYgAr0R6TRAQNMkpGg9+yhsn/JGgbH/xySig01H1h2L+ieP4wFY1j6FtQWlvRd5YwzxuRf1/uKarWSK9sDKEnDYaQA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6fd2b601-ef6d-491a-4b66-08df1b6a6359
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7187.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YJlCze/6dqvKiZ+hzC6dgO6kvfO8N2TdRLGzpnDFzMY1OLaWS5a7wD+F4t4l?=
+ =?us-ascii?Q?GLyx8mp11iaHio8UgsxP3auP40Wyvq0liQ6fqOL46rZaenxU18ujh+GPMpkf?=
+ =?us-ascii?Q?1DpfZhBcHOMksEuddD4uD9lb5r10TiWR/cmT2QJxKWva0uOjNtbuMwIz4S5c?=
+ =?us-ascii?Q?vWXdxDtMbGFzHjIJW/pks7xTRqlv+rMBqqYsvGUtbs/fy4zmEg4Xq0KYHwTw?=
+ =?us-ascii?Q?91mPa7wj2K3KzFr5VNG6GP8wrolwY08xbwGkr6XIz7KQAqiaQjTRTaAC2xU0?=
+ =?us-ascii?Q?Go6ltCDjLgIPFef2QULY7/6xEFkw06dIBkCsjeqDY/LIbLaa2xgOTGJ5BYPL?=
+ =?us-ascii?Q?x1SbYiO/nfIINrLdW2RvHLAY24W0cIW/Wg33mblN+K7s4r3oF3+uNNXdk8oi?=
+ =?us-ascii?Q?r78in1nAgOG/Y3s7MK4Oxvh7PWQmx/X1IcyHw5stKZhkhiF9u4+l3yZMPzV/?=
+ =?us-ascii?Q?LNRSiREWVlo0nk6kREr70CR1rwGX/AmBsnzB2FFKftiWntyihpxvokQjWVaH?=
+ =?us-ascii?Q?w2o1ht89E6FZ2bLnb9/dMum3IZeMfCX4HCzhq24pxqAaEGKjXkUAwTLcQchw?=
+ =?us-ascii?Q?LOd+n/VgZKXvpwoRNNYPCZ+p7tq86H8CZrmjsKNxzKpIp3orA6Pzoben/qUG?=
+ =?us-ascii?Q?e3QZnKDE5xX6byY2Kdfq7EcsYz5U7bjoTcNY8nAIFZtbVpvc52cymdGvb25r?=
+ =?us-ascii?Q?S8jEqm6FGojnRKsnEKNkmQ2tXc5aYz0qTUyaMdufnxFzYyJjICMUd/309Qf2?=
+ =?us-ascii?Q?sO4z2TN+mJbncFevHgDrc1zwPF5y5cscoL5eEI2pLrTjQECE++Jc/7tDYzgr?=
+ =?us-ascii?Q?uu+0+VHbFe1nG0/Cq77VpkxfNlf5UvwEYLoH81g8yrrbA0xlS5K+Ob2cjnxw?=
+ =?us-ascii?Q?CK9X+MhOkwnamOkbE48oRncIEtl5O+SOQxdVtKNpjBt5qB1b6BEpJ3zGKUBZ?=
+ =?us-ascii?Q?4QUa6jp7q4EmLO4BTGzXeKzYviPqrXmIATwWQOtuMI4m2qpvu6WKWpDEerGy?=
+ =?us-ascii?Q?rErGfdVz+Um0ZDRoH9fQHtm7xPrRihG19XxgXzcrAiI2VyRV+DvruKPT0Mhp?=
+ =?us-ascii?Q?/FVGm1YJwoVOv1oR6SFQnTvIRXHOsIBP4m2DogHSSAYmxByeTjVRunFAijfO?=
+ =?us-ascii?Q?VkudTKJCS9QeYRoPBR/uE66Fz1Oz/f2E+y3kIKIG8v9rLZLygloCQKhl0GE0?=
+ =?us-ascii?Q?znpLZ5mn+QWSFmmuRAlz8QHvfF1NlwjaLu3gnCYOMIEu5pHF2IhDd8nzbbT8?=
+ =?us-ascii?Q?vgBXzv+8LVjZ1PGEG9toayfhK/9AiHbFdbSc02bG81YLI1bBEtm8579CHOSR?=
+ =?us-ascii?Q?yiVwGyPR/tW12ioKrbXKk17qkOwY5W4F2kSxnnmzauAVrHQodKNENhx6Nsvr?=
+ =?us-ascii?Q?Hl/1xhHQnjkSHkvBvJqFie7h8Oe0f4dcDFoG3PFN2R4Utyuw0DgSNky+CxfE?=
+ =?us-ascii?Q?11UmUrdRhIUt6FJYv2Go32eaysiqnZB30nVLOFK7LLw2hOnEMKdDd2TPc0CK?=
+ =?us-ascii?Q?x2tzIXx/V1jXF3H4U7ygsUERzYHV193tuLSdUoYPhQrDF9aO5ch7CN17KSjB?=
+ =?us-ascii?Q?D8xuS2knQcVqtCLk3ZfD21+RKwfPj0StOUbp3lxEVDXtbbIGvJoKh3SP4yRh?=
+ =?us-ascii?Q?xjjTiHPWIc04j9xfG2sDxjx86HzvTejMQtELnvD/WquhFAQZE7hcpMS7SLyH?=
+ =?us-ascii?Q?w5MqWufJ8UZF0lUwD7yYPR5hsjPkRVzxM35NnyAZ/UxzM853UnL4MW334Cvi?=
+ =?us-ascii?Q?zk0i+VvuyJ8XNj6H0bUxCAAbA1aw1QE=3D?=
+X-Exchange-RoutingPolicyChecked: L7YZAgBcPJabvbs2BHWLt5iABM9vug45gc2RoqQMPXj4ib3BPnnvBRVUiHg/v5vfRtPFxTRtcXT9XewWDN2JtPdZofXyZWdTrLSCS77V+rTRDMyj/TlL1eG9uKiR5PcPGaIe8zgHMNvgkfbkG1I8XTmDdO/ktQp17Zskbe+RL7I5OXENDihAY2gOjpTSWRr7Lg4YQMQSSb+HPEmnvEBqdFsyypeS+QJZ4tJWfMxfhq7dUUyvq5bc5FxCaSPnWgMxQV1RNwaaBNXdomEmAsgvrB1OHyJG0n8mo2n+0mw1A3H3eutZCSjhyY87MkGn1LZQif/7vyT3beuTfEwyxnOIuQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb5eb810-bae4-4c37-993b-08df1b6f7199
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2026 01:06:26.1846 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2026 01:42:37.2817 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bNARR02WgQWinPMDeqFE/6PUNkliO1cwiF1o95UbqlH+2zq+Movg8rjgZNeuuGKMjLbblguhpi0MmOCoZfh7vg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4976
+X-MS-Exchange-CrossTenant-UserPrincipalName: M0WpjJYMPUQvsIBDAgwh6HS3cQV+0rHxdm/lti0EuwYizRH8ENOWDu3eC2knQoKHj1jfHbUvTWJRHTz3oAP6Zg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7143
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -157,51 +157,197 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 23, 2026 at 10:11:05AM -0700, Violet Monti wrote:
-> On Tue, Sep 22, 2026 at 06:21:21PM -0400, Rodrigo Vivi wrote:
-> > On Tue, Sep 22, 2026 at 09:56:08AM -0700, Violet Monti wrote:
-> > > A new PCI ID for PTL.
-> > > 
-> > > Bspec: 72574
-> > > 
-> > > Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-> > > Signed-off-by: Violet Monti <violet.monti@intel.com>
-> > 
-> > I honestly believe it would be better and faster if you had just reviewed
-> > the version that Matt sent yesterday instead of resending it.
+On Tue, Sep 22, 2026 at 10:08:02AM +0530, Himal Prasad Ghimiray wrote:
+> Add an optional drm_gpusvm_ctx.devmem_fn, invoked for each device-memory
+> allocation backing the range's faulted pages. It runs under the notifier
+> lock and independently of the DMA map, so it also fires with no_dma_map.
+> Adjacent pages of one allocation are coalesced, so the callback must be
+> idempotent.
 > 
-> The reason for my resubmission was to rerun the CI results after a KUnit
-> failure unrelated to the PCI ID change. Matt is out for this week, and
-> delegated this patch to me to review and handle in his absence. Since I
-> am not the owner of the original submission, I was not able to rerun the
-> tests using the resubmit.
+> v2
+> Reset last to NULL for non-devmem pages(Sashiko/Matt)
 > 
-> Is there a preferred method for re-testing patches that have been
-> delegated, such as situations like this?
-
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-and pushed. Thanks for the patch and diligence.
-
+> v3
+> Run drm_gpusvm_pages_valid_unlocked() on the map_dma path even when
+> devmem_fn is set, so an invalidated range's stale inline mapping is
+> reset.
 > 
-> Violet
-> > 
-> > > ---
-> > >  include/drm/intel/pciids.h | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > > 
-> > > diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
-> > > index dff389b56eb3..32c88a690ad8 100644
-> > > --- a/include/drm/intel/pciids.h
-> > > +++ b/include/drm/intel/pciids.h
-> > > @@ -880,6 +880,7 @@
-> > >  	MACRO__(0xB08F, ## __VA_ARGS__), \
-> > >  	MACRO__(0xB090, ## __VA_ARGS__), \
-> > >  	MACRO__(0xB0A0, ## __VA_ARGS__), \
-> > > +	MACRO__(0xB0A1, ## __VA_ARGS__), \
-> > >  	MACRO__(0xB0B0, ## __VA_ARGS__)
-> > >  
-> > >  /* WCL */
-> > > -- 
-> > > 2.43.0
-> > > 
+> Suggested-by: Matthew Brost <matthew.brost@intel.com>
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> ---
+>  drivers/gpu/drm/drm_gpusvm.c | 105 ++++++++++++++++++++++++++---------
+>  include/drm/drm_gpusvm.h     |   6 ++
+>  2 files changed, 86 insertions(+), 25 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+> index b6c9d3a07dc8..a37b26881b73 100644
+> --- a/drivers/gpu/drm/drm_gpusvm.c
+> +++ b/drivers/gpu/drm/drm_gpusvm.c
+> @@ -1528,7 +1528,49 @@ static bool drm_gpusvm_pages_inlinable(struct drm_gpusvm_pages *svm_pages,
+>  }
+>  
+>  /**
+> - * drm_gpusvm_dma_map_pages() - DMA map one drm_gpusvm_pages instance
+> + * drm_gpusvm_walk_devmem() - Invoke the devmem callback across faulted pages
+> + * @gpusvm: Pointer to the GPU SVM structure
+> + * @pfns: The already-faulted pfn array (size @npages)
+> + * @npages: Number of pages in the CPU range
+> + * @ctx: GPU SVM context, with a non-NULL &drm_gpusvm_ctx.devmem_fn
+> + *
+> + * Invoke &drm_gpusvm_ctx.devmem_fn once per contiguous run of @pfns backed by
+> + * the same device-memory allocation. Must be called under the notifier lock.
+> + */
+> +static void drm_gpusvm_walk_devmem(struct drm_gpusvm *gpusvm,
+> +				   unsigned long *pfns,
+> +				   unsigned long npages,
+> +				   const struct drm_gpusvm_ctx *ctx)
+> +{
+> +	struct drm_pagemap_devmem *last = NULL;
+> +	unsigned int order = 0;
+> +	unsigned long i;
+> +
+> +	lockdep_assert_held(&gpusvm->notifier_lock);
+> +
+> +	for (i = 0; i < npages; i += 1 << order) {
+> +		struct page *page = hmm_pfn_to_page(pfns[i]);
+> +		struct drm_pagemap_devmem *devmem;
+> +
+> +		order = drm_gpusvm_hmm_pfn_to_order(pfns[i], i, npages);
+> +
+> +		if (!is_device_private_page(page) &&
+> +		    !is_device_coherent_page(page)) {
+> +			last = NULL;
+> +			continue;
+> +		}
+> +
+> +		devmem = drm_pagemap_page_to_devmem(page);
+> +		if (devmem == last)
+> +			continue;
+> +
+> +		last = devmem;
+> +		ctx->devmem_fn(devmem);
+> +	}
+> +}
+> +
+> +/**
+> + * drm_gpusvm_dma_map_pages() - Walk and DMA map one drm_gpusvm_pages instance
+>   * @gpusvm: Pointer to the GPU SVM structure
+>   * @svm_pages: The SVM pages instance to populate with dma-addresses
+>   * @pfns: The already-faulted pfn array (size @npages)
+> @@ -1536,10 +1578,10 @@ static bool drm_gpusvm_pages_inlinable(struct drm_gpusvm_pages *svm_pages,
+>   * @ctx: GPU SVM context
+>   * @dma_dir: DMA data direction for the mappings
+>   *
+> - * Map the faulted @pfns into @svm_pages for DMA access through its owning
+> - * drm_device. Must be called under the notifier lock and only for an instance
+> - * without a live mapping. On failure this unwinds the partial mapping of this
+> - * instance before returning.
+> + * Walk the faulted @pfns and map them into @svm_pages for DMA access through
+> + * its owning drm_device. Must be called under the notifier lock and only for
+> + * an instance without a live mapping. On failure this unwinds the partial
+> + * mapping of this instance before returning.
+>   *
+>   * Return: 0 on success, negative error code on failure.
+>   */
+> @@ -1774,9 +1816,20 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+>  
+>  	hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
+>  
+> -	if (map_dma &&
+> -	    drm_gpusvm_pages_valid_unlocked(gpusvm, svm_pages, num_pages))
+> -		goto set_seqno;
+> +	/*
+> +	 * drm_gpusvm_pages_valid_unlocked() also resets any instance whose
+> +	 * mapping was invalidated, so it must run on the map_dma path even when
+> +	 * devmem_fn suppresses the fast path; otherwise a stale inline mapping
+> +	 * is later mistaken for a dma_addr array by drm_gpusvm_dma_map_pages().
+> +	 */
+> +	if (map_dma) {
+> +		bool pages_valid = drm_gpusvm_pages_valid_unlocked(gpusvm,
+> +								   svm_pages,
+> +								   num_pages);
+> +
+> +		if (!ctx->devmem_fn && pages_valid)
+> +			goto set_seqno;
+> +	}
+>  
+>  	pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
+>  	if (!pfns)
+> @@ -1829,28 +1882,30 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+>  		goto retry;
+>  	}
+>  
+> -	if (!map_dma)
+> -		goto done_mapping;
+> +	if (ctx->devmem_fn)
+> +		drm_gpusvm_walk_devmem(gpusvm, pfns, npages, ctx);
+>  
+> -	for (p = 0; p < num_pages; ++p) {
+> -		if (drm_gpusvm_pages_valid(gpusvm, &svm_pages[p]))
+> -			continue;
+> +	if (map_dma) {
+> +		for (p = 0; p < num_pages; ++p) {
+> +			if (drm_gpusvm_pages_valid(gpusvm, &svm_pages[p]))
+> +				continue;
+>  
+> -		err = drm_gpusvm_dma_map_pages(gpusvm, &svm_pages[p], pfns,
+> -					       npages, ctx, dma_dir);
+> -		if (err) {
+> -			/*
+> -			 * The failing instance was unwound by the helper. Keep
+> -			 * the ones mapped earlier: the -EAGAIN retry reuses
+> -			 * them, and the driver unmaps every instance with the
+> -			 * range on the other error paths.
+> -			 */
+> -			drm_gpusvm_notifier_unlock(gpusvm);
+> -			goto err_free;
+> +			err = drm_gpusvm_dma_map_pages(gpusvm, &svm_pages[p], pfns,
+> +						       npages, ctx, dma_dir);
+> +			if (err) {
+> +				/*
+> +				 * The failing instance was unwound by the
+> +				 * helper. Keep the ones mapped earlier: the
+> +				 * -EAGAIN retry reuses them, and the driver
+> +				 * unmaps every instance with the range on the
+> +				 * other error paths.
+> +				 */
+> +				drm_gpusvm_notifier_unlock(gpusvm);
+> +				goto err_free;
+> +			}
+>  		}
+>  	}
+>  
+> -done_mapping:
+>  	drm_gpusvm_notifier_unlock(gpusvm);
+>  	kvfree(pfns);
+>  set_seqno:
+> diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
+> index 9e35584812fd..4d31c6bba745 100644
+> --- a/include/drm/drm_gpusvm.h
+> +++ b/include/drm/drm_gpusvm.h
+> @@ -274,6 +274,11 @@ struct drm_gpusvm {
+>   *              pages as valid; the caller revalidates the snapshot itself, see
+>   *              drm_gpusvm_get_pages(). @devmem_only is rejected and no page
+>   *              type check is performed, so @allow_mixed has no effect.
+> + * @devmem_fn: Optional callback invoked under the notifier lock, once per
+> + *             contiguous run of pages backed by the same &drm_pagemap_devmem.
+> + *             Must not sleep and must be idempotent, as a non-contiguous
+> + *             allocation is reported more than once. Fires even with
+> + *             @no_dma_map. May be NULL.
+>   *
+>   * Context that is DRM GPUSVM is operating in (i.e. user arguments).
+>   */
+> @@ -281,6 +286,7 @@ struct drm_gpusvm_ctx {
+>  	void *device_private_page_owner;
+>  	unsigned long check_pages_threshold;
+>  	unsigned long timeslice_ms;
+> +	void (*devmem_fn)(struct drm_pagemap_devmem *devmem);
+>  	unsigned int in_notifier :1;
+>  	unsigned int read_only :1;
+>  	unsigned int devmem_possible :1;
+> -- 
+> 2.43.0
+> 
