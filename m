@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17A32C9830E
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 00:03:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E8F7C9830E
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 00:06:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3A2B10E707;
-	Mon, 28 Sep 2026 00:03:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2618B10E707;
+	Mon, 28 Sep 2026 00:06:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mqhDjkM+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jDHmfEOr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68E0A10E707
- for <intel-xe@lists.freedesktop.org>; Mon, 28 Sep 2026 00:03:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7C0E10E707
+ for <intel-xe@lists.freedesktop.org>; Mon, 28 Sep 2026 00:06:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790553796; x=1822089796;
+ t=1790554018; x=1822090018;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=+AlO/rvzMUttMXPm3OdTWfsVSuqRIM7NjrkINsMmQsA=;
- b=mqhDjkM+XQ25M6PoH1KP/gKSyE1tDjt+QyhkYKTm0m5ri8JlV35h9TkT
- 3lS3cyEt75PgJ5I0cypxc7fQ2UfNyDenXZdrgfMwKLLvNlcBXaqSZEeja
- 59llHbh9soOAAHXoTEqLoWL5yjNki5n0HK6ZXf++BSfoK9A0cPP7IjhcU
- DcgJzgcy5LurIyPwB9XtDgG+0hcwD3HteSLU1DswSHYYjhfUpSJMBRPcZ
- 4fc5oq8igTzpPAdpDtrgElEN/qWniDXfbrZ0j0JZVGwQuryRojI0erBQE
- EEeCYuCeD5ndbjQNuo9bF+rPRgW4dDIlqSSoIRaw0GED0qskthfc/BHP6 A==;
-X-CSE-ConnectionGUID: DXyAwP0uRqekuUFTyJmvew==
-X-CSE-MsgGUID: L1gbxAsZRnuYRuZo1IVRKg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11918"; a="102620168"
-X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; d="scan'208";a="102620168"
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=HlnG09LTtPHlGR+pKYED92tJPN6VRXGlk/Q6o24WGA4=;
+ b=jDHmfEOrARV9KUR13DmrUmznUvdOzbD7owDI6bd/My+mTLt9meY/uhKg
+ Zlci/s0vW7mH7tklIqBzS3U3lbh59C6fVhq5TUcBI8XwFawnHjjcbkA5M
+ VeHZiNrz6AwYaFgWuu09LTwbnMigaU2Z7nSXFdilpXUuJnfyoyXEi/upw
+ 8mzNA3Y6dYw2yFY3IEPk4RJXka+BOjU9/23zgRsk3rwIVD2TYOcL7w+IC
+ CXUTVF5fr8o6rgnVfqOZqKaQJprosily6GwUVyVtgqYEMDyyE/5T+xrSH
+ gYUktERHa17G55q5gZkkdrSPQ4pAwX9xJ5//QHYYSBlFTIJlSdinan8Iq A==;
+X-CSE-ConnectionGUID: KXOGZLqTQ/G3eSEE1wKR0Q==
+X-CSE-MsgGUID: ikcqcLZSQIid61+ipksMxg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11918"; a="102620640"
+X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; d="scan'208";a="102620640"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2026 17:03:15 -0700
-X-CSE-ConnectionGUID: IpL9XjJkRc+h+XtpSx7UdQ==
-X-CSE-MsgGUID: 5dvgkjoKQ5+mjWOJZvQsuA==
+ 27 Sep 2026 17:06:57 -0700
+X-CSE-ConnectionGUID: dtFinB7rS3GJ8fF4tiodYw==
+X-CSE-MsgGUID: GPk8eX2kT4qU+uBMmaudxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; d="scan'208";a="274119742"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; d="scan'208";a="274123302"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
  by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2026 17:03:15 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 27 Sep 2026 17:06:57 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Sun, 27 Sep 2026 17:03:14 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.46; Sun, 27 Sep 2026 17:06:57 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Sun, 27 Sep 2026 17:03:14 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.23)
- by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Sun, 27 Sep 2026 17:06:57 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.32) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Sun, 27 Sep 2026 17:03:14 -0700
+ 15.2.2562.46; Sun, 27 Sep 2026 17:06:56 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=l9hOvMW/FEezWwE3yQV5Z19JC4/xFjfAsta7w9WPy78wFcAV371fY2VkRfc3A16S2acVqFSebsheIFxYrwXfM6EJopgjbGO+XRlx5lP+bF8UnBPaWOz0Czr81CQPjEDOG9b1LYXdXM6jpltq9d2pb1FNi5EaFDiWTFTR1YD/ojvHS1bd3oy/UQv1PJ7y4AVmDO/8yxfp9HltNnBsK4moskcZLurhwRvxcIr4dO/cuUjcShftXYKEDwdZ6/B0rK1NfZQlBDrZfqTafSF5eaeBUmon3d5is5kWnTe/mWd/ndIR7qnrHjSWhTkAcgmLUNJcGe5HUpPTB6N3WlqLjkw97A==
+ b=SkxA+a2mxuoEjqAkl8xcCA5LTKGO6qn1j2hzYM0PYD5IlAOFo8mmwihszLolWLVp8fxwwhyq2U1BQ3kow436DO9w7M07DyaWSchUZTc3rk/4m2Jw4c+UAW3z6MbUwbcXvuL52pyPzk69Yf0xrEvTVWuCtpvTZ/DQaRQW9Rx7Pws1e92jBSGW4fA7iKToI9G2dNNH3WRszJxX/jjkl8P1tJur96iKxASXM5knT+JYaCYnndmDxFFYnBeURIma1NPGl5vlNWehQtElLL4sO11kPESIgl6m7FO5+WpWIf+wAHOChPbQyrrlWGITavhUFNXoU+0r3Vzpgejxlq1R4ZE+6Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UMsjXZ/CANJzSLwfcakgniNmKrR9kI1mY0PyJ/hH3Bs=;
- b=UCXK7/m5wKxQja/msqeDOXF8+YxSeHfr1BN8MBpNTNj+UxKL7cMpnsrbppVlejcuX1dfD0pSsU5Ka5ml8WK2h4b72roTvW/p347/qTsu23u4d9SezYFt6WukXpG29wOfnyE3+qEPpBa2N2wIBAg4XTl7Uqzg+/8pabJ8LgRREidARDc0JdlR3tJOyQDPqZYZPVlg5O6nB9Hur6k6KZm3/jc1h5WOc6BGuP5Pbp6JX7KISQLwMbWFWfNQ7SmcHBfOTvSQwQDOZinQcH4Hbvxjrk9zOFYnxyTSF5zwgX/mb7tjspNRVK0ip8BBAgxy3vRG9XvEa4q8bvpYbau8P05tjQ==
+ bh=NVgJl9sOur95e8AhvFlYzfaC2lQghHAoa2BpTMyUqKc=;
+ b=sj3Nq4H2W0ACH0EsEqWfHvLWRN4Iw3a+sH7mytFavv4dJVHNQUaP+ZXvtVYFJbS5ze+UusMWyCfVsSUltUvdtxQIdRIa0sKr/mdsKG9LN+mIeVSSzPQ7gJhDw+BIl4U9L+HQKEqjRcaPCcfZfOnc9VB+FLRTmNsvM7pStLcryb7uHQGD6iwA22zCLn4WfWwR9sg+FFIrZ3lwkErlTNKInAQJYhr0Y6nxEM0jBEIek2aTUrGNIkyLOhu4ncbtT/bfeF6vphbgLt81SMmykufVMCtVLUDiXffAxU7WwTzZWXOQdShvToiqzKZMG0dDt4pap7qoXOhJOXC1gW30GjxWAw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,84 +69,82 @@ Received: from IA0PR11MB7187.namprd11.prod.outlook.com (2603:10b6:208:441::12)
  by DS0PR11MB8207.namprd11.prod.outlook.com (2603:10b6:8:164::16) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.23; Mon, 28 Sep
- 2026 00:03:09 +0000
+ 2026 00:06:49 +0000
 Received: from IA0PR11MB7187.namprd11.prod.outlook.com
  ([fe80::be96:3f58:953d:6565]) by IA0PR11MB7187.namprd11.prod.outlook.com
  ([fe80::be96:3f58:953d:6565%4]) with mapi id 15.21.0451.022; Mon, 28 Sep 2026
- 00:03:09 +0000
-Date: Sun, 27 Sep 2026 20:02:38 -0400
+ 00:06:49 +0000
+Date: Sun, 27 Sep 2026 20:06:23 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <umesh.nerlige.ramappa@intel.com>,
- <badal.nilawar@intel.com>, <aravind.iddamsetty@intel.com>,
- <riana.tauro@intel.com>, <mallesh.koujalagi@intel.com>,
- <anshuman.gupta@intel.com>, <matthew.d.roper@intel.com>,
- <michal.wajdeczko@intel.com>, <michael.j.ruhl@intel.com>,
- <paul.e.luse@intel.com>, <mohamed.mansoor.v@intel.com>, <kam.nasim@intel.com>
-Subject: Re: [PATCH v7 3/3] drm/xe/sysctrl: Add generic mailbox passthrough
- debugfs entry
-Message-ID: <armunq2t6ZkNjVqt@intel.com>
-References: <20260925135521.1804299-5-anoop.c.vijay@intel.com>
- <20260925135521.1804299-8-anoop.c.vijay@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+To: <batarolandkrisztian@gmail.com>
+CC: <intel-xe@lists.freedesktop.org>, <karthik.poosa@intel.com>,
+ <matthew.brost@intel.com>, <raag.jadav@intel.com>,
+ <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH RFC] drm/xe/hwmon: refresh B70 temperature inputs after
+ GT idle
+Message-ID: <armvfxjttsjTVWk-@intel.com>
+References: <179041811564.526373.13204522833274380927.b70-hwmon-rfc@gmail.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20260925135521.1804299-8-anoop.c.vijay@intel.com>
-X-ClientProxiedBy: SI3PR01CA0010.apcprd01.prod.exchangelabs.com
- (2603:1096:4:296::16) To IA0PR11MB7187.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <179041811564.526373.13204522833274380927.b70-hwmon-rfc@gmail.com>
+X-ClientProxiedBy: SI1PR02CA0022.apcprd02.prod.outlook.com
+ (2603:1096:4:1f4::16) To IA0PR11MB7187.namprd11.prod.outlook.com
  (2603:10b6:208:441::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|DS0PR11MB8207:EE_
-X-MS-Office365-Filtering-Correlation-Id: f5874753-4e09-4c1e-094b-08df1cf3de3e
+X-MS-Office365-Filtering-Correlation-Id: 5aae278b-0e40-40bd-f2f1-08df1cf46352
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|23010399003|366016|1800799024|11063799006|56012099006|4143699003|10067099003|22082099003|18002099003|3023799007;
-X-Microsoft-Antispam-Message-Info: YvwBn6va1kTKgAYFa5j67pnyUPsMuZnvHh6R6Xbgi1lvM9VvhgZmbSp+JxGf2aeqUViVL6QjQrQZt1P4jyzz6hp8aOomki9L6lqEulsGAAOwn8DhLGZsEkziycYCkvszoS3rXxoD285WrLJww7gj1KZ4sEZhVhDjE3HdYeL7AbW52HxyXc2RDpIGm3urIBnyQvNwt91dHkzR8WLRATGzl9RxeOH79XOJQSjPNOlZRQfswHa6Smn9CcPhEC3H2H+6Pkrm8ed71/AbXzxdwrMD983SgxMmdDxQ0TvQrNeMHX3lK14rrdvmhkx87KWGP6wI40tSpDCmIyWVKsDVqOwIFVzASzGgTugnxfM4PTSsIHNCvRYjqXYRTfaH+QVat3jWWwypDlxQHTCUcqYJlwJINMPKVrh9h44U0q04gI6kN9egRDLChb/8YBLkTFNbzpR86AmJjevPNddZaf+Aw0Hnt534/GMBgd8MgiiILtkYpZ4fKdH6+e7IV3+lxTyLr4kfvRddGdIrWz+P7wKxA6JR8je8CnFWM2aQ/mYVCg4FWT/S4D9+hv9+QwioJgP1NlfJzSm6c4yH64oiyMacL26ALVvQ9uOx6E+A9oO+scnNvOef/5Sicqb60XWAj98r2oUBsrN3IdxkJhXY0KCz9/5IwF74qwsL4WRBYnB/cvNQe6w=
+ ARA:13230040|376014|23010399003|366016|1800799024|5023799004|11063799006|56012099006|10067099003|22082099003|18002099003|6133799003|3023799007;
+X-Microsoft-Antispam-Message-Info: dz1MIrimAvkboBm0mHRjWmDwcf0PxcmcsOMckiN/EKvJE9XHAk5b5hNgGYVB5uSJYiTORllKuWSNVIrKKveoqmGpKCIDQVFQuBDrpbLtyxKmhMxZ3L6fwNwAr03BMUsKp8L5Gs2MoK5AIRf4+iZ5eYVze+i89pECfpkkuULVoDixoy+2rRq9BNM3EIKWCmZbimWzASxpGnlpSRzpyvkL1lx9VUgIEXM8YWvwxeET/edthXK+nzj2FC5HnIcpKS6JkdOnausQrRhSu3hCcAzsILDjLfJhGvfUEv/E5rxtJpcDuEwdDcbmDS2XVFo1Q7zf1WiH4+AYOEGXzSoFnS9y1NEqZ8aKiGRLCpyoYRD0nkMU/yFZUOXy5AKiv2GJhWXMQJB61tXUl9/ndBifwy2OMK5Y7WCKhflvUeARX/iTKyhpBJ254LT4se5++mF1r/9LtkjnaQrXGz+HmseE7DR/y3Yt8Vv3qcvkHqlw/hHOWFP9JFTjKrNVYkL9JGY/+Lo7EA40wNu2lrPasfBrX+gCa8dllhNclZZp7hqm/K5TdR+UiaP7C8M5LmlZ49mupQfaiZr1e8PYBJSBun6wqkgXsPgivckzdPkdZ50DjUaP9S3/6G2j0vOzJtXrAbfLnBJD
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA0PR11MB7187.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(366016)(1800799024)(11063799006)(56012099006)(4143699003)(10067099003)(22082099003)(18002099003)(3023799007);
+ SFS:(13230040)(376014)(23010399003)(366016)(1800799024)(5023799004)(11063799006)(56012099006)(10067099003)(22082099003)(18002099003)(6133799003)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zeQjrOuRei6aqfkfrBmmjPVRgAVUsKVGOc5gP5G3jK35zHnfXpf2mOrk2aN1?=
- =?us-ascii?Q?XqKHMTxbMCjhKsE8wIXaUYpwYR6+xeQUZUMTcJ0Rzkz5vtbP2UjqxPh6AzPX?=
- =?us-ascii?Q?VNDw+pY9bNdx85LX6HpNWUUXk08BdOMDMS9vWOYG1gYClV4AYAwEcxK/0eiB?=
- =?us-ascii?Q?72AiXnwLAoVFjApj9HqOJpAOxpBbqKcsiPTnlqjj/FqtlAd+0E8O11c7LV+J?=
- =?us-ascii?Q?yARlsv+ZzFlMYhP3vNzTkiyttnR2onMpXAYOVXJZ2dhre4O15A2MnOeoQxlY?=
- =?us-ascii?Q?MlDY7j5mkic1t6w8a5Mem5YZqO+qH/ZHh0+0/bgEnGvNJ0eMdwdSCHk/PTfx?=
- =?us-ascii?Q?j8ekkX85wct01kYM+Vu9Bw9KeaGB7lyixoZ2Egbz+JuzO+SFAUPM35QEbrW3?=
- =?us-ascii?Q?t4Tz5hICwbwnVzCphxRKA1PGz1+Rusa3vGrNxr46xj5h6+dVRYCQgLw/YUV/?=
- =?us-ascii?Q?vjH52IMxAjnic9YqC6bpyx5DpjXkW3NAHw6Uh4l1L5aZmK2kMd/9t9a7EiPf?=
- =?us-ascii?Q?cFR8cCyqOIr/dbxegYqtQZ/d8ZSc2tnWvJ4eUJJTUIUQwO3IwZAGxMiNoRwe?=
- =?us-ascii?Q?F7hX2liRQMT8V629DDIciIJ5b4RGjO8AAYKrp0+CapGiZN8cM81LEzLAOzCo?=
- =?us-ascii?Q?n6oPTjE39pjk1CtN6pJ8d/r+MVtoyzwTmhukB1zHE9dwy90v/TMiTFDihBMQ?=
- =?us-ascii?Q?IpvtEcHTdbGLwBn/J5GxX4pNSl/Bj30WR9+7HXyb5DnNV93vXeUfvTpbPYy9?=
- =?us-ascii?Q?1eAY36fx6IJCfI5OcR8GKAeFOyHg3vAkDbV+5Dz7WR0SR30iMLOkF0yjQ3Ih?=
- =?us-ascii?Q?8iFq0d3O1m+icdwyAIr4Hs7W4J0VrjiK2gIBDwhY1qG0gbAOl4sIeK+tiRdL?=
- =?us-ascii?Q?lrbugiZjqrw7p8EU/0BbRunQ2bjTKFjgGoP0Wua6R0BS/OBV4fYxAle4CyAs?=
- =?us-ascii?Q?eu+u1Hf9fh36DuzeettLONn2uYugmkfeCD09mnkQkXZO7f8mPFN2UVJ5pc2U?=
- =?us-ascii?Q?qgDyzGvk5p7ybfU9QDgVHv9mwaocLcrkAEM9n/QJTtk62dlwaVVPG35P4QbX?=
- =?us-ascii?Q?3ViAc832TOnVfZdppyLIfkbADiGG7Bty7463NVZqdmDSlc77AlyO/TWUf4Bg?=
- =?us-ascii?Q?f1HqSWFl/OAY0x9/5iN+HM+7NuZwivgemp34pE1DpX6ujy8dM8k9h0wWI0pM?=
- =?us-ascii?Q?kDEhOKqMiwqhE7Tj9iI1lmbG8RfOR0w6P8dkbeg6XygpBFH2fVcFho1toaSZ?=
- =?us-ascii?Q?+HU9LM1AD0qK1Q/7YpTNI1b/bqreKsoxM9jsHEb67RKILbBdI4cJhocA/1/d?=
- =?us-ascii?Q?6E4ktWp4zs89CHfgAR+zGlcotZVAwlTyd6Rsh3YJn+URbysNyti2SPUUNQBy?=
- =?us-ascii?Q?qhqPK+mIDMXoVmZfW2fEVB+4nZMo1GM7vVODT/ZZ6DW1YmzfQnwkA1qEchA2?=
- =?us-ascii?Q?zGBqE4hDsjH8BXaS+USV2GyzY/7siTnf95Ktz5DwKW9cFT4nmljWSXooyiET?=
- =?us-ascii?Q?Yw5uIkuQKk2I0VJObELiR/pYcC4WvlOnQwnFsCjZpHaXc1oSonkiBqFiMupy?=
- =?us-ascii?Q?EaRlruM9PNC7IoipOllgxQJsaOh1VdDVus4ENfSOGa7pM6IHOzyglHtbLNI9?=
- =?us-ascii?Q?elQuyD/WwYOes0o8syl6lQnYSkk3NJBWgSKUvlyHo6d7NX5tiYsCCchkiTTj?=
- =?us-ascii?Q?Pz3al/OmHZK/xfxCX+Xtzrj+pp4KmjjV4RfgKSFUN8wUWkfTnQp7HWMONWtC?=
- =?us-ascii?Q?d+x9Nxg4iQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: Tptspk6SQUHJu3sHOHHi6qMd70v1tyW77wuGE+NFZo/m7lnjGWjRrPiFPgL8Ga1yHfh65Ip0OkrSdAwLf+rtZgAJgB/GvTPfLRfW5bJDTYLhOuXMEUdguqV1DHZWHUBJi4BUGWzBEd77hmSeZX+ZnnNb/DLuWGnF1NqV55CL+9vdtW+s2IiE04VcNg/v3gFWD7FYQh7cgP2E9WUch/EdJhzw/HqMC08sKtU5moHR5SjwL9wEzWlWk+5kuGAOzDH4gAriuN3JeKfXtB4LcItTE51bOlRgCels0cF6MXIkgjm5MFSuAaYTLip9eswiVVzTkv65rtkGWuZZkwnZcb568Q==
-X-MS-Exchange-CrossTenant-Network-Message-Id: f5874753-4e09-4c1e-094b-08df1cf3de3e
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?1rlTMzJ7rvAotm8df7ID7soOvY0yiOPIQ4nM8+py1E3kwpP6bB7waTxbwF?=
+ =?iso-8859-1?Q?ZkU/scDJEFvme/kbIk5G+bmS4yt7i8MFKBpqeVmyZ0UkTTr7ssdNVtrPTY?=
+ =?iso-8859-1?Q?Ikghje6ql34Pe6dSF3gvz+tX4mHm/uXyh2yOLbm2FG7900I5ngc7p8wYGK?=
+ =?iso-8859-1?Q?Xzqjrj8YHW482U8uwhxdN16dNjCCZbK3dLIostTh4pUK4SCpdDjjyP8RWS?=
+ =?iso-8859-1?Q?oJ2eccDnycCsb1ApxYMFIluQXQXlkP1KYR8CZ2CIQWhhgYBEzHoRJyf+7q?=
+ =?iso-8859-1?Q?PXuJu2f/ryR4mls5SLXdPANAOpfgxpu8ITWWecUOqmu/oNr8UipkQl7PI3?=
+ =?iso-8859-1?Q?LVAA5Z26uqhXMtRQfHSxmSZ1qFebil9pY8xKc1VUUg/HYBU4IAMECYuGSJ?=
+ =?iso-8859-1?Q?TiKxzoHisBwJwl0/bks5pXtUPoTZbB00IGHW43hwjFjnVbLhV2iyMOWmRN?=
+ =?iso-8859-1?Q?rqgC1B2FWKoA+PkWLqzRPi4OBkwoA1eEci1oXdl6mwtFAwjNrg+hzsdkbf?=
+ =?iso-8859-1?Q?Zm6kqpmZJOryrhWVk30P2xO0UyahlI2HF746zF+ip8NQNrFGnrg4sPQajg?=
+ =?iso-8859-1?Q?vk32XMHoA8XN7CbXtn6/pr4GTR63UyLvhiAXgSnCz0zeiSjTL9CqrAvkaX?=
+ =?iso-8859-1?Q?rjFGDh0jRLMhJPscJqPgmYI42mDi2ZqwCvX1jH9sdLhkdJOzuxYynAyYvv?=
+ =?iso-8859-1?Q?jpds2aEXkRzm1FNbcng0UBispN1VpiZs9/o8OaUBhQrmrwiQg4WIdsgfZ5?=
+ =?iso-8859-1?Q?4k8QvlXk/w3JZ8h8ce9f4tSMU3rCkR6KXdVpsf9vc0djQM9t/gHtiAXctv?=
+ =?iso-8859-1?Q?geuu206XUz5F3yI0VJD/gYqSWOZof9wOSV/RRBX8Cq5UmR7Znf1JBN/mB5?=
+ =?iso-8859-1?Q?f5vMcxjjhGjZTQZFhNapR/KyBC1QPySDT75Ftw+h4U74RX5vphh09t7MMH?=
+ =?iso-8859-1?Q?gnBsyWCPI6M0jMs+vHSJWJ1pWezFsWiVxXMMDnkNZLsaQbwj4A9cMjsZXw?=
+ =?iso-8859-1?Q?DYKc3VwscUAToDyKQ8ygjOyth4yOVaE2XNFTKu2gsxQ3o3diYQpkKOLQLv?=
+ =?iso-8859-1?Q?DIle6ICTIPnAdiGYWBJ4DJzgbhh45fRAWTtvM28J9qpiWdMxhTkZ9oE9p4?=
+ =?iso-8859-1?Q?OQ3RAb7B3LG8AxBEy3r9aMt0yXYMxvwnzBz022TkyZjLQaEFr9H90Ruvta?=
+ =?iso-8859-1?Q?hNBvlGkQELaWSXNm8N3IdPQFUtKhqQ2EQ2rtIkm9lOKQRm3sqfLCgucg0x?=
+ =?iso-8859-1?Q?ilw/8W1t+cbdUuXVYfJxphm1//571yeHSX6RF41moKY1OZ3JiREoK+Zhd/?=
+ =?iso-8859-1?Q?KyR7h5LenD6I/nx8LQCQlnLjti0sPcGp6faOl9xaCy2nvHeN06xrqgl2b9?=
+ =?iso-8859-1?Q?11HU6szJCVvelxffdcvsK4KX65Q0QHRZfqFkdl7vuywFgaDle3e7VfyGlW?=
+ =?iso-8859-1?Q?oGo6ACNcH6i9CYYsjzvmM+20c3NbZpdOqOS2WyM+Es7wuzFw8aaK7MqKLa?=
+ =?iso-8859-1?Q?l16WfpZXpFuFG2mXpjg2wJCY20HnQczuBJ1/B1DArbi7KFqngYte02FtZZ?=
+ =?iso-8859-1?Q?om5K+Zerhz7tqnA4GumQEouKWJWO9+a5TKTD44SVXgghrFP11Zlc6BOoZh?=
+ =?iso-8859-1?Q?MnZD3/BRDva3w3cyZVgv5glqBsBFmZmpRVqfI3DKFSbmpN1FNIC9/g1nMR?=
+ =?iso-8859-1?Q?bYZh2qH09/IH6aAefMYYH1uG3i7lywDWt7r6KOSajbZOXdCFL0WtbfSZIc?=
+ =?iso-8859-1?Q?4NVcCsNRg4cxckKO5D+m6Fu0e/lc19MtHsMp7azLeLAxeKzDUT9fiH2CU0?=
+ =?iso-8859-1?Q?aHN1a5JTMk+TCnJmU5V1hWorMSeYvtk=3D?=
+X-Exchange-RoutingPolicyChecked: bZleDjVX/Uh0yKKHEO8B+0H2ZSmDQt0ipdR1XXxmIaIW1MU+g4GKxoBynPG7O0KVhR8TdiIGFGXSoeHPxwyaMDdztO4GTAmGCtP28n591WN03OFIgXOkl4rGSRHxc9yldm6u8R7ZaAB1lphHJ6QsiieWLdgV8oHNck32yMyCmsOkCdw7aphgzCXgFmzl4QP/trpXM78FyJawf8QWt5xGM/sVVxLPMuqFvqN0TV4ry9RBNIQIbrRW5fOAV6PRunbieeR8WVYmOshCgKjgQnZ9H6rnFLxYufpDY5PVuJABPo2bzSDWR9viey7pCnUOtyesdFBKwBRW7G6qi7+ynUHHig==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5aae278b-0e40-40bd-f2f1-08df1cf46352
 X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7187.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2026 00:03:09.5904 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2026 00:06:49.1751 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vp9CkBCZqeX3/86jBYpnfbUrZjpFZXj8lSdAe7xxPQ20+s7CgulAJq2v/5g+d6xd7HZ1IrWhM/XgDlukZqeCaQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: z8gi8ra50EZrQHWuo/sOZL7TGYhr9OXVC4kIV2cW/sevSsmPe6jFPqclumWALQnwJiW2Pltarz0BNqHikrB6pg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8207
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -163,275 +161,317 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 25, 2026 at 06:55:23AM -0700, Anoop, Vijay wrote:
-> From: Anoop Vijay <anoop.c.vijay@intel.com>
+On Sat, Sep 26, 2026 at 12:21:55PM +0200, Bata Roland Krisztián via B4 Relay wrote:
+> From: Bata Roland Krisztián <batarolandkrisztian@gmail.com>
 > 
-> Add a "mailbox" debugfs entry that allows any System Controller
-> mailbox command to be issued for bring-up and debug. group and
-> command are supplied by the caller as the first two tokens of every
-> write, followed by optional per-command response timeout and
-> response-length overrides and the payload bytes:
+> Two Arc Pro B70 devices (8086:e223) retain their package temperature
+> after compute workloads despite both GTs returning to C6. A device
+> runtime PM reference does not refresh the sample while power/control
+> is already on.
 > 
-> - Usage: echo "<group> <command> [timeout=<ms>] [resplen=<N>] [byte0 byte1 ...]" \
->              > /sys/kernel/debug/dri/0/sc/mailbox
->          cat /sys/kernel/debug/dri/0/sc/mailbox
+> With GuC 70.72.1 on Fedora kernel 7.1.10, a 60-second OpenCL workload
+> followed by 45 seconds of idle left package temperature at 55 C on both
+> cards. Acquiring all GT forcewake references still returned 55 C in
+> the first read, about 57 us after open completed. At about 1053 us the
+> reported value became 34 C on both cards. A brief GT-only pulse from
+> reading cur_freq did not refresh the package value.
 > 
-> Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
+> As an RFC, acquire forcewake references for the temperature input read,
+> allow time for a new sample, then release the references on both the
+> success and partial-acquisition failure paths. Limit the experiment to
+> the measured PCI ID and leave labels, limits and other hwmon types on
+> their existing paths.
+> 
+> The 2 ms interval and use of all domains are empirical, not a hardware
+> specification guarantee. This needs review of the sensor conversion
+> time, minimum wake domains and alternatives such as a PCODE refresh or
+> readiness indication before it can become a production fix.
+> 
+> Compile-tested xe_hwmon.o on current drm-tip with W=1 and Xe display both
+> disabled and enabled. The wake/wait/read sequence was measured through
+> debugfs on two B70s; the modified kernel has not been boot-tested.
+> 
+> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7805
+> Assisted-by: OpenAI:gpt-6-astra
+> Signed-off-by: Bata Roland Krisztián <batarolandkrisztian@gmail.com>
 > ---
-> v7:
-> - Add per-command timeout override to mailbox debugfs
-> - Add per-command response-length override to mailbox debugfs
+> RFC: proposed direction for issue 7805, not a claim of a production-ready fix.
+
+The fundamental question here is, do we want to burn power in order to check
+for the power?
+If so, is grabbing the debugfs/forcewake_all an option before reading this?
+
+But if we decide that this is what we want, we need a generic solution,
+not only for this part...
+
 > 
-> v6 (Rodrigo):
-> - Reject non-zero offset writes for mailbox entry
-> - Account for mailbox header size when validating input payload length
+> Hi Xe maintainers,
 > 
-> v5:
-> - Add per-entry locking for debugfs accesses
-> - Skip empty mailbox group/command tokens
+> I am following up on my B70 stale-temperature report with a smaller
+> reproduction, timing measurements, and a prototype read-side change.
 > 
-> v4:
-> - Added a generic mailbox debugfs entry
-> ---
->  drivers/gpu/drm/xe/xe_sysctrl_debugfs.c       | 172 ++++++++++++++++++
->  drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   1 +
->  drivers/gpu/drm/xe/xe_sysctrl_types.h         |   6 +
->  3 files changed, 179 insertions(+)
+> Questions before turning this into v1:
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-> index 10675cd774ee..ba904cb24512 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-> @@ -299,10 +299,179 @@ static void xe_sysctrl_register_entry(struct dentry *root, struct xe_sysctrl_deb
->  	entry->command = command;
->  	entry->response_len = 0;
->  	entry->status = 0;
-> +	entry->timeout_ms = 0;
+> 1. Is there a PCODE operation or freshness/conversion-ready indication that
+>    should be used instead of a fixed settling interval? The first MMIO read
+>    after successful forcewake still returned the old temperature.
+> 2. Which wake domains are actually required? A GT0 hw_engines read, which
+>    holds all domains for that GT while dumping registers, also refreshed
+>    package/mctrl/PCIe readings. The conservative prototype mirrors the
+>    device forcewake_all sequence used for the controlled timing experiment.
+> 3. Should a refresh cover/cache several temperature channels together? The
+>    prototype wakes per input read. The power measurements below are for one
+>    batch per device every two seconds, not for reading every hwmon channel
+>    at high frequency and not measurements of this compiled patch.
+> 4. Is this a known firmware issue with a preferred fix? Should the eventual
+>    driver handling apply to other Battlemage IDs? This RFC only opts in the
+>    tested 8086:e223 devices.
+> 
+> Hardware and reproduction
+> -------------------------
+> Two Intel Arc Pro B70s, PCI ID 8086:e223, on an ASRock X870E Taichi / Ryzen
+> 5 9600X. Fedora CoreOS 44.20260829.3.1, kernel 7.1.10-200.fc44.x86_64,
+> GuC 70.72.1, HuC 8.2.10. power/control=on was kept throughout; it is an
+> existing workaround for noisy PCI runtime suspend/resume cycling.
+> 
+> A bounded 60-second OpenCL workload used a private 1 MiB output buffer per
+> device, followed by 45 seconds without GPU submissions. Both GTs reached
+> C6, actual frequency was zero, and idle residency continued advancing.
+> Package readings stayed at 55 C on both cards. A short GT0 cur_freq read
+> (itself a GT-only forcewake pulse) did not correct the package reading.
+> 
+> Opening forcewake_all, then reading temperatures while holding the fd:
+> 
+>                     B70 A                  B70 B
+> before              55 C                   55 C
+> first read          55 C at 57.769 us       55 C at 56.119 us
+> first correction    34 C at 1053.529 us     34 C at 1053.039 us
+> 
+> Times are measured from completion of open, not the initial wake request.
+> The 2, 5, 10 ms and later samples were also refreshed. These two observations
+> are not a guaranteed maximum sensor-conversion latency.
+> 
+> In a separate 30-second observation / short-pulse / observation sequence,
+> 16 two-millisecond holds at two-second intervals returned approximately
+> 24 C and 22-23 C. The complete open/wait/read/close scope was about 3.06 ms
+> and 3.07 ms median. GT idle residency during the pulse phase exceeded 99.7%.
+> 
+> Energy-counter-derived card power, W:
+>                     before       pulses       after
+> B70 A               5.30         5.51         4.87
+> B70 B               4.31         4.48         4.39
+> 
+> These are short observations with normal background system activity; they
+> are not a general power-regression benchmark. Holding all domains for two
+> seconds during the timing experiment cost about 81 W per card at the
+> retained 2800 MHz request and caused self-heating. A permanent forcewake is
+> therefore unsuitable. References were released and both GTs returned to C6
+> after every completed experiment. No reset, rebind or PM-policy change was
+> used for these measurements.
+> 
+> Source/build checks
+> -------------------
+> The BMG temperature read path is unchanged between v7.1.10, v7.2.5 and the
+> current drm-tip version examined here. The newer Fedora 20260910 firmware
+> collection contains byte-identical BMG GuC/HuC files to 20260810.
+> 
+> Base: drm-tip 666d2f09d9045fc8f72cc1f71528a04acbaf5229
+>       2026-09-26 04:44:20 UTC integration manifest
+> Checked: checkpatch --strict, zero errors/warnings/checks for the patch;
+>          xe_hwmon.o compile with W=1, Xe display disabled and enabled.
+> Not yet tested: booted patched kernel, IGT/CI, suspend/resume, hardware
+>                acquisition-error paths, other GPU variants, high-rate
+>                multi-channel reads.
+> 
+> The attached change is deliberately an RFC. I would appreciate guidance on
+> the correct hardware handshake and domain scope, and can test a revised
+> approach on these two cards.
+> 
+> A later smoke test of the standalone reproducer below also changed a
+> previously low reading upward (26 to 44 C on one card). I therefore do not
+> use an unchanged/high-value heuristic to declare a value stale, or replace
+> readings with an inferred idle temperature. The observations concern the
+> reported values; independent physical thermometry was not performed.
+> 
+> Standalone reproduction aid
+> ---------------------------
+> After a GPU workload and idle interval, save this as repro.py and run:
+>   sudo python3 repro.py 0000:03:00.0 0000:08:00.0
+> Use your cards' PCI addresses. This script itself starts no workload.
+> 
+> #!/usr/bin/env python3
+> # SPDX-License-Identifier: MIT
+> """Measure B70 temperature refresh after forcewake; run after workload/idle.
+> 
+> No workload, PM-policy/frequency write, reset or driver rebind is performed.
+> Only the requested 8086:e223 Xe devices are read. Each wake lasts about 10 ms;
+> readings are printed after the descriptor has been closed.
+> """
+> import argparse
+> import json
+> import os
+> from pathlib import Path
+> import re
+> import signal
+> import time
+> 
+> 
+> def text(path):
+>     return path.read_text().strip()
+> 
+> 
+> def card(bdf, debugfs):
+>     if not re.fullmatch(r"[0-9a-f]{4}:[0-9a-f]{2}:[0-9a-f]{2}\.[0-7]", bdf):
+>         raise ValueError("Expected a full lowercase PCI address")
+>     pci = Path("/sys/bus/pci/devices") / bdf
+>     if (text(pci / "vendor"), text(pci / "device")) != ("0x8086", "0xe223"):
+>         raise ValueError(f"Not the tested B70 PCI ID: {bdf}")
+>     if (pci / "driver").resolve() != Path("/sys/bus/pci/drivers/xe"):
+>         raise ValueError(f"Not bound to xe: {bdf}")
+>     hw = list((pci / "hwmon").glob("hwmon*"))
+>     if len(hw) != 1 or text(hw[0] / "name") != "xe":
+>         raise ValueError(f"Ambiguous hwmon: {bdf}")
+>     labels = {text(p): p.with_name(p.name.replace("_label", "_input"))
+>               for p in hw[0].glob("temp*_label")}
+>     if "pkg" not in labels:
+>         raise ValueError(f"Missing package sensor: {bdf}")
+>     paths = {label: labels[label] for label in ("pkg", "vram", "mctrl", "pcie")
+>              if label in labels}
+>     return bdf, pci, paths, debugfs / bdf / "forcewake_all"
+> 
+> 
+> def snapshot(pci, paths):
+>     start = time.monotonic_ns()
+>     values = {label: int(text(path)) for label, path in paths.items()}
+>     return {"temp_read_start_ns": start, "temp_read_end_ns": time.monotonic_ns(),
+>             "millidegrees": values,
+>             "gt_idle": [text(pci / "tile0" / f"gt{n}" / "gtidle/idle_status")
+>                         for n in (0, 1)]}
+> 
+> 
+> def interrupted(signum, _frame):
+>     raise SystemExit(f"Interrupted by signal {signum}; descriptors will close")
+> 
+> 
+> def main():
+>     parser = argparse.ArgumentParser(description=__doc__)
+>     parser.add_argument("--debugfs-root", type=Path, default=Path("/sys/kernel/debug/dri"))
+>     parser.add_argument("devices", nargs="+")
+>     args = parser.parse_args()
+>     if os.geteuid() != 0:
+>         parser.error("Run with sudo for debugfs access")
+>     if len(args.devices) > 8 or len(set(args.devices)) != len(args.devices):
+>         parser.error("Select at most eight distinct devices")
+>     cards = [card(bdf, args.debugfs_root) for bdf in args.devices]
+>     signal.signal(signal.SIGTERM, interrupted)
+>     signal.signal(signal.SIGALRM, interrupted)
+>     signal.alarm(30)
+>     for bdf, pci, paths, wake in cards:
+>         before = snapshot(pci, paths)
+>         if before["gt_idle"] != ["gt-c6", "gt-c6"]:
+>             print(json.dumps({"bdf": bdf, "skipped": "GT is active", "before": before}))
+>             continue
+>         samples = []
+>         opened_at = time.monotonic_ns()
+>         with wake.open("rb"):
+>             open_returned_at = time.monotonic_ns()
+>             for target_us in (0, 1000, 2000, 5000, 10000):
+>                 remaining_ns = open_returned_at + target_us * 1000 - time.monotonic_ns()
+>                 if remaining_ns > 0:
+>                     time.sleep(remaining_ns / 1e9)
+>                 value = snapshot(pci, paths)
+>                 samples.append({"target_us": target_us,
+>                                 "since_open_us": (value["temp_read_start_ns"] - open_returned_at) / 1000,
+>                                 **value})
+>         closed_at = time.monotonic_ns()
+>         time.sleep(1)
+>         print(json.dumps({"bdf": bdf, "kernel": os.uname().release,
+>                           "power_control": text(pci / "power/control"),
+>                           "before": before, "samples": samples,
+>                           "open_us": (open_returned_at - opened_at) / 1000,
+>                           "total_scope_us": (closed_at - opened_at) / 1000,
+>                           "after_close": snapshot(pci, paths)}), flush=True)
+> 
+> 
+> if __name__ == "__main__":
+>     main()
+> 
+>  drivers/gpu/drm/xe/xe_hwmon.c | 38 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index 5edeac96..2bb5bca2 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -3,6 +3,7 @@
+>   * Copyright © 2023 Intel Corporation
+>   */
 >  
->  	debugfs_create_file(name, 0644, root, entry, fops);
+> +#include <linux/delay.h>
+>  #include <linux/hwmon-sysfs.h>
+>  #include <linux/hwmon.h>
+>  #include <linux/jiffies.h>
+> @@ -14,6 +15,8 @@
+>  #include "regs/xe_mchbar_regs.h"
+>  #include "regs/xe_pcode_regs.h"
+>  #include "xe_device.h"
+> +#include "xe_force_wake.h"
+> +#include "xe_gt.h"
+>  #include "xe_hwmon.h"
+>  #include "xe_mmio.h"
+>  #include "xe_pcode.h"
+> @@ -1096,6 +1099,35 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+>  	}
 >  }
 >  
-> +static ssize_t xe_sysctrl_mailbox_write(struct file *file, const char __user *ubuf,
-> +					size_t len, loff_t *offp)
+> +static int xe_hwmon_b70_temp_read(struct xe_hwmon *hwmon, u32 attr,
+> +				  int channel, long *val)
 > +{
-> +	char *kbuf __free(kfree) = NULL;
-> +	u8 *input __free(kfree) = NULL;
-> +	struct seq_file *m = file->private_data;
-> +	struct xe_sysctrl_debugfs_entry *entry = m->private;
-> +	struct xe_device *xe = sc_to_xe(entry->sc);
-> +	struct xe_sysctrl_mailbox_command cmd = {};
-> +	char *token, *tmp;
-> +	unsigned long val;
-> +	unsigned int timeout_ms = 0;
-> +	size_t input_len = 0;
-> +	size_t max_input;
-> +	size_t out_len = 0;
-> +	size_t resp_len = XE_SYSCTRL_MB_MAX_DATA_SIZE;
-> +	u8 group, command;
-> +	int status;
+> +	unsigned int refs[XE_MAX_TILES_PER_DEVICE * XE_MAX_GT_PER_TILE] = {};
+> +	struct xe_device *xe = hwmon->xe;
+> +	struct xe_gt *gt;
+> +	int ret = -ETIMEDOUT;
+> +	u8 id;
 > +
-> +	if (*offp)
-> +		return -ESPIPE;
-> +
-> +	if (len == 0 || len >= PAGE_SIZE)
-> +		return -EINVAL;
-> +
-> +	kbuf = kmalloc(len + 1, GFP_KERNEL);
-> +	if (!kbuf)
-> +		return -ENOMEM;
-> +
-> +	max_input = min_t(size_t, len, XE_SYSCTRL_MB_MAX_DATA_SIZE);
-> +	input = kmalloc(max_input, GFP_KERNEL);
-> +	if (!input)
-> +		return -ENOMEM;
-> +
-> +	if (copy_from_user(kbuf, ubuf, len))
-> +		return -EFAULT;
-> +	kbuf[len] = '\0';
-> +
-> +	tmp = kbuf;
-> +
-> +	do {
-> +		token = strsep(&tmp, " \t\n");
-> +	} while (token && *token == '\0');
-> +	if (!token || kstrtoul(token, 0, &val) || val > 0xFF) {
-> +		xe_err(xe, "sysctrl: invalid mailbox group id\n");
-> +		return -EINVAL;
-> +	}
-> +	group = (u8)val;
-> +
-> +	do {
-> +		token = strsep(&tmp, " \t\n");
-> +	} while (token && *token == '\0');
-> +	if (!token || kstrtoul(token, 0, &val) || val > SYSCTRL_HDR_COMMAND_MAX) {
-> +		xe_err(xe, "sysctrl: invalid mailbox command id (max 0x%x)\n",
-> +		       SYSCTRL_HDR_COMMAND_MAX);
-> +		return -EINVAL;
-> +	}
-> +	command = (u8)val;
-> +
-> +	do {
-> +		token = strsep(&tmp, " \t\n");
-> +	} while (token && *token == '\0');
-> +	if (token && strstarts(token, "timeout=")) {
-> +		if (kstrtouint(token + strlen("timeout="), 0, &timeout_ms) ||
-> +		    timeout_ms > XE_SYSCTRL_MB_MAX_TIMEOUT_MS) {
-> +			xe_err(xe, "sysctrl: invalid mailbox timeout (max %u ms)\n",
-> +			       XE_SYSCTRL_MB_MAX_TIMEOUT_MS);
-> +			return -EINVAL;
-> +		}
-> +		token = strsep(&tmp, " \t\n");
-
-Sashiko noticed that in this and below case you might fail on double space.
-I wonder if we have a cleaner way of doing these parses...
-
+> +	for_each_gt(gt, xe, id) {
+> +		refs[id] = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> +		if (!xe_force_wake_ref_has_domain(refs[id], XE_FORCEWAKE_ALL))
+> +			goto out;
 > +	}
 > +
-> +	if (token && strstarts(token, "resplen=")) {
-> +		unsigned int resplen;
+> +	/*
+> +	 * A forcewake acknowledgment does not imply a fresh thermal sample.
+> +	 * RFC: this interval is empirical on 8086:e223; the conversion time
+> +	 * and minimum required wake domains need hardware-spec confirmation.
+> +	 */
+> +	usleep_range(2000, 2500);
+> +	ret = xe_hwmon_temp_read(hwmon, attr, channel, val);
+> +out:
+> +	for_each_gt(gt, xe, id)
+> +		xe_force_wake_put(gt_to_fw(gt), refs[id]);
 > +
-> +		if (kstrtouint(token + strlen("resplen="), 0, &resplen) ||
-> +		    resplen > XE_SYSCTRL_MB_MAX_DATA_SIZE) {
-> +			xe_err(xe, "sysctrl: invalid mailbox resplen (max %zu bytes)\n",
-> +			       (size_t)XE_SYSCTRL_MB_MAX_DATA_SIZE);
-> +			return -EINVAL;
-> +		}
-> +		resp_len = resplen;
-> +		token = strsep(&tmp, " \t\n");
-> +	}
-> +
-> +	while (token) {
-> +		if (*token == '\0') {
-> +			token = strsep(&tmp, " \t\n");
-> +			continue;
-> +		}
-> +
-> +		if (input_len >= max_input) {
-> +			xe_err(xe, "sysctrl: mailbox payload too large (max %zu bytes)\n",
-> +			       max_input);
-> +			return -EINVAL;
-> +		}
-> +
-> +		if (kstrtoul(token, 0, &val) || val > 0xFF) {
-> +			xe_err(xe, "sysctrl: invalid mailbox payload byte '%s'\n", token);
-> +			return -EINVAL;
-> +		}
-> +
-> +		input[input_len++] = (u8)val;
-> +		token = strsep(&tmp, " \t\n");
-> +	}
-> +
-> +	scoped_guard(mutex, &entry->lock) {
-> +		entry->group = group;
-> +		entry->command = command;
-> +		entry->timeout_ms = timeout_ms;
-> +
-> +		xe_sysctrl_create_command(&cmd, group, command, input_len ? input : NULL, input_len,
-> +					  entry->response_buf, resp_len);
-> +		cmd.timeout_ms = timeout_ms;
-> +
-> +		guard(xe_pm_runtime)(xe);
-> +		status = xe_sysctrl_send_command(entry->sc, &cmd, &out_len);
-> +		entry->status = status;
-> +		entry->response_len = status ? 0 : out_len;
-> +	}
-> +
-> +	return status ? status : len;
+> +	return ret;
 > +}
 > +
-> +static int xe_sysctrl_mailbox_show(struct seq_file *m, void *data)
-> +{
-> +	struct xe_sysctrl_debugfs_entry *entry = m->private;
-> +	size_t i;
-> +
-> +	guard(mutex)(&entry->lock);
-> +
-> +	seq_printf(m, "Command: group=0x%02x cmd=0x%02x\n", entry->group, entry->command);
-> +	seq_printf(m, "Timeout: %u ms%s\n", entry->timeout_ms ?: XE_SYSCTRL_MB_DEFAULT_TIMEOUT_MS,
-> +		   entry->timeout_ms ? "" : " (default)");
-> +	seq_printf(m, "Status: %d (%s)\n", entry->status, entry->status ? "FAILED" : "SUCCESS");
-> +	seq_printf(m, "Response: %zu bytes\n", entry->response_len);
-> +
-> +	if (entry->response_len) {
-> +		seq_puts(m, "Response data:\n");
-> +		for (i = 0; i < entry->response_len; i++) {
-> +			if (i && (i % 16) == 0)
-> +				seq_putc(m, '\n');
-> +			seq_printf(m, "%02x ", entry->response_buf[i]);
-> +		}
-> +		seq_putc(m, '\n');
-> +	}
-> +
-> +	seq_puts(m, "\nUsage:\n");
-> +	seq_puts(m, "  echo \"<group> <command> [timeout=<ms>] [resplen=<N>] [byte0 byte1 ...]\" > mailbox\n");
-> +	seq_puts(m, "  cat mailbox\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static int xe_sysctrl_mailbox_open(struct inode *inode, struct file *file)
-> +{
-> +	return single_open(file, xe_sysctrl_mailbox_show, inode->i_private);
-> +}
-> +
-> +static const struct file_operations xe_sysctrl_mailbox_fops = {
-> +	.owner = THIS_MODULE,
-> +	.open = xe_sysctrl_mailbox_open,
-> +	.read = seq_read,
-> +	.write = xe_sysctrl_mailbox_write,
-> +	.llseek = seq_lseek,
-> +	.release = single_release,
-> +};
-> +
->  /**
->   * xe_sysctrl_debugfs_register - Register debugfs entries for System Controller
->   * @sc: xe_sysctrl instance
-> @@ -325,4 +494,7 @@ void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent)
->  	xe_sysctrl_register_entry(root, &sc->debugfs.ras_error_inject, sc, "ras_error_inject",
->  				  XE_SYSCTRL_GROUP_DIAG, XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT,
->  				  &xe_sysctrl_ras_error_inject_fops);
-> +
-> +	xe_sysctrl_register_entry(root, &sc->debugfs.mailbox, sc, "mailbox", 0, 0,
-> +				  &xe_sysctrl_mailbox_fops);
-
-Should we put this behind the CONFIG_DRM_XE_DEBUG ?
-
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-> index 2554848e7484..a0628eb47bff 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-> @@ -155,5 +155,6 @@ struct xe_sysctrl_mailbox_command {
->  	(XE_SYSCTRL_MB_MAX_MESSAGE_SIZE - sizeof(u32))
+>  static umode_t
+>  xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>  {
+> @@ -1408,6 +1440,12 @@ xe_hwmon_read(struct device *dev, enum hwmon_sensor_types type, u32 attr,
 >  
->  #define XE_SYSCTRL_MB_DEFAULT_TIMEOUT_MS	500
-> +#define XE_SYSCTRL_MB_MAX_TIMEOUT_MS		60000
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-> index 8ea6e1f29ddd..f12455f2886d 100644
-> --- a/drivers/gpu/drm/xe/xe_sysctrl_types.h
-> +++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-> @@ -39,6 +39,9 @@ struct xe_sysctrl_debugfs_entry {
->  
->  	/** @status: Last command result */
->  	int status;
+>  	switch (type) {
+>  	case hwmon_temp:
+> +		/* Limit the RFC workaround to the PCI ID measured in issue 7805. */
+> +		if (attr == hwmon_temp_input &&
+> +		    hwmon->xe->info.platform == XE_BATTLEMAGE &&
+> +		    hwmon->xe->info.devid == 0xe223)
+> +			return xe_hwmon_b70_temp_read(hwmon, attr, channel, val);
 > +
-> +	/** @timeout_ms: Last mailbox response timeout used (0 for default) */
-> +	unsigned int timeout_ms;
->  };
->  
->  /**
-> @@ -71,6 +74,9 @@ struct xe_sysctrl {
->  
->  		/** @debugfs.ras_error_inject: RAS error injection test entry */
->  		struct xe_sysctrl_debugfs_entry ras_error_inject;
-> +
-> +		/** @debugfs.mailbox: Generic, user-parameterized mailbox entry */
-> +		struct xe_sysctrl_debugfs_entry mailbox;
->  	} debugfs;
->  };
->  
+>  		return xe_hwmon_temp_read(hwmon, attr, channel, val);
+>  	case hwmon_power:
+>  		return xe_hwmon_power_read(hwmon, attr, channel, val);
+> 
+> base-commit: 666d2f09d9045fc8f72cc1f71528a04acbaf5229
 > -- 
-> 2.43.0
+> 2.55.0
+> 
 > 
