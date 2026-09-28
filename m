@@ -4,154 +4,159 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 561BFC9833E
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 08:56:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6D83C9833E
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 09:00:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1423710E828;
-	Mon, 28 Sep 2026 08:56:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CD6310E85B;
+	Mon, 28 Sep 2026 09:00:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gW5l2AkN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nYybx2jd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 471C710E828;
- Mon, 28 Sep 2026 08:56:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9CBE10E85B
+ for <intel-xe@lists.freedesktop.org>; Mon, 28 Sep 2026 09:00:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790585760; x=1822121760;
- h=from:to:cc:subject:date:message-id:references:
+ t=1790586006; x=1822122006;
+ h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=V745FfHKyNFKwSXdh+zkOX/MGK/EEULuaC1YR9TZh0Q=;
- b=gW5l2AkNfxiL5Nb48gUj/G8hzhkbNTKRUKioOU7ooE7WiapDZP6pNX3K
- aire2F+s4YmiA7IMvQH9U5ExA3pDEIi4JM9WjEGFxAfi6KVh4BXqJ9UPQ
- zrPxq34ru24GbLR+uxq68PsP+EjJOdpuOrzq3JHEnoJ8/hTKF7IwiMCBX
- uBUOjjnEQZgA2rD+DrE16zSMfmKrjdmd2RvuhyTjw06oGO0FmQwDDeSkF
- KEd0YfIyWDkv+GP4RbQgecqCvD6DzlWIXRnOHMNzXZsTg2M4oz3rthwOr
- JYLQFSayIOwGTP3PPFLLED6hNG70p72hllMHRLrm0veWLSDuVGUW7UOy+ A==;
-X-CSE-ConnectionGUID: xA0DRWj3RvSN1KlnAHhWBA==
-X-CSE-MsgGUID: WgjP9B4JROSSHxWfZYQErg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11918"; a="90182945"
-X-IronPort-AV: E=Sophos;i="6.27,128,1787036400"; d="scan'208";a="90182945"
+ bh=G98XtWCd6pfweTP98zxRA8hEZ7DLvhpzq8lNXNDnHUw=;
+ b=nYybx2jddmvGnfLoeSrxX8Uizd03wI8qgQQddwVs4h+r5vARO07DTXuQ
+ 8jbx/ZOGoEs0q73BeMiMZHZhj0nJedFCCMd6JWM6WlIFv8D3a1eYKY2Zu
+ ugVPKTTtbKM5dgZc+5Sp/56xGgeLTyeN6nuNY2Ar8F0JKnzm5UfkhZfAo
+ PMC86f0RTMlnMMHUdHJ5Lz8ooCTorhe2Ew1iw9DjPFtLolYXp+KpyxE+U
+ poRpeyxn9oWbpjhn5Fd8wA1C8kcZW0WTCfruaFnC6ZE5mki9h5p/xefmw
+ D3h1dN+L5NnJbuZDZCNDdLY4SD98jCtjf9c64et7s3B/CTvaimqfzQGN/ A==;
+X-CSE-ConnectionGUID: SXE1Xt/ATjifzffUR6lWjw==
+X-CSE-MsgGUID: 39dTQHYDRP64IA905AApmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11918"; a="90183474"
+X-IronPort-AV: E=Sophos;i="6.27,128,1787036400"; d="scan'208";a="90183474"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2026 01:56:00 -0700
-X-CSE-ConnectionGUID: NpZ0qe7oTp6eOclGWTU/pg==
-X-CSE-MsgGUID: QreHrD0NSOCV1AvcFKQnCA==
+ 28 Sep 2026 02:00:06 -0700
+X-CSE-ConnectionGUID: 0o048J8DQSikf98aCrMNCw==
+X-CSE-MsgGUID: pWZBKRE5Qr+47e6pJJAlZA==
 X-ExtLoop1: 1
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2026 01:56:00 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 28 Sep 2026 02:00:06 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 28 Sep 2026 01:55:59 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.46; Mon, 28 Sep 2026 02:00:05 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Mon, 28 Sep 2026 01:55:59 -0700
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.20) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Mon, 28 Sep 2026 02:00:05 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.24) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 28 Sep 2026 01:55:59 -0700
+ 15.2.2562.46; Mon, 28 Sep 2026 02:00:05 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tL3CiobDc8C7ODVSS3o5XlRIjnGuRtGPIZboS/PmuV5GuEtFoimPG+oGgQ0p480A88kKJ4WyQNJG+QWT5+Z05S52ajoI7bzVb/CKcgyZuHdheW1WKJamO3MO52FzEN86GeOPtwGIM1axyAoAPbq0dQplLWMvHDGzJ3lhTWHHXmnVAsib+GM0KTE2MUmOIfeiAK5KnhMyE+zT2DUDUorw1mtqh+VjiHB2wafUUgz98gNO1dXaac0uqnZmFya9GXmvYJ35BSz1v/GhCGN3c7Pg6FfnvbEYtjw0xqiGoG/TA2vx1HflgOVjgsCvLe/Ygh6pSOywxcwlVFNd7QCoeUY2+Q==
+ b=lLbOPiZm7wbkChM8IgV7yW6RWirp32vYkIfpjDwkgLS9yytN3FZmENb1sn38XR1XQuY5/Hqk6ckZXtBtNmi6PkcuWWL51PoGyGDxREmJOYmMHnYMaoi0acnCIzYNWp7iuYWKLW8ejN6iU5OHFI4HA7HHC3cKwoMswFlKe9CQqd2ZHvfNXaY3iA8Lace3lpjXjkRH35zCKToaWDbFEpyc1nSW6G57cbgkkFftbxo0IRhEn7nGTUiQz+2CdjwplWOWSPhI52BdeXSvHOZ3vcNHogEu98YrkOtDR6iif8ROWMGu8N2ZtKiYLaXJnalp3ThFx+vWWfqqCzl6Hq0nwXajGA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BX8eubeVZCrFh6qPZ1KnEc3veXCpoDMwtcw5I8a3b14=;
- b=NXU1/W9t8YWZZJLTeHbqow0O5mQ351b/BxNxu8NehP7yjm05yyXaNJi1W60AaitRGbnc2+4G7lkyscODi7SukJM2gwoZHzmqw2BO18uSlrtWsSC5MebCQoEfDJyOt3STs2/lXs+MRdE8egC3wer8Jz6+eG+U5ObaQ05u9w87E7NbOJUBK/iym05dLmvUm4ndpr66dfua86+1PPgU6+eIMoUV147yLrazE7Hdk5jb5gIfv5tc4lilxuUkjQevjUhX3egiixaUjsdFYzX9y6dG2mvqsEnxtICWVV2Rb01rR+p0ZmEaqUMJ1FX6jKGbrJIRofpNpe+7WfPXY7VpD/DwNQ==
+ bh=35MLL7MaMgv8L8i06Q4u//ZtPvu4xEa8oewo1XbBPGs=;
+ b=NhSGikYhyPIgJl07LxpvQTH42V2h3Ew1NXhydpo5euGtJ03YOgWd+aEoa3r1z7SRQlIuRhGHFwi4rRufz1Q+720CBub0abgrxvc66uNHo2RS7LHLGpa9Z6/nCWJICAKlpCjH2JjIJazoTMMppcb2GOEjn4sSehpbTshjb2QgmdnGasUxov3rm2kr/xmb2G74U9+IPMlKyeWXMHbQ2KebzM56LeGliq4Dluk0H1SubSADmmvHgnss2JovWtRQi75ilQOvoGvIV0fbIUEGkuGvpipEdu8LxkZHL7dHYvsnigvuqdmJ4Wlwd5mJS+wIPg6D5V1+C+KrE9/sT3WK9V2hbQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::5b) by DS4PR11MB383999.namprd11.prod.outlook.com
- (2603:10b6:8:509::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.24; Mon, 28 Sep
- 2026 08:55:56 +0000
-Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
- ([fe80::5be7:2ceb:99ef:6334]) by DS4PPFE901A304F.namprd11.prod.outlook.com
- ([fe80::5be7:2ceb:99ef:6334%8]) with mapi id 15.21.0451.022; Mon, 28 Sep 2026
- 08:55:56 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Deak,
- Imre" <imre.deak@intel.com>
-CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "arun.r.murthy@intel.comm" <arun.r.murthy@intel.comm>
-Subject: RE: [PATCH] drm/i915/pps: Don't block DC states while the VDD
- override is held
-Thread-Topic: [PATCH] drm/i915/pps: Don't block DC states while the VDD
- override is held
-Thread-Index: AQHdTxBX5NbRXFSSbkKXLjZW4RbJ/Lbjq4kAgAAARwCAAAKdgIAAAW2w
-Date: Mon, 28 Sep 2026 08:55:55 +0000
-Message-ID: <DS4PPFE901A304F5D1E1AD81739F43903A9E38D2@DS4PPFE901A304F.namprd11.prod.outlook.com>
-References: <20260928061211.2764543-1-suraj.kandpal@intel.com>
- <03e6056ddce4ff7c7e6f0dafdfe42a75e0beb203@intel.com>
- <DS4PPFE901A304F2F30F230DF7378468608E38D2@DS4PPFE901A304F.namprd11.prod.outlook.com>
- <d2d37b6abd46bab14cf6716ff1f8c06c8d06f174@intel.com>
-In-Reply-To: <d2d37b6abd46bab14cf6716ff1f8c06c8d06f174@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|DS4PR11MB383999:EE_
-x-ms-office365-filtering-correlation-id: 96879ff0-610f-4edc-e615-08df1d3e4efa
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|366016|376014|18002099003|22082099003|38070700021|3023799007|4143699003|10067099003|56012099006|5023799004|11063799006;
-x-microsoft-antispam-message-info: nNcbLkaAlM5urJAL/g3+QIgLyQinItFDbY4DEj3dan7NqwHnt3jskB699UTdhaTn0ez6vWJom91O8WZLc8PdKcu3gI5LN9mN0AmcLYB+YotihG9QCOikzOcJQfKmT2D16Rolrat1Fo8JsMvVB7mTLUtLR3pSUZ/f2iLxCaW+MfpPsz6PufHC/xoSwdnZu0AmHhM0BE3yvtiOQt9bRg4qFLjqV7qaxCiiLtx2I0TarB6C2YT2LzD3buut9A5B4Mlcj3cuzzXrBnH3tOiORqOdXAseq8qSGnaIswCBajMOwsYF3hpruheEuiG5oywRDFg++Hm+AHaLJSahcPI4CxXOJcKh4jupDd/r/YXvXPpUFJAXNOujtMPUBFEpoBGPlggq+45pyoHyQthdRbqp7tIhmrk4xvSWYShg/NjWNETVbbipx/XhnzJRUPMVMnhkmcADV1O8tr4DVwzTV20czyH0yPVXpLZ0oJdA2aOC+llLIpcLhn8GEHOPRhzb564mWMjO/M5uabTUGARPD4AfGSmJmaw/7PUQRYDINFMDA5vZxs4LDbpN2xGHiJIItYiBXlIyyVtrlZKbT0sVFqA7ajJCzLtpefYKqcXLczDruHjKjBIQJUzd5v6zVyOAnRg6diJPDucgXEC0WF2elONWtoOc6P57DD2V8bZ2GRpmgJcx1bkhM4DqXVV2HPp5Byrs1CEz2eeKolpktIogRnxpTAJ4nFXA1s/2af4NfzzeNK/apig=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS4PPFE901A304F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(366016)(376014)(18002099003)(22082099003)(38070700021)(3023799007)(4143699003)(10067099003)(56012099006)(5023799004)(11063799006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?HJ8tbNR29bkyegR/QLF1aKs0g3d07W3WFJUsUe0tGZ5W/Ua7639PPmiRBuMg?=
- =?us-ascii?Q?R9cb/I4hgyn8ZKJAld11/rQS0KbMnn2Y6rqm05ViB/0ylQire70hV3EVTGkg?=
- =?us-ascii?Q?g8rWVHEq03EY0znMNeq9TbjB8XubI5utP+sL1qQc9Iuowps1NB6kaEdgMXNM?=
- =?us-ascii?Q?NvHrPvWZLpjNqf3qcqTh91b3EGeAxhGDZ7h10gGZfuUud4PiCJBh+xPCrlaW?=
- =?us-ascii?Q?1x+OJxQXS2SPH8X6OsKfpBoYevm17lNxEFBrIaU5ZZA8aI6kKozoy7wXvOfr?=
- =?us-ascii?Q?g2vUAKwNwyRnnDRx+2Pq3LFpFt+a3BN9KLq+Q+vrnG4EBmjltWzvq2SiCOd0?=
- =?us-ascii?Q?CWXhrL8Xv2mHR+XEr8RsELrux7qXh342u09haoJyl1D99NGEAKNdVEVgtHB6?=
- =?us-ascii?Q?GEp5AmtbjWBzRqujC2o0eooZPIqTLw82rK0Xd92/CFSWqGzxSQFr3rG5SZZB?=
- =?us-ascii?Q?QxK0fnqhhlw99TunChkPPhWB8aGdk+fwio/vqerGoVDTZBHHtHznKUANYV1+?=
- =?us-ascii?Q?s5t1d/9FptntcIN0OYd00hS9YL5Eld9KE2MVJOEEPjtl9Q6caRNOY6QDXTee?=
- =?us-ascii?Q?c81Au2gZcRqviZifmlr/V6ak7Em0OHRt9DJkqKpLzaiQcC6lzONB+4YbYjyk?=
- =?us-ascii?Q?vPb2IofZHRZaZofSFdW51f6gpKR1nrdlwsVHl3Lz9DG/RgFwLV2YJsFeGfim?=
- =?us-ascii?Q?axok/i4wn6963QmAA6I0lZztqj4aWQJin3DvmfiPojhWaKwlKGBV9G6qP46V?=
- =?us-ascii?Q?WmJOW5Fb5kpNJCo29pNxW+pXG0jp//gJTwPvDgi6n6nqJNoXoK7FonjT2lF2?=
- =?us-ascii?Q?4e6QNxHaeh/7lQHbpBl1r44cNfeWY9MEtqZE7px8YfLVvOd6khw3JROcQPFT?=
- =?us-ascii?Q?7p77Mqz/DvX/N+PXoFJQNWxcX9vJ6M6vtl5pROPpB5X20+v4BzI8psnxJyqh?=
- =?us-ascii?Q?hSU7Z8Bo7R2GDnibliyKi+VUfCC+QXUzr6OAz5yXrTyoxZMfxZvy7BBMAUS/?=
- =?us-ascii?Q?oVsofR9HOY8QxoUcnultX+KDjmU+VOBGpoQfIGpKgx+cvLvMQ/hUC0Ss24dY?=
- =?us-ascii?Q?fa/zPQPJN2rcpK4yRUA4tJuoW7Xsr8WR3+5GtsAkjG4nLO6YwLy+yKlKWqdh?=
- =?us-ascii?Q?cXVRw2Ydr0NKII5j0Qq/0t6oY32wZOrF8eQxmzQqs0ediOBR9H9dk+FVxbYu?=
- =?us-ascii?Q?VVq2de7RkBgCzhc71pexDPCKbvbiOp2f4C0Z7nMCyvkiZc/AH/cML3du4Khg?=
- =?us-ascii?Q?GYrhoCe1RA20riLOf5eIrBiyhSE85lh/e2h8f3v+PIamy0NrQYMnQAPFRsRb?=
- =?us-ascii?Q?fzj+uCpYWD3ZgJTXBDa63F277PVbot+lKPNuN04tXYzNeeexwfMu+ChkAcuV?=
- =?us-ascii?Q?1wgzYkMUqcS0al7DVD3D7yECp+giZR/iDeaA4arZ9Mv3A1RQlz9WvUXrY8b8?=
- =?us-ascii?Q?uKRrzGr3t5KK1EbVI6GB7A39r+1XR0bgEnjR+AnZkbOErqol3Mb9POB/NyjM?=
- =?us-ascii?Q?YN6NNdG9FWUGV2aLJn//rvqUdu3Amszvb7RRz99vc/mguPRQbqTnFcmYmov0?=
- =?us-ascii?Q?wlB3EEr7R573mDtWICfYsqlUq/ISUDmb3jasT/5RX6Fy6glYShnH88l4gBvs?=
- =?us-ascii?Q?eVHVFTK6PURkqCS2kYVk+HaCq08Di+vNAl779SZvgLMo0lxWXU8D/ZDevGJs?=
- =?us-ascii?Q?tQSZPufGUOwgaU/eeRiCZutfTVsZxLmBnsKECal1ISBVlSSq5bL/kImdvgID?=
- =?us-ascii?Q?BFvog+SfmA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2a) by MN6PR11MB8145.namprd11.prod.outlook.com
+ (2603:10b6:208:474::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.23; Mon, 28 Sep
+ 2026 09:00:04 +0000
+Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
+ ([fe80::5a5c:9c7a:cd1d:d687]) by DS4PPF691668CDD.namprd11.prod.outlook.com
+ ([fe80::5a5c:9c7a:cd1d:d687%6]) with mapi id 15.21.0451.022; Mon, 28 Sep 2026
+ 09:00:04 +0000
+Message-ID: <b638e726-8768-497b-bdea-975b64c4ae43@intel.com>
+Date: Mon, 28 Sep 2026 14:29:55 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/6] drm/xe: Separate drm-ras netlink data from device
+ and firmware RAS state
+To: Riana Tauro <riana.tauro@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
+ <aravind.iddamsetty@linux.intel.com>, <badal.nilawar@intel.com>,
+ <raag.jadav@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
+ <mallesh.koujalagi@intel.com>, <tejas.upadhyay@intel.com>
+References: <20260928061830.417395-8-riana.tauro@intel.com>
+ <20260928061830.417395-11-riana.tauro@intel.com>
+Content-Language: en-US
+From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20260928061830.417395-11-riana.tauro@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0057.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ac::15) To DS4PPF691668CDD.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2a)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: 2zmlIaKnpWMYHkqKuoqy66mfDat0/6doMwDGPr0zYy6ZKMcVcoolpSwiAQppnESds6qlHcKa0zi/gSkUhGynOxif9sEFV1H6P1I19WP1TBtlIzXcAhg/FgGoT96amOsa4ALPSQTiWyQy2w7oyjuEhL/XNTgh02vHXyFF4i+xWPbYU10EFspa22HX5bUNNi1y+cvUpaPs7735oJt2tlukd/fwUQAX0oCQiw5hW5FjjcGfFCZum7PW0Md0YwdfNwKRW5cKnaz33xf0bkndrnsujmmprgK7xw+nj9kGes816vnqV7O9icmugHTSbguvYNIRp6moWgi08YV5PW/7rio+aQ==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|MN6PR11MB8145:EE_
+X-MS-Office365-Filtering-Correlation-Id: e2607a43-540a-428f-6a57-08df1d3ee2ab
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|376014|1800799024|366016|22082099003|18002099003|4143699003|10067099003|260925021911599003|260925021311599003|260925022911599003|56012099006|11063799006;
+X-Microsoft-Antispam-Message-Info: e8I+ukbXpGKNyajryBtiXgBcNUH5vsCyZu2DNTHzg9rLHkZHvcgRg8k2qdf2fE+6bJwIfcTZpIUVWQmsq20uoAIOudW4XJ3/K5CIHno3GFSL4jwvj9OObr+D7MhfssLrh0Xtoa9sul4rzwcvOoXPIF2ToXN1VpLZuGzU+7xkWmYgKHEwFykjPubK01rQPc+GdCw/pTTQRGe7fxJfsOYZ2/0qQUdcj7w+s9U259CoS7ivMfXa/ToUKXw48sM7powKAOsHwH8x/NSEXZnKa8VP3WAJ+3YnrKi2Tmrf7hkrCUXl/rmXQW2HONJktrQC6JctQx1jrtI4TPdAhdVbFQaVtAJzMa3zbynLrjGrrKKzQ+cCHEi+SjUJ6LWknxRi+cpy8LAEiFLmjyowu18MDOLZ63fhQJyrYW1r01kiL3A4IKsCQJWZbcbjpWYJiWKySOpJU2LPgTac/if6pdk55LnIeRVGGGsOfjMrF0p9bw793L6WmCDowp9fUGCqmNKL84XzSOwiCRX8FvL5NEZtVTy5wC/hU+yZ/ypt8ArTHpUJU1IeL5oRaso6dGntI8AxZ2tWxr+IhTE+RI+E11TP4C2OZeeUMMOGmZeUHxp9JY0SF5FGUp5ttkF7+xZifkZjEDjB98TRRqbSacN0q2Mlvpe6CBWrCkFyx+olRBWNFvxIb4Y=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPF691668CDD.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(22082099003)(18002099003)(4143699003)(10067099003)(260925021911599003)(260925021311599003)(260925022911599003)(56012099006)(11063799006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c0ZVNHRSV0pHeDlwT3BLM2NHK3N0eUJUQjdoNm1mUEg2bE1BbTN6bGY2K0pq?=
+ =?utf-8?B?ekQzZW8rUjNNOGxxTjA2RmdJS05Kd2dUOEgwcmNBcklocXJnYzFpK0tmRFFT?=
+ =?utf-8?B?aDJCUjE1Z3pZVW5icmxzRk9RVGhNc09PbHNhTEdjNWx3YTRTR2dxWmJGZ21s?=
+ =?utf-8?B?SXlxcjlXL1B1LzFhS1IyM3ExWFpOMWUzTmIrRWpoQ0ZXWFBqaHI1ZVVRWFU0?=
+ =?utf-8?B?LzVPYS9ZckRhR0ZQcitzY1dlemRnZUJEbUNta2grSk5wWjIwZGlRVE12VUNE?=
+ =?utf-8?B?dEhpSERMMTNycFYzTUZUTGNzTXlzUkN4YWNzeWJZa1NvTExUeHNpQmxLdEdK?=
+ =?utf-8?B?RmNHMHA5YThVOEZvVHUwV00rbkFtcTZVWDRkNlcwY25XeUZDNGdUeEVlTGNB?=
+ =?utf-8?B?VVVZMU5XZzVyN2p0WHJCclF6S3kxdWhaMVdFV1RGdVRiOXh3QmZyUEJvTHZ6?=
+ =?utf-8?B?MDAwWWowaXBiZ0dxOERYa2Nibk91WTRtdi9NbXltMk82YlgzYXMxNG9wRmpI?=
+ =?utf-8?B?WlNvWXBURXl2cEFzM05LYW9wdGFnVm5lK2NVZENjN0YwY2tKdjBvQzZRUi82?=
+ =?utf-8?B?QklyR2ExZCs0ajV5b3ZqSmxwTFNtNGtnSFBjelFvV2ViTENXc2xRNXJVR2hy?=
+ =?utf-8?B?TE5OcndSY2hXNml2RkhETVlxZnQ0ZmxIT2MvYXdnNWM0a01LL2N0Sk50ektj?=
+ =?utf-8?B?YzZmU0RuMEMxM3BmVVU3czMxeFVMRXFnVXhidmpEUGE2eXNyU3dXSnY5THBy?=
+ =?utf-8?B?RDRjTkF0b0FsMG5lTWxiTTh4Zyt4Ly85NXNhOXBHNkNVdWxiZmRaYzh5dWY0?=
+ =?utf-8?B?OTdSbm5vTG9Fc0MremFEMUQrM3VMdWw1QlZFWDdDRXg3UUpzTExJMWxtTlBO?=
+ =?utf-8?B?QnpBbklXSmRwNGhzQ0gyUUpWaWJkNG5qbjZmTUhYSGQ4VStobUU5Y2NqM09F?=
+ =?utf-8?B?L0QrVWpUMldQdkpzSzZwYTdHazhFS3hYZ2MvYi9pQ2o3RUhWZlNzUkZEVkhS?=
+ =?utf-8?B?REo2c3d0dWF3cnJHZ3Y0YnhHTExGdnhhdVVDSWtRSkpjcWpEYy9sdjZ1VGpE?=
+ =?utf-8?B?S1VyQ01ycEhpY1FRbnRsdmVMSzFYdEdkcnNkTE1SUFcwRVNwRXJmZE5wRXNF?=
+ =?utf-8?B?ZEdBSmE1ZjRudFJzc1NjVjVlbWpYclo4RnlDc3dNSFk4Y1V0QlBjR09qWUJu?=
+ =?utf-8?B?cGdpUmY5eGNBbnl5TmJRL0hyK2lJVUIxaGJNSFV4Z09tODVmQ2JWM2wxNXVF?=
+ =?utf-8?B?dG1wQ1cvNWIzNGdzckNINmN1b0V4L204ekc5NENKbmg5Y3V0TEdmZlBIWUV5?=
+ =?utf-8?B?NHdoaWw3Wll1RkI2bXNNdlA3RmhrdmFxeUVYNGY1Y0RTS0I1WDhFSFJSUURo?=
+ =?utf-8?B?TERpOHBCUXFIYXVOQ3ZYYnZjbVVuayt4dHA5S3pQS2s0OTdiUzd4c1QrZVhH?=
+ =?utf-8?B?VnZVQnE3RDFzc25hUHZVaVpXVXg0TUhpTUFMSkF4bFlFMU04bUg3V3J3d3Jr?=
+ =?utf-8?B?R21XajRta0tacFd0ZURuNThlSU56d2djK2dBakxwNFkrLy85Qm5YSi9xcGM3?=
+ =?utf-8?B?bGpFQldpOHUvcVdJVFFEcEVMZEVOcVkra2JoVzJpYWFYUGU1UEl4ZSs5QW02?=
+ =?utf-8?B?cUJ3OFo0ZkNZNjZFcSt3b1NEWXUvTTJNT3NZL0JscUl0dWhBUGRUN08zVUpT?=
+ =?utf-8?B?WFM0RGJURzlhUjU0MXRHN3MwenlWZGR5bW96YWwxTXpkNlp3bElDaFlKL0pB?=
+ =?utf-8?B?QXNhVDlRZkhZcW8vWlRNWGFPNURsb3NBb3M1Q3h3WnpTS1gxTHZLNzBSeHZE?=
+ =?utf-8?B?SjFzQjhrbzkxcDR1MHZYSDdxaXA1K1cvVGhwbmhPM2d6UFhlRjFmTFAzVkNv?=
+ =?utf-8?B?QjlmM01EeWp5TllRU2dBNVg3TmdRUDhRaHZrZnkyT0tVUVlubjN1aFVjRlow?=
+ =?utf-8?B?ZVRsK1NYQ1pnVTEyWHQxRURuTHNRNE92R2xFNEZFcWNUYjE5MWhsOTArQXBZ?=
+ =?utf-8?B?d3BJWnZvamMzcVhoM25sUE41MTdXQXJKY1dsTllZa1crZjhIdkFzbFB5bmhZ?=
+ =?utf-8?B?Rm1RaGh3MnVlb1I1RTRxSGlPZFVaTXFZWVY4UFVZdjNsRFFxNkllbzB3NlhT?=
+ =?utf-8?B?VzJWTVJKaWxBbHl4aHh5QUhpb1llcTVId1V1Uy9DQm9RTDB4Q01kN1dsTGds?=
+ =?utf-8?B?clAwVmZCNXU5eVFnd2pxTmkvL0FpMjN6WXl6VzlJdThWY042SStFYnQyRDho?=
+ =?utf-8?B?QUcwQWNPNzd1NGM2RUhxYXpNUVhCWGd3cDNFV1VKZnRFWEZMUVg1R2ZvZkcz?=
+ =?utf-8?B?eW5CMTFuY3VQNisrclduSWxwbUsyWUVoc0pnL2x1ZGJZNytlTlE2UTRkbWdZ?=
+ =?utf-8?Q?fdS5xOZEgugHuPwE=3D?=
+X-Exchange-RoutingPolicyChecked: xTZTqJDHEdCJbQUn47TZTlb0dXMEMvxKh6ZUJrHBl2XJWhfMc2f0G2xgRtSJBTsSO9DMXnf1d5amB2ogSuMUwxjski0C5KcQN8MaveHotptvxWKqDHLCUcqxyXAAvh/0MYVmg/KquVqJXZE3cMawinIE+Mh6crDC6XJVR2AzzUPycc8QnQCGss8OyHUrdfg2xy1qaaA+oDGeyPxPEKCLnOw9GFNWOdznOOxC3qgMVyZ8eoZPATw5vg9R6DcLXGdc82JK04njPrHMETvbbsaRbML63q9urXprtCdbgDDCaUMwkZ6rfIsx4gg+jW8+Of93TU4oihCdIcXic6UDGI9kZA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: e2607a43-540a-428f-6a57-08df1d3ee2ab
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPF691668CDD.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS4PPFE901A304F.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 96879ff0-610f-4edc-e615-08df1d3e4efa
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Sep 2026 08:55:56.0054 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lX9e67oRjLMMO5D6RHzliyR/bf1God3bckklEb2duS+sbnhr3ceQYmJRkYdvnrVXYcm2x/Axu9fsMs6WNbh00g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR11MB383999
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2026 09:00:03.9930 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: d6/XFInf3/Do4EqILNncbOfbTzOzH8YpvF5wq/kNglZFE68+uWpw30/r5dDiEftyfRaSkJqjSunRwFrst89W9OFB/O51chXFN5Y9PtTDctI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR11MB8145
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -167,161 +172,285 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> Subject: RE: [PATCH] drm/i915/pps: Don't block DC states while the VDD
-> override is held
->=20
-> On Mon, 28 Sep 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
-> >> arun.r.murthy@intel.comm; Kandpal, Suraj <suraj.kandpal@intel.com>
-> >> Subject: Re: [PATCH] drm/i915/pps: Don't block DC states while the
-> >> VDD override is held
-> >>
-> >> On Mon, 28 Sep 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> >> > intel_pps_vdd_on_unlocked() takes the AUX power domain and holds it
-> >> > until
-> >> > edp_panel_vdd_schedule_off() drops it, panel_power_cycle_delay * 5
-> >> > ms after the last AUX transfer. That is seconds on a typical panel.
-> >> > The AUX domains now block DC states on Xe3p_LPD, so that reference
-> >> > keeps DC_off up for all of it. DC3co arms with a 1 ms put delay and
-> >> > never gets a window, and its residency counter does not increment.
-> >> > Nothing in the panel power sequence needs DC states off for as long
-> >> > as the override is held. Take AUX IO instead, which powers up the
-> >> > same well without blocking DC states, the same split
-> >> > intel_ddi_main_link_aux_domain() makes for PSR. AUX transfers still
-> >> > take the DC state blocking domain around each transfer.
-> >> >
-> >> > Bspec: 49277
-> >> > Fixes: 2827c44f148c ("drm/i915/xe3plpd: Map AUX power domains to
-> >> > DC_off")
-> >> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> >> > ---
-> >> >  drivers/gpu/drm/i915/display/intel_pps.c | 21
-> >> > +++++++++++++++++----
-> >> >  1 file changed, 17 insertions(+), 4 deletions(-)
-> >> >
-> >> > diff --git a/drivers/gpu/drm/i915/display/intel_pps.c
-> >> > b/drivers/gpu/drm/i915/display/intel_pps.c
-> >> > index d4c98b150fa2..bdbaa10bce23 100644
-> >> > --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> >> > +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> >> > @@ -11,6 +11,7 @@
-> >> >  #include "g4x_dp.h"
-> >> >  #include "intel_de.h"
-> >> >  #include "intel_display_jiffies.h"
-> >> > +#include "intel_display_power.h"
-> >> >  #include "intel_display_power_well.h"
-> >> >  #include "intel_display_regs.h"
-> >> >  #include "intel_display_types.h"
-> >> > @@ -734,6 +735,18 @@ static  u32 ilk_get_pp_control(struct intel_dp
-> >> *intel_dp)
-> >> >  	return control;
-> >> >  }
-> >> >
-> >> > +static enum intel_display_power_domain
-> >> > +intel_pps_vdd_power_domain(struct intel_dp *intel_dp) {
-> >> > +	struct intel_display *display =3D to_intel_display(intel_dp);
-> >> > +	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
-> >> > +
-> >> > +	if (DISPLAY_VER(display) >=3D 35 && !intel_encoder_is_tc(&dig_port=
--
-> >> >base))
-> >> > +		return intel_display_power_aux_io_domain(display,
-> >> > +dig_port->aux_ch);
-> >>
-> >> Seems like this is something that the power domain framework should
-> >> take care of instead of hacking together locally.
-> >
-> > Actually it does not at least not for Xe3p which now has DC_OFF when
-> > taking AUX domain, Because of that when PPS take AUX power domain it
-> > also takes DC_OFF(exiting DC states) which is not required And since
-> > it keeps the reference for longer than what a normal aux transaction wo=
-uld
-> DC3CO does not increment its Counter.
->=20
-> I mean the power domain should be modified to take care of this, not that=
- it
-> should already take care of this.
 
-Hmm.. I am not very well versed in power wells and domains but let me see w=
-hat can be done
-Without hurting other parts of code.
 
-Regards,
-Suraj Kandpal
+On 28-09-2026 11:48, Riana Tauro wrote:
+> Keep the DRM RAS data used for netlink reporting separate from the
+> device and firmware RAS state in xe_device.
+> 
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> ---
+> v2: remove inline function (Himal)
+> ---
+>   drivers/gpu/drm/xe/xe_device_types.h  | 11 +++++++++--
+>   drivers/gpu/drm/xe/xe_drm_ras.c       | 16 ++++++++--------
+>   drivers/gpu/drm/xe/xe_drm_ras_types.h |  3 ---
+>   drivers/gpu/drm/xe/xe_hw_error.c      |  6 +++---
+>   drivers/gpu/drm/xe/xe_ras.c           | 26 ++++++++++++++++++--------
+>   drivers/gpu/drm/xe/xe_ras.h           |  2 ++
+>   drivers/gpu/drm/xe/xe_ras_types.h     | 10 ++++++++++
+>   drivers/gpu/drm/xe/xe_ttm_vram_mgr.c  |  3 ++-
+>   8 files changed, 52 insertions(+), 25 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index bb4234f00453..c0b53af9bdd6 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -21,6 +21,7 @@
+>   #include "xe_platform_types.h"
+>   #include "xe_pmu_types.h"
+>   #include "xe_pt_types.h"
+> +#include "xe_ras_types.h"
+>   #include "xe_sriov_pf_types.h"
+>   #include "xe_sriov_types.h"
+>   #include "xe_sriov_vf_types.h"
+> @@ -570,8 +571,14 @@ struct xe_device {
+>   	/** @pmu: performance monitoring unit */
+>   	struct xe_pmu pmu;
+>   
+> -	/** @ras: RAS structure for device */
+> -	struct xe_drm_ras ras;
+> +	/** @ras: RAS (Reliability, Availability, Serviceability) structures */
+> +	struct {
+> +		/** @ras.nl_data: drm-ras netlink data */
+> +		struct xe_drm_ras nl_data;
+> +
+> +		/** @ras.state: RAS device and firmware state */
+> +		struct xe_ras_state state;
+> +	} ras;
+>   
+>   	/** @i2c: I2C host controller */
+>   	struct xe_i2c *i2c;
+> diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
+> index 7f3695707611..38d77561facf 100644
+> --- a/drivers/gpu/drm/xe/xe_drm_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_drm_ras.c
+> @@ -20,7 +20,7 @@ static int query_error_counter(struct xe_device *xe,
+>   			       enum drm_xe_ras_error_severity severity,
+>   			       u32 error_id, const char **name, u32 *val)
+>   {
+> -	struct xe_drm_ras *ras = &xe->ras;
+> +	struct xe_drm_ras *ras = &xe->ras.nl_data;
+>   	struct xe_drm_ras_counter *info = ras->info[severity];
+>   
+>   	if (!info || !info[error_id].name)
+> @@ -41,7 +41,7 @@ static int clear_error_counter(struct xe_device *xe,
+>   			       enum drm_xe_ras_error_severity severity,
+>   			       u32 error_id)
+>   {
+> -	struct xe_drm_ras *ras = &xe->ras;
+> +	struct xe_drm_ras *ras = &xe->ras.nl_data;
+>   	struct xe_drm_ras_counter *info = ras->info[severity];
+>   
+>   	if (!info || !info[error_id].name)
+> @@ -90,7 +90,7 @@ static int query_correctable_error_threshold(struct drm_ras_node *ep, u32 error_
+>   					     const char **name, u32 *threshold)
+>   {
+>   	struct xe_device *xe = ep->priv;
+> -	struct xe_drm_ras *ras = &xe->ras;
+> +	struct xe_drm_ras *ras = &xe->ras.nl_data;
+>   	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
+>   
+>   	if (!info || !info[error_id].name)
+> @@ -106,7 +106,7 @@ static int query_correctable_error_threshold(struct drm_ras_node *ep, u32 error_
+>   static int set_correctable_error_threshold(struct drm_ras_node *ep, u32 error_id, u32 threshold)
+>   {
+>   	struct xe_device *xe = ep->priv;
+> -	struct xe_drm_ras *ras = &xe->ras;
+> +	struct xe_drm_ras *ras = &xe->ras.nl_data;
+>   	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
+>   
+>   	if (!info || !info[error_id].name)
+> @@ -142,7 +142,7 @@ static int assign_node_params(struct xe_device *xe, struct drm_ras_node *node,
+>   			      const enum drm_xe_ras_error_severity severity)
+>   {
+>   	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> -	struct xe_drm_ras *ras = &xe->ras;
+> +	struct xe_drm_ras *ras = &xe->ras.nl_data;
+>   	const char *device_name;
+>   
+>   	device_name = kasprintf(GFP_KERNEL, "%04x:%02x:%02x.%d",
+> @@ -190,7 +190,7 @@ static void cleanup_node(struct drm_device *drm, void *node)
+>   
+>   static int register_nodes(struct xe_device *xe)
+>   {
+> -	struct xe_drm_ras *ras = &xe->ras;
+> +	struct xe_drm_ras *ras = &xe->ras.nl_data;
+>   	struct drm_ras_node *node;
+>   	int i, ret;
+>   
+> @@ -230,7 +230,7 @@ static int register_nodes(struct xe_device *xe)
+>    */
+>   void xe_drm_ras_event(struct xe_device *xe, u32 component, u32 severity, u32 value)
+>   {
+> -	struct xe_drm_ras *ras = &xe->ras;
+> +	struct xe_drm_ras *ras = &xe->ras.nl_data;
+>   	struct xe_drm_ras_counter *info = ras->info[severity];
+>   	struct drm_ras_node *node;
+>   	int ret;
+> @@ -260,7 +260,7 @@ void xe_drm_ras_event(struct xe_device *xe, u32 component, u32 severity, u32 val
+>    */
+>   int xe_drm_ras_init(struct xe_device *xe)
+>   {
+> -	struct xe_drm_ras *ras = &xe->ras;
+> +	struct xe_drm_ras *ras = &xe->ras.nl_data;
+>   	struct drm_ras_node *node;
+>   	int err;
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_drm_ras_types.h b/drivers/gpu/drm/xe/xe_drm_ras_types.h
+> index 0be218ba2db7..8d729ad6a264 100644
+> --- a/drivers/gpu/drm/xe/xe_drm_ras_types.h
+> +++ b/drivers/gpu/drm/xe/xe_drm_ras_types.h
+> @@ -43,9 +43,6 @@ struct xe_drm_ras {
+>   
+>   	/** @info: info array for all types of errors */
+>   	struct xe_drm_ras_counter *info[DRM_XE_RAS_ERR_SEV_MAX];
+> -
+> -	/** @disable_vram_page_offline: cached configfs policy, immutable after init */
+> -	bool disable_vram_page_offline;
+>   };
+>   
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+> index 5f2abc9485ff..f53a6b3055de 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_error.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
+> @@ -240,7 +240,7 @@ static void log_soc_error(struct xe_tile *tile, const char * const *reg_info,
+>   {
+>   	const char *severity_str = error_severity[severity];
+>   	struct xe_device *xe = tile_to_xe(tile);
+> -	struct xe_drm_ras *ras = &xe->ras;
+> +	struct xe_drm_ras *ras = &xe->ras.nl_data;
+>   	struct xe_drm_ras_counter *info = ras->info[severity];
+>   	const char *name;
+>   
+> @@ -260,7 +260,7 @@ static void gt_hw_error_handler(struct xe_tile *tile, const enum hardware_error
+>   {
+>   	const enum drm_xe_ras_error_severity severity = hw_err_to_severity(hw_err);
+>   	struct xe_device *xe = tile_to_xe(tile);
+> -	struct xe_drm_ras *ras = &xe->ras;
+> +	struct xe_drm_ras *ras = &xe->ras.nl_data;
+>   	struct xe_drm_ras_counter *info = ras->info[severity];
+>   	struct xe_mmio *mmio = &tile->mmio;
+>   	unsigned long err_stat = 0;
+> @@ -422,7 +422,7 @@ static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_er
+>   	const enum drm_xe_ras_error_severity severity = hw_err_to_severity(hw_err);
+>   	const char *severity_str = error_severity[severity];
+>   	struct xe_device *xe = tile_to_xe(tile);
+> -	struct xe_drm_ras *ras = &xe->ras;
+> +	struct xe_drm_ras *ras = &xe->ras.nl_data;
+>   	struct xe_drm_ras_counter *info = ras->info[severity];
+>   	unsigned long flags, err_src;
+>   	u32 err_bit;
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index 752754f09314..9a1a8190578b 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
+> @@ -1094,6 +1094,17 @@ static const struct attribute_group gpu_health_group = {
+>   	.attrs = gpu_health_attrs,
+>   };
+>   
+> +/**
+> + * xe_ras_get_disable_page_offline - Get the page offline user policy
+> + * @xe: xe device instance
+> + *
+> + * Return: true if the page offline policy is disabled, false otherwise.
+> + */
+> +bool xe_ras_get_disable_page_offline(struct xe_device *xe)
+> +{
+> +	return xe->ras.state.disable_page_offline;
+> +}
+> +
+>   /**
+>    * xe_ras_init - Initialize Xe RAS
+>    * @xe: xe device instance
+> @@ -1104,19 +1115,18 @@ void xe_ras_init(struct xe_device *xe)
+>   {
+>   	int ret;
+>   
+> -	/*
+> -	 * TODO: Replace platform check with xe->info.has_disable_vram_page_offline
+> -	 * once the feature flag is plumbed through device info.
+> -	 */
+> -	if (xe->info.platform == XE_CRESCENTISLAND)
+> -		xe->ras.disable_vram_page_offline =
+> -			xe_configfs_get_disable_vram_page_offline(to_pci_dev(xe->drm.dev));
+> -
+>   	xe_drm_ras_init(xe);
+>   
+>   	if (!xe->info.has_sysctrl)
+>   		return;
+>   
+> +	/*
+> +	 * TODO: Replace platform check with xe->info.has_disable_vram_page_offline
+> +	 * once the feature flag is plumbed through device info.
+> +	 */
+> +	xe->ras.state.disable_page_offline =
+> +		xe_configfs_get_disable_vram_page_offline(to_pci_dev(xe->drm.dev));
+> +
+>   	if (IS_ENABLED(CONFIG_PCIEAER))
+>   		ras_usp_aer_init(xe);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+> index 0b8669f28d56..ac1253d6ead9 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.h
+> +++ b/drivers/gpu/drm/xe/xe_ras.h
+> @@ -7,6 +7,7 @@
+>   #define _XE_RAS_H_
+>   
+>   #include <linux/types.h>
+> +
+>   #include "xe_ras_types.h"
+>   
+>   struct xe_device;
+> @@ -20,5 +21,6 @@ int xe_ras_get_threshold(struct xe_device *xe, u8 severity, u8 component, u32 *t
+>   int xe_ras_set_threshold(struct xe_device *xe, u8 severity, u8 component, u32 threshold);
+>   void xe_ras_init(struct xe_device *xe);
+>   enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe);
+> +bool xe_ras_get_disable_page_offline(struct xe_device *xe);
+>   
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+> index 021ffbd6d4e2..40224db38906 100644
+> --- a/drivers/gpu/drm/xe/xe_ras_types.h
+> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
+> @@ -406,4 +406,14 @@ struct xe_ras_set_health_response {
+>   	/** @reserved1: Reserved for future use */
+>   	u32 reserved1[2];
+>   } __packed;
+> +
+> +/* Device structures */
+> +
+> +/**
+> + * struct xe_ras_state - RAS device and firmware state
+> + */
+> +struct xe_ras_state {
+> +	/** @disable_page_offline: cached configfs policy, immutable after init */
+> +	bool disable_page_offline;
+> +};
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> index 9a514d983e90..2c4722a956a0 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> @@ -24,6 +24,7 @@
+>   #include "xe_mmio.h"
+>   #include "xe_pm.h"
+>   #include "xe_printk.h"
+> +#include "xe_ras.h"
+>   #include "xe_res_cursor.h"
+>   #include "xe_ttm_stolen_mgr.h"
+>   #include "xe_ttm_vram_mgr.h"
+> @@ -933,7 +934,7 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr)
+>   	vram_mgr = &vr->ttm;
+>   	mm = &vram_mgr->mm;
+>   
+> -	if (xe->ras.disable_vram_page_offline) {
+> +	if (xe_ras_get_disable_page_offline(xe)) {
+>   		xe_err(xe, "0x%llx is reported as corrupted address by HW\n",
+>   		       addr);
 
->=20
-> BR,
-> Jani.
->=20
->=20
-> >
-> >>
-> >> Cc: Imre, which you should pretty much always do when doing anything
-> >> related to power domains.
-> >>
-> >
-> > Sure will keep in mind going forward.
-> >
-> > Regards,
-> > Suraj Kandpal
-> >
-> >>
-> >> BR,
-> >> Jani.
-> >>
-> >> > +
-> >> > +	return intel_aux_power_domain(dig_port); }
-> >> > +
-> >> >  /*
-> >> >   * Must be paired with intel_pps_vdd_off_unlocked().
-> >> >   * Must hold pps_mutex around the whole on/off sequence.
-> >> > @@ -760,7 +773,7 @@ bool intel_pps_vdd_on_unlocked(struct intel_dp
-> >> > *intel_dp)
-> >> >
-> >> >  	drm_WARN_ON(display->drm, intel_dp->pps.vdd_wakeref);
-> >> >  	intel_dp->pps.vdd_wakeref =3D intel_display_power_get(display,
-> >> > -
-> >> intel_aux_power_domain(dig_port));
-> >> > +
-> >> intel_pps_vdd_power_domain(intel_dp));
-> >> >
-> >> >  	pp_stat_reg =3D _pp_stat_reg(intel_dp);
-> >> >  	pp_ctrl_reg =3D _pp_ctrl_reg(intel_dp); @@ -862,7 +875,7 @@ static
-> >> > void intel_pps_vdd_off_sync_unlocked(struct intel_dp *intel_dp)
-> >> >  	}
-> >> >
-> >> >  	intel_display_power_put(display,
-> >> > -				intel_aux_power_domain(dig_port),
-> >> > +				intel_pps_vdd_power_domain(intel_dp),
-> >> >  				fetch_and_zero(&intel_dp-
-> >> >pps.vdd_wakeref));
-> >> >  }
-> >> >
-> >> > @@ -1064,7 +1077,7 @@ void intel_pps_off_unlocked(struct intel_dp
-> >> > *intel_dp)
-> >> >
-> >> >  	/* We got a reference when we enabled the VDD. */
-> >> >  	intel_display_power_put(display,
-> >> > -				intel_aux_power_domain(dig_port),
-> >> > +				intel_pps_vdd_power_domain(intel_dp),
-> >> >  				fetch_and_zero(&intel_dp-
-> >> >pps.vdd_wakeref));
-> >> >  }
-> >> >
-> >> > @@ -1336,7 +1349,7 @@ static void pps_vdd_init(struct intel_dp
-> >> *intel_dp)
-> >> >  		    pps_name(intel_dp));
-> >> >  	drm_WARN_ON(display->drm, intel_dp->pps.vdd_wakeref);
-> >> >  	intel_dp->pps.vdd_wakeref =3D intel_display_power_get(display,
-> >> > -
-> >> intel_aux_power_domain(dig_port));
-> >> > +
-> >> intel_pps_vdd_power_domain(intel_dp));
-> >> >  }
-> >> >
-> >> >  bool intel_pps_have_panel_power_or_vdd(struct intel_dp *intel_dp)
-> >>
-> >> --
-> >> Jani Nikula, Intel
->=20
-> --
-> Jani Nikula, Intel
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+
+>   		return -EOPNOTSUPP;
+
