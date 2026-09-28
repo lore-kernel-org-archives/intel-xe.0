@@ -4,145 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A56C3CA5FA2
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 20:53:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61887CA5FA2
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 21:18:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4533210E99D;
-	Mon, 28 Sep 2026 20:53:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B39F10EBD9;
+	Mon, 28 Sep 2026 21:18:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OgZZfJY9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z4RICGBw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F46E10E99D
- for <intel-xe@lists.freedesktop.org>; Mon, 28 Sep 2026 20:53:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55A1910EBD9
+ for <intel-xe@lists.freedesktop.org>; Mon, 28 Sep 2026 21:17:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790628834; x=1822164834;
+ t=1790630280; x=1822166280;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=ho6IlIZzFRcJas1oPhYAmu4kH5oZyIFHgOWiXcz3EBU=;
- b=OgZZfJY9c/m9o6/MlDHzErkdknfBt4Xslm4kigVxgWvTZjKH/YWRlAjc
- OGhYY1SpAnIwabRNGyNohC18MFxkyU0dMqkE6Im5Xn5MRnCtPnVjj7lZ9
- wDlbqlm/OIKRLszy3MEd8Goa4xHqt0pX+pnujWiFi4X0GeSuBbg23GdTT
- JMrsYIWBYcy+QEru5ujLWeTfTwNrLgIrVcd8xjh4vyl2dmSN15T3STrL4
- slbn7bJtLZems7RcuGAJDIVYPUlIf/1Fm0Cx1HyojQCf2eenGWZP2dXDU
- dz/vGwwhT868zj3psnGT96iFblWDsU+UVdhcr4ANYUzbXAyGzjvl1P8WF A==;
-X-CSE-ConnectionGUID: VoqAaj0NQFiBv8ThClrFZQ==
-X-CSE-MsgGUID: kFsP0FAmR/Sm56kzM+up6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11919"; a="101998177"
-X-IronPort-AV: E=Sophos;i="6.27,129,1787036400"; d="scan'208";a="101998177"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2026 13:53:54 -0700
-X-CSE-ConnectionGUID: IK0FuZhRR5K7/27fTrLHvQ==
-X-CSE-MsgGUID: CBVIqtPGTCW5QHnt8koOvw==
+ bh=wHe4XZHSWCDUGGK9MlK1KygkijV4aIW4wBA4aVP7CdY=;
+ b=Z4RICGBwU2DiKTnur+D+m7ya61rGK2l3Y6qV66JanPlP5bTrn4w5eUNS
+ OtbBE29Q9dCymmr6/w4ivZ+LQ/cPoMRXs6MoTFGFvh4mZsnLQ1FcpJynQ
+ 5XUr113u+RrxCWXAV9pEMkEXKn0MFJIqWs5miWBU3xzV/qVoj2BFRkhCu
+ fF6fqG8rH5WEwomno5g0QdJpV88D/m2xw8O9C9Zk624kPdjJTWhZSb6V8
+ V11Aoy4py9ymb3j12ntUu3B+3VUCXtMBn7NVl4lc6k6YGBGo+xSHwXdkB
+ m+A5sqMVBbIBVSSSCgnsBsXddlJSQzKPt/mqbxAEoz+6a9m1GkkaNALQV w==;
+X-CSE-ConnectionGUID: r/GGTn1BTNW3JWF1gRCA3A==
+X-CSE-MsgGUID: xUxQ6UlSQqWuNsUL0/y6qw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11919"; a="90107438"
+X-IronPort-AV: E=Sophos;i="6.27,129,1787036400"; d="scan'208";a="90107438"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2026 14:17:56 -0700
+X-CSE-ConnectionGUID: knDJVyL4SmaZXrO9E9RmCQ==
+X-CSE-MsgGUID: 063kcy6LQiirnBkb2X8UoQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,129,1787036400"; d="scan'208";a="274671610"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2026 13:53:53 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,129,1787036400"; d="scan'208";a="275193251"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2026 14:17:56 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 28 Sep 2026 13:53:52 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.46; Mon, 28 Sep 2026 14:17:55 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Mon, 28 Sep 2026 13:53:52 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.11) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Mon, 28 Sep 2026 14:17:55 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.70) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 28 Sep 2026 13:53:52 -0700
+ 15.2.2562.46; Mon, 28 Sep 2026 14:17:55 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QGULEuGz6ZiM3/vMjjiu8LdIKY7ZW5K+h7RMOW0439lne1pp7CHAMcm7babSyKGXopKoxSwHy8oTUw3aQBvLpjVyA7/s8yda2JR7jb99ofExXRSUSHZsT083+OiE+tdhIqWN7yIJ9Yg98x2W1KXiZ86pLlzoPZQo1O/CvZQsPAOIX3lKzeA67iLXucLQcEqycX1zSd2eb2zM5qb/V7N/UxuFTc2880GXaxCdXZoEa8us/jyyCbD+vOKcbmjcH24KMbDZ1UzVD5AfQW5IZkEtAfV1JgRZTQZO25OEvnZmimG3f7OPaJa0t/WNE4MPAvIszO8TXs7DnNSJePkj50myoA==
+ b=kTiSKQc+zZGHM6b97xQ20K4MiVYtQ1MbjptGPvlFNyKuo8293NF+mZRd+1FapmxlAqVyif8KT2M98CjoW8p0PP66ikH/RXjJdrhq8HCxaVeeOGi2kISSXf+XPH4Lv5NcmHMgylafWcQanwmhD/0/lpKLe0xybllJk6J5W+iUCb6fonKynNU+rv5fyVpBuazjqX/QUibjFYLttIlxncBZ5Tux3zhM3bBwkPN5TOgIGlaBRiyqtcI+WLKvdzcUrKwYtP+TINI6ivYcDmHip0FHSlfUP1Rjn5EdSswYSu/eoGkaz0sDi+wPUozAb6TNSNpDmenPA1W1ADzakAi016MMWA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Bs6GfdegzlFkKzjmbFvq97yBd6USQuUrUfHkFfWP+MQ=;
- b=k/MDc3j7+HDYIgkX7kv4mXWM0b2x2rZKMANqGEdmNE3Wa3b0U2jzwwTeLdBSTQcXFp/zrjh/PWSQi3kmtOk7byIF7qonIULmLHR5AHMkTxY5/NozIdW7QBkiz3P86QekVs0BrPYqr0kwyNEbgLFq2bCF/NLjrnw5zLKMJchCYBLSgB0qDYncS2UwjmPjgvYIt9zCZLsYcacUWHr2l29r+tc3N+g9TXTfKVKIkkpZsgBYcrGUlfeAvkUjrrnuWNYdBBsiU8iZlI6nqUx8OQAjK27JGcjbd/EzdS55608jJZKXe4vCfPkTEnPggVpzOc/ggVPXiw7lDvrYIIQ4V4uS6Q==
+ bh=I6QW48BPyHlBkOxVyOPFZunTUOFOZQ9G1ir4osR3LAA=;
+ b=Zwc+WrZK0bB8ipkqMXsHgLL/izmmn/mx99vMdmF2WyUomN3fHtIAByqvoAUFSgeZEVpRoydthB+kniaYjQgI+6YDcazMb/ZdfQfuEvKKv2t0cMcCkGnbqDAkPJGKdKeIUzGzkgqyH8po9lopDB4SPd+Hj4Me7FaZn3h7BDLnMvn3xgS9Au2UhKD1SSPlXDjgrwxBmLzD2gr4A3GyETUnc4Z2CLS6gfsaythxVZk/vEA+v2cczb4/jYfIevADEtpVPy3fX5ZEh7HIyiHANXei2t4vFF1qhpD/7qZp56L/bsTKJqH0aZipbNLOaVnWqqU4ousCRXt9xv6MRL0TFe7S/Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
- by IA1PR11MB8788.namprd11.prod.outlook.com (2603:10b6:208:597::14)
+Received: from IA0PR11MB7187.namprd11.prod.outlook.com (2603:10b6:208:441::12)
+ by LV2PR11MB880597.namprd11.prod.outlook.com (2603:10b6:408:3a9::19)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.24; Mon, 28 Sep
- 2026 20:53:50 +0000
-Received: from CO1PR11MB4787.namprd11.prod.outlook.com
- ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
- ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0451.022; Mon, 28 Sep 2026
- 20:53:50 +0000
-Date: Mon, 28 Sep 2026 13:53:47 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Brian Nguyen <brian3.nguyen@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <stuart.summers@intel.com>,
- <matthew.d.roper@intel.com>
-Subject: Re: [PATCH v2] drm/xe: Implement print vfunc for page fault info
- logging
-Message-ID: <arrT2/evj15NQc/X@gsse-cloud1.jf.intel.com>
-References: <20260928183120.3788244-2-brian3.nguyen@intel.com>
+ 2026 21:17:53 +0000
+Received: from IA0PR11MB7187.namprd11.prod.outlook.com
+ ([fe80::be96:3f58:953d:6565]) by IA0PR11MB7187.namprd11.prod.outlook.com
+ ([fe80::be96:3f58:953d:6565%4]) with mapi id 15.21.0451.022; Mon, 28 Sep 2026
+ 21:17:53 +0000
+Date: Mon, 28 Sep 2026 17:17:39 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Karthik Poosa <karthik.poosa@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <badal.nilawar@intel.com>, <raag.jadav@intel.com>, <riana.tauro@intel.com>,
+ <sk.anirban@intel.com>, <mallesh.koujalagi@intel.com>,
+ <soham.purkait@intel.com>
+Subject: Re: [PATCH v6 08/13] drm/xe/hwmon: Cache temperature availability to
+ reduce probe time
+Message-ID: <arrZcykEkTznmWHD@intel.com>
+References: <20260924205429.2846256-1-karthik.poosa@intel.com>
+ <20260924205429.2846256-9-karthik.poosa@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260928183120.3788244-2-brian3.nguyen@intel.com>
-X-ClientProxiedBy: BY3PR04CA0026.namprd04.prod.outlook.com
- (2603:10b6:a03:217::31) To CO1PR11MB4787.namprd11.prod.outlook.com
- (2603:10b6:303:95::23)
+In-Reply-To: <20260924205429.2846256-9-karthik.poosa@intel.com>
+X-ClientProxiedBy: SI2PR06CA0007.apcprd06.prod.outlook.com
+ (2603:1096:4:186::9) To IA0PR11MB7187.namprd11.prod.outlook.com
+ (2603:10b6:208:441::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|IA1PR11MB8788:EE_
-X-MS-Office365-Filtering-Correlation-Id: 646967e3-aa9f-4c27-70e5-08df1da29926
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|LV2PR11MB880597:EE_
+X-MS-Office365-Filtering-Correlation-Id: dbb9eedd-58d2-4c5a-e658-08df1da5f51d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|23010399003|376014|18002099003|22082099003|10067099003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: 3G+8d6/8BJV6aGe/+8jH/RQk9TFYr0aatjFHpajFi1FIluPtrh3a6Ld7KbnxnoNVQhEieZm1CZczIRYJ6GR55DYM1m/pD49YogbdAxPFyococXddKtl5UyJLX63NayZrIIg5CVC3XjCfNCozmFMMugzT6/ZgVn2FSFRyUSxrXA7emHeYl7yPwqxwDv5LRLwYG38mZ/TbsVpL8VkDrlSaxzWrsSGWlHYbsp25u05/U/GBrhMBKH+NBkFEx+lBvWBfPhz7LhOZJITgmchWalnWDYtifIqTggwOdHG+ZMm85GEEyt7j9CJkTFDlbb2iE1lVLZE8OX0fWK2EyPP2EeY9p41d04Q6l4KTC8sugscMRpZA/XBRHILqe81SzFXbQw5NkB1PlNm8iWoVfUZv8731Lz5AwulxJE2poaWjy5FY0CEAPbOxoeEBf1yXnauObOc8EzSyPTZBuwPWHxFlgKvWMTlvk9vUHBqmBYhLAbXEmlYG3TD5ktBh8DC4p3Z88YSmu+ln/iu9rSH8kWFczvnIvVsSavSra9Dyma0K8LV00WexJfY1Chul87z0iB0IzYMowmL5BQTniIItOvSGKSzFP7WYPZKvLdjnT1l90k44PyC965wjuzNLnnbLJvrjOoivkswtJjQ5kZvmJoZzCF9Bl/HcwoqMmn9v3o/20f+Vbas=
+ ARA:13230040|1800799024|376014|366016|23010399003|6133799003|10067099003|11063799006|56012099006|22082099003|4143699003|18002099003;
+X-Microsoft-Antispam-Message-Info: HkMwNsgKjcfFxNwzkK1gdo9ZMAEgsDBWgKRLOxGhCNZ+GJm+VLg3/oxizQ59Ohj0BI1vzJg6kI3k/7SQRtDpkBtgAKpfnU1A2fTny1eV0rLGFtXI+RPjDAH1u//kWrQXWd8hucsCf4bWchWV00g7saOgftZJDBbWnaGV6W44n72eyXR6IusDaN86+OmselUTwht8H5x+zfK7MMWZJNSJitESVJKxYfAUXis576bjzZO6rq5Vitta0vuiJ+mUhpc0iHqPUOUXtkAjgpfQHvv585LSukRDh88ZX0L8tplt7FFPwB8vS9gbs9P9OiF+NuitzV/AO9MpQhgDOp2KLPaITqd7Md9M3qFAe2ChXyutiVJRMJMHi9ba7jYNUtjMVWLgmt2kS9nqiyXEOQFnJulJ55Yp8CfwnUQPXr67hXwVuni3h6TveLViHEpbFJBPRKcPWeMrrRMN1uWHSvtfiHiCbWuUKCLNqb9HhMTUmj1qtP8bsJ25fcdeHiJGpnrql0i1MAbK/t1+Y9Xhbf8L+QSjneviswddkKsTo5U75+kPVUgFLG6bOQP/kojEfArTZnPuTh++sxuqj0bvbC2T98v8Habpl0y9Z3Abt10mIzBfyqYZdxriG3vj3grK3+F0MzRpCojcLlJKhba0K/Wz4o6g/jzzgT3bQZrz1c5ikUCwrCk=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(18002099003)(22082099003)(10067099003)(56012099006)(11063799006);
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7187.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(6133799003)(10067099003)(11063799006)(56012099006)(22082099003)(4143699003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?or/b/4I39TOSoYDMYXlTWvu1DIFjsWvPrphiOytUGQz6BP9Zzu1GyJw1S4Ez?=
- =?us-ascii?Q?Em0Em0AdCHrwS7OJiw38VKMwDGLMYC1axke/7oOrYuFWlYS1k/fgsvezN3To?=
- =?us-ascii?Q?8uEfgZGK2zWU2+QI4rnv6Yy1XAgl05JjWBf/EVdzshYGq95YIBL/mJNLXBlV?=
- =?us-ascii?Q?sGB3B9Atqo756X3DX76Rzk81ydYkd5adZYC2vFMukjMIZawLRMWtVJk2V96k?=
- =?us-ascii?Q?cUzxW6LzX17OGzBn5tLAZtWrsBMw4ZaNxpIs2NvpOc/7buhmkrsUg5adQSFY?=
- =?us-ascii?Q?rofIPn29ZpGwKEJsLamgK6EIKhh8Qw4c4kz4L+DIGW5bqWCRgDOWwqg8qA1G?=
- =?us-ascii?Q?bcEszmpmAX71sTBW4tLSp9MehZU6gAdH1u2R/iB9xQizpDw7v6BgqNn104SG?=
- =?us-ascii?Q?EaUPOpeiwYDtcrKUd6JiLPVLcmeGzeImRatHFJEg5oa2GTYzM7ANuI0Ig5n3?=
- =?us-ascii?Q?S+BGgGVt1KHXVeZUhTSeTfwL9wZ7emsc+1T+ucL5d7CBzuGsEmIBMPENKE7X?=
- =?us-ascii?Q?Dcg/LdgYr8tSKHpXgBgsue+mX4UZ0XkK+gDcXeiTBeEVpHOIiJfPYj7Xa0zp?=
- =?us-ascii?Q?6bq8eAPdLaIJ/1m0LpqgzCGQC+AQNbJsPtRD6KcbubLigRVtRwoX0g73tiQi?=
- =?us-ascii?Q?OV7tLlfosA7/aJdKb/raYSIrRyVRDLXBTi3jk8JHt9m0jYPbex/4zApQjpnN?=
- =?us-ascii?Q?ksuUrqacIDzmoGJC/pGOPfS8UwFK23GlF+kz8Dqe+D2oa4KT/Om0Lr2zRO4F?=
- =?us-ascii?Q?G3mPY/d2Q5FthpLK8rU64XwXM115zO6NzY9ZYDO4kBilx52oSLvlx+L2Tbti?=
- =?us-ascii?Q?RbbWwhUiQW6YA6y0/Wmqs0IgnSOzGXCGYSiA5laJINRM745+M2WD0iKER/Hv?=
- =?us-ascii?Q?hep+rR5K8NBvr5Dki1zPNqRc+iR78gQobGZc6u7CgBR3xMwh53VQiIZz9OIY?=
- =?us-ascii?Q?ZJ6vIAmFWri0p4u135F1zMrtc+HQVHb+RArDNm+Ed3qL5tmhdekcavnPAwct?=
- =?us-ascii?Q?8BGszE6cx3zoOsE80pKotlx5DqrisUclf4ZEdpFXSm+xpuQm0BfrRpAhffDH?=
- =?us-ascii?Q?dyW3bYIdIgHpcPRVpozmg8Topyl7IcJvUhGmNw84yxFXAUan8xlFMEwr5yYA?=
- =?us-ascii?Q?yGh0ypZtJfTwtle82ZnSSOpXGj1AXexUmQSi0WWzj0qTmUHRXiWY3bz87E2t?=
- =?us-ascii?Q?sjrhjCm/hQ8Ub62CWvZUA1W7SZO9FRb5t0Q31cnLfCbPMG5E5sj7as1CK4Ao?=
- =?us-ascii?Q?CZpNDlXUu//n1GvoPtS1jzLCfckJLnmEzFXMqis7kbaEHOu6s81DYOeOI+sO?=
- =?us-ascii?Q?9DDEvh3nyX7YWPROAB3esPg9I654JNgqQrKTP7831vOfv2o2M8tw8Y7csurX?=
- =?us-ascii?Q?X+u/vwEukvtR0z3RYVVRHVNbEiB+58fkb/obJqE3i8d8k6CcQ2Xw7nNAEDkf?=
- =?us-ascii?Q?HNfc6zwVc+ZY9RdpNzknd0Bp+Vcvp/xtMVwQBqFJqieE6YqnrzKFtTYxCA70?=
- =?us-ascii?Q?vB91rbr8YzTk2epFbXlvpfbEH4/9rXnGJeOUyScpJpO26I1+/FYGUvLNJqgO?=
- =?us-ascii?Q?4OMND5aai5WM7Vg2R8fQeT46vo8btwL8f0gKHK3wfEIhB89f9DB/D0mFWKEH?=
- =?us-ascii?Q?fFCtlr9touotEyAeIuCoxwHNB0ao5ESr7c0O0fqfhgqZfH+C2V4pOP2gHA0N?=
- =?us-ascii?Q?JY7r7TTziNfGayZVMOstMzw9bqQD112L08akHAFk8TNIaBqkvin99kSs5U+a?=
- =?us-ascii?Q?bHJdu5S0OA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: 2jk173kC+BsoXbH170a3eorRgK/RNk5tgfaJtWhToyYzb+dF1yLvUgeRPvX2A1ybt2HOY2QUKPjd22Qd74byKULDIhTi1tiFJ82OXGBTdZlkEESNAbdYzLcbJX5apmLeAgZijse4iIU6HgYs3HPZpY90oX1xjMUBCYFOAv5f2gvNqgOUEr7g6ZHzUwc2Z5Ku6F5OnL7gn7xal0NgGfH8zJX4hSo7od2AhuABG+WF2rsPX91s4YT3qVdz4Q++o+3nh7258MSe5wciiupxPVToN8cl3w8bq7lG6EstX3AQr3JkCbzuC17xh3PZfyCk0+ZycmaiYUCAM7HcQJCU1lffnA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 646967e3-aa9f-4c27-70e5-08df1da29926
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?tUM5H40tA7X7b129d8xs0RsGl93u6ryCVngPgfluFgnQWYc95ryMCKLwpyzM?=
+ =?us-ascii?Q?LSZGuOeBm5U+F/JITak+fre9HkNB8t19hEYI0s3IMWiBtHmeI1+nB7CjIDtV?=
+ =?us-ascii?Q?OXv/6MdnRllCPJDPvDUlF4nUn27/ZPQzv3lVaCJ7SDR8iTqwzyOkjOyGZMdP?=
+ =?us-ascii?Q?tLJa88k68Q2z2HJXQgUuJCsjGsdosm8zEqQuaMWv8aUSb503I2RsRZ/PRZOd?=
+ =?us-ascii?Q?Wik1F1RJ87m3AhSTkl/Yk9qZVLLDLbVlZz9oVqrN1i25SCI7gbjj1QWAhJJK?=
+ =?us-ascii?Q?Y3z3BrIjzWA7SEGTr5OhuGDLuUl6dX2iMr+YlAW/1EnWLt4heEYb2GoNdBOg?=
+ =?us-ascii?Q?Pab+nnsm2dFqUu04BE6EGbumnNHqh1Hgs7xTU/NvE/L/OviCeF5drGusMRKC?=
+ =?us-ascii?Q?gl0wrMZzFh6AR3flVWGvd/7fVN86X9kKm4Cii4LPBqIcY6olryVy1943KZPQ?=
+ =?us-ascii?Q?yxVmCoj6uM/sLcCdJUB3xNfwiDLWdzJDvkIzVHc4pws2bxC5VJInsxK9ILMj?=
+ =?us-ascii?Q?LyZLmS+dNDDweGN2UgVFk0wxf+BcOveuBRQfPJ4qucV1x6iKw+vrRp41TADW?=
+ =?us-ascii?Q?FMF4a6J560YaQzafYb9tHT7oJ4GMCMhdBmFwS207MeMBQbOzMof5lW0NC1rA?=
+ =?us-ascii?Q?4fdE3uHj8Ekvpnh4XtBn17UbJE1b71xv4peMHbdbnfcdgJnm9ns38OIWs93e?=
+ =?us-ascii?Q?Maxp6dIpKfNzfS7CXs02t6iFcUdV5sY6KDSZsvKknDDb+gtJjLB2++z2KDFy?=
+ =?us-ascii?Q?5gTuA6m+gfDz0QwmHsKnFdQkMIelfmhK2GehZFh+uDbeUD+pAvPCOWmL2Ql3?=
+ =?us-ascii?Q?3c4XuP5BbTl4x6TIR5cqnnLTJgRHJu+bO2sK9o4XMF3y/FbYA9RKgAA8vJwj?=
+ =?us-ascii?Q?tub0oXElbbWQJKZR885fCbgisyPE84YdugTetbGP5alqKBytdj+uMyTQLMlJ?=
+ =?us-ascii?Q?u+ra1INpSg5OGQzzc+HXcbu4cAuilXltGSLGjkFlLYIxjohYTMOW+40a9rrK?=
+ =?us-ascii?Q?wM35Apycbowopkv1pyGRsDIlFmqnCa1Kw916pkMe84uzKRegQP1cMki9JzFj?=
+ =?us-ascii?Q?IP8FmAZ03H+DZqE9BXB+D7rP6H6WXBtzsITID0p+d34FL+ATOuiQzEiHhesl?=
+ =?us-ascii?Q?NFNBqnSZ8jC9vcT6Rs7D36cN7FJ0wIhCJRiQRjjZ9px6Fr60DCK/2lN7MLnD?=
+ =?us-ascii?Q?/ejEGgWyHGlxtAYyq0bzbMq0KRl921FaU4IVj1vm7jKpns2alIpuuoIAnI0r?=
+ =?us-ascii?Q?rFs86kzQDzAMErX+Zgt3vr3mQoDGDQFkE7Pvmq6n7TpnkA47yrIxcwJ7Yumz?=
+ =?us-ascii?Q?0u37iRUo8TQyEaCIjbYnyXmXV3tjG3GV2MK9h+zwYemoj1awP/DNDjPIcgv5?=
+ =?us-ascii?Q?rmpPpXI5ciHnTnItkjR9+onm9ftgcF4OCG5W8UJYqTnF8qd6bWgKOhv/5W6e?=
+ =?us-ascii?Q?AXRufuTszVP8UH7+hQvqp59ByGVD8H1cd07OJzCcb5giYtB27dvlaqwebTgh?=
+ =?us-ascii?Q?jMpCyzk+xA3vlTUrDQRG8di1EwBcnzTA1F+a1iSB186tjza4XxL1N1xNeE5I?=
+ =?us-ascii?Q?ro7G0RxquI7/lB/y7j1DW0NNZUInMSW96NNdnU0WSsu/BRhaDOnN8FC+Eenf?=
+ =?us-ascii?Q?YAKhze7aLIq/Nn9nfi/8tih9EskjiDEDAxYRBESqGfvynXbp2xb/I/h7GE92?=
+ =?us-ascii?Q?Y4MoCMFrHjW8dUZGAjB0EZfzmNUSc/+kRHzSUjb6G0/Uxlwc8nT4FbaKy4zB?=
+ =?us-ascii?Q?3N4/VW8KY+A0HzJr4Bthg/YYlVcixJk=3D?=
+X-Exchange-RoutingPolicyChecked: B4nlW02kvgHOwQW22iQqQIChbCTA4bGtLQrUaPDWcHfqwWLhkP06A48saJ+Q/eDJlRx73j1knzSma9BTnEJPDhCdYkQM65c0BVpBl7GBc9Xl2IjEmPxDx1icDHeaLIV+jz7ecKSGapjCASFFV5YHjdS8CEDzOQ9lAbpey3PypDAyHNKpNzO3o0UuzcB+x3tCP8vPVVDDdCQqygrxoSLfBhCnHi2qGKNjaSaspQXCxBDsTH+W//GSRuTQSv97tf0IQzcETju+HvcoSpdjRhnqzSF+XIkoHfHeialwMHAIZ8LoJGiqn/jSQ+zkvIlfCNM/l5xSwjxAbhywq7em11lU2g==
+X-MS-Exchange-CrossTenant-Network-Message-Id: dbb9eedd-58d2-4c5a-e658-08df1da5f51d
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7187.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2026 20:53:50.2859 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2026 21:17:53.3841 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rK4T2lZNvkOZZM4vyFN9BJvAtbi5oOd73Oi8CvMdnRtEfAwD+byQ6DGVK0hVSQ+xZLUhrS49MVvHXrs7gWz6lw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8788
+X-MS-Exchange-CrossTenant-UserPrincipalName: a0sxo37dMmZigr36/tUYJ2nKlAzCrbFw2QW4FkTjY/J5YJWg5SdAuKaLNuW/C67YWIxUwu/HU3l0BlTsJyOMaQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB880597
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -158,172 +161,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 28, 2026 at 06:31:21PM +0000, Brian Nguyen wrote:
-> Add a print vfunc to xe_pagefault_ops so different producer backends can
-> log specific relevant debug info while keeping the consumer layer free
-> of potential backend-specific formatting logic.
+On Fri, Sep 25, 2026 at 02:24:24AM +0530, Karthik Poosa wrote:
+> Avoid probing temperature sensor availability from the hwmon is_visible()
+> callback. For MCTRL and PCIe channels, that path can trigger repeated
+> blocking mailbox reads while sysfs attributes are being created, increasing
+> probe time and making attribute creation sensitive to transient failures.
 > 
-> Consumer-specific error prints are handled by passing as input into
-> the vfunc.
+> Probe temperature availability once during preregistration and cache the
+> result for subsequent visibility checks.
+
+fine to cache, perhaps wroth checking that 0 temp case..
+
+but this patch itself looks good:
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+
+
 > 
-> v2:
->  - Decode producer specific fields for print message. (Matthew)
->  - Combine consumer and producer prints to one print call. (Sashiko)
-> 
-> Suggested-by: Stuart Summers <stuart.summers@intel.com>
-> Signed-off-by: Brian Nguyen <brian3.nguyen@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> Assisted-by: LLM
 > ---
->  drivers/gpu/drm/xe/xe_guc_pagefault.c   | 32 ++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_pagefault.c       | 33 +++----------------------
->  drivers/gpu/drm/xe/xe_pagefault_types.h | 10 ++++++++
->  3 files changed, 45 insertions(+), 30 deletions(-)
+>  drivers/gpu/drm/xe/xe_hwmon.c | 39 +++++++++++++++++++++++------------
+>  1 file changed, 26 insertions(+), 13 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pagefault.c b/drivers/gpu/drm/xe/xe_guc_pagefault.c
-> index df237fd40551..e65e4962a26c 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pagefault.c
-> @@ -4,9 +4,11 @@
->   */
->  
->  #include "abi/guc_actions_abi.h"
-> +#include "xe_gt_printk.h"
->  #include "xe_guc.h"
->  #include "xe_guc_ct.h"
->  #include "xe_guc_pagefault.h"
-> +#include "xe_hw_engine.h"
->  #include "xe_pagefault.h"
->  #include "xe_pagefault_types.h"
->  
-> @@ -68,10 +70,40 @@ static void guc_ack_fault_end(void *private)
->  	xe_guc_ct_unlock(&guc->ct);
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index 052b25a233d6..92280248f1e9 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -146,6 +146,8 @@ struct xe_hwmon_thermal_info {
+>  	};
+>  	/** @count: no of temperature sensors available for the platform */
+>  	u8 count;
+> +	/** @available: temperature sensor availability cached at registration */
+> +	bool available[CHANNEL_MAX];
+>  	union {
+>  		/** @value: per-sensor raw mailbox temperature; bit7=sign, bits6:0=magnitude */
+>  		u8 value[U8_MAX + 1];
+> @@ -1002,7 +1004,7 @@ static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, int channel, long *valu
+>  	*value = DIV_ROUND_CLOSEST(REG_FIELD_GET(VOLTAGE_MASK, reg_val) * 2500, SF_VOLTAGE);
 >  }
 >  
-> +static void xe_guc_pagefault_print(struct xe_pagefault *pf,
-> +				   const char *err_str)
+> -static bool is_temp_available(struct xe_hwmon *hwmon, int channel)
+> +static bool xe_hwmon_temp_probe(struct xe_hwmon *hwmon, int channel)
+>  {
+>  	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+>  	struct xe_reg reg;
+> @@ -1023,10 +1025,6 @@ static bool is_temp_available(struct xe_hwmon *hwmon, int channel)
+>  			return false;
+>  		}
+>  
+> -		if (channel >= CHANNEL_VRAM_N)
+> -			sprintf(hwmon->temp.vram_label[channel - CHANNEL_VRAM_N],
+> -				"vram_ch_%d", channel - CHANNEL_VRAM_N);
+> -
+>  		return true;
+>  	case CHANNEL_MCTRL:
+>  		return hwmon->temp.count && !get_mc_temp(hwmon, NULL);
+> @@ -1037,6 +1035,22 @@ static bool is_temp_available(struct xe_hwmon *hwmon, int channel)
+>  	}
+>  }
+>  
+> +static void xe_hwmon_init_temp_info(struct xe_hwmon *hwmon)
 > +{
-> +	const u32 *msg = pf->producer.msg;
-> +	u32 engine_class = FIELD_GET(PFD_ENG_CLASS, msg[0]);
+> +	int channel;
 > +
-> +	xe_gt_info(pf->gt, "\n\tASID: %lu\n"
-> +		   "\tFaulted Address: 0x%08lx%08lx\n"
-> +		   "\tFaultType: %lu\n"
-> +		   "\tAccessType: %lu\n"
-> +		   "\tFaultLevel: %lu\n"
-> +		   "\tEngineClass: %u %s\n"
-> +		   "\tEngineInstance: %lu\n"
-> +		   "\tSRCID: 0x%02lx\n"
-> +		   "\tError: %s\n",
-> +		   FIELD_GET(PFD_ASID, msg[1]),
-> +		   FIELD_GET(PFD_VIRTUAL_ADDR_HI, msg[3]),
-> +		   FIELD_GET(PFD_VIRTUAL_ADDR_LO, msg[2]) <<
-> +		   PFD_VIRTUAL_ADDR_LO_SHIFT,
-> +		   FIELD_GET(PFD_FAULT_TYPE, msg[2]),
-> +		   FIELD_GET(PFD_ACCESS_TYPE, msg[2]),
-> +		   FIELD_GET(PFD_FAULT_LEVEL, msg[0]),
-> +		   engine_class,
-> +		   xe_hw_engine_class_to_str(engine_class),
-> +		   FIELD_GET(PFD_ENG_INSTANCE, msg[0]),
-> +		   FIELD_GET(PFD_SRC_ID, msg[0]),
-> +		   err_str);
+> +	if (hwmon->xe->info.has_mbx_thermal_info && xe_hwmon_pcode_read_thermal_info(hwmon))
+> +		drm_warn(&hwmon->xe->drm, "Thermal mailbox not supported by card firmware\n");
+> +
+> +	for (channel = 0; channel < CHANNEL_MAX; channel++) {
+> +		hwmon->temp.available[channel] = xe_hwmon_temp_probe(hwmon, channel);
+> +		if (hwmon->temp.available[channel] &&
+> +		    in_range(channel, CHANNEL_VRAM_N, MAX_VRAM_CHANNELS))
+> +			snprintf(hwmon->temp.vram_label[channel - CHANNEL_VRAM_N], MAX_LABEL_SIZE,
+> +				 "vram_ch_%d", channel - CHANNEL_VRAM_N);
+> +	}
 > +}
 > +
->  static const struct xe_pagefault_ops guc_pagefault_ops = {
->  	.ack_fault_begin = guc_ack_fault_begin,
->  	.ack_fault = guc_ack_fault,
->  	.ack_fault_end = guc_ack_fault_end,
-> +	.print = xe_guc_pagefault_print,
->  };
->  
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-> index f219e9e3b73e..dbf9397938df 100644
-> --- a/drivers/gpu/drm/xe/xe_pagefault.c
-> +++ b/drivers/gpu/drm/xe/xe_pagefault.c
-> @@ -13,7 +13,6 @@
->  #include "xe_gt_printk.h"
->  #include "xe_gt_types.h"
->  #include "xe_gt_stats.h"
-> -#include "xe_hw_engine.h"
->  #include "xe_log.h"
->  #include "xe_migrate.h"
->  #include "xe_pagefault.h"
-> @@ -610,36 +609,10 @@ static const char *xe_pagefault_error_to_str(enum xe_pagefault_error error)
->  
->  static void xe_pagefault_print(struct xe_pagefault *pf)
+>  static umode_t
+>  xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
 >  {
-> -	u8 engine_class = FIELD_GET(XE_PAGEFAULT_ENGINE_CLASS_MASK,
-> -				    pf->consumer.engine_class_instance);
-> -	u64 addr = xe_pagefault_addr(pf);
-> +	enum xe_pagefault_error err = xe_pagefault_get_error(pf);
+> @@ -1046,11 +1060,11 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>  		case CHANNEL_PKG:
+>  		case CHANNEL_MCTRL:
+>  		case CHANNEL_PCIE:
+> -			return (is_temp_available(hwmon, channel) &&
+> +			return (hwmon->temp.available[channel] &&
+>  				hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN]) ? 0444 : 0;
+>  		case CHANNEL_VRAM:
+>  		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+> -			return (is_temp_available(hwmon, channel) &&
+> +			return (hwmon->temp.available[channel] &&
+>  				hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN]) ? 0444 : 0;
+>  		default:
+>  			return 0;
+> @@ -1060,11 +1074,11 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>  		case CHANNEL_PKG:
+>  		case CHANNEL_MCTRL:
+>  		case CHANNEL_PCIE:
+> -			return (is_temp_available(hwmon, channel) &&
+> +			return (hwmon->temp.available[channel] &&
+>  				hwmon->temp.limit[TEMP_LIMIT_PKG_CRIT]) ? 0444 : 0;
+>  		case CHANNEL_VRAM:
+>  		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+> -			return (is_temp_available(hwmon, channel) &&
+> +			return (hwmon->temp.available[channel] &&
+>  				hwmon->temp.limit[TEMP_LIMIT_MEM_CRIT]) ? 0444 : 0;
+>  		default:
+>  			return 0;
+> @@ -1072,7 +1086,7 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>  	case hwmon_temp_max:
+>  		switch (channel) {
+>  		case CHANNEL_PKG:
+> -			return (is_temp_available(hwmon, channel) &&
+> +			return (hwmon->temp.available[channel] &&
+>  				hwmon->temp.limit[TEMP_LIMIT_PKG_MAX]) ? 0444 : 0;
+>  		default:
+>  			return 0;
+> @@ -1085,7 +1099,7 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>  		case CHANNEL_MCTRL:
+>  		case CHANNEL_PCIE:
+>  		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+> -			return is_temp_available(hwmon, channel) ? 0444 : 0;
+> +			return hwmon->temp.available[channel] ? 0444 : 0;
+>  		default:
+>  			return 0;
+>  		}
+> @@ -1627,8 +1641,7 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
+>  		if (xe_hwmon_is_visible(hwmon, hwmon_fan, hwmon_fan_input, channel))
+>  			xe_hwmon_fan_input_read(hwmon, channel, &fan_speed);
 >  
-> -	xe_gt_info(pf->gt, "\n\tASID: %lu\n"
-> -		   "\tFaulted Address: 0x%08x%08x\n"
-> -		   "\tFaultType: %lu\n"
-> -		   "\tAccessType: %lu\n"
-> -		   "\tFaultLevel: %lu\n"
-> -		   "\tEngineClass: %d %s\n"
-> -		   "\tEngineInstance: %lu\n"
-> -		   "\tSRCID: 0x%02lx\n"
-> -		   "\tError: %s\n",
-> -		   FIELD_GET(XE_PAGEFAULT_ASID_MASK,
-> -			     pf->consumer.id),
-> -		   upper_32_bits(addr),
-> -		   lower_32_bits(addr),
-> -		   FIELD_GET(XE_PAGEFAULT_TYPE_MASK,
-> -			     pf->consumer.fault_type_level),
-> -		   FIELD_GET(XE_PAGEFAULT_ACCESS_TYPE_MASK,
-> -			     pf->consumer.access_type),
-> -		   FIELD_GET(XE_PAGEFAULT_LEVEL_MASK,
-> -			     pf->consumer.fault_type_level),
-> -		   engine_class,
-> -		   xe_hw_engine_class_to_str(engine_class),
-> -		   FIELD_GET(XE_PAGEFAULT_ENGINE_INSTANCE_MASK,
-> -			     pf->consumer.engine_class_instance),
-> -		   FIELD_GET(XE_PAGEFAULT_SRCID_MASK,
-> -			     pf->consumer.id),
-> -		   xe_pagefault_error_to_str(xe_pagefault_get_error(pf)));
-> +	xe_gt_assert(pf->gt, pf->producer.ops->print);
-
-AI reviews will likely tell you this useless as we'd NULL ptr deref
-immediate after this - I got some of those on my code for similar type
-of asserts.
-
-I'd say this is correct, so how about...
-
-if (WARN_ON_ONCE(!pf->producer.ops->print))
-	return;
-
-pf->producer.ops->print(pf, xe_pagefault_error_to_str(err));
-
-With this changed:
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-
-> +	pf->producer.ops->print(pf, xe_pagefault_error_to_str(err));
+> -	if (hwmon->xe->info.has_mbx_thermal_info && xe_hwmon_pcode_read_thermal_info(hwmon))
+> -		drm_warn(&hwmon->xe->drm, "Thermal mailbox not supported by card firmware\n");
+> +	xe_hwmon_init_temp_info(hwmon);
 >  }
 >  
->  static void xe_pagefault_save_to_vm(struct xe_device *xe, struct xe_pagefault *pf)
-> diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h b/drivers/gpu/drm/xe/xe_pagefault_types.h
-> index 8ae6b9848bdc..ee467117afe9 100644
-> --- a/drivers/gpu/drm/xe/xe_pagefault_types.h
-> +++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
-> @@ -139,6 +139,16 @@ struct xe_pagefault_ops {
->  	 * Page fault producer ends acknowledgment from the consumer.
->  	 */
->  	void (*ack_fault_end)(void *private);
-> +	/**
-> +	 * @print: Print pagefault info
-> +	 * @pf: Page fault
-> +	 * @err_str: Consumer servicing error string
-> +	 *
-> +	 * Print pagefault identification fields decoded from producer,
-> +	 * along with consumer-specific @err_str prints.
-> +	 * Must be implemented by all producers.
-> +	 */
-> +	void (*print)(struct xe_pagefault *pf, const char *err_str);
->  };
->  
->  /**
+>  int xe_hwmon_register(struct xe_device *xe)
 > -- 
-> 2.43.0
+> 2.25.1
 > 
