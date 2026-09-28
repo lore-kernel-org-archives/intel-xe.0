@@ -4,146 +4,159 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7555CC9832F
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 03:35:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E851DC9832F
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 03:42:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C33410E747;
-	Mon, 28 Sep 2026 03:35:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90D8910E74B;
+	Mon, 28 Sep 2026 03:42:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gIa+DHBB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IBslMN+1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7A8D10E747
- for <intel-xe@lists.freedesktop.org>; Mon, 28 Sep 2026 03:35:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 444E210E74B
+ for <intel-xe@lists.freedesktop.org>; Mon, 28 Sep 2026 03:42:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790566500; x=1822102500;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=/hpdu/CWQ8xY4eAHH/yes8vnsGJ1PfAsXstVhQNs9x4=;
- b=gIa+DHBBtSSk5Bsr7p1dvJ9bq2/sco9nYRpkVtfCa3reTMrUwtAucSUm
- 35mqoNeUaZflqD19ybdy6mtsYP+ldKTatgp1SPbBWcIw0+3spz4NsinR5
- DvzvPDVzvjf9aL0HOlppeDJdHQIihGO535stES3avH2iva4ETYlUuZm/5
- QeiFen716fojGQLSuLvHYAZ7MYXA8BR791Ep/qD02UGTJxSSezK7+rFg5
- IvAZvPyC2bP8oH+85CypFYRnHkb3HETkjqGQH8tc6cPHVIoVIX5xUlqAe
- MybSuAmypPbYOojTzmdBR3BuJq+6ciMwyB7FQFjVqw5E0a5BlpwRQVlDa Q==;
-X-CSE-ConnectionGUID: FZSHFiIOTQqk0HutTVzfJw==
-X-CSE-MsgGUID: uMigpQ/zTsaXGRkAMCka5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11918"; a="90023447"
-X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; d="scan'208";a="90023447"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2026 20:35:00 -0700
-X-CSE-ConnectionGUID: mSjwMIdwSA2PgL9JqjQp3w==
-X-CSE-MsgGUID: nlYR/5C3TDGa5VvEFDSThg==
+ t=1790566938; x=1822102938;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=GTMEwHj1Xzzm6hRGoAHAuB9nU+PGQX8hSVVKEfk8P4c=;
+ b=IBslMN+113al5o8DhNyjPcotIsz3xaMVlsRyF8KjoGbAqV2WVCFvKQjd
+ 8N+eK2Ah/R2yo4rsGkd8tWaB6P0CgKHe6W5kTT1Swskz617slKnxhn/bK
+ U/kDaevarnyjtRC0pOfbUQrlHMBHxAGRfFrlVQyu8Jmz1PDb/bzyEAK3w
+ oaGNfi9XUWTZZ6OPx4Q379ZgWekulvrjKZuvFaSi2YiFwyRDPQ9H0xHPy
+ wOBlFgHf8oGFzXDzHyiWAlwJ9MNeMt5JEgBXS/ESkqfAS/Vafs7AM5YPk
+ PlEnTdMNUZC4xC7qjonoNYtDwH9tcSA/Ml4/afTC7edX7FQyL2P9HeGj3 A==;
+X-CSE-ConnectionGUID: c43/EZn3S0C82pOzEKN9Mw==
+X-CSE-MsgGUID: 8ZIXsuRhTH+3CLjx1eh/jw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11918"; a="90383449"
+X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; d="scan'208";a="90383449"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2026 20:42:18 -0700
+X-CSE-ConnectionGUID: z05QYKzcQS6WCsSLihg4bA==
+X-CSE-MsgGUID: ELkl5sZTRZK8ATWEbudUww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; d="scan'208";a="279656632"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2026 20:35:00 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; d="scan'208";a="273074309"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2026 20:42:17 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Sun, 27 Sep 2026 20:34:59 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.46; Sun, 27 Sep 2026 20:42:16 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Sun, 27 Sep 2026 20:34:59 -0700
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.2) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Sun, 27 Sep 2026 20:42:16 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.69) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Sun, 27 Sep 2026 20:34:59 -0700
+ 15.2.2562.46; Sun, 27 Sep 2026 20:42:15 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=s7OiBMGb+YLYTcqkeZSfX86uDTIOAj0MYIuZP7PnWBpWrgx7f8LqVytmErKhOem3l1V9RExL/hGihQwe2MHPGk9LAKDgwiPFWGOp0y1NmPPXvDF2insT2djAqhGTWDkrkVJ8l5o9aBfd8cy0RvZWJy2tTDDuyI6sXbd/H5jKrZqiEZfT1m9hJ6R6z4QIfMPfZ7RhA4MXHr1kzaLst7f5KDHG+co3mqymuAbhGJVwlQRtcqAqS27gHEvL7ZrZ0ckQ9PMb1P3dun4aYBbvcR6zYJhfOZ+a+3jVLhvw1gz6M1kbcz8RdxOOGPu6CeEF09BnRwCgh3Mw3b/jcfTYJiuSpQ==
+ b=n1c43ZunyqG5Opi8RTBQ+BXfGqwXyXG+ybGsfgna/iyGfhZR7VLDu8IbvsSaHeeSKVMyNgYb3moofGtvErF/gEN5RCN2qdbI13dnndjgMF/qsnlorJ7sc4BDllVwJnoct4VuhF+NpmBrVmXA3yszfGg8xwfJYKUCm1RB5h9j96rDx2OLqQ5L8VW8n14lCd7vfKs7trfwDylYKNRm9oZ70eLYGXty9xbCrQpBh8Cbqb6bcO+Sm4c52g1Xw66uD7RsfV0+VUvGdJbkwgb2d+mBfGcIeqcvFDEfysm/akWQ577hS+DfmHUlUHNHebhJXFRvOs2ngyAocX3ZGQgMQu9xFA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=etT6K6R0T3NYEWdwdUP5u04hSKuMDA7cfJWDNG1fUyg=;
- b=r0tp6elPPTf70m5uHUAC0z6j4OfDpwhNMYgzrn12WP2RHoOq2vAqLUb9K021cH6xems3JkFB08xIaqG68JFuRFb7tBzzaHyJNOMd0baMxTiOwYoyH5nWEBhNverxoeUXKT0dFAR46DIFJsXd4VZtExUuww7yHtY/bRMgsG3ej9YZZsmfAaZ5BK7eFhogQVIlnUmJ3Ei/XQ2yJ97VmkKhL2yR32ltw/nzPBqPVKZLAd2C3duVTvuWnzi8XbCDSR3wTgU/U2VC1vYt5IWXCVZzQyCIRdIG91mBS41l+aa68rUm1gAAgtYGQBTRaH7GRGB7yAF3/vf78mieix9mPjWD/g==
+ bh=NTaHWX8ceAZqW/vxtJvawGx3nJoLvx8g1mxRKInodxw=;
+ b=EGxG1dd0GpKkzoEwcOQaEHNXpLRpdEzYrbn7FsNg2ihslEauKxmrmELIzXGiYbOZjeCYVGhJlN5qzgUNRa2PKA4zmn+IPwblWgaoGG5rJp1aMVCvczAWMnVUylLAodJB03f61xWIRKSgoNRihZcVayKeYyKwdpwfQXziJSJnSvpP29tyT3OzkM8hkAyM1aKTvzBFh1IMfPsRrlcx/QAtqfKGB/Cw72G3e9SSm/M2b/cs5+EEvMa8DPXne+We3bchb8cgv7pnHFivJ+xDUYGDASVLbuBrPgkRBFf4PMNzZdNSkRbftZGl9t82kAGOPUotddpct+XRMkHCwws2KUEnxw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH0PR11MB4792.namprd11.prod.outlook.com (2603:10b6:510:32::11)
- by CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2a) by IA1PR11MB7295.namprd11.prod.outlook.com
+ (2603:10b6:208:428::15) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.23; Mon, 28 Sep
- 2026 03:34:58 +0000
-Received: from PH0PR11MB4792.namprd11.prod.outlook.com
- ([fe80::fec9:8db4:c768:8289]) by PH0PR11MB4792.namprd11.prod.outlook.com
- ([fe80::fec9:8db4:c768:8289%6]) with mapi id 15.21.0451.022; Mon, 28 Sep 2026
- 03:34:58 +0000
-Date: Sun, 27 Sep 2026 20:34:55 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Stuart Summers <stuart.summers@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
- <umesh.nerlige.ramappa@intel.com>, <gustavo.sousa@intel.com>,
- <matthew.d.roper@intel.com>, <daniele.ceraolospurio@intel.com>,
- <shuicheng.lin@intel.com>
-Subject: Re: [PATCH 00/16] Add new debug infrastructure for configfs
-Message-ID: <arngX+7ix5t4ccil@gsse-cloud1.jf.intel.com>
-References: <20260924230120.389685-18-stuart.summers@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260924230120.389685-18-stuart.summers@intel.com>
-X-ClientProxiedBy: MW4PR04CA0178.namprd04.prod.outlook.com
- (2603:10b6:303:85::33) To PH0PR11MB4792.namprd11.prod.outlook.com
- (2603:10b6:510:32::11)
+ 2026 03:42:14 +0000
+Received: from DS4PPF691668CDD.namprd11.prod.outlook.com
+ ([fe80::5a5c:9c7a:cd1d:d687]) by DS4PPF691668CDD.namprd11.prod.outlook.com
+ ([fe80::5a5c:9c7a:cd1d:d687%6]) with mapi id 15.21.0451.022; Mon, 28 Sep 2026
+ 03:42:14 +0000
+Message-ID: <793bf539-62aa-4433-aa13-ec0d609cd7ac@intel.com>
+Date: Mon, 28 Sep 2026 09:12:06 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] drm/xe: Bump prefetch BO LRU via GPUSVM devmem
+ callback
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+References: <20260922043759.3057442-6-himal.prasad.ghimiray@intel.com>
+ <20260922043759.3057442-9-himal.prasad.ghimiray@intel.com>
+ <arcmWgk9TsnR6Nbf@gsse-cloud1.jf.intel.com>
+ <arcm+iAe5Ac7Yhab@gsse-cloud1.jf.intel.com>
+Content-Language: en-US
+From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+In-Reply-To: <arcm+iAe5Ac7Yhab@gsse-cloud1.jf.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5PR01CA0182.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1a9::8) To DS4PPF691668CDD.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::2a)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR11MB4792:EE_|CYYPR11MB8430:EE_
-X-MS-Office365-Filtering-Correlation-Id: 59ad842d-c327-49b0-3f01-08df1d11782e
+X-MS-TrafficTypeDiagnostic: DS4PPF691668CDD:EE_|IA1PR11MB7295:EE_
+X-MS-Office365-Filtering-Correlation-Id: d266815e-f78c-4d50-1bfe-08df1d127c06
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|23010399003|6133799003|22082099003|18002099003|10067099003|3023799007|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: WkXGPy1IwkdDY0YqCBiOUXi/2ZTwnU07ks/2MDQV/i7xa6Al55TFWJqFomiSInGcyBL6d/msrn990oHz288NuL5f5VKdjcX2rMaCOKXlsfcviToq0YsDFWp2qr7t8ajT2lJaKcpWkccYnpomantVccT5viOaV/drKAoeK64K1k25Z6JFkJ1iOrDJq+yyIcVeE6cWj8hu5+ZgpkokPo5fDYinoYsCv7NTphCEPT2mgYoUB9Q2Q2Ll0R1ifdPubyw7oFBvJ9XkY325H8ExUz5vupbveHtAqlkGId4xw7hBVkTMxLAGgojlACYhiQ4r55To5jxeVE8XtPM8KJEGLBad5yRtNxFkVLyJUPL9jrblt37DkYlft1iBogKbpl11vhmhPzieh9YBun0uXrLLONl40B0PtZGrjrZK+bJeRAvvfk2NwzQyIS7LHsyVAplsrd9NaZ4sKN5hzLj2LpdImkXSpH33lTRAODOW4PhNslJwT4r2/lOX3ACOcJkvx1nQFielI4NyOeP44UOeOKbTYyZ3ExqPrHbGXJyswBGGi5J1h5zFOLgMyRTm80YlDiOM3uDERWZMgYn5Egr1whw1Yr/pc5HDol70r4KKfIIW4r0EgZk=
+ ARA:13230040|366016|23010399003|376014|1800799024|10067099003|11063799006|4143699003|56012099006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: zVNCbfU00CS//Ph5gZ0wXOjnc3ZHmaUh+XJmgb6HzYnft03ZB8WTDAbuKMzgVYkjxFFn1h9GXmvVdrx6SiVTKOIJVYnmL3zogOeMx3sMvqxK0KQxu4U7S/p2AEeMf6RHTFJsFD3PlNeWc/PWnCTidiBn68Yj7sHxT5tuzaMowCGQW9mkHirVGnSzacylRmGFcfXznuW8IlptcsiMsZzsjmgedp8cXw/phkazpQAHRlPsXQRG5QlSg6Sqomh5qOfurnLv/204JfsUuJF7IWal47Ui3zcx1UhCiRXt8doyq59cukdPGSl0Peu+dbuKXCMRhShS0R1vaJEPvDeT65A0+qkgL3qIbpjgRDOee5SUcxdsCNPBp5htwkIA+fO/yxapeCwLnF4tDx3RYzsFLT9y8ahhioSLd8IdWVFsvyNLhnFNz9KFEBhvoOhdaQ1Fo95SwHbK8IsJlIopFNJ9RoNHrHlp7OEMIuSUzt1HXoPspseHGOKQwJm2sO2IYXHEVKHbuniRqNH5EY/1Oi/y0L0D42OnnlenYpoxBOm18KYnw4Ed9kKHgSHEGOpuPIIYQlaFJNf9/XZpewHnIsaE1rakF+z0Ww3zIWveEjFxgvER1BCn+T39vfI6B07IJDrEWN76ZDB0dWdCsVPGGj6HJcneA3ZxoYS7L23HuIWacvNp5NM=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR11MB4792.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(6133799003)(22082099003)(18002099003)(10067099003)(3023799007)(56012099006)(11063799006);
+ IPV:NLI; SFV:NSPM; H:DS4PPF691668CDD.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(10067099003)(11063799006)(4143699003)(56012099006)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WmhXw3XB4LFXd2i2DqaBRdNzyF3Zwr9nebbhmgaBnnY7xOGe/dC8UnahKrY2?=
- =?us-ascii?Q?spl451rNRyN9y9HKrPBkxKKoszljsyaKd9t9KKmz2EHqPB9NZyUNTVhnNTTD?=
- =?us-ascii?Q?S+PwnOO1XpckjX5gTavphRps0QY0WZccTD5jEIse/Vm0UMF0KkkmrgU49Ou+?=
- =?us-ascii?Q?AU7ZQRl+zLoreExdetws0621baLWCpy4jEho2Y71P88+0rEaGYL4JJW1vpd6?=
- =?us-ascii?Q?urV8cMoKmpo6TvEXryERzUkNygTpaWkszD/4gKfqiOqLnRkeSsgzp9qaVQ+3?=
- =?us-ascii?Q?SnMf4SXXGKTrRLXxU1zbYkdItVsfzyZDnjKY8K9dTtr0TwOZCQzEaF3SfLSL?=
- =?us-ascii?Q?cquVqmUDdv2kCEBs34Q3MB3fzqEwKSsVcUsEnOYxQSoM0f1lrpIVxqMQSSF/?=
- =?us-ascii?Q?jzJOYtG6q4WrQp+KM/UE+BAmerVaNBk9SgVL8QCSNtfH9fSUT4SU3fHYH5La?=
- =?us-ascii?Q?SuKpbcTfvGkTYVreS6CMgeyko/GHvWHvBglZfqkbXX8dg0I/RdeKtfhV5kcR?=
- =?us-ascii?Q?HO4rgHvRLVxPX5U+0VplFQ//2XBHm4gUiTMqP4pY/92z+twgDnetJpeE3jwO?=
- =?us-ascii?Q?yDuf10Nq5df/eTgpE4LBp4JvZsaZpwGVT7y+dHoequHeUiNr6tQiDAMv3L6X?=
- =?us-ascii?Q?Av4qIHWP9X/HckWw04lXg6d8Nrbme1gvBcHRb+Wn0ITZQLLLAWHZ7MiklGGs?=
- =?us-ascii?Q?Nk/bx830sDhxs6S3tWOJjsymdAyDvdL58bK1WDc6NxZemXcx2S0yyLDoBvYG?=
- =?us-ascii?Q?ChoKzYTszz8d+7khKeZHGDu86j8kQtcgiKgoojtVFofABBZX1MA8DJ5HqHFj?=
- =?us-ascii?Q?kYpQeItjDkLy9S5mSQEZQq8l29+U4Hg8QbhgXKuypaLgx4y+CAaLqh7mVMoD?=
- =?us-ascii?Q?9kYLa1pxn68IyCzCb36tMkZxTpLRtQiE49UICdsz5EFdkaF3HJ1VVaDJsIHw?=
- =?us-ascii?Q?Q4YFJfLbzyI97QijtG2GXbA+mcBpB9Kt2pzlqTQBeRTxxRXWazCVk9+CwlhI?=
- =?us-ascii?Q?L9sgOPo8OzvGrcaTdMG3OdFt8AuqsbkfJWPk87hvqYF2PiLKIe7w8rGN4Mc0?=
- =?us-ascii?Q?Mm017daFXXEhRpoG4gyBNvaNS00Li+IUQgPlLNf4znab5y2KW5fR36G3rsnR?=
- =?us-ascii?Q?2g5rgl1/f72Eijo7GQEdFrEglXhglRk3fq5roWQ69GOScqBOdPYhea3HUvSv?=
- =?us-ascii?Q?V5I1vYKJvxVKUw7mpETNcXme989hH+uKZ0wRnnXzTOIzfWOlsuimKv15Fy89?=
- =?us-ascii?Q?6IRLdZ1VDdWWnmNn93v30VLRMsaGDEXBnGfKQYVVbYBI34e9FNXDaPpMfdJh?=
- =?us-ascii?Q?RFrLRDotWOZMKamfhFbRvL8hYAzeZqa4FePk8SbOES0nLLZiqlBzyrHmjRtB?=
- =?us-ascii?Q?s5yCgN7qK1CsMKvB9+bBdt5ATqYpizKb4dWuJmFC4ND+JHsmdaeNyof5cGd3?=
- =?us-ascii?Q?+i/gozqPTKTglewaATQFru+6oOjPGmj1JfftFEeUTLbWitIVG48jJur53DKY?=
- =?us-ascii?Q?NX/55ee9TL3TUzhp+oYF3coa+Bq4jBQOZEup3US+Q13IO3gU7tM2clC6r2Bx?=
- =?us-ascii?Q?YQ26NVEKaRtRvkalVs4B4eyuqiVJA8DIiBDYYrA6TauEGfr1tvF2od9YZ233?=
- =?us-ascii?Q?R8biP/kbJhgfZ+YmnqV+Ca4imxf/R2xpmbijHS1QOWF9Ilbli+KrRxB7zk7y?=
- =?us-ascii?Q?c0ZU4eR8nvIfdMPDLB4H4AVvLVHVbqi3pI4xXy7xTU47N0v2hZ39S4WybK0E?=
- =?us-ascii?Q?IMVZWDNpl+FVeGobErHRztRB9xmTG68=3D?=
-X-Exchange-RoutingPolicyChecked: ZKOaVC6CHXcZURv5twnzlq2HlwD05s1eKZTXaaFVTGIW71jGbp5bWyZuv4Y7v+HIZWV++FqxG3kaiJKoUnYAMvqAbIWw0nJ+06Njc/RAyXJbsNB7AHfocYYfA/Jekc/fH0dh1WFkeiRCvOH61/dfFzAMwsV9GFqjQyOKtwGO5+Ha3i1xUKF1Q4suvOKL1ZTRQ5s9VPTOiBAxcvZzsoWag2LTILXFM+4CJQTIvoEcSCnHllO3q16tjiA2HU0nDAS9uVtC9SbDBFqctABAWHHeuFguDrEbZkPnwzswyx6h6rDtPUlA6nWRsPh0TVuDGo+RxoySgiO6FRhyLAXe6vZxfw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 59ad842d-c327-49b0-3f01-08df1d11782e
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB4792.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y29vVGl5R3FQZ1hzeENqdCtwTWFrSGNqSXVJaldHS3F4Q1lvM3krTUN2Ulhj?=
+ =?utf-8?B?bm9DTVpHclNHRmZudDlham9tTUtSQ0F4WW5IMGt6ZXBWRWc5MGdSZGtobVgx?=
+ =?utf-8?B?N0NqTGdwSWhnQmI4TllTZDlVS1pMb0FkcUNEL1ZuMVZQQ1hpZkhhNUZqeTlm?=
+ =?utf-8?B?OEk1MFFva3RoS0hSMXlHdHZmQ1FGQmRDSjE4SGxLWjBFZkFqT3VpYVI5azVq?=
+ =?utf-8?B?VkF4b3hJUDZtMmFPdzZ5b1RGWGFqK2xvR2R0OTVzL04wL1hMMXhGQktDS1pR?=
+ =?utf-8?B?bGRCbWF5dW9IeGxPUytvNkhVckRaQUlNNjl4ZmZnSU15aWdJRHlWTDNsZ3ZS?=
+ =?utf-8?B?eXNrd3VtNkNraDIyK2VKaGlOdlFvMExjNHZhbG42a1FzaytqTDRVSHU4aUNk?=
+ =?utf-8?B?V1N4ZjhndGRqYzMrSkFYV05EMWM1OW5TRS9jcHZXSDc0d2YxVElFQm5KSDFJ?=
+ =?utf-8?B?VFlzTm5wYUt2VkRQWmdJcjJ2Q054T1l2alVRNlZTZ0xZREtKUjdlMjlzZFh4?=
+ =?utf-8?B?M3hkaFdMTUR5VVBoQ0ZFQkIvYWRMZUN2YTZaSTI0MEFtL0JIaVNuTS8yQyt6?=
+ =?utf-8?B?MjM3b2NQMkd3UlR0cVBuazlNKzdVZGY3TXZDZ0ZUdExmY1Z3aGVROUp6MHVs?=
+ =?utf-8?B?WTVwVWhBV0FlbnZ5V3dOVFpjTVdVNGl1dWR0elVPNk02TVZOZ3ROZnNHdDlY?=
+ =?utf-8?B?SHBONjVaSnp6VFNUeVJCY0RWa09WaG1QK2s2eDFhNERsL0ttME95ZDJ3YURa?=
+ =?utf-8?B?UG16WWtmNGZ2VVNOK1ZINFZGQjB1eTB0L2V6a2ZsVk8vTVQzQlU3djFsdURX?=
+ =?utf-8?B?SCs3SkZYTEpldTUxbnk0c05tb0JFSEFoVHBBS0xRandqZ3F5T3pQMGtOSGhF?=
+ =?utf-8?B?V3Q0RURTZXM1WjBkemVnR2JTR0dRMWFyc3NEZ0xnQTBJSlVBeko3MkNIZUJS?=
+ =?utf-8?B?dTRDQTg2Sk1ZaWZVYmRxdU1xRzZvL1Y2NHJoM0xrMTkzTWxhdUcxemtFc0NS?=
+ =?utf-8?B?VC9nVnVzd3crem14ZzlXeUtBbE9NaG1mS2JTelRFcmlNbDFCQk9WK2YxVzRD?=
+ =?utf-8?B?eXNmaitsRllyeHRFNGVieVM0dFRLNHhsS1JrRTlsNFhGbHIrZ2Npcit5UStz?=
+ =?utf-8?B?UEdrT0ZpUGxyVkpVdjBQemJab3A0QVFpTDNxc0FzMmliLzVUYldVK25zWDVu?=
+ =?utf-8?B?ajhOaFR4dE1od1RtQm40cjAwRnFoRHpFUWk3dzBWdnB3QkRrVUtBbi9UMWNp?=
+ =?utf-8?B?ZVRWcFpURlNIQUVKRHBQS25KR3pGdmZiSC9TVlp2QzZsMWthalN4SWxXVHpj?=
+ =?utf-8?B?OGN1OFB1U0FVWlVyanIybkk5VHVxaUswYnBSaGJZODZ5eUdQTXJNdUpCWllr?=
+ =?utf-8?B?QkM1YU1HbklNTjFsemdqd2RvbzJYRElhaHEzaVJiWVFRNGFkZXh6VlNvOEtB?=
+ =?utf-8?B?MmtRS2NiZnlxb3NsanlsQndwQy9NUzdOUkRHeXRkS2gzK2kwbHN0MWphZjZr?=
+ =?utf-8?B?dXR6L2N1c2tVaXpIUXF6bXdXbWYyZFNpZGxVNlV3cnNKNWxWNnltWU5WemQ2?=
+ =?utf-8?B?RUozMEVvVGc1QUJJZmhnNGtuaTNxRm8vVUZQMDVDajE3QmV6SHo2VkE3OU1I?=
+ =?utf-8?B?VHVOVnBNVnNJZS9jSDNaWkhXVmZVc2s4bDg2emRZcGljMk1jSlVGci81blJD?=
+ =?utf-8?B?MjkxRzBKU1ZBcWhLak41ZEhCZ2ZTTGRsM0RnMC9CeEdBTWJqNHZ4R0pqUHgv?=
+ =?utf-8?B?Z0tQRTFrbFJWUEtsUDBYREt6Nm1QZEs5M2pRc0lkelo2RWRxS0Jxc0E0WHkz?=
+ =?utf-8?B?VVdFWHpibm50SHNsaWp6RmVRd2szYzk2M2pNUmUyRVJTaUxHSXJ6TDQ0VU9j?=
+ =?utf-8?B?cUhEbXVnbFQ3aDV2RFlPdXJZLzUrQzczNVVoK3Y5dVNFZWl5ci93VVpTOGVU?=
+ =?utf-8?B?S2ZsVy8reEVLTGpJaW55UkxnZHEwSWhaZ2VNNUNSeS9EWStlVWhmVDJSams2?=
+ =?utf-8?B?UHJnalNzeTZmVEw1Z2tuUFpUMmpWWHVaY29RQVl5WTVaTmhYU00yM1lHK2pG?=
+ =?utf-8?B?bEo4MUpsbHhEUDF0QlVqeEptaTBYVjN5N3ZaTDdKUXlXQTlLc2twVlJXOVov?=
+ =?utf-8?B?MVI4cTJkZEpHS3Q0YnNHK21acVpDWXpqdENZN2xuY2thdldocHdTazZ2YlNZ?=
+ =?utf-8?B?UVcrdFpjVjlKdFJ0ZEt3TXNDd0R4d0N5VUxlMjdrQitqWURlTVdRK00yM3Jr?=
+ =?utf-8?B?NG1yL1hCU0ZTOXhWZkcxK0xKbkFQNXBDRUZ1dGZLd0JtVW5ha1c3a0F3RVB2?=
+ =?utf-8?B?TlJMSHNGMi8velZXK25YdHhOMm1sMitTaTBjcFB4RkxDN2tHenVad0pqQW9O?=
+ =?utf-8?Q?O9n+pkEpA7Ce29ew=3D?=
+X-Exchange-RoutingPolicyChecked: m+MaN3gEB5Mm+DeBVZtDT6b35yjdCBiJ1M+LA0TjESW3udBEXUGw3tHHCCypQTi8iRVCj5GFGAd0jR3mWxblGFBUcbt8kLDBEAedSxIE7GK7e06DYTKBU2+3hO6jBuJOWhf/5+IHg85yILX+5+dw6qhJiWCadvIGxPxGeIuJbtMXYqAvIcT8wqQYpVL3Rhn/ueWuYoCuSRHGEDiUt9CZyG7NaYquFSQJtQm38duk7byttc+Un/dpgTfhZFHgg+VXQ1KM2KnqXylZ3pcgvWDE4kJg5rnkZteSYlywizB9/tPuJ59kpfNMB7P+aMREe+jiFJjLVg/ogqQrzj2fzL+5Tg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: d266815e-f78c-4d50-1bfe-08df1d127c06
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPF691668CDD.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2026 03:34:57.9579 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2026 03:42:13.9831 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wq4nfSBZ5dVEhDS6rRW+bHEIgiGi5yrpFXIPoskPjZiG6ewlcNKWLC8vCTbfaQYSujSECxc03mkTXggzW1LAZA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8430
+X-MS-Exchange-CrossTenant-UserPrincipalName: WHYoG3v7BzqU0wHhdC5XVY8+j6soeSQJrfj+ZinnXeoYB7wmGI2twRi8F7fqKzWZT71wtttZF24YkMVym2fZMGeSE7JscblIxqepYy8+zd4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7295
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -159,171 +172,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Sep 24, 2026 at 11:01:19PM +0000, Stuart Summers wrote:
 
-Thanks for the work here. I was going to look in depth but immediately
-have a question.
 
-> Add a new configfs debug group. The intent of this structure is
-> to allow us to separate ABI facing configfs entries from those
-> which are purely for debug purposes. And it allows us more flexibility
+On 26-09-2026 07:29, Matthew Brost wrote:
+> On Fri, Sep 25, 2026 at 06:56:42PM -0700, Matthew Brost wrote:
+>> On Tue, Sep 22, 2026 at 10:08:03AM +0530, Himal Prasad Ghimiray wrote:
+>>> Add xe_svm_devmem_lru_bump() and set it as drm_gpusvm_ctx.devmem_fn in
+>>> the prefetch worker so each backing BO is moved to the LRU tail during
+>>> get_pages.
+>>>
+>>> v2:
+>>> - Guard xe_svm_devmem_lru_bump() against foreign device-memory
+>>>    allocations before casting to xe_bo: return early when
+>>>    devmem_allocation->ops != &dpagemap_devmem_ops. A shared
+>>>    device_private_page_owner can hand us another driver's allocation.
+>>>    (Matthew Brost / Sashiko AI review)
+>>> - Add stub for function (CI)
+>>>
+>>> v3:
+>>> - Guard xe_svm_devmem_lru_bump() body with CONFIG_DRM_XE_PAGEMAP; it
+>>>    references dpagemap_devmem_ops and to_xe_bo(), which only exist when
+>>>    PAGEMAP is enabled. Fixes the build with GPUSVM=y, PAGEMAP=n.
+>>>    (Sashiko AI review)
+>>>
+>>> Suggested-by: Matthew Brost <matthew.brost@intel.com>
+>>> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/xe_svm.c | 30 ++++++++++++++++++++++++++++++
+>>>   drivers/gpu/drm/xe/xe_svm.h |  7 +++++++
+>>>   drivers/gpu/drm/xe/xe_vm.c  |  1 +
+>>>   3 files changed, 38 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+>>> index f39e647512ad..018836ecbb06 100644
+>>> --- a/drivers/gpu/drm/xe/xe_svm.c
+>>> +++ b/drivers/gpu/drm/xe/xe_svm.c
+>>> @@ -9,6 +9,7 @@
+>>>   #include <drm/drm_managed.h>
+>>>   #include <drm/drm_pagemap.h>
+>>>   #include <drm/drm_pagemap_util.h>
+>>> +#include <drm/ttm/ttm_bo.h>
+>>>   
+>>>   #include "xe_bo.h"
+>>>   #include "xe_exec_queue_types.h"
+>>> @@ -1625,6 +1626,35 @@ int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
+>>>   	return err;
+>>>   }
+>>>   
+>>> +/**
+>>> + * xe_svm_devmem_lru_bump() - Move a range's backing BO to the TTM LRU tail
+>>> + * @devmem_allocation: The device-memory allocation backing the range's pages
+>>> + *
+>>> + * Intended as a &drm_gpusvm_ctx.devmem_fn. Runs under the GPUSVM notifier lock;
+>>> + * the dma-resv trylock avoids inverting against eviction/shrinker, which take
+>>> + * dma-resv before the notifier lock. A contended BO is simply skipped.
+>>
+>> This kernel doc isn't right.
+>>
+>> - get_pages() calls ctx.devmem_fn under the notifier
+>> - the notifier lock is path of reclaim so dma-resv can't be taken under
+>>    the notifier lock
+> 
+> s/can't be taken under/can't be taken with blocking under/
+> 
+> Matt
 
-Why not use debugfs for debug knobs and keep configfs as a strict ABI? Is
-the reasoning that everything in configfs is considered a boot-time
-configuration?
+Will fix the kernel doc.
+> 
+>> - dma-resv also is an outer lock of the notifier when memory is
+>>    allocated + migrated
+>> - in practice because BO is private (dedicated dma-resv) a trylock
+>>    should always work unless it moving elsewhere, e.g., eviction
+>>
+>> Somehow tie this all together into a coherent kernel doc.
+>>
+>>> + *
+>>> + * A shared device_private_page_owner can hand us allocations backed by a
+>>> + * foreign driver; skip anything that is not an xe BO before casting.
+>>
+>> s/xe/Xe
+>>
+>> Otherwise LGTM.
+>>
+>> Matt
+>>
+>>> + */
+>>> +void xe_svm_devmem_lru_bump(struct drm_pagemap_devmem *devmem_allocation)
+>>> +{
+>>> +#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+>>> +	struct xe_bo *bo;
+>>> +
+>>> +	if (devmem_allocation->ops != &dpagemap_devmem_ops)
+>>> +		return;
+>>> +
+>>> +	bo = to_xe_bo(devmem_allocation);
+>>> +
+>>> +	if (!dma_resv_trylock(bo->ttm.base.resv))
+>>> +		return;
+>>> +
+>>> +	ttm_bo_move_to_lru_tail_unlocked(&bo->ttm);
+>>> +	dma_resv_unlock(bo->ttm.base.resv);
+>>> +#endif
+>>> +}
+>>> +
+>>>   /**
+>>>    * xe_svm_ranges_zap_ptes_in_range - clear ptes of svm ranges in input range
+>>>    * @vm: Pointer to the xe_vm structure
+>>> diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+>>> index 2ef4ef026ccd..585ad64b672b 100644
+>>> --- a/drivers/gpu/drm/xe/xe_svm.h
+>>> +++ b/drivers/gpu/drm/xe/xe_svm.h
+>>> @@ -128,6 +128,8 @@ struct xe_svm_range *xe_svm_range_find_or_insert(struct xe_vm *vm, u64 addr,
+>>>   int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
+>>>   			   struct drm_gpusvm_ctx *ctx);
+>>>   
+>>> +void xe_svm_devmem_lru_bump(struct drm_pagemap_devmem *devmem_allocation);
+>>> +
+>>>   bool xe_svm_range_needs_migrate_to_vram(struct xe_svm_range *range, struct xe_vma *vma,
+>>>   					const struct drm_pagemap *dpagemap);
+>>>   
+>>> @@ -356,6 +358,11 @@ int xe_svm_range_get_pages(struct xe_vm *vm, struct xe_svm_range *range,
+>>>   	return -EINVAL;
+>>>   }
+>>>   
+>>> +static inline
+>>> +void xe_svm_devmem_lru_bump(struct drm_pagemap_devmem *devmem_allocation)
+>>> +{
+>>> +}
+>>> +
+>>>   static inline struct xe_svm_range *to_xe_range(struct drm_gpusvm_range *r)
+>>>   {
+>>>   	return NULL;
+>>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+>>> index 6b793ef31537..0fdc740f1a41 100644
+>>> --- a/drivers/gpu/drm/xe/xe_vm.c
+>>> +++ b/drivers/gpu/drm/xe/xe_vm.c
+>>> @@ -3260,6 +3260,7 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_ops *vops,
+>>>   	ctx.devmem_possible = devmem_possible;
+>>>   	ctx.check_pages_threshold = devmem_possible ? SZ_64K : 0;
+>>>   	ctx.device_private_page_owner = xe_svm_private_page_owner(vm, !dpagemap);
+>>> +	ctx.devmem_fn = xe_svm_devmem_lru_bump;
+>>>   
+>>>   	skip_threads =  op->prefetch_range.ranges_count == 1 ||
+>>>   		(!dpagemap && !(vops->flags &
+>>> -- 
+>>> 2.43.0
+>>>
 
-In the past, I've added debug tunables as module parameters that
-probably should have lived in either configfs or debugfs.
-
-I'm just struggling to understand the distinction here. What really
-defines a "normal" configfs setting versus a "debug" configfs setting?
-For example, let's say we have a tuning parameter that a knowledgeable
-customer may want to adjust. Where should that live?
-
-I'm not opposed to this; I'm just a bit fuzzy on the rules and the
-reasoning behind them. That said, if we can't get clear rules then I'd
-say lump everything together.
-
-Matt
-
-> in how we define those parameters used for debug.
-> 
-> Add a new infrastructure to this debug configfs group that lets us
-> easily define the parameters in a quick list. This is primarily
-> useful for simple, single-type parameters such as enable/disable
-> features or simple values passed. For more complex parameters,
-> we will still need to define these separately.
-> 
-> Pull the GuC target related changes from [1] to fit within
-> this new structure and add a new definition for guc_log_level
-> on top of the existing module parameter (to ensure we aren't
-> impacting existing users of the module parameter).
-> 
-> Note that the debug parameters here are all to be used "at your
-> own risk". Without having in depth knowledge of how these impact
-> the software and hardware, there could be unforeseen consequences
-> of setting them. As such, they are all wrapped in a
-> CONFIG_DRM_XE_DEBUG configfs option.
-> 
-> In terms of the patches here, I'm sorting the existing parameters
-> by name/type. I know we have a few other module parameters that
-> could migrate here, but I didn't want to overload this series
-> too much, so the focus for now is on the existing configfs entries
-> and demonstrating the new structures with the GuC log level and
-> target parameters.
-> 
-> I used GitHub Copilot with Claude pretty extensively through the
-> process here and attributed as such. Happy to answer any questions
-> around this. Took a bit of time getting back to this series around
-> other work, and in that time I was playing around with a few different
-> models, hence some of the patches are showing multiple of them. I
-> tried to attribute each as I was implementing the changes.
-> 
-> I also decided to drop John Harrison from the NPK patch. It has
-> been modified quite a bit from the original, but more importantly
-> John is no longer with Intel and that email address isn't available
-> any more. If it makes a difference here, John and I had both separately
-> implemented this same change at different occasions for debug. The
-> one I used to start that initial series was cherry-picked from his
-> latest variant.
-> 
-> v2:
->  - In this second revision I did confirm that the guc_log_level
->    module parameter is taking precedence over the configfs parameter
->    and ensured the other parameters seem to be autogenerating and
->    working as expected.
->  - I tried to address all the review feedback from the first
->    revision, [2].
->  - I also did another pass on the sorting since there were a few
->    discrepancies I noticed in the first revision. I kept Gustavo's
->    R-B on that one, but would like an ack before merging at least
->    to confirm the patch is sane.
->  - And finally I moved the getter functions into the X-macro
->    generators so we can autogenerate more of the similar functions
->    between the different parameters in that debug param list.
-> v3:
->  - Address a couple of comments from Sashiko around GuC log level
->    input checking and proper guard implementation.
-> v4:
->  - More review feedback from Sashiko addressed...
-> v5:
->  - Move the goto to a return (more Sashiko feedback) in the GuC
->    log level setter before moving to the X-macro solution.
-> v6:
->  - Make the autogenerated X-macro function names more specific to
->    avoid naming collisions (Sashiko again).
-> v7:
->  - Fix the couple of pre-existing bugs called out by Sashiko in
->    the prior rev...
->  - Make CONFIGFS_FS a required config for xe to avoid issues with
->    stale values in the fallback getters.
->  - Renamed disable_vram_page_offline to enable_vram_page_offline
->    for a more consistent naming scheme (this was a new configfs
->    entry added since the prior rev).
->  - Converted survivability_mode to a u8 bitmap to allow for
->    extendability in the future. Only bit 0 is defined, so the behavior
->    should be the same.
->  - Added an enable_media module parameter at the end of the series.
->    gt_types_allowed is debug-only, so this gives production builds a
->    supported way to leave the media GT alone. The modparam takes
->    precedence over configfs.
->  - Adjust the sorting to be alphabetical for the documentation
->    specifically (Matt)
-> 
-> [1]: https://patchwork.freedesktop.org/series/162087/
-> [2]: https://patchwork.freedesktop.org/series/165879/
-> 
-> Stuart Summers (16):
->   drm/xe: Guard configfs attribute reads in getters
->   drm/xe/configfs: Fix out-of-bounds read in parse_wa_bb_lines()
->   drm/xe/configfs: Copy wa_bb out under the configfs lock
->   drm/xe: Require CONFIGFS_FS
->   drm/xe: Invert vram_page_offline configfs attribute
->   drm/xe: Make survivability_mode configfs attribute a bitmap
->   drm/xe: Sort xe_config_device fields
->   drm/xe: Split out configfs data structures
->   drm/xe: Add a new debug focused configfs group
->   drm/xe: Move debug configfs entries to xe_configfs_debug.c
->   drm/xe/guc: Add configfs support for guc_log_level
->   drm/xe/guc: Add support for NPK as a GuC log target
->   drm/xe: Add infrastructure for debug configfs parameters
->   drm/xe: Migrate existing debug configfs entries to params
->     infrastructure
->   drm/xe: Taint kernel when debug configfs parameters are set
->   drm/xe: Add enable_media module parameter
-> 
->  drivers/gpu/drm/xe/Kconfig                    |    1 +
->  drivers/gpu/drm/xe/Makefile                   |    3 +-
->  drivers/gpu/drm/xe/abi/guc_log_abi.h          |    8 +
->  drivers/gpu/drm/xe/xe_configfs.c              | 1056 ++---------------
->  drivers/gpu/drm/xe/xe_configfs.h              |  124 +-
->  drivers/gpu/drm/xe/xe_configfs_debug.c        |  899 ++++++++++++++
->  drivers/gpu/drm/xe/xe_configfs_debug.h        |   48 +
->  drivers/gpu/drm/xe/xe_configfs_debug_params.c |  158 +++
->  drivers/gpu/drm/xe/xe_configfs_debug_params.h |  194 +++
->  drivers/gpu/drm/xe/xe_configfs_types.h        |   60 +
->  drivers/gpu/drm/xe/xe_defaults.h              |    6 +
->  drivers/gpu/drm/xe/xe_drm_ras_types.h         |    4 +-
->  drivers/gpu/drm/xe/xe_guc.c                   |   14 +-
->  drivers/gpu/drm/xe/xe_guc_ads.c               |    1 +
->  drivers/gpu/drm/xe/xe_guc_log.c               |    3 +-
->  drivers/gpu/drm/xe/xe_hw_engine.c             |    1 +
->  drivers/gpu/drm/xe/xe_lrc.c                   |   39 +-
->  drivers/gpu/drm/xe/xe_module.c                |    6 +
->  drivers/gpu/drm/xe/xe_module.h                |    1 +
->  drivers/gpu/drm/xe/xe_pci.c                   |   20 +-
->  drivers/gpu/drm/xe/xe_psmi.c                  |    3 +-
->  drivers/gpu/drm/xe/xe_ras.c                   |    9 +-
->  drivers/gpu/drm/xe/xe_rtp.c                   |    3 +-
->  drivers/gpu/drm/xe/xe_survivability_mode.c    |    7 +-
->  drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |    2 +-
->  25 files changed, 1615 insertions(+), 1055 deletions(-)
->  create mode 100644 drivers/gpu/drm/xe/xe_configfs_debug.c
->  create mode 100644 drivers/gpu/drm/xe/xe_configfs_debug.h
->  create mode 100644 drivers/gpu/drm/xe/xe_configfs_debug_params.c
->  create mode 100644 drivers/gpu/drm/xe/xe_configfs_debug_params.h
->  create mode 100644 drivers/gpu/drm/xe/xe_configfs_types.h
-> 
-> -- 
-> 2.43.0
-> 
