@@ -4,44 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7692C9832F
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 07:07:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A31DBC9832F
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 08:03:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BFC310E7B4;
-	Mon, 28 Sep 2026 07:07:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D7DE10E7EE;
+	Mon, 28 Sep 2026 08:03:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jTpL70se";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="1GobiCOl";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="SaK2ecWu";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D2A110E7B4
- for <intel-xe@lists.freedesktop.org>; Mon, 28 Sep 2026 07:07:15 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 3EF29600E2;
- Mon, 28 Sep 2026 07:07:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C00E91F000FF;
- Mon, 28 Sep 2026 07:07:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790579234;
- bh=8gj+pevPQfW/8nNIkrVAmquvLhGwbY+8yJYrVnHgcJo=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=jTpL70senEUcAHXN6TEROgn3r2V/rGmB+zX9nCDe1kwYFuIkOOx2+0oBJGDtAIm17
- h4VUNwuujQnIaVX0Psd0B5RpPEq8xVGByUQfpyTGUw1qZxZgMNCQQxnomGZZxxT1w7
- SF2zFN3A+/Ba2LQBHoZWMigVoc+70dpYjrhKc5B8jJ3i8nUeKZ5uky+/Xpe/nYmhX0
- zwp1hS6Pr4AVqUUmtRErjAG+lnZb8epfhBvW3efl2D8TMPF11zlhP9E1iDZcFbCPOi
- fM2FwDoceWtbjMH7IKATvKL5CPkAmhB5KjLhW04YN0SLePycTHEMKeF3cNyZlZQdKp
- n7SJhZ/Pp0QMA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 6/6] drm/xe/xe_ras: Track offlined pages by firmware
- to avoid duplicates
-To: "Riana Tauro" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260928061830.417395-14-riana.tauro@intel.com>
-References: <20260928061830.417395-8-riana.tauro@intel.com>
- <20260928061830.417395-14-riana.tauro@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 28 Sep 2026 07:07:13 +0000
-Message-Id: <20260928070713.C00E91F000FF@smtp.kernel.org>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C5BD10E7EE;
+ Mon, 28 Sep 2026 08:03:49 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 56E7922263;
+ Mon, 28 Sep 2026 08:03:31 +0000 (UTC)
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1790582611; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=C5EMpiV8cXb5hRSezSalMKSce3OsytwLWZguOo1OnZU=;
+ b=1GobiCOlsAPXH8OA2nA10ge59M+PeLIFjfqEhp1js7hYg7nafhZtgaLweno/AD7ducV2uH
+ 1LQHWQs/HmDBp1tLw7BX2FT/EYIrTdImKqw/2G9cFatbV8ZuReNGjoaTBfZq+J7lBhdVLz
+ ew6Q0V9yvqR/VTp7D6aPJanRvdi2Tis=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1790582611;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=C5EMpiV8cXb5hRSezSalMKSce3OsytwLWZguOo1OnZU=;
+ b=SaK2ecWuYu6lm4IG6Kl82csy0uPX9cjmMujjisPpsKsvf06UzmynJ3VyQn05q4w63SCI9q
+ y5sGUnkURecDEbAg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 8539D13418;
+ Mon, 28 Sep 2026 08:03:30 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id LwPoBFEfumpBYQAAD6G6ig:T3
+ (envelope-from <tzimmermann@suse.de>); Mon, 28 Sep 2026 08:03:30 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: jfalempe@redhat.com, javierm@redhat.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, airlied@gmail.com, simona@ffwll.ch,
+ jani.nikula@linux.intel.com, Alexander.Deucher@amd.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ linux-tegra@vger.kernel.org, sashiko-reviews@lists.linux.dev,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v4 2/2] drm/fbdev: Move fbdev helpers into client library
+Date: Mon, 28 Sep 2026 10:01:25 +0200
+Message-ID: <20260928080323.23909-3-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260928080323.23909-1-tzimmermann@suse.de>
+References: <20260928080323.23909-1-tzimmermann@suse.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Queue-Id: 56E7922263
+X-Rspamd-Pre-Result: action=no action; module=replies;
+ Message is reply to one we originated
+X-Spamd-Result: default: False [-4.00 / 50.00];
+	REPLY(-4.00)[]
+X-Rspamd-Action: no action
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,79 +91,496 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] xe: failed page offline requests are erroneously cached as success=
-ful
-- [Medium] xe: page offline deduplication fails during initialization due t=
-o wrong order
---
+DRM's fbdev helpers are for the fbdev-emulation clients. Move them
+into the client-library module. Fix include statements throughout
+DRM drivers.
 
-commit 9f25f9a9144c678c3a1d0b655504ad65d4f2849b
-Author: Riana Tauro <riana.tauro@intel.com>
+While at it, rename the files from drm_fb_helper to drm_fbdev_helper.
+The old name was too reminiscent of DRM's framebuffer code.
 
-drm/xe/xe_ras: Track offlined pages by firmware to avoid duplicates
+The GEM support code for fbdev remains part of DRM's memory managers.
 
-A memory scrubber can report multiple errors at the same address. Track
-pages already successfully offlined by the firmware so that subsequent
-reports for the same address are removed from the firmware queue instead
-of issuing redundant page offline requests.
+v4:
+- fix the depedendencies from v3
+v3:
+- remove obsolete dependencies from Kconfig
+v2:
+- update armada und docs
 
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index 749cf25e9148a..d2bcbecd1ba66 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -249,11 +253,16 @@ static int send_page_offline_cmd(struct xe_device *=
-xe, u64 page_address,
->  		xe_log_err(xe, SYSCTRL, ret, "page offline command failed with status =
-%u\n",
->  			   response.status);
-> =20
-> +	if (action =3D=3D XE_RAS_PAGE_ACTION_OFFLINE)
-> +		xa_store(&state->offlined_pages, page_address >> XE_PTE_SHIFT,
-> +			 XE_RAS_PAGE_OFFLINED, GFP_KERNEL);
-> +
->  	return ret;
->  }
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+---
+ Documentation/gpu/drm-kms-helpers.rst                      | 6 +++---
+ drivers/gpu/drm/Kconfig                                    | 7 +++----
+ drivers/gpu/drm/Makefile                                   | 1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c                | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c                    | 2 +-
+ drivers/gpu/drm/armada/armada_fbdev.c                      | 2 +-
+ drivers/gpu/drm/clients/Makefile                           | 3 ++-
+ drivers/gpu/drm/clients/drm_fbdev_client.c                 | 2 +-
+ .../drm/{drm_fb_helper.c => clients/drm_fbdev_helper.c}    | 2 +-
+ drivers/gpu/drm/drm_fbdev_dma.c                            | 2 +-
+ drivers/gpu/drm/drm_fbdev_shmem.c                          | 2 +-
+ drivers/gpu/drm/drm_fbdev_ttm.c                            | 2 +-
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c                  | 2 +-
+ drivers/gpu/drm/gma500/fbdev.c                             | 2 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c                 | 2 +-
+ drivers/gpu/drm/msm/msm_debugfs.c                          | 2 +-
+ drivers/gpu/drm/msm/msm_fbdev.c                            | 2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c                    | 1 -
+ drivers/gpu/drm/omapdrm/omap_debugfs.c                     | 2 +-
+ drivers/gpu/drm/omapdrm/omap_fbdev.c                       | 2 +-
+ drivers/gpu/drm/radeon/radeon_device.c                     | 2 +-
+ drivers/gpu/drm/radeon/radeon_fbdev.c                      | 2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.c                | 2 +-
+ drivers/gpu/drm/sitronix/st7571.c                          | 1 -
+ drivers/gpu/drm/tegra/fbdev.c                              | 2 +-
+ drivers/gpu/drm/vboxvideo/vbox_mode.c                      | 2 +-
+ .../drm/{drm_fb_helper.h => clients/drm_fbdev_helper.h}    | 4 ++--
+ 27 files changed, 30 insertions(+), 33 deletions(-)
+ rename drivers/gpu/drm/{drm_fb_helper.c => clients/drm_fbdev_helper.c} (99%)
+ rename include/drm/{drm_fb_helper.h => clients/drm_fbdev_helper.h} (99%)
 
-[Severity: High]
-If ras_status_to_errno(response.status) returns an error, the code logs the
-failure but execution continues. Does this cause the failed page offline
-request to be erroneously cached as successful in state->offlined_pages?
+diff --git a/Documentation/gpu/drm-kms-helpers.rst b/Documentation/gpu/drm-kms-helpers.rst
+index 400cd0112713..65bc16b96f8f 100644
+--- a/Documentation/gpu/drm-kms-helpers.rst
++++ b/Documentation/gpu/drm-kms-helpers.rst
+@@ -109,13 +109,13 @@ VBLANK Helper Reference
+ fbdev Helper Functions Reference
+ ================================
+ 
+-.. kernel-doc:: drivers/gpu/drm/drm_fb_helper.c
++.. kernel-doc:: drivers/gpu/drm/clients/drm_fbdev_helper.c
+    :doc: fbdev helpers
+ 
+-.. kernel-doc:: include/drm/drm_fb_helper.h
++.. kernel-doc:: include/drm/clients/drm_fbdev_helper.h
+    :internal:
+ 
+-.. kernel-doc:: drivers/gpu/drm/drm_fb_helper.c
++.. kernel-doc:: drivers/gpu/drm/clients/drm_fbdev_helper.c
+    :export:
+ 
+ Draw Helper Functions Reference
+diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+index 65d46dfa7266..61111d50b1c6 100644
+--- a/drivers/gpu/drm/Kconfig
++++ b/drivers/gpu/drm/Kconfig
+@@ -46,7 +46,6 @@ config DRM_KMS_HELPER
+ 	tristate
+ 	depends on DRM
+ 	select DRM_PANIC_HELPER if DRM_PANIC
+-	select FB_CORE if DRM_FBDEV_EMULATION
+ 	help
+ 	  CRTC helpers for KMS drivers.
+ 
+@@ -256,7 +255,7 @@ config DRM_TTM_HELPER
+ 	tristate
+ 	depends on DRM
+ 	select DRM_TTM
+-	select DRM_KMS_HELPER if DRM_FBDEV_EMULATION
++	select DRM_CLIENT_LIB if DRM_FBDEV_EMULATION
+ 	select FB_CORE if DRM_FBDEV_EMULATION
+ 	select FB_SYSMEM_HELPERS_DEFERRED if DRM_FBDEV_EMULATION
+ 	help
+@@ -265,7 +264,7 @@ config DRM_TTM_HELPER
+ config DRM_GEM_DMA_HELPER
+ 	tristate
+ 	depends on DRM
+-	select DRM_KMS_HELPER if DRM_FBDEV_EMULATION
++	select DRM_CLIENT_LIB if DRM_FBDEV_EMULATION
+ 	select FB_CORE if DRM_FBDEV_EMULATION
+ 	select FB_DMAMEM_HELPERS_DEFERRED if DRM_FBDEV_EMULATION
+ 	help
+@@ -274,7 +273,7 @@ config DRM_GEM_DMA_HELPER
+ config DRM_GEM_SHMEM_HELPER
+ 	tristate
+ 	depends on DRM && MMU
+-	select DRM_KMS_HELPER if DRM_FBDEV_EMULATION
++	select DRM_CLIENT_LIB if DRM_FBDEV_EMULATION
+ 	select FB_CORE if DRM_FBDEV_EMULATION
+ 	select FB_SYSMEM_HELPERS_DEFERRED if DRM_FBDEV_EMULATION
+ 	help
+diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+index f0c340aa2ec6..3a0f2095de3c 100644
+--- a/drivers/gpu/drm/Makefile
++++ b/drivers/gpu/drm/Makefile
+@@ -158,7 +158,6 @@ drm_kms_helper-y := \
+ drm_kms_helper-$(CONFIG_DRM_PANEL_BRIDGE) += bridge/panel.o
+ drm_kms_helper-$(CONFIG_DRM_PANIC_HELPER) += drm_panic_helper.o
+ drm_kms_helper-$(CONFIG_DRM_PANIC_SCREEN_QR_CODE) += drm_panic_helper_qr.o
+-drm_kms_helper-$(CONFIG_DRM_FBDEV_EMULATION) += drm_fb_helper.o
+ obj-$(CONFIG_DRM_KMS_HELPER) += drm_kms_helper.o
+ 
+ #
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+index 59ea338b554c..126bfd9bb89e 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
+@@ -38,11 +38,11 @@
+ 
+ #include <linux/pci.h>
+ #include <linux/pm_runtime.h>
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_crtc_helper.h>
+ #include <drm/drm_damage_helper.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_edid.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_gem_framebuffer_helper.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_modeset_helper.h>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+index f2f179421c4d..51a7a4091376 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c
+@@ -28,8 +28,8 @@
+ 
+ #include "amdgpu.h"
+ #include <drm/amdgpu_drm.h>
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_drv.h>
+-#include <drm/drm_fb_helper.h>
+ #include "amdgpu_uvd.h"
+ #include "amdgpu_vce.h"
+ #include "atom.h"
+diff --git a/drivers/gpu/drm/armada/armada_fbdev.c b/drivers/gpu/drm/armada/armada_fbdev.c
+index 8bbae94804f8..f35afec2125f 100644
+--- a/drivers/gpu/drm/armada/armada_fbdev.c
++++ b/drivers/gpu/drm/armada/armada_fbdev.c
+@@ -9,9 +9,9 @@
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_crtc_helper.h>
+ #include <drm/drm_drv.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_print.h>
+ 
+diff --git a/drivers/gpu/drm/clients/Makefile b/drivers/gpu/drm/clients/Makefile
+index c16addbc327f..1304ff358509 100644
+--- a/drivers/gpu/drm/clients/Makefile
++++ b/drivers/gpu/drm/clients/Makefile
+@@ -4,5 +4,6 @@ subdir-ccflags-y += -I$(src)/..
+ 
+ drm_client_lib-y := drm_client_setup.o
+ drm_client_lib-$(CONFIG_DRM_CLIENT_LOG) += drm_log.o
+-drm_client_lib-$(CONFIG_DRM_FBDEV_EMULATION) += drm_fbdev_client.o
++drm_client_lib-$(CONFIG_DRM_FBDEV_EMULATION) += drm_fbdev_client.o \
++						drm_fbdev_helper.o
+ obj-$(CONFIG_DRM_CLIENT_LIB) += drm_client_lib.o
+diff --git a/drivers/gpu/drm/clients/drm_fbdev_client.c b/drivers/gpu/drm/clients/drm_fbdev_client.c
+index 7574bd36f45e..eec463d19943 100644
+--- a/drivers/gpu/drm/clients/drm_fbdev_client.c
++++ b/drivers/gpu/drm/clients/drm_fbdev_client.c
+@@ -1,9 +1,9 @@
+ // SPDX-License-Identifier: MIT
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_client.h>
+ #include <drm/drm_crtc_helper.h>
+ #include <drm/drm_drv.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_print.h>
+ 
+diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/clients/drm_fbdev_helper.c
+similarity index 99%
+rename from drivers/gpu/drm/drm_fb_helper.c
+rename to drivers/gpu/drm/clients/drm_fbdev_helper.c
+index 76195410db60..fff3cf6a0aed 100644
+--- a/drivers/gpu/drm/drm_fb_helper.c
++++ b/drivers/gpu/drm/clients/drm_fbdev_helper.c
+@@ -32,9 +32,9 @@
+ #include <linux/console.h>
+ #include <linux/export.h>
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_atomic.h>
+ #include <drm/drm_drv.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_framebuffer.h>
+ #include <drm/drm_gem_framebuffer_helper.h>
+diff --git a/drivers/gpu/drm/drm_fbdev_dma.c b/drivers/gpu/drm/drm_fbdev_dma.c
+index 9412d9fdd74b..452f84400350 100644
+--- a/drivers/gpu/drm/drm_fbdev_dma.c
++++ b/drivers/gpu/drm/drm_fbdev_dma.c
+@@ -4,10 +4,10 @@
+ #include <linux/fb.h>
+ #include <linux/vmalloc.h>
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_fbdev_dma.h>
+ #include <drm/drm_fb_dma_helper.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_framebuffer.h>
+ #include <drm/drm_gem_dma_helper.h>
+ #include <drm/drm_print.h>
+diff --git a/drivers/gpu/drm/drm_fbdev_shmem.c b/drivers/gpu/drm/drm_fbdev_shmem.c
+index 458c899b5d4f..8eb05fe9bc98 100644
+--- a/drivers/gpu/drm/drm_fbdev_shmem.c
++++ b/drivers/gpu/drm/drm_fbdev_shmem.c
+@@ -3,9 +3,9 @@
+ #include <linux/export.h>
+ #include <linux/fb.h>
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_fbdev_shmem.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_framebuffer.h>
+ #include <drm/drm_gem_framebuffer_helper.h>
+ #include <drm/drm_gem_shmem_helper.h>
+diff --git a/drivers/gpu/drm/drm_fbdev_ttm.c b/drivers/gpu/drm/drm_fbdev_ttm.c
+index 160bc35d8738..8eb59c2ac5ea 100644
+--- a/drivers/gpu/drm/drm_fbdev_ttm.c
++++ b/drivers/gpu/drm/drm_fbdev_ttm.c
+@@ -4,9 +4,9 @@
+ #include <linux/moduleparam.h>
+ #include <linux/vmalloc.h>
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_crtc_helper.h>
+ #include <drm/drm_drv.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_framebuffer.h>
+ #include <drm/drm_gem.h>
+ #include <drm/drm_print.h>
+diff --git a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+index 8641c9e84d4c..f412269d6323 100644
+--- a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
++++ b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+@@ -10,9 +10,9 @@
+ 
+ #include <linux/fb.h>
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_crtc_helper.h>
+ #include <drm/drm_drv.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_framebuffer.h>
+ #include <drm/drm_gem_framebuffer_helper.h>
+ #include <drm/drm_prime.h>
+diff --git a/drivers/gpu/drm/gma500/fbdev.c b/drivers/gpu/drm/gma500/fbdev.c
+index d1e93588234f..428912574f20 100644
+--- a/drivers/gpu/drm/gma500/fbdev.c
++++ b/drivers/gpu/drm/gma500/fbdev.c
+@@ -7,9 +7,9 @@
+ 
+ #include <linux/fb.h>
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_crtc_helper.h>
+ #include <drm/drm_drv.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_framebuffer.h>
+ 
+ #include "gem.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index db0e36dd8722..219ee17de3f6 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -38,10 +38,10 @@
+ #include <linux/vga_switcheroo.h>
+ 
+ #include <drm/clients/drm_client_setup.h>
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/intel/display_parent_interface.h>
+ #include <drm/drm_crtc.h>
+ #include <drm/drm_crtc_helper.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_gem.h>
+ #include <drm/drm_gem_framebuffer_helper.h>
+diff --git a/drivers/gpu/drm/msm/msm_debugfs.c b/drivers/gpu/drm/msm/msm_debugfs.c
+index f12701e286ec..d05307bfa123 100644
+--- a/drivers/gpu/drm/msm/msm_debugfs.c
++++ b/drivers/gpu/drm/msm/msm_debugfs.c
+@@ -9,8 +9,8 @@
+ #include <linux/debugfs.h>
+ #include <linux/fault-inject.h>
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_debugfs.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_file.h>
+ #include <drm/drm_framebuffer.h>
+ 
+diff --git a/drivers/gpu/drm/msm/msm_fbdev.c b/drivers/gpu/drm/msm/msm_fbdev.c
+index dd6d6c507d77..f37cc3f97a21 100644
+--- a/drivers/gpu/drm/msm/msm_fbdev.c
++++ b/drivers/gpu/drm/msm/msm_fbdev.c
+@@ -6,9 +6,9 @@
+ 
+ #include <linux/fb.h>
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_crtc_helper.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_file.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_framebuffer.h>
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index add19d479ebe..e91130f93db6 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -40,7 +40,6 @@
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_edid.h>
+ #include <drm/drm_eld.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_fixed.h>
+ #include <drm/drm_probe_helper.h>
+ #include <drm/drm_vblank.h>
+diff --git a/drivers/gpu/drm/omapdrm/omap_debugfs.c b/drivers/gpu/drm/omapdrm/omap_debugfs.c
+index 9edc1b3f9f95..1c40c489ed72 100644
+--- a/drivers/gpu/drm/omapdrm/omap_debugfs.c
++++ b/drivers/gpu/drm/omapdrm/omap_debugfs.c
+@@ -6,10 +6,10 @@
+ 
+ #include <linux/seq_file.h>
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_crtc.h>
+ #include <drm/drm_debugfs.h>
+ #include <drm/drm_file.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_framebuffer.h>
+ #include <drm/drm_print.h>
+ 
+diff --git a/drivers/gpu/drm/omapdrm/omap_fbdev.c b/drivers/gpu/drm/omapdrm/omap_fbdev.c
+index 4881777642d2..e1dcc3cb7c55 100644
+--- a/drivers/gpu/drm/omapdrm/omap_fbdev.c
++++ b/drivers/gpu/drm/omapdrm/omap_fbdev.c
+@@ -7,9 +7,9 @@
+ #include <linux/fb.h>
+ 
+ #include <drm/clients/drm_client_setup.h>
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_crtc_helper.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_file.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_framebuffer.h>
+diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
+index 9523240110a6..fdbdcefa84e7 100644
+--- a/drivers/gpu/drm/radeon/radeon_device.c
++++ b/drivers/gpu/drm/radeon/radeon_device.c
+@@ -33,11 +33,11 @@
+ #include <linux/vga_switcheroo.h>
+ #include <linux/vgaarb.h>
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_cache.h>
+ #include <drm/drm_client_event.h>
+ #include <drm/drm_crtc_helper.h>
+ #include <drm/drm_device.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_file.h>
+ #include <drm/drm_framebuffer.h>
+ #include <drm/drm_probe_helper.h>
+diff --git a/drivers/gpu/drm/radeon/radeon_fbdev.c b/drivers/gpu/drm/radeon/radeon_fbdev.c
+index 3e243f5e2f44..e40c23d9dff2 100644
+--- a/drivers/gpu/drm/radeon/radeon_fbdev.c
++++ b/drivers/gpu/drm/radeon/radeon_fbdev.c
+@@ -29,9 +29,9 @@
+ #include <linux/pm_runtime.h>
+ #include <linux/vga_switcheroo.h>
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_crtc_helper.h>
+ #include <drm/drm_drv.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_framebuffer.h>
+ #include <drm/drm_gem_framebuffer_helper.h>
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
+index 9a1dc9f12072..b55113a7a00b 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_gem.c
+@@ -8,9 +8,9 @@
+ #include <linux/iommu.h>
+ #include <linux/vmalloc.h>
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm.h>
+ #include <drm/drm_dumb_buffers.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_gem.h>
+ #include <drm/drm_gem_dma_helper.h>
+ #include <drm/drm_prime.h>
+diff --git a/drivers/gpu/drm/sitronix/st7571.c b/drivers/gpu/drm/sitronix/st7571.c
+index fc3ba5e8600f..5e60c4685671 100644
+--- a/drivers/gpu/drm/sitronix/st7571.c
++++ b/drivers/gpu/drm/sitronix/st7571.c
+@@ -20,7 +20,6 @@
+ #include <drm/drm_damage_helper.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_encoder.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_fbdev_shmem.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_framebuffer.h>
+diff --git a/drivers/gpu/drm/tegra/fbdev.c b/drivers/gpu/drm/tegra/fbdev.c
+index 003e80cf7b9a..64c2e64f219b 100644
+--- a/drivers/gpu/drm/tegra/fbdev.c
++++ b/drivers/gpu/drm/tegra/fbdev.c
+@@ -11,9 +11,9 @@
+ #include <linux/fb.h>
+ #include <linux/vmalloc.h>
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_crtc_helper.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_framebuffer.h>
+ #include <drm/drm_gem_framebuffer_helper.h>
+diff --git a/drivers/gpu/drm/vboxvideo/vbox_mode.c b/drivers/gpu/drm/vboxvideo/vbox_mode.c
+index bb3f7f0ad7c4..7c34299fa531 100644
+--- a/drivers/gpu/drm/vboxvideo/vbox_mode.c
++++ b/drivers/gpu/drm/vboxvideo/vbox_mode.c
+@@ -13,11 +13,11 @@
+ #include <linux/iosys-map.h>
+ #include <linux/export.h>
+ 
++#include <drm/clients/drm_fbdev_helper.h>
+ #include <drm/drm_atomic.h>
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_blend.h>
+ #include <drm/drm_edid.h>
+-#include <drm/drm_fb_helper.h>
+ #include <drm/drm_fourcc.h>
+ #include <drm/drm_framebuffer.h>
+ #include <drm/drm_gem_atomic_helper.h>
+diff --git a/include/drm/drm_fb_helper.h b/include/drm/clients/drm_fbdev_helper.h
+similarity index 99%
+rename from include/drm/drm_fb_helper.h
+rename to include/drm/clients/drm_fbdev_helper.h
+index 0c5e5ed7b5e7..7575aaf34c62 100644
+--- a/include/drm/drm_fb_helper.h
++++ b/include/drm/clients/drm_fbdev_helper.h
+@@ -27,8 +27,8 @@
+  *      Dave Airlie <airlied@linux.ie>
+  *      Jesse Barnes <jesse.barnes@intel.com>
+  */
+-#ifndef DRM_FB_HELPER_H
+-#define DRM_FB_HELPER_H
++#ifndef DRM_FBDEV_HELPER_H
++#define DRM_FBDEV_HELPER_H
+ 
+ struct drm_clip_rect;
+ struct drm_fb_helper;
+-- 
+2.55.0
 
-If so, future reports of the same error will trigger a REMOVE action instead
-of attempting to OFFLINE again, permanently dropping hardware memory errors
-that failed to be offlined.
-
-[ ... ]
-
-> @@ -1145,10 +1177,14 @@ void xe_ras_init(struct xe_device *xe)
->  	if (IS_ENABLED(CONFIG_PCIEAER))
->  		ras_usp_aer_init(xe);
-> =20
-> +	xa_init(&state->offlined_pages);
-> +
->  	get_queued_pages(xe);
->  	get_offlined_list(xe);
-
-[Severity: Medium]
-Will page offline deduplication fail for queued pages because of the
-initialization order?
-
-During get_queued_pages(), pending errors are processed via
-handle_page_offline(), which checks the xarray to detect duplicates:
-
-handle_page_offline()
-    if (xa_load(&state->offlined_pages, ...))
-        action =3D XE_RAS_PAGE_ACTION_REMOVE;
-
-Since get_offlined_list() has not yet populated the xarray with the existing
-offlined pages, won't the xarray be empty at this point?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260928061830.4173=
-95-8-riana.tauro@intel.com?part=3D6
