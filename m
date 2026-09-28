@@ -4,53 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64478C9833F
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 13:03:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28212C9833F
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 13:19:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 183BC10E5F1;
-	Mon, 28 Sep 2026 13:03:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB12810E8AD;
+	Mon, 28 Sep 2026 13:19:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="o2xCEyWX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SnKTwwVZ";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2383910E5F1;
- Mon, 28 Sep 2026 13:03:53 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 4718A60052;
- Mon, 28 Sep 2026 13:03:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BF871F00893;
- Mon, 28 Sep 2026 13:03:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790600632;
- bh=LbDVoKu8g6bKdmdJ18P7XM+4AoDCrVi//WDEW2JBZn8=;
- h=Date:Subject:Cc:To:From:References:In-Reply-To;
- b=o2xCEyWXH2JklBG5d38zf8novVXr0bY4COQbWF34NBnstdMSAkKdLcFQcJALoADal
- Af9TyIG0mUmdTMcbZ05Uh07ODekJj45SRLfxSWwt6OTwwgbW0s35pKElg0UmmbwrqJ
- pMcdzYxk5/s3ISFcGwNBLcMgAl5yRzyPNOjNewCKcqEnqLqmAri17TNG+LYQX9HHn6
- rXlFLwcSB/a8xKkl14sglrQKlx1MUgUiTp+SnQyqRnEgB6HnpOpZPAWIHiH9Tduu0k
- jYA67gKjX7L35GP+aeb/GBPXA2BxSlYroijCYUSqMGyCW/ipABlSPPRqod7c44A7d7
- wLzj5eDBxfh8g==
-Mime-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72B0110E8AD;
+ Mon, 28 Sep 2026 13:19:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790601581; x=1822137581;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=vtfWo5CIV+nhYWTWM32DxupK4XKsPONg+4YzXkhvqm0=;
+ b=SnKTwwVZlhfDLu6WZpOLAIEfGe4LB/5hpIR12OKH2R9kmkHnLNv/Pn0/
+ EjxnYbod1EUCRNorxFqfWjd7bjsnb21a/0hxUB91ztMQQS+nM1NpyraSD
+ 4/YU3Mhuh2oifvEqYnMmq9KotcGg0+ruMNhSeXizU4t8iACtcr3ZaK9ci
+ hPH09L3/6MEpTpSLaJzQ6dqkmUXkT5fOvh6OfAn/nq5ATcaybW29bSkGx
+ aXPJ7TGdlcv7n30Bj4aNDA1VYjJpKG/jgzbx5PpBfbRpsfta3oJ9r2NPN
+ 1+Gn+UJa9wAtCQ3UFL/3S4r3ojrsYINkqaRURRITQHbk7/eo03gs7T7nr g==;
+X-CSE-ConnectionGUID: pCLdVK1OTWaKREbBOlgD3A==
+X-CSE-MsgGUID: wA+O4DsbSGOWlRc1/V4NpA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11918"; a="95113643"
+X-IronPort-AV: E=Sophos;i="6.27,128,1787036400"; d="scan'208";a="95113643"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2026 06:19:41 -0700
+X-CSE-ConnectionGUID: 5kgzDwecQaGtHRZLT7IWNQ==
+X-CSE-MsgGUID: 8QtJGy26TCW7ZPK5+x6YQw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,128,1787036400"; d="scan'208";a="271537924"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2026 06:19:41 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Mon, 28 Sep 2026 06:19:40 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Mon, 28 Sep 2026 06:19:40 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.27) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Mon, 28 Sep 2026 06:19:40 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AWr2Ot6kwK9+iWQF6zR1v3eYyba2BzLg0KceYj9iLiLCtwysuyptDtDjy99igq00R8X6g2k/6d9TvQOuNJmXrlWYza9bkyMyUnG+MMowsQQ8WvcLaN6W9NWFUp25e7cUzkvMI1wU7TOxi4eRYg0kQ9ff+W47Tx6KCfJRG2gWFq/xDVfodNiNLGkAO7V7/ysxIL6TokywPmrcn4BR833aYk8tmwU5q4RFurcPLdEkF5xrM1ssNWtqo5SVa/K8GiJS9rJhwk1v4NTK8vDROQYgoTmjsojXb/ptQtdp0SPjwW+7BWTJ+BM1tZtbasO0ow6pH1ezhPzlpLm3IsW45SJH4A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UpYmkCA5nZJsmF97ESeXuAzyX1jJGSu97wb6uEtitH4=;
+ b=aYT8c4XqieLUphv0sWgqNgCfRRRA/PfGhCGgATcWKIiJxSUu/ynd7waYb4J06VgtuwPOJqAfZkp+D6zd4g0zc7VRofxCg++2tsUNohfK8gUwmsksg8NT3b52XFsDGKry8k2knbQxtKoo4YCGDCXj6MbIuqKX0OJNtbCwisp8xVUnXGiIJ7IFjrLTniPskKfTEZce3AECFJ/d9jAgQQv/JqQ4ytzK2X4Rg+Le7ikTZSlczUwVqqaJgSx9RvCENnwqebB4wJneRFCOIor3klkxIJy5Y4CI89s709C+3UbcHao9/mo3QvT1uC6FNnYVcfqP9FsgDDcGHUgfeZ7ycPPz4Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM6PR11MB3787.namprd11.prod.outlook.com (2603:10b6:5:143::10)
+ by PH0PR11MB5063.namprd11.prod.outlook.com (2603:10b6:510:3d::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.24; Mon, 28 Sep
+ 2026 13:19:38 +0000
+Received: from DM6PR11MB3787.namprd11.prod.outlook.com
+ ([fe80::8ae8:5fb9:cf27:18dc]) by DM6PR11MB3787.namprd11.prod.outlook.com
+ ([fe80::8ae8:5fb9:cf27:18dc%6]) with mapi id 15.21.0451.022; Mon, 28 Sep 2026
+ 13:19:38 +0000
+From: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>
+To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
+Subject: RE: [PATCH v5 1/2] drm/i915/dmc: Harden DMC firmware payload parsing
+Thread-Topic: [PATCH v5 1/2] drm/i915/dmc: Harden DMC firmware payload parsing
+Thread-Index: AQHdSpdfLyDBfMe1LUqdk1Ve4VugBLbkAr1w
+Date: Mon, 28 Sep 2026 13:19:37 +0000
+Message-ID: <DM6PR11MB3787E3E264884E9D89ABCA0DB28D2@DM6PR11MB3787.namprd11.prod.outlook.com>
+References: <20260922133535.3180973-4-dibin.moolakadan.subrahmanian@intel.com>
+ <20260922133535.3180973-5-dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20260922133535.3180973-5-dibin.moolakadan.subrahmanian@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM6PR11MB3787:EE_|PH0PR11MB5063:EE_
+x-ms-office365-filtering-correlation-id: ade68f5f-8cf2-4030-ce8a-08df1d6325a0
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|23010399003|38070700021|10067099003|11063799006|56012099006|4143699003|22082099003|18002099003;
+x-microsoft-antispam-message-info: 21x54NNs+jcuaLLlLabsoZ+INiGqYoYYlbGg/ra3hoIMJjnXXSyUMOONTXZNESFFVUsRCmP8WqbdQnEvR1nLlj9EK9eqbTrDC4gDudLwopdIyahhBMtAYNf1z8hE5egj1LVtR1rsoCgp+8wYRnFj+uo6Nf0bSL9Zs349+5R5D68DKraj0juoIEyjk0HWvfXhrSoVnaa01y40n0sQbMr2Jd0Sd3r51Ik7r6JTQj468S6M3xoqY8apNZL2xDybC902T7rLueTjCMwOGOREn/4MehiXFZ0/qXBOaDDusQPmUD8RAln91kjo1sKkatXJ0BcaeoSiDQCCyFovxfgK5Tvvhq8kT6Y4a/mYI0YN+sH+xOBESrdnjN1UQgXGqNbPCCs0pH+6senymzLM4HAn/YqlaxVnv0ysuqZeGW7Mch8Gg2NuzhFMcwPg098BfvxWa1/srJDQ7ZsWlofMFpLlgzIu2e9Xv4hM1GHCTAvWkVtAQG02Irh/sOCCULI9JFmoALs8SCFDe7XCZbIPtLtx73Ah58RspdI6JT/Ums09td1vwdw5X5f/a/nDcO0+sk+ChKlpAR5d7WGrC8EmHZ4qxfQzDcDaLNv9DeiFZHzKXKBAbOHiEBt7BPDmMlysQAHJwCu/0EYa9DfmWh0ZU7nMQ4uT0xJ1B4m7gfntyfK7dMNcGGdo3bRlWobuaVEQzRoCgYaHrGG8WpA8gxwJ6MLQZUkPum/OH74EAYroiBSxoi0ci5g=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB3787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(38070700021)(10067099003)(11063799006)(56012099006)(4143699003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ksgYYCZ9hpdiElvaz9cSspty5WgkqWL9vvrZp2EixpfgZpyNPWCMPQ8Mhlba?=
+ =?us-ascii?Q?8h04SdT2QKJwL5siDOp2LTSJFGuW85sADl/ex/iF5Z9h9aK0NgPw6DtfSfcF?=
+ =?us-ascii?Q?odH56KLzDvB2rL68wyfw/hxnLXsGp1qjuRVAen1zvPLVKYfdGYhfh864RnZG?=
+ =?us-ascii?Q?j3Zh1frLeUdVySXNwObhMBUZpZmGUqlRsfvn4cM91xQDVpsC4ttjCayl0FP2?=
+ =?us-ascii?Q?vA4203dni4ouw/kiHFHzsltVoGq34gcMT8+UzBF5XfwcyHlvAdzV/OxRQS+E?=
+ =?us-ascii?Q?k5LvH/ON8AayuigjRC/v7qJgDLAIEQU3TjkB4Gn3dKRRwy851wA++hop0tRC?=
+ =?us-ascii?Q?v5pC2X59RovJZJirx6ac0qpLvitF/C8xlDy6mpKLdZK6jSG8gLa+MFb5/kGS?=
+ =?us-ascii?Q?CB19P0hq1ip8qbnyiauVmvTkvu5EAdDl+JTFsWpbhoMNzrtl+VTFt27g/3f7?=
+ =?us-ascii?Q?xHaHZSwKAhnl5qdEEymz7TmQbUb/d7iUeXS3uCeo0IH28DJ+8E+kzhPzs2NN?=
+ =?us-ascii?Q?BP4SV3D6ekKFz20nd1Q/l6R0LnHoZcGhketyq3bYQXVAntSqVt3aFvRHtDx6?=
+ =?us-ascii?Q?MXThI1kFzSWSP1NbnYRDWuFQYKc+LsUpYUh3e2sLG807JT2QyVYfkuPl9JMq?=
+ =?us-ascii?Q?v/nOJWNU4Vt3AMpaCmXo2BTdvjqJ0KBNV7nTtGLQEdSEa4mTcFRd40edYASr?=
+ =?us-ascii?Q?LMc5D5Gsr7ozSoIi3gmP4GwoBQ5VIlzVDXJWC0wxdmnTYI1dMvUc0sl22KvP?=
+ =?us-ascii?Q?lFOtTVqrtn0XklWbi+yQoduNdRyKX4bUlm/pfvKbGHEhJnNz1GNYnx4ao9bh?=
+ =?us-ascii?Q?dPq/AiHKIQ87mZ8GlwkJMfWWKkE3YY+QRUhH+hyCs4nb+Jbw7Bp0zFiWoDFQ?=
+ =?us-ascii?Q?1PIzfPCkY6mu2GoWE+ucYGRpXqDrWbzOHwRPbICp59hS0WzLBzwFBVWujQpX?=
+ =?us-ascii?Q?EJa1koPb0Bzpy7k5pGDhcjyQ9hSAxlbNxb5fWHKA7BLtfwmq5qS2iUBYkH9i?=
+ =?us-ascii?Q?y3sTY6E2c8vY9cDxKc1+dQgR3RnBC6DCr1tdHW6h9roXpn9QPvn4MT+Ea3pu?=
+ =?us-ascii?Q?F4qTkrx2xUuIwYsw0UilWR44ncya1+BPlggT2e4x6wm9wgoAThhunZszecyQ?=
+ =?us-ascii?Q?Bn3WBx2VTp8/GcqjDDHKBMt0feJnpM9QucsKXOgGpatjMlPGPvC0kLA0qE6h?=
+ =?us-ascii?Q?swQkBmpIl8kvcNcAuKdVbLiDOJtcUw9c1+/MDryOr9cxrFpBmd3cgWpH/LmM?=
+ =?us-ascii?Q?G9aDDaxM8EclzTc10Fglfb2Vx9P/BY4QLvjqZHHhCD9YUhw9XFpOyCmMHiPP?=
+ =?us-ascii?Q?6EOTYe2mTcnt5mBiwxw38ttdaxnd+1q/L0xH7tFD/z7uEQ+bji2S+RYaFbfl?=
+ =?us-ascii?Q?zn7qjnHQHX7FiN1GfHW9riKCh1rhBHHPI+FPu+bBwRBMnwlVh6eyzK81bjxN?=
+ =?us-ascii?Q?pz3Nqj1w/TRBlWitEQotgCiZmKYcmSrEloTTRL9TTU+wqWmtx90HmVLvSCqW?=
+ =?us-ascii?Q?CmpqmPCJoePaap44EyRAc5b9XFIAGW2BOj5BmwpTTPfmmTqSrImxgAYjI+jA?=
+ =?us-ascii?Q?y+DfmdZkKNbqnrZWt+0UtEnl22GYPtosPGec4XV0hlXNt0hAqjLdoBGag31T?=
+ =?us-ascii?Q?zrGxDTO2RkEfb2Vl0+atWAG82Ejf12e1xcjvAMi/rozg4Z/sqeQD2nf0XmL0?=
+ =?us-ascii?Q?ZZUTEQ6fz3IVX29DtNmLrmi0bPmtB0rUUPR3iYFgCfKMzhgL+W68/xlcI6Vf?=
+ =?us-ascii?Q?kNE0JWNBzIy7BoyZlxJueQrj3jo6fD8=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 28 Sep 2026 15:03:48 +0200
-Message-Id: <DLQYY4O71Q54.2FZ1ZV8G5ZZPN@kernel.org>
-Subject: Re: [PATCH v3 0/3] drm, drm/xe: Protect against premature module
- unloads
-Cc: <intel-xe@lists.freedesktop.org>, "Matthew Brost"
- <matthew.brost@intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Matthew Auld" <matthew.auld@intel.com>, <dri-devel@lists.freedesktop.org>,
- "Alice Ryhl" <aliceryhl@google.com>, "Alex Deucher"
- <alexander.deucher@amd.com>, =?utf-8?q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260925133335.149679-1-thomas.hellstrom@linux.intel.com>
- <DLOJ7S2IZW0R.2BNLLO5M3YL7M@kernel.org>
- <7fc614d0b666fb5ae9777c29ea2e79647030b198.camel@linux.intel.com>
- <DLQVBJX4PK5G.2AK3E5K8U8UY7@kernel.org>
- <fdbc3d2ed7b23b09216df023e2be9ed707820c75.camel@linux.intel.com>
-In-Reply-To: <fdbc3d2ed7b23b09216df023e2be9ed707820c75.camel@linux.intel.com>
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: WKeQKXcMtP/dkcbSHt4559RV2fiY+f8x+XNhnYGXg49M1GahEh2K1q+WaylEGbpWz9BxWGez7nYGzDC7Sx0uX0ZNEz12itOoDu+q3yvVpyGcRZcheuCqXRfPv6s5BduOaVE6NamXeZYz5et/2mxmiduglVq2137kLLNDbhQYBBWmQhIwYttLbj63rdoVH5Gp3mteMFdRljPnd1Ij0pXEwA5x3nntwaW97rq9l/IM5R6Mh9yeXd2px4hNN41yGVRHNp1PXVswtkgw8P54MhiymugKG5HwangT+pGm/KNryH021ycLvSmCQKGJhYMRSwzRhxvj7kBD/mgTBum4cbJoYQ==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3787.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ade68f5f-8cf2-4030-ce8a-08df1d6325a0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Sep 2026 13:19:37.9616 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: QW6d+/F8+GZF8n2fC1M2K7F3K6MpUnplU+p6dgc43NN1Km9WYMqdgIY1iroLeK9uSKqs7KJg4I7Rm4TYqs2QVeUHBt63zhAzA9BfYQf7Kd5exIdW5byzkTylENonBg+v
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5063
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,432 +162,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon Sep 28, 2026 at 2:13 PM CEST, Thomas Hellstr=C3=B6m wrote:
-> On Mon, 2026-09-28 at 12:13 +0200, Danilo Krummrich wrote:
->> On Mon Sep 28, 2026 at 10:46 AM CEST, Thomas Hellstr=C3=B6m wrote:
->> > On Fri, 2026-09-25 at 18:18 +0200, Danilo Krummrich wrote:
->> > > On Fri Sep 25, 2026 at 3:33 PM CEST, Thomas Hellstr=C3=B6m wrote:
->> > > > Driver and shared DRM helper code is increasingly relying on
->> > > > bare
->> > > > drm_device references (drm_dev_get()/drm_dev_put()) to keep a
->> > > > device's
->> > > > software state around, without also pairing that with a
->> > > > reference
->> > > > on
->> > > > the owning kernel module. Xe itself does this in several
->> > > > places,
->> > > > and
->> > > > so does drm_gpuvm for the lifetime of a GPU VM. None of these
->> > > > references currently prevent the owning module from being
->> > > > unloaded
->> > > > while they, or the teardown work they can still trigger, are
->> > > > outstanding, meaning driver code can end up executing after its
->> > > > own
->> > > > module's text has already been freed.
->> > >=20
->> > > Since you mention DRM GPUVM in a couple of places, how can this
->> > > ever
->> > > happen? It
->> > > wouldn't make sense to keep a VM alive beyond driver unbind. I.e.
->> > > it
->> > > can't make
->> > > its drm_device reference count reach module unload in the first
->> > > place.
->> >=20
->> > There seems to be a bit of misunderstanding here.
->> >=20
->> > Driver unbind removes the struct device from the driver, triggers
->> > device unplug, and eventually the devres release actions. IIRC the
->> > last
->> > devres action removes a *single reference* on the struct
->> > drm_device.
->>=20
->> Correct.
->>=20
->> > Hence if there exists other reference holders on the struct
->> > drm_device
->> > (open files, exported dma-bufs, exported drm_pagemaps as an
->> > example),
->> > the drm_device will survive the driver unbind. So will open files
->> > and
->> > thus drm_gpuvms until user-space decides to remove them.
->>=20
->> There's two lifetimes we have to deal with in drivers: the lifetime
->> of (bus /
->> physical) device resources, which are managed by the driver and the
->> software
->> state that is represented through the class device to userspace (e.g.
->> file
->> handles).
->>=20
->> The former is bounded to the scope where the driver is bound to the
->> device and
->> the latter is unbounded and indeed depends on userspace.
->>=20
->> Either the subsystem or the driver has to decouple those lifetimes.
->> I.e. if the
->> driver is unbound it should clean up all GPUVMs as they represent the
->> GPU's
->> virtual address space and hence are associated with the hardware.
->> However, the
->> driver should not operated the hardware anymore after driver unbind.
->
-> I disagree here. At unbind time we decouple the HW and SW state, The
-> device no longer uses it's pointers to the page-table so, for example
-> VRAM page-tables can be torn down, system page-tables lose their dma-
-> mappings, but in xe we don't tear down the page-table structure itself.
->
-> If HW accesses are properly protected by drm_dev_enter() /
-> drm_dev_exit(), Hw won't be accessed after unbind.
->
->
->>=20
->> So, in your case it seems that file lifetime and VM lifetime are
->> conflated
->> although they should be separate.
->
-> I view the VM as software state, page-table pointers, dma-mappings and
-> VRAM storage as HW state.
->
-> It seems like what we're not agreeing on is where to separate those. I
-> see no reason as to why we would complicate the driver to remove more
-> than necessary at unbind time?
 
-This can certainly be done, correct. But, the VM itself represents a GPU's
-virtual address space and takes ownership of the corresponding hardware
-resources.
 
-We can indeed revoke the hardware resources from the VM implementation and
-leave it in place. But this messes with the ownership model within the VM
-implementation:
+> -----Original Message-----
+> From: Dibin Moolakadan Subrahmanian
+> <dibin.moolakadan.subrahmanian@intel.com>
+> Sent: 22 September 2026 19:06
+> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> Cc: Golani, Mitulkumar Ajitkumar <mitulkumar.ajitkumar.golani@intel.com>;
+> jani.nikula@linux.intel.com
+> Subject: [PATCH v5 1/2] drm/i915/dmc: Harden DMC firmware payload
+> parsing
+>=20
+> Validate the conversion of the DMC firmware size from dwords to bytes usi=
+ng
+> check_mul_overflow() before calculating the firmware payload size.
+>=20
+> Reject zero-length payloads and zero MMIO counts in the DMC firmware
+> header so malformed firmware is caught early. Also set dmc_fw_size only a=
+fter
+> the payload allocation succeeds.
+>=20
+> Fixes: eb805623d8b1 ("drm/i915/skl: Add support to load SKL CSR
+> firmware.")
+> Cc: stable@vger.kernel.org
+> Assisted-by: Claude-Code:Sonnet-5
+> Signed-off-by: Dibin Moolakadan Subrahmanian
+> <dibin.moolakadan.subrahmanian@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dmc.c | 21 ++++++++++++++++-----
+>  1 file changed, 16 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c
+> b/drivers/gpu/drm/i915/display/intel_dmc.c
+> index a191eee240d9..725481012578 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> @@ -1120,7 +1120,7 @@ static u32 parse_dmc_fw_header(struct intel_dmc
+> *dmc,
+>  	}
+>=20
+>  	/* Cache the dmc header info. */
+> -	if (mmio_count > mmio_count_max) {
+> +	if (!mmio_count || mmio_count > mmio_count_max) {
+>  		drm_err(display->drm, "DMC firmware has wrong mmio
+> count %u\n", mmio_count);
+>  		return 0;
+>  	}
+> @@ -1166,13 +1166,21 @@ static u32 parse_dmc_fw_header(struct
+> intel_dmc *dmc,
+>  			    disable_dmc_evt(display, dmc_id, dmc_info-
+> >mmioaddr[i],
+>  					    dmc_info->mmiodata[i]) ? "
+> (disabling)" : "");
+>  	}
+> -	dmc_info->mmio_count =3D mmio_count;
+> -	dmc_info->start_mmioaddr =3D start_mmioaddr;
+>=20
+>  	rem_size -=3D header_len_bytes;
+>=20
+>  	/* fw_size is in dwords, so multiplied by 4 to convert into bytes. */
+> -	payload_size =3D dmc_header->fw_size * 4;
+> +	if (check_mul_overflow(dmc_header->fw_size, 4u, &payload_size)) {
+> +		drm_err(display->drm, "DMC fw_size too large (%u
+> dwords)\n",
+> +			dmc_header->fw_size);
+> +		return 0;
+> +	}
+> +
+> +	if (!payload_size) {
+> +		drm_err(display->drm, "DMC firmware has empty
+> payload\n");
+> +		return 0;
+> +	}
+> +
+>  	if (rem_size < payload_size)
+>  		goto error_truncated;
+>=20
+> @@ -1180,12 +1188,15 @@ static u32 parse_dmc_fw_header(struct
+> intel_dmc *dmc,
+>  		drm_err(display->drm, "DMC FW too big (%u bytes)\n",
+> payload_size);
+>  		return 0;
+>  	}
+> -	dmc_info->dmc_fw_size =3D dmc_header->fw_size;
+>=20
+>  	dmc_info->payload =3D kmalloc(payload_size, GFP_KERNEL);
+>  	if (!dmc_info->payload)
+>  		return 0;
+>=20
+> +	dmc_info->mmio_count =3D mmio_count;
+> +	dmc_info->start_mmioaddr =3D start_mmioaddr;
+> +	dmc_info->dmc_fw_size =3D dmc_header->fw_size;
+> +
 
-Because now, and you say this a couple of times below, we need to guard all
-relevant entry points into the VM code with guards, such as
-drm_dev_{enter/exit}().
 
-IOW, it creates partially uninitialized structures with stale pointers that=
- we
-now have to guard against.
+Changes LGTM
+Reviewed-by: Mitul Golani<mitulkumar.ajitkumar.golani@intel.com>
 
-It makes much more sense to tear down everything that owns device resources=
- on
-driver unbind. I.e. why keep structures with stale pointers around that we =
-have
-to guard against in the first place?
 
-It also gets us rid of the module unload issue as it allows us to prevent
-callbacks into the driver code after driver unbind on the subsystem level.
+>  	payload =3D (u8 *)(dmc_header) + header_len_bytes;
+>  	memcpy(dmc_info->payload, payload, payload_size);
+>=20
+> --
+> 2.43.0
 
->> We can't have userspace to decide when we drop device resources, such
->> as DMA
->> mappings, I/O memory mappings, etc.
->
-> We don't (Unless we have bugs, and you may have stumbled on those
-> below?) Those should be removed at unbind time. We should also revoke
-> dma-buf mappings and SVM migrates all dma-buf mappings to system.
->
->>=20
->> > Files, dma-bufs and drm_pagemaps all hold a driver module reference
->> > until they have successfully released the drm_device. The
->> > requirement
->> > is "If a drm_device reference is held, a module reference of the
->> > driver
->> > providing the drm_device must also be held, or if it's held by the
->> > driver itself, it must ensure at driver unload time that any
->> > drm_device
->> > references it holds are released and drmm release callbacks have
->> > finished executing."
->> >=20
->> > What this series in effect does is to change this to to "The driver
->> > won't unload until all drm_device references are gone, and all drmm
->> > release callbacks have finished executing."
->> >=20
->> > I agree that the use of drm_gpuvm in the documentation is a bit
->> > unfair.
->> > Since the code calling drm_dev_get() and drm_dev_put() is intended
->> > to
->> > be called from the driver, the reference in effect becomes the
->> > driver's
->> > responsibility, but if someone would, in the future change that so
->> > that
->> > those references are put from a worker from within the driver or
->> > even
->> > within drm_gpuvm itself, things would break. If a future code
->> > reviewer,
->> > developer or AI agent knows about the new drm_device reference
->> > guarantee, then that will lessen the review scope and code will
->> > become
->> > more rubost.
->> >=20
->> > >=20
->> > > Besides that, can you please remind me whether there are any
->> > > other
->> > > reasons than
->> > > the release() callback why a DRM device must not outlive module
->> > > unload?
->> >=20
->> > The drmm release callbacks.
->>=20
->> Right, I forgot about them for a second. However, they are similar to
->> the
->> release() callbacks as in they are the wrong cleanup model for driver
->> private
->> structures.
->>=20
->> drmm is a great tool for common subsystem structures that lifetime
->> wise tie to
->> the drm_device. But it is the wrong lifetime model for stuff that is
->> used to
->> operate the device, as this should be torn down on device unbind.
->
-> The current model used by xe (and amdgpu AFACT, that also ties vm
-> lifetime to file lifetime) is to block all hardware access and dma at
-> unbind time. The rest is state that doesn't necessarily need to be torn
-> down at unbind time. I believe the current separation is mostly done
-> with drm_dev_enter() / drm_dev_exit() and why should we enforce a
-> change of that? I'd say the drivers should be free to release what's
-> convenient.
-
-See the reasons above, it is not a good layer for the lifetime decoupling.
-
-> Also if drm_gpuvms are designed to not outlive the struct device, why
-> do they need to take a struct drm_device reference in the first place,
-> I mean I brought this problem up then and IIRC I think you argued the
-> reference was needed and punted any problems it caused to the drivers?
-
-The lifetime of the hardware resources that are owned by a GPUVM implementa=
-tion
-is restricted by the underlying bus device (e.g. PCI) being bound to the dr=
-iver.
-
-The lifetime of the DRM device as a class device is technically independent=
-, it
-can live longer (which is likely), but it could technically also be shorter
-lived (which drivers don't do in practice). But even though drivers don't d=
-o
-this in practice, the dependency should be expressed: if GPUVM stores a poi=
-nter
-to a DRM device, it has to take a reference count.
-
->> I had a quick look at Xe and found this for instance:
->>=20
->> 	 drmm_add_action_or_reset(&xe->drm, control_fini_action, gt)
->>=20
->> control_fini_action() stops a worker that writes device registeres,
->> which must
->> not be done after driver unbind anymore.
->>=20
->> Now, there's two options, either after driver unbind this work is
->> never running
->> (which would be correct), but then this could have been
->> devm_add_action_or_reset(), or it does actually run after driver
->> unbind, but
->> this would violate the driver model.
->
-> Agreed, Unless there is something protecting the hardware access after
-> unplug in that control subsystem, that's a genuine bug, but that's
-> separate from this discussion
-
-I argue that it is related; surely, we can keep everything around until the=
- DRM
-device is destroyed and just guard every single (callback) entry point.
-
-But, that's far more complicated and error prone than just shutting down th=
-e hardware
-on driver unbind and tear down all entry points on the subsystem level; it
-messes with the ownership model of structures leaving stale pointers behind=
-.
-
-As mentioned, this is what subsystems commonly do in the kernel, and I don'=
-t see
-why DRM would be special in this regard.
-
->> > > I don't think the correct solution is to constrain module unload.
->> > > The
->> > > release()
->> > > callback shouldn't really do anything other than free the memory
->> > > of
->> > > the
->> > > drm_device allocation. All other resources a driver may have
->> > > should
->> > > be released
->> > > on driver unbind.
->> >=20
->> > That is not true. See above.
->>=20
->> I know it is not true in practice, but we are doing the wrong thing.
->> We are
->> conflating the unbounded userspace lifetime with the bounded lifetime
->> from the
->> driver model.
->
-> I don't think we are. As long as all HW access is given up or blocked,
-> we're fine.
-
-Right, what you describe above works, but it leaves stale pointers and inva=
-lid
-structures behind that we then need to guard against.
-
->> I also know that we can't fix this easily, but I want to create some
->> awareness,
->> especially when we introduce more band aid for the status quo, such
->> that we can
->> subsequently address the fundamental lifetime problems.
->>=20
->> > > There may be shared resources, such as e.g. a common workqueue,
->> > > but
->> > > those are
->> > > module level things that have nothing to do with the DRM device.
->> >=20
->> > I don't think that is correct either. Take a look at Matt Brost
->> > reply
->> > to patch 3 there where he points out that the drm device (a base
->> > class
->> > of the xe device) is acually referenced in a work item after the
->> > struct
->> > drm_device reference is put. (There is a workqueue naming confusion
->> > in
->> > xe, but I do believe that patch needs a fix). With the poposed
->> > series
->> > in place a simple fix would be to hold a drm_device reference
->> > across
->> > the workqueue item. The unload process would then block until all
->> > devices are unreferenced, and then again at destroy_worqueue time
->> > waiting for the work item epilogue to finish executing.
->>=20
->> Well, but the workqueue itself has a bounded lifetime, which should
->> either be
->> driver unbind or module unload (when shared between driver
->> instances). The work
->> items themselves should ideally not extend beyond driver unbind,
->> because there
->> shouldn't be anything to do for the driver after unbind, because all
->> the
->> hardware should be torn down and not touched at this point anymore.
->
-> Hardware isn't touched but I don't think there is any reason for
-> cleanup tasks to stop executing at unbind time?
-
-Well, it has the implications as stated above. And it means that instead of
-having a global SRCU read side critical section for a global entry point, w=
-e are
-forced to leave invalid pointers behind and have drivers protect them each
-individually with SRCU (i.e. drm_dev_enter() / drm_dev_exit()).
-
->> I had another brief look at Xe and found this:
->>=20
->> 	drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt)
->>=20
->> where ggtt_fini_early() destroys a workqueue. It also calls
->>=20
->> 	drm_mm_takedown(&ggtt->mm);
->>=20
->> which IIUC is the range allocator for the global GTT. (The hardware
->> is gone on
->> driver unbind (i.e. no more GGTT is available for the driver), so
->> there's
->> shouldn't be a need for this drm_mm to live longer than driver
->> unbind).
->
-> Yes, this *can* probably be taken down at unbind time at the expense of
-> subsystem and structure validity checking, but it doesn't have to.
-
-Same reasoning as above.
-
->> This model ties the lifetime of all shorter lived resources that are
->> bounded to
->> the driver unload scope to the unbounded lifetime of the drm_device
->> that is
->> controlled by userspace.
->>=20
->> I.e. the model is backwards and hence also extends your driver
->> structures and
->> callback entry points not only beyond driver unbind, but also
->> potentially beyond
->> module unload.
->>=20
->> If it would be done the other way around, tear down everything on
->> driver unload,
->> and then use default trampolines for userspace still trying to call
->> into the
->> driver (which is also what DMA fence does and other subsystem do),
->> all those
->> issues go away.
->
-> But that is arguably something that's never going to happen, and even
-> if it is, I think that's mostly orthogonal to code keeping references
-> to drm_device.
-
-Well, I hope we can move to this model eventually.
-
-I don't think it is orthogonal, if we don't have driver entry pointer after
-driver unbind anymore, there is no module unload problem anymore. And struc=
-ts
-that keep a reference to a struct drm_device shouldn't be a problem in this
-regard either.
-
->> > > > - Patch 3 fixes a related, previously unprotected case where
->> > > > the
->> > > > =C2=A0 teardown of a GPU VM or its address space mappings can be
->> > > > deferred
->> > > > =C2=A0 to run at an arbitrary later time, including after module
->> > > > unload
->> > > > has
->> > > > =C2=A0 already completed.
->> > >=20
->> > > Huh? GPUVM tracks the GPU's VA space mappings, but after driver
->> > > unbind there's
->> > > no access to the GPU to manage anything anymore. How can this
->> > > even
->> > > work?
->> >=20
->> > As previously mentioned, software device state may well outlive a
->> > driver unbind. This is all about its cleanup.
->>=20
->> GPUVM shouldn't be lifetime wise tied to a software state, it
->> represents
->> hardware resoruces.
->
-> So then we can remove it's drm device reference? Why would it need to
-> keep a reference to the software state guaranteed to outlive it?
-
-There is no structural guarantee that it can't happen that the DRM device i=
-s
-destroyed first, then GPUVM and then the driver is unbound.
-
-> Regardless, I can remove all mentions of GPUVM in the documentation,
-
-That's not my main concern, but I found it to be a good example for what
-actually is my concern:
-
-The lifetime model in DRM often conflates software and hardware state
-structurally; whether the consequence is either that we just keep hardware
-resources alive for longer than they should be alive, or whether we tear th=
-em
-down and leave invalid pointers behind that we then protect with lots of ma=
-nual
-guard sections does not matter too much for me. Both is a consequence of th=
-e
-structurally conflated lifetime and ownership.
-
-> but that doesn't remove the fact that keeping a reference to a struct
-> drm_device without a module reference or a module presence guarantee is
-> extremely fragile, and will be also in a model that removes a larger
-> part of its software state at unbind time. IMO removing that fragility
-> is a good thing.
-
-Don't get me wrong, I don't object to this patch series. Well, at least not=
- too
-much, requiring drivers to call drm_dev_release_barrier() in module unload =
-is
-pretty ugly, and I don't know any other subsystem that has such a guard, be=
-cause
-they do structurally prevent callbacks into drivers after driver unbind and
-drivers hence tie the lifetime of structures to driver unbind.
-
-But then there's reality and the things are as they are right now, so it mi=
-ght
-just be necessary. However, I hope that in the future we can improve this a=
-nd
-have the subsystem provide the required guards on the subsystem callback le=
-vel.
