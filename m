@@ -4,88 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95D20CA5FAC
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 12:54:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FD26CA5FB1
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 12:54:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF30F10E96F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBAC910E651;
 	Tue, 29 Sep 2026 12:54:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=trailofbits.com header.i=@trailofbits.com header.b="cyuIbM5N";
+	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="CndcBI1i";
 	dkim-atps=neutral
-Received: from mail-dl2-f12.google.com (mail-dl2-f12.google.com
- [74.125.229.140])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B32E610EC69
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Sep 2026 03:17:33 +0000 (UTC)
-Received: by mail-dl2-f12.google.com with SMTP id
- a92af1059eb24-142dd046b87so2675275c88.2
- for <intel-xe@lists.freedesktop.org>; Mon, 28 Sep 2026 20:17:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=trailofbits.com; s=google; t=1790651853; x=1791256653;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=FsP2Z39yDHYgidPq7LJCuoklm/2VErUU9c6HnTD+Pa0=;
- b=cyuIbM5N25lc9nM9XWo+Qir6olmu9J8Kd/pL2X1BOfgpPkX4JguOF5xlXFWRz2mWzs
- U4HfxsG9Nc6BQ1OGyzty0DOnP7o2qha7yxC6z2voepWEHdGXcGj5wq5iwcSHuO+nonk4
- pdKFfMD+4WNgLVPY+GeTKIbDEyHYTxyK8OILFjpE3RY9r995195lPT/mcAqafvffwdOm
- oSTLR5ejfIUoDBnJc4Tzdd1jaUCuWlhBWLQBDwQ3/te0zV0Wpd91+FuiDwKI4AjunXoQ
- Oqjx3cvMGhT+APKkbTAFVOIELB0lOKGOvg16gejUOd6qXQTsTrIF+ecfec2kxqX2hm3P
- ax5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1790651853; x=1791256653;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=FsP2Z39yDHYgidPq7LJCuoklm/2VErUU9c6HnTD+Pa0=;
- b=Dr50sscpwS2OsInWUwdpys2jqWsolGZQpp2y+22YCv/qaDcQKDLbRoaytcL+YfahCc
- CkFwObW4J8N1tvZpNyGzonw8ays9Fjvg3JJTj9GUxT2by9NSBnw+5EGciJPU7pdlvqnf
- aG8sFaNnhREgZPBbQctLUSEOSgLCKLtoRYrdyaYzRClkcmVPpfOjjvD/MpvNdK4m5Mac
- V/GgYt3kM7WaPJrZOXznyBc3gWbN23Doy3qo6c3+oqfc5aR/ajSgr/TSz/1EZBgt9Ub8
- 5dpDtui5nzllgkrDzyHOtHZ4wYGOdXNUgpV2+UQ3nk0TYmgmXqu3wyfLflrwsvQjS2sF
- H4jQ==
-X-Forwarded-Encrypted: i=1;
- AKwUvBzawAbn+Rk6mqPVpnnWJe3kwmvSkalXyqShfWkELShX12WH5ov7B60VFgL9YkSqO6fdoo0qJD30NA==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++kAqJSWUCX7hcHwW3HWN516vctkenvk4T++aUmZKGIDh6l1CVq5
- 9eI/e+IPD855dqxCHtZyvLA821BPcPpTYjvHnT7mSEaEeQ3/f5CuB8NVdWZ9rOKM794=
-X-Gm-Gg: AYBFou3BhUpYr31TLvKYLMRSrIW6PltzvvyUZtBVVVGh58w8Of5KmvSBYttfiaOwElO
- 6ALQ/Dzu9mGCM2DSLWZLVR6QBUs5ft64GBOT4n33L+C1xa+SRG91mtpAvaxp+3ECQiSmBgL9V6d
- pe5A2RNpDcvXPQ8suUatBB1kM25vs1HVmkfqGeozEq1Jzkp/s2EynvpWXPns5iYmK+OXtcHdVA7
- fYaMOXvKKNUsiDEfFo+ke/YD+jXF7QomV92vGzWX5MRTMCE2A9X11FjON73Avzes6BLkzfCF7Rt
- 1hq5EhJOwd2uBDfoUrrR5qqXMbH9BAMdvaTTfmEwcwJIYbGTLN5xANfgV/OZ+6npG/RV8dkTy6c
- LrXGU5sI3sEojF9cKpU4g8T8Hvr4vEnobxg2HiM+teV795BdK7Lx81LytpO0LUGllA6kT7dgcQh
- D9znjK0UZFawD86NXdDyGCpaAecoM5LdzH0s6y8VXtPYMNzbWmzjQEv7GAUgY3ZydX9wkFVI13E
- sGo/47u/JedWYLcL6DrsakKs1MFZVPY3PfBaA/wk8XK9POoUUAHSLdWFLqOYWEZ5oo/aoxq/CRR
- AcAK4Q==
-X-Received: by 2002:a05:701b:21c7:b0:143:46a6:b01f with SMTP id
- a92af1059eb24-146cfec8e21mr13180519c88.31.1790651852851; 
- Mon, 28 Sep 2026 20:17:32 -0700 (PDT)
-Received: from localhost.localdomain
- ([2603:8001:5f01:8bab:3481:cbb6:f339:9e4e])
- by smtp.gmail.com with ESMTPSA id
- a92af1059eb24-145ad9e097fsm31321186c88.13.2026.09.28.20.17.31
- (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
- Mon, 28 Sep 2026 20:17:32 -0700 (PDT)
-From: Artem Dinaburg <artem@trailofbits.com>
-To: stable@vger.kernel.org
-Cc: Artem Dinaburg <artem@trailofbits.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Sasha Levin <sashal@kernel.org>, Suraj Kandpal <suraj.kandpal@intel.com>,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Tvrtko Ursulin <tursulin@ursulin.net>,
- Simona Vetter <simona@ffwll.ch>, intel-xe@lists.freedesktop.org
-Subject: [PATCH 6.6.y] drm/i915/hdcp: Add encoder check in
- intel_hdcp_get_capability
-Date: Mon, 28 Sep 2026 23:17:26 -0400
-Message-ID: <20260929031728.88004-1-artem@trailofbits.com>
-X-Mailer: git-send-email 2.55.0
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE55910E987;
+ Mon, 28 Sep 2026 18:51:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version:
+ Content-Type; bh=5qnV7EXhoJJFalznK0XSuqpTf5BmngP99eEFgR/0CXs=;
+ b=CndcBI1iX95SD7YrTr9oVR148/T/UGzqfpsXqRoEELwYwfVgN6/HYBprUkjRm+
+ thJpJ3dUrJvoLFZVOwaMoj0v7MQYHbcpZTIeJtTyWBsDFOv/6d5OKu27KCQW+Gem
+ ii/9fFWxBlw2D6+CC2SFQquDg5K5Czz+GYJa+C59fdKpk=
+Received: from fedora.localnet (unknown [])
+ by gzsmtp5 (Coremail) with SMTP id QCgvCgA3NmsQt7pq6yiKBw--.44976S2;
+ Tue, 29 Sep 2026 02:50:57 +0800 (CST)
+From: "xizheTang2005@163.com" <xizheTang2005@163.com>
+To: intel-gfx@lists.freedesktop.org,
+ Ville Syrjala <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 1/3] drm/i915/vrr: Use vrr.in_range to determine if we
+ need the AS SDP
+Date: Tue, 29 Sep 2026 02:50:56 +0800
+Message-ID: <tUu3Qs03RZO9Y8ZvpXUc7w@163.com>
+In-Reply-To: <a902dd489a317d5c0d07e0703ec905caee0ed89b@intel.com>
+References: <20260923164321.9230-1-ville.syrjala@linux.intel.com>
+ <RxSA9gIRRBSaKwxlF7t96Q@163.com>
+ <a902dd489a317d5c0d07e0703ec905caee0ed89b@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-CM-TRANSID: QCgvCgA3NmsQt7pq6yiKBw--.44976S2
+X-Coremail-Antispam: 1Uf129KBjvdXoW7Jw47tFy7tF4DWF1xXrW3Awb_yoW3KwcEqF
+ ySqrsrW348tFyjva1rCF4xWF4xGay7try8X3y8W3WkZryrGasrZFW8GFn2yrn7Ja13Awn8
+ C34Yvw1ruana9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUb8u45UUUUU==
+X-Originating-IP: [2001:250:20f:1:a533:cf01:13a0:45f8]
+X-CM-SenderInfo: x0l2xvpwdqwjqqqvqiywtou0bp/xtbC6hE7kmq6txHVRgAA33
 X-Mailman-Approved-At: Tue, 29 Sep 2026 12:54:01 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -101,67 +62,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+I retested on drm-tip, same SHA with and without series 174831.
 
-[ Upstream commit 31b42af516afa1e184d1a9f9dd4096c54044269a ]
+Baseline: 972eeb850a4c (drm-tip 2026y-09m-28d-15h-36m-03s,
+v7.3-rc5-601). Full kernels, not a distro xe.ko:
 
-Sometimes during hotplug scenario or suspend/resume scenario encoder is
-not always initialized when intel_hdcp_get_capability add
-a check to avoid kernel null pointer dereference.
+  A: 7.3.0-rc5-drmtip-A+  (no 174831)
+  B: 7.3.0-rc5-drmtip-B+  (174831 applied;
+     intel_dp_needs_as_sdp() returns crtc_state->vrr.in_range)
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20240722064451.3610512-2-suraj.kandpal@intel.com
-Assisted-by: LLM
-Signed-off-by: Artem Dinaburg <artem@trailofbits.com>
----
-Hi Greg, Sasha, and drm i915 maintainers,
+Machine is still the 21VG / 8086:b080 eDP from #9252
+(EDID range 30-120 Hz).
 
-I am working through the small CVE backports still missing from 6.6.y.
-This one addresses CVE-2024-53051. It rejects the HDCP capability query
-when hotplug or resume left the encoder unset.
+Boot full modeset shows the same vertical corruption on A
+and on B as Fedora 7.2. Suspend/resume on B is unchanged.
+I did not dump drm.debug on these boots. If a dump is
+needed I can recapture it and attach it to #9252.
 
-The fix is already present in 6.12.y, 6.18.y, and 7.2.y, but not in 6.6.y.
-This fix also affects 6.1.y, which will need a separate backport; this
-submission contains only the 6.6.y patch.
-The code change is identical to upstream.
-
-Could you please queue it for 6.6.y?
-
-CVE: CVE-2024-53051
-Upstream: 31b42af516afa1e184d1a9f9dd4096c54044269a
-
-AI assistance: An LLM helped identify, adapt, and validate this backport; I
-reviewed the resulting code and validation evidence.
+This is not a Fedora stable-backport artefact: vanilla
+drm-tip already breaks the same way. That matches #9252, 
+174831 changes the gate to in_range, which is still true here, 
+so B is expected not to fix it.
 
 Thanks,
-Artem Dinaburg
+Xizhe Tang
 
- drivers/gpu/drm/i915/display/intel_hdcp.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index f377c4484e1857..f7987fb90bb1ac 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -142,11 +142,16 @@ int intel_hdcp_read_valid_bksv(struct intel_digital_port *dig_port,
- /* Is HDCP1.4 capable on Platform and Sink */
- bool intel_hdcp_capable(struct intel_connector *connector)
- {
--	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-+	struct intel_digital_port *dig_port;
- 	const struct intel_hdcp_shim *shim = connector->hdcp.shim;
- 	bool capable = false;
- 	u8 bksv[5];
- 
-+	if (!intel_attached_encoder(connector))
-+		return capable;
-+
-+	dig_port = intel_attached_dig_port(connector);
-+
- 	if (!shim)
- 		return capable;
- 
--- 
-2.39.5
 
