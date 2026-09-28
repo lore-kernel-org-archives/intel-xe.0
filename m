@@ -4,77 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 339B2C9832F
-	for <intel-xe@archiver.kernel.org>; Sun, 27 Sep 2026 23:54:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17A32C9830E
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 00:03:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0CB710E707;
-	Sun, 27 Sep 2026 23:54:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3A2B10E707;
+	Mon, 28 Sep 2026 00:03:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wn7GoFWc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mqhDjkM+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C84CF10E707
- for <intel-xe@lists.freedesktop.org>; Sun, 27 Sep 2026 23:54:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68E0A10E707
+ for <intel-xe@lists.freedesktop.org>; Mon, 28 Sep 2026 00:03:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790553296; x=1822089296;
+ t=1790553796; x=1822089796;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=5MgJsBRjMiNqkz+rk9L2oDpbZkQOcp8kXeImY+ilXto=;
- b=Wn7GoFWcaakX1Hc2z7CGDf/iuyqLzO+dd20tg99rudLFd5qGbKjjJqTU
- CuJKMPq6khWqX7ksV5d8mPmUl6Iy603npT/KbzgvG4JkwdNN+3BBG6Wzu
- oXki5d6zXxrQEQuCsSVRfa8bQegz4RsO/uai66K8DKM+3dp85eoVAFsxW
- D3ugTqB5V6TzrxCjUmUu6bAf2dpMGs1jTOhVoxmVwHj2S8VCbgmNs8rE2
- mte5i9LPYyymyyqYPpap2k3zcWz8iF8zdrx2TCjD9S2sxDQ0o5wCn6Flh
- rBJXYCEoU5GYtTQ3Q8F5NRxOXJzkoTtmoNypWEQaS1vw70MMOLWPs3h9k Q==;
-X-CSE-ConnectionGUID: ytlq09ddQJOulzcdNp8vww==
-X-CSE-MsgGUID: KQr2oa4nR5yjP6aZz9Dnjw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11918"; a="93741482"
-X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; d="scan'208";a="93741482"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2026 16:54:56 -0700
-X-CSE-ConnectionGUID: 0LUXNvS7RHy5eGPM4hNq5Q==
-X-CSE-MsgGUID: P+dvW7dSQF+tKOysWxiJ8w==
+ bh=+AlO/rvzMUttMXPm3OdTWfsVSuqRIM7NjrkINsMmQsA=;
+ b=mqhDjkM+XQ25M6PoH1KP/gKSyE1tDjt+QyhkYKTm0m5ri8JlV35h9TkT
+ 3lS3cyEt75PgJ5I0cypxc7fQ2UfNyDenXZdrgfMwKLLvNlcBXaqSZEeja
+ 59llHbh9soOAAHXoTEqLoWL5yjNki5n0HK6ZXf++BSfoK9A0cPP7IjhcU
+ DcgJzgcy5LurIyPwB9XtDgG+0hcwD3HteSLU1DswSHYYjhfUpSJMBRPcZ
+ 4fc5oq8igTzpPAdpDtrgElEN/qWniDXfbrZ0j0JZVGwQuryRojI0erBQE
+ EEeCYuCeD5ndbjQNuo9bF+rPRgW4dDIlqSSoIRaw0GED0qskthfc/BHP6 A==;
+X-CSE-ConnectionGUID: DXyAwP0uRqekuUFTyJmvew==
+X-CSE-MsgGUID: L1gbxAsZRnuYRuZo1IVRKg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11918"; a="102620168"
+X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; d="scan'208";a="102620168"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2026 17:03:15 -0700
+X-CSE-ConnectionGUID: IpL9XjJkRc+h+XtpSx7UdQ==
+X-CSE-MsgGUID: 5dvgkjoKQ5+mjWOJZvQsuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; d="scan'208";a="275016860"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2026 16:54:55 -0700
+X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; d="scan'208";a="274119742"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2026 17:03:15 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Sun, 27 Sep 2026 17:03:14 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Sun, 27 Sep 2026 16:54:55 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Sun, 27 Sep 2026 17:03:14 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.23)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Sun, 27 Sep 2026 16:54:55 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.0) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Sun, 27 Sep 2026 16:54:54 -0700
+ 15.2.2562.46; Sun, 27 Sep 2026 17:03:14 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PsLgH0/FsD0ZyOxGIMk9bccRei68G4tWh+2yzXSj9C4XVPoW82PRpN+skzK6TxCiw6XjxfHD5zNmW7dGm1LWFlWzXz6guL/8F7cG/NPFGwZa0wCEODdsT488S8Q1xRpdrmOFeBgj2MbXfTpZQQDrlzvfAgr1Kj6A/fWszVUm2eEDvigzQLY+OlsgpyoO+pbnvZWt5lbfC+u+VoMXAckp0AJ+VbnbU/4iVJMw2GK7ugjUf+iWCs6WI/wDvZYjEtYdf5fdeA9sXmTm+TwAQNpDE86Naqz4hid/lQM/XxBotMRCGhMhfZVlnQ5/CXMy+Jw9vm5pMOlFNes+V+fNj5+c7g==
+ b=l9hOvMW/FEezWwE3yQV5Z19JC4/xFjfAsta7w9WPy78wFcAV371fY2VkRfc3A16S2acVqFSebsheIFxYrwXfM6EJopgjbGO+XRlx5lP+bF8UnBPaWOz0Czr81CQPjEDOG9b1LYXdXM6jpltq9d2pb1FNi5EaFDiWTFTR1YD/ojvHS1bd3oy/UQv1PJ7y4AVmDO/8yxfp9HltNnBsK4moskcZLurhwRvxcIr4dO/cuUjcShftXYKEDwdZ6/B0rK1NfZQlBDrZfqTafSF5eaeBUmon3d5is5kWnTe/mWd/ndIR7qnrHjSWhTkAcgmLUNJcGe5HUpPTB6N3WlqLjkw97A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QQnm4ZR9RrbJELJpMauIfXXlq6LCIGfTHNpeKrRMQIk=;
- b=excnJE8wMI1i8Hn5FQOepON4YqeYgZJVzQiZHOnp5aNlJ56HF9KwNXBfj8RUQMwy/b9rkVbMe9YmiYllCRuzbJmVKtDJDgMGYbAv4iu94qEm/bLV0VyQCcdEAD2ReetJhTe0qw8MFYTTuo9thzHzjWfvtPayFoe8zU8S6OTZH7zaHZuq/NF9iIkBHHgCUiQJmn/8xzaCNdZBVVHLiHi6tk0u11c5bnxFVwl89MI1B8tciDNEkhcWg/5xPQXsN+gi3cRFrpgZ2/0SRPce02WM2r88oS9hLrNUxxvyfBXP1y2VqOrtwA/jHP3dWEJVM1e7RvX3LCn52EvotUh+/XRqDw==
+ bh=UMsjXZ/CANJzSLwfcakgniNmKrR9kI1mY0PyJ/hH3Bs=;
+ b=UCXK7/m5wKxQja/msqeDOXF8+YxSeHfr1BN8MBpNTNj+UxKL7cMpnsrbppVlejcuX1dfD0pSsU5Ka5ml8WK2h4b72roTvW/p347/qTsu23u4d9SezYFt6WukXpG29wOfnyE3+qEPpBa2N2wIBAg4XTl7Uqzg+/8pabJ8LgRREidARDc0JdlR3tJOyQDPqZYZPVlg5O6nB9Hur6k6KZm3/jc1h5WOc6BGuP5Pbp6JX7KISQLwMbWFWfNQ7SmcHBfOTvSQwQDOZinQcH4Hbvxjrk9zOFYnxyTSF5zwgX/mb7tjspNRVK0ip8BBAgxy3vRG9XvEa4q8bvpYbau8P05tjQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from IA0PR11MB7187.namprd11.prod.outlook.com (2603:10b6:208:441::12)
- by MW3PR11MB4620.namprd11.prod.outlook.com (2603:10b6:303:54::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.23; Sun, 27 Sep
- 2026 23:54:52 +0000
+ by DS0PR11MB8207.namprd11.prod.outlook.com (2603:10b6:8:164::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.23; Mon, 28 Sep
+ 2026 00:03:09 +0000
 Received: from IA0PR11MB7187.namprd11.prod.outlook.com
  ([fe80::be96:3f58:953d:6565]) by IA0PR11MB7187.namprd11.prod.outlook.com
- ([fe80::be96:3f58:953d:6565%4]) with mapi id 15.21.0451.022; Sun, 27 Sep 2026
- 23:54:52 +0000
-Date: Sun, 27 Sep 2026 19:54:30 -0400
+ ([fe80::be96:3f58:953d:6565%4]) with mapi id 15.21.0451.022; Mon, 28 Sep 2026
+ 00:03:09 +0000
+Date: Sun, 27 Sep 2026 20:02:38 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <umesh.nerlige.ramappa@intel.com>,
@@ -83,71 +83,71 @@ CC: <intel-xe@lists.freedesktop.org>, <umesh.nerlige.ramappa@intel.com>,
  <anshuman.gupta@intel.com>, <matthew.d.roper@intel.com>,
  <michal.wajdeczko@intel.com>, <michael.j.ruhl@intel.com>,
  <paul.e.luse@intel.com>, <mohamed.mansoor.v@intel.com>, <kam.nasim@intel.com>
-Subject: Re: [PATCH v7 2/3] drm/xe/sysctrl: Add RAS error injection debugfs
- interface
-Message-ID: <armstjBvo4_fVAkQ@intel.com>
+Subject: Re: [PATCH v7 3/3] drm/xe/sysctrl: Add generic mailbox passthrough
+ debugfs entry
+Message-ID: <armunq2t6ZkNjVqt@intel.com>
 References: <20260925135521.1804299-5-anoop.c.vijay@intel.com>
- <20260925135521.1804299-7-anoop.c.vijay@intel.com>
+ <20260925135521.1804299-8-anoop.c.vijay@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260925135521.1804299-7-anoop.c.vijay@intel.com>
-X-ClientProxiedBy: SI2PR02CA0010.apcprd02.prod.outlook.com
- (2603:1096:4:194::15) To IA0PR11MB7187.namprd11.prod.outlook.com
+In-Reply-To: <20260925135521.1804299-8-anoop.c.vijay@intel.com>
+X-ClientProxiedBy: SI3PR01CA0010.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:296::16) To IA0PR11MB7187.namprd11.prod.outlook.com
  (2603:10b6:208:441::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|MW3PR11MB4620:EE_
-X-MS-Office365-Filtering-Correlation-Id: e481b87e-5273-4534-df37-08df1cf2b872
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|DS0PR11MB8207:EE_
+X-MS-Office365-Filtering-Correlation-Id: f5874753-4e09-4c1e-094b-08df1cf3de3e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|23010399003|376014|1800799024|3023799007|6133799003|10067099003|56012099006|11063799006|4143699003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: ZT4AtgNZRgdt8F742htNCzKvy2EjXuyfew2jtf4jPM+OcpRpU3BqwiOjjmZUAc0L9kgX5YKxkzCsENmrbU6X+396j5xE5yFFry1KosAyKKlFT7ouIG49WGL3TL/l+Ie4nxNzNmz7cPidy4+jsU5JDCxgqX617swq1agNf5VwLnGxSGY60XCAP1ByNkogM1wXRVLJE5AzEeiXId4AJV6j/0BFDBCxo5acIXdyAMSUhvIuuZ/HBSeO1TnnnCDgtT2+1Rf1l6ZNnehzTtlUrjmUCXVaQQ8NKXeNEgQSpijcLbK+BXQfQY6FnMd+IMNbBnKa6znhvQgIrn/emei6emeEB5jUYM+pRSEtSl2wy8MIf3lRbBCK8R+ZJAV02iaP9e+44m12+kMIQlMvmqlMeQUOehEx2g1ETfNHaIabn0GZANMS2bsf0TjK1zGeGOWr9XvayLrBZ8R9zFVC/GX34xYaI2t6iUG8P+cK4UqhixMxEx9yToY6zjOK2H90fShshxRGqBaLHf9Vb95EilmZ6NQcD3HPQjBVgoVh8K2pwbbB4z7KeqZEzwLoqd8WCOzlaZ+J9ZjivBG2GiKPFOuhJJeGHC9DFPkaLBbaLtJCjSmTqSwqqz9Gy0RASRGGBV2YQdGdt94Uo4zYRVNNyBFovHrINr0/47ywviCceCa72mOWWAE=
+ ARA:13230040|376014|23010399003|366016|1800799024|11063799006|56012099006|4143699003|10067099003|22082099003|18002099003|3023799007;
+X-Microsoft-Antispam-Message-Info: YvwBn6va1kTKgAYFa5j67pnyUPsMuZnvHh6R6Xbgi1lvM9VvhgZmbSp+JxGf2aeqUViVL6QjQrQZt1P4jyzz6hp8aOomki9L6lqEulsGAAOwn8DhLGZsEkziycYCkvszoS3rXxoD285WrLJww7gj1KZ4sEZhVhDjE3HdYeL7AbW52HxyXc2RDpIGm3urIBnyQvNwt91dHkzR8WLRATGzl9RxeOH79XOJQSjPNOlZRQfswHa6Smn9CcPhEC3H2H+6Pkrm8ed71/AbXzxdwrMD983SgxMmdDxQ0TvQrNeMHX3lK14rrdvmhkx87KWGP6wI40tSpDCmIyWVKsDVqOwIFVzASzGgTugnxfM4PTSsIHNCvRYjqXYRTfaH+QVat3jWWwypDlxQHTCUcqYJlwJINMPKVrh9h44U0q04gI6kN9egRDLChb/8YBLkTFNbzpR86AmJjevPNddZaf+Aw0Hnt534/GMBgd8MgiiILtkYpZ4fKdH6+e7IV3+lxTyLr4kfvRddGdIrWz+P7wKxA6JR8je8CnFWM2aQ/mYVCg4FWT/S4D9+hv9+QwioJgP1NlfJzSm6c4yH64oiyMacL26ALVvQ9uOx6E+A9oO+scnNvOef/5Sicqb60XWAj98r2oUBsrN3IdxkJhXY0KCz9/5IwF74qwsL4WRBYnB/cvNQe6w=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA0PR11MB7187.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(3023799007)(6133799003)(10067099003)(56012099006)(11063799006)(4143699003)(18002099003)(22082099003);
+ SFS:(13230040)(376014)(23010399003)(366016)(1800799024)(11063799006)(56012099006)(4143699003)(10067099003)(22082099003)(18002099003)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zLGE7HRQw/MWlhwywrVei5K/wRgqOFY18zfbkDSwfx23j9ovNd/LQ2fTo5mp?=
- =?us-ascii?Q?sUijftf7mNhN7Vuyq5uwW2Ch9AImwXuZ5Q6WmOLa1GTuqzzbQJoHiPlfVqr0?=
- =?us-ascii?Q?7/cK2Z4DhR0OITeWC3+AuzRhjCv3I4lw7WI/paq25f/njl3g6CtHDwOXuYbY?=
- =?us-ascii?Q?u4ogidqW1RZqSZ90DGz1bKahSP7LMUWWhQq97XUzzh7mcNvl7OfPhSCHlGEy?=
- =?us-ascii?Q?mkCy1HBk5ZRq3wzsIze0ESC6UFbmM7IQWMO7O79MILpqp6Hgc3C4jrM1MsCE?=
- =?us-ascii?Q?VpGUq+/Gp16jIrzIDtmd7VjGZh+kD12y5xFDEUiq3/SMrcEm1lG1/PRa81qK?=
- =?us-ascii?Q?afqho+p9zQvC2QFuJp9l7FM/3PGlmoiu2nZk0+1KH23LX+QpDYK6J5+XTVkR?=
- =?us-ascii?Q?8iEymt9L3az28HbagmGhpq2qMWrp6xVinC/yGx8jvDtjL+W015gPZL3O1aVs?=
- =?us-ascii?Q?xDfy54Xwl/lgFmPVwMj7LgQRdpNH8jSN2NCh/BUpTQowOgFjiGe4M6pJskeh?=
- =?us-ascii?Q?Go5qeoJmBp08OvZFkqgA7z4LcLYAN0X1YaXl2hUr4bPGQV2jdloIqkEoXuTv?=
- =?us-ascii?Q?3xRRFSmfYElG8j2NHFJAJjdy2eYAJAOo36xpb35fIH2akzUM7scRCn/Vgmm7?=
- =?us-ascii?Q?FU31tFb1r+NCJn/xL1M6ArVmIGAvADqdRqcPAvZ842uv4PlsBM4UW/japQ1h?=
- =?us-ascii?Q?jKP8+SJxiCUHRGC/F4UZzt3EQJV5jEWgKTI6JtWE94ARas0CgSrHhL4n11in?=
- =?us-ascii?Q?UuAvD4wFP0kjfH92MRGmrYuWYicVbBuygYnCn5lnRGUweDMCUe1bdSkKzGQQ?=
- =?us-ascii?Q?pPFXONoaaGFU1RtlyWwGlztVjSrXgcmVoirVD1HktCebh/nKiuuVy2O1e4MY?=
- =?us-ascii?Q?OB+8Ziyt9yYxI0dZjyqWRb75JFc01LQRfObRYxcP8NiCD0T5zu1uDnEDwYKr?=
- =?us-ascii?Q?irbBX08BIkCCQ+FWfe/YPw7kzgizfApKK8dd3odrN8eTp8ypcZJzVW6l0chF?=
- =?us-ascii?Q?M4tx2vBcegVA37gIep72f7En4RfMLSd6nvilGUOGmDS6WtYZ4SD/PKFUmMDB?=
- =?us-ascii?Q?GfsEcviuLZiHT27wADXkiaolbtkA7HpX+c/XcGCJOLMYrsELquT31mCdUxI6?=
- =?us-ascii?Q?sKYr6eR9a6bQGrO9Ju8k3aAS1nTyZHe3LeVhvd3dIjCPpTfmLimfTmx+6p0B?=
- =?us-ascii?Q?F25i29Qkws4bw2KSaiMOfG8wC79ybWoJVzWH8mtM58iyF1OZpSDnfQXEnwwc?=
- =?us-ascii?Q?bNURyV2u7s5XSdz13okTtMLqyZ0SAunEGZxE+b4PLQpJDT3Mm52D+UIj/k2X?=
- =?us-ascii?Q?zdKAvNkJyUcimtnRg2NhoK9MfVjdn0UESCrL4HdIDctQR8WmpuFhBM2DOBxq?=
- =?us-ascii?Q?ixzVfb0Ps/9CjWBbM3mWDlce7rOCH02cL9sUZ4ojGbUMI10NCvsJ44UTe8vJ?=
- =?us-ascii?Q?Ydw1HMWhln7N1DQRFBNRx+I9JtTEYV0v7cYvXfQ+inLr/k7uhoi+dtMCGluM?=
- =?us-ascii?Q?pLQbRW59+wgQ8NqyObJnj7GUWd7O2YcrFI/ZB0cyKrrQ1IofIyXjkjDRCWLf?=
- =?us-ascii?Q?IiI1EwvHNZNMy1qWfmqYpoHb7iXRqSUc9HNHAmdz3dYm5NPwKq57Ou/7/8pB?=
- =?us-ascii?Q?QqBhu8BUJYk9Es7+oiF58PphJnIodA61059y90SH2eKglM1vg7j7LxUxqdNh?=
- =?us-ascii?Q?sjNuHpJ2GvsvrJKJaAGGvlqTNtRlyCfTjHVBo9PdRuiVbb56cPGxzGIzom8u?=
- =?us-ascii?Q?pySGqfyMBg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: Qk48p2dB7WjHkiDBkdSozzKhJuXGyILHoKyjiWoFoK3+1aNJnl7RFqyoWUU/7OTutF1QgaRG5vtFRzuWFom74O0h6nTTTjrson9wrcCdnhVe0AcONzfr8JEzYo3j3qe2KMHa2PoBhJpubbv6G1lGQ4uFinUGkD/Id7LxU3SSVYl6t/P0w8XauiYe0U3kfaupdvKX6fxv5Lnsex3Z8kQqnkjJkY1OVx6/M8vEMSRsjQIUKbFPvD9TJycd1gsJoqpARylkag93ilwmsyQabcdJKfSoN3Q8xeh4x8XmA+iorkWC+mDXqvfyBvHqgVV084TsTL9sjLIJ4SKzh8It+jEP8A==
-X-MS-Exchange-CrossTenant-Network-Message-Id: e481b87e-5273-4534-df37-08df1cf2b872
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zeQjrOuRei6aqfkfrBmmjPVRgAVUsKVGOc5gP5G3jK35zHnfXpf2mOrk2aN1?=
+ =?us-ascii?Q?XqKHMTxbMCjhKsE8wIXaUYpwYR6+xeQUZUMTcJ0Rzkz5vtbP2UjqxPh6AzPX?=
+ =?us-ascii?Q?VNDw+pY9bNdx85LX6HpNWUUXk08BdOMDMS9vWOYG1gYClV4AYAwEcxK/0eiB?=
+ =?us-ascii?Q?72AiXnwLAoVFjApj9HqOJpAOxpBbqKcsiPTnlqjj/FqtlAd+0E8O11c7LV+J?=
+ =?us-ascii?Q?yARlsv+ZzFlMYhP3vNzTkiyttnR2onMpXAYOVXJZ2dhre4O15A2MnOeoQxlY?=
+ =?us-ascii?Q?MlDY7j5mkic1t6w8a5Mem5YZqO+qH/ZHh0+0/bgEnGvNJ0eMdwdSCHk/PTfx?=
+ =?us-ascii?Q?j8ekkX85wct01kYM+Vu9Bw9KeaGB7lyixoZ2Egbz+JuzO+SFAUPM35QEbrW3?=
+ =?us-ascii?Q?t4Tz5hICwbwnVzCphxRKA1PGz1+Rusa3vGrNxr46xj5h6+dVRYCQgLw/YUV/?=
+ =?us-ascii?Q?vjH52IMxAjnic9YqC6bpyx5DpjXkW3NAHw6Uh4l1L5aZmK2kMd/9t9a7EiPf?=
+ =?us-ascii?Q?cFR8cCyqOIr/dbxegYqtQZ/d8ZSc2tnWvJ4eUJJTUIUQwO3IwZAGxMiNoRwe?=
+ =?us-ascii?Q?F7hX2liRQMT8V629DDIciIJ5b4RGjO8AAYKrp0+CapGiZN8cM81LEzLAOzCo?=
+ =?us-ascii?Q?n6oPTjE39pjk1CtN6pJ8d/r+MVtoyzwTmhukB1zHE9dwy90v/TMiTFDihBMQ?=
+ =?us-ascii?Q?IpvtEcHTdbGLwBn/J5GxX4pNSl/Bj30WR9+7HXyb5DnNV93vXeUfvTpbPYy9?=
+ =?us-ascii?Q?1eAY36fx6IJCfI5OcR8GKAeFOyHg3vAkDbV+5Dz7WR0SR30iMLOkF0yjQ3Ih?=
+ =?us-ascii?Q?8iFq0d3O1m+icdwyAIr4Hs7W4J0VrjiK2gIBDwhY1qG0gbAOl4sIeK+tiRdL?=
+ =?us-ascii?Q?lrbugiZjqrw7p8EU/0BbRunQ2bjTKFjgGoP0Wua6R0BS/OBV4fYxAle4CyAs?=
+ =?us-ascii?Q?eu+u1Hf9fh36DuzeettLONn2uYugmkfeCD09mnkQkXZO7f8mPFN2UVJ5pc2U?=
+ =?us-ascii?Q?qgDyzGvk5p7ybfU9QDgVHv9mwaocLcrkAEM9n/QJTtk62dlwaVVPG35P4QbX?=
+ =?us-ascii?Q?3ViAc832TOnVfZdppyLIfkbADiGG7Bty7463NVZqdmDSlc77AlyO/TWUf4Bg?=
+ =?us-ascii?Q?f1HqSWFl/OAY0x9/5iN+HM+7NuZwivgemp34pE1DpX6ujy8dM8k9h0wWI0pM?=
+ =?us-ascii?Q?kDEhOKqMiwqhE7Tj9iI1lmbG8RfOR0w6P8dkbeg6XygpBFH2fVcFho1toaSZ?=
+ =?us-ascii?Q?+HU9LM1AD0qK1Q/7YpTNI1b/bqreKsoxM9jsHEb67RKILbBdI4cJhocA/1/d?=
+ =?us-ascii?Q?6E4ktWp4zs89CHfgAR+zGlcotZVAwlTyd6Rsh3YJn+URbysNyti2SPUUNQBy?=
+ =?us-ascii?Q?qhqPK+mIDMXoVmZfW2fEVB+4nZMo1GM7vVODT/ZZ6DW1YmzfQnwkA1qEchA2?=
+ =?us-ascii?Q?zGBqE4hDsjH8BXaS+USV2GyzY/7siTnf95Ktz5DwKW9cFT4nmljWSXooyiET?=
+ =?us-ascii?Q?Yw5uIkuQKk2I0VJObELiR/pYcC4WvlOnQwnFsCjZpHaXc1oSonkiBqFiMupy?=
+ =?us-ascii?Q?EaRlruM9PNC7IoipOllgxQJsaOh1VdDVus4ENfSOGa7pM6IHOzyglHtbLNI9?=
+ =?us-ascii?Q?elQuyD/WwYOes0o8syl6lQnYSkk3NJBWgSKUvlyHo6d7NX5tiYsCCchkiTTj?=
+ =?us-ascii?Q?Pz3al/OmHZK/xfxCX+Xtzrj+pp4KmjjV4RfgKSFUN8wUWkfTnQp7HWMONWtC?=
+ =?us-ascii?Q?d+x9Nxg4iQ=3D=3D?=
+X-Exchange-RoutingPolicyChecked: Tptspk6SQUHJu3sHOHHi6qMd70v1tyW77wuGE+NFZo/m7lnjGWjRrPiFPgL8Ga1yHfh65Ip0OkrSdAwLf+rtZgAJgB/GvTPfLRfW5bJDTYLhOuXMEUdguqV1DHZWHUBJi4BUGWzBEd77hmSeZX+ZnnNb/DLuWGnF1NqV55CL+9vdtW+s2IiE04VcNg/v3gFWD7FYQh7cgP2E9WUch/EdJhzw/HqMC08sKtU5moHR5SjwL9wEzWlWk+5kuGAOzDH4gAriuN3JeKfXtB4LcItTE51bOlRgCels0cF6MXIkgjm5MFSuAaYTLip9eswiVVzTkv65rtkGWuZZkwnZcb568Q==
+X-MS-Exchange-CrossTenant-Network-Message-Id: f5874753-4e09-4c1e-094b-08df1cf3de3e
 X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7187.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2026 23:54:52.0131 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2026 00:03:09.5904 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WpdzDzDDkEvlfzw7bYHuV0A7i5BqO6bYdYLEnpxjGlS2WhEWbK0cfAdsmZgcpQWtoPfYIdoQC6re6Z/hm+2Grw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4620
+X-MS-Exchange-CrossTenant-UserPrincipalName: vp9CkBCZqeX3/86jBYpnfbUrZjpFZXj8lSdAe7xxPQ20+s7CgulAJq2v/5g+d6xd7HZ1IrWhM/XgDlukZqeCaQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8207
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -163,132 +163,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 25, 2026 at 06:55:22AM -0700, Anoop, Vijay wrote:
+On Fri, Sep 25, 2026 at 06:55:23AM -0700, Anoop, Vijay wrote:
 > From: Anoop Vijay <anoop.c.vijay@intel.com>
 > 
-> Add debugfs interface for exercising System Controller's RAS error
-> injection command, used to validate RAS error detection and recovery
-> paths.
+> Add a "mailbox" debugfs entry that allows any System Controller
+> mailbox command to be issued for bring-up and debug. group and
+> command are supplied by the caller as the first two tokens of every
+> write, followed by optional per-command response timeout and
+> response-length overrides and the payload bytes:
 > 
-> Command details:
-> - Group ID: 0x02 (diag group)
-> - Command ID: 0x7E (XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT)
-> - Usage: echo "<ras_block_id> <ras_sub_block_id> <err_type> [params]" \
->              > /sys/kernel/debug/dri/0/sc/ras_error_inject
->          cat /sys/kernel/debug/dri/0/sc/ras_error_inject
-> 
-> This command requires the diag application to have completed firmware
-> boot and initialization (late-bind loaded). Both cat and echo are
-> rejected with -ENODEV until xe_sysctrl_is_diag_fw_ready() reports the
-> diag firmware as ready: the readiness check is done in .open(), so the
-> file stays visible under sc/ but is inaccessible for both read and
-> write until the diag firmware becomes ready.
+> - Usage: echo "<group> <command> [timeout=<ms>] [resplen=<N>] [byte0 byte1 ...]" \
+>              > /sys/kernel/debug/dri/0/sc/mailbox
+>          cat /sys/kernel/debug/dri/0/sc/mailbox
 > 
 > Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
 > ---
+> v7:
+> - Add per-command timeout override to mailbox debugfs
+> - Add per-command response-length override to mailbox debugfs
+> 
 > v6 (Rodrigo):
-> - Reject non-zero offset writes for ras_error_inject entry
+> - Reject non-zero offset writes for mailbox entry
 > - Account for mailbox header size when validating input payload length
-> - Refactor token parsing to simplify cleanup and error handling
 > 
 > v5:
 > - Add per-entry locking for debugfs accesses
-> - Add xe_pm_runtime guards for ras_error_inject readiness checks
-> - Simplify ras_error_inject write-path flow
+> - Skip empty mailbox group/command tokens
 > 
-> v4 (Rodrigo, Anshuman):
-> - Gated ras_error_inject on diag firmware readiness in .open()
+> v4:
+> - Added a generic mailbox debugfs entry
 > ---
->  drivers/gpu/drm/xe/xe_sysctrl_debugfs.c       | 152 ++++++++++++++++++
->  drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  31 ++++
->  drivers/gpu/drm/xe/xe_sysctrl_types.h         |   3 +
->  3 files changed, 186 insertions(+)
+>  drivers/gpu/drm/xe/xe_sysctrl_debugfs.c       | 172 ++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   1 +
+>  drivers/gpu/drm/xe/xe_sysctrl_types.h         |   6 +
+>  3 files changed, 179 insertions(+)
 > 
 > diff --git a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-> index dfd614e7e54b..10675cd774ee 100644
+> index 10675cd774ee..ba904cb24512 100644
 > --- a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
 > +++ b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-> @@ -10,6 +10,7 @@
->  #include <linux/seq_file.h>
->  #include <linux/slab.h>
->  #include <linux/string.h>
-> +#include <linux/string_choices.h>
->  #include <linux/uaccess.h>
+> @@ -299,10 +299,179 @@ static void xe_sysctrl_register_entry(struct dentry *root, struct xe_sysctrl_deb
+>  	entry->command = command;
+>  	entry->response_len = 0;
+>  	entry->status = 0;
+> +	entry->timeout_ms = 0;
 >  
->  #include "xe_pm.h"
-> @@ -134,6 +135,153 @@ static const struct file_operations xe_sysctrl_loopback_fops = {
->  	.release = single_release,
->  };
+>  	debugfs_create_file(name, 0644, root, entry, fops);
+>  }
 >  
-> +static int sysctrl_parse_ras_error_inject(struct xe_device *xe, char *tmp,
-> +					  struct xe_sysctrl_diag_ras_err_inj_req *req)
-> +{
-> +	unsigned int nfields = 0;
-> +	char *token;
-> +	unsigned long val;
-> +
-> +	while ((token = strsep(&tmp, " \t\n")) != NULL) {
-> +		if (*token == '\0')
-> +			continue;
-> +
-> +		if (kstrtoul(token, 0, &val))
-> +			goto inval;
-> +
-> +		switch (nfields) {
-> +		case 0:
-> +			if (val > U16_MAX)
-> +				goto inval;
-> +			req->ras_block_id = val;
-> +			break;
-> +		case 1:
-> +			if (val > U16_MAX)
-> +				goto inval;
-> +			req->ras_sub_block_id = val;
-> +			break;
-> +		case 2:
-> +			if (val > U16_MAX)
-> +				goto inval;
-> +			req->err_type = val;
-> +			break;
-> +		case 3:
-> +			if (val > U32_MAX)
-> +				goto inval;
-> +			req->params = val;
-> +			break;
-> +		default:
-> +			xe_err(xe, "sysctrl: too many ras_error_inject arguments\n");
-> +			return -EINVAL;
-> +		}
-> +		nfields++;
-> +	}
-> +
-> +	if (nfields < 3) {
-> +		xe_err(xe,
-> +		       "sysctrl: usage: <ras_block_id> <ras_sub_block_id> <err_type> [params]\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +
-> +inval:
-> +	xe_err(xe, "sysctrl: invalid ras_error_inject token '%s'\n", token);
-> +	return -EINVAL;
-> +}
-> +
-> +static ssize_t xe_sysctrl_ras_error_inject_write(struct file *file, const char __user *ubuf,
-> +						 size_t len, loff_t *offp)
+> +static ssize_t xe_sysctrl_mailbox_write(struct file *file, const char __user *ubuf,
+> +					size_t len, loff_t *offp)
 > +{
 > +	char *kbuf __free(kfree) = NULL;
+> +	u8 *input __free(kfree) = NULL;
 > +	struct seq_file *m = file->private_data;
 > +	struct xe_sysctrl_debugfs_entry *entry = m->private;
 > +	struct xe_device *xe = sc_to_xe(entry->sc);
-> +	struct xe_sysctrl_diag_ras_err_inj_req req = {};
 > +	struct xe_sysctrl_mailbox_command cmd = {};
-> +	u8 resp_hdr_only[sizeof(u32)];
+> +	char *token, *tmp;
+> +	unsigned long val;
+> +	unsigned int timeout_ms = 0;
+> +	size_t input_len = 0;
+> +	size_t max_input;
 > +	size_t out_len = 0;
+> +	size_t resp_len = XE_SYSCTRL_MB_MAX_DATA_SIZE;
+> +	u8 group, command;
 > +	int status;
 > +
 > +	if (*offp)
@@ -301,151 +240,195 @@ Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > +	if (!kbuf)
 > +		return -ENOMEM;
 > +
+> +	max_input = min_t(size_t, len, XE_SYSCTRL_MB_MAX_DATA_SIZE);
+> +	input = kmalloc(max_input, GFP_KERNEL);
+> +	if (!input)
+> +		return -ENOMEM;
+> +
 > +	if (copy_from_user(kbuf, ubuf, len))
 > +		return -EFAULT;
 > +	kbuf[len] = '\0';
 > +
-> +	status = sysctrl_parse_ras_error_inject(xe, kbuf, &req);
-> +	if (status)
-> +		return status;
+> +	tmp = kbuf;
 > +
-> +	xe_sysctrl_create_command(&cmd, entry->group, entry->command,
-> +				  &req, sizeof(req), resp_hdr_only,
-> +				  sizeof(resp_hdr_only));
+> +	do {
+> +		token = strsep(&tmp, " \t\n");
+> +	} while (token && *token == '\0');
+> +	if (!token || kstrtoul(token, 0, &val) || val > 0xFF) {
+> +		xe_err(xe, "sysctrl: invalid mailbox group id\n");
+> +		return -EINVAL;
+> +	}
+> +	group = (u8)val;
+> +
+> +	do {
+> +		token = strsep(&tmp, " \t\n");
+> +	} while (token && *token == '\0');
+> +	if (!token || kstrtoul(token, 0, &val) || val > SYSCTRL_HDR_COMMAND_MAX) {
+> +		xe_err(xe, "sysctrl: invalid mailbox command id (max 0x%x)\n",
+> +		       SYSCTRL_HDR_COMMAND_MAX);
+> +		return -EINVAL;
+> +	}
+> +	command = (u8)val;
+> +
+> +	do {
+> +		token = strsep(&tmp, " \t\n");
+> +	} while (token && *token == '\0');
+> +	if (token && strstarts(token, "timeout=")) {
+> +		if (kstrtouint(token + strlen("timeout="), 0, &timeout_ms) ||
+> +		    timeout_ms > XE_SYSCTRL_MB_MAX_TIMEOUT_MS) {
+> +			xe_err(xe, "sysctrl: invalid mailbox timeout (max %u ms)\n",
+> +			       XE_SYSCTRL_MB_MAX_TIMEOUT_MS);
+> +			return -EINVAL;
+> +		}
+> +		token = strsep(&tmp, " \t\n");
+
+Sashiko noticed that in this and below case you might fail on double space.
+I wonder if we have a cleaner way of doing these parses...
+
+> +	}
+> +
+> +	if (token && strstarts(token, "resplen=")) {
+> +		unsigned int resplen;
+> +
+> +		if (kstrtouint(token + strlen("resplen="), 0, &resplen) ||
+> +		    resplen > XE_SYSCTRL_MB_MAX_DATA_SIZE) {
+> +			xe_err(xe, "sysctrl: invalid mailbox resplen (max %zu bytes)\n",
+> +			       (size_t)XE_SYSCTRL_MB_MAX_DATA_SIZE);
+> +			return -EINVAL;
+> +		}
+> +		resp_len = resplen;
+> +		token = strsep(&tmp, " \t\n");
+> +	}
+> +
+> +	while (token) {
+> +		if (*token == '\0') {
+> +			token = strsep(&tmp, " \t\n");
+> +			continue;
+> +		}
+> +
+> +		if (input_len >= max_input) {
+> +			xe_err(xe, "sysctrl: mailbox payload too large (max %zu bytes)\n",
+> +			       max_input);
+> +			return -EINVAL;
+> +		}
+> +
+> +		if (kstrtoul(token, 0, &val) || val > 0xFF) {
+> +			xe_err(xe, "sysctrl: invalid mailbox payload byte '%s'\n", token);
+> +			return -EINVAL;
+> +		}
+> +
+> +		input[input_len++] = (u8)val;
+> +		token = strsep(&tmp, " \t\n");
+> +	}
 > +
 > +	scoped_guard(mutex, &entry->lock) {
+> +		entry->group = group;
+> +		entry->command = command;
+> +		entry->timeout_ms = timeout_ms;
+> +
+> +		xe_sysctrl_create_command(&cmd, group, command, input_len ? input : NULL, input_len,
+> +					  entry->response_buf, resp_len);
+> +		cmd.timeout_ms = timeout_ms;
+> +
 > +		guard(xe_pm_runtime)(xe);
 > +		status = xe_sysctrl_send_command(entry->sc, &cmd, &out_len);
 > +		entry->status = status;
+> +		entry->response_len = status ? 0 : out_len;
 > +	}
 > +
 > +	return status ? status : len;
 > +}
 > +
-> +static int xe_sysctrl_ras_error_inject_show(struct seq_file *m, void *data)
+> +static int xe_sysctrl_mailbox_show(struct seq_file *m, void *data)
 > +{
 > +	struct xe_sysctrl_debugfs_entry *entry = m->private;
-> +	struct xe_device *xe = sc_to_xe(entry->sc);
-> +	bool fw_ready;
-> +
-> +	scoped_guard(xe_pm_runtime, xe)
-> +		fw_ready = xe_sysctrl_is_diag_fw_ready(xe);
+> +	size_t i;
 > +
 > +	guard(mutex)(&entry->lock);
 > +
 > +	seq_printf(m, "Command: group=0x%02x cmd=0x%02x\n", entry->group, entry->command);
-> +	seq_printf(m, "Diag firmware ready: %s\n", str_yes_no(fw_ready));
+> +	seq_printf(m, "Timeout: %u ms%s\n", entry->timeout_ms ?: XE_SYSCTRL_MB_DEFAULT_TIMEOUT_MS,
+> +		   entry->timeout_ms ? "" : " (default)");
 > +	seq_printf(m, "Status: %d (%s)\n", entry->status, entry->status ? "FAILED" : "SUCCESS");
+> +	seq_printf(m, "Response: %zu bytes\n", entry->response_len);
+> +
+> +	if (entry->response_len) {
+> +		seq_puts(m, "Response data:\n");
+> +		for (i = 0; i < entry->response_len; i++) {
+> +			if (i && (i % 16) == 0)
+> +				seq_putc(m, '\n');
+> +			seq_printf(m, "%02x ", entry->response_buf[i]);
+> +		}
+> +		seq_putc(m, '\n');
+> +	}
 > +
 > +	seq_puts(m, "\nUsage:\n");
-> +	seq_puts(m, "  echo \"<ras_block_id> <ras_sub_block_id> <err_type> [params]\" > ras_error_inject\n");
-> +	seq_puts(m, "  cat ras_error_inject\n");
+> +	seq_puts(m, "  echo \"<group> <command> [timeout=<ms>] [resplen=<N>] [byte0 byte1 ...]\" > mailbox\n");
+> +	seq_puts(m, "  cat mailbox\n");
 > +
 > +	return 0;
 > +}
 > +
-> +static int xe_sysctrl_ras_error_inject_open(struct inode *inode, struct file *file)
+> +static int xe_sysctrl_mailbox_open(struct inode *inode, struct file *file)
 > +{
-> +	struct xe_sysctrl_debugfs_entry *entry = inode->i_private;
-> +	struct xe_device *xe = sc_to_xe(entry->sc);
-> +	bool fw_ready;
-> +
-> +	scoped_guard(xe_pm_runtime, xe)
-> +		fw_ready = xe_sysctrl_is_diag_fw_ready(xe);
-> +
-> +	if (!fw_ready) {
-> +		xe_err(xe, "sysctrl: diag firmware not ready, ras_error_inject unavailable\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	return single_open(file, xe_sysctrl_ras_error_inject_show, inode->i_private);
+> +	return single_open(file, xe_sysctrl_mailbox_show, inode->i_private);
 > +}
 > +
-> +static const struct file_operations xe_sysctrl_ras_error_inject_fops = {
+> +static const struct file_operations xe_sysctrl_mailbox_fops = {
 > +	.owner = THIS_MODULE,
-> +	.open = xe_sysctrl_ras_error_inject_open,
+> +	.open = xe_sysctrl_mailbox_open,
 > +	.read = seq_read,
-> +	.write = xe_sysctrl_ras_error_inject_write,
+> +	.write = xe_sysctrl_mailbox_write,
 > +	.llseek = seq_lseek,
 > +	.release = single_release,
 > +};
 > +
->  static void xe_sysctrl_register_entry(struct dentry *root, struct xe_sysctrl_debugfs_entry *entry,
->  				      struct xe_sysctrl *sc, const char *name,
->  				      u8 group, u8 command,
-> @@ -173,4 +321,8 @@ void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent)
->  	xe_sysctrl_register_entry(root, &sc->debugfs.loopback, sc, "loopback",
->  				  XE_SYSCTRL_GROUP_CORE, XE_SYSCTRL_CMD_LOOPBACK,
->  				  &xe_sysctrl_loopback_fops);
+>  /**
+>   * xe_sysctrl_debugfs_register - Register debugfs entries for System Controller
+>   * @sc: xe_sysctrl instance
+> @@ -325,4 +494,7 @@ void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent)
+>  	xe_sysctrl_register_entry(root, &sc->debugfs.ras_error_inject, sc, "ras_error_inject",
+>  				  XE_SYSCTRL_GROUP_DIAG, XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT,
+>  				  &xe_sysctrl_ras_error_inject_fops);
 > +
-> +	xe_sysctrl_register_entry(root, &sc->debugfs.ras_error_inject, sc, "ras_error_inject",
-> +				  XE_SYSCTRL_GROUP_DIAG, XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT,
-> +				  &xe_sysctrl_ras_error_inject_fops);
+> +	xe_sysctrl_register_entry(root, &sc->debugfs.mailbox, sc, "mailbox", 0, 0,
+> +				  &xe_sysctrl_mailbox_fops);
+
+Should we put this behind the CONFIG_DRM_XE_DEBUG ?
+
 >  }
 > diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-> index 6a8284a424c3..2554848e7484 100644
+> index 2554848e7484..a0628eb47bff 100644
 > --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
 > +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-> @@ -14,10 +14,12 @@
->   * enum xe_sysctrl_group - System Controller command groups
->   *
->   * @XE_SYSCTRL_GROUP_GFSP: GFSP group
-> + * @XE_SYSCTRL_GROUP_DIAG: Diag group
->   * @XE_SYSCTRL_GROUP_CORE: Core group
->   */
->  enum xe_sysctrl_group {
->  	XE_SYSCTRL_GROUP_GFSP			= 0x01,
-> +	XE_SYSCTRL_GROUP_DIAG			= 0x02,
->  	XE_SYSCTRL_GROUP_CORE			= 0xFF,
->  };
+> @@ -155,5 +155,6 @@ struct xe_sysctrl_mailbox_command {
+>  	(XE_SYSCTRL_MB_MAX_MESSAGE_SIZE - sizeof(u32))
 >  
-> @@ -55,6 +57,35 @@ enum xe_sysctrl_core_cmd {
->  	XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID		= 0x05,
->  };
+>  #define XE_SYSCTRL_MB_DEFAULT_TIMEOUT_MS	500
+> +#define XE_SYSCTRL_MB_MAX_TIMEOUT_MS		60000
 >  
-> +/**
-> + * enum xe_sysctrl_diag_cmd - Commands supported by Diag group
-> + *
-> + * @XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT: RAS error injection
-> + */
-> +enum xe_sysctrl_diag_cmd {
-> +	XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT		= 0x7E,
-> +};
-> +
-> +/**
-> + * struct xe_sysctrl_diag_ras_err_inj_req - DIAG_RAS_ERR_INJECT request payload
-> + *
-> + * Request payload for XE_SYSCTRL_CMD_DIAG_RAS_ERR_INJECT. The mailbox layer
-> + * prepends the application message header before sending.
-> + *
-> + * @ras_block_id: RAS block (subsystem) to inject the error into
-> + * @ras_sub_block_id: RAS sub-block (IP) within @ras_block_id
-> + * @err_type: Type of test error to inject
-> + * @reserved: Must be zero
-> + * @params: Optional injection parameters (default 0)
-> + */
-> +struct xe_sysctrl_diag_ras_err_inj_req {
-> +	u16 ras_block_id;
-> +	u16 ras_sub_block_id;
-> +	u16 err_type;
-> +	u16 reserved;
-> +	u32 params;
-> +} __packed;
-> +
->  /**
->   * struct xe_sysctrl_app_status_req - Get application status request
->   *
+>  #endif
 > diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-> index 9ad3c40de97a..8ea6e1f29ddd 100644
+> index 8ea6e1f29ddd..f12455f2886d 100644
 > --- a/drivers/gpu/drm/xe/xe_sysctrl_types.h
 > +++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-> @@ -68,6 +68,9 @@ struct xe_sysctrl {
+> @@ -39,6 +39,9 @@ struct xe_sysctrl_debugfs_entry {
 >  
->  		/** @debugfs.loopback: Loopback test entry */
->  		struct xe_sysctrl_debugfs_entry loopback;
+>  	/** @status: Last command result */
+>  	int status;
 > +
-> +		/** @debugfs.ras_error_inject: RAS error injection test entry */
-> +		struct xe_sysctrl_debugfs_entry ras_error_inject;
+> +	/** @timeout_ms: Last mailbox response timeout used (0 for default) */
+> +	unsigned int timeout_ms;
+>  };
+>  
+>  /**
+> @@ -71,6 +74,9 @@ struct xe_sysctrl {
+>  
+>  		/** @debugfs.ras_error_inject: RAS error injection test entry */
+>  		struct xe_sysctrl_debugfs_entry ras_error_inject;
+> +
+> +		/** @debugfs.mailbox: Generic, user-parameterized mailbox entry */
+> +		struct xe_sysctrl_debugfs_entry mailbox;
 >  	} debugfs;
 >  };
 >  
