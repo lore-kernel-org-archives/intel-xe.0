@@ -4,63 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8B91C98328
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 05:10:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 753EDC98328
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 05:12:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E86610E76D;
-	Mon, 28 Sep 2026 05:10:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FD4910E77A;
+	Mon, 28 Sep 2026 05:12:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IXr0CCyj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g3U/1htN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD9FE10E077;
- Mon, 28 Sep 2026 05:10:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F1B310E770;
+ Mon, 28 Sep 2026 05:12:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790572257; x=1822108257;
+ t=1790572337; x=1822108337;
  h=message-id:date:subject:to:cc:references:from:
- in-reply-to:mime-version;
- bh=mjzXy4XTq4jaugdWeEmxVQCOOn+uxi71eZI2/+MHudY=;
- b=IXr0CCyjfGvBio+Io/aZQthgO8xhDuzuxInRUr4I1pZK0wj5L9uLYi03
- JTHTbnuQpUpFyNnnCXg7jRFmIxs3ZirEapuBCci2mTlJFDCqX2rgTh+Zf
- 9vtOl0yIcznIIea0hiJgBDTeq5vfUnnaxmCc+9h/lepUS+3XPr7apbWvg
- t+HkjlVf5/f42OhEglUKjUGTLLpThczx08W0zkZVDo2V8JFUO4vk3IWIv
- B3uvPqbw9i8n/+bWFGExgb2d/0XyZ3+0+RZst6KswB4K4xWLxgT+B8k0g
- ZmhTIowfdIOmmynQ0EEXhSSH1x4GzFWieOWm+WvH8xKdzMaffSFKui9uI A==;
-X-CSE-ConnectionGUID: ikrB66IdSYGyzMicN3uumQ==
-X-CSE-MsgGUID: v6kPkNg1T22m+3EVt5J7tA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11918"; a="91284242"
-X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; d="scan'208,217";a="91284242"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2026 22:10:56 -0700
-X-CSE-ConnectionGUID: a/PYOU+jQ+ejRKumUmbxVQ==
-X-CSE-MsgGUID: rvk5mhkPRXal30hE862Edw==
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=uujijEhUGiyejbHrcmq9FvBuxo/4CZBw1bWIPlGwLRI=;
+ b=g3U/1htNcDBrUw2ppEA1xHcz/qntNn7CrCdXXLBVTd6Uovnj0iFxQMij
+ gQdCwFrDeQBvofRc45zox1d+jtiytcymtuurt6NmcOSBpWHVVUtgaUCjQ
+ 7ZRXgR4hZ+y83D5qvtRQoqIUJgc2CQHuNFlGvnORHk8YpiysR84fKL2V1
+ UPc0fEgB/vbP3E0TEjWvdb1keexiT8qPgSmgTenHrU8akuEPx8bx+pvZy
+ 1IuFyt2xX/79ArNg3jsPn5Immu+52YWRDYxk6oz1yiDCEjCcpRp2d4C3Q
+ sannWf/MXS00W2R9qblpM82dQw35WRvCN6R6C3Vz5+4BbNI+Ls9rcY14z A==;
+X-CSE-ConnectionGUID: 05+0AFvjRLKugtdmttbN3Q==
+X-CSE-MsgGUID: esodXuh9TTaJdHe9sbnIMQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11918"; a="101920967"
+X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; d="scan'208";a="101920967"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2026 22:12:17 -0700
+X-CSE-ConnectionGUID: KlmoMS09RLiQQHVe88jrYg==
+X-CSE-MsgGUID: s6pPjZNbSHqLKvfmNuzNtQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; 
- d="scan'208,217";a="278292176"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2026 22:10:56 -0700
+X-IronPort-AV: E=Sophos;i="6.27,127,1787036400"; d="scan'208";a="274996323"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2026 22:12:17 -0700
 Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Sun, 27 Sep 2026 22:10:55 -0700
+ 15.2.2562.46; Sun, 27 Sep 2026 22:12:16 -0700
 Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
  FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Sun, 27 Sep 2026 22:10:55 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.24) by
+ 15.2.2562.46 via Frontend Transport; Sun, 27 Sep 2026 22:12:16 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.1) by
  edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Sun, 27 Sep 2026 22:10:55 -0700
+ 15.2.2562.46; Sun, 27 Sep 2026 22:12:15 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uPdbPjJfsCJ2GT6BI4j1xOynO3+nz16h3QYHrcZMs3DNxymMVxWeJU9KMLTFIZ0q9976uJgouhk3T1UvsxFkM11aVRSkRpW+7/qzTePJygq7TpbUa27ZffJs1FlppNGndUp7Vx8//SB0peYviEsa7nMaLFiGLH6YcGoGdsavpyEkAbz/O6U7GSHL0cHSYDq7+u2gSsHQT42O3LcAcKIf6AiG0jPxbwH13+Eh/gw9aNH5M3wBSxOjfTSZl4J+AbLw+GQX4Ig2ee3YTJheGUBiV3QntT71hL4RIfVHIofw5ZwyCfcZrupHJ5ocPHw0zWOqoPFQ94c+bn/wm9Wb/eGqSg==
+ b=ffR5ZQDMNqujume7xTBlZpV+lgXqMT8xqVYaTUgwbVAkynnCDRAhyI9Ig2rwab3SUwkt3HBqtLlA6Gl9uvo+ZsThJMmny7jKcs1eMREuwcI66sGaA9D665xfah+mtt5+lHyykGecJ0EQEgCMWdA/15rNW53putaDUBUEEq7Wo0+SwYmwzhF6zkmGSqxZL7XDxhDjQ5RifGw9FisfM0wE0ZdmOdpuNTLWokE6aus8Yuga6FxnD+Q3GJyLb5mcOUTZkUSR/iMa370yzYbCpq9wtQoEq+0qaAJSa8YdvtMruUMXI5RzdP4539kEQBAhQKc/6wivw7Qe83kfiKoUPlBw2w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8gPfu/Qgnc+J6r9W8awOSa27fjpoE5AkaoULCiAGzSo=;
- b=gYKpwsAoCLaFOWcFYxIfEWpWE3wpD45or58Nv9bOXgjseF9buV6p4c8YgyUabdwPcRTErNBV0ZFAZkSOe1c4gjT9C0UK0fNMDXrMfWPl6lFMY/gkjuEeMdWhMkq4ULebTMKGaAZo+iSkEEwdCgQ95CWDn+T1FkRJHBlZXFkJN5gJ1r8L6eemRuG92IbNf0mhLG+pz7h2SSAm+6OW/EU7sFccT6imSd51RbH+XybrTD0HETALxElAmqtBzPNNF8MOgDfh7PRgZaLfRJhA0bK44YhOaOqbJO7ePTRHmM7JtB13e+MDRivy4x4dhqBygvrlVeanZi9kIgYFyPsaAYoogQ==
+ bh=Xp/QWb5CAUyii7EmEhwPCQK9dMDtwBThVdwCRKAC5aQ=;
+ b=e98g8AMZoJXv5+gbIP1iFt+wliGmLr0Tcq198ttYF4lM07WKl2jqWxXaFVs2p4RsJDOTIwe8+z7OFrGoFc/kgyBzEbnoHct2WZawCqdJVFaI/3P5MKN20SVlc65/pBnQFeXoReDd3YNiL2HZ5ZlOyAvfKb2PMAq82x6obVVs7R+koxoGMd30N3mWEOaL6htW7KNfCTRvSoUoI6Avtmug8DEsyll7cOeagUk1a/wEey4D0LjvKnQeUCyucRpNbQ1EnOllXEOvGNhcUzvOdKVUIQcq6xfbSjcVBXEulZoTqSi941Qb092aRkTBsl3cmXT5dZgQtmM+xb92AMXU+tzIhw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -70,91 +69,92 @@ Received: from MW4PR11MB7149.namprd11.prod.outlook.com (2603:10b6:303:221::14)
  by SJ5PPF867D7FF5E.namprd11.prod.outlook.com
  (2603:10b6:a0f:fc02::83d) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.23; Mon, 28 Sep
- 2026 05:10:50 +0000
+ 2026 05:12:09 +0000
 Received: from MW4PR11MB7149.namprd11.prod.outlook.com
  ([fe80::75d3:519d:fced:5a6c]) by MW4PR11MB7149.namprd11.prod.outlook.com
  ([fe80::75d3:519d:fced:5a6c%4]) with mapi id 15.21.0451.014; Mon, 28 Sep 2026
- 05:10:49 +0000
-Content-Type: multipart/alternative;
- boundary="------------0KaxMRX0bFE9Uz3W4Zrr7J7B"
-Message-ID: <b57275aa-41bc-41d4-9f4d-e8c6dbf9b03b@intel.com>
-Date: Mon, 28 Sep 2026 10:40:43 +0530
+ 05:12:08 +0000
+Message-ID: <eedf6324-56d2-4462-bef9-4d721fcc78b7@intel.com>
+Date: Mon, 28 Sep 2026 10:42:02 +0530
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 1/1] drm/i915/gmbus: Add bit-banging debugfs control
-To: <sashiko-reviews@lists.linux.dev>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+To: Jani Nikula <jani.nikula@intel.com>, <intel-xe@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>
+CC: <ankit.k.nautiyal@intel.com>
 References: <20260924152812.439986-1-ramanaidu.naladala@intel.com>
  <20260924152812.439986-2-ramanaidu.naladala@intel.com>
- <20260924153641.6B2891F000FF@smtp.kernel.org>
+ <ee11604db9b3c47383e1c32e68a34ffdca2fde86@intel.com>
 Content-Language: en-US
 From: "Naladala, Ramanaidu" <Ramanaidu.naladala@intel.com>
-In-Reply-To: <20260924153641.6B2891F000FF@smtp.kernel.org>
-X-ClientProxiedBy: MA5P287CA0130.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d2::12) To MW4PR11MB7149.namprd11.prod.outlook.com
+In-Reply-To: <ee11604db9b3c47383e1c32e68a34ffdca2fde86@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0109.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b5::14) To MW4PR11MB7149.namprd11.prod.outlook.com
  (2603:10b6:303:221::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MW4PR11MB7149:EE_|SJ5PPF867D7FF5E:EE_
-X-MS-Office365-Filtering-Correlation-Id: ef8b8a72-87cd-4ab8-c8d5-08df1d1edc83
+X-MS-Office365-Filtering-Correlation-Id: b3d12f18-7e33-481b-ea5d-08df1d1f0bbb
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|376014|1800799024|6133799003|10067099003|56012099006|11063799006|4143699003|8096899003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 09vYly/OF+Hl7R/tsR95Zx3kQAnPiTM9YYJuGqRu80fnSlQYdLCo7hYJFr8BudEaBXFe2v+j7WbX8ojrV44PesRSbO1yRTAbhYz8qUyDRK++uE+pSu0QwdSg8HGUMI++P9LX5/FjsQVzaZbJFAaHiGMqMcNSsv5kgUAHevx4y1w13Y7KZjOVVwHZef1ZgMvboqbKs/nCFUw4Z7qZIB40wzF4D2Po3M1oIrKsD9FNxhV6WxwF+Ieo5A5Ywbd7s1mKOi8k7l5Pkq9s92pmAnPzLSpu0FrkfHidAdZgvjHxyTf7xYfnlM8hlt2RDBzOeKdHbkVCPE2lnKcMPdRVw4rnqlnm/aUdwUQW0K4hQMFcGOnJYihNzQV2g5S9rdoxxobdThIx0Enad0UCuS94XNUtK17llorozyp41lJxI/umA9Rsez/PP01CoNULJ+lGY/ekDnELGLgKpGUxkeWsaDlhJPI9ES4zFUP1UBPZtQA7XAXEbtnG6m73ThYDQAU0twyDsB0ImtsbU+ziG4ATrtCD4GylsvV5bEJDl/UALGnSZM+FN/Ehdh5pk/d8Kc786uVDFbPtUct7Vi4/Pbdux8ell/zfwLS4fWzhH+IloEfwtbWic3/c2A+LDbu4r3thecn6mwlmTXhiFyyxhCI/mgrByOv4H5B7w/zbrYcl5GPlUkg=
+ ARA:13230040|23010399003|366016|376014|1800799024|3023799007|10067099003|56012099006|11063799006|5023799004|4143699003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: 3IZE6mQZSRRpmQYneOmtDKgndz1mgNJ3adn1/VHISN+5Rj+MIO/FjFwjmYtjixXdrdiokrHL8ODa9qX4fCoid+cB9U7KlT5TwxTYz9L8KxPNzcrRsuHZjiy18J58nMmwvJX8iBe7bK3eUVTE/2ow+8gOkyuw4t+jC8AG/7BdxLVtUMaecKsWQ+7gGhBRZSgdISyjo5wGdOLAQW4EE5wZjRMwllf9t94kC+xk24/3S4iqWKhVJLwfYzeYXrW1BJXTubOjj6BGqvVik2jVioxYI2+3KXjwJctCguwHV0hldOTDyxjOxLrHPFAkIM6M8ErqA8c8z75Mzro9cmW5WqDm7NOHEQ3S+K5V+5M6zLhKhiq0aX+lkiZKdZdjj7zoySfB6KWnImr0vDG7GI8jyOdNLJ9f6W9GGuzsWJz7gv51Ska7Xm/6GkBflep+cca3tleC6nnPfHRFLlrzdU2zJnaUdtLH16AvDJ8Y5UnGb+i9PnwrwlYLeiuBbeMuztiTHCjsbhE1nZgK+QQ2a0ZeKvUelPeZ3lcPRFdy3nm9hgyZhobzIHFVkypMdzga61cH2xTXB+Apdp04foqkVq5goFM8EgExUz0Ftwi0r3Sd/hbfya3kuESk/wEsTTozowVg88BJe4LcESwdL4CW8kWZd03OSzVRINwpdMir7UOK7MMKH6A=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW4PR11MB7149.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(6133799003)(10067099003)(56012099006)(11063799006)(4143699003)(8096899003)(18002099003)(22082099003);
+ SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(3023799007)(10067099003)(56012099006)(11063799006)(5023799004)(4143699003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V214VFU3OEZvQTZRNExxWFlBdEMxZGxDVWoraHBodnlzNDlaOCtWZWJRZVp4?=
- =?utf-8?B?RjFMOERUVCtZVnRoSXI3YlQvUFMyQVh1Yy95QnVTNkFJTEd2YTFSS2lrdGV5?=
- =?utf-8?B?YmhxQ0poMVN6R1NkUHpQNXU0L0x6RjFwdjZYUzM1WU44SUU2NjdaQW9JQlBY?=
- =?utf-8?B?SHV0TkgxcS9ORFZBalJwT1JqSWlVWmhwNStWbkJuWnhLTXA4UjFFLyt3cjE0?=
- =?utf-8?B?THY2Z0lkL3RYZS9mdTZocVArYnFEMlB4SEEvbWE4NnZMbzVqbjJvbkdTV0t3?=
- =?utf-8?B?NS90TDdIWVhGdjVrZmM0ZlFLbWVWRDZTczA4OG9aY1NXZTZRbWdzVlQ4b2c1?=
- =?utf-8?B?NmFTQ1lPcWNhWnZrZ2VoMmU5T3JtYWVhdVNac2xCVmhJZVA3U3JabHJPbVZr?=
- =?utf-8?B?K1NWdGFiKzFraGRuZ0NzT3hNN0tDR293VHJUeDEyVnJJWU1NS2dlZlF2WlQy?=
- =?utf-8?B?aTJLd1hnMEt2TzJZRWljd05ZRTZIc2U1b3VVY1JvTDlJdWh0ZHRSZFE1UDhD?=
- =?utf-8?B?RTlQSGFtalMvWTEzR2JlTllWNWdSbUhFQUFUeFU3Nmg2WXhlNFVjNEUrdDZR?=
- =?utf-8?B?Z3BoaWNaQytNS2txSnZFR3ZFVDR1VzFRWEVXR0lPSUZySkdPa0JybXU2THlt?=
- =?utf-8?B?N3ZQaHI3bU82a3lVZ1p0eXRvcUpDUnhnK3dkSGVST3RCWGlpWTZTRGRSV2VP?=
- =?utf-8?B?blBUWnI0endqek14MGoxR056VkZDNDBCbzg4dEg2azZURG9UcUVISk1kZXEv?=
- =?utf-8?B?MTlZY1pNSnZ2ZU1pemJQSk1DaEFRdXd0NVJ5d09lN2ExRVdEcTJRYzROQXU3?=
- =?utf-8?B?NEdxM1VIRUM3UFhXRGtpUlhzeFFObDRJUjVoZ3F4V1lycU84UlpzekZLeUNq?=
- =?utf-8?B?VTdyZjBnbUxpNk0rRS9OM2g5aGh5THdIUHdrZ0lFZHZSY2Eza3JoYnNXcXV3?=
- =?utf-8?B?TTlMdzdEbUNmYlM0a1BhTGtkZGJaM0diWHJlRTJFWEE3TVpkWHpPZnZGb0xr?=
- =?utf-8?B?clpKQnFxWjBnbXdTVjFLZnc5eUdBRmQ5NGlNZnBCZUlwRXZYWWd6M3VlbTY4?=
- =?utf-8?B?dVJwY01KR2tEOTAvVzFLeDFURUJGbitqeWpERTM3dlk3bUUzTjdrNjluQlkr?=
- =?utf-8?B?MUprY3RDaXBCZ3h4LzJDUVhON3ZQekFrbEtoamZCVnZzajRXNXgxcS82YmNl?=
- =?utf-8?B?NnFIT3J0MitVTkVsSTNsSVJmWUNmd2NaTUlkcUNHQzNBZXhXSkNMN2xWRE9Z?=
- =?utf-8?B?RThqNHhxdTMzOS9WTFVjdVg3Zk1PWmVtOGI2MThqcDdvSUFXS2VzNDNxRU9n?=
- =?utf-8?B?cmtMeERFdnZRYjdMUHFub2pDY1dIMnRiaTRoQkU4elh2VGhsZTNYNmJkeEJX?=
- =?utf-8?B?NGdxTDVBWG44UFY2dk4rVjk5TXI0bkVzYXRaL1pDM0Y5anRGd04rTmZxdnVi?=
- =?utf-8?B?cFEwQmN6dXY4ck1oVHN1eUVsNnB5cXZsV2lnRkc2Ny9Gc3NSYWZiSWtCYngv?=
- =?utf-8?B?YlZtUnhpd1F5N3JZdG05Q0J1UnlHSTR3Zis3L3Q3SFVTclRxNDVieXkyQXVl?=
- =?utf-8?B?eGVCOEExUGh4R21way9lM20velZQOEhwNkVqUUtBU2VPU3I1bmRJRWtSeitn?=
- =?utf-8?B?QkJyVlBvNi80dkJxcVhjNVFnYzh1blNPQ0g1TEI2YjVFbXBsblBzM3FUazFw?=
- =?utf-8?B?Y2w0M0Rtcm95cTlSdkxwVlRZZWhQdmx1a0dqdWRqRmQyUnZDMGVSUkc4TzJ6?=
- =?utf-8?B?K3RHaHU4VGEra1o5d1EvZmhCOFpEeDlsOUIvanVrVUNPK0xiRXk4Q1JuTjdF?=
- =?utf-8?B?aFVTWmN1c0p5RkU0WlhWdFVZbjJKNCsrTzhWdWtnMlZKNHFIWElxMjIyYWU1?=
- =?utf-8?B?VWk5Z1FRdWExWUJsMVhJclVFM25pQzFOQU1TdlViSHJ5R21uUS9NemhlWXVk?=
- =?utf-8?B?d0xuUndXcTZPcjBIVityTXV1MFhUeUZaaElmTk5sak5iNFVoSjJ6VUpHTC85?=
- =?utf-8?B?NGxYWlIxRzRUeGlMcXdyenNUZVd6MnlVVmtkYWZiYVUrbzkzMXNpTDF0cisw?=
- =?utf-8?B?d3E2RDdkNHB1R0lSV3d4WEwvY3lCam1IVEZDeTlnLzhWOHphVzZ0T2c4N1B2?=
- =?utf-8?B?VWhQT2ZiQjZXd3hhOGNGOTlwbXVLR2ZNdU1xZ3FHWk1JelZBVVdyWmFwZzg1?=
- =?utf-8?B?NmVnYkRWRlUyUFlTTU8xeHFSejc0cm9YVHhLdWppQnAwS3BrT1lzdFFwaHcv?=
- =?utf-8?B?KzZQdmhxbzdENnlKNGovdFNJZTdNZURzYlFlMnQrcVhzemVHK29OOTF1aGgz?=
- =?utf-8?B?eFdrZzFsQjhBUHA4UXJsMXlEUmQyZjN4YXRySzhocGJqa3dPVUYwTE45RHRh?=
- =?utf-8?Q?djgRqmQ+mlwvk/V4=3D?=
-X-Exchange-RoutingPolicyChecked: oIOsZf4+un16+0+K9NBXDWhYY/IlP2rGGhpoA+vry2CUfKjpYlX7DxdSQmtSHDvHjy7J7MNY+sSEtAAHl8aobS6N1HNSOzGEPWi5rpti5vfZHFdKBcmX0DwRzexVCfA/oMCsHG9PExu0Szc4O4NLxlTHDLphRvGiWkP30r6HWOMpl1jDIL70wU3AqwXkePs4VHqkW1Zf+r5ioHNy6SxA6gnoHR1Is5RMoa7iTAFoYB5zCXb4IOttt+0tyL73VDqYzv7bWH5sUXHuISU1P768iiQM1lRAjsuSMr6N1gilSxHdnL9/6q+GTYbKAmvpJ/0Ohwpj1MbyliMolaI6kYvitQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef8b8a72-87cd-4ab8-c8d5-08df1d1edc83
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dDJJbU0vb09wWU1qQ2R1ejFmbmp1NmZ1RFVQWVh6TWJzc3NQZmo5SGJxNUQz?=
+ =?utf-8?B?dFgvVlA3WGZBTXZqcFdCMGV5cGxOOWRveHJOR3E2NjF5YzYzM0Zvc2lEMWxX?=
+ =?utf-8?B?YUw1cUFueVhBbDhZUjJkY1hCWStadU8vUW5tN0YvMWpXaWVNWG5JanFpeFpj?=
+ =?utf-8?B?WngyNm80NGhGOWF0QThZQVEyV0h4clVtRkFPZi96bDMzVHRyWXp6aEpvVkxz?=
+ =?utf-8?B?QUsrKzhIV2Q2R3R3Vllpd1AwZTBhak44YVRhZmM2aDJBQS9SalJOWUlMRnpq?=
+ =?utf-8?B?RWRDR3ZMMkpGa2lhWWM2anovR0ZLQkJTLzNIRFZoZlZOUWVCcG0vbUdYMzIx?=
+ =?utf-8?B?aVdYTW9JekdUM2lJbXRWSG9DdU1WRGFkUkRmTU9wakc2d2g3OFJheFpFN2dF?=
+ =?utf-8?B?NVN5S09xUEI4SWJFVjhFOXlxQ0pqTmVoeGNJWHQ0Z2tMTkI1MG9JdEN1aEFz?=
+ =?utf-8?B?MUhvcTVEWTdMUlg4YkFsV00xQzJ4MG0yNk44a3N3Vitld0tMR2FVeWJZUmFO?=
+ =?utf-8?B?bDBadDJGMlpNZXQwYTROSFducG5Wc05VcjFtWVE4aGNUeW1qeElsUm1OYUpr?=
+ =?utf-8?B?Qms0aVhocy9oN1FaSVQrTm1zV2lkS2hkNmRnaGx5c0Ntbm9KOWplMlR1U0dv?=
+ =?utf-8?B?UUY2d2dJQ3FpNjVKSzF2c0Ewa0IrWlVTVDEyanNCQktqcktnbFpvQmw3a0hP?=
+ =?utf-8?B?YllIcTVCcGEwQkduMGdJVEQxUURCc2owMXkwSkxLRnlmc0dMRnBzdm90ckNB?=
+ =?utf-8?B?ZGx6em5GS0RwMmJBWEVZcWVqRjVjSzdHWU1oeUtSSUZyRk1jN1BNUzNyUzYr?=
+ =?utf-8?B?QkxjUDNuamRMTE9lOVZiK3Y0RlJIb1BxaEZCZzZTU3hQbnhYOVYrVkVYZTRp?=
+ =?utf-8?B?VjJsNng3M3JUaG5tQWVmd1BNZ0h4TWErS0YvQkEwRjQ1MXVkNWIzeGgvUFhM?=
+ =?utf-8?B?R0E0bE5GU2ErZkVqRVZOQlNpRElNaWdNVUhCMW54WHJidG5JcWxJMEZGYWVG?=
+ =?utf-8?B?K1d5M3ExK3RxTHBiRUlrbysvRldVYkJQd1lqWisxQlU3VTFIYzN6bXJNdjZr?=
+ =?utf-8?B?UWpxaXhDMVhEaFlZbGlqdUtxZXo2Sk9KQ09YY1FTY3pVRW9rZ1hCZEU2VU5x?=
+ =?utf-8?B?L2tnWWNhU05Qa082OS8wQXVUcTZoZVlib2pqTnlKWXZxZXlzODVJVWhWYjhn?=
+ =?utf-8?B?dTNSNkV4Q1RYMXNTUXdFSEN0S2JhVEFFOWRjNjNOTXJ4b0lJR05BT3ZBcjJr?=
+ =?utf-8?B?ZlhUWm1CZlVkTjJpZE5vY0RrV2REbUF4b0hGZnQxalNnL0xqbG4xREcxcVAy?=
+ =?utf-8?B?NW52OHFjekd1NHh3NGZEVEJnSGFYY0ZlR0p0TE1reS8rY1Yya1J2Z0EwSjZQ?=
+ =?utf-8?B?QlJjTVNTZkFkTVBoSnprUU9TNEFUUWt2ZGYyU21Vakh4SDZUQjdjWGZsV3pa?=
+ =?utf-8?B?R1M4cnpjM3ZYRFluYjFOai9uZHJ0SnRMSkkyVVdINGo3ZXdMNkdmWTQxa2FG?=
+ =?utf-8?B?M0JFU1lEOVJXK3VVR29qa1g4OW5RbU1GRVAzbVJDY0hpQmUybTNnM2ZuWlJM?=
+ =?utf-8?B?TEpCVVd2VDkwdXpTR2cxYXlMRkFqZE4xTW1TMzduWEFsMzZoK2hQcTAwQUpC?=
+ =?utf-8?B?a1lVSWpScDBMUEZZZDB2WWlsbmV3SlVaeXgvZGVMNytDL3NXNkFoc1NYQVNz?=
+ =?utf-8?B?ZDNkWEVYbmdzWkxsOHU0c2tJLzJPWWtNNWNFNjB4TmdIWVhJUkFENmVmMG9m?=
+ =?utf-8?B?aVJEMnRYd2VEc1B5b3dIY1BHYnl3WXhHOVJhRFRrZGdzN291bk9RZEZYdDF3?=
+ =?utf-8?B?cXg4YkxzUUdjNzhSWng0RzlWZnNKNXc3RHdzNlRSZ3g0Ky9kRkFqNVRnZVBF?=
+ =?utf-8?B?cC9PREt2eWtkSlhWeVVLV2J4S0k5RjhDLzRnQkpFc1hJaFlWd3lDL2krTUg5?=
+ =?utf-8?B?R2JiTEpJdzk0enNqb3VxSjc4eGNGanh3K21qRWRYRHNNOVBGMEowTlZML1Bj?=
+ =?utf-8?B?NjBJZEsvalZ6bVVLZm5uTUJOSUxSOGgybHZvM1hhOXcvSUR2OWhmdVBBMnhu?=
+ =?utf-8?B?OFl6dnlPUVdSSXVuTlBvaFdBZmV1dVVFZGpielF0OWdDK2ZEbkh4cXYyL3V2?=
+ =?utf-8?B?UlFNVm45SjdveUVUYitDOTRIV0tOd1FqbHR5VUYwSWhva0E5bEdqNU9hb3d1?=
+ =?utf-8?B?aUd4MHM0WWQrT3NuOVFjeTFJalZRSTcveTBjaVNCVksydDZna2JidkNyY1k4?=
+ =?utf-8?B?VlI3K0dZL2xxMU84REVMV3VPRkk3SmZaeC94UzM4VUpsTmtPTWFxcWtQbEhn?=
+ =?utf-8?B?RGNGdE5pWGUzenJzUnVsVHdGTEVpaTRweWs3Sm1YOVBRL1RDQzhIRitoZ1Jt?=
+ =?utf-8?Q?TLr/pq6RATjawXyg=3D?=
+X-Exchange-RoutingPolicyChecked: Z0dT8Sev16CGvMlXt86+wm6s8oZf5nXMu/doAq85CWKWtjlGbLKkt9Z2sQZJbfUJsZu2orMzBWJzg3zX1ORMNQNzS/5vya2HU4lNS9DR09yFmNdcZhJEwADrKVdWhS0U2Ll5ixusBmgQdAjBhj+6Hxzt40j3h6BFbV32n8KpN5HjLRUhTrm2mIKMC1piwyY9Jgbyaubx6Y24BNc2vseP/Yr+19s3j8EnmyrxP1WtbhUeFl1D/QqEiVcSC9ocK6Upp7czoO3oYMCRizU291DhyGeHeTmBAUUFg9dAZlbswgVQzIoLrjN7c7h3c9In+3fia4OpdcwfmiADTqFjMUUjAA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: b3d12f18-7e33-481b-ea5d-08df1d1f0bbb
 X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7149.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2026 05:10:49.7539 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2026 05:12:08.9025 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hFBJijv+e5rokdW+zuxvVYSpcXGp3IHa7YAaai9GBzmLpJFIidC2K58LdDu8VLTIq4d8FkoXuz5NyAvfplCIy5r9hTSUDnqCkvP8sZ8ZhQs=
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4rmAVK2M5lpiVdqggkPgbdF2ebA71ToljiYsW7anpm5wHcyvB9TzjQEOwJ5gVnbCehwo4En0l15K4TBdDoCtc2fVfZ38Y2Pe8X+5w3dlJYU=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF867D7FF5E
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -171,30 +171,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------0KaxMRX0bFE9Uz3W4Zrr7J7B
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Hi Jani,
 
+Thanks for the review comments. Sure i will fix them in the next revision.
 
-On 9/24/2026 9:06 PM, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] drm/i915: race in debugfs write causes force_bit refcount corruption
-> --
+On 9/25/2026 4:00 PM, Jani Nikula wrote:
+> On Thu, 24 Sep 2026, Naladala Ramanaidu <ramanaidu.naladala@intel.com> wrote:
+>> Add a connector debugfs interface to enable or disable I2C
+>> bit-banging for Intel GMBUS adapters.
+>>
+>> v1: Address below review comments: (Jani Nikula)
+>>      - Remove HDMI-specific EDID read path changes.
+>>      - Control bit-banging directly from debugfs via intel_gmbus_force_bit()
+>>
+>> Assisted-by: OpenAI Codex:GPT-5
+>> Signed-off-by: Naladala Ramanaidu <ramanaidu.naladala@intel.com>
+>> ---
+>>   .../drm/i915/display/intel_display_debugfs.c  |  3 +
+>>   .../drm/i915/display/intel_display_types.h    |  1 +
+>>   drivers/gpu/drm/i915/display/intel_gmbus.c    | 61 +++++++++++++++++++
+>>   drivers/gpu/drm/i915/display/intel_gmbus.h    |  3 +
+>>   4 files changed, 68 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> index 3e302f23f247..74f065175a72 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> @@ -40,6 +40,7 @@
+>>   #include "intel_fb.h"
+>>   #include "intel_fbc.h"
+>>   #include "intel_fbdev.h"
+>> +#include "intel_gmbus.h"
+>>   #include "intel_hdcp.h"
+>>   #include "intel_hdmi.h"
+>>   #include "intel_hotplug.h"
+>> @@ -1327,6 +1328,8 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
+>>   	if (!root)
+>>   		return;
+>>   
+>> +	intel_gmbus_connector_debugfs_add(connector);
+>> +
+> Superfluous newline. All the other calls below are back to back.
 >
-> commit dbe416d20c046e80d3b0b6e516a640339bbbd1e9
-> Author: Naladala Ramanaidu<ramanaidu.naladala@intel.com>
+>>   	intel_drrs_connector_debugfs_add(connector);
+>>   	intel_hdcp_connector_debugfs_add(connector);
+>>   	intel_pps_connector_debugfs_add(connector);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> index 79f30660c2b6..5cef2582c361 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> @@ -558,6 +558,7 @@ struct intel_connector {
+>>   	u8 polled;
+>>   
+>>   	int force_joined_pipes;
+>> +	bool force_bit_banging;
+> This should be hidden in struct intel_gmbus next to force_bit, maybe as
+> debugfs_force_bit or something.
 >
-> drm/i915/gmbus: Add bit-banging debugfs control
->
-> This commit adds a connector debugfs interface to enable or disable I2C
-> bit-banging for Intel GMBUS adapters.
->
+>>   
+>>   	struct {
+>>   		struct drm_dp_aux *dsc_decompression_aux;
 >> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
->> index 60a70dea5d856..38d6d11483994 100644
+>> index 60a70dea5d85..38d6d1148399 100644
 >> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
 >> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-> [ ... ]
+>> @@ -27,6 +27,7 @@
+>>    *	Chris Wilson <chris@chris-wilson.co.uk>
+>>    */
+>>   
+>> +#include <linux/debugfs.h>
+>>   #include <linux/export.h>
+>>   #include <linux/i2c-algo-bit.h>
+>>   #include <linux/i2c.h>
+>> @@ -871,6 +872,66 @@ static const struct i2c_algorithm gmbus_algorithm = {
+>>   	.functionality	= gmbus_func
+>>   };
+>>   
+>> +bool intel_gmbus_is_adapter(struct i2c_adapter *adapter)
+> This should be static.
 >
+>> +{
+>> +	return adapter->algo == &gmbus_algorithm;
+>> +}
+>> +
+>> +static int intel_force_bit_banging_show(struct seq_file *m, void *data)
+>> +{
+>> +	struct intel_connector *connector = m->private;
+>> +
+>> +	seq_printf(m, "%u\n", connector->force_bit_banging);
+>> +
+>> +	return 0;
+>> +}
+>> +
 >> +static ssize_t intel_force_bit_banging_write(struct file *file,
 >> +						     const char __user *ubuf,
 >> +						     size_t len, loff_t *offp)
@@ -212,145 +280,59 @@ On 9/24/2026 9:06 PM, sashiko-bot@kernel.org wrote:
 >> +		intel_gmbus_force_bit(connector->base.ddc, force_bit_banging);
 >> +		connector->force_bit_banging = force_bit_banging;
 >> +	}
-> [Severity: Medium]
-> Is this state transition safe against concurrent debugfs writes?
-This is a debugfs-only control intended for user space use. We generally 
-don't provide strong concurrency guarantees for multiple user space 
-writers racing on debugfs interfaces. The actual GMBUS state changes are 
-already serialized inside |intel_gmbus_force_bit(). |
->
-> Since this read-modify-write block on connector->force_bit_banging
-> is not protected by any locks, multiple threads concurrently writing to
-> the intel_force_bit_banging debugfs file could trigger multiple calls to
-> intel_gmbus_force_bit() for the same state change.
->
-> Looking at intel_gmbus_force_bit(), it manages bus->force_bit as a
-> reference count:
->
-> drivers/gpu/drm/i915/display/intel_gmbus.c:intel_gmbus_force_bit() {
->      ...
->      mutex_lock(&display->gmbus.mutex);
->      bus->force_bit += force_bit ? 1 : -1;
->      ...
-> }
->
-> Could unbalanced calls resulting from a race here cause the refcount to
-> underflow or leak, permanently forcing bit-banging mode for the adapter?
->
+>> +
 >> +	*offp += len;
 >> +
 >> +	return len;
 >> +}
-> [ ... ]
+>> +
+>> +static int intel_force_bit_banging_open(struct inode *inode, struct file *file)
+>> +{
+>> +	return single_open(file, intel_force_bit_banging_show, inode->i_private);
+>> +}
+>> +
+>> +static const struct file_operations intel_force_bit_banging_fops = {
+>> +	.owner = THIS_MODULE,
+>> +	.open = intel_force_bit_banging_open,
+>> +	.read = seq_read,
+>> +	.llseek = seq_lseek,
+>> +	.release = single_release,
+>> +	.write = intel_force_bit_banging_write,
+>> +};
+>> +
+>> +void intel_gmbus_connector_debugfs_add(struct intel_connector *connector)
+>> +{
+>> +	if (connector->base.ddc &&
+>> +	    intel_gmbus_is_adapter(connector->base.ddc))
+> The connector->base.ddc != NULL check should be inside
+> intel_gmbus_is_adapter().
 >
---------------0KaxMRX0bFE9Uz3W4Zrr7J7B
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 9/24/2026 9:06 PM,
-      <a class="moz-txt-link-abbreviated" href="mailto:sashiko-bot@kernel.org">sashiko-bot@kernel.org</a> wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:20260924153641.6B2891F000FF@smtp.kernel.org">
-      <pre wrap="" class="moz-quote-pre">Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-- [Medium] drm/i915: race in debugfs write causes force_bit refcount corruption
---
-
-commit dbe416d20c046e80d3b0b6e516a640339bbbd1e9
-Author: Naladala Ramanaidu <a class="moz-txt-link-rfc2396E" href="mailto:ramanaidu.naladala@intel.com">&lt;ramanaidu.naladala@intel.com&gt;</a>
-
-drm/i915/gmbus: Add bit-banging debugfs control
-
-This commit adds a connector debugfs interface to enable or disable I2C
-bit-banging for Intel GMBUS adapters.
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index 60a70dea5d856..38d6d11483994 100644
---- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-[ ... ]
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">+static ssize_t intel_force_bit_banging_write(struct file *file,
-+						     const char __user *ubuf,
-+						     size_t len, loff_t *offp)
-+{
-+	struct seq_file *m = file-&gt;private_data;
-+	struct intel_connector *connector = m-&gt;private;
-+	bool force_bit_banging;
-+	int ret;
-+
-+	ret = kstrtobool_from_user(ubuf, len, &amp;force_bit_banging);
-+	if (ret)
-+		return ret;
-+
-+	if (force_bit_banging != connector-&gt;force_bit_banging) {
-+		intel_gmbus_force_bit(connector-&gt;base.ddc, force_bit_banging);
-+		connector-&gt;force_bit_banging = force_bit_banging;
-+	}
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-[Severity: Medium]
-Is this state transition safe against concurrent debugfs writes?</pre>
-    </blockquote>
-    <style>a {
-    text-decoration: none;
-    color: #464feb;
-}tr th, tr td {
-    border: 1px solid #e6e6e6;
-}tr th {
-    background-color: #f5f5f5;
-}</style>This is a debugfs-only control intended for user space use. We
-    generally don't provide strong concurrency guarantees for multiple
-    user space writers racing on debugfs interfaces. The actual GMBUS
-    state changes are already serialized inside <code>intel_gmbus_force_bit().&nbsp;</code>
-    <blockquote type="cite" cite="mid:20260924153641.6B2891F000FF@smtp.kernel.org">
-      <pre wrap="" class="moz-quote-pre">
-
-Since this read-modify-write block on connector-&gt;force_bit_banging
-is not protected by any locks, multiple threads concurrently writing to
-the intel_force_bit_banging debugfs file could trigger multiple calls to
-intel_gmbus_force_bit() for the same state change.
-
-Looking at intel_gmbus_force_bit(), it manages bus-&gt;force_bit as a
-reference count:
-
-drivers/gpu/drm/i915/display/intel_gmbus.c:intel_gmbus_force_bit() {
-    ...
-    mutex_lock(&amp;display-&gt;gmbus.mutex);
-    bus-&gt;force_bit += force_bit ? 1 : -1;
-    ...
-}
-
-Could unbalanced calls resulting from a race here cause the refcount to
-underflow or leak, permanently forcing bit-banging mode for the adapter?
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">+	*offp += len;
-+
-+	return len;
-+}
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-[ ... ]
-
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------0KaxMRX0bFE9Uz3W4Zrr7J7B--
+>> +		debugfs_create_file("intel_force_bit_banging", 0644,
+>> +				    connector->base.debugfs_entry, connector,
+>> +				    &intel_force_bit_banging_fops);
+>> +}
+>> +
+>>   static void gmbus_lock_bus(struct i2c_adapter *adapter,
+>>   			   unsigned int flags)
+>>   {
+>> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.h b/drivers/gpu/drm/i915/display/intel_gmbus.h
+>> index 5fdeab1aa794..968f8cb42821 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_gmbus.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.h
+>> @@ -9,6 +9,7 @@
+>>   #include <linux/types.h>
+>>   
+>>   struct i2c_adapter;
+>> +struct intel_connector;
+>>   struct intel_display;
+>>   
+>>   #define GMBUS_PIN_DISABLED	0
+>> @@ -41,6 +42,8 @@ int intel_gmbus_output_aksv(struct i2c_adapter *adapter);
+>>   
+>>   struct i2c_adapter *
+>>   intel_gmbus_get_adapter(struct intel_display *display, unsigned int pin);
+>> +bool intel_gmbus_is_adapter(struct i2c_adapter *adapter);
+>> +void intel_gmbus_connector_debugfs_add(struct intel_connector *connector);
+>>   void intel_gmbus_force_bit(struct i2c_adapter *adapter, bool force_bit);
+>>   bool intel_gmbus_is_forced_bit(struct i2c_adapter *adapter);
+>>   void intel_gmbus_reset(struct intel_display *display);
