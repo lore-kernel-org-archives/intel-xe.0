@@ -4,84 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59582C9833F
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 13:59:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 533BDCA5FA5
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 14:42:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 949BE10EA92;
-	Mon, 28 Sep 2026 13:59:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=metarealtyinc-ca.20251104.gappssmtp.com header.i=@metarealtyinc-ca.20251104.gappssmtp.com header.b="cRZPqkJK";
-	dkim-atps=neutral
-Received: from mail-qk2-f39.google.com (mail-qk2-f39.google.com
- [74.125.230.231])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7E5D10E2AD
- for <intel-xe@lists.freedesktop.org>; Mon, 28 Sep 2026 12:23:55 +0000 (UTC)
-Received: by mail-qk2-f39.google.com with SMTP id
- d75a77b69052e-5332bdd8296so32270671cf.2
- for <intel-xe@lists.freedesktop.org>; Mon, 28 Sep 2026 05:23:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=metarealtyinc-ca.20251104.gappssmtp.com; s=20251104; t=1790598235;
- x=1791203035; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=ackCyxWNUU3rNFIvxE9uMr/6z+0jDu2f3tDqHq/JIMo=;
- b=cRZPqkJK5jiZ/3O2iBCqvxbPVB/92uVgqH5YAO97sUFputThiBrUyVo4cUCZYiKzg+
- QGeQffju81/8MGgcG9crjEk6N953GJO4vruFTDUzLNKmWRejAp6oH2ddSfMmJlwmaJDi
- rFcNqgzPfDrSo/BBi6/HDExUfWaKp3F+57I4dKW8yYv1BUPd0xaSiihxfxhpfheCIoOm
- KethtFt9TN2q4Km/w6uSD9zk6PDYKYgdkmxLJTf2b+Uc/yPOTKFXpt9dG1j8ey9e10c/
- HliPzAe/kqepFYhyjeLM1OqxsQb6nucoyjXhcxRRRPpVuqqLF7m35cZiN8xoJKr1Iqt9
- LzbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1790598235; x=1791203035;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to:content-type;
- bh=ackCyxWNUU3rNFIvxE9uMr/6z+0jDu2f3tDqHq/JIMo=;
- b=YjnfQNizYs+6LZwga/wpv68Exeejq0DK7YtjxdAEajwTTZbgjUZ2EsbjoN0weQYyJ2
- iu/Hk5GOGR/LANxNy5+qSRL2MW+p9bRo98AFnq93isaE0Oaou7AEcu0+q4zcyU9vZk4v
- NWPVW6QlLibP+9Orz6Fz+GElmaENAWYOXnbotq/mL37iyAcz6wGoHZnctsYATH1ySflM
- OJdPAyfCW+egqW4fTZOPpt2/IIbGu/f6gGCOWJ2XbuotKxF2DKaZhxw1W7YZpkdlyDtt
- iIPzjZHnDFfNE4OhPplMFt1gS5HzPEDwH3mNcKpKnB7sZSWZR+CjdH5jIJTLg0s3bt1E
- P2lA==
-X-Forwarded-Encrypted: i=1;
- AKwUvByoRNwvf2ITRZrIzHwvhc/Nk4sc1RD9tlcxfL+Q593kUCiEBrmVk2kJ0UvjdDDVdGfc3WOj4YqTFw==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++lksit2sY7Qtw/kUgbH0z//DkPyOvrGrXG5JpPLqLWTjqzkGHIU
- +RTrsFwvWeCA3yThGwTBUxyhWNzY8p5emccPK5NZM1JU2Hq9rXWEYh7GJFg1mueedWw=
-X-Gm-Gg: AYBFou1WbfYBmPNRfhr6PWmew8kemiHXD9mmapyld9hc/n7qI5PCin1yUCuNu0bjvqL
- yNgeb9jjZruPRFyJlX94dBKqKmnrLvgcQZmbOPdnzPcCAXWdRClwHhCZzbdlMumBY1kdMUT32c8
- sfLpMVmmEscPjY6MpXe5V5pBRO0GGwft1y+MOHjgdkN8xCKWo8c+LBczL+32NyM6SvkmUXqei+M
- kzT1zIEfJAaVIJXwSlalgkRGH3mjuAz8uPFcB1ADMBw0z9cLBTMjAo8kkgqCr5Pqwdy/3BgsscP
- mem7LGHyuRsLe/qcKAIUgOMvBuMLzcblZpkK1FE3kLkENGqVbnSDZdrGVp47tf4ZemUA6gY9mj3
- iVIHnGSfTaJ8LbSKngPfpyvPWEt7QWW3Q5TrGdrJ9ePQGKGTJax/YMPxm0wnFzFJUoQJUDbDo66
- +79ErdI23ajRTHwSJ0Td/hUiXvESewUe/T5mactr7TJxzm2DbCk1T31ZtNvxjAHWMEfrhCKxlbQ
- eeapgvz6p6euI3bE+Yl7bQZegwHYaMG9BeXIdWnYlY+N592cC25lEB8Kzr82BReQ3aORovZHMR7
- uH/RWNfv1zyX/Qdn/Uwp7rIDm2QfUVseBciiOrU6bwlfG9KeIsbu
-X-Received: by 2002:a05:620a:370d:b0:93b:d7a2:83cc with SMTP id
- af79cd13be357-93c43d235b9mr2074892585a.59.1790598234553; 
- Mon, 28 Sep 2026 05:23:54 -0700 (PDT)
-Received: from jake-laptop ([2607:fea8:e5:500::662b])
- by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-91430da9123sm78933846d6.16.2026.09.28.05.23.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 28 Sep 2026 05:23:53 -0700 (PDT)
-From: Jake Steinman <j@metarealtyinc.ca>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- jouni.hogander@intel.com, animesh.manna@intel.com,
- ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
- ville.syrjala@linux.intel.com
-Subject: Re: [PATCH] drm/i915/dp: Don't promise AS SDPs in PR Active when they
- are disabled
-Date: Mon, 28 Sep 2026 08:23:52 -0400
-Message-ID: <20260928122352.51004-1-j@metarealtyinc.ca>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260923041342.2146450-1-j@metarealtyinc.ca>
-References: <20260923041342.2146450-1-j@metarealtyinc.ca>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E06A810E0E9;
+	Mon, 28 Sep 2026 14:42:17 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96A6510E0E9;
+ Mon, 28 Sep 2026 14:42:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0790415881536052046=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 28 Sep 2026 13:59:24 +0000
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/pps=3A_Don=27t_blo?=
+ =?utf-8?q?ck_DC_states_while_the_VDD_override_is_held?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 28 Sep 2026 14:42:16 -0000
+Message-ID: <179060653661.214600.8426465283620081873@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260928061211.2764543-1-suraj.kandpal@intel.com>
+In-Reply-To: <20260928061211.2764543-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,23 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Jouni, all,
+--===============0790415881536052046==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Gentle ping, with an update on the stutter left open in the notes.
+== Series Details ==
 
-AS SDP bursts turned out not to be reliable on this panel, but leaving
-the AS SDP on in PR Active is always smooth, also with 0x107 bit 6
-clear. What works here now: clear PR_ALPM_CTL[AS SDP Transmission in
-Active Disable] while vblank interrupts are enabled and set it again
-when they are disabled. PR already holds DC_OFF while vblank is on
-(intel_psr_notify_vblank_enable_disable()), so this costs no DC5/DC6
-residency. Smooth here so far; I switched to it this morning.
+Series: drm/i915/pps: Don't block DC states while the VDD override is held
+URL   : https://patchwork.freedesktop.org/series/175079/
+State : success
 
-Would that be acceptable upstream for sinks with async video timing in
-PR? Happy to send it as an RFC on top of this patch.
+== Summary ==
 
-Thanks,
-Jake
+CI Bug Log - changes from xe-5834-183265fddd55ef951adb7bcd5703927abaa76bb5_BAT -> xe-pw-175079v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 13)
+------------------------------
+
+  Missing    (2): bat-bmg-vm bat-ptl-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5834-183265fddd55ef951adb7bcd5703927abaa76bb5 -> xe-pw-175079v1
+
+  IGT_9113: 691cc6fd50d5a3f6f2b5805c9698af1df28f6830 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5834-183265fddd55ef951adb7bcd5703927abaa76bb5: 183265fddd55ef951adb7bcd5703927abaa76bb5
+  xe-pw-175079v1: 175079v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175079v1/index.html
+
+--===============0790415881536052046==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pps: Don&#x27;t block DC states while the VDD override is held</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175079/">https://patchwork.freedesktop.org/series/175079/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175079v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175079v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5834-183265fddd55ef951adb7bcd5703927abaa76bb5_BAT -&gt; xe-pw-175079v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 13)</h2>
+<p>Missing    (2): bat-bmg-vm bat-ptl-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5834-183265fddd55ef951adb7bcd5703927abaa76bb5 -&gt; xe-pw-175079v1</li>
+</ul>
+<p>IGT_9113: 691cc6fd50d5a3f6f2b5805c9698af1df28f6830 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5834-183265fddd55ef951adb7bcd5703927abaa76bb5: 183265fddd55ef951adb7bcd5703927abaa76bb5<br />
+  xe-pw-175079v1: 175079v1</p>
+
+</body>
+</html>
+
+--===============0790415881536052046==--
