@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A257ACA5FA1
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 09:24:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A5FBC9833E
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 09:24:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C1A010E905;
-	Mon, 28 Sep 2026 09:24:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B03B10E6AC;
+	Mon, 28 Sep 2026 09:24:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WuBsPkj5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VNwa+tgY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B00D10E840
- for <intel-xe@lists.freedesktop.org>; Mon, 28 Sep 2026 09:24:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5513110E840
+ for <intel-xe@lists.freedesktop.org>; Mon, 28 Sep 2026 09:24:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790587448; x=1822123448;
+ t=1790587450; x=1822123450;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=55vIJkDrk3uhiQfLkl3mGz9jnqeuC8cnGy9tDQEH5p0=;
- b=WuBsPkj5YuevuvHYrBIMpK7TjtBFYqZMTEGWyUcd6Akk5h7vajgYErLA
- y/m+GZBtLbD75t7puDoxPQqyk3iws/KfJCDAGcvcRm0tEkavJp2eq4Lj+
- EdNrOssQZEdhYKvkY2KX+DDTA+qLHZ1Y4LUHXoFg9vs49zPBe1ly++1kG
- uo6bHv06iCrtykjigaFkrBmOt5CNh2pl/fG7QDZRX7JpFFRac1AKrWcaY
- velkDoLaFHZQCHJ5Grko16TEWbPu9pM5qmIDjJ+lNXvLL//QJgniAc7xv
- 7HPjGp3lW+crMiOWt7YhKk+x4FVg7Esm6eLhM6kzXqwUPoB2Zzg5Ei7ZM g==;
-X-CSE-ConnectionGUID: jyxm47kGSFKMGvoy+0jPkg==
-X-CSE-MsgGUID: dOu2QQ7WQNWLzQCaQ1/qBQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11918"; a="78845477"
-X-IronPort-AV: E=Sophos;i="6.27,128,1787036400"; d="scan'208";a="78845477"
+ bh=DXgaYkVfCIzGHhXUiHXDNg5INsyc9e63+IR5FoOg6kU=;
+ b=VNwa+tgYq5S9/QMWYUNX83+XmAvd3n0sd+/51WoXq0mGYlZnracxLh0S
+ tQ+8kMCGP0LyvFOXhMZ1+nuK/FqWFKuy2SvMhR2RyHgcyd1UztTBpFVvI
+ 5a8V7PpTRYTL0m/3hsHp7ubJ3pmcC4A38J7LeunR5HtBraR58cszaIeKa
+ 3fbzjQx8EgGGWsvDXazoXdAxlx0Hqf0/hH6Y19d4VNQJMYUs11DXdz6Tg
+ Lwer8Z7Fxcr7FU5mkpa6S1uxdGZLqLcJWc7QFdrmaZzDMVCCDUl0mAw9K
+ JULL4NSZScb1NaXwEzN4CYO6fQEWbIVFYLtYVXMrkAy1KrzI8RsuhYn8y g==;
+X-CSE-ConnectionGUID: UIu0aUTLRx6h22JitRoFqg==
+X-CSE-MsgGUID: T38ZEFUbTguY7Rp8rZ4Yqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11918"; a="78845501"
+X-IronPort-AV: E=Sophos;i="6.27,128,1787036400"; d="scan'208";a="78845501"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Sep 2026 02:22:20 -0700
-X-CSE-ConnectionGUID: FU5aAaZASp+vDeyx6nFIjQ==
-X-CSE-MsgGUID: PJrgDlRRRimmiUrVvOA9Cg==
+X-CSE-ConnectionGUID: lP3G5JHyS8K4zNz7/FVHtw==
+X-CSE-MsgGUID: BFuVAfmHR2mtk9Eu6cPMOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,128,1787036400"; d="scan'208";a="283078031"
+X-IronPort-AV: E=Sophos;i="6.27,128,1787036400"; d="scan'208";a="283078070"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by fmviesa005.fm.intel.com with ESMTP; 28 Sep 2026 02:21:25 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 28 Sep 2026 02:21:35 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: michal.wajdeczko@intel.com, mallesh.koujalagi@intel.com,
  Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH v4 06/12] drm/xe/reg_sr: Report save-restore errors using
- structured xe_log API
-Date: Mon, 28 Sep 2026 14:51:08 +0530
-Message-ID: <20260928092114.1610203-7-dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH v4 12/12] drm/xe/vram: Report VRAM errors using structured
+ xe_log API
+Date: Mon, 28 Sep 2026 14:51:14 +0530
+Message-ID: <20260928092114.1610203-13-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260928092114.1610203-1-dnyaneshwar.bhadane@intel.com>
 References: <20260928092114.1610203-1-dnyaneshwar.bhadane@intel.com>
@@ -67,67 +67,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace xe_gt_notice() and xe_gt_err() calls with xe_log_info() and
-xe_log_err() using the REGS and RTP component tag for register save-restore
-operations:
-
-  - Failed to add register to save-restore list
-  - Force-wake timeout during SR apply
+Replace drm_err()/drm_info() with xe_log_err_fatal()/xe_log_info()
+using the VRAM component tag. The "no CPU visible VRAM" error uses
+tile or device as the log location depending on the caller context.
 
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 ---
-v2:
- - Drop error type from logging explicitly (Mallesh).
+ drivers/gpu/drm/xe/xe_vram.c | 20 ++++++++++++++------
+ 1 file changed, 14 insertions(+), 6 deletions(-)
 
-v3:
- - Drop config mismatch log (Michal)
- - Replace RTP instead of REG_SR (Michal)
----
----
- drivers/gpu/drm/xe/xe_reg_sr.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index e328f5072557..eab84a528d12 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -21,6 +21,7 @@
- #include "xe_gt_printk.h"
- #include "xe_gt_types.h"
- #include "xe_hw_engine_types.h"
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index fa06c7ae56b1..6c8558042ad4 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -17,6 +17,7 @@
+ #include "xe_device.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt_mcr.h"
 +#include "xe_log.h"
- #include "xe_lrc.h"
+ #include "xe_map.h"
+ #include "xe_migrate.h"
  #include "xe_mmio.h"
- #include "xe_rtp_types.h"
-@@ -87,15 +88,15 @@ static struct xe_reg sanitize_mcr(struct xe_reg_sr *sr,
+@@ -46,7 +47,8 @@ static int determine_lmem_bar_size(struct xe_device *xe, struct xe_vram_region *
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
  
- 	if (is_mcr && !reg.mcr) {
- 		reg.mcr = 1;
--		xe_gt_notice(gt, "xe_reg_sr_entry using non-MCR register for address 0x%x, forcing MCR\n",
--			     reg.addr);
-+		xe_log_info(gt, RTP, "xe_reg_sr_entry using non-MCR register for address 0x%x, forcing MCR\n",
-+			    reg.addr);
- 		reg_sr_inc_error(sr);
+ 	if (!resource_is_valid(pdev, LMEM_BAR)) {
+-		drm_err(&xe->drm, "pci resource is not valid\n");
++		xe_log_err_fatal(xe, VRAM, -ENXIO,
++				 "pci resource is not valid\n");
+ 		return -ENXIO;
  	}
  
- 	if (!is_mcr && reg.mcr) {
- 		reg.mcr = 0;
--		xe_gt_notice(gt, "xe_reg_sr_entry using MCR register for address 0x%x, forcing non-MCR\n",
--			     reg.addr);
-+		xe_log_info(gt, RTP, "xe_reg_sr_entry using MCR register for address 0x%x, forcing non-MCR\n",
-+			    reg.addr);
- 		reg_sr_inc_error(sr);
+@@ -254,8 +256,13 @@ static int vram_region_init(struct xe_device *xe, struct xe_vram_region *vram,
+ 	vram->io_size = min_t(u64, usable_size, remain_io_size);
+ 
+ 	if (!vram->io_size) {
+-		drm_err(&xe->drm, "%s without any CPU visible VRAM. Aborting.\n",
+-			tile ? "Tile" : "Device");
++		if (tile) {
++			xe_log_err_fatal(tile, VRAM, -ENODEV,
++					 "Tile without any CPU visible VRAM. Aborting.\n");
++		} else {
++			xe_log_err_fatal(xe, VRAM, -ENODEV,
++					 "Device without any CPU visible VRAM. Aborting.\n");
++		}
+ 		return -ENODEV;
  	}
  
-@@ -219,7 +220,7 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
+@@ -320,7 +327,7 @@ int xe_vram_probe(struct xe_device *xe)
+ 	err = determine_lmem_bar_size(xe, &lmem_bar);
+ 	if (err)
+ 		return err;
+-	drm_info(&xe->drm, "VISIBLE VRAM: %pa, %pa\n", &lmem_bar.io_start, &lmem_bar.io_size);
++	xe_log_info(xe, VRAM, "VISIBLE VRAM: %pa, %pa\n", &lmem_bar.io_start, &lmem_bar.io_size);
  
- 	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
- 	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL)) {
--		xe_gt_err(gt, "Failed to apply, err=-ETIMEDOUT\n");
-+		xe_log_err(gt, REGS, -ETIMEDOUT, "Failed to apply\n");
- 		return;
- 	}
+ 	remain_io_size = lmem_bar.io_size;
  
+@@ -342,8 +349,9 @@ int xe_vram_probe(struct xe_device *xe)
+ 			return err;
+ 
+ 		if (total_size > lmem_bar.io_size) {
+-			drm_info(&xe->drm, "VRAM: %pa is larger than resource %pa\n",
+-				 &total_size, &lmem_bar.io_size);
++			xe_log_info(xe, VRAM,
++				    "Total size %pa is larger than resource %pa\n",
++				    &total_size, &lmem_bar.io_size);
+ 		}
+ 
+ 		remain_io_size -= min_t(u64, tile->mem.vram->actual_physical_size, remain_io_size);
 -- 
 2.54.0
 
