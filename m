@@ -4,165 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27F80CA5FA2
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 11:49:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38F79C9833F
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Sep 2026 12:13:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE38910EA33;
-	Mon, 28 Sep 2026 11:49:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB01F10E5A1;
+	Mon, 28 Sep 2026 12:13:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AFUD5gfW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="khN8qBI3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 302F310EA33;
- Mon, 28 Sep 2026 11:49:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 475D510EA3E;
+ Mon, 28 Sep 2026 12:13:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790596197; x=1822132197;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=Sx3X/D38SeffqmHlWr2FQaz7HZ197n+k4/w09Jyfsug=;
- b=AFUD5gfWlG3NHpbTlXJrlfkSuiuzNKVOTPB/MNuwa8fix2qQl5kiNqgd
- /2ugdcKdNwCBuE5LoyzG0FsAtnb3IoWyiNz0Rl1bkvLA0BQYEBXja5Ozy
- kRfqxiitaD4+1kRGKLkLFHArPmOyCjTSbUB8Jbkl/0Xri41h2LoiON19r
- 6HyExc4d+R/HZqPJXYfpJWuuJ9RNAbAKN5M69PlvyyzmPoxaDW22ccoYp
- tyPRUIVhbcVqjZjCR24m5Jn8uiMATSE68YJE1GX6CtSmrnuPKyDOZ58w8
- Dl8kUnBqavs0fbk2hiZUZ1Yfh6YxLdHvO4dfy224VwVDx9mkJLJMX6N5S w==;
-X-CSE-ConnectionGUID: YMunZ+OcSC6MEz6P2WEieg==
-X-CSE-MsgGUID: SNutICXbRC+XAIAu/qdotg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11918"; a="90197105"
-X-IronPort-AV: E=Sophos;i="6.27,128,1787036400"; d="scan'208";a="90197105"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2026 04:49:56 -0700
-X-CSE-ConnectionGUID: /8LOpSqJSnKVj4wuTfZWtQ==
-X-CSE-MsgGUID: jltCGwwfSA6D6a3MIAGVlw==
+ t=1790597621; x=1822133621;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=z42w5rWn84b36/aJIHBoe2FKkN/J/AxT+rBy7axljN8=;
+ b=khN8qBI3o1grfjn8sEQgeoYq0MXYWWY3kXHR4RU0l1c2yZ4GDuiA77kh
+ mj6h7dhPtrNIquh5agmrM1353RgRVj+WYIubqby4Fp74UZoJNaDtZ00VX
+ /ajl5uOPjKPGD4b1gLoi3qfrHCtLMswpY2TMKX2CBANdl7rEfDO7GnyjG
+ +NQtPD4mkwVXHqI0pi220RVLWOq6CgjIrUMu8tcjZtdkdkXoTXXjK5Zhz
+ XyB/s9WOcWlwhnIKKHfaQdWBln13UQ+a9pGny21nWDXccZw2RymwPgubt
+ 6PdcMDxp82keT+IpUaNlbAf+1jW7Qviyueo4C++c4JfH+RS23KMzr0eNK Q==;
+X-CSE-ConnectionGUID: 66sBRJRbR2yBs2r7tjGkLA==
+X-CSE-MsgGUID: GKfy24f+QCmoL9ZgNi5Cyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11918"; a="94175120"
+X-IronPort-AV: E=Sophos;i="6.27,128,1787036400"; d="scan'208";a="94175120"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2026 05:13:40 -0700
+X-CSE-ConnectionGUID: UTNxHkNwQTGVjX9Clzy3+w==
+X-CSE-MsgGUID: 1zRUH3sTTlSXj2vyJv0OtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,128,1787036400"; d="scan'208";a="283107567"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2026 04:49:57 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 28 Sep 2026 04:49:56 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Mon, 28 Sep 2026 04:49:56 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.44) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Mon, 28 Sep 2026 04:49:56 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vDsG4Vy0FS9w+1cA7+jp83CLrxEjiLOqRgN016taP9zZTONb+exhSgqr/K7IUskcNOepg3ZAG3FUKOEf3kkb8YsMR/BSKK6ZDZhQWwTAFFOAhv1i/vV9UTMxsdhPJdP1cIxy4uRer5ovXO9Y/2yOcXxnKpxWjFDb3l5cz5uUAUgDOz52BYGp/TC5Gs+yxmLUAoBw89chQcuQGitHAhlJWdWoBSXe+IKHHSXGVGazaoLPZ18wnYHrJrK/0OKGcNyQVg3dhiMD7Jmh39JOKVtdvhCMWPotWLLhmwTbW8RplVLgYofuTejt0u17TI3dB3p3EizXKh72J2zjRjuPfCLmXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Sx3X/D38SeffqmHlWr2FQaz7HZ197n+k4/w09Jyfsug=;
- b=KOKrTgVeiHKmX+SnsAwQTOiS/5A4N3H55s1c3bqVMfc0T8K9hmrSKd/tUPUVw8KMPnzEYY6BlGmB9eYbWNs0DN9xKwhgCaQYgmmspnjApKoSVjNDCby1lqQMe+L7o1AhYiHkHLgfKS7374PZMZ6Ok+Rs9+A1oqSV9446gZKMd9PMZY6K8zg/vFFsS11lFYFbmhhd2cv4u1/nVfZSUHCqY9u0xYkLjZS682FiJNqvzdvb97woAipdWz6Jj/w6nPUfrnHnMbdhxAV1rm8NXT9TaLFjJ3dpv8yT6OrFSPP5epA25cY7utLuAQYMsv2mZNcC2tVF36/1KACNEv2OWo6Hjg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
- PH7PR11MB5861.namprd11.prod.outlook.com (2603:10b6:510:133::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.451.24; Mon, 28 Sep 2026 11:49:54 +0000
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::9086:5e0b:ad24:762]) by DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::9086:5e0b:ad24:762%6]) with mapi id 15.21.0451.022; Mon, 28 Sep 2026
- 11:49:54 +0000
-From: "Hogander, Jouni" <jouni.hogander@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Manna,
- Animesh" <animesh.manna@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-CC: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Nikula, Jani"
- <jani.nikula@intel.com>
-Subject: Re: [PATCH v6 05/18] drm/i915/alpm: Refactor Auxless wake time
- calculation
-Thread-Topic: [PATCH v6 05/18] drm/i915/alpm: Refactor Auxless wake time
- calculation
-Thread-Index: AQHdRUGJcXz0OHWzHkSq0byDyF9DNLbj9G4A
-Date: Mon, 28 Sep 2026 11:49:54 +0000
-Message-ID: <def041d44708d80a6769f45c72c8ddcdbe7aeb98.camel@intel.com>
-References: <20260915180449.277933-1-animesh.manna@intel.com>
- <20260915180449.277933-6-animesh.manna@intel.com>
-In-Reply-To: <20260915180449.277933-6-animesh.manna@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|PH7PR11MB5861:EE_
-x-ms-office365-filtering-correlation-id: 616804d6-8456-4716-e892-08df1d569cae
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|366016|23010399003|376014|38070700021|260925021311599003|3023799007|10067099003|260925021911599003|260925022911599003|5023799004|11063799006|4143699003|22082099003|18002099003|56012099006;
-x-microsoft-antispam-message-info: VC/AXsBvg73/Oy4CCMaahl5dhxZ7lLLHti3GROLSyLl8FEuSVGLmKFSlV7JCI5bPrDToJFoFVjl1RmnG8InH3K2qYBkSdOtrYESI7gIhgcmLwgFFnADeNJyriWWIJBuGtiRdRRC4gLNFcdElRsQMIeyTz4sLZR9k1fD7w3UsKnLGgnTeVhQJKwfEMl5oaVD191pl37vt52bkKTxB8JmCmja6UQGKs4CD1GASxKvYpL0bD/a+h6zC8ygn6GtpnncEXdmDr/EtHSxY1rIAXcaEICyHkDjtxOcR4f5zK49EXs0M+AR6JbSHipVX7goP6DOZrDLceTXS6YydDe9+5k/jU0vwT8BOCTB3/RLcAcSpZVrrehUwBPYvxR+iDGV8a7HiLiTw9/N0WJ/ccqJCNW5SSrtuDLoGKn+6BC+tJiMJn8y32G9jrLMju602UPodSNe/V0YjZRAWeKM/niIKpfKYLCsRN5DvwSE0DhpChO79xg2R/ilmie9XoF+P+fXi8lCyld0K7/I1ZKYbtWaSEPrQuRjZvGuwYis8JT3MpUGZL/SP1KS/x9SHTMzT38cilI0HY0PeNjXH7TYpejj7+W7XkYwRhcceAMS1nEGYXzBad/7ZkIh7HRK6hSct6LWlToGlTpDkOu7O88s210H/8YIrs488nzFthSvznc+6XH6HEsicyCbA7c2BauPmQ6+NKClD9wyPdUB/14dFn07Qqof3Lw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(38070700021)(260925021311599003)(3023799007)(10067099003)(260925021911599003)(260925022911599003)(5023799004)(11063799006)(4143699003)(22082099003)(18002099003)(56012099006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bVFNRXVwWlJ3NGowbGNJekpCZkNoK2YvY2UvSGkyOGN2VlVZamxkVEN4M0M5?=
- =?utf-8?B?Yzd2czRnNGVvdjYvVG1sclNQeXJMOFAzTDlGZHhTNHU3ZG5sZXlaVVFra3I3?=
- =?utf-8?B?eXlyTi96MjZ1K0ZtUFRZV2t1RTROdVBsRUMvcVZkVDNvTzFJbnBiUzRPeW5R?=
- =?utf-8?B?bXhuT01NWTN6aTIyd0o0WmEwbGZtUGpqRVZad0tmMDAwVEpra0dKQ1ZoSzJs?=
- =?utf-8?B?Q1NNTHhwMjZCdklHdDIzcEJVMEJYam95NERMYUFvd2h4OHQ5dXV3Wk1pbWY2?=
- =?utf-8?B?TFFCRzlHZlRLaG1VVWNFTW9TLzljQjMvdVY1a0VlZDNxaHRwSi8wQVByTHV1?=
- =?utf-8?B?a3FIYlVjcERxc0xCR0FxcWNuYXJjS0VuUllpWkhZRE90ZWdEUElDS1VISm5v?=
- =?utf-8?B?Vll5WHVia1VyS2ttUTdoN0xxN0VVWUJCckV6NTA3OXhWQUNVcTBqZzlwd2lk?=
- =?utf-8?B?eVh1N2MzZVIvWnJVV2Ewd29lOEhmWWgzRC8zNEhoTXNBK0tvUTNFMkFvZTdY?=
- =?utf-8?B?VWhDZU9kTDdzbDd1VE9KSG0yMDdsUVJQV0RJQUlyWlp2Y1RoN0JsTWlGWmxy?=
- =?utf-8?B?Ri9VY3N4UEJpczh5RnVoWm1qYmZ4ZlRsZkp1d0lWQ3IvTVR3alc2MmhvenIx?=
- =?utf-8?B?dVZpSDdWdDFFOXVveXpLM2ozbWtTZ3VWYjlRUm9aWWlPZU91SE94UTVpaURk?=
- =?utf-8?B?TnpHMXhTMHFlYTlMM2VUTXE5Ty82ekRTTm9kRVQyc2hWT2Y2K2FsWWgzVGJP?=
- =?utf-8?B?VEQvVC9sZURad3BRTVdhWXAwVVFjdHFoeHFucnVoVUswUENjVnJ1cXBZc0Zj?=
- =?utf-8?B?VitiN1E3dmIzdnBXNk84Q0hLTmRmZjRDMHJFQUxxS2M5TWZKY2VvOEcrZ1k1?=
- =?utf-8?B?VmYvN2NMQ2dvcTY4U1c2dktDSVViZWtWeHZYSzArdW5nR1QxWWR1K1R2ampa?=
- =?utf-8?B?MkNzS2lEZEF0UHRxOHZFR3lZaTVrY0xzaG5ta0lIdlFSdHZlR3ZNYlJhaVdw?=
- =?utf-8?B?RjdyRFZTUUpLeVJCTUsybHo0QVRBWk5HYXZCWWE5YktHNVI5TmFBRVRHeUFx?=
- =?utf-8?B?TDh5Um9MU01vNjJvUTJtUHVNcmtZcU9SZ0VLVk03UGJ0VFUwcExvVVVHTVZN?=
- =?utf-8?B?TEU5c2M5YzRNeE5meXJ6YW12cmZhNzlWaW1ndTR1VGl3UFFCdzBlY290MU0y?=
- =?utf-8?B?eFZYdnpNVlorM05zaFNDQnU1VDFQRTE1akY2aC9LVXZMOFQ0ZWhIWXptaDRW?=
- =?utf-8?B?SUpqam85bTdEc1cwSVdWWmpxNmR2dUdiNXFOZHg4THJNQS93QlVQNXhGbFBV?=
- =?utf-8?B?cnd4WFBGUkVCelNFdjlaM2hJUkpIdWJ4RnhMMmQyeXBpYk4rY2xTbmZIWkdR?=
- =?utf-8?B?VVB1Q3V4c3EyYlJmSGF0WEVESVdURTRKUEV4MjdXYjFPUll6U3UyQ2JBYzBN?=
- =?utf-8?B?R3FhN1k4TEd4UWpzVGNlNHpnRWFuSDZ3RTVPU3dEMzdRYVJ0cEpEZm4xUkU0?=
- =?utf-8?B?N2YzdFRPZ1ljdi91dkR5OHpSR3NwZENqbjRDU0o3TGRnci9iL2xiYUNOcUpL?=
- =?utf-8?B?eGlLZDhtQi9hUElrVzFCWlhtZURicC9ncEdUdzQ2M2grdjRYclkzaGJvdTVh?=
- =?utf-8?B?QXdqTWh6SDAzQ2xtaDhnQXNOdEJQTlpkS1FyaDBEZ2pwUndWUUVlY3JMY09o?=
- =?utf-8?B?WkNaR3ZUa1czYTRkVnQyL0J3bUNleHo1bW1JM0xzUzYxaWhBeHpGMXdRN1JT?=
- =?utf-8?B?OU9SSjN1Q2pKeVFXN1dYbnVNb1dzODJnc1ZLaFpZS0hBeXozNU5PZXhLcGRX?=
- =?utf-8?B?alFmdkp5VGJGMi85WWorSng4R1RiK2MrbWpqQUJ5RS9QcW8ySmdoaUdXWkpx?=
- =?utf-8?B?dzh6M21hUE05aXFWdVJZSkZKbHRiNzJyUlVWZklxK3FFa2VDUnhNeXlaVUlh?=
- =?utf-8?B?eUU0Mmt1NmVxZGFrU25FaWE0YXo3bndEN1VaYmtIdDEyWWR6WE0yemdlM1BR?=
- =?utf-8?B?c3hranNseENkNTU1VnZDbGJyNyt0M1o2RVBSMnkxakQ4UkxTMzl3T0grM2dN?=
- =?utf-8?B?RVZZd3FRWVBzM0VrK0dpbXlocjVNak1nVjdBNVM5Nkc3K0cwb3JLK2VkVnpM?=
- =?utf-8?B?dGtBR3E0RURwNDVLT3IxVXhwWUl6RkNWSllvNFJ1NEtJbGVWRHZXUGluUmFX?=
- =?utf-8?B?NHhLSDdwQmU0UkJJb0lGbE84Q2pkL3JFWldwUWVzc2lMejVJdHNBZ29QSTRJ?=
- =?utf-8?B?ZmtYWGRBWEx1OWlZdTI1NkdzVmJUNGtIODgwQlcxN2hDcFhhSzAyUXo0M3Zu?=
- =?utf-8?B?dnFteitHZ2pIekxlbUhaeTBaL3FVb2JFOUxESzZvYUw0Y2VoTFNwQUFuaG5L?=
- =?utf-8?Q?gwOJ1N3fn3aJTCHQ=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C022591A24BCF24B896BE7460B5C7ACF@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.27,128,1787036400"; d="scan'208";a="274157782"
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.244.73])
+ ([10.245.244.73])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2026 05:13:38 -0700
+Message-ID: <fdbc3d2ed7b23b09216df023e2be9ed707820c75.camel@linux.intel.com>
+Subject: Re: [PATCH v3 0/3] drm, drm/xe: Protect against premature module
+ unloads
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Matthew Auld
+ <matthew.auld@intel.com>, 	dri-devel@lists.freedesktop.org, Alice Ryhl
+ <aliceryhl@google.com>, Alex Deucher	 <alexander.deucher@amd.com>,
+ Christian =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>
+Date: Mon, 28 Sep 2026 14:13:35 +0200
+In-Reply-To: <DLQVBJX4PK5G.2AK3E5K8U8UY7@kernel.org>
+References: <20260925133335.149679-1-thomas.hellstrom@linux.intel.com>
+ <DLOJ7S2IZW0R.2BNLLO5M3YL7M@kernel.org>
+ <7fc614d0b666fb5ae9777c29ea2e79647030b198.camel@linux.intel.com>
+ <DLQVBJX4PK5G.2AK3E5K8U8UY7@kernel.org>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: jBmoS+DyGGVXYOhC7HtmACzqP1C/dTGWrrQUP5kgiyQJYrq3A+rW1qW5gmtLdLeN+9orNrF7KX33apfFEFqqZ9MJiPmBF6cqPNeQ5JF9npbbpK09ylBUS6zi2apM8txGD8wp/oDAWBj2kLcNVpaz9HywKvbchutJiDruguhT31/dxWRVuJJ9Snpd32J1FvetSayyB7Pqa8cdfnzDYy7Bwp2b6nBNYeUXPhs2sj7QJXHyUd1aJAZU3N4ZWMFX6to+izpEBBlQUexg+gZHbsN9+kWNIpF8P8peO2qKItXdT7YiotvcLN7L4o/2U1mEySSZD7R6oZeYlEyU1aKaK56PoA==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 616804d6-8456-4716-e892-08df1d569cae
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Sep 2026 11:49:54.2391 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DpV8oC9YQEKgBA7lu6NC2rQWt1435oYlPSMvkUMlve+tmWU/7g2XPSI+6G8u8OwuYq6gneH3egxKNeLLj/tSU8FTb5XZ6XyL2swxe00GsIs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5861
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,58 +77,336 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDI2LTA5LTE1IGF0IDIzOjM0ICswNTMwLCBBbmltZXNoIE1hbm5hIHdyb3RlOg0K
-PiBEaXZpZGUgdGhlIGF1eGxlc3Mgd2FrZSB0aW1lIGNhbGN1bGF0aW9uIGluIHBhcnRzIHdoaWNo
-IHdpbGwNCj4gaGVscCBsYXRlciB0byBhZGQgWGUzcCByZWxhdGVkIG1vZGlmaWNhdGlvbi4NCj4g
-DQo+IHYyOiBSZWZhY3RvciBmaXJzdCBleGlzdGluZyBjYWxjdWxhdGlvbi4gW0phbmldDQo+IHYz
-OiBDb3NtZXRpYyBjaGFuZ2VzLiBbSmFuaSwgU3VyYWpdDQo+IA0KPiBCc3BlYzogNzE0NzcNCj4g
-Q2M6IEpvdW5pIEjDtmdhbmRlciA8am91bmkuaG9nYW5kZXJAaW50ZWwuY29tPg0KPiBSZXZpZXdl
-ZC1ieTogU3VyYWogS2FuZHBhbCA8c3VyYWoua2FuZHBhbEBpbnRlbC5jb20+DQo+IFNpZ25lZC1v
-ZmYtYnk6IEFuaW1lc2ggTWFubmEgPGFuaW1lc2gubWFubmFAaW50ZWwuY29tPg0KPiAtLS0NCj4g
-wqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2FscG0uYyB8IDMxICsrKysrKysr
-KysrKysrKystLS0tLQ0KPiAtLQ0KPiDCoDEgZmlsZSBjaGFuZ2VkLCAyMiBpbnNlcnRpb25zKCsp
-LCA5IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfYWxwbS5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9hbHBtLmMNCj4gaW5kZXggOTAxNDkzYmIxNDQ4Li5kNTgyMzE3NDU3NmEgMTAwNjQ0DQo+
-IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYWxwbS5jDQo+ICsrKyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYWxwbS5jDQo+IEBAIC0xMDIsNiAr
-MTAyLDI1IEBAIHN0YXRpYyBpbnQgZ2V0X2xmcHNfaGFsZl9jeWNsZV9jbG9ja3MoY29uc3QNCj4g
-c3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpDQo+IMKgCQkxMDAwIC8gKDIgKiBM
-RlBTX0NZQ0xFX0NPVU5UKTsNCj4gwqB9DQo+IMKgDQo+ICtzdGF0aWMgaW50IGdldF90cGh5Ml9w
-Ml90b19wMChjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZQ0KPiAqY3J0Y19zdGF0ZSkNCj4g
-K3sNCj4gKwlyZXR1cm4gMTIgKiAxMDAwOw0KPiArfQ0KPiArDQo+ICtzdGF0aWMgaW50IGdldF9l
-c3RhYmxpc2htZW50X3BlcmlvZChjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZQ0KPiAqY3J0
-Y19zdGF0ZSkNCj4gK3sNCj4gKwlpbnQgdDEgPSA1MCAqIDEwMDA7DQo+ICsJaW50IHRwczQgPSAy
-NTI7DQo+ICsJLyogcG9ydF9jbG9jayBpcyBsaW5rIHJhdGUgaW4gMTBrYml0L3MgdW5pdHMgKi8N
-Cj4gKwlpbnQgdG1sX3BoeV9sb2NrID0gMTAwMCAqIDEwMDAgKiB0cHM0IC8gY3J0Y19zdGF0ZS0N
-Cj4gPnBvcnRfY2xvY2s7DQo+ICsJaW50IHRjZHMsIGVzdGFibGlzaG1lbnRfcGVyaW9kOw0KPiAr
-DQo+ICsJdGNkcyA9ICg3ICsgRElWX1JPVU5EX1VQKDY1MDAsIHRtbF9waHlfbG9jaykgKyAxKSAq
-DQo+IHRtbF9waHlfbG9jazsNCj4gKwllc3RhYmxpc2htZW50X3BlcmlvZCA9IChTSUxFTkNFX1BF
-UklPRF9USU1FICsgdDEgKyB0Y2RzKTsNCg0KSGVyZSB5b3UgY291bGQgcmV0dXJuIFNJTEVOQ0Vf
-UEVSSU9EX1RJTUUgKyB0MSArIHRjZHMuDQoNCj4gKw0KPiArCXJldHVybiBlc3RhYmxpc2htZW50
-X3BlcmlvZDsNCj4gK30NCj4gKw0KPiDCoC8qDQo+IMKgICogQVVYLUxlc3MgV2FrZSBUaW1lID0g
-Q0VJTElORyggKChQSFkgUDIgdG8gUDApICsgdExGUFNfUGVyaW9kLA0KPiBNYXgrDQo+IMKgICog
-dFNpbGVuY2UsIE1heCsgdFBIWSBFc3RhYmxpc2htZW50ICsgdENEUykgLyB0bGluZSkNCj4gQEAg
-LTEyMywxNyArMTQyLDExIEBAIHN0YXRpYyBpbnQgZ2V0X2xmcHNfaGFsZl9jeWNsZV9jbG9ja3Mo
-Y29uc3QNCj4gc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpDQo+IMKgICovDQo+
-IMKgc3RhdGljIGludCBfbG5sX2NvbXB1dGVfYXV4X2xlc3Nfd2FrZV90aW1lKGNvbnN0IHN0cnVj
-dA0KPiBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQ0KPiDCoHsNCj4gLQlpbnQgdHBoeTJf
-cDJfdG9fcDAgPSAxMiAqIDEwMDA7DQo+IC0JaW50IHQxID0gNTAgKiAxMDAwOw0KPiAtCWludCB0
-cHM0ID0gMjUyOw0KPiAtCS8qIHBvcnRfY2xvY2sgaXMgbGluayByYXRlIGluIDEwa2JpdC9zIHVu
-aXRzICovDQo+IC0JaW50IHRtbF9waHlfbG9jayA9IDEwMDAgKiAxMDAwICogdHBzNCAvIGNydGNf
-c3RhdGUtDQo+ID5wb3J0X2Nsb2NrOw0KPiAtCWludCBudW1fbWxfcGh5X2xvY2sgPSA3ICsgRElW
-X1JPVU5EX1VQKDY1MDAsIHRtbF9waHlfbG9jaykgKw0KPiAxOw0KDQpJIHRoaW5rIHlvdSBzaG91
-bGQga2VlcCBudW1fbWxfcGh5X2xvY2sgYWxzbyBpbiB5b3VyIGhlbHBlci4gSnVzdCB0bw0Ka2Vl
-cCByZWFkYWJpbGl0eS4gQWxzbyBpbiBwYXRjaCA2IHlvdSB3aWxsIGhhdmUgdGhlbjoNCg0KaWYg
-KGludGVsX2NydGNfaGFzX3R5cGUoY3J0Y19zdGF0ZSwgSU5URUxfT1VUUFVUX0VEUCkpIHsNCglu
-dW1fbWxfcGh5X2xvY2sgPSA3ICsgRElWX1JPVU5EX1VQKDY1MDAsIHRtbF9waHlfbG9jaykgKyAx
-Ow0KfSBlbHNlIHsNCi4uLg0KCW51bV9tbF9waHlfbG9jayA9IDc7DQouLi4NCg0KdGNkcyA9IG51
-bV9tbF9waHlfbG9jayAqIHRtbF9waHlfbG9jazsNCg0KQlIsDQpKb3VuaSBIw7ZnYW5kZXINCg0K
-PiAtCWludCB0MiA9IG51bV9tbF9waHlfbG9jayAqIHRtbF9waHlfbG9jazsNCj4gLQlpbnQgdGNk
-cyA9IDEgKiB0MjsNCj4gKwlpbnQgdHBoeTJfcDJfdG9fcDAgPSBnZXRfdHBoeTJfcDJfdG9fcDAo
-Y3J0Y19zdGF0ZSk7DQo+ICsJaW50IGVzdGFibGlzaG1lbnRfcGVyaW9kID0NCj4gZ2V0X2VzdGFi
-bGlzaG1lbnRfcGVyaW9kKGNydGNfc3RhdGUpOw0KPiDCoA0KPiDCoAlyZXR1cm4gRElWX1JPVU5E
-X1VQKHRwaHkyX3AyX3RvX3AwICsNCj4gZ2V0X2xmcHNfY3ljbGVfdGltZShjcnRjX3N0YXRlKSAr
-DQo+IC0JCQnCoMKgwqAgU0lMRU5DRV9QRVJJT0RfVElNRSArIHQxICsgdGNkcywgMTAwMCk7DQo+
-ICsJCQnCoMKgwqAgZXN0YWJsaXNobWVudF9wZXJpb2QsIDEwMDApOw0KPiDCoH0NCj4gwqANCj4g
-wqBzdGF0aWMgaW50DQoNCg==
+On Mon, 2026-09-28 at 12:13 +0200, Danilo Krummrich wrote:
+> On Mon Sep 28, 2026 at 10:46 AM CEST, Thomas Hellstr=C3=B6m wrote:
+> > On Fri, 2026-09-25 at 18:18 +0200, Danilo Krummrich wrote:
+> > > On Fri Sep 25, 2026 at 3:33 PM CEST, Thomas Hellstr=C3=B6m wrote:
+> > > > Driver and shared DRM helper code is increasingly relying on
+> > > > bare
+> > > > drm_device references (drm_dev_get()/drm_dev_put()) to keep a
+> > > > device's
+> > > > software state around, without also pairing that with a
+> > > > reference
+> > > > on
+> > > > the owning kernel module. Xe itself does this in several
+> > > > places,
+> > > > and
+> > > > so does drm_gpuvm for the lifetime of a GPU VM. None of these
+> > > > references currently prevent the owning module from being
+> > > > unloaded
+> > > > while they, or the teardown work they can still trigger, are
+> > > > outstanding, meaning driver code can end up executing after its
+> > > > own
+> > > > module's text has already been freed.
+> > >=20
+> > > Since you mention DRM GPUVM in a couple of places, how can this
+> > > ever
+> > > happen? It
+> > > wouldn't make sense to keep a VM alive beyond driver unbind. I.e.
+> > > it
+> > > can't make
+> > > its drm_device reference count reach module unload in the first
+> > > place.
+> >=20
+> > There seems to be a bit of misunderstanding here.
+> >=20
+> > Driver unbind removes the struct device from the driver, triggers
+> > device unplug, and eventually the devres release actions. IIRC the
+> > last
+> > devres action removes a *single reference* on the struct
+> > drm_device.
+>=20
+> Correct.
+>=20
+> > Hence if there exists other reference holders on the struct
+> > drm_device
+> > (open files, exported dma-bufs, exported drm_pagemaps as an
+> > example),
+> > the drm_device will survive the driver unbind. So will open files
+> > and
+> > thus drm_gpuvms until user-space decides to remove them.
+>=20
+> There's two lifetimes we have to deal with in drivers: the lifetime
+> of (bus /
+> physical) device resources, which are managed by the driver and the
+> software
+> state that is represented through the class device to userspace (e.g.
+> file
+> handles).
+>=20
+> The former is bounded to the scope where the driver is bound to the
+> device and
+> the latter is unbounded and indeed depends on userspace.
+>=20
+> Either the subsystem or the driver has to decouple those lifetimes.
+> I.e. if the
+> driver is unbound it should clean up all GPUVMs as they represent the
+> GPU's
+> virtual address space and hence are associated with the hardware.
+> However, the
+> driver should not operated the hardware anymore after driver unbind.
+
+I disagree here. At unbind time we decouple the HW and SW state, The
+device no longer uses it's pointers to the page-table so, for example
+VRAM page-tables can be torn down, system page-tables lose their dma-
+mappings, but in xe we don't tear down the page-table structure itself.
+
+If HW accesses are properly protected by drm_dev_enter() /
+drm_dev_exit(), Hw won't be accessed after unbind.
+
+
+>=20
+> So, in your case it seems that file lifetime and VM lifetime are
+> conflated
+> although they should be separate.
+
+I view the VM as software state, page-table pointers, dma-mappings and
+VRAM storage as HW state.
+
+It seems like what we're not agreeing on is where to separate those. I
+see no reason as to why we would complicate the driver to remove more
+than necessary at unbind time?
+
+>=20
+> We can't have userspace to decide when we drop device resources, such
+> as DMA
+> mappings, I/O memory mappings, etc.
+
+We don't (Unless we have bugs, and you may have stumbled on those
+below?) Those should be removed at unbind time. We should also revoke
+dma-buf mappings and SVM migrates all dma-buf mappings to system.
+
+>=20
+> > Files, dma-bufs and drm_pagemaps all hold a driver module reference
+> > until they have successfully released the drm_device. The
+> > requirement
+> > is "If a drm_device reference is held, a module reference of the
+> > driver
+> > providing the drm_device must also be held, or if it's held by the
+> > driver itself, it must ensure at driver unload time that any
+> > drm_device
+> > references it holds are released and drmm release callbacks have
+> > finished executing."
+> >=20
+> > What this series in effect does is to change this to to "The driver
+> > won't unload until all drm_device references are gone, and all drmm
+> > release callbacks have finished executing."
+> >=20
+> > I agree that the use of drm_gpuvm in the documentation is a bit
+> > unfair.
+> > Since the code calling drm_dev_get() and drm_dev_put() is intended
+> > to
+> > be called from the driver, the reference in effect becomes the
+> > driver's
+> > responsibility, but if someone would, in the future change that so
+> > that
+> > those references are put from a worker from within the driver or
+> > even
+> > within drm_gpuvm itself, things would break. If a future code
+> > reviewer,
+> > developer or AI agent knows about the new drm_device reference
+> > guarantee, then that will lessen the review scope and code will
+> > become
+> > more rubost.
+> >=20
+> > >=20
+> > > Besides that, can you please remind me whether there are any
+> > > other
+> > > reasons than
+> > > the release() callback why a DRM device must not outlive module
+> > > unload?
+> >=20
+> > The drmm release callbacks.
+>=20
+> Right, I forgot about them for a second. However, they are similar to
+> the
+> release() callbacks as in they are the wrong cleanup model for driver
+> private
+> structures.
+>=20
+> drmm is a great tool for common subsystem structures that lifetime
+> wise tie to
+> the drm_device. But it is the wrong lifetime model for stuff that is
+> used to
+> operate the device, as this should be torn down on device unbind.
+
+The current model used by xe (and amdgpu AFACT, that also ties vm
+lifetime to file lifetime) is to block all hardware access and dma at
+unbind time. The rest is state that doesn't necessarily need to be torn
+down at unbind time. I believe the current separation is mostly done
+with drm_dev_enter() / drm_dev_exit() and why should we enforce a
+change of that? I'd say the drivers should be free to release what's
+convenient.
+
+Also if drm_gpuvms are designed to not outlive the struct device, why
+do they need to take a struct drm_device reference in the first place,
+I mean I brought this problem up then and IIRC I think you argued the
+reference was needed and punted any problems it caused to the drivers?
+
+>=20
+> I had a quick look at Xe and found this for instance:
+>=20
+> 	 drmm_add_action_or_reset(&xe->drm, control_fini_action, gt)
+>=20
+> control_fini_action() stops a worker that writes device registeres,
+> which must
+> not be done after driver unbind anymore.
+>=20
+> Now, there's two options, either after driver unbind this work is
+> never running
+> (which would be correct), but then this could have been
+> devm_add_action_or_reset(), or it does actually run after driver
+> unbind, but
+> this would violate the driver model.
+
+Agreed, Unless there is something protecting the hardware access after
+unplug in that control subsystem, that's a genuine bug, but that's
+separate from this discussion
+
+
+>=20
+> > > I don't think the correct solution is to constrain module unload.
+> > > The
+> > > release()
+> > > callback shouldn't really do anything other than free the memory
+> > > of
+> > > the
+> > > drm_device allocation. All other resources a driver may have
+> > > should
+> > > be released
+> > > on driver unbind.
+> >=20
+> > That is not true. See above.
+>=20
+> I know it is not true in practice, but we are doing the wrong thing.
+> We are
+> conflating the unbounded userspace lifetime with the bounded lifetime
+> from the
+> driver model.
+
+I don't think we are. As long as all HW access is given up or blocked,
+we're fine.
+
+>=20
+> I also know that we can't fix this easily, but I want to create some
+> awareness,
+> especially when we introduce more band aid for the status quo, such
+> that we can
+> subsequently address the fundamental lifetime problems.
+>=20
+> > > There may be shared resources, such as e.g. a common workqueue,
+> > > but
+> > > those are
+> > > module level things that have nothing to do with the DRM device.
+> >=20
+> > I don't think that is correct either. Take a look at Matt Brost
+> > reply
+> > to patch 3 there where he points out that the drm device (a base
+> > class
+> > of the xe device) is acually referenced in a work item after the
+> > struct
+> > drm_device reference is put. (There is a workqueue naming confusion
+> > in
+> > xe, but I do believe that patch needs a fix). With the poposed
+> > series
+> > in place a simple fix would be to hold a drm_device reference
+> > across
+> > the workqueue item. The unload process would then block until all
+> > devices are unreferenced, and then again at destroy_worqueue time
+> > waiting for the work item epilogue to finish executing.
+>=20
+> Well, but the workqueue itself has a bounded lifetime, which should
+> either be
+> driver unbind or module unload (when shared between driver
+> instances). The work
+> items themselves should ideally not extend beyond driver unbind,
+> because there
+> shouldn't be anything to do for the driver after unbind, because all
+> the
+> hardware should be torn down and not touched at this point anymore.
+
+Hardware isn't touched but I don't think there is any reason for
+cleanup tasks to stop executing at unbind time?
+
+>=20
+> I had another brief look at Xe and found this:
+>=20
+> 	drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt)
+>=20
+> where ggtt_fini_early() destroys a workqueue. It also calls
+>=20
+> 	drm_mm_takedown(&ggtt->mm);
+>=20
+> which IIUC is the range allocator for the global GTT. (The hardware
+> is gone on
+> driver unbind (i.e. no more GGTT is available for the driver), so
+> there's
+> shouldn't be a need for this drm_mm to live longer than driver
+> unbind).
+
+Yes, this *can* probably be taken down at unbind time at the expense of
+subsystem and structure validity checking, but it doesn't have to.
+
+>=20
+> This model ties the lifetime of all shorter lived resources that are
+> bounded to
+> the driver unload scope to the unbounded lifetime of the drm_device
+> that is
+> controlled by userspace.
+>=20
+> I.e. the model is backwards and hence also extends your driver
+> structures and
+> callback entry points not only beyond driver unbind, but also
+> potentially beyond
+> module unload.
+>=20
+> If it would be done the other way around, tear down everything on
+> driver unload,
+> and then use default trampolines for userspace still trying to call
+> into the
+> driver (which is also what DMA fence does and other subsystem do),
+> all those
+> issues go away.
+
+But that is arguably something that's never going to happen, and even
+if it is, I think that's mostly orthogonal to code keeping references
+to drm_device.
+
+
+>=20
+> > > > - Patch 3 fixes a related, previously unprotected case where
+> > > > the
+> > > > =C2=A0 teardown of a GPU VM or its address space mappings can be
+> > > > deferred
+> > > > =C2=A0 to run at an arbitrary later time, including after module
+> > > > unload
+> > > > has
+> > > > =C2=A0 already completed.
+> > >=20
+> > > Huh? GPUVM tracks the GPU's VA space mappings, but after driver
+> > > unbind there's
+> > > no access to the GPU to manage anything anymore. How can this
+> > > even
+> > > work?
+> >=20
+> > As previously mentioned, software device state may well outlive a
+> > driver unbind. This is all about its cleanup.
+>=20
+> GPUVM shouldn't be lifetime wise tied to a software state, it
+> represents
+> hardware resoruces.
+
+So then we can remove it's drm device reference? Why would it need to
+keep a reference to the software state guaranteed to outlive it?
+
+Regardless, I can remove all mentions of GPUVM in the documentation,
+but that doesn't remove the fact that keeping a reference to a struct
+drm_device without a module reference or a module presence guarantee is
+extremely fragile, and will be also in a model that removes a larger
+part of its software state at unbind time. IMO removing that fragility
+is a good thing.
+
+Thanks,
+Thomas
+
+
