@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A377ACA5FA5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C19B3C9832A
 	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 14:29:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DE3C10EF17;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6883810EF1A;
 	Tue, 29 Sep 2026 14:29:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YM0fY2m5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lJ8UDy/K";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B5DF10EF17
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Sep 2026 14:29:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA93710EF0F
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Sep 2026 14:29:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790692182; x=1822228182;
+ t=1790692181; x=1822228181;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ETVBR+YbkjihPPn+hgz7c9HS4OBFL1+C7JkP9v4LtHQ=;
- b=YM0fY2m5sP3qcl54IYAuvvEZ+EgCeXcW/77GZYbTjGyS2A5MhOyjLC2U
- w4hlTMBhMg74O7buVr5zN9TdLxRzQaTSEd64d672Nxx9K2L89PV6UmyE+
- GW3eFhNQmtquRNKWTLIU333fz1TAgOHtYHAXW4PwSz1ysP1755gZGKDgT
- AbH4zNhHiD11zBuEFeRlY1QWjqoyS4NwErw3iuKdjQiw81roz2cj2Jlxm
- R8vbKuLs1I2uwN/5Semt6KVipOj/BFl4e+1LmXuQIIIVWiamc6bRCG7sy
- FMriP/DZeevBYkYqeTUzzFahIsOZPgdbbsF+sR/86eTmO8bVyKuvbfrue Q==;
-X-CSE-ConnectionGUID: 6CAkreCZSsSGJzLKzhelYg==
-X-CSE-MsgGUID: ro+YrCS3SAOCMh4rs4foLA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11920"; a="90541151"
-X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="90541151"
+ bh=9oKxjENdRrL+KM1wwizQ6Y1KX9XurQ217VJdczcld0A=;
+ b=lJ8UDy/KxSQneN7GSCugbhlXS3P0hK0wJc+NgUTWQrOvs3aNlMWG/Lau
+ eQTDNeXMQ2mMSNtspzzKuf0BItojkLkrJ4OkHdaFZd1pRx5p1Ltl6qO0r
+ dm/f91nS6fHHgkKOSe6/qdAaslDOqyFU2vQA5Ld2rH98Nlv6nLWiL0Cxm
+ idGPZ1ujY7iCJZU9vlEASLeSSznYCrfJXxAJet1jBizhg3uBVR2VJOPYU
+ zv/6N5jZw/byhhAwxvJjG4jaa5PipupjK3bb73wbhKey+rND+6df/c6VV
+ K+LIwGkZpW3aOKMUsSG2AQXqGc+p7ajwImOens1ewYGaG7mptJLbF34qw A==;
+X-CSE-ConnectionGUID: gfa5KM7GQ1Gzm4F3h2LHug==
+X-CSE-MsgGUID: k1WpccRITx6uQ0e/30zncQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11920"; a="90541146"
+X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="90541146"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2026 07:29:42 -0700
-X-CSE-ConnectionGUID: y34fShtzTMmh0Jm2pzYAdg==
-X-CSE-MsgGUID: Je/Cn8LJRA+1HAQz7DrP9w==
+ 29 Sep 2026 07:29:41 -0700
+X-CSE-ConnectionGUID: TA8OuFAuSNaL2eDK078UeA==
+X-CSE-MsgGUID: QwCUBlHIQG2AS/dqJ07UAg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="278732072"
+X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="278732063"
 Received: from abityuts-desk1.ger.corp.intel.com (HELO fedora)
  ([10.245.244.222])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2026 07:29:40 -0700
+ 29 Sep 2026 07:29:39 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH v4 2/3] drm/xe: Route deferred xe_vma/xe_vm teardown off
- system_dfl_wq
-Date: Tue, 29 Sep 2026 16:29:09 +0200
-Message-ID: <20260929142910.47480-3-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v4 1/3] drm/xe: Don't unload the driver until all drm devices
+ are freed
+Date: Tue, 29 Sep 2026 16:29:08 +0200
+Message-ID: <20260929142910.47480-2-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20260929142910.47480-1-thomas.hellstrom@linux.intel.com>
 References: <20260929142910.47480-1-thomas.hellstrom@linux.intel.com>
@@ -72,123 +72,174 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_vma_destroy() can defer the final teardown of a struct xe_vma to a
-dma_fence completion callback (vma_destroy_cb()), and xe_vm_free() (the
-drm_gpuvm_ops.vm_free callback) always defers struct xe_vm teardown to
-a work item, since destroying a VM needs to sleep. Both used to queue
-their work on system_dfl_wq, a global, kernel-wide workqueue that xe
-has no control over and never waits on during module unload.
+xe, and shared helpers it uses such as drm_gpuvm, already take bare
+drm_device references (drm_dev_get()) from several contexts, for
+example GuC submission fence workers, EU stall, OA and PMU sampling
+code, and drm_gpuvm's own vm object lifetime, without pairing them
+with a module reference. Since xe_exit() is only invoked after the
+module's own refcount has dropped to zero, none of these references
+currently prevent `rmmod xe` from proceeding while they, or the
+underlying xe_device release path they can trigger, are still
+outstanding, i.e. driver code belonging to a module whose text is
+being freed could still end up executing.
 
-drm_gpuvm_free() drops its drm_device reference immediately after
-calling xe_vm_free(), without waiting for the deferred work to run.
-The same applies one level down: whichever xe_vma or xe_vm reference
-happens to be the last one can trigger this chain from a dma_fence
-callback that may fire at an arbitrary time, including after the
-owning file has already been closed and its own module reference
-dropped. Since nothing tracks or waits for work queued on
-system_dfl_wq, `rmmod xe` could succeed and free the module's text
-while vma_destroy_work_func() or vm_destroy_work_func() is still
-queued or running on it, jumping into freed code.
+Close this gap by keeping a device-count and waiting for it to reach
+zero at module unload.
 
-Fix xe_vm_free() by queueing its work on the per-device xe->destroy_wq
-instead. drm_gpuvm still holds a drm_device reference at the point
-xe_vm_free() runs (it is only dropped after xe_vm_free() returns), so
-xe->destroy_wq is guaranteed to still be alive and to be drained by
-xe_device_destroy() before the device, and hence xe->destroy_wq
-itself, goes away.
+The wait for the device-count to reach zero at module unload is
+unbounded and non-interruptible. Rather than blocking silently forever
+if a reference is ever leaked, use wait_var_event_timeout() with a 20s
+timeout, well above the typical maximum dma_fence signalling time, and
+warn once if devices still remain by then, before falling back to an
+unbounded wait_var_event() so a stuck rmmod is at least observable
+instead of an indefinite, silent hang.
 
-vma_destroy_cb() cannot use the same per-device queue:
-xe_vma_destroy_late(), run from that work, can itself drop the last
-reference to the owning xe_vm, which would recursively trigger
-xe_vm_free() and queue work on the same xe->destroy_wq that is
-currently executing this work item, deadlocking
-xe_device_destroy()'s destroy_workqueue(xe->destroy_wq) call against
-itself. Fix this one by queueing on xe_destroy_wq instead, the
-module-lifetime workqueue already used for GuC exec queue teardown.
-Unlike the per-device queue, this requires no dereference of a struct
-xe_device that may already be gone by the time the deferred callback
-fires, and unlike system_dfl_wq it is guaranteed to be drained by
-xe_destroy_wq_module_exit() before the module is unloaded, following
-the drm_pagemap_dev_hold()/unhold_work precedent of using a workqueue
-that is waited on at module unload rather than a bare module
-reference. The previous commit's reordering of xe_destroy_wq_exit()
-to run after xe_device_exit() guarantees that xe_destroy_wq is only
-torn down once the device-count has reached zero, i.e. after any
-xe_vma whose teardown queues work here has already dropped its
-drm_device reference and thus already queued that work.
+Note that if a reference genuinely leaks, this still ends up as an
+indefinite uninterruptible sleep, which may eventually trip the
+kernel's hung-task watchdog. The alternative would be for these bare
+drm_device references to also take a module reference, which would
+instead make the module unable to be unloaded unless all its devices are
+manually unbound first. The wait-based approach is chosen here since it
+keeps rmmod usable in the common case.
+
+xe_device_exit() is added as a new module exit hook. Its entry in the
+init_funcs[] table is placed between xe_destroy_wq_module_init and
+xe_register_pci_driver, so that (exit functions run in reverse array
+order) it executes after xe_unregister_pci_driver() has forced all
+devices to unbind, but before xe_destroy_wq_module_exit() tears down
+the module-lifetime xe_destroy_wq. This preserves xe_destroy_wq's
+existing teardown ordering relative to xe_sched_job_module_exit() and
+xe_hw_fence_module_exit(), which destroy kmem_caches that work drained
+from xe_destroy_wq relies on, while ensuring xe_destroy_wq itself is
+only torn down once xe_device_exit() has confirmed no more work can be
+queued onto it.
+
+v2:
+- Updated commit message to describe the actual implementation (a
+  single 20s wait_var_event_timeout() followed by one pr_warn() and an
+  unbounded wait_var_event(), rather than a loop retrying with a
+  diagnostic every 10s) and its uninterruptible-sleep tradeoff
+  (sashiko)
 
 v4:
-- Add code comments
-- Use the xe->destroy_wq for vm->destroy_work (Matt Brost)
+- No longer sync on drmm release callbacks finished execution
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Assisted-by: LLM
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com> # v3
 ---
- drivers/gpu/drm/xe/xe_module.c |  6 ++++--
- drivers/gpu/drm/xe/xe_vm.c     | 18 +++++++++++++++---
- 2 files changed, 19 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 29 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_device.h |  2 ++
+ drivers/gpu/drm/xe/xe_module.c | 18 +++++++++++++++++-
+ 3 files changed, 48 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 205cb4e7f9e8..10436b5bd03f 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -372,6 +372,9 @@ bool xe_device_is_admin_only(const struct xe_device *xe)
+ }
+ #endif
+ 
++/* Number of allocated struct xe_device */
++static atomic_t xe_device_count;
++
+ static void xe_device_destroy(struct drm_device *dev, void *dummy)
+ {
+ 	struct xe_device *xe = to_xe_device(dev);
+@@ -391,6 +394,9 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
+ 		destroy_workqueue(xe->destroy_wq);
+ 
+ 	ttm_device_fini(&xe->ttm);
++
++	if (atomic_dec_and_test(&xe_device_count))
++		wake_up_var(&xe_device_count);
+ }
+ 
+ /**
+@@ -461,6 +467,7 @@ int xe_device_init_early(struct xe_device *xe)
+ 		return err;
+ 
+ 	xe_bo_dev_init(&xe->bo_device);
++	atomic_inc(&xe_device_count);
+ 	err = drmm_add_action_or_reset(&xe->drm, xe_device_destroy, NULL);
+ 	if (err)
+ 		return err;
+@@ -1501,3 +1508,25 @@ struct xe_vm *xe_device_asid_to_vm(struct xe_device *xe, u32 asid)
+ 
+ 	return vm;
+ }
++
++/**
++ * xe_device_exit() - Device subsystem exit function.
++ *
++ * Exit function to be called at module unload time.
++ */
++void xe_device_exit(void)
++{
++	/*
++	 * Wait for all devices to be freed. 20s is well above the typical
++	 * maximum dma_fence signalling time, so warn and keep waiting if
++	 * we're still not done by then, since it may indicate a leaked
++	 * xe_device reference is stalling module unload.
++	 */
++	if (!wait_var_event_timeout(&xe_device_count,
++				    !atomic_read(&xe_device_count),
++				    HZ * 20)) {
++		pr_warn("%s: Waiting for %d xe device(s) to be freed before unloading.\n",
++			DRIVER_NAME, atomic_read(&xe_device_count));
++		wait_var_event(&xe_device_count, !atomic_read(&xe_device_count));
++	}
++}
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 6d3d6d5eba29..83d6dafab53c 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -283,6 +283,8 @@ static inline bool xe_device_is_admin_only(const struct xe_device *xe)
+ }
+ #endif
+ 
++void xe_device_exit(void);
++
+ /*
+  * Occasionally it is seen that the G2H worker starts running after a delay of more than
+  * a second even after being queued and activated by the Linux workqueue subsystem. This
 diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index c61bd33546f2..897724cb5cfb 100644
+index 4bc28dfc1992..c61bd33546f2 100644
 --- a/drivers/gpu/drm/xe/xe_module.c
 +++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -114,8 +114,10 @@ static void xe_destroy_wq_module_exit(void)
-  * xe_destroy_wq_queue() - Queue work on the destroy workqueue
-  * @work: work item to queue
-  *
-- * The destroy workqueue has module lifetime and is used for GuC exec queue
-- * teardown that can outlive a single xe_device. SVM pagemap destroy uses the
-+ * The destroy workqueue has module lifetime, and is guaranteed to outlive
-+ * any xe_device, and to be drained before the module is unloaded. It is used
-+ * for GuC exec queue and xe_vm/xe_vma teardown that can be deferred past the
-+ * lifetime of the xe_device that triggered it. SVM pagemap destroy uses the
-  * per-device xe->destroy_wq instead.
-  *
-  * Return: %true if @work was queued, %false if it was already pending.
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 390da884c727..e07384c1c2dc 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -29,6 +29,7 @@
- #include "xe_exec_queue.h"
- #include "xe_gt.h"
- #include "xe_migrate.h"
-+#include "xe_module.h"
- #include "xe_pagefault.h"
- #include "xe_pat.h"
- #include "xe_pm.h"
-@@ -1249,7 +1250,14 @@ static void vma_destroy_cb(struct dma_fence *fence,
- 	struct xe_vma *vma = container_of(cb, struct xe_vma, destroy_cb);
+@@ -12,7 +12,7 @@
+ #include <drm/drm_module.h>
  
- 	INIT_WORK(&vma->destroy_work, vma_destroy_work_func);
--	queue_work(system_dfl_wq, &vma->destroy_work);
-+
+ #include "xe_defaults.h"
+-#include "xe_device_types.h"
++#include "xe_device.h"
+ #include "xe_drv.h"
+ #include "xe_configfs.h"
+ #include "xe_hw_fence.h"
+@@ -162,6 +162,22 @@ static const struct init_funcs init_funcs[] = {
+ 		.init = xe_destroy_wq_module_init,
+ 		.exit = xe_destroy_wq_module_exit,
+ 	},
 +	/*
-+	 * The destroy work puts a vm reference which may put the last
-+	 * device reference. Hence we can't queue this work on the device
-+	 * destroy queue since that may deadlock. Use the module-wide
-+	 * destroy queue.
++	 * xe_destroy_wq_module_exit() must run after xe_device_exit()
++	 * (below), since freeing a device can still queue work on
++	 * xe_destroy_wq that must be drained before the module can safely
++	 * unload. At the same time, xe_device_exit() must run after
++	 * xe_unregister_pci_driver() (below), and xe_destroy_wq_module_exit()
++	 * must run before xe_sched_job_module_exit() and
++	 * xe_hw_fence_module_exit() (above), whose kmem_caches are still used
++	 * by work drained from xe_destroy_wq. Exit functions run in reverse
++	 * array order, so this entry must sit between the
++	 * xe_destroy_wq_module_init entry above and the xe_register_pci_driver
++	 * entry below.
 +	 */
-+	xe_destroy_wq_queue(&vma->destroy_work);
- }
- 
- static void xe_vm_assert_write_mode_or_garbage_collector(struct xe_vm *vm)
-@@ -2058,8 +2066,12 @@ static void xe_vm_free(struct drm_gpuvm *gpuvm)
- {
- 	struct xe_vm *vm = container_of(gpuvm, struct xe_vm, gpuvm);
- 
--	/* To destroy the VM we need to be able to sleep */
--	queue_work(system_dfl_wq, &vm->destroy_work);
-+	/*
-+	 * To destroy the VM we need to be able to sleep.
-+	 * drm_gpuvm keeps at least one device reference at this
-+	 * point so xe->destroy_wq must still be alive.
-+	 */
-+	queue_work(vm->xe->destroy_wq, &vm->destroy_work);
- }
- 
- struct xe_vm *xe_vm_lookup(struct xe_file *xef, u32 id)
++	{
++		.exit = xe_device_exit,
++	},
+ 	{
+ 		.init = xe_register_pci_driver,
+ 		.exit = xe_unregister_pci_driver,
 -- 
 2.55.0
 
