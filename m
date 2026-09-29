@@ -4,54 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD76FCA5FA7
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 16:11:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31DF2C9832A
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 16:18:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7732F10EF9D;
-	Tue, 29 Sep 2026 16:11:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2AA110E19B;
+	Tue, 29 Sep 2026 16:18:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lsnlwDYw";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UgOOF+lF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2B9A10EF93;
- Tue, 29 Sep 2026 16:11:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790698288; x=1822234288;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=E+qpu/3mUBlG0VofrRB0IGKZDYXBfkPeh5dpHLP/Uu0=;
- b=lsnlwDYwlgwpaqC4HjkjpILg9wl7ISdkTMc1WqiHoF2uFtSupjgI63t6
- IK6k61oFmrFP/Q5NTRcrxQI8FuHBw69vOlQNqdb6yA08J87e8zvP0Yc2m
- tpw12Y1/BSSZTryHnN3QyRHWqVTC/bOUdBcK488fNdgRSUoQo28ztXbXb
- cnnHq5TmsZIpd/TRDdzsGRQxFeMQ/7soa2Qwl5AylgSBiMXSXVL0XaV56
- SdnP7zpISvu+fC04GZv+GVEy2TbjzNs3HiWwARCpr0VuoT+rv5okt7FJi
- WIX9Y+1xNSVe45J+jbFVLbthxO8wO1ov6Z64VqtS12ta0cR2crux2fYIs w==;
-X-CSE-ConnectionGUID: PC9zRsLDQuaBAF0UU9lTsA==
-X-CSE-MsgGUID: qjv+o7SrQkuMRlqAubi6GA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11920"; a="90475041"
-X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="90475041"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2026 09:11:28 -0700
-X-CSE-ConnectionGUID: 87TQea9fSbqyyL5SvLAIzA==
-X-CSE-MsgGUID: G3aMZv0fTgiWTKp+9vtCmw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="274021994"
-Received: from aalteres-desk1.fm.intel.com ([10.121.64.173])
- by fmviesa006.fm.intel.com with ESMTP; 29 Sep 2026 09:11:27 -0700
-From: Alan Previn <alan.previn.teres.alexis@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- dri-devel@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH] drm/xe/mmio: Fix xe_mmio_wait32() to honor delay/sleep
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24C6110E19B;
+ Tue, 29 Sep 2026 16:18:44 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 34F286022B;
+ Tue, 29 Sep 2026 16:18:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9DB61F000FF;
+ Tue, 29 Sep 2026 16:18:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1790698722;
+ bh=C6yYJSyNP3cicnnh+7sXpC4MTWaIKNoFvsKNDlZ44Jc=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=UgOOF+lFF7hOsVmbSiVkWy7BDeeBTE+k9H2SlFJ6IxDX2nSoSDoYXo8OC04E1m0aR
+ yqfym2DM+LmpmNJBZ3IxC1UkXlRColXfw2P+ndmox0Mhr91LR5xhZCnXPSXKbhL1nW
+ QN1YIPTCw1gUTH/dsMns9MREI7vJMKgWrW7uaNc2I0i/xlXVMXZQH+2mkzxEK1lEs/
+ UaB+q+VE/fu/hTbH0aiO0T7LZ6dhyV4T/XK5oTK0W0RMAlFC60Z31xFOJQQZ8U4qdB
+ N8zE9K4vDX8UrLwHyQ46smfL3G+TsmZ2XBqxhh45UrsCF9DB+mtdOaG4Hqany3VuSH
+ wiXox98lniq0w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] drm/xe/mmio: Fix xe_mmio_wait32() to honor delay/sleep
  maximums
-Date: Tue, 29 Sep 2026 08:25:04 -0700
-Message-ID: <20260929161125.1973918-2-alan.previn.teres.alexis@intel.com>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+In-Reply-To: <20260929161125.1973918-2-alan.previn.teres.alexis@intel.com>
+References: <20260929161125.1973918-2-alan.previn.teres.alexis@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 29 Sep 2026 16:18:42 +0000
+Message-Id: <20260929161842.A9DB61F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,51 +52,74 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Check for overflow in udelay/usleep_range use in __xe_mmio_wait32
-and pick the correct helper according to the wait time and atomic.
-Implement a similar helper to replace DIV_ROUND_UP for 32-bit CPUs.
-Avoid growing delays becoming intollerably large by capping the
-in-loop wait time.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Low] drm/xe: commit message describes dropped design changes
+- [Low] drm/xe: preprocessor macro defined inside function body
+--
 
-v6: - Fix commit message to remove items dropped in v5. Fix the
-      use of MAX_UDELAY_MS for microsecond unit. (Shasiko review).
-v5: - Simplify: don't introduce additional redesign and
-      use min_t with a backoff to cap wait. (Rodrigo).
-v4: - Simplify using poll_timeout_us and poll_timeout_us_atomic and
-      update all callers to never use a param for atomic (Jani)
-v3: - Use div64_s64 kernel API for 32-bit vs 64-bit division.
-v2: - Fixed checkpatch failure.
-    - Added helper for 64-bit DIV_ROUND_UP on 32-bit CPU (Shasiko
-      review). Fixed bug max range in usleep_range(Shasiko review)
+commit 7206a8140e2444dbf990387d48807b42ec0fbee5
+Author: Alan Previn <alan.previn.teres.alexis@intel.com>
 
-Fixes: 5c09bd6ccd41 ("drm/xe/mmio: Move xe_mmio_wait32() to xe_mmio.c")
-Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-Assisted-by: Github-Copilot:Claude-Sonnet-5-0
----
- drivers/gpu/drm/xe/xe_mmio.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+drm/xe/mmio: Fix xe_mmio_wait32() to honor delay/sleep maximums
+   =20
+This patch bounds the maximum in-loop wait time in __xe_mmio_wait32 to
+100ms to avoid excessively large delays. It also caps udelay usage to
+MAX_UDELAY_MS for atomic contexts.
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 7fa18dfcb5a2..5a03698729ce 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -350,10 +350,11 @@ static int __xe_mmio_wait32(struct xe_mmio *mmio, struct xe_reg reg, u32 mask, u
- 			wait = ktime_us_delta(end, cur);
- 
- 		if (atomic)
--			udelay(wait);
-+			udelay(min_t(s64, wait, (MAX_UDELAY_MS * 1000)));
- 		else
- 			usleep_range(wait, wait << 1);
--		wait <<= 1;
-+#define __XE_MMIO_WAIT_MAX_BACKOFF_100MS (100 * USEC_PER_MSEC)
-+		wait = min_t(s64, wait << 1, __XE_MMIO_WAIT_MAX_BACKOFF_100MS);
- 	}
- 
- 	if (ret != 0) {
--- 
-2.43.0
+>     Check for overflow in udelay/usleep_range use in __xe_mmio_wait32
+>     and pick the correct helper according to the wait time and atomic.
+>     Implement a similar helper to replace DIV_ROUND_UP for 32-bit CPUs.
 
+[Severity: Low]
+Does the commit message need an update here? The text claims to pick the
+correct helper according to the wait time and implement a similar helper
+to replace DIV_ROUND_UP, but the actual diff only modifies the sleeping
+logic and caps the wait times.
+
+It seems the DIV_ROUND_UP redesign was dropped but the description was not
+fully updated to reflect this.
+
+> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+> index 7fa18dfcb5a28..5a03698729ce5 100644
+> --- a/drivers/gpu/drm/xe/xe_mmio.c
+> +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> @@ -350,10 +350,11 @@ static int __xe_mmio_wait32(struct xe_mmio *mmio, s=
+truct xe_reg reg, u32 mask, u
+>  			wait =3D ktime_us_delta(end, cur);
+> =20
+>  		if (atomic)
+> -			udelay(wait);
+> +			udelay(min_t(s64, wait, (MAX_UDELAY_MS * 1000)));
+>  		else
+>  			usleep_range(wait, wait << 1);
+
+[Severity: Medium]
+This isn't a bug introduced by this patch, but __xe_mmio_wait32 is called
+with wait values that can reach 100,000 microseconds (100ms) due to the
+backoff limit. According to the kernel timer guidelines, usleep_range
+should only be used for delays under 20ms, while msleep is recommended
+for larger delays to avoid using high-overhead hrtimers. Could we switch
+to msleep for the longer iterations?
+
+> -		wait <<=3D 1;
+> +#define __XE_MMIO_WAIT_MAX_BACKOFF_100MS (100 * USEC_PER_MSEC)
+
+[Severity: Low]
+Is it intended to define this preprocessor macro inside the function body?
+Macros do not have block scope in C, so placing it here can be stylistically
+misleading and will likely trigger checkpatch warnings. Could this be moved
+outside the function body?
+
+> +		wait =3D min_t(s64, wait << 1, __XE_MMIO_WAIT_MAX_BACKOFF_100MS);
+>  	}
+> =20
+>  	if (ret !=3D 0) {
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260929161125.1973=
+918-2-alan.previn.teres.alexis@intel.com?part=3D1
