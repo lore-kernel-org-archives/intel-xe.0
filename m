@@ -4,43 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AEB9CA5FA5
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 20:20:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA060CA5FA7
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 20:20:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AA2710F0AB;
-	Tue, 29 Sep 2026 20:20:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="gIRpABkW";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA7AF10F0AB
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Sep 2026 20:20:04 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 81A0040DDF;
- Tue, 29 Sep 2026 20:20:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43DF51F000FF;
- Tue, 29 Sep 2026 20:20:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790713204;
- bh=/Uo6Gh8i2wlXIErUANgf6BrNPyO97DrpfrTQi6V2F+I=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=gIRpABkWO38QUU+cm7eA6Ilkz/iI8s9m1m6EOMZzR2EDqreCOkEpYlV3P0PkhoRu1
- h/I4Fpq2F8RgaLnDJMA0FxFCWZdt4h8xeP3INiYFWSuPBepLgHZAcq0MS7AW9JYROY
- P5Uy2KGwTqB8NbdcxraDL2NgYoFIXBIkg+DuclIOZWsRmZ2cJ8hVWcxkiyppIf3zPW
- 7lKDliP6vQEiYsRO2FnghScYt/hm9JhTE/XHJmAqsOnQUYl2tq6Pe2DKxN9rFNev2m
- SAKaG2p/x+UciDFwU603ZrkHT9y4Ch5zn/ZdaAF9TlJ/y736mwmzwc52p8k25b56Rj
- vRpDIpIuSPRVw==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] drm/xe/xe3p: Force non-compressible memory reads to
- 256B overfetches
-To: "Daniel Charles" <daniel.charles@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D68710F0AB;
+	Tue, 29 Sep 2026 20:20:58 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 154D410F0AB;
+ Tue, 29 Sep 2026 20:20:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0144279676357842794=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/mmio=3A_Fix_xe=5Fmmi?=
+ =?utf-8?q?o=5Fwait32=28=29_to_honor_delay/sleep_maximums_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20260929200839.843116-1-daniel.charles@intel.com>
-References: <20260929200839.843116-1-daniel.charles@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 29 Sep 2026 20:20:03 +0000
-Message-Id: <20260929202004.43DF51F000FF@smtp.kernel.org>
+Date: Tue, 29 Sep 2026 20:20:57 -0000
+Message-ID: <179071325707.221285.7764263034887913355@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20260929192037.2233429-2-alan.previn.teres.alexis@intel.com>
+In-Reply-To: <20260929192037.2233429-2-alan.previn.teres.alexis@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,63 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] drm/xe: missing media GT tuning for NONCOMPMEMRD256BOVRFETCHEN
---
+--===============0144279676357842794==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 0d0918701116e6b353267a1af32ce09421b27bbd
-Author: Daniel Charles <daniel.charles@intel.com>
+== Series Details ==
 
-drm/xe/xe3p: Force non-compressible memory reads to 256B overfetches
+Series: drm/xe/mmio: Fix xe_mmio_wait32() to honor delay/sleep maximums (rev7)
+URL   : https://patchwork.freedesktop.org/series/173538/
+State : success
 
-This commit adds a tuning entry to set bit 14 (NONCOMPMEMRD256BOVRFETCHEN)
-of L3SQCREG2 for Xe3p and later platforms to force non-compressible memory
-reads to 256B overfetches.
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tunin=
-g.c
-> index bcec40ca2d35f..a9bd3f8969a54 100644
-> --- a/drivers/gpu/drm/xe/xe_tuning.c
-> +++ b/drivers/gpu/drm/xe/xe_tuning.c
+CI Bug Log - changes from xe-5841-f4c2483a5135be957b52ab801f7cae9a250d6989_BAT -> xe-pw-173538v7_BAT
+====================================================
 
-[ ... ]
+Summary
+-------
 
-> @@ -100,6 +100,10 @@ VISIBLE_IF_KUNIT const struct xe_rtp_table_sr gt_tun=
-ings =3D XE_RTP_TABLE_SR(
->  	  XE_RTP_ACTIONS(FIELD_SET(GAMSTLB_CTRL, BANK_HASH_MODE,
->  				   BANK_HASH_4KB_MODE))
->  	},
-> +	{ XE_RTP_NAME("Tuning: Force All Non-Compressible Memory Reads to be 25=
-6B Overfetches"),
-> +	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3510, XE_RTP_END_VERSION_UNDEFINE=
-D)),
-> +	  XE_RTP_ACTIONS(SET(L3SQCREG2, NONCOMPMEMRD256BOVRFETCHEN))
-> +	},
+  **SUCCESS**
 
-[Severity: Medium]
-Should this tuning also be applied to the standalone Media GT?
+  No regressions found.
 
-Since this rule uses GRAPHICS_VERSION_RANGE(), it evaluates to false for
-standalone Media GTs when checked in xe_rtp_match_graphics_version_range().
-Xe3p platforms feature a standalone Media GT with its own L3 cache controll=
-ed
-by XE2LPM_L3SQCREG2.
+  
 
-Previous overfetch tunings for the same cache (such as
-COMPMEMRD256BOVRFETCHEN) provided a companion rule using MEDIA_VERSION_RANG=
-E.
+Participating hosts (15 -> 15)
+------------------------------
 
-Is there a similar configuration needed here to optimize non-compressible
-memory reads for the Media GT L3 cache?
+  No changes in participating hosts
 
->  );
->  EXPORT_SYMBOL_IF_KUNIT(gt_tunings);
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260929200839.8431=
-16-1-daniel.charles@intel.com?part=3D1
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5841-f4c2483a5135be957b52ab801f7cae9a250d6989 -> xe-pw-173538v7
+
+  IGT_9116: 9d4b6ef512b4e2e4d05129c6519313fd13a306d2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5841-f4c2483a5135be957b52ab801f7cae9a250d6989: f4c2483a5135be957b52ab801f7cae9a250d6989
+  xe-pw-173538v7: 173538v7
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173538v7/index.html
+
+--===============0144279676357842794==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/mmio: Fix xe_mmio_wait32() to honor delay/sleep maximums (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173538/">https://patchwork.freedesktop.org/series/173538/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173538v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173538v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5841-f4c2483a5135be957b52ab801f7cae9a250d6989_BAT -&gt; xe-pw-173538v7_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5841-f4c2483a5135be957b52ab801f7cae9a250d6989 -&gt; xe-pw-173538v7</li>
+</ul>
+<p>IGT_9116: 9d4b6ef512b4e2e4d05129c6519313fd13a306d2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5841-f4c2483a5135be957b52ab801f7cae9a250d6989: f4c2483a5135be957b52ab801f7cae9a250d6989<br />
+  xe-pw-173538v7: 173538v7</p>
+
+</body>
+</html>
+
+--===============0144279676357842794==--
