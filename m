@@ -4,58 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FD5ACA5FA7
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 09:45:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B695CA5FAE
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 09:51:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7A9510EDF0;
-	Tue, 29 Sep 2026 09:45:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 265EC10EDF7;
+	Tue, 29 Sep 2026 09:51:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ib01jiwW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z3BLJSDD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9AB810EDDB;
- Tue, 29 Sep 2026 09:45:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3ED8D10EDE8;
+ Tue, 29 Sep 2026 09:51:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790675105; x=1822211105;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0ngeYADQS9M0DlSX3iKDzm5mOpsgiqCr1Q8Q/INxeOk=;
- b=Ib01jiwW9B/pGDlDcZ+nYwiszLcHAVYCWkVV87wf+uwooBLYDdmkpxUp
- TPuKY4n3NIf9z1FvWSmsJ3A8bHUTqNmohuN1I0XmNhO5TPqq3smqsdXDR
- i+frD0S53Q06dZnEr7lt+Chp+9XhE3YUwoigK/uAI5dw0AwB8spezB0P1
- 7rJAnwEkzl3fn7g+SBYELHJqQr0XzVnoBk+GYi1MM+ENfATtoaEfYz5nW
- wkaEeQbIW+uiQ4ccwz38/J2jfudmXL/aTxvix/GeKYsGYhQtrz0YJnSlu
- dyRNzOnwWQmlfQVh+7t3Vum9IjO4vHHUGTvFJt5Hv8WjOCLqw69ubTmIt A==;
-X-CSE-ConnectionGUID: 4ewv24FARmiR38OdUPsK1g==
-X-CSE-MsgGUID: vScnHKqfTnCf/gBNqlz1Kg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11919"; a="91250078"
-X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="91250078"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2026 02:45:01 -0700
-X-CSE-ConnectionGUID: hDsgELpYSi+sXOYHxnDo0g==
-X-CSE-MsgGUID: tKI+rhH6TtqwuqPKLVA0uA==
+ t=1790675464; x=1822211464;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=5IMzqzg26e1ZOe5msduUKZOodQmOMG4X1RMTOWhDaqs=;
+ b=Z3BLJSDDXe1NPE/XWi+DGK/wtoMlLL09bGjwb8+GZna+M5FokzkaXwN7
+ TKYxBI4ckAxnZDGrLPZrID53KJK10cQT8AXr33+V5q0eHLCi3niqKryZu
+ dqcfTqV4s3RW+c0oNxLjlaEosXMgPeocX/ATQ8M9PYecuLATlCov3MoDH
+ uer43WLfv1XXbpB53+oA/oUH5Hc1e08iyA5WhouquN6g1ZOGTllGnQ7ig
+ 2Vgu4X+twNUBCgCjM2r+4f8PoIKe6IM/n+eoWkD7mEPUXm+TtfwJI3xai
+ gc+vc/RyME6WHTLprvlETNz9uK9VaZ/dBVDsk1zkKAosD1tHmoY0k40zc Q==;
+X-CSE-ConnectionGUID: LhtZTUVJR8mOLXwJIu7kqg==
+X-CSE-MsgGUID: V1FE0yn9Tw+5cEKuUE8Znw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11919"; a="100720951"
+X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="100720951"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2026 02:51:04 -0700
+X-CSE-ConnectionGUID: SbTQ6ONTRamNR6hrvV/fiA==
+X-CSE-MsgGUID: MvMNXFwcQBmEfevu2ItB2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="283415019"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO
- jhogande-mobl3.intel.com) ([10.245.246.120])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2026 02:44:59 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 6/8] drm/i915/psr: Don't write 0 size area into plane sel
- fetch area registers
-Date: Tue, 29 Sep 2026 12:44:32 +0300
-Message-ID: <20260929094434.77129-7-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260929094434.77129-1-jouni.hogander@intel.com>
-References: <20260929094434.77129-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="274856017"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.245.8])
+ ([10.245.245.8])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2026 02:51:02 -0700
+Message-ID: <74e8255e-acde-4270-a0c4-10e14e3d7ba4@intel.com>
+Date: Tue, 29 Sep 2026 10:50:59 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] gpu/buddy: fix missing split-undo on
+ allocation-search exhaustion
+To: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: christian.koenig@amd.com, alexander.deucher@amd.com,
+ Anand.Raghavendra@amd.com
+References: <20260928175128.257266-1-arunpravin.paneerselvam@amd.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260928175128.257266-1-arunpravin.paneerselvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,29 +73,182 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we are writing invalid configuration into plane selective fetch
-area registers. Check height of plane selective fetch area and return
-early if it's 0 or less.
+On 28/09/2026 18:51, Arunpravin Paneer Selvam wrote:
+> From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> 
+> __alloc_range_bias() and __alloc_range() only undid splits made during
+> their search when split_block() itself failed. Their DFS-exhaustion
+> failure paths (-ENOSPC, when no suitable block is found) skipped the
+> undo, leaving the buddy tree needlessly fragmented over repeated
+> failed allocation attempts.
+> 
+> Fix by recording every successful split_block() call in a list and
+> unconditionally undoing those splits on every failure exit, via a
+> new single-level gpu_buddy_merge_one_level() helper (the original
+> __gpu_buddy_undo_splits() cascaded merges upward, which is unsafe
+> when called per split-list entry).
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+At least for __alloc_range(), I thought if we do a split it should be 
+always guaranteed that some eventual side (left or right at some depth) 
+will be marked as allocated, unless the split itself fails, in which 
+case you might need the special undo path.  So I don't think you can 
+ever have two free buddies on the -ENOSPC path, in which case you don't 
+need any "undo splits", you can just trigger the normal 
+gpu_buddy_free_list_internal() path, which is what the code currently 
+does? What am I missing?
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 8bdf1b8a02299..def4798f85022 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1522,7 +1522,8 @@ static void icl_plane_update_sel_fetch_noarm(struct intel_dsb *dsb,
- 	u32 val;
- 	int x, y;
- 
--	if (!crtc_state->enable_psr2_sel_fetch)
-+	if (!crtc_state->enable_psr2_sel_fetch ||
-+	    drm_rect_height(&plane_state->psr2_sel_fetch_area) <= 0)
- 		return;
- 
- 	clip = &plane_state->psr2_sel_fetch_area;
--- 
-2.43.0
+> 
+> Resolves the igt@kms_plane@plane-panning-bottom-right@pipe-a/pipe-b
+> regression.
+> 
+> Fixes: 1ad5e807f716 ("gpu/buddy: replace dual-tree/force_merge with decoupled dirty tracker")
+> Assisted-by: Claude:claude-opus-4-8
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> ---
+>   drivers/gpu/buddy.c | 64 ++++++++++++++++++++++++++++++++++++++++-----
+>   1 file changed, 58 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+> index 2f2aaadafe35..b741160d3d16 100644
+> --- a/drivers/gpu/buddy.c
+> +++ b/drivers/gpu/buddy.c
+> @@ -1240,6 +1240,52 @@ static void __gpu_buddy_undo_splits(struct gpu_buddy *mm,
+>   	}
+>   }
+>   
+> +static void gpu_buddy_merge_one_level(struct gpu_buddy *mm,
+> +				      struct gpu_buddy_block *block)
+> +{
+> +	struct gpu_buddy_block *buddy = __get_buddy(block);
+> +	struct gpu_buddy_block *parent = block->parent;
+> +	enum gpu_block_state block_state;
+> +
+> +	if (!buddy || !gpu_buddy_block_is_free(block) ||
+> +	    !gpu_buddy_block_is_free(buddy))
+> +		return;
+> +
+> +	block_state = gpu_block_cached_state(block);
+> +	if (gpu_block_cached_state(buddy) != block_state)
+> +		block_state = GPU_BLOCK_MIXED;
+> +
+> +	rbtree_remove(mm, block);
+> +	rbtree_remove(mm, buddy);
+> +	mm->free_scoreboard[gpu_buddy_block_order(block)] -= 2;
+> +
+> +	gpu_block_free(mm, block);
+> +	gpu_block_free(mm, buddy);
+> +
+> +	__mark_free(mm, parent, block_state);
+> +}
+> +
+> +static void gpu_buddy_undo_splits(struct gpu_buddy *mm,
+> +				  struct gpu_buddy_block *block,
+> +				  struct list_head *splits)
+> +{
+> +	if (block)
+> +		gpu_buddy_merge_one_level(mm, block);
+> +
+> +	while (!list_empty(splits)) {
+> +		struct gpu_buddy_block *parent =
+> +			list_first_entry(splits, struct gpu_buddy_block,
+> +					 tmp_link);
+> +
+> +		list_del(&parent->tmp_link);
+> +
+> +		if (!gpu_buddy_block_is_split(parent))
+> +			continue;
+> +
+> +		gpu_buddy_merge_one_level(mm, parent->left);
+> +	}
+> +}
+> +
+>   static struct gpu_buddy_block *
+>   __alloc_range_bias(struct gpu_buddy *mm,
+>   		   u64 start, u64 end,
+> @@ -1249,6 +1295,7 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>   	u64 req_size = mm->chunk_size << order;
+>   	struct gpu_buddy_block *block;
+>   	LIST_HEAD(dfs);
+> +	LIST_HEAD(splits);
+>   	int err;
+>   	int i;
+>   
+> @@ -1313,6 +1360,8 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>   			err = split_block(mm, block);
+>   			if (unlikely(err))
+>   				goto err_undo;
+> +
+> +			list_add(&block->tmp_link, &splits);
+>   		}
+>   
+>   		/*
+> @@ -1349,7 +1398,7 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>   		}
+>   	} while (1);
+>   
+> -	return ERR_PTR(-ENOSPC);
+> +	err = -ENOSPC;
+>   
+>   err_undo:
+>   	/*
+> @@ -1357,7 +1406,8 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>   	 * bigger is better, so make sure we merge everything back before we
+>   	 * free the allocated blocks.
+>   	 */
+> -	__gpu_buddy_undo_splits(mm, block);
+> +	gpu_buddy_undo_splits(mm, block, &splits);
+> +
+>   	return ERR_PTR(err);
+>   }
+>   
+> @@ -1580,6 +1630,7 @@ static int __alloc_range(struct gpu_buddy *mm,
+>   	struct gpu_buddy_block *block;
+>   	u64 total_allocated = 0;
+>   	LIST_HEAD(allocated);
+> +	LIST_HEAD(splits);
+>   	u64 end;
+>   	int err;
+>   
+> @@ -1605,7 +1656,7 @@ static int __alloc_range(struct gpu_buddy *mm,
+>   
+>   		if (gpu_buddy_block_is_allocated(block)) {
+>   			err = -ENOSPC;
+> -			goto err_free;
+> +			goto err_undo;
+>   		}
+>   
+>   		if (contains(start, end, block_start, block_end)) {
+> @@ -1634,6 +1685,8 @@ static int __alloc_range(struct gpu_buddy *mm,
+>   			err = split_block(mm, block);
+>   			if (unlikely(err))
+>   				goto err_undo;
+> +
+> +			list_add(&block->tmp_link, &splits);
+>   		}
+>   
+>   		list_add(&block->right->tmp_link, dfs);
+> @@ -1642,7 +1695,7 @@ static int __alloc_range(struct gpu_buddy *mm,
+>   
+>   	if (total_allocated < size) {
+>   		err = -ENOSPC;
+> -		goto err_free;
+> +		goto err_undo;
+>   	}
+>   
+>   	list_splice_tail(&allocated, blocks);
+> @@ -1655,9 +1708,8 @@ static int __alloc_range(struct gpu_buddy *mm,
+>   	 * bigger is better, so make sure we merge everything back before we
+>   	 * free the allocated blocks.
+>   	 */
+> -	__gpu_buddy_undo_splits(mm, block);
+> +	gpu_buddy_undo_splits(mm, block, &splits);
+>   
+> -err_free:
+>   	if (err == -ENOSPC && total_allocated_on_err) {
+>   		list_splice_tail(&allocated, blocks);
+>   		*total_allocated_on_err = total_allocated;
+> 
+> base-commit: 90780f2c3d30187116128f71bcf92c8ab63400e7
 
