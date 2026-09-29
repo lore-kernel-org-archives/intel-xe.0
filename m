@@ -4,27 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9EB3CA5FA5
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 21:18:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29A57CA5FA7
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 21:18:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CC0710F0DB;
-	Tue, 29 Sep 2026 21:18:19 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35DD110F0DB;
- Tue, 29 Sep 2026 21:18:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5416092345114360834=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Fix_race_arou?=
- =?utf-8?q?nd_q-=3Eguc-=3Esuspend=5Fpending_access_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Randhawa, Jagmeet" <jagmeet.randhawa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D41F810F0DB;
+	Tue, 29 Sep 2026 21:18:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DGxSy6l1";
+	dkim-atps=neutral
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACBC810F0DB
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Sep 2026 21:18:56 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id D93936022B;
+ Tue, 29 Sep 2026 21:18:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70E1C1F000FF;
+ Tue, 29 Sep 2026 21:18:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1790716735;
+ bh=bPYMgwGjso49vEAxVAluybURkfpYgFMnofxpiPGKOqw=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=DGxSy6l1uFGU9dQBGJdVpF1pgxv1dXH+qd23D99g4Ksj9HyrRC0M6Ckw8uDrtk1pE
+ EkeeBZbk3/rJ1oTJXbaOykk1TuzrJ+Ve5NPauP3RpF2DN7Yr5sNTlspBeEK3WaLokT
+ oY8bPCdU8v92mSEBT8IkNKHMA53hHy/X9NvVtHHt3EXvZoK5waDUkztqvs5ouIW/Wp
+ QkdULoDuPmyTRhnO0OYHoKzNwRQmE4lImOpEG568ojUINqXVlgUEa5F6LzdeCsENIX
+ 4QIonrK2TwKrTIAby3yslDptsxcdMnyv57gdRFwF49YhinQfSawVVpYLgh6wmw6R/J
+ Y5xQAVYIDZY2A==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] drm/xe/xe3p: Read resource copy presence from fuse
+ register
+To: "Matt Roper" <matthew.d.roper@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 29 Sep 2026 21:18:18 -0000
-Message-ID: <179071669821.220956.16106196350357987379@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260902201222.30022-1-jagmeet.randhawa@intel.com>
-In-Reply-To: <20260902201222.30022-1-jagmeet.randhawa@intel.com>
+In-Reply-To: <20260929-res_copy_fuse-v1-1-80876dba05db@intel.com>
+References: <20260929-res_copy_fuse-v1-1-80876dba05db@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 29 Sep 2026 21:18:55 +0000
+Message-Id: <20260929211855.70E1C1F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,124 +52,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5416092345114360834==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] xe: VF incorrectly disables BCS0 engine due to missing PF runtime =
+register
+--
 
-== Series Details ==
+commit 096730b165de364d3c436c33d0f5b812ac0baee5
+Author: Matt Roper <matthew.d.roper@intel.com>
 
-Series: drm/xe/guc: Fix race around q->guc->suspend_pending access (rev6)
-URL   : https://patchwork.freedesktop.org/series/172176/
-State : success
+drm/xe/xe3p: Read resource copy presence from fuse register
+   =20
+This commit reads the resource copy presence from the fuse register on Xe3p
+platforms. The register field is used to determine if the primary resource
+copy engine (BCS0) is enabled.
 
-== Summary ==
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw=
+_engine.c
+> index 010499766fce2..519f48d7eca14 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> @@ -801,23 +801,42 @@ static u32 read_svccopy_fuses(struct xe_gt *gt)
+>  			     xe_mmio_read32(&gt->mmio, SERVICE_COPY_ENABLE));
+>  }
+> =20
+> +static u32 read_rescopy_fuses(struct xe_gt *gt)
+> +{
+> +	u32 fuse =3D REG_FIELD_GET(FUSE_RESOURCE_COPY_ENABLE_MASK,
+> +				 xe_mmio_read32(&gt->mmio, RESOURCE_COPY_ENABLE));
 
-CI Bug Log - changes from xe-5842-00f9cdd1a2fe9888013101ee0d0e0464410c621f_BAT -> xe-pw-172176v6_BAT
-====================================================
+[Severity: High]
+Does this MMIO read fail in SR-IOV VF environments?
 
-Summary
--------
+Looking at read_rescopy_fuses() in drivers/gpu/drm/xe/xe_hw_engine.c, since
+RESOURCE_COPY_ENABLE (0x9174) was not added to the ver_35_runtime_regs array
+in drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c, xe_mmio_read32() will fail
+to find the register in the PF's shared list.
 
-  **SUCCESS**
+This causes the VF lookup path via xe_gt_sriov_vf_read32() to return 0,
+which would lead to read_copy_fuses() receiving a 0 mask for res_copy_mask
+and erroneously disabling the primary resource copy engine (BCS0) for all
+Xe3p VFs.
 
-  No regressions found.
+Should RESOURCE_COPY_ENABLE be added to ver_35_runtime_regs to fix this?
 
-  
-
-Participating hosts (14 -> 15)
-------------------------------
-
-  Additional (1): bat-bmg-3 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-172176v6_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:
-    - bat-bmg-3:          NOTRUN -> [SKIP][1] ([Intel XE#6566]) +3 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172176v6/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html
-
-  
-  [Intel XE#6566]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566
-
-
-Build changes
--------------
-
-  * Linux: xe-5842-00f9cdd1a2fe9888013101ee0d0e0464410c621f -> xe-pw-172176v6
-
-  IGT_9116: 9d4b6ef512b4e2e4d05129c6519313fd13a306d2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5842-00f9cdd1a2fe9888013101ee0d0e0464410c621f: 00f9cdd1a2fe9888013101ee0d0e0464410c621f
-  xe-pw-172176v6: 172176v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172176v6/index.html
-
---===============5416092345114360834==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Fix race around q-&gt;guc-&gt;suspend_pending access (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172176/">https://patchwork.freedesktop.org/series/172176/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172176v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172176v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5842-00f9cdd1a2fe9888013101ee0d0e0464410c621f_BAT -&gt; xe-pw-172176v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 15)</h2>
-<p>Additional (1): bat-bmg-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-172176v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172176v6/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566">Intel XE#6566</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5842-00f9cdd1a2fe9888013101ee0d0e0464410c621f -&gt; xe-pw-172176v6</li>
-</ul>
-<p>IGT_9116: 9d4b6ef512b4e2e4d05129c6519313fd13a306d2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5842-00f9cdd1a2fe9888013101ee0d0e0464410c621f: 00f9cdd1a2fe9888013101ee0d0e0464410c621f<br />
-  xe-pw-172176v6: 172176v6</p>
-
-</body>
-</html>
-
---===============5416092345114360834==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260929-res_copy_f=
+use-v1-1-80876dba05db@intel.com?part=3D1
