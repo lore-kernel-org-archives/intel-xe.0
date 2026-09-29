@@ -4,60 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6DEFCA5FA1
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 07:56:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2C78C9832A
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 08:12:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63C7B10ED38;
-	Tue, 29 Sep 2026 07:56:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D2F410E07C;
+	Tue, 29 Sep 2026 08:12:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BJ5zEjT8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IKfB/Ruc";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E36710ED38
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Sep 2026 07:56:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 131D810E07C
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Sep 2026 08:12:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790668576; x=1822204576;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=lfKAiMHySQQh9MJ5LldYc5OFG/NXgjxM7qsge5clLfU=;
- b=BJ5zEjT8izVNGFNbL5N6nGMrzYm8+k50SmFyHb20YvuIQSlvO9mKTQ1E
- +ZWVQYuSvdhxFTmPm5K047BTDtd1b4ZYz+YiAwsVc5HVJpegvvyV7P72x
- 5g6CSENsGNUhrTW5Y5ANkFsDwXrx2DkB8IN44eRS2DwveQ0Ag/boxPMMZ
- RHz9OB1CsavbmsI4Csp8XmjvHuAwubbfIicCuGaaQG+PYDRR5iwykkSYU
- s9UWIHri2SnOEBy4Ky+kySIaJFAoaxgPfPMATfUZbDEPnS+LSd/qHLNE2
- YShCSeVGCcNCcyNKe6xYpZfClODh+zLmI24lxiuK67jGbc6RFJUFnrdVE A==;
-X-CSE-ConnectionGUID: eUbkTe9qQV+Mo6F60VZKBA==
-X-CSE-MsgGUID: 8XQ5t1YhRmyMhRdZspx0iA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11919"; a="90144553"
-X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="90144553"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2026 00:56:15 -0700
-X-CSE-ConnectionGUID: TEqlxpfBTKCSibfsiSC0Zg==
-X-CSE-MsgGUID: k+Zf64QdSCa8/JTbcVZ0kQ==
+ t=1790669564; x=1822205564;
+ h=from:date:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=sbHBYmKGZVjQwE7IgfqzpVoreAp0GgsmoXS2+ptYq8Y=;
+ b=IKfB/Ruc8DA11Ma9iRg0d8qTB141mWaDAFBZwMqlBxHDMP8NMX1N/C1L
+ pdD4SMN4LXV43Wa21xM34RaZIGubvrYo8c+KgjPF1tJQ1w5A5a96OxZAR
+ 8LOx4dJVr99IeY8WpHzMYjmRCbNdQGRGwKaNmgcF8yiN9/CexuVaO3VNT
+ v5YpRQp20EhH3qHGSoOF5qEBO2SiVGSS3UCHc9nYACTHYW8rn1WG9OZVT
+ 7YkUmpsUJDiVb6wXrLn2atg1+wcrU9pCHVFWFxlYwyd3cxyRd3R9sjAeA
+ c2MOBcUII7lla+FZTZZ5lUHLVoG3VQW6CqlMV3T9M7ekaqvjx7T6xoq/a w==;
+X-CSE-ConnectionGUID: EW89IdL2TwG8mFwGo/iWLg==
+X-CSE-MsgGUID: jEIvE/8xQJuKqwhSrMqqcA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11919"; a="91400375"
+X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="91400375"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2026 01:12:44 -0700
+X-CSE-ConnectionGUID: GmSnSYqEQruuO7AF7lYcyg==
+X-CSE-MsgGUID: RT7Z8l0xTLCsOzaujsJsjg==
 X-ExtLoop1: 1
-Received: from abityuts-desk1.ger.corp.intel.com (HELO [10.245.244.222])
- ([10.245.244.222])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2026 00:56:13 -0700
-Message-ID: <70ae41bf314d518215dda1f062b609f3dfac73e4.camel@linux.intel.com>
-Subject: Re: [PATCH 1/2] drm/xe/dma-buf: keep non-p2p imported buffers in
- system memory
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, Matthew Auld
- <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org, stable@vger.kernel.org
-Date: Tue, 29 Sep 2026 09:56:10 +0200
-In-Reply-To: <arrjupxa6R+ehYK5@gsse-cloud1.jf.intel.com>
-References: <20260928164820.1237049-4-matthew.auld@intel.com>
- <20260928164820.1237049-5-matthew.auld@intel.com>
- <arrjupxa6R+ehYK5@gsse-cloud1.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="273092726"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.234])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2026 01:12:39 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Tue, 29 Sep 2026 11:12:34 +0300 (EEST)
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+cc: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org, 
+ Hans de Goede <hansg@kernel.org>, matthew.brost@intel.com, 
+ rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com, 
+ airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com, 
+ anoop.c.vijay@intel.com, badal.nilawar@intel.com, 
+ matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
+Subject: Re: [PATCH v11 00/20] Crescent Island PMT support
+In-Reply-To: <20260923181115.2514193-22-michael.j.ruhl@intel.com>
+Message-ID: <6805e8bd-9b48-df74-986c-d5aa43a6724c@linux.intel.com>
+References: <20260923181115.2514193-22-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,285 +71,156 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2026-09-28 at 15:01 -0700, Matthew Brost wrote:
-> On Mon, Sep 28, 2026 at 05:48:22PM +0100, Matthew Auld wrote:
-> > When an exported buffer is mapped by a foreign device lacking peer-
-> > to-peer
-> > DMA support (such as an integrated GPU for display offload),
-> > xe_dma_buf_map() migrates the buffer to XE_PL_TT so that system
-> > memory
-> > pages can be accessed by the importer.
-> >=20
-> > However, since commit 5c87fee3c96c ("drm/xe: Attempt to bring bos
-> > back to
-> > VRAM after eviction"), XE_PL_TT is marked with TTM_PL_FLAG_FALLBACK
-> > in
-> > the buffer's placement. When DMABUF_MOVE_NOTIFY was enabled by
-> > default
-> > (meaning dynamic attachments are no longer pinned on map), the next
-> > xe_bo_validate() during render submission sees TT as a fallback
-> > placement
-> > and attempts to migrate the buffer back to VRAM.
-> >=20
-> > On the next frame, the foreign importer accesses the buffer,
-> > requiring
-> > another migration to TT, resulting in a continuous ping-pong
-> > between
-> > VRAM and system memory every frame and causing severe rendering
-> > performance
-> > degradations.
-> >=20
-> > To fix this, introduce xe_bo_migrate_tt_sticky() which records a
-> > temporary sticky placement in XE_PL_TT on successful migration.
-> > Subsequent
-> > validations use this sticky placement to keep the buffer in system
-> > memory
-> > until the non-p2p attachment is detached or memory pressure forces
-> > a
-> > fallback to the default placement.
-> >=20
-> > User is reporting what looks to be exactly this, with horrible
-> > performance when DMABUF_MOVE_NOTIFY was enabled by default.
-> >=20
->=20
-> The patch looks functionally correct but couldn't we just clear
-> TTM_PL_FLAG_FALLBACK in xe_bo_migrate for certain callers? Then
-> restore
-> it in other places?
->=20
-> Matt
+On Wed, 23 Sep 2026, Michael J. Ruhl wrote:
 
-Hi,
+> The Crescent Island (CRI) GPU supports PMT via Xe driver
+> registration.
+> 
+> The CRI PMT MMIO mapping is shared for each PMT feature and it is
+> necessary to set an index register value to access the correct memory
+> space.
+> 
+> The PMT driver has a callback infrastructure to access data areas with
+> driver specific access. It is does not support the PMT control access.
+> 
+> CRI discovery/control spaces are part of the access window so a driver
+> callback is necessary to allow for the correct window to be exposed.
+> 
+> Add control path callback support to the PMT driver.
+> 
+> Add CRI PMT discovery information.
+> 
+> Update the Xe driver to support the CRI PMT access.
+> 
+> The crashlog access needs to be done with power enabled (telem is only
+> available when the device is powered).
+> 
+> Determine which access is requested, and do the appropriate power
+> request.
+> 
+> CRI FW is loaded at device power.  Support the late-binding API to
+> wait for FW readiness. (pending sysctl patch set implements the API).
+> 
+> v2:
+>   Address AI feedback:
+>   - add missing entry->cb check
+>   - address SRIOV VF concerns
+>   - use xe_pm_runtime_put instead of _get in error path
+> 
+>   Address review comments:
+>   - redo power/lock sequencing
+>   - support device hotplug events
+> 
+> v3:
+>   - cleanup power manangement flow
+>   - fixed an out of order power management locking issue
+>   - add a GUID caching mechanism, for GUID read
+>   - removed unused parameter (mmio)
+> 
+> v4:
+>  - address various review comments
+>  - refactor crashlog to allow for return values
+>  - for callback usage, decouple PMT remap of data areas
+>  - use IS_SRIOV_VF() rather than expose soc-remapper internals
+>  - separate locking fixes intos distinct steps
+>  - refactor define update patches to seperate BMG and CRI updates
+>  - separate internal GUID into separate steps
+> 
+> v5:
+>  - removed callback helpers
+>  - do not return error message with sysfs
+>  - fix missed return code check in trigger_store
+>  - return error value not false
+>  - use DEFINE_RES_MEM
+>  - document when base is unused
+>  - return error on invalid GUID request
+> 
+> v6:
+>  - fix enabled/disabled inversion
+>  - fix missing DOC reference
+>  - change memcpy_to/fromio to readl/writel for register read
+>  - guid cache comment and update on valid guid
+> 
+> v7:
+>  - reordered to have BMG updates followed by CRI support
+>  - separate base_offset usage for clarity
+>  - added EAGAIN usage to block uninitialized use of the API
+> 
+> v8:
+>  - fix punit crashlog offset (should be 0xE60 not 0xE78)
+>  - remove EAGAIN support and re-order probe steps to initialize
+>    VSEC before other features use it
+> 
+> v9:
+>  - added appropriate reviewed-bys
+>  - use dev_err instead of pr_err
+>  - enforce defined base usage when callbacks are in plcace
+>  - move SRIOV check to get_platform_info
+>  - assert SRIOV for API check
+>  - use scoped_guard() where possible
+>  - update to use correct sysctrl helper
+> 
+> v10:
+>  - fix incorrect return type (broken in refactor, int -> bool)
+>  - fix incorrectly documented error return values
+>  - doc text cleanup
+> 
+> v11:
+>  - add reviewed-by
+>  - fix minor checkpatch issue
+>  - use xe_assert() for a consistent API check
+> 
+> Michael J. Ruhl (18):
+>   platform/x86/intel/pmt: complete pcidev to device update
+>   platform/x86/intel/pmt: refactor rmw with a return value
+>   platform/x86/intel/pmt: refactor rc with a return value
+>   platform/x86/intel/pmt: Add register access callbacks
+>   platform/x86/intel/pmt: Do not remap when using callbacks
 
-I recommended Matt to use a separate placement because the TTM flags
-are hints anyway, I think, and code becomes easier to understand if we
-make this more explicit. But that was just my opinion.
+These platform drivers side patches looked ready so I've taken these 
+into a separate branch in pdx86 repo (+ one standalone pmt fix that looked 
+relevant to this case).
 
-But anyway I see there are a couple of places we migrate where we might
-need to adjust the current behaviour accordingly:
+I can do an IB PR out of that branch as needed if xe side wants to take 
+the rest sometime in this cycle.
 
-* We have migration to TT for dma-buf CPU access.
-* We have migration to TT for atomic access, and then implicit
-assumptions that it will be migrated to VRAM again for GPU access, I
-suppose.
-* We have prefetch back to VRAM.
-* In what situations do we want to make eviction to TT sticky?
-* If we remove stickyness, should we trigger a rebind?
+>   drm/xe/vsec: Do not register BMG PMT for VF
+>   drm/xe/vsec: Correct locking order
+>   drm/xe/vsec: Use correct pm state get
+>   drm/xe/vsec: Add DOC text for VSEC
+>   drm/xe/vsec: Support possible hotplug exit
+>   drm/xe/vsec: Refactor BattleMage PMT defines
+>   drm/xe/vsec: Update VSEC probe order
+>   drm/xe/vsec: Add base_offset to allow for more flexibilty
+>   drm/xe/vsec: Support Crescent Island PMT
+>   drm/xe/vsec: Crescent Island PMT decode
+>   drm/xe/vsec: Crescent Island PMT callbacks
+>   drm/xe/vsec: Support late bind fw information
+>   drm/xe/vsec: Add PMT GUID internal access
+>   drm/xe/vsec: Update PMT internal access
+>   drm/xe/vsec: Refactor platform check
+> 
+>  Documentation/gpu/xe/index.rst             |   1 +
+>  Documentation/gpu/xe/xe_vsec.rst           |  14 +
+>  drivers/gpu/drm/xe/regs/xe_pmt.h           |  12 +-
+>  drivers/gpu/drm/xe/xe_debugfs.c            |  45 +-
+>  drivers/gpu/drm/xe/xe_device.c             |   6 +-
+>  drivers/gpu/drm/xe/xe_device_types.h       |   9 +
+>  drivers/gpu/drm/xe/xe_hwmon.c              |  10 +-
+>  drivers/gpu/drm/xe/xe_pcode.c              |  10 +-
+>  drivers/gpu/drm/xe/xe_vsec.c               | 552 +++++++++++++++++++--
+>  drivers/gpu/drm/xe/xe_vsec.h               |   3 +-
+>  drivers/platform/x86/intel/pmt/class.c     |  26 +-
+>  drivers/platform/x86/intel/pmt/class.h     |   5 +-
+>  drivers/platform/x86/intel/pmt/crashlog.c  | 235 ++++++---
+>  drivers/platform/x86/intel/pmt/discovery.c |   2 +-
+>  drivers/platform/x86/intel/pmt/telemetry.c |   3 +
+>  include/linux/intel_vsec.h                 |  14 +-
+>  16 files changed, 781 insertions(+), 166 deletions(-)
+>  create mode 100644 Documentation/gpu/xe/xe_vsec.rst
+> 
+> 
 
-This is some serious technical debt we have. We probably want to put
-together a design document on this, but for the time being we need to
-make sure we fix that imminent dma-buf bouncing problem.
+-- 
+ i.
 
-/Thomas
-
-
->=20
-> > Assisted-by: LLM
-> > Link:
-> > https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9415
-> > Fixes: 5c87fee3c96c ("drm/xe: Attempt to bring bos back to VRAM
-> > after eviction")
-> > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > Cc: <stable@vger.kernel.org> # v6.12+
-> > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | =
-59
-> > ++++++++++++++++++++++++++++++--
-> > =C2=A0drivers/gpu/drm/xe/xe_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 3 ++
-> > =C2=A0drivers/gpu/drm/xe/xe_bo_types.h |=C2=A0 4 +++
-> > =C2=A0drivers/gpu/drm/xe/xe_dma_buf.c=C2=A0 | 16 ++++++++-
-> > =C2=A04 files changed, 79 insertions(+), 3 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > b/drivers/gpu/drm/xe/xe_bo.c
-> > index 6921b6967330..1c1eab0a7434 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > @@ -3324,6 +3324,9 @@ int xe_bo_validate(struct xe_bo *bo, struct
-> > xe_vm *vm, bool allow_res_evict,
-> > =C2=A0		.no_wait_gpu =3D false,
-> > =C2=A0		.gfp_retry_mayfail =3D true,
-> > =C2=A0	};
-> > +	struct ttm_placement *placement =3D bo-
-> > >sticky_placement.num_placement ?
-> > +					=C2=A0 &bo->sticky_placement :
-> > +					=C2=A0 &bo->placement;
-> > =C2=A0	int ret;
-> > =C2=A0
-> > =C2=A0	if (xe_bo_is_pinned(bo))
-> > @@ -3340,7 +3343,12 @@ int xe_bo_validate(struct xe_bo *bo, struct
-> > xe_vm *vm, bool allow_res_evict,
-> > =C2=A0	xe_vm_set_validating(vm, allow_res_evict);
-> > =C2=A0	trace_xe_bo_validate(bo);
-> > =C2=A0	xe_validation_assert_exec(xe_bo_device(bo), exec, &bo-
-> > >ttm.base);
-> > -	ret =3D ttm_bo_validate(&bo->ttm, &bo->placement, &ctx);
-> > +	ret =3D ttm_bo_validate(&bo->ttm, placement, &ctx);
-> > +	if (ret && ret !=3D -EINTR && ret !=3D -ERESTARTSYS &&
-> > +	=C2=A0=C2=A0=C2=A0 bo->sticky_placement.num_placement) {
-> > +		xe_bo_reset_sticky_placement(bo);
-> > +		ret =3D ttm_bo_validate(&bo->ttm, &bo->placement,
-> > &ctx);
-> > +	}
-> > =C2=A0	xe_vm_clear_validating(vm, allow_res_evict);
-> > =C2=A0
-> > =C2=A0	return ret;
-> > @@ -3891,6 +3899,7 @@ int xe_bo_migrate(struct xe_bo *bo, u32
-> > mem_type, struct ttm_operation_ctx *tctx
-> > =C2=A0	};
-> > =C2=A0	struct ttm_placement placement;
-> > =C2=A0	struct ttm_place requested;
-> > +	int ret;
-> > =C2=A0
-> > =C2=A0	xe_bo_assert_held(bo);
-> > =C2=A0	tctx =3D tctx ? tctx : &ctx;
-> > @@ -3922,7 +3931,53 @@ int xe_bo_migrate(struct xe_bo *bo, u32
-> > mem_type, struct ttm_operation_ctx *tctx
-> > =C2=A0
-> > =C2=A0	if (!tctx->no_wait_gpu)
-> > =C2=A0		xe_validation_assert_exec(xe_bo_device(bo), exec,
-> > &bo->ttm.base);
-> > -	return ttm_bo_validate(&bo->ttm, &placement, tctx);
-> > +	ret =3D ttm_bo_validate(&bo->ttm, &placement, tctx);
-> > +	if (!ret)
-> > +		xe_bo_reset_sticky_placement(bo);
-> > +	return ret;
-> > +}
-> > +
-> > +/**
-> > + * xe_bo_migrate_tt_sticky - Migrate an object to TT and record
-> > its placement as sticky
-> > + * @bo: The buffer object to migrate.
-> > + * @tctx: The ttm_operation_ctx to use for migration, or NULL for
-> > default.
-> > + * @exec: The drm_exec transaction to use for exhaustive eviction.
-> > + *
-> > + * Like xe_bo_migrate() to XE_PL_TT, but on success records the
-> > resulting placement
-> > + * so that subsequent validations try to keep the object in TT
-> > instead of falling
-> > + * back to the default placement. The stickiness is removed if
-> > validation falls
-> > + * back to the default placement (e.g. under memory pressure), on
-> > any non-sticky
-> > + * migration, or via an explicit call to
-> > xe_bo_reset_sticky_placement().
-> > + *
-> > + * Return: 0 on success. Negative error code on failure.
-> > + */
-> > +int xe_bo_migrate_tt_sticky(struct xe_bo *bo,
-> > +			=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *tctx,
-> > +			=C2=A0=C2=A0=C2=A0 struct drm_exec *exec)
-> > +{
-> > +	int ret;
-> > +
-> > +	ret =3D xe_bo_migrate(bo, XE_PL_TT, tctx, exec);
-> > +	if (!ret) {
-> > +		xe_place_from_ttm_type(XE_PL_TT, &bo-
-> > >sticky_place);
-> > +		bo->sticky_placement =3D (struct ttm_placement){
-> > +			.num_placement =3D 1,
-> > +			.placement =3D &bo->sticky_place,
-> > +		};
-> > +	}
-> > +	return ret;
-> > +}
-> > +
-> > +/**
-> > + * xe_bo_reset_sticky_placement - Reset sticky placement for an
-> > object
-> > + * @bo: The buffer object whose sticky placement should be
-> > cleared.
-> > + *
-> > + * Clear any sticky placement recorded by
-> > xe_bo_migrate_tt_sticky(),
-> > + * returning subsequent validations to the default placement.
-> > + */
-> > +void xe_bo_reset_sticky_placement(struct xe_bo *bo)
-> > +{
-> > +	bo->sticky_placement.num_placement =3D 0;
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0/**
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.h
-> > b/drivers/gpu/drm/xe/xe_bo.h
-> > index 861b1be231de..7327628070f2 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.h
-> > +++ b/drivers/gpu/drm/xe/xe_bo.h
-> > @@ -434,6 +434,9 @@ bool xe_bo_can_migrate(struct xe_bo *bo, u32
-> > mem_type);
-> > =C2=A0
-> > =C2=A0int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct
-> > ttm_operation_ctx *ctc,
-> > =C2=A0		=C2=A0 struct drm_exec *exec);
-> > +int xe_bo_migrate_tt_sticky(struct xe_bo *bo, struct
-> > ttm_operation_ctx *ctc,
-> > +			=C2=A0=C2=A0=C2=A0 struct drm_exec *exec);
-> > +void xe_bo_reset_sticky_placement(struct xe_bo *bo);
-> > =C2=A0int xe_bo_evict(struct xe_bo *bo, struct drm_exec *exec);
-> > =C2=A0
-> > =C2=A0int xe_bo_evict_pinned(struct xe_bo *bo);
-> > diff --git a/drivers/gpu/drm/xe/xe_bo_types.h
-> > b/drivers/gpu/drm/xe/xe_bo_types.h
-> > index 8ec4a01a0092..253a1dba55a7 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_bo_types.h
-> > @@ -56,6 +56,10 @@ struct xe_bo {
-> > =C2=A0	struct ttm_place placements[XE_BO_MAX_PLACEMENTS];
-> > =C2=A0	/** @placement: current placement for this BO */
-> > =C2=A0	struct ttm_placement placement;
-> > +	/** @sticky_placement: target placement from forced
-> > migration */
-> > +	struct ttm_placement sticky_placement;
-> > +	/** @sticky_place: place for sticky_placement */
-> > +	struct ttm_place sticky_place;
-> > =C2=A0	/** @ggtt_node: Array of GGTT nodes if this BO is mapped
-> > in the GGTTs */
-> > =C2=A0	struct xe_ggtt_node *ggtt_node[XE_MAX_TILES_PER_DEVICE];
-> > =C2=A0	/** @vmap: iosys map of this buffer */
-> > diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
-> > b/drivers/gpu/drm/xe/xe_dma_buf.c
-> > index 6a85b292dee7..b973579a69b8 100644
-> > --- a/drivers/gpu/drm/xe/xe_dma_buf.c
-> > +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-> > @@ -59,6 +59,20 @@ static void xe_dma_buf_detach(struct dma_buf
-> > *dmabuf,
-> > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct dma_buf_attachment *atta=
-ch)
-> > =C2=A0{
-> > =C2=A0	struct drm_gem_object *obj =3D attach->dmabuf->priv;
-> > +	struct xe_bo *bo =3D gem_to_xe_bo(obj);
-> > +	bool has_non_p2p =3D false;
-> > +	struct dma_buf_attachment *a;
-> > +
-> > +	dma_resv_lock(dmabuf->resv, NULL);
-> > +	list_for_each_entry(a, &dmabuf->attachments, node) {
-> > +		if (!a->peer2peer) {
-> > +			has_non_p2p =3D true;
-> > +			break;
-> > +		}
-> > +	}
-> > +	if (!has_non_p2p)
-> > +		xe_bo_reset_sticky_placement(bo);
-> > +	dma_resv_unlock(dmabuf->resv);
-> > =C2=A0
-> > =C2=A0	xe_pm_runtime_put(to_xe_device(obj->dev));
-> > =C2=A0}
-> > @@ -129,7 +143,7 @@ static struct sg_table *xe_dma_buf_map(struct
-> > dma_buf_attachment *attach,
-> > =C2=A0
-> > =C2=A0	if (!xe_bo_is_pinned(bo)) {
-> > =C2=A0		if (!attach->peer2peer)
-> > -			r =3D xe_bo_migrate(bo, XE_PL_TT, NULL,
-> > exec);
-> > +			r =3D xe_bo_migrate_tt_sticky(bo, NULL,
-> > exec);
-> > =C2=A0		else
-> > =C2=A0			r =3D xe_bo_validate(bo, NULL, false, exec);
-> > =C2=A0		if (r)
-> > --=20
-> > 2.55.0
-> >=20
