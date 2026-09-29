@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1778DCA5FA5
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 23:29:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4923CA5FA5
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 23:35:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CA2210E0DB;
-	Tue, 29 Sep 2026 23:29:30 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BB0210E0DB;
- Tue, 29 Sep 2026 23:29:29 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4314490893142860051=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A07810E0DB;
+	Tue, 29 Sep 2026 23:35:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fd4qCF8N";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C39BC10E0DB
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Sep 2026 23:35:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790724908; x=1822260908;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mvetnSuLQdiaD2wiecp/TQ8ggOqDJ4on0PAWey1s4Bc=;
+ b=fd4qCF8N1Vp3lvi5btIATxVWpb+5KuVL0g9tgfMDv8kSvtHKYPtekL6u
+ N13erRFoNFOCPh4EMpCVKpV6sjhjIRFAk2NH2Rw04dSz2dQbzugG3Lgw3
+ k72e9cOUaIHGLHYQvzjVGgWVarvOh9lLxd3EqwAFwcG+qCIaBS5OM01MM
+ 22LF+rptdTTvEGIpqBuHDvW+xTqVIRsTpIlHHf1AwAFoDEFUmQZRSYasg
+ Xjw3s58UBAuNnIlw3+pyukW94E3FNLNYbzASAJIOgyhUFiTFCBf5kIuI/
+ PuLGCBv7FOCgpt09uVsRB6cEGMuWIbK4zNq/Fp7x/AjcquHQhta2SIQst g==;
+X-CSE-ConnectionGUID: HltHZhCGQPSHxkhdNVZ6ew==
+X-CSE-MsgGUID: 5/Ony8BKTK6Vwq5Ku3qRuQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11920"; a="102025143"
+X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="102025143"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2026 16:35:07 -0700
+X-CSE-ConnectionGUID: /t2lrxQ7SUqJ82EXu76tAg==
+X-CSE-MsgGUID: CbK7Bf7wTiqnURFAODAhsg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="279321766"
+Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2026 16:35:07 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v3] drm/xe: Skip GT TLB invalidation when VM has no queues
+ mapped
+Date: Tue, 29 Sep 2026 16:35:02 -0700
+Message-Id: <20260929233502.2789888-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/vm=3A_Do_not_dma=5Ff?=
- =?utf-8?q?ence=5Fput_zero_fences_in_err=5Fout_path?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 29 Sep 2026 23:29:29 -0000
-Message-ID: <179072456923.221285.13977200138579101733@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260929205606.1076177-1-jonathan.cavitt@intel.com>
-In-Reply-To: <20260929205606.1076177-1-jonathan.cavitt@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,133 +61,114 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4314490893142860051==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+If no exec queues from a VM are mapped on a GT, issuing a PPGTT TLB
+invalidation for that GT can require an rc6 wake which is expensive.
 
-== Series Details ==
+Skip the media TLB invalidation when the VM has no exec queues
+mapped on it. If TLB invalidations are already in-flight on that GT
+we can't break fence ordering, so issue a dummy GGTT invalidation
+instead to maintain seqno ordering.
 
-Series: drm/xe/vm: Do not dma_fence_put zero fences in err_out path
-URL   : https://patchwork.freedesktop.org/series/175250/
-State : failure
+This optimization is particularly impactful for SVM workloads which
+may or may not use the media GT. Average TLB invalidation time drops
+from ~75us to ~18us in such benchmarks on certain BMG parts - the
+improvement varies based on platform.
 
-== Summary ==
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-CI Bug Log - changes from xe-5843-18629b96c76cb65334352da645b92ac2c6605178_BAT -> xe-pw-175250v1_BAT
-====================================================
+---
+v2:
+ - Make GT generic rather than just media GT (Thomas)
+ - Fix accounting bug in empty vs non-empty (CI)
+v3:
+ - Don't skip on platforms which don't support an asid (Sashiko)
+---
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 25 +++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.c            | 12 ++----------
+ 2 files changed, 25 insertions(+), 12 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+index 111fef781b2a..fcbbb8714dfc 100644
+--- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+@@ -232,11 +232,32 @@ static int send_tlb_inval_asid_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
+ 				     struct drm_suballoc *prl_sa)
+ {
+ 	struct xe_guc *guc = tlb_inval->private;
++	struct xe_device *xe = guc_to_xe(guc);
++	struct xe_vm *vm;
++	int err, id = guc_to_gt(guc)->info.id;
+ 
+ 	lockdep_assert_held(&tlb_inval->seqno_lock);
+ 
+-	return send_tlb_inval_ppgtt(guc, seqno, start, end, asid,
+-				    XE_GUC_TLB_INVAL_PAGE_SELECTIVE, prl_sa);
++	if (!xe->info.has_asid)
++		return send_tlb_inval_ppgtt(guc, seqno, start, end, asid,
++					    XE_GUC_TLB_INVAL_PAGE_SELECTIVE,
++					    prl_sa);
++
++	vm = xe_device_asid_to_vm(xe, asid);
++	if (IS_ERR(vm))
++		return PTR_ERR(vm);
++
++	down_read(&vm->exec_queues.lock);
++	if (!vm->exec_queues.count[id] && xe_tlb_inval_idle(tlb_inval))
++		err = -ECANCELED;
++	else
++		err = send_tlb_inval_ppgtt(guc, seqno, start, end, asid,
++					   XE_GUC_TLB_INVAL_PAGE_SELECTIVE,
++					   prl_sa);
++	up_read(&vm->exec_queues.lock);
++	xe_vm_put(vm);
++
++	return err;
+ }
+ 
+ static int send_tlb_inval_ctx_ppgtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 1785bd3ade12..884cf3779a8e 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -5483,8 +5483,7 @@ int xe_vm_alloc_cpu_addr_mirror_vma(struct xe_vm *vm, uint64_t start, uint64_t r
+  * @vm: The VM.
+  * @q: The exec_queue
+  *
+- * Add exec queue to VM, skipped if the device does not have context based TLB
+- * invalidations.
++ * Add exec queue to VM.
+  */
+ void xe_vm_add_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+ {
+@@ -5497,9 +5496,6 @@ void xe_vm_add_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+ 	xe_assert(xe, vm->xef);
+ 	xe_assert(xe, vm == q->vm);
+ 
+-	if (!xe->info.has_ctx_tlb_inval)
+-		return;
+-
+ 	down_write(&vm->exec_queues.lock);
+ 	list_add(&q->vm_exec_queue_link, &vm->exec_queues.list[q->gt->info.id]);
+ 	++vm->exec_queues.count[q->gt->info.id];
+@@ -5511,14 +5507,10 @@ void xe_vm_add_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+  * @vm: The VM.
+  * @q: The exec_queue
+  *
+- * Remove exec queue from VM, skipped if the device does not have context based
+- * TLB invalidations.
++ * Remove exec queue from VM.
+  */
+ void xe_vm_remove_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+ {
+-	if (!vm->xe->info.has_ctx_tlb_inval)
+-		return;
+-
+ 	down_write(&vm->exec_queues.lock);
+ 	if (!list_empty(&q->vm_exec_queue_link)) {
+ 		list_del(&q->vm_exec_queue_link);
+-- 
+2.34.1
 
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-175250v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-175250v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-175250v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5843-18629b96c76cb65334352da645b92ac2c6605178/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175250v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-5843-18629b96c76cb65334352da645b92ac2c6605178 -> xe-pw-175250v1
-
-  IGT_9116: 9d4b6ef512b4e2e4d05129c6519313fd13a306d2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5843-18629b96c76cb65334352da645b92ac2c6605178: 18629b96c76cb65334352da645b92ac2c6605178
-  xe-pw-175250v1: 175250v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175250v1/index.html
-
---===============4314490893142860051==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/vm: Do not dma_fence_put zero fences in err_out path</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175250/">https://patchwork.freedesktop.org/series/175250/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175250v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175250v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5843-18629b96c76cb65334352da645b92ac2c6605178_BAT -&gt; xe-pw-175250v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-175250v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-175250v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-175250v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5843-18629b96c76cb65334352da645b92ac2c6605178/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175250v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5843-18629b96c76cb65334352da645b92ac2c6605178 -&gt; xe-pw-175250v1</li>
-</ul>
-<p>IGT_9116: 9d4b6ef512b4e2e4d05129c6519313fd13a306d2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5843-18629b96c76cb65334352da645b92ac2c6605178: 18629b96c76cb65334352da645b92ac2c6605178<br />
-  xe-pw-175250v1: 175250v1</p>
-
-</body>
-</html>
-
---===============4314490893142860051==--
