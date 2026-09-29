@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA4BEC9832A
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 04:52:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59C4ECA5FA1
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 04:52:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A1DC10ECD7;
-	Tue, 29 Sep 2026 04:52:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DD8510ECD7;
+	Tue, 29 Sep 2026 04:52:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TB7mJhri";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zq2nqRsO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B50710ECD7
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Sep 2026 04:52:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70C2210ECD7
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Sep 2026 04:52:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790657533; x=1822193533;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=PwMLk34qWKagabLQ9+IIQQeqb+RvhTZ+cbxDzXd1sJQ=;
- b=TB7mJhriYitLwMXyx3NBHQDiGkYEG83PqaaK+/K27Y5HY8NhNbKpUT9K
- zBdlCHedad/HFGlZ5PdVN78VpGR+6cw8FwnUHNZssTa37Xuhu92gqO84n
- 1b28CwSRfmWDMUkTHZ2RIdbf4NbuSoWNGKkNIoGlUJzd4GUxnV2jDnBY+
- uCTjzF6QP8kCOqVzlxN1NMzt0Dte32NqVkF2y3nuEjOgwF5RzB2OSt6tk
- hm68PaA6WWU5Xp436rK0FqMcGwsimsgS/QAGFweub1HXIikX1Cf7Ex6J3
- DEU0w9Dwj1F3PfPxo0SwSJXMREcrSflcr50DUhKm4dFvaBE5FdAsqW3JX g==;
-X-CSE-ConnectionGUID: 9vCyXHILTZqqFKw8FKMuhg==
-X-CSE-MsgGUID: o5ES0CmaSfurs3u+UXloTw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11919"; a="101937202"
-X-IronPort-AV: E=Sophos;i="6.27,129,1787036400"; d="scan'208";a="101937202"
+ t=1790657572; x=1822193572;
+ h=message-id:date:mime-version:from:subject:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=2fp2od85mOgG29trnedjFlVlk/StEn9F4v2Bf5U7kxg=;
+ b=Zq2nqRsOCJLVUe1V+jSQJ17Eh5rcMt/JWN0K1XS6ry7dCosNzimd80jA
+ DQtZgJ9h+Mt77XzBd7KlUVdaxuCsalHQWZBczM2Tk3HlZx3/7YVGvaY3D
+ PQTjQRt7dxQO6GInf2UjyXk94w8/eSbtCt0lneT5xLS7YxbLNIb6KbAUo
+ +xfIQAdeJ3B3nNBsKws3PWRJEyuHBoVk2nr9g7QiwL9cQBhKKDb2xO0AE
+ RXtY14KQi2q647TX8NCi28e+NknkGKbv6Dp850BAtm7y5QSYKe0V2gI0m
+ +s0R75h9ykYDjYyTvNBmi0loFNX73FgO2oReMIHRCbCzcHYrw5tKGYBmT w==;
+X-CSE-ConnectionGUID: RAPRqvi0QCWCxN8Z/B5/Bw==
+X-CSE-MsgGUID: 79Ti2AVSR0mI01SFNGw3bQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11919"; a="101937226"
+X-IronPort-AV: E=Sophos;i="6.27,129,1787036400"; d="scan'208";a="101937226"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2026 21:52:13 -0700
-X-CSE-ConnectionGUID: yWVVWPZfSPevUUmgTLwwJA==
-X-CSE-MsgGUID: WxjIjcQjSZqNdgqo9fpRdQ==
+ 28 Sep 2026 21:52:52 -0700
+X-CSE-ConnectionGUID: vWgnRSQXRMOHqO7tMtMIIQ==
+X-CSE-MsgGUID: OeD0c+NRR/yBi8+vsZZgDw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,129,1787036400"; d="scan'208";a="283337842"
+X-IronPort-AV: E=Sophos;i="6.27,129,1787036400"; d="scan'208";a="283337930"
 Received: from dbhadane-mobl1.gar.corp.intel.com (HELO [10.66.117.203])
  ([10.66.117.203])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2026 21:52:12 -0700
-Message-ID: <6a2bca71-3ad5-4d0f-98b0-9b90b03a8130@Intel.com>
-Date: Tue, 29 Sep 2026 10:21:50 +0530
+ 28 Sep 2026 21:52:51 -0700
+Message-ID: <77862b03-640a-49e3-a7a7-82cddb106b05@Intel.com>
+Date: Tue, 29 Sep 2026 10:22:49 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@Intel.com>
 Subject: Re: [PATCH v4 10/12] drm/xe/lmtt: Report invalidation errors using
  structured xe_log API
 To: sashiko-reviews@lists.linux.dev
@@ -54,7 +55,6 @@ References: <20260928092114.1610203-1-dnyaneshwar.bhadane@intel.com>
  <20260928092114.1610203-11-dnyaneshwar.bhadane@intel.com>
  <20260928093659.4A08F1F000FF@smtp.kernel.org>
 Content-Language: en-US
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@Intel.com>
 Organization: intel
 In-Reply-To: <20260928093659.4A08F1F000FF@smtp.kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
@@ -111,7 +111,7 @@ On 28-Sep-26 3:06 PM, sashiko-bot@kernel.org wrote:
 > Without a trailing '\n' in xe_log_err(), the kernel printk system might leave
 > the log line unterminated, potentially causing subsequent logs to be
 > concatenated to this line.
-Noted,I will update in the next patch. >
+Noted,I will update in the next patch.
 >>   	if (xe_device_has_mert(xe) && xe_tile_is_root(tile)) {
 >>   		err = xe_mert_invalidate_lmtt(xe);
 >>   		if (err)
