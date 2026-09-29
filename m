@@ -4,164 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D438CA5FA1
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 07:32:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6DEFCA5FA1
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Sep 2026 07:56:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01C3E10ED2F;
-	Tue, 29 Sep 2026 07:32:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63C7B10ED38;
+	Tue, 29 Sep 2026 07:56:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZguGmXa8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BJ5zEjT8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2129110ED2D;
- Tue, 29 Sep 2026 07:32:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E36710ED38
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Sep 2026 07:56:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790667167; x=1822203167;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=Hmrym7lMBPE2uyD/WmdMm0GUeeV96bwOMnKcHT74iG0=;
- b=ZguGmXa8YrlyMR+xlck9LwOEx/MLvqDBeUoTgovlzrM/bvae1Nlc6JRj
- tFiz7hrL+HrkeR5KnWrRclhAnK6N+4HKaXnXIyA+8DiQtZaK/7O7dOLj5
- 9LLmIMyKJu/6JAFnDe0CX6rgHE1U4ZZhYZVBkPdSv6qDy9NZw2mNi1cgl
- 8FRtiwX2qIjYjEgWj+oyvUQXVRlcGCTvQTg3K31eIM4GN8azXGlOVrpCO
- zxgk3G933VAFODLuNOau1S1VP/dLUUU+5QoxESmORnsnfRK78nK79TKNk
- n6WpIqVsP2Ap5Cp6IxgrPeKxizu9gjlVe+qIJFpord1Z//vnPyzjrZIv1 Q==;
-X-CSE-ConnectionGUID: xc+e6Nh6Rtm2OFUEs3hyTA==
-X-CSE-MsgGUID: Q7e+bWhuRI6IX/x+J1LFzg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11919"; a="101901798"
-X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="101901798"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2026 00:32:46 -0700
-X-CSE-ConnectionGUID: odgdsJ3/Q8e5wc2UnVymJg==
-X-CSE-MsgGUID: KQP0syiPSOy07cZBlm3bOg==
+ t=1790668576; x=1822204576;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=lfKAiMHySQQh9MJ5LldYc5OFG/NXgjxM7qsge5clLfU=;
+ b=BJ5zEjT8izVNGFNbL5N6nGMrzYm8+k50SmFyHb20YvuIQSlvO9mKTQ1E
+ +ZWVQYuSvdhxFTmPm5K047BTDtd1b4ZYz+YiAwsVc5HVJpegvvyV7P72x
+ 5g6CSENsGNUhrTW5Y5ANkFsDwXrx2DkB8IN44eRS2DwveQ0Ag/boxPMMZ
+ RHz9OB1CsavbmsI4Csp8XmjvHuAwubbfIicCuGaaQG+PYDRR5iwykkSYU
+ s9UWIHri2SnOEBy4Ky+kySIaJFAoaxgPfPMATfUZbDEPnS+LSd/qHLNE2
+ YShCSeVGCcNCcyNKe6xYpZfClODh+zLmI24lxiuK67jGbc6RFJUFnrdVE A==;
+X-CSE-ConnectionGUID: eUbkTe9qQV+Mo6F60VZKBA==
+X-CSE-MsgGUID: 8XQ5t1YhRmyMhRdZspx0iA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11919"; a="90144553"
+X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="90144553"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2026 00:56:15 -0700
+X-CSE-ConnectionGUID: TEqlxpfBTKCSibfsiSC0Zg==
+X-CSE-MsgGUID: k+Zf64QdSCa8/JTbcVZ0kQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,130,1787036400"; d="scan'208";a="279116074"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2026 00:32:46 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 29 Sep 2026 00:32:46 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Tue, 29 Sep 2026 00:32:46 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.11) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 29 Sep 2026 00:32:46 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KkL2uqiZFiLIqxHBpjr+mt6FPYm7maBy0QWVfOMAYq9NRpcdcvi2qWltuTllFGd1ZAHzaYZYVwcYXKKMHT7KqHApu4/JyrDVyY+S8i9T8T/jiLN80cFdggTOXvZtVtnyFKt2uF4ui1Z51eDLCBdtTwLpsTd1TJ2iUOF3dwM9NOmOtxOU2E5eaTFAAGmhNBP3jlqaFvj8dYs+/Hgfm8DMbcIobhQH6rpcKehmNCyQgUvG7KQ43MMbOVx6++t7PIixf1hqMjyLhKmEiB6bj6Hh+KmJObPo57W3cYXQieo5/vUFmA7PWDi/uYJHRmW5NHJrdL4OQ1ndUnxCO90sPveXFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Hmrym7lMBPE2uyD/WmdMm0GUeeV96bwOMnKcHT74iG0=;
- b=JsUbtTb4Ul/vRNH8rIb1BZ/uFFV/14bkZGVBqtyPEsqOBFdFqq8E/Gyn8k7AgUXvgpALRywhGIwwv/sJv11ZJbE3XSKClhgYfH4IKuoaFRV7Ix1O+t/+IDxSVF6TeMQmHB75DD440TDyyT5dPXifXlVen6HE8XbeaYPhJaedInIn/OjR2MzcXDVbp9I6stchEOcIuiWg3HmuQ9KTgH724QA1zKyceCJsQcnXmvrB6ZDcz1l6qQw+DWAcv25/0qE+ZK6sxn3GDzxB2YgqpCwGf5HeCg0szfoUX2SOvDvl+I6CoYZ/b5hL5e/FBqCsc3UlPo/wXgWJQLzkjoGdztJ/rw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
- CYXPR11MB8663.namprd11.prod.outlook.com (2603:10b6:930:da::21) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.451.25; Tue, 29 Sep 2026 07:31:04 +0000
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::9086:5e0b:ad24:762]) by DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::9086:5e0b:ad24:762%6]) with mapi id 15.21.0451.024; Tue, 29 Sep 2026
- 07:31:04 +0000
-From: "Hogander, Jouni" <jouni.hogander@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Manna,
- Animesh" <animesh.manna@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-CC: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Nikula, Jani"
- <jani.nikula@intel.com>
-Subject: Re: [PATCH v6 08/18] drm/i915/alpm: table based establishment period
-Thread-Topic: [PATCH v6 08/18] drm/i915/alpm: table based establishment period
-Thread-Index: AQHdRUGOKmuWy//RiUShNN1ucxLVBrblNeAAgAAIkgA=
-Date: Tue, 29 Sep 2026 07:31:04 +0000
-Message-ID: <cbd2bdcd92344591e59f815aef41dbed8cc822be.camel@intel.com>
-References: <20260915180449.277933-1-animesh.manna@intel.com>
- <20260915180449.277933-9-animesh.manna@intel.com>
- <dfc66a1292774129a0277ea75a3be0e49ee52eec.camel@intel.com>
-In-Reply-To: <dfc66a1292774129a0277ea75a3be0e49ee52eec.camel@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|CYXPR11MB8663:EE_
-x-ms-office365-filtering-correlation-id: f461fd87-a6fb-45c6-bfb5-08df1dfb9ea0
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|23010399003|366016|376014|1800799024|18002099003|22082099003|38070700021|4143699003|3023799007|6133799003|10067099003|56012099006|11063799006;
-x-microsoft-antispam-message-info: rWZOZtaEmuhuInef0nzU0ASR4DZ9U9nnSchBljh/YFF+5CLt/98agT8sE3BgeDnAHH4kB4yHXvA4C4nIqpAVFu5zSto0zC1oKByZTq4zV04bXbfUbjYebgw2Ve7WRQJ6jV+yK9I+XgQE2GAbqxHvghrLjLEap012sQoNsarB0cBwDj2KfqZjZFOUslCg7TYGNJo1pq6OLGyxQAJBO+2etplccWio1KldIaq5b/exkiJR2ycjk0EaayKI4535LeQN5WCNjf2wwdvG6dlrC57hL2Y6iRuc+2RGQyfTOk2MMuDmHbIsWr2yB1IEeoQm/+Kl4LFx0gGIM+ef3JqLqBEGYS3PVfI4f7xEtfwnnbUpW5LNNUnQs5W+QD3EkbNqtzAH8xF3ugM2guDTdQ6ueo2R5L4wuJ0k0ELsTOiHMI9um07g4jyMnLQq5L3/zHEl9pnF6rkvLM6ANqAsepon01ZikUjEOOaMh3+Zw7bUECDPlttoCy3Pyuuk2RUjy8p4JNY3iKpsbA2ZqKQbYRlwL7VjAzjqTOLRrLvEbAng8Adtu/SrPeY2yOufZDmLOIcGmrlMxwbOJof/uwDuRM02yAe1gKZzzJAjosMvJ2b52xsT1iHx0QwGz8o4L1dvRviyaRBZfWnDHu9V6tJpEue7ZTk+psY3UCKCG8xb0KRSWIX994F+4nokadf9sDeRD/IFVHjdcGM+Mv2PYDnGEv43vvc8at33v77UvfcLF8BTrRg6pd4=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(18002099003)(22082099003)(38070700021)(4143699003)(3023799007)(6133799003)(10067099003)(56012099006)(11063799006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bTdlSThpcGRJRWg5TTY2dkRUaFN0WXBNTlYzWGsxZVJlOWtlS2FuenYxWlJv?=
- =?utf-8?B?WHZJaGJYaTJuMXBrc3VPMStSbzBiTitCTkM5cE1XL1hXdkl3ZzB4UXFHWmQx?=
- =?utf-8?B?ZDVKZ3cwZ0hWb3FCaDFCUnVUTmsxS3JnWG41SGZKVVQ0SVNNNHBxSXBFeE44?=
- =?utf-8?B?bDRqNzNMS3BCUUtuM1BOcUlxSTdZS2I1R0ZHYlA3ZVhMQmxTUkVCYnZybnZ3?=
- =?utf-8?B?WDdnaHR3QlA0MFNZaHY3bFBnYkZLY2NiWjI0cnB0U1o5VjB5OUhYbTI0TTdp?=
- =?utf-8?B?Z3VQMjZtQzRMbWxsNnhRbnNkY2p5R3NoNG1yN0crOGU4MzdhLzE2SG5yenNQ?=
- =?utf-8?B?RDZic05TNllBTzhJMFc3M0wrcU5sZVN6NVBBcTI2VlhJVldLQW9pdFF4am5G?=
- =?utf-8?B?ZXFkTUEvcTVSUFMzYnlJaU52ZkV6V2ZQZldCeHQ3ZmxJcTlHVnY2SERJU0x0?=
- =?utf-8?B?ZitmSWtOZW1HWWtORTZFMWpKYlRzaktQTUZUUHNRN1ZEb2tWM2NaOVU0clNL?=
- =?utf-8?B?N3ljY3Y4RnJZSGhSdWFOQ25Sd0JHZTBXa01OOFVkVjNRZkJpdlNIUkY4VTZt?=
- =?utf-8?B?UEExWDkyZDFyYkd6S3RJditYakJqWmJidnE4bmtpbEVEZ0UvVkJjM1hOd1dj?=
- =?utf-8?B?NHQwcHFkVktQSkd6MnNkeDIvT3VtUHk5S1Q3Y2g1cGlpenAwZHp0dEFXdjhU?=
- =?utf-8?B?WWFGd2ZVOUw5NzdEQlZzazZnT0s1YUxYRFdFOGVMVDdRUm8yQzA1L25TZ1g4?=
- =?utf-8?B?SFgyUTZsT2ZRd2RiMVF5dDRmaWJBVFJLNmxaY2xBVHpXUVJkaXRDMGRwL2E0?=
- =?utf-8?B?ZW1IdHdXN2ZSRDErNjY0ZG1UcTZ4ZG5YS3BqbjFmTGEwWUQ1YUZTS1ZoN1JY?=
- =?utf-8?B?MVBaVEd5OXYwRUlzVTlKdmNFM1c0NXlBVnZ2RlUwcnNvUE1PbmY4c05ZT2Rp?=
- =?utf-8?B?U3NXVUxyaWhWTHcxeVlLYU9iTkNyUVlqMlIvTlUzb0o0bXcvcUd1VkFZeEpT?=
- =?utf-8?B?Q1FXQXhTTVRmTmZKbTZ1NG12bmFXMlRjOG0zRUJEdWt5QzZIZUdWWmp0Sk9O?=
- =?utf-8?B?RDFMZTRuSjRwRWJxWTdPdUpDRlZxeUJIS0Z0azlVWW9tdjdVNHVsNW1PYjdq?=
- =?utf-8?B?UzdoZG9CTXFPcll5Z0krdmZ4Ti9CZ1RWcHU1bnRmYkxiZmhpeThUN2RsWWpD?=
- =?utf-8?B?dWtLRWNadHhiUllEd2Q1RllaM0tNMXZaNGphdllzK24zazZCelhaSEQyQ3NL?=
- =?utf-8?B?NHJndE9TSGhGc3BPMVlGMytSNC81T1dUQWtnaDdZSS8xNTVtMktLbE00ZHhM?=
- =?utf-8?B?K3UzV0hHSU4wcU9CcXI1RElqU1oyaDdGNlg1ajhxNGtTeHlNQTlzSUFOb3JH?=
- =?utf-8?B?YllmUzZ4VE53MjlHNlNwZkdSMFRWVG5yU3BKa1plNFIyOU5nYmQ2K01ncDE0?=
- =?utf-8?B?TjJCcTh2OVYweDlSM1JhSE5VR2pENVMvdkYrelN5MEgybzhhaGkyaTJKUHBS?=
- =?utf-8?B?RGZKZDBWWC9NZmhVOXFEbGFlQzltVHVCZnZWTkQ2THc5ZTBoa3daN0UxT1Zv?=
- =?utf-8?B?V2I3NEdSSHJneFU1R1A3RWx2a1k4MUdQZ2lKZUMvd3pQUGtKNitOR2tYYzJw?=
- =?utf-8?B?dmlRdzVnRGdSUU93ajlsKzM5NFlGWE9YUUQvanJwWjJYRllSNkhoUzVDekh6?=
- =?utf-8?B?d25UMXlwS1JtbmE0Z0VtcDZTWEZoNk9lVmIrY0lDRTNCaWRicy9yS1JITGcr?=
- =?utf-8?B?SlpCTUtJWjZSeUxqdWE0RDV0TjlpaGQzTENaRHkwMkNoOFNKclo3N0pzd3Vh?=
- =?utf-8?B?SEdsOEtIdW9ZRlQveGhUbXhNbEpNWG9obUpmNzRoT05Tc1JiSStVRUJUWUtj?=
- =?utf-8?B?KzN6RmN3VlJhcHFueUpnVnc2YVR4YUwyQ0JTVGJ3dEpQSTVmVFp0Q3dBT2Rh?=
- =?utf-8?B?L2tVMG80RU8yYjBFUEg5aWtRMkxUUW05WnR1Vm5IV1diSG5YVGxaSjQ2cWs4?=
- =?utf-8?B?M3lMQW82eEJ3WTB1VjlabERVbm16cU9uRWZ4SGRSVHNOZXNGa3VXczJkdk1W?=
- =?utf-8?B?bXkrWFhBYTJWeE11Tmp1TEJWaXVDSWJwR2s5U09hd2h6SzByMGxJdm5ZeWR4?=
- =?utf-8?B?RjA2WFNwRk9kOHBHd2RGRGdwR0xvNWN5U1MyYUlBcFR3YUdwSHFxd0RVMXA4?=
- =?utf-8?B?ODRFQTlLQWk2SHpZb01icWE2ODc1SnRmYXpPMmQ4VkloQklqMmhsalU1NXJE?=
- =?utf-8?B?RndaRE05c2hJNkxLb3ZHMVlCSE5RMjBIcnF0WllSZytBQUxNVlFySkxGaStk?=
- =?utf-8?B?VzY4RnRGWmhuak1VQWhGLzllR1NyT1haWGNwVnp4Wm8xODFxa3BVYklvZnJx?=
- =?utf-8?Q?/IrJHw0RD24AhLp0=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <32677F0D749B604595440CDCBB51E622@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Received: from abityuts-desk1.ger.corp.intel.com (HELO [10.245.244.222])
+ ([10.245.244.222])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2026 00:56:13 -0700
+Message-ID: <70ae41bf314d518215dda1f062b609f3dfac73e4.camel@linux.intel.com>
+Subject: Re: [PATCH 1/2] drm/xe/dma-buf: keep non-p2p imported buffers in
+ system memory
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, Matthew Auld
+ <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org, stable@vger.kernel.org
+Date: Tue, 29 Sep 2026 09:56:10 +0200
+In-Reply-To: <arrjupxa6R+ehYK5@gsse-cloud1.jf.intel.com>
+References: <20260928164820.1237049-4-matthew.auld@intel.com>
+ <20260928164820.1237049-5-matthew.auld@intel.com>
+ <arrjupxa6R+ehYK5@gsse-cloud1.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: iHRDBWrxGalO0THiwZH2Vwi9JIkIDVXRi5GZ4SRRgiS8kLbk4+5eiyURRdLTpdK6F0YBDqnlorKGQWRu2ZuLIsq2SJoZ82DgagdU/hISVMl4wyPpT1+v02sXGStekySuzfY5VuLC36pYhoFWeGYnRCW7dHiG/dDL0XjDlRcj0J3/e7MetfjuQbrBsxkcf4WXKO0dSW4YibWdSO7LrRiKmP1yLoEC3O/G96JTXdjVF0wMNOUJrvQMskq3TvT/81BddwFBI3Ifk+chdLT/moMpEt7pgjNor/m4Oe5pZVZRhYC0uKYtOYNUInXA2eKxekSxfPujnGZ96cKqresgGAHXng==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f461fd87-a6fb-45c6-bfb5-08df1dfb9ea0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Sep 2026 07:31:04.4676 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: L3ZUcEIiyiSJNwlfsoCfDlrCdgixbMGxMdmHVj67n1KqylFLlmYAkuf/LrGNkndcPAeYhfebnrw69POOudwqOwox8AatXEO52FRMlI0jN7A=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR11MB8663
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,109 +72,285 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDI2LTA5LTI5IGF0IDEwOjAwICswMzAwLCBIb2dhbmRlciwgSm91bmkgd3JvdGU6
-DQo+IE9uIFR1ZSwgMjAyNi0wOS0xNSBhdCAyMzozNCArMDUzMCwgQW5pbWVzaCBNYW5uYSB3cm90
-ZToNCj4gPiBPbmx5IHVzZSB0aGUgdGFibGUgd2hlbiB0aGUgbGluayByYXRlIGlzIGxpc3RlZCAo
-aWR4IHZhbGlkKQ0KPiA+IGFuZCB0aGUgTFRUUFIgY291bnQgaXMgd2l0aGluIHRoZSB0YWJsZSBi
-b3VuZHMuIEEgemVybyBlbnRyeQ0KPiA+IG1lYW5zIHRoZSByYXRlIGhhcyBubyB0YWJ1bGF0ZWQg
-dmFsdWUsIHNvIGZhbGwgYmFjayB0byB0aGUNCj4gPiBjb21wdXRlZCBlc3RhYmxpc2htZW50IHBl
-cmlvZCBiZWxvdy4NCj4gPiANCj4gPiBOb3RlOiBUaGUgdGFibGUgYW5kIGl0cyB2YWx1ZXMgYXJl
-IHRha2VuIGZyb20gRFAyLjEgdmVzYSBzcGVjLg0KPiA+IA0KPiA+IHYyOiBBZGQgY2hlY2sgZm9y
-IG5lZ2F0aXZlIGVycm9yIGNvZGVzIGZyb20gZHJtX2RwX2x0dHByX2NvdW50KCkuDQo+ID4gW3Nh
-c2hpa29dDQo+ID4gDQo+ID4gQ2M6IEpvdW5pIEjDtmdhbmRlciA8am91bmkuaG9nYW5kZXJAaW50
-ZWwuY29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEFuaW1lc2ggTWFubmEgPGFuaW1lc2gubWFubmFA
-aW50ZWwuY29tPg0KPiA+IC0tLQ0KPiA+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9hbHBtLmMgfCA5NQ0KPiA+ICsrKysrKysrKysrKysrKysrKysrKysrDQo+ID4gwqAxIGZp
-bGUgY2hhbmdlZCwgOTUgaW5zZXJ0aW9ucygrKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2FscG0uYw0KPiA+IGIvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hbHBtLmMNCj4gPiBpbmRleCBkYzAyNTA1OGE2MjYuLmNi
-MjRiYmE4MDFhMSAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2FscG0uYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfYWxwbS5jDQo+ID4gQEAgLTEyMiw2ICsxMjIsOTIgQEAgc3RhdGljIGludCBnZXRfZHBfbGlu
-a19zeW1ib2xfc2l6ZShjb25zdA0KPiA+IHN0cnVjdA0KPiA+IGludGVsX2NydGNfc3RhdGUgKmNy
-dGNfc3RhdGUpDQo+ID4gwqAJcmV0dXJuIGludGVsX2RwX2lzX3VoYnIoY3J0Y19zdGF0ZSkgPyAz
-MiA6IDEwOw0KPiA+IMKgfQ0KPiA+IMKgDQo+ID4gKyNkZWZpbmUgREVGQVVMVF9NQVhfTFRUUFJf
-Q09VTlQgNw0KPiA+ICsjZGVmaW5lIE1BWF9TVVBQT1JURURfRFBfTElOS19SQVRFUyAxMg0KPiA+
-ICsNCj4gPiArc3RhdGljIGNvbnN0IHUzMg0KPiA+IGVzdGFibGlzaG1lbnRfcGVyaW9kc1tERUZB
-VUxUX01BWF9MVFRQUl9DT1VOVF1bTUFYX1NVUFBPUlRFRF9EUF9MSU4NCj4gPiBLXw0KPiA+IFJB
-VEVTXSA9IHsNCj4gPiArCS8qIDE2MjAsIDIxNjAsIDI0MzAsIDI3MDAsIDMyNDAsIDQzMjAsIDU0
-MDAsIDY3NTAsIDgxMDAsDQo+ID4gMTAwMDAsIDEzNTAwLCAyMDAwMCAqLw0KPiA+ICsJLyogTm8g
-UmV0aW1lcnMgKi8NCj4gPiArCXsgNjEwNzAsIDAsIDAsIDU2NzEwLCAwLCAwLCA1MzQ1MCwgMCwg
-NTIzNjAsIDU5MDUwLCA1Njc1MCwNCj4gPiA1NDYyMCB9LA0KPiA+ICsJLyrCoCAxIFJldGltZXLC
-oCAqLw0KPiA+ICsJeyAxNTU2NzAsIDAsIDAsIDE1MTMxMCwgMCwgMCwgMTQ4MDUwLCAwLCAxNDY5
-NjAsIDE1MzY1MCwNCj4gPiAxNTEzNTAsIDE0OTIyMCB9LA0KPiA+ICsJLyrCoCAyIFJldGltZXJz
-ICovDQo+ID4gKwl7IDE4MTE2MCwgMCwgMCwgMTcyNDUwLCAwLCAwLCAxNjU5MTAsIDAsIDE2Mzc0
-MCwgMTc3MTIwLA0KPiA+IDE3MjUyMCwgMTY4MjIwIH0sDQo+ID4gKwkvKsKgIDMgUmV0aW1lcnMg
-Ki8NCj4gPiArCXsgMjA2NjUwLCAwLCAwLCAxOTM1ODAsIDAsIDAsIDE4Mzc4MCwgMCwgMTgwNTEw
-LCAyMDA1OTAsDQo+ID4gMTkzNjkwLCAxODcyOTAgfSwNCj4gPiArCS8qwqAgNCBSZXRpbWVycyAq
-Lw0KPiA+ICsJeyAyMzIxNDAsIDAsIDAsIDIxNDcxMCwgMCwgMCwgMjAxNjUwLCAwLCAxOTcyOTAs
-IDIyNDA2MCwNCj4gPiAyMTQ4NjAsIDIwNjMyMCB9LA0KPiA+ICsJLyrCoCA1IFJldGltZXJzICov
-DQo+ID4gKwl7IDI1NzYyMCwgMCwgMCwgMjM1ODUwLCAwLCAwLCAyMTk1MTAsIDAsIDIxNDA3MCwg
-MjQ3NTMwLA0KPiA+IDIzNjAzMCwgMjI1MzYwIH0sDQo+ID4gKwkvKsKgIDYgUmV0aW1lcnMgKi8N
-Cj4gPiArCXsgMjgzMTEwLCAwLCAwLCAyNTY5ODAsIDAsIDAsIDIzNzM4MCwgMCwgMjMwODUwLCAy
-NzEwMDAsDQo+ID4gMjU3MjAwLCAyNDQzOTAgfSwNCj4gPiArfTsNCj4gPiArDQo+ID4gK2VudW0g
-bGlua19yYXRlX2lkeCB7DQo+ID4gKwlMSU5LX1JBVEVfSU5WQUxJRCA9IC0xLA0KPiA+ICsJTElO
-S19SQVRFXzEsDQo+ID4gKwlMSU5LX1JBVEVfMiwNCj4gPiArCUxJTktfUkFURV8zLA0KPiA+ICsJ
-TElOS19SQVRFXzQsDQo+ID4gKwlMSU5LX1JBVEVfNSwNCj4gPiArCUxJTktfUkFURV82LA0KPiA+
-ICsJTElOS19SQVRFXzcsDQo+ID4gKwlMSU5LX1JBVEVfOCwNCj4gPiArCUxJTktfUkFURV85LA0K
-PiA+ICsJTElOS19SQVRFXzEwLA0KPiA+ICsJTElOS19SQVRFXzExLA0KPiA+ICsJTElOS19SQVRF
-XzEyDQo+ID4gK307DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IGdldF9saW5rX3JhdGVfaW5kZXgo
-aW50IHBvcnRfY2xvY2spDQo+ID4gK3sNCj4gPiArCWludCBsaW5rX3JhdGVfaW5kZXg7DQo+ID4g
-Kw0KPiA+ICsJc3dpdGNoIChwb3J0X2Nsb2NrKSB7DQo+ID4gKwljYXNlIDE2MjAwMDoNCj4gPiAr
-CQlsaW5rX3JhdGVfaW5kZXggPSBMSU5LX1JBVEVfMTsJLy8gUmF0ZV8xIChSQlIpIC0NCj4gPiAx
-LjYyIEdicHMvTGFuZQ0KPiA+ICsJCWJyZWFrOw0KPiA+ICsJY2FzZSAyMTYwMDA6DQo+ID4gKwkJ
-bGlua19yYXRlX2luZGV4ID0gTElOS19SQVRFXzI7CS8vIFJhdGVfMsKgwqDCoMKgwqDCoCAtDQo+
-ID4gMi4xNiBHYnBzL0xhbmUNCj4gPiArCQlicmVhazsNCj4gPiArCWNhc2UgMjQzMDAwOg0KPiA+
-ICsJCWxpbmtfcmF0ZV9pbmRleCA9IExJTktfUkFURV8zOwkvLyBSYXRlXzPCoMKgwqDCoMKgwqAg
-LQ0KPiA+IDIuNDMgR2Jwcy9MYW5lDQo+ID4gKwkJYnJlYWs7DQo+ID4gKwljYXNlIDI3MDAwMDoN
-Cj4gPiArCQlsaW5rX3JhdGVfaW5kZXggPSBMSU5LX1JBVEVfNDsJLy8gUmF0ZV80IChIQlIpIC0N
-Cj4gPiAyLjcwIEdicHMvTGFuZQ0KPiA+ICsJCWJyZWFrOw0KPiA+ICsJY2FzZSAzMjQwMDA6DQo+
-ID4gKwkJbGlua19yYXRlX2luZGV4ID0gTElOS19SQVRFXzU7CS8vIFJhdGVfNSAoUkJSMiktDQo+
-ID4gMy4yNCBHYnBzL0xhbmUNCj4gPiArCQlicmVhazsNCj4gPiArCWNhc2UgNDMyMDAwOg0KPiA+
-ICsJCWxpbmtfcmF0ZV9pbmRleCA9IExJTktfUkFURV82OwkvLyBSYXRlXzbCoMKgwqDCoMKgwqAg
-LQ0KPiA+IDQuMzIgR2Jwcy9MYW5lDQo+ID4gKwkJYnJlYWs7DQo+ID4gKwljYXNlIDU0MDAwMDoN
-Cj4gPiArCQlsaW5rX3JhdGVfaW5kZXggPSBMSU5LX1JBVEVfNzsJLy8gUmF0ZV83IChIQlIyKS0N
-Cj4gPiA1LjQwIEdicHMvTGFuZQ0KPiA+ICsJCWJyZWFrOw0KPiA+ICsJY2FzZSA2NzUwMDA6DQo+
-ID4gKwkJbGlua19yYXRlX2luZGV4ID0gTElOS19SQVRFXzg7CS8vIFJhdGVfOMKgwqDCoMKgwqDC
-oCAtDQo+ID4gNi43NSBHYnBzL0xhbmUNCj4gPiArCQlicmVhazsNCj4gPiArCWNhc2UgODEwMDAw
-Og0KPiA+ICsJCWxpbmtfcmF0ZV9pbmRleCA9IExJTktfUkFURV85OwkvLyBSYXRlXzkgKEhCUjMp
-LQ0KPiA+IDguMTAgR2Jwcy9MYW5lDQo+ID4gKwkJYnJlYWs7DQo+ID4gKwljYXNlIDEwMDAwMDA6
-DQo+ID4gKwkJbGlua19yYXRlX2luZGV4ID0gTElOS19SQVRFXzEwOwkvLyBSYXRlXzEwDQo+ID4g
-KFVIQlIxMCkgLSAxMC4wIEdicHMvTGFuZQ0KPiA+ICsJCWJyZWFrOw0KPiA+ICsJY2FzZSAxMzUw
-MDAwOg0KPiA+ICsJCWxpbmtfcmF0ZV9pbmRleCA9IExJTktfUkFURV8xMTsJLy8gUmF0ZV8xMQ0K
-PiA+IChVSEJSMTMuNSkgLSAxMy41IEdicHMvTGFuZQ0KPiA+ICsJCWJyZWFrOw0KPiA+ICsJY2Fz
-ZSAyMDAwMDAwOg0KPiA+ICsJCWxpbmtfcmF0ZV9pbmRleCA9IExJTktfUkFURV8xMjsJLy8gUmF0
-ZV8xMg0KPiA+IChVSEJSMjApIC0gMjAuMCBHYnBzL0xhbmUNCj4gPiArCQlicmVhazsNCj4gPiAr
-CWRlZmF1bHQ6DQo+ID4gKwkJbGlua19yYXRlX2luZGV4ID0gTElOS19SQVRFX0lOVkFMSUQ7DQo+
-ID4gKwkJYnJlYWs7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJcmV0dXJuIGxpbmtfcmF0ZV9pbmRl
-eDsNCj4gPiArfQ0KPiANCj4gRGlmZmVyZW5jZSBiZXR3ZWVuIHdoYXQgdGhpcyB0YWJsZSBpcyBn
-aXZpbmcgdXMgYW5kIHdoYXQgd2UgYXJlDQo+IGdldHRpbmcNCj4gZnJvbSB0aGUgZm9ybXVsYSBp
-cyBjb21pbmcgZnJvbSBTSUxFTkNFX1BFUklPRF9USU1FIGFuZCB0bGZwc19wZXJpb2QuDQo+IElu
-IERQIHNwZWMgdGhleSBhcmUgdXNpbmcgbWF4IHZhbHVlcyB3aGlsZSBvdXIgY2FsY3VsYXRpb24g
-aXMgdXNpbmcNCj4gbWlkcG9pbnQuDQo+IA0KPiBJIHRoaW5rIHdlIGNvdWxkIGp1c3Qgc3dpdGNo
-IHRvIG1heCB2YWx1ZXMgb24gdGhlc2UgYW5kIGRyb3AgYWRkaW5nDQo+IHRhYmxlcyBjb21wbGV0
-ZWx5Lg0KDQpUaGlzIHdvdWxkIHVubmVjZXNzYXJpbHkgaW5jcmVhc2Ugb3VyIHdha2UtdGltZS4g
-TWF5YmUgd2UgY291bGQganVzdA0KYWNjZXB0IHRoZSBkaWZmZXJlbmNlIGJldHdlZW4gY2FsY3Vs
-YXRlZCBhbmQgcHJlLWNhbGN1bGF0ZWQgdmFsdWVzIGFzDQp3ZSB1bmRlcnN0YW5kIHdoZXJlIGl0
-IGNvbWVzIGZyb20/IFdlIGFyZSB1c2luZyBtaWQgcG9pbnQgaW4gdGhlDQpjb25maWd1cmF0aW9u
-IGFuZCB0aGF0IGlzIHdoYXQgd2UgdXNlIGluIHdha2UgdGltZSBjYWxjdWxhdGlvbiBhcyB3ZWxs
-Lg0KVmFsdWVzIHRhYmxlIGZyb20gVkVTQSBzcGVjIGFyZSBjYWxjdWxhdGVkIHVzaW5nIG1heCB2
-YWx1ZXMuDQoNCkJSLA0KSm91bmkgSMO2Z2FuZGVyDQo+IA0KPiBCUiwNCj4gSm91bmkgSMO2Z2Fu
-ZGVyDQo+IA0KPiA+ICsNCj4gPiDCoHN0YXRpYyBpbnQgZ2V0X2VzdGFibGlzaG1lbnRfcGVyaW9k
-KHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsDQo+ID4gwqAJCQkJwqDCoMKgIGNvbnN0IHN0cnVj
-dCBpbnRlbF9jcnRjX3N0YXRlDQo+ID4gKmNydGNfc3RhdGUpDQo+ID4gwqB7DQo+ID4gQEAgLTEz
-OCw4ICsyMjQsMTcgQEAgc3RhdGljIGludCBnZXRfZXN0YWJsaXNobWVudF9wZXJpb2Qoc3RydWN0
-DQo+ID4gaW50ZWxfZHAgKmludGVsX2RwLA0KPiA+IMKgCWlmIChpbnRlbF9jcnRjX2hhc190eXBl
-KGNydGNfc3RhdGUsIElOVEVMX09VVFBVVF9FRFApKSB7DQo+ID4gwqAJCXRjZHMgPSAoNyArIERJ
-Vl9ST1VORF9VUCg2NTAwLCB0bWxfcGh5X2xvY2spICsgMSkNCj4gPiAqDQo+ID4gdG1sX3BoeV9s
-b2NrOw0KPiA+IMKgCX0gZWxzZSB7DQo+ID4gKwkJaW50IGlkeCA9IGdldF9saW5rX3JhdGVfaW5k
-ZXgoY3J0Y19zdGF0ZS0NCj4gPiA+IHBvcnRfY2xvY2spOw0KPiA+ICsNCj4gPiDCoAkJdGNkcyA9
-IDcgKiB0bWxfcGh5X2xvY2s7DQo+ID4gwqAJCWx0dHByX2NvdW50ID0gZHJtX2RwX2x0dHByX2Nv
-dW50KGludGVsX2RwLQ0KPiA+ID4gbHR0cHJfY29tbW9uX2NhcHMpOw0KPiA+ICsNCj4gPiArCQlp
-ZiAoaWR4ICE9IExJTktfUkFURV9JTlZBTElEICYmIGx0dHByX2NvdW50ID49IDANCj4gPiAmJg0K
-PiA+ICsJCcKgwqDCoCBsdHRwcl9jb3VudCA8IERFRkFVTFRfTUFYX0xUVFBSX0NPVU5UICYmDQo+
-ID4gKwkJwqDCoMKgIGVzdGFibGlzaG1lbnRfcGVyaW9kc1tsdHRwcl9jb3VudF1baWR4XSkgew0K
-PiA+ICsJCQllc3RhYmxpc2htZW50X3BlcmlvZCA9DQo+ID4gZXN0YWJsaXNobWVudF9wZXJpb2Rz
-W2x0dHByX2NvdW50XVtpZHhdOw0KPiA+ICsJCQlyZXR1cm4gZXN0YWJsaXNobWVudF9wZXJpb2Q7
-DQo+ID4gKwkJfQ0KPiA+IMKgCX0NCj4gPiDCoA0KPiA+IMKgCWlmIChsdHRwcl9jb3VudCA+IDAp
-IHsNCj4gDQoNCg==
+On Mon, 2026-09-28 at 15:01 -0700, Matthew Brost wrote:
+> On Mon, Sep 28, 2026 at 05:48:22PM +0100, Matthew Auld wrote:
+> > When an exported buffer is mapped by a foreign device lacking peer-
+> > to-peer
+> > DMA support (such as an integrated GPU for display offload),
+> > xe_dma_buf_map() migrates the buffer to XE_PL_TT so that system
+> > memory
+> > pages can be accessed by the importer.
+> >=20
+> > However, since commit 5c87fee3c96c ("drm/xe: Attempt to bring bos
+> > back to
+> > VRAM after eviction"), XE_PL_TT is marked with TTM_PL_FLAG_FALLBACK
+> > in
+> > the buffer's placement. When DMABUF_MOVE_NOTIFY was enabled by
+> > default
+> > (meaning dynamic attachments are no longer pinned on map), the next
+> > xe_bo_validate() during render submission sees TT as a fallback
+> > placement
+> > and attempts to migrate the buffer back to VRAM.
+> >=20
+> > On the next frame, the foreign importer accesses the buffer,
+> > requiring
+> > another migration to TT, resulting in a continuous ping-pong
+> > between
+> > VRAM and system memory every frame and causing severe rendering
+> > performance
+> > degradations.
+> >=20
+> > To fix this, introduce xe_bo_migrate_tt_sticky() which records a
+> > temporary sticky placement in XE_PL_TT on successful migration.
+> > Subsequent
+> > validations use this sticky placement to keep the buffer in system
+> > memory
+> > until the non-p2p attachment is detached or memory pressure forces
+> > a
+> > fallback to the default placement.
+> >=20
+> > User is reporting what looks to be exactly this, with horrible
+> > performance when DMABUF_MOVE_NOTIFY was enabled by default.
+> >=20
+>=20
+> The patch looks functionally correct but couldn't we just clear
+> TTM_PL_FLAG_FALLBACK in xe_bo_migrate for certain callers? Then
+> restore
+> it in other places?
+>=20
+> Matt
+
+Hi,
+
+I recommended Matt to use a separate placement because the TTM flags
+are hints anyway, I think, and code becomes easier to understand if we
+make this more explicit. But that was just my opinion.
+
+But anyway I see there are a couple of places we migrate where we might
+need to adjust the current behaviour accordingly:
+
+* We have migration to TT for dma-buf CPU access.
+* We have migration to TT for atomic access, and then implicit
+assumptions that it will be migrated to VRAM again for GPU access, I
+suppose.
+* We have prefetch back to VRAM.
+* In what situations do we want to make eviction to TT sticky?
+* If we remove stickyness, should we trigger a rebind?
+
+This is some serious technical debt we have. We probably want to put
+together a design document on this, but for the time being we need to
+make sure we fix that imminent dma-buf bouncing problem.
+
+/Thomas
+
+
+>=20
+> > Assisted-by: LLM
+> > Link:
+> > https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9415
+> > Fixes: 5c87fee3c96c ("drm/xe: Attempt to bring bos back to VRAM
+> > after eviction")
+> > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > Cc: <stable@vger.kernel.org> # v6.12+
+> > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > Cc: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | =
+59
+> > ++++++++++++++++++++++++++++++--
+> > =C2=A0drivers/gpu/drm/xe/xe_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 3 ++
+> > =C2=A0drivers/gpu/drm/xe/xe_bo_types.h |=C2=A0 4 +++
+> > =C2=A0drivers/gpu/drm/xe/xe_dma_buf.c=C2=A0 | 16 ++++++++-
+> > =C2=A04 files changed, 79 insertions(+), 3 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > b/drivers/gpu/drm/xe/xe_bo.c
+> > index 6921b6967330..1c1eab0a7434 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -3324,6 +3324,9 @@ int xe_bo_validate(struct xe_bo *bo, struct
+> > xe_vm *vm, bool allow_res_evict,
+> > =C2=A0		.no_wait_gpu =3D false,
+> > =C2=A0		.gfp_retry_mayfail =3D true,
+> > =C2=A0	};
+> > +	struct ttm_placement *placement =3D bo-
+> > >sticky_placement.num_placement ?
+> > +					=C2=A0 &bo->sticky_placement :
+> > +					=C2=A0 &bo->placement;
+> > =C2=A0	int ret;
+> > =C2=A0
+> > =C2=A0	if (xe_bo_is_pinned(bo))
+> > @@ -3340,7 +3343,12 @@ int xe_bo_validate(struct xe_bo *bo, struct
+> > xe_vm *vm, bool allow_res_evict,
+> > =C2=A0	xe_vm_set_validating(vm, allow_res_evict);
+> > =C2=A0	trace_xe_bo_validate(bo);
+> > =C2=A0	xe_validation_assert_exec(xe_bo_device(bo), exec, &bo-
+> > >ttm.base);
+> > -	ret =3D ttm_bo_validate(&bo->ttm, &bo->placement, &ctx);
+> > +	ret =3D ttm_bo_validate(&bo->ttm, placement, &ctx);
+> > +	if (ret && ret !=3D -EINTR && ret !=3D -ERESTARTSYS &&
+> > +	=C2=A0=C2=A0=C2=A0 bo->sticky_placement.num_placement) {
+> > +		xe_bo_reset_sticky_placement(bo);
+> > +		ret =3D ttm_bo_validate(&bo->ttm, &bo->placement,
+> > &ctx);
+> > +	}
+> > =C2=A0	xe_vm_clear_validating(vm, allow_res_evict);
+> > =C2=A0
+> > =C2=A0	return ret;
+> > @@ -3891,6 +3899,7 @@ int xe_bo_migrate(struct xe_bo *bo, u32
+> > mem_type, struct ttm_operation_ctx *tctx
+> > =C2=A0	};
+> > =C2=A0	struct ttm_placement placement;
+> > =C2=A0	struct ttm_place requested;
+> > +	int ret;
+> > =C2=A0
+> > =C2=A0	xe_bo_assert_held(bo);
+> > =C2=A0	tctx =3D tctx ? tctx : &ctx;
+> > @@ -3922,7 +3931,53 @@ int xe_bo_migrate(struct xe_bo *bo, u32
+> > mem_type, struct ttm_operation_ctx *tctx
+> > =C2=A0
+> > =C2=A0	if (!tctx->no_wait_gpu)
+> > =C2=A0		xe_validation_assert_exec(xe_bo_device(bo), exec,
+> > &bo->ttm.base);
+> > -	return ttm_bo_validate(&bo->ttm, &placement, tctx);
+> > +	ret =3D ttm_bo_validate(&bo->ttm, &placement, tctx);
+> > +	if (!ret)
+> > +		xe_bo_reset_sticky_placement(bo);
+> > +	return ret;
+> > +}
+> > +
+> > +/**
+> > + * xe_bo_migrate_tt_sticky - Migrate an object to TT and record
+> > its placement as sticky
+> > + * @bo: The buffer object to migrate.
+> > + * @tctx: The ttm_operation_ctx to use for migration, or NULL for
+> > default.
+> > + * @exec: The drm_exec transaction to use for exhaustive eviction.
+> > + *
+> > + * Like xe_bo_migrate() to XE_PL_TT, but on success records the
+> > resulting placement
+> > + * so that subsequent validations try to keep the object in TT
+> > instead of falling
+> > + * back to the default placement. The stickiness is removed if
+> > validation falls
+> > + * back to the default placement (e.g. under memory pressure), on
+> > any non-sticky
+> > + * migration, or via an explicit call to
+> > xe_bo_reset_sticky_placement().
+> > + *
+> > + * Return: 0 on success. Negative error code on failure.
+> > + */
+> > +int xe_bo_migrate_tt_sticky(struct xe_bo *bo,
+> > +			=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *tctx,
+> > +			=C2=A0=C2=A0=C2=A0 struct drm_exec *exec)
+> > +{
+> > +	int ret;
+> > +
+> > +	ret =3D xe_bo_migrate(bo, XE_PL_TT, tctx, exec);
+> > +	if (!ret) {
+> > +		xe_place_from_ttm_type(XE_PL_TT, &bo-
+> > >sticky_place);
+> > +		bo->sticky_placement =3D (struct ttm_placement){
+> > +			.num_placement =3D 1,
+> > +			.placement =3D &bo->sticky_place,
+> > +		};
+> > +	}
+> > +	return ret;
+> > +}
+> > +
+> > +/**
+> > + * xe_bo_reset_sticky_placement - Reset sticky placement for an
+> > object
+> > + * @bo: The buffer object whose sticky placement should be
+> > cleared.
+> > + *
+> > + * Clear any sticky placement recorded by
+> > xe_bo_migrate_tt_sticky(),
+> > + * returning subsequent validations to the default placement.
+> > + */
+> > +void xe_bo_reset_sticky_placement(struct xe_bo *bo)
+> > +{
+> > +	bo->sticky_placement.num_placement =3D 0;
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0/**
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.h
+> > b/drivers/gpu/drm/xe/xe_bo.h
+> > index 861b1be231de..7327628070f2 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.h
+> > +++ b/drivers/gpu/drm/xe/xe_bo.h
+> > @@ -434,6 +434,9 @@ bool xe_bo_can_migrate(struct xe_bo *bo, u32
+> > mem_type);
+> > =C2=A0
+> > =C2=A0int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct
+> > ttm_operation_ctx *ctc,
+> > =C2=A0		=C2=A0 struct drm_exec *exec);
+> > +int xe_bo_migrate_tt_sticky(struct xe_bo *bo, struct
+> > ttm_operation_ctx *ctc,
+> > +			=C2=A0=C2=A0=C2=A0 struct drm_exec *exec);
+> > +void xe_bo_reset_sticky_placement(struct xe_bo *bo);
+> > =C2=A0int xe_bo_evict(struct xe_bo *bo, struct drm_exec *exec);
+> > =C2=A0
+> > =C2=A0int xe_bo_evict_pinned(struct xe_bo *bo);
+> > diff --git a/drivers/gpu/drm/xe/xe_bo_types.h
+> > b/drivers/gpu/drm/xe/xe_bo_types.h
+> > index 8ec4a01a0092..253a1dba55a7 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_bo_types.h
+> > @@ -56,6 +56,10 @@ struct xe_bo {
+> > =C2=A0	struct ttm_place placements[XE_BO_MAX_PLACEMENTS];
+> > =C2=A0	/** @placement: current placement for this BO */
+> > =C2=A0	struct ttm_placement placement;
+> > +	/** @sticky_placement: target placement from forced
+> > migration */
+> > +	struct ttm_placement sticky_placement;
+> > +	/** @sticky_place: place for sticky_placement */
+> > +	struct ttm_place sticky_place;
+> > =C2=A0	/** @ggtt_node: Array of GGTT nodes if this BO is mapped
+> > in the GGTTs */
+> > =C2=A0	struct xe_ggtt_node *ggtt_node[XE_MAX_TILES_PER_DEVICE];
+> > =C2=A0	/** @vmap: iosys map of this buffer */
+> > diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
+> > b/drivers/gpu/drm/xe/xe_dma_buf.c
+> > index 6a85b292dee7..b973579a69b8 100644
+> > --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+> > +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+> > @@ -59,6 +59,20 @@ static void xe_dma_buf_detach(struct dma_buf
+> > *dmabuf,
+> > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct dma_buf_attachment *atta=
+ch)
+> > =C2=A0{
+> > =C2=A0	struct drm_gem_object *obj =3D attach->dmabuf->priv;
+> > +	struct xe_bo *bo =3D gem_to_xe_bo(obj);
+> > +	bool has_non_p2p =3D false;
+> > +	struct dma_buf_attachment *a;
+> > +
+> > +	dma_resv_lock(dmabuf->resv, NULL);
+> > +	list_for_each_entry(a, &dmabuf->attachments, node) {
+> > +		if (!a->peer2peer) {
+> > +			has_non_p2p =3D true;
+> > +			break;
+> > +		}
+> > +	}
+> > +	if (!has_non_p2p)
+> > +		xe_bo_reset_sticky_placement(bo);
+> > +	dma_resv_unlock(dmabuf->resv);
+> > =C2=A0
+> > =C2=A0	xe_pm_runtime_put(to_xe_device(obj->dev));
+> > =C2=A0}
+> > @@ -129,7 +143,7 @@ static struct sg_table *xe_dma_buf_map(struct
+> > dma_buf_attachment *attach,
+> > =C2=A0
+> > =C2=A0	if (!xe_bo_is_pinned(bo)) {
+> > =C2=A0		if (!attach->peer2peer)
+> > -			r =3D xe_bo_migrate(bo, XE_PL_TT, NULL,
+> > exec);
+> > +			r =3D xe_bo_migrate_tt_sticky(bo, NULL,
+> > exec);
+> > =C2=A0		else
+> > =C2=A0			r =3D xe_bo_validate(bo, NULL, false, exec);
+> > =C2=A0		if (r)
+> > --=20
+> > 2.55.0
+> >=20
