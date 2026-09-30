@@ -4,138 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D59ACA5FC5
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 20:57:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAAF7CA5FC5
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 21:09:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E31BF10F4F1;
-	Wed, 30 Sep 2026 20:57:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B1DD10E293;
+	Wed, 30 Sep 2026 21:09:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="j91yaOv4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G0X/C6Za";
 	dkim-atps=neutral
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012024.outbound.protection.outlook.com [52.101.43.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40EA710E128;
- Wed, 30 Sep 2026 20:57:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEDDF10E293
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Sep 2026 21:09:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790802543; x=1822338543;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=im+xMKpZhVLklIoVqux14elERd0+lqHkkEwwBHS/uk4=;
+ b=G0X/C6ZapS6Tckjreq6ag+fVquRpz95qzF9D1MMc81x0LNBvdJhei6bS
+ b9/x5YuXuWpTpYI+aU8DcsN4eli8lwxHCFpRICjLlSZZVWVTw3zh7BMIe
+ doNLx88gNwjYIkGyA+prqM+Sx5YZwrQ/Lwvn3qnGzN7mmy9zmV2FerETV
+ 1xTxiTmr+tYDaNywyIHoEJC1xzvD0LqWuy+QiJhwnBtFZn27npYB1JGzF
+ /WCc49xjgKd9Q5+00CPCe0mkt3HnpLnMfT0KeB2mRrZJ2KTxfGMeNfgjI
+ FKvMFRQARjjl+J8X04JWomitZeAKqfBOCdRnwpAZKq4vWyHgneGOtDSKa A==;
+X-CSE-ConnectionGUID: apPLOR1xTmq2PZCvS4P67Q==
+X-CSE-MsgGUID: bdCAuv+tT9WYewBA3tdO8w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11921"; a="100883501"
+X-IronPort-AV: E=Sophos;i="6.27,133,1787036400"; d="scan'208";a="100883501"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2026 14:09:03 -0700
+X-CSE-ConnectionGUID: ysate4bJSEK7bmDauZX+ig==
+X-CSE-MsgGUID: nV428VmGS6yfMYa0NHr9ng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,133,1787036400"; d="scan'208";a="273610110"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2026 14:09:03 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Wed, 30 Sep 2026 14:09:02 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49 via Frontend Transport; Wed, 30 Sep 2026 14:09:02 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.13) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Wed, 30 Sep 2026 14:09:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DR1WMQD0+N9eJPKhqLU/hBZEvL71nzFgbLnr5dM3TunIOP3qZBXyhMOM++Qt52MIYjDtu9Zs0o6UgC4fYiML9mOzcw+ScZYHyD1RIjtA/5nitPzamibwNNYqdu/igfE5a35ryk0SqWSoFar+cpClbOoRzH5n7JP8IPV/4TrMCdXcHjZknhFzOxLUr2fq+3OQL/AELnbYY0Bbg6wfNzeIHIWqrJYzmcKlQ9DmncS+Hwq1eopDOpSaycUgFJQdfyNUUxZPUyf/g6+/WGzEIQu5vzcc4GK9QvlW+kdySq24co1nIlXG80GnjZb9JR5bw+JEDS/tLFnQbNDAO8qMv+FHdw==
+ b=huQMVVrdC0/8KNpvgqNI35kqPMi4S3UqOMAGw+6unY8wZ1qWz8mPYWIhMpvMUCOaf0MxkMS+2krjpYvgPfVULnrnur2W8GjMteX8MBUoNXzInyQG0TWG9TGXSD50jPhPquOJgTQ7ByJ/DI1REbQq+iXoyCQHndHpZJBcjlhvzxy0DBGUtIpo+aT0DMDy7vHHHZF0YcycMGFJz2mjWFk2XgUz5leYtrSuOJQBWKHFxrmx+sjHgR6uKpkGB0aTKKH95KGwcGaNUBYOowChntxcRZKE+DGE/yPyqrY97JQ60rAmksmnyc4IJyshNomFvdAPTlR8t7dxJlJPs69BMlrWSA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Acumv7R2EFMjQOrrGHw2GO0Vgh3edBlIFdYXQsbNGW8=;
- b=LZ0kiehtGNOZyMqnGDDV0pZrEPg8UBzOMcDCdbPhB16R9p7GrLee8DtnMuY8KZNaOCNCPTOSiD/cradItrf6jPOSY2m524i3/omMTaVp8wvkgHiDIk0ItG4yB4LjhXxz4aNB560yFI2K+i4lvVjdN5IYS3bUF011zh4dboKlReozfMMJNzC65OIfVdKq5kcPoYI0NdLj9nUMFCyj/m9RrETbGuavklf2lGsuNRf1ghoQ9VrqjfE7UvOhDIkUQPXb39po3s1R1XoWaJKNj6imPuvQmHn/2ELdkJOaACfrKTXqo8DVNYDEEHH/1wNvqPFBQrFyclZPE8BlgL5L9yT/zg==
+ bh=Wc1lDv6fzVHnm+tc6QGuF/W5VrUYmyo3+0+TiuxqcrI=;
+ b=J9/j2UCo1BDS6vu7W1lGQDs4HcLy3H+hVrbv8qHe+WuGn4AQcPDmDgkm6lebheqJwU008IFMaQOWoZE0sf93pyRrjaE6RbjkzG6g7HXwNRRrtW48V/7NWNy1vkMaU9E6CSU3Tx55VStEmh33WIrLY4eh3dIF/0c1c5rEfCF9Nmg7rMcVn8p2QwFiXJdJFj8yCi2UdR4HDlnGgsHYbvvMmj2QpSsi228DeCEAhIFznQbsbL8oqQGb+lLbNwiavadBjh1tpZ+3nkYVEM6MGKmRkhZ3GyBbEBeqh9PZlTwBn5UZsZlR/W4Uz+E4KG9r8XfJyXvTL2eaQ7xMTtyrebRVCQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Acumv7R2EFMjQOrrGHw2GO0Vgh3edBlIFdYXQsbNGW8=;
- b=j91yaOv4EvVqJbuDcb5K/0gVt3N83rVpCoFpEKD6I+d8TkgQEmrB5TjbtUs+WlVJ9C2t9uRpqneMVTgmINi8peMVtOcWa27lr4JweJwv8oaoke+1eiUK2VWrbWktQT1sujnzjkknRDSkMualds7Wy2c3DQnMVg8tapsNIDeQ1Gc=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SJ0PR12MB7007.namprd12.prod.outlook.com (2603:10b6:a03:486::8)
- by CH2PR12MB4101.namprd12.prod.outlook.com (2603:10b6:610:a8::22)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SA1PR11MB8839.namprd11.prod.outlook.com (2603:10b6:806:467::17)
+ by BN9PR11MB5243.namprd11.prod.outlook.com (2603:10b6:408:134::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.472.15; Wed, 30 Sep
- 2026 20:57:30 +0000
-Received: from SJ0PR12MB7007.namprd12.prod.outlook.com
- ([fe80::6f95:c4a2:894d:9e8a]) by SJ0PR12MB7007.namprd12.prod.outlook.com
- ([fe80::6f95:c4a2:894d:9e8a%3]) with mapi id 15.21.0451.022; Wed, 30 Sep 2026
- 20:57:30 +0000
-Message-ID: <227ed8e6-b99e-454a-b5a3-ff92e21ce543@amd.com>
-Date: Wed, 30 Sep 2026 16:57:22 -0400
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.472.16; Wed, 30 Sep
+ 2026 21:08:59 +0000
+Received: from SA1PR11MB8839.namprd11.prod.outlook.com
+ ([fe80::d917:ef8:5e20:14f3]) by SA1PR11MB8839.namprd11.prod.outlook.com
+ ([fe80::d917:ef8:5e20:14f3%3]) with mapi id 15.21.0451.022; Wed, 30 Sep 2026
+ 21:08:59 +0000
+Message-ID: <b1717a63-df2e-4cf4-ae7f-5239c015eef7@intel.com>
+Date: Wed, 30 Sep 2026 14:08:58 -0700
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 10/11] drm/amd/display: allow individual colorop changes
-To: Melissa Wen <mwen@igalia.com>, airlied@gmail.com,
- alexander.deucher@amd.com, alex.hung@amd.com, aurabindo.pillai@amd.com,
- christian.koenig@amd.com, contact@emersion.fr, daniels@collabora.com,
- louis.chauvet@bootlin.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, sebastian.wick@redhat.com, simona@ffwll.ch,
- siqueira@igalia.com, sunpeng.li@amd.com, tzimmermann@suse.de
-Cc: Uma Shankar <uma.shankar@intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Xaver Hugl <xaver.hugl@kde.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20260811171011.184964-1-mwen@igalia.com>
- <20260811171011.184964-11-mwen@igalia.com>
+Subject: =?UTF-8?B?UmU6IOKclyBYZS5DSS5GVUxMOiBmYWlsdXJlIGZvciBkcm0veGU6IElt?=
+ =?UTF-8?Q?plement_print_vfunc_for_page_fault_info_logging_=28rev3=29?=
+To: <intel-xe@lists.freedesktop.org>
+References: <20260928222241.3815153-2-brian3.nguyen@intel.com>
+ <179065853962.217537.14659824266134611479@61270ab9df2a>
 Content-Language: en-US
-From: Harry Wentland <harry.wentland@amd.com>
-In-Reply-To: <20260811171011.184964-11-mwen@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: "Nguyen, Brian" <brian3.nguyen@intel.com>
+In-Reply-To: <179065853962.217537.14659824266134611479@61270ab9df2a>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YT4PR01CA0391.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:108::9) To SJ0PR12MB7007.namprd12.prod.outlook.com
- (2603:10b6:a03:486::8)
+X-ClientProxiedBy: BY5PR03CA0011.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::21) To SA1PR11MB8839.namprd11.prod.outlook.com
+ (2603:10b6:806:467::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR12MB7007:EE_|CH2PR12MB4101:EE_
-X-MS-Office365-Filtering-Correlation-Id: 869981ce-b47b-455e-3c3b-08df1f3570d9
+X-MS-TrafficTypeDiagnostic: SA1PR11MB8839:EE_|BN9PR11MB5243:EE_
+X-MS-Office365-Filtering-Correlation-Id: 84ab7941-b079-4fb5-9613-08df1f370c08
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|7416014|1800799024|23010399003|10067099003|11063799006|56012099006|4143699003|22082099003|18002099003|921020;
-X-Microsoft-Antispam-Message-Info: a4Vk0mkVQ+ZW0I9IYArIENsscjcIbgRsQO1MkGdWdnpy2afISCu0dIOstxRvI/XtDybhsE8zo0fuQ3nWy3LE4hvefywDj2lnDSYwActdwLRo1mXsmQhbli6uhM3x4DttGODKFP1+xe139AC0lFDk67VTVkyAHp4Cr474a1hyTN7u+nkJ0qCD36/J9wBauRAtWBNrMx4mEr90efxka2uaJtavrZPmZapiFuPWNXpyL63ps9aptsy6R1G4fZS7qjhSvtJweRVthYZ3N8pTnBHMEP6mLiYzpW5+NxUBwIxDKOEs36jW5VAdPf7rA/DYbuvy6kI/e//TyB0gbQe6gG2OpK4L/oFXai6ERhJY6PzgSPcAV+JNwvykufEcpO2+mzQmFsy66zmz9DsdcFZmJuuz9mEoGN7V4XX2FydHQB4UH1zpiYTslkCY21SbpWB+s8upj33qR0wIIauNAvDeyexol/9cOHDQz2EqJkkyd6jObLBXSM64n7AF2HEn5RPGK+C7arPz6nBycBlRWWg5S6t0PiGU2u2rRZS7SiDoLJ4gwnvI5tUXUTuWN3/7/IO4Wfrr2Up2/rpJN7oupPxASW/qt0ObNfACFnspAgmCy+OFhwLlzHWlPHdr/OCCw/I0ONTtnJ1NgQ5fWhWylpQVdQqL4pQD+7ePN5WrVtd3MWpkgil69eMsmuMoI9PRGQLBDGdl6igabyhRzEn1iNEBqbsdzw==
+ ARA:13230040|23010399003|376014|366016|1800799024|13003099007|4143699003|6133799003|3023799007|10067099003|56012099006|5023799004|11063799006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: Qy9fVVP2kBubhuokGgDseEZwrCUqOXc1U0lPfIQ/4Ot5x52cU1qA7cG5m1saeozLw/EhSmJPOehvO5caRfLPZ9adqcugZbFhEYgM6sbw9cRayKB6H7QLLWjYEA3YF971MX5Q75LLU84JAo/hqsfMLGGwXOjT8VBJUftJ9om0kWr+UWF2lQxykZysMrrZuIfTh9jRxmM1/aqiDlCgHnmFibs55EMuldUy/WlO7Ltd91SrsRz6Qr+Rtfq1uR0RPG+aBzL7TPF80Xw7ejNPOPxkg1IbNaJFMtdP9f19DcUgLRgxInmQKYADTynHkWjaIrseO7O5TVJqesiZpjYLOVp/fvVDEXktmTvdSZDM5gCp8DOVzKFfi6oNdxoPnbVbwn7OSdobgCXFzyUFqYdwqSYj89IxJZf4Ri5sp9qydHUMoJXcECusR9lbj7JHkqu7WrfrvyP8OdLxjhE8Ew2Pm8gutfsHId+SMnS97/BCUSBikb69vp41A8qhBWUiirRZwjQ2/aE82/tbeS6SqDgYpjbdS4JICHlVCQ5pfFu/Ru5YPqQrm8HA4wEwh7pjtQUbW5FwyWPnGus72SAnhCpM2uv+OmJv76KndBVLN4xdjcovK7Y=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR12MB7007.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(7416014)(1800799024)(23010399003)(10067099003)(11063799006)(56012099006)(4143699003)(22082099003)(18002099003)(921020);
+ IPV:NLI; SFV:NSPM; H:SA1PR11MB8839.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(13003099007)(4143699003)(6133799003)(3023799007)(10067099003)(56012099006)(5023799004)(11063799006)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SEJnNlV1anJkaGEvU3ZrcnovbjQweTBTdEZ2eGQwOXEyY0JKTUZxZVdRUFZ5?=
- =?utf-8?B?MlZCQzFlSE9VemkvdHFLK1hGUHJwRFZad2RQNEVIbGk2Q3lqR0k1VlNIeThL?=
- =?utf-8?B?WWY3REhFVXJJQ013ZmR5alVCRHhaRW9ibXVFQTZWcWNQV3pHZjRTMnpCRXZq?=
- =?utf-8?B?M2tMTEdlMUV1UDFkZlR6MWc3ZFVnem1RTU1hcXpTZHVDRXJUaG1GMW1lak1l?=
- =?utf-8?B?bmNhK0M0WFgrR0pQeno3cjlzK1VqenJBTGgwYkVhV0EyaklRZXFpbjhSR1dn?=
- =?utf-8?B?Z0Zid2hCTElDd2dEbnArNFg3UzYzbXFxV1pGM0dNMlQrUU5jTVBsNW5pMFZW?=
- =?utf-8?B?T2hBclhBbXUyUjN3SFlsWUUvcXd6ODN1Mk1GSmlQdUtwV3ZveTQwdHRqa0wx?=
- =?utf-8?B?R0Vrem1wVlpaamVvblNoZlRjbllvTXpLRWVuMHE2Yk54c2hOVFhTWXB1V2pn?=
- =?utf-8?B?dXowTWZTTWVwYXJvUUhya1Y4aWtPL0x3cjJ3Q0RpcHliMlQzOXpTcnhIbGts?=
- =?utf-8?B?aWJiQ2FaUzlaVXJYUkFHckt1NUs1c3FnYS84VWx1L0RQektjc3J4UW9iY3Bt?=
- =?utf-8?B?YzZVbm4rV01hYXJaQjhBZzczU1hvcmJiZjZxTm84OGd2NEE4MzYrMkU1THV4?=
- =?utf-8?B?OWp2ei9tQWkrcVhxek5mZkwxTW10MTNnN3czZDBhVUt0QlBYc0djbFFCSjJn?=
- =?utf-8?B?Zm04ZmNUQjRWS1lLLzhHY0F0dDZURHE5b2VoZ25jOFAxLzJLYTJCTUF3ZUd2?=
- =?utf-8?B?UFR1OW0vMGNYb3RoKytnSUNSakVzZmhXaTlMN1lOdElka2F3Y083SlY1ZjJJ?=
- =?utf-8?B?ZVU2RllLamNXbUZZL1VKL084OUNoY2NQaCsvcDRaOE05WitseFhYRTJNS2pl?=
- =?utf-8?B?c3I2Z2lZdy9wODMvZWZqbWVOWHc3dmxtWVBTWjVkZlpRV1Z0WXA1UzVteTVs?=
- =?utf-8?B?citvcjdUNUsvQTF4WVVNSDJKNkhoQjJzWWY0UnZmTk4ySjhJdGJaRm1QRzl2?=
- =?utf-8?B?WVA0ZEpzS2s1UUtXOGxSdFE2eU50QjRlZldjZU9jWCtiaHlFNTZlcGwxZHNn?=
- =?utf-8?B?WEdyRzYwRWZpN2J0WUxNM3ZLa0VBb3YxY0tiamFUVnBJeERjdDhtY0RHM1N0?=
- =?utf-8?B?S0ZFd0lwK203cng5czMxbTlPUFAzMmwvd3puZ3VsZkpIMTZmZWJKR0E5Visz?=
- =?utf-8?B?Y1VxeWY5Sm90ZlY3V1A0MGg3alY3bm1pNk9wYi9VRklrSnVMNVcxTW54ckJ1?=
- =?utf-8?B?RTNuRmY5VERVUkE5SmFQR0ltenBaMi9jWmFEK0htcVNYOUo3c3M2RkhlWi85?=
- =?utf-8?B?R3FNRmFad3hDaThVVmRXOVlvYjZKTE9tenlLQVRZVUNQQ3lIcDgxOG1PQUx6?=
- =?utf-8?B?c1dvYlltM0pnV05mRGxXYkgrRFVZM3JQb3ZTOFF2SHMzZ2h6R3dpdXM2K1JP?=
- =?utf-8?B?Y1Y1dVpncVZmOWVsaktvbHZoZEpLWjUvM05iSWFpZXlIMGhKRUhXQzBnWEJs?=
- =?utf-8?B?YlpsODlzcU1sUEZEcTl6OEVoa0JaWit0VXhsamNNMmtpdU9qVmc0WU5yRlBa?=
- =?utf-8?B?aTN2WWNUeWoza3BqVXpXQm5NNnZvYXJvTWUzOXZ4UDhsS1UxSTNDKzFwZzVw?=
- =?utf-8?B?Yzk2WktiMjFHVDNZbFVkRHNwbG1MMEFmNTFhSCtjVlhtQ2lnbDNUTGhQMXBu?=
- =?utf-8?B?eTNMVDFVck96UlFUa1p2RjgzT1kzN1NISGlDeHZkbDZxVEppcVV3S2ZrNlB2?=
- =?utf-8?B?Nml6bmpuYjNhVjJLWjFPQUJXdkJrb1c5cHlJOEZGU0thS2haWC9RVHpkY0tF?=
- =?utf-8?B?M1pCeEw2S3VBdFlzY2NqaGkvRk5NZTRYUDZob3Fhc3FJeW5qbm9CZzcvUTNp?=
- =?utf-8?B?YUNqa2d6aDZRQ0I4SUdBdVhlSTQxTzVpSk03TldaV3FDV1IxTEEwQVZYa2s4?=
- =?utf-8?B?bTIrUERYYmJXcFlCM1FSaURGbmg3b2RyWFdxUVRZZml2RmhQYXA4bjU3V2Fk?=
- =?utf-8?B?VkpCY1piUzB3dXFnUkFFU1I5alh1TGJ1aVEwak4rdWx0N3FWR1lLWGZmb0Fx?=
- =?utf-8?B?ZWpMVFhTaGhwUUo5S1k5OUpMTm1lWVQ1SXdieHlYRU5NY2Jnelo0QnFwZlpC?=
- =?utf-8?B?b0Q0Q3AzN1pVOFJMRVVNQWZoRWgyUTBpRUxLdzZFZnNlOGdVR3hMYmsrK3pB?=
- =?utf-8?B?dHJyU3Q3KytGQXd2MHhxODNKNkdXRWlnK3RwVTkwSmdZbDNDbm53a3dlZ0lh?=
- =?utf-8?B?a2prbjlLZ1ZZa20yMm5uNzY2Tkkva3N5akxXYWN6TGZnd2p1eFdxMUpjYkRV?=
- =?utf-8?B?dXZvckZ4WENETkJPbEpwQ1A2WmJSek1BT1lUMnF3WkE0ZVdHRUpBZz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 869981ce-b47b-455e-3c3b-08df1f3570d9
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB7007.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S2VkRkVLaC9ENHdia0RvZGdHQjB2ZXJ6MzMvQUN5MlU4M2FMVkV0czhFYnUw?=
+ =?utf-8?B?ZFdJdHRnTVpHaGkwSEF3Z2hWYmRIdWo1eXpTaU8vNi9Xb0g3WkdENFNIVVVN?=
+ =?utf-8?B?S2N0NUluVllGRjErR1BqNlNCc1dyWXZWYzFBL3RHdWxCYkZmdFNCMExkN2Jv?=
+ =?utf-8?B?U3RPMXVHYTFhZ2lBRDlJN3VJV3RpWGxaQTJDaThTcTgxY09qTXhKbUZPY0xx?=
+ =?utf-8?B?QS9QVURnWHI4eUZieFFINk1lQ01kaHNmNE5kMEYzM2FXMy9PdG5UczJJaWJz?=
+ =?utf-8?B?LzlLOXpwQ2JZUjJHb3A5bUVrNzRzUElIODJGNzlkRHpRNkFBT2RzbVhyYTNl?=
+ =?utf-8?B?aDhVMDIvaHpsWXE2NGk1aGVSOStHV0E0QjlqOTlVQndDQTJzYXVtSmZPdktI?=
+ =?utf-8?B?UkxOZ2ZCOW5tMjl4VmtwMDd5bXZaQ3JZbE5LR2EyQUxzUThUa3grSU5MTDBM?=
+ =?utf-8?B?c0ZqelRLeGEvNk5QYkhZbEJIRlBEMjZrVkZRT2s3TkNycnlLWmZqajRrYmJR?=
+ =?utf-8?B?cDV5di9NM0U4QThLYitSSTJUbmMrZHNLemIydTRGWVlCdytRdlhKT3JIdzE0?=
+ =?utf-8?B?UE5VSDhQaGh5aGxVMFVkTzZXL1o2b1ZVdUNuTS95d1BYWW5HbUc4K2VDU1Rn?=
+ =?utf-8?B?T2tWcDlYYjNTYVgyeTZJaUptL25GR1VwTVhoS1lBS1hEanV5elNLazVUajh1?=
+ =?utf-8?B?dCs2bGNYaHBZNlhxY1d1TzJVOVNrU3JDZHppQmlNeUFvS0ZjWXhUQ1FqRTdj?=
+ =?utf-8?B?T1pBMEMzeTlxeHdZZzhITWRlWVA3S1YyMXdhSEp3dHY5ZExjSkhKVERVek5a?=
+ =?utf-8?B?R1JNYnF0V29qa0FCRjlhVHFXNGZ2UU0wd3NLVkRzU2hKTjJYYlc1NkZoV0xI?=
+ =?utf-8?B?V0d2NDBJaUdoT1hlcmRrNTZtY3ZScWx6SGlsK01NSk5VcWRsQXNRU2c4WmNQ?=
+ =?utf-8?B?S2Q3d1d4ZHgxdnZ1VVB0R00zdzNNa3JQQ1dVeE9uSUllMkU1N1pXMGdVWnBT?=
+ =?utf-8?B?S2F3OUNIS2JySmQ1Y2U0Zk8vakJ5WU5XcjZXcy9PdFRjSkZIOVk1Tnc0ZFp2?=
+ =?utf-8?B?MEdQaDQxZTdpNHZ4S2crbnFFdGVuajVLWi9Kc1d4bitEdkVjZmZJeU5BOFNh?=
+ =?utf-8?B?alltVkYrZGJlT0UxNDdLSUZqQXRrZzFyeDBKaEk5eC9FNXBBOG1rdlBOQ0pE?=
+ =?utf-8?B?WWxRYWlIeXEvSFZQNnpSYzVidkVFM2ZrV3RaSG9PMXdkQ1RJQlNWMmpTNVhs?=
+ =?utf-8?B?K2tNcWpWRTBKeEZGNEZ4QUhxUW4weENJVVFSOUFMbWwydlRpMDJKS0dUN1Vv?=
+ =?utf-8?B?V1hFeWp0cy8reHNsaGhWUkg2eThIUjFweDVkWCtwSm5DYk9laGNtSXd6MThQ?=
+ =?utf-8?B?NzhOZVBNb0ZYbkxMeEtLeStEZFlPQ292M3BRaXJxcVkvWEFEZHYzeXNReXht?=
+ =?utf-8?B?NHNLWjZyS1NxYmdqZUJFLy9ZQm96R0FyWDNjSEQ3eTZmdnRSNVRoK2JyS0s0?=
+ =?utf-8?B?elZqZlV0NGJKZmpKdE1UNnRoVVNLQ3pUYlJKb205aXFXMWphamlVWkpoT3dS?=
+ =?utf-8?B?ZVE1bjNVS2psakpYeXRVZDdaVS9NZ2M5RW1laE1PZGN1QUVOc1FyRGkxOEVj?=
+ =?utf-8?B?VHFPS2Ztc1VZZmkzdXpPT05aZjh6a2hmYi93OE1kMklwWStTOVF1anZhVnFD?=
+ =?utf-8?B?WXU4OUN0OUhDbU4xdEpxMU85RFdCTjlNQk1hMWJlTmJtT0I1NkI2OVMyamJ4?=
+ =?utf-8?B?MHpienkzV2YxVzQ2M3A5OUtLQUNQUHh0aHhVakQ1UkV6aUpaZkVvSEIwTkZh?=
+ =?utf-8?B?bXVybW9qWUJnOFlQZEZHNXYwa1lwSEROdkdkZmlZek1XK1dBRGwvZGNPU0dV?=
+ =?utf-8?B?US9XQVJySEhjcW9WNStQUWUvd0M0Z2hZVng0ZllUcDlBaTdiZGN1aTM3NmZt?=
+ =?utf-8?B?QUN5SVVaazZaZWhYYUVxR2JDUVlQRHBMQmJHejFOSEcyWlNtRFZHR09xWitm?=
+ =?utf-8?B?YWR3U0Rzb29wUVY2QzlQVmhFYnhsTWhXeW5FZkk3aXM2ZkJ1RjRXQXIzL25I?=
+ =?utf-8?B?MkJZTi9HbEp0cGlUMlh4Y1hjWjU4U1lUelNEeG5wTjZQNTFyWmR0TngzQ2Rp?=
+ =?utf-8?B?eXF0cE5jMnFQOU9LYSt3eWhkT1VRNzlGSHplbkFZTHVJQ05HK3Q5bWM3M0g3?=
+ =?utf-8?B?VFdhZXZsSXFkQ2ZOZVF1dnNnSFk5RWpHdkdKM3Q0V0lwdXhlajM3VVRXcW1H?=
+ =?utf-8?B?QzNRNTBCdUd4TC9nVDBzVXg5TlVTRWZrNE9BRDQ3L05tQXFpUWUrdGtldjJC?=
+ =?utf-8?B?YmtZREdVRlhqRi9vZVZLaVlPQUZ0V1dLYUV4VENkMVE4M2Y0aVB5dz09?=
+X-Exchange-RoutingPolicyChecked: j533L5U6MEVzqF4weIlmJQwIW3sItsLuJbzFjLFVYUNeGZP1pTdQZtBVeGsnh+H63iEbwZs41r9ccBVLXaPoaAfZ+MhzPwjTwbEqZRZG//VFw430c9kFamQbGV0UElxUpx3Y4VA2FNkK5iDwqHT4aeWvRpKVNiP5//3csDQTrRZsSFemMtIP69iRCGNdb+IHgQDcu3j1WQJL8/XW+q6x/nWY4cH2gMOrtW6Z/vcuZfxye9UvncYcx5FndlHdKHT2mOW3JUkWw5JR2skW+9HQNvlZ6x0CYQsjX2J+A6tsqIzdizpsgRJvfNmwYz1rLW8D0pmnJVb+pGTaJnP5IWEJmw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 84ab7941-b079-4fb5-9613-08df1f370c08
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB8839.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2026 20:57:29.9119 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2026 21:08:59.7208 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Tq7svOUI6MIZfcelnThj0ealGKGcQ1cPaBkAlCvSLDppUPg0oa54KxY7mtwRYV0JHnZ4Eu5KAtcLDe1S2rlhfg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4101
+X-MS-Exchange-CrossTenant-UserPrincipalName: XS9uGHFoQWBm/TIjk78Ci64vhm1DlqkyMk+dNRTSGiRoGU4EmtWLwr/OHB9jiXCLBrlmr8ROcNUgGYpGHfVWKA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5243
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,354 +168,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2026-08-11 12:45, Melissa Wen wrote:
-> Every AMD colorop helper requires new colorop state to update a single
-> active colorop, i.e. if the userspace modifies a single property of a
-> colorop, but doesn't resubmit the whole color pipeline, the driver
-> silently falls back to the legacy color path, instead of just restore
-> colorop settings from committed state. Change all colorop helpers to get
-> the committed state if there's no new state for a given colorop. It
-> keeps walking in the active color pipeline and update a color block if
-> the related colorop changed.
-> 
 
-This probably needs an update for __set_dm_plane_colorop_fixed_matrix as 
-well.
+On 9/28/2026 10:08 PM, Patchwork wrote:
+> == Series Details ==
+>
+> Series: drm/xe: Implement print vfunc for page fault info logging (rev3)
+> URL   : https://patchwork.freedesktop.org/series/175024/
+> State : failure
+>
+> == Summary ==
+>
+> CI Bug Log - changes from xe-5837-972eeb850a4ca07aba05ccb805db28a33eab2c9a_FULL -> xe-pw-175024v3_FULL
+> ====================================================
+>
+> Summary
+> -------
+>
+>   **FAILURE**
+>
+>   Serious unknown changes coming with xe-pw-175024v3_FULL absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in xe-pw-175024v3_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+>
+>   
+>
+> Participating hosts (3 -> 3)
+> ------------------------------
+>
+>   No changes in participating hosts
+>
+> Possible new issues
+> -------------------
+>
+>   Here are the unknown changes that may have been introduced in xe-pw-175024v3_FULL:
+>
+> ### IGT changes ###
+>
+> #### Possible regressions ####
+>
+>   * igt@core_hotunplug@hotreplug-with-load:
+>     - shard-bmg:          [PASS][1] -> [ABORT][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5837-972eeb850a4ca07aba05ccb805db28a33eab2c9a/shard-bmg-5/igt@core_hotunplug@hotreplug-with-load.html
+>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175024v3/shard-bmg-7/igt@core_hotunplug@hotreplug-with-load.html
+>
+>   * igt@xe_configfs@ctx-restore-post-bb:
+>     - shard-bmg:          NOTRUN -> [ABORT][3]
+>    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175024v3/shard-bmg-9/igt@xe_configfs@ctx-restore-post-bb.html
+>
 
-> Fixes: 9ba25915efba ("drm/amd/display: Add support for sRGB EOTF in DEGAM block")
-> Acked-by: Harry Wentland <harry.wentland@amd.com> #v3
-> Signed-off-by: Melissa Wen <mwen@igalia.com>
-> ---
->   .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 183 +++++++-----------
->   1 file changed, 66 insertions(+), 117 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-> index c528daefac5e..f6a2af5d2e96 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-> @@ -1550,24 +1550,13 @@ __set_dm_plane_colorop_degamma(struct drm_plane_state *plane_state,
->   			       struct dc_plane_state *dc_plane_state,
->   			       struct drm_colorop *colorop)
->   {
-> -	struct drm_colorop *old_colorop;
-> -	struct drm_colorop_state *colorop_state = NULL, *new_colorop_state;
-> +	struct drm_colorop_state *colorop_state;
->   	struct drm_atomic_commit *state = plane_state->state;
-> -	int i = 0;
-> -
-> -	old_colorop = colorop;
->   
->   	/* 1st op: 1d curve - degamma */
-> -	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-> -		if (new_colorop_state->colorop == old_colorop &&
-> -		    (BIT(new_colorop_state->curve_1d_type) & amdgpu_dm_supported_degam_tfs)) {
-> -			colorop_state = new_colorop_state;
-> -			break;
-> -		}
-> -	}
-> -
-> +	colorop_state = drm_atomic_get_new_colorop_state(state, colorop);
->   	if (!colorop_state)
-> -		return -EINVAL;
-> +		colorop_state = colorop->state;
->   
->   	return __set_colorop_in_tf_1d_curve(dc_plane_state, colorop_state);
->   }
-> @@ -1577,43 +1566,37 @@ __set_dm_plane_colorop_3x4_matrix(struct drm_plane_state *plane_state,
->   				  struct dc_plane_state *dc_plane_state,
->   				  struct drm_colorop *colorop)
->   {
-> -	struct drm_colorop *old_colorop;
-> -	struct drm_colorop_state *colorop_state = NULL, *new_colorop_state;
-> +	struct drm_colorop_state *colorop_state;
->   	struct drm_atomic_commit *state = plane_state->state;
->   	const struct drm_device *dev = colorop->dev;
->   	const struct drm_property_blob *blob;
->   	struct drm_color_ctm_3x4 *ctm = NULL;
-> -	int i = 0;
->   
->   	/* 3x4 matrix */
-> -	old_colorop = colorop;
-> -	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-> -		if (new_colorop_state->colorop == old_colorop &&
-> -		    new_colorop_state->colorop->type == DRM_COLOROP_CTM_3X4) {
-> -			colorop_state = new_colorop_state;
-> -			break;
-> -		}
-> +	colorop_state = drm_atomic_get_new_colorop_state(state, colorop);
-> +	if (!colorop_state)
-> +		colorop_state = colorop->state;
-> +
-> +	if (colorop_state->colorop->type != DRM_COLOROP_CTM_3X4)
-> +		return -EINVAL;
-> +
-> +	if (colorop_state->bypass) {
-> +		dc_plane_state->gamut_remap_matrix.enable_remap = false;
-> +		dc_plane_state->input_csc_color_matrix.enable_adjustment = false;
-> +		return 0;
->   	}
->   
-> -	if (colorop_state && colorop->type == DRM_COLOROP_CTM_3X4) {
-> -		if (colorop_state->bypass) {
-> -			dc_plane_state->gamut_remap_matrix.enable_remap = false;
-> -			dc_plane_state->input_csc_color_matrix.enable_adjustment = false;
-> -			return 0;
-> -		}
-> -
-> -		drm_dbg(dev, "3x4 matrix colorop with ID: %d\n", colorop->base.id);
-> -		blob = colorop_state->data;
-> -		if (blob->length == sizeof(struct drm_color_ctm_3x4)) {
-> -			ctm = (struct drm_color_ctm_3x4 *) blob->data;
-> -			__drm_ctm_3x4_to_dc_matrix(ctm, dc_plane_state->gamut_remap_matrix.matrix);
-> -			dc_plane_state->gamut_remap_matrix.enable_remap = true;
-> -			dc_plane_state->input_csc_color_matrix.enable_adjustment = false;
-> -		} else {
-> -			drm_warn(dev, "blob->length (%zu) isn't equal to drm_color_ctm_3x4 (%zu)\n",
-> -				 blob->length, sizeof(struct drm_color_ctm_3x4));
-> -			return -EINVAL;
-> -		}
-> +	drm_dbg(dev, "3x4 matrix colorop with ID: %d\n", colorop->base.id);
-> +	blob = colorop_state->data;
-> +	if (blob->length == sizeof(struct drm_color_ctm_3x4)) {
-> +		ctm = (struct drm_color_ctm_3x4 *) blob->data;
-> +		__drm_ctm_3x4_to_dc_matrix(ctm, dc_plane_state->gamut_remap_matrix.matrix);
-> +		dc_plane_state->gamut_remap_matrix.enable_remap = true;
-> +		dc_plane_state->input_csc_color_matrix.enable_adjustment = false;
-> +	} else {
-> +		drm_warn(dev, "blob->length (%zu) isn't equal to drm_color_ctm_3x4 (%zu)\n",
-> +			 blob->length, sizeof(struct drm_color_ctm_3x4));
-> +		return -EINVAL;
->   	}
->   
->   	return 0;
-> @@ -1624,29 +1607,23 @@ __set_dm_plane_colorop_multiplier(struct drm_plane_state *plane_state,
->   				  struct dc_plane_state *dc_plane_state,
->   				  struct drm_colorop *colorop)
->   {
-> -	struct drm_colorop *old_colorop;
-> -	struct drm_colorop_state *colorop_state = NULL, *new_colorop_state;
-> +	struct drm_colorop_state *colorop_state;
->   	struct drm_atomic_commit *state = plane_state->state;
->   	const struct drm_device *dev = colorop->dev;
-> -	int i = 0;
->   
->   	/* Multiplier */
-> -	old_colorop = colorop;
-> -	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-> -		if (new_colorop_state->colorop == old_colorop &&
-> -		    new_colorop_state->colorop->type == DRM_COLOROP_MULTIPLIER) {
-> -			colorop_state = new_colorop_state;
-> -			break;
-> -		}
-> -	}
-> +	colorop_state = drm_atomic_get_new_colorop_state(state, colorop);
-> +	if (!colorop_state)
-> +		colorop_state = colorop->state;
->   
-> -	if (colorop_state && colorop->type == DRM_COLOROP_MULTIPLIER) {
-> -		if (colorop_state->bypass) {
-> -			dc_plane_state->hdr_mult = dc_fixpt_one;
-> -		} else {
-> -			drm_dbg(dev, "Multiplier colorop with ID: %d\n", colorop->base.id);
-> -			dc_plane_state->hdr_mult = amdgpu_dm_fixpt_from_s3132(colorop_state->multiplier);
-> -		}
-> +	if (colorop_state->colorop->type != DRM_COLOROP_MULTIPLIER)
-> +		return -EINVAL;
+Issues are unrelated to this patch, as it only modifies logging output.
 
-dm_test_colorop_multiplier_no_match needs to be updated to now expect
--EINVAL.
+So, this patch should be good to merge, thanks.
 
-> +
-> +	if (colorop_state->bypass) {
-> +		dc_plane_state->hdr_mult = dc_fixpt_one;
-> +	} else {
-> +		drm_dbg(dev, "Multiplier colorop with ID: %d\n", colorop->base.id);
-> +		dc_plane_state->hdr_mult = amdgpu_dm_fixpt_from_s3132(colorop_state->multiplier);
->   	}
->   
->   	return 0;
-> @@ -1657,8 +1634,6 @@ __set_dm_plane_colorop_shaper(struct drm_plane_state *plane_state,
->   			      struct dc_plane_state *dc_plane_state,
->   			      struct drm_colorop *colorop)
->   {
-> -	struct drm_colorop *old_colorop;
-> -	struct drm_colorop_state *new_colorop_state;
->   	struct drm_colorop_state *tf_state = NULL, *lut_state = NULL;
->   	struct drm_atomic_commit *state = plane_state->state;
->   	struct drm_colorop *lut_colorop;
-> @@ -1667,38 +1642,29 @@ __set_dm_plane_colorop_shaper(struct drm_plane_state *plane_state,
->   	const struct drm_color_lut32 *shaper_lut;
->   	struct drm_device *dev = colorop->dev;
->   	u32 shaper_size;
-> -	int i = 0, ret = 0;
-> +	int ret = 0;
->   
->   	tf->type = TF_TYPE_BYPASS;
->   	dc_plane_state->cm.flags.bits.shaper_enable = 0;
->   
->   	/* 1D Curve - SHAPER TF: find state */
-> -	old_colorop = colorop;
-> -	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-> -		if (new_colorop_state->colorop == old_colorop &&
-> -		    (BIT(new_colorop_state->curve_1d_type) & amdgpu_dm_supported_shaper_tfs)) {
-> -			tf_state = new_colorop_state;
-> -			break;
-> -		}
-> -	}
-> +	tf_state = drm_atomic_get_new_colorop_state(state, colorop);
-> +	if (!tf_state)
-> +		tf_state = colorop->state;
->   
->   	/* 1D LUT - SHAPER LUT: find state */
-> -	lut_colorop = old_colorop->next;
-> +	lut_colorop = colorop->next;
->   	if (!lut_colorop) {
->   		drm_dbg(dev, "no Shaper LUT colorop found\n");
->   		return -EINVAL;
->   	}
->   
-> -	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-> -		if (new_colorop_state->colorop == lut_colorop &&
-> -		    new_colorop_state->colorop->type == DRM_COLOROP_1D_LUT) {
 
-We control the pipeline creation, so this should never not be 
-DRM_COLOROP_1D_LUT but it might make sense to still check that for 
-sanity, in case someone goes and messes with pipeline creation.
+Brian
 
-Same for the blend LUT below.
 
-> -			lut_state = new_colorop_state;
-> -			break;
-> -		}
-> -	}
-> +	lut_state = drm_atomic_get_new_colorop_state(state, lut_colorop);
-> +	if (!lut_state)
-> +		lut_state = lut_colorop->state;
->   
-> -	if (tf_state && !tf_state->bypass) {
-> -		drm_dbg(dev, "Shaper TF colorop with ID: %d\n", old_colorop->base.id);
-> +	if (!tf_state->bypass) {
-> +		drm_dbg(dev, "Shaper TF colorop with ID: %d\n", colorop->base.id);
->   		tf->type = TF_TYPE_DISTRIBUTED_POINTS;
->   		tf->tf = default_tf = amdgpu_colorop_tf_to_dc_tf(tf_state->curve_1d_type);
->   		tf->sdr_ref_white_level = SDR_WHITE_LEVEL_INIT_VALUE;
-> @@ -1708,7 +1674,7 @@ __set_dm_plane_colorop_shaper(struct drm_plane_state *plane_state,
->   		dc_plane_state->cm.flags.bits.shaper_enable = 1;
->   	}
->   
-> -	if (lut_state && !lut_state->bypass) {
-> +	if (!lut_state->bypass) {
->   		drm_dbg(dev, "Shaper LUT colorop with ID: %d\n", lut_colorop->base.id);
->   		tf->type = TF_TYPE_DISTRIBUTED_POINTS;
->   		tf->tf = default_tf;
-> @@ -1765,8 +1731,7 @@ __set_dm_plane_colorop_3dlut(struct drm_plane_state *plane_state,
->   			     struct dc_plane_state *dc_plane_state,
->   			     struct drm_colorop *colorop)
->   {
-> -	struct drm_colorop *old_colorop;
-> -	struct drm_colorop_state *colorop_state = NULL, *new_colorop_state;
-> +	struct drm_colorop_state *colorop_state;
->   	struct dc_transfer_func *tf = &dc_plane_state->cm.shaper_func;
->   	struct drm_atomic_commit *state = plane_state->state;
->   	const struct amdgpu_device *adev = drm_to_adev(colorop->dev);
-> @@ -1774,19 +1739,14 @@ __set_dm_plane_colorop_3dlut(struct drm_plane_state *plane_state,
->   	const struct drm_device *dev = colorop->dev;
->   	const struct drm_color_lut32 *lut3d;
->   	uint32_t lut3d_size;
-> -	int i = 0, ret = 0;
-> +	int ret = 0;
->   
->   	/* 3D LUT */
-> -	old_colorop = colorop;
-> -	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-> -		if (new_colorop_state->colorop == old_colorop &&
-> -		    new_colorop_state->colorop->type == DRM_COLOROP_3D_LUT) {
-> -			colorop_state = new_colorop_state;
-> -			break;
-> -		}
-> -	}
-> +	colorop_state = drm_atomic_get_new_colorop_state(state, colorop);
-> +	if (!colorop_state)
-> +		colorop_state = colorop->state;
->   
-> -	if (colorop_state && !colorop_state->bypass && colorop->type == DRM_COLOROP_3D_LUT) {
-> +	if (!colorop_state->bypass && colorop->type == DRM_COLOROP_3D_LUT) {
-
-An issue that existed before is that we silently treated a colorop in 
-this position that wasn't DRM_COLOROP_3D_LUT as valid and simply set 
-lut3d_enable = 0 below. It would be better if we explicitly check for 
-the type here as well and return -EINVAL if it's not a DRM_COLOROP_3D_LUT.
-
-Harry
-
->   		if (!has_3dlut) {
->   			drm_dbg(dev, "3D LUT is not supported by hardware\n");
->   			return -EINVAL;
-> @@ -1825,8 +1785,6 @@ __set_dm_plane_colorop_blend(struct drm_plane_state *plane_state,
->   			     struct dc_plane_state *dc_plane_state,
->   			     struct drm_colorop *colorop)
->   {
-> -	struct drm_colorop *old_colorop;
-> -	struct drm_colorop_state *new_colorop_state;
->   	struct drm_colorop_state *tf_state = NULL, *lut_state = NULL;
->   	struct drm_atomic_commit *state = plane_state->state;
->   	struct drm_colorop *lut_colorop;
-> @@ -1835,38 +1793,29 @@ __set_dm_plane_colorop_blend(struct drm_plane_state *plane_state,
->   	const struct drm_color_lut32 *blend_lut = NULL;
->   	struct drm_device *dev = colorop->dev;
->   	uint32_t blend_size = 0;
-> -	int i = 0, ret;
-> +	int ret;
->   
->   	tf->type = TF_TYPE_BYPASS;
->   	dc_plane_state->cm.flags.bits.blend_enable = 0;
->   
->   	/* 1D Curve - BLND TF: find state */
-> -	old_colorop = colorop;
-> -	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-> -		if (new_colorop_state->colorop == old_colorop &&
-> -		    (BIT(new_colorop_state->curve_1d_type) & amdgpu_dm_supported_blnd_tfs)) {
-> -			tf_state = new_colorop_state;
-> -			break;
-> -		}
-> -	}
-> +	tf_state = drm_atomic_get_new_colorop_state(state, colorop);
-> +	if (!tf_state)
-> +		tf_state = colorop->state;
->   
->   	/* 1D LUT - BLND LUT: find state */
-> -	lut_colorop = old_colorop->next;
-> +	lut_colorop = colorop->next;
->   	if (!lut_colorop) {
->   		drm_dbg(dev, "no Blend LUT colorop found\n");
->   		return -EINVAL;
->   	}
->   
-> -	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-> -		if (new_colorop_state->colorop == lut_colorop &&
-> -		    new_colorop_state->colorop->type == DRM_COLOROP_1D_LUT) {
-> -			lut_state = new_colorop_state;
-> -			break;
-> -		}
-> -	}
-> +	lut_state = drm_atomic_get_new_colorop_state(state, lut_colorop);
-> +	if (!lut_state)
-> +		lut_state = lut_colorop->state;
->   
-> -	if (tf_state && !tf_state->bypass) {
-> -		drm_dbg(dev, "Blend TF colorop with ID: %d\n", old_colorop->base.id);
-> +	if (!tf_state->bypass) {
-> +		drm_dbg(dev, "Blend TF colorop with ID: %d\n", colorop->base.id);
->   		tf->type = TF_TYPE_DISTRIBUTED_POINTS;
->   		tf->tf = default_tf = amdgpu_colorop_tf_to_dc_tf(tf_state->curve_1d_type);
->   		tf->sdr_ref_white_level = SDR_WHITE_LEVEL_INIT_VALUE;
-> @@ -1876,7 +1825,7 @@ __set_dm_plane_colorop_blend(struct drm_plane_state *plane_state,
->   		dc_plane_state->cm.flags.bits.blend_enable = 1;
->   	}
->   
-> -	if (lut_state && !lut_state->bypass) {
-> +	if (!lut_state->bypass) {
->   		drm_dbg(dev, "Blend LUT colorop with ID: %d\n", lut_colorop->base.id);
->   		tf->type = TF_TYPE_DISTRIBUTED_POINTS;
->   		tf->tf = default_tf;
-
+> Build changes
+> -------------
+>
+>   * IGT: IGT_9113 -> IGT_9114
+>   * Linux: xe-5837-972eeb850a4ca07aba05ccb805db28a33eab2c9a -> xe-pw-175024v3
+>
+>   IGT_9113: 691cc6fd50d5a3f6f2b5805c9698af1df28f6830 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>   IGT_9114: 916c79cfb7675ca01607dcd821f8c49d4f633a6f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>   xe-5837-972eeb850a4ca07aba05ccb805db28a33eab2c9a: 972eeb850a4ca07aba05ccb805db28a33eab2c9a
+>   xe-pw-175024v3: 175024v3
+>
+> == Logs ==
+>
+> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175024v3/index.html
