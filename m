@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07329CA5FC7
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 16:41:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB7EACA5FC7
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 16:47:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6A9F10E1D1;
-	Wed, 30 Sep 2026 16:41:33 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1632E10E1D1;
- Wed, 30 Sep 2026 16:41:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9050368107872171600=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CE7610E26B;
+	Wed, 30 Sep 2026 16:47:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OwvCFrfM";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EDD310E26B
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Sep 2026 16:47:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790786849; x=1822322849;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3GTkZvkxfXaUe5NchCKy1SKYqq6D9AhiVpbUJslkVEc=;
+ b=OwvCFrfMRvn/YBPCU0nwbbCDleBJWeGo67NCnQdgmZChKSVIoTTtf77d
+ doUSkLJdmfTumkXaE1F+/v34iz8sS2O+2E/OOAXEiPKJ9TEPAmtLaizSs
+ IGrd6z91hsHQ+EpSZ8nXWb39wVH+mFhMfpMv1IU1qBa1YwVL4VdndxkvD
+ OKzkB1NBbZzNxiZnrRrZZl0LImutSyexjmRb4ij9Yk1b7R681IYZgtLOz
+ Qu/h/WD3o8NjCbyXMV7RFfKdjtLrkgvdFcWCYwhHVeMoBz65TdlW2DkUZ
+ TGZwXJvdRSO5/swD7NKqG5ZHD1tzFYSc+kwe3tWZOagNEhwDoFYxcqBER A==;
+X-CSE-ConnectionGUID: cR1OPmuJSHiqRPMeDF7YoQ==
+X-CSE-MsgGUID: gXPGU8T1QMi89QEYQ699rQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11921"; a="107915554"
+X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="107915554"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2026 09:47:28 -0700
+X-CSE-ConnectionGUID: K/U5YNsQR7uIZsXotwZOrw==
+X-CSE-MsgGUID: t7asQGygQ7uinhB6tyISOg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="274360226"
+Received: from danielcm-desk1.jf.intel.com ([10.24.81.120])
+ by fmviesa006.fm.intel.com with ESMTP; 30 Sep 2026 09:47:28 -0700
+From: Daniel Charles <daniel.charles@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Daniel Charles <daniel.charles@intel.com>
+Subject: [PATCH] drm/xe: Add focused VM teardown and page fault tracing
+Date: Wed, 30 Sep 2026 09:46:45 -0700
+Message-ID: <20260930164645.1243801-1-daniel.charles@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/nvm=3A_add_survivabi?=
- =?utf-8?q?lty_partiton_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alexander Usyskin" <alexander.usyskin@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 30 Sep 2026 16:41:32 -0000
-Message-ID: <179078649208.225259.12311039436472976092@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260930-cri_surviv-v3-0-357aeed5fc60@intel.com>
-In-Reply-To: <20260930-cri_surviv-v3-0-357aeed5fc60@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +60,195 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9050368107872171600==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Trace the start of VM teardown and ASID removal so late page faults can be
+correlated with the VM lifecycle. Emit one failure event for all page fault
+errors. Include the existing page fault reason alongside the errno.
 
-== Series Details ==
+Keep the trace set focused by avoiding separate events for userptr pin
+attempts, individual close phases, ASID lookup rejection, and faults during
+shutdown.
 
-Series: drm/xe/nvm: add survivabilty partiton (rev3)
-URL   : https://patchwork.freedesktop.org/series/170493/
-State : success
+v2: Fix checkpatch warnings.
+v3: Pass xe to the page fault tracepoint and print VM mode as
+    dma-fence/preempt-fence/fault (Matt)
 
-== Summary ==
+Assisted-by: GitHub Copilot using Claude Sonnet 5
+Signed-off-by: Daniel Charles <daniel.charles@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pagefault.c | 15 ++++++--
+ drivers/gpu/drm/xe/xe_trace_bo.h  | 58 +++++++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.c        |  4 +++
+ 3 files changed, 73 insertions(+), 4 deletions(-)
 
-CI Bug Log - changes from xe-5849-fbae2409407dde19ff6dafa8717f0f48c468c11a_BAT -> xe-pw-170493v3_BAT
-====================================================
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+index f219e9e3b73ed..3a539ab504bf9 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_pagefault.c
+@@ -268,6 +268,7 @@ static struct xe_vm *xe_pagefault_asid_to_vm(struct xe_pagefault *pf, u32 asid)
+ static int xe_pagefault_service(struct xe_pagefault *pf)
+ {
+ 	struct xe_gt *gt = pf->gt;
++	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_vm *vm;
+ 	struct xe_vma *vma = NULL;
+ 	int err;
+@@ -279,8 +280,13 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
+ 		return -EFAULT;
+ 
+ 	vm = xe_pagefault_asid_to_vm(pf, asid);
+-	if (IS_ERR(vm))
+-		return PTR_ERR(vm);
++	if (IS_ERR(vm)) {
++		err = PTR_ERR(vm);
++		trace_xe_pagefault_fail(xe, NULL, NULL, asid,
++					xe_pagefault_addr(pf),
++					xe_pagefault_get_error(pf), err);
++		return err;
++	}
+ 
+ 	xe_migrate_ulls_enter(gt_to_tile(gt)->migrate);
+ 
+@@ -315,6 +321,11 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
+ 		err = xe_pagefault_handle_vma(gt, vma, pf, atomic);
+ 
+ unlock_vm:
++	if (err)
++		trace_xe_pagefault_fail(xe, vm, vma, asid,
++					xe_pagefault_addr(pf),
++					xe_pagefault_get_error(pf), err);
++
+ 	up_read(&vm->lock);
+ 	xe_vm_put(vm);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
+index 86323cf3be2c0..36fc7eb658828 100644
+--- a/drivers/gpu/drm/xe/xe_trace_bo.h
++++ b/drivers/gpu/drm/xe/xe_trace_bo.h
+@@ -16,10 +16,15 @@
+ #include "xe_bo_types.h"
+ #include "xe_vm.h"
+ 
++#define __dev_name_xe(xe)	dev_name((xe)->drm.dev)
+ #define __dev_name_bo(bo)	dev_name(xe_bo_device(bo)->drm.dev)
+ #define __dev_name_vm(vm)	dev_name((vm)->xe->drm.dev)
+ #define __dev_name_vma(vma)	__dev_name_vm(xe_vma_vm(vma))
+ 
++#define XE_VM_TRACE_MODE_DMA_FENCE	0
++#define XE_VM_TRACE_MODE_PREEMPT_FENCE	1
++#define XE_VM_TRACE_MODE_FAULT		2
++
+ DECLARE_EVENT_CLASS(xe_bo,
+ 		    TP_PROTO(struct xe_bo *bo),
+ 		    TP_ARGS(bo),
+@@ -194,6 +199,7 @@ DECLARE_EVENT_CLASS(xe_vm,
+ 			     __field(struct xe_vm *, vm)
+ 			     __field(u32, asid)
+ 			     __field(u32, flags)
++			     __field(u8, mode)
+ 			     ),
+ 
+ 		    TP_fast_assign(
+@@ -201,11 +207,20 @@ DECLARE_EVENT_CLASS(xe_vm,
+ 			   __entry->vm = vm;
+ 			   __entry->asid = vm->usm.asid;
+ 			   __entry->flags = vm->flags;
++			   __entry->mode = xe_vm_in_fault_mode(vm) ?
++					   XE_VM_TRACE_MODE_FAULT :
++					   xe_vm_in_preempt_fence_mode(vm) ?
++					   XE_VM_TRACE_MODE_PREEMPT_FENCE :
++					   XE_VM_TRACE_MODE_DMA_FENCE;
+ 			   ),
+ 
+-		    TP_printk("dev=%s, vm=%p, asid=0x%05x, vm flags=0x%05x",
++		    TP_printk("dev=%s, vm=%p, asid=0x%05x, vm flags=0x%05x, mode=%s",
+ 			      __get_str(dev), __entry->vm, __entry->asid,
+-			      __entry->flags)
++			      __entry->flags,
++			      __print_symbolic(__entry->mode,
++					       { XE_VM_TRACE_MODE_DMA_FENCE, "dma-fence" },
++					       { XE_VM_TRACE_MODE_PREEMPT_FENCE, "preempt-fence" },
++					       { XE_VM_TRACE_MODE_FAULT, "fault" }))
+ );
+ 
+ DEFINE_EVENT(xe_vm, xe_vm_kill,
+@@ -223,6 +238,16 @@ DEFINE_EVENT(xe_vm, xe_vm_free,
+ 	     TP_ARGS(vm)
+ );
+ 
++DEFINE_EVENT(xe_vm, xe_vm_close_and_put,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
++
++DEFINE_EVENT(xe_vm, xe_vm_asid_release,
++	     TP_PROTO(struct xe_vm *vm),
++	     TP_ARGS(vm)
++);
++
+ DEFINE_EVENT(xe_vm, xe_vm_cpu_bind,
+ 	     TP_PROTO(struct xe_vm *vm),
+ 	     TP_ARGS(vm)
+@@ -253,6 +278,35 @@ DEFINE_EVENT(xe_vm, xe_vm_ops_fail,
+ 	     TP_ARGS(vm)
+ );
+ 
++TRACE_EVENT(xe_pagefault_fail,
++	    TP_PROTO(struct xe_device *xe, struct xe_vm *vm, struct xe_vma *vma,
++		     u32 asid, u64 page_addr, u8 reason, int err),
++	    TP_ARGS(xe, vm, vma, asid, page_addr, reason, err),
++
++	    TP_STRUCT__entry(__string(dev, __dev_name_xe(xe))
++		     __field(struct xe_vm *, vm)
++		     __field(struct xe_vma *, vma)
++		     __field(u32, asid)
++		     __field(u64, page_addr)
++		     __field(u8, reason)
++		     __field(int, err)
++		     ),
++
++	    TP_fast_assign(__assign_str(dev);
++		   __entry->vm = vm;
++		   __entry->vma = vma;
++		   __entry->asid = asid;
++		   __entry->page_addr = page_addr;
++		   __entry->reason = reason;
++		   __entry->err = err;
++		   ),
++
++	    TP_printk("dev=%s, vm=%p, vma=%p, asid=0x%05x, page_addr=0x%012llx, reason=%u, err=%d",
++		      __get_str(dev), __entry->vm, __entry->vma,
++		      __entry->asid, __entry->page_addr, __entry->reason,
++		      __entry->err)
++);
++
+ #endif
+ 
+ /* This part must be outside protection */
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 425c678f4480a..9b2e4f178836e 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1915,6 +1915,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 
+ 	xe_assert(xe, !vm->preempt.num_exec_queues);
+ 
++	trace_xe_vm_close_and_put(vm);
++
+ 	xe_vm_close(vm);
+ 	if (xe_vm_in_preempt_fence_mode(vm)) {
+ 		mutex_lock(&xe->rebind_resume_lock);
+@@ -1993,6 +1995,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 		xe_assert(xe, xe->info.has_asid);
+ 		xe_assert(xe, !(vm->flags & XE_VM_FLAG_MIGRATION));
+ 
++		trace_xe_vm_asid_release(vm);
++
+ 		lookup = xa_erase(&xe->usm.asid_to_vm, vm->usm.asid);
+ 		xe_assert(xe, lookup == vm);
+ 	}
+-- 
+2.43.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-170493v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [ABORT][1] ([Intel XE#9463]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5849-fbae2409407dde19ff6dafa8717f0f48c468c11a/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170493v3/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
-
-
-Build changes
--------------
-
-  * Linux: xe-5849-fbae2409407dde19ff6dafa8717f0f48c468c11a -> xe-pw-170493v3
-
-  IGT_9118: 26513be3e0f711ed835ec50d5cdcb723ef224105 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5849-fbae2409407dde19ff6dafa8717f0f48c468c11a: fbae2409407dde19ff6dafa8717f0f48c468c11a
-  xe-pw-170493v3: 170493v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170493v3/index.html
-
---===============9050368107872171600==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/nvm: add survivabilty partiton (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170493/">https://patchwork.freedesktop.org/series/170493/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170493v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170493v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5849-fbae2409407dde19ff6dafa8717f0f48c468c11a_BAT -&gt; xe-pw-170493v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-170493v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5849-fbae2409407dde19ff6dafa8717f0f48c468c11a/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170493v3/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5849-fbae2409407dde19ff6dafa8717f0f48c468c11a -&gt; xe-pw-170493v3</li>
-</ul>
-<p>IGT_9118: 26513be3e0f711ed835ec50d5cdcb723ef224105 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5849-fbae2409407dde19ff6dafa8717f0f48c468c11a: fbae2409407dde19ff6dafa8717f0f48c468c11a<br />
-  xe-pw-170493v3: 170493v3</p>
-
-</body>
-</html>
-
---===============9050368107872171600==--
