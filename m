@@ -4,28 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 203E7CA5FC7
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 15:02:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F6F9CA5FC5
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 15:28:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9BB210F469;
-	Wed, 30 Sep 2026 15:02:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E28F310F49E;
+	Wed, 30 Sep 2026 15:28:41 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 739C410F469;
- Wed, 30 Sep 2026 15:02:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4240499100018222333=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D3E010E26A;
+ Wed, 30 Sep 2026 15:28:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv2?=
- =?utf-8?q?=2C1/3=5D_drm/i915/gmbus=3A_Switch_GMBUS_fully_to_=5Ffw=28=29_reg?=
- =?utf-8?q?ister_accesses_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/=7Bi915=2Cxe=7D=3A_us?=
+ =?utf-8?q?e_a_shared_gtt=5Fview=5Ftypes=2Eh_header_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 30 Sep 2026 15:02:40 -0000
-Message-ID: <179078056046.223785.13253815979827735004@61270ab9df2a>
+Date: Wed, 30 Sep 2026 15:28:41 -0000
+Message-ID: <179078212118.225143.3752474720282541720@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20260930115303.24285-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20260930115303.24285-1-ville.syrjala@linux.intel.com>
+References: <cover.1790780340.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1790780340.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,127 +40,84 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4240499100018222333==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [v2,1/3] drm/i915/gmbus: Switch GMBUS fully to _fw() register accesses (rev2)
-URL   : https://patchwork.freedesktop.org/series/175282/
-State : success
+Series: drm/{i915,xe}: use a shared gtt_view_types.h header (rev3)
+URL   : https://patchwork.freedesktop.org/series/174204/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-5848-dde43fa4801498eefd0280da6c729ff5a178f866_BAT -> xe-pw-175282v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 08b1b002482a816750001fb3a8529ec04289667f
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Wed Sep 30 18:00:06 2026 +0300
 
-Summary
--------
+    drm/intel: rename I915_GTT_VIEW_* enumerations to INTEL_GTT_VIEW_*
+    
+    Make the I915_GTT_VIEW_* enumerators less i915 specific, and rename them
+    INTEL_GTT_VIEW_*.
+    
+    $ sed -i 's/I915_GTT_VIEW_/INTEL_GTT_VIEW_/g' -- $(git grep -l I915_GTT_VIEW_)
+    
+    Reviewed-by: Maarten Lankhorst <dev@lankhorst.se>
+    Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch b7036096f753a7fe43361478bcf22c04f23387a8 drm-intel
+24e5b0378805 drm/intel: move i915_gtt_view_types.h to include/drm/intel
+-:54: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#54: 
+deleted file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 50 lines checked
+1d53ef5fb75e drm/intel: rename i915_gtt_view_is_*() helpers to intel_gtt_view_is_*()
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#13: 
+$ sed -i 's/i915_gtt_view_is_/intel_gtt_view_is_/g' -- $(git grep -l i915_gtt_view_is_)
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 52 lines checked
+ebd63c8367e7 drm/intel: rename i915_gtt_view* struct/enum to intel_gtt_view*
+bff6d1bae640 drm/intel: add intel_gtt_view_is_partial() for completeness
+28b8b1356159 drm/xe/display: use intel_gtt_view_is_*() helpers more
+db7ad4f35e5d drm/i915/gem: use intel_gtt_view_is_*() helpers more
+0b7aef6fb132 drm/i915/vma: use intel_gtt_view_is_*() helpers more
+-:76: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#76: FILE: drivers/gpu/drm/i915/i915_vma.c:1321:
++		GEM_BUG_ON(!intel_gtt_view_is_normal(&vma->gtt_view));
 
-  
+total: 0 errors, 1 warnings, 0 checks, 58 lines checked
+2c9ecb6d652a drm/i915/selftests: use intel_gtt_view_is_*() helpers more
+-:67: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#67: FILE: drivers/gpu/drm/i915/selftests/i915_vma.c:635:
++					expected_pages = remapped_size(&view, &plane_info[0], &plane_info[1]);
 
-Participating hosts (15 -> 15)
-------------------------------
+-:88: WARNING:DEEP_INDENTATION: Too many leading tabs - consider code refactoring
+#88: FILE: drivers/gpu/drm/i915/selftests/i915_vma.c:675:
++						if (intel_gtt_view_is_rotated(&view))
 
-  No changes in participating hosts
+-:140: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#140: FILE: drivers/gpu/drm/i915/selftests/i915_vma.c:1060:
++			GEM_BUG_ON(!intel_gtt_view_is_normal(&vma->gtt_view));
 
-Known issues
-------------
+-:158: WARNING:LONG_LINE: line length of 113 exceeds 100 columns
+#158: FILE: drivers/gpu/drm/i915/selftests/i915_vma.c:1084:
++						       intel_gtt_view_is_rotated(&view) ? "Rotated" : "Remapped",
 
-  Here are the changes found in xe-pw-175282v2_BAT that come from known issues:
+total: 0 errors, 4 warnings, 0 checks, 125 lines checked
+9dd41a56057c drm/i915/debugfs: use the intel_gtt_view_is_*() helpers more
+08b1b002482a drm/intel: rename I915_GTT_VIEW_* enumerations to INTEL_GTT_VIEW_*
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#13: 
+$ sed -i 's/I915_GTT_VIEW_/INTEL_GTT_VIEW_/g' -- $(git grep -l I915_GTT_VIEW_)
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#9463])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5848-dde43fa4801498eefd0280da6c729ff5a178f866/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175282v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-    - bat-nvls-1:         [PASS][3] -> [DMESG-WARN][4] ([Intel XE#8762] / [Intel XE#9069])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5848-dde43fa4801498eefd0280da6c729ff5a178f866/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175282v2/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#8762]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762
-  [Intel XE#9069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069
-  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
-
-
-Build changes
--------------
-
-  * Linux: xe-5848-dde43fa4801498eefd0280da6c729ff5a178f866 -> xe-pw-175282v2
-
-  IGT_9118: 26513be3e0f711ed835ec50d5cdcb723ef224105 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5848-dde43fa4801498eefd0280da6c729ff5a178f866: dde43fa4801498eefd0280da6c729ff5a178f866
-  xe-pw-175282v2: 175282v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175282v2/index.html
-
---===============4240499100018222333==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/3] drm/i915/gmbus: Switch GMBUS fully to _fw() register accesses (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175282/">https://patchwork.freedesktop.org/series/175282/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175282v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175282v2/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 168 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-5848-dde43fa4801498eefd0280da6c729ff5a178f866_BAT -&gt; xe-pw-175282v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-175282v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5848-dde43fa4801498eefd0280da6c729ff5a178f866/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175282v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>)</li>
-<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5848-dde43fa4801498eefd0280da6c729ff5a178f866/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175282v2/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762">Intel XE#8762</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069">Intel XE#9069</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5848-dde43fa4801498eefd0280da6c729ff5a178f866 -&gt; xe-pw-175282v2</li>
-</ul>
-<p>IGT_9118: 26513be3e0f711ed835ec50d5cdcb723ef224105 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5848-dde43fa4801498eefd0280da6c729ff5a178f866: dde43fa4801498eefd0280da6c729ff5a178f866<br />
-  xe-pw-175282v2: 175282v2</p>
-
-</body>
-</html>
-
---===============4240499100018222333==--
