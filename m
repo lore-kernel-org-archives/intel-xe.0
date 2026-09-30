@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEC44CA5FC5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3BA6CA5FC4
 	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 22:08:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D9D710E24E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 269D710E1D0;
 	Wed, 30 Sep 2026 22:08:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Th4Fsjtq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h+HzNvce";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58A0810E1D0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C611E10E24E
  for <intel-xe@lists.freedesktop.org>; Wed, 30 Sep 2026 22:08:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790806104; x=1822342104;
+ t=1790806105; x=1822342105;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gK7dDYKsr8yMk3HzqNGMH93vME/9GqZJPaVCbB9hmdg=;
- b=Th4Fsjtq/AqKPL4iRkUV8FFeTEQfXKEngt+D4Y56+b8Pj0VhRcHNi2MF
- Bhr5dp3iN5i1Q+fjhyYLWlSVe5W5nNHaVOBSpUu/9PziBMNVkXpOME4jR
- aecZRsyCpb2sSyJzphnS4OVqmFHLzAjpGIoNXpn9UVWsmSNQHICHfD6O/
- AiBDmheACMZhaio4lhsEIMiM8zD6LU8myltJcd2wp1dkHT1zF+QXT8sno
- 3komfkzkvf8afB4fOw7cqt97g2hGp5K48KUS6MKgkkgOSUED3eZO7RZy2
- B3hYjbU8I/lNGy1h4OXKJZxAkgrsi6YYUcdB6VQrLgAo3glIx2v9VO16d A==;
-X-CSE-ConnectionGUID: 24Ox1fYsSAOBeArfWE7wpQ==
-X-CSE-MsgGUID: po7yEJ+xRnSbE83MqFAqyQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11921"; a="117084163"
-X-IronPort-AV: E=Sophos;i="6.27,133,1787036400"; d="scan'208";a="117084163"
+ bh=z9rQGUdWRx3dBM2TJFOqAj/KVm1K6M60h2lYbuzB6K8=;
+ b=h+HzNvceu8gLr6R2rjW4nH807OQ+9+veoOb+Tuzi7S6O+XdMWAL74Cwl
+ p8mpgE6c7NgbCMQb1/Jt4PyXNKqWqy5y+KTeFmNZVYMlrsLl65X7mqvYV
+ JHFJ1mwb9Aq5Y4dAtVYgbr2Kq4OZbm+w8yNXbSpsECV+qZxcudKEZjSUb
+ Kf+WAjR7xRcnV3B3IaSgbLB1X6Q1vcKXHHiLZPVFrEB51zlxXQx6iR8s5
+ 85cjHoda4sM5DyRwxVTXI5tFYl5KKXKPaZ3laGRZTgg0Fjf5K90TgMzDs
+ WUE7pCc8MbZ3X6ZVNJ+3ICdglPef3js19uvMdBsvjcWsO7xFNWDgTTGMk w==;
+X-CSE-ConnectionGUID: CFSNB2YWS8mIjinQXs0Yvw==
+X-CSE-MsgGUID: 8zA3/Dx7SheBetv0ZOKv/g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11921"; a="117084164"
+X-IronPort-AV: E=Sophos;i="6.27,133,1787036400"; d="scan'208";a="117084164"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2026 15:08:23 -0700
-X-CSE-ConnectionGUID: HZCg9Yq8TOW9irqp2yzUKQ==
-X-CSE-MsgGUID: 2T3oJ/DxQL2ZUxkE2DMcng==
+ 30 Sep 2026 15:08:24 -0700
+X-CSE-ConnectionGUID: kOVRfWOAStGRU2KMTgamvg==
+X-CSE-MsgGUID: ZnZSjhy2RXCZHK9Gfgqe7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,133,1787036400"; d="scan'208";a="279607842"
+X-IronPort-AV: E=Sophos;i="6.27,133,1787036400"; d="scan'208";a="279607845"
 Received: from cyp05.fm.intel.com ([10.36.55.41])
  by orviesa005.jf.intel.com with ESMTP; 30 Sep 2026 15:08:24 -0700
 From: Zongyao Bai <zongyao.bai@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: jia.yao@intel.com, rodrigo.vivi@intel.com,
- "Bai, Zongyao" <zongyao.bai@intel.com>
-Subject: [PATCH v10 0/4] drm/xe/forcewake: add delayed release and lifecycle
- handling
-Date: Wed, 30 Sep 2026 15:08:16 -0700
-Message-ID: <20260930220820.2184643-1-zongyao.bai@intel.com>
+ Zongyao Bai <zongyao.bai@intel.com>
+Subject: [PATCH v10 1/4] drm/xe/forcewake: synchronize engine-cycle access
+ with unplug
+Date: Wed, 30 Sep 2026 15:08:17 -0700
+Message-ID: <20260930220820.2184643-2-zongyao.bai@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260601213804.707256-1-zongyao.bai@intel.com>
+In-Reply-To: <20260930220820.2184643-1-zongyao.bai@intel.com>
 References: <20260601213804.707256-1-zongyao.bai@intel.com>
+ <20260930220820.2184643-1-zongyao.bai@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,94 +68,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: "Bai, Zongyao" <zongyao.bai@intel.com>
+Engine-cycle queries access engine registers under forcewake. Move engine
+lookup and forcewake-protected MMIO access into query_engine_cycles_read(),
+enclosed by drm_dev_enter()/drm_dev_exit(). This makes drm_dev_unplug()
+wait for admitted queries to drop their forcewake references before
+teardown.
 
-Engine-cycle queries used by profiling tools such as VTune and PTI can
-arrive in bursts. Releasing forcewake immediately after every query makes
-the next query issue another wake request and wait for its ACK.
+Use drm_dev_unplug() instead of drm_dev_unregister() on post-registration
+probe failure to provide the same synchronization.
 
-Add an opt-in delayed-release path with a bind-time configurable hold
-interval, defaulting to 100 us. When the final overlapping forcewake
-reference is dropped after a delayed-release request, keep the domain awake
-for that interval. A get for the same domain before expiry cancels the
-pending release and reuses the awake domain without another wake request or
-ACK wait.
+Assisted-by: LLM
+Signed-off-by: Zongyao Bai <zongyao.bai@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c |  2 +-
+ drivers/gpu/drm/xe/xe_query.c  | 81 +++++++++++++++++++++++-----------
+ 2 files changed, 56 insertions(+), 27 deletions(-)
 
-Only engine-cycle queries request delayed release. Existing callers
-continue to use the immediate-release API. Delayed-release state is per
-domain, so a put that drops the final overlapping reference honors any
-recorded delayed-release request.
-
-Protect engine-cycle MMIO access with drm_dev_enter()/drm_dev_exit() so
-drm_dev_unplug() waits for admitted queries to drop their forcewake
-references before teardown. For system and runtime suspend, synchronously
-drain delayed state while keeping delayed release available after resume.
-
-For shutdown, removal, post-registration probe unwind, and devres teardown,
-permanently disable new delayed releases and settle pending state with
-xe_force_wake_stop(). Register the device-wide stop action after the
-Driver-FLR action so reverse devres ordering settles delayed forcewake
-state before Driver-FLR while MMIO is still valid. Keep the per-GT cleanup
-as an idempotent fallback for earlier probe failures.
-
-For PCI error recovery, use xe_force_wake_stop_nosettle() before
-pci_disable_device() on reset and on paths returning
-PCI_ERS_RESULT_DISCONNECT. It disables delayed release, cancels timers, and
-discards delayed-release bookkeeping without accessing MMIO.
-
-v10:
- - Please ignore v6~v9 in this series:
-   https://patchwork.freedesktop.org/series/167697
-   Those revisions used incorrect Root msg-id(s) by mistake.
-   Created v10 to clean up the threading mess in previous revisions.
-   No functional changes relative to v6.
-   Rebase onto drm-xe-next at fa8b3b6c4a4b.
-
-v6:
- - Add a permanent delayed-release disable state and clear stale recorded
-   requests on the immediate-release path.
- - Keep flush for system/runtime suspend and use terminal stop for
-   shutdown, remove, probe unwind, and devres teardown.
- - Order the device-wide stop before Driver-FLR while retaining per-GT
-   cleanup for earlier probe failures.
- - Add a no-MMIO stop for PCI reset and disconnect handling.
- - Use the configfs group lock when reading the hold interval.
- - Document the per-domain drain and discard state transitions.
-
-v5:
- - Split the original patch into four patches: unplug synchronization,
-   delayed-release infrastructure, power-boundary flushing, and opt-in
-   enablement/configuration.
- - Preserve a newer hold interval when an older timer callback is running,
-   and settle an outstanding sleep ACK before waking a domain again.
-   (Sashiko, Matt)
- - Synchronously cancel delayed-release timers during forcewake cleanup.
-   (Sashiko, Matt)
- - Flush delayed releases during shutdown, device removal, and
-   post-registration probe unwind in addition to system/runtime suspend.
-   (Matt)
-
-Zongyao Bai (4):
-  drm/xe/forcewake: synchronize engine-cycle access with unplug
-  drm/xe/forcewake: add delayed-release state machine
-  drm/xe/forcewake: quiesce delayed release across PM and teardown
-  drm/xe/forcewake: enable configurable delayed forcewake release
-
- drivers/gpu/drm/xe/xe_configfs.c         |  78 ++++++
- drivers/gpu/drm/xe/xe_configfs.h         |   5 +
- drivers/gpu/drm/xe/xe_defaults.h         |   1 +
- drivers/gpu/drm/xe/xe_device.c           |  33 ++-
- drivers/gpu/drm/xe/xe_device.h           |   1 +
- drivers/gpu/drm/xe/xe_device_types.h     |   3 +
- drivers/gpu/drm/xe/xe_force_wake.c       | 337 +++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_force_wake.h       |  48 +++-
- drivers/gpu/drm/xe/xe_force_wake_types.h | 123 +++++++++
- drivers/gpu/drm/xe/xe_gt.c               |  18 +-
- drivers/gpu/drm/xe/xe_pci_error.c        |  23 +-
- drivers/gpu/drm/xe/xe_query.c            |  81 ++++--
- 12 files changed, 696 insertions(+), 55 deletions(-)
-
-
-base-commit: fa8b3b6c4a4b297bf95935065b63f8852cfc5481
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index e1979bbcf7bc..7ca98532ba45 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -1107,7 +1107,7 @@ int xe_device_probe(struct xe_device *xe)
+ 
+ err_unregister_display:
+ 	xe_display_unregister(xe);
+-	drm_dev_unregister(&xe->drm);
++	drm_dev_unplug(&xe->drm);
+ 
+ 	return err;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index dc975f595368..2ebf0893b4f5 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -8,6 +8,7 @@
+ #include <linux/nospec.h>
+ #include <linux/sched/clock.h>
+ 
++#include <drm/drm_drv.h>
+ #include <drm/ttm/ttm_placement.h>
+ #include <generated/xe_wa_oob.h>
+ #include <uapi/drm/xe_drm.h>
+@@ -111,18 +112,65 @@ hwe_read_timestamp(struct xe_hw_engine *hwe, u64 *engine_ts, u64 *cpu_ts,
+ 	*engine_ts = (u64)upper << 32 | lower;
+ }
+ 
++/*
++ * Keep the forcewake scope inside the drm_dev_enter()/drm_dev_exit() section:
++ * drm_dev_unplug() must wait for forcewake release before teardown.
++ */
++static int query_engine_cycles_read(struct xe_device *xe,
++				    struct drm_xe_query_engine_cycles *resp,
++				    __ktime_func_t cpu_clock)
++{
++	struct drm_xe_engine_class_instance *eci = &resp->eci;
++	enum xe_force_wake_domains fw_domain;
++	struct xe_hw_engine *hwe;
++	struct xe_gt *gt;
++	int dev_idx, ret = 0;
++
++	if (!drm_dev_enter(&xe->drm, &dev_idx))
++		return -ENODEV;
++
++	gt = xe_device_get_gt(xe, eci->gt_id);
++	if (!gt) {
++		drm_dev_exit(dev_idx);
++		return -EINVAL;
++	}
++
++	if (eci->engine_class >= ARRAY_SIZE(user_to_xe_engine_class)) {
++		drm_dev_exit(dev_idx);
++		return -EINVAL;
++	}
++
++	hwe = xe_gt_hw_engine(gt, user_to_xe_engine_class[eci->engine_class],
++			      eci->engine_instance, true);
++	if (!hwe) {
++		drm_dev_exit(dev_idx);
++		return -EINVAL;
++	}
++
++	fw_domain = xe_hw_engine_to_fw_domain(hwe);
++
++	xe_with_force_wake(fw_ref, gt_to_fw(gt), fw_domain) {
++		if (xe_force_wake_ref_has_domain(fw_ref.domains, fw_domain))
++			hwe_read_timestamp(hwe, &resp->engine_cycles,
++					   &resp->cpu_timestamp,
++					   &resp->cpu_delta, cpu_clock);
++		else
++			ret = -EIO;
++	}
++
++	drm_dev_exit(dev_idx);
++	return ret;
++}
++
+ static int
+ query_engine_cycles(struct xe_device *xe,
+ 		    struct drm_xe_device_query *query)
+ {
+ 	struct drm_xe_query_engine_cycles __user *query_ptr;
+-	struct drm_xe_engine_class_instance *eci;
+ 	struct drm_xe_query_engine_cycles resp;
+ 	size_t size = sizeof(resp);
+-	enum xe_force_wake_domains fw_domain;
+ 	__ktime_func_t cpu_clock;
+-	struct xe_hw_engine *hwe;
+-	struct xe_gt *gt;
++	int ret;
+ 
+ 	if (IS_SRIOV_VF(xe))
+ 		return -EOPNOTSUPP;
+@@ -142,28 +190,9 @@ query_engine_cycles(struct xe_device *xe,
+ 	if (!cpu_clock)
+ 		return -EINVAL;
+ 
+-	eci = &resp.eci;
+-	gt = xe_device_get_gt(xe, eci->gt_id);
+-	if (!gt)
+-		return -EINVAL;
+-
+-	if (eci->engine_class >= ARRAY_SIZE(user_to_xe_engine_class))
+-		return -EINVAL;
+-
+-	hwe = xe_gt_hw_engine(gt, user_to_xe_engine_class[eci->engine_class],
+-			      eci->engine_instance, true);
+-	if (!hwe)
+-		return -EINVAL;
+-
+-	fw_domain = xe_hw_engine_to_fw_domain(hwe);
+-
+-	xe_with_force_wake(fw_ref, gt_to_fw(gt), fw_domain) {
+-		if (!xe_force_wake_ref_has_domain(fw_ref.domains, fw_domain))
+-			return -EIO;
+-
+-		hwe_read_timestamp(hwe, &resp.engine_cycles, &resp.cpu_timestamp,
+-				   &resp.cpu_delta, cpu_clock);
+-	}
++	ret = query_engine_cycles_read(xe, &resp, cpu_clock);
++	if (ret)
++		return ret;
+ 
+ 	if (GRAPHICS_VER(xe) >= 20)
+ 		resp.width = 64;
 -- 
 2.43.0
+
