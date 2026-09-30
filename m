@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B284CA5FC5
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 14:53:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86147CA5FC7
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 14:54:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE8ED10F430;
-	Wed, 30 Sep 2026 14:53:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B54310F448;
+	Wed, 30 Sep 2026 14:54:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fAtoVakI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GZpc6Scy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E4A110E243;
- Wed, 30 Sep 2026 14:53:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FB6410F448;
+ Wed, 30 Sep 2026 14:54:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790780017; x=1822316017;
+ t=1790780086; x=1822316086;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=5h808ldt3UbTnhE+4b3L0Y8vC90hjPDMWb1Dy842PUA=;
- b=fAtoVakIYwEc3dUHfjWOBNzKvj5PwDf2OJp6aKgwdWSjow6PCSXp19R2
- PP+duHYsUjfymv64VpDOCJxDFqJ/JgiuqJmnPADVaWlb4hQIoTMQrZ2aO
- 8NkpB7NoallKBo399OrAMCWtzoB0G2L4Hxiem42qaAFi33QmXqf6uvOtG
- tQ7k7wssKvucseFSZs3n9yaMJx1CB5wszzB15BdfVqmFsr8I4WGR0ndm2
- ommDvNBTz2GRZ0Blf2iUu50CxBFQ5+XRMAv/cOuvfiFezIv8GU8dGTQnz
- 47ZcL+yNt9kZ8vULgSN+DKyBDn4Utk/q9YRJpFj01Y8NqHBmHgk7hmhLe Q==;
-X-CSE-ConnectionGUID: 4Ygrd/x/QA62aoVazxkxaw==
-X-CSE-MsgGUID: Q4Omij1GSd2qeMUXF1ybvA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11920"; a="90649219"
-X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="90649219"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2026 07:53:37 -0700
-X-CSE-ConnectionGUID: 0q/1iBcxTwqPJU3VHvsVpw==
-X-CSE-MsgGUID: COYvPbxxRGuEP+uKxmYmWg==
+ bh=J7tYBJQ39FJhrBIhKB3NBr9yOu3Xk719S3old2oGTbc=;
+ b=GZpc6ScyzJCXi9qEGLsP4sI6e1ce3izdI6cDh/eTw9XldO7ykkTSKeOG
+ drukpHGbrNfcKkyAfbpeHAWZ8l8Ql8ZOlVjnPfjNjmOofAkE/N8h+LOn1
+ tzGVgbJwK/HH6Cyl+lB6x2PmNfq5uAlfEZVI2rIQqY2UaX2TRxnSZk+9b
+ gHpMmfkhgYd26ViTuJmiE6ftVXcLBPFjj7SeH9W00qiR0etv+CNow+WVj
+ mbt+L6b58mzJCH4a9MDW4gTUJ/2GyXrGpJXr3XS5CmXxptQTc6kZN5/M1
+ xSDS+dd0T6NCYAjzNK2owPg0c/TABgWKUHynCvsxr1mKJu5+wsKQAyVGF g==;
+X-CSE-ConnectionGUID: j0UkRa7dTn2YPCSYgsv5JQ==
+X-CSE-MsgGUID: a3ouGbS6T2qAisEPVDqFzQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11920"; a="79086384"
+X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="79086384"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2026 07:54:45 -0700
+X-CSE-ConnectionGUID: KMkvyCaETu6CH+IoLpOQbA==
+X-CSE-MsgGUID: afN1Y0XqTXS2Fh5iLwE/PQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="274825882"
+X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="279504844"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.107])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2026 07:53:36 -0700
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2026 07:54:44 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/3] drm/i915/dp: Drop using intel_de_read_notrace()
-In-Reply-To: <20260930115303.24285-2-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 3/3] drm/i915/de: Nuke intel_de_{read,write}_notrace()
+In-Reply-To: <20260930115303.24285-3-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260930115303.24285-1-ville.syrjala@linux.intel.com>
- <20260930115303.24285-2-ville.syrjala@linux.intel.com>
-Date: Wed, 30 Sep 2026 17:53:33 +0300
-Message-ID: <971cd820abef78c947ee66a98b4c1a7a433ec361@intel.com>
+ <20260930115303.24285-3-ville.syrjala@linux.intel.com>
+Date: Wed, 30 Sep 2026 17:54:41 +0300
+Message-ID: <cb838c2d5a8fff1b557e12fc72f6615375920223@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,56 +74,79 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 On Wed, 30 Sep 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> I want to eliminate intel_de_read_notrace() to shrink the
-> intel_de.h API a bit. That should help with the cleaning out
-> the remaining uncore mess for xe vs. i915.
+> intel_de_{read,write}_notrace() are now completely unused,
+> so nuke them. Reducing the number of different register
+> access functions should help a bit with cleaning up the
+> final uncore mess between xe vs. i915.
 >
-> Furthermore on xe intel_de_read_notrace() doesn't even do
-> what it says on the tin, and instead all register accesses
-> are traced anyway.
->
-> Switch the last users of intel_de_read_notrace()
-> (intel_dp_aux_wait_done() and intel_dp_aux_xfer())
-> over to the normal intel_de_read().
+> And with this we can also nuke the corresponding xe uncore
+> compat wrappers.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_aux.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_aux.c
-> index 3cb07b0a901c..cd361164ecb8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> @@ -66,7 +66,7 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
->  	int ret;
->=20=20
->  	if (intel_parent_irq_enabled(display)) {
-> -#define C (((status =3D intel_de_read_notrace(display, ch_ctl)) & DP_AUX=
-_CH_CTL_SEND_BUSY) =3D=3D 0)
-> +#define C (((status =3D intel_de_read(display, ch_ctl)) & DP_AUX_CH_CTL_=
-SEND_BUSY) =3D=3D 0)
->  		done =3D wait_event_timeout(display->gmbus.wait_queue, C,
->  					  msecs_to_jiffies_timeout(timeout_ms));
->=20=20
-> @@ -324,7 +324,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
->=20=20
->  	/* Try to wait for any previous AUX channel activity */
->  	for (try =3D 0; try < 3; try++) {
-> -		status =3D intel_de_read_notrace(display, ch_ctl);
-> +		status =3D intel_de_read(display, ch_ctl);
->  		if ((status & DP_AUX_CH_CTL_SEND_BUSY) =3D=3D 0)
->  			break;
->  		msleep(1);
-
-Sashiko has a point that there's now an extra trace call below this.
-
-With that fixed,
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-
+> ---
+>  drivers/gpu/drm/i915/display/intel_de.h          | 12 ------------
+>  .../drm/xe/compat-i915-headers/intel_uncore.h    | 16 ----------------
+>  2 files changed, 28 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i9=
+15/display/intel_de.h
+> index 8144588d3cf7..4ae041a96b31 100644
+> --- a/drivers/gpu/drm/i915/display/intel_de.h
+> +++ b/drivers/gpu/drm/i915/display/intel_de.h
+> @@ -164,18 +164,6 @@ intel_de_posting_read_fw(struct intel_display *displ=
+ay, intel_reg_t reg)
+>  	intel_de_read_fw(display, reg);
+>  }
+>=20=20
+> -static inline u32
+> -intel_de_read_notrace(struct intel_display *display, intel_reg_t reg)
+> -{
+> -	return intel_uncore_read_notrace(__to_uncore(display), reg);
+> -}
+> -
+> -static inline void
+> -intel_de_write_notrace(struct intel_display *display, intel_reg_t reg, u=
+32 val)
+> -{
+> -	intel_uncore_write_notrace(__to_uncore(display), reg, val);
+> -}
+> -
+>  static __always_inline void
+>  intel_de_write_dsb(struct intel_display *display, struct intel_dsb *dsb,
+>  		   intel_reg_t reg, u32 val)
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/driv=
+ers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+> index 08d7ab933672..b8ea8f5b22d1 100644
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+> +++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+> @@ -114,22 +114,6 @@ static inline void intel_uncore_write_fw(struct inte=
+l_uncore *uncore,
+>  	xe_mmio_write32(__compat_uncore_to_mmio(uncore), reg, val);
+>  }
+>=20=20
+> -static inline u32 intel_uncore_read_notrace(struct intel_uncore *uncore,
+> -					    i915_reg_t i915_reg)
+> -{
+> -	struct xe_reg reg =3D XE_REG(i915_mmio_reg_offset(i915_reg));
+> -
+> -	return xe_mmio_read32(__compat_uncore_to_mmio(uncore), reg);
+> -}
+> -
+> -static inline void intel_uncore_write_notrace(struct intel_uncore *uncor=
+e,
+> -					      i915_reg_t i915_reg, u32 val)
+> -{
+> -	struct xe_reg reg =3D XE_REG(i915_mmio_reg_offset(i915_reg));
+> -
+> -	xe_mmio_write32(__compat_uncore_to_mmio(uncore), reg, val);
+> -}
+> -
+>  static inline bool
+>  intel_uncore_arm_unclaimed_mmio_detection(struct intel_uncore *uncore)
+>  {
 
 --=20
 Jani Nikula, Intel
