@@ -4,27 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4770BCA5FBB
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 07:32:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6E7DCA5FC3
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 08:04:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 022B810E586;
-	Wed, 30 Sep 2026 07:32:48 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF00810E23A;
- Wed, 30 Sep 2026 07:32:47 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6133493333471228590=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 831DA10F229;
+	Wed, 30 Sep 2026 08:04:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JbjJdxQV";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D0BE10F229;
+ Wed, 30 Sep 2026 08:04:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790755495; x=1822291495;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=aB8Cp4nhgf7pMdLW6i8ghQb1w1f/0/D8MNkDliazAv4=;
+ b=JbjJdxQVlZ7af4VExL1DDfkhiTkrzmiYpL9eXfd0aDaYsp537+TKZk6T
+ JreZSn6MqlYgPcjxU6Or7PFTU0GlXH51cVGsqAhdJ2xgUghK+4FwZ8x1s
+ 8tgAphk0nr494vNh37JGoLLpa7b10T59gILa+aUuLkKt6sZ5eflnujLzk
+ 2qVHm8kp/R+e1aLz2fDcSVa3DV2vGc/hAbvWm790VI4NTOH8EEfXZP/bW
+ R2WCgBdprgSLv2xHQA5ovtpI+79sNcXjCSbFLzwrzcoauUZ25y8vVitOX
+ Ph3QFrlAwXUHD0KahCrYjtXHyynSkcHouiEz3FnbT4+IRm2GgiZL3unn2 Q==;
+X-CSE-ConnectionGUID: BAgFCt9gQJ6Kg1QN/IDbxw==
+X-CSE-MsgGUID: xnjgwFPCS8eLKXPYYBwyXQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11920"; a="107873331"
+X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="107873331"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2026 01:04:54 -0700
+X-CSE-ConnectionGUID: Cu/v+AVgQF+x1mViGCxdEQ==
+X-CSE-MsgGUID: dg7Wz5AVSvSpELsP3mYYzg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="275761811"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.107])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2026 01:04:51 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, suraj.kandpal@intel.com, Animesh Manna
+ <animesh.manna@intel.com>
+Subject: Re: [PATCH v6 02/18] drm/i915/alpm: Move alpm sink capability
+ readout into a separate function
+In-Reply-To: <20260915180449.277933-3-animesh.manna@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260915180449.277933-1-animesh.manna@intel.com>
+ <20260915180449.277933-3-animesh.manna@intel.com>
+Date: Wed, 30 Sep 2026 11:04:49 +0300
+Message-ID: <2ed6b4ccefd2d302433fb990401b0d62efa75c84@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_gpu/buddy=3A_add_range-rest?=
- =?utf-8?q?ricted_contiguous_allocation_fallback?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 30 Sep 2026 07:32:47 -0000
-Message-ID: <179075356777.222642.4776184942914679637@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260930062117.585089-1-arunpravin.paneerselvam@amd.com>
-In-Reply-To: <20260930062117.585089-1-arunpravin.paneerselvam@amd.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +71,107 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6133493333471228590==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 15 Sep 2026, Animesh Manna <animesh.manna@intel.com> wrote:
+> Abstract ALPM DPCD initialization into its own function.
+>
+> v2:
+> - Improve commit description. [Suraj, Jouni]
+>
+> Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_alpm.c | 11 +++++++++++
+>  drivers/gpu/drm/i915/display/intel_alpm.h |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp.c   |  6 +-----
+>  3 files changed, 13 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/=
+i915/display/intel_alpm.c
+> index 10943539bc7c..a6743fe62d48 100644
+> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
+> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+> @@ -43,6 +43,17 @@ bool intel_alpm_is_alpm_aux_less(struct intel_dp *inte=
+l_dp,
+>  		(crtc_state->has_lobf && intel_alpm_aux_less_wake_supported(intel_dp));
+>  }
+>=20=20
+> +bool intel_alpm_init_dpcd(struct intel_dp *intel_dp)
+> +{
+> +	u8 dpcd;
+> +
+> +	if (drm_dp_dpcd_read_byte(&intel_dp->aux, DP_RECEIVER_ALPM_CAP, &dpcd) =
+< 0)
+> +		return false;
+> +
+> +	intel_dp->alpm_dpcd =3D dpcd;
+> +	return true;
+> +}
 
-== Series Details ==
+Why not propagate the original error instead of flattening to a boolean?
+What does boolean true/false mean for a function that's not a predicate
+function but "init"?
 
-Series: gpu/buddy: add range-restricted contiguous allocation fallback
-URL   : https://patchwork.freedesktop.org/series/175261/
-State : success
+From a maintenance perspective, the mixing of bool vs. int return values
+is a problem because you never know what is being checked for in the
+caller side:
 
-== Summary ==
+	if (!intel_alpm_init_dpcd())
 
-CI Bug Log - changes from xe-5845-e6a6d431be7101c5cdbb1b5d97caa9c1ea9cb493_BAT -> xe-pw-175261v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5845-e6a6d431be7101c5cdbb1b5d97caa9c1ea9cb493 -> xe-pw-175261v1
-
-  IGT_9116: 9d4b6ef512b4e2e4d05129c6519313fd13a306d2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5845-e6a6d431be7101c5cdbb1b5d97caa9c1ea9cb493: e6a6d431be7101c5cdbb1b5d97caa9c1ea9cb493
-  xe-pw-175261v1: 175261v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175261v1/index.html
-
---===============6133493333471228590==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Does that return bool and false means failure? Or does that return int
+and false means success?!
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+BR,
+Jani.
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>gpu/buddy: add range-restricted contiguous allocation fallback</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175261/">https://patchwork.freedesktop.org/series/175261/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+> +
+>  void intel_alpm_init(struct intel_dp *intel_dp)
+>  {
+>  	mutex_init(&intel_dp->alpm.lock);
+> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/=
+i915/display/intel_alpm.h
+> index f8f605d94f96..56c3e1482e37 100644
+> --- a/drivers/gpu/drm/i915/display/intel_alpm.h
+> +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
+> @@ -15,6 +15,7 @@ struct intel_connector;
+>  struct intel_atomic_state;
+>  struct intel_crtc;
+>=20=20
+> +bool intel_alpm_init_dpcd(struct intel_dp *intel_dp);
+>  void intel_alpm_init(struct intel_dp *intel_dp);
+>  bool intel_alpm_compute_params(struct intel_dp *intel_dp,
+>  			       struct intel_crtc_state *crtc_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 0cd5e6b5034c..650c8b39270b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4783,7 +4783,6 @@ static bool
+>  intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *c=
+onnector)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+> -	int ret;
+>  	u8 dprx;
+>=20=20
+>  	/* this function is meant to be called only once */
+> @@ -4829,10 +4828,7 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, str=
+uct intel_connector *connector
+>  	 */
+>  	intel_dp_init_source_oui(intel_dp);
+>=20=20
+> -	/* Read the ALPM DPCD caps */
+> -	ret =3D drm_dp_dpcd_read_byte(&intel_dp->aux, DP_RECEIVER_ALPM_CAP,
+> -				    &intel_dp->alpm_dpcd);
+> -	if (ret < 0)
+> +	if (!intel_alpm_init_dpcd(intel_dp))
+>  		return false;
+>=20=20
+>  	/*
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175261v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175261v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5845-e6a6d431be7101c5cdbb1b5d97caa9c1ea9cb493_BAT -&gt; xe-pw-175261v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5845-e6a6d431be7101c5cdbb1b5d97caa9c1ea9cb493 -&gt; xe-pw-175261v1</li>
-</ul>
-<p>IGT_9116: 9d4b6ef512b4e2e4d05129c6519313fd13a306d2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5845-e6a6d431be7101c5cdbb1b5d97caa9c1ea9cb493: e6a6d431be7101c5cdbb1b5d97caa9c1ea9cb493<br />
-  xe-pw-175261v1: 175261v1</p>
-
-</body>
-</html>
-
---===============6133493333471228590==--
+--=20
+Jani Nikula, Intel
