@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42D03CA5FB1
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 09:40:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D9FACA5FC3
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 09:41:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0643910E965;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFB7F10E9FA;
 	Wed, 30 Sep 2026 09:40:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RsJCg2YD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jDTDa2A4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4803F10E965
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Sep 2026 09:40:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B247610E965
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Sep 2026 09:40:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790761256; x=1822297256;
+ t=1790761259; x=1822297259;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=119RlcGX0xv5UlgnyMTHvoEg0Ejj+Wtd9zO+fJCv/X8=;
- b=RsJCg2YDQD9ATGpncRAhxc2sAMGrffbB83b78UGJidw/HTI+7E+g5pEw
- iuV/Mg3ChMox6JW7kMTc+t5FkzXwlrgI19xxYgOpuY0xuHxy28KODnSx7
- eXqyOnzgPJ7CYU7UGUnogMTvqhE0KLYTM/yBa4YYo4HOK4D0DYASY79Pr
- vy6qRSTS9R+O6U5U/l3u1xo9RHZpGW94NE6K5AJHru1Dx2so8xKcF1PGD
- 01V17ze4tcBIFaR2gGtLeUUEc+yIKL56oc5fYA6uqIncWF6PshL7kKIQh
- vfCyDnighAxo4lXXOva/nE84wIUCWneAbID9WRi7CAuNc1S+rdNEgmBKR A==;
-X-CSE-ConnectionGUID: t0osNp96RWu3JY4NjC0fRw==
-X-CSE-MsgGUID: T5g8XZqwS82Pc/MhzKawKg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11920"; a="95303810"
-X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="95303810"
+ bh=gokNzLY5ajBSzDazjnj5mWgduyQ3qlbqNjKdF+P+o20=;
+ b=jDTDa2A4+QEKOCGVZNGQ9YDgrDPMPKoJPp7HIYZpN8D5bylzu5IJgaJ3
+ r/PwagWk4+lhhiAkH8RtsTMmKPfYaiW1pUsYl3FRyIf7TbEDp7B4mHvdN
+ B44CQ6xH7IXXH+iXJldFMQGJxFuQBNVTAkLNxlxa8Rrsa3KHrTEAJCXWk
+ xBi4cH8tYQ7r4a1xsEBMlhkEflgMxXReP2j7MOBkvYbjRFM51F4dgKyMf
+ LtVaQEBZeErBC5CKzl2VAIFNgEFGiVfUHR2n4AUXUKecgGxI/pF1fy15m
+ kVXnpajQcTb/7VR8Emh8tpV7ueW9RejD0n8diWd8xbiPdCIRNx7AceBbX w==;
+X-CSE-ConnectionGUID: o3Nv99gzSN2LPIVjZd4Glw==
+X-CSE-MsgGUID: wdTjm9mwQtuyHKqSpDA5bA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11920"; a="95303819"
+X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="95303819"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2026 02:40:56 -0700
-X-CSE-ConnectionGUID: cMgXQ3/PT4Kr4z5yy8Ugyw==
-X-CSE-MsgGUID: tcsXVDfgR2a8xy03c0Pd7w==
+ 30 Sep 2026 02:40:58 -0700
+X-CSE-ConnectionGUID: m936NQWlRsCNfnseK64Xtw==
+X-CSE-MsgGUID: 4jV4P20jQKaQK+RMinHjng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="274768710"
+X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="274768716"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2026 02:40:54 -0700
+ 30 Sep 2026 02:40:57 -0700
 From: Varun Gupta <varun.gupta@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  himal.prasad.ghimiray@intel.com
-Subject: [PATCH 2/3] drm/xe/guc: Publish the ring tail when replaying a
- chained ULLS job
-Date: Wed, 30 Sep 2026 15:10:34 +0530
-Message-ID: <20260930094031.3365707-7-varun.gupta@intel.com>
+Subject: [PATCH 3/3] drm/xe/guc: Rewind the LRC ring head when replaying a
+ ULLS job
+Date: Wed, 30 Sep 2026 15:10:35 +0530
+Message-ID: <20260930094031.3365707-8-varun.gupta@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260930094031.3365707-5-varun.gupta@intel.com>
 References: <20260930094031.3365707-5-varun.gupta@intel.com>
@@ -68,55 +68,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A chained ULLS job skips the ring tail write in submit_exec_queue()
-since its predecessor's postamble has already published it from within
-the ring. After a GT reset the context is re-registered with scheduling
-disabled and that postamble is gone, so nothing publishes the replayed
-job's tail: the context is enabled with head == tail and the job never
-starts. On the kernel migration queue the second timeout wedges the
-device.
+On GT reset replay, guc_exec_queue_start() rewinds the software ring
+tail to the first unsignalled job's head and sets the LRC tail to the
+LRC head. This assumes the saved head has not passed an unstarted job,
+which holds for ordinary submission as the CS cannot run past a job it
+has not executed.
 
-Publish the tail for a chained job when the queue is not enabled. This
-is the state in which submit_exec_queue() already sends the scheduling
-enable H2G instead of relying on a resident context, and the tail write
-precedes that H2G. guc_exec_queue_stop() clears ENABLED on reset and
-register_exec_queue() does not set it, so the first replayed ULLS job
-always takes this path; its re-emitted postamble then publishes the
-next tail as usual. With the queue enabled nothing changes.
+A ULLS job's slot is covered by a tail its predecessor published from
+within the ring, so the CS can consume the slot and idle without the
+job having run, leaving the saved head past it. On replay the job is
+re-emitted behind the head, the context restarts with head == tail and
+the job never starts.
 
-job->restore_replay does not identify this case, it is only set on the
-SR-IOV VF pause/unpause path.
+Rewind the LRC head to the job's head as well when the first pending
+job is a ULLS job, so the re-emitted job is ahead of it. Non-ULLS
+replay is unchanged.
 
 Fixes: 40c756bdbbee ("drm/xe: Add ULLS migration job support to GuC submission")
 Cc: Matthew Brost <matthew.brost@intel.com>
 Assisted-by: LLM
 Signed-off-by: Varun Gupta <varun.gupta@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index cd9bb9f9e28c..1d98ec67c5c6 100644
+index 1d98ec67c5c6..0b231228bde8 100644
 --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1190,10 +1190,15 @@ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
- 	xe_gt_assert(guc_to_gt(guc), exec_queue_registered(q));
- 
- 	if (!job->restore_replay || job->last_replay) {
--		/* A ULLS job past the first publishes its own ring tail */
-+		/*
-+		 * A chained ULLS job relies on its predecessor's postamble to
-+		 * publish its ring tail. After a reset the context comes back
-+		 * disabled with that postamble gone, so publish it here.
-+		 */
- 		if (xe_exec_queue_is_parallel(q))
- 			wq_item_append(q);
--		else if (!xe_sched_job_ulls_is_chained(job))
-+		else if (!xe_sched_job_ulls_is_chained(job) ||
-+			 !exec_queue_enabled(q))
- 			xe_lrc_set_ring_tail(lrc, lrc->ring.tail);
- 		job->last_replay = false;
- 	}
+@@ -3058,6 +3058,15 @@ static void guc_exec_queue_start(struct xe_exec_queue *q)
+ 				 * increasing as jobs are written out.
+ 				 */
+ 				q->lrc[i]->ring.tail = job->ptrs[i].head;
++				/*
++				 * A ULLS job's slot can have been consumed by
++				 * the CS without the job running, leaving the
++				 * saved head past it. Rewind so the re-emitted
++				 * job is ahead of the head, not behind it.
++				 */
++				if (xe_sched_job_is_ulls(job))
++					xe_lrc_set_ring_head(q->lrc[i],
++							     job->ptrs[i].head);
+ 				xe_lrc_set_ring_tail(q->lrc[i],
+ 						     xe_lrc_ring_head(q->lrc[i]));
+ 			}
 -- 
 2.43.0
 
