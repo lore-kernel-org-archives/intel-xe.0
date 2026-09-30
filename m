@@ -4,53 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 594EFCA5FCD
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 15:00:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEC8DCA5FCB
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 15:00:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BEC610F470;
-	Wed, 30 Sep 2026 15:00:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9123510F46C;
+	Wed, 30 Sep 2026 15:00:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AYYX+LaI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dZiuEta+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4C4110F46C;
- Wed, 30 Sep 2026 15:00:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1800C10F46F;
+ Wed, 30 Sep 2026 15:00:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1790780423; x=1822316423;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=wrdV/ew3ezoz7NW1bC/ZlsIjGeJV2HNeHUm57oqE/7U=;
- b=AYYX+LaId38mzH3agjEnlWuoG5gjKavnn1fH5vmv20A2fJKaNWkKzwrR
- wAao9RtqkD/S/DVeleonO74fFoyXQ1bLHs2SDSEa1ISKVdARbxyHYZPyA
- PpDwmbnHxeni2Q793s4X8yYlfudHL3mOL9x3ZU/pts7mOWfG/3iRH/a71
- DDw5wo9ajmHTStRfT0d6E3ANXWQIbTnDimaeLnQ0esowG1vv7BYF8sILM
- 9AFtngxo0HpLuR4fTMVgbHxTyxAF1K77YU8fvb3fJOvSLO/LTZFyReMLT
- MZk0soKf1Rv0T8ixWAUTWzWi+Et5c1ZPBbfOtb6u3nYCKz52CRbLK7PAH w==;
-X-CSE-ConnectionGUID: odc+91t6Qw2Ubwqq4wNJig==
-X-CSE-MsgGUID: eDV1PeBmTieuxQsbsRlv4w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11921"; a="79086754"
-X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="79086754"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=08JXiCGFM13oYlcFvj16ljmerW/EearHBQmMNpKSNQI=;
+ b=dZiuEta+Vrzgd69vqlUod4eu1rkjrLak/VMcmk6IDa5E47nGpsRXx6ye
+ QbAAE5+XeLLG3/WLsQ15waIZnZxoKq6MV1Py8JVA8oTYscPqlVKu7eaId
+ 1TydhDWIyTvUEIWZW+9I4wr4bZjvkQNu8x+o+RUWbRLfpsIqMHC7v4S9A
+ xDs4ZUDiWMgyVBdSdC7pBoKak8jMgZNCX0om00w+EKEx5WppKUIVYm+d9
+ UOB/NkIK18+HnzqPTq0aZtyfCR+uHHq5f7BQTVlaYrRkztJUAWmROfu9n
+ 3uvTOZUf3L2/dH4mSBsilFhokcQ8+91rbBXtv9+1U+XrWi2EaBvdxT4MG w==;
+X-CSE-ConnectionGUID: N/Vfcdn/TeSSyxEQG8iQdw==
+X-CSE-MsgGUID: XtsuJvzARv+SHWwq1wIovw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11921"; a="79086758"
+X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="79086758"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2026 08:00:12 -0700
-X-CSE-ConnectionGUID: kc4j6UDLQu2MJ31pnejLsg==
-X-CSE-MsgGUID: eDh2SGNBQO+/VYB3qwpa/w==
+ 30 Sep 2026 08:00:17 -0700
+X-CSE-ConnectionGUID: tA7jZvPlSoGzpvmrjmbo3A==
+X-CSE-MsgGUID: yR/Ofda5SQ6ueyTyqo+mtg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="279505688"
+X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="279505700"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.107])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2026 08:00:11 -0700
+ 30 Sep 2026 08:00:15 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, maarten.lankhorst@linux.intel.com,
- ville.syrjala@linux.intel.com
-Subject: [CI v2 00/10] drm/{i915,xe}: use a shared gtt_view_types.h header
-Date: Wed, 30 Sep 2026 17:59:56 +0300
-Message-ID: <cover.1790780340.git.jani.nikula@intel.com>
+ ville.syrjala@linux.intel.com, Maarten Lankhorst <dev@lankhorst.se>
+Subject: [CI v2 01/10] drm/intel: move i915_gtt_view_types.h to
+ include/drm/intel
+Date: Wed, 30 Sep 2026 17:59:57 +0300
+Message-ID: <174f7e26be755b29a1286bf8b8ef0342dcc083a6.1790780340.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1790780340.git.jani.nikula@intel.com>
+References: <cover.1790780340.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -70,51 +73,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move i915_gtt_view_types.h under include/drm/intel, and clean up.
+The i915 and xe drivers share i915_gtt_view_types.h from i915
+source. Move it to include/drm/intel/gtt_view_types.h.
 
-v2 of [1]
+Remove the i915 compat header.
 
-[1] https://lore.kernel.org/r/cover.1789502902.git.jani.nikula@intel.com
+v2: Keep comment for header guard #endif (Ville)
 
-
-Jani Nikula (10):
-  drm/intel: move i915_gtt_view_types.h to include/drm/intel
-  drm/intel: rename i915_gtt_view_is_*() helpers to
-    intel_gtt_view_is_*()
-  drm/intel: rename i915_gtt_view* struct/enum to intel_gtt_view*
-  drm/intel: add intel_gtt_view_is_partial() for completeness
-  drm/xe/display: use intel_gtt_view_is_*() helpers more
-  drm/i915/gem: use intel_gtt_view_is_*() helpers more
-  drm/i915/vma: use intel_gtt_view_is_*() helpers more
-  drm/i915/selftests: use intel_gtt_view_is_*() helpers more
-  drm/i915/debugfs: use the intel_gtt_view_is_*() helpers more
-  drm/intel: rename I915_GTT_VIEW_* enumerations to INTEL_GTT_VIEW_*
-
- .../drm/i915/display/intel_display_types.h    |  4 +-
- drivers/gpu/drm/i915/display/intel_fb.c       | 18 ++---
- drivers/gpu/drm/i915/display/intel_parent.c   |  4 +-
- drivers/gpu/drm/i915/display/intel_parent.h   |  6 +-
- drivers/gpu/drm/i915/gem/i915_gem_domain.c    |  4 +-
- drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 14 ++--
- drivers/gpu/drm/i915/gem/i915_gem_object.h    |  2 +-
- .../drm/i915/gem/selftests/i915_gem_mman.c    |  4 +-
- drivers/gpu/drm/i915/i915_debugfs.c           | 20 ++---
- drivers/gpu/drm/i915/i915_gem.c               |  6 +-
- drivers/gpu/drm/i915/i915_gem.h               |  6 +-
- drivers/gpu/drm/i915/i915_gtt_view_types.h    | 74 -----------------
- drivers/gpu/drm/i915/i915_vma.c               | 44 ++++-------
- drivers/gpu/drm/i915/i915_vma.h               | 12 +--
- drivers/gpu/drm/i915/i915_vma_types.h         | 29 ++++---
- drivers/gpu/drm/i915/selftests/i915_vma.c     | 60 +++++++-------
- .../compat-i915-headers/i915_gtt_view_types.h |  7 --
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 28 +++----
- include/drm/intel/display_parent_interface.h  |  8 +-
- include/drm/intel/gtt_view_types.h            | 79 +++++++++++++++++++
- 20 files changed, 201 insertions(+), 228 deletions(-)
- delete mode 100644 drivers/gpu/drm/i915/i915_gtt_view_types.h
+Reviewed-by: Maarten Lankhorst <dev@lankhorst.se>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_types.h         | 2 +-
+ drivers/gpu/drm/i915/i915_vma_types.h                      | 3 +--
+ .../gpu/drm/xe/compat-i915-headers/i915_gtt_view_types.h   | 7 -------
+ drivers/gpu/drm/xe/display/xe_fb_pin.c                     | 4 +---
+ .../drm/intel/gtt_view_types.h                             | 6 +++---
+ 5 files changed, 6 insertions(+), 16 deletions(-)
  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gtt_view_types.h
- create mode 100644 include/drm/intel/gtt_view_types.h
+ rename drivers/gpu/drm/i915/i915_gtt_view_types.h => include/drm/intel/gtt_view_types.h (92%)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 79f30660c2b6..fe3b6bec4817 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -41,10 +41,10 @@
+ #include <drm/drm_panel.h>
+ #include <drm/drm_rect.h>
+ #include <drm/drm_vblank_work.h>
++#include <drm/intel/gtt_view_types.h>
+ #include <drm/intel/i915_hdcp_interface.h>
+ #include <uapi/drm/i915_drm.h>
+ 
+-#include "i915_gtt_view_types.h"
+ #include "intel_bios.h"
+ #include "intel_display.h"
+ #include "intel_display_conversion.h"
+diff --git a/drivers/gpu/drm/i915/i915_vma_types.h b/drivers/gpu/drm/i915/i915_vma_types.h
+index a499a3bea874..83fe02833b5e 100644
+--- a/drivers/gpu/drm/i915/i915_vma_types.h
++++ b/drivers/gpu/drm/i915/i915_vma_types.h
+@@ -29,11 +29,10 @@
+ #include <linux/rbtree.h>
+ 
+ #include <drm/drm_mm.h>
++#include <drm/intel/gtt_view_types.h>
+ 
+ #include "gem/i915_gem_object_types.h"
+ 
+-#include "i915_gtt_view_types.h"
+-
+ /**
+  * DOC: Global GTT views
+  *
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_gtt_view_types.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_gtt_view_types.h
+deleted file mode 100644
+index b261910cd6f9..000000000000
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_gtt_view_types.h
++++ /dev/null
+@@ -1,7 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/* Copyright © 2025 Intel Corporation */
+-
+-#include "../../i915/i915_gtt_view_types.h"
+-
+-/* Partial view not supported in xe, fail build if used. */
+-#define I915_GTT_VIEW_PARTIAL
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index b46a2c32ac07..6fae8cc27aad 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -4,11 +4,9 @@
+  */
+ 
+ #include <drm/intel/display_parent_interface.h>
++#include <drm/intel/gtt_view_types.h>
+ #include <drm/ttm/ttm_bo.h>
+ 
+-/* FIXME move the types to parent interface? */
+-#include "i915_gtt_view_types.h"
+-
+ /* FIXME move intel_remapped_info_size() & co. to parent interface? */
+ #include "intel_fb.h"
+ 
+diff --git a/drivers/gpu/drm/i915/i915_gtt_view_types.h b/include/drm/intel/gtt_view_types.h
+similarity index 92%
+rename from drivers/gpu/drm/i915/i915_gtt_view_types.h
+rename to include/drm/intel/gtt_view_types.h
+index 9c4f38db32ff..5770fc53b823 100644
+--- a/drivers/gpu/drm/i915/i915_gtt_view_types.h
++++ b/include/drm/intel/gtt_view_types.h
+@@ -1,8 +1,8 @@
+ /* SPDX-License-Identifier: MIT */
+ /* Copyright © 2025 Intel Corporation */
+ 
+-#ifndef __I915_GTT_VIEW_TYPES_H__
+-#define __I915_GTT_VIEW_TYPES_H__
++#ifndef __DRM_INTEL_GTT_VIEW_TYPES_H__
++#define __DRM_INTEL_GTT_VIEW_TYPES_H__
+ 
+ #include <linux/types.h>
+ 
+@@ -71,4 +71,4 @@ static inline bool i915_gtt_view_is_rotated(const struct i915_gtt_view *view)
+ 	return view->type == I915_GTT_VIEW_ROTATED;
+ }
+ 
+-#endif /* __I915_GTT_VIEW_TYPES_H__ */
++#endif /* __DRM_INTEL_GTT_VIEW_TYPES_H__ */
 -- 
 2.47.3
 
