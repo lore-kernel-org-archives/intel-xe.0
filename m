@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36A29CA5FAC
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 12:02:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73754CA5FB1
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 12:04:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC77610E814;
-	Wed, 30 Sep 2026 12:02:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3C2110F350;
+	Wed, 30 Sep 2026 12:04:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="NBWtvnyt";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kyWRBhbF";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AB8810E214;
- Wed, 30 Sep 2026 12:02:23 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5BBC10F34E;
+ Wed, 30 Sep 2026 12:04:30 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 1C5E14388F;
- Wed, 30 Sep 2026 12:02:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C990F1F000FF;
- Wed, 30 Sep 2026 12:02:22 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id D120260008;
+ Wed, 30 Sep 2026 12:04:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 519401F000FF;
+ Wed, 30 Sep 2026 12:04:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790769743;
- bh=GCEUBE4/sTBdDe1YRieuzhIolZ+AVpAIgszrBgvD9dM=;
+ s=k20260515; t=1790769869;
+ bh=NoLly8Upwuytnlzj5W64jbN0a3f4wCMaLLoCl/ISn0Y=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=NBWtvnytLYLJALBP3/ZPhc6eA60A8o043jw03quN+2k1gLDEvevDClZxCMsnR4Nb8
- 5EkiqXdV5Pd7XKWM4+mjusRZnqeWtxM7k8EXgQ79X98hGER8YaAcEs+cLeAChfq1jN
- lF3QV3Nc6gupSe3TDbfw2+25+88zZnullSm4RK6ZlJUFocLjN9nPHrBIJKnUMc3XWY
- ++feUgd0FpKSf9bQxA2KOUAkCvhxLFzoINwwudvTXGJrTlG1nQ3NnpeQlDUqj5smc5
- E10FjKrfSSxKrm4fpMIvtKrQx+78M33iPcBuCWt6pf8JDh4KHbAbi7RjNY3OIO5knL
- 8qsIoppRn0+tw==
+ b=kyWRBhbFK7rxqKw172EJR1y58fkBdTNiuhOXnpLEBEwJjilNk+gd+s1kjZvf8KxZ7
+ WXA5vk++hLWTJDLcyfIMZZvv18NcB3a7AkY2j1o3LZfnfimm6pr0cLm8r2crdCOoN2
+ MSO/nvrcEIyF+2qD252iXPFMH3m+xTr0YeNPWTEYEKsI2SARgVq7Mf0Qa5UppQ7NVx
+ RWpDP4LkEvI6cN55stUr+xtdTLPJiS1EsyArkir0Kc93qoYycKNZ0YX7IpvEfbh+M1
+ WjGEzJlQJmlnbAzxo6QINI8P/Hjyu6VuEKUQNsK37dAsEHN5j0opNR/k6/yCJZtMEy
+ kgQBZB4YHGeIQ==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/3] drm/i915/dp: Drop using intel_de_read_notrace()
+Subject: Re: [PATCH 1/3] drm/i915/gmbus: Switch GMBUS fully to _fw()
+ register accesses
 To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20260930115303.24285-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260930115303.24285-1-ville.syrjala@linux.intel.com>
 References: <20260930115303.24285-1-ville.syrjala@linux.intel.com>
- <20260930115303.24285-2-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 30 Sep 2026 12:02:22 +0000
-Message-Id: <20260930120222.C990F1F000FF@smtp.kernel.org>
+Date: Wed, 30 Sep 2026 12:04:28 +0000
+Message-Id: <20260930120429.519401F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,45 +58,69 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Low] Tracing redundancy: duplicate trace of DP_AUX_CH_CTL read
+- [Medium] drm/i915: accidental use of intel_de_wait_ms() defeats DC optimi=
+zation
 --
 
-commit afa17c7838a57999000c6a138fccf379e59ccba4
+commit 1836a89e6bc24b1ddcaa1396b56e118dff0e2e2c
 Author: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-drm/i915/dp: Drop using intel_de_read_notrace()
+drm/i915/gmbus: Switch GMBUS fully to _fw() register accesses
 
-This patch eliminates intel_de_read_notrace() to shrink the API, switching
-its last users in intel_dp_aux_wait_done() and intel_dp_aux_xfer() over to
-the normal intel_de_read().
+This commit switches GMBUS code to use _fw() register accesses rather than
+_notrace() variants. The primary goal is to avoid exiting DC5/6 during PCH
+register accesses, which was causing significant performance penalties.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_aux.c
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm=
+/i915/display/intel_gmbus.c
+> index 60a70dea5d856..09171f3db298d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
+> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
 
 [ ... ]
 
-> @@ -324,7 +324,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+> @@ -454,7 +454,7 @@ gmbus_wait_idle(struct intel_display *display)
+>  	add_wait_queue(&display->gmbus.wait_queue, &wait);
+>  	intel_de_write_fw(display, GMBUS4(display), irq_enable);
 > =20
->  	/* Try to wait for any previous AUX channel activity */
->  	for (try =3D 0; try < 3; try++) {
-> -		status =3D intel_de_read_notrace(display, ch_ctl);
-> +		status =3D intel_de_read(display, ch_ctl);
->  		if ((status & DP_AUX_CH_CTL_SEND_BUSY) =3D=3D 0)
->  			break;
->  		msleep(1);
->  	}
->  	/* just trace the final value */
->  	trace_i915_reg_rw(false, ch_ctl, status, sizeof(status), true);
+> -	ret =3D intel_de_wait_fw_ms(display, GMBUS2(display), GMBUS_ACTIVE, 0, =
+10, NULL);
+> +	ret =3D intel_de_wait_ms(display, GMBUS2(display), GMBUS_ACTIVE, 0, 10,=
+ NULL);
 
-[Severity: Low]
-Does this leave us with duplicate trace events?
+[Severity: Medium]
+Does replacing intel_de_wait_fw_ms() with intel_de_wait_ms() defeat the DC
+optimization intended by this commit?
 
-Since intel_de_read() internally traces the register read, this explicit
-trace_i915_reg_rw() call in intel_dp_aux_xfer() appears redundant and might
-cause duplicate trace log entries for this final read.
+Looking at intel_de_wait_ms() in intel_de.c, it acquires wakelocks and does
+standard register reads:
+
+int intel_de_wait_ms(...)
+{
+    ...
+    intel_dmc_wl_get(display, reg);
+
+    ret =3D intel_de_wait_for_register(display, reg, mask, value,
+                                     timeout_ms * 1000,
+                                     intel_de_read,
+                                     out_value, false);
+    ...
+}
+
+Since the commit message notes that the extra north FPGA_DBG register
+accesses cause DC5/6 exits, it seems calling intel_de_wait_ms() here will p=
+ull
+in the uncore lock acquisitions and DMC wakelocks that force the hardware o=
+ut
+of DC5/6.=20
+
+Could this unintended swap cause a performance regression during display
+operations that require GMBUS transfers?
+
+> =20
+>  	intel_de_write_fw(display, GMBUS4(display), 0);
+>  	remove_wait_queue(&display->gmbus.wait_queue, &wait);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260930115303.2428=
-5-1-ville.syrjala@linux.intel.com?part=3D2
+5-1-ville.syrjala@linux.intel.com?part=3D1
