@@ -4,59 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAEAFCA5FC5
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 13:38:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9124CCA5FCB
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 13:44:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C3F710F407;
-	Wed, 30 Sep 2026 13:38:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 501F810F40C;
+	Wed, 30 Sep 2026 13:44:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BTqepYCc";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nCU8Fjuy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6F3C10F407;
- Wed, 30 Sep 2026 13:38:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790775539; x=1822311539;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=LaiiNSkzSf7icoy9sdrrmyPyKtaK/+OOZCUZR86oD1M=;
- b=BTqepYCcFGYS97R/Axx/lYwvgjd5QQgqRKgenjVOF6TO3lwTteG00Oa4
- ZtNQMZIIExZPkoLj3WVCsZ6IeCx6Dpk+R2+9Ws2fwKZh/tdbnix7uO8nk
- 5ee9Uoiz6XssjIwMB9Avde6M7WIxIiY6yv2303cudVCBCrj6UhNP2VOYO
- sY7Hn2aAL/aBgr+n6ZGOtdLeY4DtgI14lZTZZtv+gBzZbw/Q1i53E5wvy
- qDq3xsiPFtDNeQDz+FBoChJGLSk+DBx5j31kGFlGnWQBF1wBT2ss04HeA
- 5n23j36FDeiO8QAT+WfjZNkFPCLmTNYP2R5ktqe1olWHWkGF7fZtyLwQw A==;
-X-CSE-ConnectionGUID: xPOtMvspTKShZ99RmiFEJQ==
-X-CSE-MsgGUID: IiGYBT7URIGqksFA6fxcJw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11920"; a="79080106"
-X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="79080106"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2026 06:38:58 -0700
-X-CSE-ConnectionGUID: R4LSPd67Rg6BSsD6WVGg3A==
-X-CSE-MsgGUID: N0+/9xoQRMaLjh8+dyc4Yg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="301961717"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.175])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2026 06:38:57 -0700
-Date: Wed, 30 Sep 2026 16:38:54 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 00/10] drm/{i915, xe}: use a shared gtt_view_types.h header
-Message-ID: <ar0Q7vanXDrMkc_u@intel.com>
-References: <cover.1789502902.git.jani.nikula@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1789502902.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75BA210F40C
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Sep 2026 13:44:55 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 317D440C4A;
+ Wed, 30 Sep 2026 13:44:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEA591F000FF;
+ Wed, 30 Sep 2026 13:44:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1790775895;
+ bh=zNCn14RrXYBXURVM+d8qBWb2p9C1XG5euKRMB12NOaE=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=nCU8FjuyeQpyka5Vm7ppGVkhawvnyEAOgXljNzcSzOvF/hHl++K+QBz66DGBz31Y7
+ cHTDbGjRwRsDkNp87wnG9Wke61HNVeEuFpnPuE3DBHZHwbsR9Ah3+CvmkKr2YLNAMO
+ GZVoF6+6v7B6yKmxH7+8VX7LrXOBUZpP8QmtHo4+7szVyRhO9xxgO30GW8mNibxOws
+ EtX5hp4A/mFp9eVoznMfHdVaIMG0cY+UysVqjFA05xKP3bX13agkO9t3h0ZzRcSfz3
+ LHaT70WLUs42vgdtylogLq3KL5P4vzTsgp7Axu8YXCMkVVUtgnIA134W15hpLMb7/O
+ uIU0ufT+NCkTw==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v8 1/3] drm/xe/sysctrl: Add sysctrl debugfs
+ infrastructure and loopback test interface
+To: =?utf-8?b?QW5vb3AsIFZpamF5?= <anoop.c.vijay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20260930133451.667270-6-anoop.c.vijay@intel.com>
+References: <20260930133451.667270-5-anoop.c.vijay@intel.com>
+ <20260930133451.667270-6-anoop.c.vijay@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 30 Sep 2026 13:44:54 +0000
+Message-Id: <20260930134454.DEA591F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,60 +53,77 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 15, 2026 at 11:09:11PM +0300, Jani Nikula wrote:
-> Move i915_gtt_view_types.h under include/drm/intel, and clean up.
-> 
-> Jani Nikula (10):
->   drm/intel: move i915_gtt_view_types.h to include/drm/intel
->   drm/intel: rename i915_gtt_view_is_*() helpers to
->     intel_gtt_view_is_*()
->   drm/intel: rename i915_gtt_view* struct/enum to intel_gtt_view*
->   drm/intel: add intel_gtt_view_is_partial() for completeness
->   drm/xe/display: use intel_gtt_view_is_*() helpers more
->   drm/i915/gem: use intel_gtt_view_is_*() helpers more
->   drm/i915/vma: use intel_gtt_view_is_*() helpers more
->   drm/i915/selftests: use intel_gtt_view_is_*() helpers more
->   drm/i915/debugfs: use the intel_gtt_view_is_*() helpers more
->   drm/intel: rename I915_GTT_VIEW_* enumerations to INTEL_GTT_VIEW_*
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] drm/xe/sysctrl: mailbox hang due to truncated loopback response
+--
 
-I did a quick rebase of my wip tile ys/64 stuff on top of it and
-didn't spot anything bad. Spotted a couple of small nits (one in
-the header and another in the selftests) to which I replied
-separately.
+commit ab3eed44be77711e6bb0819ac8607e94eabdf3d2
+Author: Anoop Vijay <anoop.c.vijay@intel.com>
+Subject: drm/xe/sysctrl: Add sysctrl debugfs infrastructure and loopback te=
+st interface
 
-Apart from that the series is
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+This commit adds debugfs support for exercising the System Controller mailb=
+ox
+interface from userspace. It introduces the "sc/loopback" entry to send
+arbitrary byte payloads to the Core group's inverted-loopback command.
 
-> 
->  .../drm/i915/display/intel_display_types.h    |  4 +-
->  drivers/gpu/drm/i915/display/intel_fb.c       | 18 +++---
->  drivers/gpu/drm/i915/display/intel_parent.c   |  4 +-
->  drivers/gpu/drm/i915/display/intel_parent.h   |  6 +-
->  drivers/gpu/drm/i915/gem/i915_gem_domain.c    |  4 +-
->  drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 14 ++---
->  drivers/gpu/drm/i915/gem/i915_gem_object.h    |  2 +-
->  .../drm/i915/gem/selftests/i915_gem_mman.c    |  4 +-
->  drivers/gpu/drm/i915/i915_debugfs.c           | 20 ++-----
->  drivers/gpu/drm/i915/i915_gem.c               |  6 +-
->  drivers/gpu/drm/i915/i915_gem.h               |  6 +-
->  drivers/gpu/drm/i915/i915_vma.c               | 44 +++++---------
->  drivers/gpu/drm/i915/i915_vma.h               | 12 ++--
->  drivers/gpu/drm/i915/i915_vma_types.h         | 29 +++++----
->  drivers/gpu/drm/i915/selftests/i915_vma.c     | 60 +++++++++----------
->  .../compat-i915-headers/i915_gtt_view_types.h |  7 ---
->  drivers/gpu/drm/xe/display/xe_fb_pin.c        | 28 ++++-----
->  include/drm/intel/display_parent_interface.h  |  8 +--
->  .../drm/intel/gtt_view_types.h                | 37 +++++++-----
->  19 files changed, 143 insertions(+), 170 deletions(-)
->  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gtt_view_types.h
->  rename drivers/gpu/drm/i915/i915_gtt_view_types.h => include/drm/intel/gtt_view_types.h (50%)
-> 
-> -- 
-> 2.47.3
+> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c b/drivers/gpu/drm/xe=
+/xe_sysctrl_debugfs.c
+> new file mode 100644
+> index 0000000000000..0620a010198c5
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
 
--- 
-Ville Syrjälä
-Intel
+[ ... ]
+
+> +static ssize_t xe_sysctrl_loopback_write(struct file *file, const char _=
+_user *ubuf,
+> +					 size_t len, loff_t *offp)
+> +{
+
+[ ... ]
+
+> +	if (input_len =3D=3D 0) {
+> +		xe_err(xe, "sysctrl: no loopback payload given\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	xe_sysctrl_create_command(&cmd, entry->group, entry->command,
+> +				  input, input_len, entry->response_buf, input_len);
+
+[Severity: Medium]
+Could passing input_len as the response_len cause a permanent mailbox hang?
+
+If the firmware pads the loopback response such that it occupies more
+16-byte frames than expected (e.g., input_len is 12, but the firmware
+responds with a 16-byte payload requiring an additional frame), the
+low-level mailbox routines might prematurely terminate the read loop.
+
+In sysctrl_receive_frames(), if the hardware sends more frames than
+input_len covers, the loop could exit early, leaving unread frames in
+the mailbox with SYSCTRL_MB_CTRL_RUN_BUSY_OUT set. This would
+permanently stall the state machine and cause all subsequent
+communication to fail with -EBUSY.
+
+Would it be safer to pass XE_SYSCTRL_MB_MAX_DATA_SIZE as the response
+buffer length to safely drain any firmware response?
+
+> +
+> +	scoped_guard(mutex, &entry->lock) {
+> +		guard(xe_pm_runtime)(xe);
+> +		entry->status =3D xe_sysctrl_send_command(entry->sc, &cmd, &out_len);
+> +		entry->response_len =3D entry->status ? 0 : out_len;
+> +		status =3D entry->status;
+> +	}
+> +
+> +	return status ? status : len;
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260930133451.6672=
+70-5-anoop.c.vijay@intel.com?part=3D1
