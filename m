@@ -4,90 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 076D3C9830E
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 05:45:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B27DCA5FB5
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Sep 2026 05:56:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A104F10E5AC;
-	Wed, 30 Sep 2026 05:45:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5519810F1C6;
+	Wed, 30 Sep 2026 05:56:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IzfEcJ1N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dnBz66Mm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3195110E5AC;
- Wed, 30 Sep 2026 05:45:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9451C10E7A0;
+ Wed, 30 Sep 2026 05:56:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790747150; x=1822283150;
+ t=1790747803; x=1822283803;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=jmV0Wyk1x5CkzxqZy8AAkP3VT1VlT2wcTyz9M7FAVuo=;
- b=IzfEcJ1NThMG3HJ7G95gSUT/F0QvdRZCFKaFzI+oKD7ur44aQwUCcvfm
- cztMqwgDwi2Q0Ok1RQwnBOpZSDD9TEYpz8vujaBAb39ajkFCiAVIGe0/L
- X+r3ifLY2fIFDheFm1DtlSuZNq8dUQNAS6eTZdDG9Xm13oXdUkNSUpD7j
- kBlbRR0ncQuspypEVdvVIbR35nvgC88NnciU7dWW7FDlq901ng9tu7K0M
- mPDUv0w6XJRqNomKwqKR1LbFhGMic05A2yWhwRKfUl0aYm2BD84BYaLI5
- MOG4HdokybNKaj5vKbva+TQCubj201GdqSSoo8JveBLehM9l0yQnbeF6S A==;
-X-CSE-ConnectionGUID: 0rkoFO4tTDqCtfffSt31zg==
-X-CSE-MsgGUID: L2jnceVzQnuADvoh5YDaZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11920"; a="90337345"
-X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="90337345"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2026 22:45:49 -0700
-X-CSE-ConnectionGUID: yyljRZF1Re61fl/ToklMlg==
-X-CSE-MsgGUID: KBOmJczJRzCi0Fwg3XJxbw==
+ bh=N7lC2TYDOyI/ZagYawHXiFSXzUgIzQww6IKwZF1gWHk=;
+ b=dnBz66MmIkKVYPhgysJH/1pJNdTqNc8BVMYT0/h7+er80R3c/C1SyA8f
+ 5FQ2tG8untjuxJ4Bv8RwSQUiAid2FPmh+WYzQ46Q+E9uDWqsGc6TLVFAL
+ Z0Eyq/GnZJgkWeCs6akrhiQWtoQuQ06F5/OT5/Lv5ektNJzP33etLdIVB
+ C1VRjvajk1mQBm9Nm+1vUK8yiWeNadpph2cpW72ruvP4rG+i/GhJWKuSa
+ UGRGh3z0Xz9RzjKnviutqq8vxPy8JzIk5bAS7OBajHamHV6x5DcBVp9Tl
+ 1k6xWmbh8BoFEK689ayaBaiB968CKfemxDz9fH4GLNv84zBkzqPboJxuA g==;
+X-CSE-ConnectionGUID: X74vo6kySg6hxI8KCYK3mg==
+X-CSE-MsgGUID: pqPPiDBXQFK/RTGkV0XW6Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11920"; a="102150558"
+X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="102150558"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2026 22:56:43 -0700
+X-CSE-ConnectionGUID: 7VjyywEaTLeLI6QbCzZYzg==
+X-CSE-MsgGUID: 346fCpqVTfqmQ9GU4jLPtw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="279385219"
+X-IronPort-AV: E=Sophos;i="6.27,132,1787036400"; d="scan'208";a="313534353"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2026 22:45:49 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2026 22:56:43 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 29 Sep 2026 22:45:49 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.46; Tue, 29 Sep 2026 22:56:42 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Tue, 29 Sep 2026 22:45:49 -0700
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.66) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.46 via Frontend Transport; Tue, 29 Sep 2026 22:56:42 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.18) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Tue, 29 Sep 2026 22:45:48 -0700
+ 15.2.2562.46; Tue, 29 Sep 2026 22:56:42 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RzOUZPHDfawI7otrBLziI/3BgqQka+TnwsalOG0EXQGsIZFykKrCbVbhtqz4awLJ1Tg12c5nfUlWd0mwh+EgtZFWtd2mCiGecgdNPhdVFcjrUgFUzVqpgmLBYphcLqdyRvsOHgUsogNcSsLg+B+0p2ax6uCuJRBS4M1PjYroFWVgcob7FtXMgNKNXz4EY+/d2VnyvQZJ5vWRfVZSAKODyyEvCKUT002gFz1uiqfvnHNd2R84jD69CVkhvn182WON8D5NrcdVBls/9iMSOrjcHtlENrGg+1t4EYsulIaU6q5YDvs8mGoJ9sOmC+h1lGLwXNW7pISETUR1C0g17ROWYw==
+ b=iyOHTRECm+8XeWbNn7oSgbfZE2yXipP80rn2N7Gg1a2T3wYdS+/3DczK/Ph9/jsBVh76W6HWSwy3PPXeWaSeStifhPe1ZCGaRx3Ji1ob7KkxaEYHQIjYciRQsJtHn/1q5ng/Bdk288pVa+0e/BcOcPLV+XYm9hPsYQDY9lKpTRE7ThdHewrDw/cemGUG47mcZU6dylRfdJ0sN32JRIAGWHBkWl5QEkzXP6tzFAaPMn6BToPtDZIjWOWRCPuINjXvNmAJPK8D3dp0sVjvjwxYYZaiAfCsBoSGMj5Q0nl1WZZv4M5diAXUqRnJ/ZvHpzD8uERx96t7l+oILZaaVJZv2A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+erhJdF15AhC3ebP2xHGWXUSFkdRcmOGVHJZDFGNkes=;
- b=rnbownqvCrZJA08y+2lnAET9qRALJfYZK50fOTjfxjCCDLYkvNv7fuOJ/WXpZlE5oc0EKUrajmE3nthquzD5MVEGc6cCgqYPQTiEV74RbIpaqUdOSrhlJ7hUrjKi0RwfNZoxQIqkjr+KIeTH7F6KbfhWWOVa8u8BtxMSHu5rbhLC4cXfRHE5kwsLObjk+4GmLmxUQjzTVwFZ6jrnnwu0la/MIRYUqKeOUVkOASdOT50LQx143vOwDNNsI7lr9bGhUU6zqwfWEMPmA5Ss5r0pkdE9Lgx4vcg2nRRot3nmyjFZa3PLVnIpjjDQZxw/IDsXR3HUMgBB6FcHnvG2O6B6xw==
+ bh=BwwEoHl0EnTEQSVC2mtquiXEi8CbsNXKGOVAHPhoLG4=;
+ b=uTxrMhhR9AyPX1Gdt4Q2TTyJaqwQRHaeU1mrUDy3q6EG7oQVaGoRr1Kahhmq+AwbJM9eSBhT8znL+QTgSj9e6ms2PtrkFcL32YsCFETjTd3b4Y/dL96bJeA3RtvhD/9D13IeX7x0a/aPSzvAntEET1MKAaSLXjY6A3BOT/uUqb70DCt/qfO2iz5y5nZsO96PSY+an+ebgnVDWynlVdDUFO1P3BzcnR+6kgPl20uwCAYUMsinFeE/dW6Xo1VXW6N6aC4e9q+z7qlnVcWelyPKDK+Kf/ykeXT8cwZYceY2az1GRbN8bNylP1cqZ2sJ0zz1aVXG6ljh9cu3DwCrnwI5mw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::5b) by PH7PR11MB5768.namprd11.prod.outlook.com
- (2603:10b6:510:131::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.24; Wed, 30 Sep
- 2026 05:45:46 +0000
+ (2603:10b6:f:fc02::5b) by DS4PR11MB086599.namprd11.prod.outlook.com
+ (2603:10b6:8:507::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.26; Wed, 30 Sep
+ 2026 05:56:36 +0000
 Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
  ([fe80::5be7:2ceb:99ef:6334]) by DS4PPFE901A304F.namprd11.prod.outlook.com
  ([fe80::5be7:2ceb:99ef:6334%8]) with mapi id 15.21.0451.026; Wed, 30 Sep 2026
- 05:45:46 +0000
+ 05:56:35 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
  "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 CC: "alexander.kaplan@sms-medipool.de" <alexander.kaplan@sms-medipool.de>,
  "Sharma, Swati2" <swati2.sharma@intel.com>
-Subject: RE: [PATCH v3 09/10] drm/i915/hdmi: Clamp the target_bpp only when it
- equals the pipe bpp
-Thread-Topic: [PATCH v3 09/10] drm/i915/hdmi: Clamp the target_bpp only when
- it equals the pipe bpp
-Thread-Index: AQHdUAJ1CZfP1n52a06h6YY3Vg0IvLbmnPvg
-Date: Wed, 30 Sep 2026 05:45:46 +0000
-Message-ID: <DS4PPFE901A304F445B4B0FCF3CA34176D4E38B2@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Subject: RE: [PATCH v3 10/10] drm/i915/dp: Clamp PCON DSC bpp to the FRL link
+ bandwidth
+Thread-Topic: [PATCH v3 10/10] drm/i915/dp: Clamp PCON DSC bpp to the FRL link
+ bandwidth
+Thread-Index: AQHdUAJ4VpzwgpK6+kWkjJeZiWEb6LbmnuJA
+Date: Wed, 30 Sep 2026 05:56:35 +0000
+Message-ID: <DS4PPFE901A304F810476DD0A147D118178E38B2@DS4PPFE901A304F.namprd11.prod.outlook.com>
 References: <20260929104835.1050882-1-ankit.k.nautiyal@intel.com>
- <20260929104835.1050882-10-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260929104835.1050882-10-ankit.k.nautiyal@intel.com>
+ <20260929104835.1050882-11-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260929104835.1050882-11-ankit.k.nautiyal@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -95,61 +95,61 @@ X-MS-TNEF-Correlator:
 authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|PH7PR11MB5768:EE_
-x-ms-office365-filtering-correlation-id: db5c6981-ec1e-455c-b650-08df1eb612f0
+x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|DS4PR11MB086599:EE_
+x-ms-office365-filtering-correlation-id: c4c47d41-b610-4b93-b757-08df1eb79638
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|23010399003|366016|1800799024|38070700021|4143699003|11063799006|56012099006|10067099003|22082099003|18002099003|3023799007;
-x-microsoft-antispam-message-info: UTVkUIx47KlEtK/p1MEzZVAvFyhEOyeg7HBzXnd7H4F3STjBFFHlBFluXcaKFAjLAi0FK9WCV2VH99bhz1TWunfPkFYUJRlIVGu9i3oTnqIjhPz5WGRmxtirgDZFOfJHwFycbF08Qk3siwRT7cTr16ViltG/ibJ0VwDKaPFGlF/sbYs9TzB4KatAYp07nIXEVxqHyLLNj/OnBgI42Ya4akUHUc8gKZ7Z55pdBSm3CRHOIhxac4rRD0XemB01acfNQ3Bt7Q50DqwbH0pxrPqdCcZ2N3B8ONFXyKQR3PbbhJfFbaFQim3EUW7XrsyF6e10qSb/kBILWfPk6ulqT+b9CMSLsFU0+6AFvHCIraF7N+lwUcX3Pk5uT21y2z/NjKMAZkwP7D6DZCpk6PIA3sSD39NijHosnSAT0zCIaqNit0wsiDxptbDj8tvCD+KaOFJDeMsh2/KnbrnZK90eQrnOZDByDgV+NGnsTn2bfmqM6RLLp6glBwVNWJll4fTsjSYO9kJJAmwDhUZXfjhyDRQhk78jCG1te2Bom86Uw4jXF7sJuDtSTElzlbBsO3jFFxyDjcepecYe6JyGXVlyUVLr1MHRmYAAiegkwsyBMaaY6hgg/6sIyRvzwdn78pvV2yN2Krtg5wepfHADXKierM5a8tUaAcqcpCgmmUzKkbC1QIgaLWfC74YXpdD8zCAp3sE4KiPmhAlOAOqKN7C0nndQkwZtlMFxQxXXp2wriRsBgHc=
+ ARA:13230040|23010399003|1800799024|376014|366016|3023799007|38070700021|4143699003|10067099003|11063799006|56012099006|22082099003|18002099003;
+x-microsoft-antispam-message-info: XCPgdLT7KSBhKRXjsyM0BTl+JPI38c6IALxf9i40H1McKQoPollMLhUvO+AT1Cx12e+T8/kpUEsYqEtLaNwmYNzU61ScaltqLgJnjlY9APmPZ4c1FxUNrlsSWhygoSqtv9sqp7QIqVFawubq57S169ZgMHr4QYvPHPn07wxbgXg288HAd7FLnaef3QZtRzakOoT2Eqwu42ktnL64pzQwmsYmA5D7OVUaisoa+JKG67LpTafALvRvcWTSbybDCr2UOfvbrzXJmsvPu5Y8X67MXd3DYeCV6Ekh+Km/0SM+VJyqA0pUlMMBW90/2lVCO7Am7VuFojXeyYOGchcztlD2gZzx6W7X+pb7sMd5yPYO39sHNRNSiwDcR3gZu8OqrSnGP+c0dRQ4PmqCQYgtGyehDvcJ+Fp66idRjHjJ36G/SeQOgzHSAo/deC94CFmcwvGq0HbUsWucaTkkHV9cqesdMDgyvArU4SLeBkxg6Ux+ZEEjfIfYYcVgj7R47du9ZEB9zTuah1sxH/q0V7pL7CnceNrPqCPPL+hySlA+mZOjQSQe/T/BUwVfCetoYjuLXxJCDg6EJ75PIa60WLefHWWyZYsbLDNUkwi8VYjImb1Nctym7ml0bTyLQfV0hZ/4FYWQIzV/yqrYbY19lu5+0LCpgy7cup7blDXw3G6Yg85oE6Hxbts1ZBmBJwsDUFc0P10SfnMBC8iGIoRJYdaynj/tBKhcUCvgToC6p1IzQ9YbjZ0=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS4PPFE901A304F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(366016)(1800799024)(38070700021)(4143699003)(11063799006)(56012099006)(10067099003)(22082099003)(18002099003)(3023799007);
+ SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(3023799007)(38070700021)(4143699003)(10067099003)(11063799006)(56012099006)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?xCtVV0i/h1Lm89svgs6TL+/v678f2s+jC2i8kshZzGoPEUt8evEkGkvd4eAN?=
- =?us-ascii?Q?bR44wipZE9kKFqfefHBapuZ+tEDqOKPQtR9RGbnNrgpumrjSJReoqCSjku5F?=
- =?us-ascii?Q?9L90nIL98u28HWMpG98O4+p++dDXmE2RJ4D8uRcbGXgR5FXYHjNVOBsFlaO8?=
- =?us-ascii?Q?zH0LO/Mwp5cR57/2UC7bUKBshCdeGh7wzSprHZykFdjw7/81c4ItuGZ4lqQR?=
- =?us-ascii?Q?BkP1UvsL2SnLDumUnzqsU3mwqlzzxLAs1ezu4D5bF8/OJqiaRuQostxlSRHn?=
- =?us-ascii?Q?7JMtMlcYhF5R3Yh/IZMazshyWqQnzYX3EE+QRevSkl4d0u4HzqM7zdZzJMOi?=
- =?us-ascii?Q?HlKVVm1J9fCxCLkPsG9WA3VURp72UC8FLNT0EI4xIAEyFdfuNddd27tB1gsu?=
- =?us-ascii?Q?Up7hCQl6zMw/f5M6Gx+YEeve+PigPy7JQzgHrF3rNkr3YylNXHykHP3z2+UR?=
- =?us-ascii?Q?1Grbm17a9nKtwprAszhjt6Ow4Kc1QhoL2vAZcTLMWOgXKN6wignfMKuGM4YP?=
- =?us-ascii?Q?qu7T43D6CfSI1WpGj2VYwE6fSv5bcX574ElwAaoGT3RDQ4tiw2TED6mDhmOq?=
- =?us-ascii?Q?x8Yj1UWsrzmihZhAryfNn8/YRAeat6OfDqD45qpktmKvjSLLBFV88JrsdF3y?=
- =?us-ascii?Q?HTUWAH8GY8Lr1qvif4/ECtt1nHgS+48GCuEjb1SuDZCQDQ+eTCWFQQkcSDF9?=
- =?us-ascii?Q?yN4WWqV2i8rP9UcwINlijKTvVQrRNIu/kup42cXr0NE/jRSlFOARvk6gCDQ0?=
- =?us-ascii?Q?of6yFQLYBWEEIseTdTrp41yvdR9kjjezs8CjQ/Ox0mVtQN9YCO+v6cEaB0dG?=
- =?us-ascii?Q?YloIet8wjBsjkc2piOQX9XGrUyyXKpsIRy2cKCv6R9S5iQ3viQZwVKJQcNoM?=
- =?us-ascii?Q?9XwSL4n+fG7ygX/4x4Vi2wiNYtO3QtPZQTr0fiwdcXr6V5EtR89BPkV4W0AR?=
- =?us-ascii?Q?0ZB5zpN/iEmULROYKIGWmkNESB7kMdURgbgHxvx9WlYLmqaATZMoPoPW7iqc?=
- =?us-ascii?Q?0X21f4bi5cNAsyLA+Lizr/ElB/E9KRvQaCd6G98b5AaY0Kcw37MD+7jEE5sh?=
- =?us-ascii?Q?EPlkSdbgJHviIDXJa8yi8de0wNZyR5aax7aag4l7Sg5m+UhC1AdEg1Kzoufv?=
- =?us-ascii?Q?07Q77HbGCo2PG4HmsXC4vdvoZBfhUsAnUFNldPoEZrRrWz5TWq4vwCZt0wLC?=
- =?us-ascii?Q?Q0x2iUErBEyH0a3QCeiLlWOs00nbYvABzKe3tiEsEdjrqWahOrfuyGGEqNnB?=
- =?us-ascii?Q?cYdLwZubnMtiF8VPQvqa6Z39qhWZg0b3sEsSzFOzYmBUz3jdchT7O+OdF5tu?=
- =?us-ascii?Q?/+tFXhqkSdHGFfv8nntgC0wZ75i5X55xMFEUroEZ4+m74Mtq7kh7mMBPy91r?=
- =?us-ascii?Q?lTWj8foBDMZK/EWpiIB0m51dyrkDIWrRfOGjEW8Q7B+F++ldvitr5uTQHQXW?=
- =?us-ascii?Q?faZay5IZV5/6CkySgMkFX/R4PolyD4pekMAqgqbJg0KnINDB/nkOk+lArxql?=
- =?us-ascii?Q?VKxoWVBg8vEfWjeUGqHoJeLx4p1xDcuozbTSQKEWfVPiCluu9P4yJ9xMZ7cF?=
- =?us-ascii?Q?JygPtDSbmQ0MtBDLHxhrFh3X2vnlVAUODARFb7yWc2lHrhnweHgA+byd75PW?=
- =?us-ascii?Q?ySncsYzRYuq8h5Ion3YJzF3oY0y2Td8yuZLhljW2wyyWiDEKYi04K/JSHF+G?=
- =?us-ascii?Q?T1Ve5dDnbIW+yDSZsGvqqx5acd0TD9Kgs9dc0Qn7Ftkd4jfqRqcIQP5EqiuF?=
- =?us-ascii?Q?WN5Zm8Ybgw=3D=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?HRWTjJg47LKc2E/j/1tfkG3F/rJmhmN+rBt+YAFFUU+k5yN2S8BchQz9wWVD?=
+ =?us-ascii?Q?V1pxfG+mxA2Oa6TvNxZAMF1Gha6Nyl9ChaUtXBTBt9zoyK68FSmWX2sX/FGX?=
+ =?us-ascii?Q?Rj1D4nsWUXgbHAygo9d01wytJE1XhlVsTj6cTaX6xxbu/wWpycdLziMpSO+C?=
+ =?us-ascii?Q?+LBgluPSDde2jBTc8j7QuS5ujsUQWGi5EiMroeZhCC2mNLB75ppxHLzGOpeN?=
+ =?us-ascii?Q?2pii2m9vEBhu5CEH09+eUDz0pSy9gout1LPG7WVn5Buu2XOClFCuaaK2JfmC?=
+ =?us-ascii?Q?LSS/b56smYiqE0qzxB9uq+8Hvme2Un6nTBbXS/CLzHwpbWLHsL/UNMolM68c?=
+ =?us-ascii?Q?rIiEyAjPi9NaoR4O3nGoNMB2+GrFu3rhnimmPIXZB63VLYt9kUAOEmAicq1a?=
+ =?us-ascii?Q?gxpMG/gbTT0EBTFF/Ru1vejMxf7+pm3absamOxWz75HA5+veD3vzPIMhcssV?=
+ =?us-ascii?Q?hDm0i2aHGksDNk54DHv5JezlBMQIzRxWts4jPpEc/s5P/0TSZmeR/I+70HbH?=
+ =?us-ascii?Q?6dClP4/swjzXDStpEI73+E/MX4Cw/xv7hwHGJoTdEQSFcN/hQx712xevXJ7e?=
+ =?us-ascii?Q?+jrPbstYkhUXZz90i0u1q2liIpYvUXCw0bpaIUvR7KSkdw5jxENhKh6VSDjt?=
+ =?us-ascii?Q?22zOoqhFkSfK9D5gWFh4tnntQyjSmbhId/UlNffqJf9G31pC1mKtPkax3qVi?=
+ =?us-ascii?Q?6qwfallCv3dU/wbIcwvi2UZqe0PyEldfEBOK7knPvgndXFoMAfLcguPTH/r4?=
+ =?us-ascii?Q?3ITj3fwyggHe0zzHtEO8zGaoVgKhOVFjC3mPo0WTh4ktKBl8YJY9rY1bQ2rv?=
+ =?us-ascii?Q?R/sXWlCCoH1zhm7NUVMoygb1UW5VOpZnqiDjj0XvLHK/zUWw3e2gItYFHElV?=
+ =?us-ascii?Q?cCKE+FMIixEtK8z2vQ9iP/KPie+ipqWood87V0dU0O0KuLzxLTXL0F1o2QCi?=
+ =?us-ascii?Q?JhSAQiMVl2POjiL3PeFoAfvaDYd+iUHLQQ84SwGmXsLMdKjiaEjrVi4f3h29?=
+ =?us-ascii?Q?hIX5g08Y+xOK5/WWzlcTkX0Lh+AcznBHhElKwCqgkT3y4CwiActarLVObO/M?=
+ =?us-ascii?Q?ECobnqWf27QZ+e9QtDvWXtOHW4b0CC9lyvfkPUt6WsIH/TNP2gA9lFTvpd6E?=
+ =?us-ascii?Q?iLSXnNqL7j1+G5WcsrdyYjSv5Rr8RCIzyYirGWwvI6TCidsolKjc/p/M3vGZ?=
+ =?us-ascii?Q?Hsb659rDXZQ/5xh7lMUaMguUVvrgJo9X04+DYtbTc+zWw6x8/WnqnAk3ulrj?=
+ =?us-ascii?Q?fNkcWNzLUXaoo7s3bLCeXzRVd2UI3H66ANaDUXKy4hGh3GxmnVd+nUqxLOdl?=
+ =?us-ascii?Q?hXmK//D4hjhA9XcbTPfCBoOCQGhiSQGr8T9sac0U+oeeXNGlyNYxi2JA6Kro?=
+ =?us-ascii?Q?FHLtUFxShneVC2qu7BSzD07uu7qwmdrKSis9SruLN3d2Eg3xsLPNWa4QpfDa?=
+ =?us-ascii?Q?v74HVJ4Y0TbbrWIbcOSvUryjX4e1xWedU4MY3rRuQfbJGdFMA7KVRGMyP+HF?=
+ =?us-ascii?Q?JqzPodiQTrNl9xQt+/nC1SGWX0Z42KhiKOB4+NHmnX0dckYDCDQjtjHpU5to?=
+ =?us-ascii?Q?TQt8KnLBpRJdyCxngSm2+tTbtiBgB/tgz6P1eIh18bbYxdej5dotV549Xur2?=
+ =?us-ascii?Q?7vGbSEnzvH5/a/ZAAnOUZBiOCs+a+DOlMSK/p5ZnQQVtM6F3UUb28ylXJ5SA?=
+ =?us-ascii?Q?raChKe8zL+OebLTCP5cDAOMaWJks/WDf1nmu+xXaAxTSooNjdkZh1B1TI1uT?=
+ =?us-ascii?Q?uKWUFVLVgg=3D=3D?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: phftCvJSPC9n5ccrdvussOCvIi/LMk0MA1OThs8YLSXhHM4H8aJj8Mr8aVcQ1GVrgS1kgqdXYPA2/83HaIBEqduvSSFldR+YuVmgstyGybWatYIIxcSVZDxTn8+G8YJWWpKLE6ZSZ9TmpD85MTOtdYNwUz0P7bHHwKTLaaLfNALMTXGJ8Up0VZXOL6Cov6q6B+7fodPFJVbp6IqxoxjMHrx2G+BmywhU6l++p1n++LGjZnPh8abCKKNhVA1YaCaBNP6BgaOHxYr7aFFdFWDSQoKFgL7KOxG9jm1tEzblgECCg9y4oyDEuCp3wJDbbGs2923Fx4uOqmKcLF+sCnqPxA==
+X-Exchange-RoutingPolicyChecked: FcickDrxFX3MekiS+abg3W13Te1v8mZ6K+d02Dz/C1kzdWuixxM0NHWuaWOQADY3vECmeWOdqJevHOwdQl6rgDvIrt8GLFxy0tnI+Hcv74JbLqhhRTh8BFNi26DRaLwSwBtETjKtj6evufFxnR1ipbGO2mtam/UtssbQ3tBkjj3KxdjK8Du4v+BLuUu8s0wjqxxUSxdytSVWwcamFC56lPOY2eMmoiMtcs9CzU6XwT9XDar1lTpfIGMjXT7HB9j4bBVjs3lQtoiW8GPUqlfa80/nFVT1pnt7bJHF86+XdUaH66xScLI+xJGwLRMMdsOVnh68qgXM+oCVvpw9KfDm2Q==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DS4PPFE901A304F.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: db5c6981-ec1e-455c-b650-08df1eb612f0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2026 05:45:46.0496 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c4c47d41-b610-4b93-b757-08df1eb79638
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2026 05:56:35.7928 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: y+y0lr5ZYbZhmTvEefl3FrIFJLSYRzWXdOu9a5vg/H4gPPxaSUDjkmY/HASHkkBhmEjJPk1ea0chpqMlaDVb6g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5768
+X-MS-Exchange-CrossTenant-userprincipalname: Zrx/05L7P6xQKaaEh3M1mqIr+Q5d9OecwCNqh9wp1GCQtzak7AJcuXDquvEAmbFN97LByrX1TV1zPgJe46p0Qw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR11MB086599
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -165,122 +165,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> Subject: [PATCH v3 09/10] drm/i915/hdmi: Clamp the target_bpp only when
-> it equals the pipe bpp
+> Subject: [PATCH v3 10/10] drm/i915/dp: Clamp PCON DSC bpp to the FRL link
+> bandwidth
 >=20
-> The max bpp from intel_hdmi_dsc_get_min_max_bpp() is at most the pipe
-> bpp,=20
-
-I think you mean link_bpp
-
-so when picking the compressed bpp we reduce the target to keep it
-> below the uncompressed pipe bpp. Doing this unconditionally makes the
-> search skip both the max and min boundaries, returning 0 when max_dsc_bpp
-> equals min_dsc_bpp.
+> While configuring the PCON DSC encoder, intel_hdmi_dsc_get_bpp() picks th=
+e
+> highest compressed bpp that fits the sink's per-scanline chunk-bytes limi=
+t.
+> However it does not account for the FRL link bandwidth, so the selected b=
+pp
+> can end up exceeding what the trained PCON/sink FRL link can actually car=
+ry.
 >=20
-> That case isn't hit as of now, but an upcoming FRL link-bandwidth clamp c=
-an
-> make max_dsc_bpp =3D=3D min_dsc_bpp.
+> Compute the maximum compressed bpp that the FRL bandwidth can carry
+> and pass it down to intel_hdmi_dsc_get_bpp() as an upper bound, so the
+> chosen DSC bpp stays within both the sink's chunk-bytes limit and the FRL=
+ link
+> budget. The mode_valid/compute phase already guarantees the lowest
+> compressed bpp fits the FRL bandwidth, so this cap never falls below the
+> minimum allowed bpp.
 >=20
-> Reduce the target only when it equals the uncompressed pipe bpp, start at
-> max_dsc_bpp otherwise, and iterate down to and including min_dsc_bpp.
+> v2: Account for FRL 16b/18b encoding overhead in link bandwidth. (Sashiko=
+)
 >=20
 > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Assisted-by: Claude:claude-opus-4.8
-
-Move this above Signed-off-by
-
 > ---
->  drivers/gpu/drm/i915/display/intel_hdmi.c | 27 +++++++++++++++++++---- [=
-v3,09/10] drm/i915/hdmi: Clamp the target_bpp only when it equals the pipe =
-bpp
->  1 file changed, 23 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dp.c   | 12 +++++++++++-
+>  drivers/gpu/drm/i915/display/intel_hdmi.c |  8 +++++++-
+> drivers/gpu/drm/i915/display/intel_hdmi.h |  3 ++-
+>  3 files changed, 20 insertions(+), 3 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index 83a5a6e14ebc..ee76391c77e8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -3390,14 +3390,26 @@ intel_hdmi_dsc_bpp_fits_chunk_bytes(int bpp,
-> int num_slices, int slice_width,
->  	return target_bytes <=3D hdmi_max_chunk_bytes;  }
->=20
-> +static int intel_hdmi_output_format_link_bpp_x16(enum
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> b/drivers/gpu/drm/i915/display/intel_dp.c
+> index dee49b99c09d..611a06e97555 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4442,10 +4442,20 @@ intel_dp_pcon_dsc_enc_bpp(struct intel_dp
+> *intel_dp,
+>  	int hdmi_max_chunk_bytes =3D
+>  		info->hdmi.dsc_cap.total_chunk_kbytes * 1024;
+>  	int bpc =3D crtc_state->pipe_bpp / 3;
+> +	int clock =3D crtc_state->hw.adjusted_mode.clock;
 
-Also we have a similar helper in intel_dp.c int intel_dp_output_format_link=
-_bpp_x16
-Should we just reuse that instead ?
+Why are we using adjusted_mode.clock here when just in patch 7 we started u=
+sing adjusted_mode.crtc_clock.
+Should we keep it uniform?
 
-> +intel_output_format output_format, int bpc) {
-> +	int pipe_bpp =3D 3 * bpc;
+> +	int max_frl_bw, max_frl_bpp;
+> +
+> +	max_frl_bw =3D min(intel_dp->dfp.pcon_max_frl_bw,
+> +			 intel_dp_hdmi_sink_max_frl(intel_dp)) * 1000000;
+> +
+> +	/* FRL 16b/18b: only 16/18 of the raw rate is usable payload */
+> +	max_frl_bw =3D max_frl_bw * 16 / 18;
 
-Maybe link_bpp
+As mentioned in patch 8 this can be its own helper=20
 
+> +
+> +	max_frl_bpp =3D clock ? max_frl_bw / clock : 0;
+
+I don't see the clock being 0 by the time we are programming the pcon I gue=
+ss this check can be
+Dropped.
 
 Regards,
 Suraj Kandpal
 
-> +
-> +	if (output_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420)
-> +		pipe_bpp /=3D 2;
-> +
-> +	return fxp_q4_from_int(pipe_bpp);
-> +}
-> +
->  static int
-> -get_dsc_compressed_bpp(int num_slices, int slice_width, int
-> hdmi_max_chunk_bytes,
-> +get_dsc_compressed_bpp(enum intel_output_format output_format, int
-> bpc,
-> +		       int num_slices, int slice_width, int
-> hdmi_max_chunk_bytes,
->  		       int src_fractional_bpp, int min_dsc_bpp, int max_dsc_bpp)
-> {
->  	bool bpp_found =3D false;
->  	int bpp_decrement_x16;
->  	int bpp_target;
->  	int bpp_target_x16;
-> +	int link_bpp_x16 =3D
-> +intel_hdmi_output_format_link_bpp_x16(output_format, bpc);
 >=20
->  	/*
->  	 * The Sink has a limit of compressed data in bytes for a scanline, @@ =
--
-> 3421,10 +3433,16 @@ get_dsc_compressed_bpp(int num_slices, int
-> slice_width, int hdmi_max_chunk_bytes
->  	/* src does not support fractional bpp implies decrement by 16 for
-> bppx16 */
->  	if (!src_fractional_bpp)
->  		src_fractional_bpp =3D 1;
-> +
->  	bpp_decrement_x16 =3D DIV_ROUND_UP(16, src_fractional_bpp);
-> -	bpp_target_x16 =3D (bpp_target * 16) - bpp_decrement_x16;
+>  	return intel_hdmi_dsc_get_bpp(pcon_fractional_bpp, slice_width,
+>  				      num_slices, output_format, bpc,
+> hdmi_all_bpp,
+> -				      hdmi_max_chunk_bytes);
+> +				      hdmi_max_chunk_bytes, max_frl_bpp);
+>  }
 >=20
-> -	while (bpp_target_x16 > (min_dsc_bpp * 16)) {
-> +	bpp_target_x16 =3D (bpp_target * 16);
-> +
-> +	/* the compressed bpp cannot be same as the uncompressed pipe
-> bpp */
-> +	if (link_bpp_x16 =3D=3D bpp_target_x16)
-> +		bpp_target_x16 -=3D bpp_decrement_x16;
-> +
-> +	while (bpp_target_x16 >=3D (min_dsc_bpp * 16)) {
->  		int bpp;
->=20
->  		bpp =3D DIV_ROUND_UP(bpp_target_x16, 16); @@ -3466,7
-> +3484,8 @@ intel_hdmi_dsc_get_bpp(int src_fractional_bpp, int slice_width=
-,
-> int num_slices,
+>  void
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index ee76391c77e8..3ad22fb1876f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -3470,13 +3470,15 @@ get_dsc_compressed_bpp(enum
+> intel_output_format output_format, int bpc,
+>   * @bpc: bits per color
+>   * @hdmi_all_bpp: sink supports decoding of 1/16th bpp setting
+>   * @hdmi_max_chunk_bytes: max bytes in a line of chunks supported by sin=
+k
+> + * @max_link_dsc_bpp: max compressed bpp the link bandwidth can carry,
+> + or 0 if not limited
+>   *
+>   * @return: compressed bits_per_pixel in step of 1/16 of bits_per_pixel
+>   */
+>  int
+>  intel_hdmi_dsc_get_bpp(int src_fractional_bpp, int slice_width, int
+> num_slices,
+>  		       enum intel_output_format output_format, int bpc,
+> -		       bool hdmi_all_bpp, int hdmi_max_chunk_bytes)
+> +		       bool hdmi_all_bpp, int hdmi_max_chunk_bytes,
+> +		       int max_link_dsc_bpp)
+>  {
+>  	int max_dsc_bpp, min_dsc_bpp;
+>  	int dsc_bpp_x16;
+> @@ -3484,6 +3486,10 @@ intel_hdmi_dsc_get_bpp(int src_fractional_bpp,
+> int slice_width, int num_slices,
 >  	intel_hdmi_dsc_get_min_max_bpp(output_format, bpc,
 > hdmi_all_bpp,
 >  				       &min_dsc_bpp, &max_dsc_bpp);
 >=20
-> -	dsc_bpp_x16 =3D get_dsc_compressed_bpp(num_slices, slice_width,
-> +	dsc_bpp_x16 =3D get_dsc_compressed_bpp(output_format, bpc,
-> +					     num_slices, slice_width,
+> +	/* Limit the bpp to what the link bandwidth can carry */
+> +	if (max_link_dsc_bpp)
+> +		max_dsc_bpp =3D min(max_dsc_bpp, max_link_dsc_bpp);
+> +
+>  	dsc_bpp_x16 =3D get_dsc_compressed_bpp(output_format, bpc,
+>  					     num_slices, slice_width,
 >  					     hdmi_max_chunk_bytes,
->  					     src_fractional_bpp,
->  					     min_dsc_bpp, max_dsc_bpp);
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h
+> b/drivers/gpu/drm/i915/display/intel_hdmi.h
+> index 375f1b4decfb..acc025ae507c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
+> @@ -56,7 +56,8 @@ bool intel_hdmi_bpc_possible(const struct
+> intel_crtc_state *crtc_state,  int intel_hdmi_tmds_clock(int clock, int b=
+pc,
+> enum intel_output_format sink_format);  int intel_hdmi_dsc_get_bpp(int
+> src_fractional_bpp, int slice_width,
+>  			   int num_slices, enum intel_output_format
+> output_format,
+> -			   int bpc, bool hdmi_all_bpp, int
+> hdmi_max_chunk_bytes);
+> +			   int bpc, bool hdmi_all_bpp, int
+> hdmi_max_chunk_bytes,
+> +			   int max_link_dsc_bpp);
+>  void intel_hdmi_dsc_get_min_max_bpp(enum intel_output_format
+> output_format, u8 bpc,
+>  				    bool hdmi_all_bpp, int *min_dsc_bpp, int
+> *max_dsc_bpp);  bool intel_hdmi_dsc_bpp_fits_chunk_bytes(int bpp, int
+> num_slices, int slice_width,
 > --
 > 2.50.1
 
