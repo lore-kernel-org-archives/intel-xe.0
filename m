@@ -4,144 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AC6FCA5FD2
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 14:14:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3274CA5FD2
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 14:17:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D61510E295;
-	Thu,  1 Oct 2026 14:14:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B02810E357;
+	Thu,  1 Oct 2026 14:17:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fKE+8UpI";
+	dkim=pass (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="j6ZnfhDQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B7EF10E295
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 14:14:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790864070; x=1822400070;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=92RHdGViI6znzcWOsi+QnGaer8R0zqM+xcpi3PdgWoQ=;
- b=fKE+8UpIUL/fgM+LWct5nWva7bBVotIQLFU9NYL/m4AtRqXu2jGLjrGu
- MToBNy2RZRyRTbnEW1Tan4X6BPu+9demSxn1YW70ySXynLHLARGZnKfyG
- Yy59VAeBPuNIG09Dk8onSC7TuTCjwAfZa+fF5ZMd6s+pX92kNmbYZxdDl
- omjjx+KRO+3HfQrIR4Df4OTo3mjo4eax7+Av8Df5JjSsZRUU+MFjSAYaw
- A9dvVrn08z715ZPQSMunT5TSOABTgcgE63clhms3vD56a6con7Ou89ddk
- bjqBPZGCzwO0ckPAXt5rwm9GxH/b20KYg95BtZEy3g9Ymuga9DeQTndWn w==;
-X-CSE-ConnectionGUID: DUwRRnBTQXGEw1nhvRjGFA==
-X-CSE-MsgGUID: 4RJGMm0NQRyyDYEm0jXZpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="94334740"
-X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; d="scan'208";a="94334740"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 07:14:29 -0700
-X-CSE-ConnectionGUID: 2EJs1k2nTpGpLmAMToo+EQ==
-X-CSE-MsgGUID: FiZtb0JTT7OZerddLXUYpQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; d="scan'208";a="276050774"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 07:14:29 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Thu, 1 Oct 2026 07:14:28 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Thu, 1 Oct 2026 07:14:28 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.20) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Thu, 1 Oct 2026 07:14:28 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OzTWJXGSzb1NbgYemPOUeltyxlP6rdGwT78bvEUAjV8YrY/zgan323g3+fiXpOlA+CEcdFSb3SwMy7FyOj8BXTMY3OLrJOb/WOvWEFyB/DoX9a2ev0HJF/ZE+FIODD+ho4WaBoZlorI0KogqXw0zwh7SXtNYBGCMI+meZDr9bpoy30RcqmBFuAaiqaZdFKR85zJX8okGIBzAEQQxzm5TYb1z0BDVocJ7Y8DbMphTkRpx/FJn4Ow2KMHYOP9GGdQdcwwdvwVviTyJAFRUifXbJNBXs1og+4X/R9WsPErAlr3SrO2Uw4pkmUywZPcSN6PmW77s7xV8uMlsh8Vj2/VMjQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bYYDnw4ikRQZ0cJmjPTXu2dBiWReFPq7HVeHJ8Clj3E=;
- b=nZEPtO+ASPd/ArIm6qG6bEc3jD+oTUR63fRIrSb8hjVybz7Fj7fDbBcvoz35359mkLNDFB/Yzk/NPpcrjgw0h0NIohfkyHJsc//taLN5Ujouc5rGcV12v4CfHSh4mg6hQy0t2Bjnrk7mXKQNrp5M5v4eP5ayn6C3Xyy7cRLF5HHsJRbxU9AgUvv5EIoMKkwMSqCSKM8ktFJlyzdxLG9Zq8qrWN63GB16nmLv8oRwmv76vgZSZD9U09qdDKIGDuqQJFHCmoY2LbhwxEcWi9f64UjdQz7V8kJcduU6adgRR2qEyGD4vhaN/ZsXhhnRxF6U0sgKQG7jTiSjEVQ+/duqtQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SA2PR11MB5100.namprd11.prod.outlook.com (2603:10b6:806:119::11)
- by SJ0PR11MB5165.namprd11.prod.outlook.com (2603:10b6:a03:2ad::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.472.15; Thu, 1 Oct
- 2026 14:14:21 +0000
-Received: from SA2PR11MB5100.namprd11.prod.outlook.com
- ([fe80::2e36:25c7:b8d7:1a67]) by SA2PR11MB5100.namprd11.prod.outlook.com
- ([fe80::2e36:25c7:b8d7:1a67%6]) with mapi id 15.21.0472.015; Thu, 1 Oct 2026
- 14:14:21 +0000
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Subject: Re: [PATCH] drm/xe/cri: Add new PCI ID
-In-Reply-To: <20261001135515.74225-2-balasubramani.vivekanandan@intel.com>
-References: <20261001135515.74225-2-balasubramani.vivekanandan@intel.com>
-Date: Thu, 1 Oct 2026 11:14:13 -0300
-Message-ID: <87tsn5bj9m.fsf@intel.com>
-Content-Type: text/plain
-X-ClientProxiedBy: BY1P220CA0019.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:5c3::15) To SA2PR11MB5100.namprd11.prod.outlook.com
- (2603:10b6:806:119::11)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0E9610E357;
+ Thu,  1 Oct 2026 14:17:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:From:Cc:To:Subject:
+ MIME-Version:Date:Message-ID:From:Reply-To;
+ bh=kJb0GmKetf052WcR83rJCSUp5SEhvuEVDD9IdfikSQg=; b=j6ZnfhDQl5Rk5tLfdQpeQezydM
+ MrsgKZnG9A5nsBBXDnvhuHnR53oRTNG6Wm4WCgMOiEhFWK7TmhLlLha5MglXhAiOlk2KfxFTIKva2
+ Hx8i/oZTtXZ6b/uU5idSuxReHOI5tGIkO5tQVVpwjYR+0aDY3/5zj1BYpayZoaCdJF0+BR8pf+Gqr
+ hajIPqYdAAv+5f9cI/n9JS7hvN47j+hZScpORub9Airvq8Dz9A+dQcDUTckmGmCUIL29euLZH4PwV
+ s99dikwyCu1/jU4gWhzkJBeo28y+z2uv4xKLekYLcKAU3xwkVxtNPgfFMRhEq+wu1XNeq0jJljVgj
+ ebSe9Fcw==;
+Received: from [179.190.179.102] (helo=[192.168.1.27])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1xCHb8-00A9GK-I0; Thu, 01 Oct 2026 16:17:22 +0200
+Message-ID: <be2b367a-870b-4b93-84dc-eb36542fee82@igalia.com>
+Date: Thu, 1 Oct 2026 11:17:17 -0300
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PR11MB5100:EE_|SJ0PR11MB5165:EE_
-X-MS-Office365-Filtering-Correlation-Id: c6ffe6f8-d006-4d50-9afb-08df1fc64991
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|23010399003|366016|1800799024|18002099003|22082099003|11063799006|10067099003|260925021311599003|260925022911599003|260925021911599003|56012099006;
-X-Microsoft-Antispam-Message-Info: JYaojDziFMyVquf8i8UobfDukd44pf7+QY3adTzL+X28sUzd/SHOHIj6O/lg4zxL8okwguAFb5w/eRDywV0LJAnVlu96xQ87SdpNcc2dHKutn5wRAsFGF4CD1q4uHkEklTNLGWGBLO1hoJSgA6CzCb+2lgPWt4CXiUQDN5IxRRHLegmh7jyaa5RY/vrlQHzbSNR53pj0suuu1BPbRrzAthuCtLlebfRZFiAfos+dqiwLAZWAsUknq4e5cgUnmYfcqcoWqNC4q4YDE2/RR1q8QUoUZwWyeRy4vbfh1w1L85x1+ikYxk69wvVJhwPL2/xCLmG47UAVTmkRNu1nV5mnfeL4YigljA0BKfr32B+DmPEhhfYOrDFkYnnM247lc8A84p8tF8eeFd6OaTHrTSuIrgNU3Ic93D29/ql4UNHHvwIcQLqh+PxDZQcH0y0U4zr1HkAz47mm/qJFIFizh+ZGdjazXtlEmPw6LCHG0UNbPyFRbjg2PLJzyB3EgOwy38HTvwTye3CF01fFBfYExP9koJtBKG7Hx2xunT+LhIOhdNqvbeup0CU+7Fxow0SifupYCAnczrp7aX45eUPVuM1UfBg6MuxXCNBKfXtlKAy2WkS03TZJGGuupzmXKPUXlvnPxSfl01GJ0uzIs14VJyfil9zG3Usz/DM+sYzo/NMrkrA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA2PR11MB5100.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(366016)(1800799024)(18002099003)(22082099003)(11063799006)(10067099003)(260925021311599003)(260925022911599003)(260925021911599003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8VLQDIKyEgkRMwA2y6z/DMPmfVtYvmcGP6qc+JMcBjDOpAjfbApvzyFeoy3G?=
- =?us-ascii?Q?wjXEuZ+0T/RZ33AiXunCc2/sq8M10Xftuta+tTmM9R+32/LhZqIUgE3w4ADf?=
- =?us-ascii?Q?zaKNaYONANBePg9Pg665owkZqO/a0Ida5Wn5f2osBifbhDCO/wvDcVPrn77A?=
- =?us-ascii?Q?xmhC6D4bMtWc+7iCvS5rGH8Yo4EKzDXmHsSX2yVs7OgZjVFZ7Xt0gUAmpyIi?=
- =?us-ascii?Q?YoQN62SLKwbsYZEBCZuoPaQY/b67uO2nEBTm92QHhzBC3KtEnUE80MSOAR04?=
- =?us-ascii?Q?LqjsxYjZjvqjPvZupkvwJzItovASECkLE8Gzqbtue4BEbtQFMQ/3D1ykWZ9w?=
- =?us-ascii?Q?DKcIX2ZJgZxfRpuz86gN/fQhGNthpachgjmFWvDGQ8gxIPudeBYtK1dcBBSk?=
- =?us-ascii?Q?bUYiAISNhlEZhvAfIufKYWobk1cF2MCw72UTurNpjYQKBovywdd2ScDknnZL?=
- =?us-ascii?Q?nc8MjN8k1L0VKwdyDeDdYCPOuLsr8jS/6GJWiOaAXsWqmo2x7NN8T2i3jMDC?=
- =?us-ascii?Q?Jh/Pl7uwY7T+I0q4RKDTuUgd2D2e0Nw9IUcQsnyZXb0ZqhPFzW3mFOBFp5w9?=
- =?us-ascii?Q?7KmajENMV3ikayZBX7Qkj6+Q9msmspo7D8i513AK8lTiLvhwyvdZ54inyS1f?=
- =?us-ascii?Q?R6248aZYcEp02PzTUP3XdQY7yzDU+MZGw0HUmU9eb4zC5fu0tFpCvIxdbgC1?=
- =?us-ascii?Q?tQrEnt4G88CMc5MsV98+GyJHvfJQJEWdosX5cj/SmX7pOwUmm7dYzYvc4VGI?=
- =?us-ascii?Q?9x3OubYaHdB2/HmYYfbYEglkobAXvw7/I2+JnN6ipeKFtIps5wiFW9CYI/EZ?=
- =?us-ascii?Q?qznww80tobqfKKVO2YolpVoBDmVP+2vd4Tw4LbvF6yPY5APD6f+juNl4Gc+h?=
- =?us-ascii?Q?4NtYmE2vjSFGKOF8cEi+HY6XtzGV5krGo+k3Y+aCOV78ED2TJ1oJDb4RSMnj?=
- =?us-ascii?Q?AmmAcYV0EKH0PyuhRikgOdPZ/0dn6GAA80GAJNSRRGG71ltd4w2EeCuy4wHV?=
- =?us-ascii?Q?gRW83I1OVuIkIuqRWQrqqc8EgN378wkwLZcZkmzhPYEZRnQQKa8bJ/0m4c8X?=
- =?us-ascii?Q?TW9gZ+kxjPAklasjvQnQmk6/egn9OAtg9sjyS7uXhCvjqed0JSHB+j1bS5RP?=
- =?us-ascii?Q?tfJHOLgI+V45wQATkt+rI7JvxXWqdFxSg0uXVsuTtV3cUZDubJZ6koXOtPI/?=
- =?us-ascii?Q?bjKgBym6H+IxBzhG/CgJ5MbA5WST4isArI6NtuXHTIfBKXbR6WEDT4zvVl6Y?=
- =?us-ascii?Q?KdhzUqT8x0PYIS70EAnDCpEWPSNMfmoWYnqG6Gsg1BtQ0yS+mf4Ic3LJ/syv?=
- =?us-ascii?Q?tFQma9ab4ZnzYdHtP/+2p7myQslRawZjb+PBFd1zBWIxSlnFkYD8ShwaYOvl?=
- =?us-ascii?Q?Xu5m7fYbiZbr1y30cUNUNUvf36hOvBroT7JYVKoOQDzzgr1QDNolIc5wr7lO?=
- =?us-ascii?Q?57MVxiTDOkAzR38fijxsNhvY2TF0B+/5sM4Z9JdNlP+klLlHNVI92aI8Xh/7?=
- =?us-ascii?Q?NJMc9mTFneHUF0jfrn/Cn2mrpMl2PD8lgHgwEQ38IGeKfW82FeI/lb9WNQw6?=
- =?us-ascii?Q?zXsEWh0U7XoFWO72TBt2ElN8dKHAlVqy/OfFml6b1TLTDo2/WVoSkvQaUiul?=
- =?us-ascii?Q?sgImokjhOzAIwryo0nXN1HNI+Grp6gnWWBbFL+oaU4Ld15ecLAIFawRRtvwt?=
- =?us-ascii?Q?eLw+YoULlRzp3E0gZFE0WgMXqk5rC/PydrSTqTY1N3SXmLr7aZumEhXTS27t?=
- =?us-ascii?Q?+Qn6MCphgQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: l0pxToCTZF9OEWV1Q0zJ487CdNMrLIzPYpKtMLMJKn1NBbB0V585fIz4dsVgS5RYjVZMc12RHzfEjQw+pTTu83lKz8kG/IqbjB29RViFfMcEkTga40hUF6of7qcBDr3erYqHHc+tFVyMjxH16GLlLTRq9vurpiNfxnW1Iw4oaqD056+5iquEtbl/BzOA61911zH54F4rO/4Ksq2UTlvNMOzuYlE7Di2coGq011AK6+n7WCySGsY2px0s1Pdpv0p93A+F5e9pCiVZmb3UsoutglEkIVCQFoXPYKBsdG3eel4NSDrbVNlhuq4D+7SOW2WuNa4XEAUpCf2HFHkiPbDe1w==
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6ffe6f8-d006-4d50-9afb-08df1fc64991
-X-MS-Exchange-CrossTenant-AuthSource: SA2PR11MB5100.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2026 14:14:21.6238 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bVnWEcCBOXT+aN6szkNYAVAwbN+2TVQ8scasBvgE/r181jtoNvjwz8hGNtHmOeuH7jeySYtIMFD3LWlhAFr//A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5165
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/xe/lrc: Restore CTX_CS_INDIRECT_CTX_OFFSET
+ programming for ADL
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: rodrigo.vivi@intel.com, demarchi@kernel.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ tvrtko.ursulin@igalia.com, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com
+References: <20260930170434.317671-1-koike@igalia.com>
+ <20260930232937.GQ730887@mdroper-desk1.amr.corp.intel.com>
+Content-Language: en-US
+From: Helen Koike <koike@igalia.com>
+In-Reply-To: <20260930232937.GQ730887@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,33 +61,269 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-writes:
+Hi Matt,
 
-> New PCI ID added for CRI.
->
-> Bspec: 77979
-> Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-> ---
+Thank you for your reply, please see my comments below.
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+On 9/30/26 8:29 PM, Matt Roper wrote:
+> On Wed, Sep 30, 2026 at 02:04:30PM -0300, Helen Koike wrote:
+>> CTX_CS_INDIRECT_CTX_OFFSET default value is not retrieved from the GPU
+>> by inhibit+context save mechanism since it is not part of the Engine
+>> Context. Thus, at restore, 0x0 is programed back to the GPU, which is
+>> an invalid value according to the PRM.
+> 
+> I don't follow this explanation, but I don't think this is quite right.
+> For example, CS_INDIRECT_CTX_OFFSET definitely is part of the in-memory
+> context image (the CTX_CS_INDIRECT_CTX_OFFSET is the offet into that
+> context image where it's found). Let me try to explain the relevant
+> flows here.
+> 
+> When hardware first comes up, it contains "hardware default" values for
+> various registers.  For CS_INDIRECT_CTX_OFFSET, the hardware's default
+> value is 0xD, so that's the value the register will have when the
+> hardware first wakes up or powers on.
+> 
+> For registers that are part of an engine's LRC, whenever a regular
+> context switch happens, the current copy of the register gets written
+> out to memory in the outgoing context's LRC image, and a new value is
+> loaded from memory into the register from the incoming context's LRC
+> image.
+ >> "Restore inhibit" is a special case that gets used at one place during
+> initial driver startup where we tell the hardware "switch to this
+> context but do *not* load any register values from memory for the
+> context that we're switching into."  When restore inhibit is used, the
+> currently-present register values remain unchanged by the context
+> switch and the only thing that changes is the hardware's idea of which
+> context is currently "active."
 
->  include/drm/intel/pciids.h | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
-> index 32c88a690ad82..a2160920781d4 100644
-> --- a/include/drm/intel/pciids.h
-> +++ b/include/drm/intel/pciids.h
-> @@ -904,7 +904,8 @@
->  	MACRO__(0x674D, ## __VA_ARGS__), \
->  	MACRO__(0x674E, ## __VA_ARGS__), \
->  	MACRO__(0x674F, ## __VA_ARGS__), \
-> -	MACRO__(0x6750, ## __VA_ARGS__)
-> +	MACRO__(0x6750, ## __VA_ARGS__), \
-> +	MACRO__(0x6751, ## __VA_ARGS__)
->  
->  /* NVL-P */
->  #define INTEL_NVLP_IDS(MACRO__, ...) \
-> -- 
-> 2.43.0
+
+The problem is that CTX_CS_INDIRECT_CTX_OFFSET is not inhibit by Restore 
+inhibit.
+
+If you check the documentation on 
+https://www.intel.com/content/www/us/en/docs/graphics-for-linux/developer-reference/1-0/tiger-lake.html 
+, you can find:
+
+PRM Vol 8:
+
+"When a context is submitted for the first time for execution, SW can 
+inhibit engine from restoring engine context by setting the "Engine 
+Context Restore Inhibit" bit in CTXT_SR_CTL register of the
+logical ring context. This will avoid software from populating the 
+Engine Context. Software must program all the state required to 
+initialize the engine in the ring buffer which would initialize the
+hardware state. On a subsequent context save engine will populate the 
+engine context with appropriate values."
+
+And also:
+
+""INDIRECT_CTX" and "INDIRECT_CTX_OFFSET" registers are part of the 
+context image and gets restored as part of the given
+context's context restore flow, these registers are part of the ring 
+context image which are prior to
+engine context restore and hence the requirement of the offset being in 
+engine context restore."
+
+In other words: "INDIRECT_CTX_OFFSET" is not part of the Engine Context 
+(see table on page 49 of the pdf from Vol 8, Engine Context is marked in 
+dark blue), it is part of the Ring Context, so Restore Inhibit doesn't 
+afect this register, which means it programs 0x0 back to the GPU, which 
+is invalid.
+
+
+Without this patch I get the following:
+
+:/ # cat /sys/kernel/debug/dri/0000:00:02.0/tile0/gt0/default_lrc_rcs
+[0x00000000] MI_NOOP (1 dwords)
+[0x11081019] MI_LOAD_REGISTER_IMM: 13 regs
+  - 0x2244 = 0xffff0008
+  - 0x2034 = 0x000000a8
+  - 0x2030 = 0x000000a8
+  - 0x2038 = 0x00530000
+  - 0x203c = 0x00003001
+  - 0x2168 = 0x00000000
+  - 0x2140 = 0x00200094
+  - 0x2110 = 0x00000000
+  - 0x21c0 = 0x00543001
+  - 0x21c4 = 0x00542001
+  - 0x21c8 = 0x00000000 ---> Zeroed
+  - 0x2180 = 0x00000080
+  - 0x22b4 = 0x00000000
+
+
+> 
+> So the overall flow for initialization is:
+> 
+>   * Hardware powers up / comes out of reset; INDIRECT_CTX_OFFSET should
+>     be 0xD.
+> 
+>   * Driver allocates memory to serve as the storage space for the
+>     "default LRC" (aka "golden context"); once initialization is
+>     complete, this will be the template that is copied to create new
+>     LRCs.  The registers/state in the default_lrc should be a copy of the
+>     hardware default values, with various adjustments the driver makes
+>     for things that we want modified for every context by default (e.g.,
+>     register changes requested by various hardware workarounds).
+ > >   * Driver writes (with CPU) a basic LRI with the early register 
+offsets
+>     (but not their values) into the LRC storage space.  This is just so
+>     that the hardware says "yep, this looks like an LRC" when we hand it
+>     over for a context switch.  Although we're only filling in register
+>     offsets and not values, this doesn't actually mean that registers are
+>     being set to 0 or anything like that.  Honestly I'm not sure if the
+>     hardware even truly needs us to do this anymore on modern hardware.
+> 
+>   * Driver submits the default LRC to the hardware with the "restore
+>     inhibit" flag.  This means that the hardware does *not* load any
+>     register values from memory like it usually would (i.e., live
+>     INDIRECT_CTX_OFFSET remains at 0xD)....
+This is not true for INDIRECT_CTX_OFFSET as stated above (unless I 
+missed something).
+
+>     ...The batch buffer submitted on
+>     the context adjusts various registers away from their hardware
+>     defaults if there are non-default settings we want present on every
+>     context in the future (e.g., settings requested by various hardware
+>     workarounds).
+> 
+>   * The batch buffer finishes executing, so the live register values are
+>     now the hardware default values, with a handful of modifications.
+>     Since we don't have any workarounds that adjust INDIRECT_CTX_OFFSET
+>     today, it's still sitting at its default value of 0xD.
+
+This is not true for INDIRECT_CTX_OFFSET as stated above (unless I 
+missed something).
+
+> 
+>   * The driver submits a second context to the hardware with a noop
+>     batch buffer.  This context switch causes the live register values
+>     (including 0xD in INDIRECT_CTX_OFFSET) to get written out to the
+>     the first context (default_lrc)'s memory storage.
+> 
+>   * ...driver finishes initialization and user starts running real
+>     programs...
+> 
+>   * When a userspace process creates a new context, the "default_lrc"
+>     snapshot is copied as the starting point for the new context.  After
+>     that, various registers in the LRC are updated with unique
+>     context-specific values as necessary.  So every context created on
+>     the system should have INDIRECT_CTX_OFFSET set to 0xD.
+> 
+
+This is not true for INDIRECT_CTX_OFFSET as stated above (unless I 
+missed something).
+
+> 
+> So I don't see any way that CTX_CS_INDIRECT_CTX_OFFSET could become 0.
+> Unless there's a hardware bug, the hardware should come up with a value
+> of 0xD, that value winds up getting recorded in the default_lrc
+> snapshot, and then every context we make later on down the road inherits
+> that value.  While we could change it to another value if we wanted the
+> indirect context batchbuffer to run at a different point during the
+> context save/restore process, we don't have a need to do that.
+> 
+> If you're seeing problems related to this register, I'd have a few
+> questions to try to narrow down what's going on:
+> 
+>   * Are you seeing problems on all engines or just a specific one?
+
+I understand gt_engine_needs_indirect_ctx() returns true for Alder Lake 
+only on XE_ENGINE_CLASS_RENDER, so this is the only one I tested.
+
+> 
+>   * Can you provide the contents of
+>     /sys/kernel/debug/dri/0/gt0/default_lrc_* ; the value of this
+>     register should be at dword offset (0x16 + 1), so we can see if it is
+>     getting stored in memory correctly or not.
+> 
+
+pasted above.
+
+> 
+> Do note that Xe1 platforms like ADL aren't officially supported by the
+> Xe driver, so it's quite possible that there might be some hardware
+> workarounds for ADL that we just never implemented on Xe that could be
+> causing a problem.  Xe's force_probe support is just for usage by KMD
+> driver developers, so it was never expected to be fully stable or usable
+> for general end-user use cases.
+
+I see, thanks for the note.
+
+Even so, I believe that writting a default value in the beggining to 
+make ADL happy should't be a problem.
+
+Please let me know if you think I'm missinterpreting things, and thank 
+you again for your review/reply.
+
+Helen
+
+> 
+> 
+> Matt
+> 
+> 
+>>
+>> This causes sporadic hangs on Alder Lake when executing test
+>> IntelAngleEnd2EndTestCases (error VK_DEVICE_LOST).
+>>
+>> Fix it by partially reverting commit c9dfd66cb91e ("drm/xe/lrc: Allow
+>> INDIRECT_CTX for more engine classes"). Re-add the programming of
+>> CTX_CS_INDIRECT_CTX_OFFSET for Alder Lake.
+>>
+>> Fixes: c9dfd66cb91e ("drm/xe/lrc: Allow INDIRECT_CTX for more engine classes")
+>> Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>> Signed-off-by: Helen Koike <koike@igalia.com>
+>>
+>> ---
+>> v2:
+>>    - according to intel CI results, it seems that this default is not valid for
+>>      LNL and BMG platforms, so limit the change only to ADL.
+>>    - program the default only on ADL.
+>>    - restore the comment, but add note with exception for ADL.
+>>    - update the commit title/message with "for ADL".
+>> ---
+>>   drivers/gpu/drm/xe/regs/xe_lrc_layout.h | 3 +++
+>>   drivers/gpu/drm/xe/xe_lrc.c             | 7 ++++++-
+>>   2 files changed, 9 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+>> index 4ab86fc369fd..e4c7c3549735 100644
+>> --- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+>> +++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+>> @@ -43,4 +43,7 @@
+>>   #define INDIRECT_CTX_RING_START_UDW	(0x08 + 1)
+>>   #define INDIRECT_CTX_RING_CTL		(0x0a + 1)
+>>   
+>> +#define CTX_INDIRECT_CTX_OFFSET_MASK	REG_GENMASK(15, 6)
+>> +#define CTX_INDIRECT_CTX_OFFSET_DEFAULT	REG_FIELD_PREP(CTX_INDIRECT_CTX_OFFSET_MASK, 0xd)
+>> +
+>>   #endif
+>> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+>> index 35b4e8289b5f..923bc1ddc851 100644
+>> --- a/drivers/gpu/drm/xe/xe_lrc.c
+>> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+>> @@ -1451,13 +1451,18 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+>>   
+>>   	/*
+>>   	 * Enable INDIRECT_CTX leaving INDIRECT_CTX_OFFSET at its default: it
+>> -	 * varies per engine class, but the default is good enough
+>> +	 * varies per engine class, but the default is good enough, except on
+>> +	 * Alder Lake.
+>>   	 */
+>>   	xe_lrc_write_ctx_reg(lrc,
+>>   			     CTX_CS_INDIRECT_CTX,
+>>   			     (xe_bo_ggtt_addr(lrc->bo) + state.offset) |
+>>   			     /* Size in CLs. */
+>>   			     (state.written * sizeof(u32) / 64));
+>> +	if (GRAPHICS_VER(lrc_to_xe(lrc)) < 20)
+>> +		xe_lrc_write_ctx_reg(lrc,
+>> +				     CTX_CS_INDIRECT_CTX_OFFSET,
+>> +				     CTX_INDIRECT_CTX_OFFSET_DEFAULT);
+>>   
+>>   	return 0;
+>>   }
+>> -- 
+>> 2.54.0
+>>
+> 
+
