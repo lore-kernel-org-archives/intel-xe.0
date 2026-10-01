@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB679CA5FD4
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 19:52:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FBA5CA5FD2
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 19:52:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CFA210F75E;
-	Thu,  1 Oct 2026 19:52:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51B7910E486;
+	Thu,  1 Oct 2026 19:52:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q/fuhsbc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jA7+TMDj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F253010F75E
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 19:52:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3211510F75F
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 19:52:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790884321; x=1822420321;
+ t=1790884323; x=1822420323;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=iV31PE4Xqv8NU1F0R3NAz+tzSSGJNzqVDgccxZDB5mo=;
- b=Q/fuhsbcTI5amEpr5kebim0Aywfm1TWCT5SL3nuWiocD5lRItTqtLFhe
- fRVi5vdg15LkaZOi3C5l8SVwOkM3XNmHpymGP6DbUtmCo6EuS1WA6OrbH
- D2TInlAyiwhCFZF+vFJ4kofLhcSCQjbP8Spr/OKEPHchbla1uAQtCRit3
- +Sw9e72/l8m9zSHfUCj51mFbOkH3VgTN0ivgCpMy1P/t7pOaWRYY4SHaO
- a0BKsah3f/8GntuY3yd30OrPuwd4eLbLNDpRrufID9bIixfCumjFQNv6A
- AEvkK2DCSxXFXeFNtTC1wd4ZFJIE8qzXfBC/CPCN74u7yFfHiEjnYxHN8 Q==;
-X-CSE-ConnectionGUID: qeO3pIFhTjOZFEGb4KThHQ==
-X-CSE-MsgGUID: oIQ497xLRXqWpbVTcBn++w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="102177986"
-X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="102177986"
+ bh=WJ4gpooQtvN6fuoPc2M1jG0ExJupitKYflNIY5en+wo=;
+ b=jA7+TMDj778IDr0Lj6MBvBqdNKgLqYDoCEL22c94Ot2CknfgkZZb6Vq0
+ kD1Ptuz5bIo4WKqdHf6P7zjJyWDs1Or4c9ceUSX+XBvlwD2BzqMJ9pZ4y
+ nGc7s1Vok0bMkfa04HX/NZH+enDyn1ThmqI2OKQnD51N/Gm9bMS0am79R
+ MiSrkKDXaS2T0hu3dtNYPoiVJJIj0G9Ci08n7fS4ZV7g/7du3isvuMVsk
+ 2z1UhKXnz05NErWC23NYeh/CcSBZGwMlF2uOQaeMnv0TE6D2ealyI7MwN
+ nYDNJn1Dj2M2Wu/Hmn2OXLWB7cxwNKx1Sg4HIDEMdBRxbbGyKVRoB35PT w==;
+X-CSE-ConnectionGUID: gU8ELxGvRke4u9I7gBTlVQ==
+X-CSE-MsgGUID: lypFGhe6RuGngNCt1uqh5A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="102178001"
+X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="102178001"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 12:52:00 -0700
-X-CSE-ConnectionGUID: h2h9YOlzTXulnidW78zcmg==
-X-CSE-MsgGUID: 14/UAGTkQ5i+Gwn8SoFXMA==
+ 01 Oct 2026 12:52:03 -0700
+X-CSE-ConnectionGUID: RIpNufeNTq2MS9gwH/gSEA==
+X-CSE-MsgGUID: wGPn/+SpQ6CPuBAjGcmJ6Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="273893881"
+X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="273893910"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 12:51:58 -0700
+ 01 Oct 2026 12:52:00 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v7 14/15] drm/xe/hwmon: Add CRI PCIe temperature sensor offset
-Date: Fri,  2 Oct 2026 01:20:32 +0530
-Message-Id: <20261001195033.3466205-15-karthik.poosa@intel.com>
+Subject: [PATCH v7 15/15] drm/xe/hwmon: Simplify temperature channels config
+Date: Fri,  2 Oct 2026 01:20:33 +0530
+Message-Id: <20261001195033.3466205-16-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20261001195033.3466205-1-karthik.poosa@intel.com>
 References: <20261001195033.3466205-1-karthik.poosa@intel.com>
@@ -69,26 +69,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Describe the Crescent Island PCIe temperature sensor at byte offset 20 in
-READ_THERMAL_DATA.
+Replace the repeated temperature channels list with an indexed config
+array. Use range designators for channels sharing the same attributes.
 
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+Assisted-by: LLM
 ---
- drivers/gpu/drm/xe/xe_pci.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/xe/xe_hwmon.c | 104 ++++++----------------------------
+ 1 file changed, 17 insertions(+), 87 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 1cbd49933b2c..c7ab7b1abd25 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -482,6 +482,7 @@ static const struct xe_device_desc cri_desc = {
- 	.has_i2c = true,
- 	.has_mbx_power_limits = true,
- 	.has_mbx_thermal_info = true,
-+	.pcie_temp_sensor_offset = 20,
- 	.has_mert = true,
- 	.has_pre_prod_wa = 1,
- 	.has_soc_remapper_sysctrl = true,
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index edb2de6377c6..e4b4744d34da 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -799,94 +799,24 @@ static const struct attribute_group *hwmon_groups[] = {
+ 	NULL
+ };
+ 
++static const u32 hwmon_temp_config[CHANNEL_MAX + 1] = {
++	[CHANNEL_CARD] = HWMON_T_LABEL,
++	[CHANNEL_PKG] = HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT |
++			 HWMON_T_LABEL | HWMON_T_MAX,
++	[CHANNEL_VRAM ... CHANNEL_PCIE] = HWMON_T_CRIT | HWMON_T_EMERGENCY |
++					 HWMON_T_INPUT | HWMON_T_LABEL,
++	[CHANNEL_VRAM_N ... CHANNEL_VRAM_N_MAX] = HWMON_T_CRIT | HWMON_T_EMERGENCY |
++							 HWMON_T_INPUT | HWMON_T_LABEL,
++	[CHANNEL_MAX] = 0, /* hwmon config terminator */
++};
++
++static const struct hwmon_channel_info hwmon_temp_info = {
++	.type = hwmon_temp,
++	.config = hwmon_temp_config,
++};
++
+ static const struct hwmon_channel_info * const hwmon_info[] = {
+-	HWMON_CHANNEL_INFO(temp,
+-			   HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL |
+-			   HWMON_T_MAX,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
+-			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL),
++	&hwmon_temp_info,
+ 	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT |
+ 			   HWMON_P_CAP,
+ 			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CAP),
 -- 
 2.25.1
 
