@@ -4,87 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78F84CA5FE8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CBD5CA5FE7
 	for <intel-xe@archiver.kernel.org>; Fri,  2 Oct 2026 20:44:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2F1410E6CC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF41F10E6C2;
 	Fri,  2 Oct 2026 20:44:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=trailofbits.com header.i=@trailofbits.com header.b="j43R8RGX";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="I/atsHNg";
 	dkim-atps=neutral
-Received: from mail-dl2-f42.google.com (mail-dl2-f42.google.com
- [74.125.229.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2566110E6A2
- for <intel-xe@lists.freedesktop.org>; Fri,  2 Oct 2026 19:40:36 +0000 (UTC)
-Received: by mail-dl2-f42.google.com with SMTP id
- a92af1059eb24-144f47a9b57so7822099c88.2
- for <intel-xe@lists.freedesktop.org>; Fri, 02 Oct 2026 12:40:36 -0700 (PDT)
+Received: from mail-qv2-f42.google.com (mail-qv2-f42.google.com
+ [74.125.230.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 138A910E3D0
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 19:30:11 +0000 (UTC)
+Received: by mail-qv2-f42.google.com with SMTP id
+ 6a1803df08f44-917bcc8705fso3681616d6.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 01 Oct 2026 12:30:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1790883010; cv=none;
+ d=google.com; s=arc-20260327;
+ b=Pv2M26x9eIqwPUSHrx1uZLlsWb7H4AdCl/5VP5PXj/ojv2B+tkFz7kgGmVgiSmFtJs
+ STvxRoyU3o7yqTe+Y0SwrSChknoLu9xfA+zPfNlwts8WXerMl8Mmx+EDJTDd2+ze0RGv
+ ktU5mNtw40E60Guo26CMe3IkrE2u8fIq8oIbYO+W0FMlPcLL/OEbDUpr4cacOpw9c82s
+ nYQl2Ytq4Kd6hzaC/t1XPJALISmPh7xpL623fuoCu6fK9rKNYhTWeOvWK12TVT7+tiMK
+ W9jGzDMTOw4mctH2Y0+4u+4fL1hM2lp/YfvBNYcHHA1qBnSI3o/9qL83Fy/4cSVb0sPR
+ Lysg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:dkim-signature;
+ bh=bE/ZpayYaMuQJ2cjUw/XMionGOYmv8DuAlly9njYYE8=;
+ fh=hX10jCNvNgbrsgdo4IvBMsKfGnBMnmsK/XVbDLL+D1Y=;
+ b=QSXxqrvNtNi97jHGbzTsSeT/67YDW+a0XBUvaAUGWfrDPh+mm/eV7WAyhTuAjt4ibZ
+ 97Z+31tgbRsYlsmh4zoj37gtf7ylKDsGTqMociUxXGK7T/xKeylOQD6E2le4Cpo59x3r
+ LK6t8lXdOQLKw+2Cb45UfGDEDh0//N7Ei+5QO9yKTukdh/Di43uqTQDiixouT5gPW5cp
+ Jn7MMoPb5wnME1jxg/l4/eRi2uelx9Nabg2Rvd1MVKr26uyuSFIUcmVuEHpttLeTGoGc
+ fh1H+i43kdBitLX/EsGeovFR6UkoHFX9tTiBZwfXTdy4lt0WiYk/X6k2sGfTg1RZyUn7
+ 7WyQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=trailofbits.com; s=google; t=1790970035; x=1791574835;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=/6OS7kHnRAUFDH89g48qhMuuszS5BgPSQDnnJTJS0d4=;
- b=j43R8RGXPCtuTLg6uZoXrx4LmV5X6J07MtjEEy1sGQOz+lVd98U8GzXzKXrQhSgE2N
- 5zbGJSPZOj8TGyhrtxJ6lb0bkRorXxOI1W6P2FKO8jBGFy3dDKu3qJtWoIAAwl7Qtdb5
- bJGYsZfNXOVrc8rdt9gx61Jgum04mBdQdlwYT7HYhJLKR3XUwUp8gidBTXLEwAQJjaFU
- sLnp8vKtyariFTaNrPF+1O6BxN3tt0Y5BtuS134wJbAgx+DeGk7vAqCdDvBDwu41eb8L
- zXA/W70FaLKP0+E56PgWEhJSsfNMqgbk+LGsDw2E1Nr/s/PADQov4KOsT6HapvQKN645
- uycA==
+ d=gmail.com; s=20251104; t=1790883010; x=1791487810; darn=lists.freedesktop.org;
+ h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+ :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=bE/ZpayYaMuQJ2cjUw/XMionGOYmv8DuAlly9njYYE8=;
+ b=I/atsHNg+8htBTg+w5pzrDB4AzXTGsXqw0YYMs+N9hzdUXwCXTKyBE/wU3Wml9Gwp5
+ Idm7Jm+T5ZaYkjRkUHF59Avb5bj8gvj4m7GcE1uaZjJCN67u0KAQVWc1IPGPrFrkcO8R
+ J8gM2MntBM/BFVXkK9zpHmvjXliRL0dj5TWmMY22/H4mnbZJp/Dv/uW3DGBQlYvIJQ0O
+ jzS6e8lUemCD3vYDRUVg21SugqWhiP93x2NDvNoyyTnj5D93pJeHMW0oOqThn44f1rNJ
+ VHuqBi8j+yxqiLbtx3ArUlYdDpDPtdZerOukcv8I4ogNmpJ63Y2uWNOdLUf/JwTGL8qW
+ +spQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1790970035; x=1791574835;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=/6OS7kHnRAUFDH89g48qhMuuszS5BgPSQDnnJTJS0d4=;
- b=ypWRmKDMhRE4OSH0FCnanNUS7oNAvVelzQqYJiAI/Eb+xMiumia+hOV7GHFxDrV/dA
- FSnkS0/L9qrn1TPCN59SdqI1C+7FjserEGj1LybWDfSg8HgM/VttaOflV93BwcAaLfbL
- JrunT9EGwxzCqwzqzTQ/8PNE2LzDs6W0tZH8nTovXVlfiUvYnu9itw9fgpFgGhI1pJ7s
- USvWbU9G0Qfo1wgmhm006vK/n8eSkK44mA5h5UtM0Zb0tDVxQ1SOGn6rKt+6VQT33CpV
- 0uqkIPBU96PB6Ku4POcm71Xh6D0d+YzbpAB9sP/64TlOWkLXZpoXraEmafWTWfQMVJeO
- 9yMg==
+ d=1e100.net; s=20260707; t=1790883010; x=1791487810;
+ h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+ :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to:content-type;
+ bh=bE/ZpayYaMuQJ2cjUw/XMionGOYmv8DuAlly9njYYE8=;
+ b=zZcEmLlQmy/mPncz7Ia4ArqZ4VmutLhqMZyDA9H/1XHZnv7UqSPNiDuZ8DdCHrnh0o
+ F6Nq2TyQdwmMO8GJY29zHGKoIpMWa6oYLog/DYx/js8go1QJqt77ewg7AGflSgSf8gkF
+ ihegA0skGB9lSLAeHv7GUKK74WzEIECuFvqRbdZIGcGPhIFWd4k7gr+OixoemIXhCEVv
+ 8x8N2FxDgume50Br5WmiPnL5kP8kL3GRkWegt95s53p2LHXQugvyQfMGGdQ1giT+rdRn
+ Gd2j9CSkgoXO2C3QZDUFsbhrUjL+x9HP57qfa42XK/5gbuLgJZew8bvPJeMIz+8lIZ5Y
+ rugA==
 X-Forwarded-Encrypted: i=1;
- AKwUvByqlX79bdf88z6yd/pea4bkv+KFsAunaboxTYPUw6ZocqDlq0mghNZwq+oK2J48ftOnrem4jPNagA==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++kcByj7PgVr5PERq97sbttQ2VZBPsNyMm0yGyMKkJ6IwmrKPTUA
- mKNviY2Cs4MxQhRhzI3KsNoEbIku3m1aTQQZCd9JqPTaojAfzPWB2K3FyBSouTknNlg=
-X-Gm-Gg: AYBFou11HHebNRON8bsM6yC90pldR0E+EqucYRvwZlhGX4csArWeS6ZnI9NC+DjXaFC
- XVvlb1oTeJAgOeZltWb1yGtkBr2V48HqNrMuPHcJeupVaezNruEPIxShvgCnZSGxhxOIL3PukNq
- Wm061/xwYVwnptHoW+b4Ki/zZfowiD+v5Tcqww2k//FovbNXM4B2rmyQZ7fQJiSiVQBiazRVFeg
- H3GcuPwHTK8ZhSAK8NP8IAvtH1PZCzvkh7horBiHdbA1Ql0LhROJS+yUcsHiNXaayvXHXaH6xaR
- AxsQUSXaJWf0+bNTSPVO+3/wKKEUTi1Y130wuhyNSaLo95vF0eFWDTjb/jFdGzeFi6k8f4K6Cb/
- AEY8PU2bICzddO2ilaPv9x9VvJGIa3isrdJs2dOi5Wes823XDNXuOdDyXwpmpFWi6c7sd/sFXhP
- RvLyxI9sAkLZaoRJFaSCBp8jnnN40KqOWXxYdug62OVzjOe0z+9f6+YcC1nERt56r32sTVA2WCe
- F/VUNucO7dSdOtgGMt50ADCFc4YrW18rJAYNB45S88/h1Urc5Ebs6yR0U/sC01HegPFRd3gDv2j
- rY5iEA==
-X-Received: by 2002:a05:701b:2610:b0:147:a685:9125 with SMTP id
- a92af1059eb24-14f58fd2a97mr3391373c88.2.1790970035055; 
- Fri, 02 Oct 2026 12:40:35 -0700 (PDT)
-Received: from localhost.localdomain
- ([2603:8001:5f01:8bab:bcf9:6140:24a9:d1e7])
- by smtp.gmail.com with ESMTPSA id
- a92af1059eb24-14f47a57592sm7450113c88.17.2026.10.02.12.40.33
- (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
- Fri, 02 Oct 2026 12:40:34 -0700 (PDT)
-From: Artem Dinaburg <artem@trailofbits.com>
-To: stable@vger.kernel.org
-Cc: Artem Dinaburg <artem@trailofbits.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Sasha Levin <sashal@kernel.org>, Suraj Kandpal <suraj.kandpal@intel.com>,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Tvrtko Ursulin <tursulin@ursulin.net>,
- Simona Vetter <simona@ffwll.ch>, intel-xe@lists.freedesktop.org
-Subject: [PATCH 6.1.y 0/2] drm/i915/hdcp: guard both capability checks
-Date: Fri,  2 Oct 2026 15:40:25 -0400
-Message-ID: <20261002194030.20489-1-artem@trailofbits.com>
-X-Mailer: git-send-email 2.55.0
+ AKwUvBybanWFqZcXjmz+L7emfo8RfOD2533b6ajYqb5rSq/kMvIF+lhcCqpBSWNx5a06L3TcGF8lPPfFBw==@lists.freedesktop.org
+X-Gm-Message-State: AFq9FYIkmQP03EvaPiHHfsBxNutIOF2pzJlOSKrPFTE8eNbOZz6ARHAU
+ Fp+sbc+qYyzm7jFu/RagN0AvBYbMETAXbiUHdm1ENEVv1TlFTu/3ZmklpmJpzlRWgsenvC+i1Ql
+ zgBoXfbMhOrgMUn1xyztGpRE/BVrpZW8=
+X-Gm-Gg: AYBFou2bFEd27cwLNs0UTn2IQGwvc/8UkXiouPSzqFAPCY8cTtld0je8Gv4U9MaKfCn
+ EAfqj+2ubLZoV4hqt01BZgYgF0WjwpvWxMEzefM7E2c51Wtk7peLqICnKGOToeQvAtibjTFCfHG
+ ELkgPo00EEgyz4qzRpo9SHaDvg9xur/xxiw0nC3ST+uvEL/lP9An7RplkkqayUpA8x+xQlDQlS5
+ 8Cb4HqDzDbTdKrr/rFQjBNrOLoSvpeqKwsJrSJiPP0n+vAfZzMd6L9oftvE6VhrSca12Rf24/ua
+ Zdhgmxg+iWJPxnxsYWv2WAyHLjTo1oK+iO64/+tAWaAUAWtWBlVD86b6
+X-Received: by 2002:a05:6214:1301:b0:914:5471:e569 with SMTP id
+ 6a1803df08f44-917c011aa47mr9730326d6.18.1790883009819; Thu, 01 Oct 2026
+ 12:30:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260908044035.62093-1-mario.limonciello@amd.com>
+ <20260908044035.62093-5-mario.limonciello@amd.com>
+ <25c3dd77-bedc-4822-b687-0ea429db0dc7@amd.com>
+In-Reply-To: <25c3dd77-bedc-4822-b687-0ea429db0dc7@amd.com>
+From: Xaver Hugl <xaver.hugl@gmail.com>
+Date: Thu, 1 Oct 2026 15:29:57 -0400
+X-Gm-Features: AclHuK-bx6IInYg2xVtTEtZOke_ojMQyvMv_9lNx9GZqWxpIrzw65JUNJ9QqnL8
+Message-ID: <CAFZQkGxz6Sn7AU2_ATt_kpwTf9g0Orc6tTOOsmOzkHJo94E+-Q@mail.gmail.com>
+Subject: Re: [PATCH v8 04/14] drm: add connector backlight (LUMINANCE)
+ infrastructure
+To: Harry Wentland <harry.wentland@amd.com>
+Cc: Mario Limonciello <mario.limonciello@amd.com>,
+ dri-devel@lists.freedesktop.org, 
+ Simona Vetter <simona@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ amd-gfx@lists.freedesktop.org, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>, Hans de Goede <hansg@kernel.org>, 
+ David Herrmann <dh.herrmann@gmail.com>, Mario Limonciello <superm1@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Fri, 02 Oct 2026 20:44:45 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -100,24 +116,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Greg, Sasha, and i915 maintainers,
+Am Do., 1. Okt. 2026 um 15:12 Uhr schrieb Harry Wentland
+<harry.wentland@amd.com>:
+> Why not simply call it BACKLIGHT, which is what it is? Later, if we then
+> add support for luminance (in absolute nits) we can use the LUMINANCE
+> term for that. Otherwise it'll be lost to us and be apt to confuse
+> people.
+BACKLIGHT suggests there's a backlight, which isn't the case with OLED
+panels for example.
+I'd say luminance is the most technically correct term for this, even
+if it doesn't come attached with a unit for now.
 
-Patch 1 alone is not enough on 6.1.y: intel_hdcp_info() calls
-intel_hdcp_capable() and then intel_hdcp2_capable(), so the debugfs NULL
-dereference moves to the second call. Patch 2 is the companion fix that
-path needs, a backport of upstream commit d34f4f058edf ("drm/i915/hdcp:
-Add encoder check in hdcp2_get_capability") with the guard in the common
-intel_hdcp2_capable() helper, where 6.1.y still does the lookup. This
-mirrors the 2-patch series picked up for 6.6.y, and both fixes are
-already present in 6.12.y, 6.18.y, and 7.2.y. Could you please queue both
-patches for 6.1.y?
-
-AI assistance: An LLM helped adapt and validate both patches; I reviewed
-the resulting code and validation evidence.
-
-Thanks,
-Artem Dinaburg
-
-Series:
-  1. drm/i915/hdcp: Add encoder check in intel_hdcp_get_capability
-  2. drm/i915/hdcp: Add encoder check in hdcp2_get_capability
+- Xaver
