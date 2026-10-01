@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31C37CA5FB3
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 03:47:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F282CA5FA5
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 03:49:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3F3210E046;
-	Thu,  1 Oct 2026 03:47:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4B4210E058;
+	Thu,  1 Oct 2026 03:49:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Vx2IgQsL";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JzLrlOF9";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C256910E046
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 03:47:37 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EEFC10E058
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 03:49:04 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 5D28F41AE5;
- Thu,  1 Oct 2026 03:47:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 072EC1F000FF;
- Thu,  1 Oct 2026 03:47:36 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 34A9D60142;
+ Thu,  1 Oct 2026 03:49:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B487D1F000FF;
+ Thu,  1 Oct 2026 03:49:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790826457;
- bh=XreglGSPshlGqXHb8elDcShbdmy8DxxnLgqF75RFpCY=;
+ s=k20260515; t=1790826542;
+ bh=s1Ioz0iGKIjCPr34OiX2oteYhCfuyNHBfc4j9lj8M2s=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Vx2IgQsLpxF326hpTrINfQUohOt8CQOdUYs79V8KarzdI1dvFZ4W5FRJPbfK0c2r3
- EzbBFLpV2Hy/sC1mT86fh5m2Ay74P2k74KGeeBB657sHpMWFSQvA0Nf5rVg0V351p0
- s9EsBm2aOi+eK8Iymvn5jtTEm87+f3ZGiNimXFUw5Ey179PaDkbWxyJsO0gEMpiFrn
- yoZW9sxiArI10I/uG9Pv0zIVA0+4GN23vYy5Tb7+xnvZ6TOGQiNBpz/o4eu4L/yuEr
- udaYSEm+51uka1x8gPgX0/iXrVLHvNWiNpmHEn9b6gpHu1QZQOmDiim8fclGTK1GsT
- VdzRAAEXJupyg==
+ b=JzLrlOF9tmiLFhswa4hAD6xRngA6Ehy6eDwhd2oPHWC/frWB11x1M6p+1r31YpDQ2
+ hjw+/JNHcQgtPIN6k+bBdTSQqVL4FWWe01fJC3GSAW/CVrTGOSaRBY4gNqgjLQu95h
+ Zyvtk83Iu/TxAX6xo5dgGuzfO3xP9FJ5k/RtTsaIBJSlg3aHxZLBJC/blZXzKoYQw6
+ xGGcYxa4KMBqkybK6LYJ5Nfkg/Q7vcwqBgnHTtKQ0V0UfB4cieY5JU3j9j3pnLpHq8
+ 0EYq2RFx3zul6LXEHAGz9qKQvQINsyPzV38DkHSnWlAyeoCuAxVh4ktg85RJVco5Dx
+ erR1Om0KltEWA==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 4/4] drm/xe: Bump prefetch BO LRU for already-valid
- ranges
+Subject: Re: [PATCH v4 3/4] drm/xe: Bump prefetch BO LRU via GPUSVM devmem
+ callback
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261001033602.3166274-10-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20261001033602.3166274-9-himal.prasad.ghimiray@intel.com>
 References: <20261001033602.3166274-6-himal.prasad.ghimiray@intel.com>
- <20261001033602.3166274-10-himal.prasad.ghimiray@intel.com>
+ <20261001033602.3166274-9-himal.prasad.ghimiray@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 01 Oct 2026 03:47:36 +0000
-Message-Id: <20261001034737.072EC1F000FF@smtp.kernel.org>
+Date: Thu, 01 Oct 2026 03:49:02 +0000
+Message-Id: <20261001034902.B487D1F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,119 +59,94 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] drm_gpusvm: Type confusion on foreign coherent pages causes kernel=
- panic
+- [High] mm: kernel oops via invalid zone_device_data dereference on foreig=
+n DEVICE_COHERENT pages
 --
 
-commit e6a84f5161e8175296073241c548503908bdb0fe
+commit 958d8ac307a125ba9f54f827cc57e2a2d00555d1
 Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-drm/xe: Bump prefetch BO LRU for already-valid ranges
+drm/xe: Bump prefetch BO LRU via GPUSVM devmem callback
 
-This commit adds xe_svm_range_prefetch_lru_bump() to refresh backing BOs on
-the LRU for already-valid prefetch ranges. It avoids migration and binding
-overhead by refaulting CPU pages without touching DMA mappings and moving
-each backing BO to the LRU tail.
+This commit adds xe_svm_devmem_lru_bump() and sets it as the devmem_fn
+callback in the prefetch worker to move backing BOs to the LRU tail
+during get_pages.
 
 > diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-> index d07dd95ab4514..909a602d091ea 100644
+> index f39e647512ad9..d07dd95ab4514 100644
 > --- a/drivers/gpu/drm/xe/xe_svm.c
 > +++ b/drivers/gpu/drm/xe/xe_svm.c
-
 [ ... ]
-
-> @@ -1659,6 +1659,40 @@ void xe_svm_devmem_lru_bump(struct drm_pagemap_dev=
-mem *devmem_allocation)
->  #endif
+> @@ -1625,6 +1626,39 @@ int xe_svm_range_get_pages(struct xe_vm *vm, struc=
+t xe_svm_range *range,
+>  	return err;
 >  }
 > =20
 > +/**
-> + * xe_svm_range_prefetch_lru_bump() - Bump the TTM LRU for an already-va=
-lid range
-> + * @vm: Pointer to the struct xe_vm
-> + * @vma: Pointer to the VMA covering the range
-> + * @range: Pointer to the xe SVM range structure
-> + * @dpagemap: Target pagemap of the prefetch, or %NULL for system memory
-> + *
-> + * A valid range skips migration and binding, so nothing else refreshes =
-its
-> + * backing BOs on the LRU. Re-fault the CPU pages without touching the D=
-MA
-> + * mappings (@no_dma_map) and move each backing BO to the LRU tail.
-> + *
-> + * Prefetching is a best-effort optimization, so any failure is ignored;=
- a
-> + * later fault will refault the range.
+> + * xe_svm_devmem_lru_bump() - Move a range's backing BO to the TTM LRU t=
+ail
+[ ... ]
 > + */
-> +void xe_svm_range_prefetch_lru_bump(struct xe_vm *vm, struct xe_vma *vma,
-> +				    struct xe_svm_range *range,
-> +				    struct drm_pagemap *dpagemap)
+> +void xe_svm_devmem_lru_bump(struct drm_pagemap_devmem *devmem_allocation)
 > +{
-> +	struct drm_gpusvm_ctx ctx =3D {
-> +		.read_only =3D xe_vma_read_only(vma),
-> +		.device_private_page_owner =3D
-> +			xe_svm_private_page_owner(vm, !dpagemap),
-> +		.no_dma_map =3D 1,
-> +		.devmem_fn =3D xe_svm_devmem_lru_bump,
-> +	};
+> +#if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+> +	struct xe_bo *bo;
 > +
-> +	guard(mutex)(&range->lock);
-> +
-> +	if (xe_svm_range_is_removed(range))
+> +	if (devmem_allocation->ops !=3D &dpagemap_devmem_ops)
 > +		return;
-> +
-> +	xe_svm_range_get_pages(vm, range, &ctx);
-> +}
 
 [Severity: High]
-Can this lead to a kernel panic due to a type confusion if a foreign driver=
-'s
-MEMORY_DEVICE_COHERENT page is mapped?
+Does this guard effectively protect against foreign allocations?
 
-If an unprivileged local user maps a foreign coherent page (for example, fr=
-om
-AMDGPU) into a VMA and triggers a prefetch here, xe_svm_range_get_pages()
-eventually reaches drm_gpusvm_walk_devmem() in drivers/gpu/drm/drm_gpusvm.c.
+When a user maps a foreign DEVICE_COHERENT page (e.g., from an AMDGPU
+allocation) and binds it into an xe VM, this guard appears to be reached
+too late.
 
-Because HMM does not filter MEMORY_DEVICE_COHERENT pages by the
-device_private_page_owner, drm_gpusvm_walk_devmem() proceeds:
+The kernel oops seems to occur earlier in the call chain when
+drm_gpusvm_walk_devmem() blindly calls drm_pagemap_page_to_devmem().=20
 
-drivers/gpu/drm/drm_gpusvm.c:drm_gpusvm_walk_devmem() {
-    ...
-    if (!is_device_private_page(page) &&
-        !is_device_coherent_page(page)) {
-        last =3D NULL;
-        continue;
-    }
+That helper erroneously casts the foreign driver's zone_device_data to a
+struct drm_pagemap_zdd pointer and dereferences zdd->devmem_allocation
+before this ops check is ever executed.
 
-    devmem =3D drm_pagemap_page_to_devmem(page);
-    ...
-}
+> +
+> +	bo =3D to_xe_bo(devmem_allocation);
+> +
+> +	if (!dma_resv_trylock(bo->ttm.base.resv))
+> +		return;
+> +
+> +	ttm_bo_move_to_lru_tail_unlocked(&bo->ttm);
+> +	dma_resv_unlock(bo->ttm.base.resv);
+> +#endif
+> +}
+> +
+[ ... ]
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 425c678f4480a..a42d86f674cc8 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -3242,6 +3242,7 @@ static int prefetch_ranges(struct xe_vm *vm, struct=
+ xe_vma_ops *vops,
+>  	ctx.devmem_possible =3D devmem_possible;
+>  	ctx.check_pages_threshold =3D devmem_possible ? SZ_64K : 0;
+>  	ctx.device_private_page_owner =3D xe_svm_private_page_owner(vm, !dpagem=
+ap);
+> +	ctx.devmem_fn =3D xe_svm_devmem_lru_bump;
 
-This calls drm_pagemap_page_to_devmem() in drivers/gpu/drm/drm_pagemap.c,
-which blindly casts the foreign driver's zone_device_data to a struct
-drm_pagemap_zdd and reads devmem_allocation, yielding a garbage pointer.
+[Severity: High]
+Can setting this callback trigger a denial of service by unprivileged users?
 
-The garbage pointer is then passed to the devmem_fn callback set in this
-commit:
+Setting ctx.devmem_fn activates the drm_gpusvm_walk_devmem() code path
+during hmm_range_fault() processing.=20
 
-drivers/gpu/drm/xe/xe_svm.c:xe_svm_devmem_lru_bump() {
-    ...
-    if (devmem_allocation->ops !=3D &dpagemap_devmem_ops)
-        return;
-    ...
-}
+If a user maps a foreign DEVICE_COHERENT page, hmm_range_fault() returns a
+valid PFN, and the walker will process it, leading to the invalid
+zone_device_data dereference mentioned above.
 
-This dereferences the garbage devmem_allocation pointer to check ops, causi=
-ng
-an immediate unhandled page fault and kernel panic before the validation ch=
-eck
-can fail.
-
-Is there a way to safely validate that the page is owned by drm_pagemap bef=
-ore
-extracting and dereferencing the devmem_allocation pointer?
+> =20
+>  	skip_threads =3D  op->prefetch_range.ranges_count =3D=3D 1 ||
+>  		(!dpagemap && !(vops->flags &
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261001033602.3166=
-274-6-himal.prasad.ghimiray@intel.com?part=3D4
+274-6-himal.prasad.ghimiray@intel.com?part=3D3
