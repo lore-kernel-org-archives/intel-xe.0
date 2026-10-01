@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3F6ACA5FD2
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 19:51:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9FAACA5FD2
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 19:51:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5FCD10E461;
-	Thu,  1 Oct 2026 19:51:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 676B110E251;
+	Thu,  1 Oct 2026 19:51:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YxdnDPv5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YEDM7VZ+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8A0610E3FF
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 19:51:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A10D410E486
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 19:51:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790884296; x=1822420296;
+ t=1790884299; x=1822420299;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gmcpHma6wJOigBEDpA/wR416PbRAZM94LMLXaIhE8lY=;
- b=YxdnDPv5D8yzKDulxVKAEAPWZlxKhqk9r1v83mJpUqV98xuVG+cMIKet
- 7m2NtgVX1sHydvTqY1IK+6f8i8ZAm64irjc6e+OaBp+7bAmnHa/dS51Ym
- K8RHSiH2Q4YV2lpCNhtD+fG9E2aXTYwo3Mh902JLAwSHyS/3ixjPoVCd+
- kUy++eLNNeXyrCNkGcrjJtdj3Rb9TAET1MZwpOBsGd/9MDyHrr+G9WcHM
- ipWxTECzvxwQH6i6CKh/OMStOaTtgQR+GfP5gckhnyqxNJpmEzSX6eoSQ
- +YMDra6roqta9ZSoCjLZgDUm6ml0sEGHOP09goMHGh9BTnvJU0UX5FIQU Q==;
-X-CSE-ConnectionGUID: ao12e2nURcGvPPr+OgEA7Q==
-X-CSE-MsgGUID: IRvp7KU+Q0+99BoWwq6m6Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="102177854"
-X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="102177854"
+ bh=KuNr9abvZ1/608g5E53tsassf0WYCNi6weQFSBv65ks=;
+ b=YEDM7VZ+eL+aRjflpJDKldc8XYkOEnJIm98fROwxYu8IAYrJLfbCKvtJ
+ AoAhWZnXLs7WFWVOS83R+LMA+r7exeIzRYsGPB5bc5KqR3/DI9zdJgh1Y
+ p2ZPNJtrUQNj5Tc3TX52PlPhp0lCVWG60o97Kdq8LbKKUckDECcCZqFjZ
+ S9nyQJ3nCiT7TSsnkurD4VRLtX11m/lopF/uziW0onSJ4AuXWbbp6lqHt
+ +b0oDDsj5TxpdBG/C4L/AuZjrtBL6mXXiAEw0MskO7BGixcXfXjWEHtQn
+ Ifqk9WgOdReiCb/I15TQFEVxDgF5LYh4J2hYI3SlUUnULIx3HiSefY7Ld A==;
+X-CSE-ConnectionGUID: eORVCvZESICi+0kSoS32Zw==
+X-CSE-MsgGUID: 7VPSwnTOQJyRQB1dQ6Yw3w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="102177866"
+X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="102177866"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 12:51:35 -0700
-X-CSE-ConnectionGUID: R6TyTCYDSVCQmDvYfMjoVQ==
-X-CSE-MsgGUID: AEHUi9UGRjmtai+lCnsoZw==
+ 01 Oct 2026 12:51:38 -0700
+X-CSE-ConnectionGUID: XeZuICs3R0O2oxKT1+vabQ==
+X-CSE-MsgGUID: RfiFl/apQLOihG41vApUIA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="273893764"
+X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="273893774"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 12:51:32 -0700
+ 01 Oct 2026 12:51:35 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v7 05/15] drm/xe/hwmon: Handle unavailable memory controller
- sensors
-Date: Fri,  2 Oct 2026 01:20:23 +0530
-Message-Id: <20261001195033.3466205-6-karthik.poosa@intel.com>
+Subject: [PATCH v7 06/15] drm/xe/hwmon: Detect unavailable PCIe thermal sensors
+Date: Fri,  2 Oct 2026 01:20:24 +0530
+Message-Id: <20261001195033.3466205-7-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20261001195033.3466205-1-karthik.poosa@intel.com>
 References: <20261001195033.3466205-1-karthik.poosa@intel.com>
@@ -70,59 +69,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Skip memory controller sensors that report invalid readings when
-computing the average temperature in get_mc_temp(). Return -ENXIO when
-no valid sensor data is available, and allow the helper to be used as
-an availability probe by making the output parameter optional.
+Return -ENXIO from get_pcie_temp() when the mailbox reports an invalid
+reading, so the PCIe sensor can be treated as unavailable. Guard the val
+store so the function can be used purely as an availability probe. No
+sysfs visibility changes.
 
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-Fixes: 3a0cb885e111 ("drm/xe/hwmon: Expose memory controller temperature")
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 20 ++++++++++++++++----
- 1 file changed, 16 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_hwmon.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 0de0878f3598..17525a67f086 100644
+index 17525a67f086..20cab7df67af 100644
 --- a/drivers/gpu/drm/xe/xe_hwmon.c
 +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -848,8 +848,8 @@ static int mbx_temp_decode(u8 value)
- static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
- {
- 	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-+	int ret, i, count = 0;
- 	s32 average = 0;
--	int ret, i;
+@@ -896,7 +896,13 @@ static int get_pcie_temp(struct xe_hwmon *hwmon, long *val)
+ 		data = REG_FIELD_GET(PCIE_SENSOR_MASK, data);
  
- 	for (i = 0; i < DIV_ROUND_UP(hwmon->temp.count, sizeof(u32)); i++) {
- 		ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_DATA, i),
-@@ -860,11 +860,23 @@ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
- 			hwmon->temp.dword[i]);
- 	}
- 
--	for (i = TEMP_INDEX_MCTRL; i < hwmon->temp.count - 1; i++)
-+	for (i = TEMP_INDEX_MCTRL; i < hwmon->temp.count - 1; i++) {
-+		if (!mbx_temp_valid(hwmon, hwmon->temp.value[i]))
-+			continue;
- 		average += mbx_temp_decode(hwmon->temp.value[i]);
-+		count++;
-+	}
-+
-+	if (!count) {
-+		drm_dbg(&hwmon->xe->drm, "Memory controller temperature unavailable!\n");
+ 	data = REG_FIELD_GET(TEMP_MASK, data);
+-	*val = mbx_temp_decode(data) * MILLIDEGREE_PER_DEGREE;
++	if (!mbx_temp_valid(hwmon, data)) {
++		drm_dbg(&hwmon->xe->drm, "PCIe temperature not available\n");
 +		return -ENXIO;
 +	}
 +
-+	average /= count;
-+
 +	if (val)
-+		*val = average * MILLIDEGREE_PER_DEGREE;
++		*val = mbx_temp_decode(data) * MILLIDEGREE_PER_DEGREE;
  
--	average /= (hwmon->temp.count - TEMP_INDEX_MCTRL - 1);
--	*val = average * MILLIDEGREE_PER_DEGREE;
  	return 0;
  }
- 
 -- 
 2.25.1
 
