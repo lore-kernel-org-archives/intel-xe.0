@@ -4,63 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBE99CA5FB3
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 09:50:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFEE8CA5FB3
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 09:52:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C51510E057;
-	Thu,  1 Oct 2026 09:50:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70B1310E057;
+	Thu,  1 Oct 2026 09:52:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kpVCmtXO";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V2IM42Ny";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99A4A10E057
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 09:50:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE4E910E057;
+ Thu,  1 Oct 2026 09:52:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790848247; x=1822384247;
- h=message-id:date:mime-version:from:subject:to:cc:
- references:in-reply-to;
- bh=9P2oSVKPX/omzIqyyjKhe9IosYcB7cjGivikuJ0J3y0=;
- b=kpVCmtXOwgu0UkFvmMpOe57XHoKs/gwG/dc/oSmoxODiQdSibzujcm/D
- DKSjCHKP5CoNWKRq+y550/W80L07zLh7tq5DEICIh1WzTaWV5YtuVOXnk
- ipL90si+W6eHhCiWz1yu/4DMM68yS0+iBzqzbZYhDQPSFNbp5+Fxjb1eI
- P2GePX/vwa+cyHnbyvNf21BMlZzgqpVlL2FJzcBPY9K3+1ywPOt+NYBid
- UDCRu7GYsvpwOvAgk5lLz4xd8wU2z5PB7lTy3/Vv/MxZq3/OE6MZui3w0
- aeV3FmE+72Rht4hHzouL0cZcHyt4QfbSd5KcaK1v8O2lAyK7kPWZVxMip A==;
-X-CSE-ConnectionGUID: 9CRQd0HITl6LCtjZaprasw==
-X-CSE-MsgGUID: 23Nb7BeQRTqJV98qmmIpwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11921"; a="101759821"
-X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; 
- d="scan'208,217";a="101759821"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 02:50:46 -0700
-X-CSE-ConnectionGUID: 0zHr5su3Qqin0+Pd9n/qPg==
-X-CSE-MsgGUID: Q9a9CH8pQn690lfo2uw/uQ==
+ t=1790848329; x=1822384329;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=NJHgq0KsDMhSAYtmq/D/EM57QepkjWdLxw/LXKK10LY=;
+ b=V2IM42NynhLTLGAnVaIoM9Dq0O9iY7ACDg01ejjAqRL2EJcIXl1zU4s9
+ TtXlRWGjocM/LlsL3bZDGOg8hK4moCUQ2d9+ojOHrZrZkvVfDOEVBO840
+ RHyGVqY7uLHTJkEDQgUtD0Q9BoW/cvRrbR46f4yeTcb9UIhdHESMNjSFA
+ VlzMED7Ob5oXM8Rd55itJ02hs0T7cltrzogRMoyZtFq7oOackjj4i32Vb
+ BHe5Mb3Y4NKjJu3IWlEDQPXzVps+MgHeWV2girY1KussRupTPq+4ynuii
+ 5mlgODHHdNnOGV1frv1CJAq9z26zH4UDdKBBwxSKZyS/i205ya6To0b4G A==;
+X-CSE-ConnectionGUID: f8zgH/FmS22R33j7E/CANA==
+X-CSE-MsgGUID: qgTB2I5cQx2zgDdnb3Ianw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11921"; a="102272559"
+X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; d="scan'208";a="102272559"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2026 02:52:08 -0700
+X-CSE-ConnectionGUID: WguHdASFQgWRaZDkBmdKnw==
+X-CSE-MsgGUID: zYeduHC8RVGoKiFKMBx7Jg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; 
- d="scan'208,217";a="303887387"
-Received: from dbhadane-mobl1.gar.corp.intel.com (HELO [10.66.117.203])
- ([10.66.117.203])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 02:50:44 -0700
-Content-Type: multipart/alternative;
- boundary="------------lt2TyqtK9LnmMs9J5pJig8o1"
-Message-ID: <66523a3f-4515-4655-a368-5be7c1ab4a22@Intel.com>
-Date: Thu, 1 Oct 2026 15:20:37 +0530
+X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; d="scan'208";a="274035093"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.29])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2026 02:52:06 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: maarten.lankhorst@linux.intel.com, ville.syrjala@linux.intel.com
+Subject: Re: [CI v2 00/10] drm/{i915, xe}: use a shared gtt_view_types.h header
+In-Reply-To: <cover.1790780340.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <cover.1790780340.git.jani.nikula@intel.com>
+Date: Thu, 01 Oct 2026 12:52:03 +0300
+Message-ID: <a6db80c1c771276318586603b6af9ce757155c75@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@Intel.com>
-Subject: Re: [PATCH v4 04/12] drm/xe/mmio: Report BAR mapping errors using
- structured xe_log API
-To: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: michal.wajdeczko@intel.com
-References: <20260928092114.1610203-1-dnyaneshwar.bhadane@intel.com>
- <20260928092114.1610203-5-dnyaneshwar.bhadane@intel.com>
-Content-Language: en-US
-Organization: intel
-In-Reply-To: <20260928092114.1610203-5-dnyaneshwar.bhadane@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,154 +68,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------lt2TyqtK9LnmMs9J5pJig8o1
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+On Wed, 30 Sep 2026, Jani Nikula <jani.nikula@intel.com> wrote:
+> Move i915_gtt_view_types.h under include/drm/intel, and clean up.
 
+Pushed to din, thanks for the reviews.
 
-On 28-09-2026 02:51 pm, Dnyaneshwar Bhadane wrote:
-> Replace xe_err() calls with xe_log_err() and xe_log_err_fatal() using
-
-nit: hmm, Remove xe_log_err macro, we used only xe_log_err_fatal right?
-
-Sure thanks Mallesh,
-
-Dnyaneshwar,
-
-> the REGS component tag for MMIO BAR probe failures
 >
-> Signed-off-by: Dnyaneshwar Bhadane<dnyaneshwar.bhadane@intel.com>
-Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_mmio.c | 12 ++++++++----
->   1 file changed, 8 insertions(+), 4 deletions(-)
+> v2 of [1]
 >
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> index 7fa18dfcb5a2..890146b8836b 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.c
-> +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> @@ -15,6 +15,7 @@
->   #include "regs/xe_bars.h"
->   #include "xe_device.h"
->   #include "xe_gt_sriov_vf.h"
-> +#include "xe_log.h"
->   #include "xe_printk.h"
->   #include "xe_sriov.h"
->   #include "xe_tile_printk.h"
-> @@ -71,8 +72,8 @@ int xe_mmio_probe_tiles(struct xe_device *xe)
->   		return 0;
->   
->   	if (xe->mmio.size < xe->info.tile_count * tile_mmio_size) {
-> -		xe_err(xe, "GTTMMADR_BAR is too small for %d tiles: %zu\n",
-> -		       xe->info.tile_count, xe->mmio.size);
-> +		xe_log_err_fatal(xe, REGS, -EIO, "GTTMMADR_BAR is too small for %d tiles: %zu\n",
-> +				 xe->info.tile_count, xe->mmio.size);
->   		return -EIO;
->   	}
->   
-> @@ -105,13 +106,16 @@ int xe_mmio_probe_early(struct xe_device *xe)
->   
->   	xe->mmio.regs = pcim_iomap(pdev, GTTMMADR_BAR, 0);
->   	if (!xe->mmio.regs) {
-> -		xe_err(xe, "Failed to map GTTMMADR_BAR\n");
-> +		xe_log_err_fatal(xe, REGS, -EIO,
-> +				 "Failed to map GTTMMADR_BAR\n");
->   		return -EIO;
->   	}
->   
->   	xe->mmio.size = pci_resource_len(pdev, GTTMMADR_BAR);
->   	if (xe->mmio.size < SZ_16M) {
-> -		xe_err(xe, "GTTMMADR_BAR is too small: %zu\n", xe->mmio.size);
-> +		xe_log_err_fatal(xe, REGS, -EIO,
-> +				 "GTTMMADR_BAR is too small: %zu\n",
-> +				 xe->mmio.size);
->   		return -EIO;
->   	}
->   
---------------lt2TyqtK9LnmMs9J5pJig8o1
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+> [1] https://lore.kernel.org/r/cover.1789502902.git.jani.nikula@intel.com
+>
+>
+> Jani Nikula (10):
+>   drm/intel: move i915_gtt_view_types.h to include/drm/intel
+>   drm/intel: rename i915_gtt_view_is_*() helpers to
+>     intel_gtt_view_is_*()
+>   drm/intel: rename i915_gtt_view* struct/enum to intel_gtt_view*
+>   drm/intel: add intel_gtt_view_is_partial() for completeness
+>   drm/xe/display: use intel_gtt_view_is_*() helpers more
+>   drm/i915/gem: use intel_gtt_view_is_*() helpers more
+>   drm/i915/vma: use intel_gtt_view_is_*() helpers more
+>   drm/i915/selftests: use intel_gtt_view_is_*() helpers more
+>   drm/i915/debugfs: use the intel_gtt_view_is_*() helpers more
+>   drm/intel: rename I915_GTT_VIEW_* enumerations to INTEL_GTT_VIEW_*
+>
+>  .../drm/i915/display/intel_display_types.h    |  4 +-
+>  drivers/gpu/drm/i915/display/intel_fb.c       | 18 ++---
+>  drivers/gpu/drm/i915/display/intel_parent.c   |  4 +-
+>  drivers/gpu/drm/i915/display/intel_parent.h   |  6 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_domain.c    |  4 +-
+>  drivers/gpu/drm/i915/gem/i915_gem_mman.c      | 14 ++--
+>  drivers/gpu/drm/i915/gem/i915_gem_object.h    |  2 +-
+>  .../drm/i915/gem/selftests/i915_gem_mman.c    |  4 +-
+>  drivers/gpu/drm/i915/i915_debugfs.c           | 20 ++---
+>  drivers/gpu/drm/i915/i915_gem.c               |  6 +-
+>  drivers/gpu/drm/i915/i915_gem.h               |  6 +-
+>  drivers/gpu/drm/i915/i915_gtt_view_types.h    | 74 -----------------
+>  drivers/gpu/drm/i915/i915_vma.c               | 44 ++++-------
+>  drivers/gpu/drm/i915/i915_vma.h               | 12 +--
+>  drivers/gpu/drm/i915/i915_vma_types.h         | 29 ++++---
+>  drivers/gpu/drm/i915/selftests/i915_vma.c     | 60 +++++++-------
+>  .../compat-i915-headers/i915_gtt_view_types.h |  7 --
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c        | 28 +++----
+>  include/drm/intel/display_parent_interface.h  |  8 +-
+>  include/drm/intel/gtt_view_types.h            | 79 +++++++++++++++++++
+>  20 files changed, 201 insertions(+), 228 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/i915/i915_gtt_view_types.h
+>  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gtt_view_types.h
+>  create mode 100644 include/drm/intel/gtt_view_types.h
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 28-09-2026 02:51 pm, Dnyaneshwar
-      Bhadane wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:20260928092114.1610203-5-dnyaneshwar.bhadane@intel.com">
-      <pre wrap="" class="moz-quote-pre">Replace xe_err() calls with xe_log_err() and xe_log_err_fatal() using</pre>
-    </blockquote>
-    <p> nit: hmm, Remove <span style="white-space: pre-wrap">xe_log_err macro, we used only </span><span
-      style="white-space: pre-wrap">xe_log_err_fatal</span> right?</p>
-    <p>Sure thanks Mallesh, </p>
-    <p>Dnyaneshwar,</p>
-    <blockquote type="cite"
-      cite="mid:20260928092114.1610203-5-dnyaneshwar.bhadane@intel.com">
-      <pre wrap="" class="moz-quote-pre">the REGS component tag for MMIO BAR probe failures
-
-Signed-off-by: Dnyaneshwar Bhadane <a class="moz-txt-link-rfc2396E"
-      href="mailto:dnyaneshwar.bhadane@intel.com">&lt;dnyaneshwar.bhadane@intel.com&gt;</a></pre>
-    </blockquote>
-    Reviewed-by: Mallesh Koujalagi <a class="moz-txt-link-rfc2396E"
-      href="mailto:mallesh.koujalagi@intel.com">&lt;mallesh.koujalagi@intel.com&gt;</a>
-    <blockquote type="cite"
-      cite="mid:20260928092114.1610203-5-dnyaneshwar.bhadane@intel.com">
-      <pre wrap="" class="moz-quote-pre">---
- drivers/gpu/drm/xe/xe_mmio.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 7fa18dfcb5a2..890146b8836b 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -15,6 +15,7 @@
- #include "regs/xe_bars.h"
- #include "xe_device.h"
- #include "xe_gt_sriov_vf.h"
-+#include "xe_log.h"
- #include "xe_printk.h"
- #include "xe_sriov.h"
- #include "xe_tile_printk.h"
-@@ -71,8 +72,8 @@ int xe_mmio_probe_tiles(struct xe_device *xe)
- 		return 0;
- 
- 	if (xe-&gt;mmio.size &lt; xe-&gt;info.tile_count * tile_mmio_size) {
--		xe_err(xe, "GTTMMADR_BAR is too small for %d tiles: %zu\n",
--		       xe-&gt;info.tile_count, xe-&gt;mmio.size);
-+		xe_log_err_fatal(xe, REGS, -EIO, "GTTMMADR_BAR is too small for %d tiles: %zu\n",
-+				 xe-&gt;info.tile_count, xe-&gt;mmio.size);
- 		return -EIO;
- 	}
- 
-@@ -105,13 +106,16 @@ int xe_mmio_probe_early(struct xe_device *xe)
- 
- 	xe-&gt;mmio.regs = pcim_iomap(pdev, GTTMMADR_BAR, 0);
- 	if (!xe-&gt;mmio.regs) {
--		xe_err(xe, "Failed to map GTTMMADR_BAR\n");
-+		xe_log_err_fatal(xe, REGS, -EIO,
-+				 "Failed to map GTTMMADR_BAR\n");
- 		return -EIO;
- 	}
- 
- 	xe-&gt;mmio.size = pci_resource_len(pdev, GTTMMADR_BAR);
- 	if (xe-&gt;mmio.size &lt; SZ_16M) {
--		xe_err(xe, "GTTMMADR_BAR is too small: %zu\n", xe-&gt;mmio.size);
-+		xe_log_err_fatal(xe, REGS, -EIO,
-+				 "GTTMMADR_BAR is too small: %zu\n",
-+				 xe-&gt;mmio.size);
- 		return -EIO;
- 	}
- 
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------lt2TyqtK9LnmMs9J5pJig8o1--
+-- 
+Jani Nikula, Intel
