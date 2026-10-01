@@ -4,54 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37033CA5FDD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A2FECA5FDE
 	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 22:04:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E000B10E49F;
-	Thu,  1 Oct 2026 22:04:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1181410E4A0;
+	Thu,  1 Oct 2026 22:04:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PbihvGa3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Usl2sIuq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D06ED10E494
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 22:04:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EA9210E453
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 22:04:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790892242; x=1822428242;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=AaqA5fX2akCAlJWHbihGsXcccdQSzdobI+ZWIFUMTac=;
- b=PbihvGa3HqKJZjeYtzd3IcHzbTm9y2vCtTUAe9jsYfM6/rD1bSp7Sh5y
- AARnuAmbrp/NRBBZRofyVYXpwZ9JLerNFaN9kAx6NUaRyAOVgnNMgcnaf
- n79pH3Ec4qVLkfSbPJSd7LvL44TFDUE5uuPoGFsEuyumt9RBpk3ByUKpM
- zxxuVwsk610SVwFAnSV+hwOb/IBGamx6Lo7UO29OAKLIkg2soU7JFQpP/
- Ndf0vzLwyYm1dXuuzFX4/Fv+TUe6aUdGKzRjpmbY1U4f/pNDz29tvPV8S
- 71HCLmXVMqY+hy4AJMk0LIVwdjQJjGbO+sQpCEoqRP4YtNvX/GgQyhnGK g==;
-X-CSE-ConnectionGUID: epLrkmPrQliFVo55f4yLdg==
-X-CSE-MsgGUID: UOKeVq9sRH+pJ2vMfLb8VQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="91684102"
-X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="91684102"
+ t=1790892243; x=1822428243;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=CMaYmjvXutgM8mqzQofYQp/0qRYlf5oKXmw6GOHm0/M=;
+ b=Usl2sIuqmiMoZu9vKdezhn127Lh3PHN6w4VTvNzcWi5CcJ9JKCTbguq3
+ R+CFoba9ZAQ/V8BojzmP4n5z8b6d/kIsbErJZPGEhl1VGJuK4vamTvzN9
+ TIlPxhbtzjEXSHU+WI6eAiuVfy84L6eyaTWwwTBKoboe+DPZQMZTk2kAu
+ PbrOkF6QTr8KEBBJQZ7/QQB/xh6MPGEVXbdra0PqAiX8eE2ou/1nR1hoW
+ hPtMxOV7iLWZdVAS1VdrV9g8cGJpIwgrkIyMiHfcTVRly8TlZKFLx9yFo
+ f5QUlFiQ518LuMSHnArZN1o5tFwzl6QPVRwLTnjAkbftQfrd4YXT8a0wv g==;
+X-CSE-ConnectionGUID: vEY09g51QhyyLbPWHxjkPQ==
+X-CSE-MsgGUID: FuIdQ9PUSOy09+pxDB2EVg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="91684111"
+X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="91684111"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 15:04:02 -0700
-X-CSE-ConnectionGUID: IGU8XJUBRk6tt94psPjqUw==
-X-CSE-MsgGUID: Ar/Tk+tfTQueZmV353LiLw==
+ 01 Oct 2026 15:04:03 -0700
+X-CSE-ConnectionGUID: NMOPUDzHRFyFMcwOn84O+w==
+X-CSE-MsgGUID: cAhOxqHRQMOaL5WZDCpbYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="276206241"
+X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="276206253"
 Received: from debox1-desk4.jf.intel.com ([10.54.77.98])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 15:04:01 -0700
+ 01 Oct 2026 15:04:02 -0700
 From: "David E. Box" <david.e.box@linux.intel.com>
 To: ilpo.jarvinen@linux.intel.com, david.e.box@linux.intel.com,
  linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
  rodrigo.vivi@intel.com, michael.j.ruhl@intel.com, ayaz.siddiqui@intel.com,
  syed.abdul.muqthyar.ahmed@intel.com, intel-xe@lists.freedesktop.org,
  hansg@kernel.org
-Subject: [PATCH 0/3] platform/x86/intel/pmt: Fix crashlog regressions and add
- completion uevent
-Date: Thu,  1 Oct 2026 15:03:45 -0700
-Message-ID: <20261001220351.1592138-1-david.e.box@linux.intel.com>
+Subject: [PATCH 3/3] platform/x86/intel/pmt: Notify userspace when crashlogs
+ complete
+Date: Thu,  1 Oct 2026 15:03:48 -0700
+Message-ID: <20261001220351.1592138-4-david.e.box@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261001220351.1592138-1-david.e.box@linux.intel.com>
+References: <20261001220351.1592138-1-david.e.box@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,57 +70,213 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series adds a uevent so userspace can find out when an Intel PMT
-crashlog is available without polling. It also fixes two regressions
-from the v7.1 vsec rework that prevent the crashlog path from being
-used at all.
+A crashlog may already be complete when the driver binds, or it may
+complete asynchronously after userspace requests a manual trigger.
+Userspace otherwise has to poll to discover that data is ready.
 
-Patches 1 and 2 are fixes, tagged for stable:
+Emit a KOBJ_CHANGE uevent on the per-instance crashlog device when a
+completed log is found at probe. After a manual trigger, poll the
+completion bit at 100 ms intervals for up to 5 seconds and emit the same
+event when capture completes. The event carries two environment
+variables:
 
- - Patch 1 fixes a NULL pointer dereference on any read of a crashlog
-   sysfs data file. Commit 353042d54d82 ("platform/x86/intel/vsec:
-   Switch exported helpers from pci_dev to device") started using
-   entry->ep->dev, but only telemetry entries allocate an endpoint.
+  INTEL_PMT_CRASHLOG_EVENT=3DPRESENT
+  INTEL_PMT_CRASHLOG_COMPLETE=3D1
 
- - Patch 2 fixes an inverted return value test of
-   intel_vsec_walk_header() in intel_vsec_get_features(). On devices
-   without DVSEC/VSEC capabilities that describe their features through
-   device_data, probe fails with -ENODEV and the auxiliary devices it
-   created are torn down again.
+Initialize the work items before the device's sysfs attributes are
+exposed, and disable and drain them during removal.
 
-Patch 3 is the new feature. It emits a KOBJ_CHANGE uevent on the
-crashlog<x> device when a completed crashlog is found at probe, or when
-a manually triggered capture completes. The event carries
-INTEL_PMT_CRASHLOG_EVENT=3DPRESENT and INTEL_PMT_CRASHLOG_COMPLETE=3D1, and
-the ABI documentation is updated to match.
+Document the new uevent in the sysfs-class-intel_pmt ABI file.
 
-The fixes are sent together with the feature because patch 3 cannot be
-tested without them. Crashlog data cannot be read without patch 1.
-Upcoming hardware with crashlog support has no DVSEC/VSEC capabilities
-and describes its features through device_data, so it hits the bug
-fixed by patch 2. Patches 1 and 2 do not depend on patch 3 and can be
-applied to the fixes branch on their own if preferred.
-
-Testing: the series was tested in an emulated (QEMU) environment,
-covering both the probe-time uevent with a completed crashlog present
-and the uevent after a manual trigger completes. Hardware with this
-crashlog support is available, but testing on it is still pending.
-
-David E. Box (3):
-  platform/x86/intel/pmt: Fix NULL dereference when reading crashlog
-    data
-  platform/x86/intel/vsec: Fix inverted walk_header() test in
-    get_features()
-  platform/x86/intel/pmt: Notify userspace when crashlogs complete
-
+Assisted-by: LLM
+Signed-off-by: David E. Box <david.e.box@linux.intel.com>
+---
  .../ABI/testing/sysfs-class-intel_pmt         | 14 ++++
- drivers/platform/x86/intel/pmt/class.c        |  4 +-
  drivers/platform/x86/intel/pmt/crashlog.c     | 84 ++++++++++++++++++-
- drivers/platform/x86/intel/vsec.c             |  2 +-
- 4 files changed, 99 insertions(+), 5 deletions(-)
+ 2 files changed, 95 insertions(+), 3 deletions(-)
 
-
-base-commit: 72d3fcf802c45d00b300f25b848a93c3a2bd7c7e
+diff --git a/Documentation/ABI/testing/sysfs-class-intel_pmt b/Documentatio=
+n/ABI/testing/sysfs-class-intel_pmt
+index ed4c886a21b1..c0b0d123afdf 100644
+--- a/Documentation/ABI/testing/sysfs-class-intel_pmt
++++ b/Documentation/ABI/testing/sysfs-class-intel_pmt
+@@ -66,6 +66,20 @@ Description:
+ 		can be determined from an XML file of specified GUID for the
+ 		parent device.
+=20
++What:		/sys/class/intel_pmt/crashlog<x>
++Date:		October 2026
++KernelVersion:	7.4
++Contact:	David Box <david.e.box@linux.intel.com>
++Description:
++		When a crashlog device is probed with a completed crashlog
++		already present, or a manual trigger completes, the driver emits
++		a KOBJ_CHANGE uevent for that crashlog<x> device.
++
++		The following uevent environment variables are added:
++
++		INTEL_PMT_CRASHLOG_EVENT=3DPRESENT
++		INTEL_PMT_CRASHLOG_COMPLETE=3D1
++
+ What:		/sys/class/intel_pmt/crashlog<x>/crashlog
+ Date:		October 2020
+ KernelVersion:	5.10
+diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x=
+86/intel/pmt/crashlog.c
+index f936daf99e4d..21e8e2199bdc 100644
+--- a/drivers/platform/x86/intel/pmt/crashlog.c
++++ b/drivers/platform/x86/intel/pmt/crashlog.c
+@@ -12,12 +12,14 @@
+ #include <linux/cleanup.h>
+ #include <linux/intel_vsec.h>
+ #include <linux/kernel.h>
++#include <linux/kobject.h>
+ #include <linux/module.h>
+ #include <linux/mutex.h>
+ #include <linux/pci.h>
+ #include <linux/slab.h>
+ #include <linux/uaccess.h>
+ #include <linux/overflow.h>
++#include <linux/workqueue.h>
+=20
+ #include "class.h"
+=20
+@@ -113,6 +115,9 @@ struct crashlog_entry {
+ 	struct intel_pmt_entry		entry;
+ 	struct mutex			control_mutex;
+ 	const struct crashlog_info	*info;
++	struct work_struct		uevent_work;
++	struct delayed_work		uevent_poll_work;
++	u8				uevent_poll_tries;
+ };
+=20
+ struct pmt_crashlog_priv {
+@@ -120,6 +125,9 @@ struct pmt_crashlog_priv {
+ 	struct crashlog_entry	entry[];
+ };
+=20
++#define PMT_CRASHLOG_UEVENT_POLL_MS		100
++#define PMT_CRASHLOG_UEVENT_POLL_MAX_TRIES	50
++
+ /*
+  * I/O
+  */
+@@ -227,6 +235,47 @@ static void pmt_crashlog_set_rearm(struct crashlog_ent=
+ry *crashlog)
+ 	pmt_crashlog_rmw(crashlog, crashlog->info->control.rearm, true);
+ }
+=20
++static void pmt_crashlog_uevent_fn(struct work_struct *work)
++{
++	struct crashlog_entry *crashlog =3D
++		container_of(work, struct crashlog_entry, uevent_work);
++	char *envp[] =3D {
++		"INTEL_PMT_CRASHLOG_EVENT=3DPRESENT",
++		"INTEL_PMT_CRASHLOG_COMPLETE=3D1",
++		NULL,
++	};
++
++	if (crashlog->entry.kobj)
++		kobject_uevent_env(crashlog->entry.kobj, KOBJ_CHANGE, envp);
++}
++
++static void pmt_crashlog_uevent_poll_fn(struct work_struct *work)
++{
++	struct crashlog_entry *crashlog =3D
++		container_of(to_delayed_work(work), struct crashlog_entry,
++			     uevent_poll_work);
++	guard(mutex)(&crashlog->control_mutex);
++
++	/* A newer trigger_store() re-armed us; that cycle owns the notification =
+*/
++	if (delayed_work_pending(&crashlog->uevent_poll_work))
++		return;
++
++	if (pmt_crashlog_complete(crashlog)) {
++		schedule_work(&crashlog->uevent_work);
++		return;
++	}
++
++	if (++crashlog->uevent_poll_tries < PMT_CRASHLOG_UEVENT_POLL_MAX_TRIES)
++		schedule_delayed_work(&crashlog->uevent_poll_work,
++				      msecs_to_jiffies(PMT_CRASHLOG_UEVENT_POLL_MS));
++}
++
++static void pmt_crashlog_notify_pending(struct crashlog_entry *crashlog)
++{
++	if (pmt_crashlog_complete(crashlog))
++		schedule_work(&crashlog->uevent_work);
++}
++
+ /*
+  * sysfs
+  */
+@@ -423,7 +472,19 @@ trigger_store(struct device *dev, struct device_attrib=
+ute *attr,
+ 	if (pmt_crashlog_complete(crashlog))
+ 		return -EEXIST;
+=20
++	/*
++	 * Only now are we actually starting a fresh crash: any stale poll
++	 * cycle left over from a prior trigger can be dropped safely, since
++	 * pmt_crashlog_complete() above proved it carried no unresolved
++	 * completion. Non-sync: uevent_poll_fn() takes this same mutex, so
++	 * cancel_delayed_work_sync() here could deadlock against it.
++	 */
++	cancel_delayed_work(&crashlog->uevent_poll_work);
++
+ 	pmt_crashlog_set_execute(crashlog);
++	crashlog->uevent_poll_tries =3D 0;
++	schedule_delayed_work(&crashlog->uevent_poll_work,
++			      msecs_to_jiffies(PMT_CRASHLOG_UEVENT_POLL_MS));
+=20
+ 	return count;
+ }
+@@ -551,6 +612,9 @@ static void pmt_crashlog_remove(struct auxiliary_device=
+ *auxdev)
+ 	for (i =3D 0; i < priv->num_entries; i++) {
+ 		struct crashlog_entry *crashlog =3D &priv->entry[i];
+=20
++		/* Disable, not cancel: a racing trigger_store() must not re-arm */
++		disable_delayed_work_sync(&crashlog->uevent_poll_work);
++		disable_work_sync(&crashlog->uevent_work);
+ 		intel_pmt_dev_destroy(&crashlog->entry, &pmt_crashlog_ns);
+ 		mutex_destroy(&crashlog->control_mutex);
+ 	}
+@@ -572,15 +636,29 @@ static int pmt_crashlog_probe(struct auxiliary_device=
+ *auxdev,
+ 	auxiliary_set_drvdata(auxdev, priv);
+=20
+ 	for (i =3D 0; i < intel_vsec_dev->num_resources; i++) {
+-		struct intel_pmt_entry *entry =3D &priv->entry[priv->num_entries].entry;
++		struct crashlog_entry *crashlog =3D &priv->entry[priv->num_entries];
++		struct intel_pmt_entry *entry =3D &crashlog->entry;
++
++		/* init before dev_create() exposes trigger sysfs to userspace */
++		INIT_WORK(&crashlog->uevent_work, pmt_crashlog_uevent_fn);
++		INIT_DELAYED_WORK(&crashlog->uevent_poll_work,
++				  pmt_crashlog_uevent_poll_fn);
++		crashlog->uevent_poll_tries =3D 0;
+=20
+ 		ret =3D intel_pmt_dev_create(entry, &pmt_crashlog_ns, intel_vsec_dev, i);
+-		if (ret < 0)
++		if (ret < 0) {
++			cancel_delayed_work_sync(&crashlog->uevent_poll_work);
++			cancel_work_sync(&crashlog->uevent_work);
+ 			goto abort_probe;
+-		if (ret)
++		}
++		if (ret) {
++			cancel_delayed_work_sync(&crashlog->uevent_poll_work);
++			cancel_work_sync(&crashlog->uevent_work);
+ 			continue;
++		}
+=20
+ 		priv->num_entries++;
++		pmt_crashlog_notify_pending(crashlog);
+ 	}
+=20
+ 	return 0;
 --=20
 2.43.0
 
