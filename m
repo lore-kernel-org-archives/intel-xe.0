@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08FBACA5FCF
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 09:45:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7652CA5FB3
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 09:45:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B177D10F5E2;
-	Thu,  1 Oct 2026 09:45:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8420810F5DF;
+	Thu,  1 Oct 2026 09:45:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="csiNW18w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YNPCt6Lz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF84810F5DF
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 09:45:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76A6110F5DF
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 09:45:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790847944; x=1822383944;
+ t=1790847945; x=1822383945;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EJ0rPv5D4ot3Cu45x9oWkWuAsz16CvTQL4j0LyjO07Q=;
- b=csiNW18wooetO8MSJQxN0Hwl7eiubWSXf8YE/pSTg99SUBR/qCRwch8h
- en8kYFfQGhmJzGPx6VJbCUEQwgn1qmGbKfUeNtFEt5NmIts+pUM2L2b3+
- u3aAwJoDGpuLd0fwbVh0ppvzxQknRAMk6+LaTkw5taaVqbOzSnFyMg1mu
- Ayd6yg53AR99YIQCDZz15QOjX9iyY7zZnMiaECn0W6lfkXwcxXwYyGIA3
- 0iUpB3wb/g3nheKEHQgkKfFHA7ZNOMxUMm/LUox/KU5dlBKIEdKdAfQ3Q
- kbwduFkWvYwAjbZFVo9Ip/GgxvXvyVERmcp/Yeeu9niK58T0cTCrRM6F2 Q==;
-X-CSE-ConnectionGUID: HVg9ALXgTdqbblO+O9C89Q==
-X-CSE-MsgGUID: KRH7iX7+TcSucy8+7R85Ww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11921"; a="102124029"
-X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; d="scan'208";a="102124029"
+ bh=ZGTaQfkZDWPtuZrAj6Z7wRdmGS5oXDZNAh0OQDbA544=;
+ b=YNPCt6LzQd4Sgt3Z3/G/THaChpMPnQUIELt66hLjOBcxhpDj7xSIhaUU
+ 37LuzJmhzpOXQVSolnADKRmEOFRcMsntDe40eyKCLrwbMC4Hq3QfVTTrR
+ 6PQEW8D8lVuSrBwJXlKNKFefJ5JsrS9n9jl61B/hmTLh89S4+zhxYcJ6U
+ LV3JBGG96Mt2EV3bCVSQ3Vpdsl/B4BsgvR3x2c0aDf89Q9Iq38rS63hoJ
+ 50MJxqTa9dt5CDUM9NOpCxHHF9W/VHV1uDq3SXEU0gj3OcgumWzP7Ple2
+ Vx+l3HRAueeUlsIU/W4N0QsnNFy3V7iDjLQUNLpA8OQFNRwKQk7Prcwb5 A==;
+X-CSE-ConnectionGUID: laseq9tRQn2+w4flIrPRgg==
+X-CSE-MsgGUID: SA6tsuB9TneF4JKyyGoclA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11921"; a="102124031"
+X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; d="scan'208";a="102124031"
 Received: from fmviesa011.fm.intel.com ([10.60.135.151])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 02:45:43 -0700
-X-CSE-ConnectionGUID: hgK3MOYbQd6sFfyYvwp5HA==
-X-CSE-MsgGUID: zy5vzZLET8GTlqXMCHLp/w==
+ 01 Oct 2026 02:45:45 -0700
+X-CSE-ConnectionGUID: 3mr+ZK9eTzuYwn2QOe/Gvg==
+X-CSE-MsgGUID: 4tfwJEwARb+DMNYnUePXqA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; 
-   d="scan'208";a="3784"
+   d="scan'208";a="3791"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 02:45:42 -0700
+ 01 Oct 2026 02:45:44 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, matthew.brost@intel.com,
  Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH 2/4] drm/xe: Re-validate external pin under resv lock before
- VRAM purge
-Date: Thu,  1 Oct 2026 15:15:21 +0530
-Message-ID: <20261001094518.1493651-8-tejas.upadhyay@intel.com>
+Subject: [PATCH 3/4] drm/xe: Drop RCU list handling for VRAM bad-page tracking,
+ use mgr->lock
+Date: Thu,  1 Oct 2026 15:15:22 +0530
+Message-ID: <20261001094518.1493651-9-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20261001094518.1493651-6-tejas.upadhyay@intel.com>
 References: <20261001094518.1493651-6-tejas.upadhyay@intel.com>
@@ -70,69 +70,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_ttm_vram_reserve_page_at_addr() checks xe_bo_is_user() &&
-xe_bo_is_pinned() while holding only mgr->lock, not the BO's
-reservation lock, since it must run before the owning BO is
-even known to be purgeable. A user BO can become pinned
-after that check passes but before xe_ttm_vram_purge_page()
-runs.
+queued_pages and offlined_pages were mutated with list_add_rcu()/
+list_del_rcu()/kfree_rcu(), but the only lockless consumer was the
+vram_bad_pages debugfs show function. Every other reader and writer
+already runs under mgr->lock, so the RCU protection bought nothing
+but complexity and a rcu_head field on every tracked entry.
 
-xe_ttm_vram_purge_page() takes the reservation lock but only
-rechecks xe_bo_is_pinned(), not xe_bo_is_user(). If the race
-is hit, it calls xe_bo_unpin() (the kernel-BO unpin path,
-not xe_bo_unpin_external())on an externally pinned BO and
-then purges its backing store while userspace/hardware still
-expects it to be resident.
-
-Recheck xe_bo_is_user() && xe_bo_is_pinned() under the
-reservation lock and reject the purge, requesting SBR with
--EIO the same way the caller's own critical-BO check
-already does.
+Convert all list operations to plain list_add()/list_del()/kfree(),
+including the retry helper added by the ghost-ownership fix, and
+have vram_bad_pages_show() take mgr->lock instead of rcu_read_lock()
+so list traversal is always serialized against mutation.
 
 Fixes: 7737f819e9f1 ("drm/xe/vram: Add VRAM page offline fault handler")
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 26 +++++++++++-----------
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  2 --
+ 2 files changed, 13 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 4c5837cdb996..ed79e4c6ba1a 100644
+index ed79e4c6ba1a..7211ab5f66e9 100644
 --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
 +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -687,6 +687,19 @@ static int xe_ttm_vram_purge_page(struct xe_device *xe, struct xe_bo *bo)
- 		goto out;
+@@ -243,9 +243,9 @@ static void xe_ttm_vram_retry_queued_pages(struct xe_ttm_vram_mgr *mgr)
+ 			continue;
+ 		}
+ 		--mgr->n_queued_pages;
+-		list_del_rcu(&pos->queued_link);
++		list_del(&pos->queued_link);
+ 		++mgr->n_offlined_pages;
+-		list_add_rcu(&pos->offlined_link, &mgr->offlined_pages);
++		list_add(&pos->offlined_link, &mgr->offlined_pages);
+ 	}
+ }
+ 
+@@ -394,17 +394,17 @@ static void xe_ttm_vram_free_bad_pages(struct xe_ttm_vram_mgr *mgr)
+ 	struct xe_ttm_vram_offline_resource *pos, *n;
+ 
+ 	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
+-		list_del_rcu(&pos->offlined_link);
++		list_del(&pos->offlined_link);
+ 		xe_ttm_vram_buddy_free(mgr, &pos->blocks, pos->used_visible_size);
+ 		--mgr->n_offlined_pages;
+-		kfree_rcu(pos, rcu);
++		kfree(pos);
+ 	}
+ 	list_for_each_entry_safe(pos, n, &mgr->queued_pages, queued_link) {
+-		list_del_rcu(&pos->queued_link);
++		list_del(&pos->queued_link);
+ 		/* queued entries have no buddy reservation yet */
+ 		xe_ttm_vram_buddy_free(mgr, &pos->blocks, 0);
+ 		--mgr->n_queued_pages;
+-		kfree_rcu(pos, rcu);
++		kfree(pos);
+ 	}
+ }
+ 
+@@ -823,7 +823,7 @@ static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, u64 addr,
+ 			}
+ 			/* Queue free(to-be-purged) pages */
+ 			++vram_mgr->n_queued_pages;
+-			list_add_rcu(&nentry->queued_link, &vram_mgr->queued_pages);
++			list_add(&nentry->queued_link, &vram_mgr->queued_pages);
+ 		} else {
+ 			/* Immediately offline unoccupied pages */
+ 			/* Queue free(to-be-reserved) pages */
+@@ -837,11 +837,11 @@ static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, u64 addr,
+ 					"Page at addr:0x%llx still busy (%d), deferring reservation\n",
+ 					addr, ret);
+ 				++vram_mgr->n_queued_pages;
+-				list_add_rcu(&nentry->queued_link, &vram_mgr->queued_pages);
++				list_add(&nentry->queued_link, &vram_mgr->queued_pages);
+ 				return 0;
+ 			}
+ 			++vram_mgr->n_offlined_pages;
+-			list_add_rcu(&nentry->offlined_link, &vram_mgr->offlined_pages);
++			list_add(&nentry->offlined_link, &vram_mgr->offlined_pages);
+ 			return ret;
+ 		}
+ 	}
+@@ -1045,16 +1045,16 @@ static int vram_bad_pages_show(struct seq_file *m, void *unused)
+ 			continue;
+ 		mgr = to_xe_ttm_vram_mgr(man);
+ 
+-		rcu_read_lock();
++		mutex_lock(&mgr->lock);
+ 
+-		list_for_each_entry_rcu(pos, &mgr->offlined_pages, offlined_link) {
++		list_for_each_entry(pos, &mgr->offlined_pages, offlined_link) {
+ 			u64 pfn;
+ 
+ 			pfn = (pos->addr + vr->dpa_base) >> PAGE_SHIFT;
+ 			seq_printf(m, "0x%016llx : 0x%016lx : R\n", pfn, PAGE_SIZE);
+ 		}
+ 
+-		list_for_each_entry_rcu(pos, &mgr->queued_pages, queued_link) {
++		list_for_each_entry(pos, &mgr->queued_pages, queued_link) {
+ 			u64 pfn;
+ 
+ 			pfn = (pos->addr + vr->dpa_base) >> PAGE_SHIFT;
+@@ -1062,7 +1062,7 @@ static int vram_bad_pages_show(struct seq_file *m, void *unused)
+ 				   pfn, PAGE_SIZE, pos->status ? 'F' : 'P');
+ 		}
+ 
+-		rcu_read_unlock();
++		mutex_unlock(&mgr->lock);
  	}
  
-+	/*
-+	 * The caller's user+pinned check was lockless (mgr->lock only), so an
-+	 * external pin can race in before we get here. Re-validate now that
-+	 * we hold the reservation lock and reject the purge instead of
-+	 * unpinning a BO userspace still expects to be resident. Request SBR
-+	 * the same way the caller's own critical-BO check does.
-+	 */
-+	if (xe_bo_is_user(bo) && xe_bo_is_pinned(bo)) {
-+		xe_bo_unlock(bo);
-+		ret = -EIO;
-+		goto out;
-+	}
-+
- 	xe_bo_set_purgeable_state(bo, XE_MADV_PURGEABLE_DONTNEED);
- 	ttm_bo_unmap_virtual(&bo->ttm);   /* nuke CPU mmap + VRAM IO mappings */
- 	if (xe_bo_is_pinned(bo))
-@@ -851,6 +864,13 @@ static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, u64 addr,
- 		 */
- 		ret = xe_ttm_vram_purge_page(xe, pbo);
- 		xe_bo_put(pbo);
-+		if (ret == -EIO) {
-+			/* Raced into an external pin after the lockless check above */
-+			drm_err(&xe->drm,
-+				"%s: addr: 0x%llx became externally pinned, requesting SBR\n",
-+				__func__, addr);
-+			return ret;
-+		}
- 		if (ret)
- 			drm_warn(&xe->drm, "Purge failed at addr:0x%llx, ret:%d\n", addr, ret);
- 	}
+ 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+index 95a427e3b0a7..ef7e4c87a7bb 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+@@ -81,8 +81,6 @@ struct xe_ttm_vram_offline_resource {
+ 	u64 addr;
+ 	/** @status: buddy reservation status */
+ 	enum xe_page_reserve_status status;
+-	/** @rcu: RCU head for deferred freeing */
+-	struct rcu_head rcu;
+ };
+ 
+ #endif
 -- 
 2.52.0
 
