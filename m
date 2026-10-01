@@ -4,60 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4249ACA5FD4
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 13:34:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19C4DCA5FD2
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 13:41:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E59A210F68B;
-	Thu,  1 Oct 2026 13:34:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBF2A10E1DF;
+	Thu,  1 Oct 2026 13:41:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OcfhS1Sq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gxNWqQJd";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C889610F68B;
- Thu,  1 Oct 2026 13:34:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5969D10E37D
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 13:41:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790861685; x=1822397685;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=nXKoilSfFWDF4/K4PvmG8KxDr8EMs4iR0AwNfbBJKmk=;
- b=OcfhS1Sq+BflKngwPfQE+dl7aKSU6C2udi0A3Lq+OqWJdsN6T43Engta
- KAWOV3e9hPUQCzFQYmpV5JukojI7gmV6SKGF1rOmqwN6Jw6f38I2YpBw7
- vAgXXM1wvxac+pteljODHkuucYDlat98DFlnvjWXLLU1dasDfH2YWCt7J
- 1mgJPROi063nl826/zPCC2H3jETkb/Cjf6N7VqFEF3YFYorf1xxNS+k3i
- 86p5gIIgM4M9HkCfHbavyvzIueM/evPPL968JoJpp8S3Xz8W0jQYC/B7G
- OxsRELPFPzbgd+0a7XYtIsD0FIJ1YTgmlwuobuNq6XV82QIfViFeZ7378 g==;
-X-CSE-ConnectionGUID: KbqaX4E3RWWqNIqu1kTk+Q==
-X-CSE-MsgGUID: 4rIYxVOkTsetN3XuL8vGyg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="91716200"
-X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; d="scan'208";a="91716200"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 06:34:45 -0700
-X-CSE-ConnectionGUID: VZ/5qvkBSx2KcpVQ9efMWQ==
-X-CSE-MsgGUID: fiMP0bUuS36IDk6Yq8D25w==
+ t=1790862068; x=1822398068;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=FC0uIX5m4y2M+fC75ABH8KJvSzp6QIOOMmmHcHsk29c=;
+ b=gxNWqQJdfjjEPNxbnfLoTPdkN3gsS3ePZtek8bhWbpELiYux2SYomMcM
+ gtqLPsSU79T+hFwtNhnkmPPxck5itdIYfVc7RQokhzk46RuwsepcCmR0X
+ E5KCzOfRf2IjCjnyoLdBSVX6ehzkNAXTB4IdZYlkLWo9X9lLKzChzbT2t
+ 60+BlKX+OuKoaQveMNwlaBcPYLhX0VklDMolSKWO0s0Tj1dKL9U4NorW/
+ TMsKW4hbbb+IHyD0QgC1P71p7BkFIpVGCMcGkWbaq3DP5yUX2Mf7dlbdb
+ raH7KNicQBOUMKgcLSOfCZ+t/F+aOHNIEYlcaxaMVs82XVtlmJxEYNqX2 A==;
+X-CSE-ConnectionGUID: IoKE1bdBRO+3B7kwsIMUPQ==
+X-CSE-MsgGUID: CBGeGJa6SyyN/G+nfZ4bEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="100951783"
+X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; d="scan'208";a="100951783"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2026 06:40:41 -0700
+X-CSE-ConnectionGUID: 75zkC6zWRfyd8kOQ1sQeXw==
+X-CSE-MsgGUID: hqyhyXZqRkOIOKU5/N12KQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; d="scan'208";a="279223548"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa003.jf.intel.com with ESMTP; 01 Oct 2026 06:34:42 -0700
-Received: by black.igk.intel.com (Postfix, from userid 1008)
- id F1BAC99; Thu, 01 Oct 2026 15:34:40 +0200 (CEST)
-Date: Thu, 1 Oct 2026 15:34:40 +0200
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: Fan Wu <fanwu01@zju.edu.cn>, lucas.demarchi@intel.com,
- matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] drm/xe/i2c: cancel the client work on remove
-Message-ID: <ar5hcBKGhZDcNSKz@black.igk.intel.com>
-References: <20260928013030.612592-1-fanwu01@zju.edu.cn>
- <artYHzEMGPu26x3r@black.igk.intel.com>
+X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; d="scan'208";a="275525131"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.16])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2026 06:40:40 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH v2 0/2] drm/xe: Fix two bo pin/unpin accounting bugs
+Date: Thu,  1 Oct 2026 15:40:16 +0200
+Message-ID: <20261001134018.111553-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.55.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <artYHzEMGPu26x3r@black.igk.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,87 +68,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 29, 2026 at 08:18:07AM +0200, Raag Jadav wrote:
-> + Heikki to comment on this.
-> 
-> On Mon, Sep 28, 2026 at 01:30:30AM +0000, Fan Wu wrote:
-> > xe_i2c_notifier() stores the DesignWare adapter in i2c->adapter and
-> > schedules i2c->work when the adapter is registered under the xe I2C
-> > platform device, and xe_i2c_client_work() then instantiates the AMC
-> > client device on that adapter.
-> > 
-> > xe_i2c_remove() tears down the AMC, unregisters the client devices,
-> > the bus notifier and the adapter platform device, but it never drains
-> > i2c->work. A work item that is still queued or running when the
-> > adapter is unregistered dereferences i2c->adapter in
-> > i2c_new_client_device() after platform_device_unregister() has
-> > released the adapter. The work item is also embedded in the
-> > devm-allocated struct xe_i2c, so a work item still queued after the
-> > drm device devm unwind frees that allocation runs its callback on
-> > freed memory.
-> > 
-> > The bus notifier is the only thing that schedules this work, and it is
-> > unregistered after the client devices. An instance that is still queued
-> > when the teardown runs can therefore write
-> > i2c->client[XE_I2C_CLIENT_AMC] while the loop is unregistering and
-> > clearing the same array, and an AMC client it instantiates late is only
-> > cleaned up by the adapter's own child sweep in i2c_del_adapter().
-> > 
-> > Move bus_unregister_notifier() in front of the client teardown loop
-> > and cancel the work right after it, so no new instance can be
-> > scheduled and a queued instance is drained before the client array is
-> > touched. A running instance still finds a live adapter, since the
-> > adapter is unregistered later.
-> > 
-> > This issue was found by an in-house static analysis tool.
-> > 
-> > Fixes: f0e53aadd702 ("drm/xe: Support for I2C attached MCUs")
-> > Link: https://lore.kernel.org/intel-xe/20260912085932.101598-1-fanwu01@zju.edu.cn/
-> > Cc: stable@vger.kernel.org
-> > Assisted-by: Codex:gpt-5.6
-> > Co-developed-by: Song Li <songl@zju.edu.cn>
-> > Signed-off-by: Song Li <songl@zju.edu.cn>
-> > Signed-off-by: Fan Wu <fanwu01@zju.edu.cn>
+Two independent fixes uncovered while auditing the bo pin/unpin and
+shrinker accounting paths:
 
-LGTM
+1/2 fixes a double-subtraction of the shrinker's page/object
+accounting on nested xe_bo_pin_external()/xe_bo_unpin_external()
+calls, which can desynchronize the shrinker's counts from reality and,
+due to a signed-to-unsigned interpretation in xe_shrinker_count(),
+turn into a huge bogus shrinkable/purgeable page count that causes the
+shrinker to be invoked excessively under memory pressure.
 
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+2/2 fixes a stale xe->pinned.late.external list entry left behind when
+a bo pinned both externally and as an fb has its final unpin performed
+via the fb-pin path, which bypasses pinned_link maintenance and can
+lead to list corruption or a use-after-free once the bo is freed.
 
-> > ---
-> > 
-> > Changes in v3:
-> > - rebase onto drm-xe-next, after "drm/xe/i2c: Disable IRQ on unbind"
-> > - discussion: Link: above points at the v2 thread
-> > - unregister the bus notifier before the client teardown loop and
-> >   cancel the work before the loop as well: v2 cancelled the work only
-> >   after the loop, so an event arriving during the loop could still
-> >   schedule the work to race with the array teardown and leak a freshly
-> >   instantiated AMC client
-> >  drivers/gpu/drm/xe/xe_i2c.c | 5 ++++-
-> >  1 file changed, 4 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-> > index f4f3819..b82caaf 100644
-> > --- a/drivers/gpu/drm/xe/xe_i2c.c
-> > +++ b/drivers/gpu/drm/xe/xe_i2c.c
-> > @@ -324,12 +324,15 @@ static void xe_i2c_remove(void *data)
-> >  	xe_i2c_irq_reset(xe);
-> >  	xe_amc_exit(i2c);
-> >  
-> > +	/* Stop the notifier from arming the client work before teardown. */
-> > +	bus_unregister_notifier(&i2c_bus_type, &i2c->bus_notifier);
-> > +	cancel_work_sync(&i2c->work);
-> > +
-> >  	for (i = 0; i < XE_I2C_MAX_CLIENTS; i++) {
-> >  		i2c_unregister_device(i2c->client[i]);
-> >  		i2c->client[i] = NULL;
-> >  	}
-> >  
-> > -	bus_unregister_notifier(&i2c_bus_type, &i2c->bus_notifier);
-> >  	xe_i2c_unregister_adapter(i2c);
-> >  	xe->i2c = NULL;
-> >  }
-> > 
+Both are tagged for stable.
+
+Thomas Hellström (2):
+  drm/xe: Fix shrinker accounting double-subtraction on nested external
+    pins
+  drm/xe: Fix stale pinned_link entry when fb-pin performs the final
+    unpin
+
+ drivers/gpu/drm/xe/display/xe_fb_pin.c |   6 +-
+ drivers/gpu/drm/xe/xe_bo.c             | 110 +++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_bo.h             |   2 +
+ 3 files changed, 90 insertions(+), 28 deletions(-)
 
 -- 
-heikki
+2.55.0
+
