@@ -4,47 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59FE7CA5FB3
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 08:45:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E821CA5FB3
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 09:45:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2A0910E2F3;
-	Thu,  1 Oct 2026 08:45:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD37D10E057;
+	Thu,  1 Oct 2026 09:45:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WDby3Q/o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ChzcXcso";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C4EF10E2F3;
- Thu,  1 Oct 2026 08:45:22 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 70623601FE;
- Thu,  1 Oct 2026 08:45:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E1DD1F000FF;
- Thu,  1 Oct 2026 08:45:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790844321;
- bh=Wvo5HyJ0MjlzdhRhjdhOVClTsA5gXTsfWJt8z1QNjxI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=WDby3Q/o5geKNbiE/KasRuOVuLsbJxajLaXMQrOYoQi/rWIBL0hSlpP823Ds3lE0/
- hs+UB9mDSFste6A2r0GEY/X5XW+Dz5GMWIcSX9pT2ZoWH/bEQAsPe2nK3+uyzBF2cl
- Yj1490Xz/w9sr5ASF0RySkI5Wdpw4sx9JTVSNPmLEdMp8KewtHQoQJdUUv4SN7wOQP
- 7NKY2doQheYldFNGK6hvPl/eaBQscl0FOeGgmj369Hq6aBRee6ukRG/3M707cdUT1M
- pZxTDa8onCB/FKanCZXWJExksHplUysiM2O0O5jlRXVa2j7dwkHc2C6Hr7groYYgZU
- GcD1UOBck/OhA==
-Date: Thu, 1 Oct 2026 10:45:17 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Helen Koike <koike@igalia.com>
-Cc: rodrigo.vivi@intel.com, demarchi@kernel.org, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- tvrtko.ursulin@igalia.com, 
- linux-kernel@vger.kernel.org, kernel-dev@igalia.com
-Subject: Re: [PATCH v2] drm/xe/lrc: Restore CTX_CS_INDIRECT_CTX_OFFSET
- programming for ADL
-Message-ID: <ar3_LjzklapoN1tM@zenone.zhora.eu>
-References: <20260930170434.317671-1-koike@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E280410E057
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 09:45:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790847941; x=1822383941;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5TueaHV+EGb2YS8QD9im5Wq527uUbDh5VxdyMFUvHWQ=;
+ b=ChzcXcsocEFUREG9zO3OZ0g3VlcnTUhRAYhozIEAU1W9K9qV8vmNgrwF
+ NIHU4BzLZHhtdjkgoAWTqbrZpj8Q7DnDCWl5pPJH6kjhteyfNlTibbcTH
+ RtkY5VKzoWMJfLqFuxNaK6+x+zlTw+0ieHfuYd7H3QhGLLD02SgAl2DXP
+ FUC6v6bCGsGBlyyc2mRAQtD6WjeE7akrvYMFVrx6ZGjQw9rvp6b/MUSb5
+ c9N3wt8Ewh1YoNXHz2hcysZ04BN8ICav2FwkWsUfjk5wucIfyrRaZ05vw
+ vK6zuxedthJLqqb4w5RhMOFqFbjxJAYNUhRumiRaZNAtGVR92zJwf/Qpf Q==;
+X-CSE-ConnectionGUID: miLzv8T0SyuLPGf8R1drwg==
+X-CSE-MsgGUID: iWwaQC8VR4mo39ELB8SZpQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11921"; a="102124025"
+X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; d="scan'208";a="102124025"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2026 02:45:40 -0700
+X-CSE-ConnectionGUID: dxnOaROBR36suWs/biEL4g==
+X-CSE-MsgGUID: zj3r1xa+SsKUfTEtBKqFHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; 
+   d="scan'208";a="3772"
+Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
+ ([10.190.239.37])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2026 02:45:39 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: himal.prasad.ghimiray@intel.com, matthew.brost@intel.com,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH 0/4] Followup fixes for memory page offline
+Date: Thu,  1 Oct 2026 15:15:19 +0530
+Message-ID: <20261001094518.1493651-6-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260930170434.317671-1-koike@igalia.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,46 +67,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Helen,
+Fix earlier Sashiko comments about RCU lock and external pinning as 
+well as VRAM lookup for fault injection and some kernel-doc nits
 
-On Wed, Sep 30, 2026 at 02:04:30PM -0300, Helen Koike wrote:
-> CTX_CS_INDIRECT_CTX_OFFSET default value is not retrieved from the GPU
-> by inhibit+context save mechanism since it is not part of the Engine
-> Context. Thus, at restore, 0x0 is programed back to the GPU, which is
+Tejas Upadhyay (4):
+  drm/xe: Clean up kernel-doc typos in VRAM manager
+  drm/xe: Re-validate external pin under resv lock before VRAM purge
+  drm/xe: Drop RCU list handling for VRAM bad-page tracking, use
+    mgr->lock
+  drm/xe: Keep VRAM fault injection within the usable range
 
-/programed/programmed/
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 59 +++++++++++++++-------
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  4 +-
+ 2 files changed, 41 insertions(+), 22 deletions(-)
 
-> an invalid value according to the PRM.
+-- 
+2.52.0
 
-...
-
->  	/*
->  	 * Enable INDIRECT_CTX leaving INDIRECT_CTX_OFFSET at its default: it
-> -	 * varies per engine class, but the default is good enough
-> +	 * varies per engine class, but the default is good enough, except on
-> +	 * Alder Lake.
->  	 */
->  	xe_lrc_write_ctx_reg(lrc,
->  			     CTX_CS_INDIRECT_CTX,
->  			     (xe_bo_ggtt_addr(lrc->bo) + state.offset) |
->  			     /* Size in CLs. */
->  			     (state.written * sizeof(u32) / 64));
-> +	if (GRAPHICS_VER(lrc_to_xe(lrc)) < 20)
-
-Are you assuming that only Alder Lake is xe < 20?
-
-As you are restoring the original code for render and compute,
-would it make sense also add a check for class being
-XE_EGINE_CLASS_RENDER || XE_ENGINE_CLASS_COMPUTE?
-
-Andi
-
-> +		xe_lrc_write_ctx_reg(lrc,
-> +				     CTX_CS_INDIRECT_CTX_OFFSET,
-> +				     CTX_INDIRECT_CTX_OFFSET_DEFAULT);
->  
->  	return 0;
->  }
-> -- 
-> 2.54.0
-> 
