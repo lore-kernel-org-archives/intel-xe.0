@@ -4,72 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1512ACA5FDB
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 16:24:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A21D8CA5FD4
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 16:26:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0110510E3C5;
-	Thu,  1 Oct 2026 16:23:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fv1B6hHD";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF86D10F745;
- Thu,  1 Oct 2026 16:23:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790871833; x=1822407833;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=vEBkGRFIXGXgqBWnyJezBp+LvpwUSIJUnAlyPjAWyd0=;
- b=fv1B6hHDyKyPq/HL0HuoymSZmJrLT6UuUy1Umm51RSs9h6TE65t5LOuI
- ApsBZSffGKVfzSB+Vsvgiu9pVMHJqSsYEVDEXrdBrCueS3craGa9VoXE8
- 5Uw6D6BC5ysdPHSZvplN6mgTd3v5QXeViHfTNMTZWnm9GtEKWBrvu6Gyo
- GRVYmcO/SK3p/wbLlPg0Zd1gO15bvbLZeJSnAaxHpb15l699e2+2klijq
- J6lYFornnUmaeTw+pMz8F7n/V5wA6ZnpoezgGB2WVOIEHksvNqaxIQp1W
- f31RY8dUW9xQ7Nor6cOcjQkBGIx/qBEaZLtP+OWrQLfoZye47IZMmHFjr w==;
-X-CSE-ConnectionGUID: YKZm8xuIQQCVVsMaC1OaTA==
-X-CSE-MsgGUID: u3wmhEL/Tnq1vanWmEPk8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="102310964"
-X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; d="scan'208";a="102310964"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 09:21:13 -0700
-X-CSE-ConnectionGUID: 8TD9cAWeRrug7ZIVeY9nUg==
-X-CSE-MsgGUID: Yw+/7a19TxyoCHqnzIBIFQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; d="scan'208";a="305531773"
-Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 09:20:11 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- Abhinav Kumar <abhinav.kumar@linux.dev>, Alice Ryhl <aliceryhl@google.com>,
- Anna Maniscalco <anna.maniscalco2000@gmail.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Jessica Zhang <jesszhan0024@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Maxime Ripard <mripard@kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
- Shuah Khan <skhan@linuxfoundation.org>, Simona Vetter <simona@ffwll.ch>,
- Steven Price <steven.price@arm.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 3/5] drm/panthor: lock the resident BOs of a submit last
-Date: Thu,  1 Oct 2026 09:19:59 -0700
-Message-Id: <20261001162001.3123877-4-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261001162001.3123877-1-matthew.brost@intel.com>
-References: <20261001162001.3123877-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6400410E3C5;
+	Thu,  1 Oct 2026 16:26:04 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A1DA10E3C5;
+ Thu,  1 Oct 2026 16:26:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6447759386724871605=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/i2c=3A_Expose_AMC_Al?=
+ =?utf-8?q?ert_reason_sysfs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nilawar, Badal" <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 01 Oct 2026 16:26:03 -0000
+Message-ID: <179087196322.230117.3314290534253788142@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20261001121302.4102629-2-badal.nilawar@intel.com>
+In-Reply-To: <20261001121302.4102629-2-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,160 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-panthor_vm_prepare_mapped_bos_resvs() locks every external object mapped
-in the VM and then validates the evicted ones. Validation here means
-panthor_vm_bo_validate(), which swaps the BO's pages back in and restores
-its VMAs. That is slow, and an external object is one which can be shared
-with another process, so the whole of it happens while holding dma-resv
-locks other processes may be waiting on.
+--===============6447759386724871605==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Nothing is gained by holding those. A resident object needs no swapping
-in; only the evicted ones do. Split the locking into the two passes
-gpuvm now understands: the early pass takes just the evicted external
-objects and swaps them in, and the late pass takes the ones which were
-resident and are therefore normally ready to use as they are. Private
-objects are covered by the VM resv, which is held from the start, so
-evicted ones are still validated in the early pass.
+== Series Details ==
 
-The split is only worth it when there is something to validate, so
-drm_gpuvm_needs_two_pass() decides, and a submit with nothing evicted
-keeps doing exactly what it does today in a single pass.
+Series: drm/xe/i2c: Expose AMC Alert reason sysfs
+URL   : https://patchwork.freedesktop.org/series/175359/
+State : success
 
-Both passes run in the same drm_exec transaction, so nothing is unlocked
-in between and the late pass only ever adds locks. They take disjoint
-sets of objects, so passing slot_count to both still reserves it exactly
-once per object.
+== Summary ==
 
-The early pass reads the evicted state without the object's dma-resv,
-that being the lock it is trying not to take. The race is benign: an
-object evicted right after the early pass skipped it is picked up by the
-late pass instead, which is why that pass still validates.
+CI Bug Log - changes from xe-5864-51138a2c4ef84875e3d265c02cf7ebc28de216fc_BAT -> xe-pw-175359v1_BAT
+====================================================
 
-Validation here allocates pages, which can recurse into panthor's own
-shrinker, so it is worth being explicit about what the early pass can
-evict. There is no deadlock: drm_gem_lru_scan() acquires the resv with
-ww_mutex_trylock() and skips what it cannot get. VM-exclusive BOs share
-the VM resv, which is held across both passes, so those are always
-skipped. External objects are not held by the early pass, though, so
-reclaim can evict one while the early pass validates something else.
+Summary
+-------
 
-That is handled, and is why the late pass validates rather than only
-locking: it picks up anything evicted after the early pass looked at it.
-The cost is that the swapin for such a BO happens under the full set of
-locks, i.e. it degrades to the current behaviour for that one object.
+  **SUCCESS**
 
-Xe avoids this by refusing to evict BOs bound to a VM the current task is
-validating (xe_bo_eviction_valuable() and xe_vm_is_validating()). Panthor
-has no equivalent guard. Adding one would make the split more effective
-under memory pressure, but it is not needed for correctness, so it is left
-as a follow up.
+  No regressions found.
 
-Cc: Abhinav Kumar <abhinav.kumar@linux.dev>
-Cc: Alice Ryhl <aliceryhl@google.com>
-Cc: Anna Maniscalco <anna.maniscalco2000@gmail.com>
-Cc: Boris Brezillon <boris.brezillon@collabora.com>
-Cc: Danilo Krummrich <dakr@kernel.org>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Dmitry Baryshkov <lumag@kernel.org>
-Cc: Jessica Zhang <jesszhan0024@gmail.com>
-Cc: Jonathan Corbet <corbet@lwn.net>
-Cc: Liviu Dudau <liviu.dudau@arm.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Randy Dunlap <rdunlap@infradead.org>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Sean Paul <sean@poorly.run>
-Cc: Shuah Khan <skhan@linuxfoundation.org>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Steven Price <steven.price@arm.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Assisted-by: LLM
-Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
----
- drivers/gpu/drm/panthor/panthor_mmu.c | 53 ++++++++++++++++++++++++++-
- 1 file changed, 51 insertions(+), 2 deletions(-)
+  
 
-diff --git a/drivers/gpu/drm/panthor/panthor_mmu.c b/drivers/gpu/drm/panthor/panthor_mmu.c
-index d75d575473da..454d89578e9d 100644
---- a/drivers/gpu/drm/panthor/panthor_mmu.c
-+++ b/drivers/gpu/drm/panthor/panthor_mmu.c
-@@ -3258,6 +3258,26 @@ int panthor_vm_unmap_range(struct panthor_vm *vm, u64 va, u64 size)
-  * need to reserve a slot on all BOs mapped to a VM and update this slot with
-  * the job fence after its submission.
-  *
-+ * When something is evicted the locks are taken in two passes; when nothing
-+ * is, a single pass is used, as before. The early pass only takes the external
-+ * objects which actually need validating, i.e. the evicted ones, and swaps
-+ * them back in. Private objects are covered by the VM resv, which is held
-+ * from the start, so they are validated here too. The late pass then takes
-+ * the external objects the early pass left out, which were resident and so
-+ * normally need no swapping in; it still validates, since one of them may
-+ * have been evicted in the meantime.
-+ *
-+ * The point is that panthor_vm_bo_validate() swaps pages back in, which is
-+ * slow, and an external object is one which can be shared with another
-+ * process. Doing that while holding the resv of a resident shared BO would
-+ * stall whoever else needs it, for no benefit, since a resident object is
-+ * ready to use as it is.
-+ *
-+ * Both passes run in the same drm_exec transaction: nothing is unlocked in
-+ * between and the late pass only ever adds locks. The passes take disjoint
-+ * sets of objects, so reserving @slot_count in each still reserves it
-+ * exactly once per object.
-+ *
-  * Return: 0 on success, a negative error code otherwise.
-  */
- int panthor_vm_prepare_mapped_bos_resvs(struct drm_exec *exec, struct panthor_vm *vm,
-@@ -3270,11 +3290,40 @@ int panthor_vm_prepare_mapped_bos_resvs(struct drm_exec *exec, struct panthor_vm
- 	if (ret)
- 		return ret;
- 
--	ret = drm_gpuvm_prepare_objects(&vm->base, exec, slot_count);
-+	/*
-+	 * With nothing evicted there is no validation to keep the resident
-+	 * objects unlocked for, so do not pay for the second walk.
-+	 */
-+	if (!drm_gpuvm_needs_two_pass(&vm->base)) {
-+		ret = drm_gpuvm_prepare_objects(&vm->base, exec, slot_count);
-+		if (ret)
-+			return ret;
-+
-+		return drm_gpuvm_validate(&vm->base, exec);
-+	}
-+
-+	ret = drm_gpuvm_prepare_objects_pass(&vm->base, exec, slot_count,
-+					     DRM_GPUVM_EXEC_PASS_EARLY);
-+	if (ret)
-+		return ret;
-+
-+	ret = drm_gpuvm_validate_pass(&vm->base, exec,
-+				      DRM_GPUVM_EXEC_PASS_EARLY);
- 	if (ret)
- 		return ret;
- 
--	return drm_gpuvm_validate(&vm->base, exec);
-+	ret = drm_gpuvm_prepare_objects_pass(&vm->base, exec, slot_count,
-+					     DRM_GPUVM_EXEC_PASS_LATE);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Objects the early pass skipped were resident then, but another
-+	 * process may have evicted one since. Now that everything is locked,
-+	 * pick up whatever is left.
-+	 */
-+	return drm_gpuvm_validate_pass(&vm->base, exec,
-+				       DRM_GPUVM_EXEC_PASS_LATE);
- }
- 
- unsigned long
--- 
-2.34.1
+Participating hosts (15 -> 15)
+------------------------------
 
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-175359v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#9463])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5864-51138a2c4ef84875e3d265c02cf7ebc28de216fc/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175359v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9120 -> IGT_9121
+  * Linux: xe-5864-51138a2c4ef84875e3d265c02cf7ebc28de216fc -> xe-pw-175359v1
+
+  IGT_9120: c6b08ed60430a3081e5173fbdfbea22d19f22aa4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_9121: 5b6d384b7771ca7719178cd70ba4acec28712dbf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5864-51138a2c4ef84875e3d265c02cf7ebc28de216fc: 51138a2c4ef84875e3d265c02cf7ebc28de216fc
+  xe-pw-175359v1: 175359v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175359v1/index.html
+
+--===============6447759386724871605==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/i2c: Expose AMC Alert reason sysfs</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175359/">https://patchwork.freedesktop.org/series/175359/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175359v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175359v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5864-51138a2c4ef84875e3d265c02cf7ebc28de216fc_BAT -&gt; xe-pw-175359v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-175359v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5864-51138a2c4ef84875e3d265c02cf7ebc28de216fc/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175359v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9120 -&gt; IGT_9121</li>
+<li>Linux: xe-5864-51138a2c4ef84875e3d265c02cf7ebc28de216fc -&gt; xe-pw-175359v1</li>
+</ul>
+<p>IGT_9120: c6b08ed60430a3081e5173fbdfbea22d19f22aa4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_9121: 5b6d384b7771ca7719178cd70ba4acec28712dbf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5864-51138a2c4ef84875e3d265c02cf7ebc28de216fc: 51138a2c4ef84875e3d265c02cf7ebc28de216fc<br />
+  xe-pw-175359v1: 175359v1</p>
+
+</body>
+</html>
+
+--===============6447759386724871605==--
