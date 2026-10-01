@@ -4,58 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A2FECA5FDE
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 22:04:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1CCACA5FCE
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 22:06:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1181410E4A0;
-	Thu,  1 Oct 2026 22:04:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D7B110E494;
+	Thu,  1 Oct 2026 22:06:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Usl2sIuq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R6x/WZmU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EA9210E453
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 22:04:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DEC710E498;
+ Thu,  1 Oct 2026 22:06:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790892243; x=1822428243;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=CMaYmjvXutgM8mqzQofYQp/0qRYlf5oKXmw6GOHm0/M=;
- b=Usl2sIuqmiMoZu9vKdezhn127Lh3PHN6w4VTvNzcWi5CcJ9JKCTbguq3
- R+CFoba9ZAQ/V8BojzmP4n5z8b6d/kIsbErJZPGEhl1VGJuK4vamTvzN9
- TIlPxhbtzjEXSHU+WI6eAiuVfy84L6eyaTWwwTBKoboe+DPZQMZTk2kAu
- PbrOkF6QTr8KEBBJQZ7/QQB/xh6MPGEVXbdra0PqAiX8eE2ou/1nR1hoW
- hPtMxOV7iLWZdVAS1VdrV9g8cGJpIwgrkIyMiHfcTVRly8TlZKFLx9yFo
- f5QUlFiQ518LuMSHnArZN1o5tFwzl6QPVRwLTnjAkbftQfrd4YXT8a0wv g==;
-X-CSE-ConnectionGUID: vEY09g51QhyyLbPWHxjkPQ==
-X-CSE-MsgGUID: FuIdQ9PUSOy09+pxDB2EVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="91684111"
-X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="91684111"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 15:04:03 -0700
-X-CSE-ConnectionGUID: NMOPUDzHRFyFMcwOn84O+w==
-X-CSE-MsgGUID: cAhOxqHRQMOaL5WZDCpbYw==
+ t=1790892400; x=1822428400;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=9c7bGW4r2ZbGapJyTmfEei09wVnfqXp1OJnBziyjTvI=;
+ b=R6x/WZmUWaGGi900vjZDasPjPfSKotyf6ASoxYNRpJIEQ017LFupxZ4r
+ 65nUISDKT7nr2t9m06pFkeSEp2g/WNWjoa0giUlzSWYLsikOiB7/R0JY5
+ Z1c8biNaXddRsrVw6970CvcriyctqtZ3n20LOkPXUYSJYQMKjrit+mP9T
+ 7SFiMITYmmSbJ46Soh98QAL4u+wP7P1ebysbPIP/9tByp9ISjNy7zlqKS
+ RDYgueT8fGeK2Pc8n1YXiMleyjHn9tIPy0GAkqkinfjvz9SAcGMtTEuE2
+ EhdCi4oT79ldPuwwx4S/zXOkehyTzopmm7AfEELVLcVm4p3mcJnAH3Jwz w==;
+X-CSE-ConnectionGUID: 1gO69XeaRu2JqDVQ9dqggA==
+X-CSE-MsgGUID: q/Cc1t9DQxGUroEArkWuwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="91526798"
+X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="91526798"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2026 15:06:38 -0700
+X-CSE-ConnectionGUID: IJF0IkQWSQ+7cPGu9Vk0YQ==
+X-CSE-MsgGUID: EPyn4fBCRT+Ebq9o9DyAfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="276206253"
-Received: from debox1-desk4.jf.intel.com ([10.54.77.98])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 15:04:02 -0700
-From: "David E. Box" <david.e.box@linux.intel.com>
-To: ilpo.jarvinen@linux.intel.com, david.e.box@linux.intel.com,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- rodrigo.vivi@intel.com, michael.j.ruhl@intel.com, ayaz.siddiqui@intel.com,
- syed.abdul.muqthyar.ahmed@intel.com, intel-xe@lists.freedesktop.org,
- hansg@kernel.org
-Subject: [PATCH 3/3] platform/x86/intel/pmt: Notify userspace when crashlogs
- complete
-Date: Thu,  1 Oct 2026 15:03:48 -0700
-Message-ID: <20261001220351.1592138-4-david.e.box@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261001220351.1592138-1-david.e.box@linux.intel.com>
-References: <20261001220351.1592138-1-david.e.box@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="274190016"
+Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2026 15:06:38 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ Abhinav Kumar <abhinav.kumar@linux.dev>, Alice Ryhl <aliceryhl@google.com>,
+ Anna Maniscalco <anna.maniscalco2000@gmail.com>,
+ Antonino Maniscalco <antomani103@gmail.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
+ Liviu Dudau <liviu.dudau@arm.com>, Lyude Paul <lyude@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Maxime Ripard <mripard@kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Shuah Khan <skhan@linuxfoundation.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Francois Dugast <francois.dugast@intel.com>
+Subject: [PATCH v3 2/8] drm/xe: lock the resident BOs of an exec last
+Date: Thu,  1 Oct 2026 15:06:26 -0700
+Message-Id: <20261001220632.3190896-3-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261001220632.3190896-1-matthew.brost@intel.com>
+References: <20261001220632.3190896-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,213 +86,258 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A crashlog may already be complete when the driver binds, or it may
-complete asynchronously after userspace requests a manual trigger.
-Userspace otherwise has to poll to discover that data is ready.
+xe_exec_ioctl() locks the dma-resv of every BO mapped in the VM in one
+drm_exec transaction, then validates, rebinds and submits. Any migration
+or fault-in a client needs therefore happens while it holds the dma-resv
+of every object it has mapped, including the ones shared with other
+processes. A client faulting in a large buffer of its own stalls whoever
+else has those shared objects mapped, so the compositor it is presenting
+to can miss a deadline over a set of BOs it has nothing to do with.
 
-Emit a KOBJ_CHANGE uevent on the per-instance crashlog device when a
-completed log is found at probe. After a manual trigger, poll the
-completion bit at 100 ms intervals for up to 5 seconds and emit the same
-event when capture completes. The event carries two environment
-variables:
+Most of those objects are not ones the exec has to validate. Make the
+exec transaction two pass, so that it locks the evicted BOs first,
+validates them, and only then locks the resident ones. It ends up
+holding exactly the locks it holds today, it just takes the ones it does
+not have to validate last, once the expensive work is already done.
 
-  INTEL_PMT_CRASHLOG_EVENT=3DPRESENT
-  INTEL_PMT_CRASHLOG_COMPLETE=3D1
+Only the external BOs are actually split between the passes. The VM's
+dma-resv is held from the start, as before, so the evicted private BOs
+are validated in the early pass too, without anything extra being
+locked for them.
 
-Initialize the work items before the device's sysfs attributes are
-exposed, and disable and drain them during removal.
+Nothing is unlocked in between the passes, so this needs no recheck and
+no fallback. The late pass can still find something to validate, since a
+BO it had not locked yet may have been evicted meanwhile; that is handled
+the way it is today, with every lock held.
 
-Document the new uevent in the sysfs-class-intel_pmt ABI file.
+Two details are worth pointing out. xe_vm_rebind() rebinds the whole
+rebind list in one go and attaches a fence to the dma-resv of every BO
+on it, so it needs all of them locked; the early pass deliberately does
+not hold the resident ones, so it leaves the rebind to the late pass
+entirely. That is also the better order, since rebinding allocates page
+tables and can therefore evict the very BOs the early pass is trying to
+leave alone. And the sched job's fence slot is reserved in the late pass
+only, that being the one which holds every lock the transaction is going
+to hold, so it is still reserved exactly once per object.
 
+A concern with splitting the passes is that validating in the early pass
+could evict the very BOs the late pass is about to lock, moving the work
+back under the full set of locks. Xe is immune to this by construction:
+__xe_bo_validate() brackets its ttm_bo_validate() call with
+xe_vm_set_validating(), and xe_bo_eviction_valuable() walks the
+drm_gpuvm_bos of any eviction candidate and refuses the ones bound to a VM
+the current task is validating. The early pass therefore cannot evict a BO
+mapped in the VM it is validating, whether or not the late pass was going
+to lock it. That guard predates this patch; self-eviction is pointless
+work in a single pass too.
+
+While at it, xe_gpuvm_validate() is changed to clear the evicted state
+with drm_gpuvm_bo_evict() rather than by assigning drm_gpuvm_bo::evicted
+behind GPUVM's back, so that the bookkeeping GPUVM now does there is not
+bypassed.
+
+Cc: Abhinav Kumar <abhinav.kumar@linux.dev>
+Cc: Alice Ryhl <aliceryhl@google.com>
+Cc: Anna Maniscalco <anna.maniscalco2000@gmail.com>
+Cc: Antonino Maniscalco <antomani103@gmail.com>
+Cc: Boris Brezillon <boris.brezillon@collabora.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Dmitry Baryshkov <lumag@kernel.org>
+Cc: Jessica Zhang <jesszhan0024@gmail.com>
+Cc: Jonathan Corbet <corbet@lwn.net>
+Cc: Liviu Dudau <liviu.dudau@arm.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Randy Dunlap <rdunlap@infradead.org>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Sean Paul <sean@poorly.run>
+Cc: Shuah Khan <skhan@linuxfoundation.org>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Steven Price <steven.price@arm.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Assisted-by: LLM
-Signed-off-by: David E. Box <david.e.box@linux.intel.com>
+Reviewed-by: Francois Dugast <francois.dugast@intel.com>
 ---
- .../ABI/testing/sysfs-class-intel_pmt         | 14 ++++
- drivers/platform/x86/intel/pmt/crashlog.c     | 84 ++++++++++++++++++-
- 2 files changed, 95 insertions(+), 3 deletions(-)
+v3:
+ - Follow the drm_gpuvm_exec_pass_ function renames (Danilo)
+---
+ drivers/gpu/drm/xe/xe_exec.c | 23 ++++++++++++++++---
+ drivers/gpu/drm/xe/xe_vm.c   | 43 ++++++++++++++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_vm.h   |  3 ++-
+ 3 files changed, 58 insertions(+), 11 deletions(-)
 
-diff --git a/Documentation/ABI/testing/sysfs-class-intel_pmt b/Documentatio=
-n/ABI/testing/sysfs-class-intel_pmt
-index ed4c886a21b1..c0b0d123afdf 100644
---- a/Documentation/ABI/testing/sysfs-class-intel_pmt
-+++ b/Documentation/ABI/testing/sysfs-class-intel_pmt
-@@ -66,6 +66,20 @@ Description:
- 		can be determined from an XML file of specified GUID for the
- 		parent device.
-=20
-+What:		/sys/class/intel_pmt/crashlog<x>
-+Date:		October 2026
-+KernelVersion:	7.4
-+Contact:	David Box <david.e.box@linux.intel.com>
-+Description:
-+		When a crashlog device is probed with a completed crashlog
-+		already present, or a manual trigger completes, the driver emits
-+		a KOBJ_CHANGE uevent for that crashlog<x> device.
-+
-+		The following uevent environment variables are added:
-+
-+		INTEL_PMT_CRASHLOG_EVENT=3DPRESENT
-+		INTEL_PMT_CRASHLOG_COMPLETE=3D1
-+
- What:		/sys/class/intel_pmt/crashlog<x>/crashlog
- Date:		October 2020
- KernelVersion:	5.10
-diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x=
-86/intel/pmt/crashlog.c
-index f936daf99e4d..21e8e2199bdc 100644
---- a/drivers/platform/x86/intel/pmt/crashlog.c
-+++ b/drivers/platform/x86/intel/pmt/crashlog.c
-@@ -12,12 +12,14 @@
- #include <linux/cleanup.h>
- #include <linux/intel_vsec.h>
- #include <linux/kernel.h>
-+#include <linux/kobject.h>
- #include <linux/module.h>
- #include <linux/mutex.h>
- #include <linux/pci.h>
- #include <linux/slab.h>
- #include <linux/uaccess.h>
- #include <linux/overflow.h>
-+#include <linux/workqueue.h>
-=20
- #include "class.h"
-=20
-@@ -113,6 +115,9 @@ struct crashlog_entry {
- 	struct intel_pmt_entry		entry;
- 	struct mutex			control_mutex;
- 	const struct crashlog_info	*info;
-+	struct work_struct		uevent_work;
-+	struct delayed_work		uevent_poll_work;
-+	u8				uevent_poll_tries;
- };
-=20
- struct pmt_crashlog_priv {
-@@ -120,6 +125,9 @@ struct pmt_crashlog_priv {
- 	struct crashlog_entry	entry[];
- };
-=20
-+#define PMT_CRASHLOG_UEVENT_POLL_MS		100
-+#define PMT_CRASHLOG_UEVENT_POLL_MAX_TRIES	50
-+
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index d5293bc33a67..abe522c19ec9 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -79,8 +79,10 @@
+  *	<----------------------------------------------------------------------|
+  *	Lock global VM lock in read mode                                       |
+  *	Pin userptrs (also finds userptr invalidated since last exec)          |
+- *	Lock exec (VM dma-resv lock, external BOs dma-resv locks)              |
++ *	Lock exec early pass (VM and evicted external BOs dma-resv locks)      |
+  *	Validate BOs that have been evicted                                    |
++ *	Lock exec late pass (the external BOs left out above)                  |
++ *	Validate any BO evicted since the early pass looked at it              |
+  *	Create job                                                             |
+  *	Rebind invalidated userptrs + evicted BOs (non-compute-mode)           |
+  *	Add rebind fence dependency to job                                     |
+@@ -95,15 +97,22 @@
  /*
-  * I/O
+  * Add validation and rebinding to the drm_exec locking loop, since both can
+  * trigger eviction which may require sleeping dma_resv locks.
++ *
++ * Called once per pass, see xe_exec_ioctl(). The fence slot is intended for
++ * the exec sched job and is only reserved in the pass which holds every lock
++ * the transaction is going to hold, so that it is reserved exactly once.
   */
-@@ -227,6 +235,47 @@ static void pmt_crashlog_set_rearm(struct crashlog_ent=
-ry *crashlog)
- 	pmt_crashlog_rmw(crashlog, crashlog->info->control.rearm, true);
+ static int xe_exec_fn(struct drm_gpuvm_exec *vm_exec)
+ {
+ 	struct xe_vm *vm = container_of(vm_exec->vm, struct xe_vm, gpuvm);
++	unsigned int num_fences;
+ 	int ret;
+ 
+-	/* The fence slot added here is intended for the exec sched job. */
++	num_fences = vm_exec->pass == DRM_GPUVM_EXEC_PASS_EARLY ? 0 : 1;
++
+ 	xe_vm_set_validation_exec(vm, &vm_exec->exec);
+-	ret = xe_vm_validate_rebind(vm, &vm_exec->exec, 1);
++	ret = xe_vm_validate_rebind(vm, &vm_exec->exec, num_fences,
++				    vm_exec->pass);
+ 	xe_vm_set_validation_exec(vm, NULL);
+ 	return ret;
  }
-=20
-+static void pmt_crashlog_uevent_fn(struct work_struct *work)
-+{
-+	struct crashlog_entry *crashlog =3D
-+		container_of(work, struct crashlog_entry, uevent_work);
-+	char *envp[] =3D {
-+		"INTEL_PMT_CRASHLOG_EVENT=3DPRESENT",
-+		"INTEL_PMT_CRASHLOG_COMPLETE=3D1",
-+		NULL,
-+	};
-+
-+	if (crashlog->entry.kobj)
-+		kobject_uevent_env(crashlog->entry.kobj, KOBJ_CHANGE, envp);
-+}
-+
-+static void pmt_crashlog_uevent_poll_fn(struct work_struct *work)
-+{
-+	struct crashlog_entry *crashlog =3D
-+		container_of(to_delayed_work(work), struct crashlog_entry,
-+			     uevent_poll_work);
-+	guard(mutex)(&crashlog->control_mutex);
-+
-+	/* A newer trigger_store() re-armed us; that cycle owns the notification =
-*/
-+	if (delayed_work_pending(&crashlog->uevent_poll_work))
-+		return;
-+
-+	if (pmt_crashlog_complete(crashlog)) {
-+		schedule_work(&crashlog->uevent_work);
-+		return;
-+	}
-+
-+	if (++crashlog->uevent_poll_tries < PMT_CRASHLOG_UEVENT_POLL_MAX_TRIES)
-+		schedule_delayed_work(&crashlog->uevent_poll_work,
-+				      msecs_to_jiffies(PMT_CRASHLOG_UEVENT_POLL_MS));
-+}
-+
-+static void pmt_crashlog_notify_pending(struct crashlog_entry *crashlog)
-+{
-+	if (pmt_crashlog_complete(crashlog))
-+		schedule_work(&crashlog->uevent_work);
-+}
-+
- /*
-  * sysfs
-  */
-@@ -423,7 +472,19 @@ trigger_store(struct device *dev, struct device_attrib=
-ute *attr,
- 	if (pmt_crashlog_complete(crashlog))
- 		return -EEXIST;
-=20
-+	/*
-+	 * Only now are we actually starting a fresh crash: any stale poll
-+	 * cycle left over from a prior trigger can be dropped safely, since
-+	 * pmt_crashlog_complete() above proved it carried no unresolved
-+	 * completion. Non-sync: uevent_poll_fn() takes this same mutex, so
-+	 * cancel_delayed_work_sync() here could deadlock against it.
-+	 */
-+	cancel_delayed_work(&crashlog->uevent_poll_work);
-+
- 	pmt_crashlog_set_execute(crashlog);
-+	crashlog->uevent_poll_tries =3D 0;
-+	schedule_delayed_work(&crashlog->uevent_poll_work,
-+			      msecs_to_jiffies(PMT_CRASHLOG_UEVENT_POLL_MS));
-=20
- 	return count;
- }
-@@ -551,6 +612,9 @@ static void pmt_crashlog_remove(struct auxiliary_device=
- *auxdev)
- 	for (i =3D 0; i < priv->num_entries; i++) {
- 		struct crashlog_entry *crashlog =3D &priv->entry[i];
-=20
-+		/* Disable, not cancel: a racing trigger_store() must not re-arm */
-+		disable_delayed_work_sync(&crashlog->uevent_poll_work);
-+		disable_work_sync(&crashlog->uevent_work);
- 		intel_pmt_dev_destroy(&crashlog->entry, &pmt_crashlog_ns);
- 		mutex_destroy(&crashlog->control_mutex);
+@@ -268,6 +277,14 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	if (!xe_vm_in_lr_mode(vm)) {
+ 		vm_exec.vm = &vm->gpuvm;
+ 		vm_exec.flags = DRM_EXEC_INTERRUPTIBLE_WAIT;
++		/*
++		 * Only the evicted BOs need validating, so lock those first,
++		 * validate them, and only then lock the resident ones. A
++		 * client faulting in a huge buffer of its own then no longer
++		 * holds, for the duration of that, the dma-resv of a BO it
++		 * shares with the compositor it presents to.
++		 */
++		vm_exec.two_pass = true;
+ 		err = xe_validation_exec_lock(&ctx, &vm_exec, &xe->val);
+ 		if (err)
+ 			goto err_unlock_list;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 2422bfde9177..0befae97008c 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -357,7 +357,7 @@ static int xe_gpuvm_validate(struct drm_gpuvm_bo *vm_bo, struct drm_exec *exec)
+ 
+ 	/* Skip re-populating purged BOs, rebind maps scratch pages. */
+ 	if (xe_bo_is_purged(bo)) {
+-		vm_bo->evicted = false;
++		drm_gpuvm_bo_evict(vm_bo, false);
+ 		return 0;
  	}
-@@ -572,15 +636,29 @@ static int pmt_crashlog_probe(struct auxiliary_device=
- *auxdev,
- 	auxiliary_set_drvdata(auxdev, priv);
-=20
- 	for (i =3D 0; i < intel_vsec_dev->num_resources; i++) {
--		struct intel_pmt_entry *entry =3D &priv->entry[priv->num_entries].entry;
-+		struct crashlog_entry *crashlog =3D &priv->entry[priv->num_entries];
-+		struct intel_pmt_entry *entry =3D &crashlog->entry;
-+
-+		/* init before dev_create() exposes trigger sysfs to userspace */
-+		INIT_WORK(&crashlog->uevent_work, pmt_crashlog_uevent_fn);
-+		INIT_DELAYED_WORK(&crashlog->uevent_poll_work,
-+				  pmt_crashlog_uevent_poll_fn);
-+		crashlog->uevent_poll_tries =3D 0;
-=20
- 		ret =3D intel_pmt_dev_create(entry, &pmt_crashlog_ns, intel_vsec_dev, i);
--		if (ret < 0)
-+		if (ret < 0) {
-+			cancel_delayed_work_sync(&crashlog->uevent_poll_work);
-+			cancel_work_sync(&crashlog->uevent_work);
- 			goto abort_probe;
--		if (ret)
-+		}
-+		if (ret) {
-+			cancel_delayed_work_sync(&crashlog->uevent_poll_work);
-+			cancel_work_sync(&crashlog->uevent_work);
- 			continue;
-+		}
-=20
- 		priv->num_entries++;
-+		pmt_crashlog_notify_pending(crashlog);
- 	}
-=20
+ 
+@@ -368,7 +368,7 @@ static int xe_gpuvm_validate(struct drm_gpuvm_bo *vm_bo, struct drm_exec *exec)
+ 	if (ret)
+ 		return ret;
+ 
+-	vm_bo->evicted = false;
++	drm_gpuvm_bo_evict(vm_bo, false);
  	return 0;
---=20
-2.43.0
+ }
+ 
+@@ -377,31 +377,59 @@ static int xe_gpuvm_validate(struct drm_gpuvm_bo *vm_bo, struct drm_exec *exec)
+  * @vm: The vm for which we are rebinding.
+  * @exec: The struct drm_exec with the locked GEM objects.
+  * @num_fences: The number of fences to reserve for the operation, not
+- * including rebinds and validations.
++ * including rebinds and validations. Zero reserves none, which is what the
++ * %DRM_GPUVM_EXEC_PASS_EARLY pass wants.
++ * @pass: The &enum drm_gpuvm_exec_pass @exec was locked for.
+  *
+  * Validates all evicted gem objects and rebinds their vmas. Note that
+  * rebindings may cause evictions and hence the validation-rebind
+  * sequence is rerun until there are no more objects to validate.
+  *
++ * In the %DRM_GPUVM_EXEC_PASS_EARLY pass only the validation is done, and
++ * only for the objects whose dma-resv @exec holds. The rest, along with the
++ * rebind and the fence reservation, is left to the
++ * %DRM_GPUVM_EXEC_PASS_LATE pass of the same transaction, which locks
++ * everything.
++ *
+  * Return: 0 on success, negative error code on error. In particular,
+  * may return -EINTR or -ERESTARTSYS if interrupted, and -EDEADLK if
+  * the drm_exec transaction needs to be restarted.
+  */
+ int xe_vm_validate_rebind(struct xe_vm *vm, struct drm_exec *exec,
+-			  unsigned int num_fences)
++			  unsigned int num_fences,
++			  enum drm_gpuvm_exec_pass pass)
+ {
+ 	struct drm_gem_object *obj;
+ 	int ret;
+ 
+ 	do {
+-		ret = drm_gpuvm_validate(&vm->gpuvm, exec);
++		ret = drm_gpuvm_exec_pass_validate(&vm->gpuvm, exec, pass);
+ 		if (ret)
+ 			return ret;
+ 
++		/*
++		 * xe_vm_rebind() rebinds the whole rebind list in one go and
++		 * attaches a fence to the dma-resv of every BO on it, so it
++		 * needs all of them locked. The early pass deliberately does
++		 * not lock the resident ones, so leave the rebind to the late
++		 * pass, which holds everything.
++		 */
++		if (pass == DRM_GPUVM_EXEC_PASS_EARLY)
++			continue;
++
+ 		ret = xe_vm_rebind(vm, false);
+ 		if (ret)
+ 			return ret;
+-	} while (!list_empty(&vm->gpuvm.evict.list));
++	} while (drm_gpuvm_exec_pass_has_evicted(&vm->gpuvm, pass));
++
++	/*
++	 * The early pass reserves nothing. It attaches no fence itself, and
++	 * the objects it locks are still locked in the late pass, whose own
++	 * reservation below walks every object the transaction has
++	 * accumulated and so covers them too.
++	 */
++	if (!num_fences)
++		return 0;
+ 
+ 	drm_exec_for_each_locked_object(exec, obj) {
+ 		ret = dma_resv_reserve_fences(obj->resv, num_fences);
+@@ -446,7 +474,8 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
+ 	 * The fence reservation here is intended for the new preempt fences
+ 	 * we attach at the end of the rebind work.
+ 	 */
+-	return xe_vm_validate_rebind(vm, exec, vm->preempt.num_exec_queues);
++	return xe_vm_validate_rebind(vm, exec, vm->preempt.num_exec_queues,
++				     DRM_GPUVM_EXEC_PASS_ALL);
+ }
+ 
+ static bool vm_suspend_rebind_worker(struct xe_vm *vm)
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 89c4f95984a2..e4f184752840 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -282,7 +282,8 @@ static inline void xe_vm_reactivate_rebind(struct xe_vm *vm)
+ int xe_vm_lock_vma(struct drm_exec *exec, struct xe_vma *vma);
+ 
+ int xe_vm_validate_rebind(struct xe_vm *vm, struct drm_exec *exec,
+-			  unsigned int num_fences);
++			  unsigned int num_fences,
++			  enum drm_gpuvm_exec_pass pass);
+ 
+ struct dma_fence *xe_vm_bind_kernel_bo(struct xe_vm *vm, struct xe_bo *bo,
+ 				       struct xe_exec_queue *q, u64 addr,
+-- 
+2.34.1
 
