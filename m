@@ -4,136 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D086ACA5FD6
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 16:21:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DD8ECA5FD6
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 16:23:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 815E710F72B;
-	Thu,  1 Oct 2026 16:21:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 156F810F72F;
+	Thu,  1 Oct 2026 16:23:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="sqcjIrhK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WdRJIetI";
 	dkim-atps=neutral
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012063.outbound.protection.outlook.com
- [40.93.195.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2610C10F726;
- Thu,  1 Oct 2026 16:21:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AFu1ItTbNZI461ME+/DYxA1uA6b88t20HmvvbsHogeBSUODF7xOoerIWhoyWlAfoDdKs4eLf3gghIEsoq4V0/yX2lEaoGbZiRr2qhU95JLBjucG5802E8kj0M6+abhFPrlgOZfYW9PUoS7q6uQRAv1N+Eu7VZcfyQytvkJ55BgdBMtPC2qp9jOPnjAFHuOVLWIfYEQuX5SZ3QUVaItIW8KUiB9SPnP22J/TIyyd1AdLOEkTwIZEtjJW1XduRQlpjH3Ayqa15mX2EsCqB69JJO2DsHjZ3rvGp0BxcD9kDK1PK3ue+AN4sFz8R4sOCpsFQL3AOiglkzwJN0E4Ytp/zlA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=erQGEZKwVzU/jdvjKH8p65/2xVcPcww6ZLAB6KNMcbY=;
- b=PH0xvGEK1dw2fbchhyKb7bPisiGTMtFzODZHWdmd+8canTklKrmCovjIEmP7KYXF+ZUSB1n19xiiJdECaRBcEzwKd5h07SgJrb37S+fEXGATBM36RBfV/dF7/b0YeceDctkDLqBv9wtCmdXJ/APFyClnxR4i0UmcXd08k9qiGyvR1OXf7IW497AHT82aFmtbWXmIG6snrLXsxXKsZBvpxDLmA2QU9jiKKv/TqszQZnYrmntsCmb4JYs8F89D9R/0gSA4rdQ2Lr587Bn7ouqwob+02CC7b7n4dOo7LYaNga5gBMej8Nj/2P3SVDC98t0huvE6hEHJtUpZWZUZd00KwA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=erQGEZKwVzU/jdvjKH8p65/2xVcPcww6ZLAB6KNMcbY=;
- b=sqcjIrhK3wq2tdDCN9EzBypn9RbXpBKFTtfWM74ilCdvWkguxEeU6EbP/N/4vf+X83UsgROxQbudrL+KXBKm32MrlHw/KaB9htEhL+6m7U67z6hDHGJNf6ny8NtwSnrF831nqjsF+Uz0lCwtPLX7COArxxmiX4VXGWQXnHcH2nc=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH8PR12MB6914.namprd12.prod.outlook.com (2603:10b6:510:1cb::21)
- by DS0PR12MB6560.namprd12.prod.outlook.com (2603:10b6:8:d0::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.472.18; Thu, 1 Oct
- 2026 16:21:22 +0000
-Received: from PH8PR12MB6914.namprd12.prod.outlook.com
- ([fe80::2893:177a:72b0:6000]) by PH8PR12MB6914.namprd12.prod.outlook.com
- ([fe80::2893:177a:72b0:6000%7]) with mapi id 15.21.0472.016; Thu, 1 Oct 2026
- 16:21:22 +0000
-Message-ID: <d0889653-e835-4a22-b385-85cb19ee13a0@amd.com>
-Date: Thu, 1 Oct 2026 11:21:18 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 00/14] Add support for a DRM backlight capability
-Content-Language: en-US
-To: Maxime Ripard <mripard@kernel.org>, Xaver Hugl <xaver.hugl@gmail.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- Javier Martinez Canillas <javierm@redhat.com>,
- dri-devel@lists.freedesktop.org, harry.wentland@amd.com,
- Simona Vetter <simona@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CAF510E32D;
+ Thu,  1 Oct 2026 16:23:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790871831; x=1822407831;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=e7Yg3tsIXrm50gxHDaBeCUWmNZZ8Isz3nY1XscNzUaY=;
+ b=WdRJIetIYfQ6DQHithSfrCHYbpfoQHwwUQaGfs03yAt0bgbd/cQ0WAK6
+ VrqnQn6TkZG3S+3CDnjOeSh3xYpnp7U7J+4kHEBVYo13zG+2X5pf46CzH
+ sWtwW5EQvMfHUSNtnBBGnHce3USM3hBiUIGLar68HC7lMBKwMlIv4M08w
+ hcQAxrBvSE2SuIkmSbOMqxPD4pGygwUu3x3OjAplbvIcnSeInhK+pUNzT
+ IAcs0LFFpGLKbztwDHrdK7cJPPQ5+55fTsDYaIJ/QoEjnkyvO3nUiwQXm
+ zaeldldvIm6nVyvuEXcsNaBZy/mOecH+CTsWknjRYU52KE2gqwoJhQgx6 w==;
+X-CSE-ConnectionGUID: 6zCT24a7S9+kH1ZaMdTKGg==
+X-CSE-MsgGUID: aZ+hWcYRQeK8RF+4Hhc/nQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="102310929"
+X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; d="scan'208";a="102310929"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2026 09:21:11 -0700
+X-CSE-ConnectionGUID: ErPrybqwQB2cFaFqrso6Bw==
+X-CSE-MsgGUID: 6nLj4i7aRhmdLIftav/KwA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,134,1787036400"; d="scan'208";a="305531763"
+Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2026 09:20:11 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ Abhinav Kumar <abhinav.kumar@linux.dev>, Alice Ryhl <aliceryhl@google.com>,
+ Anna Maniscalco <anna.maniscalco2000@gmail.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Jonathan Corbet <corbet@lwn.net>,
+ Liviu Dudau <liviu.dudau@arm.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- David Airlie <airlied@gmail.com>, amd-gfx@lists.freedesktop.org,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-gfx@lists.freedesktop.org>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-xe@lists.freedesktop.org>, Hans de Goede <hansg@kernel.org>
-References: <20260908044035.62093-1-mario.limonciello@amd.com>
- <CAFOAJEfgXY7cfLvizuxbS75CJd7mF5tewxp+PH=EhTtpy+aZXg@mail.gmail.com>
- <32f96551-358b-4874-8fd1-a685b02853e1@amd.com> <arJwOSq6-oSywTK6@houat>
- <08e47991-0d72-471f-9955-0b4ebbcffcdf@suse.de> <arJ0huW356NjqpGR@houat>
- <CAFZQkGz9O8dZfmxEC5Fcpa2mRHXde+FFwu4JVz3fvKTzHT49LQ@mail.gmail.com>
- <ar6GxMRwcsTX8IaF@houat>
-From: Mario Limonciello <mario.limonciello@amd.com>
-In-Reply-To: <ar6GxMRwcsTX8IaF@houat>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: CH0PR03CA0181.namprd03.prod.outlook.com
- (2603:10b6:610:e4::6) To PH8PR12MB6914.namprd12.prod.outlook.com
- (2603:10b6:510:1cb::21)
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Maxime Ripard <mripard@kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Shuah Khan <skhan@linuxfoundation.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v2 0/5] drm/gpuvm: two pass locking for exec
+Date: Thu,  1 Oct 2026 09:19:56 -0700
+Message-Id: <20261001162001.3123877-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR12MB6914:EE_|DS0PR12MB6560:EE_
-X-MS-Office365-Filtering-Correlation-Id: 209ced71-47c0-40f7-2405-08df1fd8080b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|376014|366016|23010399003|1800799024|10067099003|56012099006|4143699003|6133799003|11063799006|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: PoxPEqmh+055Il+NjmjpamAvTkuD3j+ZELmUoY9Oq3AVtf2fIqyp6qmSfzMvRMfnljTZEAOlENj3xnB7cNnnv8lnbPtpM3BzF/HJigfM3CpvvWNTYO607NvL9hhJIXyuY34jhd4WYYyFLjI4cWXBcajXohWRPYHHSceMS1sbGExEbNypMLskl/n3om7+/L+m0Mw0AM7HfGPR00QleylziG6D0vDwNKdB28KTAMwTHVN+egqKkN3HL3WJFrpAacp1i2WGccRo2MFAhxZaEIuvI0zONfEsoKIaHHBjlHM+W8F+I6rYTw/JXRQTjQfSdT/sMmflmO/ftN4hLnDBn3p0SL2dB2uI4pAZsPvZexsRsj/F/RJPjKgM88opO6zBZVA8TIJZXrGBbT4TFC4jTkDoxu/D6SnVeAHSCdveVbxjV5M0Vw2SqFzFMC3bKDAFnZ4pPtZdg32hdc6uZhPzCbUvIvPU+uhOFcYnfj9j5yKXeUbjdTKm+oWo+wwhKUDtKSkZ6zuoOIJag2dMtD16D4LTqUeQaUOHc5YNre+ZSLC72Gd4/QPMZSAjaWVwCcKO8akkfsD9h/jbcQM/HL8uYmHm5g4OM0OXVFSjnKrkwZ8Fy3n4lSzOcnGaIMyhnuTE7oCEksEb1tfE6jvU9IKv8t6Rq5rbELztSHos2DgJqJeJitg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR12MB6914.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(366016)(23010399003)(1800799024)(10067099003)(56012099006)(4143699003)(6133799003)(11063799006)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UzF0OG5JMldobUIrK0Y4VVZlNHNZVEdnZzdSQkFhRzRXM0paaDV6VklrQzdI?=
- =?utf-8?B?bnNHOG4wbXM2dXRIc21BVzAzd1NxYUVRMUJsZ2xqN2JVUHQ1dmd0SmRFK0M4?=
- =?utf-8?B?NFRuS0pnUnJ2ZXNZWFNoUE50a0xYVUthUWZidVFGTE5aZmxqMlRpQytBU2V5?=
- =?utf-8?B?bjQrT25MTlpiSzJyTjFnclpzME93QUJJc21BYTlJTG96cHBHN00wN0ROQ0I2?=
- =?utf-8?B?MW1EaGZLc3EzZHJWS0hJUTZYWjY4WDFsQ1B6UnNiNjBvQ2llUDVMajRsUm9M?=
- =?utf-8?B?M2JRSU5jeTFtRjBnd0RWL0k5Q3YzeStqdmFFTitTZDFDRFBXRnpSQ2ZTa2xV?=
- =?utf-8?B?YU8zelVUVFJ3VW83V2hLRFNvQ1EyN3NJM0szQkc3RVVRY2NMWk9LSHpKM1JT?=
- =?utf-8?B?WTBjNmc1dDlVWVZkREFaRWp0VzRSQnA4eEZCMHllaG1YWjU1UE9iYVUvKzNP?=
- =?utf-8?B?ZTdWRGhyelZwOUF4eUU0MjR0QjRsc2NGZUJNL2lxMDhHQmdnZWZ6Y3pGZlVW?=
- =?utf-8?B?MTFXcEtEMnNQa3MvcVdLbjRYcDg2Wlc3WlRCQzI1a082UkFQa2hwdGNabHRR?=
- =?utf-8?B?OU9aazVnMGRsdWNCa0dHbmQ2ek82MnlwMS8zdlBuQjlzOFJ6ZjJXTEExL3lZ?=
- =?utf-8?B?U1NVNGU0YWFFbHc4OG8wY2F4MndSbUI3SGJwaHBpTTFNbUJlWVNoYmhheTlX?=
- =?utf-8?B?cmd6YWFpZGprQ1BPcEsvdVNnNWplaUQ4WjREU09ESFdkbG44MlNoMDFVUVRB?=
- =?utf-8?B?bm9iVG1adkRsWjNkWldyS1BMS09CSm1Ndi9jNXBPT05SVHllSkRvbUtBUUQr?=
- =?utf-8?B?SGhFdy8rN1VJWXZOVnNCc3EvSit2QjdDdVI1REYydHpiMk5DalZxMWN1Skw2?=
- =?utf-8?B?TUJ5emdxQ2Mvc1Q5OE5DaCswRjBDTXhCSlkzMWhXeUVGNGJxMFhyVklUZGJo?=
- =?utf-8?B?MXlwTjlrNWtwOXBSM2JpTkpNY2NRN203dWEyTUtyZThqNnRGZXVoMjlHaHZV?=
- =?utf-8?B?K0hiN2hHeTlvL2p0WlBqSWJNdjkxc1M5Tm1jNUU4R2kwbERiL25KVnM3WXJs?=
- =?utf-8?B?N2hsQVQvbldIZythVk95NVM1d1J6V09oeno3RFBCNXRHbGVtcjNyY3BITFBQ?=
- =?utf-8?B?ZytUN0xkMWpBNVA5dFkvc0xzRk92cm5USk1KWjZGWE5BZk9kZlNlTHZMRG9N?=
- =?utf-8?B?Rmx0UUtUNE1hVk03d1NJdjh5VUJJTW0zWlpLdVVxTDJnTEthcTZiR09UeFNM?=
- =?utf-8?B?dXppOEhHc3oveWhWL0tsQjFEODFaVXBVbkcwbnhSMVpYTWFmMUFuc2tKeDZo?=
- =?utf-8?B?U2dkWlpaQUFBRGFEakdvTUhIS3NvZmZRQktzUEp3N1FBU2oxbE8wbm92VEdq?=
- =?utf-8?B?ekVDSGhpT2F5VDJSWXNtZ1pWcFVZSnFvK3JaT0RMN2VhOFFaNmlPdzA0ekdS?=
- =?utf-8?B?YzdOS1NRWHlIOUNpNUJmSWNiNURaY0g1K1p1cnRBNkN4WitsMG5XSGMrcWhH?=
- =?utf-8?B?N1NQdlFnaUpvWHp3VmZuT1NCT3EybHNXeUVhMlhISW9qQ1NiaEtXWnJQWUFF?=
- =?utf-8?B?UEJhZlJzR010eFo0WjFmUXRGd0xNTklFUjVOV25MMWpGZjhkMjdaK2IwQVFX?=
- =?utf-8?B?SCsrcHhabDBuQ2RCU2JuQU5FdU52NEI3TEpBWmtGREtpS2IyZFlkNG5iQzZW?=
- =?utf-8?B?SnJIcHZ3bDR0bm0zUkRWRHpMekluTXNKQkQzaU9OZHR4NmQ5QmQybVlNU0xw?=
- =?utf-8?B?Uy9Fc0xBbXI5NENoM0RDc21hQi9uSXlyU0Q5YnVvMzVVRERHUU1JMFZoNjFr?=
- =?utf-8?B?VktiZmlJR01CN2crTmhySEYyVEdFakxGR1lqMnM2YkFJd09QdnV5Si9McGJR?=
- =?utf-8?B?NkJidVM3Qk1hcFZnalFnQVpDQXMvL2tOVlQwTlJHRFg0STlta1BIVXFnZ0t0?=
- =?utf-8?B?QytFWHM2Y1JCaUdrVTBnZ1pDQ3doK29aN01BbjFDajFlRVJwNmdMQ1lRM1Jw?=
- =?utf-8?B?VFFlNS9xZlozNEl5NmpWU3I1cWZpdnNYSGNDNkU4cW9UUkpIcisrNjgyRjkx?=
- =?utf-8?B?S0NFY294YmF1aXdnQ0tvWlZ1Y0M1RVhxOURWOUpCcm50TzhCWkVDS3lWclFN?=
- =?utf-8?B?bXlSRkRhY1BZM2ZmS2VwaVdOaGJtREdtUDQyQ3ozNlJ5WUtUZ3VxNnB4Qno0?=
- =?utf-8?B?S1JPOFpuVUpqaUpTMGdHTU54SDRjUG9pWW1kWldzM3B6amltTnY4N25KeUdl?=
- =?utf-8?B?TVExbmxXOEJMMTMzcTg4L1cvSGxka3hFOHR5MWVicFVZVlBHcVB6YlhySHFm?=
- =?utf-8?B?cFFXWXVqRWpaekNZbGoxZlJDSFRNWVlnTzdPbjJoKzlUY2hNV0lrQT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 209ced71-47c0-40f7-2405-08df1fd8080b
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB6914.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2026 16:21:22.0276 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MeGSkFhzDp9uBzuesV+FtLeqg2lWRnH1JDQL+AvC4jrYpOnl0+C+prHXhGkUo5RjiP4EMo7Ncdq3EKPOxZGpAw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6560
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,59 +82,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Two processes share a set of buffers, and each has buffers of its own
+which the other never sees. Say process A has mapped
 
+  S        the shared buffers, also mapped by B
+  P        buffers private to A
 
-On 10/1/26 11:18, Maxime Ripard wrote:
-> On Wed, Sep 23, 2026 at 10:07:16AM +0200, Xaver Hugl wrote:
->>> Couldn't we make a sysfs write trigger an atomic commit then? That way,
->>> it would always go through the atomic commit path, no matter whether
->>> you're on a "legacy" compositor or not.
->>
->> That could cause stutter.
-> 
-> Is it really that bad? I mean, it would be only in scenarios where the
-> legacy API is being used and I would expect it to become the standard
-> pretty fast anyway, no?
-> 
->>> It probably would, but it would create a precedent I'm not really
->>> familiar with. Hotplug events are kind of separate because it really is
->>> a hardware event most of the time: you get an interrupt, and report it
->>> to userspace. And it's largely outside of the properties space (except
->>> maybe for things like edid).
->>
->> If there's any property changes, userspace does need to be notified
->> about it. Whether the change is caused by hardware or software doesn't
->> matter.
-> 
-> Yeah, it turns out we already have a precedent for this for HDCP so it's
-> not too bad I guess.
-> 
->>> If we start having the argument that a property changing must trigger a
->>> uevent, then it means that we can expect *any* property to do so
->> For anything modified outside of the compositor's control, yes.
->>
->> The client cap avoids needing uevents for the luminance property
->> though, since backlight control is exclusive to DRM if the compositor
->> supports it.
->>
->>> "the compositor needs to be in control of it" can apply to many, like
->>> color formats, positions, tiling, etc.
->>
->> If there were other APIs that desktops relied on for controlling color
->> formats and similar, we would indeed also need a client cap for those
->> things, until definitely all software is ported away from the old API.
-> 
-> I really think this series should be split. We obviously need to address
-> this, but it's kind of decoupled from the UAPI itself, and is only
-> relevant for a small subset of its usage. And yet it's all we talk
-> about. It'll be easier to merge in chunks and decoupling the legacy API
-> handling from the new uapi.
-> 
-> Maxime
+and B has mapped S plus private buffers of its own. The overlap is
+exactly S, and the work each process wants to do on its own buffers is
+independent of the other.
 
-How would you feel about a (temporary) Kconfig that lets you pick which 
-API to support?  This would effectively mean that we can get the new 
-UAPI integrated without worrying about implications for the legacy API.
+A submits. Its exec locks the dma-resv of everything it has mapped, S
+and P both, then finds something in P has been evicted and migrates it
+back in. B submits, and blocks on S for as long as that migration takes,
+even though the migration is of a buffer belonging to A which B has
+never seen.
 
-We can then get compositors all lined up to use the the new API and then 
-bikeshed the compat between the two to let us drop the Kconfig.
+So the stall does not come from the overlapping set. The buffers in S
+are resident, and neither exec has anything to do to them beyond
+attaching a fence. They are held only because an exec locks everything
+it has mapped in one go, and they stay held until the slowest unrelated
+thing in that transaction is done.
+
+Which buffers get evicted is a separate matter, and one which already
+has answers: eviction heuristics which leave shared buffers alone, or
+one process' allocations outranking another's. This is what is left once
+those work.
+
+Where this tends to show up is compositors and presentation, which is
+also where userspace has worked hardest to avoid it. Wayland explicit
+sync exists so that a compositor is not latched onto its clients'
+rendering, waiting on fences it never asked for. The locking above
+reintroduces that coupling anyway, in the kernel, and does it under
+memory pressure, which is where a missed frame is least welcome and the
+cause is hardest to see.
+
+The fix is to stop coupling "lock the VM" to "validate it". Instead of
+locking everything and then validating, lock the private buffers and the
+evicted external ones, validate those, and only then lock the rest, all
+within the same drm_exec transaction.
+
+Patch 1 lets a driver split the locking of an exec that way, patches 2
+and 3 use it in Xe and Panthor, whose panthor_vm_bo_validate() swaps
+pages back in under those same shared locks. It is opt-in, and drivers
+which do not ask for it are unaffected.
+
+Patches 4 and 5 do the same for MSM. Its VM_BIND submit path locks every
+BO mapped in the VM and then validates the evicted ones, which means
+getting their pages and mapping them again, with the shared BOs locked
+throughout. Patch 4 switches VM_BIND VMs to DRM_GPUVM_RESV_PROTECTED,
+which two pass locking requires, and patch 5 splits the submit's locking
+into the two passes. Kernel managed VMs and the legacy submit path are
+left alone.
+
+The MSM part should resolve exactly the problem Anna Maniscalco
+presented at XDC, render jobs stalling the compositor on shared buffers,
+which is currently worked around with a downstream hack in MSM for
+SteamOS [1][2] (the talk starts at 5:30).
+
+[1] https://indico.freedesktop.org/event/12/contributions/627/
+[2] https://www.youtube.com/watch?v=j5W5ErEMnvM&t=330s
+
+Matt
+
+Cc: Abhinav Kumar <abhinav.kumar@linux.dev>
+Cc: Alice Ryhl <aliceryhl@google.com>
+Cc: Anna Maniscalco <anna.maniscalco2000@gmail.com>
+Cc: Boris Brezillon <boris.brezillon@collabora.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Dmitry Baryshkov <lumag@kernel.org>
+Cc: Jessica Zhang <jesszhan0024@gmail.com>
+Cc: Jonathan Corbet <corbet@lwn.net>
+Cc: Liviu Dudau <liviu.dudau@arm.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Randy Dunlap <rdunlap@infradead.org>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Sean Paul <sean@poorly.run>
+Cc: Shuah Khan <skhan@linuxfoundation.org>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Steven Price <steven.price@arm.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Assisted-by: LLM
+
+Matthew Brost (5):
+  drm/gpuvm: allow locking external objects in two passes
+  drm/xe: lock the resident BOs of an exec last
+  drm/panthor: lock the resident BOs of a submit last
+  drm/msm: use DRM_GPUVM_RESV_PROTECTED for VM_BIND VMs
+  drm/msm: lock the resident BOs of a VM_BIND submit last
+
+ Documentation/gpu/drm-mm.rst          |   6 +
+ drivers/gpu/drm/drm_gpuvm.c           | 480 +++++++++++++++++++++++++-
+ drivers/gpu/drm/msm/msm_gem_submit.c  |  82 ++++-
+ drivers/gpu/drm/msm/msm_gem_vma.c     |  15 +-
+ drivers/gpu/drm/panthor/panthor_mmu.c |  53 ++-
+ drivers/gpu/drm/xe/xe_exec.c          |  23 +-
+ drivers/gpu/drm/xe/xe_vm.c            |  43 ++-
+ drivers/gpu/drm/xe/xe_vm.h            |   3 +-
+ include/drm/drm_gpuvm.h               | 133 ++++++-
+ 9 files changed, 784 insertions(+), 54 deletions(-)
+
+-- 
+2.34.1
+
