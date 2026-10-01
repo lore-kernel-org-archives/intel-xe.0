@@ -4,49 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 826E1CA5FCE
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 18:00:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A60B4CA5FCF
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 18:11:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27B7E10E02E;
-	Thu,  1 Oct 2026 18:00:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Zgm4jHfW";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 326DA10E3D3;
- Thu,  1 Oct 2026 18:00:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:From:Cc:To:Subject:
- MIME-Version:Date:Message-ID:From:Reply-To;
- bh=lwD0tq9kOXo25StVj9HfyV90bbrSfiL0k0vfeLXKdH8=; b=Zgm4jHfWmbbqFCxXJRKGa45J/z
- q1GafYG8r/oc2H9s+3kIyT2VAxO5OdIBGpz1MyCovDfLqv9RirunY1n0xGehxvrHqVpy5N5jKmqEq
- WCDra4zMSlTaFP1PBKSoPm6wUff2bvB4cKtwzlPYz4A5x6QDhYiaSVtQpNMoznaZ2FUU6NPr7gQVx
- SwJDkD70QC0v7Fc4TvIJqHYGS4gt86ws0jNQ4psPfa/HAx59zPY/7lHJMd4zJkeCKtW6SE4ZdU94a
- x20DmOokVdB5DggOSWHPxaQlYp74ivuL5NuCYjRYZhxTBiAimLZM2rlq1C5Es2Cvzln+I6WT7PHJA
- svPZXFLg==;
-Received: from [179.190.179.102] (helo=[192.168.1.27])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1xCL4i-00AEm6-KF; Thu, 01 Oct 2026 20:00:08 +0200
-Message-ID: <f852acbe-6d4c-4edb-a320-e2d690486bd6@igalia.com>
-Date: Thu, 1 Oct 2026 15:00:03 -0300
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C06B10E3B0;
+	Thu,  1 Oct 2026 18:11:15 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80D1E10E3B0;
+ Thu,  1 Oct 2026 18:11:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3906173981329811767=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/xe/lrc: Restore CTX_CS_INDIRECT_CTX_OFFSET
- programming for ADL
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: rodrigo.vivi@intel.com, demarchi@kernel.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- tvrtko.ursulin@igalia.com, linux-kernel@vger.kernel.org,
- kernel-dev@igalia.com
-References: <20260930170434.317671-1-koike@igalia.com>
- <ar3_LjzklapoN1tM@zenone.zhora.eu>
-Content-Language: en-US
-From: Helen Koike <koike@igalia.com>
-In-Reply-To: <ar3_LjzklapoN1tM@zenone.zhora.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_two_bo_pin/un?=
+ =?utf-8?q?pin_accounting_bugs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 01 Oct 2026 18:11:14 -0000
+Message-ID: <179087827451.230539.16458887854086309498@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20261001134018.111553-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20261001134018.111553-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,77 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Andi,
+--===============3906173981329811767==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks for your reply.
+== Series Details ==
 
-On 10/1/26 5:45 AM, Andi Shyti wrote:
-> Hi Helen,
-> 
-> On Wed, Sep 30, 2026 at 02:04:30PM -0300, Helen Koike wrote:
->> CTX_CS_INDIRECT_CTX_OFFSET default value is not retrieved from the GPU
->> by inhibit+context save mechanism since it is not part of the Engine
->> Context. Thus, at restore, 0x0 is programed back to the GPU, which is
-> 
-> /programed/programmed/
+Series: drm/xe: Fix two bo pin/unpin accounting bugs
+URL   : https://patchwork.freedesktop.org/series/175366/
+State : success
 
-Ack
+== Summary ==
 
-> 
->> an invalid value according to the PRM.
-> 
-> ...
-> 
->>   	/*
->>   	 * Enable INDIRECT_CTX leaving INDIRECT_CTX_OFFSET at its default: it
->> -	 * varies per engine class, but the default is good enough
->> +	 * varies per engine class, but the default is good enough, except on
->> +	 * Alder Lake.
->>   	 */
->>   	xe_lrc_write_ctx_reg(lrc,
->>   			     CTX_CS_INDIRECT_CTX,
->>   			     (xe_bo_ggtt_addr(lrc->bo) + state.offset) |
->>   			     /* Size in CLs. */
->>   			     (state.written * sizeof(u32) / 64));
->> +	if (GRAPHICS_VER(lrc_to_xe(lrc)) < 20)
-> 
-> Are you assuming that only Alder Lake is xe < 20?
+CI Bug Log - changes from xe-5865-48433f4760819252dafd6bf71d1c0e4f38415842_BAT -> xe-pw-175366v1_BAT
+====================================================
 
-This is a good point, since I was basing this patch on TGL PRM [1], I 
-believe it should apply to all Gen12 gpus. Maybe I could s/for ADL/for 
-Gen12, make sense? I only tested on ADL though.
+Summary
+-------
 
-[1] 
-https://www.intel.com/content/www/us/en/docs/graphics-for-linux/developer-reference/1-0/tiger-lake.html
+  **SUCCESS**
 
-> 
-> As you are restoring the original code for render and compute,
-> would it make sense also add a check for class being
-> XE_EGINE_CLASS_RENDER || XE_ENGINE_CLASS_COMPUTE?
+  No regressions found.
 
-In my understanding from commit [2], indirect ctx will be allowed for 
-other engines in the future, so I'm not sure we should limit here to 
-those classes besides what gt_engine_needs_indirect_ctx() does.
+  
 
-[2] 
-https://lore.kernel.org/all/20250916-wa-bb-cmds-v5-5-306bddbc15da@intel.com/
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-175366v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#9463])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5865-48433f4760819252dafd6bf71d1c0e4f38415842/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175366v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
 
 
-Helen
+Build changes
+-------------
 
-> 
-> Andi
-> 
->> +		xe_lrc_write_ctx_reg(lrc,
->> +				     CTX_CS_INDIRECT_CTX_OFFSET,
->> +				     CTX_INDIRECT_CTX_OFFSET_DEFAULT);
->>   
->>   	return 0;
->>   }
->> -- 
->> 2.54.0
->>
+  * Linux: xe-5865-48433f4760819252dafd6bf71d1c0e4f38415842 -> xe-pw-175366v1
 
+  IGT_9121: 5b6d384b7771ca7719178cd70ba4acec28712dbf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5865-48433f4760819252dafd6bf71d1c0e4f38415842: 48433f4760819252dafd6bf71d1c0e4f38415842
+  xe-pw-175366v1: 175366v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175366v1/index.html
+
+--===============3906173981329811767==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Fix two bo pin/unpin accounting bugs</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175366/">https://patchwork.freedesktop.org/series/175366/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175366v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175366v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5865-48433f4760819252dafd6bf71d1c0e4f38415842_BAT -&gt; xe-pw-175366v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-175366v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5865-48433f4760819252dafd6bf71d1c0e4f38415842/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175366v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5865-48433f4760819252dafd6bf71d1c0e4f38415842 -&gt; xe-pw-175366v1</li>
+</ul>
+<p>IGT_9121: 5b6d384b7771ca7719178cd70ba4acec28712dbf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5865-48433f4760819252dafd6bf71d1c0e4f38415842: 48433f4760819252dafd6bf71d1c0e4f38415842<br />
+  xe-pw-175366v1: 175366v1</p>
+
+</body>
+</html>
+
+--===============3906173981329811767==--
