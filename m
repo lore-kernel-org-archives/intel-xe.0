@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1FD2CA5FD2
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 19:52:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB679CA5FD4
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 19:52:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EA4110F74F;
-	Thu,  1 Oct 2026 19:52:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CFA210F75E;
+	Thu,  1 Oct 2026 19:52:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eTW55Z0J";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q/fuhsbc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4F2410F74F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F253010F75E
  for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 19:52:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1790884321; x=1822420321;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0y8VU6hzqqdcalcAiQn6x8RxEUnyjiVWnR+FxyWzFCE=;
- b=eTW55Z0JdKCWkNd9kexV+nyNp8Qhe+rVXdl7W8Pp67r9EMaCBvZ5Wh55
- ZpiIKke5F9b97BRwXhEI7jJtQc6igWRB0rNRNxl2k6aPl9p+AxkKWrGRD
- x3TrFPGVotbDd85/4Ab4XIGytfickZKd+1XwNgwkdyMZbk9dEbJD108PO
- gU8pU/UFlDYygdz804xWkE53UUUsA5Rm9peA2ASN1r84rQ3ETYhA6WmRw
- U942GdrTTnn5n063KY6ZxjDU9vjdqFDES2nDTpg4euhSldsUeMdeQTC1h
- 1MuI4yb+0mgqC0K47K8oWAsFkob5CjEWVmILgibBxD/5L/XmmP0c9ymmq g==;
-X-CSE-ConnectionGUID: 6ebcEwDISyCnH+2gVkMa8w==
-X-CSE-MsgGUID: iogt/SL9T6m+ku7BJgkgnQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="102177977"
-X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="102177977"
+ bh=iV31PE4Xqv8NU1F0R3NAz+tzSSGJNzqVDgccxZDB5mo=;
+ b=Q/fuhsbcTI5amEpr5kebim0Aywfm1TWCT5SL3nuWiocD5lRItTqtLFhe
+ fRVi5vdg15LkaZOi3C5l8SVwOkM3XNmHpymGP6DbUtmCo6EuS1WA6OrbH
+ D2TInlAyiwhCFZF+vFJ4kofLhcSCQjbP8Spr/OKEPHchbla1uAQtCRit3
+ +Sw9e72/l8m9zSHfUCj51mFbOkH3VgTN0ivgCpMy1P/t7pOaWRYY4SHaO
+ a0BKsah3f/8GntuY3yd30OrPuwd4eLbLNDpRrufID9bIixfCumjFQNv6A
+ AEvkK2DCSxXFXeFNtTC1wd4ZFJIE8qzXfBC/CPCN74u7yFfHiEjnYxHN8 Q==;
+X-CSE-ConnectionGUID: qeO3pIFhTjOZFEGb4KThHQ==
+X-CSE-MsgGUID: oIQ497xLRXqWpbVTcBn++w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="102177986"
+X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="102177986"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 12:51:58 -0700
-X-CSE-ConnectionGUID: 52JuVDeFSoOfnAVtAAXZfw==
-X-CSE-MsgGUID: rx514jE6R8uFzoUOxkylzA==
+ 01 Oct 2026 12:52:00 -0700
+X-CSE-ConnectionGUID: h2h9YOlzTXulnidW78zcmg==
+X-CSE-MsgGUID: 14/UAGTkQ5i+Gwn8SoFXMA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="273893868"
+X-IronPort-AV: E=Sophos;i="6.27,135,1787036400"; d="scan'208";a="273893881"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2026 12:51:55 -0700
+ 01 Oct 2026 12:51:58 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v7 13/15] drm/xe/hwmon: Get PCIe temperature sensor offset
- from xe info
-Date: Fri,  2 Oct 2026 01:20:31 +0530
-Message-Id: <20261001195033.3466205-14-karthik.poosa@intel.com>
+Subject: [PATCH v7 14/15] drm/xe/hwmon: Add CRI PCIe temperature sensor offset
+Date: Fri,  2 Oct 2026 01:20:32 +0530
+Message-Id: <20261001195033.3466205-15-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20261001195033.3466205-1-karthik.poosa@intel.com>
 References: <20261001195033.3466205-1-karthik.poosa@intel.com>
@@ -70,117 +69,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Store the PCIe temperature sensor byte offset in xe device info and derive
-the thermal mailbox group and byte from it. Read the configured offset
-inside get_pcie_temp().
+Describe the Crescent Island PCIe temperature sensor at byte offset 20 in
+READ_THERMAL_DATA.
 
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  2 ++
- drivers/gpu/drm/xe/xe_hwmon.c        | 14 ++++++++------
- drivers/gpu/drm/xe/xe_pci.c          |  4 ++++
- drivers/gpu/drm/xe/xe_pci_types.h    |  1 +
- drivers/gpu/drm/xe/xe_pcode_api.h    |  2 --
- 5 files changed, 15 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_pci.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 161ba2b27f47..4b2da72ed136 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -164,6 +164,8 @@ struct xe_device {
- 		u8 vm_max_level;
- 		/** @info.va_bits: Maximum bits of a virtual address */
- 		u8 va_bits;
-+		/** @info.pcie_temp_sensor_offset: PCIe sensor byte offset in READ_THERMAL_DATA */
-+		u8 pcie_temp_sensor_offset;
- 
- 		/*
- 		 * Keep all flags below alphabetically sorted
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index a63a6b5d1d3c..edb2de6377c6 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -1011,17 +1011,18 @@ static int get_pcie_temp(struct xe_hwmon *hwmon, long *val)
- {
- 	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
- 	u32 data = 0;
-+	u32 group;
-+	u32 byte;
- 	int ret;
- 
-+	group = hwmon->xe->info.pcie_temp_sensor_offset / sizeof(data);
-+	byte = hwmon->xe->info.pcie_temp_sensor_offset % sizeof(data);
- 	ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_DATA,
--						  PCIE_SENSOR_GROUP_ID), &data, NULL);
-+						  group), &data, NULL);
- 	if (ret)
- 		return ret;
- 
--	/* Sensor offset is different for G21 */
--	if (hwmon->xe->info.subplatform != XE_SUBPLATFORM_BATTLEMAGE_G21)
--		data = REG_FIELD_GET(PCIE_SENSOR_MASK, data);
--
-+	data >>= byte * BITS_PER_BYTE;
- 	data = REG_FIELD_GET(TEMP_MASK, data);
- 	if (!mbx_temp_valid(hwmon, data)) {
- 		drm_dbg(&hwmon->xe->drm, "PCIe temperature not available\n");
-@@ -1161,7 +1162,8 @@ static bool xe_hwmon_temp_probe(struct xe_hwmon *hwmon, int channel)
- 	case CHANNEL_MCTRL:
- 		return hwmon->temp.count && !get_mc_temp(hwmon, NULL);
- 	case CHANNEL_PCIE:
--		return hwmon->temp.count && !get_pcie_temp(hwmon, NULL);
-+		return hwmon->temp.count &&
-+		       !get_pcie_temp(hwmon, NULL);
- 	default:
- 		return false;
- 	}
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index e754668100cf..1cbd49933b2c 100644
+index 1cbd49933b2c..c7ab7b1abd25 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -421,6 +421,7 @@ static const struct xe_device_desc bmg_desc = {
- 	.has_flat_ccs = 1,
+@@ -482,6 +482,7 @@ static const struct xe_device_desc cri_desc = {
+ 	.has_i2c = true,
  	.has_mbx_power_limits = true,
  	.has_mbx_thermal_info = true,
-+	.pcie_temp_sensor_offset = 10,
- 	.has_gsc_nvm = 1,
- 	.has_heci_cscfi = 1,
- 	.has_i2c = true,
-@@ -793,6 +794,9 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.va_bits = desc->va_bits;
- 	xe->info.vm_max_level = desc->vm_max_level;
- 	xe->info.vram_flags = desc->vram_flags;
-+	xe->info.pcie_temp_sensor_offset = desc->pcie_temp_sensor_offset;
-+	if (xe->info.subplatform == XE_SUBPLATFORM_BATTLEMAGE_G21)
-+		xe->info.pcie_temp_sensor_offset = 8;
- 
- 	xe->info.is_dgfx = desc->is_dgfx;
- 	xe->info.has_cached_pt = desc->has_cached_pt;
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index ce0b0f6c5b18..a613bd4ed94c 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -34,6 +34,7 @@ struct xe_device_desc {
- 	u8 va_bits;
- 	u8 vm_max_level;
- 	u8 vram_flags;
-+	u8 pcie_temp_sensor_offset;
- 
- 	u8 require_force_probe:1;
- 	u8 is_dgfx:1;
-diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-index 94575c476e3d..00c4fc7d0124 100644
---- a/drivers/gpu/drm/xe/xe_pcode_api.h
-+++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-@@ -58,8 +58,6 @@
- #define     READ_THERMAL_LIMITS			0x0
- #define     READ_THERMAL_CONFIG			0x1
- #define     READ_THERMAL_DATA			0x2
--#define       PCIE_SENSOR_GROUP_ID		0x2
--#define       PCIE_SENSOR_MASK			REG_GENMASK(31, 16)
- 
- #define   PCODE_LATE_BINDING			0x5C
- #define     GET_CAPABILITY_STATUS		0x0
++	.pcie_temp_sensor_offset = 20,
+ 	.has_mert = true,
+ 	.has_pre_prod_wa = 1,
+ 	.has_soc_remapper_sysctrl = true,
 -- 
 2.25.1
 
