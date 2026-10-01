@@ -4,49 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB157CA5FC1
-	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 03:32:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9EF9CCA5FC4
+	for <intel-xe@archiver.kernel.org>; Thu,  1 Oct 2026 03:32:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C08A10E046;
-	Thu,  1 Oct 2026 03:32:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E5DB10E121;
+	Thu,  1 Oct 2026 03:32:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EYQzyRWp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i41PNtIL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61E3D10E046
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 03:32:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FD2110E046
+ for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 03:32:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790825546; x=1822361546;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=jiR7WxSCXqEcTd/DdXTHogACYY7+vDr4tm+IG97U65M=;
- b=EYQzyRWpbIWbs/LFAk3FbEz2wjLe/OLcOWfpi5tRMXtzaWh2790yMe4q
- mRmzG/v02bUjZsHmF7jIbN5+2R9dVRGEgwEw2lkL3R28Yd/Bh10TGcfrJ
- +2JHb8MxWOwG27nzz0DhhfE4LhmG7qKZ1eRfW/7qlbDIe8rECuKA0dJEn
- QNRLdZxUiPiAdUQ6oCKjt5IXW+NoJQOFPpYIsZtvAMFVjFh8CExXLV6Bk
- 5hRt8hv5VMWhkzEMnJX+cRBVkzY03YX69GT75qEKjnloWF7hdYoSsHQCK
- sJ0LQ175L1nk0hswll+Hqi7WfFF1VSpACARCQYQdwYipqzAsitEGnnoBU Q==;
-X-CSE-ConnectionGUID: nkSGAlBDSaKiEiUi1KIjvQ==
-X-CSE-MsgGUID: 9Nnr0EDsTqSgHpn5QqfwWQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11921"; a="113362881"
-X-IronPort-AV: E=Sophos;i="6.27,133,1787036400"; d="scan'208";a="113362881"
+ t=1790825547; x=1822361547;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=7HGH7nWjgSanG3Tv5z4XJioQL63YqHJ36nr/1VGBNfw=;
+ b=i41PNtILgMW9O/fVHT47R35D2bU3thNSz7UjbjSQcfWU9TmBFvF8n7m7
+ xBs2dYIX/SFfBiik3sQvsLO0aVTFo6m+3rRi+AQizc2M53Y9f+aou/hS8
+ moziH9sS4hHTHxGIzVcaE2TgygWjRvZj9gCVcAPl0RRa+O5XOaPhATwHd
+ MIM9BVyHJPAfncxUOexeuXY26lL7wIN/NdGh8xuv/o9/RO5LZ6kNXJZWe
+ DXhdZirh55Ns3YRbA6kuKnLAg9VZY58hqg2aZaz6TtGhglCqVcncoBO0a
+ 7GzywWxIkGMSwFPa9VHr+mOG76/5oFor1iA2uKuaz1jurhnts9By49Vq9 Q==;
+X-CSE-ConnectionGUID: PsP6uwznSWuCsuxADylWIA==
+X-CSE-MsgGUID: Awdmwh5SQOaP9p0bWcjalg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11921"; a="113362882"
+X-IronPort-AV: E=Sophos;i="6.27,133,1787036400"; d="scan'208";a="113362882"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2026 20:32:26 -0700
-X-CSE-ConnectionGUID: YyojnAeHToSoTq/x1RU5Yw==
-X-CSE-MsgGUID: khkSmxMkQJmuQXxBnC/VWQ==
+ 30 Sep 2026 20:32:27 -0700
+X-CSE-ConnectionGUID: UmIen1leT/+pabhwbZCZzA==
+X-CSE-MsgGUID: hhUWG3AuTvSyVxRPyKOuAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,133,1787036400"; d="scan'208";a="275909697"
+X-IronPort-AV: E=Sophos;i="6.27,133,1787036400"; d="scan'208";a="275909701"
 Received: from hghimira.iind.intel.com ([10.190.239.34])
- by orviesa009.jf.intel.com with ESMTP; 30 Sep 2026 20:32:25 -0700
+ by orviesa009.jf.intel.com with ESMTP; 30 Sep 2026 20:32:26 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v4 0/4] Refresh TTM LRU on SVM prefetch
-Date: Thu,  1 Oct 2026 09:06:03 +0530
-Message-ID: <20261001033602.3166274-6-himal.prasad.ghimiray@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v4 1/4] drm/pagemap: Add helper to access backing devmem
+ allocation
+Date: Thu,  1 Oct 2026 09:06:04 +0530
+Message-ID: <20261001033602.3166274-7-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261001033602.3166274-6-himal.prasad.ghimiray@intel.com>
+References: <20261001033602.3166274-6-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,21 +67,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Himal Prasad Ghimiray (4):
-  drm/pagemap: Add helper to access backing devmem allocation
-  drm/gpusvm: Add devmem callback to get_pages
-  drm/xe: Bump prefetch BO LRU via GPUSVM devmem callback
-  drm/xe: Bump prefetch BO LRU for already-valid ranges
+drm_pagemap_zdd is private, so add drm_pagemap_page_to_devmem() to let
+callers get the drm_pagemap_devmem backing a device-private/coherent
+page. Add a NULL stub for !CONFIG_ZONE_DEVICE.
 
- drivers/gpu/drm/drm_gpusvm.c  | 105 ++++++++++++++++++++++++++--------
- drivers/gpu/drm/drm_pagemap.c |  15 +++++
- drivers/gpu/drm/xe/xe_svm.c   |  68 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_svm.h   |  18 ++++++
- drivers/gpu/drm/xe/xe_vm.c    |   6 ++
- include/drm/drm_gpusvm.h      |   6 ++
- include/drm/drm_pagemap.h     |   7 +++
- 7 files changed, 200 insertions(+), 25 deletions(-)
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/drm_pagemap.c | 15 +++++++++++++++
+ include/drm/drm_pagemap.h     |  7 +++++++
+ 2 files changed, 22 insertions(+)
 
+diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
+index ba97daedcd49..da58422801d1 100644
+--- a/drivers/gpu/drm/drm_pagemap.c
++++ b/drivers/gpu/drm/drm_pagemap.c
+@@ -1433,6 +1433,21 @@ struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page *page)
+ }
+ EXPORT_SYMBOL_GPL(drm_pagemap_page_to_dpagemap);
+ 
++/**
++ * drm_pagemap_page_to_devmem() - Return the devmem allocation backing a page
++ * @page: The struct page.
++ *
++ * Return: The &drm_pagemap_devmem backing @page. Undefined if @page was not
++ * populated from a &drm_pagemap.
++ */
++struct drm_pagemap_devmem *drm_pagemap_page_to_devmem(struct page *page)
++{
++	struct drm_pagemap_zdd *zdd = drm_pagemap_page_zone_device_data(page);
++
++	return zdd->devmem_allocation;
++}
++EXPORT_SYMBOL_GPL(drm_pagemap_page_to_devmem);
++
+ /**
+  * drm_pagemap_populate_mm() - Populate a virtual range with device memory pages
+  * @dpagemap: Pointer to the drm_pagemap managing the device memory
+diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
+index 95eb4b66b057..376d7d400c8e 100644
+--- a/include/drm/drm_pagemap.h
++++ b/include/drm/drm_pagemap.h
+@@ -257,6 +257,8 @@ struct drm_pagemap *drm_pagemap_create(struct drm_device *drm,
+ 
+ struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page *page);
+ 
++struct drm_pagemap_devmem *drm_pagemap_page_to_devmem(struct page *page);
++
+ void drm_pagemap_put(struct drm_pagemap *dpagemap);
+ 
+ #else
+@@ -266,6 +268,11 @@ static inline struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page *page
+ 	return NULL;
+ }
+ 
++static inline struct drm_pagemap_devmem *drm_pagemap_page_to_devmem(struct page *page)
++{
++	return NULL;
++}
++
+ static inline void drm_pagemap_put(struct drm_pagemap *dpagemap)
+ {
+ }
 -- 
 2.43.0
 
