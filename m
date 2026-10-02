@@ -4,103 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CBD5CA5FE7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2BB9CA5FE9
 	for <intel-xe@archiver.kernel.org>; Fri,  2 Oct 2026 20:44:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF41F10E6C2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC03110E6C3;
 	Fri,  2 Oct 2026 20:44:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="I/atsHNg";
+	dkim=pass (2048-bit key; unprotected) header.d=trailofbits.com header.i=@trailofbits.com header.b="ErPMe3zF";
 	dkim-atps=neutral
-Received: from mail-qv2-f42.google.com (mail-qv2-f42.google.com
- [74.125.230.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 138A910E3D0
- for <intel-xe@lists.freedesktop.org>; Thu,  1 Oct 2026 19:30:11 +0000 (UTC)
-Received: by mail-qv2-f42.google.com with SMTP id
- 6a1803df08f44-917bcc8705fso3681616d6.2
- for <intel-xe@lists.freedesktop.org>; Thu, 01 Oct 2026 12:30:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1790883010; cv=none;
- d=google.com; s=arc-20260327;
- b=Pv2M26x9eIqwPUSHrx1uZLlsWb7H4AdCl/5VP5PXj/ojv2B+tkFz7kgGmVgiSmFtJs
- STvxRoyU3o7yqTe+Y0SwrSChknoLu9xfA+zPfNlwts8WXerMl8Mmx+EDJTDd2+ze0RGv
- ktU5mNtw40E60Guo26CMe3IkrE2u8fIq8oIbYO+W0FMlPcLL/OEbDUpr4cacOpw9c82s
- nYQl2Ytq4Kd6hzaC/t1XPJALISmPh7xpL623fuoCu6fK9rKNYhTWeOvWK12TVT7+tiMK
- W9jGzDMTOw4mctH2Y0+4u+4fL1hM2lp/YfvBNYcHHA1qBnSI3o/9qL83Fy/4cSVb0sPR
- Lysg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=bE/ZpayYaMuQJ2cjUw/XMionGOYmv8DuAlly9njYYE8=;
- fh=hX10jCNvNgbrsgdo4IvBMsKfGnBMnmsK/XVbDLL+D1Y=;
- b=QSXxqrvNtNi97jHGbzTsSeT/67YDW+a0XBUvaAUGWfrDPh+mm/eV7WAyhTuAjt4ibZ
- 97Z+31tgbRsYlsmh4zoj37gtf7ylKDsGTqMociUxXGK7T/xKeylOQD6E2le4Cpo59x3r
- LK6t8lXdOQLKw+2Cb45UfGDEDh0//N7Ei+5QO9yKTukdh/Di43uqTQDiixouT5gPW5cp
- Jn7MMoPb5wnME1jxg/l4/eRi2uelx9Nabg2Rvd1MVKr26uyuSFIUcmVuEHpttLeTGoGc
- fh1H+i43kdBitLX/EsGeovFR6UkoHFX9tTiBZwfXTdy4lt0WiYk/X6k2sGfTg1RZyUn7
- 7WyQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-dl2-f26.google.com (mail-dl2-f26.google.com
+ [74.125.229.154])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77D0510F9FB
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Oct 2026 19:40:38 +0000 (UTC)
+Received: by mail-dl2-f26.google.com with SMTP id
+ a92af1059eb24-144f47a9b57so7822156c88.2
+ for <intel-xe@lists.freedesktop.org>; Fri, 02 Oct 2026 12:40:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1790883010; x=1791487810; darn=lists.freedesktop.org;
- h=content-type:cc:to:subject:message-id:date:from:in-reply-to
- :references:mime-version:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=bE/ZpayYaMuQJ2cjUw/XMionGOYmv8DuAlly9njYYE8=;
- b=I/atsHNg+8htBTg+w5pzrDB4AzXTGsXqw0YYMs+N9hzdUXwCXTKyBE/wU3Wml9Gwp5
- Idm7Jm+T5ZaYkjRkUHF59Avb5bj8gvj4m7GcE1uaZjJCN67u0KAQVWc1IPGPrFrkcO8R
- J8gM2MntBM/BFVXkK9zpHmvjXliRL0dj5TWmMY22/H4mnbZJp/Dv/uW3DGBQlYvIJQ0O
- jzS6e8lUemCD3vYDRUVg21SugqWhiP93x2NDvNoyyTnj5D93pJeHMW0oOqThn44f1rNJ
- VHuqBi8j+yxqiLbtx3ArUlYdDpDPtdZerOukcv8I4ogNmpJ63Y2uWNOdLUf/JwTGL8qW
- +spQ==
+ d=trailofbits.com; s=google; t=1790970038; x=1791574838;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=Cik4OmGCLcSffV9aIni80ba9p8veycKB8eAV/ioP5eU=;
+ b=ErPMe3zFoNPj71oqQZxaOfkvJcPEeqdNIs83wW1Mp2UPFzOEMpQzva9J4DvEvjYgnk
+ VRgtK0hoKuZrWe0h0V9op6b1jF6mxbQOUQ3ntMpcrA1+J7Ck0P07nenXVKywf+ZZXDnY
+ GqSQp8IeFDpj/Dwd723RnneFm4mKEUnQuey0rPdwkXQ4Bx/nMjiaEDCBzD0y9KLZT/oa
+ b8Qp46VGjC/BQf9dfpNHOu5cELqSJOe+aW95/WtIjekL4mNHBhA/0KWWPJxPJTjjewXo
+ +T4z+NCCMRH1oZUJTKGYwExNnq4YGIXf7+UtgxoE2y8eAZYy+Urzj056pGI9hvD/bFlw
+ 5IhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1790883010; x=1791487810;
- h=content-type:cc:to:subject:message-id:date:from:in-reply-to
- :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to:content-type;
- bh=bE/ZpayYaMuQJ2cjUw/XMionGOYmv8DuAlly9njYYE8=;
- b=zZcEmLlQmy/mPncz7Ia4ArqZ4VmutLhqMZyDA9H/1XHZnv7UqSPNiDuZ8DdCHrnh0o
- F6Nq2TyQdwmMO8GJY29zHGKoIpMWa6oYLog/DYx/js8go1QJqt77ewg7AGflSgSf8gkF
- ihegA0skGB9lSLAeHv7GUKK74WzEIECuFvqRbdZIGcGPhIFWd4k7gr+OixoemIXhCEVv
- 8x8N2FxDgume50Br5WmiPnL5kP8kL3GRkWegt95s53p2LHXQugvyQfMGGdQ1giT+rdRn
- Gd2j9CSkgoXO2C3QZDUFsbhrUjL+x9HP57qfa42XK/5gbuLgJZew8bvPJeMIz+8lIZ5Y
- rugA==
+ d=1e100.net; s=20260707; t=1790970038; x=1791574838;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=Cik4OmGCLcSffV9aIni80ba9p8veycKB8eAV/ioP5eU=;
+ b=pA961GUI9UPf+OebV6fplyl9Nka8qWIvgLqnAs4MZBeb+1X11cOj32YVEQh3O/hU+m
+ jqH1YktM0M+A56AzlLQskZmozGReKbOFckfqFCjmdsNlEviiX2wa5YP9Q5SlafNjm5Rg
+ HEret17cIg/OwlQJLl30+Zx94i7IbFQ6l7kOjw6K8yYlelhoZQhacTykU9WckDlT7cRe
+ ZhOklulbEHMIel6OEs7bF5JM7h9qH6njkElucciMSQdvWWyWpjMeKO9CrXmsBR6o0ADm
+ FvvGsO2kUhV03A6DzKnrMqKPRuZ7ITxIH9+3I3yNrNLZ12rgnryDFk6A8S7RLbEbugUZ
+ nYTQ==
 X-Forwarded-Encrypted: i=1;
- AKwUvBybanWFqZcXjmz+L7emfo8RfOD2533b6ajYqb5rSq/kMvIF+lhcCqpBSWNx5a06L3TcGF8lPPfFBw==@lists.freedesktop.org
-X-Gm-Message-State: AFq9FYIkmQP03EvaPiHHfsBxNutIOF2pzJlOSKrPFTE8eNbOZz6ARHAU
- Fp+sbc+qYyzm7jFu/RagN0AvBYbMETAXbiUHdm1ENEVv1TlFTu/3ZmklpmJpzlRWgsenvC+i1Ql
- zgBoXfbMhOrgMUn1xyztGpRE/BVrpZW8=
-X-Gm-Gg: AYBFou2bFEd27cwLNs0UTn2IQGwvc/8UkXiouPSzqFAPCY8cTtld0je8Gv4U9MaKfCn
- EAfqj+2ubLZoV4hqt01BZgYgF0WjwpvWxMEzefM7E2c51Wtk7peLqICnKGOToeQvAtibjTFCfHG
- ELkgPo00EEgyz4qzRpo9SHaDvg9xur/xxiw0nC3ST+uvEL/lP9An7RplkkqayUpA8x+xQlDQlS5
- 8Cb4HqDzDbTdKrr/rFQjBNrOLoSvpeqKwsJrSJiPP0n+vAfZzMd6L9oftvE6VhrSca12Rf24/ua
- Zdhgmxg+iWJPxnxsYWv2WAyHLjTo1oK+iO64/+tAWaAUAWtWBlVD86b6
-X-Received: by 2002:a05:6214:1301:b0:914:5471:e569 with SMTP id
- 6a1803df08f44-917c011aa47mr9730326d6.18.1790883009819; Thu, 01 Oct 2026
- 12:30:09 -0700 (PDT)
+ AKwUvBwPnGzbOWOt7iZDRdnXRNrVpl8/bkbKbahvONexosR7DrclNZMKdkinAS/N+gzIxW/U26TKTpRWoQ==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++kBUnKFAFxujUyLLjavQ1i1a3RK/DM9jKt03fD55Z5eq1z18HUn
+ O6c3jAk+LbBYxYkT6bb30pYsz42S5mdBzip2pNhYYk40DGEM62BgbrUDVMXfhfczzK5E9fC5+2R
+ ia+CJb1Y+IA==
+X-Gm-Gg: AYBFou3A1CN5n+OEho6ypW8Be42qa9hbWZiHrNC3TdQKa8M4mNG1IDVrEvFSdvTk+0V
+ jN8SW7JspvWDCUMZfjAuG9fX0MP4acPj7cz3B0wGRQqYH7D/vOA85KSMqQPWuXvBQCp/gIGoNpP
+ IACdXqfN4dLVexSWTns5XeN/Rt5RdKesnVGVj7IQuBQFh587ZqZx3BzSqslp40a2Oe+RZ1DrpTE
+ CyOUkzqZatxcDwhRMzhT2JtfAu00BecRimGcKVxWexVSNUIQGwW++ey9kyz9bOOJrIWsPn4/MnQ
+ b8VoQIi9r3xoUc3xZnzxakFmtjSmxkh8DKJVzuEfKy2kPZbufkt3Z/Tma+Av8n+fcrnJJs01NQz
+ X4sBdPkSnuVNFI6qQLS2x6glXUyQzbVm4iu7ywB5JtX0hKfB7NQ0ea9TbvvA0jVxc7n3k4whJUW
+ Z2zvhHgd3ld9/PEs4UQ0D94+VwhlNdP3Wip254YErdXdNsI/GqSVLulLffpPx7utx6wDcnGqtMG
+ 4z7lxZapye0AbRY4+97MPeDipUbOvmhhMy1ZiZw2FdKgAR6ojCcegBR/JMt4wY4w/6rVIwxRlas
+ hzv+JA==
+X-Received: by 2002:a05:701b:2096:10b0:143:2719:566e with SMTP id
+ a92af1059eb24-14f5d3b9a1fmr3905150c88.42.1790970037645; 
+ Fri, 02 Oct 2026 12:40:37 -0700 (PDT)
+Received: from localhost.localdomain
+ ([2603:8001:5f01:8bab:bcf9:6140:24a9:d1e7])
+ by smtp.gmail.com with ESMTPSA id
+ a92af1059eb24-14f47a57592sm7450113c88.17.2026.10.02.12.40.36
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Fri, 02 Oct 2026 12:40:37 -0700 (PDT)
+From: Artem Dinaburg <artem@trailofbits.com>
+To: stable@vger.kernel.org
+Cc: Artem Dinaburg <artem@trailofbits.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Sasha Levin <sashal@kernel.org>, Suraj Kandpal <suraj.kandpal@intel.com>,
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Simona Vetter <simona@ffwll.ch>, intel-xe@lists.freedesktop.org
+Subject: [PATCH 6.1.y 2/2] drm/i915/hdcp: Add encoder check in
+ hdcp2_get_capability
+Date: Fri,  2 Oct 2026 15:40:27 -0400
+Message-ID: <20261002194030.20489-3-artem@trailofbits.com>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20261002194030.20489-1-artem@trailofbits.com>
+References: <20261002194030.20489-1-artem@trailofbits.com>
 MIME-Version: 1.0
-References: <20260908044035.62093-1-mario.limonciello@amd.com>
- <20260908044035.62093-5-mario.limonciello@amd.com>
- <25c3dd77-bedc-4822-b687-0ea429db0dc7@amd.com>
-In-Reply-To: <25c3dd77-bedc-4822-b687-0ea429db0dc7@amd.com>
-From: Xaver Hugl <xaver.hugl@gmail.com>
-Date: Thu, 1 Oct 2026 15:29:57 -0400
-X-Gm-Features: AclHuK-bx6IInYg2xVtTEtZOke_ojMQyvMv_9lNx9GZqWxpIrzw65JUNJ9QqnL8
-Message-ID: <CAFZQkGxz6Sn7AU2_ATt_kpwTf9g0Orc6tTOOsmOzkHJo94E+-Q@mail.gmail.com>
-Subject: Re: [PATCH v8 04/14] drm: add connector backlight (LUMINANCE)
- infrastructure
-To: Harry Wentland <harry.wentland@amd.com>
-Cc: Mario Limonciello <mario.limonciello@amd.com>,
- dri-devel@lists.freedesktop.org, 
- Simona Vetter <simona@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- amd-gfx@lists.freedesktop.org, 
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-gfx@lists.freedesktop.org>, 
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-xe@lists.freedesktop.org>, Hans de Goede <hansg@kernel.org>, 
- David Herrmann <dh.herrmann@gmail.com>, Mario Limonciello <superm1@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 02 Oct 2026 20:44:45 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -116,15 +105,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am Do., 1. Okt. 2026 um 15:12 Uhr schrieb Harry Wentland
-<harry.wentland@amd.com>:
-> Why not simply call it BACKLIGHT, which is what it is? Later, if we then
-> add support for luminance (in absolute nits) we can use the LUMINANCE
-> term for that. Otherwise it'll be lost to us and be apt to confuse
-> people.
-BACKLIGHT suggests there's a backlight, which isn't the case with OLED
-panels for example.
-I'd say luminance is the most technically correct term for this, even
-if it doesn't come attached with a unit for now.
+From: Suraj Kandpal <suraj.kandpal@intel.com>
 
-- Xaver
+[ Upstream commit d34f4f058edf1235c103ca9c921dc54820d14d40 ]
+
+Add encoder check in intel_hdcp2_get_capability to avoid
+null pointer error.
+
+[ Backport to 6.1.y: upstream adds the check in the DP shim's
+  intel_dp_hdcp2_get_capability(), which does not exist here. This tree
+  predates the intel_connector conversion of the shims: its
+  intel_dp_hdcp2_capable() takes a digital port, and the
+  intel_attached_dig_port() lookup is still done in the common
+  intel_hdcp2_capable() helper. Put the same encoder guard there, before
+  that lookup, and return false through the bool API when no encoder is
+  attached. ]
+
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20240722064451.3610512-3-suraj.kandpal@intel.com
+Assisted-by: LLM
+Signed-off-by: Artem Dinaburg <artem@trailofbits.com>
+---
+Hi Greg, Sasha, and drm i915 maintainers,
+
+I am working through the small CVE backports still missing from 6.1.y.
+This one addresses CVE-2024-53050. It adds the same encoder check to the
+HDCP2.2 capability query, which the debugfs path calls right after the
+HDCP1.4 one.
+
+The 6.6.y backport went out as the same 2-patch series and has been
+picked up for 6.6.y. The fix is already present in 6.12.y, 6.18.y, and
+7.2.y, but not in 6.1.y.
+The target-specific adjustment is recorded in the bracketed note above.
+
+Could you please queue it for 6.1.y?
+
+CVE: CVE-2024-53050
+Upstream: d34f4f058edf1235c103ca9c921dc54820d14d40
+
+AI assistance: An LLM helped identify, adapt, and validate this backport; I
+reviewed the resulting code and validation evidence.
+
+Thanks,
+Artem Dinaburg
+
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 507721c94f2fdd..d31c1f1f0e5074 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -208,11 +208,16 @@ bool intel_hdcp_capable(struct intel_connector *connector)
+ /* Is HDCP2.2 capable on Platform and Sink */
+ bool intel_hdcp2_capable(struct intel_connector *connector)
+ {
+-	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
++	struct intel_digital_port *dig_port;
+ 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+ 	struct intel_hdcp *hdcp = &connector->hdcp;
+ 	bool capable = false;
+ 
++	if (!intel_attached_encoder(connector))
++		return capable;
++
++	dig_port = intel_attached_dig_port(connector);
++
+ 	/* I915 support for HDCP2.2 */
+ 	if (!hdcp->hdcp2_supported)
+ 		return false;
+-- 
+2.39.5
+
