@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D856BCA5FC4
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Oct 2026 09:13:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D669CA5FD4
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Oct 2026 09:13:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A8A510E575;
-	Fri,  2 Oct 2026 09:13:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2E2810F505;
+	Fri,  2 Oct 2026 09:13:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="FpSIa43z";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WBkJoOWw";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A458510F7EF
- for <intel-xe@lists.freedesktop.org>; Fri,  2 Oct 2026 09:13:55 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C9A210F7ED;
+ Fri,  2 Oct 2026 09:13:57 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 8E339424CC;
- Fri,  2 Oct 2026 09:13:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 515E01F00899;
+ by tor.source.kernel.org (Postfix) with ESMTP id E5E0460A79;
+ Fri,  2 Oct 2026 09:13:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE4161F000FF;
  Fri,  2 Oct 2026 09:13:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790932435;
- bh=Hr5PUhpJ8yZm7kKqQjieEF8NIV1UuZYuG3DIS/FmkFY=;
+ s=k20260515; t=1790932436;
+ bh=6nWr69HDxmm+vFpnQEK8/qJOpOn5sUvuGNijObMZabg=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=FpSIa43zOkbOXnS7N8Q9aLtWCM8llMM7z3HsZmzgip8jv2sxnrsgzZPU4KJ+pwtIa
- iSWG4Yqha7yw1UjwM+U3MLQ7qY425+1/cuLowNDDchkUUIJo7Y+MA9UB3OkSEILHce
- 3yY6hrcnsjlaTI1RLfzfOvw6qmBSdzZ1KYfFPFHhFZCX6W/WyFTTT5rrzt/aQ2PF1W
- BxI3s0mfy8cvzuakFMqlSservj+K3zEuqwC9O2Z4c4ze49N4vwJeyNEiPTLmxuenqr
- 5K3h+L9UbY8HIOCNtlUgZrSOsr1PnvF/b0s0071Hs3hKMtah24B41L4DNsvOZS6CCX
- 1TMV/voew4naQ==
+ b=WBkJoOWwfPnKW3DThlJuXz+JjbpY4tYGpXTFUER8tRMNzgM+ubvazMcHxpSyEBzj3
+ p01i8yFKNPkxhcG4bctcHIVn/gcMNQKosFZH98+DQbyehv1D5nnfcpkQWeJpUqVmgE
+ Z6g2MpegjSt21IPTJ1paVj4xnxEkAuzq/EbTpTxzdN4TJ+g7Cg/0GVNZWQyllLcQk/
+ Akq8a7XNONYhEqAEGGqoTiP6JNCn2OxALYd0btnYdIGELSJ8dvxOow4M4lI0velAza
+ tUV40M3gR+dNGadZSqbGHGhyAL6dWSg4m94Oftq8fqcMU+B7e9dxixLSVlp4w1NWbU
+ UFGVqPC5Aiiqw==
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/3] platform/x86/intel/pmt: Notify userspace when
- crashlogs complete
-To: "David E. Box" <david.e.box@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261001220351.1592138-4-david.e.box@linux.intel.com>
-References: <20261001220351.1592138-1-david.e.box@linux.intel.com>
- <20261001220351.1592138-4-david.e.box@linux.intel.com>
+Subject: Re: [PATCH v3 7/8] drm/nouveau: use DRM_GPUVM_RESV_PROTECTED
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261001220632.3190896-8-matthew.brost@intel.com>
+References: <20261001220632.3190896-1-matthew.brost@intel.com>
+ <20261001220632.3190896-8-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 02 Oct 2026 09:13:54 +0000
-Message-Id: <20261002091355.515E01F00899@smtp.kernel.org>
+Date: Fri, 02 Oct 2026 09:13:55 +0000
+Message-Id: <20261002091355.EE4161F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,112 +58,89 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] pmt: UAF on crashlog->entry.kobj in uevent_work due to probe error=
- race
+- [High] drm/nouveau: silently ignored lock failure causes unprotected list=
+ access
 --
 
-commit e8839d628e8b60c46da853861c58cccbcc028be6
-Author: David E. Box <david.e.box@linux.intel.com>
+commit 8fab8734d6eb64d1f1dd2d598d76c6f17c6efddd
+Author: Matthew Brost <matthew.brost@intel.com>
+Subject: drm/nouveau: use DRM_GPUVM_RESV_PROTECTED
 
-    platform/x86/intel/pmt: Notify userspace when crashlogs complete
-   =20
-    A crashlog may already be complete when the driver binds, or it may
-    complete asynchronously after userspace requests a manual trigger.
-    Userspace otherwise has to poll to discover that data is ready.
+This commit sets DRM_GPUVM_RESV_PROTECTED for the nouveau drm_gpuvm. It
+introduces nouveau_uvmm_lock_vm_and_obj() to lock the VM's dma-resv together
+with the object's dma-resv when dropping a reference to a drm_gpuvm_bo.
 
-> diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform=
-/x86/intel/pmt/crashlog.c
-> index f936daf99e4d2..21e8e2199bdcc 100644
-> --- a/drivers/platform/x86/intel/pmt/crashlog.c
-> +++ b/drivers/platform/x86/intel/pmt/crashlog.c
-
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nou=
+veau/nouveau_uvmm.c
+> index fc125fd44a9b7..13e11905b5f97 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
 [ ... ]
-
-> @@ -227,6 +235,47 @@ static void pmt_crashlog_set_rearm(struct crashlog_e=
-ntry *crashlog)
->  	pmt_crashlog_rmw(crashlog, crashlog->info->control.rearm, true);
+> @@ -1184,6 +1184,27 @@ bind_validate_region(struct nouveau_job *job)
+>  	return 0;
 >  }
 > =20
-> +static void pmt_crashlog_uevent_fn(struct work_struct *work)
+> +/*
+> + * Lock the VM's common dma-resv together with the one of @obj, as neede=
+d to
+> + * drop what may be the last reference of a &drm_gpuvm_bo.
+> + */
+> +static void
+> +nouveau_uvmm_lock_vm_and_obj(struct nouveau_uvmm *uvmm, struct drm_exec =
+*exec,
+> +			     struct drm_gem_object *obj)
 > +{
-> +	struct crashlog_entry *crashlog =3D
-> +		container_of(work, struct crashlog_entry, uevent_work);
-> +	char *envp[] =3D {
-> +		"INTEL_PMT_CRASHLOG_EVENT=3DPRESENT",
-> +		"INTEL_PMT_CRASHLOG_COMPLETE=3D1",
-> +		NULL,
-> +	};
+> +	int ret;
 > +
-> +	if (crashlog->entry.kobj)
-> +		kobject_uevent_env(crashlog->entry.kobj, KOBJ_CHANGE, envp);
+> +	drm_exec_init(exec, DRM_EXEC_IGNORE_DUPLICATES, 2);
+> +	drm_exec_until_all_locked(exec) {
+> +		ret =3D drm_exec_lock_obj(exec, drm_gpuvm_resv_obj(&uvmm->base));
+> +		if (!ret)
+> +			ret =3D drm_exec_lock_obj(exec, obj);
+> +		drm_exec_retry_on_contention(exec);
+> +		if (drm_WARN_ON(uvmm->base.drm, ret))
+> +			break;
 
 [Severity: High]
-Can this dereference a dangling pointer in the event of a probe failure?
+If drm_exec_lock_obj() fails with an error like -ENOMEM (which can occur
+during internal memory allocations), the loop hits this break and returns.
 
-If intel_pmt_dev_register() in class.c fails late (e.g. devm_ioremap_resour=
-ce()
-failure) after exposing sysfs attributes, the error path unregisters and fr=
-ees
-the device, leaving entry->kobj as a dangling pointer.
+Does this mean the function returns without fully acquiring the necessary
+locks, while hiding the failure from the caller because of the void return
+type?
 
-If a concurrent user writes to the 'trigger' sysfs file during this window,
-trigger_store() queues uevent_poll_work for 100ms later.
-
-If the thread running pmt_crashlog_probe() is delayed before calling
-cancel_delayed_work_sync(), the timer fires and the work executes, queuing
-uevent_work. The uevent_work then executes kobject_uevent_env() on
-crashlog->entry.kobj, which points to the freed device.
-
+> +	}
 > +}
+[ ... ]
+> @@ -1594,9 +1625,11 @@ nouveau_uvmm_bind_job_cleanup(struct nouveau_job *=
+job)
+>  			drm_gpuva_ops_free(&uvmm->base, op->ops);
+> =20
+>  		if (!IS_ERR_OR_NULL(op->vm_bo)) {
+> -			dma_resv_lock(obj->resv, NULL);
+> +			struct drm_exec exec;
+> +
+> +			nouveau_uvmm_lock_vm_and_obj(uvmm, &exec, obj);
+>  			drm_gpuvm_bo_put(op->vm_bo);
 
+[Severity: High]
+If nouveau_uvmm_lock_vm_and_obj() fails and returns without holding the
+dma_resv locks, will calling drm_gpuvm_bo_put() here result in unprotected
+concurrent list operations?
+
+The caller assumes the locks are securely held. Functions like
+drm_gpuvm_bo_put() can modify obj->gpuva.list and gpuvm->extobj.list.
+
+Under memory pressure on a shared GEM object, could this lead to list
+corruption or a use-after-free?
+
+> -			dma_resv_unlock(obj->resv);
+> +			drm_exec_fini(&exec);
+>  		}
+> =20
+>  		if (obj)
 [ ... ]
 
-> @@ -572,15 +636,29 @@ static int pmt_crashlog_probe(struct auxiliary_devi=
-ce *auxdev,
->  	auxiliary_set_drvdata(auxdev, priv);
-> =20
->  	for (i =3D 0; i < intel_vsec_dev->num_resources; i++) {
-> -		struct intel_pmt_entry *entry =3D &priv->entry[priv->num_entries].entr=
-y;
-> +		struct crashlog_entry *crashlog =3D &priv->entry[priv->num_entries];
-> +		struct intel_pmt_entry *entry =3D &crashlog->entry;
-> +
-> +		/* init before dev_create() exposes trigger sysfs to userspace */
-> +		INIT_WORK(&crashlog->uevent_work, pmt_crashlog_uevent_fn);
-> +		INIT_DELAYED_WORK(&crashlog->uevent_poll_work,
-> +				  pmt_crashlog_uevent_poll_fn);
-> +		crashlog->uevent_poll_tries =3D 0;
-> =20
->  		ret =3D intel_pmt_dev_create(entry, &pmt_crashlog_ns, intel_vsec_dev, =
-i);
-> -		if (ret < 0)
-> +		if (ret < 0) {
-> +			cancel_delayed_work_sync(&crashlog->uevent_poll_work);
-> +			cancel_work_sync(&crashlog->uevent_work);
-
-[Severity: High]
-Does this cancellation happen too late?
-
-Because the cancellation happens after the underlying device may have alrea=
-dy
-been destroyed by the error path of intel_pmt_dev_create(), it leaves a race
-window where the work queue can use the freed device.
-
->  			goto abort_probe;
-> -		if (ret)
-> +		}
-> +		if (ret) {
-> +			cancel_delayed_work_sync(&crashlog->uevent_poll_work);
-> +			cancel_work_sync(&crashlog->uevent_work);
->  			continue;
-> +		}
-> =20
->  		priv->num_entries++;
-> +		pmt_crashlog_notify_pending(crashlog);
->  	}
-> =20
->  	return 0;
-
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261001220351.1592=
-138-1-david.e.box@linux.intel.com?part=3D3
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261001220632.3190=
+896-1-matthew.brost@intel.com?part=3D7
