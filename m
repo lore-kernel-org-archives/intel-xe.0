@@ -4,28 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40053CA5FD4
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Oct 2026 14:49:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F41BCA5FE4
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Oct 2026 15:47:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBB6810E204;
-	Fri,  2 Oct 2026 14:49:18 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D16610E204;
- Fri,  2 Oct 2026 14:49:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5587213998642471395=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01EA910F8FA;
+	Fri,  2 Oct 2026 15:47:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="SxwwxI4v";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8F7510F8F5;
+ Fri,  2 Oct 2026 15:47:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:From:Reply-To;
+ bh=U00gWZ2uvpUUdNUu9BilcMR0+qhUo3DcNjrMFCuhCpk=; b=SxwwxI4vw6Ofbvw2hxZ09bYNv2
+ 4qBz9gQwiTICpJMekOwk4DkzptNpCtZPLznDUMZe9ZB/ozEgx2Ohi8Re7KVTg/He8THz3cfdJ/3T/
+ oa71t00eKEATAs3FGfyN8iLsZXYNdnYwfaMUIvBpzhhRzDBu6B8mFLjLvMfS8h/3sL9K7wg3cSUh2
+ A7oQL5BfyoSQo1/mXPINHs3Q8hHEO24e/GiCGBjKTQ7XXvIJ9m8Ng4nJiIdMyWaMge7IwJlV4wJH8
+ eNO/rvCZSp/0fUvXsYAx4rFmuX6UO/932ZEqsI7xpmac/pHPg4UDKXW/04/MS5nxqceiWwK1Vjwqj
+ UAhkyfYg==;
+Received: from [81.79.79.1] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1xCfTl-00AfmK-Sc; Fri, 02 Oct 2026 17:47:21 +0200
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Philipp Stanner <phasta@kernel.org>, intel-xe@lists.freedesktop.org
+Subject: [PATCH 8/9] drm/sched: Replace completion with a flush
+Date: Fri,  2 Oct 2026 16:47:12 +0100
+Message-ID: <20261002154713.77591-9-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20261002154713.77591-1-tvrtko.ursulin@igalia.com>
+References: <20261002154713.77591-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv2?=
- =?utf-8?q?=2C1/3=5D_drm/i915/gmbus=3A_Switch_GMBUS_fully_to_=5Ffw=28=29_reg?=
- =?utf-8?q?ister_accesses_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 02 Oct 2026 14:49:18 -0000
-Message-ID: <179095255830.233216.1563133229922334475@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20260930115303.24285-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20260930115303.24285-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,130 +57,213 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5587213998642471395==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Due the scheduler locking design, and the inability to always lock both
+the entity and the run-queue in the consistent order, a completion exists
+which effectively marks the entity as in use from a call path which is not
+able to lock it.
 
-== Series Details ==
+When entity is selected from the run job worker, its completion is marked
+as non-idle all until the code is sure it will not be dereferencing it any
+more, at which point it signals it as idle, releasing the potential
+parallel cleanup path.
 
-Series: series starting with [v2,1/3] drm/i915/gmbus: Switch GMBUS fully to _fw() register accesses (rev3)
-URL   : https://patchwork.freedesktop.org/series/175282/
-State : success
+We can remove the need for this completion by implementing the identical
+guarantee by simply flushing the run job work from the cleanup path, after
+having removed the entity from the run queue.
 
-== Summary ==
+We then know that the entity is no longer reachable by the run queue
+selection logic, so as soon as any pending work is done the cleanup can
+safely proceed. And because we have marked the entity as stopped, we also
+know that the entity cannot re-enter the run queue.
 
-CI Bug Log - changes from xe-5872-fc5f5579dbfab13003fd4d6c1c9214a558f58c9d_BAT -> xe-pw-175282v3_BAT
-====================================================
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Philipp Stanner <phasta@kernel.org>
+Cc: amd-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+---
+ drivers/gpu/drm/scheduler/sched_entity.c   | 18 ++++++++++--------
+ drivers/gpu/drm/scheduler/sched_internal.h | 14 ++++++++++++--
+ drivers/gpu/drm/scheduler/sched_main.c     |  2 --
+ drivers/gpu/drm/scheduler/sched_rq.c       | 19 +++++++++++++------
+ include/drm/gpu_scheduler.h                |  9 ---------
+ 5 files changed, 35 insertions(+), 27 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
+index 3ca671af02ed..79ea20838328 100644
+--- a/drivers/gpu/drm/scheduler/sched_entity.c
++++ b/drivers/gpu/drm/scheduler/sched_entity.c
+@@ -161,11 +161,6 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
+ 			      DRM_SCHED_PRIORITY_KERNEL : priority;
+ 	entity->rq = sched_list[0]->sched_rq[entity->rq_priority];
+ 
+-	init_completion(&entity->entity_idle);
+-
+-	/* We start in an idle state. */
+-	complete_all(&entity->entity_idle);
+-
+ 	spin_lock_init(&entity->lock);
+ 	spsc_queue_init(&entity->job_queue);
+ 
+@@ -304,16 +299,23 @@ static void drm_sched_entity_kill_jobs_cb(struct dma_fence *f,
+  */
+ void drm_sched_entity_kill(struct drm_sched_entity *entity)
+ {
++	struct drm_gpu_scheduler *sched;
+ 	struct drm_sched_job *job;
+ 	struct dma_fence *prev;
+ 
+ 	spin_lock(&entity->lock);
+ 	entity->stopped = true;
+-	drm_sched_rq_remove_entity(entity->rq, entity);
++	sched = drm_sched_rq_remove_entity(entity->rq, entity);
+ 	spin_unlock(&entity->lock);
+ 
+-	/* Make sure this entity is not used by the scheduler at the moment */
+-	wait_for_completion(&entity->entity_idle);
++	/*
++	 * Make sure this entity is not used by the scheduler at the moment.
++	 *
++	 * Scheduler is guaranteed to be stable after the entity was stopped and
++	 * removed from the run-queue.
++	 */
++	if (sched)
++		drm_sched_flush_run_work(sched);
+ 
+ 	spin_lock(&entity->lock);
+ 	prev = dma_fence_get(entity->last_scheduled);
+diff --git a/drivers/gpu/drm/scheduler/sched_internal.h b/drivers/gpu/drm/scheduler/sched_internal.h
+index 32d3ddb820be..ca724a8a4433 100644
+--- a/drivers/gpu/drm/scheduler/sched_internal.h
++++ b/drivers/gpu/drm/scheduler/sched_internal.h
+@@ -42,13 +42,23 @@ bool drm_sched_can_queue(struct drm_gpu_scheduler *sched,
+ 			 struct drm_sched_entity *entity);
+ void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
+ 
++/**
++ * drm_sched_flush_run_work - flush the run-job work
++ * @sched: scheduler instance
++ */
++static inline void drm_sched_flush_run_work(struct drm_gpu_scheduler *sched)
++{
++	flush_work(&sched->work_run_job);
++}
++
+ void drm_sched_rq_init(struct drm_gpu_scheduler *sched,
+ 		       struct drm_sched_rq *rq);
+ 
+ struct drm_gpu_scheduler *
+ drm_sched_rq_add_entity(struct drm_sched_entity *entity, ktime_t ts);
+-void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
+-				struct drm_sched_entity *entity);
++struct drm_gpu_scheduler *
++drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
++			   struct drm_sched_entity *entity);
+ void drm_sched_rq_pop_entity(struct drm_sched_entity *entity);
+ 
+ struct drm_sched_entity *
+diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+index 00eb017fbcec..182d4546ac9c 100644
+--- a/drivers/gpu/drm/scheduler/sched_main.c
++++ b/drivers/gpu/drm/scheduler/sched_main.c
+@@ -1034,7 +1034,6 @@ static void drm_sched_run_job_work(struct work_struct *w)
+ 
+ 	sched_job = drm_sched_entity_pop_job(entity);
+ 	if (!sched_job) {
+-		complete_all(&entity->entity_idle);
+ 		drm_sched_run_job_queue(sched);
+ 		return;
+ 	}
+@@ -1050,7 +1049,6 @@ static void drm_sched_run_job_work(struct work_struct *w)
+ 	 * refcount has been incremented for the scheduler already.
+ 	 */
+ 	fence = sched->ops->run_job(sched_job);
+-	complete_all(&entity->entity_idle);
+ 	drm_sched_fence_scheduled(s_fence, fence);
+ 
+ 	if (!IS_ERR_OR_NULL(fence)) {
+diff --git a/drivers/gpu/drm/scheduler/sched_rq.c b/drivers/gpu/drm/scheduler/sched_rq.c
+index 23f46ec610e7..79f7bdb5b3f0 100644
+--- a/drivers/gpu/drm/scheduler/sched_rq.c
++++ b/drivers/gpu/drm/scheduler/sched_rq.c
+@@ -297,23 +297,32 @@ drm_sched_rq_add_entity(struct drm_sched_entity *entity, ktime_t ts)
+  * @entity: scheduler entity
+  *
+  * Removes a scheduler entity from the run queue.
++ *
++ * Return: DRM scheduler selected to handle this entity or NULL if entity has
++ * already been removed.
+  */
+-void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
+-				struct drm_sched_entity *entity)
++struct drm_gpu_scheduler *
++drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
++			   struct drm_sched_entity *entity)
+ {
++	struct drm_gpu_scheduler *sched;
++
+ 	lockdep_assert_held(&entity->lock);
+ 
+ 	if (list_empty(&entity->list))
+-		return;
++		return NULL;
+ 
+ 	spin_lock(&rq->lock);
+ 
+-	atomic_dec(rq->sched->score);
++	sched = rq->sched;
++	atomic_dec(sched->score);
+ 	list_del_init(&entity->list);
+ 
+ 	drm_sched_rq_remove_fifo_locked(entity, rq);
+ 
+ 	spin_unlock(&rq->lock);
++
++	return sched;
+ }
+ 
+ static ktime_t
+@@ -407,8 +416,6 @@ drm_sched_rq_select_entity(struct drm_gpu_scheduler *sched,
+ 				spin_unlock(&rq->lock);
+ 				return ERR_PTR(-ENOSPC);
+ 			}
+-
+-			reinit_completion(&entity->entity_idle);
+ 			break;
+ 		}
+ 	}
+diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+index 3b0978fa8cf0..c89a581f54bf 100644
+--- a/include/drm/gpu_scheduler.h
++++ b/include/drm/gpu_scheduler.h
+@@ -27,7 +27,6 @@
+ #include <drm/spsc_queue.h>
+ #include <linux/average.h>
+ #include <linux/dma-fence.h>
+-#include <linux/completion.h>
+ #include <linux/xarray.h>
+ #include <linux/workqueue.h>
+ 
+@@ -232,14 +231,6 @@ struct drm_sched_entity {
+ 	 */
+ 	bool 				stopped;
+ 
+-	/**
+-	 * @entity_idle:
+-	 *
+-	 * Signals when entity is not in use, used to sequence entity cleanup in
+-	 * drm_sched_entity_fini().
+-	 */
+-	struct completion		entity_idle;
+-
+ 	/**
+ 	 * @oldest_job_waiting:
+ 	 *
+-- 
+2.55.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-175282v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-nvls-1:         [DMESG-WARN][1] ([Intel XE#8762] / [Intel XE#9069]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5872-fc5f5579dbfab13003fd4d6c1c9214a558f58c9d/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175282v3/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#8762]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762
-  [Intel XE#9069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069
-
-
-Build changes
--------------
-
-  * IGT: IGT_9123 -> IGT_9125
-  * Linux: xe-5872-fc5f5579dbfab13003fd4d6c1c9214a558f58c9d -> xe-pw-175282v3
-
-  IGT_9123: afd8cfb7aa15906974dd979b6dc739ed17ab9e33 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_9125: 9125
-  xe-5872-fc5f5579dbfab13003fd4d6c1c9214a558f58c9d: fc5f5579dbfab13003fd4d6c1c9214a558f58c9d
-  xe-pw-175282v3: 175282v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175282v3/index.html
-
---===============5587213998642471395==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v2,1/3] drm/i915/gmbus: Switch GMBUS fully to _fw() register accesses (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175282/">https://patchwork.freedesktop.org/series/175282/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175282v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175282v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5872-fc5f5579dbfab13003fd4d6c1c9214a558f58c9d_BAT -&gt; xe-pw-175282v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-175282v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5872-fc5f5579dbfab13003fd4d6c1c9214a558f58c9d/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762">Intel XE#8762</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069">Intel XE#9069</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175282v3/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9123 -&gt; IGT_9125</li>
-<li>Linux: xe-5872-fc5f5579dbfab13003fd4d6c1c9214a558f58c9d -&gt; xe-pw-175282v3</li>
-</ul>
-<p>IGT_9123: afd8cfb7aa15906974dd979b6dc739ed17ab9e33 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_9125: 9125<br />
-  xe-5872-fc5f5579dbfab13003fd4d6c1c9214a558f58c9d: fc5f5579dbfab13003fd4d6c1c9214a558f58c9d<br />
-  xe-pw-175282v3: 175282v3</p>
-
-</body>
-</html>
-
---===============5587213998642471395==--
