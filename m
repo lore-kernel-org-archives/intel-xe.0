@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D20CCA5FDD
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Oct 2026 13:02:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38654CA5FDD
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Oct 2026 13:04:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB56410E5CF;
-	Fri,  2 Oct 2026 13:02:49 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 171D810E38E;
- Fri,  2 Oct 2026 13:02:49 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_PCI/IOV=3A_Fix_SR-IOV_loc?=
- =?utf-8?q?king_races_and_AB-BA_deadlocks_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Benjamin Block" <bblock@linux.ibm.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC75210E38E;
+	Fri,  2 Oct 2026 13:04:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XPLGcnXo";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B27E510E38E
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Oct 2026 13:04:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1790946248; x=1822482248;
+ h=date:from:to:cc:subject:message-id;
+ bh=VJcyMO4srVJ7xGqqHQl0LlOhN3vKrUlRGgf4583/YDg=;
+ b=XPLGcnXoUpS18p3daPwV6FMY/Kk/yk20GE9/WDu8Ugvy1YSzRowigMQ2
+ CGvC2f3c+lgq+Wau7DKzna6dIToeEhZIP199DRhxnthi/hSWD7EcAAYxh
+ cA33hD+ui6L5LTbFM7VhClFTpayxtGySnRKw8pR4a0JS4cJptZAfug0U0
+ WbAOORkynnDESV97Mu8CjJytmRrIEP74sx9LB936mr7ykX+boWwvxySxu
+ CJa4KnZUD+rI12fIucZD6B9WrOa8Sur/vQh9sAXYV3KtnrhEe5ibXcetx
+ pL4cYdWs6KAbk43r0KVCGCLH1037GYqU9uWBiaIuXYBpDcd3KuQ5Dw2Z9 Q==;
+X-CSE-ConnectionGUID: pQTvHsGaR9uAkrPzbWYexg==
+X-CSE-MsgGUID: Tnqk10aQTjCA4cf/dzakyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="94422415"
+X-IronPort-AV: E=Sophos;i="6.27,136,1787036400"; d="scan'208";a="94422415"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2026 06:04:08 -0700
+X-CSE-ConnectionGUID: PK+D8RE1S2mCT9ANPlRqkA==
+X-CSE-MsgGUID: E5humRolSKmkWaZwHHBxbQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,136,1787036400"; d="scan'208";a="314237260"
+Received: from lkp-server01.sh.intel.com (HELO 462990a40a85) ([10.239.97.150])
+ by orviesa001.jf.intel.com with ESMTP; 02 Oct 2026 06:04:06 -0700
+Received: from kbuild by 462990a40a85 with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1xCcvj-00000000T3s-3nn2;
+ Fri, 02 Oct 2026 13:04:03 +0000
+Date: Fri, 02 Oct 2026 21:03:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 02 Oct 2026 13:02:49 -0000
-Message-ID: <179094616909.232662.1438397879804663247@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <cover.1790267348.git.bblock@linux.ibm.com>
-In-Reply-To: <cover.1790267348.git.bblock@linux.ibm.com>
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 70dab9ee7d620e6018a64798aed065d14e9baed1
+Message-ID: <202610022123.baBozIEv-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,122 +61,185 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 70dab9ee7d620e6018a64798aed065d14e9baed1  drm/xe/mmio: Fix xe_mmio_wait32() to honor delay/sleep maximums
 
-Series: PCI/IOV: Fix SR-IOV locking races and AB-BA deadlocks (rev2)
-URL   : https://patchwork.freedesktop.org/series/174935/
-State : warning
+elapsed time: 1265m
 
-== Summary ==
+configs tested: 163
+configs skipped: 2
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit a9b69b94066aa26cb02e450bc10399e2aa69e379
-Author: Benjamin Block <bblock@linux.ibm.com>
-Date:   Fri Oct 2 14:55:53 2026 +0200
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-    s390/pci: Fix circular/recursive deadlocks in PCI-bus and -device release
-    
-    When removing PCI device or PCI bus objects there are a couple of
-    call-chains where it is possible that the kernel runs into a circular
-    deadlock involving the central `pci_rescan_remove_lock`.
-    
-    Two examples:
-    
-    (A) Thread α receives a PCI event notifying the kernel that a PCI
-    virtual function has been moved into Reserved state, and so the PCI
-    subsystem will try to remove that PCI function. The call-chain for that
-    looks like this:
-      __zpci_event_availability()
-        -> zpci_zdev_put()              # will   lock(zpci_add_remove_lock),
-                                        # and    lock(zpci_list_lock)
-        -> zpci_release_device()        # will unlock(zpci_list_lock)
-        -> zpci_cleanup_bus_resources() # will   lock(pci_rescan_remove_lock)
-    
-    Thread β is triggered by userspace writing 0 into the SysFS attribute
-    `sriov_numvfs` of the parent PCI physical function of the same function
-    we just try to remove. This will also try to release the PCI virtual
-    function; but this time the call-chain looks like this:
-      sriov_numvfs_store()
-        -> ... (device driver dependent)
-        -> sriov_disable()
-        -> sriov_del_vfs()              # will   lock(pci_rescan_remove_lock)
-        -> ... (deep chain)
-        -> pci_release_dev()
-        -> pcibios_release_device()
-        -> zpci_zdev_put()              # will   lock(zpci_add_remove_lock)
-    
-    If thread α and β coincide, this will result in a cyclic deadlock.
-    
-    (B) Thread γ receives a PCI event notifying the kernel that one or more
-    PCI functions got hot plugged, and need to be configured. A possible
-    call-chain that might happen while the PCI subsystem is trying to add
-    those new function looks like this:
-      __zpci_event_availability()
-        -> ... (multiple ways in which a device gets added)
-        -> zpci_add_device()            # will   lock(zpci_add_remove_lock)
-        -> zpci_bus_device_register()
-        -> zpci_bus_put()               # will   lock(zbus_list_lock)
-        -> zpci_bus_release()           # will unlock(zbus_list_lock)
-                                        # will   lock(pci_rescan_remove_lock)
-    
-    Now the same thread β as above in (A) might coincide, and again could
-    result in a cyclic deadlock.
-    
-    `pci_rescan_remove_lock` has to be and is taken at a "high level" in
-    most call-chains since it is intended to protect/mutual exclude all
-    rescan and/or removal actions taken in the PCI subsystem. So to prevent
-    the outlined deadlock scenarios above remove it instead from the "low
-    level" release functions for both the PCI device and PCI bus objects.
-    
-    Instead, lock `pci_rescan_remove_lock` in all call-chains leading to
-    those release functions:
-      * initialization of the PCI subsystem;
-      * processing of availability events (CRWs) for PCI functions;
-      * processing of error events (CRWs) for PCI functions;
-      * architecture specific release PCI device implementation.
-    
-    Additionally, remove `pci_rescan_remove_lock` from zpci_bus_scan_bus()
-    since its only caller zpci_scan_devices() is now always called with
-    `pci_rescan_remove_lock` already held.
-    
-    Lastly, document the new locking expectations after these changes. Add
-    sparse and lockdep annotations to functions that previously locked
-    `pci_rescan_remove_lock` explicitly, making sure the lock is now
-    already held when called. Additionally also add the annotations to
-    zpci_zdev_put() and zpci_bus_put() to make sure that every function that
-    potentially drops the last reference already holds the lock to prevent
-    surprises.
-    
-    Fixes: 05bc1be6db4b2 ("s390/pci: create zPCI bus")
-    Fixes: ab909509850b2 ("PCI: s390: Fix use-after-free of PCI resources with per-function hotplug")
-    Cc: stable@vger.kernel.org
-    Signed-off-by: Benjamin Block <bblock@linux.ibm.com>
-+ /mt/dim checkpatch 9a844a5028d85ae6d941dddfda6450f3f3887fed drm-intel
-f4e8964a4743 PCI/IOV: Make pci_lock_rescan_remove() reentrant and protect sriov_add_vfs/sriov_del_vfs
-d1d8e6118ba8 PCI: Fix AB-BA deadlock between device_lock and pci_rescan_remove_lock in remove_store
-118973047c54 PCI: Move declaration of pci_rescan_remove_lock into public pci.h
-be830271ef34 PCI: Provide lock guard for pci_rescan_remove_lock
-a9b69b94066a s390/pci: Fix circular/recursive deadlocks in PCI-bus and -device release
--:331: WARNING:TABSTOP: Statements should start on a tabstop
-#331: FILE: arch/s390/pci/pci_sysfs.c:81:
-+	     if (_T) sysfs_unbreak_active_protection(_T),
+tested configs:
+alpha                              allnoconfig    gcc-16.1.0
+alpha                             allyesconfig    gcc-16.1.0
+alpha                                defconfig    gcc-16.1.0
+arc                               allmodconfig    clang-24
+arc                                allnoconfig    gcc-16.1.0
+arc                               allyesconfig    clang-24
+arc                                  defconfig    gcc-16.1.0
+arm                                allnoconfig    gcc-16.1.0
+arm                               allyesconfig    clang-24
+arm                                  defconfig    gcc-16.1.0
+arm                          s3c6400_defconfig    gcc-16.1.0
+arm64                             allmodconfig    clang-24
+arm64                              allnoconfig    gcc-16.1.0
+arm64                                defconfig    gcc-16.1.0
+arm64                 randconfig-1000-20261002    gcc-12.5.0
+arm64                 randconfig-1001-20261002    gcc-12.5.0
+arm64                 randconfig-1002-20261002    gcc-12.5.0
+arm64                 randconfig-1003-20261002    gcc-12.5.0
+csky                              allmodconfig    gcc-16.1.0
+csky                               allnoconfig    gcc-16.1.0
+csky                                 defconfig    gcc-16.1.0
+csky                  randconfig-1000-20261002    gcc-12.5.0
+csky                  randconfig-1001-20261002    gcc-12.5.0
+hexagon                           allmodconfig    gcc-16.1.0
+hexagon                            allnoconfig    gcc-16.1.0
+hexagon                              defconfig    gcc-16.1.0
+hexagon               randconfig-1000-20261002    gcc-13.4.0
+hexagon               randconfig-1001-20261002    gcc-13.4.0
+i386                              allmodconfig    clang-22
+i386                               allnoconfig    gcc-16.1.0
+i386                              allyesconfig    clang-22
+i386        buildonly-randconfig-1000-20261002    clang-22
+i386        buildonly-randconfig-1001-20261002    clang-22
+i386        buildonly-randconfig-1002-20261002    clang-22
+i386        buildonly-randconfig-1003-20261002    clang-22
+i386        buildonly-randconfig-1004-20261002    clang-22
+i386        buildonly-randconfig-1005-20261002    clang-22
+i386                                 defconfig    gcc-16.1.0
+i386                  randconfig-1000-20261002    gcc-14
+i386                  randconfig-1001-20261002    gcc-14
+i386                  randconfig-1002-20261002    gcc-14
+i386                  randconfig-1003-20261002    gcc-14
+i386                  randconfig-1004-20261002    gcc-14
+i386                  randconfig-1005-20261002    gcc-14
+i386                  randconfig-1006-20261002    gcc-14
+i386                  randconfig-1007-20261002    clang-22
+i386                  randconfig-1008-20261002    clang-22
+i386                  randconfig-1009-20261002    clang-22
+i386                  randconfig-1010-20261002    clang-22
+i386                  randconfig-1011-20261002    clang-22
+i386                  randconfig-1012-20261002    clang-22
+i386                  randconfig-1013-20261002    clang-22
+loongarch                         allmodconfig    clang-24
+loongarch                          allnoconfig    gcc-16.1.0
+loongarch                            defconfig    clang-24
+loongarch             randconfig-1000-20261002    gcc-13.4.0
+loongarch             randconfig-1001-20261002    gcc-13.4.0
+m68k                              allmodconfig    gcc-16.1.0
+m68k                               allnoconfig    gcc-16.1.0
+m68k                              allyesconfig    clang-24
+m68k                                 defconfig    clang-24
+microblaze                         allnoconfig    gcc-16.1.0
+microblaze                        allyesconfig    gcc-16.1.0
+microblaze                           defconfig    clang-24
+mips                              allmodconfig    gcc-16.1.0
+mips                               allnoconfig    gcc-16.1.0
+mips                              allyesconfig    gcc-16.1.0
+mips                            ip27_defconfig    gcc-16.1.0
+mips                         maltaup_defconfig    gcc-16.1.0
+mips                            mtx1_defconfig    gcc-16.1.0
+nios2                             allmodconfig    clang-20
+nios2                              allnoconfig    clang-24
+nios2                                defconfig    clang-24
+nios2                 randconfig-1000-20261002    gcc-13.4.0
+nios2                 randconfig-1001-20261002    gcc-13.4.0
+openrisc                          alldefconfig    gcc-16.1.0
+openrisc                          allmodconfig    clang-20
+openrisc                           allnoconfig    clang-24
+openrisc                             defconfig    gcc-16.1.0
+parisc                            allmodconfig    gcc-16.1.0
+parisc                             allnoconfig    clang-24
+parisc                            allyesconfig    clang-17
+parisc                               defconfig    gcc-16.1.0
+parisc                randconfig-1000-20261002    gcc-14.3.0
+parisc                randconfig-1001-20261002    gcc-14.3.0
+parisc64                             defconfig    clang-24
+powerpc                           allmodconfig    gcc-16.1.0
+powerpc                            allnoconfig    clang-24
+powerpc                       arches_defconfig    gcc-16.1.0
+powerpc               randconfig-1000-20261002    gcc-14.3.0
+powerpc               randconfig-1001-20261002    gcc-14.3.0
+powerpc64             randconfig-1000-20261002    gcc-14.3.0
+powerpc64             randconfig-1001-20261002    gcc-14.3.0
+riscv                             allmodconfig    clang-24
+riscv                              allnoconfig    clang-24
+riscv                             allyesconfig    clang-24
+riscv                                defconfig    gcc-16.1.0
+riscv                 randconfig-1000-20261002    clang-24
+riscv                 randconfig-1001-20261002    clang-24
+s390                              allmodconfig    clang-17
+s390                               allnoconfig    clang-24
+s390                              allyesconfig    gcc-16.1.0
+s390                                 defconfig    gcc-16.1.0
+s390                  randconfig-1000-20261002    clang-24
+s390                  randconfig-1001-20261002    clang-24
+sh                                allmodconfig    gcc-16.1.0
+sh                                 allnoconfig    clang-24
+sh                                allyesconfig    clang-17
+sh                          apsh4a3a_defconfig    gcc-16.1.0
+sh                                   defconfig    gcc-14
+sh                    randconfig-1000-20261002    clang-24
+sh                    randconfig-1001-20261002    clang-24
+sh                           sdk7780_defconfig    gcc-16.1.0
+sparc                              allnoconfig    clang-24
+sparc                                defconfig    gcc-16.1.0
+sparc                 randconfig-1000-20261002    clang-24
+sparc                 randconfig-1001-20261002    clang-24
+sparc64                           allmodconfig    clang-20
+sparc64                              defconfig    gcc-14
+sparc64               randconfig-1000-20261002    clang-24
+sparc64               randconfig-1001-20261002    clang-24
+um                                allmodconfig    clang-17
+um                                 allnoconfig    clang-24
+um                                allyesconfig    gcc-16.1.0
+um                                   defconfig    gcc-14
+um                              i386_defconfig    gcc-14
+um                    randconfig-1000-20261002    clang-24
+um                    randconfig-1001-20261002    clang-24
+um                            x86_64_defconfig    gcc-14
+x86_64                            allmodconfig    clang-22
+x86_64                             allnoconfig    clang-24
+x86_64                            allyesconfig    clang-22
+x86_64                               defconfig    gcc-14
+x86_64                                   kexec    clang-22
+x86_64                randconfig-1000-20261002    gcc-14
+x86_64                randconfig-1001-20261002    gcc-14
+x86_64                randconfig-1002-20261002    gcc-14
+x86_64                randconfig-1003-20261002    gcc-14
+x86_64                randconfig-1004-20261002    gcc-14
+x86_64                randconfig-1005-20261002    gcc-14
+x86_64                randconfig-1006-20261002    clang-22
+x86_64                randconfig-1007-20261002    clang-22
+x86_64                randconfig-1008-20261002    clang-22
+x86_64                randconfig-1009-20261002    clang-22
+x86_64                randconfig-1010-20261002    clang-22
+x86_64                randconfig-1011-20261002    clang-22
+x86_64                randconfig-1012-20261002    clang-22
+x86_64                randconfig-1013-20261002    clang-22
+x86_64                randconfig-1014-20261002    clang-22
+x86_64                randconfig-1015-20261002    clang-22
+x86_64                randconfig-1016-20261002    clang-22
+x86_64                randconfig-1017-20261002    clang-22
+x86_64                                rhel-9.4    clang-22
+x86_64                            rhel-9.4-bpf    gcc-14
+x86_64                           rhel-9.4-func    clang-22
+x86_64                     rhel-9.4-kselftests    clang-22
+x86_64                          rhel-9.4-kunit    gcc-14
+x86_64                            rhel-9.4-ltp    gcc-14
+x86_64                           rhel-9.4-rust    clang-22
+xtensa                             allnoconfig    clang-24
+xtensa                            allyesconfig    clang-20
+xtensa                randconfig-1000-20261002    clang-24
+xtensa                randconfig-1001-20261002    clang-24
 
--:331: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
-#331: FILE: arch/s390/pci/pci_sysfs.c:81:
-+	     if (_T) sysfs_unbreak_active_protection(_T),
-
-total: 1 errors, 1 warnings, 0 checks, 257 lines checked
-
-
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
