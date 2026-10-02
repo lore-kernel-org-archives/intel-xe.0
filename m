@@ -4,157 +4,126 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02BE0CA5FDD
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Oct 2026 12:43:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD552CA5FD4
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Oct 2026 12:56:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B82710E593;
-	Fri,  2 Oct 2026 12:43:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C86210F837;
+	Fri,  2 Oct 2026 12:56:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JgJmqYox";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="kBx5BVzW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0DAF10E593
- for <intel-xe@lists.freedesktop.org>; Fri,  2 Oct 2026 12:43:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790945000; x=1822481000;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=lCWdmIYmJvgNBYZqTnUIXbUzBl9C0MXTdV+jCHK8lGU=;
- b=JgJmqYoxLeOB4Fj3zJ4BL6hRatbpkB01Hvrr5T5LeofDcFIopFwL4+wp
- l7hVqWH46RFUgWbF7G/tWXfyXP1yma+2lXAp5t8sMLgcQnZV6rmJhU0hM
- AatAFWCYAmqXDh+jkBLEYguaj31NP05CsYVPp8JPpKvOTA+j7ZANhbmJ5
- 7Y+86KxtTugZTPB1Tq0rODGQiil6ze4BBeLFXzy0cnhaOBppHH45BsiqK
- EKNCL9uTn2SzxxOgQNwsAAuu7dROTl+TpSBcHbwfljXP50K6aO0BctPRp
- zRXTSd6O9JFMTjuC+m8nS8UCXJh2RQ534TAqJEoi0MMFmQWTov2OBzkip w==;
-X-CSE-ConnectionGUID: CTC2ygLJRGOaezqRDbYevw==
-X-CSE-MsgGUID: Z0B20mXuQOKUrC24mcPUTg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="95523341"
-X-IronPort-AV: E=Sophos;i="6.27,136,1787036400"; d="scan'208";a="95523341"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2026 05:43:19 -0700
-X-CSE-ConnectionGUID: YTZAOi6+SR2QEwflnkj4Kw==
-X-CSE-MsgGUID: +5QTbHcWTyyRjaN+JibLAw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,136,1787036400"; d="scan'208";a="304203425"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2026 05:43:19 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Fri, 2 Oct 2026 05:43:18 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Fri, 2 Oct 2026 05:43:18 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.52) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Fri, 2 Oct 2026 05:43:18 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bdDWqkvDR7C9hrWsbeYmMX4c+SDE+j/2hXnkR7FDeb9PtAz+ycG1NfcrNJ/9OuT7PPgvMJfAy/O9TeAGSz/n2jxxoL1GHDNmzmOMR+B15vwcOV3Gv3UIaskqRbspAwilAZj9IyPee2HeHuEoLs0gaVUuptgr6rQeVTNJ3Qe5E8efMC9veaF/4C6/GSui0vYkzZo6C0HuGThWDP+yjV+R5vmR8Y/78SfAFd1gYmV4dQcmzuNb8h4Gk0kWZweqaFoIXCPZF9i3+u/4P3qXKo+8I5kDiQOVLq2WbQiY8AoM+RHC0pKnvJcPFb7TDegpdeBhKvuhB5Mrh6O3j8KWTBnd8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M6U4fBkGRHm5iXIYHmZPlYvq7vOUab9qlHXrIU9KF6Y=;
- b=Q/glVl+GEFSZLe8ZKU9130Ve5TY3/V6v/aikmndii6pDMNYBDBYnsTMYGbZVTluBLQtv4WP2M6+sOQ45OPKr030Xvpt9T+EkTXPS29EG6asa19UaWCAefkHRVFTfW4k++MY9a/A26u/7SaWFIrviEPKcin+a8dW5YVrcDOZ7mtpT5SQ6sppIKH4omkcQnjPmBbwlx8wDZFEVjciY0Mkgc191BgIws77h9uDkyrbOzOaIWFmzTu1PGt1jP0Djzf9gEpmtUvrZwRG94zTjozL8gCrOJiLAHORzd6mVVLNMsmw2JuS2jBYTQ2nJBJMogs87IMsVH7r727IpincRbrOUaQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CH3PR11MB046149.namprd11.prod.outlook.com
- (2603:10b6:610:367::19) by LV8PR11MB8534.namprd11.prod.outlook.com
- (2603:10b6:408:1f7::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.472.15; Fri, 2 Oct
- 2026 12:43:16 +0000
-Received: from CH3PR11MB046149.namprd11.prod.outlook.com
- ([fe80::7c3f:5300:19c4:b823]) by CH3PR11MB046149.namprd11.prod.outlook.com
- ([fe80::7c3f:5300:19c4:b823%6]) with mapi id 15.21.0472.016; Fri, 2 Oct 2026
- 12:43:16 +0000
-From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
-To: "David E. Box" <david.e.box@linux.intel.com>,
- "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Siddiqui, Ayaz A"
- <ayaz.siddiqui@intel.com>, "Muqthyar Ahmed, Syed Abdul"
- <syed.abdul.muqthyar.ahmed@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "hansg@kernel.org" <hansg@kernel.org>
-CC: "stable@vger.kernel.org" <stable@vger.kernel.org>
-Subject: RE: [PATCH 1/3] platform/x86/intel/pmt: Fix NULL dereference when
- reading crashlog data
-Thread-Topic: [PATCH 1/3] platform/x86/intel/pmt: Fix NULL dereference when
- reading crashlog data
-Thread-Index: AQHdUfDK3gfLc439Pk2pzeQ3Z8J+mLbqMFiQ
-Date: Fri, 2 Oct 2026 12:43:16 +0000
-Message-ID: <CH3PR11MB04614953E9398FF44E0BABE0F3C1892@CH3PR11MB046149.namprd11.prod.outlook.com>
-References: <20261001220351.1592138-1-david.e.box@linux.intel.com>
- <20261001220351.1592138-2-david.e.box@linux.intel.com>
-In-Reply-To: <20261001220351.1592138-2-david.e.box@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH3PR11MB046149:EE_|LV8PR11MB8534:EE_
-x-ms-office365-filtering-correlation-id: b3c39b87-ab02-4e06-2915-08df2082baf9
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|366016|376014|11063799006|4143699003|10067099003|56012099006|38070700021|18002099003|22082099003|921020;
-x-microsoft-antispam-message-info: 6eHKlnscRPV+vwMdta38L9m2axbNsKJabGyfFHMG2MA6vv+1BfskJxhg1D4CNOZB8lFREdDuIgIXL2rPuD3EKuXfAYrxyQcJwC6rx2VdOPv75BUskVOk0HaPk017x8X1hE3JEOBjhFsZmH++VoW1mw1TWDzLVaVW8zYLw0ETEr9+f/llfNHLpsKtskhUo5451AeLiOCVIhdUAti89W5l9fH1VI4sN8KCSJ4fys6BeATnhd3RcaUz0gAQof6Sd0qd0sAFVYn5mlErFqrl58kkUmZki31K9Mv2vtB5YMo9dk1sNxgJffK5qUImxJ7HL9kB6lai4pHkEO2KrKzEbaX/yp+i08cer7VCG1lLDmI/br0wx+70Z8eNuKZPi4XwP/EhB8WKOUGIV9T/xJYQyZxio9ZnxwIpYfq6UqMFgKvUioY3xILGTG2genfB2Y7fcAhodwhpoMLj+ACImKxay88trtPoaZuW8h1j1F9nH436oS0CEhos6LIOig7lJSyD30uiPOg2tqjpft2iskuae7g+v/y4XF20w3EzGjVvUtB97EuE9FVV8LxVriShr3PPjOQ2my3mliIXaGVWZ6lDQpW8jDJAwAv1Iq/l7ixXs9BxChPnlABxYzfyAFqck3/xvNoY2I+h5TI/13gK+rBG+5opdjzDOBuFYvxFc201IaLijLZ7BVt+vx4Sr0dPnUzzjZOKmerKQzh0AaU8rXqkdcl6v4KLto5UkvrL4oyQi8taxkBQzvb7/HWtZBPC9T6K6eiS
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR11MB046149.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(11063799006)(4143699003)(10067099003)(56012099006)(38070700021)(18002099003)(22082099003)(921020);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?fOgoftBLuATyol+cNJYqfMKJ2CFzRE4NkQ0v62mEziK7IeLyCHPJNLcqRlR7?=
- =?us-ascii?Q?+73LoPOuc/t0RdooSQ6Dw6Zbwi3pYasR5PJ4xiJ6XufVmNMmn5ZMl203I15a?=
- =?us-ascii?Q?iQjJo3M2u3S7EZw8XILsIUNCTAyAXegsGC5yeWgTCWMWWsoloFEPIxKc22vt?=
- =?us-ascii?Q?3qrR6VKon9oek8wiTEwSRlNl5u422biRAuseQ0k2J/trKm6TZ59PwskVn2sj?=
- =?us-ascii?Q?W499wRkYqcC4HS3ioVuTm7eHEeT5Z90NbdwOGQ/2sl2AUOnTM/ihimZWtXz1?=
- =?us-ascii?Q?5op66Q1wCyoJ/LueL15V8SIsYOYb/OaHOQYGAgS51lppH/a0k0eSSXapMsn1?=
- =?us-ascii?Q?4YVcOtfFUFON/nIVY3Y9jxoSpbayy1146xr4EGUgk66zixs7vjkXL4ZhFzhk?=
- =?us-ascii?Q?GwgV0hJ+Md+tQFqhQFNxmG7iIZNxWbjRNCbSnI7CC+ghnfJ6eL+KyXP6yyxx?=
- =?us-ascii?Q?yRXXpCSQoyiDFnrEyQJzL4FG4HnU+HMDDOal3pMhiBgP+dtLOaZEZo6AyWbH?=
- =?us-ascii?Q?2kpSidghw9q9EUPi+bPE0qI8ODKhDx41QrRpDAw4afdJ4hXWkzW0ybOW/ACl?=
- =?us-ascii?Q?4VNb37nEi8FcUs7tZqhwWVPx2WjTBXDENa4ufpTYdm3VpK2Q4oXmq0j/JsMc?=
- =?us-ascii?Q?7BI4vdRrlv9An4RChWNSveThuPJKMz4MCFmoGMd06Lk7vyaAzP415e945mZD?=
- =?us-ascii?Q?NuxUArOwvvJy6Od5uOFAP0lSSDvku1ajt71Y/xpNQg8gRsaHv3JgH/PeFxBs?=
- =?us-ascii?Q?EGUBBDeIdWr3M1pA6suLfYVcVAslTPCkN4xesXtWRuy5FxYcDR7D4ZVxLfkF?=
- =?us-ascii?Q?r3eXyukkMZPD2EtkL+8hAZV9z8enx8fxXO6VZ0VIelfvjE1DOW26vKzUd+p+?=
- =?us-ascii?Q?L/sL4RUFLAMePenZd1RFtPn6O8b+wQk/z9UMXTvCvUhgsO7MdfUtQNAxH2Ai?=
- =?us-ascii?Q?UcDA25Xdybhr3BUFQuEE32Na+sVB5AxtPWdwe221vCqm+DVCl32Jnq7A+Bup?=
- =?us-ascii?Q?1hkDmj2TctNtDe2bBGUNxRM5o/TYA8ZjMyxvEpxca93wdFpLnKGO9WpooiMQ?=
- =?us-ascii?Q?YBhERp9uiyeWWYehmSo0VZmqQptVCCN6Wi/mah+KyTxEJ/19/cLQOqCOCiar?=
- =?us-ascii?Q?F/2hgo1jID952QJxYVHYRVLMNyVZDDkch84t8L/kQSut0p9Fjfhj/uOtiFx0?=
- =?us-ascii?Q?gdzhCWlP685KaHf9yj72GOpfA1WhNqdS+mYD3aQ3exJCmCjcBGMRHvUj+b02?=
- =?us-ascii?Q?9HYp8y6bVLq6cmc+22QlQ0yTgzki74Kjk8+NcmnjK36QHMrakj8zR362ITqu?=
- =?us-ascii?Q?IEvF2ys+/tJXeBQixn9f8LEvIQT9UzxbNffs6WucGozs9wuHWhnHEsuwwfXb?=
- =?us-ascii?Q?5BSnu4NvPkQkWtyQkvS4N6CY8bjMn4FpzXEjknIji3uMKdvsTJFQip/F9ZdJ?=
- =?us-ascii?Q?0ETYo1yu/ATbNRHNQL6Gc+zUWmuwuoXjuMfR8dwg4QbYPJTf9NnYdxTH3BlM?=
- =?us-ascii?Q?G9jjOR6iQWgPR2s0NCJI2eZiQ5oURlYJjPGMDkAeRtW5dTjfF0AFXoWFpmWb?=
- =?us-ascii?Q?DvcV/oOPZhQjIkVwpRZZnj4CN0i5cbg4spQOwUMInRRx3jtL5svg+E8E8Udm?=
- =?us-ascii?Q?17Pc8oDORuy4Bl7JH8iIAi3WpqQxHLFgfzEarei8nbZgG5g64nUIrP1fiJXk?=
- =?us-ascii?Q?nCcSnRo2FSwgDdEpJE//awi/Yospu+X31qJjMQ+tFt/DzDuXTL9i+zX4gHOv?=
- =?us-ascii?Q?GVoWPbFvkw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A59210F837
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Oct 2026 12:56:08 +0000 (UTC)
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 692A5KTg242641; Fri, 2 Oct 2026 12:56:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:sender:subject:to; s=pp1;
+ bh=9qmJDDdr+KeyU19nmHec+y0zZhM7e6dfuec9cA/8QiA=; b=kBx5BVzW8e+b
+ Mxd/2ubPq/ZtGR14abnT/9y4UnRJJKoj+IiFBUwuwFHQWX8VKl2wakRGa/O1JPw/
+ ydHW9U0QF2eTa9MZVlgFGV7AKc8re6ebZTjovj/1+Lh2c/OPoJt0CN0B7ZY0hsxW
+ C9HSpxLVGGjlnDsWy2WUZHL3DgAqbZqQ2IxsMLckMYXrhORjqVFlQI7ac0yUtwtw
+ UDt1Qo4V/El6MM/wQQW3na5Ppt3cdiSERwnlwLkqVgAPNXBHXRibNtaUMzxy3j/X
+ vKsRCyJlD3qZwhp6NDcQDy+n61AeoL0L8o9ksrRkbaseD8BSGD753+XVIHWJkga5
+ 89YnUjIbLg==
+Received: from ppma21.wdc07v.mail.ibm.com
+ (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4gx5j5sdur-1
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Fri, 02 Oct 2026 12:55:59 +0000 (GMT)
+Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
+ by ppma21.wdc07v.mail.ibm.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 6929lWmW2312680; Fri, 2 Oct 2026 12:55:58 GMT
+Received: from smtprelay02.fra02v.mail.ibm.com ([9.218.2.226])
+ by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4h1y2djr9g-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 02 Oct 2026 12:55:58 +0000 (GMT)
+Received: from smtpav04.fra02v.mail.ibm.com (smtpav04.fra02v.mail.ibm.com
+ [10.20.54.103])
+ by smtprelay02.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 692Cts5D40632806
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 2 Oct 2026 12:55:54 GMT
+Received: from smtpav04.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 37D9720043;
+ Fri,  2 Oct 2026 12:55:54 +0000 (GMT)
+Received: from smtpav04.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 095A420040;
+ Fri,  2 Oct 2026 12:55:54 +0000 (GMT)
+Received: from p14sgen6-pf6akexs (unknown [9.224.70.27])
+ by smtpav04.fra02v.mail.ibm.com (Postfix) with ESMTPS;
+ Fri,  2 Oct 2026 12:55:53 +0000 (GMT)
+Received: from bblock by p14sgen6-pf6akexs with local (Exim 4.99.5)
+ (envelope-from <bblock@linux.ibm.com>) id 1xCcnp-0000000AUFG-3IFF;
+ Fri, 02 Oct 2026 14:55:53 +0200
+From: Benjamin Block <bblock@linux.ibm.com>
+To: Benjamin Block <bebl@ategam.org>, Bjorn Helgaas <bhelgaas@google.com>
+Cc: Farhan Ali <alifm@linux.ibm.com>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ Heiko Carstens <hca@linux.ibm.com>, Dragos Tatulea <dtatulea@nvidia.com>,
+ Omar Elghoul <oelghoul@linux.ibm.com>, Lukas Wunner <lukas@wunner.de>,
+ Matthew Brost <matthew.brost@intel.com>, Halil Pasic <pasic@linux.ibm.com>,
+ Ionut Nechita <ionut.nechita@windriver.com>,
+ Sven Schnelle <svens@linux.ibm.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Ionut Nechita <ionut_n2001@yahoo.com>,
+ Tobias Schumacher <ts@linux.ibm.com>, Julian Ruess <julianr@linux.ibm.com>,
+ Ionut Nechita <sunlightlinux@gmail.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Keith Busch <kbusch@kernel.org>, Matthew Rosato <mjrosato@linux.ibm.com>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Gerd Bayer <gbayer@linux.ibm.com>,
+ linux-intel-xe <intel-xe@lists.freedesktop.org>,
+ Andreas Krebbel <krebbel@linux.ibm.com>,
+ Ramesh Errabolu <ramesh@linux.ibm.com>,
+ linux-s390 <linux-s390@vger.kernel.org>, Vasily Gorbik <gor@linux.ibm.com>,
+ Manivannan Sadhasivam <mani@kernel.org>, piotr.piorkowski@intel.com,
+ Guenter Roeck <linux@roeck-us.net>,
+ Niklas Schnelle <schnelle@linux.ibm.com>,
+ linux-pci <linux-pci@vger.kernel.org>,
+ Benjamin Block <bblock@linux.ibm.com>, stable@vger.kernel.org
+Subject: [PATCH v16 5/5] s390/pci: Fix circular/recursive deadlocks in PCI-bus
+ and -device release
+Date: Fri,  2 Oct 2026 14:55:53 +0200
+Message-ID: <4c7d6e0ca4772a80059e9feb8e4b113154f420c3.1790945242.git.bblock@linux.ibm.com>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <845f3fd0e94294765ea10454823c21e464d2f4bd.1790267348.git.bblock@linux.ibm.com>
+References: <845f3fd0e94294765ea10454823c21e464d2f4bd.1790267348.git.bblock@linux.ibm.com>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: y0UJtoBzxciZojLW9WswgZHCXVypqImb6/0w4yBmwSrMAE2emaHhld/IIe8BKb5Crgtb2aSaDjJPDbePEA7BOuVyFv26j26fDIZLypziIhNf66Rk11H1IHHYX0HqNmDCnk5tQ1/AkoDCxQ8pOzdkJztdYxR8WgsqKF2CHImMAnxG/S+zM5CqhvgHltHaWpJar2rDLbuKKqQHsadBRAIqbTVONhR/UDbVSyjBrRnxQy5RHwzUtVFPfK4Xl54+w5l6QvODIYBj61zm4+g0NXxT5SOp3iOXIOjmAZQCXzUTukJ1mzB0ab+3wWZNW7VwHXGwni6GeeiYK6sl5PKju7WEOA==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB046149.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3c39b87-ab02-4e06-2915-08df2082baf9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Oct 2026 12:43:16.4594 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: uAULExFO5O4wi1vmnPYlyrWM+tvygsk5RsDkoCDXlRJYppcPtgEJx/812PLX5OdVU86bKypkf2Ryi+hGEUepdMA2w4wsyired4nW+9zdxzw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8534
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Organization: IBM Deutschland Research & Development GmbH, https://www.ibm.com/privacy, Vors. Aufs.-R.: Wolfgang Wendt, Geschäftsführung: David Faller. Sitz der Ges.: Ehningen, Registergericht: AmtsG Stuttgart, HRB 243294
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMDAyMDA1MCBTYWx0ZWRfXynzHNfD8NAVR
+ XVjEj2Rihvj70KkkLpncxJeLCktxIOfB+De/ykx0LS4NBZWKlBUHG1QH6YhF9spTi6h2sSS9WS9
+ pD9pCUJq+bEP15U2l659MD7zqVsPpgs=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMDAyMDA1MCBTYWx0ZWRfX6CtAduA1PvRr
+ 6AH+DJVq9POG5M6wQgcVBHhjmMh2CyqDorxxlU4pUTicS2XMJksSqogvsWChaa2F/mk1XRO+fqd
+ Wh7A2wjVIFFXnAbmutGGJO8Zh6a3oYJdEjp22t3UX79reTrzS1ltMtTN/oI2hg8FYXUmgVMaiep
+ RFoMmzi4Mwkn8izinWQA+cIQb7ma12wIEC32PIGgzVqGsCI5I4ug5qAmUb8xIfJvVzBjmoeEL8x
+ YfJsZdfLNlmkEyxI4gKaUNIPozirqhwxqDCWwRp0vqehBq8maU/swcOTHpxYd6dnDnT1KR4/AOi
+ tvXpvlLCZtf3NDJyiwVDyE/WTPFvmDGdnM8WDAVSOKa0To6sMbdFKTSd9XlgiQqyLoPrKh2SIg3
+ RJM07WS9+2fWbZq1YzdypuxYW6fO3fTkjFy3WJdzOuZ6b914bGINZ9WqVUZSsEhyhBTX7vBGdHG
+ 5NiAuK6by7JgQEcSqnQ==
+X-Proofpoint-GUID: CK6Ki0QfI2tb1HFwGC_WhlsODGlioN9w
+X-Authority-Analysis: v=2.4 cv=RKcmjIi+ c=1 sm=1 tr=0 ts=6abfa9df cx=c_pps
+ a=GFwsV6G8L6GxiO2Y/PsHdQ==:117 a=GFwsV6G8L6GxiO2Y/PsHdQ==:17
+ a=IkcTkHD0fZMA:10 a=660iZSQnnn4A:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=iQ6ETzBq9ecOQQE5vZCe:22 a=VwQbUJbxAAAA:8
+ a=VnNF1IyMAAAA:8 a=8WQ6pR0vsFU20fZEhjUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: pjfGTk1oY-3-vEo4Ta9LqKR-x_lHy91h
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.134,FMLib:17.12.100.49
+ definitions=2026-10-02_03,2026-10-01_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 spamscore=0 bulkscore=0 impostorscore=0
+ adultscore=0 lowpriorityscore=0 suspectscore=0 malwarescore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2609040000 definitions=main-2610020050
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,96 +138,399 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
->-----Original Message-----
->From: David E. Box <david.e.box@linux.intel.com>
->Sent: Thursday, October 1, 2026 6:04 PM
->To: ilpo.jarvinen@linux.intel.com; david.e.box@linux.intel.com; linux-
->kernel@vger.kernel.org; platform-driver-x86@vger.kernel.org; Vivi, Rodrigo
-><rodrigo.vivi@intel.com>; Ruhl, Michael J <michael.j.ruhl@intel.com>; Sidd=
-iqui,
->Ayaz A <ayaz.siddiqui@intel.com>; Muqthyar Ahmed, Syed Abdul
-><syed.abdul.muqthyar.ahmed@intel.com>; intel-xe@lists.freedesktop.org;
->hansg@kernel.org
->Cc: stable@vger.kernel.org
->Subject: [PATCH 1/3] platform/x86/intel/pmt: Fix NULL dereference when
->reading crashlog data
->
->Commit 353042d54d82 ("platform/x86/intel/vsec: Switch exported helpers
->from
->pci_dev to device") changed intel_pmt_read() to pass entry->ep->dev to
->pmt_telem_read_mmio() in place of entry->pcidev. entry->ep is only
->allocated by the telemetry namespace's pmt_add_endpoint() hook. Crashlog
->entries never get one, so any read() of a crashlog sysfs data file
->dereferences a NULL pointer.
->
->Use the intel_vsec_device parent device instead. The PMT class device is a
->child of the auxiliary device, so derive it the same way
->intel_pmt_attr_visible() does. This is the same device telemetry stored in
->ep->dev, so behavior for telemetry and any read_telem() callback is
->unchanged.
->
->Fixes: 353042d54d82 ("platform/x86/intel/vsec: Switch exported helpers fro=
-m
->pci_dev to device")
->Cc: stable@vger.kernel.org
->Assisted-by: LLM
->Signed-off-by: David E. Box <david.e.box@linux.intel.com>
->---
-> drivers/platform/x86/intel/pmt/class.c | 4 +++-
-> 1 file changed, 3 insertions(+), 1 deletion(-)
->
->diff --git a/drivers/platform/x86/intel/pmt/class.c
->b/drivers/platform/x86/intel/pmt/class.c
->index d0ab8e33c62a..b69c79785d9c 100644
->--- a/drivers/platform/x86/intel/pmt/class.c
->+++ b/drivers/platform/x86/intel/pmt/class.c
->@@ -90,6 +90,8 @@ intel_pmt_read(struct file *filp, struct kobject *kobj,
-> 	struct intel_pmt_entry *entry =3D container_of(attr,
-> 						     struct intel_pmt_entry,
-> 						     pmt_bin_attr);
->+	struct device *dev =3D kobj_to_dev(kobj);
->+	struct intel_vsec_device *ivdev =3D
->auxdev_to_ivdev(to_auxiliary_dev(dev->parent));
->
-> 	if (off < 0)
-> 		return -EINVAL;
->@@ -100,7 +102,7 @@ intel_pmt_read(struct file *filp, struct kobject *kobj=
-,
-> 	if (count > entry->size - off)
-> 		count =3D entry->size - off;
->
->-	count =3D pmt_telem_read_mmio(entry->ep->dev, entry->cb, entry-
->>header.guid, buf,
->+	count =3D pmt_telem_read_mmio(ivdev->dev, entry->cb, entry-
->>header.guid, buf,
-> 				    entry->base, off, count);
+When removing PCI device or PCI bus objects there are a couple of
+call-chains where it is possible that the kernel runs into a circular
+deadlock involving the central `pci_rescan_remove_lock`.
 
-Hi Ilpo, David,
+Two examples:
 
-My patch:
+(A) Thread α receives a PCI event notifying the kernel that a PCI
+virtual function has been moved into Reserved state, and so the PCI
+subsystem will try to remove that PCI function. The call-chain for that
+looks like this:
+  __zpci_event_availability()
+    -> zpci_zdev_put()              # will   lock(zpci_add_remove_lock),
+                                    # and    lock(zpci_list_lock)
+    -> zpci_release_device()        # will unlock(zpci_list_lock)
+    -> zpci_cleanup_bus_resources() # will   lock(pci_rescan_remove_lock)
 
-[PATCH v11 01/20] platform/x86/intel/pmt: complete pcidev to device update
+Thread β is triggered by userspace writing 0 into the SysFS attribute
+`sriov_numvfs` of the parent PCI physical function of the same function
+we just try to remove. This will also try to release the PCI virtual
+function; but this time the call-chain looks like this:
+  sriov_numvfs_store()
+    -> ... (device driver dependent)
+    -> sriov_disable()
+    -> sriov_del_vfs()              # will   lock(pci_rescan_remove_lock)
+    -> ... (deep chain)
+    -> pci_release_dev()
+    -> pcibios_release_device()
+    -> zpci_zdev_put()              # will   lock(zpci_add_remove_lock)
 
-Fixes this issue in a slightly different way... (uses entry->dev rather tha=
-n entry->pcidev).
+If thread α and β coincide, this will result in a cyclic deadlock.
 
-David,
+(B) Thread γ receives a PCI event notifying the kernel that one or more
+PCI functions got hot plugged, and need to be configured. A possible
+call-chain that might happen while the PCI subsystem is trying to add
+those new function looks like this:
+  __zpci_event_availability()
+    -> ... (multiple ways in which a device gets added)
+    -> zpci_add_device()            # will   lock(zpci_add_remove_lock)
+    -> zpci_bus_device_register()
+    -> zpci_bus_put()               # will   lock(zbus_list_lock)
+    -> zpci_bus_release()           # will unlock(zbus_list_lock)
+                                    # will   lock(pci_rescan_remove_lock)
 
-In my patch I have also updated the intel_pmt_get_features() function to us=
-e the
-entry->dev value (rather than entry->ep->dev).
+Now the same thread β as above in (A) might coincide, and again could
+result in a cyclic deadlock.
 
-I think the ep->dev is for Telemetry access, and "features" is a general us=
-age?
+`pci_rescan_remove_lock` has to be and is taken at a "high level" in
+most call-chains since it is intended to protect/mutual exclude all
+rescan and/or removal actions taken in the PCI subsystem. So to prevent
+the outlined deadlock scenarios above remove it instead from the "low
+level" release functions for both the PCI device and PCI bus objects.
 
-Should the _get_features stay entry->ep->dev?  or is entry->dev "more corre=
-ct"?
+Instead, lock `pci_rescan_remove_lock` in all call-chains leading to
+those release functions:
+  * initialization of the PCI subsystem;
+  * processing of availability events (CRWs) for PCI functions;
+  * processing of error events (CRWs) for PCI functions;
+  * architecture specific release PCI device implementation.
 
-Thanks
+Additionally, remove `pci_rescan_remove_lock` from zpci_bus_scan_bus()
+since its only caller zpci_scan_devices() is now always called with
+`pci_rescan_remove_lock` already held.
 
-Mike
+Lastly, document the new locking expectations after these changes. Add
+sparse and lockdep annotations to functions that previously locked
+`pci_rescan_remove_lock` explicitly, making sure the lock is now
+already held when called. Additionally also add the annotations to
+zpci_zdev_put() and zpci_bus_put() to make sure that every function that
+potentially drops the last reference already holds the lock to prevent
+surprises.
 
-> 	return count;
->--
->2.43.0
+Fixes: 05bc1be6db4b2 ("s390/pci: create zPCI bus")
+Fixes: ab909509850b2 ("PCI: s390: Fix use-after-free of PCI resources with per-function hotplug")
+Cc: stable@vger.kernel.org
+Signed-off-by: Benjamin Block <bblock@linux.ibm.com>
+---
+ arch/s390/pci/pci.c       | 10 ++++++++--
+ arch/s390/pci/pci_bus.c   | 15 ++++++++-------
+ arch/s390/pci/pci_event.c | 29 +++++++++++++++++++----------
+ arch/s390/pci/pci_iov.c   |  3 +--
+ arch/s390/pci/pci_sysfs.c | 25 ++++++++++++-------------
+ 5 files changed, 48 insertions(+), 34 deletions(-)
+
+
+Hello all,
+
+Since I didn't get any response so far I just rerolled the last patch
+that had the medium complaints by Sashiko. Everything else is unchanged.
+
+Change v15 -> v16:
+    * Patch 5/5: changed two findigs by Sashiko were cleanup helpers were mixed
+      with gotos in the same function against recommendations
+
+This is no functional change, "just" syntax.
+
+
+diff --git a/arch/s390/pci/pci.c b/arch/s390/pci/pci.c
+index d64c544b32b0..92aa88fb9cfc 100644
+--- a/arch/s390/pci/pci.c
++++ b/arch/s390/pci/pci.c
+@@ -71,9 +71,11 @@ struct airq_iv *zpci_aif_sbv;
+ EXPORT_SYMBOL_GPL(zpci_aif_sbv);
+ 
+ void zpci_zdev_put(struct zpci_dev *zdev)
++	__must_hold(&pci_rescan_remove_lock)
+ {
+ 	if (!zdev)
+ 		return;
++	lockdep_assert_held(&pci_rescan_remove_lock);
+ 	mutex_lock(&zpci_add_remove_lock);
+ 	kref_put_lock(&zdev->kref, zpci_release_device, &zpci_list_lock);
+ 	mutex_unlock(&zpci_add_remove_lock);
+@@ -583,11 +585,13 @@ int zpci_setup_bus_resources(struct zpci_dev *zdev)
+ }
+ 
+ static void zpci_cleanup_bus_resources(struct zpci_dev *zdev)
++	__must_hold(&pci_rescan_remove_lock)
+ {
+ 	struct resource *res;
+ 	int i;
+ 
+-	pci_lock_rescan_remove();
++	lockdep_assert_held(&pci_rescan_remove_lock);
++
+ 	for (i = 0; i < PCI_STD_NUM_BARS; i++) {
+ 		res = zdev->bars[i].res;
+ 		if (!res)
+@@ -600,7 +604,6 @@ static void zpci_cleanup_bus_resources(struct zpci_dev *zdev)
+ 		kfree(res);
+ 	}
+ 	zdev->has_resources = 0;
+-	pci_unlock_rescan_remove();
+ }
+ 
+ int pcibios_device_add(struct pci_dev *pdev)
+@@ -630,6 +633,7 @@ void pcibios_release_device(struct pci_dev *pdev)
+ {
+ 	struct zpci_dev *zdev = to_zpci(pdev);
+ 
++	guard(pci_rescan_remove)();
+ 	zpci_unmap_resources(pdev);
+ 	zpci_zdev_put(zdev);
+ }
+@@ -1208,7 +1212,9 @@ static int __init pci_base_init(void)
+ 	if (rc)
+ 		goto out_irq;
+ 
++	pci_lock_rescan_remove();
+ 	rc = zpci_scan_devices();
++	pci_unlock_rescan_remove();
+ 	if (rc)
+ 		goto out_find;
+ 
+diff --git a/arch/s390/pci/pci_bus.c b/arch/s390/pci/pci_bus.c
+index 36a4807285fa..c1b48b572e86 100644
+--- a/arch/s390/pci/pci_bus.c
++++ b/arch/s390/pci/pci_bus.c
+@@ -82,9 +82,8 @@ int zpci_bus_scan_device(struct zpci_dev *zdev)
+ 	if (!pdev)
+ 		return -ENODEV;
+ 
+-	pci_lock_rescan_remove();
++	guard(pci_rescan_remove)();
+ 	pci_bus_add_device(pdev);
+-	pci_unlock_rescan_remove();
+ 
+ 	return 0;
+ }
+@@ -132,10 +131,13 @@ void zpci_bus_remove_device(struct zpci_dev *zdev, bool set_error)
+  * Return: 0 on success, an error value otherwise
+  */
+ int zpci_bus_scan_bus(struct zpci_bus *zbus)
++	__must_hold(&pci_rescan_remove_lock)
+ {
+ 	struct zpci_dev *zdev;
+ 	int devfn, rc, ret = 0;
+ 
++	lockdep_assert_held(&pci_rescan_remove_lock);
++
+ 	for (devfn = 0; devfn < ZPCI_FUNCTIONS_PER_BUS; devfn++) {
+ 		zdev = zbus->function[devfn];
+ 		if (zdev && zdev->state == ZPCI_FN_STATE_CONFIGURED) {
+@@ -145,10 +147,8 @@ int zpci_bus_scan_bus(struct zpci_bus *zbus)
+ 		}
+ 	}
+ 
+-	pci_lock_rescan_remove();
+ 	pci_scan_child_bus(zbus->bus);
+ 	pci_bus_add_devices(zbus->bus);
+-	pci_unlock_rescan_remove();
+ 
+ 	return ret;
+ }
+@@ -214,11 +214,12 @@ static int zpci_bus_create_pci_bus(struct zpci_bus *zbus, struct zpci_dev *fr, s
+  * run of the function.
+  */
+ static inline void zpci_bus_release(struct kref *kref)
+-	__releases(&zbus_list_lock)
++	__releases(&zbus_list_lock) __must_hold(&pci_rescan_remove_lock)
+ {
+ 	struct zpci_bus *zbus = container_of(kref, struct zpci_bus, kref);
+ 
+ 	lockdep_assert_held(&zbus_list_lock);
++	lockdep_assert_held(&pci_rescan_remove_lock);
+ 
+ 	list_del(&zbus->bus_next);
+ 	mutex_unlock(&zbus_list_lock);
+@@ -229,14 +230,12 @@ static inline void zpci_bus_release(struct kref *kref)
+ 	 */
+ 
+ 	if (zbus->bus) {
+-		pci_lock_rescan_remove();
+ 		pci_stop_root_bus(zbus->bus);
+ 
+ 		zpci_free_domain(zbus->domain_nr);
+ 		pci_free_resource_list(&zbus->resources);
+ 
+ 		pci_remove_root_bus(zbus->bus);
+-		pci_unlock_rescan_remove();
+ 	}
+ 
+ 	zpci_remove_parent_msi_domain(zbus);
+@@ -250,7 +249,9 @@ static inline void __zpci_bus_get(struct zpci_bus *zbus)
+ }
+ 
+ static inline void zpci_bus_put(struct zpci_bus *zbus)
++	__must_hold(&pci_rescan_remove_lock)
+ {
++	lockdep_assert_held(&pci_rescan_remove_lock);
+ 	kref_put_mutex(&zbus->kref, zpci_bus_release, &zbus_list_lock);
+ }
+ 
+diff --git a/arch/s390/pci/pci_event.c b/arch/s390/pci/pci_event.c
+index d6af4015223e..076d2b3c342b 100644
+--- a/arch/s390/pci/pci_event.c
++++ b/arch/s390/pci/pci_event.c
+@@ -385,7 +385,9 @@ static void __zpci_event_error(struct zpci_ccdf_err *ccdf)
+ 	pci_dev_put(pdev);
+ no_pdev:
+ 	mutex_unlock(&zdev->state_lock);
++	pci_lock_rescan_remove();
+ 	zpci_zdev_put(zdev);
++	pci_unlock_rescan_remove();
+ }
+ 
+ void zpci_event_error(void *data)
+@@ -431,6 +433,7 @@ static bool zpci_event_avail_any_device(struct zpci_ccdf_avail *ccdf)
+ 	if (ccdf->pec != 0x0306)
+ 		return false;
+ 	/* 0x308 or 0x302 for multiple devices */
++	guard(pci_rescan_remove)();
+ 	zpci_remove_reserved_devices();
+ 	zpci_scan_devices();
+ 	return true;
+@@ -439,26 +442,29 @@ static bool zpci_event_avail_any_device(struct zpci_ccdf_avail *ccdf)
+ static void zpci_event_avail_new_device(struct zpci_ccdf_avail *ccdf)
+ {
+ 	struct zpci_dev *zdev;
++	bool freed = false;
+ 
+ 	switch (ccdf->pec) {
+ 	case 0x0301: /* Reserved|Standby -> Configured */
+ 		zdev = zpci_create_device(ccdf->fid, ccdf->fh, ZPCI_FN_STATE_CONFIGURED);
+ 		if (IS_ERR(zdev))
+ 			break;
+-		if (zpci_add_device(zdev)) {
+-			kfree(zdev);
+-			break;
+-		}
+-		zpci_scan_configured_device(zdev, ccdf->fh);
++		scoped_guard(pci_rescan_remove)
++			if (zpci_add_device(zdev)) {
++				kfree(zdev);
++				/* break; is incompatible w/ scoped_guard() */
++				freed = true;
++			}
++		if (!freed)
++			zpci_scan_configured_device(zdev, ccdf->fh);
+ 		break;
+ 	case 0x0302: /* Reserved -> Standby */
+ 		zdev = zpci_create_device(ccdf->fid, ccdf->fh, ZPCI_FN_STATE_STANDBY);
+ 		if (IS_ERR(zdev))
+ 			break;
+-		if (zpci_add_device(zdev)) {
+-			kfree(zdev);
+-			break;
+-		}
++		scoped_guard(pci_rescan_remove)
++			if (zpci_add_device(zdev))
++				kfree(zdev);
+ 		break;
+ 	}
+ }
+@@ -500,11 +506,13 @@ static void zpci_event_avail_existing_device(struct zpci_dev *zdev, struct zpci_
+ 		/* The 0x0304 event may immediately reserve the device */
+ 		if (!clp_get_state(zdev->fid, &state) &&
+ 		    state == ZPCI_FN_STATE_RESERVED) {
++			guard(pci_rescan_remove)();
+ 			zpci_device_reserved(zdev);
+ 		}
+ 		break;
+ 	case 0x0308: /* Standby -> Reserved */
+-		zpci_device_reserved(zdev);
++		scoped_guard(pci_rescan_remove)
++			zpci_device_reserved(zdev);
+ 		break;
+ 	}
+ }
+@@ -526,5 +534,6 @@ void zpci_event_availability(void *data)
+ 	mutex_lock(&zdev->state_lock);
+ 	zpci_event_avail_existing_device(zdev, ccdf);
+ 	mutex_unlock(&zdev->state_lock);
++	guard(pci_rescan_remove)();
+ 	zpci_zdev_put(zdev);
+ }
+diff --git a/arch/s390/pci/pci_iov.c b/arch/s390/pci/pci_iov.c
+index 13050ce5c3e9..1f7e4dd018e7 100644
+--- a/arch/s390/pci/pci_iov.c
++++ b/arch/s390/pci/pci_iov.c
+@@ -38,10 +38,9 @@ void zpci_iov_map_resources(struct pci_dev *pdev)
+ 
+ void zpci_iov_remove_virtfn(struct pci_dev *pdev, int vfn)
+ {
+-	pci_lock_rescan_remove();
++	guard(pci_rescan_remove)();
+ 	/* Linux' vfid's start at 0 vfn at 1 */
+ 	pci_iov_remove_virtfn(pdev->physfn, vfn - 1);
+-	pci_unlock_rescan_remove();
+ }
+ 
+ static int zpci_iov_link_virtfn(struct pci_dev *pdev, struct pci_dev *virtfn, int vfid)
+diff --git a/arch/s390/pci/pci_sysfs.c b/arch/s390/pci/pci_sysfs.c
+index bbb76113a4d0..1e211bcb284e 100644
+--- a/arch/s390/pci/pci_sysfs.c
++++ b/arch/s390/pci/pci_sysfs.c
+@@ -76,10 +76,15 @@ static int _do_recover(struct pci_dev *pdev, struct zpci_dev *zdev)
+ 	return ret;
+ }
+ 
++/* So we don't have to mix cleanup.h helpers and gotos in recover_store() */
++DEFINE_CLASS(sysfs_break_active_protection, struct kernfs_node *,
++	     if (_T) sysfs_unbreak_active_protection(_T),
++	     sysfs_break_active_protection(kobj, attr),
++	     struct kobject *kobj, const struct attribute *attr);
++
+ static ssize_t recover_store(struct device *dev, struct device_attribute *attr,
+ 			     const char *buf, size_t count)
+ {
+-	struct kernfs_node *kn;
+ 	struct pci_dev *pdev = to_pci_dev(dev);
+ 	struct zpci_dev *zdev = to_zpci(pdev);
+ 	int ret = 0;
+@@ -94,13 +99,13 @@ static ssize_t recover_store(struct device *dev, struct device_attribute *attr,
+ 	 * This is analogous to sdev_store_delete() in
+ 	 * drivers/scsi/scsi_sysfs.c
+ 	 */
+-	kn = sysfs_break_active_protection(&dev->kobj, &attr->attr);
++	CLASS(sysfs_break_active_protection, kn)(&dev->kobj, &attr->attr);
+ 	WARN_ON_ONCE(!kn);
+ 
+ 	/* Device needs to be configured and state must not change */
+-	mutex_lock(&zdev->state_lock);
++	guard(mutex)(&zdev->state_lock);
+ 	if (zdev->state != ZPCI_FN_STATE_CONFIGURED)
+-		goto out;
++		return count;
+ 
+ 	/* device_remove_file() serializes concurrent calls ignoring all but
+ 	 * the first
+@@ -109,20 +114,14 @@ static ssize_t recover_store(struct device *dev, struct device_attribute *attr,
+ 
+ 	/* A concurrent call to recover_store() may slip between
+ 	 * sysfs_break_active_protection() and the sysfs file removal.
+-	 * Once it unblocks from pci_lock_rescan_remove() the original pdev
++	 * Once it unblocks from guard(pci_rescan_remove)() the original pdev
+ 	 * will already be removed.
+ 	 */
+-	pci_lock_rescan_remove();
+-	if (pci_dev_is_added(pdev)) {
++	guard(pci_rescan_remove)();
++	if (pci_dev_is_added(pdev))
+ 		ret = _do_recover(pdev, zdev);
+-	}
+ 	pci_rescan_bus(zdev->zbus->bus);
+-	pci_unlock_rescan_remove();
+ 
+-out:
+-	mutex_unlock(&zdev->state_lock);
+-	if (kn)
+-		sysfs_unbreak_active_protection(kn);
+ 	return ret ? ret : count;
+ }
+ static DEVICE_ATTR_WO(recover);
+-- 
+2.56.0
 
