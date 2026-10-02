@@ -4,68 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7675FCA5FC4
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Oct 2026 09:48:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45640CA5FC4
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Oct 2026 09:52:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 302A810E425;
-	Fri,  2 Oct 2026 09:48:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 067D010E375;
+	Fri,  2 Oct 2026 09:52:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FsuJjrU5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Exwkb1Bo";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A24F10E425;
- Fri,  2 Oct 2026 09:48:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5057B10E375
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Oct 2026 09:52:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790934501; x=1822470501;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=RbcWBmCUPxJ+y+RKr8MXYk/AIpKv9AVVXztnaBm7aIk=;
- b=FsuJjrU53WMJgU2igrkRUkGJN0a2+iS6782KSlyGRnw+/t4O3Qdj4THl
- F192fSbjMXd6mACVeTL1Tk5jN3XQ4dumUbAdsBxPSUVqdpITJ7ayvAoH8
- 6OCan6Hbg3aY7HywUyW6OruhKzDsaVxmiBDtl/R1VBFKc5wPU55uNc1e9
- AckbvvUOU25VYD25wjsvMUBc/fJm6mbLWTyIt4Kqnuj75jzUNC1LJQLwN
- qqyj8TttbKyNU0/5IwheFOBoyx9PLTRQoZUGohWhTGfFKKblmNl8BpIYT
- kf3yWm34Ns00qfEOx4kn/Rl2KjY9owJ/JdEfzxz0O6s42X8/s9PJOEJpA Q==;
-X-CSE-ConnectionGUID: WsC1y8loSqy/rDx2PNNKcw==
-X-CSE-MsgGUID: KEgTWTPOTp+xmvMxgL0VUw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="102374093"
-X-IronPort-AV: E=Sophos;i="6.27,136,1787036400"; d="scan'208";a="102374093"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2026 02:48:21 -0700
-X-CSE-ConnectionGUID: p0x8X6ozTo2s8vpYu1Y3mQ==
-X-CSE-MsgGUID: 9fXOdM5bTF2RRK4GAMke+A==
+ t=1790934769; x=1822470769;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=dOxcqAV/3m9cJNuO0lc8CSNyqj0luR/M0WHV8fHhgpc=;
+ b=Exwkb1BoGx/lZc1SmFqW4MNoCL6+iwbzCELXdbvyo7BgQ8uWG/ew/72+
+ /yJH+2IOBR/HKXIQtzKMU8H2OnQwG0OPDLIbRiDnqGYRr6Ea88YZwP423
+ lqnW1BwRNJY8o3j+lbfE4JtZDBDnbQUC6gpXQ82hy74q09sbTxC5+98Eg
+ qUxlpqBSq0HCOKYxsQ+mTzUfqaiUuDi9rKT911Yje4OxxycvwEIEUFiz1
+ ac/6M+zRyMGMF7vtpwsPktFEEnPMMNQeIRxmLw5HMRzMtCrmG/MbvUb3M
+ wPQHWaYHtxVyTflkUVGK1pT88P5DEGFV0qKi/LgTWfA3OKw5bDWaZAa/y Q==;
+X-CSE-ConnectionGUID: P40TmxQHTWy6Tw4u4aXC1A==
+X-CSE-MsgGUID: AYLV8gkVQc+fdJGcz9x4/A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11922"; a="102275171"
+X-IronPort-AV: E=Sophos;i="6.27,136,1787036400"; d="scan'208";a="102275171"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2026 02:52:48 -0700
+X-CSE-ConnectionGUID: x+ACUD/RRYGL4vYFfDbvMQ==
+X-CSE-MsgGUID: 5r1r34UxSbe3xUPFQ67+KQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,136,1787036400"; d="scan'208";a="280959261"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa004.fm.intel.com with ESMTP; 02 Oct 2026 02:48:16 -0700
-Received: by black.igk.intel.com (Postfix, from userid 1003)
- id 6CEE299; Fri, 02 Oct 2026 11:48:15 +0200 (CEST)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Bjorn Helgaas <bhelgaas@google.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
- linux-pci@vger.kernel.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Hans de Goede <hansg@kernel.org>,
- =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Andy Shevchenko <andy@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: [PATCH v1 1/1] media: Consolidate AtomISP v2 PCI IDs in the pci_ids.h
-Date: Fri,  2 Oct 2026 11:43:43 +0200
-Message-ID: <20261002094813.856439-1-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.50.1
+X-IronPort-AV: E=Sophos;i="6.27,136,1787036400"; d="scan'208";a="304181080"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO [10.245.244.200])
+ ([10.245.244.200])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2026 02:52:46 -0700
+Message-ID: <b9553a5e4e6f3a5f836e3b61c22f1cbc59da3ad6.camel@linux.intel.com>
+Subject: Re: [PATCH v2 2/2] drm/xe: Fix stale pinned_link entry when fb-pin
+ performs the final unpin
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, stable@vger.kernel.org, Matthew Brost
+ <matthew.brost@intel.com>
+Date: Fri, 02 Oct 2026 11:52:44 +0200
+In-Reply-To: <a0ded4eb-98e3-4142-b2c5-3dc55d9687d1@intel.com>
+References: <20261001134018.111553-1-thomas.hellstrom@linux.intel.com>
+ <20261001134018.111553-3-thomas.hellstrom@linux.intel.com>
+ <a0ded4eb-98e3-4142-b2c5-3dc55d9687d1@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-2.fc43) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,135 +74,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We have a few drivers using same pair of the PCI IDs across the kernel and
-there seems more to go, consolidate AtomISP v2 PCI IDs in pci_ids.h database.
+On Thu, 2026-10-01 at 18:26 +0100, Matthew Auld wrote:
+> On 01/10/2026 14:40, Thomas Hellstr=C3=B6m wrote:
+> > xe_bo_pin_external() and xe_bo_unpin_external() maintain the bo's
+> > pinned_link list membership in xe->pinned.late.external, based on
+> > whether the current call is the outermost pin or the final unpin.
+> > However, the same external bo's pin_count can also be raised and
+> > lowered directly by __xe_pin_fb_vma()/__xe_unpin_fb_vma(), which
+> > pin
+> > the bo as a display scanout buffer without going through
+> > xe_bo_pin_external()/xe_bo_unpin_external() at all, and have no
+> > notion of, or ownership over, pinned_link.
+> >=20
+> > If a bo is pinned both externally (e.g. dma-buf export) and as an
+> > fb,
+> > and the external unpin happens first, xe_bo_unpin_external()
+> > correctly
+> > observes pin_count > 1 and leaves the bo on pinned_link. When the
+> > fb
+> > unpin later performs the true last unpin (pin_count 1 -> 0), it
+> > never
+> > touches pinned_link, leaving the bo linked on xe-
+> > >pinned.late.external
+> > indefinitely. Once the bo is subsequently freed, this stale list
+> > entry
+> > points into freed memory, corrupting the list and risking a
+> > use-after-free the next time the list is walked or spliced.
+> >=20
+> > The backup object pin/unpin sites in
+> > xe_bo_notifier_prepare_pinned()/
+> > xe_bo_notifier_unprepare_pinned() have the same bypass
+> > characteristic,
+> > though they never add their bo to a pinned list, so are not
+> > affected
+> > by this particular list-corruption issue.
+> >=20
+> > Move the pinned_link removal into xe_bo_account_unpin(), which
+> > already
+> > runs on every unpin path (kernel, external, framebuffer, backup
+> > object) right before the true 1 -> 0 pin_count transition. Since
+> > list_del_init() only operates on the node itself, this removal is
+> > list-agnostic and safe to perform regardless of which list
+> > (external
+> > or kernel_bo_present) the bo happens to be linked on, or which code
+> > path is performing the final unpin. Drop the now-redundant explicit
+> > list_del_init() calls in xe_bo_unpin_external() and xe_bo_unpin().
+>=20
+> I think you can also use this idea to bypass the p2p checking? Create
+> a=20
+> VRAM + TT buffer, turn it into an fb and use it for scanout. While fb
+> pinned you dma-buf export/import + map it (dynamic). AFAICT you can=20
+> trick xe_dma_buf_map() since this buffer looks like you can migrate
+> it=20
+> (dual placement) but since already fb pinned this will make it skip
+> the=20
+> actual migrate/validate, so it falls through to mapping the VRAM
+> using=20
+> the pci address. However, this could be on a system that lacks p2p=20
+> support. Don't see what prevents that?
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
+Thanks, for reviewing, Matt. Yup that concern indeed seems valid. I'll
+craft a separate patch for that.=20
 
-Assuming that media subsystem is the main beneficiary I think it is the best
-to route it via that tree. For others (i915, PCI, PDx86), please Ack if you
-are agree.
+Meanwhile, Sashiko flagged a couple of issues with the current series,
+so I'll send out a v3. Please let me know if your R-Bs still hold.
 
- drivers/gpu/drm/i915/display/intel_display_power.c   |  6 +++---
- drivers/platform/x86/intel/atomisp2/pm.c             |  6 +++---
- drivers/staging/media/atomisp/pci/atomisp_internal.h |  2 --
- drivers/staging/media/atomisp/pci/atomisp_v4l2.c     | 10 +++++-----
- include/linux/pci_ids.h                              |  2 ++
- 5 files changed, 13 insertions(+), 13 deletions(-)
+Thanks,
+Thomas
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 2e534ddb7347..ee2c59b72b4a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -2086,9 +2086,9 @@ static void assert_ved_power_gated(struct intel_display *display)
- static void assert_isp_power_gated(struct intel_display *display)
- {
- 	static const struct pci_device_id isp_ids[] = {
--		{PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x0f38)},
--		{PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x22b8)},
--		{}
-+		{ PCI_VDEVICE(INTEL, PCI_DEVICE_ID_INTEL_ISP_BYT) },
-+		{ PCI_VDEVICE(INTEL, PCI_DEVICE_ID_INTEL_ISP_BSW) },
-+		{ }
- 	};
- 
- 	drm_WARN(display->drm, !pci_dev_present(isp_ids) &&
-diff --git a/drivers/platform/x86/intel/atomisp2/pm.c b/drivers/platform/x86/intel/atomisp2/pm.c
-index ad1f99140962..f3dee0e58f62 100644
---- a/drivers/platform/x86/intel/atomisp2/pm.c
-+++ b/drivers/platform/x86/intel/atomisp2/pm.c
-@@ -121,9 +121,9 @@ static UNIVERSAL_DEV_PM_OPS(isp_pm_ops, isp_pci_suspend,
- 			    isp_pci_resume, NULL);
- 
- static const struct pci_device_id isp_id_table[] = {
--	{ PCI_VDEVICE(INTEL, 0x0f38), },
--	{ PCI_VDEVICE(INTEL, 0x22b8), },
--	{ 0, }
-+	{ PCI_VDEVICE(INTEL, PCI_DEVICE_ID_INTEL_ISP_BYT) },
-+	{ PCI_VDEVICE(INTEL, PCI_DEVICE_ID_INTEL_ISP_BSW) },
-+	{ }
- };
- MODULE_DEVICE_TABLE(pci, isp_id_table);
- 
-diff --git a/drivers/staging/media/atomisp/pci/atomisp_internal.h b/drivers/staging/media/atomisp/pci/atomisp_internal.h
-index 5a69580b8251..1a05fc331557 100644
---- a/drivers/staging/media/atomisp/pci/atomisp_internal.h
-+++ b/drivers/staging/media/atomisp/pci/atomisp_internal.h
-@@ -37,7 +37,6 @@
- 	(((isp)->media_dev.hw_revision & ATOMISP_HW_REVISION_MASK) == \
- 	 ((rev) << ATOMISP_HW_REVISION_SHIFT))
- 
--#define ATOMISP_PCI_DEVICE_SOC_BYT	0x0f38
- /* MRFLD with 0x1178: ISP freq can burst to 457MHz */
- #define ATOMISP_PCI_DEVICE_SOC_MRFLD	0x1178
- /* MRFLD with 0x1179: max ISP freq limited to 400MHz */
-@@ -45,7 +44,6 @@
- /* MRFLD with 0x117a: max ISP freq is 400MHz and max freq at Vmin is 200MHz */
- #define ATOMISP_PCI_DEVICE_SOC_MRFLD_117A	0x117a
- #define ATOMISP_PCI_DEVICE_SOC_ANN	0x1478
--#define ATOMISP_PCI_DEVICE_SOC_CHT	0x22b8
- 
- #define ATOMISP_PCI_REV_MRFLD_A0_MAX	0
- #define ATOMISP_PCI_REV_BYT_A0_MAX	4
-diff --git a/drivers/staging/media/atomisp/pci/atomisp_v4l2.c b/drivers/staging/media/atomisp/pci/atomisp_v4l2.c
-index 476fe143a591..ab8727a806bf 100644
---- a/drivers/staging/media/atomisp/pci/atomisp_v4l2.c
-+++ b/drivers/staging/media/atomisp/pci/atomisp_v4l2.c
-@@ -1239,7 +1239,7 @@ static int atomisp_pci_probe(struct pci_dev *pdev, const struct pci_device_id *i
- 		}
- 		isp->hpll_freq = HPLL_FREQ_1600MHZ;
- 		break;
--	case ATOMISP_PCI_DEVICE_SOC_BYT:
-+	case PCI_DEVICE_ID_INTEL_ISP_BYT:
- 		isp->media_dev.hw_revision =
- 		    (ATOMISP_HW_REVISION_ISP2400
- 		     << ATOMISP_HW_REVISION_SHIFT) |
-@@ -1284,7 +1284,7 @@ static int atomisp_pci_probe(struct pci_dev *pdev, const struct pci_device_id *i
- 		isp->dfs = &dfs_config_merr;
- 		isp->hpll_freq = HPLL_FREQ_1600MHZ;
- 		break;
--	case ATOMISP_PCI_DEVICE_SOC_CHT:
-+	case PCI_DEVICE_ID_INTEL_ISP_BSW:
- 		isp->media_dev.hw_revision = (ATOMISP_HW_REVISION_ISP2401
- 						 << ATOMISP_HW_REVISION_SHIFT);
- 		isp->media_dev.hw_revision |= pdev->revision < 2 ?
-@@ -1487,12 +1487,12 @@ static const struct pci_device_id atomisp_pci_tbl[] = {
- 	{PCI_DEVICE(PCI_VENDOR_ID_INTEL, ATOMISP_PCI_DEVICE_SOC_MRFLD_1179)},
- 	{PCI_DEVICE(PCI_VENDOR_ID_INTEL, ATOMISP_PCI_DEVICE_SOC_MRFLD_117A)},
- 	/* Baytrail */
--	{PCI_DEVICE(PCI_VENDOR_ID_INTEL, ATOMISP_PCI_DEVICE_SOC_BYT)},
-+	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_ISP_BYT) },
- 	/* Anniedale (Merrifield+ / Moorefield) */
- 	{PCI_DEVICE(PCI_VENDOR_ID_INTEL, ATOMISP_PCI_DEVICE_SOC_ANN)},
- 	/* Cherrytrail */
--	{PCI_DEVICE(PCI_VENDOR_ID_INTEL, ATOMISP_PCI_DEVICE_SOC_CHT)},
--	{0,}
-+	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PCI_DEVICE_ID_INTEL_ISP_BSW) },
-+	{ }
- };
- MODULE_DEVICE_TABLE(pci, atomisp_pci_tbl);
- 
-diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
-index 63774ae2bf71..0693e4532a68 100644
---- a/include/linux/pci_ids.h
-+++ b/include/linux/pci_ids.h
-@@ -2732,6 +2732,7 @@
- #define PCI_DEVICE_ID_INTEL_HDA_HSW_3	0x0d0c
- #define PCI_DEVICE_ID_INTEL_HDA_BYT	0x0f04
- #define PCI_DEVICE_ID_INTEL_SST_BYT	0x0f28
-+#define PCI_DEVICE_ID_INTEL_ISP_BYT	0x0f38
- #define PCI_DEVICE_ID_INTEL_8257X_SOL	0x1062
- #define PCI_DEVICE_ID_INTEL_82573E_SOL	0x1085
- #define PCI_DEVICE_ID_INTEL_82573L_SOL	0x108f
-@@ -2787,6 +2788,7 @@
- #define PCI_DEVICE_ID_INTEL_VMD_201D	0x201d
- #define PCI_DEVICE_ID_INTEL_HDA_BSW	0x2284
- #define PCI_DEVICE_ID_INTEL_SST_BSW	0x22a8
-+#define PCI_DEVICE_ID_INTEL_ISP_BSW	0x22b8
- #define PCI_DEVICE_ID_INTEL_DH89XXCC_LPC_MIN	0x2310
- #define PCI_DEVICE_ID_INTEL_DH89XXCC_LPC_MAX	0x231f
- #define PCI_DEVICE_ID_INTEL_82801AA_0	0x2410
--- 
-2.50.1
 
+
+>=20
+> >=20
+> > Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Cc: intel-xe@lists.freedesktop.org
+> > Cc: <stable@vger.kernel.org> # v6.8+
+> > Assisted-by: LLM
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> >=20
+> > v2:
+> > - New patch
+> > ---
+> > =C2=A0 drivers/gpu/drm/xe/xe_bo.c | 25 ++++++++++++++++---------
+> > =C2=A0 1 file changed, 16 insertions(+), 9 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > b/drivers/gpu/drm/xe/xe_bo.c
+> > index 2fbbba7cf4b0..581bfded21db 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -487,12 +487,27 @@ static void xe_bo_account_pin(struct xe_bo
+> > *bo)
+> > =C2=A0=C2=A0 * held, before &ttm_buffer_object.pin_count is decremented=
+ by
+> > =C2=A0=C2=A0 * ttm_bo_unpin(), so that the check against the true 1->0
+> > transition sees
+> > =C2=A0=C2=A0 * the pin count that is about to be released.
+> > + *
+> > + * On the true last unpin, also removes @bo from whichever pinned-
+> > bo list
+> > + * (external or kernel_bo_present) it may currently be linked on,
+> > since a
+> > + * bo's final unpin can happen through a pin path (e.g.
+> > framebuffer,
+> > + * backup object) that has no notion of, or ownership over, that
+> > list.
+> > + * This is safe and list-agnostic: list_del_init() only needs the
+> > node
+> > + * itself, not knowledge of which list it is threaded through, and
+> > is a
+> > + * no-op if @bo is not linked.
+> > =C2=A0=C2=A0 */
+> > =C2=A0 static void xe_bo_account_unpin(struct xe_bo *bo)
+> > =C2=A0 {
+> > =C2=A0=C2=A0	struct xe_device *xe =3D xe_bo_device(bo);
+> > +	bool last_unpin =3D bo->ttm.pin_count =3D=3D 1;
+> > =C2=A0=20
+> > -	if (bo->ttm.pin_count =3D=3D 1 && bo->ttm.ttm &&
+> > ttm_tt_is_populated(bo->ttm.ttm))
+> > +	if (last_unpin && !list_empty(&bo->pinned_link)) {
+> > +		spin_lock(&xe->pinned.lock);
+> > +		list_del_init(&bo->pinned_link);
+> > +		spin_unlock(&xe->pinned.lock);
+> > +	}
+> > +
+> > +	if (last_unpin && bo->ttm.ttm && ttm_tt_is_populated(bo-
+> > >ttm.ttm))
+> > =C2=A0=C2=A0		xe_ttm_tt_account_add(xe, bo->ttm.ttm);
+> > =C2=A0 }
+> > =C2=A0=20
+> > @@ -3311,11 +3326,6 @@ void xe_bo_unpin_external(struct xe_bo *bo)
+> > =C2=A0=C2=A0	xe_assert(xe, xe_bo_is_pinned(bo));
+> > =C2=A0=C2=A0	xe_assert(xe, xe_bo_is_user(bo));
+> > =C2=A0=20
+> > -	spin_lock(&xe->pinned.lock);
+> > -	if (bo->ttm.pin_count =3D=3D 1 && !list_empty(&bo-
+> > >pinned_link))
+> > -		list_del_init(&bo->pinned_link);
+> > -	spin_unlock(&xe->pinned.lock);
+> > -
+> > =C2=A0=C2=A0	xe_bo_unpin_account(bo);
+> > =C2=A0=20
+> > =C2=A0=C2=A0	/*
+> > @@ -3337,10 +3347,7 @@ void xe_bo_unpin(struct xe_bo *bo)
+> > =C2=A0=C2=A0	xe_assert(xe, xe_bo_is_pinned(bo));
+> > =C2=A0=20
+> > =C2=A0=C2=A0	if (mem_type_is_vram(place->mem_type) || bo->flags &
+> > XE_BO_FLAG_GGTT) {
+> > -		spin_lock(&xe->pinned.lock);
+> > =C2=A0=C2=A0		xe_assert(xe, !list_empty(&bo->pinned_link));
+> > -		list_del_init(&bo->pinned_link);
+> > -		spin_unlock(&xe->pinned.lock);
+> > =C2=A0=20
+> > =C2=A0=C2=A0		if (bo->backup_obj) {
+> > =C2=A0=C2=A0			if (xe_bo_is_pinned(bo->backup_obj))
