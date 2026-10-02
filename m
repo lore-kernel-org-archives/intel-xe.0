@@ -4,144 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A86CCA5FE5
-	for <intel-xe@archiver.kernel.org>; Fri,  2 Oct 2026 20:58:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1ED8CA5FE4
+	for <intel-xe@archiver.kernel.org>; Fri,  2 Oct 2026 20:59:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37D7E10E37A;
-	Fri,  2 Oct 2026 20:58:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B50710E6C5;
+	Fri,  2 Oct 2026 20:59:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PPA4JaKA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j7Tx/Q4d";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 673C710E37A
- for <intel-xe@lists.freedesktop.org>; Fri,  2 Oct 2026 20:58:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09C9910E3F4
+ for <intel-xe@lists.freedesktop.org>; Fri,  2 Oct 2026 20:59:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1790974729; x=1822510729;
- h=from:to:cc:subject:date:message-id:
+ t=1790974768; x=1822510768;
+ h=from:to:subject:date:message-id:references:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=AaTmM9JBCflwJ/b6vFEfq/nnXk7Ik3NfQOU0xpWk0uE=;
- b=PPA4JaKAqiIMxpPzKL4yoRO9fQpATD90HRvKR31AIg4uUFqeQGI/1UUd
- cCf50UGckgbQwYaYHlpMVYeML6Ha16+zHxT4Cqsrb6b2TtGF0x0moV0Tt
- MJMVF4J0w6UyJtJUPz97fD1Ga1x9kVZ0twUF93NUY7tSGAkvypgtJ65A7
- TCp3+6zUEhfy53hoksNBsGE6m/gyMysiN4F3EkSKQpapEWPfFmyXf2vV9
- jdgF+z3MtD3tujky9btqCz0oSogTyqSnx6NcjBIXSkmck275xPczKMH5q
- Jf8rkHyHEObrYOJ6cyCp+7/FQB9hi2t2OQ5s0eyoXcI5Wu5RngPmtuHf9 g==;
-X-CSE-ConnectionGUID: PrSGA+dRQmCsAdG7mk4yeg==
-X-CSE-MsgGUID: 5+qc9KrxSjiAfZ4snrxgFw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11923"; a="102419663"
-X-IronPort-AV: E=Sophos;i="6.27,136,1787036400"; d="scan'208";a="102419663"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2026 13:58:49 -0700
-X-CSE-ConnectionGUID: F7zxqqZASK+lj6bnlgI5Vw==
-X-CSE-MsgGUID: p2pHxLILQaGNx/ZQjnyDRw==
+ bh=8Mxk2Hp9d3oD7b201//NWuizb9SjovkVROIWsnC7hAY=;
+ b=j7Tx/Q4dK3vDRTk27n3lgGrrlws62sc84p0H++T1YsBhfS+h0p1Rq+0D
+ TOZFBgxpxRGSXjUEIakoZnr3uFPScgCEhWJWteu7MRDzEWW28MgwSSrIh
+ hwJKocDTDc9kpLdklrm/79Gb+SJDHdSrBqbtNhil2Nhof8TmkoglXf/EB
+ zuV8U6VOPDyx6thAdKQBUCK11vcQLwof9nU0ikUPBhmrgxVVAUXhz9+Lk
+ gXsJViQ/woGVzzy+qIIM4EpFRE8E7BMnjl9m21xrfZJMwMgfuXqL9pQTa
+ HDkuIbmJFUCUjMZNoP1Dj7typ05Ps7bOsAyWXelI3cRZAyBW1IjhSRwNX w==;
+X-CSE-ConnectionGUID: RmTbvHVqRy+qEmJE59svGg==
+X-CSE-MsgGUID: TQ2E1fUhS4mHQrVnnNWhqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11923"; a="90776133"
+X-IronPort-AV: E=Sophos;i="6.27,136,1787036400"; d="scan'208";a="90776133"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2026 13:59:28 -0700
+X-CSE-ConnectionGUID: Mv4XJiBNQ5GCahQegFGBkQ==
+X-CSE-MsgGUID: vN8klPsWR8mld/bsQcKPjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,136,1787036400"; d="scan'208";a="280069608"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2026 13:58:49 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,136,1787036400"; d="scan'208";a="276391729"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2026 13:59:28 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Fri, 2 Oct 2026 13:58:48 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.49; Fri, 2 Oct 2026 13:59:27 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Fri, 2 Oct 2026 13:58:48 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.40) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.49 via Frontend Transport; Fri, 2 Oct 2026 13:59:27 -0700
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.50) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Fri, 2 Oct 2026 13:58:48 -0700
+ 15.2.2562.49; Fri, 2 Oct 2026 13:59:27 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HODBxEVHOWpKcWdSquz1hFmyzLFvRwyW8teEI6pQh5PU7gSCs7UxgJTOEl0BEmkpvWknJ29XLFYD910tbkd68qZe8T0CTCTxwUQhfxf95hLf6rGyTMbvQibty5pNQug+eGmy30Uj1QPqpwQCeFSa/9dUdOkCGTksbx72IrzP3b8DnVJ3stEZUYJEPCASx/p9fogAxlw6b/RtnVIPqB8H5zepJeQxel5k5XWyy8kMStO7ECHSB7V84sd9zCCa/QcgHWcfgXk0f4e8qDQTHNVnrNhP7uKtJU1Hh3A2HBsWH8YdTSwqbFAcoV0nTa1e8xGDI4hE+WSotnvo+z7VsKUXlA==
+ b=dOBG4Fsf6PEqVzgvEHTWnSN9tYsQjRXiGiamxqn3h+6Mv9JelXnR/jyOKaDOK3o1DK33bYeU2MO3CbtbXqU7yByQiBXVHm1TrUmAJQDPENL2FvjhiVicUhRUj5FfoIUre3MLJ3rPvN5xu1JqRk1sxzZcnLMzm8XKhFNuNfPWe7stc5L62ICInb8zWM1TE9f84/E2wfvBeRjCSuapeoUnzy+jFUDjJ3QBh3EeKmEad4/NJIbxovNV9YjB6Ekr4uMQEFeRnt0GFLUPbGGqB8Esf2ZsO35Lk6diRqRQ9B0z4rRbGaKhE6VCpQAo5eVkHfHXET/+3AW5mMEtUiDZPpbSKA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GY3k8rlC8rfy/FEhqC0/kHWaMyfnr3KSc0rgiV6g5vA=;
- b=aON3X6+yvLjwtWNEUrgeDTRP2+yb1NiUPE+9GL3nS14ukkbMPj7C8q6ENidTVDHT0W86rBYLzZ7wuJw9/T0tRRzHOQJoRU3QdJZ/xHDn8LVZqY2NZV7liYpdd7lEcek1tzU30l3gGismly+FShlWcNMJ5iQu/1G32/+GfXy3CHxto07+/uw03x97rUyHUCjywzV+OUlEMhqNhLM/7mymZpAmxFnF+BAHom2yQzprER9wyOAv5u9HpzXdsAPR4aKxXbESIGlOYV0pi2vbegNkWR8MJTTq08MJzf2ek3HyBkTrQ085C6gblj9XyQ7kYtsPFD9tVibVXe42aO+mq1TvUA==
+ bh=hROTI+1qXAuTMjaN4tePjyVyPeI4F8QwuqbNq09xqhw=;
+ b=SOcw4v8ti/pMOGEfQJwPX/OpnQGRpfUgcwm6DelpUqAUmp0h7aBkR4ULAgYr0xMthJRr7li/ezjaOEMpHmy+UiZt/AzBJGg3+bwP7b3419YIyZUjJeNLBuNfkHKzHT+MD3CNliK/TzTfn2LwHJg2o/d5DzE5Vo3Bowvw61N7LFfLaueiR9W9om11dIcQoJhnk8N2yP+n+9HaiaEWbCBom4vhb2jTh7NKQTKUYGhhaWEI5+KfI+e3xSsjKLtE0OzOx+M72NBDK8YBvcjaDbVMMyM8vXX8lIuvfq1g5Vk7JTcyEfJMjtVGdDWQm1qXgR7fKC9Ezz30E9T8nL8eNz9NaQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+Received: from CH3PR11MB046149.namprd11.prod.outlook.com
+ (2603:10b6:610:367::19) by DS0PR11MB7213.namprd11.prod.outlook.com
+ (2603:10b6:8:132::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.472.15; Fri, 2 Oct
+ 2026 20:59:23 +0000
+Received: from CH3PR11MB046149.namprd11.prod.outlook.com
+ ([fe80::7c3f:5300:19c4:b823]) by CH3PR11MB046149.namprd11.prod.outlook.com
+ ([fe80::7c3f:5300:19c4:b823%6]) with mapi id 15.21.0472.016; Fri, 2 Oct 2026
+ 20:59:23 +0000
+From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+To: "David E. Box" <david.e.box@linux.intel.com>,
+ "ilpo.jarvinen@linux.intel.com" <ilpo.jarvinen@linux.intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Siddiqui, Ayaz A"
+ <ayaz.siddiqui@intel.com>, "Muqthyar Ahmed, Syed Abdul"
+ <syed.abdul.muqthyar.ahmed@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "hansg@kernel.org" <hansg@kernel.org>
+Subject: RE: [PATCH 3/3] platform/x86/intel/pmt: Notify userspace when
+ crashlogs complete
+Thread-Topic: [PATCH 3/3] platform/x86/intel/pmt: Notify userspace when
+ crashlogs complete
+Thread-Index: AQHdUfDPMe0LEpnoZkSCP+cQX1lEH7bqu3uA
+Date: Fri, 2 Oct 2026 20:59:23 +0000
+Message-ID: <CH3PR11MB046149893CCB03A3C9B522B91DC1892@CH3PR11MB046149.namprd11.prod.outlook.com>
+References: <20261001220351.1592138-1-david.e.box@linux.intel.com>
+ <20261001220351.1592138-4-david.e.box@linux.intel.com>
+In-Reply-To: <20261001220351.1592138-4-david.e.box@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA0PR11MB7187.namprd11.prod.outlook.com (2603:10b6:208:441::12)
- by LV8PR11MB8746.namprd11.prod.outlook.com (2603:10b6:408:202::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.451.24; Fri, 2 Oct
- 2026 20:58:42 +0000
-Received: from IA0PR11MB7187.namprd11.prod.outlook.com
- ([fe80::be96:3f58:953d:6565]) by IA0PR11MB7187.namprd11.prod.outlook.com
- ([fe80::be96:3f58:953d:6565%4]) with mapi id 15.21.0472.015; Fri, 2 Oct 2026
- 20:58:42 +0000
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-CC: Fan Wu <fanwu01@zju.edu.cn>, <stable@vger.kernel.org>, Song Li
- <songl@zju.edu.cn>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI] drm/xe/i2c: cancel the client work on remove
-Date: Fri, 2 Oct 2026 16:56:21 -0400
-Message-ID: <20261002205620.211113-2-rodrigo.vivi@intel.com>
-X-Mailer: git-send-email 2.55.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR04CA0004.apcprd04.prod.outlook.com
- (2603:1096:4:197::22) To IA0PR11MB7187.namprd11.prod.outlook.com
- (2603:10b6:208:441::12)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|LV8PR11MB8746:EE_
-X-MS-Office365-Filtering-Correlation-Id: 86291062-3ad0-4439-ef08-08df20c7f07f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|23010399003|10067099003|11063799006|56012099006|18002099003;
-X-Microsoft-Antispam-Message-Info: MUM2wxjnXrob/9Iyrw2KAioC/Dllj9Vq2Y+GiKPjOitsPzARiWckpI07ZpdHdtd6kyXKeHl0oPGaktAIm3S+jeTC1pvS2RcsNVoDmilX8PiK1DbQ2SKDZnerrGpd01tcPuFascgysuAUTIdEx1vHGf0ncwrRVbda8BtyKcho9rK/z9NnKHabDExZ8fIBx6dMh7IW4iZxe9BiWVshTEEIht+E0ca1Qq+1dHg3kzsPUnvdwx7zhe39U/SoHxKVYxMYzugowYRBM5cMG5IKuAvrN4FNWZKtiEOlf+fKbO00tA3twAKKlbohCNbejRsktcw+O4+TWCqOgcDx5b9yJF+5d299539F62lbSVJ3JqItUIKWyr9P3PAWu0HIqE0vLonSVBI81jE8VvVJobNgvxl4RYunOfBTioy/ukfNvxLkn3kjsKlKKMuq7z+QnxHbCWOVDjbonh/ulR4wRkhYGkGgjtwVanHDzx/VkUXM2BRELflMWAyKVvtN0oduhEg255J3tbxfTX1C0nBythxNpaUpiW+FLFibJj6UufHd8FWv3LAUuFUPbQZpz5NXGO/3Dm/GYlqanTmbHSJ4C1QOx/MsgsJbOZiySsJaJpIeyUg0lkQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7187.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(10067099003)(11063799006)(56012099006)(18002099003);
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH3PR11MB046149:EE_|DS0PR11MB7213:EE_
+x-ms-office365-filtering-correlation-id: 80062e18-1c90-4935-bcbb-08df20c80995
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|23010399003|376014|366016|1800799024|38070700021|921020|4143699003|6133799003|56012099006|10067099003|11063799006|18002099003|22082099003;
+x-microsoft-antispam-message-info: 21updZztm/BfzphK9EtPq7gg+8/MDcNR8ZgyIkqaVXqtM7RDlbmZ7ZaKrW+44H+PhXiyTlr1fNhL4RT03oCr4KxFI1F0pnnEU1YDLmV361SQkyQmQvv+I2qAZKu71+eRVsNUgC4LW2Lk6H8/zJY7/AgrhoncyToLjkDGDlV1KZ3QhKt9ruvur0nH64mOvp1ulnh6RyKjwCwL+PaTpN7h8UcbCE04zdmsSo4cO3Im3/tNesDarPXUdppe50wEcE1ptXCsBzO0+Y5tse9HSRsx34DiVmZ5c4nBIXAEockMXTytbZ4ADG9+OE66Ymf8Ct9WWK6oqas4NaQUbcybPPJ2i7NLJyjQ+hsqo2Hn4nrUti6szHUv8ida/rgi2JPadZbmmNYMFjKyFr9uk34I4RfLanX5z3PpJsgwnO09jwKcrL7R3gnrDKtTWQzjv0TRrTUUVoxeQRPoslfn6FYBGuqC8cUhh4Pk9PEuxNdNF9scGlCjiv/nSTIis+Vyi3LAJBdzZUgxxBNxoXUGQ45qBzxTm/yP0WAaxthqSJyniSwNu3zyMJLbpqI4jSXjbwmGHof9WzPu8QpsWshsXruLQBNptRa58Yk5G+DuSLQr6RGTqopHqepTl03LdpgB3Gq6fKb8FD+xZeME9yt8jTv/eL6nSnjorslNmt2NJ6Q2h+aMliI8cBswyZtGzmW1vWyaiJLb9mEOaE/aM7i6ZVHnlHaGDzXd0KoRGz+HECWfuxb2MsZo+3M1CdB39QELRceCcTFp
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH3PR11MB046149.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(38070700021)(921020)(4143699003)(6133799003)(56012099006)(10067099003)(11063799006)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?x/euFaJOuq1dks+/Ke1lAwq4WyNNq8iRCu4Sb1zuIOmIPoy/KhOWMV+1xd1M?=
- =?us-ascii?Q?butqkZ/fuRZGGsaJn7SuFTZ+7Rrpt/w5JnlhTJgPligsYkDjsH2gX36rPZk9?=
- =?us-ascii?Q?VRGx6OKsrkOEbQwqFrMjJzp1PtV3WWbG1PpgIANlVz04Q2le3Q1QQfzS2X55?=
- =?us-ascii?Q?B8tDuQTX5Pkd6HQCkbvTAE+3B3hu72JrDQ+Jua+BS435XUxS/XNouFM5I8d5?=
- =?us-ascii?Q?oOSjURjQaCaHfvGrEk679KwfzQWP3XskT0g3D4rbqaU5ORRrpzaIfaQcEu/7?=
- =?us-ascii?Q?4UCgpVStkIw16RNFvD7DBTXqYvrlaGs0OHDlGv9+9iPvk0Z1vUx0Kts2QPBD?=
- =?us-ascii?Q?6Wl6syyyXw3FZtFeBpUkvyW/WBnVglmx9M3i5Mynus2P2AiBhPt3VS9Cc3z5?=
- =?us-ascii?Q?gqJSIOtSJDIBmdHUKQPYQoFrOXEckdiyHdILO3mjLzjGKhyw1D8wepKItBA2?=
- =?us-ascii?Q?KfBOnmFgu1tzwbshjf2J3GTup7OEUzUxRY4HgD/SAud3euWOBoAV/8DzApC7?=
- =?us-ascii?Q?j3eCdNo7IwjlfRp9cmaBEEb2zdPUXIK7sTv3X0SE6ZXPPn+59DHoMDSYH2hK?=
- =?us-ascii?Q?KQXkQ23f1peZdOgxT4efXphpq83SQZurIvwgbGs+GUPc8BA+5OmJ51Zu7gVy?=
- =?us-ascii?Q?DPvLC4EYcAFW30XsoID7MBmE59TGGfaUG/DGcuCFYMOpQPx5HmTchKsbB/0Z?=
- =?us-ascii?Q?vs2z81vIbiviLKE+5vAZVXMuLZ0w4UUqEkWOIcSQ/MhdbhOuqOOLQ+yTW9Ft?=
- =?us-ascii?Q?r6TJXaPVVVzcp0gFlxJLqDDFOnAkS3kS7Pvnj4AmDhpyRzE/e5EyuhFo7P5m?=
- =?us-ascii?Q?Inu4cJqvapkCyphTgZLpqfFbTtnBlzRUyPCHdJENT+lF6TU11RQYlZG9JJIP?=
- =?us-ascii?Q?OSwxZ42mMhhY+fdMpZTpgZqiCyOI28+8guDfT71T9/ozN3x2GGaaS8GvlToO?=
- =?us-ascii?Q?MVztkXFHAluyd2VTPTzFfWmDGoGwNrCnt9/v0fuyC+8CpUOKjminJosdtMZF?=
- =?us-ascii?Q?B9HO61UnY4Gy7jqgSwoFaPASHqUf4HzXeCgMSnA5rr+m5IkFvGwt+QQB7GLz?=
- =?us-ascii?Q?NaBE3RXoqNFV5a11gtNGNx/y4Ev4FweUkSlMjlX+h2vxjI34O5w+ac7w83lJ?=
- =?us-ascii?Q?2UuxXuvuFG3gT9YFFTUGRaRM67uW3WmbpqSuRcRhmc2pxmwcoGyKHChvk4XE?=
- =?us-ascii?Q?63sxnFqSFZC9125TRQtSAL7p6qGjLVknvq4pi/B8784jWTlr6+SY80pSqtMj?=
- =?us-ascii?Q?smxVKrNBm/yI/Hb0zyZKivC+QU7coTGlYUfHc0AUhgtdWd58FKHE9vf+m2Mk?=
- =?us-ascii?Q?sTmvjNwVUGWOVn6NlxsHBHXLXPKhc4mVon0AojWGrZxzyUgxVtvyMDD+x6L1?=
- =?us-ascii?Q?NTwB7afO6Acqkc3IJOIXsm15JTbNrlzzbHbzlvTUjVx916+ulSAFEM7LniZh?=
- =?us-ascii?Q?fBn4P/uTKwXDpY5kEh/rHu2EnXXHCKq6JKzrxeD9JRDXUAlWf1SCsS6vO/+Q?=
- =?us-ascii?Q?P4scNgzeSLuoKrm0vm3BL3wrCLWfz/C6EeXAnCkTJJAgrgCZMmaXy9/2qEFz?=
- =?us-ascii?Q?cDUJ/emBwm7rvlhZDEZZa7KQkzSQO27Ns2mreNhL2tmlaamR8UX/J9mquA8u?=
- =?us-ascii?Q?v5nFbti8SJXOI9v9jAY8mXzH8rmKVW9LBKhUuVneNz+8RLm7RfaO59aSOnU1?=
- =?us-ascii?Q?8RZWubExduuXpUV8DGUyyKVOG3toz7Pck2Em3U2fPbW5MS/qy0TUUHAXI6aH?=
- =?us-ascii?Q?TAQmrq1LHQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: DTH4SIXtGROsrK+cp7+wOc3vagX9kf/v8i+dH2FFOqj9RkCieVsEOsCgmb7KgK7pr+NNOxVxXVO+IhwdcCls8G8rkfKSG5eCTOLcXgEOgVcYKTWDNxK4FFrFmSzNUK9R7HSQ+oPcOl+fhYR+OaJmOJaPG3xK8Fm6sn0W2AoEAGdabxjASYjV0r4LQyxX8vIZvDIZETC5pL//bfW147emjI2fmiWsTDdZzv5Ynho4HPtW+ukUjR5Qo1ZyYFmX1elMvvXSHdg48dNZ4C/JIwwo/6oCpq+StfSdkbsqffiH1FSZ6YeZLyKrTe96YYWu++2qpRhYmI42PPACa9jMtkfeXw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 86291062-3ad0-4439-ef08-08df20c7f07f
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7187.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?sIE8IMByq2IOfi2vtJTG+uT1opCaEh4TbHol8wolXi3o1R18ZBUYXwp2+z0j?=
+ =?us-ascii?Q?7EPTZyFxXI4m5NoV6nQTUcZ1996l80GM8eMqi5P5WBNMDsowTf0t88NPfWB1?=
+ =?us-ascii?Q?/WjtpdB95dWlXCxj1vd32yEdgRcNF0nUwLPim6Q1ARnDn7zk0U1z4o1TwC22?=
+ =?us-ascii?Q?Xc4g0vCPzQLvojPX/AwVx13rIVBoZWOmSRR1B9VoAHsyPwaVu6WVjSRnzE2A?=
+ =?us-ascii?Q?J1k6qU876l87D8azTo4qFxtN0QUsBtboWxYSXGSMFsY1bYb/1u+CAnpoYW9k?=
+ =?us-ascii?Q?J5ziWGgA3zB2pCYHuUfrU8ISKU1s1mL0XrATHR7upnu0WdA29x7Y9CcuXHCU?=
+ =?us-ascii?Q?J1cXLv2rND51kroNgMC9kW6wu8xv6sA5liNQnDACqWVysk5qPK1vqFS6o0vb?=
+ =?us-ascii?Q?sjQW/xInn4XEbkQVXgVDb9GyUzGlonLEpA4cAGUarK3Q0rstn0i5GiR6FHby?=
+ =?us-ascii?Q?hRUK9pP5Uq2831EztRc1sU+eatQRmXg9VmHpnTXGR1/q/LzQHL/svZqs9qZp?=
+ =?us-ascii?Q?bg1mbxfMouFTFyvdEQ3VpXsUzwAoxrp4neDw/6763Q34RSSID+I9MP5NDhF9?=
+ =?us-ascii?Q?XkOvyTA+YNXZlmSgZmcA6obnzNVf8BRppUOdOF6B/XFze9qsB9iEm/6cRx7P?=
+ =?us-ascii?Q?1PWpIDEqBZAKzIzBULr/92aEApJBKR+0mMdq7UdhVmjZhGnGmJ+lmXtFMxzy?=
+ =?us-ascii?Q?puDDj4tOU7s/mncJxIqUD0B0jGrX9zC5bmOg89d7alZiZJGskD3b8Rxhbi2E?=
+ =?us-ascii?Q?zc4OnL12U9lAKul0XpmjjlFxgeLyRpoZbqqQRlH+kOlC1O6Is8JMPoJ56S/V?=
+ =?us-ascii?Q?sYbLBBRHz6pJm0xt5qbKzuEfAofX+WWY8ix0l8Veb6yVur/VrntfC3y1v4Di?=
+ =?us-ascii?Q?x5b+Fm88wbKv5G7a9FD+E64tzzQvewJj8Kwy7yNlS46joMZvgfnDO9nspn8Q?=
+ =?us-ascii?Q?xc5Pl3Rt0wTdYpdurUADG1rNv8sgFnU5GeKh/ZD2k/qj6JPHcuoByxi0V43F?=
+ =?us-ascii?Q?2dyEokKJ0xf/gcIk8ws129k5YJtHOupZnbgxGI44guG7f0zWYDucmoL6HMUh?=
+ =?us-ascii?Q?Y9bLK/s5gkefcjvytdVBlKtuwwQN+VSwoYkNJBNdKsUN30RVUbapgGMJrN0m?=
+ =?us-ascii?Q?hXoY2BwruUaRYwygq7VJUqhseR09ztzKYm28IyliWSWj4Ojcnp1bb2c682Ag?=
+ =?us-ascii?Q?2DPwPUvh3ANQghuqgNASoFjNnsxFJiCCK3XmOAcos8WFCWOxqHOHnBMQnzDz?=
+ =?us-ascii?Q?1IH4qH80fq68jQI2sSyz03qee2/52gG1r5jK1SHHRpj4UhbnWrqseCmsxEFs?=
+ =?us-ascii?Q?til1p1/iDteIiVLbDCfiXUFaFprkPJ4aTt1tonogkifvETqO5HmuzEAcj7cj?=
+ =?us-ascii?Q?oov/dAb+VTJ9Wp+fYtc+NlrHk3cUFHEPw9A4U9KTqVfJxuX0UGDGp1dP1Dc6?=
+ =?us-ascii?Q?KdY2tHz27+y1+8Qj3+5mE8BJMfdMRoPkoBEKj8kljjLZu64IKFmrmBLB04u2?=
+ =?us-ascii?Q?Z98eQzrXxWZSuEieAfp9gD+2E98IzT6+RN46q6N5NHpqPYC4m5RzAtB9pED4?=
+ =?us-ascii?Q?lBioog3mJaTLvOe8dqkJfKjtWrl1/c6xszy5wS+36IYwynDIT4KfRMTiSbOf?=
+ =?us-ascii?Q?tCCNgTcZBcxcL/WOsEobnZNCbcVClRAlXaMUCPBRxXYVtjpzaT0bAHJYrLOm?=
+ =?us-ascii?Q?zEQoPw9PXvkH/QzC8CIO4epI2zN2FsFgJt/af0zVx3XxJMSTyozPr7bY4v9y?=
+ =?us-ascii?Q?9Uwhpihqwg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: RIpjGnicbK04tkq0LSBWgu3UEtsWds9pOvSVUHtdvJ8/iWcCkwk/2HH80tanRhKwTaxpn1JwNSGcncBkLXP/mO/Lb6IkkBsHKXYYII2hbPfVPC/31wuR+xFK7rwb4DMqZqXRR6o279BldoT9gciL7rxti8t2ge3mCZ10tFhNYAZcv+4vTybZhc0nkK/Sw1dkvU7SmfChjv6W3la0sSf+SxRXyfBtnYCEwhb1+GyMHDsbfm1Ll7X1zZgtixYPJsAKp8bwSivNyLntpMFSdKLH2KwtYot4TqXTKkAnOWf47HgeJhd4+qVRPWuo/ciwsh6YOo6QrRkcjytBBaJRQYKlzA==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2026 20:58:42.1917 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: C0KFNpLXvkdhu6zgb+2KW4kZLibkaTjil1VrrGJ7ZjiKmowOcBj24MXrFQ7ER/sZyw//OQJCy0I7ewtBr8hzPA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8746
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB046149.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 80062e18-1c90-4935-bcbb-08df20c80995
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Oct 2026 20:59:23.5975 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: i0Wm7jhpM1PllrSo2vgA1mSb2Ax98wR8TiLb5+BTLHbl/Eu+X6/tT4i5Frd5Qw3HBQNgC19zPQWBoeBQmbnbxFc0ZqxuZQFoDRDrqq6sI8U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7213
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -157,72 +168,255 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Fan Wu <fanwu01@zju.edu.cn>
 
-xe_i2c_notifier() stores the DesignWare adapter in i2c->adapter and
-schedules i2c->work when the adapter is registered under the xe I2C
-platform device, and xe_i2c_client_work() then instantiates the AMC
-client device on that adapter.
 
-xe_i2c_remove() tears down the AMC, unregisters the client devices,
-the bus notifier and the adapter platform device, but it never drains
-i2c->work. A work item that is still queued or running when the
-adapter is unregistered dereferences i2c->adapter in
-i2c_new_client_device() after platform_device_unregister() has
-released the adapter. The work item is also embedded in the
-devm-allocated struct xe_i2c, so a work item still queued after the
-drm device devm unwind frees that allocation runs its callback on
-freed memory.
+>-----Original Message-----
+>From: David E. Box <david.e.box@linux.intel.com>
+>Sent: Thursday, October 1, 2026 6:04 PM
+>To: ilpo.jarvinen@linux.intel.com; david.e.box@linux.intel.com; linux-
+>kernel@vger.kernel.org; platform-driver-x86@vger.kernel.org; Vivi, Rodrigo
+><rodrigo.vivi@intel.com>; Ruhl, Michael J <michael.j.ruhl@intel.com>; Sidd=
+iqui,
+>Ayaz A <ayaz.siddiqui@intel.com>; Muqthyar Ahmed, Syed Abdul
+><syed.abdul.muqthyar.ahmed@intel.com>; intel-xe@lists.freedesktop.org;
+>hansg@kernel.org
+>Subject: [PATCH 3/3] platform/x86/intel/pmt: Notify userspace when crashlo=
+gs
+>complete
+>A crashlog may already be complete when the driver binds, or it may
+>complete asynchronously after userspace requests a manual trigger.
+>Userspace otherwise has to poll to discover that data is ready.
+>
+>Emit a KOBJ_CHANGE uevent on the per-instance crashlog device when a
+>completed log is found at probe. After a manual trigger, poll the
+>completion bit at 100 ms intervals for up to 5 seconds and emit the same
+>event when capture completes. The event carries two environment
+>variables:
+>
+>  INTEL_PMT_CRASHLOG_EVENT=3DPRESENT
+>  INTEL_PMT_CRASHLOG_COMPLETE=3D1
+>
+>Initialize the work items before the device's sysfs attributes are
+>exposed, and disable and drain them during removal.
+>
+>Document the new uevent in the sysfs-class-intel_pmt ABI file.
+>
+>Assisted-by: LLM
+>Signed-off-by: David E. Box <david.e.box@linux.intel.com>
+>---
+> .../ABI/testing/sysfs-class-intel_pmt         | 14 ++++
+> drivers/platform/x86/intel/pmt/crashlog.c     | 84 ++++++++++++++++++-
+> 2 files changed, 95 insertions(+), 3 deletions(-)
+>
+>diff --git a/Documentation/ABI/testing/sysfs-class-intel_pmt
+>b/Documentation/ABI/testing/sysfs-class-intel_pmt
+>index ed4c886a21b1..c0b0d123afdf 100644
+>--- a/Documentation/ABI/testing/sysfs-class-intel_pmt
+>+++ b/Documentation/ABI/testing/sysfs-class-intel_pmt
+>@@ -66,6 +66,20 @@ Description:
+> 		can be determined from an XML file of specified GUID for the
+> 		parent device.
+>
+>+What:		/sys/class/intel_pmt/crashlog<x>
+>+Date:		October 2026
+>+KernelVersion:	7.4
+>+Contact:	David Box <david.e.box@linux.intel.com>
+>+Description:
+>+		When a crashlog device is probed with a completed crashlog
+>+		already present, or a manual trigger completes, the driver emits
+>+		a KOBJ_CHANGE uevent for that crashlog<x> device.
+>+
+>+		The following uevent environment variables are added:
+>+
+>+		INTEL_PMT_CRASHLOG_EVENT=3DPRESENT
+>+		INTEL_PMT_CRASHLOG_COMPLETE=3D1
+>+
+> What:		/sys/class/intel_pmt/crashlog<x>/crashlog
+> Date:		October 2020
+> KernelVersion:	5.10
+>diff --git a/drivers/platform/x86/intel/pmt/crashlog.c
+>b/drivers/platform/x86/intel/pmt/crashlog.c
+>index f936daf99e4d..21e8e2199bdc 100644
+>--- a/drivers/platform/x86/intel/pmt/crashlog.c
+>+++ b/drivers/platform/x86/intel/pmt/crashlog.c
+>@@ -12,12 +12,14 @@
+> #include <linux/cleanup.h>
+> #include <linux/intel_vsec.h>
+> #include <linux/kernel.h>
+>+#include <linux/kobject.h>
+> #include <linux/module.h>
+> #include <linux/mutex.h>
+> #include <linux/pci.h>
+> #include <linux/slab.h>
+> #include <linux/uaccess.h>
+> #include <linux/overflow.h>
+>+#include <linux/workqueue.h>
+>
+> #include "class.h"
+>
+>@@ -113,6 +115,9 @@ struct crashlog_entry {
+> 	struct intel_pmt_entry		entry;
+> 	struct mutex			control_mutex;
+> 	const struct crashlog_info	*info;
+>+	struct work_struct		uevent_work;
+>+	struct delayed_work		uevent_poll_work;
+>+	u8				uevent_poll_tries;
+> };
+>
+> struct pmt_crashlog_priv {
+>@@ -120,6 +125,9 @@ struct pmt_crashlog_priv {
+> 	struct crashlog_entry	entry[];
+> };
+>
+>+#define PMT_CRASHLOG_UEVENT_POLL_MS		100
+>+#define PMT_CRASHLOG_UEVENT_POLL_MAX_TRIES	50
+>+
+> /*
+>  * I/O
+>  */
+>@@ -227,6 +235,47 @@ static void pmt_crashlog_set_rearm(struct
+>crashlog_entry *crashlog)
+> 	pmt_crashlog_rmw(crashlog, crashlog->info->control.rearm, true);
+> }
+>
+>+static void pmt_crashlog_uevent_fn(struct work_struct *work)
+>+{
+>+	struct crashlog_entry *crashlog =3D
+>+		container_of(work, struct crashlog_entry, uevent_work);
+>+	char *envp[] =3D {
+>+		"INTEL_PMT_CRASHLOG_EVENT=3DPRESENT",
+>+		"INTEL_PMT_CRASHLOG_COMPLETE=3D1",
+>+		NULL,
+>+	};
+>+
+>+	if (crashlog->entry.kobj)
+>+		kobject_uevent_env(crashlog->entry.kobj, KOBJ_CHANGE,
+>envp);
+>+}
+>+
+>+static void pmt_crashlog_uevent_poll_fn(struct work_struct *work)
+>+{
+>+	struct crashlog_entry *crashlog =3D
+>+		container_of(to_delayed_work(work), struct crashlog_entry,
+>+			     uevent_poll_work);
+>+	guard(mutex)(&crashlog->control_mutex);
+>+
+>+	/* A newer trigger_store() re-armed us; that cycle owns the notification
+>*/
+>+	if (delayed_work_pending(&crashlog->uevent_poll_work))
+>+		return;
+>+
+>+	if (pmt_crashlog_complete(crashlog)) {
+>+		schedule_work(&crashlog->uevent_work);
+>+		return;
+>+	}
+>+
+>+	if (++crashlog->uevent_poll_tries <
+>PMT_CRASHLOG_UEVENT_POLL_MAX_TRIES)
+>+		schedule_delayed_work(&crashlog->uevent_poll_work,
+>+
+>msecs_to_jiffies(PMT_CRASHLOG_UEVENT_POLL_MS));
+>+}
+>+
+>+static void pmt_crashlog_notify_pending(struct crashlog_entry *crashlog)
+>+{
+>+	if (pmt_crashlog_complete(crashlog))
+>+		schedule_work(&crashlog->uevent_work);
 
-The bus notifier is the only thing that schedules this work, and it is
-unregistered after the client devices. An instance that is still queued
-when the teardown runs can therefore write
-i2c->client[XE_I2C_CLIENT_AMC] while the loop is unregistering and
-clearing the same array, and an AMC client it instantiates late is only
-cleaned up by the adapter's own child sweep in i2c_del_adapter().
+This looks good to me.  The polling loop on the manual trigger is a very ni=
+ce to have.
 
-Move bus_unregister_notifier() in front of the client teardown loop
-and cancel the work right after it, so no new instance can be
-scheduled and a queued instance is drained before the client array is
-touched. A running instance still finds a live adapter, since the
-adapter is unregistered later.
+Note: my patch set for CRI support changes most of the predicate functions =
+to return 0 on success
+and the state in a parameter...
 
-Fixes: f0e53aadd702 ("drm/xe: Support for I2C attached MCUs")
-Link: https://lore.kernel.org/intel-xe/20260912085932.101598-1-fanwu01@zju.edu.cn/
-Cc: stable@vger.kernel.org
-Assisted-by: LLM, in-house static analysis tool
-Co-developed-by: Song Li <songl@zju.edu.cn>
-Signed-off-by: Song Li <songl@zju.edu.cn>
-Signed-off-by: Fan Wu <fanwu01@zju.edu.cn>
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Link: https://patch.msgid.link/20260928013030.612592-1-fanwu01@zju.edu.cn
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-[Rodrigo: Rebased and a small cleanup in the commit message]
----
- drivers/gpu/drm/xe/xe_i2c.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Not sure on how this should be handled?
 
-diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-index d8fa68206f41..0ebd708b537c 100644
---- a/drivers/gpu/drm/xe/xe_i2c.c
-+++ b/drivers/gpu/drm/xe/xe_i2c.c
-@@ -328,12 +328,15 @@ static void xe_i2c_remove(void *data)
- 
- 	xe_amc_exit(i2c);
- 
-+	/* Stop the notifier from arming the client work before teardown. */
-+	bus_unregister_notifier(&i2c_bus_type, &i2c->bus_notifier);
-+	cancel_work_sync(&i2c->work);
-+
- 	for (i = 0; i < XE_I2C_MAX_CLIENTS; i++) {
- 		i2c_unregister_device(i2c->client[i]);
- 		i2c->client[i] = NULL;
- 	}
- 
--	bus_unregister_notifier(&i2c_bus_type, &i2c->bus_notifier);
- 	xe_i2c_unregister_adapter(i2c);
- }
- 
--- 
-2.55.0
+Otherwise:
+
+Reviewed-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+
+M
+
+>+}
+>+
+> /*
+>  * sysfs
+>  */
+>@@ -423,7 +472,19 @@ trigger_store(struct device *dev, struct
+>device_attribute *attr,
+> 	if (pmt_crashlog_complete(crashlog))
+> 		return -EEXIST;
+>
+>+	/*
+>+	 * Only now are we actually starting a fresh crash: any stale poll
+>+	 * cycle left over from a prior trigger can be dropped safely, since
+>+	 * pmt_crashlog_complete() above proved it carried no unresolved
+>+	 * completion. Non-sync: uevent_poll_fn() takes this same mutex, so
+>+	 * cancel_delayed_work_sync() here could deadlock against it.
+>+	 */
+>+	cancel_delayed_work(&crashlog->uevent_poll_work);
+>+
+> 	pmt_crashlog_set_execute(crashlog);
+>+	crashlog->uevent_poll_tries =3D 0;
+>+	schedule_delayed_work(&crashlog->uevent_poll_work,
+>+
+>msecs_to_jiffies(PMT_CRASHLOG_UEVENT_POLL_MS));
+>
+> 	return count;
+> }
+>@@ -551,6 +612,9 @@ static void pmt_crashlog_remove(struct
+>auxiliary_device *auxdev)
+> 	for (i =3D 0; i < priv->num_entries; i++) {
+> 		struct crashlog_entry *crashlog =3D &priv->entry[i];
+>
+>+		/* Disable, not cancel: a racing trigger_store() must not re-arm
+>*/
+>+		disable_delayed_work_sync(&crashlog->uevent_poll_work);
+>+		disable_work_sync(&crashlog->uevent_work);
+> 		intel_pmt_dev_destroy(&crashlog->entry, &pmt_crashlog_ns);
+> 		mutex_destroy(&crashlog->control_mutex);
+> 	}
+>@@ -572,15 +636,29 @@ static int pmt_crashlog_probe(struct
+>auxiliary_device *auxdev,
+> 	auxiliary_set_drvdata(auxdev, priv);
+>
+> 	for (i =3D 0; i < intel_vsec_dev->num_resources; i++) {
+>-		struct intel_pmt_entry *entry =3D &priv->entry[priv-
+>>num_entries].entry;
+>+		struct crashlog_entry *crashlog =3D &priv->entry[priv-
+>>num_entries];
+>+		struct intel_pmt_entry *entry =3D &crashlog->entry;
+>+
+>+		/* init before dev_create() exposes trigger sysfs to userspace */
+>+		INIT_WORK(&crashlog->uevent_work,
+>pmt_crashlog_uevent_fn);
+>+		INIT_DELAYED_WORK(&crashlog->uevent_poll_work,
+>+				  pmt_crashlog_uevent_poll_fn);
+>+		crashlog->uevent_poll_tries =3D 0;
+>
+> 		ret =3D intel_pmt_dev_create(entry, &pmt_crashlog_ns,
+>intel_vsec_dev, i);
+>-		if (ret < 0)
+>+		if (ret < 0) {
+>+			cancel_delayed_work_sync(&crashlog-
+>>uevent_poll_work);
+>+			cancel_work_sync(&crashlog->uevent_work);
+> 			goto abort_probe;
+>-		if (ret)
+>+		}
+>+		if (ret) {
+>+			cancel_delayed_work_sync(&crashlog-
+>>uevent_poll_work);
+>+			cancel_work_sync(&crashlog->uevent_work);
+> 			continue;
+>+		}
+>
+> 		priv->num_entries++;
+>+		pmt_crashlog_notify_pending(crashlog);
+> 	}
+>
+> 	return 0;
+>--
+>2.43.0
 
