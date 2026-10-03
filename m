@@ -4,76 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13997CA5FDD
-	for <intel-xe@archiver.kernel.org>; Sat,  3 Oct 2026 21:06:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B906CA5FE4
+	for <intel-xe@archiver.kernel.org>; Sat,  3 Oct 2026 22:38:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A115C10E15E;
-	Sat,  3 Oct 2026 21:06:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A78910EA48;
+	Sat,  3 Oct 2026 22:38:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EXPudDZ6";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BThYNJj3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04D1810E15E;
- Sat,  3 Oct 2026 21:06:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791061599; x=1822597599;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=6YmSDdxKEVQ0IENYScjeZQmJ83BkyUs0pR5KIXOTRHU=;
- b=EXPudDZ62kiS8j7tRxY7M3l2zA193tr54V82HSogfQYk5FDqgohCQHmJ
- 6blOYv3xdrk/e1WHwOkTEg0PP/rH1bvfpoaSrURrBqioZDAJnqaGCT3pd
- 5nN0Wmup7HJIqFVP8QiWf24akhDZpdBepshNty2LmoZk5V5fa2bbyVF3X
- iQDdgFWAgFOzXl8D/Es9LwGWmjT7CAZwFPynm6cdDdeqSsxGI3YehvqAY
- NeV+vQShQdynBFfB2y0NccK8x4kv1yOiw6KSzTcWCBu/Pg/xZXhr3icqX
- pW946qZ+ITLHTJlCKtA/MoBIfQmOyu5Vnm6eVLUR9vkQPO/AM1r5YoxiY w==;
-X-CSE-ConnectionGUID: OzXAYNQEQti4w7ov+IzU1A==
-X-CSE-MsgGUID: nse3m8L8Rjq3VJqTNbJuDQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11924"; a="90920238"
-X-IronPort-AV: E=Sophos;i="6.27,138,1787036400"; d="scan'208";a="90920238"
-Received: from fmviesa011.fm.intel.com ([10.60.135.151])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2026 14:06:38 -0700
-X-CSE-ConnectionGUID: xzKpLxD0Q7WmjJcYGWMcHA==
-X-CSE-MsgGUID: mTNviLB7RZSKfuuXuz3wGg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,138,1787036400"; 
-   d="scan'208";a="588311"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com)
- ([10.245.245.88])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2026 14:06:34 -0700
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
- by kekkonen.fi.intel.com (Postfix) with SMTP id DA1B611FA5B;
- Sun, 04 Oct 2026 00:06:32 +0300 (EEST)
-Date: Sun, 4 Oct 2026 00:06:32 +0300
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>, Bjorn Helgaas <bhelgaas@google.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, linux-media@vger.kernel.org,
- linux-staging@lists.linux.dev, linux-pci@vger.kernel.org,
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8C4910EA48;
+ Sat,  3 Oct 2026 22:38:28 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 8338A4171E;
+ Sat,  3 Oct 2026 22:38:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0319B1F0089B;
+ Sat,  3 Oct 2026 22:38:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1791067108;
+ bh=PYWK/vh7WiCukWTrYPPqGU7WnxK7cVjDRNd8vW5QqG4=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=BThYNJj3zLI77GsJXXRNPd0ok6hUjbYgkCwBmnkNnfCAfj8IMCrndxH6sSspNQcwz
+ DZ2jD51R6ZIiMXp8jZvpCjrtA8DXGA9hRm/hid7LhhqRkylEC9mzNb+wLXmPyQ5Wmd
+ mttzWS8lkDHhL63NYG48I5VoqG87pkmHER38RbNl/GkUBwF5NyhJg0UCaCmD5r8VX8
+ X4NzPf7GxzJXGq8hhp1O+NMlTABeMKbJeiLyOxqRYKYl1DMp7atXeXjDMD5HsjraP1
+ RyJqTTVhyElmDlaKf9RPjVv4PQeMs+syQ8FqykNcdQAWdgkujR+YJdDmjM837JZ9jn
+ fw0ds2k1FAFbw==
+From: Sasha Levin <sashal@kernel.org>
+To: stable@vger.kernel.org
+Cc: Sasha Levin <sashal@kernel.org>, Artem Dinaburg <artem@trailofbits.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Suraj Kandpal <suraj.kandpal@intel.com>,
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Hans de Goede <hansg@kernel.org>,
- Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Andy Shevchenko <andy@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v1 1/1] media: Consolidate AtomISP v2 PCI IDs in the
- pci_ids.h
-Message-ID: <asFuWAQUPxETWqDL@kekkonen.localdomain>
-References: <20261002094813.856439-1-andriy.shevchenko@linux.intel.com>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Simona Vetter <simona@ffwll.ch>, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 6.1.y 0/2] drm/i915/hdcp: guard both capability checks
+Date: Sat,  3 Oct 2026 18:33:02 -0400
+Message-ID: <2026-10-03-1-daily-reply-0021-re-i915-hdcp-both-capability-checks-6-1@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261002194030.20489-1-artem@trailofbits.com>
+References: <20261002194030.20489-1-artem@trailofbits.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261002094813.856439-1-andriy.shevchenko@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,22 +66,11 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Andy,
+> already present in 6.12.y, 6.18.y, and 7.2.y. Could you please queue both
+> patches for 6.1.y?
 
-On Fri, Oct 02, 2026 at 11:43:43AM +0200, Andy Shevchenko wrote:
-> We have a few drivers using same pair of the PCI IDs across the kernel and
-> there seems more to go, consolidate AtomISP v2 PCI IDs in pci_ids.h database.
-> 
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
-> 
-> Assuming that media subsystem is the main beneficiary I think it is the best
-> to route it via that tree. For others (i915, PCI, PDx86), please Ack if you
-> are agree.
-
-I missed this earlier... I'll take this via the media tree.
-
-Thanks!
+Queued the series for 6.1, thanks.
 
 -- 
-Sakari Ailus
+Thanks,
+Sasha
