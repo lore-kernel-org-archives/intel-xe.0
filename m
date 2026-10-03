@@ -4,43 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0701CA5FE3
-	for <intel-xe@archiver.kernel.org>; Sat,  3 Oct 2026 01:33:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB77ECA5FE3
+	for <intel-xe@archiver.kernel.org>; Sat,  3 Oct 2026 10:31:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63C1710E70E;
-	Sat,  3 Oct 2026 01:33:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0910F10E92B;
+	Sat,  3 Oct 2026 10:31:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="O4CFYHG9";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UReXiafg";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5799F10E4C5;
- Sat,  3 Oct 2026 01:33:15 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id D13B460A97;
- Sat,  3 Oct 2026 01:33:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 507811F00893;
- Sat,  3 Oct 2026 01:33:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1790991194;
- bh=b+CszPn4z8NlMSYnXDDjwV0QzLUq2OVdNluq964l+As=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=O4CFYHG9/oRQUMctNw0wGCxHBtaw5WVok/qs/oNlFCtCxVVdIRl6JjsB7H6tSdv7L
- +PhRm00GOoo7Ykr6J8axjaJ7zX/gNFtFVZmZwLG/zR2Yl4Pr6NCv1Hhijc6OKkNsNK
- ERB625UGWy+5JiL6XKUahJNQo8lqzVXs0PEA5BaIhjcADOnmbfnuojX6LgYsE8qB7C
- E9cV3c2+OEgaVHpyyb5upOV9nKpyUq1UPox4jtpfCVS1xV0JIUYQKxNAMD5r83ht9e
- JKsOeFpyS+KpRMXpYRhJXAf0WnxnlVhcYAKtgSsHW7NVicFLnvbWYfT9riKa4AL5Cp
- 8ayeQ5weyTKPA==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 8/9] drm/sched: Replace completion with a flush
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20261002154713.77591-9-tvrtko.ursulin@igalia.com>
-References: <20261002154713.77591-1-tvrtko.ursulin@igalia.com>
- <20261002154713.77591-9-tvrtko.ursulin@igalia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Sat, 03 Oct 2026 01:33:13 +0000
-Message-Id: <20261003013314.507811F00893@smtp.kernel.org>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 065DE10E931
+ for <intel-xe@lists.freedesktop.org>; Sat,  3 Oct 2026 10:30:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1791023458;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=x3OlQPuKLle/RWQyCvYbmxpN1t4vBLUkyyPtEqihZM4=;
+ b=UReXiafghX64kpKGImsxTTKlDlI3P7ZvzxZc//n7Evfe82nc3yPdUOTGKjX2HrfCxdDlAW
+ oXW2JwwrQ6I6QCCAr4ECDY9kicU8bmXgEJ2AinnMFWINqE+6WP3CHIMc0Oju3ZvFc472x9
+ vaHydr8BpNTpO9Zf8p4vO1HTU1ktw6U=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-212-k-rFT5enM8mO3lOoOOrthg-1; Sat, 03 Oct 2026 06:30:57 -0400
+X-MC-Unique: k-rFT5enM8mO3lOoOOrthg-1
+X-Mimecast-MFC-AGG-ID: k-rFT5enM8mO3lOoOOrthg_1791023456
+Received: by mail-wm1-f71.google.com with SMTP id
+ 5b1f17b1804b1-49e6862e924so4887405e9.0
+ for <intel-xe@lists.freedesktop.org>; Sat, 03 Oct 2026 03:30:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1791023456; x=1791628256;
+ h=content-type:mime-version:message-id:date:references:in-reply-to
+ :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=x3OlQPuKLle/RWQyCvYbmxpN1t4vBLUkyyPtEqihZM4=;
+ b=k2gTm/X0bSFIoKcDiqlKPpx2VCF5NKJ3Afn5JrhV7HJUX2fxHp1eBtvjwIqqdsCVg8
+ yYSYJ0/ID92qebecBfwxjY0wGFGTqxPFM5HD6plVCZjBheU7xAmN3dU4g1ARmImtPp69
+ hRzrEqKxov0hFbDfHO4W1jRJT0v1cd230lEvXhl+7bPZxECPrwBTnf4gQRUJtXcAxwqB
+ oW54vtfR0TkpcpYcdOKjw4DOsgsGDJ8K2OwIKcW4lRJgCkFzdG9jT+gelASBTE5/y1IZ
+ XR5Xl49ecGrq6OSYUDQGGM7oc5Sw0NFeSOeAOJF6a42nDN4D6IzJN8cDXzaxrrOGuNPH
+ 4rhQ==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBzdrJuyul64YMmZUzfLsadiHvpQpuVkQueizPa4tBj4b3WuYws66Z2wVRM29khudtNuxba3sDemDQ==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++kBNR7KNzUoYyseaJOTgzVlKYKhzXqtvmk2XFYUsmzWSkMNNMBB
+ zRuRhS49Qn/6fd28J1dhTW8GQtoOwQFrP44ZIiO6cvN1YJUpb2uhyJvuIouhOuMXDdKnjljeiAo
+ PW+VdKMnbtCIBooL9nUoUuibt/zC7p2pGu3oyAWvhsNemOuMBu+5A/DgDPHMYTyftdnNa
+X-Gm-Gg: AYBFou36vVFnOW0kJ53BhwmBzPrjuWoXV8EDaZ2+DSFbhX5Czr+obqUli+OE53wvzXL
+ neMUlK+uULiDHXcwWuwZ+T5bH8d01fhY3/mn+ec4InKXm2+/quqFVtb+kUoQRFOv6qqCG1XMLaa
+ Dsm2ij/P+fafKpqeUKFr+gp6pQTfj9FFISbH37svnnamIchZ3KMjO0gTHqjXfYjRTdJLqzgZ4g6
+ boEUV10eVu1y8RHR6HquaTcAo/TctYNuxCoSjhWECnJIx7VGkiUuYIcIYM0WH7JH/47atxebQPl
+ w8OQ5cHwVhPa644ES/GPnSyoEN0dKYWexp4ho4TNxEmwiNWdAyMQvrtt2Qs96goDPuFAq4LwBIV
+ WFnBoT3gWThRQDyYzv361UDE/OXtzZijgD79QWJLL8ggGZrdg07byD/SWeqaQfNmEXQ==
+X-Received: by 2002:a05:600c:3115:b0:49f:cac3:c68a with SMTP id
+ 5b1f17b1804b1-4a168105ddfmr30256065e9.31.1791023456065; 
+ Sat, 03 Oct 2026 03:30:56 -0700 (PDT)
+X-Received: by 2002:a05:600c:3115:b0:49f:cac3:c68a with SMTP id
+ 5b1f17b1804b1-4a168105ddfmr30255685e9.31.1791023455648; 
+ Sat, 03 Oct 2026 03:30:55 -0700 (PDT)
+Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4a03ff20831sm97747375e9.4.2026.10.03.03.30.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 03 Oct 2026 03:30:55 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ dri-devel@lists.freedesktop.org, harry.wentland@amd.com, Simona Vetter
+ <simona@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David
+ Airlie <airlied@gmail.com>
+Cc: Xaver Hugl <xaver.hugl@gmail.com>, amd-gfx@lists.freedesktop.org, "open
+ list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, "open list:INTEL DRM DISPLAY FOR XE AND
+ I915 DRIVERS" <intel-xe@lists.freedesktop.org>, Mario Limonciello
+ <mario.limonciello@amd.com>
+Subject: Re: [PATCH v9 21/21] drm/solomon: add SSD130x connector luminance
+ support
+In-Reply-To: <20261002190030.211356-22-mario.limonciello@amd.com>
+References: <20261002190030.211356-1-mario.limonciello@amd.com>
+ <20261002190030.211356-22-mario.limonciello@amd.com>
+Date: Sat, 03 Oct 2026 12:30:53 +0200
+Message-ID: <xlv1zewv5b4y.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb>
+MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: 8NYpyxkoV0K98WOTF52nXoGItnEy3JmX62y2GWdNkc4_1791023456
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,67 +103,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] drm/sched: cross-entity deadlock via flush_work() in drm_sched_ent=
-ity_kill()
---
+Mario Limonciello <mario.limonciello@amd.com> writes:
 
-commit 3786a3d89362d00183a97f456e4eaeb1dff144f4
-Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Hello Mario,
 
-drm/sched: Replace completion with a flush
+> Expose SSD130x contrast through the connector LUMINANCE property when
+> DRM_LUMINANCE is enabled. Program contrast directly and retain the
+> backlight class interface otherwise.
+>
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> ---
 
-This commit removes the per-entity completion used to synchronize entity
-teardown, replacing it with a direct flush of the scheduler's run job
-worker. The goal is to achieve the same synchronization guarantee without
-requiring the scheduler to signal a completion when an entity goes idle.
+[...]
 
-> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/s=
-cheduler/sched_entity.c
-> --- a/drivers/gpu/drm/scheduler/sched_entity.c
-> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
-[ ... ]
-> @@ -304,16 +299,23 @@ static void drm_sched_entity_kill_jobs_cb(struct dm=
-a_fence *f,
->  void drm_sched_entity_kill(struct drm_sched_entity *entity)
+>  struct ssd130x_device *ssd130x_probe(struct device *dev, struct regmap *regmap)
 >  {
-[ ... ]
-> -	/* Make sure this entity is not used by the scheduler at the moment */
-> -	wait_for_completion(&entity->entity_idle);
-> +	/*
-> +	 * Make sure this entity is not used by the scheduler at the moment.
-> +	 *
-> +	 * Scheduler is guaranteed to be stable after the entity was stopped and
-> +	 * removed from the run-queue.
-> +	 */
-> +	if (sched)
-> +		drm_sched_flush_run_work(sched);
+>  	struct ssd130x_device *ssd130x;
+> +#ifndef CONFIG_DRM_LUMINANCE
+>  	struct backlight_device *bl;
+> +#endif
 
-[Severity: High]
-Could this introduce a cross-entity deadlock regression during context tear=
-down?
+[...]
 
-Because drm_sched_flush_run_work calls flush_work on the scheduler's shared
-worker, it synchronously waits for the worker to finish its current executi=
-on.
-This might cause it to wait on a job belonging to a completely different
-entity.
+> +#ifndef CONFIG_DRM_LUMINANCE
+>  	bl = devm_backlight_device_register(dev, dev_name(dev), dev, ssd130x,
+>  					    &ssd130xfb_bl_ops[ssd130x->device_info->family_id],
+>  					    NULL);
+> @@ -2258,6 +2298,7 @@ struct ssd130x_device *ssd130x_probe(struct device *dev, struct regmap *regmap)
+>  	bl->props.brightness = ssd130x->contrast;
+>  	bl->props.max_brightness = MAX_CONTRAST;
+>  	ssd130x->bl_dev = bl;
+> +#endif
 
-If a process destroys its device context and triggers drm_sched_entity_kill
-while holding a driver-specific lock, and the shared worker is concurrently
-running drm_sched_run_job_work for an unrelated entity, that driver-provided
-run_job callback might attempt to acquire the same driver lock.
+I think that IS_ENABLED(CONFIG_BACKLIGHT_CLASS_DEVICE) makes more sense?
 
-The original code used a per-entity completion (entity_idle) which explicit=
-ly
-avoided waiting on other entities. Does this flush create a new cross-entity
-dependency that could lead to a deadlock?
+Other than that, the patch looks good to me.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261002154713.7759=
-1-1-tvrtko.ursulin@igalia.com?part=3D8
+Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+
+-- 
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
+
