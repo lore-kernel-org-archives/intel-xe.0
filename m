@@ -4,70 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB77ECA5FE3
-	for <intel-xe@archiver.kernel.org>; Sat,  3 Oct 2026 10:31:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 844E7CA5FDD
+	for <intel-xe@archiver.kernel.org>; Sat,  3 Oct 2026 10:39:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0910F10E92B;
-	Sat,  3 Oct 2026 10:31:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 087DD10FB14;
+	Sat,  3 Oct 2026 10:39:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UReXiafg";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="f4wk1eEo";
 	dkim-atps=neutral
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 065DE10E931
- for <intel-xe@lists.freedesktop.org>; Sat,  3 Oct 2026 10:30:59 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 119A010FB12
+ for <intel-xe@lists.freedesktop.org>; Sat,  3 Oct 2026 10:39:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1791023458;
+ s=mimecast20190719; t=1791023994;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=x3OlQPuKLle/RWQyCvYbmxpN1t4vBLUkyyPtEqihZM4=;
- b=UReXiafghX64kpKGImsxTTKlDlI3P7ZvzxZc//n7Evfe82nc3yPdUOTGKjX2HrfCxdDlAW
- oXW2JwwrQ6I6QCCAr4ECDY9kicU8bmXgEJ2AinnMFWINqE+6WP3CHIMc0Oju3ZvFc472x9
- vaHydr8BpNTpO9Zf8p4vO1HTU1ktw6U=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=yEazttUDpzXlqXpxwJlMZPomrWiWdlvAhL9J6+CU2p8=;
+ b=f4wk1eEo9CdHqGaXqMDH9jtMslhTckkoTa4SmXzHlKiJey5wUWIth/AW9/JkuZnjSPJ8xF
+ QrfKHQfjm29QywYBf622wzsSU6KDFT0wGi5oymqMeOKFsnPD0mBR3iebzPDPjs9lIm3iYN
+ YRFjGjFSjvnQdY8fombqnJuG65U613A=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-212-k-rFT5enM8mO3lOoOOrthg-1; Sat, 03 Oct 2026 06:30:57 -0400
-X-MC-Unique: k-rFT5enM8mO3lOoOOrthg-1
-X-Mimecast-MFC-AGG-ID: k-rFT5enM8mO3lOoOOrthg_1791023456
-Received: by mail-wm1-f71.google.com with SMTP id
- 5b1f17b1804b1-49e6862e924so4887405e9.0
- for <intel-xe@lists.freedesktop.org>; Sat, 03 Oct 2026 03:30:57 -0700 (PDT)
+ us-mta-321-xdSRW333NZisyg1azXGm_A-1; Sat, 03 Oct 2026 06:39:51 -0400
+X-MC-Unique: xdSRW333NZisyg1azXGm_A-1
+X-Mimecast-MFC-AGG-ID: xdSRW333NZisyg1azXGm_A_1791023990
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-4a027f2e364so3897465e9.3
+ for <intel-xe@lists.freedesktop.org>; Sat, 03 Oct 2026 03:39:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1791023456; x=1791628256;
+ d=1e100.net; s=20260707; t=1791023990; x=1791628790;
  h=content-type:mime-version:message-id:date:references:in-reply-to
  :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
  :date:message-id:reply-to:content-type;
- bh=x3OlQPuKLle/RWQyCvYbmxpN1t4vBLUkyyPtEqihZM4=;
- b=k2gTm/X0bSFIoKcDiqlKPpx2VCF5NKJ3Afn5JrhV7HJUX2fxHp1eBtvjwIqqdsCVg8
- yYSYJ0/ID92qebecBfwxjY0wGFGTqxPFM5HD6plVCZjBheU7xAmN3dU4g1ARmImtPp69
- hRzrEqKxov0hFbDfHO4W1jRJT0v1cd230lEvXhl+7bPZxECPrwBTnf4gQRUJtXcAxwqB
- oW54vtfR0TkpcpYcdOKjw4DOsgsGDJ8K2OwIKcW4lRJgCkFzdG9jT+gelASBTE5/y1IZ
- XR5Xl49ecGrq6OSYUDQGGM7oc5Sw0NFeSOeAOJF6a42nDN4D6IzJN8cDXzaxrrOGuNPH
- 4rhQ==
+ bh=yEazttUDpzXlqXpxwJlMZPomrWiWdlvAhL9J6+CU2p8=;
+ b=fAwmw2fLeegquZRfoJ+lbjEuY7r3+H1dev7VNwY4uDHtqIdEUgMikFm0vZhglb6t4V
+ lYdjc0czcIGch6DeGGdMEt546xcHYTIfG4nC1F0VVC05H6+GLp+0sD3HrIP7RaDXXJSj
+ Hv1VYxvM8kWwOyGdACqpXiH2wiSSSpopPH1PNic0kjDBf2338LqgveqjBbDQY+aTDnKV
+ mwrqHF5XuNH0U+/lc0aYoVjNGt4CDCXQcQFuMFr1sqhHSW/9qeSHGs7gyyvnrfp1A263
+ dlpF7CwEafRnqyH6kt13K7pw6YsQ67SONsNXLatvwljf/AnTES9PREjGkXY9MjNDmhXc
+ lGHA==
 X-Forwarded-Encrypted: i=1;
- AKwUvBzdrJuyul64YMmZUzfLsadiHvpQpuVkQueizPa4tBj4b3WuYws66Z2wVRM29khudtNuxba3sDemDQ==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++kBNR7KNzUoYyseaJOTgzVlKYKhzXqtvmk2XFYUsmzWSkMNNMBB
- zRuRhS49Qn/6fd28J1dhTW8GQtoOwQFrP44ZIiO6cvN1YJUpb2uhyJvuIouhOuMXDdKnjljeiAo
- PW+VdKMnbtCIBooL9nUoUuibt/zC7p2pGu3oyAWvhsNemOuMBu+5A/DgDPHMYTyftdnNa
-X-Gm-Gg: AYBFou36vVFnOW0kJ53BhwmBzPrjuWoXV8EDaZ2+DSFbhX5Czr+obqUli+OE53wvzXL
- neMUlK+uULiDHXcwWuwZ+T5bH8d01fhY3/mn+ec4InKXm2+/quqFVtb+kUoQRFOv6qqCG1XMLaa
- Dsm2ij/P+fafKpqeUKFr+gp6pQTfj9FFISbH37svnnamIchZ3KMjO0gTHqjXfYjRTdJLqzgZ4g6
- boEUV10eVu1y8RHR6HquaTcAo/TctYNuxCoSjhWECnJIx7VGkiUuYIcIYM0WH7JH/47atxebQPl
- w8OQ5cHwVhPa644ES/GPnSyoEN0dKYWexp4ho4TNxEmwiNWdAyMQvrtt2Qs96goDPuFAq4LwBIV
- WFnBoT3gWThRQDyYzv361UDE/OXtzZijgD79QWJLL8ggGZrdg07byD/SWeqaQfNmEXQ==
-X-Received: by 2002:a05:600c:3115:b0:49f:cac3:c68a with SMTP id
- 5b1f17b1804b1-4a168105ddfmr30256065e9.31.1791023456065; 
- Sat, 03 Oct 2026 03:30:56 -0700 (PDT)
-X-Received: by 2002:a05:600c:3115:b0:49f:cac3:c68a with SMTP id
- 5b1f17b1804b1-4a168105ddfmr30255685e9.31.1791023455648; 
- Sat, 03 Oct 2026 03:30:55 -0700 (PDT)
+ AKwUvBxnhZ4B0UtcDY01e4s1KPYikw8OZKYnCA+RADe6pquxsjRz2HEiw/OdsKbd+dwwic+Sz7WGysR6gg==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++kt9z3gkUkduG6c9v4ZsO2vv8N7ZG9Z9/2J3m76XIZZ9MVtmHmE
+ kwdioWtbx8ZxHLEtBpjneTAPr87ZYlLtMx7bSYAosP0ME/ip/NE8Kq/ld1WQ9pXsCpLVw4zBeC1
+ kwHJ8ErcTk/GWm/uSaVslQtPyv6DAWv7U9151CY+fPaYlx8zvNNSY3H5AKxC448+1tzRQ
+X-Gm-Gg: AYBFou0iecmjqwmtUzhAG0NACk7XXpe8+Ofzj1xi44J27TQJr6QZKjjlcEzjyx5GnMc
+ BoUKNCNgaFLSzh8s2CW50b09J+d3RC1PJYXzStFIcsL83Bs9AHzPup+mud3M3gRCoxNHURwx4f7
+ j8chfq+ZkCYnstSTNbVHPG9RnBWfq61QdL720+Bmr0UVylmI46uzxmI+bcmSCIBkhDJfKWKJh6r
+ kq51gQK+HSlEdIjFUAHckvjTvGH+6eR1TWGHT/VfNSVKCbu0EtN8/ZDmbcV+bIJbBjTu/aSKptY
+ cjMr/74CIYvB4efNYBIr4rASKQPjFkln0s3VUVRDjxzUnKJxW91s2lKw4PtCwQN/mApTD8Dr76c
+ zyO+UJKZsg9NLmm4Ovge8OyF0HYBd6cIAMt7Bfh3vJCs7F1NTBLcApttuHl2iMF3rXA==
+X-Received: by 2002:a05:600c:5392:b0:4a1:6991:36d7 with SMTP id
+ 5b1f17b1804b1-4a1699137bfmr23376305e9.10.1791023989748; 
+ Sat, 03 Oct 2026 03:39:49 -0700 (PDT)
+X-Received: by 2002:a05:600c:5392:b0:4a1:6991:36d7 with SMTP id
+ 5b1f17b1804b1-4a1699137bfmr23376055e9.10.1791023989341; 
+ Sat, 03 Oct 2026 03:39:49 -0700 (PDT)
 Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4a03ff20831sm97747375e9.4.2026.10.03.03.30.54
+ 5b1f17b1804b1-4a02770fe4csm168249935e9.7.2026.10.03.03.39.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 03 Oct 2026 03:30:55 -0700 (PDT)
+ Sat, 03 Oct 2026 03:39:48 -0700 (PDT)
 From: Javier Martinez Canillas <javierm@redhat.com>
 To: Mario Limonciello <mario.limonciello@amd.com>,
  dri-devel@lists.freedesktop.org, harry.wentland@amd.com, Simona Vetter
@@ -85,11 +85,11 @@ Subject: Re: [PATCH v9 21/21] drm/solomon: add SSD130x connector luminance
 In-Reply-To: <20261002190030.211356-22-mario.limonciello@amd.com>
 References: <20261002190030.211356-1-mario.limonciello@amd.com>
  <20261002190030.211356-22-mario.limonciello@amd.com>
-Date: Sat, 03 Oct 2026 12:30:53 +0200
-Message-ID: <xlv1zewv5b4y.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb>
+Date: Sat, 03 Oct 2026 12:39:47 +0200
+Message-ID: <xlv1wlrz5aq4.fsf@fmartine-thinkpadx1carbongen12.rmtes.csb>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 8NYpyxkoV0K98WOTF52nXoGItnEy3JmX62y2GWdNkc4_1791023456
+X-Mimecast-MFC-PROC-ID: -ZviSpDu6oSbT7_6bKmLuB0QbEoP8kxPhZx2KDSlA9A_1791023990
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -108,8 +108,6 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Mario Limonciello <mario.limonciello@amd.com> writes:
 
-Hello Mario,
-
 > Expose SSD130x contrast through the connector LUMINANCE property when
 > DRM_LUMINANCE is enabled. Program contrast directly and retain the
 > backlight class interface otherwise.
@@ -117,32 +115,17 @@ Hello Mario,
 > Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 > ---
 
-[...]
+Actually, one more comment:
 
->  struct ssd130x_device *ssd130x_probe(struct device *dev, struct regmap *regmap)
->  {
->  	struct ssd130x_device *ssd130x;
-> +#ifndef CONFIG_DRM_LUMINANCE
->  	struct backlight_device *bl;
-> +#endif
+>  
+> -static const struct backlight_ops ssd130xfb_bl_ops[] = {
+> +static const struct backlight_ops ssd130xfb_bl_ops[] __maybe_unused = {
+>  	[SSD130X_FAMILY] = {
+>  		.update_status	= ssd130x_update_bl,
+>  	},
 
-[...]
-
-> +#ifndef CONFIG_DRM_LUMINANCE
->  	bl = devm_backlight_device_register(dev, dev_name(dev), dev, ssd130x,
->  					    &ssd130xfb_bl_ops[ssd130x->device_info->family_id],
->  					    NULL);
-> @@ -2258,6 +2298,7 @@ struct ssd130x_device *ssd130x_probe(struct device *dev, struct regmap *regmap)
->  	bl->props.brightness = ssd130x->contrast;
->  	bl->props.max_brightness = MAX_CONTRAST;
->  	ssd130x->bl_dev = bl;
-> +#endif
-
-I think that IS_ENABLED(CONFIG_BACKLIGHT_CLASS_DEVICE) makes more sense?
-
-Other than that, the patch looks good to me.
-
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+I think that instead of __maybe_unused, this definition could also
+be guarded by IS_ENABLED(CONFIG_BACKLIGHT_CLASS_DEVICE).
 
 -- 
 Best regards,
