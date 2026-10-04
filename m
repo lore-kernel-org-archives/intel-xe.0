@@ -4,54 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B906CA5FE4
-	for <intel-xe@archiver.kernel.org>; Sat,  3 Oct 2026 22:38:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C48ACA5FE4
+	for <intel-xe@archiver.kernel.org>; Sun,  4 Oct 2026 04:38:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A78910EA48;
-	Sat,  3 Oct 2026 22:38:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F017410E06B;
+	Sun,  4 Oct 2026 04:38:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BThYNJj3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="khenWLj6";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8C4910EA48;
- Sat,  3 Oct 2026 22:38:28 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 8338A4171E;
- Sat,  3 Oct 2026 22:38:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0319B1F0089B;
- Sat,  3 Oct 2026 22:38:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791067108;
- bh=PYWK/vh7WiCukWTrYPPqGU7WnxK7cVjDRNd8vW5QqG4=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=BThYNJj3zLI77GsJXXRNPd0ok6hUjbYgkCwBmnkNnfCAfj8IMCrndxH6sSspNQcwz
- DZ2jD51R6ZIiMXp8jZvpCjrtA8DXGA9hRm/hid7LhhqRkylEC9mzNb+wLXmPyQ5Wmd
- mttzWS8lkDHhL63NYG48I5VoqG87pkmHER38RbNl/GkUBwF5NyhJg0UCaCmD5r8VX8
- X4NzPf7GxzJXGq8hhp1O+NMlTABeMKbJeiLyOxqRYKYl1DMp7atXeXjDMD5HsjraP1
- RyJqTTVhyElmDlaKf9RPjVv4PQeMs+syQ8FqykNcdQAWdgkujR+YJdDmjM837JZ9jn
- fw0ds2k1FAFbw==
-From: Sasha Levin <sashal@kernel.org>
-To: stable@vger.kernel.org
-Cc: Sasha Levin <sashal@kernel.org>, Artem Dinaburg <artem@trailofbits.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Suraj Kandpal <suraj.kandpal@intel.com>,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Tvrtko Ursulin <tursulin@ursulin.net>,
- Simona Vetter <simona@ffwll.ch>, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 6.1.y 0/2] drm/i915/hdcp: guard both capability checks
-Date: Sat,  3 Oct 2026 18:33:02 -0400
-Message-ID: <2026-10-03-1-daily-reply-0021-re-i915-hdcp-both-capability-checks-6-1@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261002194030.20489-1-artem@trailofbits.com>
-References: <20261002194030.20489-1-artem@trailofbits.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2712D10E06B
+ for <intel-xe@lists.freedesktop.org>; Sun,  4 Oct 2026 04:38:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791088730; x=1822624730;
+ h=date:from:to:cc:subject:message-id;
+ bh=aRw8oqGO+KBR9d2YdD0QnBOuKyScLqQq6ryOapUqEqY=;
+ b=khenWLj6CChaklfy1d4Pf0cruBFIVAweCJnKqCoKhKvggilIp3eoPsWB
+ AgfmfQ5fH6EUghhxfJtYkvgb5Us3Dj3hQ187yvGUt1ofIU/PIfp+hPZqo
+ BHGCUmdZaXm8QpX518tYvKnbtn4hHbOKW22JVACd34y/Fxftd1gvwzpTG
+ Im5TvT6P95CZc/N7exOlxNopzUHBChFGGFjDivyKGcl5XNeoh2brxWFFv
+ /wZ3qsQ7g7mTBImsVabvT/fvotQ8JwriiUPZX9f+SQhAn3TYA7yOIt6A1
+ Gmtm5Mv8JkjZ8OBSHKK9J8keh6mx0xkhahPBshe6Xgm6hs6X8nTT4c2BQ Q==;
+X-CSE-ConnectionGUID: res7MeIzSg+0QXureX69Ig==
+X-CSE-MsgGUID: bOOs+IASSISqGss90cqlFg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11924"; a="95609928"
+X-IronPort-AV: E=Sophos;i="6.27,138,1787036400"; d="scan'208";a="95609928"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2026 21:38:49 -0700
+X-CSE-ConnectionGUID: B5wj+0cbT36kJbT/SL4H8Q==
+X-CSE-MsgGUID: UHMNO+x9RcGG+4k3UcT1Qg==
+X-ExtLoop1: 1
+Received: from lkp-server01.sh.intel.com (HELO 462990a40a85) ([10.239.97.150])
+ by fmviesa003.fm.intel.com with ESMTP; 03 Oct 2026 21:38:48 -0700
+Received: from kbuild by 462990a40a85 with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1xDDzp-00000000UTV-2q1E;
+ Sun, 04 Oct 2026 04:38:45 +0000
+Date: Sun, 04 Oct 2026 12:38:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ cf4171a20d13918e07ed01a1e01a6b546825c601
+Message-ID: <202610041241.ALhLXZ3t-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,11 +63,357 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> already present in 6.12.y, 6.18.y, and 7.2.y. Could you please queue both
-> patches for 6.1.y?
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: cf4171a20d13918e07ed01a1e01a6b546825c601  drm/xe/guc: Fix race around q->guc->suspend_pending access
 
-Queued the series for 6.1, thanks.
+elapsed time: 1332m
 
--- 
-Thanks,
-Sasha
+configs tested: 338
+configs skipped: 2
+
+The following configs have been built successfully.
+More configs may be tested in the coming days.
+
+tested configs:
+alpha                              allnoconfig    gcc-16.1.0
+alpha                             allyesconfig    gcc-16.1.0
+alpha                                defconfig    gcc-16.1.0
+alpha                randconfig-r2301-20261002    gcc-15.2.0 sparse
+arc                               alldefconfig    clang-24
+arc                               allmodconfig    clang-24
+arc                                allnoconfig    gcc-16.1.0
+arc                               allyesconfig    clang-24
+arc                                  defconfig    gcc-16.1.0
+arc                  nsimosci_hs_smp_defconfig    gcc-16.1.0
+arc                   randconfig-1000-20261003    clang-17
+arc                   randconfig-1000-20261004    clang-22
+arc                   randconfig-1001-20261003    clang-17
+arc                   randconfig-1001-20261004    clang-22
+arc                  randconfig-r2100-20261002    gcc-16.1.0 cocci
+arc                  randconfig-r2307-20261002    gcc-12.5.0 sparse
+arm                                allnoconfig    gcc-16.1.0
+arm                               allyesconfig    clang-24
+arm                           collie_defconfig    clang-24
+arm                                  defconfig    gcc-16.1.0
+arm                           ixp4xx_defconfig    clang-24
+arm                       jornada720_defconfig    clang-24
+arm                          nhk8815_defconfig    clang-24
+arm                              pxa_defconfig    clang-24
+arm                   randconfig-1000-20261003    clang-17
+arm                   randconfig-1000-20261004    clang-22
+arm                   randconfig-1001-20261003    clang-17
+arm                   randconfig-1001-20261004    clang-22
+arm                   randconfig-1002-20261003    clang-17
+arm                   randconfig-1002-20261004    clang-22
+arm                   randconfig-1003-20261003    clang-17
+arm                   randconfig-1003-20261004    clang-22
+arm                  randconfig-r2101-20261002    gcc-8.5.0  cocci
+arm                  randconfig-r2103-20261002    gcc-14.3.0 cocci
+arm                  randconfig-r2307-20261002    gcc-8.5.0  sparse
+arm                          socfpga_defconfig    clang-24
+arm64                             allmodconfig    clang-24
+arm64                              allnoconfig    gcc-16.1.0
+arm64                                defconfig    gcc-16.1.0
+arm64                 randconfig-1000-20261003    gcc-9.5.0
+arm64                 randconfig-1000-20261004    gcc-16.1.0
+arm64                 randconfig-1001-20261003    gcc-9.5.0
+arm64                 randconfig-1001-20261004    gcc-16.1.0
+arm64                 randconfig-1002-20261003    gcc-9.5.0
+arm64                 randconfig-1002-20261004    gcc-16.1.0
+arm64                 randconfig-1003-20261003    gcc-9.5.0
+arm64                 randconfig-1003-20261004    gcc-16.1.0
+arm64                randconfig-r2201-20261002    gcc-15.2.0 smatch
+arm64                randconfig-r2308-20261002    gcc-8.5.0  sparse
+csky                              allmodconfig    gcc-16.1.0
+csky                               allnoconfig    gcc-16.1.0
+csky                                 defconfig    gcc-16.1.0
+csky                  randconfig-1000-20261003    gcc-9.5.0
+csky                  randconfig-1000-20261004    gcc-16.1.0
+csky                  randconfig-1001-20261003    gcc-9.5.0
+csky                  randconfig-1001-20261004    gcc-16.1.0
+csky                 randconfig-r2305-20261002    gcc-14.3.0 sparse
+csky                 randconfig-r2309-20261002    gcc-14.3.0 sparse
+hexagon                           allmodconfig    gcc-16.1.0
+hexagon                            allnoconfig    gcc-16.1.0
+hexagon                              defconfig    gcc-16.1.0
+hexagon               randconfig-1000-20261003    gcc-16.1.0
+hexagon               randconfig-1000-20261004    gcc-16.1.0
+hexagon               randconfig-1001-20261003    gcc-16.1.0
+hexagon               randconfig-1001-20261004    gcc-16.1.0
+hexagon              randconfig-r2202-20261002    clang-18   smatch
+i386                              allmodconfig    clang-22
+i386                               allnoconfig    gcc-16.1.0
+i386                              allyesconfig    clang-22
+i386        buildonly-randconfig-1000-20261003    gcc-14
+i386        buildonly-randconfig-1000-20261004    clang-22
+i386        buildonly-randconfig-1001-20261003    gcc-14
+i386        buildonly-randconfig-1001-20261004    clang-22
+i386        buildonly-randconfig-1002-20261003    gcc-14
+i386        buildonly-randconfig-1002-20261004    clang-22
+i386        buildonly-randconfig-1003-20261003    gcc-14
+i386        buildonly-randconfig-1003-20261004    clang-22
+i386        buildonly-randconfig-1004-20261003    gcc-14
+i386        buildonly-randconfig-1004-20261004    clang-22
+i386        buildonly-randconfig-1005-20261003    gcc-14
+i386        buildonly-randconfig-1005-20261004    clang-22
+i386                                 defconfig    gcc-16.1.0
+i386                  randconfig-1000-20261003    gcc-14
+i386                  randconfig-1000-20261004    gcc-14
+i386                  randconfig-1001-20261003    gcc-14
+i386                  randconfig-1001-20261004    gcc-14
+i386                  randconfig-1002-20261003    gcc-14
+i386                  randconfig-1002-20261004    gcc-14
+i386                  randconfig-1003-20261003    gcc-14
+i386                  randconfig-1003-20261004    gcc-14
+i386                  randconfig-1004-20261003    gcc-14
+i386                  randconfig-1004-20261004    gcc-14
+i386                  randconfig-1005-20261003    gcc-14
+i386                  randconfig-1005-20261004    gcc-14
+i386                  randconfig-1006-20261003    gcc-14
+i386                  randconfig-1006-20261004    gcc-14
+i386                  randconfig-1007-20261003    gcc-14
+i386                  randconfig-1008-20261003    gcc-14
+i386                  randconfig-1009-20261003    gcc-14
+i386                  randconfig-1010-20261003    gcc-14
+i386                  randconfig-1011-20261003    gcc-14
+i386                  randconfig-1012-20261003    gcc-14
+i386                  randconfig-1013-20261003    gcc-14
+i386                  randconfig-2100-20261002    gcc-14     cocci
+i386                  randconfig-2101-20261002    clang-22   cocci
+i386                  randconfig-2101-20261002    gcc-14     cocci
+i386                  randconfig-2102-20261002    gcc-14     cocci
+i386                  randconfig-2103-20261002    gcc-14     cocci
+i386                  randconfig-2200-20261002    gcc-14     smatch
+i386                  randconfig-2300-20261002    clang-22   sparse
+i386                  randconfig-2300-20261002    gcc-12     sparse
+i386                  randconfig-2301-20261002    gcc-12     sparse
+i386                  randconfig-2301-20261002    gcc-14     sparse
+i386                  randconfig-2302-20261002    gcc-12     sparse
+i386                  randconfig-2302-20261002    gcc-14     sparse
+loongarch                         allmodconfig    clang-24
+loongarch                          allnoconfig    gcc-16.1.0
+loongarch                            defconfig    clang-24
+loongarch             randconfig-1000-20261003    gcc-16.1.0
+loongarch             randconfig-1000-20261004    gcc-16.1.0
+loongarch             randconfig-1001-20261003    gcc-16.1.0
+loongarch             randconfig-1001-20261004    gcc-16.1.0
+loongarch            randconfig-r2303-20261002    clang-18   sparse
+m68k                              allmodconfig    gcc-16.1.0
+m68k                               allnoconfig    gcc-16.1.0
+m68k                              allyesconfig    clang-24
+m68k                                 defconfig    clang-24
+microblaze                         allnoconfig    gcc-16.1.0
+microblaze                        allyesconfig    gcc-16.1.0
+microblaze                           defconfig    clang-24
+microblaze           randconfig-r2102-20261002    gcc-8.5.0  cocci
+microblaze           randconfig-r2200-20261002    gcc-8.5.0  smatch
+microblaze           randconfig-r2202-20261002    gcc-8.5.0  smatch
+microblaze           randconfig-r2309-20261002    gcc-8.5.0  sparse
+mips                              allmodconfig    gcc-16.1.0
+mips                               allnoconfig    gcc-16.1.0
+mips                              allyesconfig    gcc-16.1.0
+mips                           eyeq6_defconfig    gcc-16.1.0
+mips                            ip32_defconfig    gcc-16.1.0
+mips                 malta_qemu_32r6_defconfig    gcc-16.1.0
+mips                 randconfig-r2104-20261002    clang-17   cocci
+mips                 randconfig-r2300-20261002    gcc-11.5.0 sparse
+mips                 randconfig-r2303-20261002    gcc-11.5.0 sparse
+nios2                             allmodconfig    clang-20
+nios2                              allnoconfig    clang-24
+nios2                                defconfig    clang-24
+nios2                 randconfig-1000-20261003    gcc-16.1.0
+nios2                 randconfig-1000-20261004    gcc-16.1.0
+nios2                 randconfig-1001-20261003    gcc-16.1.0
+nios2                 randconfig-1001-20261004    gcc-16.1.0
+nios2                randconfig-r2105-20261002    clang-17   cocci
+nios2                randconfig-r2302-20261002    gcc-11.5.0 sparse
+openrisc                          allmodconfig    clang-20
+openrisc                           allnoconfig    clang-24
+openrisc                             defconfig    gcc-16.1.0
+openrisc             randconfig-r2305-20261002    gcc-11.5.0 sparse
+openrisc             randconfig-r2306-20261002    gcc-10.5.0 sparse
+parisc                            allmodconfig    gcc-16.1.0
+parisc                             allnoconfig    clang-24
+parisc                            allyesconfig    clang-17
+parisc                               defconfig    gcc-16.1.0
+parisc                 generic-32bit_defconfig    gcc-16.1.0
+parisc                randconfig-1000-20261003    gcc-11.5.0
+parisc                randconfig-1000-20261004    gcc-12.5.0
+parisc                randconfig-1001-20261003    gcc-11.5.0
+parisc                randconfig-1001-20261004    gcc-12.5.0
+parisc               randconfig-r2100-20261002    gcc-8.5.0  cocci
+parisc               randconfig-r2306-20261002    gcc-8.5.0  sparse
+parisc64                          alldefconfig    gcc-16.1.0
+parisc64                             defconfig    clang-24
+powerpc                           allmodconfig    gcc-16.1.0
+powerpc                            allnoconfig    clang-24
+powerpc                      powernv_defconfig    clang-24
+powerpc               randconfig-1000-20261003    gcc-11.5.0
+powerpc               randconfig-1000-20261004    gcc-12.5.0
+powerpc               randconfig-1001-20261003    gcc-11.5.0
+powerpc               randconfig-1001-20261004    gcc-12.5.0
+powerpc              randconfig-r2106-20261002    clang-17   cocci
+powerpc              randconfig-r2107-20261002    clang-17   cocci
+powerpc64             randconfig-1000-20261003    gcc-11.5.0
+powerpc64             randconfig-1000-20261004    gcc-12.5.0
+powerpc64             randconfig-1001-20261003    gcc-11.5.0
+powerpc64             randconfig-1001-20261004    gcc-12.5.0
+riscv                             allmodconfig    clang-24
+riscv                              allnoconfig    clang-24
+riscv                             allyesconfig    clang-24
+riscv                                defconfig    gcc-16.1.0
+riscv                 randconfig-1000-20261003    gcc-12.5.0
+riscv                 randconfig-1000-20261004    gcc-11.5.0
+riscv                 randconfig-1001-20261003    gcc-12.5.0
+riscv                 randconfig-1001-20261004    gcc-11.5.0
+riscv                 randconfig-2000-20261002    gcc-8.5.0
+riscv                 randconfig-2000-20261002    gcc-9.5.0
+riscv                 randconfig-2001-20261002    clang-18
+riscv                 randconfig-2001-20261002    gcc-9.5.0
+riscv                randconfig-r2101-20261002    clang-24   cocci
+riscv                randconfig-r2102-20261002    clang-24   cocci
+s390                              allmodconfig    clang-17
+s390                               allnoconfig    clang-24
+s390                              allyesconfig    gcc-16.1.0
+s390                                 defconfig    gcc-16.1.0
+s390                  randconfig-1000-20261003    gcc-12.5.0
+s390                  randconfig-1000-20261004    gcc-11.5.0
+s390                  randconfig-1001-20261003    gcc-12.5.0
+s390                  randconfig-1001-20261004    gcc-11.5.0
+s390                  randconfig-2000-20261002    clang-24
+s390                  randconfig-2000-20261002    gcc-9.5.0
+s390                  randconfig-2001-20261002    clang-19
+s390                  randconfig-2001-20261002    gcc-9.5.0
+sh                                allmodconfig    gcc-16.1.0
+sh                                 allnoconfig    clang-24
+sh                                allyesconfig    clang-17
+sh                                   defconfig    gcc-14
+sh                    randconfig-1000-20261003    gcc-12.5.0
+sh                    randconfig-1000-20261004    gcc-11.5.0
+sh                    randconfig-1001-20261003    gcc-12.5.0
+sh                    randconfig-1001-20261004    gcc-11.5.0
+sh                    randconfig-2000-20261002    gcc-11.5.0
+sh                    randconfig-2000-20261002    gcc-9.5.0
+sh                    randconfig-2001-20261002    gcc-9.5.0
+sh                   randconfig-r2300-20261002    gcc-16.1.0 sparse
+sh                            se7724_defconfig    gcc-16.1.0
+sh                      sh7710voipgw_defconfig    gcc-16.1.0
+sparc                              allnoconfig    clang-24
+sparc                                defconfig    gcc-16.1.0
+sparc                 randconfig-1000-20261003    clang-17
+sparc                 randconfig-1000-20261004    gcc-14
+sparc                 randconfig-1001-20261003    clang-17
+sparc                 randconfig-1001-20261004    gcc-14
+sparc                 randconfig-2000-20261002    clang-24
+sparc                 randconfig-2000-20261002    gcc-15.2.0
+sparc                 randconfig-2001-20261002    clang-24
+sparc                 randconfig-2001-20261002    gcc-8.5.0
+sparc64                           allmodconfig    clang-20
+sparc64                              defconfig    gcc-14
+sparc64               randconfig-1000-20261003    clang-17
+sparc64               randconfig-1000-20261004    gcc-14
+sparc64               randconfig-1001-20261003    clang-17
+sparc64               randconfig-1001-20261004    gcc-14
+sparc64               randconfig-2000-20261002    clang-24
+sparc64               randconfig-2000-20261002    gcc-8.5.0
+sparc64               randconfig-2001-20261002    clang-24
+sparc64              randconfig-r2304-20261002    clang-24   sparse
+um                                allmodconfig    clang-17
+um                                 allnoconfig    clang-24
+um                                allyesconfig    gcc-16.1.0
+um                                   defconfig    gcc-14
+um                              i386_defconfig    gcc-14
+um                    randconfig-1000-20261003    clang-17
+um                    randconfig-1000-20261004    gcc-14
+um                    randconfig-1001-20261003    clang-17
+um                    randconfig-1001-20261004    gcc-14
+um                    randconfig-2000-20261002    clang-24
+um                    randconfig-2001-20261002    clang-24
+um                   randconfig-r2103-20261002    gcc-8.5.0  cocci
+um                   randconfig-r2304-20261002    gcc-11.5.0 sparse
+um                   randconfig-r2308-20261002    clang-17   sparse
+um                            x86_64_defconfig    gcc-14
+x86_64                            allmodconfig    clang-22
+x86_64                             allnoconfig    clang-22   checkkconfigsymbols
+x86_64                             allnoconfig    clang-24
+x86_64                            allyesconfig    clang-22
+x86_64      buildonly-randconfig-1000-20261003    clang-22
+x86_64      buildonly-randconfig-1000-20261004    gcc-14
+x86_64      buildonly-randconfig-1001-20261003    clang-22
+x86_64      buildonly-randconfig-1001-20261004    gcc-14
+x86_64      buildonly-randconfig-1002-20261003    clang-22
+x86_64      buildonly-randconfig-1002-20261004    gcc-14
+x86_64      buildonly-randconfig-1003-20261003    clang-22
+x86_64      buildonly-randconfig-1003-20261004    gcc-14
+x86_64      buildonly-randconfig-1004-20261003    clang-22
+x86_64      buildonly-randconfig-1004-20261004    gcc-14
+x86_64      buildonly-randconfig-1005-20261003    clang-22
+x86_64      buildonly-randconfig-1005-20261004    gcc-14
+x86_64                               defconfig    gcc-14
+x86_64                                   kexec    clang-22
+x86_64                randconfig-1000-20261003    clang-22
+x86_64                randconfig-1000-20261004    gcc-14
+x86_64                randconfig-1001-20261003    clang-22
+x86_64                randconfig-1001-20261004    gcc-14
+x86_64                randconfig-1002-20261003    clang-22
+x86_64                randconfig-1002-20261004    gcc-14
+x86_64                randconfig-1003-20261003    clang-22
+x86_64                randconfig-1003-20261004    gcc-14
+x86_64                randconfig-1004-20261003    clang-22
+x86_64                randconfig-1004-20261004    gcc-14
+x86_64                randconfig-1005-20261003    clang-22
+x86_64                randconfig-1005-20261004    gcc-14
+x86_64                randconfig-1006-20261003    clang-22
+x86_64                randconfig-1006-20261004    clang-22
+x86_64                randconfig-1007-20261003    clang-22
+x86_64                randconfig-1007-20261004    clang-22
+x86_64                randconfig-1008-20261003    clang-22
+x86_64                randconfig-1008-20261004    clang-22
+x86_64                randconfig-1009-20261003    clang-22
+x86_64                randconfig-1009-20261004    clang-22
+x86_64                randconfig-1010-20261003    clang-22
+x86_64                randconfig-1010-20261004    clang-22
+x86_64                randconfig-1011-20261003    clang-22
+x86_64                randconfig-1011-20261004    clang-22
+x86_64                randconfig-1012-20261003    clang-22
+x86_64                randconfig-1013-20261003    clang-22
+x86_64                randconfig-1014-20261003    clang-22
+x86_64                randconfig-1015-20261003    clang-22
+x86_64                randconfig-1016-20261003    clang-22
+x86_64                randconfig-1017-20261003    clang-22
+x86_64                randconfig-2100-20261002    gcc-14     cocci
+x86_64                randconfig-2101-20261002    gcc-14     cocci
+x86_64                randconfig-2102-20261002    gcc-14     cocci
+x86_64                randconfig-2103-20261002    gcc-14     cocci
+x86_64                randconfig-2200-20261002    clang-22   smatch
+x86_64                randconfig-2300-20261002    gcc-12     sparse
+x86_64                randconfig-2300-20261002    gcc-14     sparse
+x86_64                randconfig-2301-20261002    gcc-12     sparse
+x86_64                randconfig-2301-20261002    gcc-14     sparse
+x86_64                randconfig-2302-20261002    gcc-12     sparse
+x86_64               randconfig-r2301-20261002    gcc-11.5.0 sparse
+x86_64                                rhel-9.4    clang-22
+x86_64                            rhel-9.4-bpf    clang-22
+x86_64                            rhel-9.4-bpf    gcc-14
+x86_64                           rhel-9.4-func    clang-22
+x86_64                     rhel-9.4-kselftests    clang-22
+x86_64                          rhel-9.4-kunit    clang-22
+x86_64                          rhel-9.4-kunit    gcc-14
+x86_64                            rhel-9.4-ltp    clang-22
+x86_64                            rhel-9.4-ltp    gcc-14
+x86_64                           rhel-9.4-rust    clang-22
+x86_64                           rhel-9.4-rust    clang-22
+xtensa                             allnoconfig    clang-24
+xtensa                            allyesconfig    clang-20
+xtensa                randconfig-1000-20261003    clang-17
+xtensa                randconfig-1000-20261004    gcc-14
+xtensa                randconfig-1001-20261003    clang-17
+xtensa                randconfig-1001-20261004    gcc-14
+xtensa                randconfig-2000-20261002    clang-24
+xtensa                randconfig-2000-20261002    gcc-13.4.0
+xtensa                randconfig-2001-20261002    clang-24
+xtensa                randconfig-2001-20261002    gcc-11.5.0
+
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
