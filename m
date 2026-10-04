@@ -4,46 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 836C4CA5FF0
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 23:52:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EA14CA5FFC
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 23:52:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C54F10E0A3;
-	Mon,  5 Oct 2026 23:52:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DCC510E157;
+	Mon,  5 Oct 2026 23:52:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=tychen.cc header.i=@tychen.cc header.b="Tm8KEJ5o";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qPnQW8l7";
 	dkim-atps=neutral
-X-Greylist: delayed 916 seconds by postgrey-1.36 at gabe;
- Mon, 05 Oct 2026 09:48:32 UTC
-Received: from out-2uec-a116.jellyfish.systems
- (out-2uec-a116.jellyfish.systems [63.250.43.116])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22C8F10E23E
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Oct 2026 09:48:32 +0000 (UTC)
-Received: from [10.18.116.108]
- (ec2-52-197-241-54.ap-northeast-1.compute.amazonaws.com [52.197.241.54])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mail.spacemail.com (Postfix) with ESMTPSA id 4hyvFK5h78z8sWP;
- Mon, 05 Oct 2026 09:28:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tychen.cc;
- s=spacemail; t=1791192487;
- bh=2y4wr1V5I23GlnTFeGGG3Jbwi2k2otlqOWx04rBsWn4=;
- h=From:Date:Subject:To:Cc:From;
- b=Tm8KEJ5ouweADvxi8I85+HzzD9Hk5RcJfryDiZmPb6Ww4rOaYdWM+UGoMkXkjNSpO
- qDvukQdlBQq6HOzpsWDDknUpyQcDEr/uUcn69dM1OXRrTo2erwDG/xZYs/Lxd4iRxy
- 1tX/t0NQzOhH4sScW0c3zKPnfZywclGWikPgUa+1OXonU53nFYolbexzLhoxI40mro
- oCHEX7tBZQRPwZGvoUgHvXx3VvPcGN7CO6T8UJjuNFsqlUkHWd2JmbYgJw/fcAECTA
- A2EE+yG2we31fSTV3JetYFJDb5wp1C+8lIqbABCriXpYmbSloHuDkiPVo8flN42U+/
- eM9XFWOCvN7dw==
-Message-ID: <179119248353.3188462.12379850125625100861@tychen.cc>
-From: Tianyi Chen <hi@tychen.cc>
-Date: Mon, 5 Oct 2026 17:21:10 +0900
-Subject: [PATCH] drm/i915/display: Correct the DKL PHY RMW documentation
-To: jani.nikula@linux.intel.com,
-    rodrigo.vivi@intel.com
-Cc: intel-gfx@lists.freedesktop.org,
-    intel-xe@lists.freedesktop.org
-X-Envelope-From: hi@tychen.cc
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
+ [209.85.128.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C659710E546
+ for <intel-xe@lists.freedesktop.org>; Sun,  4 Oct 2026 20:29:15 +0000 (UTC)
+Received: by mail-wm1-f44.google.com with SMTP id
+ 5b1f17b1804b1-49d05d51553so7839545e9.2
+ for <intel-xe@lists.freedesktop.org>; Sun, 04 Oct 2026 13:29:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1791145754; x=1791750554; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:in-reply-to:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=iIFKjp1lGfDiZDolW1BimcdoYD6V0XYUoyt5Xe2j2X0=;
+ b=qPnQW8l7xuhyAQ+qU6auwQbxuJoKcteucUmnYt2uqQazDOY/48blg5bSxTb499h5A3
+ dhivNEfJYoNGzJrFs5A0AH0AGhHKCSUk+M5r7U3ioB1LEsRF2k91fDVucZbx0vaDKtNH
+ dBuGXYbodT6qVw+GbwK09p369P9Egv7JGRhCGx0M8HDDCY8Seb9TfHhAHfSnRrfJQleX
+ +TMfxmjBv+UkuPFh73M+u+TCcqjrbeHwJWdNofn/L+DoyBAlSXj4Qzj3fpYN4nE0iCDG
+ 53a1zY7zOX7E+yjztwKvL5iaw5F9AKIjxA4yk8uHicFeUOk7f77QU9PyCzIDwYTYLFFT
+ auZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1791145754; x=1791750554;
+ h=content-transfer-encoding:content-type:in-reply-to:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=iIFKjp1lGfDiZDolW1BimcdoYD6V0XYUoyt5Xe2j2X0=;
+ b=W7qi7QFFjV27+2z+UH2V9C4vuDlNHoMWZyskCyP3ju0+8NugwG9eMH7+k7X50N7HY5
+ 6nnV6uncUho1KMTEDP5xBQugIR8NV4yxXL3uo6fkLnYHmcfJKgl4jgqMAqVF7WKnVPUo
+ +Xt6EzUFY8/dV2+wqWbOKAvTxO/Jw8VZ1u0cauYeQrfFyaqhU0w7xMhr9glCe0uheuIR
+ 5JWCIi65CDJKa/6n13hiPvB3s3/eAr+cEL4Q6NwkOY9XuyX631jyKtCekIE/SK9TdUSk
+ xWNKnKDoY8i3iexZ5ub7RayAMke+92MXLxgY8yo8UyMwH1zjCkxOXbcAm5JvKUUozqKR
+ B4fQ==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBy/mk1oDRsGjELdvIDriDlroMJebBVDBIhcY/5pNteAq1aMKn6CJIOoWCu05LP4xuEwEdRFbe2nng==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++nFTFu9j3oEnPe2DVI6SaWgFt9tx95plAiA2NiCB9P5xgpCEQck
+ JzJadp14dne7BVfu82U5W02cdocCjiY9ZCs95IVQZBFKN+0gWJF5cLg=
+X-Gm-Gg: AYBFou2xJA2MTDEpYaPIOWlIwhpPFLVIHxWIySE4mT6VO9aG/Z48PCUIPN10lO6LEnR
+ 6HTxGzkpyeuGE4AV/Ewxe7O+rMArYNBhNOuYpGdiFSQ9MyVLuRX9zItHzi+rF5c+RepNqvfOZYN
+ rakziTtM6/pLLnun0B3AC3ri7BnkqFhJywCyfAizZQHtHSJFhSwGCyWw+wfXa4N2RK+63EIBxee
+ u1KYejXkwhog+eAUbYLh6Y0V/FKGFFmlH1i6EhsxLZ1Jk2UcRSFzLc3PMmxIUG5RZJgKCI6h3nu
+ uACYDjW07kddhGHN7VqB/Fla8W+FqjsNk/N6ESd8QuDbrwSgrHxprw08bSd2/khxFAvTWKxyVMq
+ tDu+SlGKk50MnZZW9CqbE4qKEbXqt7eiHkl8QjRU1ci7had1KpII1FVF8qm0aZRDdTNuKukhxcm
+ WvV+ZsC8cb0wZcVW+OUWxo/YccTDvgC7wkRja/Mccgq4N6wKqBxQmK0F/PRqq+1cxxMxxOkGLg5
+ jlMeOVt1hdOIwvtlPMH+b8jqATYidXrcXqcYVl3R1f8U0PLHjGiT8awkizhJlrUrw==
+X-Received: by 2002:a05:600c:6096:b0:49f:ce73:7a9 with SMTP id
+ 5b1f17b1804b1-4a1681073e2mr86527135e9.34.1791145753848; 
+ Sun, 04 Oct 2026 13:29:13 -0700 (PDT)
+Received: from ?IPV6:2001:b07:2ec:601d:4b26:1672:75c7:805a?
+ ([2001:b07:2ec:601d:4b26:1672:75c7:805a])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4a030326132sm232315185e9.0.2026.10.04.13.29.12
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 04 Oct 2026 13:29:13 -0700 (PDT)
+Message-ID: <b46b2f7e-f5fa-4556-9da3-aa4e4ab0e7a0@gmail.com>
+Date: Sun, 4 Oct 2026 22:29:11 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 6/8] drm/msm: lock the resident BOs of a VM_BIND submit
+ last
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ Abhinav Kumar <abhinav.kumar@linux.dev>, Alice Ryhl <aliceryhl@google.com>,
+ Antonino Maniscalco <antomani103@gmail.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>,
+ Jonathan Corbet <corbet@lwn.net>, Liviu Dudau <liviu.dudau@arm.com>,
+ Lyude Paul <lyude@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Maxime Ripard <mripard@kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Shuah Khan <skhan@linuxfoundation.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+References: <20261001220632.3190896-1-matthew.brost@intel.com>
+ <20261001220632.3190896-7-matthew.brost@intel.com>
+Content-Language: en-US
+From: Anna Maniscalco <anna.maniscalco2000@gmail.com>
+In-Reply-To: <20261001220632.3190896-7-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 05 Oct 2026 23:52:45 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,35 +112,183 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_dkl_phy_rmw() calls intel_de_rmw(), which unconditionally writes the
-register through intel_uncore_rmw(). The kernel-doc incorrectly claims
-that unchanged values are not written back.
+On 10/2/26 12:06 AM, Matthew Brost wrote:
+> A VM_BIND submit locks the resv of every BO mapped in the VM, then
+> validates the evicted ones, which means getting their pages and mapping
+> them again. That is slow, and external objects can be shared with other
+> processes, so all of it happens while holding resv locks other processes
+> may be waiting on, for BOs which needed no work at all.
+>
+> Use the two pass locking gpuvm now provides. The early pass locks only
+> the evicted external objects and validates them, along with the evicted
+> private ones, which the VM resv held from the start covers. The late
+> pass locks the external objects which were resident, and still validates
+> in case one of them was evicted meanwhile. When nothing is evicted,
+> drm_gpuvm_exec_pass_needs_split() says so and the submit keeps using a
+> single pass.
+>
+> Both passes run in the same drm_exec transaction, nothing is unlocked in
+> between, and they take disjoint sets of objects, so reserving one fence
+> slot in each still reserves it exactly once per object.
+>
+> This moves validation from after drm_sched_job_arm() and fence
+> attachment into the locking loop, ahead of everything else, which is
+> also where a failure is easiest to unwind. The order does not matter to
+> the shrinker: it skips any BO mapped in a VM whose resv it cannot
+> trylock, and the submit holds the VM resv throughout, so a BO mapped in
+> this VM cannot be evicted while it is locked, whether or not a fence is
+> attached to it yet. The same means the early pass can never evict a BO
+> the late pass is about to lock, the property Xe gets from
+> xe_vm_set_validating().
+>
+> Cc: Abhinav Kumar <abhinav.kumar@linux.dev>
+> Cc: Alice Ryhl <aliceryhl@google.com>
+> Cc: Anna Maniscalco <anna.maniscalco2000@gmail.com>
+> Cc: Antonino Maniscalco <antomani103@gmail.com>
+> Cc: Boris Brezillon <boris.brezillon@collabora.com>
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Dmitry Baryshkov <lumag@kernel.org>
+> Cc: Jessica Zhang <jesszhan0024@gmail.com>
+> Cc: Jonathan Corbet <corbet@lwn.net>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Marijn Suijten <marijn.suijten@somainline.org>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Randy Dunlap <rdunlap@infradead.org>
+> Cc: Rob Clark <robin.clark@oss.qualcomm.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: Shuah Khan <skhan@linuxfoundation.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Steven Price <steven.price@arm.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Assisted-by: LLM
+> ---
+> v3:
+>   - Follow the drm_gpuvm_exec_pass_ function renames (Danilo)
+> ---
+>   drivers/gpu/drm/msm/msm_gem_submit.c | 84 ++++++++++++++++++++++------
+>   1 file changed, 66 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/msm/msm_gem_submit.c b/drivers/gpu/drm/msm/msm_gem_submit.c
+> index 1215b388cb40..4e454345567a 100644
+> --- a/drivers/gpu/drm/msm/msm_gem_submit.c
+> +++ b/drivers/gpu/drm/msm/msm_gem_submit.c
+> @@ -266,6 +266,71 @@ static int submit_lookup_cmds(struct msm_gem_submit *submit,
+>   	return ret;
+>   }
+>   
+> +/*
+> + * Lock and validate every BO mapped in a VM_BIND VM.  Unlike the legacy path,
+> + * where submit_pin_objects() only validates the BOs userspace attached to the
+> + * submit, userspace does not tell us which BOs a VM_BIND submit uses, so the
+> + * entire VM has to be validated.
+> + *
+> + * When something is evicted, the locks are taken in two passes.  The early
+> + * pass locks only the external objects which need validating, i.e. the
+> + * evicted ones, and validates them along with the evicted private objects,
+> + * which the VM resv held from the start already covers.  The late pass then
+> + * locks the external objects which were resident.  Validation means getting
+> + * pages and mapping them, which is slow, and an external object can be shared
+> + * with another process, so there is no point in stalling that process on the
+> + * resv of a resident BO for the duration of it.  The late pass still
+> + * validates, in case one of those BOs got evicted meanwhile.
+> + *
+> + * Both passes run in the same drm_exec transaction, nothing is unlocked in
+> + * between, and they take disjoint sets of objects, so reserving one fence
+> + * slot in each reserves it exactly once per object.
+> + *
+> + * The shrinker cannot evict a BO the early pass is about to validate, nor one
+> + * it has validated already: it only evicts a BO after trylocking the resv of
+> + * every VM the BO is mapped in, and the VM resv is held throughout.
+> + */
+> +static int submit_prepare_vm_objects(struct msm_gem_submit *submit)
+> +{
+> +	struct drm_gpuvm *vm = submit->vm;
+> +	struct drm_exec *exec = &submit->exec;
+> +	int ret;
+> +
+> +	ret = drm_gpuvm_prepare_vm(vm, exec, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * With nothing evicted there is no validation to keep the resident
+> +	 * objects unlocked for, so do not pay for the second walk.
+> +	 */
+> +	if (!drm_gpuvm_exec_pass_needs_split(vm)) {
+> +		ret = drm_gpuvm_prepare_objects(vm, exec, 1);
+> +		if (ret)
+> +			return ret;
+> +
+> +		return drm_gpuvm_validate(vm, exec);
+> +	}
+> +
+> +	ret = drm_gpuvm_exec_pass_prepare_objects(vm, exec, 1,
+> +						  DRM_GPUVM_EXEC_PASS_EARLY);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = drm_gpuvm_exec_pass_validate(vm, exec,
+> +					   DRM_GPUVM_EXEC_PASS_EARLY);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = drm_gpuvm_exec_pass_prepare_objects(vm, exec, 1,
+> +						  DRM_GPUVM_EXEC_PASS_LATE);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return drm_gpuvm_exec_pass_validate(vm, exec,
+> +					    DRM_GPUVM_EXEC_PASS_LATE);
+> +}
+> +
+>   static int submit_lock_objects_vmbind(struct msm_gem_submit *submit)
+>   {
+>   	unsigned flags = DRM_EXEC_INTERRUPTIBLE_WAIT | DRM_EXEC_IGNORE_DUPLICATES;
+> @@ -276,12 +341,7 @@ static int submit_lock_objects_vmbind(struct msm_gem_submit *submit)
+>   	submit->has_exec = true;
+>   
+>   	drm_exec_until_all_locked (&submit->exec) {
+> -		ret = drm_gpuvm_prepare_vm(submit->vm, exec, 1);
+> -		drm_exec_retry_on_contention(exec);
+> -		if (ret)
+> -			break;
+> -
+> -		ret = drm_gpuvm_prepare_objects(submit->vm, exec, 1);
+> +		ret = submit_prepare_vm_objects(submit);
+>   		drm_exec_retry_on_contention(exec);
+>   		if (ret)
+>   			break;
+> @@ -790,18 +850,6 @@ int msm_ioctl_gem_submit(struct drm_device *dev, void *data,
+>   
+>   	submit_attach_object_fences(submit);
+>   
+> -	if (msm_context_is_vmbind(ctx)) {
+> -		/*
+> -		 * If we are not using VM_BIND, submit_pin_vmas() will validate
+> -		 * just the BOs attached to the submit.  In that case we don't
+> -		 * need to validate the _entire_ vm, because userspace tracked
+> -		 * what BOs are associated with the submit.
+> -		 */
+> -		ret = drm_gpuvm_validate(submit->vm, &submit->exec);
+> -		if (ret)
+> -			goto out;
+> -	}
+> -
+>   	/* The scheduler owns a ref now: */
+>   	msm_gem_submit_get(submit);
+>   
 
-Describe the actual read-modify-write behavior. No functional change.
+This and the two other msm patches are:
 
-Assisted-by: LLM
-Signed-off-by: Tianyi Chen <hi@tychen.cc>
----
- drivers/gpu/drm/i915/display/intel_dkl_phy.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Reviewed-by: Anna Maniscalco <anna.maniscalco2000@gmail.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dkl_phy.c b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-index 35e919eae369..77b4c85511d3 100644
---- a/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_dkl_phy.c
-@@ -84,8 +84,7 @@ intel_dkl_phy_write(struct intel_display *display, struct intel_dkl_phy_reg reg,
-  * @clear: mask to clear
-  * @set: mask to set
-  *
-- * Read the @reg Dekel PHY register, clearing then setting the @clear/@set bits in it, and writing
-- * this value back to the register if the value differs from the read one.
-+ * Read @reg, clear @clear, set @set, and write the result back.
-  */
- void
- intel_dkl_phy_rmw(struct intel_display *display, struct intel_dkl_phy_reg reg, u32 clear, u32 set)
-
-base-commit: a90ee4305c4a5df72c11b31dacfdc76e00fcf78a
+Best regards,
 -- 
-2.55.0
-
+Anna Maniscalco <anna.maniscalco2000@gmail.com>
 
