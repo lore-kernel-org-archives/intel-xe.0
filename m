@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDB90CA5FF0
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 08:55:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D226CA5FFC
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 09:02:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D19710E247;
-	Mon,  5 Oct 2026 08:55:05 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C0C210E247;
- Mon,  5 Oct 2026 08:55:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8077232074193641630=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 426E810E44C;
+	Mon,  5 Oct 2026 09:02:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kqEC6q91";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 680D110E44C
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Oct 2026 09:02:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791190931; x=1822726931;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ujomxx9Gfyn25YY5tFetZSdApBz4ex7EGg1ibNralwQ=;
+ b=kqEC6q91P2KD1UNECvxye5zwRexY378KvcnYrsh6i+hSFBV4NTkxMCkM
+ NIzo3FmIKajkIwPWtioMvIBHXf4SribEg9ZiAnyZrFS6iS9GjbZeDK/ax
+ l6L2AVYJEXJLE/Tp3Uf/PSHVoXBH1+WI6g2yxszNicfXjKD9BlP8gPNKW
+ vBrHrZFsM2v901CExmUdoVccYYFh4VEWjyWYG0oXnPHp3IUjkgJ/sewCq
+ vknWkDIGf/KgLsoC0+vbve2ags+5PITXk6yNQedNlX9S/LXey2HZSoKdr
+ 062UyKD3vRM2FIV/fTE+gSX/feTfxj3FN53wiXjJHsP+rd0tGsVM1TIBd Q==;
+X-CSE-ConnectionGUID: Kzu1w2i9RiWW0KulkpvHXg==
+X-CSE-MsgGUID: wO7kZgr4QciIqhdPvArSJw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11925"; a="109346367"
+X-IronPort-AV: E=Sophos;i="6.27,141,1787036400"; d="scan'208";a="109346367"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2026 02:02:11 -0700
+X-CSE-ConnectionGUID: 2SnUuOUtSkmLB/Hd5zI0bQ==
+X-CSE-MsgGUID: cENj9VOIS9aD+alx7ZMQHw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,141,1787036400"; d="scan'208";a="280050080"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2026 02:02:08 -0700
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
+ raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, tejas.upadhyay@intel.com,
+ himal.prasad.ghimiray@intel.com
+Subject: [PATCH v4 0/6] Add support to handle memory double-bit ecc errors
+Date: Mon,  5 Oct 2026 14:31:56 +0530
+Message-ID: <20261005090156.1233748-8-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_two_bo_pin/un?=
- =?utf-8?q?pin_accounting_bugs_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 05 Oct 2026 08:55:04 -0000
-Message-ID: <179119050456.239269.5945807727299981734@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20261002100830.12297-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20261002100830.12297-1-thomas.hellstrom@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +65,65 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8077232074193641630==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This series introduces the firmware commands required to handle
+uncorrectable memory double-bit ecc errors.
 
-== Series Details ==
+When a error is detected, the driver determines whether the affected
+page can be offlined and sends an offline/remove request to firmware
+via sysctrl interface. Pages belonging to critical Bos or stolen memory
+require a Secondary Bus Reset(SBR) to recover.
+Pages configured for log-only handling are removed from queue.
 
-Series: drm/xe: Fix two bo pin/unpin accounting bugs (rev3)
-URL   : https://patchwork.freedesktop.org/series/175366/
-State : success
+For the rest of the valid pages, the first error is a poison error and a
+remove is sent to firmware to avoid marking the page as bad and to
+remove from queue. On the second occurence at the same address, we
+request the firmware to offline the page as this would indicate a
+Double-bit ECC error. Any subsequent errors at the same address should be
+because of memory scrubber and a remove is sent to firmware to remove the
+page from queue. This is done by tracking the firmware offlined pages by Xe KMD.
 
-== Summary ==
+At module load, the driver queries firmware for both the offline list
+and the queue and processes them accordingly.
 
-CI Bug Log - changes from xe-5887-b0bd9fb9e92aae2a653efa1d0407daa2aabe99d0_BAT -> xe-pw-175366v3_BAT
-====================================================
+Rev2: Rebase
+      fix sigid logs
+      fix sashiko review comments
 
-Summary
--------
+Rev3: add a common function for queue and list
+      fix other review comments
 
-  **SUCCESS**
+Rev4: reorder list and queue function calls
+      fix sashiko comments
+      check userpolicy before soft offlining
+      handle -ENOMEM
+      fix other cosmetic review comments
 
-  No regressions found.
+Riana Tauro (6):
+  drm/xe: Separate drm-ras netlink data from device and firmware RAS
+    state
+  drm/xe/xe_ras: Handle page offline requests for device memory ecc
+    errors
+  drm/xe/xe_ras: Add support to query page offline queue and list
+  drm/xe/xe_ras: Add function to get maximum pages firmware can store
+  drm/xe/xe_ttm_vram: Report max_pages reported by firmware to userspace
+  drm/xe/xe_ras: Track offlined pages by firmware to avoid duplicates
 
-  
+ drivers/gpu/drm/xe/xe_device.c                |   4 +-
+ drivers/gpu/drm/xe/xe_device_types.h          |  11 +-
+ drivers/gpu/drm/xe/xe_drm_ras.c               |  16 +-
+ drivers/gpu/drm/xe/xe_drm_ras_types.h         |   3 -
+ drivers/gpu/drm/xe/xe_hw_error.c              |   6 +-
+ drivers/gpu/drm/xe/xe_ras.c                   | 303 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_ras.h                   |   5 +-
+ drivers/gpu/drm/xe/xe_ras_types.h             |  85 +++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   6 +
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |   9 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h    |   2 -
+ 11 files changed, 409 insertions(+), 41 deletions(-)
 
-Participating hosts (15 -> 14)
-------------------------------
+-- 
+2.47.1
 
-  Missing    (1): bat-adlp-7 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-175366v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-1:          [PASS][1] -> [ABORT][2] ([Intel XE#9463])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5887-b0bd9fb9e92aae2a653efa1d0407daa2aabe99d0/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175366v3/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
-
-
-Build changes
--------------
-
-  * IGT: IGT_9126 -> IGT_9127
-  * Linux: xe-5887-b0bd9fb9e92aae2a653efa1d0407daa2aabe99d0 -> xe-pw-175366v3
-
-  IGT_9126: 4b27241425f55826ff2df54686e8e709f5baf9dc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_9127: 9127
-  xe-5887-b0bd9fb9e92aae2a653efa1d0407daa2aabe99d0: b0bd9fb9e92aae2a653efa1d0407daa2aabe99d0
-  xe-pw-175366v3: 175366v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175366v3/index.html
-
---===============8077232074193641630==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix two bo pin/unpin accounting bugs (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175366/">https://patchwork.freedesktop.org/series/175366/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175366v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175366v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5887-b0bd9fb9e92aae2a653efa1d0407daa2aabe99d0_BAT -&gt; xe-pw-175366v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 14)</h2>
-<p>Missing    (1): bat-adlp-7 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-175366v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5887-b0bd9fb9e92aae2a653efa1d0407daa2aabe99d0/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175366v3/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9126 -&gt; IGT_9127</li>
-<li>Linux: xe-5887-b0bd9fb9e92aae2a653efa1d0407daa2aabe99d0 -&gt; xe-pw-175366v3</li>
-</ul>
-<p>IGT_9126: 4b27241425f55826ff2df54686e8e709f5baf9dc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_9127: 9127<br />
-  xe-5887-b0bd9fb9e92aae2a653efa1d0407daa2aabe99d0: b0bd9fb9e92aae2a653efa1d0407daa2aabe99d0<br />
-  xe-pw-175366v3: 175366v3</p>
-
-</body>
-</html>
-
---===============8077232074193641630==--
