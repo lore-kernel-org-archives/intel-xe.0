@@ -4,63 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87219CA5FFD
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 09:39:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97B1ACA5FCE
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 09:44:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 328F210EC46;
-	Mon,  5 Oct 2026 09:39:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 560CD10E23E;
+	Mon,  5 Oct 2026 09:44:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="eOmETh0u";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="V8Uj6ulv";
 	dkim-atps=neutral
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2735110E1E8;
- Mon,  5 Oct 2026 09:39:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1791193168;
- bh=O6YBEBOgxU2xPbzAN0XEomFzmcuWs7cjwFLomcSls14=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=eOmETh0ucLVcoEAOdMbhTfYydfCSTpA69TNPABDhvieR8E7Wm1iMZe1f3mDefxmsY
- Ao+GvEIAXv3HwwwmbA8fKhFC/WWlTwq4GBTNTIbI4fPAzcWQKRl6FnXyyAkfIKrBNl
- syv9jHwAEw0zfNM6kqfSDODm/gdXLV9ZvFJX/LLZQyh20vGyZiAaccT9ZAyEX2P/nl
- RYhL4nBdmyaEMB8Gtqlr+g3KfAtOYRoA+RpM7OmSbgWtb+UbfIUkqAz2yVcIAank19
- y6iFyldyp+H0IGtl6Cd8yaxv/cs8zwp+Zej9gvNlO7e5vnk8kZ4uQOfm3cWFf7ajs4
- QPlMUjELoNfEA==
-Received: from fedora-61.home (unknown [100.64.0.11])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest
- SHA256) (No client certificate requested)
- (Authenticated sender: bbrezillon)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id B374D17E01C2;
- Mon, 05 Oct 2026 11:39:27 +0200 (CEST)
-Date: Mon, 5 Oct 2026 11:39:24 +0200
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, Abhinav
- Kumar <abhinav.kumar@linux.dev>, Alice Ryhl <aliceryhl@google.com>, Anna
- Maniscalco <anna.maniscalco2000@gmail.com>, Antonino Maniscalco
- <antomani103@gmail.com>, Danilo Krummrich <dakr@kernel.org>, David Airlie
- <airlied@gmail.com>, Dmitry Baryshkov <lumag@kernel.org>, Jessica Zhang
- <jesszhan0024@gmail.com>, Jonathan Corbet <corbet@lwn.net>, Liviu Dudau
- <liviu.dudau@arm.com>, Lyude Paul <lyude@redhat.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Marijn Suijten
- <marijn.suijten@somainline.org>, Maxime Ripard <mripard@kernel.org>, Randy
- Dunlap <rdunlap@infradead.org>, Rob Clark <robin.clark@oss.qualcomm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>, Shuah
- Khan <skhan@linuxfoundation.org>, Simona Vetter <simona@ffwll.ch>, Steven
- Price <steven.price@arm.com>, Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?=
- <thomas.hellstrom@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH v3 3/8] drm/panthor: lock the resident BOs of a submit last
-Message-ID: <20261005113924.37276be0@fedora-61.home>
-In-Reply-To: <20261001220632.3190896-4-matthew.brost@intel.com>
-References: <20261001220632.3190896-1-matthew.brost@intel.com>
- <20261001220632.3190896-4-matthew.brost@intel.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-redhat-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E28510E1E8
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Oct 2026 09:43:52 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 6A9DD60A83;
+ Mon,  5 Oct 2026 09:43:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 047E21F000FF;
+ Mon,  5 Oct 2026 09:43:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1791193431;
+ bh=ml2rjY6/e9Au/LRKvkI55GjNvGW8EQirxAopCoqlP3E=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=V8Uj6ulvqFtIc54EWNtuaOm25XTNP2fH6s5bkmkhLBpTvfdoi5YdQ7MPWT81HuR7m
+ KWK8e+1oGVw5mUL6Fo/mgqsCBviXQ14exgkOyzot0ds9FZzScbUXV67mEqetkEg1me
+ eP2CpYJ6JcgyO/Un9pNuS+lVMwIHzc04iAl0gdY6tvrZbkUQ3Wd5Sgn5/8NxTcTBaR
+ +we5fAHlKsZhb/FXfbRGORkcxgbb/dkukWw68gWar7g4cnQJ10281o4dS861MAWKpD
+ gh0oAG3uA4YuK1v058ML+RILBpTQPHvgr00zYl3rdZAQfZP2WqzZNOCoMgTmmmZrTh
+ wkweuOLKlg55w==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 5/7] drm/xe/vram: Allow splitting a region into pools
+To: =?utf-8?b?UGnDs3Jrb3dza2ksIFBpb3Ry?= <piotr.piorkowski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20261005093021.3741599-6-piotr.piorkowski@intel.com>
+References: <20261005093021.3741599-1-piotr.piorkowski@intel.com>
+ <20261005093021.3741599-6-piotr.piorkowski@intel.com>
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+Date: Mon, 05 Oct 2026 09:43:50 +0000
+Message-Id: <20261005094351.047E21F000FF@smtp.kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,188 +52,98 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu,  1 Oct 2026 15:06:27 -0700
-Matthew Brost <matthew.brost@intel.com> wrote:
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] drm/xe/vram: kernel pool bounds break fixed-address BIOS takeover
+--
 
-> panthor_vm_prepare_mapped_bos_resvs() locks every external object mapped
-> in the VM and then validates the evicted ones. Validation here means
-> panthor_vm_bo_validate(), which swaps the BO's pages back in and restores
-> its VMAs. That is slow, and an external object is one which can be shared
-> with another process, so the whole of it happens while holding dma-resv
-> locks other processes may be waiting on.
->=20
-> Nothing is gained by holding those. A resident object needs no swapping
-> in; only the evicted ones do. Split the locking into the two passes
-> gpuvm now understands: the early pass takes just the evicted external
-> objects and swaps them in, and the late pass takes the ones which were
-> resident and are therefore normally ready to use as they are. Private
-> objects are covered by the VM resv, which is held from the start, so
-> evicted ones are still validated in the early pass.
->=20
-> The split is only worth it when there is something to validate, so
-> drm_gpuvm_exec_pass_needs_split() decides, and a submit with nothing
-> evicted keeps doing exactly what it does today in a single pass.
->=20
-> Both passes run in the same drm_exec transaction, so nothing is unlocked
-> in between and the late pass only ever adds locks. They take disjoint
-> sets of objects, so passing slot_count to both still reserves it exactly
-> once per object.
->=20
-> The early pass reads the evicted state without the object's dma-resv,
-> that being the lock it is trying not to take. The race is benign: an
-> object evicted right after the early pass skipped it is picked up by the
-> late pass instead, which is why that pass still validates.
->=20
-> Validation here allocates pages, which can recurse into panthor's own
-> shrinker, so it is worth being explicit about what the early pass can
-> evict. There is no deadlock: drm_gem_lru_scan() acquires the resv with
-> ww_mutex_trylock() and skips what it cannot get. VM-exclusive BOs share
-> the VM resv, which is held across both passes, so those are always
-> skipped. External objects are not held by the early pass, though, so
-> reclaim can evict one while the early pass validates something else.
->=20
-> That is handled, and is why the late pass validates rather than only
-> locking: it picks up anything evicted after the early pass looked at it.
-> The cost is that the swapin for such a BO happens under the full set of
-> locks, i.e. it degrades to the current behaviour for that one object.
->=20
-> Xe avoids this by refusing to evict BOs bound to a VM the current task is
-> validating (xe_bo_eviction_valuable() and xe_vm_is_validating()). Panthor
-> has no equivalent guard. Adding one would make the split more effective
-> under memory pressure, but it is not needed for correctness, so it is left
-> as a follow up.
->=20
-> Cc: Abhinav Kumar <abhinav.kumar@linux.dev>
-> Cc: Alice Ryhl <aliceryhl@google.com>
-> Cc: Anna Maniscalco <anna.maniscalco2000@gmail.com>
-> Cc: Antonino Maniscalco <antomani103@gmail.com>
-> Cc: Boris Brezillon <boris.brezillon@collabora.com>
+commit 822201337f9b8f0df54e932ff7b27d938393e680
+Author: Piotr Pi=C3=B3rkowski <piotr.piorkowski@intel.com>
+drm/xe/vram: Allow splitting a region into pools
 
-Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
+This commit adds xe_vram_pool_create() to carve out dedicated pools
+from the low addresses of a VRAM region, intended for kernel allocations.
 
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Dmitry Baryshkov <lumag@kernel.org>
-> Cc: Jessica Zhang <jesszhan0024@gmail.com>
-> Cc: Jonathan Corbet <corbet@lwn.net>
-> Cc: Liviu Dudau <liviu.dudau@arm.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Marijn Suijten <marijn.suijten@somainline.org>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Randy Dunlap <rdunlap@infradead.org>
-> Cc: Rob Clark <robin.clark@oss.qualcomm.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Shuah Khan <skhan@linuxfoundation.org>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Steven Price <steven.price@arm.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Assisted-by: LLM
-> Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
-> ---
-> v3:
->  - Follow the drm_gpuvm_exec_pass_ function renames (Danilo)
-> ---
->  drivers/gpu/drm/panthor/panthor_mmu.c | 55 ++++++++++++++++++++++++++-
->  1 file changed, 53 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/panthor/panthor_mmu.c b/drivers/gpu/drm/pant=
-hor/panthor_mmu.c
-> index d75d575473da..d4b968ab094e 100644
-> --- a/drivers/gpu/drm/panthor/panthor_mmu.c
-> +++ b/drivers/gpu/drm/panthor/panthor_mmu.c
-> @@ -3258,6 +3258,26 @@ int panthor_vm_unmap_range(struct panthor_vm *vm, =
-u64 va, u64 size)
->   * need to reserve a slot on all BOs mapped to a VM and update this slot=
- with
->   * the job fence after its submission.
->   *
-> + * When something is evicted the locks are taken in two passes; when not=
-hing
-> + * is, a single pass is used, as before. The early pass only takes the e=
-xternal
-> + * objects which actually need validating, i.e. the evicted ones, and sw=
-aps
-> + * them back in. Private objects are covered by the VM resv, which is he=
-ld
-> + * from the start, so they are validated here too. The late pass then ta=
-kes
-> + * the external objects the early pass left out, which were resident and=
- so
-> + * normally need no swapping in; it still validates, since one of them m=
-ay
-> + * have been evicted in the meantime.
+> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+> index ec95b53bc53b1..1df4f2514afc0 100644
+> --- a/drivers/gpu/drm/xe/xe_vram.c
+> +++ b/drivers/gpu/drm/xe/xe_vram.c
+[ ... ]
+> @@ -358,19 +371,88 @@ static int vram_region_init(struct xe_device *xe, s=
+truct xe_vram_region *vram,
+> +/**
+> + * xe_vram_pool_create - Add a pool to a VRAM region
+> + * @vram: the VRAM region
+> + * @purpose: the purpose served by the new pool
+> + * @size: the size of the new pool
 > + *
-> + * The point is that panthor_vm_bo_validate() swaps pages back in, which=
- is
-> + * slow, and an external object is one which can be shared with another
-> + * process. Doing that while holding the resv of a resident shared BO wo=
-uld
-> + * stall whoever else needs it, for no benefit, since a resident object =
-is
-> + * ready to use as it is.
+> + * Add a pool at the bottom of @vram and shrink the default pool accordi=
+ngly.
+> + * Existing non-default pools stay at the bottom in creation order. All =
+pools
+> + * share the region, the TTM manager and the placement, while the VRAM m=
+anager
+> + * backs each of them with a buddy allocator of its own.
 > + *
-> + * Both passes run in the same drm_exec transaction: nothing is unlocked=
- in
-> + * between and the late pass only ever adds locks. The passes take disjo=
-int
-> + * sets of objects, so reserving @slot_count in each still reserves it
-> + * exactly once per object.
+> + * The bottom of a region is also where its CPU visible window starts, s=
+o on
+> + * a small BAR device the new pool takes CPU visible memory away from the
+> + * default pool.
 > + *
->   * Return: 0 on success, a negative error code otherwise.
->   */
->  int panthor_vm_prepare_mapped_bos_resvs(struct drm_exec *exec, struct pa=
-nthor_vm *vm,
-> @@ -3270,11 +3290,42 @@ int panthor_vm_prepare_mapped_bos_resvs(struct dr=
-m_exec *exec, struct panthor_vm
->  	if (ret)
->  		return ret;
-> =20
-> -	ret =3D drm_gpuvm_prepare_objects(&vm->base, exec, slot_count);
-> +	/*
-> +	 * With nothing evicted there is no validation to keep the resident
-> +	 * objects unlocked for, so do not pay for the second walk.
-> +	 */
-> +	if (!drm_gpuvm_exec_pass_needs_split(&vm->base)) {
-> +		ret =3D drm_gpuvm_prepare_objects(&vm->base, exec, slot_count);
-> +		if (ret)
-> +			return ret;
-> +
-> +		return drm_gpuvm_validate(&vm->base, exec);
-> +	}
-> +
-> +	ret =3D drm_gpuvm_exec_pass_prepare_objects(&vm->base, exec,
-> +						  slot_count,
-> +						  DRM_GPUVM_EXEC_PASS_EARLY);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D drm_gpuvm_exec_pass_validate(&vm->base, exec,
-> +					   DRM_GPUVM_EXEC_PASS_EARLY);
->  	if (ret)
->  		return ret;
-> =20
-> -	return drm_gpuvm_validate(&vm->base, exec);
-> +	ret =3D drm_gpuvm_exec_pass_prepare_objects(&vm->base, exec,
-> +						  slot_count,
-> +						  DRM_GPUVM_EXEC_PASS_LATE);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Objects the early pass skipped were resident then, but another
-> +	 * process may have evicted one since. Now that everything is locked,
-> +	 * pick up whatever is left.
-> +	 */
-> +	return drm_gpuvm_exec_pass_validate(&vm->base, exec,
-> +					    DRM_GPUVM_EXEC_PASS_LATE);
->  }
-> =20
->  unsigned long
+> + * Creating a pool does not make allocations use it. BO placement resolv=
+es
+> + * pools through the tile, so the caller has to publish the new pool the=
+re,
+> + * e.g. in &xe_tile.mem.kernel_vram for a kernel-only pool.
+> + *
+> + * Return: the new pool, or NULL if the pool cannot be created, in parti=
+cular
+> + * once the TTM manager of @vram is initialized.
+> + */
+> +struct xe_vram_pool *xe_vram_pool_create(struct xe_vram_region *vram,
+> +					 enum xe_vram_pool_purpose purpose, u64 size)
 
+[Severity: Medium]
+Will this kernel pool partitioning break the initial display plane takeover?
+
+Currently, initial_plane_bo() allocates the pre-existing BIOS framebuffer
+at a fixed physical address using ttm_bo_type_kernel:
+
+drivers/gpu/drm/xe/display/xe_initial_plane.c:initial_plane_bo() {
+    ...
+    bo =3D xe_bo_create_pin_map_at_novm(xe, tile0, size, phys_base,
+                                      ttm_bo_type_kernel, flags, 0, false);
+    ...
+}
+
+When __xe_bo_fixed_placement() processes this, it intersects the fixed
+placement address with the kernel pool bounds using xe_vram_pool_place():
+
+drivers/gpu/drm/xe/xe_bo.c:__xe_bo_fixed_placement() {
+    ...
+    xe_vram_pool_place(bo_vram_pool(xe, flags, vram_flag, type), place);
+    if (place->lpfn && place->fpfn >=3D place->lpfn)
+        return -EINVAL;
+    ...
+}
+
+Since the kernel pool is a small carve-out at the bottom of VRAM, if the BI=
+OS
+framebuffer resides outside this pool, clamping its bounds will result in
+place->fpfn >=3D place->lpfn, failing the allocation with -EINVAL.
+
+How should fixed-address allocations outside the kernel pool be handled when
+they use ttm_bo_type_kernel?
+
+> +{
+> +	struct xe_device *xe =3D vram->xe;
+> +	struct xe_vram_pool *pool;
+> +	u64 offset;
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261005093021.3741=
+599-1-piotr.piorkowski@intel.com?part=3D5
