@@ -4,99 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EA14CA5FFC
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 23:52:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1B86CA6002
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 23:52:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DCC510E157;
-	Mon,  5 Oct 2026 23:52:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3146C10EF0D;
+	Mon,  5 Oct 2026 23:52:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qPnQW8l7";
+	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="ajOnJFa3";
 	dkim-atps=neutral
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C659710E546
- for <intel-xe@lists.freedesktop.org>; Sun,  4 Oct 2026 20:29:15 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-49d05d51553so7839545e9.2
- for <intel-xe@lists.freedesktop.org>; Sun, 04 Oct 2026 13:29:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1791145754; x=1791750554; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:in-reply-to:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=iIFKjp1lGfDiZDolW1BimcdoYD6V0XYUoyt5Xe2j2X0=;
- b=qPnQW8l7xuhyAQ+qU6auwQbxuJoKcteucUmnYt2uqQazDOY/48blg5bSxTb499h5A3
- dhivNEfJYoNGzJrFs5A0AH0AGhHKCSUk+M5r7U3ioB1LEsRF2k91fDVucZbx0vaDKtNH
- dBuGXYbodT6qVw+GbwK09p369P9Egv7JGRhCGx0M8HDDCY8Seb9TfHhAHfSnRrfJQleX
- +TMfxmjBv+UkuPFh73M+u+TCcqjrbeHwJWdNofn/L+DoyBAlSXj4Qzj3fpYN4nE0iCDG
- 53a1zY7zOX7E+yjztwKvL5iaw5F9AKIjxA4yk8uHicFeUOk7f77QU9PyCzIDwYTYLFFT
- auZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1791145754; x=1791750554;
- h=content-transfer-encoding:content-type:in-reply-to:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=iIFKjp1lGfDiZDolW1BimcdoYD6V0XYUoyt5Xe2j2X0=;
- b=W7qi7QFFjV27+2z+UH2V9C4vuDlNHoMWZyskCyP3ju0+8NugwG9eMH7+k7X50N7HY5
- 6nnV6uncUho1KMTEDP5xBQugIR8NV4yxXL3uo6fkLnYHmcfJKgl4jgqMAqVF7WKnVPUo
- +Xt6EzUFY8/dV2+wqWbOKAvTxO/Jw8VZ1u0cauYeQrfFyaqhU0w7xMhr9glCe0uheuIR
- 5JWCIi65CDJKa/6n13hiPvB3s3/eAr+cEL4Q6NwkOY9XuyX631jyKtCekIE/SK9TdUSk
- xWNKnKDoY8i3iexZ5ub7RayAMke+92MXLxgY8yo8UyMwH1zjCkxOXbcAm5JvKUUozqKR
- B4fQ==
-X-Forwarded-Encrypted: i=1;
- AKwUvBy/mk1oDRsGjELdvIDriDlroMJebBVDBIhcY/5pNteAq1aMKn6CJIOoWCu05LP4xuEwEdRFbe2nng==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++nFTFu9j3oEnPe2DVI6SaWgFt9tx95plAiA2NiCB9P5xgpCEQck
- JzJadp14dne7BVfu82U5W02cdocCjiY9ZCs95IVQZBFKN+0gWJF5cLg=
-X-Gm-Gg: AYBFou2xJA2MTDEpYaPIOWlIwhpPFLVIHxWIySE4mT6VO9aG/Z48PCUIPN10lO6LEnR
- 6HTxGzkpyeuGE4AV/Ewxe7O+rMArYNBhNOuYpGdiFSQ9MyVLuRX9zItHzi+rF5c+RepNqvfOZYN
- rakziTtM6/pLLnun0B3AC3ri7BnkqFhJywCyfAizZQHtHSJFhSwGCyWw+wfXa4N2RK+63EIBxee
- u1KYejXkwhog+eAUbYLh6Y0V/FKGFFmlH1i6EhsxLZ1Jk2UcRSFzLc3PMmxIUG5RZJgKCI6h3nu
- uACYDjW07kddhGHN7VqB/Fla8W+FqjsNk/N6ESd8QuDbrwSgrHxprw08bSd2/khxFAvTWKxyVMq
- tDu+SlGKk50MnZZW9CqbE4qKEbXqt7eiHkl8QjRU1ci7had1KpII1FVF8qm0aZRDdTNuKukhxcm
- WvV+ZsC8cb0wZcVW+OUWxo/YccTDvgC7wkRja/Mccgq4N6wKqBxQmK0F/PRqq+1cxxMxxOkGLg5
- jlMeOVt1hdOIwvtlPMH+b8jqATYidXrcXqcYVl3R1f8U0PLHjGiT8awkizhJlrUrw==
-X-Received: by 2002:a05:600c:6096:b0:49f:ce73:7a9 with SMTP id
- 5b1f17b1804b1-4a1681073e2mr86527135e9.34.1791145753848; 
- Sun, 04 Oct 2026 13:29:13 -0700 (PDT)
-Received: from ?IPV6:2001:b07:2ec:601d:4b26:1672:75c7:805a?
- ([2001:b07:2ec:601d:4b26:1672:75c7:805a])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4a030326132sm232315185e9.0.2026.10.04.13.29.12
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 04 Oct 2026 13:29:13 -0700 (PDT)
-Message-ID: <b46b2f7e-f5fa-4556-9da3-aa4e4ab0e7a0@gmail.com>
-Date: Sun, 4 Oct 2026 22:29:11 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/8] drm/msm: lock the resident BOs of a VM_BIND submit
- last
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C74FA10E0D2;
+ Mon,  5 Oct 2026 10:27:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=7z
+ kyvSIZb7yzsrgnBf3y3sUB/QOaKW72wUX6zt/1eFM=; b=ajOnJFa3ozvKO9D3HO
+ zKJYE7Ps5dVqZyG4cJ596ymb8NSbeIYWSlv/NY7NQmRYMugdxKnoGrpq8l6imBrd
+ lEwOVSUTDZ9CEglOcbFSXN4NsIsuTZROHFzX7g2MeeK4gJFy3tmswdx9O/u4gZTq
+ urJrnoB/o1keszUXsFdJ9LRY4=
+Received: from 163.com (unknown [])
+ by gzsmtp2 (Coremail) with SMTP id PSgvCgBnX6_tesNql_rOCg--.32055S2;
+ Mon, 05 Oct 2026 18:24:45 +0800 (CST)
+From: Xizhe Tang <xizheTang2005@163.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Cc: freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- Abhinav Kumar <abhinav.kumar@linux.dev>, Alice Ryhl <aliceryhl@google.com>,
- Antonino Maniscalco <antomani103@gmail.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Jessica Zhang <jesszhan0024@gmail.com>,
- Jonathan Corbet <corbet@lwn.net>, Liviu Dudau <liviu.dudau@arm.com>,
- Lyude Paul <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Maxime Ripard <mripard@kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
- Shuah Khan <skhan@linuxfoundation.org>, Simona Vetter <simona@ffwll.ch>,
- Steven Price <steven.price@arm.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
-References: <20261001220632.3190896-1-matthew.brost@intel.com>
- <20261001220632.3190896-7-matthew.brost@intel.com>
-Content-Language: en-US
-From: Anna Maniscalco <anna.maniscalco2000@gmail.com>
-In-Reply-To: <20261001220632.3190896-7-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Cc: ville.syrjala@linux.intel.com, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, ankit.k.nautiyal@intel.com, stable@vger.kernel.org
+Subject: [PATCH v3 0/3] drm/i915: stop sending a fake Adaptive-Sync SDP
+Date: Mon,  5 Oct 2026 18:24:42 +0800
+Message-ID: <20261005102445.12710-1-xizheTang2005@163.com>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20260923195200.21362-1-xizheTang2005@163.com>
+References: <20260923195200.21362-1-xizheTang2005@163.com>
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: PSgvCgBnX6_tesNql_rOCg--.32055S2
+X-Coremail-Antispam: 1Uf129KBjvJXoWxZF1kCw4UCF1xGr4rtw48tFb_yoW5uF4xpa
+ 1xuF1rKw48JFyIqrWxu3WIyFy5Jws3J3yrG3sxK3sFvas8Ar9rJr4Svw4jgayDuFs2g3WY
+ qrn3XFyjkw4UZ3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jY-e5UUUUU=
+X-Originating-IP: [2001:250:20f:1:a533:cf01:13a0:45f8]
+X-CM-SenderInfo: x0l2xvpwdqwjqqqvqiywtou0bp/xtbC6g9lvGrDeu8JMgAA37
 X-Mailman-Approved-At: Mon, 05 Oct 2026 23:52:45 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -112,183 +59,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 10/2/26 12:06 AM, Matthew Brost wrote:
-> A VM_BIND submit locks the resv of every BO mapped in the VM, then
-> validates the evicted ones, which means getting their pages and mapping
-> them again. That is slow, and external objects can be shared with other
-> processes, so all of it happens while holding resv locks other processes
-> may be waiting on, for BOs which needed no work at all.
->
-> Use the two pass locking gpuvm now provides. The early pass locks only
-> the evicted external objects and validates them, along with the evicted
-> private ones, which the VM resv held from the start covers. The late
-> pass locks the external objects which were resident, and still validates
-> in case one of them was evicted meanwhile. When nothing is evicted,
-> drm_gpuvm_exec_pass_needs_split() says so and the submit keeps using a
-> single pass.
->
-> Both passes run in the same drm_exec transaction, nothing is unlocked in
-> between, and they take disjoint sets of objects, so reserving one fence
-> slot in each still reserves it exactly once per object.
->
-> This moves validation from after drm_sched_job_arm() and fence
-> attachment into the locking loop, ahead of everything else, which is
-> also where a failure is easiest to unwind. The order does not matter to
-> the shrinker: it skips any BO mapped in a VM whose resv it cannot
-> trylock, and the submit holds the VM resv throughout, so a BO mapped in
-> this VM cannot be evicted while it is locked, whether or not a fence is
-> attached to it yet. The same means the early pass can never evict a BO
-> the late pass is about to lock, the property Xe gets from
-> xe_vm_set_validating().
->
-> Cc: Abhinav Kumar <abhinav.kumar@linux.dev>
-> Cc: Alice Ryhl <aliceryhl@google.com>
-> Cc: Anna Maniscalco <anna.maniscalco2000@gmail.com>
-> Cc: Antonino Maniscalco <antomani103@gmail.com>
-> Cc: Boris Brezillon <boris.brezillon@collabora.com>
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Dmitry Baryshkov <lumag@kernel.org>
-> Cc: Jessica Zhang <jesszhan0024@gmail.com>
-> Cc: Jonathan Corbet <corbet@lwn.net>
-> Cc: Liviu Dudau <liviu.dudau@arm.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Marijn Suijten <marijn.suijten@somainline.org>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Randy Dunlap <rdunlap@infradead.org>
-> Cc: Rob Clark <robin.clark@oss.qualcomm.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Shuah Khan <skhan@linuxfoundation.org>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Steven Price <steven.price@arm.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> Assisted-by: LLM
-> ---
-> v3:
->   - Follow the drm_gpuvm_exec_pass_ function renames (Danilo)
-> ---
->   drivers/gpu/drm/msm/msm_gem_submit.c | 84 ++++++++++++++++++++++------
->   1 file changed, 66 insertions(+), 18 deletions(-)
->
-> diff --git a/drivers/gpu/drm/msm/msm_gem_submit.c b/drivers/gpu/drm/msm/msm_gem_submit.c
-> index 1215b388cb40..4e454345567a 100644
-> --- a/drivers/gpu/drm/msm/msm_gem_submit.c
-> +++ b/drivers/gpu/drm/msm/msm_gem_submit.c
-> @@ -266,6 +266,71 @@ static int submit_lookup_cmds(struct msm_gem_submit *submit,
->   	return ret;
->   }
->   
-> +/*
-> + * Lock and validate every BO mapped in a VM_BIND VM.  Unlike the legacy path,
-> + * where submit_pin_objects() only validates the BOs userspace attached to the
-> + * submit, userspace does not tell us which BOs a VM_BIND submit uses, so the
-> + * entire VM has to be validated.
-> + *
-> + * When something is evicted, the locks are taken in two passes.  The early
-> + * pass locks only the external objects which need validating, i.e. the
-> + * evicted ones, and validates them along with the evicted private objects,
-> + * which the VM resv held from the start already covers.  The late pass then
-> + * locks the external objects which were resident.  Validation means getting
-> + * pages and mapping them, which is slow, and an external object can be shared
-> + * with another process, so there is no point in stalling that process on the
-> + * resv of a resident BO for the duration of it.  The late pass still
-> + * validates, in case one of those BOs got evicted meanwhile.
-> + *
-> + * Both passes run in the same drm_exec transaction, nothing is unlocked in
-> + * between, and they take disjoint sets of objects, so reserving one fence
-> + * slot in each reserves it exactly once per object.
-> + *
-> + * The shrinker cannot evict a BO the early pass is about to validate, nor one
-> + * it has validated already: it only evicts a BO after trylocking the resv of
-> + * every VM the BO is mapped in, and the VM resv is held throughout.
-> + */
-> +static int submit_prepare_vm_objects(struct msm_gem_submit *submit)
-> +{
-> +	struct drm_gpuvm *vm = submit->vm;
-> +	struct drm_exec *exec = &submit->exec;
-> +	int ret;
-> +
-> +	ret = drm_gpuvm_prepare_vm(vm, exec, 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * With nothing evicted there is no validation to keep the resident
-> +	 * objects unlocked for, so do not pay for the second walk.
-> +	 */
-> +	if (!drm_gpuvm_exec_pass_needs_split(vm)) {
-> +		ret = drm_gpuvm_prepare_objects(vm, exec, 1);
-> +		if (ret)
-> +			return ret;
-> +
-> +		return drm_gpuvm_validate(vm, exec);
-> +	}
-> +
-> +	ret = drm_gpuvm_exec_pass_prepare_objects(vm, exec, 1,
-> +						  DRM_GPUVM_EXEC_PASS_EARLY);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = drm_gpuvm_exec_pass_validate(vm, exec,
-> +					   DRM_GPUVM_EXEC_PASS_EARLY);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = drm_gpuvm_exec_pass_prepare_objects(vm, exec, 1,
-> +						  DRM_GPUVM_EXEC_PASS_LATE);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return drm_gpuvm_exec_pass_validate(vm, exec,
-> +					    DRM_GPUVM_EXEC_PASS_LATE);
-> +}
-> +
->   static int submit_lock_objects_vmbind(struct msm_gem_submit *submit)
->   {
->   	unsigned flags = DRM_EXEC_INTERRUPTIBLE_WAIT | DRM_EXEC_IGNORE_DUPLICATES;
-> @@ -276,12 +341,7 @@ static int submit_lock_objects_vmbind(struct msm_gem_submit *submit)
->   	submit->has_exec = true;
->   
->   	drm_exec_until_all_locked (&submit->exec) {
-> -		ret = drm_gpuvm_prepare_vm(submit->vm, exec, 1);
-> -		drm_exec_retry_on_contention(exec);
-> -		if (ret)
-> -			break;
-> -
-> -		ret = drm_gpuvm_prepare_objects(submit->vm, exec, 1);
-> +		ret = submit_prepare_vm_objects(submit);
->   		drm_exec_retry_on_contention(exec);
->   		if (ret)
->   			break;
-> @@ -790,18 +850,6 @@ int msm_ioctl_gem_submit(struct drm_device *dev, void *data,
->   
->   	submit_attach_object_fences(submit);
->   
-> -	if (msm_context_is_vmbind(ctx)) {
-> -		/*
-> -		 * If we are not using VM_BIND, submit_pin_vmas() will validate
-> -		 * just the BOs attached to the submit.  In that case we don't
-> -		 * need to validate the _entire_ vm, because userspace tracked
-> -		 * what BOs are associated with the submit.
-> -		 */
-> -		ret = drm_gpuvm_validate(submit->vm, &submit->exec);
-> -		if (ret)
-> -			goto out;
-> -	}
-> -
->   	/* The scheduler owns a ref now: */
->   	msm_gem_submit_get(submit);
->   
+v2 gated intel_dp_needs_as_sdp() on vrr.enable || cmrr.enable. Ville
+pointed out that this function is also how we size the optimized VRR
+guardband, and that looking at vrr.enable there forces a full modeset
+when userspace toggles Adaptive Sync.
 
-This and the two other msm patches are:
+That coupling is the bug, not the send predicate. Split it:
 
-Reviewed-by: Anna Maniscalco <anna.maniscalco2000@gmail.com>
+  1/3  intel_dp_sdp_min_guardband(..., true) reserves AS SDP lines on
+       HAS_AS_SDP platforms even when the packet is not enabled. After
+       this, toggling vrr.enable does not change crtc_vblank_start.
 
-Best regards,
--- 
-Anna Maniscalco <anna.maniscalco2000@gmail.com>
+  2/3  Send the packet only when VRR or CMRR is actually running.
+       Predicate is vrr.enable || vrr.cmrr.enable to match drm-tip's
+       nested cmrr (v2 used the older sibling cmrr.enable). Now safe
+       because 1/3 already reserved the guardband. This is the 7.2
+       regression: intel_vrr_possible() is flipline != 0, and fixed-RR
+       timings program flipline, so we transmit DP_AS_SDP_AVT_FIXED_VTOTAL
+       on a constant refresh. Panel Replay aux-less without async video
+       timing still takes the early return in intel_dp_needs_as_sdp()
+       from 6a1712052859 and still gets that packet; this machine does
+       not hit that path. A 7.2 stable backport needs the sibling
+       crtc_state->cmrr.enable spelling.
+
+  3/3  On this panel, Adaptive Sync = Always still streaks on s2idle
+       resume after 1+2 (operation mode 0, not the mode-1 packet). Write
+       the SDP in intel_ddi_enable() after intel_vrr_transcoder_enable()
+       and before intel_enable_transcoder(). Fastset still updates the
+       packet from intel_ddi_update_pipe_dp() so a runtime Adaptive Sync
+       toggle does not become a full modeset.
+
+1+2 are the regression fix. 3/3 is the Always resume path on this eDP;
+drop it if you want only the Never/Automatic half.
+
+Why not vrr.in_range (series 174831 1/3): this panel's EDID range is
+30-120 Hz. 60 Hz and 120 Hz with Adaptive Sync = Never stay in_range,
+so that patch still sends AVT_FIXED_VTOTAL here. Reported at
+https://lore.kernel.org/r/RxSA9gIRRBSaKwxlF7t96Q@163.com
+
+Not Closes: #9252. 1+2 do not fix Always. 3/3 does.
+
+These patches are against drm-tip, not 7.2.8.
+
+Machine: Lenovo ThinkBook 14 G8+ IPH (21VG), PTL 8086:b080, eDP
+3072x1920, EDID 30-120 Hz. Tested by rebuilding xe.ko on
+7.2.8-200.fc44.x86_64, and on a full drm-tip kernel. Same results
+on both:
+
+  Never / Automatic, boot and lid s2idle: clean with 1+2 (and with 1+2+3).
+  Always, lid s2idle: still streaks with 1+2; clean with 1+2+3.
+  Runtime Never <-> Always on an already-lit panel: already clean.
+
+Ville in_range, delayed send, and never-send were tried earlier; the
+first two still streak, never-send is clean on both policies but is
+not upstreamable.
+
+v1: https://lore.kernel.org/r/20260923052937.22817-1-xizheTang2005@163.com
+v2: https://lore.kernel.org/r/20260923195200.21362-1-xizheTang2005@163.com
+
+Xizhe Tang (3):
+  drm/i915/dp: Reserve AS SDP guardband even when VRR is off
+  drm/i915/dp: Send AS SDP only when VRR or CMRR is enabled
+  drm/i915/ddi: Program AS SDP before enabling the transcoder
+
+ drivers/gpu/drm/i915/display/intel_ddi.c |  4 ++++
+ drivers/gpu/drm/i915/display/intel_dp.c  | 35 ++++++++++++++++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_dp.h  |  2 ++
+ 3 files changed, 37 insertions(+), 4 deletions(-)
+
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9252
 
