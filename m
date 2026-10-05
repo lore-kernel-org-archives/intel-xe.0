@@ -4,46 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1B86CA6002
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBC9BCA5FFE
 	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 23:52:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3146C10EF0D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C73C10EEEC;
 	Mon,  5 Oct 2026 23:52:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="ajOnJFa3";
+	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="BGzERCUr";
 	dkim-atps=neutral
 Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C74FA10E0D2;
- Mon,  5 Oct 2026 10:27:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3CB910E08F;
+ Mon,  5 Oct 2026 10:27:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=7z
- kyvSIZb7yzsrgnBf3y3sUB/QOaKW72wUX6zt/1eFM=; b=ajOnJFa3ozvKO9D3HO
- zKJYE7Ps5dVqZyG4cJ596ymb8NSbeIYWSlv/NY7NQmRYMugdxKnoGrpq8l6imBrd
- lEwOVSUTDZ9CEglOcbFSXN4NsIsuTZROHFzX7g2MeeK4gJFy3tmswdx9O/u4gZTq
- urJrnoB/o1keszUXsFdJ9LRY4=
+ s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=T7
+ WnC7MBfk9TVgPXsg1udDhs31Wk8ItwE10by3LqXXA=; b=BGzERCUrvKHFVstUXY
+ y/FK2XIlYse/f9RfEXejb2HJxB6ZyYau+lTX2wNoO392aAN9Er/NCQJ9xXsmKuA6
+ kKgXHlZPG2GwtAqyo4NkZ+gRSNKH/dMkJBn2dGlMqVq3Alye0sh9pFs/D0DIGPY8
+ R9FOcHHBXCLQuz7y1AnXyYHZY=
 Received: from 163.com (unknown [])
- by gzsmtp2 (Coremail) with SMTP id PSgvCgBnX6_tesNql_rOCg--.32055S2;
- Mon, 05 Oct 2026 18:24:45 +0800 (CST)
+ by gzsmtp2 (Coremail) with SMTP id PSgvCgBnX6_tesNql_rOCg--.32055S3;
+ Mon, 05 Oct 2026 18:24:47 +0800 (CST)
 From: Xizhe Tang <xizheTang2005@163.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jani.nikula@linux.intel.com,
  rodrigo.vivi@intel.com, ankit.k.nautiyal@intel.com, stable@vger.kernel.org
-Subject: [PATCH v3 0/3] drm/i915: stop sending a fake Adaptive-Sync SDP
-Date: Mon,  5 Oct 2026 18:24:42 +0800
-Message-ID: <20261005102445.12710-1-xizheTang2005@163.com>
+Subject: [PATCH v3 1/3] drm/i915/dp: Reserve AS SDP guardband even when VRR is
+ off
+Date: Mon,  5 Oct 2026 18:24:43 +0800
+Message-ID: <20261005102445.12710-2-xizheTang2005@163.com>
 X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260923195200.21362-1-xizheTang2005@163.com>
+In-Reply-To: <20261005102445.12710-1-xizheTang2005@163.com>
 References: <20260923195200.21362-1-xizheTang2005@163.com>
+ <20261005102445.12710-1-xizheTang2005@163.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: PSgvCgBnX6_tesNql_rOCg--.32055S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWxZF1kCw4UCF1xGr4rtw48tFb_yoW5uF4xpa
- 1xuF1rKw48JFyIqrWxu3WIyFy5Jws3J3yrG3sxK3sFvas8Ar9rJr4Svw4jgayDuFs2g3WY
- qrn3XFyjkw4UZ3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jY-e5UUUUU=
+X-CM-TRANSID: PSgvCgBnX6_tesNql_rOCg--.32055S3
+X-Coremail-Antispam: 1Uf129KBjvJXoW7KFWDWr1rZryxGF43CFyfJFb_yoW5JF1Upw
+ 4xWFyUKF1rJa4Sgry7JF1IyFy5W39Yk345Gwn8C3sIvayDZr98Jr9Yyay2gFyDursxAw1r
+ ArnrJrs0kw4qqrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jn18PUUUUU=
 X-Originating-IP: [2001:250:20f:1:a533:cf01:13a0:45f8]
-X-CM-SenderInfo: x0l2xvpwdqwjqqqvqiywtou0bp/xtbC6g9lvGrDeu8JMgAA37
+X-CM-SenderInfo: x0l2xvpwdqwjqqqvqiywtou0bp/xtbC6hBmvWrDevAJTQAA3G
 X-Mailman-Approved-At: Mon, 05 Oct 2026 23:52:45 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,73 +61,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-v2 gated intel_dp_needs_as_sdp() on vrr.enable || cmrr.enable. Ville
-pointed out that this function is also how we size the optimized VRR
-guardband, and that looking at vrr.enable there forces a full modeset
-when userspace toggles Adaptive Sync.
+intel_vrr_compute_optimized_guardband() calls
+intel_dp_sdp_min_guardband(crtc_state, true) so that enabling an SDP
+later does not have to grow crtc_vblank_start and trigger a full
+modeset.
 
-That coupling is the bug, not the send predicate. Split it:
+The Adaptive-Sync clause ignores assume_all_enabled and only looks at
+infoframes.enable. Toggling vrr.enable therefore changes the
+guardband, which is why sending AS SDP cannot currently follow
+vrr.enable.
 
-  1/3  intel_dp_sdp_min_guardband(..., true) reserves AS SDP lines on
-       HAS_AS_SDP platforms even when the packet is not enabled. After
-       this, toggling vrr.enable does not change crtc_vblank_start.
-
-  2/3  Send the packet only when VRR or CMRR is actually running.
-       Predicate is vrr.enable || vrr.cmrr.enable to match drm-tip's
-       nested cmrr (v2 used the older sibling cmrr.enable). Now safe
-       because 1/3 already reserved the guardband. This is the 7.2
-       regression: intel_vrr_possible() is flipline != 0, and fixed-RR
-       timings program flipline, so we transmit DP_AS_SDP_AVT_FIXED_VTOTAL
-       on a constant refresh. Panel Replay aux-less without async video
-       timing still takes the early return in intel_dp_needs_as_sdp()
-       from 6a1712052859 and still gets that packet; this machine does
-       not hit that path. A 7.2 stable backport needs the sibling
-       crtc_state->cmrr.enable spelling.
-
-  3/3  On this panel, Adaptive Sync = Always still streaks on s2idle
-       resume after 1+2 (operation mode 0, not the mode-1 packet). Write
-       the SDP in intel_ddi_enable() after intel_vrr_transcoder_enable()
-       and before intel_enable_transcoder(). Fastset still updates the
-       packet from intel_ddi_update_pipe_dp() so a runtime Adaptive Sync
-       toggle does not become a full modeset.
-
-1+2 are the regression fix. 3/3 is the Always resume path on this eDP;
-drop it if you want only the Never/Automatic half.
-
-Why not vrr.in_range (series 174831 1/3): this panel's EDID range is
-30-120 Hz. 60 Hz and 120 Hz with Adaptive Sync = Never stay in_range,
-so that patch still sends AVT_FIXED_VTOTAL here. Reported at
-https://lore.kernel.org/r/RxSA9gIRRBSaKwxlF7t96Q@163.com
-
-Not Closes: #9252. 1+2 do not fix Always. 3/3 does.
-
-These patches are against drm-tip, not 7.2.8.
-
-Machine: Lenovo ThinkBook 14 G8+ IPH (21VG), PTL 8086:b080, eDP
-3072x1920, EDID 30-120 Hz. Tested by rebuilding xe.ko on
-7.2.8-200.fc44.x86_64, and on a full drm-tip kernel. Same results
-on both:
-
-  Never / Automatic, boot and lid s2idle: clean with 1+2 (and with 1+2+3).
-  Always, lid s2idle: still streaks with 1+2; clean with 1+2+3.
-  Runtime Never <-> Always on an already-lit panel: already clean.
-
-Ville in_range, delayed send, and never-send were tried earlier; the
-first two still streak, never-send is clean on both policies but is
-not upstreamable.
-
-v1: https://lore.kernel.org/r/20260923052937.22817-1-xizheTang2005@163.com
-v2: https://lore.kernel.org/r/20260923195200.21362-1-xizheTang2005@163.com
-
-Xizhe Tang (3):
-  drm/i915/dp: Reserve AS SDP guardband even when VRR is off
-  drm/i915/dp: Send AS SDP only when VRR or CMRR is enabled
-  drm/i915/ddi: Program AS SDP before enabling the transcoder
-
- drivers/gpu/drm/i915/display/intel_ddi.c |  4 ++++
- drivers/gpu/drm/i915/display/intel_dp.c  | 35 ++++++++++++++++++++++++++++----
- drivers/gpu/drm/i915/display/intel_dp.h  |  2 ++
- 3 files changed, 37 insertions(+), 4 deletions(-)
+Reserve the AS SDP lines whenever assume_all_enabled is set on a
+HAS_AS_SDP platform, same as the other SDP types in this function.
+The next patch can then gate transmission on vrr.enable without
+moving vblank.
 
 Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9252
+Cc: stable@vger.kernel.org # 7.2+
+Signed-off-by: Xizhe Tang <xizheTang2005@163.com>
+Tested-by: Xizhe Tang <xizheTang2005@163.com> # 7.2.8 xe.ko and drm-tip, PTL eDP; Never<->Always stays a fastset
+---
+Changes in v3:
+- New patch. Addresses Ville's review of v2: needs_as_sdp is also
+  how the optimized guardband is sized, so the send predicate must
+  not be tied to vrr.enable until this reservation is independent.
+- Hunks retargeted to drm-tip line numbers.
+
+ drivers/gpu/drm/i915/display/intel_dp.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index d8c0d93..7bfe796 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -7500,6 +7500,7 @@ int intel_dp_get_lines_for_sdp(const struct intel_crtc_state *crtc_state, u32 ty
+ int intel_dp_sdp_min_guardband(const struct intel_crtc_state *crtc_state,
+ 			       bool assume_all_enabled)
+ {
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	int sdp_guardband = 0;
+ 
+ 	if (assume_all_enabled ||
+@@ -7514,7 +7515,9 @@ int intel_dp_sdp_min_guardband(const struct intel_crtc_state *crtc_state,
+ 		sdp_guardband = max(sdp_guardband,
+ 				    intel_dp_get_lines_for_sdp(crtc_state, DP_SDP_PPS));
+ 
+-	if (crtc_state->infoframes.enable &
++	/* Keep the VRR guardband independent of vrr.enable. */
++	if ((assume_all_enabled && HAS_AS_SDP(display)) ||
++	    crtc_state->infoframes.enable &
+ 	    intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC))
+ 		sdp_guardband = max(sdp_guardband,
+ 				    intel_dp_get_lines_for_sdp(crtc_state, DP_SDP_ADAPTIVE_SYNC));
+-- 
+2.55.0
 
