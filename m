@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C86DCCA6002
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 795C5CA6001
 	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 22:06:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7316610EEEA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24D5F10EEDF;
 	Mon,  5 Oct 2026 22:06:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ahBOoo47";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gXjqj4iV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA84F10E2A9
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Oct 2026 22:06:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A77210EECE
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Oct 2026 22:06:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791238000; x=1822774000;
+ t=1791238003; x=1822774003;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=12Nh0gxoCpADaNn2Pysx9nEfr//wPDkUYA0GKmOKl2M=;
- b=ahBOoo47/10iz4VFSsMwp49V5iF55+essgQqCrC5+F1YcOjIYCD8qynN
- 0AMnAvDd9IWzmHTDOCzIFQPromRj8E0aZPGsWYUoC/cfigVC7Iw6uQwOX
- SP+OPzapabHfGXTgmO5yWgNyicmcVS0UwXcCr+yV94IdIxL239Q8UXgWf
- 240GxtIglXYLOE/9ztexz7mDd1sMhuv2BR0NT+U084MMM4EqxL8kUBvct
- IhDFArjRr+YVf0oeQXuv3n7QxRcZ8Jw5NZAVi2ltyFMhpKrRymitehelX
- 2K1hzqt9B2NzdACDd4cYvxnwWthKvjtzK3rBsBvdfRzSKMWioo5sEYE0S g==;
-X-CSE-ConnectionGUID: vDiKeXxHQO+93Hnq1uvDqw==
-X-CSE-MsgGUID: WX7JPyUQTcGhOyPhuAjL+w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11926"; a="109410167"
-X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="109410167"
+ bh=MPO35lqZEHOOQwNB+bRZIEm4/1j4KInOJVu6TDznnZw=;
+ b=gXjqj4iVC3RzLySmMQkaBfHjcvXB1zVUICB2OrjeiXJsvvLZYbCB9ZS5
+ taeCiWzpOyGhFEZCQUF0rCEYaoenuj6I56cz4u1VsHQStPKgbsvgOmp/A
+ vYsTqc9OxYda9Qr1N3J/Mggnn9hH85f7NLa03b6tNzm4KgkR4hfFIDxKe
+ UBc9D/f/VIqQcHGaQ7SBhlar8LC9UYlMSmecPO3ArxLnknfdXN5eilZEi
+ 50VROb+PQBKcr3o1zodA7yg4WXKWIt87zYsEEP/U2zEJy+3rQvpXSzxQZ
+ WBNry0LdXfEvZ+es7jqEnLlBc5b4N8iQ8+j3Pg3tVAuxZplB7fUKiP8kj w==;
+X-CSE-ConnectionGUID: FZoJqh+MSdm84HZO80FOQw==
+X-CSE-MsgGUID: VCcz3Rr8R+SRtqaHaBTx2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11926"; a="109410184"
+X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="109410184"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2026 15:06:40 -0700
-X-CSE-ConnectionGUID: urS/f9S1R46CAAEe5NJJrg==
-X-CSE-MsgGUID: +HMZc3K5QNueFtyvdZGjGQ==
+ 05 Oct 2026 15:06:43 -0700
+X-CSE-ConnectionGUID: eahIG0bWT4G+LdSI+AgmeQ==
+X-CSE-MsgGUID: vedsQXqLSROyJn7w1lyGIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="274732156"
+X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="274732202"
 Received: from dut4435arlh.fm.intel.com ([10.105.8.126])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2026 15:06:40 -0700
+ 05 Oct 2026 15:06:43 -0700
 From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
@@ -48,10 +48,9 @@ Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  gustavo.sousa@intel.com, matthew.d.roper@intel.com,
  daniele.ceraolospurio@intel.com, shuicheng.lin@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 02/15] drm/xe/configfs: Fix out-of-bounds read in
- parse_wa_bb_lines()
-Date: Mon,  5 Oct 2026 22:06:38 +0000
-Message-ID: <20261005220636.602826-19-stuart.summers@intel.com>
+Subject: [PATCH 15/15] drm/xe: Add enable_media module parameter
+Date: Mon,  5 Oct 2026 22:06:51 +0000
+Message-ID: <20261005220636.602826-32-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261005220636.602826-17-stuart.summers@intel.com>
 References: <20261005220636.602826-17-stuart.summers@intel.com>
@@ -71,39 +70,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The outer loop advances the cursor unconditionally at the end of each
-iteration. When the last token of a line is terminated by the NUL rather
-than by whitespace, e.g. "echo -n 'rcs cmd 1'", the cursor is already on
-the NUL and the increment steps past the end of the buffer, so the loop
-condition reads out of bounds. The leading strspn(p, " \t\n") already
-skips the line separators, and every iteration consumes at least the
-engine class token, so dropping the increment keeps the loop making
-progress.
-
-Fixes: 39ac06f70062 ("drm/xe/configfs: Add post context restore bb")
+The gt_types_allowed configfs attribute is debug-only, so provide a
+supported way to disable the media GT on production builds. The
+modparam takes precedence over configfs so a single knob is enough to
+guarantee the media GT is left alone.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 Assisted-by: LLM
 ---
- drivers/gpu/drm/xe/xe_configfs.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_configfs_debug.c |  3 +++
+ drivers/gpu/drm/xe/xe_defaults.h       |  1 +
+ drivers/gpu/drm/xe/xe_module.c         |  6 ++++++
+ drivers/gpu/drm/xe/xe_module.h         |  1 +
+ drivers/gpu/drm/xe/xe_pci.c            | 19 ++++++++++++++++---
+ 5 files changed, 27 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index e1cf5af958bc..1c7a096aa046 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -820,7 +820,11 @@ static ssize_t parse_wa_bb_lines(const char *lines,
- 	ssize_t dwords = 0, ret;
- 	const char *p;
+diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.c b/drivers/gpu/drm/xe/xe_configfs_debug.c
+index aa8b73cb2a64..e6a0b1f960bc 100644
+--- a/drivers/gpu/drm/xe/xe_configfs_debug.c
++++ b/drivers/gpu/drm/xe/xe_configfs_debug.c
+@@ -184,6 +184,9 @@
+  * will always return one GT type per line. "primary" and "media" are the
+  * GT type names supported by this interface.
+  *
++ * Note that the ``enable_media=0`` module parameter takes precedence over
++ * this attribute: it disables the media GT even if "media" is listed here.
++ *
+  * This attribute can only be set before binding to the device.
+  *
+  * Examples:
+diff --git a/drivers/gpu/drm/xe/xe_defaults.h b/drivers/gpu/drm/xe/xe_defaults.h
+index 20292e682bf9..fdb12ebfa4e4 100644
+--- a/drivers/gpu/drm/xe/xe_defaults.h
++++ b/drivers/gpu/drm/xe/xe_defaults.h
+@@ -18,6 +18,7 @@
+ /* Sentinel value for guc_log_level configfs: not set, fall back to module param */
+ #define XE_GUC_LOG_LEVEL_UNSET			-1
  
--	for (p = lines; *p; p++) {
-+	/*
-+	 * Each iteration consumes at least the engine class token if it doesn't
-+	 * error out, so the loop always makes progress without advancing @p.
-+	 */
-+	for (p = lines; *p;) {
- 		const struct engine_info *info = NULL;
- 		u32 val, val2;
++#define XE_DEFAULT_ENABLE_MEDIA			true
+ #define XE_DEFAULT_PROBE_DISPLAY		IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+ #define XE_DEFAULT_VRAM_BAR_SIZE		0
+ #define XE_DEFAULT_FORCE_PROBE			CONFIG_DRM_XE_FORCE_PROBE
+diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+index 897724cb5cfb..be6a3a439cb0 100644
+--- a/drivers/gpu/drm/xe/xe_module.c
++++ b/drivers/gpu/drm/xe/xe_module.c
+@@ -22,6 +22,7 @@
+ #include "xe_sched_job.h"
+ 
+ struct xe_modparam xe_modparam = {
++	.enable_media =		XE_DEFAULT_ENABLE_MEDIA,
+ 	.probe_display =	XE_DEFAULT_PROBE_DISPLAY,
+ 	.guc_log_level =	XE_DEFAULT_GUC_LOG_LEVEL,
+ 	.force_probe =		XE_DEFAULT_FORCE_PROBE,
+@@ -38,6 +39,11 @@ module_param_named(svm_notifier_size, xe_modparam.svm_notifier_size, uint, 0600)
+ MODULE_PARM_DESC(svm_notifier_size, "Set the svm notifier size in MiB, must be power of 2 "
+ 		 "[default=" __stringify(XE_DEFAULT_SVM_NOTIFIER_SIZE) "]");
+ 
++module_param_named(enable_media, xe_modparam.enable_media, bool, 0444);
++MODULE_PARM_DESC(enable_media, "Enable the media GT, when present. Disabling overrides any "
++		 "media GT selected via the gt_types_allowed configfs attribute "
++		 "[default=" __stringify(XE_DEFAULT_ENABLE_MEDIA) "])");
++
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+ module_param_named(probe_display, xe_modparam.probe_display, bool, 0444);
+ MODULE_PARM_DESC(probe_display, "Probe display HW, otherwise it's left untouched "
+diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
+index 6272d9e41207..b10010e0a007 100644
+--- a/drivers/gpu/drm/xe/xe_module.h
++++ b/drivers/gpu/drm/xe/xe_module.h
+@@ -12,6 +12,7 @@ struct work_struct;
+ 
+ /* Module modprobe variables */
+ struct xe_modparam {
++	bool enable_media;
+ 	bool probe_display;
+ 	int force_vram_bar_size;
+ 	int guc_log_level;
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 18fa9d4f2f6d..6544c373af8c 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -613,6 +613,19 @@ enum xe_gmdid_type {
+ 	GMDID_MEDIA
+ };
+ 
++/*
++ * The media GT is usable only if both the enable_media modparam and the
++ * gt_types_allowed configfs attribute allow it; the modparam takes
++ * precedence and disables the media GT regardless of the configfs setting.
++ */
++static bool media_gt_allowed(struct xe_device *xe)
++{
++	if (!xe_modparam.enable_media)
++		return false;
++
++	return xe_configfs_media_gt_allowed(to_pci_dev(xe->drm.dev));
++}
++
+ static int read_gmdid(struct xe_device *xe, enum xe_gmdid_type type, u32 *ver, u32 *revid)
+ {
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+@@ -634,7 +647,7 @@ static int read_gmdid(struct xe_device *xe, enum xe_gmdid_type type, u32 *ver, u
+ 		int err;
+ 
+ 		/* Don't try to read media ver if media GT is not allowed */
+-		if (type == GMDID_MEDIA && !xe_configfs_media_gt_allowed(to_pci_dev(xe->drm.dev))) {
++		if (type == GMDID_MEDIA && !media_gt_allowed(xe)) {
+ 			*ver = *revid = 0;
+ 			return 0;
+ 		}
+@@ -929,8 +942,8 @@ static struct xe_gt *alloc_media_gt(struct xe_tile *tile,
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	struct xe_gt *gt;
+ 
+-	if (!xe_configfs_media_gt_allowed(to_pci_dev(xe->drm.dev))) {
+-		xe_tile_info(tile, "Media GT disabled via configfs\n");
++	if (!media_gt_allowed(xe)) {
++		xe_tile_info(tile, "Media GT disabled\n");
+ 		return NULL;
+ 	}
  
 -- 
 2.43.0
