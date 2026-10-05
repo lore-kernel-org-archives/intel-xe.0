@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45FB6CA5FFC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE45ECA5FF5
 	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 22:06:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F31A810EED7;
-	Mon,  5 Oct 2026 22:06:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CD5B10EEE1;
+	Mon,  5 Oct 2026 22:06:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JAttcaZr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RlX4cQi4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC1D710E2A9
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Oct 2026 22:06:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51CD310EED6
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Oct 2026 22:06:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791238001; x=1822774001;
+ t=1791238003; x=1822774003;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WbhQMQ+xDId5I7N7wt4GMbqMlb4ySYq8YZuhSahfv7A=;
- b=JAttcaZrdCr8x90j1s6c6drkRF9EL5USuY7RyEWha6QCGTaJpz3SNg67
- Nf3CWRBFFJy0PnzdLEVtmn92CDPXleRqupMUCxuT2yJb9hyvEuAXg6mSL
- WSc/moz7di0XQ+ERHhcdsUyfmvaMKwKdEetKnidm/TUnDqV9TkOXvzL2G
- FVLkykn1K9LIL3SJyLiAKH5kuOs84JIznb0gAfkDDu5ZKtzF9KH/p7e7W
- HB9IxbunxWs3MRpXiIdOs1JcVpKBkYkWi7tAcftO2c+rGMTe075mhAHml
- VV8KC53Fi1t1vbB8pM2B1NHDJWOF1PceehAec6us0iE1wMzJefqD6o7FD w==;
-X-CSE-ConnectionGUID: RPr+55hbTfu0KXrXPK51Cg==
-X-CSE-MsgGUID: ug8bCi/7Rw2exLX4wJw+hw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11926"; a="109410176"
-X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="109410176"
+ bh=MkymJiVShvSrYgVQQr+uD5A4LoH9DAvqUNGloi5UUCo=;
+ b=RlX4cQi4UDTJgii9MCQ5Zu+/k/vVWFyd0S/Oz3tmQjTP9GeF/g6ikcvq
+ hBQg7sFJPfcMDTjfnUo7TLoYXBLhZwZ2+rHk1RrROPH/0AEOR8ioJlrFG
+ GmYvnYsYHnNtASMHxsR4aWWJIc3DHDkeo0AC2U+go8vz++kpzcRYx0tWi
+ db4OFKiBKcQbLwJmJjgJusULokoFSRf9N8eTLc0k3g/pD2lyhB5JamI20
+ cco6SDLjR9OeWTUY89wQVnqTbL1A3yzNE9jdd7ws3TIQOmtmhBXcNjhkx
+ +5coV3POcxNoYxNdhLan34KSdcVDuTfQP8bj2eWBZzsJb5Tp3Z1gygT6V Q==;
+X-CSE-ConnectionGUID: njezmCziToOAZu6iv8dDkQ==
+X-CSE-MsgGUID: 4GNLGaswQfae9CSyMM4w/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11926"; a="109410183"
+X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="109410183"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2026 15:06:41 -0700
-X-CSE-ConnectionGUID: fPtl6U9xSPyNHTxHy2bSzw==
-X-CSE-MsgGUID: htNzCuVqQa++FQYN0iaZAg==
+ 05 Oct 2026 15:06:43 -0700
+X-CSE-ConnectionGUID: qCerFYMEROGiR3DiSa+jeA==
+X-CSE-MsgGUID: fZkXwcSSSgK6QJVimsHOdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="274732175"
+X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="274732197"
 Received: from dut4435arlh.fm.intel.com ([10.105.8.126])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2026 15:06:42 -0700
+ 05 Oct 2026 15:06:43 -0700
 From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
@@ -48,14 +48,14 @@ Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  gustavo.sousa@intel.com, matthew.d.roper@intel.com,
  daniele.ceraolospurio@intel.com, shuicheng.lin@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 08/15] drm/xe: Add a new debug focused configfs group
-Date: Mon,  5 Oct 2026 22:06:44 +0000
-Message-ID: <20261005220636.602826-25-stuart.summers@intel.com>
+Subject: [PATCH 14/15] drm/xe: Taint kernel when debug configfs parameters are
+ set
+Date: Mon,  5 Oct 2026 22:06:50 +0000
+Message-ID: <20261005220636.602826-31-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261005220636.602826-17-stuart.summers@intel.com>
 References: <20261005220636.602826-17-stuart.summers@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,113 +71,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add the skeleton code for a new debug specific configfs group.
-Just add the structure for now. Actual debug content will be
-added in a subsequent patch.
+Writing any debug configfs attribute indicates the system is running
+in a non-standard configuration that may mask bugs or produce misleading
+behaviour. Taint the kernel with TAINT_TEST on each successful write so
+bug reports clearly reflect when debug settings were active.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 Assisted-by: LLM
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile            |  3 +++
- drivers/gpu/drm/xe/xe_configfs.c       |  5 +++++
- drivers/gpu/drm/xe/xe_configfs_debug.c | 14 ++++++++++++++
- drivers/gpu/drm/xe/xe_configfs_debug.h | 13 +++++++++++++
- drivers/gpu/drm/xe/xe_configfs_types.h |  3 +++
- 5 files changed, 38 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_configfs_debug.c
- create mode 100644 drivers/gpu/drm/xe/xe_configfs_debug.h
+ drivers/gpu/drm/xe/xe_configfs_debug.c        | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_configfs_debug_params.c |  6 ++++++
+ 2 files changed, 18 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 10930c924070..23accd9e6503 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -167,6 +167,9 @@ xe-$(CONFIG_HWMON) += xe_hwmon.o
- 
- xe-$(CONFIG_PERF_EVENTS) += xe_pmu.o
- xe-$(CONFIG_CONFIGFS_FS) += xe_configfs.o
-+ifeq ($(CONFIG_CONFIGFS_FS),y)
-+xe-$(CONFIG_DRM_XE_DEBUG) += xe_configfs_debug.o
-+endif
- 
- # graphics virtualization (SR-IOV) support
- xe-y += \
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 16884fa035a8..8c2c912594fa 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -14,6 +14,7 @@
- 
- #include "instructions/xe_mi_commands.h"
- #include "xe_configfs.h"
-+#include "xe_configfs_debug.h"
- #include "xe_defaults.h"
- #include "xe_gt_types.h"
- #include "xe_module.h"
-@@ -1407,6 +1408,10 @@ static struct config_group *xe_config_make_device_group(struct config_group *gro
- 		config_group_init_type_name(&dev->sriov, "sriov", &xe_config_sriov_type);
- 		configfs_add_default_group(&dev->sriov, &dev->group);
- 	}
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+	config_group_init_type_name(&dev->debug, "debug", &xe_configfs_debug_type);
-+	configfs_add_default_group(&dev->debug, &dev->group);
-+#endif
- 
- 	mutex_init(&dev->lock);
- 
 diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.c b/drivers/gpu/drm/xe/xe_configfs_debug.c
-new file mode 100644
-index 000000000000..45617282cec5
---- /dev/null
+index 3524706bc654..aa8b73cb2a64 100644
+--- a/drivers/gpu/drm/xe/xe_configfs_debug.c
 +++ b/drivers/gpu/drm/xe/xe_configfs_debug.c
-@@ -0,0 +1,14 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include <linux/configfs.h>
-+#include <linux/module.h>
-+
-+#include "xe_configfs_debug.h"
-+#include "xe_configfs_types.h"
-+
-+const struct config_item_type xe_configfs_debug_type = {
-+	.ct_owner	= THIS_MODULE,
-+};
-diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.h b/drivers/gpu/drm/xe/xe_configfs_debug.h
-new file mode 100644
-index 000000000000..5f938450aed2
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_configfs_debug.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+#ifndef _XE_CONFIGFS_DEBUG_H_
-+#define _XE_CONFIGFS_DEBUG_H_
-+
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG) && IS_ENABLED(CONFIG_CONFIGFS_FS)
-+struct config_item_type;
-+extern const struct config_item_type xe_configfs_debug_type;
-+#endif
-+
-+#endif /* _XE_CONFIGFS_DEBUG_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_configfs_types.h b/drivers/gpu/drm/xe/xe_configfs_types.h
-index b1e351761d69..3a9ab40d519b 100644
---- a/drivers/gpu/drm/xe/xe_configfs_types.h
-+++ b/drivers/gpu/drm/xe/xe_configfs_types.h
-@@ -22,6 +22,9 @@ struct wa_bb {
- struct xe_config_group_device {
- 	struct config_group group;
- 	struct config_group sriov;
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-+	struct config_group debug;
-+#endif
+@@ -8,6 +8,7 @@
+ #include <linux/module.h>
+ #include <linux/cleanup.h>
+ #include <linux/find.h>
++#include <linux/panic.h>
+ #include <linux/pci.h>
+ #include <linux/string.h>
  
- 	/*
- 	 * Fields sorted by type (largest first) then name: struct arrays,
+@@ -33,6 +34,10 @@
+  * and driver debugging and are not stable ABI. Using them is "at your own
+  * risk".
+  *
++ * Writing any debug attribute taints the kernel with ``TAINT_TEST``. This
++ * makes it visible in bug reports when a non-standard or unsafe configuration
++ * was active.
++ *
+  * See the top-level ``Xe Configfs`` documentation in ``xe_configfs.c``
+  * for how to create, probe and remove configfs devices. Once a device
+  * directory exists, the driver populates it with a ``debug/`` subdirectory
+@@ -553,6 +558,7 @@ static ssize_t wa_bb_store(struct wa_bb wa_bb[static XE_ENGINE_CLASS_MAX],
+ 
+ 	if (!count) {
+ 		memset(wa_bb, 0, sizeof(tmp_wa_bb));
++		add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
+ 		return len;
+ 	}
+ 
+@@ -572,6 +578,8 @@ static ssize_t wa_bb_store(struct wa_bb wa_bb[static XE_ENGINE_CLASS_MAX],
+ 
+ 	memcpy(wa_bb, tmp_wa_bb, sizeof(tmp_wa_bb));
+ 
++	add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
++
+ 	return len;
+ }
+ 
+@@ -724,6 +732,8 @@ static ssize_t engines_allowed_store(struct config_item *item, const char *page,
+ 
+ 	dev->config.debug.engines_allowed = val;
+ 
++	add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
++
+ 	return len;
+ }
+ 
+@@ -814,6 +824,8 @@ static ssize_t gt_types_allowed_store(struct config_item *item, const char *page
+ 
+ 	dev->config.debug.gt_types_allowed = typemask;
+ 
++	add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
++
+ 	return len;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_configfs_debug_params.c b/drivers/gpu/drm/xe/xe_configfs_debug_params.c
+index b85bd82c8c94..5a69d4b15442 100644
+--- a/drivers/gpu/drm/xe/xe_configfs_debug_params.c
++++ b/drivers/gpu/drm/xe/xe_configfs_debug_params.c
+@@ -29,11 +29,15 @@
+  * This file also generates the xe_configfs_get_<name>() accessors used
+  * by the rest of the driver to read a parameter's effective value; see
+  * the DOC section below.
++ *
++ * Setting these parameters taints the kernel since these are intended
++ * for debug and testing purposes only.
+  */
+ 
+ #include <linux/cleanup.h>
+ #include <linux/configfs.h>
+ #include <linux/kernel.h>
++#include <linux/panic.h>
+ #include <linux/pci.h>
+ #include <linux/string.h>
+ #include <linux/sysfs.h>
+@@ -65,6 +69,7 @@ static ssize_t _name##_store(struct config_item *item, const char *page, size_t
+ 	if (xe_configfs_is_bound(dev)) \
+ 		return -EBUSY; \
+ 	dev->config.debug.params._name = val; \
++	add_taint(TAINT_TEST, LOCKDEP_STILL_OK); \
+ 	return len; \
+ }
+ 
+@@ -101,6 +106,7 @@ static ssize_t _name##_store(struct config_item *item, const char *page, size_t
+ 	if (xe_configfs_is_bound(dev)) \
+ 		return -EBUSY; \
+ 	dev->config.debug.params._name = val; \
++	add_taint(TAINT_TEST, LOCKDEP_STILL_OK); \
+ 	return len; \
+ }
+ 
 -- 
 2.43.0
 
