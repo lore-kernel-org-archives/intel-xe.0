@@ -4,77 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 809F0CA6004
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF3F4CA6003
 	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 23:52:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2885910E1D1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A48210E293;
 	Mon,  5 Oct 2026 23:52:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Nlp4mLGF";
+	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="G3P4tk8l";
 	dkim-atps=neutral
-Received: from mail-dl2-f42.google.com (mail-dl2-f42.google.com
- [74.125.229.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C08AE10E987
- for <intel-xe@lists.freedesktop.org>; Sat,  3 Oct 2026 22:21:52 +0000 (UTC)
-Received: by mail-dl2-f42.google.com with SMTP id
- a92af1059eb24-141a5cf1370so27804c88.3
- for <intel-xe@lists.freedesktop.org>; Sat, 03 Oct 2026 15:21:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1791066112; x=1791670912; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=ld3yvAlH1ePbXKo85z4Wex4dRCKbfnZa0FcQVmSfj/w=;
- b=Nlp4mLGFQuWHTcSY1OHTRNsvW+PaKSpzs2ciIUSff0L8Dly0JeELRR80p+SJfDCaRP
- WKRHxzJVOdNaj+gLcDV01DMeFx1q2hnTwdlve4lEI4Ko031nuEDuizJ3IlXjexcOeO7z
- 4EbWhC/ITITt1DgykVkCz0TBN3seJpZ0nf+tiXvpU2xiK24mZylBhKhyV3iZrzR09StN
- Fh5x9qaYbMr0KREwF8Q/zqg/KLxFw6l15EPPbAqo1VBDfwrMkhEknqBnN0xm+DQfO50R
- yfzLq2GatmO00IJ7wGNVbNKWf/tpYt8fFchqfcJ8VlU2qaN3ua//N0ihA4ZhON33BK4s
- HTLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1791066112; x=1791670912;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=ld3yvAlH1ePbXKo85z4Wex4dRCKbfnZa0FcQVmSfj/w=;
- b=WPaCuC5EELW1Fg5pNZuZkgCcq9g07+DQxnK18vy3KOs42yn0DreetgTyB/BkQxbiHF
- FZaVe2uV4xz7VdnLF59wULEHZH3T30v4lcG8aFcyUl6LE4jn576UkHyHdjKYa+ffJAQn
- jZUoEZF7dO0ZZRTtQocVlvCQ+6eny8nN+nT8G0cWLiRmRHWFNY0hSwb6xkkv5yuQgrw5
- O3eRyVx8KEDsvCy1XVDmBQVatWxA3CjXPRLkbDXLfm4B7PehzHPeWkp0ecwozhKMyUj9
- nXn1KAgVGG3Noq0dk8FaWhdnIYkhY0rX6UB2WeDMWzsovDR5xkic78lsl9hOkh3IA6v4
- ARGQ==
-X-Forwarded-Encrypted: i=1;
- AKwUvBz4mjR1XNGxu39C05PcmCuj1omaESP9JwhCql8lpPzBv80qyKpc7evH8OdakeUA/Ym4EGBJgm+YfQ==@lists.freedesktop.org
-X-Gm-Message-State: AFuF++mpjqOE0rDPKMg5a+5sCqOM5r9oPhTRYPWkDnrO2zJafHqkEH78
- j4HBLjIu/JDwmw4f6RwaHbzglfd9JBOaS2/nQ892z34lP36m4fCAGD4I
-X-Gm-Gg: AYBFou1Sgk7SjG7J5btQO26QmvTsFfjGyNDeNcb00E7ZZh5GDc7+AnSQJSBtuetBdvC
- IB37AUqk67/uwGUtSSM4SqQt98tkAF/7QLtVr5fG6H5YXwDhFJFh5Fv02ZLUOUSRIUYIHeMn3xm
- Szp26f67mOCn9BzMN5zzt/GPivA7tIRF1LQC/jUuydumQcMWbftmK2SPxXNinC/kdV6oytlPbuX
- yGrEDoZj3f1T6frZflV//MZNpgurgyOKmuULEBZuKLSW5X8Zx8a/9YjTgacMArzlHzkkMTvEl6T
- 2L0OoFOFBvZeQP6G7Pmflmzd6cVrHQ5FIVVADvhP/cJ9D4RHvyx37xdkdr5zcc0EBRMuubbp6Pt
- DvkfWYKgCa3+MfJzhK8RIDp/Qhd/sJb6RPXILqPKXf6vcrgMtLBkboxobpua5dnnFPMUZAwdK+r
- 6Vw306x6LMfaR1jWvVd5+3uicerSr4w3lhtfe54t0q/dxE/ZONbznfs8CoTWxmLEyWx7G/q1lZm
- C2E//XiUMEdKEcdQ8cplr5+X+m2GMaUfxPuPM1tjuvpqfeOP30Q8Jsu5uSaTG7S8gk/NFjRwU6q
- ZIzqWCO6w+bB+L92W2o=
-X-Received: by 2002:a05:701b:4281:20b0:144:fd17:3b21 with SMTP id
- a92af1059eb24-14f56160499mr12982269c88.0.1791066111712; 
- Sat, 03 Oct 2026 15:21:51 -0700 (PDT)
-Received: from cachyos-aura ([45.112.148.109])
- by smtp.gmail.com with ESMTPSA id
- a92af1059eb24-151fc87346bsm18452135c88.8.2026.10.03.15.21.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 03 Oct 2026 15:21:51 -0700 (PDT)
-From: Navon John Lukose <navonjohnlukose@gmail.com>
-To: =?UTF-8?q?Tales=20A=2E=20Mendon=C3=A7a?= <talesam@gmail.com>,
- Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/xe: Map Wa_22016122933 buffers WC on the CPU side
-Date: Sun,  4 Oct 2026 03:51:45 +0530
-Message-ID: <20261003222145.67240-1-navonjohnlukose@gmail.com>
-X-Mailer: git-send-email 2.56.0
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D88310E08F;
+ Mon,  5 Oct 2026 10:25:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=L/
+ 8dJDe/+jfXtDt9j5QUe4zcu97XzaFmLUHIy422Cjg=; b=G3P4tk8lnLdTrCDP8C
+ XmkG8emaDuXA+yn+ao1dcNQTlZTrImpsOtTg721FvS8Qz14NDxiG8qYzOZ/DEQPz
+ Eq5+IB9JYSfXx0MgdsTHP0m2Lp3c74xAgdHNBJUF/KDFX/TPKvrQeQfgezavAbUi
+ dY33SHrLs9RXQFHaEA/u1Da1E=
+Received: from 163.com (unknown [])
+ by gzsmtp2 (Coremail) with SMTP id PSgvCgBnX6_tesNql_rOCg--.32055S5;
+ Mon, 05 Oct 2026 18:24:49 +0800 (CST)
+From: Xizhe Tang <xizheTang2005@163.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, ankit.k.nautiyal@intel.com
+Subject: [PATCH v3 3/3] drm/i915/ddi: Program AS SDP before enabling the
+ transcoder
+Date: Mon,  5 Oct 2026 18:24:45 +0800
+Message-ID: <20261005102445.12710-4-xizheTang2005@163.com>
+X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20261005102445.12710-1-xizheTang2005@163.com>
+References: <20260923195200.21362-1-xizheTang2005@163.com>
+ <20261005102445.12710-1-xizheTang2005@163.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: PSgvCgBnX6_tesNql_rOCg--.32055S5
+X-Coremail-Antispam: 1Uf129KBjvJXoWxuFWkCrWkCFykAFWrCr45KFg_yoWxXw4DpF
+ 48XFy5JFs8ZF1I9ryxJF4jyFy5Ww4kAa43GrZxG3s3Z3Z8J3WYqr40ya4jgFyDuFZxWw1S
+ yr1DJrWqg3WjgrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jdpnQUUUUU=
+X-Originating-IP: [2001:250:20f:1:a533:cf01:13a0:45f8]
+X-CM-SenderInfo: x0l2xvpwdqwjqqqvqiywtou0bp/xtbC6hFmvWrDevEJWQAA3S
 X-Mailman-Approved-At: Mon, 05 Oct 2026 23:52:45 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,75 +61,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe implements Wa_22016122933 by mapping the media GT's GuC-shared
-buffers uncached on the CPU side. i915 maps the same buffers WC on the
-CPU and UC on the GPU.
+intel_vrr_set_transcoder_timings() already programs TRANS_VRR_VSYNC
+and EMP_AS_SDP_TL after TRANS_DDI_FUNC_CTL and before TRANS_CONF.
+The Adaptive-Sync SDP itself is still written from
+intel_dp_set_infoframes() in intel_ddi_enable_dp(), after
+intel_enable_transcoder().
 
-CPU writes through the uncached mapping are slow, and xe clears and
-refills the ADS on every GuC load, so probe and every resume pay for
-it. On ARL-H, xe probe takes 3.1 s with UC and 0.35 s with WC, the same
-as without the workaround.
+On this Panther Lake eDP, Adaptive Sync = Always still streaks on
+lid s2idle resume after the previous two patches. That path sends
+AVT_DYNAMIC_VTOTAL (operation mode 0), not the fixed-RR mode-1
+packet. The same policy is clean when userspace toggles Adaptive
+Sync on an already-lit panel, so the sink can handle the SDP once
+the pipe is up.
 
-Keep XE_BO_FLAG_NEEDS_UC, which also selects XE_CACHE_NONE for the GGTT
-PTEs, and add XE_BO_FLAG_FORCE_WC, which now makes the CPU mapping
-write-combined when both flags are set.
+Write the SDP from intel_ddi_enable() immediately after
+intel_vrr_transcoder_enable(), before intel_enable_transcoder().
+intel_ddi_enable_dp() runs after TRANS_CONF and must not rewrite
+it: keep intel_dp_set_infoframes() from clearing VIDEO_DIP_ENABLE_AS_ADL
+on enable, and stop writing AS SDP from there.
 
-Fixes: d5b0bf3f37f1 ("drm/xe: Implement Wa_22016122933")
-Signed-off-by: Navon John Lukose <navonjohnlukose@gmail.com>
+Fastset still goes through intel_ddi_update_pipe_dp() on a live
+pipe. Call intel_dp_set_as_sdp() there so a VRR toggle can keep
+the stock fastset path: intel_crtc_check_fastset() will still
+clear mode_changed when only the AS enable bit differs. When the
+packet is not needed, the helper clears VIDEO_DIP_ENABLE_AS_ADL
+instead of leaving a stale transmission.
+
+The send path does not OR VIDEO_DIP_ENABLE_AS_ADL in the helper:
+intel_write_dp_sdp() calls write_infoframe (hsw_write_infoframe on this
+eDP), which sets the DIP enable bit after the payload, same as VSC.
+
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9252
+Signed-off-by: Xizhe Tang <xizheTang2005@163.com>
+Tested-by: Xizhe Tang <xizheTang2005@163.com> # 7.2.8 xe.ko and drm-tip, PTL eDP, Adaptive Sync=Always lid resume
 ---
-Tested on ARL-H 7d51 with this backported to 7.2.8. Probe time is dmesg
-"GT0: Using GuC firmware" to "Initialized xe": 3.10 and 3.15 s with UC,
-0.35-0.37 s with WC (3 boots), 0.35 s on stock Arch 7.2.8, which lacks
-the workaround.
+Changes in v3:
+- New. Needed on this panel for Always + s2idle; 1+2 alone are not
+  enough there. Optional if you only want the Never/Automatic fix.
+- Do not touch intel_pipe_config_compare(). Forcing as_sdp onto the
+  fastset compare, or switching the AS enable-bit exclude from || to
+  &&, turns a runtime Adaptive Sync toggle into a full modeset.
+  Keep intel_ddi_update_pipe_dp() writing or clearing the packet.
+- Comment that hsw_write_infoframe() sets VIDEO_DIP_ENABLE_AS_ADL
+  after the payload; do not OR the HW bit again in the helper.
+- Hunks retargeted to drm-tip line numbers.
 
-20 min of VAAPI decode with C-states 2/3 disabled (the reproducer from
-https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8678): no TLB
-invalidation timeouts and no late acks, same as with UC.
+ drivers/gpu/drm/i915/display/intel_ddi.c |  4 ++++
+ drivers/gpu/drm/i915/display/intel_dp.c  | 27 ++++++++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_dp.h  |  2 ++
+ 3 files changed, 31 insertions(+), 2 deletions(-)
 
- drivers/gpu/drm/xe/xe_bo.c  | 7 ++++++-
- drivers/gpu/drm/xe/xe_guc.c | 6 ++++--
- 2 files changed, 10 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 6921b696733..763172b252f 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -533,7 +533,12 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
- 		 * which cpu_caching is never initialized.
- 		 */
- 		xe_assert(xe, bo->cpu_caching == 0);
--		caching = ttm_uncached;
-+		/*
-+		 * With FORCE_WC also set, map WC on the CPU side. The GGTT PTEs
-+		 * stay XE_CACHE_NONE because they key off NEEDS_UC alone.
-+		 */
-+		caching = bo->flags & XE_BO_FLAG_FORCE_WC ? ttm_write_combined :
-+							    ttm_uncached;
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index a46ab5d..c80e246 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -3555,6 +3555,9 @@ static void intel_ddi_enable(struct intel_atomic_state *state,
  
- 	if (ttm_bo->type != ttm_bo_type_sg)
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 3ab4cb9e496..a39a42bfd0b 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1476,13 +1476,15 @@ int xe_guc_suspend(struct xe_guc *guc)
-  * Wa_22016122933: on the standalone media GT, memory shared between the
-  * CPU and the GuC must not be mapped cached on the CPU side, otherwise
-  * the CPU can read stale data written by the GuC (e.g. G2H CTB writes)
-- * for multiple seconds.
-+ * for multiple seconds. Map it WC on the CPU side and UC on the GPU side,
-+ * as i915 does.
-  *
-  * Return: additional XE_BO_FLAG_* to use when allocating GuC-shared memory
-  */
- u32 xe_guc_bo_wa_flags(struct xe_gt *gt)
- {
--	return XE_GT_WA(gt, 22016122933) ? XE_BO_FLAG_NEEDS_UC : 0;
-+	return XE_GT_WA(gt, 22016122933) ?
-+	       XE_BO_FLAG_NEEDS_UC | XE_BO_FLAG_FORCE_WC : 0;
+ 	intel_vrr_transcoder_enable(crtc_state);
+ 
++	if (!is_hdmi)
++		intel_dp_set_as_sdp(encoder, crtc_state);
++
+ 	/* 128b/132b SST */
+ 	if (!is_hdmi && intel_dp_is_uhbr(crtc_state)) {
+ 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+@@ -3651,6 +3654,7 @@ static void intel_ddi_update_pipe_dp(struct intel_atomic_state *state,
+ 	intel_ddi_set_dp_msa(crtc_state, conn_state);
+ 
+ 	intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
++	intel_dp_set_as_sdp(encoder, crtc_state);
+ 
+ 	intel_backlight_update(state, encoder, crtc_state, conn_state);
+ 	drm_connector_update_privacy_screen(conn_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 95efc99..a8d1958 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5403,6 +5403,30 @@ static void intel_write_dp_sdp(struct intel_encoder *encoder,
+ 	dig_port->write_infoframe(encoder, crtc_state, type, &sdp, len);
  }
  
- void xe_guc_notify(struct xe_guc *guc)
++void intel_dp_set_as_sdp(struct intel_encoder *encoder,
++			 const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(encoder);
++	intel_reg_t reg = HSW_TVIDEO_DIP_CTL(display, crtc_state->cpu_transcoder);
++
++	if (crtc_state->infoframes.enable &
++	    intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC)) {
++		/*
++		 * hsw_write_infoframe() sets VIDEO_DIP_ENABLE_AS_ADL
++		 * after the payload.
++		 */
++		intel_write_dp_sdp(encoder, crtc_state, DP_SDP_ADAPTIVE_SYNC);
++		return;
++	}
++
++	if (!HAS_AS_SDP(display))
++		return;
++
++	intel_de_write(display, reg,
++		       intel_de_read(display, reg) & ~VIDEO_DIP_ENABLE_AS_ADL);
++	intel_de_posting_read(display, reg);
++}
++
+ void intel_dp_set_infoframes(struct intel_encoder *encoder,
+ 			     bool enable,
+ 			     const struct intel_crtc_state *crtc_state,
+@@ -5414,7 +5438,7 @@ void intel_dp_set_infoframes(struct intel_encoder *encoder,
+ 			 VIDEO_DIP_ENABLE_VS_HSW | VIDEO_DIP_ENABLE_GMP_HSW |
+ 			 VIDEO_DIP_ENABLE_SPD_HSW | VIDEO_DIP_ENABLE_DRM_GLK;
+ 
+-	if (HAS_AS_SDP(display))
++	if (!enable && HAS_AS_SDP(display))
+ 		dip_enable |= VIDEO_DIP_ENABLE_AS_ADL;
+ 
+ 	u32 val = intel_de_read(display, reg) & ~dip_enable;
+@@ -5437,7 +5461,6 @@ void intel_dp_set_infoframes(struct intel_encoder *encoder,
+ 		return;
+ 
+ 	intel_write_dp_sdp(encoder, crtc_state, DP_SDP_VSC);
+-	intel_write_dp_sdp(encoder, crtc_state, DP_SDP_ADAPTIVE_SYNC);
+ 
+ 	intel_write_dp_sdp(encoder, crtc_state, HDMI_PACKET_TYPE_GAMUT_METADATA);
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 04fae20..342ed75 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -133,6 +133,8 @@ bool intel_dp_needs_vsc_colorimetry(const struct intel_crtc_state *crtc_state,
+ void intel_dp_set_infoframes(struct intel_encoder *encoder, bool enable,
+ 			     const struct intel_crtc_state *crtc_state,
+ 			     const struct drm_connector_state *conn_state);
++void intel_dp_set_as_sdp(struct intel_encoder *encoder,
++			 const struct intel_crtc_state *crtc_state);
+ void intel_read_dp_sdp(struct intel_encoder *encoder,
+ 		       struct intel_crtc_state *crtc_state,
+ 		       unsigned int type);
 -- 
-2.56.0
+2.55.0
 
