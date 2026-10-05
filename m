@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1243CA5FFC
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 19:26:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56BC4CA5FFC
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 19:27:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92C8F10EE2A;
-	Mon,  5 Oct 2026 19:26:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1280510E2AA;
+	Mon,  5 Oct 2026 19:27:08 +0000 (UTC)
 Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62F0310ED54;
- Mon,  5 Oct 2026 19:26:42 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F51510E2AA;
+ Mon,  5 Oct 2026 19:27:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3482206105347812885=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_new_debug_infrastruct?=
- =?utf-8?q?ure_for_configfs_=28rev9=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/xe3p=5Flpd=3A_Redu?=
+ =?utf-8?q?ce_lowest_CDCLK_PLL_ratio_to_18?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stuart Summers" <stuart.summers@intel.com>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 05 Oct 2026 19:26:42 -0000
-Message-ID: <179122840239.241372.9585537851984719920@61270ab9df2a>
+Date: Mon, 05 Oct 2026 19:27:06 -0000
+Message-ID: <179122842664.241371.15593680615391221757@61270ab9df2a>
 X-Patchwork-Hint: ignore
-References: <20261005190611.332940-17-stuart.summers@intel.com>
-In-Reply-To: <20261005190611.332940-17-stuart.summers@intel.com>
+References: <20261005-xe3p-cdclk-pll-18-v1-1-6f1652c224b4@intel.com>
+In-Reply-To: <20261005-xe3p-cdclk-pll-18-v1-1-6f1652c224b4@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,702 +40,142 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============3482206105347812885==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: Add new debug infrastructure for configfs (rev9)
-URL   : https://patchwork.freedesktop.org/series/165879/
-State : warning
+Series: drm/i915/xe3p_lpd: Reduce lowest CDCLK PLL ratio to 18
+URL   : https://patchwork.freedesktop.org/series/175565/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 5fd1a7baa1a57943a746cc52cb17739d647c634b
-Author: Stuart Summers <stuart.summers@intel.com>
-Date:   Mon Oct 5 19:06:25 2026 +0000
+CI Bug Log - changes from xe-5889-c1341b7b7cec27ca50f287ec497e41a8cc88f22b_BAT -> xe-pw-175565v1_BAT
+====================================================
 
-    drm/xe: Add enable_media module parameter
-    
-    The gt_types_allowed configfs attribute is debug-only, so provide a
-    supported way to disable the media GT on production builds. The
-    modparam takes precedence over configfs so a single knob is enough to
-    guarantee the media GT is left alone.
-    
-    Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-    Assisted-by: LLM
-+ /mt/dim checkpatch c1341b7b7cec27ca50f287ec497e41a8cc88f22b drm-intel
-da12487153d9 drm/xe: Guard configfs attribute reads in getters
-f3c9411d3200 drm/xe/configfs: Fix out-of-bounds read in parse_wa_bb_lines()
-47564c1b8672 drm/xe/configfs: Copy wa_bb out under the configfs lock
-ab0ace4b72d5 drm/xe: Invert vram_page_offline configfs attribute
-d99a29444f93 drm/xe: Make survivability_mode configfs attribute a bitmap
-6e6f8a80597e drm/xe: Sort xe_config_device fields
-e562b47354c3 drm/xe: Split out configfs data structures
--:101: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#101: 
-new file mode 100644
+Summary
+-------
 
-total: 0 errors, 1 warnings, 0 checks, 124 lines checked
-a63349c528b3 drm/xe: Add a new debug focused configfs group
--:52: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#52: 
-new file mode 100644
+  **SUCCESS**
 
-total: 0 errors, 1 warnings, 0 checks, 62 lines checked
-dd8274ed0d92 drm/xe: Move debug configfs entries to xe_configfs_debug.c
--:1677: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#1677: FILE: drivers/gpu/drm/xe/xe_configfs_debug.c:220:
-+	{ .cls = "vcs", .mask = XE_HW_ENGINE_VCS_MASK, .engine_class = XE_ENGINE_CLASS_VIDEO_DECODE },
+  No regressions found.
 
--:1678: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#1678: FILE: drivers/gpu/drm/xe/xe_configfs_debug.c:221:
-+	{ .cls = "vecs", .mask = XE_HW_ENGINE_VECS_MASK, .engine_class = XE_ENGINE_CLASS_VIDEO_ENHANCE },
+  
 
--:2413: WARNING:MACRO_ARG_UNUSED: Argument '_item' is not used in function-like macro
-#2413: FILE: drivers/gpu/drm/xe/xe_configfs_debug.c:956:
-+#define XE_PARAM_VISIBLE_ALWAYS(_item) \
-+	(true)
+Participating hosts (15 -> 15)
+------------------------------
 
-total: 0 errors, 3 warnings, 0 checks, 2531 lines checked
-45795682d823 drm/xe/guc: Add configfs support for guc_log_level
-1d5f5e72f97f drm/xe/guc: Add support for NPK as a GuC log target
--:180: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#180: FILE: drivers/gpu/drm/xe/xe_configfs_debug.h:56:
- }
-+static inline u8 xe_configfs_get_guc_log_target(struct pci_dev *pdev)
+  No changes in participating hosts
 
-total: 0 errors, 0 warnings, 1 checks, 182 lines checked
-d1fe70aaf3be drm/xe: Add infrastructure for debug configfs parameters
--:76: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#76: 
-new file mode 100644
-
--:124: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_name' - possible side-effects?
-#124: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:44:
-+#define _XE_PARAM_DEFINE_OPS_NUMERIC(_T, _name, _kstrto, _fmt, _validator) \
-+static ssize_t _name##_show(struct config_item *item, char *page) \
-+{ \
-+	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item); \
-+	XE_PARAM_TYPE_##_T val; \
-+	scoped_guard(mutex, &dev->lock) \
-+		val = dev->config.debug.params._name; \
-+	return sprintf(page, _fmt "\n", val); \
-+} \
-+static ssize_t _name##_store(struct config_item *item, const char *page, size_t len) \
-+{ \
-+	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item); \
-+	XE_PARAM_TYPE_##_T val; \
-+	int ret = _kstrto(page, 0, &val); \
-+	if (ret) \
-+		return ret; \
-+	ret = _validator(val); \
-+	if (ret) \
-+		return ret; \
-+	guard(mutex)(&dev->lock); \
-+	if (xe_configfs_is_bound(dev)) \
-+		return -EBUSY; \
-+	dev->config.debug.params._name = val; \
-+	return len; \
-+}
-
--:160: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_name' - possible side-effects?
-#160: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:80:
-+#define _XE_PARAM_DEFINE_OPS_bool(_name, _validator) \
-+static ssize_t _name##_show(struct config_item *item, char *page) \
-+{ \
-+	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item); \
-+	bool val; \
-+	scoped_guard(mutex, &dev->lock) \
-+		val = dev->config.debug.params._name; \
-+	return sprintf(page, "%d\n", val); \
-+} \
-+static ssize_t _name##_store(struct config_item *item, const char *page, size_t len) \
-+{ \
-+	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item); \
-+	bool val; \
-+	int ret = kstrtobool(page, &val); \
-+	if (ret) \
-+		return ret; \
-+	ret = _validator(val); \
-+	if (ret) \
-+		return ret; \
-+	guard(mutex)(&dev->lock); \
-+	if (xe_configfs_is_bound(dev)) \
-+		return -EBUSY; \
-+	dev->config.debug.params._name = val; \
-+	return len; \
-+}
-
--:186: WARNING:MACRO_ARG_UNUSED: Argument '_def' is not used in function-like macro
-#186: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:106:
-+#define _XE_PARAM_DEFINE_OPS(_T, _name, _def, _validator, _vis, _get, _fallback) \
-+	_XE_PARAM_DEFINE_OPS_##_T(_name, _validator)
-
--:186: WARNING:MACRO_ARG_UNUSED: Argument '_vis' is not used in function-like macro
-#186: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:106:
-+#define _XE_PARAM_DEFINE_OPS(_T, _name, _def, _validator, _vis, _get, _fallback) \
-+	_XE_PARAM_DEFINE_OPS_##_T(_name, _validator)
-
--:186: WARNING:MACRO_ARG_UNUSED: Argument '_get' is not used in function-like macro
-#186: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:106:
-+#define _XE_PARAM_DEFINE_OPS(_T, _name, _def, _validator, _vis, _get, _fallback) \
-+	_XE_PARAM_DEFINE_OPS_##_T(_name, _validator)
-
--:186: WARNING:MACRO_ARG_UNUSED: Argument '_fallback' is not used in function-like macro
-#186: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:106:
-+#define _XE_PARAM_DEFINE_OPS(_T, _name, _def, _validator, _vis, _get, _fallback) \
-+	_XE_PARAM_DEFINE_OPS_##_T(_name, _validator)
-
--:194: WARNING:MACRO_ARG_UNUSED: Argument '_T' is not used in function-like macro
-#194: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:114:
-+#define _XE_PARAM_DEFINE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+struct configfs_attribute xe_configfs_attr_##_name = {                              \
-+	.ca_name	= __stringify(_name),                           \
-+	.ca_owner	= THIS_MODULE,                                  \
-+	.ca_mode	= 0644,                                         \
-+	.show		= _name##_show,                                 \
-+	.store		= _name##_store,                                \
-+};
-
--:194: WARNING:MACRO_ARG_UNUSED: Argument '_def' is not used in function-like macro
-#194: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:114:
-+#define _XE_PARAM_DEFINE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+struct configfs_attribute xe_configfs_attr_##_name = {                              \
-+	.ca_name	= __stringify(_name),                           \
-+	.ca_owner	= THIS_MODULE,                                  \
-+	.ca_mode	= 0644,                                         \
-+	.show		= _name##_show,                                 \
-+	.store		= _name##_store,                                \
-+};
-
--:194: WARNING:MACRO_ARG_UNUSED: Argument '_val' is not used in function-like macro
-#194: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:114:
-+#define _XE_PARAM_DEFINE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+struct configfs_attribute xe_configfs_attr_##_name = {                              \
-+	.ca_name	= __stringify(_name),                           \
-+	.ca_owner	= THIS_MODULE,                                  \
-+	.ca_mode	= 0644,                                         \
-+	.show		= _name##_show,                                 \
-+	.store		= _name##_store,                                \
-+};
-
--:194: WARNING:MACRO_ARG_UNUSED: Argument '_vis' is not used in function-like macro
-#194: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:114:
-+#define _XE_PARAM_DEFINE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+struct configfs_attribute xe_configfs_attr_##_name = {                              \
-+	.ca_name	= __stringify(_name),                           \
-+	.ca_owner	= THIS_MODULE,                                  \
-+	.ca_mode	= 0644,                                         \
-+	.show		= _name##_show,                                 \
-+	.store		= _name##_store,                                \
-+};
-
--:194: WARNING:MACRO_ARG_UNUSED: Argument '_get' is not used in function-like macro
-#194: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:114:
-+#define _XE_PARAM_DEFINE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+struct configfs_attribute xe_configfs_attr_##_name = {                              \
-+	.ca_name	= __stringify(_name),                           \
-+	.ca_owner	= THIS_MODULE,                                  \
-+	.ca_mode	= 0644,                                         \
-+	.show		= _name##_show,                                 \
-+	.store		= _name##_store,                                \
-+};
-
--:194: WARNING:MACRO_ARG_UNUSED: Argument '_fallback' is not used in function-like macro
-#194: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:114:
-+#define _XE_PARAM_DEFINE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+struct configfs_attribute xe_configfs_attr_##_name = {                              \
-+	.ca_name	= __stringify(_name),                           \
-+	.ca_owner	= THIS_MODULE,                                  \
-+	.ca_mode	= 0644,                                         \
-+	.show		= _name##_show,                                 \
-+	.store		= _name##_store,                                \
-+};
-
--:194: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#194: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:114:
-+#define _XE_PARAM_DEFINE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+struct configfs_attribute xe_configfs_attr_##_name = {                              \
-+	.ca_name	= __stringify(_name),                           \
-+	.ca_owner	= THIS_MODULE,                                  \
-+	.ca_mode	= 0644,                                         \
-+	.show		= _name##_show,                                 \
-+	.store		= _name##_store,                                \
-+};
-
--:218: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#218: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:138:
-+#define _XE_PARAM_DEFINE_GETTER(_T, _name, _def, _val, _vis, _get, _fallback) \
-+XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev) \
-+{ \
-+	struct xe_config_group_device *dev = xe_configfs_find_group_device(pdev); \
-+	XE_PARAM_TYPE_##_T ret; \
-+	if (!dev) \
-+		return (_fallback); \
-+	scoped_guard(mutex, &dev->lock) \
-+		ret = _get(dev, _name); \
-+	config_group_put(&dev->group); \
-+	return ret; \
-+}
-
-BUT SEE:
-
-   do {} while (0) advice is over-stated in a few situations:
-
-   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
-   file-scope, where C disallows code (it must be in functions).  See
-   $exceptions if you have one to add by name.
-
-   More troublesome is declarative macros used at top of new scope,
-   like DECLARE_PER_CPU.  These might just compile with a do-while-0
-   wrapper, but would be incorrect.  Most of these are handled by
-   detecting struct,union,etc declaration primitives in $exceptions.
-
-   Theres also macros called inside an if (block), which "return" an
-   expression.  These cannot do-while, and need a ({}) wrapper.
-
-   Enjoy this qualification while we work to improve our heuristics.
-
--:218: WARNING:MACRO_ARG_UNUSED: Argument '_def' is not used in function-like macro
-#218: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:138:
-+#define _XE_PARAM_DEFINE_GETTER(_T, _name, _def, _val, _vis, _get, _fallback) \
-+XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev) \
-+{ \
-+	struct xe_config_group_device *dev = xe_configfs_find_group_device(pdev); \
-+	XE_PARAM_TYPE_##_T ret; \
-+	if (!dev) \
-+		return (_fallback); \
-+	scoped_guard(mutex, &dev->lock) \
-+		ret = _get(dev, _name); \
-+	config_group_put(&dev->group); \
-+	return ret; \
-+}
-
--:218: WARNING:MACRO_ARG_UNUSED: Argument '_val' is not used in function-like macro
-#218: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:138:
-+#define _XE_PARAM_DEFINE_GETTER(_T, _name, _def, _val, _vis, _get, _fallback) \
-+XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev) \
-+{ \
-+	struct xe_config_group_device *dev = xe_configfs_find_group_device(pdev); \
-+	XE_PARAM_TYPE_##_T ret; \
-+	if (!dev) \
-+		return (_fallback); \
-+	scoped_guard(mutex, &dev->lock) \
-+		ret = _get(dev, _name); \
-+	config_group_put(&dev->group); \
-+	return ret; \
-+}
-
--:218: WARNING:MACRO_ARG_UNUSED: Argument '_vis' is not used in function-like macro
-#218: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:138:
-+#define _XE_PARAM_DEFINE_GETTER(_T, _name, _def, _val, _vis, _get, _fallback) \
-+XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev) \
-+{ \
-+	struct xe_config_group_device *dev = xe_configfs_find_group_device(pdev); \
-+	XE_PARAM_TYPE_##_T ret; \
-+	if (!dev) \
-+		return (_fallback); \
-+	scoped_guard(mutex, &dev->lock) \
-+		ret = _get(dev, _name); \
-+	config_group_put(&dev->group); \
-+	return ret; \
-+}
-
--:230: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#230: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.c:150:
-+}
-+XE_CONFIGFS_DEBUG_PARAMS_FOR_EACH(_XE_PARAM_DEFINE_GETTER)
-
--:287: WARNING:MACRO_ARG_UNUSED: Argument '_v' is not used in function-like macro
-#287: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:50:
-+#define XE_PARAM_VALIDATE_NONE(_v)		(0)
-
--:349: WARNING:MULTISTATEMENT_MACRO_USE_DO_WHILE: Non-declarative macros with multiple statements should be enclosed in a do - while loop
-#349: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:112:
-+#define _XE_PARAM_MEMBER(_T, _name, _def, _val, _vis, _get, _fallback) XE_PARAM_TYPE_##_T _name;
-
-BUT SEE:
-
-   do {} while (0) advice is over-stated in a few situations:
-
-   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
-   file-scope, where C disallows code (it must be in functions).  See
-   $exceptions if you have one to add by name.
-
-   More troublesome is declarative macros used at top of new scope,
-   like DECLARE_PER_CPU.  These might just compile with a do-while-0
-   wrapper, but would be incorrect.  Most of these are handled by
-   detecting struct,union,etc declaration primitives in $exceptions.
-
-   Theres also macros called inside an if (block), which "return" an
-   expression.  These cannot do-while, and need a ({}) wrapper.
-
-   Enjoy this qualification while we work to improve our heuristics.
-
--:349: WARNING:MACRO_ARG_UNUSED: Argument '_def' is not used in function-like macro
-#349: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:112:
-+#define _XE_PARAM_MEMBER(_T, _name, _def, _val, _vis, _get, _fallback) XE_PARAM_TYPE_##_T _name;
-
--:349: WARNING:MACRO_ARG_UNUSED: Argument '_val' is not used in function-like macro
-#349: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:112:
-+#define _XE_PARAM_MEMBER(_T, _name, _def, _val, _vis, _get, _fallback) XE_PARAM_TYPE_##_T _name;
-
--:349: WARNING:MACRO_ARG_UNUSED: Argument '_vis' is not used in function-like macro
-#349: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:112:
-+#define _XE_PARAM_MEMBER(_T, _name, _def, _val, _vis, _get, _fallback) XE_PARAM_TYPE_##_T _name;
-
--:349: WARNING:MACRO_ARG_UNUSED: Argument '_get' is not used in function-like macro
-#349: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:112:
-+#define _XE_PARAM_MEMBER(_T, _name, _def, _val, _vis, _get, _fallback) XE_PARAM_TYPE_##_T _name;
-
--:349: WARNING:MACRO_ARG_UNUSED: Argument '_fallback' is not used in function-like macro
-#349: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:112:
-+#define _XE_PARAM_MEMBER(_T, _name, _def, _val, _vis, _get, _fallback) XE_PARAM_TYPE_##_T _name;
-
--:349: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#349: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:112:
-+#define _XE_PARAM_MEMBER(_T, _name, _def, _val, _vis, _get, _fallback) XE_PARAM_TYPE_##_T _name;
-
--:363: WARNING:MACRO_ARG_UNUSED: Argument '_T' is not used in function-like macro
-#363: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:126:
-+#define _XE_PARAM_DEFAULT_INIT(_T, _name, _def, _val, _vis, _get, _fallback)	._name = (_def),
-
--:363: WARNING:MACRO_ARG_UNUSED: Argument '_val' is not used in function-like macro
-#363: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:126:
-+#define _XE_PARAM_DEFAULT_INIT(_T, _name, _def, _val, _vis, _get, _fallback)	._name = (_def),
-
--:363: WARNING:MACRO_ARG_UNUSED: Argument '_vis' is not used in function-like macro
-#363: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:126:
-+#define _XE_PARAM_DEFAULT_INIT(_T, _name, _def, _val, _vis, _get, _fallback)	._name = (_def),
-
--:363: WARNING:MACRO_ARG_UNUSED: Argument '_get' is not used in function-like macro
-#363: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:126:
-+#define _XE_PARAM_DEFAULT_INIT(_T, _name, _def, _val, _vis, _get, _fallback)	._name = (_def),
-
--:363: WARNING:MACRO_ARG_UNUSED: Argument '_fallback' is not used in function-like macro
-#363: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:126:
-+#define _XE_PARAM_DEFAULT_INIT(_T, _name, _def, _val, _vis, _get, _fallback)	._name = (_def),
-
--:376: WARNING:MACRO_ARG_UNUSED: Argument '_T' is not used in function-like macro
-#376: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:139:
-+#define _XE_PARAM_DECLARE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	extern struct configfs_attribute xe_configfs_attr_##_name;
-
--:376: WARNING:MACRO_ARG_UNUSED: Argument '_def' is not used in function-like macro
-#376: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:139:
-+#define _XE_PARAM_DECLARE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	extern struct configfs_attribute xe_configfs_attr_##_name;
-
--:376: WARNING:MACRO_ARG_UNUSED: Argument '_val' is not used in function-like macro
-#376: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:139:
-+#define _XE_PARAM_DECLARE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	extern struct configfs_attribute xe_configfs_attr_##_name;
-
--:376: WARNING:MACRO_ARG_UNUSED: Argument '_vis' is not used in function-like macro
-#376: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:139:
-+#define _XE_PARAM_DECLARE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	extern struct configfs_attribute xe_configfs_attr_##_name;
-
--:376: WARNING:MACRO_ARG_UNUSED: Argument '_get' is not used in function-like macro
-#376: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:139:
-+#define _XE_PARAM_DECLARE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	extern struct configfs_attribute xe_configfs_attr_##_name;
-
--:376: WARNING:MACRO_ARG_UNUSED: Argument '_fallback' is not used in function-like macro
-#376: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:139:
-+#define _XE_PARAM_DECLARE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	extern struct configfs_attribute xe_configfs_attr_##_name;
-
--:376: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#376: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:139:
-+#define _XE_PARAM_DECLARE_ATTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	extern struct configfs_attribute xe_configfs_attr_##_name;
-
--:385: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#385: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:148:
-+#define XE_PARAM_ATTR_PTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	&xe_configfs_attr_##_name,
-
-BUT SEE:
-
-   do {} while (0) advice is over-stated in a few situations:
-
-   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
-   file-scope, where C disallows code (it must be in functions).  See
-   $exceptions if you have one to add by name.
-
-   More troublesome is declarative macros used at top of new scope,
-   like DECLARE_PER_CPU.  These might just compile with a do-while-0
-   wrapper, but would be incorrect.  Most of these are handled by
-   detecting struct,union,etc declaration primitives in $exceptions.
-
-   Theres also macros called inside an if (block), which "return" an
-   expression.  These cannot do-while, and need a ({}) wrapper.
-
-   Enjoy this qualification while we work to improve our heuristics.
-
--:385: WARNING:MACRO_ARG_UNUSED: Argument '_T' is not used in function-like macro
-#385: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:148:
-+#define XE_PARAM_ATTR_PTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	&xe_configfs_attr_##_name,
-
--:385: WARNING:MACRO_ARG_UNUSED: Argument '_def' is not used in function-like macro
-#385: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:148:
-+#define XE_PARAM_ATTR_PTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	&xe_configfs_attr_##_name,
-
--:385: WARNING:MACRO_ARG_UNUSED: Argument '_val' is not used in function-like macro
-#385: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:148:
-+#define XE_PARAM_ATTR_PTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	&xe_configfs_attr_##_name,
-
--:385: WARNING:MACRO_ARG_UNUSED: Argument '_vis' is not used in function-like macro
-#385: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:148:
-+#define XE_PARAM_ATTR_PTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	&xe_configfs_attr_##_name,
-
--:385: WARNING:MACRO_ARG_UNUSED: Argument '_get' is not used in function-like macro
-#385: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:148:
-+#define XE_PARAM_ATTR_PTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	&xe_configfs_attr_##_name,
-
--:385: WARNING:MACRO_ARG_UNUSED: Argument '_fallback' is not used in function-like macro
-#385: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:148:
-+#define XE_PARAM_ATTR_PTR(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	&xe_configfs_attr_##_name,
-
--:396: WARNING:MULTISTATEMENT_MACRO_USE_DO_WHILE: Non-declarative macros with multiple statements should be enclosed in a do - while loop
-#396: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:159:
-+#define XE_PARAM_DECLARE_GETTER(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev);
-
-BUT SEE:
-
-   do {} while (0) advice is over-stated in a few situations:
-
-   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
-   file-scope, where C disallows code (it must be in functions).  See
-   $exceptions if you have one to add by name.
-
-   More troublesome is declarative macros used at top of new scope,
-   like DECLARE_PER_CPU.  These might just compile with a do-while-0
-   wrapper, but would be incorrect.  Most of these are handled by
-   detecting struct,union,etc declaration primitives in $exceptions.
-
-   Theres also macros called inside an if (block), which "return" an
-   expression.  These cannot do-while, and need a ({}) wrapper.
-
-   Enjoy this qualification while we work to improve our heuristics.
-
--:396: WARNING:MACRO_ARG_UNUSED: Argument '_def' is not used in function-like macro
-#396: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:159:
-+#define XE_PARAM_DECLARE_GETTER(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev);
-
--:396: WARNING:MACRO_ARG_UNUSED: Argument '_val' is not used in function-like macro
-#396: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:159:
-+#define XE_PARAM_DECLARE_GETTER(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev);
-
--:396: WARNING:MACRO_ARG_UNUSED: Argument '_vis' is not used in function-like macro
-#396: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:159:
-+#define XE_PARAM_DECLARE_GETTER(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev);
-
--:396: WARNING:MACRO_ARG_UNUSED: Argument '_get' is not used in function-like macro
-#396: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:159:
-+#define XE_PARAM_DECLARE_GETTER(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev);
-
--:396: WARNING:MACRO_ARG_UNUSED: Argument '_fallback' is not used in function-like macro
-#396: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:159:
-+#define XE_PARAM_DECLARE_GETTER(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev);
-
--:396: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#396: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:159:
-+#define XE_PARAM_DECLARE_GETTER(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev);
-
--:405: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#405: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:168:
-+#define XE_PARAM_DECLARE_GETTER_STUB(_T, _name, _def, _val, _vis, _get, _fallback) \
-+static inline XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev) \
-+{ \
-+	return _fallback; \
-+}
-
-BUT SEE:
-
-   do {} while (0) advice is over-stated in a few situations:
-
-   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
-   file-scope, where C disallows code (it must be in functions).  See
-   $exceptions if you have one to add by name.
-
-   More troublesome is declarative macros used at top of new scope,
-   like DECLARE_PER_CPU.  These might just compile with a do-while-0
-   wrapper, but would be incorrect.  Most of these are handled by
-   detecting struct,union,etc declaration primitives in $exceptions.
-
-   Theres also macros called inside an if (block), which "return" an
-   expression.  These cannot do-while, and need a ({}) wrapper.
-
-   Enjoy this qualification while we work to improve our heuristics.
-
--:405: WARNING:MACRO_ARG_UNUSED: Argument '_def' is not used in function-like macro
-#405: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:168:
-+#define XE_PARAM_DECLARE_GETTER_STUB(_T, _name, _def, _val, _vis, _get, _fallback) \
-+static inline XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev) \
-+{ \
-+	return _fallback; \
-+}
-
--:405: WARNING:MACRO_ARG_UNUSED: Argument '_val' is not used in function-like macro
-#405: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:168:
-+#define XE_PARAM_DECLARE_GETTER_STUB(_T, _name, _def, _val, _vis, _get, _fallback) \
-+static inline XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev) \
-+{ \
-+	return _fallback; \
-+}
-
--:405: WARNING:MACRO_ARG_UNUSED: Argument '_vis' is not used in function-like macro
-#405: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:168:
-+#define XE_PARAM_DECLARE_GETTER_STUB(_T, _name, _def, _val, _vis, _get, _fallback) \
-+static inline XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev) \
-+{ \
-+	return _fallback; \
-+}
-
--:405: WARNING:MACRO_ARG_UNUSED: Argument '_get' is not used in function-like macro
-#405: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:168:
-+#define XE_PARAM_DECLARE_GETTER_STUB(_T, _name, _def, _val, _vis, _get, _fallback) \
-+static inline XE_PARAM_TYPE_##_T xe_configfs_get_##_name(struct pci_dev *pdev) \
-+{ \
-+	return _fallback; \
-+}
-
-total: 3 errors, 52 warnings, 3 checks, 333 lines checked
-ef37512484d6 drm/xe: Migrate existing debug configfs entries to params infrastructure
--:50: WARNING:MACRO_ARG_UNUSED: Argument '_def' is not used in function-like macro
-#50: FILE: drivers/gpu/drm/xe/xe_configfs.c:579:
-+#define _XE_PARAM_DUMP(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	PRI_CUSTOM_ATTR(XE_PARAM_FMT_##_T, debug.params._name);
-
--:50: WARNING:MACRO_ARG_UNUSED: Argument '_val' is not used in function-like macro
-#50: FILE: drivers/gpu/drm/xe/xe_configfs.c:579:
-+#define _XE_PARAM_DUMP(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	PRI_CUSTOM_ATTR(XE_PARAM_FMT_##_T, debug.params._name);
-
--:50: WARNING:MACRO_ARG_UNUSED: Argument '_vis' is not used in function-like macro
-#50: FILE: drivers/gpu/drm/xe/xe_configfs.c:579:
-+#define _XE_PARAM_DUMP(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	PRI_CUSTOM_ATTR(XE_PARAM_FMT_##_T, debug.params._name);
-
--:50: WARNING:MACRO_ARG_UNUSED: Argument '_get' is not used in function-like macro
-#50: FILE: drivers/gpu/drm/xe/xe_configfs.c:579:
-+#define _XE_PARAM_DUMP(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	PRI_CUSTOM_ATTR(XE_PARAM_FMT_##_T, debug.params._name);
-
--:50: WARNING:MACRO_ARG_UNUSED: Argument '_fallback' is not used in function-like macro
-#50: FILE: drivers/gpu/drm/xe/xe_configfs.c:579:
-+#define _XE_PARAM_DUMP(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	PRI_CUSTOM_ATTR(XE_PARAM_FMT_##_T, debug.params._name);
-
--:50: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#50: FILE: drivers/gpu/drm/xe/xe_configfs.c:579:
-+#define _XE_PARAM_DUMP(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	PRI_CUSTOM_ATTR(XE_PARAM_FMT_##_T, debug.params._name);
-
--:352: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_item' - possible side-effects?
-#352: FILE: drivers/gpu/drm/xe/xe_configfs_debug.c:845:
-+#define XE_PARAM_VISIBLE_VRAM_PAGE_OFFLINE(_item) \
-+	(xe_configfs_subgroup_to_group_device(_item)->desc->is_dgfx && \
-+	 xe_configfs_subgroup_to_group_device(_item)->desc->platform == XE_CRESCENTISLAND)
-
--:366: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros starting with if should be enclosed by a do - while loop to avoid possible if/else logic defects
-#366: FILE: drivers/gpu/drm/xe/xe_configfs_debug.c:852:
-+#define _XE_PARAM_VIS_CHECK(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	if (attr == &xe_configfs_attr_##_name) \
-+		return _vis(item);
-
--:366: WARNING:MACRO_ARG_UNUSED: Argument '_T' is not used in function-like macro
-#366: FILE: drivers/gpu/drm/xe/xe_configfs_debug.c:852:
-+#define _XE_PARAM_VIS_CHECK(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	if (attr == &xe_configfs_attr_##_name) \
-+		return _vis(item);
-
--:366: WARNING:MACRO_ARG_UNUSED: Argument '_def' is not used in function-like macro
-#366: FILE: drivers/gpu/drm/xe/xe_configfs_debug.c:852:
-+#define _XE_PARAM_VIS_CHECK(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	if (attr == &xe_configfs_attr_##_name) \
-+		return _vis(item);
-
--:366: WARNING:MACRO_ARG_UNUSED: Argument '_val' is not used in function-like macro
-#366: FILE: drivers/gpu/drm/xe/xe_configfs_debug.c:852:
-+#define _XE_PARAM_VIS_CHECK(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	if (attr == &xe_configfs_attr_##_name) \
-+		return _vis(item);
-
--:366: WARNING:MACRO_ARG_UNUSED: Argument '_get' is not used in function-like macro
-#366: FILE: drivers/gpu/drm/xe/xe_configfs_debug.c:852:
-+#define _XE_PARAM_VIS_CHECK(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	if (attr == &xe_configfs_attr_##_name) \
-+		return _vis(item);
-
--:366: WARNING:MACRO_ARG_UNUSED: Argument '_fallback' is not used in function-like macro
-#366: FILE: drivers/gpu/drm/xe/xe_configfs_debug.c:852:
-+#define _XE_PARAM_VIS_CHECK(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	if (attr == &xe_configfs_attr_##_name) \
-+		return _vis(item);
-
--:366: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#366: FILE: drivers/gpu/drm/xe/xe_configfs_debug.c:852:
-+#define _XE_PARAM_VIS_CHECK(_T, _name, _def, _val, _vis, _get, _fallback) \
-+	if (attr == &xe_configfs_attr_##_name) \
-+		return _vis(item);
-
--:459: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_v' - possible side-effects?
-#459: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:58:
-+#define XE_PARAM_VALIDATE_GUC_LOG_LEVEL(_v) \
-+	(((_v) == XE_GUC_LOG_LEVEL_UNSET || \
-+	  ((_v) >= 0 && (_v) <= GUC_LOG_LEVEL_MAX)) ? 0 : -EINVAL)
-
--:472: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_name' - possible side-effects?
-#472: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:86:
-+#define XE_PARAM_GETTER_GUC_LOG_LEVEL(_dev, _name) \
-+	({ typeof((_dev)->config.debug.params._name) __v = (_dev)->config.debug.params._name; \
-+	   __v >= 0 ? __v : xe_modparam.guc_log_level; })
-
--:484: WARNING:LONG_LINE: line length of 202 exceeds 100 columns
-#484: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:125:
-+	param(int,  guc_log_level,	      XE_GUC_LOG_LEVEL_UNSET,	 XE_PARAM_VALIDATE_GUC_LOG_LEVEL,  XE_PARAM_VISIBLE_ALWAYS,	       XE_PARAM_GETTER_GUC_LOG_LEVEL, xe_modparam.guc_log_level) \
-
--:485: WARNING:LONG_LINE: line length of 202 exceeds 100 columns
-#485: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:126:
-+	param(u8,   guc_log_target,	      XE_DEFAULT_GUC_LOG_TARGET, XE_PARAM_VALIDATE_GUC_LOG_TARGET, XE_PARAM_VISIBLE_ALWAYS,	       XE_PARAM_GETTER_READ,	      XE_DEFAULT_GUC_LOG_TARGET) \
-
--:486: WARNING:LONG_LINE: line length of 181 exceeds 100 columns
-#486: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:127:
-+	param(bool, enable_multi_queue,	      true,			 XE_PARAM_VALIDATE_NONE,	   XE_PARAM_VISIBLE_ALWAYS,	       XE_PARAM_GETTER_READ,	      true) \
-
--:487: WARNING:LONG_LINE: line length of 182 exceeds 100 columns
-#487: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:128:
-+	param(bool, enable_psmi,	      false,			 XE_PARAM_VALIDATE_NONE,	   XE_PARAM_VISIBLE_ALWAYS,	       XE_PARAM_GETTER_READ,	      false) \
-
--:488: WARNING:LONG_LINE: line length of 179 exceeds 100 columns
-#488: FILE: drivers/gpu/drm/xe/xe_configfs_debug_params.h:129:
-+	param(bool, enable_vram_page_offline, true,			 XE_PARAM_VALIDATE_NONE,	   XE_PARAM_VISIBLE_VRAM_PAGE_OFFLINE, XE_PARAM_GETTER_READ,	      true)
-
-total: 1 errors, 17 warnings, 3 checks, 483 lines checked
-bccafd372b6d drm/xe: Taint kernel when debug configfs parameters are set
-5fd1a7baa1a5 drm/xe: Add enable_media module parameter
-
-
+Known issues
+------------
+
+  Here are the changes found in xe-pw-175565v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#9463])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5889-c1341b7b7cec27ca50f287ec497e41a8cc88f22b/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175565v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-nvls-1:         [DMESG-WARN][3] ([Intel XE#8762] / [Intel XE#9069]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5889-c1341b7b7cec27ca50f287ec497e41a8cc88f22b/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175565v1/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#8762]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762
+  [Intel XE#9069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069
+  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9128 -> IGT_9130
+  * Linux: xe-5889-c1341b7b7cec27ca50f287ec497e41a8cc88f22b -> xe-pw-175565v1
+
+  IGT_9128: 9128
+  IGT_9130: 9130
+  xe-5889-c1341b7b7cec27ca50f287ec497e41a8cc88f22b: c1341b7b7cec27ca50f287ec497e41a8cc88f22b
+  xe-pw-175565v1: 175565v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175565v1/index.html
+
+--===============3482206105347812885==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/xe3p_lpd: Reduce lowest CDCLK PLL ratio to 18</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175565/">https://patchwork.freedesktop.org/series/175565/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175565v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175565v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5889-c1341b7b7cec27ca50f287ec497e41a8cc88f22b_BAT -&gt; xe-pw-175565v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-175565v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5889-c1341b7b7cec27ca50f287ec497e41a8cc88f22b/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175565v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5889-c1341b7b7cec27ca50f287ec497e41a8cc88f22b/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762">Intel XE#8762</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069">Intel XE#9069</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175565v1/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9128 -&gt; IGT_9130</li>
+<li>Linux: xe-5889-c1341b7b7cec27ca50f287ec497e41a8cc88f22b -&gt; xe-pw-175565v1</li>
+</ul>
+<p>IGT_9128: 9128<br />
+  IGT_9130: 9130<br />
+  xe-5889-c1341b7b7cec27ca50f287ec497e41a8cc88f22b: c1341b7b7cec27ca50f287ec497e41a8cc88f22b<br />
+  xe-pw-175565v1: 175565v1</p>
+
+</body>
+</html>
+
+--===============3482206105347812885==--
