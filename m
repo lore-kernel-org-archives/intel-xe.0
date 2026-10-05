@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 727F4CA5FFC
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 22:06:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CCD2CA5FF5
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 22:06:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06BA510EEA4;
-	Mon,  5 Oct 2026 22:06:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04EC310EED0;
+	Mon,  5 Oct 2026 22:06:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g2qWqijZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H9UsYOXU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4325C10E2A9
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Oct 2026 22:06:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8582F10EEA4
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Oct 2026 22:06:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791238000; x=1822774000;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=vDqCAfBRCdqCyqTbvsGE4K8ZHvAH8dEwMm1A8Ekd9i0=;
- b=g2qWqijZoyXYL2S52sSsK1bekRxtMbPQ6Eu8iY9sWYoXwIyfojxBu/2h
- OdC3iMB+21G1psOuV2x6PCIP44NX0BGOzevnNEjfXxBBw7zb9F7muIHmZ
- YWhczDFpkaxWgHbzNAltUGaRBVOqvHU9o/e8bdstsaUDPfW7rDplPdoq9
- i7r5NLJxTkocXmRfMK7gG08plK2p3ZDJjT0GYwQ/DtZ0tBKPpV5gmeSsM
- me58QdmSXwmU9BdSbf942qkUpKf1lMnb60CsX23uxxh5CcZ3alis86n6H
- 3SUUliGntG39RFRwfC1nVu4KZu5I7VS2ZIVq6Dfzbzbe64IQ5zOoZcB8P Q==;
-X-CSE-ConnectionGUID: /SkYO1b6TW+ZiBAcdheBxQ==
-X-CSE-MsgGUID: RbJMNZIpSQOLqt/7VywoJA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11926"; a="109410164"
-X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="109410164"
+ t=1791238001; x=1822774001;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=btI4ng9djbHiG98ExZ1z5eZM/GuDk2wb2CTnU4+DNQU=;
+ b=H9UsYOXUEelB9SxXKwAPNKlRS1nDWkfUcOQ28JfN3l6LADvonSAQeu0X
+ +q9wIg+VGmNraxJreQwRNLQOLs3NAXzu6fIslZGldU0pkGw43gNP2KG/P
+ pOvFcbLz+yTr4KJb1J4R4gKmgLKtodpU8B0UQbC5FLw89lex1YHonp7ai
+ 6Cz+2HqCjNvZPU7jPTT/NR3xk5ARk6dw+W1hAhd9D95PurH5TsP+dJOPx
+ FHXgXGIkeFxB1YvZnFfOGWLoFks4bcNamcIwY7D8JvEIqAV9qHiAQHz9H
+ lb/9Cexy9fbiHNXmO29U6k2YJYFdbIp7fA8LVGbTuLtDMPRN6HBfDIJ81 A==;
+X-CSE-ConnectionGUID: bNDRk3GjSluD5Ad8ifgCww==
+X-CSE-MsgGUID: kSt72+J2R6qii6wYA04nug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11926"; a="109410173"
+X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="109410173"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2026 15:06:40 -0700
-X-CSE-ConnectionGUID: 5C9rfIMXSV2dNVNi8t65bw==
-X-CSE-MsgGUID: DTPWkbTvQq6UwcjyDeU8kw==
+ 05 Oct 2026 15:06:41 -0700
+X-CSE-ConnectionGUID: d/dqoBGhQBKv2ieB68jQQg==
+X-CSE-MsgGUID: LAb64rTVSiW2p2TQwtnCwg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="274732149"
+X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="274732172"
 Received: from dut4435arlh.fm.intel.com ([10.105.8.126])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2026 15:06:40 -0700
+ 05 Oct 2026 15:06:41 -0700
 From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
@@ -48,11 +48,14 @@ Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  gustavo.sousa@intel.com, matthew.d.roper@intel.com,
  daniele.ceraolospurio@intel.com, shuicheng.lin@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 00/15] Add new debug infrastructure for configfs
-Date: Mon,  5 Oct 2026 22:06:36 +0000
-Message-ID: <20261005220636.602826-17-stuart.summers@intel.com>
+Subject: [PATCH 07/15] drm/xe: Split out configfs data structures
+Date: Mon,  5 Oct 2026 22:06:43 +0000
+Message-ID: <20261005220636.602826-24-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261005220636.602826-17-stuart.summers@intel.com>
+References: <20261005220636.602826-17-stuart.summers@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,151 +71,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a new configfs debug group. The intent of this structure is
-to allow us to separate ABI facing configfs entries from those
-which are purely for debug purposes. And it allows us more flexibility
-in how we define those parameters used for debug.
+Planning on moving debug specific configfs parameters
+to their own file in a future patch. In preparation for
+that change, move the structures in xe_configfs.c to a
+new _types.h file so we can easily access them in the
+different configfs files.
 
-Add a new infrastructure to this debug configfs group that lets us
-easily define the parameters in a quick list. This is primarily
-useful for simple, single-type parameters such as enable/disable
-features or simple values passed. For more complex parameters,
-we will still need to define these separately.
+Doing that separately here instead of combining with
+the patch that adds the debug file for ease of review.
 
-Pull the GuC target related changes from [1] to fit within
-this new structure and add a new definition for guc_log_level
-on top of the existing module parameter (to ensure we aren't
-impacting existing users of the module parameter).
-
-Note that the debug parameters here are all to be used "at your
-own risk". Without having in depth knowledge of how these impact
-the software and hardware, there could be unforeseen consequences
-of setting them. As such, they are all wrapped in a
-CONFIG_DRM_XE_DEBUG configfs option.
-
-In terms of the patches here, I'm sorting the existing parameters
-by name/type. I know we have a few other module parameters that
-could migrate here, but I didn't want to overload this series
-too much, so the focus for now is on the existing configfs entries
-and demonstrating the new structures with the GuC log level and
-target parameters.
-
-I used GitHub Copilot with Claude pretty extensively through the
-process here and attributed as such. Happy to answer any questions
-around this. Took a bit of time getting back to this series around
-other work, and in that time I was playing around with a few different
-models, hence some of the patches are showing multiple of them. I
-tried to attribute each as I was implementing the changes.
-
-I also decided to drop John Harrison from the NPK patch. It has
-been modified quite a bit from the original, but more importantly
-John is no longer with Intel and that email address isn't available
-any more. If it makes a difference here, John and I had both separately
-implemented this same change at different occasions for debug. The
-one I used to start that initial series was cherry-picked from his
-latest variant.
-
-v2:
- - In this second revision I did confirm that the guc_log_level
-   module parameter is taking precedence over the configfs parameter
-   and ensured the other parameters seem to be autogenerating and
-   working as expected.
- - I tried to address all the review feedback from the first
-   revision, [2].
- - I also did another pass on the sorting since there were a few
-   discrepancies I noticed in the first revision. I kept Gustavo's
-   R-B on that one, but would like an ack before merging at least
-   to confirm the patch is sane.
- - And finally I moved the getter functions into the X-macro
-   generators so we can autogenerate more of the similar functions
-   between the different parameters in that debug param list.
-v3:
- - Address a couple of comments from Sashiko around GuC log level
-   input checking and proper guard implementation.
-v4:
- - More review feedback from Sashiko addressed...
-v5:
- - Move the goto to a return (more Sashiko feedback) in the GuC
-   log level setter before moving to the X-macro solution.
-v6:
- - Make the autogenerated X-macro function names more specific to
-   avoid naming collisions (Sashiko again).
-v7:
- - Fix the couple of pre-existing bugs called out by Sashiko in
-   the prior rev...
- - Make CONFIGFS_FS a required config for xe to avoid issues with
-   stale values in the fallback getters.
- - Renamed disable_vram_page_offline to enable_vram_page_offline
-   for a more consistent naming scheme (this was a new configfs
-   entry added since the prior rev).
- - Converted survivability_mode to a u8 bitmap to allow for
-   extendability in the future. Only bit 0 is defined, so the behavior
-   should be the same.
- - Added an enable_media module parameter at the end of the series.
-   gt_types_allowed is debug-only, so this gives production builds a
-   supported way to leave the media GT alone. The modparam takes
-   precedence over configfs.
- - Adjust the sorting to be alphabetical for the documentation
-   specifically (Matt)
-v8:
- - Revert the CONFIGFS_FS require change from the previous rev (Matt)
- - Rebase on the latest which adds a new ulls configfs that is going
-   into the production list.
- - Use Assisted-by: LLM as documented on the latest kernel.org site for
-   AI attribution.
-v9:
- - Fix regression in previous rev where the engine and GT type configfs
-   default masks weren't set properly causing driver load to fail.
-
-Stuart Summers (15):
-  drm/xe: Guard configfs attribute reads in getters
-  drm/xe/configfs: Fix out-of-bounds read in parse_wa_bb_lines()
-  drm/xe/configfs: Copy wa_bb out under the configfs lock
-  drm/xe: Invert vram_page_offline configfs attribute
-  drm/xe: Make survivability_mode configfs attribute a bitmap
-  drm/xe: Sort xe_config_device fields
-  drm/xe: Split out configfs data structures
-  drm/xe: Add a new debug focused configfs group
-  drm/xe: Move debug configfs entries to xe_configfs_debug.c
-  drm/xe/guc: Add configfs support for guc_log_level
-  drm/xe/guc: Add support for NPK as a GuC log target
-  drm/xe: Add infrastructure for debug configfs parameters
-  drm/xe: Migrate existing debug configfs entries to params
-    infrastructure
-  drm/xe: Taint kernel when debug configfs parameters are set
-  drm/xe: Add enable_media module parameter
-
- drivers/gpu/drm/xe/Makefile                   |    3 +
- drivers/gpu/drm/xe/abi/guc_log_abi.h          |    8 +
- drivers/gpu/drm/xe/xe_configfs.c              | 1112 ++---------------
- drivers/gpu/drm/xe/xe_configfs.h              |  105 +-
- drivers/gpu/drm/xe/xe_configfs_debug.c        |  899 +++++++++++++
- drivers/gpu/drm/xe/xe_configfs_debug.h        |   51 +
- drivers/gpu/drm/xe/xe_configfs_debug_params.c |  158 +++
- drivers/gpu/drm/xe/xe_configfs_debug_params.h |  194 +++
- drivers/gpu/drm/xe/xe_configfs_types.h        |   61 +
- drivers/gpu/drm/xe/xe_defaults.h              |    6 +
- drivers/gpu/drm/xe/xe_drm_ras_types.h         |    4 +-
- drivers/gpu/drm/xe/xe_guc.c                   |   14 +-
- drivers/gpu/drm/xe/xe_guc_ads.c               |    1 +
- drivers/gpu/drm/xe/xe_guc_log.c               |    3 +-
- drivers/gpu/drm/xe/xe_hw_engine.c             |    1 +
- drivers/gpu/drm/xe/xe_lrc.c                   |   39 +-
- drivers/gpu/drm/xe/xe_module.c                |    6 +
- drivers/gpu/drm/xe/xe_module.h                |    1 +
- drivers/gpu/drm/xe/xe_pci.c                   |   20 +-
- drivers/gpu/drm/xe/xe_psmi.c                  |    3 +-
- drivers/gpu/drm/xe/xe_ras.c                   |    9 +-
- drivers/gpu/drm/xe/xe_rtp.c                   |    3 +-
- drivers/gpu/drm/xe/xe_survivability_mode.c    |    7 +-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |    2 +-
- 24 files changed, 1648 insertions(+), 1062 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_configfs_debug.c
- create mode 100644 drivers/gpu/drm/xe/xe_configfs_debug.h
- create mode 100644 drivers/gpu/drm/xe/xe_configfs_debug_params.c
- create mode 100644 drivers/gpu/drm/xe/xe_configfs_debug_params.h
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+Assisted-by: LLM
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_configfs.c       | 43 --------------------
+ drivers/gpu/drm/xe/xe_configfs.h       |  1 +
+ drivers/gpu/drm/xe/xe_configfs_types.h | 55 ++++++++++++++++++++++++++
+ 3 files changed, 56 insertions(+), 43 deletions(-)
  create mode 100644 drivers/gpu/drm/xe/xe_configfs_types.h
 
+diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
+index 4a92a6f22311..16884fa035a8 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.c
++++ b/drivers/gpu/drm/xe/xe_configfs.c
+@@ -4,7 +4,6 @@
+  */
+ 
+ #include <linux/bitops.h>
+-#include <linux/ctype.h>
+ #include <linux/configfs.h>
+ #include <linux/cleanup.h>
+ #include <linux/find.h>
+@@ -17,10 +16,7 @@
+ #include "xe_configfs.h"
+ #include "xe_defaults.h"
+ #include "xe_gt_types.h"
+-#include "xe_hw_engine_types.h"
+ #include "xe_module.h"
+-#include "xe_pci_types.h"
+-#include "xe_sriov_types.h"
+ 
+ /**
+  * DOC: Xe Configfs
+@@ -290,45 +286,6 @@
+  *	# rmdir /sys/kernel/config/xe/0000:03:00.0/
+  */
+ 
+-/* Similar to struct xe_bb, but not tied to HW (yet) */
+-struct wa_bb {
+-	u32 *cs;
+-	u32 len; /* in dwords */
+-};
+-
+-struct xe_config_group_device {
+-	struct config_group group;
+-	struct config_group sriov;
+-
+-	/*
+-	 * Fields sorted by type (largest first) then name: struct arrays,
+-	 * u64, u32/unsigned int, u8, bool, sub-structs last. Within each
+-	 * type, entries are sorted alphabetically.
+-	 */
+-	struct xe_config_device {
+-		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
+-		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
+-		u64 engines_allowed;
+-		u64 gt_types_allowed;
+-		u32 migrate_ulls_period_ms;
+-		u8 survivability_mode;
+-		bool enable_multi_queue;
+-		bool enable_psmi;
+-		bool enable_vram_page_offline;
+-		struct {
+-			unsigned int max_vfs;
+-			bool admin_only_pf;
+-		} sriov;
+-	} config;
+-
+-	/* protects attributes */
+-	struct mutex lock;
+-	/* matching descriptor */
+-	const struct xe_device_desc *desc;
+-	/* tentative SR-IOV mode */
+-	enum xe_sriov_mode mode;
+-};
+-
+ static const struct xe_config_device device_defaults = {
+ 	.engines_allowed = U64_MAX,
+ 	.gt_types_allowed = U64_MAX,
+diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+index 275086e50451..c832de85b771 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.h
++++ b/drivers/gpu/drm/xe/xe_configfs.h
+@@ -9,6 +9,7 @@
+ #include <linux/limits.h>
+ #include <linux/types.h>
+ 
++#include "xe_configfs_types.h"
+ #include "xe_defaults.h"
+ #include "xe_hw_engine_types.h"
+ #include "xe_module.h"
+diff --git a/drivers/gpu/drm/xe/xe_configfs_types.h b/drivers/gpu/drm/xe/xe_configfs_types.h
+new file mode 100644
+index 000000000000..b1e351761d69
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_configfs_types.h
+@@ -0,0 +1,55 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++#ifndef _XE_CONFIGFS_TYPES_H_
++#define _XE_CONFIGFS_TYPES_H_
++
++#include <linux/configfs.h>
++#include <linux/mutex.h>
++#include <linux/types.h>
++
++#include "xe_hw_engine_types.h"
++#include "xe_pci_types.h"
++#include "xe_sriov_types.h"
++
++/* Similar to struct xe_bb, but not tied to HW (yet) */
++struct wa_bb {
++	u32 *cs;
++	u32 len; /* in dwords */
++};
++
++struct xe_config_group_device {
++	struct config_group group;
++	struct config_group sriov;
++
++	/*
++	 * Fields sorted by type (largest first) then name: struct arrays,
++	 * u64, u32/unsigned int, u8, bool, sub-structs last. Within each
++	 * type, entries are sorted alphabetically.
++	 */
++	struct xe_config_device {
++		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
++		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
++		u64 engines_allowed;
++		u64 gt_types_allowed;
++		u32 migrate_ulls_period_ms;
++		u8 survivability_mode;
++		bool enable_multi_queue;
++		bool enable_psmi;
++		bool enable_vram_page_offline;
++		struct {
++			unsigned int max_vfs;
++			bool admin_only_pf;
++		} sriov;
++	} config;
++
++	/* protects attributes */
++	struct mutex lock;
++	/* matching descriptor */
++	const struct xe_device_desc *desc;
++	/* tentative SR-IOV mode */
++	enum xe_sriov_mode mode;
++};
++
++#endif /* _XE_CONFIGFS_TYPES_H_ */
 -- 
 2.43.0
 
