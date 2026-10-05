@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F11A7CA5FFE
-	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 22:06:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1072ECA6001
+	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 22:06:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AC6110EEC7;
-	Mon,  5 Oct 2026 22:06:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34F1110EED3;
+	Mon,  5 Oct 2026 22:06:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nh+LmIpa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g62gbKnj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D43E810EEA4
- for <intel-xe@lists.freedesktop.org>; Mon,  5 Oct 2026 22:06:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D8C310EEBB
+ for <intel-xe@lists.freedesktop.org>; Mon,  5 Oct 2026 22:06:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791238001; x=1822774001;
+ t=1791238002; x=1822774002;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=r0Eeg07DIFE2WcudOKrlD7eUOk8yhHlZu4uEAGqR0c8=;
- b=Nh+LmIpaCs/L5+DHuZEMMnH9PHAt1Fa7pxFPEKYAgapiNXlqxeGg3t73
- 1PbQj0h2cimmiCt0OgNhiOGWsNOE51VsTIzMC8xqYDA+Wqz/4srpy60Wn
- 1LiT6u1vQqqGluRBHmY32Y45oU/zK+2KE1FB+fVlZb/Oc06+juF9cPCdh
- 3Bw5ySDmI9cO70y4SUuQw3XCKVQXCEzSqz8q9aZr1SHIPiYsxZjGJ8qJX
- APJHfK4GTobfDSff4+hBu+W5JMSkGh8Qb9NHdHAK2Wr9ymWTPz2pwYMH2
- v4bMjzJgO9kKnMONKVBv+egQsRgzIAkqI12gzhjoM3wvkweaeptJOMUGp g==;
-X-CSE-ConnectionGUID: 24AWnTwJSkqoOFm80R6Sjg==
-X-CSE-MsgGUID: MADF/F9uRG6jOLggZxv5JQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11926"; a="109410168"
-X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="109410168"
+ bh=YY3LgLP/CihZwUMHlmjleayKtcjXaTykkCSqGRHVgeA=;
+ b=g62gbKnjWBfBxEHfpN+FZKm1o5cttaVs9m6j9Tf8/BPoJjnZ95BuNuJK
+ MK1pEvHZc0dt3V7M/ujrLa0emyyUfQnrCTLQK8D8zJo+PXHC9n1+kXsDL
+ 3bSWepbNqiVr/CDaKUeBHo7G5h4Z3b7rXoVlYZbwh95J0uM66a3YfvNZR
+ A1+GCqCdr9ZCrdc/PbLSYgo167L532CM3mPcGZNoKmwvPmYpg2/8SDaat
+ 3Lyc0cBHGng6uOqkjnyeF8bDVElOgqOfyeRXKmJHmkveXaZeCYBVoWE6L
+ sDU2y2XHaTyWHXiTQZ2HiuxFNecrxo+6e9ep2/sf8A47zjrE4jJEtzDjv w==;
+X-CSE-ConnectionGUID: uGb9eBXuT6qCB4ml5r8qsA==
+X-CSE-MsgGUID: 2whWgp+JQ1q+O3+Lt0poBA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11926"; a="109410180"
+X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="109410180"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2026 15:06:40 -0700
-X-CSE-ConnectionGUID: VuX2cQf2SFe/1exl1xIpwQ==
-X-CSE-MsgGUID: I5p+98tfReGJX1LYw/Z5Aw==
+ 05 Oct 2026 15:06:42 -0700
+X-CSE-ConnectionGUID: YDMbolE1RzexFE/Ifbm/sg==
+X-CSE-MsgGUID: Xzia3bOkQw+91uHoIELnGQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="274732159"
+X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="274732186"
 Received: from dut4435arlh.fm.intel.com ([10.105.8.126])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2026 15:06:40 -0700
+ 05 Oct 2026 15:06:42 -0700
 From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
@@ -48,13 +48,14 @@ Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  gustavo.sousa@intel.com, matthew.d.roper@intel.com,
  daniele.ceraolospurio@intel.com, shuicheng.lin@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 03/15] drm/xe/configfs: Copy wa_bb out under the configfs lock
-Date: Mon,  5 Oct 2026 22:06:39 +0000
-Message-ID: <20261005220636.602826-20-stuart.summers@intel.com>
+Subject: [PATCH 11/15] drm/xe/guc: Add support for NPK as a GuC log target
+Date: Mon,  5 Oct 2026 22:06:47 +0000
+Message-ID: <20261005220636.602826-28-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261005220636.602826-17-stuart.summers@intel.com>
 References: <20261005220636.602826-17-stuart.summers@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,238 +71,254 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The ctx_restore_{mid,post}_bb getters handed the caller a pointer into
-storage owned by the configfs group and then dropped both the lock and
-the group reference. A concurrent store can krealloc() that buffer and
-an rmdir can free it outright, leaving the caller in xe_lrc.c to
-memcpy() from freed memory. Copy the batch into a caller supplied
-buffer while the lock is still held instead, which also folds the
-length check the callers were doing into the getters.
+GuC provides the ability to gather logs through a hardware interface
+called NPK. For certain debugging scenarios this can be advantageous
+over getting logs from memory (or in addition to).
 
-Fixes: 6c6988c5e03d ("drm/xe/lrc: Allow to add user commands on context switch")
-Fixes: 39ac06f70062 ("drm/xe/configfs: Add post context restore bb")
+Add a hook for this alternate debugging mode via a configfs. This
+translates into a parameter passed to GuC during load time.
+
+v2: Convert to configfs from modparam (Matt)
+v3: Configfs documentation formatting (Shuicheng)
+    Kerneldoc/comment add + configfs entry ordering
+    Only set the guc_log_target when GuC log is enabled (Daniele)
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 Assisted-by: LLM
 ---
- drivers/gpu/drm/xe/xe_configfs.c | 52 ++++++++++++++++++++++----------
- drivers/gpu/drm/xe/xe_configfs.h | 24 +++++++--------
- drivers/gpu/drm/xe/xe_lrc.c      | 38 +++++++----------------
- 3 files changed, 59 insertions(+), 55 deletions(-)
+ drivers/gpu/drm/xe/abi/guc_log_abi.h   |  8 ++++
+ drivers/gpu/drm/xe/xe_configfs.c       |  2 +
+ drivers/gpu/drm/xe/xe_configfs_debug.c | 65 +++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_configfs_debug.h |  5 ++
+ drivers/gpu/drm/xe/xe_configfs_types.h |  1 +
+ drivers/gpu/drm/xe/xe_defaults.h       |  2 +
+ drivers/gpu/drm/xe/xe_guc.c            | 11 +++--
+ 7 files changed, 90 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/abi/guc_log_abi.h b/drivers/gpu/drm/xe/abi/guc_log_abi.h
+index fbf212d59a40..e1b121bff549 100644
+--- a/drivers/gpu/drm/xe/abi/guc_log_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_log_abi.h
+@@ -51,6 +51,14 @@ enum guc_log_type {
+ 
+ #define GUC_LOG_BUFFER_TYPE_MAX		3
+ 
++enum guc_log_target {
++	GUC_LOG_TARGET_MEM = 0,
++	GUC_LOG_TARGET_NPK,
++	GUC_LOG_TARGET_MEM_AND_NPK,
++};
++
++#define GUC_LOG_TARGET_MAX	GUC_LOG_TARGET_MEM_AND_NPK
++
+ /**
+  * struct guc_log_buffer_state - GuC log buffer state
+  *
 diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 1c7a096aa046..6e62fdccb4c4 100644
+index 4aa5b7c488eb..d09c97eb8120 100644
 --- a/drivers/gpu/drm/xe/xe_configfs.c
 +++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -1441,25 +1441,34 @@ bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev)
-  * xe_configfs_get_ctx_restore_mid_bb - get configfs ctx_restore_mid_bb setting
-  * @pdev: pci device
-  * @class: hw engine class
-- * @cs: pointer to the bb to use - only valid during probe
-+ * @cs: destination buffer for the batch, or NULL to only query the length
-+ * @max_len: capacity of @cs, in dwords
+@@ -133,6 +133,7 @@ const struct xe_config_device xe_configfs_device_defaults = {
+ 		.engines_allowed = U64_MAX,
+ 		.gt_types_allowed = U64_MAX,
+ 		.guc_log_level = XE_GUC_LOG_LEVEL_UNSET,
++		.guc_log_target = XE_DEFAULT_GUC_LOG_TARGET,
+ 		.enable_multi_queue = true,
+ 		.enable_psmi = false,
+ 		.enable_vram_page_offline = true,
+@@ -580,6 +581,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
+ 	PRI_CUSTOM_ATTR("%llx", debug.engines_allowed);
+ 	PRI_CUSTOM_ATTR("%llx", debug.gt_types_allowed);
+ 	PRI_CUSTOM_ATTR("%d", debug.guc_log_level);
++	PRI_CUSTOM_ATTR("%d", debug.guc_log_target);
+ 	PRI_CUSTOM_ATTR("%d", debug.enable_multi_queue);
+ 	PRI_CUSTOM_ATTR("%d", debug.enable_psmi);
+ 	PRI_CUSTOM_ATTR("%d", debug.enable_vram_page_offline);
+diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.c b/drivers/gpu/drm/xe/xe_configfs_debug.c
+index cbfb12266bf4..ff8e38ed717d 100644
+--- a/drivers/gpu/drm/xe/xe_configfs_debug.c
++++ b/drivers/gpu/drm/xe/xe_configfs_debug.c
+@@ -48,7 +48,8 @@
+  *	        ├── enable_vram_page_offline
+  *	        ├── engines_allowed
+  *	        ├── gt_types_allowed
+- *	        └── guc_log_level
++ *	        ├── guc_log_level
++ *	        └── guc_log_target
   *
-- * Return: Number of dwords used in the mid_ctx_restore setting in configfs
-+ * Copy the configured batch into @cs while holding the configfs lock, so the
-+ * caller never gets a pointer to storage owned by the configfs group.
-+ *
-+ * Return: Number of dwords used in the mid_ctx_restore setting in configfs, or
-+ * -ENOSPC if it does not fit in @max_len
-  */
--u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
--				       enum xe_engine_class class,
--				       const u32 **cs)
-+ssize_t xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
-+					   enum xe_engine_class class,
-+					   u32 *cs, size_t max_len)
- {
- 	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
--	u32 len;
-+	ssize_t len;
- 
- 	if (!dev)
- 		return 0;
- 
- 	scoped_guard(mutex, &dev->lock) {
--		if (cs)
--			*cs = dev->config.ctx_restore_mid_bb[class].cs;
--
- 		len = dev->config.ctx_restore_mid_bb[class].len;
-+		if (cs && len) {
-+			if (len > max_len)
-+				len = -ENOSPC;
-+			else
-+				memcpy(cs, dev->config.ctx_restore_mid_bb[class].cs,
-+				       len * sizeof(u32));
-+		}
- 	}
- 	config_group_put(&dev->group);
- 
-@@ -1470,23 +1479,34 @@ u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
-  * xe_configfs_get_ctx_restore_post_bb - get configfs ctx_restore_post_bb setting
-  * @pdev: pci device
-  * @class: hw engine class
-- * @cs: pointer to the bb to use - only valid during probe
-+ * @cs: destination buffer for the batch, or NULL to only query the length
-+ * @max_len: capacity of @cs, in dwords
+  * Configure Attributes
+  * ====================
+@@ -225,6 +226,16 @@
+  * this device.
   *
-- * Return: Number of dwords used in the post_ctx_restore setting in configfs
-+ * Copy the configured batch into @cs while holding the configfs lock, so the
-+ * caller never gets a pointer to storage owned by the configfs group.
+  * This attribute can only be set before binding to the device.
 + *
-+ * Return: Number of dwords used in the post_ctx_restore setting in configfs, or
-+ * -ENOSPC if it does not fit in @max_len
++ * GuC log target:
++ * ---------------
++ *
++ * Set the destination for the GuC log. 0 - memory only (default),
++ * 1 - NPK only, 2 - memory + NPK. Example::
++ *
++ *	# echo 2 > /sys/kernel/config/xe/0000:03:00.0/debug/guc_log_target
++ *
++ * This attribute can only be set before binding to the device.
   */
--u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
--					enum xe_engine_class class,
--					const u32 **cs)
-+ssize_t xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
-+					    enum xe_engine_class class,
-+					    u32 *cs, size_t max_len)
- {
- 	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
--	u32 len;
-+	ssize_t len;
  
- 	if (!dev)
- 		return 0;
+ struct engine_info {
+@@ -865,6 +876,56 @@ static ssize_t guc_log_level_store(struct config_item *item, const char *page, s
+ 	return len;
+ }
  
- 	scoped_guard(mutex, &dev->lock) {
--		*cs = dev->config.ctx_restore_post_bb[class].cs;
- 		len = dev->config.ctx_restore_post_bb[class].len;
-+		if (cs && len) {
-+			if (len > max_len)
-+				len = -ENOSPC;
-+			else
-+				memcpy(cs, dev->config.ctx_restore_post_bb[class].cs,
-+				       len * sizeof(u32));
-+		}
- 	}
- 	config_group_put(&dev->group);
- 
-diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-index 10a00d6bbf8f..14e49f23306f 100644
---- a/drivers/gpu/drm/xe/xe_configfs.h
-+++ b/drivers/gpu/drm/xe/xe_configfs.h
-@@ -26,12 +26,12 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
++/**
++ * xe_configfs_get_guc_log_target - get configfs GuC log target attribute
++ * @pdev: pci device
++ *
++ * Return: guc_log_target attribute in configfs
++ */
++u8 xe_configfs_get_guc_log_target(struct pci_dev *pdev)
++{
++	struct xe_config_group_device *dev = find_device(pdev);
++	u8 target;
++
++	if (!dev)
++		return xe_configfs_device_defaults.debug.guc_log_target;
++
++	scoped_guard(mutex, &dev->lock)
++		target = dev->config.debug.guc_log_target;
++	config_group_put(&dev->group);
++
++	return target;
++}
++
++static ssize_t guc_log_target_show(struct config_item *item, char *page)
++{
++	struct xe_config_device *dev = xe_configfs_subgroup_to_device(item);
++
++	return sprintf(page, "%d\n", dev->debug.guc_log_target);
++}
++
++static ssize_t guc_log_target_store(struct config_item *item, const char *page, size_t len)
++{
++	struct xe_config_group_device *dev = xe_configfs_subgroup_to_group_device(item);
++	u8 guc_log_target;
++	int ret;
++
++	ret = kstrtou8(page, 0, &guc_log_target);
++	if (ret)
++		return ret;
++
++	if (guc_log_target > GUC_LOG_TARGET_MAX)
++		return -EINVAL;
++
++	guard(mutex)(&dev->lock);
++	if (xe_configfs_is_bound(dev))
++		return -EBUSY;
++
++	dev->config.debug.guc_log_target = guc_log_target;
++
++	return len;
++}
++
+ /**
+  * xe_configfs_get_enable_multi_queue - get configfs enable_multi_queue setting
+  * @pdev: pci device
+@@ -1013,6 +1074,7 @@ CONFIGFS_ATTR(, ctx_restore_post_bb);
+ CONFIGFS_ATTR(, engines_allowed);
+ CONFIGFS_ATTR(, gt_types_allowed);
+ CONFIGFS_ATTR(, guc_log_level);
++CONFIGFS_ATTR(, guc_log_target);
+ CONFIGFS_ATTR(, enable_multi_queue);
+ CONFIGFS_ATTR(, enable_psmi);
+ CONFIGFS_ATTR(, enable_vram_page_offline);
+@@ -1023,6 +1085,7 @@ static struct configfs_attribute *xe_configfs_debug_attrs[] = {
+ 	&attr_engines_allowed,
+ 	&attr_gt_types_allowed,
+ 	&attr_guc_log_level,
++	&attr_guc_log_target,
+ 	&attr_enable_multi_queue,
+ 	&attr_enable_psmi,
+ 	&attr_enable_vram_page_offline,
+diff --git a/drivers/gpu/drm/xe/xe_configfs_debug.h b/drivers/gpu/drm/xe/xe_configfs_debug.h
+index c4915832f539..d8e08d64a410 100644
+--- a/drivers/gpu/drm/xe/xe_configfs_debug.h
++++ b/drivers/gpu/drm/xe/xe_configfs_debug.h
+@@ -27,6 +27,7 @@ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
+ bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev);
+ bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
+ int xe_configfs_get_guc_log_level(struct pci_dev *pdev);
++u8 xe_configfs_get_guc_log_target(struct pci_dev *pdev);
  bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
- u32 xe_configfs_get_migrate_ulls_period_ms(struct pci_dev *pdev);
- bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev);
--u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
--				       enum xe_engine_class class,
--				       const u32 **cs);
--u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
--					enum xe_engine_class class,
--					const u32 **cs);
-+ssize_t xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
-+					   enum xe_engine_class class,
-+					   u32 *cs, size_t max_len);
-+ssize_t xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
-+					    enum xe_engine_class class,
-+					    u32 *cs, size_t max_len);
- #ifdef CONFIG_PCI_IOV
- unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev);
- bool xe_configfs_admin_only_pf(struct pci_dev *pdev);
-@@ -48,12 +48,12 @@ static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return f
+ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
+ bool xe_configfs_get_enable_vram_page_offline(struct pci_dev *pdev);
+@@ -52,6 +53,10 @@ static inline int xe_configfs_get_guc_log_level(struct pci_dev *pdev)
+ {
+ 	return xe_modparam.guc_log_level;
+ }
++static inline u8 xe_configfs_get_guc_log_target(struct pci_dev *pdev)
++{
++	return XE_DEFAULT_GUC_LOG_TARGET;
++}
  static inline bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev) { return true; }
- static inline u32 xe_configfs_get_migrate_ulls_period_ms(struct pci_dev *pdev) { return 5; }
- static inline bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev) { return false; }
--static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
--						     enum xe_engine_class class,
--						     const u32 **cs) { return 0; }
--static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
--						      enum xe_engine_class class,
--						      const u32 **cs) { return 0; }
-+static inline ssize_t xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
-+							 enum xe_engine_class class,
-+							 u32 *cs, size_t max_len) { return 0; }
-+static inline ssize_t xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
-+							  enum xe_engine_class class,
-+							  u32 *cs, size_t max_len) { return 0; }
- #ifdef CONFIG_PCI_IOV
- static inline unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev)
+ static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
+ static inline bool xe_configfs_get_enable_vram_page_offline(struct pci_dev *pdev) { return true; }
+diff --git a/drivers/gpu/drm/xe/xe_configfs_types.h b/drivers/gpu/drm/xe/xe_configfs_types.h
+index 01903cb4423e..f9c71954114d 100644
+--- a/drivers/gpu/drm/xe/xe_configfs_types.h
++++ b/drivers/gpu/drm/xe/xe_configfs_types.h
+@@ -41,6 +41,7 @@ struct xe_config_group_device {
+ 			u64 engines_allowed;
+ 			u64 gt_types_allowed;
+ 			int guc_log_level;
++			u8 guc_log_target;
+ 			bool enable_multi_queue;
+ 			bool enable_psmi;
+ 			bool enable_vram_page_offline;
+diff --git a/drivers/gpu/drm/xe/xe_defaults.h b/drivers/gpu/drm/xe/xe_defaults.h
+index a9467b77fabd..20292e682bf9 100644
+--- a/drivers/gpu/drm/xe/xe_defaults.h
++++ b/drivers/gpu/drm/xe/xe_defaults.h
+@@ -5,6 +5,7 @@
+ #ifndef _XE_DEFAULTS_H_
+ #define _XE_DEFAULTS_H_
+ 
++#include "abi/guc_log_abi.h"
+ #include "xe_device_types.h"
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+@@ -12,6 +13,7 @@
+ #else
+ #define XE_DEFAULT_GUC_LOG_LEVEL		1
+ #endif
++#define XE_DEFAULT_GUC_LOG_TARGET		GUC_LOG_TARGET_MEM
+ 
+ /* Sentinel value for guc_log_level configfs: not set, fall back to module param */
+ #define XE_GUC_LOG_LEVEL_UNSET			-1
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index c0398789081a..41ab68dab150 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -76,13 +76,18 @@ static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
+ 
+ static u32 guc_ctl_debug_flags(struct xe_guc *guc)
  {
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index de9a9560ecf3..f751687dc568 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -94,7 +94,7 @@ gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
- 		return true;
++	struct pci_dev *pdev = to_pci_dev(guc_to_xe(guc)->drm.dev);
+ 	u32 level = xe_guc_log_get_level(&guc->log);
+ 	u32 flags = 0;
  
- 	if (xe_configfs_get_ctx_restore_mid_bb(to_pci_dev(xe->drm.dev),
--					       class, NULL))
-+					       class, NULL, 0) > 0)
- 		return true;
+-	if (!GUC_LOG_LEVEL_IS_VERBOSE(level))
++	if (!GUC_LOG_LEVEL_IS_VERBOSE(level)) {
+ 		flags |= GUC_LOG_DISABLED;
+-	else
+-		flags |= FIELD_PREP(GUC_LOG_VERBOSITY, GUC_LOG_LEVEL_TO_VERBOSITY(level));
++	} else {
++		flags |= FIELD_PREP(GUC_LOG_VERBOSITY,
++				    GUC_LOG_LEVEL_TO_VERBOSITY(level));
++		flags |= FIELD_PREP(GUC_LOG_DESTINATION,
++				    xe_configfs_get_guc_log_target(pdev));
++	}
  
- 	if (gt->ring_ops[class]->emit_aux_table_inv)
-@@ -1186,17 +1186,12 @@ static ssize_t setup_configfs_post_ctx_restore_bb(struct xe_lrc *lrc,
- 						  bool indirect)
- {
- 	struct xe_device *xe = gt_to_xe(lrc->gt);
--	const u32 *user_batch;
--	u32 *cmd = batch;
--	u32 count;
-+	ssize_t count;
- 
- 	count = xe_configfs_get_ctx_restore_post_bb(to_pci_dev(xe->drm.dev),
--						    hwe->class, &user_batch);
--	if (!count)
--		return 0;
--
--	if (count > max_len)
--		return -ENOSPC;
-+						    hwe->class, batch, max_len);
-+	if (count <= 0)
-+		return count;
- 
- 	/*
- 	 * This should be used only for tests and validation. Taint the kernel
-@@ -1204,10 +1199,7 @@ static ssize_t setup_configfs_post_ctx_restore_bb(struct xe_lrc *lrc,
- 	 */
- 	add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
- 
--	memcpy(cmd, user_batch, count * sizeof(u32));
--	cmd += count;
--
--	return cmd - batch;
-+	return count;
+ 	return flags;
  }
- 
- static ssize_t setup_configfs_mid_ctx_restore_bb(struct xe_lrc *lrc,
-@@ -1216,17 +1208,12 @@ static ssize_t setup_configfs_mid_ctx_restore_bb(struct xe_lrc *lrc,
- 						 bool indirect)
- {
- 	struct xe_device *xe = gt_to_xe(lrc->gt);
--	const u32 *user_batch;
--	u32 *cmd = batch;
--	u32 count;
-+	ssize_t count;
- 
- 	count = xe_configfs_get_ctx_restore_mid_bb(to_pci_dev(xe->drm.dev),
--						   hwe->class, &user_batch);
--	if (!count)
--		return 0;
--
--	if (count > max_len)
--		return -ENOSPC;
-+						   hwe->class, batch, max_len);
-+	if (count <= 0)
-+		return count;
- 
- 	/*
- 	 * This should be used only for tests and validation. Taint the kernel
-@@ -1234,10 +1221,7 @@ static ssize_t setup_configfs_mid_ctx_restore_bb(struct xe_lrc *lrc,
- 	 */
- 	add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
- 
--	memcpy(cmd, user_batch, count * sizeof(u32));
--	cmd += count;
--
--	return cmd - batch;
-+	return count;
- }
- 
- static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
 -- 
 2.43.0
 
