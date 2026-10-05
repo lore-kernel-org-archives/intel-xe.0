@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12532CA5FCE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20702CA6007
 	for <intel-xe@archiver.kernel.org>; Mon,  5 Oct 2026 19:06:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACC8110EE64;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6A8510EE71;
 	Mon,  5 Oct 2026 19:06:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EG1YvgVO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kjuQ+Bx2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C8B310E1F6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B16D810E5F5
  for <intel-xe@lists.freedesktop.org>; Mon,  5 Oct 2026 19:06:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1791227175; x=1822763175;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=f5wxMvvcTPXdi6kZsa7p9y6aqTsATs7VRcZivIRN594=;
- b=EG1YvgVOwRnS/NXcy4OMjmrIhADAt4hMiY2GD7gjTlUXsA2mClnMg7OF
- GNmgH8zvHWN6Qgbxp+6pv8tZBJ5BQUAzXDUkqq0mpcoQMJog/ece5PvnT
- yKTe+4O4djstArpyeua9hUhbP734EiBe0SdrSnMseuSajUNdbK244DPS4
- 8g3kpbZIO4tVz3ZBvJrI5I+bcldIElUm9WloenSpTvV1V7IngUlzVr0z+
- ToZxItCB5YHfpGspjg2/vEJV5aM6RbbNblJ9BFnHUQc6lXAM8mjCMjP/s
- +Y3ZZy1eZzrnnU86S36ajKwRBrc/l2Tcn+KeIgD1mqo2A2bYDCsZGS7fw Q==;
-X-CSE-ConnectionGUID: LgwUZdPLSMuCTPNhlPAmRQ==
-X-CSE-MsgGUID: cxmxFvm1TxywftWEES2c9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11926"; a="102578419"
-X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="102578419"
+ bh=3P1XU2i99jwtdUYYir9K8CQ/vZMr0KEFquGCkJIKzAU=;
+ b=kjuQ+Bx248Jqg0BB4s5fjdP5vd1/p93mPbvh4QKZalqsz2qCIWmTA15W
+ P8cfg8Tx369u2J4xagD2Dw1HTaZLZkhRBnG+XcF09GhzvnuaBM9OGQUrH
+ HiElgXpJD4eDyApbmbM/Rlu/wyjJ+0mUVUmfP8nM1LBfiV7wd2Ve1LLLp
+ 8SR3pY/kiptrKOaTK2GOpVzUTawKd3BtkHhp5PMnvbz+Eqp3mAsOtmsNk
+ UXo+YNsapHK0X4NQUxFlSK7M97AOLsy9i02XtRKozSJAxFpvIvLkupwFz
+ SpdgwKCBiIOSoBCJiCh6IGokHy1onHRsE/RxXqsFYQEEFU86KeRe9mrT1 A==;
+X-CSE-ConnectionGUID: QHCnaMvTSD6AowKwNtdbEQ==
+X-CSE-MsgGUID: 6IhARdMhSRaAi58VAl/wMw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11926"; a="102578420"
+X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="102578420"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Oct 2026 12:06:15 -0700
-X-CSE-ConnectionGUID: rtJtGeE8Qcy4oBu5NfEMTQ==
-X-CSE-MsgGUID: GrA/obuuSAmgNE7ju9ABcg==
+X-CSE-ConnectionGUID: aneFIuAPTbyQ19upvnvMsQ==
+X-CSE-MsgGUID: UEwO3C8STj+RlH3L2w7VxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="274690864"
+X-IronPort-AV: E=Sophos;i="6.27,142,1787036400"; d="scan'208";a="274690867"
 Received: from dut4435arlh.fm.intel.com ([10.105.8.126])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2026 12:06:15 -0700
+ 05 Oct 2026 12:06:16 -0700
 From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
@@ -48,14 +48,14 @@ Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  gustavo.sousa@intel.com, matthew.d.roper@intel.com,
  daniele.ceraolospurio@intel.com, shuicheng.lin@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 04/15] drm/xe: Invert vram_page_offline configfs attribute
-Date: Mon,  5 Oct 2026 19:06:14 +0000
-Message-ID: <20261005190611.332940-21-stuart.summers@intel.com>
+Subject: [PATCH 05/15] drm/xe: Make survivability_mode configfs attribute a
+ bitmap
+Date: Mon,  5 Oct 2026 19:06:15 +0000
+Message-ID: <20261005190611.332940-22-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261005190611.332940-17-stuart.summers@intel.com>
 References: <20261005190611.332940-17-stuart.summers@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,233 +71,177 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rename disable_vram_page_offline to enable_vram_page_offline The default
-is now true, matching the previous default of offlining being active.
-
-Negative-logic flags are error prone once they get combined with other
-conditions, so carry the positive sense all the way down to the RAS
-consumer rather than inverting at the configfs boundary. The internal
-xe->ras field is explicitly initialized for every platform since a
-zeroed struct no longer means "offlining enabled".
+Survivability mode is likely to grow additional independently selectable
+behaviors, so store it as a u8 bitmap rather than a bool. Only bit 0 is
+defined, so the accepted values are unchanged.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 Assisted-by: LLM
 ---
- drivers/gpu/drm/xe/xe_configfs.c      | 44 +++++++++++++--------------
- drivers/gpu/drm/xe/xe_configfs.h      |  2 +-
- drivers/gpu/drm/xe/xe_drm_ras_types.h |  4 +--
- drivers/gpu/drm/xe/xe_ras.c           |  8 +++--
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c  |  2 +-
- 5 files changed, 31 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/xe/xe_configfs.c           | 25 +++++++++++++---------
+ drivers/gpu/drm/xe/xe_configfs.h           | 16 ++++++++++++--
+ drivers/gpu/drm/xe/xe_survivability_mode.c |  7 +++---
+ 3 files changed, 33 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 6e62fdccb4c4..0ccf163306fc 100644
+index 0ccf163306fc..a16e2f48b01a 100644
 --- a/drivers/gpu/drm/xe/xe_configfs.c
 +++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -63,7 +63,7 @@
-  *	    ├── engines_allowed
-  *	    ├── migrate_ulls_period_ms
-  *	    ├── enable_psmi
-- *	    └── disable_vram_page_offline
-+ *	    └── enable_vram_page_offline
+@@ -78,8 +78,10 @@
+  * Survivability mode:
+  * -------------------
   *
-  * After configuring the attributes as per next section, the device can be
-  * probed with::
-@@ -161,15 +161,15 @@
+- * Enable survivability mode on supported cards. This setting only takes
+- * effect when probing the device. Example to enable it::
++ * Enable survivability mode on supported cards. This is a bitmap; bit 0
++ * enables survivability mode and is currently the only bit defined, so the
++ * only accepted values remain 0 and 1. This setting only takes effect when
++ * probing the device. Example to enable it::
   *
-  * This attribute can only be set before binding to the device.
+  *	# echo 1 > /sys/kernel/config/xe/0000:03:00.0/survivability_mode
   *
-- * Disable VRAM page offline:
-- * ----------------------------
-+ * Enable VRAM page offline:
-+ * -------------------------
-  *
-- *  0, n, N, false - Do not disable (Offlining is active - default)
-- *  1, y, Y, true  - Disable vram page offline (Logging only)
-+ *  0, n, N, false - Disable vram page offline (Logging only)
-+ *  1, y, Y, true  - Enable vram page offline (Offlining is active - default)
-  *
-  *  Example to disable VRAM offline::
-  *
-- *      # echo 1 > /sys/kernel/config/xe/0000:03:00.0/disable_vram_page_offline
-+ *      # echo 0 > /sys/kernel/config/xe/0000:03:00.0/enable_vram_page_offline
-  *
-  * This attribute can only be set on CRI before binding to the device.
-  *
-@@ -304,7 +304,7 @@ struct xe_config_group_device {
- 		bool survivability_mode;
+@@ -301,7 +303,7 @@ struct xe_config_group_device {
+ 		u32 migrate_ulls_period_ms;
+ 		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
+ 		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
+-		bool survivability_mode;
++		u8 survivability_mode;
  		bool enable_psmi;
  		bool enable_multi_queue;
--		bool disable_vram_page_offline;
-+		bool enable_vram_page_offline;
- 		struct {
- 			unsigned int max_vfs;
- 			bool admin_only_pf;
-@@ -326,7 +326,7 @@ static const struct xe_config_device device_defaults = {
- 	.survivability_mode = false,
+ 		bool enable_vram_page_offline;
+@@ -323,7 +325,7 @@ static const struct xe_config_device device_defaults = {
+ 	.gt_types_allowed = U64_MAX,
+ 	.engines_allowed = U64_MAX,
+ 	.migrate_ulls_period_ms = 5,
+-	.survivability_mode = false,
++	.survivability_mode = 0,
  	.enable_psmi = false,
  	.enable_multi_queue = true,
--	.disable_vram_page_offline = false,
-+	.enable_vram_page_offline = true,
- 	.sriov = {
- 		.max_vfs = XE_DEFAULT_MAX_VFS,
- 		.admin_only_pf = XE_DEFAULT_ADMIN_ONLY_PF,
-@@ -675,15 +675,15 @@ static ssize_t migrate_ulls_period_ms_store(struct config_item *item,
- 	return len;
- }
- 
--static ssize_t disable_vram_page_offline_show(struct config_item *item, char *page)
-+static ssize_t enable_vram_page_offline_show(struct config_item *item, char *page)
+ 	.enable_vram_page_offline = true,
+@@ -407,19 +409,22 @@ static ssize_t survivability_mode_show(struct config_item *item, char *page)
  {
  	struct xe_config_device *dev = to_xe_config_device(item);
  
--	return sprintf(page, "%s\n", str_yes_no(dev->disable_vram_page_offline));
-+	return sprintf(page, "%s\n", str_yes_no(dev->enable_vram_page_offline));
+-	return sprintf(page, "%d\n", dev->survivability_mode);
++	return sprintf(page, "%u\n", dev->survivability_mode);
  }
  
--static ssize_t disable_vram_page_offline_store(struct config_item *item,
--					       const char *page, size_t len)
-+static ssize_t enable_vram_page_offline_store(struct config_item *item,
-+					      const char *page, size_t len)
+ static ssize_t survivability_mode_store(struct config_item *item, const char *page, size_t len)
  {
  	struct xe_config_group_device *dev = to_xe_config_group_device(item);
- 	bool val;
-@@ -697,7 +697,7 @@ static ssize_t disable_vram_page_offline_store(struct config_item *item,
- 	if (is_bound(dev))
- 		return -EBUSY;
- 
--	dev->config.disable_vram_page_offline = val;
-+	dev->config.enable_vram_page_offline = val;
- 
- 	return len;
- }
-@@ -946,7 +946,7 @@ CONFIGFS_ATTR(, ctx_restore_post_bb);
- CONFIGFS_ATTR(, enable_multi_queue);
- CONFIGFS_ATTR(, migrate_ulls_period_ms);
- CONFIGFS_ATTR(, enable_psmi);
--CONFIGFS_ATTR(, disable_vram_page_offline);
-+CONFIGFS_ATTR(, enable_vram_page_offline);
- CONFIGFS_ATTR(, engines_allowed);
- CONFIGFS_ATTR(, gt_types_allowed);
- CONFIGFS_ATTR(, survivability_mode);
-@@ -957,7 +957,7 @@ static struct configfs_attribute *xe_config_device_attrs[] = {
- 	&attr_enable_multi_queue,
- 	&attr_migrate_ulls_period_ms,
- 	&attr_enable_psmi,
--	&attr_disable_vram_page_offline,
-+	&attr_enable_vram_page_offline,
- 	&attr_engines_allowed,
- 	&attr_gt_types_allowed,
- 	&attr_survivability_mode,
-@@ -989,7 +989,7 @@ static bool xe_config_device_is_visible(struct config_item *item,
- 			return false;
- 	}
- 
--	if (attr == &attr_disable_vram_page_offline) {
-+	if (attr == &attr_enable_vram_page_offline) {
- 		if (!dev->desc->is_dgfx || dev->desc->platform != XE_CRESCENTISLAND)
- 			return false;
- 	}
-@@ -1242,7 +1242,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
- 	PRI_CUSTOM_ATTR("%u", migrate_ulls_period_ms);
- 	PRI_CUSTOM_ATTR("%d", enable_multi_queue);
- 	PRI_CUSTOM_ATTR("%d", enable_psmi);
--	PRI_CUSTOM_ATTR("%d", disable_vram_page_offline);
-+	PRI_CUSTOM_ATTR("%d", enable_vram_page_offline);
- 	PRI_CUSTOM_ATTR("%d", survivability_mode);
- 	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
- 
-@@ -1417,21 +1417,21 @@ u32 xe_configfs_get_migrate_ulls_period_ms(struct pci_dev *pdev)
- }
- 
- /**
-- * xe_configfs_get_disable_vram_page_offline - get configfs disable_vram_page_offline setting
-+ * xe_configfs_get_enable_vram_page_offline - get configfs enable_vram_page_offline setting
-  * @pdev: pci device
-  *
-- * Return: disable_vram_page_offline setting in configfs
-+ * Return: enable_vram_page_offline setting in configfs
-  */
--bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev)
-+bool xe_configfs_get_enable_vram_page_offline(struct pci_dev *pdev)
- {
- 	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
- 	bool ret;
- 
- 	if (!dev)
--		return device_defaults.disable_vram_page_offline;
-+		return device_defaults.enable_vram_page_offline;
- 
- 	scoped_guard(mutex, &dev->lock)
--		ret = dev->config.disable_vram_page_offline;
-+		ret = dev->config.enable_vram_page_offline;
- 	config_group_put(&dev->group);
- 
- 	return ret;
-diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-index 14e49f23306f..1d538ce0ed2c 100644
---- a/drivers/gpu/drm/xe/xe_configfs.h
-+++ b/drivers/gpu/drm/xe/xe_configfs.h
-@@ -25,7 +25,7 @@ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
- bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
- bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
- u32 xe_configfs_get_migrate_ulls_period_ms(struct pci_dev *pdev);
--bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev);
-+bool xe_configfs_get_enable_vram_page_offline(struct pci_dev *pdev);
- ssize_t xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
- 					   enum xe_engine_class class,
- 					   u32 *cs, size_t max_len);
-diff --git a/drivers/gpu/drm/xe/xe_drm_ras_types.h b/drivers/gpu/drm/xe/xe_drm_ras_types.h
-index 0be218ba2db7..60cbc35a6b35 100644
---- a/drivers/gpu/drm/xe/xe_drm_ras_types.h
-+++ b/drivers/gpu/drm/xe/xe_drm_ras_types.h
-@@ -44,8 +44,8 @@ struct xe_drm_ras {
- 	/** @info: info array for all types of errors */
- 	struct xe_drm_ras_counter *info[DRM_XE_RAS_ERR_SEV_MAX];
- 
--	/** @disable_vram_page_offline: cached configfs policy, immutable after init */
--	bool disable_vram_page_offline;
-+	/** @enable_vram_page_offline: cached configfs policy, immutable after init */
-+	bool enable_vram_page_offline;
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 7a85735c57d5..ce9b57b3eede 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -916,13 +916,15 @@ void xe_ras_init(struct xe_device *xe)
- {
+-	bool survivability_mode;
++	u8 survivability_mode;
  	int ret;
  
-+	xe->ras.enable_vram_page_offline = true;
+-	ret = kstrtobool(page, &survivability_mode);
++	ret = kstrtou8(page, 0, &survivability_mode);
+ 	if (ret)
+ 		return ret;
+ 
++	if (survivability_mode & ~XE_CONFIGFS_SURVIVABILITY_MASK)
++		return -EINVAL;
 +
- 	/*
--	 * TODO: Replace platform check with xe->info.has_disable_vram_page_offline
-+	 * TODO: Replace platform check with xe->info.has_vram_page_offline
- 	 * once the feature flag is plumbed through device info.
- 	 */
- 	if (xe->info.platform == XE_CRESCENTISLAND)
--		xe->ras.disable_vram_page_offline =
--			xe_configfs_get_disable_vram_page_offline(to_pci_dev(xe->drm.dev));
-+		xe->ras.enable_vram_page_offline =
-+			xe_configfs_get_enable_vram_page_offline(to_pci_dev(xe->drm.dev));
+ 	guard(mutex)(&dev->lock);
+ 	if (is_bound(dev))
+ 		return -EBUSY;
+@@ -1243,7 +1248,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
+ 	PRI_CUSTOM_ATTR("%d", enable_multi_queue);
+ 	PRI_CUSTOM_ATTR("%d", enable_psmi);
+ 	PRI_CUSTOM_ATTR("%d", enable_vram_page_offline);
+-	PRI_CUSTOM_ATTR("%d", survivability_mode);
++	PRI_CUSTOM_ATTR("%u", survivability_mode);
+ 	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
  
- 	xe_drm_ras_init(xe);
+ #undef PRI_CUSTOM_ATTR
+@@ -1278,10 +1283,10 @@ void xe_configfs_check_device(struct pci_dev *pdev)
+  *
+  * Return: survivability_mode attribute in configfs
+  */
+-bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
++u8 xe_configfs_get_survivability_mode(struct pci_dev *pdev)
+ {
+ 	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
+-	bool mode;
++	u8 mode;
  
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 9a514d983e90..1dad94a153b7 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -933,7 +933,7 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr)
- 	vram_mgr = &vr->ttm;
- 	mm = &vram_mgr->mm;
+ 	if (!dev)
+ 		return device_defaults.survivability_mode;
+diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+index 1d538ce0ed2c..a5c081fc1672 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.h
++++ b/drivers/gpu/drm/xe/xe_configfs.h
+@@ -5,6 +5,7 @@
+ #ifndef _XE_CONFIGFS_H_
+ #define _XE_CONFIGFS_H_
  
--	if (xe->ras.disable_vram_page_offline) {
-+	if (!xe->ras.enable_vram_page_offline) {
- 		xe_err(xe, "0x%llx is reported as corrupted address by HW\n",
- 		       addr);
- 		return -EOPNOTSUPP;
++#include <linux/bits.h>
+ #include <linux/limits.h>
+ #include <linux/types.h>
+ 
+@@ -14,11 +15,22 @@
+ 
+ struct pci_dev;
+ 
++/**
++ * DOC: survivability_mode configfs bits
++ *
++ * The survivability_mode attribute is a bitmap so that additional
++ * survivability behaviors can be requested independently in the future.
++ * %XE_CONFIGFS_SURVIVABILITY_ENABLE is currently the only defined bit, so
++ * the attribute still only accepts 0 and 1.
++ */
++#define XE_CONFIGFS_SURVIVABILITY_ENABLE	BIT(0)
++#define XE_CONFIGFS_SURVIVABILITY_MASK		XE_CONFIGFS_SURVIVABILITY_ENABLE
++
+ #if IS_ENABLED(CONFIG_CONFIGFS_FS)
+ int xe_configfs_init(void);
+ void xe_configfs_exit(void);
+ void xe_configfs_check_device(struct pci_dev *pdev);
+-bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
++u8 xe_configfs_get_survivability_mode(struct pci_dev *pdev);
+ bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev);
+ bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
+ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
+@@ -40,7 +52,7 @@ bool xe_configfs_admin_only_pf(struct pci_dev *pdev);
+ static inline int xe_configfs_init(void) { return 0; }
+ static inline void xe_configfs_exit(void) { }
+ static inline void xe_configfs_check_device(struct pci_dev *pdev) { }
+-static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
++static inline u8 xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return 0; }
+ static inline bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev) { return true; }
+ static inline bool xe_configfs_media_gt_allowed(struct pci_dev *pdev) { return true; }
+ static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
+diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
+index 45d44ebe288b..3b96097f6ee6 100644
+--- a/drivers/gpu/drm/xe/xe_survivability_mode.c
++++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+@@ -306,7 +306,8 @@ static const struct attribute_group survivability_info_group = {
+ static int create_survivability_sysfs(struct pci_dev *pdev)
+ {
+ 	/* Survivability info is required if not enabled via configfs */
+-	bool needs_info = !xe_configfs_get_survivability_mode(pdev);
++	bool needs_info = !(xe_configfs_get_survivability_mode(pdev) &
++			    XE_CONFIGFS_SURVIVABILITY_ENABLE);
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
+ 	struct device *dev = &pdev->dev;
+ 	int ret;
+@@ -405,14 +406,14 @@ bool xe_survivability_mode_is_requested(struct xe_device *xe)
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 	u32 data;
+-	bool survivability_mode;
++	u8 survivability_mode;
+ 
+ 	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe->info.platform < XE_BATTLEMAGE)
+ 		return false;
+ 
+ 	survivability_mode = xe_configfs_get_survivability_mode(pdev);
+ 	/* Enable survivability mode if set via configfs */
+-	if (survivability_mode)
++	if (survivability_mode & XE_CONFIGFS_SURVIVABILITY_ENABLE)
+ 		return true;
+ 
+ 	data = xe_mmio_read32(mmio, PCODE_SCRATCH(0));
 -- 
 2.43.0
 
