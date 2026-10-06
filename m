@@ -4,44 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F764CA5FFC
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Oct 2026 18:05:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D601BCA5FED
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Oct 2026 18:15:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7F3810E280;
-	Tue,  6 Oct 2026 18:05:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E06410E3B7;
+	Tue,  6 Oct 2026 18:15:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="SL1QWz2o";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="H8IlEAYv";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE20310E280
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Oct 2026 18:04:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFA4310E078;
+ Tue,  6 Oct 2026 18:15:28 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id E9610602D3;
- Tue,  6 Oct 2026 18:04:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75B141F0089B;
- Tue,  6 Oct 2026 18:04:58 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id DB75D602D4;
+ Tue,  6 Oct 2026 18:15:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 660831F0089B;
+ Tue,  6 Oct 2026 18:15:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791309898;
- bh=LWpRIHlo+j8q8PgQ6fAk7KlSA1pMinNhGcbHXSDyE10=;
+ s=k20260515; t=1791310527;
+ bh=Xr8YD9Hk4YBI5tKXTu+PNvwl6PAxL3NmFZuS/VPA/Os=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=SL1QWz2obaWJrWB3Ume8DMYAS8G4JMgvTbc1lLlzYtEY0fA76U5DV8v60tnrPvaeU
- r2xxtIJyyfLvkAotah9Y+OaSZtIx1VxumLoM+j89tAHFq2V7vRV8l1rNgCZPQOUp58
- 2lOUKe9Xg17/iF3E7+ZrVtHYi/znc520DDuq99IM/bypRdmjUXaBWnBuBXPmPTrmaS
- 9UT3fgx0NSpGC9Q0wXNuCnTdeHdd0oEXTxHasrbZF3zxC3+JiUwoQ9cB9xB57KAvbl
- zspB2882wSZploR7a7SI0c3JHtdPfR/pIGbXr83OISH7J0e476oeIn0EUeNvB8B3WS
- AcOLhFleVT5jA==
-Message-ID: <sashiko-outbox-162316@kernel.org>
+ b=H8IlEAYvA8BDv6+aaUY+XesS0B9mxzavYepxTmlnmSDd24Dx+I3B3Dr/668HYAgp6
+ 1wrEFAzHfWXwRza6nDaLYl1TgoC8S10nmJ6sfNVSn2+wv31BSnBSTJFKCT8M66nvX2
+ tzOgklX+aIDumsClKX1rm1X3pQZ/MN3fGjcmAy46eWiZTFKpa8PWM2ClSSYpFD1AyQ
+ iXZqDPRYu394ReRKjCFW0e04lYO6tmzEucPNiw2q7bm7nLlxwd9hHdvhQXRhe5g0SC
+ iykT6M9Sy+nYXtBW4fCLxYGpRjHibcKX9KPYnCyVK+R/wUiKPBopGgdNAVz+U+1bNb
+ sXtzEB64rv6gQ==
+Message-ID: <sashiko-outbox-162324@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 3/3] drm/xe/guc: Add dump_cache to optimize GuC
- CT/Log compression flow
-To: "Alan Previn" <alan.previn.teres.alexis@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261006175129.3366784-8-alan.previn.teres.alexis@intel.com>
-References: <20261006175129.3366784-5-alan.previn.teres.alexis@intel.com>
- <20261006175129.3366784-8-alan.previn.teres.alexis@intel.com>
+Subject: Re: [PATCH 1/2] RFC: drm/xe: Fix pinned list UAF panic
+To: "FNU VISHWANATHA" <fnu.vishwanatha@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261006175741.3582911-1-fnu.vishwanatha@intel.com>
+References: <20261006175741.3582911-1-fnu.vishwanatha@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 06 Oct 2026 18:04:57 +0000
+Date: Tue, 06 Oct 2026 18:15:26 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,74 +55,99 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-- [High] locking: Sleeping in atomic context when freeing vmalloc'd dump ca=
-che under spinlock
+- [High] xe: use-after-free race in xe_bo_apply_to_pinned() due to 0-refcou=
+nt BOs
+- [High] xe: shrinker accounting leak when pinned BO is destroyed
+- [High] xe: unconditional panic due to NULL bdev in ___xe_bo_create error =
+path
 --
 
-commit 4127e505817735f2e0895aab3e86bcc1556be816
-Author: Alan Previn <alan.previn.teres.alexis@intel.com>
-Date:   Tue Oct 6 17:51:31 2026 +0000
+commit 2ba63aa4ec480f34e429a19652b5cfeb92d01204
+Author: Kornel Dul=C4=99ba <korneld@google.com>
+RFC: drm/xe: Fix pinned list UAF panic
 
-drm/xe/guc: Add dump_cache to optimize GuC CT/Log compression flow
-   =20
-This commit introduces a dump_cache structure to store a compressed copy
-of the GuC CT and log buffers. This avoids recompressing the buffers
-multiple times during xe_devcoredump preparation.
+This commit attempts to fix a list corruption panic observed when a
+buffer object is destroyed while still pinned. It modifies
+xe_ttm_bo_destroy() to check and remove the buffer object from the
+pinned list before it is freed.
 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_=
-log.c
-> index 47adaf70d5bfb..90aeaccea596c 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_log.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_log.c
-
-[ ... ]
-
-> @@ -296,30 +310,48 @@ static void xe_guc_print_blob_compressed(struct xe_=
-gt *gt, struct drm_printer *p
->  err:
-> -	drm_printf(p, "%s.length: 0x%zx Algo: ERROR (compression failed)\n",
-> -		   length_label, total_size);
-> -out:
->  	kvfree(dst);
->  	kvfree(wksp);
->  }
->  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 6921b6967330d..98c7c17cc46cc 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -1885,6 +1885,11 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_ob=
+ject *ttm_bo)
+>  	if (bo->parent_obj)
+>  		xe_bo_put(bo->parent_obj);
 > =20
-> +/**
-> + * xe_guc_dump_cache_fini - release a dump blob's compression cache
-> + * @cache: cache embedded in the snapshot being freed
-> + */
-> +void xe_guc_dump_cache_fini(struct xe_guc_dump_cache *cache)
-> +{
-> +	kvfree(cache->data);
+> +	spin_lock(&xe->pinned.lock);
+> +	if (WARN_ON_ONCE(!list_empty(&bo->pinned_link)))
+> +		list_del_init(&bo->pinned_link);
+> +	spin_unlock(&xe->pinned.lock);
 
 [Severity: High]
-Does this code risk sleeping in an atomic context when xe_guc_dump_cache_fi=
-ni()
-is called?
+Does this expose a use-after-free race with xe_bo_apply_to_pinned()?
 
-The xe_guc_dump_cache_fini() function calls kvfree() on cache->data, which
-may be backed by vmalloc() if the compressed blob was large.
+When ttm_bo_release() drops the object's kref to 0, the object remains
+on the pinned list until xe_ttm_bo_destroy() acquires the xe->pinned.lock
+and removes it here.
 
-In drivers/gpu/drm/xe/xe_guc_ct.c, the ct_dead_worker_func() workqueue func=
-tion
-calls xe_guc_log_snapshot_free() while holding the ct->dead.lock spinlock:
+Concurrently, xe_bo_apply_to_pinned() can iterate over the pinned list,
+find the object, and unconditionally call xe_bo_get(bo). Since the refcount
+is already 0, xe_bo_get() will call kref_get() on a 0-refcount object,
+which triggers a refcount underflow warning and leads to a use-after-free
+panic.
 
-	spin_lock_irq(&ct->dead.lock);
+Should xe_bo_apply_to_pinned() use xe_bo_get_unless_zero() to safely
+skip objects undergoing destruction?
 
-	xe_guc_log_snapshot_free(ct->dead.snapshot_log);
+[Severity: High]
+Does removing the buffer object from the pinned list here bypass shrinker
+accounting?
 
-Calling kvfree() on a vmalloc pointer triggers vfree(), which can sleep whi=
-le
-acquiring the vmap_area_lock or performing page tree operations, potentially
-leading to a deadlock since hardware interrupts are disabled.
+When a buffer object is pinned via xe_bo_pin_external(), it calls
+xe_ttm_tt_account_subtract() to remove its pages from the shrinker's
+shrinkable_pages pool.
 
-> +	cache->data =3D NULL;
-> +	cache->size =3D 0;
-> +}
+By handling the cleanup directly in xe_ttm_bo_destroy() instead of the
+normal xe_bo_unpin_external() path, xe_ttm_tt_account_add() is never
+called to return the pages to the shrinker.
+
+Furthermore, for native buffer objects, the teardown path in
+xe_ttm_tt_unpopulate() will still execute and call
+xe_ttm_tt_account_subtract() again. Because the addition was missed and a
+double-subtraction occurs, this creates a permanent negative delta for
+shrinkable_pages. Due to unsigned integer math, this underflow converts
+into a massive positive value, potentially forcing the kernel into an
+infinite memory reclaim loop.
+
+[Severity: High]
+Can this spin_lock() cause a kernel panic if reached from the
+___xe_bo_create() error path?
+
+In ___xe_bo_create(), if __xe_bo_placement_for_flags() fails, the error
+path directly calls xe_ttm_bo_destroy(&bo->ttm).
+
+At this point, ttm_bo_init_reserved() has not yet been called, meaning
+bo->ttm.bdev is NULL. At the top of xe_ttm_bo_destroy(), it computes:
+
+    struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
+
+This yields an invalid pointer (NULL - offsetof(struct xe_device, ttm)).
+When the new code unconditionally attempts to lock xe->pinned.lock, it
+will dereference this invalid xe pointer and trigger a kernel panic.
+
+Should the error path in ___xe_bo_create() free the buffer object directly
+or pass the xe device context explicitly, rather than relying on the
+uninitialized bdev?
+
+> +
+>  	mutex_lock(&xe->mem_access.vram_userfault.lock);
+>  	if (!list_empty(&bo->vram_userfault_link))
+>  		list_del(&bo->vram_userfault_link);
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261006175129.3366=
-784-5-alan.previn.teres.alexis@intel.com?part=3D3
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261006175741.3582=
+911-1-fnu.vishwanatha@intel.com?part=3D1
