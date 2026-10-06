@@ -4,35 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89B63CA5FFE
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Oct 2026 16:47:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71FE1CA5FFC
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Oct 2026 16:50:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1ABDE10E161;
-	Tue,  6 Oct 2026 16:47:54 +0000 (UTC)
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 675DB10E161;
- Tue,  6 Oct 2026 16:47:53 +0000 (UTC)
-Received: from 91-152-156-14.elisa-laajakaista.fi ([91.152.156.14]
- helo=[192.168.100.138])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1xE8KQ-00000004ADc-04Os; Tue, 06 Oct 2026 19:47:48 +0300
-Message-ID: <7b7d798b50f88455bfc4b74d7906357cf93f4b70.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Luca Coelho
- <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 06 Oct 2026 19:47:59 +0300
-In-Reply-To: <7310e6ffaae834a2e822bba31c3ef70647ff7d0b@intel.com>
-References: <20261005122302.110968-1-luciano.coelho@intel.com>
- <20261005122302.110968-3-luciano.coelho@intel.com>
- <7310e6ffaae834a2e822bba31c3ef70647ff7d0b@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-10+b1 
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0F3C10E161;
+	Tue,  6 Oct 2026 16:50:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=arm.com header.i=@arm.com header.b="tDUqk9xj";
+	dkim-atps=neutral
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A97C110E161
+ for <intel-xe@lists.freedesktop.org>; Tue,  6 Oct 2026 16:50:53 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 835DC1477
+ for <intel-xe@lists.freedesktop.org>; Tue,  6 Oct 2026 09:50:49 -0700 (PDT)
+Received: from [10.2.11.34] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id
+ 9DFDC3F66F
+ for <intel-xe@lists.freedesktop.org>; Tue,  6 Oct 2026 09:50:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+ t=1791305452; bh=w6yofi2hb9AiVsVr8lzwC1eqMrd95HITpUYDUSg8J/0=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=tDUqk9xjpGHfMMYYFVfL7rJJMI0p3DmKGY57sxRAISud92JwKgKFl7F58FCmj06Ye
+ GO8iHFCPlnQnhP8UJsnDS9MuraR1K6iAdr9VhLcvs2mTAR7moEpTPAAn2UYbAYxsmI
+ 1alNdeHyaAu9LUJuARbptyZTQx1ylgMvJWveRBI4=
+Date: Tue, 6 Oct 2026 17:50:50 +0100
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ Abhinav Kumar <abhinav.kumar@linux.dev>, Alice Ryhl <aliceryhl@google.com>,
+ Anna Maniscalco <anna.maniscalco2000@gmail.com>,
+ Antonino Maniscalco <antomani103@gmail.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>,
+ Jonathan Corbet <corbet@lwn.net>, Lyude Paul <lyude@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Maxime Ripard <mripard@kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sean Paul <sean@poorly.run>,
+ Shuah Khan <skhan@linuxfoundation.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH v3 7/8] drm/nouveau: use DRM_GPUVM_RESV_PROTECTED
+Message-ID: <asUm6j1GD6yxeBvy@e142607>
+References: <20261001220632.3190896-1-matthew.brost@intel.com>
+ <20261001220632.3190896-8-matthew.brost@intel.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH 2/2] drm/i915/dp: only complain about a busy AUX engine
- when it's unexpected
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261001220632.3190896-8-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,124 +73,192 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2026-10-06 at 15:45 +0300, Jani Nikula wrote:
-> On Mon, 05 Oct 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
-> > When intel_dp_aux_xfer() gives up on a transaction because the AUX
-> > engine is still busy, the DRM helpers retry almost immediately.  If
-> > the engine still hasn't recovered by then, the pre-transaction busy
-> > check reports "not started" as an error, even though this is the
-> > expected outcome of our own earlier decision to leave the engine
-> > alone.
-> >=20
-> > Remember that we left the engine busy and only log a debug message in
-> > that case.  Keep the error for the unexpected cases, namely when
-> > someone else is using the channel or the engine is hung without us
-> > having given up on it first.  A permanently hung engine is still
-> > reported by the 100ms timeout error.
-> >=20
-> > Assisted-by: LLM
-> > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display_types.h |  2 ++
-> >  drivers/gpu/drm/i915/display/intel_dp_aux.c        | 14 +++++++++++++-
-> >  2 files changed, 15 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drive=
-rs/gpu/drm/i915/display/intel_display_types.h
-> > index 0e3083e852d5..1987b2dbd151 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -1891,6 +1891,8 @@ struct intel_dp {
-> >  	struct drm_dp_desc desc;
-> >  	struct drm_dp_aux aux;
-> >  	u32 aux_busy_last_status;
-> > +	/* we left the AUX engine busy and are waiting for it to recover */
-> > +	bool aux_left_busy;
->=20
-> I don't know whether the series makes sense or not, but at some point I
-> need to put my foot down, might as well be now, that struct intel_dp has
-> grown big enough that we can no longer add individual members and there
-> needs to be more structure. For example sub-struct for aux. This is
-> getting impossible to maintain.
+On Thu, Oct 01, 2026 at 03:06:31PM -0700, Matthew Brost wrote:
+> nouveau creates its drm_gpuvm without DRM_GPUVM_RESV_PROTECTED, so the
+> extobj and evicted lists are protected by internal spinlocks. Every
+> nouveau path but three already touches them with the VM's resv held:
+> drm_gpuvm_exec_lock() and drm_gpuvm_validate() on exec, and TTM moves of
+> private BOs, which share the VM's resv. The remaining three are:
+> 
+>  - nouveau_uvmm_bind_job_submit() adds the vm_bo of a MAP op to the
+>    extobj list holding no resv at all. Move that into
+>    bind_lock_validate(), which now locks the VM's resv as well.
+> 
+>  - bind_link_gpuvas() unlinks the GPUVAs of UNMAP and REMAP ops, which
+>    can drop the last reference of their vm_bo. It runs within the bind
+>    job's drm_exec transaction, which the above makes hold the VM's resv.
+> 
+>  - nouveau_uvmm_bind_job_cleanup() and nouveau_uvmm_fini() can drop the
+>    last reference of a vm_bo holding only the object's resv. Lock the
+>    VM's resv along with it, through a new
+>    nouveau_uvmm_lock_vm_and_obj().
+> 
+> The bind job's fence now always lands in the VM's resv, as BOOKKEEP.
+> This already happened whenever a bind job mapped a private BO.
+> 
+> With that the internal spinlocks buy nothing, so set
+> DRM_GPUVM_RESV_PROTECTED. This is also what two-pass locking in
+> drm_gpuvm requires, which a following patch makes use of.
+> 
+> Cc: Abhinav Kumar <abhinav.kumar@linux.dev>
+> Cc: Alice Ryhl <aliceryhl@google.com>
+> Cc: Anna Maniscalco <anna.maniscalco2000@gmail.com>
+> Cc: Antonino Maniscalco <antomani103@gmail.com>
+> Cc: Boris Brezillon <boris.brezillon@collabora.com>
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Dmitry Baryshkov <lumag@kernel.org>
+> Cc: Jessica Zhang <jesszhan0024@gmail.com>
+> Cc: Jonathan Corbet <corbet@lwn.net>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Marijn Suijten <marijn.suijten@somainline.org>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Randy Dunlap <rdunlap@infradead.org>
+> Cc: Rob Clark <robin.clark@oss.qualcomm.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Sean Paul <sean@poorly.run>
+> Cc: Shuah Khan <skhan@linuxfoundation.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Steven Price <steven.price@arm.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Assisted-by: LLM
+> ---
+> v3:
+>  - New patch (Danilo)
 
-Yeah, you're right.  I don't like adding this kind of stuff to generic
-structs, but this was the easy path, like everyone else seemed to
-think. ;)
+Bit confused about this. If Danilo contributed this patch should it not carry his S-o-b as well?
 
-How do you want me to handle this? It won't help if I put my new
-elements into a substructure, unless I move the other aux stuff also
-into this sub-struct.  I can see at least these other elements that
-include "aux" in them, and some ops.  Should I add this as a substruct?
+Best regards,
+Liviu
 
-struct {
-	struct drm_dp_aux dp_aux; /* this was just aux before */
-	u32 aux_busy_last_status;
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_uvmm.c | 49 ++++++++++++++++++++++----
+>  1 file changed, 42 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> index 2026fe6b48c6..dae612e56d91 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> @@ -1187,6 +1187,27 @@ bind_validate_region(struct nouveau_job *job)
+>  	return 0;
+>  }
+>  
+> +/*
+> + * Lock the VM's common dma-resv together with the one of @obj, as needed to
+> + * drop what may be the last reference of a &drm_gpuvm_bo.
+> + */
+> +static void
+> +nouveau_uvmm_lock_vm_and_obj(struct nouveau_uvmm *uvmm, struct drm_exec *exec,
+> +			     struct drm_gem_object *obj)
+> +{
+> +	int ret;
+> +
+> +	drm_exec_init(exec, DRM_EXEC_IGNORE_DUPLICATES, 2);
+> +	drm_exec_until_all_locked(exec) {
+> +		ret = drm_exec_lock_obj(exec, drm_gpuvm_resv_obj(&uvmm->base));
+> +		if (!ret)
+> +			ret = drm_exec_lock_obj(exec, obj);
+> +		drm_exec_retry_on_contention(exec);
+> +		if (drm_WARN_ON(uvmm->base.drm, ret))
+> +			break;
+> +	}
+> +}
+> +
+>  static void
+>  bind_link_gpuvas(struct bind_job_op *bop)
+>  {
+> @@ -1224,12 +1245,24 @@ bind_lock_validate(struct nouveau_job *job, struct drm_exec *exec,
+>  		   unsigned int num_fences)
+>  {
+>  	struct nouveau_uvmm_bind_job *bind_job = to_uvmm_bind_job(job);
+> +	struct nouveau_uvmm *uvmm = nouveau_cli_uvmm(job->cli);
+>  	struct bind_job_op *op;
+>  	int ret;
+>  
+> +	/* The VM's dma-resv protects its extobj and evicted lists, and must be
+> +	 * held by bind_link_gpuvas() in case it drops the last reference of a
+> +	 * &drm_gpuvm_bo.
+> +	 */
+> +	ret = drm_gpuvm_prepare_vm(&uvmm->base, exec, num_fences);
+> +	if (ret)
+> +		return ret;
+> +
+>  	list_for_each_op(op, &bind_job->ops) {
+>  		struct drm_gpuva_op *va_op;
+>  
+> +		if (op->op == OP_MAP)
+> +			drm_gpuvm_bo_extobj_add(op->vm_bo);
+> +
+>  		if (!op->ops)
+>  			continue;
+>  
+> @@ -1288,8 +1321,6 @@ nouveau_uvmm_bind_job_submit(struct nouveau_job *job,
+>  			dma_resv_unlock(obj->resv);
+>  			if (IS_ERR(op->vm_bo))
+>  				return PTR_ERR(op->vm_bo);
+> -
+> -			drm_gpuvm_bo_extobj_add(op->vm_bo);
+>  		}
+>  
+>  		ret = bind_validate_op(job, op);
+> @@ -1603,9 +1634,11 @@ nouveau_uvmm_bind_job_cleanup(struct nouveau_job *job)
+>  			drm_gpuva_ops_free(&uvmm->base, op->ops);
+>  
+>  		if (!IS_ERR_OR_NULL(op->vm_bo)) {
+> -			dma_resv_lock(obj->resv, NULL);
+> +			struct drm_exec exec;
+> +
+> +			nouveau_uvmm_lock_vm_and_obj(uvmm, &exec, obj);
+>  			drm_gpuvm_bo_put(op->vm_bo);
+> -			dma_resv_unlock(obj->resv);
+> +			drm_exec_fini(&exec);
+>  		}
+>  
+>  		if (obj)
+> @@ -1941,7 +1974,8 @@ nouveau_uvmm_ioctl_vm_init(struct drm_device *dev,
+>  	mt_init_flags(&uvmm->region_mt, MT_FLAGS_LOCK_EXTERN);
+>  	mt_set_external_lock(&uvmm->region_mt, &uvmm->mutex);
+>  
+> -	drm_gpuvm_init(&uvmm->base, cli->name, 0, drm, r_obj,
+> +	drm_gpuvm_init(&uvmm->base, cli->name, DRM_GPUVM_RESV_PROTECTED,
+> +		       drm, r_obj,
+>  		       NOUVEAU_VA_SPACE_START,
+>  		       NOUVEAU_VA_SPACE_END,
+>  		       init->kernel_managed_addr,
+> @@ -1978,6 +2012,7 @@ nouveau_uvmm_fini(struct nouveau_uvmm *uvmm)
+>  	struct nouveau_uvma_region *reg;
+>  	struct nouveau_cli *cli = uvmm->vmm.cli;
+>  	struct drm_gpuva *va, *next;
+> +	struct drm_exec exec;
+>  
+>  	nouveau_uvmm_lock(uvmm);
+>  	drm_gpuvm_for_each_va_safe(va, next, &uvmm->base) {
+> @@ -1989,9 +2024,9 @@ nouveau_uvmm_fini(struct nouveau_uvmm *uvmm)
+>  
+>  		drm_gpuva_remove(va);
+>  
+> -		dma_resv_lock(obj->resv, NULL);
+> +		nouveau_uvmm_lock_vm_and_obj(uvmm, &exec, obj);
+>  		drm_gpuva_unlink(va);
+> -		dma_resv_unlock(obj->resv);
+> +		drm_exec_fini(&exec);
+>  
+>  		nouveau_uvma_unmap(uvma);
+>  		nouveau_uvma_vmm_put(uvma);
+> -- 
+> 2.34.1
+> 
 
-	u32 (*get_aux_clock_divider)([...]);
-	u32 (*get_aux_send_ctl)([...]);
-	intel_reg_t (*aux_ch_ctl_reg)([...]);
-	intel_reg_t (*aux_ch_data_reg)([...]);
-} aux;
-
-And do you prefer if I add a patch before my series to reorganize these
-into the sub-struct? Or should I do the same as Imre did here:
-
-	struct {
-		/* TODO: move the rest of link specific fields to here */
-		[...]
-	} link;
-
-I think the latter would make more sense, because my series is a
-bugfix, and this kind of code reorg should not be included in potential
-backports.
-
---
-Cheers,
-Luca.
-
->=20
-
-> >  	u8 train_set[4];
-> > =20
-> >  	struct intel_pps pps;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/=
-drm/i915/display/intel_dp_aux.c
-> > index 2e8261cd641a..d0d37ef7556f 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> > @@ -359,7 +359,16 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
-> >  	if (try =3D=3D 3) {
-> >  		const u32 status =3D intel_de_read(display, ch_ctl);
-> > =20
-> > -		if (status !=3D intel_dp->aux_busy_last_status) {
-> > +		/*
-> > +		 * If we left the engine busy ourselves, this is expected
-> > +		 * while it recovers.  Otherwise someone else is using the
-> > +		 * channel or the engine is hung.
-> > +		 */
-> > +		if (intel_dp->aux_left_busy) {
-> > +			drm_dbg_kms(display->drm,
-> > +				    "%s: not started, still waiting for the AUX engine to recover =
-(status 0x%08x)\n",
-> > +				    intel_dp->aux.name, status);
-> > +		} else if (status !=3D intel_dp->aux_busy_last_status) {
-> >  			drm_err(display->drm,
-> >  				"%s: not started (status 0x%08x)\n",
-> >  				intel_dp->aux.name, status);
-> > @@ -370,6 +379,8 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
-> >  		goto out;
-> >  	}
-> > =20
-> > +	intel_dp->aux_left_busy =3D false;
-> > +
-> >  	/* Only 5 data registers! */
-> >  	if (drm_WARN_ON(display->drm, send_bytes > 20 || recv_size > 20)) {
-> >  		ret =3D -E2BIG;
-> > @@ -402,6 +413,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
-> >  			 * alone, the caller will retry the transaction later.
-> >  			 */
-> >  			if (status & DP_AUX_CH_CTL_SEND_BUSY) {
-> > +				intel_dp->aux_left_busy =3D true;
-> >  				ret =3D -EBUSY;
-> >  				goto out;
-> >  			}
+-- 
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
