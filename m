@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05F8FCA5FFE
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Oct 2026 01:14:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4ABEFCA5FF0
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Oct 2026 01:51:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0B1B10E086;
-	Tue,  6 Oct 2026 01:14:33 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B45F710E086;
- Tue,  6 Oct 2026 01:14:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0878977932997727476=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBED810E086;
+	Tue,  6 Oct 2026 01:51:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hRsYzEkV";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CD0D10E086
+ for <intel-xe@lists.freedesktop.org>; Tue,  6 Oct 2026 01:51:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791251509; x=1822787509;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5+R3RgfZCTzUP3fFbafEPQz4pvE3crAegOn3gbhO+uM=;
+ b=hRsYzEkVTNNUOc3G6LX2pbC9X4EHVZGTC0CEg7mdBq4ignaTMgB9LBV2
+ XIX6WVx6lBtLfGksY1t81vpFJXXE4hDR+xFMouBbjOGJ57/RNQOBIhG7O
+ hsbJh7jFOTgl+6ZCgommZIZfz7aVmRllqnlsgNzmycZllvGl6gYfJx7me
+ oCyGqVZPAgM822gHZJbd4OoQmjlAml7UU1i9DRlC1GxCnK5w5oZzPWKJq
+ k7uPG3cJdGk5t24RMkz1s8J+L7ugEicb9oqhuSKdy0lT3MOpz1r8nBrkP
+ tktv37KJ145T57Q8gj/pFMsMoi7SU4dWGpeHIzZmh9tBpLQA1svQkVFag g==;
+X-CSE-ConnectionGUID: 0N+6ZDSNRqaCETueossjlg==
+X-CSE-MsgGUID: pdBAWldRSyGK9Egp/1sJ7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11926"; a="90995063"
+X-IronPort-AV: E=Sophos;i="6.27,143,1787036400"; d="scan'208";a="90995063"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2026 18:51:48 -0700
+X-CSE-ConnectionGUID: wc4FNRDLTzuFAXq55XBZvw==
+X-CSE-MsgGUID: yDSfwdBQTNGZQrWao7ltXQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,143,1787036400"; 
+   d="scan'208";a="1085102"
+Received: from gfx-coremm-kmd02.iind.intel.com ([10.190.238.86])
+ by fmviesa011.fm.intel.com with ESMTP; 05 Oct 2026 18:51:47 -0700
+From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+	Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+	Ghimiray@freedesktop.org,
+	Himal Prasad <himal.prasad.ghimiray@intel.com>
+Subject: drm/xe/oa: Zero OA buffer at allocation
+Date: Tue,  6 Oct 2026 07:33:14 +0530
+Message-ID: <20261006020314.2711762-1-krishnaiah.bommu@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/i2c=3A_cancel_the_cl?=
- =?utf-8?q?ient_work_on_remove_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 06 Oct 2026 01:14:31 -0000
-Message-ID: <179124927173.242127.18162922774045551133@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20261006000413.318561-2-rodrigo.vivi@intel.com>
-In-Reply-To: <20261006000413.318561-2-rodrigo.vivi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,149 +64,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0878977932997727476==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+ttm_bo_type_kernel BOs are not guaranteed to be zeroed on allocation and
+may contain data from previously freed pages. Since the OA buffer is
+mmap'able by userspace, this can expose stale kernel memory contents.
 
-== Series Details ==
+Streams opened with DRM_XE_OA_PROPERTY_OA_DISABLED allocate the OA
+buffer without calling xe_oa_init_oa_buffer(). Zero the buffer at
+allocation to prevent information disclosure through mmap.
 
-Series: drm/xe/i2c: cancel the client work on remove (rev2)
-URL   : https://patchwork.freedesktop.org/series/175464/
-State : success
+The existing zeroing in xe_oa_init_oa_buffer() remains necessary for
+zero report-id/timestamp detection on enable/re-enable.
 
-== Summary ==
+Fixes: 392bf22238ff ("drm/xe/oa/uapi: OA buffer mmap")
+Assisted-by: LLM
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+---
+ drivers/gpu/drm/xe/xe_oa.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-CI Bug Log - changes from xe-5892-8c3a206e2315b84f2d349b180c297a807d31b326_BAT -> xe-pw-175464v2_BAT
-====================================================
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index a3484e943c55..3bb8bbef4c37 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -914,6 +914,13 @@ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream, size_t size)
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
++	/*
++	 * ttm_bo_type_kernel BOs are not zeroed on allocation, so the buffer can
++	 * hold stale data from previously freed pages. Since the OA buffer is
++	 * mmap'able by userspace, clear it here to avoid leaking kernel memory.
++	 */
++	xe_map_memset(stream->oa->xe, &bo->vmap, 0, 0, xe_bo_size(bo));
++
+ 	stream->oa_buffer.bo = bo;
+ 
+ 	stream->oa_buffer.bounce = kmalloc(stream->oa_buffer.format->size, GFP_KERNEL);
+-- 
+2.43.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-175464v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [ABORT][1] ([Intel XE#9463]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5892-8c3a206e2315b84f2d349b180c297a807d31b326/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175464v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@xe_gt_freq@freq_range_idle:
-    - bat-wcl-1:          [SKIP][3] -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5892-8c3a206e2315b84f2d349b180c297a807d31b326/bat-wcl-1/igt@xe_gt_freq@freq_range_idle.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175464v2/bat-wcl-1/igt@xe_gt_freq@freq_range_idle.html
-
-  * igt@xe_pm_residency@gt-c6-on-idle:
-    - bat-wcl-1:          [FAIL][5] -> [PASS][6] +2 other tests pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5892-8c3a206e2315b84f2d349b180c297a807d31b326/bat-wcl-1/igt@xe_pm_residency@gt-c6-on-idle.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175464v2/bat-wcl-1/igt@xe_pm_residency@gt-c6-on-idle.html
-
-  
-  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
-
-
-Build changes
--------------
-
-  * Linux: xe-5892-8c3a206e2315b84f2d349b180c297a807d31b326 -> xe-pw-175464v2
-
-  IGT_9130: 9130
-  xe-5892-8c3a206e2315b84f2d349b180c297a807d31b326: 8c3a206e2315b84f2d349b180c297a807d31b326
-  xe-pw-175464v2: 175464v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175464v2/index.html
-
---===============0878977932997727476==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/i2c: cancel the client work on remove (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175464/">https://patchwork.freedesktop.org/series/175464/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175464v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175464v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5892-8c3a206e2315b84f2d349b180c297a807d31b326_BAT -&gt; xe-pw-175464v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-175464v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5892-8c3a206e2315b84f2d349b180c297a807d31b326/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175464v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_gt_freq@freq_range_idle:</p>
-<ul>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5892-8c3a206e2315b84f2d349b180c297a807d31b326/bat-wcl-1/igt@xe_gt_freq@freq_range_idle.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175464v2/bat-wcl-1/igt@xe_gt_freq@freq_range_idle.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm_residency@gt-c6-on-idle:</p>
-<ul>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5892-8c3a206e2315b84f2d349b180c297a807d31b326/bat-wcl-1/igt@xe_pm_residency@gt-c6-on-idle.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175464v2/bat-wcl-1/igt@xe_pm_residency@gt-c6-on-idle.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5892-8c3a206e2315b84f2d349b180c297a807d31b326 -&gt; xe-pw-175464v2</li>
-</ul>
-<p>IGT_9130: 9130<br />
-  xe-5892-8c3a206e2315b84f2d349b180c297a807d31b326: 8c3a206e2315b84f2d349b180c297a807d31b326<br />
-  xe-pw-175464v2: 175464v2</p>
-
-</body>
-</html>
-
---===============0878977932997727476==--
