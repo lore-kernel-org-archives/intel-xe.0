@@ -4,44 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF1ECCA5FED
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Oct 2026 07:41:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F37D0CA5FFC
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Oct 2026 08:19:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8892910F22A;
-	Tue,  6 Oct 2026 07:41:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BgE6NQGO";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9FE210F226;
- Tue,  6 Oct 2026 07:41:37 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id CDA0360142;
- Tue,  6 Oct 2026 07:41:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 564D11F000FF;
- Tue,  6 Oct 2026 07:41:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791272496;
- bh=ItQG7RFeFV94tjIRfkZTpHxZLRCzdw2c8uiAYdFZVKs=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=BgE6NQGOTcfQHEu3DqsOcWlxjujNPys/Pq4HWWv7jLz7KSszp3LUJtLwlibjDW0cv
- TOfEWb31lmFHlZohbH0J9//JSq9zmJjGQroGy7ROMePHQbJ6NXOKlBBQ9q0hX13YNn
- sTqwlqquPEuG/8kMvaQA43x/fTkWRz0B6r7WRpmMns3mssbwaTCWhkTfVu1R1jLQAG
- X4ywJaLlMim5PY7snOsswnv+A+RsPJbZST2PHQDb6knXxpi9gJCIlqWV3+NNx+Y4OT
- B7zC42k73gg7dtRnJvTXk4kPf1JFMqKvFm6wnEFoSjM6mn8yAppSXUV1BndRnAlNA9
- Cx73biVPAV2/Q==
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 1/2] gpu/buddy: add range-restricted contiguous
- allocation fallback
+	by gabe.freedesktop.org (Postfix) with ESMTP id A637A10E285;
+	Tue,  6 Oct 2026 08:19:01 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 777AE10E241;
+ Tue,  6 Oct 2026 08:19:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3546168852394818227=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv3?=
+ =?utf-8?q?=2C1/2=5D_gpu/buddy=3A_add_range-restricted_contiguous_allocation?=
+ =?utf-8?q?_fallback?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <20261006072643.211568-1-arunpravin.paneerselvam@amd.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 06 Oct 2026 08:19:00 -0000
+Message-ID: <179127474048.243292.5909835452776499738@61270ab9df2a>
+X-Patchwork-Hint: ignore
 References: <20261006072643.211568-1-arunpravin.paneerselvam@amd.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 06 Oct 2026 07:41:35 +0000
-Message-Id: <20261006074136.564D11F000FF@smtp.kernel.org>
+In-Reply-To: <20261006072643.211568-1-arunpravin.paneerselvam@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,181 +37,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] gpu/buddy: try_harder skips leftward shift on successful out-of-ra=
-nge scan
-- [High] gpu/buddy: try_harder misses valid range candidates due to strict =
-start and order bounds
-- [High] gpu/buddy: out-of-window scan inflates filled size, breaking try_h=
-arder fallback
---
+--===============3546168852394818227==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 9e12b0182f3fa80f621385a50621b754c45d5811
-Author: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+== Series Details ==
 
-gpu/buddy: add range-restricted contiguous allocation fallback
+Series: series starting with [v3,1/2] gpu/buddy: add range-restricted contiguous allocation fallback
+URL   : https://patchwork.freedesktop.org/series/175596/
+State : success
 
-This commit adds a fallback path for contiguous allocation requests with
-range restrictions to help prevent false -ENOSPC errors due to fragmented
-memory. By confining the try_harder scan to the requested range, it attempts
-to satisfy requests by stitching smaller adjacent blocks.
+== Summary ==
 
-> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-> --- a/drivers/gpu/buddy.c
-> +++ b/drivers/gpu/buddy.c
-> @@ -1685,26 +1685,14 @@ static int __alloc_contig_try_harder(struct gpu_b=
-uddy *mm,
-> +				     u64 range_start, u64 range_end,
->  				     u64 size,
->  				     u64 min_block_size,
->  				     unsigned long flags,
->  				     struct list_head *blocks)
->  {
-> -	u64 rhs_offset, lhs_offset, filled;
-> +	u64 rhs_offset, lhs_offset, filled, aligned;
+CI Bug Log - changes from xe-5893-475230f9a51fc19f5097ddcbf94ebf3906d623d5_BAT -> xe-pw-175596v1_BAT
+====================================================
 
-[Severity: High]
-Does this function miss valid range candidates due to its strict starting
-order bound?
+Summary
+-------
 
-__alloc_contig_try_harder() starts its search strictly downwards from
-order =3D fls(pages) - 1. If a higher-order block was rejected by the normal
-allocator because its rounded-up size didn't fit the range, its splits are
-undone. Because this fallback never searches higher orders, it completely
-misses any unsplit free blocks that might contain valid range candidates.
+  **SUCCESS**
 
-[ ... ]
+  No regressions found.
 
-> @@ -1729,25 +1717,36 @@ static int __alloc_contig_try_harder(struct gpu_b=
-uddy *mm,
-> =20
->  		rhs_offset =3D gpu_buddy_block_offset(block);
-> =20
-> +		if (rhs_offset >=3D range_end) {
-> +			iter =3D rb_prev(iter);
-> +			continue;
-> +		}
-> +		if (rhs_offset < range_start)
-> +			break;
+  
 
-[Severity: High]
-Does this loop termination artificially ignore free space inside a block
-that starts before the range but extends into it?
+Participating hosts (15 -> 15)
+------------------------------
 
-If a free block begins before range_start but extends well into the valid
-range, its right half could still satisfy the allocation. Breaking here
-discards the entire block and terminates the loop, causing the allocator
-to miss perfectly valid free space.
+  No changes in participating hosts
 
->  		/* Allocate blocks traversing RHS */
->  		err =3D  __gpu_buddy_alloc_range(mm, rhs_offset, size,
->  					       flags, &filled, blocks);
+Known issues
+------------
 
-[Severity: High]
-Does passing size directly here without clamping it to range_end - rhs_offs=
-et
-cause the forward scan to populate filled with space beyond range_end?
+  Here are the changes found in xe-pw-175596v1_BAT that come from known issues:
 
-If the forward scan hits a busy block outside the window, filled will
-reflect the total contiguous free bytes found, including those beyond
-range_end. This artificially inflates the filled value.
+### IGT changes ###
 
->  		if (err && err !=3D -ENOSPC)
->  			return err;
-> -		if (!err && IS_ALIGNED(rhs_offset, min_block_size))
-> +		if (!err && IS_ALIGNED(rhs_offset, min_block_size) &&
-> +		    rhs_offset >=3D range_start && rhs_offset + size <=3D range_end)
->  			return 0;
->  		if (!err) {
->  			/* Allocate the unaligned RHS offset using round_down */
->  			gpu_buddy_free_list_internal(mm, blocks);
-> -			err =3D __alloc_contig_aligned_retry(mm, rhs_offset,
-> -							   size,
-> -							   min_block_size,
-> -							   flags, blocks);
-> -			if (!err)
-> -				return 0;
-> -			if (err !=3D -ENOSPC) {
-> -				gpu_buddy_free_list_internal(mm, blocks);
-> -				return err;
-> +
-> +			aligned =3D round_down(rhs_offset, min_block_size);
-> +			if (aligned >=3D range_start &&
-> +			    aligned + size <=3D range_end) {
-> +				err =3D __gpu_buddy_alloc_range(mm, aligned, size,
-> +							      flags, NULL, blocks);
-> +				if (!err)
-> +					return 0;
-> +				if (err !=3D -ENOSPC) {
-> +					gpu_buddy_free_list_internal(mm, blocks);
-> +					return err;
-> +				}
->  			}
->  			goto next;
+#### Possible fixes ####
 
-[Severity: High]
-Does this unconditional goto skip checking if shifting the allocation to the
-left (to fit within range_end) would succeed, leading to false allocation
-failures?
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [ABORT][1] ([Intel XE#9463]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5893-475230f9a51fc19f5097ddcbf94ebf3906d623d5/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175596v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
 
-When err =3D=3D 0 on the forward scan, we know at least size contiguous byt=
-es
-are free starting at rhs_offset. If rhs_offset + size > range_end, the
-allocation could still be satisfied by shifting the window left to end exac=
-tly
-at range_end.
+  
+  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
 
-However, the code completely bypasses this leftward shift via this goto nex=
-t,
-only performing leftward shifts when err =3D=3D -ENOSPC. This causes the al=
-locator
-to miss perfectly valid free space that crosses the right boundary but has
-enough room if shifted left.
 
->  		}
-> @@ -1759,15 +1758,17 @@ static int __alloc_contig_try_harder(struct gpu_b=
-uddy *mm,
-> =20
->  		/* Allocate the unaligned LHS offset using round_down */
->  		gpu_buddy_free_list_internal(mm, blocks);
-> -		err =3D __alloc_contig_aligned_retry(mm, lhs_offset,
-> -						   size,
-> -						   min_block_size,
-> -						   flags, blocks);
-> -		if (!err)
-> -			return 0;
-> -		if (err !=3D -ENOSPC) {
-> -			gpu_buddy_free_list_internal(mm, blocks);
-> -			return err;
-> +
-> +		aligned =3D round_down(lhs_offset, min_block_size);
-> +		if (aligned >=3D range_start && aligned + size <=3D range_end) {
+Build changes
+-------------
 
-[Severity: High]
-Because filled is artificially inflated from the out-of-window scan above,
-lhs_offset (calculated prior to this block as rhs_offset - (size - filled))
-will be shifted too far to the right.
+  * Linux: xe-5893-475230f9a51fc19f5097ddcbf94ebf3906d623d5 -> xe-pw-175596v1
 
-This causes the perfectly valid left-shifted candidate to remain partially
-out-of-bounds, failing the bounds check here and returning a false -ENOSPC.
+  IGT_9130: 9130
+  xe-5893-475230f9a51fc19f5097ddcbf94ebf3906d623d5: 475230f9a51fc19f5097ddcbf94ebf3906d623d5
+  xe-pw-175596v1: 175596v1
 
-> +			err =3D __gpu_buddy_alloc_range(mm, aligned, size,
-> +						      flags, NULL, blocks);
-> +			if (!err)
-> +				return 0;
-> +			if (err !=3D -ENOSPC) {
-> +				gpu_buddy_free_list_internal(mm, blocks);
-> +				return err;
-> +			}
->  		}
->  next:
->  		gpu_buddy_free_list_internal(mm, blocks);
+== Logs ==
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261006072643.2115=
-68-1-arunpravin.paneerselvam@amd.com?part=3D1
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175596v1/index.html
+
+--===============3546168852394818227==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v3,1/2] gpu/buddy: add range-restricted contiguous allocation fallback</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175596/">https://patchwork.freedesktop.org/series/175596/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175596v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175596v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5893-475230f9a51fc19f5097ddcbf94ebf3906d623d5_BAT -&gt; xe-pw-175596v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-175596v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5893-475230f9a51fc19f5097ddcbf94ebf3906d623d5/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175596v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5893-475230f9a51fc19f5097ddcbf94ebf3906d623d5 -&gt; xe-pw-175596v1</li>
+</ul>
+<p>IGT_9130: 9130<br />
+  xe-5893-475230f9a51fc19f5097ddcbf94ebf3906d623d5: 475230f9a51fc19f5097ddcbf94ebf3906d623d5<br />
+  xe-pw-175596v1: 175596v1</p>
+
+</body>
+</html>
+
+--===============3546168852394818227==--
