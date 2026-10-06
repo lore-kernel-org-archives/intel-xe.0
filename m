@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB19ECA5FED
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Oct 2026 21:29:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8299ECA5FFC
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Oct 2026 21:36:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A45B10E0A2;
-	Tue,  6 Oct 2026 21:29:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jKa5/ute";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 523FC10E467
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Oct 2026 21:29:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791322172; x=1822858172;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9vnuN6JAp1PwA7HnWfLXuomXqSizqDAPkX/DoyP0hJQ=;
- b=jKa5/utebIXYsNjSa9KoEVFguIyJ4wXilKNqgX9kVIvvgp3vOX3XLrM+
- I2i69lki1wHh7h4EwOqNlNdB8v96ss7wuPX0SjGlCV2ugDsFy8yFp94eF
- Wk0Ck/Yn8qh5NgCvhRmkIIrAahVmku8hpc6pkg+jsW6vTy9SRngm1M537
- FDXEb3z93fgHcDApdVR6HfiXjgRjNgbjdAQEZrAf8UMnnlWXcaT5p+ra0
- qt9w+Xwz0rTm9BCrcMuZuCEuT2UgoZ44AFy8+wXeQCH0VlKeFvaQiPTRN
- 1qLVc/D31aViuw7WTAIlFbfA4FiXaVbADYJxD8zz/JbL01fOxApbWIvwE A==;
-X-CSE-ConnectionGUID: BN/9jamaS/WHEzVaI8wfCg==
-X-CSE-MsgGUID: Hxe+I2bmQQCmGNGMjZofNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11927"; a="65930"
-X-IronPort-AV: E=Sophos;i="6.27,143,1787036400"; 
-   d="scan'208";a="65930"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2026 14:29:31 -0700
-X-CSE-ConnectionGUID: l5sUqIECTCecKD4yLa+iig==
-X-CSE-MsgGUID: HW1AqbzPSr6dJrqNldGVxA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,143,1787036400"; d="scan'208";a="306728925"
-Received: from fyang16-desk.jf.intel.com ([10.24.81.66])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2026 14:29:31 -0700
-From: fei.yang@intel.com
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com,
-	Fei Yang <fei.yang@intel.com>
-Subject: [PATCH 1/1] drm/xe: fixing endless PF range response
-Date: Tue,  6 Oct 2026 14:34:48 -0700
-Message-ID: <20261006213449.4027749-2-fei.yang@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261006213449.4027749-1-fei.yang@intel.com>
-References: <20261006213449.4027749-1-fei.yang@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12B6210E3D4;
+	Tue,  6 Oct 2026 21:36:50 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B7A910E3D4;
+ Tue,  6 Oct 2026 21:36:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_fixing_endless_PF_ra?=
+ =?utf-8?q?nge_response?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: fei.yang@intel.com
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 06 Oct 2026 21:36:48 -0000
+Message-ID: <179132260836.245206.18355445963331596799@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20261006213449.4027749-1-fei.yang@intel.com>
+In-Reply-To: <20261006213449.4027749-1-fei.yang@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,79 +36,92 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Fei Yang <fei.yang@intel.com>
+== Series Details ==
 
-[334.635636] PF range response: start=0x80200000  end=0xc0200000 pages=262144 (more ranges pending)
-...
-[519.065737] PF range response: start=0x5ca140200000 ...  (still going, 94888 messages logged)
+Series: drm/xe: fixing endless PF range response
+URL   : https://patchwork.freedesktop.org/series/175636/
+State : failure
 
-SVM handler narrows the serviced range through functions
-xe_pagefault_set_[start|end]_addr, which updates only the
-consumer.[page|end]_addr. However a different field is used
-for "immediate ack" cache, xe4_guc_ack_fault_range() reads
-vma_info. This causes the ack fault to loop through the
-whole address space with 1G pages, and that is wrong and
-the loop takes a long while to complete.
+== Summary ==
 
-VLK-99796
++ trap cleanup EXIT
++ kunitconfigs=('/kernel/drivers/gpu/tests/.kunitconfig' '/kernel/drivers/gpu/drm/xe/.kunitconfig' '/kernel/drivers/gpu/drm/tests/.kunitconfig' '/kernel/drivers/gpu/drm/ttm/tests/.kunitconfig' '/kernel/drivers/dma-buf/.kunitconfig')
++ for kcfg in "${kunitconfigs[@]}"
++ [[ ! -f /kernel/drivers/gpu/tests/.kunitconfig ]]
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/tests/.kunitconfig
+[21:35:52] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[21:35:57] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
+[21:36:17] Starting KUnit Kernel (1/1)...
+[21:36:17] ============================================================
+Running tests with:
+$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
+[21:36:17] ================= gpu_buddy (14 subtests) ==================
+[21:36:17] [PASSED] gpu_test_buddy_alloc_limit
+[21:36:17] [PASSED] gpu_test_buddy_alloc_optimistic
+[21:36:17] [PASSED] gpu_test_buddy_alloc_pessimistic
+[21:36:17] [PASSED] gpu_test_buddy_alloc_pathological
+[21:36:17] [PASSED] gpu_test_buddy_alloc_contiguous
+[21:36:17] [PASSED] gpu_test_buddy_alloc_clear
+[21:36:17] [PASSED] gpu_test_buddy_alloc_range
+[21:36:17] [PASSED] gpu_test_buddy_alloc_range_bias
+[21:36:18] [PASSED] gpu_test_buddy_fragmentation_performance
+[21:36:19] [PASSED] gpu_test_buddy_dirty_tracker_performance
+[21:36:19] [PASSED] gpu_test_buddy_alloc_exceeds_max_order
+[21:36:19] [PASSED] gpu_test_buddy_offset_aligned_allocation
+[21:36:19] [PASSED] gpu_test_buddy_subtree_offset_alignment_stress
+[21:36:19] [PASSED] gpu_test_buddy_addr_to_block
+[21:36:19] ==================== [PASSED] gpu_buddy ====================
+[21:36:19] ============================================================
+[21:36:19] Testing complete. Ran 14 tests: passed: 14
+[21:36:19] Elapsed time: 26.641s total, 4.466s configuring, 20.307s building, 1.822s running
 
-Assisted-by: GitHub_Copilot:claude-opus-5
-Signed-off-by: Fei Yang <fei.yang@intel.com>
----
- drivers/gpu/drm/xe/xe_pagefault.c | 7 ++++++-
- drivers/gpu/drm/xe/xe_pagefault.h | 2 ++
- 2 files changed, 8 insertions(+), 1 deletion(-)
++ for kcfg in "${kunitconfigs[@]}"
++ [[ ! -f /kernel/drivers/gpu/drm/xe/.kunitconfig ]]
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_device.c:59:
+../drivers/gpu/drm/xe/xe_pagefault.h: In function ‘xe_pagefault_set_end_addr’:
+../drivers/gpu/drm/xe/xe_pagefault.h:101:21: error: ‘struct <anonymous>’ has no member named ‘vma_info’
+  101 |         pf->consumer.vma_info.end_addr = end_addr;
+      |                     ^
+../drivers/gpu/drm/xe/xe_pagefault.h: In function ‘xe_pagefault_set_start_addr’:
+../drivers/gpu/drm/xe/xe_pagefault.h:141:21: error: ‘struct <anonymous>’ has no member named ‘vma_info’
+  141 |         pf->consumer.vma_info.start_addr = start_addr;
+      |                     ^
+make[7]: *** [../scripts/Makefile.build:290: drivers/gpu/drm/xe/xe_device.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:551: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:551: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:551: drivers/gpu] Error 2
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:551: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [/kernel/Makefile:2229: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index 5247321c805ec..72dfe27025736 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -694,6 +694,8 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- 		/* Last fault same address, ack immediately */
- 		if (xe_pagefault_match(pf, cache_start, cache_end, cache_asid)) {
- 			xe_gt_stats_incr(gt, XE_GT_STATS_ID_LAST_PAGEFAULT_COUNT, 1);
-+			xe_pagefault_set_start_addr(pf, cache_start);
-+			xe_pagefault_set_end_addr(pf, cache_end);
- 			goto ack_fault;
- 		}
- 
-@@ -751,9 +753,12 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- 				pf = xe_pagefault_queue_unchain_requeue(pf_queue, pf, gt);
- 
- 			/* Ensure resets are safe */
--			if (pf)
-+			if (pf) {
- 				pf->consumer.alloc_state =
- 					XE_PAGEFAULT_ALLOC_STATE_ACTIVE;
-+				xe_pagefault_set_start_addr(pf, cache_start);
-+				xe_pagefault_set_end_addr(pf, cache_end);
-+			}
- 
- 			spin_unlock_irq(&pf_queue->lock);
- 		}
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.h b/drivers/gpu/drm/xe/xe_pagefault.h
-index 799c984dee84f..5ce2f6ed10c56 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.h
-+++ b/drivers/gpu/drm/xe/xe_pagefault.h
-@@ -98,6 +98,7 @@ xe_pagefault_set_end_addr(struct xe_pagefault *pf, u64 end_addr)
- {
- 	pf->consumer.end_addr &= ~XE_PAGEFAULT_END_ADDR_MASK;
- 	pf->consumer.end_addr |= end_addr;
-+	pf->consumer.vma_info.end_addr = end_addr;
- }
- 
- /**
-@@ -137,6 +138,7 @@ xe_pagefault_set_start_addr(struct xe_pagefault *pf, u64 start_addr)
- {
- 	pf->consumer.page_addr &= XE_PAGEFAULT_ERROR_MASK;
- 	pf->consumer.page_addr |= (start_addr & ~XE_PAGEFAULT_ERROR_MASK);
-+	pf->consumer.vma_info.start_addr = start_addr;
- }
- 
- /**
--- 
-2.43.0
+[21:36:19] Configuring KUnit Kernel ...
+Regenerating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[21:36:21] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
