@@ -4,164 +4,157 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87ECDCA5FFC
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Oct 2026 08:28:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44224CA5FF0
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Oct 2026 08:36:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F97710E219;
-	Tue,  6 Oct 2026 08:28:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3C5F10E20F;
+	Tue,  6 Oct 2026 08:36:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lJiVPtUs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gi7/pMd2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B269810E03E
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Oct 2026 08:28:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84C8F10E20F
+ for <intel-xe@lists.freedesktop.org>; Tue,  6 Oct 2026 08:36:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791275284; x=1822811284;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=BDZ1KNxX+ttphXHhSnD1CrfSifu9FfsGK6BebvIlaaE=;
- b=lJiVPtUs59DcJrIVdT/KyK7vrU9UU+KTHHa/mNCc9L65pul4P6mM7gVr
- h3nwNvzQYBP2QNHdktb+F33iGlbFtqcO5+JtYtJqNh1UT1Yd7o5sEjXlu
- cC+q0q9bCuhvzML92vpBz04YV2Xpe19X7idO+jlHzq4Ybl4RJVpdbthRr
- 4o4Go60bpWzXaCa0RFsoT/hm1942hI+eQZgfKp9T++NgNm1UfQXTJ6jdy
- LoeE52UZVcLf9xl7uzk1KwYi6NK7dRDB+SGxyJqgPKDAujLlB2zKkm35Z
- sjokJfb2QPTtlM47hmqwlk3muX7UAV9NjlxhHexM9KHoC+h1TEIvg5yRJ w==;
-X-CSE-ConnectionGUID: rKL72zwHRUm709xsuTGf8g==
-X-CSE-MsgGUID: 6OMsp7eETUegpGPJIaSzBQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11926"; a="117476868"
-X-IronPort-AV: E=Sophos;i="6.27,143,1787036400"; d="scan'208";a="117476868"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2026 01:28:03 -0700
-X-CSE-ConnectionGUID: dUw9MfmFRtOChU/hhHqIdQ==
-X-CSE-MsgGUID: KNT7/mErSiyty9nav47A5g==
+ t=1791275764; x=1822811764;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=x40SjEP00tMRGiOlN5YTL5x83xAdzL0vRkfX4vVNRls=;
+ b=gi7/pMd2ply6Ah5UcLF4nmGgusJUA+h3mIXvuj1DMsqA4ZmCo+S4yXwG
+ YZIUDnyWfYbpI6iwP/hC5qESEWeiHD2vd215GKMQmhMjHydvbUAQoaCRM
+ xSj1bKArcY2Q6hklXmxanbG82GiCT2qeNIK/87uXY1wXzdqcguIlc8yiF
+ n23Kcnm7+U5N8YRptecQwXXtUOA294Jg5C5FQd8r+FFVaJuHKAb6oxKUd
+ q4bJHCFq1yGNTZCF3Wmx21EjhWlx7RRAvgZmnEHkMzW6tzb1bradNuokU
+ N6seRSspGsI+8vv6LQOh9kXpj9r1v6OBfN+/E3yDNYe54zUpT6zFkyK1W A==;
+X-CSE-ConnectionGUID: tC1S5tZBQHqDkurmslikBg==
+X-CSE-MsgGUID: V5gz9lf/TDmHR1TuDcewSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11926"; a="9483"
+X-IronPort-AV: E=Sophos;i="6.27,143,1787036400"; 
+   d="scan'208";a="9483"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2026 01:35:59 -0700
+X-CSE-ConnectionGUID: msBmfXmKQnalt/7YVf6rwQ==
+X-CSE-MsgGUID: iletOq4USRylmxIbl5gn1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,143,1787036400"; d="scan'208";a="277217321"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2026 01:28:03 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,143,1787036400"; d="scan'208";a="285197766"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2026 01:35:58 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 6 Oct 2026 01:28:03 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.49; Tue, 6 Oct 2026 01:35:58 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Tue, 6 Oct 2026 01:28:02 -0700
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.5) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.49 via Frontend Transport; Tue, 6 Oct 2026 01:35:58 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.45) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 6 Oct 2026 01:28:02 -0700
+ 15.2.2562.49; Tue, 6 Oct 2026 01:35:57 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=c8WddcMdgPNOQnRBiwJ4C5i9yHJ26k7lT/KK4zTO0zE7AHwYBRgoE6GaEpC/Tyz7QYHzRYMMi8cy7Y7ew7q7O3hYeM8oa/r+dUIYTuSDUxqestc5qWgbQ6JDbbCfxg7XygXnkxAu36a9BGRFBNWbdgIdl/wjjyf7mnnFP5TjPlcI+ZdbmUIdTDwKyf/GM2ZhrO+i8k4828CDP2RZpz6thDa0KcivDKceUYQUp1qiH3kKUR7S2mc9Fh8g79kFaAwT+zPPsKpPQB6cDXGaWVdLKNRUpVpXiZ2yweGkc60oylCyOKNVCZFp2nGG6i3yCzcBZxiYTjUlTWzEX261LkI3mw==
+ b=nExTp+yHb/22VKSu8XOasBD7XNVD/SFmulZXM7ljw3NE+yO+9YjMThrkHaZEQYi3uh+Cyi/nMZrNh4cyVilMitxI5lLEBdpkvxpQjeQ/oRBXLn7AncJXC6fXnRlsIgj3G4fCwsBfnXT3pDTjx9KxT2FXGJoXkv2D886ybkzwqj+9V8qH+IBw7zv8RtciN4zre3zpj/QXtJVxnDiewqFV2tk6Uz1JF4jFpuQONPBXWUkoVijHJcSm9LAYjwrhL7L3Q7cuz2F904D7sBhh+6qytM+IvOfx5q+MIYJGkGzIQPFwxx32NlZ1R7Rfz4kNYQPCg26i/Lh5dfbBn36sDBDNUw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BDZ1KNxX+ttphXHhSnD1CrfSifu9FfsGK6BebvIlaaE=;
- b=uAg52IJfy+GGLmf8MMXVd0/LIal+n07dBSmCp4i99dB9GTWfH38VSVCkybCfbXdFwcGdpjRbVG2WHk+0snUKfqltJFA4TBypFNQYwxTb/SOG3XQyasJfUjS7u7dsGrcnHiIl1tY/qX0RuC0NGMudJCvpNlyv/mlfjhldWpsVy/qnQR6ceek4DkWE2/o1Y+DS8QlZ1mJ/j3Ba3YnhrQsbVAu6GgsEXQ8du6myH+Od3RSYbLPonj4yjmNa7/HG6J+/UCPk4KUGbOmpdMtiS5DTrSP+bIwhi7bWvroLk59ldtb0SsT5v5OEJNm2/NxJurdeCDv+oWcFPt/rZrWTFZ5s7Q==
+ bh=/CGt1dXTNff5w8ygyaoHCu4DQnQOUaLyFE6t16xaR3o=;
+ b=TtMWREk2dLd6NWukwJqrEX1/J3r+9i1joh4g2NIT9dYzDe7iQif/UzL6FARLs3SZnHNAXyUhn/n0EvvtQxwqw+Cq/OFxBtbwGtfL1k56QePy4Ds0Rp/QP3N0WdFnkAMZYjTO77h02rlQq44gxNmJRvdwITVKkCH4tRZbcd7Tmb76jECN2BkaR0Hgdw+zcM+vgQbJetyJMbqwQRZjDU4+QJQ/j2TE28YXyO1W1fAVZpSsTQTKtAHJOyHcrGUChF6c4GuGvt7PNJR1uRsZiiYRRSVOdaISGeejTgCq10IajeXApS0BXvZXCVGh4LwD1/4fd6EaY1500zCV97JVBoWNpA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from BN9PR11MB5242.namprd11.prod.outlook.com (2603:10b6:408:133::18)
- by IA0PR11MB7186.namprd11.prod.outlook.com (2603:10b6:208:442::22)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.472.15; Tue, 6 Oct
- 2026 08:28:01 +0000
-Received: from BN9PR11MB5242.namprd11.prod.outlook.com
- ([fe80::5657:45bf:d335:24d5]) by BN9PR11MB5242.namprd11.prod.outlook.com
- ([fe80::5657:45bf:d335:24d5%5]) with mapi id 15.21.0472.015; Tue, 6 Oct 2026
- 08:28:01 +0000
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: "Nilawar, Badal" <badal.nilawar@intel.com>, "Wajdeczko, Michal"
- <michal.wajdeczko@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-CC: "Jadav, Raag" <raag.jadav@intel.com>, "Tauro, Riana"
- <riana.tauro@intel.com>, "Koujalagi, Mallesh" <mallesh.koujalagi@intel.com>,
- "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>,
- "heikki.krogerus@linux.intel.com" <heikki.krogerus@linux.intel.com>,
- "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-Subject: RE: [PATCH v2 1/2] drm/xe/i2c: Expose AMC Alert reason sysfs
-Thread-Topic: [PATCH v2 1/2] drm/xe/i2c: Expose AMC Alert reason sysfs
-Thread-Index: AQHdQR9wWl+crIf57kOael9KCaglW7bH4o4AgCDpxoCAB4okMA==
-Date: Tue, 6 Oct 2026 08:28:00 +0000
-Message-ID: <BN9PR11MB5242FF41BE249B74E0AFAE8995952@BN9PR11MB5242.namprd11.prod.outlook.com>
-References: <20260910124151.3135801-4-badal.nilawar@intel.com>
- <20260910124151.3135801-5-badal.nilawar@intel.com>
- <df934dcf-5a91-4b83-9c17-174c77ade36a@intel.com>
- <6166a826-39ef-4670-9997-82aae0053601@intel.com>
-In-Reply-To: <6166a826-39ef-4670-9997-82aae0053601@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN9PR11MB5242:EE_|IA0PR11MB7186:EE_
-x-ms-office365-filtering-correlation-id: 66829af0-86e0-4c49-fa61-08df2383bbe3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|23010399003|1800799024|376014|18002099003|22082099003|38070700021|6133799003|4143699003|10067099003|56012099006|11063799006;
-x-microsoft-antispam-message-info: A8uU+2xwJ4DJYDvjvcdSeN/OfOc2m+ZhKKFP97tfFfN53hdkoKdxGt+oopQHBMLEnxe+Lq+MC7+h0fy/LhJysKzGvebERlDLe0M0szEndRSJ7YSAzV72ytg/2764SmrWqQFhpWRswyQUUENjrbZM5QQ5q2AbjSL2kA//5WgFosCRftbDgLJ55MbKLhsrx1nupj5nBkPbN8vYootUF435C5eyt5Dob3smiNPHLSYwEhXTiW1x5RQLKeCjNxi0xEuoJ15G3wMyBb4u+JqX6OhBrV1upOu6JaZSI1ejBoIzRFXRziQ2CJgtfw0u/379TTOfdZ1AXcWjAQ7IuuWlpfxzEa5gBtW04PWxdBAZ0U/Ipdc9akOlSycJJF3mgpSwqpzVZZXSGcc4Oo+Gfd/33zL/WWUyB25p7GjiORlWkSC9+v97iBSECIzPU0pdR9gXVARfIvRpyvLCfXAzREEVEUNpJRtIDr36pA9tIZlpK201SU3xqiSloiqWKU6xJ60TAkFMMlf4KJtGwq7lQ0D5GOUTJF8p84VVyhKGqYWAekI8hJrTnwLC/U8n4X1Ia9kVQzPfGrJRafyEdg8veGoNR09sSvDE3HK0++5owdyf+8mU4LncQzSEClSbxn9mMqguYNxqmT37AZedgkYkmEPsSwvob6mItGNF0QQNeuL7N16eQe62YY3YKU6UwGdxL0Cmk9vmWpQ0OI90k2c4o1bHnpbn0OiHLwIibHwqmC7wNFdna0c=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5242.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(18002099003)(22082099003)(38070700021)(6133799003)(4143699003)(10067099003)(56012099006)(11063799006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SjE2SnRYTWZLMUpjc2NuV1htOFdBQllhQWRCY3Q3OURFMWxGbGlPNi9JRlBN?=
- =?utf-8?B?Z1BDVDZqWmxFNE56WVlremxyUFNUQ0JMZzZEdGk0S1dtQmJDMjFBc0VpTnpm?=
- =?utf-8?B?OVM5OG5vdlBpY0JROERIMlZuazJaTEFGRWY5SURFdTNxekZhVUs5QWxHUDlu?=
- =?utf-8?B?TjV2V3ZQVnVVRnNhRHdBcFUzeCtPREhiUy92VHVOTVNaWUJKRXd4c1pEbmZF?=
- =?utf-8?B?N25HYm1EYXlXNWhZS1o0cm5iZThiL09GZDVBcTd3Qk1kZmhubW85L01HejVi?=
- =?utf-8?B?NTI2K3NTdXhaUWpFcU9Na2daQzFwUkxTdlZWMFNvM1ZGY0k2WHA2MjNIQ1NY?=
- =?utf-8?B?NVZHVEVjWjJwNEY1K0hnZUJOMy9sUGpkQlFrNXQ1YU5BMHNNVjkzdmc5UmJK?=
- =?utf-8?B?ZnhzeFBEVVA4NEhQTC9TeCt5Zy95aFNtbThES1NMYlozUzJ4SHYxRDFqbkJ4?=
- =?utf-8?B?VnpIOXRoTFpPcHVIM0hrUWIwdkY3c1E4R2l3RWQzSDNPUm1WZGJmVUVxWERW?=
- =?utf-8?B?bUNjWGhmZnpaa1V5V1R2Nzhtb1BzenVQYVU1NTJOdklKazV3aDYvZFNoQjRZ?=
- =?utf-8?B?Mnl0MXRUUXlWd21ibGMvTmd0Ylk0K1BWMWJnUDN0a0ZwZzBGRVYzVVdQckt5?=
- =?utf-8?B?NGZtcEJBTnR2WE5UWW5oeElwR1ZZSjlXRGFmVlpYM1llUG1vdDBFZXo4dHdU?=
- =?utf-8?B?WHBJaUE3NjhYTExLQktlczErK1o1YWloeFR4TWN5ZVNEWkc0L1k1MXZSU3hG?=
- =?utf-8?B?dWx3VExDbWJlM3hqcXJnSlliaWRteHAzMFphNzg5UzJCa0FpTUNxV0xDa3Jq?=
- =?utf-8?B?L244c213WFo1ZmVNcU5wY3I4YUdxK01IaFFnZGpCSzhDMkZYeDRxQ2tIMHVB?=
- =?utf-8?B?YzM5cnlUSHdXZFNsSTJ6V1ZNeDN2aFRVQ2pBalRGTXRhbzJleXgrTlZoOGZo?=
- =?utf-8?B?U0hUYW16Y1Z5a2ZQRUJ2QkxRcXo2SkFMWElpdnhkTlF4dnNSdTM1a2tKWlI0?=
- =?utf-8?B?eFhMaDIzdXk3YTBhY3cxeE5jQU51dXUxeFVQL0FFdU9jZENXanZ4b0Q2Qjhi?=
- =?utf-8?B?TkdsZFZJYWgvRDNWU01ocWdrUjdPR1c1UGx3aVFkd1pRaW0vL3phbGdqcGc2?=
- =?utf-8?B?SmxMRzQ1UEZNa2x1N0U2RkE0UGpJVnEwLy9TS24rcXN5MFJ5QkltWUtwN2Yv?=
- =?utf-8?B?NGlBRW1FbXhaVm40dFB4d2IyQnZJb0VkRSt3aEFFNGFPZGtaa0tzSmh3SDE0?=
- =?utf-8?B?Tjd0aUlOaU80QjBtRE5aSXZrWXBxdk1nUS85N3hvbjVOZytXYzlFdUoyb2Er?=
- =?utf-8?B?OTZTYzliUUN0MzFBeHRmQlUvdVBHam9sTkcrUDFTY1ZHTnlVOWpOUE03Mytr?=
- =?utf-8?B?QU9VdVRWV0ZUWkdoRDZYd0lkTmNaalIvcVRjT2Ftbkg1WWwzb1ZJd1l4QSto?=
- =?utf-8?B?eENTeEZ0YUNFdm95MGpiaXpzR2JtdTZZTkdtZ203RkpYT29NVlRrckMrYXlp?=
- =?utf-8?B?eG9tRmIzVFA2aURRU1IyaG14akhJM1QrV0hLckhCMnpqdis0ZFV6K0Q0R2p0?=
- =?utf-8?B?aGRWSm9sbHNTVjcrTDFmQ0ltK0pIbFhIL3FkQmxWU1ZnMVBCcVk2R21seEtT?=
- =?utf-8?B?VHVFR1JKTlJnN1hQR0o4OWM1UTgvRk04cXpVQ2Y2bTJQSnZVeThSRGplU3R5?=
- =?utf-8?B?QjAyaC84TDN1UkMvdEUwWGh6MW5La0htTTFxU1p0NUkvOHRzZWpSSDlVek1H?=
- =?utf-8?B?NXpiYzFMSE9EVUswbVBoLzFIdFo3MjRXQzIyd2JONnk2ejRxa1JiMS9teStJ?=
- =?utf-8?B?Zk9YYWNKbHoxYmMwRWFCN1BybVNwQjNaSjBSd2VudVFVZ2lVcTkzZ2J0NU5V?=
- =?utf-8?B?UWFXQk1DWFBkaUl2L3lJQlAwTlFDb0hWc1BXcmUrQnVBRzRXcDAxZ1hUcDNF?=
- =?utf-8?B?bDFnTldQRXI1amhXbTNqcTEybVZDYm16L29RcTVURThRVnJpY2h5TGNsYWgy?=
- =?utf-8?B?WUlKQk5rR25HT2hBeWpqK3FhQ05HdTNhanJxOWV2czc4VitoNW9wUHRDUDhV?=
- =?utf-8?B?VnZkbnBHWGkwWG5WVVI0cWFrdGoxY3J0WnV5YkY2TzBuRXlzUVN4dHlTRk1k?=
- =?utf-8?B?QllITm9TMy9FUGlmQVlvN20yVUFWZUYrc3c4ZHJkMkN4MzhtSnhXWkdWT094?=
- =?utf-8?B?YmxLZjE5N1Y0UGVJVkxTNXhCRHRLQmU3U3Buc2tuWFMyOUtjMXd5SzFsZWc0?=
- =?utf-8?B?cWYyTmFmK0l4WXBEWkVwWFA4eGV0ZU9jQkRLdmZoQ29ENjNQd2J3bW82Vnpq?=
- =?utf-8?B?bDcrZWo4RFlEdm43T2RMcGdXNy9xZFl2UXhOTUxSdDltSlFxMTJVdz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from IA3SPRMB0029.namprd11.prod.outlook.com (2603:10b6:208:57e::9)
+ by SN7PR11MB6924.namprd11.prod.outlook.com (2603:10b6:806:2ab::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.428.22; Tue, 6 Oct
+ 2026 08:35:50 +0000
+Received: from IA3SPRMB0029.namprd11.prod.outlook.com
+ ([fe80::de1f:3bf4:8ae4:9c50]) by IA3SPRMB0029.namprd11.prod.outlook.com
+ ([fe80::de1f:3bf4:8ae4:9c50%3]) with mapi id 15.21.0472.016; Tue, 6 Oct 2026
+ 08:35:49 +0000
+Message-ID: <866ddae9-3df8-4bdc-a9bf-48efbb49135e@intel.com>
+Date: Tue, 6 Oct 2026 14:05:43 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/4] drm/xe/guc: Split GuC ID manager into usable and
+ shareable pools
+To: <intel-xe@lists.freedesktop.org>
+References: <20261005085132.3720685-1-piotr.piorkowski@intel.com>
+ <20261005085132.3720685-2-piotr.piorkowski@intel.com>
+Content-Language: en-US
+From: "K V P, Satyanarayana" <satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20261005085132.3720685-2-piotr.piorkowski@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0199.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b2::11) To IA3SPRMB0029.namprd11.prod.outlook.com
+ (2603:10b6:208:57e::9)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: giUH/5EZYArX97qeEYaEnB0UacS2zubpRWJI4pceNGhfVR31nERZ2JmCQu1vuGiFrGt1IoqIuL2za8DqWrKScGc8s3onY+7zFY3/Qdj+kGVjJEVdUQCdZvRmUY6HReIg08pFKIpeT/BgAYwJNxG6kd9ksLfGPLxlVq4DcwomsPIVbN6whEW+3JRJvKJ3NxGNDWMxhjlr1xOPCemk2Bp6GquIWrlB73rER3pbLVSjrCyj03aVwNi/BIibxzlHSAaQozwpVg7lCWNpT069BWfvhmI0Mq/qxfvtvfVsfRLzm+fq+yMCw9ATacmNTeHy+0QUH0LD5YlFW/o1lzIM+bW2dA==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA3SPRMB0029:EE_|SN7PR11MB6924:EE_
+X-MS-Office365-Filtering-Correlation-Id: b2794566-b9e9-494f-3e25-08df2384d327
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|23010399003|22082099003|18002099003|10067099003|4143699003|5023799004|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: fiMTrqBTz7GSu+hdyUJQ3YT/scPuFDVsttsF8qibzg/2dlaJA5H85uBO4k8NTXk3Bx94T4A6gl0O/vMzlgok5msWwM7x4Gy3X1buRhuMLNSvWkCsF/HzAR7O3Wco3myEJ+FPz0O8B2Hu2HFw2rcbOOFwJRnpEIAws8ilXvrk8wn7y5oNeJiPxXUs2iLQCCO1eCVtJ5Rjtah/As31d6a8LILcKMTI3eqepH6ZR/4C5/Ux4eKZ12qYOJZ65/CTTEWfhLxzmgCsYs6L5+fbfW/5IkKgyruNAKED/Se7ktAHUHaWZUTal5Hl0PvcH/TyTAghEr0GWnoIwHDb77KOEs1Qr0/VRf2+MPVJTM6bmDcw20fbRrZsXPpU+gv2XJPjlq3gQtVnKSBPdca5MmEt1FPOenYk2t1zm9ZjI32+aJMZnqH+DzUh//GUWMTnOjb4AEUeGbNkvLYVsRbEqoIIB0T7G3TLRKC3yWwiAcF8fEuih9g0+abKfmd+qUhaDusXUTV4JgmoKIfjVYsFcLDF1XJbj5plLsHHCzP61BIaXmwVcj05gZ9oPqWx5xjp5yLorsma/p9goscuQar1t+xLI0GHBdA6SP83TcWcCn7a6jyFGy+AwXBxj8Gj43MSilagRQWQEMIdMr/m7ePraIyku/kdaqW1GfhaYdSwIZOheXW0rrc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA3SPRMB0029.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(22082099003)(18002099003)(10067099003)(4143699003)(5023799004)(11063799006)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?blBVMUpZelcxUjhnakd5T3ZxUUY4WDh3NjVaUjdxQmxPa3Zqd2dwN3BRTldB?=
+ =?utf-8?B?SmkvZFpyT0k2UHRjL2NidmtKcmdSQW4yT3NlRVloVC9vQVJiL1JramNuRjJh?=
+ =?utf-8?B?VmRRQjVpY2M2a3JCRmNJSzF1TFZFNnh5K0w1WjVHS05lQUtOUGtwTStNaXdN?=
+ =?utf-8?B?ZTQ1MGE2eThGTlJnTzh1T0EraFF4YjRmVUcyTmF3RDRUb0tKWi9yMnBBSUwv?=
+ =?utf-8?B?ajlianNkczFnaCtTWFBzR2FXZzcrVnNtTi8wK21MRkJUMm00WXl0RzVhREdS?=
+ =?utf-8?B?U1ZRZnBHUmF0WnpkOVNZZk82dG9ESFhmTUlUYWJwaXZadE56c0FVVXFBL2Y1?=
+ =?utf-8?B?K09WbzZSMmRSaHNkTEV6MGZTOGloUmdtMDNUekRrYm41NFhJeFZhcE1IbzRK?=
+ =?utf-8?B?NlovM0Nwd2R0SDJZVndZM2FjU0FFMHBobVRJRDVVcExTSjVZUjJKUXdZM0RY?=
+ =?utf-8?B?MGgxWkExMmc3b3B0enZqalFwcjlud3ZEeDc4eC9tU2luY0VyL0FwTjNaelda?=
+ =?utf-8?B?eWtDS3B3bWV6QlBIYk5XN0tmZnZyVDVwQmFRNFJNKzFEejcva01HQWFaSk5z?=
+ =?utf-8?B?UzljRnJvbXYyVUNOWWtRLzVBNVM5TGVHaFhyQ2I1cEt3QkxaUnpyTWJzeFkz?=
+ =?utf-8?B?am9NbFppb0tsbS9Bd3NYaDJGMGRCQnhTUVhHelQvbmdHSGhIanpPbCtlOEdC?=
+ =?utf-8?B?US9jSVpVN3FzTXd1T2F1d0lod1UxZXc3dUhrTkU5b3FUY2hxbGU4YnJZQWtv?=
+ =?utf-8?B?c0RvbGEzRXJRNG9GN0dhUlduSW16dEI3S3lPUnBudFIxeGRWb1RQMndReGlw?=
+ =?utf-8?B?c3c1RzZJbnZCY2g4MHhxRXY5cTJvUGRIWnN4enBBT0pmazZoSU1VckdkU3dw?=
+ =?utf-8?B?ajFVQm1TeFFvSFJsTTZGYTJVUkxGVlF2d0dlTE85ZUpVb2VibkZZT281dWdW?=
+ =?utf-8?B?UUM5ZWpIVTBSZDVIWFFyY0tWeGw3alQzYk5IMXRWYjFSQjhhSHZ1cDJ3Z0Rk?=
+ =?utf-8?B?OE51RS9GN0ZDdFpTUmxLdmYyVVB2d1ZQV0FXMXRLclNSUVBYcHgzZVBVTUIr?=
+ =?utf-8?B?VnY2Ukkyc2Y3eTd0SmRNRlJWTDVLbU95YXJxdGNBMndHWFRveDlGSllwRklY?=
+ =?utf-8?B?dEFIQjBZSUlaMFRMVVhIWkJaS2JhUWhzZ3FQQUxUUVVuc2hIVnU0SEJXOHc4?=
+ =?utf-8?B?bWhYOVFQQ2NVSnhiY0pFb1VJeFRjenUwakc5SkFxcWFLcHlid1FRQzB6QjFu?=
+ =?utf-8?B?K2xKQzNKWHBWRXJNYTZSWXF1bHlkckZWSzVsbzZJUGtXOGh0R0ZkQkJpbnJR?=
+ =?utf-8?B?Z2dHMFdMUDk2Q1ppczYvaFZ2UC93b2RQV2tsbjZGNXJ2a1poQjBEMStjb3Vt?=
+ =?utf-8?B?UzAwTVgyK2lYYzB1cDgzei9OTklSTEprQ1d2bWRkY1lqbVQzd0Vra0VIREdW?=
+ =?utf-8?B?amR3ZWYvWE9hdDNManRqTTE4VnB4RFNHWTY0Q2E1MjRBUXBFMnNRZm1HUGls?=
+ =?utf-8?B?NjhtU2dJaGNRdmRSZW1yUFdKRm80VXM5K1BNSDZ5NVBNZWhlTElTUmp5dXgv?=
+ =?utf-8?B?RWFmWEk5bzViWVl2RDBGa0loVDNLdVlVMXI0NVdHV1VYVTR5UU45UDhmelhT?=
+ =?utf-8?B?Yk5QM1NlbU5acmZzVVl3UFpieE5jT2RJeEhWN3dXeG1JRXU1Vnh4Z2pwOGNq?=
+ =?utf-8?B?bm1RcDl6UmpqZXhIdWZKcmo0eWZyQzdOcFk3NEpYS3U0ZERXZnEvT0g4WWgw?=
+ =?utf-8?B?bFdBNVNvMVdNcFJNSDBxaUMvcHFRNm1abFB3a2UrQTBqNHBQS0oxMGZoK2ox?=
+ =?utf-8?B?YnlXQ3RoL0kyMzkyMXVKWnAxQm1OeC8xdjQ1eWVDMzRQUnBzQVlpTnNPZmtX?=
+ =?utf-8?B?bExiNUsyMTdpZkFZVmg3OE9oSlBqWmRYeXlGYm1GNjFiWmVlU3FsQVV3Z2tH?=
+ =?utf-8?B?MGR6Nk1QRng3Q01QTnNWVlFiL2Y2TWdIdEdlUTl4bk1yYkdtQ3NmY0F1OTQ3?=
+ =?utf-8?B?RG0yWkJLeTVWTkZheEN2YVZ0UVdiMjI1SkpXSjZ6RzZibEVTV1cwaW1RdldX?=
+ =?utf-8?B?ZXVqcXdWUGQ0bDhiZllMZXdMUFdFUUJaeVFQS3U2WmQzaWE0SXhJeHlhMmxF?=
+ =?utf-8?B?dXNJSmU0ci9JZG9NaDd3WHJNSndwMDRlV0VqNUJRRzFqRmVzbCs5Q0RnNmtZ?=
+ =?utf-8?B?cFNKOXc0VTN2WE91TFN4eDlTaXo5ZGViTVZGUStWaWEvZHB0WGwrZncyRVo2?=
+ =?utf-8?B?Nk5Cbk9pQXBiSmRxRXBBeitTejJHYXRWNmxYTStoMDZhVmhwRW85dTNqekJz?=
+ =?utf-8?B?d2QySzc4d0ZWdmRjOXlDM3RsbGhGM3JYOGZjVjBYQ0lwYTY4ZXArRHJFTG1P?=
+ =?utf-8?Q?wUVnHAKdMgLdyRlQ=3D?=
+X-Exchange-RoutingPolicyChecked: LRKguN3GC1LCQjnQrMwAtfLHpbOMKnX2KAVZJhit9DSd06IU3WKvUzoc2tC57SeILD06O3lumjCFfrbcVkayLgijL8bOFIUKDf0B7oXmkrUI/5HQbBC2zFP8+W1hlQwsamqIdDnAZj1MqZhmksv4cQKwIx+q0879NziLP3xbKED1iZF78iXRnaGjYBRV3A12d9Fq8yIwRokdi9vt9IdXUfM3yRmF+vjP7pVEDveuILqDavs030wt9BzhftfbGKZ330r+UsgbJJeiCspgTVqkq2ynF81suzsl79QcGtAEx1qu3FytXCS9hX4hPhM9enc+6UVrRfk1a9WWorIDMBnvmQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: b2794566-b9e9-494f-3e25-08df2384d327
+X-MS-Exchange-CrossTenant-AuthSource: IA3SPRMB0029.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5242.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 66829af0-86e0-4c49-fa61-08df2383bbe3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Oct 2026 08:28:00.9820 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tyoPK4V6SFOpx/CGskdSUa3nCch4JvIVKmhgAlFj/yHwvG13PLSY2K2byX50g6Tai/gXqa/tMa6FvrBxWrfc9yvJUZynwXNlYsT7QixRRRk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7186
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2026 08:35:49.8619 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8pFg8/jjuOO8kg24sUXUcmWiWF8GxL4vUhq1oFTFbdRMOOjwEpOq9RsdIZWc6iNmawB3MpnqEH5AjFrQ/8tqomRjYcczMSlwl6sswoMl50A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6924
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -177,173 +170,817 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTmlsYXdhciwgQmFkYWwg
-PGJhZGFsLm5pbGF3YXJAaW50ZWwuY29tPg0KPiBTZW50OiBUaHVyc2RheSwgT2N0b2JlciAxLCAy
-MDI2IDY6NDggUE0NCj4gVG86IFdhamRlY3prbywgTWljaGFsIDxtaWNoYWwud2FqZGVjemtvQGlu
-dGVsLmNvbT47IGludGVsLQ0KPiB4ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IFZpdmksIFJvZHJp
-Z28gPHJvZHJpZ28udml2aUBpbnRlbC5jb20+DQo+IENjOiBHdXB0YSwgQW5zaHVtYW4gPGFuc2h1
-bWFuLmd1cHRhQGludGVsLmNvbT47IEphZGF2LCBSYWFnDQo+IDxyYWFnLmphZGF2QGludGVsLmNv
-bT47IFRhdXJvLCBSaWFuYSA8cmlhbmEudGF1cm9AaW50ZWwuY29tPjsgS291amFsYWdpLA0KPiBN
-YWxsZXNoIDxtYWxsZXNoLmtvdWphbGFnaUBpbnRlbC5jb20+OyBJZGRhbXNldHR5LCBBcmF2aW5k
-DQo+IDxhcmF2aW5kLmlkZGFtc2V0dHlAaW50ZWwuY29tPjsgaGVpa2tpLmtyb2dlcnVzQGxpbnV4
-LmludGVsLmNvbTsNCj4gR2hpbWlyYXksIEhpbWFsIFByYXNhZCA8aGltYWwucHJhc2FkLmdoaW1p
-cmF5QGludGVsLmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2MiAxLzJdIGRybS94ZS9pMmM6
-IEV4cG9zZSBBTUMgQWxlcnQgcmVhc29uIHN5c2ZzDQo+IA0KPiANCj4gT24gMTAtMDktMjAyNiAy
-MDoxMSwgTWljaGFsIFdhamRlY3prbyB3cm90ZToNCj4gPg0KPiA+IE9uIDkvMTAvMjAyNiAyOjQx
-IFBNLCBCYWRhbCBOaWxhd2FyIHdyb3RlOg0KPiA+PiBBTUMgcmFpc2VzIGFuIFNNQlVTIGFsZXJ0
-IGJlZm9yZSBwZXJmb3JtaW5nIGEgcG93ZXIgcmVtb3ZhbCBvcg0KPiA+PiBwb3dlci1jeWNsZSBv
-cGVyYXRpb24uIFRoZSB4ZSBkcml2ZXIgdGhlbiBwbGFjZXMgdGhlIGRldmljZSBpbnRvDQo+ID4+
-IHZlbmRvci1zcGVjaWZpYyB3ZWRnZSBtb2RlIHVudGlsIHRoZSByZWNvdmVyeSBpcyBwZXJmb3Jt
-ZWQuDQo+ID4+DQo+ID4+IEV4cG9zZSBhIHJlYWQtb25seSB4ZV9hbWNfYWxlcnRfcmVhc29uIHN5
-c2ZzIGF0dHJpYnV0ZSB0byBoZWxwIHVzZXJzDQo+ID4+IGlkZW50aWZ5IHRoZSByZXF1aXJlZCBy
-ZWNvdmVyeSBhY3Rpb24uDQo+ID4+DQo+ID4+IEFzc2lzdGVkLWJ5OiBDbGF1ZGU6Y2xhdWRlLW9w
-dXMtNC44DQo+ID4+IFNpZ25lZC1vZmYtYnk6IEJhZGFsIE5pbGF3YXIgPGJhZGFsLm5pbGF3YXJA
-aW50ZWwuY29tPg0KPiA+PiAtLS0NCj4gPj4gdjI6DQo+ID4+ICAgLSBDcmVhdGVkIHN5c2ZzIGR1
-cmluZyBpMmMgcHJvYmUgdGltZQ0KPiA+PiAgIC0gRml4IERvY3VtZW50YXRpb24gKFJvZHJpZ28p
-DQo+ID4+IHYzOg0KPiA+PiAgIC0gS2VlcCBsaW1pdGVkIGluZm9ybWF0aW9uIGluICJET0M6IiBz
-ZWN0aW9uIChNaWNoYWwpDQo+ID4+ICAgLSBIYW5kbGUgQU1DIGFsZXJ0IG5vbmUgYW5kIHVua25v
-d24gY2FzZXMsIGRvY3VtZW50DQo+ID4+ICAgICBpbiBBQkkNCj4gPj4gICAtIENsZWFyIGkyYy0+
-YW1jIG9uIHN5c2ZzIGNyZWF0aW9uIGZhaWx1cmUgKFNhc2hpa28pDQo+ID4+IC0tLQ0KPiA+PiAg
-IC4uLi9BQkkvdGVzdGluZy9zeXNmcy1kcml2ZXItaW50ZWwteGUtYW1jICAgICB8IDI1ICsrKysr
-Kw0KPiA+PiAgIGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9hbWMuYyAgICAgICAgICAgICAgICAgICB8
-IDc4ICsrKysrKysrKysrKysrKystLS0NCj4gPj4gICAyIGZpbGVzIGNoYW5nZWQsIDkzIGluc2Vy
-dGlvbnMoKyksIDEwIGRlbGV0aW9ucygtKQ0KPiA+PiAgIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiA+
-PiBEb2N1bWVudGF0aW9uL0FCSS90ZXN0aW5nL3N5c2ZzLWRyaXZlci1pbnRlbC14ZS1hbWMNCj4g
-Pj4NCj4gPj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vQUJJL3Rlc3Rpbmcvc3lzZnMtZHJp
-dmVyLWludGVsLXhlLWFtYw0KPiA+PiBiL0RvY3VtZW50YXRpb24vQUJJL3Rlc3Rpbmcvc3lzZnMt
-ZHJpdmVyLWludGVsLXhlLWFtYw0KPiA+PiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+PiBpbmRl
-eCAwMDAwMDAwMDAwMDAuLjNiYWU3OGQxZTBkOQ0KPiA+PiAtLS0gL2Rldi9udWxsDQo+ID4+ICsr
-KyBiL0RvY3VtZW50YXRpb24vQUJJL3Rlc3Rpbmcvc3lzZnMtZHJpdmVyLWludGVsLXhlLWFtYw0K
-PiA+PiBAQCAtMCwwICsxLDI1IEBADQo+ID4+ICtXaGF0OgkJL3N5cy9idXMvcGNpL2RyaXZlcnMv
-eGUvLi4uL3hlX2FtY19hbGVydF9yZWFzb24NCj4gPiBkbyB3ZSBuZWVkIHRoaXMgJ3hlJyBwcmVm
-aXg/DQo+ID4gaXQgaXMgYWxyZWFkeSBsaXN0ZWQgYXMgYXZhaWxhYmxlIG9uIHhlIGRyaXZlcnMg
-b25seQ0KPiBNYWtlIHNlbnNlLCBJIHdpbGwgZHJvcCB4ZV8gcHJlZml4Lg0KPiA+DQo+ID4+ICtE
-YXRlOgkJU2VwdGVtYmVyIDIwMjYNCj4gPj4gK0tlcm5lbFZlcnNpb246CTcuNA0KPiA+PiArQ29u
-dGFjdDoJaW50ZWwteGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+ID4+ICtEZXNjcmlwdGlvbjoN
-Cj4gPj4gKwkJVGhpcyBmaWxlIGV4cG9zZXMgdGhlIHJlYXNvbiBmb3IgdGhlIG1vc3QgcmVjZW50
-IEFkZC1Jbg0KPiA+PiArCQlNYW5hZ2VtZW50IENvbnRyb2xsZXIgKEFNQykgYWxlcnQgb24gSW50
-ZWwgWGUgcGxhdGZvcm1zLg0KPiA+IEkgZ3Vlc3Mgd2Ugc2hvdWxkIGFkZCAiLi4uIG9uIHNlbGVj
-dGVkIFhlIHBsYXRmb3Jtcy4iDQo+IFN1cmUNCj4gPg0KPiA+PiArDQo+ID4+ICsJCUFuIEFNQyBh
-bGVydCBpcyBkZWxpdmVyZWQgdmlhIGFuIFNNQlVTIGludGVycnVwdCBhbmQgY2F1c2VzDQo+IHRo
-ZQ0KPiA+PiArCQlkZXZpY2UgdG8gYmUgd2VkZ2VkLCByZXF1aXJpbmcgdmVuZG9yLXNwZWNpZmlj
-IHJlY292ZXJ5LiBUaGlzDQo+ID4+ICsJCWF0dHJpYnV0ZSBpcyBjcmVhdGVkIHdoZW4gc3VjaCBh
-biBhbGVydCBpcyBoYW5kbGVkIGFuZCBpcw0KPiA+PiArCQlhdmFpbGFibGUgdG8gYWxsIHVzZXJz
-IGFzIHJlYWQtb25seS4NCj4gPj4gKw0KPiA+PiArCQlSZWFkIHJldHVybnMgYSBzaW5nbGUgbGlu
-ZSBjb250YWluaW5nIG9uZSBvZiB0aGUgZm9sbG93aW5nDQo+ID4+ICsJCWFsZXJ0IHJlYXNvbnM6
-DQo+ID4+ICsNCj4gPj4gKwkJCW5vbmUNCj4gPiBvdGhlciBBQkkgZG9jdW1lbnRhdGlvbnMgYXJl
-IHF1b3RpbmcgcG9zc2libGUgbmFtZXM6DQo+ID4NCj4gPiAJCQkibm9uZSINCj4gPg0KPiA+PiAr
-CQkJCU5vIEFNQyBhbGVydCBoYXMgYmVlbiByZWNlaXZlZA0KPiA+PiArCQkJdW5rbm93bg0KPiA+
-IAkJCSJ1bmtub3duIg0KPiBTdXJlLg0KPiA+IC4uLg0KPiA+DQo+ID4+ICsJCQkJQU1DIGFsZXJ0
-IHJlY2VpdmVkIGJ1dCB3aXRoIGludmFsaWQgcmVhc29uDQo+IGNvZGUNCj4gPiBtYXliZSBlaXRo
-ZXIgY2hhbmdlIGFib3ZlIHRhZyB0byAiaW52YWxpZCIgb3IgZGVzY3JpcHRpb246ICIuLi4gd2l0
-aA0KPiB1bmtub3duIHJlYXNvbiAuLi4iDQo+IE9rLg0KPiA+DQo+ID4+ICsJCQlmaXJtd2FyZV9k
-b3dubG9hZA0KPiA+PiArCQkJdGhlcm1hbF90cmlwDQo+ID4+ICsJCQlvb2JfcmVxdWVzdA0KPiA+
-PiArCQkJb29iX3Jlc2V0DQo+ID4+ICsJCQljYXRhc3Ryb3BoaWMNCj4gPj4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9hbWMuYw0KPiA+PiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94
-ZV9hbWMuYyBpbmRleCBlZGQ1MGJmODI2MWUuLmJiOWQyNjBmODAwZg0KPiAxMDA2NDQNCj4gPj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2FtYy5jDQo+ID4+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS94ZS94ZV9hbWMuYw0KPiA+PiBAQCAtMTgsNiArMTgsNyBAQA0KPiA+PiAgICNpbmNsdWRl
-ICJ4ZV9kZXZpY2UuaCINCj4gPj4gICAjaW5jbHVkZSAieGVfaTJjLmgiDQo+ID4+ICAgI2luY2x1
-ZGUgInhlX21taW8uaCINCj4gPj4gKyNpbmNsdWRlICJ4ZV9wcmludGsuaCINCj4gPj4NCj4gPj4g
-ICAvKioNCj4gPj4gICAgKiBET0M6IEFkZC1JbiBNYW5hZ2VtZW50IENvbnRyb2xsZXIgKEFNQykg
-QEAgLTQzLDE5ICs0NCwyMyBAQA0KPiBlbnVtDQo+ID4+IHhlX2FtY19hbGVydCB7DQo+ID4+ICAg
-CUFNQ19BTEVSVF9PT0JfUkVRVUVTVCwNCj4gPj4gICAJQU1DX0FMRVJUX09PQl9SRVNFVCwNCj4g
-Pj4gICAJQU1DX0FMRVJUX0NBVEVSUiwNCj4gPj4gKwlBTUNfQUxFUlRfTk9ORSA9IFU4X01BWCwN
-Cj4gPiBpcyB0aGlzIGRlZmluZWQgYnkgQU1DIChhcyBwYXJ0IG9mIHRoZSBBTUMgQUJJPw0KPiA+
-DQo+ID4gaWYgbm90LCB0aGVuIG1heWJlIHlvdSBuZWVkIHByaXZhdGUgZmllbGQ6DQo+ID4NCj4g
-PiAJYm9vbCBhbGVydF92YWxpZDsNCj4gV2lsbCBhZGQgdGhpcyBmaWVsZCB0byBoYW5kbGUgIm5v
-bmUiLg0KPiA+DQo+ID4+ICAgfTsNCj4gPj4NCj4gPj4gICBzdGF0aWMgY29uc3QgY2hhciAqIGNv
-bnN0IGFtY19hbGVydFtdID0gew0KPiA+PiAtCVtBTUNfQUxFUlRfRldfRE9XTkxPQURdCQk9ICJG
-aXJtd2FyZQ0KPiBEb3dubG9hZCIsDQo+ID4+IC0JW0FNQ19BTEVSVF9USEVSTUFMX1RSSVBdCT0g
-IlRoZXJtYWwgVHJpcCIsDQo+ID4+IC0JW0FNQ19BTEVSVF9PT0JfUkVRVUVTVF0JCT0gIk9PQiBS
-ZXF1ZXN0IiwNCj4gPj4gLQlbQU1DX0FMRVJUX09PQl9SRVNFVF0JCT0gIk9PQiBSZXNldCIsDQo+
-ID4+IC0JW0FNQ19BTEVSVF9DQVRFUlJdCQk9ICJDYXRhc3Ryb3BoaWMiLA0KPiA+PiArCVtBTUNf
-QUxFUlRfVU5LTk9XTl0JCT0gInVua25vd24iLA0KPiA+PiArCVtBTUNfQUxFUlRfRldfRE9XTkxP
-QURdCQk9DQo+ICJmaXJtd2FyZV9kb3dubG9hZCIsDQo+ID4+ICsJW0FNQ19BTEVSVF9USEVSTUFM
-X1RSSVBdCT0gInRoZXJtYWxfdHJpcCIsDQo+ID4+ICsJW0FNQ19BTEVSVF9PT0JfUkVRVUVTVF0J
-CT0gIm9vYl9yZXF1ZXN0IiwNCj4gPj4gKwlbQU1DX0FMRVJUX09PQl9SRVNFVF0JCT0gIm9vYl9y
-ZXNldCIsDQo+ID4+ICsJW0FNQ19BTEVSVF9DQVRFUlJdCQk9ICJjYXRhc3Ryb3BoaWMiLA0KPiA+
-PiArCVtBTUNfQUxFUlRfTk9ORV0JCT0gIm5vbmUiLA0KPiA+IGlzIHRoZXJlIGFueSBzdHJpY3Qg
-cmVxdWlyZW1lbnQgdGhhdCB3ZSBuZWVkIHRvIHVzZSBsb3dlcmNhc2UvdW5kZXJzY29yZXMNCj4g
-b25seT8NCj4gVGhlcmUgd2FzIHN1Z2dlc3Rpb24gaW4gcHJldmlvdXMgcmV2IHRvIGZvbGxvdyB0
-aGlzIHdheS4NCj4gPg0KPiA+IGZvciBzeXNmcyB3ZSBhcmUgcHJpbnRpbmcgdGV4dCBsaW5lLCBJ
-TU8gd2Ugc2hvdWxkIGJlIGdvb2Qgd2l0aCBvbGQNCj4gPiBuYW1lcw0KPiA+DQo+ID4+ICAgfTsN
-Cj4gPj4NCj4gPj4gICBzdHJ1Y3QgeGVfYW1jIHsNCj4gPj4gICAJc3RydWN0IHhlX2kyYyAqaTJj
-Ow0KPiA+PiAgIAlzdHJ1Y3Qgd29ya19zdHJ1Y3Qgd29yazsNCj4gPj4gKwl1OCBhbGVydF9yZWFz
-b247DQo+ID4+ICAgfTsNCj4gPj4NCj4gPj4gICBzdHJ1Y3QgYW1jX2hlYWRlciB7DQo+ID4+IEBA
-IC0xMDQsNiArMTA5LDQyIEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgYW1jX3JlcXVlc3QNCj4gYW1j
-X2dldF9hbGVydF9yZWFzb24gPSB7DQo+ID4+ICAgCX0sDQo+ID4+ICAgfTsNCj4gPj4NCj4gPj4g
-Ky8qKg0KPiA+PiArICogRE9DOiBBTUMgQWxlcnQgUmVhc29uDQo+ID4+ICsgKg0KPiA+PiArICog
-T24gSW50ZWwgWGUgcGxhdGZvcm1zLCBBTUMgc2VuZHMgYW4gYWxlcnQgbm90aWZpY2F0aW9uIHZp
-YSBhbg0KPiA+PiArU01CVVMgaW50ZXJydXB0DQo+ID4+ICsgKiB0byBub3RpZnkgZXZlbnRzIHN1
-Y2ggYXMgZmlybXdhcmUgZG93bmxvYWQsIHRoZXJtYWwgdHJpcCBvciBhDQo+ID4+ICsgKiBjYXRh
-c3Ryb3BoaWMgZXJyb3IuIFNlZSBlbnVtIHhlX2FtY19hbGVydCBmb3IgdGhlIGZ1bGwgbGlzdCBv
-ZiByZWFzb25zLg0KPiA+PiArICogVXBvbiBhbiBBTUMgYWxlcnQgdGhlIGRldmljZSBpcyB3ZWRn
-ZWQgYW5kIHJlcXVpcmVzIHZlbmRvci1zcGVjaWZpYw0KPiByZWNvdmVyeS4NCj4gPj4gKyAqDQo+
-ID4+ICsgKiBTZWUgRG9jdW1lbnRhdGlvbi9BQkkvdGVzdGluZy9zeXNmcy1kcml2ZXItaW50ZWwt
-eGUtYW1jIGZvciB0aGUNCj4gPj4gK0FCSQ0KPiA+PiArICogc3BlY2lmaWNhdGlvbi4NCj4gPj4g
-KyAqLw0KPiA+PiArDQo+ID4+ICtzdGF0aWMgc3NpemVfdCB4ZV9hbWNfYWxlcnRfcmVhc29uX3No
-b3coc3RydWN0IGRldmljZSAqZGV2LA0KPiA+PiArCQkJCQlzdHJ1Y3QgZGV2aWNlX2F0dHJpYnV0
-ZSAqYXR0ciwgY2hhcg0KPiAqYnVmKSB7DQo+ID4+ICsJc3RydWN0IHhlX2RldmljZSAqeGUgPSBw
-ZGV2X3RvX3hlX2RldmljZSh0b19wY2lfZGV2KGRldikpOw0KPiA+PiArCXN0cnVjdCB4ZV9hbWMg
-KmFtYyA9IHhlLT5pMmMtPmFtYzsNCj4gPj4gKw0KPiA+PiArCXJldHVybiBzeXNmc19lbWl0KGJ1
-ZiwgIiVzXG4iLCBhbWNfYWxlcnRbYW1jLT5hbGVydF9yZWFzb25dKTsgfQ0KPiA+PiArc3RhdGlj
-IERFVklDRV9BVFRSX1JPKHhlX2FtY19hbGVydF9yZWFzb24pOw0KPiA+PiArDQo+ID4+ICtzdGF0
-aWMgdm9pZCB4ZV9hbWNfcmVtb3ZlX2FsZXJ0X3N5c2ZzKHN0cnVjdCB4ZV9pMmMgKmkyYykgew0K
-PiA+PiArCXN0cnVjdCBkZXZpY2UgKmRldiA9IGkyYy0+ZHJtX2RldjsNCj4gPj4gKw0KPiA+PiAr
-CWRldmljZV9yZW1vdmVfZmlsZShkZXYsICZkZXZfYXR0cl94ZV9hbWNfYWxlcnRfcmVhc29uKTsg
-fQ0KPiA+PiArDQo+ID4+ICtzdGF0aWMgaW50IHhlX2FtY19jcmVhdGVfYWxlcnRfc3lzZnMoc3Ry
-dWN0IHhlX2kyYyAqaTJjKSB7DQo+ID4+ICsJc3RydWN0IGRldmljZSAqZGV2ID0gaTJjLT5kcm1f
-ZGV2Ow0KPiA+PiArDQo+ID4+ICsJcmV0dXJuIGRldmljZV9jcmVhdGVfZmlsZShkZXYsICZkZXZf
-YXR0cl94ZV9hbWNfYWxlcnRfcmVhc29uKTsNCj4gPiBjYW4ndCB3ZSB1c2UgbWFuYWdlZCB2YXJp
-YW50IG9mIHN5c2ZzIGluaXRpYWxpemF0aW9uPw0KPiBUbyBmb2xsb3cgaTJjLT5hbWMgbGlmZXRp
-bWUgYXZvaWRlZCB1c2luZyBtYW5hZ2VkIHZhcmlhbnQuDQo+ID4+ICt9DQo+ID4+ICsNCj4gPj4g
-ICBzdGF0aWMgdm9pZCB4ZV9hbWNfd29yayhzdHJ1Y3Qgd29ya19zdHJ1Y3QgKndvcmspDQo+ID4+
-ICAgew0KPiA+PiAgIAljb25zdCBzdHJ1Y3QgYW1jX3JlcXVlc3QgKnJlcXVlc3QgPSAmYW1jX2dl
-dF9hbGVydF9yZWFzb247IEBADQo+ID4+IC0xNTgsMTIgKzE5OSwxOSBAQCBzdGF0aWMgdm9pZCB4
-ZV9hbWNfd29yayhzdHJ1Y3Qgd29ya19zdHJ1Y3QgKndvcmspDQo+ID4+ICAgCWNhc2UgQU1DX0FM
-RVJUX1RIRVJNQUxfVFJJUDoNCj4gPj4gICAJY2FzZSBBTUNfQUxFUlRfT09CX1JFUVVFU1Q6DQo+
-ID4+ICAgCWNhc2UgQU1DX0FMRVJUX09PQl9SRVNFVDoNCj4gPj4gLQljYXNlIEFNQ19BTEVSVF9D
-QVRFUlI6DQo+ID4+IC0JCWRldl93YXJuKGFtYy0+aTJjLT5kcm1fZGV2LCAiQU1DIEFsZXJ0OiAl
-c1xuIiwNCj4gYW1jX2FsZXJ0W2FsZXJ0X3JlYXNvbl0pOw0KPiA+PiAtCQl4ZV9kZXZpY2VfZGVj
-bGFyZV93ZWRnZWQoaTJjX2NsaWVudF90b194ZV9kZXZpY2UoY2xpZW50KSk7DQo+ID4+ICsJY2Fz
-ZSBBTUNfQUxFUlRfQ0FURVJSOiB7DQo+ID4+ICsJCXN0cnVjdCB4ZV9kZXZpY2UgKnhlID0gaTJj
-X2NsaWVudF90b194ZV9kZXZpY2UoY2xpZW50KTsNCj4gPj4gKw0KPiA+PiArCQlkZXZfd2Fybihh
-bWMtPmkyYy0+ZHJtX2RldiwNCj4gPj4gKwkJCSAiQU1DIEFsZXJ0OiAlcyAoJXUpXG4iLCBhbWNf
-YWxlcnRbYWxlcnRfcmVhc29uXSwNCldoeSBhcmUgd2Ugbm90IHVzaW5nIGRybV8gIHNlbWFudGlj
-cyA/IE1heSBiZSBhIHNlcGFyYXRlIHBhY3RoIHJlcXVpcmVkIHRvIHVzZSBkcm1fIHNlbWFudGlj
-cyBoZXJlIGFzIHRoaXMgaXMgYSBkcm0gZHJpdmVyLg0KVGhhbmtzLA0KQW5zaHVtYW4NCj4gYWxl
-cnRfcmVhc29uKTsNCj4gPiBtYXliZSB3ZSBzaG91bGQgdXNlIHhlX2xvZyhBTUMpID8NCj4gTWF5
-IGJlIGluIHRoZSBzZXBhcmF0ZSBwYXRjaCB3aXRoIEFNQyBjb21wb25lbnQgYWRkZWQuDQo+ID4+
-ICsJCWFtYy0+YWxlcnRfcmVhc29uID0gYWxlcnRfcmVhc29uOw0KPiA+PiArCQl4ZV9kZXZpY2Vf
-c2V0X3dlZGdlZF9tZXRob2QoeGUsDQo+IERSTV9XRURHRV9SRUNPVkVSWV9WRU5ET1IpOw0KPiA+
-PiArCQl4ZV9kZXZpY2VfZGVjbGFyZV93ZWRnZWQoeGUpOw0KPiA+PiAgIAkJYnJlYWs7DQo+ID4+
-ICsJfQ0KPiA+PiAgIAlkZWZhdWx0Og0KPiA+PiAtCQlkZXZfd2FybihhbWMtPmkyYy0+ZHJtX2Rl
-diwgInVua25vd24gQU1DIGFsZXJ0OiAlZFxuIiwNCj4gYWxlcnRfcmVhc29uKTsNCj4gPj4gKwkJ
-YW1jLT5hbGVydF9yZWFzb24gPSBBTUNfQUxFUlRfVU5LTk9XTjsNCj4gPiBobW0sIGlzIEFNQ19B
-TEVSVF9VTktOT1dOKDApIGFjdHVhbCBBTUMgQUJJIGRlZmluaXRpb24gb3IgaXQgaXMganVzdCBh
-DQo+IGRyaXZlciBkZWZpbmU/DQo+ID4NCj4gPiBzaG91bGRuJ3Qgd2Ugc3RpbGwgc3RvcmUgYWxl
-cnRfcmVhc29uIGNvZGU/DQo+ID4gdGhlbiBpbiBzeXNmcyB5b3Ugd2lsbCBiZSBhYmxlIHRvIGVt
-aXQ6DQo+ID4NCj4gPiAJCSJVbmtub3duIGFsZXJ0ICUjeCINCj4gDQo+IEkgZG9uJ3QgdGhpbmsg
-d2UgbmVlZCB0byBwcmVzZXJ2ZSByYXcgY29kZSBmb3Igc3lzZnMuIFdlIGFscmVhZHkgbG9nIHRo
-ZQ0KPiByZWNlaXZlZCBjb2RlIHdpdGggZGV2X3dhcm4oKS4NCj4gDQo+IEZvciB0aGUgdXNlcnNw
-YWNlIEFCSSwgdW5rbm93biBzaG91bGQgYmUgc3VmZmljaWVudCB0byBpbmRpY2F0ZSB0aGF0IGFu
-IGFsZXJ0DQo+IHdhcyByZWNlaXZlZCB3aXRoIGFuIHVucmVjb2duaXplZCByZWFzb24gY29kZS4N
-Cj4gDQo+IFRoYW5rcywNCj4gDQo+IEJhZGFsDQo+IA0KPiA+DQo+ID4+ICsJCWRldl93YXJuKGFt
-Yy0+aTJjLT5kcm1fZGV2LCAiQU1DIEFsZXJ0OiB1bmtub3duDQo+ICgldSlcbiIsDQo+ID4+ICth
-bGVydF9yZWFzb24pOw0KPiA+PiAgIAkJYnJlYWs7DQo+ID4+ICAgCX0NCj4gPj4gICB9DQo+ID4+
-IEBAIC0xNzYsNiArMjI0LDcgQEAgdm9pZCB4ZV9hbWNfaGFuZGxlX2FsZXJ0KHN0cnVjdCB4ZV9p
-MmMgKmkyYykNCj4gPj4gICBpbnQgeGVfYW1jX2luaXQoc3RydWN0IHhlX2kyYyAqaTJjKQ0KPiA+
-PiAgIHsNCj4gPj4gICAJc3RydWN0IHhlX2FtYyAqYW1jOw0KPiA+PiArCWludCByZXQ7DQo+ID4+
-DQo+ID4+ICAgCWFtYyA9IGt6YWxsb2Nfb2JqKCphbWMpOw0KPiA+PiAgIAlpZiAoIWFtYykNCj4g
-Pj4gQEAgLTE4NSwxMyArMjM0LDIyIEBAIGludCB4ZV9hbWNfaW5pdChzdHJ1Y3QgeGVfaTJjICpp
-MmMpDQo+ID4+ICAgCWkyYy0+YW1jID0gYW1jOw0KPiA+PiAgIAlhbWMtPmkyYyA9IGkyYzsNCj4g
-Pj4NCj4gPj4gLQlyZXR1cm4gMDsNCj4gPj4gKwlhbWMtPmFsZXJ0X3JlYXNvbiA9IEFNQ19BTEVS
-VF9OT05FOw0KPiA+PiArCXJldCA9IHhlX2FtY19jcmVhdGVfYWxlcnRfc3lzZnMoaTJjKTsNCj4g
-Pj4gKwlpZiAocmV0KSB7DQo+ID4+ICsJCWtmcmVlKGkyYy0+YW1jKTsNCj4gPj4gKwkJaTJjLT5h
-bWMgPSBOVUxMOw0KPiA+PiArCX0NCj4gPj4gKw0KPiA+PiArCXJldHVybiByZXQ7DQo+ID4+ICAg
-fQ0KPiA+Pg0KPiA+PiAgIHZvaWQgeGVfYW1jX2V4aXQoc3RydWN0IHhlX2kyYyAqaTJjKQ0KPiA+
-PiAgIHsNCj4gPj4gICAJaWYgKGkyYy0+YW1jKSB7DQo+ID4+ICsJCXhlX2FtY19yZW1vdmVfYWxl
-cnRfc3lzZnMoaTJjKTsNCj4gPj4gICAJCWNhbmNlbF93b3JrX3N5bmMoJmkyYy0+YW1jLT53b3Jr
-KTsNCj4gPj4gICAJCWtmcmVlKGkyYy0+YW1jKTsNCj4gPj4gKwkJaTJjLT5hbWMgPSBOVUxMOw0K
-PiA+PiAgIAl9DQo+ID4+ICAgfQ0K
+
+On 05-Oct-26 2:21 PM, Piórkowski, Piotr wrote:
+> From: Piotr Piórkowski <piotr.piorkowski@intel.com>
+>
+> Modify the GuC identifier manager so that it distinguishes between
+> usable GuC IDs allocated for GuC submissions, and shareable those that
+> can be shared with VFs. Both pools are represented as a single bitmap
+> and may overlap.
+> Let's Replace the single-pool accounting model with separate usable and
+> shareable pools, add helpers for pool accounting and limits, and update
+> debug reporting.
+>
+> For now, let's keep the current allocation behaviour by mapping both pools
+> onto the same GuC ID space. This prepares the ID manager for separate
+> management of submission IDs and VF allocations in following changes.
+>
+> v2: Do not change how VF IDs are allocated in the legacy path (Sashiko)
+>
+> v3: Fix shareable spare quota accounting to include
+>      PF-exclusive usable IDs.
+>
+> v4: Do not apply spare quota to VF-exclusive shareable IDs (Sashiko)
+>      Drop redundant checks and asserts (Satya)
+>
+> Assisted-by: Claude:claude-5-sonnet
+> Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> ---
+>   drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c |  57 +--
+>   drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |   2 +-
+>   drivers/gpu/drm/xe/xe_guc_id_mgr.c            | 443 ++++++++++++++----
+>   drivers/gpu/drm/xe/xe_guc_id_mgr.h            |  20 +-
+>   drivers/gpu/drm/xe/xe_guc_types.h             |   8 +-
+>   5 files changed, 405 insertions(+), 125 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c b/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
+> index ee30a1939eb0e..78d3de46b7572 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
+> @@ -24,8 +24,8 @@ static void bad_init(struct kunit *test)
+>   {
+>   	struct xe_guc_id_mgr *idm = test->priv;
+>   
+> -	KUNIT_EXPECT_EQ(test, -EINVAL, xe_guc_id_mgr_init(idm, 0));
+> -	KUNIT_EXPECT_EQ(test, -ERANGE, xe_guc_id_mgr_init(idm, GUC_ID_MAX + 1));
+> +	KUNIT_EXPECT_EQ(test, -EINVAL, idm_init(idm, 0, 0));
+> +	KUNIT_EXPECT_EQ(test, -ERANGE, idm_init(idm, GUC_ID_MAX + 1, 0));
+>   }
+>   
+>   static void no_init(struct kunit *test)
+> @@ -43,12 +43,12 @@ static void init_fini(struct kunit *test)
+>   {
+>   	struct xe_guc_id_mgr *idm = test->priv;
+>   
+> -	KUNIT_ASSERT_EQ(test, 0, xe_guc_id_mgr_init(idm, -1));
+> +	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, GUC_ID_MAX, 0));
+>   	KUNIT_EXPECT_NOT_NULL(test, idm->bitmap);
+> -	KUNIT_EXPECT_EQ(test, idm->total, GUC_ID_MAX);
+> +	KUNIT_EXPECT_EQ(test, idm_total(idm), GUC_ID_MAX);
+>   	__fini_idm(NULL, idm);
+>   	KUNIT_EXPECT_NULL(test, idm->bitmap);
+> -	KUNIT_EXPECT_EQ(test, idm->total, 0);
+> +	KUNIT_EXPECT_EQ(test, idm_total(idm), 0);
+>   }
+>   
+>   static void check_used(struct kunit *test)
+> @@ -56,19 +56,19 @@ static void check_used(struct kunit *test)
+>   	struct xe_guc_id_mgr *idm = test->priv;
+>   	unsigned int n;
+>   
+> -	KUNIT_ASSERT_EQ(test, 0, xe_guc_id_mgr_init(idm, 2));
+> +	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 2, 0));
+>   
+>   	mutex_lock(idm_mutex(idm));
+>   
+> -	for (n = 0; n < idm->total; n++) {
+> +	for (n = 0; n < idm_total(idm); n++) {
+>   		kunit_info(test, "n=%u", n);
+> -		KUNIT_EXPECT_EQ(test, idm->used, n);
+> -		KUNIT_EXPECT_GE(test, idm_reserve_chunk_locked(idm, 1, 0), 0);
+> -		KUNIT_EXPECT_EQ(test, idm->used, n + 1);
+> +		KUNIT_EXPECT_EQ(test, bitmap_weight(idm->bitmap, idm_total(idm)), n);
+> +		KUNIT_EXPECT_GE(test, xe_guc_id_mgr_reserve_usable_locked(idm, 1), 0);
+> +		KUNIT_EXPECT_EQ(test, bitmap_weight(idm->bitmap, idm_total(idm)), n + 1);
+>   	}
+> -	KUNIT_EXPECT_EQ(test, idm->used, idm->total);
+> -	idm_release_chunk_locked(idm, 0, idm->used);
+> -	KUNIT_EXPECT_EQ(test, idm->used, 0);
+> +	KUNIT_EXPECT_EQ(test, bitmap_weight(idm->bitmap, idm_total(idm)), idm_total(idm));
+> +	idm_release_chunk_locked(idm, 0, idm_total(idm));
+> +	KUNIT_EXPECT_EQ(test, bitmap_weight(idm->bitmap, idm_total(idm)), 0);
+>   
+>   	mutex_unlock(idm_mutex(idm));
+>   }
+> @@ -76,25 +76,12 @@ static void check_used(struct kunit *test)
+>   static void check_quota(struct kunit *test)
+>   {
+>   	struct xe_guc_id_mgr *idm = test->priv;
+> -	unsigned int n;
+> -
+> -	KUNIT_ASSERT_EQ(test, 0, xe_guc_id_mgr_init(idm, 2));
+>   
+> -	mutex_lock(idm_mutex(idm));
+> +	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, 2, 0));
+>   
+> -	for (n = 0; n < idm->total - 1; n++) {
+> -		kunit_info(test, "n=%u", n);
+> -		KUNIT_EXPECT_EQ(test, idm_reserve_chunk_locked(idm, 1, idm->total), -EDQUOT);
+> -		KUNIT_EXPECT_EQ(test, idm_reserve_chunk_locked(idm, 1, idm->total - n), -EDQUOT);
+> -		KUNIT_EXPECT_EQ(test, idm_reserve_chunk_locked(idm, idm->total - n, 1), -EDQUOT);
+> -		KUNIT_EXPECT_GE(test, idm_reserve_chunk_locked(idm, 1, 1), 0);
+> -	}
+> -	KUNIT_EXPECT_LE(test, 0, idm_reserve_chunk_locked(idm, 1, 0));
+> -	KUNIT_EXPECT_EQ(test, idm->used, idm->total);
+> -	idm_release_chunk_locked(idm, 0, idm->total);
+> -	KUNIT_EXPECT_EQ(test, idm->used, 0);
+> -
+> -	mutex_unlock(idm_mutex(idm));
+> +	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_usable(idm, 2), 0);
+> +	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_reserve_usable(idm, 1), -ENOSPC);
+> +	KUNIT_EXPECT_EQ(test, xe_guc_id_mgr_release_usable(idm, 0, 2), 0);
+>   }
+>   
+>   static void check_all(struct kunit *test)
+> @@ -102,14 +89,14 @@ static void check_all(struct kunit *test)
+>   	struct xe_guc_id_mgr *idm = test->priv;
+>   	unsigned int n;
+>   
+> -	KUNIT_ASSERT_EQ(test, 0, xe_guc_id_mgr_init(idm, -1));
+> +	KUNIT_ASSERT_EQ(test, 0, idm_init(idm, GUC_ID_MAX, 0));
+>   
+>   	mutex_lock(idm_mutex(idm));
+>   
+> -	for (n = 0; n < idm->total; n++)
+> -		KUNIT_EXPECT_LE(test, 0, idm_reserve_chunk_locked(idm, 1, 0));
+> -	KUNIT_EXPECT_EQ(test, idm->used, idm->total);
+> -	for (n = 0; n < idm->total; n++)
+> +	for (n = 0; n < idm_total(idm); n++)
+> +		KUNIT_EXPECT_LE(test, 0, xe_guc_id_mgr_reserve_usable_locked(idm, 1));
+> +	KUNIT_EXPECT_EQ(test, bitmap_weight(idm->bitmap, idm_total(idm)), idm_total(idm));
+> +	for (n = 0; n < idm_total(idm); n++)
+>   		idm_release_chunk_locked(idm, n, 1);
+>   
+>   	mutex_unlock(idm_mutex(idm));
+> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> index 6947aeed458ed..de1ac58e31412 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+> @@ -1182,7 +1182,7 @@ static u32 pf_estimate_fair_ctxs(struct xe_gt *gt, unsigned int num_vfs)
+>   {
+>   	struct xe_guc_id_mgr *idm = &gt->uc.guc.submission_state.idm;
+>   	u32 spare = pf_get_spare_ctxs(gt);
+> -	u32 fair = (idm->total - spare) / num_vfs;
+> +	u32 fair = (xe_guc_id_mgr_max_usable(idm) - spare) / num_vfs;
+>   	int ret;
+>   
+>   	for (; fair; --fair) {
+> diff --git a/drivers/gpu/drm/xe/xe_guc_id_mgr.c b/drivers/gpu/drm/xe/xe_guc_id_mgr.c
+> index e845425d670be..8f90a5337fe4c 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_id_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_id_mgr.c
+> @@ -34,6 +34,34 @@ static struct xe_device *idm_to_xe(struct xe_guc_id_mgr *idm)
+>   
+>   static void idm_print_locked(struct xe_guc_id_mgr *idm, struct drm_printer *p, int indent);
+>   
+> +static unsigned int idm_total(struct xe_guc_id_mgr *idm)
+> +{
+> +	if (idm->usable > GUC_ID_MAX - idm->shareable)
+> +		return GUC_ID_MAX;
+> +
+> +	return idm->usable + idm->shareable;
+> +}
+> +
+> +static unsigned int idm_shareable_start(struct xe_guc_id_mgr *idm)
+> +{
+> +	return idm_total(idm) - idm->shareable;
+> +}
+> +
+> +static unsigned int idm_used_usable(struct xe_guc_id_mgr *idm)
+> +{
+> +	lockdep_assert_held(idm_mutex(idm));
+> +
+> +	return bitmap_weight(idm->bitmap, idm->usable);
+> +}
+> +
+> +static unsigned int idm_used_shareable(struct xe_guc_id_mgr *idm)
+> +{
+> +	lockdep_assert_held(idm_mutex(idm));
+> +
+> +	return bitmap_weight(idm->bitmap, idm_total(idm)) -
+> +	       bitmap_weight(idm->bitmap, idm_shareable_start(idm));
+> +}
+> +
+>   static void __fini_idm(struct drm_device *drm, void *arg)
+>   {
+>   	struct xe_guc_id_mgr *idm = arg;
+> @@ -41,25 +69,56 @@ static void __fini_idm(struct drm_device *drm, void *arg)
+>   	mutex_lock(idm_mutex(idm));
+>   
+>   	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
+> -		unsigned int weight = bitmap_weight(idm->bitmap, idm->total);
+> +		unsigned int weight = bitmap_weight(idm->bitmap, idm_total(idm));
+>   
+>   		if (weight) {
+>   			struct drm_printer p = xe_gt_info_printer(idm_to_gt(idm));
+>   
+>   			xe_gt_err(idm_to_gt(idm), "GUC ID manager unclean (%u/%u)\n",
+> -				  weight, idm->total);
+> +				  weight, idm_total(idm));
+>   			idm_print_locked(idm, &p, 1);
+>   		}
+>   	}
+>   
+>   	bitmap_free(idm->bitmap);
+>   	idm->bitmap = NULL;
+> -	idm->total = 0;
+> -	idm->used = 0;
+> +	idm->usable = 0;
+> +	idm->shareable = 0;
+>   
+>   	mutex_unlock(idm_mutex(idm));
+>   }
+>   
+> +static int idm_init(struct xe_guc_id_mgr *idm, unsigned int usable, unsigned int shareable)
+> +{
+> +	bool overlap = usable > GUC_ID_MAX - shareable;
+> +	unsigned int total;
+> +	int ret;
+> +
+> +	if (!usable)
+> +		return -EINVAL;
+> +	if (usable > GUC_ID_MAX || shareable > GUC_ID_MAX)
+> +		return -ERANGE;
+> +
+> +	idm_assert(idm, !idm->bitmap);
+> +	idm_assert(idm, !shareable || IS_SRIOV_PF(idm_to_xe(idm)));
+> +	total = overlap ? GUC_ID_MAX : usable + shareable;
+> +
+> +	idm->bitmap = bitmap_zalloc(total, GFP_KERNEL);
+> +	if (!idm->bitmap)
+> +		return -ENOMEM;
+> +
+> +	idm->usable = usable;
+> +	idm->shareable = shareable;
+> +
+> +	ret = drmm_add_action_or_reset(&idm_to_xe(idm)->drm, __fini_idm, idm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	xe_gt_dbg(idm_to_gt(idm), "using %u GuC ID%s, %u GuC ID%s shareable with VFs\n",
+> +		  idm->usable, str_plural(idm->usable), idm->shareable, str_plural(idm->shareable));
+> +	return 0;
+> +}
+> +
+>   /**
+>    * xe_guc_id_mgr_init() - Initialize GuC context ID Manager.
+>    * @idm: the &xe_guc_id_mgr to initialize
+> @@ -68,90 +127,156 @@ static void __fini_idm(struct drm_device *drm, void *arg)
+>    * The bare-metal or PF driver can pass ~0 as &limit to indicate that all
+>    * context IDs supported by the GuC firmware are available for use.
+>    *
+> - * Only VF drivers will have to provide explicit number of context IDs
+> - * that they can use.
+> - *
+>    * Return: 0 on success or a negative error code on failure.
+>    */
+>   int xe_guc_id_mgr_init(struct xe_guc_id_mgr *idm, unsigned int limit)
+>   {
+> -	int ret;
+> -
+> -	idm_assert(idm, !idm->bitmap);
+> -	idm_assert(idm, !idm->total);
+> -	idm_assert(idm, !idm->used);
+> -
+>   	if (limit == ~0)
+>   		limit = GUC_ID_MAX;
+> -	else if (limit > GUC_ID_MAX)
+> -		return -ERANGE;
+> -	else if (!limit)
+> -		return -EINVAL;
+>   
+> -	idm->bitmap = bitmap_zalloc(limit, GFP_KERNEL);
+> -	if (!idm->bitmap)
+> -		return -ENOMEM;
+> -	idm->total = limit;
+> +	return idm_init(idm, limit, 0);
+> +}
+>   
+> -	ret = drmm_add_action_or_reset(&idm_to_xe(idm)->drm, __fini_idm, idm);
+> -	if (ret)
+> -		return ret;
+> +/**
+> + * xe_guc_id_mgr_max_usable() - Get maximum number of usable GuC context IDs.
+> + * @idm: the &xe_guc_id_mgr to query
+> + *
+> + * Return: maximum number of GuC context IDs that can be used by @idm for GuC submission.
+> + */
+> +unsigned int xe_guc_id_mgr_max_usable(struct xe_guc_id_mgr *idm)
+> +{
+> +	return idm->usable;
+> +}
+>   
+> -	xe_gt_dbg(idm_to_gt(idm), "using %u GuC ID%s\n",
+> -		  idm->total, str_plural(idm->total));
+> -	return 0;
+> +/**
+> + * xe_guc_id_mgr_max_shareable() - Get maximum number of shareable GuC context IDs.
+> + * @idm: the &xe_guc_id_mgr to query
+> + *
+> + * Return: maximum number of GuC context IDs that can be shared with VFs.
+> + */
+> +unsigned int xe_guc_id_mgr_max_shareable(struct xe_guc_id_mgr *idm)
+> +{
+> +	return idm->shareable;
+>   }
+>   
+> -static unsigned int find_last_zero_area(unsigned long *bitmap,
+> -					unsigned int total,
+> -					unsigned int count)
+> +static int idm_reserve_chunk_usable_locked(struct xe_guc_id_mgr *idm, unsigned int count)
+> +{
+> +	int id;
+> +
+> +	idm_assert(idm, count);
+> +	lockdep_assert_held(idm_mutex(idm));
+> +
+> +	if (!idm->usable)
+> +		return -ENODATA;
+> +
+> +	id = bitmap_find_next_zero_area(idm->bitmap, idm->usable, 0, count, 0);
+> +	if (id >= idm->usable)
+> +		return -ENOSPC;
+> +
+> +	bitmap_set(idm->bitmap, id, count);
+> +
+> +	return id;
+> +}
+> +
+> +static unsigned int idm_find_last_zero_area_in_range(unsigned long *bitmap,
+> +						     unsigned int range_start,
+> +						     unsigned int range_end,
+> +						     unsigned int count)
+>   {
+> -	unsigned int found = total;
+> -	unsigned int rs, re, range;
+> +	unsigned int found = range_end;
+> +	unsigned int rs, re;
+> +
+> +	for_each_clear_bitrange(rs, re, bitmap, range_end) {
+> +		unsigned int start = max(rs, range_start);
+> +		unsigned int end = min(re, range_end);
+> +		unsigned int range;
+>   
+> -	for_each_clear_bitrange(rs, re, bitmap, total) {
+> -		range = re - rs;
+> +		if (start >= end)
+> +			continue;
+> +
+> +		range = end - start;
+>   		if (range < count)
+>   			continue;
+> -		found = rs + (range - count);
+> +
+> +		found = start + (range - count);
+>   	}
+> +
+>   	return found;
+>   }
+>   
+> -static int idm_reserve_chunk_locked(struct xe_guc_id_mgr *idm,
+> -				    unsigned int count, unsigned int retain)
+> +static int idm_reserve_chunk_shareable_locked(struct xe_guc_id_mgr *idm, unsigned int count,
+> +					      unsigned int spare)
+>   {
+> +	unsigned int shareable_start = idm_shareable_start(idm);
+> +	unsigned int total = idm_total(idm);
+>   	int id;
+>   
+>   	idm_assert(idm, count);
+>   	lockdep_assert_held(idm_mutex(idm));
+>   
+> -	if (!idm->total)
+> +	if (!idm->shareable)
+>   		return -ENODATA;
+>   
+> -	if (retain) {
+> +	if (shareable_start < idm->usable) {
+>   		/*
+> -		 * For IDs reservations (used on PF for VFs) we want to make
+> -		 * sure there will be at least 'retain' available for the PF
+> +		 * Spare is meaningful only for IDs that are shared between usable and
+> +		 * shareable pools. For non-overlapping pools, shareable reservations do
+> +		 * not reduce PF usable capacity, so there is nothing to retain.
+>   		 */
+> -		if (idm->used + count + retain > idm->total)
+> -			return -EDQUOT;
+> +		id = idm_find_last_zero_area_in_range(idm->bitmap, shareable_start, total, count);
+> +		if (id >= total)
+> +			return -ENOSPC;
+> +
+>   		/*
+> -		 * ... and we want to reserve highest IDs close to the end.
+> +		 * Only IDs taken from the overlapping part reduce PF usable capacity,
+> +		 * so a chunk located entirely in the VF-exclusive part is never limited
+> +		 * by the spare.
+>   		 */
+> -		id = find_last_zero_area(idm->bitmap, idm->total, count);
+> +		if (spare && id < idm->usable) {
+> +			unsigned int used_usable = bitmap_weight(idm->bitmap, idm->usable);
+> +			unsigned int need_overlap = min(id + count, idm->usable) - id;
+> +
+> +			if (used_usable + need_overlap + spare > idm->usable)
+> +				return -EDQUOT;
+Can we write a helper to check these limits and return error?
+> +		}
+>   	} else {
+> -		/*
+> -		 * For regular IDs reservations (used by submission code)
+> -		 * we start searching from the lower range of IDs.
+> -		 */
+> -		id = bitmap_find_next_zero_area(idm->bitmap, idm->total, 0, count, 0);
+> +		id = bitmap_find_next_zero_area(idm->bitmap, total, shareable_start, count, 0);
+> +		if (id + count > total)
+> +			return -ENOSPC;
+Same as above.
+> +	}
+> +
+> +	bitmap_set(idm->bitmap, id, count);
+> +
+> +	return id;
+> +}
+> +
+> +static int idm_reserve_chunk_locked(struct xe_guc_id_mgr *idm, unsigned int count,
+> +				    unsigned int retain)
+> +{
+> +	unsigned int total = idm_total(idm);
+> +	int id;
+> +
+> +	idm_assert(idm, count);
+> +	lockdep_assert_held(idm_mutex(idm));
+> +
+> +	if (!total)
+> +		return -ENODATA;
+> +
+> +	if (retain) {
+> +		unsigned int used = bitmap_weight(idm->bitmap, total);
+> +
+> +		if (used + count + retain > total)
+> +			return -EDQUOT;
+Same as above.
+> +
+> +		id = idm_find_last_zero_area_in_range(idm->bitmap, 0, total, count);
+> +	} else {
+> +		id = bitmap_find_next_zero_area(idm->bitmap, total, 0, count, 0);
+>   	}
+> -	if (id >= idm->total)
+> +
+> +	if (id >= total)
+>   		return -ENOSPC;
+
+Same as above.
+
+Otherwise LGTM.
+
+-Satya.
+
+>   
+>   	bitmap_set(idm->bitmap, id, count);
+> -	idm->used += count;
+>   
+>   	return id;
+>   }
+> @@ -160,9 +285,8 @@ static void idm_release_chunk_locked(struct xe_guc_id_mgr *idm,
+>   				     unsigned int start, unsigned int count)
+>   {
+>   	idm_assert(idm, count);
+> -	idm_assert(idm, count <= idm->used);
+> -	idm_assert(idm, start < idm->total);
+> -	idm_assert(idm, start + count - 1 < idm->total);
+> +	idm_assert(idm, start < idm_total(idm));
+> +	idm_assert(idm, start + count - 1 < idm_total(idm));
+>   	lockdep_assert_held(idm_mutex(idm));
+>   
+>   	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
+> @@ -172,22 +296,61 @@ static void idm_release_chunk_locked(struct xe_guc_id_mgr *idm,
+>   			idm_assert(idm, test_bit(start + n, idm->bitmap));
+>   	}
+>   	bitmap_clear(idm->bitmap, start, count);
+> -	idm->used -= count;
+> +}
+> +
+> +static int idm_release_chunk_in_range_locked(struct xe_guc_id_mgr *idm,
+> +					     unsigned int start,
+> +					     unsigned int count,
+> +					     unsigned int range_start,
+> +					     unsigned int range_end)
+> +{
+> +	lockdep_assert_held(idm_mutex(idm));
+> +
+> +	if (!count)
+> +		return -EINVAL;
+> +
+> +	if (start < range_start || start >= range_end)
+> +		return -ERANGE;
+> +
+> +	if (count > range_end - start)
+> +		return -ERANGE;
+> +
+> +	idm_release_chunk_locked(idm, start, count);
+> +
+> +	return 0;
+>   }
+>   
+>   /**
+> - * xe_guc_id_mgr_reserve_locked() - Reserve one or more GuC context IDs.
+> + * xe_guc_id_mgr_reserve_usable_locked() - Reserve one or more usable GuC context IDs.
+>    * @idm: the &xe_guc_id_mgr
+> - * @count: number of IDs to allocate (can't be 0)
+> + * @count: number of usable GuC context IDs to reserve (can't be 0)
+>    *
+> - * This function is dedicated for the use by the GuC submission code,
+> - * where submission lock is already taken.
+> + * This function is dedicated for use by the GuC submission code when the
+> + * submission lock is already held.
+>    *
+>    * Return: ID of allocated GuC context or a negative error code on failure.
+>    */
+> -int xe_guc_id_mgr_reserve_locked(struct xe_guc_id_mgr *idm, unsigned int count)
+> +int xe_guc_id_mgr_reserve_usable_locked(struct xe_guc_id_mgr *idm, unsigned int count)
+>   {
+> -	return idm_reserve_chunk_locked(idm, count, 0);
+> +	return idm_reserve_chunk_usable_locked(idm, count);
+> +}
+> +
+> +/**
+> + * xe_guc_id_mgr_reserve_shareable_locked() - Reserve one or more shareable GuC context IDs.
+> + * @idm: the &xe_guc_id_mgr
+> + * @count: number of shareable GuC context IDs to reserve (can't be 0)
+> + * @spare: number of usable IDs to keep available for the PF
+> + *
+> + * This function is dedicated for use by the PF driver, which expects the
+> + * reserved range of IDs to be contiguous. The function expects that the
+> + * caller has already taken the lock.
+> + *
+> + * Return: ID of allocated GuC context or a negative error code on failure.
+> + */
+> +int xe_guc_id_mgr_reserve_shareable_locked(struct xe_guc_id_mgr *idm, unsigned int count,
+> +					   unsigned int spare)
+> +{
+> +	return idm_reserve_chunk_shareable_locked(idm, count, spare);
+>   }
+>   
+>   /**
+> @@ -206,60 +369,175 @@ void xe_guc_id_mgr_release_locked(struct xe_guc_id_mgr *idm, unsigned int id,
+>   }
+>   
+>   /**
+> - * xe_guc_id_mgr_reserve() - Reserve a range of GuC context IDs.
+> + * xe_guc_id_mgr_release_usable_locked() - Release one or more usable GuC context IDs.
+> + * @idm: the &xe_guc_id_mgr
+> + * @id: the first usable GuC context ID to release
+> + * @count: number of usable GuC context IDs to release
+> + *
+> + * This function is dedicated for use by the GuC submission code when the
+> + * submission lock is already held.
+> + *
+> + * Return: 0 on success, or a negative error code on failure.
+> + */
+> +int xe_guc_id_mgr_release_usable_locked(struct xe_guc_id_mgr *idm, unsigned int id,
+> +					unsigned int count)
+> +{
+> +	return idm_release_chunk_in_range_locked(idm, id, count, 0, idm->usable);
+> +}
+> +
+> +/**
+> + * xe_guc_id_mgr_release_shareable_locked() - Release one or more shareable GuC context IDs.
+>    * @idm: the &xe_guc_id_mgr
+> - * @count: number of GuC context IDs to reserve (can't be 0)
+> - * @retain: number of GuC context IDs to keep available (can't be 0)
+> + * @id: the first shareable GuC context ID to release
+> + * @count: number of shareable GuC context IDs to release
+>    *
+> - * This function is dedicated for the use by the PF driver which expects that
+> - * reserved range of IDs will be contiguous and that there will be at least
+> - * &retain IDs still available for the PF after this reservation.
+> + * Return: 0 on success, or a negative error code on failure.
+> + */
+> +int xe_guc_id_mgr_release_shareable_locked(struct xe_guc_id_mgr *idm, unsigned int id,
+> +					   unsigned int count)
+> +{
+> +	return idm_release_chunk_in_range_locked(idm, id, count,
+> +						 idm_shareable_start(idm), idm_total(idm));
+> +}
+> +
+> +/**
+> + * xe_guc_id_mgr_reserve_usable() - Reserve one or more usable GuC context IDs.
+> + * @idm: the &xe_guc_id_mgr
+> + * @count: number of usable GuC context IDs to reserve (can't be 0)
+> + *
+> + * Return: ID of allocated GuC context or a negative error code on failure.
+> + */
+> +int xe_guc_id_mgr_reserve_usable(struct xe_guc_id_mgr *idm, unsigned int count)
+> +{
+> +	guard(mutex)(idm_mutex(idm));
+> +
+> +	idm_assert(idm, count);
+> +
+> +	return idm_reserve_chunk_usable_locked(idm, count);
+> +}
+> +
+> +/**
+> + * xe_guc_id_mgr_reserve_shareable() - Reserve one or more shareable GuC context IDs for VFs.
+> + * @idm: the &xe_guc_id_mgr
+> + * @count: number of shareable GuC context IDs to reserve (can't be 0)
+> + * @spare: number of usable IDs to keep available for the PF
+> + *
+> + * This function is dedicated for use by the PF driver, which expects the
+> + * reserved range of IDs to be contiguous.
+>    *
+>    * Return: starting ID of the allocated GuC context ID range or
+>    *         a negative error code on failure.
+>    */
+> -int xe_guc_id_mgr_reserve(struct xe_guc_id_mgr *idm,
+> -			  unsigned int count, unsigned int retain)
+> +int xe_guc_id_mgr_reserve_shareable(struct xe_guc_id_mgr *idm, unsigned int count,
+> +				    unsigned int spare)
+> +{
+> +	guard(mutex)(idm_mutex(idm));
+> +
+> +	idm_assert(idm, count);
+> +
+> +	return idm_reserve_chunk_shareable_locked(idm, count, spare);
+> +}
+> +
+> +int xe_guc_id_mgr_reserve_locked(struct xe_guc_id_mgr *idm, unsigned int count)
+> +{
+> +	return idm_reserve_chunk_locked(idm, count, 0);
+> +}
+> +
+> +int xe_guc_id_mgr_reserve(struct xe_guc_id_mgr *idm, unsigned int count,
+> +			  unsigned int retain)
+>   {
+>   	int ret;
+>   
+>   	idm_assert(idm, count);
+>   	idm_assert(idm, retain);
+>   
+> -	mutex_lock(idm_mutex(idm));
+> +	guard(mutex)(idm_mutex(idm));
+>   	ret = idm_reserve_chunk_locked(idm, count, retain);
+> -	mutex_unlock(idm_mutex(idm));
+>   
+>   	return ret;
+>   }
+>   
+>   /**
+> - * xe_guc_id_mgr_release() - Release a range of GuC context IDs.
+> + * xe_guc_id_mgr_release() - Release one or more GuC context IDs.
+>    * @idm: the &xe_guc_id_mgr
+> - * @start: the starting ID of GuC context range to release
+> + * @start: the first GuC context ID to release
+>    * @count: number of GuC context IDs to release
+>    */
+>   void xe_guc_id_mgr_release(struct xe_guc_id_mgr *idm,
+>   			   unsigned int start, unsigned int count)
+>   {
+> -	mutex_lock(idm_mutex(idm));
+> +	guard(mutex)(idm_mutex(idm));
+> +
+>   	idm_release_chunk_locked(idm, start, count);
+> -	mutex_unlock(idm_mutex(idm));
+>   }
+>   
+> -static void idm_print_locked(struct xe_guc_id_mgr *idm, struct drm_printer *p, int indent)
+> +/**
+> + * xe_guc_id_mgr_release_usable() - Release one or more usable GuC context IDs.
+> + * @idm: the &xe_guc_id_mgr
+> + * @id: the first usable GuC context ID to release
+> + * @count: number of usable GuC context IDs to release
+> + *
+> + * Return: 0 on success, or a negative error code on failure.
+> + */
+> +int xe_guc_id_mgr_release_usable(struct xe_guc_id_mgr *idm, unsigned int id, unsigned int count)
+> +{
+> +	guard(mutex)(idm_mutex(idm));
+> +
+> +	return xe_guc_id_mgr_release_usable_locked(idm, id, count);
+> +}
+> +
+> +/**
+> + * xe_guc_id_mgr_release_shareable() - Release one or more shareable GuC context IDs.
+> + * @idm: the &xe_guc_id_mgr
+> + * @id: the first shareable GuC context ID to release
+> + * @count: number of shareable GuC context IDs to release
+> + *
+> + * Return: 0 on success, or a negative error code on failure.
+> + */
+> +int xe_guc_id_mgr_release_shareable(struct xe_guc_id_mgr *idm, unsigned int id,
+> +				    unsigned int count)
+> +{
+> +	guard(mutex)(idm_mutex(idm));
+> +
+> +	return xe_guc_id_mgr_release_shareable_locked(idm, id, count);
+> +}
+> +
+> +static void idm_print_range_locked(struct xe_guc_id_mgr *idm,
+> +				   struct drm_printer *p,
+> +				   int indent,
+> +				   const char *name,
+> +				   unsigned int range_start,
+> +				   unsigned int range_end,
+> +				   unsigned int used)
+>   {
+>   	unsigned int rs, re;
+>   
+>   	lockdep_assert_held(idm_mutex(idm));
+>   
+> -	drm_printf_indent(p, indent, "total %u\n", idm->total);
+> +	drm_printf_indent(p, indent, "%s used %u\n", name, used);
+> +	for_each_set_bitrange(rs, re, idm->bitmap, range_end) {
+> +		rs = max(rs, range_start);
+> +		re = min(re, range_end);
+> +
+> +		if (rs < re)
+> +			drm_printf_indent(p, indent, "%s range %u..%u (%u)\n",
+> +					  name, rs, re - 1, re - rs);
+> +	}
+> +}
+> +
+> +static void idm_print_locked(struct xe_guc_id_mgr *idm, struct drm_printer *p, int indent)
+> +{
+> +	lockdep_assert_held(idm_mutex(idm));
+> +
+> +	drm_printf_indent(p, indent, "total %u\n", idm_total(idm));
+>   	if (!idm->bitmap)
+>   		return;
+>   
+> -	drm_printf_indent(p, indent, "used %u\n", idm->used);
+> -	for_each_set_bitrange(rs, re, idm->bitmap, idm->total)
+> -		drm_printf_indent(p, indent, "range %u..%u (%u)\n", rs, re - 1, re - rs);
+> +	idm_print_range_locked(idm, p, indent, "usable", 0, idm->usable,
+> +			       idm_used_usable(idm));
+> +	idm_print_range_locked(idm, p, indent, "shareable",
+> +			       idm_shareable_start(idm), idm_total(idm),
+> +			       idm_used_shareable(idm));
+>   }
+>   
+>   /**
+> @@ -270,9 +548,8 @@ static void idm_print_locked(struct xe_guc_id_mgr *idm, struct drm_printer *p, i
+>    */
+>   void xe_guc_id_mgr_print(struct xe_guc_id_mgr *idm, struct drm_printer *p, int indent)
+>   {
+> -	mutex_lock(idm_mutex(idm));
+> +	guard(mutex)(idm_mutex(idm));
+>   	idm_print_locked(idm, p, indent);
+> -	mutex_unlock(idm_mutex(idm));
+>   }
+>   
+>   #if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
+> diff --git a/drivers/gpu/drm/xe/xe_guc_id_mgr.h b/drivers/gpu/drm/xe/xe_guc_id_mgr.h
+> index 368f8c80e4c7d..209f99831f1b4 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_id_mgr.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_id_mgr.h
+> @@ -9,13 +9,29 @@
+>   struct drm_printer;
+>   struct xe_guc_id_mgr;
+>   
+> -int xe_guc_id_mgr_init(struct xe_guc_id_mgr *idm, unsigned int count);
+> +int xe_guc_id_mgr_init(struct xe_guc_id_mgr *idm, unsigned int limit);
+>   
+> +unsigned int xe_guc_id_mgr_max_usable(struct xe_guc_id_mgr *idm);
+> +unsigned int xe_guc_id_mgr_max_shareable(struct xe_guc_id_mgr *idm);
+> +
+> +int xe_guc_id_mgr_reserve_usable_locked(struct xe_guc_id_mgr *idm, unsigned int count);
+> +int xe_guc_id_mgr_reserve_usable(struct xe_guc_id_mgr *idm, unsigned int count);
+> +int xe_guc_id_mgr_reserve_shareable_locked(struct xe_guc_id_mgr *idm, unsigned int count,
+> +					   unsigned int spare);
+> +int xe_guc_id_mgr_reserve_shareable(struct xe_guc_id_mgr *idm, unsigned int count,
+> +				    unsigned int spare);
+>   int xe_guc_id_mgr_reserve_locked(struct xe_guc_id_mgr *idm, unsigned int count);
+> +int xe_guc_id_mgr_reserve(struct xe_guc_id_mgr *idm, unsigned int count, unsigned int retain);
+>   void xe_guc_id_mgr_release_locked(struct xe_guc_id_mgr *idm, unsigned int id, unsigned int count);
+> +int xe_guc_id_mgr_release_usable_locked(struct xe_guc_id_mgr *idm, unsigned int id,
+> +					unsigned int count);
+> +int xe_guc_id_mgr_release_shareable_locked(struct xe_guc_id_mgr *idm, unsigned int id,
+> +					   unsigned int count);
+>   
+> -int xe_guc_id_mgr_reserve(struct xe_guc_id_mgr *idm, unsigned int count, unsigned int retain);
+>   void xe_guc_id_mgr_release(struct xe_guc_id_mgr *idm, unsigned int start, unsigned int count);
+> +int xe_guc_id_mgr_release_usable(struct xe_guc_id_mgr *idm, unsigned int id, unsigned int count);
+> +int xe_guc_id_mgr_release_shareable(struct xe_guc_id_mgr *idm, unsigned int id,
+> +				    unsigned int count);
+>   
+>   void xe_guc_id_mgr_print(struct xe_guc_id_mgr *idm, struct drm_printer *p, int indent);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
+> index 3dbcb1331690e..6da43691e54c5 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_types.h
+> @@ -42,10 +42,10 @@ struct xe_guc_db_mgr {
+>   struct xe_guc_id_mgr {
+>   	/** @bitmap: bitmap to track allocated IDs */
+>   	unsigned long *bitmap;
+> -	/** @total: total number of IDs being managed */
+> -	unsigned int total;
+> -	/** @used: number of IDs currently in use */
+> -	unsigned int used;
+> +	/** @usable: number of IDs being managed for GuC submission */
+> +	unsigned int usable;
+> +	/** @shareable: number of IDs that can be shared with VFs */
+> +	unsigned int shareable;
+>   };
+>   
+>   /**
