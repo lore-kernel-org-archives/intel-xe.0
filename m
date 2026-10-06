@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CF70CA5FFE
-	for <intel-xe@archiver.kernel.org>; Tue,  6 Oct 2026 17:51:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3320CA5FED
+	for <intel-xe@archiver.kernel.org>; Tue,  6 Oct 2026 17:51:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFC7F10E43F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8149410E3B4;
 	Tue,  6 Oct 2026 17:51:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VmiDbgii";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lg7kr7hS";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7E0A10E3B4
- for <intel-xe@lists.freedesktop.org>; Tue,  6 Oct 2026 17:51:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13EA210E78F
+ for <intel-xe@lists.freedesktop.org>; Tue,  6 Oct 2026 17:51:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1791309092; x=1822845092;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=5jhV51q3oP9dxpAcC/x9aGoZ2mpumHjiT6f8g0GimzM=;
- b=VmiDbgii3uKNR1i93yGJ3ySJv/XvYPAri3PSZWPDM4ANRx4VO9GqXFTp
- J5qXlJBWTAvbYeigRVM1aqNuQrBi2wBVv6QKUo0Nm58OvQQcT32Gm9N3P
- duMLTRrXYMcgFZibs60rpLvoKO5qudbmqHL7NG7WRnyof4HtLpl1z6wX6
- imrsADy0S0TGZYMqz1aMumGVYa++mlmHLVr4nNlCcgZuGn54ZdVjJ9369
- Xc07jmTCGVJYnfu+VTxahwMCn868m2NLezGp4WqEJZEHitgBtncjviSqP
- h5ljdRhw2fJrMPQxDKZev3ImLx6TwueeWW2RMKllnAqO/WrHm16nLvl7C Q==;
-X-CSE-ConnectionGUID: Anpcw9K5SRqaCaBs0RR1Ag==
-X-CSE-MsgGUID: hVmPLlPfQg6sLlKxv6yrFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11927"; a="102588589"
-X-IronPort-AV: E=Sophos;i="6.27,143,1787036400"; d="scan'208";a="102588589"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=bFFcW4FwjBJoi4iwAASYST9NKB2R9UrXCEkH52DQc/Y=;
+ b=lg7kr7hSauUkA7npD9eXRjyWnJW7RYasoEm1X4b3X+42ep2GS93xSnTO
+ Kk9wnpSLYqv5eu7Ch6Uf5q7gzbniVMGTs2JPSGZr10GwQd+bSZ7b2DPWC
+ 73OPodmkvIZSvevvNaxEsRQLiOtFr2QpHFbhNzkALMsUrCtQ9KORqXVeY
+ 4LSojfCYgH4f5bqtcwh6Eap5flNsKznekeD8El+dsg0EieG4Uyiugmr+R
+ oTpDlhYBOunhBw4Vo5MIO/Mdlpm53hSYBhco0KVoPZwuUefGOR8IaS2MH
+ yXEN4igCwepikoSbqWlGx+d9Konf/79FLXpxsySLddS5Vn8crscZlqCMQ Q==;
+X-CSE-ConnectionGUID: SVwRhMzaRXaKYcvKFKb+ng==
+X-CSE-MsgGUID: pjlvi7osQn+H0nmwiTuMNQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11927"; a="102588591"
+X-IronPort-AV: E=Sophos;i="6.27,143,1787036400"; d="scan'208";a="102588591"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2026 10:51:30 -0700
-X-CSE-ConnectionGUID: ZKtJnYzNTEyi83SJ3EnI7w==
-X-CSE-MsgGUID: +DNT9+4yQvOqSsjDW6KniA==
+ 06 Oct 2026 10:51:31 -0700
+X-CSE-ConnectionGUID: fjP8E7vkQqy093LQwSp1lg==
+X-CSE-MsgGUID: od9LQAk5S5Oe/y4C8EYT0w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,143,1787036400"; d="scan'208";a="273573406"
+X-IronPort-AV: E=Sophos;i="6.27,143,1787036400"; d="scan'208";a="273573410"
 Received: from aalteres-desk1.fm.intel.com ([10.121.64.173])
  by fmviesa009.fm.intel.com with ESMTP; 06 Oct 2026 10:51:30 -0700
 From: Alan Previn <alan.previn.teres.alexis@intel.com>
@@ -46,10 +46,12 @@ Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
  julia.filipchuk@intel.com, matthew.brost@intel.com, rodrigo.vivi@intel.com,
  Zhanjun Dong <zhanjun.dong@intel.com>,
  =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH v10 0/3] drm/xe/guc: Compress GuC log and CTB dump with zstd
-Date: Tue,  6 Oct 2026 10:51:28 -0700
-Message-ID: <20261006175129.3366784-5-alan.previn.teres.alexis@intel.com>
+Subject: [PATCH v10 1/3] drm/xe: Remove extra newlines from LRC snapshot dump
+Date: Tue,  6 Oct 2026 10:51:29 -0700
+Message-ID: <20261006175129.3366784-6-alan.previn.teres.alexis@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261006175129.3366784-5-alan.previn.teres.alexis@intel.com>
+References: <20261006175129.3366784-5-alan.previn.teres.alexis@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -67,63 +69,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GuC snapshot output is currently expensive in both size and latency: large
-log buffers are emitted as raw ascii85, and the surrounding dump text
-includes a bit of avoidable noise. This series makes xe snapshot dumps more
-compact and easier to handle by compressing the large binary payloads,
-tightening the textual output.
+From: Zhanjun Dong <zhanjun.dong@intel.com>
 
-Select ZSTD_COMPRESS in DRM_XE so the xe module pulls in the zstd
-compressor when built.
+The LRC snapshot printer adds an extra newline before the replay
+offset and replay length lines. This leaves blank lines in the
+HWCTX section of the dump.
+
+Remove the stray newlines so the snapshot output remains compact
+and consistently formatted.
 
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
 Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-
+Acked-by: José Roberto de Souza <jose.souza@intel.com>
+Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
 ---
-History:
-v10: Add a new patch to introduce dump_cache to optimize GuC CT/ Log
-     compression e2e flows and manage errors across parses. (Sashiko
-     and Rodrigo).
-     P2: Reorder Kconfig compression dependency (Rodrigo) and round
-     up buffer size to dword as per final output-dump expectation.
-v9: Rebase to latest drm-tip, no functional changes, added Signed-
-    off by Alan on 2nd patch. (Rodrigo)
-v8: Improve patch #2 description on clarity and wording (Rodrigo)
-v7: Add *why* to the commit message (Rodrigo)
-v6: Remove intermediate build files(Julia)
-    Remvoe unnecessary comment(Julia)
-v5: Update cover letter messages to remove shrink log size.
-    Fix kernel-doc warning.
-v4: Remove ZSTD_DECOMPRESS dependency.
-v3: Add Kconfig option to control compression of GuC log and CTB dumps,
-    allowing users to choose between reduced dump sizes or lower memory
-    usage.
-    Remove "reduce GuC log size from 8MB to 2MB" patch, to be added later
-    if needed.
-    Replace pr_err with xe_gt_err and add more error print.
-v2: Fix Kunit test error by selecting ZSTD_DECOMPRESS in DRM_XE config,
-    required by zstd_is_error/zstd_get_error_name.
+ drivers/gpu/drm/xe/xe_lrc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Alan Previn (1):
-  drm/xe/guc: Add dump_cache to optimize GuC CT/Log compression flow
-
-Zhanjun Dong (2):
-  drm/xe: Remove extra newlines from LRC snapshot dump
-  drm/xe/guc: Compress GuC log and CTB dump with zstd
-
- drivers/gpu/drm/xe/Kconfig            |  15 ++
- drivers/gpu/drm/xe/xe_devcoredump.c   |   4 +-
- drivers/gpu/drm/xe/xe_guc_ct.c        |  21 +--
- drivers/gpu/drm/xe/xe_guc_ct.h        |   4 +-
- drivers/gpu/drm/xe/xe_guc_ct_types.h  |   3 +
- drivers/gpu/drm/xe/xe_guc_log.c       | 222 ++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_guc_log.h       |  11 +-
- drivers/gpu/drm/xe/xe_guc_log_types.h |  20 +++
- drivers/gpu/drm/xe/xe_lrc.c           |   4 +-
- 9 files changed, 273 insertions(+), 31 deletions(-)
-
-
-base-commit: daeb062fc40f727fafefed080c6d12a5ad1d0d12
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index de9a9560ecf3..fe2909b7b84d 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -2718,8 +2718,8 @@ void xe_lrc_snapshot_print(struct xe_lrc_snapshot *snapshot, struct drm_printer
+ 	}
+ 
+ 	drm_printf(p, "\n\t[HWCTX].length: 0x%lx\n", snapshot->lrc_size - LRC_PPHWSP_SIZE);
+-	drm_printf(p, "\n\t[HWCTX].replay_offset: 0x%lx\n", snapshot->replay_offset);
+-	drm_printf(p, "\n\t[HWCTX].replay_length: 0x%lx\n", snapshot->replay_size);
++	drm_printf(p, "\t[HWCTX].replay_offset: 0x%lx\n", snapshot->replay_offset);
++	drm_printf(p, "\t[HWCTX].replay_length: 0x%lx\n", snapshot->replay_size);
+ 
+ 	drm_puts(p, "\t[HWCTX].data: ");
+ 	for (; i < snapshot->lrc_size; i += sizeof(u32)) {
 -- 
 2.43.0
 
