@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3F9CCA5FFF
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 08:34:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49B1BCA6002
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 08:38:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F95310F4AF;
-	Wed,  7 Oct 2026 08:34:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kTUAGIMj";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 221B510F4AF;
- Wed,  7 Oct 2026 08:34:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791362096; x=1822898096;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zKjzEZuGrvRURiv/KV5XJmgbULbGGApaL1bnACPasa0=;
- b=kTUAGIMjM9wmAKY24A/ecmpABTp7VPJN0s/Ok0PM18KKRlvg1PmEcEyQ
- tk+ZeRu1Ze3TLNShttGg1eW6Mj0Ks2LCD/sARH1GN+rPmQcexq214858y
- OyvpGUzNqfVF/Q3SXGLixviJx45158av5/reFtqBzQTHu3oI09qmHPp6h
- 9RxgJ7qNX7GYaA46zkIk09xgpIn1q0+r9nrKZEs8WIrAsseP1CdZoZlID
- PhKdF9L2u0TaA2wwMUbFW4DM4IyvAg4wjL/g6dvmwKGfXUtQ7DbHpPwRz
- FkiNwAfxNGtLLvsoZy21xNTM/+XBfnCUH1iGjUmI+PjHiHbCxCTdK1zP4 w==;
-X-CSE-ConnectionGUID: z0kioHX4TLeyhY5ScWk3yw==
-X-CSE-MsgGUID: 4ds8LzDFRLmxopRxV8CTcw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11927"; a="120425"
-X-IronPort-AV: E=Sophos;i="6.27,144,1787036400"; 
-   d="scan'208";a="120425"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2026 01:34:56 -0700
-X-CSE-ConnectionGUID: Rhq3BYe1RCCPeZtalbTzMQ==
-X-CSE-MsgGUID: fb8euMARR8mnSr3IN/asCA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,144,1787036400"; 
-   d="scan'208";a="4439"
-Received: from mwiniars-mobl.ger.corp.intel.com (HELO
- jhogande-mobl3.intel.com) ([10.245.246.135])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2026 01:34:55 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Jake Steinman <j@metarealtyinc.ca>
-Subject: [PATCH] drm/i915/psr: ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR not
- valid for eDP
-Date: Wed,  7 Oct 2026 11:34:43 +0300
-Message-ID: <20261007083443.647649-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB5BF10E408;
+	Wed,  7 Oct 2026 08:38:17 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE99810E408;
+ Wed,  7 Oct 2026 08:38:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Expose_retired_?=
+ =?utf-8?q?VRAM_pages_via_drm-ras_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Aravind Iddamsetty" <aravind.iddamsetty@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 07 Oct 2026 08:38:16 -0000
+Message-ID: <179136229690.246953.18238152270027250574@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20261007080354.3072751-1-aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <20261007080354.3072751-1-aravind.iddamsetty@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,42 +36,69 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-EDP1.5 specification says:
+== Series Details ==
 
-"Although defined for the PR function in DP Standard, the
-ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR and DSC_DECODE_NOT_SUPPORTED_IN_PR
-bits (DPCD 000B1h[3, 2], respectively) are DP-specific and are therefore
-not used in eDP."
+Series: drm/xe: Expose retired VRAM pages via drm-ras (rev2)
+URL   : https://patchwork.freedesktop.org/series/173066/
+State : warning
 
-Stop using SYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR on eDP.
+== Summary ==
 
-Cc: Jake Steinman <j@metarealtyinc.ca>
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 86d056a7465a780a68e15183bd68306c8e4869d8
+Author: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+Date:   Wed Oct 7 13:33:54 2026 +0530
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 00d0146b26002..c2bb2c4071527 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1698,8 +1698,11 @@ static inline bool compute_link_off_after_as_sdp_when_pr_active(struct intel_con
- 
- static inline bool compute_disable_as_sdp_when_pr_active(struct intel_connector *connector)
- {
--	return !(connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_CAPABILITY)] &
--		 DP_PANEL_REPLAY_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR);
-+	struct intel_dp *intel_dp = intel_attached_dp(connector);
-+
-+	return intel_dp_is_edp(intel_dp) ? false :
-+		!(connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_CAPABILITY)] &
-+		  DP_PANEL_REPLAY_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR);
- }
- 
- static bool _panel_replay_compute_config(struct intel_crtc_state *crtc_state,
--- 
-2.43.0
+    drm/xe: Remove bad VRAM pages debugfs interface
+    
+    Drop the "vram_bad_pages" debugfs file added by commit fb19798cc366e
+    ("drm/xe: Expose bad VRAM pages via debugfs"). The retired VRAM pages
+    are now exported through the drm-ras generic netlink interface, which
+    is a stable ABI, making the debugfs-only readback redundant.
+    
+    This is a partial revert of fb19798cc366e: it removes vram_bad_pages_show(),
+    its DEFINE_SHOW_ATTRIBUTE(), xe_ttm_vram_debugfs_init() and its call site
+    and declaration, and the now-unused <linux/debugfs.h> include in
+    xe_ttm_vram_mgr.c. The struct xe_ttm_vram_mgr.max_pages field introduced
+    by the same commit is intentionally retained: it is the FW-provided
+    offline-page limit and is now consumed by the drm-ras retired-resources
+    capacity summary (xe_ttm_vram_get_max_bad_pages()).
+    
+    The fault-injection debugfs interface (inject_mempage_offline) is left
+    untouched; it remains the mechanism for triggering page offlining in
+    test.
+    
+    Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+    Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+    Assisted-by: Copilot:claude-opus-4.8
++ /mt/dim checkpatch daeb062fc40f727fafefed080c6d12a5ad1d0d12 drm-intel
+882503c045fc drm/xe: Expose retired VRAM pages via drm-ras
+-:42: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#42: 
+[{'device-name': '0000:03:00.0', 'node-id': 0, 'node-name':'correctable-errors',
+
+-:436: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#436: FILE: drivers/gpu/drm/drm_ras_nl.c:45:
++static const struct nla_policy drm_ras_get_retired_resources_nl_policy[DRM_RAS_A_RETIRED_RESOURCE_ATTRS_NODE_ID + 1] = {
+
+total: 0 errors, 2 warnings, 0 checks, 755 lines checked
+86d056a7465a drm/xe: Remove bad VRAM pages debugfs interface
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+This is a partial revert of fb19798cc366e: it removes vram_bad_pages_show(),
+
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
+
 
