@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A19BCA5FFF
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 10:03:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C3C8CA5FF1
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 10:06:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27C1010F0F3;
-	Wed,  7 Oct 2026 10:03:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M9JISi34";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F0A910F0F3
- for <intel-xe@lists.freedesktop.org>; Wed,  7 Oct 2026 10:03:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791367398; x=1822903398;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=VGgvQNwRyB9dxdslAOCrR45MevcRd1HDon/YEPUPv+U=;
- b=M9JISi342hkHRIqzOi17Zl5YPBq/+fORwsGdzWNpGiDT9tO2yhdyTyce
- OXOQhb2IeAsvmPRyFCvDKFhAt8EFfrS2Vsgu4h70rhGjD0mc70zgszv3P
- S5d1Ig2l2ZVBKJ0OeXIJoz4eSAg4TEGALcXat/zU0MFYCUWXeirxUCetm
- 94UC1pauLZKAyg7ENXQ+L/OpRqVmjcWWXfHQXx6lKFe3JMqhLVeH/Gg7z
- PmiQGBC1FYPpRKHbZYQ1/UhysSFcFV4yA54q09cu/TSahNVrXr6fl+j03
- IMgAcFS3dCvuvRIhIRc1o92/0Y++TOFyM86W/uCDfTqaU7+ZDkNIXC149 Q==;
-X-CSE-ConnectionGUID: 07efEr2aR9a2No0b6DpEaQ==
-X-CSE-MsgGUID: tl8tXvwSREK77CWYJsX7SA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11927"; a="9194"
-X-IronPort-AV: E=Sophos;i="6.27,144,1787036400"; 
-   d="scan'208";a="9194"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2026 03:03:18 -0700
-X-CSE-ConnectionGUID: Fe6sG9zwQaGxs+oWvUOPoQ==
-X-CSE-MsgGUID: cJrQyWWbSbS0F1oShRGGCw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,144,1787036400"; d="scan'208";a="306889591"
-Received: from psoham-ms-7e03.iind.intel.com ([10.223.55.64])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2026 03:03:16 -0700
-From: Soham Purkait <soham.purkait@intel.com>
-To: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, matthew.d.roper@intel.com
-Cc: riana.tauro@intel.com,
-	soham.purkait@intel.com
-Subject: [PATCH] drm/xe/survivability: Do not call xe_vsec_init() in boot
- survivability path
-Date: Wed,  7 Oct 2026 15:33:00 +0530
-Message-ID: <20261007100259.2661003-2-soham.purkait@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA77410F0F3;
+	Wed,  7 Oct 2026 10:06:07 +0000 (UTC)
+Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 528A810F0F3;
+ Wed,  7 Oct 2026 10:06:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8973424542353367944=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_ASYNC=5FVID?=
+ =?utf-8?q?EO=5FTIMING=5FNOT=5FSUPPORTED=5FIN=5FPR_not_valid_for_eDP?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 07 Oct 2026 10:06:06 -0000
+Message-ID: <179136756633.247302.13752375666876947792@61270ab9df2a>
+X-Patchwork-Hint: ignore
+References: <20261007083443.647649-1-jouni.hogander@intel.com>
+In-Reply-To: <20261007083443.647649-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,32 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Boot survivability mode exists only for device recovery and firmware
-flashing. It does not need PMT/telemetry. Since xe_vsec_init() only
-sets up VSEC/PMT, there is no reason to call it on the boot survivability
-path.
+--===============8973424542353367944==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Soham Purkait <soham.purkait@intel.com>
----
- drivers/gpu/drm/xe/xe_survivability_mode.c | 2 --
- 1 file changed, 2 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index 45d44ebe288b..f5985938c60b 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -351,8 +351,6 @@ static int enable_boot_survivability_mode(struct pci_dev *pdev)
- 
- 	xe_heci_gsc_init(xe);
- 
--	xe_vsec_init(xe);
--
- 	if (survivability->fdo_mode) {
- 		ret = xe_nvm_init(xe);
- 		if (ret)
--- 
-2.43.0
+Series: drm/i915/psr: ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR not valid for eDP
+URL   : https://patchwork.freedesktop.org/series/175653/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-5899-daeb062fc40f727fafefed080c6d12a5ad1d0d12_BAT -> xe-pw-175653v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5899-daeb062fc40f727fafefed080c6d12a5ad1d0d12 -> xe-pw-175653v1
+
+  IGT_9131: 5e43e9df3a1581074f0de2bbeddd939ebd950b93 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5899-daeb062fc40f727fafefed080c6d12a5ad1d0d12: daeb062fc40f727fafefed080c6d12a5ad1d0d12
+  xe-pw-175653v1: 175653v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175653v1/index.html
+
+--===============8973424542353367944==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/psr: ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR not valid for eDP</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175653/">https://patchwork.freedesktop.org/series/175653/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175653v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175653v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5899-daeb062fc40f727fafefed080c6d12a5ad1d0d12_BAT -&gt; xe-pw-175653v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5899-daeb062fc40f727fafefed080c6d12a5ad1d0d12 -&gt; xe-pw-175653v1</li>
+</ul>
+<p>IGT_9131: 5e43e9df3a1581074f0de2bbeddd939ebd950b93 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5899-daeb062fc40f727fafefed080c6d12a5ad1d0d12: daeb062fc40f727fafefed080c6d12a5ad1d0d12<br />
+  xe-pw-175653v1: 175653v1</p>
+
+</body>
+</html>
+
+--===============8973424542353367944==--
