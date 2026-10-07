@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97046CA5FF1
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 08:24:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3F9CCA5FFF
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 08:34:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4772510E396;
-	Wed,  7 Oct 2026 08:24:53 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 475BE10E396;
- Wed,  7 Oct 2026 08:24:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8400776427983825563=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F95310F4AF;
+	Wed,  7 Oct 2026 08:34:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kTUAGIMj";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 221B510F4AF;
+ Wed,  7 Oct 2026 08:34:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791362096; x=1822898096;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zKjzEZuGrvRURiv/KV5XJmgbULbGGApaL1bnACPasa0=;
+ b=kTUAGIMjM9wmAKY24A/ecmpABTp7VPJN0s/Ok0PM18KKRlvg1PmEcEyQ
+ tk+ZeRu1Ze3TLNShttGg1eW6Mj0Ks2LCD/sARH1GN+rPmQcexq214858y
+ OyvpGUzNqfVF/Q3SXGLixviJx45158av5/reFtqBzQTHu3oI09qmHPp6h
+ 9RxgJ7qNX7GYaA46zkIk09xgpIn1q0+r9nrKZEs8WIrAsseP1CdZoZlID
+ PhKdF9L2u0TaA2wwMUbFW4DM4IyvAg4wjL/g6dvmwKGfXUtQ7DbHpPwRz
+ FkiNwAfxNGtLLvsoZy21xNTM/+XBfnCUH1iGjUmI+PjHiHbCxCTdK1zP4 w==;
+X-CSE-ConnectionGUID: z0kioHX4TLeyhY5ScWk3yw==
+X-CSE-MsgGUID: 4ds8LzDFRLmxopRxV8CTcw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11927"; a="120425"
+X-IronPort-AV: E=Sophos;i="6.27,144,1787036400"; 
+   d="scan'208";a="120425"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2026 01:34:56 -0700
+X-CSE-ConnectionGUID: Rhq3BYe1RCCPeZtalbTzMQ==
+X-CSE-MsgGUID: fb8euMARR8mnSr3IN/asCA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,144,1787036400"; 
+   d="scan'208";a="4439"
+Received: from mwiniars-mobl.ger.corp.intel.com (HELO
+ jhogande-mobl3.intel.com) ([10.245.246.135])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2026 01:34:55 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Jake Steinman <j@metarealtyinc.ca>
+Subject: [PATCH] drm/i915/psr: ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR not
+ valid for eDP
+Date: Wed,  7 Oct 2026 11:34:43 +0300
+Message-ID: <20261007083443.647649-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/scaler=3A_Prune_YU?=
- =?utf-8?q?V420_modes_against_the_max_source_width?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 07 Oct 2026 08:24:52 -0000
-Message-ID: <179136149228.246925.8462999909011497397@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20261007070601.3611674-1-arun.r.murthy@intel.com>
-In-Reply-To: <20261007070601.3611674-1-arun.r.murthy@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +69,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8400776427983825563==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+EDP1.5 specification says:
 
-== Series Details ==
+"Although defined for the PR function in DP Standard, the
+ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR and DSC_DECODE_NOT_SUPPORTED_IN_PR
+bits (DPCD 000B1h[3, 2], respectively) are DP-specific and are therefore
+not used in eDP."
 
-Series: drm/i915/scaler: Prune YUV420 modes against the max source width
-URL   : https://patchwork.freedesktop.org/series/175644/
-State : success
+Stop using SYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR on eDP.
 
-== Summary ==
+Cc: Jake Steinman <j@metarealtyinc.ca>
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-CI Bug Log - changes from xe-5899-daeb062fc40f727fafefed080c6d12a5ad1d0d12_BAT -> xe-pw-175644v1_BAT
-====================================================
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 00d0146b26002..c2bb2c4071527 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1698,8 +1698,11 @@ static inline bool compute_link_off_after_as_sdp_when_pr_active(struct intel_con
+ 
+ static inline bool compute_disable_as_sdp_when_pr_active(struct intel_connector *connector)
+ {
+-	return !(connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_CAPABILITY)] &
+-		 DP_PANEL_REPLAY_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR);
++	struct intel_dp *intel_dp = intel_attached_dp(connector);
++
++	return intel_dp_is_edp(intel_dp) ? false :
++		!(connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_CAPABILITY)] &
++		  DP_PANEL_REPLAY_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR);
+ }
+ 
+ static bool _panel_replay_compute_config(struct intel_crtc_state *crtc_state,
+-- 
+2.43.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5899-daeb062fc40f727fafefed080c6d12a5ad1d0d12 -> xe-pw-175644v1
-
-  IGT_9131: 5e43e9df3a1581074f0de2bbeddd939ebd950b93 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5899-daeb062fc40f727fafefed080c6d12a5ad1d0d12: daeb062fc40f727fafefed080c6d12a5ad1d0d12
-  xe-pw-175644v1: 175644v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175644v1/index.html
-
---===============8400776427983825563==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/scaler: Prune YUV420 modes against the max source width</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175644/">https://patchwork.freedesktop.org/series/175644/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175644v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175644v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5899-daeb062fc40f727fafefed080c6d12a5ad1d0d12_BAT -&gt; xe-pw-175644v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5899-daeb062fc40f727fafefed080c6d12a5ad1d0d12 -&gt; xe-pw-175644v1</li>
-</ul>
-<p>IGT_9131: 5e43e9df3a1581074f0de2bbeddd939ebd950b93 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5899-daeb062fc40f727fafefed080c6d12a5ad1d0d12: daeb062fc40f727fafefed080c6d12a5ad1d0d12<br />
-  xe-pw-175644v1: 175644v1</p>
-
-</body>
-</html>
-
---===============8400776427983825563==--
