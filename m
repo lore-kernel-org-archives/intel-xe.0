@@ -4,153 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DA2CCA5FFF
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 08:03:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67C04CA5FFF
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 08:07:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25E4F10E53E;
-	Wed,  7 Oct 2026 08:03:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2747E10EF41;
+	Wed,  7 Oct 2026 08:07:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mlA4n8Z2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fydh8RXe";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BDDA10E35D;
- Wed,  7 Oct 2026 08:03:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E971210E53E;
+ Wed,  7 Oct 2026 08:07:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791360218; x=1822896218;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=uBm415RY1E2PH0thbosYQzd74ITkrRyx38t6cQKQYhE=;
- b=mlA4n8Z2Q+goaW4yBV4qt6sMJXE+YEsWs2MLwuO9zI71iN3ADZ9eUEsh
- 6bdolM3rWxwByJdAX/cRWBYDXSSxwi2JEPuzJCHuEc/ZIximW7+Ngxjem
- WpGNjBDrdpSBmeW9tKnaAZ4APSTNq4m8VULbq5K7tok9Ek+VHpGqtAGnp
- d1uPZy4kStPiANkcIlZHM5yq6YRbqhORW7gR4dC1LGqgG7AJi2enwbs+f
- oIZ6VuVXlseAvfd0A37If5bdzwc/RsTUYzEL72iymOCdgwS3pvcYtE4Br
- n6Fk2TNNrkC5Op+/0/d/pnswCmsrZ1atpQimlKV81UlAj76Xp5nJLWKeW g==;
-X-CSE-ConnectionGUID: Jxpw9URuSw6914I/tjwd9w==
-X-CSE-MsgGUID: 4KDHt9fwS9Or1b0UXUkDUA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11927"; a="9565"
+ t=1791360429; x=1822896429;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=romjlo+9XGi6AHS6ZJhdS/i4Eu/Sc0BFFjJspgHaBRQ=;
+ b=Fydh8RXe/cVk2ESxvkcHrTIBLhX8I+YFPJQZ2ceLcRhPNCvg+XGDyXIb
+ abO/mJoRjXmj7ePjXKumkKPKeg7OqXAuQGb9owOtbjvLd0qa3ZGmQIlZM
+ M7poJ5kpn38haUOFPzkaEngt7fdcM312xuv0ztH1RySebnTlpdyfUVNr/
+ 2et3QAByGDkpx9AO+BIhDUDcWjFk3pssbFYIBK9zatCeZ7qb4Bb2zGiw0
+ 0qgZg09suwbFfWsX0+JXBpcLl2lROZ7fLDNhXk+SfiUYBymSpGPpaW1ci
+ g0rwfucjdK8hYNqFfNcSqWnm6z4R9vcibpymONdGVlchaPrVwk/4AZJZU w==;
+X-CSE-ConnectionGUID: IgkobZtNRpWeOGtBEpCBEA==
+X-CSE-MsgGUID: tBv+nc/BRva8rmtfsj2qsA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11927"; a="108529"
 X-IronPort-AV: E=Sophos;i="6.27,144,1787036400"; 
-   d="scan'208";a="9565"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2026 01:03:37 -0700
-X-CSE-ConnectionGUID: qd1JN0x1TvaVmawOEuD7lQ==
-X-CSE-MsgGUID: 2LJUc3UXRl+4a7/hOosfcQ==
+   d="scan'208";a="108529"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2026 01:07:07 -0700
+X-CSE-ConnectionGUID: 0Mk0mLUSRr2GF0Bs/rpY/w==
+X-CSE-MsgGUID: CouYNn0jRoy1mAI6wVYmuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,144,1787036400"; d="scan'208";a="281133275"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2026 01:03:37 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Wed, 7 Oct 2026 01:03:21 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Wed, 7 Oct 2026 01:03:21 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.12) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Wed, 7 Oct 2026 01:03:20 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jTAmAD0LX4f8l3fIXJpXz/9ShQ7mwGNkdd5qic78DjLdBm4iBJ1b7LAteIrd6F06URg2qzkOMFXwdZI4FnZ3qtMlA/3WekILb3uU1cbHc9ijaTzFRd0IiQW5gowLyRkzi0Vq/cX6eibXbPLyomNMv3CnX3j5fv1NZmKgNbvFH8bE3IbdArcRoS15hZHhaDq6j8UFy3lMS/AUkiwz1xhpWUnR4i4cZC9KmpnwRw9NaQRZdS+Hk8r65NS7z8eyynnXUxImb874T4lVNJZQbRKXGJB985spA41fYa2+7cxM3ePBLQXvz9ycsSHHkYJPasawxUBVWleO03q5i+7ZH8c6yg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=F6XYW9pOX/H/j6NPtqHowIGUo6r2SID5mIJJ7TqA0S0=;
- b=QDAvDe9kv5XPwZRQqkLEOzUgVN/KxUWHytYec2AGt/rpK7zkIa3mgvtd57kxbzaWKhqCE5RiRhEzTc85vJlTTJFkEWeKAj2aeo2GVtqDsMzIxKX8MBuGZdspCwsK2qKcdZ8dirOuaUWNWeQh2HcpoyWoLnNYGTtbigs3nOLohvII0jmykLEn/K+YBDYxtTC3bXkVcTQ3BdT4HDjULaRwgV62m+7Sg9LftyCBG8PbgS1s4aDKYpi20iC4FZUHL9+J8vU4W3tcUbI3obVXcj9hXqNw64I43eYdYzESQarCEpGn/Wht5BMuDWCYGhNw5YeZCd/9FRUe/kfO6ZSpBQ8exQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::5b) by DS0PR11MB7804.namprd11.prod.outlook.com
- (2603:10b6:8:f3::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.496.15; Wed, 7 Oct
- 2026 08:03:17 +0000
-Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
- ([fe80::19f5:13eb:df52:68ff]) by DS4PPFE901A304F.namprd11.prod.outlook.com
- ([fe80::19f5:13eb:df52:68ff%8]) with mapi id 15.21.0496.010; Wed, 7 Oct 2026
- 08:03:17 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "stable@vger.kernel.org"
- <stable@vger.kernel.org>
-Subject: RE: [PATCH] drm/i915/scaler: Prune YUV420 modes against the max
- source width
-Thread-Topic: [PATCH] drm/i915/scaler: Prune YUV420 modes against the max
- source width
-Thread-Index: AQHdVip/DpHzlzK2Wkm45TK4xOQPzrbxt1Aw
-Date: Wed, 7 Oct 2026 08:03:16 +0000
-Message-ID: <DS4PPFE901A304F1782FA1CD962D6DDE3BFE3942@DS4PPFE901A304F.namprd11.prod.outlook.com>
-References: <20261007070601.3611674-1-arun.r.murthy@intel.com>
-In-Reply-To: <20261007070601.3611674-1-arun.r.murthy@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|DS0PR11MB7804:EE_
-x-ms-office365-filtering-correlation-id: 1c4cae8f-e556-44cf-5332-08df244971d1
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|23010399003|366016|18002099003|22082099003|10067099003|3023799007|11063799006|38070700021|56012099006;
-x-microsoft-antispam-message-info: pIPj8xVrGz54EqDDdeX6TBTBRoKtUVYbhGNyd51JCDVBrBrZgwa/sggJIcwJuKbGWeM5KDZqgoGARB3MgLrAXPfO0dXC2OJ4EVpAp+GuQlIQaGvGwg4i9dDSSi/xgwMMZXP+2dTvCsPfZUAexQDD1C/nekz1/lqac6JkfEg/hQa6nbWixoTceeRMDBcEtMp3Oye/0fNlfeIgolCFHvmoCQuztrkrWxvV/BODColIBUY3IESInVFv1KOUisEjcwhM7WlOXJKw3YuEAZJSs/YCj18pGH2NcbQm5G/ba1Go21LAf+DYI44mDeR9y0zBhb2GNc3Up53ej7d7kFt3VKRo7phBVPgXg3MOE/hPYk/xSNElHDQRVr3QAy5Rn+VggCtgT4gBPPmL4OaegvzBBLbD05AItIlsSJ3U3nIhBovek8GakercnCwumRcHY7ui0/C7CcD5HT2HWIGbVeOw7zAVA7xhnntYq3clXA2R04LO/2dQm4kq025Y/9/9quR9XfwM9zzG73cL2e1S6PmPc0rlJf0KaPe+XUZNr0JGKd1qoXmOCfoUTb5xDXCCm42jMw7tyFLx4q3U1/iDO6TC35qx9XiHID4Tb/jH/RE33Ff7/s1GhOyRiF8eEaYTrQYUKvzUp9sDydPLtWd9ALKBWRKwJB5dkRC1Nco0jTr7pkyKGi2EOmAhUoufzXlCqw0SQ8xKLAAoiTwnQZ0yIW4Y6PWi+xpSVSnDTnVlaEWBhhtQNrQ=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS4PPFE901A304F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(18002099003)(22082099003)(10067099003)(3023799007)(11063799006)(38070700021)(56012099006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?W+0Ka82xgElA9Q10hCk/FmwmRcITY/8zB0Kbq0ZzEQHLh7PnPftDGRH99zxv?=
- =?us-ascii?Q?nqeb70Oh/uP/ha51xcon9pAftOC7WncKPHcM/q656cosLSINXgqba894k7Yl?=
- =?us-ascii?Q?wPbIUsUNwOZZoSjQPSATsSsR4xaluoenSmihD08ReRTc3J+Abps7g636KYC9?=
- =?us-ascii?Q?vim/cuJazkWYb6CQ1keJ4na1pNZSQh1WJcax3IF0jYxkwyrWy/AoXdNsH1gm?=
- =?us-ascii?Q?9G4BX/MxY6PYdgd1g4ODcQBYCfGnAeODXk0PhkOxjiPQFBA3oLqARjJqO3Yj?=
- =?us-ascii?Q?RJFzHn+DDIqJ9yqMknFJUDBcAEOr8A/ubXK7f0hfWiQ9Nr9eAlpxxgFezb0c?=
- =?us-ascii?Q?T8DJx3HFFpXyOjlxjL5s0ChgnXFoVJMQiJm5Wd6vap1b1F647KtRFf1F3nw0?=
- =?us-ascii?Q?8RPnqnBkcpoURqOXI65PSC5IYp5ikd2GcBCmmdhTTf4Vn2Nv/yX7AseZrpU6?=
- =?us-ascii?Q?EE+bhjRi2RuKppL82uJI6sOy54l0C2vDzklS4cvUjZvX+TWmHLsafoTM7b+N?=
- =?us-ascii?Q?etSxkOEmKhHozWWS7x5Rwta5hP9qxfM6dE5AUcvWlEZK19s8GR9a7DS04w3n?=
- =?us-ascii?Q?DJE2mUoF9NvtZA/Yk+aZDfUQ6PUWS8ARHdA2iyOQAO5AleBwKIkHi83ww8QZ?=
- =?us-ascii?Q?tXjxhBg/8cD5R52895+vs/ih2FVfuRmim6BKSnNoY4tu3nzdlm2tFFMSegOr?=
- =?us-ascii?Q?4qEA2nkBCYlYFvq9jgth9f5mmAgUE9+AtZi0t2OZ65Ld4+z5e2yz47aihfoD?=
- =?us-ascii?Q?MUNLO1EO1beqgeOY9YDAZoJ6TuOJKzSHp6FHxdOLV1mBJSQD4X8sTfBLg1Iv?=
- =?us-ascii?Q?vR24F9Zm+XUggWpMt59TYx6b5zJgePSH0LYikm3fQyMYATS1rCmokVTen104?=
- =?us-ascii?Q?5OFPKqJr5Pmj3f9JsS/TIzkse46wWCneLuoF+UOJhqyKmOf7X8gpG+XRArDo?=
- =?us-ascii?Q?MdEz5GWDec1gd7vhR+Ia7BvE9X18mxBSoZ6qRkGRr6nPGJuH09FuP4H4hI9C?=
- =?us-ascii?Q?SBvkACDoynipyGyTwuB7PTIWf9VoasAxmmrb6thOhmD0smhWARvEHMNiLinT?=
- =?us-ascii?Q?sHyDI5RYydhiKtRjGYVXGo9+ChuCQ/cS50dECv0PkpMIM0AnUykhE0AOjrii?=
- =?us-ascii?Q?YnKoFyIx14k2lrglKkqHgzVtgQVJLap1ptdH5/In0RvWSygVUpneVf885f7L?=
- =?us-ascii?Q?NN/9Z0CkKOoPQTFaObm2KaU5v1I/pI5dgTOd9VyJImjuOZRLHryDcuf0LqFq?=
- =?us-ascii?Q?QARNzcDaHR3etyIBrweNsHnO6InyicolCOR2iZX5amEieriC6sYCjFEpTZTT?=
- =?us-ascii?Q?Af36h3zZk7YzG5Jz5h8oVBSjWpNd3IDPGoKvJhYCY43USa1C7RXCjmnneBgb?=
- =?us-ascii?Q?oLulFvqjUyz6Pb8/PKaNeXwcSa7aCAIXrjzXm5kSsnpqdUytn/I1DYNC+JlT?=
- =?us-ascii?Q?ZspjiI7cKJvnHPcb1DE07xDNJuadq2sbg0hqGBEN3D+PNrhXDggIJY+ZXdAU?=
- =?us-ascii?Q?zCtCERFLW/VpQIKZ5m5zvyTB8f058THZ9xeHl+8O2Rca9D/7y9aMjjYV5Q7K?=
- =?us-ascii?Q?v/0irl6fqY4I9shurZOR1hIcRgliJ5taqrwRePIkqfvoDW2QF4dXpRjUDr3H?=
- =?us-ascii?Q?gHaBn17j+2SzOOpSJzAlkYNJGS/qMYh+KkxNdX8f0YYYelM1otziKfPBJ35K?=
- =?us-ascii?Q?bj9rTzBSw3bhwAV+yn3m/AwSQnuFGq611CGWiaDjP1lyNV3u9mnjXPwSwwoR?=
- =?us-ascii?Q?8oQI+oApog=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.27,144,1787036400"; d="scan'208";a="315405490"
+Received: from aravind-dev.iind.intel.com ([10.190.239.36])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2026 01:07:02 -0700
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ netdev@vger.kernel.org, amd-gfx@lists.freedesktop.org
+Cc: simona.vetter@ffwll.ch, airlied@gmail.com, tejas.upadhyay@intel.com,
+ himal.prasad.ghimiray@intel.com, rodrigo.vivi@intel.com,
+ riana.tauro@intel.com, raag.jadav@intel.com,
+ joshua.santosh.ranjan@intel.com, ashwin.kumar.kulkarni@intel.com,
+ pratik.bari@intel.com, Hawking.Zhang@amd.com, tao.zhou1@amd.com,
+ YiPeng.Chai@amd.com, jinzhou.su@amd.com, cesun102@amd.com,
+ lijo.lazar@amd.com, alexander.deucher@amd.com, christian.koenig@amd.com
+Subject: [PATCH v2 0/2] drm/xe: Expose retired VRAM pages via drm-ras
+Date: Wed,  7 Oct 2026 13:33:52 +0530
+Message-Id: <20261007080354.3072751-1-aravind.iddamsetty@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: r9UN7+Lqr40F3OyZpfBWSxi1fqmzzG2buVG6DffAvX8GbXBqhi5dO9cSVaTa2Zoo2I7b+liz1kJv5OuntJvS39UXo5jkEjUg9CM5iXoNDBZVNtNKY5K2yekuR+T7ug3yeHXtLm9Im2i3f3bu6ozYoEFof2wiXxavq+q0jsrw9SWgtY8YKm2frM5JyL6I/4h9mto/KUEYWQ7hAC7kTqxC9128yKRv015slQ6DJCrKSJdrYncrA5op//H6EzcYsSJeszkZWAlk3/qhcy8RUIqrIsr+EpLNz7PrD/yXmiypsFp3p7SGq7WzoPcpp1YpArIh+1WFt7HU4Z47h1cqdN2mSQ==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS4PPFE901A304F.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1c4cae8f-e556-44cf-5332-08df244971d1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2026 08:03:17.0282 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: kAI9U0y1f9ajQ4Q6pMZDCyRDCOQD+PxzSx827wn4FvE86eOHc1y5e1Zd2Nc/sgglMTF8CtXtq5kwUWU2Bu83tw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7804
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,56 +72,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> Subject: [PATCH] drm/i915/scaler: Prune YUV420 modes against the max
-> source width
->=20
-> skl_scaler_mode_valid() compares the mode's hdisplay against the pipe sca=
-ler
-> maximum source height instead of the maximum source width, so single pipe
-> YUV420 modes are pruned against the wrong limit.
->=20
-> Commit 3347b55f2c6c ("drm/i915/xe3lpd: Prune modes for YUV420")
-> intended to reject modes whose hdisplay exceeds the scaler horizontal sou=
-rce
+The memory page offlining support tracks bad VRAM pages and currently
+only exposes them through debugfs (vram_bad_pages), which is not a
+stable ABI. Add a proper userspace interface using the drm-ras
+generic netlink family.
 
-I think no need to mention  this commit since you already mention this in f=
-ixes
-Also=20
-Cc: stable@vger.kernel.org
+Introduce a new node type DRM_RAS_NODE_TYPE_RETIRED_RESOURCES which
+enumerates hardware resources that have been permanently taken out of
+service. Each node reports a single resource type, identified by its
+node-name, so the resource type is implied by the node rather than
+carried per entry. The per-entry payload stays extensible: each entry
+carries a single type-specific nested attribute, so future resource
+types can be added without touching existing consumers. VRAM pages are
+the first supported type, reported via the vram-page nest as
+{address, size, status} where status is one of retired/pending/failed.
 
-Otherwise LGTM,
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+A single operation is added on the node:
+ - GET_RETIRED_RESOURCES: dump the resources retired on the node. The
+   dump opens with a leading capacity summary entry (max-pages
+   inside the vram-page nest, i.e. the maximum number of pages that
+   can be offlined, with no address/size/status), followed by one
+   entry per retired resource. Userspace derives the retired/queued
+   counts by counting entries.
 
-> limit, since pipe scaling does not support YUV420 for a source width abov=
-e
-> 4096. Comparing against max_h makes the check far too permissive from
-> display 12 onwards, where max_h is 8192, and too strict on display 11, wh=
-ere
-> max_h is 4096 while the horizontal limit is 5120.
->=20
-> Compare against max_w instead.
->=20
-> Fixes: 3347b55f2c6c ("drm/i915/xe3lpd: Prune modes for YUV420")
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_scaler.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c
-> b/drivers/gpu/drm/i915/display/skl_scaler.c
-> index 7994b983d509..7e65c4fffbc0 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> @@ -145,7 +145,7 @@ skl_scaler_mode_valid(struct intel_display *display,
->=20
->  	if (num_joined_pipes < 2 && output_format =3D=3D
-> INTEL_OUTPUT_FORMAT_YCBCR420) {
->  		skl_scaler_max_src_size(display, &max_w, &max_h);
-> -		if (mode->hdisplay > max_h)
-> +		if (mode->hdisplay > max_w)
->  			return MODE_NO_420;
->  	}
->=20
-> --
-> 2.25.1
+The netlink interface is described by the YAML spec
+Documentation/netlink/specs/drm_ras.yaml. The following files are
+generated from that spec with tools/net/ynl/ynl-regen.sh and must not
+be edited by hand:
+ - include/uapi/drm/drm_ras.h        (uapi attribute/command enums)
+ - drivers/gpu/drm/drm_ras_nl.c      (generated policy and op table)
+ - drivers/gpu/drm/drm_ras_nl.h      (generated declarations)
+
+Eg:
+$ sudo ./tools/net/ynl/pyynl/cli.py \
+     --spec Documentation/netlink/specs/drm_ras.yaml \
+     --dump list-nodes
+
+[{'device-name': '0000:03:00.0', 'node-id': 0, 'node-name':'correctable-errors',
+ 'node-type': 'error-counter'},
+ {'device-name': '0000:03:00.0', 'node-id': 1, 'node-name':'uncorrectable-errors
+', 'node-type': 'error-counter'},
+ {'device-name': '0000:03:00.0', 'node-id': 2, 'node-name':'vram-retired-pages',
+ 'node-type': 'retired-resources'}]
+
+$ sudo ./tools/net/ynl/pyynl/cli.py --spec \
+Documentation/netlink/specs/drm_ras.yaml  --dump  get-retired-resources \
+--json '{"node-id": 2}'
+
+[{'node-id': 2, 'vram-page': {'max-pages': 100}},
+ {'node-id': 2, 'vram-page': {'address': 12807041024, 'size': 4096,
+ 'status': 'retired'}},
+ {'node-id': 2, 'vram-page': {'address': 12809400320, 'size': 4096,
+ 'status': 'retired'}}]
+
+The first entry is the capacity summary (max-pages); subsequent entries
+are the retired pages.
+
+v2:
+ - Rebase on drm-tip
+ - Drop the per-entry resource-type discriminator attribute; the type is
+   now implied by the node (node-name), which reports a single type.
+ - Fold all VRAM-page fields, including the retirement status, into the
+   vram-page nested attribute; the top-level entry is just
+   {node-id, vram-page}. (Rodrigo)
+ - Drop the separate GET_RETIRED_RESOURCES_INFO operation. The capacity
+   (max-pages) is now emitted as a leading summary entry inside
+   GET_RETIRED_RESOURCES (max-pages in the vram-page nest, no status);
+   offlined/queued counts are derived by counting entries.
+
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Riana Tauro <riana.tauro@intel.com>
+Cc: Raag Jadav <raag.jadav@intel.com>
+Cc: Joshua Santhosh Ranjan <joshua.santosh.ranjan@intel.com>
+Cc: Ashwin Kumar Kulkarni <ashwin.kumar.kulkarni@intel.com>
+Cc: Pratik Bari <pratik.bari@intel.com>
+
+Aravind Iddamsetty (2):
+  drm/xe: Expose retired VRAM pages via drm-ras
+  drm/xe: Remove bad VRAM pages debugfs interface
+
+ Documentation/netlink/specs/drm_ras.yaml |  91 ++++++++++-
+ drivers/gpu/drm/drm_ras.c                | 174 ++++++++++++++++++++-
+ drivers/gpu/drm/drm_ras_nl.c             |  12 ++
+ drivers/gpu/drm/drm_ras_nl.h             |   2 +
+ drivers/gpu/drm/xe/xe_debugfs.c          |   2 -
+ drivers/gpu/drm/xe/xe_drm_ras.c          |  77 +++++++++
+ drivers/gpu/drm/xe/xe_drm_ras_types.h    |   3 +
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c     | 190 ++++++++++++++---------
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h     |   4 +-
+ include/drm/drm_ras.h                    |  74 +++++++++
+ include/uapi/drm/drm_ras.h               |  48 +++++-
+ 11 files changed, 592 insertions(+), 85 deletions(-)
+
+-- 
+2.25.1
 
