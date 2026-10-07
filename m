@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE17DCA6004
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 21:14:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E7A9CA600B
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 21:14:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30CB110E6CC;
-	Wed,  7 Oct 2026 21:14:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3768710F7D0;
+	Wed,  7 Oct 2026 21:14:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C5umtd/S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jagtld3q";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2B1710E6CC
- for <intel-xe@lists.freedesktop.org>; Wed,  7 Oct 2026 21:14:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A1C210F7D0
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 Oct 2026 21:14:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791407663; x=1822943663;
+ t=1791407666; x=1822943666;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5IWEmCANRkoEzQuHlYJV+ArVg3BfHzvO4+BC8XXI8zg=;
- b=C5umtd/SI7MJbgrK5O5hVMQYKVwFCuN6DGnw/m2gdDWE5a1YnUwt3DQB
- +L5nt22TSayVurm5Op9ltRj2lzmK3W2TufeI6no0AIjR6ZGTkt1KLpPYA
- vr3LODWIll0o9GPey4yLiyagCm9ERR7WBs29KqIlxpFaWxYiPfVwY20mz
- gq2PkpzUQo7mRn3xZZoCRdtyYEnOwelhhXMVKlGniIzXHIXaTkDVZBVW+
- yFqUz+9NFKfjmo6GId5tgIl7fjfx9UOcGgA+oTSrunBWPcefr4jYfc1fO
- o7Mx4OQ/WS8dez4S6FLBKZ7UKch24Cd14Ms6HrIt9DLocyp5AOzFM4Ohm g==;
-X-CSE-ConnectionGUID: 3I0BRkxDRmy25XxXaKwwlg==
-X-CSE-MsgGUID: xvGOrNF2QB+T0MmPc6/xUw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11928"; a="77153"
+ bh=/EgR/LrLHO7XZua8sz0RTUnkUYMmB3TARc7PhZuTmkc=;
+ b=jagtld3qdpbgL3oVj2/LxSaAldFLg9AlxF8M0BfeZzeK3hFD/TYzs0Ej
+ b+3tu/rOa2UgDFKIWIGFLCzldJUxQzNYSzCMjXrtjfYaplWkIoZrCmHlF
+ s8F2r6VEMoFAkfMBj1QQA4d5j32LQGFYiKcz9nm8Tb1F7y7YfWygBwtCr
+ CD++/RzMja5IzLzg6HUF4Wux3aVExGK6eqA8nUBUDuJMR2hkh5PNGf2XY
+ vrf8jw8G+nuzqh8OtcZ5o0VWaEap8kbc36+NksRmmucUidABHyufc0kTK
+ 9pHOueX0C9B9tsaAUgpxCspnecZtIxwFzkZFnib8daweG0KDU/bBwYFib w==;
+X-CSE-ConnectionGUID: /FCQcrocRBmjDczTpwjHnw==
+X-CSE-MsgGUID: e520dL2ISyWQ+/dutr4BQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11928"; a="77158"
 X-IronPort-AV: E=Sophos;i="6.27,145,1787036400"; 
-   d="scan'208";a="77153"
+   d="scan'208";a="77158"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2026 14:14:23 -0700
-X-CSE-ConnectionGUID: k9qjtvYnQaOzCDQTInxOcQ==
-X-CSE-MsgGUID: wllTmn0yThygrZf2YYHz8g==
+ 07 Oct 2026 14:14:26 -0700
+X-CSE-ConnectionGUID: LoTFE/Z5QJmW6hpCRa5bXw==
+X-CSE-MsgGUID: Jn/TXLs+RlKthjszum2fSw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,145,1787036400"; d="scan'208";a="305526778"
+X-IronPort-AV: E=Sophos;i="6.27,145,1787036400"; d="scan'208";a="305526798"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by fmviesa001.fm.intel.com with ESMTP; 07 Oct 2026 14:14:22 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 07 Oct 2026 14:14:25 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: mallesh.koujalagi@intel.com,
  Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH v5 02/12] drm/xe/ggtt: Report GGTT errors using structured
- logging
-Date: Thu,  8 Oct 2026 02:44:07 +0530
-Message-ID: <20261007211417.2093611-3-dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH v5 04/12] drm/xe/mmio: Report BAR mapping errors using
+ structured xe_log API
+Date: Thu,  8 Oct 2026 02:44:09 +0530
+Message-ID: <20261007211417.2093611-5-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261007211417.2093611-1-dnyaneshwar.bhadane@intel.com>
 References: <20261007211417.2093611-1-dnyaneshwar.bhadane@intel.com>
@@ -68,49 +68,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace xe_tile_err() calls with xe_log_err_fatal() using the GGTT
-component tag in GGTT initialization error paths.
+Replace xe_err() calls with xe_log_err_fatal() using the REGS
+component tag for MMIO BAR probe failures
 
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_mmio.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 63e8bf193605..773777afc68a 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -23,6 +23,7 @@
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
- #include "xe_gt_types.h"
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 455a07d79cd9..2674146ced76 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -15,6 +15,7 @@
+ #include "regs/xe_bars.h"
+ #include "xe_device.h"
+ #include "xe_gt_sriov_vf.h"
 +#include "xe_log.h"
- #include "xe_map.h"
- #include "xe_mmio.h"
- #include "xe_pat.h"
-@@ -403,7 +404,8 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- 		else
- 			gsm_size = probe_gsm_size(pdev);
- 		if (gsm_size == 0) {
--			xe_tile_err(ggtt->tile, "Hardware reported no preallocated GSM\n");
-+			xe_log_err_fatal(ggtt->tile, GGTT, -ENOMEM,
-+					 "Hardware reported no preallocated GSM\n");
- 			return -ENOMEM;
- 		}
- 		ggtt_start = wopcm;
-@@ -414,8 +416,9 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ #include "xe_printk.h"
+ #include "xe_sriov.h"
+ #include "xe_tile_printk.h"
+@@ -71,8 +72,8 @@ int xe_mmio_probe_tiles(struct xe_device *xe)
+ 		return 0;
  
- 		if (ggtt_start < wopcm ||
- 		    ggtt_start + ggtt_size > GUC_GGTT_TOP) {
--			xe_tile_err(ggtt->tile, "Invalid GGTT configuration: %#llx-%#llx\n",
--				    ggtt_start, ggtt_start + ggtt_size - 1);
-+			xe_log_err_fatal(ggtt->tile, GGTT, -ERANGE,
-+					 "Invalid GGTT configuration: %#llx-%#llx\n",
-+					 ggtt_start, ggtt_start + ggtt_size - 1);
- 			return -ERANGE;
- 		}
+ 	if (xe->mmio.size < xe->info.tile_count * tile_mmio_size) {
+-		xe_err(xe, "GTTMMADR_BAR is too small for %d tiles: %zu\n",
+-		       xe->info.tile_count, xe->mmio.size);
++		xe_log_err_fatal(xe, REGS, -EIO, "GTTMMADR_BAR is too small for %d tiles: %zu\n",
++				 xe->info.tile_count, xe->mmio.size);
+ 		return -EIO;
  	}
+ 
+@@ -105,13 +106,16 @@ int xe_mmio_probe_early(struct xe_device *xe)
+ 
+ 	xe->mmio.regs = pcim_iomap(pdev, GTTMMADR_BAR, 0);
+ 	if (!xe->mmio.regs) {
+-		xe_err(xe, "Failed to map GTTMMADR_BAR\n");
++		xe_log_err_fatal(xe, REGS, -EIO,
++				 "Failed to map GTTMMADR_BAR\n");
+ 		return -EIO;
+ 	}
+ 
+ 	xe->mmio.size = pci_resource_len(pdev, GTTMMADR_BAR);
+ 	if (xe->mmio.size < SZ_16M) {
+-		xe_err(xe, "GTTMMADR_BAR is too small: %zu\n", xe->mmio.size);
++		xe_log_err_fatal(xe, REGS, -EIO,
++				 "GTTMMADR_BAR is too small: %zu\n",
++				 xe->mmio.size);
+ 		return -EIO;
+ 	}
+ 
 -- 
 2.54.0
 
