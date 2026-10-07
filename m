@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E7A9CA600B
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 21:14:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BF97CA6004
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 21:14:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3768710F7D0;
-	Wed,  7 Oct 2026 21:14:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C57B10F7D5;
+	Wed,  7 Oct 2026 21:14:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jagtld3q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nZWDK3as";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A1C210F7D0
- for <intel-xe@lists.freedesktop.org>; Wed,  7 Oct 2026 21:14:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6403E10F7D5
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 Oct 2026 21:14:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791407666; x=1822943666;
+ t=1791407667; x=1822943667;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/EgR/LrLHO7XZua8sz0RTUnkUYMmB3TARc7PhZuTmkc=;
- b=jagtld3qdpbgL3oVj2/LxSaAldFLg9AlxF8M0BfeZzeK3hFD/TYzs0Ej
- b+3tu/rOa2UgDFKIWIGFLCzldJUxQzNYSzCMjXrtjfYaplWkIoZrCmHlF
- s8F2r6VEMoFAkfMBj1QQA4d5j32LQGFYiKcz9nm8Tb1F7y7YfWygBwtCr
- CD++/RzMja5IzLzg6HUF4Wux3aVExGK6eqA8nUBUDuJMR2hkh5PNGf2XY
- vrf8jw8G+nuzqh8OtcZ5o0VWaEap8kbc36+NksRmmucUidABHyufc0kTK
- 9pHOueX0C9B9tsaAUgpxCspnecZtIxwFzkZFnib8daweG0KDU/bBwYFib w==;
-X-CSE-ConnectionGUID: /FCQcrocRBmjDczTpwjHnw==
-X-CSE-MsgGUID: e520dL2ISyWQ+/dutr4BQw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11928"; a="77158"
+ bh=phfzyIYq6ZAqs9QKmkI5dAX4m/+4pGPL5oC5zP6jDqk=;
+ b=nZWDK3asVz51EFIZ656vvFoN5ySHGdifHDgU6KUp3Q8EQsYy8Pmcmlxr
+ HloXrYZYiFRigw4wzDTF1VWmbjBD9oAAKvuZPj1KbE8OCXWf7SHxzmik+
+ krkKtY19K9X5eJV5ACMLefX1751wS4cZnC9Gwz8vZ1pSU0JTCctk2ttVd
+ eq1xUPUDR5UJeSwbxC+Qmr6HUk9W6gN5L9S1zuGDSMA6UkleM3YAXjE7V
+ vHCO4b6dMnzEQJNL/kwqXNjuHtDzlLfP0grMXYBExGTIjBXocF9czgWNh
+ hdv3eqxj8dJjjkKh75NVY1pKP0EY0oikf693IPGD4LnQ6f4ThqAfRJdgj w==;
+X-CSE-ConnectionGUID: 2Cz8K1WTQb28P3IJY55HKw==
+X-CSE-MsgGUID: 39b9+F4eRcqKTji2xQ+Ixw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11928"; a="77160"
 X-IronPort-AV: E=Sophos;i="6.27,145,1787036400"; 
-   d="scan'208";a="77158"
+   d="scan'208";a="77160"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2026 14:14:26 -0700
-X-CSE-ConnectionGUID: LoTFE/Z5QJmW6hpCRa5bXw==
-X-CSE-MsgGUID: Jn/TXLs+RlKthjszum2fSw==
+ 07 Oct 2026 14:14:27 -0700
+X-CSE-ConnectionGUID: V+QN+GQlQ72S1mnVqfiOfA==
+X-CSE-MsgGUID: bCI05ixaQoe2iTFBC6racg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,145,1787036400"; d="scan'208";a="305526798"
+X-IronPort-AV: E=Sophos;i="6.27,145,1787036400"; d="scan'208";a="305526810"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by fmviesa001.fm.intel.com with ESMTP; 07 Oct 2026 14:14:25 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 07 Oct 2026 14:14:26 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: mallesh.koujalagi@intel.com,
  Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH v5 04/12] drm/xe/mmio: Report BAR mapping errors using
- structured xe_log API
-Date: Thu,  8 Oct 2026 02:44:09 +0530
-Message-ID: <20261007211417.2093611-5-dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH v5 05/12] drm/xe/memirq: Report errors using structured xe_log
+ API
+Date: Thu,  8 Oct 2026 02:44:10 +0530
+Message-ID: <20261007211417.2093611-6-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261007211417.2093611-1-dnyaneshwar.bhadane@intel.com>
 References: <20261007211417.2093611-1-dnyaneshwar.bhadane@intel.com>
@@ -68,56 +68,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace xe_err() calls with xe_log_err_fatal() using the REGS
-component tag for MMIO BAR probe failures
+Replace memirq_err() calls with xe_log_err() using the MEMIRQ
+component tag for memory-based IRQ failures
+
+v2:
+- No need to log ERR_PTR(err) explicitly (Mallesh)
+- Using tile instead of xe for more local log location(sashiko bot)
 
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mmio.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_memirq.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 455a07d79cd9..2674146ced76 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
+diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
+index 9dfe965cb46e..32b9f87a10ec 100644
+--- a/drivers/gpu/drm/xe/xe_memirq.c
++++ b/drivers/gpu/drm/xe/xe_memirq.c
 @@ -15,6 +15,7 @@
- #include "regs/xe_bars.h"
- #include "xe_device.h"
- #include "xe_gt_sriov_vf.h"
+ #include "xe_gt.h"
+ #include "xe_guc.h"
+ #include "xe_hw_engine.h"
 +#include "xe_log.h"
- #include "xe_printk.h"
- #include "xe_sriov.h"
+ #include "xe_memirq.h"
  #include "xe_tile_printk.h"
-@@ -71,8 +72,8 @@ int xe_mmio_probe_tiles(struct xe_device *xe)
- 		return 0;
  
- 	if (xe->mmio.size < xe->info.tile_count * tile_mmio_size) {
--		xe_err(xe, "GTTMMADR_BAR is too small for %d tiles: %zu\n",
--		       xe->info.tile_count, xe->mmio.size);
-+		xe_log_err_fatal(xe, REGS, -EIO, "GTTMMADR_BAR is too small for %d tiles: %zu\n",
-+				 xe->info.tile_count, xe->mmio.size);
- 		return -EIO;
- 	}
+@@ -232,7 +233,7 @@ static int memirq_alloc_pages(struct xe_memirq *memirq)
+ 	return 0;
  
-@@ -105,13 +106,16 @@ int xe_mmio_probe_early(struct xe_device *xe)
+ out:
+-	memirq_err(memirq, "Failed to allocate memirq page (%pe)\n", ERR_PTR(err));
++	xe_log_err(tile, MEMIRQ, err, "Failed to allocate memirq page\n");
+ 	return err;
+ }
  
- 	xe->mmio.regs = pcim_iomap(pdev, GTTMMADR_BAR, 0);
- 	if (!xe->mmio.regs) {
--		xe_err(xe, "Failed to map GTTMMADR_BAR\n");
-+		xe_log_err_fatal(xe, REGS, -EIO,
-+				 "Failed to map GTTMMADR_BAR\n");
- 		return -EIO;
- 	}
+@@ -370,8 +371,8 @@ int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc)
+ 	return 0;
  
- 	xe->mmio.size = pci_resource_len(pdev, GTTMMADR_BAR);
- 	if (xe->mmio.size < SZ_16M) {
--		xe_err(xe, "GTTMMADR_BAR is too small: %zu\n", xe->mmio.size);
-+		xe_log_err_fatal(xe, REGS, -EIO,
-+				 "GTTMMADR_BAR is too small: %zu\n",
-+				 xe->mmio.size);
- 		return -EIO;
- 	}
+ failed:
+-	memirq_err(memirq, "Failed to setup report pages in %s (%pe)\n",
+-		   guc_name(guc), ERR_PTR(err));
++	xe_log_err(memirq_to_tile(memirq), MEMIRQ, err,
++		   "Failed to setup report pages in %s\n", guc_name(guc));
+ 	return err;
+ }
  
 -- 
 2.54.0
