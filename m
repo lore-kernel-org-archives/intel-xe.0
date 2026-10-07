@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C026CA600A
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 22:23:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04F09CA600E
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 22:23:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51CC910F7F6;
-	Wed,  7 Oct 2026 22:23:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A480910E6EF;
+	Wed,  7 Oct 2026 22:23:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lxKGpY7J";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ffGn4A5S";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E93E910F7F6;
- Wed,  7 Oct 2026 22:23:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4BFB10E6EF;
+ Wed,  7 Oct 2026 22:23:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791411803; x=1822947803;
+ t=1791411806; x=1822947806;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xdkkwDNuonOoM8T1q0jC8p1CUXNWkQv9sGymcSSoTeQ=;
- b=lxKGpY7JO/Tx5OjMI2ic2l2waxRb1L9Tfp23LSU8invHTvpn6fs4vFSz
- 9EDEH1m+hJ/WcZEH7O+PwsYwUSxAnl/HdKS5WG7NyTDjOCPQj4lA8j2QK
- zOKsGh6RVy/cd1mwhaVlVimMyDtQKnNcMpMXOckG3iwuYHuZXHzrtkk1T
- E2zXp7NFJ1mJHuYLQKXLTUx/Haw96EghFmRcdNaSGVVrpQIrM3942Uh4P
- OcfWZTcd1uFYKJWe4A93dtz0zF0rU2e2XCj1oFHvyOSCOAQFdhN1xOOnG
- QGjeQMDBrTGAl3LQauysaEMfaEJA4t/PcczifMBegL890EkdQHai68M2b g==;
-X-CSE-ConnectionGUID: OSUJaVM/R92SCOkLVETqYQ==
-X-CSE-MsgGUID: U2Y+aqChRGWEq7u4M/ktyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11928"; a="88781"
+ bh=/UGfc8wwvuOmkikkyYSFKnzdrorbLxE2TeaTTaAKAIQ=;
+ b=ffGn4A5St+PiosjWU4h+Q/jWmsoI1OzWAiBWUrYUUVRWn+6i1eSdGVmT
+ M5BKX/wXXLmz75K+CkrWBpsJw+K/gSf6/qEWfTSaIPSsW5OS8pihjfzEn
+ 0zvUktCaJqL3ASOMK2g/hywKR2wa68f9SB4PGHTSIHDyOzgfId3Br32I2
+ Bk0BnbZHhEn0qX+YzPJhR04Bvn21hy5GmZmMQ37wnlSdqDl0Ob22RKPrZ
+ /5tokZg5B1kWD/WAGq5+IaKvDx3lcSYcYDzkm5Iqe45qRSKBTpth39gfQ
+ d4GSjYB2qrCCPBJONu+9JZbd6f4TSJEbZIt7xkODxxmrXL8xPbp9uMLNA A==;
+X-CSE-ConnectionGUID: ezQGGJE+T1+/JFAHsYcoEg==
+X-CSE-MsgGUID: i/Aq2g4XTsKJOCDeNCsCMg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11928"; a="88783"
 X-IronPort-AV: E=Sophos;i="6.27,145,1787036400"; 
-   d="scan'208";a="88781"
+   d="scan'208";a="88783"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2026 15:23:22 -0700
-X-CSE-ConnectionGUID: oK7lGbEUQ2OPs3jGUP6QVQ==
-X-CSE-MsgGUID: pNgfDYCiTB2PaF5XMALRYw==
+ 07 Oct 2026 15:23:26 -0700
+X-CSE-ConnectionGUID: 1ZTVQaCrRjGVTtNsJoPWKg==
+X-CSE-MsgGUID: npDiuNq4QnqGXwE8LfCu3w==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,145,1787036400"; 
-   d="scan'208";a="193210"
+   d="scan'208";a="193214"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.62])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2026 15:23:21 -0700
+ 07 Oct 2026 15:23:25 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/5] drm/i915/gmbus: Stop frobbing with pin direction in
- .getsda()/.getscl()
-Date: Thu,  8 Oct 2026 01:23:10 +0300
-Message-ID: <20261007222314.5714-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/5] drm/i915/gmbus: Handle the internal pullup disable bits
+ more sensibly
+Date: Thu,  8 Oct 2026 01:23:11 +0300
+Message-ID: <20261007222314.5714-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261007222314.5714-1-ville.syrjala@linux.intel.com>
 References: <20261007222314.5714-1-ville.syrjala@linux.intel.com>
@@ -75,48 +75,43 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-i2c .getscl() and .getsda() are just supposed to report the state
-of the pin without changing its state in any way. So nuke the
-bogus register writes from there that configure the pin as an
-input (ie. tri-state the pin).
-
-Given how i2c works the pin will already be tri-stated when
-.getsda()/.getscl() are called so these writes are in fact
-redundant. And even if that weren't the case the input bit
-does appear to reflect the state of the pin, even when driven
-as an output.
+On gen2/3 platforms the GPIO register bits 5 and 13 are
+documented to be either internal pullup disable bits, or
+documented as reserved bits that must be preserved by software.
+It seems to be that either way we want to preserve their
+state always. That is, if they really are pullup disables, then
+presumably the firmware has configured them appropriately for us.
+So let's always preserve the state of these pins on gen2/3
+platforms.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_gmbus.c | 8 --------
- 1 file changed, 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_gmbus.c | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index 13bc6ab6b2f6..d23422e12aa4 100644
+index d23422e12aa4..e808f5c4106b 100644
 --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
 +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -269,10 +269,6 @@ static int get_clock(void *data)
- {
- 	struct intel_gmbus *bus = data;
+@@ -251,11 +251,13 @@ static u32 get_reserved(struct intel_gmbus *bus)
  	struct intel_display *display = bus->display;
--	u32 reserved = get_reserved(bus);
--
--	intel_de_write_fw(display, bus->gpio_reg, reserved | GPIO_CLOCK_DIR_MASK);
--	intel_de_write_fw(display, bus->gpio_reg, reserved);
+ 	u32 preserve_bits = 0;
  
- 	return (intel_de_read_fw(display, bus->gpio_reg) & GPIO_CLOCK_VAL_IN) != 0;
- }
-@@ -281,10 +277,6 @@ static int get_data(void *data)
- {
- 	struct intel_gmbus *bus = data;
- 	struct intel_display *display = bus->display;
--	u32 reserved = get_reserved(bus);
+-	if (display->platform.i830 || display->platform.i845g)
+-		return 0;
 -
--	intel_de_write_fw(display, bus->gpio_reg, reserved | GPIO_DATA_DIR_MASK);
--	intel_de_write_fw(display, bus->gpio_reg, reserved);
+-	/* On most chips, these bits must be preserved in software. */
+-	preserve_bits |= GPIO_DATA_PULLUP_DISABLE | GPIO_CLOCK_PULLUP_DISABLE;
++	/*
++	 * On gen2/3 these are either internal pullup disables, or
++	 * documented as reserved bits that need to be preserved.
++	 */
++	if (DISPLAY_VER(display) < 4)
++		preserve_bits |= GPIO_DATA_PULLUP_DISABLE |
++			GPIO_CLOCK_PULLUP_DISABLE;
  
- 	return (intel_de_read_fw(display, bus->gpio_reg) & GPIO_DATA_VAL_IN) != 0;
- }
+ 	/* Wa_16025573575: the masks bits need to be preserved through out */
+ 	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
 -- 
 2.55.0
 
