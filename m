@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 832BBCA5FF1
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 14:19:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7795CA5FFC
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 14:20:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37F0210F610;
-	Wed,  7 Oct 2026 14:19:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B18910F623;
+	Wed,  7 Oct 2026 14:20:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DzaG2eMt";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JlTUZZtz";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C49310F60E;
- Wed,  7 Oct 2026 14:19:04 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43A8810F617;
+ Wed,  7 Oct 2026 14:20:51 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id F200B41AEF;
- Wed,  7 Oct 2026 14:19:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAC231F0089C;
- Wed,  7 Oct 2026 14:19:03 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 6848C60218;
+ Wed,  7 Oct 2026 14:20:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF8B11F0089B;
+ Wed,  7 Oct 2026 14:20:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791382743;
- bh=cr35rXH3khnyGPMlM9ckLcYDAxBWERVa52+0uPAx+0w=;
+ s=k20260515; t=1791382850;
+ bh=oXAubKzB8loYADPuCw/wBEBDtVoyUVP6rdpZzDh3Yr8=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=DzaG2eMtc/sCHSXO6mOSRYh4ND5oIW7wRuj8pSJddXg2jBaFLL4N+mo88yJRImgxH
- c/lXMmRAcPGieSWrX9dGrrf9zfrIu4OLZLFW5JPlwaBEiSj27iYbgoaLfPn08gX9Jb
- KSwhIpbFRB7AxxqxIVv2lc+7pmCJwSlJECKAvVEMUD6DJfqCBhnY8zavTK99zUGQpk
- Nwm0Gd6eJRG5H1Cr9eyQBPpyWimgVWpfccrdEc0ImHAk43H8KvwfVglInzwr34+rqf
- 45xHDc12KE9WfsR45HH0/c/NvFLF1cPvnukoYtK9NhrcXm7MiZXZCiNHGetUGK8lt7
- qdvSZDUeXxhkQ==
-Message-ID: <sashiko-outbox-163094@kernel.org>
+ b=JlTUZZtzKKmZ3RAaXIULS0qL25wuTjpkBh2kiUZZXEytlpd2eMA8rHEoY/aSO82oC
+ 1UEBh+KWsKmb0vdZHeQJCjUmaB7WNUUqxLiMaGPMVPx0Qb35cS0cejVQrFhhKSV0cJ
+ zOO8SkvJgOvtXIOHnW98ChLzSeZnk3L/uK0sqoyjKCdz0N78FDPg2YlNjDsJLs57Cf
+ 4kdq2LHF/FvOjsIY91eZFLcNtXyO0RtzAdOi3ZuV8YxarF9ljS518Vu+x6IABDB+ek
+ SJaLNAIHxgPe9AHVrbyKJj1CxU/BvyWmnWfsNh178C1/dixIVcUlwQgbtHx+577Ecu
+ hCa78TEwxEe3g==
+Message-ID: <sashiko-outbox-163095@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RFC] drm/i915/cx0: request TCSS power for the non-TC C20
- PHY on PTL port B
-To: =?utf-8?b?QnVyYWsgR8O2bmPDvA==?= <burakgon12@gmail.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20261006-ptl-port-b-tcss-v1-1-240670342cd3@gmail.com>
-References: <20261006-ptl-port-b-tcss-v1-1-240670342cd3@gmail.com>
+Subject: Re: [RFC PATCH] drm/i915/psr: Send the AS SDP in PR Active while
+ vblank is enabled
+To: "Jake Steinman" <j@metarealtyinc.ca>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261006220500.3417572-1-j@metarealtyinc.ca>
+References: <20260923041342.2146450-1-j@metarealtyinc.ca>
+ <20261006220500.3417572-1-j@metarealtyinc.ca>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 07 Oct 2026 14:19:03 +0000
+Date: Wed, 07 Oct 2026 14:20:49 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,118 +59,90 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] drm/i915/tc: Race condition on global TCSS mailbox registers
-- [Medium] i915/cx0: missing wait for TCSS power state to clear on disable
+- [High] drm/i915/psr: wakeref leak and double-put in intel_psr_notify_vbla=
+nk_enable_disable()
+- [Low] drm/i915: Use of undeclared function intel_alpm_pr_as_sdp_skip_fram=
+es_enabled
 --
 
-commit 61a233a7f9a55965dffb355729a4d07449153a73
-Author: Burak G=C3=B6nc=C3=BC <burakgon12@gmail.com>
+commit 83416e4f5b6b0591037f900cd3b6bc4bc168af5c
+Author: Jake Steinman <j@metarealtyinc.ca>
 
-drm/i915/cx0: request TCSS power for the non-TC C20 PHY on PTL port B
+drm/i915/psr: Send the AS SDP in PR Active while vblank is enabled
 
-This commit requests TCSS power for the non-TC C20 PHY on PTL port B before
-programming the PLL, waits for the acknowledgment, and releases the request
-once the PLL is disabled. This mirrors what the TC PHY code does for TC por=
-ts.
+Sinks that support async video timing in PR get the AS SDP suspended in
+PR Active (disable_as_sdp_when_pr_active). The LG panel in the Dell XPS
+16 DA16260 (sink OUI 00:22:b9, "Balsa2") then judders while frames are
+updating, with the source flipping at a steady 8.33 ms. Leaving the AS
+SDP on fixes it but blocks DC5/DC6.
 
-Link: https://github.com/therealarnold666/zenbook-duo26-Ubuntu26.04
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/9119
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/8930
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/d=
-rm/i915/display/intel_cx0_phy.c
-> index dbebd72108484..010c7db063518 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
+915/display/intel_psr.c
+> index f490beb66629e..f69df2147c9d4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
 [ ... ]
-> +static void intel_cx0_request_tcss_power(struct intel_encoder *encoder, =
-bool enable)
-> +{
-> +	struct intel_display *display =3D to_intel_display(encoder);
+> @@ -2221,6 +2244,12 @@ static void intel_psr_enable_locked(struct intel_d=
+p *intel_dp,
+>  	intel_dp->psr.enabled =3D true;
+>  	intel_dp->psr.pause_counter =3D 0;
+> =20
+> +	intel_dp->psr.pr_as_sdp_follow_vblank =3D crtc_state->has_panel_replay =
+&&
+> +		crtc_state->disable_as_sdp_when_pr_active &&
+> +		intel_dp->as_sdp_supported && intel_dp_is_edp(intel_dp) &&
+> +		!intel_alpm_pr_as_sdp_skip_frames_enabled(intel_dp, crtc_state);
+
+[Severity: Low]
+Is this function call missing a declaration? The function
+intel_alpm_pr_as_sdp_skip_frames_enabled() is neither defined nor declared
+in the tree at this commit.
+
+It appears to depend on an out-of-tree series, which causes a compilation
+failure due to an implicit declaration.
+
+> +	intel_psr_pr_as_sdp_update(intel_dp);
 > +
-> +	intel_tc_request_tcss_power(encoder, enable);
-> +
-> +	if (enable &&
-> +	    intel_de_wait_for_set_ms(display, XELPDP_PORT_BUF_CTL1(display, enc=
-oder->port),
-> +				     XELPDP_TCSS_POWER_STATE, 5))
-> +		drm_warn(display->drm, "Port %c: TCSS power request not acknowledged\n=
-",
-> +			 port_name(encoder->port));
-> +}
-
-[Severity: Medium]
-When releasing the power request during intel_cx0pll_disable() where enable
-is false, does this skip the wait-for-clear logic?
-
-The wait condition here strictly requires enable to be true. Tearing down
-power domains, such as POWER_DOMAIN_DC_OFF in intel_cx0_phy_transaction_end=
-(),
-while the PHY is still asynchronously powering down could cause hardware ha=
-ngs
-or failures on the next enable.
-
-The corresponding TC PHY code in xelpdp_tc_phy_enable_tcss_power() appears
-to correctly wait for the power state to clear via
-xelpdp_tc_phy_wait_for_tcss_power(). Should a similar wait for clear be
-added here when enable is false?
-
+>  	/*
+>  	 * Link_ok is sticky and set here on PSR enable. We can assume link
+>  	 * training is complete as we never continue to PSR enable with
 [ ... ]
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i9=
-15/display/intel_tc.c
-> index f2d86b29c4154..2a8665d4cd0b4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-[ ... ]
-> +void intel_tc_request_tcss_power(struct intel_encoder *encoder, bool ena=
-ble)
-> +{
-> +	struct intel_display *display =3D to_intel_display(encoder);
-> +	intel_reg_t reg =3D XELPDP_PORT_BUF_CTL1(display, encoder->port);
+> @@ -4144,7 +4174,11 @@ void intel_psr_notify_vblank_enable_disable(struct=
+ intel_display *display,
+>  				intel_dp->psr.vblank_wakeref =3D
+>  					intel_display_power_get(display,
+>  								POWER_DOMAIN_DC_OFF);
+> -			else
 > +
-> +	if (!!(intel_de_read(display, reg) & XELPDP_TCSS_POWER_REQUEST) =3D=3D =
-enable)
-> +		return;
+> +			intel_dp->psr.vblank_enabled =3D enable;
+> +			intel_psr_pr_as_sdp_update(intel_dp);
 > +
-> +	if (DISPLAY_VER(display) =3D=3D 30)
-> +		xelpdp_tc_power_request_wa(display, enable);
+> +			if (!enable)
+>  				intel_display_power_put(display, POWER_DOMAIN_DC_OFF,
+>  							intel_dp->psr.vblank_wakeref);
+>  		}
 
 [Severity: High]
-Could this introduce a race condition on the global TCSS mailbox registers?
+Does this loop cause unbalanced power tracking and a wakeref leak?
 
-The TCSS mailbox registers, TCSS_DISP_MAILBOX_IN_CMD and
-TCSS_DISP_MAILBOX_IN_DATA, are a single set of global MMIO registers per
-display engine.
+for_each_intel_encoder_with_psr() iterates over both the primary DP encoder
+and its MST stream encoders, executing multiple times for the same
+intel_dp pointer.
 
-The xelpdp_tc_power_request_wa() function executes a multi-step
-read-modify-write sequence on these registers:
+When enable is true, intel_dp->psr.vblank_wakeref is assigned repeatedly,
+leaking all but the last tracker and leaking POWER_DOMAIN_DC_OFF references.
 
-intel_tc.c:xelpdp_tc_power_request_wa() {
-	...
-	intel_de_write(display, TCSS_DISP_MAILBOX_IN_DATA, enable ? 1 : 0);
-	intel_de_write(display, TCSS_DISP_MAILBOX_IN_CMD,
-		       TCSS_DISP_MAILBOX_IN_CMD_RUN_BUSY |
-		       TCSS_DISP_MAILBOX_IN_CMD_DATA(0x1));
-	...
-}
+When enable is false, the single saved wakeref is freed multiple times,
+causing a double-free or an underflow of the power domain use count.
 
-This sequence currently lacks a global lock to serialize access.
-
-By introducing a new caller here, the global mailbox is exposed to concurre=
-nt
-modeset paths that are only protected by display->dpll.lock. Because the
-existing TC port hotplug and disconnect work items only hold the per-port
-tc->lock, concurrent execution could interleave the DATA and CMD writes.
-
-For example, if a TC port disconnects while Port B is executing a modeset,
-or if two TC ports disconnect simultaneously, the mailbox command payload
-could be corrupted, potentially leading to hardware handshake failures or
-invalid power states. Is there a need for a global lock here to serialize
-these mailbox writes?
-
-> +
-> +	intel_de_rmw(display, reg, XELPDP_TCSS_POWER_REQUEST,
-> +		     enable ? XELPDP_TCSS_POWER_REQUEST : 0);
-> +}
+Additionally, CAN_PANEL_REPLAY() evaluates sink capabilities which can chan=
+ge
+dynamically across hotplugs. If the capability changes between the true and
+false calls, does this break the symmetry of the wakeref lifecycle?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261006-ptl-port-b=
--tcss-v1-1-240670342cd3@gmail.com?part=3D1
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261006220500.3417=
+572-1-j@metarealtyinc.ca?part=3D1
