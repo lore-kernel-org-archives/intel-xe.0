@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0F37CA5FF1
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 12:19:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67A07CA5FFC
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 12:20:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA06810F548;
-	Wed,  7 Oct 2026 12:19:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2742910F556;
+	Wed,  7 Oct 2026 12:20:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TlfUPS2h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e8DGhKcf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C62B610F548;
- Wed,  7 Oct 2026 12:19:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B21BA10F548;
+ Wed,  7 Oct 2026 12:19:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791375557; x=1822911557;
+ t=1791375600; x=1822911600;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=/py5O80Tvl0nKRH9feW+iyRbpk5dznORVWL8g21spp4=;
- b=TlfUPS2hePqjaotfm7Re8IyOL3AZ+p/8yWN3K2irisiiNwnCBLfRS56S
- kkuLXx9e15FoPu5sd6LXUfByFirMDZDXk/nWkQ7JLFoDdWXNXfliamieO
- Xv4MVryky1hHP0F2yCG6ZcYqOF0kAhwXqoeMwuQTAZxMWXYWYaUrIo4Gf
- iu4nEXiZfM0NzdDzZ2tyUOfBP/I0jdHIwQZzQoSt8OvoFF3EtkXDXEObq
- Jw7HoitWgptQ43TuHafX7IP7YNLT2Ica9OAyk4wlFx2qjENXrLzUu5/1j
- LsverdNcqanwKK2xFAMZs+w+k/etUjpjd+ZFdYdXhu0lmj/50FmgSMOyZ Q==;
-X-CSE-ConnectionGUID: P3FbZOl3THu83+/5h8ZKow==
-X-CSE-MsgGUID: FKDGRuCUQXSwnB11kiJPXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11927"; a="30225"
+ bh=TIjuGHnOsnKe6YpSsBEWlIGYqh6gr8uigH+aonS911c=;
+ b=e8DGhKcf+M3ZM4ALCK3qgS+4SwlaKdxmj8LAtsavzLtn7NilLk72jG4j
+ c0mvfUbo4p7B865eUIEDSqt7IQGfDnbtzVt9NLNPzrvEov7gSyktQIl+u
+ RG0rwg2KH/NVi4l0c4WW7Ux543BMllJ5Lya3BI+I1+yWh0Sijc408kQak
+ FZBoHMdMg6myXB94ZlawayjSNrMWQfHMWnWbFpKZw3zZryz7+X9NmrepQ
+ pXdXYED/YPrmIAXtjUVN1vBX1hmmDvjPzxYLOQiMvFAoKf4NSUo81DtZX
+ g5CnI1eW1e/ABWPsmEpDqIeWNZ5XjZjG1JSkikB8SSlh6IMJqif3iNm0J A==;
+X-CSE-ConnectionGUID: P8ww+WkrROS+3G+U/7ctIg==
+X-CSE-MsgGUID: e7CKPQBCQv2gCl1epunXkA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11927"; a="17720"
 X-IronPort-AV: E=Sophos;i="6.27,144,1787036400"; 
-   d="scan'208";a="30225"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2026 05:19:17 -0700
-X-CSE-ConnectionGUID: MQMbrqYITpKZVTMZRKjr0Q==
-X-CSE-MsgGUID: +qpxkkZITCKANeEfcE6RVQ==
+   d="scan'208";a="17720"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2026 05:19:59 -0700
+X-CSE-ConnectionGUID: MQ4HoILCTS+wUn9TlOlSlA==
+X-CSE-MsgGUID: 0EeyA1NJSPCCdPnkJe6XsA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,144,1787036400"; d="scan'208";a="306914645"
+X-IronPort-AV: E=Sophos;i="6.27,144,1787036400"; d="scan'208";a="303726666"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.244.231])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2026 05:19:16 -0700
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Oct 2026 05:19:58 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jame Jao <jaojame6@gmail.com>, intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com, intel-gfx@lists.freedesktop.org
-Subject: Re: [RESEND PATCH 0/5] platform/x86: bitland-mifs-wmi: MIFS v2
- firmware support, Xiaomi Book Pro 14 2026
-In-Reply-To: <CAN52AYstOLqaX_=_HBLEGKvcEmY+VGwKSbRRRyQbG4ytr6FD_A@mail.gmail.com>
+To: Eason <1836949523@qq.com>, intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [BUG] drm/xe: WARNING in intel_bios_init(): "Port A asks to use
+ VBT vswing/preemph tables" on Panther Lake [8086:b081]
+In-Reply-To: <tencent_F0B7A92DA405622129C8AC48F3CF490B9B07@qq.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <CAN52AYstOLqaX_=_HBLEGKvcEmY+VGwKSbRRRyQbG4ytr6FD_A@mail.gmail.com>
-Date: Wed, 07 Oct 2026 15:19:13 +0300
-Message-ID: <abc82e7191da4638c75ab87605fbe24e2667391d@intel.com>
+References: <tencent_F0B7A92DA405622129C8AC48F3CF490B9B07@qq.com>
+Date: Wed, 07 Oct 2026 15:19:55 +0300
+Message-ID: <721437b18fe84aef08d5d13782e4da1be5ee7c66@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -70,7 +70,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 07 Oct 2026, Jame Jao <jaojame6@gmail.com> wrote:
+On Wed, 07 Oct 2026, Eason <1836949523@qq.com> wrote:
 > I would like to report a WARNING that appears on every boot on a Panther
 > Lake laptop, and that is also visible on screen (before the desktop comes
 > up) when resuming from hibernation.
@@ -81,6 +81,8 @@ Thanks,
 Jani.
 
 [1] https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+
+
 
 -- 
 Jani Nikula, Intel
