@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 953E2CA6004
-	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 21:19:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9500CCA5FFF
+	for <intel-xe@archiver.kernel.org>; Wed,  7 Oct 2026 21:20:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B5DF10F813;
-	Wed,  7 Oct 2026 21:19:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48CE610E6A6;
+	Wed,  7 Oct 2026 21:20:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="D9FnpQcO";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="K/OnuOMN";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C09C10F7F9
- for <intel-xe@lists.freedesktop.org>; Wed,  7 Oct 2026 21:19:29 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25CFA10E693
+ for <intel-xe@lists.freedesktop.org>; Wed,  7 Oct 2026 21:20:19 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 3933260A53;
- Wed,  7 Oct 2026 21:19:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3A141F000FF;
- Wed,  7 Oct 2026 21:19:27 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 977A341742;
+ Wed,  7 Oct 2026 21:20:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65D2A1F000FF;
+ Wed,  7 Oct 2026 21:20:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791407967;
- bh=SJNpOaYYNEupsxDPeChhZ9MyR2l8WA1Pb1Ggt+VtBuw=;
+ s=k20260515; t=1791408018;
+ bh=idg4rQeBnEI1cEchc10g125pd/KdPy6zz65hnEoKNTE=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=D9FnpQcOv/s0u8MB7JPUYEoTxFGY6Y3hmxUTFY3cpWXZ2Xi0/Pw/MmriV6QZGlo/p
- A8l03bT4j2Xc0gJ3kd9WjBdfyr8oSEPX8/b46bD/SSfNfyN+2v8JWfj8e+C5PTaTRX
- zFkJrhnTE1pKoqIKbFOhHvCsyyTeW/jBP9QHJkJfEOU13r3uYcUGkqxcQia0CvTmAV
- nwFE+4yjah2siBfmj/6kVbGZvImpb6rlrU+xnvxVWjvLBtnJ658y3/KfIK88i2i1oA
- h+9h67dVRIi0HN2zfllm/d9tmp991JOPTU7KQZ5NXXOwfF0PmpyNzWUTR1Bb+KRtit
- ZpY1O5n+88UMA==
-Message-ID: <sashiko-outbox-163385@kernel.org>
+ b=K/OnuOMNSxGfBmxNjzKXfY49KyG/JxEPUzQFDMFSRSLSLOY5gNdXqbSXW/IZBU3G1
+ hJR/MCVU8XkTeOmbPhNq+D59oJPB8joOlOJxkkPuzE10J+5HT/8NhOVHHLtxDrjAsF
+ n2Ve1ItAAivQQLvbw6mzVChWPo2qTO3xSujx5bXS9wj9qWstmSr8RlY+8uXRYzy/B+
+ yKUwz3aVZKj9P3EtUJNZ/3JCFPFY8ZYru1L9AIx/78HmVZqmL9KtP1GQd7hayPM7gs
+ kJ7rjpBXeWN+/892Ar+7FEgizdfnEoOlY7eTkUUklxfDOlPil048B8cv96YRjLG7eh
+ jPbw5Y18U44NQ==
+Message-ID: <sashiko-outbox-163389@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 12/12] drm/xe/vram: Report VRAM errors using
- structured xe_log API
+Subject: Re: [PATCH v5 05/12] drm/xe/memirq: Report errors using structured
+ xe_log API
 To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261007211417.2093611-13-dnyaneshwar.bhadane@intel.com>
+In-Reply-To: <20261007211417.2093611-6-dnyaneshwar.bhadane@intel.com>
 References: <20261007211417.2093611-1-dnyaneshwar.bhadane@intel.com>
- <20261007211417.2093611-13-dnyaneshwar.bhadane@intel.com>
+ <20261007211417.2093611-6-dnyaneshwar.bhadane@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 07 Oct 2026 21:19:27 +0000
+Date: Wed, 07 Oct 2026 21:20:18 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,52 +59,47 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] xe: structured log location hardcoded to device instead of tile
+- [Low] xe: unused memirq_err macro left after xe_log_err conversion
 --
 
-commit 21686fbec5b38511b4c76320b0afbe7eefda858f
+commit 80879014db70d4e6f21e887b68845ca29011c158
 Author: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-drm/xe/vram: Report VRAM errors using structured xe_log API
+    drm/xe/memirq: Report errors using structured xe_log API
+   =20
+    Replace memirq_err() calls with xe_log_err() using the MEMIRQ
+    component tag for memory-based IRQ failures.
 
-This commit replaces standard DRM log macros with structured xe_log API
-functions in xe_vram.c. It intends to update the VRAM initialization path to
-correctly report whether a "no CPU visible VRAM" error is at the tile or
-device level depending on the caller's context.
-
-> diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-> index 2441ffe77edb2..d44a92e97195d 100644
-> --- a/drivers/gpu/drm/xe/xe_vram.c
-> +++ b/drivers/gpu/drm/xe/xe_vram.c
+> diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memir=
+q.c
+> index 9dfe965cb46ec..32b9f87a10ecf 100644
+> --- a/drivers/gpu/drm/xe/xe_memirq.c
+> +++ b/drivers/gpu/drm/xe/xe_memirq.c
 [ ... ]
-> @@ -254,8 +255,9 @@ static int vram_region_init(struct xe_device *xe, str=
-uct xe_vram_region *vram,
->  	vram->io_size =3D min_t(u64, usable_size, remain_io_size);
+> @@ -232,7 +233,7 @@ static int memirq_alloc_pages(struct xe_memirq *memir=
+q)
+>  	return 0;
 > =20
->  	if (!vram->io_size) {
-> -		drm_err(&xe->drm, "%s without any CPU visible VRAM. Aborting.\n",
-> -			tile ? "Tile" : "Device");
-> +		xe_log_err_fatal(xe, VRAM, -ENODEV,
-> +				 "%s without any CPU visible VRAM. Aborting.\n",
-> +				 tile ? "Tile" : "Device");
+>  out:
+> -	memirq_err(memirq, "Failed to allocate memirq page (%pe)\n", ERR_PTR(er=
+r));
+> +	xe_log_err(tile, MEMIRQ, err, "Failed to allocate memirq page\n");
 
-[Severity: Medium]
-Is it possible that passing xe unconditionally here causes the telemetry
-metadata to incorrectly tag tile-specific errors as device-level errors?
+[Severity: Low]
+Is the definition of memirq_err() now completely unused?
 
-The xe_log API deduces the structured log location from the pointer type of=
- its
-first argument. By passing the struct xe_device *xe pointer unconditionally,
-the telemetry location appears to be permanently recorded as a device-level
-error, while only the human-readable string receives the tile context.
+Looking at drivers/gpu/drm/xe/xe_memirq.c, there is a macro definition that
+appears to be orphaned by this conversion:
 
-Could the first argument conditionally pass the tile pointer when it is
-non-NULL to fulfill the commit message's intent?
+#define memirq_err(m, _fmt, ...)	memirq_printk(m, err, _fmt, ##__VA_ARGS__)
 
->  		return -ENODEV;
->  	}
->
+Should this macro be removed as well since all callers have been updated to=
+ use
+xe_log_err()?
+
+>  	return err;
+>  }
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261007211417.2093=
-611-1-dnyaneshwar.bhadane@intel.com?part=3D12
+611-1-dnyaneshwar.bhadane@intel.com?part=3D5
