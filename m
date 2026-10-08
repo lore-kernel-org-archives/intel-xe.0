@@ -4,39 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39C00CA600B
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Oct 2026 14:46:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 495E0CA600B
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Oct 2026 14:56:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5D0E10E0C6;
-	Thu,  8 Oct 2026 14:46:53 +0000 (UTC)
-X-Greylist: delayed 390 seconds by postgrey-1.36 at gabe;
- Thu, 08 Oct 2026 14:46:52 UTC
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A5CA10E0C6
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Oct 2026 14:46:52 +0000 (UTC)
-Received: from [IPV6:2400:2410:b120:f200:9e5c:8eff:fec0:ee40] (unknown
- [IPv6:2400:2410:b120:f200:9e5c:8eff:fec0:ee40])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 60AC23F11B
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Oct 2026 16:40:19 +0200 (CEST)
-Message-ID: <9d0c9f3c-acb8-4566-b313-a9eb8f17f332@hogyros.de>
-Date: Thu, 8 Oct 2026 23:40:14 +0900
+	by gabe.freedesktop.org (Postfix) with ESMTP id D07FB10E900;
+	Thu,  8 Oct 2026 14:56:05 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c1wumjyw";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 920AA10E0DF;
+ Thu,  8 Oct 2026 14:56:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791471365; x=1823007365;
+ h=from:to:cc:subject:date:message-id:mime-version;
+ bh=sTbvRiGpG0Abdwan7uPYlROAE1Zn0w1PsaRIbBuqYRA=;
+ b=c1wumjyw/50iTlQTULV433O2xbYkeu0QY7ijmXx5dfaHp59jQS3camc3
+ tXhSeilnU5xOCj9IA5zYdGkHUpARXOUOzVuK29q71KE/23L2aWR+1/pgg
+ EGfaTaJrX4hG+1W9F32/dn2iE9kRWEbTLYpDvZP1ptHvW3GzUMQTVqu36
+ 9M0pk8Ai47vOG5lsQGwiKkK1JoweSO4jSl/9HMpDAQq2GVOgVqX4p4aQS
+ 7BRv2Qfnbey8V5IA4z72ysPSYdQzENN7FgRbBQnxSHX4cP6qaPBTIwvhf
+ gzIrT4XWiHVsyWOkE4gVTJ0gbhWjGrccGWn80uTLI/u2pvMeiQeEiSafV g==;
+X-CSE-ConnectionGUID: kvafLaV9RI+k5J5N1fnrAw==
+X-CSE-MsgGUID: bEhrvQMHR0+dcTdz4q0XcA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11928"; a="139782"
+X-IronPort-AV: E=Sophos;i="6.27,146,1787036400"; 
+   d="scan'208";a="139782"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2026 07:56:04 -0700
+X-CSE-ConnectionGUID: auof8W2LQ26hEIdJfIKCWQ==
+X-CSE-MsgGUID: 5AUY3MDeQ4u+Dzg+TlywsA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,146,1787036400"; 
+   d="scan'208";a="13303"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.142])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2026 07:56:01 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-fixes
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Date: Thu, 08 Oct 2026 17:55:58 +0300
+Message-ID: <49ac4a9f496e1dadbf71740eb0d1f443598b2632@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] drm/xe: skip p2p for suspected display buffers
-To: intel-xe@lists.freedesktop.org
-References: <20261007153605.1743626-5-matthew.auld@intel.com>
- <20261007153605.1743626-8-matthew.auld@intel.com>
- <2c6a97ac21c5ef161dbac279f9b971f383b6b944.camel@linux.intel.com>
- <dbabed4e-468d-4ecf-b295-f5d8c9c4b263@intel.com>
-Content-Language: en-US
-From: Simon Richter <Simon.Richter@hogyros.de>
-In-Reply-To: <dbabed4e-468d-4ecf-b295-f5d8c9c4b263@intel.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------xF9ICpKacmTwz5hCe9RbXYDH"
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,61 +75,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------xF9ICpKacmTwz5hCe9RbXYDH
-Content-Type: multipart/mixed; boundary="------------thfJX4JWXJhvx0YgrlmZIj4Q";
- protected-headers="v1"
-From: Simon Richter <Simon.Richter@hogyros.de>
-To: intel-xe@lists.freedesktop.org
-Message-ID: <9d0c9f3c-acb8-4566-b313-a9eb8f17f332@hogyros.de>
-Subject: Re: [PATCH v2 3/3] drm/xe: skip p2p for suspected display buffers
-References: <20261007153605.1743626-5-matthew.auld@intel.com>
- <20261007153605.1743626-8-matthew.auld@intel.com>
- <2c6a97ac21c5ef161dbac279f9b971f383b6b944.camel@linux.intel.com>
- <dbabed4e-468d-4ecf-b295-f5d8c9c4b263@intel.com>
-In-Reply-To: <dbabed4e-468d-4ecf-b295-f5d8c9c4b263@intel.com>
 
---------------thfJX4JWXJhvx0YgrlmZIj4Q
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Hi Dave & Sima -
 
-SGksDQoNCk9uIDEwLzgvMjYgMTg6NDYsIE1hdHRoZXcgQXVsZCB3cm90ZToNCg0KPiBGcm9t
-IHRoZSB1c2VyIGJ1ZyByZXBvcnQgaXQgc291bmRzIGxpa2UgdGhlIGRncHUgbGluZWFyIA0K
-PiB3aW5kb3cgYnVmZmVyIGV4cG9ydGVkIHRvIHRoZSBjb21wb3NpdG9yIChpZ3B1KSBpcyBk
-dWFsIHBsYWNlbWVudCBWUkFNICsgDQo+IFRULCBhbmQgc28gdGhpcyBub3cgYXR0ZW1wdHMg
-dG8ga2VlcCB0aGF0IG1lbW9yeSBpbiBWUkFNIGluc3RlYWQgb2YgDQo+IG1vdmluZyBpdC4g
-Q29tcG9zaXRvciB0aGVuIHVzZXMgcDJwIHRvIGFjY2VzcyBpdC4gSXQgd29ya3MgYnV0IA0K
-PiBwZXJmb3JtYW5jZSBmYWxscyBvZmYgYSBtYXNzaXZlIGNsaWZmIGhlcmUuDQoNCklzIHRo
-YXQgYmVjYXVzZSBpdCBpcyB1c2luZyBleHRlcm5hbCBtZW1vcnkgYXMgYSB0ZXh0dXJlIHNv
-dXJjZSwgb3IgDQpiZWNhdXNlIGNvcHkgb3BlcmF0aW9ucyBhcmUgc2xvdyBmb3Igc29tZSBy
-ZWFzb24/DQoNCklmIGl0IGlzIGZvciBhIHRleHR1cmUsIHRoZSBjbGllbnQgc2hvdWxkIHNh
-eSBzbyBleHBsaWNpdGx5IGR1cmluZyB0aGUgDQppbXBvcnQsIGUuZy4gYSBWdWxrYW5bMV0g
-Y2xpZW50IHdvdWxkIGdpdmUgYSANClZrRXh0ZXJuYWxNZW1vcnlJbWFnZUNyZWF0ZUluZm8g
-cG9pbnRlciBpbiBwTmV4dCwgYW5kIGZpbGwgb3V0IHVzYWdlIGFzIA0KVktfSU1BR0VfVVNB
-R0VfU0FNUExFRF9CSVQuDQoNCkkgdGhpbmsgdGhpcyB3b3VsZCBiZSB0aGUgaWRlYWwgcG9p
-bnQgdG8gZWl0aGVyIG1ha2Ugc3VyZSB0aGUgaW1hZ2UgZW5kcyANCnVwIGluIGhvc3QgbWVt
-b3J5LCBvciByZWplY3QgaXQgc28gdGhlIGNvbXBvc2l0b3IgY2FuIGRldGVjdCB0aGF0IHRo
-aXMgDQppcyBub3QgYSBnb29kIHRleHR1cmUgc291cmNlLCBhbmQgaW5zZXJ0IGFuIGV4dHJh
-IHRyYW5zZmVyLg0KDQogICAgU2ltb24NCg0KWzFdIFByZXN1bWFibHksIG90aGVyIGdyYXBo
-aWNzIEFQSXMgaGF2ZSBzb21ldGhpbmcgc2ltaWxhci4NCg==
+Couple of fixes, both stable material.
 
---------------thfJX4JWXJhvx0YgrlmZIj4Q--
+I'll be out next week, and Joonas will cover for me.
 
---------------xF9ICpKacmTwz5hCe9RbXYDH
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
------BEGIN PGP SIGNATURE-----
+drm-intel-fixes-2026-10-08:
+drm/i915 fixes for v7.3-rc7:
+- Fix a GT park race that could trigger spurious RPM wakelock warnings
+- Fix execbuffer relocation cleanup to avoid out-of-bounds free
 
-iQEzBAEBCgAdFiEEtjuqOJSXmNjSiX3Tfr04e7CZCBEFAmrHq04ACgkQfr04e7CZ
-CBEiIAf8CjUTsrGXW0FrOHExqteQ4jP0TS+IdT7QHMP3rzvbV1XqRJXZGfIJ28rH
-FkUR5bM0KeKjJiFspKuZPWkdS/feOpD5huU4Z/YbsF/h/1z6xKS6v8jkSjLPPzIT
-Nc2YxU+PuQQl8DsrEfl11In3qc/pzxF2ls57ZKu7pqrzmkyIla+ynfjHn41LsHs0
-BvvySFRpoMQ6VeCDYAzthDOcOXH/BeZtsz+7DAh1BO7qdv/B3chNH0nMXoIAT9o8
-7T2x29kn+Dao6izJ8mY+C2sZUpnkROo3VGw1felplTMypSYJAoF6chXtDTZgQD1E
-EWjFSn20/YXJ3OGNekDuQSx0U5Bx7g==
-=Z2OO
------END PGP SIGNATURE-----
+BR,
+Jani.
 
---------------xF9ICpKacmTwz5hCe9RbXYDH--
+The following changes since commit a90ee4305c4a5df72c11b31dacfdc76e00fcf78a:
+
+  Linux 7.3-rc6 (2026-10-04 13:45:25 -0700)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2026-10-08
+
+for you to fetch changes up to 5346b1cec6afa4f9b4b49a9f84e3cfef95a3f7bb:
+
+  drm/i915/gt: Unmask interrupts only when ACTIVE is true (2026-10-06 15:47:19 +0300)
+
+----------------------------------------------------------------
+drm/i915 fixes for v7.3-rc7:
+- Fix a GT park race that could trigger spurious RPM wakelock warnings
+- Fix execbuffer relocation cleanup to avoid out-of-bounds free
+
+----------------------------------------------------------------
+Krzysztof Karas (2):
+      drm/i915/gem: Prevent overstepping exec array boundary
+      drm/i915/gt: Unmask interrupts only when ACTIVE is true
+
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 +-
+ drivers/gpu/drm/i915/gt/intel_rps.c            | 3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+-- 
+Jani Nikula, Intel
