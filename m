@@ -4,51 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83E7DCA600B
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Oct 2026 12:25:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85306CA6007
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Oct 2026 12:25:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BE6010E801;
-	Thu,  8 Oct 2026 12:25:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 472DD10E803;
+	Thu,  8 Oct 2026 12:25:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KKItF2Br";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XTc5KCXl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63ED710E801
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Oct 2026 12:25:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F25310E803
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Oct 2026 12:25:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791462355; x=1822998355;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=7xwgQxREYfa9DjXklxD1WelDZov6dPA/gwuZH8ou62U=;
- b=KKItF2BrhwXpkDgiYwyP+I20Gl2XXork6ZqUQDgqr/p0Bb+pNP0fmiIM
- l2Xm230Dnoag9qEr7oBwRFZg0cyLLGIrFvbiPPk6RTIYoHBz8jpo3WTFY
- ZI3nn5en7YAfIMGbUFPVTlL8nB9sDR5+a3UoCBl6edLODVS/gCQ5uIK/b
- Spi19UomHCklYrwv4xvZDB3lmAxfzS5HJatogEp/dTl13TPlcQW4Ov1uj
- K5ObjRYjNaJx9vRUtJMXRaenHA2tTadj3HUAXVAzsgoGWvBz+oqCBsfgY
- AIS7t2vLN+Of+P/r/VOXr+au76g+x6kU632Alx7a7SNAUnSyV98lQmAdW g==;
-X-CSE-ConnectionGUID: B1Kub75JTMKQjCv2HZp1Gg==
-X-CSE-MsgGUID: ai3KH/3tRRKa41T7xNrPuA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11928"; a="141495"
+ t=1791462356; x=1822998356;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=yMcXAUbptiMVDZLAS3b2SVLZ3pjEQciz3c4cdqPQZz4=;
+ b=XTc5KCXldt3V8vmu1DMkNvBDIzuABZOpNVRP1G6z/wJ+z+g5rhw8NR5V
+ ffI3WUWXMASm4n/Th+dmcmrgx8AjomYuM2hNcKcGI1xjn77TcpEGK0iR+
+ mr+f1t2jLqwb4a71xiLR7xIHGJXkg6rnXkxAfpCS15CQoafW4rbL1FOCy
+ 26OYmJ1TMM10FUW8+W8Z2VA8+nQ3xFeyHrBdYd5lg3RMce0EKPDqBJlmC
+ roUO9H22Ks/Rk7+vChviJfS1UfKStZPP3f6niRHD8SXTxVoHcJ22KTIhJ
+ SDHM+yymAxTMYvCx7tL5Pmg59pWUVDxZCg7gWl8DuoBZH+iwXzNItNJXJ Q==;
+X-CSE-ConnectionGUID: /T3EZneYSVSPo3J08P49ZA==
+X-CSE-MsgGUID: fETaGPMTTwa6OcQFPVfQ4Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11928"; a="141497"
 X-IronPort-AV: E=Sophos;i="6.27,146,1787036400"; 
-   d="scan'208";a="141495"
+   d="scan'208";a="141497"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2026 05:25:55 -0700
-X-CSE-ConnectionGUID: YPGw5flrT7KUcdKwirr55g==
-X-CSE-MsgGUID: giKpBfc8RYiH733cOJ6LRA==
+ 08 Oct 2026 05:25:56 -0700
+X-CSE-ConnectionGUID: kfwvroB9RTydTuPA/kHInA==
+X-CSE-MsgGUID: 0R2kk8x5S/OHr5vH1SVY7Q==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,146,1787036400"; 
-   d="scan'208";a="50911"
+   d="scan'208";a="50921"
 Received: from gsd-build.iind.intel.com ([10.190.229.108])
- by orviesa004.jf.intel.com with ESMTP; 08 Oct 2026 05:25:55 -0700
+ by orviesa004.jf.intel.com with ESMTP; 08 Oct 2026 05:25:56 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Subject: [PATCH 0/1] Fix kernel crash during driver teardown
-Date: Thu,  8 Oct 2026 12:25:44 +0000
-Message-ID: <20261008122543.390356-3-satyanarayana.k.v.p@intel.com>
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH 1/1] drm/xe: Prevent VF memory IRQ from accessing a torn-down
+ engine
+Date: Thu,  8 Oct 2026 12:25:45 +0000
+Message-ID: <20261008122543.390356-4-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261008122543.390356-3-satyanarayana.k.v.p@intel.com>
+References: <20261008122543.390356-3-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -66,58 +71,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During driver release, the hardware engine is only partially invalidated
-during teardown. Its name remains set, so the memory IRQ handler can still
-identify the engine and access its state after teardown. This can result
-in a NULL pointer dereference.
+The VF memory IRQ handler iterates over HW engines whose names are set.
+Engine teardown clears hwe->gt but leaves hwe->name set, so the handler
+can select an engine whose GT has already been invalidated. This can
+cause a NULL pointer dereference in xe_hw_engine_handle_irq().
 
-Invalidate the hardware engine name during teardown so the IRQ handler no
-longer treats the engine as available.
+Invalidate the engine name during teardown so subsequent engine scans
+skip it.
 
-The crash log below shows an example of the failure.
-
-BUG: kernel NULL pointer dereference, address: 0000000000000000
-PF: supervisor read access in kernel mode
-PF: error_code(0x0000) - not-present page
-PGD 0 P4D 0
-Oops: Oops: 0000 [#1] SMP NOPTI
-Tainted: [U]=USER
-Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS
-2025.11-3ubuntu7 03/31/2026
-RIP: 0010:xe_hw_engine_handle_irq+0x18/0x70 [xe]
-Code: 00 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 0f 1f
-44 00 00 55 48 89 e5 41 54 41 89 f4 48 89 d6 53 48 8b 07 48 89 fb <48> 8b 00 48
-8b 38 e8 5d 84 08 00 48 8b 83 b8 00 00 00 48 85 c0 74
-RSP: 0018:ffffd07840003e80 EFLAGS: 00010046
-RAX: 0000000000000000 RBX: ffff8904657fa740 RCX: 0000000000000000
-RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff8904657fa740
-RBP: ffffd07840003e90 R08: 0000000000000000 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000001
-R13: ffff89046a490000 R14: ffff89046a491af8 R15: ffff8904657faf20
-FS:  0000000000000000(0000) GS:ffff8905fd219000(0000)
-knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 0000000000000000 CR3: 0000000103705005 CR4: 0000000000772ef0
-PKRU: 55555554
-Call Trace:
- <IRQ>
- xe_memirq_handler+0xc3/0x200 [xe]
- vf_mem_irq_handler+0x46/0x90 [xe]
- __handle_irq_event_percpu+0x59/0x200
- handle_irq_event+0x36/0x90
- handle_edge_irq+0xc5/0x190
- __common_interrupt+0x50/0x160
- ? irq_enter_rcu+0x84/0xb0
- common_interrupt+0xb0/0xe0
- </IRQ>
-
-
-Satyanarayana K V P (1):
-  drm/xe: Prevent VF memory IRQ from accessing a torn-down engine
-
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+---
  drivers/gpu/drm/xe/xe_hw_engine.c | 1 +
  1 file changed, 1 insertion(+)
 
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 265f95c0c899..fb1492c86bde 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -279,6 +279,7 @@ static void hw_engine_fini(void *arg)
+ 	if (hwe->exl_port)
+ 		xe_execlist_port_destroy(hwe->exl_port);
+ 
++	hwe->name = NULL;
+ 	hwe->gt = NULL;
+ }
+ 
 -- 
 2.43.0
 
