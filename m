@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EC97CA6007
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Oct 2026 12:44:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F329CA600B
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Oct 2026 12:46:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECA0210E830;
-	Thu,  8 Oct 2026 12:44:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D45510E830;
+	Thu,  8 Oct 2026 12:46:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Ap9lItnI";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="buDm5L7W";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54CDF10E830
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Oct 2026 12:44:04 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DB2A10E830
+ for <intel-xe@lists.freedesktop.org>; Thu,  8 Oct 2026 12:46:03 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 215AD409F1;
- Thu,  8 Oct 2026 12:44:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF0141F000FF;
- Thu,  8 Oct 2026 12:44:03 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 98F9460252;
+ Thu,  8 Oct 2026 12:46:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24FA71F000FF;
+ Thu,  8 Oct 2026 12:46:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791463444;
- bh=bFbQKMa1t7nT1DtjDe0CTaHMcQXkxG3DwHW/cpAew9Y=;
+ s=k20260515; t=1791463562;
+ bh=bQGzmrJBXlzaPeisfP1yDiyUMHSMsfwY34o/4sfceQs=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=Ap9lItnIvc1WE85oJGdGtTqsOg9WFhtxf7sJtQuSkq7QwPpAwt2qRMnJbNF5b58dk
- E9l2qXR1enMh3SjC5jAeDyo1mYaolFYRuGB9+aPSzNYUQs5VFa8rvIM5tUsjoNKpjH
- VjUeC34/neGJiTEJdYI3z7f0EnDaPU5TBU1+C5goiZ7faXPQ9XCFDKzmYQS1UU4kR5
- /bNpE6UBI3oUR/zuTNBi6KDs9V9LOJJGc8NxyexkjCKM8ZoVOzYIIMD279uNwYjNod
- Cb1eMtq7kCsZ/ZmaMia8OPYMR450sWVBx+G0X4iCELgFljrIj7OPqhk8Vt1GMvXCX2
- 1VW6PTrryVrNw==
-Message-ID: <sashiko-outbox-164170@kernel.org>
+ b=buDm5L7WfGPQ6/1oXSUEitMHLe28EEVslIAUncinEkZK4EDQ7cNDxboG8pt/krOP0
+ TlLN3SnlmUWiManVc8sA6ipf25doAYzUGT2VLcI5cfgbaWdEQfj2aTiDOMDoh9Ss/x
+ fTaOHURHPDBhSzNOYxTWKjXtw4k2ch975ZxcDuIPL+YveWPZpNXXYv04naksHVUd5T
+ Ea5dFtb+KlUc3ShiINdlWLxPmTpraqv19H1obHoe5pxwA/jun5nvjfECSX9YUiS0lS
+ mgKvJOcfplW1bqkx1M/U19sXRCeaYKbac1OkxilJ563+9Ch112D0tfBspFhF/AT/v3
+ U0kWV2YVO6jVg==
+Message-ID: <sashiko-outbox-164172@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 1/3] drm/xe: Track number of populated ttm_tts in the
- shrinker
+Subject: Re: [PATCH v3 2/3] drm/xe: Split the bo shrinker into purgeable and
+ non-purgeable shrinkers
 To: =?utf-8?b?VGhvbWFzIEhlbGxzdHLDtm0=?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261008123024.38522-2-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20261008123024.38522-3-thomas.hellstrom@linux.intel.com>
 References: <20261008123024.38522-1-thomas.hellstrom@linux.intel.com>
- <20261008123024.38522-2-thomas.hellstrom@linux.intel.com>
+ <20261008123024.38522-3-thomas.hellstrom@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 08 Oct 2026 12:44:03 +0000
+Date: Thu, 08 Oct 2026 12:46:01 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,63 +57,180 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] drm/xe: shrinker accounting underflow on madvise of pinned BOs
+- [High] drm/xe: split shrinkers fail to isolate purgeable objects
+- [High] drm/xe: purgeable shrinker permanently stalls on non-purgeable LRU=
+ objects
 --
 
-commit 0b5d1dd0e073a31ff71e38b6052b00140aecc46a
+commit 03a2b4c22a7c807ab5b2d97ec7177c503b0367aa
 Author: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-drm/xe: Track number of populated ttm_tts in the shrinker
-
-This commit adds a populated_tts counter to struct xe_shrinker to track
-the number of ttm_tts that are populated and on the LRU. It also extends
-xe_shrinker_mod_pages() to atomically update both page and object accountin=
-g.
-
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
+    drm/xe: Split the bo shrinker into purgeable and non-purgeable shrinkers
+   =20
+    Purgeable objects are reclaimed by simply discarding their pages, with
+    no writeback required. They are therefore much cheaper to shrink than
+    regular shrinkable (non-purgeable) objects, whose reclaim may need to
+    wait for the GPU or write dirty compressed contents back to a backup
+    store, and whose contents need to be read back on next use.
+   =20
+    Split the single xe_shrinker into two independent struct shrinker
+    instances registered against the shrinker core, sharing the same
+    underlying accounting (shrinkable_pages, purgeable_pages,
+    populated_tts) and locking:
 
 [ ... ]
 
-> @@ -975,11 +975,11 @@ static void xe_bo_set_purgeable_shrinker(struct xe_=
-bo *bo,
->  	if (!xe_tt->purgeable && new_state =3D=3D XE_MADV_PURGEABLE_DONTNEED) {
->  		xe_tt->purgeable =3D true;
->  		/* Transfer pages from shrinkable to purgeable count */
-> -		xe_shrinker_mod_pages(xe->mem.shrinker, -tt_pages, tt_pages);
-> +		xe_shrinker_mod_pages(xe->mem.shrinker, -tt_pages, tt_pages, 0);
->  	} else if (xe_tt->purgeable && new_state =3D=3D XE_MADV_PURGEABLE_WILLN=
-EED) {
->  		xe_tt->purgeable =3D false;
->  		/* Transfer pages from purgeable to shrinkable count */
-> -		xe_shrinker_mod_pages(xe->mem.shrinker, tt_pages, -tt_pages);
-> +		xe_shrinker_mod_pages(xe->mem.shrinker, tt_pages, -tt_pages, 0);
+> --- a/drivers/gpu/drm/xe/xe_shrinker.c
+> +++ b/drivers/gpu/drm/xe/xe_shrinker.c
+> @@ -213,63 +235,52 @@ static bool xe_shrinker_runtime_pm_get(struct xe_sh=
+rinker *shrinker, bool force,
+
+[ ... ]
+
+> -static unsigned long xe_shrinker_scan(struct shrinker *shrink, struct sh=
+rink_control *sc)
+> +static unsigned long xe_shrinker_scan_purgeable(struct shrinker *shrink,
+> +						struct shrink_control *sc)
+>  {
+>  	struct xe_shrinker *shrinker =3D to_xe_shrinker(shrink);
+>  	struct ttm_operation_ctx ctx =3D {
+>  		.interruptible =3D false,
+>  		.no_wait_gpu =3D ttm_bo_shrink_avoid_wait(),
+>  	};
+> -	unsigned long nr_to_scan, nr_scanned =3D 0, freed =3D 0;
+> +	unsigned long nr_to_scan =3D sc->nr_to_scan, nr_scanned =3D 0, freed =
+=3D 0;
+>  	struct xe_bo_shrink_flags shrink_flags =3D {
+>  		.purge =3D true,
+> -		/* Don't request writeback without __GFP_IO. */
+> -		.writeback =3D !ctx.no_wait_gpu && (sc->gfp_mask & __GFP_IO),
+>  	};
+> -	bool runtime_pm;
+> -	bool purgeable;
+> -	bool can_backup =3D !!(sc->gfp_mask & __GFP_FS);
+> -
+> -	nr_to_scan =3D sc->nr_to_scan;
+> -
+> -	read_lock(&shrinker->lock);
+> -	purgeable =3D !!shrinker->purgeable_pages;
+> -	read_unlock(&shrinker->lock);
+> =20
+> -	/* Might need runtime PM. Try to wake early if it looks like it. */
+> -	runtime_pm =3D xe_shrinker_runtime_pm_get(shrinker, false, nr_to_scan, =
+can_backup);
+> -
+> -	if (purgeable && nr_scanned < nr_to_scan)
+> -		xe_shrinker_walk(shrinker, &ctx, shrink_flags,
+> -				 nr_to_scan, &nr_scanned, &freed);
+> +	xe_shrinker_walk(shrinker, &ctx, shrink_flags, nr_to_scan, &nr_scanned,=
+ &freed);
 
 [Severity: High]
-Does this logic cause an underflow in the shrinker page accounting when a
-buffer object is pinned?
+Does this standalone purgeable shrinker permanently stall when it encounters
+non-purgeable LRU objects?
 
-When a BO is pinned (e.g., used as a scanout framebuffer which calls
-xe_bo_pin()), its pages are explicitly excluded from shrinker tracking.
-However, if userspace subsequently calls the DRM_XE_VM_MADVISE ioctl on
-the VMA to transition its state to DONTNEED or WILLNEED,
-xe_bo_willneed_put_locked() invokes xe_bo_set_purgeable_shrinker().
+When the core mm invokes scan_objects for the purgeable shrinker, it
+traverses the TTM LRU list which mixes both purgeable and non-purgeable
+objects. If a non-purgeable object is encountered, xe_bo_shrink returns
+-EBUSY:
 
-Because xe_bo_set_purgeable_shrinker() unconditionally transfers pages
-between the shrinkable and purgeable buckets without checking if the BO
-is pinned (bo->ttm.pin_count > 0), this can lead to an integer underflow
-on shrinkable_pages or purgeable_pages.
+drivers/gpu/drm/xe/xe_bo.c:xe_bo_shrink() {
+    ...
+	if (!(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE) ||
+	    (flags.purge && !xe_tt->purgeable))
+		return -EBUSY;
+    ...
+}
 
-When evaluated by xe_shrinker_count(), a negative signed value casts to a
-large positive unsigned long, creating excessive reclaim pressure.
-Furthermore, when the BO is eventually unpinned, its pages will be added
-back to the shrinker accounting based on its new state, resulting in a
-permanent double-counting of pages that triggers an xe_assert() during
-xe_shrinker_fini().
+The LRU walk in __xe_shrinker_walk treats this negative return as a fatal
+error and aborts the entire scan:
+
+drivers/gpu/drm/xe/xe_shrinker.c:__xe_shrinker_walk() {
+    ...
+			lret =3D xe_bo_shrink(ctx, ttm_bo, flags, scanned);
+			if (lret < 0) {
+				ret =3D lret;
+				goto out;
+			}
+    ...
+}
+
+Because the shrinkers are now decoupled, this shrinker can no longer rely
+on the non-purgeable shrinker running immediately afterwards in the same
+context to clear the obstruction. Any memory pressure triggering the shrink=
+er
+when a non-purgeable object happens to be at the LRU head might cause this
+to abort without freeing any pages.
+
+> =20
+>  	sc->nr_scanned =3D nr_scanned;
+> -	if (nr_scanned >=3D nr_to_scan || !can_backup)
+> -		goto out;
+> =20
+> -	/* If we didn't wake before, try to do it now if needed. */
+> -	if (!runtime_pm)
+> -		runtime_pm =3D xe_shrinker_runtime_pm_get(shrinker, true, 0, can_backu=
+p);
+> +	return nr_scanned ? freed : SHRINK_STOP;
+> +}
+> =20
+> -	shrink_flags.purge =3D false;
+> +static unsigned long xe_shrinker_scan(struct shrinker *shrink, struct sh=
+rink_control *sc)
+> +{
+> +	struct xe_shrinker *shrinker =3D to_xe_shrinker(shrink);
+> +	struct ttm_operation_ctx ctx =3D {
+> +		.interruptible =3D false,
+> +		.no_wait_gpu =3D ttm_bo_shrink_avoid_wait(),
+> +	};
+> +	unsigned long nr_to_scan =3D sc->nr_to_scan, nr_scanned =3D 0, freed =
+=3D 0;
+> +	struct xe_bo_shrink_flags shrink_flags =3D {
+> +		.purge =3D false,
+> +		/* Don't request writeback without __GFP_IO. */
+> +		.writeback =3D !ctx.no_wait_gpu && (sc->gfp_mask & __GFP_IO),
+> +	};
+
+[Severity: High]
+Does the non-purgeable shrinker fail to isolate purgeable objects?
+
+Since this shrinker scans with flags.purge =3D false, xe_bo_shrink does not
+skip purgeable objects:
+
+drivers/gpu/drm/xe/xe_bo.c:xe_bo_shrink() {
+    ...
+	if (xe_tt->purgeable) {
+		if (bo->resource->mem_type !=3D XE_PL_SYSTEM)
+			lret =3D xe_bo_move_notify(xe_bo, ctx);
+		if (!lret)
+			lret =3D xe_bo_shrink_purge(ctx, bo, scanned);
+    ...
+}
+
+Will this cause the non-purgeable shrinker, which has a higher scan target
+due to higher seeks, to fulfill its scan quota by stealing cheap purgeable
+objects instead of forcing writeback on non-purgeable objects? If so, the
+proportional reclaim mechanism might be defeated.
+
+> +	bool runtime_pm;
+> +
+> +	/* Might need runtime PM to access backed-up or CCS-compressed data. */
+> +	runtime_pm =3D xe_shrinker_runtime_pm_get(shrinker);
+> =20
+> -	xe_shrinker_walk(shrinker, &ctx, shrink_flags,
+> -			 nr_to_scan, &nr_scanned, &freed);
+> +	xe_shrinker_walk(shrinker, &ctx, shrink_flags, nr_to_scan, &nr_scanned,=
+ &freed);
+> =20
+>  	sc->nr_scanned =3D nr_scanned;
+> -out:
+>  	xe_shrinker_runtime_pm_put(shrinker, runtime_pm);
+> +
+>  	return nr_scanned ? freed : SHRINK_STOP;
+>  }
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261008123024.3852=
-2-1-thomas.hellstrom@linux.intel.com?part=3D1
+2-1-thomas.hellstrom@linux.intel.com?part=3D2
