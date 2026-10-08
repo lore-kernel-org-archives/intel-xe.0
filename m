@@ -4,27 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87A3DCA6007
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Oct 2026 14:00:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C8B7CA6007
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Oct 2026 14:08:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F0CF10E896;
-	Thu,  8 Oct 2026 14:00:49 +0000 (UTC)
-Received: from 61270ab9df2a (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2441610E896;
- Thu,  8 Oct 2026 14:00:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1687435022211365573=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D10810E8A2;
+	Thu,  8 Oct 2026 14:08:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UPJhlrz7";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C06410E8A2;
+ Thu,  8 Oct 2026 14:08:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791468483; x=1823004483;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=s2uVbRXLVOSm9D7G8EeEgzSFVqTdnwqXhdPcnUoc59Q=;
+ b=UPJhlrz7zGoOQrH5VN0t5TP05D4OAd9TvXdW9ZBw+g602wWyYcPwNAmf
+ u4zrhUNdNzsT6OTbnh5QPbnITj/+ClXLyua0bMYsSOFkq5F2jEMCamHoy
+ 98QuKNhi2vjE+HcIxOLMESe8g6Y2gRrFJQwbR7G/VEGbu+GimU2WJxC//
+ b5pI7FcOvMvd023I3FJKRbPIqABjwV9HTM7frEvrSG/70LQpCUaOX41i1
+ qz4gr5Gj5lYAjnAGUPBs75o/f9VNnAHp6byMaNGdErdbogC1bioGxdGIL
+ WQsd5AL6136qe4qe/EgJkKSbBlF1MNA9l8DWhKlsfJuH/XKz9ZuW4J5wT g==;
+X-CSE-ConnectionGUID: DyqeTb6jQUOyGJKlj4xbMA==
+X-CSE-MsgGUID: V0o99/4oRXWpA6t7qPFKmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11928"; a="145851"
+X-IronPort-AV: E=Sophos;i="6.27,146,1787036400"; 
+   d="scan'208";a="145851"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2026 07:08:03 -0700
+X-CSE-ConnectionGUID: CFfkPoUMSvSb0ENmxv5wBw==
+X-CSE-MsgGUID: 3l4lkhvfQCCuHcrsL4nM6w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,146,1787036400"; 
+   d="scan'208";a="377535"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.142])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2026 07:08:01 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Murthy, Arun R"
+ <arun.r.murthy@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
+Subject: RE: [PATCH] drm/i915/scaler: Prune YUV420 modes against the max
+ source width
+In-Reply-To: <DS4PPFE901A304F1782FA1CD962D6DDE3BFE3942@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261007070601.3611674-1-arun.r.murthy@intel.com>
+ <DS4PPFE901A304F1782FA1CD962D6DDE3BFE3942@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Date: Thu, 08 Oct 2026 17:07:59 +0300
+Message-ID: <013890ff0c99723aeb304a0a6997543ba646524d@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Adjust_the_bo_shr?=
- =?utf-8?q?inker_batch_size_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 08 Oct 2026 14:00:48 -0000
-Message-ID: <179146804814.252138.10816571874329754445@61270ab9df2a>
-X-Patchwork-Hint: ignore
-References: <20261008123024.38522-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20261008123024.38522-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,148 +73,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1687435022211365573==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 07 Oct 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> Subject: [PATCH] drm/i915/scaler: Prune YUV420 modes against the max
+>> source width
+>> 
+>> skl_scaler_mode_valid() compares the mode's hdisplay against the pipe scaler
+>> maximum source height instead of the maximum source width, so single pipe
+>> YUV420 modes are pruned against the wrong limit.
+>> 
+>> Commit 3347b55f2c6c ("drm/i915/xe3lpd: Prune modes for YUV420")
+>> intended to reject modes whose hdisplay exceeds the scaler horizontal source
+>
+> I think no need to mention  this commit since you already mention this in fixes
+> Also 
+> Cc: stable@vger.kernel.org
 
-== Series Details ==
+Yeah we have 'dim fixes' for this.
 
-Series: drm/xe: Adjust the bo shrinker batch size (rev3)
-URL   : https://patchwork.freedesktop.org/series/166426/
-State : success
+$ dim fixes 3347b55f2c6c
+Fixes: 3347b55f2c6c ("drm/i915/xe3lpd: Prune modes for YUV420")
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com> #v2
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v6.18+
 
-== Summary ==
-
-CI Bug Log - changes from xe-5906-95bc52ddf34f72a3996b1f32e946304d3823be3c_BAT -> xe-pw-166426v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-New tests
----------
-
-  New tests have been introduced between xe-5906-95bc52ddf34f72a3996b1f32e946304d3823be3c_BAT and xe-pw-166426v3_BAT:
-
-### New IGT tests (1) ###
-
-  * igt@core_hotunplug@unbind-rebind:
-    - Statuses : 1 abort(s) 13 pass(s)
-    - Exec time: [0.0, 9.70] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-166426v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind (NEW):
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#9463])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5906-95bc52ddf34f72a3996b1f32e946304d3823be3c/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166426v3/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
+Don't put all of it in the trailers, but it gives you an idea who should
+perhaps be Cc'd and what the stable target should be.
 
 
-Build changes
--------------
-
-  * Linux: xe-5906-95bc52ddf34f72a3996b1f32e946304d3823be3c -> xe-pw-166426v3
-
-  IGT_9135: 9135
-  xe-5906-95bc52ddf34f72a3996b1f32e946304d3823be3c: 95bc52ddf34f72a3996b1f32e946304d3823be3c
-  xe-pw-166426v3: 166426v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166426v3/index.html
-
---===============1687435022211365573==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+>
+> Otherwise LGTM,
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>
+>> limit, since pipe scaling does not support YUV420 for a source width above
+>> 4096. Comparing against max_h makes the check far too permissive from
+>> display 12 onwards, where max_h is 8192, and too strict on display 11, where
+>> max_h is 4096 while the horizontal limit is 5120.
+>> 
+>> Compare against max_w instead.
+>> 
+>> Fixes: 3347b55f2c6c ("drm/i915/xe3lpd: Prune modes for YUV420")
+>> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/skl_scaler.c | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c
+>> b/drivers/gpu/drm/i915/display/skl_scaler.c
+>> index 7994b983d509..7e65c4fffbc0 100644
+>> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+>> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+>> @@ -145,7 +145,7 @@ skl_scaler_mode_valid(struct intel_display *display,
+>> 
+>>  	if (num_joined_pipes < 2 && output_format ==
+>> INTEL_OUTPUT_FORMAT_YCBCR420) {
+>>  		skl_scaler_max_src_size(display, &max_w, &max_h);
+>> -		if (mode->hdisplay > max_h)
+>> +		if (mode->hdisplay > max_w)
+>>  			return MODE_NO_420;
+>>  	}
+>> 
+>> --
+>> 2.25.1
+>
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Adjust the bo shrinker batch size (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166426/">https://patchwork.freedesktop.org/series/166426/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166426v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166426v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5906-95bc52ddf34f72a3996b1f32e946304d3823be3c_BAT -&gt; xe-pw-166426v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between xe-5906-95bc52ddf34f72a3996b1f32e946304d3823be3c_BAT and xe-pw-166426v3_BAT:</p>
-<h3>New IGT tests (1)</h3>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>Statuses : 1 abort(s) 13 pass(s)</li>
-<li>Exec time: [0.0, 9.70] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-166426v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind (NEW):<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5906-95bc52ddf34f72a3996b1f32e946304d3823be3c/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-166426v3/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5906-95bc52ddf34f72a3996b1f32e946304d3823be3c -&gt; xe-pw-166426v3</li>
-</ul>
-<p>IGT_9135: 9135<br />
-  xe-5906-95bc52ddf34f72a3996b1f32e946304d3823be3c: 95bc52ddf34f72a3996b1f32e946304d3823be3c<br />
-  xe-pw-166426v3: 166426v3</p>
-
-</body>
-</html>
-
---===============1687435022211365573==--
+-- 
+Jani Nikula, Intel
