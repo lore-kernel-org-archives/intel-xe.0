@@ -4,65 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2F57CA6007
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Oct 2026 11:17:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBFA5CA600B
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Oct 2026 11:47:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A646910E22F;
-	Thu,  8 Oct 2026 11:17:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50B7210E7D9;
+	Thu,  8 Oct 2026 11:47:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qjbx+ZR9";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RYQKjkIq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C25CF10E22F
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Oct 2026 11:17:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FAFB10E7CA;
+ Thu,  8 Oct 2026 11:47:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791458278; x=1822994278;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=/1fG3FWs2tKOex+QLbcraQeFnx3tAzSGf4+Iyw1aBmM=;
- b=Qjbx+ZR92qK6Ck5Ci4yvfkjmqJipXpHke7TFVvhDxpnnakru2eF4NdTQ
- thnZ46eQjLvtKNgrGtPtl+zydSQO0DTb39THt6I1YB0X1y/eR2JmP7oF9
- 3XxANJRzp64ZvA2x6WdlYfjgbMIE1rCtHKnsxhMbeNgc8Qw7WiAv6OW9R
- 5goLD4KQ6EW0RtcKc+NMvIAYduHcqaWf22nSu+ivFB0rokDcNusB6CpDD
- eCwxmFEzO2QLDQlKgbYBwyf3ndK5VrBrYNobs1vwnBp8zhImOgFi2eGnU
- +1COiPG6diHEqxcDdWK//B7vfNDc9qhSdDpmmAXybNx0Way1LRHad8yxr Q==;
-X-CSE-ConnectionGUID: L2HtSr1FSaeuykOSCbi1DQ==
-X-CSE-MsgGUID: uxlSqGuMQLe43tq6MHLedQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11928"; a="246810"
+ t=1791460063; x=1822996063;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sRP3yTlDWjmqreIrgrSlVd13C3TvFjwoa2k18D5/ZQo=;
+ b=RYQKjkIqzmPcGByvTiirRi94juLeFx6aOvKqytWevP831CMj7qV8NEM8
+ hq1eh9FwuU/CzDe2sXhslpJ2EGPIG3GeTN4MT7KD/FpK5XOVmFYUO3lJw
+ vkLXzxhGcFASWVA1Tjl34H+h7IfP7JE52fM4acH+D1yKJ0fXnNtdq7V1Q
+ dyeUEaI8Yw1gP0PJ3iLcyGGjLL53ru44KSmPZ1qOJznqmhy0B2tdghbCw
+ XsYtrMKz5HBEAZ8soUezKpIB/WDVACEutJ/x+4OblEzGvGDsuSx8r5tA4
+ fOOcUjOVk+NsxdIGDnQRmTLYI6J2IkQiE2UVTXNiaro9a2Su0fflmHZjS g==;
+X-CSE-ConnectionGUID: 8aBjwHNCTHuxr3Vr1tse7g==
+X-CSE-MsgGUID: lOHcUBxrR7G1bKyEzXZdvA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11928"; a="143090"
 X-IronPort-AV: E=Sophos;i="6.27,146,1787036400"; 
-   d="scan'208";a="246810"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2026 04:17:58 -0700
-X-CSE-ConnectionGUID: IxJIiG5ESW+OxIfiGxtK2A==
-X-CSE-MsgGUID: OzZI3/OkT/22E+foL6+skQ==
+   d="scan'208";a="143090"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2026 04:47:43 -0700
+X-CSE-ConnectionGUID: 4psP4/6pRzWm6g1pXHLbYA==
+X-CSE-MsgGUID: uXNwNpFiSZeUlVsuk3POxA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,146,1787036400"; 
-   d="scan'208";a="1766951"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO [10.245.245.132])
- ([10.245.245.132])
+   d="scan'208";a="135681"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.142])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2026 04:17:56 -0700
-Message-ID: <992d57f0-7327-4c36-adf7-6dd72137fe73@intel.com>
-Date: Thu, 8 Oct 2026 12:17:53 +0100
+ 08 Oct 2026 04:47:41 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+	Imre Deak <imre.deak@intel.com>
+Subject: [CI] drm/{i915, xe}: move intel_opregion_suspend() to
+ intel_display_driver_pm_suspend_late()
+Date: Thu,  8 Oct 2026 14:47:35 +0300
+Message-ID: <20261008114735.2662427-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] drm/xe: skip p2p for suspected display buffers
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-References: <20261007153605.1743626-5-matthew.auld@intel.com>
- <20261007153605.1743626-8-matthew.auld@intel.com>
- <2c6a97ac21c5ef161dbac279f9b971f383b6b944.camel@linux.intel.com>
- <dbabed4e-468d-4ecf-b295-f5d8c9c4b263@intel.com>
- <bc2f4d82-5a8e-4d1b-a921-ee819ca5cac2@amd.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <bc2f4d82-5a8e-4d1b-a921-ee819ca5cac2@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,251 +72,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 08/10/2026 10:55, Christian König wrote:
-> On 10/8/26 11:46, Matthew Auld wrote:
->> On 07/10/2026 19:11, Thomas Hellström wrote:
->>> On Wed, 2026-10-07 at 16:36 +0100, Matthew Auld wrote:
->>>> If p2p is allowed on the CPU (like on AMD), we currently permit p2p
->>>> for
->>>> all exported VRAM buffers. However, in some multi-GPU setups, like
->>>> with
->>>> prime rendering on a dgpu and scanout/compositor using the igpu, it
->>>> looks like the exported dma-buf window buffer can in some cases end
->>>> up
->>>> using p2p.
->>>>
->>>> However, user is reporting a kernel regression where performance here
->>>> massively tanks across many games/workloads, where it looks like on
->>>> each
->>>> frame, the igpu is reading/sampling from VRAM over pcie for the
->>>> window
->>>> buffer, since it uses p2p. p2p is currently more intended for dgpu <-
->>>>>
->>>> dgpu, and not so much display buffers with igpu <-> dgpu, at least
->>>> for
->>>> now.
->>>>
->>>> We don't currently have any hints to say "please use p2p for this
->>>> buffer, or please don't", however we can use some heuristics to try
->>>> to
->>>> determine if this is likely a display buffer being exported to an
->>>> igpu,
->>>> which probably never intended for p2p:
->>>>
->>>>    1. FLAG_SCANOUT being set on the buffer. Window buffers usually get
->>>>       tagged with this, but not always.
->>>>
->>>>    2. Importer being a PCI device with display, which is not xe driver.
->>>>
->>>> We also rely on the existing p2p Intel CPU whitelist to stop this
->>>> happening on xe igpu. Currently p2p is only enabled for server CPUs,
->>>> on
->>>> Intel. We also limit the above to dual placement buffers.
->>>>
->>>> The original regression was bisected to commit 609fc8766d68 ("dma-
->>>> buf:
->>>> Always build with DMABUF_MOVE_NOTIFY"), however the behaviour was
->>>> already present when enabling that knob, so this goes back even
->>>> further.
->>>>
->>>> User has confirmed that along with the sticky dma-buf TT placement
->>>> fix,
->>>> to prevent ping-ponging, the performance is back to normal.
->>>>
->>>
->>> Actually, I think this needs to be fixed on the importer side. Until we
->>> have some some user-space hints, I don't think the exporter should
->>> second-guess. Most sane solution IMO is if igfx importers could just
->>> not advertise pcie p2p support?
->>
->> Yeah, not sure tbh. I'm not a huge fan of this patch either. But you could argue that the SCANOUT flag is already a good implicit hint/signal on the exporter side, but unfortunately there were some games where this did not reliably work. The other implicit hint/signal is perhaps the dual placement angle. For example, in compute-runtime, it might be that they use VRAM-only if they want p2p? AFAICT mesa for us always uses a dual placement or just system memory for these types of buffers.
->>
->> Christian, do you have any thoughts here? We have a kernel perf regression after DMABUF_MOVE_NOTIFY was made the default after updating to a new kernel. The gist is that this then turned on the p2p paths, with a multi-GPU setup with an AMD igpu/APU and Xe dgpu doing prime rendering. From the user bug report it sounds like the dgpu linear window buffer exported to the compositor (igpu) is dual placement VRAM + TT, and so this now attempts to keep that memory in VRAM instead of moving it. Compositor then uses p2p to access it. It works but performance falls off a massive cliff here.
->>
->> Perhaps Intel Mesa side should use tt-only for this type buffer (?), but since this is a kernel regression I was hoping we could fix this on the kernel side.
->>
->> Some questions:
->>
->> 1. Do you know what is the general story with p2p between igpu and dgpu? Is this a legit thing? For igpus/APUs, advertising p2p can't be dropped? It clearly seems to work though.
->>
->> 2. If this is legit, do you guys then also prevent p2p with display buffers? Are you just doing that at the Mesa level, or is there some magic in the kernel also?
-> 
-> If I understand that correctly that the igpu is the importer and the dgpu is the exporter then yeah Thomas is right that definately needs to be fixed on the importer side.
+Try to unify the suspend paths and behaviour by moving the
+intel_opregion_suspend() calls to
+intel_display_driver_pm_suspend_late().
 
-Ideas on how do that? Could we do something like allow_peer2peer = false 
-in amdgpu_gem_prime_import() if this is an APU device, or further check 
-if the exporter side is not amdgpu, like APU + Xe?
+This is a change in the suspend sequences. The idea behind adding this
+to intel_display_driver_pm_suspend_late() is primarily based on not
+having to pass the s2idle parameter to more functions than that.
 
-> 
-> At least for AMD APUs we clearly support P2P both as exporter and importer, but what isn't supported is to scan out over P2P. We explicitely reject that inside DC/DAL.
-> 
-> And I'm pretty sure that you should do that as well. I'm actually really suprised that this works technically and doesn't cause corruption or anything.
+This also changes behaviour for i915 hibernation, going for PCI_D3cold
+instead of PCI_D1 on hibernate. It's probably the correct thing to do
+anyway, I don't think it should matter all that much, but fingers
+crossed.
 
-AFAICT on Intel iGPUs it will currently always end up with peer2peer = 
-false on attach. Not 100% sure if direct scanout was happening on the 
-p2p buffer itself, for the user report.
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_driver.c | 2 ++
+ drivers/gpu/drm/i915/i915_driver.c                  | 4 ----
+ drivers/gpu/drm/xe/display/xe_display.c             | 3 ---
+ 3 files changed, 2 insertions(+), 7 deletions(-)
 
-> 
-> Regards,
-> Christian.
-> 
->>
->>>
->>> Thanks,
->>> Thomas
->>>
->>>> Assisted-by: LLM
->>>> Closes:
->>>> https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9415
->>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>>> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
->>>> GPUs")
->>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>> Cc: <stable@vger.kernel.org> # v6.12
->>>> ---
->>>>    drivers/gpu/drm/xe/xe_bo.c      |  3 +-
->>>>    drivers/gpu/drm/xe/xe_bo.h      |  1 +
->>>>    drivers/gpu/drm/xe/xe_dma_buf.c | 63 +++++++++++++++++++++++++------
->>>> -- 
->>>>    3 files changed, 51 insertions(+), 16 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->>>> index 5065a7bac39c..e63437a261cb 100644
->>>> --- a/drivers/gpu/drm/xe/xe_bo.c
->>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
->>>> @@ -3658,7 +3658,7 @@ int xe_gem_create_ioctl(struct drm_device *dev,
->>>> void *data,
->>>>         * Display scanout is always non-coherent with the CPU
->>>> cache.
->>>>         */
->>>>        if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
->>>> -        bo_flags |= XE_BO_FLAG_FORCE_WC;
->>>> +        bo_flags |= XE_BO_FLAG_FORCE_WC |
->>>> XE_BO_FLAG_SCANOUT;
->>>>          if (args->flags & DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION) {
->>>>            if (XE_IOCTL_DBG(xe, GRAPHICS_VER(xe) < 20))
->>>> @@ -4228,6 +4228,7 @@ int xe_bo_dumb_create(struct drm_file
->>>> *file_priv,
->>>>                       DRM_XE_GEM_CPU_CACHING_WC,
->>>>               
->>>> XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
->>>>                       XE_BO_FLAG_FORCE_WC |
->>>> +                   XE_BO_FLAG_SCANOUT |
->>>>                       XE_BO_FLAG_NEEDS_CPU_ACCESS, NULL);
->>>>        if (IS_ERR(bo))
->>>>            return PTR_ERR(bo);
->>>> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
->>>> index 1ddf3b6d4a9e..6965c2655731 100644
->>>> --- a/drivers/gpu/drm/xe/xe_bo.h
->>>> +++ b/drivers/gpu/drm/xe/xe_bo.h
->>>> @@ -56,6 +56,7 @@
->>>>    #define XE_BO_FLAG_FORCE_USER_VRAM    BIT(25)
->>>>    #define XE_BO_FLAG_NO_COMPRESSION    BIT(26)
->>>>    #define XE_BO_FLAG_NEEDS_1G        BIT(27)
->>>> +#define XE_BO_FLAG_SCANOUT        BIT(28)
->>>>      /* this one is trigger internally only */
->>>>    #define XE_BO_FLAG_INTERNAL_TEST    BIT(30)
->>>> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
->>>> b/drivers/gpu/drm/xe/xe_dma_buf.c
->>>> index b973579a69b8..0a347f09cee4 100644
->>>> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
->>>> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
->>>> @@ -36,10 +36,40 @@ static void xe_ddebug_flip_bool(const struct
->>>> _ddebug *desc, bool *flag)
->>>>    #define xe_dma_buf_p2p_debug_flip(flag) do { } while (0)
->>>>    #endif
->>>>    +static void xe_dma_buf_move_notify(struct dma_buf_attachment
->>>> *attach)
->>>> +{
->>>> +    struct drm_gem_object *obj = attach->importer_priv;
->>>> +    struct xe_bo *bo = gem_to_xe_bo(obj);
->>>> +    struct drm_exec *exec = XE_VALIDATION_UNSUPPORTED;
->>>> +
->>>> +    XE_WARN_ON(xe_bo_evict(bo, exec));
->>>> +}
->>>> +
->>>> +static const struct dma_buf_attach_ops xe_dma_buf_attach_ops = {
->>>> +    .allow_peer2peer = true,
->>>> +    .invalidate_mappings = xe_dma_buf_move_notify
->>>> +};
->>>> +
->>>> +static struct pci_dev *xe_find_parent_pci_dev(struct device *dev)
->>>> +{
->>>> +    while (dev) {
->>>> +        if (dev_is_pci(dev))
->>>> +            return to_pci_dev(dev);
->>>> +        dev = dev->parent;
->>>> +    }
->>>> +    return NULL;
->>>> +}
->>>> +
->>>> +static bool xe_dma_buf_attach_is_xe_device(struct dma_buf_attachment
->>>> *attach)
->>>> +{
->>>> +    return attach->importer_ops == &xe_dma_buf_attach_ops;
->>>> +}
->>>> +
->>>>    static int xe_dma_buf_attach(struct dma_buf *dmabuf,
->>>>                     struct dma_buf_attachment *attach)
->>>>    {
->>>>        struct drm_gem_object *obj = attach->dmabuf->priv;
->>>> +    struct xe_bo *bo = gem_to_xe_bo(obj);
->>>>        bool verbose_p2p_dist = drm_debug_enabled(DRM_UT_DRIVER);
->>>>          xe_dma_buf_p2p_debug_flip(&verbose_p2p_dist);
->>>> @@ -48,7 +78,24 @@ static int xe_dma_buf_attach(struct dma_buf
->>>> *dmabuf,
->>>>            pci_p2pdma_distance(to_pci_dev(obj->dev->dev), attach-
->>>>> dev, verbose_p2p_dist) < 0)
->>>>            attach->peer2peer = false;
->>>>    -    if (!attach->peer2peer &&
->>>> !xe_bo_can_migrate(gem_to_xe_bo(obj), XE_PL_TT))
->>>> +    if (attach->peer2peer && xe_bo_can_migrate(bo, XE_PL_TT)) {
->>>> +        struct pci_dev *client =
->>>> xe_find_parent_pci_dev(attach->dev);
->>>> +
->>>> +        /*
->>>> +         * There are perf issues with using p2p with display
->>>> buffers,
->>>> +         * like with igpu (compositor) <-> dgpu (exported
->>>> p2p window
->>>> +         * buffer). Probably we need some actual userspace
->>>> hints. We
->>>> +         * shouldn't really assume anything. Also, note that
->>>> some of
->>>> +         * these buffers are not always tagged with SCANOUT.
->>>> +         */
->>>> +        if (bo->flags & XE_BO_FLAG_SCANOUT)
->>>> +            attach->peer2peer = false;
->>>> +        else if (client && pci_is_display(client) &&
->>>> +             !xe_dma_buf_attach_is_xe_device(attach))
->>>> +            attach->peer2peer = false;
->>>> +    }
->>>> +
->>>> +    if (!attach->peer2peer && !xe_bo_can_migrate(bo, XE_PL_TT))
->>>>            return -EOPNOTSUPP;
->>>>          xe_pm_runtime_get(to_xe_device(obj->dev));
->>>> @@ -349,20 +396,6 @@ xe_dma_buf_create_obj(struct drm_device *dev,
->>>> struct dma_buf *dma_buf)
->>>>        return ret ? ERR_PTR(ret) : &bo->ttm.base;
->>>>    }
->>>>    -static void xe_dma_buf_move_notify(struct dma_buf_attachment
->>>> *attach)
->>>> -{
->>>> -    struct drm_gem_object *obj = attach->importer_priv;
->>>> -    struct xe_bo *bo = gem_to_xe_bo(obj);
->>>> -    struct drm_exec *exec = XE_VALIDATION_UNSUPPORTED;
->>>> -
->>>> -    XE_WARN_ON(xe_bo_evict(bo, exec));
->>>> -}
->>>> -
->>>> -static const struct dma_buf_attach_ops xe_dma_buf_attach_ops = {
->>>> -    .allow_peer2peer = true,
->>>> -    .invalidate_mappings = xe_dma_buf_move_notify
->>>> -};
->>>> -
->>>>    #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
->>>>      struct dma_buf_test_params {
->>
-> 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 77009dca7d0d..abab457bce3a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -783,6 +783,8 @@ void intel_display_driver_pm_suspend_late(struct intel_display *display, bool s2
+ 	if (!HAS_DISPLAY(display))
+ 		return;
+ 
++	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
++
+ 	intel_display_power_suspend_late(display, s2idle);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 9e047c27a153..293099fe6639 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -1075,7 +1075,6 @@ static int i915_drm_suspend(struct drm_device *dev)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	struct intel_display *display = dev_priv->display;
+-	pci_power_t opregion_target_state;
+ 
+ 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+ 
+@@ -1089,9 +1088,6 @@ static int i915_drm_suspend(struct drm_device *dev)
+ 
+ 	i9xx_display_sr_save(display);
+ 
+-	opregion_target_state = suspend_to_idle(dev_priv) ? PCI_D1 : PCI_D3cold;
+-	intel_opregion_suspend(display, opregion_target_state);
+-
+ 	dev_priv->suspend_count++;
+ 
+ 	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index aab416485e3e..7d19f3c42e0e 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -238,14 +238,11 @@ static bool suspend_to_idle(void)
+ void xe_display_pm_suspend(struct xe_device *xe)
+ {
+ 	struct intel_display *display = xe->display;
+-	bool s2idle = suspend_to_idle();
+ 
+ 	if (!xe->info.probe_display)
+ 		return;
+ 
+ 	intel_display_driver_pm_suspend(display);
+-
+-	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
+ }
+ 
+ void xe_display_pm_suspend_late(struct xe_device *xe)
+-- 
+2.47.3
 
