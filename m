@@ -4,64 +4,160 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D10E4CA6007
-	for <intel-xe@archiver.kernel.org>; Thu,  8 Oct 2026 09:46:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71D86CA6007
+	for <intel-xe@archiver.kernel.org>; Thu,  8 Oct 2026 09:48:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E9A410FD41;
-	Thu,  8 Oct 2026 09:46:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F38D10FD52;
+	Thu,  8 Oct 2026 09:48:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IrcttPXB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YLYrKTms";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42F6010FD4C
- for <intel-xe@lists.freedesktop.org>; Thu,  8 Oct 2026 09:46:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3729710FD52;
+ Thu,  8 Oct 2026 09:48:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791452764; x=1822988764;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=VKAmiR78MedN3Mwe4wE+uoYia1J1tdYz4ogbGRVYXfo=;
- b=IrcttPXB1j3l4Qq+CM5YlNC4uZqJBqoFK477qMRwLndqnbJuQ7a+N2jh
- oQKZ70cLLA4jUQf8mHEsnbVfdhhcPkIXRbIq64y1VWLwZF72WZKKQ1VKl
- vHbRzzElRN4FmowuTWorCPG159BFP9xk+KWX4/g5nlXENKA26o82BMQ9B
- MjO3+QyaT+jBl/ccK93I1uuJ3OwKDW98k2kJ13J0YgGCQZboKjdta1hyv
- 9l9WyOA14YvE2oUnkXUP5E399OPI7/SDv8FgTdTDU9zhcYUDo/BiNc2Wl
- tiJ9kZQsVoPnpz7XqYzqm6zx7ZdXwLrfoV7S4yNLZyKpSYaO3JEkVRnhk w==;
-X-CSE-ConnectionGUID: k9KNbSfjSnmMmKN3XO761A==
-X-CSE-MsgGUID: eAXBL3GoTDmO++q4i83QZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11928"; a="224542"
+ t=1791452920; x=1822988920;
+ h=content-transfer-encoding:date:message-id:to:cc:subject:
+ from:references:in-reply-to:mime-version;
+ bh=dEPWGzqRQl09Gmpwr9HIDgDViPV1r4VQoskZbWYYIYE=;
+ b=YLYrKTmsolaqjFbpKsgcW7POBQLeD9DdQaWp8KQ405qmt9M7T2WF7/tB
+ d6xD7ch7nHRi16ytekkM5rruDcs2Isypb3mzltau83WlH9HNo7t0t5uZh
+ 2CsJg1HdDNo3jCq/6icupdZVeCAi4KP28SBUy6nqolCxPoghmE3krlamP
+ Htnsk/dwqPLqqdq8XFNfyPzFddAu3pKnWENPG6hFpBSObYwKn5l91RYB3
+ 9pVg2GgixM8DhRl3zrMMMhoZqPpJMXeuHSGtDp4nx6pymLI5026v9U9Bd
+ whv4UqpxaeTDzk4A7l/mjrVluMF0wfEbafShoSbzlrdfUa9UY+stBFRp5 w==;
+X-CSE-ConnectionGUID: fcd7cyhyQnejlXsZYEwtYA==
+X-CSE-MsgGUID: dbfxgTR8SUmLv0TYOTiEHA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11928"; a="109179"
 X-IronPort-AV: E=Sophos;i="6.27,146,1787036400"; 
-   d="scan'208";a="224542"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2026 02:46:03 -0700
-X-CSE-ConnectionGUID: bJKPxuwRRd2STMKFR+zb5g==
-X-CSE-MsgGUID: mm9PpICPSb2lsN0s0sH1wQ==
+   d="scan'208";a="109179"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2026 02:48:40 -0700
+X-CSE-ConnectionGUID: 1ztsTPMFSf+JsTnPgNriNA==
+X-CSE-MsgGUID: 5sEPmOqGT3+flkIN2bzRtg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,146,1787036400"; 
-   d="scan'208";a="859"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO [10.245.245.132])
- ([10.245.245.132])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2026 02:46:02 -0700
-Message-ID: <dbabed4e-468d-4ecf-b295-f5d8c9c4b263@intel.com>
-Date: Thu, 8 Oct 2026 10:46:00 +0100
+   d="scan'208";a="441087"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2026 02:48:40 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Thu, 8 Oct 2026 02:48:39 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49 via Frontend Transport; Thu, 8 Oct 2026 02:48:39 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.3) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Thu, 8 Oct 2026 02:48:39 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=t20JYG2MG1BIZUpEtWud1g398YzxUZ/z+K6ORhNaEeh0/L0tWFkiMwrSlgGmAssB2r80sHQXiMNQlurp9uWQHofl1xwkJtdcOTMp7PLei3zniiB9XrXCiTXfAyR4jvf7ikdY9OaJIXF9IYkGKg47PsbkOPljLj8sWJEJy//bYCCrGDrNXAuB/xVWaR0C7liXr6VThWVcVHKGh99AWF6rluupgu7wpVxcmyIS9pHqDzdLFrhRpxUro1ddwRywmmkA4nprGf8L3clPJhpDOKKoFcodg0mCiKS8oBNXvpG2oy310RaxuwTKu4GsqptEdibTrXze0tS6fuKwCa3LrOn3uA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dEPWGzqRQl09Gmpwr9HIDgDViPV1r4VQoskZbWYYIYE=;
+ b=BdgnSspD1h13LKmaMfN01SzgPePLlcmLazujqilRlBbZ31yOiIgU1kUm6TQcYVYxr6O6Bho3y6DttBsvFzbFnrorVO5yFOouFtIjYFlz1lJDWqok+Y1spkE7f/nL9mZ+R6fNiE8AX65SCmyp/rSLaEfrJLpmV14H5xwCWVKNTmko6ndPsEYnb9zIkBaL3T9Noa0mRDSOUCQpLF/13NI5DI5dvvVrvRnw0Dm+rfuAOU6BhFO+5R7Quh/+B58C8FsSp7O4xDH15OS2+CS41TzqcMye1F8DOamdd7ba6UWCEcN0WB2KywTepl3ILr6QSrZKkiaeMditUBzhxFR2HjPvNg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MW4PR11MB6909.namprd11.prod.outlook.com (2603:10b6:303:224::12)
+ by IA0PR11MB7696.namprd11.prod.outlook.com (2603:10b6:208:403::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.496.17; Thu, 8 Oct
+ 2026 09:48:37 +0000
+Received: from MW4PR11MB6909.namprd11.prod.outlook.com
+ ([fe80::9eab:962:806:3794]) by MW4PR11MB6909.namprd11.prod.outlook.com
+ ([fe80::9eab:962:806:3794%4]) with mapi id 15.21.0496.015; Thu, 8 Oct 2026
+ 09:48:36 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Date: Thu, 8 Oct 2026 11:48:33 +0200
+Message-ID: <DLZD22VNHIGD.1INFC09FTA93N@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 5/5] drm/i915/gmbus: Remove the
+ INTEL_DISPLAY_WA_16025573575 leftovers
+From: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+X-Mailer: aerc 0.22.0
+References: <20261007222314.5714-1-ville.syrjala@linux.intel.com>
+ <20261007222314.5714-6-ville.syrjala@linux.intel.com>
+In-Reply-To: <20261007222314.5714-6-ville.syrjala@linux.intel.com>
+X-ClientProxiedBy: VIVP296CA0033.AUTP296.PROD.OUTLOOK.COM
+ (2603:10a6:800:356::14) To MW4PR11MB6909.namprd11.prod.outlook.com
+ (2603:10b6:303:224::12)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] drm/xe: skip p2p for suspected display buffers
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-References: <20261007153605.1743626-5-matthew.auld@intel.com>
- <20261007153605.1743626-8-matthew.auld@intel.com>
- <2c6a97ac21c5ef161dbac279f9b971f383b6b944.camel@linux.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <2c6a97ac21c5ef161dbac279f9b971f383b6b944.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MW4PR11MB6909:EE_|IA0PR11MB7696:EE_
+X-MS-Office365-Filtering-Correlation-Id: 85d12efc-a1d1-42e3-95d1-08df252152f9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|23010399003|366016|1800799024|11063799006|56012099006|4143699003|260925021311599003|260925021911599003|260925022911599003|10067099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: JJHWr4kLyyAyU6N391JZhIh/2C7Z1roYqLlN6DAKjuBVHAwMHFNUlF6CZrDXH6JYcD1K6vjDlhYs96VkWWTuoEU2plvoc3DXUEi3iExzB2fle9Oyc6Jon0HqQf6bwezgXHm7LfY8otlSM3UdQ5nZFHvee7/bHbo3d/Y6wifPoSbx3GhWUnmuHkDnqc9W8/eSMRsBiOrEfe1d2WDlWKq4goJ1fTLpCr2f4jJU+3+IWtJwhHY4Hb8JnHhPJZYfz2UWeAc8Nasb3tINvqtdLZKz0PmrmryjKmsAFtIS/1BRYr2LyojZeHPDybFzK4OkmHGKbHq9aBXoq3NidXIeg6RLeylTYludfLgvZnpfP/iBxHAFFqtEjMnWG9XkIGpSApFuyWJ6WklMZyK9JPsKuCuS5/4AlVHBPIH3eQWgPx/PEsP2Nemr5hCRvSZM5158zHFeMgSwAKtuu3hL9Df5fiPeUHrsAu60G4J7SoSG/zwRhmqw7pboujspiXdFcGB1Y0GpBB156izRak53f2Djp0fyscj8pVS9Puvr3hJZnuB5zDzcIQuXD/h5WZnV0hPMEkDtWhYluJ/lyIyUO1vkaXzd4wAPvt1B5kpUlag7F3y5GpcdOy61xHv7WKF4OkgnYMr4zOEoPMNpewWw6uLMcJozCqfzuMCPuWZZ/jwVZzyd9Sg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW4PR11MB6909.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(366016)(1800799024)(11063799006)(56012099006)(4143699003)(260925021311599003)(260925021911599003)(260925022911599003)(10067099003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U1R0YU9QNWxSZVVMRjNhQkNHVDlvTFg5alZhUDV6S2FualdKSjZ6c2x6TEQ3?=
+ =?utf-8?B?RDRuRlJjUDlPMjhPcWtidmw4a1FpazA1cGZZOVRVRzJUOUNMZlNjWWpKZWNp?=
+ =?utf-8?B?dmx2d0pHVERTRnJES3AvM2tYcU1WYTdOck1hVEgrS0FZeldrN2IwUWRPUitx?=
+ =?utf-8?B?Vkx5STh2cGhqcm1LdGI5bzVEVU5JT2c2a0JXM1ZrTWs1bG9nSkhJRXV3QzI3?=
+ =?utf-8?B?VkcreDloY1hKVDNFbGF5MDVSRFZQd3RRcDVEbjZGZWdJOFFZUlhhNDFOdDQw?=
+ =?utf-8?B?aDcrZWhjSkpmeWZNd2crUjQ4Qlk1R3J1YUdDelRJa1YrWnd5ZHFqVlpJSkU2?=
+ =?utf-8?B?ZXFHRFEzZEZPTm0rZ1FYNllmZXk1aUdUcFArUlJBU2FaWmxTSmU3cTh0VXhU?=
+ =?utf-8?B?dHA5VjU3UW1UbVRrQ0N2M1hMU0dSYmZlQnptYWJPZkx5elh6NWtoU0ZHYUpt?=
+ =?utf-8?B?a0xoNWRqV3dubDNwS1ErL1N2TlZxZ3Q0Szl3b2oxdGJLS1IrTm85RUFHZ3U2?=
+ =?utf-8?B?cTNNeEFFRWFOTDVJSGFGaU5IY2lUbEdzNWNPV2hrc2hMSDFOdWF0Z0MreUVE?=
+ =?utf-8?B?QWYwQ2VzVUtKd0wyWGF1NXBmRFg4K1BHOGU5bTFOZ0pNVTNjaDloeTFuMkZQ?=
+ =?utf-8?B?bTR1dzQxWG5pTU5mSG1TWGdxTEJoTXpUVUhZSEx4ejdPaTF4dE5FTFFTanVH?=
+ =?utf-8?B?bGxIYllnRVpoRjBBOXZ5ZTBRY3UxeTVZZ3Z4REswek5Nd2ZUUlBzdGh0Z2tW?=
+ =?utf-8?B?WWNuZ21wSUpUY2Q4NGhybjlCSnVINDVGYnFpVUthNFd4eGplaDQ4VExBQmNH?=
+ =?utf-8?B?ZCt0bThJQUJzTllnNG9UendJaE5VSUJuRWRNQ1BGMlhrU0paZnRMejAvL3JD?=
+ =?utf-8?B?dDFnK01TS2dJdEE5K2xzN2EyR0Z3L2hld3lxNVdmYWh3NEpBRWJlaXV2aUJ5?=
+ =?utf-8?B?QkFBajlQV2lNMG1BNlZWVUdoN0k4ZXhxMWlEbG1rSDk3TFloaWdHQWZLNzhj?=
+ =?utf-8?B?RjMxUnFrRzZ3YVppVDZhd2pHbjNabTd6NTdJYUJ2cnRtNnVaVzZWQXVkZnFz?=
+ =?utf-8?B?S1FoTUcrTHhSandaeGxHdnZWTTlROUM5R3NUdmtyTjZzekZJZDZBQitlM1ZE?=
+ =?utf-8?B?RkVmS0JGMGpzSWN4UWdCZ0Z2cGtSdjNhQXQxVktReVZEcHJxcXd0UjY5eUFJ?=
+ =?utf-8?B?MERlcGFNcFdoZFoxSDJLT2VrbkFVSktuTHgzZ3VZdVJrckhXelNCVitpL0l6?=
+ =?utf-8?B?dGZLVWppSE80OThlZURXajlhcldaRFpDVnV6UVFzMEhBTzNhWjh5M0FwenRz?=
+ =?utf-8?B?TmVENUZwQk1KaHI3WjNZS3M5M0JCSC9jd0RLeFQxdFN2aVVQSnN3VGpPeklH?=
+ =?utf-8?B?NG5kL0hjVGlqSy9Vdy9XbzZQSkR4Q2FlLzdPZmJnOXcrZENWSWloTFpmczJT?=
+ =?utf-8?B?V09GOWZ0VUsybG12TFpDOTFTZEpwVk5jTW90bHllRTNUZ2VTLzFpK3pCQUVu?=
+ =?utf-8?B?NHVibG1mbWowNTNuN3UzVVhJOGhiM0hUVjgrUSsyQmw4NWMwbitoa2YzTHVn?=
+ =?utf-8?B?QjU1QllKY0psa0w1dzJzMzhyYlNuN01XdzcvUkNQNjlHdk1YbDNOaE1LT0tC?=
+ =?utf-8?B?c3FqT293akZMem5WVGtYNU5BOEZlTFNPcklBMGJ6SjNUSmtJTlZnaUpIZVMw?=
+ =?utf-8?B?elEvYTV4d3daWlZzMnJQSHpCZWlpaW9haXBLNysrdFUrcnNPK0pPRDVnSzI5?=
+ =?utf-8?B?b0FUZjlhSDlPVkJpR3pCaU9EQS9JbDUvcHdBeXBEZ1BpenJScEJqeXVWdWdp?=
+ =?utf-8?B?MXhYcFFkdk9ORmdFS2k1MDQvMXNjdHlLYis2YW8rM0p1aExMcjd5em1ScHht?=
+ =?utf-8?B?RjBYQllrSS8xYzQ1RUQ0TDh6bHRGelJJVndhVnJnUW1lK2p0d2NxRUlOcFQ0?=
+ =?utf-8?B?SXZyeUU1MDdRVTlaMWFpWHhzNTJZbnY3elFJVmcxUGI0UWZQajcvV0NCWDhy?=
+ =?utf-8?B?eTZwQXpiU2ZjR1F6UUVTK2cyNUJWMlNoQzdiRGZCMWVxSFJsUDdFS0ViaEZO?=
+ =?utf-8?B?SzR5SEZ0RWxHdjJwWjhZVDBIaUx5NlNtb1pjRitRQmxpQ1FrMlI5ZDhNNXVh?=
+ =?utf-8?B?ZTB3R085VWlzRDNjZUEvUStKb2tEMlZRZ0xDYWhrZEpoT1JqcXlRYlZMOEc2?=
+ =?utf-8?B?U3RsVVdpSVVIaGRNOFJCL25ESllSV3NES3dsc3EvK2VCek4rNlB6MDJVK3Ja?=
+ =?utf-8?B?NFBPQ1FFbDFtQmlUQ0FWaUlJSUVSbXcvZHZqT3BldjBuK1F4VXV5NUp5djRn?=
+ =?utf-8?B?UC9qS3RZYmNjTXV5ZUtDeGprcHRiVTczWXYvNkJsT1VrR2tvWGpoVDBHdk5L?=
+ =?utf-8?Q?/cipG3eQGCoHFVH0=3D?=
+X-Exchange-RoutingPolicyChecked: Bhnj4vz3GDP9OkHiDTHYESpflzZm4ZJ96ZKKGzj9yZWphTeocdMSwky4CeTjA3Ym8EuPyVDkD4g9ZbUZ06qHOCbpRXznUL3I1oNWlefM29so91muR3VQGpsiAA/vfPx4ZDUTPzHVrRSDbkr5kuCPgBhUvYNKvfz579/0aQqBx57GvtKW4QhHiVDHCuazy/PrWFmf6cnkBVEy8paYV+zJP+4CA1O9T3wXVUNYbd8Cq609EViRmzx8nJgmzkfLHucZui2jyKdByC4jP7ZT2E6iS3scpebdOHYNWICDK+UfDX9rGNc1Oje2Gb2YVjzrWSuDMIRLULZUoBKHw8g54aCvWQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85d12efc-a1d1-42e3-95d1-08df252152f9
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6909.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2026 09:48:36.7256 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WJjfAgvKVpfXVUtPlMVWFd5YeYL//zGiLccHuNiSn8tNdvg84Ll1HzWtvRe3ZJcKSoDw44fFMLkSsYxEe/yxrcbuRzarpIWUbsFNaVM2PEo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7696
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,255 +172,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 07/10/2026 19:11, Thomas Hellström wrote:
-> On Wed, 2026-10-07 at 16:36 +0100, Matthew Auld wrote:
->> If p2p is allowed on the CPU (like on AMD), we currently permit p2p
->> for
->> all exported VRAM buffers. However, in some multi-GPU setups, like
->> with
->> prime rendering on a dgpu and scanout/compositor using the igpu, it
->> looks like the exported dma-buf window buffer can in some cases end
->> up
->> using p2p.
->>
->> However, user is reporting a kernel regression where performance here
->> massively tanks across many games/workloads, where it looks like on
->> each
->> frame, the igpu is reading/sampling from VRAM over pcie for the
->> window
->> buffer, since it uses p2p. p2p is currently more intended for dgpu <-
->>>
->> dgpu, and not so much display buffers with igpu <-> dgpu, at least
->> for
->> now.
->>
->> We don't currently have any hints to say "please use p2p for this
->> buffer, or please don't", however we can use some heuristics to try
->> to
->> determine if this is likely a display buffer being exported to an
->> igpu,
->> which probably never intended for p2p:
->>
->>   1. FLAG_SCANOUT being set on the buffer. Window buffers usually get
->>      tagged with this, but not always.
->>
->>   2. Importer being a PCI device with display, which is not xe driver.
->>
->> We also rely on the existing p2p Intel CPU whitelist to stop this
->> happening on xe igpu. Currently p2p is only enabled for server CPUs,
->> on
->> Intel. We also limit the above to dual placement buffers.
->>
->> The original regression was bisected to commit 609fc8766d68 ("dma-
->> buf:
->> Always build with DMABUF_MOVE_NOTIFY"), however the behaviour was
->> already present when enabling that knob, so this goes back even
->> further.
->>
->> User has confirmed that along with the sticky dma-buf TT placement
->> fix,
->> to prevent ping-ponging, the performance is back to normal.
->>
-> 
-> Actually, I think this needs to be fixed on the importer side. Until we
-> have some some user-space hints, I don't think the exporter should
-> second-guess. Most sane solution IMO is if igfx importers could just
-> not advertise pcie p2p support?
+Hi,
+On Thu Oct 8, 2026 at 12:23 AM CEST, Ville Syrjala wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> We no longer need the INTEL_DISPLAY_WA_16025573575 since the
+> bit banging code now always follows the w/a sequence.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+Reviewed-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
 
-Yeah, not sure tbh. I'm not a huge fan of this patch either. But you 
-could argue that the SCANOUT flag is already a good implicit hint/signal 
-on the exporter side, but unfortunately there were some games where this 
-did not reliably work. The other implicit hint/signal is perhaps the 
-dual placement angle. For example, in compute-runtime, it might be that 
-they use VRAM-only if they want p2p? AFAICT mesa for us always uses a 
-dual placement or just system memory for these types of buffers.
-
-Christian, do you have any thoughts here? We have a kernel perf 
-regression after DMABUF_MOVE_NOTIFY was made the default after updating 
-to a new kernel. The gist is that this then turned on the p2p paths, 
-with a multi-GPU setup with an AMD igpu/APU and Xe dgpu doing prime 
-rendering. From the user bug report it sounds like the dgpu linear 
-window buffer exported to the compositor (igpu) is dual placement VRAM + 
-TT, and so this now attempts to keep that memory in VRAM instead of 
-moving it. Compositor then uses p2p to access it. It works but 
-performance falls off a massive cliff here.
-
-Perhaps Intel Mesa side should use tt-only for this type buffer (?), but 
-since this is a kernel regression I was hoping we could fix this on the 
-kernel side.
-
-Some questions:
-
-1. Do you know what is the general story with p2p between igpu and dgpu? 
-Is this a legit thing? For igpus/APUs, advertising p2p can't be dropped? 
-It clearly seems to work though.
-
-2. If this is legit, do you guys then also prevent p2p with display 
-buffers? Are you just doing that at the Mesa level, or is there some 
-magic in the kernel also?
-
-> 
-> Thanks,
-> Thomas
-> 
->> Assisted-by: LLM
->> Closes:
->> https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9415
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
->> GPUs")
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: <stable@vger.kernel.org> # v6.12
->> ---
->>   drivers/gpu/drm/xe/xe_bo.c      |  3 +-
->>   drivers/gpu/drm/xe/xe_bo.h      |  1 +
->>   drivers/gpu/drm/xe/xe_dma_buf.c | 63 +++++++++++++++++++++++++------
->> --
->>   3 files changed, 51 insertions(+), 16 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->> index 5065a7bac39c..e63437a261cb 100644
->> --- a/drivers/gpu/drm/xe/xe_bo.c
->> +++ b/drivers/gpu/drm/xe/xe_bo.c
->> @@ -3658,7 +3658,7 @@ int xe_gem_create_ioctl(struct drm_device *dev,
->> void *data,
->>   	 * Display scanout is always non-coherent with the CPU
->> cache.
->>   	 */
->>   	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
->> -		bo_flags |= XE_BO_FLAG_FORCE_WC;
->> +		bo_flags |= XE_BO_FLAG_FORCE_WC |
->> XE_BO_FLAG_SCANOUT;
->>   
->>   	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION) {
->>   		if (XE_IOCTL_DBG(xe, GRAPHICS_VER(xe) < 20))
->> @@ -4228,6 +4228,7 @@ int xe_bo_dumb_create(struct drm_file
->> *file_priv,
->>   			       DRM_XE_GEM_CPU_CACHING_WC,
->>   			
->> XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
->>   			       XE_BO_FLAG_FORCE_WC |
->> +			       XE_BO_FLAG_SCANOUT |
->>   			       XE_BO_FLAG_NEEDS_CPU_ACCESS, NULL);
->>   	if (IS_ERR(bo))
->>   		return PTR_ERR(bo);
->> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
->> index 1ddf3b6d4a9e..6965c2655731 100644
->> --- a/drivers/gpu/drm/xe/xe_bo.h
->> +++ b/drivers/gpu/drm/xe/xe_bo.h
->> @@ -56,6 +56,7 @@
->>   #define XE_BO_FLAG_FORCE_USER_VRAM	BIT(25)
->>   #define XE_BO_FLAG_NO_COMPRESSION	BIT(26)
->>   #define XE_BO_FLAG_NEEDS_1G		BIT(27)
->> +#define XE_BO_FLAG_SCANOUT		BIT(28)
->>   
->>   /* this one is trigger internally only */
->>   #define XE_BO_FLAG_INTERNAL_TEST	BIT(30)
->> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
->> b/drivers/gpu/drm/xe/xe_dma_buf.c
->> index b973579a69b8..0a347f09cee4 100644
->> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
->> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
->> @@ -36,10 +36,40 @@ static void xe_ddebug_flip_bool(const struct
->> _ddebug *desc, bool *flag)
->>   #define xe_dma_buf_p2p_debug_flip(flag) do { } while (0)
->>   #endif
->>   
->> +static void xe_dma_buf_move_notify(struct dma_buf_attachment
->> *attach)
->> +{
->> +	struct drm_gem_object *obj = attach->importer_priv;
->> +	struct xe_bo *bo = gem_to_xe_bo(obj);
->> +	struct drm_exec *exec = XE_VALIDATION_UNSUPPORTED;
->> +
->> +	XE_WARN_ON(xe_bo_evict(bo, exec));
->> +}
->> +
->> +static const struct dma_buf_attach_ops xe_dma_buf_attach_ops = {
->> +	.allow_peer2peer = true,
->> +	.invalidate_mappings = xe_dma_buf_move_notify
->> +};
->> +
->> +static struct pci_dev *xe_find_parent_pci_dev(struct device *dev)
->> +{
->> +	while (dev) {
->> +		if (dev_is_pci(dev))
->> +			return to_pci_dev(dev);
->> +		dev = dev->parent;
->> +	}
->> +	return NULL;
->> +}
->> +
->> +static bool xe_dma_buf_attach_is_xe_device(struct dma_buf_attachment
->> *attach)
->> +{
->> +	return attach->importer_ops == &xe_dma_buf_attach_ops;
->> +}
->> +
->>   static int xe_dma_buf_attach(struct dma_buf *dmabuf,
->>   			     struct dma_buf_attachment *attach)
->>   {
->>   	struct drm_gem_object *obj = attach->dmabuf->priv;
->> +	struct xe_bo *bo = gem_to_xe_bo(obj);
->>   	bool verbose_p2p_dist = drm_debug_enabled(DRM_UT_DRIVER);
->>   
->>   	xe_dma_buf_p2p_debug_flip(&verbose_p2p_dist);
->> @@ -48,7 +78,24 @@ static int xe_dma_buf_attach(struct dma_buf
->> *dmabuf,
->>   	    pci_p2pdma_distance(to_pci_dev(obj->dev->dev), attach-
->>> dev, verbose_p2p_dist) < 0)
->>   		attach->peer2peer = false;
->>   
->> -	if (!attach->peer2peer &&
->> !xe_bo_can_migrate(gem_to_xe_bo(obj), XE_PL_TT))
->> +	if (attach->peer2peer && xe_bo_can_migrate(bo, XE_PL_TT)) {
->> +		struct pci_dev *client =
->> xe_find_parent_pci_dev(attach->dev);
->> +
->> +		/*
->> +		 * There are perf issues with using p2p with display
->> buffers,
->> +		 * like with igpu (compositor) <-> dgpu (exported
->> p2p window
->> +		 * buffer). Probably we need some actual userspace
->> hints. We
->> +		 * shouldn't really assume anything. Also, note that
->> some of
->> +		 * these buffers are not always tagged with SCANOUT.
->> +		 */
->> +		if (bo->flags & XE_BO_FLAG_SCANOUT)
->> +			attach->peer2peer = false;
->> +		else if (client && pci_is_display(client) &&
->> +			 !xe_dma_buf_attach_is_xe_device(attach))
->> +			attach->peer2peer = false;
->> +	}
->> +
->> +	if (!attach->peer2peer && !xe_bo_can_migrate(bo, XE_PL_TT))
->>   		return -EOPNOTSUPP;
->>   
->>   	xe_pm_runtime_get(to_xe_device(obj->dev));
->> @@ -349,20 +396,6 @@ xe_dma_buf_create_obj(struct drm_device *dev,
->> struct dma_buf *dma_buf)
->>   	return ret ? ERR_PTR(ret) : &bo->ttm.base;
->>   }
->>   
->> -static void xe_dma_buf_move_notify(struct dma_buf_attachment
->> *attach)
->> -{
->> -	struct drm_gem_object *obj = attach->importer_priv;
->> -	struct xe_bo *bo = gem_to_xe_bo(obj);
->> -	struct drm_exec *exec = XE_VALIDATION_UNSUPPORTED;
->> -
->> -	XE_WARN_ON(xe_bo_evict(bo, exec));
->> -}
->> -
->> -static const struct dma_buf_attach_ops xe_dma_buf_attach_ops = {
->> -	.allow_peer2peer = true,
->> -	.invalidate_mappings = xe_dma_buf_move_notify
->> -};
->> -
->>   #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
->>   
->>   struct dma_buf_test_params {
+--=20
+Best regards,
+Sebastian
 
