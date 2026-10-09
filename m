@@ -4,59 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F1A3CA9EC5
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 14:31:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C108DCA9ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 14:36:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3152610E59B;
-	Mon, 12 Oct 2026 14:31:39 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E76510E59B
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 14:31:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791815493; x=1823351493;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=fTVGDgj9j6sKgpgTcY6KyN3DSjc3YSdtPsToVSanqbk=;
- b=Rlqa4kWa1HCVm+ihLGK4CZwxYRuc19dl8IuZL5gV8WIY1c964xOTduFA
- oWSrEpvZkLK8n9V+T8PHKe2diQwx6UiLBjRobwfBDE7OhK6HXM56YFw5g
- o1h6B8CI/91wNOrpko90WxcN4UT80s9YW/1Tszv6+3fTmCj+uNj9C6i7c
- kMaphlFKL/CsXqU4d9gt94F4W/n5M1T7V8+qWMvAO3FUJUNX4LDrn+Lwa
- hKnEEpsJTllsHq253OYS3rzhidazxLLuE2JR+au0Lvh/YC8QOHUIBRsb8
- ybdscszmqlAxzS0OY2YuTATufqAbu1XQ1kMvzzNVPac1Wj2kkud2RkaF6 A==;
-X-CSE-ConnectionGUID: TcAvVyWfQ/mjlk5vsVXYYg==
-X-CSE-MsgGUID: GIMvV3IVTlCCFBAg3c2dEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="513870"
-X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="513870"
-Received: from fmviesa012.fm.intel.com ([10.60.135.152])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 07:31:33 -0700
-X-CSE-ConnectionGUID: doQFXOpjSwOcS/gKbYS3qA==
-X-CSE-MsgGUID: Tnyg7V5oQGK/61jj4+R/pA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="2695772"
-Received: from slindbla-desk.ger.corp.intel.com (HELO [10.245.244.196])
- ([10.245.244.196])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 07:31:32 -0700
-Message-ID: <de000967974d7f6180644fa27e2f6607994963a6.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe: Bump LRU for external objects on exec and rebind
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, Matthew Brost
- <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 12 Oct 2026 16:31:29 +0200
-In-Reply-To: <dd0ad60b-c6a2-45c1-b85d-0368415526da@intel.com>
-References: <20261012132607.21387-1-thomas.hellstrom@linux.intel.com>
- <aszkZLFG57cmurw3@gsse-cloud1.jf.intel.com>
- <dd0ad60b-c6a2-45c1-b85d-0368415526da@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-2.fc43) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7802E10EC46;
+	Mon, 12 Oct 2026 14:36:25 +0000 (UTC)
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com
+ [209.85.222.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0411510EAAB
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 17:52:54 +0000 (UTC)
+Received: by mail-qk1-f169.google.com with SMTP id
+ af79cd13be357-93e64d52949so412800085a.1
+ for <intel-xe@lists.freedesktop.org>; Fri, 09 Oct 2026 10:52:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=metarealtyinc-ca.20251104.gappssmtp.com; s=20251104; t=1791568374;
+ x=1792173174; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=+4+0kNK2EftqWP44Afx2yrCAuhyfq98njB7n1Ib+EPk=;
+ b=XnGexcee4CZqLETn9b5DMn6tbV09qm+SabySK8buJk9sMjAnwrTk25yIGsaagDQbcj
+ J4Tg119s5SetrsbdY1ldQVeurGli3laQy3B+qjVE7aTw4SbfnNFU027M8aRAhZ0OVShB
+ eswNe8zqRYxBBWOuAF4r6Qzafic+JMIkRiVgz97Jf+zN1OjfOcArDQra4L40Vlb4UsSQ
+ U4YLXkGWQ1hxbR7SszLtUj9gp6FAoF4Z3MpFKh+8rwj0ks1htNeQoT8l7IsZ5R5P1eAz
+ AO2riQOj6hCTNwqBEhPD8RKSUHYqcUWjy+FgoYzXckzy95JVzNiHNqwLIow92xCgiiAB
+ E4Ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1791568374; x=1792173174;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=+4+0kNK2EftqWP44Afx2yrCAuhyfq98njB7n1Ib+EPk=;
+ b=PgBWNXVuZmzb9K/fy1kMy/41b3zYXhMA5PCl7Hqr5o0vGF5ehJBxzVcRcJDQgKcUua
+ n74w0INOFzVUI8oLhGnzxpVeZTUKTCBDzw0M4x8uuCb1JWYKWSM96lm3vyOeY0snKm5U
+ 2uEUznuQHIwEzflIq1QtAVYEqGf5u09Gx+cBf/n9Kjx8N8mEZO4QhZk78UeqGfTxKcKX
+ sWD/UNYoAPFbxkDxZ8FLkIAZMFEihxF/ytO5g4lkc4H8w5SGhDVfvCSmOgIlA7EIWS/q
+ fkqAL0d/y7pUli55czTdJbbElA5b2NKGBDiSdHSwCxsMplQhNAFKQXWihcDelLGodqWJ
+ +CxA==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBxoCfxAOVm5ILMyEnec4k68srekDcYj78eVGA0f6KHtWox262ZOzb0REtkxmU3ZCEQFtwXniyMPfg==@lists.freedesktop.org
+X-Gm-Message-State: AFuF++n1sPAaXYRuoD+lYcg+d2Em4CW1mzR6gQvSWQbaxjHYg6PwmFWb
+ t2wIBneRLS4VBQCiEwRzv9dy9cJRR4onPzhxfqq1tmsO6IafDUmEGGAJDcB7+2GDxxg=
+X-Gm-Gg: AYBFou3t2VWpaoku2J9Pie3Qdjc757XdjnmF3cJ2aSI2kSDIXgTXVitw1GuQLgQVv5m
+ xo0vgR+JmxUTXqyxkk7hUoKRtTl/tNQOuOUS+ZLcI+hEU3+EHkQn2kqH4VqXqF3lowMZN+DV2VQ
+ 0rFMX14bU6JWq5Th5TfSk1hZ8RRe1Ki48911+dMaYaJaoV0G6ViTnUxHZJwK1hdsHaLl8bdjl9T
+ Hsl7e3fe7i9VdG7UThLw2/95mEitOc/dxNEiCMX4IaIbQiP/3muLNK7yx+wEGXQjwANwLmUaJeB
+ WEIOE2gX0fiDTnhDVznIO7tJnH3A/edqnl+iJrNAGpJtGCSIxL6Dgg4beZizGUbz5JVQNzRTP10
+ Ji+WyZtH7XkJHpiaaHabABdeB39mDeopjQcIx0TEXaYmV4ESaCL94995CoZTJ0VGpSuCIBXBfZA
+ vW4BOPAr6NqsFKuLpbaf9RF8ocG3a6IRGfmZSihOYGN0VkdbG5QXl83luxn7w3O08KUalrc22KU
+ H+BlE61R55RGpcCeDV3WI1rjYanQWrUIrmEfOmNYBwpIuKt8iNTsKs3Ghc2u8OxeyUS/Ad0ZoiT
+ 0aXl7o4xnw1PdJ1NMc0M62e0R1lZdAmo+87/8WWWwx4MlZaBH1J06Xq3eHB0j4mZlS+s
+X-Received: by 2002:a05:620a:44d0:b0:939:f978:c1aa with SMTP id
+ af79cd13be357-93ebd0d1425mr411442085a.11.1791568373705; 
+ Fri, 09 Oct 2026 10:52:53 -0700 (PDT)
+Received: from jake-laptop ([153.67.39.44]) by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-93eb9846a5fsm241008085a.15.2026.10.09.10.52.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 09 Oct 2026 10:52:53 -0700 (PDT)
+From: Jake Steinman <j@metarealtyinc.ca>
+To: jouni.hogander@intel.com
+Cc: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/psr: ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR not
+ valid for eDP
+Date: Fri,  9 Oct 2026 13:52:51 -0400
+Message-ID: <20261009175251.2097777-1-j@metarealtyinc.ca>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <d592bde4b15a1c283f04e9412f46069f8a4926d5.camel@intel.com>
+References: <d592bde4b15a1c283f04e9412f46069f8a4926d5.camel@intel.com>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 12 Oct 2026 14:36:24 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,170 +89,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2026-10-12 at 15:21 +0100, Matthew Auld wrote:
-> On 12/10/2026 14:45, Matthew Brost wrote:
-> > On Mon, Oct 12, 2026 at 03:26:07PM +0200, Thomas Hellstr=C3=B6m wrote:
-> >=20
-> > Yikes, not sure how we missed this one and this is certainly not
-> > the
-> > intent and will be large issue for compositor buffers.
-> >=20
-> > I'd honestly lean towards this being a fixes.
->=20
-> +1
+Hi Jouni,
 
-Thanks for reviewing, Matt & Matt. Yeah I agree totally. Just forgot
-about it before submission. I wonder whether I broke this during the
-GPUVM helper rewrite. Anyway, I'll dig up the history.
+> I wasn't sure if this patch is closing any gitlab ticket.
+
+It is the stutter in
+https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/9119
+but Panel Replay is still quirked off for the DA16260, so a Link: is
+probably more accurate than Closes: until the quirk goes.
+
+> I don't really see why we should bind it to vblank.
+
+With the AS SDP off for all of PR Active this panel is fine for a few
+minutes, then drifts and starts to judder. It also judders after the
+screen has been off or the machine has slept. So it needs the AS SDP
+back now and then to resync.
+
+I see two ways to do that: resync on a timer (say once a minute), or
+tie it to a signal the driver already has. A timer leaves the panel
+out of sync until the next tick, which is most visible right after
+wake. Keeping the AS SDP on while vblank is enabled avoids that, and
+PR already holds DC_OFF there so it costs no DC5. If there is a
+better signal for "resync now", I am happy to use that instead.
+
+> DPCD 00107h[6] shall remain set
+
+Thanks, that settles my 0x107 patch: please drop it. It also means my
+testing of the RFC was with bit 6 clear. I will rerun it with bit 6
+set and report.
 
 Thanks,
-Thomas
-
-
->=20
-> >=20
-> > > The VM's private BOs get their LRU position refreshed in bulk via
-> > > ttm_lru_bulk_move_tail() on vm->lru_bulk_move, both after a
-> > > successful
-> > > non-LR exec and after the LR preempt-fence rebind worker runs.
-> > > External
-> > > objects (BOs potentially shared across VMs) are never added to
-> > > that
-> > > per-VM bulk move list, so their LRU position is never refreshed
-> > > by
-> > > either path. This makes external objects in active use look more
-> > > evictable than they are.
-> > >=20
-> > > Add xe_vm_bump_lru(), which, under a single lru_lock critical
-> > > section,
-> > > performs the bulk move of the VM's private BOs and bumps each
-> > > external
-> > > object locked by the drm_exec transaction. Use it from both the
-> > > non-LR
-> > > exec path and the LR rebind worker, replacing the open-coded bulk
-> > > move.
-> > >=20
-> > > Cc: Matthew Auld <matthew.auld@intel.com>
-> > > Cc: Matthew Brost <matthew.brost@intel.com>
-> >=20
-> > Consider the above:
-> > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
->=20
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->=20
-> >=20
-> > > Assisted-by: LLM
-> > > Signed-off-by: Thomas Hellstr=C3=B6m
-> > > <thomas.hellstrom@linux.intel.com>
-> > > ---
-> > > =C2=A0 drivers/gpu/drm/xe/xe_exec.c |=C2=A0 7 ++-----
-> > > =C2=A0 drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0 | 31 ++++++++++++++++++=
-++++++++++-
-> > > --
-> > > =C2=A0 drivers/gpu/drm/xe/xe_vm.h=C2=A0=C2=A0 |=C2=A0 2 ++
-> > > =C2=A0 3 files changed, 32 insertions(+), 8 deletions(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/xe/xe_exec.c
-> > > b/drivers/gpu/drm/xe/xe_exec.c
-> > > index d5293bc33a67..7dc9a0a1f569 100644
-> > > --- a/drivers/gpu/drm/xe/xe_exec.c
-> > > +++ b/drivers/gpu/drm/xe/xe_exec.c
-> > > @@ -346,11 +346,8 @@ int xe_exec_ioctl(struct drm_device *dev,
-> > > void *data, struct drm_file *file)
-> > > =C2=A0=C2=A0	xe_sched_job_push(job);
-> > > =C2=A0=C2=A0	xe_vm_reactivate_rebind(vm);
-> > > =C2=A0=20
-> > > -	if (!err && !xe_vm_in_lr_mode(vm)) {
-> > > -		spin_lock(&xe->ttm.lru_lock);
-> > > -		ttm_lru_bulk_move_tail(&vm->lru_bulk_move);
-> > > -		spin_unlock(&xe->ttm.lru_lock);
-> > > -	}
-> > > +	if (!err && !xe_vm_in_lr_mode(vm))
-> > > +		xe_vm_bump_lru(vm, exec);
-> > > =C2=A0=20
-> > > =C2=A0=C2=A0	if (mode =3D=3D EXEC_MODE_LR)
-> > > =C2=A0=C2=A0		xe_hw_engine_group_resume_faulting_lr_jobs(group
-> > > );
-> > > diff --git a/drivers/gpu/drm/xe/xe_vm.c
-> > > b/drivers/gpu/drm/xe/xe_vm.c
-> > > index ef369df4aa26..095f762bbb6f 100644
-> > > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > > @@ -413,6 +413,33 @@ int xe_vm_validate_rebind(struct xe_vm *vm,
-> > > struct drm_exec *exec,
-> > > =C2=A0=C2=A0	return 0;
-> > > =C2=A0 }
-> > > =C2=A0=20
-> > > +/**
-> > > + * xe_vm_bump_lru() - Bump the LRU position of BOs used by a
-> > > submission
-> > > + * @vm: The vm for which we are bumping LRUs.
-> > > + * @exec: The struct drm_exec with the locked GEM objects.
-> > > + *
-> > > + * Move the VM's private BOs, and all external objects locked by
-> > > @exec,
-> > > + * to the LRU tail. Private BOs are moved in bulk using @vm's
-> > > + * &xe_vm.lru_bulk_move. External objects, which may be shared
-> > > with other
-> > > + * VMs, are not part of that bulk move and are bumped
-> > > individually.
-> > > + */
-> > > +void xe_vm_bump_lru(struct xe_vm *vm, struct drm_exec *exec)
-> > > +{
-> > > +	spinlock_t *lru_lock =3D &vm->xe->ttm.lru_lock;
-> > > +	struct drm_gem_object *obj;
-> > > +
-> > > +	spin_lock(lru_lock);
-> > > +	ttm_lru_bulk_move_tail(&vm->lru_bulk_move);
-> > > +	drm_exec_for_each_locked_object(exec, obj) {
-> > > +		if (!drm_gpuvm_is_extobj(&vm->gpuvm, obj))
-> > > +			continue;
-> > > +
-> > > +		ttm_bo_move_to_lru_tail(&gem_to_xe_bo(obj)-
-> > > >ttm);
-> > > +		cond_resched_lock(lru_lock);
-> > > +	}
-> > > +	spin_unlock(lru_lock);
-> > > +}
-> > > +
-> > > =C2=A0 static int xe_preempt_work_begin(struct drm_exec *exec, struct
-> > > xe_vm *vm,
-> > > =C2=A0=C2=A0				 bool *done)
-> > > =C2=A0 {
-> > > @@ -563,9 +590,7 @@ static void preempt_rebind_work_func(struct
-> > > work_struct *w)
-> > > =C2=A0=20
-> > > =C2=A0 #undef retry_required
-> > > =C2=A0=20
-> > > -	spin_lock(&vm->xe->ttm.lru_lock);
-> > > -	ttm_lru_bulk_move_tail(&vm->lru_bulk_move);
-> > > -	spin_unlock(&vm->xe->ttm.lru_lock);
-> > > +	xe_vm_bump_lru(vm, &exec);
-> > > =C2=A0=20
-> > > =C2=A0=C2=A0	/* Point of no return. */
-> > > =C2=A0=C2=A0	arm_preempt_fences(vm, &preempt_fences);
-> > > diff --git a/drivers/gpu/drm/xe/xe_vm.h
-> > > b/drivers/gpu/drm/xe/xe_vm.h
-> > > index 89c4f95984a2..06138c3c4315 100644
-> > > --- a/drivers/gpu/drm/xe/xe_vm.h
-> > > +++ b/drivers/gpu/drm/xe/xe_vm.h
-> > > @@ -284,6 +284,8 @@ int xe_vm_lock_vma(struct drm_exec *exec,
-> > > struct xe_vma *vma);
-> > > =C2=A0 int xe_vm_validate_rebind(struct xe_vm *vm, struct drm_exec
-> > > *exec,
-> > > =C2=A0=C2=A0			=C2=A0 unsigned int num_fences);
-> > > =C2=A0=20
-> > > +void xe_vm_bump_lru(struct xe_vm *vm, struct drm_exec *exec);
-> > > +
-> > > =C2=A0 struct dma_fence *xe_vm_bind_kernel_bo(struct xe_vm *vm, struc=
-t
-> > > xe_bo *bo,
-> > > =C2=A0=C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_exec_q=
-ueue *q,
-> > > u64 addr,
-> > > =C2=A0=C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum xe_cache_le=
-vel
-> > > cache_lvl);
-> > > --=20
-> > > 2.56.0
-> > >=20
+Jake
