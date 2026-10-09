@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF6BCCA6019
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D41E5CA6012
 	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:31:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7A76112057;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6311E112047;
 	Fri,  9 Oct 2026 10:31:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ImEHHcSC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j4mjRzbV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCD3A112053
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:29:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B7FD112058
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:29:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791541789; x=1823077789;
+ t=1791541786; x=1823077786;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lNMdjV2wjrqHYQHfvX2MqsPogOOhdQck0x+JEAfBIC4=;
- b=ImEHHcSCvv5UvLyq76FIKPcVOCmbxTr1sOl8d1Okc17vacntbVynKk8+
- NqLX1k07j44jDK7Yi1DAFRt0je89GDErg9sbvypc4cgjK1VPJTx0K3AMV
- o2IGO6hU/403Yy36ohxr5CiT6SXVziE/DCRP8uCFkZ9HZVQ6921Kbur9J
- 4P2t1fYkS+mwNxyKml2EuIIiP/FQEqGt0TwcycmZLCnWyoa53mkWbhR19
- xCOy0KsYgImSMepkfejKIrGG4aKtf1WhrtzsJTQ9GCYZr6/5cYdk8QyxG
- Xck/KHXvjXr/Ov3rHKCQc6aBAG9rRXWYuNWSPnUHq7HVDGb/k6EwdgsKc Q==;
-X-CSE-ConnectionGUID: c9rGGl4GQYeBnIR9JiWZaA==
-X-CSE-MsgGUID: NOf8AYLlRCi89JgohcuFaA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11929"; a="344102"
+ bh=XZEedHhQgxoVse1kgrkuKnreDxVE6INYiE5f26wrf/o=;
+ b=j4mjRzbVww/sfNQaTYjpndwHMjXxryQXWP29A3+53t7kSyREggv6s9IZ
+ O6BprJLGjSFjuZ9MQoEYiLlwuWZ5yY6UUy2CSk8r7Y5bfp1HPSLkTYVXl
+ 9l+7kGVpAmI2TeUr2FXkeOxdm0ru4/KjBI4FF7iQlfQF71f3C2vTaZ/jR
+ 3maBtQHaQ8lDxOE3sR5HB9jogCSoqffKqEZjMb6+5ol6inZ/FLsU3oJdC
+ lpDibfE6iJN05bLi8k9HpgXTz/2z84QS6rymXhKiAkiqJK8Qk9g0eWyu+
+ v+9LYoiYPSYsp+YTYC41cVwxD64mXETjAp3buuOOXAYk4CKbxIcQ6RTNR g==;
+X-CSE-ConnectionGUID: HPfaCe8cRhS5lHiQgG6NHA==
+X-CSE-MsgGUID: xMEm+T2TS22FNbaBaytPbQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11929"; a="344100"
 X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="344102"
+   d="scan'208";a="344100"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 03:29:49 -0700
-X-CSE-ConnectionGUID: phv2IJ1pRrqKDEIBZE9p1Q==
-X-CSE-MsgGUID: +y2u9OcgRQ2AZtEeEXGjFQ==
+ 09 Oct 2026 03:29:45 -0700
+X-CSE-ConnectionGUID: ib3VsZ4qS6+4jh8JYS3Jcg==
+X-CSE-MsgGUID: rqM0xJ3tQbuT1nl85ulqRg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="2025623"
+   d="scan'208";a="2025615"
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 03:29:45 -0700
+ 09 Oct 2026 03:29:42 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
@@ -51,9 +51,9 @@ Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
  arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
  nitin.r.gote@intel.com, pravalika.gurram@intel.com
-Subject: [PATCH v4 11/12] drm/xe/xe_ras: Report soc internal errors using SIGID
-Date: Fri,  9 Oct 2026 16:16:14 +0530
-Message-ID: <20261009104602.1075405-25-badal.nilawar@intel.com>
+Subject: [PATCH v4 10/12] drm/xe/xe_ras: Report core compute errors using SIGID
+Date: Fri,  9 Oct 2026 16:16:13 +0530
+Message-ID: <20261009104602.1075405-24-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261009104602.1075405-14-badal.nilawar@intel.com>
 References: <20261009104602.1075405-14-badal.nilawar@intel.com>
@@ -73,52 +73,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use xe_log_* helpers to report soc internal errors.
+Use xe_log_* helpers to report core compute errors.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 Cc: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ras.c | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+v2:
+  - Pass RAS firmware reported severity to xe_log
+---
+ drivers/gpu/drm/xe/xe_ras.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 6647300c7f17..af2970941b59 100644
+index 8ed4a6992ef1..6647300c7f17 100644
 --- a/drivers/gpu/drm/xe/xe_ras.c
 +++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -366,7 +366,6 @@ static u8 handle_soc_internal_errors(struct xe_device *xe, struct xe_ras_error_a
+@@ -332,21 +332,27 @@ static void ras_send_error_event(struct xe_device *xe, u8 severity, u8 component
+ 	xe_drm_ras_event(xe, drm_component, drm_severity, response.value);
+ }
+ 
+-static u8 handle_core_compute_errors(struct xe_ras_error_array *arr)
++static u8 handle_core_compute_errors(struct xe_device *xe, struct xe_ras_error_array *arr)
  {
- 	struct xe_ras_soc_error *info = (void *)arr->details;
- 	struct xe_ras_soc_error_source *source = &info->source;
--	struct xe_ras_error_class *counter = &arr->counter;
+ 	struct xe_ras_compute_error *error_info = (void *)arr->details;
++	u8 cper_sev = ras_sev_to_cper_sev(arr->counter.common.severity);
+ 	u8 uncorr_type;
  
- 	if (source->csc) {
- 		struct xe_ras_csc_error *csc_error = (void *)info->details;
-@@ -380,9 +379,8 @@ static u8 handle_soc_internal_errors(struct xe_device *xe, struct xe_ras_error_a
- 		 * is required.
- 		 */
- 		if (csc_error->hec_fw_error) {
--			xe_err(xe, "[RAS]: CSC %s detected: 0x%x\n",
--			       sev_to_str(counter->common.severity),
--			       csc_error->hec_fw_error);
-+			xe_log_comp_fatal(xe, SOC_INTERNAL, &arr->counter, sizeof(arr->counter),
-+					  "CSC error detected: 0x%x\n", csc_error->hec_fw_error);
- 			xe_survivability_mode_runtime_enable(xe);
- 			return XE_RAS_RECOVERY_ACTION_DISCONNECT;
- 		}
-@@ -390,9 +388,9 @@ static u8 handle_soc_internal_errors(struct xe_device *xe, struct xe_ras_error_a
- 		struct xe_ras_ieh_error *ieh_error = (void *)info->details;
+ 	uncorr_type = FIELD_GET(CORE_COMPUTE_UNCORR_TYPE, error_info->log_header);
  
- 		if (ieh_error->global_error_status & XE_RAS_SOC_IEH_PUNIT) {
--			xe_err(xe, "[RAS]: PUNIT %s detected: 0x%x\n",
--			       sev_to_str(counter->common.severity),
--			       ieh_error->global_error_status);
-+			xe_log_comp_fatal(xe, SOC_INTERNAL, &arr->counter, sizeof(arr->counter),
-+					  "PUNIT error detected: 0x%x\n",
-+					  ieh_error->global_error_status);
- 			punit_error_handler(xe);
- 			return XE_RAS_RECOVERY_ACTION_DISCONNECT;
- 		}
+ 	/* Request a reset if error is global */
+-	if (uncorr_type == GLOBAL_UNCORR_ERROR)
++	if (uncorr_type == GLOBAL_UNCORR_ERROR) {
++		xe_log_comp(xe, cper_sev, CORE_COMPUTE, &arr->counter, sizeof(arr->counter),
++			    "Global uncorrectable error detected\n");
+ 		return XE_RAS_RECOVERY_ACTION_RESET;
++	}
+ 
+ 	/*
+ 	 * No action needed for other errors.
+ 	 * Local errors are recovered using an engine reset by GuC.
+ 	 */
++	xe_log_comp(xe, cper_sev, CORE_COMPUTE, &arr->counter, sizeof(arr->counter),
++		    "Other compute errors\n");
+ 	return XE_RAS_RECOVERY_ACTION_RECOVERED;
+ }
+ 
+@@ -592,7 +598,7 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
+ 
+ 			switch (component) {
+ 			case XE_RAS_COMP_CORE_COMPUTE:
+-				action = handle_core_compute_errors(arr);
++				action = handle_core_compute_errors(xe, arr);
+ 				break;
+ 			case XE_RAS_COMP_SOC_INTERNAL:
+ 				action = handle_soc_internal_errors(xe, arr);
 -- 
 2.54.0
 
