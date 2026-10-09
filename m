@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7B8ACA9EBB
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 12:04:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51DBACA601E
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 12:04:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C57710E5BF;
-	Fri,  9 Oct 2026 12:04:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B21110E6C3;
+	Fri,  9 Oct 2026 12:04:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ShpJnE2s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PhPmS7n0";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F62110E5BF
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 12:04:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 092C510F24D
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 12:04:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791547481; x=1823083481;
+ t=1791547484; x=1823083484;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=U1yBSAZk05NuDyYMijnvvrLydCVPmq4XoEn0scsdREc=;
- b=ShpJnE2sslLITAiS4WrHJaITvCHcyyNjKBQd5e1m+LiG5EfcrCV+Z/Dq
- yLthKtgEPH97Ha0XdUk1CgHHUBeHvhdlXx4WVv2JdUTV8XzVQNJbimS85
- KhCeUuSixb+IfK/RG2ktcJW6IkMBn+6Cr05gusA29aEiLDe7HuZ0WcDDL
- Vy4qu1m/xFCdVRxPscNkQvlLdhP1O/T2Clx6T3qdxYPKNEwzFb3UcudFt
- yRvUYwIolSuSGcKxAJ/q49LzxZZXWSE6bb4AZ1KbQTKpm/lUCQ2ZRT7hC
- T+cIJgrrrV3/LimQqiFa6r4bsZoT0znh0ngBIZcKBGlUPBGLsG75ZCOvm g==;
-X-CSE-ConnectionGUID: ng7sTAX6QkObO0MN9r/Ebg==
-X-CSE-MsgGUID: aLNodyDtRxSXM6fR1z3F3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11929"; a="372038"
+ bh=iFixT+1MF+1YrGy5a8/H6IHJdPeDNXvMw0RVqFxYFw4=;
+ b=PhPmS7n0LGxDfxaTTdacXdhXcQsSXatOHz2tZOG7RkFzUBb425Hhwyma
+ HlUm89gowG/q94tkcx8Df3xgeKHWfCGmWdO0YW5VTZLAX+PrzgjZPXKxn
+ H/+Q8JYJeCSMOUl1krM4TYqvdtXd0woTrvkIWQSMbRbEFQ2PvAUv3ZAQi
+ gSdNGULM5DlRKTAho8k6uGY/pbpQVvseLayoeuucltVXo4FqaEJ6j7Mll
+ uBHLOWpKyyDjrLbJwUfznIZY63D3e1tH8n2/kK7rW7BKXMox39aijWUD6
+ oKhAABjBkHP0K2NB8bCMzj0Hnu1c4iSomFRmtF73S5ZEOW+juInXRLVy0 Q==;
+X-CSE-ConnectionGUID: UkS+KKZBQsqv9OtDs+V9TQ==
+X-CSE-MsgGUID: +lsMwf7kSkSA4AI/1QMXpw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11929"; a="372039"
 X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="372038"
+   d="scan'208";a="372039"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 05:04:41 -0700
-X-CSE-ConnectionGUID: ribBagP3QWCk1XCVXzr3/Q==
-X-CSE-MsgGUID: pPxsTKKrRKapzhLPRxjdWg==
+ 09 Oct 2026 05:04:44 -0700
+X-CSE-ConnectionGUID: 3geYbYvLThG7pRBiDMc+Og==
+X-CSE-MsgGUID: DcKO7FG5S+mJ1CpgcJM0dw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="311915"
+   d="scan'208";a="311921"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 05:04:39 -0700
+ 09 Oct 2026 05:04:41 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v9 07/14] drm/xe/hwmon: Consolidate temperature sensor
- availability checks
-Date: Fri,  9 Oct 2026 17:33:28 +0530
-Message-Id: <20261009120335.52973-8-karthik.poosa@intel.com>
+Subject: [PATCH v9 08/14] drm/xe/hwmon: Cache temperature availability to
+ reduce probe time
+Date: Fri,  9 Oct 2026 17:33:29 +0530
+Message-Id: <20261009120335.52973-9-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20261009120335.52973-1-karthik.poosa@intel.com>
 References: <20261009120335.52973-1-karthik.poosa@intel.com>
@@ -72,137 +72,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace is_vram_ch_available() with a generalized is_temp_available()
-that validates PKG, VRAM, per-channel VRAM, memory controller and PCIe
-sensors using the new validity helpers. Rename the existing callers to
-the new helper.
+Avoid probing temperature sensor availability from the hwmon is_visible()
+callback. For MCTRL and PCIe channels, that path can trigger repeated
+blocking mailbox reads while sysfs attributes are being created, increasing
+probe time and making attribute creation sensitive to transient failures.
 
-Use is_temp_available() from xe_hwmon_temp_is_visible() so attributes for
-sensors that are not present are not exposed during hwmon registration.
+Probe temperature availability once during preregistration and cache the
+result for subsequent visibility checks.
 
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
 Assisted-by: LLM
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 64 ++++++++++++++++++++++-------------
- 1 file changed, 40 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/xe/xe_hwmon.c | 39 +++++++++++++++++++++++------------
+ 1 file changed, 26 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index accccadbe3e6..62e341ef37e9 100644
+index 62e341ef37e9..b8682eb233e4 100644
 --- a/drivers/gpu/drm/xe/xe_hwmon.c
 +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -1008,19 +1008,39 @@ static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, int channel, long *valu
+@@ -146,6 +146,8 @@ struct xe_hwmon_thermal_info {
+ 	};
+ 	/** @count: no of temperature sensors available for the platform */
+ 	u8 count;
++	/** @available: temperature sensor availability cached at registration */
++	bool available[CHANNEL_MAX];
+ 	union {
+ 		/** @value: per-sensor raw mailbox temperature; bit7=sign, bits6:0=magnitude */
+ 		u8 value[U8_MAX + 1];
+@@ -1008,7 +1010,7 @@ static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, int channel, long *valu
  	*value = DIV_ROUND_CLOSEST(REG_FIELD_GET(VOLTAGE_MASK, reg_val) * 2500, SF_VOLTAGE);
  }
  
--static inline bool is_vram_ch_available(struct xe_hwmon *hwmon, int channel)
-+static bool is_temp_available(struct xe_hwmon *hwmon, int channel)
+-static bool is_temp_available(struct xe_hwmon *hwmon, int channel)
++static bool xe_hwmon_temp_probe(struct xe_hwmon *hwmon, int channel)
  {
  	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
--	int vram_id = channel - CHANNEL_VRAM_N;
--	struct xe_reg vram_reg;
-+	struct xe_reg reg;
-+	u32 reg_val;
+ 	struct xe_reg reg;
+@@ -1029,10 +1031,6 @@ static bool is_temp_available(struct xe_hwmon *hwmon, int channel)
+ 			return false;
+ 		}
  
--	vram_reg = xe_hwmon_get_reg(hwmon, REG_TEMP, channel);
--	if (!xe_reg_is_valid(vram_reg) || !xe_mmio_read32(mmio, vram_reg))
--		return false;
-+	switch (channel) {
-+	case CHANNEL_PKG:
-+	case CHANNEL_VRAM:
-+	case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
-+		reg = xe_hwmon_get_reg(hwmon, REG_TEMP, channel);
-+		if (!xe_reg_is_valid(reg))
-+			return false;
-+
-+		reg_val = xe_mmio_read32(mmio, reg);
-+		if (!mmio_temp_valid(hwmon, reg_val)) {
-+			drm_dbg(&hwmon->xe->drm,
-+				"channel %d temperature unavailable, val 0x%x\n", channel, reg_val);
-+			return false;
-+		}
-+
-+		if (channel >= CHANNEL_VRAM_N)
-+			sprintf(hwmon->temp.vram_label[channel - CHANNEL_VRAM_N],
-+				"vram_ch_%d", channel - CHANNEL_VRAM_N);
- 
--	/* Create label only for available vram channel */
--	sprintf(hwmon->temp.vram_label[vram_id], "vram_ch_%d", vram_id);
--	return true;
-+		return true;
-+	case CHANNEL_MCTRL:
-+		return hwmon->temp.count && !get_mc_temp(hwmon, NULL);
-+	case CHANNEL_PCIE:
-+		return hwmon->temp.count && !get_pcie_temp(hwmon, NULL);
-+	default:
-+		return false;
-+	}
+-		if (channel >= CHANNEL_VRAM_N)
+-			sprintf(hwmon->temp.vram_label[channel - CHANNEL_VRAM_N],
+-				"vram_ch_%d", channel - CHANNEL_VRAM_N);
+-
+ 		return true;
+ 	case CHANNEL_MCTRL:
+ 		return hwmon->temp.count && !get_mc_temp(hwmon, NULL);
+@@ -1043,6 +1041,22 @@ static bool is_temp_available(struct xe_hwmon *hwmon, int channel)
+ 	}
  }
  
++static void xe_hwmon_init_temp_info(struct xe_hwmon *hwmon)
++{
++	int channel;
++
++	if (hwmon->xe->info.has_mbx_thermal_info && xe_hwmon_pcode_read_thermal_info(hwmon))
++		drm_warn(&hwmon->xe->drm, "Thermal mailbox not supported by card firmware\n");
++
++	for (channel = 0; channel < CHANNEL_MAX; channel++) {
++		hwmon->temp.available[channel] = xe_hwmon_temp_probe(hwmon, channel);
++		if (hwmon->temp.available[channel] &&
++		    in_range(channel, CHANNEL_VRAM_N, MAX_VRAM_CHANNELS))
++			snprintf(hwmon->temp.vram_label[channel - CHANNEL_VRAM_N], MAX_LABEL_SIZE,
++				 "vram_ch_%d", channel - CHANNEL_VRAM_N);
++	}
++}
++
  static umode_t
-@@ -1030,14 +1050,13 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 	case hwmon_temp_emergency:
- 		switch (channel) {
+ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+ {
+@@ -1052,11 +1066,11 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
  		case CHANNEL_PKG:
--			return hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN] ? 0444 : 0;
--		case CHANNEL_VRAM:
--			return hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN] ? 0444 : 0;
  		case CHANNEL_MCTRL:
  		case CHANNEL_PCIE:
--			return hwmon->temp.count ? 0444 : 0;
-+			return (is_temp_available(hwmon, channel) &&
-+				hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN]) ? 0444 : 0;
-+		case CHANNEL_VRAM:
+-			return (is_temp_available(hwmon, channel) &&
++			return (hwmon->temp.available[channel] &&
+ 				hwmon->temp.limit[TEMP_LIMIT_PKG_SHUTDOWN]) ? 0444 : 0;
+ 		case CHANNEL_VRAM:
  		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
--			return (is_vram_ch_available(hwmon, channel) &&
-+			return (is_temp_available(hwmon, channel) &&
+-			return (is_temp_available(hwmon, channel) &&
++			return (hwmon->temp.available[channel] &&
  				hwmon->temp.limit[TEMP_LIMIT_MEM_SHUTDOWN]) ? 0444 : 0;
  		default:
  			return 0;
-@@ -1045,14 +1064,13 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 	case hwmon_temp_crit:
- 		switch (channel) {
+@@ -1066,11 +1080,11 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
  		case CHANNEL_PKG:
--			return hwmon->temp.limit[TEMP_LIMIT_PKG_CRIT] ? 0444 : 0;
--		case CHANNEL_VRAM:
--			return hwmon->temp.limit[TEMP_LIMIT_MEM_CRIT] ? 0444 : 0;
  		case CHANNEL_MCTRL:
  		case CHANNEL_PCIE:
--			return hwmon->temp.count ? 0444 : 0;
-+			return (is_temp_available(hwmon, channel) &&
-+				hwmon->temp.limit[TEMP_LIMIT_PKG_CRIT]) ? 0444 : 0;
-+		case CHANNEL_VRAM:
+-			return (is_temp_available(hwmon, channel) &&
++			return (hwmon->temp.available[channel] &&
+ 				hwmon->temp.limit[TEMP_LIMIT_PKG_CRIT]) ? 0444 : 0;
+ 		case CHANNEL_VRAM:
  		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
--			return (is_vram_ch_available(hwmon, channel) &&
-+			return (is_temp_available(hwmon, channel) &&
+-			return (is_temp_available(hwmon, channel) &&
++			return (hwmon->temp.available[channel] &&
  				hwmon->temp.limit[TEMP_LIMIT_MEM_CRIT]) ? 0444 : 0;
  		default:
  			return 0;
-@@ -1060,7 +1078,8 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+@@ -1078,7 +1092,7 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
  	case hwmon_temp_max:
  		switch (channel) {
  		case CHANNEL_PKG:
--			return hwmon->temp.limit[TEMP_LIMIT_PKG_MAX] ? 0444 : 0;
-+			return (is_temp_available(hwmon, channel) &&
-+				hwmon->temp.limit[TEMP_LIMIT_PKG_MAX]) ? 0444 : 0;
+-			return (is_temp_available(hwmon, channel) &&
++			return (hwmon->temp.available[channel] &&
+ 				hwmon->temp.limit[TEMP_LIMIT_PKG_MAX]) ? 0444 : 0;
  		default:
  			return 0;
- 		}
-@@ -1069,13 +1088,10 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 		switch (channel) {
- 		case CHANNEL_PKG:
- 		case CHANNEL_VRAM:
--			return xe_reg_is_valid(xe_hwmon_get_reg(hwmon, REG_TEMP,
--								channel)) ? 0444 : 0;
+@@ -1091,7 +1105,7 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
  		case CHANNEL_MCTRL:
  		case CHANNEL_PCIE:
--			return hwmon->temp.count ? 0444 : 0;
  		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
--			return is_vram_ch_available(hwmon, channel) ? 0444 : 0;
-+			return is_temp_available(hwmon, channel) ? 0444 : 0;
+-			return is_temp_available(hwmon, channel) ? 0444 : 0;
++			return hwmon->temp.available[channel] ? 0444 : 0;
  		default:
  			return 0;
  		}
+@@ -1633,8 +1647,7 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
+ 		if (xe_hwmon_is_visible(hwmon, hwmon_fan, hwmon_fan_input, channel))
+ 			xe_hwmon_fan_input_read(hwmon, channel, &fan_speed);
+ 
+-	if (hwmon->xe->info.has_mbx_thermal_info && xe_hwmon_pcode_read_thermal_info(hwmon))
+-		drm_warn(&hwmon->xe->drm, "Thermal mailbox not supported by card firmware\n");
++	xe_hwmon_init_temp_info(hwmon);
+ }
+ 
+ int xe_hwmon_register(struct xe_device *xe)
 -- 
 2.25.1
 
