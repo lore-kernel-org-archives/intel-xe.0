@@ -4,59 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D41E5CA6012
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:31:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A7B4CA6019
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:36:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6311E112047;
-	Fri,  9 Oct 2026 10:31:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE191112059;
+	Fri,  9 Oct 2026 10:36:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j4mjRzbV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MkNKmDzu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B7FD112058
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:29:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D31BA112059;
+ Fri,  9 Oct 2026 10:35:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791541786; x=1823077786;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XZEedHhQgxoVse1kgrkuKnreDxVE6INYiE5f26wrf/o=;
- b=j4mjRzbVww/sfNQaTYjpndwHMjXxryQXWP29A3+53t7kSyREggv6s9IZ
- O6BprJLGjSFjuZ9MQoEYiLlwuWZ5yY6UUy2CSk8r7Y5bfp1HPSLkTYVXl
- 9l+7kGVpAmI2TeUr2FXkeOxdm0ru4/KjBI4FF7iQlfQF71f3C2vTaZ/jR
- 3maBtQHaQ8lDxOE3sR5HB9jogCSoqffKqEZjMb6+5ol6inZ/FLsU3oJdC
- lpDibfE6iJN05bLi8k9HpgXTz/2z84QS6rymXhKiAkiqJK8Qk9g0eWyu+
- v+9LYoiYPSYsp+YTYC41cVwxD64mXETjAp3buuOOXAYk4CKbxIcQ6RTNR g==;
-X-CSE-ConnectionGUID: HPfaCe8cRhS5lHiQgG6NHA==
-X-CSE-MsgGUID: xMEm+T2TS22FNbaBaytPbQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11929"; a="344100"
+ t=1791542160; x=1823078160;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZyTuiy3torNtGDWrVerQslHfJ3+5WOuFeUV8wTu+NQM=;
+ b=MkNKmDzuIJ2Fb1ouwSY9zUnvTo37smCO34dQLkTZ0uDTCRbzoeU7ts7x
+ lRkBnbUBvcYrEQ18U4605nTAa//xtx7M0mKxSBKzZeWGNRttmZql5KXnU
+ 7gE87HzO2+Z9ryq5ijRaQFkXIN1PJTvbNAidsG6s8MYwrZhi3AysdBoOc
+ LolOb/6qWSsOter2XOrWTe+QZtx2C1JLNP+2Z3Ic99X0ERzA7tNhFhNYn
+ 6olb8XNvk1/3Qqka9fe+H7wCUinujvR0Te78MN+DIy1XmR3W6B4EE9x9J
+ 8wg9LUF8B5SDUFbYYYYwVXx6OSu18ppr0su+6yrfA5ZJ5pFm+UkIl1BEM Q==;
+X-CSE-ConnectionGUID: mKLCFbBGTg+nYDKqU+CqQA==
+X-CSE-MsgGUID: 61B6LugwQWWb3V6Hj/fjYA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11929"; a="219335"
 X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="344100"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 03:29:45 -0700
-X-CSE-ConnectionGUID: ib3VsZ4qS6+4jh8JYS3Jcg==
-X-CSE-MsgGUID: rqM0xJ3tQbuT1nl85ulqRg==
+   d="scan'208";a="219335"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2026 03:35:59 -0700
+X-CSE-ConnectionGUID: qM4N92wFSHagPgXJ4ygH/Q==
+X-CSE-MsgGUID: QffEhuFiQDe/Ixq4PYKp3A==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="2025615"
-Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 03:29:42 -0700
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- daniele.ceraolospurio@intel.com, raag.jadav@intel.com,
- riana.tauro@intel.com, mallesh.koujalagi@intel.com,
- aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
- arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
- nitin.r.gote@intel.com, pravalika.gurram@intel.com
-Subject: [PATCH v4 10/12] drm/xe/xe_ras: Report core compute errors using SIGID
-Date: Fri,  9 Oct 2026 16:16:13 +0530
-Message-ID: <20261009104602.1075405-24-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20261009104602.1075405-14-badal.nilawar@intel.com>
-References: <20261009104602.1075405-14-badal.nilawar@intel.com>
+   d="scan'208";a="399264"
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by fmviesa002.fm.intel.com with ESMTP; 09 Oct 2026 03:35:58 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: imre.deak@intel.com,
+	Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH 0/5] Move the PLL power save W/A to the display W/A framework
+Date: Fri,  9 Oct 2026 10:35:46 +0000
+Message-ID: <20261009103552.1864818-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -73,60 +67,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use xe_log_* helpers to report core compute errors.
+W/A 14022081154 moves a dedicated display PHY that is not being brought
+up to its lowest power state, so it stops blocking S0ix. Its condition
+and the encoder walk were open-coded in the C10 implementation, neither
+of which is specific to the C10 PHY.
 
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-Cc: Riana Tauro <riana.tauro@intel.com>
----
-v2:
-  - Pass RAS firmware reported severity to xe_log
----
- drivers/gpu/drm/xe/xe_ras.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+Move both into a new intel_dpll_power_save_wa(), with the condition
+expressed in the display W/A framework, and leave the C10 code with
+just the PHY sequence. While there, restrict the W/A to port A, which
+it was never meant to leave.
 
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 8ed4a6992ef1..6647300c7f17 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -332,21 +332,27 @@ static void ras_send_error_event(struct xe_device *xe, u8 severity, u8 component
- 	xe_drm_ras_event(xe, drm_component, drm_severity, response.value);
- }
- 
--static u8 handle_core_compute_errors(struct xe_ras_error_array *arr)
-+static u8 handle_core_compute_errors(struct xe_device *xe, struct xe_ras_error_array *arr)
- {
- 	struct xe_ras_compute_error *error_info = (void *)arr->details;
-+	u8 cper_sev = ras_sev_to_cper_sev(arr->counter.common.severity);
- 	u8 uncorr_type;
- 
- 	uncorr_type = FIELD_GET(CORE_COMPUTE_UNCORR_TYPE, error_info->log_header);
- 
- 	/* Request a reset if error is global */
--	if (uncorr_type == GLOBAL_UNCORR_ERROR)
-+	if (uncorr_type == GLOBAL_UNCORR_ERROR) {
-+		xe_log_comp(xe, cper_sev, CORE_COMPUTE, &arr->counter, sizeof(arr->counter),
-+			    "Global uncorrectable error detected\n");
- 		return XE_RAS_RECOVERY_ACTION_RESET;
-+	}
- 
- 	/*
- 	 * No action needed for other errors.
- 	 * Local errors are recovered using an engine reset by GuC.
- 	 */
-+	xe_log_comp(xe, cper_sev, CORE_COMPUTE, &arr->counter, sizeof(arr->counter),
-+		    "Other compute errors\n");
- 	return XE_RAS_RECOVERY_ACTION_RECOVERED;
- }
- 
-@@ -592,7 +598,7 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
- 
- 			switch (component) {
- 			case XE_RAS_COMP_CORE_COMPUTE:
--				action = handle_core_compute_errors(arr);
-+				action = handle_core_compute_errors(xe, arr);
- 				break;
- 			case XE_RAS_COMP_SOC_INTERNAL:
- 				action = handle_soc_internal_errors(xe, arr);
+With the generic part split out the W/A is no longer tied to one PHY
+type, so the last three patches extend it to LT PHY platforms, where
+port A was left in the reset power state because only the C10 sequence
+was ever implemented.
+
+Only patch 5 is a functional change on LT PHY platforms, and only
+patch 2 on WCL.
+
+Mika Kahola (5):
+  drm/i915/dpll: move the PLL power save W/A to the display W/A
+    framework
+  drm/i915/dpll: apply the PLL power save W/A to port A only
+  drm/i915/lt_phy: split out intel_lt_phy_pll_calc_state_from_table()
+  drm/i915/lt_phy: drop the unused pll argument from
+    intel_lt_phy_pll_enable()
+  drm/i915/lt_phy: apply the PLL power save W/A on LT PHY platforms
+
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  60 ++++------
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   2 +-
+ .../drm/i915/display/intel_display_reset.c    |   4 +-
+ .../gpu/drm/i915/display/intel_display_wa.c   |   2 +
+ .../gpu/drm/i915/display/intel_display_wa.h   |   1 +
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  36 +++++-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   1 +
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   | 103 +++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_lt_phy.h   |   2 +-
+ 9 files changed, 138 insertions(+), 73 deletions(-)
+
 -- 
-2.54.0
+2.43.0
 
