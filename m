@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F7E1CA601C
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:29:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 966BFCA6019
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:29:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60720112050;
-	Fri,  9 Oct 2026 10:29:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55271112052;
+	Fri,  9 Oct 2026 10:29:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VmegN9Gt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T0XSoD9/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72CD511204D
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:29:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE2BE112052
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:29:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791541758; x=1823077758;
+ t=1791541761; x=1823077761;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1a84RlvQ69jNJbQ3rssJ/CCiPxQvW3ZCcPDx/6TV3QM=;
- b=VmegN9Gt+jCKcRWoMSApJOmF32JNAtY4X5fEA807Dv1GmbNIO7auAfR8
- d5R1kl0Z6VYUCqzX0GAPdzbKOnEMv0ZkCBkd+bwKb9a7bQGmt9L5wu00I
- qONjX1DeaqnHxNieYZM3k+wlhqWo+jpvMHw7VU4rB5OgGqQa3nLyQcWtt
- nijdb/+VZbH76d1VUYBqS8MI7jIvAx7PlXliTC4D8oH5k+f/NvwdaYNb7
- 6MTBmwYydigE0lg+q/hBcA20vSmQy+tP8iJF42VhH+AFBI68wj4AyxupH
- +yqFuKY0iyYll8tdBt7g/wp2mYmj6WRti6lArRSjNdAnePLr515igh1OH w==;
-X-CSE-ConnectionGUID: 6+seAq4sR/u6FBXmfOIcaw==
-X-CSE-MsgGUID: vqO/98pDSUSGKRAVPyJycQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11929"; a="344070"
+ bh=e2s6f/ssTntZHg1PzI6tafmhU5cSKOzFsEoqdfODoxQ=;
+ b=T0XSoD9/7x51LAfmLazK0hzd5CVosdsA7ibNNm0doIohFojzOuvhLN9V
+ qgrrOsLa5B9WOAdFgQLCARBVpRUS6CezxHpY0Z/mLN+8L6nQt+e5VAJA+
+ gi+5BbdrzRtCWtC7olIgZ18BEp/D7d5L/6+NP+d4XD2TDzGjI66357AZZ
+ GCd3L5HLAqJ86ombI+4acXBVmnf7xrLGx1FM1GPQdcxjfCrxGgD7MKGXZ
+ 9SQ4WxNNRbsZFT2k/FIZArqZ5Qs+SUqjC0eyQkjachfPJnt2Jm36SqiZ4
+ m+KRLkbNYZxqeBwu645k7zhH9I0LZ+5WLb9+GodMOQHzRNp/yh1EnsTKz Q==;
+X-CSE-ConnectionGUID: vAyRqb/LSUyac/AXDOQ6Og==
+X-CSE-MsgGUID: Z4vWTOVWSoSZw7ArYNoj0w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11929"; a="344072"
 X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="344070"
+   d="scan'208";a="344072"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 03:29:18 -0700
-X-CSE-ConnectionGUID: tb2nsosCS7iYzd74Ko46Uw==
-X-CSE-MsgGUID: Ju8s+k8aSA+3rlNaYEvffQ==
+ 09 Oct 2026 03:29:21 -0700
+X-CSE-ConnectionGUID: PY7uY+PkSMOveCvJQC4DpA==
+X-CSE-MsgGUID: t9CU7OmOQr6S60cxH6qKlg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="2025554"
+   d="scan'208";a="2025564"
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 03:29:14 -0700
+ 09 Oct 2026 03:29:18 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
@@ -51,14 +51,15 @@ Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
  arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
  nitin.r.gote@intel.com, pravalika.gurram@intel.com
-Subject: [PATCH v4 02/12] drm/xe/cper: Retrieve the error counter record for
- CPER reporting
-Date: Fri,  9 Oct 2026 16:16:05 +0530
-Message-ID: <20261009104602.1075405-16-badal.nilawar@intel.com>
+Subject: [PATCH v4 03/12] drm/xe/cper: Initialize Intel-specific error section
+ header
+Date: Fri,  9 Oct 2026 16:16:06 +0530
+Message-ID: <20261009104602.1075405-17-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261009104602.1075405-14-badal.nilawar@intel.com>
 References: <20261009104602.1075405-14-badal.nilawar@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,189 +75,175 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Retrieve error counter record required to build a CPER record.
+Define the Intel-specific CPER error section header and initialize it
+from the error counter record for Intel GPU hardware errors.
 
 Assisted-by: Copilot:Claude-Opus-5.5
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
 v4:
-  - Drop redundant xe_ras_counter_is_valid() check (Raag)
-  - Add might_sleep() to assert that the caller is in a sleepable
-    context (sashiko)
-  - Add xe_device_assert_mem_access() to assert the outer runtime PM
-    wake reference requirement (sashiko)
+ - Split from "drm/xe/cper: Prepare CPER record" (Raag)
+ - Add dedicated struct xe_cper_error_class (Michal)
+ - Drop empty fill_fw_id() stub, leave a TODO instead
+v2:
+ - Guard against NULL THIS_MODULE->srcversion (sashiko)
 ---
- drivers/gpu/drm/xe/xe_cper.c | 14 ++++++++++-
- drivers/gpu/drm/xe/xe_ras.c  | 45 ++++++++++++++++++++++++------------
- drivers/gpu/drm/xe/xe_ras.h  |  2 ++
- 3 files changed, 45 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/xe/xe_cper.c       | 43 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_cper_types.h | 72 ++++++++++++++++++++++++++++++
+ 2 files changed, 115 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_cper_types.h
 
 diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
-index c5caa0e8f496..4f0ed5096aac 100644
+index 4f0ed5096aac..e7cae449b349 100644
 --- a/drivers/gpu/drm/xe/xe_cper.c
 +++ b/drivers/gpu/drm/xe/xe_cper.c
-@@ -4,10 +4,13 @@
-  */
- 
+@@ -6,8 +6,10 @@
  #include <linux/err.h>
-+#include <linux/kernel.h>
+ #include <linux/kernel.h>
  #include <linux/minmax.h>
++#include <linux/pci.h>
  
  #include "xe_cper.h"
++#include "xe_cper_types.h"
  #include "xe_device.h"
-+#include "xe_printk.h"
-+#include "xe_ras.h"
- #include "xe_ras_types.h"
+ #include "xe_printk.h"
+ #include "xe_ras.h"
+@@ -18,9 +20,47 @@ static bool is_hw_sigid(enum xe_sigid sigid)
+ 	return in_range(sigid, INTEL_SIGID_GPU_XE_HARDWARE_START, INTEL_SIGID_BATCH);
+ }
  
- static bool is_hw_sigid(enum xe_sigid sigid)
-@@ -18,7 +21,16 @@ static bool is_hw_sigid(enum xe_sigid sigid)
++static void xe_cper_init_intel_err_hdr(struct xe_device *xe,
++				       const struct xe_ras_error_class *error_class,
++				       u64 first_timestamp, u32 sig_id, u32 error_count,
++				       struct xe_cper_sec_intel_err_hdr *ihdr)
++{
++	ihdr->error_class.error_type = error_class->common.severity;
++	ihdr->error_class.error_component = error_class->common.component;
++	ihdr->error_class.tile = error_class->product.unit.tile;
++	ihdr->error_class.instance = error_class->product.unit.instance;
++	ihdr->error_class.cause = error_class->product.cause.cause;
++	ihdr->validation_bits |= XE_CPER_VALID_LOCATION;
++
++	if (first_timestamp) {
++		ihdr->first_timestamp = first_timestamp;
++		ihdr->validation_bits |= XE_CPER_VALID_FIRST_TIMESTAMP;
++	}
++
++	if (sig_id != U32_MAX) {
++		ihdr->sig_id = sig_id;
++		ihdr->validation_bits |= XE_CPER_VALID_SIG_ID;
++	}
++
++	ihdr->error_count = error_count;
++
++	strscpy(ihdr->pci_bdf, pci_name(to_pci_dev(xe->drm.dev)), sizeof(ihdr->pci_bdf));
++	ihdr->validation_bits |= XE_CPER_VALID_PCI_BDF;
++
++#ifdef MODULE
++	if (THIS_MODULE->srcversion) {
++		strscpy(ihdr->drv_version, THIS_MODULE->srcversion, sizeof(ihdr->drv_version));
++		ihdr->validation_bits |= XE_CPER_VALID_DRV_VERSION;
++	}
++#endif
++
++	/* TODO: fill fw_id and set XE_CPER_VALID_FW_ID */
++}
++
  static void xe_cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
  				const struct xe_ras_error_class *error_class)
  {
--	/* TODO */
-+	struct xe_ras_get_counter_response local_resp;
-+
-+	/* Fetching the counter sends a sysctrl command */
-+	might_sleep();
-+	xe_device_assert_mem_access(xe);
-+
-+	if (xe_ras_get_counter_response(xe, error_class, &local_resp)) {
-+		xe_err(xe, "CPER: failed to get counter, skipping record\n");
-+		return;
-+	}
- }
++	struct xe_cper_sec_intel_err_hdr ihdr = {};
+ 	struct xe_ras_get_counter_response local_resp;
  
- /**
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 7a85735c57d5..5cfc9beff8c1 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -103,8 +103,6 @@ static const char * const gpu_health_states[] = {
- };
- static_assert(ARRAY_SIZE(gpu_health_states) == XE_RAS_HEALTH_MAX);
- 
--static int get_counter(struct xe_device *xe, struct xe_ras_error_class *counter, u32 *value);
--
- static u8 drm_to_xe_ras_severity(u8 severity)
- {
- 	switch (severity) {
-@@ -284,21 +282,21 @@ static void ras_usp_aer_init(struct xe_device *xe)
- static void ras_send_error_event(struct xe_device *xe, u8 severity, u8 component)
- {
- 	struct xe_ras_error_class counter = {0};
-+	struct xe_ras_get_counter_response response = {0};
- 	u8 drm_severity, drm_component;
--	u32 value;
- 	int ret;
- 
- 	counter.common.severity = severity;
- 	counter.common.component = component;
- 
--	ret = get_counter(xe, &counter, &value);
-+	ret = xe_ras_get_counter_response(xe, &counter, &response);
- 	if (ret)
+ 	/* Fetching the counter sends a sysctrl command */
+@@ -31,6 +71,9 @@ static void xe_cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigi
+ 		xe_err(xe, "CPER: failed to get counter, skipping record\n");
  		return;
- 
- 	drm_severity = xe_to_drm_ras_severity(severity);
- 	drm_component = xe_to_drm_ras_component(component);
- 
--	xe_drm_ras_event(xe, drm_component, drm_severity, value);
-+	xe_drm_ras_event(xe, drm_component, drm_severity, response.value);
- }
- 
- static u8 handle_core_compute_errors(struct xe_ras_error_array *arr)
-@@ -433,19 +431,30 @@ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
  	}
- }
- 
--static int get_counter(struct xe_device *xe, struct xe_ras_error_class *counter, u32 *value)
-+/**
-+ * xe_ras_get_counter_response() - Get error counter record
-+ * @xe: Xe device instance
-+ * @counter: RAS error class
-+ * @out: Counter record retrieved
-+ *
-+ * Retrieve the counter record of a specific error class from firmware.
-+ *
-+ * Return: 0 on success, negative error code on failure.
-+ */
-+int xe_ras_get_counter_response(struct xe_device *xe, const struct xe_ras_error_class *counter,
-+				struct xe_ras_get_counter_response *out)
- {
--	struct xe_ras_get_counter_response response = {0};
- 	struct xe_ras_get_counter_request request = {0};
- 	struct xe_sysctrl_mailbox_command command = {0};
- 	struct xe_ras_error_common *common;
- 	size_t rlen;
- 	int ret;
- 
-+	memset(out, 0, sizeof(*out));
- 	request.counter = *counter;
- 
- 	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_GET_COUNTER,
--				  &request, sizeof(request), &response, sizeof(response));
-+				  &request, sizeof(request), out, sizeof(*out));
- 
- 	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
- 	if (ret) {
-@@ -453,19 +462,18 @@ static int get_counter(struct xe_device *xe, struct xe_ras_error_class *counter,
- 		return ret;
- 	}
- 
--	if (rlen != sizeof(response)) {
-+	if (rlen != sizeof(*out)) {
- 		xe_err(xe, "sysctrl: unexpected get counter response length %zu (expected %zu)\n",
--		       rlen, sizeof(response));
-+		       rlen, sizeof(*out));
- 		return -EIO;
- 	}
- 
--	if (!ras_counter_is_valid(xe, &response.counter))
-+	if (!ras_counter_is_valid(xe, &out->counter))
- 		return -EBADMSG;
- 
--	common = &response.counter.common;
--	*value = response.value;
-+	common = &out->counter.common;
- 
--	xe_dbg(xe, "[RAS]: get counter %u for %s %s\n", *value, comp_to_str(common->component),
-+	xe_dbg(xe, "[RAS]: get counter %u for %s %s\n", out->value, comp_to_str(common->component),
- 	       sev_to_str(common->severity));
- 
- 	return 0;
-@@ -596,12 +604,19 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
- int xe_ras_get_counter(struct xe_device *xe, u8 severity, u8 component, u32 *value)
- {
- 	struct xe_ras_error_class counter = {0};
-+	struct xe_ras_get_counter_response response = {0};
-+	int ret;
- 
- 	counter.common.severity = drm_to_xe_ras_severity(severity);
- 	counter.common.component = drm_to_xe_ras_component(component);
- 
- 	guard(xe_pm_runtime)(xe);
--	return get_counter(xe, &counter, value);
-+	ret = xe_ras_get_counter_response(xe, &counter, &response);
-+	if (ret)
-+		return ret;
 +
-+	*value = response.value;
-+	return 0;
++	xe_cper_init_intel_err_hdr(xe, error_class, local_resp.timestamp,
++				   sigid, local_resp.value, &ihdr);
  }
  
  /**
-diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-index 0b8669f28d56..84700ea63394 100644
---- a/drivers/gpu/drm/xe/xe_ras.h
-+++ b/drivers/gpu/drm/xe/xe_ras.h
-@@ -20,5 +20,7 @@ int xe_ras_get_threshold(struct xe_device *xe, u8 severity, u8 component, u32 *t
- int xe_ras_set_threshold(struct xe_device *xe, u8 severity, u8 component, u32 threshold);
- void xe_ras_init(struct xe_device *xe);
- enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe);
-+int xe_ras_get_counter_response(struct xe_device *xe, const struct xe_ras_error_class *counter,
-+				struct xe_ras_get_counter_response *out);
- 
- #endif
+diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_cper_types.h
+new file mode 100644
+index 000000000000..74307e7f78a2
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_cper_types.h
+@@ -0,0 +1,72 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef _XE_CPER_TYPES_H_
++#define _XE_CPER_TYPES_H_
++
++#include <linux/types.h>
++
++/*
++ * Validation bits definition for validation_bits in struct
++ * xe_cper_sec_intel_err_hdr. When set, corresponding fields in header
++ * contains valid data
++ */
++#define XE_CPER_VALID_LOCATION		0x0001
++#define XE_CPER_VALID_FIRST_TIMESTAMP	0x0002
++#define XE_CPER_VALID_SIG_ID		0x0004
++#define XE_CPER_VALID_PCI_BDF		0x0008
++#define XE_CPER_VALID_DRV_VERSION	0x0010
++#define XE_CPER_VALID_FW_ID		0x0020
++
++#pragma pack(push, 1)
++
++/**
++ * struct xe_cper_error_class - Intel GPU CPER error classification
++ */
++struct xe_cper_error_class {
++	/** @error_type: RAS error severity */
++	u8  error_type;
++	/** @error_component: IP block that raised the error */
++	u8  error_component;
++	/** @tile: Tile number */
++	u8  tile;
++	/** @instance: Instance within the tile */
++	u32 instance;
++	/** @cause: Error cause code */
++	u32 cause;
++	/** @reserved: Reserved, must be zero */
++	u8  reserved;
++};
++
++/**
++ * struct xe_cper_sec_intel_err_hdr - Intel-specific CPER error section header
++ *
++ * Fixed-size header for the Intel GPU error section of a CPER record.
++ * All multi-byte fields are little-endian; the structure is packed.
++ */
++struct xe_cper_sec_intel_err_hdr {
++	/** @error_class: Error classification (type, component, location, cause) */
++	struct xe_cper_error_class error_class;
++	/** @first_timestamp: First occurrence of this error class, in ticks */
++	u64 first_timestamp;
++	/** @sig_id: Aggregated error class SIG ID; set to U32_MAX if unknown */
++	u32 sig_id;
++	/** @error_count: Number of times this error has been observed */
++	u32 error_count;
++	/** @validation_bits: Raw u16 view of all valid bits */
++	u16 validation_bits;
++	/** @pci_bdf: PCI location string, format "DDDD:bb:dd.f" */
++	char pci_bdf[16];
++	/** @drv_version: Driver source version string (THIS_MODULE->srcversion) */
++	char drv_version[25];
++	/** @fw_id: Firmware version string (GFSP+PCODE+CSC+GUC or MNG+NUC+RAS+GUC) */
++	char fw_id[256];
++	/** @reserved: Reserved for future use, must be zero */
++	u8 reserved[5];
++};
++
++#pragma pack(pop)
++
++#endif
 -- 
 2.54.0
 
