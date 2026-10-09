@@ -4,160 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90F93CA6019
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 12:27:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07AFDCA6019
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 12:29:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42E2210E53A;
-	Fri,  9 Oct 2026 12:27:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96EFA1120DB;
+	Fri,  9 Oct 2026 12:29:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QkxjAGcf";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JDT1/hX5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E36F10E53A
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 12:27:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791548872; x=1823084872;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=82/j3iDxal5/kpTNzTbIuo1O/rbbhQupQB7iTqlkYkg=;
- b=QkxjAGcfhy7z+IAm8USXAtmBCCvgXC9IoWBX95qKR/G4UndhVFKV0f6n
- X9H9zVUF/yhDM+I0HL6KEDkjngdQqG8jXl6BQx8bSX7eXr+z/5q1obBhB
- j6xh8u7+o35C2sBTWmAa8c5yV987w3M6aQcXcmtW1fCBg3osqlpqKmIk/
- KRdl9Ll5GrUKE2jfbJBuFqh/5/2UU/xOF40Lk32FPzDr6ZzeyhrgarQSr
- BI1tZKnV9V5lTWRf9x0VOf0GaykJ9dENVkcHcL9VH6w5DXlbetpAZo8SM
- qt0qdWgcQ7Yma+dOAm7TIdh9fpOAD3GwB4HsEW7lks8CTvRNJYVIHmWPW w==;
-X-CSE-ConnectionGUID: xM8G5JiRS86+phpoxeO9pg==
-X-CSE-MsgGUID: vnCDWypJRoqEDZDr8hCjxA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11929"; a="353364"
-X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="353364"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 05:27:52 -0700
-X-CSE-ConnectionGUID: SN4pt0J9Sy6IWnQodHUF+A==
-X-CSE-MsgGUID: EkObl4J1Qgy+dHotDjVbUQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="619284"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 05:27:52 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Fri, 9 Oct 2026 05:27:51 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Fri, 9 Oct 2026 05:27:51 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.31) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Fri, 9 Oct 2026 05:27:51 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tuqe85k1B+oaT/Jo8PtU4ttGWpH08XVxe5bCdgabxs6oSdI/F+M5S7DuabqChG8NIJGu7znFQBWsXWSGMkyjwgYRwYDtGpC4lh8D4EEtpjNWOumRnA8pBZWUoEmp/vmPARix+rIi47qo9aER3/9QnA32gj4UMHWd3GJnCWIvwOmGk+l4G3oqqUROVbuGNAxbjVyJpjd8hlONELsrBapg9In5zkKBz2AZF3XpIhLsct3NPuOpZuv7KlnbiXOiRQoVVBLqo+as91TNvdWjZqtxl9UQ1cwQZGcnLZUxEGnSP6jo+r8n7fwJUv4NQ/HTM84bRh33CiN4GVgt6lFE/WGZtg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Nra+E/RiZkq1K27OgVufNp3YPomKdDTsMEmNfNeol3k=;
- b=sunNg5T1iGGaMDC7PSKwv4FaAPdbqIbePR6/UooYeQK+mEBDgFnpbBL7AOMCrnp4ZZI870bp1us7BV3OOJRuKbDRBd7zZxJg/pLIT5RSbE5/8s7xm3cp9vI/aTI86U0ZMNDF4eTDFB+yhaGlTUB364Dw7XoeTKtRRnHJLNu+SUbcFlGH2HTWn9h89wCfFlKW8wF0rEfOB6wpbnqV05uk2+gssBZIDc8i6Vv6jY/VSY4sYSRzhuCgbK1WZrdKPzQ/0NqctCcOFk7Q46ZLetnbkmqiv4l/zNUix0o4aoQ7raCkCNgPyOV+adKa5VyUYPHP/zPWwxm6jpKEjeAFvPya2A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from LV0PR11MB9792.namprd11.prod.outlook.com (2603:10b6:408:385::5)
- by DS0PR11MB8232.namprd11.prod.outlook.com (2603:10b6:8:15d::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.472.19; Fri, 9 Oct
- 2026 12:27:48 +0000
-Received: from LV0PR11MB9792.namprd11.prod.outlook.com
- ([fe80::1b1f:d9a8:ce76:e9d8]) by LV0PR11MB9792.namprd11.prod.outlook.com
- ([fe80::1b1f:d9a8:ce76:e9d8%5]) with mapi id 15.21.0496.015; Fri, 9 Oct 2026
- 12:27:48 +0000
-Message-ID: <1cce4e92-2fc6-4eef-9439-a64a1c6a5d90@intel.com>
-Date: Fri, 9 Oct 2026 17:57:41 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 02/12] drm/xe/cper: Retrieve the error counter record
- for CPER reporting
-To: <sashiko-reviews@lists.linux.dev>
-CC: <intel-xe@lists.freedesktop.org>
-References: <20261009104602.1075405-14-badal.nilawar@intel.com>
- <20261009104602.1075405-16-badal.nilawar@intel.com>
- <sashiko-outbox-165261@kernel.org>
-Content-Language: en-US
-From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <sashiko-outbox-165261@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0147.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1b9::16) To LV0PR11MB9792.namprd11.prod.outlook.com
- (2603:10b6:408:385::5)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV0PR11MB9792:EE_|DS0PR11MB8232:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3c883354-6e85-4ad8-f611-08df2600bad1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|23010399003|1800799024|18002099003|10067099003|22082099003|4143699003|56012099006|11063799006;
-X-Microsoft-Antispam-Message-Info: aLugbKkfEmIOTa34HXBvd6uWf15oh3/IvA5IMfV9RU3ALlhsBt51A8BctmLYWsb97C9/Xf6qJBLAhmgClumUsl4jZ06Ry0Myi91SOpv3ZETvAd8RtwYnsO5SEK1ZBQxs8jDoK4xUoKjq6nVU9rAdwGmb8d3OX/al+B8WIah6/jh/HuP4p06d3b7oaMSrn3IcQm+F+oGkIVTB+2JZWUNui1h+443NWiZ2M6MaD0f5O7M08E0B2HdLjtQaez7nT0L+zzIoUnK38vnhWf4zjBsJIYChwbF9aoTYUrUeK5Qc2030CTCZ8Dx4HLfTMG68cxAtlD7lJyIYkG3T4YEoCJoC4+Xyz9DLE3xxW8GI04QG3u8YUTTsF1JRZNYDEiOtldI/XQKnjTrelUKK6kKp/f7hZnqbcy4tBkVSfP/28/z0GzE6JH2tEjHZ1UdWvXSQStQWqK8MZD9g7brSF4OLJz2yHa5zTanM+fo4+0PEiCLuz4Zp6E6cNJWwUpQU3UPP94eEHqCVg1AUQezKkP3B115Jy8uDqjpKHN5Oz9DjuAfMzcED41F5PoSpjHMCgSLgqBQXO5NwktF5+mO/L5rowEJ9n54GOI24qQyUFnOmj0v6jj6rUC2zYX32EmtmjLHJAoRx/uMwrKRsXySfvkzfMb8Dgn+NVEruRSwYyTQmphKJX0U=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV0PR11MB9792.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(23010399003)(1800799024)(18002099003)(10067099003)(22082099003)(4143699003)(56012099006)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N1gvbGh5OFFidWtMVDRWMElBVVdZd21kMHdtbW5KMGgwZFkzVE5WdytKTktM?=
- =?utf-8?B?Q2toWnhiTEhoOEFNN0lMR2U3Z2Q4bEIyYUk4TWJLNHdMdUgrYlc2U2h5K29k?=
- =?utf-8?B?eEtDNk12M2ZLZDgyZy9tZ2RBOCtNdFVJQ0JSMU1ZaGZwR2dFOUZCT0dUemNl?=
- =?utf-8?B?UHNxdGpDS0ovVzMrL2NYaUFISWdRbTZMdXpNWGNiZkNGR1ZQa2ozNXQzdVA4?=
- =?utf-8?B?dWZnNGtjTjhTTmVCMFcrNzZBeTl1NWFtTG9ZWDJ5Q0VLV2YrUVJyb2xkZ0wx?=
- =?utf-8?B?ZGJVRlBySkZJKy91b1pFWUN6aWxqWis3RmpvVkprR0RadkNKUHpJWmxXcWhG?=
- =?utf-8?B?SkpWS0dSVXgvZ2ltWldJMjhibm1GckxiaXZYMlVFTFVVc1h4aGdEN3I5U0E0?=
- =?utf-8?B?Zmtkd1BMMSsweTNkOHFEOEwrcjRyamplN0wyeUhaanJobDBGamJwUUd4NzFF?=
- =?utf-8?B?SHFHUlBnenJ1Y01TaytSZWNILzRBUFF3ZDZYRm9hTGIrSzcvMjJxaFlIMCti?=
- =?utf-8?B?VVR1eDRzWVhId1k4aTE1c3BRMWM3U3VZdGVCQndNa011WVBvTlBpc3BMOUUr?=
- =?utf-8?B?MUtzZmtGNzEreFdoVTJCZDhZRUFsR1RxM2Mwb2R6VEREOUI2V1hDcHV3d3hx?=
- =?utf-8?B?TXR1aVVsbGJ4TXJFdXlxN1h1MVRLUGQ1Q1NoOGZ4T0Z5QzJsOUlRaDZwcy92?=
- =?utf-8?B?RnZEdGJPL0E4eVZNSlU1eFVRc0FrL0x3S1JkakExR3BGc2h2bWo1R0tuejZR?=
- =?utf-8?B?aVl0aXQrRnE2cEk5SjlTeG8velNXa0I1RHNOUVdvMmkwalgyVDBvRytaV1A5?=
- =?utf-8?B?Wk5maFhBbmdrSmcrMDI2YmRxZE5SZE9INjdDYUlOM2xDaVlua293dktUUVZN?=
- =?utf-8?B?WEFqUGpDZlNTVzhha1MzR3Q2VklpYXBQdUtGMXJUTGRtQmR3enlxbjRTaHYv?=
- =?utf-8?B?TGM4TkdoZHFxYXZ2Q2pYMTcvNmNrYTQ3eXRRSFhCbzhqRkVLREZsUVcxZXdK?=
- =?utf-8?B?bW10MFB6eE0wa2pLWldiOEpHNWlYeFJqOU8rTDJBd0syMzFxcEhmUXpHRi9z?=
- =?utf-8?B?a3p3ZGF2U1FoUllWOTFVOXR0UzVGYnpTakdnVUYyTWs2OHRMVVdsMTNSSkcr?=
- =?utf-8?B?b2ljSjdRWGJTenFQWGdqa0h4R2FzeklHYnRFZ3dTRHhqWWhRaFBxU3VRbzQw?=
- =?utf-8?B?bTliaWdHeG9la0daN2x3RjhuUlZyRXIvYnJTNmN0eWFOOEVDR0RiWmwwYk5R?=
- =?utf-8?B?ODJMNzUxcm9zRUM4QnF3K2FxaW1BQXJ2WGsvaldpZWRERGtIbk5mUjZxZlJo?=
- =?utf-8?B?M0g3Rk5qaGV3ajllM0JzR1lUenFtZ2l1Qnh1UllRZnRGdXc5WjBJZXUzNUR0?=
- =?utf-8?B?NnZTaktBd2MralRzRG5ERkZjUFBaTGdaeEFzcGpDN2lqdnRUbjNIdXFXcXNP?=
- =?utf-8?B?akgwZ0JOb1Q5Y3dwYU1hNmtGQUhEQUp5WXVQazlaRW5ZZnJHYUxUVU0yYjF6?=
- =?utf-8?B?RDlOVER2ckk1cmtGYWtXQ2ErenVDMm91ZXViVk52THZHMnBSbjBGUGNRTGFB?=
- =?utf-8?B?aHNMSU9IcEs3ZmhWRksrZU1GYW9mTnIzVXNiMWZ0VUE0d3JhU1BCSk43anhC?=
- =?utf-8?B?OFI4b01LbERxZlE2TFhmOU1MSTJ0d0oyNlZDV2xEczZjUFB1NkV6aEZnL2hq?=
- =?utf-8?B?M1hEWlhjMUZGUjdZcmFiUllHSjcxV0kxR2NHd28rSGxpYkNTRzcyUkxjYVM5?=
- =?utf-8?B?dFQxWjNDVXU5OHd5b215eW0vRzUvMjhSb2E5dUQ0VUIyWUVUZVNjTXlFSndW?=
- =?utf-8?B?Y2x4L0k0bzBPVzh3anYxVVo5ZER5V2tXMW9NT003Sm81bHZpZjd3L3N6Zm1P?=
- =?utf-8?B?MzhNeUwxaDVVNzRKaGQ3T3NNVXNZTkdzeWhTMVl5a3RtZk5DQTZOK0NnSlBO?=
- =?utf-8?B?dWxXODVDTFFNKzM4N3hiSlhEM1BWSi9CSVQ2SjJmN3ROZk1aa1p5aXNvUDgz?=
- =?utf-8?B?MXNSTUIvYnl2ZWo3dUdQL083dVZSNXF6aUQwVDhNcDhMT1F3QTV5ZXJtSEZp?=
- =?utf-8?B?TFNjZFpSUUlwUFMwK3lEMlZLL1dTalByeDh2T3B3WmZXUmtyMXpNdGZKNnk0?=
- =?utf-8?B?WmFQTFN2QVZDbjJBOUZtVzArb0oxZHV5NExDZlpkMTVnRWhDdy8zbEZBVXdO?=
- =?utf-8?B?eGR0cXBnWUdFbFcxYkVXdFp0a0JHTjc3dkFzN04zSmFSY2Uxb1pJeWJoMDIy?=
- =?utf-8?B?Y0lOdzRlSDIvS2ZoMmw4QzkwT3FaOVZDN3VoNXJNdVhCV1B5dEdOV1M1TjZQ?=
- =?utf-8?B?V0RzaHo2ZXg1T3ZKVC9PbG1xTTNDQ1AxTnhOV0dxS1hMdHhlcXRpUT09?=
-X-Exchange-RoutingPolicyChecked: 3TCqAO9RCwS2DPgpttUaC3JJyidos3XvNtT9gpulH4yffZVmYVIzHgBOQD1de0rWQ4VO+gEy76DNdiLIivj5io7wNxAt5S0pesPjtA2vJVn/mbOd8Uv5XCPQtcEF7C2b97EwAg5Gu4DQuMhXugGtJKfjw799fZ9nR+yYGtL1HzQuSanKYi//LcxVIAqbBd39gOk7ks+raQMRgPJ7DrXO+dy5yXstsXcqccatLuCNZbUAnfcMGtDybPUm7pKKbo/gD9q7TgojQqeE1E0+NEuhbs8jrqZbLRtP5dW985nALSNXnJ7qSk9nORIuJ5gT87tCZALPw9mg/yL93Eg8V8KANQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c883354-6e85-4ad8-f611-08df2600bad1
-X-MS-Exchange-CrossTenant-AuthSource: LV0PR11MB9792.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2026 12:27:48.6613 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PwUbO2O/1K0V50Rq3LC1zOT+vCAYFRLLJiGJVY40JCwxHIAP9wizWvfl4xG423WhNDWNThHjSKrFSZLuK3AA7w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8232
-X-OriginatorOrg: intel.com
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95EEE1120DB
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 12:29:56 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id C8BB06020C;
+ Fri,  9 Oct 2026 12:29:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53A461F000FF;
+ Fri,  9 Oct 2026 12:29:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1791548995;
+ bh=/KNPx8AigGGuxeibteF2rgBxhjwRx7fsT44f74l+3+E=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=JDT1/hX5MyuBCNVQQUv8/N8PMDzia3+uCN00oDqG/B2Mx5UKOeBx0Gd03VctwT4RT
+ UrPXEcsUUy8vprph9dvr/xjSDkMInvYoz/zYijGiiwCGBGJNDUsfe+ayLWOU755CRR
+ rHC/In0dP7uBfR33hUnKx2aeZiSWiXi8K4u28uGFa7Z7h89DeU61umONgpygWCLTeO
+ rkKostVeaSDAGTAMlTFmcYxzNTd0ZE3xuJ9Q5EpyBGJEEtGq+Ob1lgfN/HHu4ujE3Q
+ RKR1b0+F/DaPgrqD4bTBScN50txjbZWK53Ky1LwKeWw+hMCdy62pP0tu1lYjRahY8g
+ Ga385ZCxLLXJQ==
+Message-ID: <sashiko-outbox-165540@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 1/3] drm/xe: Prevent VF memory IRQ from accessing a
+ torn-down engine
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20261009121921.818671-6-satyanarayana.k.v.p@intel.com>
+References: <20261009121921.818671-5-satyanarayana.k.v.p@intel.com>
+ <20261009121921.818671-6-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 09 Oct 2026 12:29:54 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,79 +53,87 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Critical] drm/xe: NULL Pointer Dereference in xe_execlist_port_destroy a=
+nd timer due to early hwe->gt clearing
+--
 
-On 09-10-2026 16:16, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [High] drm/xe: out-of-bounds array access on informational or reserved RAS errors
-> --
->
-> commit 27317cc719f71d74be0f7fcd94c5a8fbf53f9e5e
-> Author: Badal Nilawar <badal.nilawar@intel.com>
->
-> drm/xe/cper: Retrieve the error counter record for CPER reporting
->      
-> Retrieve error counter record required to build a CPER record.
->
->> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
->> index 7a85735c57d58..5cfc9beff8c13 100644
->> --- a/drivers/gpu/drm/xe/xe_ras.c
->> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> [ ... ]
->> @@ -284,21 +282,21 @@ static void ras_send_error_event(struct xe_device *xe, u8 severity, u8 component)
->>   {
->>   	struct xe_ras_error_class counter = {0};
->> +	struct xe_ras_get_counter_response response = {0};
->>   	u8 drm_severity, drm_component;
->> -	u32 value;
->>   	int ret;
->>   
->>   	counter.common.severity = severity;
->>   	counter.common.component = component;
->>   
->> -	ret = get_counter(xe, &counter, &value);
->> +	ret = xe_ras_get_counter_response(xe, &counter, &response);
->>   	if (ret)
->>   		return;
->>   
->>   	drm_severity = xe_to_drm_ras_severity(severity);
->>   	drm_component = xe_to_drm_ras_component(component);
->>   
->> -	xe_drm_ras_event(xe, drm_component, drm_severity, value);
->> +	xe_drm_ras_event(xe, drm_component, drm_severity, response.value);
-> [Severity: High]
-> When firmware returns valid but unmapped values, like
-> XE_RAS_SEV_INFORMATIONAL or XE_RAS_COMP_RESERVED, is it possible that
-> xe_to_drm_ras_severity() and xe_to_drm_ras_component() will map these to
-> their MAX values (DRM_XE_RAS_ERR_SEV_MAX and DRM_XE_RAS_ERR_COMP_MAX)?
->
-> If so, does this call to xe_drm_ras_event() cause out-of-bounds array
-> accesses?
->
-> In drivers/gpu/drm/xe/xe_drm_ras.c:xe_drm_ras_event():
->
->      struct xe_drm_ras_counter *info = ras->info[severity];
->      ...
->      node = &ras->node[severity];
->
->      if (!info || !info[component].name)
->          return;
->
-> Since the arrays are sized for the valid drm enum mappings, using the MAX
-> values as indices would lead to wild pointer dereferences.
+commit 0f76e8a7471aad3de71482c37a1644b32699ef4e
+Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 
-Good catch. This is pre-existing (from 6a9493e47075) and is not 
-introduced by this series.
+drm/xe: Prevent VF memory IRQ from accessing a torn-down engine
 
-I'll send a separate fix that skips the drm_ras event when the severity 
-or component has no drm mapping.
+The commit fixes a NULL pointer dereference by invalidating the engine name
+and clearing hwe->gt earlier in the teardown process. However, this
+reordering appears to introduce a new issue where xe_execlist_port_destroy()
+encounters a NULL pointer.
 
-Thanks,
-Badal
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw=
+_engine.c
+> index 9680d2a5adec7..3a6b9a4fe63ff 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> @@ -275,11 +275,22 @@ static const struct engine_info engine_infos[] =3D {
+>  static void hw_engine_fini(void *arg)
+>  {
+>  	struct xe_hw_engine *hwe =3D arg;
+> +	struct xe_gt *gt =3D hwe->gt;
+> +
+> +	if (gt) {
+> +		struct xe_device *xe =3D gt_to_xe(gt);
+> +		unsigned long flags;
+> +
+> +		spin_lock_irqsave(&xe->irq.lock, flags);
+> +		hwe->name =3D NULL;
+> +		hwe->gt =3D NULL;
+> +		spin_unlock_irqrestore(&xe->irq.lock, flags);
+> +	} else {
+> +		hwe->name =3D NULL;
+> +	}
+> =20
+>  	if (hwe->exl_port)
+>  		xe_execlist_port_destroy(hwe->exl_port);
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
->
->>   }
->>   
->>   static u8 handle_core_compute_errors(struct xe_ras_error_array *arr)
+[Severity: Critical]
+Will this call to xe_execlist_port_destroy() cause a kernel panic now that
+hwe->gt has been cleared to NULL?
+
+Looking at xe_execlist_port_destroy() in drivers/gpu/drm/xe/xe_execlist.c, =
+it
+dereferences port->hwe->gt:
+
+void xe_execlist_port_destroy(struct xe_execlist_port *port)
+{
+	timer_delete(&port->irq_fail);
+
+	/* Prevent an interrupt while we're destroying */
+	spin_lock_irq(&gt_to_xe(port->hwe->gt)->irq.lock);
+	...
+}
+
+Because hwe->gt is set to NULL right before this call, gt_to_xe(NULL) will
+dereference a NULL pointer (specifically gt_to_tile(NULL)->xe) when acquiri=
+ng
+the spinlock.
+
+This problem wasn't introduced by this patch, but doesn't calling
+timer_delete() instead of timer_delete_sync() on port->irq_fail allow the
+timer to execute concurrently during or after destruction? If the timer
+fires and calls read_execlist_status(port->hwe) which also accesses hwe->gt,
+would it hit the same NULL pointer dereference now that the pointer is clea=
+red
+earlier?
+
+> -
+> -	hwe->gt =3D NULL;
+>  }
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261009121921.8186=
+71-5-satyanarayana.k.v.p@intel.com?part=3D1
