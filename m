@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E078CA6019
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 12:03:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80D30CA6019
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 12:04:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F11610E038;
-	Fri,  9 Oct 2026 12:03:31 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 117E710E038;
- Fri,  9 Oct 2026 12:03:30 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6552156571778205424=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A5D610E038;
+	Fri,  9 Oct 2026 12:04:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LMEHcHqA";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A018B10E038
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 12:04:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791547463; x=1823083463;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=g2Y54lwZ029/YQVJ2oGO/oaVeraPb7zWWhZ/Kba8CAQ=;
+ b=LMEHcHqATRA6/m2LyEHOyOJJv0wrBfTunumntWAdoyi0iQmKxv1iRLsq
+ oUrV+4BnzcprED7Hl24sTvkX7EMzNJtD6PJ+jueblQT+GqlNeRUkdUuU2
+ ooTeVe7Xa4HPjFP72whuakUz8szF9lkBKTVnvuFEE3dQahTPMn6NaAcEP
+ mJOD/Cb72Qgebq4n/rZWxdtwShY9XcbADfjYCto9GyDMyk49EclW/woGv
+ FEcTQyi/CS9J+NQ3Sq5cdtX5WBV/p0Vb1GETImCGc9bsL5raVCWns4zJp
+ AiXNfHaXns1iWAjHpNN5oRQrexPrxrgbA3wKFY66PPdGai8bhlDw8Jf9R A==;
+X-CSE-ConnectionGUID: SqubrKpJRtCarSYD2NNh+A==
+X-CSE-MsgGUID: Np/wa8koRZqpt5tz/XPx2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11929"; a="372019"
+X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
+   d="scan'208";a="372019"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2026 05:04:22 -0700
+X-CSE-ConnectionGUID: 6sVXHGCASgGhX1zdXpjmfg==
+X-CSE-MsgGUID: IpT032R+SNucAV8h9EKa9A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
+   d="scan'208";a="311837"
+Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2026 05:04:19 -0700
+From: Karthik Poosa <karthik.poosa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com,
+ Karthik Poosa <karthik.poosa@intel.com>
+Subject: [PATCH v9 00/14] drm/xe/hwmon: Update hwmon thermal mailbox
+Date: Fri,  9 Oct 2026 17:33:21 +0530
+Message-Id: <20261009120335.52973-1-karthik.poosa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Add_CPER_logging_support_fo?=
- =?utf-8?q?r_CRI_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Badal Nilawar" <badal.nilawar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 09 Oct 2026 12:03:30 -0000
-Message-ID: <179154741006.3058.16332288170071367224@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261009104602.1075405-14-badal.nilawar@intel.com>
-In-Reply-To: <20261009104602.1075405-14-badal.nilawar@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,133 +67,98 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6552156571778205424==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This series adds CRI-specific temperature sensor handling to the Xe
+hwmon implementation and fixes couple of hwmon issues.
 
-== Series Details ==
+CRI platforms may report unavailable temperature sensors and support
+a variable number of VRAM temperature channels depending on platform
+configuration. This series adds the required sensor presence checks and
+uses platform-reported thermal configuration data to expose only valid
+temperature-related hwmon attributes.
 
-Series: Add CPER logging support for CRI (rev4)
-URL   : https://patchwork.freedesktop.org/series/169692/
-State : failure
+The series also corrects the telemetry group selection used for memory
+controller temperature reporting.
 
-== Summary ==
+v2:
+ - Address review comments from Sashiko, Badal and Raag.
+ - Enable IEEE 754 temperature decoding for MMIO temperature registers.
+  - Split sensor validity check into mailbox vs MMIO handling; add
+    is_temp_available() / is_temp_is_visible().
+ - Temporarily disable memory controller and PCIe temperatures on CRI.
 
-CI Bug Log - changes from xe-5915-3bd4f625aafdf70814dbf075de96e224355c9f1e_BAT -> xe-pw-169692v4_BAT
-====================================================
+v3:
+  - Detect unavailable temperature sensors: rephrase a debug log.
+  - Decode mailbox temperatures as 8-bit sign-magnitude values instead of
+    s8.
+  - Use VRAM temperature sensor count from thermal config on CRI: address
+    review comments from sashiko-bot@kernel.org and Rodrigo.
+  - Decode CRI temperature registers as IEEE-754: reject temperatures that
+    overflow long on 32-bit systems.
 
-Summary
--------
+v4:
+  - Address review comments and issues report from Rodrigo and
+    sashiko-bot@kernel.org.
+  - Decode mailbox temperatures as 8-bit sign-magnitude values.
+  - Cache sensor availability during registration.
+  - Enable memory controller and pcie sensors for CRI.
+  - Derive the VRAM channel count from the CRI MSU enable mask.
+  - Use CRI-specific package and VRAM temperature registers.
+  - Handle the CRI memory controller and pcie sensor offsets as per CRI.
 
-  **FAILURE**
+v5:
+ - Remove the unintended IGT prefix from the patch titles.
 
-  Serious unknown changes coming with xe-pw-169692v4_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-169692v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+v6:
+ - Address issues reported by sashiko-bot@kernel.org.
+ - Add VRAM individual channel CRI_VRAM_TEMPERATURE_N register for CRI.
 
-  
+v7:
+ - Address review comments from Rodrigo.
+    - Use ret instead of count in patch 1.
+    - Return true for platforms without temperature sentinels support.
+    - Rename has_mbx_temp_sentinel to has_temp_sentinel.
+    - Add a info flag for pcie sensor offset.
+    - Simplify temperature channels config.
 
-Participating hosts (14 -> 14)
-------------------------------
+v8:
+ - Address review comment from Sashiko.
+ - Revert the unconditional validation of temperature readings on
+   non-sentinel platforms.
+   This avoids creating spurious VRAM temperature channels when the
+   corresponding sensors are unavailable.
 
-  No changes in participating hosts
+v9:
+ - Address review comment from Rodrigo.
+ - Use helper for pcie sensor offset instead of info field.
 
-Possible new issues
--------------------
+Karthik Poosa (14):
+  drm/xe/hwmon: Handle pcode read failures of
+    xe_hwmon_pcode_rmw_power_limit
+  drm/xe/hwmon: Decode mailbox temperature as sign-magnitude
+  drm/xe/hwmon: Fix memory controller thermal data handling
+  drm/xe/hwmon: Add helpers to validate thermal sensor readings
+  drm/xe/hwmon: Handle unavailable memory controller sensors
+  drm/xe/hwmon: Detect unavailable PCIe thermal sensors
+  drm/xe/hwmon: Consolidate temperature sensor availability checks
+  drm/xe/hwmon: Cache temperature availability to reduce probe time
+  drm/xe/hwmon: use CRI-specific package and VRAM temperature registers
+  drm/xe/hwmon: Add platform-aware VRAM thermal channel support
+  drm/xe/hwmon: Decode CRI temperature registers as IEEE-754
+  drm/xe/hwmon: Update memory controller temperature offset for CRI
+  drm/xe/hwmon: add PCIe temperature support for CRI
+  drm/xe/hwmon: Simplify temperature channels config
 
-  Here are the unknown changes that may have been introduced in xe-pw-169692v4_BAT:
+ drivers/gpu/drm/xe/regs/xe_pcode_regs.h |   4 +
+ drivers/gpu/drm/xe/xe_device_types.h    |   4 +
+ drivers/gpu/drm/xe/xe_hwmon.c           | 450 ++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_pci.c             |   4 +
+ drivers/gpu/drm/xe/xe_pci_types.h       |   2 +
+ drivers/gpu/drm/xe/xe_pcode_api.h       |   2 -
+ 6 files changed, 366 insertions(+), 100 deletions(-)
 
-### IGT changes ###
+-- 
+2.25.1
 
-#### Possible regressions ####
-
-  * igt@xe_exec_fault_mode@twice-bindexecqueue-prefetch:
-    - bat-wcl-1:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5915-3bd4f625aafdf70814dbf075de96e224355c9f1e/bat-wcl-1/igt@xe_exec_fault_mode@twice-bindexecqueue-prefetch.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v4/bat-wcl-1/igt@xe_exec_fault_mode@twice-bindexecqueue-prefetch.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-5915-3bd4f625aafdf70814dbf075de96e224355c9f1e -> xe-pw-169692v4
-
-  IGT_9138: 9138
-  xe-5915-3bd4f625aafdf70814dbf075de96e224355c9f1e: 3bd4f625aafdf70814dbf075de96e224355c9f1e
-  xe-pw-169692v4: 169692v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v4/index.html
-
---===============6552156571778205424==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add CPER logging support for CRI (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169692/">https://patchwork.freedesktop.org/series/169692/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5915-3bd4f625aafdf70814dbf075de96e224355c9f1e_BAT -&gt; xe-pw-169692v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-169692v4_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-169692v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-169692v4_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_exec_fault_mode@twice-bindexecqueue-prefetch:<ul>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5915-3bd4f625aafdf70814dbf075de96e224355c9f1e/bat-wcl-1/igt@xe_exec_fault_mode@twice-bindexecqueue-prefetch.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v4/bat-wcl-1/igt@xe_exec_fault_mode@twice-bindexecqueue-prefetch.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5915-3bd4f625aafdf70814dbf075de96e224355c9f1e -&gt; xe-pw-169692v4</li>
-</ul>
-<p>IGT_9138: 9138<br />
-  xe-5915-3bd4f625aafdf70814dbf075de96e224355c9f1e: 3bd4f625aafdf70814dbf075de96e224355c9f1e<br />
-  xe-pw-169692v4: 169692v4</p>
-
-</body>
-</html>
-
---===============6552156571778205424==--
