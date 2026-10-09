@@ -4,45 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45A0ACA6019
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:23:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B8F7CA6012
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:29:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0170810E534;
-	Fri,  9 Oct 2026 10:23:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 569CA11204D;
+	Fri,  9 Oct 2026 10:29:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YEHf+7vZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NzR1nLk9";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E06AD10E534;
- Fri,  9 Oct 2026 10:23:54 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 5471F41845;
- Fri,  9 Oct 2026 10:23:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB5391F000FF;
- Fri,  9 Oct 2026 10:23:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791541434;
- bh=EEjyWeU7pRUTKISGlRq7AuuLy2vaAmNqNUBeOCEZ/u0=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=YEHf+7vZsq1NgPiXvd+A2CXn4Ly0l1Jz0JxdOPPVbCzZHw2PSp8x0evN0i9S91f94
- heZNhJtZ4Dq+UfM1JlWS9VWD4SNM8LBJMhpuLOkMdrqxs3dhysYJLd8OcDzVTYSkib
- gSbLL8vD+ccWponP6QUlgqusoZ0LoiZV9fGxbKbS5NsUkX095sfDWHNNlbCWyvmUMi
- hYtl9yXcU/xpYc/nnzXN2aeX6s8GfsjX4PbPmyGWqPCafhAZTeEyEhjoFYaWbyC1QA
- 1coSr0GRBwPcYg0CaDm34/mIOdAnwsAC+3Rf7G8BUh/XLd3/LcdqDiu3uH7YmFRPFd
- 3xZJvER69UFCQ==
-Message-ID: <sashiko-outbox-165224@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 2/3] gpu/buddy: add range-restricted contiguous
- allocation fallback
-To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20261009100546.1103622-2-arunpravin.paneerselvam@amd.com>
-References: <20261009100546.1103622-1-arunpravin.paneerselvam@amd.com>
- <20261009100546.1103622-2-arunpravin.paneerselvam@amd.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1C7E11204D
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:29:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791541754; x=1823077754;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/jOste2N7HTY2KVLcECWU+ocQT5OAkL5mYSK8RL1lig=;
+ b=NzR1nLk9YFQhh3Xghf3c8pBx1qSacqlvNUuM+dVYMdIGTSwMNZsHQXb1
+ D2f4g3SdHmX6q5ME43jOq/S5IIhCD0CV1JdAmdhnGU5H84tZ0NAhCEGU3
+ Vt8mUDBoTVuHgA2G6+a3MsZlw62C1T3wLaQA0JPfl8K/LDveYdqS9egLQ
+ AVdzZTyXSRLtZJ1MgL6A/4okUbJ4hPrTHSxOER7HJSFTm8+fwJ6cW4NXK
+ A5T7Br/0sNFlglMvTJynDvoF464Cd8x/dGxmoHPWgZR0c5cmIk/PWKAih
+ NhmcPKQOLCrmI7N5TtT793xbNRpfbHg2sPbAjpdRQG/4jNeQXmVTpla3+ Q==;
+X-CSE-ConnectionGUID: PDZyn3TwSxixIeTO3YX7EQ==
+X-CSE-MsgGUID: md1Oe9XuT/GT2IaujfMrOw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11929"; a="344065"
+X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
+   d="scan'208";a="344065"
+Received: from fmviesa013.fm.intel.com ([10.60.135.153])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2026 03:29:14 -0700
+X-CSE-ConnectionGUID: mW/knwJVQIC1h5jB15peHQ==
+X-CSE-MsgGUID: Bk5p8+EDQmuKD4e80iAjAQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
+   d="scan'208";a="2025542"
+Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2026 03:29:11 -0700
+From: Badal Nilawar <badal.nilawar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ daniele.ceraolospurio@intel.com, raag.jadav@intel.com,
+ riana.tauro@intel.com, mallesh.koujalagi@intel.com,
+ aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
+ arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
+ nitin.r.gote@intel.com, pravalika.gurram@intel.com
+Subject: [PATCH v4 01/12] drm/xe/cper: Add CPER reporting entry point for
+ xe_log
+Date: Fri,  9 Oct 2026 16:16:04 +0530
+Message-ID: <20261009104602.1075405-15-badal.nilawar@intel.com>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20261009104602.1075405-14-badal.nilawar@intel.com>
+References: <20261009104602.1075405-14-badal.nilawar@intel.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 09 Oct 2026 10:23:53 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,159 +72,160 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] mm: gpu/buddy try-harder fails range allocation when free space ex=
-ceeds range_end
-- [High] mm: gpu/buddy try-harder misses higher-order blocks for range allo=
-cations
---
+Introduce xe_cper_emit() as the single entry point for emitting
+CPER records from xe_log. xe_log now forwards every SIGID log entry
+with its full context (component, location, data/len and formatted
+message), and xe_cper decides how to report it. Hardware SIGIDs are
+routed to a hardware error helper, software SIGIDs are left as TODO.
 
-commit 3089b8dadc6718a57b0162914961a76a654e9d6b
-Author: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-Subject: gpu/buddy: add range-restricted contiguous allocation fallback
+No functional change is intended yet, as the CPER emission logic
+is added in follow-up patches.
 
-This commit adds support for range-restricted contiguous allocation
-fallback in the GPU buddy allocator. It extends __alloc_contig_try_harder
-to confine candidate placements to a specified [range_start, range_end)
-window.
+Assisted-by: Copilot:Claude-Opus-5.5
+Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+---
+v4:
+  - s/CONFIG_UEFI_CPER_X86/CONFIG_UEFI_CPER/ (Raag)
+  - Use in_range() for hardware SIGID check in xe_cper (Raag)
+  - Drop unused response param and constify error_class
+  - Check data len against struct xe_ras_error_class before use (Michal)
+---
+ drivers/gpu/drm/xe/Makefile  |  2 ++
+ drivers/gpu/drm/xe/xe_cper.c | 51 ++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_cper.h | 26 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_log.c  |  5 +++-
+ 4 files changed, 83 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_cper.c
+ create mode 100644 drivers/gpu/drm/xe/xe_cper.h
 
-> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-> index 6566bad4fef15..1f648bcfce574 100644
-> --- a/drivers/gpu/buddy.c
-> +++ b/drivers/gpu/buddy.c
-> @@ -1682,26 +1682,14 @@ static int __gpu_buddy_alloc_range(struct gpu_bud=
-dy *mm,
-[ ... ]
->  static int __alloc_contig_try_harder(struct gpu_buddy *mm,
-> +				     u64 range_start, u64 range_end,
->  				     u64 size,
->  				     u64 min_block_size,
->  				     unsigned long flags,
->  				     struct list_head *blocks)
->  {
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 10930c924070..da78026b0bb4 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -168,6 +168,8 @@ xe-$(CONFIG_HWMON) += xe_hwmon.o
+ xe-$(CONFIG_PERF_EVENTS) += xe_pmu.o
+ xe-$(CONFIG_CONFIGFS_FS) += xe_configfs.o
+ 
++xe-$(CONFIG_UEFI_CPER) += xe_cper.o
++
+ # graphics virtualization (SR-IOV) support
+ xe-y += \
+ 	xe_gt_sriov_vf.o \
+diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+new file mode 100644
+index 000000000000..c5caa0e8f496
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_cper.c
+@@ -0,0 +1,51 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#include <linux/err.h>
++#include <linux/minmax.h>
++
++#include "xe_cper.h"
++#include "xe_device.h"
++#include "xe_ras_types.h"
++
++static bool is_hw_sigid(enum xe_sigid sigid)
++{
++	return in_range(sigid, INTEL_SIGID_GPU_XE_HARDWARE_START, INTEL_SIGID_BATCH);
++}
++
++static void xe_cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
++				const struct xe_ras_error_class *error_class)
++{
++	/* TODO */
++}
++
++/**
++ * xe_cper_emit() - Emit a CPER record for a SIGID log entry
++ * @xe: The &xe_device
++ * @cper_sev: CPER severity
++ * @sigid: Error signature identifier
++ * @component: Component identifier
++ * @location: Location details of the @component
++ * @data: Pointer to the additional details, or ERR_PTR, or NULL if not applicable
++ * @len: Length of the @data in bytes, or 0 if not applicable
++ * @vaf: Formatted log message
++ *
++ * Emit a CPER record for a SIGID log entry
++ */
++void xe_cper_emit(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
++		  u32 component, u32 location, const void *data, size_t len,
++		  struct va_format *vaf)
++{
++	if (!xe)
++		return;
++
++	if (is_hw_sigid(sigid)) {
++		if (!IS_ERR_OR_NULL(data) && len == sizeof(struct xe_ras_error_class))
++			xe_cper_emit_hw_err(xe, cper_sev, sigid, data);
++		return;
++	}
++
++	/* TODO software CPER */
++}
+diff --git a/drivers/gpu/drm/xe/xe_cper.h b/drivers/gpu/drm/xe/xe_cper.h
+new file mode 100644
+index 000000000000..84676c7645a5
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_cper.h
+@@ -0,0 +1,26 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef _XE_CPER_H_
++#define _XE_CPER_H_
++
++#include <linux/types.h>
++
++#include "abi/xe_sigid_abi.h"
++
++struct va_format;
++struct xe_device;
++
++#if IS_ENABLED(CONFIG_UEFI_CPER)
++void xe_cper_emit(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
++		  u32 component, u32 location, const void *data, size_t len,
++		  struct va_format *vaf);
++#else
++static inline void xe_cper_emit(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
++				u32 component, u32 location, const void *data, size_t len,
++				struct va_format *vaf) {}
++#endif
++
++#endif /* _XE_CPER_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_log.c b/drivers/gpu/drm/xe/xe_log.c
+index 29eb16db3320..80e2b1724ceb 100644
+--- a/drivers/gpu/drm/xe/xe_log.c
++++ b/drivers/gpu/drm/xe/xe_log.c
+@@ -8,6 +8,7 @@
+ 
+ #include "abi/xe_log_abi.h"
+ 
++#include "xe_cper.h"
+ #include "xe_device.h"
+ #include "xe_log.h"
+ #include "xe_pci_types.h"
+@@ -19,7 +20,9 @@ static void log_emit_cper(struct pci_dev *pdev, int cper_sev, enum xe_sigid sigi
+ {
+ 	KUNIT_STATIC_STUB_REDIRECT(log_emit_cper, pdev, cper_sev, sigid,
+ 				   component, location, data, len, vaf);
+-	/* TODO */
++
++	xe_cper_emit(xe_any_to_xe(pdev), cper_sev, sigid,
++		     component, location, data, len, vaf);
+ }
+ 
+ static const char *log_unknown_component_prefix(u32 component)
+-- 
+2.54.0
 
-[Severity: High]
-Does the try-harder fallback miss higher-order blocks for range allocations?
-
-When this function is called as a fallback, it derives an order based on the
-unrounded size and searches exclusively in mm->free_tree[order]:
-
-        modify_size =3D rounddown_pow_of_two(size);
-        pages =3D modify_size >> ilog2(mm->chunk_size);
-        order =3D fls(pages) - 1;
-        ...
-        root =3D &mm->free_tree[order];
-        if (RB_EMPTY_ROOT(root))
-                return -ENOSPC;
-
-However, for range contiguous allocations, the normal allocation pass round=
-s up
-the requested size. If a higher-order block intersects the range but cannot
-fit the rounded-up size within the bounds, it gets skipped and is not split.
-
-If this occurs, the valid contiguous space remains in a higher-order tree.
-
-Since the try-harder fallback only checks the single derived order's tree,
-will it fail immediately with -ENOSPC, missing the free space that resides =
-in
-the unsplit, higher-order blocks?
-
-> -	u64 rhs_offset, lhs_offset, filled;
-> +	u64 rhs_offset, lhs_offset, filled, aligned;
->  	struct gpu_buddy_block *block;
->  	struct rb_root *root;
->  	struct rb_node *iter;
-> @@ -1726,25 +1714,36 @@ static int __alloc_contig_try_harder(struct gpu_b=
-uddy *mm,
-> =20
->  		rhs_offset =3D gpu_buddy_block_offset(block);
-> =20
-> +		if (rhs_offset >=3D range_end) {
-> +			iter =3D rb_prev(iter);
-> +			continue;
-> +		}
-> +		if (rhs_offset < range_start)
-> +			break;
-> +
->  		/* Allocate blocks traversing RHS */
->  		err =3D  __gpu_buddy_alloc_range(mm, rhs_offset, size,
->  					       flags, &filled, blocks);
->  		if (err && err !=3D -ENOSPC)
->  			return err;
-> -		if (!err && IS_ALIGNED(rhs_offset, min_block_size))
-> +		if (!err && IS_ALIGNED(rhs_offset, min_block_size) &&
-> +		    rhs_offset >=3D range_start && rhs_offset + size <=3D range_end)
->  			return 0;
->  		if (!err) {
->  			/* Allocate the unaligned RHS offset using round_down */
->  			gpu_buddy_free_list_internal(mm, blocks);
-> -			err =3D __alloc_contig_aligned_retry(mm, rhs_offset,
-> -							   size,
-> -							   min_block_size,
-> -							   flags, blocks);
-> -			if (!err)
-> -				return 0;
-> -			if (err !=3D -ENOSPC) {
-> -				gpu_buddy_free_list_internal(mm, blocks);
-> -				return err;
-> +
-> +			aligned =3D round_down(rhs_offset, min_block_size);
-> +			if (aligned >=3D range_start &&
-> +			    aligned + size <=3D range_end) {
-> +				err =3D __gpu_buddy_alloc_range(mm, aligned, size,
-> +							      flags, NULL, blocks);
-> +				if (!err)
-> +					return 0;
-> +				if (err !=3D -ENOSPC) {
-> +					gpu_buddy_free_list_internal(mm, blocks);
-> +					return err;
-> +				}
->  			}
->  			goto next;
->  		}
-
-[Severity: High]
-Does this bypass the left-shift fallback when free space exceeds range_end?
-
-__alloc_contig_try_harder() attempts to place a contiguous block by calling
-__gpu_buddy_alloc_range() without passing range_end.
-
-If the contiguous free space extends beyond range_end, this allocation fully
-succeeds and returns err =3D=3D 0.
-
-Because the allocation succeeded, the condition aligned + size <=3D range_e=
-nd
-will evaluate to false if the memory exceeds the requested range, and the c=
-ode
-hits goto next:
-
-                        if (aligned >=3D range_start &&
-                            aligned + size <=3D range_end) {
-                                ...
-                        }
-                        goto next;
-                }
-
-This completely skips the lhs_offset fallback path that normally follows:
-
-                if (size - filled > rhs_offset)
-                        goto next;
-                lhs_offset =3D rhs_offset - (size - filled);
-                ...
-
-Had the allocator been bounded by range_end, it would have returned -ENOSPC
-with filled set, triggering the left-shift fallback to perfectly slide the
-allocation into the requested range.
-
-Will the presence of extra free memory outside the range cause valid contig=
-uous
-allocations to spuriously fail?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261009100546.1103=
-622-1-arunpravin.paneerselvam@amd.com?part=3D2
