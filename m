@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1E51CA6012
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:50:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5758CCA6012
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:54:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B181B10E9B4;
-	Fri,  9 Oct 2026 10:50:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="P9HBY454";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D955D10E9B4
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:50:24 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 9F81443A08;
- Fri,  9 Oct 2026 10:50:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 575671F000FF;
- Fri,  9 Oct 2026 10:50:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791543024;
- bh=um8WtzbBUgQ/GoCpCM5b+hAhWLGhsM4BBU/LgFJkq4s=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=P9HBY454lydpkSR4RlOogtWQIdNJ1sG4+KgCfccc4naLvHeXByDsx5NQiwplUcSho
- 8BmTbeOROt9RlE3M9NRiBuL1bd220pUE/sWOU46/Ayq5bhPETEqbB7Rvrz7FPMjw6F
- q2vYVOciQIvkqKpEl4Vo7bMgaSf8uptFekzZm9m4aV5iJNUc4N89Sz1ZtYA0RI6Lm/
- ppXUN1+/SyKWbgboEnEZu6r+kuGyaPk4XpwLWpMvGUze2KQqg46dbgQ9s6OwWapTfk
- cfIlqn/lVWjL1jnFWgLzrQjlXtXmPtEy5drTgVtoK45zdPEm31g5cGl19PE+MlICU1
- xKG3FQ258brFQ==
-Message-ID: <sashiko-outbox-165275@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 12/12] drm/xe/xe_ras: Report correctable errors using
- SIGID
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02EA210E544;
+	Fri,  9 Oct 2026 10:54:08 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD48610E5E4;
+ Fri,  9 Oct 2026 10:54:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_CPER_logging_support_?=
+ =?utf-8?q?for_CRI_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Badal Nilawar" <badal.nilawar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261009104602.1075405-26-badal.nilawar@intel.com>
+Date: Fri, 09 Oct 2026 10:54:06 -0000
+Message-ID: <179154324670.2763.14206339814439987294@221881a7231d>
+X-Patchwork-Hint: ignore
 References: <20261009104602.1075405-14-badal.nilawar@intel.com>
- <20261009104602.1075405-26-badal.nilawar@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 09 Oct 2026 10:50:23 +0000
+In-Reply-To: <20261009104602.1075405-14-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,63 +36,123 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] xe_ras: WARN on valid XE_RAS_COMP_RESERVED telemetry
---
+== Series Details ==
 
-commit ce7ef0dce322046ec43ef7cd45243457eb7f0974
+Series: Add CPER logging support for CRI (rev4)
+URL   : https://patchwork.freedesktop.org/series/169692/
+State : warning
+
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit be9d02e26570df0fe7473d41fd7963fa71737f22
 Author: Badal Nilawar <badal.nilawar@intel.com>
+Date:   Fri Oct 9 16:16:15 2026 +0530
 
-drm/xe/xe_ras: Report correctable errors using SIGID
+    drm/xe/xe_ras: Report correctable errors using SIGID
+    
+    Use xe_log_* helper to report correctable errors.
+    
+    Assisted-by: Copilot:Claude-Opus-5.5
+    Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+    Cc: Raag Jadav <raag.jadav@intel.com>
++ /mt/dim checkpatch 3bd4f625aafdf70814dbf075de96e224355c9f1e drm-intel
+5663ce929103 drm/xe/cper: Add CPER reporting entry point for xe_log
+-:32: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#32: 
+new file mode 100644
 
-This commit updates the reporting of correctable RAS errors to use the
-xe_log_from helper instead of xe_warn. It introduces mapping functions to
-convert RAS severity and components to the appropriate logging types and ID=
-s.
+total: 0 errors, 1 warnings, 0 checks, 102 lines checked
+d0f12a32ce41 drm/xe/cper: Retrieve the error counter record for CPER reporting
+cbcf11412d7c drm/xe/cper: Initialize Intel-specific error section header
+-:86: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#86: 
+new file mode 100644
 
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-[ ... ]
-> @@ -459,8 +467,11 @@ void xe_ras_counter_threshold_crossed(struct xe_devi=
-ce *xe,
->  		if (!ras_counter_is_valid(xe, &errors[id]))
->  			continue;
-> =20
-> -		xe_warn(xe, "[RAS]: %s %s detected\n",
-> -			comp_to_str(component), sev_to_str(severity));
-> +		xe_log_from(xe, ras_sev_to_cper_sev(severity),
-> +			    ras_comp_to_hw_sigid(component),
-> +			    ras_comp_to_log_comp(component),
-> +			    &errors[id], sizeof(errors[id]),
-> +			    "error detected\n");
+total: 0 errors, 1 warnings, 0 checks, 138 lines checked
+09e074473c25 drm/xe/cper: Construct CPER record for hardware errors
+11904ebb7f37 drm/xe/xe_ras: Add support to retrieve info queue data for CRI
+d046214a5a48 drm/xe/cper: Prepare Intel CPER error info records
+dd6a5cb0551e drm/xe/cper: Log CPER records for aggregate counter retrieval
+-:13: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#13: 
+new file mode 100644
 
-[Severity: Medium]
-Could this trigger a WARN for the XE_RAS_COMP_RESERVED component ID?
+total: 0 errors, 1 warnings, 0 checks, 274 lines checked
+5f85699f13df drm/xe/cper: Emit cper record to trace buf
+-:51: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#51: 
+new file mode 100644
 
-Looking at ras_counter_is_valid(), it validates the component using:
-in_range(component, XE_RAS_COMP_NOT_SUPPORTED + 1, XE_RAS_COMP_MAX - 1)
+-:91: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#91: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:21:
++TRACE_EVENT(xe_error_cper,
++	TP_PROTO(struct xe_device *xe,
 
-Since in_range(val, start, len) evaluates val >=3D start && val < start + l=
-en,
-passing in component 3 (XE_RAS_COMP_RESERVED) returns true, allowing it to
-pass the validity check.
+-:92: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#92: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:22:
++	TP_PROTO(struct xe_device *xe,
++	    const guid_t *platform_id, const guid_t *fru_id,
 
-When this reserved component is passed to xe_log_from(), it triggers the
-logging subsystem. Because the xe_log macro framework lacks a definition
-for HARDWARE, 3, log_component_prefix() falls back to
-log_unknown_component_prefix(), which triggers a kernel WARN().
+-:98: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#98: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:28:
++	TP_STRUCT__entry(
 
-This warning will crash systems configured with panic_on_warn when they
-encounter expected or reserved hardware telemetry data. Should we explicitly
-filter out reserved component IDs before passing them to the logging framew=
-ork?
+-:108: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#108: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:38:
++	TP_fast_assign(
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261009104602.1075=
-405-14-badal.nilawar@intel.com?part=3D12
+-:123: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#123: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:53:
++		__print_hex(__entry->ihdr_raw,
++		    sizeof(struct xe_cper_sec_intel_err_hdr)),
+
+-:126: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#126: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:56:
++		__print_hex(__get_dynamic_array(cper),
++		    __entry->cper_len))
+
+-:134: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#134: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:64:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+                              ^
+
+-:134: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#134: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:64:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+                                 ^
+
+-:134: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#134: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:64:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+                                         ^
+
+-:134: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#134: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:64:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+                                             ^
+
+-:134: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#134: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:64:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+                                                 ^
+
+total: 0 errors, 1 warnings, 11 checks, 100 lines checked
+3c8ecb566740 drm/xe/xe_ras: Report device memory errors using SIGID
+6067cb1a946c drm/xe/xe_ras: Report core compute errors using SIGID
+18e5eebfeb22 drm/xe/xe_ras: Report soc internal errors using SIGID
+be9d02e26570 drm/xe/xe_ras: Report correctable errors using SIGID
+
+
