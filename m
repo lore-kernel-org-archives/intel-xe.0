@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16525CA6019
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:46:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1E51CA6012
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:50:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7BB2112059;
-	Fri,  9 Oct 2026 10:46:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B181B10E9B4;
+	Fri,  9 Oct 2026 10:50:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JJeDeq16";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="P9HBY454";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0DA1112059
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:46:04 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D955D10E9B4
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:50:24 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 3FC9860534;
- Fri,  9 Oct 2026 10:46:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE3561F000FF;
- Fri,  9 Oct 2026 10:46:03 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 9F81443A08;
+ Fri,  9 Oct 2026 10:50:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 575671F000FF;
+ Fri,  9 Oct 2026 10:50:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791542764;
- bh=8zXHufskK4WF8DGArIw31j7LwgtNU8VLAdxsm6gYfJ0=;
+ s=k20260515; t=1791543024;
+ bh=um8WtzbBUgQ/GoCpCM5b+hAhWLGhsM4BBU/LgFJkq4s=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=JJeDeq16uK742w6/n9kQqzSMz9b22471lUefv9lG/mtVHOd5kP4ENh2PQk4N9f6Dx
- 6gDujMIA/MDOCCfXMBHIo2zmfReRv/RB5ij0cLDuodLYvrCJD/e+tQf2C01FS/hFGY
- oekyKI5EGHse7i1wCWf3kCH+5iZKhGnHpnhGCWMFVOJP4C9Bfp1ElU/FUYWv6VqAdE
- +E0clcCgNS1kKkKYAuA3Zdk+YvAFimD9hX/sP1/MaVB5QhjQQdBY03e9r2zCcZykDJ
- nHi6tcaABRUmDtRXQ6l12fVpHE+0+TWPM8CNwaS92YLrs9mQliJkFIEpazVXOGwM7q
- 6u/eJi1wogqKw==
-Message-ID: <sashiko-outbox-165261@kernel.org>
+ b=P9HBY454lydpkSR4RlOogtWQIdNJ1sG4+KgCfccc4naLvHeXByDsx5NQiwplUcSho
+ 8BmTbeOROt9RlE3M9NRiBuL1bd220pUE/sWOU46/Ayq5bhPETEqbB7Rvrz7FPMjw6F
+ q2vYVOciQIvkqKpEl4Vo7bMgaSf8uptFekzZm9m4aV5iJNUc4N89Sz1ZtYA0RI6Lm/
+ ppXUN1+/SyKWbgboEnEZu6r+kuGyaPk4XpwLWpMvGUze2KQqg46dbgQ9s6OwWapTfk
+ cfIlqn/lVWjL1jnFWgLzrQjlXtXmPtEy5drTgVtoK45zdPEm31g5cGl19PE+MlICU1
+ xKG3FQ258brFQ==
+Message-ID: <sashiko-outbox-165275@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 02/12] drm/xe/cper: Retrieve the error counter record
- for CPER reporting
+Subject: Re: [PATCH v4 12/12] drm/xe/xe_ras: Report correctable errors using
+ SIGID
 To: "Badal Nilawar" <badal.nilawar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261009104602.1075405-16-badal.nilawar@intel.com>
+In-Reply-To: <20261009104602.1075405-26-badal.nilawar@intel.com>
 References: <20261009104602.1075405-14-badal.nilawar@intel.com>
- <20261009104602.1075405-16-badal.nilawar@intel.com>
+ <20261009104602.1075405-26-badal.nilawar@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 09 Oct 2026 10:46:03 +0000
+Date: Fri, 09 Oct 2026 10:50:23 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,70 +59,57 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] drm/xe: out-of-bounds array access on informational or reserved RA=
-S errors
+- [Medium] xe_ras: WARN on valid XE_RAS_COMP_RESERVED telemetry
 --
 
-commit 27317cc719f71d74be0f7fcd94c5a8fbf53f9e5e
+commit ce7ef0dce322046ec43ef7cd45243457eb7f0974
 Author: Badal Nilawar <badal.nilawar@intel.com>
 
-drm/xe/cper: Retrieve the error counter record for CPER reporting
-   =20
-Retrieve error counter record required to build a CPER record.
+drm/xe/xe_ras: Report correctable errors using SIGID
+
+This commit updates the reporting of correctable RAS errors to use the
+xe_log_from helper instead of xe_warn. It introduces mapping functions to
+convert RAS severity and components to the appropriate logging types and ID=
+s.
 
 > diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index 7a85735c57d58..5cfc9beff8c13 100644
 > --- a/drivers/gpu/drm/xe/xe_ras.c
 > +++ b/drivers/gpu/drm/xe/xe_ras.c
 [ ... ]
-> @@ -284,21 +282,21 @@ static void ras_send_error_event(struct xe_device *=
-xe, u8 severity, u8 component)
->  {
->  	struct xe_ras_error_class counter =3D {0};
-> +	struct xe_ras_get_counter_response response =3D {0};
->  	u8 drm_severity, drm_component;
-> -	u32 value;
->  	int ret;
+> @@ -459,8 +467,11 @@ void xe_ras_counter_threshold_crossed(struct xe_devi=
+ce *xe,
+>  		if (!ras_counter_is_valid(xe, &errors[id]))
+>  			continue;
 > =20
->  	counter.common.severity =3D severity;
->  	counter.common.component =3D component;
-> =20
-> -	ret =3D get_counter(xe, &counter, &value);
-> +	ret =3D xe_ras_get_counter_response(xe, &counter, &response);
->  	if (ret)
->  		return;
-> =20
->  	drm_severity =3D xe_to_drm_ras_severity(severity);
->  	drm_component =3D xe_to_drm_ras_component(component);
-> =20
-> -	xe_drm_ras_event(xe, drm_component, drm_severity, value);
-> +	xe_drm_ras_event(xe, drm_component, drm_severity, response.value);
+> -		xe_warn(xe, "[RAS]: %s %s detected\n",
+> -			comp_to_str(component), sev_to_str(severity));
+> +		xe_log_from(xe, ras_sev_to_cper_sev(severity),
+> +			    ras_comp_to_hw_sigid(component),
+> +			    ras_comp_to_log_comp(component),
+> +			    &errors[id], sizeof(errors[id]),
+> +			    "error detected\n");
 
-[Severity: High]
-When firmware returns valid but unmapped values, like=20
-XE_RAS_SEV_INFORMATIONAL or XE_RAS_COMP_RESERVED, is it possible that=20
-xe_to_drm_ras_severity() and xe_to_drm_ras_component() will map these to=20
-their MAX values (DRM_XE_RAS_ERR_SEV_MAX and DRM_XE_RAS_ERR_COMP_MAX)?
+[Severity: Medium]
+Could this trigger a WARN for the XE_RAS_COMP_RESERVED component ID?
 
-If so, does this call to xe_drm_ras_event() cause out-of-bounds array
-accesses?=20
+Looking at ras_counter_is_valid(), it validates the component using:
+in_range(component, XE_RAS_COMP_NOT_SUPPORTED + 1, XE_RAS_COMP_MAX - 1)
 
-In drivers/gpu/drm/xe/xe_drm_ras.c:xe_drm_ras_event():
+Since in_range(val, start, len) evaluates val >=3D start && val < start + l=
+en,
+passing in component 3 (XE_RAS_COMP_RESERVED) returns true, allowing it to
+pass the validity check.
 
-    struct xe_drm_ras_counter *info =3D ras->info[severity];
-    ...
-    node =3D &ras->node[severity];
+When this reserved component is passed to xe_log_from(), it triggers the
+logging subsystem. Because the xe_log macro framework lacks a definition
+for HARDWARE, 3, log_component_prefix() falls back to
+log_unknown_component_prefix(), which triggers a kernel WARN().
 
-    if (!info || !info[component].name)
-        return;
-
-Since the arrays are sized for the valid drm enum mappings, using the MAX
-values as indices would lead to wild pointer dereferences.
-
->  }
-> =20
->  static u8 handle_core_compute_errors(struct xe_ras_error_array *arr)
+This warning will crash systems configured with panic_on_warn when they
+encounter expected or reserved hardware telemetry data. Should we explicitly
+filter out reserved component IDs before passing them to the logging framew=
+ork?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261009104602.1075=
-405-14-badal.nilawar@intel.com?part=3D2
+405-14-badal.nilawar@intel.com?part=3D12
