@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 041D0CA6012
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:38:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F4AACA6012
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:40:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A309C112059;
-	Fri,  9 Oct 2026 10:38:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FF0C112071;
+	Fri,  9 Oct 2026 10:40:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="I3R5ldkz";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="oU4FlaKE";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40C4F112059
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:38:49 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52182112068
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:40:12 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 0309A40283;
- Fri,  9 Oct 2026 10:38:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF9681F000FF;
- Fri,  9 Oct 2026 10:38:48 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 5285F60534;
+ Fri,  9 Oct 2026 10:40:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D26B21F000FF;
+ Fri,  9 Oct 2026 10:40:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791542328;
- bh=TbraoCYNuhZidAN2Xlp0xFnOcPdx/6IBJKJ9v0PkDck=;
+ s=k20260515; t=1791542411;
+ bh=RU33ae01Jqx48Fj382ECqk+nCUTNYR6xZI8YzL0Pt68=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=I3R5ldkzn5IRDHTHPQ4sRTNS/ZerEn0+yd0GaJmgCvI9anzS++ognRcIXwE5d24E2
- cGp20PlOWpygfVTsFF8FTtszJZYeU1F1w5N6/UH7mBM5/QwNvdLWed6AxymCrtDRM1
- xXblpgr0wl3CRnoZq8JW4VWPOpVAR3wctkUQBff6O9gDNbJgVDa1VUHrlpfsl5wYs9
- 6UE0sLoHlfbdAwgH6N0sAA4EqDxXKZye/1YU9HWG+yqIzRivB3qNIZzhSu6tqy7f1w
- IxtpXeVp66pvJ+XRDvw8VSLyn8341RX2vSJFoIoG7bQQojEq38Oh1sHRjXJgf9HSTF
- 5KgjEU8uVbMXw==
-Message-ID: <sashiko-outbox-165246@kernel.org>
+ b=oU4FlaKEuFVl4WaZ8iUyC6SUChhjQMjeD4uvQYhmxbPyiszrEW3f4aSS+3Sgcpc0r
+ jsDFOPXVO2R8diKbmXZH9kdx0IrtvEAg1Rr/cZi+0Itz7/XqptOTsixt2jVdYKJfcf
+ Nbc2uheCthtCJVWpqLUxAC65A1m6qTPYeDzBYojI3hJ+DYRRt4nzlfIWAaiIYxgazE
+ BQO9E0mntPLh4F3slgl9lQgC1MeBrAi+J4qlTcN/SOhKckj9SJCCMgZMdmpJemJNAZ
+ TidQuLwzsVhNfxzoaeRI7K7/tmY9lULTdsYQzKDG9SUcu2MyoXdRaW5omZPyNZT8dm
+ PiGjtCzRIizcA==
+Message-ID: <sashiko-outbox-165251@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 08/12] drm/xe/cper: Emit cper record to trace buf
+Subject: Re: [PATCH v4 05/12] drm/xe/xe_ras: Add support to retrieve info
+ queue data for CRI
 To: "Badal Nilawar" <badal.nilawar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261009104602.1075405-22-badal.nilawar@intel.com>
+In-Reply-To: <20261009104602.1075405-19-badal.nilawar@intel.com>
 References: <20261009104602.1075405-14-badal.nilawar@intel.com>
- <20261009104602.1075405-22-badal.nilawar@intel.com>
+ <20261009104602.1075405-19-badal.nilawar@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 09 Oct 2026 10:38:48 +0000
+Date: Fri, 09 Oct 2026 10:40:10 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,62 +59,64 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Low] trace: xe_error_cper uses %pU instead of %pUl for guid_t formatting
+- [Medium] xe_ras: missing validation of operation_status in get_info_queue=
+_data
 --
 
-commit 2df74abeb761bb9cbc4580031c2be3af5f19e10b
+commit 7080ef5206c9792b353853f321f38646d98e4924
 Author: Badal Nilawar <badal.nilawar@intel.com>
 
-drm/xe/cper: Emit cper record to trace buf
-   =20
-This commit introduces the xe_error_cper tracepoint to emit assembled CPER
-records to the trace buffer. The events carry the device name, platform ID,
-FRU ID, severity, and the Intel error section header so tools can pick them=
- up.
+drm/xe/xe_ras: Add support to retrieve info queue data for CRI
 
-> diff --git a/drivers/gpu/drm/xe/xe_trace_cper.h b/drivers/gpu/drm/xe/xe_t=
-race_cper.h
-> new file mode 100644
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_trace_cper.h
+Retrieve the RAS info queue data, in multiple chunks, and assemble it into
+a flat buffer. A follow-up patch will use this data to prepare the CPER
+error info.
+
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index 5cfc9beff8c13..900319938fe54 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
 [ ... ]
-> +TRACE_EVENT(xe_error_cper,
-> +	TP_PROTO(struct xe_device *xe,
-> +	    const guid_t *platform_id, const guid_t *fru_id,
+> +static int get_info_queue_data(struct xe_device *xe,
+> +			       struct xe_ras_get_info_queue_request *req,
+> +			       struct xe_ras_get_info_queue_response *out)
+> +{
 [ ... ]
-> +	TP_fast_assign(
-> +	    __assign_str(dev);
-> +	    __entry->sev =3D severity;
-> +	    memcpy(__entry->platform_id, platform_id, UUID_SIZE);
-> +	    memcpy(__entry->fru_id, fru_id, UUID_SIZE);
-> +	    memcpy(__entry->ihdr_raw, ihdr, sizeof(struct xe_cper_sec_intel_err=
-_hdr));
-> +	    __entry->cper_len =3D cper_len;
-> +	    memcpy(__get_dynamic_array(cper), cper, cper_len);
-> +	    ),
+> +	if (rlen !=3D sizeof(response)) {
+> +		xe_err(xe, "sysctrl: unexpected get info queue data response length %z=
+u (expected %zu)\n",
+> +		       rlen, sizeof(response));
+> +		return -EIO;
+> +	}
 > +
-> +	TP_printk("dev=3D%s severity=3D%d platform_id=3D%pU fru_id=3D%pU "
-> +		"intel_err_hdr_raw=3D%s cper_len=3D%u cper_raw=3D%s",
+> +	hdr =3D &response.queue_response.header;
+> +	xe_dbg(xe, "[RAS]: info queue data: status=3D%u chunk_size=3D%u flags=
+=3D0x%x\n",
+> +	       response.operation_status, hdr->chunk_size, hdr->flags);
+> +
+> +	*out =3D response;
+> +	return 0;
+> +}
 
-[Severity: Low]
-Since platform_id and fru_id are guid_t types (which are little-endian per
-UEFI/CPER specifications), shouldn't this use the %pUl format specifier
-instead of %pU?
+[Severity: Medium]
+Does this code need to validate response.operation_status and return an err=
+or
+if the firmware operation failed?
 
-The Linux kernel's %pU specifier assumes a big-endian uuid_t layout. Using
-it here will cause the first three groups of the UUID to be byte-swapped in
-the trace output, which might break correlation with platform specifications
-and CPER tooling.
+get_info_queue_data() executes the XE_SYSCTRL_CMD_GET_INFO_QUEUE mailbox
+command to fetch chunks from the firmware. The firmware response includes an
+operation_status field to indicate whether the request was successful or
+rejected (e.g., due to an invalid session ID or out-of-bounds offset).
 
-> +		__get_str(dev), __entry->sev,
-> +		__entry->platform_id, __entry->fru_id,
-> +		__print_hex(__entry->ihdr_raw,
-> +		    sizeof(struct xe_cper_sec_intel_err_hdr)),
-> +		__entry->cper_len,
-> +		__print_hex(__get_dynamic_array(cper),
-> +		    __entry->cper_len))
-> +);
+However, this only logs the status in a debug message and unconditionally
+returns 0 (success). Because it fails to return an error (such as converting
+the status via ras_status_to_errno()), the caller
+xe_ras_drain_info_queue_raw() will proceed to validate and process the
+payload. If the firmware did not populate the payload on error, it will
+contain zeroes or garbage, resulting in a confusing "invalid info queue
+chunk" warning or silent failure, rather than properly halting the fetch
+with the correct error code.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261009104602.1075=
-405-14-badal.nilawar@intel.com?part=3D8
+405-14-badal.nilawar@intel.com?part=3D5
