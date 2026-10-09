@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F779CA6012
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:43:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16525CA6019
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:46:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A469112059;
-	Fri,  9 Oct 2026 10:43:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7BB2112059;
+	Fri,  9 Oct 2026 10:46:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IqKbcPuQ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JJeDeq16";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04761112059
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:43:18 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0DA1112059
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:46:04 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id C0583429F4;
- Fri,  9 Oct 2026 10:43:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EA751F000FF;
- Fri,  9 Oct 2026 10:43:17 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 3FC9860534;
+ Fri,  9 Oct 2026 10:46:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE3561F000FF;
+ Fri,  9 Oct 2026 10:46:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791542597;
- bh=+iyUSneQE3BlV+RxrAk4Kb1IisOtCCiSdXb5E6xuqw0=;
+ s=k20260515; t=1791542764;
+ bh=8zXHufskK4WF8DGArIw31j7LwgtNU8VLAdxsm6gYfJ0=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=IqKbcPuQ3qbjp+NtktoTeiu88fgr2VxVOP1IhSc/p8+b2mVnueR6EQjAOa7UbK0wg
- +Amw8wPiM84b6IlfD5fDZPq0zubTHpXK/xAi4Og0SqXE+2oXzqZfp57JRkU0NAgmgh
- /PDLNJg+KY0bTPAIXGeHTFlx7FRju7p5dImdCxzbPYN+TNnKzcVBCvRQGLZeYPyoPz
- RVPHk/Q9UzOTX/01rAcypqNGaoqNTdlsl9pNVLykAN9aw/cyRe82E/T94ocuYCt6IF
- Y3GLarxd805Mz0zXjgVtgP06vI8lipGuOPLONwxqRGsMJ9ElA9uOLdxp7r6iDZRzCy
- ZJmgo7OBh5NDw==
-Message-ID: <sashiko-outbox-165258@kernel.org>
+ b=JJeDeq16uK742w6/n9kQqzSMz9b22471lUefv9lG/mtVHOd5kP4ENh2PQk4N9f6Dx
+ 6gDujMIA/MDOCCfXMBHIo2zmfReRv/RB5ij0cLDuodLYvrCJD/e+tQf2C01FS/hFGY
+ oekyKI5EGHse7i1wCWf3kCH+5iZKhGnHpnhGCWMFVOJP4C9Bfp1ElU/FUYWv6VqAdE
+ +E0clcCgNS1kKkKYAuA3Zdk+YvAFimD9hX/sP1/MaVB5QhjQQdBY03e9r2zCcZykDJ
+ nHi6tcaABRUmDtRXQ6l12fVpHE+0+TWPM8CNwaS92YLrs9mQliJkFIEpazVXOGwM7q
+ 6u/eJi1wogqKw==
+Message-ID: <sashiko-outbox-165261@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 01/12] drm/xe/cper: Add CPER reporting entry point
- for xe_log
+Subject: Re: [PATCH v4 02/12] drm/xe/cper: Retrieve the error counter record
+ for CPER reporting
 To: "Badal Nilawar" <badal.nilawar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261009104602.1075405-15-badal.nilawar@intel.com>
+In-Reply-To: <20261009104602.1075405-16-badal.nilawar@intel.com>
 References: <20261009104602.1075405-14-badal.nilawar@intel.com>
- <20261009104602.1075405-15-badal.nilawar@intel.com>
+ <20261009104602.1075405-16-badal.nilawar@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 09 Oct 2026 10:43:17 +0000
+Date: Fri, 09 Oct 2026 10:46:03 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,53 +59,70 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] drm/xe: Silent telemetry loss when hardware SIGIDs lack exact RA=
-S data payload
+- [High] drm/xe: out-of-bounds array access on informational or reserved RA=
+S errors
 --
 
-commit a8ad6417f3a91a193b5e9bf972e9a0e60ff46e5a
+commit 27317cc719f71d74be0f7fcd94c5a8fbf53f9e5e
 Author: Badal Nilawar <badal.nilawar@intel.com>
 
-drm/xe/cper: Add CPER reporting entry point for xe_log
+drm/xe/cper: Retrieve the error counter record for CPER reporting
+   =20
+Retrieve error counter record required to build a CPER record.
 
-Introduce xe_cper_emit() as the single entry point for emitting
-CPER records from xe_log. Hardware SIGIDs are routed to a hardware
-error helper, and software SIGIDs are left as TODO.
-
-> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
-> new file mode 100644
-> index 0000000000000..c5caa0e8f496a
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_cper.c
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index 7a85735c57d58..5cfc9beff8c13 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
 [ ... ]
-> +void xe_cper_emit(struct xe_device *xe, int cper_sev, enum xe_sigid sigi=
-d,
-> +		  u32 component, u32 location, const void *data, size_t len,
-> +		  struct va_format *vaf)
-> +{
-> +	if (!xe)
-> +		return;
-> +
-> +	if (is_hw_sigid(sigid)) {
-> +		if (!IS_ERR_OR_NULL(data) && len =3D=3D sizeof(struct xe_ras_error_cla=
-ss))
-> +			xe_cper_emit_hw_err(xe, cper_sev, sigid, data);
-> +		return;
+> @@ -284,21 +282,21 @@ static void ras_send_error_event(struct xe_device *=
+xe, u8 severity, u8 component)
+>  {
+>  	struct xe_ras_error_class counter =3D {0};
+> +	struct xe_ras_get_counter_response response =3D {0};
+>  	u8 drm_severity, drm_component;
+> -	u32 value;
+>  	int ret;
+> =20
+>  	counter.common.severity =3D severity;
+>  	counter.common.component =3D component;
+> =20
+> -	ret =3D get_counter(xe, &counter, &value);
+> +	ret =3D xe_ras_get_counter_response(xe, &counter, &response);
+>  	if (ret)
+>  		return;
+> =20
+>  	drm_severity =3D xe_to_drm_ras_severity(severity);
+>  	drm_component =3D xe_to_drm_ras_component(component);
+> =20
+> -	xe_drm_ras_event(xe, drm_component, drm_severity, value);
+> +	xe_drm_ras_event(xe, drm_component, drm_severity, response.value);
 
-[Severity: Medium]
-If a hardware SIGID log entry is missing the expected RAS data payload (e.g=
-.,
-the data pointer is ERR_PTR, NULL, or the length is unexpected), does this
-unconditionally return and drop the telemetry?
+[Severity: High]
+When firmware returns valid but unmapped values, like=20
+XE_RAS_SEV_INFORMATIONAL or XE_RAS_COMP_RESERVED, is it possible that=20
+xe_to_drm_ras_severity() and xe_to_drm_ras_component() will map these to=20
+their MAX values (DRM_XE_RAS_ERR_SEV_MAX and DRM_XE_RAS_ERR_COMP_MAX)?
 
-Since there is no fallback to emit a software CPER log or print a warning,
-it looks like this could result in a silent loss of hardware error data.
+If so, does this call to xe_drm_ras_event() cause out-of-bounds array
+accesses?=20
 
-> +	}
-> +
-> +	/* TODO software CPER */
-> +}
+In drivers/gpu/drm/xe/xe_drm_ras.c:xe_drm_ras_event():
+
+    struct xe_drm_ras_counter *info =3D ras->info[severity];
+    ...
+    node =3D &ras->node[severity];
+
+    if (!info || !info[component].name)
+        return;
+
+Since the arrays are sized for the valid drm enum mappings, using the MAX
+values as indices would lead to wild pointer dereferences.
+
+>  }
+> =20
+>  static u8 handle_core_compute_errors(struct xe_ras_error_array *arr)
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261009104602.1075=
-405-14-badal.nilawar@intel.com?part=3D1
+405-14-badal.nilawar@intel.com?part=3D2
