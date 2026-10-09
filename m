@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DC89CA601D
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 16:27:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD179CA601D
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 16:33:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07AB610E04E;
-	Fri,  9 Oct 2026 16:27:39 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE7B210E04E;
- Fri,  9 Oct 2026 16:27:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2766481196422193932=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 789E910E04E;
+	Fri,  9 Oct 2026 16:33:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fmhRBUgg";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F29A10E04E
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 16:33:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791563589; x=1823099589;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JxPD07mg+Biz6Cn2NlmX07G+x7gkvPDpPPEkOTg4R5M=;
+ b=fmhRBUggwzkUTFRJEjGF/uFYxrGlebj+zT0vXn3PWlpSzJjtrDCQ090p
+ NwhF9JufYfaZhIrTWQpWHaWg9y5J2CBlebD7SSZeGHM4HEFX+urEgQI8P
+ ZBOZZGv+sF/Er3AKG3gfGk9Njzt4tjC5SXrMJLkMg6iyY3+QwkEFZL1NS
+ 9JxGPDgHYrk2tJf8D4n6LK5AjUzigWwymTyT3dJKoFScSs5JBNmjPi8lv
+ jc8EgLCOTCpZ8ran/bXzVd2Q8TumL0ao2urt25PZgetrzlxIfK04UrAHT
+ SWvfXRsclHl9gNsdhTGxB9C5wqngjCR85x7YmB6qdTkCFGYaAiaI9LWB9 g==;
+X-CSE-ConnectionGUID: 4n/SH6kmTLybKgL1sJZy3w==
+X-CSE-MsgGUID: gpV4vSwmToapf4GYAExPag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11930"; a="254361"
+X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
+   d="scan'208";a="254361"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2026 09:33:09 -0700
+X-CSE-ConnectionGUID: CAOeL+HDRgi1jRT+0SVBUQ==
+X-CSE-MsgGUID: hsTNSziJSrG6MLzNOkBR+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
+   d="scan'208";a="279057"
+Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2026 09:33:07 -0700
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
+ Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Subject: [PATCH] drm/xe/i2c: Fix use-after-free on driver unload
+Date: Fri,  9 Oct 2026 22:12:42 +0530
+Message-ID: <20261009164241.923756-2-balasubramani.vivekanandan@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Fix_kernel_crash_during_dri?=
- =?utf-8?q?ver_teardown_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 09 Oct 2026 16:27:37 -0000
-Message-ID: <179156325777.4094.13402253120084121524@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261009145906.886719-5-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20261009145906.886719-5-satyanarayana.k.v.p@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,173 +67,140 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2766481196422193932==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The kernel crashes when unloading the xe driver on CRI:
 
-== Series Details ==
+ Oops: general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6b73
+ RIP: 0010:platform_device_release+0x80/0x90
+ Call Trace:
+  device_release+0x44/0xa0
+  kobject_put+0x9b/0x250
+  put_device+0x13/0x30
+  platform_device_unregister+0x29/0x40
+  xe_i2c_remove+0x80/0xa0 [xe]
+  devm_action_release+0x16/0x30
+  release_nodes+0x3d/0x140
+  devres_release_all+0x96/0xd0
 
-Series: Fix kernel crash during driver teardown (rev4)
-URL   : https://patchwork.freedesktop.org/series/175766/
-State : failure
+This started after commit 0f485f88656af ("drm/xe/i2c: use
+device_create_managed_software_node()"), which attaches a managed
+software node to a platform device created with platform_device_alloc().
 
-== Summary ==
+Comment above the device_create_managed_software_node function cautions
+that the software node created by it should not be shared or reused as
+the lifetime of the node is linked to the device.
 
-CI Bug Log - changes from xe-5918-a9079e63263acdef3db9b768ef47cfaf779a97aa_BAT -> xe-pw-175766v4_BAT
-====================================================
+But the DesignWare i2c driver which creates an adapter device as a child
+of the platform device reuses the software node as its fwnode.
+(device_set_node() in i2c_dw_probe()).
 
-Summary
--------
+During module unbind, when the adapter device is deleted, it drops the
+reference count for the software node and frees the software node.
+Later when the platform device is removed, it tries to dereference the
+software node pointer and results in use-after-free.
 
-  **FAILURE**
+Instead of managed software node use a static struct software_node
+passed through platform_device_info.swnode to
+platform_device_register_full().
+But we have a blocker which doesn't allow to use
+platform_device_register_full() simply.
 
-  Serious unknown changes coming with xe-pw-175766v4_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-175766v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Currently the driver is using the two step alloc/add sequence while
+creating the platform device so that i2c->pdev is set before
+platform_device_add(), because xe_i2c_notifier() needs i2c->dev and it
+can run before platform_device_register_full() returns.
 
-  
+We can fix it by removing the dependency on i2c->dev in
+xe_i2c_notifier(). It is using it to match against the right adapter.
+Instead of using the device, use its parent to match.
 
-Participating hosts (14 -> 14)
-------------------------------
+Fixes: 0f485f88656af ("drm/xe/i2c: use device_create_managed_software_node()")
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+---
+ drivers/gpu/drm/xe/xe_i2c.c | 45 +++++++++++++------------------------
+ 1 file changed, 15 insertions(+), 30 deletions(-)
 
-  No changes in participating hosts
+diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
+index b82caaff80d7b..c54a2375f07ef 100644
+--- a/drivers/gpu/drm/xe/xe_i2c.c
++++ b/drivers/gpu/drm/xe/xe_i2c.c
+@@ -55,6 +55,10 @@ static const struct property_entry xe_i2c_adapter_properties[] = {
+ 	{ }
+ };
+ 
++static const struct software_node xe_i2c_adapter_node = {
++	.properties = xe_i2c_adapter_properties,
++};
++
+ static inline void xe_i2c_read_endpoint(struct xe_mmio *mmio, void *ep)
+ {
+ 	u32 *val = ep;
+@@ -98,7 +102,7 @@ static int xe_i2c_notifier(struct notifier_block *nb, unsigned long action, void
+ 	struct device *dev = data;
+ 
+ 	if (action == BUS_NOTIFY_ADD_DEVICE &&
+-	    adapter && dev->parent == &i2c->pdev->dev) {
++	    adapter && dev->parent && dev->parent->parent == i2c->drm_dev) {
+ 		i2c->adapter = adapter;
+ 		schedule_work(&i2c->work);
+ 		return NOTIFY_OK;
+@@ -110,41 +114,22 @@ static int xe_i2c_notifier(struct notifier_block *nb, unsigned long action, void
+ static int xe_i2c_register_adapter(struct xe_i2c *i2c)
+ {
+ 	struct pci_dev *pci = to_pci_dev(i2c->drm_dev);
++	struct platform_device_info info = {
++		.parent = i2c->drm_dev,
++		.name = adapter_name,
++		.swnode = &xe_i2c_adapter_node,
++	};
+ 	struct platform_device *pdev;
+-	int ret;
+-	u32 id;
+-
+-	id = (pci_domain_nr(pci->bus) << 16) | pci_dev_id(pci);
+-
+-	/*
+-	 * Not using platform_device_register_full() here because we don't have
+-	 * a handle to the platform_device before it returns. xe_i2c_notifier()
+-	 * uses that handle, but it may be called before
+-	 * platform_device_register_full() is done.
+-	 */
+-	pdev = platform_device_alloc(adapter_name, id);
+-	if (!pdev)
+-		return -ENOMEM;
+ 
+-	ret = device_create_managed_software_node(&pdev->dev,
+-						  xe_i2c_adapter_properties,
+-						  NULL);
+-	if (ret)
+-		goto err_pdev_put;
++	info.id = (pci_domain_nr(pci->bus) << 16) | pci_dev_id(pci);
+ 
+-	pdev->dev.parent = i2c->drm_dev;
+-	i2c->pdev = pdev;
++	pdev = platform_device_register_full(&info);
++	if (IS_ERR(pdev))
++		return PTR_ERR(pdev);
+ 
+-	ret = platform_device_add(pdev);
+-	if (ret)
+-		goto err_pdev_put;
++	i2c->pdev = pdev;
+ 
+ 	return 0;
+-
+-err_pdev_put:
+-	platform_device_put(pdev);
+-
+-	return ret;
+ }
+ 
+ static void xe_i2c_unregister_adapter(struct xe_i2c *i2c)
+-- 
+2.43.0
 
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-175766v4_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_gt_freq@freq_range_idle:
-    - bat-ptl-2:          [PASS][1] -> [SKIP][2] +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5918-a9079e63263acdef3db9b768ef47cfaf779a97aa/bat-ptl-2/igt@xe_gt_freq@freq_range_idle.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175766v4/bat-ptl-2/igt@xe_gt_freq@freq_range_idle.html
-
-  * igt@xe_pm_residency@gt-c6-on-idle:
-    - bat-ptl-2:          [PASS][3] -> [FAIL][4] +2 other tests fail
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5918-a9079e63263acdef3db9b768ef47cfaf779a97aa/bat-ptl-2/igt@xe_pm_residency@gt-c6-on-idle.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175766v4/bat-ptl-2/igt@xe_pm_residency@gt-c6-on-idle.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-175766v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-nvls-1:         [DMESG-WARN][5] ([Intel XE#8762] / [Intel XE#9069]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5918-a9079e63263acdef3db9b768ef47cfaf779a97aa/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175766v4/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#8762]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762
-  [Intel XE#9069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069
-
-
-Build changes
--------------
-
-  * Linux: xe-5918-a9079e63263acdef3db9b768ef47cfaf779a97aa -> xe-pw-175766v4
-
-  IGT_9138: 9138
-  xe-5918-a9079e63263acdef3db9b768ef47cfaf779a97aa: a9079e63263acdef3db9b768ef47cfaf779a97aa
-  xe-pw-175766v4: 175766v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175766v4/index.html
-
---===============2766481196422193932==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix kernel crash during driver teardown (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175766/">https://patchwork.freedesktop.org/series/175766/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175766v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175766v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5918-a9079e63263acdef3db9b768ef47cfaf779a97aa_BAT -&gt; xe-pw-175766v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-175766v4_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-175766v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-175766v4_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@xe_gt_freq@freq_range_idle:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5918-a9079e63263acdef3db9b768ef47cfaf779a97aa/bat-ptl-2/igt@xe_gt_freq@freq_range_idle.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175766v4/bat-ptl-2/igt@xe_gt_freq@freq_range_idle.html">SKIP</a> +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pm_residency@gt-c6-on-idle:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5918-a9079e63263acdef3db9b768ef47cfaf779a97aa/bat-ptl-2/igt@xe_pm_residency@gt-c6-on-idle.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175766v4/bat-ptl-2/igt@xe_pm_residency@gt-c6-on-idle.html">FAIL</a> +2 other tests fail</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-175766v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5918-a9079e63263acdef3db9b768ef47cfaf779a97aa/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762">Intel XE#8762</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069">Intel XE#9069</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175766v4/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5918-a9079e63263acdef3db9b768ef47cfaf779a97aa -&gt; xe-pw-175766v4</li>
-</ul>
-<p>IGT_9138: 9138<br />
-  xe-5918-a9079e63263acdef3db9b768ef47cfaf779a97aa: a9079e63263acdef3db9b768ef47cfaf779a97aa<br />
-  xe-pw-175766v4: 175766v4</p>
-
-</body>
-</html>
-
---===============2766481196422193932==--
