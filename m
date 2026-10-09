@@ -4,58 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AA52CA6012
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:36:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 041D0CA6012
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:38:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC8AE112065;
-	Fri,  9 Oct 2026 10:36:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A309C112059;
+	Fri,  9 Oct 2026 10:38:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R99M90iT";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="I3R5ldkz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7D4B112068;
- Fri,  9 Oct 2026 10:36:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791542163; x=1823078163;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ie0QOFJrGwftbOQgzAzbGYKpxcMm1ULvWucasqyrZvg=;
- b=R99M90iTrBF79Qn7O6Rq8otjHg9WifgXd9r0p23pZ2Mw9KfFSbojTf8f
- 6rlwBgjgjbMtTGQg2cwkgOOwKqFqyBHH4x4QYAMoth02YuQLC4NlcgCdn
- LC2d8xHzo7LFQmxXDWFAABd7aB3+m0iT8QjS33S4YaTPYTUXpLBzA/nNP
- TNCmaLN4KcVmoS28QBLIoXCd6/Vwy0ejJVJQlQkxWs/NFc9Fs6lOUChJN
- YTydS1sXwrHzSxmnHfbtfNSh+UCnIL9j6+Pwr7eQlzAe2tVipV71hmAHf
- AlMnYcHQGAnMvbUNoS/ePAlWOkFSAjy6i/OXM+VCmQTGaX2+8MZB8n+0R Q==;
-X-CSE-ConnectionGUID: eV2EubxxRuOktfY4kVS6vQ==
-X-CSE-MsgGUID: lOabIv+XTUSir+e1eTVOqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11929"; a="219341"
-X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="219341"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 03:36:03 -0700
-X-CSE-ConnectionGUID: hH/wQBMiRsC9mvDlYQ8Bag==
-X-CSE-MsgGUID: z2ngXKjJTeGerEIhx0HL9w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="399276"
-Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa002.fm.intel.com with ESMTP; 09 Oct 2026 03:36:02 -0700
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: imre.deak@intel.com,
-	Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 3/5] drm/i915/lt_phy: split out
- intel_lt_phy_pll_calc_state_from_table()
-Date: Fri,  9 Oct 2026 10:35:49 +0000
-Message-ID: <20261009103552.1864818-4-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261009103552.1864818-1-mika.kahola@intel.com>
-References: <20261009103552.1864818-1-mika.kahola@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40C4F112059
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:38:49 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 0309A40283;
+ Fri,  9 Oct 2026 10:38:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF9681F000FF;
+ Fri,  9 Oct 2026 10:38:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1791542328;
+ bh=TbraoCYNuhZidAN2Xlp0xFnOcPdx/6IBJKJ9v0PkDck=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=I3R5ldkzn5IRDHTHPQ4sRTNS/ZerEn0+yd0GaJmgCvI9anzS++ognRcIXwE5d24E2
+ cGp20PlOWpygfVTsFF8FTtszJZYeU1F1w5N6/UH7mBM5/QwNvdLWed6AxymCrtDRM1
+ xXblpgr0wl3CRnoZq8JW4VWPOpVAR3wctkUQBff6O9gDNbJgVDa1VUHrlpfsl5wYs9
+ 6UE0sLoHlfbdAwgH6N0sAA4EqDxXKZye/1YU9HWG+yqIzRivB3qNIZzhSu6tqy7f1w
+ IxtpXeVp66pvJ+XRDvw8VSLyn8341RX2vSJFoIoG7bQQojEq38Oh1sHRjXJgf9HSTF
+ 5KgjEU8uVbMXw==
+Message-ID: <sashiko-outbox-165246@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 08/12] drm/xe/cper: Emit cper record to trace buf
+To: "Badal Nilawar" <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20261009104602.1075405-22-badal.nilawar@intel.com>
+References: <20261009104602.1075405-14-badal.nilawar@intel.com>
+ <20261009104602.1075405-22-badal.nilawar@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 09 Oct 2026 10:38:48 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,133 +52,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The PLL table walk in intel_lt_phy_pll_calc_state() is only reachable
-with a crtc_state. Split it into a helper taking the port clock and
-lane count directly, and pass the output type in as is_dp/is_edp, like
-intel_c10pll_calc_state_from_table() on the C10 side.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] trace: xe_error_cper uses %pU instead of %pUl for guid_t formatting
+--
 
-intel_lt_phy_pll_is_ssc_enabled() loses its crtc_state argument for the
-same reason, matching intel_cx0pll_update_ssc().
+commit 2df74abeb761bb9cbc4580031c2be3af5f19e10b
+Author: Badal Nilawar <badal.nilawar@intel.com>
 
-No functional change.
+drm/xe/cper: Emit cper record to trace buf
+   =20
+This commit introduces the xe_error_cper tracepoint to emit assembled CPER
+records to the trace buffer. The events carry the device name, platform ID,
+FRU ID, severity, and the Intel error section header so tools can pick them=
+ up.
 
-Assisted-by: Copilot:claude-opus-5
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_lt_phy.c | 71 +++++++++++++--------
- 1 file changed, 45 insertions(+), 26 deletions(-)
+> diff --git a/drivers/gpu/drm/xe/xe_trace_cper.h b/drivers/gpu/drm/xe/xe_t=
+race_cper.h
+> new file mode 100644
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_trace_cper.h
+[ ... ]
+> +TRACE_EVENT(xe_error_cper,
+> +	TP_PROTO(struct xe_device *xe,
+> +	    const guid_t *platform_id, const guid_t *fru_id,
+[ ... ]
+> +	TP_fast_assign(
+> +	    __assign_str(dev);
+> +	    __entry->sev =3D severity;
+> +	    memcpy(__entry->platform_id, platform_id, UUID_SIZE);
+> +	    memcpy(__entry->fru_id, fru_id, UUID_SIZE);
+> +	    memcpy(__entry->ihdr_raw, ihdr, sizeof(struct xe_cper_sec_intel_err=
+_hdr));
+> +	    __entry->cper_len =3D cper_len;
+> +	    memcpy(__get_dynamic_array(cper), cper, cper_len);
+> +	    ),
+> +
+> +	TP_printk("dev=3D%s severity=3D%d platform_id=3D%pU fru_id=3D%pU "
+> +		"intel_err_hdr_raw=3D%s cper_len=3D%u cper_raw=3D%s",
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 86492651b01d..c626246b71f9 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1329,12 +1329,11 @@ intel_lt_phy_pll_tables_get(struct intel_crtc_state *crtc_state,
- }
- 
- static bool
--intel_lt_phy_pll_is_ssc_enabled(struct intel_crtc_state *crtc_state,
--				struct intel_encoder *encoder)
-+intel_lt_phy_pll_is_ssc_enabled(struct intel_encoder *encoder, bool is_dp)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 
--	if (intel_crtc_has_dp_encoder(crtc_state)) {
-+	if (is_dp) {
- 		if (intel_panel_use_ssc(display)) {
- 			struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 
-@@ -1740,14 +1739,45 @@ intel_lt_phy_calc_port_clock(struct intel_display *display,
- 	return clk;
- }
- 
-+static int
-+intel_lt_phy_pll_calc_state_from_table(struct intel_encoder *encoder,
-+				       const struct intel_lt_phy_pll_params *tables,
-+				       bool is_dp, bool is_edp,
-+				       int port_clock, int lane_count,
-+				       struct intel_lt_phy_pll_state *pll_state)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+	int i;
-+
-+	for (i = 0; tables[i].name; i++) {
-+		int clock = intel_lt_phy_calc_port_clock(display, tables[i].state);
-+
-+		drm_WARN_ON(display->drm, !intel_dpll_clock_matches(clock, tables[i].clock_rate));
-+		if (intel_dpll_clock_matches(port_clock, clock)) {
-+			*pll_state = *tables[i].state;
-+
-+			if (is_edp)
-+				pll_state->config[2] = 1;
-+
-+			pll_state->ssc_enabled = intel_lt_phy_pll_is_ssc_enabled(encoder, is_dp);
-+			pll_state->lane_count = lane_count;
-+
-+			return 0;
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
- int
- intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 			    struct intel_encoder *encoder,
- 			    struct intel_dpll_hw_state *hw_state)
- {
--	struct intel_display *display = to_intel_display(crtc_state);
-+	bool is_dp = intel_crtc_has_dp_encoder(crtc_state);
-+	bool is_edp = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP);
- 	const struct intel_lt_phy_pll_params *tables;
--	int i;
-+	int err;
- 
- 	memset(hw_state, 0, sizeof(*hw_state));
- 
-@@ -1755,30 +1785,19 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 	if (!tables)
- 		return -EINVAL;
- 
--	for (i = 0; tables[i].name; i++) {
--		int clock = intel_lt_phy_calc_port_clock(display, tables[i].state);
-+	err = intel_lt_phy_pll_calc_state_from_table(encoder, tables, is_dp, is_edp,
-+						     crtc_state->port_clock,
-+						     crtc_state->lane_count,
-+						     &hw_state->ltpll);
- 
--		drm_WARN_ON(display->drm, !intel_dpll_clock_matches(clock, tables[i].clock_rate));
--		if (intel_dpll_clock_matches(crtc_state->port_clock, clock)) {
--			hw_state->ltpll = *tables[i].state;
--			if (intel_crtc_has_dp_encoder(crtc_state)) {
--				if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
--					hw_state->ltpll.config[2] = 1;
--			}
--			hw_state->ltpll.ssc_enabled =
--				intel_lt_phy_pll_is_ssc_enabled(crtc_state, encoder);
--			hw_state->ltpll.lane_count = crtc_state->lane_count;
--			return 0;
--		}
--	}
-+	if (err == 0 || !intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-+		return err;
- 
--	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
--		hw_state->ltpll.lane_count = crtc_state->lane_count;
--		return intel_lt_phy_calculate_hdmi_state(&hw_state->ltpll,
--							 crtc_state->port_clock);
--	}
-+	/* For HDMI PLLs use the HDMI algorithm, if there are no precomputed tables */
-+	hw_state->ltpll.lane_count = crtc_state->lane_count;
- 
--	return -EINVAL;
-+	return intel_lt_phy_calculate_hdmi_state(&hw_state->ltpll,
-+						 crtc_state->port_clock);
- }
- 
- void intel_lt_phy_tbt_pll_calc_state(struct intel_dpll_hw_state *hw_state)
--- 
-2.43.0
+[Severity: Low]
+Since platform_id and fru_id are guid_t types (which are little-endian per
+UEFI/CPER specifications), shouldn't this use the %pUl format specifier
+instead of %pU?
 
+The Linux kernel's %pU specifier assumes a big-endian uuid_t layout. Using
+it here will cause the first three groups of the UUID to be byte-swapped in
+the trace output, which might break correlation with platform specifications
+and CPER tooling.
+
+> +		__get_str(dev), __entry->sev,
+> +		__entry->platform_id, __entry->fru_id,
+> +		__print_hex(__entry->ihdr_raw,
+> +		    sizeof(struct xe_cper_sec_intel_err_hdr)),
+> +		__entry->cper_len,
+> +		__print_hex(__get_dynamic_array(cper),
+> +		    __entry->cper_len))
+> +);
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261009104602.1075=
+405-14-badal.nilawar@intel.com?part=3D8
