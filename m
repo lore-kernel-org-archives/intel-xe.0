@@ -4,44 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDEE6CA6019
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 12:18:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 621D8CA601E
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 12:19:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 874BF10E53A;
-	Fri,  9 Oct 2026 12:18:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D7DA10E53A;
+	Fri,  9 Oct 2026 12:19:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WONcHwZ5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b9IfuDWJ";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE72110E53A
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 12:18:37 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id D7C3540344;
- Fri,  9 Oct 2026 12:18:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 903861F000FF;
- Fri,  9 Oct 2026 12:18:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791548317;
- bh=SDmVtuvEYgFYUxllN97vx5NBO3vSx/LgRTERN+Dlh0Q=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=WONcHwZ5OvR/aopRV57kkp632Z+JYNrSbAL4JMYfRRdfe5+y1Dhd9PxBs6h7sJkeX
- N6VQws+3VTtHprJt0GJmmGWqk771dISnmDzb7nQHZrSa5N1pl3AoNu56+HQaOm2Pd/
- PdedciuB0pKcd9iXstM8ZSwohc5xoH2CJNBNv4LMOIjBuDaOm1V0xetsqKkhiUd1eC
- L0k04jcrbNV3/zUslibg8iumz/IE+Z8BWdKCE+BLwUU8R7VDAqVGraxLO1eZPPasOJ
- i+yNmW0QZojUI0BjYYbAMXp2qN8mXKqLHyJhOgMqAPyJbvEOTel6iFeFzP9dtUfjeu
- sghVzISczSb9A==
-Message-ID: <sashiko-outbox-165514@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v9 10/14] drm/xe/hwmon: Add platform-aware VRAM thermal
- channel support
-To: "Karthik Poosa" <karthik.poosa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261009120335.52973-11-karthik.poosa@intel.com>
-References: <20261009120335.52973-1-karthik.poosa@intel.com>
- <20261009120335.52973-11-karthik.poosa@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 09 Oct 2026 12:18:37 +0000
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 869F910E53A
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 12:19:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791548373; x=1823084373;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=oDsnMBg6tfHR/JDDsloPVbKnN3zryl/0VAJQJRnWEcI=;
+ b=b9IfuDWJk5lkm7tL75krj11VjkZGaOSMNQX4WL3umr5wR8u83Z0/Hqfm
+ Zmzs1T8qgqSLq+ZbYtBYsL+u2kzwQDKE2ytkIUnL73ofvSxXVQ9vjVBRx
+ 9zdIjDrDVmZHY4yk0jTSscboePA59LZ0G9MjjiVYrvHuA85TivvCwsJCE
+ eZgrhHPdmmWhIDoRaDTJAqirfP0KbxCJLJBYh0txnu8s6wKtyFb9cYX0e
+ UB6sOo0OiLeGw2C61TaRHxbO/nfnOmLXWmDazknNcXcn5OqUPp1I4um7B
+ EQBTl0Zk6/7fdfwlI2mN7wWoORgCTdnxfc0Sj6XTOa76XQVMarh+ga8B2 A==;
+X-CSE-ConnectionGUID: 0kn90kg8T9CPR3MJ3xLh5A==
+X-CSE-MsgGUID: QHqGVi2GRcWGdgLJyVf/5Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11929"; a="231639"
+X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
+   d="scan'208";a="231639"
+Received: from fmviesa012.fm.intel.com ([10.60.135.152])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2026 05:19:33 -0700
+X-CSE-ConnectionGUID: uqnhoJqzQ1O1pcQ70cekTw==
+X-CSE-MsgGUID: rONzM/oiQe+VxXv2fH5WpQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
+   d="scan'208";a="2097429"
+Received: from gsd-build.iind.intel.com ([10.190.229.108])
+ by fmviesa012.fm.intel.com with ESMTP; 09 Oct 2026 05:19:31 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v3 0/3] Fix kernel crash during driver teardown
+Date: Fri,  9 Oct 2026 12:19:21 +0000
+Message-ID: <20261009121921.818671-5-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,71 +63,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] hwmon: DRM driver implements hwmon directly instead of as auxiliary=
- device
---
+During driver release, the hardware engine is only partially invalidated
+during teardown. Its name remains set, so the memory IRQ handler can still
+identify the engine and access its state after teardown. This can result
+in a NULL pointer dereference.
 
-commit 55ff84e7912b9e195885552d6a750a68cc2c19d9
-Author: Karthik Poosa <karthik.poosa@intel.com>
+Invalidate the hardware engine name during teardown so the IRQ handler no
+longer treats the engine as available.
 
-drm/xe/hwmon: Add platform-aware VRAM thermal channel support
+The crash log below shows an example of the failure.
 
-On CRI, this derives the number of available VRAM temperature channels from
-the CRI_MSU_VRAM_ENABLE register. It increases the maximum supported VRAM
-channel count to 80 and uses the derived count to control VRAM sensor
-enumeration, channel access, and VRAM label allocation.
+BUG: kernel NULL pointer dereference, address: 0000000000000000
+PF: supervisor read access in kernel mode
+PF: error_code(0x0000) - not-present page
+PGD 0 P4D 0
+Oops: Oops: 0000 [#1] SMP NOPTI
+Tainted: [U]=USER
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS
+2025.11-3ubuntu7 03/31/2026
+RIP: 0010:xe_hw_engine_handle_irq+0x18/0x70 [xe]
+Code: 00 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 0f 1f
+44 00 00 55 48 89 e5 41 54 41 89 f4 48 89 d6 53 48 8b 07 48 89 fb <48> 8b 00 48
+8b 38 e8 5d 84 08 00 48 8b 83 b8 00 00 00 48 85 c0 74
+RSP: 0018:ffffd07840003e80 EFLAGS: 00010046
+RAX: 0000000000000000 RBX: ffff8904657fa740 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff8904657fa740
+RBP: ffffd07840003e90 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000001
+R13: ffff89046a490000 R14: ffff89046a491af8 R15: ffff8904657faf20
+FS:  0000000000000000(0000) GS:ffff8905fd219000(0000)
+knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 0000000103705005 CR4: 0000000000772ef0
+PKRU: 55555554
+Call Trace:
+ <IRQ>
+ xe_memirq_handler+0xc3/0x200 [xe]
+ vf_mem_irq_handler+0x46/0x90 [xe]
+ __handle_irq_event_percpu+0x59/0x200
+ handle_irq_event+0x36/0x90
+ handle_edge_irq+0xc5/0x190
+ __common_interrupt+0x50/0x160
+ ? irq_enter_rcu+0x84/0xb0
+ common_interrupt+0xb0/0xe0
+ </IRQ>
 
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index bafa175f84578..9d83d9d2286ed 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-[ ... ]
-> @@ -1683,7 +1809,9 @@ int xe_hwmon_register(struct xe_device *xe)
->  	hwmon->xe =3D xe;
->  	xe->hwmon =3D hwmon;
-> =20
-> -	xe_hwmon_get_preregistration_info(hwmon);
-> +	ret =3D xe_hwmon_get_preregistration_info(hwmon);
-> +	if (ret)
-> +		goto err_null_hwmon;
-> =20
->  	drm_dbg(&xe->drm, "Register xe hwmon interface\n");
-> =20
-> @@ -1693,10 +1821,14 @@ int xe_hwmon_register(struct xe_device *xe)
->  								hwmon_groups);
+ ---
+ V2 -> V3:
+ - Fixed race condition with guc_exec_queue_timedout_job(). (Sashiko).
+ - Disable GT reset worker before engine teardown (LLM).
+ 
+ V1 -> V2:
+ - Fix race with xe_memirq_handler() and hw_engine_fini() (Sashiko
+ & Piotr).
 
-[Severity: Low]
-The hwmon subsystem guidelines state that if a chip's main functionality
-is not hardware monitoring (such as a DRM controller), its hardware
-monitoring functionality should be implemented as an auxiliary device
-driver residing in drivers/hwmon/.
+Satyanarayana K V P (3):
+  drm/xe: Prevent VF memory IRQ from accessing a torn-down engine
+  drm/xe/guc: Protect timeout handling from device unplug
+  drm/xe/gt: Disable GT reset worker before engine teardown
 
-Does registering the hardware monitoring device directly from within the=20
-drivers/gpu/drm/ subsystem bypass these structural layering rules?
+ drivers/gpu/drm/xe/xe_gt.c         | 24 ++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_guc_submit.c | 12 +++++++++++-
+ drivers/gpu/drm/xe/xe_hw_engine.c  | 15 +++++++++++++--
+ drivers/gpu/drm/xe/xe_irq.c        |  3 +++
+ drivers/gpu/drm/xe/xe_memirq.c     |  3 +++
+ 5 files changed, 48 insertions(+), 9 deletions(-)
 
->  	if (IS_ERR(hwmon->hwmon_dev)) {
->  		drm_err(&xe->drm, "Failed to register xe hwmon (%pe)\n", hwmon->hwmon_=
-dev);
-> -		xe->hwmon =3D NULL;
-> -		return PTR_ERR(hwmon->hwmon_dev);
-> +		ret =3D PTR_ERR(hwmon->hwmon_dev);
-> +		goto err_null_hwmon;
->  	}
-> =20
->  	return 0;
-> +
-> +err_null_hwmon:
-> +	xe->hwmon =3D NULL;
-> +	return ret;
->  }
->  MODULE_IMPORT_NS("INTEL_PMT_TELEMETRY");
+-- 
+2.43.0
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261009120335.5297=
-3-1-karthik.poosa@intel.com?part=3D10
