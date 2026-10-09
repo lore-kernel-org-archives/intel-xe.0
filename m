@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2938CA601C
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:29:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58411CA6012
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 10:29:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 847E6112052;
-	Fri,  9 Oct 2026 10:29:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14130112057;
+	Fri,  9 Oct 2026 10:29:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UFs5Cejh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XuE4BSAz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E82FC112052
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:29:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A946112053
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 10:29:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791541775; x=1823077775;
+ t=1791541779; x=1823077779;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0iB4jD9tsPeojl3iI0SlHTDS6ev9GvRL0Hgogr1g1Fc=;
- b=UFs5Cejhpso2ft2B2ykXH5xTLFNzGOpIcAG8wqa9Re3djvLlUXYdBCjC
- yQrEVqV55bqE8KXpqlKdsZmSvylBc0MdpsMrfPyyr4D/whbCTDqt4FKwd
- nsi0r0Ce8xS34JowXsU69RVYm5RwE1fNJ4OyJFURZFeZ5Twdmqu+6BWOi
- /LhGOuof0LhBkSpxIBKHLj0dAdcN88tGERq/MRvOJGPxkbfpq8BHeWqIc
- lAXOzmbYO6QCRIFwFNnsGi79d68ikRPzul1ae+bfV2TPAnmAb1S5+fjO/
- J38u1YI4tFbxDBVvkK0uX+BG36AIVTGGUPVoD4BC9cGtZy1eFbL36Hg2j w==;
-X-CSE-ConnectionGUID: JvCNEY+dQQS8q8m9DKTq5g==
-X-CSE-MsgGUID: dycGonrPT7KahGZJ0vAq/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11929"; a="344095"
+ bh=rdDDZgfsf8EOvpeNMxeiXFV1bGZmNj8YsmKSIfNYc5Y=;
+ b=XuE4BSAz0w8URpZhj1D3OkTY7tX9qX3HpN3BX+Oxkk9lHYzBBbAR5ZSx
+ 1k36O/u2JeMduDjLPhPBVQyV/0U0WIQd3D39+t2bncc66Jvd2/mcWpNy9
+ b6ubWnZHvIbnSgpcxaAOZM2EEVay8PA00O8N7ZCwanueaWDPV3wPch65P
+ 2a5SjL/wFO4vD1Tf00ntWFheVeXgn2ZDmjQh3Sj4jIRbDrT4EOQ826uuS
+ s7zf5VMPewdRyj8kT5QAm/5UsvBNLLOep+zJqsO+bFMSYigKZZ/aANmhJ
+ HjdoBYsCD/cgv9Yp/SWQT8cKYXY99jgbNvl3WygDccD8hlX5qDXDw4MS5 g==;
+X-CSE-ConnectionGUID: rtoNbYSCS/6Qdjt5YpEZvg==
+X-CSE-MsgGUID: bmKurLTbSc2xi9ZvV5BRIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11929"; a="344097"
 X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="344095"
+   d="scan'208";a="344097"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 03:29:35 -0700
-X-CSE-ConnectionGUID: OY+8udPzQcmDoASrrtyxtg==
-X-CSE-MsgGUID: +3ts1oDPRHqqQyOd3a+fpw==
+ 09 Oct 2026 03:29:39 -0700
+X-CSE-ConnectionGUID: 62yPCfBcRwOLI0YxmhCrjg==
+X-CSE-MsgGUID: vadw1wQkT5uZwkRniLCENA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="2025593"
+   d="scan'208";a="2025597"
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 03:29:32 -0700
+ 09 Oct 2026 03:29:35 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
@@ -51,14 +51,14 @@ Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
  arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
  nitin.r.gote@intel.com, pravalika.gurram@intel.com
-Subject: [PATCH v4 07/12] drm/xe/cper: Log CPER records for aggregate counter
- retrieval
-Date: Fri,  9 Oct 2026 16:16:10 +0530
-Message-ID: <20261009104602.1075405-21-badal.nilawar@intel.com>
+Subject: [PATCH v4 08/12] drm/xe/cper: Emit cper record to trace buf
+Date: Fri,  9 Oct 2026 16:16:11 +0530
+Message-ID: <20261009104602.1075405-22-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261009104602.1075405-14-badal.nilawar@intel.com>
 References: <20261009104602.1075405-14-badal.nilawar@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,340 +74,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Log CPER records for aggregate counter retrieval from userspace when
-cper_on_query sysfs is enabled.
+Add the xe_error_cper tracepoint and emit each assembled CPER record
+through it. Besides the raw record, the event carries the device name,
+platform ID, FRU ID, severity and the Intel error section header, so
+tools can pick up the records from the trace buffer.
 
-Assisted-by: Copilot:Claude-Opus-5.5
+Assisted-by: Copilot:claude-sonnet-4.6
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
 v4:
- - Add xe_cper_emit_counter() to emit records from the counter response
-   already fetched for userspace, instead of fetching it again
- - Move cper_on_query to struct xe_cper and xe_cper.c (Raag)
- - Document cper_on_query sysfs in ABI
- - Fix sysfs attribute cper_on_query permissions (sashiko)
+ - Build xe_trace_cper.o with CONFIG_UEFI_CPER instead of
+   CONFIG_UEFI_CPER_X86
 ---
- .../ABI/testing/sysfs-driver-intel-xe-cper    | 18 ++++
- drivers/gpu/drm/xe/xe_cper.c                  | 99 ++++++++++++++++---
- drivers/gpu/drm/xe/xe_cper.h                  | 11 +++
- drivers/gpu/drm/xe/xe_cper_types.h            |  8 ++
- drivers/gpu/drm/xe/xe_device_types.h          |  4 +
- drivers/gpu/drm/xe/xe_ras.c                   | 42 ++++++++
- 6 files changed, 169 insertions(+), 13 deletions(-)
- create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-cper
+ drivers/gpu/drm/xe/Makefile        |  3 +-
+ drivers/gpu/drm/xe/xe_cper.c       |  4 +-
+ drivers/gpu/drm/xe/xe_trace_cper.c |  9 ++++
+ drivers/gpu/drm/xe/xe_trace_cper.h | 66 ++++++++++++++++++++++++++++++
+ 4 files changed, 80 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_trace_cper.c
+ create mode 100644 drivers/gpu/drm/xe/xe_trace_cper.h
 
-diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-cper b/Documentation/ABI/testing/sysfs-driver-intel-xe-cper
-new file mode 100644
-index 000000000000..19f56d2c0ab3
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-cper
-@@ -0,0 +1,18 @@
-+What:		/sys/bus/pci/drivers/xe/.../cper_on_query
-+Date:		October 2026
-+KernelVersion:	7.4
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:
-+		This file controls whether a CPER (Common Platform Error Record)
-+		is emitted each time a RAS error counter is queried.
-+
-+		This sysfs file is present only on Intel Xe platforms that support
-+		the RAS error counter interface and when the kernel is built with
-+		CPER support. Reading the current setting is available to all
-+		users, while updating it is restricted to administrative users
-+		only.
-+
-+		The value is a boolean. When set to 1, every counter query emits
-+		a CPER record built from the counter and its associated info
-+		queue data. When set to 0 (default), no record is emitted on
-+		query.
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index da78026b0bb4..5458119ddf40 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -168,7 +168,8 @@ xe-$(CONFIG_HWMON) += xe_hwmon.o
+ xe-$(CONFIG_PERF_EVENTS) += xe_pmu.o
+ xe-$(CONFIG_CONFIGFS_FS) += xe_configfs.o
+ 
+-xe-$(CONFIG_UEFI_CPER) += xe_cper.o
++xe-$(CONFIG_UEFI_CPER) += xe_cper.o \
++			  xe_trace_cper.o
+ 
+ # graphics virtualization (SR-IOV) support
+ xe-y += \
 diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
-index 7acb503efd11..709fc3d52fcf 100644
+index 709fc3d52fcf..0fedef06e138 100644
 --- a/drivers/gpu/drm/xe/xe_cper.c
 +++ b/drivers/gpu/drm/xe/xe_cper.c
-@@ -4,11 +4,13 @@
-  */
+@@ -20,6 +20,7 @@
+ #include "xe_printk.h"
+ #include "xe_ras.h"
+ #include "xe_ras_types.h"
++#include "xe_trace_cper.h"
  
- #include <linux/bcd.h>
-+#include <linux/device.h>
- #include <linux/err.h>
- #include <linux/kernel.h>
- #include <linux/minmax.h>
- #include <linux/pci.h>
- #include <linux/slab.h>
-+#include <linux/sysfs.h>
- #include <linux/time.h>
- #include <linux/timekeeping.h>
- 
-@@ -378,32 +380,41 @@ xe_prepare_cper_error_info(struct xe_device *xe,
- 	return einfo_arr;
- }
- 
--static void xe_cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
--				const struct xe_ras_error_class *error_class)
-+/**
-+ * xe_cper_emit_counter() - Emit CPER records for an already fetched error counter
-+ * @xe: The &xe_device
-+ * @cper_sev: CPER severity
-+ * @sigid: Error signature identifier
-+ * @error_class: RAS error class of the counter
-+ * @resp: Counter response returned by firmware for @error_class
-+ *
-+ * Build and emit CPER records from @resp, including any info queue data.
-+ * Must be called from a sleepable context with a runtime PM reference held.
-+ */
-+void xe_cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
-+			  const struct xe_ras_error_class *error_class,
-+			  const struct xe_ras_get_counter_response *resp)
+ static bool is_hw_sigid(enum xe_sigid sigid)
  {
- 	struct xe_cper_einfo_entry *einfo_arr = NULL, *entries;
--	struct xe_ras_get_counter_response local_resp;
- 	struct xe_cper_einfo_entry single = {};
- 	u32 einfo_count = 0, count, i;
+@@ -179,7 +180,8 @@ static void xe_cper_record_emit(struct xe_device *xe, u8 severity,
+ 	if (einfo && einfo_len)
+ 		memcpy((u8 *)rec + sizeof(*rec), einfo, einfo_len);
  
--	/* Fetching the counter sends a sysctrl command */
-+	if (!is_hw_sigid(sigid))
-+		return;
-+
-+	/* Draining the info queue sends sysctrl commands */
- 	might_sleep();
- 	xe_device_assert_mem_access(xe);
+-	/* TODO: Emit trace event */
++	trace_xe_error_cper(xe, &rhdr->platform_id, &sdesc->fru_id, severity,
++			    &rec->intel_hdr, total_len, (u8 *)rec);
  
--	if (xe_ras_get_counter_response(xe, error_class, &local_resp)) {
--		xe_err(xe, "CPER: failed to get counter, skipping record\n");
--		return;
--	}
--
- 	/* Without info queue data, emit a single record from the counter itself */
- 	single.hdr.error_class = *error_class;
--	single.hdr.counter = local_resp.value;
--	single.timestamp = local_resp.timestamp;
-+	single.hdr.counter = resp->value;
-+	single.timestamp = resp->timestamp;
- 	entries = &single;
- 	count = 1;
- 
--	if (local_resp.has_info_queue) {
--		einfo_arr = xe_prepare_cper_error_info(xe, &local_resp, error_class, &einfo_count);
-+	if (resp->has_info_queue) {
-+		einfo_arr = xe_prepare_cper_error_info(xe, resp, error_class, &einfo_count);
- 		if (einfo_arr) {
- 			entries = einfo_arr;
- 			count = einfo_count;
-@@ -425,6 +436,23 @@ static void xe_cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigi
- 	free_einfo_arr(einfo_arr, einfo_count);
+ 	kfree(rec);
  }
- 
-+static void xe_cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
-+				const struct xe_ras_error_class *error_class)
-+{
-+	struct xe_ras_get_counter_response resp;
-+
-+	/* Fetching the counter sends a sysctrl command */
-+	might_sleep();
-+	xe_device_assert_mem_access(xe);
-+
-+	if (xe_ras_get_counter_response(xe, error_class, &resp)) {
-+		xe_err(xe, "CPER: failed to get counter, skipping record\n");
-+		return;
-+	}
-+
-+	xe_cper_emit_counter(xe, cper_sev, sigid, error_class, &resp);
-+}
-+
- /**
-  * xe_cper_emit() - Emit a CPER record for a SIGID log entry
-  * @xe: The &xe_device
-@@ -453,3 +481,48 @@ void xe_cper_emit(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
- 
- 	/* TODO software CPER */
- }
-+
-+static ssize_t cper_on_query_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct xe_device *xe = kdev_to_xe_device(dev);
-+
-+	return sysfs_emit(buf, "%u\n", READ_ONCE(xe->cper.on_query));
-+}
-+
-+static ssize_t cper_on_query_store(struct device *dev, struct device_attribute *attr,
-+				   const char *buf, size_t count)
-+{
-+	struct xe_device *xe = kdev_to_xe_device(dev);
-+	bool enable;
-+	int ret;
-+
-+	ret = kstrtobool(buf, &enable);
-+	if (ret)
-+		return ret;
-+
-+	WRITE_ONCE(xe->cper.on_query, enable);
-+
-+	return count;
-+}
-+static DEVICE_ATTR_RW(cper_on_query);
-+
-+static struct attribute *cper_attrs[] = {
-+	&dev_attr_cper_on_query.attr,
-+	NULL
-+};
-+
-+/* See Documentation/ABI/testing/sysfs-driver-intel-xe-cper */
-+static const struct attribute_group cper_group = {
-+	.attrs = cper_attrs,
-+};
-+
-+/**
-+ * xe_cper_sysfs_init() - Create the CPER sysfs attributes
-+ * @xe: The &xe_device
-+ *
-+ * Return: 0 on success, negative error code on failure.
+diff --git a/drivers/gpu/drm/xe/xe_trace_cper.c b/drivers/gpu/drm/xe/xe_trace_cper.c
+new file mode 100644
+index 000000000000..caea8783ab7c
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_trace_cper.c
+@@ -0,0 +1,9 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright © 2026 Intel Corporation
 + */
-+int xe_cper_sysfs_init(struct xe_device *xe)
-+{
-+	return devm_device_add_group(xe->drm.dev, &cper_group);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_cper.h b/drivers/gpu/drm/xe/xe_cper.h
-index 84676c7645a5..ad50349c0a6f 100644
---- a/drivers/gpu/drm/xe/xe_cper.h
-+++ b/drivers/gpu/drm/xe/xe_cper.h
-@@ -12,15 +12,26 @@
- 
- struct va_format;
- struct xe_device;
-+struct xe_ras_error_class;
-+struct xe_ras_get_counter_response;
- 
- #if IS_ENABLED(CONFIG_UEFI_CPER)
- void xe_cper_emit(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
- 		  u32 component, u32 location, const void *data, size_t len,
- 		  struct va_format *vaf);
-+void xe_cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
-+			  const struct xe_ras_error_class *error_class,
-+			  const struct xe_ras_get_counter_response *resp);
-+int xe_cper_sysfs_init(struct xe_device *xe);
- #else
- static inline void xe_cper_emit(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
- 				u32 component, u32 location, const void *data, size_t len,
- 				struct va_format *vaf) {}
-+static inline void xe_cper_emit_counter(struct xe_device *xe, int cper_sev,
-+					enum xe_sigid sigid,
-+					const struct xe_ras_error_class *error_class,
-+					const struct xe_ras_get_counter_response *resp) {}
-+static inline int xe_cper_sysfs_init(struct xe_device *xe) { return 0; }
- #endif
- 
- #endif /* _XE_CPER_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_cper_types.h
-index 627c7117f23e..e0034429e661 100644
---- a/drivers/gpu/drm/xe/xe_cper_types.h
-+++ b/drivers/gpu/drm/xe/xe_cper_types.h
-@@ -174,4 +174,12 @@ struct xe_cper_einfo_entry {
- 	u64 timestamp;
- };
- 
-+/**
-+ * struct xe_cper - Xe CPER state
-+ */
-+struct xe_cper {
-+	/** @on_query: Emit a CPER record on each RAS counter query */
-+	bool on_query;
-+};
 +
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 41f703a87916..d88e0768bc3e 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -12,6 +12,7 @@
- #include <drm/drm_file.h>
- #include <drm/ttm/ttm_device.h>
- 
++#ifndef __CHECKER__
++#define CREATE_TRACE_POINTS
++#include "xe_trace_cper.h"
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_trace_cper.h b/drivers/gpu/drm/xe/xe_trace_cper.h
+new file mode 100644
+index 000000000000..6d2dbf504888
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_trace_cper.h
+@@ -0,0 +1,66 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#undef TRACE_SYSTEM
++#define TRACE_SYSTEM xe
++
++#if !defined(_XE_TRACE_CPER_H_) || defined(TRACE_HEADER_MULTI_READ)
++#define _XE_TRACE_CPER_H_
++
++#include <linux/tracepoint.h>
++#include <linux/types.h>
++
 +#include "xe_cper_types.h"
- #include "xe_devcoredump_types.h"
- #include "xe_drm_ras_types.h"
- #include "xe_heci_gsc.h"
-@@ -579,6 +580,9 @@ struct xe_device {
- 	/** @ras: RAS structure for device */
- 	struct xe_drm_ras ras;
- 
-+	/** @cper: CPER state */
-+	struct xe_cper cper;
++#include "xe_device_types.h"
 +
- 	/** @i2c: I2C host controller */
- 	struct xe_i2c *i2c;
- 
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 900319938fe5..25ea178228f7 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -4,6 +4,7 @@
-  */
- 
- #include "xe_configfs.h"
-+#include "xe_cper.h"
- #include "xe_debugfs.h"
- #include "xe_device.h"
- #include "xe_drm_ras.h"
-@@ -183,6 +184,38 @@ static int ras_status_to_errno(u32 status)
- 	}
- }
- 
-+static enum xe_sigid ras_comp_to_hw_sigid(u8 component)
-+{
-+	switch (component) {
-+	case XE_RAS_COMP_DEVICE_MEMORY:
-+		return XE_SIGID_DEVICE_MEMORY;
-+	case XE_RAS_COMP_CORE_COMPUTE:
-+		return XE_SIGID_CORE_COMPUTE;
-+	case XE_RAS_COMP_PCIE:
-+		return XE_SIGID_PCIE;
-+	case XE_RAS_COMP_FABRIC:
-+		return XE_SIGID_FABRIC;
-+	case XE_RAS_COMP_SOC_INTERNAL:
-+		return XE_SIGID_SOC_INTERNAL;
-+	default:
-+		return XE_SIGID_HW;
-+	}
-+}
++#define __dev_name_xe(xe)	dev_name((xe)->drm.dev)
 +
-+static u8 ras_sev_to_cper_sev(u8 ras_sev)
-+{
-+	switch (ras_sev) {
-+	case XE_RAS_SEV_CORRECTABLE:
-+		return CPER_SEV_CORRECTED;
-+	case XE_RAS_SEV_UNCORRECTABLE:
-+		return CPER_SEV_RECOVERABLE;
-+	case XE_RAS_SEV_INFORMATIONAL:
-+		return CPER_SEV_INFORMATIONAL;
-+	default:
-+		return CPER_SEV_RECOVERABLE;
-+	}
-+}
++TRACE_EVENT(xe_error_cper,
++	TP_PROTO(struct xe_device *xe,
++	    const guid_t *platform_id, const guid_t *fru_id,
++	    const u8 severity,
++	    const struct xe_cper_sec_intel_err_hdr *ihdr,
++	    u32 cper_len, const u8 *cper),
++	TP_ARGS(xe, platform_id, fru_id, severity, ihdr, cper_len, cper),
 +
- static inline const char *sev_to_str(u8 severity)
- {
- 	if (severity >= XE_RAS_SEV_MAX)
-@@ -616,6 +649,11 @@ int xe_ras_get_counter(struct xe_device *xe, u8 severity, u8 component, u32 *val
- 		return ret;
- 
- 	*value = response.value;
++	TP_STRUCT__entry(
++	    __string(dev, __dev_name_xe(xe))
++	    __array(char, platform_id, UUID_SIZE)
++	    __array(char, fru_id, UUID_SIZE)
++	    __field(u8, sev)
++	    __array(u8, ihdr_raw, sizeof(struct xe_cper_sec_intel_err_hdr))
++	    __field(u32, cper_len)
++	    __dynamic_array(u8, cper, cper_len)
++	    ),
 +
-+	if (READ_ONCE(xe->cper.on_query))
-+		xe_cper_emit_counter(xe, ras_sev_to_cper_sev(counter.common.severity),
-+				     ras_comp_to_hw_sigid(counter.common.component),
-+				     &counter, &response);
- 	return 0;
- }
- 
-@@ -1067,4 +1105,8 @@ void xe_ras_init(struct xe_device *xe)
- 	ret = devm_device_add_group(xe->drm.dev, &gpu_health_group);
- 	if (ret)
- 		xe_err(xe, "Failed to create GPU health sysfs, err=%d\n", ret);
++	TP_fast_assign(
++	    __assign_str(dev);
++	    __entry->sev = severity;
++	    memcpy(__entry->platform_id, platform_id, UUID_SIZE);
++	    memcpy(__entry->fru_id, fru_id, UUID_SIZE);
++	    memcpy(__entry->ihdr_raw, ihdr, sizeof(struct xe_cper_sec_intel_err_hdr));
++	    __entry->cper_len = cper_len;
++	    memcpy(__get_dynamic_array(cper), cper, cper_len);
++	    ),
 +
-+	ret = xe_cper_sysfs_init(xe);
-+	if (ret)
-+		xe_err(xe, "Failed to create cper_on_query sysfs, err=%d\n", ret);
- }
++	TP_printk("dev=%s severity=%d platform_id=%pU fru_id=%pU "
++		"intel_err_hdr_raw=%s cper_len=%u cper_raw=%s",
++		__get_str(dev), __entry->sev,
++		__entry->platform_id, __entry->fru_id,
++		__print_hex(__entry->ihdr_raw,
++		    sizeof(struct xe_cper_sec_intel_err_hdr)),
++		__entry->cper_len,
++		__print_hex(__get_dynamic_array(cper),
++		    __entry->cper_len))
++);
++
++#endif
++
++/* This part must be outside protection */
++#undef TRACE_INCLUDE_PATH
++#undef TRACE_INCLUDE_FILE
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
++#define TRACE_INCLUDE_FILE xe_trace_cper
++#include <trace/define_trace.h>
 -- 
 2.54.0
 
