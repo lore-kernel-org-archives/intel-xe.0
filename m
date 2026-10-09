@@ -4,56 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AB90CA9EBB
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 13:08:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BB20CA601E
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 13:18:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBB1010E8A6;
-	Fri,  9 Oct 2026 13:08:31 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HlVhjvr5";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CD5C10E315;
- Fri,  9 Oct 2026 13:08:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791551311; x=1823087311;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2mJpPAkzCLohtylKsLwks/9dys7yNF3jZSXER5gGgdk=;
- b=HlVhjvr5xg9oNXBajO9M3FVf9DGFnCWkEkr0YLaV9YPXmr0TEJ4VVx3M
- 3MS9BBeIQUSMd8nx+P1cN1j6jps6UyhvXnN5q10k65o73TqbYqPoRct3x
- IuzkPhk5M6TSluJ9aTbskG/OENe15pgu7T+dQ5I42NxCfed5a2ELBDjCf
- aCDlqpz3XedYyh+8A2E5n6rAmrYgNELb1hkpMju2U94CrdVJd22KqwZJw
- XEanPLtqhwepM8a5Vl5HYgAjJDdOM00EiffoS5ax46CEcESi7X6f2PlFn
- Y9v/GH2pctl405GZ/tWkc6btASHU+Q8xk6Eih+G4t2mUAwEZqBkUDMJfo A==;
-X-CSE-ConnectionGUID: 2JpQTJHNRZO4eFrBpYc6hg==
-X-CSE-MsgGUID: iCvx1TDiTfyRlfrnkBODaQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11930"; a="364711"
-X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="364711"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 06:08:30 -0700
-X-CSE-ConnectionGUID: b3SxmXMOTD2lWQ+HPyCOiw==
-X-CSE-MsgGUID: knlS1P8bS6iE1GLVJ1plKg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,148,1787036400"; 
-   d="scan'208";a="754577"
-Received: from xiaolu.sh.intel.com ([10.239.146.103])
- by orviesa010.jf.intel.com with ESMTP; 09 Oct 2026 06:08:27 -0700
-From: Xiao Lu <xiaolu.xie@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, ville.syrjala@linux.intel.com,
- imre.deak@intel.com, jani.nikula@linux.intel.com, lyude@redhat.com,
- Xiao Lu <xiaolu.xie@intel.com>
-Subject: [PATCH] drm/i915/dp: limit UHBR link rates to the cable's capability
-Date: Fri,  9 Oct 2026 21:06:11 +0800
-Message-ID: <20261009130611.3268451-1-xiaolu.xie@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BEAE10E189;
+	Fri,  9 Oct 2026 13:18:29 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7771F10E189;
+ Fri,  9 Oct 2026 13:18:27 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 6C6E960DC1;
+ Fri,  9 Oct 2026 13:18:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FF7C1F00893;
+ Fri,  9 Oct 2026 13:18:25 +0000 (UTC)
+Date: Fri, 9 Oct 2026 15:18:22 +0200
+From: Maxime Ripard <self@mripard.dev>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <asjkbknTHg2t8JGy@houat>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="tsq25yhole3hlkt3"
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,147 +52,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DisplayPort 2.1 defines the CABLE_ATTRIBUTES_UPDATED_BY_DPRX register
-(DPCD 0x2217), in which a UHBRx-capable DPRX reports the UHBR link rates
-the attached cable can carry. The DPRX determines this via the CONFIG2
-voltage handshake (for a DP receptacle) or by parsing the cable eMarker
-(for a USB-C receptacle), and updates the register before asserting HPD.
 
-Add the register definitions and a helper,
-drm_dp_128b132b_cable_uhbr_rates(), that reads the register and returns
-the set of UHBR rates (DP_UHBR10, DP_UHBR13_5, DP_UHBR20) the cable
-permits, and intersect the sink's 128b/132b rates with it. This avoids
-attempting link training at a UHBR rate the cable cannot carry and then
-falling back, e.g. a UHBR20-capable sink connected through a cable that
-only supports UHBR10/UHBR13.5.
+--tsq25yhole3hlkt3
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: [PULL] drm-misc-fixes
+MIME-Version: 1.0
 
-A register value of 0 ("not UHBR-capable or capability unknown", or a
-sink that does not implement the register) yields all UHBR rates, so no
-restriction is imposed and the normal rate fallback applies.
+Hi Dave, Sima,
 
-See DP Standard v2.1b, Table 2-260 (DPCD 0x2217).
+A bit late due to travel back from plumbers, but here's this week
+drm-misc-fixes PR.
 
-Signed-off-by: Xiao Lu <xiaolu.xie@intel.com>
----
- drivers/gpu/drm/display/drm_dp_helper.c | 49 +++++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.c |  7 ++++
- include/drm/display/drm_dp.h            | 12 ++++++
- include/drm/display/drm_dp_helper.h     |  1 +
- 4 files changed, 69 insertions(+)
+Maxime
 
-diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index e623ccb4c..5898d21cc 100644
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -382,6 +382,55 @@ int drm_dp_128b132b_read_aux_rd_interval(struct drm_dp_aux *aux)
- }
- EXPORT_SYMBOL(drm_dp_128b132b_read_aux_rd_interval);
- 
-+/**
-+ * drm_dp_128b132b_cable_uhbr_rates() - read the UHBR rates a cable can carry
-+ * @aux: DisplayPort AUX channel
-+ *
-+ * Read the CABLE_ATTRIBUTES_UPDATED_BY_DPRX register (DPCD 0x2217) and return
-+ * the set of 128b/132b (UHBR) link rates the attached cable is capable of
-+ * carrying, as a mask of %DP_UHBR10, %DP_UHBR13_5 and %DP_UHBR20.
-+ *
-+ * A UHBRx-capable DPRX updates this register with the cable's capability (via
-+ * the CONFIG2 voltage handshake for a DP receptacle, or by parsing the eMarker
-+ * for a USB-C receptacle). A source can intersect the returned mask with the
-+ * sink's (and its own) supported UHBR rates to avoid attempting link training
-+ * at a rate the cable cannot carry, saving the time otherwise spent failing
-+ * and falling back.
-+ *
-+ * A register value of 0 means the cable capability is unknown, or the sink does
-+ * not implement the register. No restriction can be derived in that case, so
-+ * all UHBR rates are returned and the caller's normal rate fallback applies.
-+ *
-+ * Returns a mask of DP_UHBR* rates the cable permits.
-+ */
-+u8 drm_dp_128b132b_cable_uhbr_rates(struct drm_dp_aux *aux)
-+{
-+	u8 cable, rates = DP_UHBR10 | DP_UHBR13_5 | DP_UHBR20;
-+
-+	if (drm_dp_dpcd_read_byte(aux, DP_CABLE_ATTRIBUTES_UPDATED_BY_DPRX, &cable) < 0)
-+		return rates;
-+
-+	/* Unknown / not implemented: impose no restriction. */
-+	if (!cable)
-+		return rates;
-+
-+	rates = 0;
-+	switch (cable & DP_CABLE_UHBR10_20_CAPABILITY_MASK) {
-+	case DP_CABLE_UHBR10_20_CAPABLE:
-+		rates |= DP_UHBR20;
-+		fallthrough;
-+	case DP_CABLE_UHBR10_CAPABLE:
-+		rates |= DP_UHBR10;
-+		break;
-+	}
-+
-+	if (cable & DP_CABLE_UHBR13_5_CAPABILITY)
-+		rates |= DP_UHBR13_5;
-+
-+	return rates;
-+}
-+EXPORT_SYMBOL(drm_dp_128b132b_cable_uhbr_rates);
-+
- void drm_dp_link_train_clock_recovery_delay(const struct drm_dp_aux *aux,
- 					    const u8 dpcd[DP_RECEIVER_CAP_SIZE])
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 113d767e6..de8f38754 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -278,6 +278,13 @@ static void intel_dp_set_dpcd_sink_rates(struct intel_dp *intel_dp)
- 			}
- 		}
- 
-+		/*
-+		 * Intersect with the UHBR rates the cable can actually carry
-+		 * (DPCD 0x2217), to avoid training at a rate the cable can't
-+		 * support. Unknown/unimplemented leaves the rates untouched.
-+		 */
-+		uhbr_rates &= drm_dp_128b132b_cable_uhbr_rates(&intel_dp->aux);
-+
- 		if (uhbr_rates & DP_UHBR10)
- 			intel_dp->sink_rates[i++] = 1000000;
- 		if (uhbr_rates & DP_UHBR13_5)
-diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index e63c7f075..70463572e 100644
---- a/include/drm/display/drm_dp.h
-+++ b/include/drm/display/drm_dp.h
-@@ -1240,6 +1240,18 @@
- # define DP_128B132B_TRAINING_AUX_RD_INTERVAL_32_MS             0x05
- # define DP_128B132B_TRAINING_AUX_RD_INTERVAL_64_MS             0x06
- 
-+#define DP_CABLE_ATTRIBUTES_UPDATED_BY_DPRX			0x2217 /* 2.1 */
-+# define DP_CABLE_UHBR10_20_CAPABILITY_MASK			(3 << 0)
-+# define DP_CABLE_NOT_UHBR_CAPABLE				(0 << 0)
-+# define DP_CABLE_UHBR10_CAPABLE				(1 << 0)
-+# define DP_CABLE_UHBR10_20_CAPABLE				(2 << 0)
-+# define DP_CABLE_UHBR13_5_CAPABILITY				(1 << 2)
-+# define DP_CABLE_TYPE_MASK					(7 << 3)
-+# define DP_CABLE_TYPE_UNKNOWN					(0 << 3)
-+# define DP_CABLE_TYPE_PASSIVE					(1 << 3)
-+# define DP_CABLE_TYPE_LRD					(2 << 3)
-+# define DP_CABLE_TYPE_LTTPR_RETIMER_ACTIVE			(3 << 3)
-+
- #define DP_TEST_264BIT_CUSTOM_PATTERN_7_0		0x2230
- #define DP_TEST_264BIT_CUSTOM_PATTERN_263_256	0x2250
- 
-diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-index 5b05a7fbe..a70530696 100644
---- a/include/drm/display/drm_dp_helper.h
-+++ b/include/drm/display/drm_dp_helper.h
-@@ -59,6 +59,7 @@ void drm_dp_lttpr_link_train_channel_eq_delay(const struct drm_dp_aux *aux,
- 					      const u8 caps[DP_LTTPR_PHY_CAP_SIZE]);
- 
- int drm_dp_128b132b_read_aux_rd_interval(struct drm_dp_aux *aux);
-+u8 drm_dp_128b132b_cable_uhbr_rates(struct drm_dp_aux *aux);
- bool drm_dp_128b132b_lane_channel_eq_done(const u8 link_status[DP_LINK_STATUS_SIZE],
- 					  int lane_count);
- bool drm_dp_128b132b_lane_symbol_locked(const u8 link_status[DP_LINK_STATUS_SIZE],
--- 
-2.43.0
+drm-misc-fixes-2026-10-09:
+A pointer assignment fix for gud, a reference fix and a preallocation
+size fix for imagination, a suspend fix and an allocation fix when idle
+for vc4, and a hardware variant fix for nouveau.
+The following changes since commit bca45af5998a05f34b13a2ef11e639bac9c62643:
 
+  drm/vc4: Use kvmalloc_objs() for the BO cache size list (2026-10-01 10:36=
+:09 -0300)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-20=
+26-10-09
+
+for you to fetch changes up to 6ccf996a0dec1852dab94ad865f27b4904750e12:
+
+  drm/nouveau: Skip the Turing CE workaround object for non-GR channels (20=
+26-10-08 18:14:46 -0400)
+
+----------------------------------------------------------------
+A pointer assignment fix for gud, a reference fix and a preallocation
+size fix for imagination, a suspend fix and an allocation fix when idle
+for vc4, and a hardware variant fix for nouveau.
+
+----------------------------------------------------------------
+Gyeyoung Baek (2):
+      drm/imagination: Fix reference and vm_bo handling in remap()
+      drm/imagination: Size page table preallocation by device address
+
+Mary Guillemard (1):
+      drm/nouveau: Skip the Turing CE workaround object for non-GR channels
+
+Ma=EDra Canal (2):
+      drm/vc4: Disable the V3D interrupt across runtime suspend
+      drm/vc4: Fix binner slot allocation failing on an idle GPU
+
+Sajal Gupta (1):
+      drm/gud: don't keep a connector without a CRTC as connector_state
+
+ drivers/gpu/drm/gud/gud_pipe.c          |  1 +
+ drivers/gpu/drm/imagination/pvr_mmu.c   | 25 +++++++--------
+ drivers/gpu/drm/imagination/pvr_vm.c    |  8 ++---
+ drivers/gpu/drm/nouveau/nouveau_abi16.c |  2 +-
+ drivers/gpu/drm/vc4/vc4_drv.h           |  2 +-
+ drivers/gpu/drm/vc4/vc4_gem.c           |  8 ++++-
+ drivers/gpu/drm/vc4/vc4_irq.c           | 24 +++++---------
+ drivers/gpu/drm/vc4/vc4_v3d.c           | 57 ++++++++++++++++-------------=
+----
+ drivers/gpu/drm/vc4/vc4_validate.c      |  2 +-
+ 9 files changed, 62 insertions(+), 67 deletions(-)
+
+--tsq25yhole3hlkt3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCasjpngAKCRAnX84Zoj2+
+dnq+AX9VnzyYbqDsLI3klttBA8eM/1p70QjhoR5jPXkAYgLKSL9O0sRVawtZx8Wo
+R2zx8vkBfiQUU7rGGc8g1ecy2HIEBkSZ9A9WaT4fZd2bteZxM71IzpxdCLXVGnwh
+kgD4xkQeqA==
+=wxDM
+-----END PGP SIGNATURE-----
+
+--tsq25yhole3hlkt3--
