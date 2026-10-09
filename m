@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07AFDCA6019
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 12:29:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09AF3CA601E
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 12:39:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96EFA1120DB;
-	Fri,  9 Oct 2026 12:29:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0970112109;
+	Fri,  9 Oct 2026 12:39:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JDT1/hX5";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="L6E+xHpx";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95EEE1120DB
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 12:29:56 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD763112109
+ for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 12:39:54 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id C8BB06020C;
- Fri,  9 Oct 2026 12:29:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53A461F000FF;
- Fri,  9 Oct 2026 12:29:55 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 64BF340281;
+ Fri,  9 Oct 2026 12:39:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C8171F000FF;
+ Fri,  9 Oct 2026 12:39:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791548995;
- bh=/KNPx8AigGGuxeibteF2rgBxhjwRx7fsT44f74l+3+E=;
+ s=k20260515; t=1791549594;
+ bh=BYeMCQbwZFakqyGC+6Pbhfxh+3cBSXLorKJldu7s5j8=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=JDT1/hX5MyuBCNVQQUv8/N8PMDzia3+uCN00oDqG/B2Mx5UKOeBx0Gd03VctwT4RT
- UrPXEcsUUy8vprph9dvr/xjSDkMInvYoz/zYijGiiwCGBGJNDUsfe+ayLWOU755CRR
- rHC/In0dP7uBfR33hUnKx2aeZiSWiXi8K4u28uGFa7Z7h89DeU61umONgpygWCLTeO
- rkKostVeaSDAGTAMlTFmcYxzNTd0ZE3xuJ9Q5EpyBGJEEtGq+Ob1lgfN/HHu4ujE3Q
- RKR1b0+F/DaPgrqD4bTBScN50txjbZWK53Ky1LwKeWw+hMCdy62pP0tu1lYjRahY8g
- Ga385ZCxLLXJQ==
-Message-ID: <sashiko-outbox-165540@kernel.org>
+ b=L6E+xHpxM6rBCvUWz5Z8Om322jplSGx+WaaaU+xrINErKIAYkWw6zTZMMpbhbIDhS
+ ZC07sOZgEnCiqWfBazKtMb7GAys+QWyvvCD2VzXxlSSVPYogG3cKUlPjQdXi+z1zdg
+ jQj8TzvR9vv8mIjv8U9PcjLkenroeL3nDAU6XLQhq549nq0Q4VyoP0ouHDWq05ynLN
+ D2fCv0SNGKeI69ve/NJbrTahVi05SKIF82TDz/YJ8YWGvhSwjd4Y9DLHOieG2zZ176
+ xyFpcAvtPvwQAv6GZzTu3gWXT3Jk1l9aG5u1K+DU7ogC7F6DpbcYV/rlO8foHK1Kpw
+ KA/vZrChg3DaQ==
+Message-ID: <sashiko-outbox-165551@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 1/3] drm/xe: Prevent VF memory IRQ from accessing a
- torn-down engine
+Subject: Re: [PATCH v3 3/3] drm/xe/gt: Disable GT reset worker before engine
+ teardown
 To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261009121921.818671-6-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20261009121921.818671-8-satyanarayana.k.v.p@intel.com>
 References: <20261009121921.818671-5-satyanarayana.k.v.p@intel.com>
- <20261009121921.818671-6-satyanarayana.k.v.p@intel.com>
+ <20261009121921.818671-8-satyanarayana.k.v.p@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 09 Oct 2026 12:29:54 +0000
+Date: Fri, 09 Oct 2026 12:39:53 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,81 +59,66 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Critical] drm/xe: NULL Pointer Dereference in xe_execlist_port_destroy a=
-nd timer due to early hwe->gt clearing
+- [High] drm/xe/gt: UAF in reset worker racing with GuC/GSC devres teardown
 --
 
-commit 0f76e8a7471aad3de71482c37a1644b32699ef4e
+commit b50233919776c7d521074ae26d515654e814d647
 Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: drm/xe/gt: Disable GT reset worker before engine teardown
 
-drm/xe: Prevent VF memory IRQ from accessing a torn-down engine
+This commit registers a GT-level devres action to disable and drain the=20
+reset worker right after xe_hw_engines_init(). This aims to ensure the=20
+worker is halted before any engine is torn down.
 
-The commit fixes a NULL pointer dereference by invalidating the engine name
-and clearing hwe->gt earlier in the teardown process. However, this
-reordering appears to introduce a new issue where xe_execlist_port_destroy()
-encounters a NULL pointer.
-
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw=
-_engine.c
-> index 9680d2a5adec7..3a6b9a4fe63ff 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-> @@ -275,11 +275,22 @@ static const struct engine_info engine_infos[] =3D {
->  static void hw_engine_fini(void *arg)
->  {
->  	struct xe_hw_engine *hwe =3D arg;
-> +	struct xe_gt *gt =3D hwe->gt;
-> +
-> +	if (gt) {
-> +		struct xe_device *xe =3D gt_to_xe(gt);
-> +		unsigned long flags;
-> +
-> +		spin_lock_irqsave(&xe->irq.lock, flags);
-> +		hwe->name =3D NULL;
-> +		hwe->gt =3D NULL;
-> +		spin_unlock_irqrestore(&xe->irq.lock, flags);
-> +	} else {
-> +		hwe->name =3D NULL;
-> +	}
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+[ ... ]
+> @@ -656,6 +668,11 @@ static int gt_init_with_all_forcewake(struct xe_gt *=
+gt)
+>  	if (err)
+>  		return err;
 > =20
->  	if (hwe->exl_port)
->  		xe_execlist_port_destroy(hwe->exl_port);
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> +	/* Disable worker before releasing HW engines */
+> +	err =3D devm_add_action_or_reset(gt_to_xe(gt)->drm.dev, gt_reset_worker=
+_disable, gt);
 
-[Severity: Critical]
-Will this call to xe_execlist_port_destroy() cause a kernel panic now that
-hwe->gt has been cleared to NULL?
+[Severity: High]
+Does this cause a use-after-free or NULL pointer dereference during teardow=
+n?
 
-Looking at xe_execlist_port_destroy() in drivers/gpu/drm/xe/xe_execlist.c, =
-it
-dereferences port->hwe->gt:
+Because devres actions are executed in LIFO order, registering
+gt_reset_worker_disable here means it will execute AFTER any devres actions
+registered by subsequent initialization steps, such as
+xe_uc_init_post_hwconfig().
 
-void xe_execlist_port_destroy(struct xe_execlist_port *port)
-{
-	timer_delete(&port->irq_fail);
+Specifically, during GSC teardown, free_resources() destroys the workqueue:
 
-	/* Prevent an interrupt while we're destroying */
-	spin_lock_irq(&gt_to_xe(port->hwe->gt)->irq.lock);
-	...
+drivers/gpu/drm/xe/xe_gsc.c:free_resources() {
+    ...
+    if (gsc->wq) {
+        destroy_workqueue(gsc->wq);
+        gsc->wq =3D NULL;
+    }
 }
 
-Because hwe->gt is set to NULL right before this call, gt_to_xe(NULL) will
-dereference a NULL pointer (specifically gt_to_tile(NULL)->xe) when acquiri=
-ng
-the spinlock.
+Because this teardown happens before the reset worker is disabled, a
+concurrently running reset worker can reach this point:
 
-This problem wasn't introduced by this patch, but doesn't calling
-timer_delete() instead of timer_delete_sync() on port->irq_fail allow the
-timer to execute concurrently during or after destruction? If the timer
-fires and calls read_execlist_status(port->hwe) which also accesses hwe->gt,
-would it hit the same NULL pointer dereference now that the pointer is clea=
-red
-earlier?
+drivers/gpu/drm/xe/xe_gsc.c:xe_gsc_load_start() {
+    ...
+    queue_work(gsc->wq, &gsc->work);
+}
 
-> -
-> -	hwe->gt =3D NULL;
->  }
+If the reset worker calls queue_work() while gsc->wq is freed or NULL, it
+will cause a crash.
+
+> +	if (err)
+> +		return err;
+> +
+>  	err =3D xe_uc_init_post_hwconfig(&gt->uc);
+>  	if (err)
+>  		return err;
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261009121921.8186=
-71-5-satyanarayana.k.v.p@intel.com?part=3D1
+71-5-satyanarayana.k.v.p@intel.com?part=3D3
