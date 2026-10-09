@@ -4,42 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9992CA6012
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 08:02:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59D61CA5FED
+	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 08:03:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61E5C10FF63;
-	Fri,  9 Oct 2026 08:02:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TyQ6xq1Z";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AEE410FF63
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 08:02:46 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 99D7E602C3;
- Fri,  9 Oct 2026 08:02:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26AB31F000FF;
- Fri,  9 Oct 2026 08:02:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791532965;
- bh=sVwdGQYZyI4UXeFxf15h1eC9ZJXu2JjlHMzEsMZpuns=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=TyQ6xq1ZGmiH89vGW+myGTBCkmBNNYu2J9vp2nr+HuHn66gBvE5B+nftqWSgrc6pH
- MHRe2LvZMHVWGmVxgk7GeiT+0uC0nv36FSDzaLOfmy+RMbAfH7jcEXwBbaXkob9yQO
- 58m9Gz31TagfuP/6xu5/G3fG/iy2q7OKkTB9Q9pkZTVQ4gGlhsnUWwh8QBzBxYxjor
- AAT+/0Ug59EGjqv26DH2ZhjyqQq3x+XR1J3oTlnCWD2viC2RQFP0kOC316EFKOQb4n
- 0OXm1Z1qSmSf8koZiBhbpbTHbW1JWkFU/wL+g9k6+PAMZTT++/bPUcIbldiY+oEtwU
- lNSuAl2W0/vNw==
-Message-ID: <sashiko-outbox-165051@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2] drm/xe: Add wa_14028434957 to Graphics Version 35.11
-To: "Varun Gupta" <varun.gupta@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA85F10FF63;
+	Fri,  9 Oct 2026 08:03:00 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3853E10FF63;
+ Fri,  9 Oct 2026 08:03:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0196875690382767969=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/sysctrl=3A_Add_mailb?=
+ =?utf-8?q?ox_control_state_to_error_messages?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261009075224.1316885-2-varun.gupta@intel.com>
-References: <20261009075224.1316885-2-varun.gupta@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 09 Oct 2026 08:02:44 +0000
+Date: Fri, 09 Oct 2026 08:03:00 -0000
+Message-ID: <179153298022.1681.1738692987162756742@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261009064754.3927132-2-anoop.c.vijay@intel.com>
+In-Reply-To: <20261009064754.3927132-2-anoop.c.vijay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,103 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] drm/xe: early MSI workqueues wedge device before cleanup handler=
-s are registered
---
+--===============0196875690382767969==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 64d5d3713cb5cf15e2cdb1f9711919646d7c8e35
-Author: Varun Gupta <varun.gupta@intel.com>
-drm/xe: Add wa_14028434957 to Graphics Version 35.11
+== Series Details ==
 
-This patch prevents the SNIB AER latch from swallowing back-to-back=20
-uncorrectable non-fatal errors by intercepting the MSI and reusing the=20
-existing GFSP error containment logic. Because GFSP mailbox queries can=20
-sleep, handling is deferred to a workqueue to ensure hardirq safety,=20
-wedging the device if a reset is required.
+Series: drm/xe/sysctrl: Add mailbox control state to error messages
+URL   : https://patchwork.freedesktop.org/series/175802/
+State : success
 
-> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_=
-error.c
-> index 5f2abc9485ff5..bde707a3fb641 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_error.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-[ ... ]
-> @@ -173,6 +178,29 @@ static void csc_hw_error_work(struct work_struct *wo=
-rk)
->  	xe_survivability_mode_runtime_enable(xe);
->  }
-> =20
-> +static void nonfatal_msi_work(struct work_struct *work)
-> +{
-> +	struct xe_drm_ras *ras =3D container_of(work, typeof(*ras), nonfatal_ms=
-i_work);
-> +	struct xe_device *xe =3D container_of(ras, typeof(*xe), ras);
-> +
-> +	guard(xe_pm_runtime)(xe);
-> +	enum xe_ras_recovery_action action =3D xe_ras_process_errors(xe);
-> +
-> +	/*
-> +	 * TODO: Request an SBR instead of wedging, once VR driver
-> +	 * quiescing support is in place.
-> +	 */
-> +	if (action !=3D XE_RAS_RECOVERY_ACTION_RECOVERED)
-> +		xe_device_declare_wedged(xe);
+== Summary ==
 
-[Severity: Medium]
-Can this workqueue race with driver probe?
+CI Bug Log - changes from xe-5912-4f1de47ae94bb8aee6bc1c6105609646d9411650_BAT -> xe-pw-175802v1_BAT
+====================================================
 
-Looking at xe_irq_install(), it calls xe_hw_error_init() which processes=20
-pre-existing hardware errors via process_hw_errors(). This immediately queu=
-es=20
-nonfatal_msi_work if non-fatal errors are already pending.
+Summary
+-------
 
-If the work executes concurrently with xe_device_probe(), it will call=20
-xe_device_declare_wedged(xe) which acquires a PM runtime reference=20
-(xe_pm_runtime_get_noresume) and sends a wedged uevent.=20
+  **SUCCESS**
 
-However, xe_device_wedged_fini isn't registered until the very end of probe=
-,=20
-and drm_dev_register() hasn't finished yet.=20
+  No regressions found.
 
-If probe fails in between, could the PM runtime reference leak? Is it safe=
-=20
-to send a wedged uevent on an unregistered DRM device?
+  
 
-> +}
-> +
-[ ... ]
-> @@ -436,6 +464,15 @@ static void hw_error_source_handler(struct xe_tile *=
-tile, const enum hardware_er
->  	 * here for those platforms.
->  	 */
->  	if (xe->info.has_sysctrl) {
-> +		/*
-> +		 * Defer non-fatal MSI handling to process context because the GFSP
-> +		 * query can sleep.
-> +		 */
-> +		if (hw_err =3D=3D HARDWARE_ERROR_NONFATAL && XE_DEVICE_WA(xe, 14028434=
-957)) {
-> +			schedule_work(&xe->ras.nonfatal_msi_work);
+Participating hosts (15 -> 15)
+------------------------------
 
-[Severity: Medium]
-Could this execute too early during initialization?
+  No changes in participating hosts
 
-As noted above, if a non-fatal error is present during module load, this=20
-schedules the work early in the initialization sequence before cleanup=20
-handlers are fully established in xe_device_probe().
+Known issues
+------------
 
-> +			return;
-> +		}
-> +
->  		drm_err_ratelimited(&xe->drm, HW_ERR "Invalid error routing\n");
->  		return;
->  	}
+  Here are the changes found in xe-pw-175802v1_BAT that come from known issues:
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261009075224.1316=
-885-2-varun.gupta@intel.com?part=3D1
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [ABORT][1] ([Intel XE#9463]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5912-4f1de47ae94bb8aee6bc1c6105609646d9411650/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175802v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9137 -> IGT_9138
+  * Linux: xe-5912-4f1de47ae94bb8aee6bc1c6105609646d9411650 -> xe-pw-175802v1
+
+  IGT_9137: 125c0289617f3c7ba7ee376ea1d8aabd2ff5afdc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_9138: 9138
+  xe-5912-4f1de47ae94bb8aee6bc1c6105609646d9411650: 4f1de47ae94bb8aee6bc1c6105609646d9411650
+  xe-pw-175802v1: 175802v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175802v1/index.html
+
+--===============0196875690382767969==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/sysctrl: Add mailbox control state to error messages</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175802/">https://patchwork.freedesktop.org/series/175802/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175802v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175802v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5912-4f1de47ae94bb8aee6bc1c6105609646d9411650_BAT -&gt; xe-pw-175802v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-175802v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5912-4f1de47ae94bb8aee6bc1c6105609646d9411650/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175802v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9137 -&gt; IGT_9138</li>
+<li>Linux: xe-5912-4f1de47ae94bb8aee6bc1c6105609646d9411650 -&gt; xe-pw-175802v1</li>
+</ul>
+<p>IGT_9137: 125c0289617f3c7ba7ee376ea1d8aabd2ff5afdc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_9138: 9138<br />
+  xe-5912-4f1de47ae94bb8aee6bc1c6105609646d9411650: 4f1de47ae94bb8aee6bc1c6105609646d9411650<br />
+  xe-pw-175802v1: 175802v1</p>
+
+</body>
+</html>
+
+--===============0196875690382767969==--
