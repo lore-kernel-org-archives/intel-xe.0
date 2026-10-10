@@ -4,160 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F25E4CA9EBE
-	for <intel-xe@archiver.kernel.org>; Sat, 10 Oct 2026 05:39:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E814CA9EBE
+	for <intel-xe@archiver.kernel.org>; Sat, 10 Oct 2026 05:40:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D7B910E485;
-	Sat, 10 Oct 2026 05:39:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3350910E485;
+	Sat, 10 Oct 2026 05:40:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n4k9/neZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IjFVmbyN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6812F10E485
- for <intel-xe@lists.freedesktop.org>; Sat, 10 Oct 2026 05:39:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2255010E485
+ for <intel-xe@lists.freedesktop.org>; Sat, 10 Oct 2026 05:40:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791610795; x=1823146795;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=rwQxOYgQm5qwPmF2orNf7TQXJEdvG0VuWc9isG87Mt0=;
- b=n4k9/neZtnFj0ol9MXwFr9tzkBriVILL4PxCsfooJMpzas1m5+V+kQLa
- UGiHEk/DPL5yRsjnnQItzbIxJ2c23n93YrSgGWVm/eQ+GbLFASWnoN4nK
- USlqj74GCtXk+U7NOasyrnQ6AUy31dZ6iwXAI3gz064kzp3lrj2Pmnnkp
- pBlKY1QF0xAGnXOax8NNlmIbmhiZU0KITD8aYrtgXVovi18LKOjB31AVc
- lGW3jiIwZO7JYDtmg1omyvaz9QKt8bzwV9bc1Fv8/Ag4N9bBh5iqGL2xF
- e5p7i/1OWFVhgV1Op8UFHsyl9kfcDK0mVYKU8TGrLjaXXE4v5pazkQEE4 w==;
-X-CSE-ConnectionGUID: HmNORp/wT6ykTGYnpaU12A==
-X-CSE-MsgGUID: 52WT5FGsTGqgAqn6ei/law==
-X-IronPort-AV: E=McAfee;i="6800,10657,11930"; a="411915"
+ t=1791610851; x=1823146851;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=NEYwO72/FKINJilpMfHOzAdaKr/sklhmObstIDhs+lg=;
+ b=IjFVmbyNkWBtt+HjMPUVTY3/7jKpqqq9vf1TZb5T/Td+b77HMMSFGtuf
+ zJm1cQb4OAYGXN8JUpjEy1icD9RHrWEQ4uGQcdoq2m16so5UK+Bcbe40B
+ uZhT9klCGSqhotJivNXlzHhsQ4mZm5UYP0Bg+toRvTCbn1+aP/MCnwsUC
+ yA3zTozQgIogY+ilRpBVCTaxLVOuZ/738CHNjkpuDb/DEgh9at/YGTk9+
+ ROKDYmKz8p6K1LY2c7n8XuMEnQQnnQulLAB9tdgm6kzK8A898bZJwZzka
+ kZwkkAVlaQ+8EIgYgDF8gNxDnVXH/D1+S15D53p8zZeAR6LmDg9AJqyjP w==;
+X-CSE-ConnectionGUID: 4dl92ccgRj+uBb0FWS8oFg==
+X-CSE-MsgGUID: lHzcUBSKTNSJ8pWlnvBNgw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11930"; a="412370"
 X-IronPort-AV: E=Sophos;i="6.27,149,1787036400"; 
-   d="scan'208";a="411915"
-Received: from fmviesa012.fm.intel.com ([10.60.135.152])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 22:39:55 -0700
-X-CSE-ConnectionGUID: JHRldAbnSrqtBaaUBdwD7w==
-X-CSE-MsgGUID: bpCXJq6ITaimwMHulKU7zA==
+   d="scan'208";a="412370"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2026 22:40:51 -0700
+X-CSE-ConnectionGUID: XFUOOa8BQ2aMGB6N+xZHlw==
+X-CSE-MsgGUID: 0ds1wvuySRWEHJlMPWTclQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,149,1787036400"; 
-   d="scan'208";a="2278790"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa012.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2026 22:39:55 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Fri, 9 Oct 2026 22:39:54 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Fri, 9 Oct 2026 22:39:54 -0700
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.47) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Fri, 9 Oct 2026 22:39:54 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=M0rvB1y9K8E8eGNoU0itGYIoKVYd68iwaig3gcvWrIuyP5/QGGN1/dBrsQ6PORazXr8e2z7BPT1nf8+iwO59fjikYi/Zk5kitjbFDnrs/C6xwlhyqele2aL11XMrpoRG/fuT+BwfqJ3osEc//BKVM+aCKXHXwQOnJTBY9/LmZADSG9WUenP1LYsEnL8t8vxC47j9pECNONwyw+fe8QyPGUzEFyM9hfgixxydsuEIFdF8kJ4RqxPo6FxoyF9RWHO7WmHmuRwSlmme2jUCPLfQn4E7i8u/8jWXYyLqPrXf+TMe/7ACT+RtWRYZv4LJHrdWLBCCVR831FHyLd5EyIxMIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IKhyefFO7JgI7jX96n8NbvFX7draan9a6ZLr2sqzQMs=;
- b=I7E3KoR8MVhq4iuUAbb5hbBAXx997bQz1FAlFAjz/zOzdf4XSGCaiJaz2BH28+kLb3IEMWOlT7cn2wjANCqHCKFjzOUh0JiCVAPi6ugf7Vpu5SbAQhZgg/BZIVu7oz0Xoowt5jnpAtyj1oV8f8E8XcImMFLTnoUiWVRBwnCoMcqFeLP2of8iNQyVBOtq9oByxi0Opufd9B0De+5+IPRARualk8X0HzCTClSE7yn+qtdYQA0dUwhDTEdKHyiaMo5R8GrBzcAQIdOu+djxpegWKEsi4IW5T+EaeaxSfJ+xJ+DJBZxdYyT/FtmO30mo/Bpiwz3UeTHH6scyPIyTfpwowA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH8PR11MB852307.namprd11.prod.outlook.com
- (2603:10b6:610:32c::22) by DS4PPFBA72E12AE.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::48) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.496.18; Sat, 10 Oct
- 2026 05:39:47 +0000
-Received: from CH8PR11MB852307.namprd11.prod.outlook.com
- ([fe80::5f8e:c1ed:445a:a4b7]) by CH8PR11MB852307.namprd11.prod.outlook.com
- ([fe80::5f8e:c1ed:445a:a4b7%4]) with mapi id 15.21.0496.017; Sat, 10 Oct 2026
- 05:39:47 +0000
-Message-ID: <f8b0ca11-e52c-4f31-9faa-5237b04a1b65@intel.com>
-Date: Sat, 10 Oct 2026 11:09:40 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 10/14] drm/xe/hwmon: Add platform-aware VRAM thermal
- channel support
-To: <sashiko-reviews@lists.linux.dev>
-CC: <intel-xe@lists.freedesktop.org>
-References: <20261009120335.52973-1-karthik.poosa@intel.com>
- <20261009120335.52973-11-karthik.poosa@intel.com>
- <sashiko-outbox-165514@kernel.org>
-Content-Language: en-US
-From: "Poosa, Karthik" <karthik.poosa@intel.com>
-In-Reply-To: <sashiko-outbox-165514@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0156.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1ac::6) To CH8PR11MB852307.namprd11.prod.outlook.com
- (2603:10b6:610:32c::22)
+   d="scan'208";a="794256"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.126])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2026 22:40:51 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/xe: skip eviction of a BO with no resource
+Date: Fri,  9 Oct 2026 22:40:32 -0700
+Message-ID: <20261010054041.1327217-5-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261010054041.1327217-4-niranjana.vishwanathapura@intel.com>
+References: <20261010054041.1327217-4-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH8PR11MB852307:EE_|DS4PPFBA72E12AE:EE_
-X-MS-Office365-Filtering-Correlation-Id: 29fe8350-f3a7-4365-69af-08df2690e4e9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|1800799024|376014|6133799003|10067099003|18002099003|22082099003|261009223027099003|11063799006|4143699003|5023799004|56012099006;
-X-Microsoft-Antispam-Message-Info: dMWPHd1Hw8pPkNEODjfyyUs87HiLBoUx7qR9B/vmfjdR9TipqNZdcfmH7Uio4EWJdpeP90gIIsCmHOq5U9WBacFoktFDi51hJTOjluK1ic9S2f0w/0vW/d09yIQ8Gdg7WE770TAFw7bQoe5pW25vJaEEAnC/xnzBAzRT8zWp76xuXqx+r/d7D9ElWmMplcQV+Ep9wdbVICz4oNXGluno/Q2lnYH5y6DX7eaByhhh50zrzAhJJWB743x7T7ywPOGNgwWxj7uTyG3qqCVXCx2UT/iEPBrmz9NjKkPmiPNmp/2rp0vD2eR3g9feTrmfXDiAj4QQVyLXyuX/fL01WIPgVSbM/QXsixhIn7TXed3KGel8tg9ZgI7iTQtxzxC9okFMDYV6eNq2wmrc84+rOQRkWVs0URCHAnUvKdvOK90Ob62y9fB9pnmvsTnQevu7YBdmZrNBUeCjIPMX/Ed+9jJccxY5zZFZQ0Hq2gDdfmgN2EsD32UxfZWwg7czolTUz1P8ltgflqsMkqrtti4JOto0nW04Gnd6/1msD+DaALDvG6uSPYgDHE070H34UZIUkfEu5IDCk6IALh44W6DxtVes90QjkZxLwE9FuRd7jVtI9HEsd5eBjRj/ai+YWG9khyZC7zg0KBS77Vi6RXI9PtoWRi8zKt890LVU9Dm6EC5oOmw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH8PR11MB852307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(6133799003)(10067099003)(18002099003)(22082099003)(261009223027099003)(11063799006)(4143699003)(5023799004)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YTM4dkE3Mnh4bXN0TlJ0ZE9STkgrTlpNSm9IMDdkMFdqUkd3YzI5bldpS1hH?=
- =?utf-8?B?SVIzL3Rocm01b3pWYlVkRHJ6SzlvRXUvUWxpMmRqMDFPZDJkVGJWWTBEd0ZH?=
- =?utf-8?B?SlIzNVh4L3ZMeWdZSlpLRjZ6YkhZSENGM0tmRjJaT0NQQlJqVkNwc2lseW96?=
- =?utf-8?B?WWhnSW1uQUxjSDN1N1NXdXBRUlQwMXJWVnF1QnA0NUZqT0xpRnhQdTNEMnB6?=
- =?utf-8?B?ZEIrWkFuT00rcUo2d0p2c01qV1VkUFZMek5obitxTE95WDJqNE1TYUw1UTdF?=
- =?utf-8?B?cEo2NSsvRGdXNGVEU2Y0dEZGL1A4cC83ZElHakM5cVlpdmhRSVFGSVNnVkZ1?=
- =?utf-8?B?MmZsVmpyUGFweWs1WWY3MWpZVUdJVWo3OC9CdUR6RVhvWjR3QzQ5VGZOb3ZU?=
- =?utf-8?B?VHRlQU1VT3dSdUpKT3JJQ2ZTaEYvREV2QzR6RkUydFIyVjIvUXh3d2ZyeE5D?=
- =?utf-8?B?TjNxTGExQ2NJT1Z0dlQ3OUVyN0Z0b0hYdWVESXluRVFrb2ZzM2RKeDhmK1Ar?=
- =?utf-8?B?U1IxNGFsbVBlNnRxTjhsaVkvM0ppUmhxeGcvWGN4NjBiZnZIS1kxbTlNRU5k?=
- =?utf-8?B?d0xHSXlYNmRzSGpYbkU5cWlIM1g3aUMzRVdEL00xQ2RPVktyM3dPeUJFalU1?=
- =?utf-8?B?VnFGby9KVHJlaldDWFZweWY5b2J1N3pSdFlHd1NyTmRaR0pwVUdZcGh6U2FD?=
- =?utf-8?B?QUhiS1dDNjJHenhKalcwYjAzK2tiTlppS2ovdmJiUElPRTIyZmhCbWJBdm1N?=
- =?utf-8?B?YzcySytrRGRpVVhlSWRZcDRYMmFOWWhnSm52TnY4K29nZnZBRGN5Q3hsQ3Bo?=
- =?utf-8?B?NWR1c2V0UnE3VHBZbjFsankyS3pCaWp3TEhKRmhZaFVZQmpwQTNXNmQyRlpG?=
- =?utf-8?B?N0w0MFZ4ZXljN2sxSkFuMUZZTlJ4ZHpRSlZwVXhDelc3akVCV3ljTTNWTGht?=
- =?utf-8?B?elBKTFdwRGIyTEdXMnl2aG9zUnNJOFBPNUZrZzV5Z1F5ZytHbTBvaW9sSnJs?=
- =?utf-8?B?K3l1SWQ5dU84TG5vOHF5R0I3bk1XeUhKNnp6QU1jUWpMS2JmTy90Vlk5ZDA1?=
- =?utf-8?B?b3JJU1hqV2RqdlVtY21JVnpmbDBxeHFtekFzQWo0VzJWbWxCTVJ2bm9DQXBZ?=
- =?utf-8?B?RUxvc3g2ZHdUVy80MGo5bEtUTWxJWW95THh6OUI5U2ZFaFVxejBqaVN2OEpD?=
- =?utf-8?B?TUplcElaTnRTazYzNmd6L0laZ3JLcElVNmIxc2Jmc1k1eS92ZW1iSm1SRk1Z?=
- =?utf-8?B?RTJsWUNPUWNLSlQ5OGRsb3VpaXBnV3EzZ3VqR0x5c0hOTmRWU3JreTJRaklE?=
- =?utf-8?B?TTE1SlFmdSt0d1ZkSjIycHc5dnVuRjdPbU5sbVpPbzFPTFhaNkdtUncxNXJH?=
- =?utf-8?B?ZWFlaXB5Z0o2ZjhJVUVXN1g2S29INURXbDJhRERhL1B3dW5zVUZLL010Nkh5?=
- =?utf-8?B?ekR6Z1Z6bmtHK094aXpzN2ZPSlJOOFpVbHcvK1hOa2VQNndacy9xNW4yWWFr?=
- =?utf-8?B?VXp4TEFiQmZsbTErdjk0bkpULzhvVXpjTXZpcCtNbksrTk53NEdWWURodnZ4?=
- =?utf-8?B?eURHMUROdnlvVFZDb1lRQXdUOWsvNnpUY0cvYkRjU2tySTV4YlJZYThYUE9B?=
- =?utf-8?B?M0FlQTBRblVIeFRIRmd3cE41ZkJJMWptYXNJLzh6WUxuTkR6dTNXTDU2RTlL?=
- =?utf-8?B?ZnVxNXU5WTd5Nkc5eUtrNGhObjJ3cFdDT2NHa1Rsc052T2Q4N2xLVmZNTDEv?=
- =?utf-8?B?bEtCbC8ycjN3TWYyY013Z1FmaVNJVGVkWmxVK3BmVXBxaDhXdzBoUEVYYWFq?=
- =?utf-8?B?RGxKL3BuV3dxczZ4bGtFbFhxemk0ZDk5Sk5JM2I1V2haK0htZG9pcXA2aVBU?=
- =?utf-8?B?R2lOOWRjMmtOSlM4Zy9FZ0UwUlF6c3A0SG9Fa3pId2hBNHg3YmFlSWpoeDhX?=
- =?utf-8?B?M3RlSlVpMHl4bDRpZWlBOWs3ODRwTVRsckhlaWFpUXA1OXA1VjExRFJqK3Vo?=
- =?utf-8?B?V2hRL3ovOXgyaEkvaTNYb2J6OUxwNi9zUmhUa3pBSE5hUVBqTVUvVFFVVHph?=
- =?utf-8?B?ZnZ3VmhBckE5YU85MnNOZlpRVEJJdzhRZklBUTh3QUN6YjV5KzhwMkN0b0FR?=
- =?utf-8?B?RVdBczBONFY1OC9Dck1VNWxFalJYdHBqMGVKUjlGMU5tdml0TlZFa2RVWlJw?=
- =?utf-8?B?N1h3ZDhTSDNuZ2tlblpsbGFlUkJQcEJqMUkzUUQ5NGlNQ3ZxV3ludExLTkpk?=
- =?utf-8?B?NXJWNW1teWV5bXAxTC9PVWFndythK0tIOGFrdnhvM29pMWc3UXRsYnI0Y2RB?=
- =?utf-8?B?UWphdlhlSGdES0RyaFdPWHhMWG9CQndXTDhNMVlaWk01cDk1T3B5UT09?=
-X-Exchange-RoutingPolicyChecked: ro/8q7PmSm640po+Uq7WuEW51Xo0pom5GgZnriBmbf4mnrsTEejwBnNw7kqzWp3UNEMd6holmGzJFxW99HDXQyvL46NqF+RYUzaLIShhGjJeLJW4V4fs+uPS8zU+kYsjpSENG4xH7pneGnI2fZkneFPjHkqoDsBpcIDOOvbB5CcEt6oRHQgqYaTyIEiVblPoDmkE5uJCuyhJ192dpEywFhq0EtGrhRn6T5TodBDOozxeIv2JtN64hMbSFdURPOkc6e1G39tE3pX062vfN9KJXJxAlZXmcEthWgEZjIoCMo4vlxrJd5VYkl3cK4U6d2q9u+LI3WSj0sMsah52Ipajhg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 29fe8350-f3a7-4365-69af-08df2690e4e9
-X-MS-Exchange-CrossTenant-AuthSource: CH8PR11MB852307.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2026 05:39:47.0408 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qivn8v6W5pweu5PtX6FRsX4zeHM+ir1FsGjhPyFQJiKfm2ODWQuCykiwsIvOzg2cbpm7SAN3tmKWuviEXZwQTQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPFBA72E12AE
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,68 +67,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+xe_evict_flags() switches on tbo->resource->mem_type to choose an
+eviction placement. An xe BO can reach eviction with no ttm.resource,
+e.g. an imported dma-buf BO whose resource was freed during teardown
+while its attachment is still live: the exporter then invalidates it via
+xe_dma_buf_move_notify() -> xe_bo_evict(), and the switch dereferences a
+NULL resource and faults.
 
-On 09-10-2026 17:48, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Low] hwmon: DRM driver implements hwmon directly instead of as auxiliary device
-> --
->
-> commit 55ff84e7912b9e195885552d6a750a68cc2c19d9
-> Author: Karthik Poosa <karthik.poosa@intel.com>
->
-> drm/xe/hwmon: Add platform-aware VRAM thermal channel support
->
-> On CRI, this derives the number of available VRAM temperature channels from
-> the CRI_MSU_VRAM_ENABLE register. It increases the maximum supported VRAM
-> channel count to 80 and uses the derived count to control VRAM sensor
-> enumeration, channel access, and VRAM label allocation.
->
->> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
->> index bafa175f84578..9d83d9d2286ed 100644
->> --- a/drivers/gpu/drm/xe/xe_hwmon.c
->> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> [ ... ]
->> @@ -1683,7 +1809,9 @@ int xe_hwmon_register(struct xe_device *xe)
->>   	hwmon->xe = xe;
->>   	xe->hwmon = hwmon;
->>   
->> -	xe_hwmon_get_preregistration_info(hwmon);
->> +	ret = xe_hwmon_get_preregistration_info(hwmon);
->> +	if (ret)
->> +		goto err_null_hwmon;
->>   
->>   	drm_dbg(&xe->drm, "Register xe hwmon interface\n");
->>   
->> @@ -1693,10 +1821,14 @@ int xe_hwmon_register(struct xe_device *xe)
->>   								hwmon_groups);
-> [Severity: Low]
-> The hwmon subsystem guidelines state that if a chip's main functionality
-> is not hardware monitoring (such as a DRM controller), its hardware
-> monitoring functionality should be implemented as an auxiliary device
-> driver residing in drivers/hwmon/.
->
-> Does registering the hardware monitoring device directly from within the
-> drivers/gpu/drm/ subsystem bypass these structural layering rules?
-The hwmon documentation expresses a preference for separating monitoring 
-functionality from devices whose primary purpose is not hardware 
-monitoring. However, direct hwmon registration from DRM drivers is 
-already common practice in the kernel (e.g. amdgpu, nouveau, xe), so the 
-proposed approach would be consistent with existing GPU driver 
-implementations."
+A BO with no resource has nothing placed or mapped, so there is nothing
+to evict. Return an empty placement (num_placement = 0), mirroring the
+handling already used for non-xe scatter-gather BOs just above;
+ttm_bo_validate() then takes the pipeline-gutting path and returns 0.
 
->
->>   	if (IS_ERR(hwmon->hwmon_dev)) {
->>   		drm_err(&xe->drm, "Failed to register xe hwmon (%pe)\n", hwmon->hwmon_dev);
->> -		xe->hwmon = NULL;
->> -		return PTR_ERR(hwmon->hwmon_dev);
->> +		ret = PTR_ERR(hwmon->hwmon_dev);
->> +		goto err_null_hwmon;
->>   	}
->>   
->>   	return 0;
->> +
->> +err_null_hwmon:
->> +	xe->hwmon = NULL;
->> +	return ret;
->>   }
->>   MODULE_IMPORT_NS("INTEL_PMT_TELEMETRY");
+Assisted-by: GitHub-Copilot:claude-opus-4.8
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index cc78283b702c..12e523c61c1f 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -340,6 +340,12 @@ static void xe_evict_flags(struct ttm_buffer_object *tbo,
+ 		return;
+ 	}
+ 
++	/* No resource: nothing is placed/mapped, so there is nothing to evict. */
++	if (!tbo->resource) {
++		placement->num_placement = 0;
++		return;
++	}
++
+ 	bo = ttm_to_xe_bo(tbo);
+ 	if (bo->flags & XE_BO_FLAG_CPU_ADDR_MIRROR) {
+ 		*placement = sys_placement;
+-- 
+2.43.0
+
