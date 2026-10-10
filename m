@@ -4,55 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D222ECA9EDF
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 14:36:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9D5ECA9EDD
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 14:36:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E65B10F15F;
-	Mon, 12 Oct 2026 14:36:25 +0000 (UTC)
-X-Greylist: delayed 2599 seconds by postgrey-1.36 at gabe;
- Sun, 11 Oct 2026 18:47:37 UTC
-Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5DA910E002;
- Sun, 11 Oct 2026 18:47:37 +0000 (UTC)
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net
- [IPv6:2001:4b98:dc4:8::221])
- by mslow3.mail.gandi.net (Postfix) with ESMTP id 357CE58011F;
- Sun, 11 Oct 2026 17:47:04 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4ACF63F0A4;
- Sun, 11 Oct 2026 17:46:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gtucker.io; s=gm1;
- t=1791740821;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=X7VrsDvVsYsTaXUVkNX/JDkKURCHeNYcbgIz5JEwd38=;
- b=cMPk/QHt9fSefcMEopoPzBSFYm+ZiFvFYAdWWl+RQWp/c1qotyCUMSCjowxJumr2BznA7f
- CKEzShhv3GFgSXEXdUYyHjOjdTTwwEge4CsVsI/Digbq8h3YPmsRxKRPS1JsSiMECiDQnR
- hzfjAH1Ix1H+u86sVLMoGMb2vml6y4Nym+jNZJJSXV6NS9nfT37jM1AQHphlLb8G/9J47F
- lh/w7uTD1X50mWHo7raKlpuamaebzq/0iIA8meai60gF9hHaPRyqE898s1RIGuWv7P7hDv
- GqAZVplvDzzsLS+MeZVWaZXcPN1ySmnpq5+46xBgsqWCTIBZGyvufP2Y0WsIxw==
-From: Guillaume Tucker <gtucker@gtucker.io>
-To: Guillaume Tucker <gtucker@gtucker.io>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
- Badal Nilawar <badal.nilawar@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Riana Tauro <riana.tauro@intel.com>,
- Stuart Summers <stuart.summers@intel.com>, Jonathan Corbet <corbet@lwn.net>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/xe/log: fix documentation title levels
-Date: Sun, 11 Oct 2026 19:46:53 +0200
-Message-ID: <2320050536ca29afe69ecd163eb974a40df571fc.1791740369.git.gtucker@gtucker.io>
-X-Mailer: git-send-email 2.47.3
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9451B10F16D;
+	Mon, 12 Oct 2026 14:36:31 +0000 (UTC)
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com
+ [209.85.160.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9487D10E9CF
+ for <intel-xe@lists.freedesktop.org>; Sat, 10 Oct 2026 05:18:47 +0000 (UTC)
+Received: by mail-qt1-f178.google.com with SMTP id
+ d75a77b69052e-534e6545939so2796671cf.3
+ for <intel-xe@lists.freedesktop.org>; Fri, 09 Oct 2026 22:18:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=metarealtyinc-ca.20251104.gappssmtp.com; s=20251104; t=1791609526;
+ x=1792214326; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=O16bXHFucTMEeNKlXKDYTMjJw1owaYurkTBLl5Gsiz8=;
+ b=HTyFnXXhuwU/Ny8a9iH+Ss58aTjKAaaodRZCHquY/P2Hs/tXWvLQfP/ha81VT5zyYi
+ XsQ9QW1iDu7oVcM89vZHqV2mP6+v4A7oPKsWf3tFggqmxUnLILrss2bMKqQ801nWhoJA
+ BblMfM/5HsmkymDz0ZwqDIoilpUk0mAJsKSUoKgOoFfeOtS/NIHh2Meqa3HVx12m9WGG
+ owll0T4rRjuTP0LOJsYBcw7SDnqoiXlA9Q6dN0A1i62Fa/FWJA4mV5o9ob3fQ/zbqPEF
+ /D3FaQq9qLqDCfiM6vnaFgyTezRlmmE5RgNBwLYwUlS1v8WkdKDjaQCHClhHQ3coxodz
+ IRBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1791609526; x=1792214326;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=O16bXHFucTMEeNKlXKDYTMjJw1owaYurkTBLl5Gsiz8=;
+ b=ZjaOYa7BewDsFPBPtKWBiZ3tTIDmbO5suJ7ez0oHAnBywIjSq+vK7LVJOULEnnMZPY
+ m3FrNYsAjdU1vcY4H7tSu9ccS6stC3qLx9ujBbS7FEqc7/MqQ1tE9st/KIeJgV3RFTDK
+ krsnfllvZ6m5k4v/PLsG9H1RT7AImfgrM+qNVvbRwSaRbk8XoJqgsTD+gnwm+Cmf23HW
+ IBWr+UOf08PN9Exhn5bsYN2gTopWIMCgAkmt2uElWMZMaqHzlPCr+u0iVSoFmmr3T8H3
+ WHk+gbsKO2LHM1qP1P5/M3LWKa0JCC+qHw46ky1o4yXK+3svChexM87R/tgIEFJ/Ve0f
+ pDIA==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBwTPuJQYcTbddShegBCQft4yI32GuvPq+jRyyz84EgnkigrnnLP2oJ72daBJl7ymIGHMKHptIP0KQ==@lists.freedesktop.org
+X-Gm-Message-State: AFq9FYJSMwPDFSVxckT/pVW9HcelIgyKP2GkpfwdydHaRpLJptbT2dwr
+ B9uzhCjBYtZFj4d/OoHuIU/wbQu4EDnhD60tfaMg7zxcLGdrQV9M/ThE3iyrKV665bE=
+X-Gm-Gg: AYBFou3oYOEq3oZQNlreXaZ4JOdR/gmjlmi+ka3fdjNzZbFAPs+WdwZtkqv8+Qw+SDy
+ ieOA3XkHbWZVL71UhMPPM3k6OjzToj97vxt0jDZQZv6UfBpQ9PU45Kt61uPdW3ZzFlPuTSdXcSK
+ D4s6PknOcmGRS//K+UajprUGBaOLr1fj1QrpfLNkG6ynzzJixl/iM2WcI5NhI9Tfys3Rh7u0tmA
+ TBrwO4XUCafy3H0VxX864wEnHKtYG+sJzm/rYcX65yf73sX1m/fggBhOYraZcNqhIaAta0mkw/b
+ cftSAE3agHGrQppEbGeHI5UyK/b6dvspQUPdSCdzpBYZ56vL8aI4yophOlWJXNrkybDXV2ecanu
+ F0q+tc27PhiA8AQe7YVFiLfuMb/3FPuJGAVHlL+KRoSsKpZ7yurvRR0zuQ6NE2UKz4LPJOGmRjp
+ TsIU5AoZfmD7j2ilOHGGk/dhgrEoZpTuQeGiHXAjJqAz8MRYNXcrwrs5w5VlCmlpKeplxKIOi/t
+ qKXd34EhVyoq7YXIV8iGVxA0MIOtxu/i0yvYwMkun5EgWpiCwS4POP6S4ANfXuJkk+resQppies
+ RCvDp7JQ7T7+ZML28QkcVNl0ijAOQG8VpZ//NOQGvl3e4BIUUipfCehSfQDKFxLRCuMg
+X-Received: by 2002:a05:622a:1f91:b0:532:d202:328e with SMTP id
+ d75a77b69052e-5359fb85a92mr68279931cf.55.1791609526381; 
+ Fri, 09 Oct 2026 22:18:46 -0700 (PDT)
+Received: from jake-laptop ([153.67.39.44]) by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-91b5501859fsm36031116d6.16.2026.10.09.22.18.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 09 Oct 2026 22:18:45 -0700 (PDT)
+From: Jake Steinman <j@metarealtyinc.ca>
+To: jouni.hogander@intel.com
+Cc: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/psr: ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR not
+ valid for eDP
+Date: Sat, 10 Oct 2026 01:18:44 -0400
+Message-ID: <20261010051844.11094-1-j@metarealtyinc.ca>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261009175251.2097777-1-j@metarealtyinc.ca>
+References: <20261009175251.2097777-1-j@metarealtyinc.ca>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: gtucker@gtucker.io
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: dmFkZTGUXyJjU/OcpBuci7LmotG4qBy+yk9KsO+tzVjmIpjR/ykPYKbfVbxiRlrUf4AuIteDQwkg/es1YyJ+xTByrUjnU4XRZ/jqL6asUQ2iwOJt4gOYL6/lBE8BQwzxYfgidSoeGnSdRCrPChzQVWuIdsiDZ6Fis9zTOiOWewf6RSVS+jSwVwlDOIiPZGvz3gzYk/wI8HPEyTtzkog1ZfkMxdGyzomXwNmmHHEs9WjteNlegNe1/HShi8T7gBcgSU228XpiF9AhUhC2zhVGSEWI6S7OsALH175rbBYcSUYC5tqWS2jDjucVSEQ4NagjWWqyrjXCM+73PCwX0X1bJtrcnu8OtHhUurW8IcDAQmF+/VrgFRJgxDYsj4m8z7AFCEdbpjsUbWf8nBZPjvHINWdXYL9QC1LWXGt7i3N8IuFysvu985VG9SuXMGEKKG5K3LGAAuw/ZDCLTqjU+RS0M3bRBmLpNQK3vQgme66xiIyCcP4ZkAFgPj6n9Knhf+Ov6pvEBXSWg4HE0p0igI3spnJQOayc0BNrKdYUAv8yTOMgtY+YAXkG+hi6G3Lx+9I+VNd9dMGqECzF8HtCJ9qbbHiTM5LkkNDI+UQZereWPEcXm90r2ARGbLom/sAya3aNsG0tEnydalmvRVgQUeIqY8cuHBjkxYmmyJmEZR1Z3cbNdmvEuw
 X-Mailman-Approved-At: Mon, 12 Oct 2026 14:36:24 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,95 +89,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix an htmldocs build error in the gpu/xe section by moving all the
-titles one level higher in the Xe SIGID page to keep a consistent
-hierarchy.  This is the error message:
+Hi Jouni,
 
-    Documentation/gpu/xe/xe_sigid.rst:10: (SEVERE/4) Title level inconsistent:
+Retested with 0x107 bit 6 set (my 0x107 patch dropped, 0x107 reads
+0xc0), 7.3-rc5, XPS 16 DA16260:
 
-All the other pages in the xe section use <h2> titles so follow the
-same convention here as well.
+- With the RFC (AS SDP on in PR Active while vblank is enabled):
+  smooth, including after screen off/on.
 
-Signed-off-by: Guillaume Tucker <gtucker@gtucker.io>
----
- drivers/gpu/drm/xe/abi/xe_sigid_abi.h | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+- Same build with the RFC behaviour switched off at runtime, so the
+  AS SDP stays off for all of PR Active (PR_ALPM_CTL 0x11): judder
+  immediately after one lid close/open, and it does not recover.
+  Switching the AS SDP back on clears it at once.
 
-diff --git a/drivers/gpu/drm/xe/abi/xe_sigid_abi.h b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
-index 2f3440505f69..277b15fce9cc 100644
---- a/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
-+++ b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
-@@ -10,14 +10,14 @@
-  * DOC: Xe Error Signatures (SIGID)
-  *
-  * What SIGID stands for
-- * ---------------------
-+ * =====================
-  *
-  * SIGID is short for *Signature Identifier*. It is a small, stable integer
-  * that names one of the *recognised fault sites* -- nothing more. It is the
-  * primary handle used for triage and maps directly to a specific report site.
-  *
-  * Numbering
-- * ---------
-+ * =========
-  *
-  * SIGIDs are a single flat list numbered sequentially within the assigned range,
-  * in the order the fault sites were introduced. Values are stable: once assigned
-@@ -25,7 +25,7 @@
-  * SIGID value is deprecated in place, never re-purposed.
-  *
-  * Why this exists
-- * ---------------
-+ * ===============
-  *
-  * Today the driver reports faults with ad-hoc ``xe_err()`` / ``xe_gt_err()``
-  * strings that have no stable shape. That is fine for a human reading dmesg,
-@@ -37,7 +37,7 @@
-  * firmware versions, and (eventually) across other Intel devices in a node.
-  *
-  * What a SIGID is not
-- * -------------------
-+ * ===================
-  *
-  * SIGID deliberately does not encode the detailed reason or the outcome. Those
-  * are carried alongside it::
-@@ -51,7 +51,7 @@
-  * different severities depending on the instance and the recovery taken.
-  *
-  * When to use SIGID logging
-- * -------------------------
-+ * =========================
-  *
-  * The xe_log_*() helpers are for these recognised fault sites only --
-  * important, operator-relevant faults and events. The driver's only job is to
-@@ -63,7 +63,7 @@
-  * those that correspond to a published fault site.
-  *
-  * SIGID log output (dmesg vs. the machine record)
-- * -----------------------------------------------
-+ * ===============================================
-  *
-  * The dmesg line stays close to a normal xe error message so it remains
-  * readable for admins; the only stable, machine-matchable token on it is
-@@ -74,7 +74,7 @@
-  * carrying the same SIGID (generation is a planned follow-up).
-  *
-  * How to pick a SIGID (the uniqueness rule)
-- * -----------------------------------------
-+ * =========================================
-  *
-  * Pick per *report site*, not per incident. Each site emits the single most
-  * specific recognised SIGID *for that site* -- so the question is never
-@@ -95,7 +95,7 @@
-  * after making significant changes to the site that emits this SIGID.
-  *
-  * Scope: software vs hardware emitted signatures
-- * ----------------------------------------------
-+ * ==============================================
-  *
-  * Some SIGID represents fault sites that the *driver itself* detects and
-  * reports from the software POV: probe abort, wedged, survivability, driver-
--- 
-2.47.3
+So bit 6 set is fine here, but this panel still needs the AS SDP
+while frames are updating.
 
+The judder after panel power-on that I reported earlier came from my
+0x107 patch. With bit 6 set and the RFC, five screen off/on cycles in
+a row were clean from the first frame, with no hold of PR after
+power-on.
+
+That leaves the RFC as the only change this panel needs, and it keeps
+DC5/DC6 on a static screen. Unless you have a better signal than
+vblank, I would like to go with it. I can send it as a proper patch
+on top of yours, or you can fold it into yours, whichever you prefer.
+
+Happy Thanksgiving,
+Jake
