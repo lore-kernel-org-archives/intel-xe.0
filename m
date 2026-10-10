@@ -4,88 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53F4ECA9EBE
-	for <intel-xe@archiver.kernel.org>; Fri,  9 Oct 2026 21:30:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CFCACA9EBB
+	for <intel-xe@archiver.kernel.org>; Sat, 10 Oct 2026 01:00:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F35E41122BC;
-	Fri,  9 Oct 2026 21:29:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F8C310E0DB;
+	Sat, 10 Oct 2026 01:00:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="a99PBy7e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mQ1Mhtyp";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 026BF1122B4
- for <intel-xe@lists.freedesktop.org>; Fri,  9 Oct 2026 21:29:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1791581397;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=bAvzGIU7FEezK0icpYGYUEuQaRBPrUf0xbgMecnC+cI=;
- b=a99PBy7ehzpppLN0DmdT8FcpLuGCJ8dZP2VAEUUznSjwpHOb+UMKrg9QXvR30W8oRpXtap
- UVSsDSNC8plEuSISBUO8pyIoct9JYulTogSSn8/d4gJA9Ow8ptspxzA4VRxQeGWB9tBTIL
- inzrNPrxaMIBz75Bk8fB/0jWsZnNm3g=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-664--rdR7AclOkqQx1aPB92fSQ-1; Fri, 9 Oct 2026 21:29:56 +0000
-X-MC-Unique: -rdR7AclOkqQx1aPB92fSQ-1
-X-Mimecast-MFC-AGG-ID: -rdR7AclOkqQx1aPB92fSQ_1791581395
-Received: by mail-qk1-f199.google.com with SMTP id
- af79cd13be357-934963b2bc0so27427385a.3
- for <intel-xe@lists.freedesktop.org>; Fri, 09 Oct 2026 14:29:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1791581395; x=1792186195;
- h=mime-version:user-agent:content-transfer-encoding:content-type
- :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=90v506ynVqpQuSb78Sb7L2PEOo/OX2zZTfrHiXi251Q=;
- b=pv/uYijUlz8MqXGFkI2U8GfjNRIevxyjtojs5bLu78Zsut6qyc8djpvv0xd6LrD07C
- UlzAZj8Win3JxPfwkmY5XgDN3QHT+gQiNCETfsU7YOAWCo8jgYL/QQrvibVXDxRXB6rZ
- Sl77JdnwNGYMxQHxJKCl9J9ZKWbnxtKHX5YLbqPwbk67I9K/6NileCiZXbvZGYYQkcMH
- nUZyWSX5PROEQi2AIIiTsgfaSPa6ejav2F668PfFoEyeGNE6jK6HX9RMKWD8e6hXUpuI
- f8kCZ5+tWQkIq++jnigZA0O1Aj5vTbi3n13d58/kioQgNtUuwc/+5RLvKlcHuYhM2SrO
- P55Q==
-X-Forwarded-Encrypted: i=1;
- AKwUvByMd5CJEpsgVTPpfQgH8BDygQo//C8ZJeNlFUdgRxUtClQYvjll0K4/Yh+5BRsmfm3CxNPkO9KrRg==@lists.freedesktop.org
-X-Gm-Message-State: AFq9FYKPkQFLqq1gAYzkOGJOfrjxWZBMGfY/Lo5/hVS8Nk/mMYmdEm+w
- Ufa9/H5W54ev5Kc3xF5yUoMobtOptilQvds614W4GFRaErB/7TTmgu9Bkx6xRcZrDhH9Do1BnkN
- YQCnxugdBmv/hf1BVKCx0n5Dt0lt5Vyku9WSbmfojfumBfyMOLrwBbnDTMltST+GJGCyz
-X-Gm-Gg: AYBFou2J5jQjzKoK6f7ZNRXxHIqe3ffktfC3dBGO5rZmjRbEmBiBAR9CMKVr/N3evDa
- t7y7KuEkc9iqFQV3qD5nQ+JSg0LlbhlCpThj+OdtyX0lJ6X5k0xGVDgypgOyhBmigaueTA3hBIa
- olTblNfUDi64pdqJHBY0ej9GC522bB6WdIsoH8uGDn+elRwJAWRLlYCpkc8BgNiIzab9Zh/apWg
- fXuRV0Sxl4OVvGYGCENmiugRSzv0ZXw3R4PyDI30ox8lXGr73oUKmXJTfaKgfI+DuE6Ncc/YPr7
- VWYWLgyUEwwgJ9B4ALk+VdsbC5WQx5CKyw/3wH5MHh1aa++xA2QERLqrAq0hojrYs3naTu8=
-X-Received: by 2002:a05:620a:8389:b0:93b:d79a:c463 with SMTP id
- af79cd13be357-93ebd26b5e0mr483817285a.59.1791581395428; 
- Fri, 09 Oct 2026 14:29:55 -0700 (PDT)
-X-Received: by 2002:a05:620a:8389:b0:93b:d79a:c463 with SMTP id
- af79cd13be357-93ebd26b5e0mr483813285a.59.1791581394787; 
- Fri, 09 Oct 2026 14:29:54 -0700 (PDT)
-Received: from [192.168.8.4] ([100.0.180.93]) by smtp.gmail.com with ESMTPSA id
- af79cd13be357-93eb9903845sm281181985a.45.2026.10.09.14.29.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 09 Oct 2026 14:29:54 -0700 (PDT)
-Message-ID: <beed5319dd3d29ddc983e236e4edf0f2e2cb4007.camel@redhat.com>
-Subject: Re: [PATCH] drm/i915/dp: limit UHBR link rates to the cable's
- capability
-From: lyude@redhat.com
-To: Xiao Lu <xiaolu.xie@intel.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, ville.syrjala@linux.intel.com, 
- imre.deak@intel.com, jani.nikula@linux.intel.com
-Date: Fri, 09 Oct 2026 17:29:51 -0400
-In-Reply-To: <20261009130611.3268451-1-xiaolu.xie@intel.com>
-References: <20261009130611.3268451-1-xiaolu.xie@intel.com>
-User-Agent: Evolution 3.58.3 (3.58.3-2.fc43)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB18610E0DB
+ for <intel-xe@lists.freedesktop.org>; Sat, 10 Oct 2026 01:00:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791594044; x=1823130044;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=z4qKDtL5E5a85rFdZxeXBiJ/RvEZ4K1exlKFbfDkXS0=;
+ b=mQ1Mhtyprf1EEuqn0TR+9ZIBRpb3dHkgvwAJGk9ODm7P6W9h3qWTm79y
+ nUn0l4gwJ9PAWY22QIqTaJ4j+ejY0cFwTWmJhpvLirzXwscvV83fZlcqb
+ u8xndYewYLwOTG+fGsJy2ZbaECsEaKVVerVjDEbwQFoj+zt3Ee8+P4MHT
+ jH+Quw2RoYMCxhOSlhT0vjGK3rmSYn3JGuierwo0IGaAjXhAPI0QSZCa5
+ 7wXPOO8wqnOLp9ks+hKNYCZLNtIEnZ0CajLAnqQPzJ/b0+wIeEFXOpXeK
+ I3G/JlDHjflADKoxt7iOoM0OwoTrIND0C8nQWsBoOOGbQ6hsXfO2w4s7D Q==;
+X-CSE-ConnectionGUID: jq7iaChJTvObNBOHIbW5Uw==
+X-CSE-MsgGUID: 2IiXR+5wRrSX9b1Rcff+3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11930"; a="302524"
+X-IronPort-AV: E=Sophos;i="6.27,149,1787036400"; 
+   d="scan'208";a="302524"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2026 18:00:44 -0700
+X-CSE-ConnectionGUID: DykOxsb0SCGLSXKTJElvAg==
+X-CSE-MsgGUID: m8L93NnkTJK7Mw4kkLBlwQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,149,1787036400"; 
+   d="scan'208";a="798601"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2026 18:00:43 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Fri, 9 Oct 2026 18:00:43 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49 via Frontend Transport; Fri, 9 Oct 2026 18:00:43 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.2) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Fri, 9 Oct 2026 18:00:42 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=B1eqqpIeIwTt6nuTTYg+LmuZpa2dUJyVww5gly2IrBdhIKIOBhn+1eAUdhNli/y/9nMrR7/Blyb06kX2pufaaQ6hEqX6A8g2sl0VhD4PGFlnI/9nZMPb2Ixyk1GzyBw4XrTdr8iCcBAfq9jX3OSq/YX6CFNAerkTPS3iqFrrZRzyTk5VPvsuykCx508nmeU81JrrndJOIRYx/goBIKuWAFLCyxlGkQ9fpUmpfD4jT/zVxkr2ql0s5QjWzsKV8zpUVqQjZJuL+TFAygPmraLI4aKkq1mu6Nm9VOjHMTOyFHDm+4HoxYmAE/RpOd347QVs71vuDLQRcHHw/F44rYFm4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bS+7JMTSZsosx7OKAT6Oclrvsm2KKgc0IEehqU/uyBs=;
+ b=FMDylIzbJ3txSOdjKWIi+u0yuOsnSku6GolkrB5QpM7maukR04QtUooXy8NxFv499iojgiPDqB5cb4Oyw4jHgDW+41GhD7WO8shWUM4C2L0bCXXkUWJezW7E+XY4SXxDcXgkwLSqZtyye/khnlbwY92sF4sQtSHqx7wLcbhPeTAclz8e4+s8Vs6ClGQwXEjnQWrkqLgyoYFac0CiO9IzW52lbxz2mHM14uCPXyXtRpT+BUxbrGYoDEnywjZUizEMf+CbPkJ9XuBcqjmwq+VEtSHwnye3KfJDEDN2ElOU7Y65Q15jFz7u7x6cME+mNJmFjTXHE5r2rSQInOVRu56dqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CH3PR11MB7180.namprd11.prod.outlook.com (2603:10b6:610:148::5)
+ by PH8PR11MB7142.namprd11.prod.outlook.com (2603:10b6:510:22e::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.496.15; Sat, 10 Oct
+ 2026 01:00:39 +0000
+Received: from CH3PR11MB7180.namprd11.prod.outlook.com
+ ([fe80::70dc:90b2:50b4:31a8]) by CH3PR11MB7180.namprd11.prod.outlook.com
+ ([fe80::70dc:90b2:50b4:31a8%7]) with mapi id 15.21.0496.015; Sat, 10 Oct 2026
+ 01:00:39 +0000
+Date: Fri, 9 Oct 2026 21:00:22 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+CC: "Anoop, Vijay" <anoop.c.vijay@intel.com>,
+ <intel-xe@lists.freedesktop.org>, <badal.nilawar@intel.com>,
+ <aravind.iddamsetty@intel.com>, <riana.tauro@intel.com>,
+ <mallesh.koujalagi@intel.com>, <anshuman.gupta@intel.com>,
+ <matthew.d.roper@intel.com>, <michal.wajdeczko@intel.com>,
+ <michael.j.ruhl@intel.com>, <paul.e.luse@intel.com>,
+ <mohamed.mansoor.v@intel.com>, <kam.nasim@intel.com>
+Subject: Re: [PATCH v2] drm/xe/sysctrl: Add mailbox control state to error
+ messages
+Message-ID: <asmOJrnBwBSFIKBk@intel.com>
+References: <20261009064754.3927132-2-anoop.c.vijay@intel.com>
+ <askw3y5OdyAvYC/Y@soc-5CG1426VCC.clients.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <askw3y5OdyAvYC/Y@soc-5CG1426VCC.clients.intel.com>
+X-ClientProxiedBy: SI3PR01CA0004.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:296::15) To CH3PR11MB7180.namprd11.prod.outlook.com
+ (2603:10b6:610:148::5)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: f6N-bCOSf_Gd4zBHpe7AyljKrrcAhomkfNfQj9eQs3E_1791581395
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PR11MB7180:EE_|PH8PR11MB7142:EE_
+X-MS-Office365-Filtering-Correlation-Id: 67d7fdab-b019-4943-643a-08df2669e658
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|23010399003|261009223027099003|56012099006|10067099003|11063799006|4143699003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: PEejV+rDeG7UmhcFQLdSGMeMWAM+RraF8onaZSILI2ZfjEvnGF840K7iolCNDDaal4ANAeeYts59vrXqKJjYm2ax8hWXr9X4/CRizkWboFNF+sGc2HIzadyor9/DYwCDWg8S1aL0AQ5zs/FPt29WgfWkYEQIvEXXCse4H9q6+FWe0GOS3EKWxNzCSlsxGMdKoLCT07h74IzLPuKFGuu0NjKCDJQeH1KXgtE/1nw94UpQjXtpCTHlTsCP+NCbDI0Y4F5YfJi9rOreLUS1DUsZWZ5izKSqz8Ki4xtDTWM0UDYjqXRYFV86ictRxL3O+hDZC3qCKr/hVHEI0OAwm/MEhmCep6Ff+iKdCMoSTaMIZ4/aMBzctwuhGRCLjcPtyAZULCStpZKp8YNwd/VTL68NCw5ynJTAGcFeBELJ6mz6Jr/CFFn0DwbIl65SH/zNXk31tj7K8F4cWSVGIJpU6XIWKTH4yWZl8l+kxxAJcfsQ1mtPIh+qPu8Lg0xMw7JvedlT+LlIFXcTMH0wZWLwqXkrJF1Bj+p5k5o/Y40lhwn+sCQQSF2a5fkDJEwcDGKPBfnTvy5JTosoq0EVmS3OU8+7TG3vELlslhrlN8e34i7aq0ND+kNkuBxu51xrXa9uADn76syc0AKvrkRdH5VQaScideQxur80HkUdpPs+PlS9J/4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH3PR11MB7180.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(261009223027099003)(56012099006)(10067099003)(11063799006)(4143699003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IOX2rHOmn9/emRLJ4DXQ9v1HlPsQk88fG/iWnqHQ9sBekwXqcRAprRDmzTbA?=
+ =?us-ascii?Q?7E/MqveiS1Zj77KrkPe/lRm3uyTlJMa7+mtJio0bdnID15f2ARgHJXa+XfSO?=
+ =?us-ascii?Q?m5Xi/RL+KfvZmVYsJ6+d671+e3OTGboOuPUFq+SpuCCgR7g5OHH1y9xtIo3t?=
+ =?us-ascii?Q?0257r1ye9fdBQzvbW8Ff0i2N4X5UBDrWQ21KRz44lAKtt6BoI+0KZ8KhKIMB?=
+ =?us-ascii?Q?bt4HsxEk872zpGTws87M4xEraX6FyA8A1Z+nxz1ToJmPaFaFIevvCMLeaqJh?=
+ =?us-ascii?Q?H3Ct8JCUIxydUlT4cAo/VFDx7tWtbBbE1L7TiKmzZD1sLrUp/sphWoMoLffx?=
+ =?us-ascii?Q?7Oky7kjLLzAvF7y/NuRFySWMuk9y4gfwKp3YAkPv3GPsbSdC0Ehw36JFZeQp?=
+ =?us-ascii?Q?ggihXs24kyM4+vKU5jI/nUpMaKDBUURBcCUpYTbJ+6R48SS+p624kCcc+5VA?=
+ =?us-ascii?Q?rLe1cuJOjdIvKzRwCfsHGlV5urGERkEg8DanI3ixVRR1O5CJucZ9zC6tleXh?=
+ =?us-ascii?Q?RN+Bmv8qTLurkfmdWAQeBlWY9ugh2fEezo6YBc5iM1csnj2bXBx4G+MIPoyE?=
+ =?us-ascii?Q?5lTqo8cAbQ6dlLoNEbT4e5HvJ/8YGxMRGr6tgV104gfcYB7nTY/dgmJM+1D9?=
+ =?us-ascii?Q?4Tn3YDGU66xtQvtpyZX9yRERh95wVhYIU6TRXd14apkROnolq2eAPNUqM6KE?=
+ =?us-ascii?Q?ivXDJJ6dAZozbhnYe58h/cxjwzR4Bv1vm6Q9nuv4jRLPdnJoCqdDSHaT91cN?=
+ =?us-ascii?Q?fxcDoAMZl1VRExb2tKdRKesuhsnF+dylwe6PsjQ4nv8zkZbzq1Vv/DGp1pr4?=
+ =?us-ascii?Q?P6nmbbPX/VU88Hz6c0M+s/tVGHWfnxs2ALu52+RrOuDVzTQzgrY7oJbkFUz2?=
+ =?us-ascii?Q?s7l1mpLd6MQpvlfKFECbfl1nR+WUn+dy9UbI23UlncH2x8yx3LxB2NQoeZgB?=
+ =?us-ascii?Q?0HJUS5PSM8RgYfIBFRzQ8+agRHVIT+m6UyZPabZcS961h5hfuLGSPxOaM0jS?=
+ =?us-ascii?Q?XwwCjVOMuQG7z8ramvgtG5s43odOc5maRMDi22baEwBCm0EE/Vn3sWtliURP?=
+ =?us-ascii?Q?NKT5tXSc1AqTHH0Jd360jEcx/dC4T3Edpk1NwW5ZPXJyS/pSETOD39X6nPBQ?=
+ =?us-ascii?Q?P1yyGJaoa0bizuRMHT4YPAYCOlgfFCVaxwV1TqoujmFzCMa1bJHMjIl0T4Fx?=
+ =?us-ascii?Q?wMGAG5FoHw9McMOJ3yqwZpO7iMmO5+CNQKQoclWjKfyyx+33SYUywmsKlpCK?=
+ =?us-ascii?Q?7uuLqunZToE1dWlBh3fmK1SmybI9+HiPO5yPnTpIY01/esTBlFTdTZJj2fHK?=
+ =?us-ascii?Q?ipEZ4FvPG8Qy9sAdRyZHydPe1y1vu9UpHEZJ1xwrvtllZkie832fexV9MKaf?=
+ =?us-ascii?Q?kcBfa0CD/OW6n4xXv32LDJjss35m2ZbPA5ViO39VgR0ZDAl5EFUHFY765dOi?=
+ =?us-ascii?Q?iUhfRAfInpytT5eUp22CNKnahLQc23Kt3MrRpwiSdfTsGWRtlMAey5p/7VA4?=
+ =?us-ascii?Q?9OzEMhGpACY1T1GEP78HoF22Jo3c4zSLfYvHbwLnoJuovRACpTQW1y/5htSt?=
+ =?us-ascii?Q?UMYJUxYr77UdQT/mtWDVPtnBhk6hknD8H12YNQrx837bXeWbGLO3xbbKGo5t?=
+ =?us-ascii?Q?v3bVyoVetYgGUGTAPnebqTUDKtI4vLwsCf0lgKZoU27kKlFm/bzs2WtGD2CK?=
+ =?us-ascii?Q?74CrOyn1wWOhL6iRe6FaCZh3fU741P6n7CkM/xaE19/SLZY4XJ+FXmbakS1y?=
+ =?us-ascii?Q?Y3ycq6sxDg=3D=3D?=
+X-Exchange-RoutingPolicyChecked: VbMrvN3oNyULCC/MBN0fAVQ0Wjj0ye7nGfUTbWueOj2P7N7ctsYyFqZfLqNDqs5Cu3Jc9x7Kdln/46NfPp2DKegiClBXKnxBiXjNQWOV0oKlPeGSVUlnBEIa9g9S6/sJeBb5xAWp5pJq/3NPx+DmpveNr5jW7f142d9Gu5JxWhK+/7Ba5fCf5cDwdbQYKpxmtRB1+pZkJ84mp5khYgTxvXk5iHK4Vb3U7BQxJVEeuYjg1oAA1IY03v8SfxHENKvp3kmuNwptdgzqIXTdeGYCfCmhSWcUm6grDXgqfKrDVZwEcXYRy5xOx63bQGPffCt6jsxbA1+ELVkm/w4lY4c0fQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67d7fdab-b019-4943-643a-08df2669e658
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB7180.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2026 01:00:39.6540 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RXI83eRRSYT7YoIE0pXz2+9GXh9YwOVbKj+aKR6ekvvhFX4XYzACTi4y+t3LcncAR+ds+dURRzf8miR/JNxiwA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7142
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,201 +166,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
+On Fri, Oct 09, 2026 at 11:22:23AM -0700, Umesh Nerlige Ramappa wrote:
+> On Thu, Oct 08, 2026 at 11:47:55PM -0700, Anoop, Vijay wrote:
+> > From: Anoop Vijay <anoop.c.vijay@intel.com>
+> > 
+> > Include decoded mailbox control register information in mailbox
+> > busy, timeout and firmware error paths to provide additional
+> > context for failure debugging
+> > 
+> > Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
+> 
+> LGTM
+> 
+> Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-On Fri, 2026-10-09 at 21:06 +0800, Xiao Lu wrote:
-> DisplayPort 2.1 defines the CABLE_ATTRIBUTES_UPDATED_BY_DPRX register
-> (DPCD 0x2217), in which a UHBRx-capable DPRX reports the UHBR link
-> rates
-> the attached cable can carry. The DPRX determines this via the
-> CONFIG2
-> voltage handshake (for a DP receptacle) or by parsing the cable
-> eMarker
-> (for a USB-C receptacle), and updates the register before asserting
-> HPD.
->=20
-> Add the register definitions and a helper,
-> drm_dp_128b132b_cable_uhbr_rates(), that reads the register and
-> returns
-> the set of UHBR rates (DP_UHBR10, DP_UHBR13_5, DP_UHBR20) the cable
-> permits, and intersect the sink's 128b/132b rates with it. This
-> avoids
-> attempting link training at a UHBR rate the cable cannot carry and
-> then
-> falling back, e.g. a UHBR20-capable sink connected through a cable
-> that
-> only supports UHBR10/UHBR13.5.
->=20
-> A register value of 0 ("not UHBR-capable or capability unknown", or a
-> sink that does not implement the register) yields all UHBR rates, so
-> no
-> restriction is imposed and the normal rate fallback applies.
->=20
-> See DP Standard v2.1b, Table 2-260 (DPCD 0x2217).
->=20
-> Signed-off-by: Xiao Lu <xiaolu.xie@intel.com>
-> ---
-> =C2=A0drivers/gpu/drm/display/drm_dp_helper.c | 49
-> +++++++++++++++++++++++++
-> =C2=A0drivers/gpu/drm/i915/display/intel_dp.c |=C2=A0 7 ++++
-> =C2=A0include/drm/display/drm_dp.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 12 ++++++
-> =C2=A0include/drm/display/drm_dp_helper.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=
- 1 +
-> =C2=A04 files changed, 69 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c
-> b/drivers/gpu/drm/display/drm_dp_helper.c
-> index e623ccb4c..5898d21cc 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> @@ -382,6 +382,55 @@ int drm_dp_128b132b_read_aux_rd_interval(struct
-> drm_dp_aux *aux)
-> =C2=A0}
-> =C2=A0EXPORT_SYMBOL(drm_dp_128b132b_read_aux_rd_interval);
-> =C2=A0
-> +/**
-> + * drm_dp_128b132b_cable_uhbr_rates() - read the UHBR rates a cable
-> can carry
-> + * @aux: DisplayPort AUX channel
-> + *
-> + * Read the CABLE_ATTRIBUTES_UPDATED_BY_DPRX register (DPCD 0x2217)
-> and return
-> + * the set of 128b/132b (UHBR) link rates the attached cable is
-> capable of
-> + * carrying, as a mask of %DP_UHBR10, %DP_UHBR13_5 and %DP_UHBR20.
-> + *
-> + * A UHBRx-capable DPRX updates this register with the cable's
-> capability (via
-> + * the CONFIG2 voltage handshake for a DP receptacle, or by parsing
-> the eMarker
-> + * for a USB-C receptacle). A source can intersect the returned mask
-> with the
-> + * sink's (and its own) supported UHBR rates to avoid attempting
-> link training
-> + * at a rate the cable cannot carry, saving the time otherwise spent
-> failing
-> + * and falling back.
-> + *
-> + * A register value of 0 means the cable capability is unknown, or
-> the sink does
-> + * not implement the register. No restriction can be derived in that
-> case, so
-> + * all UHBR rates are returned and the caller's normal rate fallback
-> applies.
-> + *
-> + * Returns a mask of DP_UHBR* rates the cable permits.
-> + */
-> +u8 drm_dp_128b132b_cable_uhbr_rates(struct drm_dp_aux *aux)
-> +{
-> +=09u8 cable, rates =3D DP_UHBR10 | DP_UHBR13_5 | DP_UHBR20;
-> +
-> +=09if (drm_dp_dpcd_read_byte(aux,
-> DP_CABLE_ATTRIBUTES_UPDATED_BY_DPRX, &cable) < 0)
-> +=09=09return rates;
-> +
-> +=09/* Unknown / not implemented: impose no restriction. */
-> +=09if (!cable)
-> +=09=09return rates;
-> +
-> +=09rates =3D 0;
-> +=09switch (cable & DP_CABLE_UHBR10_20_CAPABILITY_MASK) {
-> +=09case DP_CABLE_UHBR10_20_CAPABLE:
-> +=09=09rates |=3D DP_UHBR20;
-> +=09=09fallthrough;
-> +=09case DP_CABLE_UHBR10_CAPABLE:
-> +=09=09rates |=3D DP_UHBR10;
-> +=09=09break;
-> +=09}
-> +
-> +=09if (cable & DP_CABLE_UHBR13_5_CAPABILITY)
-> +=09=09rates |=3D DP_UHBR13_5;
-> +
-> +=09return rates;
-> +}
-> +EXPORT_SYMBOL(drm_dp_128b132b_cable_uhbr_rates);
-> +
-> =C2=A0void drm_dp_link_train_clock_recovery_delay(const struct drm_dp_aux
-> *aux,
-> =C2=A0=09=09=09=09=09=C2=A0=C2=A0=C2=A0 const u8
-> dpcd[DP_RECEIVER_CAP_SIZE])
-> =C2=A0{
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 113d767e6..de8f38754 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -278,6 +278,13 @@ static void intel_dp_set_dpcd_sink_rates(struct
-> intel_dp *intel_dp)
-> =C2=A0=09=09=09}
-> =C2=A0=09=09}
-> =C2=A0
-> +=09=09/*
-> +=09=09 * Intersect with the UHBR rates the cable can
-> actually carry
-> +=09=09 * (DPCD 0x2217), to avoid training at a rate the
-> cable can't
-> +=09=09 * support. Unknown/unimplemented leaves the rates
-> untouched.
-> +=09=09 */
-> +=09=09uhbr_rates &=3D
-> drm_dp_128b132b_cable_uhbr_rates(&intel_dp->aux);
-> +
-> =C2=A0=09=09if (uhbr_rates & DP_UHBR10)
-> =C2=A0=09=09=09intel_dp->sink_rates[i++] =3D 1000000;
-> =C2=A0=09=09if (uhbr_rates & DP_UHBR13_5)
-> diff --git a/include/drm/display/drm_dp.h
-> b/include/drm/display/drm_dp.h
-> index e63c7f075..70463572e 100644
-> --- a/include/drm/display/drm_dp.h
-> +++ b/include/drm/display/drm_dp.h
-> @@ -1240,6 +1240,18 @@
-> =C2=A0# define DP_128B132B_TRAINING_AUX_RD_INTERVAL_32_MS=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0x05
-> =C2=A0# define DP_128B132B_TRAINING_AUX_RD_INTERVAL_64_MS=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0x06
-> =C2=A0
-> +#define
-> DP_CABLE_ATTRIBUTES_UPDATED_BY_DPRX=09=09=090x2217 /* 2.1 */
-> +# define DP_CABLE_UHBR10_20_CAPABILITY_MASK=09=09=09(3
-> << 0)
-> +# define DP_CABLE_NOT_UHBR_CAPABLE=09=09=09=09(0
-> << 0)
-> +# define DP_CABLE_UHBR10_CAPABLE=09=09=09=09(1
-> << 0)
-> +# define DP_CABLE_UHBR10_20_CAPABLE=09=09=09=09(2
-> << 0)
-> +# define DP_CABLE_UHBR13_5_CAPABILITY=09=09=09=09(1
-> << 2)
-> +# define DP_CABLE_TYPE_MASK=09=09=09=09=09(7
-> << 3)
-> +# define DP_CABLE_TYPE_UNKNOWN=09=09=09=09=09(0
-> << 3)
-> +# define DP_CABLE_TYPE_PASSIVE=09=09=09=09=09(1
-> << 3)
-> +# define DP_CABLE_TYPE_LRD=09=09=09=09=09(2
-> << 3)
-> +# define DP_CABLE_TYPE_LTTPR_RETIMER_ACTIVE=09=09=09(3
-> << 3)
-> +
-> =C2=A0#define DP_TEST_264BIT_CUSTOM_PATTERN_7_0=09=090x2230
-> =C2=A0#define DP_TEST_264BIT_CUSTOM_PATTERN_263_256=090x2250
-> =C2=A0
-> diff --git a/include/drm/display/drm_dp_helper.h
-> b/include/drm/display/drm_dp_helper.h
-> index 5b05a7fbe..a70530696 100644
-> --- a/include/drm/display/drm_dp_helper.h
-> +++ b/include/drm/display/drm_dp_helper.h
-> @@ -59,6 +59,7 @@ void drm_dp_lttpr_link_train_channel_eq_delay(const
-> struct drm_dp_aux *aux,
-> =C2=A0=09=09=09=09=09=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const u8
-> caps[DP_LTTPR_PHY_CAP_SIZE]);
-> =C2=A0
-> =C2=A0int drm_dp_128b132b_read_aux_rd_interval(struct drm_dp_aux *aux);
-> +u8 drm_dp_128b132b_cable_uhbr_rates(struct drm_dp_aux *aux);
-> =C2=A0bool drm_dp_128b132b_lane_channel_eq_done(const u8
-> link_status[DP_LINK_STATUS_SIZE],
-> =C2=A0=09=09=09=09=09=C2=A0 int lane_count);
-> =C2=A0bool drm_dp_128b132b_lane_symbol_locked(const u8
-> link_status[DP_LINK_STATUS_SIZE],
+pushed to drm-xe-next. Thanks for the patch and review
 
+> 
+> > ---
+> > v2 (Umesh):
+> > - Remove redundant casts
+> > - Align log/format string style
+> > - Drop duplicate frame number in frame-ack timeout message
+> > ---
+> > drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 56 ++++++++++++++++++-------
+> > 1 file changed, 41 insertions(+), 15 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+> > index 25425e8bb533..f1a231dfec1e 100644
+> > --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+> > +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+> > @@ -7,6 +7,7 @@
+> > #include <linux/cleanup.h>
+> > #include <linux/minmax.h>
+> > #include <linux/slab.h>
+> > +#include <linux/sprintf.h>
+> > #include <linux/string.h>
+> > 
+> > #include "regs/xe_sysctrl_regs.h"
+> > @@ -36,17 +37,27 @@ struct xe_sysctrl_mailbox_msg_hdr {
+> > 	REG_FIELD_GET(SYSCTRL_HDR_RESULT_MASK, (hdr)->data)
+> > 
+> > static int sysctrl_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
+> > -				  unsigned int timeout_ms)
+> > +				  unsigned int timeout_ms, u32 *out_val)
+> > {
+> > 	return xe_mmio_wait32_not(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
+> > -				  timeout_ms * 1000, NULL, false);
+> > +				  timeout_ms * 1000, out_val, false);
+> > }
+> > 
+> > static int sysctrl_wait_bit_set(struct xe_sysctrl *sc, u32 bit_mask,
+> > -				unsigned int timeout_ms)
+> > +				unsigned int timeout_ms, u32 *out_val)
+> > {
+> > 	return xe_mmio_wait32(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
+> > -			      timeout_ms * 1000, NULL, false);
+> > +			      timeout_ms * 1000, out_val, false);
+> > +}
+> > +
+> > +static void sysctrl_mb_ctrl_desc(u32 ctrl_reg, char *buf, size_t size)
+> > +{
+> > +	scnprintf(buf, size, "frame=%u/%u busy=%d resp=%d ctrl=%#010x",
+> > +		  REG_FIELD_GET(SYSCTRL_FRAME_CURRENT_MASK, ctrl_reg),
+> > +		  REG_FIELD_GET(SYSCTRL_FRAME_TOTAL_MASK, ctrl_reg),
+> > +		  !!(ctrl_reg & SYSCTRL_MB_CTRL_RUN_BUSY),
+> > +		  !!(ctrl_reg & SYSCTRL_MB_CTRL_RUN_BUSY_OUT),
+> > +		  ctrl_reg);
+> > }
+> > 
+> > static void sysctrl_write_frame(struct xe_sysctrl *sc, const void *frame,
+> > @@ -128,17 +139,23 @@ static int sysctrl_send_frames(struct xe_sysctrl *sc,
+> > 			       const u8 *mbox_cmd,
+> > 			       size_t cmd_size, unsigned int timeout_ms)
+> > {
+> > +	const struct xe_sysctrl_mailbox_msg_hdr *hdr =
+> > +		(const struct xe_sysctrl_mailbox_msg_hdr *)mbox_cmd;
+> > 	struct xe_device *xe = sc_to_xe(sc);
+> > 	u32 ctrl_reg, total_frames, frame;
+> > 	size_t bytes_sent, frame_size;
+> > +	char ctrl_desc[48];
+> > 	bool phase;
+> > 	int ret;
+> > 
+> > 	total_frames = DIV_ROUND_UP(cmd_size, XE_SYSCTRL_MB_FRAME_SIZE);
+> > 
+> > -	ret = sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms);
+> > +	ret = sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms, &ctrl_reg);
+> > 	if (ret) {
+> > -		xe_log_err(xe, SYSCTRL, ret, "Mailbox busy\n");
+> > +		sysctrl_mb_ctrl_desc(ctrl_reg, ctrl_desc, sizeof(ctrl_desc));
+> > +		xe_log_err(xe, SYSCTRL, ret, "Mailbox busy %#x.%#x %s\n",
+> > +			   XE_SYSCTRL_HDR_GROUP_ID(hdr), XE_SYSCTRL_HDR_COMMAND(hdr),
+> > +			   ctrl_desc);
+> > 		return ret;
+> > 	}
+> > 
+> > @@ -159,9 +176,12 @@ static int sysctrl_send_frames(struct xe_sysctrl *sc,
+> > 
+> > 		xe_mmio_write32(sc->mmio, SYSCTRL_MB_CTRL, ctrl_reg);
+> > 
+> > -		ret = sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms);
+> > +		ret = sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms, &ctrl_reg);
+> > 		if (ret) {
+> > -			xe_log_err(xe, SYSCTRL, ret, "Frame %u acknowledgment timeout\n", frame);
+> > +			sysctrl_mb_ctrl_desc(ctrl_reg, ctrl_desc, sizeof(ctrl_desc));
+> > +			xe_log_err(xe, SYSCTRL, ret, "Frame acknowledgment timeout %#x.%#x %s\n",
+> > +				   XE_SYSCTRL_HDR_GROUP_ID(hdr), XE_SYSCTRL_HDR_COMMAND(hdr),
+> > +				   ctrl_desc);
+> > 			return ret;
+> > 		}
+> > 
+> > @@ -171,17 +191,22 @@ static int sysctrl_send_frames(struct xe_sysctrl *sc,
+> > 	return 0;
+> > }
+> > 
+> > -static int sysctrl_process_frame(struct xe_sysctrl *sc, void *out,
+> > -				 size_t frame_size, unsigned int timeout_ms,
+> > +static int sysctrl_process_frame(struct xe_sysctrl *sc,
+> > +				 const struct xe_sysctrl_mailbox_msg_hdr *req,
+> > +				 void *out, size_t frame_size, unsigned int timeout_ms,
+> > 				 bool *done)
+> > {
+> > 	u32 curr_frame, total_frames, ctrl_reg;
+> > 	struct xe_device *xe = sc_to_xe(sc);
+> > +	char ctrl_desc[48];
+> > 	int ret;
+> > 
+> > -	ret = sysctrl_wait_bit_set(sc, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, timeout_ms);
+> > +	ret = sysctrl_wait_bit_set(sc, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, timeout_ms, &ctrl_reg);
+> > 	if (ret) {
+> > -		xe_log_err(xe, SYSCTRL, ret, "Response frame timeout\n");
+> > +		sysctrl_mb_ctrl_desc(ctrl_reg, ctrl_desc, sizeof(ctrl_desc));
+> > +		xe_log_err(xe, SYSCTRL, ret, "Response frame timeout %#x.%#x %s\n",
+> > +			   XE_SYSCTRL_HDR_GROUP_ID(req), XE_SYSCTRL_HDR_COMMAND(req),
+> > +			   ctrl_desc);
+> > 		return ret;
+> > 	}
+> > 
+> > @@ -219,7 +244,7 @@ static int sysctrl_receive_frames(struct xe_sysctrl *sc,
+> > 	while (!done && remain) {
+> > 		frame_size = min_t(size_t, remain, XE_SYSCTRL_MB_FRAME_SIZE);
+> > 
+> > -		ret = sysctrl_process_frame(sc, out, frame_size, timeout_ms,
+> > +		ret = sysctrl_process_frame(sc, req, out, frame_size, timeout_ms,
+> > 					    &done);
+> > 		if (ret)
+> > 			return ret;
+> > @@ -240,8 +265,9 @@ static int sysctrl_receive_frames(struct xe_sysctrl *sc,
+> > 	}
+> > 
+> > 	if (XE_SYSCTRL_HDR_RESULT(hdr) != 0) {
+> > -		xe_log_err(xe, SYSCTRL, -EIO, "Firmware error: %#04x\n",
+> > -			   XE_SYSCTRL_HDR_RESULT(hdr));
+> > +		xe_log_err(xe, SYSCTRL, -EIO, "Firmware error: %#04x %#x.%#x\n",
+> > +			   XE_SYSCTRL_HDR_RESULT(hdr),
+> > +			   XE_SYSCTRL_HDR_GROUP_ID(req), XE_SYSCTRL_HDR_COMMAND(req));
+> > 		return -EIO;
+> > 	}
+> > 
+> > -- 
+> > 2.43.0
+> > 
