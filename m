@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0A21CA6017
-	for <intel-xe@archiver.kernel.org>; Sat, 10 Oct 2026 09:19:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 495E7CA9EC5
+	for <intel-xe@archiver.kernel.org>; Sat, 10 Oct 2026 09:28:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93D9C10E042;
-	Sat, 10 Oct 2026 09:19:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D653210E23F;
+	Sat, 10 Oct 2026 09:28:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kQ+XBWGT";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bBztbDy9";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A53A10E042
- for <intel-xe@lists.freedesktop.org>; Sat, 10 Oct 2026 09:19:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8291910E23F
+ for <intel-xe@lists.freedesktop.org>; Sat, 10 Oct 2026 09:28:25 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 2445042A37;
- Sat, 10 Oct 2026 09:19:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C80961F000FF;
- Sat, 10 Oct 2026 09:19:53 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 4F2D041B6F;
+ Sat, 10 Oct 2026 09:28:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2D6B1F000FF;
+ Sat, 10 Oct 2026 09:28:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791623994;
- bh=8RQtEp/CEzS5289JDnul8bprin1z0OD8zlcuwsmovJQ=;
+ s=k20260515; t=1791624505;
+ bh=ipBWLZNDedUqQ9VVh4HGS16FQfkhzIWsCEFVjBjWrpM=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=kQ+XBWGTCn4CRLa0NWfyFghMAgK8/CbNU39BViBrzuYqNBwaF6VJHmdJlgGcQ3KSN
- N/i9DI33rxBivsjnfZCUinO+e5fxXF5FCOXTPt7ihDD5kIk2n+/971ucPHQsQfB0V+
- a1HwzbeNCHjwyadh5uqgICTGBxe4O8L7UBuXMZS34cGUhpjJoZr7fPMBbWamTXvQBV
- O/563WMDy8KFIGJLec2sdps9FhUMMchWSu7wxO1zIA17ZE3yH7uQoZIsMguKJxq0uD
- IvigLSCN3JgAomI01YzVldmm1i0k2dNqBbVw9PefbgQLceoG0yepABxP/xVeOujuqx
- Yj7MCfeniuQDQ==
-Message-ID: <sashiko-outbox-166393@kernel.org>
+ b=bBztbDy9UQgqEZX9Ch1O1c9C+tJr8SMun70Rwq8TzYei1Nb4CLb6ZpORx5J7oFQMH
+ N0XF/7z9seuTQUaN4KBS458DhAedKzkYMC7PtrbQ3hbv3G/3QrQwncIdjLL9HdRz8W
+ 2/KF7b08z+/gJ2wzW9NfLcTFpLXWGuI3rg8c6IB0qDJj7ikP6vn0q5CnLs5IBozoPj
+ IUY/iaYWzl/AAARLQeqpQna6ir7KkcH9v4th+oKqu8Yyc8wdU7mkc40c6pDpoZIMz4
+ 6EPUO6uRFU0V8qMLFykljI39W3NxgsSDmERqyCKZ1H6slPJgsL+pkhDZAnwYLkhikA
+ z+01GX9X1aosg==
+Message-ID: <sashiko-outbox-166397@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 3/5] drm/xe: Make xe_device_declare_wedged() IRQ safe
+Subject: Re: [PATCH v4 5/5] drm/xe/ras: Move xe_ras_process_errors() to xe_ras
 To: "Raag Jadav" <raag.jadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261010090718.68308-4-raag.jadav@intel.com>
+In-Reply-To: <20261010090718.68308-6-raag.jadav@intel.com>
 References: <20261010090718.68308-1-raag.jadav@intel.com>
- <20261010090718.68308-4-raag.jadav@intel.com>
+ <20261010090718.68308-6-raag.jadav@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 10 Oct 2026 09:19:53 +0000
+Date: Sat, 10 Oct 2026 09:28:24 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,72 +58,94 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] drm/xe: data race on xe->wedged.method due to wedged_work concur=
-rent execution
+- [High] xe: early wedging causes probe failure and dropped uevents
 --
 
-commit 1b950e6e1cdfbf78ff8ea7b58f37f030e514ddf2
+commit eda4360aefb71a5fa669e79a246b3deb2191fe3f
 Author: Raag Jadav <raag.jadav@intel.com>
 
-drm/xe: Make xe_device_declare_wedged() IRQ safe
-
-Currently, xe_device_declare_wedged() implementation wedges the GTs and
-sends wedged uevent to userspace. This is problematic for usecases which
-require declaring the device as wedged in IRQ context, as it allocates
-memory for event buffer and acquires mutexes deep into it's call path.
+drm/xe/ras: Move xe_ras_process_errors() to xe_ras
+   =20
+This commit moves xe_ras_process_errors() from xe_device_probe() to
+xe_ras_init() to process and log boot-time RAS errors earlier in the
+probe sequence.
 
 > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
 e.c
-> index 1c3281c8d2863..f4536583e57ce 100644
 > --- a/drivers/gpu/drm/xe/xe_device.c
 > +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -1087,13 +1087,6 @@ int xe_device_probe(struct xe_device *xe)
+> =20
+>  	detect_preproduction_hw(xe);
+> =20
+> -	/*
+> -	 * Process and log any errors detected by hardware. Possible results can
+> -	 * include declaring the device as wedged, which must be done only after
+> -	 * xe_wedge_fini() is registered.
+> -	 */
+> -	xe_ras_process_errors(xe);
+> -
+>  	err =3D devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
+>  	if (err)
+>  		goto err_unregister_display;
+
 [ ... ]
-> @@ -1392,6 +1400,26 @@ void xe_device_set_wedged_method(struct xe_device =
-*xe, unsigned long method)
->  	xe->wedged.method =3D method;
->  }
 
-[Severity: Medium]
-Could this cause a data race on xe->wedged.method?
-
-Since xe_device_set_wedged_method() can be called from multiple RAS error
-handlers in a loop while processing hardware errors, it might write to
-xe->wedged.method while the newly added asynchronous worker is actively
-reading or modifying it.
-
-> +static void wedged_work(struct work_struct *work)
-> +{
-> +	struct xe_device *xe =3D container_of(work, struct xe_device, wedged.wo=
-rk);
-> +
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
+> @@ -933,6 +933,13 @@ void xe_ras_init(struct xe_device *xe)
+>  	if (IS_ENABLED(CONFIG_PCIEAER))
+>  		ras_usp_aer_init(xe);
+> =20
 > +	/*
-> +	 * XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is intended for debugging
-> +	 * hangs, so wedge the device with 'none' recovery method and have
-> +	 * it available to the user for debugging.
+> +	 * During probe, process and log any errors detected by firmware while =
+the driver was not
+> +	 * loaded. Critical errors such as Punit and CSC are reported through P=
+code init failure,
+> +	 * causing the driver to enter survivability mode.
 > +	 */
-> +	if (xe->wedged.mode =3D=3D XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
-> +		xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_NONE);
-> +	/* If no wedge recovery method is set, use default */
-> +	else if (!xe->wedged.method)
-> +		xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_REBIND |
-> +					    DRM_WEDGE_RECOVERY_BUS_RESET);
+> +	xe_ras_process_errors(xe);
+
+[Severity: High]
+Does moving xe_ras_process_errors() here cause the driver to fail probe ins=
+tead
+of remaining loaded in a wedged state?
+
+If xe_ras_process_errors() encounters a fatal error, it sets the wedged fla=
+g.
+Because xe_ras_init() now runs before xe_gt_init(), subsequent GuC CT
+operations during GT initialization will fail due to the wedged state:
+
+drivers/gpu/drm/xe/xe_guc_ct.c:__guc_ct_send_locked() {
+	if (xe_wedged(ct_to_xe(ct))) {
+		ret =3D -ENOTRECOVERABLE;
+		goto out;
+	}
+	...
+}
+
+This would cause xe_device_probe() to abort entirely.
+
+Additionally, when the wedge worker calls drm_dev_wedged_event(), won't the
+uevent be silently dropped?
+
+drivers/gpu/drm/drm_drv.c:drm_dev_wedged_event() {
+	...
+	return kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
+}
+
+At this point in xe_ras_init(), drm_dev_register() hasn't been called yet, =
+so
+the DRM device kobject hasn't been added to sysfs. The original location in
+xe_device_probe() was placed safely after GT initialization and DRM device
+registration.
+
 > +
-> +	/* Notify userspace of wedged device */
-> +	drm_dev_wedged_event(&xe->drm, xe->wedged.method, NULL);
-> +}
-
-[Severity: Medium]
-Is it possible for the wedged method to be corrupted here?
-
-If xe_ras_process_errors() processes hardware errors, the first error might
-set xe->wedged.method and call xe_device_declare_wedged() which schedules
-wedged.work.
-
-If the loop continues and a second error sets xe->wedged.method again, this
-sequential write could race with this worker concurrently reading and
-modifying xe->wedged.method on another CPU. This could lead to a corrupted
-or incorrect recovery method being passed to drm_dev_wedged_event().
+>  	ret =3D devm_device_add_group(xe->drm.dev, &gpu_health_group);
+>  	if (ret)
+>  		xe_err(xe, "Failed to create GPU health sysfs, err=3D%d\n", ret);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261010090718.6830=
-8-1-raag.jadav@intel.com?part=3D3
+8-1-raag.jadav@intel.com?part=3D5
