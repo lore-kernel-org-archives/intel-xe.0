@@ -4,41 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AD6BCA9ED0
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 12:56:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE244CA9ED0
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 13:05:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45DCB10F05F;
-	Mon, 12 Oct 2026 12:56:17 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76A0410F05F;
- Mon, 12 Oct 2026 12:56:11 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 4035D408BF;
- Mon, 12 Oct 2026 12:56:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E38E31F0089C;
- Mon, 12 Oct 2026 12:56:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791809771;
- bh=ddnlHTpOTotmew6pLNGvebORTj9UxNDWk+sJYWexd88=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=c9VEOpJwElDGczNct83p5YOiB9wXm+urNfJe2//rshXap6MNQUL0OSDNOOQJXJPB1
- nYNNDEbRxyjL6gWe1qYK1KZbLC6Ua8Njm13sHCYOb46WfEkYDqd3RhCvl0Air9DzZH
- MPyGYIsCV/eEeJyQNPW0O4VSr13NunEhBLiJtJh29q630xQCTArVVAhqTU5CHkV0Nk
- TRCGltBzkAyHuCMkF9tAPUVqogbJok6bYuUtsgCAS1kXjCwOHRY5VQHZywOQQW5E4E
- jXq1uAcu5nqsrsK8Abjf2OrX+krHRuCURXm2QCshcw1Wmw+Z7OSRu6//8sNQ+REIJ8
- T1nhzbz5z7QJA==
-Message-ID: <sashiko-outbox-168133@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 4/6] drm/i915/psr: Merge the selective fetch area
- across joined pipes
-To: "Mika Kahola" <mika.kahola@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261012124145.1960050-5-mika.kahola@intel.com>
-References: <20261012124145.1960050-1-mika.kahola@intel.com>
- <20261012124145.1960050-5-mika.kahola@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 12 Oct 2026 12:56:10 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B01C10E564;
+	Mon, 12 Oct 2026 13:04:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D98E10E564
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 13:04:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791810290; x=1823346290;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=s5BsWp9IBB94W2gki6YyzAfUByfVS8afb+f9KjSh+vY=;
+ b=NhDIu6JjihGHmsfZeSSeNqG7Udq1Fv2q7ox7VCFX9ZQdT5XJzxBgl8S+
+ 98gmifWArBCaiPH8qSEDCCVrYHNE2NOZsSi6pm9DU0/OjDQsO3i+FdBQ8
+ 7hg6rjdxkp47fMdEub5sodbMoulJzLl3Jgiu9qisOeP7Mb6KzOE8zqyYS
+ 7wj2m53M2aUWbHATmFz0jQvYoqmTnmGM1INr6Zf51JdTcer9G6zSVwpAr
+ kkCAaPYnIPNWyl5rsC/ZWJ4KgaFfOKsNd5kMHr1evxxMuWLoLcghegrlx
+ tBJ5WILL6Ute5+47H7VK38q7pGj7eBjEjUxGqj5q9gCkKEaR93SRfYjEZ g==;
+X-CSE-ConnectionGUID: sh1z18SSQm+CmFJhyayrCQ==
+X-CSE-MsgGUID: Uqwe455DSY6WgXlf3qazwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="527215"
+X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
+   d="scan'208";a="527215"
+Received: from fmviesa012.fm.intel.com ([10.60.135.152])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2026 06:04:50 -0700
+X-CSE-ConnectionGUID: LklXJnjSQCWRO90mArJzXA==
+X-CSE-MsgGUID: 2twiBVViR56PDDJOgibQMQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
+   d="scan'208";a="2681902"
+Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2026 06:04:46 -0700
+From: Karthik Poosa <karthik.poosa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com,
+ Karthik Poosa <karthik.poosa@intel.com>
+Subject: [PATCH v10 00/16] drm/xe/hwmon: Update hwmon thermal mailbox
+Date: Mon, 12 Oct 2026 18:33:46 +0530
+Message-Id: <20261012130401.443473-1-karthik.poosa@intel.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,73 +64,103 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] drm/i915/psr: Dead code in psr2_sel_fetch_align_su_area for cursor_=
-in_su_area
---
+This series adds CRI-specific temperature sensor handling to the Xe
+hwmon implementation and fixes couple of hwmon issues.
 
-commit 7a64006c52d0dd79eca20d987ffe7b3c8f8b6c66
-Author: Mika Kahola <mika.kahola@intel.com>
-Date:   Mon Oct 12 12:41:43 2026 +0000
+CRI platforms may report unavailable temperature sensors and support
+a variable number of VRAM temperature channels depending on platform
+configuration. This series adds the required sensor presence checks and
+uses platform-reported thermal configuration data to expose only valid
+temperature-related hwmon attributes.
 
-    drm/i915/psr: Merge the selective fetch area across joined pipes
+The series also corrects the telemetry group selection used for memory
+controller temperature reporting.
 
-This commit updates PSR2 selective fetch to handle joined pipes by merging
-the selective fetch area across the pipes. It ensures only the primary pipe
-programs the transcoder register, and falls back to a full update if a join=
-ed
-pipe fails area calculation or if no joined pipe has damage.
+v2:
+ - Address review comments from Sashiko, Badal and Raag.
+ - Enable IEEE 754 temperature decoding for MMIO temperature registers.
+  - Split sensor validity check into mailbox vs MMIO handling; add
+    is_temp_available() / is_temp_is_visible().
+ - Temporarily disable memory controller and PCIe temperatures on CRI.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
-915/display/intel_psr.c
-> index 0483dad5bdd82..9a57339c004a5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-[ ... ]
-> +static void psr2_sel_fetch_align_su_area(struct intel_atomic_state *stat=
-e,
-> +					 u8 joined_pipes)
-> +{
-> +	struct intel_display *display =3D to_intel_display(state);
-> +	struct intel_crtc *crtc;
-> +	bool su_area_changed;
-> +
-> +	do {
-> +		su_area_changed =3D false;
-> +
-> +		for_each_intel_crtc_in_pipe_mask(display, crtc, joined_pipes) {
-> +			struct intel_crtc_state *crtc_state =3D
-> +				intel_atomic_get_new_crtc_state(state, crtc);
-> +			struct drm_rect display_area =3D {
-> +				.x1 =3D 0,
-> +				.y1 =3D 0,
-> +				.x2 =3D crtc_state->hw.pipe_mode.crtc_hdisplay,
-> +				.y2 =3D crtc_state->hw.pipe_mode.crtc_vdisplay,
-> +			};
-> +			struct drm_rect old_su_area =3D crtc_state->psr2_su_area;
-> +			bool cursor_in_su_area =3D false;
-> +
-> +			/* Needs the planes already pulled into the state. */
-> +			intel_psr2_sel_fetch_et_alignment(state, crtc, &display_area,
-> +							  &cursor_in_su_area);
-> +
+v3:
+  - Detect unavailable temperature sensors: rephrase a debug log.
+  - Decode mailbox temperatures as 8-bit sign-magnitude values instead of
+    s8.
+  - Use VRAM temperature sensor count from thermal config on CRI: address
+    review comments from sashiko-bot@kernel.org and Rodrigo.
+  - Decode CRI temperature registers as IEEE-754: reject temperatures that
+    overflow long on 32-bit systems.
 
-[Severity: Low]
-Could the cursor_in_su_area variable and its corresponding parameter in
-intel_psr2_sel_fetch_et_alignment() be removed?
+v4:
+  - Address review comments and issues report from Rodrigo and
+    sashiko-bot@kernel.org.
+  - Decode mailbox temperatures as 8-bit sign-magnitude values.
+  - Cache sensor availability during registration.
+  - Enable memory controller and pcie sensors for CRI.
+  - Derive the VRAM channel count from the CRI MSU enable mask.
+  - Use CRI-specific package and VRAM temperature registers.
+  - Handle the CRI memory controller and pcie sensor offsets as per CRI.
 
-The previous implementation used cursor_in_su_area to conditionally break o=
-ut
-of the alignment loop early. Since this patch removes that break condition,
-the variable is initialized and populated by intel_psr2_sel_fetch_et_alignm=
-ent()
-but its value is never checked, making it dead code.
+v5:
+ - Remove the unintended IGT prefix from the patch titles.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261012124145.1960=
-050-1-mika.kahola@intel.com?part=3D4
+v6:
+ - Address issues reported by sashiko-bot@kernel.org.
+ - Add VRAM individual channel CRI_VRAM_TEMPERATURE_N register for CRI.
+
+v7:
+ - Address review comments from Rodrigo.
+    - Use ret instead of count in patch 1.
+    - Return true for platforms without temperature sentinels support.
+    - Rename has_mbx_temp_sentinel to has_temp_sentinel.
+    - Add a info flag for pcie sensor offset.
+    - Simplify temperature channels config.
+
+v8:
+ - Address review comment from Sashiko.
+ - Revert the unconditional validation of temperature readings on
+   non-sentinel platforms.
+   This avoids creating spurious VRAM temperature channels when the
+   corresponding sensors are unavailable.
+
+v9:
+ - Address review comment from Rodrigo.
+ - Use helper for pcie sensor offset instead of info field.
+
+v10:
+ - Address review comments from sashiko.
+
+Karthik Poosa (16):
+  drm/xe/hwmon: Handle pcode read failures of
+    xe_hwmon_pcode_rmw_power_limit
+  drm/xe/hwmon: Decode mailbox temperature as sign-magnitude
+  drm/xe/hwmon: Fix thermal sensor data handling
+  drm/xe/hwmon: Add helpers to validate thermal sensor readings
+  drm/xe/hwmon: Handle unavailable memory controller sensors
+  drm/xe/hwmon: Detect unavailable PCIe thermal sensors
+  drm/xe/hwmon: Consolidate temperature sensor availability checks
+  drm/xe/hwmon: Cache temperature availability to reduce probe time
+  drm/xe/hwmon: use CRI-specific package and VRAM temperature registers
+  drm/xe/hwmon: Add platform-aware VRAM thermal channel support
+  drm/xe/hwmon: Decode CRI temperature registers as IEEE-754
+  drm/xe/hwmon: Update memory controller temperature offset for CRI
+  drm/xe/hwmon: add PCIe temperature support for CRI
+  drm/xe/hwmon: Simplify temperature channels config
+  drm/xe: Validate thermal sensor count  before reads
+  drm/xe/hwmon: Propagate all hardware read errors
+
+ drivers/gpu/drm/xe/regs/xe_pcode_regs.h |   4 +
+ drivers/gpu/drm/xe/xe_device_types.h    |   4 +
+ drivers/gpu/drm/xe/xe_hwmon.c           | 525 ++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_pci.c             |   4 +
+ drivers/gpu/drm/xe/xe_pci_types.h       |   2 +
+ drivers/gpu/drm/xe/xe_pcode_api.h       |   2 -
+ 6 files changed, 416 insertions(+), 125 deletions(-)
+
+-- 
+2.25.1
+
