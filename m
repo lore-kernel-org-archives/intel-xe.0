@@ -4,39 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC0A0CA9ED0
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 23:29:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBD50CA9ED2
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 23:29:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 975FD10E6D7;
-	Mon, 12 Oct 2026 23:29:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99D2410E6D8;
+	Mon, 12 Oct 2026 23:29:29 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53F7A10E60E
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 23:29:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AA0810E6B2
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 23:29:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1791847762; x=1823383762;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gpARh8i1/PHkrMCMGe5dOgGgZPydbAGialZy9aX6C3Y=;
- b=HHU5f/DJO497P0I5TDsJzwLG77EAMkjC12zN6ETivnaLfm+6I2D+Rg28
- gllxgtb9KaArXPt0eG1BMgK6Dsr5Jc2sIi5tK4ZLe+SWOASn8ee32bFcP
- sRuH3w7WihL9wlWYr492x0R0axNRvACzMOnwi+cK3by/Rox500xjElev/
- MR+/JeIcAmYjlwqhv8G42McWTn80pQFP6OdhuMvqnYcVpsHn6H4EBmezr
- 946GlFXwqaeXJ/pGuRHIYEcSRNuhWHQHjTroMgLb3HQCSsMkFYojpTeHK
- WDUwOa65v/fdrtduS6g4isO4F7QkYxc2LicqtLkxvM/k+91N/BWso8q2s w==;
-X-CSE-ConnectionGUID: VlKJ4YmOTl6oTylYcQ6uhA==
-X-CSE-MsgGUID: G00/+0bqRumwBBiXli0zpw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="450712"
+ bh=0vnGwkJvuDM3X18vjuRw2b4CL8YBd0IaA/v/3ZSWtNQ=;
+ b=I+ONhWCOTrRoTVv6vW5tdzonphv4mWVpZvD2331L/PGmGecYhmHMlqOa
+ QmFC6Va+1KysCd3ImFqdjXxOpUtIPPnsXL5rcBpU+ipi5DuVDdYInzUmG
+ gkro+sUjp17b8Tj/EqFynnaA8FOaNUSZsuNs/DUXjtq5DTisQznU6PLy5
+ OZb+N4IeOVudE/UthM1Dhbti1JvkwnDR3Lmiqr50+Ma8aeYA4WtPHa8rk
+ Dw3Iqa81Akle6UqKC8hAszPW8nmWzbVty57GJPQP8riTIi7SLtehH8EbX
+ tizqJiicq7oPuZ61mC0uPuH9ql3Tcs/sjbAIcQ+Yt4t+w6pC80OGTvyT5 A==;
+X-CSE-ConnectionGUID: fpy1w7X6TnCvW53MdI8QSw==
+X-CSE-MsgGUID: bZVWvbgeS9yvEYlciCbfHw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="450713"
 X-IronPort-AV: E=Sophos;i="6.27,154,1787036400"; 
-   d="scan'208";a="450712"
+   d="scan'208";a="450713"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Oct 2026 16:29:16 -0700
-X-CSE-ConnectionGUID: 6GMypIzDQk6BRkkemUAIPA==
-X-CSE-MsgGUID: jRctX4eESY2RNIGjgoDxCA==
+X-CSE-ConnectionGUID: i3TQm5/dRVS9jTCni4kG7Q==
+X-CSE-MsgGUID: u8FlBWIuS6SkAJ71/WsdWA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,154,1787036400"; 
-   d="scan'208";a="1337842"
+   d="scan'208";a="1337845"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Oct 2026 16:29:16 -0700
@@ -45,10 +45,10 @@ To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com, aravind.iddamsetty@intel.com,
  mallesh.koujalagi@intel.com, alan.previn.teres.alexis@intel.com,
  julia.filipchuk@intel.com, michal.wajdeczko@intel.com
-Subject: [PATCH v7 3/7] drm/xe/guc: Make ct_dead_capture available on
- non-debug config
-Date: Mon, 12 Oct 2026 16:29:11 -0700
-Message-ID: <20261012232907.83649-12-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v7 4/7] drm/xe/guc: Cleanup error codes and handling for CT
+ errors
+Date: Mon, 12 Oct 2026 16:29:12 -0700
+Message-ID: <20261012232907.83649-13-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261012232907.83649-9-umesh.nerlige.ramappa@intel.com>
 References: <20261012232907.83649-9-umesh.nerlige.ramappa@intel.com>
@@ -68,90 +68,402 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Define ct_dead_capture for non-debug as well to simplify future
-refactor. Rename it to process_ct_dead since non-debug mode does not
-capture anything.
+Instead of always returning -EPROTO for most errors, use different error
+codes based on the error type. -EPROTO is retained for the cases that
+are genuine protocol violations by the GuC.  The remaining cases now
+report what actually went wrong.
+
+A CTB that has been flagged broken reports -ECONNABORTED rather than
+-EPERM. These errors are not contained within the driver: they reach
+userspace verbatim through the gt freq sysfs knobs (min_freq_store() ->
+xe_guc_pc_set_min_freq() -> xe_guc_ct_send()) and through the VFIO
+SR-IOV migration callbacks (xe_sriov_vfio_suspend_device() ->
+xe_sriov_pf_control_pause_vf() -> xe_guc_ct_send_block()). -EPERM reads
+as a privilege failure, so a user who hits a broken CT is told
+"Operation not permitted" and retries as root to no effect. Worse,
+xe_sriov_vfio.c already returns -EPERM for its own "not a PF" check,
+so the two are indistinguishable to migration tooling.
+-ECONNABORTED ("Software caused connection abort") says what actually
+happened: the driver aborted the channel after detecting corruption.
+
+Note that -ECONNABORTED must stay distinct from -EPIPE. -EPIPE means
+corruption was detected now and transitions the CTB to broken, which
+g2h_err_is_fatal() classifies as fatal; -ECONNABORTED means the CTB was
+already broken and is benign. Merging them would make receive_g2h()
+re-declare the CT dead and re-kick a reset on every dequeue iteration.
+
+receive_g2h() used to escalate to CT_DEAD + kick_reset() by matching the
+two error codes that dequeue_one_g2h() could return on a fatal error.
+Invert the check to simplify reset handling.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Assisted-by: Claude:claude-opus-5
 ---
 v2: (Daniele)
-- Reorder defines
-- s/ct_id/ct_error_id/
-- s/ct_dead_capture/process_ct_dead/
+- Drop the xe_log_error paragraph
+- return EPIPE directly
+- use h2g and g2h variables
+- Add EPIPE comment back to xe_guc_ct_send
+- s/ct_id/ct_error_id/ and s/ct_dead_capture/process_ct_dead/
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 25 ++++++++++++-------------
- 1 file changed, 12 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 209 +++++++++++++++++++++++++--------
+ 1 file changed, 163 insertions(+), 46 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 7c2a45fe8ad2..a00b5e761e96 100644
+index a00b5e761e96..3e23a4396b39 100644
 --- a/drivers/gpu/drm/xe/xe_guc_ct.c
 +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -59,7 +59,6 @@ static struct xe_device *ct_to_xe(struct xe_guc_ct *ct)
- 	return gt_to_xe(ct_to_gt(ct));
- }
+@@ -37,6 +37,93 @@
+ #include "xe_sriov_vf.h"
+ #include "xe_trace_guc.h"
  
--#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
- enum {
- 	/* Internal states, not error conditions */
- 	CT_DEAD_STATE_REARM,			/* 0x0001 */
-@@ -82,8 +81,12 @@ enum {
- 	CT_DEAD_CRASH,				/* 0x8000 */
- };
- 
-+#define ct_error_id(reason_code)  CT_DEAD_##reason_code
-+static void process_ct_dead(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code);
-+#define CT_DEAD(ct, ctb, reason_code)	process_ct_dead((ct), (ctb), ct_error_id(reason_code))
++/**
++ * DOC: GuC CT Error Codes
++ *
++ * Send path - xe_guc_ct_send(), xe_guc_ct_send_locked(), h2g_write()
++ * ------------------------------------------------------------------
++ *
++ * Channel-state rejections - the message was never queued, nothing is corrupt:
++ *
++ * ``-ENOTRECOVERABLE``: the device is wedged. No CT traffic can make progress
++ *   until the device is recovered.
++ * ``-ECONNABORTED``: the H2G CTB was flagged broken by an earlier corruption
++ *   check, so the driver aborted the channel. It stays unusable until the CT is
++ *   restarted, which clears the flag.
++ * ``-ENODEV``: the CT channel is disabled. Don't retry until it is enabled.
++ * ``-ECANCELED``: the CT channel is stopped or a GT recovery is pending, so the
++ *   message was dropped. Often benign; retry after the reset/recovery completes.
++ *
++ * Internal flow control - never seen by callers, handled by the send helpers:
++ *
++ * ``-EBUSY``: not enough H2G room or G2H credits. Triggers a flush, a wait and
++ *   a retry.
++ * ``-EAGAIN``: the message would wrap the H2G ring, so the tail was NOP-filled
++ *   and reset to 0. The write is reissued immediately.
++ *
++ * Hard failures:
++ *
++ * ``-EPIPE``: H2G descriptor corruption found before writing - non-zero status,
++ *   or head/tail out of range. Marks the CTB broken.
++ * ``-EDEADLK``: H2G credits never recovered after waiting ~1s. An async GT reset
++ *   is requested before this is returned.
++ * ``-EPROTO``: the MMIO CT enable/disable handshake got an unexpected reply.
++ * ``-ENOMEM``: internal allocation failure (fence lookup under GFP_ATOMIC, or the
++ *   G2H workqueue at init). The blocking path retries the allocation with
++ *   GFP_KERNEL.
++ *
++ * Blocking send only (xe_guc_ct_send_recv()) - the H2G went out, the reply is the
++ * problem:
++ *
++ * ``-ETIME``: no G2H response within 1s, even after flushing the G2H worker.
++ * ``-EIO``: the GuC replied RESPONSE_FAILURE; error and hint codes are logged.
++ * ``-ELOOP``: the GuC kept replying NO_RESPONSE_RETRY until the request hit
++ *   GUC_SEND_RETRY_LIMIT. (NO_RESPONSE_BUSY is not an error - the waiter re-arms.)
++ * ``-ECANCELED``: the pending fence was canceled while waiting, because the CT
++ *   was stopped underneath the waiter. Retry after the reset completes.
++ * ``-ENOTRECOVERABLE``: same as above, but the device got wedged in the
++ *   meantime, so there is nothing to retry.
++ *
++ * Receive path - g2h_read(), parse_g2h_msg(), dequeue_one_g2h()
++ * -------------------------------------------------------------
++ *
++ * Channel-state rejections - the same four codes as the send path, checked against
++ * the G2H CTB. g2h_err_is_fatal() treats exactly these as benign; anything else
++ * declares the CT dead and kicks a reset:
++ *
++ * ``-ENOTRECOVERABLE``: device wedged.
++ * ``-ENODEV``: CT disabled.
++ * ``-ECANCELED``: CT stopped.
++ * ``-ECONNABORTED``: G2H CTB already flagged broken.
++ *
++ * Hard failures:
++ *
++ * ``-EPIPE``: G2H descriptor corruption - non-zero status, head/tail out of
++ *   range, or a declared message length larger than the data actually available.
++ * ``-EPROTO``: HXG protocol violation. Either the G2H origin field is not the
++ *   GuC, or a FAST_REQUEST H2G came back rejected. FAST_REQUEST fences aren't
++ *   tracked, so there is no caller to report to and the failure is escalated to a
++ *   reset instead.
++ * ``-EOPNOTSUPP``: G2H carried an HXG type this driver does not handle.
++ *
++ * Reported but not returned
++ * -------------------------
++ *
++ * These never reach a caller: they are detected in a void path or in a G2H
++ * handler whose return value is swallowed. They are reported and the CT is
++ * declared dead, which is the only escalation available:
++ *
++ * ``-EHOSTDOWN``: the GuC sent a crash dump or an exception notification, i.e.
++ *   the firmware itself died. A reset is kicked to reload it.
++ * ``-ETOOMANYREFS``: G2H credit accounting went wrong - a release would push
++ *   the free space past the usable size of the CTB, or there was no outstanding
++ *   G2H to release. Indicates a driver-side bookkeeping bug, not a GuC one.
++ * Any error from a G2H action handler: the handler for a given G2H failed while
++ *   processing it. The code is whatever the handler returned and is reported
++ *   along with the action and the raw message, from both the worker
++ *   (process_g2h_msg()) and the IRQ fast path (g2h_fast_path()).
++ */
 +
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
- static void ct_dead_worker_func(struct work_struct *w);
--static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code);
- 
- static void ct_dead_fini(struct xe_guc_ct *ct)
- {
-@@ -162,9 +165,6 @@ static void fast_req_track(struct xe_guc_ct *ct, u16 fence, u16 action)
- 	ct->fast_req[slot].fence = fence;
- 	ct->fast_req[slot].action = action;
+ static void receive_g2h(struct xe_guc_ct *ct);
+ static void g2h_worker_func(struct work_struct *w);
+ static void safe_mode_worker_func(struct work_struct *w);
+@@ -931,6 +1018,22 @@ static bool vf_action_can_safely_fail(struct xe_device *xe, u32 action)
+ 		 action == XE_GUC_ACTION_REGISTER_CONTEXT);
  }
--
--#define CT_DEAD(ct, ctb, reason_code)	ct_dead_capture((ct), (ctb), CT_DEAD_##reason_code)
--
- #else
  
- static void ct_dead_fini(struct xe_guc_ct *ct) { }
-@@ -173,13 +173,6 @@ static void ct_dead_init(struct xe_guc_ct *ct) { }
- static void fast_req_report(struct xe_guc_ct *ct, u16 fence) { }
- static void fast_req_track(struct xe_guc_ct *ct, u16 fence, u16 action) { }
- 
--#define CT_DEAD(ct, ctb, reason)			\
--	do {						\
--		struct guc_ctb *_ctb = (ctb);		\
--		if (_ctb)				\
--			_ctb->info.broken = true;	\
--	} while (0)
--
- #endif
- 
- /* Used when a CT send wants to block and / or receive data */
-@@ -2280,7 +2273,7 @@ ALLOW_ERROR_INJECTION(xe_is_injection_active, ERRNO);
- int xe_is_injection_active(void) { return 0; }
- #endif
- 
--static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code)
-+static void process_ct_dead(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code)
- {
- 	struct xe_guc_log_snapshot *snapshot_log;
- 	struct xe_guc_ct_snapshot *snapshot_ct;
-@@ -2387,4 +2380,10 @@ static void ct_dead_worker_func(struct work_struct *w)
- 
- 	spin_unlock_irq(&ct->dead.lock);
- }
-+#else
-+static void process_ct_dead(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code)
++static int ct_corrupted(struct xe_guc_ct *ct, struct guc_ctb *ctb,
++			u32 reason_code, const char *msg, ...)
 +{
-+	if (ctb)
-+		ctb->info.broken = true;
++	struct va_format vaf;
++	va_list va_args;
++
++	va_start(va_args, msg);
++	vaf.fmt = msg;
++	vaf.va  = &va_args;
++	xe_gt_err(ct_to_gt(ct), "GUC: CT: %pV", &vaf);
++	va_end(va_args);
++
++	process_ct_dead(ct, ctb, reason_code);
++	return -EPIPE;
 +}
- #endif
++
+ #define H2G_CT_HEADERS (GUC_CTB_HDR_LEN + 1) /* one DW CTB header and one DW HxG header */
+ 
+ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+@@ -955,23 +1058,22 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 		u32 desc_status;
+ 
+ 		desc_status = desc_read(xe, h2g, status);
+-		if (desc_status) {
+-			xe_gt_err(gt, "CT write: non-zero status: %u\n", desc_status);
+-			goto corrupted;
+-		}
++		if (desc_status)
++			return ct_corrupted(ct,  h2g, ct_error_id(H2G_WRITE),
++					    "write: non-zero status: %u\n", desc_status);
+ 
+ 		if (tail > h2g->info.size) {
+ 			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+-			xe_gt_err(gt, "CT write: tail out of range: %u vs %u\n",
+-				  tail, h2g->info.size);
+-			goto corrupted;
++			return ct_corrupted(ct,  h2g, ct_error_id(H2G_WRITE),
++					    "write: tail out of range: %u vs %u\n",
++					    tail, h2g->info.size);
+ 		}
+ 
+ 		if (desc_head >= h2g->info.size) {
+ 			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+-			xe_gt_err(gt, "CT write: invalid head offset %u >= %u)\n",
+-				  desc_head, h2g->info.size);
+-			goto corrupted;
++			return ct_corrupted(ct,  h2g, ct_error_id(H2G_WRITE),
++					    "write: invalid head offset %u >= %u)\n",
++					    desc_head, h2g->info.size);
+ 		}
+ 	}
+ 
+@@ -1036,10 +1138,6 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 				     desc_read(xe, h2g, head), h2g->info.tail);
+ 
+ 	return 0;
+-
+-corrupted:
+-	CT_DEAD(ct, &ct->ctbs.h2g, H2G_WRITE);
+-	return -EPIPE;
+ }
+ 
+ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+@@ -1063,7 +1161,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+ 	}
+ 
+ 	if (unlikely(ct->ctbs.h2g.info.broken)) {
+-		ret = -EPIPE;
++		ret = -ECONNABORTED;
+ 		goto out;
+ 	}
+ 
+@@ -1215,7 +1313,7 @@ static int guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 	return ret;
+ 
+ broken:
+-	xe_gt_err(gt, "No forward process on H2G, reset required\n");
++	xe_gt_err(gt, "No forward progress on H2G\n");
+ 	CT_DEAD(ct, &ct->ctbs.h2g, DEADLOCK);
+ 
+ 	return -EDEADLK;
+@@ -1250,6 +1348,9 @@ static int guc_ct_send(struct xe_guc_ct *ct, const u32 *action, u32 len,
+  *   request cannot make progress until the device is recovered.
+  * * -EPIPE: the H2G CTB is marked broken. The channel stays unusable until the
+  *   CT is restarted, which clears the broken flag.
++ * * -ECONNABORTED: the H2G CTB is marked broken, so the driver aborted the
++ *   channel. It stays unusable until the CT is restarted, which clears the
++ *   broken flag.
+  * * -ENODEV: the CT channel is disabled, messages not expected in this state.
+  *   Don't retry until it is enabled again.
+  * * -ECANCELED: the CT channel is stopped or a GT recovery is pending; the
+@@ -1373,7 +1474,8 @@ int xe_guc_ct_send_g2h_handler(struct xe_guc_ct *ct, const u32 *action, u32 len)
+  */
+ static bool retry_failure(struct xe_guc_ct *ct, int ret)
+ {
+-	if (!(ret == -EDEADLK || ret == -EPIPE || ret == -ENODEV))
++	if (!(ret == -EDEADLK || ret == -EPIPE || ret == -ECONNABORTED ||
++	      ret == -ENODEV))
+ 		return false;
+ 
+ #define ct_alive(ct)	\
+@@ -1678,8 +1780,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 
+ 	origin = FIELD_GET(GUC_HXG_MSG_0_ORIGIN, hxg[0]);
+ 	if (unlikely(origin != GUC_HXG_ORIGIN_GUC)) {
+-		xe_gt_err(gt, "G2H channel broken on read, origin=%u, reset required\n",
+-			  origin);
++		xe_gt_err(gt, "Invalid G2H origin=%u\n", origin);
+ 		CT_DEAD(ct, &ct->ctbs.g2h, PARSE_G2H_ORIGIN);
+ 
+ 		return -EPROTO;
+@@ -1697,8 +1798,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		ret = parse_g2h_response(ct, msg, len);
+ 		break;
+ 	default:
+-		xe_gt_err(gt, "G2H channel broken on read, type=%u, reset required\n",
+-			  type);
++		xe_gt_err(gt, "Unexpected G2H message type=%u\n", type);
+ 		CT_DEAD(ct, &ct->ctbs.g2h, PARSE_G2H_TYPE);
+ 
+ 		ret = -EOPNOTSUPP;
+@@ -1819,6 +1919,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+ 	xe_gt_assert(gt, xe_guc_ct_initialized(ct));
+ 	lockdep_assert_held(&ct->fast_lock);
+ 
++	/* Keep in sync with g2h_err_is_fatal() */
+ 	if (xe_device_wedged(xe))
+ 		return -ENOTRECOVERABLE;
+ 
+@@ -1829,7 +1930,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+ 		return -ECANCELED;
+ 
+ 	if (g2h->info.broken)
+-		return -EPIPE;
++		return -ECONNABORTED;
+ 
+ 	xe_gt_assert(gt, xe_guc_ct_enabled(ct));
+ 
+@@ -1845,10 +1946,9 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+ 			desc_status &= ~GUC_CTB_STATUS_DISABLED;
+ 		}
+ 
+-		if (desc_status) {
+-			xe_gt_err(gt, "CT read: non-zero status: %u\n", desc_status);
+-			goto corrupted;
+-		}
++		if (desc_status)
++			return ct_corrupted(ct,  g2h, ct_error_id(G2H_READ),
++					    "read: non-zero status: %u\n", desc_status);
+ 	}
+ 
+ 	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
+@@ -1869,24 +1969,24 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+ 		 *
+ 		if (g2h->info.head != desc_head) {
+ 			desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_MISMATCH);
+-			xe_gt_err(gt, "CT read: head was modified %u != %u\n",
+-				  desc_head, g2h->info.head);
+-			goto corrupted;
++			return ct_corrupted(ct,  g2h, ct_error_id(G2H_READ),
++					    "read: head was modified %u != %u\n",
++					    desc_head, g2h->info.head);
+ 		}
+ 		 */
+ 
+ 		if (g2h->info.head > g2h->info.size) {
+ 			desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+-			xe_gt_err(gt, "CT read: head out of range: %u vs %u\n",
+-				  g2h->info.head, g2h->info.size);
+-			goto corrupted;
++			return ct_corrupted(ct,  g2h, ct_error_id(G2H_READ),
++					    "read: head out of range: %u vs %u\n",
++					    g2h->info.head, g2h->info.size);
+ 		}
+ 
+ 		if (desc_tail >= g2h->info.size) {
+ 			desc_write(xe, g2h, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+-			xe_gt_err(gt, "CT read: invalid tail offset %u >= %u)\n",
+-				  desc_tail, g2h->info.size);
+-			goto corrupted;
++			return ct_corrupted(ct,  g2h, ct_error_id(G2H_READ),
++					    "read: invalid tail offset %u >= %u)\n",
++					    desc_tail, g2h->info.size);
+ 		}
+ 	}
+ 
+@@ -1903,11 +2003,10 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+ 	xe_map_memcpy_from(xe, msg, &g2h->cmds, sizeof(u32) * g2h->info.head,
+ 			   sizeof(u32));
+ 	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
+-	if (len > avail) {
+-		xe_gt_err(gt, "G2H channel broken on read, avail=%d, len=%d, reset required\n",
+-			  avail, len);
+-		goto corrupted;
+-	}
++	if (len > avail)
++		return ct_corrupted(ct,  g2h, ct_error_id(G2H_READ),
++				    "G2H channel broken on read, avail=%d, len=%d\n",
++				    avail, len);
+ 
+ 	head = (g2h->info.head + 1) % g2h->info.size;
+ 	avail = len - 1;
+@@ -1953,10 +2052,6 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+ 			     action, len, g2h->info.head, tail);
+ 
+ 	return len;
+-
+-corrupted:
+-	CT_DEAD(ct, &ct->ctbs.g2h, G2H_READ);
+-	return -EPROTO;
+ }
+ 
+ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
+@@ -2048,6 +2143,27 @@ static int dequeue_one_g2h(struct xe_guc_ct *ct)
+ 	return 1;
+ }
+ 
++/*
++ * Errors reported by dequeue_one_g2h() come in two flavours: either the channel
++ * is simply not available right now, which is expected and handled gracefully,
++ * or the channel state or the message itself is inconsistent, in which case the
++ * only way forward is to declare the CT dead and reset the GuC. Since the
++ * former is a short and well known list, check against that and treat anything
++ * else as fatal, so that new error codes don't silently escape the escalation.
++ */
++static bool g2h_err_is_fatal(int err)
++{
++	switch (err) {
++	case -ENOTRECOVERABLE:	/* device wedged */
++	case -ENODEV:		/* CT disabled */
++	case -ECANCELED:	/* CT stopped */
++	case -ECONNABORTED:	/* CT already declared broken */
++		return false;
++	default:
++		return true;
++	}
++}
++
+ static void receive_g2h(struct xe_guc_ct *ct)
+ {
+ 	bool ongoing;
+@@ -2085,8 +2201,9 @@ static void receive_g2h(struct xe_guc_ct *ct)
+ 		ret = dequeue_one_g2h(ct);
+ 		mutex_unlock(&ct->lock);
+ 
+-		if (unlikely(ret == -EPROTO || ret == -EOPNOTSUPP)) {
+-			xe_gt_err(ct_to_gt(ct), "CT dequeue failed: %d\n", ret);
++		if (unlikely(ret < 0 && g2h_err_is_fatal(ret))) {
++			xe_gt_err(ct_to_gt(ct), "CT dequeue failed, forcing GT reset(%pe)\n",
++				  ERR_PTR(ret));
+ 			CT_DEAD(ct, NULL, G2H_RECV);
+ 			kick_reset(ct);
+ 		}
 -- 
 2.55.0
 
