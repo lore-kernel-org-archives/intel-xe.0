@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBC78CA9ED0
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 23:29:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A39ACA9EC5
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 23:29:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A5BC10E6C7;
-	Mon, 12 Oct 2026 23:29:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A379210E6B2;
+	Mon, 12 Oct 2026 23:29:27 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F076410E69C
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 23:29:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F85A10E6B1
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 23:29:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791847757; x=1823383757;
+ t=1791847761; x=1823383761;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pBgzYHGsnOszNbRXHq+T4mCt3aChKYcWRufgUKXFXSw=;
- b=nWbJWhiIoN2gT0U9N5gjf7Kj+h0A0yQoCpftriuEl7WFQzKzmmH0KHuo
- C+oWnwcT15lPv3/4M/bMjPUdqFYlBm9UzDsAHV26oaLmvFqES+M1taoxH
- LKlKMftIX12faH1xg7I9fbLevqDoz5od4vlVA784VLRI8uy+y3mE09nv0
- fBWoW7+JF3phJbiWsu1XxkeD2zPgWULaNzIGwyTjJITAVH3h9fj3Qg9Xk
- +OAN0ujHcPyumDVVtBL4t9qyf/j1NDDgZQVkNtBeOBQwfUiEoDIq6xexo
- oScjkh/07seYou4mK/ZLJJ2CI/sK/L1EyifINvGLJypfetPqNLEYMy61D A==;
-X-CSE-ConnectionGUID: OBDpIiqMQwSOgS7z78SnSg==
-X-CSE-MsgGUID: dWvJMYquRwa5kiPM012n6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="450710"
+ bh=8Bwia4j7ryDnk73cJotiBAU8OVfCqSjXlq0KIPQlHdo=;
+ b=MrTkY+qwCCUTGufMLzEth/acGNqg90jqlOk8I9wdS1B/5edOqiecIKXj
+ gwpII/JfX+vG0s+HMGtSkepNu2/Ed5Ao2PN36qMfXHN7y7zEbPvsoAdRm
+ jJDvL/R3R3fx8jzh8Do/37Fpr/XPqILYjCR8RPpqRcH/XD58CkcAcdok5
+ l2olXCxJ2WH38Gq0wNyCLwMqgL9sAKJRQCTK4z8xJbziDJ8PVw26CI7v0
+ hzK9BaIECL1SMNqa6bVP7Fa5pe9V0NgE/986ooBf1cw8nKlJwL7/CYgUv
+ oujbdmVQX8FQJ2AEMl6al6i0fbedCav6O0qjGGDTFNyQ1Aad20JDhrD0K g==;
+X-CSE-ConnectionGUID: jkcGd8obTVmrm9B+3adZZw==
+X-CSE-MsgGUID: 3ACSsfEXTiW9DXD8/vx4WQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="450711"
 X-IronPort-AV: E=Sophos;i="6.27,154,1787036400"; 
-   d="scan'208";a="450710"
+   d="scan'208";a="450711"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Oct 2026 16:29:16 -0700
-X-CSE-ConnectionGUID: +gTYwmJNRz6TAv9qOAQs7A==
-X-CSE-MsgGUID: JSfg2Q+gRcu5rF/YMAdLOQ==
+X-CSE-ConnectionGUID: zBVFwerQSniBmSLS8t9SMw==
+X-CSE-MsgGUID: Mo9dWoynQky2FHDW54ibeg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,154,1787036400"; 
-   d="scan'208";a="1337836"
+   d="scan'208";a="1337839"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 16:29:15 -0700
+ 12 Oct 2026 16:29:16 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com, aravind.iddamsetty@intel.com,
  mallesh.koujalagi@intel.com, alan.previn.teres.alexis@intel.com,
  julia.filipchuk@intel.com, michal.wajdeczko@intel.com
-Subject: [PATCH v7 1/7] drm/xe/guc: Use different error codes for GuC load
- errors
-Date: Mon, 12 Oct 2026 16:29:09 -0700
-Message-ID: <20261012232907.83649-10-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v7 2/7] drm/xe/guc: Handle CRASH and EXCEPTION G2H with
+ separate helpers
+Date: Mon, 12 Oct 2026 16:29:10 -0700
+Message-ID: <20261012232907.83649-11-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261012232907.83649-9-umesh.nerlige.ramappa@intel.com>
 References: <20261012232907.83649-9-umesh.nerlige.ramappa@intel.com>
@@ -68,101 +68,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+guc_crash_process_msg() handles both crash and exception notifications
+from GuC, but ends up rechecking the type of notification. It also has
+an else case that is not reachable.
 
-Instead of always returning -EPROTO no matter what goes wrong, use
-different error codes based on the error type.
+Since notification type is already known by the caller, remove
+guc_crash_process_msg() and handle the CRASH and EXCEPTION G2H
+separately, so the duplicate check is avaoided.
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c | 22 ++++++++++++----------
- 1 file changed, 12 insertions(+), 10 deletions(-)
+v2: Add 'why' to commit message (Daniele)
+---
+ drivers/gpu/drm/xe/xe_guc_ct.c | 24 +++++++++++-------------
+ 1 file changed, 11 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 3ab4cb9e4964..cae5cbc38be8 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1144,8 +1144,8 @@ static void print_load_status_err(struct xe_gt *gt, u32 status)
-  * Check GUC_STATUS looking for known terminal states (either completion or
-  * failure) of either the microkernel status field or the boot ROM status field.
-  *
-- * Returns 1 for successful completion, -1 for failure and 0 for any
-- * intermediate state.
-+ * Returns 0 for successful completion, -EBUSY for any intermediate state and
-+ * other errno values for failure cases.
-  */
- static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
- {
-@@ -1157,20 +1157,22 @@ static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
- 
- 	switch (ukernel) {
- 	case XE_GUC_LOAD_STATUS_READY:
--		return 1;
-+		return 0;
- 	case XE_GUC_LOAD_STATUS_ERROR_DEVID_BUILD_MISMATCH:
- 	case XE_GUC_LOAD_STATUS_GUC_PREPROD_BUILD_MISMATCH:
- 	case XE_GUC_LOAD_STATUS_ERROR_DEVID_INVALID_GUCTYPE:
- 	case XE_GUC_LOAD_STATUS_HWCONFIG_ERROR:
- 	case XE_GUC_LOAD_STATUS_BOOTROM_VERSION_MISMATCH:
-+		return -ENOEXEC;
- 	case XE_GUC_LOAD_STATUS_DPC_ERROR:
- 	case XE_GUC_LOAD_STATUS_EXCEPTION:
-+		return -EIO;
- 	case XE_GUC_LOAD_STATUS_INIT_DATA_INVALID:
- 	case XE_GUC_LOAD_STATUS_MPU_DATA_INVALID:
- 	case XE_GUC_LOAD_STATUS_INIT_MMIO_SAVE_RESTORE_INVALID:
- 	case XE_GUC_LOAD_STATUS_KLV_WORKAROUND_INIT_ERROR:
- 	case XE_GUC_LOAD_STATUS_INVALID_FTR_FLAG:
--		return -1;
-+		return -EINVAL;
- 	}
- 
- 	switch (bootrom) {
-@@ -1184,7 +1186,7 @@ static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
- 	case XE_BOOTROM_STATUS_MPUMAP_INCORRECT:
- 	case XE_BOOTROM_STATUS_EXCEPTION:
- 	case XE_BOOTROM_STATUS_PROD_KEY_CHECK_FAILURE:
--		return -1;
-+		return -ENOEXEC;
- 	}
- 
- 	if (++*tries >= 100) {
-@@ -1197,7 +1199,7 @@ static int guc_load_done(struct xe_gt *gt, u32 *status, u32 *tries)
- 			  *status, ukernel, bootrom);
- 	}
- 
--	return 0;
-+	return -EBUSY;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index da5ce97484b8..7c2a45fe8ad2 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1568,22 +1568,18 @@ static int parse_g2h_event(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 	return 0;
  }
  
- static int guc_wait_ucode(struct xe_guc *guc)
-@@ -1213,21 +1215,21 @@ static int guc_wait_ucode(struct xe_guc *guc)
- 	before_freq = xe_guc_pc_get_act_freq(guc_pc);
- 	before = ktime_get();
+-static int guc_crash_process_msg(struct xe_guc_ct *ct, u32 action)
++static void guc_handle_crash_dump_msg(struct xe_guc_ct *ct)
+ {
+-	struct xe_gt *gt = ct_to_gt(ct);
+-
+-	if (action == XE_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED)
+-		xe_gt_err(gt, "GuC Crash dump notification\n");
+-	else if (action == XE_GUC_ACTION_NOTIFY_EXCEPTION)
+-		xe_gt_err(gt, "GuC Exception notification\n");
+-	else
+-		xe_gt_err(gt, "Unknown GuC crash notification: 0x%04X\n", action);
+-
++	xe_gt_err(ct_to_gt(ct), "GuC Crash dump notification\n");
+ 	CT_DEAD(ct, NULL, CRASH);
+-
+ 	kick_reset(ct);
++}
  
--	ret = poll_timeout_us(load_result = guc_load_done(gt, &status, &tries), load_result,
--			      10 * USEC_PER_MSEC,
-+	ret = poll_timeout_us(load_result = guc_load_done(gt, &status, &tries),
-+			      load_result != -EBUSY, 10 * USEC_PER_MSEC,
- 			      GUC_LOAD_TIMEOUT_SEC * USEC_PER_SEC, false);
+-	return 0;
++static void guc_handle_exception_msg(struct xe_guc_ct *ct)
++{
++	xe_gt_err(ct_to_gt(ct), "GuC Exception notification\n");
++	CT_DEAD(ct, NULL, CRASH);
++	kick_reset(ct);
+ }
  
- 	delta_ms = ktime_to_ms(ktime_sub(ktime_get(), before));
- 	act_freq = xe_guc_pc_get_act_freq(guc_pc);
- 	cur_freq = xe_guc_pc_get_cur_freq_fw(guc_pc);
- 
--	if (ret || load_result <= 0) {
-+	if (ret || load_result) {
- 		xe_gt_err(gt, "load failed: status = 0x%08X, time = %lldms, freq = %dMHz (req %dMHz)\n",
- 			  status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
- 			  xe_guc_pc_get_cur_freq_fw(guc_pc));
- 		print_load_status_err(gt, status);
- 
--		return -EPROTO;
-+		return ret ?: load_result;
- 	}
- 
- 	if (delta_ms > GUC_LOAD_TIME_WARN_MSEC) {
+ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+@@ -1787,8 +1783,10 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		ret = xe_gt_sriov_pf_monitor_process_guc2pf(gt, hxg, hxg_len);
+ 		break;
+ 	case XE_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED:
++		guc_handle_crash_dump_msg(ct);
++		break;
+ 	case XE_GUC_ACTION_NOTIFY_EXCEPTION:
+-		ret = guc_crash_process_msg(ct, action);
++		guc_handle_exception_msg(ct);
+ 		break;
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ 	case XE_GUC_ACTION_TEST_G2G_RECV:
 -- 
 2.55.0
 
