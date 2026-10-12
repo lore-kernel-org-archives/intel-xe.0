@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D585CA9ED5
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:54:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 760A1CA9ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:54:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65DBD10E978;
-	Mon, 12 Oct 2026 04:54:25 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 343E710E978;
- Mon, 12 Oct 2026 04:54:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3579D10EC6F;
+	Mon, 12 Oct 2026 04:54:46 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A0E010EC31;
+ Mon, 12 Oct 2026 04:54:40 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id E424B42D87;
- Mon, 12 Oct 2026 04:54:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 918531F0089B;
- Mon, 12 Oct 2026 04:54:18 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id DBD6860AA1;
+ Mon, 12 Oct 2026 04:54:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5416C1F0089B;
+ Mon, 12 Oct 2026 04:54:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791780858;
- bh=7dghQZ6ZwPZbpPZKl+myzz8b5ED4mw3XYiqXI/2sy48=;
+ s=k20260515; t=1791780879;
+ bh=sLYB7o48L5PjJ9/avTiuaK58U3ZPTJcg9lHqPN9r+9k=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=X6U5cLmjc9U0baRkOfp7imibT3THVPkaivNTFflBV3BezNSPHqoUxwom9qXpfiz/L
- qX8kpnlaAVrFY0sqdILHBxkDkH+m7QNw8tZDnZlJDxe492CHGakF/sRp6HN+qCm6GX
- lTmSmo9Q2SsdKgAesgyniePL/s82mYyXUNhla3XsHrNm8fGzXBBC+UrAHZSsO8Wm6p
- GbgFQIWv4p9ugg9YhlA2BfezieND2Vio/qFzTP6U4RrM+545cL3JmdyDlBDFA9r7lD
- SxyXmdRdHZPJUCf6ZaGi8Qq7lNPFF45oBUwx2g4tD+BRaM5+i4KnX3qmgvrQoECSEM
- ldcnYz0pP+rfw==
-Message-ID: <sashiko-outbox-167642@kernel.org>
+ b=UBRhk4uSQtU8oW9IJk1F6q1K0UWTtxaG27l3isRQ/YUyOq7hNyMmQnQ/1YM0Dq2YW
+ DE8BkaV2cYCAHxVET1nJPLBukT1zkkreUmMjXAOxad+INdO809sSv2UNZTFbAUPUO/
+ hAs6hY60OaoBsPyY1kAw5gV5xNUrab5U4YfJaJj84a0xIApRJ0MNgK665a05UfaTso
+ EL1ETw76QgzIIVKeRWdOshV5SwdGW+bE7XFzfPJJ1XQIoaSawNt+MTVVNzD6HNXmMx
+ gt6l1/RHwSme/yHSaURSOE+TA7lXo1Cre04P3lMUXj6jz3XChk4XpYo9D3B9UYQf5D
+ CvxkX9JlICqcQ==
+Message-ID: <sashiko-outbox-167643@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 40/56] drm/i915/ddi: Wire FRL into the HDMI DDI
- enable/disable path
+Subject: Re: [PATCH v2 46/56] drm/i915/display: Add FRL members to the state
+ checker
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <20261012035806.3361439-41-ankit.k.nautiyal@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20261012035806.3361439-47-ankit.k.nautiyal@intel.com>
 References: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
- <20261012035806.3361439-41-ankit.k.nautiyal@intel.com>
+ <20261012035806.3361439-47-ankit.k.nautiyal@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 12 Oct 2026 04:54:18 +0000
+Date: Mon, 12 Oct 2026 04:54:38 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,97 +55,88 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] drm/i915/hdmi: connector refcount underflow via modeset_retry_work
-- [Medium] drm/i915/hdmi: intel_hdmi_frl_cfg_write corrupts register by omi=
-tting clear mask
-- [Medium] drm/i915: unconditional FRL configuration and transcoder enablem=
-ent contrary to commit message
+- [Medium] drm/i915/display: Incomplete FRL state verification missing tb_t=
+hreshold_min and required_rate
+- [Medium] drm/i915: spurious WARN_ON in state checker due to uncleared FRL=
+ config bits
 --
 
-commit cfc5e8ca998b654bfa60f35c76733a4d8332204f
+commit 5c7a8a2a5c09104f1fb54f2b4082592bd27316bb
 Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: drm/i915/ddi: Wire FRL into the HDMI DDI enable/disable path
 
-This commit enables HDMI FRL in the DDI enable and disable sequences for
-MTL+. It prepares for FRL mode, starts FRL link training, and configures
-the FRL registers if enabled. On disable, it handles LTS:L teardown and
-register cleanup.
+drm/i915/display: Add FRL members to the state checker
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index 53e889c0d0223..22a49eb50b203 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-[ ... ]
-> @@ -3605,8 +3614,15 @@ static void intel_ddi_enable_hdmi(struct intel_ato=
-mic_state *state,
+This commit introduces hardware state verification for FRL (Fixed Rate Link)
+by adding several FRL configuration members to the state checker.
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5626,6 +5626,14 @@ intel_pipe_config_compare(const struct intel_crtc_=
+state *current_config,
 > =20
->  	intel_ddi_buf_enable(encoder, buf_ctl);
+>  	PIPE_CONF_CHECK_I(set_context_latency);
 > =20
-> -	if (DISPLAY_VER(display) >=3D 14)
-> +	if (DISPLAY_VER(display) >=3D 14) {
-> +		if (crtc_state->frl.enable &&
-> +		    intel_hdmi_start_frl(encoder, crtc_state) < 0)
-> +			schedule_work(&intel_connector->modeset_retry_work);
-
-[Severity: High]
-Does this code underflow the connector reference count?
-
-If intel_hdmi_start_frl() fails, schedule_work() is called directly without
-taking a reference via drm_connector_get(). If the driver suspends, unbinds,
-or calls intel_hpd_cancel_work(), it calls
-intel_connector_cancel_modeset_retry_work(). This generic cancel helper
-invokes cancel_work_sync() and unconditionally calls drm_connector_put() if
-the work was pending. Because the work was queued without taking a referenc=
-e,
-this drops an unowned reference.
-
-> +
-> +		intel_hdmi_frl_cfg_write(crtc_state);
+> +	PIPE_CONF_CHECK_BOOL(frl.enable);
+> +	PIPE_CONF_CHECK_BOOL(frl.rsrc_sched_en);
+> +	PIPE_CONF_CHECK_I(frl.required_lanes);
+> +	PIPE_CONF_CHECK_I(frl.tb_actual);
+> +	PIPE_CONF_CHECK_I(frl.active_char_buf_threshold);
 
 [Severity: Medium]
-Does intel_hdmi_frl_cfg_write() corrupt the register by omitting a clear ma=
-sk?
+Will checking frl.rsrc_sched_en and frl.active_char_buf_threshold trigger
+spurious WARN_ON state mismatches due to uncleared hardware bits?
 
-When this function is called here, it performs a read-modify-write on the
-TRANS_HDMI_FRL_CFG register:
+Looking at intel_hdmi_frl_cfg_write() in intel_hdmi.c, it appears to use
+intel_de_rmw() with a clear mask of 0:
 
 intel_hdmi.c:intel_hdmi_frl_cfg_write() {
     ...
     val =3D TRANS_HDMI_R_B_SCHED_ENABLE(crtc_state->frl.rsrc_sched_en);
     val |=3D TRANS_HDMI_ACTIVE_CHAR_BUF_THRESH(crtc_state->frl.active_char_=
 buf_threshold);
-    val |=3D TRANS_HDMI_MIN_BLANK_CHAR(TRANS_HDMI_MIN_BLANK_CHAR_VAL);
-
+    ...
     intel_de_rmw(display, TRANS_HDMI_FRL_CFG(display, cpu_trans), 0, val);
 }
 
-Because the clear mask is 0, intel_de_rmw() performs a read, leaves all
-existing bits intact, and then bitwise ORs the new val. This could
-permanently corrupt the hardware configuration if the previous register
-value had bits set that should be zero in the new configuration.
+Since the clear mask is 0, preexisting bits from BIOS or prior configuratio=
+ns
+will persist in the hardware register. Will the state checker trip over the=
+se
+leftover bits when it compares them against the software state?
+
+> +	PIPE_CONF_CHECK_I(frl.link_m);
+> +	PIPE_CONF_CHECK_I(frl.link_n);
 
 [Severity: Medium]
-Does this execute hardware configuration unconditionally despite failures?
+Should frl.tb_threshold_min and frl.required_rate also be verified here?
 
-The commit message explicitly states: "If FRL link training fails, notify
-userspace. On success, write DFM registers and enable the transcoder."
-However, the code unconditionally calls intel_hdmi_frl_cfg_write(),
-intel_hdmi_frl_dfm_write(), and intel_ddi_enable_transcoder_and_vblank()
-even if intel_hdmi_start_frl() returns an error. While this might be
-architecturally consistent with how DisplayPort handles link training
-failures, is there a discrepancy between the documented intent and the
-actual implementation?
+The driver actively populates tb_threshold_min from hardware during state
+readout in intel_hdmi_frl_dfm_read():
 
-> +		intel_hdmi_frl_dfm_write(crtc_state);
->  		intel_ddi_enable_transcoder_and_vblank(state, encoder, crtc_state);
-> +	}
-> =20
->  	intel_hdmi_poll_for_scrambling_enable(crtc_state, connector);
->  }
+intel_hdmi_frl_dfm.c:intel_hdmi_frl_dfm_read() {
+    ...
+    val =3D intel_de_read(display, TRANS_HDMI_FRL_DFMTHRSH(display, cpu_tra=
+ns));
+    crtc_state->frl.tb_threshold_min =3D REG_FIELD_GET(TB_MIN_THESHOLD_MASK=
+, val);
+    ...
+}
+
+Similarly, frl.required_rate is populated during hardware readout in
+intel_hdmi_frl_get_config(). Without adding these fields to the state check=
+er,
+can hardware state corruption or mismatches for the minimum threshold and
+required rate go undetected?
+
+> +
+>  #undef PIPE_CONF_CHECK_X
+>  #undef PIPE_CONF_CHECK_I
+>  #undef PIPE_CONF_CHECK_LLI
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261012035806.3361=
-439-1-ankit.k.nautiyal@intel.com?part=3D40
+439-1-ankit.k.nautiyal@intel.com?part=3D46
