@@ -4,49 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFD7ECA9EC5
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:13:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DD14CA9ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:14:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FE3A10E102;
-	Mon, 12 Oct 2026 04:13:35 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC94810E102;
- Mon, 12 Oct 2026 04:13:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B592810E1F5;
+	Mon, 12 Oct 2026 04:14:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC5F810E1F5;
+ Mon, 12 Oct 2026 04:14:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791778409; x=1823314409;
+ t=1791778455; x=1823314455;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=u2I0AUsfGydr1mXfffQfNFBUoEQnKwDa6IZkjCHNXWk=;
- b=le4x4ToSQrszmQvuErzOxGdVN39+kKdbC6JZc6t4VuOa6NGP8d3+GzPU
- jhv0ZcNDe/g02WHW2ZZC7AlLrBWM7E1IqhloGLzS3Xy7OKyrViR1dOJv/
- PpzniPNKZuNNZNnyrlAygv5g3bn6O5S+mepKJTctct+rfb3MdDIYW4oTv
- 2VdmFncOuILEc5rcznftEOEt4YJnvkpTMMQardeQvKh41Cx9SI05JrLaa
- UIRAbXNpDA3wuJsdrnY8WnPjjT0YEAPQIQqkTvY3Fo8G/k8rtqtgYRs4N
- Hys8wBRM2y0UuCkXdeUSIkl+hqYWF/eBq/PSwwrBfBT363lfbaGmmJ3h2 g==;
-X-CSE-ConnectionGUID: Onw5HBN0ToyQ+G5eHsnNtQ==
-X-CSE-MsgGUID: R+YZMYetRFekYxFD9AW8xw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="470705"
+ bh=EtmyNP5JZJWG6GUGh0givmVgUxtANfXLY0bCtTWm50Q=;
+ b=P9zq9/EHOzoOt/BBTWeXYKIznmmYjtjPRq/yfLUQV9hfWv0Tvdc3Ellw
+ c3H1u/loDNAqvEAW1rhddWfzw9rOj2b1/1p5QkfM4+ExQ5SN7Qek/w24I
+ V85+/q+8PnGr4UMzLVZiNUEh3yi4fX5pXIYRIjg4O02qOesBU7IJSG4wM
+ 9UQwkOJyIFHjdYOO70CElfTjtxH6sgSeiOY+uNbQq5MBah2yVk76He0Hh
+ OuJ+Ox78UUlEwU3mQwjW4Nxaje8TWTyCygaVzFFKGeJ2NQBpgAMBTmGz1
+ Wasyxkly3x2B1SIUUAqaQjADMbsdHISDmXfaIYMSqHppZPb/8BuGzavqg Q==;
+X-CSE-ConnectionGUID: UMcV5SEoRmOOi91Cl2XnAg==
+X-CSE-MsgGUID: 6lIeNEpQQmi70RuGY47G7A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="380796"
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="470705"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 21:13:28 -0700
-X-CSE-ConnectionGUID: IMEdxLHcTa6M+WRxMHmihw==
-X-CSE-MsgGUID: 2bP6F2T5QwmQvH9V4E2Adw==
+   d="scan'208";a="380796"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2026 21:14:14 -0700
+X-CSE-ConnectionGUID: aEdjQ0yFRJaUrEcfwXl2YA==
+X-CSE-MsgGUID: AoENctSMSTm16O1MhBLX3w==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="1095115"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa008.fm.intel.com with ESMTP; 11 Oct 2026 21:13:27 -0700
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	stable@vger.kernel.org
-Subject: [PATCH v1] drm/i915/display: Allow port sync on PTL
-Date: Mon, 12 Oct 2026 09:34:02 +0530
-Message-ID: <20261012040402.3332398-1-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.48.1
+   d="scan'208";a="1256305"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2026 21:14:13 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ uma.shankar@intel.com, ville.syrjala@linux.intel.com,
+ suraj.kandpal@intel.com
+Subject: [PATCH v2 00/56] Enable HDMI FRL for MTL+
+Date: Mon, 12 Oct 2026 09:27:09 +0530
+Message-ID: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,34 +66,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some dual-SST tiled displays exhibit visual corruption on PTL, with
-one tile's image vertically shifted or wrapped by a random amount
-that changes on every hotplug.
+FRL is a high-bandwidth transmission mode required for modes that exceed
+the TMDS bandwidth limit.
 
-PTL supports port sync, so allow it to be used to avoid these
-display issues.
+The series covers the core enabling:
+- SCDC helper additions for FRL link training
+- FRL link training state machine (LTS:2, LTS:3, LTS:P)
+- DDI enable/disable sequence updates for FRL mode
+- DFM (Data Flow Metering) computation and register programming
+- PHY (CX0/LT PHY) support for FRL rates
+- Mode validation and clock computation for FRL
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8991
-Fixes: 05cffc074938 ("drm/i915/display: Implement Wa_16024710867")
-Cc: stable@vger.kernel.org
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This is a work in progress. The primary goal at this stage is to get the
+overall design reviewed and the foundational patches landed before building
+on top.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index a46ab5d3d70f..a0aff087fafa 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4629,7 +4629,7 @@ intel_ddi_port_sync_transcoders(const struct intel_crtc_state *ref_crtc_state,
- 	 * From, xe3lpd onwards we have defeatured this with reference to
- 	 * Wa_16024710867
- 	 */
--	if (!IS_DISPLAY_VER(display, 9, 20))
-+	if (!IS_DISPLAY_VER(display, 9, 30))
- 		return 0;
- 
- 	if (!intel_crtc_has_type(ref_crtc_state, INTEL_OUTPUT_DP))
+Lightly tested on PTL. Modes like 4K@120 are working. Higher resolution
+modes (e.g. 8K) require DSC which is not yet covered in this series, that
+work is ongoing.
+
+Testing on other MTL+ platforms is also ongoing.
+Known gaps:
+- DSC over FRL not yet supported
+- Testing limited to MTL, PTL so far
+
+Feedback on the design and approach is welcome.
+
+Rev 2:
+- Addressed review comments from Jani and Suraj on VBT parsing.
+- Added pipe joiner support for HDMI.
+- Added audio pruning for HDMI FRL mode.
+- Tweaked the vswing presets and removed test-only presets.
+- Fixed potential integer overflows in FRL DFM calculations.
+- Tested on MTL, PTL, NVL with AORUS FO32U2P HDMI 2.1 panel.
+
+Note: DSC support is WIP. Working patches are available in my public tree:
+https://github.com/aknautiyal/tip/tree/hdmi21_dev  (based on drm-tip, may be rebased)
+Tested working for most modes.
+
+Ankit Nautiyal (38):
+  drm/i915/hdmi: Add new data members for FRL configuration
+  drm/i915/hdmi: Add FRL link rate cap
+  drm/drm_scdc_helper: Add SCDC helper funcs for FRL
+  drm/i915/display: Add registers for HDMI FRL configuration
+  drm/i915/display: Add new members in crtc_state for FRL configuration
+  drm/i915/intel_cx0_phy_regs: Add HDMI FRL SHIFT EN bit in
+    PORT_BUF_CTL_1
+  drm/i915/ddi: Update Transcoder/DDI registers with the frl bits
+  drm/i915/hdmi: Enable Scrambling only for TMDS mode
+  drm/i915/ddi: Simplify intel_ddi_enable()
+  drm/i915/ddi: Factor out common transcoder/vblank enable sequence
+  drm/i915/ddi: Update HDMI modeset sequence for MTL+
+  drm/i915/hdmi: Add function to prepare registers for FRL mode
+  drm/i915/hdmi: Add functions for FRL training state machine
+  drm/i915/intel_hdmi: Add helper to disable FRL
+  drm/i915/hdmi: Reduce FRL rate cap on rate change during training
+  drm/i915/hdmi: Add provision for FRL mode while computing output
+    format
+  drm/i915/cx0: Add helper to check if the FRL rate is valid
+  drm/i915/lt_phy: Add helper to check if the FRL rate is valid
+  drm/i915/hdmi_frl_dfm: Add support for DFM calculation with DSC
+  drm/i915/hdmi: Add helper to write FRL CFG register
+  drm/i915/hdmi_frl_dfm: Add helpers to read/write FRL DFM registers
+  drm/i915/hdmi: Validate FRL modes in mode_valid using the FRL DFM
+  drm/i915/hdmi: Add FRL clock computation based on DFM
+  drm/i915/hdmi: Add support for sending uevent to user for FRL training
+    failure
+  drm/i915/ddi: Wire FRL into the HDMI DDI enable/disable path
+  drm/i915/ltphy: Fix HDMI FRL per-lane TX mapping
+  drm/i915/hdmi: Add read out for FRL state
+  drm/i915/hdmi: Use the real pixel clock as crtc_clock for FRL
+  drm/i915/display: Add FRL members to the state checker
+  drm/i915/hdmi: Compute output format for HDMI FRL mode
+  drm/i915/hdmi: Add a helper to check non DSC audio support for HDMI
+    FRL
+  drm/i915/audio: Add the mode pruning logic for HDMI FRL
+  drm/i915/joiner: Prepare to move joiner helpers to a new file
+  drm/i915/joiner: Move joiner candidate helpers to intel_joiner.c
+  drm/i915/joiner: Move joiner pipe mask helper to intel_joiner.c
+  drm/i915/hdmi: Iterate through joiner candidates in compute_config
+    path
+  drm/i915/hdmi: Iterate through joiner candidates in mode_valid path
+  drm/i915/hdmi: Allow Pipe joiner for HDMI
+
+Suraj Kandpal (7):
+  drm/i915/hdmi: Introduce intel_hdmi_frl_level() for per-lane TxFFE
+  drm/i915/hdmi: Drive per-lane TxFFE during FRL link training
+  drm/i915/ltphy: Add PLL tables for HDMI FRL
+  drm/i915/ltphy: Add safegaurd when calculation HDMI FRL state
+  drm/i915/ltphy: Calculate port clock for HDMI FRL
+  drm/i915/ltphy: Verify HDMI FRL tables
+  drm/i915/ddi_buf: Add Vswing table for HDMI FRL
+
+Vandita Kulkarni (11):
+  drm/i915/hdmi: Parse FRL max link rate from VBT
+  drm/i915/hdmi_frl_dfm_regs: Define DFM registers
+  drm/i915/hdmi_frl_dfm: Define frl_dfm structure
+  drm/i915/hdmi_frl_dfm: Add non dsc frl capacity computation helpers
+  drm/i915/hdmi: Rename port clock limit to specify tmds clock
+  drm/i915/hdmi: Rename port clock valid to specify tmds clock
+  drm/i915/hdmi: Rename mode clock valid to specify tmds clock
+  drm/i915/hdmi: Add FRL port clock valid
+  drm/i915/hdmi: Compute FRL Link M/N
+  drm/i915/hdmi_frl_dfm: Write and read back FRL Link M/N
+  drm/i915/hdmi: Enable FRL based mode clock valid
+
+ drivers/gpu/drm/display/drm_scdc_helper.c     |  109 ++
+ drivers/gpu/drm/i915/Makefile                 |    2 +
+ drivers/gpu/drm/i915/display/intel_audio.c    |   14 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     |   39 +
+ drivers/gpu/drm/i915/display/intel_bios.h     |    1 +
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |   23 +
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |    1 +
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |    1 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  159 ++-
+ .../drm/i915/display/intel_ddi_buf_trans.c    |   17 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   55 +-
+ .../drm/i915/display/intel_display_debugfs.c  |    6 +-
+ .../gpu/drm/i915/display/intel_display_regs.h |   27 +
+ .../drm/i915/display/intel_display_types.h    |   38 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |   54 +-
+ drivers/gpu/drm/i915/display/intel_dp.h       |   11 -
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |    5 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c     |    2 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 1051 ++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_hdmi.h     |   16 +-
+ .../gpu/drm/i915/display/intel_hdmi_frl_dfm.c |  787 ++++++++++++
+ .../gpu/drm/i915/display/intel_hdmi_frl_dfm.h |  123 ++
+ .../i915/display/intel_hdmi_frl_dfm_regs.h    |   36 +
+ drivers/gpu/drm/i915/display/intel_joiner.c   |  108 ++
+ drivers/gpu/drm/i915/display/intel_joiner.h   |   27 +
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   |  348 +++++-
+ drivers/gpu/drm/i915/display/intel_lt_phy.h   |    1 +
+ .../drm/i915/display/intel_modeset_verify.c   |   18 +
+ drivers/gpu/drm/i915/display/intel_vbt_defs.h |    7 +
+ drivers/gpu/drm/xe/Makefile                   |    2 +
+ include/drm/display/drm_scdc.h                |    3 +
+ include/drm/display/drm_scdc_helper.h         |   23 +
+ 32 files changed, 2886 insertions(+), 228 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_hdmi_frl_dfm.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_hdmi_frl_dfm.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_hdmi_frl_dfm_regs.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_joiner.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_joiner.h
+
 -- 
-2.48.1
+2.50.1
 
