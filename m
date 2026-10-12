@@ -4,42 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D053ACA9EC5
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 15:27:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C863CA9ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 15:40:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FCC410E601;
-	Mon, 12 Oct 2026 15:26:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 173A210E606;
+	Mon, 12 Oct 2026 15:39:58 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B14410F1E9;
- Mon, 12 Oct 2026 15:26:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFE9A10E606
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 15:39:50 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 56891402A6;
- Mon, 12 Oct 2026 15:26:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0410B1F0089B;
- Mon, 12 Oct 2026 15:26:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791818810;
- bh=LpIxAIfRBHZV5Z00wloQbSHx/z7+8jFl3pLrya4Ve9Y=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=X5PCRVTYlgwmVE1ru7VadSiTDCra3oNJrw+HXimVgiPWNyUPNK4LqGuCgKo9wrtQe
- wS/6D5z43mpENsp5enqVCOXfFG3FcpTqYVZT/40bs9ScH6BLL+jI9gydrBn6x02jch
- 4rGfW2EKMc3Pu87Ma1nyDdWn633zExCAXF2eXKHmH9QXCLHgFBSiVZuaspsUqLNuml
- aEhN0Hif24j9JSj41NYxY8bTTaybeqb7J4015JtbquOCzC2xNxB1Umk+ajIQqxJWPf
- czUOotzf3DgYu8WeOyraSr6l17VT6ylgz46xu/zJCnwUO0oZTou67Oc89TnrljFmCQ
- HjshxdgbYZS7w==
-Message-ID: <sashiko-outbox-168333@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH RFC v3 8/8] drm/mediatek: Use dp_connector helpers to
- expose link training state
-To: "Kory Maincent" <kory.maincent@bootlin.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20261012-feat_link_cap-v3-8-7517f4aba0f3@bootlin.com>
-References: <20261012-feat_link_cap-v3-0-7517f4aba0f3@bootlin.com>
- <20261012-feat_link_cap-v3-8-7517f4aba0f3@bootlin.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 12 Oct 2026 15:26:49 +0000
+ by sea.source.kernel.org (Postfix) with ESMTP id 8BB2744038;
+ Mon, 12 Oct 2026 15:39:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E22E81F0089B;
+ Mon, 12 Oct 2026 15:39:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
+ s=korg; t=1791819590;
+ bh=8C83i6g4uWu/+YgAGGtE0zw8FG1r6vY/I1zXzmd3keg=;
+ h=Subject:To:Cc:From:Date;
+ b=ZNkr2yWju2XQK9Gm/uEuVIVBcAVsuUtGmpvpM0po85ETzLdadtf11J7nanmlgNU/6
+ SdykwpYL0kzic5qneuKNjkgiqpol8MhaS/u/ryLuO8GGzGaIM7cDP3MW/bl9PDYujc
+ sQddgwVZ6INGBs4T/dTCryAz0cKbMuIbav77vQuc=
+Subject: Patch "drm/xe: Fix shrinker accounting double-subtraction on nested
+ external pins" has been added to the 6.18-stable tree
+To: gregkh@linuxfoundation.org, himal.prasad.ghimiray@intel.com,
+ intel-xe@lists.freedesktop.org, matthew.auld@intel.com,
+ matthew.brost@intel.com, rodrigo.vivi@intel.com,
+ thomas.hellstrom@linux.intel.com
+Cc: <stable-commits@vger.kernel.org>
+From: <gregkh@linuxfoundation.org>
+Date: Mon, 12 Oct 2026 17:38:25 +0200
+Message-ID: <2026101225-abacus-errand-7132@gregkh>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-stable: commit
+X-Patchwork-Hint: ignore 
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,138 +50,366 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] drm: connection_mutex not held during atomic_enable/disable DP sin=
-k helpers
-- [Medium] drm: missed DP link parameter reporting on initial hotplug
---
 
-commit db3d1199eb9fddde4ac0ef014ef0885a214a3723
-Author: Kory Maincent <kory.maincent@bootlin.com>
+This is a note to let you know that I've just added the patch titled
 
-drm/mediatek: Use dp_connector helpers to expose link training state
+    drm/xe: Fix shrinker accounting double-subtraction on nested external pins
 
-Adopt the DRM core DisplayPort helpers by setting DRM_BRIDGE_OP_DP and
-populating the bridge dp_link_caps at probe time. Report the sink
-capabilities on hotplug, reset them on disconnect, and report the link
-parameters once link training succeeds.
+to the 6.18-stable tree which can be found at:
+    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek=
-/mtk_dp.c
-> index f656b85b84212..2e2596eaa342e 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
+The filename of the patch is:
+     drm-xe-fix-shrinker-accounting-double-subtraction-on-nested-external-pins.patch
+and it can be found in the queue-6.18 subdirectory.
 
-[ ... ]
+If you, or anyone else, feels it should not be added to the stable tree,
+please let <stable@vger.kernel.org> know about it.
 
-> @@ -1812,6 +1812,35 @@ static void mtk_dp_train_change_mode(struct mtk_dp=
- *mtk_dp)
->  	mtk_dp_reset_swing_pre_emphasis(mtk_dp);
->  }
-> =20
-> +static void _mtk_dp_report_link_train(struct mtk_dp *mtk_dp)
-> +{
-> +	u32 rate, nlanes;
-> +	bool dsc =3D false;
-> +
-> +	rate =3D drm_dp_bw_code_to_link_rate(mtk_dp->train_info.link_rate);
-> +	nlanes =3D mtk_dp->train_info.lane_count;
-> +
-> +	drm_dp_set_cur_link_params(mtk_dp->conn, rate, nlanes, dsc);
-> +}
-> +
-> +static void mtk_dp_report_link_train(struct mtk_dp *mtk_dp)
-> +{
-> +	struct drm_modeset_lock *lock;
-> +	int ret;
-> +
-> +	if (!mtk_dp->conn)
-> +		return;
 
-[Severity: Medium]
-Will this silently discard the link training parameters on the initial
-hotplug?
+From 83d5acca1f4f6132038ea88c72c5844f62e42d44 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Fri, 2 Oct 2026 12:08:29 +0200
+Subject: drm/xe: Fix shrinker accounting double-subtraction on nested external pins
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Because the initial HPD interrupt fires before any atomic modeset has
-occurred, mtk_dp->conn is only initialized later in
-mtk_dp_bridge_atomic_enable(). At this point, it will be NULL, causing
-mtk_dp_report_link_train() to return immediately.
+From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-Furthermore, while mtk_dp_bridge_atomic_enable() does report link training,
-it restricts it to eDP. Will standard DP connections ever report their
-current link parameters to the DRM core for the initial connection?
+commit 83d5acca1f4f6132038ea88c72c5844f62e42d44 upstream.
 
-[ ... ]
+xe_bo_pin_external() and xe_bo_unpin_external() support nested pins,
+since the underlying ttm_bo_pin()/ttm_bo_unpin() maintain a pin_count
+refcount rather than a boolean. However, the shrinker accounting calls
+xe_ttm_tt_account_subtract() and xe_ttm_tt_account_add() are invoked
+unconditionally on every pin_external()/unpin_external() call, instead
+of only on the transition into and out of the pinned state.
 
-> @@ -2390,12 +2433,20 @@ static void mtk_dp_bridge_atomic_enable(struct dr=
-m_bridge *bridge,
->  	if (mtk_dp->data->bridge_type =3D=3D DRM_MODE_CONNECTOR_eDP) {
->  		mtk_dp_aux_panel_poweron(mtk_dp, true);
-> =20
-> +		ret =3D drm_dp_sink_sync_caps(mtk_dp->conn, &mtk_dp->aux, NULL);
+An external BO (dma-buf) can be pinned more than once while already
+pinned, for example when it has multiple attachments/importers, each
+independently calling xe_bo_pin_external(). Each such nested pin
+subtracts the BO's pages from the shrinker's accounting again, even
+though the BO's pages were already removed from consideration by the
+first pin. Symmetrically, each nested unpin adds them back again
+before the BO is actually unpinned. This desynchronizes the
+shrinker's page and object counts from reality, and since they are
+declared as signed long but interpreted as unsigned long in
+xe_shrinker_count(), the underflow can turn into an enormous
+shrinkable/purgeable page count, causing the shrinker to be invoked
+excessively under memory pressure.
 
-[Severity: High]
-Does this code call drm_dp_sink_sync_caps() while the modeset locks are
-dropped?
+Guard the accounting calls with the same pin-count transition checks
+already used to guard the pinned_link list maintenance, so accounting
+is only updated on the outermost pin and the final unpin.
 
-During a non-blocking atomic commit, the atomic_enable and atomic_disable
-callbacks are executed in a worker thread asynchronously, and all modeset
-locks (including connection_mutex) are intentionally dropped by the
-submitter thread beforehand.
+While centralizing this logic into xe_bo_account_pin()/
+xe_bo_account_unpin(), also close a second, related accounting gap
+affecting imported dma-bufs. For an imported bo's ttm_tt, xe's
+ttm_tt_populate hook (xe_ttm_tt_populate()) early-returns without
+calling xe_ttm_tt_account_add(), since TTM_TT_FLAG_EXTERNAL is set
+without TTM_TT_FLAG_EXTERNAL_MAPPABLE. However, TTM core's
+ttm_tt_populate() wrapper unconditionally marks the tt as populated
+on driver-hook success, so ttm_tt_is_populated() still reports true
+for it. xe_bo_account_pin()/xe_bo_account_unpin() trusted
+ttm_tt_is_populated() as a proxy for "these pages are accounted for
+by the shrinker", and would subtract/add pages for such a tt that
+were never added in the first place, again underflowing the
+shrinker's counts. This is reachable today via xe_bo_pin_external(),
+and would have become newly reachable via the fb-pin path once this
+patch routes __xe_pin_fb_vma() through xe_bo_pin_account() below, so
+fix it here rather than in a later patch, to avoid a commit in this
+series that introduces the regression before fixing it. Skip the
+accounting for imported bos, using the same EXTERNAL &&
+!EXTERNAL_MAPPABLE test xe_ttm_tt_populate()/xe_ttm_tt_unpopulate()
+use to decide whether to act, via a new xe_ttm_bo_is_imported()
+helper (hoisted up from its only prior use site).
 
-Since drm_dp_sink_sync_caps() explicitly enforces that the connector's
-connection_mutex is held by asserting
-drm_modeset_lock_assert_held(&connector->dev->mode_config.connection_mutex),
-will this trigger a lockdep splat?
+v2:
+- Fix the critical issue caught by Sashiko AI review: the pin-count
+  transition check introduced here was still bypassed by the fb-pin
+  path (__xe_pin_fb_vma()/__xe_unpin_fb_vma()), which could leave a
+  stale pinned_link entry and a permanent shrinker accounting leak
+  when the fb-unpin performed the true last unpin. Addressed in a
+  separate follow-up patch in this series rather than folded in here,
+  since it is a distinct bug with its own Fixes: tag.
+- Drop the unneeded local "last_unpin" variable in
+  xe_bo_unpin_external(), restoring the original inline
+  bo->ttm.pin_count == 1 check; it was a no-op rename not used by any
+  of the new accounting helpers, and was going to be deleted again by
+  the follow-up patch anyway.
 
-> +		if (ret)
-> +			drm_dbg_kms(mtk_dp->aux.drm_dev,
-> +				    "%s: error sink caps synchronisation (%d)\n",
-> +				    mtk_dp->aux.name, ret);
-> +
->  		/* Training */
->  		ret =3D mtk_dp_training(mtk_dp);
->  		if (ret) {
->  			drm_err(mtk_dp->drm_dev, "Training failed, %d\n", ret);
->  			goto power_off_aux;
->  		}
-> +
-> +		_mtk_dp_report_link_train(mtk_dp);
+v3:
+- Exclude imported dma-bufs from the pin/unpin shrinker accounting,
+  fixing another underflow caught by Sashiko AI review.
+- Add a short comment on the backup-object pin site noting it's
+  already populated/accounted at pin time, addressing (as a
+  false-positive clarification, no code fix needed) a separate
+  Medium-severity accounting-leak concern also caught by Sashiko AI
+  review.
 
-[Severity: High]
-Does calling _mtk_dp_report_link_train() here bypass the locking that is
-normally handled by the mtk_dp_report_link_train() wrapper?
+Fixes: 00c8efc3180f ("drm/xe: Add a shrinker for xe bos")
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v6.15+
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Assisted-by: LLM
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Link: https://patch.msgid.link/20261002100830.12297-2-thomas.hellstrom@linux.intel.com
+(cherry picked from commit 6a117a2bb7ca657e3a19f83f4c06265d38dee06c)
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/gpu/drm/xe/display/xe_fb_pin.c |    6 -
+ drivers/gpu/drm/xe/xe_bo.c             |  116 +++++++++++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_bo.h             |    2 
+ 3 files changed, 95 insertions(+), 29 deletions(-)
 
-_mtk_dp_report_link_train() eventually calls drm_dp_set_cur_link_params(),
-which also asserts that connection_mutex is held. Since the lock is dropped
-in atomic_enable, is it safe to expose the connector's properties to
-concurrent data races without the lock?
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -308,7 +308,7 @@ static struct i915_vma *__xe_pin_fb_vma(
+ 		drm_exec_retry_on_contention(&exec);
+ 		xe_validation_retry_on_oom(&ctx, &ret);
+ 		if (!ret)
+-			ttm_bo_pin(&bo->ttm);
++			xe_bo_pin_account(bo);
+ 	}
+ 	if (ret)
+ 		goto err;
+@@ -325,7 +325,7 @@ static struct i915_vma *__xe_pin_fb_vma(
+ 
+ err_unpin:
+ 	ttm_bo_reserve(&bo->ttm, false, false, NULL);
+-	ttm_bo_unpin(&bo->ttm);
++	xe_bo_unpin_account(bo);
+ 	ttm_bo_unreserve(&bo->ttm);
+ err:
+ 	kfree(vma);
+@@ -346,7 +346,7 @@ static void __xe_unpin_fb_vma(struct i91
+ 		xe_ggtt_node_remove(vma->node, false);
+ 
+ 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
+-	ttm_bo_unpin(&vma->bo->ttm);
++	xe_bo_unpin_account(vma->bo);
+ 	ttm_bo_unreserve(&vma->bo->ttm);
+ 	kfree(vma);
+ }
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -426,6 +426,85 @@ static void xe_ttm_tt_account_subtract(s
+ 		xe_shrinker_mod_pages(xe->mem.shrinker, -(long)tt->num_pages, 0);
+ }
+ 
++static bool xe_ttm_bo_is_imported(struct ttm_buffer_object *tbo)
++{
++	dma_resv_assert_held(tbo->base.resv);
++
++	return tbo->ttm &&
++		(tbo->ttm->page_flags & (TTM_TT_FLAG_EXTERNAL | TTM_TT_FLAG_EXTERNAL_MAPPABLE)) ==
++		TTM_TT_FLAG_EXTERNAL;
++}
++
++/*
++ * Account @bo's pages as pinned for the shrinker. Removes @bo's pages
++ * from the shrinker's shrinkable / purgeable counts on the transition
++ * from unpinned to pinned. Must be called with @bo's dma-resv held,
++ * after &ttm_buffer_object.pin_count has been incremented by
++ * ttm_bo_pin(). Safe to call unconditionally regardless of which pin
++ * path (kernel, external, framebuffer, backup object, ...) is pinning
++ * @bo, since it only acts on the true 0->1 pin_count transition.
++ *
++ * Imported bos (xe_ttm_bo_is_imported()) are excluded: for those,
++ * xe_ttm_tt_populate() never actually populates the tt or calls
++ * xe_ttm_tt_account_add(), but TTM core's ttm_tt_populate() still
++ * unconditionally marks the tt as populated on driver-hook success.
++ * Relying on ttm_tt_is_populated() for these would subtract pages that
++ * were never added, underflowing the shrinker's counts.
++ */
++static void xe_bo_account_pin(struct xe_bo *bo)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++
++	if (bo->ttm.pin_count == 1 && bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm) &&
++	    !xe_ttm_bo_is_imported(&bo->ttm))
++		xe_ttm_tt_account_subtract(xe, bo->ttm.ttm);
++}
++
++/*
++ * Counterpart to xe_bo_account_pin(). Must be called with @bo's dma-resv
++ * held, before &ttm_buffer_object.pin_count is decremented by
++ * ttm_bo_unpin(), so that the check against the true 1->0 transition sees
++ * the pin count that is about to be released. See xe_bo_account_pin() for
++ * why imported bos are excluded.
++ */
++static void xe_bo_account_unpin(struct xe_bo *bo)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++
++	if (bo->ttm.pin_count == 1 && bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm) &&
++	    !xe_ttm_bo_is_imported(&bo->ttm))
++		xe_ttm_tt_account_add(xe, bo->ttm.ttm);
++}
++
++/**
++ * xe_bo_pin_account() - Pin a bo and account its pages for the shrinker
++ * @bo: The buffer object to pin.
++ *
++ * Pins @bo via ttm_bo_pin() and updates the shrinker's shrinkable /
++ * purgeable page accounting to match. Must be called with @bo's dma-resv
++ * held. Safe to call regardless of which pin path (kernel, external,
++ * framebuffer, backup object, ...) is pinning @bo.
++ */
++void xe_bo_pin_account(struct xe_bo *bo)
++{
++	ttm_bo_pin(&bo->ttm);
++	xe_bo_account_pin(bo);
++}
++
++/**
++ * xe_bo_unpin_account() - Unpin a bo and account its pages for the shrinker
++ * @bo: The buffer object to unpin.
++ *
++ * Counterpart to xe_bo_pin_account(). Updates the shrinker's shrinkable /
++ * purgeable page accounting to match, then unpins @bo via ttm_bo_unpin().
++ * Must be called with @bo's dma-resv held.
++ */
++void xe_bo_unpin_account(struct xe_bo *bo)
++{
++	xe_bo_account_unpin(bo);
++	ttm_bo_unpin(&bo->ttm);
++}
++
+ static void update_global_total_pages(struct ttm_device *ttm_dev,
+ 				      long num_pages)
+ {
+@@ -1202,7 +1281,8 @@ int xe_bo_notifier_prepare_pinned(struct
+ 		}
+ 
+ 		backup->parent_obj = xe_bo_get(bo); /* Released by bo_destroy */
+-		ttm_bo_pin(&backup->ttm);
++		/* Note: XE_BO_FLAG_SYSTEM resolves to XE_PL_TT so already populated. */
++		xe_bo_pin_account(backup);
+ 		bo->backup_obj = backup;
+ 	}
+ 
+@@ -1222,7 +1302,7 @@ int xe_bo_notifier_unprepare_pinned(stru
+ {
+ 	xe_bo_lock(bo, false);
+ 	if (bo->backup_obj) {
+-		ttm_bo_unpin(&bo->backup_obj->ttm);
++		xe_bo_unpin_account(bo->backup_obj);
+ 		xe_bo_put(bo->backup_obj);
+ 		bo->backup_obj = NULL;
+ 	}
+@@ -1433,7 +1513,7 @@ out_backup:
+ 	xe_bo_vunmap(backup);
+ 	if (!bo->backup_obj) {
+ 		if (xe_bo_is_pinned(backup))
+-			ttm_bo_unpin(&backup->ttm);
++			xe_bo_unpin_account(backup);
+ 		xe_bo_put(backup);
+ 	}
+ out_unlock_bo:
+@@ -1837,15 +1917,6 @@ static vm_fault_t xe_err_to_fault_t(int
+ 	return VM_FAULT_SIGBUS;
+ }
+ 
+-static bool xe_ttm_bo_is_imported(struct ttm_buffer_object *tbo)
+-{
+-	dma_resv_assert_held(tbo->base.resv);
+-
+-	return tbo->ttm &&
+-		(tbo->ttm->page_flags & (TTM_TT_FLAG_EXTERNAL | TTM_TT_FLAG_EXTERNAL_MAPPABLE)) ==
+-		TTM_TT_FLAG_EXTERNAL;
+-}
+-
+ static vm_fault_t xe_bo_cpu_fault_fastpath(struct vm_fault *vmf, struct xe_device *xe,
+ 					   struct xe_bo *bo, bool needs_rpm)
+ {
+@@ -2766,12 +2837,13 @@ uint64_t vram_region_gpu_offset(struct t
+ int xe_bo_pin_external(struct xe_bo *bo, bool in_place, struct drm_exec *exec)
+ {
+ 	struct xe_device *xe = xe_bo_device(bo);
++	bool first_pin = !xe_bo_is_pinned(bo);
+ 	int err;
+ 
+ 	xe_assert(xe, !bo->vm);
+ 	xe_assert(xe, xe_bo_is_user(bo));
+ 
+-	if (!xe_bo_is_pinned(bo)) {
++	if (first_pin) {
+ 		if (!in_place) {
+ 			err = xe_bo_validate(bo, NULL, false, exec);
+ 			if (err)
+@@ -2783,9 +2855,7 @@ int xe_bo_pin_external(struct xe_bo *bo,
+ 		spin_unlock(&xe->pinned.lock);
+ 	}
+ 
+-	ttm_bo_pin(&bo->ttm);
+-	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
+-		xe_ttm_tt_account_subtract(xe, bo->ttm.ttm);
++	xe_bo_pin_account(bo);
+ 
+ 	/*
+ 	 * FIXME: If we always use the reserve / unreserve functions for locking
+@@ -2841,9 +2911,7 @@ int xe_bo_pin(struct xe_bo *bo, struct d
+ 		spin_unlock(&xe->pinned.lock);
+ 	}
+ 
+-	ttm_bo_pin(&bo->ttm);
+-	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
+-		xe_ttm_tt_account_subtract(xe, bo->ttm.ttm);
++	xe_bo_pin_account(bo);
+ 
+ 	/*
+ 	 * FIXME: If we always use the reserve / unreserve functions for locking
+@@ -2877,9 +2945,7 @@ void xe_bo_unpin_external(struct xe_bo *
+ 		list_del_init(&bo->pinned_link);
+ 	spin_unlock(&xe->pinned.lock);
+ 
+-	ttm_bo_unpin(&bo->ttm);
+-	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
+-		xe_ttm_tt_account_add(xe, bo->ttm.ttm);
++	xe_bo_unpin_account(bo);
+ 
+ 	/*
+ 	 * FIXME: If we always use the reserve / unreserve functions for locking
+@@ -2904,14 +2970,12 @@ void xe_bo_unpin(struct xe_bo *bo)
+ 
+ 		if (bo->backup_obj) {
+ 			if (xe_bo_is_pinned(bo->backup_obj))
+-				ttm_bo_unpin(&bo->backup_obj->ttm);
++				xe_bo_unpin_account(bo->backup_obj);
+ 			xe_bo_put(bo->backup_obj);
+ 			bo->backup_obj = NULL;
+ 		}
+ 	}
+-	ttm_bo_unpin(&bo->ttm);
+-	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
+-		xe_ttm_tt_account_add(xe, bo->ttm.ttm);
++	xe_bo_unpin_account(bo);
+ }
+ 
+ /**
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -225,6 +225,8 @@ int xe_bo_pin_external(struct xe_bo *bo,
+ int xe_bo_pin(struct xe_bo *bo, struct drm_exec *exec);
+ void xe_bo_unpin_external(struct xe_bo *bo);
+ void xe_bo_unpin(struct xe_bo *bo);
++void xe_bo_pin_account(struct xe_bo *bo);
++void xe_bo_unpin_account(struct xe_bo *bo);
+ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict,
+ 		   struct drm_exec *exec);
+ 
 
->  	}
-> =20
->  	ret =3D mtk_dp_video_config(mtk_dp);
 
-[ ... ]
+Patches currently in stable-queue which might be from thomas.hellstrom@linux.intel.com are
 
-> @@ -2435,6 +2486,7 @@ static void mtk_dp_bridge_atomic_disable(struct drm=
-_bridge *bridge,
->  	if (mtk_dp->data->bridge_type =3D=3D DRM_MODE_CONNECTOR_eDP) {
->  		mtk_dp->enabled =3D false;
->  		mtk_dp_aux_panel_poweron(mtk_dp, false);
-> +		drm_dp_sink_reset_caps(mtk_dp->conn);
-
-[Severity: High]
-Similar to the issue above, does this call drm_dp_sink_reset_caps() in an
-unlocked context?
-
-This function also asserts that connection_mutex is held, which would lead
-to a lockdep splat during an asynchronous atomic commit.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261012-feat_link_=
-cap-v3-0-7517f4aba0f3@bootlin.com?part=3D8
+queue-6.18/drm-xe-fix-shrinker-accounting-double-subtraction-on-nested-external-pins.patch
+queue-6.18/drm-xe-fix-stale-pinned_link-entry-when-fb-pin-performs-the-final-unpin.patch
