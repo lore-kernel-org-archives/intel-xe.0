@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D52FCC6B1C
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 17:48:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD4E2CC6B19
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 17:49:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47F3F10E93D;
-	Tue, 13 Oct 2026 17:48:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A36010F93C;
+	Tue, 13 Oct 2026 17:49:10 +0000 (UTC)
 Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 370BE10E93D
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 17:48:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 639A210F93C
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 17:48:59 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-02.galae.net (Postfix) with ESMTPS id 05F201A121C
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 17:48:24 +0000 (UTC)
+ by smtpout-02.galae.net (Postfix) with ESMTPS id 36C361A1216
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 17:48:58 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id D077D60362
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 17:48:23 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id E7EC76075C
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 17:48:57 +0000 (UTC)
 Received: by mail.galae.net (Postcow, from userid 0)
- id 587C011D7183A; Tue, 13 Oct 2026 19:48:03 +0200 (CEST)
+ id 8597711D71873; Tue, 13 Oct 2026 19:48:12 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1791913703; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1791913737; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=EEytYnhdWFiA2ae8nKxRpdzwI0LpmuZtpTntf4QDUmg=;
- b=FbJShV5C4IHgJhIJKxOQ4NxvvaJgLAdJN11aF1W1Qj23ZErOt+vXI9aWwL1PSj4r+jSf7+
- 3h9v0XxtUkxVxFkxHlrdraGt8DqawbaMb6YdqKCyZla0phtDOW7D+R0D5a0N21zuNvSDbE
- qBtc/uYVI1kLsOIWnPHC8SfCIqhqupxtvmz+BoOM9rIhhBcdpivwWgp5p/RjR9wlYwJKqf
- xbCHtiaHFI/67TzdLbqqESsokFbg/YLY3IlZuY45fF6hiPbZroxLd8h0kJM9GvczjMaNa2
- j07YdQNuZcpxwvos/eW9MmmPfXjckUgwunh81Wskr22eoGWa1B7RfAs54UQvIA==
+ bh=P/Q4nFBYsii5RLmePNAPJ+fdVFCY7TJHBVJr5R7oOUU=;
+ b=lusD5toFih8JhPwJzHOEw2mRyk/6gy8es0jUP+GrtN+FAORE6L2p5SdFYr2E3ewUMWoWNJ
+ R8SFPBP2qsMZtEwF/5H7Fm/3Sm1/0mEYOt/E1x1vv0+8J0j0SZP3bQnWbKP/QthcziJJio
+ j3Qzaoai4fBc30YPySiZy7WZxpb99JSk10+aQqr+fzpYo0bF/XgbHIOCcZWkGWgT0rnOT1
+ JcuateDgPLnqfKizuPvvDoj7qc9rmv/M0NjhCh6MEKODsLB78t2iVV6xvwlIsP0Zpck37q
+ xz5uqq67d0G2DUtehBJ0irqSic9h0Fye7ZCfNk4OUSTb8kgaSXJXntDRxOzjyg==
 Authentication-Results: mail.galae.net;
 	none
 Received: from mail.galae.net ([172.22.1.253]) by 9e7fea892943 with LMTP
- id UOhzEsT4zGoogBEAtaWaaQ (envelope-from <kory.maincent@bootlin.com>)
- for <kory.maincent@bootlin.com>; Mon, 12 Oct 2026 17:12:04 +0200
+ id MF/BGNH4zGp+jREAtaWaaQ (envelope-from <kory.maincent@bootlin.com>)
+ for <kory.maincent@bootlin.com>; Mon, 12 Oct 2026 17:12:17 +0200
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 2B92B11D7012D; 
- Mon, 12 Oct 2026 17:11:58 +0200 (CEST)
+ with ESMTPSA id AFF8411D70CD6; 
+ Mon, 12 Oct 2026 17:12:11 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1791817921; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1791817935; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=EEytYnhdWFiA2ae8nKxRpdzwI0LpmuZtpTntf4QDUmg=;
- b=tajA2AOZ1+e1517AHIPILpHudJSpJhJ9UR4Om0MFh4FN9lYx8LwXkeeGy08aNpRw51ph4B
- ddNrBct6etIZP8PxM1KFSmWw82xw47ViwHQW/vcjsjaztFyZYb6ZB38UpVbSsByx8St8or
- iNoWxPmHYIp4EvL27Xly6QdsBDDMYP3MB5lbwAQN7jO3W7crI6+GJmu2RTU93R7m21wIs9
- fAt/INyEbHXZLlO4Y0m2VoSHI4sYOTK2H0dLm3o0RYDN1BIkWEDrpLGABicM7PESy6qvBh
- dX3FgbLpBExRk1hEFHUSXOMM+dYmZ8ELja2O+rUp48gD2bReKrVyrwBR5TtAaA==
+ bh=P/Q4nFBYsii5RLmePNAPJ+fdVFCY7TJHBVJr5R7oOUU=;
+ b=QEw4ceLzWeB8qinUu3mC0wNsLS4KwoVzdMeNR1LuDZOqpeG4PwWut/oihiBkHGQnbMZxhl
+ OZp32Dlsdo/K2c61sEs2QPrVvPALXX8V2EcPeErhamuicCpfdVR20vOzkjxnlgKCaJU0Yr
+ exCKtpfmW3UbWGlASwH576cy09yT7rUudgRtXAeGCZNYkyHiGgHQwOTi9/PvsrPO8E6Lls
+ N2qpi/NxPYL9Cm/9PeF0JNTF7bdFq7AaEr90/6sAOncIfSe0wPcROPU/Prd7nCb56dQ7c9
+ rdyz+0CVJcpxqT964ronT75nEzdCaq9aXxGrcGzf01uBswPl3tFKxLGSMOIsqA==
 From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Mon, 12 Oct 2026 17:11:00 +0200
-Subject: [PATCH RFC v3 5/8] drm/i915/display/dp: Use dp_connector helpers
- to expose link training state
+Date: Mon, 12 Oct 2026 17:11:03 +0200
+Subject: [PATCH RFC v3 8/8] drm/mediatek: Use dp_connector helpers to
+ expose link training state
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261012-feat_link_cap-v3-5-7517f4aba0f3@bootlin.com>
+Message-Id: <20261012-feat_link_cap-v3-8-7517f4aba0f3@bootlin.com>
 References: <20261012-feat_link_cap-v3-0-7517f4aba0f3@bootlin.com>
 In-Reply-To: <20261012-feat_link_cap-v3-0-7517f4aba0f3@bootlin.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -85,9 +85,9 @@ Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 X-Mailer: b4 0.16.1-dev-17221
 X-Last-TLS-Session-Version: TLSv1.3
 X-Last-TLS-Session-Version: None
-X-Rspamd-Queue-Id: 587C011D7183A
-X-Spamd-Result: default: False [2.18 / 30.00]; SUSPICIOUS_RECIPS(1.50)[];
- DATE_IN_PAST(1.00)[26]; BAYES_HAM(-0.32)[70.04%];
+X-Rspamd-Queue-Id: 8597711D71873
+X-Spamd-Result: default: False [2.32 / 30.00]; SUSPICIOUS_RECIPS(1.50)[];
+ DATE_IN_PAST(1.00)[26]; BAYES_HAM(-0.18)[65.19%];
  RCVD_NO_TLS_LAST(0.10)[]; MIME_GOOD(-0.10)[text/plain];
  BCC(0.00)[]; TAGGED_RCPT(0.00)[];
  DKIM_SIGNED(0.00)[bootlin.com:s=dkim];
@@ -118,199 +118,196 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Adopt the new DRM core DisplayPort helpers, which expose source and sink
-capabilities along with the maximum and current link parameters to
-userspace through the dp_link/ sysfs attributes.
-
-Keep the sink's supported link rates unclamped in the new
-dpcd_sink_rates/num_dpcd_sink_rates fields, rather than limiting them to
-the rates the source supports.
+Adopt the DRM core DisplayPort helpers by setting DRM_BRIDGE_OP_DP and
+populating the bridge dp_link_caps at probe time. Report the sink
+capabilities on hotplug, reset them on disconnect, and report the link
+parameters once link training succeeds.
 
 Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 ---
+Not tested. I believed I had a board with this device, but it actually uses
+an anx7625 bridge. I'm unable to test it; it would be appreciated if
+someone else could, so the change isn't dropped.
+
 Changes in v3:
-- Move the call to new helpers around.
-- Use real sink rates instead of the modified ones.
+- Sync and report sink capabilities from the HPD thread for DisplayPort,
+  or in atomic_enable for eDP. Reset them on unplug, or atomic disable
+  and only report link parameters after successful training.
+- Add connection_mutex lock for DisplayPort in the IRQ thread.
 
 Changes in v2:
 - Remove voltage swing and pre emphasis properties.
 ---
- drivers/gpu/drm/i915/display/intel_display_types.h |  2 +
- drivers/gpu/drm/i915/display/intel_dp.c            | 55 +++++++++++++++++++++-
- .../gpu/drm/i915/display/intel_dp_link_training.c  | 14 ++++++
- 3 files changed, 69 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/mediatek/mtk_dp.c | 79 +++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 75 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 5f0fe18c0614e..025523ae58e6c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1845,6 +1845,8 @@ struct intel_dp {
- 	/* sink rates as reported by DP_MAX_LINK_RATE/DP_SUPPORTED_LINK_RATES */
- 	int num_sink_rates;
- 	int sink_rates[DP_MAX_SUPPORTED_RATES];
-+	int num_dpcd_sink_rates;
-+	int dpcd_sink_rates[DP_MAX_SUPPORTED_RATES];
- 	bool use_rate_select;
- 	/* Max sink lane count as reported by DP_MAX_LANE_COUNT */
- 	int max_sink_lane_count;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index b769723a1c0fd..6af59e75bd666 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -189,6 +189,7 @@ static void intel_dp_set_default_sink_rates(struct intel_dp *intel_dp)
- {
- 	intel_dp->sink_rates[0] = 162000;
- 	intel_dp->num_sink_rates = 1;
-+	intel_dp->num_dpcd_sink_rates = 0;
+diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
+index f656b85b84212..2e2596eaa342e 100644
+--- a/drivers/gpu/drm/mediatek/mtk_dp.c
++++ b/drivers/gpu/drm/mediatek/mtk_dp.c
+@@ -1812,6 +1812,35 @@ static void mtk_dp_train_change_mode(struct mtk_dp *mtk_dp)
+ 	mtk_dp_reset_swing_pre_emphasis(mtk_dp);
  }
  
- /* update sink rates from dpcd */
-@@ -203,10 +204,14 @@ static void intel_dp_set_dpcd_sink_rates(struct intel_dp *intel_dp)
- 						     intel_dp->lttpr_common_caps,
- 						     &intel_dp->desc,
- 						     intel_dp->tunnel,
--						     intel_dp->sink_rates);
-+						     intel_dp->dpcd_sink_rates);
- 	if (num_sink_rates < 0)
- 		num_sink_rates = 0;
- 
-+	intel_dp->num_dpcd_sink_rates = num_sink_rates;
-+	memcpy(intel_dp->sink_rates, intel_dp->dpcd_sink_rates,
-+	       sizeof(int) * num_sink_rates);
-+
- 	/*
- 	 * Don't limit the rates of sinks with the 3.24 Gbps DPCD quirk
- 	 * (needed, e.g., for Apple MBP 2017, 15 inch eDP Retina panels),
-@@ -4646,10 +4651,14 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
- 
- 	num_sink_rates = drm_dp_read_edp_sink_rates(&intel_dp->aux,
- 						    intel_dp->edp_dpcd[0],
--						    intel_dp->sink_rates);
-+						    intel_dp->dpcd_sink_rates);
- 	if (num_sink_rates < 0)
- 		num_sink_rates = 0;
- 
-+	intel_dp->num_dpcd_sink_rates = num_sink_rates;
-+	memcpy(intel_dp->sink_rates, intel_dp->dpcd_sink_rates,
-+	       sizeof(int) * num_sink_rates);
-+
- 	/*
- 	 * Some platforms cannot reliably drive HBR3 rates due to PHY limitations,
- 	 * even if the sink advertises support. Reject any sink rates above HBR2 on
-@@ -6188,6 +6197,20 @@ void intel_dp_dpcd_set_probe(struct intel_dp *intel_dp, bool force_on_external)
- 			      intel_dp_needs_dpcd_probe(intel_dp, force_on_external));
- }
- 
-+static void intel_dp_set_sink_caps(struct intel_connector *connector,
-+				   struct intel_dp *intel_dp)
++static void _mtk_dp_report_link_train(struct mtk_dp *mtk_dp)
 +{
-+	struct drm_connector_dp_link_caps link_caps;
++	u32 rate, nlanes;
++	bool dsc = false;
 +
-+	link_caps.nlanes = drm_dp_get_max_lane_count(intel_dp->dpcd,
-+						     intel_dp->lttpr_common_caps);
-+	link_caps.link_rates = intel_dp->dpcd_sink_rates;
-+	link_caps.nlink_rates = intel_dp->num_dpcd_sink_rates;
-+	link_caps.dsc = drm_dp_sink_supports_dsc(connector->dp.dsc_dpcd);
++	rate = drm_dp_bw_code_to_link_rate(mtk_dp->train_info.link_rate);
++	nlanes = mtk_dp->train_info.lane_count;
 +
-+	drm_dp_sink_set_caps(&connector->base, &link_caps);
++	drm_dp_set_cur_link_params(mtk_dp->conn, rate, nlanes, dsc);
 +}
 +
- static int
- intel_dp_detect(struct drm_connector *_connector,
- 		struct drm_modeset_acquire_ctx *ctx,
-@@ -6259,6 +6282,8 @@ intel_dp_detect(struct drm_connector *_connector,
- 
- 		intel_dp_tunnel_uhbr_lanes_wa_reset(intel_dp);
- 
-+		drm_dp_sink_reset_caps(_connector);
-+
- 		goto out_unset_edid;
- 	}
- 
-@@ -6290,6 +6315,8 @@ intel_dp_detect(struct drm_connector *_connector,
- 
- 	intel_dp_print_rates(intel_dp);
- 
-+	intel_dp_set_sink_caps(connector, intel_dp);
-+
- 	if (intel_dp->is_mst) {
- 		/*
- 		 * If we are in MST mode then this connector
-@@ -7037,11 +7064,14 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 			struct intel_connector *connector)
- {
- 	struct intel_display *display = to_intel_display(dig_port);
-+	struct drm_connector_dp_link_caps link_caps;
- 	struct intel_dp *intel_dp = &dig_port->dp;
- 	struct intel_encoder *encoder = &dig_port->base;
- 	struct drm_device *dev = encoder->base.dev;
- 	enum port port = encoder->port;
-+	int *rates;
- 	int type;
-+	int ret;
- 
- 	if (drm_WARN(dev, dig_port->max_lanes < 1,
- 		     "Not enough lanes (%d) for DP on [ENCODER:%d:%s]\n",
-@@ -7116,6 +7146,27 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 	intel_dp_set_common_link_params(intel_dp);
- 	intel_dp_reset_link_params(intel_dp);
- 
-+	rates = kmemdup_array(intel_dp->source_rates,
-+			      intel_dp->num_source_rates,
-+			      sizeof(*rates),
-+			      GFP_KERNEL);
-+	if (!rates) {
-+		intel_dp_aux_fini(intel_dp);
-+		goto fail;
-+	}
-+
-+	link_caps.nlanes = dig_port->max_lanes;
-+	link_caps.nlink_rates = intel_dp->num_source_rates;
-+	link_caps.link_rates = rates;
-+	link_caps.dsc = HAS_DSC(display);
-+
-+	ret = drm_dp_source_set_caps(&connector->base, &link_caps);
-+	if (ret)
-+		drm_dbg_kms(display->drm,
-+			    "failed to set source link rates, skipping.\n");
-+
-+	kfree(rates);
-+
- 	/* init MST on ports that can support it */
- 	intel_dp_mst_encoder_init(dig_port, connector->base.base.id);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index cb92cff906146..c77cb124f1419 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1758,6 +1758,18 @@ static void link_recovery_reset(struct intel_dp_link_training *link_training)
- 	link_training->recovery_state = INTEL_DP_LINK_RECOVERY_IDLE;
- }
- 
-+static void intel_dp_report_link_train(struct intel_dp *intel_dp)
++static void mtk_dp_report_link_train(struct mtk_dp *mtk_dp)
 +{
-+	struct intel_connector *connector = intel_dp->attached_connector;
++	struct drm_modeset_lock *lock;
++	int ret;
 +
-+	if (!connector)
++	if (!mtk_dp->conn)
 +		return;
 +
-+	drm_dp_set_cur_link_params(&connector->base, intel_dp->link_rate,
-+				   intel_dp->lane_count,
-+				   connector->dp.dsc_decompression_enabled);
++	lock = &mtk_dp->conn->dev->mode_config.connection_mutex;
++	ret = drm_modeset_lock_single_interruptible(lock);
++	if (ret)
++		return;
++
++	_mtk_dp_report_link_train(mtk_dp);
++
++	drm_modeset_unlock(lock);
 +}
 +
- /**
-  * intel_dp_stop_link_train - stop link training
-  * @intel_dp: DP struct
-@@ -1787,6 +1799,8 @@ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
- 	intel_dp_program_link_training_pattern(intel_dp, crtc_state, DP_PHY_DPRX,
- 					       DP_TRAINING_PATTERN_DISABLE);
+ static int mtk_dp_training(struct mtk_dp *mtk_dp)
+ {
+ 	int ret;
+@@ -2015,6 +2044,8 @@ static irqreturn_t mtk_dp_hpd_event_thread(int hpd, void *dev)
+ 			ret = mtk_dp_training(mtk_dp);
+ 			if (ret)
+ 				drm_err(mtk_dp->drm_dev, "Training failed, %d\n", ret);
++			else
++				mtk_dp_report_link_train(mtk_dp);
  
-+	intel_dp_report_link_train(intel_dp);
+ 			mtk_dp->enabled = true;
+ 		}
+@@ -2145,9 +2176,12 @@ mtk_dp_bdg_detect(struct drm_bridge *bridge, struct drm_connector *connector)
+ 	struct mtk_dp *mtk_dp = mtk_dp_from_bridge(bridge);
+ 	enum drm_connector_status ret = connector_status_disconnected;
+ 	bool enabled = mtk_dp->enabled;
++	int err;
+ 
+-	if (!mtk_dp->train_info.cable_plugged_in)
++	if (!mtk_dp->train_info.cable_plugged_in) {
++		drm_dp_sink_reset_caps(connector);
+ 		return ret;
++	}
+ 
+ 	if (!enabled)
+ 		mtk_dp_aux_panel_poweron(mtk_dp, true);
+@@ -2160,9 +2194,18 @@ mtk_dp_bdg_detect(struct drm_bridge *bridge, struct drm_connector *connector)
+ 	 * whether we connect to a sink device.
+ 	 */
+ 
+-	if (drm_dp_read_sink_count(&mtk_dp->aux) > 0)
++	if (drm_dp_read_sink_count(&mtk_dp->aux) > 0) {
+ 		ret = connector_status_connected;
+ 
++		err = drm_dp_sink_sync_caps(connector, &mtk_dp->aux, NULL);
++		if (err)
++			drm_dbg_kms(mtk_dp->aux.drm_dev,
++				    "%s: error sink caps synchronisation (%d)\n",
++				    mtk_dp->aux.name, err);
++	} else {
++		drm_dp_sink_reset_caps(connector);
++	}
 +
- 	if (intel_dp_is_uhbr(crtc_state)) {
- 		ret = poll_timeout_us(ret = intel_dp_128b132b_intra_hop(intel_dp, crtc_state),
- 				      ret == 0,
+ 	if (!enabled)
+ 		mtk_dp_aux_panel_poweron(mtk_dp, false);
+ 
+@@ -2390,12 +2433,20 @@ static void mtk_dp_bridge_atomic_enable(struct drm_bridge *bridge,
+ 	if (mtk_dp->data->bridge_type == DRM_MODE_CONNECTOR_eDP) {
+ 		mtk_dp_aux_panel_poweron(mtk_dp, true);
+ 
++		ret = drm_dp_sink_sync_caps(mtk_dp->conn, &mtk_dp->aux, NULL);
++		if (ret)
++			drm_dbg_kms(mtk_dp->aux.drm_dev,
++				    "%s: error sink caps synchronisation (%d)\n",
++				    mtk_dp->aux.name, ret);
++
+ 		/* Training */
+ 		ret = mtk_dp_training(mtk_dp);
+ 		if (ret) {
+ 			drm_err(mtk_dp->drm_dev, "Training failed, %d\n", ret);
+ 			goto power_off_aux;
+ 		}
++
++		_mtk_dp_report_link_train(mtk_dp);
+ 	}
+ 
+ 	ret = mtk_dp_video_config(mtk_dp);
+@@ -2435,6 +2486,7 @@ static void mtk_dp_bridge_atomic_disable(struct drm_bridge *bridge,
+ 	if (mtk_dp->data->bridge_type == DRM_MODE_CONNECTOR_eDP) {
+ 		mtk_dp->enabled = false;
+ 		mtk_dp_aux_panel_poweron(mtk_dp, false);
++		drm_dp_sink_reset_caps(mtk_dp->conn);
+ 	}
+ 
+ 	mtk_dp_update_plugged_status(mtk_dp);
+@@ -2740,11 +2792,14 @@ static int mtk_dp_edp_link_panel(struct drm_dp_aux *mtk_aux)
+ 	return 0;
+ }
+ 
++static int mtk_dp_rates[] = {162000, 270000, 540000, 810000};
++
+ static int mtk_dp_probe(struct platform_device *pdev)
+ {
++	struct drm_connector_dp_link_caps *source_caps;
+ 	struct mtk_dp *mtk_dp;
+ 	struct device *dev = &pdev->dev;
+-	int ret;
++	int ret, i, max_rate;
+ 
+ 	mtk_dp = devm_drm_bridge_alloc(dev, struct mtk_dp, bridge,
+ 				       &mtk_dp_bridge_funcs);
+@@ -2758,6 +2813,20 @@ static int mtk_dp_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return dev_err_probe(dev, ret, "Failed to parse dt\n");
+ 
++	source_caps = devm_kzalloc(dev, sizeof(*source_caps), GFP_KERNEL);
++	if (!source_caps)
++		return -ENOMEM;
++
++	source_caps->nlanes = mtk_dp->max_lanes;
++	source_caps->link_rates = mtk_dp_rates;
++
++	max_rate = drm_dp_bw_code_to_link_rate(mtk_dp->max_linkrate);
++	for (i = 0; i < ARRAY_SIZE(mtk_dp_rates); i++)
++		if (mtk_dp_rates[i] > max_rate)
++			break;
++
++	source_caps->nlink_rates = i;
++
+ 	/*
+ 	 * Request the interrupt and install service routine only if we are
+ 	 * on full DisplayPort.
+@@ -2809,6 +2878,8 @@ static int mtk_dp_probe(struct platform_device *pdev)
+ 
+ 	mtk_dp->bridge.of_node = dev->of_node;
+ 	mtk_dp->bridge.type = mtk_dp->data->bridge_type;
++	mtk_dp->bridge.dp_link_caps = source_caps;
++	mtk_dp->bridge.ops = DRM_BRIDGE_OP_DP;
+ 
+ 	if (mtk_dp->bridge.type == DRM_MODE_CONNECTOR_eDP) {
+ 		/*
+@@ -2849,7 +2920,7 @@ static int mtk_dp_probe(struct platform_device *pdev)
+ 			}
+ 		}
+ 	} else {
+-		mtk_dp->bridge.ops = DRM_BRIDGE_OP_DETECT |
++		mtk_dp->bridge.ops |= DRM_BRIDGE_OP_DETECT |
+ 				     DRM_BRIDGE_OP_EDID | DRM_BRIDGE_OP_HPD;
+ 		ret = devm_drm_bridge_add(dev, &mtk_dp->bridge);
+ 		if (ret)
 
 -- 
 2.43.0
