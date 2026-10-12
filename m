@@ -4,155 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49C5CCA9EC5
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 12:25:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F06ACA9ED0
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 12:25:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F16C110F076;
-	Mon, 12 Oct 2026 12:25:35 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C8F810F06F
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 12:25:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB8B510EF66;
+	Mon, 12 Oct 2026 12:25:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3177610F071
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 12:25:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791807928; x=1823343928;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=lOi8ovjwK+/YhX/jV127a8KBku5C5KDTF+5HYmAaUKU=;
- b=XltwQr3daCVdEsgTd64nZM5S2xkLkriUGHReseD07AQIrXJdBRlgggX7
- 7xoIS4AXUGc0qiX5F5QE5RK+caVA7m9wJMqgmkLqq1gEfEhtNwTqFdVAJ
- 2Z2BLrpK77dNCy22QepseNiIaKby9Q7GeGFQQK4FYs02OmRqQDza/b7FZ
- ZYYbQptTSU1FELYMut8WEd+y9Sa+HK9YCHLD0vm98TFYxsHmotoS5kGW8
- BEb3Hep5ZhOJgCSfOvSkexvTf3sFi3VeT/13hfe4rfs9cnFpA6A46Hdfi
- vmhpu6qPlYaRFP4JJGshUoK13AkoRuN5vX6njZaSsvIFjbUy7DgKHImIu w==;
-X-CSE-ConnectionGUID: 7Eo1N8PHQOqDVw6z1r4t+w==
-X-CSE-MsgGUID: HUz/amUOQ4CO+lBAky241Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="523540"
+ t=1791807930; x=1823343930;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=KZKEv8qg2eaG4TTfaptN0rBADbcT1uc8BbLxxnzHufM=;
+ b=ZQSBCIoTmWYm2mJhEN+xP8/CV4f+1xf48Rgw7C/vv7HoCBAqofw0mbHv
+ LGi7X1D9tMdVR6TUsenXUkw6OZoHym3XHFqMd7T/yzd47g+ZkJeXyMShA
+ /phvsd+PwGudLGNzzg1fPkA2nMeT67zMR1QWgnRJKcY5hYPvR8yguMK8S
+ YQ0qhVLggNFD5oB06y9xU1Wkuzhj0TNsI99fsmrb1o5uVt3O432MP7IxD
+ llWpNpcMuRW8TB9Y995r3zdrlhtz2VJ0umePhyO8zLpNa05EB6IfZJeaP
+ jM8wMPgad3oyIIAezH9eGE8NACRioEhlLOay5rx3eez+ZFXsSjYrwjwBP g==;
+X-CSE-ConnectionGUID: R4USwXQDS1W0T0tMKukK8g==
+X-CSE-MsgGUID: Wfatt/FiSgqgH+qn/vzEjg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="522900"
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="523540"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 05:25:27 -0700
-X-CSE-ConnectionGUID: vw5yvHcKSpK+gMI4cfofWA==
-X-CSE-MsgGUID: U6L5DVRIRQak/IFpoF9tqg==
+   d="scan'208";a="522900"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2026 05:25:28 -0700
+X-CSE-ConnectionGUID: nPMfJK9GTbCOhc4iZfDSXA==
+X-CSE-MsgGUID: e/JmFT7cS42JiyHYFOt5TA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="2652251"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa013.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 05:25:28 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Mon, 12 Oct 2026 05:25:27 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Mon, 12 Oct 2026 05:25:27 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.29) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Mon, 12 Oct 2026 05:25:26 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mmrtRFZozCXzhfIX3e+tyMEFoRvOqOXCun+R39nILS3kb7qRs/VyzdTj3m8b1tgMqJvstxc634L+TC/FywTmVA/rpWc6xDPT785ZS6gn91gKjDgWyGbgchYRsfxGHPxQb11EvSvhuPnA3h+dQ1KsSE/9HN+gpUdHBsaKIVlHAHBqv82oJk8NIevjoGP8M7v0YZjj7M+N/IAc0ErZN93jQhGW04CSMiYRXqjIVieVbWH+65CAJ/Rhfozk6sfJ9/Bz9BBxMGP6Hj1rEAs0kdD0LPNeUCyLetRDlQOMSPN5awwHApvVMXGOqy9/fpenYE1y04bRj0gRdp7hQWxzSTOrhA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h10eeJonfR+OijLKu+LLcR2XEL94/Y3GScSgTkgCCIc=;
- b=uiMOGd4abYVX+MmZNU56Di52PvmWX+dR/GJktVd59RIObVYHog4nSB5zQVC4XZDXLqu8x71kDUNVuXps9vSA1fYn9bcDncbRvlLQe37+g6N2sWi9jspAYHZ24nv7nQjfgCgENr1MgVMUSrwu03SZRSNNz+5EIbcuxlKF09+rD3QDOd5b43tkEpOw79OyW00uZeqfftRtdvTKK553yx+8+ZhkSfNVQYdJt9HL7U4D5V6kiWSOr7iU7a4caf8eNkMJ4GcNaaG7zvws14Mo77RiQx4zjgyCza+Fgwm+Ju7gS4IH4rlKrkIGF2nxFUxhqSHrVTyEpYFJNg3GOdF4iMGExA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB6974.namprd11.prod.outlook.com (2603:10b6:510:225::16)
- by PH8PR11MB6612.namprd11.prod.outlook.com (2603:10b6:510:1cf::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.472.15; Mon, 12 Oct
- 2026 12:25:24 +0000
-Received: from PH8PR11MB6974.namprd11.prod.outlook.com
- ([fe80::44a4:1ecf:f303:d08f]) by PH8PR11MB6974.namprd11.prod.outlook.com
- ([fe80::44a4:1ecf:f303:d08f%5]) with mapi id 15.21.0496.015; Mon, 12 Oct 2026
- 12:25:24 +0000
-Date: Mon, 12 Oct 2026 17:55:17 +0530
-From: "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>
-To: <sashiko-reviews@lists.linux.dev>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/xe/i2c: Fix use-after-free on driver unload
-Message-ID: <aszRrQMKGNnrAqY8@bvivekan-mobl1>
-References: <20261009164241.923756-2-balasubramani.vivekanandan@intel.com>
- <sashiko-outbox-165849@kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <sashiko-outbox-165849@kernel.org>
-X-ClientProxiedBy: MA5P287CA0323.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:222::13) To PH8PR11MB6974.namprd11.prod.outlook.com
- (2603:10b6:510:225::16)
+   d="scan'208";a="962784"
+Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
+ by fmviesa004.fm.intel.com with ESMTP; 12 Oct 2026 05:25:28 -0700
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: mallesh.koujalagi@intel.com,
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH v7 03/12] drm/xe/hwmon: Report errors using structured xe_log
+ API
+Date: Mon, 12 Oct 2026 17:55:12 +0530
+Message-ID: <20261012122522.2307625-4-dnyaneshwar.bhadane@intel.com>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20261012122522.2307625-1-dnyaneshwar.bhadane@intel.com>
+References: <20261012122522.2307625-1-dnyaneshwar.bhadane@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB6974:EE_|PH8PR11MB6612:EE_
-X-MS-Office365-Filtering-Correlation-Id: a7c96b65-a906-4dce-1f7e-08df285be3b7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|366016|376014|6133799003|22082099003|10067099003|261009223027099003|18002099003|4143699003|260925022911599003|260925021911599003|260925021311599003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: dEj/4ckvlbrlu09dDjyVxkwTaVExjJdfk0lj1nsyo1eE9s4/KmWaUpBKQ2becBKEv1HNcdrfyTU/A4ks2oHwQ/Ea/wIvxF/wVjX/Atrh0xuMD9y911hGLeKZUSHIx/dzcnRGqYOxq8qq3m0PTngW1z7j7WZcDXXy3BIg6bPe5zf+KcuoYbIneTdUzk4fo/QlY8RzIEktK615Sbg5PVQoXyqnHVFPCFrjfI8ZyA3OHTnfXw8qzy/qxlfBXGQs67L+34ZkFcbdX3V83Df7QyuPBWdhZik2vySfrEcb9XzFAfV0Iutn5MHznhnPztW4wN5qTrKZ7EAoIx0kmRFkhbdhzDhWq54rQMnaplbKhM2tzPdQv0sYTKvAjCbQCF+g+axh9TDtVecxkbkxFaqjbeJ7EDjzsk3Xugu4fnYN6dnkn/XNXIBjkSSBeC07md9ceP4z24sbXf35uJKQhEIqv9eGqEnOHJFo6zy1I9QxCLeqPW6ztAUCOx3PJQedrHWuzBVJGlUqOzLbN8ZC4gz+6LcqB4rc8tA0xZ3sZmF54te9n73B/K8Jj0ZtmodFORbn37JjQreXAla0KxBn9MM9VYUtkGius3Aua5XgJc/1c1KmUuc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB6974.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(6133799003)(22082099003)(10067099003)(261009223027099003)(18002099003)(4143699003)(260925022911599003)(260925021911599003)(260925021311599003)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TGdkK2lWSFZXVHVaaEJtQmxmMkMzcEtEZ29YSnBkOER1SkRMb04vMmd0REVR?=
- =?utf-8?B?QXNNZkVVSXBpY2E4U1ljbDE0aUhFam5ydis4MjBsazcxOVhOaDFaM0FuUFJJ?=
- =?utf-8?B?WWE2T2FuWFpkMGpMSWZzZ0l0NTdpNnA2Q0N5eGxwMlZFZHJOSGZER0hVVVdr?=
- =?utf-8?B?VWh0NlFoc3pQcXlINUtzQUpEVEJjeDF5ckJ3NUlhLyswVEoyMXJWMTUvdFF0?=
- =?utf-8?B?MUhoaUhjVktLRDJibk5qSkRHaDVGOEFwUXZGdkpraWVzSTNPWThMakY5U3ZS?=
- =?utf-8?B?QktvOTNUczlpUkppc3Z6S0E0b0E0dmE0SUJxRWNKdVlsVmFqa3YzSjRPV3c5?=
- =?utf-8?B?d0dtaEtMZGg2S25rMlZFdmJkRk91a3FTWDRsRlhwSlNqZ3pNMWNlNmY5MFY5?=
- =?utf-8?B?MmcwQjFpWTdKUGd0cjN5eGJHcHh4QUpuckxTRU1sSmlzaDZCZkxNem9mejBM?=
- =?utf-8?B?d2ViZndvdEx3blplUXFpOTZLZGpmcFpRSlhnQVV0KzQwZ0JnT2xXcmJiVWJ3?=
- =?utf-8?B?U1pnRlg3OWVNMC9CQjdhbUlkVUlnQ2VYSnBlWmxoaHFyeWpINm15RDFNWUdn?=
- =?utf-8?B?dlBLT1R5b21BdzE5Y0xWNW1JY0FxbW8wdUU1U09kaHRDYUVORzFtVFpjM2xO?=
- =?utf-8?B?NjF6cjJETDhkZ3dMUDZ2OElXNzZkQTMxbVFzQnpCVmY5R215UHdyMEU3ajJ5?=
- =?utf-8?B?N2VQU0lZbFliK21FZFFTNVl1Nm5aeSs2dVJKbUFvb0dWdGFuZE1jNFg5WFNo?=
- =?utf-8?B?eTVKZkRXeFBWdXdzcVFkbWwydFRZRFdveFp0LytlY3VRYkJtVzRybDhiMVht?=
- =?utf-8?B?OG9Jd0lpOWlTc2xDZUp2VVR2TGE3V2VMWnQ1RWp2TTJmSWNoRlpaWlIyazVt?=
- =?utf-8?B?K3V3cUxVVDY1eWRFeTRWS0NKQVl4YkZLUGc5am8zNmpXYWxpNHJ5UjUxNWdz?=
- =?utf-8?B?RFlhbndGY0dFVnRkYVdjRWFVc0xPSVJHQ1RZcWhJNHRVbkZ1ay9QMk1RV1pV?=
- =?utf-8?B?SDVMbldsNktQb1MrVzdaQnBNd3MybTVQd3hPSGpQdFNhZTFZbDZlaHBFVENr?=
- =?utf-8?B?RHZxUlpUWHVEVWQ0Y2VZUm5zRmxJR21BR2xrdmFweGtXc24xYmorZjlpR2d3?=
- =?utf-8?B?SEJtc1liSWxBTHZCOEpPSjVMWkN6TjAyTjBWb1ZZN1lwa0laMDBDZGxqWU5B?=
- =?utf-8?B?ZVZrU3pTamJRWm5BZXFXVFB4VG9WM0gzYmphUkh5RndBWGhoWTdCdHgrY2g2?=
- =?utf-8?B?VkpwS1g2WTBpam00Q2t5ck5FZm5oV0Z3RjY2aWRmSnorTzYvcU56bmdKWGpW?=
- =?utf-8?B?V3ZxSGdGazdSN01OM3dLWlI2dG1BbVlraElWbDVWUW1EcVVNcUw1RVI2VFIx?=
- =?utf-8?B?ZXZwSnBJNm1yL2VvNEd0MFZTeWlBVHFoWit6RlRJWkgxUEdtWmFtMWtsOW9x?=
- =?utf-8?B?dGtiV2VibnpXaTNWbkZheFlYWktHdDVLTDFFenEyQTBoL3laTjgwTVA0eU94?=
- =?utf-8?B?RVk2bUQxVHRyZVRoK1VORzZIUjFCMk1PTjB3Q3g1MUJjQnprWGtaVFJaL2hq?=
- =?utf-8?B?ODhhclBidTA4a010ODdvTWhrZVJFSEM5MVBRY3E5bHZPZEYrOWl6czBQNHhu?=
- =?utf-8?B?b2NueXQ4VXVPZXVIaDRRNG9rcWxhaktFeHpQS0xmV3Mwc2Q3eko5LzJ0QVRO?=
- =?utf-8?B?Wm1kdndtdHY0MGR1dlFmZDEyRnVYRGpTbjJ3MDZaNng2MzJyUndJVi9QOWtZ?=
- =?utf-8?B?MXFvRjJsSFdNTW5GK1NleWoxQ0QzcjUrRndHZU80Nm5Jb1pqd20xZVo2TUtZ?=
- =?utf-8?B?U3FXL0VyejVINVhYazgyc0Foa1Z0N1p6VmwrNTZCNWZQVUtWRDhwYXVzb0pQ?=
- =?utf-8?B?Q3hXL3JDVXRjK29Yc1BleHVORHZIeFZEUEIrUkN1QTZpTlE5UmU4bTZDTmdI?=
- =?utf-8?B?U3QzdjU3UmxCcHpSS2ttZEFqUXdGRmpkaHB5YUlPVzB4aUh5NmdXNFdZSjFp?=
- =?utf-8?B?aGNvNzRDZkovcjUvOUl2MW0rQlVrUGU3d25EMHIralV2SEhDeDNMenFNNWoz?=
- =?utf-8?B?SVFmZ1cxZlN6eGdKNXl5Wnk2azE4Y0tEUHZmUTNEeE9uWlJxSjQ0SkpMKzIz?=
- =?utf-8?B?QnJQUzJRS0dZWVNmNEdVOHFHV3g2U3Z4SWNsQ2Vpb1QwQ3RndzVONXRwaWhv?=
- =?utf-8?B?SjVqVFdWLzJhWHVSbXhUcDlZeEdmL0sxN01XVTltVG1PWmxCcFlpVDNRNkZG?=
- =?utf-8?B?NmdZSUttbFpXaWlmZkFqblhRZ2d0Z1h6bTJWbytSdVlVbk1nT1Z4YWRJR2Nz?=
- =?utf-8?B?VldubEYzY3ZPR0oreFBWY1ZDejN0MjRJWjBacjJOdElsajJOQTMxQnc4clpU?=
- =?utf-8?Q?lzSrQbIELbpKhX4T/NdFgYwz0nGkWrCsXaHJQ?=
-X-Exchange-RoutingPolicyChecked: Vt+sf6LwrWoKkhj0YlnHLgDDmHoy3kFysMSLYbSBhHLDVPYDOKTUTSE3oPaszhIg8jPp2zdl7XiwU/1i8mcI4EmJRH9WwqL4MNExcIR/5RdKxMMq3nKMvN1wckHkTFUPloLxsaUkcqlOWJ9yklvJl99AtdlJCK8bQd+pkBfJtaxJdvA2x8DV9C35+61SNRkhs0IdpkSxvOfNGa4L0gcSW8+fp+PBlyEAw28oCSdDvLWLTFkvs5L1D8SEDQUepafmQW8VOVYhTvXsvbivOHl/nEinIDQXEh5+Ax+dDJxTUESB5TiuFXFEkuMofhHW/ouZqJDOGBdHEuGDcYR9PIMOuw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: a7c96b65-a906-4dce-1f7e-08df285be3b7
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6974.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2026 12:25:24.0598 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MCXJgzJOeVFAZyMlAtApeQiKQl4RkBCBwLSPVLJdhyBA36YXP+5rNd3Q+67eqjmx1cZ5K0NG+r78+Ng4FArbbnQtMkPg9e0TwejQ24hmfeMQSdGLV7vu+oIrlJ2PcGtb
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6612
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,71 +66,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 09.10.2026 16:47, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [High] drm/xe/i2c: UAF on client devices when i2c_designware is unbound
-> --
-> 
-> commit acaaddc70630047a3af20f747eb4eed375a715a1
-> Author: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-> 
-> drm/xe/i2c: Fix use-after-free on driver unload
-> 
-> This patch fixes a use-after-free during driver unload by replacing the managed
-> software node with a static struct software_node. It also modifies
-> xe_i2c_notifier() to match against the parent device instead of using i2c->dev,
-> removing a dependency in the two-step platform device creation sequence.
-> 
-> > diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-> > index f4f3819882897..f0566129b7e70 100644
-> > --- a/drivers/gpu/drm/xe/xe_i2c.c
-> > +++ b/drivers/gpu/drm/xe/xe_i2c.c
-> [ ... ]
-> > @@ -98,7 +102,7 @@ static int xe_i2c_notifier(struct notifier_block *nb, unsigned long action, void
-> >  	struct device *dev = data;
-> >  
-> >  	if (action == BUS_NOTIFY_ADD_DEVICE &&
-> > -	    adapter && dev->parent == &i2c->pdev->dev) {
-> > +	    adapter && dev->parent && dev->parent->parent == i2c->drm_dev) {
-> >  		i2c->adapter = adapter;
-> >  		schedule_work(&i2c->work);
-> >  		return NOTIFY_OK;
-> >  	}
-> >  
-> >  	return NOTIFY_DONE;
-> >  }
-> 
-> [Severity: High]
-> Does this missing BUS_NOTIFY_DEL_DEVICE handler leave dangling pointers if the
-> i2c-designware driver is manually unbound? 
-> 
-> If the adapter is unbound (e.g. via sysfs), the I2C core will unregister and
-> free all connected I2C client devices. Because this notifier doesn't handle
-> device removal, i2c->adapter and i2c->client[i] are never cleared and become
-> dangling pointers.
-> 
-> Later during module teardown, the xe_i2c_remove() devm action executes:
-> 
-> drivers/gpu/drm/xe/xe_i2c.c:xe_i2c_remove() {
-> 	...
-> 	for (i = 0; i < XE_I2C_MAX_CLIENTS; i++) {
-> 		i2c_unregister_device(i2c->client[i]);
-> 		i2c->client[i] = NULL;
-> 	}
-> 	...
-> }
-> 
-> Will this explicitly call i2c_unregister_device() on already freed client
-> pointers, causing a use-after-free crash? Additionally, if the unbind occurs
-> before xe_i2c_client_work() executes, could the workqueue dereference the freed
-> i2c->adapter pointer?
+Replace drm_err() calls with xe_log_err() using the HWMON component
+tag to enable structured error reporting with SIGID for hardware
+monitor failures:
 
-This needs to be addressed. But it is not a regression from this patch.
-It was existing earlier. Need to be fixed in a separate patch.
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 
-Regards,
-Bala
+---
+v2:
+ - Store error in local variable err (Mallesh)
+---
+ drivers/gpu/drm/xe/xe_hwmon.c | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
 
-> 
-> -- 
-> Sashiko AI review · https://sashiko.dev/#/patchset/20261009164241.923756-2-balasubramani.vivekanandan@intel.com?part=1
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index 5edeac961ec3..fa5473ed6e7f 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -15,6 +15,7 @@
+ #include "regs/xe_pcode_regs.h"
+ #include "xe_device.h"
+ #include "xe_hwmon.h"
++#include "xe_log.h"
+ #include "xe_mmio.h"
+ #include "xe_pcode.h"
+ #include "xe_pcode_api.h"
+@@ -558,9 +559,9 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
+ 	if (hwmon->xe->info.has_mbx_power_limits) {
+ 		ret = xe_hwmon_pcode_read_power_limit(hwmon, power_attr, channel, &reg_val);
+ 		if (ret) {
+-			drm_err(&hwmon->xe->drm,
+-				"power interval read fail, ch %d, attr %d, val 0x%08x, ret %d\n",
+-				channel, power_attr, reg_val, ret);
++			xe_log_err(hwmon->xe, HWMON, ret,
++				   "Power interval read fail, ch %d, attr %d, val 0x%08x\n",
++				   channel, power_attr, reg_val);
+ 			reg_val = 0;
+ 		}
+ 	} else {
+@@ -1563,7 +1564,7 @@ int xe_hwmon_register(struct xe_device *xe)
+ {
+ 	struct device *dev = xe->drm.dev;
+ 	struct xe_hwmon *hwmon;
+-	int ret;
++	int ret, err;
+ 
+ 	/* hwmon is available only for dGfx */
+ 	if (!IS_DGFX(xe))
+@@ -1594,9 +1595,11 @@ int xe_hwmon_register(struct xe_device *xe)
+ 								&hwmon_chip_info,
+ 								hwmon_groups);
+ 	if (IS_ERR(hwmon->hwmon_dev)) {
+-		drm_err(&xe->drm, "Failed to register xe hwmon (%pe)\n", hwmon->hwmon_dev);
++		err = PTR_ERR(hwmon->hwmon_dev);
++		xe_log_err(xe, HWMON, err,
++			   "Failed to register xe hwmon\n");
+ 		xe->hwmon = NULL;
+-		return PTR_ERR(hwmon->hwmon_dev);
++		return err;
+ 	}
+ 
+ 	return 0;
+-- 
+2.54.0
+
