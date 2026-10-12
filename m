@@ -4,57 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D57BCA9EC5
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 15:09:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAECFCA9ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 15:11:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2734110E437;
-	Mon, 12 Oct 2026 15:09:24 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79B4B10E437
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 15:09:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791817759; x=1823353759;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=u2ylalUTXT8ltBwocpYQMxy5L4c/jjlv/JltkYYonrM=;
- b=oKD8krPcTR6D39fmvLiJtYngduwDmFwZczY4ZrXQ4GHrqojlg/NKPvSV
- vWSRpbKPjRthitsmxA83V0aD+4wViyI1Dbh3Kud5BV3l/xYCGlJeohLUT
- o1IcYwMa24Iy674Y4cUbwhr0LNORX8ln5zBY3QN8Mr2NSRD11059uPNSj
- HESPvR8rtcV43y/H3VUFPcxt5bUGxkbJHd5QKClOTPbM6pKd110IRW3kJ
- 99J+rlRyF8MIBZCPsLajHueU1ZQ9CroBk7RWCCgk2oEH9jYTYwJZU6JBG
- CGE3VD0DYbNG6EWIjE4Wt5wBYubR2BVmGPNLG+56chIqikYfFnzVGMkWW w==;
-X-CSE-ConnectionGUID: G4BhSZ5/TJar4m3IK/W8yg==
-X-CSE-MsgGUID: /Q7Yfiq/Tx2vEfd+KdCXQw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="407134"
-X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="407134"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 08:09:18 -0700
-X-CSE-ConnectionGUID: bTiU2+YbTpe5Merv0ncwzQ==
-X-CSE-MsgGUID: 3/Gqup2ORw+8E3dCAOhnJw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="834862"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 08:09:16 -0700
-Date: Mon, 12 Oct 2026 17:09:13 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, michal.wajdeczko@intel.com,
- lukasz.laguna@intel.com, matthew.d.roper@intel.com,
- matthew.brost@intel.com, mallesh.koujalagi@intel.com,
- rodrigo.vivi@intel.com
-Subject: Re: [PATCH v4 3/5] drm/xe: Make xe_device_declare_wedged() IRQ safe
-Message-ID: <asz4GazPFrdggzig@black.igk.intel.com>
-References: <20261010090718.68308-1-raag.jadav@intel.com>
- <20261010090718.68308-4-raag.jadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78B4610E600;
+	Mon, 12 Oct 2026 15:11:39 +0000 (UTC)
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3D6B10F1B5
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 15:11:32 +0000 (UTC)
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+ by smtpout-02.galae.net (Postfix) with ESMTPS id CDCD81A11E9;
+ Mon, 12 Oct 2026 15:11:30 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 9A0CD601A6;
+ Mon, 12 Oct 2026 15:11:30 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id B398E11D7012D; 
+ Mon, 12 Oct 2026 17:11:14 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+ t=1791817884; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ content-transfer-encoding; bh=GGIXi1kV+kCR2h5S/gUS/WOZ0+fEirhDT48WZLYxblo=;
+ b=aHgUcb7RjoE/3nkLUjCiPBxyqhUMjDqJPhCa+pN1b8fpTJD/gqSpx+YouaDkYQA/mTax/5
+ R0+c3I8S9sYnzcBIxbWGuvToSypTC1NNzkvSMtbkKE1mhJ6V2+n2DwozTaXHcQH7yYzBxV
+ 29jZ6mJhfARl0PQTBVOBsJCpl1IMd4d1vQjlE911WlQchP5bj5ZIH9RcZolFykQoL+PKrJ
+ 5dBcEpD5k3Cu+76dmJkIckEM2wvQQgSali2uYyBX8veRRztGpC+dJEgQQg3GA2kltLTsfz
+ YxUR7a09D11CyahwWY9ML4kF82hL+VG5DqE+T05Cyp/JahZaAAe3nRa7KbPTow==
+From: Kory Maincent <kory.maincent@bootlin.com>
+Subject: [PATCH RFC v3 0/8] Add support for DisplayPort link training
+ information report
+Date: Mon, 12 Oct 2026 17:10:55 +0200
+Message-Id: <20261012-feat_link_cap-v3-0-7517f4aba0f3@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261010090718.68308-4-raag.jadav@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAH/4zGoC/2WNQQrCMBREr1L+2kjyW6JxJQgewK1ISZNfG9Smp
+ CUopXc3ZCPqcmZ4b2YYKTgaYVfMECi60fk+hXJVgOl0fyXmbMqAHCVHlKwlPdV3199qoweG3DS
+ NbEthKw6JGQK17pl9ZzgdD3BJZefGyYdX/ogiT1lXcfWji4JxtuFS0VYoZQj3jfdTmtfGP7Ir4
+ oeX4o/HxOvSkqkMR23VN78syxv9+9NJ8QAAAA==
+X-Change-ID: 20260226-feat_link_cap-20cbb6f31d40
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Dmitry Baryshkov <lumag@kernel.org>, Daniel Stone <daniels@collabora.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Mark Yacoub <markyacoub@google.com>, Sean Paul <seanpaul@google.com>, 
+ Manasi Navare <navaremanasi@google.com>, 
+ Drew Davenport <ddavenport@google.com>, 
+ Louis Chauvet <louis.chauvet@bootlin.com>, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Kory Maincent <kory.maincent@bootlin.com>
+X-Mailer: b4 0.16.1-dev-17221
+X-Last-TLS-Session-Version: TLSv1.3
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,138 +84,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, Oct 10, 2026 at 02:36:20PM +0530, Raag Jadav wrote:
-> Currently, xe_device_declare_wedged() implementation wedges the GTs and
-> sends wedged uevent to userspace. This is problematic for usecases which
-> require declaring the device as wedged in IRQ context, as it allocates
-> memory for event buffer and acquires mutexes deep into it's call path.
-> 
-> Fix this by deferring wedge handling into its dedicated worker, so that
-> xe_device_declare_wedged() can be called in IRQ context.
-> 
-> First user of this requirement is introduced in commit def675cf3f10
-> ("drm/xe/mert: Improve handling of MERT CAT errors"), which declares the
-> device as wedged on catastrophic errors received in form of an IRQ.
+DisplayPort link training negotiates the physical-layer parameters needed
+for a reliable connection: lane count, link rate, and optionally Display
+Stream Compression (DSC). Currently, each driver exposes this state in
+its own way, often through driver-specific debugfs entries, with no
+standard interface for userspace diagnostic and monitoring tools.
 
-I just realized that this is fundamentally flawed. IRQ just means the
-device is in D0 state and doesn't necessarily indicate non-zero refcount
-which is a prerequisite for xe_device_declare_wedged() call.
+This series introduces generic helpers, for exposing DP link capabilities
+and state as standard sysfs entries.
 
-I'll be dropping this patch in next revision but the rest of the series
-still needs to land for other long standing stable fixes and debt cleanup.
+The aim of such development is to guide users to select the most suitable
+DisplayPort connector for their needs. For example, if you have a USB-C
+hub with lesser capabilities than your computer’s native DisplayPort
+connector (such as HBR2 versus HBR3 support), the system could recommend
+connecting high-resolution displays directly to the computer’s port
+instead of through the hub to ensure optimal performance.
 
-Raag
+The new drm_dp_source_set_caps and drm_dp_sink_set_caps helper expose
+source and sink training capabilities to userspace via sysfs attributes
+under dp_link. Finally drm_dp_set_cur_link_params helper is provided to
+report current link information at runtime.
 
-> Fixes: def675cf3f10 ("drm/xe/mert: Improve handling of MERT CAT errors")
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
-> v2: Split fixes into separate patches (Rodrigo, Michal)
-> ---
->  drivers/gpu/drm/xe/xe_device.c       | 51 +++++++++++++++++-----------
->  drivers/gpu/drm/xe/xe_device_types.h |  2 ++
->  2 files changed, 34 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 6ae1da578bda..2a7794aa71f9 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -697,8 +697,16 @@ static int xe_device_vram_alloc(struct xe_device *xe)
->  	return 0;
->  }
->  
-> +static void wedged_work(struct work_struct *work);
->  static void xe_device_wedged_fini(struct drm_device *drm, void *arg);
->  
-> +static int xe_device_wedged_init(struct xe_device *xe)
-> +{
-> +	INIT_WORK(&xe->wedged.work, wedged_work);
-> +
-> +	return drmm_add_action_or_reset(&xe->drm, xe_device_wedged_fini, xe);
-> +}
-> +
->  /**
->   * xe_device_probe_early: Device early probe
->   * @xe: xe device instance
-> @@ -767,7 +775,7 @@ int xe_device_probe_early(struct xe_device *xe)
->  	if (err)
->  		return err;
->  
-> -	err = drmm_add_action_or_reset(&xe->drm, xe_device_wedged_fini, xe);
-> +	err = xe_device_wedged_init(xe);
->  	if (err)
->  		return err;
->  
-> @@ -1392,6 +1400,26 @@ void xe_device_set_wedged_method(struct xe_device *xe, unsigned long method)
->  	xe->wedged.method = method;
->  }
->  
-> +static void wedged_work(struct work_struct *work)
-> +{
-> +	struct xe_device *xe = container_of(work, struct xe_device, wedged.work);
-> +
-> +	/*
-> +	 * XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is intended for debugging
-> +	 * hangs, so wedge the device with 'none' recovery method and have
-> +	 * it available to the user for debugging.
-> +	 */
-> +	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
-> +		xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_NONE);
-> +	/* If no wedge recovery method is set, use default */
-> +	else if (!xe->wedged.method)
-> +		xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_REBIND |
-> +					    DRM_WEDGE_RECOVERY_BUS_RESET);
-> +
-> +	/* Notify userspace of wedged device */
-> +	drm_dev_wedged_event(&xe->drm, xe->wedged.method, NULL);
-> +}
-> +
->  #define WEDGED_URL	"https://docs.kernel.org/gpu/drm-uapi.html#device-wedging"
->  #define XE_BUG_URL	"https://gitlab.freedesktop.org/drm/xe/kernel/issues/new"
->  
-> @@ -1432,26 +1460,11 @@ void xe_device_declare_wedged(struct xe_device *xe)
->  			    "For recovery procedure, refer to %s\n"
->  			    "Please file a _new_ bug report at %s\n",
->  			    WEDGED_URL, XE_BUG_URL);
-> -	}
->  
-> -	for_each_initialized_gt(gt, xe, id)
-> -		xe_gt_declare_wedged(gt);
-> +		for_each_initialized_gt(gt, xe, id)
-> +			xe_gt_declare_wedged(gt);
->  
-> -	if (xe_device_wedged(xe)) {
-> -		/*
-> -		 * XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is intended for debugging
-> -		 * hangs, so wedge the device with 'none' recovery method and have
-> -		 * it available to the user for debugging.
-> -		 */
-> -		if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
-> -			xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_NONE);
-> -		/* If no wedge recovery method is set, use default */
-> -		else if (!xe->wedged.method)
-> -			xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_REBIND |
-> -						    DRM_WEDGE_RECOVERY_BUS_RESET);
-> -
-> -		/* Notify userspace of wedged device */
-> -		drm_dev_wedged_event(&xe->drm, xe->wedged.method, NULL);
-> +		schedule_work(&xe->wedged.work);
->  	}
->  }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 4e0e1bc040c1..ec5c1f0b8f00 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -547,6 +547,8 @@ struct xe_device {
->  		unsigned long method;
->  		/** @wedged.inconsistent_reset: Inconsistent reset policy state between GTs */
->  		bool inconsistent_reset;
-> +		/** @wedged.work: Worker for wedge handling */
-> +		struct work_struct work;
->  	} wedged;
->  
->  	/** @devres_group: devres group */
-> -- 
-> 2.43.0
-> 
+Three drivers are updated as reference implementations: i915 (direct
+connector path), ANX7625 and MediaTek (via the bridge connector framework
+using a new DRM_BRIDGE_OP_DP flag).
+
+Here is a sysfs example:
+
+cur_link_info_dsc            sink_link_caps_nlanes
+cur_link_info_link_rate      source_link_caps_dsc
+cur_link_info_nlanes         source_link_caps_link_rates
+sink_link_caps_dsc           source_link_caps_nlanes
+sink_link_caps_link_rates
+
+1620000 2160000 2700000 3240000 4320000 5400000
+
+1620000 2700000 5400000 10000000 20000000
+
+5400000
+
+This series is rebased on top of drm-misc and may conflict with the
+current state of the drm i915 tree. Which tree should pick this up,
+given that it mixes core development with driver changes?
+
+Patch 1,2: Move helpers out of i915
+Patch 3: Introduce DisplayPort link training capabilities and state helpers
+Patch 4: Read i915 DSC capabilities in any case
+Patch 5  Use dp_connector helpers in i915 to expose link training state
+Patch 6: Introduce DRM_BRIDGE_OP_DP and wire bridge connectors
+Patch 7: Use dp_connector helpers in anx7625 to expose link training state
+Patch 8: Use dp_connector helpers in mediatek to expose link training state
+
+Changes in v3:
+- Rework the core to use new helpers instead of an extension of
+  drmm_connector_init().
+- Add a new mutex to protect sysfs read write access instead of using
+  the global connection_mutex.
+- Move helpers out of i915.
+- Add the support in the anx7625 driver.
+- Link to v2: https://patch.msgid.link/20260619-feat_link_cap-v2-0-a3dec4c02ad9@bootlin.com
+
+Changes in v2:
+- Removed work converting i915 to DRM managed resource
+- Remove voltage swing and pre-emphasis properties
+- Expose link training state via sysfs dp_link/ group instead of
+  connector properties
+- Add comprehensive sysfs attributes for both source and sink capabilities
+- Add new helpers for managing sink capabilities and for current link
+  parameters
+- Link to v1: https://lore.kernel.org/r/20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com
+
+Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+---
+Kory Maincent (8):
+      drm: Move sink link rates reading helpers out of i915
+      drm: Move DSC capability reading helper out of i915
+      drm: Introduce DisplayPort link training capabilities and state helpers
+      drm/i915/display/dp: Read DPCD DSC capabilities in any case
+      drm/i915/display/dp: Use dp_connector helpers to expose link training state
+      drm/bridge: Expose link training state via new DRM_BRIDGE_OP_DP flag
+      drm/analogix/anx7625: Use dp_connector helpers to expose link training state
+      drm/mediatek: Use dp_connector helpers to expose link training state
+
+ Documentation/ABI/testing/sysfs-class-drm-dp       |  85 +++
+ drivers/gpu/drm/bridge/analogix/anx7625.c          |  68 +++
+ drivers/gpu/drm/bridge/analogix/anx7625.h          |   1 +
+ drivers/gpu/drm/display/Kconfig                    |   1 +
+ drivers/gpu/drm/display/drm_bridge_connector.c     |  29 ++
+ drivers/gpu/drm/display/drm_dp_helper.c            | 571 +++++++++++++++++++++
+ drivers/gpu/drm/drm_connector.c                    |  11 +
+ drivers/gpu/drm/drm_sysfs.c                        | 155 ++++++
+ drivers/gpu/drm/i915/display/intel_display_types.h |   2 +
+ drivers/gpu/drm/i915/display/intel_dp.c            | 249 ++++-----
+ .../gpu/drm/i915/display/intel_dp_link_training.c  |  14 +
+ drivers/gpu/drm/mediatek/mtk_dp.c                  |  79 ++-
+ include/drm/display/drm_dp.h                       |   1 +
+ include/drm/display/drm_dp_helper.h                |  25 +
+ include/drm/drm_bridge.h                           |  13 +
+ include/drm/drm_connector.h                        |  53 ++
+ include/drm/drm_sysfs.h                            |   1 +
+ 17 files changed, 1202 insertions(+), 156 deletions(-)
+---
+base-commit: 34e9ab0182494d7599dc9759bc216550d814b396
+change-id: 20260226-feat_link_cap-20cbb6f31d40
+
+Best regards,
+--  
+Köry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
