@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B481CA9ED1
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:15:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DE96CA9ED6
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:15:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D330410EA8B;
-	Mon, 12 Oct 2026 04:15:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F21FD10EB2A;
+	Mon, 12 Oct 2026 04:15:52 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0014610E96E;
- Mon, 12 Oct 2026 04:15:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A04810E6B5;
+ Mon, 12 Oct 2026 04:15:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791778543; x=1823314543;
+ t=1791778540; x=1823314540;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rgVM8+L9hJd8uHCiUfsd8tJ1s6bM7lgacSUbNICUeJM=;
- b=FzrL0dddmbvpdYfTvr0M9qsQslvUts0jTYSsimdP08qvIXBOHWafPLJM
- QINf37xJSp6ss66G1x1RrVnvLqUBIlIzVlffw/W6YINLemspLRbdYY3Xh
- bu2qwdMtdrLb/huMXI5S8jjYa8U/sBzWLJPAnVVgJjUPuRklI/wIZJYTU
- uCMPiAsjED2/pLJmfwnQ5fMr8dZsj1HgSWtceK9ejW8wn4QvUCdMN+E0i
- 3evawauC7P4PRgSJgwLZYLsxXhCWJVgF3D9TvoWPQnI4/cGwTtMHem4Os
- 6cBsE9fQdYtdImu7ApVX3Qlpb3mL3ExbCDvhlTbZg2LC9GsiyhUN1qCIe Q==;
-X-CSE-ConnectionGUID: oVzt3YLxQA6v0i/rZu9Zyw==
-X-CSE-MsgGUID: PzH9D6isRG6cZKb5Jw5cIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="380932"
+ bh=Lm8OL7AmJT89Qq9PNAvVTRb4WM+/jpzwRS6khu+l2JA=;
+ b=GVLhglt5eqjB3bdZFtpi4vfH7l9SUhjhzMbKsqj/X/IP6rPRhzwHM0QK
+ AlaJ/xn3YG3PEdw1GM+PreMFsGsQxCOqISI1CDknyAXL8xYJ6g+trIHJK
+ OMFHxe59i+/X2W+dtkpx5ft+auznUkFGvpWruWOHy+vqGtxnVFe66XEum
+ DPpKwE2tmA8vPfok9Hk1iVAGC41FzQLfmXg0Kv5Lsnst6KzOqaFlRpfWh
+ p8sp4wU94FH2lVavU2eG3rZo5T5b1yAwCDRk+iLiYNVoh7fBzcpsk1dUx
+ dLggWyx+QD2TCGJq29d+nZ/tFuF1euQXWXWsu15PJI0NYTiAIqWlO6U4Q w==;
+X-CSE-ConnectionGUID: /m7iYEvFTa2677ng/0syyQ==
+X-CSE-MsgGUID: 8qz3PVwMSvOUVZvwJdv1Kg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="380926"
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="380932"
+   d="scan'208";a="380926"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 21:15:40 -0700
-X-CSE-ConnectionGUID: PyaRmXcKRsqqORxPrqTpLQ==
-X-CSE-MsgGUID: UH2MTS/oS0iaMkp9mmu5fg==
+ 11 Oct 2026 21:15:36 -0700
+X-CSE-ConnectionGUID: SyNHCNK1TxqHwMYnpTqxrA==
+X-CSE-MsgGUID: /ZmCkKWHQKyQbuINBeDezQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="1256621"
+   d="scan'208";a="1256597"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 21:15:39 -0700
+ 11 Oct 2026 21:15:34 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, jani.nikula@linux.intel.com,
  uma.shankar@intel.com, ville.syrjala@linux.intel.com,
  suraj.kandpal@intel.com
-Subject: [PATCH v2 38/56] drm/i915/hdmi: Add FRL clock computation based on DFM
-Date: Mon, 12 Oct 2026 09:27:47 +0530
-Message-ID: <20261012035806.3361439-39-ankit.k.nautiyal@intel.com>
+Subject: [PATCH v2 36/56] drm/i915/hdmi: Validate FRL modes in mode_valid
+ using the FRL DFM
+Date: Mon, 12 Oct 2026 09:27:45 +0530
+Message-ID: <20261012035806.3361439-37-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
 References: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,156 +69,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Compute the FRL port clock for a mode using the DFM helper.
-Starting with the lowest FRL rate that meets the DFM requirements, check
-if the mode can be supported with FRL and derive the port clock from the
-selected FRL rate and lane count.
+Modes above the TMDS limits can still be driven over FRL. When the
+TMDS check fails, fall back to an FRL check that runs the non-DSC FRL DFM
+at the best case (min bpc, max FRL rate, min audio) to confirm the mode
+fits.
 
-Use the min audio requirement (L-PCM 2ch/48KHz) to make sure FRL rate
-chosen can support baseline audio. The pruning of un-supported audio is
-handled as a separate change.
+The fallback is gated on intel_hdmi_can_support_frl(), added here as a
+placeholder returning false, so the FRL path stays inactive until FRL
+support is completed in a later change.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 118 +++++++++++++++++++++-
- 1 file changed, 117 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 61 ++++++++++++++++++++++-
+ 1 file changed, 60 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 8e742165a50a..0391597c9847 100644
+index 67228b538e81..b82c636b46f9 100644
 --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
 +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2306,13 +2306,129 @@ static int intel_hdmi_compute_tmds_clock(struct intel_encoder *encoder,
- 	return 0;
+@@ -62,6 +62,7 @@
+ #include "intel_hdcp_regs.h"
+ #include "intel_hdcp_shim.h"
+ #include "intel_hdmi.h"
++#include "intel_hdmi_frl_dfm.h"
+ #include "intel_link_bw.h"
+ #include "intel_lspcon.h"
+ #include "intel_panel.h"
+@@ -2021,6 +2022,51 @@ intel_hdmi_tmds_mode_clock_valid(struct drm_connector *_connector, int clock,
+ 	return status;
  }
  
-+static int
-+intel_hdmi_compute_frl_config(struct intel_encoder *encoder,
-+			      struct intel_crtc_state *crtc_state)
++static u32
++get_drm_color_format(enum intel_output_format output_format)
 +{
-+	static const int rate[] = {9, 18, 24, 32, 40, 48};
-+	struct intel_hdmi_frl_dfm frl_dfm = {0};
-+	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	int max_rate = intel_hdmi->max_frl_rate;
-+	bool can_support_frl_mode = false;
-+	int i;
++	switch (output_format) {
++	case INTEL_OUTPUT_FORMAT_RGB:
++		return DRM_OUTPUT_COLOR_FORMAT_RGB444;
++	case INTEL_OUTPUT_FORMAT_YCBCR420:
++		return DRM_OUTPUT_COLOR_FORMAT_YCBCR420;
++	case INTEL_OUTPUT_FORMAT_YCBCR444:
++		return DRM_OUTPUT_COLOR_FORMAT_YCBCR444;
++	default:
++		return DRM_OUTPUT_COLOR_FORMAT_RGB444;
++	}
++}
 +
-+	/* Fill mode related input params */
-+	frl_dfm.config.pixel_clock_nominal_khz = adjusted_mode->clock;
-+	frl_dfm.config.hactive = adjusted_mode->hdisplay;
-+	frl_dfm.config.hblank = adjusted_mode->htotal - adjusted_mode->hdisplay;
++static enum drm_mode_status
++intel_hdmi_frl_mode_clock_valid(struct intel_connector *connector,
++				const struct drm_display_mode *mode,
++				enum intel_output_format output_format)
++{
++	struct intel_hdmi *hdmi = intel_attached_hdmi(connector);
++	struct intel_hdmi_frl_dfm frl_dfm = {};
++	int max_rate = hdmi->max_frl_rate;
++	int lanes = max_rate < 24 ? 3 : 4;
 +
-+	/* Fill color related input params */
-+	frl_dfm.config.bpc = crtc_state->pipe_bpp / 3;
-+	frl_dfm.config.color_format = get_drm_color_format(crtc_state->output_format);
++	frl_dfm.config.pixel_clock_nominal_khz = mode->clock;
++	frl_dfm.config.hactive = mode->hdisplay;
++	frl_dfm.config.hblank = mode->htotal - mode->hdisplay;
 +
-+	/*
-+	 * Using fixed 2ch / 48 kHz baseline makes the chosen rate carry video + basic
-+	 * stereo (L-PCM), so the guaranteed floor is never pruned.
-+	 * Since overhead is only a few packets/line, it almost never bumps the FRL rate,
-+	 * but it avoids the situation where a rate is chosen with no room for audio gap.
-+	 *
-+	 * Everything above the baseline is decided by pruning the ELD at the committed
-+	 * rate.
-+	 */
-+	frl_dfm.config.audio_hz = 48000;
++	/* Use min bpc to check if mode can be supported */
++	frl_dfm.config.bpc = 8;
++	frl_dfm.config.color_format = get_drm_color_format(output_format);
++	frl_dfm.config.lanes = lanes;
++	frl_dfm.config.bit_rate_kbps = (max_rate * 1000000) / lanes;
++
++	/* min audio */
 +	frl_dfm.config.audio_channels = 2;
++	frl_dfm.config.audio_hz = 48000;
 +
-+	/*
-+	 * Check if the resolution can be supported in FRL mode.
-+	 * We try with the lowest FRL rate first — the minimum rate that
-+	 * satisfies DFM requirements — for better SI margin and lower power.
-+	 */
-+	for (i = 0; i < ARRAY_SIZE(rate); i++) {
-+		if (rate[i] > max_rate)
-+			continue;
-+		/* Fill the bw related input parameters */
-+		frl_dfm.config.lanes = rate[i] < 24 ? 3 : 4;
-+		frl_dfm.config.bit_rate_kbps = (rate[i] * 1000000) / frl_dfm.config.lanes;
++	if (!intel_hdmi_frl_dfm_nondsc_requirement_met(&frl_dfm))
++		return MODE_CLOCK_HIGH;
 +
-+		if (intel_hdmi_frl_dfm_nondsc_requirement_met(&frl_dfm)) {
-+			can_support_frl_mode = true;
-+			break;
-+		}
-+	}
-+
-+	if (!can_support_frl_mode) {
-+		memset(&crtc_state->frl, 0, sizeof(crtc_state->frl));
-+		return -EINVAL;
-+	}
-+
-+	/* Fill crtc_state frl DFM output params */
-+	crtc_state->frl.required_lanes = frl_dfm.config.lanes;
-+	crtc_state->frl.required_rate = frl_dfm.config.bit_rate_kbps / 1000000;
-+	crtc_state->frl.tb_borrowed = frl_dfm.params.tb_borrowed;
-+	crtc_state->frl.tb_actual = frl_dfm.params.tb_borrowed / 2;
-+	drm_dbg_kms(display->drm, "FRL DFM config: tb_borrowed = %d, tb_actual = %d\n",
-+		    crtc_state->frl.tb_borrowed, crtc_state->frl.tb_actual);
-+
-+	if (frl_dfm.params.tb_borrowed && (frl_dfm.params.tb_borrowed / 2) <= 492)
-+		crtc_state->frl.tb_threshold_min = 492 - (frl_dfm.params.tb_borrowed / 2);
-+	else
-+		crtc_state->frl.tb_threshold_min = 492;
-+
-+	/*
-+	 * TODO
-+	 * 1. Calculate condition for Reseource based scheduling enable.
-+	 * Disabling resource based scheduling for now.
-+	 * 2. Active Character buffer threshold depends on cd clock bw.
-+	 * Setting default value of 0.
-+	 */
-+	crtc_state->frl.rsrc_sched_en = false;
-+	crtc_state->frl.active_char_buf_threshold = 0;
-+
-+	return 0;
++	return MODE_OK;
 +}
 +
-+static int
-+intel_hdmi_compute_frl_clock(struct intel_encoder *encoder,
-+			     struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_hdmi *hdmi = enc_to_intel_hdmi(encoder);
-+	int max_bpc = max(crtc_state->pipe_bpp / 3, 8);
-+	int port_clock;
-+	int bpc;
-+
-+	for (bpc = max_bpc; bpc >= 8; bpc -= 2) {
-+		int ret;
-+
-+		if (!hdmi_bpc_possible(crtc_state, bpc))
-+			continue;
-+
-+		crtc_state->pipe_bpp = bpc * 3;
-+
-+		ret = intel_hdmi_compute_frl_config(encoder, crtc_state);
-+		if (ret)
-+			continue;
-+
-+		/* Port clock for FRL rates is bitrate in 10Kbps */
-+		port_clock = FRL_GBPS_TO_10KBPS(crtc_state->frl.required_rate);
-+
-+		if (hdmi_port_frl_clock_valid(hdmi, port_clock) == MODE_OK) {
-+			crtc_state->port_clock = port_clock;
-+			return 0;
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
- static int intel_hdmi_compute_clock(struct intel_encoder *encoder,
- 				    struct intel_crtc_state *crtc_state,
- 				    bool respect_downstream_limits,
- 				    bool enable_frl)
- {
- 	if (enable_frl)
--		return -EINVAL;
-+		return intel_hdmi_compute_frl_clock(encoder, crtc_state);
- 
- 	return intel_hdmi_compute_tmds_clock(encoder, crtc_state, respect_downstream_limits);
+ static enum drm_mode_status
+ intel_hdmi_sink_format_valid(struct intel_connector *connector,
+ 			     const struct drm_display_mode *mode,
+@@ -2045,6 +2091,13 @@ intel_hdmi_sink_format_valid(struct intel_connector *connector,
+ 	}
  }
+ 
++static bool
++intel_hdmi_can_support_frl(struct intel_hdmi *intel_hdmi)
++{
++	/* TODO check for FRL support */
++	return false;
++}
++
+ static enum drm_mode_status
+ intel_hdmi_mode_valid_format(struct intel_connector *connector,
+ 			     const struct drm_display_mode *mode,
+@@ -2052,6 +2105,7 @@ intel_hdmi_mode_valid_format(struct intel_connector *connector,
+ 			     enum intel_output_format sink_format)
+ {
+ 	struct intel_display *display = to_intel_display(connector);
++	struct intel_hdmi *hdmi = intel_attached_hdmi(connector);
+ 	enum drm_mode_status status;
+ 
+ 	status = intel_hdmi_sink_format_valid(connector, mode,
+@@ -2063,7 +2117,12 @@ intel_hdmi_mode_valid_format(struct intel_connector *connector,
+ 	if (status != MODE_OK)
+ 		return status;
+ 
+-	return intel_hdmi_tmds_mode_clock_valid(&connector->base, clock, has_hdmi_sink, sink_format);
++	status = intel_hdmi_tmds_mode_clock_valid(&connector->base, clock, has_hdmi_sink, sink_format);
++
++	if (status != MODE_OK && intel_hdmi_can_support_frl(hdmi))
++		status = intel_hdmi_frl_mode_clock_valid(connector, mode, sink_format);
++
++	return status;
+ }
+ 
+ static enum drm_mode_status
 -- 
 2.50.1
 
