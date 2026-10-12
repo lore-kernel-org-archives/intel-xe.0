@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0BCDCA9ED6
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:49:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BFD4CA9ED6
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:51:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 600BA10EC96;
-	Mon, 12 Oct 2026 04:49:44 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F0B010EC95;
- Mon, 12 Oct 2026 04:49:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7AB510EC94;
+	Mon, 12 Oct 2026 04:51:20 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF59F10EC96;
+ Mon, 12 Oct 2026 04:51:14 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 12920601FA;
- Mon, 12 Oct 2026 04:49:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87C091F0089B;
- Mon, 12 Oct 2026 04:49:37 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 956C643BE5;
+ Mon, 12 Oct 2026 04:51:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 548871F0089B;
+ Mon, 12 Oct 2026 04:51:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791780577;
- bh=r45ZW0wjWIWJud8Ws7IZwEW9omR6MhyZOB8u8MQVLv0=;
+ s=k20260515; t=1791780674;
+ bh=QDVeJ7g6n3+iEf/AfmJOAjovSZO1c6LMDDabTDsUtxw=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=lBoU893SO3U9pMasgOvpWjWeVEwGGckncKjJQevZF9U3rXpKe0gjuGbNQvZp9r1oW
- wAdwELlWgLLjCJw7v/MzraV3mhpIdsXUFywsnn1rOpMbfYkcd7SlCvh8FRKZGhWAmO
- ODThvy9kNmL89zXEf6XpGBAcbHnwI0w2tI8BYT64sXart40cJelZbX+T48HRunBTac
- 02dVwpuRQJ+vv0aW5TqLRTjYnk66ZFwwMChKSe0AcUglcQDCHQgaTZ3O3FwLYAnr2z
- kzWAzLDzaaR3RbeWEGJS+rCm7FHDv98VblSSCcB8n22XzopnqS6oPrIQqFHiY6xCjM
- TX8qqDBy/E8Uw==
-Message-ID: <sashiko-outbox-167631@kernel.org>
+ b=ShlUnfeORoIvJDWP9kWanCYZhiuTJha+xsTahIFj6I1oh6WyrpAdktWC9vJDiVNbZ
+ 5Rlh+BeVz1dqZXZEiM+u6SVeScXIVNSx9zvf/pwLh+dNbH3m75diLLXtBKAAQJi82w
+ GJNH5u5+HvvNmpuVUVYMdx+GI+ymQoNAd8keWwi+VXv29ruOBrWdUEYdkUBHxTyuF+
+ RHrl/t2gwimOkIBV9ruXyzWzytfhOBgsCnthAUGwbzKtf2VKlZ4vc3BP5K07xwb36x
+ pt3NAzMyFsFHIczAKwSzadYCUnkbPsuYFyw8VYn74u9ZWOeHY8T5zvBVRkXPOMzVJU
+ DHvIHOfqcYTkw==
+Message-ID: <sashiko-outbox-167634@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 36/56] drm/i915/hdmi: Validate FRL modes in
- mode_valid using the FRL DFM
+Subject: Re: [PATCH v2 53/56] drm/i915/joiner: Move joiner pipe mask helper
+ to intel_joiner.c
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-In-Reply-To: <20261012035806.3361439-37-ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20261012035806.3361439-54-ankit.k.nautiyal@intel.com>
 References: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
- <20261012035806.3361439-37-ankit.k.nautiyal@intel.com>
+ <20261012035806.3361439-54-ankit.k.nautiyal@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 12 Oct 2026 04:49:37 +0000
+Date: Mon, 12 Oct 2026 04:51:14 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,105 +57,46 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] drm/i915: FRL mode valid misses 3D frame packing clock doubling
+- [Low] refactor: duplicate intel_joiner_valid_primary_pipe_mask() declarat=
+ion
 --
 
-commit 357e437906e7e9f540a08210f7b85cf2f3e109aa
+commit 8219a04938cb40be1f657190cac49de622685e24
 Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-drm/i915/hdmi: Validate FRL modes in mode_valid using the FRL DFM
 
-This commit adds a fallback FRL capability check to
-intel_hdmi_mode_valid_format() using the non-DSC FRL DFM parameters to
-validate modes that exceed TMDS limits. It also introduces
-intel_hdmi_can_support_frl() as a placeholder returning false until FRL
-support is completed.
+drm/i915/joiner: Move joiner pipe mask helper to intel_joiner.c
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
-i915/display/intel_hdmi.c
-> index 67228b538e81a..b82c636b46f93 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-[ ... ]
-> @@ -2021,6 +2022,51 @@ intel_hdmi_tmds_mode_clock_valid(struct drm_connec=
-tor *_connector, int clock,
->  	return status;
->  }
-> =20
-[ ... ]
-> +static enum drm_mode_status
-> +intel_hdmi_frl_mode_clock_valid(struct intel_connector *connector,
-> +				const struct drm_display_mode *mode,
-> +				enum intel_output_format output_format)
-> +{
-> +	struct intel_hdmi *hdmi =3D intel_attached_hdmi(connector);
-> +	struct intel_hdmi_frl_dfm frl_dfm =3D {};
-> +	int max_rate =3D hdmi->max_frl_rate;
-> +	int lanes =3D max_rate < 24 ? 3 : 4;
-> +
-> +	frl_dfm.config.pixel_clock_nominal_khz =3D mode->clock;
+This commit moves the intel_joiner_valid_primary_pipe_mask() helper and
+its dependencies from intel_display.c to intel_joiner.c to group joiner
+functionality together. It also adds the function declaration to
+intel_joiner.h.
 
-[Severity: High]
-Does this code miss the 3D frame packing clock doubling?
-
-In intel_hdmi_mode_valid(), the clock variable is doubled for 3D Frame
-Packing modes:
-
-	if ((mode->flags & DRM_MODE_FLAG_3D_MASK) =3D=3D DRM_MODE_FLAG_3D_FRAME_PA=
-CKING)
-		clock *=3D 2;
-
-This adjusted clock is passed to intel_hdmi_mode_valid_format() and used by
-the TMDS validation path.
-
-However, intel_hdmi_frl_mode_clock_valid() directly reads mode->clock, which
-means it uses the unadjusted clock.
-
-Could this cause the FRL Data Flow Management (DFM) capacity check to
-underestimate the required bandwidth by a factor of 2 for 3D Frame Packing
-modes, erroneously accepting modes that exceed the physical capacity of the
-FRL link?
-
-> +	frl_dfm.config.hactive =3D mode->hdisplay;
-> +	frl_dfm.config.hblank =3D mode->htotal - mode->hdisplay;
-> +
-[ ... ]
-> @@ -2052,6 +2105,7 @@ intel_hdmi_mode_valid_format(struct intel_connector=
- *connector,
->  			     enum intel_output_format sink_format)
->  {
->  	struct intel_display *display =3D to_intel_display(connector);
-> +	struct intel_hdmi *hdmi =3D intel_attached_hdmi(connector);
->  	enum drm_mode_status status;
-> =20
->  	status =3D intel_hdmi_sink_format_valid(connector, mode,
-> @@ -2063,7 +2117,12 @@ intel_hdmi_mode_valid_format(struct intel_connecto=
+> diff --git a/drivers/gpu/drm/i915/display/intel_joiner.h b/drivers/gpu/dr=
+m/i915/display/intel_joiner.h
+> index 85e19ed1527f5..962b9724c1126 100644
+> --- a/drivers/gpu/drm/i915/display/intel_joiner.h
+> +++ b/drivers/gpu/drm/i915/display/intel_joiner.h
+> @@ -22,4 +22,6 @@ bool intel_joiner_candidate_valid(struct intel_connecto=
 r *connector,
->  	if (status !=3D MODE_OK)
->  		return status;
+>  	for ((__num_joined_pipes) =3D 1; (__num_joined_pipes) <=3D (I915_MAX_PI=
+PES); (__num_joined_pipes)++) \
+>  		for_each_if(intel_joiner_candidate_valid(__connector, (__mode)->hdispl=
+ay, __num_joined_pipes))
 > =20
-> -	return intel_hdmi_tmds_mode_clock_valid(&connector->base, clock, has_hd=
-mi_sink, sink_format);
-> +	status =3D intel_hdmi_tmds_mode_clock_valid(&connector->base, clock, ha=
-s_hdmi_sink, sink_format);
+> +u8 intel_joiner_valid_primary_pipe_mask(struct intel_display *display, i=
+nt num_joined_pipes);
 > +
-> +	if (status !=3D MODE_OK && intel_hdmi_can_support_frl(hdmi))
-> +		status =3D intel_hdmi_frl_mode_clock_valid(connector, mode, sink_forma=
-t);
 
-[Severity: High]
-Since intel_hdmi_frl_mode_clock_valid() is called without the adjusted clock
-parameter, it will use the unadjusted mode->clock.
+[Severity: Low]
+This isn't a bug, but should the existing declaration of
+intel_joiner_valid_primary_pipe_mask() in intel_display.h also be removed?
 
-Should we pass the adjusted clock variable to
-intel_hdmi_frl_mode_clock_valid() similar to how it is passed to
-intel_hdmi_tmds_mode_clock_valid()?
-
-> +
-> +	return status;
->  }
-> =20
->  static enum drm_mode_status
+When this function was moved to intel_joiner.c, a new declaration was added
+here, but the original prototype was left behind in intel_display.h. This
+creates a duplicate function prototype. Callers in intel_display.c might
+continue to compile by implicitly relying on the stale declaration instead
+of properly including intel_joiner.h.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261012035806.3361=
-439-1-ankit.k.nautiyal@intel.com?part=3D36
+439-1-ankit.k.nautiyal@intel.com?part=3D53
