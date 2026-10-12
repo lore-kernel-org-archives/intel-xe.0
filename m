@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29140CA9EC5
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:16:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E5B7CA9ED5
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:16:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E56110EC62;
-	Mon, 12 Oct 2026 04:15:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4B6B10EAD5;
+	Mon, 12 Oct 2026 04:16:02 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2762A10EA46;
- Mon, 12 Oct 2026 04:15:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7A4B10EAC6;
+ Mon, 12 Oct 2026 04:15:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791778548; x=1823314548;
+ t=1791778550; x=1823314550;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6zPROt+Dg8nP/iKqHkjXEz14P3pEMUR1xgESl0e4YiM=;
- b=Na7pmMvMJSB2efqUJyHkEh+N04PKWsTIRFRwGfssdS4hPd3Q7yVJZj6l
- KlVNO6/tkjJYwjBiBW6imI2E5OxPOGEXQ/NkaTtyRM9dikcMNp+Lm4DTh
- xXMGdwg7APXyGs6qzHYxw6K5skHORG45uYzIOs1P1G35DlO5y7QcDUTFs
- uocz3YdSnM4sfTjqzlorlTLMussZUYC3liC8Xs3oLxkUorwb1+KpINQ38
- fsLiF3jGpBlC7At+e7VdZPfxT8D5HK4U5FJShVXmYl4zibHEDxHUl8/Tq
- KyXKGysUHYaSkbLjVp4p0tTWVTZEXu/trjrDGYZ3biJxfUXNizfRuMwpZ w==;
-X-CSE-ConnectionGUID: wkPbr/mgRw2cOT8Z6lutVA==
-X-CSE-MsgGUID: QJf1CtrXSS6XOi50K7ld2w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="380939"
+ bh=Gi1/Kf39ooHGqZM4NV3KIqGLWzJh58XBJUVd+2U7+S4=;
+ b=bYUAvYL9CJCww44VuSZBgi2wNXDmkpK2wJpy4Ivhz5Js4v9jsZX515zV
+ pmKPsviAvKOVcYINGiPKVqyE5TBH5NUlPTVKv3hOqkHtNFhUXBc7HrLfw
+ ppZNmYM9C8Z22GFFzPDzBQm6H0fUNlVaqdjBCBIrPaKKpDdOyVR8ix6Uj
+ A4WfuBDIm7XPlVTGMsDn7jfhmeSkjfXpv8NTR3iBLIlkgRqmM+hhp5WUl
+ 4heGv7/A1U9BcFTOehEZMc+Adldjs8YBbXPklKszCTCddTK5PGD/VsFwI
+ ZGnWI5JwGZET9UCPRS6VRDU6XnPUrz5zVzQMe6O9hPNAH002ntuRunIvd g==;
+X-CSE-ConnectionGUID: ZgO2fTZUTgySPXcF1FxTEg==
+X-CSE-MsgGUID: SMO6zdU9RJOwXuokM+SWpA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="380940"
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="380939"
+   d="scan'208";a="380940"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 21:15:47 -0700
-X-CSE-ConnectionGUID: hyriq3YATZ2payqDBYRq4A==
-X-CSE-MsgGUID: 6iG/IQJDQYWJer2axIZlYg==
+ 11 Oct 2026 21:15:49 -0700
+X-CSE-ConnectionGUID: qfeXwfXgSsqv8OeRYZbQbw==
+X-CSE-MsgGUID: D8gFZ0RjQDKkptcbFvRkIg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="1256664"
+   d="scan'208";a="1256673"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 21:15:46 -0700
+ 11 Oct 2026 21:15:48 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, jani.nikula@linux.intel.com,
  uma.shankar@intel.com, ville.syrjala@linux.intel.com,
  suraj.kandpal@intel.com
-Subject: [PATCH v2 41/56] drm/i915/ltphy: Fix HDMI FRL per-lane TX mapping
-Date: Mon, 12 Oct 2026 09:27:50 +0530
-Message-ID: <20261012035806.3361439-42-ankit.k.nautiyal@intel.com>
+Subject: [PATCH v2 42/56] drm/i915/hdmi: Add read out for FRL state
+Date: Mon, 12 Oct 2026 09:27:51 +0530
+Message-ID: <20261012035806.3361439-43-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
 References: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
@@ -68,89 +68,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_lt_phy_set_signal_levels() currently maps DDI lane N to PHY lane
-N / 2, TX N % 2, which matches the DisplayPort lane mapping. HDMI FRL
-uses a different mapping because the LT PHY swaps main links 0 and 2 to
-support DP++, with the swap applied before port reversal.
+Read out the FRL configuration and Data Flow Metering registers and
+fill the FRL members in crtc_state.
 
-The resulting HDMI lane-to-transmitter mapping is:
+In subsequent changes these are added to the state checker and compared
+bwteen two crtc_states in intel_pipe_config_compare().
 
-  HDMI lane    Normal         Reversed
-  ---------    ------------   ------------
-  0            LN1_TX1        LN0_TX2
-  1            LN0_TX2        LN1_TX1
-  2            LN0_TX1        LN1_TX2
-  3            LN1_TX2        LN0_TX1   (x4 only)
-
-Using the DP mapping for HDMI FRL causes per-lane FFE settings to be
-programmed on the wrong transmitter. For example, an FFE request for
-lane 0 is applied to lane 2 and vice versa.
-
-Fix this by using an HDMI FRL-specific lookup table indexed by lane
-reversal state and HDMI lane number. Retain the existing mapping for
-DisplayPort and HDMI TMDS, where lane-specific signal levels are not
-required.
-
-The TX enable masks in intel_lt_phy_enable_disable_tx() already match
-the Bspec-defined HDMI FRL mapping and require no changes.
-
-Bspec: 74701
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lt_phy.c | 33 +++++++++++++++++++--
- 1 file changed, 30 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c  |  3 ++
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 35 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_hdmi.h |  1 +
+ 3 files changed, 39 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index ba03e5f1bb87..6d6ff9fbcce8 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -2419,6 +2419,24 @@ void intel_lt_phy_set_signal_levels(struct intel_encoder *encoder,
- 	struct ref_tracker *wakeref;
- 	int n_entries, ln;
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	/*
-+	 * HDMI 2.1 FRL distributes the DDI lanes across the PHY transmitters in
-+	 * a fixed, non-identity order unlike DP which uses
-+	 * lane = ln / 2, tx = ln % 2. tx selects LT_PHY_TXY_*(tx)
-+	 * within the message-bus lane. Indexed [lane_reversal][ddi_lane]; the
-+	 * x3 case uses the first three entries of each row.
-+	 */
-+	static const struct {
-+		u8 lane_mask;
-+		u8 tx;
-+	} frl_lane_map[2][4] = {
-+		/* not reversed: LN1_TX1, LN0_TX2, LN0_TX1, LN1_TX2 */
-+		{ { INTEL_LT_PHY_LANE1, 0 }, { INTEL_LT_PHY_LANE0, 1 },
-+		  { INTEL_LT_PHY_LANE0, 0 }, { INTEL_LT_PHY_LANE1, 1 } },
-+		/* reversed:     LN0_TX2, LN1_TX1, LN1_TX2, LN0_TX1 */
-+		{ { INTEL_LT_PHY_LANE0, 1 }, { INTEL_LT_PHY_LANE1, 0 },
-+		  { INTEL_LT_PHY_LANE1, 1 }, { INTEL_LT_PHY_LANE0, 0 } },
-+	};
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 22a49eb50b20..f7cbe330e19e 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4302,6 +4302,9 @@ static void intel_ddi_get_config(struct intel_encoder *encoder,
+ 	intel_dip_sdp_transmission_line_get_config(pipe_config);
  
- 	if (intel_tc_port_in_tbt_alt_mode(dig_port))
- 		return;
-@@ -2435,9 +2453,18 @@ void intel_lt_phy_set_signal_levels(struct intel_encoder *encoder,
- 
- 	for (ln = 0; ln < crtc_state->lane_count; ln++) {
- 		int level = intel_ddi_level(encoder, crtc_state, ln);
--		int lane = ln / 2;
--		int tx = ln % 2;
--		u8 lane_mask = lane == 0 ? INTEL_LT_PHY_LANE0 : INTEL_LT_PHY_LANE1;
-+		u8 lane_mask;
-+		int tx;
+ 	intel_audio_codec_get_config(encoder, pipe_config);
 +
-+		if (crtc_state->frl.enable) {
-+			lane_mask = frl_lane_map[dig_port->lane_reversal][ln].lane_mask;
-+			tx = frl_lane_map[dig_port->lane_reversal][ln].tx;
-+		} else {
-+			lane_mask = (ln / 2) == 0 ? INTEL_LT_PHY_LANE0 :
-+						    INTEL_LT_PHY_LANE1;
-+			tx = ln % 2;
-+		}
-+
++	if (intel_crtc_has_type(pipe_config, INTEL_OUTPUT_HDMI))
++		intel_hdmi_frl_get_config(pipe_config);
+ }
  
- 		if (!(lane_mask & owned_lane_mask))
- 			continue;
+ void intel_ddi_get_clock(struct intel_encoder *encoder,
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 69612ebe80f0..c5f25d2d6331 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -4160,3 +4160,38 @@ void intel_hdmi_frl_cfg_write(const struct intel_crtc_state *crtc_state)
+ 
+ 	intel_de_rmw(display, TRANS_HDMI_FRL_CFG(display, cpu_trans), 0, val);
+ }
++
++static void intel_hdmi_frl_cfg_read(struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	enum transcoder cpu_trans = crtc_state->cpu_transcoder;
++	u32 val;
++
++	val = intel_de_read(display, TRANS_HDMI_FRL_CFG(display, cpu_trans));
++
++	if (val & TRANS_HDMI_FRL_ENABLE)
++		crtc_state->frl.enable = true;
++
++	crtc_state->frl.rsrc_sched_en =
++		REG_FIELD_GET(TRANS_HDMI_R_B_SCHED_ENABLE_MASK, val);
++	crtc_state->frl.active_char_buf_threshold =
++		REG_FIELD_GET(TRANS_HDMI_ACTIVE_CHAR_BUF_THRESH_MASK, val);
++}
++
++void intel_hdmi_frl_get_config(struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++
++	if (!HAS_HDMI_FRL(display))
++		return;
++
++	intel_hdmi_frl_cfg_read(crtc_state);
++
++	if (!crtc_state->frl.enable)
++		return;
++
++	crtc_state->frl.required_rate = crtc_state->port_clock / 100000;
++	crtc_state->frl.required_lanes = crtc_state->lane_count;
++
++	intel_hdmi_frl_dfm_read(crtc_state);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
+index a70b56258cd4..305ee1186d0b 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.h
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
+@@ -84,6 +84,7 @@ void intel_hdmi_poll_for_scrambling_enable(const struct intel_crtc_state *crtc_s
+ int intel_hdmi_sink_max_frl_rate(struct drm_connector *connector);
+ int intel_hdmi_sink_dsc_max_frl_rate(struct drm_connector *connector);
+ void intel_hdmi_frl_cfg_write(const struct intel_crtc_state *crtc_state);
++void intel_hdmi_frl_get_config(struct intel_crtc_state *crtc_state);
+ 
+ /* FRL rate per lane (Gbps) -> PHY PLL table units (10 kbps) */
+ #define FRL_GBPS_TO_10KBPS(rate)	((rate) * 100000)
 -- 
 2.50.1
 
