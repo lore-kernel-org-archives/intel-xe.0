@@ -4,52 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C12E9CA9ED0
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 19:29:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A620CA9EDE
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 19:46:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6820510E4F6;
-	Mon, 12 Oct 2026 19:29:32 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB96B10E4F6
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 19:29:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EECBD10E627;
+	Mon, 12 Oct 2026 19:46:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 990AA10E4F6;
+ Mon, 12 Oct 2026 19:46:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791833366; x=1823369366;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=X5l7dpglCoBqodD96qiQGm2mBjx1MVptS2RWArKgcbw=;
- b=aT1sdj2ATQStIKwsZaynLDXkwKtRvwMoMhs88qg7rOkWia5AOTK4J7cx
- +XrXyGO6/5sd56qcPGi26nzYYaEwIytxnkgrVfc4bsJK6N9HDmIJzZw5S
- 42rcJcU6jTvdqXH+jZy8grPW3PbYEyKk4QFt00xXARuBpwWxSWWi+wOs5
- YqDlCknVN0+Xifv8WPMcCIz13vIYAB/NLSPBWZ6/L15br8yk5bt9wIWtF
- WqkegLsAFt5PpYTleXSNHUCOWwl6gLo+GUMFKzCLoSLyjZYPQPVMV40Lp
- ODxkCqpn/fdBWazRTpqmPEdzjf3hPeHB1wHz2P1ygYgQANBS1Fkwbg0Tp Q==;
-X-CSE-ConnectionGUID: m4LXaOrGQpC7Ahezs8VBSg==
-X-CSE-MsgGUID: chr/isKaSXyrv8+nPTvNSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="450206"
+ t=1791834389; x=1823370389;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=Bp1cjQI2G2zGM6kJl8qVPW15Ho+NAWgc/ZZWzK6JTLo=;
+ b=QSA9J+uOnDkdTtp4xG6yKI8Voc5oJMw8AZN0ozB6FiWYFKBWpuNltioR
+ PN3SN/1joWvcw4B17gkUo3+HJHxq7o2uEXyTTzNDKQbdTotEsNWsFZ1v8
+ QCHBr1g45H2SEIeFqLUpUUGQCkH+7LiIXN3xMvMUx+VTRTqppzFVreZlX
+ dGDIhDjRywUoti1Sf6s7BLr1aAMnH+xt0Iv8CXYLL7aEC3QzFUPf3fVVA
+ aKVCFzD1ZFUajzEMox01b41+4N67oDPY7eQDOW+7ceszy6RVt6ObqgKy9
+ Mnl4gcoSYzqKeL9hR/XFkPGW4zQ4bzDd8wLbOa6Xg/NhIY99nSF5HRpok w==;
+X-CSE-ConnectionGUID: x5Ys0UqVS/iVyKv+hQnvPw==
+X-CSE-MsgGUID: SFdh8VnpSFOxIu47WVoSSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="435963"
 X-IronPort-AV: E=Sophos;i="6.27,154,1787036400"; 
-   d="scan'208";a="450206"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 12:29:25 -0700
-X-CSE-ConnectionGUID: CXuehJALTd21d5wPtP+REw==
-X-CSE-MsgGUID: r8HOQRSmTSexzmjvefkr0A==
+   d="scan'208";a="435963"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2026 12:46:28 -0700
+X-CSE-ConnectionGUID: eE49OXTQS5mhiVDV0Bl/dA==
+X-CSE-MsgGUID: tETE5sHSRAewJEIzE79MyQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,154,1787036400"; 
-   d="scan'208";a="897777"
-Received: from jesusnar-vm-u24.iil.labsad.intel.com ([10.111.58.210])
- by orviesa009.jf.intel.com with ESMTP; 12 Oct 2026 12:29:24 -0700
-From: Jesus Narvaez <jesus.narvaez@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Jesus Narvaez <jesus.narvaez@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Alan Previn <alan.previn.teres.alexis@intel.com>
-Subject: [PATCH] drm/xe/guc: Handle GuC semaphore instruction field check error
-Date: Mon, 12 Oct 2026 22:28:28 +0300
-Message-ID: <20261012192828.226700-2-jesus.narvaez@intel.com>
-X-Mailer: git-send-email 2.43.0
+   d="scan'208";a="1091479"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2026 12:46:27 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Mon, 12 Oct 2026 12:46:27 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49 via Frontend Transport; Mon, 12 Oct 2026 12:46:27 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.7) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Mon, 12 Oct 2026 12:46:26 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=D1lIjbVPim3LNANl9m//AxZn1LUH6CcJcjGxs9qqe35UsreSRsaOlbjE4akPziEi8L9EH9ke1K3C4LGizFm5kDIcbg/KQuSWizMhWl+8yFL1MdpNNwU0uJD4Hyjt2LpFsYjWFkSlSMg/Hu4vsJwR1RYisMRwwdJ7Ct1Ka9mWcgi8c0zxkPh7pNEkujQtgMYNUK1cPtFTWzUP8cg8p0q20+2aIOKfo03V9xnNhvlRSS1aTMkWh851yejAck3ElTUzsRBgzxdx2h00CS6Yi9S9CQ0RuELonpCvvWfmyJsSt4+jXAb3hd0LETE77c/TJn32uCIj0C49JqOsuUW2LP3HAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xXFLtctUL3rmj6wngyHxrs84N4+LP0xyHP299DzUD5k=;
+ b=D3bf/3WNE/Ehh7qnpTs+9opG6hsOqF4nZYVxq2Ijp8aPnZFVWbz3YImjNRBBk2VBz6jgHIHTaf+MMpdRlo4t1ydRVcV6ISJBmwa6RnfBSW8sCzLbea7Oqg3/t/tKCq0f5lzmSgKohBMOf5AbKrKXsR2bJEZHlyv3yWSR78QCXVq3BfddwYZo/XdlGRt/5K+v2X6eKzPKoZuDz1uNjMcZsQhLnpdwEeqjME/71PD2gwcMvbzshHqHRs4JTdsPuDCt6/Kg5gKzfRgAw38h71rKjZxs2BlVfG5owhIZMs5m/spcc1745Pc4HS4wWgFcEkrxoJX1zWz5FEUYqsBcH5ejhg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CH3PR11MB7180.namprd11.prod.outlook.com (2603:10b6:610:148::5)
+ by IA1PR11MB6324.namprd11.prod.outlook.com (2603:10b6:208:388::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.496.23; Mon, 12 Oct
+ 2026 19:46:25 +0000
+Received: from CH3PR11MB7180.namprd11.prod.outlook.com
+ ([fe80::70dc:90b2:50b4:31a8]) by CH3PR11MB7180.namprd11.prod.outlook.com
+ ([fe80::70dc:90b2:50b4:31a8%7]) with mapi id 15.21.0496.015; Mon, 12 Oct 2026
+ 19:46:24 +0000
+Date: Mon, 12 Oct 2026 15:46:08 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Guillaume Tucker <gtucker@gtucker.io>
+CC: Matthew Brost <matthew.brost@intel.com>, Thomas
+ =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, "Mallesh
+ Koujalagi" <mallesh.koujalagi@intel.com>, Badal Nilawar
+ <badal.nilawar@intel.com>, Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Riana Tauro <riana.tauro@intel.com>, Stuart Summers
+ <stuart.summers@intel.com>, Jonathan Corbet <corbet@lwn.net>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] drm/xe/log: fix documentation title levels
+Message-ID: <as05AF81CNjbCEas@intel.com>
+References: <2320050536ca29afe69ecd163eb974a40df571fc.1791740369.git.gtucker@gtucker.io>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <2320050536ca29afe69ecd163eb974a40df571fc.1791740369.git.gtucker@gtucker.io>
+X-ClientProxiedBy: SI1PR02CA0039.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6::9) To CH3PR11MB7180.namprd11.prod.outlook.com
+ (2603:10b6:610:148::5)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PR11MB7180:EE_|IA1PR11MB6324:EE_
+X-MS-Office365-Filtering-Correlation-Id: c7b21ef9-ebcc-45b8-b7f9-08df28997f4c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|23010399003|56012099006|5023799004|11063799006|261009223027099003|10067099003|22082099003|18002099003|6133799003|3023799007;
+X-Microsoft-Antispam-Message-Info: 5cWTBdK6aL0BnVje9ol5LI5Qpjt6qTH6K+lWH6BN/qROvIDBcOXUvMrkIjMBbXoIaT4V5T/hQ3hvUaGwbWZLUkY1MrucdhipvC9BA399BwsAZ16nso3iDjAbmN/PWj+7kPSkkkzLlRB/skvgWZnJf+IWncdzVAGXScsfTntUXsJOwla7dri2uL1x+MP6yQuTvcj45/Wfj1qRi3OP4rfFfmRVgK+F5UbEOKz9RAPA8eVKfQDKVfOKh3EY/PwTY3yeacu+xfoY8H9DMrquPShwjLu5ZYAYFMqBP38s5dbNC/aOYN348k+WC9j6NAvDIgVfr9hFGyt6jNnk0Sx/hxu/3i0KIl+zZVdqyMfaH1eZXlgWl3OtqJ3OQjImYPGU5OaQzkXf5xXMvZNqlJoi3KPcgm9ztb3Y31WGwQhqrB/+NCXZKu+/JHOTWe6nOFRjRRlLu604dYdlkYGqQ+pFp2uhkd7gn/+2rlgf2dFAQd/FUgm54EEXlY6G2YfbwzUC+5l/kkQpeQo9rlqbfushccFPtYzxTYQ1LyTuzdGWB66pvImjzGLnDnVPDLkOLm0EEVxQFuCDkYcngrqbobpwrTgLaNWmK6kUIGFkkzHtQqqyIzfmPued+AHqln9viv1blogPR7RdzRmUiOW6Qboh/hJEz+cxsmDwujHefIz4n/s+kCM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH3PR11MB7180.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(56012099006)(5023799004)(11063799006)(261009223027099003)(10067099003)(22082099003)(18002099003)(6133799003)(3023799007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?u2zIwTQOFRm70UU2aR9J9mwIDa9ImYL02wr+cn57+QmC7ozcS0tUeiufAKi1?=
+ =?us-ascii?Q?0hDSuoE6fylWLBtw7lpain7eETiTKz0tXWp3maIhGh25US4S1ZLUx85NxuVs?=
+ =?us-ascii?Q?qEMdL75QyN5YtpiZTfIaFybq9I6qxRZhotv2yAyzZzgc5JapurV8Esk7Zb2/?=
+ =?us-ascii?Q?/Lv+1VyerDEAghuD3gpcODI/YXhxEcbnWyvB4RPdb6wF0pMYtkoFrdl7JrHl?=
+ =?us-ascii?Q?J70K3t1gcYOUikR+kt1NemOd2QxN8dbhoCzYGoSOtaEMObt9+7+jGXafEs+U?=
+ =?us-ascii?Q?HDUxT1Ja70GMHEplKwNZYCdVxowxJ4BfqjrrYj4b6m7o/8oN9FeFSA4bwtbf?=
+ =?us-ascii?Q?ZU5xogDxP78Jy/6mnAzq/2ST173rGU/lEtKhgsvyfpbZeku++rSWCurGQWUd?=
+ =?us-ascii?Q?ZGq84cj6GdP2aJfZ46se0RDc+L9fKTJ2SxJWJtFtgbFXg4FjLqjmz6UEkklR?=
+ =?us-ascii?Q?U0diEH7rMRjTCNlGAATuvSbtSI0bO1NYfslgLquoxrkWzE1An8RJhYhoKE0s?=
+ =?us-ascii?Q?KPWTyIAvDGJdJL/oI+Si0xj3yYhIJFypN5nNlcMyBRUgDZQl9pFZS1htd+OA?=
+ =?us-ascii?Q?aTHvPnuY9/A5pHQBicqLt7H7wsTVqbzXOM0kq2xFCpLqQJrc8ZcyJ+i9FyQk?=
+ =?us-ascii?Q?IDDlfDb12sw9v7eUC0OKArqa1g9EFuUqD3kIyQiLbxhikfUO4+Yciyr2gb56?=
+ =?us-ascii?Q?O9WNMfKIa0ILwRxDEM9xX4qrVUs66wAOfBIgTLPvTxjLw+riJ7cs6o2IKlge?=
+ =?us-ascii?Q?FReFth1uTGrT9/1uNJz7UyVtXl1O56cEQRhiJxjEI6HOYVQNlMQEn9tCUkLJ?=
+ =?us-ascii?Q?E8m0OIqLus77SdPvRfVjMhvrvGBT8OBL+ve1k0CTIIrrTLquYyjWQVrvJOKM?=
+ =?us-ascii?Q?AG4rSK1wYhSkVu0xrleXPwKOwV0InRDZGkpPUsDZhkWnPyBYCoN5XPNnUlH7?=
+ =?us-ascii?Q?ncmbUbHoEm6gjn2WNPJjJziA9Nt1oVzTuZYo77mNW6s9r+9AEvG4yBzoviNQ?=
+ =?us-ascii?Q?W6wt3ozp6zWkZm8PHqyGkUVZ1xBkoga7NWtCl9Xrp//ywvH43WDnMbJFR3IV?=
+ =?us-ascii?Q?XdJ6VK0evAAEQFOWixJ2s0ZMfjtP30yqs2fHnZAAg41uPWT8+wSEOX0m5Unk?=
+ =?us-ascii?Q?+VYcsLRAcccmWm7PHUGABKDUOVhB/GXb9DXgHh+aKjd8kTgwuTNIb5OBfAks?=
+ =?us-ascii?Q?7jwQXgwhzf11p5X/hOeE2FWljyColM2XWRXDXE5iiZyk2UKb+tjSrb/6TUPO?=
+ =?us-ascii?Q?XMMq0I95nrXUMtiPUKnNpYcx2SjjTmIR8x6xflsKJUREiyd3ijwLk59XqFhf?=
+ =?us-ascii?Q?YiBJ2U1Q1LqQB5eukLry58AA1IGRDCpD2qjRwFg/ls9T2PQR3we81CXlCXFT?=
+ =?us-ascii?Q?BgKwVRdW9yBM5xP3jXySWqh3RKLZMpf4m9oCRRasvrbjeMc7FCvPYtjrb6De?=
+ =?us-ascii?Q?MybOrSpe813voM40EmGLKxgZAGsUMvD1v6b5rncp613+LKMyEgnSPjLguKr3?=
+ =?us-ascii?Q?T4CN8TKn+OYaHZSjrq4Znkp37cMLgd/rx6kWJugLVw2Erth94NwkLeHnIeLs?=
+ =?us-ascii?Q?v/7XF4gnfUExdGvPH+XkoMwgHSZIm+9x34Fmfr7e9oA+fwd4RwxG9we9WxAs?=
+ =?us-ascii?Q?G3ffJtbfwDUebd0I3Fuis5TIfPzXrS0q+Y3+8JOArEy2Hss71MQTtwILra7m?=
+ =?us-ascii?Q?w+JWnNA44S/8+ffZjMhNWC2leDemoogMblE+AKe9zdO4WlxPASPT3T/BZzgj?=
+ =?us-ascii?Q?lnyTypxW0w=3D=3D?=
+X-Exchange-RoutingPolicyChecked: GaCwEqM3sv6Pqo0lMmcUgftj6yYeAwWB5URDVAvFxj0L8CR6OidjISU8InWYj+GqAUsTElrhaaMhOryqI4+E0x0CX224lMt005dDUXK6AbKBy5CUPmtNM7dPXAkY1GjvHWMve0CBviUnrNlqVyN+0dSCxy0Hwq13XQsFx18nC/dICwIGqo4bzIvTiWZ5gc3SwXzpfvS8SzdnbkoK6Akp5s+y889fAiIZ7ZH7z9j23ZqvOBLn1fZaoXYte2e0Sdh0aN6wK8SUZnEE71y+TBez9DF7As9HkhxEQhdinKIszjempnQvtC5PykK9OKPKp4PG+aXO9gy2ZutQdFp93o2++w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c7b21ef9-ebcc-45b8-b7f9-08df28997f4c
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB7180.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2026 19:46:24.6060 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9OM+RMslPe57VULYGZ6LInWuyT0O0MoxR/iJzFoew1omWxj2xKejGDdskIt9gJ17d+SFaNUacMPhKdBKzjwrVg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6324
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,188 +162,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Starting on NVL-P and newer platforms which support 64 bit semaphores,
-opt in to enable GuC to check semaphore instruction fields when it
-receives them from HW.
+On Sun, Oct 11, 2026 at 07:46:53PM +0200, Guillaume Tucker wrote:
+> Fix an htmldocs build error in the gpu/xe section by moving all the
+> titles one level higher in the Xe SIGID page to keep a consistent
+> hierarchy.  This is the error message:
+> 
+>     Documentation/gpu/xe/xe_sigid.rst:10: (SEVERE/4) Title level inconsistent:
+> 
+> All the other pages in the xe section use <h2> titles so follow the
+> same convention here as well.
 
-The GuC will send a G2H back if the check failed, so add a handler to
-deal with the context that has been marked as unrunnable.
+it looks like we have more stuff to fix in the xe_migrate.c still...
 
-Signed-off-by: Jesus Narvaez <jesus.narvaez@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
----
- drivers/gpu/drm/xe/abi/guc_actions_abi.h |  1 +
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h    |  9 +++++
- drivers/gpu/drm/xe/xe_guc.c              | 10 +++++
- drivers/gpu/drm/xe/xe_guc_ct.c           |  4 ++
- drivers/gpu/drm/xe/xe_guc_submit.c       | 47 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.h       |  2 +
- drivers/gpu/drm/xe/xe_trace.h            |  5 +++
- 7 files changed, 78 insertions(+)
+thanks for this patch.
+pushed to drm-xe-next
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-index f5c9b37038d4..520b771906cd 100644
---- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-@@ -143,6 +143,7 @@ enum xe_guc_action {
- 	XE_GUC_ACTION_MULTI_QUEUE_CONTEXT_CGP_SYNC = 0x4603,
- 	XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CONTEXT_CGP_SYNC_DONE = 0x4604,
- 	XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CGP_CONTEXT_ERROR = 0x4605,
-+	XE_GUC_ACTION_NOTIFY_CONTEXT_INVALID_SEMAPHORE_INSTRUCTION_FIELD = 0x460B,
- 	XE_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
- 	XE_GUC_ACTION_SET_ENG_UTIL_BUFF = 0x550A,
- 	XE_GUC_ACTION_SET_DEVICE_ENGINE_ACTIVITY_BUFFER = 0x550C,
-diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index 4bcdc1a96785..c63387ebc173 100644
---- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -169,6 +169,12 @@ enum  {
-  *      This flag will enable notification from GuC to KMD via G2H message
-  *      GUC_ACTION_GUC2HOST_NOTIFY_UNCORRECTABLE_LOCAL_ERROR upon receiving the
-  *      same interrupt from the CS.
-+ *
-+ * _`GUC_KLV_OPT_IN_FEATURE_SEMAPHORE_INSTRUCTION_FIELDS_CHECK` : 0x400A
-+ *      This flag will enable the GuC to check the semaphore instruction fields
-+ *      when GuC receives them from HW. If the check fails the GuC removes the
-+ *      context, marks it as not runnable and notifies the driver via G2H
-+ *      message GUC_ACTION_GUC2HOST_CONTEXT_INVALID_SEMAPHORE_INSTRUCTION_FIELD.
-  */
- 
- #define GUC_KLV_OPT_IN_FEATURE_EXT_CAT_ERR_TYPE_KEY 0x4001
-@@ -180,6 +186,9 @@ enum  {
- #define GUC_KLV_OPT_IN_FEATURE_UNCORRECTABLE_LOCAL_ERROR_NOTIFICATION_KEY 0x4004
- #define GUC_KLV_OPT_IN_FEATURE_UNCORRECTABLE_LOCAL_ERROR_NOTIFICATION_LEN 0u
- 
-+#define GUC_KLV_OPT_IN_FEATURE_SEMAPHORE_INSTRUCTION_FIELDS_CHECK_KEY 0x400A
-+#define GUC_KLV_OPT_IN_FEATURE_SEMAPHORE_INSTRUCTION_FIELDS_CHECK_LEN 0u
-+
- /**
-  * DOC: GuC Scheduling Policies KLVs
-  *
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 3ab4cb9e4964..a0c693a1e74f 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -663,6 +663,16 @@ int xe_guc_opt_in_features_enable(struct xe_guc *guc)
- 	if (supports_dynamic_ics(guc))
- 		klvs[count++] = PREP_GUC_KLV_TAG(OPT_IN_FEATURE_DYNAMIC_INHIBIT_CONTEXT_SWITCH);
- 
-+	/*
-+	 * 64 bit semaphore instruction fields check support was added in GuC
-+	 * v70.64.0, which maps to compatibility version v1.33.0.
-+	 * Support starts with platforms that have 64 bit semaphores, which
-+	 * is NVL-P and newer.
-+	 */
-+	if ((GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 33, 0)) &&
-+	    xe->info.platform >= XE_NOVALAKE_P)
-+		klvs[count++] = PREP_GUC_KLV_TAG(OPT_IN_FEATURE_SEMAPHORE_INSTRUCTION_FIELDS_CHECK);
-+
- 	if (count) {
- 		xe_assert(xe, count <= OPT_IN_MAX_DWORDS);
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index da5ce97484b8..cdd7285465b1 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1802,6 +1802,10 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
- 		ret = xe_guc_exec_queue_cgp_context_error_handler(guc, payload,
- 								  adj_len);
- 		break;
-+	case XE_GUC_ACTION_NOTIFY_CONTEXT_INVALID_SEMAPHORE_INSTRUCTION_FIELD:
-+		ret = xe_guc_context_invalid_semaphore_instruction_field_handler(guc, payload,
-+										 adj_len);
-+		break;
- 	default:
- 		xe_gt_err(gt, "unexpected G2H action 0x%04x\n", action);
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 7ce73489c35f..35965667c198 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -3708,6 +3708,53 @@ int xe_guc_exec_queue_cgp_sync_done_handler(struct xe_guc *guc, u32 *msg, u32 le
- 	return 0;
- }
- 
-+/**
-+ * xe_guc_context_invalid_semaphore_instruction_field_handler - Invalid semaphore field handler
-+ * @guc: guc
-+ * @msg: message indicating which context failed the field check
-+ * @len: length of message
-+ *
-+ * The GuC has detected an unsupported SW Token Info value in a 64 bit semaphore
-+ * instruction and has already removed the offending context and marked it as
-+ * not runnable, so trigger reset-cleanup on the queue to match the state GuC
-+ * already applied.
-+ *
-+ * Return: 0 on success, -EPROTO for malformed messages.
-+ */
-+int xe_guc_context_invalid_semaphore_instruction_field_handler(struct xe_guc *guc,
-+							       u32 *msg, u32 len)
-+{
-+	struct xe_gt *gt = guc_to_gt(guc);
-+	struct xe_exec_queue *q;
-+	u32 guc_id, type;
-+	u64 lrc_address, token, data;
-+
-+	if (unlikely(len != 8))
-+		return -EPROTO;
-+
-+	guc_id = msg[0];
-+
-+	lrc_address = (u64)msg[2] << 32 | msg[1];
-+	token       = (u64)msg[4] << 32 | msg[3];
-+	type        = msg[5];
-+	data        = (u64)msg[7] << 32 | msg[6];
-+
-+	q = g2h_exec_queue_lookup(guc, guc_id);
-+	if (unlikely(!q))
-+		return -EPROTO;
-+
-+	xe_gt_info(gt,
-+		   "GuC: invalid semaphore instruction field! guc_id=%d, type=%u lrca=0x%llx, token=0x%llx, data=0x%llx",
-+		   guc_id, type, lrc_address, token, data);
-+
-+	trace_xe_guc_invalid_semaphore_instruction_field(q);
-+
-+	/* Treat the same as engine reset */
-+	xe_guc_exec_queue_reset_trigger_cleanup(q);
-+
-+	return 0;
-+}
-+
- static void
- guc_exec_queue_wq_snapshot_capture(struct xe_exec_queue *q,
- 				   struct xe_guc_submit_exec_queue_snapshot *snapshot)
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-index 29abf07d8f04..d3ecca3c8ed5 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.h
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-@@ -41,6 +41,8 @@ int xe_guc_error_capture_handler(struct xe_guc *guc, u32 *msg, u32 len);
- int xe_guc_exec_queue_cgp_sync_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
- int xe_guc_exec_queue_cgp_context_error_handler(struct xe_guc *guc, u32 *msg,
- 						u32 len);
-+int xe_guc_context_invalid_semaphore_instruction_field_handler(struct xe_guc *guc,
-+							       u32 *msg, u32 len);
- 
- struct xe_guc_submit_exec_queue_snapshot *
- xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q);
-diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index d4e9d91f6f7f..e52054eccc8d 100644
---- a/drivers/gpu/drm/xe/xe_trace.h
-+++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -223,6 +223,11 @@ DEFINE_EVENT(xe_exec_queue, xe_exec_queue_cgp_context_error,
- 	     TP_ARGS(q)
- );
- 
-+DEFINE_EVENT(xe_exec_queue, xe_guc_invalid_semaphore_instruction_field,
-+	     TP_PROTO(struct xe_exec_queue *q),
-+	     TP_ARGS(q)
-+);
-+
- DEFINE_EVENT(xe_exec_queue, xe_exec_queue_stop,
- 	     TP_PROTO(struct xe_exec_queue *q),
- 	     TP_ARGS(q)
--- 
-2.43.0
-
+> 
+> Signed-off-by: Guillaume Tucker <gtucker@gtucker.io>
+> ---
+>  drivers/gpu/drm/xe/abi/xe_sigid_abi.h | 16 ++++++++--------
+>  1 file changed, 8 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/abi/xe_sigid_abi.h b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
+> index 2f3440505f69..277b15fce9cc 100644
+> --- a/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
+> +++ b/drivers/gpu/drm/xe/abi/xe_sigid_abi.h
+> @@ -10,14 +10,14 @@
+>   * DOC: Xe Error Signatures (SIGID)
+>   *
+>   * What SIGID stands for
+> - * ---------------------
+> + * =====================
+>   *
+>   * SIGID is short for *Signature Identifier*. It is a small, stable integer
+>   * that names one of the *recognised fault sites* -- nothing more. It is the
+>   * primary handle used for triage and maps directly to a specific report site.
+>   *
+>   * Numbering
+> - * ---------
+> + * =========
+>   *
+>   * SIGIDs are a single flat list numbered sequentially within the assigned range,
+>   * in the order the fault sites were introduced. Values are stable: once assigned
+> @@ -25,7 +25,7 @@
+>   * SIGID value is deprecated in place, never re-purposed.
+>   *
+>   * Why this exists
+> - * ---------------
+> + * ===============
+>   *
+>   * Today the driver reports faults with ad-hoc ``xe_err()`` / ``xe_gt_err()``
+>   * strings that have no stable shape. That is fine for a human reading dmesg,
+> @@ -37,7 +37,7 @@
+>   * firmware versions, and (eventually) across other Intel devices in a node.
+>   *
+>   * What a SIGID is not
+> - * -------------------
+> + * ===================
+>   *
+>   * SIGID deliberately does not encode the detailed reason or the outcome. Those
+>   * are carried alongside it::
+> @@ -51,7 +51,7 @@
+>   * different severities depending on the instance and the recovery taken.
+>   *
+>   * When to use SIGID logging
+> - * -------------------------
+> + * =========================
+>   *
+>   * The xe_log_*() helpers are for these recognised fault sites only --
+>   * important, operator-relevant faults and events. The driver's only job is to
+> @@ -63,7 +63,7 @@
+>   * those that correspond to a published fault site.
+>   *
+>   * SIGID log output (dmesg vs. the machine record)
+> - * -----------------------------------------------
+> + * ===============================================
+>   *
+>   * The dmesg line stays close to a normal xe error message so it remains
+>   * readable for admins; the only stable, machine-matchable token on it is
+> @@ -74,7 +74,7 @@
+>   * carrying the same SIGID (generation is a planned follow-up).
+>   *
+>   * How to pick a SIGID (the uniqueness rule)
+> - * -----------------------------------------
+> + * =========================================
+>   *
+>   * Pick per *report site*, not per incident. Each site emits the single most
+>   * specific recognised SIGID *for that site* -- so the question is never
+> @@ -95,7 +95,7 @@
+>   * after making significant changes to the site that emits this SIGID.
+>   *
+>   * Scope: software vs hardware emitted signatures
+> - * ----------------------------------------------
+> + * ==============================================
+>   *
+>   * Some SIGID represents fault sites that the *driver itself* detects and
+>   * reports from the software POV: probe abort, wedged, survivability, driver-
+> -- 
+> 2.47.3
+> 
