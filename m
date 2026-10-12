@@ -4,27 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BD78CA9ED1
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 15:26:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF26FCA9EC5
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 15:26:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFF1A10F1ED;
-	Mon, 12 Oct 2026 15:26:18 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAB4E10F1FD;
- Mon, 12 Oct 2026 15:26:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4935202559826684246=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Bump_LRU_for_exte?=
- =?utf-8?q?rnal_objects_on_exec_and_rebind?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 12 Oct 2026 15:26:17 -0000
-Message-ID: <179181877775.13872.15317226192840853506@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261012132607.21387-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20261012132607.21387-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E92D10F1F3;
+	Mon, 12 Oct 2026 15:26:21 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B018F10E606;
+ Mon, 12 Oct 2026 15:26:14 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id C10BB60229;
+ Mon, 12 Oct 2026 15:26:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A23A1F0089C;
+ Mon, 12 Oct 2026 15:26:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1791818773;
+ bh=QFgSGhogVnDaEbtz0RRgCPm0L3WQxjAx9cj/pg1PhX8=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=jow8sO86ScdcwHFgxfA7b7LT7RMog3hQCJOiCWYNeUUfJZ+h6IfB66H1VQjGNjA/W
+ eK8z1ZKhTV4Pl04l1bIkubYWXbVA86kzgoC8XZ7z2DkeAnS2U7UNYB8LwM4HaKzolV
+ BBJ3rKGaccjSBrluZQ++ACuOPEK/GLi8ETt0zF5F+jYeScyQp6sqyPEUezwpzFoitW
+ 0CUkujUi5KTtdCLqZjeItNEPfFF5CEjdv2kK9ajoRVfUsGIgQoql32+Sn7ySJPCLpR
+ B/xgftTsEB7BAcsvniSOuYW9F9K5Lmww7oVYilmdCw1kiv5FdFaySlZxqwz5UWOFgM
+ zuh2Vn20KP+bw==
+Message-ID: <sashiko-outbox-168331@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH RFC v3 1/8] drm: Move sink link rates reading helpers
+ out of i915
+To: "Kory Maincent" <kory.maincent@bootlin.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <20261012-feat_link_cap-v3-1-7517f4aba0f3@bootlin.com>
+References: <20261012-feat_link_cap-v3-0-7517f4aba0f3@bootlin.com>
+ <20261012-feat_link_cap-v3-1-7517f4aba0f3@bootlin.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 12 Oct 2026 15:26:12 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,237 +51,169 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4935202559826684246==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [Medium] drm: drm_dp_lttpr_count() negative error code evaluated as true
+- [Low] drm/display: Missing <drm/display/drm_dp_tunnel.h> include in drm_d=
+p_helper.c
+- [Low] drm/display: API doc mismatch in drm_dp_read_edp_sink_rates()
+--
 
-== Series Details ==
+commit fd61f2a21aaa6e7f861570be192ba592894c3a4d
+Author: Kory Maincent <kory.maincent@bootlin.com>
 
-Series: drm/xe: Bump LRU for external objects on exec and rebind
-URL   : https://patchwork.freedesktop.org/series/175957/
-State : success
+drm: Move sink link rates reading helpers out of i915
 
-== Summary ==
+The commit moves sink link rates reading helpers from i915 into generic DRM
+helpers for reuse. It leaves Intel-specific quirks in the driver.
 
-CI Bug Log - changes from xe-5928-0f28405022887336d4fc1fe1a0e1429146c2d431_BAT -> xe-pw-175957v1_BAT
-====================================================
+> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/di=
+splay/drm_dp_helper.c
+> index e623ccb4c1d8a..8ef096a0138e4 100644
+> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+[ ... ]
+> @@ -4912,3 +4912,240 @@ int drm_dp_max_dprx_data_rate(int max_link_rate, =
+int max_lanes)
+[ ... ]
+> +#if IS_ENABLED(CONFIG_DRM_DISPLAY_DP_TUNNEL)
+> +
+> +static u8 drm_dprx_128b132b_link_rates(const struct drm_dp_tunnel *tunne=
+l,
+> +				       u8 uhbr_rates)
+> +{
+> +	if (!drm_dp_tunnel_bw_alloc_is_enabled(tunnel))
 
-Summary
--------
+[Severity: Low]
+Does this code build correctly when CONFIG_DRM_DISPLAY_DP_TUNNEL is enabled?
 
-  **SUCCESS**
+The patch adds calls to drm_dp_tunnel_bw_alloc_is_enabled(),
+drm_dp_tunnel_128b132b_dprx_rates(), and drm_dp_tunnel_128b132b_supported()=
+ in
+drm_dp_helper.c. These are defined in <drm/display/drm_dp_tunnel.h>.
 
-  No regressions found.
+However, neither drm_dp_helper.c nor its included headers appear to include
+this header, which could result in implicit function declaration errors.
 
-  
+> +		return uhbr_rates;
+> +
+> +	static_assert(DP_TUNNELING_10GBPS_PER_LANE_SUPPORT =3D=3D DP_UHBR10 &&
+> +		      DP_TUNNELING_13_5GBPS_PER_LANE_SUPPORT =3D=3D DP_UHBR13_5 &&
+> +		      DP_TUNNELING_20GBPS_PER_LANE_SUPPORT =3D=3D DP_UHBR20);
+> +
+> +	return drm_dp_tunnel_128b132b_dprx_rates(tunnel);
+> +}
+[ ... ]
+> +static int
+> +drm_dp_get_128b132b_link_rates(const u8 lttpr_common_caps[DP_LTTPR_COMMO=
+N_CAP_SIZE],
+> +			       const struct drm_dp_tunnel *tunnel,
+> +			       u8 uhbr_rates,
+> +			       int link_rates[DP_MAX_128B132B_SUPPORTED_RATES])
+> +{
+> +	int i =3D 0;
+> +
+> +	if (tunnel)
+> +		uhbr_rates =3D drm_dprx_128b132b_link_rates(tunnel, uhbr_rates);
+> +
+> +	if (drm_dp_lttpr_count(lttpr_common_caps)) {
 
-Participating hosts (13 -> 15)
-------------------------------
+[Severity: Medium]
+Will this evaluate negative error codes as a positive repeater count?
 
-  Additional (2): bat-bmg-vm bat-ptl-vm 
+drm_dp_lttpr_count() can return negative error codes (like -EINVAL or -ERAN=
+GE)
+for invalid DPCD LTTPR counts. This condition evaluates those negative erro=
+rs as
+true, falsely assuming a repeater is present.
 
-Known issues
-------------
+If the DPCD revision lttpr_common_caps[0] is < 0x20, the else branch execut=
+es
+and clears uhbr_rates =3D 0, wrongly discarding the sink's supported UHBR r=
+ates.
 
-  Here are the changes found in xe-pw-175957v1_BAT that come from known issues:
+> +		/* We have a repeater */
+> +		if (lttpr_common_caps[0] >=3D 0x20 &&
+> +		    dp_lttpr_common_cap(lttpr_common_caps,
+> +					DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER) &
+> +		    DP_PHY_REPEATER_128B132B_SUPPORTED) {
+[ ... ]
+> +int drm_dp_read_dpcd_sink_rates(struct drm_dp_aux *aux,
+> +				const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> +				const u8 lttpr_common_caps[DP_LTTPR_COMMON_CAP_SIZE],
+> +				const struct drm_dp_desc *desc,
+> +				const struct drm_dp_tunnel *tunnel,
+> +				int sink_rates[DP_MAX_SUPPORTED_RATES])
+> +{
+[ ... ]
+> +	/*
+> +	 * Sink rates for 128b/132b. If set, sink should support all 8b/10b
+> +	 * rates and 10 Gbps.
+> +	 */
+> +	if (drm_dprx_supports_128b132b(tunnel, dpcd))
+> +		i +=3D drm_dp_get_128b132b_link_rates(lttpr_common_caps,
+> +						    tunnel,
+> +						    uhbr_rates,
+> +						    &sink_rates[i]);
 
-### IGT changes ###
+[Severity: Medium]
+Could this result in a NULL pointer dereference inside
+drm_dp_get_128b132b_link_rates()?
 
-#### Issues hit ####
+Earlier in drm_dp_read_dpcd_sink_rates(), lttpr_common_caps is allowed to be
+NULL:
 
-  * igt@xe_evict@evict-beng-small-cm:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][1] ([Intel XE#5764]) +11 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html
+	if (lttpr_common_caps)
+		max_lttpr_rate =3D drm_dp_lttpr_max_link_rate(lttpr_common_caps);
 
-  * igt@xe_exec_balancer@no-exec-cm-virtual-basic:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][2] ([Intel XE#7482]) +17 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html
+However, it is passed blindly to drm_dp_get_128b132b_link_rates() here. If a
+caller passes a NULL lttpr_common_caps, drm_dp_lttpr_count() will attempt to
+access it, triggering a NULL pointer dereference.
 
-  * igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][3] ([Intel XE#8364]) +13 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd.html
+> +
+> +	return i;
+> +}
+> +EXPORT_SYMBOL_GPL(drm_dp_read_dpcd_sink_rates);
+> +
+> +/**
+> + * drm_dp_read_edp_sink_rates() - read the sink rates from the eDP DPCD
+[ ... ]
+> +int drm_dp_read_edp_sink_rates(struct drm_dp_aux *aux, u8 edp_dpcd_rev,
+> +			       int sink_rates[DP_MAX_SUPPORTED_RATES])
+> +{
+> +	int num_sink_rates;
+> +
+> +	if (edp_dpcd_rev < DP_EDP_14)
+> +		return 0;
+> +
+> +	num_sink_rates =3D drm_dp_read_dpcd_supported_link_rates(aux, sink_rate=
+s);
+> +	if (num_sink_rates < 0) {
+> +		drm_dbg_kms(aux->drm_dev,
+> +			    "%s: Unable to read eDP supported link rates (%d)\n",
+> +			    aux->name, num_sink_rates);
+> +		return 0;
 
-  * igt@xe_exec_multi_queue@many-queues-userptr-invalidate:
-    - bat-bmg-vm:         NOTRUN -> [SKIP][4] ([Intel XE#8364]) +13 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-bmg-vm/igt@xe_exec_multi_queue@many-queues-userptr-invalidate.html
+[Severity: Low]
+Does this implementation match its API documentation?
 
-  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][5] ([Intel XE#5775]) +2 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
+The kernel-doc for drm_dp_read_edp_sink_rates() explicitly states:
+"Returns: The number of supported sink rates, 0 if the sink does not support
+the DP_SUPPORTED_LINK_RATES register, negative error code otherwise."
 
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-vm:         NOTRUN -> [SKIP][6] ([Intel XE#2229])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-bmg-vm/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+However, this implementation traps the negative error code internally and
+explicitly returns 0 on failure. This creates a confusing API contract for
+drivers using this newly exported helper.
 
-  * igt@xe_mmap@vram:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][7] ([Intel XE#5776])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_mmap@vram.html
+> +	}
+> +
+> +	return num_sink_rates;
+> +}
 
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][8] ([Intel XE#5777] / [Intel XE#7590])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html
-    - bat-bmg-vm:         NOTRUN -> [SKIP][9] ([Intel XE#1420] / [Intel XE#7590])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-bmg-vm/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][10] ([Intel XE#5771] / [Intel XE#7590])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html
-    - bat-bmg-vm:         NOTRUN -> [SKIP][11] ([Intel XE#2245] / [Intel XE#7590])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-bmg-vm/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-ptl-vm:         NOTRUN -> [SKIP][12] ([Intel XE#5780] / [Intel XE#7590])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html
-    - bat-bmg-vm:         NOTRUN -> [SKIP][13] ([Intel XE#2236] / [Intel XE#7590])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-bmg-vm/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#5764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764
-  [Intel XE#5771]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771
-  [Intel XE#5775]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775
-  [Intel XE#5776]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776
-  [Intel XE#5777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777
-  [Intel XE#5780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780
-  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
-
-
-Build changes
--------------
-
-  * Linux: xe-5928-0f28405022887336d4fc1fe1a0e1429146c2d431 -> xe-pw-175957v1
-
-  IGT_9138: 9138
-  xe-5928-0f28405022887336d4fc1fe1a0e1429146c2d431: 0f28405022887336d4fc1fe1a0e1429146c2d431
-  xe-pw-175957v1: 175957v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/index.html
-
---===============4935202559826684246==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Bump LRU for external objects on exec and rebind</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175957/">https://patchwork.freedesktop.org/series/175957/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5928-0f28405022887336d4fc1fe1a0e1429146c2d431_BAT -&gt; xe-pw-175957v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 15)</h2>
-<p>Additional (2): bat-bmg-vm bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-175957v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-small-cm:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764">Intel XE#5764</a>) +11 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_balancer@no-exec-cm-virtual-basic:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@many-queues-userptr-invalidate:</p>
-<ul>
-<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-bmg-vm/igt@xe_exec_multi_queue@many-queues-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775">Intel XE#5775</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-bmg-vm/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776">Intel XE#5776</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777">Intel XE#5777</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-bmg-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771">Intel XE#5771</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-bmg-vm/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780">Intel XE#5780</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175957v1/bat-bmg-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5928-0f28405022887336d4fc1fe1a0e1429146c2d431 -&gt; xe-pw-175957v1</li>
-</ul>
-<p>IGT_9138: 9138<br />
-  xe-5928-0f28405022887336d4fc1fe1a0e1429146c2d431: 0f28405022887336d4fc1fe1a0e1429146c2d431<br />
-  xe-pw-175957v1: 175957v1</p>
-
-</body>
-</html>
-
---===============4935202559826684246==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261012-feat_link_=
+cap-v3-0-7517f4aba0f3@bootlin.com?part=3D1
