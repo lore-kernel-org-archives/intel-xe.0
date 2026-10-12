@@ -4,161 +4,157 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9984ACA9EDC
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 14:22:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1827CA9ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 14:25:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59D9510E129;
-	Mon, 12 Oct 2026 14:22:28 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 994C710E129;
- Mon, 12 Oct 2026 14:22:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AECE310E129;
+	Mon, 12 Oct 2026 14:25:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B8E510E129;
+ Mon, 12 Oct 2026 14:25:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791814943; x=1823350943;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Lh3Uxd+EBAuUWoz7HyYmmm3JtbiMzdLbxfcTUntx4lk=;
- b=jnd0a2ZDfs/VDZEfELLHmMWrbKXyAkVh9Wj0I1VvxVu9shKm6HUnpYRN
- 8gh4vV1Lj4K5wZep/Wwct8woOQT3v5jFTkGt0XUlB9xwxh9tk3YUKIcMG
- MBc1Mi7INXLxXixDE8bs8XPJyIIQ2y8Dv3Xg0K4X+reVr6l/LokIZnn93
- nTmWQA2zArpNMV+H7lwaX4E3LSD7EtG5Vfa+Ds3jzmxytfn8S1+sR/E+D
- E7zl+NJh9pV/P8VpCpUzccrmvAwOR8FsFPRWFDFx9wD7Ndv15mSGCYHDh
- jgUuHU/+ACTG/gHAw2CFQ4hVOSIzl90FTzs/kkjK1GOJ4WtDwZcmVudF0 Q==;
-X-CSE-ConnectionGUID: BfBOXX9XSl2FkYV6H59OmQ==
-X-CSE-MsgGUID: +5YduLvATRmobeRkcvOJ6w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="418191"
+ t=1791815136; x=1823351136;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=+0Dag9W1fy91qCy9l7Dm4go+xQWdVN9c9usWnzeAVRE=;
+ b=Vc/0TW54d3Xvvgini54CaHcOl4x6wJ6s5VKcqhlK2HHg6GTctdXwQlSp
+ HobKwweZO/mU1vyoWPcGfCJRtG408vmQZEnpSBLHPW9e46Wkt7AcJ8W10
+ P+OnGECi5NGsxFdobUaLPcDH5l56X7fWp/Ah8s37xOzNm5piUsegK7JJg
+ vmhj8E28ymhhMhT/ZEkkpYaQXvII+bpkYGpkJE42btfHnK0CAxd6Ih1fD
+ StWboJfMYjBuWCX4QA3zT2mMYeY+uDO0PqoT1qI5SH/6qLEiFfZwa0DJr
+ 1u2XK6iK3qsXMpL+uCz8EcrM6EOcGj9AJ9Jn2d/JKtg9vxVsO8JdscS+m g==;
+X-CSE-ConnectionGUID: +/I9eMbBTgiNwFjGDYGc2g==
+X-CSE-MsgGUID: OoCyzTckTlWLm5JZed84Fw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="419885"
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="418191"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 07:22:22 -0700
-X-CSE-ConnectionGUID: kXLD56vZTB+2Q733ruw20w==
-X-CSE-MsgGUID: uOad9NsKS2uO2HQJc4tJvQ==
+   d="scan'208";a="419885"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2026 07:25:36 -0700
+X-CSE-ConnectionGUID: 0KzWErbERKeE4gKE7sHWZg==
+X-CSE-MsgGUID: BPdhZN2yTcyoYNvstMb9aw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="1098698"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 07:22:20 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+   d="scan'208";a="2761507"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa011.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2026 07:25:36 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Mon, 12 Oct 2026 07:22:18 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.49; Mon, 12 Oct 2026 07:25:35 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Mon, 12 Oct 2026 07:22:18 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.23) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.49 via Frontend Transport; Mon, 12 Oct 2026 07:25:35 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.59) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Mon, 12 Oct 2026 07:22:18 -0700
+ 15.2.2562.49; Mon, 12 Oct 2026 07:25:35 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YsMUll2x/56n85cxjp+oSyNzxbIT84m3wbjAYLc4EXM6kp2eKdQjeQFWpkXOFyzOT/LDqw1OZ0H2uOjx/W+xj6GWeXy1M7h1Lp0nMbdEm9voRGwSe2t18+R8GrDt6kwNduhtF+4g5Z4FijzJmPbsVbP4MyPT8CRglMad9j35UK1fKOYVpBttj9ZyTFGfRaOuFkEqk9uAgp066TQ8Ts6F4r3Vr/3wGcvOU6EsSaA1cfO1U6g1dvPflX+iHCXTndzwIx9DPKBlN2365EhVgHpABR19BaCK2x+stIrpd8FQLXS+7q2HsX1Af9qMvBLwwZqhD+2wO+SX/djNkuQKChjwUw==
+ b=ZIc7IWWNkGXYHeu5kkXRlQZ5qld0CwppSqe/UNshV8SR/bWk6rrCf6xM00FrMSIEbYWAy/m1r8QLoUEmW9jrsgbW6Be+kK4BEev3z2oAP76vJhbJOp7zQOIUDyD7EGKv5ZYjpFCviXG7ccUS16h0pR5v1RJM3RHTLox1ct/9HirrFNniZsXe8/KqWApGUPlw6CdX4uXU/e8ZGpuJB/QsW1wwJMq3c0GUNZCVWiSQjGDxMsB/oa8VVOv+VmIs0WxYg8pBwh+8q4KwhI4ar/M1+dGWS1tE1eO+WewESm5kKy5LsLG+6yKQLb2JxZS1MfSTTy+Oj6bGbyDkF8Jcc7urbA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2gpwBDNoohCTL+1ayIxNYGsTYFazRnxHGaoCkMjzWLw=;
- b=SnQPC6R0NPNwRU+vyLZFbhZYgWIH8BpnnYNorxvsLMBAVrTqKukvLYwpLYwfjNT8eobW6v0UXJR1xEhGZwSfCbFHuwCKTRSfmvKw5O7vojaQ4MarnzW5GHDlX/2u6Mxoo4S4goJ2eM3XJ2+8vIJt8OhqMphOCJYEdmSYBZLTKr8EwwnQUgjrZtMIU5W4zncgnL0SptYt6ndW5ALO1cC+dkWpuoOLjquNdfK8qAgffOsCUo/fF+fEadbWD0OtIVklFK1R357GtDpI5HjG+uDsVMMn11uBm+o6ixmm65SumE+l+dXYwbBBwEkZAO7cAM7f9ipvdQOR9JUlAd4IZ2D+Qw==
+ bh=xvLziYlNT97FM7vzHW/tik1a0HJjQ2OzPzcKmdUb1ZM=;
+ b=S0BFTwP3xanoTpU2XTFuXF6L/XvOc5eBv8LK12JWVCVRAON//c3uQPpzPU4TdiEpDGQBk41CbYcTmtBUN7zsYPQUpWgwu5yxVoZtg1u0zsj/xl92wxJVDBhmriq/zGoThAm1hyEgAJS+iBeghqU/6tR8sfr/0Lc61GZP9U7LUXeV+LI369pw+6CHlvQ3YBhRYv7/3jgs9S+RGRfoQ9ei2DvPmZn7V/+U6vjx86ePKtkAIy4KpnivR8F0BHgzKSUNt1EwSw8tPZHoG25wm2+hRnNfFFdZOuz6vhLn0ESBpcae8myijDDS/Fl1ra9hz4aeBy2md76j6G41jA1PJQuiOA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH0PR11MB4792.namprd11.prod.outlook.com (2603:10b6:510:32::11)
- by SA3PR11MB984635.namprd11.prod.outlook.com (2603:10b6:806:5a5::17)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from LV2PR11MB148960.namprd11.prod.outlook.com
+ (2603:10b6:408:40f::21) by SA7PR11MB9542.namprd11.prod.outlook.com
+ (2603:10b6:806:4d0::21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.496.23; Mon, 12 Oct
- 2026 14:22:17 +0000
-Received: from PH0PR11MB4792.namprd11.prod.outlook.com
- ([fe80::fec9:8db4:c768:8289]) by PH0PR11MB4792.namprd11.prod.outlook.com
- ([fe80::fec9:8db4:c768:8289%6]) with mapi id 15.21.0472.016; Mon, 12 Oct 2026
- 14:22:16 +0000
-Date: Mon, 12 Oct 2026 07:22:13 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Danilo Krummrich <dakr@kernel.org>
-CC: Liviu Dudau <liviu.dudau@arm.com>, <intel-xe@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
- <linux-arm-msm@vger.kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Alice Ryhl <aliceryhl@google.com>, Anna Maniscalco
- <anna.maniscalco2000@gmail.com>, Antonino Maniscalco <antomani103@gmail.com>, 
- Boris Brezillon <boris.brezillon@collabora.com>, David Airlie
- <airlied@gmail.com>, Dmitry Baryshkov <lumag@kernel.org>, Jessica Zhang
- <jesszhan0024@gmail.com>, Jonathan Corbet <corbet@lwn.net>, Lyude Paul
- <lyude@redhat.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>, Maxime Ripard
- <mripard@kernel.org>, Randy Dunlap <rdunlap@infradead.org>, Rob Clark
- <robin.clark@oss.qualcomm.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, "Sean
- Paul" <sean@poorly.run>, Shuah Khan <skhan@linuxfoundation.org>, Simona
- Vetter <simona@ffwll.ch>, Steven Price <steven.price@arm.com>, Thomas
- =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, "Thomas
- Zimmermann" <tzimmermann@suse.de>
-Subject: Re: [PATCH v3 7/8] drm/nouveau: use DRM_GPUVM_RESV_PROTECTED
-Message-ID: <asztFRIQU12ZzGCW@gsse-cloud1.jf.intel.com>
-References: <20261001220632.3190896-1-matthew.brost@intel.com>
- <20261001220632.3190896-8-matthew.brost@intel.com>
- <asUm6j1GD6yxeBvy@e142607>
- <aszqfCemcNPebrgZ@gsse-cloud1.jf.intel.com>
- <DM2X9C32YMZD.S3DK3U1MEY80@kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <DM2X9C32YMZD.S3DK3U1MEY80@kernel.org>
-X-ClientProxiedBy: SJ0PR13CA0214.namprd13.prod.outlook.com
- (2603:10b6:a03:2c1::9) To PH0PR11MB4792.namprd11.prod.outlook.com
- (2603:10b6:510:32::11)
+ 2026 14:25:33 +0000
+Received: from LV2PR11MB148960.namprd11.prod.outlook.com
+ ([fe80::9761:b20d:6f27:5460]) by LV2PR11MB148960.namprd11.prod.outlook.com
+ ([fe80::9761:b20d:6f27:5460%5]) with mapi id 15.21.0496.021; Mon, 12 Oct 2026
+ 14:25:33 +0000
+Message-ID: <e376276f-568a-4c6d-8e58-7082d06b5f0d@intel.com>
+Date: Mon, 12 Oct 2026 19:55:26 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] drm/i915/gmbus: Fix i2c bit banging for PTL+
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, Naladala Ramanaidu
+ <ramanaidu.naladala@intel.com>
+References: <20261007222314.5714-1-ville.syrjala@linux.intel.com>
+ <20261007222314.5714-5-ville.syrjala@linux.intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20261007222314.5714-5-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0209.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b0::8) To LV2PR11MB148960.namprd11.prod.outlook.com
+ (2603:10b6:408:40f::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR11MB4792:EE_|SA3PR11MB984635:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3ed1ee6a-04f4-4ab7-a3e6-08df286c37c3
+X-MS-TrafficTypeDiagnostic: LV2PR11MB148960:EE_|SA7PR11MB9542:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0430fb3e-d533-4cac-a369-08df286cad0c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|376014|366016|1800799024|23010399003|56012099006|11063799006|4143699003|261009223027099003|10067099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: LEVfrNz98ICPSJb4z1CqM9uIl3Zltq7islBtgsXla63NikBrMAMCpa512IeQAONpu5FfTtKc1d/yVF+4N47mGjZ2vBRHfCtyl6Zx0v2PdjkIj0K43TTawQMju2uqmJwfo4ras0YqeOG1fJ8tVrzIc+Te3X48ZLvAcLhSj/C+MEUdtfbAH3mXqyt4GFJuITndXJrn81XAxypEvWnSyZBS5p89ip4t/APM/oiSejB/x5yIHy+kQ4c69hvOAl15dLVCspawI+w+dUBn0JWbofqxoWxqDjvRnR9aQON35+bi2Iq2U5+IPlHpvBMf7neMXawTEtQslH/mI1eA6cA367WZvSOGxb71YttuGhFtWDE6PIrYYdmItmBCAfrV+0azMvbWxJPsQ64GC7W6oZkhnEZom45lV5ukcE5W9MFosURkATeVdkGY0zeSQl9O+VT+rwhAAh0gN1e0OQw9g/IzaxIWDQecFnW6lT+19pfbmnpJb03Jcuh6MUiDbkYZwZJkfshaj3SdeEgZQXHvRdY5fRn+qjUkk30BrEoUF7UIhCXOXRmeXXaecpcD5xughPHesq+XHfBOXfp4p0mtyFsNAYvJc8dE6Co/0NAfhsijQM4I0KvRhMqXS8x94A2TOCpeCaLPbePiFzImlAsL6I8spmKLuf6DDqUs3oe2+LWNN3YY0cA=
+ ARA:13230040|376014|366016|1800799024|23010399003|4143699003|11063799006|56012099006|18002099003|22082099003|260925022911599003|260925021311599003|260925021911599003|261009223027099003|3023799007|10067099003;
+X-Microsoft-Antispam-Message-Info: 62OeUpi3WL2JrkaLl4XblQDkqz8BActj1UJp5UOpC3n5bbT8Dn9gBOR29RkVWyFkcGeVVMkA8R8wGxZRfhSSAZIrPvV8af5yN4Q7xjya3k4CH3ZdghR6DQKZLlotUSnk9wVQw/70JqSOAuWUxLmgi2mSbQTAzJR2Tkm4OCODqDT0mI8uoIFNbMbwhuEAy/oQUi6RDvZLJ9dWzypkcxXEwO6ICfCSHZKZCRPOvvLQkXnx9kWp8UJcdHZKuduIw81fQLNhklStQ9/q+Z/vjVmNrcZprG74IOkV4JNmw9BE1uyMlQxNVZX5cwcHKCk5RB+bf+WYyqC4D4NGf9ztSAZipZktb7S0ym3+TqJH7934IrL8gjRDggIEGYAGXRcGjilrODkPe5Hg9ovp7/IDhsDKCTZ9k95GTbCPvhedp86PFX9EKvLIfhD4r3nIyOGZR8RPLw2D8QULIWq4xpk4krrRzHmjXWp3qN+ZfJdn/ynk+FdsJlLpZf7ghPLXSnUdMsZlIyq50pqVjrR57iDXWw/O12rY/x0V8WLEgcL9kLvKhDV9FJyN+kpjmtyoQVP5aFjUbu2XZguaSsUmfimeCPF8ohz1xTuZFqVXMLcbGzFXpmw=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR11MB4792.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(366016)(1800799024)(23010399003)(56012099006)(11063799006)(4143699003)(261009223027099003)(10067099003)(18002099003)(22082099003);
+ IPV:NLI; SFV:NSPM; H:LV2PR11MB148960.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(23010399003)(4143699003)(11063799006)(56012099006)(18002099003)(22082099003)(260925022911599003)(260925021311599003)(260925021911599003)(261009223027099003)(3023799007)(10067099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Umjmvp5+ETQI1WumC1Twui48sz7zA+jiqXbwGtss0rkySh49BofPPbkdCXtb?=
- =?us-ascii?Q?mjchKkdjd7EGzGq/q3kHEnFDvpP7c0l2CdTvyPiO/NGLiD9ZAR0ysqytEwtK?=
- =?us-ascii?Q?ONYytmyWDIwFlF+iYABfqlFPHd8l2/DOh3kPH9GTQwIlhsyxH0cPOtPDiKBA?=
- =?us-ascii?Q?aqm2vYUSYIHaJqHr1Y8QoFr/xcuuqFbybTaUOI5X9CzC/BCnv1LLrZvyhiJl?=
- =?us-ascii?Q?yhpwfg/SOneo7k0CvFWn5bR5MYdHizrKmdsAjTdWCPYJ7FujNSOQj3t/tBbb?=
- =?us-ascii?Q?1sh8qZJDdXwrPzliv1cLulljWHR+ECiy+QTNvxj42TNQRjjxziCsGL4skc68?=
- =?us-ascii?Q?bhD3MPmblNr8+9FZx3j7TmHrFpTH9SumE80aUC0KbrgDE6XWesh9CjnlBprH?=
- =?us-ascii?Q?Z7G4NUz1b7L8NEj1CekuIPs/XzjCgGcJ27/o0hXg4TDslFdMZv1D/Uue6C7l?=
- =?us-ascii?Q?T+YdCvXO8/qW50g1BXNDwNgfO70BBmpZCbhPZg4ORCk8Z4ujgDwF1B/9tjAn?=
- =?us-ascii?Q?848WjMjlSrBgPQIGLGj1gdvEF0Ctsv9bXvfcJ8woFM771nyV0EKFTCQB5VCo?=
- =?us-ascii?Q?fXeBIokEopYZP7C0v1HY9L/f2h966ZSS/69DyBYDa4odEhlj7Lt6E4lti+vO?=
- =?us-ascii?Q?ree+RDqhp5ZgLKUbyMLit/Lb1jZFp2IZNGMfnD4Xsf31o1A96AgyXFqg9EOU?=
- =?us-ascii?Q?z2CRh2GAMyz+A76mYlZTDjivrdLaWpRUQYJdPMBhZfVIxlsYIOMTU8NMF6D9?=
- =?us-ascii?Q?a1xR8vw4APpmIbaCP0QQjDPi4Wkkn3+DXi89C16Sg1wEJm7sXKoFKtxNhpLT?=
- =?us-ascii?Q?LkH+Im91+gex/Lm6eGJDQtVYKMYruoXuvrHDg4TEqqlUz5FkYIPuDbcTXFI/?=
- =?us-ascii?Q?E5V+HkrsDE4cg6XDJ6UvxqYhHsZge2tIEWiyyxbTScSH6hVwCxIDbSyQDTKq?=
- =?us-ascii?Q?CsZL+N4tOwGGPdkryg6xps1fjMGKSVHO1pCzSVy6B06OZLUbZDO5wgSNTBxV?=
- =?us-ascii?Q?z4VB4jhaZ1zKALPD9+xQ0nVry8J3YposP5lNfJo+mtf3pJi27tOj5THu6zKZ?=
- =?us-ascii?Q?sfLAl3BgNZ4r1Qk+4vqQ4vMZQ7gaiReWAiIFr6y0u4LFGa+c/CmD6/s+WZXh?=
- =?us-ascii?Q?V5kF+N2ZnicpuEGRNhsh8x+85awANnF24IIl0rOT/oOyPj/3llJa8lk0y5Hm?=
- =?us-ascii?Q?lJ98kb8wyijpZqb7BHjg19lemsDhv/IriKv4LEdht8SGeDkA8EF4UZxwdeiS?=
- =?us-ascii?Q?89lh7bMV/SWSTBuOPagGYfS9wqfao8BQiyU2KqR5UmMRlfnv+pKaWYo42CBJ?=
- =?us-ascii?Q?VTFviWu6G799inovQrMGI5rjTRZaeDoX5ZHn3rVkyilU69Sz4CQoS0/BXKwD?=
- =?us-ascii?Q?TZFBDsC06MI84w+3L38RNhosL7Q978/hXR7ReUNZOk9Q0ZKkViHL1sbBHecS?=
- =?us-ascii?Q?VeYjkzg8vS72vlAPKZo+CWWaQU7Ia9R6ZtkPd+wUrq1wkn5r5HIg3nWo8OVd?=
- =?us-ascii?Q?QlQKYicvxDYD64nYq2zzzzL/wXjhwD7rJ2x5UkLXdWuI++B705mhmh8QQJws?=
- =?us-ascii?Q?3U3jPLhkCpQS+JHz9STiuOgVaTY1kN+lpKvvOYa74xVF/FQE2U57MNpzo4lO?=
- =?us-ascii?Q?Cb1S+jyVdjUjbgFCfYIAbk3hOiigBd3DbQ16y/kSYH8wcnAfNOYD6nqBVFG5?=
- =?us-ascii?Q?oRK91+OOVP2PJ9kThfYQb74wU4ujjY5fYH3KKjGj+vcMr64pgwupYEANfiEQ?=
- =?us-ascii?Q?YXiGJ7Aw0g=3D=3D?=
-X-Exchange-RoutingPolicyChecked: AYlr48WPae42au/bnKxwyYA6HOCcveRVLesZUWKVwUBO/MDQSD9MIpdgSd9rJb1a97TINGdfFiJezyRl8/9Y+w2rX7+DX4q4w8W/0sPuNGesD8kHG3mpRUyZNZ/DWyZ0vdeDqKKcCfQmryuvV9rc617MNGnq2iNJ2mzinb2Am+X58M/P+qdbZ8rP0Q+NkQJS9MhqpIZr7y6TQkzWYJkHWbxzagbTHRL2LTNQ6Dxq+fZDA9yrv17SB/6jWmqvIHiFv+grBanmVogLIP6LTTVnye1sElyjolWHCqXWGRhtaPMOnvD8zngguB9+5FytpKY2gGVoUdOGxSkqWTWc52TxQw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ed1ee6a-04f4-4ab7-a3e6-08df286c37c3
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB4792.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RXI2RmpqS0xWVWpMK2ZqbUtTdEg0Z2N0S1hhSUhhNWdpRDhteGl3NWNVRmp1?=
+ =?utf-8?B?SldKdVR3UXpnWmtvZTBRSzdXdmdFcldoR2RkeURybmJsSVpDeDJkK3N4NGM4?=
+ =?utf-8?B?c1JsWmVSb1FkYytwYjlUc1YwQ2w5L0ZLTVM3MXRjb0M3M2xUcnRlL2NXOVZa?=
+ =?utf-8?B?OEVadnhKS1NQa1BQMjRON2F1cWc4UWFWS3VmYno5c2hsZmN6ekw3QUVlUlNa?=
+ =?utf-8?B?aGUwdVp1QUx1aVQ4L0FXR3Q2MnUvampwR1hsWjV5RUcxUS9lYktPUnQwNFpX?=
+ =?utf-8?B?eG4zNXN5WE01NXV3ZXNsZFNNaHMxS0REcE9FeEpZaXRMNmVPd1J2a3NjS2xD?=
+ =?utf-8?B?TEQ2SEppTlFNRGxrUEc1eld3ZVpLa1N3OG50VE9uQVRHMEREQ1FOU05EYmlr?=
+ =?utf-8?B?MDQxWXh4NE80R2dJaDZlaHBaOC95RzJvK09zOHQ5cVNUWklyVCt6NUNtZ3Ew?=
+ =?utf-8?B?S2V1cEkwSUJ4K0M3T3VabFk2NnZRRkN4bXZ3ajB2ckVCdWEwMERvRTNDa0VF?=
+ =?utf-8?B?T0pkU2J6WTF3VDkzTFN6VExOSXhJUnpHb09hRkRqbXkxQjY2MTlQMklaeDk2?=
+ =?utf-8?B?MWpoQTVIbW5JMkdxRWF5Nkk0enVpb0hYYUJsUW5UelpYaGY5eGhnY2twUjRR?=
+ =?utf-8?B?TGg5WE9vM3BkMVZSdU8vZkdOQ1hEZ253K0ZzSUhPaCtNak9TdUZXTG9nVm9K?=
+ =?utf-8?B?M0hwTy9QdWVVZFZGU2k1RmpDbjVlL3MvZ1A1MlM2eW1MU0ZxSVZQTUFtSlhT?=
+ =?utf-8?B?UlY1ZTJBUmlKR3hzeUR2eVc2S3RzSXIrL2VuMVFITXVOZldNWGxpWDRLaHpP?=
+ =?utf-8?B?czJCWXplQkovNHA1UGNXT2NNak5XUVBLL2tWWG4wejZJTXZLNVhJSEJMcUFt?=
+ =?utf-8?B?QjhnQzhoalNiYjNLcElObzliWXR0UDU5ZGs3TEw0OVU0cFMySHVBcm1tWDhm?=
+ =?utf-8?B?TTB4V0dSWlJxWDVxUyt5TEpWN2pRbmFWYXFXZGZkNkdTOWZpSWZjOXFWOWxm?=
+ =?utf-8?B?VDhZVFZpQ3JUZDliWnp4c3orcGtqblhybHVya0xUYmFoRU9xVVhlaGgzandj?=
+ =?utf-8?B?a3FIYWF6REVIcEhwVzZpdEZNQzB5VDhKWXhqRFJOalFNM3VIUWtTVyt6U1Ro?=
+ =?utf-8?B?SktLb01sZ3hVcW80elI2eFUwMUJsVDVYdHpWMDRTSFpsRzY5RzhnUEt6ZkM5?=
+ =?utf-8?B?cjlUbFZNYXZRekZaQWxuNm1KcFNoaS9uaHNjZjRlalFlMUpmQUsyYS9sSmdZ?=
+ =?utf-8?B?RWtJZHlwZFA3aWl1RGNkZ21pUWFyQ2JZSVp1SFVWSGkzZU4yU3ZpMjZzaFpB?=
+ =?utf-8?B?OXZWSHZmcnVGQU9ySzloZnYrSHEzRDZkSkI3aDdHdS9lTEhjUy91OWhMT1Vp?=
+ =?utf-8?B?SWE4dVZiUnI2NnU5M1JkNVhUSk5nKy81S3V1UU5CZnhXRU4zTUpOS2RjcXEy?=
+ =?utf-8?B?eGxBR1NtUi9Ga0g3eGRxM2ZnbFVIOGRUWnVTejdsZjU4ZkxMcE81c2tmQ1k0?=
+ =?utf-8?B?RHZveVpSYXRxWk0wKzQzVE81Q3dwOWxVcHExc2U2UlI2Z2tWYVZiS3JvdWc0?=
+ =?utf-8?B?aW42eGVXTkZZQlc0MVU1ay9UK2xBbGdsYk9HbU9NZGlhNlhyNGxuWG1teHZZ?=
+ =?utf-8?B?YW5Uc3Q0SHczWUhDMy84YXhKL2RJS28yTjRGa2VMcnRhZEVMSWNYZlptMmJ3?=
+ =?utf-8?B?NXM0cWY3K29wZWRMUXlMUFFOeWlvTDg5RkI5RndIeUwzS0t2aHdicGtSUUFX?=
+ =?utf-8?B?SW5UQzdDUU1sRTlVNnFKTFo0V3VmdkVaSW42N2E5UCtFOGE5bmFDc203b09T?=
+ =?utf-8?B?L3BSUll0ejlvN1loZjBENDFDbE9KTzlDL2YxWWRwaHFOODA5WFE0RjZQRWRh?=
+ =?utf-8?B?dUtHcUx2SjZTeTZ0TGkxRjRuakp5azBGWE5iU05GbVgxb2grRW9TTVo3UzB2?=
+ =?utf-8?B?NmdGNUJFNVpLQVBTekZTY0IrVEpTcms3Y3diTWVrL1c1amd5ajRXRUxnWG1o?=
+ =?utf-8?B?MDMzc1hxQktNL05wbGJoaG1GaDhVeWQ5RXNLTWgwc2cvbkJOUHpaRVl2dnJZ?=
+ =?utf-8?B?eWFJT2R4UHpuc2RGaDJ3blpvSUk3RjlvcTcvbWxIak1EMEtEUkpaSGFTeXdl?=
+ =?utf-8?B?K2ErS043cHlpbEM4a0tKK0FBNld5RDFJTUh6cjFpRFZlOFRjUjdqLzQrSlox?=
+ =?utf-8?B?d2NvV01zallHRU9qMWVyM0c2RzJnMVgwVzEvdithcUdsbGllL2luWUh5bGVo?=
+ =?utf-8?B?RmVIanErL0srM01PTnBzc3ZaKzRtSlNiL1I1VzBiY29XUTlhY0FrQWdMdmFS?=
+ =?utf-8?B?cmJKZzR1OTlITUhWY1lrcEZWZDNid09hTE05eHAvZmtHTGlJR0Vzc1MrZVA2?=
+ =?utf-8?Q?T64JoeeND51EHS/k=3D?=
+X-Exchange-RoutingPolicyChecked: kC8fLna8LtmywVJlX03sT+TtX2VseD1UCVW0CfrRCFbskRAAhBteLeGctusGdOiXooDuhEooJbcbhmSjISkdmeoOZ9D8nPFn3/JIY8jlLcijQ4v+JXPTgxYOWD5JwFrgmmLj2oQuS95rpfO+wGvLUNM2JPxSwNgik2/rCv4KVt++jouMTN5yTeYxD1azGbpc+Pj4JXOrRJzDHxihEFV0+PDMF3zmK2DPrNxffZjwaslxQMJMWEffWNiTF8YhGLnOjCI83OE5kJXfAZhmq0jXkQnm+jDi6VmGoNZWyroyflStoubPAYu+tiA3W6VYg26sgIyRoAAACUbg/rGFks1jAA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0430fb3e-d533-4cac-a369-08df286cad0c
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR11MB148960.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2026 14:22:16.8502 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2026 14:25:33.5441 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: D7UdtC8/4zqelcmRbvKZvdn1Ib4JnT0N2rAQ8Dcm7dcWFL2yk2tBxs98Voen/oWt3u2TizqSFRJOBkxz3qLwzA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB984635
+X-MS-Exchange-CrossTenant-UserPrincipalName: uPzVx3bxSg6e3MyDJ8L4gnGizOb0e+mQ3rXYtvLl0dYnmzrv5iDzXI9M70wrrbQ9lzBOYWtXMd8nGlkJ+9JkS7/WoxUdZHtZqq80pvKe1Kg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA7PR11MB9542
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -174,39 +170,241 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Oct 12, 2026 at 04:16:23PM +0200, Danilo Krummrich wrote:
-> On Mon Oct 12, 2026 at 4:11 PM CEST, Matthew Brost wrote:
-> > Danilo - correct me if I'm wrong but in prior rev one of your dislikes
-> > was some drivers using DRM_GPUVM_RESV_PROTECTED and others not (msm,
-> > Nouveau), thus I have both fixed in this series as it was quite easy +
-> > using two pass gpuvm.
-> >
-> > So Danilo didn't contribute, rather suggested.
-> 
-> That's all correct, feel free to add a Suggested-by tag if you like. I will get
-> back to this series soon, thanks for tackling this!
+On 10/8/2026 3:53 AM, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>
+> The current implementation of w/a 16025573575 does not actually work.
 
-+1. This has suddenly become a priority for my company over the last
-week, so please let me know when I can start merging the pieces.
+Thanks Ville for catching this and fixing it.
 
-My plan would be to merge the baseline GPUVM patch through drm-misc,
-wait for it to propagate to drm_next (at least for Xe), and then have
-the individual driver maintainers merge their respective pieces.
+I want to acknowledge my mistake in the original WA. I mistook DIR_MASK 
+and VAL_MASK for bits like any other and tried to preserve them, when 
+they are actually write-only commit bits.
 
-> 
-> > Also in a follow up we should probably rip out
-> > non-DRM_GPUVM_RESV_PROTECTED support as I believe all drivers will now
-> > use this.
-> 
-> Yes, that'd be great, I already added this to my list. But feel free to send a
-> follow-up if you want. :)
+I later realized this wasn't working when I forced HDMI to read the EDID 
+using bit-banging, and started looking into how to fix it properly, so 
+this patch is very welcome.
 
-No problem picking that up but let's get this series in first and once
-everyone is in drm-tip do an audit and rip non-DRM_GPUVM_RESV_PROTECTED
-out.
+We are also working on a debugfs hook to force bit-banging on a given 
+connector, and an IGT test to actually check it (I still need to review 
+the IGT though) [1] [2].
 
-Matt
+Perhaps that will be useful to catch issues like this again in the 
+future. Thanks to Ramanaidu for implementing it.
 
-> 
-> Thanks,
-> Danilo
+If it makes sense, we can get that in early to test this across all 
+available platforms. Or perhaps we can send both series separately to 
+trybot and use test-with to test with the given IGT.
+
+However, I don't want that to be a blocker for this series.
+
+
+[1] debugfs patch: https://patchwork.freedesktop.org/series/175123/
+
+[2] IGT: https://patchwork.freedesktop.org/series/175249/
+
+
+
+> The GPIO register mask bits are write only, and thus he read-modify-write
+
+nitpick: s/he/the
+
+
+> cycles we do will not preserve them. Furthermore the implementation makes
+> no effort to preserve the actual direction/output value bits, which is
+> a must if all the mask bits were actually set all the time.
+>
+> Rewrite the whole thing so that we always set all the mask bits,
+> and correctly preserve the previous state of the direction/output value
+> bits. And do that on all platforms so that we only have a single codepath
+> to worry about. As a bonus this approach will also make the code
+> work on upcoming platforms where the mask bits no longer even exist.
+> Smoke tested on alm,cl,tgl,lnl,ptl.
+>
+> Fixes: 7565fd5dcb0b ("drm/i915/gmbus: Add Wa_16025573575 for PTL/WCL for bit-bashing")
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_gmbus.c | 98 ++++++++++++++--------
+>   1 file changed, 61 insertions(+), 37 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+> index 854f439ac5ba..b6c63a466233 100644
+> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
+> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+> @@ -246,25 +246,45 @@ static void bxt_gmbus_clock_gating(struct intel_display *display,
+>   		     !enable ? BXT_GMBUS_GATING_DIS : 0);
+>   }
+>   
+> -static u32 get_reserved(struct intel_gmbus *bus)
+> +static u32 gpio_mask_bits(struct intel_display *display)
+>   {
+> -	struct intel_display *display = bus->display;
+> -	u32 preserve_bits = 0;
+> +	return GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_VAL_MASK |
+> +		GPIO_DATA_DIR_MASK | GPIO_DATA_VAL_MASK;
+> +}
+> +
+> +static u32 gpio_preserved_bits(struct intel_display *display)
+> +{
+> +	u32 val = GPIO_CLOCK_DIR_OUT | GPIO_CLOCK_VAL_OUT |
+> +		GPIO_DATA_DIR_OUT | GPIO_DATA_VAL_OUT;
+>   
+>   	/*
+>   	 * On gen2/3 these are either internal pullup disables, or
+>   	 * documented as reserved bits that need to be preserved.
+>   	 */
+>   	if (DISPLAY_VER(display) < 4)
+> -		preserve_bits |= GPIO_DATA_PULLUP_DISABLE |
+> +		val |= GPIO_DATA_PULLUP_DISABLE |
+>   			GPIO_CLOCK_PULLUP_DISABLE;
+>   
+> -	/* Wa_16025573575: the masks bits need to be preserved through out */
+> -	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
+> -		preserve_bits |= GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_VAL_MASK |
+> -				 GPIO_DATA_DIR_MASK | GPIO_DATA_VAL_MASK;
+> +	return val;
+> +}
+>   
+> -	return intel_de_read_fw(display, bus->gpio_reg) & preserve_bits;
+> +static u32 gpio_read_reg(struct intel_gmbus *bus)
+> +{
+> +	struct intel_display *display = bus->display;
+> +	u32 val;
+> +
+> +	val = intel_de_read_fw(display, bus->gpio_reg);
+> +
+> +	val &= gpio_preserved_bits(display);
+> +
+> +	/*
+> +	 * Wa_16025573575:
+> +	 * The (write only!) masks bits need to be kept set through out
+> +	 * on PTL. Do it always to keep the code uniform for all platforms.
+> +	 */
+> +	val |= gpio_mask_bits(display);
+> +
+> +	return val;
+>   }
+>   
+>   static int get_clock(void *data)
+> @@ -287,16 +307,16 @@ static void set_clock(void *data, int state_high)
+>   {
+>   	struct intel_gmbus *bus = data;
+>   	struct intel_display *display = bus->display;
+> -	u32 reserved = get_reserved(bus);
+> -	u32 clock_bits;
+> +	u32 val;
+>   
+> -	if (state_high)
+> -		clock_bits = GPIO_CLOCK_DIR_IN | GPIO_CLOCK_DIR_MASK;
+> -	else
+> -		clock_bits = GPIO_CLOCK_DIR_OUT | GPIO_CLOCK_DIR_MASK |
+> -			     GPIO_CLOCK_VAL_MASK;
+> +	val = gpio_read_reg(bus);
+>   
+> -	intel_de_write_fw(display, bus->gpio_reg, reserved | clock_bits);
+> +	val &= ~(GPIO_CLOCK_DIR_OUT | GPIO_CLOCK_VAL_OUT);
+> +
+> +	if (!state_high)
+> +		val |= GPIO_CLOCK_DIR_OUT;
+> +
+> +	intel_de_write_fw(display, bus->gpio_reg, val);
+>   	intel_de_posting_read_fw(display, bus->gpio_reg);
+>   }
+>   
+> @@ -304,32 +324,36 @@ static void set_data(void *data, int state_high)
+>   {
+>   	struct intel_gmbus *bus = data;
+>   	struct intel_display *display = bus->display;
+> -	u32 reserved = get_reserved(bus);
+> -	u32 data_bits;
+> +	u32 val;
+>   
+> -	if (state_high)
+> -		data_bits = GPIO_DATA_DIR_IN | GPIO_DATA_DIR_MASK;
+> -	else
+> -		data_bits = GPIO_DATA_DIR_OUT | GPIO_DATA_DIR_MASK |
+> -			GPIO_DATA_VAL_MASK;
+> +	val = gpio_read_reg(bus);
+>   
+> -	intel_de_write_fw(display, bus->gpio_reg, reserved | data_bits);
+> +	val &= ~(GPIO_DATA_DIR_OUT | GPIO_DATA_VAL_OUT);
+> +
+> +	if (!state_high)
+> +		val |= GPIO_DATA_DIR_OUT;
+> +
+> +	intel_de_write_fw(display, bus->gpio_reg, val);
+>   	intel_de_posting_read_fw(display, bus->gpio_reg);
+>   }
+
+This is now very clear.
+
+Though at the risk of being premature optimization, there does seem to 
+be an opportunity for factoring out common code:
+
+since set_clock() and set_data() end up doing the same thing with 
+different register fields, would it make sense to factor the common part 
+into something like
+
+set_gpio_line(bus, state_high, GPIO_DATA_DIR_OUT, GPIO_DATA_VAL_OUT);
+set_gpio_line(bus, state_high, GPIO_CLOCK_DIR_OUT, GPIO_CLOCK_VAL_OUT);
+
+In any case, I agree with the patch and the series as a whole.
+
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+
+
+Regards,
+
+Ankit
+
+>   
+>   static void
+> -ptl_handle_mask_bits(struct intel_gmbus *bus, bool set)
+> +gpio_set_mask(struct intel_gmbus *bus, bool enable)
+>   {
+>   	struct intel_display *display = bus->display;
+> -	u32 reg_val = intel_de_read_fw(display, bus->gpio_reg);
+> -	u32 mask_bits = GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_VAL_MASK |
+> -			GPIO_DATA_DIR_MASK | GPIO_DATA_VAL_MASK;
+> -	if (set)
+> -		reg_val |= mask_bits;
+> +	u32 val;
+> +
+> +	val = gpio_read_reg(bus);
+> +
+> +	val &= ~(GPIO_DATA_DIR_OUT | GPIO_CLOCK_DIR_OUT |
+> +		 GPIO_DATA_VAL_OUT | GPIO_CLOCK_VAL_OUT);
+> +
+> +	if (enable)
+> +		val |= gpio_mask_bits(display);
+>   	else
+> -		reg_val &= ~mask_bits;
+> +		val &= ~gpio_mask_bits(display);
+>   
+> -	intel_de_write_fw(display, bus->gpio_reg, reg_val);
+> +	intel_de_write_fw(display, bus->gpio_reg, val);
+>   	intel_de_posting_read_fw(display, bus->gpio_reg);
+>   }
+>   
+> @@ -344,8 +368,8 @@ intel_gpio_pre_xfer(struct i2c_adapter *adapter)
+>   
+>   	intel_gmbus_reset(display);
+>   
+> -	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
+> -		ptl_handle_mask_bits(bus, true);
+> +	if (gpio_mask_bits(display))
+> +		gpio_set_mask(bus, true);
+>   
+>   	set_data(bus, 1);
+>   	set_clock(bus, 1);
+> @@ -362,8 +386,8 @@ intel_gpio_post_xfer(struct i2c_adapter *adapter)
+>   	set_data(bus, 1);
+>   	set_clock(bus, 1);
+>   
+> -	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
+> -		ptl_handle_mask_bits(bus, false);
+> +	if (gpio_mask_bits(display))
+> +		gpio_set_mask(bus, false);
+>   
+>   	if (display->platform.pineview)
+>   		pnv_gmbus_clock_gating(display, true);
