@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F10DBCA9EC5
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:15:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4592BCA9EDA
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:15:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9296410E629;
-	Mon, 12 Oct 2026 04:15:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECF1510E6BC;
+	Mon, 12 Oct 2026 04:15:34 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27BED10E486;
- Mon, 12 Oct 2026 04:15:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B332B10E4F4;
+ Mon, 12 Oct 2026 04:15:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791778522; x=1823314522;
+ t=1791778528; x=1823314528;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=w065VMrjy391/TRCuqGOI/huMLewLyvhh6aRajdaMGw=;
- b=XxDnr/0YEq8KbGIvTneb+c6t2wykcZqq9dob/iq3Go228CZfLx6+rTck
- 8rL3QW8PJi0DJrEO/PWE572pEC+sADuK45Jf2UhUR0gXB+I5Eja5xgWSB
- 0uUklIp0rBD8HqyLYJlaILkv2v+7hwu/N0auKVJOPQFI+EfRSFHsqCe2r
- 4+dfSIwliP+gBu7R/Z6/lSZ+DN1xatl3v5y1uwzjh2cnPZtMrSdzfqFGl
- Y6aMYHYvY7kfy6ZVnWrRARt1Uk0cEmYzeL1BtY86gjj7PV5pl2lpD8pKp
- vTtTdYIdWbmADncysacJyxCqh9bzfPX1To7dMFFC4dE47SebFePS+0oJv Q==;
-X-CSE-ConnectionGUID: CKHt3cYuRGSZ7kkXoS3aHQ==
-X-CSE-MsgGUID: RQpcsJfVSGWHis6AwgWRYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="380907"
+ bh=m8HYOz/DEkRkq3gcvWRxfRrHndSBhepMLl+2d2ewQWw=;
+ b=MzbWownap/8Ek2gJr+c1hiD+u7gqRSB5WUGFOEDSGZYrY+27gRW+jUy7
+ fygdeEmP+Nfi5JVEsC5Fp0k8inOjwvRZZwFuFVl8Z3rdEN832JOzRhC3I
+ 97Rl7HiP7+p0Q0OH0zCvLQCuspi5p8fD1MQA7H6FvXM/0KBp79CYBkaXm
+ Y4L+jR5EEu6a4K8glFL7dSapxGfdSUMrThGOywbUHE+y1R65LW87Xr6DQ
+ gqko2vOcxEqyxTuYACX0SkJ5owDzJNHyha3aKolQ9oG63ChgRx0xz5xeg
+ +3ty+5k8GL/UYJMoFR8LkWcjKpOdpVGUo01c1i1QkoI7xdiPFE7/xPl72 g==;
+X-CSE-ConnectionGUID: WTaDj6ISTbChEgVOBMJJVg==
+X-CSE-MsgGUID: jfMozLfkR623koznsIDkyA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="380916"
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="380907"
+   d="scan'208";a="380916"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 21:15:15 -0700
-X-CSE-ConnectionGUID: YDZR9GAKT8uLqJhmp7EZ6A==
-X-CSE-MsgGUID: XKhOgDZSSleHgSu46N76tA==
+ 11 Oct 2026 21:15:24 -0700
+X-CSE-ConnectionGUID: FGjfjDwOQmehlyh6hQonRw==
+X-CSE-MsgGUID: v88u6951RXmNwSaCsWN8Og==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="1256517"
+   d="scan'208";a="1256565"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 21:15:14 -0700
+ 11 Oct 2026 21:15:23 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, jani.nikula@linux.intel.com,
  uma.shankar@intel.com, ville.syrjala@linux.intel.com,
  suraj.kandpal@intel.com
-Subject: [PATCH v2 27/56] drm/i915/hdmi_frl_dfm_regs: Define DFM registers
-Date: Mon, 12 Oct 2026 09:27:36 +0530
-Message-ID: <20261012035806.3361439-28-ankit.k.nautiyal@intel.com>
+Subject: [PATCH v2 31/56] drm/i915/hdmi: Add helper to write FRL CFG register
+Date: Mon, 12 Oct 2026 09:27:40 +0530
+Message-ID: <20261012035806.3361439-32-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
 References: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,60 +68,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Introduce helpers to write FRL CFG refister bits.
 
-Add defines for HDMI FRL dataflow metering registers
-to take care of DFM values.
-
-Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- .../i915/display/intel_hdmi_frl_dfm_regs.h    | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
- create mode 100644 drivers/gpu/drm/i915/display/intel_hdmi_frl_dfm_regs.h
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 16 ++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_hdmi.h |  1 +
+ 2 files changed, 17 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi_frl_dfm_regs.h b/drivers/gpu/drm/i915/display/intel_hdmi_frl_dfm_regs.h
-new file mode 100644
-index 000000000000..bb5cb76b3806
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi_frl_dfm_regs.h
-@@ -0,0 +1,36 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index bfec1a808af5..db996b696847 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -3919,3 +3919,19 @@ void intel_hdmi_disable_frl(struct intel_encoder *encoder,
+ 
+ 	intel_hdmi_reset_frl_config(intel_hdmi);
+ }
 +
-+#ifndef __INTEL_HDMI_FRL_DFM_REGS_H__
-+#define __INTEL_HDMI_FRL_DFM_REGS_H__
++void intel_hdmi_frl_cfg_write(const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	enum transcoder cpu_trans = crtc_state->cpu_transcoder;
++	u32 val;
 +
-+#include "intel_display_reg_defs.h"
++	if (!crtc_state->frl.enable)
++		return;
 +
-+#define _TRANS_HDMI_FRL_DFMRDCTL_A			0x600bc
-+#define TRANS_HDMI_FRL_DFMRDCTL(dev_priv, trans)	_MMIO_TRANS2(dev_priv, \
-+								     trans, \
-+								     _TRANS_HDMI_FRL_DFMRDCTL_A)
-+#define   TB_DIFF_MAX_OFFSET_MASK			REG_GENMASK(8, 0)
-+#define   TB_DIFF_MAX_OFFSET(val)			REG_FIELD_PREP(TB_DIFF_MAX_OFFSET_MASK, val)
++	val = TRANS_HDMI_R_B_SCHED_ENABLE(crtc_state->frl.rsrc_sched_en);
++	val |= TRANS_HDMI_ACTIVE_CHAR_BUF_THRESH(crtc_state->frl.active_char_buf_threshold);
++	val |= TRANS_HDMI_MIN_BLANK_CHAR(TRANS_HDMI_MIN_BLANK_CHAR_VAL);
 +
-+#define _TRANS_HDMI_FRL_DFMWRCTL_A			0x600c0
-+#define TRANS_HDMI_FRL_DFMWRCTL(dev_priv, trans)	_MMIO_TRANS2(dev_priv, \
-+								     trans, \
-+								     _TRANS_HDMI_FRL_DFMWRCTL_A)
-+#define  TB_ACTUAL_OFFSET_MASK				REG_GENMASK(8, 0)
-+#define  TB_ACTUAL_OFFSET(val)				REG_FIELD_PREP(TB_ACTUAL_OFFSET_MASK, val)
-+
-+#define _TRANS_HDMI_FRL_DFMTHRSH_A			0x600c4
-+#define TRANS_HDMI_FRL_DFMTHRSH(dev_priv, trans)	_MMIO_TRANS2(dev_priv, \
-+								     trans, \
-+								     _TRANS_HDMI_FRL_DFMTHRSH_A)
-+#define  RUN_LEN_THRESHOLD_MASK				REG_GENMASK(31, 24)
-+#define  RUN_LEN_THRESHOLD(val)				REG_FIELD_PREP(RUN_LEN_THRESHOLD_MASK, val)
-+#define  TB_MAX_THRESHOLD_MASK				REG_GENMASK(21, 12)
-+#define  TB_MAX_THRESHOLD(val)				REG_FIELD_PREP(TB_MAX_THRESHOLD_MASK, val)
-+#define  TB_MIN_THESHOLD_MASK				REG_GENMASK(9, 0)
-+#define  TB_MIN_THESHOLD(val)				REG_FIELD_PREP(TB_MIN_THESHOLD_MASK, val)
-+
-+#endif /* __INTEL_HDMI_FRL_DFM_REGS_H__ */
++	intel_de_rmw(display, TRANS_HDMI_FRL_CFG(display, cpu_trans), 0, val);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
+index 5baa38d326e5..6e0b5fb1930a 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.h
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
+@@ -83,5 +83,6 @@ void intel_hdmi_poll_for_scrambling_enable(const struct intel_crtc_state *crtc_s
+ 
+ int intel_hdmi_sink_max_frl_rate(struct drm_connector *connector);
+ int intel_hdmi_sink_dsc_max_frl_rate(struct drm_connector *connector);
++void intel_hdmi_frl_cfg_write(const struct intel_crtc_state *crtc_state);
+ 
+ #endif /* __INTEL_HDMI_H__ */
 -- 
 2.50.1
 
