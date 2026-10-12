@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A6F3CA9ED5
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:15:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4ACC8CA9ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:15:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00DAE10E466;
-	Mon, 12 Oct 2026 04:15:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8C9D10E4CF;
+	Mon, 12 Oct 2026 04:15:24 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17E5010E493;
- Mon, 12 Oct 2026 04:15:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C72910E454;
+ Mon, 12 Oct 2026 04:15:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791778508; x=1823314508;
+ t=1791778518; x=1823314518;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oYhl2e+gvglyZ5AND+pC2QZKqQUjnLfs27CK2y3vXLM=;
- b=YzXabHVmCQe3oixACMB/jrqISjCJLJurIprXoRs6QAswsVTMgDNlnO55
- HIUmS50W8aADFtI9QTJK6omnHO4Zr8o/UInDzh8ytugxujWzhYcWHoRHl
- ey4yLIGp2R7TdoqBiiJtb6Wv6IgdhFL1ztjJMwJkMQKGTQD2AtI9RhlEI
- tlOd9eKbfoBn8nY2PtyiWpxN47a5uAzDiYChJADY6VL79dWF3g0YINwKH
- nf5zVFxyBHELtCk3lZafmECTQ2jvdz2OPIrJeGbNe3ODNaQPGbgnyV2Hq
- 53jTuSDoMSyqSTJnKWo3oMV8yae1RMtHJN0rM4yajZRTUZ6lKnK5E5pG6 w==;
-X-CSE-ConnectionGUID: sIE0ggU6QFKz+xSffm1AMw==
-X-CSE-MsgGUID: yu1w7g04Su2PHscf1XMzqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="380886"
+ bh=LMdRE147hJCli+xnv0Zo3ichAgzxlno7X4PXYFxAs3k=;
+ b=X1LdAsESa4Qt5uVuyv0u42ztwWuIa2CjWU46gsCNc5HHfuZ3lsGwndg3
+ 0I//nUAQBncsuQvGwNksZESTc57MsI9QfMKP1PPvtgiP8ZZUTeCpNL6SM
+ 4NArVwo4MYcJtWtGhJdqNeGYsCx9EMq5hlDQf5ztlPi5db/ntHpQeI8FH
+ 1ZJqbv3knCOZqEO0+OJpXLNJlIjGifqT+r4vDYhZbvcIIAgqhIuagWRPQ
+ 6YpwKJqt7knkttTjYg+E8GDpx1Q0tX8lTsYpQR41McQ4e5Bqvy2dYd9br
+ q59hYbnEDsHIf7HmZrCho4eukK33REcNJ8O/PMQzfDEIVcaB8iYkMYryA g==;
+X-CSE-ConnectionGUID: 1kW0mJXrRFupL5EdfLaWZQ==
+X-CSE-MsgGUID: e5aJgaFCRNO04IFttqoAPw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="380902"
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="380886"
+   d="scan'208";a="380902"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 21:15:02 -0700
-X-CSE-ConnectionGUID: iVT8G6bIQO698mrbkVbpEw==
-X-CSE-MsgGUID: HLuvZxAaShScoG4nWONXJg==
+ 11 Oct 2026 21:15:11 -0700
+X-CSE-ConnectionGUID: Chiq8wR1TqOVRrzYLccKaw==
+X-CSE-MsgGUID: Et2KxZ5UR1+sLYF31eEr9w==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="1256450"
+   d="scan'208";a="1256501"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 21:15:01 -0700
+ 11 Oct 2026 21:15:10 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, jani.nikula@linux.intel.com,
  uma.shankar@intel.com, ville.syrjala@linux.intel.com,
  suraj.kandpal@intel.com
-Subject: [PATCH v2 21/56] drm/i915/ltphy: Calculate port clock for HDMI FRL
-Date: Mon, 12 Oct 2026 09:27:30 +0530
-Message-ID: <20261012035806.3361439-22-ankit.k.nautiyal@intel.com>
+Subject: [PATCH v2 25/56] drm/i915/cx0: Add helper to check if the FRL rate is
+ valid
+Date: Mon, 12 Oct 2026 09:27:34 +0530
+Message-ID: <20261012035806.3361439-26-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
 References: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
@@ -68,59 +69,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+Introduce helper intel_cx0_phy_hdmi_frl_rate_valid() to check if the
+given FRL rate is supported for the c10/20 Phys.
 
-Define function to get the port clock after we read VDR0_CONFIG.
-This helps us determine the port clock for HDMI FRL use case in LT
-PHY.
-
-Bspec: 74667, 74500
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lt_phy.c | 23 +++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 23 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h |  1 +
+ 2 files changed, 24 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 0e2ebd550bc5..7ac0888cdf45 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -1501,6 +1501,25 @@ intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
- 		     XELPDP_SSC_ENABLE_PLLB, val);
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index b83f0afaa9b5..d7fefb4871b7 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -3870,3 +3870,26 @@ void intel_cx0pll_verify_plls(struct intel_display *display)
+ 	intel_cx0pll_verify_tables(display, xe3lpd_c20_dp_edp_tables);
+ 	intel_cx0pll_verify_tables(display, mtl_c20_hdmi_tables);
  }
- 
-+static u32 intel_lt_phy_get_hdmi_frl_clock(u8 rate)
-+{
-+	switch (rate) {
-+	case 0:
-+		return 300000;
-+	case 1:
-+		return 600000;
-+	case 2:
-+		return 800000;
-+	case 3:
-+		return 1000000;
-+	case 4:
-+		return 1200000;
-+	default:
-+		MISSING_CASE(rate);
-+		return 0;
-+	}
-+}
 +
- static u32 intel_lt_phy_get_dp_clock(u8 rate)
- {
- 	switch (rate) {
-@@ -2000,6 +2019,10 @@ intel_lt_phy_calc_port_clock(struct intel_display *display,
- 		rate = REG_FIELD_GET8(LT_PHY_VDR_RATE_ENCODING_MASK,
- 				      lt_state->config[0]);
- 		clk = intel_lt_phy_get_dp_clock(rate);
-+	} else if (mode == MODE_HDMI_FRL) {
-+		rate = REG_FIELD_GET8(LT_PHY_VDR_RATE_ENCODING_MASK,
-+				      lt_state->config[0]);
-+		clk = intel_lt_phy_get_hdmi_frl_clock(rate);
- 	} else if (mode == MODE_HDMI_20) {
- 		clk = intel_lt_phy_calc_hdmi_port_clock(display, lt_state);
- 	} else {
++enum drm_mode_status
++intel_cx0_phy_hdmi_frl_rate_valid(struct intel_hdmi *hdmi, int clock_rate)
++{
++	struct intel_digital_port *dig_port = hdmi_to_dig_port(hdmi);
++	const struct intel_cx0pll_params *tables;
++	int i;
++
++	if (intel_encoder_is_c10phy(&dig_port->base))
++		tables = mtl_c10_hdmi_tables;
++	else
++		tables = mtl_c20_hdmi_tables;
++
++	for (i = 0; tables[i].name; i++) {
++		if (!intel_hdmi_is_frl(tables[i].clock_rate))
++			continue;
++
++		if (clock_rate == tables[i].clock_rate)
++			return MODE_OK;
++	}
++
++	return MODE_CLOCK_RANGE;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+index 95c20eb4b4b7..b7785bcebecb 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+@@ -84,5 +84,6 @@ void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
+ void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
+ 			      const struct intel_crtc_state *crtc_state);
+ void intel_mtl_tbt_pll_disable(struct intel_encoder *encoder);
++enum drm_mode_status intel_cx0_phy_hdmi_frl_rate_valid(struct intel_hdmi *hdmi, int clock_rate);
+ 
+ #endif /* __INTEL_CX0_PHY_H__ */
 -- 
 2.50.1
 
