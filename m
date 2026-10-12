@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 385F6CA9ED1
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 05:41:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 537F3CA9ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 05:41:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF32A10E40E;
-	Mon, 12 Oct 2026 05:41:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC16C10E414;
+	Mon, 12 Oct 2026 05:41:27 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B188610E40E
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 05:41:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53B5F10E414
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 05:41:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791783678; x=1823319678;
+ t=1791783682; x=1823319682;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QGwk92W5Dtr77eizXrYuIxDRXD7c0bFBX5PrUvwsddg=;
- b=A+q4rViKnUqx0ZCUIEiuulxgnd7G1O15cdnZ+zyNO+8nd0BFTkWuxc5U
- MJlkosgomlgBXkwz/h7zCHANzykE57zWyrT/Ju2WoFNNfqFz1upLM/c/1
- L0Wf0oTAMivupGLkp2rGc9GMMmQ9d3UUXFOVeS22oGbWQxmqKf1WCCSmj
- pnZHIel4F96/QtutL0U8HqhVoXHL59ljcPf19rvTOoO+9aWtcIin7ba9g
- 3W2QEuBsOBx7GbZHI6ezwKIBHJMcB/+1G7oA0iptHhHRBXNKjCel5EJg0
- paOC1eOm9x599FeFZ8++q64R/23fuUvn9BzcqoslDvcdHG4T+WNHWgAtm g==;
-X-CSE-ConnectionGUID: zgzGUO3xQZOb5kayc6yHpw==
-X-CSE-MsgGUID: IHQ4cPy5TtOPC3DfiArNyw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="367829"
+ bh=fHBX4fyyZQzPrKG+tQFPYzzzyw7DKphavrsatR0ocUQ=;
+ b=Q6LX3Mf9XgOdmmkRE9VeZCTlnMbvLTmTk0Jg999kh8I54QTrcEqMxqZ3
+ IpRsdKjsC7968apxOjQPiyyjjB7bIFRiaEETmPnjHY5nc1IPwNdff+AOs
+ t4+L/yBZoB15A7t5oxIDkYnqrKl6Gj4kNXpX61wxTz9YkguihAlweH+3A
+ Bl8KDcHP1DyRWRqBn6MdzaDTJgjh1Krw+FOgRdRhaOGKpboY4mhcqW2Rs
+ l8pB25lULaFhZtUnyLokCy6OkkH98MoW48MLsJrSNz0P9fVuG+ZPPMhDV
+ zKBmfkbrw8sDcMt+KGEP7HpvSCFNqOQIydfmSuV9lhgu2cF4ezfPftgnQ A==;
+X-CSE-ConnectionGUID: /xeyvOQRQ5OUTPJvWR2ysg==
+X-CSE-MsgGUID: itGseyHXRp+ilErUSXEmHQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="367835"
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="367829"
+   d="scan'208";a="367835"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 22:41:18 -0700
-X-CSE-ConnectionGUID: HLQ0UmWWRlezljbf4KgkPw==
-X-CSE-MsgGUID: wY9TZ0aJSei664V75O7bEg==
+ 11 Oct 2026 22:41:22 -0700
+X-CSE-ConnectionGUID: 4FgmlM4HQ8CMC9cuuqnSEA==
+X-CSE-MsgGUID: HdiepqpFTz6gsnRTaOmlQg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="787114"
+   d="scan'208";a="787123"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 22:41:15 -0700
+ 11 Oct 2026 22:41:18 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
@@ -47,15 +47,14 @@ Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, tejas.upadhyay@intel.com,
  himal.prasad.ghimiray@intel.com
-Subject: [PATCH v5 2/6] drm/xe/xe_ras: Handle page offline requests for device
- memory ecc errors
-Date: Mon, 12 Oct 2026 11:10:58 +0530
-Message-ID: <20261012054056.2272869-10-riana.tauro@intel.com>
+Subject: [PATCH v5 3/6] drm/xe/xe_ras: Add support to query page offline queue
+ and list
+Date: Mon, 12 Oct 2026 11:10:59 +0530
+Message-ID: <20261012054056.2272869-11-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20261012054056.2272869-8-riana.tauro@intel.com>
 References: <20261012054056.2272869-8-riana.tauro@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,288 +70,207 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add basic support for sending page offline/remove requests to system
-controller and use it for device memory ECC error handling.
-Pages that belong to critical BOs cannot be handled by offlining and
-require a SBR (Secondary Bus Reset).
-Pages that are configured for log-only handling are not marked as bad by
-firmware.
-
-For all other valid page addresses, the first occurrence of error
-indicates a poison error and the page is offlined only by software.
-Firmware avoids permanently marking the page as bad. The second occurrence
-of an error indicates a Double-bit ECC error and the firmware
-permanently marks the page as bad.
+Add support to query page offline list and queue from firmware
+during module load. The page offline list command retrieves pages that
+are already offlined by the firmware. The page offline queue command
+retrieves the pages pending to be offlined by the firmware.
 
 Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
-v2: use ret in sigid logging (Mallesh)
-    remove additional log
-    use xe_assert (Michal)
+v2: rebase
+    store total pages once per response (Sashiko)
 
-v3: align address to PAGE_SIZE (sashiko, Himal)
-    rename decline to remove
-    add more descriptive logs (Himal)
+v3: common function for offline and queue (Himal)
 
-v4: add handling for -ENOMEM (Sashiko, Tejas)
-    check user policy (Sashiko, Himal)
+v4: re-order list and queue (Sashiko, Himal)
+    remove type
+    use size_t
+    add description and rename functions (Tejas)
 ---
- drivers/gpu/drm/xe/xe_ras.c                   | 135 +++++++++++++++++-
- drivers/gpu/drm/xe/xe_ras_types.h             |  35 +++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   2 +
- 3 files changed, 167 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_ras.c                   | 87 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras_types.h             | 35 ++++++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  4 +
+ 3 files changed, 126 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index b2ccb0281d8f..a3464857e84c 100644
+index a3464857e84c..de97e5341f94 100644
 --- a/drivers/gpu/drm/xe/xe_ras.c
 +++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2026 Intel Corporation
-  */
- 
-+#include "xe_assert.h"
-+#include "xe_bo.h"
- #include "xe_configfs.h"
- #include "xe_debugfs.h"
- #include "xe_device.h"
-@@ -16,6 +18,7 @@
- #include "xe_sysctrl_event_types.h"
- #include "xe_sysctrl_mailbox.h"
- #include "xe_sysctrl_mailbox_types.h"
-+#include "xe_ttm_vram_mgr.h"
- 
- #define CORE_COMPUTE_UNCORR_TYPE	GENMASK(26, 25)
- /*
-@@ -201,6 +204,127 @@ static inline const char *comp_to_str(u8 component)
- 	return xe_ras_components[component];
+@@ -343,6 +343,89 @@ static bool ras_counter_is_valid(struct xe_device *xe, struct xe_ras_error_class
+ 	return true;
  }
  
-+static int send_page_offline_cmd(struct xe_device *xe, u64 page_address,
-+				 enum xe_ras_page_action action)
++/*
++ * Fetch and process offline list and queue from firmware via mailbox. @notify_fw controls
++ * whether firmware is notified of the offline/remove action.
++ */
++static void process_offline_pages(struct xe_device *xe, u32 cmd, void *req, size_t req_size,
++				  void *resp, size_t resp_size,
++				  struct xe_ras_offline_common *common, bool notify_fw)
 +{
 +	struct xe_sysctrl_mailbox_command command = {0};
-+	struct xe_ras_page_offline_request request = {0};
-+	struct xe_ras_page_offline_response response = {0};
++	struct xe_ras_offline_list_request *list_req;
++	u32 total_pages = 0, count = 0;
 +	size_t rlen;
-+	int ret;
++	int ret, i;
 +
-+	if (!xe->info.has_sysctrl)
-+		return 0;
++	list_req = req;
 +
-+	xe_assert(xe, action < XE_RAS_PAGE_ACTION_MAX);
++	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, cmd, req, req_size, resp,
++				  resp_size);
 +
-+	request.page_address = page_address;
-+	request.action = action;
++	do {
++		memset(resp, 0, resp_size);
 +
-+	if (action == XE_RAS_PAGE_ACTION_OFFLINE)
-+		xe_log_err(xe, DEVICE_MEMORY, 0, "Requesting firmware to offline page 0x%llx\n",
-+			   page_address);
-+	else
-+		xe_log_err(xe, DEVICE_MEMORY, 0, "Requesting firmware to remove page 0x%llx from queue\n",
-+			   page_address);
++		if (list_req)
++			list_req->index = count;
 +
-+	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_PAGE_OFFLINE,
-+				  &request, sizeof(request), &response, sizeof(response));
++		ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
++		if (ret) {
++			xe_log_err(xe, SYSCTRL, ret, "failed to get page offline data, cmd=%#x\n",
++				   cmd);
++			return;
++		}
 +
-+	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
-+	if (ret) {
-+		xe_log_err(xe, SYSCTRL, ret, "failed to send page offline command\n");
-+		return ret;
-+	}
++		if (rlen != resp_size) {
++			xe_log_err(xe, SYSCTRL, -EINVAL,
++				   "unexpected page offline response length %zu (expected %zu), cmd=%#x\n",
++				   rlen, resp_size, cmd);
++			return;
++		}
 +
-+	if (rlen != sizeof(response)) {
-+		xe_log_err(xe, SYSCTRL, -EINVAL,
-+			   "unexpected page offline response length %zu (expected %zu)\n",
-+			   rlen, sizeof(response));
-+		return -EINVAL;
-+	}
++		for (i = 0; i < common->pages_returned && i < XE_RAS_NUM_PAGES; i++)
++			handle_page_offline(xe, common->page_addresses[i], notify_fw);
 +
-+	ret = ras_status_to_errno(response.status);
-+	if (ret) {
-+		xe_log_err(xe, SYSCTRL, ret, "page offline command failed with status %u\n",
-+			   response.status);
-+		return ret;
-+	}
++		count += common->pages_returned;
++		if (!common->pages_returned)
++			break;
 +
-+	return 0;
++		if (!total_pages)
++			total_pages = common->total_pages;
++
++		if (count > total_pages) {
++			xe_log_err(xe, SYSCTRL, -EINVAL,
++				   "Pages returned exceed total pages %u, returned %u, cmd=%#x\n",
++				   total_pages, count, cmd);
++			return;
++		}
++	} while (common->additional_data);
 +}
 +
-+static int handle_page_offline(struct xe_device *xe, u64 page_address, bool notify_fw)
++/*
++ * Retrieve firmware queued pages from warm-retained SRAM during probe. Handle and soft-offline
++ * each page as required.
++ */
++static void get_offline_queue(struct xe_device *xe)
 +{
-+	enum xe_ras_page_action action;
-+	u64 addr;
-+	int ret;
++	struct xe_ras_offline_common response = {0};
 +
-+	if (!IS_ALIGNED(page_address, XE_PAGE_SIZE)) {
-+		xe_log_err(xe, SYSCTRL, -EINVAL, "Unaligned physical page address: 0x%llx\n",
-+			   page_address);
-+		return -EINVAL;
-+	}
-+
-+	/* User policy set to disable page offlining */
-+	if (xe_ras_get_disable_vram_page_offline(xe)) {
-+		action = XE_RAS_PAGE_ACTION_REMOVE;
-+		xe_log_err(xe, DEVICE_MEMORY, -EOPNOTSUPP, "User policy set to disable page offlining\n");
-+		goto notify;
-+	}
-+
-+	addr = ALIGN_DOWN(page_address, PAGE_SIZE);
-+
-+	ret = xe_ttm_vram_handle_addr_fault(xe, addr);
-+
-+	/*
-+	 * Handle return code from address fault handling function:
-+	 *  0: Page softofflined, remove from firmware queue
-+	 * -EIO: Address belongs to a critical BO/stolen area that cannot be offlined
-+	 * -ENOMEM: Failed to allocate BO for soft-offlining the page
-+	 * -EEXIST: Address is soft offlined but yet to be offlined by firmware for second
-+	 * occurrence
-+	 */
-+
-+	switch (ret) {
-+	case 0:
-+		action = XE_RAS_PAGE_ACTION_REMOVE;
-+		xe_log_err(xe, DEVICE_MEMORY, ret,
-+			   "Poison detected at physical address 0x%llx, page soft-offlined\n",
-+			   page_address);
-+		break;
-+	case -EIO:
-+		xe_log_err(xe, DEVICE_MEMORY, ret,
-+			   "Poison detected at physical address 0x%llx, page belongs to critical BO and cannot be soft-offlined\n",
-+			   page_address);
-+		return ret;
-+	case -EEXIST:
-+		action = XE_RAS_PAGE_ACTION_OFFLINE;
-+		xe_log_err(xe, DEVICE_MEMORY, ret,
-+			   "Double-bit ECC error detected at physical address 0x%llx, page soft-offlined\n",
-+			   page_address);
-+		break;
-+	case -ENOMEM:
-+		xe_log_err(xe, DEVICE_MEMORY, ret,
-+			   "Poison detected at physical address 0x%llx, failed to soft-offline\n",
-+			   page_address);
-+		return ret;
-+	default:
-+		xe_log_err(xe, DEVICE_MEMORY, ret, "Failed to handle address fault at physical address 0x%llx\n",
-+			   page_address);
-+		return 0;
-+	}
-+
-+ notify:
-+	if (notify_fw) {
-+		ret = send_page_offline_cmd(xe, page_address, action);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
++	process_offline_pages(xe, XE_SYSCTRL_CMD_GET_OFFLINE_QUEUE, NULL, 0, &response,
++			      sizeof(response), &response, true);
 +}
 +
- static bool ras_counter_is_valid(struct xe_device *xe, struct xe_ras_error_class *counter)
++/*
++ * Retrieve permanently offlined pages from firmware's non-volatile storage during probe,
++ * allowing the driver to soft-offline them before kernel allocations begin.
++ */
++static void get_offline_list(struct xe_device *xe)
++{
++	struct xe_ras_offline_list_response response = {0};
++	struct xe_ras_offline_list_request request = {0};
++
++	process_offline_pages(xe, XE_SYSCTRL_CMD_GET_OFFLINE_LIST, &request, sizeof(request),
++			      &response, sizeof(response), &response.common, false);
++}
++
+ static struct pci_dev *find_usp_dev(struct pci_dev *pdev)
  {
- 	u8 severity = counter->common.severity;
-@@ -368,11 +492,12 @@ static u8 handle_soc_internal_errors(struct xe_device *xe, struct xe_ras_error_a
- static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_array *arr)
- {
- 	struct xe_ras_memory_error *info = (void *)arr->details;
-+	int ret;
+ 	struct pci_dev *vsp;
+@@ -1067,6 +1150,10 @@ void xe_ras_init(struct xe_device *xe)
+ 	if (IS_ENABLED(CONFIG_PCIEAER))
+ 		ras_usp_aer_init(xe);
  
- 	/*
- 	 * For memory errors, the recovery action depends on the error category
- 	 *
--	 * TODO: Double-bit ECC errors: Page offlining
-+	 * Double-bit ECC errors: Page offlining
- 	 * Poison and data parity errors: Log only
- 	 * For any other memory errors, request a reset as recovery mechanism
- 	 */
-@@ -384,10 +509,10 @@ static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_
- 		xe_info(xe, "[RAS]: Data parity error detected\n");
- 		break;
- 	case XE_RAS_MEMORY_DB_ECC:
--		xe_info(xe, "[RAS]: Double-bit ECC error detected at sw address 0x%llx\n",
--			info->sw_address);
--		/* TODO: Add page offlining for Double-bit ECC error */
--		fallthrough;
-+		ret = handle_page_offline(xe, info->sw_address, true);
-+		if (ret)
-+			return XE_RAS_RECOVERY_ACTION_RESET;
-+		break;
- 	default:
- 		return XE_RAS_RECOVERY_ACTION_RESET;
- 	}
++	/* Fetch the offline list before queue to avoid duplication */
++	get_offline_list(xe);
++	get_offline_queue(xe);
++
+ 	ret = devm_device_add_group(xe->drm.dev, &gpu_health_group);
+ 	if (ret)
+ 		xe_err(xe, "Failed to create GPU health sysfs, err=%d\n", ret);
 diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-index 698f73c63393..91b090cd2c7e 100644
+index 91b090cd2c7e..b6f4cfbadede 100644
 --- a/drivers/gpu/drm/xe/xe_ras_types.h
 +++ b/drivers/gpu/drm/xe/xe_ras_types.h
-@@ -17,6 +17,19 @@
- #define XE_RAS_MEMORY_POISON			BIT(2)
- #define XE_RAS_MEMORY_DATA_PARITY		BIT(5)
+@@ -10,6 +10,7 @@
  
-+/**
-+ * enum xe_ras_page_action - Page offline actions for page offline request
-+ *
-+ * @XE_RAS_PAGE_ACTION_OFFLINE: Instruct firmware to offline the page
-+ * @XE_RAS_PAGE_ACTION_REMOVE: Instruct firmware to remove the page from queue
-+ * @XE_RAS_PAGE_ACTION_MAX: Max value
-+ */
-+enum xe_ras_page_action {
-+	XE_RAS_PAGE_ACTION_OFFLINE,
-+	XE_RAS_PAGE_ACTION_REMOVE,
-+	XE_RAS_PAGE_ACTION_MAX
-+};
-+
- /**
-  * enum xe_ras_recovery_action - RAS recovery actions
-  *
-@@ -295,6 +308,28 @@ struct xe_ras_memory_error {
- 	u32 reserved2[10];
+ #define XE_RAS_NUM_COUNTERS			16
+ #define XE_RAS_NUM_ERROR_ARR			3
++#define XE_RAS_NUM_PAGES			25
+ /* Error bits in IEH global error status register */
+ #define XE_RAS_SOC_IEH_PUNIT			BIT(1)
+ /* Device memory error categories */
+@@ -330,6 +331,40 @@ struct xe_ras_page_offline_response {
+ 	u32 reserved;
  } __packed;
  
 +/**
-+ * struct xe_ras_page_offline_request - Request for page offline command
++ * struct xe_ras_offline_common - Common structure for offline list and queue
 + */
-+struct xe_ras_page_offline_request {
-+	/** @page_address: Page address (4KB aligned) */
-+	u64 page_address;
-+	/** @action: Action to be performed, see &enum xe_ras_page_action */
-+	u32 action;
++struct xe_ras_offline_common {
++	/** @total_pages: Total number of queued pages */
++	u32 total_pages;
++	/** @pages_returned: Number of pages returned in this response */
++	u32 pages_returned;
++	/** @page_addresses: Array of page addresses (4KB aligned) */
++	u64 page_addresses[XE_RAS_NUM_PAGES];
++	/** @additional_data: Indicates if more data is available */
++	u8 additional_data;
 +	/** @reserved: Reserved for future use */
-+	u32 reserved;
++	u8 reserved[3];
 +} __packed;
 +
 +/**
-+ * struct xe_ras_page_offline_response - Response from page offline command
++ * struct xe_ras_offline_list_request - Request for get offline list command
 + */
-+struct xe_ras_page_offline_response {
-+	/** @status: Status of the page offline request */
-+	u32 status;
-+	/** @reserved: Reserved for future use */
-+	u32 reserved;
++struct xe_ras_offline_list_request {
++	/** @index: Zero-based index into the offline page list */
++	u32 index;
++} __packed;
++
++/**
++ * struct xe_ras_offline_list_response - Response from get offline list command
++ */
++struct xe_ras_offline_list_response {
++	/** @max_entries: Total no of pages that can be stored in flash */
++	u32 max_entries;
++	/** @common: Common offline page information */
++	struct xe_ras_offline_common common;
 +} __packed;
 +
  /**
   * struct xe_ras_get_health_request - Request structure for obtaining gpu health
   */
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index a0628eb47bff..01d944fa3e5e 100644
+index 01d944fa3e5e..1f3f782d770e 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -32,6 +32,7 @@ enum xe_sysctrl_group {
-  * @XE_SYSCTRL_CMD_GET_THRESHOLD: Retrieve error threshold
+@@ -33,6 +33,8 @@ enum xe_sysctrl_group {
   * @XE_SYSCTRL_CMD_SET_THRESHOLD: Set error threshold
   * @XE_SYSCTRL_CMD_GET_PENDING_EVENT: Retrieve pending event
-+ * @XE_SYSCTRL_CMD_PAGE_OFFLINE: Instruct firmware to offline/remove a page
+  * @XE_SYSCTRL_CMD_PAGE_OFFLINE: Instruct firmware to offline/remove a page
++ * @XE_SYSCTRL_CMD_GET_OFFLINE_LIST: Retrieve list of all offlined pages from flash
++ * @XE_SYSCTRL_CMD_GET_OFFLINE_QUEUE: Retrieve list of offlined queued pages from firmware
   * @XE_SYSCTRL_CMD_GET_HEALTH: Retrieve gpu health
   * @XE_SYSCTRL_CMD_SET_HEALTH: Set gpu health
   */
-@@ -42,6 +43,7 @@ enum xe_sysctrl_gfsp_cmd {
- 	XE_SYSCTRL_CMD_GET_THRESHOLD		= 0x05,
+@@ -44,6 +46,8 @@ enum xe_sysctrl_gfsp_cmd {
  	XE_SYSCTRL_CMD_SET_THRESHOLD		= 0x06,
  	XE_SYSCTRL_CMD_GET_PENDING_EVENT	= 0x07,
-+	XE_SYSCTRL_CMD_PAGE_OFFLINE		= 0x08,
+ 	XE_SYSCTRL_CMD_PAGE_OFFLINE		= 0x08,
++	XE_SYSCTRL_CMD_GET_OFFLINE_LIST		= 0x09,
++	XE_SYSCTRL_CMD_GET_OFFLINE_QUEUE	= 0x0A,
  	XE_SYSCTRL_CMD_GET_HEALTH		= 0x0B,
  	XE_SYSCTRL_CMD_SET_HEALTH		= 0x0C,
  };
