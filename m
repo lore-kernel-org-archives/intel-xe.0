@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBD19CA9ED5
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:14:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFD4ECA9EDA
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:14:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ACC610E440;
-	Mon, 12 Oct 2026 04:14:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C55710E400;
+	Mon, 12 Oct 2026 04:14:43 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9915B10E102;
- Mon, 12 Oct 2026 04:14:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B167210E400;
+ Mon, 12 Oct 2026 04:14:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791778463; x=1823314463;
+ t=1791778472; x=1823314472;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dzkUlA3J6BDfXX9HfiMZlNbHMtIVoAmYcXmgoircsgU=;
- b=U0nfXXlt7FBn/gXkGjAU6t8AZWqo3NvIoqPVU18B1dDKpjMF7qz/EYk6
- uguS5eZuaMpZ8f7J8Z8vvEUjJwb0XAm8rZzmDaUPBR0wRbt0p2zoHsn0o
- oUIgDiFEDTRQyry2gT87gczGWFGMYdWa1Jj8i26QL9R8wgArLXTbDHrzS
- MNU/75zAOnxU/JP8c2QBsH/JAsZCwlkMxhc4XjubyRuoj8kPh93Oj9JMS
- UmQgiwe7dVUPBCFLPitUQBW8gfJCMH1WLQJNceDOlStMeU6NZGQJnXK/F
- ohFVXjar22rmZW56ShmohdJrGhX+uwno0ZgAAkIg8nSi4Nf3jY7nz7qbe Q==;
-X-CSE-ConnectionGUID: yG6YmxVGQFC7UhDmyXX5Mg==
-X-CSE-MsgGUID: HkQs/SyUTLCKcOEwF3QjCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="380816"
+ bh=/sqvIbiqohLThDXEnvUmuMzUIg7CErDjbAhquHJNSCY=;
+ b=Q99ss9dHtq7nRGfwmrIhSmDsAtOFNFNFLrMPq8lf2yC/fmPALqftxpB8
+ GqdmWU88hGuMSHfQ98hwvI7PbiQS37spif/2GzqgjZrjZcExUEJS5z/4T
+ riAEH2gDWKXaRJrf3qIK7fRFhJVeIHf3U46HhoAlRkkXMFRYNPFEevVlu
+ aLXRlnJiuBJDwmarNswM4csW97JcSupY9ZACXMWcrJwKqB1+K1E6hUHav
+ n8lx2PIXpfkwZOSD1CPxVWBC14FT9vJcrox3EVyvczhMoikMiVXpdXSIw
+ Bvs1OasVOWDkx5OHxizYY7jwkIh5q/Mv+f/IEoiCKvr2I+eF4m/ydw83m w==;
+X-CSE-ConnectionGUID: icqbtH1fQcedZZybsTPb9A==
+X-CSE-MsgGUID: rH7glr5qTaKIjntDbRWGMg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="380836"
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="380816"
+   d="scan'208";a="380836"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 21:14:23 -0700
-X-CSE-ConnectionGUID: hyMtFLbYQQu2SEVFAhIkMA==
-X-CSE-MsgGUID: 66FsQZ7KQA+XPFPjv+ofGw==
+ 11 Oct 2026 21:14:32 -0700
+X-CSE-ConnectionGUID: Pdw2N65BQra+oRALF4xHGA==
+X-CSE-MsgGUID: JWHwVfQZT12nuMASKXFAmg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="1256331"
+   d="scan'208";a="1256356"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 21:14:22 -0700
+ 11 Oct 2026 21:14:31 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, jani.nikula@linux.intel.com,
  uma.shankar@intel.com, ville.syrjala@linux.intel.com,
  suraj.kandpal@intel.com
-Subject: [PATCH v2 04/56] drm/drm_scdc_helper: Add SCDC helper funcs for FRL
-Date: Mon, 12 Oct 2026 09:27:13 +0530
-Message-ID: <20261012035806.3361439-5-ankit.k.nautiyal@intel.com>
+Subject: [PATCH v2 08/56] drm/i915/ddi: Update Transcoder/DDI registers with
+ the frl bits
+Date: Mon, 12 Oct 2026 09:27:17 +0530
+Message-ID: <20261012035806.3361439-9-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
 References: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
@@ -68,194 +69,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-FRL (Fixed Rate Link) uses a set of SCDC registers to configure and
-monitor link training between the source and sink.
-
-Add the register definitions and helper functions to read and
-configure these SCDC registers for FRL link training.
+For platforms supporting HDMI FRL we need to fill the lane count
+in Transcoder and DDI/PORT registers for FRL mode.
+Similarly, FRL SHIFTER ENABLE, and DATA_WIDTH bits are to be set
+in FRL mode. These bits are written in both the DDI_BUF_CTL and
+PORT_BUF_CTL registers.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/display/drm_scdc_helper.c | 109 ++++++++++++++++++++++
- include/drm/display/drm_scdc.h            |   3 +
- include/drm/display/drm_scdc_helper.h     |  23 +++++
- 3 files changed, 135 insertions(+)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 25 +++++++++++++++++++++---
+ 1 file changed, 22 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/display/drm_scdc_helper.c b/drivers/gpu/drm/display/drm_scdc_helper.c
-index 74388481fc55..968a6587585f 100644
---- a/drivers/gpu/drm/display/drm_scdc_helper.c
-+++ b/drivers/gpu/drm/display/drm_scdc_helper.c
-@@ -350,6 +350,115 @@ int drm_scdc_set_source_version(struct drm_connector *connector, u8 ver)
- }
- EXPORT_SYMBOL(drm_scdc_set_source_version);
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index a46ab5d3d70f..576e66774678 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -3121,12 +3121,20 @@ static void intel_ddi_buf_disable(struct intel_encoder *encoder,
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	enum port port = encoder->port;
++	u32 val;
  
-+int drm_scdc_read_update_flags(struct i2c_adapter *adapter, u8 *update_flags)
-+{
-+	return drm_scdc_readb(adapter, SCDC_UPDATE_0, update_flags);
-+}
-+EXPORT_SYMBOL(drm_scdc_read_update_flags);
-+
-+int drm_scdc_clear_update_flags(struct i2c_adapter *adapter, u8 update_flags)
-+{
-+	if (update_flags & SCDC_READ_REQUEST_TEST)
-+		return -EINVAL;
-+
-+	return drm_scdc_writeb(adapter, SCDC_UPDATE_0, update_flags);
-+}
-+EXPORT_SYMBOL(drm_scdc_clear_update_flags);
-+
-+int drm_scdc_read_status_flags(struct i2c_adapter *adapter, u8 *status_flags)
-+{
-+	return drm_scdc_readb(adapter, SCDC_STATUS_FLAGS_0, status_flags);
-+}
-+EXPORT_SYMBOL(drm_scdc_read_status_flags);
-+
-+int drm_scdc_config_frl(struct i2c_adapter *adapter, int frl_rate,
-+			int num_lanes, int ffe_levels)
-+{
-+	enum drm_scdc_frl_rate rate;
-+	u8 config;
-+
-+	if (ffe_levels < 0 || ffe_levels > 3)
-+		return -EINVAL;
-+
-+	switch (frl_rate) {
-+	case 3:
-+		if (num_lanes != 3)
-+			return -EINVAL;
-+		rate = SCDC_FRL_RATE_3X3;
-+		break;
-+	case 6:
-+		if (num_lanes == 3)
-+			rate = SCDC_FRL_RATE_6X3;
-+		else if (num_lanes == 4)
-+			rate = SCDC_FRL_RATE_6X4;
-+		else
-+			return -EINVAL;
-+		break;
-+	case 8:
-+		if (num_lanes != 4)
-+			return -EINVAL;
-+		rate = SCDC_FRL_RATE_8X4;
-+		break;
-+	case 10:
-+		if (num_lanes != 4)
-+			return -EINVAL;
-+		rate = SCDC_FRL_RATE_10X4;
-+		break;
-+	case 12:
-+		if (num_lanes != 4)
-+			return -EINVAL;
-+		rate = SCDC_FRL_RATE_12X4;
-+		break;
-+	default:
-+		return -EINVAL;
+ 	intel_de_rmw(display, DDI_BUF_CTL(port), DDI_BUF_CTL_ENABLE, 0);
+ 
+ 	if (DISPLAY_VER(display) >= 14)
+ 		intel_wait_ddi_buf_idle(display, port);
+ 
++	/* Clear PORT_BUF_CTL HDMI FRL Shifter Enable to 0 */
++	if (crtc_state->frl.enable) {
++		val = intel_de_read(display, XELPDP_PORT_BUF_CTL1(display, port));
++		intel_de_write(display, XELPDP_PORT_BUF_CTL1(display, port),
++			       val & ~XELPDP_PORT_HDMI_FRL_SHFTR_EN);
 +	}
 +
-+	config = FIELD_PREP(SCDC_FRL_RATE, rate) |
-+		 FIELD_PREP(SCDC_FFE_LEVELS, ffe_levels);
-+
-+	return drm_scdc_writeb(adapter, SCDC_CONFIG_1, config);
-+}
-+EXPORT_SYMBOL(drm_scdc_config_frl);
-+
-+int drm_scdc_disable_frl(struct i2c_adapter *adapter)
-+{
-+	u8 config;
-+	int ret;
-+
-+	ret = drm_scdc_readb(adapter, SCDC_CONFIG_1, &config);
-+	if (ret)
-+		return ret;
-+
-+	config &= ~SCDC_FRL_RATE;
-+
-+	return drm_scdc_writeb(adapter, SCDC_CONFIG_1, config);
-+}
-+EXPORT_SYMBOL(drm_scdc_disable_frl);
-+
-+int drm_scdc_get_ltp(struct i2c_adapter *adapter,
-+		     enum drm_scdc_frl_ltp ltp[4])
-+{
-+	u8 status_flags;
-+	int ret;
-+
-+	ret = drm_scdc_readb(adapter, SCDC_STATUS_FLAGS_1, &status_flags);
-+	if (ret)
-+		return ret;
-+
-+	ltp[0] = FIELD_GET(SCDC_LN_EVEN_TRAIN_PTRN, status_flags);
-+	ltp[1] = FIELD_GET(SCDC_LN_ODD_TRAIN_PTRN, status_flags);
-+
-+	ret = drm_scdc_readb(adapter, SCDC_STATUS_FLAGS_2, &status_flags);
-+	if (ret)
-+		return ret;
-+
-+	ltp[2] = FIELD_GET(SCDC_LN_EVEN_TRAIN_PTRN, status_flags);
-+	ltp[3] = FIELD_GET(SCDC_LN_ODD_TRAIN_PTRN, status_flags);
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(drm_scdc_get_ltp);
-+
- static void
- drm_scdc_parse_status0_flags(u8 val, struct drm_scdc_status_flags *flags)
- {
-diff --git a/include/drm/display/drm_scdc.h b/include/drm/display/drm_scdc.h
-index 7f0b05b2f280..694f10b81dd6 100644
---- a/include/drm/display/drm_scdc.h
-+++ b/include/drm/display/drm_scdc.h
-@@ -29,8 +29,11 @@
- #define SCDC_SOURCE_VERSION 0x02
+ 	mtl_ddi_disable_d2d(encoder);
  
- #define SCDC_UPDATE_0 0x10
-+#define  SCDC_LIP_UPDATE (1 << 7)
- #define  SCDC_RSED_UPDATE (1 << 6)
- #define  SCDC_FLT_UPDATE (1 << 5)
-+#define  SCDC_FRL_START (1 << 4)
-+#define  SCDC_SOURCE_TEST_UPDATE (1 << 3)
- #define  SCDC_READ_REQUEST_TEST (1 << 2)
- #define  SCDC_CED_UPDATE (1 << 1)
- #define  SCDC_STATUS_UPDATE (1 << 0)
-diff --git a/include/drm/display/drm_scdc_helper.h b/include/drm/display/drm_scdc_helper.h
-index 6a8be1f16ce0..616afd0cf8b2 100644
---- a/include/drm/display/drm_scdc_helper.h
-+++ b/include/drm/display/drm_scdc_helper.h
-@@ -33,6 +33,20 @@ struct drm_connector;
- struct i2c_adapter;
- struct dentry;
+ 	if (intel_crtc_has_dp_encoder(crtc_state)) {
+@@ -3496,8 +3504,9 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
+ 	 * On ADL_P the PHY link rate and lane count must be programmed but
+ 	 * these are both 0 for HDMI.
+ 	 *
+-	 * But MTL onwards HDMI2.1 is supported and in TMDS mode this
+-	 * is filled with lane count, already set in the crtc_state.
++	 * But MTL onwards HDMI FRL is supported and in FRL mode, port width
++	 * needs to be filled with either 3 or 4 lanes. For TMDS mode this
++	 * is always filled with 4 lanes, already set in the crtc_state.
+ 	 * The same is required to be filled in PORT_BUF_CTL for C10/20 Phy.
+ 	 */
+ 	if (dig_port->lane_reversal)
+@@ -3513,8 +3522,18 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
+ 		if (dig_port->lane_reversal)
+ 			port_buf |= XELPDP_PORT_REVERSAL;
  
-+enum drm_scdc_frl_ltp {
-+	SCDC_FRL_NO_LTP = 0,
-+	SCDC_FRL_LTP1,
-+	SCDC_FRL_LTP2,
-+	SCDC_FRL_LTP3,
-+	SCDC_FRL_LTP4,
-+	SCDC_FRL_LTP5,
-+	SCDC_FRL_LTP6,
-+	SCDC_FRL_LTP7,
-+	SCDC_FRL_LTP8,
-+	SCDC_FRL_CHNG_FFE = 0xE,
-+	SCDC_FRL_CHNG_RATE = 0xF,
-+};
++		if (crtc_state->frl.enable) {
++			port_buf |= XELPDP_PORT_HDMI_FRL_SHFTR_EN;
++			port_buf |= XELPDP_PORT_BUF_PORT_DATA_20BIT;
++			buf_ctl |= DDI_BUF_PORT_DATA_20BIT;
++		} else {
++			buf_ctl &= ~DDI_BUF_PORT_DATA_MASK;
++		}
 +
- struct drm_scdc_status_flags {
- 	/* Status Register 0 */
- 	bool clock_detected;
-@@ -174,4 +188,13 @@ int drm_scdc_read_state(struct drm_connector *connector,
- 			struct drm_scdc_state *state);
- void drm_scdc_debugfs_init(struct drm_connector *connector, struct dentry *root);
+ 		intel_de_rmw(display, XELPDP_PORT_BUF_CTL1(display, port),
+-			     XELPDP_PORT_WIDTH_MASK | XELPDP_PORT_REVERSAL, port_buf);
++			     XELPDP_PORT_WIDTH_MASK | XELPDP_PORT_REVERSAL |
++			     XELPDP_PORT_BUF_PORT_DATA_WIDTH_MASK |
++			     XELPDP_PORT_HDMI_FRL_SHFTR_EN, port_buf);
  
-+int drm_scdc_read_update_flags(struct i2c_adapter *adapter, u8 *update_flags);
-+int drm_scdc_clear_update_flags(struct i2c_adapter *adapter, u8 update_flags);
-+int drm_scdc_read_status_flags(struct i2c_adapter *adapter, u8 *status_flags);
-+int drm_scdc_config_frl(struct i2c_adapter *adapter, int frl_rate,
-+			int num_lanes, int ffe_levels);
-+int drm_scdc_disable_frl(struct i2c_adapter *adapter);
-+int drm_scdc_get_ltp(struct i2c_adapter *adapter,
-+		     enum drm_scdc_frl_ltp ltp[4]);
-+
- #endif
+ 		buf_ctl |= DDI_PORT_WIDTH(crtc_state->lane_count);
+ 
 -- 
 2.50.1
 
