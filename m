@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A283CA9ED0
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 09:43:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B16BCCA9ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 09:50:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0071610E308;
-	Mon, 12 Oct 2026 09:43:11 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D89D510EB4B
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 09:43:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64EDE10EBBC;
+	Mon, 12 Oct 2026 09:50:41 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82BFB10EBBC
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 09:50:35 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 088DD600E2;
- Mon, 12 Oct 2026 09:43:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88E531F0089B;
- Mon, 12 Oct 2026 09:43:03 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 3AAFA43CE2;
+ Mon, 12 Oct 2026 09:50:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0031E1F0089B;
+ Mon, 12 Oct 2026 09:50:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791798183;
- bh=c0fWiZem8RSJCjqSOG4N5vYeSLN+UAb940fVnfujUa4=;
+ s=k20260515; t=1791798635;
+ bh=lfQtjDbk5XabWk/7LsFyzZgVVA0kq660u3z5fNXQXqA=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=DdP2cTEe+undhKROWtj+5Lr+0Dh0VLLJmqw/ZomUFHhUZ0EiA5L7SegWeesS5yOb3
- i4UHYVD93dtKuNODHdu9TYepYHGp1F1nJRjd5BC6fWNoYV8n+xFIrscM2pD9fb/FAB
- JjaSqZk3kTwwiokCOC8P5mGo/DPtin7FGQESDp167zW4v0JPhgLcTF+JPNqTDsrtoE
- 6YxHTO1wR38zYHJWa6DbZuHJ9tV5vtAZa7vhP5pYafH26nfuvd5dB1/IYM5LPPJnwg
- dlGswXJlndBBaNxt6zVObSTINS+baG2rI2rw67EGr/FSv1U794v8rUJ79IV7P9QfqM
- ApcgabwnOuTHg==
-Message-ID: <sashiko-outbox-167903@kernel.org>
+ b=WwlRguGeW1Ob1sS3tCWaQ+yrgEF+qwlWVBj1Z4mZk5QZQL3KzTyNMwjeFh1GX560E
+ ptj7QtU/Kx/eD0+LgNdChonhjrJ/ocorEitTrlH1EA4G9hg4CJV2hY1ZP5kxr1isAN
+ NPuzkBT5qw5iuSCysWzQotXzq4DAlBgM7CfgLR7AjKeIovaqB25dXe3HR/JDoreQsb
+ F3T+5xYel8N9v4mFh/Vvz/xKtgkMhVl2xm+1r4MZYJGA6FwmylaawBrbUYfxf+Cs9U
+ xicET9kOZ3NTxYRosoIWUcj8kt2ia9q9PJiTUHN0fL8yi/cqzYoNCUI3VwabDYh9SQ
+ qRWM/SjrziI1Q==
+Message-ID: <sashiko-outbox-167907@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 1/3] drm/xe: Prevent VF memory IRQ from accessing a
- torn-down engine
+Subject: Re: [PATCH v6 2/3] drm/xe/guc: Protect timeout handling from device
+ unplug
 To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261012093053.2103743-6-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20261012093053.2103743-7-satyanarayana.k.v.p@intel.com>
 References: <20261012093053.2103743-5-satyanarayana.k.v.p@intel.com>
- <20261012093053.2103743-6-satyanarayana.k.v.p@intel.com>
+ <20261012093053.2103743-7-satyanarayana.k.v.p@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 12 Oct 2026 09:43:03 +0000
+Date: Mon, 12 Oct 2026 09:50:34 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,91 +56,85 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] timer: UAF and NULL pointer dereference due to un-synchronized tim=
-er_delete() on self-rearming timer
+- [High] drm/xe: user-space hang and job leak on unplug due to aborted TDR =
+cleanup
 --
 
-commit 6990383ed0fa291cb7a9714db126aaef3e32f00c
+commit 1871c63913c38876d863255c92ead2457412e562
 Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 
-    drm/xe: Prevent VF memory IRQ from accessing a torn-down engine
+drm/xe/guc: Protect timeout handling from device unplug
 
-The commit invalidates the engine name during teardown so subsequent scans
-skip it, preventing VF memory IRQs from accessing a torn-down engine. It
-modifies hw_engine_fini to clear the name and gt pointers under the irq
-lock.
+This commit adds drm_dev_enter() and drm_dev_exit() guards to the GuC sched=
+uler
+timeout callback. If the device unplug has already started, it sets an -ENO=
+DEV
+error on the timed-out job and returns early.
 
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw=
-_engine.c
-> index 265f95c0c8993..55ee0c892c1e8 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-> @@ -275,11 +275,22 @@ static const struct engine_info engine_infos[] =3D {
->  static void hw_engine_fini(void *arg)
->  {
->  	struct xe_hw_engine *hwe =3D arg;
-> +	struct xe_gt *gt =3D hwe->gt;
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
+uc_submit.c
+> index 7ce73489c35fc..68fd9785a8da4 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -1599,6 +1599,12 @@ guc_exec_queue_timedout_job(struct drm_sched_job *=
+drm_job)
+>  	int err =3D -ETIME;
+>  	pid_t pid =3D -1;
+>  	bool wedged =3D false, wedge_device =3D false, skip_timeout_check;
+> +	int idx;
 > +
-> +	if (gt) {
-> +		struct xe_device *xe =3D gt_to_xe(gt);
-> +		unsigned long flags;
-> =20
-> -	if (hwe->exl_port)
-> -		xe_execlist_port_destroy(hwe->exl_port);
-> +		if (hwe->exl_port)
-> +			xe_execlist_port_destroy(hwe->exl_port);
-> =20
-> -	hwe->gt =3D NULL;
-> +		spin_lock_irqsave(&xe->irq.lock, flags);
-> +		hwe->name =3D NULL;
-> +		hwe->gt =3D NULL;
+> +	if (!drm_dev_enter(&xe->drm, &idx)) {
+> +		xe_sched_job_set_error(job, -ENODEV);
+> +		return DRM_GPU_SCHED_STAT_NO_HANG;
+> +	}
 
 [Severity: High]
-Does this code introduce a race condition with a self-rearming timer that c=
-an
-lead to a NULL pointer dereference or use-after-free?
+Does this early return skip setting the error on all other pending jobs in =
+the
+queue?
 
-The xe_execlist_port_destroy() function, called just before this block, tea=
-rs
-down the execlist port but deletes the timer without synchronization:
+By returning early here, we skip the drm_sched_for_each_pending_job() loop
+later in this function that sets -ECANCELED for all other pending jobs.
 
-drivers/gpu/drm/xe/xe_execlist.c:xe_execlist_port_destroy() {
-	...
-	timer_delete(&port->irq_fail);
-	...
+Later during hardware teardown, xe_gt_fini() calls xe_hw_fence_irq_finish()
+to forcibly signal remaining hardware fences. However, xe_hw_fence_irq_fini=
+sh()
+only signals if xe_hw_fence_signaled() returns true:
+
+drivers/gpu/drm/xe/xe_hw_fence.c:xe_hw_fence_signaled() {
+    ...
+	return dma_fence->error ||
+		!__dma_fence_is_later(dma_fence, dma_fence->seqno, seqno);
 }
 
-However, the timer handler unconditionally rearms itself:
+Because the device is unplugged, MMIO reads of the sequence number typically
+return 0xFFFFFFFF, making the chronological check evaluate to false for
+pending jobs.
 
-drivers/gpu/drm/xe/xe_execlist.c:xe_execlist_port_irq_fail_timer() {
-	...
-	port->irq_fail.expires =3D jiffies + msecs_to_jiffies(1000);
-	add_timer(&port->irq_fail);
+Without an error set on the fence from the skipped loop, xe_hw_fence_signal=
+ed()
+evaluates to false.
+
+This could leave the fences permanently orphaned in xe_hw_fence_irq_finish(=
+):
+
+drivers/gpu/drm/xe/xe_hw_fence.c:xe_hw_fence_irq_finish() {
+    ...
+		list_for_each_entry_safe(fence, next, &irq->pending, irq_link) {
+			list_del_init(&fence->irq_link);
+			XE_WARN_ON(dma_fence_check_and_signal_locked(&fence->dma));
+			dma_fence_put(&fence->dma);
+		}
+    ...
 }
 
-If the timer is executing concurrently on another CPU during teardown,
-timer_delete() returns immediately without waiting for the handler to finis=
-h.
-The handler will then execute add_timer() at the end, defeating the deletio=
-n.=20
+If the fences are removed from the pending list but not signaled, can this
+cause any user-space process waiting on them to hang indefinitely?
 
-When the rearmed timer fires, it will eventually dereference port->hwe->gt.
-Since hw_engine_fini() clears hwe->gt to NULL immediately after calling
-xe_execlist_port_destroy(), could this result in a NULL pointer dereference?
-Furthermore, since the port structure itself will eventually be freed when
-the DRM device unbinds, could this lead to a use-after-free if the timer
-persists?
-
-Would it be safer to use a state flag, or replace timer_delete() with
-timer_delete_sync() or timer_shutdown_sync() to safely tear down the
-self-rearming timer?
-
-> +		spin_unlock_irqrestore(&xe->irq.lock, flags);
-> +	} else {
-> +		hwe->name =3D NULL;
-> +	}
->  }
+Furthermore, since the xe driver does not implement the cancel_job DRM
+scheduler backend op, it seems drm_sched_fini() will not clean up the
+pending_list, which could leak the unsignaled xe_sched_job structures.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261012093053.2103=
-743-5-satyanarayana.k.v.p@intel.com?part=3D1
+743-5-satyanarayana.k.v.p@intel.com?part=3D2
