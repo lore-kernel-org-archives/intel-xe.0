@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 450DDCA9ED1
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 13:05:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2067CCA9ED0
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 13:05:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09D8610E577;
-	Mon, 12 Oct 2026 13:05:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5E2510E5B5;
+	Mon, 12 Oct 2026 13:05:38 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 896B510E577
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 13:05:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68C1B10E5B5
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 13:05:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791810331; x=1823346331;
+ t=1791810334; x=1823346334;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+E358NI6k8LTEXUrhzgV0PjFDeKaFJK93zzR+LGHKrY=;
- b=fbbe27XljURiMye6ATfB2npyH22r7SHjkFrCiTi2K8mOHUtNP3q85d4m
- q+XnJiLKRDxY0o+669vC5Dj+4fnZ0UdBlMg3cquk2YsOP0fU3xpUot1ue
- pBXVLg8QYxIFnS+f+IoPeqSke4VGjnpgRoEVm8U5kAqKb1wClrLgvfAaf
- stgz2NpB8XSvG1a3czoabehHj1qHGq/ldRKvcAJ3Bo2MJPxqVzZSbGMQf
- JheOyB6QtImQYoQYcfo1XK+WO/yvcv37Cb2Pq2/PGC3hLDvTAMZdzMoC0
- gdBHm3BiToSvBWPSGzHauAO0in3UQwNk957TNMvciL3hI8K6XKG1CBzbx w==;
-X-CSE-ConnectionGUID: PLzuB1uGTxi64czLsWgg4A==
-X-CSE-MsgGUID: 9ljqKGynSyiRv7MuiZmBUA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="527322"
+ bh=3F+g4J/tHzaQQa6L0P+dcv6RaqbkJL8aRfjlWsaA/ic=;
+ b=lr1SXbjOa6R/WEte8gBLpX4ugj6FII6B6ics//Vs6VMXN6TPu+hvLhiP
+ Pz5m9ip9uvsmun1hvlQiquhL2IPOnx14pDRIHQeVWSyAVxLR/XmIrmkrb
+ 7ghbexIAyXkVbJtLc7w9RVcW3rFymGLcegBQaznZXPG+s+GUZD+R+6rBk
+ rboTrwX873wp3zDEMig9v7lMooF4mlRd4WtHK9btwQbCzXKa+6R4e2scS
+ di2G45pAFb7rYxdGW+LoCnajnAYclY5LnXxC+ECNEETvRQlatHbW7gWRP
+ dA8H+CJh5zSe0k8ijywS8nG4LfLjMhG7NPLr3lGJoNIHzD74E/3kwjPkb w==;
+X-CSE-ConnectionGUID: BIcXW6GlTTGhTR8vRqvoag==
+X-CSE-MsgGUID: wFgKmeuNRcuL/iYxDQsG2Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="527332"
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="527322"
+   d="scan'208";a="527332"
 Received: from fmviesa012.fm.intel.com ([10.60.135.152])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 06:05:30 -0700
-X-CSE-ConnectionGUID: FxJPaq7yTT6vBq8+hADY6Q==
-X-CSE-MsgGUID: yGlqoxiSRf6CEQrOOfnyDQ==
+ 12 Oct 2026 06:05:33 -0700
+X-CSE-ConnectionGUID: 6UUKCb/WRjGoKvsQV5TGlA==
+X-CSE-MsgGUID: VWy5W/EJQR+bsAftsKWL4Q==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="2682041"
+   d="scan'208";a="2682050"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 06:05:27 -0700
+ 12 Oct 2026 06:05:30 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v10 14/16] drm/xe/hwmon: Simplify temperature channels config
-Date: Mon, 12 Oct 2026 18:34:00 +0530
-Message-Id: <20261012130401.443473-15-karthik.poosa@intel.com>
+Subject: [PATCH v10 15/16] drm/xe: Validate thermal sensor count before reads
+Date: Mon, 12 Oct 2026 18:34:01 +0530
+Message-Id: <20261012130401.443473-16-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20261012130401.443473-1-karthik.poosa@intel.com>
 References: <20261012130401.443473-1-karthik.poosa@intel.com>
@@ -68,132 +68,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace the repeated temperature channels list with an indexed config
-array. Use range designators for channels sharing the same attributes.
+Check that READ_THERMAL_CONFIG reports enough thermal entries for the
+platform-specific MCTRL range and PCIe sensor index before reading
+READ_THERMAL_DATA.
 
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-Assisted-by: LLM
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 104 ++++++----------------------------
- 1 file changed, 17 insertions(+), 87 deletions(-)
+ drivers/gpu/drm/xe/xe_hwmon.c | 20 ++++++++++++++++++--
+ 1 file changed, 18 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 6e3f1d873dee..7311f969f574 100644
+index 7311f969f574..702c739c9bf0 100644
 --- a/drivers/gpu/drm/xe/xe_hwmon.c
 +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -803,94 +803,24 @@ static const struct attribute_group *hwmon_groups[] = {
- 	NULL
- };
+@@ -920,6 +920,13 @@ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
+ 		end = hwmon->temp.count - 1;
+ 	}
  
-+static const u32 hwmon_temp_config[CHANNEL_MAX + 1] = {
-+	[CHANNEL_CARD] = HWMON_T_LABEL,
-+	[CHANNEL_PKG] = HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT |
-+			 HWMON_T_LABEL | HWMON_T_MAX,
-+	[CHANNEL_VRAM ... CHANNEL_PCIE] = HWMON_T_CRIT | HWMON_T_EMERGENCY |
-+					 HWMON_T_INPUT | HWMON_T_LABEL,
-+	[CHANNEL_VRAM_N ... CHANNEL_VRAM_N_MAX] = HWMON_T_CRIT | HWMON_T_EMERGENCY |
-+							 HWMON_T_INPUT | HWMON_T_LABEL,
-+	[CHANNEL_MAX] = 0, /* hwmon config terminator */
-+};
++	if (end <= start || end > hwmon->temp.count) {
++		drm_warn(&hwmon->xe->drm,
++			 "memory controller range [%d, %d) is invalid for temperature count %d\n",
++			 start, end, hwmon->temp.count);
++		return -ENODATA;
++	}
 +
-+static const struct hwmon_channel_info hwmon_temp_info = {
-+	.type = hwmon_temp,
-+	.config = hwmon_temp_config,
-+};
+ 	for (i = start / sizeof(u32); i < DIV_ROUND_UP(end, sizeof(u32)); i++) {
+ 		ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_DATA, i),
+ 				    &data, NULL);
+@@ -964,15 +971,24 @@ static int get_pcie_temp(const struct xe_hwmon *hwmon, long *val)
+ {
+ 	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
+ 	u32 data = 0;
++	int index;
+ 	int ret;
+ 
++	index = xe_hwmon_pcie_temp_index(hwmon);
++	if (hwmon->temp.count - 1 <  index) {
++		drm_warn(&hwmon->xe->drm,
++			 "PCIe temperature end index %d exceeds temperature count %d\n",
++			 index, hwmon->temp.count);
++		return -ENODATA;
++	}
 +
- static const struct hwmon_channel_info * const hwmon_info[] = {
--	HWMON_CHANNEL_INFO(temp,
--			   HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL |
--			   HWMON_T_MAX,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
--			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL),
-+	&hwmon_temp_info,
- 	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT |
- 			   HWMON_P_CAP,
- 			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CAP),
+ 	ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_DATA,
+-						  xe_hwmon_pcie_temp_index(hwmon) / sizeof(data)),
++						  index / sizeof(data)),
+ 						  &data, NULL);
+ 	if (ret)
+ 		return ret;
+ 
+-	data >>= (xe_hwmon_pcie_temp_index(hwmon) % sizeof(data)) * BITS_PER_BYTE;
++	data >>= (index % sizeof(data)) * BITS_PER_BYTE;
+ 	data = REG_FIELD_GET(TEMP_MASK, data);
+ 	if (!mbx_temp_valid(hwmon, data)) {
+ 		drm_dbg(&hwmon->xe->drm, "PCIe temperature not available\n");
 -- 
 2.25.1
 
