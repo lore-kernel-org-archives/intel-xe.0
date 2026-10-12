@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15B5ACA9ED9
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:16:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47705CA9ED6
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:16:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B873610EBA7;
-	Mon, 12 Oct 2026 04:16:17 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D086210E960;
- Mon, 12 Oct 2026 04:16:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4C5E10EBCF;
+	Mon, 12 Oct 2026 04:16:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 874A310EBCF;
+ Mon, 12 Oct 2026 04:16:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791778564; x=1823314564;
+ t=1791778576; x=1823314576;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9eWEKUkjU64MvxFOcbx7+5GhX9gr1LDBcd+41y1bDe4=;
- b=U2zBOI4BbzF43mI4SrjxwBkzagmNMUzP7FUgsnXXoZkArEA59r4WBW9I
- Tw9WGepnCH1rOqw5/loqxyztwWvi6vLkvYsKZ8bSsMd9pRxb1DF3zGMb8
- 89LEQhFq6/hgq1qDx4GpDXsRfpFrNPDGcja3YLI71K2KZqHWpIreOdv2F
- puzY2hYKEvYxIm328TJmTI+TnQt0ro0vJvVlLkrStrJI5aMsExp0ykAaq
- KSlHAi+8VG1sKfpTob9XllzpOWdwnHe+PZiTfDYyZwdkpVA5S8Hqpoe+k
- MrF3dcxBO9VnZ3EQLfr3dPzvTfo+OPx9EGsABi4Azu6iBEjfc4F1UkFw/ Q==;
-X-CSE-ConnectionGUID: 3pb7+NuNTmqBnJ50dEUF5w==
-X-CSE-MsgGUID: q0vEPeUCS6O3v+DL1kFFPg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="380949"
+ bh=2+R+J2ktMDG6VwcJlZVZwaScU1p+cPczIosCU8hRNmU=;
+ b=YyprwUDm9G6wC38/CPDUEuKxkAG3zwQQTbBnxP6XdqaWaSnCBrvIfCCx
+ pZzYC3KNqFoEYJ7+nZI6QqsqZf0JMlIkDGqDuh8r2E5zIHNqW2nU2Y0Bf
+ COIx5JqIkrtL3v7T6NkmXyShAS4uEa/gTC40OE0tFQMGE3znjrMp3n5c2
+ QgDT97r+YMPuNcjWUv2ZB2+y6YD5jxZ0rHCp+jzXCdbpQnIX/VofmVG1z
+ jfPvapAqm/Ufr2FbcRFcmYowkPbNRgOekrLon0rOGbIJQkNJmc80lUgaG
+ gsL+TlYKETvfbCD/+ZO/0CBqccGzQPcztSDHtFSjj1EFpoHx34co/W7BX w==;
+X-CSE-ConnectionGUID: OBK9wm4TRma8U2zRNoSODg==
+X-CSE-MsgGUID: auuzuP0YQ/yrqosiAcjKow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="366213"
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="380949"
+   d="scan'208";a="366213"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 21:16:03 -0700
-X-CSE-ConnectionGUID: MRtJAmGUQvezXgHD5kKBgg==
-X-CSE-MsgGUID: R03zGUutSECSR0Qynvu3Ng==
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2026 21:16:16 -0700
+X-CSE-ConnectionGUID: SYQXoI24TkCsoo1XH17/0A==
+X-CSE-MsgGUID: KXPzA63IQnyM6OVXDGNSnw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="1256750"
+   d="scan'208";a="1256811"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 21:16:02 -0700
+ 11 Oct 2026 21:16:14 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, jani.nikula@linux.intel.com,
  uma.shankar@intel.com, ville.syrjala@linux.intel.com,
  suraj.kandpal@intel.com
-Subject: [PATCH v2 48/56] drm/i915/hdmi: Add a helper to check non DSC audio
- support for HDMI FRL
-Date: Mon, 12 Oct 2026 09:27:57 +0530
-Message-ID: <20261012035806.3361439-49-ankit.k.nautiyal@intel.com>
+Subject: [PATCH v2 53/56] drm/i915/joiner: Move joiner pipe mask helper to
+ intel_joiner.c
+Date: Mon, 12 Oct 2026 09:28:02 +0530
+Message-ID: <20261012035806.3361439-54-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
 References: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
@@ -69,68 +69,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For HDMI TMDS we need to check if the Hblank tribytes are sufficient for
-HDMI audio packets tribytes for a given audio configuration.
+intel_joiner_valid_primary_pipe_mask() implements joiner-specific
+pipe validation logic and is only used by the joiner code.
 
-For FRL we need to check the above and also that the whole line meets
-the line budget for a given FRL rate.
-
-Add a helper to check whether a given audio configuration (L-PCM sample
-rate + channel count) fits the committed non DSC FRL video config, using
-the FRL DFM.
+Move the helper, along with find_consecutive_bits() dependency, from
+intel_display.c to intel_joiner.c to keep joiner-related functionality
+grouped together.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 22 ++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_hdmi.h |  2 ++
- 2 files changed, 24 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 47 --------------------
+ drivers/gpu/drm/i915/display/intel_joiner.c  | 47 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_joiner.h  |  2 +
+ 3 files changed, 49 insertions(+), 47 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 425971d8927a..c57d99195ed0 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2341,6 +2341,28 @@ compute_frl_mn(struct intel_crtc_state *crtc_state, u32 ftb_avg_k)
- 	crtc_state->frl.div18 = DIV_ROUND_UP_ULL(div_18_clk, 1000);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f9233b5f5b6a..ea41432a86b7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -192,53 +192,6 @@ is_trans_port_sync_mode(const struct intel_crtc_state *crtc_state)
+ 		is_trans_port_sync_slave(crtc_state);
  }
  
-+bool intel_hdmi_frl_audio_rate_supported(const struct intel_crtc_state *crtc_state,
-+					 int audio_rate, int channels)
+-/*
+- * Return a bitmask of all the start indices of consecutive bitfields of size
+- * width in mask.
+- */
+-static unsigned long find_consecutive_bits(unsigned long mask, int width)
+-{
+-	unsigned long bit, out_mask = 0;
+-
+-	if (!width)
+-		return 0;
+-
+-	for_each_set_bit(bit, &mask, BITS_PER_TYPE(mask)) {
+-		/* For each set bit, see if the following bits are set also */
+-		unsigned long bitfield = GENMASK(bit + width - 1, bit);
+-
+-		if ((mask & bitfield) == bitfield)
+-			out_mask |= BIT(bit);
+-	}
+-
+-	return out_mask;
+-}
+-
+-/*
+- * Return a bitmask of all valid joiner primary pipes for joining
+- * num_joined_pipes pipes. For completeness, return all valid pipes for
+- * num_joined_pipes == 1.
+- *
+- * Return 0 if the platform doesn't support joining for the requested number of
+- * pipes, or there are not enough consecutive pipes available.
+- */
+-u8 intel_joiner_valid_primary_pipe_mask(struct intel_display *display, int num_joined_pipes)
+-{
+-	if (num_joined_pipes == 1) {
+-		return DISPLAY_RUNTIME_INFO(display)->pipe_mask;
+-	} else if (num_joined_pipes == 2) {
+-		if (!HAS_UNCOMPRESSED_JOINER(display) && !HAS_BIGJOINER(display))
+-			return 0;
+-	} else if (num_joined_pipes == 4) {
+-		if (!HAS_ULTRAJOINER(display))
+-			return 0;
+-	} else {
+-		return 0;
+-	}
+-
+-	return find_consecutive_bits(DISPLAY_RUNTIME_INFO(display)->pipe_mask, num_joined_pipes);
+-}
+-
+ static enum pipe joiner_primary_pipe(const struct intel_crtc_state *crtc_state)
+ {
+ 	return ffs(crtc_state->joiner_pipes) - 1;
+diff --git a/drivers/gpu/drm/i915/display/intel_joiner.c b/drivers/gpu/drm/i915/display/intel_joiner.c
+index 4c50f226199d..9dfe855f5668 100644
+--- a/drivers/gpu/drm/i915/display/intel_joiner.c
++++ b/drivers/gpu/drm/i915/display/intel_joiner.c
+@@ -55,3 +55,50 @@ bool intel_joiner_candidate_valid(struct intel_connector *connector,
+ 
+ 	return intel_joiner_valid_primary_pipe_mask(display, num_joined_pipes);
+ }
++
++/*
++ * Return a bitmask of all the start indices of consecutive bitfields of size
++ * width in mask.
++ */
++static unsigned long find_consecutive_bits(unsigned long mask, int width)
 +{
-+	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	struct intel_hdmi_frl_dfm frl_dfm = {};
++	unsigned long bit, out_mask = 0;
 +
-+	frl_dfm.config.pixel_clock_nominal_khz = adjusted_mode->clock;
-+	frl_dfm.config.hactive = adjusted_mode->hdisplay;
-+	frl_dfm.config.hblank = adjusted_mode->htotal - adjusted_mode->hdisplay;
-+	frl_dfm.config.bpc = crtc_state->pipe_bpp / 3;
-+	frl_dfm.config.color_format = get_drm_color_format(crtc_state->output_format);
++	if (!width)
++		return 0;
 +
-+	frl_dfm.config.lanes = crtc_state->frl.required_lanes;
-+	frl_dfm.config.bit_rate_kbps = crtc_state->frl.required_rate * 1000000;
++	for_each_set_bit(bit, &mask, BITS_PER_TYPE(mask)) {
++		/* For each set bit, see if the following bits are set also */
++		unsigned long bitfield = GENMASK(bit + width - 1, bit);
 +
-+	/* Audio config under test */
-+	frl_dfm.config.audio_hz = audio_rate;
-+	frl_dfm.config.audio_channels = channels;
++		if ((mask & bitfield) == bitfield)
++			out_mask |= BIT(bit);
++	}
 +
-+	return intel_hdmi_frl_dfm_nondsc_requirement_met(&frl_dfm);
++	return out_mask;
 +}
 +
- static int
- intel_hdmi_compute_frl_config(struct intel_encoder *encoder,
- 			      struct intel_crtc_state *crtc_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
-index 305ee1186d0b..71b12f557d75 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
-@@ -63,6 +63,8 @@ int intel_hdmi_dsc_get_num_slices(const struct drm_display_mode *mode,
- 				  int hdmi_max_slices, int hdmi_throughput);
- int intel_hdmi_dsc_get_slice_height(int vactive);
- bool intel_hdmi_is_frl(u32 clock);
-+bool intel_hdmi_frl_audio_rate_supported(const struct intel_crtc_state *crtc_state,
-+					 int audio_rate, int channels);
- void intel_hdmi_prepare_for_frl_mode(const struct intel_crtc_state *crtc_state);
- int intel_hdmi_start_frl(struct intel_encoder *encoder,
- 			 const struct intel_crtc_state *crtc_state);
++/*
++ * Return a bitmask of all valid joiner primary pipes for joining
++ * num_joined_pipes pipes. For completeness, return all valid pipes for
++ * num_joined_pipes == 1.
++ *
++ * Return 0 if the platform doesn't support joining for the requested number of
++ * pipes, or there are not enough consecutive pipes available.
++ */
++u8 intel_joiner_valid_primary_pipe_mask(struct intel_display *display, int num_joined_pipes)
++{
++	if (num_joined_pipes == 1) {
++		return DISPLAY_RUNTIME_INFO(display)->pipe_mask;
++	} else if (num_joined_pipes == 2) {
++		if (!HAS_UNCOMPRESSED_JOINER(display) && !HAS_BIGJOINER(display))
++			return 0;
++	} else if (num_joined_pipes == 4) {
++		if (!HAS_ULTRAJOINER(display))
++			return 0;
++	} else {
++		return 0;
++	}
++
++	return find_consecutive_bits(DISPLAY_RUNTIME_INFO(display)->pipe_mask, num_joined_pipes);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_joiner.h b/drivers/gpu/drm/i915/display/intel_joiner.h
+index 85e19ed1527f..962b9724c112 100644
+--- a/drivers/gpu/drm/i915/display/intel_joiner.h
++++ b/drivers/gpu/drm/i915/display/intel_joiner.h
+@@ -22,4 +22,6 @@ bool intel_joiner_candidate_valid(struct intel_connector *connector,
+ 	for ((__num_joined_pipes) = 1; (__num_joined_pipes) <= (I915_MAX_PIPES); (__num_joined_pipes)++) \
+ 		for_each_if(intel_joiner_candidate_valid(__connector, (__mode)->hdisplay, __num_joined_pipes))
+ 
++u8 intel_joiner_valid_primary_pipe_mask(struct intel_display *display, int num_joined_pipes);
++
+ #endif /* __INTEL_JOINER_H__ */
 -- 
 2.50.1
 
