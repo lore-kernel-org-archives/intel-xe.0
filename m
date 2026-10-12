@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFF1ECA9ED1
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 05:19:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C53ABCA9ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 05:19:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DBAF10ECAB;
-	Mon, 12 Oct 2026 05:19:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A4CD10ECAA;
+	Mon, 12 Oct 2026 05:19:43 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54D5A10EC95
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 05:19:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 528FA10ECA0
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 05:19:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791782373; x=1823318373;
+ t=1791782377; x=1823318377;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=o3wHp77WRgxKIs2LXFJ2R+UhEkTp/OWqmfDdV6V3wOk=;
- b=VsNvLAKD0+u/fpRyN+lgoCjHZK2pb+TFbkuioLPY5/D9m6zQ7QpZxjtV
- xX6riFHydPiXbftnHienC+zCpjVZIULCWX9WyJdzE3fFSNY93kEjM1C/c
- Eq+7Vv8a+bPuHtvnMAEDh1eUeY6WqljJ5hDxexrFp1ASeU0v2YOeJ+UcG
- d3oOJVdiwOkql7AdJWabe/S5Trk6kJyx6x+z8+Zw7YS0weH2CQbxXRX5T
- eaJEs2SK3h+yr7coUyM8u5z50pFJqQ9lFYz0aGG3B7QpxAm5nQ2fepQG2
- REVbrTcAvPhkKlZqgB4CyEAnHPqm9fqpZ5+Fzn0H7IyU0nvfyQ/dcuvhB Q==;
-X-CSE-ConnectionGUID: gvD8RPsGQZ6NewSu3M6NhA==
-X-CSE-MsgGUID: uiqBHUz4TTaipJETSG5dMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="390509"
+ bh=5Jfx3ll6uaWkkM4/uuBSviquBppWJx/NOW8xHLviebA=;
+ b=H/e6pIGj2yDBzl9HoSiPsB//Ggy32xF3/mzhM//wiHrBx7RG2DRZFY37
+ 9ACLvmR3AWnkJSsi5AmwbkWAVNFjXsBvNGYgemfHFBxuuN2bIL88Q4iM8
+ DRQpRXeC3HWL1FBNNyMDnVybD8Wx4irOEZWh4n49dyQKWJMzqQbJLNqDO
+ EU8tutU1yx5pG2IHjSjskFaz6v7nEFS3UJsgUFbSei2A49/Bgvw1C4hDs
+ nPBnooPwiILfk8faezKgMl5BeGrZBi3b+U+Rnrvv1VeRfcPZQdBHM5uwa
+ nXGUHVcDPDIbmHKW0A6yN6bp7jtjslqAxX4dY7LnEl7vfvo0ODSXGIssr g==;
+X-CSE-ConnectionGUID: lsXCwovqS9eWGkAri8IbFw==
+X-CSE-MsgGUID: Xadbzd7ATCSpYdXipGzlTQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="390511"
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="390509"
+   d="scan'208";a="390511"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 22:18:40 -0700
-X-CSE-ConnectionGUID: UDCJeoMnRTGUGnt17hbDqA==
-X-CSE-MsgGUID: ybiyHzXpR0mQBEJivz8u4g==
+ 11 Oct 2026 22:18:41 -0700
+X-CSE-ConnectionGUID: WqHlpi4OQ9WCnl4XkXwVgg==
+X-CSE-MsgGUID: AZwg0olaQ8ehmbe01Pp2cQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="735927"
+   d="scan'208";a="735942"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by orviesa009.jf.intel.com with ESMTP; 11 Oct 2026 22:18:39 -0700
+ by orviesa009.jf.intel.com with ESMTP; 11 Oct 2026 22:18:40 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: mallesh.koujalagi@intel.com,
  Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH v6 08/12] drm/xe/pat: Report missing PAT table using
+Subject: [PATCH v6 09/12] drm/xe/pci: Report unknown GMDID versions using
  structured xe_log API
-Date: Mon, 12 Oct 2026 10:48:19 +0530
-Message-ID: <20261012051823.2201360-9-dnyaneshwar.bhadane@intel.com>
+Date: Mon, 12 Oct 2026 10:48:20 +0530
+Message-ID: <20261012051823.2201360-10-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261012051823.2201360-1-dnyaneshwar.bhadane@intel.com>
 References: <20261012051823.2201360-1-dnyaneshwar.bhadane@intel.com>
@@ -66,43 +66,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace drm_err() with xe_log_err() using the PAT component tag
-when a platform has no matching PAT table entry.
+Replace drm_err() with xe_log_err() using the REGS component tag when
+hardware reports unrecognized graphics or media IP versions during
+GMDID handling.
 
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-
 ---
-v2:
- - correction in the error code.(shashiko)
----
- drivers/gpu/drm/xe/xe_pat.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_pci.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 0ac64a6a3098..3dfcd364ac67 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -16,6 +16,7 @@
- #include "xe_force_wake.h"
- #include "xe_gt.h"
- #include "xe_gt_mcr.h"
-+#include "xe_log.h"
- #include "xe_mmio.h"
- #include "xe_sriov.h"
- #include "xe_wa.h"
-@@ -692,8 +693,9 @@ int xe_pat_init_early(struct xe_device *xe)
- 		 * raise an error rather than trying to silently inherit the
- 		 * most recent platform's behavior.
- 		 */
--		drm_err(&xe->drm, "Missing PAT table for platform with graphics version %d.%02d!\n",
--			GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
-+		xe_log_err(xe, PAT, -ENODATA,
-+			   "Missing PAT table for platform with graphics version %d.%02d!\n",
-+			   GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
- 		return -ENODATA;
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index e44b74b9aa27..9cc35433ec91 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -721,8 +721,9 @@ static int handle_gmdid(struct xe_device *xe,
+ 
+ 	*graphics_ip = find_graphics_ip(ver);
+ 	if (!*graphics_ip) {
+-		drm_err(&xe->drm, "Hardware reports unknown graphics version %u.%02u\n",
+-			ver / 100, ver % 100);
++		xe_log_err(xe, REGS, -EINVAL,
++			   "Hardware reports unknown graphics version %u.%02u\n",
++			   ver / 100, ver % 100);
  	}
  
+ 	ret = read_gmdid(xe, GMDID_MEDIA, &ver, media_revid);
+@@ -735,8 +736,9 @@ static int handle_gmdid(struct xe_device *xe,
+ 
+ 	*media_ip = find_media_ip(ver);
+ 	if (!*media_ip) {
+-		drm_err(&xe->drm, "Hardware reports unknown media version %u.%02u\n",
+-			ver / 100, ver % 100);
++		xe_log_err(xe, REGS, -EINVAL,
++			   "Hardware reports unknown media version %u.%02u\n",
++			   ver / 100, ver % 100);
+ 	}
+ 
+ 	return 0;
 -- 
 2.54.0
 
