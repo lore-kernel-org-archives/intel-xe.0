@@ -4,41 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E423CA9ED5
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 06:07:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9201BCA9EC5
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 06:15:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 470C310ED9B;
-	Mon, 12 Oct 2026 06:07:23 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2AB510ED9B
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 06:07:16 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id BDCB060AB0;
- Mon, 12 Oct 2026 06:07:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55DF01F0089B;
- Mon, 12 Oct 2026 06:07:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791785235;
- bh=8+XhalmfIZlwHZ7vMkKJZ9MC3l0y6Mcicird5BFo6m4=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=hrJ3hr4+HWJ3zymtO5Xz0a5V3gauxrCxipZzslN8Rn7jhHjBHsTVgnpJJNHwKnUjk
- UfGbgyPZTVuSZ1t45do5nRUBHZKg8qUfgava3KZvhgb44z6QbaujA3/XX8f9uBdjQ7
- MBwhBsQvRj7+MYpHO3NnPGVk2b1Gnap9B6XwatwMXsB6xFnqNxqHOOhXQYwaQkAaww
- QOeZq2OMMkL3qA4iBeT3p8lJP1BWIZ8LNr1PyfBdmsFwKERs8UtfG6cVsps20YCbzr
- K+w285U67SRSPE351L5RO5MTBBJ8CfcpZ0DJS3IdW7RCVHphD2yVRXtyQjDvCXWw3v
- VtiGLDWc/30Hg==
-Message-ID: <sashiko-outbox-167710@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 1/3] drm/xe: Prevent VF memory IRQ from accessing a
- torn-down engine
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261012055053.964468-6-satyanarayana.k.v.p@intel.com>
-References: <20261012055053.964468-5-satyanarayana.k.v.p@intel.com>
- <20261012055053.964468-6-satyanarayana.k.v.p@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 12 Oct 2026 06:07:14 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5576810EE7A;
+	Mon, 12 Oct 2026 06:15:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 430A810EE74
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 06:15:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791785705; x=1823321705;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=5lFWZUg+Q5xyoD+9DA3bO0vBe1E97pWX4ZqUaWDIJ3A=;
+ b=IGucjZDsFgQi9h8f0SP0cYztpjyHoygu923//8CJX7mNq7tqQ4DsPvF6
+ lJsmEdmAzr5JNqRBbQZ2zCN9vIpfg+7YGWdxHFgsNXpLBDCW/gxj3CAmN
+ UNQx4o/69b8HliRh2zNvrwHM+F/ksl3w+TbXhEvIZeGmmzV0Ya9gGTlzq
+ yfYrl9fIZoUtLyQR7yrG9ZxHFc2Og94O0HviqR6ZB6k/tRs/1K40e3exu
+ TRW9a3S41eKjTtOuoI0H4s5Tmle/kzqMkcF8Ocd/NySYQKs4/iS97TA8j
+ aHRTJb9bxG/HTbML/QCtXZQezX+k0riM4+hS0WD+VQpUU0vU+r5Q5rSWP g==;
+X-CSE-ConnectionGUID: +pCgT0jCTx68i0Qi2vOyyg==
+X-CSE-MsgGUID: IWy1CtUNTeSkbvqomflftA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="388325"
+X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
+   d="scan'208";a="388325"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2026 23:15:05 -0700
+X-CSE-ConnectionGUID: zsPKymZESPWP2y3KdcMjMg==
+X-CSE-MsgGUID: SA6ymatZSdy6vhnFY1qHng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
+   d="scan'208";a="748984"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2026 23:15:02 -0700
+Date: Mon, 12 Oct 2026 08:14:59 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, daniele.ceraolospurio@intel.com,
+ riana.tauro@intel.com, mallesh.koujalagi@intel.com,
+ aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
+ arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
+ nitin.r.gote@intel.com, pravalika.gurram@intel.com
+Subject: Re: [PATCH v4 00/12] Add CPER logging support for CRI
+Message-ID: <asx642wl72PkTZY4@black.igk.intel.com>
+References: <20261009104602.1075405-14-badal.nilawar@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261009104602.1075405-14-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,96 +67,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] drm/xe: NULL pointer dereference due to incomplete locking in hw_e=
-ngine_fini
---
+On Fri, Oct 09, 2026 at 04:16:03PM +0530, Badal Nilawar wrote:
+> This patch series adds CPER (Common Platform Error Record) logging support
+> for Correctable errors reported by Intel Xe GPUs. CPER logging is done
 
-commit 888f9d1be166404e1216f8d0d23505412e283b23
-Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Is it still correctable errors?
 
-drm/xe: Prevent VF memory IRQ from accessing a torn-down engine
+Raag
 
-This commit fixes a NULL pointer dereference by invalidating the engine
-name and GT pointer during teardown in hw_engine_fini() under the
-irq.lock, preventing the VF memory IRQ handler from scanning it.
-
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw=
-_engine.c
-> index 265f95c0c8993..55ee0c892c1e8 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-
-[ ... ]
-
-> @@ -275,11 +275,22 @@ static const struct engine_info engine_infos[] =3D {
->  static void hw_engine_fini(void *arg)
->  {
->  	struct xe_hw_engine *hwe =3D arg;
-> +	struct xe_gt *gt =3D hwe->gt;
-> +
-> +	if (gt) {
-> +		struct xe_device *xe =3D gt_to_xe(gt);
-> +		unsigned long flags;
-> =20
-> -	if (hwe->exl_port)
-> -		xe_execlist_port_destroy(hwe->exl_port);
-> +		if (hwe->exl_port)
-> +			xe_execlist_port_destroy(hwe->exl_port);
-> =20
-> -	hwe->gt =3D NULL;
-> +		spin_lock_irqsave(&xe->irq.lock, flags);
-> +		hwe->name =3D NULL;
-> +		hwe->gt =3D NULL;
-
-[Severity: High]
-Can this still cause a NULL pointer dereference for lockless IOCTL callers?
-
-Unprivileged userspace can call the DRM_IOCTL_XE_DEVICE_QUERY ioctl
-(specifically query_engine_cycles) concurrently with device unbind or unplu=
-g.
-Since the ioctl is not guarded by drm_dev_enter(), it can proceed
-concurrently with devres_release_all() and hw_engine_fini().
-
-The ioctl looks up the hardware engine via xe_gt_hw_engine() in
-query_engine_cycles():
-
-drivers/gpu/drm/xe/xe_query.c:query_engine_cycles() {
-    ...
-    hwe =3D xe_gt_hw_engine(gt, user_to_xe_engine_class[eci->engine_class],
-                          eci->engine_instance, true);
-    if (!hwe)
-        return -EINVAL;
-    ...
-}
-
-Immediately after this check, hw_engine_fini() can execute and clear
-hwe->gt =3D NULL (guarded only by xe->irq.lock, which the ioctl does not ho=
-ld).
-
-The ioctl then calls hwe_read_timestamp(), which dereferences hwe->gt:
-
-drivers/gpu/drm/xe/xe_query.c:hwe_read_timestamp() {
-    struct xe_mmio *mmio =3D &hwe->gt->mmio;
-    ...
-}
-
-Does this lockless path need additional protection against concurrent
-teardown?
-
-> +		spin_unlock_irqrestore(&xe->irq.lock, flags);
-> +	} else {
-> +		hwe->name =3D NULL;
-> +	}
->  }
-> =20
->  /**
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261012055053.9644=
-68-5-satyanarayana.k.v.p@intel.com?part=3D1
+> through trace event.
+> 
+> v2:
+>    - Extended CPER logging to Uncorrectable errors and xe_ras_get_counter
+>      request
+>    - Log CPER records via xe_log SIGID infra 
+> 
+> v3:
+>   - Added the patches in incremental order (Raag)
+>   - Fixed Sashiko warnings which are applicable 
+> 
+> v4:
+>   - Split the patches further for incremental review (Raag)
+>   - Refactor info queue handling (Raag)
+>   - Fix applicable Sashiko warnings
+> 
+> Badal Nilawar (12):
+>   drm/xe/cper: Add CPER reporting entry point for xe_log
+>   drm/xe/cper: Retrieve the error counter record for CPER reporting
+>   drm/xe/cper: Initialize Intel-specific error section header
+>   drm/xe/cper: Construct CPER record for hardware errors
+>   drm/xe/xe_ras: Add support to retrieve info queue data for CRI
+>   drm/xe/cper: Prepare Intel CPER error info records
+>   drm/xe/cper: Log CPER records for aggregate counter retrieval
+>   drm/xe/cper: Emit cper record to trace buf
+>   drm/xe/xe_ras: Report device memory errors using SIGID
+>   drm/xe/xe_ras: Report core compute errors using SIGID
+>   drm/xe/xe_ras: Report soc internal errors using SIGID
+>   drm/xe/xe_ras: Report correctable errors using SIGID
+> 
+>  .../ABI/testing/sysfs-driver-intel-xe-cper    |  18 +
+>  drivers/gpu/drm/xe/Makefile                   |   3 +
+>  drivers/gpu/drm/xe/xe_cper.c                  | 530 ++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_cper.h                  |  37 ++
+>  drivers/gpu/drm/xe/xe_cper_types.h            | 185 ++++++
+>  drivers/gpu/drm/xe/xe_device_types.h          |   4 +
+>  drivers/gpu/drm/xe/xe_log.c                   |   5 +-
+>  drivers/gpu/drm/xe/xe_ras.c                   | 254 ++++++++-
+>  drivers/gpu/drm/xe/xe_ras.h                   |   5 +
+>  drivers/gpu/drm/xe/xe_ras_types.h             | 118 +++-
+>  drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   2 +
+>  drivers/gpu/drm/xe/xe_trace_cper.c            |   9 +
+>  drivers/gpu/drm/xe/xe_trace_cper.h            |  66 +++
+>  13 files changed, 1202 insertions(+), 34 deletions(-)
+>  create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-cper
+>  create mode 100644 drivers/gpu/drm/xe/xe_cper.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_cper.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_cper_types.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_trace_cper.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_trace_cper.h
+> 
+> -- 
+> 2.54.0
+> 
