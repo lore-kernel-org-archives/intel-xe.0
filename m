@@ -4,39 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E8E8CA9EDC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B44DCA9ED0
 	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 23:29:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7C7210E6B1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7A4910E6EB;
 	Mon, 12 Oct 2026 23:29:32 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E4E910E6CF
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71E8410E6B1
  for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 23:29:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1791847767; x=1823383767;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dXgAqOFr2+BQruuWgntDWNbuFlN3IZ+arpimRa9KsUw=;
- b=J+B2IVQMC1fsIwOxZOzbBeBF5+wOHa477o04ewUdB5ZCIz2fE8dalwC8
- ea4jp7CIP7QwHro5N/IDCKXzW2N4Ujks1fdfglucAFeRaZfz5oUCUc4Cr
- Gsii5QHzspGf8We6uyx8WSZmtbgP7pkLeAWKcbjrUKsAN0R9tBfO3iqzC
- 1+jtO/P65i3E5IGckCIMm1hL1F2LWSJhlW17yLcr+ziWJwSjMfRfWt6xF
- B1aDBzgjoscpp6S6+gwlX7USfj2J294k/1wVpTRwc39HKR60FPfXCr0C0
- N6X1HpfeWfam6J9lGf+6zjyWkjIp+w6eCW8l24z9UewmucvCcSk+PyLR0 g==;
-X-CSE-ConnectionGUID: SPzr8lr1RNim2drb7UIHYg==
-X-CSE-MsgGUID: qawMSX5oTuu5kU2bcSVpUw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="450715"
+ bh=ZXuDtmWKA+ulW+DlNHZmvR+/2qJJR5ktEnw2Ec11bQY=;
+ b=M7dAFk1DLjzmglB1WjK7nZ9mO6t3EsKcxLtN3+SM77pTAMKTyp3kTZJq
+ slfsv95Ein6E8KuOQhd+iENVwg/B0CM7zm6stpq7IhIYzc7HZkVnP7mq8
+ LlH4V2jXK9R7NHfEGoXBeQAl4P9Jyi9ngA7aJuw6AvZ0CvmtORxNn8Ash
+ 7cZtj+4zd9b/ct4/+Qk4mUNko6NASnRJOLxc0nj6LfP3Uhhx1mTiIymHs
+ VtThzG46GTUSyO+2g2xCPCGIizFc0SoNLBmWW5VAZIppGkADQm0LFBOJ7
+ hMZ1pgcHSwi4MxTaxpdAinlPyHE3ClgyajKo7FqOLLQ7MFtSPXDUlEeHM g==;
+X-CSE-ConnectionGUID: 8ycUNNFTTZ+ldjkW6Q66qg==
+X-CSE-MsgGUID: AIo0aas6SlWPy8dkVkIDWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="450716"
 X-IronPort-AV: E=Sophos;i="6.27,154,1787036400"; 
-   d="scan'208";a="450715"
+   d="scan'208";a="450716"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Oct 2026 16:29:17 -0700
-X-CSE-ConnectionGUID: zu5UFbKiS0Cm6CPi0g+HsA==
-X-CSE-MsgGUID: AepGBlQTT8aSCGYUPM/PaA==
+X-CSE-ConnectionGUID: d/zFkVeCSmS4x2MQBTfmBA==
+X-CSE-MsgGUID: 6UOwTIcbRoy89uQprVO17Q==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,154,1787036400"; 
-   d="scan'208";a="1337848"
+   d="scan'208";a="1337853"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Oct 2026 16:29:16 -0700
@@ -45,9 +45,9 @@ To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com, aravind.iddamsetty@intel.com,
  mallesh.koujalagi@intel.com, alan.previn.teres.alexis@intel.com,
  julia.filipchuk@intel.com, michal.wajdeczko@intel.com
-Subject: [PATCH v7 5/7] drm/xe/uc: Report DMA failure using SIGID
-Date: Mon, 12 Oct 2026 16:29:13 -0700
-Message-ID: <20261012232907.83649-14-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v7 6/7] drm/xe/guc: Report major GuC failures using SIGID
+Date: Mon, 12 Oct 2026 16:29:14 -0700
+Message-ID: <20261012232907.83649-15-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261012232907.83649-9-umesh.nerlige.ramappa@intel.com>
 References: <20261012232907.83649-9-umesh.nerlige.ramappa@intel.com>
@@ -69,54 +69,81 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-Convert the uC DMA failure error to use the xe_log_err() helper.
+Convert errors during critical GuC flows (init, load, reset, suspend)
+to use the xe_log_err() helper.
+While at it, simplify the error log for the GuC load failure to use the
+cached frequency values instead of fetching them again.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_uc_fw.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 6edba1401f7a..0db13cb03eac 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -18,6 +18,7 @@
- #include "xe_gt_sriov_vf.h"
- #include "xe_gt_types.h"
- #include "xe_guc.h"
-+#include "xe_log.h"
- #include "xe_map.h"
- #include "xe_mmio.h"
- #include "xe_module.h"
-@@ -915,8 +916,12 @@ static int uc_fw_xfer(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
- int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
- {
- 	struct xe_device *xe = uc_fw_to_xe(uc_fw);
-+	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
- 	int err;
- 
-+	xe_gt_assert(gt, uc_fw->type == XE_UC_FW_TYPE_GUC ||
-+		     uc_fw->type == XE_UC_FW_TYPE_HUC);
-+
- 	/* make sure the status was cleared the last time we reset the uc */
- 	xe_assert(xe, !xe_uc_fw_is_loaded(uc_fw));
- 
-@@ -932,9 +937,11 @@ int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index cae5cbc38be8..7c27acd63b58 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -777,7 +777,7 @@ int xe_guc_init_noalloc(struct xe_guc *guc)
  	return 0;
  
- fail:
--	drm_err(&xe->drm, "Failed to load %s firmware %s (%d)\n",
--		xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
--		err);
-+	if (uc_fw->type == XE_UC_FW_TYPE_GUC)
-+		xe_log_err(gt, GUC, err, "Failed to load firmware %s\n", uc_fw->path);
-+	else
-+		xe_log_err(gt, HUC, err, "Failed to load firmware %s\n", uc_fw->path);
-+
- 	xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_LOAD_FAIL);
- 	return err;
+ out:
+-	xe_gt_err(gt, "GuC init failed with %pe\n", ERR_PTR(ret));
++	xe_log_err(gt, GUC, ret, "Early initialization error\n");
+ 	return ret;
  }
+ 
+@@ -845,7 +845,7 @@ int xe_guc_init(struct xe_guc *guc)
+ 	return 0;
+ 
+ out:
+-	xe_gt_err(gt, "GuC init failed with %pe\n", ERR_PTR(ret));
++	xe_log_err(gt, GUC, ret, "Initialization error\n");
+ 	return ret;
+ }
+ 
+@@ -998,15 +998,15 @@ int xe_guc_reset(struct xe_guc *guc)
+ 
+ 	ret = xe_mmio_wait32(mmio, GDRST, GRDOM_GUC, 0, 5000, &gdrst, false);
+ 	if (ret) {
+-		xe_gt_err(gt, "GuC reset timed out, GDRST=%#x\n", gdrst);
++		xe_log_err(gt, GUC, ret, "Reset timeout, GDRST=%#x\n", gdrst);
+ 		goto err_out;
+ 	}
+ 
+ 	guc_status = xe_mmio_read32(mmio, GUC_STATUS);
+ 	if (!(guc_status & GS_MIA_IN_RESET)) {
+-		xe_gt_err(gt, "GuC status: %#x, MIA core expected to be in reset\n",
+-			  guc_status);
+ 		ret = -EIO;
++		xe_log_err(gt, GUC, ret, "MIA core not in reset, GUC_STATUS=%#x\n",
++			   guc_status);
+ 		goto err_out;
+ 	}
+ 
+@@ -1224,9 +1224,9 @@ static int guc_wait_ucode(struct xe_guc *guc)
+ 	cur_freq = xe_guc_pc_get_cur_freq_fw(guc_pc);
+ 
+ 	if (ret || load_result) {
+-		xe_gt_err(gt, "load failed: status = 0x%08X, time = %lldms, freq = %dMHz (req %dMHz)\n",
+-			  status, delta_ms, xe_guc_pc_get_act_freq(guc_pc),
+-			  xe_guc_pc_get_cur_freq_fw(guc_pc));
++		xe_log_err(gt, GUC, ret ?: load_result,
++			   "Load failed, GUC_STATUS=%#x, time = %lldms, freq = %uMHz (req %uMHz)\n",
++			   status, delta_ms, act_freq, cur_freq);
+ 		print_load_status_err(gt, status);
+ 
+ 		return ret ?: load_result;
+@@ -1463,7 +1463,7 @@ int xe_guc_suspend(struct xe_guc *guc)
+ 
+ 	ret = xe_guc_softreset(guc);
+ 	if (ret) {
+-		xe_gt_err(gt, "GuC suspend failed: %pe\n", ERR_PTR(ret));
++		xe_log_err(gt, GUC, ret, "Suspend aborted\n");
+ 		return ret;
+ 	}
+ 
 -- 
 2.55.0
 
