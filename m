@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03214CA9ED1
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 15:03:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7539ECA9ED1
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 15:04:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1A7810F183;
-	Mon, 12 Oct 2026 15:03:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32FC310F183;
+	Mon, 12 Oct 2026 15:04:06 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFCE610F183
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 15:02:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7150C10F183
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 15:04:00 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 32466600D4;
- Mon, 12 Oct 2026 15:02:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3CC81F0089B;
- Mon, 12 Oct 2026 15:02:57 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 95882601FB;
+ Mon, 12 Oct 2026 15:03:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D5191F0089C;
+ Mon, 12 Oct 2026 15:03:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791817377;
- bh=BUl1JUPXzswCOVAdiPNFHW2KqSQO3LoUNu8fZYLd2fo=;
+ s=k20260515; t=1791817439;
+ bh=mnbQNEqI2q47LGjspSuEmeVAVAMyQDb0HbIs+pooJ3M=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=bpL8Cb5M5H2uRXKLnWnWQXc7T2SQRZK+lvNWolcyT944T48UdPTMiWIb53TdbMBlp
- mXWaozMTcL/k/IeDAsiv5FwRSBRI9yw4DxPn5WtBGsvs2supd/gS3++lH0DEDORR55
- x3K/jrOWvac1dJbMq3uo6UXINsUCK1bNyf0GC5YizEhJ6mAeg1lLKIQYuHdAr0LnYL
- J+FLBiJNU1ZsMb9WHb+IdOQ6YQMhRIjpPCYUCi24p2czB24xde/Jrx2eTLZKZ3RZHs
- 8ry6h8DoqkNf+pEU+R5oi6Iq91ACvCr9I6fFPZXb+cEdtzcbOT93OOKMo13yBwtbkQ
- 9KGyUMOqHVO3A==
-Message-ID: <sashiko-outbox-168308@kernel.org>
+ b=h5CO7SHR52wa9nm+S2gByuhixkF2QdCbxiPwjoWTEWyzGvqkH5WtRC2UvRzSTD7KE
+ KyTaa89WxH8Pnfb6nR83dT1bUX8nlebdauMT5gJmj9bBqmjeJ1+l42covIZ3zcbzR/
+ lozC/Dx4nzkyBg4SCCb1ZJZ7EWL5jHvYVasfvKr/TU22g/1BJ857oy4QJsXyUdyXrQ
+ zJihsKhPodr4So9HHD6rX0MHPeBycz06U8qPzxY43IGTKVIJHxmgQP1jzbF4P5GCzt
+ k/Q8FV6oebPzGj169qYTlYjOOoRzrXBleFcm8kA+E/+bB9FyEFc3kxR/gNSowL/p05
+ 3UUwVAqJdn7gQ==
+Message-ID: <sashiko-outbox-168310@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 4/7] drm/xe: dump GAM page fault report registers in
+Subject: Re: [PATCH v4 2/7] drm/xe/devcoredump: Add GuC register snapshot to
  devcoredump
 To: "Nareshkumar Gollakoti" <naresh.kumar.g@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261012145237.3788198-5-naresh.kumar.g@intel.com>
+In-Reply-To: <20261012145237.3788198-3-naresh.kumar.g@intel.com>
 References: <20261012145237.3788198-1-naresh.kumar.g@intel.com>
- <20261012145237.3788198-5-naresh.kumar.g@intel.com>
+ <20261012145237.3788198-3-naresh.kumar.g@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 12 Oct 2026 15:02:57 +0000
+Date: Mon, 12 Oct 2026 15:03:58 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,65 +54,60 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] NULL pointer dereference of q via q->gt when devcoredump is not ti=
-ed to an exec queue
-- [Medium] Premature release of forcewake for other_gt due to CLASS macro s=
-coping
+- [High] xe: NULL pointer dereference of `q` in devcoredump_snapshot()
 --
 
-commit be0fac28379d0e5150a5b7bc7c0761e28bfdcbed
+commit e0032c5e9ffbf65f21b038440b113313907d9c4c
 Author: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+Subject: drm/xe/devcoredump: Add GuC register snapshot to devcoredump
 
-drm/xe: dump GAM page fault report registers in devcoredump
-
-This commit adds the PAGE_FLTRPTQ_HEAD_GAMCTRL and PAGE_FLTRPTQ_TAIL_GAMCTRL
-registers to the devcoredump snapshot. This state is intended to be availab=
-le
-during cleanup for post-mortem debugging.
+This commit adds support for capturing GuC register state as part of the xe
+devcoredump snapshot. It defines a dedicated GuC register snapshot structure
+and records selected GT and media GuC status/error registers.
 
 > diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_=
 devcoredump.c
-> index f4a22e46eda78..a2a3437ec2f62 100644
+> index 1dbee725f55a1..f4a22e46eda78 100644
 > --- a/drivers/gpu/drm/xe/xe_devcoredump.c
 > +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
 [ ... ]
-> @@ -602,6 +635,10 @@ static void devcoredump_snapshot(struct xe_devcoredu=
+> @@ -561,6 +591,14 @@ static void devcoredump_snapshot(struct xe_devcoredu=
 mp *coredump,
-> =20
->  	ss->guc.log =3D xe_guc_log_snapshot_capture(&guc->log, true);
->  	ss->guc.ct =3D xe_guc_ct_snapshot_capture(&guc->ct);
-> +	ss->gam_pf_report =3D xe_dbg_gt_snapshot_capture(q->gt,
-> +						       other_gt,
-> +						       XE_DBG_REGSET_GAM_PF,
-> +						       XE_GT_TYPE_MAIN);
+>  						      other_gt,
+>  						      XE_DBG_REGSET_RPM,
+>  						      XE_GT_TYPE_MEDIA);
+> +	ss->gt_guc_reg =3D xe_dbg_gt_snapshot_capture(q->gt,
+> +						    other_gt,
+> +						    XE_DBG_REGSET_GUC,
+> +						    XE_GT_TYPE_MAIN);
 
 [Severity: High]
-Can q be NULL here?
+Can this cause a NULL pointer dereference when devcoredump_snapshot() is
+called?
 
-If a hardware hang is not tied to an exec queue (for example, a TLB
-invalidation timeout triggering via xe_devcoredump_gt()), q is passed as NU=
-LL.
+The xe_devcoredump_gt() function explicitly passes NULL for the q (exec que=
+ue)
+parameter in cases like TLB invalidation timeouts, where the hang is not ti=
+ed
+to a specific queue.
 
-Will unconditionally dereferencing q->gt here cause a NULL pointer derefere=
-nce
-and prevent the devcoredump from being created? Should the function use the=
- gt
-parameter directly instead of q->gt?
+If q is NULL, the unconditional access to q->gt here will trigger a kernel
+panic during the error handling path, crashing the system and preventing the
+devcoredump from successfully completing.
 
-[Severity: Medium]
-Is the forcewake for other_gt still held when this register capture occurs?
+Would it be safer to use the provided gt argument instead of q->gt?
 
-Earlier in devcoredump_snapshot(), the forcewake for other_gt is acquired
-using the CLASS(xe_force_wake, ...) macro inside an if (other_gt) { ... }
-block. Because CLASS utilizes the C __attribute__((cleanup)) mechanism, the
-forcewake is released as soon as that block ends.
+> +	ss->media_gt_guc_reg =3D xe_dbg_gt_snapshot_capture(q->gt,
+> +							  other_gt,
+> +							  XE_DBG_REGSET_GUC,
+> +							  XE_GT_TYPE_MEDIA);
 
-Does this mean the new gam_pf_report capture runs after the forcewake has
-already been dropped, potentially leading to hardware timeouts or reading
-garbage data?
+[Severity: High]
+Similarly, does this unconditional access to q->gt risk a NULL pointer
+dereference under the same conditions described above?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261012145237.3788=
-198-1-naresh.kumar.g@intel.com?part=3D4
+198-1-naresh.kumar.g@intel.com?part=3D2
