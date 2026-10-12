@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E7A5CA9EDB
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:15:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 650DDCA9EC5
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 04:15:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE42910E498;
-	Mon, 12 Oct 2026 04:15:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E264910E4B0;
+	Mon, 12 Oct 2026 04:15:28 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DE4E10E4A2;
- Mon, 12 Oct 2026 04:15:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B09A610E4C0;
+ Mon, 12 Oct 2026 04:15:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791778514; x=1823314514;
+ t=1791778519; x=1823314519;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0UBHLUhcIs38xkh6U4Jk9ZVSRR+5zpx3KpJP/W8+IIs=;
- b=T49I09fQ6LwFgK5zWAwcFUvDoFdv/jHBpbUfDxIC8RbcXyoAzBabfSLa
- euVc0IDHpArdCFM2KJABjdyzeo/CN6mZu9i1XgDVSdeBrSPWXgsMtpq3w
- Ff4+ZLLfeDJlCCaSRy4eM8JDT1ezKnhcuaUgjHf5WVRD8on/qE9iyQXaX
- Roq50KEgTBvyLsiLD1ugGZHGu2Q7C7nZtiYwi04q6WrGLBZmH4h0QXMB2
- JBdmz/rnbSTu72aD5/xfl7COf04wHcAdo/RrTrSD4i9/uQO1TOZUEJ+W5
- YEhKSMQ9AeSiPUS0xrSzQNUhBohKoD/34UqpurQb/tYOHseKtm3sf9igu w==;
-X-CSE-ConnectionGUID: mbrE64jTQma9uJPCcyBZ5A==
-X-CSE-MsgGUID: ha9SsKJcQMeSMv6pJ3NFOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="380897"
+ bh=KGbuHyYXER+YlsMjzNUdF85Rpb6CzrNY5ldZrqt1aoY=;
+ b=IZBePoaCBXoDa8tkT/S46pGypbsDf79h9LgeoKFCJghQHB+sEE2Ds69b
+ XuTxdQvR8H52YCWLCfGrPSiWyPQx9PGvpfgIRlJER+ugQVkpJ9erjT0tN
+ wh+0+jcOvAkdayXW4U1p1NLlzmuEOWzxHz9HDPZfCizXeUYvU0moDq0rk
+ 0W6jQheVm0cOmFqmHx1APHzayCRpwDvcKlzsQr+EWtW8+R3FUMKFoBKCx
+ yRdqDN91iKsL9/6S7rZeb4QALOtVoHVIiqmDwUpgV1UR4E3SuhNthUF1+
+ E2199PpyvB5667xln1LaDpTNs+SNlP6C5eUOSLmgJ8IOU9y+Sdu5mi9gb Q==;
+X-CSE-ConnectionGUID: 4Tu5oafgRtaVTgZloqtOKw==
+X-CSE-MsgGUID: br5++8c8SR6w9tjFjh7ROg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="380903"
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="380897"
+   d="scan'208";a="380903"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 21:15:06 -0700
-X-CSE-ConnectionGUID: M+alyC5iThWgLKb9RVNq/Q==
-X-CSE-MsgGUID: C+RcQWiMQDCiV/Cvdo5x2g==
+ 11 Oct 2026 21:15:13 -0700
+X-CSE-ConnectionGUID: np2U+jjnRMWv3RkhbnLfhg==
+X-CSE-MsgGUID: bt0XWVZcQH2Xr078eeYGJQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,152,1787036400"; 
-   d="scan'208";a="1256483"
+   d="scan'208";a="1256508"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 21:15:05 -0700
+ 11 Oct 2026 21:15:12 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, jani.nikula@linux.intel.com,
  uma.shankar@intel.com, ville.syrjala@linux.intel.com,
  suraj.kandpal@intel.com
-Subject: [PATCH v2 23/56] drm/i915/ddi_buf: Add Vswing table for HDMI FRL
-Date: Mon, 12 Oct 2026 09:27:32 +0530
-Message-ID: <20261012035806.3361439-24-ankit.k.nautiyal@intel.com>
+Subject: [PATCH v2 26/56] drm/i915/lt_phy: Add helper to check if the FRL rate
+ is valid
+Date: Mon, 12 Oct 2026 09:27:35 +0530
+Message-ID: <20261012035806.3361439-27-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
 References: <20261012035806.3361439-1-ankit.k.nautiyal@intel.com>
@@ -68,66 +69,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+Introduce helper intel_lt_phy_hdmi_frl_rate_valid() to check if the
+given FRL rate is supported for the LT Phy.
 
-Define Vswing table for HDMI FRL to set the signal levels.
-This is done for LT PHY which is Xe3PLPD onwards.
-
-Bspec: 74493
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- .../gpu/drm/i915/display/intel_ddi_buf_trans.c  | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 16 ++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_lt_phy.h |  1 +
+ 2 files changed, 17 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index cc5912178d9c..597bf1c78104 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -10,6 +10,7 @@
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
- #include "intel_dp.h"
-+#include "intel_hdmi.h"
- #include "intel_lt_phy.h"
- 
- /* HDMI/DVI modes ignore everything but the last 2 items. So we share
-@@ -1164,6 +1165,14 @@ static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_edp[] = {
- 	{ .lt = { 1, 3, 0, 26, 0 } },
- };
- 
-+static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_hdmi_frl[] = {
-+	{ .lt = { 0, 0, 0, 48, 0  } },
-+	{ .lt = { 0, 0, 4, 38, 6  } },
-+	{ .lt = { 0, 0, 4, 36, 8  } },
-+	{ .lt = { 0, 0, 4, 34, 10 } },
-+	{ .lt = { 0, 0, 4, 32, 12 } },
-+};
-+
- static const struct intel_ddi_buf_trans xe3plpd_lt_trans_dp14 = {
- 	.entries = _xe3plpd_lt_trans_dp14,
- 	.num_entries = ARRAY_SIZE(_xe3plpd_lt_trans_dp14),
-@@ -1179,6 +1188,11 @@ static const struct intel_ddi_buf_trans xe3plpd_lt_trans_edp = {
- 	.num_entries = ARRAY_SIZE(_xe3plpd_lt_trans_edp),
- };
- 
-+static const struct intel_ddi_buf_trans xe3plpd_lt_trans_hdmi_frl = {
-+	.entries = _xe3plpd_lt_trans_hdmi_frl,
-+	.num_entries = ARRAY_SIZE(_xe3plpd_lt_trans_hdmi_frl),
-+};
-+
- bool is_hobl_buf_trans(const struct intel_ddi_buf_trans *table)
- {
- 	return table == &tgl_combo_phy_trans_edp_hbr2_hobl;
-@@ -1780,6 +1794,9 @@ xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
- 		return intel_get_buf_trans(&xe3plpd_lt_trans_uhbr, n_entries);
- 	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
- 		return intel_get_buf_trans(&xe3plpd_lt_trans_edp, n_entries);
-+	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
-+		 intel_hdmi_is_frl(crtc_state->port_clock))
-+		return intel_get_buf_trans(&xe3plpd_lt_trans_hdmi_frl, n_entries);
- 	else
- 		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index 4223d806ffd7..ba03e5f1bb87 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -2654,3 +2654,19 @@ void intel_lt_phy_verify_plls(struct intel_display *display)
+ 	intel_lt_phy_pll_verify_tables(display, xe3plpd_lt_edp_tables);
+ 	intel_lt_phy_pll_verify_tables(display, xe3plpd_lt_hdmi_tables);
  }
++
++enum drm_mode_status intel_lt_phy_hdmi_frl_rate_valid(int clock_rate)
++{
++	const struct intel_lt_phy_pll_params *tables = xe3plpd_lt_hdmi_tables;
++	int i;
++
++	for (i = 0; tables[i].name; i++) {
++		if (!intel_hdmi_is_frl(tables[i].clock_rate))
++			continue;
++
++		if (clock_rate == tables[i].clock_rate)
++			return MODE_OK;
++	}
++
++	return MODE_CLOCK_RANGE;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+index 16de39484779..20714ecd9f62 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+@@ -49,5 +49,6 @@ void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
+ 			      const struct intel_dpll_hw_state *dpll_hw_state);
+ void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);
+ void intel_lt_phy_verify_plls(struct intel_display *display);
++enum drm_mode_status intel_lt_phy_hdmi_frl_rate_valid(int clock_rate);
+ 
+ #endif /* __INTEL_LT_PHY_H__ */
 -- 
 2.50.1
 
