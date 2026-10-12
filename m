@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3F66CA9ED1
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 15:06:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75DD5CA9EC5
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 15:07:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67E1A10F1B1;
-	Mon, 12 Oct 2026 15:06:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2920E10E437;
+	Mon, 12 Oct 2026 15:07:20 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73AFC10F1AE
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 15:06:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C666210E437
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 15:07:13 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id EBF98600D4;
- Mon, 12 Oct 2026 15:06:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 830011F0089C;
- Mon, 12 Oct 2026 15:06:00 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 1AD546020A;
+ Mon, 12 Oct 2026 15:07:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C9BC1F0089B;
+ Mon, 12 Oct 2026 15:07:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791817560;
- bh=fI/AKM+iZOrpksJENTgUFk3rKmsuf6ESZOZThvaB9ig=;
+ s=k20260515; t=1791817632;
+ bh=3O8DHHyQoErYFG+dKUD7qusJXWKkjYW1DQsnrBF3vsY=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=S33RMjbP77IHqZCpuUVu/tBImdaJXAJUBMj0r+elOpIYHq2UPQdP+5oJMkI6XH5U+
- ja621rMjLxYAss2YWxSHrIX+J82/bmCmJoOMTolDl8JcAxkm557cayP3ChPky1TPGs
- oIEmTgIaPvs+F9dvU/Xe9yyFZ1xEUCUWLyJ/0Zk6ygxdcM8vRahN19Svt5qw83euuN
- +CFFHIgQf6WiUdPsfzP8m02Nm6ZXkl3Tw8ZRpA8nBT+5lJbwIGbW8GKdDdmZu/XgF9
- fohjWbhp4pOFHxsL19IlbPhmHzdY0+JEXwgXTfjTqpUaD5lHKOZtJigH3pwMitbpag
- Xf9C2YHz9TbMA==
-Message-ID: <sashiko-outbox-168313@kernel.org>
+ b=EbjvEyCx7atKOdC85XWKACkie5XJBx7jw9b7+ENj/RJgq+K0mQ6c3C2kBTxrgxyQ5
+ x36BwcQ1jMgH14GoGGy7/Ioq34cUp6w2p9YAEn+2qtcD1GCKRnMLx3/fRz84+ScjOB
+ yTho/KyLvSLb/CGimdvSUW40vGy8jEfK3rM6nR7p4c0m9Hv+HGBRGSfjuhtO+fDMQZ
+ YYilHxkpbZtyxhRZGc1nU+VBt6fMxTudZArKePK/vrokoJ4RdDJTZnnr07hOBT8FNz
+ wjNKS0VimiRoTGPlgCCBr4tuRZk3ggWwBc5k7y3K7vbsPIpb8Je3J8UVMKieT9DNdA
+ LAcxQY892OB0w==
+Message-ID: <sashiko-outbox-168316@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 6/7] drm/xe: capture L3 node status registers in
- devcoredump
+Subject: Re: [PATCH v4 7/7] drm/xe/guc: capture additional engine state
+ registers
 To: "Nareshkumar Gollakoti" <naresh.kumar.g@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261012145237.3788198-7-naresh.kumar.g@intel.com>
+In-Reply-To: <20261012145237.3788198-8-naresh.kumar.g@intel.com>
 References: <20261012145237.3788198-1-naresh.kumar.g@intel.com>
- <20261012145237.3788198-7-naresh.kumar.g@intel.com>
+ <20261012145237.3788198-8-naresh.kumar.g@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 12 Oct 2026 15:06:00 +0000
+Date: Mon, 12 Oct 2026 15:07:12 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,57 +54,129 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] drm/xe: NULL pointer dereference of q in devcoredump_snapshot()
+- [Medium] xe: missing GuC capture registers for video and pre-Xe3p render =
+engines
+- [Medium] xe: invalid MMIO accesses during GuC error capture due to mixed =
+BCS/RCS registers
 --
 
-commit 6161ac10e80fa8c54c67e54542cd9c6bcb0ef507
+commit 5e669b4655462fa28596fd46c77d07300abb8f59
 Author: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-drm/xe: capture L3 node status registers in devcoredump
 
-This commit adds L3_NODE_IDLE and L3STAT_LBCF_GFX registers and captures
-them in the devcoredump snapshot. It also extends the register descriptor
-to support reading MCR registers.
+    drm/xe/guc: capture additional engine state registers
 
-> diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_=
-devcoredump.c
-> index a2a3437ec2f62..db7ccee12006a 100644
-> --- a/drivers/gpu/drm/xe/xe_devcoredump.c
-> +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
+This patch adds a wider set of engine state registers to the GuC error capt=
+ure
+to improve post-mortem debugging of engine hangs and reset-related failures.
+
+> diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_=
+guc_capture.c
+> index 6a20eab0f8204..b3c42052b70bb 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_capture.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+> @@ -127,11 +127,7 @@ struct __guc_capture_parsed_output {
+>  	{ RING_START(0),		REG_64BIT_LOW_DW, 0,	0,	0,	NULL}, \
+>  	{ RING_START_UDW(0),		REG_64BIT_HI_DW, 0,	0,	0,	"RING_START"}, \
+>  	{ RING_DMA_FADD(0),		REG_64BIT_LOW_DW, 0,	0,	0,	NULL}, \
+> -	{ RING_DMA_FADD_UDW(0),		REG_64BIT_HI_DW, 0,	0,	0,	"RING_DMA_FADD"}, \
+> -	{ RING_EXECLIST_STATUS_LO(0),	REG_64BIT_LOW_DW, 0,	0,	0,	NULL}, \
+> -	{ RING_EXECLIST_STATUS_HI(0),	REG_64BIT_HI_DW, 0,	0,	0,	"RING_EXECLIST_=
+STATUS"}, \
+> -	{ RING_EXECLIST_SQ_CONTENTS_LO(0), REG_64BIT_LOW_DW, 0,	0,	0,	NULL}, \
+> -	{ RING_EXECLIST_SQ_CONTENTS_HI(0), REG_64BIT_HI_DW, 0,	0,	0,	"RING_EXEC=
+LIST_SQ_CONTENTS"}
+> +	{ RING_DMA_FADD_UDW(0),		REG_64BIT_HI_DW, 0,	0,	0,	"RING_DMA_FADD"}
+> =20
+>  #define COMMON_XELP_RC_CLASS \
+>  	{ RCU_MODE,			REG_32BIT,	0,	0,	0,	"RCU_MODE"}
+
+[Severity: Medium]
+When removing the execlist registers from COMMON_BASE_ENGINE_INSTANCE,
+does this break the capture for engines that rely solely on the common list?
+
+Since the new XE_BCS_RCS_ENGINE_INSTANCE macro is only added to the Blitter
+and Xe3p Render lists, this leaves xe_rc_inst_regs (pre-Xe3p render/compute=
+),
+xe_vd_inst_regs (video), xe_vec_inst_regs (video enhance), and
+xe_lp_gsc_inst_regs without any execlist status tracking during a GuC error
+capture.
+
 [ ... ]
-> @@ -639,13 +663,15 @@ static void devcoredump_snapshot(struct xe_devcored=
-ump *coredump,
->  						       other_gt,
->  						       XE_DBG_REGSET_GAM_PF,
->  						       XE_GT_TYPE_MAIN);
-> -
-> +	ss->ns =3D xe_dbg_gt_snapshot_capture(q->gt,
-> +					    other_gt,
-> +					    XE_DBG_REGSET_L3_NODE,
-> +					    XE_GT_TYPE_MAIN);
 
-[Severity: High]
-If q is NULL, will accessing q->gt cause a NULL pointer dereference here?
+> @@ -150,6 +146,32 @@ struct __guc_capture_parsed_output {
+>  #define XE3P_BASE_ENGINE_INSTANCE \
+>  	{ RING_CSMQDEBUG(0),		REG_32BIT,	0,	0,	0,	"CSMQDEBUG"}
+> =20
+> +#define XE3P_RC_SLICE_INSTANCE \
+> +	{ FF_SLICE_CS_CHICKEN1(0), REG_32BIT, 0, 0, 0, "FF_SLICE_CS_CHICKEN1"},=
+ \
+> +	{ FF_SLICE_CS_CHICKEN2(0), REG_32BIT, 0, 0, 0, "FF_SLICE_CS_CHICKEN2"}
+> +
+> +#define XE_BCS_RCS_ENGINE_INSTANCE \
+> +	{ RING_EXECLIST_STATUS_LO(0), REG_64BIT_LOW_DW, 0, 0, 0, NULL}, \
+> +	{ RING_EXECLIST_STATUS_HI(0), REG_64BIT_HI_DW, 0, 0, 0, "RING_EXECLIST_=
+STATUS"}, \
+> +	{ RING_EXECLIST_SQ_CONTENTS_LO(0), REG_64BIT_LOW_DW, 0, 0, 0, NULL}, \
+> +	{ RING_EXECLIST_SQ_CONTENTS_HI(0), REG_64BIT_HI_DW, 0, 0, 0, "RING_EXEC=
+LIST_SQ_CONTENTS"}, \
+> +	{ RESET_CTRL(0), REG_32BIT, 0, 0, 0, "RESET_CTRL"}, \
+> +	{ RING_CSBEFSM3(0), REG_32BIT, 0, 0, 0, "RING_CSBEFSM3"}, \
+> +	{ RING_CSFESM(0), REG_32BIT, 0, 0, 0, "RING_CSFESM"}, \
+> +	{ RING_CSFESM2(0), REG_32BIT, 0, 0, 0, "RING_CSFESM2"}, \
+> +	{ RING_CSFESM3(0), REG_32BIT, 0, 0, 0, "RING_CSFESM3"}, \
+> +	{ RING_CSPWRFSM(0), REG_32BIT, 0, 0, 0, "RING_CSPWRFSM"}, \
+> +	{ RING_CSBEFSM(0), REG_32BIT, 0, 0, 0, "RING_CSBEFSM"}, \
+> +	{ BCS_SWCTRL(0), REG_32BIT, 0, 0, 0, "BCS_SWCTRL"}, \
+> +	{ RING_CSFE_GLB_CHICKEN3(0), REG_32BIT, 0, 0, 0, "RING_CSFE_GLB_CHICKEN=
+3"}, \
+> +	{ RING_PSMI_CTL(0), REG_32BIT, 0, 0, 0, "RING_PSMI_CTL"}, \
+> +	{ RING_INSTPS(0), REG_32BIT, 0, 0, 0, "RING_INSTPS"}, \
+> +	{ RING_BB_ADDR_DIFF(0), REG_32BIT, 0, 0, 0, "RING_BB_ADDR_DIFF"}, \
+> +	{ RING_BB_STATE(0), REG_32BIT, 0, 0, 0, "RING_BB_STATE"}, \
+> +	{ CS_DEBUG_MODE1(0), REG_32BIT, 0, 0, 0, "CS_DEBUG_MODE1"}, \
+> +	{ CS_CHICKEN1(0), REG_32BIT, 0, 0, 0, "CS_CHICKEN1"}, \
+> +	{ CS_PREEMPTION_STATUS(0), REG_32BIT, 0, 0, 0, "CS_PREEMPTION_STATUS"}
+> +
+>  /* XE_LP Global */
+>  static const struct __guc_mmio_reg_descr xe_lp_global_regs[] =3D {
+>  	COMMON_XELP_BASE_GLOBAL,
 
-When a devcoredump is triggered for a GT-level hang not tied to an exec que=
-ue
-(such as a TLB invalidation timeout via xe_devcoredump_gt()), q can be NULL,
-which is why the code immediately below checks if (q).
+[ ... ]
 
-Should this capture use the gt parameter that is passed into
-devcoredump_snapshot() instead of q->gt, or should it be moved inside the
-if (q) block?
+> @@ -189,6 +211,7 @@ static const struct __guc_mmio_reg_descr xe_vec_inst_=
+regs[] =3D {
+>  /* Blitter Per-Engine-Instance */
+>  static const struct __guc_mmio_reg_descr xe_blt_inst_regs[] =3D {
+>  	COMMON_BASE_ENGINE_INSTANCE,
+> +	XE_BCS_RCS_ENGINE_INSTANCE,
+>  };
+> =20
+>  /* XE_LP - GSC Per-Engine-Instance */
+> @@ -200,6 +223,8 @@ static const struct __guc_mmio_reg_descr xe_lp_gsc_in=
+st_regs[] =3D {
+>  static const struct __guc_mmio_reg_descr xe3p_rc_inst_regs[] =3D {
+>  	COMMON_BASE_ENGINE_INSTANCE,
+>  	XE3P_BASE_ENGINE_INSTANCE,
+> +	XE_BCS_RCS_ENGINE_INSTANCE,
+> +	XE3P_RC_SLICE_INSTANCE,
+>  };
+> =20
+>  /*
 
->  	if (q) {
->  		ss->ge =3D xe_guc_exec_queue_snapshot_capture(q);
->  		if (job)
->  			ss->job =3D xe_sched_job_snapshot_capture(job);
->  		ss->vm =3D xe_vm_snapshot_capture(q->vm);
-> -
->  		xe_engine_snapshot_capture_for_queue(q);
->  	}
+[Severity: Medium]
+Does mixing Blitter and Render exclusive registers into a single macro cause
+invalid MMIO accesses?
+
+BCS_SWCTRL is Blitter-specific, while CS_CHICKEN1, CS_DEBUG_MODE1, and
+CS_PREEMPTION_STATUS are Render-specific.
+
+Because XE_BCS_RCS_ENGINE_INSTANCE is added to both xe_blt_inst_regs and
+xe3p_rc_inst_regs, the GuC error capture will attempt to read unimplemented
+MMIO addresses (Blitter offsets on Render engines and vice versa) during a
+hang.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261012145237.3788=
-198-1-naresh.kumar.g@intel.com?part=3D6
+198-1-naresh.kumar.g@intel.com?part=3D7
