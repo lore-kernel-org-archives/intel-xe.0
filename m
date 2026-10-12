@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A99D0CA9ED5
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 05:19:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF38CCA9ED5
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 05:19:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FDEE10ECA8;
-	Mon, 12 Oct 2026 05:19:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9791210E367;
+	Mon, 12 Oct 2026 05:19:48 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06A2D10EC8C
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 05:19:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87BFA10EC95
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 05:19:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791782377; x=1823318377;
+ t=1791782378; x=1823318378;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=phfzyIYq6ZAqs9QKmkI5dAX4m/+4pGPL5oC5zP6jDqk=;
- b=Ge75cme/alGmbLRBq8UdyMeekZQyiLVbXnbeq2K1aTi2vXrPlgEOJUU9
- 4OD++RaLiuT0Tb1sz5WK159edBWNHsI88GrrpgFridNK9L+/D5sMGglgY
- y8pL+OIsl6XsRiJ1iyLA4mBmFHqDYNZZpYoMlp5Lh2L3FmzxcqedN8aul
- +PL8BCCGuL5uK5vVWnSPYRxatrs00P2pvcW8aLpmhJdJgIN22I++gSEQ8
- rNVQtdpJ8M99GS4xfi+8+N7ezWNyZUQRJNavPoqZJNuv4j02kmODXuwHK
- oBJNCcrSkPmkNawOMKywTXu479iCjBm0PPJ0rkCLvc3Fpoj0CVsWQ5Y3f A==;
-X-CSE-ConnectionGUID: CJrR+tC/SWGVsdf6Wytf6Q==
-X-CSE-MsgGUID: neDLq0YbQLqPQRn2kgZ9DA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="390506"
+ bh=jFMcJD8h8EV294HTsqK+H3RPs2aCHQZxUX38bqukOhs=;
+ b=AuecS+YM3O/6v4nyxdn0uW+vqwfAkmNXPj3DObCvjc8DdYUeKB1awz3a
+ A4gljvUVXVd7nIKFFJbJWKaH+xlckOaMGb6sJsjKP3AwAL+nb3bhT1SHA
+ 6ZbASOzdTAuuyCtffM1tre2QRBzq68mbKI35UVVV1RIK1yZoO6HIh5Lcf
+ ggFhr6VMlIT9f+xSBE++b9W8qP+sFZd7OE1RmAJI24TuwPXZ6ga6bk6lH
+ 6xPuAoZGokPkYup4WzDXwFupi3Hs7y3PNUT/0+bEuwedS9BhbC5KVEfwZ
+ i6+SK3IClk9G4e8fLiMeW0McJgm+3G3nB5V8mY78Die3ktIV9TglkWVrO Q==;
+X-CSE-ConnectionGUID: Xh9/ZfnsS9mgGnzONkRQvQ==
+X-CSE-MsgGUID: 5ItMdHxYRLeJxCxdErPhgQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="390516"
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="390506"
+   d="scan'208";a="390516"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2026 22:18:36 -0700
-X-CSE-ConnectionGUID: ZudP4IYkTB2XzBB7twUqGA==
-X-CSE-MsgGUID: +4UAiFqKTXaKl3CHnFSr7g==
+ 11 Oct 2026 22:18:45 -0700
+X-CSE-ConnectionGUID: UkRXnm6qSuaPPkZARIUxjg==
+X-CSE-MsgGUID: 1dr4OA61SL2IgdrF4dUhgg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="735875"
+   d="scan'208";a="735988"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by orviesa009.jf.intel.com with ESMTP; 11 Oct 2026 22:18:35 -0700
+ by orviesa009.jf.intel.com with ESMTP; 11 Oct 2026 22:18:44 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: mallesh.koujalagi@intel.com,
  Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH v6 05/12] drm/xe/memirq: Report errors using structured xe_log
- API
-Date: Mon, 12 Oct 2026 10:48:16 +0530
-Message-ID: <20261012051823.2201360-6-dnyaneshwar.bhadane@intel.com>
+Subject: [PATCH v6 12/12] drm/xe/vram: Report VRAM errors using structured
+ xe_log API
+Date: Mon, 12 Oct 2026 10:48:23 +0530
+Message-ID: <20261012051823.2201360-13-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261012051823.2201360-1-dnyaneshwar.bhadane@intel.com>
 References: <20261012051823.2201360-1-dnyaneshwar.bhadane@intel.com>
@@ -66,51 +66,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace memirq_err() calls with xe_log_err() using the MEMIRQ
-component tag for memory-based IRQ failures
-
-v2:
-- No need to log ERR_PTR(err) explicitly (Mallesh)
-- Using tile instead of xe for more local log location(sashiko bot)
+Replace drm_err()/drm_info() with xe_log_err_fatal()/xe_log_info()
+using the VRAM component tag. The "no CPU visible VRAM" error uses
+tile or device as the log location depending on the caller context.
 
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
----
- drivers/gpu/drm/xe/xe_memirq.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-index 9dfe965cb46e..32b9f87a10ec 100644
---- a/drivers/gpu/drm/xe/xe_memirq.c
-+++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -15,6 +15,7 @@
- #include "xe_gt.h"
- #include "xe_guc.h"
- #include "xe_hw_engine.h"
+---
+v2:
+ - Update the ternary condition (Mallesh)
+---
+ drivers/gpu/drm/xe/xe_vram.c | 38 ++++++++++++++++++++++--------------
+ 1 file changed, 23 insertions(+), 15 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index 73aef047eb38..772704dfe12f 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -17,6 +17,7 @@
+ #include "xe_device.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt_mcr.h"
 +#include "xe_log.h"
- #include "xe_memirq.h"
- #include "xe_tile_printk.h"
+ #include "xe_map.h"
+ #include "xe_migrate.h"
+ #include "xe_mmio.h"
+@@ -46,7 +47,8 @@ static int determine_lmem_bar_size(struct xe_device *xe, struct xe_vram_region *
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
  
-@@ -232,7 +233,7 @@ static int memirq_alloc_pages(struct xe_memirq *memirq)
- 	return 0;
+ 	if (!resource_is_valid(pdev, LMEM_BAR)) {
+-		drm_err(&xe->drm, "pci resource is not valid\n");
++		xe_log_err_fatal(xe, VRAM, -ENXIO,
++				 "PCI resource is not valid\n");
+ 		return -ENXIO;
+ 	}
  
- out:
--	memirq_err(memirq, "Failed to allocate memirq page (%pe)\n", ERR_PTR(err));
-+	xe_log_err(tile, MEMIRQ, err, "Failed to allocate memirq page\n");
- 	return err;
+@@ -227,17 +229,16 @@ struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 pla
+ 
+ static void print_vram_region_info(struct xe_device *xe, struct xe_vram_region *vram)
+ {
+-	struct drm_device *drm = &xe->drm;
+ 
+ 	if (vram->io_size < vram->usable_size)
+-		drm_info(drm, "Small BAR device\n");
+-
+-	drm_info(drm,
+-		 "VRAM[%u]: Actual physical size %pa, usable size exclude stolen %pa, CPU accessible size %pa\n",
+-		 vram->id, &vram->actual_physical_size, &vram->usable_size, &vram->io_size);
+-	drm_info(drm, "VRAM[%u]: DPA range: [%pa-%llx], io range: [%pa-%llx]\n",
+-		 vram->id, &vram->dpa_base, vram->dpa_base + (u64)vram->actual_physical_size,
+-		 &vram->io_start, vram->io_start + (u64)vram->io_size);
++		xe_log_info(xe, VRAM, "Small BAR device\n");
++
++	xe_log_info(xe, VRAM,
++		    "[%u]: Actual physical size %pa, usable size exclude stolen %pa, CPU accessible size %pa\n",
++		    vram->id, &vram->actual_physical_size, &vram->usable_size, &vram->io_size);
++	xe_log_info(xe, VRAM, "[%u]: DPA range: [%pa-%llx], io range: [%pa-%llx]\n",
++		    vram->id, &vram->dpa_base, vram->dpa_base + (u64)vram->actual_physical_size,
++		    &vram->io_start, vram->io_start + (u64)vram->io_size);
  }
  
-@@ -370,8 +371,8 @@ int xe_memirq_init_guc(struct xe_memirq *memirq, struct xe_guc *guc)
- 	return 0;
+ static int vram_region_init(struct xe_device *xe, struct xe_vram_region *vram,
+@@ -255,8 +256,14 @@ static int vram_region_init(struct xe_device *xe, struct xe_vram_region *vram,
+ 	vram->io_size = min_t(u64, usable_size, remain_io_size);
  
- failed:
--	memirq_err(memirq, "Failed to setup report pages in %s (%pe)\n",
--		   guc_name(guc), ERR_PTR(err));
-+	xe_log_err(memirq_to_tile(memirq), MEMIRQ, err,
-+		   "Failed to setup report pages in %s\n", guc_name(guc));
- 	return err;
- }
+ 	if (!vram->io_size) {
+-		drm_err(&xe->drm, "%s without any CPU visible VRAM. Aborting.\n",
+-			tile ? "Tile" : "Device");
++		if (tile) {
++			xe_log_err_fatal(tile, VRAM, -ENODEV,
++					 "without any CPU visible VRAM. Aborting.\n");
++		} else {
++			xe_log_err_fatal(xe, VRAM, -ENODEV,
++					 "without any CPU visible VRAM. Aborting.\n");
++		}
++
+ 		return -ENODEV;
+ 	}
  
+@@ -321,7 +328,7 @@ int xe_vram_probe(struct xe_device *xe)
+ 	err = determine_lmem_bar_size(xe, &lmem_bar);
+ 	if (err)
+ 		return err;
+-	drm_info(&xe->drm, "VISIBLE VRAM: %pa, %pa\n", &lmem_bar.io_start, &lmem_bar.io_size);
++	xe_log_info(xe, VRAM, "VISIBLE VRAM: %pa, %pa\n", &lmem_bar.io_start, &lmem_bar.io_size);
+ 
+ 	remain_io_size = lmem_bar.io_size;
+ 
+@@ -343,8 +350,9 @@ int xe_vram_probe(struct xe_device *xe)
+ 			return err;
+ 
+ 		if (total_size > lmem_bar.io_size) {
+-			drm_info(&xe->drm, "VRAM: %pa is larger than resource %pa\n",
+-				 &total_size, &lmem_bar.io_size);
++			xe_log_info(xe, VRAM,
++				    "Total size %pa is larger than resource %pa\n",
++				    &total_size, &lmem_bar.io_size);
+ 		}
+ 
+ 		remain_io_size -= min_t(u64, tile->mem.vram->actual_physical_size, remain_io_size);
 -- 
 2.54.0
 
