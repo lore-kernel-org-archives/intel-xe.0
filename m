@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95F98CA9EC5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE962CA9ED1
 	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 12:25:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53B1710F082;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68A0510F084;
 	Mon, 12 Oct 2026 12:25:48 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9108310F082
- for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 12:25:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B492B10F072
+ for <intel-xe@lists.freedesktop.org>; Mon, 12 Oct 2026 12:25:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791807941; x=1823343941;
+ t=1791807938; x=1823343938;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0FWoxpen/jUAwdxbGyeGEqBNepq2lPjcXmq1ULniERE=;
- b=e1YcQ6wN729HFFwcq/V/qhR3bS0wR706zllSdNBPtFJlgrHcep8Ql8xX
- 5qEcEjg3snUUPLtrRGOTxIWrFoasd88W44Pt8vmXmHZEp4M2Abfc93040
- Df/aGC3EvQHsASDq82/lU0uC6h17bunintu4zs07enEC0+sVeEefczC1c
- 1ZnLyPlj3ihOrUiBE7arvcV8z4Lf2tzJL0draYwA8QTfESH2Eit0CIZur
- 8BjtscearfonfMUD66rnjmymVFPgggBBvj9gQKtvnGEyjOA8qptW6r4VQ
- bpfG9Hb7aT7iFS7h0YkZJI/t7SJ7d89sIwb9AuwczTtnFn1GpFm854s6F Q==;
-X-CSE-ConnectionGUID: oJjzxhkPRr+VAgchjEm5Eg==
-X-CSE-MsgGUID: A1O6GOvIQYGMXwxEwDoc0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="522914"
+ bh=o3wHp77WRgxKIs2LXFJ2R+UhEkTp/OWqmfDdV6V3wOk=;
+ b=E4CFEVIv7yfhNMv3RHs2apzd68hQdYTV/joglnDBfnHpMZ3S6y2VUzbr
+ i58GpxZ5kxp1FZe86LjMcGvObtRyCbG7IIYrI7U6P2bkinXtVxOVHfQd9
+ /gdCpv2R/kF+CdaKmxfyPWQnZDZcfUQMheXlzA59M2JssBKgHfVCZPyt1
+ QENemCIof91eDQTXn7yCbIp+pDm8GNb8fAVaNRhK+DMVq5p0DI4C8fL83
+ BbInEogyRJ4sBnqHigndfAoKaAkdhilfJ/s8NthN/VLxwiwddx6z2bHkA
+ /5F7difRkLyjnEPshKYaBhLYF9G+bYocyArsBABiPOfp3UxQ4nhnr4hRj w==;
+X-CSE-ConnectionGUID: hKdAJyfCQl2pg8FKn1i9pA==
+X-CSE-MsgGUID: cXLh1xoTQ3yJ1G61m8glhw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="522908"
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="522914"
+   d="scan'208";a="522908"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 05:25:37 -0700
-X-CSE-ConnectionGUID: jNTYq7AnR7Kt+2R0RLAtQg==
-X-CSE-MsgGUID: w5f23VwUTFup1QfH9LTvNw==
+ 12 Oct 2026 05:25:35 -0700
+X-CSE-ConnectionGUID: LdkdWztPRiK5A8z4VMkcEQ==
+X-CSE-MsgGUID: A5qUtP5TQZOboasnvTw2HQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="962810"
+   d="scan'208";a="962802"
 Received: from dbhadane-mobl1.iind.intel.com ([10.190.239.58])
- by fmviesa004.fm.intel.com with ESMTP; 12 Oct 2026 05:25:37 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 12 Oct 2026 05:25:34 -0700
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: mallesh.koujalagi@intel.com,
  Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH v7 10/12] drm/xe/lmtt: Report invalidation errors using
+Subject: [PATCH v7 08/12] drm/xe/pat: Report missing PAT table using
  structured xe_log API
-Date: Mon, 12 Oct 2026 17:55:19 +0530
-Message-ID: <20261012122522.2307625-11-dnyaneshwar.bhadane@intel.com>
+Date: Mon, 12 Oct 2026 17:55:17 +0530
+Message-ID: <20261012122522.2307625-9-dnyaneshwar.bhadane@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261012122522.2307625-1-dnyaneshwar.bhadane@intel.com>
 References: <20261012122522.2307625-1-dnyaneshwar.bhadane@intel.com>
@@ -66,54 +66,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace xe_tile_sriov_err() with xe_log_err() using the LMTT component
-tag for LMTT and MERT invalidation failures, preserving the SR-IOV
-prefix in the log message.
+Replace drm_err() with xe_log_err() using the PAT component tag
+when a platform has no matching PAT table entry.
 
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 
 ---
 v2:
- - Drop logging error type in log (Mallesh)
-
-v3:
- - Add trailing newline(Mallesh).
+ - correction in the error code.(shashiko)
 ---
- drivers/gpu/drm/xe/xe_lmtt.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_pat.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
-index 0c726eda9390..b6b3d892a35e 100644
---- a/drivers/gpu/drm/xe/xe_lmtt.c
-+++ b/drivers/gpu/drm/xe/xe_lmtt.c
-@@ -14,6 +14,7 @@
- #include "xe_bo.h"
- #include "xe_tlb_inval.h"
- #include "xe_lmtt.h"
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 0ac64a6a3098..3dfcd364ac67 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -16,6 +16,7 @@
+ #include "xe_force_wake.h"
+ #include "xe_gt.h"
+ #include "xe_gt_mcr.h"
 +#include "xe_log.h"
- #include "xe_map.h"
- #include "xe_mert.h"
  #include "xe_mmio.h"
-@@ -302,14 +303,15 @@ void xe_lmtt_invalidate_hw(struct xe_lmtt *lmtt)
- 
- 	err = lmtt_invalidate_hw(lmtt);
- 	if (err)
--		xe_tile_sriov_err(tile, "LMTT invalidation failed (%pe)",
--				  ERR_PTR(err));
-+		xe_log_err(tile, LMTT, err, "%s invalidation failed.\n",
-+			   xe_sriov_printk_prefix(xe));
- 
- 	if (xe_device_has_mert(xe) && xe_tile_is_root(tile)) {
- 		err = xe_mert_invalidate_lmtt(xe);
- 		if (err)
--			xe_tile_sriov_err(tile, "MERT LMTT invalidation failed (%pe)",
--					  ERR_PTR(err));
-+			xe_log_err(tile, LMTT, err,
-+				   "%s MERT invalidation failed.\n",
-+				   xe_sriov_printk_prefix(xe));
+ #include "xe_sriov.h"
+ #include "xe_wa.h"
+@@ -692,8 +693,9 @@ int xe_pat_init_early(struct xe_device *xe)
+ 		 * raise an error rather than trying to silently inherit the
+ 		 * most recent platform's behavior.
+ 		 */
+-		drm_err(&xe->drm, "Missing PAT table for platform with graphics version %d.%02d!\n",
+-			GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
++		xe_log_err(xe, PAT, -ENODATA,
++			   "Missing PAT table for platform with graphics version %d.%02d!\n",
++			   GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
+ 		return -ENODATA;
  	}
- }
  
 -- 
 2.54.0
