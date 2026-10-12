@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFC6ACA9ED0
-	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 12:42:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60C81CA9ED2
+	for <intel-xe@archiver.kernel.org>; Mon, 12 Oct 2026 12:42:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B586910F055;
-	Mon, 12 Oct 2026 12:41:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2582810E564;
+	Mon, 12 Oct 2026 12:41:57 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 033FB10E476;
- Mon, 12 Oct 2026 12:41:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 015AC10E564;
+ Mon, 12 Oct 2026 12:41:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791808909; x=1823344909;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+jCNzngaJnAdzdUGap3BM/zcrURDTGBsWkxG5OZILY0=;
- b=Bpa0zxqES0++r83rldAGh0SlPczCp0xWsLt3pKkBP178zWmhoBfhquS+
- Xvk7fj6NqocXuSSbasTCVQRdQ+qcVN/sr1GjRiHCMBpoSw3n/7Vo/weX1
- QeQOT2OmPjvibOdqGrfPposgOoayAEo+61lesLpf2QrN6bP8gLKEM8y4J
- E0KSul4ghy2vQSuXDTUi4rjGchg0+DTagIJx9L1gs/PmMP7zJdLqGm+hE
- MzSQ9IcxUhbkH1Fg2n1SQExgywScgLH4JACexMLDi4wh9YUhWTJ8wRXbH
- 76phXYq1YEyFN0OJ+rPOQS/UZEIvYbCzs7JymIJrubr8O6ibTrAyhHrQE w==;
-X-CSE-ConnectionGUID: bSleI60KRAaRPrEwrBrqkA==
-X-CSE-MsgGUID: fUC4z2cURBaFfzW1dnSwCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="506197"
+ t=1791808911; x=1823344911;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=1INcVm8MwO9pooixCOYlGY5XdFrGHIC4vMQllpanfgA=;
+ b=Jbt2OsHRWEufmaMUnIHun/kw6aX0RaZBD9DyRHhvoYUg5YGpbxDb2P6J
+ m1EhF4bGMy6xQYSoQrIye5n7G9pHW7G83ivFwOgMJGgB8Qe4Rsys+qir5
+ onj1tRNRXyZYm/F1M2saqX+GB+lLsknHQ+c2Ai20CmjRXQbiUzvt70YiE
+ MZIM20qEsfjjR4DcDMsvihDOUskAtXL1FfQvDPEnHTvKKRE2YSaUkNlX3
+ GUygZ4DemUJjkpHrkLyEbMdc8THZjwh4v9s5ZWlAwZ2ptlWtFvgutTbGY
+ TVtYwpP04gfG9gJnvIgzYRPCooerjOnGd97lcXklI6htyXeZ/k1ZVVjFJ w==;
+X-CSE-ConnectionGUID: t0kI5BxFQa65iYF29RGuFg==
+X-CSE-MsgGUID: Lg7LC0HrSqSH8dWmHigrlg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11932"; a="506202"
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="506197"
+   d="scan'208";a="506202"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 05:41:48 -0700
-X-CSE-ConnectionGUID: W2EzE+kcSYimQL635+RIbQ==
-X-CSE-MsgGUID: NiAOSD4cRbes02OTc5VhFA==
+ 12 Oct 2026 05:41:50 -0700
+X-CSE-ConnectionGUID: cDY9tPDxSJKO7ZxTMeJSlw==
+X-CSE-MsgGUID: iG1C0TSOT+m6xZ8OLr1HuA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,153,1787036400"; 
-   d="scan'208";a="808135"
+   d="scan'208";a="808144"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa007.jf.intel.com with ESMTP; 12 Oct 2026 05:41:48 -0700
+ by orviesa007.jf.intel.com with ESMTP; 12 Oct 2026 05:41:49 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jouni.hogander@intel.com,
 	Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v2 0/6] drm/i915/psr: Panel Replay and PSR2 with the joiner
-Date: Mon, 12 Oct 2026 12:41:39 +0000
-Message-ID: <20261012124145.1960050-1-mika.kahola@intel.com>
+Subject: [PATCH v2 1/6] drm/i915/psr: Track all joined pipes for frontbuffer
+ tracking
+Date: Mon, 12 Oct 2026 12:41:40 +0000
+Message-ID: <20261012124145.1960050-2-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261012124145.1960050-1-mika.kahola@intel.com>
+References: <20261012124145.1960050-1-mika.kahola@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,43 +67,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is v2 of [1], with the following changes
+psr.pipe is the joiner primary only, so frontbuffer bits coming from a
+secondary pipe get masked out and the update goes unnoticed. Add
+psr.pipe_mask covering every joined pipe and use that instead.
 
-- Split the active_non_psr_pipes change out of patch 1 into its own
-  patch
-- Use pipe_mode rather than the adjusted mode as the per-pipe area
-  reference
-- Do not force a full update when only one of the joined pipes has
-  damage. A plane confined to one half is simply not visible on the
-  other pipe, so an empty pipe is skipped in the merge and the fallback
-  only kicks in when no joined pipe has any damage at all
-- Redo the early transport alignment on the merged area. Merging only
-  ever grows the area, so a cursor that missed its own pipe's area can
-  end up partially covered
-- Break out of the per-pipe compute loop on the first full update
-- Drop psr_joiner_config_valid(). It duplicated the existing eDP Panel
-  Replay pipe A/B check and wrongly applied it to DP Panel Replay,
-  which has no such restriction. Extend the existing check to cover the
-  whole joined pipe mask instead
+No functional change, joiner is still rejected in compute_config().
 
-[1] https://lore.kernel.org/intel-xe/20260923115941.746934-1-mika.kahola@intel.com/
+v2: Split the active_non_psr_pipes change into its own patch (Jouni)
 
-Mika Kahola (6):
-  drm/i915/psr: Track all joined pipes for frontbuffer tracking
-  drm/i915/psr: Exclude the joiner secondary from active_non_psr_pipes
-  drm/i915/psr: Take the selective fetch area from pipe_mode
-  drm/i915/psr: Merge the selective fetch area across joined pipes
-  drm/i915/psr: Allow Panel Replay and PSR2 with joiner
-  drm/i915/display: Allow forcing the joiner on eDP
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 25 ++++++++++++++-----
+ 2 files changed, 20 insertions(+), 6 deletions(-)
 
- .../drm/i915/display/intel_display_debugfs.c  |   5 +-
- .../drm/i915/display/intel_display_types.h    |   1 +
- drivers/gpu/drm/i915/display/intel_dp.c       |  12 +-
- drivers/gpu/drm/i915/display/intel_psr.c      | 339 ++++++++++++------
- drivers/gpu/drm/i915/display/intel_vdsc.c     |   2 +-
- drivers/gpu/drm/i915/display/intel_vdsc.h     |   2 +-
- 6 files changed, 253 insertions(+), 108 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 79f30660c2b6..2e6e3661675c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1798,6 +1798,7 @@ struct intel_psr {
+ 	bool enabled;
+ 	int pause_counter;
+ 	enum pipe pipe;
++	u8 pipe_mask;
+ 	enum transcoder transcoder;
+ 	bool active;
+ 	struct work_struct work;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 872e253db178..0d4f71f14396 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -36,6 +36,7 @@
+ #include "intel_cursor_regs.h"
+ #include "intel_ddi.h"
+ #include "intel_de.h"
++#include "intel_display.h"
+ #include "intel_display_irq.h"
+ #include "intel_display_regs.h"
+ #include "intel_display_rpm.h"
+@@ -1798,6 +1799,19 @@ static void psr2_dc3co_disable_work(struct work_struct *work)
+ 	mutex_unlock(&intel_dp->psr.lock);
+ }
+ 
++/* Frontbuffer bits for every pipe driving this PSR/Panel Replay instance. */
++static unsigned int psr_frontbuffer_mask(struct intel_dp *intel_dp)
++{
++	struct intel_display *display = to_intel_display(intel_dp);
++	unsigned int mask = 0;
++	enum pipe pipe;
++
++	for_each_pipe_masked(display, pipe, intel_dp->psr.pipe_mask)
++		mask |= INTEL_FRONTBUFFER_ALL_MASK(pipe);
++
++	return mask;
++}
++
+ static void
+ psr2_dc3co_flush_locked(struct intel_dp *intel_dp, unsigned int frontbuffer_bits)
+ {
+@@ -1813,8 +1827,7 @@ psr2_dc3co_flush_locked(struct intel_dp *intel_dp, unsigned int frontbuffer_bits
+ 	 * At every frontbuffer flush flip event modified delay of delayed work,
+ 	 * when delayed work schedules that means display has been idle.
+ 	 */
+-	if (!(frontbuffer_bits &
+-	    INTEL_FRONTBUFFER_ALL_MASK(intel_dp->psr.pipe)))
++	if (!(frontbuffer_bits & psr_frontbuffer_mask(intel_dp)))
+ 		return;
+ 
+ 	mod_delayed_work(display->wq.unordered, &intel_dp->psr.dc3co_work,
+@@ -2175,6 +2188,7 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+ 	intel_dp->psr.panel_replay_enabled = crtc_state->has_panel_replay;
+ 	intel_dp->psr.busy_frontbuffer_bits = 0;
+ 	intel_dp->psr.pipe = to_intel_crtc(crtc_state->uapi.crtc)->pipe;
++	intel_dp->psr.pipe_mask = intel_crtc_joined_pipe_mask(crtc_state);
+ 	intel_dp->psr.transcoder = crtc_state->cpu_transcoder;
+ 	/* DC5/DC6 requires at least 6 idle frames */
+ 	val = usecs_to_jiffies(intel_get_frame_time_us(crtc_state) * 6);
+@@ -2394,6 +2408,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+ 	intel_dp->psr.psr2_sel_fetch_cff_enabled = false;
+ 	intel_dp->psr.active_non_psr_pipes = 0;
+ 	intel_dp->psr.pkg_c_latency_used = 0;
++	intel_dp->psr.pipe_mask = 0;
+ 	cancel_delayed_work(&intel_dp->psr.dc3co_work);
+ 	intel_dp->psr.dc3co_allowed = false;
+ }
+@@ -3627,8 +3642,7 @@ void intel_psr_invalidate(struct intel_display *display,
+ 			continue;
+ 		}
+ 
+-		pipe_frontbuffer_bits &=
+-			INTEL_FRONTBUFFER_ALL_MASK(intel_dp->psr.pipe);
++		pipe_frontbuffer_bits &= psr_frontbuffer_mask(intel_dp);
+ 		intel_dp->psr.busy_frontbuffer_bits |= pipe_frontbuffer_bits;
+ 
+ 		if (pipe_frontbuffer_bits)
+@@ -3708,8 +3722,7 @@ void intel_psr_flush(struct intel_display *display,
+ 			continue;
+ 		}
+ 
+-		pipe_frontbuffer_bits &=
+-			INTEL_FRONTBUFFER_ALL_MASK(intel_dp->psr.pipe);
++		pipe_frontbuffer_bits &= psr_frontbuffer_mask(intel_dp);
+ 		intel_dp->psr.busy_frontbuffer_bits &= ~pipe_frontbuffer_bits;
+ 
+ 		/*
 -- 
 2.43.0
 
