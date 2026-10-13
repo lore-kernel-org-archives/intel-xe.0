@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA1C9CA9ED0
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 02:24:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B557DCA9ED0
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 02:26:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 736C510E6F3;
-	Tue, 13 Oct 2026 02:24:37 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18D2D10E6F3
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 02:24:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 755E910E6F3;
+	Tue, 13 Oct 2026 02:26:05 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15AAD10E6F3
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 02:25:59 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id C9BF143BF8;
- Tue, 13 Oct 2026 02:24:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8323E1F000FF;
- Tue, 13 Oct 2026 02:24:30 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id E8321600D1;
+ Tue, 13 Oct 2026 02:25:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 446B31F000FF;
+ Tue, 13 Oct 2026 02:25:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791858270;
- bh=gQJC/5/L2yfIRIzJjiSRLWp2q1+BJVpftGBsnxuywyo=;
+ s=k20260515; t=1791858357;
+ bh=YbfrR2OG2ZWXHjxEwhrvqcQT93AYpiLkGMS+6tmw+Rc=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=cFGKYzCW23XoFFqkulPO3i/nr+kfz5He2lDg4tvs9nZk1BWF59twi6NLmkX51VFKb
- t3ksr/xzvbmh634Mc0VcPUeK6jmjhlMvJnWIt1F07oKdsqMMXguTDmYtgwZQe7fAeB
- cxv6nm/K0QrP0ZRUvptrAjG6E/E3YGeTz9Ze5r1pqWTI1oJKG/odUDuyOpiwaQJHVV
- cJCrVal2cNUNpz38nyl7T3xOpR579dtyB+KnWXHE2aVtxL/sQbvj0lHNwebdpMUavM
- RZr1/yMQAJxCTTdns6OkgSqO12Wg3KjoZVkOp1nqHo1g8BLrzmlXm6xLNNP8Nmnqiw
- 1slw4YcobO+bg==
-Message-ID: <sashiko-outbox-168870@kernel.org>
+ b=JDOqWuMHUdyOwhxHNPZNStOXgrT2s3njRe+JYF8i4tmMg/UDmplvMws5guUZg3YDy
+ giqopHPDQ7H5ZMn2ayfacukVMf8jE5SNUzVjkmIfwGJcFrkrPwvw1BirEBcfi/L8j/
+ lgRWTtg9nKRwm9n8iRyPN/xkhAmLerK1BmCukHuRVRcHIa2lNFyXBkoJD5ZowieuC1
+ CgxIPoxjqoynrJjRZUw+ezBapGgp8+WmjS3iXL4Y6Zkxr2X4OPCVvyUGFKRWYjkUym
+ gyrYWWZf0NBWhc2tQdtmMwMwrlrXkvIol3EuWSAAthU/gcoonOvgB7aBckutY/SOPT
+ wrcYmizVX7GIA==
+Message-ID: <sashiko-outbox-168872@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v11 04/16] drm/xe/hwmon: Add helpers to validate thermal
- sensor readings
+Subject: Re: [PATCH v11 15/16] drm/xe: Validate thermal sensor count before
+ reads
 To: "Karthik Poosa" <karthik.poosa@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261013020636.447620-5-karthik.poosa@intel.com>
+In-Reply-To: <20261013020636.447620-16-karthik.poosa@intel.com>
 References: <20261013020636.447620-1-karthik.poosa@intel.com>
- <20261013020636.447620-5-karthik.poosa@intel.com>
+ <20261013020636.447620-16-karthik.poosa@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 13 Oct 2026 02:24:30 +0000
+Date: Tue, 13 Oct 2026 02:25:56 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,73 +55,66 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] hwmon: MMIO read errors (U32_MAX) are treated as valid temperatu=
-res on legacy platforms
+- [Medium] drm/xe/hwmon: memory controller temperature incorrectly averages=
+ PCIe sensor
 --
 
-commit 30c789d23390d6abf7d18b4ec4f037b60404f1b9
+commit 560df9ca7dd177faf766f62db4da531e993c1514
 Author: Karthik Poosa <karthik.poosa@intel.com>
 
-drm/xe/hwmon: Add helpers to validate thermal sensor readings
+drm/xe: Validate thermal sensor count before reads
 
-This commit introduces mmio_temp_valid() and mbx_temp_valid() to check
-whether a temperature sensor reading is valid. It gates these checks behind
-the has_temp_sentinel flag.
+This commit adds boundary checks to verify that READ_THERMAL_CONFIG reports
+enough entries for the platform-specific memory controller and PCIe sensor
+indices before attempting to read thermal data.
 
 > diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index 2d1fa9159c58b..712a21a996362 100644
+> index 7311f969f574f..702c739c9bf0a 100644
 > --- a/drivers/gpu/drm/xe/xe_hwmon.c
 > +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -920,6 +920,13 @@ static int get_mc_temp(struct xe_hwmon *hwmon, long =
+*val)
+>  		end =3D hwmon->temp.count - 1;
+>  	}
+> =20
+> +	if (end <=3D start || end > hwmon->temp.count) {
+> +		drm_warn(&hwmon->xe->drm,
+> +			 "memory controller range [%d, %d) is invalid for temperature count %=
+d\n",
+> +			 start, end, hwmon->temp.count);
+> +		return -ENODATA;
+> +	}
+> +
+
+[Severity: Medium]
+If the firmware reports a thermal config count such that hwmon->temp.count =
+- 1
+exceeds the hardcoded PCIe sensor index, will get_mc_temp() mistakenly aver=
+age
+the PCIe sensor into the memory controller temperature?
+
+While the validation added here allows hwmon->temp.count - 1 to be larger t=
+han
+the PCIe sensor index, get_mc_temp() statically bounds its loop using
+end =3D hwmon->temp.count - 1. This could force the memory controller loop =
+to
+iterate past the intended MCTRL range and consume the PCIe sensor located at
+that index:
+
+    for (i =3D start; i < end; i++) {
+        if (!mbx_temp_valid(hwmon, hwmon->temp.value[i]))
+            continue;
+        average +=3D mbx_temp_decode(hwmon->temp.value[i]);
+        count++;
+    }
+
+Should end be explicitly capped at xe_hwmon_pcie_temp_index(hwmon) when
+calculating the memory controller average to prevent polluting the statisti=
+cs
+with out-of-range sensors?
 
 [ ... ]
 
-> @@ -825,6 +828,23 @@ static int xe_hwmon_pcode_read_thermal_info(struct x=
-e_hwmon *hwmon)
->  	return ret;
->  }
-> =20
-> +static inline bool mmio_temp_valid(const struct xe_hwmon *hwmon, u32 val=
-ue)
-> +{
-> +	/*
-> +	 * On platforms lacking temperature sentinel support, a value of 0 is t=
-reated
-> +	 * as invalid. While 0=C2=B0C is theoretically possible, it is highly u=
-nlikely for
-> +	 * a discrete GPU in normal environments, making it a reasonable fallba=
-ck
-> +	 * indicator for invalid or uninitialized temperature readings.
-> +	 */
-> +	return hwmon->xe->info.has_temp_sentinel ? value !=3D U32_MAX : value !=
-=3D 0;
-
-[Severity: Medium]
-Does this inadvertently treat PCIe MMIO read errors as valid temperatures on
-legacy platforms?
-
-When a PCIe target abort or link failure occurs, xe_mmio_read32() returns
-U32_MAX (0xFFFFFFFF). If the platform lacks has_temp_sentinel support, the
-condition evaluates value !=3D 0. Because 0xFFFFFFFF is not 0, this returns
-true.
-
-Later, in xe_hwmon_temp_read(), this U32_MAX value will be blindly decoded:
-
-*val =3D (s32)REG_FIELD_GET(TEMP_MASK_VRAM_N, reg_val) *
-        (REG_FIELD_GET(TEMP_SIGN_MASK, reg_val) ? -1 : 1) *
-        MILLIDEGREE_PER_DEGREE;
-
-This could result in absurd temperature readings like -8,388,607 or 255
-instead of correctly propagating an error code when the hardware fails.
-
-Should U32_MAX be universally treated as invalid, regardless of the
-has_temp_sentinel flag?
-
-> +}
-> +
-> +/* Mailbox temperature is sign-magnitude (bit 7 sign, bits 6:0 magnitude=
-). */
-> +static inline bool mbx_temp_valid(const struct xe_hwmon *hwmon, u8 value)
-
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261013020636.4476=
-20-1-karthik.poosa@intel.com?part=3D4
+20-1-karthik.poosa@intel.com?part=3D15
